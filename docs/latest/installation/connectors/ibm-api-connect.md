@@ -67,12 +67,67 @@ Wallarm provides custom policies that can be attached to APIs in API Connect. Th
 1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** and download a code bundle for your platform.
 
     If running a self-hosted node, contact sales@wallarm.com to get the code bundle.
+1. Register the request inspection policy:
 
---8<-- "../include/waf/installation/connectors/ibm-apply-policies.md"
+    ```
+    apic policies:create \
+        --scope <CATALOG OR SPACE> \
+        --server <MANAGEMENT SERVER ENDPOINT> \
+        --org <ORG NAME OR ID> \
+        --catalog <CATALOG NAME OR ID> \
+        --configured-gateway-service <GATEWAY SERVICE NAME OR ID> \
+        /<PATH>/wallarm-pre.zip
+    ```
+1. Register the response inspection policy:
+
+    ```
+    apic policies:create \
+        --scope <CATALOG OR SPACE> \
+        --server <MANAGEMENT SERVER ENDPOINT> \
+        --org <ORG NAME OR ID> \
+        --catalog <CATALOG NAME OR ID> \
+        --configured-gateway-service <GATEWAY SERVICE NAME OR ID> \
+        /<PATH>/wallarm-post.zip
+    ```
+
+In most cases, the `configured-gateway-service` name is `datapower-api-gateway`.
 
 ### 3. Integrate Wallarm inspection steps into the assembly pipeline
 
---8<-- "../include/waf/installation/connectors/ibm-assembly-pipeline.md"
+In your API specification, within the `x-ibm-configuration.assembly.execute` section, add or update the following steps to route traffic through the Wallarm Node:
+
+1. Before the `invoke` step, add the `wallarm_pre` step to proxy incoming requests to the Wallarm Node.
+1. Ensure that the `invoke` step is configured as follows:
+    
+    * The `target-url` should follow the format `$(target-url)$(request.path)?$(request.query-string)`. This ensures that requests are proxied to the original backend path along with any query parameters.
+    * `header-control` and `parameter-control` allow all headers and parameters to pass through. This enables the Wallarm Node to analyze the full request, detect attacks in any part of it, and accurately build the API inventory.
+1. After the `invoke` step, add the `wallarm_post` step to proxy responses to the Wallarm Node for inspection.
+
+```yaml hl_lines="8-22"
+...
+x-ibm-configuration:
+  properties:
+    target-url:
+      value: <BACKEND_ADDRESS>
+  ...
+  assembly:
+    execute:
+      - wallarm_pre:
+          version: 1.0.1
+          title: wallarm_pre
+          wallarmNodeAddress: <WALLARM_NODE_URL>
+      - invoke:
+          title: invoke
+          version: 2.0.0
+          verb: keep
+          target-url: $(target-url)$(request.path)?$(request.query-string)
+          persistent-connection: true
+      - wallarm_post:
+          version: 1.0.1
+          title: wallarm_post
+          wallarmNodeAddress: <WALLARM_NODE_URL>
+...
+```
 
 Supported properties in Wallarm policies:
 
@@ -83,7 +138,16 @@ Supported properties in Wallarm policies:
 
 ### 4. Publish your product with the updated API
 
---8<-- "../include/waf/installation/connectors/ibm-publish-product.md"
+To apply changes to the traffic flow, re-publish the product that includes the modified API:
+
+```
+apic products:publish \
+    --scope <CATALOG OR SPACE> \
+    --server <MANAGEMENT SERVER ENDPOINT> \
+    --org <ORG NAME OR ID> \
+    --catalog <CATALOG NAME OR ID> \
+    <PATH TO THE UPDATED PRODUCT YAML>
+```
 
 ## Example: API and product with Wallarm policies
 

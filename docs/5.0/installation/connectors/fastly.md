@@ -63,8 +63,29 @@ To route traffic from Fastly to the Wallarm Node, you need to deploy a Fastly Co
 1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** and download the Wallarm package.
 
     If running a self-hosted node, contact sales@wallarm.com to get the package.
+1. Go to **Fastly** UI → **Account** → **API tokens** → **Personal tokens** → **Create token**:
 
---8<-- "../include/waf/installation/connectors/fastly-deploy-code.md"
+    * Type: Automation token
+    * Scope: Global API access
+    * Leave other settings at their default unless specific changes are required
+
+    ![](../../images/waf-installation/gateways/fastly/generate-token.png)
+1. Go to **Fastly** UI → **Compute** → **Compute services** → **Create service** → **Use a local project** and create an instance for Wallarm.
+
+    Once created, copy the generated `--service-id`:
+
+    ![](../../images/waf-installation/gateways/fastly/create-compute-service.png)
+1. Go to the local directory containing the Wallarm package and deploy it:
+
+    ```
+    fastly compute deploy --service-id=<SERVICE_ID> --package=wallarm-api-security.tar.gz --token=<FASTLY_TOKEN>
+    ```
+
+    The success message:
+
+    ```
+    SUCCESS: Deployed package (service service_id, version 1)
+    ```
 
     ??? warning "Error reading fastly.toml"
         If you get the following error:
@@ -79,11 +100,33 @@ To route traffic from Fastly to the Wallarm Node, you need to deploy a Fastly Co
 
 ### 3. Specify Wallarm Node's and backend's hosts
 
---8<-- "../include/waf/installation/connectors/fastly-hosts.md"
+For proper traffic routing for analysis and forwarding, you need to define the Wallarm Node and backend hosts in the Fastly service configuration:
+
+1. Go to **Fastly** UI → **Compute** → **Compute services** → Wallarm service → **Edit configuration**.
+1. Go to **Origins** and **Create hosts**:
+
+    * Add the Wallarm node URL as the `wallarm-node` host to route traffic to the Wallarm node for analysis.
+    * Add your backend address as another host (e.g., `backend`) to forward traffic from the node to your origin backend.
+
+    ![](../../images/waf-installation/gateways/fastly/hosts.png)
+1. **Activate** the new service version.
 
 ### 4. Create the Wallarm config store
 
---8<-- "../include/waf/installation/connectors/fastly-config-store.md"
+Create the `wallarm_config` config defining Wallarm-specific settings:
+
+1. Go to **Fastly** UI → **Resources** → **Config stores** → **Create a config store** and create the `wallarm_config` store with the following key-value items:
+
+    | Parameter | Description | Required? |
+    | --------- | ----------- | --------- |
+    | `WALLARM_BACKEND` | Host name for the Wallarm Node instance specified in Compute service settings. | Yes |
+    | `ORIGIN_BACKEND` | Host name for the backend specified in Compute service settings. | Yes |
+    | `WALLARM_MODE_ASYNC` | Enables traffic [copy](../oob/overview.md) analysis without affecting the original flow (`true`) or inline analysis (`false`, default). | No |
+
+    [More parameters](fastly.md#configuration-options)
+1. **Link** the config store to the Wallarm Compute service.
+
+![](../../images/waf-installation/gateways/fastly/config-store.png)
 
 !!! info "Config stores for multiple services"
     If you run multiple Compute services for Wallarm, you can do one of the following:
