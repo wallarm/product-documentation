@@ -1,6 +1,10 @@
 ---
 search:
   exclude: true
+hide:
+  - navigation
+  - toc
+  - feedback
 ---
 
 <meta name="robots" content="noindex, noarchive, nofollow">
