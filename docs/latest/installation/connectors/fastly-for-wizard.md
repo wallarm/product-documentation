@@ -80,4 +80,8 @@ Create the `wallarm_config` config defining Wallarm-specific settings:
   button.md-top.md-icon {
     display: none;
   }
+
+  .md-consent {
+    display: none;
+  }
 </style>

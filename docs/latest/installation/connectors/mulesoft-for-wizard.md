@@ -88,4 +88,8 @@ You can attach the Wallarm policy to either an individual API or all APIs.
   button.md-top.md-icon {
     display: none;
   }
+
+  .md-consent {
+    display: none;
+  }
 </style>
