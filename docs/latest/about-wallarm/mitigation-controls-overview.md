@@ -44,8 +44,9 @@ Perform configuring in the **Security controls** → **Mitigation Controls** sec
 
 Before configuring, get familiar with the idea of [branches](#mitigation-control-branches) and check what already exists. 
 
-In general, configuring any mitigation control includes 2 steps:
+In general, configuring any mitigation control includes the following steps:
 
+1. Optionally, set custom **Title**.
 1. Set conditions (when all met → action).
 1. Set action (mitigation mode).
 
@@ -75,13 +76,21 @@ When all conditions are met, mitigation control performs its action. The require
 | **Inherited** | Mode is inherited from the [all-traffic **Real-time blocking mode**](../admin-en/configure-wallarm-mode.md#general-filtration-mode) and the [configuration](../admin-en/configure-wallarm-mode.md#setting-wallarm_mode-directive) of the Wallarm node. |
 | **Monitoring** | Only registers detected attacks; no blocking is performed. Registered attacks are displayed in **API Sessions**, in the corresponding [session details](../api-sessions/exploring.md#specific-activities-within-session). <br> For some controls, in this mode, you can also select additional option of adding source IP in the [Graylist](../user-guides/ip-lists/overview.md). |
 | **Blocking** | Registers and blocks attacks. [Blocking methods](../about-wallarm/protecting-against-attacks.md#attack-handling-process) vary by control type: real-time blocking, [IP-based blocking](../user-guides/ip-lists/overview.md), or session-based blocking<sup>*</sup>. |
-| **Disabled** | Mitigation control is temporarily turned off and is not applied. |
-| **Excluding** | Disables this type of mitigation control for the [specified scope](#mitigation-control-branches). |
+| **Excluding** | Stops this type of mitigation control for the [specified scope](#mitigation-control-branches). See details in [Excluding mode vs. disabling](#excluding-mode-vs-disabling). |
 | **Safe blocking** | Registers attacks but blocks them only if the originating IP is [graylisted](../user-guides/ip-lists/overview.md). |
 
 <small><sup>*</sup> The session-based blocking is not supported so far.</small>
 
 The list of available modes may vary depending on the particular control.
+
+### Excluding mode vs. disabling
+
+You can use **On/Off** switcher to temporarily disable mitigation control and re-enable it when necessary. Consider the example below to understand the difference between disabled mitigation control and the one enabled in Excluding mitigation mode:
+
+* Consider the fact that controls [work in branches](#mitigation-control-branches).
+* Let's say you have [Rate abuse protection](../api-protection/rate-abuse-protection.md) control set for `example.com` (50 request in minute) and control of the same type for child `example.com/login` (10 request in minute). This will result in restriction of 50 request in minute for all addresses under `example.com`, except addresses under `example.com/login` where it will be stricter - 10 request in minute.
+* If you disable (switcher to **Off**) rate abuse protection control for `example.com/login`, it will stop doing anything (as if you deleted it) - restriction for all scope will be defined by parent control (50 request in minute).
+* If you re-enable rate abuse protection control for `example.com/login` and set its mitigation mode to **Excluding**, it will stop rate abuse protection for this branch - restriction for all `example.com` will be 50 request in minute, except `example.com/login` where there will be no restriction of rate abuse protection type at all.
 
 ### Regular expressions
 
