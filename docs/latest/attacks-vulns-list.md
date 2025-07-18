@@ -689,6 +689,8 @@ The **API Abuse Prevention** module uses the complex bot detection model to dete
 
 **Attack**
 
+**Wallarm code:** `resource_consumption`
+
 **Description:**
 
 A type of abusive behavior where an automated client consumes excessive API or application resources without proper limits. This may include sending high volumes of non-malicious requests, exhausting compute, memory, or bandwidth, and causing service degradation for legitimate users.
