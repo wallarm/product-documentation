@@ -40,7 +40,7 @@ Check the filtering node operation mode as follows:
 1. If the node is NGINX-based, restart NGINX to be sure that settings have been applied:
 
     --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
-1. [Generate](#1-generate-some-malicious-traffic) malicious traffic once again to be sure that attacks are still not uploaded to the Cloud.
+1. Generate malicious traffic once again to be sure that attacks are still not uploaded to the Cloud.
 
 **Capture logs and share them with the Wallarm support team**
 
@@ -95,8 +95,8 @@ Using the `wallarm_mode` directive is only one of several methods of traffic fil
 
 If you have configured blocking mode via `wallarm_mode block` but Wallarm filtering node does not block attacks, please ensure that filtration mode is not overridden using other configuration methods:
 
-* Using the [rule **Set filtration mode**](../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console)
-* In the [**General** section of Wallarm Console](../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console)
+* Using the [rule **Set filtration mode**](../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode)
+* In the [**General** section of Wallarm Console](../admin-en/configure-wallarm-mode.md#general-filtration-mode)
 
 [More details on filtration mode configuration methods →](../admin-en/configure-parameters-en.md)
 
