@@ -50,7 +50,7 @@ Deploying the Wallarm Node from the AMI on AWS typically takes around 10 minutes
 
     The deployment process assumes the principle of least privilege, granting only the minimal access required to provision and operate Wallarm components.
 
-For guidance on estimating AWS infrastructure costs for this deployment, see the [Cost Guidance for Deploying Wallarm in AWS](costs.md) page.
+For guidance on estimating AWS infrastructure costs for this deployment, see the [Cost Guidance for Deploying Wallarm in AWS](../cloud-platforms/aws/costs.md) page.
 
 ## Use cases
 

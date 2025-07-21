@@ -4,7 +4,7 @@
 [multitenancy-overview]:            ../multi-tenant/overview.md
 [applications-docs]:                ../../user-guides/settings/applications.md
 [available-filtration-modes]:       ../../admin-en/configure-wallarm-mode.md#available-filtration-modes
-[ui-filtration-mode]:              ../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console
+[ui-filtration-mode]:              ../../admin-en/configure-wallarm-mode.md#general-filtration-mode
 [self-hosted-connector-node-helm-conf]: ../native-node/helm-chart-conf.md
 
 # Wallarm Filter for Istio Ingress
