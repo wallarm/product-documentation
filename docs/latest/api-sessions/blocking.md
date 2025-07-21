@@ -75,6 +75,10 @@ You can also unblock the session manually: in Wallarm Console, do one of the fol
 * Go to **API Sessions**, blocked session details, click **Unblock the session**.
 * Go to **IP & Session Lists** → **Session lists** → **Denylist**, from the record menu, select **Delete session**.
 
+### Session status change
+
+After session is blocked or unblocked, its new status is displayed only after the 1-st request following blocking or unblocking.
+
 ## Viewing all blocked requests
 
 As we mentioned in the introduction of this article, there can be different reasons of request blocking within a session. Whatever reason was, Wallarm provides a clear picture of all attacks (not obligatory blocked) and blocks within the session.
