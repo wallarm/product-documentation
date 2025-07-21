@@ -30,7 +30,7 @@ Among a wide range of API endpoint filters, you can choose the ones correspondin
 Each request/response parameter information includes:
 
 * Parameter name and the part of request/response this parameter belongs to
-* Path: the hierarchical location of a parameter within a REST query structure
+* Path: the hierarchical location of a parameter within a REST query structure (not displayed, if all parameters are stored in the same root location)
 * Information about parameter changes (new, unused)
 * Presence and type of sensitive data transmitted by this parameter, including:
 
@@ -79,7 +79,7 @@ By clicking the GraphQL operation, you can find its details, including transferr
 Each request/response parameter information includes:
 
 * Parameter name and the part of request/response this parameter belongs to
-* Path: the hierarchical location of a parameter within a GraphQL query structure
+* Path: the hierarchical location of a parameter within a GraphQL query structure (not displayed, if all parameters are stored in the same root location)
 * Information about parameter changes (new, unused)
 * Presence and type of sensitive data transmitted by this parameter, including:
 * Date and time when parameter value was last transferred by requests
@@ -104,7 +104,7 @@ By clicking the SOAP operation, you can find its details, including transferred 
 Each request/response XML parameter information includes:
 
 * Parameter name (**Key**)
-* Path: the hierarchical location of a parameter within an XML structure
+* Path: the hierarchical location of a parameter within an XML structure (not displayed, if all parameters are stored in the same root location)
 * Parameter [type](#soap-format-and-data-type)
 * Namespaces for path elements (from more general to more specific)
 * Presence and type of sensitive data transmitted by this parameter
