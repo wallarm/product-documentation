@@ -990,6 +990,16 @@ CSRF is solved by browsers, other protection methods are less useful but still c
 *   Set the `SameSite` cookie attribute.
 *   Apply the recommendations from the [OWASP CSRF Prevention Cheat Sheet][link-owasp-csrf-cheatsheet].
 
+### File upload violation
+
+**Attack**
+
+**Wallarm code:** `file_upload_violation`
+
+**Description:**
+
+
+
 ### Information exposure
 
 **Vulnerability/Attack**
