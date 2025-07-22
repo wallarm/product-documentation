@@ -112,8 +112,6 @@ extra:
         outdated: Outdated or incorrect information
         input_placeholder: Share your experience in more detail
         send_button: Send
-  include_files:
-    - _headers
 
 extra_css:
   - 'extra_new.css'
