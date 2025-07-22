@@ -37,7 +37,7 @@ To review GraphQL default controls, in Wallarm Console → **Security Controls**
 
 You can duplicate or edit default controls or disable them. Editing allows you to customize a default control based on the specific needs of the application, traffic patterns, or business context. For example, you can narrow **Scope** to limit control to the GraphQL specific endpoints or adjust thresholds.
 
-You can **reset default control to its default configuration** at any time.
+<!--You can **reset default control to its default configuration** at any time.-->
 
 --8<-- "../include/mc-subject-to-change.md"
 

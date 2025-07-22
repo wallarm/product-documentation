@@ -118,13 +118,13 @@ All controls from the default set have the `Default` label. Such controls:
     !!! info "Absence of default controls"
         If you do not see any default controls, except [obligatory](#obligatory_default_controls) ones, and do want to explore and try them, contact the [Wallarm support team](https://support.wallarm.com/) to get them.
 
-* All are initially applied to [all traffic](#scope).
+* All are initially applied to [all traffic](#scope) (changeable).
 * All initially use `Monitoring` [mitigation mode](#mitigation-mode) (changeable).
 * Cannot be deleted.
 * Can be disabled/re-enabled and edited like all others. Editing allows you to customize any default control based on the specific needs of the application, traffic patterns, or business context. For example, you may adjust default thresholds or exclude specific endpoints via the **Scope filters** section.
-* Can be **reset to its default configuration** at any time.
+<!--* Can be **reset to its default configuration** at any time.-->
 
-    ![Default mitigation controls](../images/user-guides/mitigation-controls/mc-defaults.png)
+![Default mitigation controls](../images/user-guides/mitigation-controls/mc-defaults.png)
 
 --8<-- "../include/mc-subject-to-change.md"
 

@@ -53,7 +53,7 @@ Thus:
 
 Wallarm provides [default](../about-wallarm/mitigation-controls-overview.md#default-controls)  mitigation controls for enumeration protection. You can duplicate or edit default controls or disable them.
 
-You can **reset default control to its default configuration** at any time.
+<!--You can **reset default control to its default configuration** at any time.-->
 
 --8<-- "../include/mc-subject-to-change.md"
 
