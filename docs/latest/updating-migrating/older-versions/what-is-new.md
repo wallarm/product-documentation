@@ -134,6 +134,14 @@ We introduce a unified management center for all Wallarm attack mitigation setti
 
 ![Mitigation Controls page in UI](../../images/user-guides/mitigation-controls/mc-main-page.png)
 
+## File upload restriction policy
+
+Wallarm now provides tools for direct restricting the size of uploaded files. This comes as a part of set of measures aimed to prevent the [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) included in the [OWASP API Top 10 2023](../../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks.
+
+Depending on your subscription plan, upload restrictions are applied via mitigation control or rule. You can set file size restrictions for the full request or its selected point.
+
+![File upload restriction MC - example](../../images/api-protection/mitigation-controls-file-upload-1.png)
+
 ### Enumeration attack protection
 
 !!! tip ""
