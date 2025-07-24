@@ -41,6 +41,7 @@ To proceed with the deployment, ensure that you meet the following requirements:
 * [Anypoint CLI 4.x](https://docs.mulesoft.com/anypoint-cli/latest/install) installed on your host system.
 * [Prerequisites for PDK CLI](https://docs.mulesoft.com/pdk/latest/policies-pdk-prerequisites) installed on your host system.
 * [Docker](https://docs.docker.com/engine/install/) installed and running on your host system.
+* Native Node [version 0.16.0 or higher](../../updating-migrating/native-node/node-artifact-versions.md).
 
 ## Deployment
 
@@ -55,6 +56,9 @@ Choose an artifact for a self-hosted node deployment and follow the attached ins
 * [All-in-one installer](../native-node/all-in-one.md) for Linux infrastructures on bare metal or VMs
 * [Docker image](../native-node/docker-image.md) for environments that use containerized deployments
 * [Helm chart](../native-node/helm-chart.md) for infrastructures utilizing Kubernetes
+
+!!! info "Required Node version"
+    Please note that the MuleSoft Flex Gateway connector is supported only by the Native Node [version 0.16.0+](../../updating-migrating/native-node/node-artifact-versions.md).
 
 ### 2. Obtain and upload the Wallarm policy to MuleSoft Exchange
 
@@ -143,7 +147,7 @@ You can also verify whether the policy is applied to the API by navigating to yo
 
 ## Upgrading the policy
 
-To upgrade the deployed Wallarm policy to a [newer version](code-bundle-inventory.md#mulesoft):
+To upgrade the deployed Wallarm policy to a [newer version](code-bundle-inventory.md#mulesoft-flex-gateway):
 
 1. Download the updated Wallarm policy and upload it to MuleSoft Exchange, as described in [Step 2](#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange).
 1. Once the new version appears in Exchange, go to **API Manager** → your API → **Policies** → Wallarm policy → **Edit configuration** → **Advanced options** and choose the new policy version from the dropdown.

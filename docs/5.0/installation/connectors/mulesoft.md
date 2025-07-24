@@ -199,7 +199,7 @@ You can also verify whether the policy is applied to the API by navigating to yo
 
 ## Upgrading the policy
 
-To upgrade the deployed Wallarm policy to a [newer version](code-bundle-inventory.md#mulesoft):
+To upgrade the deployed Wallarm policy to a [newer version](code-bundle-inventory.md#mulesoft-mule-gateway):
 
 1. Download the updated Wallarm policy and upload it to MuleSoft Exchange, as described in [Step 2](#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange).
 1. Once the new version appears in Exchange, go to **API Manager** → your API → **Policies** → Wallarm policy → **Edit configuration** → **Advanced options** and choose the new policy version from the dropdown.

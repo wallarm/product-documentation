@@ -1,6 +1,6 @@
-# MuleSoft for wizard
+# MuleSoft Mule for wizard
 
-The Wallarm Edge node can be connected to your MuleSoft APIs in [synchronous](../inline/overview.md) mode to inspect traffic before it reaches the APIs - without blocking any requests.
+The Wallarm Edge node can be connected to your Mule Gateway in [synchronous](../inline/overview.md) mode to inspect traffic before it reaches Mule APIs - without blocking any requests.
 
 Follow the steps below to set up the connection.
 
@@ -61,7 +61,7 @@ You can attach the Wallarm policy to either an individual API or all APIs.
 [More details](mulesoft.md)
 
 <style>
-  h1#mulesoft-for-wizard {
+  h1#mulesoft-mule-for-wizard {
     display: none;
   }
 

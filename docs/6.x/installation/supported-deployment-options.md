@@ -167,8 +167,14 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
     <div class="do-main">
         <a class="do-card" href="../../installation/connectors/mulesoft/">
             <img class="non-zoomable" src="../../images/platform-icons/mulesoft.svg" />
-            <h3>MuleSoft</h3>
-            <p>Deploy Wallarm to secure APIs deployed on the MuleSoft Anypoint platform</p>
+            <h3>MuleSoft Mule Gateway</h3>
+            <p>Deploy Wallarm to secure APIs managed by the Mule Gateway</p>
+        </a>
+
+        <a class="do-card" href="../../installation/connectors/mulesoft-flex/">
+            <img class="non-zoomable" src="../../images/platform-icons/mulesoft-flex-gateway.png" />
+            <h3>MuleSoft Flex Gateway</h3>
+            <p>Deploy Wallarm to secure APIs managed by the Flex Gateway</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/apigee/">
