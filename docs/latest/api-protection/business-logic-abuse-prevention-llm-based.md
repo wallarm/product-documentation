@@ -54,12 +54,12 @@ To configure LLM-based protection from business logic abuse:
 1. In the **Mitigation mode** section, set action to be done.
 1. Click **Add**.
 
-<!--details TBD-->
+## Mitigation control examples
 
-<!--#### Mitigation control examples
+### Absence of steps obligatory in business logic
 
-TBD
+![BOLA protection mitigation control - example](../images/user-guides/mitigation-controls/mc-logic-abuse-example-01.png)
 
-### Viewing detected attacks in API Sessions
+<!--### Viewing detected attacks in API Sessions
 
 TBD-->

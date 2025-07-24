@@ -47,9 +47,9 @@ Wallarm's protection against attacks on AI Agents works in few simple steps:
 
 ![Wallarm against attacks on Agentic AI - API Sessions](../images/agentic-ai-protection/agentic-ai-wallarm-demo-results.png)
 
-## LLM-based protection of AI agents
+## LLM-based protection of AI agents <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm provides LLM-based protection of AI agents - you can enable and configure it with the **AI prompt attack protection** [mitigation control](../about-wallarm/mitigation-controls-overview.md).
+As a part of [Advanced API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription, Wallarm provides LLM-based protection of AI agents - you can enable and configure it with the **AI prompt attack protection** [mitigation control](../about-wallarm/mitigation-controls-overview.md).
 
 !!! tip ""
     Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
