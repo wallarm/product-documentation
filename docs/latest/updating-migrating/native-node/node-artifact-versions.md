@@ -13,6 +13,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 0.16.0 (2025-07-23)
 
 * Added support for the [MuleSoft Flex Gateway connector](../../installation/connectors/mulesoft-flex.md)
+* Introduced the [`input_filters`](../../installation/native-node/all-in-one-conf.md#input_filters) configuration section, allowing to define which requests should be inspected or bypassed by the Node
+* Fixed memory leak
+* In rules, the separator used in [**xml_tag**](../../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
+* Fixed blocking issue with denylisted origins and Wallarm Console UI-configured mode
+* Internal improvements
 
 ### 0.15.1 (2025-07-08)
 
@@ -62,6 +67,10 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 ### 0.16.0 (2025-07-23)
 
 * Added support for the [MuleSoft Flex Gateway connector](../../installation/connectors/mulesoft-flex.md)
+* Fixed memory leak
+* In rules, the separator used in [**xml_tag**](../../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
+* Fixed blocking issue with denylisted origins and Wallarm Console UI-configured mode
+* Internal improvements
 
 ### 0.15.1 (2025-07-08)
 
@@ -99,6 +108,11 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 ### 0.16.0 (2025-07-23)
 
 * Added support for the [MuleSoft Flex Gateway connector](../../installation/connectors/mulesoft-flex.md)
+* Introduced the [`input_filters`](../../installation/native-node/all-in-one-conf.md#input_filters) configuration section, allowing to define which requests should be inspected or bypassed by the Node
+* Fixed memory leak
+* In rules, the separator used in [**xml_tag**](../../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
+* Fixed blocking issue with denylisted origins and Wallarm Console UI-configured mode
+* Internal improvements
 
 ### 0.15.1 (2025-07-08)
 
