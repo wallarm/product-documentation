@@ -54,7 +54,6 @@ Choose an artifact for a self-hosted node deployment and follow the attached ins
 
 * [All-in-one installer](../native-node/all-in-one.md) for Linux infrastructures on bare metal or VMs
 * [Docker image](../native-node/docker-image.md) for environments that use containerized deployments
-* [AWS AMI](../native-node/aws-ami.md) for AWS infrastructures
 * [Helm chart](../native-node/helm-chart.md) for infrastructures utilizing Kubernetes
 
 ### 2. Obtain and upload the Wallarm policy to MuleSoft Exchange
