@@ -25,7 +25,7 @@ These instructions describe the steps to upgrade the [Native Node deployed from 
 ## 1. Download the new Docker image version
 
 ```
-docker pull wallarm/node-native-aio:0.13.6
+docker pull wallarm/node-native-aio:0.13.7
 ```
 
 ## 2. Stop the running container
@@ -51,11 +51,11 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 === "US Cloud"
     ```bash
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.13.6
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.13.7
     ```
 === "EU Cloud"
     ```bash
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.13.6
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.13.7
     ```
 
 Environment variable | Description| Required
