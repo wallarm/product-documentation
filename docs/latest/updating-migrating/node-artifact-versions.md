@@ -12,6 +12,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 6.3.1 (2025-07-23)
+
+* Fixed memory leak
+
 ### 6.3.0 (2025-07-08)
 
 * In rules, the separator used in [**xml_tag**](../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
@@ -64,6 +68,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](ingress-controller.md)
 
+### 6.3.1 (2025-07-23)
+
+* Fixed memory leak
+
 ### 6.3.0 (2025-07-08)
 
 * Added the [`validation.forbidDangerousAnnotations`](../admin-en/configure-kubernetes-en.md#validationforbiddangerousannotations) chart value to toggle the CEL rule that blocks the dangerous `server-snippet` and `configuration-snippet` annotations
@@ -106,6 +114,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.3.1 (2025-07-23)
+
+* Fixed memory leak
+
 ### 6.3.0 (2025-07-08)
 
 * Added support for the [`postanalytics.wstore.config.serviceAddress`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#postanalyticswstoreconfigserviceaddress) parameter to customize the address and port for incoming **wstore** connections
@@ -136,6 +148,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.3.1 (2025-07-23)
+
+* Fixed memory leak
 
 ### 6.3.0 (2025-07-08)
 
@@ -169,6 +185,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](cloud-image.md)
 
+### 6.3.1 (2025-07-23)
+
+* Fixed memory leak
+
 ### 6.3.0 (2025-07-08)
 
 * In rules, the separator used in [**xml_tag**](../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
@@ -198,6 +218,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-3-1-20250721-082413 (2025-07-23)
+
+* Fixed memory leak
 
 ### wallarm-node-6-3-0-20250708-175541 (2025-07-08)
 
