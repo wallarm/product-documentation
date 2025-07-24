@@ -7,7 +7,7 @@
 
 O diagrama abaixo ilustra o fluxo de tráfego de alto nível quando a política Wallarm está anexada às APIs na plataforma MuleSoft Anypoint, e a Wallarm está configurada para bloquear atividades maliciosas.
 
-![MuleSoft com política Wallarm](../../images/waf-installation/gateways/mulesoft/traffic-flow-inline.png)
+![MuleSoft com política Wallarm](../../images/waf-installation/gateways/mulesoft/traffic-flow-mule-gateway-inline.png)
 
 A solução envolve a implantação do nó Wallarm externamente e a injeção de código personalizado ou políticas na plataforma específica. Isso permite que o tráfego seja direcionado para o nó Wallarm externo para análise e proteção contra ameaças potenciais. Conhecidos como conectores Wallarm, eles servem como o elo essencial entre plataformas como Azion Edge, Akamai Edge, MuleSoft, Apigee e AWS Lambda, e o nó Wallarm externo. Esta abordagem garante uma integração perfeita, análise segura de tráfego, mitigação de riscos e segurança geral da plataforma.
 

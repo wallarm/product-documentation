@@ -136,7 +136,7 @@ nav:
         - ECS: installation/cloud-platforms/alibaba-cloud/docker-container.md
     - Connectors:
       - Overview: installation/connectors/overview.md
-      - MuleSoft: installation/connectors/mulesoft.md
+      - MuleSoft Mule Gateway: installation/connectors/mulesoft.md
       - Apigee: installation/connectors/apigee.md
       - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
       - Azion Edge: installation/connectors/azion-edge.md

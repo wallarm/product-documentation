@@ -14,7 +14,7 @@ MuleSoft用のコネクタとしてWallarmを使用するには、**Wallarmノ�
 
 MuleSoft用Wallarmコネクタは[in-line](../inline/overview.md)トラフィック解析のみをサポートします:
 
-![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-inline.png)
+![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-mule-gateway-inline.png)
 
 ## ユースケース
 

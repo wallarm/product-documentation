@@ -16,7 +16,7 @@ Connector code bundle versions follow this format:
 | `<MINOR_VERSION>` | Enhancements or new features without breaking changes. |
 | `<PATCH_VERSION>` | Minor bug fixes or enhancements. |
 
-## MuleSoft
+## MuleSoft Mule Gateway
 
 [How to upgrade](mulesoft.md#upgrading-the-policy)
 

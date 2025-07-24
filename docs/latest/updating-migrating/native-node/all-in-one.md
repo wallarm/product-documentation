@@ -47,7 +47,7 @@ You can reuse the previously generated [API token for the `Node deployment/Deplo
 For the configuration file, you can reuse the one used during the initial installation. Only add new parameters or modify existing ones if necessary - see the [supported configuration options](../../installation/native-node/all-in-one-conf.md).
 
 === "connector-server"
-    The `connector-server` mode is used when you deployed the self-hosted node with [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md) connector.
+    The `connector-server` mode is used when you deployed the self-hosted node with MuleSoft [Mule](../../installation/connectors/mulesoft.md) or [Flex](../../installation/connectors/mulesoft-flex.md) Gateway, [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md) connector.
 
     !!! info "If upgrading from Node version 0.12.x or lower"
         If upgrading from Node version 0.12.x or lower, ensure that the `version` value is updated in the initial configuration file (`wallarm-node-conf.yaml`, as per the default installation instructions) and that the section `tarantool_exporter` is renamed to `postanalytics_exporter` (if explicitly specified):
@@ -176,6 +176,6 @@ If there is a problem with the upgrade or reinstallation process:
     ```
     sudo systemctl stop wallarm && sudo rm -rf /opt/wallarm
     ```
-1. Reinstall the node as usual for [TCP traffic analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) or the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md) or [IBM DataPower](../../installation/connectors/ibm-api-connect.md) connectors.
+1. Reinstall the node as usual for [TCP traffic analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) or the MuleSoft [Mule](../../installation/connectors/mulesoft.md) or [Flex](../../installation/connectors/mulesoft-flex.md) Gateway, [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md) or [IBM DataPower](../../installation/connectors/ibm-api-connect.md) connectors.
 
     Or follow the upgrade procedure described above.

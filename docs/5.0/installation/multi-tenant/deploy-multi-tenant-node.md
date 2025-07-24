@@ -41,7 +41,7 @@ Multi-tenant node:
 
 * Can be installed on the same [platforms](../../installation/supported-deployment-options.md) and according to the same instructions as a regular filtering node, **except for**:
 
-    * MuleSoft connector
+    * MuleSoft Mule Gateway connector
     * Amazon CloudFront connector
     * Cloudflare connector
     * Broadcom Layer7 API Gateway connector
