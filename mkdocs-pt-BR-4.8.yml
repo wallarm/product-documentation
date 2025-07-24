@@ -221,7 +221,7 @@ nav:
       - Layer7 API Gateways: installation/api-gateways/layer7-api-gateway.md
     - Conectores:
       - Visão Geral: installation/connectors/overview.md
-      - MuleSoft: installation/connectors/mulesoft.md
+      - MuleSoft Mule Gateway: installation/connectors/mulesoft.md
       - Apigee: installation/connectors/apigee.md
       - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
       - Azion Edge: installation/connectors/azion-edge.md

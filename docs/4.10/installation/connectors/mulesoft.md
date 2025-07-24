@@ -7,7 +7,7 @@
 
 The Wallarm policy for MuleSoft supports only [in-line](../inline/overview.md) mode. Below diagram shows the traffic flow for APIs on the MuleSoft Anypoint platform with Wallarm policy applied to block malicious activity:
 
-![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-inline.png)
+![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-mule-gateway-inline.png)
 
 The solution involves deploying the Wallarm node externally and injecting custom code or policies into the specific platform. This enables traffic to be directed to the external Wallarm node for analysis and protection against potential threats. Referred to as Wallarm's connectors, they serve as the essential link between platforms like Azion Edge, Akamai Edge, MuleSoft, Apigee, and AWS Lambda, and the external Wallarm node. This approach ensures seamless integration, secure traffic analysis, risk mitigation, and overall platform security.
 
@@ -32,7 +32,7 @@ To proceed with the deployment, ensure that you meet the following requirements:
 
 * Understanding of the MuleSoft platform.
 * [Maven (`mvn`)](https://maven.apache.org/install.html) 3.8 or an earlier version is installed. Higher versions of Maven may encounter compatibility issues with the Mule plugin.
-* You have been assigned the MuleSoft Exchange contributor's role, enabling you to upload artifacts to your organization's MuleSoft Anypoint Platform account.
+* Your MuleSoft user is enabled to upload artifacts to your MuleSoft Anypoint Platform account.
 * Your [MuleSoft Exchange credentials (username and password)](https://docs.mulesoft.com/mule-gateway/policies-custom-upload-to-exchange#deploying-a-policy-created-using-the-maven-archetype) are specified in the `<MAVEN_DIRECTORY>/conf/settings.xml` file.
 * Your application and API are linked and running on MuleSoft.
 

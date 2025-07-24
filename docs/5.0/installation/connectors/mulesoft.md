@@ -6,19 +6,19 @@
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
 
-# Wallarm Connector for MuleSoft
+# Wallarm Connector for MuleSoft Mule Gateway
 
-[MuleSoft](https://www.mulesoft.com/) is an integration platform that enables seamless connectivity and data integration between services with an API gateway serving as the entry point for client applications to access APIs. Wallarm can act as a connector to secure APIs running on MuleSoft.
+This guide describes how to secure your Mule APIs managed by [Mule Gateway](https://docs.mulesoft.com/mule-gateway/mule-gateway-capabilities-mule4) using the Wallarm connector.
 
-To use Wallarm as a connector for MuleSoft, you need to **deploy the Wallarm node externally** and **apply the Wallarm-provided policy in MuleSoft** to route traffic to the Wallarm node for analysis.
+To use Wallarm as a connector for Mule Gateway, you need to **deploy the Wallarm node externally** and **apply the Wallarm-provided policy in MuleSoft** to route traffic to the Wallarm node for analysis.
 
-The Wallarm connector for MuleSoft supports only [in-line](../inline/overview.md) traffic analysis:
+The Wallarm connector for Mule Gateway supports only [in-line](../inline/overview.md) traffic analysis:
 
-![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-inline.png)
+![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-mule-gateway-inline.png)
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is the recommended one for securing APIs deployed on the MuleSoft Enterprise Edition platform with only one policy.
+Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is the recommended one for securing Mule APIs managed by Mule Gateway.
 
 ## Limitations
 
@@ -32,9 +32,9 @@ To proceed with the deployment, ensure that you meet the following requirements:
 * Understanding of the MuleSoft platform.
 * [Docker](https://docs.docker.com/engine/install/) installed and running on your host system.
 * [Maven (`mvn`)](https://maven.apache.org/install.html).
-* You have been assigned the MuleSoft Exchange contributor's role, enabling you to upload artifacts to your organization's MuleSoft Anypoint Platform account.
+* Your MuleSoft user is enabled to upload artifacts to your MuleSoft Anypoint Platform account.
 * Your [MuleSoft Exchange credentials (username and password)](https://docs.mulesoft.com/mule-gateway/policies-custom-upload-to-exchange#deploying-a-policy-created-using-the-maven-archetype) are specified in the `<MAVEN_DIRECTORY>/conf/settings.xml` file.
-* Your application and API are linked and running on MuleSoft.
+* Your application and API are linked and running on Mule Gateway.
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
 
 ## Deployment
@@ -183,7 +183,7 @@ To test the functionality of the deployed policy, follow these steps:
 1. Send the request with the test [Path Traversal][ptrav-attack-docs] attack to your API:
 
     ```
-    curl http://<YOUR_APP_DOMAIN>/etc/passwd
+    curl http://<GATEWAY_URL>/etc/passwd
     ```
 1. Open Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks) and make sure the attack is displayed in the list.
     
