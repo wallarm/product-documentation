@@ -203,6 +203,7 @@ nav:
     - Bağlayıcılar:
       - Genel Bakış: installation/connectors/overview.md
       - MuleSoft Mule Gateway: installation/connectors/mulesoft.md
+      - MuleSoft Flex Gateway: installation/connectors/mulesoft-flex.md
       - Apigee: installation/connectors/apigee.md
       - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
       - Azion Edge: installation/connectors/azion-edge.md
