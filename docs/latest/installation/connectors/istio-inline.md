@@ -6,6 +6,10 @@
 [available-filtration-modes]:       ../../admin-en/configure-wallarm-mode.md#available-filtration-modes
 [ui-filtration-mode]:              ../../admin-en/configure-wallarm-mode.md#general-filtration-mode
 [self-hosted-connector-node-helm-conf]: ../native-node/helm-chart-conf.md
+[helm-chart-native-node]:           ../native-node/helm-chart.md
+[custom-blocking-page]:             ../../admin-en/configuration-guides/configure-block-page-and-code.md
+[rate-limiting]:                    ../../user-guides/rules/rate-limiting.md
+[multi-tenancy]:                    ../multi-tenant/overview.md
 
 # Wallarm Filter for Istio Ingress
 
@@ -20,7 +24,7 @@ Among all supported [Wallarm deployment options](../supported-deployment-options
 
 ## Limitations
 
-* [Custom blocking page and code setup][custom-blocking-page-docs]
+--8<-- "../include/waf/installation/connectors/native-node-limitations.md"
 
 ## Requirements
 

@@ -40,6 +40,7 @@ To proceed with the deployment, ensure that you meet the following requirements:
 
     --8<-- "../include/wallarm-cloud-ips.md"
 * **Administrator** access to Wallarm Console for [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
+* A **trusted** SSL/TLS certificate is required for the Node instance domain. Self-signed certificates are not yet supported.
 
 ## Deployment
 
