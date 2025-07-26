@@ -46,7 +46,7 @@ The Kubernetes cluster for deploying the Native Node with the Helm chart must me
 
 ## Limitations
 
-* When deploying the Wallarm service with the `LoadBalancer` type, a **trusted** SSL/TLS certificate is required for the domain. Self-signed certificates are not yet supported.
+* When deploying the Wallarm service with the `LoadBalancer` type, a **trusted** SSL/TLS certificate is required for the Node instance domain. Self-signed certificates are not yet supported.
 * [Custom blocking page and blocking code](../../admin-en/configuration-guides/configure-block-page-and-code.md) configurations are not yet supported.
 * [Rate limiting](../../user-guides/rules/rate-limiting.md) by the Wallarm rule is not supported.
 * [Multitenancy](../multi-tenant/overview.md) is not supported yet.
