@@ -114,7 +114,7 @@ This step only should be fulfilled if your SAML SSO solution does not support ma
 
 ## Extended security
 
-You SAML SSO solution (like Keycloak or Okta) may require additional security validation when connecting with applications, including Wallarm. This may include:
+Your SAML SSO solution (like Keycloak or Okta) may require additional security validation when connecting with applications, including Wallarm. This may include:
 
 * Requirements for validation of SAML requests and responses by signature
 * Requirements for encryption of SAML requests and responses
