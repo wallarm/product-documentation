@@ -11,6 +11,7 @@ API Discovery is capable of finding and representing hosts and endpoints utilizi
 | **REST** | Endpoint | Any | Any |
 | **GraphQL** | Operation (query, mutation, subscription) | 6.1.0 | NA |
 | **SOAP** | Operation | 6.3.0 | NA |
+| **gRPC** | Operation | 6.4.0 | NA |
 
 ## Your API inventory
 
@@ -26,6 +27,7 @@ API inventory is a picture of your active APIs automatically built by Wallarm's 
 * GraphQL operations (queries, mutations, subscriptions)
 * GraphQL schema
 * SOAP operations
+* gRPC operations
 
 ![API Discovery - built API inventory](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-built-inventory.png)
 
@@ -41,7 +43,7 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 **As you have your API inventory discovered by Wallarm, you can**:
 
 * Have a full visibility into the whole API estate.
-* See what data ([REST](exploring.md#rest-endpoint-details), [GraphQL](exploring.md#graphql-operation-details), [SOAP](exploring.md#soap-operation-details)) is going into and out of the APIs.
+* See what data ([REST](exploring.md#rest-endpoint-details), [GraphQL](exploring.md#graphql-operation-details), [SOAP](exploring.md#soap-operation-details), [gRPC](exploring.md#grpc-operation-details)) is going into and out of the APIs.
 * Filter APIs that consume and carry [sensitive data](#sensitive-data-detection).
 * Understand which endpoints are [most likely](risk-score.md) to be an attack target.
 * [Track changes](track-changes.md) in API that took place within the selected period of time.
@@ -77,7 +79,7 @@ The API inventory will display the endpoints and parameters that exceeded these 
 Also, the API Discovery performs filtering of requests relying on the other criteria:
 
 * Only those requests to which the server responded in the 2xx range are processed.
-* Requests that do not conform to the design principles of the REST, GraphQL, or SOAP API are not processed.
+* Requests that do not conform to the design principles of the REST, GraphQL, SOAP, or gRPC API are not processed.
     
     An entry is NOT classified as a valid API call and not displayed in API Discovery if any of the following conditions are met:
 
@@ -85,6 +87,7 @@ Also, the API Discovery performs filtering of requests relying on the other crit
     1. The `Content-Type` header of the response is either missing, does not start with application/, or does not indicate a JSON type (i.e., does not match application/json, case-insensitive, and without a charset suffix) or XML type.
 
 * Standard fields such as `Accept` and alike are discarded.
+* For gRPC, only general gRPC services that use [protocol buffers](https://protobuf.dev/) are discovered.
 
 ### Sensitive data detection
 

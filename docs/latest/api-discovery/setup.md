@@ -7,6 +7,7 @@ This article describes how to enable <!--and configure -->Wallarm's [API Discove
 * Advanced API Security [subscription plan](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security)
 * For **GraphQL** - [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.1.0 or higher (not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far)
 * For **SOAP** - [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.0 or higher (not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far)
+* For **gRPC** - [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.4.0 or higher (not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far)
 
 ## Enabled by default
 
