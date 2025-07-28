@@ -235,12 +235,12 @@ Below is the Wallarm Helm chart example for Google Kubernetes Engine (GKE), whic
 
 ## Security Context Constraints (SCC) in OpenShift
 
-When installing the Sidecar solution into an OpenShift platform, it is necessary to define a custom Security Context Constraint (SCC) to suit the security requirements of the platform. The default constraints may be insufficient for the Wallarm solution, potentially leading to errors.
+When deploying the Sidecar solution on OpenShift, it is necessary to define a custom Security Context Constraint (SCC) to suit the security requirements of the platform. The default constraints may be insufficient for the Wallarm solution, potentially leading to errors.
 
-Below is the recommended custom SCC for the Wallarm Sidecar solution tailored for OpenShift. This configuration is designed for running the solution in non-privileged mode without iptables usage.
+Below is the recommended custom SCC for the Wallarm Sidecar solution tailored for OpenShift. This configuration is designed for running the solution in non-privileged mode without [iptables](customization.md#capturing-incoming-traffic-port-forwarding) usage.
 
-!!! warning "Apply the SCC before deploying the solution"
-    Ensure the SCC is applied prior to deploying the Wallarm Sidecar solution.
+!!! warning "Apply the SCC before deploying the Sidecar"
+    Ensure the SCC is applied **prior** to deploying the Wallarm Sidecar solution.
 
 1. Define the custom SCC in the `wallarm-scc.yaml` file as follows:
 
@@ -269,8 +269,9 @@ Below is the recommended custom SCC for the Wallarm Sidecar solution tailored fo
     requiredDropCapabilities:
     - ALL
     runAsUser:
-      type: MustRunAs
-      uid: 101
+      type: MustRunAsRange
+      uidRangeMin: 101
+      uidRangeMax: 65532
     seLinuxContext:
       type: MustRunAs
     seccompProfiles:
@@ -288,23 +289,36 @@ Below is the recommended custom SCC for the Wallarm Sidecar solution tailored fo
     ```
     kubectl apply -f wallarm-scc.yaml
     ```
-1. Allow the Wallarm Sidecar solution to use this SCC policy:
-    
-    ```
-    oc adm policy add-scc-to-user wallarm-sidecar-deployment system:serviceaccount:<WALLARM_SIDECAR_NAMESPACE>:<POSTANALYTICS_POD_SERVICE_ACCOUNT_NAME>
+1. Allow the Wallarm Sidecar workloads to use this SCC policy:
+
+    ```bash
+    oc adm policy add-scc-to-user wallarm-sidecar-deployment \
+      system:serviceaccount:<WALLARM_SIDECAR_NAMESPACE>:<RELEASE_NAME>-wallarm-sidecar-postanalytics
+
+    oc adm policy add-scc-to-user wallarm-sidecar-deployment \
+      system:serviceaccount:<WALLARM_SIDECAR_NAMESPACE>:<RELEASE_NAME>-wallarm-sidecar-admission
     ```
 
-    * `<WALLARM_SIDECAR_NAMESPACE>` is a namespace where the Wallarm Sidecar solution will be deployed.
-    * `<POSTANALYTICS_POD_SERVICE_ACCOUNT_NAME>` is auto-generated and usually follows the format `<RELEASE_NAME>-wallarm-sidecar-postanalytics`, where `<RELEASE_NAME>` is the Helm release name you will assign during `helm install`.
+    * `<WALLARM_SIDECAR_NAMESPACE>`: namespace where the Sidecar will be deployed.
+    * `<RELEASE_NAME>`: Helm release name that you will use during `helm install`.
 
-    For example, assuming the namespace name is `wallarm-sidecar` and the Helm release name is `wlrm-sidecar`, the command would look like this:
+    !!! warning "If the release name includes `wallarm-sidecar`"
+        When the release name contains `wallarm-sidecar`, omit it from the service account names.
+        
+        The accounts will be `wallarm-sidecar-postanalytics` and `wallarm-sidecar-admission`.
+
+    For example, with the namespace `wallarm-sidecar` and the Helm release name `wlrm-sidecar`:
     
+    ```bash
+    oc adm policy add-scc-to-user wallarm-sidecar-deployment \
+      system:serviceaccount:wallarm-sidecar:wlrm-sidecar-wallarm-sidecar-postanalytics
+
+    oc adm policy add-scc-to-user wallarm-sidecar-deployment \
+      system:serviceaccount:wallarm-sidecar:wlrm-sidecar-wallarm-sidecar-admission
     ```
-    oc adm policy add-scc-to-user wallarm-sidecar-deployment system:serviceaccount:wallarm-sidecar:wlrm-sidecar-wallarm-sidecar-postanalytics
-    ```
-1. [Proceed with the Sidecar solution deployment](#deployment), ensuring you use the same namespace and Helm release name for the Sidecar solution as previously mentioned.
-1. [Disable the usage of iptables](customization.md#capturing-incoming-traffic-port-forwarding) to eliminate the need for a privileged iptables container. This can be accomplished either globally by modifying the `values.yaml` file or on a per-pod basis.
-    
+1. [Deploy the Wallarm Sidecar](#deployment) using the same namespace and Helm release name specified above.
+1. [Disable the usage of iptables](customization.md#capturing-incoming-traffic-port-forwarding) to avoid running a privileged iptables container. This can be done globally in `values.yaml` or per pod via annotations.
+
     === "Disabling iptables via the `values.yaml`"
         1. In the `values.yaml`, set `config.injectionStrategy.iptablesEnable` to `false`.
 
@@ -316,7 +330,7 @@ Below is the recommended custom SCC for the Wallarm Sidecar solution tailored fo
                 api:
                   ...
             ```
-        1. Update the `spec.ports.targetPort` setting in your Service manifest to point to the `proxy` port. If iptables-based traffic capture is disabled, the Wallarm sidecar container will publish a port with the name `proxy`.
+        1. In you application Service manifest, set `spec.ports.targetPort` to `proxy` (or `26001` if using OpenShift Routes). With iptables disabled, the Sidecar exposes this port.
 
             ```yaml hl_lines="9"
             apiVersion: v1
@@ -327,7 +341,7 @@ Below is the recommended custom SCC for the Wallarm Sidecar solution tailored fo
             spec:
               ports:
                 - port: 80
-                  targetPort: proxy
+                  targetPort: proxy # or 26001 if using Routes
                   protocol: TCP
                   name: http
               selector:
@@ -335,7 +349,7 @@ Below is the recommended custom SCC for the Wallarm Sidecar solution tailored fo
             ```
     === "Disabling iptables via the pod annotation"
         1. Disable iptables on a per-pod basis by setting the Pod's annotation `sidecar.wallarm.io/sidecar-injection-iptables-enable` to `"false"`.
-        1. Update the `spec.ports.targetPort` setting in your Service manifest to point to the `proxy` port. If iptables-based traffic capture is disabled, the Wallarm sidecar container will publish a port with the name `proxy`.
+        1. In you application Service manifest, set `spec.ports.targetPort` to `proxy` (or `26001` if using OpenShift Routes). With iptables disabled, the Sidecar exposes this port.
 
         ```yaml hl_lines="16-17 34"
         apiVersion: apps/v1
@@ -371,33 +385,39 @@ Below is the recommended custom SCC for the Wallarm Sidecar solution tailored fo
         spec:
           ports:
             - port: 80
-              targetPort: proxy
+              targetPort: proxy # or 26001 if using Routes
               protocol: TCP
               name: http
           selector:
             app: myapp
         ```
-1. To verify the correct SCC application to the postanalytics pod from the previous step, execute the following commands:
+1. Deploy the application with the updated configuration:
 
+    ```bash
+    kubectl -n <APP_NAMESPACE> apply -f <MANIFEST_FILE>
     ```
+1. Verify that the correct SCC is applied to Wallarm pods:
+
+    ```bash
     WALLARM_SIDECAR_NAMESPACE="wallarm-sidecar"
     POD=$(kubectl -n ${WALLARM_SIDECAR_NAMESPACE} get pods -o name -l "app.kubernetes.io/component=postanalytics" | cut -d '/' -f 2)
     kubectl -n ${WALLARM_SIDECAR_NAMESPACE}  get pod ${POD} -o jsonpath='{.metadata.annotations.openshift\.io\/scc}{"\n"}'
     ```
 
-    The expected output should be `wallarm-sidecar-deployment`.
-1. Update the SCC for your application pod to match the permissions in the initial `wallarm-sidecar-deployment` policy, especially the allowance of UID 101 in the `runAsUser` block. This is crucial as the Wallarm sidecar container, injected during deployment, runs under UID 101 and requires specific permissions.
+    The expected output is `wallarm-sidecar-deployment`.
+1. Grant your application pod the same SCC as `wallarm-sidecar-deployment`, ensuring it allows the required UID range. This is necessary as the injected Sidecar container runs under this UID range.
 
-    Use the command below to apply the `wallarm-sidecar-deployment` policy you previously created. Typically, you would develop a custom policy tailored to your application's and Wallarm's requirements.
+    Use the command below to assign the `wallarm-sidecar-deployment` policy:
 
+    ```bash
+    APP_NAMESPACE=<APP_NAMESPACE>
+    POD_NAME=<POD_NAME>
+    APP_POD_SERVICE_ACCOUNT_NAME=$(oc get pod $POD_NAME -n $APP_NAMESPACE -o jsonpath='{.spec.serviceAccountName}')
+    oc adm policy add-scc-to-user wallarm-sidecar-deployment \
+      system:serviceaccount:$APP_NAMESPACE:$APP_POD_SERVICE_ACCOUNT_NAME
     ```
-    oc adm policy add-scc-to-user wallarm-sidecar-deployment system:<APP_NAMESPACE>:<APP_POD_SERVICE_ACCOUNT_NAME>
-    ```
-1. Deploy the application with the updated SCC, e.g.:
 
-    ```
-    kubectl -n <APP_NAMESPACE> apply -f <MANIFEST_FILE>
-    ```
+    In production, create a custom SCC tailored to your application's and Wallarm's needs.
 
 ## Customization
 

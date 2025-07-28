@@ -120,8 +120,9 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.i
     The Wallarm pod status should be **STATUS: Running** and **READY: N/N**:
 
     ```
-    NAME                                                             READY   STATUS    RESTARTS   AGE
-    ingress-controller-wallarm-ingress-controller-6d659bd79b-952gl   1/1     Running   0          8m7s
+    NAME                                                                  READY   STATUS    RESTARTS   AGE
+    ingress-controller-wallarm-ingress-controller-6d659bd79b-952gl        3/3     Running   0          8m7s
+    ingress-controller-wallarm-ingress-controller-wallarm-wstore-7ddmgbfm 3/3     Running   0          8m7s
     ```
 2. Send the request with the test [Path Traversal][ptrav-attack-docs] attack to the Ingress Controller Service:
 
@@ -220,6 +221,143 @@ controller:
 ```
 
 Then run installation using your modified `values.yaml`.
+
+## Security Context Constraints (SCC) in OpenShift
+
+When deploying the NGINX Ingress Controller on OpenShift, it is necessary to define a custom Security Context Constraint (SCC) to suit the security requirements of the platform. The default constraints may be insufficient for the Wallarm solution, potentially leading to errors.
+
+Below is the recommended custom SCC for the Wallarm NGINX Ingress Controller.
+
+!!! warning "Apply the SCC before deploying the controller"
+    Ensure the SCC is applied **prior** to deploying the Wallarm NGINX Ingress controller.
+
+1. Define the custom SCC in the `wallarm-scc.yaml` file as follows:
+
+    ```yaml
+    ---
+    allowHostDirVolumePlugin: false
+    allowHostIPC: false
+    allowHostNetwork: false
+    allowHostPID: false
+    allowHostPorts: false
+    allowPrivilegeEscalation: false
+    allowPrivilegedContainer: false
+    allowedCapabilities:
+    - NET_BIND_SERVICE
+    apiVersion: security.openshift.io/v1
+    defaultAddCapabilities: null
+    fsGroup:
+      type: MustRunAs
+    groups: []
+    kind: SecurityContextConstraints
+    metadata:
+      annotations:
+        kubernetes.io/description: wallarm-ingress-admission provides features similar to restricted-v2 SCC
+          but pins user id to 65532 and is more restrictive for volumes
+      name: wallarm-ingress-admission
+    priority: null
+    readOnlyRootFilesystem: false
+    requiredDropCapabilities:
+    - ALL
+    runAsUser:
+      type: MustRunAs
+      uid: 65532
+    seLinuxContext:
+      type: MustRunAs
+    seccompProfiles:
+    - runtime/default
+    supplementalGroups:
+      type: RunAsAny
+    users: []
+    volumes:
+    - projected
+    ---
+    allowHostDirVolumePlugin: false
+    allowHostIPC: false
+    allowHostNetwork: false
+    allowHostPID: false
+    allowHostPorts: false
+    allowPrivilegeEscalation: false
+    allowPrivilegedContainer: false
+    allowedCapabilities:
+    - NET_BIND_SERVICE
+    apiVersion: security.openshift.io/v1
+    defaultAddCapabilities: null
+    fsGroup:
+      type: MustRunAs
+    groups: []
+    kind: SecurityContextConstraints
+    metadata:
+      annotations:
+        kubernetes.io/description: wallarm-ingress-controller provides features similar to restricted-v2 SCC
+          but pins user id to 101 and is a little more restrictive for volumes
+      name: wallarm-ingress-controller
+    priority: null
+    readOnlyRootFilesystem: false
+    requiredDropCapabilities:
+    - ALL
+    runAsUser:
+      type: MustRunAs
+      uid: 101
+    seLinuxContext:
+      type: MustRunAs
+    seccompProfiles:
+    - runtime/default
+    supplementalGroups:
+      type: RunAsAny
+    users: []
+    volumes:
+    - configMap
+    - secret
+    - emptyDir
+    ```
+1. Apply this policy to a cluster:
+
+    ```
+    kubectl apply -f wallarm-scc.yaml
+    ```
+1. Allow the Wallarm Ingress controller workloads to use this SCC policy:
+
+    ```bash
+    oc adm policy add-scc-to-user wallarm-ingress-admission \
+      system:serviceaccount:<WALLARM_INGRESS_NAMESPACE>:<RELEASE_NAME>-wallarm-ingress-admission
+    
+    oc adm policy add-scc-to-user wallarm-ingress-controller \
+      system:serviceaccount:<WALLARM_INGRESS_NAMESPACE>:<RELEASE_NAME>-wallarm-ingress
+    
+    oc adm policy add-scc-to-user wallarm-ingress-controller \
+      system:serviceaccount:<WALLARM_INGRESS_NAMESPACE>:default
+    ```
+
+    * `<WALLARM_INGRESS_NAMESPACE>`: namespace where the NGINX Ingress controller will be deployed.
+    * `<RELEASE_NAME>`: Helm release name that you will use during `helm install`.
+
+    For example, with the namespace `wallarm-ingress` and the Helm release name `wlrm-ingress`:
+    
+    ```bash
+    oc adm policy add-scc-to-user wallarm-ingress-admission \
+      system:serviceaccount:wallarm-ingress:wlrm-ingress-wallarm-ingress-admission
+    
+    oc adm policy add-scc-to-user wallarm-ingress-controller \
+      system:serviceaccount:wallarm-ingress:wlrm-ingress-wallarm-ingress
+    
+    oc adm policy add-scc-to-user wallarm-ingress-controller \
+      system:serviceaccount:wallarm-ingress:default
+    ```
+1. [Deploy the Wallarm NGINX Ingress controller](#installation) using the same namespace and Helm release name specified above.
+1. Verify that the correct SCC is applied to Wallarm pods:
+
+    ```bash
+    WALLARM_INGRESS_NAMESPACE="<WALLARM_INGRESS_NAMESPACE>"
+    POD=$(kubectl -n ${WALLARM_INGRESS_NAMESPACE} get pods -o name -l "app.kubernetes.io/component=controller" | cut -d '/' -f 2)
+    kubectl -n ${WALLARM_INGRESS_NAMESPACE} get pod ${POD} -o jsonpath='{.metadata.annotations.openshift\.io\/scc}{"\n"}'
+
+    WALLARM_INGRESS_NAMESPACE="<WALLARM_INGRESS_NAMESPACE>"
+    POD=$(kubectl -n ${WALLARM_INGRESS_NAMESPACE} get pods -o name -l "app.kubernetes.io/component=controller-wallarm-wstore" | cut -d '/' -f 2)
+    kubectl -n ${WALLARM_INGRESS_NAMESPACE} get pod ${POD} -o jsonpath='{.metadata.annotations.openshift\.io\/scc}{"\n"}'
+    ```
+
+    The expected output is `wallarm-ingress-controller`.
 
 ## Configuration
 
