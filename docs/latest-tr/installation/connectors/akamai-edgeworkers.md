@@ -5,7 +5,7 @@
 
 [Akamai EdgeWorkers](https://techdocs.akamai.com/edgeworkers/docs), platformun kenarında özel mantık çalıştırmaya ve hafif JavaScript işlevlerini dağıtmaya imkan veren güçlü bir edge computing platformudur. API'leri ve trafiği Akamai EdgeWorkers üzerinde çalışan müşteriler için Wallarm, altyapılarınızı korumak amacıyla Akamai EdgeWorkers üzerinde dağıtılabilecek bir kod paketi sunar.
 
-Çözüm, Wallarm node'unun harici olarak dağıtılmasını ve özel kod ya da politikaların belirli platforma enjekte edilmesini içerir. Bu, trafiğin analiz ve potansiyel tehditlere karşı koruma sağlamak amacıyla harici Wallarm node'una yönlendirilmesini sağlar. Wallarm'ın konektörleri olarak adlandırılan bu yapı, Azion Edge, Akamai Edge, Mulesoft, Apigee ve AWS Lambda gibi platformlar ile harici Wallarm node arasında hayati bir bağlantı görevi görür. Bu yaklaşım, sorunsuz entegrasyon, güvenli trafik analizi, risk azaltma ve genel platform güvenliği sağlar.
+Çözüm, Wallarm node'unun harici olarak dağıtılmasını ve özel kod ya da politikaların belirli platforma enjekte edilmesini içerir. Bu, trafiğin analiz ve potansiyel tehditlere karşı koruma sağlamak amacıyla harici Wallarm node'una yönlendirilmesini sağlar. Wallarm'ın konektörleri olarak adlandırılan bu yapı, Azion Edge, Akamai Edge, MuleSoft, Apigee ve AWS Lambda gibi platformlar ile harici Wallarm node arasında hayati bir bağlantı görevi görür. Bu yaklaşım, sorunsuz entegrasyon, güvenli trafik analizi, risk azaltma ve genel platform güvenliği sağlar.
 
 ## Kullanım Senaryoları
 

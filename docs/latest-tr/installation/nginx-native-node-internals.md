@@ -47,7 +47,7 @@ Kubernetes ortamınız için bir NGINX Node dağıtım çözümü bulun:
 
 ### Connectors
 
-API dağıtımı, Azion Edge, Akamai Edge, Mulesoft, Apigee ve CloudFront gibi harici araçlar kullanılarak gerçekleştirilebilir. Bu API'leri Wallarm ile güvence altına almanın bir yolunu arıyorsanız, bu durumlara özel olarak tasarlanmış ["connectors"](connectors/overview.md) çözümümüzü sunuyoruz.
+API dağıtımı, Azion Edge, Akamai Edge, MuleSoft, Apigee ve CloudFront gibi harici araçlar kullanılarak gerçekleştirilebilir. Bu API'leri Wallarm ile güvence altına almanın bir yolunu arıyorsanız, bu durumlara özel olarak tasarlanmış ["connectors"](connectors/overview.md) çözümümüzü sunuyoruz.
 
 NGINX Node, aşağıda listelenen platformlar için kullanılır, ancak analiz yalnızca gelen isteklere yöneliktir.
 
@@ -286,7 +286,7 @@ Aşağıda **kullanım durumunuzu** bulun ve Native Node'u uygun form faktörün
 
 ### Connectors
 
-API dağıtımı, Azion Edge, Akamai Edge, Mulesoft, Apigee ve CloudFront gibi harici araçlar kullanılarak gerçekleştirilebilir. Bu API'leri Wallarm ile güvence altına almanın bir yolunu arıyorsanız, bu durumlara özel olarak tasarlanmış ["connectors"](connectors/overview.md) çözümümüzü sunuyoruz.
+API dağıtımı, Azion Edge, Akamai Edge, MuleSoft, Apigee ve CloudFront gibi harici araçlar kullanılarak gerçekleştirilebilir. Bu API'leri Wallarm ile güvence altına almanın bir yolunu arıyorsanız, bu durumlara özel olarak tasarlanmış ["connectors"](connectors/overview.md) çözümümüzü sunuyoruz.
 
 Native Node, aşağıdaki platformlarla herhangi bir kısıtlama olmaksızın çalışır:
 
@@ -294,7 +294,7 @@ Native Node, aşağıdaki platformlarla herhangi bir kısıtlama olmaksızın ç
     <div class="do-main">
         <a class="do-card" href="../../installation/connectors/mulesoft/">
             <img class="non-zoomable" src="../../images/platform-icons/mulesoft.svg" />
-            <h3>Mulesoft</h3>
+            <h3>MuleSoft</h3>
             <p>MuleSoft Anypoint platformunda dağıtılan API'leri güvence altına almak için Wallarm'ı dağıtın</p>
         </a>
         

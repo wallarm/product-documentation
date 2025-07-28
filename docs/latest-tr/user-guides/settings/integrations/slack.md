@@ -7,7 +7,7 @@
 1. **Entegrasyonlar** bölümünü açın.
 1. **Slack** bloğuna tıklayın veya **Entegrasyon ekle** butonuna tıklayın ve **Slack** seçeneğini belirleyin.
 1. Bir entegrasyon adı girin.
-1. [Slack'deki Webhook ayarlarını](https://my.slack.com/services/new/incoming-webhook/) açın ve mesajların gönderileceği kanalı seçerek yeni bir Webhook ekleyin.
+1. [Slack'deki Webhook ayarlarını](https://my.slack.com/services/incoming-webhook/) açın ve mesajların gönderileceği kanalı seçerek yeni bir Webhook ekleyin.
 1. Verilen Webhook URL'sini kopyalayın ve değeri Wallarm UI'deki **Webhook URL** alanına yapıştırın.
 1. Bildirimleri tetiklemek için olay türlerini seçin.
 

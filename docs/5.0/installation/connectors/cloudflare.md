@@ -5,6 +5,10 @@
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
+[helm-chart-native-node]:           ../native-node/helm-chart.md
+[custom-blocking-page]:             ../../admin-en/configuration-guides/configure-block-page-and-code.md
+[rate-limiting]:                    ../../user-guides/rules/rate-limiting.md
+[multi-tenancy]:                    ../multi-tenant/overview.md
 
 # Wallarm Connector for Cloudflare
 
@@ -28,8 +32,9 @@ Among all supported [Wallarm deployment options](../supported-deployment-options
 
 ## Limitations
 
-* [Rate limiting](../../user-guides/rules/rate-limiting.md) by the Wallarm rule is not supported.
-* [Multitenancy](../multi-tenant/overview.md) is not supported yet.
+* When deploying the Wallarm service with the `LoadBalancer` type using the [Helm chart][helm-chart-native-node], a **trusted** SSL/TLS certificate is required for the Node instance domain. Self-signed certificates are not yet supported.
+* [Rate limiting][rate-limiting] by the Wallarm rule is not supported.
+* [Multitenancy][multi-tenancy] is not supported yet.
 
 ## Requirements
 
@@ -63,8 +68,9 @@ To run a Cloudflare worker routing traffic to the Wallarm Node:
 
     If running a self-hosted node, contact sales@wallarm.com to get the code bundle.
 1. [Create a Cloudflare worker](https://developers.cloudflare.com/workers/get-started/dashboard/) using the downloaded code.
-1. Set the address of your [Wallarm Node instance](#1-deploy-a-wallarm-node) in the `wallarm_node` parameter.
-1. If required, modify [other parameters](#configuration-options).
+1. Set the Wallarm node URL in the `wallarm_node` parameter.
+1. If using [asynchronous (out-of-band)](../oob/overview.md) mode, set the `wallarm_mode` parameter to `async`.
+1. If required, modify [other parameters](cloudflare.md#configuration-options).
 
     ![Cloudflare worker](../../images/waf-installation/gateways/cloudflare/worker-deploy.png)
 1. In **Website** → your domain, go to **Workers Routes** → **Add route**:

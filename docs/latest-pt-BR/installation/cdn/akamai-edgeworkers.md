@@ -5,7 +5,7 @@
 
 [Akamai EdgeWorkers](https://techdocs.akamai.com/edgeworkers/docs) é uma poderosa plataforma de computação de borda que permite a execução de lógica personalizada e a implantação de funções JavaScript leves na borda da plataforma. Para clientes que têm suas APIs e tráfego rodando no Akamai EdgeWorkers, a Wallarm fornece um pacote de código que pode ser implantado no Akamai EdgeWorkers para garantir a segurança de sua infraestrutura.
 
-A solução envolve a implantação do nó Wallarm externamente e a injeção de código personalizado ou políticas na plataforma específica. Isso permite que o tráfego seja direcionado ao nó Wallarm externo para análise e proteção contra possíveis ameaças. Referidos como conectores Wallarm, eles servem como o elo essencial entre plataformas como Azion Edge, Akamai Edge, Mulesoft, Apigee e AWS Lambda, e o nó Wallarm externo. Esta abordagem garante a integração perfeita, a análise segura do tráfego, a mitigação do risco e a segurança geral da plataforma.
+A solução envolve a implantação do nó Wallarm externamente e a injeção de código personalizado ou políticas na plataforma específica. Isso permite que o tráfego seja direcionado ao nó Wallarm externo para análise e proteção contra possíveis ameaças. Referidos como conectores Wallarm, eles servem como o elo essencial entre plataformas como Azion Edge, Akamai Edge, MuleSoft, Apigee e AWS Lambda, e o nó Wallarm externo. Esta abordagem garante a integração perfeita, a análise segura do tráfego, a mitigação do risco e a segurança geral da plataforma.
 
 ## Casos de uso
 
@@ -147,7 +147,7 @@ Para testar a funcionalidade da política implantada, siga estas etapas:
     ```
     curl http://<SEU_IP_DO_APP_OU_DOMINIO>/etc/passwd
     ```
-1. Abra a **Seção de Eventos** do Wallarm Console no [US Cloud](https://us1.my.wallarm.com/search) ou [EU Cloud](https://my.wallarm.com/search) e certifique-se de que o ataque é exibido na lista.
+1. Abra a **Seção de Eventos** do Wallarm Console no [US Cloud](https://us1.my.wallarm.com/attacks) ou [EU Cloud](https://my.wallarm.com/attacks) e certifique-se de que o ataque é exibido na lista.
     
     ![Ataques na interface][attacks-in-ui-image]
 

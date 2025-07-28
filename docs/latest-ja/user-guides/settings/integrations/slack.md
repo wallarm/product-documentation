@@ -7,7 +7,7 @@
 1. **Integrations**セクションを開きます．
 2. **Slack**ブロックをクリックするか，**Add integration**ボタンをクリックして**Slack**を選びます．
 3. 統合名を入力します．
-4. [Webhook settings in Slack](https://my.slack.com/services/new/incoming-webhook/) を開き，メッセージを投稿するチャンネルを選択して新しいWebhookを追加します．
+4. [Webhook settings in Slack](https://my.slack.com/services/incoming-webhook/) を開き，メッセージを投稿するチャンネルを選択して新しいWebhookを追加します．
 5. 指定されたWebhook URLをコピーし，Wallarm UI内の**Webhook URL**フィールドに貼り付けます．
 6. 通知をトリガーするイベントタイプを選択します．
 

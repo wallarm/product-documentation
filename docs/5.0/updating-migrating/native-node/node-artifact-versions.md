@@ -4,11 +4,33 @@ This document lists available [versions](../versioning-policy.md) of the [Native
 
 ## All-in-one installer
 
-The all-in-one installer for the Native Node is used for [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) and self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM API Connect](../../installation/connectors/ibm-api-connect.md) connectors.
+The all-in-one installer for the Native Node is used for [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) and self-hosted node deployment with the [MuleSoft Mule Gateway](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md) connectors.
 
 History of all-in-one installer updates simultaneously applies to it's x86_64 and ARM64 (beta) versions.
 
 [How to upgrade](all-in-one.md)
+
+### 0.13.7 (2025-07-23)
+
+* Introduced the [`input_filters`](../../installation/native-node/all-in-one-conf.md#input_filters) configuration section, allowing to define which requests should be inspected or bypassed by the Node
+* Fixed blocking issue with denylisted origins and Wallarm Console UI-configured mode
+
+### 0.13.6 (2025-07-08)
+
+* Fixed the [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874) vulnerability
+* Resolved an issue in [`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers) processing where headers from multiple records could be mixed for a single request
+    
+    Now, once a request matches a `trusted_networks` entry, only headers from that specific record are used.
+* Minor bug fixes
+
+### 0.13.5 (2025-06-09)
+
+* Fixed the [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) vulnerability
+* Removed support for the `WALLARM_ATTACKS_DETAILED_EXPORT` environment variable which has been used to disable exporting full attack data to Wallarm Cloud
+* Introduced the [`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers) configuration to configure trusted networks and extract real client IP and host headers
+
+    This replaces `http_inspector.real_ip_header` used in earlier versions in the `tcp-capture` mode.
+* Added the [`metrics.namespace`](../../installation/native-node/all-in-one-conf.md#metricsnamespace) configuration option to customize the prefix of Prometheus metrics exposed by the `go-node` binary
 
 ### 0.13.4 (2025-05-14)
 
@@ -136,7 +158,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.8.3 (2024-11-14)
 
-* Added support for Mulesoft connector 3.0.x
+* Added support for MuleSoft connector 3.0.x
 
 ### 0.8.2 (2024-11-11)
 
@@ -203,9 +225,24 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ## Helm chart
 
-The Helm chart for the Native Node is used for self-hosted node deployments with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM API Connect](../../installation/connectors/ibm-api-connect.md), [Kong API Gateway](../../installation/connectors/kong-api-gateway.md), and [Istio](../../installation/connectors/istio.md) connectors.
+The Helm chart for the Native Node is used for self-hosted node deployments with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md), [Kong API Gateway](../../installation/connectors/kong-api-gateway.md), and [Istio](../../installation/connectors/istio.md) connectors.
 
 [How to upgrade](helm-chart.md)
+
+### 0.13.7 (2025-07-23)
+
+* Fixed blocking issue with denylisted origins and Wallarm Console UI-configured mode
+
+### 0.13.6 (2025-07-08)
+
+* Fixed the [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874) vulnerability
+* Minor bug fixes
+
+### 0.13.5 (2025-06-09)
+
+* Fixed the [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) vulnerability
+<!-- * Added the [`metrics.namespace`](../../installation/native-node/all-in-one-conf.md#metricsnamespace) configuration option to customize the prefix of Prometheus metrics exposed by the `go-node` binary -->
+<!-- * Introduced the [`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers) configuration to configure trusted networks and extract real client IP and host headers-->
 
 ### 0.13.4 (2025-05-14)
 
@@ -284,7 +321,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ### 0.8.3 (2024-11-14)
 
-* Added support for Mulesoft connector v3.0.x
+* Added support for MuleSoft connector v3.0.x
 
 ### 0.8.2 (2024-11-11)
 
@@ -317,9 +354,31 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ## Docker image
 
-The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM API Connect](../../installation/connectors/ibm-api-connect.md) connectors.
+The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md) connectors.
 
 [How to upgrade](docker-image.md)
+
+### 0.13.7 (2025-07-23)
+
+* Introduced the [`input_filters`](../../installation/native-node/all-in-one-conf.md#input_filters) configuration section, allowing to define which requests should be inspected or bypassed by the Node
+* Fixed blocking issue with denylisted origins and Wallarm Console UI-configured mode
+
+### 0.13.6 (2025-07-08)
+
+* Fixed the [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874) vulnerability
+* Resolved an issue in [`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers) processing where headers from multiple records could be mixed for a single request
+    
+    Now, once a request matches a `trusted_networks` entry, only headers from that specific record are used.
+* Minor bug fixes
+
+### 0.13.5 (2025-06-09)
+
+* Fixed the [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) vulnerability
+* Removed support for the `WALLARM_ATTACKS_DETAILED_EXPORT` environment variable which has been used to disable exporting full attack data to Wallarm Cloud
+* Introduced the [`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers) configuration to configure trusted networks and extract real client IP and host headers
+
+    This replaces `http_inspector.real_ip_header` used in earlier versions in the `tcp-capture` mode.
+* Added the [`metrics.namespace`](../../installation/native-node/all-in-one-conf.md#metricsnamespace) configuration option to customize the prefix of Prometheus metrics exposed by the `go-node` binary
 
 ### 0.13.4 (2025-05-14)
 
@@ -427,7 +486,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 ### 0.8.3 (2024-11-14)
 
-* Added support for Mulesoft connector v3.0.x
+* Added support for MuleSoft connector v3.0.x
 
 ### 0.8.2 (2024-11-11)
 

@@ -9,7 +9,7 @@
 
     * Blocks the request if the appropriate [filtration mode][waf-mode-instr] is configured.
     * Returns the [custom blocking page][blocking-page-instr] if it is configured.
-2. Open Wallarm Console → **Attacks** in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and make sure that:
+2. Open Wallarm Console → **Attacks** in the [EU Cloud](https://my.wallarm.com/attacks) or [US Cloud](https://us1.my.wallarm.com/attacks) and make sure that:
 
     * The attack is displayed in the list.
     * Hit details display the Wallarm node UUID.

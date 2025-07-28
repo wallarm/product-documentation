@@ -63,7 +63,7 @@ Para testar a nova operação do nó:
     curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 
-1. Abra a seção Wallarm Console → **Eventos** no [US Cloud](https://us1.my.wallarm.com/search) ou [EU Cloud](https://my.wallarm.com/search) e certifique-se de que os ataques são exibidos na lista.
+1. Abra a seção Wallarm Console → **Eventos** no [US Cloud](https://us1.my.wallarm.com/attacks) ou [EU Cloud](https://my.wallarm.com/attacks) e certifique-se de que os ataques são exibidos na lista.
 1. Assim que os dados armazenados em seu Cloud (regras, listas de IP) forem sincronizados com o novo nó, realize alguns ataques de teste para ter certeza de que suas regras funcionam conforme o esperado.
 
 ## Nó de filtragem e pós-análise em servidores diferentes

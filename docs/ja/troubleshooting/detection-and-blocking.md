@@ -1,0 +1,1 @@
+--8<-- "latest-ja/troubleshooting/detection-and-blocking.md"

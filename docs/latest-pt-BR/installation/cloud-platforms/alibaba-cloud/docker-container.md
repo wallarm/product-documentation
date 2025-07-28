@@ -140,7 +140,7 @@ Para implantar o nó de filtragem Wallarm contêinerizado configurado através d
     ```
     curl http://<COPIED_IP>/etc/passwd
     ```
-3. Abra o Console Wallarm → **Eventos** na [Nuvem EUA](https://us1.my.wallarm.com/search) ou [Nuvem UE](https://my.wallarm.com/search) e certifique-se de que o ataque está exibido na lista.
+3. Abra o Console Wallarm → **Eventos** na [Nuvem EUA](https://us1.my.wallarm.com/attacks) ou [Nuvem UE](https://my.wallarm.com/attacks) e certifique-se de que o ataque está exibido na lista.
     ![Ataques em UI][attacks-in-ui-image]
 
 Para visualizar detalhes sobre erros ocorridos durante a implantação do contêiner, por favor, [conecte-se à instância por um dos métodos](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l) e reveja os [logs do contêiner][logging-docs]. Se a instância estiver indisponível, certifique-se de que os parâmetros necessários do nó de filtragem com valores corretos foram passados para o contêiner.

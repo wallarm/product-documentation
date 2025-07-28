@@ -17,7 +17,7 @@ If the node is deployed using a Docker image, it is recommended to update the co
 
 The Wallarm node operation mode. It can be:
 
-* `connector-server` for [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [IBM API Connect](../connectors/ibm-api-connect.md) connectors.
+* `connector-server` for [MuleSoft Mule Gateway](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [IBM DataPower](../connectors/ibm-api-connect.md) connectors.
 * `tcp-capture` for [TCP traffic mirror analysis](../oob/tcp-traffic-mirror/deployment.md).
 * `envoy-external-filter` for [gRPC-based external processing filter](../connectors/istio-inline.md) for APIs managed by Istio.
 
@@ -51,6 +51,24 @@ The Wallarm node operation mode. It can be:
         # max_requests: 300
         # max_received_bytes: 640_000
         # max_duration: 1m
+
+    proxy_headers:
+      # Rule 1: Internal company proxies
+      - trusted_networks:
+          - 10.0.0.0/8
+          - 192.168.0.0/16
+        original_host:
+          - X-Forwarded-Host
+        real_ip:
+          - X-Forwarded-For
+
+      # Rule 2: External edge proxies (e.g., CDN, reverse proxy)
+      - trusted_networks:
+          - 203.0.113.0/24
+        original_host:
+          - X-Real-Host
+        real_ip:
+          - X-Real-IP
 
     route_config:
       wallarm_application: 10
@@ -90,8 +108,23 @@ The Wallarm node operation mode. It can be:
       response_timeout: 5s
       url_normalize: true
 
-    http_inspector:
-      real_ip_header: "X-Real-IP"
+    proxy_headers:
+      # Rule 1: Internal company proxies
+      - trusted_networks:
+          - 10.0.0.0/8
+          - 192.168.0.0/16
+        original_host:
+          - X-Forwarded-Host
+        real_ip:
+          - X-Forwarded-For
+
+      # Rule 2: External edge proxies (e.g., CDN, reverse proxy)
+      - trusted_networks:
+          - 203.0.113.0/24
+        original_host:
+          - X-Real-Host
+        real_ip:
+          - X-Real-IP
     
     route_config:
       wallarm_application: 10
@@ -125,6 +158,24 @@ The Wallarm node operation mode. It can be:
       address: ":5050"
       tls_cert: path/to/tls-cert.crt
       tls_key: path/to/tls-key.key
+
+    proxy_headers:
+      # Rule 1: Internal company proxies
+      - trusted_networks:
+          - 10.0.0.0/8
+          - 192.168.0.0/16
+        original_host:
+          - X-Forwarded-Host
+        real_ip:
+          - X-Forwarded-For
+
+      # Rule 2: External edge proxies (e.g., CDN, reverse proxy)
+      - trusted_networks:
+          - 203.0.113.0/24
+        original_host:
+          - X-Real-Host
+        real_ip:
+          - X-Real-IP
 
     route_config:
       wallarm_application: 10
@@ -494,12 +545,6 @@ Default: `true`.
 
 In Node version 0.10.1 and earlier, this parameter is set as `middleware.url_normalize`.
 
-### http_inspector.real_ip_header
-
-By default, Wallarm reads the source IP address from the network packet's IP headers. However, proxies and load balancers can change this to their own IPs.
-
-To preserve the real client IP, these intermediaries often add an HTTP header (e.g., `X-Real-IP`, `X-Forwarded-For`). The `real_ip_header` parameter tells Wallarm which header to use to extract the original client IP.
-
 ## Envoy external filter-specific settings
 
 ### envoy_external_filter.address (required)
@@ -538,6 +583,50 @@ Path to the private key corresponding to the TLS/SSL certificate (typically a `.
 If the node is deployed using a Docker image, this parameter is not needed because SSL decryption should occur at the load balancer level, before the traffic reaches the containerized node.
 
 ## Basic settings
+
+### proxy_headers
+
+Configures how the Native Node extracts the original client IP and host when traffic passes through proxies or load balancers.
+
+* `trusted_networks`: trusted proxy IP ranges (CIDRs). Headers like `X-Forwarded-For` are only trusted if the request comes from these networks.
+
+    If omitted, all networks are trusted (not recommended).
+* `original_host`: headers to use for the original `Host` value, if modified by a proxy.
+* `real_ip`: headers to use for extracting the real client IP address.
+
+You can define multiple rules for different proxy types or trust levels.
+
+!!! info "Rule evaluation order"    
+    Only the first matching rule is applied per request.
+
+Supported in Native Node 0.13.5 and later 0.13.x versions, and in 0.15.1 and later.
+
+Example:
+
+```yaml
+version: 4
+
+proxy_headers:
+
+  # Rule 1: Internal company proxies
+  - trusted_networks:
+      - 10.0.0.0/8
+      - 192.168.0.0/16
+    original_host:
+      - X-Forwarded-Host
+    real_ip:
+      - X-Forwarded-For
+
+  # Rule 2: External edge proxies (e.g., CDN, reverse proxy)
+  - trusted_networks:
+      - 203.0.113.0/24
+    original_host:
+      - X-Real-Host
+    real_ip:
+      - X-Real-IP
+```
+
+For Node 0.13.4 and earlier operating in [`tcp-capture`](../oob/tcp-traffic-mirror/deployment.md) mode, use the parameter `http_inspector.real_ip_header`. In later 0.13.x versions, the `proxy_headers` section replaces it.
 
 ### route_config
 
@@ -706,6 +795,16 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
     ```yaml
     version: 4
 
+    input_filters:
+      inspect:
+      - path: "^/api/v[0-9]+/.*"
+        headers:
+          Authorization: "^Bearer .+"
+      bypass:
+      - path: ".*\\.(png|jpg|css|js|svg)$"
+      - headers:
+          accept: "text/html"
+    
     http_inspector:
       workers: auto
       libdetection_enabled: true
@@ -728,6 +827,7 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
       legacy_status:
         enabled: true
         listen_address: 127.0.0.1:10246
+      namespace: wallarm_gonode
 
     health_check:
       enabled: true
@@ -737,6 +837,16 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
     ```yaml
     version: 4
 
+    input_filters:
+      inspect:
+      - path: "^/api/v[0-9]+/.*"
+        headers:
+          Authorization: "^Bearer .+"
+      bypass:
+      - path: ".*\\.(png|jpg|css|js|svg)$"
+      - headers:
+          accept: "text/html"
+
     http_inspector:
       workers: auto
       libdetection_enabled: true
@@ -759,10 +869,75 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
       legacy_status:
         enabled: true
         listen_address: 127.0.0.1:10246
+      namespace: wallarm_gonode
 
     health_check:
       enabled: true
       listen_address: :8080
+    ```
+
+### input_filters
+
+Defines which incoming requests should be **inspected** or **bypassed** by the Native Node. This reduces CPU usage by ignoring irrelevant traffic such as static assets or health checks.
+
+By default, all requests are inspected.
+
+!!! warning "Requests skipped from inspection are not analyzed or sent to Wallarm Cloud"
+    As a result, skipped requests do not appear in metrics, API Discovery, API sessions, vulnerability detection and so on. Wallarm features do not apply to them.
+
+**Compatibility**
+
+* Native Node 0.13.7 and higher 0.13.x versions
+* Native Node 0.16.0 and higher
+
+**Filtering logic**
+
+The filtering logic is based on 2 lists:
+
+* `inspect`: only requests matching at least one filter here are inspected.
+
+    If omitted or empty, all requests are inspected, unless excluded by `bypass`.
+* `bypass`: requests matching any filter here are never inspected, even if they match `inspect`.
+
+**Filter format**
+
+Each filter is an object that can include:
+
+* `path` or `url`: regex for matching the request path (both are supported and equivalent).
+* `headers`: a map of header names to regex patterns for matching their values.
+
+All regular expressions must follow the [RE2 syntax](https://github.com/google/re2/wiki/Syntax).
+
+**Examples**
+
+=== "Allow requests by token, skip static content"
+    This configuration inspects only requests to versioned API endpoints (e.g. `/api/v1/...`) that include a `Bearer` token in the `Authorization` header.
+    
+    It bypasses requests for static files (images, scripts, styles) and browser-initiated HTML page loads.
+
+    ```yaml
+    input_filters:
+      inspect:
+      - path: "^/api/v[0-9]+/.*"
+        headers:
+          Authorization: "^Bearer .+"
+      bypass:
+      - path: ".*\\.(png|jpg|css|js|svg)$"
+      - headers:
+          accept: "text/html"
+    ```
+=== "Allow requests by domain, skip health checks"
+    This configuration inspects only requests with `Host: api.example.com`, skipping all others.
+    
+    Requests to the `/healthz` endpoint are always bypassed, even if they match the inspected host.
+
+    ```yaml
+    input_filters:
+      inspect:
+      - headers:
+        host: "^api\\.example\\.com$"
+      bypass:
+      - path: "^/healthz$"
     ```
 
 ### http_inspector.workers
@@ -856,6 +1031,16 @@ Default: `true`.
 Sets the address and port where `/wallarm-status` metrics in JSON format will be exposed. To access these metrics, use the `/wallarm-status` endpoint.
 
 Default: `127.0.0.1:10246`.
+
+### metrics.namespace
+
+Defines the prefix for Prometheus metrics exposed by the `go-node` binary (the core processing service of the Native Node).
+
+Default: `wallarm_gonode`.
+
+All metrics emitted by `go-node` will use this prefix (e.g., `wallarm_gonode_requests_total`). Other components of the node, such as `wstore` and `wcli`, use their own fixed prefixes.
+
+Supported in Native Node 0.13.5 and later 0.13.x versions, and in 0.15.1 and later.
 
 ### health_check.enabled
 

@@ -133,7 +133,7 @@ Cláusulas adicionais do gatilho:
 Alvo: servidor, banco de dados.
 
 Ver eventos:
-https://my.wallarm.com/search?q=incidents&time_from=XXXXXXXXXX&time_to=XXXXXXXXXX
+https://my.wallarm.com/attacks?q=incidents&time_from=XXXXXXXXXX&time_to=XXXXXXXXXX
 
 Cliente: TestCompany
 Nuvem: EU

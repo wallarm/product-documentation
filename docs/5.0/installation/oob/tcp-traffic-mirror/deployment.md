@@ -55,13 +55,13 @@ To download Wallarm installation script and make it executable, use the followin
 
 === "x86_64 version"
     ```bash
-    curl -O https://meganode.wallarm.com/native/aio-native-0.13.4.x86_64.sh
-    chmod +x aio-native-0.13.4.x86_64.sh
+    curl -O https://meganode.wallarm.com/native/aio-native-0.13.7.x86_64.sh
+    chmod +x aio-native-0.13.7.x86_64.sh
     ```
 === "ARM64 version"
     ```bash
-    curl -O https://meganode.wallarm.com/native/aio-native-0.13.4.aarch64.sh
-    chmod +x aio-native-0.13.4.aarch64.sh
+    curl -O https://meganode.wallarm.com/native/aio-native-0.13.7.aarch64.sh
+    chmod +x aio-native-0.13.7.aarch64.sh
     ```
 
 ## Step 3: Prepare the configuration file
@@ -149,19 +149,34 @@ goreplay:
     # - 1
 ```
 
-### Identifying the original client IP address
+### Identifying the original client IP and host headers
 
-By default, Wallarm reads the source IP address from the network packet's IP headers. However, proxies and load balancers can change this to their own IPs.
+When traffic passes through proxies or load balancers, they often replace the original client IP address and `Host` header with their own values. To preserve the original information, such intermediaries typically add HTTP headers like `X-Forwarded-For`, `X-Real-IP`, or `X-Forwarded-Host`.
 
-To preserve the real client IP, these intermediaries often add an HTTP header (e.g., `X-Real-IP`, `X-Forwarded-For`). The `real_ip_header` parameter tells Wallarm which header to use to extract the original client IP, e.g.:
+To ensure the Native Node correctly identifies the original client and target host, use the [`proxy_headers`](../../native-node/all-in-one-conf.md#proxy_headers) configuration block, e.g.:
 
 ```yaml
 version: 4
 
 mode: tcp-capture
 
-http_inspector:
-  real_ip_header: "X-Real-IP"
+proxy_headers:
+  # Rule 1: Internal company proxies
+  - trusted_networks:
+      - 10.0.0.0/8
+      - 192.168.0.0/16
+    original_host:
+      - X-Forwarded-Host
+    real_ip:
+      - X-Forwarded-For
+
+  # Rule 2: External edge proxies (e.g., CDN, reverse proxy)
+  - trusted_networks:
+      - 203.0.113.0/24
+    original_host:
+      - X-Real-Host
+    real_ip:
+      - X-Real-IP
 ```
 
 ## Step 4: Run the Wallarm installer
@@ -171,18 +186,18 @@ To install the Wallarm node for TCP traffic mirror analysis, run the following c
 === "x86_64 version"
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.4.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.4.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
     ```
 === "ARM64 version"
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.4.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.4.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
     ```
 
 * The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -227,21 +242,21 @@ For additional debugging, set the [`log.level`](../../native-node/all-in-one-con
 
     === "x86_64 version"
         ```
-        sudo ./aio-native-0.13.4.x86_64.sh -- --help
+        sudo ./aio-native-0.13.7.x86_64.sh -- --help
         ```
     === "ARM64 version"
         ```
-        sudo ./aio-native-0.13.4.aarch64.sh -- --help
+        sudo ./aio-native-0.13.7.aarch64.sh -- --help
         ```
 * You can also run the installer in an **interactive** mode and choose the `tcp-capture` mode in the 1st step:
 
     === "x86_64 version"
         ```
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.4.x86_64.sh
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh
         ```
     === "ARM64 version"
         ```
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.4.aarch64.sh
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh
         ```
 * You can use the node in API Discovery-only mode (available since version 0.12.1). In this mode, attacks - including those detected by the Node's built-in mechanisms and those requiring additional configuration (e.g., credential stuffing, API specification violation attempts and brute force) - are detected and [logged](../../../admin-en/configure-logging.md) locally but not exported to Wallarm Cloud. Since there is no attack data in the Cloud, [Threat Replay Testing](../../../vulnerability-detection/threat-replay-testing/overview.md) does not work.
 
@@ -265,32 +280,6 @@ For additional debugging, set the [`log.level`](../../native-node/all-in-one-con
         ```
     
     1. Follow the [node installation procedure from the 1st step](#step-1-prepare-wallarm-token).
-* <a name="limited-attack-export"></a>You can limit the malicious request and response data exported to the Wallarm Cloud ([**Attack**](../../../user-guides/events/check-attack.md) list) using the `WALLARM_ATTACKS_DETAILED_EXPORT` environment variable. Available since version 0.13.4 and later 0.13.x versions.
-
-    By default, this variable is set to `true`, enabling full attack data export.
-
-    When set to `false`, the Node sends only limited metadata to the Cloud for all malicious requests detected in the traffic it processes. This includes the malicious payload, attack type, `Host` header, URI, IP address, request method, HTTP status code, and request time. Request bodies, query parameters, and other headers are excluded.
-
-    This mode is intended for environments with strict data handling rules. Use `false` only when full data export may conflict with privacy or compliance requirements.
-
-    To disable full data export:
-
-    1. Create or modify the `/etc/wallarm-override/env.list` file:
-
-        ```
-        sudo mkdir /etc/wallarm-override
-        sudo vim /etc/wallarm-override/env.list
-        ```
-
-        Add the following variable:
-
-        ```
-        WALLARM_ATTACKS_DETAILED_EXPORT=false
-        ```
-    
-    1. Follow the [node installation procedure from the 1st step](#step-1-prepare-wallarm-token).
-
-    Setting this variable to `false` limits [Threat Replay Testing](../../../vulnerability-detection/threat-replay-testing/overview.md) - initial payloads will not be available for replay, and test results may be less accurate.
 
 ## Upgrade and reinstallation
 

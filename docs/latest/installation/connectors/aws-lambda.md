@@ -5,6 +5,10 @@
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
+[helm-chart-native-node]:           ../native-node/helm-chart.md
+[custom-blocking-page]:             ../../admin-en/configuration-guides/configure-block-page-and-code.md
+[rate-limiting]:                    ../../user-guides/rules/rate-limiting.md
+[multi-tenancy]:                    ../multi-tenant/overview.md
 
 # Wallarm Connector for Amazon CloudFront
 
@@ -41,7 +45,6 @@ Among all supported [Wallarm deployment options](../supported-deployment-options
     * The default limit for concurrent requests is 1,000 per region, but it can be increased up to tens of thousands.
     * Wallarm Lambda@Edge functions operate at the origin level, meaning they do not monitor requests handled by CDN cache. Thus, potential attacks in such requests go undetected.
 * Feature restrictions:
-    * Vulnerability detection based on [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) and API response structure in API Discovery are limited due to Lambda@Edge response trigger restrictions. Since Wallarm functions cannot receive response bodies and rely on them, these features are unavailable.
     * [Rate limiting](../../user-guides/rules/rate-limiting.md) by the Wallarm rule is not supported.
     * [Multitenancy](../multi-tenant/overview.md) is not supported yet.
 
@@ -90,8 +93,8 @@ There are two Python-based functions: one for request forwarding and analysis, a
     1. Once the function is created, on the **Code** tab, paste the Wallarm request processing code.
     1. Update the following parameters in the code:
 
-        * `wlrm_node_addr`: your [Wallarm node instance](#1-deploy-a-wallarm-node) address.
-        * `wlrm_inline`: if using [out-of-band](../oob/overview.md) mode, set to `False`.
+        * `wlrm_node_addr`: your Wallarm node URL.
+        * `wlrm_inline`: if using [asynchronous (out-of-band)](../oob/overview.md) mode, set to `False`.
         * If necessary, modify other parameters.
     1. Proceed to **Actions** → **Deploy to Lambda@Edge** and specify the following settings:
 

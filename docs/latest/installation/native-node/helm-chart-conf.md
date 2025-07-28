@@ -63,6 +63,9 @@ config:
         enabled: true
         verbose: false
 
+  aggregation:
+    serviceAddress: "[::]:3313"
+
 processing:
   service:
     type: LoadBalancer
@@ -95,7 +98,7 @@ This specifies the name of the group of filtering nodes you want to add newly de
 
 The Wallarm node operation mode. It can be:
 
-* `connector-server` (default) for [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [Kong API Gateway](../connectors/kong-api-gateway.md), [IBM API Connect](../connectors/ibm-api-connect.md) or [Istio (out-of-band)](../connectors/istio.md)connectors.
+* `connector-server` (default) for MuleSoft [Mule](../connectors/mulesoft.md) or [Flex](../connectors/mulesoft-flex.md) Gateway, [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [Kong API Gateway](../connectors/kong-api-gateway.md), [IBM DataPower](../connectors/ibm-api-connect.md) or [Istio (out-of-band)](../connectors/istio.md)connectors.
 * `envoy-external-filter` for [gRPC-based external processing filter](../connectors/istio-inline.md) for APIs managed by Istio.
 
 ### config.connector.certificate.enabled (required)
@@ -338,13 +341,21 @@ Controls whether to include detailed information about each request in the acces
 
 Default: `false`.
 
+### config.aggregation.serviceAddress
+
+Specifies the address and port on which **wstore** accepts incoming connections.
+
+Supported from the release 0.15.1 onwards.
+
+**Default value**: `[::]:3313` - listens on port 3313 on all IPv4 and IPv6 interfaces. This was also the default behavior in versions prior to 0.15.1.
+
 ### processing.service.type
 
 Wallarm service type. Can be:
 
 * `LoadBalancer` for running the service as a load balancer with a public IP for easy traffic routing.
 
-    This is suitable for [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [IBM API Connect](../connectors/ibm-api-connect.md) connectors.
+    This is suitable for MuleSoft [Mule](../connectors/mulesoft.md) or [Flex](../connectors/mulesoft-flex.md) Gateway, [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [IBM DataPower](../connectors/ibm-api-connect.md) connectors.
 * `ClusterIP` for internal traffic, without exposing a public IP.
 
     This is suitable for [Kong API Gateway](../connectors/kong-api-gateway.md) or [Istio](../connectors/istio.md) connectors.

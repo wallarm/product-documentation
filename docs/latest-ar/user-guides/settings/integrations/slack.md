@@ -7,7 +7,7 @@
 1. افتح قسم **التكاملات**.
 1. انقر على كتلة **Slack** أو انقر على زر **إضافة تكامل** واختر **Slack**.
 1. أدخل اسم تكامل.
-1. افتح [إعدادات Webhook في Slack](https://my.slack.com/services/new/incoming-webhook/) وأضف Webhook جديدًا مختارًا القناة لنشر الرسائل فيها.
+1. افتح [إعدادات Webhook في Slack](https://my.slack.com/services/incoming-webhook/) وأضف Webhook جديدًا مختارًا القناة لنشر الرسائل فيها.
 1. انسخ عنوان URL لـ Webhook المقدم والصق القيمة في حقل **عنوان URL للـ Webhook** في واجهة مستخدم Wallarm.
 1. اختر أنواع الأحداث لتشغيل الإشعارات.
 

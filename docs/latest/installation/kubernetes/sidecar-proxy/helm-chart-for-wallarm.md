@@ -44,11 +44,25 @@ config:
     logs:
       extended: false
       format: text
+
 postanalytics:
   external:
     enabled: false
     host: ""
     port: 3313
+  wstore:
+    config:
+      arena: "2.0"
+      serviceAddress: "[::]:3313"
+    ### TLS configuration settings (optional)
+    tls:
+      enabled: false
+    #  certFile: "/root/test-tls-certs/server.crt"
+    #  keyFile: "/root/test-tls-certs/server.key"
+    #  caCertFile: "/root/test-tls-certs/ca.crt"
+    #  mutualTLS:
+    #    enabled: false
+    #    clientCACertFile: "/root/test-tls-certs/ca.crt"
   ...
 # Optional part for custom admission webhook certificate provisioning
 # controller:
@@ -296,6 +310,43 @@ The specified host must be accessible from the Kubernetes cluster where the Side
 The TCP port on which the Wallarm postanalytics module is running. By default, it uses port 3313 as the Sidecar solution deploys the module on this port.
 
 If `postanalytics.external.enabled` is set to `true`, specify the port on which the module is running on the specified external host.
+
+## postanalytics.wstore.config.serviceAddress
+
+Specifies the address and port on which **wstore** accepts incoming connections.
+
+Supported from the release 6.3.0 onwards.
+
+**Default value**: `[::]:3313` - listens on port 3313 on all IPv4 and IPv6 interfaces. This was also the default behavior in versions prior to 6.3.0.
+
+## postanalytics.wstore.tls
+
+Configures TLS and mutual TLS (mTLS) settings to allow secure connection to the postanalytics module (optional):
+
+```yaml
+config:
+  wstore:
+    tls:
+      enabled: false
+    #   certFile: "/root/test-tls-certs/server.crt"
+    #   keyFile: "/root/test-tls-certs/server.key"
+    #   caCertFile: "/root/test-tls-certs/ca.crt"
+    #   mutualTLS:
+    #     enabled: false
+    #     clientCACertFile: "/root/test-tls-certs/ca.crt"
+
+```
+
+Supported from the release 6.2.0 onwards.
+
+| Parameter | Description | Required? |
+| --------- | ----------- | --------- |
+| `enabled` | Enables or disables SSL/TLS for the connection to the postanalytics module. By default, `false` (disabled). | Yes |
+| `certFile` | Specifies the path to the client certificate used by the the Filtering Node to authenticate itself when establishing an SSL/TLS connection to the postanalytics module. | Yes if `mutualTLS.enabled` is `true` |
+| `keyFile` | Specifies the path to the private key corresponding to the client certificate provided via `certFile`. | Yes if `mutualTLS.enabled` is `true` |
+| `caCertFile` | Specifies the path to a trusted Certificate Authority (CA) certificate used to validate the TLS certificate presented by the postanalytics module. | Yes if using a custom CA |
+| `mutualTLS.enabled` | Enables mutual TLS (mTLS), where both the Filtering Node and the postanalytics module verify each other's identity via certificates. By default, `false` (disabled). | No |
+| `mutualTLS.clientCACertFile` | Specifies the path to a trusted Certificate Authority (CA) certificate used to validate the TLS certificate presented by the Filtering Node. | Yes if using a custom CA |
 
 ## controller.admissionWebhook.certManager.enabled
 

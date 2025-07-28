@@ -627,7 +627,7 @@
 /user-guides/rules/disable-request-parsers/ /user-guides/rules/request-processing/#managing-parsers
 /user-guides/rules/ignore-attack-types/ /about-wallarm/protecting-against-attacks/#ignoring-certain-attack-types
 /user-guides/rules/ignore-attacks-in-binary-data/ /about-wallarm/protecting-against-attacks/#ignoring-certain-attack-signs-in-the-binary-data
-/user-guides/rules/wallarm-mode-rule/ /admin-en/configure-wallarm-mode/#endpoint-targeted-filtration-rules-in-wallarm-console
+/user-guides/rules/wallarm-mode-rule/ /admin-en/configure-wallarm-mode/#conditioned-filtration-mode
 /4.8/user-guides/rules/intro/ /4.8/user-guides/rules/rules/
 /4.8/user-guides/rules/add-rule/ /4.8/user-guides/rules/rules/#configuring
 /4.8/user-guides/rules/view/ /4.8/user-guides/rules/rules/#inspecting
@@ -636,11 +636,11 @@
 /4.8/user-guides/rules/disable-request-parsers/ /4.8/user-guides/rules/request-processing/#managing-parsers
 /4.8/user-guides/rules/ignore-attack-types/ /4.8/about-wallarm/protecting-against-attacks/#ignoring-certain-attack-types
 /4.8/user-guides/rules/ignore-attacks-in-binary-data/ /4.8/about-wallarm/protecting-against-attacks/#ignoring-certain-attack-signs-in-the-binary-data
-/4.8/user-guides/rules/wallarm-mode-rule/ /4.8/admin-en/configure-wallarm-mode/#endpoint-targeted-filtration-rules-in-wallarm-console
+/4.8/user-guides/rules/wallarm-mode-rule/ /4.8/admin-en/configure-wallarm-mode/#conditioned-filtration-mode
 
-/user-guides/settings/general/ /admin-en/configure-wallarm-mode/#general-filtration-rule-in-wallarm-console
-/4.8/user-guides/settings/general/ /4.8/admin-en/configure-wallarm-mode/#general-filtration-rule-in-wallarm-console
-/4.6/user-guides/settings/general/ /4.6/admin-en/configure-wallarm-mode/#general-filtration-rule-in-wallarm-console
+/user-guides/settings/general/ /admin-en/configure-wallarm-mode/#general-filtration-mode
+/4.8/user-guides/settings/general/ /4.8/admin-en/configure-wallarm-mode/#general-filtration-mode
+/4.6/user-guides/settings/general/ /4.6/admin-en/configure-wallarm-mode/#general-filtration-mode
 
 /user-guides/rules/api-abuse-url/ /api-abuse-prevention/exceptions/#exceptions-for-target-urls-and-specific-requests
 /4.8/user-guides/rules/api-abuse-url/ /4.8/api-abuse-prevention/exceptions/#exceptions-for-target-urls-and-specific-requests

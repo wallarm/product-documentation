@@ -105,10 +105,10 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
     === "API token"
         ```bash
         # If using the x86_64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.15.x86_64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.16.x86_64-glibc.sh filtering
 
         # If using the ARM64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.15.aarch64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.16.aarch64-glibc.sh filtering
         ```        
 
         The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -116,10 +116,10 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
     === "Node token"
         ```bash
         # If using the x86_64 version:
-        sudo sh wallarm-5.3.15.x86_64-glibc.sh filtering
+        sudo sh wallarm-5.3.16.x86_64-glibc.sh filtering
 
         # If using the ARM64 version:
-        sudo sh wallarm-5.3.15.aarch64-glibc.sh filtering
+        sudo sh wallarm-5.3.16.aarch64-glibc.sh filtering
         ```
 
 ## Step 7: Migrate allowlists and denylists from the previous Wallarm node version to 5.0 (only if upgrading node 2.18 or lower)
@@ -175,8 +175,8 @@ In the new node version the following changes to the [node logging variables](..
 
 1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md#filtration-modes):
       * [Directive `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [General filtration rule configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console)
-      * [Endpoint-targeted filtration rules configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console)
+      * [General filtration rule configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#general-filtration-mode)
+      * [Endpoint-targeted filtration rules configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode)
 2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../../admin-en/configure-wallarm-mode.md).
 
 ### Transfer the `overlimit_res` attack detection configuration from directives to the rule

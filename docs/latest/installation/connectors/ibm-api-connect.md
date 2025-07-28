@@ -5,6 +5,10 @@
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
+[helm-chart-native-node]:           ../native-node/helm-chart.md
+[custom-blocking-page]:             ../../admin-en/configuration-guides/configure-block-page-and-code.md
+[rate-limiting]:                    ../../user-guides/rules/rate-limiting.md
+[multi-tenancy]:                    ../multi-tenant/overview.md
 
 # Wallarm Connector for IBM API Connect
 
@@ -25,8 +29,7 @@ Among all supported [Wallarm deployment options](../supported-deployment-options
 
 ## Limitations
 
-* [Rate limiting](../../user-guides/rules/rate-limiting.md) by the Wallarm rule is not supported.
-* [Multitenancy](../multi-tenant/overview.md) is not supported yet.
+--8<-- "../include/waf/installation/connectors/native-node-limitations.md"
 
 ## Requirements
 
@@ -69,48 +72,26 @@ Wallarm provides custom policies that can be attached to APIs in API Connect. Th
     If running a self-hosted node, contact sales@wallarm.com to get the code bundle.
 1. Register the request inspection policy:
 
-    === "apic"
-        ```
-        apic policies:create \
-            --scope <CATALOG OR SPACE> \
-            --server <MANAGEMENT SERVER ENDPOINT> \
-            --org <ORG NAME OR ID> \
-            --catalog <CATALOG NAME OR ID> \
-            --configured-gateway-service <GATEWAY SERVICE NAME OR ID> \
-            /<PATH>/wallarm-pre.zip
-        ```
-    === "apic-slim"
-        ```
-        apic-slim policies:create \
-            --scope <CATALOG OR SPACE> \
-            --server <MANAGEMENT SERVER ENDPOINT> \
-            --org <ORG NAME OR ID> \
-            --catalog <CATALOG NAME OR ID> \
-            --configured-gateway-service <GATEWAY SERVICE NAME OR ID> \
-            /<PATH>/wallarm-pre.zip
-        ```
+    ```
+    apic policies:create \
+        --scope <CATALOG OR SPACE> \
+        --server <MANAGEMENT SERVER ENDPOINT> \
+        --org <ORG NAME OR ID> \
+        --catalog <CATALOG NAME OR ID> \
+        --configured-gateway-service <GATEWAY SERVICE NAME OR ID> \
+        /<PATH>/wallarm-pre.zip
+    ```
 1. Register the response inspection policy:
 
-    === "apic"
-        ```
-        apic policies:create \
-            --scope <CATALOG OR SPACE> \
-            --server <MANAGEMENT SERVER ENDPOINT> \
-            --org <ORG NAME OR ID> \
-            --catalog <CATALOG NAME OR ID> \
-            --configured-gateway-service <GATEWAY SERVICE NAME OR ID> \
-            /<PATH>/wallarm-post.zip
-        ```
-    === "apic-slim"
-        ```
-        apic-slim policies:create \
-            --scope <CATALOG OR SPACE> \
-            --server <MANAGEMENT SERVER ENDPOINT> \
-            --org <ORG NAME OR ID> \
-            --catalog <CATALOG NAME OR ID> \
-            --configured-gateway-service <GATEWAY SERVICE NAME OR ID> \
-            /<PATH>/wallarm-post.zip
-        ```
+    ```
+    apic policies:create \
+        --scope <CATALOG OR SPACE> \
+        --server <MANAGEMENT SERVER ENDPOINT> \
+        --org <ORG NAME OR ID> \
+        --catalog <CATALOG NAME OR ID> \
+        --configured-gateway-service <GATEWAY SERVICE NAME OR ID> \
+        /<PATH>/wallarm-post.zip
+    ```
 
 In most cases, the `configured-gateway-service` name is `datapower-api-gateway`.
 
@@ -123,7 +104,7 @@ In your API specification, within the `x-ibm-configuration.assembly.execute` sec
     
     * The `target-url` should follow the format `$(target-url)$(request.path)?$(request.query-string)`. This ensures that requests are proxied to the original backend path along with any query parameters.
     * `header-control` and `parameter-control` allow all headers and parameters to pass through. This enables the Wallarm Node to analyze the full request, detect attacks in any part of it, and accurately build the API inventory.
-1. After the `invoke` step, Add the `wallarm_post` step to proxy responses to the Wallarm Node for inspection.
+1. After the `invoke` step, add the `wallarm_post` step to proxy responses to the Wallarm Node for inspection.
 
 ```yaml hl_lines="8-22"
 ...
@@ -162,24 +143,14 @@ Supported properties in Wallarm policies:
 
 To apply changes to the traffic flow, re-publish the product that includes the modified API:
 
-=== "apic"
-    ```
-    apic products:publish \
-        --scope <CATALOG OR SPACE> \
-        --server <MANAGEMENT SERVER ENDPOINT> \
-        --org <ORG NAME OR ID> \
-        --catalog <CATALOG NAME OR ID> \
-        <PATH TO THE UPDATED PRODUCT YAML>
-    ```
-=== "apic-slim"
-    ```
-    apic-slim products:publish \
-        --scope <CATALOG OR SPACE> \
-        --server <MANAGEMENT SERVER ENDPOINT> \
-        --org <ORG NAME OR ID> \
-        --catalog <CATALOG NAME OR ID> \
-        <PATH TO THE UPDATED PRODUCT YAML>
-    ```
+```
+apic products:publish \
+    --scope <CATALOG OR SPACE> \
+    --server <MANAGEMENT SERVER ENDPOINT> \
+    --org <ORG NAME OR ID> \
+    --catalog <CATALOG NAME OR ID> \
+    <PATH TO THE UPDATED PRODUCT YAML>
+```
 
 ## Example: API and product with Wallarm policies
 
@@ -302,26 +273,15 @@ To upgrade the deployed Wallarm policies to a [newer version](code-bundle-invent
     If running a self-hosted node, contact sales@wallarm.com to get the updated code bundle.
 1. Re-register each policy using the `policies:create` command and specify the updated `.zip` files:
 
-    === "apic"
-        ```
-        apic policies:create \
-            --scope <CATALOG OR SPACE> \
-            --server <MANAGEMENT SERVER ENDPOINT> \
-            --org <ORG NAME OR ID> \
-            --catalog <CATALOG NAME OR ID> \
-            --configured-gateway-service <GATEWAY SERVICE NAME OR ID> \
-            /<PATH>/wallarm-pre.zip
-        ```
-    === "apic-slim"
-        ```
-        apic-slim policies:create \
-            --scope <CATALOG OR SPACE> \
-            --server <MANAGEMENT SERVER ENDPOINT> \
-            --org <ORG NAME OR ID> \
-            --catalog <CATALOG NAME OR ID> \
-            --configured-gateway-service <GATEWAY SERVICE NAME OR ID> \
-            /<PATH>/wallarm-pre.zip
-        ```
+    ```
+    apic policies:create \
+        --scope <CATALOG OR SPACE> \
+        --server <MANAGEMENT SERVER ENDPOINT> \
+        --org <ORG NAME OR ID> \
+        --catalog <CATALOG NAME OR ID> \
+        --configured-gateway-service <GATEWAY SERVICE NAME OR ID> \
+        /<PATH>/wallarm-pre.zip
+    ```
 1. Repeat for `wallarm-post.zip`.
 1. In your API specification, update the policy versions in `x-ibm-configuration.assembly.execute`:
 
@@ -342,23 +302,13 @@ To upgrade the deployed Wallarm policies to a [newer version](code-bundle-invent
     Both policies use the same version number.
 1. Re-publish the associated product using the `products:publish` command.
 
-    === "apic"
-        ```
-        apic products:publish \
-            --scope <CATALOG OR SPACE> \
-            --server <MANAGEMENT SERVER ENDPOINT> \
-            --org <ORG NAME OR ID> \
-            --catalog <CATALOG NAME OR ID> \
-            <PATH TO THE UPDATED PRODUCT YAML>
-        ```
-    === "apic-slim"
-        ```
-        apic-slim products:publish \
-            --scope <CATALOG OR SPACE> \
-            --server <MANAGEMENT SERVER ENDPOINT> \
-            --org <ORG NAME OR ID> \
-            --catalog <CATALOG NAME OR ID> \
-            <PATH TO THE UPDATED PRODUCT YAML>
-        ```
+    ```
+    apic products:publish \
+        --scope <CATALOG OR SPACE> \
+        --server <MANAGEMENT SERVER ENDPOINT> \
+        --org <ORG NAME OR ID> \
+        --catalog <CATALOG NAME OR ID> \
+        <PATH TO THE UPDATED PRODUCT YAML>
+    ```
 
 Policy upgrades may require a Wallarm node upgrade, especially for major version updates. See the [Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for the self-hosted Node release notes and upgrade instructions or the [Edge connector upgrade procedure](../se-connector.md#upgrading-the-edge-node). Regular node updates are recommended to avoid deprecation and simplify future upgrades.

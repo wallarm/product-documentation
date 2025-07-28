@@ -1,15 +1,15 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 
-# Mulesoft com Política Wallarm
+# MuleSoft com Política Wallarm
 
-[MuleSoft](https://www.mulesoft.com/) é uma plataforma de integração que permite uma conectividade e integração de dados perfeitas entre os serviços, com um gateway de API funcionando como ponto de entrada para que os aplicativos do cliente acessem as APIs. Com a Wallarm, você pode proteger as APIs na plataforma Mulesoft Anypoint usando a política da Wallarm. Este artigo explica como anexar e utilizar a política.
+[MuleSoft](https://www.mulesoft.com/) é uma plataforma de integração que permite uma conectividade e integração de dados perfeitas entre os serviços, com um gateway de API funcionando como ponto de entrada para que os aplicativos do cliente acessem as APIs. Com a Wallarm, você pode proteger as APIs na plataforma MuleSoft Anypoint usando a política da Wallarm. Este artigo explica como anexar e utilizar a política.
 
 O diagrama abaixo ilustra o fluxo de tráfego de alto nível quando a política Wallarm está anexada às APIs na plataforma MuleSoft Anypoint, e a Wallarm está configurada para bloquear atividades maliciosas.
 
-![Mulesoft com política Wallarm](../../images/waf-installation/gateways/mulesoft/traffic-flow-inline.png)
+![MuleSoft com política Wallarm](../../images/waf-installation/gateways/mulesoft/traffic-flow-mule-gateway-inline.png)
 
-A solução envolve a implantação do nó Wallarm externamente e a injeção de código personalizado ou políticas na plataforma específica. Isso permite que o tráfego seja direcionado para o nó Wallarm externo para análise e proteção contra ameaças potenciais. Conhecidos como conectores Wallarm, eles servem como o elo essencial entre plataformas como Azion Edge, Akamai Edge, Mulesoft, Apigee e AWS Lambda, e o nó Wallarm externo. Esta abordagem garante uma integração perfeita, análise segura de tráfego, mitigação de riscos e segurança geral da plataforma.
+A solução envolve a implantação do nó Wallarm externamente e a injeção de código personalizado ou políticas na plataforma específica. Isso permite que o tráfego seja direcionado para o nó Wallarm externo para análise e proteção contra ameaças potenciais. Conhecidos como conectores Wallarm, eles servem como o elo essencial entre plataformas como Azion Edge, Akamai Edge, MuleSoft, Apigee e AWS Lambda, e o nó Wallarm externo. Esta abordagem garante uma integração perfeita, análise segura de tráfego, mitigação de riscos e segurança geral da plataforma.
 
 ## Casos de uso
 
@@ -30,18 +30,18 @@ A solução apresenta certas limitações, pois só funciona com solicitações 
 
 Para prosseguir com a implantação, certifique-se de que você atende aos seguintes requisitos:
 
-* Entendimento da plataforma Mulesoft.
+* Entendimento da plataforma MuleSoft.
 * [Maven (`mvn`)](https://maven.apache.org/install.html) 3.8 ou uma versão anterior instalada. Versões mais recentes do Maven podem encontrar problemas de compatibilidade com o plugin Mule.
-* Você foi atribuído ao papel de contribuidor do Mulesoft Exchange, permitindo o upload de artefatos para a conta da plataforma Mulesoft Anypoint da sua organização.
-* Suas [credenciais do Mulesoft Exchange (nome de usuário e senha)](https://docs.mulesoft.com/mule-gateway/policies-custom-upload-to-exchange#deploying-a-policy-created-using-the-maven-archetype) são especificadas no arquivo `<MAVEN_DIRECTORY>/conf/settings.xml`.
-* Seu aplicativo e API estão linkados e funcionando no Mulesoft.
+* Você foi atribuído ao papel de contribuidor do MuleSoft Exchange, permitindo o upload de artefatos para a conta da plataforma MuleSoft Anypoint da sua organização.
+* Suas [credenciais do MuleSoft Exchange (nome de usuário e senha)](https://docs.mulesoft.com/mule-gateway/policies-custom-upload-to-exchange#deploying-a-policy-created-using-the-maven-archetype) são especificadas no arquivo `<MAVEN_DIRECTORY>/conf/settings.xml`.
+* Seu aplicativo e API estão linkados e funcionando no MuleSoft.
 
 ## Implantação
 
-Para proteger as APIs na plataforma Mulesoft Anypoint usando a política Wallarm, siga essas etapas:
+Para proteger as APIs na plataforma MuleSoft Anypoint usando a política Wallarm, siga essas etapas:
 
 1. Implementar um nó Wallarm usando uma das opções de implantação disponíveis.
-1. Obter a política Wallarm e enviá-la para o Mulesoft Exchange.
+1. Obter a política Wallarm e enviá-la para o MuleSoft Exchange.
 1. Anexar a política Wallarm à sua API.
 
 ### 1. Implementar um nó Wallarm
@@ -107,20 +107,20 @@ Ao utilizar a política Wallarm, o fluxo de tráfego é [in-line](../inline/over
 
 1. Uma vez que a implantação esteja completa, anote o IP da instância do nó, pois você precisará dele mais tarde para definir o endereço de encaminhamento das solicitações recebidas.
 
-### 2. Obtenha e envie a política Wallarm para o Mulesoft Exchange
+### 2. Obtenha e envie a política Wallarm para o MuleSoft Exchange
 
-Para adquirir e [enviar](https://docs.mulesoft.com/mule-gateway/policies-custom-upload-to-exchange) a política Wallarm para o Mulesoft Exchange, siga estas etapas:
+Para adquirir e [enviar](https://docs.mulesoft.com/mule-gateway/policies-custom-upload-to-exchange) a política Wallarm para o MuleSoft Exchange, siga estas etapas:
 
-1. Entre em contato com [support@wallarm.com](mailto:support@wallarm.com) para obter a política Wallarm Mulesoft.
+1. Entre em contato com [support@wallarm.com](mailto:support@wallarm.com) para obter a política Wallarm MuleSoft.
 1. Extraia o arquivo da política quando você o receber.
 1. Navegue até o diretório da política:
 
     ```
     cd <DIRETORIO_DA_POLITICA>/wallarm
     ```
-1. No arquivo `pom.xml` → parâmetro `groupId` no topo do arquivo, especifique o ID da sua organização Mulesoft.
+1. No arquivo `pom.xml` → parâmetro `groupId` no topo do arquivo, especifique o ID da sua organização MuleSoft.
 
-    Você pode encontrar o ID da sua organização navegando até Mulesoft Anypoint Platform → **Access Management** → **Organization** → escolha a sua organização → copie o ID dela.
+    Você pode encontrar o ID da sua organização navegando até MuleSoft Anypoint Platform → **Access Management** → **Organization** → escolha a sua organização → copie o ID dela.
 1. No seu diretório Maven `.m2`, atualize o arquivo `settings.xml` com suas credenciais do Exchange:
 
     ```xml
@@ -137,15 +137,15 @@ Para adquirir e [enviar](https://docs.mulesoft.com/mule-gateway/policies-custom-
       </servers>
     </settings>
     ```
-1. Implantar a política no Mulesoft usando o seguinte comando:
+1. Implantar a política no MuleSoft usando o seguinte comando:
 
     ```
     mvn clean deploy
     ```
 
-A sua política personalizada agora está disponível na Exchange da sua Plataforma Mulesoft Anypoint.
+A sua política personalizada agora está disponível na Exchange da sua Plataforma MuleSoft Anypoint.
 
-![Mulesoft com política Wallarm](../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
+![MuleSoft com política Wallarm](../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
 
 ### 3. Anexar a política Wallarm à sua API
 
@@ -153,7 +153,7 @@ Você pode anexar a política Wallarm a todas as APIs ou a uma API individual.
 
 #### Anexando a política a todas as APIs
 
-Para aplicar a política Wallarm a todas as APIs usando a opção de política automatizada do [Mulesoft](https://docs.mulesoft.com/mule-gateway/policies-automated-overview), siga estes passos:
+Para aplicar a política Wallarm a todas as APIs usando a opção de política automatizada do [MuleSoft](https://docs.mulesoft.com/mule-gateway/policies-automated-overview), siga estes passos:
 
 1. Na sua Plataforma Anypoint, navegue até **API Manager** → **Automated Policies**.
 1. Clique em **Add automated policy** e selecione a política Wallarm do Exchange.
@@ -184,13 +184,13 @@ Para testar a funcionalidade da política implantada, siga estas etapas:
     ```
     curl http://<SEU_IP_OU_DOMINIO_DO_APP>/etc/passwd
     ```
-1. Abra o Console Wallarm → seção **Events** no [US Cloud](https://us1.my.wallarm.com/search) ou [EU Cloud](https://my.wallarm.com/search) e certifique-se de que o ataque está exibido na lista.
+1. Abra o Console Wallarm → seção **Events** no [US Cloud](https://us1.my.wallarm.com/attacks) ou [EU Cloud](https://my.wallarm.com/attacks) e certifique-se de que o ataque está exibido na lista.
     
     ![Ataques na interface][attacks-in-ui-image]
 
     Se o modo do nó Wallarm estiver definido para bloqueio, a solicitação também será bloqueada.
 
-Se a solução não funcionar conforme esperado, consulte os logs da API acessando Mulesoft Anypoint Platform → **Runtime Manager** → sua aplicação → **Logs**.
+Se a solução não funcionar conforme esperado, consulte os logs da API acessando MuleSoft Anypoint Platform → **Runtime Manager** → sua aplicação → **Logs**.
 
 Você também pode verificar se a política foi aplicada à API navegando até a API no **API Manager** e revisar as políticas aplicadas na aba **Policies**. Para políticas automatizadas, você pode usar a opção **See covered APIs** para ver as APIs cobertas e as razões de quaisquer exclusões.
 

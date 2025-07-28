@@ -26,11 +26,27 @@ Depending on your subscription plan, one of the following configuration methods 
 
 ## Mitigation control-based protection <a href="../../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
+!!! tip ""
+    Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.2.0 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
+    
+### Default protection
+
+Wallarm provides [default](../about-wallarm/mitigation-controls-overview.md#default-controls) **GraphQL API protection** mitigation controls. They contain generic configuration to detect GraphQL API anomalies and enabled for all traffic in the `Monitoring` [mode](../about-wallarm/mitigation-controls-overview.md#mitigation-mode).
+
+To review GraphQL default controls, in Wallarm Console → **Security Controls** → **Mitigation Controls**, in **GraphQL API protection** section check controls with the `Default` label.
+
+You can duplicate or edit default controls or disable them. Editing allows you to customize a default control based on the specific needs of the application, traffic patterns, or business context. For example, you can narrow **Scope** to limit control to the GraphQL specific endpoints or adjust thresholds.
+
+<!--You can **reset default control to its default configuration** at any time.-->
+
+--8<-- "../include/mc-subject-to-change.md"
+
 ### Creating and applying mitigation control
 
 GraphQL mitigation control is recommended to be created for the GraphQL specific endpoints. Creating it as an **all traffic** mitigation control for the entire system is not recommended.
 
-Before proceeding: use the [Mitigation Controls](../about-wallarm/mitigation-controls-overview.md#configuration) article to get familiar with how **Scope** and **Mitigation mode** are set for any mitigation control.
+!!! info "Generic information on mitigation controls"
+    Before proceeding: use the [Mitigation Controls](../about-wallarm/mitigation-controls-overview.md#configuration) article to get familiar with how **Scope** and **Mitigation mode** are set for any mitigation control.
 
 To set and apply GraphQL policy:
 
@@ -51,8 +67,8 @@ To set and apply GraphQL policy:
         
     ![GraphQL thresholds](../images/api-protection/mitigation-controls-graphql.png)
 
-1. In the **Mitigation mode** section, set `Inherited` as an action to be done when any of thresholds is exceeded. For now, this is the only mode available for this mitigation control. It means, that action will be defined by the [global filtration mode setting](../admin-en/configure-wallarm-mode.md#general-filtration-mode) and the [configuration](../admin-en/configure-wallarm-mode.md#setting-wallarm_mode-directive) of the Wallarm node.
-1. Click **Create**.
+1. In the **Mitigation mode** section, set action to be done.
+1. Click **Add**.
 
 <!--## Exploring GraphQL attacks
 

@@ -47,7 +47,7 @@ Kubernetes環境向けのNGINXノード展開ソリューションは以下を�
 
 ### Connectors
 
-APIの展開はAzion Edge、Akamai Edge、Mulesoft、Apigee、CloudFrontなどの外部ツールを活用するなど、様々な方法で実施可能です。WallarmでこれらのAPIを保護する方法をお探しの場合は、これらのケース向けに特化した["connectors"](connectors/overview.md)形式のソリューションをご提供します。
+APIの展開はAzion Edge、Akamai Edge、MuleSoft、Apigee、CloudFrontなどの外部ツールを活用するなど、様々な方法で実施可能です。WallarmでこれらのAPIを保護する方法をお探しの場合は、これらのケース向けに特化した["connectors"](connectors/overview.md)形式のソリューションをご提供します。
 
 NGINXノードは以下のプラットフォームで使用されますが、解析は受信リクエストに限定されます。
 
@@ -286,7 +286,7 @@ NGINXノードは、NGINX、Envoyまたはその他のWebサーバーにより�
 
 ### Connectors
 
-APIの展開はAzion Edge、Akamai Edge、Mulesoft、Apigee、CloudFrontなどの外部ツールを活用するなど、様々な方法で実施可能です。WallarmでこれらのAPIを保護する方法をお探しの場合は、これらのケース向けに特化した["connectors"](connectors/overview.md)形式のソリューションをご提供します。
+APIの展開はAzion Edge、Akamai Edge、MuleSoft、Apigee、CloudFrontなどの外部ツールを活用するなど、様々な方法で実施可能です。WallarmでこれらのAPIを保護する方法をお探しの場合は、これらのケース向けに特化した["connectors"](connectors/overview.md)形式のソリューションをご提供します。
 
 ネイティブノードは下記のプラットフォームで制約なく動作します：
 
@@ -294,7 +294,7 @@ APIの展開はAzion Edge、Akamai Edge、Mulesoft、Apigee、CloudFrontなど�
     <div class="do-main">
         <a class="do-card" href="../../installation/connectors/mulesoft/">
             <img class="non-zoomable" src="../../images/platform-icons/mulesoft.svg" />
-            <h3>Mulesoft</h3>
+            <h3>MuleSoft</h3>
             <p>MuleSoft Anypointプラットフォーム上で展開されるAPIを保護します</p>
         </a>
         

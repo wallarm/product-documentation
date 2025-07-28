@@ -1,6 +1,6 @@
 [link-deployment-se]:           ../installation/supported-deployment-options.md#security-edge
 [link-deployment-hybrid]:       ../installation/supported-deployment-options.md#all-deployment-artifacts
-[link-deployment-on-prem]:      ../installation/on-premise.md
+[link-deployment-on-prem]:      ../installation/on-premise/overview.md
 
 # Shared Responsibility for Clients' Data
 

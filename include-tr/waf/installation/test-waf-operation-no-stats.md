@@ -5,5 +5,5 @@
     ```
 
     Trafik `example.com` adresine proxy edilecek şekilde yapılandırıldıysa, isteğe `-H "Host: example.com"` başlığını ekleyin.
-2. Wallarm Console → **Attacks** bölümünü [US Cloud](https://us1.my.wallarm.com/search) veya [EU Cloud](https://my.wallarm.com/search) içinde açın ve saldırının listede görüntülendiğinden emin olun.
+2. Wallarm Console → **Attacks** bölümünü [US Cloud](https://us1.my.wallarm.com/attacks) veya [EU Cloud](https://my.wallarm.com/attacks) içinde açın ve saldırının listede görüntülendiğinden emin olun.
     ![Attacks in the interface][attacks-in-ui-image]

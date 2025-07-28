@@ -69,9 +69,9 @@ nav:
       - Exploring Bot Activity: api-abuse-prevention/exploring-bots.md
     - Credential Stuffing Detection: about-wallarm/credential-stuffing.md
     - GraphQL API Protection: api-protection/graphql-rule.md
-  # - Enumeration Attack Protection: api-protection/enumeration-attack-protection.md
-  # - Rate Abuse Protection: api-protection/rate-abuse-protection.md
-  # - Mitigation Controls: about-wallarm/mitigation-controls-overview.md
+    - Enumeration Attack Protection: api-protection/enumeration-attack-protection.md
+    - Rate Abuse Protection: api-protection/rate-abuse-protection.md
+    - Mitigation Controls: about-wallarm/mitigation-controls-overview.md
   - Agentic AI:
     - AI Discovery: agentic-ai/agentic-ai-discovery.md
     - Agentic AI Protection: agentic-ai/agentic-ai-protection.md
@@ -148,7 +148,8 @@ nav:
         - ECS: installation/cloud-platforms/alibaba-cloud/docker-container.md
     - Connectors:
       - Overview: installation/connectors/overview.md
-      - Mulesoft: installation/connectors/mulesoft.md
+      - MuleSoft Mule Gateway: installation/connectors/mulesoft.md
+      - MuleSoft Flex Gateway: installation/connectors/mulesoft-flex.md
       - Apigee: installation/connectors/apigee.md
       - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
       - Azion Edge: installation/connectors/azion-edge.md
@@ -220,7 +221,10 @@ nav:
           - Configure: installation/native-node/helm-chart-conf.md
         - Artifact Versions and Changelog: updating-migrating/native-node/node-artifact-versions.md
     - Custom Deployment:
-      - On-Premise: installation/on-premise.md
+      - On-Premise:
+        - Overview: installation/on-premise/overview.md
+        - Deployment: installation/on-premise/deployment.md
+        - Maintenance: installation/on-premise/maintenance.md
       - Custom NGINX Packages: installation/custom/custom-nginx-version.md
       - Heroku: installation/heroku/docker-image.md
       - Custom Deployment Options: installation/custom/request-custom-deployment.md
@@ -345,16 +349,6 @@ nav:
     - Node Versioning Policy: updating-migrating/versioning-policy.md
     - Vulnerability Scanning IPs: admin-en/scanner-addresses.md
   - References:
-    - FAQ:
-      - Installing Wallarm Ingress Controller: faq/ingress-installation.md
-      - Errors after Wallarm Node Installation: faq/common-errors-after-installation.md
-      - Wallarm Service Status Page: faq/wallarm-status-page.md
-      - Wallarm Cloud is Down: faq/wallarm-cloud-down.md
-      - SELinux Troubleshooting: admin-en/configure-selinux.md
-      - CPU High Usage Troubleshooting: faq/cpu.md
-      - Attacks are not Uploaded to Wallarm Cloud: faq/attacks-not-uploaded-to-cloud.md
-      - Addressing Wallarm Node Issues Alerted by OWASP dashboard: faq/node-issues-on-owasp-dashboards.md
-      - Legitimate Request is Blocked: faq/wrong-blocking.md
     - Changelog & News: news.md
     - Wallarm API Reference:
       - Overview: api/overview.md
@@ -369,3 +363,11 @@ nav:
       - Data Retention Policy: about-wallarm/data-retention-policy.md
     - Glossary: glossary-en.md
     - Attack / Vulnerability Types: attacks-vulns-list.md
+  - Troubleshooting:
+      - Overview: troubleshooting/overview.md
+      - Detection and Blocking: troubleshooting/detection-and-blocking.md
+      - Performance: troubleshooting/performance.md
+      - End User Problems: faq/common-errors-after-installation.md
+      - Wallarm Ingress Controller: faq/ingress-installation.md
+      - Wallarm Cloud is Down: faq/wallarm-cloud-down.md
+      - OWASP Dashboard Alerts: faq/node-issues-on-owasp-dashboards.md

@@ -27,7 +27,7 @@ Using rules, you can control how Wallarm mitigates attacks on your applications 
 
 * Fine-tuning attack detection:
 
-    * [Override filtration mode](../../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console) for particular domains/endpoints
+    * [Override filtration mode](../../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode) for particular domains/endpoints
     * [Ignore certain attacks](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types)
     * [Disable custom attack detectors](../../user-guides/rules/regex-rule.md#partial-disabling) for particular domains/endpoints or request parts
     * Configure [binary data processing](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data)
@@ -62,7 +62,7 @@ You can create rules with specified action but not linked to any endpoint - they
 * Default rules are inherited by all branches.
 
 !!! info "Traffic filtration mode default rule"
-    Wallarm automatically creates the `Set filtration mode` default rule for all clients and sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console) setting.
+    Wallarm automatically creates the `Set filtration mode` default rule for all clients and sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#general-filtration-mode) setting.
 
 ### Viewing branch rules
 
@@ -288,12 +288,12 @@ To test a regular expression, use the Wallarm **cpire** utility. Install it via 
     1. Download the Wallarm all-in-one installer if it is not downloaded yet:
 
         ```
-        curl -O https://meganode.wallarm.com/6.1/wallarm-6.1.0.x86_64-glibc.sh
+        curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.16.x86_64-glibc.sh
         ```
     1. Install the Wallarm modules if they are not installed yet:
         
         ```
-        sudo sh wallarm-6.1.0.x86_64-glibc.sh -- --batch --token <API_TOKEN>
+        sudo sh wallarm-5.3.16.x86_64-glibc.sh -- --batch --token <API_TOKEN>
         ```
     1. Run the **cpire** utility:
         
@@ -305,7 +305,7 @@ To test a regular expression, use the Wallarm **cpire** utility. Install it via 
     1. Run the **cpire** utility from the Wallarm Docker image:
     
         ```
-        docker run --rm -it wallarm/node:6.1.0 /opt/wallarm/usr/bin/cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
+        docker run --rm -it wallarm/node:5.3.16 /opt/wallarm/usr/bin/cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
         ```
     1. Enter the value to check whether it matches with the regular expression.
 

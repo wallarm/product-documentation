@@ -5,7 +5,7 @@
 
 [Apigee Edge](https://docs.apigee.com/api-platform/get-started/what-apigee-edge) é uma plataforma de gerenciamento de API com um gateway de API servindo como ponto de entrada para aplicações cliente acessarem APIs. Para aumentar a segurança da API no Apigee, você pode integrar o bundle de proxy de API da Wallarm, conforme detalhado neste artigo.
 
-A solução envolve a implementação do nó Wallarm externamente e a injeção de código personalizado ou políticas na plataforma específica. Isso permite que o tráfego seja direcionado para o nó Wallarm externo para análise e proteção contra ameaças potenciais. Referidos como conectores da Wallarm, eles servem como o elo essencial entre plataformas como Azion Edge, Akamai Edge, Mulesoft, Apigee e AWS Lambda, e o nó Wallarm externo. Esta abordagem garante integração perfeita, análise de tráfego seguro, mitigação de risco e segurança geral da plataforma.
+A solução envolve a implementação do nó Wallarm externamente e a injeção de código personalizado ou políticas na plataforma específica. Isso permite que o tráfego seja direcionado para o nó Wallarm externo para análise e proteção contra ameaças potenciais. Referidos como conectores da Wallarm, eles servem como o elo essencial entre plataformas como Azion Edge, Akamai Edge, MuleSoft, Apigee e AWS Lambda, e o nó Wallarm externo. Esta abordagem garante integração perfeita, análise de tráfego seguro, mitigação de risco e segurança geral da plataforma.
 
 ## Casos de uso
 
@@ -98,7 +98,7 @@ Para testar a funcionalidade da política implementada, siga estas etapas:
     curl http://<YOUR_APP_IP_OR_DOMAIN>/etc/passwd
     ```
 
-1. Abra o Console da Wallarm → Seção **Events** na [Nuvem dos EUA](https://us1.my.wallarm.com/search) ou [Nuvem da UE](https://my.wallarm.com/search) e certifique-se de que o ataque é exibido na lista.
+1. Abra o Console da Wallarm → Seção **Events** na [Nuvem dos EUA](https://us1.my.wallarm.com/attacks) ou [Nuvem da UE](https://my.wallarm.com/attacks) e certifique-se de que o ataque é exibido na lista.
     
     ![Ataques na interface][attacks-in-ui-image]
 

@@ -313,6 +313,51 @@ A path to the Wallarm private key used for encryption/decryption of proton.db an
 !!! warning "The directive is deprecated"
     Starting with Wallarm node 3.6, please use the [`wallarm_custom_ruleset_path`](#wallarm_custom_ruleset_path) directive instead. Just change the directive name, its logic did not change.
 
+### wallarm_max_request_body_size
+
+Hidden from public usage
+
+Defines the maximum size (in bytes) of an HTTP request body that will be analyzed by the Node. If the request body exceeds the specified limit, the excess part is skipped and not inspected for threats.
+
+The directive is available from release 6.2.0 onwards.
+
+!!! info
+    The parameter is configured inside the http, server, location blocks.
+
+    **Default value**: unlimited.
+
+### wallarm_max_request_stream_message_size
+
+Defines the maximum size (in bytes) of a single message payload within a gRPC or WebSocket stream that will be analyzed by the Node. If the message exceeds the specified limit, the excess data is skipped and not inspected for threats.
+
+The gRPC message headers are not included in the size calculation.
+
+The directive is available from release 6.2.0 onwards.
+
+!!! info
+    The parameter is configured inside the http, server, location blocks.
+
+    **Default value**: 1Mb
+
+    * If you send a 5 MB file as a single gRPC message, only the first 1 MB will be analyzed.
+    * If the file is split into multiple gRPC messages of 1 MB or less, all fragments will be analyzed.
+
+### wallarm_max_request_stream_size
+
+Defines the maximum total size (in bytes) of a gRPC or WebSocket request stream body that will be analyzed by the Node. If the stream body exceeds the specified limit, the excess data is skipped and not inspected for threats.
+
+* HTTP headers are NOT included in the calculation
+* gRPC message headers (typically, 5 bytes per message) are included
+
+For example, if you send 2 gRPC messages of 1000 bytes each, the total stream size will be `(1000 + 5) × 2 = 2010 bytes` - where 5 bytes is the length of each gRPC message header.
+
+The directive is available from release 6.2.0 onwards.
+
+!!! info
+    The parameter is configured inside the http, server, location blocks.
+
+    **Default value**: unlimited.
+
 ### wallarm_memlimit_debug
 
 This directive determines whether the Wallarm NGINX module generates the `/tmp/proton_last_memlimit.req` file containing request details when a memory limit is exceeded. This can be invaluable for debugging issues related to request memory limit processing.
@@ -836,28 +881,97 @@ Simultaneously setting the `wallarm_upstream_queue_memory_limit` parameter and n
 
 ### wallarm_wstore_upstream
 
-With the `wallarm_wstore_upstream`, you can specify the postanalytics module server address if it is different from the default one (`127.0.0.1:3313`) and if there are several postanalytics servers, specify how to balance requests between them.
+Defines how to connect the NGINX-Wallarm module to the [separate postanalytics module](installation-postanalytics-en.md): postanalytics server upstream and SSL/TLS connection settings.
 
-**Example:**
+Syntax:
 
-```bash
+```
+wallarm_wstore_upstream <UPSTREAM> ssl=on|off skip_host_check=on|off insecure=on|off;
+```
+
+* `<UPSTREAM>` - the name of the upstream block pointing to the postanalytics module address.
+* `ssl` (available from release 6.2.0 onwards) — enables or disables [SSL/TLS for the connection to the postanalytics module](installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module). Accepted values: `on` or `off`.
+
+    By default, `off`.
+
+    If set to `on`, you also need to configure:
+
+    * [`wallarm_wstore_ssl_cert_file`](#wallarm_wstore_ssl_cert_file)
+    * [`wallarm_wstore_ssl_key_file`](#wallarm_wstore_ssl_key_file)
+    * [`wallarm_wstore_ssl_ca_cert_file`](#wallarm_wstore_ssl_ca_cert_file)
+* `skip_host_check` (available from release 6.2.0 onwards, only if `ssl=on`) - skips hostname verification during the TLS handshake.
+
+    Useful when connecting to localhost or an IP address using a certificate with a mismatched Common Name (CN). Not recommended in production.
+* `insecure` (available from release 6.2.0 onwards, only if `ssl=on`) - disables full certificate validation (including CA and hostname checks).
+
+    Use only in development or test environments when using self-signed or temporary certificates.
+
+Example:
+
+```
 upstream wallarm_wstore {
-    server 127.0.0.1:3313 max_fails=0 fail_timeout=0 max_conns=1;
+    server 1.1.1.1:3313 max_fails=0 fail_timeout=0 max_conns=1;
     keepalive 1;
 }
 
 # omitted
 
-wallarm_wstore_upstream wallarm_wstore;
+wallarm_wstore_upstream wallarm_wstore ssl=on;
 ```
 
-See also [Module ngx_http_upstream_module](https://nginx.org/en/docs/http/ngx_http_upstream_module.html).
+!!! info "Upstream configuration for postanalytics"
+    In the `upstream` block for the postanalytics module (referenced by the `wallarm_wstore_upstream` directive), you can configure the following [standard upstream settings](https://nginx.org/en/docs/http/ngx_http_upstream_module.html):
 
-!!! warning "Required conditions"
-    It is required that the following conditions are satisfied for the `max_conns` and the `keepalive` parameters:
+    * Postanalytics module IP address and port
+    * `max_fails`
+    * `fail_timeout`
+    * `max_conns` - must be specified for each of the upstream wstore servers to prevent the creation of excessive connections
+    * `keepalive` - must not be lower than the number of the wstore servers
 
-    * The value of the `keepalive` parameter must not be lower than the number of the wstore servers.
-    * The value of the `max_conns` parameter must be specified for each of the upstream wstore servers to prevent the creation of excessive connections.
+!!! info
+    The parameter is configured inside the http block only.
+
+### wallarm_wstore_ssl_cert_file
+
+Specifies the path to the client certificate used by the NGINX-Wallarm module to authenticate itself when establishing an SSL/TLS connection to the postanalytics module.
+
+This directive is required when [mutual TLS (mTLS)](installation-postanalytics-en.md#mutual-tls-mtls) is enabled for NGINX-Wallarm and postanalytics modules installed on separate servers.
+
+The directive is available from release 6.2.0 onwards.
+
+```
+wallarm_wstore_ssl_cert_file /path/to/client.crt;
+```
+
+!!! info
+    The parameter is configured inside the http block only.
+
+### wallarm_wstore_ssl_key_file
+
+Specifies the path to the private key corresponding to the client certificate provided via [`wallarm_wstore_ssl_cert_file`](#wallarm_wstore_ssl_cert_file).
+
+This directive is required when [mutual TLS (mTLS)](installation-postanalytics-en.md#mutual-tls-mtls) is enabled for NGINX-Wallarm and postanalytics modules installed on separate servers.
+
+The directive is available from release 6.2.0 onwards.
+
+```
+wallarm_wstore_ssl_key_file /path/to/client.key;
+```
+
+!!! info
+    The parameter is configured inside the http block only.
+
+### wallarm_wstore_ssl_ca_cert_file
+
+Specifies the path to a trusted Certificate Authority (CA) certificate used to validate the [TLS certificate presented by the postanalytics module](installation-postanalytics-en.md#ssltls-connection-to-the-postanalytics-module).
+
+Required when connecting to a server that uses a certificate issued by a custom CA.
+
+The directive is available from release 6.2.0 onwards.
+
+```
+wallarm_wstore_ssl_ca_cert_file /path/to/ca.crt;
+```
 
 !!! info
     The parameter is configured inside the http block only.

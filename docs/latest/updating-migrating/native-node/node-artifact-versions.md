@@ -1,14 +1,38 @@
 # Native Node Artifact Versions and Changelog
 
-This document lists available [versions](../versioning-policy.md) of the [Native Wallarm Node](../../installation/nginx-native-node-internals.md#native-node) 0.14.x in various form factors, helping you track releases and plan upgrades.
+This document lists available [versions](../versioning-policy.md) of the [Native Wallarm Node](../../installation/nginx-native-node-internals.md#native-node) 0.14.x+ in various form factors, helping you track releases and plan upgrades.
 
 ## All-in-one installer
 
-The all-in-one installer for the Native Node is used for [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) and self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Istio](../../installation/connectors/istio-inline.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM API Connect](../../installation/connectors/ibm-api-connect.md) connectors.
+The all-in-one installer for the Native Node is used for [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) and self-hosted node deployment with the MuleSoft [Mule](../../installation/connectors/mulesoft.md) or [Flex](../../installation/connectors/mulesoft-flex.md) Gateway, [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Istio](../../installation/connectors/istio-inline.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md) connectors.
 
 History of all-in-one installer updates simultaneously applies to it's x86_64 and ARM64 (beta) versions.
 
 [How to upgrade](all-in-one.md)
+
+### 0.16.0 (2025-07-23)
+
+* Added support for the [MuleSoft Flex Gateway connector](../../installation/connectors/mulesoft-flex.md)
+* Introduced the [`input_filters`](../../installation/native-node/all-in-one-conf.md#input_filters) configuration section, allowing to define which requests should be inspected or bypassed by the Node
+* Fixed memory leak
+* In rules, the separator used in [**xml_tag**](../../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
+* Fixed blocking issue with denylisted origins and Wallarm Console UI-configured mode
+* Internal improvements
+
+### 0.15.1 (2025-07-08)
+
+* Introduced the [`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers) configuration to configure trusted networks and extract real client IP and host headers
+
+    This replaces `http_inspector.real_ip_header` used in earlier versions in the `tcp-capture` mode.
+* Added the [`metrics.namespace`](../../installation/native-node/all-in-one-conf.md#metricsnamespace) configuration option to customize the prefix of Prometheus metrics exposed by the `go-node` binary
+* Fixed the `--preserve` script flag behavior to correctly retain the existing `node.yaml` and `env.list` files during upgrade
+
+    Previously, these files could be overwritten, resulting in loss of configuration.
+* Added [`connector.per_connection_limits`](../../installation/native-node/all-in-one-conf.md#connectorper_connection_limits) to control `keep-alive` connection limits
+* Minor internal file structure change
+* Fixed wstore ports binding: now bound to `127.0.0.1` instead of `0.0.0.0`
+* Fixed the [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874) vulnerability
+* Fixed the [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) vulnerability
 
 ### 0.14.1 (2025-05-07)
 
@@ -36,9 +60,25 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ## Helm chart
 
-The Helm chart for the Native Node is used for self-hosted node deployments with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM API Connect](../../installation/connectors/ibm-api-connect.md), [Kong API Gateway](../../installation/connectors/kong-api-gateway.md), and [Istio](../../installation/connectors/istio-inline.md) connectors.
+The Helm chart for the Native Node is used for self-hosted node deployments with the MuleSoft [Mule](../../installation/connectors/mulesoft.md) or [Flex](../../installation/connectors/mulesoft-flex.md) Gateway, [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md), [Kong API Gateway](../../installation/connectors/kong-api-gateway.md), and [Istio](../../installation/connectors/istio-inline.md) connectors.
 
 [How to upgrade](helm-chart.md)
+
+### 0.16.0 (2025-07-23)
+
+* Added support for the [MuleSoft Flex Gateway connector](../../installation/connectors/mulesoft-flex.md)
+* Fixed memory leak
+* In rules, the separator used in [**xml_tag**](../../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
+* Fixed blocking issue with denylisted origins and Wallarm Console UI-configured mode
+* Internal improvements
+
+### 0.15.1 (2025-07-08)
+
+* Added support for the [`config.aggregation.serviceAddress`](../../installation/native-node/helm-chart-conf.md#configaggregationserviceaddress) parameter to customize the address and port for incoming **wstore** connections
+* Minor internal file structure change
+* Fixed the [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874) vulnerability
+* Fixed the [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) vulnerability
+<!-- * Added [`connector.per_connection_limits`](../../installation/native-node/all-in-one-conf.md#connectorper_connection_limits) to control `keep-alive` connection limits -->
 
 ### 0.14.1 (2025-05-07)
 
@@ -61,9 +101,30 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ## Docker image
 
-The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Istio](../../installation/connectors/istio-inline.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM API Connect](../../installation/connectors/ibm-api-connect.md) connectors.
+The Docker image for the Native Node is used for self-hosted node deployment with the MuleSoft [Mule](../../installation/connectors/mulesoft.md) or [Flex](../../installation/connectors/mulesoft-flex.md) Gateway, [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Istio](../../installation/connectors/istio-inline.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md) connectors.
 
 [How to upgrade](docker-image.md)
+
+### 0.16.0 (2025-07-23)
+
+* Added support for the [MuleSoft Flex Gateway connector](../../installation/connectors/mulesoft-flex.md)
+* Introduced the [`input_filters`](../../installation/native-node/all-in-one-conf.md#input_filters) configuration section, allowing to define which requests should be inspected or bypassed by the Node
+* Fixed memory leak
+* In rules, the separator used in [**xml_tag**](../../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
+* Fixed blocking issue with denylisted origins and Wallarm Console UI-configured mode
+* Internal improvements
+
+### 0.15.1 (2025-07-08)
+
+* Introduced the [`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers) configuration to configure trusted networks and extract real client IP and host headers
+
+    This replaces `http_inspector.real_ip_header` used in earlier versions in the `tcp-capture` mode.
+* Added the [`metrics.namespace`](../../installation/native-node/all-in-one-conf.md#metricsnamespace) configuration option to customize the prefix of Prometheus metrics exposed by the `go-node` binary
+* Added [`connector.per_connection_limits`](../../installation/native-node/all-in-one-conf.md#connectorper_connection_limits) to control `keep-alive` connection limits
+* Minor internal file structure change
+* Fixed wstore ports binding: now bound to `127.0.0.1` instead of `0.0.0.0`
+* Fixed the [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874) vulnerability
+* Fixed the [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) vulnerability
 
 ### 0.14.1 (2025-05-07)
 

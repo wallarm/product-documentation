@@ -161,6 +161,20 @@ Wallarm provides the new [**Rate abuse protection**](../api-protection/rate-abus
 
 ![Rate abuse prevention - JWT example](../images/api-protection/mitigation-controls-rate-abuse-prevention-jwt.png)
 
+### Default controls
+
+Wallarm provides a set of [default mitigation controls](../about-wallarm/mitigation-controls-overview.md#default-controls) that, when enabled, significantly enhance the detection capabilities of the Wallarm platform. These controls are pre-configured to offer robust protection against a variety of common attack patterns. The current default mitigation controls include:
+
+* [GraphQL protection](../api-protection/graphql-rule.md)
+* [BOLA (Broken Object Level Authorization) enumeration protection](../api-protection/enumeration-attack-protection.md#bola) for user IDs, object IDs, and filenames
+* [Brute force protection](../api-protection/enumeration-attack-protection.md#brute-force) for passwords, OTPs, and authentication codes
+* [Forced browsing protection](../api-protection/enumeration-attack-protection.md#forced-browsing) (404 probing)
+* [Enumeration attack protection](../api-protection/enumeration-attack-protection.md#generic-enumeration), including:
+    
+    * User/email enumeration
+    * SSRF (Server-Side Request Forgery) enumeration
+    * User-agent rotation
+
 ## Which Wallarm nodes are recommended to be upgraded?
 
 * Client and multi-tenant Wallarm NGINX Nodes of version 4.10 and 5.x to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support-policy).

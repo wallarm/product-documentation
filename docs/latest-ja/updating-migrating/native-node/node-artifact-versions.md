@@ -65,7 +65,7 @@ Native Node用オールインワンインストーラーは、[TCP traffic mirro
     
 ### 0.8.3 (2024-11-14)
 
-* Mulesoftコネクタ3.0.xのサポートを追加しました.
+* MuleSoftコネクタ3.0.xのサポートを追加しました.
 
 ### 0.8.2 (2024-11-11)
 
@@ -165,7 +165,7 @@ Native Node用Helmチャートは、[MuleSoft](../../installation/connectors/mul
 
 ### 0.8.3 (2024-11-14)
 
-* Mulesoftコネクタv3.0.xのサポートを追加しました.
+* MuleSoftコネクタv3.0.xのサポートを追加しました.
 
 ### 0.8.2 (2024-11-11)
 
@@ -246,7 +246,7 @@ Native Node用Dockerイメージは、[MuleSoft](../../installation/connectors/m
 
 ### 0.8.3 (2024-11-14)
 
-* Mulesoftコネクタv3.0.xのサポートを追加しました.
+* MuleSoftコネクタv3.0.xのサポートを追加しました.
 
 ### 0.8.2 (2024-11-11)
 

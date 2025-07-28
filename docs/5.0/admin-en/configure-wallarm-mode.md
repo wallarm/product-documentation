@@ -24,8 +24,8 @@ The Wallarm filtering node can process incoming requests in the following modes 
 The filtration mode can be configured in the following ways:
 
 * [Set the `wallarm_mode` directive on the node side](#setting-wallarm_mode-directive)
-* [Define the general filtration rule in Wallarm Console](#general-filtration-rule-in-wallarm-console)
-* [Define the endpoint-targeted filtration rules in Wallarm Console](#endpoint-targeted-filtration-rules-in-wallarm-console)
+* [Define the general filtration rule in Wallarm Console](#general-filtration-mode)
+* [Define the endpoint-targeted filtration rules in Wallarm Console](#conditioned-filtration-mode)
 
 Priorities of the filtration mode configuration methods are determined in the [`wallarm_mode_allow_override` directive](#prioritization-of-methods). By default, the settings specified in Wallarm Console have a higher priority than the `wallarm_mode` directive regardless of its value severity.
 
@@ -52,7 +52,7 @@ Note that described configuration is applicable only for [in-line](../installati
     When deploying the NGINX-based Wallarm nodes via docker containers, [pass](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) the `WALLARM_MODE` environment variable:
 
     ```
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_MODE='monitoring' -p 80:80 wallarm/node:6.1.0
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_MODE='monitoring' -p 80:80 wallarm/node:5.3.16
     ```
 
     Alternatively, [include](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file) the corresponding parameter in the configuration file and run the container mounting this file.
@@ -88,7 +88,7 @@ Note that described configuration is applicable only for [in-line](../installati
     * For Native Node all-in-one installer and Docker image, use the [`route_config.wallarm_mode`](../installation/native-node/all-in-one-conf.md#route_configwallarm_mode) parameter.
     * For Native Node Helm chart, use the [`config.connector.route_config.wallarm_mode`](../installation/native-node/helm-chart-conf.md#configconnectorroute_configwallarm_mode) parameter.
 
-### General filtration rule in Wallarm Console
+### General filtration mode
 
 You can define the general filtration mode for all incoming requests in **Settings** → **General** in the [US](https://us1.my.wallarm.com/settings/general) or [EU](https://my.wallarm.com/settings/general) Cloud.
     
@@ -96,9 +96,9 @@ You can define the general filtration mode for all incoming requests in **Settin
 
 The general filtration mode setting is represented as **Set filtration mode** [default](../user-guides/rules/rules.md#default-rules) rule in the **Rules** section. Note that endpoint-targeted filtration rules in this section have higher priority.
 
-### Endpoint-targeted filtration rules in Wallarm Console
+### Conditioned filtration mode
 
-You can set filtration mode for specific branches, endpoints and relying on other conditions. Wallarm provides the **Set filtration mode** [rule](../user-guides/rules/rules.md) to do this. Such rules have higher priority than the [general filtration rule set in Wallarm Console](#general-filtration-rule-in-wallarm-console).
+You can set filtration mode for specific branches, endpoints and relying on other conditions. Wallarm provides the **Set filtration mode** [rule](../user-guides/rules/rules.md) to do this. Such rules have higher priority than the [general filtration rule set in Wallarm Console](#general-filtration-mode).
 
 To create a new filtration mode rule:
 
@@ -204,8 +204,8 @@ http {
 
 ### Rules in Wallarm Console
 
-* [General filtration rule](#general-filtration-rule-in-wallarm-console): **Monitoring**.
-* [Filtration rules](#endpoint-targeted-filtration-rules-in-wallarm-console):
+* [General filtration rule](#general-filtration-mode): **Monitoring**.
+* [Filtration rules](#conditioned-filtration-mode):
     * If the request meets the following conditions:
         * Method: `POST`
         * First part of the path: `main`

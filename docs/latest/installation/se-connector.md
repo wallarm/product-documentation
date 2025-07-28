@@ -17,7 +17,7 @@ Security Edge service provides a secure cloud environment where the Wallarm node
 * Reduced costs: lower operational overhead with Wallarm-managed nodes, allowing faster deployment and scalability.
 
 !!! info "Supported platforms"
-    Currently, Edge connectors are available only for MuleSoft, CloudFront, Cloudflare, Fastly.
+    Currently, Edge connectors are available only for MuleSoft Mule Gateway, CloudFront, Cloudflare, Fastly.
 
 ## Running Security Edge Connectors
 
@@ -67,11 +67,11 @@ After deploying the Edge node, you will need to inject Wallarm code into your pl
     ![!](../images/waf-installation/security-edge/connectors/download-code-bundle.png)
 1. Apply the bundle on your API management platform following the instructions:
 
-    * [MuleSoft](connectors/mulesoft.md#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange)
+    * [MuleSoft Mule Gateway](connectors/mulesoft.md#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange)
     * [CloudFront](connectors/aws-lambda.md#2-obtain-and-deploy-the-wallarm-lambdaedge-functions)
     * [Cloudflare](connectors/cloudflare.md#2-obtain-and-deploy-the-wallarm-worker-code)
     * [Fastly](connectors/fastly.md#2-deploy-wallarm-code-on-fastly)
-    * [IBM API Connect](connectors/ibm-api-connect.md#2-obtain-and-apply-the-wallarm-policies-to-apis-in-ibm-api-connect)
+    * [IBM DataPower](connectors/ibm-api-connect.md#2-obtain-and-apply-the-wallarm-policies-to-apis-in-ibm-api-connect)
 
 ## Telemetry portal
 

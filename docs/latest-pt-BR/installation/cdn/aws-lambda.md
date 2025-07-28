@@ -7,7 +7,7 @@
 
 <!-- ![Lambda](../../images/waf-installation/gateways/aws-lambda-traffic-flow.png) -->
 
-A solução envolve a implantação do nó Wallarm externamente e a injeção de código ou políticas personalizadas na plataforma específica. Isso permite que o tráfego seja direcionado para o nó Wallarm externo para análise e proteção contra possíveis ameaças. Referidos como conectores Wallarm, eles servem como o elo essencial entre plataformas como Azion Edge, Akamai Edge, Mulesoft, Apigee, e AWS Lambda, e o nó Wallarm externo. Essa abordagem garante integração contínua, análise segura de tráfego, mitigação de riscos e segurança geral da plataforma.
+A solução envolve a implantação do nó Wallarm externamente e a injeção de código ou políticas personalizadas na plataforma específica. Isso permite que o tráfego seja direcionado para o nó Wallarm externo para análise e proteção contra possíveis ameaças. Referidos como conectores Wallarm, eles servem como o elo essencial entre plataformas como Azion Edge, Akamai Edge, MuleSoft, Apigee, e AWS Lambda, e o nó Wallarm externo. Essa abordagem garante integração contínua, análise segura de tráfego, mitigação de riscos e segurança geral da plataforma.
 
 ## Casos de uso
 
@@ -176,7 +176,7 @@ Para testar a funcionalidade da política implementada, siga estas etapas:
     ```
     curl http://<YOUR_APP_IP_OR_DOMAIN>/etc/passwd
     ```
-1. Abra Wallarm Console → seção **Events** no [US Cloud](https://us1.my.wallarm.com/search) ou [EU Cloud](https://my.wallarm.com/search) e certifique-se de que o ataque está exibido na lista.
+1. Abra Wallarm Console → seção **Events** no [US Cloud](https://us1.my.wallarm.com/attacks) ou [EU Cloud](https://my.wallarm.com/attacks) e certifique-se de que o ataque está exibido na lista.
 
     ![Ataques na interface][attacks-in-ui-image]
 

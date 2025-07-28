@@ -7,7 +7,7 @@
 
     * Bloqueia a solicitação se o [modo de filtração][waf-mode-instr] apropriado estiver configurado.
     * Retorna a [página de bloqueio personalizada][blocking-page-instr] se estiver configurada.
-2. Abra o Console Wallarm → **Eventos** na [Nuvem EU](https://my.wallarm.com/search) ou [Nuvem US](https://us1.my.wallarm.com/search) e certifique-se de que:
+2. Abra o Console Wallarm → **Eventos** na [Nuvem EU](https://my.wallarm.com/attacks) ou [Nuvem US](https://us1.my.wallarm.com/attacks) e certifique-se de que:
 
     * O ataque é exibido na lista.
     * Detalhes do hit exibem o UUID do nó Wallarm.

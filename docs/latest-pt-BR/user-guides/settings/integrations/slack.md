@@ -7,7 +7,7 @@ Você pode configurar o Wallarm para enviar notificações para seu(s) canal(s) 
 1. Abra a seção **Integrações**.
 1. Clique no bloco **Slack** ou clique no botão **Adicionar integração** e escolha **Slack**.
 1. Insira um nome para a integração.
-1. Abra as [Configurações de Webhook no Slack](https://my.slack.com/services/new/incoming-webhook/) e adicione um novo Webhook escolhendo o canal para postar mensagens.
+1. Abra as [Configurações de Webhook no Slack](https://my.slack.com/services/incoming-webhook/) e adicione um novo Webhook escolhendo o canal para postar mensagens.
 1. Copie a URL do Webhook fornecida e cole o valor no campo **URL do Webhook** na interface do usuário do Wallarm.
 1. Escolha tipos de eventos para acionar notificações.
 
@@ -67,7 +67,7 @@ Cláusulas adicionais de gatilho:
 Tipo de ataque: SQLi.
 
 Veja eventos:
-https://my.wallarm.com/search?q=attacks&time_from=XXXXXXXXXX&time_to=XXXXXXXXXX
+https://my.wallarm.com/attacks?q=attacks&time_from=XXXXXXXXXX&time_to=XXXXXXXXXX
 
 Cliente: EmpresaTeste
 Nuvem: EU

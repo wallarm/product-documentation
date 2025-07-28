@@ -10,13 +10,13 @@ In Playground, you can access the Wallarm Console view like it is filled with re
 
 ![Playground](../images/playground.png)
 
-To try the Wallarm solution capabilities on your traffic, [create a Free tier account](#self-signup-and-free-tier).
+To try the Wallarm solution capabilities on your traffic, [create a Security Edge Free tier account](#self-signup-and-security-edge-free-tier).
 
-## Self-signup and Free tier
+## Self-signup and Security Edge Free tier
 
 When signing up with Wallarm, you will create an account in the Wallarm Console, which serves as the central hub for navigating and configuring the Wallarm platform. The Console UI is hosted on the [Wallarm Cloud](../about-wallarm/overview.md#cloud).
 
-Wallarm manages separate American and European cloud instances, each distinct in terms of databases, API endpoints, client accounts, and more. Therefore, your first step is to choose the Cloud you want to use.
+Every new account is automatically enrolled in the [Security Edge Free Tier](../about-wallarm/subscription-plans.md#security-edge-free-tier), which gives you **500 thousand requests per month** for free.
 
 1. Choose your Wallarm Cloud:
 
@@ -26,12 +26,10 @@ Wallarm manages separate American and European cloud instances, each distinct in
     | **Physical location** | USA | Netherlands |
     | **Wallarm Console URL** | https://us1.my.wallarm.com/ | https://my.wallarm.com/ |
     | **Wallarm API Endpoint** | `https://us1.api.wallarm.com/` | `https://api.wallarm.com/` |
-1. Follow the registration link either in the [US](https://us1.my.wallarm.com/signup) or [EU](https://my.wallarm.com/signup) Wallarm Cloud and input your personal data.
-1. Confirm your account by following the link from the confirmation message sent to your email.
+1. Follow the signup link and input your personal data.
+1. Configure [Security Edge Inline](../installation/security-edge/deployment.md) to start you traffic analysis for free:
 
-Once an account is registered and confirmed, it is automatically assigned with **Free tier** that allows you to explore the power of the Wallarm solution for free on 500 thousand monthly requests.
-
-Continue by deploying the [first Wallarm filtering node](#start-securing-your-traffic).
+    ![!](../images/waf-installation/security-edge/onboarding-wizard.png)
 
 ## Know your API with zero deployment
 
@@ -55,9 +53,3 @@ To start, do one of the following:
 You can opt for a guided trial where our Sales Engineer team will assist you during the entire onboarding process. They will demonstrate the product's value over a 2-week period and help you deploy Wallarm filtering instances to filter your traffic.
 
 To request this trial, please email us at [sales@wallarm.com](mailto:sales@wallarm.com?subject=Request%20for%20a%20Guided%20Wallarm%20Trial&body=Hello%20Wallarm%20Sales%20Engineer%20Team%2C%0A%0AI'm%20writing%20to%20request%20a%20guided%20Wallarm%20trial.%20I%20would%20be%20happy%20to%20schedule%20a%20call%20with%20you%20to%20discuss%20my%20requirements%20in%20detail.%0A%0AThank%20you%20for%20your%20time%20and%20assistance.).
-
-## Start securing your traffic
-
-After creating your Wallarm account, the next step is to initiate the deployment of a [Wallarm filtering node](../about-wallarm/overview.md#filtering-node). This essential component handles and filters your incoming traffic, enabling Wallarm's traffic analysis, attack prevention, and vulnerability detection capabilities.
-
-[Choose a Wallarm node deployment option](../installation/supported-deployment-options.md)

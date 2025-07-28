@@ -16,11 +16,11 @@ Connector code bundle versions follow this format:
 | `<MINOR_VERSION>` | Enhancements or new features without breaking changes. |
 | `<PATCH_VERSION>` | Minor bug fixes or enhancements. |
 
-## MuleSoft
+## MuleSoft Mule Gateway
 
 [How to upgrade](mulesoft.md#upgrading-the-policy)
 
-The current version can be found in the `pom.xml` file of the downloaded Wallarm policy or in the policy information in the Mulesoft UI.
+The current version can be found in the `pom.xml` file of the downloaded Wallarm policy or in the policy information in the MuleSoft UI.
 
 | Policy version      | [Native Node version](../../updating-migrating/native-node/node-artifact-versions.md) |
 | ------------------- | ------------------- |
@@ -50,7 +50,7 @@ Requires Native Node version 0.8.3 or higher.
 
 * Added the `CLIENT HOST EXPRESSION` and `CLIENT IP EXPRESSION` parameters
 
-    They allow to specify custom [DataWeave](https://docs.mulesoft.com/dataweave/latest/dw-functions) expressions for extracting the original host and remote IP, aligning with [Mulesoft's IP Blocklist policy](https://docs.mulesoft.com/mule-gateway/policies-included-ip-blocklist).
+    They allow to specify custom [DataWeave](https://docs.mulesoft.com/dataweave/latest/dw-functions) expressions for extracting the original host and remote IP, aligning with [MuleSoft's IP Blocklist policy](https://docs.mulesoft.com/mule-gateway/policies-included-ip-blocklist).
 
 ### 2.0.3 (2024-11-13)
 
@@ -63,6 +63,20 @@ Requires Native Node version 0.8.3 or higher.
 ### 2.0.1 (2024-10-10)
 
 * Initial release
+
+## MuleSoft Flex Gateway
+
+[How to upgrade](mulesoft-flex.md#upgrading-the-policy)
+
+The current version can be found in `Cargo.toml` → `[package]` → `version` parameter of the downloaded Wallarm policy or in the policy information in the MuleSoft UI.
+
+| Policy version      | [Native Node version](../../updating-migrating/native-node/node-artifact-versions.md) |
+| ------------------- | ------------------- |
+| 1.0.x               | 0.16.0 and higher   |
+
+### 1.0.0 (2025-07-23)
+
+* [Initial release](mulesoft-flex.md)
 
 ## CloudFront
 

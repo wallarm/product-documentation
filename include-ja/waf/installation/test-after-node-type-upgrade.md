@@ -9,7 +9,7 @@
 
     * 該当の[フィルトレーションモード][waf-mode-instr]が設定されている場合はリクエストをブロックします。
     * 設定されている場合は[カスタムブロッキングページ][blocking-page-instr]を返します。
-2. Wallarm Console → **Attacks**を開き、[EU Cloud](https://my.wallarm.com/search)または[US Cloud](https://us1.my.wallarm.com/search)で次の点を確認します:
+2. Wallarm Console → **Attacks**を開き、[EU Cloud](https://my.wallarm.com/attacks)または[US Cloud](https://us1.my.wallarm.com/attacks)で次の点を確認します:
 
     * 攻撃がリストに表示されます。
     * ヒットの詳細にWallarmノードUUIDが表示されます。

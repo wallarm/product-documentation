@@ -5,6 +5,10 @@
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
+[helm-chart-native-node]:           ../native-node/helm-chart.md
+[custom-blocking-page]:             ../../admin-en/configuration-guides/configure-block-page-and-code.md
+[rate-limiting]:                    ../../user-guides/rules/rate-limiting.md
+[multi-tenancy]:                    ../multi-tenant/overview.md
 
 # Wallarm Connector for Fastly
 
@@ -28,8 +32,9 @@ Among all supported [Wallarm deployment options](../supported-deployment-options
 
 ## Limitations
 
-* [Rate limiting](../../user-guides/rules/rate-limiting.md) by the Wallarm rule is not supported.
-* [Multitenancy](../multi-tenant/overview.md) is not supported yet.
+* When deploying the Wallarm service with the `LoadBalancer` type using the [Helm chart][helm-chart-native-node], a **trusted** SSL/TLS certificate is required for the Node instance domain. Self-signed certificates are not yet supported.
+* [Rate limiting][rate-limiting] by the Wallarm rule is not supported.
+* [Multitenancy][multi-tenancy] is not supported yet.
 
 ## Requirements
 
@@ -105,8 +110,8 @@ For proper traffic routing for analysis and forwarding, you need to define the W
 1. Go to **Fastly** UI → **Compute** → **Compute services** → Wallarm service → **Edit configuration**.
 1. Go to **Origins** and **Create hosts**:
 
-    * Add the [Wallarm Node address](#1-deploy-a-wallarm-node) as the `wallarm-node` host to route traffic to the Wallarm Node for analysis.
-    * Add your backend address as another host (e.g., `backend`) to forward traffic from the Node to your origin backend.
+    * Add the Wallarm node URL as the `wallarm-node` host to route traffic to the Wallarm node for analysis.
+    * Add your backend address as another host (e.g., `backend`) to forward traffic from the node to your origin backend.
 
     ![](../../images/waf-installation/gateways/fastly/hosts.png)
 1. **Activate** the new service version.
@@ -119,15 +124,11 @@ Create the `wallarm_config` config defining Wallarm-specific settings:
 
     | Parameter | Description | Required? |
     | --------- | ----------- | --------- |
-    | `WALLARM_BACKEND` | Host name for the [Wallarm Node instance](#1-deploy-a-wallarm-node) specified in Compute service settings. | Yes |
+    | `WALLARM_BACKEND` | Host name for the Wallarm Node instance specified in Compute service settings. | Yes |
     | `ORIGIN_BACKEND` | Host name for the backend specified in Compute service settings. | Yes |
     | `WALLARM_MODE_ASYNC` | Enables traffic [copy](../oob/overview.md) analysis without affecting the original flow (`true`) or inline analysis (`false`, default). | No |
-    | `WALLARM_DEBUG` | Writes debug information to tailing logs (`true`) or disables it (`false`, default). | No |
-    | `WALLARM_RESPONSE_BODY_SIZE_LIMIT` | Limit for a response body size the Node can parse and analyze (in bytes). Non-numerical values like `none` (default) mean no limit. | No |
-    | `ORIGIN_PASS_CACHE` | Forces pass-through behavior for requests sent to the origin backend, bypassing Fastly's caching layer (`true`). By default, the Fastly's caching layer is used (`false`). | No |
-    | `ORIGIN_PRESERVE_HOST` | Retains the original `Host` header from the client request instead of replacing it with the origin backend's hostname via the `X-Forwarded-Host` header. Useful for backends relying on the original `Host` for routing or logging. Default: `false`. | No |
-    | `LOGGING_ENDPOINT` | Sets a [logging endpoint](https://www.fastly.com/documentation/guides/integrations/logging/) for the connector. Default: tailing logs (stderr). | No |
 
+    [More parameters](fastly.md#configuration-options)
 1. **Link** the config store to the Wallarm Compute service.
 
 ![](../../images/waf-installation/gateways/fastly/config-store.png)
@@ -377,6 +378,21 @@ To test the functionality of the deployed solution, follow these steps:
     ![Attacks in the interface][attacks-in-ui-image]
 
     If the Wallarm Node mode is set to [blocking](../../admin-en/configure-wallarm-mode.md) and the traffic flows in-line, the request will also be blocked.
+
+## Configuration options
+
+In the Wallarm config store, you can specify the following key-value items:
+
+| Parameter | Description | Required? |
+| --------- | ----------- | --------- |
+| `WALLARM_BACKEND` | Host name for the Wallarm Node instance specified in Compute service settings. | Yes |
+| `ORIGIN_BACKEND` | Host name for the backend specified in Compute service settings. | Yes |
+| `WALLARM_MODE_ASYNC` | Enables traffic [copy](../oob/overview.md) analysis without affecting the original flow (`true`) or inline analysis (`false`, default). | No |
+| `WALLARM_DEBUG` | Writes debug information to tailing logs (`true`) or disables it (`false`, default). | No |
+| `WALLARM_RESPONSE_BODY_SIZE_LIMIT` | Limit for a response body size the Node can parse and analyze (in bytes). Non-numerical values like `none` (default) mean no limit. | No |
+| `ORIGIN_PASS_CACHE` | Forces pass-through behavior for requests sent to the origin backend, bypassing Fastly's caching layer (`true`). By default, the Fastly's caching layer is used (`false`). | No |
+| `ORIGIN_PRESERVE_HOST` | Retains the original `Host` header from the client request instead of replacing it with the origin backend's hostname via the `X-Forwarded-Host` header. Useful for backends relying on the original `Host` for routing or logging. Default: `false`. | No |
+| `LOGGING_ENDPOINT` | Sets a [logging endpoint](https://www.fastly.com/documentation/guides/integrations/logging/) for the connector. Default: tailing logs (stderr). | No |
 
 ## Upgrading the Wallarm Compute service on Fastly
 

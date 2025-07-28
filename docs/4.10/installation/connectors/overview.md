@@ -1,6 +1,6 @@
 # Deploying Wallarm with Connectors
 
-API deployment can be done in various ways, including utilizing external tools such as Azion Edge, Akamai Edge, Mulesoft, Apigee, and AWS Lambda. If you are looking for a way to secure these APIs with Wallarm, we offer a solution in the form of "connectors" specifically designed for such cases.
+API deployment can be done in various ways, including utilizing external tools such as Azion Edge, Akamai Edge, MuleSoft, Apigee, and AWS Lambda. If you are looking for a way to secure these APIs with Wallarm, we offer a solution in the form of "connectors" specifically designed for such cases.
 
 ## How it works
 
@@ -16,7 +16,7 @@ Alternatively, the monitoring mode allows users to gain knowledge about potentia
 
 ## Use cases
 
-* Securing all APIs deployed with Azion Edge, Akamai Edge, Mulesoft, Apigee, AWS Lambda or similar tool by creating only one component in the current infrastrucure - the component like the Wallarm code/policy/proxy depending on the solution being used.
+* Securing all APIs deployed with Azion Edge, Akamai Edge, MuleSoft, Apigee, AWS Lambda or similar tool by creating only one component in the current infrastrucure - the component like the Wallarm code/policy/proxy depending on the solution being used.
 * Requiring a security solution that offers comprehensive attack observation, reporting, and instant blocking of malicious requests.
 
 ## Limitations
@@ -31,7 +31,7 @@ The solution has certain limitations as it only works with incoming requests:
 
 Currently, Wallarm offers connectors for the following platforms:
 
-* [Mulesoft](mulesoft.md)
+* [MuleSoft](mulesoft.md)
 * [Apigee](apigee.md)
 * [Akamai EdgeWorkers](akamai-edgeworkers.md)
 * [Azion Edge](azion-edge.md)

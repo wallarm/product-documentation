@@ -56,6 +56,12 @@
           {{ config.theme.playground_button_name }}
         </a>
 
+        <!-- Demo button -->
+        <a href="https://us1.my.wallarm.com/signup/?utm_source=wallarm_docs&utm_medium=button&utm_campaign=wallarm_docs_signup_head" class="button signup-button desktop-button">
+          {{ config.theme.try_button_name }}
+        </a>
+      </div>
+
       <div id="languagesDiv" class="languages">
         <button type="button" id="languagesMain" class="languages-main" onClick="languageClicked(event)">
             {{ config.theme.language_name }}
@@ -71,6 +77,5 @@
             <a href="" onClick="goToLanguage(event, '{{ config.theme.language_lowercase }}', 'ar')">Arabic</a>
           </div>
       </div>
-    </div>
     </nav>
   </header>

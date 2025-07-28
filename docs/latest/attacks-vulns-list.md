@@ -88,8 +88,6 @@ Technically, all attacks that can be detected by Wallarm are divided into two ty
 
     To detect behavioral attacks, it is required to conduct syntax analysis of requests and correlation analysis of request number and time between requests.
 
-    Behavioral attacks are not detected by default. For such attacks, required Wallarm configuration is specifically defined.
-
 <!-- ??? info "Watch video about how Wallarm protects against OWASP Top 10"
     <div class="video-wrapper">
     <iframe width="1280" height="720" src="https://www.youtube.com/embed/27CBsTQUE-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -433,6 +431,8 @@ An attempt to enumerate any normally unexposed data of your applications (user a
 
 Wallarm detects and mitigates generic enumeration attacks only if it has one or more [enumeration mitigation controls](api-protection/enumeration-attack-protection.md) (requires Advanced API Security [subscription](about-wallarm/subscription-plans.md#waap-and-advanced-api-security)).
 
+[Default controls](api-protection/enumeration-attack-protection.md#generic-enumeration) are provided in a monitoring mode (for new clients) or disabled (enable if necessary).
+
 **In addition to Wallarm protection:**
 
 *   Limit the number of requests per a certain time period for an API or certain endpoints.
@@ -461,6 +461,8 @@ Wallarm detects and mitigates brute force attacks only if it has one of the foll
 * [Generiс protection from enumeration](#generic-enumeration-attack)
 * [Brute force protection](admin-en/configuration-guides/protecting-against-bruteforce.md) configured with method available in your subscription plan
 * [Rate limit rules](user-guides/rules/rate-limiting.md)
+
+[Default controls](api-protection/enumeration-attack-protection.md#default-protection) are provided in a monitoring mode (for new clients) or disabled (enable if necessary).
 
 **In addition to Wallarm protection:**
 
@@ -497,6 +499,8 @@ Wallarm automatically discovers vulnerabilities of this type but detects and mit
 * [BOLA protection](admin-en/configuration-guides/protecting-against-bola-trigger.md) configured with method available in your subscription plan
 * [Automatic BOLA protection](admin-en/configuration-guides/protecting-against-bola.md) by [API Discovery](api-discovery/overview.md) for endpoints discovered by this module
 
+[Default controls](api-protection/enumeration-attack-protection.md#default-protection) are provided in a monitoring mode (for new clients) or disabled (enable if necessary).
+
 ### Forced browsing
 
 **Attack**
@@ -514,6 +518,8 @@ A successful forced browsing attack potentially grants access to hidden resource
 **Required configuration:**
 
 Wallarm detects and mitigates forced browsing only if it has [forced browsing protection](admin-en/configuration-guides/protecting-against-forcedbrowsing.md) configured with method available in your subscription plan.
+
+[Default controls](api-protection/enumeration-attack-protection.md#forced-browsing) are provided in a monitoring mode (for new clients) or disabled (enable if necessary).
 
 **In addition to Wallarm protection:**
 
@@ -605,6 +611,7 @@ Besides common [detectors](api-abuse-prevention/overview.md#how-api-abuse-preven
 * **Session rotation** for account takeover attacks using a pool of IP sessions.
 * **Persistent ATO** for account takeover attacks that occur gradually over an extended period.
 * **Credential stuffing** for account takeover attacks that involve repeated login attempts with different credentials while maintaining stable request attributes ([credential stuffing](#credential-stuffing)).
+* **Low-frequency credential stuffing** for account takeover attacks that that are characterized by isolated or minimal authentication attempts ([credential stuffing](#credential-stuffing)) without subsequent API interaction: attackers purposefully restrict login attempts per session or client to evade detection. Such attacks often utilize stolen, synthetic, or auto-generated credentials, dispersed across multiple IP addresses, sessions, or time frames.
 
 API Abuse Prevention detects bots performing a [credential cracking](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-007_Credential_Cracking.html) usually performed as a brute force attack on the critical endpoints or/and endpoints that are related to authentication and/or registration endpoints. The automatic threshold of acceptable behavior metrics is calculated based on legitimate traffic for 1 hour.
 
@@ -692,7 +699,9 @@ An adequate measure for preventing these type of threats is setting limits for G
 
 **Required configuration:**
 
-Wallarm detects and mitigates GraphQL attacks only if it has one or more configured [Detect GraphQL attacks rules](api-protection/graphql-rule.md) (requires node 4.10.3 of higher).
+Wallarm detects and mitigates GraphQL attacks only if it has one or more configured [Detect GraphQL attacks mitigation control or rule](api-protection/graphql-rule.md) (requires node 4.10.3 of higher).
+
+[Default controls](api-protection/graphql-rule.md#default-protection) are provided in a monitoring mode (for new clients) or disabled (enable if necessary).
 
 **In addition to Wallarm protection:**
 

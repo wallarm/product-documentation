@@ -1,6 +1,6 @@
 # Deploying Wallarm as a Connector
 
-API deployment can be done in various ways, including utilizing external tools such as Azion Edge, Akamai Edge, Mulesoft, Apigee, and CloudFront. If you are looking for a way to secure these APIs with Wallarm, we offer a solution in the form of "connectors" specifically designed for such cases.
+API deployment can be done in various ways, including utilizing external tools such as Azion Edge, Akamai Edge, MuleSoft, Apigee, and CloudFront. If you are looking for a way to secure these APIs with Wallarm, we offer a solution in the form of "connectors" specifically designed for such cases.
 
 ## How it works
 
@@ -25,7 +25,8 @@ Wallarm offers connectors for the following platforms:
 
 | Connector | Supported traffic flow mode | Connector hosting |
 | --- | ---- | ---- |
-| [Mulesoft](mulesoft.md) | In-line | Security Edge, self-hosted |
+| [MuleSoft Mule Gateway](mulesoft.md) | In-line | Security Edge, self-hosted |
+| [MuleSoft Flex Gateway](mulesoft-flex.md) | In-line, out-of-band | Self-hosted |
 | [Apigee](apigee.md) | In-line |Self-hosted |
 | [Akamai EdgeWorkers](akamai-edgeworkers.md) | In-line |Self-hosted |
 | [Azion Edge](azion-edge.md) | In-line |Self-hosted |
@@ -35,6 +36,6 @@ Wallarm offers connectors for the following platforms:
 | [Istio Ingress](istio.md) | Out-of-band | Self-hosted |
 | [Broadcom Layer7 API Gateways](layer7-api-gateway.md) | In-line | Self-hosted |
 | [Fastly](fastly.md) | In-line, out-of-band | Security Edge, self-hosted |
-| [IBM API Connect](ibm-api-connect.md) | In-line | Security Edge, self-hosted |
+| [IBM DataPower](ibm-api-connect.md) | In-line | Security Edge, self-hosted |
 
 If you couldn't find the connector you are looking for, please feel free to contact our [Sales team](mailto:sales@wallarm.com) to discuss your requirements and explore potential solutions.

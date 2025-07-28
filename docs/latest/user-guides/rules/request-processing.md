@@ -162,6 +162,13 @@ Filters:
 * **xml_dtd_entity** for an array defined in the Entity DTD document
 * **xml_pi** for an array of instructions to process
 * **xml_tag** or **hash** for an associative array of tags
+
+    !!! info "Formatting **xml_tag** with namespaces"
+        If you specify URI, namespace and tag name together in **xml_tag**, note that the required separator depends on the Wallarm node version:
+
+        * `URI|namespace|tag_name` in versions 6.3.0 and later, e.g. `https://www.w3.org/path|xhtml|html`
+        * `URI:namespace:tag_name` in versions earlier than 6.3.0, e.g., `https://www.w3.org/path:xhtml:html`
+
 * **xml_tag_array** or **array** for an array of tag values
 * **xml_attr** for an associative array of attributes; can only be used after the **xml_tag** filter
 

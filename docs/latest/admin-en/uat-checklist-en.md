@@ -65,23 +65,102 @@ To check:
 
 1. Check the output. It should be like:
 
-      ```
-      { "requests":11,"attacks":1,"blocked":0,"blocked_by_acl":0,"blocked_by_antibot":0,
-      "acl_allow_list":0,"abnormal":11,"tnt_errors":0,"api_errors":0,"requests_lost":0,
-      "overlimits_time":0,"segfaults":0,"memfaults":0,"softmemfaults":0,"proton_errors":0,
-      "time_detect":0,"db_id":165,"lom_id":1520,"custom_ruleset_id":1520,"custom_ruleset_ver":54,
-      "db_apply_time":1742969841,"lom_apply_time":1742971649,
-      "custom_ruleset_apply_time":1742971649,"proton_instances": { "total":2,"success":2,
-      "fallback":0,"failed":0 },"stalled_workers_count":0,"stalled_workers":[],"ts_files":
-      [{"id":1520,"size":79391,"mod_time":1742971649,"fname":"\/opt\/wallarm\/etc\/wallarm\/
-      custom_ruleset"}],"db_files":[{"id":165,"size":349901,"mod_time":1742969841,"fname":"\/opt\/
-      wallarm\/etc\/wallarm\/proton.db"}],"startid":8353951864332600837,"rate_limit": 
-      {"shm_zone_size":67108864,"buckets_count":8,"entries":0,"delayed":0,"exceeded":0,
-      "expired":0,"removed":0,"no_free_nodes":0},"timestamp":1743061763.635351,"split":{"clients":
-      [{"client_id":null,"requests":41,"attacks":18,"blocked":8,"blocked_by_acl":0,
-      "blocked_by_antibot":0,"overlimits_time":0,"time_detect":0,"applications":[{"app_id":-1,
-      "requests":11,"attacks":1,"blocked":0,"blocked_by_acl":0,"blocked_by_antibot":0,
-      "overlimits_time":0,"time_detect":0}]}]} }
+      ```json
+      {
+            "requests": 11,
+            "streams": 0,
+            "messages": 0,
+            "attacks": 1,
+            "blocked": 0,
+            "blocked_by_acl": 0,
+            "blocked_by_antibot": 0,
+            "acl_allow_list": 0,
+            "abnormal": 11,
+            "tnt_errors": 0,
+            "api_errors": 0,
+            "requests_lost": 0,
+            "overlimits_time": 0,
+            "segfaults": 0,
+            "memfaults": 0,
+            "softmemfaults": 0,
+            "proton_errors": 0,
+            "time_detect": 0,
+            "db_id": 199,
+            "lom_id": 1726,
+            "custom_ruleset_id": 1726,
+            "custom_ruleset_ver": 56,
+            "db_apply_time": 1750365841,
+            "lom_apply_time": 1750365842,
+            "custom_ruleset_apply_time": 1750365842,
+            "proton_instances": {
+                  "total": 2,
+                  "success": 2,
+                  "fallback": 0,
+                  "failed": 0
+            },
+            "stalled_workers_count": 0,
+            "stalled_workers": [],
+            "ts_files": [
+            {
+                  "id": 1726,
+                  "size": 11887,
+                  "mod_time": 1750365842,
+                  "fname": "/opt/wallarm/etc/wallarm/custom_ruleset"
+            }
+            ],
+            "db_files": [
+            {
+                  "id": 199,
+                  "size": 355930,
+                  "mod_time": 1750365841,
+                  "fname": "/opt/wallarm/etc/wallarm/proton.db"
+            }
+            ],
+            "startid": 2594491974706159096,
+            "compatibility": 4,
+            "config_revision": 0,
+            "rate_limit": {
+            "shm_zone_size": 67108864,
+            "buckets_count": 2,
+            "entries": 0,
+            "delayed": 0,
+            "exceeded": 0,
+            "expired": 0,
+            "removed": 0,
+            "no_free_nodes": 0
+            },
+            "timestamp": 1750371146.209885,
+            "split": {
+            "clients": [
+                  {
+                  "client_id": null,
+                  "requests": 11,
+                  "streams": 0,
+                  "messages": 0,
+                  "attacks": 1,
+                  "blocked": 0,
+                  "blocked_by_acl": 0,
+                  "blocked_by_antibot": 0,
+                  "overlimits_time": 0,
+                  "time_detect": 0,
+                  "applications": [
+                  {
+                        "app_id": -1,
+                        "requests": 11,
+                        "streams": 0,
+                        "messages": 0,
+                        "attacks": 1,
+                        "blocked": 0,
+                        "blocked_by_acl": 0,
+                        "blocked_by_antibot": 0,
+                        "overlimits_time": 0,
+                        "time_detect": 0
+                  }
+                  ]
+                  }
+            ]
+            }
+      }
       ```
 
       This means that the filtering node statistics service is running and working properly.
