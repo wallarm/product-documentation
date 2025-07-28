@@ -1,4 +1,4 @@
-[api-discovery-enable-link]:        ../api-discovery/setup.md#enable
+[api-discovery-enable-link]:        ../api-discovery/setup.md
 
 # API Abuse Prevention Exceptions <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
