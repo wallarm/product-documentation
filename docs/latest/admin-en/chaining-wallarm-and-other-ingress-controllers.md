@@ -118,8 +118,9 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
     The Wallarm pod status should be **STATUS: Running** and **READY: N/N**:
 
     ```
-    NAME                                                             READY   STATUS    RESTARTS   AGE
-    internal-ingress-wallarm-ingress-controller-6d659bd79b-952gl     1/1     Running   0          8m7s
+    NAME                                                                  READY   STATUS    RESTARTS   AGE
+    ingress-controller-wallarm-ingress-controller-6d659bd79b-952gl        3/3     Running   0          8m7s
+    ingress-controller-wallarm-ingress-controller-wallarm-wstore-7ddmgbfm 3/3     Running   0          8m7s
     ```
 
 ### Step 2: Create Ingress object with Wallarm-specific `ingressClassName`
