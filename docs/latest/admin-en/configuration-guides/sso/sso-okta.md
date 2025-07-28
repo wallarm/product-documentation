@@ -20,9 +20,16 @@ To fulfill steps, you need accounts with administration rights both for Wallarm 
 
 By default, SSO service for authentication in Wallarm is not active, corresponding blocks are not visible in the **Integrations** section in Wallarm Console.
 
-To activate the SSO service, contact the [Wallarm support team](https://support.wallarm.com/).
+To activate the SSO service, contact the [Wallarm support team](https://support.wallarm.com/). SSO with [provisioning](#step-4-saml-sso-solution-configure-provisioning) will be suggested by default:
+
+* No users will be able to authenticate with login and password after enabling. Request fallback account if necessary - it will retain login/password enter.
+* No users can be disabled or deleted from Wallarm side.
+* If you have [multiple tenants](../../../installation/multi-tenant/overview.md), with Okta, you can use the [tenant dependent permissions](intro.md#tenant-dependent-permissions) option, make decision on that together with Wallarm support.
 
 ## Step 2 (Wallarm): Generate metadata
+
+!!! info "Extended security"
+    If you want to or are required to use the additional security validation for your Okta-to-Wallarm connection, consider using the [Extended security](setup.md#extended-security) option available at this step.
 
 You need Wallarm metadata to enter on the Okta side:
 
@@ -90,22 +97,23 @@ The **provisioning** is an automatic transfer of data from SAML SSO solution (Ok
 
 For this to work, provide the attribute mapping:
 
-1. In Okta application, map:
+1. In Okta application, map attribute statements:
 
-    * `email`
-    * `first_name`
-    * `last_name`
-    * user group(s) to `wallarm_role:[role]` where `role` is:
+    * email - user.email
+    * first_name - user.firstName
+    * last_name user.lastName
 
-        * `admin` (**Administrator**)
-        * `analytic` (**Analyst**)
-        * `api_developer` (**API Developer**)
-        * `auditor` (**Read Only**)
-        * `partner_admin` (**Global Administrator**)
-        * `partner_analytic` (**Global Analyst**)
-        * `partner_auditor` (**Global Read Only**)
+1. Map user groups to `wallarm_role:[role]` where `role` is:
 
-            See all role descriptions [here](../../../user-guides/settings/users.md#user-roles).
+    * `admin` (**Administrator**)
+    * `analytic` (**Analyst**)
+    * `api_developer` (**API Developer**)
+    * `auditor` (**Read Only**)
+    * `partner_admin` (**Global Administrator**)
+    * `partner_analytic` (**Global Analyst**)
+    * `partner_auditor` (**Global Read Only**)
+    
+        See all role descriptions [here](../../../user-guides/settings/users.md#user-roles).
 
     ![Integrations - SSO, mapping in Okta](../../../images/admin-guides/configuration-guides/sso/okta/wallarm-sso-okta-mapping.png)
 
