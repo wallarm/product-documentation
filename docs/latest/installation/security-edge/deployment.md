@@ -20,6 +20,7 @@ Security Edge service provides a secure cloud environment where Wallarm nodes ar
 * Only third-level or higher domains are supported (e.g., instead `domain.com` use `www.domain.com`).
 * Only domains shorter than 64 characters are supported.
 * Only HTTPS traffic is supported; HTTP is not allowed.
+* [Custom blocking page and blocking code](../../admin-en/configuration-guides/configure-block-page-and-code.md) configurations are not yet supported.
 
 ## Configuring the Edge Inline
 
