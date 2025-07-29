@@ -289,32 +289,38 @@ Below is the recommended custom SCC for the Wallarm Sidecar solution tailored fo
     ```
     kubectl apply -f wallarm-scc.yaml
     ```
-1. Allow the Wallarm Sidecar workloads to use this SCC policy:
+1. Create a Kubernetes namespace where the Sidecar will be deployed, e.g.:
 
     ```bash
-    oc adm policy add-scc-to-user wallarm-sidecar-deployment \
-      system:serviceaccount:<WALLARM_SIDECAR_NAMESPACE>:<RELEASE_NAME>-wallarm-sidecar-postanalytics
+    kubectl create namespace wallarm-sidecar
+    ```
+1. Allow the Wallarm Sidecar workloads to use the SCC policy:
 
+    ```bash    
     oc adm policy add-scc-to-user wallarm-sidecar-deployment \
-      system:serviceaccount:<WALLARM_SIDECAR_NAMESPACE>:<RELEASE_NAME>-wallarm-sidecar-admission
+      -z <RELEASE_NAME>-wallarm-sidecar-postanalytics -n wallarm-sidecar
+    
+    oc adm policy add-scc-to-user wallarm-sidecar-deployment \
+      -z <RELEASE_NAME>-wallarm-sidecar-admission -n wallarm-sidecar
     ```
 
-    * `<WALLARM_SIDECAR_NAMESPACE>`: namespace where the Sidecar will be deployed.
     * `<RELEASE_NAME>`: Helm release name that you will use during `helm install`.
 
-    !!! warning "If the release name includes `wallarm-sidecar`"
-        When the release name contains `wallarm-sidecar`, omit it from the service account names.
-        
-        The accounts will be `wallarm-sidecar-postanalytics` and `wallarm-sidecar-admission`.
+        !!! warning "If the release name includes `wallarm-sidecar`"
+            When the release name contains `wallarm-sidecar`, omit it from the service account names.
+            
+            The accounts will be `wallarm-sidecar-postanalytics` and `wallarm-sidecar-admission`.
+    
+    * `-n wallarm-sidecar`: namespace where the Sidecar will be deployed (created above).
 
     For example, with the namespace `wallarm-sidecar` and the Helm release name `wlrm-sidecar`:
     
-    ```bash
+    ```bash    
     oc adm policy add-scc-to-user wallarm-sidecar-deployment \
-      system:serviceaccount:wallarm-sidecar:wlrm-sidecar-wallarm-sidecar-postanalytics
-
+      -z wlrm-sidecar-wallarm-sidecar-postanalytics -n wallarm-sidecar
+    
     oc adm policy add-scc-to-user wallarm-sidecar-deployment \
-      system:serviceaccount:wallarm-sidecar:wlrm-sidecar-wallarm-sidecar-admission
+      -z wlrm-sidecar-wallarm-sidecar-admission -n wallarm-sidecar
     ```
 1. [Deploy the Wallarm Sidecar](#deployment) using the same namespace and Helm release name specified above.
 1. [Disable the usage of iptables](customization.md#capturing-incoming-traffic-port-forwarding) to avoid running a privileged iptables container. This can be done globally in `values.yaml` or per pod via annotations.
@@ -330,7 +336,7 @@ Below is the recommended custom SCC for the Wallarm Sidecar solution tailored fo
                 api:
                   ...
             ```
-        1. In you application Service manifest, set `spec.ports.targetPort` to `proxy` (or `26001` if using OpenShift Routes). With iptables disabled, the Sidecar exposes this port.
+        1. In you application Service manifest, set `spec.ports.targetPort` to `proxy`. With iptables disabled, the Sidecar exposes this port.
 
             ```yaml hl_lines="9"
             apiVersion: v1
@@ -341,15 +347,17 @@ Below is the recommended custom SCC for the Wallarm Sidecar solution tailored fo
             spec:
               ports:
                 - port: 80
-                  targetPort: proxy # or 26001 if using Routes
+                  targetPort: proxy
                   protocol: TCP
                   name: http
               selector:
                 app: myapp
             ```
+
+            When exposing the application via an OpenShift Route, set `spec.ports.targetPort` to `26001`.
     === "Disabling iptables via the pod annotation"
         1. Disable iptables on a per-pod basis by setting the Pod's annotation `sidecar.wallarm.io/sidecar-injection-iptables-enable` to `"false"`.
-        1. In you application Service manifest, set `spec.ports.targetPort` to `proxy` (or `26001` if using OpenShift Routes). With iptables disabled, the Sidecar exposes this port.
+        1. In you application Service manifest, set `spec.ports.targetPort` to `proxy`. With iptables disabled, the Sidecar exposes this port.
 
         ```yaml hl_lines="16-17 34"
         apiVersion: apps/v1
@@ -385,12 +393,14 @@ Below is the recommended custom SCC for the Wallarm Sidecar solution tailored fo
         spec:
           ports:
             - port: 80
-              targetPort: proxy # or 26001 if using Routes
+              targetPort: proxy
               protocol: TCP
               name: http
           selector:
             app: myapp
         ```
+
+        When exposing the application via an OpenShift Route, set `spec.ports.targetPort` to `26001`.
 1. Deploy the application with the updated configuration:
 
     ```bash
