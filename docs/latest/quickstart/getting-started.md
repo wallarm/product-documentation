@@ -27,7 +27,7 @@ Every new account is automatically enrolled in the [Security Edge Free Tier](../
     | **Wallarm Console URL** | https://us1.my.wallarm.com/ | https://my.wallarm.com/ |
     | **Wallarm API Endpoint** | `https://us1.api.wallarm.com/` | `https://api.wallarm.com/` |
 1. Follow the signup link and input your personal data.
-1. Configure [Security Edge Inline](../installation/security-edge/deployment.md) to start you traffic analysis for free:
+1. Configure [Security Edge Inline](../installation/security-edge/deployment.md) or [Security Edge Connectors](../installation/se-connector.md) to start you traffic analysis for free:
 
     ![!](../images/waf-installation/security-edge/onboarding-wizard.png)
 
