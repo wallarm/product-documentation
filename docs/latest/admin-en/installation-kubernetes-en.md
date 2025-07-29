@@ -316,33 +316,38 @@ Below is the recommended custom SCC for the Wallarm NGINX Ingress Controller.
     ```
     kubectl apply -f wallarm-scc.yaml
     ```
+1. Create a Kubernetes namespace where the NGINX Ingress controller will be deployed, e.g.:
+
+    ```bash
+    kubectl create namespace wallarm-ingress
+    ```
 1. Allow the Wallarm Ingress controller workloads to use this SCC policy:
 
     ```bash
     oc adm policy add-scc-to-user wallarm-ingress-admission \
-      system:serviceaccount:<WALLARM_INGRESS_NAMESPACE>:<RELEASE_NAME>-wallarm-ingress-admission
-    
+      -z <RELEASE_NAME>-wallarm-ingress-admission -n wallarm-ingress
+
     oc adm policy add-scc-to-user wallarm-ingress-controller \
-      system:serviceaccount:<WALLARM_INGRESS_NAMESPACE>:<RELEASE_NAME>-wallarm-ingress
-    
+      -z <RELEASE_NAME>-wallarm-ingress -n wallarm-ingress
+
     oc adm policy add-scc-to-user wallarm-ingress-controller \
-      system:serviceaccount:<WALLARM_INGRESS_NAMESPACE>:default
+      -z default -n wallarm-ingress
     ```
 
-    * `<WALLARM_INGRESS_NAMESPACE>`: namespace where the NGINX Ingress controller will be deployed.
     * `<RELEASE_NAME>`: Helm release name that you will use during `helm install`.
+    * `-n wallarm-ingress`: namespace where the NGINX Ingress controller will be deployed (created above).
 
     For example, with the namespace `wallarm-ingress` and the Helm release name `wlrm-ingress`:
     
     ```bash
     oc adm policy add-scc-to-user wallarm-ingress-admission \
-      system:serviceaccount:wallarm-ingress:wlrm-ingress-wallarm-ingress-admission
-    
+      -z wlrm-ingress-wallarm-ingress-admission -n wallarm-ingress
+
     oc adm policy add-scc-to-user wallarm-ingress-controller \
-      system:serviceaccount:wallarm-ingress:wlrm-ingress-wallarm-ingress
-    
+      -z wlrm-ingress-wallarm-ingress -n wallarm-ingress
+
     oc adm policy add-scc-to-user wallarm-ingress-controller \
-      system:serviceaccount:wallarm-ingress:default
+      -z default -n wallarm-ingress
     ```
 1. [Deploy the Wallarm NGINX Ingress controller](#installation) using the same namespace and Helm release name specified above.
 1. Verify that the correct SCC is applied to Wallarm pods:
