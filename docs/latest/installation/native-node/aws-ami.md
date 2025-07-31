@@ -191,8 +191,9 @@ To verify the node is detecting traffic, you can check the logs:
 
 * The Native Node logs are written to `/opt/wallarm/var/log/wallarm/go-node.log` by default.
 * [Standard logs](../../admin-en/configure-logging.md) of the filtering node such as whether the data is sent to the Wallarm Cloud, detected attacks, etc. are located in the directory `/opt/wallarm/var/log/wallarm`.
+* For additional debugging, set the [`log.level`](all-in-one-conf.md#loglevel) parameter to `debug`.
 
-For additional debugging, set the [`log.level`](all-in-one-conf.md#loglevel) parameter to `debug`.
+You can also verify the Node operation by checking its [Prometheus metrics](../../admin-en/native-node-metrics.md) exposed at `http://<NODE_IP>:9000/metrics.`
 
 ## Installer launch options
 
