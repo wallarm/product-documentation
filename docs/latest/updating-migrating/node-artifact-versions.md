@@ -12,6 +12,17 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+<!-- ### 6.5.0
+new loggin variable wallarm_block_reason
+new attack types in logging variables and search bars?
+-->
+
+### 6.4.0 (2025-07-31)
+
+* Fixed the stuffed credentials export to the Cloud
+* Improved GraphQL parser
+* Bug fixes and internal improvements
+
 ### 6.3.1 (2025-07-23)
 
 * Fixed memory leak
@@ -68,6 +79,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](ingress-controller.md)
 
+### 6.4.0 (2025-07-31)
+
+* Fixed the stuffed credentials export to the Cloud
+* Improved GraphQL parser
+* Bug fixes and internal improvements
+
 ### 6.3.1 (2025-07-23)
 
 * Fixed memory leak
@@ -114,6 +131,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.4.0 (2025-07-31)
+
+* Fixed the stuffed credentials export to the Cloud
+* Improved GraphQL parser
+* Bug fixes and internal improvements
+
 ### 6.3.1 (2025-07-23)
 
 * Fixed memory leak
@@ -148,6 +171,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.4.0 (2025-07-31)
+
+* Fixed the stuffed credentials export to the Cloud
+* Improved GraphQL parser
+* Bug fixes and internal improvements
 
 ### 6.3.1 (2025-07-23)
 
@@ -185,6 +214,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](cloud-image.md)
 
+### 6.4.0 (2025-07-31)
+
+* Fixed the stuffed credentials export to the Cloud
+* Improved GraphQL parser
+* Bug fixes and internal improvements
+
 ### 6.3.1 (2025-07-23)
 
 * Fixed memory leak
@@ -218,6 +253,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-4-0-20250730-083353 (2025-07-31)
+
+* Fixed the stuffed credentials export to the Cloud
+* Improved GraphQL parser
+* Bug fixes and internal improvements
 
 ### wallarm-node-6-3-1-20250721-082413 (2025-07-23)
 
