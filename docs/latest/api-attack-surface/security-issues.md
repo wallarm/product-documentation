@@ -50,7 +50,11 @@ Wallarm automatically detects the following security issues:
 
 ## Issue details and lifecycle
 
-Wallarm provides detailed information on each detected security issues to allow clear understanding of what is happening and what can be done. Click the issue in the list to open its details, such as:
+Wallarm provides detailed information on each detected security issues to allow clear understanding of what is happening and what can be done. 
+
+### Issue details
+
+Click the issue in the list to open its details, such as:
 
 * Basic info (type, host and url, first and last seen time)
 * Detailed **Description**
@@ -59,7 +63,7 @@ Wallarm provides detailed information on each detected security issues to allow 
 
 ![Security issues details - Details](../images/api-attack-surface/security-issue-details.png)
 
-**Issue lifecycle**
+### Issue lifecycle
 
 Once a security issue is detected, it obtains the **Open** status meaning some measures are required to mitigate it. In the issue details, you can close it (means it was resolved) or mark as false.
 
@@ -73,11 +77,23 @@ Security issues can be closed by Wallarm automatically after next [automatic](se
 * Vulnerable version no longer present
 * Vulnerability not detected during last scan
 
-Issues can be re-opened automatically after next rescan or manually. Note that issues marked as false are never re-opened automatically. For you to be on track, the full history of status changes with comments is displayed in the **Status history** section.
+Issues can be re-opened automatically after next rescan or manually. Note that issues marked as false are never re-opened automatically.
 
 ![Security issues - lifecycle diagram](../images/api-attack-surface/security-issue-lifecycle.png)
 
-You can also re-evaluate and adjust the [risk level](#issue-risk-level) of the issue.
+### Changing risk level
+
+If you re-evaluate the [risk level](#issue-risk-level) of the issue, go to its details and select new risk level from the list.
+
+### Adding comments
+
+While it is always useful to provide comment on status change (closing, re-opening), you can add any comments to the issue at any moment without changing anything else. To do so, use the **Add comment** button: your comment will become the part of **Status history**.
+
+### Status history
+
+For you to be on track, the full history of changes and comments is displayed in the **Status history** section of the security issue.
+
+![Security issues - lifecycle diagram](../images/api-attack-surface/aasm-sec-issue-history.png)
 
 ## Issue risk level
 

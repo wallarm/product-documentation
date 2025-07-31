@@ -18,7 +18,9 @@ To use AASM, the Wallarm's [API Attack Surface](../about-wallarm/subscription-pl
 
 * If you already have Wallarm account, contact [sales@wallarm.com](mailto:sales@wallarm.com).
 
-## Adding domains and hosts
+## Domains and hosts
+
+### Adding to scope
 
 To configure [API Attack Surface Management](overview.md) to detect hosts under your selected domains and search for security issues related to these hosts:
 
@@ -32,9 +34,23 @@ To configure [API Attack Surface Management](overview.md) to detect hosts under 
 
     ![AASM - configuring scope](../images/api-attack-surface/aasm-scope.png)
 
+### Deleting from scope
+
+You can delete domains from the scope. On deletion, all hosts previously detected and manually added for this domain will be removed from the list:
+
+1. At the **Domains and hosts** tab, select domain(s) with checkboxes and click **Delete**.
+1. As there can be the security issues found for these domains, you need to decide what to do with them. Options are:
+
+    * Keep related security issues 
+    * Close related security issues
+    * Mark false related security issues
+    * Delete related security issues
+
 ## Scan configuration
 
 You can select which data related to your domains will be searched for and displayed by [API Attack Surface Management](overview.md).
+
+### General configuration
 
 For your convenience, Wallarm provides a set of predefined profiles for scan configuration. Try switching between profiles to understand their content.
 
@@ -59,6 +75,15 @@ To configure scanning options:
 
     !!! warning "Do not lose your modification while editing"
         Remember that whatever changes you made in options, they will be lost if you click one of standard profiles again.
+
+### Subdomain discovery
+
+When subdomain discovery is enabled in your configuration (**Scan configuration** → **Scanning profile** → **Network service discovery** → **Subdomain discovery**), you can adjust this option per domain. To do so:
+
+1. Go to the **Domains and hosts** tab.
+1. Turn off/on the **With subdomains** option for your domains.
+
+    Note that global option has priority - when disabled, subdomains are not searched anywhere. When globally enabled, per-domain options allow making exceptions.
 
 ## Auto rescan
 
