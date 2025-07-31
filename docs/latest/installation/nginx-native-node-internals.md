@@ -259,12 +259,6 @@ The Native Node works with the following platforms with no limitations:
 
         <a class="do-card" href="../../installation/connectors/istio/">
             <img class="non-zoomable" src="../../images/platform-icons/istio.svg" />
-            <h3>Istio (Out-of-Band)</h3>
-            <p>Deploy Wallarm out-of-band to secure APIs managed by Istio</p>
-        </a>
-
-        <a class="do-card" href="../../installation/connectors/istio-inline/">
-            <img class="non-zoomable" src="../../images/platform-icons/istio.svg" />
             <h3>Istio</h3>
             <p>Deploy Wallarm in-line or OOB to secure APIs managed by Istio</p>
         </a>

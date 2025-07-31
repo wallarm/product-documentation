@@ -19,7 +19,7 @@ The Wallarm node operation mode. It can be:
 
 * `connector-server` for MuleSoft [Mule](../connectors/mulesoft.md) or [Flex](../connectors/mulesoft-flex.md) Gateway, [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [IBM DataPower](../connectors/ibm-api-connect.md) connectors.
 * `tcp-capture` for [TCP traffic mirror analysis](../oob/tcp-traffic-mirror/deployment.md).
-* `envoy-external-filter` for [gRPC-based external processing filter](../connectors/istio-inline.md) for APIs managed by Istio.
+* `envoy-external-filter` for [gRPC-based external processing filter](../connectors/istio.md) for APIs managed by Istio.
 
 === "connector-server"
     If you installed the Native Node for a Wallarm connector, the basic configuration looks as follows:
@@ -833,6 +833,8 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
     health_check:
       enabled: true
       listen_address: :8080
+    
+    drop_on_overload: true
     ```
 === "tcp-capture"
     ```yaml
@@ -875,6 +877,8 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
     health_check:
       enabled: true
       listen_address: :8080
+    
+    drop_on_overload: true
     ```
 
 ### input_filters
@@ -1055,3 +1059,23 @@ Default: `true`.
 Sets the address and port for the `/live` and `/ready` health check endpoints.
 
 Default: `:8080` (all network interfaces on the port 8080).
+
+### drop_on_overload
+
+Controls whether the Node drops incoming requests when the processing load exceeds its capacity.
+
+**Compatibility**
+
+* Native Node 0.16.1 and higher
+* Not supported in the AWS AMI yet
+* For the [Envoy connector](../connectors/istio.md), behavior depends on the `failure_mode_allow` setting
+
+    The `drop_on_overload` configuration is not applied.
+
+When enabled (`true`), if the Node cannot process data in real time, it drops excess input and responds with `503 (Service Unavailable)`. This prevents the Node from accumulating unprocessed requests in internal queues, which could otherwise lead to severe performance degradation or out‑of‑memory errors.
+
+Returning 503 allows upstream services, load balancers, or clients to detect overload conditions and retry requests if needed.
+
+In blocking [mode](../../admin-en/configure-wallarm-mode.md), such requests are not blocked.
+
+Default: `true`.

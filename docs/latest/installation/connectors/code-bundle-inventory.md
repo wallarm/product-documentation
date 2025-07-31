@@ -110,13 +110,13 @@ The current version can be found in `Cargo.toml` → `[package]` → `version` p
 
 * Initial release
 
-## Istio
+<!-- ## Istio
 
 [How to upgrade](istio.md#upgrading-the-wallarm-lua-plugin)
 
 ### 1.0.0 (2024-09-13)
 
-* Initial release
+* Initial release -->
 
 ## Broadcom Layer7 API Gateway
 

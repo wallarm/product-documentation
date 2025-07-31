@@ -13,7 +13,7 @@ The [Wallarm Native Node](../nginx-native-node-internals.md), which operates ind
 * When you need a security solution for [TCP traffic mirror analysis](../oob/tcp-traffic-mirror/deployment.md).
     
     Use the installer in `tcp-capture` mode.
-* When you need a [gRPC-based external processing filter](../connectors/istio-inline.md) for APIs managed by Istio.
+* When you need a [gRPC-based external processing filter](../connectors/istio.md) for APIs managed by Istio.
     
     Use the installer in `envoy-external-filter` mode.
 
@@ -210,7 +210,7 @@ If needed, you can change the copied file after the installation is finished. To
 === "tcp-capture"
     [Proceed to the deployment testing](../oob/tcp-traffic-mirror/deployment.md#step-5-test-the-solution).
 === "envoy-external-filter"
-    After deploying the node, the next step is to [update Envoy settings to forward traffic to the node](../connectors/istio-inline.md#2-configure-envoy-to-proxy-traffic-to-the-wallarm-node).
+    After deploying the node, the next step is to [update Envoy settings to forward traffic to the node](../connectors/istio.md#2-configure-envoy-to-proxy-traffic-to-the-wallarm-node).
 
 ## Verifying the node operation
 
@@ -218,8 +218,9 @@ To verify the node is detecting traffic, you can check the logs:
 
 * The Native Node logs are written to `/opt/wallarm/var/log/wallarm/go-node.log` by default.
 * [Standard logs](../../admin-en/configure-logging.md) of the filtering node such as whether the data is sent to the Wallarm Cloud, detected attacks, etc. are located in the directory `/opt/wallarm/var/log/wallarm`.
+* For additional debugging, set the [`log.level`](all-in-one-conf.md#loglevel) parameter to `debug`.
 
-For additional debugging, set the [`log.level`](all-in-one-conf.md#loglevel) parameter to `debug`.
+You can also verify the Node operation by checking its [Prometheus metrics](../../admin-en/native-node-metrics.md) exposed at `http://<NODE_IP>:9000/metrics.`
 
 ## Installer launch options
 

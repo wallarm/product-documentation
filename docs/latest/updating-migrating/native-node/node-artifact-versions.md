@@ -4,11 +4,29 @@ This document lists available [versions](../versioning-policy.md) of the [Native
 
 ## All-in-one installer
 
-The all-in-one installer for the Native Node is used for [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) and self-hosted node deployment with the MuleSoft [Mule](../../installation/connectors/mulesoft.md) or [Flex](../../installation/connectors/mulesoft-flex.md) Gateway, [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Istio](../../installation/connectors/istio-inline.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md) connectors.
+The all-in-one installer for the Native Node is used for [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) and self-hosted node deployment with the MuleSoft [Mule](../../installation/connectors/mulesoft.md) or [Flex](../../installation/connectors/mulesoft-flex.md) Gateway, [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Istio](../../installation/connectors/istio.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md) connectors.
 
 History of all-in-one installer updates simultaneously applies to it's x86_64 and ARM64 (beta) versions.
 
 [How to upgrade](all-in-one.md)
+
+### 0.16.1 (2025-08-01)
+
+* Introduced the [`drop_on_overload`](../../installation/native-node/all-in-one-conf.md#drop_on_overload) parameter to control dropping excess input under high load
+
+    Enabled (`true`) by default.
+* Added new [Prometheus metrics](../../admin-en/native-node-metrics.md):
+
+    * `wallarm_gonode_application_info` with the general Native Node instance information, e.g.:
+    
+        ```bash
+        wallarm_gonode_application_info{deployment_type="node-native-aio-installer",mode="connector-server",version="0.16.1"} 1
+        ```
+    
+    * `wallarm_gonode_http_inspector_balancer_workers`
+    * `wallarm_gonode_http_inspector_debug_container_len` now includes `aggregate="sum"` for `type="channel:in"`
+    * `wallarm_gonode_http_inspector_errors_total` now includes a new `type="FlowTimeouts"`
+* Improved stability in the internal `http_inspector` module
 
 ### 0.16.0 (2025-07-23)
 
@@ -60,9 +78,36 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ## Helm chart
 
-The Helm chart for the Native Node is used for self-hosted node deployments with the MuleSoft [Mule](../../installation/connectors/mulesoft.md) or [Flex](../../installation/connectors/mulesoft-flex.md) Gateway, [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md), [Kong API Gateway](../../installation/connectors/kong-api-gateway.md), and [Istio](../../installation/connectors/istio-inline.md) connectors.
+The Helm chart for the Native Node is used for self-hosted node deployments with the MuleSoft [Mule](../../installation/connectors/mulesoft.md) or [Flex](../../installation/connectors/mulesoft-flex.md) Gateway, [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md), [Kong API Gateway](../../installation/connectors/kong-api-gateway.md), and [Istio](../../installation/connectors/istio.md) connectors.
 
 [How to upgrade](helm-chart.md)
+
+### 0.16.1 (2025-08-01)
+
+* Introduced the [`input_filters`](../../installation/native-node/helm-chart-conf.md#configconnectorinput_filters) configuration section, allowing to define which requests should be inspected or bypassed by the Node
+* Introduced the [`drop_on_overload`](../../installation/native-node/helm-chart-conf.md#drop_on_overload) parameter to control dropping excess input under high load
+
+    Enabled (`true`) by default.
+* Added new [Prometheus metrics](../../admin-en/native-node-metrics.md):
+
+    * `wallarm_gonode_application_info` with the general Native Node instance information, e.g.:
+    
+        ```bash
+        wallarm_gonode_application_info{deployment_type="node-native-aio-installer",mode="connector-server",version="0.16.1"} 1
+        ```
+    
+    * `wallarm_gonode_http_inspector_balancer_workers`
+    * `wallarm_gonode_http_inspector_debug_container_len` now includes `aggregate="sum"` for `type="channel:in"`
+    * `wallarm_gonode_http_inspector_errors_total` now includes a new `type="FlowTimeouts"`
+* Deprecated the Wallarm Connector for [Istio that relied on a Lua plugin](/5.x/installation/connectors/istio/)
+
+    We recommend using the [gRPC-based external processing filter for Istio](../../installation/connectors/istio.md) instead.
+* For the deprecated Istio connector, the following improvements were made to ensure compatibility in existing deployments:
+
+    * Fixed mesh balancing logic for messages
+    * Added the `disable_mesh` parameter to process all connector traffic on the Node without mesh balancing (`false` by default - mesh balancing is enabled)
+    * Added support for the `drop_on_overload` parameter
+* Improved stability in the internal `http_inspector` module
 
 ### 0.16.0 (2025-07-23)
 
@@ -101,9 +146,27 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ## Docker image
 
-The Docker image for the Native Node is used for self-hosted node deployment with the MuleSoft [Mule](../../installation/connectors/mulesoft.md) or [Flex](../../installation/connectors/mulesoft-flex.md) Gateway, [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Istio](../../installation/connectors/istio-inline.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md) connectors.
+The Docker image for the Native Node is used for self-hosted node deployment with the MuleSoft [Mule](../../installation/connectors/mulesoft.md) or [Flex](../../installation/connectors/mulesoft-flex.md) Gateway, [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Istio](../../installation/connectors/istio.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md) connectors.
 
 [How to upgrade](docker-image.md)
+
+### 0.16.1 (2025-08-01)
+
+* Introduced the [`drop_on_overload`](../../installation/native-node/all-in-one-conf.md#drop_on_overload) parameter to control dropping excess input under high load
+
+    Enabled (`true`) by default.
+* Added new [Prometheus metrics](../../admin-en/native-node-metrics.md):
+
+    * `wallarm_gonode_application_info` with the general Native Node instance information, e.g.:
+    
+        ```bash
+        wallarm_gonode_application_info{deployment_type="node-native-aio-installer",mode="connector-server",version="0.16.1"} 1
+        ```
+    
+    * `wallarm_gonode_http_inspector_balancer_workers`
+    * `wallarm_gonode_http_inspector_debug_container_len` now includes `aggregate="sum"` for `type="channel:in"`
+    * `wallarm_gonode_http_inspector_errors_total` now includes a new `type="FlowTimeouts"`
+* Improved stability in the internal `http_inspector` module
 
 ### 0.16.0 (2025-07-23)
 

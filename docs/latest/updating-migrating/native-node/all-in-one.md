@@ -122,7 +122,7 @@ For the configuration file, you can reuse the one used during the initial instal
     sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.16.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com --preserve false
     ```
 === "envoy-external-filter"
-    The `envoy-external-filter` mode is used for [gRPC-based external processing filter](../../installation/connectors/istio-inline.md) for APIs managed by Istio.
+    The `envoy-external-filter` mode is used for [gRPC-based external processing filter](../../installation/connectors/istio.md) for APIs managed by Istio.
 
     The upgrade command for the x86_64 installer version:
         

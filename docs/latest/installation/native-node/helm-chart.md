@@ -20,10 +20,10 @@ Deploy the Native Node with Helm chart in the following cases:
 * When you deploy a Wallarm connector for MuleSoft [Mule](../connectors/mulesoft.md) or [Flex](../connectors/mulesoft-flex.md) Gateway, [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [IBM DataPower](../connectors/ibm-api-connect.md) and require the node to be self-hosted. This is ideal if you are already using Kubernetes management platforms like OpenShift, Amazon EKS, Azure AKS, or Google GKE. The node is set up as a load balancer with a public IP for easy traffic routing.
 
     Use the Node in `connector-server` mode.
-* When you need an inline [gRPC-based external processing filter](../connectors/istio-inline.md) for APIs managed by Istio. The node is set up as a load balancer with a public IP for easy traffic routing.
+* When you need an inline [gRPC-based external processing filter](../connectors/istio.md) for APIs managed by Istio. The node is set up as a load balancer with a public IP for easy traffic routing.
     
     Use the Node in `envoy-external-filter` mode.
-* When you deploy a Wallarm connector for [Kong API Gateway](../connectors/kong-api-gateway.md) or [Istio (out-of-band)](../connectors/istio.md). The node is deployed with the clusterIP type for internal traffic, without exposing a public IP.
+* When you deploy a Wallarm connector for [Kong API Gateway](../connectors/kong-api-gateway.md). The node is deployed with the clusterIP type for internal traffic, without exposing a public IP.
     
     Use the Node in `connector-server` mode.
 
@@ -248,8 +248,7 @@ After deploying the node, the next step is to apply the Wallarm code to your API
     * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly)
     * [IBM DataPower](../connectors/ibm-api-connect.md#2-obtain-and-apply-the-wallarm-policies-to-apis-in-ibm-api-connect)
     * [Kong API Gateway](../connectors/kong-api-gateway.md#2-obtain-and-deploy-the-wallarm-lua-plugin)
-    * [Istio (out-of-band)](../connectors/istio.md#2-configure-envoy-to-mirror-traffic-to-the-wallarm-node)
-    * [Istio](../connectors/istio-inline.md)
+    * [Istio](../connectors/istio.md)
 
 ## Upgrade
 
