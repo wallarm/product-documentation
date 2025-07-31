@@ -23,7 +23,11 @@ If you need assistance in resolving synchronization or other issues or any other
 
 You can see the following message in **just created or updated** node logs "Can't detect node uuid and/or secret, please add node to cloud first."
 
-On node creation and update, it is registered in a Cloud. The mentioned message may mean that this registration was not successful which will prevent node and Cloud from syncing (only basic monitoring, no rules or lists will come from Cloud, no monitoring results will arrive to Cloud).
+On node creation and update, it is registered in a Cloud. The mentioned message may mean that this registration was not successful which will prevent node and Cloud from syncing (only [basic](../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors) detection in a [monitoring](../admin-en/configure-wallarm-mode.md) mode, no [rules](../user-guides/rules/rules.md), [mitigation controls](../about-wallarm/mitigation-controls-overview.md) or [lists](../user-guides/ip-lists/overview.md) will come from Cloud, no monitoring results will arrive to Cloud).
+
+**Node registered**
+
+The quickest way to make sure the node was registered successfully is to check its presence in Wallarm Console → [**Nodes**](../user-guides/nodes/nodes.md) section. The further syncing status can also be checked here.
 
 To generally resolve "not registered node" issues, contact the [Wallarm support team](https://support.wallarm.com/).
 
