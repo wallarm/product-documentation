@@ -51,4 +51,4 @@ Provides detailed statistics from the HTTP inspector, including processed reques
 
 ### `wallarm_gonode_postanalytics_*`
 
-Contains metrics for the postanalytics service (wstore), including exported requests, errors, and active connections to postanalytics nodes.
+Contains metrics related to exporting data to the postanalytics service (wstore), including exported requests, errors, and active connections to postanalytics nodes.
