@@ -156,8 +156,7 @@ nav:
       - CloudFront: installation/connectors/aws-lambda.md
       - Cloudflare: installation/connectors/cloudflare.md
       - Kong API Gateway: installation/connectors/kong-api-gateway.md
-      - Istio (Out-of-Band): installation/connectors/istio.md
-      - Istio: installation/connectors/istio-inline.md
+      - Istio: installation/connectors/istio.md
       - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
       - Fastly: installation/connectors/fastly.md
       - IBM API Connect: installation/connectors/ibm-api-connect.md
@@ -314,6 +313,7 @@ nav:
       - Configuring Failover Method: admin-en/configure-backup-en.md
       - Filtering Node Logs: admin-en/configure-logging.md
       - Statistics Service: admin-en/configure-statistics-service.md
+      - Native Node Metrics: admin-en/native-node-metrics.md
       - Using a Mirrored Wallarm Repository:
         - How to Mirror the Wallarm Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
         - Installing Wallarm Packages from the Local JFrog Artifactory Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md

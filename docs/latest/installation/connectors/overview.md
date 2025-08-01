@@ -33,7 +33,7 @@ Wallarm offers connectors for the following platforms:
 | [Amazon CloudFront](aws-lambda.md) | In-line, out-of-band | Security Edge, self-hosted |
 | [Cloudflare](cloudflare.md) | In-line, out-of-band | Security Edge, self-hosted |
 | [Kong Ingress Controller](kong-api-gateway.md) | In-line | Self-hosted |
-| [Istio Ingress](istio.md) | Out-of-band | Self-hosted |
+| [Istio Ingress](istio.md) | In-line, out-of-band | Self-hosted |
 | [Broadcom Layer7 API Gateways](layer7-api-gateway.md) | In-line | Self-hosted |
 | [Fastly](fastly.md) | In-line, out-of-band | Security Edge, self-hosted |
 | [IBM DataPower](ibm-api-connect.md) | In-line | Security Edge, self-hosted |

@@ -13,7 +13,7 @@
 
 # Wallarm Filter for Istio Ingress
 
-Wallarm provides a filter for securing APIs managed by Istio to analyze traffic [in-line](../inline/overview.md). You deploy the Wallarm node externally and apply the Wallarm-provided configuration in the Envoy settings to route traffic to the Wallarm node for analysis via the gRPC-based external processing filter.
+Wallarm provides a filter for securing APIs managed by Istio to analyze traffic [in-line](../inline/overview.md) or [out-of-band](../oob/overview.md). You deploy the Wallarm node externally and apply the Wallarm-provided configuration in the Envoy settings to route traffic to the Wallarm node for analysis via the gRPC-based external processing filter.
 
 !!! info "OOB mode (mirrored traffic)"
     You can also use Wallarm filter for Istio to analyze traffic [out-of-band (OOB)](../oob/overview.md) by setting the `observability_mode` Envoy parameter described [here](https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/http/ext_proc/v3/ext_proc.proto#envoy-v3-api-msg-extensions-filters-http-ext-proc-v3-externalprocessor).

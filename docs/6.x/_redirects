@@ -867,3 +867,5 @@
 /tr/installation/on-premise/ /tr/installation/on-premise/overview/
 /pt-br/installation/on-premise/ /pt-br/installation/on-premise/overview/
 /ar/installation/on-premise/ /ar/installation/on-premise/overview/
+
+/installation/connectors/istio-inline/ /installation/connectors/istio/
