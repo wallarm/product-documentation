@@ -78,6 +78,13 @@ To configure scanning options:
 
 ### Subdomain discovery
 
+In some cases that could be optimal to disable subdomain discovery (to scan `example.com` but not to scan `app1.example.com`):
+
+* You are not the owner of the subdomain (it may be owned by a subsidiary company or branch company)
+* All subdomains are wildcards (when any subdomain with any random name exists)
+* Infinite number of subdomains
+* You want to additionally optimize scan performance
+
 When subdomain discovery is enabled in your configuration (**Scan configuration** → **Scanning profile** → **Network service discovery** → **Subdomain discovery**), you can adjust this option per domain. To do so:
 
 1. Go to the **Domains and hosts** tab.
