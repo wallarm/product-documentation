@@ -115,9 +115,12 @@ nav:
     # - Triggers: ...
   - Deployment:
     - Deployment Options: installation/supported-deployment-options.md
-    - Security Edge:
-      - Inline: installation/security-edge/deployment.md
-      - Connectors: installation/se-connector.md
+    - Security Edge Inline:
+      - Overview: installation/security-edge-inline/overview.md
+      - Deployment: installation/security-edge-inline/deployment.md
+      - Telemetry portal: installation/security-edge-inline/telemetry-portal.md
+      - Managing deployment: installation/security-edge-inline/upgrade-and-management.md
+    - Security Edge Connectors: installation/se-connector.md
     - Kubernetes:
       - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
       - Sidecar:
