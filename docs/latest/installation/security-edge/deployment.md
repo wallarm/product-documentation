@@ -107,17 +107,27 @@ If an origin has multiple servers, you can specify all of them. Requests are dis
             104.211.29.72
             104.211.29.73
             ```
+        === "East US 2"
+            ```
+            20.65.88.253
+            20.65.88.252
+            ```
         === "West US"
             ```
             104.210.63.116
             104.210.63.117
             ```
-        === "Germany West Central (EU)"
+        === "West US 3"
+            ```
+            20.38.2.233
+            20.38.2.232
+            ```
+        === "Germany West Central"
             ```
             20.79.250.104
             20.79.250.105
             ```
-        === "Switzerland North (EU)"
+        === "Switzerland North"
             ```
             20.203.240.193
             20.203.240.192
