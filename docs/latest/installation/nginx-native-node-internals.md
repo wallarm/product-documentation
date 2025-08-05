@@ -111,6 +111,12 @@ Traffic to protected APIs passes through Wallarm NGINX Node instances before it 
             <p>Artifacts for deployment on Alibaba Cloud</p>
         </div>
 
+        <a class="do-card" href=../../installation/heroku/docker-image/>
+            <img class="non-zoomable" src="../../images/platform-icons/heroku.svg" />
+            <h3>Heroku</h3>
+            <p>Build a Wallarm Docker image and run it on Heroku</p>
+        </a>
+        
         <a class="do-card" href="../../installation/inline/compute-instances/docker/nginx-based/">
             <img class="non-zoomable" src="../../images/platform-icons/docker.svg" />
             <h3>Docker image</h3>
