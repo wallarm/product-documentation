@@ -228,6 +228,22 @@ nav:
         - Deploying and Configuring Multi-tenant Node: installation/multi-tenant/deploy-multi-tenant-node.md
       - Wallarm Deployment in Private Clouds: installation/cloud-platforms/private-cloud.md
       - Custom NGINX Packages: installation/custom/custom-nginx-version.md
+  - Connector Deployment:
+    - Overview: installation/connectors/overview.md
+    - MuleSoft Mule Gateway: installation/connectors/mulesoft.md
+    - MuleSoft Flex Gateway: installation/connectors/mulesoft-flex.md
+    - Apigee: installation/connectors/apigee.md
+    - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
+    - Azion Edge: installation/connectors/azion-edge.md
+    - CloudFront: installation/connectors/aws-lambda.md
+    - Cloudflare: installation/connectors/cloudflare.md
+    - Kong API Gateway: installation/connectors/kong-api-gateway.md
+    - Istio (Out-of-Band): installation/connectors/istio.md
+    - Istio: installation/connectors/istio-inline.md
+    - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
+    - Fastly: installation/connectors/fastly.md
+    - IBM API Connect: installation/connectors/ibm-api-connect.md
+    - Code Bundle Changelog: installation/connectors/code-bundle-inventory.md
   - Integrations and Alerts:
     - Overview: user-guides/settings/integrations/integrations-intro.md 
     - Email and Messengers:
