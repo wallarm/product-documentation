@@ -59,7 +59,7 @@ nav:
     - Credential Stuffing Detection: about-wallarm/credential-stuffing.md
     - GraphQL API Protection: api-protection/graphql-rule.md
     - Enumeration Attack Protection: api-protection/enumeration-attack-protection.md
-    - Rate Abuse Protection: api-protection/rate-abuse-protection.md
+    - DoS Protection: api-protection/dos-protection.md
     - Mitigation Controls: about-wallarm/mitigation-controls-overview.md
   - Agentic AI:
     - AI Discovery: agentic-ai/agentic-ai-discovery.md

@@ -133,6 +133,6 @@ The rate limit functionality has the following limitations and peculiarities:
 
 ## Difference with rate abuse protection
 
-For restricting resource consumption and preventing attacks using massive amounts of requests, besides described rate limiting, Wallarm provides the [rate abuse protection](../../api-protection/rate-abuse-protection.md).
+For restricting resource consumption and preventing attacks using massive amounts of requests, besides described rate limiting, Wallarm provides the [rate abuse protection](../../api-protection/dos-protection.md).
 
 The rate limiting delays some requests if rate is too high (puts to buffer) and rejects the remaining when buffer is full, when rate is back to normal, buffered requests are delivered, no blocking is applied by IP or session **while** rate abuse protection blocks attackers by their IPs or sessions for some time.

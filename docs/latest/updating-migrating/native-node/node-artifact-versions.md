@@ -55,7 +55,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 0.14.1 (2025-05-07)
 
 * Added support for [**enumeration**](../../api-protection/enumeration-attack-protection.md) mitigation controls
-* Added support for [**Rate abuse protection**](../../api-protection/rate-abuse-protection.md) mitigation control
+* Added support for [**DoS protection**](../../api-protection/dos-protection.md) mitigation control
 * Added support for the [IBM API Connect connector](../../installation/connectors/ibm-api-connect.md)
 * Fixed the [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115) vulnerabilities
 * Added support for external health check endpoint in the `connector-server` mode

@@ -1,1 +1,0 @@
---8<-- "latest/api-protection/rate-abuse-protection.md"

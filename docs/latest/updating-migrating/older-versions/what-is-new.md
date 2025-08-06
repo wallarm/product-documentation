@@ -154,16 +154,16 @@ Comparing to triggers that were used for this protection before, mitigation cont
 
 ![BOLA protection mitigation control - example](../../images/user-guides/mitigation-controls/mc-bola-example-01.png)
 
-### Rate abuse protection
+### DoS protection
 
 !!! tip ""
     [NGINX Node 6.1.0 and higher](../node-artifact-versions.md) and [Native Node 0.14.1 and higher](../native-node/node-artifact-versions.md)
 
 The [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) is included in the [OWASP API Top 10 2023](../../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks. Being a threat by itself (service slow-down or complete down by overload), this also serves as foundation to different attack types, for example, enumeration attacks. Allowing too many requests per time is one of the main causes of these risks.
 
-Wallarm provides the new [**Rate abuse protection**](../../api-protection/rate-abuse-protection.md) mitigation control to help prevent excessive traffic to your API.
+Wallarm provides the new [**DoS protection**](../../api-protection/dos-protection.md) mitigation control to help prevent excessive traffic to your API.
 
-![Rate abuse prevention - JWT example](../../images/api-protection/mitigation-controls-rate-abuse-prevention-jwt.png)
+![DoS protection - JWT example](../../images/api-protection/mitigation-controls-dos-protection-jwt.png)
 
 ### Default controls
 
