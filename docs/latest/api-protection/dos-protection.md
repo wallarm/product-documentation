@@ -1,8 +1,8 @@
-# Rate Abuse Protection <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# DoS Protection <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 The [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) is included in the [OWASP API Top 10 2023](../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks. Being a threat by itself (service slow-down or complete down by overload), this also serves as foundation to different attack types, for example, enumeration attacks. Allowing too many requests per time is one of the main causes of these risks.
 
-Wallarm provides the **Rate abuse protection** [mitigation control](../about-wallarm/mitigation-controls-overview.md) to help prevent excessive traffic to your API.
+Wallarm provides the **DoS protection** [mitigation control](../about-wallarm/mitigation-controls-overview.md) to help prevent excessive traffic to your API.
 
 Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.14.1 or higher.
 
@@ -13,7 +13,7 @@ Before proceeding: use the [Mitigation Controls](../about-wallarm/mitigation-con
 To configure rate abuse protection:
 
 1. Proceed to Wallarm Console → **Mitigation Controls**.
-1. Use **Add control** → **Rate abuse protection**.
+1. Use **Add control** → **DoS protection**.
 1. Describe the **Scope** to apply the mitigation control to.
 1. If necessary, define advanced conditions in **Scope filters**.
 1. Set threshold to count number of requests per time interval.
@@ -28,7 +28,7 @@ By limiting requests per time by user sessions, you can restrict brute force att
 
 Suppose your application accepts POST requests that include a Bearer JWT at the `https://example.com/api/login` endpoint. We want to block for 1 hour sessions within which more than 10 requests per 60 seconds are sent to this endpoint. For this scenario, the mitigation control limiting requests per time will appear as follows:
 
-![Rate abuse prevention - JWT example](../images/api-protection/mitigation-controls-rate-abuse-prevention-jwt.png)
+![DoS protection - JWT example](../images/api-protection/mitigation-controls-dos-protection-jwt.png)
 
 ## Difference with rate limiting
 

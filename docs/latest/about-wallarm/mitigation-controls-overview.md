@@ -15,7 +15,7 @@ Using mitigation controls, you can enable and configure:
 * [BOLA enumeration protection](../api-protection/enumeration-attack-protection.md)
 * [Forced browsing protection](../api-protection/enumeration-attack-protection.md)
 * [Brute force protection](../api-protection/enumeration-attack-protection.md)
-* [Rate abuse protection](../api-protection/rate-abuse-protection.md)
+* [DoS protection](../api-protection/dos-protection.md)
 
 ## Mitigation control branches
 
@@ -63,7 +63,7 @@ Besides [Scope](#scope), mitigation control may include other conditions that de
 * For [GraphQL API protection](../api-protection/graphql-rule.md) they are policy positions - control will act only if any of them is violated by request.
 * For [Enumeration attack protection](../api-protection/enumeration-attack-protection.md), they are multiple parameters of requests - control will act only if all specified parameters/values are met.
 
-For some controls, like [Enumeration attack protection](../api-protection/enumeration-attack-protection.md) or [Rate abuse protection](../api-protection/rate-abuse-protection.md), in the **Scope filters** section, you can use the **session context parameters** to quickly select parameters from the list of ones, that were [defined as important](../api-sessions/setup.md#session-context) in **API Sessions**. Use the **Add custom** option in this section to add as filters the parameters that are currently not presented in **API Sessions**. If you do so, these parameters will be added to **API Sessions**' context parameters as well (hidden, meaning you will see these parameters in session details if they are presented in requests, but you will not see them in API Session [context parameter configuration](../api-sessions/setup.md#session-context)).
+For some controls, like [Enumeration attack protection](../api-protection/enumeration-attack-protection.md) or [DoS protection](../api-protection/dos-protection.md), in the **Scope filters** section, you can use the **session context parameters** to quickly select parameters from the list of ones, that were [defined as important](../api-sessions/setup.md#session-context) in **API Sessions**. Use the **Add custom** option in this section to add as filters the parameters that are currently not presented in **API Sessions**. If you do so, these parameters will be added to **API Sessions**' context parameters as well (hidden, meaning you will see these parameters in session details if they are presented in requests, but you will not see them in API Session [context parameter configuration](../api-sessions/setup.md#session-context)).
 
 For specifying advanced conditions, you can use [regular expressions](#regular-expressions).
 
@@ -88,7 +88,7 @@ The list of available modes may vary depending on the particular control.
 You can use **On/Off** switcher to temporarily disable mitigation control and re-enable it when necessary. Consider the example below to understand the difference between disabled mitigation control and the one enabled in Excluding mitigation mode:
 
 * Consider the fact that controls [work in branches](#mitigation-control-branches).
-* Let's say you have [Rate abuse protection](../api-protection/rate-abuse-protection.md) control set for `example.com` (50 request in minute) and control of the same type for child `example.com/login` (10 request in minute). This will result in restriction of 50 request in minute for all addresses under `example.com`, except addresses under `example.com/login` where it will be stricter - 10 request in minute.
+* Let's say you have [DoS protection](../api-protection/dos-protection.md) control set for `example.com` (50 request in minute) and control of the same type for child `example.com/login` (10 request in minute). This will result in restriction of 50 request in minute for all addresses under `example.com`, except addresses under `example.com/login` where it will be stricter - 10 request in minute.
 * If you disable (switcher to **Off**) rate abuse protection control for `example.com/login`, it will stop doing anything (as if you deleted it) - restriction for all scope will be defined by parent control (50 request in minute).
 * If you re-enable rate abuse protection control for `example.com/login` and set its mitigation mode to **Excluding**, it will stop rate abuse protection for this branch - restriction for all `example.com` will be 50 request in minute, except `example.com/login` where there will be no restriction of rate abuse protection type at all.
 
