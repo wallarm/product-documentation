@@ -8,12 +8,12 @@ Note that file size upload restrictions are not the only [measure for preventing
 
 Depending on your subscription plan, one of the following configuration methods for file upload restriction will be available:
 
-* Mitigation controls ([Advanced API Security](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription)
-* Rules ([Cloud Native WAAP](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription)
+* Mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription)
+* Rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription)
 
 ## Mitigation control-based protection <a href="../../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-As a part of [Advanced API Security](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription, Wallarm provides the **File upload restriction policy** [mitigation control](../about-wallarm/mitigation-controls-overview.md).
+As a part of [Advanced API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription, Wallarm provides the **File upload restriction policy** [mitigation control](../about-wallarm/mitigation-controls-overview.md).
 
 !!! tip ""
     Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.0 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
@@ -44,19 +44,19 @@ To do so, set the **File upload restriction policy** mitigation control as displ
 
 ## Rule-based protection
 
-As a part of [Cloud Native WAAP](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription, Wallarm provides the **File upload restriction policy** [rule](../user-guides/rules/rules.md).
+As a part of [Cloud Native WAAP](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription, Wallarm provides the **File upload restriction policy** [rule](../user-guides/rules/rules.md).
 
 **Creating and applying the rule**
 
 --8<-- "../include/rule-creation-initial-step.md"
 1. Choose **Mitigation controls** → **File upload restriction policy**.
-1. In **If request is**, [describe](rules.md#configuring) the scope to apply the rule to.
+1. In **If request is**, [describe](../user-guides/rules/rules.md#configuring) the scope to apply the rule to.
 1. In **Size restrictions** set size restriction and **Mode**.
 1. Optionally, specify request point to apply restriction to (if not set, restriction is applied to the whole request size).
 
     ![File upload restriction - rule](../images/api-protection/rule-file-upload.png)
 
-1. Wait for the [rule compilation and uploading to the filtering node to complete](rules.md#ruleset-lifecycle).
+1. Wait for the [rule compilation and uploading to the filtering node to complete](../user-guides/rules/rules.md#ruleset-lifecycle).
 
 ## Viewing detected attacks
 
@@ -71,5 +71,5 @@ You can switch between **Attacks** and **API Sessions** views using buttons in r
 Besides setting file upload restriction policies, Wallarm provides other mechanisms for preventing unrestricted resource consumption. They are:
 
 * Detecting and blocking unrestricted resource consumption performed by bots (Wallarm's API Abuse Prevention, needs to be configured to work).
-* [Rate abuse prevention](../api-protection/rate-abuse-protection.md) mitigation control (requires [Advanced API Security](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription).
+* [DoS protection](../api-protection/dos-protection.md) mitigation control (requires [Advanced API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription).
 * [Advanced rate limiting](../user-guides/rules/rate-limiting.md).
