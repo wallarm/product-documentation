@@ -10,6 +10,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.16.3 (2025-08-05)
+
+* Fixed a silent failure when upgrading with the `--preserve` flag set to `true`
+
 ### 0.16.1 (2025-08-01)
 
 * Introduced the [`drop_on_overload`](../../installation/native-node/all-in-one-conf.md#drop_on_overload) parameter to control dropping excess input under high load
@@ -82,6 +86,10 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.16.3 (2025-08-05)
+
+* Bug fixes
+
 ### 0.16.1 (2025-08-01)
 
 * Introduced the [`input_filters`](../../installation/native-node/helm-chart-conf.md#configconnectorinput_filters) configuration section, allowing to define which requests should be inspected or bypassed by the Node
@@ -149,6 +157,10 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the MuleSoft [Mule](../../installation/connectors/mulesoft.md) or [Flex](../../installation/connectors/mulesoft-flex.md) Gateway, [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Istio](../../installation/connectors/istio.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md) connectors.
 
 [How to upgrade](docker-image.md)
+
+### 0.16.3 (2025-08-05)
+
+* Fixed a silent failure when upgrading with the `--preserve` flag set to `true`
 
 ### 0.16.1 (2025-08-01)
 
