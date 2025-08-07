@@ -21,11 +21,11 @@ The following classifies and prioritizes problems that can occur with Wallarm se
 
 The following describes Wallarm's service levels in case when problems occur:
 
-| Problem classification | Initial response‍ (off-peak time) | Resolution/‍mitigation | Status Updates |
+| Problem classification | Initial response‍ (off-peak time) | Resolution/‍mitigation | Status updates |
 | ------- | ------- | ------- | ------- |
 | Urgent | 2 hours | 4 hours | Every 30 minutes |
 | High | 3 hours | 24 hours | Every 4 hours |
-| Medium | 12 hours | Next scheduled release | Weekly |
+| Medium | 12 hours | [Next scheduled release](updating-migrating/versioning-policy.md) | Weekly |
 | Low | 36 hours | Quarterly | Twice a month |
 
 ## Normal functioning characteristics
