@@ -30,7 +30,7 @@ The following describes Wallarm's service levels in case when problems occur:
 | Medium | 12 hours | [Next scheduled release](updating-migrating/versioning-policy.md) | Weekly |
 | Low | 36 hours | Quarterly | Twice a month |
 
-The status updates arrive in form of comments to the raised service request at [Customer Portal](https://wallarm.atlassian.net/servicedesk/customer/portal/5) accompanied by email notification on each new comment or change. All your service requests are listed in your profile at Customer Portal.
+The status updates arrive in form of comments to the raised service request at [Customer Portal](https://wallarm.atlassian.net/servicedesk/customer/portal/5) accompanied by email/Slack notification on each new comment or change. All your service requests are listed in your profile at Customer Portal.
 
 ## Normal functioning characteristics
 
