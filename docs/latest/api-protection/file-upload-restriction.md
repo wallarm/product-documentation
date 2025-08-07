@@ -42,6 +42,30 @@ To do so, set the **File upload restriction policy** mitigation control as displ
 
 ![File upload restriction MC - example](../images/api-protection/mitigation-controls-file-upload-1.png)
 
+#### PUT upload restriction via exact point size
+
+Let us say you want to register as attack (without blocking) the attempts to upload via the PUT method files greater than 100KB TBD to the `/put-upload` address of your application.
+
+To do so, set the **File upload restriction policy** mitigation control as displayed on the screenshot:
+
+![File upload restriction MC - example](../images/api-protection/mitigation-controls-file-upload-2.png)
+
+#### JSON Base64 upload restriction 
+
+Let us say you want to TBD.
+
+To do so, set the **File upload restriction policy** mitigation control as displayed on the screenshot:
+
+![File upload restriction MC - example](../images/api-protection/mitigation-controls-file-upload-3.png)
+
+#### Multipart form data upload restriction
+
+Let us say you want to TBD.
+
+To do so, set the **File upload restriction policy** mitigation control as displayed on the screenshot:
+
+![File upload restriction MC - example](../images/api-protection/mitigation-controls-file-upload-4.png)
+
 ## Rule-based protection
 
 As a part of [Cloud Native WAAP](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription, Wallarm provides the **File upload restriction policy** [rule](../user-guides/rules/rules.md).
