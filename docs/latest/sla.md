@@ -1,4 +1,4 @@
-# Wallarm's Service Level Agreement
+# Wallarm's Service Level Agreement (SLA)
 
 This article describes such aspects of Wallarm's service level as service availability time percentage, possible problem classification and their response and resolution time. Due to [strong dependence](#normal-functioning-characteristics) on client context, normal functioning characteristics are not described in this SLA.
 
@@ -17,6 +17,8 @@ The following classifies and prioritizes problems that can occur with Wallarm se
 | 3 | Medium | There is a loss of a function or resource that does not seriously affect the Services functionality. |
 | 4 | Low | All other requests for service; such as general usage questions or enhancement requests. |
 
+You can set priority to your request when contacting Wallarm Support team through any communicating channel, for example, by setting the **Priority** field when creating a new service request via [Customer Portal](https://wallarm.atlassian.net/servicedesk/customer/portal/5). The set priority can be changed by the Support Team or you as a part of [Wallarm Support Escalation and Incident Process](https://wallarm.atlassian.net/servicedesk/customer/portal/5/article/4319051777).
+
 ## Response and resolution time
 
 The following describes Wallarm's service levels in case when problems occur:
@@ -27,6 +29,8 @@ The following describes Wallarm's service levels in case when problems occur:
 | High | 3 hours | 24 hours | Every 4 hours |
 | Medium | 12 hours | [Next scheduled release](updating-migrating/versioning-policy.md) | Weekly |
 | Low | 36 hours | Quarterly | Twice a month |
+
+The status updates arrive in form of comments to the raised service request at [Customer Portal](https://wallarm.atlassian.net/servicedesk/customer/portal/5) accompanied by email notification on each new comment or change. All your service requests are listed in your profile at Customer Portal.
 
 ## Normal functioning characteristics
 
