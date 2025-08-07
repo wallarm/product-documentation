@@ -65,7 +65,7 @@ API Discovery uses a hybrid approach to conduct analysis locally and in the Clou
 
 ### Noise detection
 
-The API Discovery module bases noise detection on the **endpoint stability** - at least 5 requests must be recorded within 5 minutes from the moment of the first request to the endpoint.
+The API Discovery module bases noise detection on the **endpoint stability** - at least 2 requests must be recorded within 5 minutes from the moment of the first request to the endpoint.
 
 <!--on the two major traffic parameters:
 
