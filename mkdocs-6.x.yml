@@ -113,6 +113,17 @@ nav:
     # - OWASP Top 10: ...
     # - Known attacks / CVEs: ...
     # - Triggers: ...
+  - Security Edge:
+    - Overview: installation/security-edge/overview.md
+    - Inline:
+      - Overview: installation/security-edge/inline/overview.md
+      - Deployment: installation/security-edge/inline/deployment.md
+      - Multi‑Cloud and Multi‑Region: installation/security-edge/inline/multi-region.md
+      - mTLS: installation/security-edge/inline/mtls.md
+      - Host Redirection: installation/security-edge/inline/host-redirection.md
+      - Managing deployment: installation/security-edge/inline/upgrade-and-management.md
+      - Telemetry portal: installation/security-edge/inline/telemetry-portal.md
+    - Connectors: installation/security-edge/se-connector.md
   - Self-Hosted Deployment:
     - Overview: installation/supported-deployment-options.md
     - Kubernetes:
