@@ -400,6 +400,7 @@ nav:
     - Referência da API Wallarm:
       - Visão Geral: api/overview.md
       - Exemplos de Solicitação da API: api/request-examples.md
+    - Wallarm's SLA: sla.md
     - Provider Terraform Wallarm: admin-en/managing/terraform-provider.md
     - Aprendendo o Volume Mensal de Solicitações de uma Aplicação: admin-en/operation/learn-incoming-request-number.md
     - Segurança das Imagens Docker:

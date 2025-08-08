@@ -412,6 +412,7 @@ nav:
     - مرجع الواجهة البرمجية لـ Wallarm:
       - نظرة عامة: api/overview.md
       - أمثلة طلب واجهة برمجة التطبيقات: api/request-examples.md
+    - Wallarm's SLA: sla.md
     - مزود Wallarm لـ Terraform: admin-en/managing/terraform-provider.md
     - معرفة طلبات التطبيق الشهرية: admin-en/operation/learn-incoming-request-number.md
     - أمن صورة Docker:

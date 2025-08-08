@@ -348,6 +348,7 @@ nav:
     - Wallarm API Reference:
       - Overview: api/overview.md
       - API Request Examples: api/request-examples.md
+    - Wallarm's SLA: sla.md
     - Wallarm Terraform Provider: admin-en/managing/terraform-provider.md
     - Learning Monthly Request Volume of an Application: admin-en/operation/learn-incoming-request-number.md
     - Docker Image Security:

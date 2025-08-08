@@ -413,6 +413,7 @@ nav:
     - Wallarm APIリファレンス:
       - 概要: api/overview.md
       - APIリクエスト例: api/request-examples.md
+    - Wallarm's SLA: sla.md
     - Wallarm Terraform Provider: admin-en/managing/terraform-provider.md
     - アプリケーションの月次リクエストボリュームの調査: admin-en/operation/learn-incoming-request-number.md
     - Dockerイメージセキュリティ:

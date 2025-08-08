@@ -376,6 +376,7 @@ nav:
     - Wallarm API Referans:
       - Genel Bakış: api/overview.md
       - API İstek Örnekleri: api/request-examples.md
+    - Wallarm's SLA: sla.md
     - Wallarm Terraform Sağlayıcısı: admin-en/managing/terraform-provider.md
     - Bir Uygulamanın Aylık İstek Hacmini Öğrenci: admin-en/operation/learn-incoming-request-number.md
     - Docker Görüntü Güvenliği:
