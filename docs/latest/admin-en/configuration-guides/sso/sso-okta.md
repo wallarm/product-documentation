@@ -51,16 +51,11 @@ You need Wallarm metadata to enter on the Okta side:
 To configure application in Okta:
 
 1. Log in to Okta as administrator.
-1. Click **Administrator** → **Dashboard** → **Add Applications**.
+1. Click **Applications** → **Applications** → **Create App Integration**.
 
     ![Okta dashboard][img-dashboard]
 
-1. Click **Create New App**.
-1. Set:
-
-    * **Platform** → “Web”.
-    * **Sign‑on method** → “SAML 2.0”.
-
+1. Set **Sign‑on method** → “SAML 2.0”.
 1. Proceed and in the **Create SAML Integration** wizard set general integration settings, such as **App Name** and optionally **App logo**.
 
     ![General settings][img-general]
@@ -87,7 +82,7 @@ To configure application in Okta:
     * Click **Identity Provider metadata** and save displayed data as XML.
     * Click **View Setup instructions** and copy displayed data.
 
-1. Provide Okta users with access to the created application by going to **Administrator** → **Dashboard** → **Assign Applications** and assigning users to the application.
+1. Provide Okta users with access to the created application by going to **Applications** → **Applications** → **Assign Users to App** and assigning users to the application.
 
     ![Assigning users to the application][img-assignments]
 
@@ -97,7 +92,9 @@ The **provisioning** is an automatic transfer of data from SAML SSO solution (Ok
 
 For this to work, provide the attribute mapping:
 
-1. In Okta application, map attribute statements:
+1. In Okta application, click **Applications** → **Applications** → **General** → **SAML Settings (Edit)** → **Next**.
+
+1. Map attribute statements:
 
     * email - user.email
     * first_name - user.firstName
@@ -134,3 +131,12 @@ For this to work, provide the attribute mapping:
             ![Entering the metadata manually][img-transfer-metadata-manually]
     
 1. Complete SSO configuration wizard. Wallarm will test if data to/from your Okta can now be transferred.
+
+## Step 6 (Wallarm): Configure provisioning (SKIP)
+
+For Okta, this step in Wallarm should be skipped.
+
+![SSO groups to Wallarm roles - mapping in Wallarm](../../../images/admin-guides/configuration-guides/sso/sso-mapping-in-wallarm.png)
+
+Just go to the next step and complete SSO configuration wizard. Wallarm will test if data to/from your SAML SSO Solution can now be transferred.
+
