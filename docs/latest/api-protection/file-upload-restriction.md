@@ -1,4 +1,6 @@
-# File Upload Restriction Policy <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+[api-discovery-enable-link]:    ../api-discovery/setup.md#enable
+
+# File Upload Restriction Policy
 
 The [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) is included in the [OWASP API Top 10 2023](../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks. Being a threat by itself (service slow-down or complete down by overload), this also serves as foundation to different attack types, for example, enumeration attacks. Allowing too large file upload is one of the causes of these risks. This article provides an information on how to configure file upload restrictions in Wallarm.
 
@@ -91,6 +93,9 @@ In the example above, in the request point definition, request point is defined 
 
 As a part of [Cloud Native WAAP](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription, Wallarm provides the **File upload restriction policy** [rule](../user-guides/rules/rules.md).
 
+!!! tip ""
+    Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.0 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
+
 **Creating and applying the rule**
 
 --8<-- "../include/rule-creation-initial-step.md"
@@ -105,7 +110,7 @@ As a part of [Cloud Native WAAP](../about-wallarm/subscription-plans.md#waap-and
 
 ## Viewing detected attacks
 
-Violations of file upload restriction policies are displayed as [file upload violation](/attacks-vulns-list.md#file-upload-violation) attacks **Attacks** and **API Sessions**:
+Violations of file upload restriction policies are displayed as [file upload violation](../attacks-vulns-list.md#file-upload-violation) attacks **Attacks** and **API Sessions**:
 
 ![File upload restriction - detected attacks](../images/api-protection/mitigation-controls-file-upload-detected.png)
 
