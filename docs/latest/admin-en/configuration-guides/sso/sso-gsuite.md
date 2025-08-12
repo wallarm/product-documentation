@@ -18,7 +18,11 @@ To fulfill steps, you need accounts with administration rights both for Wallarm 
 
 By default, SSO service for authentication in Wallarm is not active, corresponding blocks are not visible in the **Integrations** section in Wallarm Console.
 
-To activate the SSO service, contact the [Wallarm support team](https://support.wallarm.com/).
+To activate the SSO service, contact the [Wallarm support team](https://support.wallarm.com/). SSO with [provisioning](#step-4-g-suite-configure-provisioning-part-1) will be suggested by default:
+
+* No users will be able to authenticate with login and password after enabling. Request fallback account if necessary - it will retain login/password enter.
+* No users can be disabled or deleted from Wallarm side.
+* If you have [multiple tenants](../../../installation/multi-tenant/overview.md), with Okta, you can use the [tenant dependent permissions](intro.md#tenant-dependent-permissions) option, make decision on that together with Wallarm support.
 
 ## Step 2 (Wallarm): Generate metadata
 
