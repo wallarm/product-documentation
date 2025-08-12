@@ -1004,7 +1004,7 @@ The [unrestricted resource consumption](https://github.com/OWASP/API-Security/bl
 
 Wallarm applies file upload restrictions only if it has one or more [policies](api-protection/file-upload-restriction.md) configured with method available in your subscription plan.
 
-Note that file size upload restrictions are not the only [measure for preventing unrestricted resource consumption](../latest/api-protection/file-upload-restriction.md#comparison-to-other-measures-for-preventing-unrestricted-resource-consumption) provided by Wallarm.
+Note that file size upload restrictions are not the only [measure for preventing unrestricted resource consumption](api-protection/file-upload-restriction.md#comparison-to-other-measures-for-preventing-unrestricted-resource-consumption) provided by Wallarm.
 
 **In addition to Wallarm protection:**
 
