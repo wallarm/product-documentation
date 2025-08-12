@@ -1,0 +1,1 @@
+--8<-- "latest-pt-BR/api-protection/file-upload-restriction.md"
