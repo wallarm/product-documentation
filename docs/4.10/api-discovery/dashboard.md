@@ -3,4 +3,4 @@ search:
   exclude: true
 ---
 
---8<-- "latest/api-discovery/dashboard.md"
+--8<-- "5.0/api-discovery/dashboard.md"

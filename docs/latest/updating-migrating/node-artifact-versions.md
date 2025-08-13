@@ -52,6 +52,7 @@ new attack types in logging variables and search bars?
 
 ### 6.1.0 (2025-05-09)
 
+* Added support for GraphQL protocol in [API Discovery](../api-discovery/overview.md)
 * Added support for [**enumeration**](../api-protection/enumeration-attack-protection.md) mitigation controls
 * Added support for [**DoS protection**](../api-protection/dos-protection.md) mitigation control
 * Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
@@ -112,6 +113,7 @@ new attack types in logging variables and search bars?
 
 ### 6.1.0 (2025-05-09)
 
+* Added support for GraphQL protocol in [API Discovery](../api-discovery/overview.md)
 * Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
 * wstore logs now include `"component": "wstore"` for easier identification
 
@@ -157,6 +159,7 @@ new attack types in logging variables and search bars?
 
 ### 6.1.0 (2025-05-09)
 
+* Added support for GraphQL protocol in [API Discovery](../api-discovery/overview.md)
 * Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
 * wstore logs now include `"component": "wstore"` for easier identification
 
@@ -199,6 +202,7 @@ new attack types in logging variables and search bars?
 
 ### 6.1.0 (2025-05-09)
 
+* Added support for GraphQL protocol in [API Discovery](../api-discovery/overview.md)
 * Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
 * wstore logs now include `"component": "wstore"` for easier identification
 
@@ -239,6 +243,7 @@ new attack types in logging variables and search bars?
 
 ### 6.1.0 (2025-05-09)
 
+* Added support for GraphQL protocol in [API Discovery](../api-discovery/overview.md)
 * Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
 * wstore logs now include `"component": "wstore"` for easier identification
 
