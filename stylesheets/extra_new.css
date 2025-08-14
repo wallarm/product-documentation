@@ -653,7 +653,7 @@ img {
   border: none;
   color: white;
   text-align: center;
-  font-weight: bold;
+  font-weight: 500;
   display: inline-block;
   font-size: 14px;
   padding: 0 17px;
@@ -669,12 +669,12 @@ img {
 }
 
 .playground-button {
-  background-color: #FC7303;
+  background-color: #ff441c;
   margin-right: 0px;
 }
 
 .playground-button:hover {
-  background-color: #D85602;
+  background-color: #ff8674;
 }
 
 .signup-button {
