@@ -52,7 +52,7 @@ theme:
     - search.suggest
     - content.tabs.link
   logo: images/wallarm-logo-new.svg
-  favicon: images/favicon.svg
+  favicon: images/favicon.png
   icon:
     repo: fontawesome/brands/github-alt
   font:
