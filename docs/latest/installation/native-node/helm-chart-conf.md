@@ -55,6 +55,24 @@ config:
         #   route: /api
         #   wallarm_application: 3
 
+    proxy_headers:
+      # Rule 1: Internal company proxies
+      - trusted_networks:
+          - 10.0.0.0/8
+          - 192.168.0.0/16
+        original_host:
+          - X-Forwarded-Host
+        real_ip:
+          - X-Forwarded-For
+
+      # Rule 2: External edge proxies (e.g., CDN, reverse proxy)
+      - trusted_networks:
+          - 203.0.113.0/24
+        original_host:
+          - X-Real-Host
+        real_ip:
+          - X-Real-IP
+
     log:
       pretty: false
       level: info
@@ -306,6 +324,47 @@ Host-specific traffic [filtration mode](../../admin-en/configure-wallarm-mode.md
     The `off` value should be quoted `"off"`.
 
 Default: `monitoring`.
+
+### config.connector.proxy_headers
+
+Configures how the Native Node extracts the original client IP and host when traffic passes through proxies or load balancers.
+
+* `trusted_networks`: trusted proxy IP ranges (CIDRs). Headers like `X-Forwarded-For` are only trusted if the request comes from these networks.
+
+    If omitted, all networks are trusted (not recommended).
+* `original_host`: headers to use for the original `Host` value, if modified by a proxy.
+* `real_ip`: headers to use for extracting the real client IP address.
+
+You can define multiple rules for different proxy types or trust levels.
+
+!!! info "Rule evaluation order"    
+    Only the first matching rule is applied per request.
+
+Supported in Native Node 0.17.1 and later.
+
+Example:
+
+```yaml
+config:
+  connector:
+    proxy_headers:
+      # Rule 1: Internal company proxies
+      - trusted_networks:
+          - 10.0.0.0/8
+          - 192.168.0.0/16
+        original_host:
+          - X-Forwarded-Host
+        real_ip:
+          - X-Forwarded-For
+
+      # Rule 2: External edge proxies (e.g., CDN, reverse proxy)
+      - trusted_networks:
+          - 203.0.113.0/24
+        original_host:
+          - X-Real-Host
+        real_ip:
+          - X-Real-IP
+```
 
 ### config.connector.log
 
