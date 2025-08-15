@@ -5,6 +5,8 @@ These instructions describe the steps to configure access to Wallarm API via the
 * `https://api.wallarm.com/` for the EU Cloud
 * `https://us1.api.wallarm.com/` for the US Cloud
 
+The instructions are applicable both for [NGINX](../../installation/nginx-native-node-internals.md#nginx-node) and [Native](../../installation/nginx-native-node-internals.md#native-node) nodes.
+
 ## Access during and after installation
 
 You need to configure access:
