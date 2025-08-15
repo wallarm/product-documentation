@@ -79,18 +79,68 @@ The API Discovery module bases noise detection on the **endpoint stability** - a
 
 The API inventory will display the endpoints and parameters that exceeded these limits. The time required to build the complete API inventory depends on the traffic diversity and intensity. 
 
-Also, the API Discovery performs filtering of requests relying on the other criteria:
+Also, the API Discovery performs filtering of requests relying on the other criteria, described in the sections below.
 
-* Only those requests to which the server responded in the 2xx range are processed.
-* Requests that do not conform to the design principles of the REST, GraphQL, or SOAP API are not processed.
-    
-    An entry is NOT classified as a valid API call and not displayed in API Discovery if any of the following conditions are met:
+#### Core filtering criteria
 
-    1. The request path contains a file extension (i.e., the last path segment does not match the pattern `.*.[a-zA-Z0-9]+`).
-    1. The `Content-Type` header of the response is either missing, does not start with application/, or does not indicate a JSON type (i.e., does not match application/json, case-insensitive, and without a charset suffix) or XML type.
+1. **HTTP status code validation** - only requests with server responses in the `2xx` range (`200`-`299`) are processed.
+1. **HTTP method validation** - requests must use valid HTTP methods. The following is not processed: empty method, `OPTIONS`, `HEAD`.
+1. **Host validation** - requests must not target localhost or loopback addresses. The following is not processed: `localhost`, `127.0.0.1`, IPv6 loopback addresses (`::1`, `0:0:0:0:0:0:0:1`, etc.)
+1. **Path validation** - request paths must conform to valid patterns: `^[\w{}\s\-]+(?:[.@][\w{}\s\-]+)*$`. The following is not processed: paths containing CJK characters (Unicode range 0x3000-0x303F).
+1. **File extension filtering** - requests with file extensions are filtered based on content type validation: when a path has an extension, the `Content-type` header validation becomes mandatory.
+1. **Content-type header validation** - the `Content-type` header of response must be valid:
 
-* Standard fields such as `Accept` and alike are discarded.
-* Requests targeting `localhost` or loopback addresses are not processed.
+    * `text/xml`
+    * `application/*json` (any JSON variant)
+    * `application/octet-stream`
+    * `application/*xml` (any XML variant)
+
+    This type of validation is only performed if enabled by the Wallarm support team, except cases when presence of file extension in the path makes it mandatory.
+
+1. **Security filtering** - the following is not processed:
+
+    * Requests with [attack types](../attacks-vulns-list.md)
+    * Requests from DirBuster and similar scanners
+
+#### Protocol-specific criteria
+
+##### GraphQL
+
+**Detection method**: analyzes request payload structure for GraphQL-specific patterns.
+**Key indicators**:
+
+* GraphQL structure in any HTTP valid request type (`GET`, `POST`)
+* Operation types: `query`, `mutation`, `subscription`
+
+**Response pattern**: only JSON object with structure `{"data":{}}`.
+
+##### SOAP
+
+**Detection method**: analyzes XML structure for SOAP envelope patterns.
+**Key indicators**:
+
+* XML structure with SOAP envelope
+* Must contain proper SOAP namespace structure
+
+**Requirements**:
+
+* Must have SOAP envelope with proper namespace
+* Must contain SOAP Body element
+* Must have a method name as the final element
+
+##### REST
+
+**Detection method**: default fallback for requests that don't match other patterns.
+**Key indicators**:
+
+* Does not match GraphQL, SOAP
+* Uses standard HTTP methods (`GET`, `POST`, `PUT`, `DELETE`, etc.)
+
+#### Additional filtering criteria
+
+1. **Multipart request filtering** - multipart requests with header parts are not processed.
+1. **Base64 content filtering** - request points ending with "base64" are excluded.
+1. **Empty value filtering** - request points with empty values are excluded in most contexts.
 
 ### Sensitive data detection
 
