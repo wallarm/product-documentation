@@ -1,6 +1,6 @@
 # Security Edge Free Tier
 
-The Free Tier of [Security Edge](overview.md) lets you evaluate the Wallarm platform and protect up to **500,000 requests per month — free of charge**, without hosting the Wallarm Node yourself.
+The Free Tier of [Security Edge](overview.md) lets you evaluate the Wallarm platform and protect up to **500,000 requests per month - free of charge**, without hosting the Wallarm Node yourself.
 
 With the Security Edge Free Tier, you gain access to the Wallarm platform as [Advanced API Security](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security), including most features, but with some [limitations](#limitations).
 
