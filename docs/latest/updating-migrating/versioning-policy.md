@@ -1,6 +1,6 @@
 # Wallarm Node Versioning Policy
 
-This document details Wallarm's versioning policy for self-hosted [NGINX-based and Native Nodes](../installation/nginx-native-node-internals.md) and [Edge Nodes](../installation/security-edge/deployment.md), which share versions with self-hosted Native Nodes. It covers versioning standards, release schedules, and compatibility guidelines for managing node updates.
+This document details Wallarm's versioning policy for self-hosted [NGINX-based and Native Nodes](../installation/nginx-native-node-internals.md) and [Edge Nodes](../installation/security-edge/overview.md), which share versions with self-hosted Native Nodes. It covers versioning standards, release schedules, and compatibility guidelines for managing node updates.
 
 Each node version is released as a set of artifacts - such as Docker images, Helm charts, or all-in-one installers - packaged for deployment on different platforms.
 

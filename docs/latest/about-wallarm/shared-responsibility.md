@@ -1,5 +1,5 @@
-[link-deployment-se]:           ../installation/supported-deployment-options.md#security-edge
-[link-deployment-hybrid]:       ../installation/supported-deployment-options.md#all-deployment-artifacts
+[link-deployment-se]:           ../installation/security-edge/overview.md
+[link-deployment-hybrid]:       ../installation/supported-deployment-options.md
 [link-deployment-on-prem]:      ../installation/on-premise/overview.md
 
 # Shared Responsibility for Clients' Data
@@ -24,7 +24,7 @@ In this deployment form, both Wallarm filtering nodes and Wallarm Cloud componen
 
     This includes, but is not limited to: server-level patching, operating the necessary services to deliver Wallarm cloud service, vulnerability testing, security event logging and monitoring, incident management, operational monitoring and 24/7 support. Wallarm is also responsible for managing server and perimeter firewall configurations (security groups) of Wallarm cloud environments.
 
-* [Updating](../installation/security-edge/deployment.md#upgrading-the-edge-inline) the Wallarm filtering node component on a [periodic basis](../updating-migrating/versioning-policy.md).
+* Upgrading the [Edge Inline Node](../installation/security-edge/inline/upgrade-and-management.md#upgrading-the-edge-inline) or [Edge Connector Node](../installation/security-edge/se-connector.md#upgrading-the-edge-node) on a [periodic basis](../updating-migrating/versioning-policy.md).
 * Providing you with a copy of the latest Wallarm SOC 2 Type II audit report if requested.
 * Developing, and if necessary, implementing a business continuity and disaster recovery plan (BCDRP) that will aid in the continuation of services provided by Wallarm.
 

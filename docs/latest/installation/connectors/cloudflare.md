@@ -52,7 +52,7 @@ The Wallarm Node is a core component of the Wallarm platform that you need to de
 You can deploy it either hosted by Wallarm or in your own infrastructure, depending on the level of control you require.
 
 === "Edge node"
-    To deploy a Wallarm-hosted node for the connector, follow the [instructions](../se-connector.md).
+    To deploy a Wallarm-hosted node for the connector, follow the [instructions](../security-edge/se-connector.md).
 === "Self-hosted node"
     Choose an artifact for a self-hosted node deployment and follow the attached instructions:
 
@@ -127,4 +127,4 @@ To upgrade the deployed Cloudflare worker to a [newer version](code-bundle-inven
     Preserve the existing values for parameters like `wallarm_node`, `wallarm_mode`, and others.
 1. **Deploy** the updated functions.
 
-Worker upgrades may require a Wallarm Node upgrade, especially for major version updates. See the [Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for the self-hosted Node release notes and upgrade instructions or the [Edge connector upgrade procedure](../se-connector.md#upgrading-the-edge-node). Regular node updates are recommended to avoid deprecation and simplify future upgrades.
+Worker upgrades may require a Wallarm Node upgrade, especially for major version updates. See the [Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for the self-hosted Node release notes and upgrade instructions or the [Edge connector upgrade procedure](../security-edge/se-connector.md#upgrading-the-edge-node). Regular node updates are recommended to avoid deprecation and simplify future upgrades.

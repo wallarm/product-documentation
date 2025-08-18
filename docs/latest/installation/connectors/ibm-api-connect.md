@@ -54,7 +54,7 @@ You can deploy it either hosted by Wallarm or in your own infrastructure, depend
     The IBM API Connect integration requires Wallarm Node [version](../../updating-migrating/native-node/node-artifact-versions.md) 0.13.3 or later in the 0.13.x series, or 0.14.1 or later. Older versions do not support this connector.
 
 === "Edge node"
-    To deploy a Wallarm-hosted node for the connector, follow the [instructions](../se-connector.md).
+    To deploy a Wallarm-hosted node for the connector, follow the [instructions](../security-edge/se-connector.md).
 === "Self-hosted node"
     Choose an artifact for a self-hosted node deployment and follow the attached instructions:
 
@@ -311,4 +311,4 @@ To upgrade the deployed Wallarm policies to a [newer version](code-bundle-invent
         <PATH TO THE UPDATED PRODUCT YAML>
     ```
 
-Policy upgrades may require a Wallarm node upgrade, especially for major version updates. See the [Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for the self-hosted Node release notes and upgrade instructions or the [Edge connector upgrade procedure](../se-connector.md#upgrading-the-edge-node). Regular node updates are recommended to avoid deprecation and simplify future upgrades.
+Policy upgrades may require a Wallarm node upgrade, especially for major version updates. See the [Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for the self-hosted Node release notes and upgrade instructions or the [Edge connector upgrade procedure](../security-edge/se-connector.md#upgrading-the-edge-node). Regular node updates are recommended to avoid deprecation and simplify future upgrades.

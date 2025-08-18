@@ -87,8 +87,8 @@ With Wallarm handling node hosting and maintenance, you can focus on your core i
 
 Available Security Edge deployments include:
 
-* [Security Edge Inline](../installation/security-edge/deployment.md)
-* [Security Edge Connectors](../installation/se-connector.md)
+* [Security Edge Inline](../installation/security-edge/inline/overview.md)
+* [Security Edge Connectors](../installation/security-edge/se-connector.md)
 
 To inquire about this subscription, please contact [sales@wallarm.com](mailto:sales@wallarm.com).
 
@@ -108,7 +108,7 @@ The Security Edge Free Tier account allows:
     * [Vulnerability assessment](../user-guides/vulnerabilities.md)
     * [API Abuse Prevention](../api-abuse-prevention/overview.md)
     * Telemetry portal of Security Edge
-    * Multi-region Security Edge deployment
+    * Multi-cloud Security Edge deployment
 
 If a Free Tier account exceeds 100% of the monthly quota, your access to the Wallarm Console is disabled, along with all integrations. When reaching 200%, protection on your Wallarm nodes is disabled. These restrictions will be in effect until the first day of the next month.
 

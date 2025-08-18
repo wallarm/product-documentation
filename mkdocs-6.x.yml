@@ -250,8 +250,7 @@ nav:
     - CloudFront: installation/connectors/aws-lambda.md
     - Cloudflare: installation/connectors/cloudflare.md
     - Kong API Gateway: installation/connectors/kong-api-gateway.md
-    - Istio (Out-of-Band): installation/connectors/istio.md
-    - Istio: installation/connectors/istio-inline.md
+    - Istio: installation/connectors/istio.md
     - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
     - Fastly: installation/connectors/fastly.md
     - IBM API Connect: installation/connectors/ibm-api-connect.md

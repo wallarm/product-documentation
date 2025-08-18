@@ -1,5 +1,5 @@
-[link-deployment-se]:           ../installation/supported-deployment-options.md#security-edge
-[link-deployment-hybrid]:       ../installation/supported-deployment-options.md#all-deployment-artifacts
+[link-deployment-se]:           ../installation/security-edge/overview.md
+[link-deployment-hybrid]:       ../installation/supported-deployment-options.md
 [link-deployment-on-prem]:      ../installation/on-premise/overview.md
 
 # Wallarm Platform Overview
