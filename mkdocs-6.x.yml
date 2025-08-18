@@ -115,6 +115,7 @@ nav:
     # - Triggers: ...
   - Security Edge:
     - Overview: installation/security-edge/overview.md
+    - Free Tier: installation/security-edge/free-tier.md
     - Inline:
       - Overview: installation/security-edge/inline/overview.md
       - Deployment: installation/security-edge/inline/deployment.md
