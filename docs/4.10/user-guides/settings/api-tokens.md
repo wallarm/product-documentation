@@ -20,6 +20,14 @@ You can generate either personal or shared API tokens:
 
     Only Administrators and Global Administrators can generate these tokens, and only other administrators within the company can use them.
 
+## Token usage
+
+The selected usage scope restricts how and where the token can be used:
+
+* Node deployment - use this option to generate an API token for the [self-hosted Wallarm Node deployment](../../installation/supported-deployment-options.md) or upgrade to authenticate a Node.
+* Wallarm API - select this option to use the token for making authenticated requests directly to the Wallarm API.
+* API Test Patrol agent - [required](../../vulnerability-detection/api-test-patrol/) for work of [API Test Patrol](../../vulnerability-detection/api-test-patrol/setup.md#prerequisites-token).
+
 ## Token expiration
 
 You have the option to set an expiration date for each token. Once set, the token will be deactivated after the specified date.
