@@ -95,7 +95,7 @@ Also, the API Discovery performs filtering of requests relying on the other crit
     * `application/octet-stream`
     * `application/*xml` (any XML variant)
 
-    This type of validation is only performed if enabled by the Wallarm support team, except cases when presence of file extension in the path makes it mandatory.
+    This type of validation is only performed if enabled (see [how to check](setup.md#viewing-general-api-discovery-settings)) by the Wallarm support team, except cases when presence of file extension in the path makes it mandatory. The necessity of this validation in noise reduction depends on the peculiarities of your traffic.
 
 1. **Security filtering** - the following is not processed:
 
