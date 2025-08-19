@@ -37,6 +37,9 @@ To proceed with the deployment, ensure that you meet the following requirements:
 
 * Understanding of the MuleSoft platform.
 * Your application and API are linked and running on Flex Gateway.
+
+    !!! info "Partial requests note"
+        For the connector operating in the blocking [mode](../../admin-en/configure-wallarm-mode.md), ensure your upstream can safely handle partial requests. This is due to the streaming nature of `proxy wasm` policies - some body data may reach the upstream before full validation completes. [Read more](https://docs.mulesoft.com/pdk/latest/policies-pdk-configure-features-stop)
 * Your MuleSoft user is enabled to upload artifacts to the MuleSoft Anypoint Platform account.
 * Access to the **Administrator** account in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
 * [Node.js](https://nodejs.org/en/download) 16.0.0+ and `npm` 7+ installed on your host system.

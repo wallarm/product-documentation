@@ -72,7 +72,12 @@ The current version can be found in `Cargo.toml` → `[package]` → `version` p
 
 | Policy version      | [Native Node version](../../updating-migrating/native-node/node-artifact-versions.md) |
 | ------------------- | ------------------- |
-| 1.0.x               | 0.16.0 and higher   |
+| 1.x.x               | 0.16.0 and higher   |
+
+### 1.1.0 (2025-08-19)
+
+* Upgraded Flex PDK to 1.4.0
+* Fixed Gateway crash on large responses
 
 ### 1.0.0 (2025-07-23)
 
