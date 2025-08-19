@@ -873,3 +873,7 @@
 /installation/inline/security-edge-inline/ /installation/security-edge/inline/deployment/
 /installation/security-edge/deployment/ /installation/security-edge/inline/deployment/
 /installation/se-connector/ /installation/security-edge/se-connector/
+
+/5.x/installation/inline/security-edge-inline/ /5.x/installation/security-edge/inline/deployment/
+/5.x/installation/security-edge/deployment/ /5.x/installation/security-edge/inline/deployment/
+/5.x/installation/se-connector/ /5.x/installation/security-edge/se-connector/

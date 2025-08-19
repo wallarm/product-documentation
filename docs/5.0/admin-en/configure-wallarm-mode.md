@@ -83,7 +83,7 @@ Note that described configuration is applicable only for [in-line](../installati
 
 === "Edge Connectors"
 
-    For [Security Edge connectors](../installation/se-connector.md), you specify the `wallarm_mode` value in the **Filtration mode** selector during the connector deployment.
+    For [Security Edge connectors](../installation/security-edge/se-connector.md), you specify the `wallarm_mode` value in the **Filtration mode** selector during the connector deployment.
 === "Native Node"
     * For Native Node all-in-one installer and Docker image, use the [`route_config.wallarm_mode`](../installation/native-node/all-in-one-conf.md#route_configwallarm_mode) parameter.
     * For Native Node Helm chart, use the [`config.connector.route_config.wallarm_mode`](../installation/native-node/helm-chart-conf.md#configconnectorroute_configwallarm_mode) parameter.
@@ -114,7 +114,7 @@ Note that to create a filtration mode rule, you can also [call the Wallarm API d
 ### Prioritization of methods
 
 !!! warning "Support of the `wallarm_mode_allow_override` directive on the Edge node"
-    Please note that the `wallarm_mode_allow_override` directive cannot be customized on the Wallarm Edge [inline](../installation/security-edge/deployment.md) and [connector](../installation/se-connector.md) nodes.
+    Please note that the `wallarm_mode_allow_override` directive cannot be customized on the Wallarm Edge [inline](../installation/security-edge/inline/deployment.md) and [connector](../installation/security-edge/se-connector.md) nodes.
 
 The `wallarm_mode_allow_override` directive manages the ability to apply rules that are defined on Wallarm Console instead of using the `wallarm_mode` directive values from the filtering node configuration file.
 

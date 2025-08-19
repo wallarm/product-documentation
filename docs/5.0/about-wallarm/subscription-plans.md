@@ -85,8 +85,8 @@ With Wallarm handling node hosting and maintenance, you can focus on your core i
 
 Available Security Edge deployments include:
 
-* [Security Edge Inline](../installation/security-edge/deployment.md)
-* [Security Edge Connectors](../installation/se-connector.md)
+* [Security Edge Inline](../installation/security-edge/inline/deployment.md)
+* [Security Edge Connectors](../installation/security-edge/se-connector.md)
 
 To inquire about this subscription, please contact [sales@wallarm.com](mailto:sales@wallarm.com).
 
