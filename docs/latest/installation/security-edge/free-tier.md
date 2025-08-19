@@ -71,6 +71,7 @@ Some features are not available in the Free Tier, regardless of whether the quic
 * [Vulnerability assessment](../../user-guides/vulnerabilities.md)
 * [API Abuse Prevention](../../api-abuse-prevention/overview.md)
 * Telemetry portal of Security Edge
+* Deployment in Microsoft Azure
 * Multi-cloud Security Edge Inline deployment
 
 ## Next steps

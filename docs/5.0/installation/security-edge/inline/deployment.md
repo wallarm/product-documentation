@@ -28,6 +28,8 @@ See a demo of the full configuration flow:
 
 Choose one or more regions (AWS or Azure) for Edge Node deployment. Select locations close to your APIs for optimal latency.
 
+Available regions depend on your [Wallarm Cloud](../../../about-wallarm/overview.md#cloud) (US → US regions, EU → EU regions).
+
 [More about multi-region and multi-cloud deployment](multi-region.md)
 
 ## 2. Origins

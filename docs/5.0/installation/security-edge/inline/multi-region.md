@@ -12,6 +12,8 @@ This is the most common setup, recommended when you serve requests from multiple
 
 ![!](../../../images/waf-installation/security-edge/inline/multi-region-edge-nodes.png)
 
+Available regions depend on your [Wallarm Cloud](../../../about-wallarm/overview.md#cloud) (US → US regions, EU → EU regions).
+
 ## Multi-cloud deployment
 
 When multiple regions across different cloud providers are selected, all requests are distributed across the selected regions and providers using a **[round‑robin](https://en.wikipedia.org/wiki/Round-robin_DNS)** strategy, regardless of latency.

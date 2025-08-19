@@ -33,6 +33,7 @@ Among all supported [Wallarm deployment options](../supported-deployment-options
 To proceed with the deployment, ensure that you meet the following requirements:
 
 * Understanding of the MuleSoft platform.
+* An Enterprise subscription in Anypoint Platform (required for custom policy deployment and external traffic routing).
 * [Docker](https://docs.docker.com/engine/install/) installed and running on your host system.
 * [Maven (`mvn`)](https://maven.apache.org/install.html).
 * Your MuleSoft user is enabled to upload artifacts to your MuleSoft Anypoint Platform account.
