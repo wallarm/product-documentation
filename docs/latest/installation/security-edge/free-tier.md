@@ -23,7 +23,7 @@ Edge Nodes start in **monitoring** [mode](../../admin-en/configure-wallarm-mode.
     1. Specify a public host (the domain your users connect to).
     1. Define an origin to forward analyzed traffic to.
 
-        If the origin has multiple servers, you can specify all of them. The Edge node will forward traffic to them using [round-robin](https://en.wikipedia.org/wiki/Round-robin_DNS) load balancing.
+        If the origin has multiple servers, you can specify all of them. The Edge Node will forward traffic to them using [round-robin](https://en.wikipedia.org/wiki/Round-robin_DNS) load balancing.
 
         Origins must differ from hosts to avoid loops.
     1. Add the provided **Certificate CNAME** record in your DNS zone to verify domain ownership.

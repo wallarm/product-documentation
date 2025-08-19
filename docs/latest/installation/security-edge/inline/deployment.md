@@ -13,7 +13,7 @@ To run the Edge inline, go to the Wallarm Console → **Security Edge** → **In
 
 On the Free Tier, after deploying Edge Nodes via [Quick setup](../free-tier.md), the **Security Edge** section lets you adjust settings.
 
-You can update the Edge node deployment settings at any time. The node will be re‑deployed with existing CNAME and A records remaining unchanged.
+You can update the Edge Node deployment settings at any time. The Node will be re‑deployed with existing CNAME and A records remaining unchanged.
 
 See a demo of the full configuration flow:
 
@@ -114,7 +114,7 @@ To restrict your origins to trusted traffic only, allow Edge Node connections us
 
 ## 3. Certificates
 
-* If the Edge Inline node is deployed as a direct, Internet-facing solution, Wallarm requires certificates to securely route traffic to your origin servers. Certificates are issued based on the DNS zones specified in this section.
+* If the Edge Inline Node is deployed as a direct, Internet-facing solution, Wallarm requires certificates to securely route traffic to your origin servers. Certificates are issued based on the DNS zones specified in this section.
 
     Once configuration is complete, Wallarm provides a CNAME for each DNS zone. Add this CNAME record to your DNS settings to verify domain ownership and complete the certificate issuance process.
 * If your origin servers are behind a third-party service (e.g., a CDN or a DDoS protection provider like Cloudflare or Akamai) that proxies traffic, certificate issuance is not required. In this case, select the **Skip certificate issuance** option.
@@ -133,7 +133,7 @@ Specify the public domains, ports and subdomains that will direct traffic to the
 1. Specify your hosts. Each host entry must match a DNS zone (when specified in the **Certificates** section) and differ from origins to avoid routing loops.
 
     ??? note "Allowed ports"
-        Directing traffic from HTTP ports to the Edge node is not allowed. The following ports are supported:
+        Directing traffic from HTTP ports to the Edge Node is not allowed. The following ports are supported:
 
         443, 444, 1443, 1760, 2001, 2087, 2096, 4333, 4334, 4430, 4440, 4443 4466, 4993, 5000, 5001, 5454, 7003, 7443, 7741, 8010, 8012, 8070, 8071, 8072, 8075, 8076, 8077, 8078, 8081, 8082, 8084, 8085, 8086, 8088, 8090, 8092, 8093, 8094, 8095, 8096, 8097, 8098, 8099, 8104, 8181, 8243, 8282, 8383, 8443, 8444, 8448, 8585, 8723, 8787, 8801, 8866, 9052, 9090, 9093, 9111, 9193, 9440, 9443, 9797, 44300, 44301, 44302, 44395, 44443, 52233, 55180, 55553, and 60000
 1. (Optional) Associate the host's traffic with a [Wallarm application](../../../user-guides/settings/applications.md) to categorize and manage different API instances or services on the Wallarm platform.
@@ -141,7 +141,7 @@ Specify the public domains, ports and subdomains that will direct traffic to the
 1. (Optionally) Specify server [NGINX directives](https://nginx.org/en/docs/http/ngx_http_proxy_module.html). By default, these directives use NGINX's standard values, as specified in the NGINX documentation.
 1. For each host, define the configuration for the root location (`/`):
 
-    * [Origin](#2-origins) where the Wallarm node will forward the filtered traffic (if no other location-specific settings are defined). The location's path is automatically appended to the origin.
+    * [Origin](#2-origins) where the Wallarm Node will forward the filtered traffic (if no other location-specific settings are defined). The location's path is automatically appended to the origin.
     * (Optionally) Wallarm application.
     * Filtration mode.
 
@@ -171,7 +171,7 @@ For domain verification, add the CNAME records provided in the Wallarm Console t
 
 ![](../../../images/waf-installation/security-edge/inline/cert-cname.png)
 
-DNS changes can take up to 24 hours to propagate. Wallarm starts the Edge node deployment once the CNAME records are verified (if needed).
+DNS changes can take up to 24 hours to propagate. Wallarm starts the Edge Node deployment once the CNAME records are verified (if needed).
 
 ## 6. Routing traffic to the Edge Node
 

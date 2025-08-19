@@ -2,7 +2,7 @@
 
 The telemetry portal for [Security Edge Inline](overview.md) provides a Grafana dashboard with real-time insights into metrics on traffic processed by Wallarm.
 
-The dashboard displays key metrics such as total processed requests, RPS, detected and blocked attacks, deployed Edge node number, resource consumption, number of 5xx responses, etc.
+The dashboard displays key metrics such as total processed requests, RPS, detected and blocked attacks, deployed Edge Node number, resource consumption, number of 5xx responses, etc.
 
 ![!](../../../images/waf-installation/security-edge/inline/telemetry-portal.png)
 
