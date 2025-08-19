@@ -17,10 +17,22 @@ Security Edge service provides a secure cloud environment where Wallarm Nodes ar
 
 ## Available deployment options
 
-Security Edge supports two deployment options:
+<div class="do-section">
+    <div class="do-main">
 
-* [Inline](inline/overview.md): real-time traffic is redirected through the Edge Node, filtered, and forwarded to your origin.
-* [Connector](se-connector.md): deploy the Edge Node and connect it to your API management platform (e.g., MuleSoft or Cloudflare) for either asynchronous mirrored traffic analysis or synchronous traffic redirection for real-time threat blocking.
+        <a class="do-card" href="../inline/overview/">
+            <img class="non-zoomable" src="../../../images/platform-icons/se-inline.svg" />
+            <h3>Security Edge Inline</h3>
+            <p>Real-time traffic is redirected through the Edge Node, filtered, and forwarded to your origin</p>
+        </a>
+
+        <a class="do-card" href="../se-connector/">
+            <img class="non-zoomable" src="../../../images/platform-icons/se-connectors.svg" />
+            <h3>Security Edge Connector</h3>
+            <p>Connect the Edge Node to your API platform for asynchronous analysis or real-time blocking</p>
+        </a>
+    </div>
+</div>
 
 !!! info "Deployment alternatives"
     Looking for more control or traditional hosting options? Visit [Self-Hosted Node Deployment](../supported-deployment-options.md) and [Self-Hosted Node Deployment for Connectors](../connectors/overview.md).
@@ -30,3 +42,5 @@ Security Edge supports two deployment options:
 Security Edge is available on the Free Tier plan with up to **500,000 requests per month - free of charge**.
 
 You can deploy Edge Nodes on the Free Tier plan via the [**Quick setup** wizard](free-tier.md).  
+
+<link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
