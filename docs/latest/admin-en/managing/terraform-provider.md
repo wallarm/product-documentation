@@ -76,7 +76,7 @@ With the Wallarm provider, via Terraform you can manage:
 * [Vulnerabilities](../../user-guides/vulnerabilities.md)
 
 !!! info "Wallarm Terraform provider and Edge nodes"
-    Currently, Edge [inline](../../installation/security-edge/deployment.md) and [connector](../../installation/se-connector.md) nodes cannot be managed via the Wallarm Terraform provider.
+    Currently, Edge [inline](../../installation/security-edge/inline/overview.md) and [connector](../../installation/security-edge/se-connector.md) nodes cannot be managed via the Wallarm Terraform provider.
 
 See how to perform the listed operations in the Wallarm provider [documentation](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs).
 

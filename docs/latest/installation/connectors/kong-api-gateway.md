@@ -10,7 +10,7 @@ The Wallarm connector for Kong Ingress Controller supports only [in-line](../inl
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is the recommended one for securing APIs managed by the Kong Ingress Controller running the Kong API Gateway.
+This solution is the recommended one for securing APIs managed by the Kong Ingress Controller running the Kong API Gateway.
 
 ## Limitations
 

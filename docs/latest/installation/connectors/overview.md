@@ -6,7 +6,7 @@ API deployment can be done in various ways, including utilizing external tools s
 
 Wallarm's connector solution integrates with third-party platforms, such as API gateways or edge platforms, to filter and analyze traffic. The solution operates with two main components:
 
-* The **Wallarm node**, hosted either by [Wallarm](../se-connector.md) or the client, performs traffic analysis and security checks.
+* The **Wallarm node**, hosted either by [Wallarm](../security-edge/se-connector.md) or the client, performs traffic analysis and security checks.
 * A **Wallarm-provided code bundle or policy** which is injected into the third-party platform to route traffic for analysis to the Wallarm node.
 
 With connectors, traffic can be analyzed either [in-line](../inline/overview.md) or [out-of-band](../oob/overview.md):
@@ -39,3 +39,8 @@ Wallarm offers connectors for the following platforms:
 | [IBM DataPower](ibm-api-connect.md) | In-line | Security Edge, self-hosted |
 
 If you couldn't find the connector you are looking for, please feel free to contact our [Sales team](mailto:sales@wallarm.com) to discuss your requirements and explore potential solutions.
+
+!!! info "Deployment alternatives"
+    Want a managed Inline option instead? Explore [Security Edge](../security-edge/overview.md).
+
+    For traditional self-managed deployments (VMs, Kubernetes, cloud environments), see [Self-Hosted Node Deployment](../supported-deployment-options.md).

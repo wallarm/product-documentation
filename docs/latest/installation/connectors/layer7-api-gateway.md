@@ -19,7 +19,7 @@ The Broadcom connector supports only [in-line](../inline/overview.md) traffic fl
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is recommended in case when you manage your APIs with the Layer7 API Gateways.
+This solution is recommended in case when you manage your APIs with the Layer7 API Gateways.
 
 ## Limitations
 

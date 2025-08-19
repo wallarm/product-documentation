@@ -22,7 +22,7 @@ The Wallarm connector for Mule Gateway supports only [in-line](../inline/overvie
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is the recommended one for securing Mule APIs managed by Mule Gateway.
+This solution is the recommended one for securing Mule APIs managed by Mule Gateway.
 
 ## Limitations
 
@@ -49,7 +49,7 @@ The Wallarm node is a core component of the Wallarm platform that you need to de
 You can deploy it either hosted by Wallarm or in your own infrastructure, depending on the level of control you require.
 
 === "Edge node"
-    To deploy a Wallarm-hosted node for the connector, follow the [instructions](../se-connector.md).
+    To deploy a Wallarm-hosted node for the connector, follow the [instructions](../security-edge/se-connector.md).
 === "Self-hosted node"
     Choose an artifact for a self-hosted node deployment and follow the attached instructions:
 
@@ -217,7 +217,7 @@ To upgrade the deployed Wallarm policy to a [newer version](code-bundle-inventor
 
 If the Wallarm policy is applied as an automated policy, direct upgrades may not be possible. In such cases, remove the current policy and reapply the new version manually.
 
-Policy upgrades may require a Wallarm node upgrade, especially for major version updates. See the [Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for the self-hosted Node release notes and upgrade instructions or the [Edge connector upgrade procedure](../se-connector.md#upgrading-the-edge-node). Regular node updates are recommended to avoid deprecation and simplify future upgrades.
+Policy upgrades may require a Wallarm node upgrade, especially for major version updates. See the [Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for the self-hosted Node release notes and upgrade instructions or the [Edge connector upgrade procedure](../security-edge/se-connector.md#upgrading-the-edge-node). Regular node updates are recommended to avoid deprecation and simplify future upgrades.
 
 ## Uninstalling the policy
 

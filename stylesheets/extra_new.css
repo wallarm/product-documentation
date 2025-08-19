@@ -288,8 +288,11 @@ a.md-tabs__link:hover {
   stroke: none;
 }
 
-.md-nav--primary .md-nav__item--expanded .md-nav__icon--left path {
-  stroke: #FC7303;
+.md-nav--primary .md-nav__item--expanded .md-nav__icon--left path,
+.md-nav--primary .md-nav__item--expanded .md-nav__icon--left line,
+.md-nav--primary .md-nav__item--expanded .md-nav__icon--left circle,
+.md-nav--primary .md-nav__item--expanded .md-nav__icon--left rect {
+  stroke: #FC7303 !important;
 }
 
 .md-nav--primary .md-nav__icon--left {
