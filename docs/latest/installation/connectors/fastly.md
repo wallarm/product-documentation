@@ -28,7 +28,7 @@ The Fastly connector supports both [in-line](../inline/overview.md) and [out-of-
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is recommended in case when you deliver traffic through Fastly.
+This solution is recommended in case when you deliver traffic through Fastly.
 
 ## Limitations
 

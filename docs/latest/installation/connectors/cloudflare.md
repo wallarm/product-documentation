@@ -28,7 +28,7 @@ To use Wallarm as a connector for Cloudflare, you need to **deploy the Wallarm N
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is recommended in case when you provide access to your applications via Cloudflare.
+This solution is recommended in case when you provide access to your applications via Cloudflare.
 
 ## Limitations
 

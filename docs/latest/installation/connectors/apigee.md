@@ -9,7 +9,7 @@ The solution involves deploying the Wallarm node externally and injecting custom
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is the recommended one for the following use cases:
+This solution is the recommended one for the following use cases:
 
 * Securing APIs deployed on the Apigee platform with only one API proxy.
 * Requiring a security solution that offers comprehensive attack observation, reporting, and instant blocking of malicious requests.

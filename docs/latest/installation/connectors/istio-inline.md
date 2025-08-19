@@ -20,7 +20,7 @@ Wallarm provides a filter for securing APIs managed by Istio to analyze traffic 
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../supported-deployment-options.md), this is the optimal choice for securing in real time APIs managed by Istio running with Envoy proxy.
+This is the optimal choice for securing in real time APIs managed by Istio running with Envoy proxy.
 
 ## Limitations
 

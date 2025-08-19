@@ -25,7 +25,7 @@ The Wallarm connector for IBM API Connect supports only [in-line](../inline/over
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is recommended for securing APIs published via IBM API Connect.
+This solution is recommended for securing APIs published via IBM API Connect.
 
 ## Limitations
 

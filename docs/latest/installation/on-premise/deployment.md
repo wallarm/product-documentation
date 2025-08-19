@@ -21,7 +21,7 @@ The following is a high-level overview of Wallarm on-premise planning and deploy
 1. Configure the load balancer (for production clusters).
 1. Configure an on-premise Wallarm Cloud license key.
 1. Perform the required configuration of the Wallarm Cloud instance (users, Wallarm product features, triggers, rules, integrations, etc.). [Attack prevention best practices](../../quickstart/attack-prevention-best-practices.md) may be helpful.
-1. Deploy and configure Wallarm Filtering Nodes using any of [supported deployment options](../../installation/supported-deployment-options.md).
+1. Deploy and configure Wallarm Filtering Nodes using any of [supported self-hosted deployment options](../../installation/supported-deployment-options.md).
 
     !!! info "Wallarm Cloud address"
         Configure the Node to connect to your local Wallarm Cloud instead of the Wallarm-managed Cloud. Use the following connection parameters:

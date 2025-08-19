@@ -19,7 +19,7 @@ The integration relies on a Lua plugin, deployed within the Envoy proxy, to hand
 
 This solution is recommended when real-time traffic analysis is unnecessary, and asynchronous analysis is sufficient.
 
-Among all supported [Wallarm deployment options](../supported-deployment-options.md), this is the optimal choice for securing APIs managed by Istio running with Envoy proxy in Kubernetes.
+This is the optimal choice for securing APIs managed by Istio running with Envoy proxy in Kubernetes.
 
 ## Limitations
 

@@ -13,8 +13,6 @@ nav:
     - Getting Started: quickstart/getting-started.md
     - Subscription Plans: about-wallarm/subscription-plans.md
     - Security Edge Free Tier: /installation/security-edge/free-tier/
-    - Self-Hosted Deployment Options: /installation/supported-deployment-options/
-    - Connector Deployment: /installation/connectors/overview/
     - Best Practices: quickstart/attack-prevention-best-practices.md
     - Video Guides:
       - Wallarm Platform Settings: demo-videos/overview.md

@@ -120,7 +120,7 @@ For example, the rule limiting each customer by 10 POST requests per minute to `
 
 The rate limit functionality has the following limitations and peculiarities:
 
-* Rate limiting rule is supported by all [Wallarm deployment forms](../../installation/supported-deployment-options.md) **except for**:
+* Rate limiting rule is supported by all [Security Edge](../../installation/security-edge/overview.md) and [self-hosted](../../installation/supported-deployment-options.md) deployment forms **except for**:
 
     * OOB Wallarm deployment
     * MuleSoft, Amazon CloudFront, Cloudflare, Broadcom Layer7 API Gateway, Fastly connectors

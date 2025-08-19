@@ -25,7 +25,7 @@ The Wallarm connector for Flex Gateway supports both [synchronous (in-line)](../
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is the recommended one for securing APIs managed by Flex Gateway.
+This solution is the recommended one for securing APIs managed by Flex Gateway.
 
 ## Limitations
 

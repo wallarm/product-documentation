@@ -36,7 +36,8 @@ Wallarm is the only solution that unifies API discovery, risk management, real-t
 | [Rogue API Detection (shadow, orphan zombie)](../api-discovery/rogue-api.md) | No | Yes |
 | [Threat Replay Testing](../vulnerability-detection/threat-replay-testing/overview.md) | No | Yes |
 | **Additional options** | | |
-| [Deployment options](../installation/supported-deployment-options.md) | All | All |
+| [Self-hosted Node deployment](../installation/supported-deployment-options.md) | All | All |
+| [Security Edge](../installation/security-edge/overview.md) | No | No |
 | [Integrations](../user-guides/settings/integrations/integrations-intro.md) | All | All |
 | [Number of users](../user-guides/settings/users.md) | Unlimited | Unlimited |
 | [SSO authentication](../admin-en/configuration-guides/sso/intro.md) | Yes | Yes |

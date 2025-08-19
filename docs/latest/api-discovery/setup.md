@@ -4,7 +4,7 @@ This article describes how to enable, configure and debug the [API Discovery](ov
 
 ## Enable
 
-API Discovery is included in all [forms](../installation/supported-deployment-options.md) of the Wallarm node installation. During node deployment, it installs the API Discovery module but keeps it disabled by default.
+API Discovery is included in all [self-hosted](../installation/supported-deployment-options.md), [Security Edge](../installation/security-edge/overview.md) and [Connector](../installation/connectors/overview.md) forms of the Wallarm node installation. During node deployment, it installs the API Discovery module but keeps it disabled by default.
 
 To enable and run API Discovery correctly:
 
