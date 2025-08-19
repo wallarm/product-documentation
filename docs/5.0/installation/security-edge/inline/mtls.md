@@ -4,6 +4,9 @@ Mutual TLS (mTLS) allows the Wallarm Edge Node to authenticate itself to your or
 
 When [configuring Security Edge](deployment.md), you can generate and upload client certificates for the Edge Nodes.
 
+!!! info "Version requirements"
+    mTLS is supported starting from [Edge Node version](upgrade-and-management.md#upgrading-the-edge-inline) 5.3.14-200.
+
 ## How it works
 
 When mTLS is enabled for an origin:
