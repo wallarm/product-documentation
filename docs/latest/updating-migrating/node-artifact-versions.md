@@ -29,11 +29,11 @@ new attack types in logging variables and search bars?
 
 ### 6.3.0 (2025-07-08)
 
+* Added support for [file upload restriction policy](../api-protection/file-upload-restriction.md)
 * In rules, the separator used in [**xml_tag**](../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
 * Internal improvements
 
 <!-- * [Node part only, no public announcement yet] Added support for SOAP-XML API Discovery
-* [Node part only, no public announcement yet] Added support file upload restriction policy
 * [Node part only, no public announcement yet] Added support for unrestricted resource consumption mitigation by API Abuse Prevention -->
 
 ### 6.2.1 (2025-06-23)
@@ -91,6 +91,7 @@ new attack types in logging variables and search bars?
 
 ### 6.3.0 (2025-07-08)
 
+* Added support for [file upload restriction policy](../api-protection/file-upload-restriction.md)
 * Added the [`validation.forbidDangerousAnnotations`](../admin-en/configure-kubernetes-en.md#validationforbiddangerousannotations) chart value to toggle the CEL rule that blocks the dangerous `server-snippet` and `configuration-snippet` annotations
 
     By default, it is set to `false` - dangerous annotations are not blocked.
@@ -143,6 +144,7 @@ new attack types in logging variables and search bars?
 
 ### 6.3.0 (2025-07-08)
 
+* Added support for [file upload restriction policy](../api-protection/file-upload-restriction.md)
 * Added support for the [`postanalytics.wstore.config.serviceAddress`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#postanalyticswstoreconfigserviceaddress) parameter to customize the address and port for incoming **wstore** connections
 * In rules, the separator used in [**xml_tag**](../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
 * Internal improvements
@@ -184,6 +186,7 @@ new attack types in logging variables and search bars?
 
 ### 6.3.0 (2025-07-08)
 
+* Added support for [file upload restriction policy](../api-protection/file-upload-restriction.md)
 * In rules, the separator used in [**xml_tag**](../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
 * Internal improvements
 
@@ -226,6 +229,7 @@ new attack types in logging variables and search bars?
 
 ### 6.3.0 (2025-07-08)
 
+* Added support for [file upload restriction policy](../api-protection/file-upload-restriction.md)
 * In rules, the separator used in [**xml_tag**](../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
 * Internal improvements
 
