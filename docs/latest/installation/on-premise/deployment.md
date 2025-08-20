@@ -79,7 +79,7 @@ Wallarm Cloud servers must meet the following requirements:
 * Supported operating system:
 
     * Ubuntu LTS 22.04 (Ubuntu LTS 24.04 is not supported yet)
-    * Red Hat Enterprise Linux 9.x
+    * Red Hat Enterprise Linux 8.x or 9.x
 * Intel (AMD64) CPU architecture (ARM64 is not supported yet)
 * A regular SSH user account with passwordless SSH access from the management workstation and the ability to run `sudo` without a password
 
