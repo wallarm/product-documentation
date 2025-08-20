@@ -1,10 +1,10 @@
-# Detecting Vulnerabilities
+# Detecting Security Issues
 
 Due to negligence or inadequate information when building or implementing an application, it can be vulnerable to attacks. From this article, you will learn how the Wallarm platform detects application vulnerabilities enabling you to enhance system security.
 
-## What is a vulnerability?
+## What is security issue?
 
-A vulnerability is an error made due to negligence or inadequate information when building or implementing an application. A vulnerability can be exploited by an attacker to cross privilege boundaries (i.e. perform unauthorized actions) within an application.
+A security issue (vulnerability) is an error made due to negligence or inadequate information when building or implementing an application. A vulnerability can be exploited by an attacker to cross privilege boundaries (i.e. perform unauthorized actions) within an application.
 
 ## What vulnerabilities are detected?
 
@@ -135,15 +135,14 @@ If a false positive for a vulnerability is detected, you can add an appropriate 
 
 If the detected vulnerability exists in the protected application but cannot be fixed, we recommend setting up the [**Create a virtual patch**](../user-guides/rules/vpatch-rule.md) rule. This rule will allow blocking attacks exploiting the detected type of vulnerability and will eliminate the risk of an incident.
 
-## Managing discovered vulnerabilities
+## Managing discovered security issues
 
-All detected vulnerabilities are displayed in the Wallarm Console → **Vulnerabilities** section. You can manage vulnerabilities through the interface as follows:
+All detected vulnerabilities are displayed in the Wallarm Console → **Security Issues** section. You can manage vulnerabilities through the interface as follows:
 
 * View and analyze vulnerabilities
-* Run vulnerability status verification: still active or fixed on the application side
 * Close vulnerabilities or mark them as false positives
 
-![Vulnerabilities section](../images/user-guides/vulnerabilities/check-vuln.png)
+![Security Issues](../images/api-attack-surface/security-issues.png)
 
 If you use the [**API Discovery** module](../api-discovery/overview.md) of the Wallarm platform, vulnerabilities are linked with discovered API endpoints, e.g.:
 

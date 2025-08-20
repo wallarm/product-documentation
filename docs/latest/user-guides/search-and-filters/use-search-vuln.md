@@ -1,3 +1,8 @@
+---
+search:
+  exclude: true
+---
+
 [al-sqli]:                ../../attacks-vulns-list.md#sql-injection
 [al-xss]:                 ../../attacks-vulns-list.md#crosssite-scripting-xss
 [al-rce]:                 ../../attacks-vulns-list.md#remote-code-execution-rce
