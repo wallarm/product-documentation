@@ -30,6 +30,7 @@ Using rules, you can control how Wallarm mitigates attacks on your applications 
     * [Advanced rate limiting](../../user-guides/rules/rate-limiting.md)
     * [Virtual patches](../../user-guides/rules/vpatch-rule.md)
     * [Custom attack detectors](../../user-guides/rules/regex-rule.md)
+    * [File upload restrictions](../../api-protection/file-upload-restriction.md#rule-based-protection)
 
 * Fine-tuning attack detection:
 

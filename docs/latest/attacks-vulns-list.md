@@ -990,6 +990,28 @@ CSRF is solved by browsers, other protection methods are less useful but still c
 *   Set the `SameSite` cookie attribute.
 *   Apply the recommendations from the [OWASP CSRF Prevention Cheat Sheet][link-owasp-csrf-cheatsheet].
 
+### File upload violation
+
+**Attack**
+
+**Wallarm code:** `file_upload_violation`
+
+**Description:**
+
+The [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) is included in the [OWASP API Top 10 2023](user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks. Being a threat by itself (service slow-down or complete down by overload), this also serves as foundation to different attack types, for example, enumeration attacks. Allowing too large file upload is one of the causes of these risks.
+
+**Required configuration:**
+
+Wallarm applies file upload restrictions only if it has one or more [policies](api-protection/file-upload-restriction.md) configured with method available in your subscription plan.
+
+Note that file size upload restrictions are not the only [measure for preventing unrestricted resource consumption](api-protection/file-upload-restriction.md#comparison-to-other-measures-for-preventing-unrestricted-resource-consumption) provided by Wallarm.
+
+**In addition to Wallarm protection:**
+
+* Setup client-side JavaScript validation for file size
+* Configure web server (like Nginx or Apache) to reject large files
+* Setup file size check within your application's code
+
 ### Information exposure
 
 **Vulnerability/Attack**
