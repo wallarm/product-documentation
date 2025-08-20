@@ -1,21 +1,18 @@
-# Detecting Vulnerabilities
+# Detecting Security Issues
 
 Due to negligence or inadequate information when building or implementing an application, it can be vulnerable to attacks. From this article, you will learn how the Wallarm platform detects application vulnerabilities enabling you to enhance system security.
 
-## What is a vulnerability?
+## What is security issue?
 
-A vulnerability is an error made due to negligence or inadequate information when building or implementing an application. A vulnerability can be exploited by an attacker to cross privilege boundaries (i.e. perform unauthorized actions) within an application.
+A security issue (vulnerability) is an error made due to negligence or inadequate information when building or implementing an application. A vulnerability can be exploited by an attacker to cross privilege boundaries (i.e. perform unauthorized actions) within an application.
 
-## Vulnerability detection methods
-
-When scanning the application for active vulnerabilities, Wallarm sends requests with attack signs to the protected application address and analyzes application responses. If the response matches one or more pre‑defined vulnerability signs, Wallarm records active vulnerability.
-
-For example: if the response to the request sent to read the `/etc/passwd` contents returns the `/etc/passwd` contents, protected application is vulnerable to the Path Traversal attacks. Wallarm will record the vulnerability with an appropriate type.
+## Detection methods
 
 To detect vulnerabilities in the application, Wallarm uses the following methods:
 
 * **Passive detection**: identifies vulnerabilities by analyzing real traffic, including both requests and responses. This can happen during a security incident, where a real flaw is exploited, or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation.
 * **Threat Replay Testing**: lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. This module finds possible vulnerabilities by probing application endpoints using real attack data from the traffic. By default this method is disabled.
+* **API Test Patrol**: actively scans target applications for vulnerabilities, basing test requests on provided application's OpenAPI specification or Postman collection.
 * **API Attack Surface Management (AASM)**: discovers external hosts with their APIs, for each of them identifies missing WAF/WAAP solutions and vulnerabilities.
 * **API Discovery insights**: the vulnerability was found by [API Discovery](../api-discovery/overview.md) module due to PII transfer in query parameters of GET requests.
 
@@ -34,6 +31,17 @@ The Threat Replay Testing capabilities:
 * **Real-time testing**: Uses live attack data to spot current and potential future weak spots, keeping you one step ahead of hackers.
 * **Safe & smart simulation**: Skips sensitive authentication details and removes harmful code in tests. Simulates attack techniques for max security, not risking actual harm.
 * **Safe non-production tests**: Enables you to [run vulnerability checks in a staging or development setup](../vulnerability-detection/threat-replay-testing/setup.md) using real production data, but without the risks like system overload or data exposure.
+
+### API Test Patrol
+
+Wallarm's [API Test Patrol](../vulnerability-detection/api-test-patrol/overview.md) performs dynamic security testing of your applications and APIs to identify a wide range of vulnerabilities.
+
+API Test Patrol capabilities:
+
+* Tests based on provided application's OpenAPI specification or Postman collection.
+* Deep, dynamic analysis of API endpoints.
+* Detection of vulnerabilities in the application or API itself, as well as security misconfigurations in the underlying infrastructure or environment.
+* Lightweight execution via Docker container.
 
 ### API Attack Surface Management (AASM)
 
@@ -65,15 +73,14 @@ If a false positive for a vulnerability is detected, you can add an appropriate 
 
 If the detected vulnerability exists in the protected application but cannot be fixed, we recommend setting up the [**Create a virtual patch**](../user-guides/rules/vpatch-rule.md) rule. This rule will allow blocking attacks exploiting the detected type of vulnerability and will eliminate the risk of an incident.
 
-## Managing discovered vulnerabilities
+## Managing discovered security issues
 
-All detected vulnerabilities are displayed in the Wallarm Console → **Vulnerabilities** section. You can manage vulnerabilities through the interface as follows:
+All detected vulnerabilities are displayed in the Wallarm Console → **Security Issues** section. You can manage vulnerabilities through the interface as follows:
 
 * View and analyze vulnerabilities
-* Run vulnerability status verification: still active or fixed on the application side
 * Close vulnerabilities or mark them as false positives
 
-![Vulnerabilities section](../images/user-guides/vulnerabilities/check-vuln.png)
+![Security Issues](../images/api-attack-surface/security-issues.png)
 
 If you use the [**API Discovery** module](../api-discovery/overview.md) of the Wallarm platform, vulnerabilities are linked with discovered API endpoints, e.g.:
 
