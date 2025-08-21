@@ -105,7 +105,7 @@ Each request/response XML parameter information includes:
 
 * Parameter name (**Key**)
 * Path: the hierarchical location of a parameter within an XML structure (not displayed, if all parameters are stored in the same root location)
-* Parameter [type](#soap-format-and-data-type)
+* Parameter type
 * Namespaces for path elements (from more general to more specific)
 * Presence and type of sensitive data transmitted by this parameter
 * Information about parameter changes (new, unused)
