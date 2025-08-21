@@ -54,7 +54,7 @@ To activate the subscription plan, contact [sales@wallarm.com](mailto:sales@wall
 
     This subscription plan:
 
-    * Is included into [Advanced API Security](#waap-and-advanced-api-security) plan.
+    * Is included into [Advanced API Security](#waap-and-advanced-api-security) plan
     * Can be added to [Cloud Native WAAP](#waap-and-advanced-api-security) plan
     * Can be used alone (no other plans or filtering node required)
 
