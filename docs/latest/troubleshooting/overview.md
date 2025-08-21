@@ -15,6 +15,7 @@ If you have some problem when working with Wallarm, the following tools are in y
 * Wallarm [service status page](#wallarm-service-status-page)
 * Wallarm [filtering node logs](../admin-en/configure-logging.md)
 * Wallarm [filtering node statistics](../admin-en/configure-statistics-service.md)
+* Wallarm [API](../api/overview.md)
 
 ## Wallarm service status page
 
