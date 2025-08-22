@@ -19,7 +19,7 @@ The following NGINX directives can be customized for each host (server block):
 | `proxy_send_timeout` | Timeout for transmitting request to the origin. [More details](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_send_timeout) | `60s` |
 | `client_max_body_size` | Maximum request body size. [More details](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) | `1m` |
 | `large_client_header_buffers` | Number and size of buffers for large headers. [More details](https://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers) | `4 8k` |
-<!-- | `proxy_ssl_name` and `proxy_ssl_server_name` | Allows to pass the host name through TLS SNI when connecting to the origin via HTTPS. [More details](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_name)<br><br>Controlled by the **Proxy SSL server name** checkbox in host settings. If enabled:<br>`proxy_ssl_server_name on;`<br>`proxy_ssl_name $http_host;` | `$proxy_host` and `off` correspondingly | -->
+| `proxy_ssl_name` and `proxy_ssl_server_name` | Allows to pass the host name through TLS SNI when connecting to the origin via HTTPS. [More details](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_name)<br><br>Controlled by the **Proxy SSL server name** checkbox in host settings. If enabled:<br>`proxy_ssl_server_name on;`<br>`proxy_ssl_name $http_host;` | `$proxy_host` and `off` correspondingly |
 
 ## Location-level directives
 
