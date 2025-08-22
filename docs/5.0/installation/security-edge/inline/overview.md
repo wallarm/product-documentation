@@ -25,7 +25,7 @@ With Security Edge Inline, your API traffic is routed through Wallarm's globally
 
 * Only domains shorter than 64 characters are supported.
 * Only HTTPS traffic is supported; HTTP is not allowed.
-* [Custom blocking page and blocking code](../../../admin-en/configuration-guides/configure-block-page-and-code.md) configurations are not yet supported.
+* [Custom blocking code](../../../admin-en/configuration-guides/configure-block-page-and-code.md) configuration is not yet supported.
 
 ## Deployment
 
