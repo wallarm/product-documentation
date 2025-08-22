@@ -57,7 +57,6 @@ You can reopen the wizard later via the **Quick setup** in the Security Edge sec
 Compared to the full Security Edge configuration flow, the **Quick setup** wizard has the following restrictions:
 
 * Host fine-tuning is not supported: filtration modes, Wallarm applications, NGINX directives
-* Multi-region deployment of Security Edge is not supported
 * Security Edge Inline:
 
     * Apex domains not supported in hosts
@@ -74,7 +73,7 @@ Some features are not available in the Free Tier, regardless of whether the quic
 * [API Abuse Prevention](../../api-abuse-prevention/overview.md)
 * Telemetry portal of Security Edge
 * Deployment in Microsoft Azure
-* Multi-cloud Security Edge Inline deployment
+* Multi-cloud and multi-region Security Edge Inline deployment
 
 ## Next steps
 
