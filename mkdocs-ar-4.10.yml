@@ -140,9 +140,9 @@ nav:
       - يثبت: vulnerability-detection/threat-replay-testing/setup.md
       - نتائج الاختبار: vulnerability-detection/threat-replay-testing/exploring.md
     - API Test Patrol:
-      - Overview: vulnerability-detection/api-test-patrol/overview.md
-      - Setup: vulnerability-detection/api-test-patrol/setup.md
-      - Test Run Results: vulnerability-detection/api-test-patrol/explore.md
+      - Overview: vulnerability-detection/schema-based-testing/overview.md
+      - Setup: vulnerability-detection/schema-based-testing/setup.md
+      - Test Run Results: vulnerability-detection/schema-based-testing/explore.md
     # - OWASP Top 10: ...
     # - هجمات معروفة / CVEs: ...
     # - المحفزات: ...

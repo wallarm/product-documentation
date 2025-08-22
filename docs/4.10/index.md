@@ -88,7 +88,7 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
     <h3 class="icon-homepage api-security-testing">API Security Testing</h3>
     <p><ul>
     <li><a href="./vulnerability-detection/threat-replay-testing/overview/">Threat Replay Testing</a></li>
-    <li><a href="./vulnerability-detection/api-test-patrol/overview/">API Test Patrol</a></li>
+    <li><a href="./vulnerability-detection/schema-based-testing/overview/">API Test Patrol</a></li>
     </ul></p>
 </div>
 
