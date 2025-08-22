@@ -125,7 +125,7 @@ nav:
       - Visão geral: vulnerability-detection/threat-replay-testing/overview.md
       - Configurar: vulnerability-detection/threat-replay-testing/setup.md
       - Resultados dos testes: vulnerability-detection/threat-replay-testing/exploring.md
-    - API Test Patrol:
+    - Schema-Based:
       - Overview: vulnerability-detection/schema-based-testing/overview.md
       - Setup: vulnerability-detection/schema-based-testing/setup.md
       - Test Run Results: vulnerability-detection/schema-based-testing/explore.md

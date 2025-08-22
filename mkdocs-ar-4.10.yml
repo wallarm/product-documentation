@@ -139,7 +139,7 @@ nav:
       - ملخص: vulnerability-detection/threat-replay-testing/overview.md
       - يثبت: vulnerability-detection/threat-replay-testing/setup.md
       - نتائج الاختبار: vulnerability-detection/threat-replay-testing/exploring.md
-    - API Test Patrol:
+    - Schema-Based:
       - Overview: vulnerability-detection/schema-based-testing/overview.md
       - Setup: vulnerability-detection/schema-based-testing/setup.md
       - Test Run Results: vulnerability-detection/schema-based-testing/explore.md

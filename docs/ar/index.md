@@ -88,7 +88,7 @@ hide:
     <h3 class="icon-homepage api-security-testing">اختبار أمان واجهة برمجة التطبيقات</h3>
     <p><ul>
     <li><a href="./vulnerability-detection/threat-replay-testing/overview/">اختبار إعادة تشغيل التهديدات</a></li>
-    <li><a href="./vulnerability-detection/schema-based-testing/overview/">API Test Patrol</a></li>
+    <li><a href="./vulnerability-detection/schema-based-testing/overview/">Schema-Based Testing</a></li>
     </ul></p>
 </div>
 
