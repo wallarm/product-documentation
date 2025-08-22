@@ -112,6 +112,7 @@ nav:
     - Inline:
       - Overview: installation/security-edge/inline/overview.md
       - Deployment: installation/security-edge/inline/deployment.md
+      - NGINX Overrides: installation/security-edge/inline/nginx-overrides.md
       - Multi‑Cloud and Multi‑Region: installation/security-edge/inline/multi-region.md
       - mTLS: installation/security-edge/inline/mtls.md
       - Host Redirection: installation/security-edge/inline/host-redirection.md

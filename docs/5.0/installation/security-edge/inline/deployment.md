@@ -130,7 +130,7 @@ Specify the public domains, ports and subdomains that will direct traffic to the
         443, 444, 1443, 1760, 2001, 2087, 2096, 4333, 4334, 4430, 4440, 4443 4466, 4993, 5000, 5001, 5454, 7003, 7443, 7741, 8010, 8012, 8070, 8071, 8072, 8075, 8076, 8077, 8078, 8081, 8082, 8084, 8085, 8086, 8088, 8090, 8092, 8093, 8094, 8095, 8096, 8097, 8098, 8099, 8104, 8181, 8243, 8282, 8383, 8443, 8444, 8448, 8585, 8723, 8787, 8801, 8866, 9052, 9090, 9093, 9111, 9193, 9440, 9443, 9797, 44300, 44301, 44302, 44395, 44443, 52233, 55180, 55553, and 60000
 1. (Optional) Associate the host's traffic with a [Wallarm application](../../../user-guides/settings/applications.md) to categorize and manage different API instances or services on the Wallarm platform.
 1. Set the [Wallarm mode](../../../admin-en/configure-wallarm-mode.md) for each host.
-1. (Optionally) Specify server [NGINX directives](https://nginx.org/en/docs/http/ngx_http_proxy_module.html). By default, these directives use NGINX's standard values, as specified in the NGINX documentation.
+1. (Optionally) Customize [server NGINX directives](nginx-overrides.md#server-level-directives). Defaults follow standard NGINX values.
 1. For each host, define the configuration for the root location (`/`):
 
     * [Origin](#2-origins) where the Wallarm Node will forward the filtered traffic (if no other location-specific settings are defined). The location's path is automatically appended to the origin.
@@ -144,7 +144,7 @@ For specific **locations** within hosts, you can further customize:
 * Origin. The path defined in the location will automatically append to the origin.
 * Wallarm application.
 * Filtration mode.
-* Some [NGINX directives](https://nginx.org/en/docs/http/ngx_http_proxy_module.html). By default, these directives use NGINX's standard values, as specified in the NGINX documentation.
+* [Location NGINX directives](nginx-overrides.md#location-level-directives). Defaults follow standard NGINX values.
 
 Each location inherits settings from the host and root location, unless specifically overridden.
 
