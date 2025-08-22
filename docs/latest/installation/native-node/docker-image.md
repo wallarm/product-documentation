@@ -98,14 +98,14 @@ To run the Docker image, use the following commands. Mount the `wallarm-node-con
     ```
 === "EU Cloud"
     ```bash
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.17.1
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='api.wallarm.com' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.17.1
     ```
 
 Environment variable | Description| Required
 --- | ---- | ----
 `WALLARM_API_TOKEN` | API token with the `Node deployment/Deployment` usage type. | Yes
 `WALLARM_LABELS` | Sets the `group` label for node instance grouping, for example:<br>`WALLARM_LABELS="group=<GROUP>"` will place node instance into the `<GROUP>` instance group (existing, or, if does not exist, it will be created). | Yes
-`WALLARM_API_HOST` | Wallarm API server:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul>By default: `api.wallarm.com`. | No
+`WALLARM_API_HOST` | Wallarm API server:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul>By default: `api.wallarm.com`. | Yes
 `WALLARM_APID_ONLY` (0.12.1 and higher) | In this mode, attacks detected in your traffic are blocked locally by the node (if [enabled](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)) but not exported to Wallarm Cloud. Meanwhile, [API Discovery](../../api-discovery/overview.md) and some other features remain fully functional, detecting your API inventory and uploading it to the Cloud for visualization. This mode is for those who want to review their API inventory and identify sensitive data first, and plan controlled attack data export accordingly. However, disabling attack export is rare, as Wallarm securely processes attack data and provides [sensitive attack data masking](../../user-guides/rules/sensitive-data-rule.md) if needed. [More details](../../installation/native-node/all-in-one.md#apid-only-mode)<br>By default: `false`. | No
 
 * The `-p` option maps host and container ports:
