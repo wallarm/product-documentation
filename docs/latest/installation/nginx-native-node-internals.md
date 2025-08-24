@@ -111,6 +111,12 @@ Traffic to protected APIs passes through Wallarm NGINX Node instances before it 
             <p>Artifacts for deployment on Alibaba Cloud</p>
         </div>
 
+        <a class="do-card" href=../../installation/heroku/docker-image/>
+            <img class="non-zoomable" src="../../images/platform-icons/heroku.svg" />
+            <h3>Heroku</h3>
+            <p>Build a Wallarm Docker image and run it on Heroku</p>
+        </a>
+        
         <a class="do-card" href="../../installation/inline/compute-instances/docker/nginx-based/">
             <img class="non-zoomable" src="../../images/platform-icons/docker.svg" />
             <h3>Docker image</h3>
@@ -229,10 +235,16 @@ The Native Node works with the following platforms with no limitations:
     <div class="do-main">
         <a class="do-card" href="../../installation/connectors/mulesoft/">
             <img class="non-zoomable" src="../../images/platform-icons/mulesoft.svg" />
-            <h3>MuleSoft</h3>
-            <p>Deploy Wallarm to secure APIs deployed on the MuleSoft Anypoint platform</p>
+            <h3>MuleSoft Mule Gateway</h3>
+            <p>Deploy Wallarm to secure APIs managed by the Mule Gateway</p>
         </a>
-        
+
+        <a class="do-card" href="../../installation/connectors/mulesoft-flex/">
+            <img class="non-zoomable" src="../../images/platform-icons/mulesoft-flex-gateway.png" />
+            <h3>MuleSoft Flex Gateway</h3>
+            <p>Deploy Wallarm to secure APIs managed by the Flex Gateway</p>
+        </a>
+
         <a class="do-card" href="../../installation/connectors/aws-lambda/">
             <img class="non-zoomable" src="../../images/platform-icons/aws-cloudfront.svg" />
             <h3>CloudFront</h3>
@@ -252,12 +264,6 @@ The Native Node works with the following platforms with no limitations:
         </a>
 
         <a class="do-card" href="../../installation/connectors/istio/">
-            <img class="non-zoomable" src="../../images/platform-icons/istio.svg" />
-            <h3>Istio (Out-of-Band)</h3>
-            <p>Deploy Wallarm out-of-band to secure APIs managed by Istio</p>
-        </a>
-
-        <a class="do-card" href="../../installation/connectors/istio-inline/">
             <img class="non-zoomable" src="../../images/platform-icons/istio.svg" />
             <h3>Istio</h3>
             <p>Deploy Wallarm in-line or OOB to secure APIs managed by Istio</p>

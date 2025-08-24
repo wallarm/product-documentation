@@ -15,7 +15,7 @@ Wallarm'ı MuleSoft için bir konnektör olarak kullanmak için, **Wallarm düğ
 
 Wallarm connector for MuleSoft yalnızca [in-line](../inline/overview.md) trafik analizini desteklemektedir:
 
-![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-inline.png)
+![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-mule-gateway-inline.png)
 
 ## Kullanım Durumları
 

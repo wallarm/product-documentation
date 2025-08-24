@@ -1,4 +1,4 @@
-# Security Edge Inline <a href="../../../about-wallarm/subscription-plans/#security-edge"><img src="../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inline <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 The **Security Edge** platform provides a managed service for deploying Wallarm nodes across geographically distributed locations within a Wallarm-hosted environment. One of its key deployment options is **inline** deployment, offering real-time, robust protection for your entire API landscape without the need for any onsite installation.
 
@@ -20,6 +20,7 @@ Security Edge service provides a secure cloud environment where Wallarm nodes ar
 * Only third-level or higher domains are supported (e.g., instead `domain.com` use `www.domain.com`).
 * Only domains shorter than 64 characters are supported.
 * Only HTTPS traffic is supported; HTTP is not allowed.
+* [Custom blocking page and blocking code](../../admin-en/configuration-guides/configure-block-page-and-code.md) configurations are not yet supported.
 
 ## Configuring the Edge Inline
 
@@ -58,16 +59,6 @@ If an origin has multiple servers, you can specify all of them. Requests are dis
 !!! info "Allow traffic from Wallarm IP ranges to origins"
     Your origins should allow incoming traffic from the IP ranges used by the selected regions:
 
-    === "eu-central-1 (Frankfurt)"
-        ```
-        3.76.66.246
-        18.195.202.193
-        ```
-    === "eu-central-2 (Zurich)"
-        ```
-        51.96.131.55
-        16.63.191.19
-        ```
     === "us-east-1"
         ```
         18.215.213.205
@@ -80,6 +71,20 @@ If an origin has multiple servers, you can specify all of them. Requests are dis
         13.56.117.139
         54.177.237.34
         50.18.177.184
+        ```
+    === "eu-central-1 (Frankfurt)"
+        ```
+        18.153.123.2
+        18.195.202.193
+        3.76.66.246
+        3.79.213.212
+        ```
+    === "eu-central-2 (Zurich)"
+        ```
+        51.96.131.55
+        16.63.191.19
+        51.34.0.90
+        51.96.67.145
         ```
 
 ![!](../../images/waf-installation/security-edge/inline/general-settings-section.png)

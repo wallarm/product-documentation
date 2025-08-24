@@ -17,7 +17,7 @@ The [Wallarm Native Node](../nginx-native-node-internals.md), which operates ind
 
 Deploy the Native Node with Helm chart in the following cases:
 
-* When you deploy a Wallarm connector for [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [IBM DataPower](../connectors/ibm-api-connect.md) and require the node to be self-hosted. This is ideal if you are already using Kubernetes management platforms like OpenShift, Amazon EKS, Azure AKS, or Google GKE. The node is set up as a load balancer with a public IP for easy traffic routing.
+* When you deploy a Wallarm connector for [MuleSoft Mule Gateway](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [IBM DataPower](../connectors/ibm-api-connect.md) and require the node to be self-hosted. This is ideal if you are already using Kubernetes management platforms like OpenShift, Amazon EKS, Azure AKS, or Google GKE. The node is set up as a load balancer with a public IP for easy traffic routing.
 
     Use the Node in `connector-server` mode.
 * When you need an inline [gRPC-based external processing filter](../connectors/istio-inline.md) for APIs managed by Istio. The node is set up as a load balancer with a public IP for easy traffic routing.
@@ -46,7 +46,7 @@ The Kubernetes cluster for deploying the Native Node with the Helm chart must me
 
 ## Limitations
 
-* When deploying the Wallarm service with the `LoadBalancer` type, a **trusted** SSL/TLS certificate is required for the domain. Self-signed certificates are not yet supported.
+* When deploying the Wallarm service with the `LoadBalancer` type, a **trusted** SSL/TLS certificate is required for the Node instance domain. Self-signed certificates are not yet supported.
 * [Custom blocking page and blocking code](../../admin-en/configuration-guides/configure-block-page-and-code.md) configurations are not yet supported.
 * [Rate limiting](../../user-guides/rules/rate-limiting.md) by the Wallarm rule is not supported.
 * [Multitenancy](../multi-tenant/overview.md) is not supported yet.
@@ -71,7 +71,7 @@ helm repo update wallarm
 ### 3. Prepare the configuration file
 
 === "LoadBalancer (connector-server)"
-    Deploying the native Wallarm node as a LoadBalancer with a public IP allows you to route traffic from MuleSoft, Cloudflare, Amazon CloudFront, Broadcom Layer7 API Gateway, Fastly to this IP for security analysis and filtration.
+    Deploying the native Wallarm node as a LoadBalancer with a public IP allows you to route traffic from MuleSoft Mule Gateway, Cloudflare, Amazon CloudFront, Broadcom Layer7 API Gateway, Fastly to this IP for security analysis and filtration.
 
     1. Register a domain for the load balancer.
     1. Obtain a **trusted** SSL/TLS certificate.
@@ -133,7 +133,7 @@ helm repo update wallarm
                 type: LoadBalancer
             ```
 === "LoadBalancer (envoy-external-filter)"
-    Deploying the native Wallarm node as a LoadBalancer with a public IP allows you to route traffic from MuleSoft, Cloudflare, Amazon CloudFront, Broadcom Layer7 API Gateway, Fastly to this IP for security analysis and filtration.
+    Deploying the native Wallarm node as a LoadBalancer with a public IP allows you to route traffic from MuleSoft Mule Gateway, Cloudflare, Amazon CloudFront, Broadcom Layer7 API Gateway, Fastly to this IP for security analysis and filtration.
 
     1. Register a domain for the load balancer.
     1. Obtain a **trusted** SSL/TLS certificate.
@@ -211,11 +211,11 @@ helm repo update wallarm
 
 === "US Cloud"
     ```
-    helm upgrade --install --version 0.13.6 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com
+    helm upgrade --install --version 0.13.7 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com
     ```
 === "EU Cloud"
     ```
-    helm upgrade --install --version 0.13.6 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com
+    helm upgrade --install --version 0.13.7 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com
     ```
 
 ### 5. Get the Wallarm load balancer
@@ -240,7 +240,7 @@ After deploying the node, the next step is to apply the Wallarm code to your API
 1. Contact sales@wallarm.com to obtain the Wallarm code bundle for your connector.
 1. Follow the platform-specific instructions to apply the bundle on your API management platform:
 
-    * [MuleSoft](../connectors/mulesoft.md#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange)
+    * [MuleSoft Mule Gateway](../connectors/mulesoft.md#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange)
     * [Cloudflare](../connectors/cloudflare.md#2-obtain-and-deploy-the-wallarm-worker-code)
     * [Amazon CloudFront](../connectors/aws-lambda.md#2-obtain-and-deploy-the-wallarm-lambdaedge-functions)
     * [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md#2-add-the-nodes-ssltls-certificate-to-the-policy-manager)

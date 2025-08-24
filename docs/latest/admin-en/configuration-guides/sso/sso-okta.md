@@ -20,9 +20,16 @@ To fulfill steps, you need accounts with administration rights both for Wallarm 
 
 By default, SSO service for authentication in Wallarm is not active, corresponding blocks are not visible in the **Integrations** section in Wallarm Console.
 
-To activate the SSO service, contact the [Wallarm support team](https://support.wallarm.com/).
+To activate the SSO service, contact the [Wallarm support team](https://support.wallarm.com/). SSO with [provisioning](#step-4-okta-configure-provisioning) will be suggested by default:
+
+* No users will be able to authenticate with login and password after enabling. Request fallback account if necessary - it will retain login/password enter.
+* No users can be disabled or deleted from Wallarm side.
+* If you have [multiple tenants](../../../installation/multi-tenant/overview.md), with Okta, you can use the [tenant dependent permissions](intro.md#tenant-dependent-permissions) option, make decision on that together with Wallarm support.
 
 ## Step 2 (Wallarm): Generate metadata
+
+!!! info "Extended security"
+    If you want to or are required to use the additional security validation for your Okta-to-Wallarm connection, consider using the [Extended security](setup.md#extended-security) option available at this step.
 
 You need Wallarm metadata to enter on the Okta side:
 
@@ -44,16 +51,11 @@ You need Wallarm metadata to enter on the Okta side:
 To configure application in Okta:
 
 1. Log in to Okta as administrator.
-1. Click **Administrator** → **Dashboard** → **Add Applications**.
+1. Click **Applications** → **Applications** → **Create App Integration**.
 
     ![Okta dashboard][img-dashboard]
 
-1. Click **Create New App**.
-1. Set:
-
-    * **Platform** → “Web”.
-    * **Sign‑on method** → “SAML 2.0”.
-
+1. Set **Sign‑on method** → “SAML 2.0”.
 1. Proceed and in the **Create SAML Integration** wizard set general integration settings, such as **App Name** and optionally **App logo**.
 
     ![General settings][img-general]
@@ -80,7 +82,7 @@ To configure application in Okta:
     * Click **Identity Provider metadata** and save displayed data as XML.
     * Click **View Setup instructions** and copy displayed data.
 
-1. Provide Okta users with access to the created application by going to **Administrator** → **Dashboard** → **Assign Applications** and assigning users to the application.
+1. Provide Okta users with access to the created application by going to **Applications** → **Applications** → **Assign Users to App** and assigning users to the application.
 
     ![Assigning users to the application][img-assignments]
 
@@ -90,22 +92,25 @@ The **provisioning** is an automatic transfer of data from SAML SSO solution (Ok
 
 For this to work, provide the attribute mapping:
 
-1. In Okta application, map:
+1. In Okta application, click **Applications** → **Applications** → **General** → **SAML Settings (Edit)** → **Next**.
 
-    * `email`
-    * `first_name`
-    * `last_name`
-    * user group(s) to `wallarm_role:[role]` where `role` is:
+1. Map attribute statements:
 
-        * `admin` (**Administrator**)
-        * `analytic` (**Analyst**)
-        * `api_developer` (**API Developer**)
-        * `auditor` (**Read Only**)
-        * `partner_admin` (**Global Administrator**)
-        * `partner_analytic` (**Global Analyst**)
-        * `partner_auditor` (**Global Read Only**)
+    * email - user.email
+    * first_name - user.firstName
+    * last_name user.lastName
 
-            See all role descriptions [here](../../../user-guides/settings/users.md#user-roles).
+1. Map user groups to `wallarm_role:[role]` where `role` is:
+
+    * `admin` (**Administrator**)
+    * `analytic` (**Analyst**)
+    * `api_developer` (**API Developer**)
+    * `auditor` (**Read Only**)
+    * `partner_admin` (**Global Administrator**)
+    * `partner_analytic` (**Global Analyst**)
+    * `partner_auditor` (**Global Read Only**)
+    
+        See all role descriptions [here](../../../user-guides/settings/users.md#user-roles).
 
     ![Integrations - SSO, mapping in Okta](../../../images/admin-guides/configuration-guides/sso/okta/wallarm-sso-okta-mapping.png)
 
@@ -126,3 +131,12 @@ For this to work, provide the attribute mapping:
             ![Entering the metadata manually][img-transfer-metadata-manually]
     
 1. Complete SSO configuration wizard. Wallarm will test if data to/from your Okta can now be transferred.
+
+## Step 6 (Wallarm): Configure provisioning (SKIP)
+
+For Okta, this step in Wallarm should be skipped.
+
+![SSO groups to Wallarm roles - mapping in Wallarm](../../../images/admin-guides/configuration-guides/sso/sso-mapping-in-wallarm.png)
+
+Just go to the next step and complete SSO configuration wizard. Wallarm will test if data to/from your SAML SSO Solution can now be transferred.
+

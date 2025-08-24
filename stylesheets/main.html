@@ -3,6 +3,8 @@
 {% block scripts %}
 
 {{ super() }}
+
+{% if page.url not in ["installation/connectors/mulesoft-for-wizard/", "installation/connectors/mulesoft-flex-for-wizard/", "installation/connectors/ibm-api-connect-for-wizard/", "installation/connectors/aws-lambda-for-wizard/", "installation/connectors/cloudflare-for-wizard/", "installation/connectors/fastly-for-wizard/"] %}
 <script>
   window.intercomSettings = {
     api_base: "https://api-iam.intercom.io",
@@ -29,6 +31,9 @@
       }, timeout);
   })();
 </script>
+
+{% endif %}
+
 <div id="hs-ads-pixel-3989912" data-response="OFF ANALYLITCS SCRIPT MODULE"></div>
 <div id="cookieBanner-3989912" data-response="OFF GDPR BANNER MODULE"></div>
 <div id="LeadFlows-3989912" data-response="OFF FORMS POPUP MODULE"></div>

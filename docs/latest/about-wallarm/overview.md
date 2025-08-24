@@ -1,5 +1,5 @@
-[link-deployment-se]:           ../installation/supported-deployment-options.md#security-edge
-[link-deployment-hybrid]:       ../installation/supported-deployment-options.md#all-deployment-artifacts
+[link-deployment-se]:           ../installation/security-edge/overview.md
+[link-deployment-hybrid]:       ../installation/supported-deployment-options.md
 [link-deployment-on-prem]:      ../installation/on-premise/overview.md
 
 # Wallarm Platform Overview
@@ -71,7 +71,7 @@ Positioned between the Internet and your APIs, the Wallarm filtering node:
 * Downloads resource-specific security rules you defined in the Wallarm Cloud and applies them during the traffic analysis.
 * Detects sensitive data in your requests, ensuring it remains secure within your infrastructure and is not transmitted to the Cloud as to a third-party service.
 
-You can set up the Wallarm filtering node within your own network or opt for Wallarm Security Edge via the [available deployment choices](../installation/supported-deployment-options.md).
+You can set up the Wallarm filtering node within [your own network](../installation/supported-deployment-options.md) or opt for [Wallarm Security Edge](../installation/security-edge/overview.md).
 
 ### Cloud
 

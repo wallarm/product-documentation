@@ -202,7 +202,7 @@ To install and run the plugin:
 2. Run the plugin:
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.3.0 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.4.0 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
@@ -309,7 +309,7 @@ By using this method, you can deploy Ingress Controller 6.x as an additional ent
 2. Deploy the Ingress controller 6.x:
 
     ```bash
-    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.3.0 -f <PATH_TO_VALUES>
+    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.4.0 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: the name for the Helm release of the Ingress controller chart
@@ -345,7 +345,7 @@ To re‑create the Ingress controller release:
     2. Create a new release with Ingress controller 6.x:
 
         ```bash
-        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.3.0 -f <PATH_TO_VALUES>
+        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.4.0 -f <PATH_TO_VALUES>
         ```
 
         * `<RELEASE_NAME>`: the name for the Helm release of the Ingress controller chart
@@ -397,7 +397,7 @@ Release re‑creation will take several minutes and the Ingress controller will 
 
     ```bash
     cat objects-to-remove.txt | xargs kubectl delete --wait=false -n <NAMESPACE>    && \
-    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.3.0 -f `<PATH_TO_VALUES>`
+    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.4.0 -f `<PATH_TO_VALUES>`
     ```
 
     To decrease service downtime, it is NOT recommended to execute commands separately.
@@ -423,7 +423,7 @@ There are the following parameters passed in the commands:
     helm ls
     ```
 
-    The chart version should correspond to `wallarm-ingress-6.3.0`.
+    The chart version should correspond to `wallarm-ingress-6.4.0`.
 1. Get the Wallarm pod:
     
     ``` bash
@@ -433,8 +433,9 @@ There are the following parameters passed in the commands:
     The pod status should be **STATUS: Running** and **READY: N/N**:
 
     ```
-    NAME                                                              READY     STATUS    RESTARTS   AGE
-    ingress-controller-wallarm-ingress-controller-675c68d46d-cfck8      1/1       Running   0          5m
+    NAME                                                                  READY   STATUS    RESTARTS   AGE
+    ingress-controller-wallarm-ingress-controller-6d659bd79b-952gl        3/3     Running   0          8m7s
+    ingress-controller-wallarm-ingress-controller-wallarm-wstore-7ddmgbfm 3/3     Running   0          8m7s
     ```
 
 3. Send the request with the test [Path Traversal](../../attacks-vulns-list.md#path-traversal) attack to the Wallarm Ingress controller address:

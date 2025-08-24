@@ -19,7 +19,7 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
     <li><a href="./about-wallarm/overview/">Wallarm Overview</a></li>
     <li><a href="./quickstart/getting-started/">Getting Started</a></li>
     <li><a href="./about-wallarm/subscription-plans/">Subscription Plans</a></li>
-    <li><a href="./installation/supported-deployment-options/">Deployment Guides</a></li>
+    <li><a href="./installation/security-edge/free-tier/">Security Edge Free Tier</a></li>
     <li><a href="./quickstart/attack-prevention-best-practices/">Best Practices</a></li>
     <li><a href="./demo-videos/overview/">Video Guides</a></li>
     </ul></p>
@@ -96,24 +96,19 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage api-security-testing">API Security Testing</h3>
+    <h3 class="icon-homepage api-security-testing">Security Testing</h3>
     <p><ul>
     <li><a href="./vulnerability-detection/threat-replay-testing/overview/">Threat Replay Testing</a></li>
-    <li><a href="./vulnerability-detection/api-test-patrol/overview/">API Test Patrol</a></li>
+    <li><a href="./vulnerability-detection/schema-based-testing/overview/">Schema-Based</a></li>
     </ul></p>
 </div>
 
 <div class="navigation-card">
     <h3 class="icon-homepage deployment-title">Deployment</h3>
     <p><ul>
-    <li><a href="./installation/supported-deployment-options/">All Deployment Options</a></li>
-    <li><a href="./installation/supported-deployment-options/#security-edge">Security Edge</a></li>
-    <li><a href="./installation/supported-deployment-options/#kubernetes">Kubernetes</a></li>
-    <li><a href="./installation/supported-deployment-options/#public-clouds">Public Clouds</a></li>
-    <li><a href="./installation/connectors/overview/">Connectors</a></li>
-    <li><a href="./installation/inline/overview/">In-Line</a></li>
-    <li><a href="./installation/oob/overview/">Out-of-Band</a></li>
-    <li><a href="./installation/nginx-native-node-internals/">All deployment artifacts</a></li>
+    <li><a href="./installation/security-edge/overview/">Security Edge</a></li>
+    <li><a href="./installation/supported-deployment-options/">Self-Hosted Deployment</a></li>
+    <li><a href="./installation/connectors/overview/">Connector Deployment</a></li>
     </ul></p>
 </div>
 

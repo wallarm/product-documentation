@@ -228,8 +228,8 @@ The Native Node works with the following platforms with no limitations:
     <div class="do-main">
         <a class="do-card" href="../../installation/connectors/mulesoft/">
             <img class="non-zoomable" src="../../images/platform-icons/mulesoft.svg" />
-            <h3>MuleSoft</h3>
-            <p>Deploy Wallarm to secure APIs deployed on the MuleSoft Anypoint platform</p>
+            <h3>MuleSoft Mule Gateway</h3>
+            <p>Deploy Wallarm to secure APIs deployed on the Mule Gateway</p>
         </a>
         
         <a class="do-card" href="../../installation/connectors/aws-lambda/">

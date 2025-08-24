@@ -52,13 +52,13 @@ theme:
     - search.suggest
     - content.tabs.link
   logo: images/wallarm-logo-new.svg
-  favicon: images/favicon.svg
+  favicon: images/favicon.png
   icon:
     repo: fontawesome/brands/github-alt
   font:
     text: Sk Modernist
     code: Roboto Mono
-  playground_button_name: "Explore Playground"
+  playground_button_name: "Product tour"
   try_button_name: "Use for free"
   footer:
     need_help: Need help or have questions?

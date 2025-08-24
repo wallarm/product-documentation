@@ -10,7 +10,7 @@ The Wallarm connector for Kong Ingress Controller supports only [in-line](../inl
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is the recommended one for securing APIs managed by the Kong Ingress Controller running the Kong API Gateway.
+This solution is the recommended one for securing APIs managed by the Kong Ingress Controller running the Kong API Gateway.
 
 ## Limitations
 
@@ -33,6 +33,7 @@ To proceed with the deployment, ensure that you meet the following requirements:
 
     --8<-- "../include/wallarm-cloud-ips.md"
 * **Administrator** access to Wallarm Console for [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
+* A **trusted** SSL/TLS certificate is required for the Node instance domain. Self-signed certificates are not yet supported.
 
 ## Deployment
 

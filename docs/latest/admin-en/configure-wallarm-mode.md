@@ -52,7 +52,7 @@ Note that described configuration is applicable only for [in-line](../installati
     When deploying the NGINX-based Wallarm nodes via docker containers, [pass](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) the `WALLARM_MODE` environment variable:
 
     ```
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_MODE='monitoring' -p 80:80 wallarm/node:6.3.0
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_MODE='monitoring' -p 80:80 wallarm/node:6.4.0
     ```
 
     Alternatively, [include](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file) the corresponding parameter in the configuration file and run the container mounting this file.
@@ -83,7 +83,7 @@ Note that described configuration is applicable only for [in-line](../installati
 
 === "Edge Connectors"
 
-    For [Security Edge connectors](../installation/se-connector.md), you specify the `wallarm_mode` value in the **Filtration mode** selector during the connector deployment.
+    For [Security Edge connectors](../installation/security-edge/se-connector.md), you specify the `wallarm_mode` value in the **Filtration mode** selector during the connector deployment.
 === "Native Node"
     * For Native Node all-in-one installer and Docker image, use the [`route_config.wallarm_mode`](../installation/native-node/all-in-one-conf.md#route_configwallarm_mode) parameter.
     * For Native Node Helm chart, use the [`config.connector.route_config.wallarm_mode`](../installation/native-node/helm-chart-conf.md#configconnectorroute_configwallarm_mode) parameter.
@@ -168,7 +168,7 @@ You can set filtration mode for specific branches, endpoints and relying on othe
 ### Prioritization of methods
 
 !!! warning "Support of the `wallarm_mode_allow_override` directive on the Edge node"
-    Please note that the `wallarm_mode_allow_override` directive cannot be customized on the Wallarm Edge [inline](../installation/security-edge/deployment.md) and [connector](../installation/se-connector.md) nodes.
+    Please note that the `wallarm_mode_allow_override` directive cannot be customized on the Wallarm Edge [inline](../installation/security-edge/inline/deployment.md) and [connector](../installation/security-edge/se-connector.md) nodes.
 
 The `wallarm_mode_allow_override` directive manages the ability to apply mode rules/mitigation controls that are defined on Wallarm Console instead of using the `wallarm_mode` directive values from the filtering node configuration file.
 

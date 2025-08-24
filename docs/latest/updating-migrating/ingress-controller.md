@@ -37,7 +37,7 @@ To install and run the plugin:
 2. Run the plugin:
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.3.0 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.4.0 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart.
@@ -58,7 +58,7 @@ To install and run the plugin:
 Upgrade the deployed NGINX Ingress controller:
 
 ``` bash
-helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.3.0 -f <PATH_TO_VALUES>
+helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.4.0 -f <PATH_TO_VALUES>
 ```
 
 * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
@@ -77,7 +77,7 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.3
 
     Where `<NAMESPACE>` is the namespace the Helm chart with the Ingress controller is deployed to.
 
-    The chart version should correspond to `wallarm-ingress-6.3.0`.
+    The chart version should correspond to `wallarm-ingress-6.4.0`.
 1. Get the Wallarm pod:
     
     ``` bash
@@ -87,8 +87,9 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.3
     The pod status should be **STATUS: Running** and **READY: N/N**:
 
     ```
-    NAME                                                              READY     STATUS    RESTARTS   AGE
-    ingress-controller-wallarm-ingress-controller-675c68d46d-cfck8      1/1       Running   0          5m
+    NAME                                                                  READY   STATUS    RESTARTS   AGE
+    ingress-controller-wallarm-ingress-controller-6d659bd79b-952gl        3/3     Running   0          8m7s
+    ingress-controller-wallarm-ingress-controller-wallarm-wstore-7ddmgbfm 3/3     Running   0          8m7s
     ```
 
     If upgrading from the version 5.x or lower, you will notice that there is no separate Tarantool pod anymore, wstore runs within the main `<CHART_NAME>-wallarm-ingress-controller-xxx` pod.

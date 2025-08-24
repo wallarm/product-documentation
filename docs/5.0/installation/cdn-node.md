@@ -1,7 +1,7 @@
 [cdn-node-operation-scheme]:        ../images/waf-installation/quickstart/cdn-node-scheme.png
 [data-to-wallarm-cloud-docs]:       ../user-guides/rules/sensitive-data-rule.md
 [operation-modes-docs]:             ../admin-en/configure-wallarm-mode.md
-[operation-mode-rule-docs]:         ../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console
+[operation-mode-rule-docs]:         ../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode
 [wallarm-cloud-docs]:               ../about-wallarm/overview.md#cloud
 [cdn-node-creation-modal]:          ../images/waf-installation/quickstart/cdn-node-creation-modal.png
 [cname-required-modal]:             ../images/waf-installation/quickstart/cname-required-modal.png
@@ -38,7 +38,7 @@ Among all supported [Wallarm deployment options](supported-deployment-options.md
 The solution has certain limitations:
 
 * For high traffic analysis and filtration, the use of CDN nodes is not recommended.
-* Deployment of the CDN node type is not supported under the [Free tier plan](../about-wallarm/subscription-plans.md#free-tier).
+* Deployment of the CDN node type is not supported under the [Security Edge Free Tier](../about-wallarm/subscription-plans.md#security-edge-free-tier) subscription plan.
 * With the CDN node you can protect the third-level (or lower, like 4th-, 5th- etc.) domains. For example, you can create CDN node for `ple.example.com`, but not for `example.com`.
 * The [`collectd` service](../admin-en/monitoring/intro.md) is not supported.
 * Direct [application setup](../user-guides/settings/applications.md) through standard procedures is unavailable. Contact the [Wallarm support team](mailto:support@wallarm.com) for configuration assistance.

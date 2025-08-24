@@ -88,8 +88,6 @@ Technically, all attacks that can be detected by Wallarm are divided into two ty
 
     To detect behavioral attacks, it is required to conduct syntax analysis of requests and correlation analysis of request number and time between requests.
 
-    Behavioral attacks are not detected by default. For such attacks, required Wallarm configuration is specifically defined.
-
 <!-- ??? info "Watch video about how Wallarm protects against OWASP Top 10"
     <div class="video-wrapper">
     <iframe width="1280" height="720" src="https://www.youtube.com/embed/27CBsTQUE-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -433,6 +431,8 @@ An attempt to enumerate any normally unexposed data of your applications (user a
 
 Wallarm detects and mitigates generic enumeration attacks only if it has one or more [enumeration mitigation controls](api-protection/enumeration-attack-protection.md) (requires Advanced API Security [subscription](about-wallarm/subscription-plans.md#waap-and-advanced-api-security)).
 
+[Default controls](api-protection/enumeration-attack-protection.md#generic-enumeration) are provided in a monitoring mode (for new clients) or disabled (enable if necessary).
+
 **In addition to Wallarm protection:**
 
 *   Limit the number of requests per a certain time period for an API or certain endpoints.
@@ -461,6 +461,8 @@ Wallarm detects and mitigates brute force attacks only if it has one of the foll
 * [Generiс protection from enumeration](#generic-enumeration-attack)
 * [Brute force protection](admin-en/configuration-guides/protecting-against-bruteforce.md) configured with method available in your subscription plan
 * [Rate limit rules](user-guides/rules/rate-limiting.md)
+
+[Default controls](api-protection/enumeration-attack-protection.md#default-protection) are provided in a monitoring mode (for new clients) or disabled (enable if necessary).
 
 **In addition to Wallarm protection:**
 
@@ -497,6 +499,8 @@ Wallarm automatically discovers vulnerabilities of this type but detects and mit
 * [BOLA protection](admin-en/configuration-guides/protecting-against-bola-trigger.md) configured with method available in your subscription plan
 * [Automatic BOLA protection](admin-en/configuration-guides/protecting-against-bola.md) by [API Discovery](api-discovery/overview.md) for endpoints discovered by this module
 
+[Default controls](api-protection/enumeration-attack-protection.md#default-protection) are provided in a monitoring mode (for new clients) or disabled (enable if necessary).
+
 ### Forced browsing
 
 **Attack**
@@ -514,6 +518,8 @@ A successful forced browsing attack potentially grants access to hidden resource
 **Required configuration:**
 
 Wallarm detects and mitigates forced browsing only if it has [forced browsing protection](admin-en/configuration-guides/protecting-against-forcedbrowsing.md) configured with method available in your subscription plan.
+
+[Default controls](api-protection/enumeration-attack-protection.md#forced-browsing) are provided in a monitoring mode (for new clients) or disabled (enable if necessary).
 
 **In addition to Wallarm protection:**
 
@@ -679,6 +685,31 @@ The **API Abuse Prevention** module uses the complex bot detection model to dete
 * Obfuscate or encrypt data.
 * Take legal action.
 
+### Unrestricted resource consumption
+
+**Attack**
+
+**Wallarm code:** `resource_consumption`
+
+**Description:**
+
+A type of abusive behavior where an automated client consumes excessive API or application resources without proper limits. This may include sending high volumes of non-malicious requests, exhausting compute, memory, or bandwidth, and causing service degradation for legitimate users.
+
+Absence of proper limits may be presented in:
+
+* **Response timing** (**Response time anomaly** [bot detector](api-abuse-prevention/overview.md#how-api-abuse-prevention-works)) - abnormal patterns in the latency of API responses that may signal automated abuse or backend exploitation attempts. Requests consistently generate unusually high or erratically fluctuating response times compared to baseline traffic. These anomalies may result from bots issuing computationally expensive queries, intentional delays to measure system behavior, or slow attack techniques attempting to stay below rate thresholds.
+* **Request size** (**Excessive request consumption** [bot detector](api-abuse-prevention/overview.md#how-api-abuse-prevention-works)) - abnormally large request payloads to the API, potentially indicating abuse or misuse of backend processing resources. Such behavior may include oversized JSON bodies, file uploads, or deeply nested structures aimed at exhausting parsing, validation, or storage capacities. Attackers often leverage these payloads to trigger backend strain, bypass rate limits, or explore system boundaries.
+* **Response size** (**Excessive response consumption** [bot detector](api-abuse-prevention/overview.md#how-api-abuse-prevention-works)) - suspicious total volume of response data transferred over their lifetime. Aggregated response sizes across an [entire session](api-sessions/overview.md) identify slow-drip or distributed scraping attacks. These sessions may appear benign on a per-request basis but result in substantial data exfiltration over time.
+
+**Required configuration:**
+
+!!! tip ""
+    Requires [NGINX Node](installation/nginx-native-node-internals.md#nginx-node) 6.3.0 or higher and not supported by [Native Node](installation/nginx-native-node-internals.md#native-node) so far.
+
+Wallarm detects and mitigates the unrestricted resource consumption attacks only if it has the [API Abuse Prevention](api-abuse-prevention/overview.md) module enabled and properly configured.
+
+To make this bot attack type detection precise, [API Sessions](api-sessions/overview.md) need to be properly [configured](api-sessions/setup.md).
+
 ## GraphQL attacks
 
 **Attack**
@@ -693,7 +724,9 @@ An adequate measure for preventing these type of threats is setting limits for G
 
 **Required configuration:**
 
-Wallarm detects and mitigates GraphQL attacks only if it has one or more configured [Detect GraphQL attacks rules](api-protection/graphql-rule.md) (requires node 4.10.3 of higher).
+Wallarm detects and mitigates GraphQL attacks only if it has one or more configured [Detect GraphQL attacks mitigation control or rule](api-protection/graphql-rule.md) (requires node 4.10.3 of higher).
+
+[Default controls](api-protection/graphql-rule.md#default-protection) are provided in a monitoring mode (for new clients) or disabled (enable if necessary).
 
 **In addition to Wallarm protection:**
 
@@ -981,6 +1014,28 @@ CSRF is solved by browsers, other protection methods are less useful but still c
 *   Employ anti-CSRF protection mechanisms, such as CSRF tokens and others.
 *   Set the `SameSite` cookie attribute.
 *   Apply the recommendations from the [OWASP CSRF Prevention Cheat Sheet][link-owasp-csrf-cheatsheet].
+
+### File upload violation
+
+**Attack**
+
+**Wallarm code:** `file_upload_violation`
+
+**Description:**
+
+The [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) is included in the [OWASP API Top 10 2023](user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks. Being a threat by itself (service slow-down or complete down by overload), this also serves as foundation to different attack types, for example, enumeration attacks. Allowing too large file upload is one of the causes of these risks.
+
+**Required configuration:**
+
+Wallarm applies file upload restrictions only if it has one or more [policies](api-protection/file-upload-restriction.md) configured with method available in your subscription plan.
+
+Note that file size upload restrictions are not the only [measure for preventing unrestricted resource consumption](api-protection/file-upload-restriction.md#comparison-to-other-measures-for-preventing-unrestricted-resource-consumption) provided by Wallarm.
+
+**In addition to Wallarm protection:**
+
+* Setup client-side JavaScript validation for file size
+* Configure web server (like Nginx or Apache) to reject large files
+* Setup file size check within your application's code
 
 ### Information exposure
 

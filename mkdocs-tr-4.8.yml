@@ -120,10 +120,10 @@ nav:
       - Genel bakış: vulnerability-detection/threat-replay-testing/overview.md
       - Kurulum: vulnerability-detection/threat-replay-testing/setup.md
       - Test Sonuçları: vulnerability-detection/threat-replay-testing/exploring.md
-    - API Test Patrol:
-      - Overview: vulnerability-detection/api-test-patrol/overview.md
-      - Setup: vulnerability-detection/api-test-patrol/setup.md
-      - Test Run Results: vulnerability-detection/api-test-patrol/explore.md
+    - Schema-Based:
+      - Overview: vulnerability-detection/schema-based-testing/overview.md
+      - Setup: vulnerability-detection/schema-based-testing/setup.md
+      - Test Run Results: vulnerability-detection/schema-based-testing/explore.md
   - Dağıtım:
     - Dağıtım Seçenekleri: installation/supported-deployment-options.md
     - eBPF:
@@ -202,7 +202,8 @@ nav:
         - Yansıtma için Paket Seçimi: installation/kubernetes/ebpf/selecting-packets.md
     - Bağlayıcılar:
       - Genel Bakış: installation/connectors/overview.md
-      - MuleSoft: installation/connectors/mulesoft.md
+      - MuleSoft Mule Gateway: installation/connectors/mulesoft.md
+      - MuleSoft Flex Gateway: installation/connectors/mulesoft-flex.md
       - Apigee: installation/connectors/apigee.md
       - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
       - Azion Edge: installation/connectors/azion-edge.md
@@ -375,6 +376,7 @@ nav:
     - Wallarm API Referans:
       - Genel Bakış: api/overview.md
       - API İstek Örnekleri: api/request-examples.md
+    - Wallarm's SLA: sla.md
     - Wallarm Terraform Sağlayıcısı: admin-en/managing/terraform-provider.md
     - Bir Uygulamanın Aylık İstek Hacmini Öğrenci: admin-en/operation/learn-incoming-request-number.md
     - Docker Görüntü Güvenliği:

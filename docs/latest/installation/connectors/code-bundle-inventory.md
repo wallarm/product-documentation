@@ -16,7 +16,7 @@ Connector code bundle versions follow this format:
 | `<MINOR_VERSION>` | Enhancements or new features without breaking changes. |
 | `<PATCH_VERSION>` | Minor bug fixes or enhancements. |
 
-## MuleSoft
+## MuleSoft Mule Gateway
 
 [How to upgrade](mulesoft.md#upgrading-the-policy)
 
@@ -64,6 +64,25 @@ Requires Native Node version 0.8.3 or higher.
 
 * Initial release
 
+## MuleSoft Flex Gateway
+
+[How to upgrade](mulesoft-flex.md#upgrading-the-policy)
+
+The current version can be found in `Cargo.toml` → `[package]` → `version` parameter of the downloaded Wallarm policy or in the policy information in the MuleSoft UI.
+
+| Policy version      | [Native Node version](../../updating-migrating/native-node/node-artifact-versions.md) |
+| ------------------- | ------------------- |
+| 1.x.x               | 0.16.0 and higher   |
+
+### 1.1.0 (2025-08-19)
+
+* Upgraded Flex PDK to 1.4.0
+* Fixed Gateway crash on large responses
+
+### 1.0.0 (2025-07-23)
+
+* [Initial release](mulesoft-flex.md)
+
 ## CloudFront
 
 [How to upgrade](aws-lambda.md#upgrading-the-lambdaedge-functions)
@@ -96,13 +115,13 @@ Requires Native Node version 0.8.3 or higher.
 
 * Initial release
 
-## Istio
+<!-- ## Istio
 
 [How to upgrade](istio.md#upgrading-the-wallarm-lua-plugin)
 
 ### 1.0.0 (2024-09-13)
 
-* Initial release
+* Initial release -->
 
 ## Broadcom Layer7 API Gateway
 

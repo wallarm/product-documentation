@@ -5,6 +5,10 @@
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
+[helm-chart-native-node]:           ../native-node/helm-chart.md
+[custom-blocking-page]:             ../../admin-en/configuration-guides/configure-block-page-and-code.md
+[rate-limiting]:                    ../../user-guides/rules/rate-limiting.md
+[multi-tenancy]:                    ../multi-tenant/overview.md
 
 # Wallarm Connector for IBM API Connect
 
@@ -21,12 +25,11 @@ The Wallarm connector for IBM API Connect supports only [in-line](../inline/over
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is recommended for securing APIs published via IBM API Connect.
+This solution is recommended for securing APIs published via IBM API Connect.
 
 ## Limitations
 
-* [Rate limiting](../../user-guides/rules/rate-limiting.md) by the Wallarm rule is not supported.
-* [Multitenancy](../multi-tenant/overview.md) is not supported yet.
+--8<-- "../include/waf/installation/connectors/native-node-limitations.md"
 
 ## Requirements
 
@@ -51,7 +54,7 @@ You can deploy it either hosted by Wallarm or in your own infrastructure, depend
     The IBM API Connect integration requires Wallarm Node [version](../../updating-migrating/native-node/node-artifact-versions.md) 0.13.3 or later in the 0.13.x series, or 0.14.1 or later. Older versions do not support this connector.
 
 === "Edge node"
-    To deploy a Wallarm-hosted node for the connector, follow the [instructions](../se-connector.md).
+    To deploy a Wallarm-hosted node for the connector, follow the [instructions](../security-edge/se-connector.md).
 === "Self-hosted node"
     Choose an artifact for a self-hosted node deployment and follow the attached instructions:
 
@@ -67,12 +70,67 @@ Wallarm provides custom policies that can be attached to APIs in API Connect. Th
 1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** and download a code bundle for your platform.
 
     If running a self-hosted node, contact sales@wallarm.com to get the code bundle.
+1. Register the request inspection policy:
 
---8<-- "../include/waf/installation/connectors/ibm-apply-policies.md"
+    ```
+    apic policies:create \
+        --scope <CATALOG OR SPACE> \
+        --server <MANAGEMENT SERVER ENDPOINT> \
+        --org <ORG NAME OR ID> \
+        --catalog <CATALOG NAME OR ID> \
+        --configured-gateway-service <GATEWAY SERVICE NAME OR ID> \
+        /<PATH>/wallarm-pre.zip
+    ```
+1. Register the response inspection policy:
+
+    ```
+    apic policies:create \
+        --scope <CATALOG OR SPACE> \
+        --server <MANAGEMENT SERVER ENDPOINT> \
+        --org <ORG NAME OR ID> \
+        --catalog <CATALOG NAME OR ID> \
+        --configured-gateway-service <GATEWAY SERVICE NAME OR ID> \
+        /<PATH>/wallarm-post.zip
+    ```
+
+In most cases, the `configured-gateway-service` name is `datapower-api-gateway`.
 
 ### 3. Integrate Wallarm inspection steps into the assembly pipeline
 
---8<-- "../include/waf/installation/connectors/ibm-assembly-pipeline.md"
+In your API specification, within the `x-ibm-configuration.assembly.execute` section, add or update the following steps to route traffic through the Wallarm Node:
+
+1. Before the `invoke` step, add the `wallarm_pre` step to proxy incoming requests to the Wallarm Node.
+1. Ensure that the `invoke` step is configured as follows:
+    
+    * The `target-url` should follow the format `$(target-url)$(request.path)?$(request.query-string)`. This ensures that requests are proxied to the original backend path along with any query parameters.
+    * `header-control` and `parameter-control` allow all headers and parameters to pass through. This enables the Wallarm Node to analyze the full request, detect attacks in any part of it, and accurately build the API inventory.
+1. After the `invoke` step, add the `wallarm_post` step to proxy responses to the Wallarm Node for inspection.
+
+```yaml hl_lines="8-22"
+...
+x-ibm-configuration:
+  properties:
+    target-url:
+      value: <BACKEND_ADDRESS>
+  ...
+  assembly:
+    execute:
+      - wallarm_pre:
+          version: 1.0.1
+          title: wallarm_pre
+          wallarmNodeAddress: <WALLARM_NODE_URL>
+      - invoke:
+          title: invoke
+          version: 2.0.0
+          verb: keep
+          target-url: $(target-url)$(request.path)?$(request.query-string)
+          persistent-connection: true
+      - wallarm_post:
+          version: 1.0.1
+          title: wallarm_post
+          wallarmNodeAddress: <WALLARM_NODE_URL>
+...
+```
 
 Supported properties in Wallarm policies:
 
@@ -83,7 +141,16 @@ Supported properties in Wallarm policies:
 
 ### 4. Publish your product with the updated API
 
---8<-- "../include/waf/installation/connectors/ibm-publish-product.md"
+To apply changes to the traffic flow, re-publish the product that includes the modified API:
+
+```
+apic products:publish \
+    --scope <CATALOG OR SPACE> \
+    --server <MANAGEMENT SERVER ENDPOINT> \
+    --org <ORG NAME OR ID> \
+    --catalog <CATALOG NAME OR ID> \
+    <PATH TO THE UPDATED PRODUCT YAML>
+```
 
 ## Example: API and product with Wallarm policies
 
@@ -244,4 +311,4 @@ To upgrade the deployed Wallarm policies to a [newer version](code-bundle-invent
         <PATH TO THE UPDATED PRODUCT YAML>
     ```
 
-Policy upgrades may require a Wallarm node upgrade, especially for major version updates. See the [Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for the self-hosted Node release notes and upgrade instructions or the [Edge connector upgrade procedure](../se-connector.md#upgrading-the-edge-node). Regular node updates are recommended to avoid deprecation and simplify future upgrades.
+Policy upgrades may require a Wallarm node upgrade, especially for major version updates. See the [Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for the self-hosted Node release notes and upgrade instructions or the [Edge connector upgrade procedure](../security-edge/se-connector.md#upgrading-the-edge-node). Regular node updates are recommended to avoid deprecation and simplify future upgrades.

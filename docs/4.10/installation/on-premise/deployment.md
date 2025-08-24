@@ -79,7 +79,7 @@ Wallarm Cloud servers must meet the following requirements:
 * Supported operating system:
 
     * Ubuntu LTS 22.04 (Ubuntu LTS 24.04 is not supported yet)
-    * Red Hat Enterprise Linux 8.x and 9.x
+    * Red Hat Enterprise Linux 8.x or 9.x
 * Intel (AMD64) CPU architecture (ARM64 is not supported yet)
 * A regular SSH user account with passwordless SSH access from the management workstation and the ability to run `sudo` without a password
 
@@ -158,7 +158,7 @@ The servers require the following network connectivity (firewall) permissions:
 
     | From (source) | To (destination) | Destination port(s) | Business justification |
     | ----- | ----- | ----- | ----- |
-    | All Wallarm Cloud nodes | https://onprem.wallarm.com (static IP address 34.91.71.190) | 443/TCP | Downloading Wallarm on-prem software packages and containers |
+    | All Wallarm Cloud nodes | https://hibp.onprem.wallarm.com; https://scripts.onprem.wallarm.com; https://packages-versions.onprem.wallarm.com; https://repo.onprem.wallarm.com; https://registry.onprem.wallarm.com; https://configs.onprem.wallarm.com/; (static IP address 34.90.162.10) | 443/TCP | Downloading Wallarm on-prem software packages and containers |
     | All Wallarm Cloud nodes | Wallarm data backup server or S3-compatible object storage service | 443/TCP (or whatever TCP port is used by the employed S3-compatible storage service) | To store data backups |
     | The management workstation | Wallarm data backup server or S3-compatible object storage service | 443/TCP (or whatever TCP port is used by the employed S3-compatible storage service) | To access data backups and store some data required for a successful data recovery |
     | All Wallarm Cloud nodes | The enterprise SMTP server | Typically port 587/TCP (Secure SMTP over TLS) | For dispatching email messages |

@@ -288,8 +288,11 @@ a.md-tabs__link:hover {
   stroke: none;
 }
 
-.md-nav--primary .md-nav__item--expanded .md-nav__icon--left path {
-  stroke: #FC7303;
+.md-nav--primary .md-nav__item--expanded .md-nav__icon--left path,
+.md-nav--primary .md-nav__item--expanded .md-nav__icon--left line,
+.md-nav--primary .md-nav__item--expanded .md-nav__icon--left circle,
+.md-nav--primary .md-nav__item--expanded .md-nav__icon--left rect {
+  stroke: #FC7303 !important;
 }
 
 .md-nav--primary .md-nav__icon--left {
@@ -653,7 +656,7 @@ img {
   border: none;
   color: white;
   text-align: center;
-  font-weight: bold;
+  font-weight: 500;
   display: inline-block;
   font-size: 14px;
   padding: 0 17px;
@@ -669,12 +672,12 @@ img {
 }
 
 .playground-button {
-  background-color: #FC7303;
+  background-color: #ff441c;
   margin-right: 0px;
 }
 
 .playground-button:hover {
-  background-color: #D85602;
+  background-color: #ff8674;
 }
 
 .signup-button {

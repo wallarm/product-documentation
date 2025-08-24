@@ -1,26 +1,15 @@
-# Deployment Options
+# Self-Hosted Deployment Options
 
-Wallarm supports many deployment options enabling you to seamlessly integrate the platform with your environment without its modification. Learn the Wallarm deployment options and choose the most appropriate one from this document.
+In a self-hosted deployment, you are responsible for installing and operating the **[Wallarm Node](../about-wallarm/overview.md#filtering-node) within your infrastructure** - on Kubernetes clusters, virtual machines, or cloud environments. This gives you full control over configuration, networking, and scaling.
+
+Wallarm supports many deployment options enabling you to seamlessly integrate the platform with your environment. Learn the options and choose the most appropriate one from this document.
+
+!!! info "Deployment alternatives"
+    Want a managed option instead? Explore [Security Edge](security-edge/overview.md).
+
+    Need to route traffic from external services? Visit [Connector Deployment](connectors/overview.md).
 
 <link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
-
-## Security Edge
-
-<div class="do-section">
-    <div class="do-main">
-        <a class="do-card" href="../../installation/security-edge/deployment/">
-            <img class="non-zoomable" src="../../images/platform-icons/se-inline.svg" />
-            <h3>Edge Inline</h3>
-            <p>Wallarm-hosted node for real‑time, inline traffic analysis</p>
-        </a>
-
-        <a class="do-card" href="../../installation/se-connector/">
-            <img class="non-zoomable" src="../../images/platform-icons/se-connectors.svg" />
-            <h3>Edge Connector</h3>
-            <p>Wallarm-hosted node for MuleSoft, CloudFront, Cloudflare, or Fastly</p>
-        </a>
-    </div>
-</div>
 
 ## Kubernetes
 
@@ -73,6 +62,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>Alibaba Cloud</h3>
             <p>Artifacts for Wallarm deployment on Alibaba Cloud</p>
         </div>
+
+        <a class="do-card" href=../../installation/heroku/docker-image/>
+            <img class="non-zoomable" src="../../images/platform-icons/heroku.svg" />
+            <h3>Heroku</h3>
+            <p>Build a Wallarm Docker image and run it on Heroku</p>
+        </a>
     </div>
 
     <div class="do-nested" data-for="public-clouds-aws">
@@ -161,87 +156,10 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
     </div>
 </div>
 
-## Connectors
-
-<div class="do-section">
-    <div class="do-main">
-        <a class="do-card" href="../../installation/connectors/mulesoft/">
-            <img class="non-zoomable" src="../../images/platform-icons/mulesoft.svg" />
-            <h3>MuleSoft</h3>
-            <p>Deploy Wallarm to secure APIs deployed on the MuleSoft Anypoint platform</p>
-        </a>
-
-        <a class="do-card" href="../../installation/connectors/apigee/">
-            <img class="non-zoomable" src="../../images/platform-icons/apigee.svg" />
-            <h3>Apigee</h3>
-            <p>Deploy Wallarm to secure APIs running on Apigee</p>
-        </a>
-
-        <a class="do-card" href="../../installation/connectors/akamai-edgeworkers/">
-            <img class="non-zoomable" src="../../images/platform-icons/akamai.svg" />
-            <h3>Akamai EdgeWorkers</h3>
-            <p>Deploy Wallarm to secure APIs running on Akamai EdgeWorkers</p>
-        </a>
-
-        <a class="do-card" href="../../installation/connectors/azion-edge/">
-            <img class="non-zoomable" src="../../images/platform-icons/azion-edge.svg" />
-            <h3>Azion Edge</h3>
-            <p>Deploy Wallarm to secure APIs running on Azion Edge</p>
-        </a>
-        
-        <a class="do-card" href="../../installation/connectors/aws-lambda/">
-            <img class="non-zoomable" src="../../images/platform-icons/aws-cloudfront.svg" />
-            <h3>CloudFront</h3>
-            <p>Deploy Wallarm to secure traffic delivered through Amazon CloudFront</p>
-        </a>
-        
-        <a class="do-card" href="../../installation/connectors/cloudflare/">
-            <img class="non-zoomable" src="../../images/platform-icons/cloudflare.png" />
-            <h3>Cloudflare</h3>
-            <p>Deploy Wallarm to secure traffic running via Cloudflare</p>
-        </a>
-
-        <a class="do-card" href="../../installation/connectors/kong-api-gateway/">
-            <img class="non-zoomable" src="../../images/platform-icons/kong-new.svg" />
-            <h3>Kong API Gateway</h3>
-            <p>Deploy Wallarm to secure APIs managed by Kong Ingress Controller</p>
-        </a>
-
-        <a class="do-card" href="../../installation/connectors/istio/">
-            <img class="non-zoomable" src="../../images/platform-icons/istio.svg" />
-            <h3>Istio (Out-of-Band)</h3>
-            <p>Deploy Wallarm out-of-band to secure APIs managed by Istio</p>
-        </a>
-
-        <a class="do-card" href="../../installation/connectors/istio-inline/">
-            <img class="non-zoomable" src="../../images/platform-icons/istio.svg" />
-            <h3>Istio</h3>
-            <p>Deploy Wallarm in-line or OOB to secure APIs managed by Istio</p>
-        </a>
-
-        <a class="do-card" href="../../installation/connectors/layer7-api-gateway/">
-            <img class="non-zoomable" src="../../images/platform-icons/layer7.png" />
-            <h3>Broadcom Layer7 API Gateways</h3>
-            <p>Deploy Wallarm to secure APIs managed with Layer7 API Gateways</p>
-        </a>
-
-        <a class="do-card" href="../../installation/connectors/fastly/">
-            <img class="non-zoomable" src="../../images/platform-icons/fastly.png" />
-            <h3>Fastly</h3>
-            <p>Deploy Wallarm to secure APIs running on Fastly</p>
-        </a>
-    </div>
-</div>
-
 ## In-line
 
 <div class="do-section">
     <div class="do-main">
-        <a class="do-card" href="../../installation/security-edge/deployment/">
-            <img class="non-zoomable" src="../../images/platform-icons/se-inline.svg" />
-            <h3>Edge Inline</h3>
-            <p>Wallarm-hosted node for real‑time, inline traffic analysis</p>
-        </a>
 
         <div id="inline-compute-instances" class="do-card">
             <img class="non-zoomable" src="../../images/platform-icons/compute-instance.svg" />
@@ -525,7 +443,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 </div>
 
-## Custom deployment
+## On-premise
 
 <div class="do-section">
     <div class="do-main">
@@ -533,21 +451,15 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         <a class="do-card" href="../../installation/on-premise/overview/">
             <img class="non-zoomable" src="../../images/platform-icons/on-premise.svg" />
             <h3>On-premise</h3>
-            <p>Integrate the Wallarm's infrastructure directly into your own environment</p>
+            <p>Host both Wallarm Nodes and the Wallarm Cloud within your environment</p>
         </a>
+    </div>
+</div>
 
-        <a class="do-card" href="../../installation/custom/custom-nginx-version/">
-            <img class="non-zoomable" src="../../images/platform-icons/nginx.svg" />
-            <h3>Custom NGINX</h3>
-            <p>Request Wallarm Linux packages for a custom NGINX</p>
-        </a>
+## Custom deployment
 
-        <a class="do-card" href=../../installation/heroku/docker-image/>
-            <img class="non-zoomable" src="../../images/platform-icons/heroku.svg" />
-            <h3>Heroku</h3>
-            <p>Build a Wallarm Docker image and run it on Heroku</p>
-        </a>
-
+<div class="do-section">
+    <div class="do-main">
         <a class="do-card" href="../../installation/custom/request-custom-deployment/">
             <img class="non-zoomable" src="../../images/platform-icons/custom-deployment.svg" />
             <h3>Custom Deployment</h3>

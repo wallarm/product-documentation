@@ -15,7 +15,7 @@ The [Wallarm Native Node](../nginx-native-node-internals.md), which operates ind
 
 ## Use cases
 
-* When deploying a Wallarm node as part of a connector solution for [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [IBM DataPower](../connectors/ibm-api-connect.md) on a self-hosted Linux OS machine.
+* When deploying a Wallarm node as part of a connector solution for [MuleSoft Mule Gateway](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [IBM DataPower](../connectors/ibm-api-connect.md) on a self-hosted Linux OS machine.
 
     Use the installer in `connector-server` mode.
 * When you need a [gRPC-based external processing filter](../connectors/istio-inline.md) for APIs managed by Istio.
@@ -50,7 +50,7 @@ The Docker image for the Native Node is ideal if you are already using container
 ### 1. Pull the Docker image
 
 ```
-docker pull wallarm/node-native-aio:0.13.6
+docker pull wallarm/node-native-aio:0.13.7
 ```
 
 ### 2. Prepare the configuration file
@@ -94,11 +94,11 @@ To run the Docker image, use the following commands. Mount the `wallarm-node-con
 
 === "US Cloud"
     ```bash
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.13.6
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.13.7
     ```
 === "EU Cloud"
     ```bash
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.13.6
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.13.7
     ```
 
 Environment variable | Description| Required
@@ -121,7 +121,7 @@ After deploying the node, the next step is to apply the Wallarm code to your API
 1. Contact sales@wallarm.com to obtain the Wallarm code bundle for your connector.
 1. Follow the platform-specific instructions to apply the bundle on your API management platform:
 
-    * [MuleSoft](../connectors/mulesoft.md#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange)
+    * [MuleSoft Mule Gateway](../connectors/mulesoft.md#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange)
     * [Cloudflare](../connectors/cloudflare.md#2-obtain-and-deploy-the-wallarm-worker-code)
     * [Amazon CloudFront](../connectors/aws-lambda.md#2-obtain-and-deploy-the-wallarm-lambdaedge-functions)
     * [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md#2-add-the-nodes-ssltls-certificate-to-the-policy-manager)

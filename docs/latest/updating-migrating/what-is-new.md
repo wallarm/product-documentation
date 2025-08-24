@@ -105,16 +105,53 @@ Comparing to triggers that were used for this protection before, mitigation cont
 
 ![BOLA protection mitigation control - example](../images/user-guides/mitigation-controls/mc-bola-example-01.png)
 
-### Rate abuse protection
+### DoS protection
 
 !!! tip ""
     [NGINX Node 6.1.0 and higher](node-artifact-versions.md) and [Native Node 0.14.1 and higher](native-node/node-artifact-versions.md)
 
 The [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) is included in the [OWASP API Top 10 2023](../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks. Being a threat by itself (service slow-down or complete down by overload), this also serves as foundation to different attack types, for example, enumeration attacks. Allowing too many requests per time is one of the main causes of these risks.
 
-Wallarm provides the new [**Rate abuse protection**](../api-protection/rate-abuse-protection.md) mitigation control to help prevent excessive traffic to your API.
+Wallarm provides the new [**DoS protection**](../api-protection/dos-protection.md) mitigation control to help prevent excessive traffic to your API.
 
-![Rate abuse prevention - JWT example](../images/api-protection/mitigation-controls-rate-abuse-prevention-jwt.png)
+![DoS protection - JWT example](../images/api-protection/mitigation-controls-dos-protection-jwt.png)
+
+### Default controls
+
+Wallarm provides a set of [default mitigation controls](../about-wallarm/mitigation-controls-overview.md#default-controls) that, when enabled, significantly enhance the detection capabilities of the Wallarm platform. These controls are pre-configured to offer robust protection against a variety of common attack patterns. The current default mitigation controls include:
+
+* [GraphQL protection](../api-protection/graphql-rule.md)
+* [BOLA (Broken Object Level Authorization) enumeration protection](../api-protection/enumeration-attack-protection.md#bola) for user IDs, object IDs, and filenames
+* [Brute force protection](../api-protection/enumeration-attack-protection.md#brute-force) for passwords, OTPs, and authentication codes
+* [Forced browsing protection](../api-protection/enumeration-attack-protection.md#forced-browsing) (404 probing)
+* [Enumeration attack protection](../api-protection/enumeration-attack-protection.md#generic-enumeration), including:
+    
+    * User/email enumeration
+    * SSRF (Server-Side Request Forgery) enumeration
+    * User-agent rotation
+
+## File upload restriction policy
+
+Wallarm now provides tools for direct restricting the size of uploaded files. This comes as a part of set of measures aimed to prevent the [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) included in the [OWASP API Top 10 2023](../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks.
+
+Depending on your subscription plan, upload restrictions are applied via mitigation control or rule. You can set file size restrictions for the full request or its selected point.
+
+![File upload restriction MC - example](../images/api-protection/mitigation-controls-file-upload-1.png)
+
+## Protection from unrestricted resource consumption
+
+!!! tip ""
+    [NGINX Node 6.3.0 and higher](node-artifact-versions.md) and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
+
+Wallarm's [API Abuse Prevention](../api-abuse-prevention/overview.md) introduces the possibility to prevent the [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) - abusive behavior where an automated client consumes excessive API or application resources without proper limits. This may include sending high volumes of non-malicious requests, exhausting compute, memory, or bandwidth, and causing service degradation for legitimate users.
+
+![API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
+
+To detect this type of automated threats, API Abuse Prevention provides a set of three new [detectors](../api-abuse-prevention/overview.md#how-api-abuse-prevention-works):
+
+* **Response time anomaly** identifying abnormal patterns in the latency of API responses that may signal automated abuse or backend exploitation attempts.
+* **Excessive request consumption** identifying clients that send abnormally large request payloads to the API, potentially indicating abuse or misuse of backend processing resources.
+* **Excessive response consumption** flagging suspicious sessions based on the total volume of response data transferred over their lifetime. Unlike detectors focused on individual requests, this detector aggregates response sizes across an entire session to identify slow-drip or distributed scraping attacks.
 
 ## Which Wallarm nodes are recommended to be upgraded?
 

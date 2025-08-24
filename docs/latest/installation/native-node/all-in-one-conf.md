@@ -17,9 +17,9 @@ If the node is deployed using a Docker image, it is recommended to update the co
 
 The Wallarm node operation mode. It can be:
 
-* `connector-server` for [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [IBM DataPower](../connectors/ibm-api-connect.md) connectors.
+* `connector-server` for MuleSoft [Mule](../connectors/mulesoft.md) or [Flex](../connectors/mulesoft-flex.md) Gateway, [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [IBM DataPower](../connectors/ibm-api-connect.md) connectors.
 * `tcp-capture` for [TCP traffic mirror analysis](../oob/tcp-traffic-mirror/deployment.md).
-* `envoy-external-filter` for [gRPC-based external processing filter](../connectors/istio-inline.md) for APIs managed by Istio.
+* `envoy-external-filter` for [gRPC-based external processing filter](../connectors/istio.md) for APIs managed by Istio.
 
 === "connector-server"
     If you installed the Native Node for a Wallarm connector, the basic configuration looks as follows:
@@ -796,6 +796,16 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
     ```yaml
     version: 4
 
+    input_filters:
+      inspect:
+      - path: "^/api/v[0-9]+/.*"
+        headers:
+          Authorization: "^Bearer .+"
+      bypass:
+      - path: ".*\\.(png|jpg|css|js|svg)$"
+      - headers:
+          accept: "text/html"
+  
     http_inspector:
       workers: auto
       libdetection_enabled: true
@@ -823,11 +833,23 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
     health_check:
       enabled: true
       listen_address: :8080
+    
+    drop_on_overload: true
     ```
 === "tcp-capture"
     ```yaml
     version: 4
 
+    input_filters:
+      inspect:
+      - path: "^/api/v[0-9]+/.*"
+        headers:
+          Authorization: "^Bearer .+"
+      bypass:
+      - path: ".*\\.(png|jpg|css|js|svg)$"
+      - headers:
+          accept: "text/html"
+    
     http_inspector:
       workers: auto
       libdetection_enabled: true
@@ -855,6 +877,73 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
     health_check:
       enabled: true
       listen_address: :8080
+    
+    drop_on_overload: true
+    ```
+
+### input_filters
+
+Defines which incoming requests should be **inspected** or **bypassed** by the Native Node. This reduces CPU usage by ignoring irrelevant traffic such as static assets or health checks.
+
+By default, all requests are inspected.
+
+!!! warning "Requests skipped from inspection are not analyzed or sent to Wallarm Cloud"
+    As a result, skipped requests do not appear in metrics, API Discovery, API sessions, vulnerability detection and so on. Wallarm features do not apply to them.
+
+**Compatibility**
+
+* Native Node 0.13.7 and higher 0.13.x versions
+* Native Node 0.16.0 and higher
+* Not supported in the AWS AMI yet
+
+**Filtering logic**
+
+The filtering logic is based on 2 lists:
+
+* `inspect`: only requests matching at least one filter here are inspected.
+
+    If omitted or empty, all requests are inspected, unless excluded by `bypass`.
+* `bypass`: requests matching any filter here are never inspected, even if they match `inspect`.
+
+**Filter format**
+
+Each filter is an object that can include:
+
+* `path` or `url`: regex for matching the request path (both are supported and equivalent).
+* `headers`: a map of header names to regex patterns for matching their values.
+
+All regular expressions must follow the [RE2 syntax](https://github.com/google/re2/wiki/Syntax).
+
+**Examples**
+
+=== "Allow requests by token, skip static content"
+    This configuration inspects only requests to versioned API endpoints (e.g. `/api/v1/...`) that include a `Bearer` token in the `Authorization` header.
+    
+    It bypasses requests for static files (images, scripts, styles) and browser-initiated HTML page loads.
+
+    ```yaml
+    input_filters:
+      inspect:
+      - path: "^/api/v[0-9]+/.*"
+        headers:
+          Authorization: "^Bearer .+"
+      bypass:
+      - path: ".*\\.(png|jpg|css|js|svg)$"
+      - headers:
+          accept: "text/html"
+    ```
+=== "Allow requests by domain, skip health checks"
+    This configuration inspects only requests with `Host: api.example.com`, skipping all others.
+    
+    Requests to the `/healthz` endpoint are always bypassed, even if they match the inspected host.
+
+    ```yaml
+    input_filters:
+      inspect:
+      - headers:
+        host: "^api\\.example\\.com$"
+      bypass:
+      - path: "^/healthz$"
     ```
 
 ### http_inspector.workers
@@ -970,3 +1059,23 @@ Default: `true`.
 Sets the address and port for the `/live` and `/ready` health check endpoints.
 
 Default: `:8080` (all network interfaces on the port 8080).
+
+### drop_on_overload
+
+Controls whether the Node drops incoming requests when the processing load exceeds its capacity.
+
+**Compatibility**
+
+* Native Node 0.16.1 and higher
+* Not supported in the AWS AMI yet
+* For the [Envoy connector](../connectors/istio.md), behavior depends on the `failure_mode_allow` setting
+
+    The `drop_on_overload` configuration is not applied.
+
+When enabled (`true`), if the Node cannot process data in real time, it drops excess input and responds with `503 (Service Unavailable)`. This prevents the Node from accumulating unprocessed requests in internal queues, which could otherwise lead to severe performance degradation or out‑of‑memory errors.
+
+Returning 503 allows upstream services, load balancers, or clients to detect overload conditions and retry requests if needed.
+
+In blocking [mode](../../admin-en/configure-wallarm-mode.md), such requests are not blocked.
+
+Default: `true`.

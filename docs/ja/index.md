@@ -101,7 +101,7 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
     <h3 class="icon-homepage api-security-testing">API セキュリティテスト</h3>
     <p><ul>
     <li><a href="./vulnerability-detection/threat-replay-testing/overview/">脅威リプレイテスト</a></li>
-    <li><a href="./vulnerability-detection/api-test-patrol/overview/">API Test Patrol</a></li>
+    <li><a href="./vulnerability-detection/schema-based-testing/overview/">Schema-Based Testing</a></li>
     </ul></p>
 </div>
 

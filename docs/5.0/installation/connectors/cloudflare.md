@@ -5,6 +5,10 @@
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
+[helm-chart-native-node]:           ../native-node/helm-chart.md
+[custom-blocking-page]:             ../../admin-en/configuration-guides/configure-block-page-and-code.md
+[rate-limiting]:                    ../../user-guides/rules/rate-limiting.md
+[multi-tenancy]:                    ../multi-tenant/overview.md
 
 # Wallarm Connector for Cloudflare
 
@@ -28,8 +32,9 @@ Among all supported [Wallarm deployment options](../supported-deployment-options
 
 ## Limitations
 
-* [Rate limiting](../../user-guides/rules/rate-limiting.md) by the Wallarm rule is not supported.
-* [Multitenancy](../multi-tenant/overview.md) is not supported yet.
+* When deploying the Wallarm service with the `LoadBalancer` type using the [Helm chart][helm-chart-native-node], a **trusted** SSL/TLS certificate is required for the Node instance domain. Self-signed certificates are not yet supported.
+* [Rate limiting][rate-limiting] by the Wallarm rule is not supported.
+* [Multitenancy][multi-tenancy] is not supported yet.
 
 ## Requirements
 
@@ -47,7 +52,7 @@ The Wallarm Node is a core component of the Wallarm platform that you need to de
 You can deploy it either hosted by Wallarm or in your own infrastructure, depending on the level of control you require.
 
 === "Edge node"
-    To deploy a Wallarm-hosted node for the connector, follow the [instructions](../se-connector.md).
+    To deploy a Wallarm-hosted node for the connector, follow the [instructions](../security-edge/se-connector.md).
 === "Self-hosted node"
     Choose an artifact for a self-hosted node deployment and follow the attached instructions:
 
@@ -62,8 +67,18 @@ To run a Cloudflare worker routing traffic to the Wallarm Node:
 1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** and download a code bundle for your platform.
 
     If running a self-hosted node, contact sales@wallarm.com to get the code bundle.
+1. [Create a Cloudflare worker](https://developers.cloudflare.com/workers/get-started/dashboard/) using the downloaded code.
+1. Set the Wallarm node URL in the `wallarm_node` parameter.
+1. If using [asynchronous (out-of-band)](../oob/overview.md) mode, set the `wallarm_mode` parameter to `async`.
+1. If required, modify [other parameters](cloudflare.md#configuration-options).
 
---8<-- "../include/waf/installation/connectors/cloudflare-worker-for-wallarm.md"
+    ![Cloudflare worker](../../images/waf-installation/gateways/cloudflare/worker-deploy.png)
+1. In **Website** → your domain, go to **Workers Routes** → **Add route**:
+
+    * In **Route**, specify the paths to be routed to Wallarm for analysis (e.g., `*.example.com/*` for all paths).
+    * In **Worker**, select the Wallarm worker you created.
+
+    ![Cloudflare add route](../../images/waf-installation/gateways/cloudflare/add-route.png)
 
 ## Testing
 
@@ -111,4 +126,4 @@ To upgrade the deployed Cloudflare worker to a [newer version](code-bundle-inven
     Preserve the existing values for parameters like `wallarm_node`, `wallarm_mode`, and others.
 1. **Deploy** the updated functions.
 
-Worker upgrades may require a Wallarm Node upgrade, especially for major version updates. See the [Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for the self-hosted Node release notes and upgrade instructions or the [Edge connector upgrade procedure](../se-connector.md#upgrading-the-edge-node). Regular node updates are recommended to avoid deprecation and simplify future upgrades.
+Worker upgrades may require a Wallarm Node upgrade, especially for major version updates. See the [Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for the self-hosted Node release notes and upgrade instructions or the [Edge connector upgrade procedure](../security-edge/se-connector.md#upgrading-the-edge-node). Regular node updates are recommended to avoid deprecation and simplify future upgrades.

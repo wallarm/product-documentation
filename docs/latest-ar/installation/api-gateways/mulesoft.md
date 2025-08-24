@@ -11,7 +11,7 @@
 
     إذا تم تكوين Wallarm لمنع النشاط الخبيث:
 
-    ![MuleSoft مع سياسة Wallarm](../../images/waf-installation/gateways/mulesoft/traffic-flow-inline.png)
+    ![MuleSoft مع سياسة Wallarm](../../images/waf-installation/gateways/mulesoft/traffic-flow-mule-gateway-inline.png)
 === "تدفق المرور خارج الأشرطة"
     ![MuleSoft مع سياسة Wallarm](../../images/waf-installation/gateways/mulesoft/traffic-flow-oob.png)
 

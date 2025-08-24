@@ -35,7 +35,7 @@ You can choose the deployment model and method based on your infrastructure spec
 
 ### Running Wallarm Security Edge
 
-The Security Edge platform provides a managed service for deploying nodes across geographically distributed locations within a Wallarm-hosted environment. [Read more](../security-edge/deployment.md)
+The Security Edge platform provides a managed service for deploying nodes across geographically distributed locations within a Wallarm-hosted environment. [Read more](../security-edge/inline/deployment.md)
 
 ### Running Wallarm on compute instances
 

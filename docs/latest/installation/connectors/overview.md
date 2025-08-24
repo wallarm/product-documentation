@@ -6,7 +6,7 @@ API deployment can be done in various ways, including utilizing external tools s
 
 Wallarm's connector solution integrates with third-party platforms, such as API gateways or edge platforms, to filter and analyze traffic. The solution operates with two main components:
 
-* The **Wallarm node**, hosted either by [Wallarm](../se-connector.md) or the client, performs traffic analysis and security checks.
+* The **Wallarm node**, hosted either by [Wallarm](../security-edge/se-connector.md) or the client, performs traffic analysis and security checks.
 * A **Wallarm-provided code bundle or policy** which is injected into the third-party platform to route traffic for analysis to the Wallarm node.
 
 With connectors, traffic can be analyzed either [in-line](../inline/overview.md) or [out-of-band](../oob/overview.md):
@@ -25,16 +25,22 @@ Wallarm offers connectors for the following platforms:
 
 | Connector | Supported traffic flow mode | Connector hosting |
 | --- | ---- | ---- |
-| [MuleSoft](mulesoft.md) | In-line | Security Edge, self-hosted |
+| [MuleSoft Mule Gateway](mulesoft.md) | In-line | Security Edge, self-hosted |
+| [MuleSoft Flex Gateway](mulesoft-flex.md) | In-line, out-of-band | Self-hosted |
 | [Apigee](apigee.md) | In-line |Self-hosted |
 | [Akamai EdgeWorkers](akamai-edgeworkers.md) | In-line |Self-hosted |
 | [Azion Edge](azion-edge.md) | In-line |Self-hosted |
 | [Amazon CloudFront](aws-lambda.md) | In-line, out-of-band | Security Edge, self-hosted |
 | [Cloudflare](cloudflare.md) | In-line, out-of-band | Security Edge, self-hosted |
 | [Kong Ingress Controller](kong-api-gateway.md) | In-line | Self-hosted |
-| [Istio Ingress](istio.md) | Out-of-band | Self-hosted |
+| [Istio Ingress](istio.md) | In-line, out-of-band | Self-hosted |
 | [Broadcom Layer7 API Gateways](layer7-api-gateway.md) | In-line | Self-hosted |
 | [Fastly](fastly.md) | In-line, out-of-band | Security Edge, self-hosted |
 | [IBM DataPower](ibm-api-connect.md) | In-line | Security Edge, self-hosted |
 
 If you couldn't find the connector you are looking for, please feel free to contact our [Sales team](mailto:sales@wallarm.com) to discuss your requirements and explore potential solutions.
+
+!!! info "Deployment alternatives"
+    Want a managed Inline option instead? Explore [Security Edge](../security-edge/overview.md).
+
+    For traditional self-managed deployments (VMs, Kubernetes, cloud environments), see [Self-Hosted Node Deployment](../supported-deployment-options.md).

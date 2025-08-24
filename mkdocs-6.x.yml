@@ -12,7 +12,7 @@ nav:
     - Wallarm Overview: about-wallarm/overview.md
     - Getting Started: quickstart/getting-started.md
     - Subscription Plans: about-wallarm/subscription-plans.md
-    - Deployment Guides: /installation/supported-deployment-options/
+    - Security Edge Free Tier: /installation/security-edge/free-tier/
     - Best Practices: quickstart/attack-prevention-best-practices.md
     - Video Guides:
       - Wallarm Platform Settings: demo-videos/overview.md
@@ -58,9 +58,10 @@ nav:
       - Exploring Bot Activity: api-abuse-prevention/exploring-bots.md
     - Credential Stuffing Detection: about-wallarm/credential-stuffing.md
     - GraphQL API Protection: api-protection/graphql-rule.md
-  # - Enumeration Attack Protection: api-protection/enumeration-attack-protection.md
-  # - Rate Abuse Protection: api-protection/rate-abuse-protection.md
-  # - Mitigation Controls: about-wallarm/mitigation-controls-overview.md
+    - Enumeration Attack Protection: api-protection/enumeration-attack-protection.md
+    - DoS Protection: api-protection/dos-protection.md
+    - File Upload Restriction: api-protection/file-upload-restriction.md
+    - Mitigation Controls: about-wallarm/mitigation-controls-overview.md
   - Agentic AI:
     - AI Discovery: agentic-ai/agentic-ai-discovery.md
     - Agentic AI Protection: agentic-ai/agentic-ai-protection.md
@@ -100,24 +101,33 @@ nav:
       - Parsing Requests: user-guides/rules/request-processing.md
       - Rules: user-guides/rules/rules.md
       - Triggers: user-guides/triggers/triggers.md
-  - API Security Testing:
-    - Threat Replay Testing:
+  - Security Testing:
+    - Threat Replay:
       - Overview: vulnerability-detection/threat-replay-testing/overview.md
       - Setup: vulnerability-detection/threat-replay-testing/setup.md
       - Test Results: vulnerability-detection/threat-replay-testing/exploring.md
-    - API Test Patrol:
-      - Overview: vulnerability-detection/api-test-patrol/overview.md
-      - Setup: vulnerability-detection/api-test-patrol/setup.md
-      - Test Run Results: vulnerability-detection/api-test-patrol/explore.md
+    - Schema-Based:
+      - Overview: vulnerability-detection/schema-based-testing/overview.md
+      - Setup: vulnerability-detection/schema-based-testing/setup.md
+      - Test Run Results: vulnerability-detection/schema-based-testing/explore.md
 # - Overview: ...
     # - OWASP Top 10: ...
     # - Known attacks / CVEs: ...
     # - Triggers: ...
-  - Deployment:
-    - Deployment Options: installation/supported-deployment-options.md
-    - Security Edge:
-      - Inline: installation/security-edge/deployment.md
-      - Connectors: installation/se-connector.md
+  - Security Edge:
+    - Overview: installation/security-edge/overview.md
+    - Free Tier: installation/security-edge/free-tier.md
+    - Inline:
+      - Overview: installation/security-edge/inline/overview.md
+      - Deployment: installation/security-edge/inline/deployment.md
+      - Multi‑Cloud and Multi‑Region: installation/security-edge/inline/multi-region.md
+      - mTLS: installation/security-edge/inline/mtls.md
+      - Host Redirection: installation/security-edge/inline/host-redirection.md
+      - Managing deployment: installation/security-edge/inline/upgrade-and-management.md
+      - Telemetry portal: installation/security-edge/inline/telemetry-portal.md
+    - Connectors: installation/security-edge/se-connector.md
+  - Self-Hosted Deployment:
+    - Overview: installation/supported-deployment-options.md
     - Kubernetes:
       - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
       - Sidecar:
@@ -146,24 +156,9 @@ nav:
         - Azure Container Instances: installation/cloud-platforms/azure/docker-container.md
       - Alibaba Cloud:
         - ECS: installation/cloud-platforms/alibaba-cloud/docker-container.md
-    - Connectors:
-      - Overview: installation/connectors/overview.md
-      - MuleSoft: installation/connectors/mulesoft.md
-      - Apigee: installation/connectors/apigee.md
-      - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
-      - Azion Edge: installation/connectors/azion-edge.md
-      - CloudFront: installation/connectors/aws-lambda.md
-      - Cloudflare: installation/connectors/cloudflare.md
-      - Kong API Gateway: installation/connectors/kong-api-gateway.md
-      - Istio (Out-of-Band): installation/connectors/istio.md
-      - Istio: installation/connectors/istio-inline.md
-      - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
-      - Fastly: installation/connectors/fastly.md
-      - IBM API Connect: installation/connectors/ibm-api-connect.md
-      - Code Bundle Changelog: installation/connectors/code-bundle-inventory.md
+      - Heroku: installation/heroku/docker-image.md
     - In-Line:
       - Overview: installation/inline/overview.md
-      - Security Edge: installation/inline/security-edge-inline.md
       - Compute Instances:
         - All-in-one installer: installation/inline/compute-instances/linux/all-in-one.md
         - Amazon Web Services:
@@ -219,14 +214,11 @@ nav:
           - Deploy: installation/native-node/helm-chart.md
           - Configure: installation/native-node/helm-chart-conf.md
         - Artifact Versions and Changelog: updating-migrating/native-node/node-artifact-versions.md
-    - Custom Deployment:
-      - On-Premise:
-        - Overview: installation/on-premise/overview.md
-        - Deployment: installation/on-premise/deployment.md
-        - Maintenance: installation/on-premise/maintenance.md
-      - Custom NGINX Packages: installation/custom/custom-nginx-version.md
-      - Heroku: installation/heroku/docker-image.md
-      - Custom Deployment Options: installation/custom/request-custom-deployment.md
+    - On-Premise:
+      - Overview: installation/on-premise/overview.md
+      - Deployment: installation/on-premise/deployment.md
+      - Maintenance: installation/on-premise/maintenance.md
+    - Request Custom Deployment: installation/custom/request-custom-deployment.md
     - Additional Options:
       - Chaining Wallarm and Ingress Controllers: admin-en/chaining-wallarm-and-other-ingress-controllers.md
       - Auto Scaling:
@@ -248,6 +240,22 @@ nav:
         - Creating Tenant Accounts in Wallarm Console: installation/multi-tenant/configure-accounts.md
         - Deploying and Configuring Multi-tenant Node: installation/multi-tenant/deploy-multi-tenant-node.md
       - Wallarm Deployment in Private Clouds: installation/cloud-platforms/private-cloud.md
+      - Custom NGINX Packages: installation/custom/custom-nginx-version.md
+  - Connector Deployment:
+    - Overview: installation/connectors/overview.md
+    - MuleSoft Mule Gateway: installation/connectors/mulesoft.md
+    - MuleSoft Flex Gateway: installation/connectors/mulesoft-flex.md
+    - Apigee: installation/connectors/apigee.md
+    - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
+    - Azion Edge: installation/connectors/azion-edge.md
+    - CloudFront: installation/connectors/aws-lambda.md
+    - Cloudflare: installation/connectors/cloudflare.md
+    - Kong API Gateway: installation/connectors/kong-api-gateway.md
+    - Istio: installation/connectors/istio.md
+    - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
+    - Fastly: installation/connectors/fastly.md
+    - IBM API Connect: installation/connectors/ibm-api-connect.md
+    - Code Bundle Changelog: installation/connectors/code-bundle-inventory.md
   - Integrations and Alerts:
     - Overview: user-guides/settings/integrations/integrations-intro.md 
     - Email and Messengers:
@@ -313,6 +321,7 @@ nav:
       - Configuring Failover Method: admin-en/configure-backup-en.md
       - Filtering Node Logs: admin-en/configure-logging.md
       - Statistics Service: admin-en/configure-statistics-service.md
+      - Native Node Metrics: admin-en/native-node-metrics.md
       - Using a Mirrored Wallarm Repository:
         - How to Mirror the Wallarm Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
         - Installing Wallarm Packages from the Local JFrog Artifactory Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md
@@ -352,6 +361,7 @@ nav:
     - Wallarm API Reference:
       - Overview: api/overview.md
       - API Request Examples: api/request-examples.md
+    - Wallarm's SLA: sla.md
     - Wallarm Terraform Provider: admin-en/managing/terraform-provider.md
     - Learning Monthly Request Volume of an Application: admin-en/operation/learn-incoming-request-number.md
     - Docker Image Security:

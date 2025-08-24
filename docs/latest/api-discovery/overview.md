@@ -77,6 +77,7 @@ Also, the API Discovery performs filtering of requests relying on the other crit
     If the header does not exist, API Discovery analyzes the request.
 
 * Standard fields such as `Accept` and alike are discarded.
+* Requests targeting `localhost` or loopback addresses are not processed.
 
 ### Sensitive data detection
 

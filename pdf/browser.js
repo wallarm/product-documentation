@@ -1,10 +1,8 @@
 const path = require('path'),
-    url = require('url'),
     fs = require('fs'),
     puppeteer = require('puppeteer'),
     { eraseLines, cursorLeft } = require('ansi-escapes'),
-    layouts = require('./layouts'),
-    PDFMerger = require('pdf-merger-js');
+    layouts = require('./layouts');
 
 const styles = { path: path.resolve(__dirname, './index.css') },
     pageBreak = '<div class="pdf-page-break"></div>';
@@ -17,31 +15,33 @@ function write(msg, lines = 0) {
 }
 
 async function getPageHTML({ id, href, path }) {
-    await page.goto(href);
+    await page.goto(href, { waitUntil: 'networkidle0', timeout: 90000 });
     await page.addStyleTag(styles);
 
     return page.evaluate((id, path, pageBreak) => {
-        let $section = document.querySelector('.md-content');
+        document.querySelectorAll('.md-consent__inner, .video-wrapper').forEach(el => el.remove());
+        const $header = document.getElementById('demo-videos');
+        if ($header) $header.remove();
 
-        [...document.querySelectorAll('a')].forEach($a => { $a.dataset.dir = path; });
-        let $header = document.getElementById('demo-videos');
-        if ($header) $header.style.display='none';
-        [...document.getElementsByClassName('video-wrapper')].forEach($video => { $video.style.display='none'; });
+        const $section = document.querySelector('.md-content');
+        if (!$section) return '';
+
         [...document.querySelectorAll('[id]')].forEach($node => {
-            let anchor = $node.getAttribute('id');
-            $node.setAttribute('id', `${id}---${anchor}`)
+            const anchor = $node.getAttribute('id');
+            $node.setAttribute('id', `${id}---${anchor}`);
         });
-        $section.setAttribute('id', id);
 
+        $section.setAttribute('id', id);
         return $section.outerHTML + pageBreak;
     }, id, path, pageBreak);
 }
 
 async function getTOC(docsUrl) {
-    await page.goto(docsUrl);
+    await page.goto(docsUrl, { waitUntil: 'networkidle0' });
 
     return page.evaluate(docsUrl => {
         const $summary = document.querySelector('.md-nav__list');
+        const toc = [];
 
         function parse(nodes, data, depth = 0) {
             [...nodes].forEach($node => {
@@ -50,41 +50,35 @@ async function getTOC(docsUrl) {
                 }
 
                 if ($node.classList.contains('md-nav__item')) {
-                    let children = [...$node.children];
-                        
-                    const titleElement = $node.getElementsByClassName('md-nav__link')[0];
-                    let item = {
+                    const titleElement = $node.querySelector('.md-nav__link');
+                    const hrefElement = $node.querySelector('a');
+                    const subnav = $node.querySelector('nav .md-nav__list');
+
+                    const item = {
                         type: 'chapter',
                         level: depth,
-                        title: titleElement.textContent.trim(),
+                        title: titleElement?.textContent.trim(),
                         depth
                     };
-                    const hrefElement = $node.getElementsByTagName('a')[0];
 
-                    const subnav = $node.getElementsByTagName('nav')[0];
                     if (hrefElement && !subnav) {
-                        let href = hrefElement.getAttribute('href');
+                        const href = hrefElement.getAttribute('href');
                         item.id = href.replace(/\./g, '-').replace(/\//g, '--').replace(/#/g, '---');
-                        item.path =  hrefElement.getAttribute('href');
-                        item.href = `${docsUrl}${item.path}`
+                        item.path = href;
+                        item.href = docsUrl + href;
                     }
+
                     data.push(item);
 
-                    if(subnav) {
-                        const subnavList = subnav.getElementsByClassName('md-nav__list')[0];
-                        if(subnavList){
-                            parse(subnavList.children, data, depth + 1);
-                        }
+                    if (subnav) {
+                        parse(subnav.children, data, depth + 1);
                     }
                 }
             });
         }
 
-        let toc = [];
-
         parse($summary.children, toc);
-
-        return Promise.resolve(toc);
+        return toc;
     }, docsUrl);
 }
 
@@ -92,126 +86,63 @@ async function collectData(toc) {
     write('• Collecting data...\n');
 
     for (let i = 0; i < toc.length; i++) {
-        let item = toc[i];
-        var demoVid=new RegExp("demo-videos");
-        var apiFir=new RegExp("api-firewall");
+        const item = toc[i];
+        if (!item.href || !item.id) continue;
 
-        if (demoVid.test(item.href) || apiFir.test(item.href)) {
-            write('Demo videos or API Firewall docs skipped\n', 1);
+        if (/demo-videos|api-firewall/.test(item.href)) {
+            write(`⏭ Skipping: ${item.href}\n`, 1);
+            continue;
         }
-        else {
-            if (!item.id) continue;
 
-            let p = Math.round(i / (toc.length - 1) * 100);
+        const p = Math.round((i / toc.length) * 100);
+        write(`• Collecting... ${p}%\n  ${item.path}\n  ${item.title}`, 2);
 
-            write(`• Collecting data... ${p}%\n  ${item.path}\n  ${item.title}`, 2);
-
+        try {
             item.html = await getPageHTML(item);
+        } catch (e) {
+            write(`⚠️ Failed to fetch ${item.href}\n`, 1);
+            item.html = '';
         }
     }
 }
 
 async function generateHTML(toc, parts) {
-    write('✔ Data is collected\n• Preparing a ToC...', 2);
+    write('✔ Data collected\n• Generating ToC and full HTML...', 1);
 
-    let html = '';
-    var demoVid=new RegExp("demo-videos");
-    var apiFir=new RegExp("api-firewall");
-
-    html += '<h1>Table of contents</h1><ul id="toc">';
+    let html = '<h1>Table of Contents</h1><ul id="toc">';
 
     toc.forEach(item => {
-        if (demoVid.test(item.href) || apiFir.test(item.href)) {
-            write('Demo videos or API Firewall docs skipped\n', 1);
-        }
-        else {
-            if (item.type === 'header') {
-                html += `<li><h3>${item.title}</h3></li>\n`;
-                
-            }
+        if (!item.href || !item.id || !item.html) return;
+        if (/demo-videos|api-firewall/.test(item.href)) return;
 
-            if (item.type === 'chapter' && item.title != 'Demo videos' && item.title != 'Free tool: API Firewall' && item.title != 'Demos') {
-                if (item.id) {
-                    html += `<li class="depth depth-${item.depth}"><a href="#${item.id}">${item.title}</a></li>\n`;
-                } else {
-                    html += `<li class="chapter depth depth-${item.depth}">${item.title}</li>\n`;
-                }
-            }
-            // else {
-            //     write('djdj');
-            // }
-    }
+        if (item.type === 'header') {
+            html += `<li><h3>${item.title}</h3></li>\n`;
+        } else if (item.type === 'chapter') {
+            html += `<li class="depth depth-${item.depth}"><a href="#${item.id}">${item.title}</a></li>\n`;
+        }
     });
 
     html += '</ul>' + pageBreak;
-
-    write('✔ ToC is ready\n• Merging pages...', 1);
     html += toc.map(item => item.html || '').join('');
 
     return html;
 }
 
 async function generatePDF(docsUrl, html, origin, parts) {
-    await page.goto(docsUrl);
+    // Загружаем head + CSS с сайта, чтобы не терять стили
+    await page.goto(docsUrl, { waitUntil: 'networkidle0' });
+
+    // Подключаем твой index.css
     await page.addStyleTag(styles);
 
-    let links = await page.evaluate((html, origin) => {
-        const regexp = new RegExp(origin);
+    // Вставляем подготовленный HTML внутрь body
+    await page.evaluate(innerHtml => {
+        document.body.innerHTML = innerHtml;
+    }, html);
 
-        document.body.innerHTML = html;
-        // termtabs
-        [...document.querySelectorAll('.tabbed-set')].forEach($termtabs => {
-            $termtabs.classList.remove('tabbed-set');
-            const labels = $termtabs.getElementsByTagName('label');
-            const blocks = $termtabs.getElementsByClassName('tabbed-content');
+    write('✔ Final HTML loaded\n• Generating PDF...\n', 1);
 
-            [...labels].forEach(($tab) => {
-                $tab.classList.add('label');
-            });
-
-            [...blocks].forEach((block) => {
-                block.classList.remove('tabbed-content');
-            });
-
-            [...$termtabs.getElementsByTagName('input')].forEach(el => el.remove());
-        });
-
-
-        return [...document.querySelectorAll('a')]
-            .filter($a => !$a.classList.contains('plugin-anchor') && regexp.test($a.href) && !!$a.dataset.dir)
-            .map(($a, i) => {
-                let id = `inner-link-${i}`;
-
-                $a.setAttribute('id', id);
-
-                return [
-                    id,
-                    $a.getAttribute('href'),
-                    $a.dataset.dir
-                ];
-            });
-    }, html, origin);
-
-    links = links.map(([id, href, dir]) => [
-        id,
-        `#${url.resolve(dir, href).replace(/\./g, '-').replace(/\//g, '--').replace(/#/g, '---')}`
-    ]);
-
-    await page.evaluate(links => {
-        links.forEach(([id, href]) => {
-            let $a = document.getElementById(id);
-            if (!$a) return;
-
-            $a.removeAttribute('id');
-            $a.setAttribute('href', href);
-        });
-
-        return document.body.innerHTML;
-    }, links);
-
-    write('✔ Pages are merged\n• Generating a PDF...', 1);
-
-    return page.pdf({
+    await page.pdf({
         path: 'tmp/docs.pdf',
         format: 'A4',
         printBackground: true,
@@ -222,43 +153,22 @@ async function generatePDF(docsUrl, html, origin, parts) {
     });
 }
 
-async function generateIndexPDF(parts) {
-    let html = `
-        ${parts.index}
-        ${pageBreak}
-    `;
-
-    await page.setContent(html);
-    await page.addStyleTag(styles);
-
-    return page.pdf({
-        path: 'tmp/index.pdf',
-        format: 'A4',
-        printBackground: true
-    });
-}
-
 module.exports.generatePDF = async ({ origin }) => {
     if (!origin) throw new Error('Origin is required!');
 
-    const docsUrl = `${origin}${/\/$/.test(origin) ? '' : '/'}`,
-        parts = layouts["structure"] || {};
+    const docsUrl = `${origin}${/\/$/.test(origin) ? '' : '/'}`;
+    const parts = layouts['structure'] || {};
 
-    !fs.existsSync('tmp') && fs.mkdirSync('tmp');
+    if (!fs.existsSync('tmp')) fs.mkdirSync('tmp');
 
-    const browser = await puppeteer.launch({
-        // headless: false
-    });
-
+    const browser = await puppeteer.launch({ headless: 'new' });
     page = await browser.newPage();
 
-    await generateIndexPDF(parts);
-
-    let toc = await getTOC(docsUrl);
+    const toc = await getTOC(docsUrl);
     await collectData(toc);
-    let html = await generateHTML(toc, parts);
+    const html = await generateHTML(toc, parts);
     await generatePDF(docsUrl, html, origin, parts);
-    write ('PDF is done!\n', 1)
 
-    browser.close();
+    write('✔ PDF is done!\n');
+    await browser.close();
 };

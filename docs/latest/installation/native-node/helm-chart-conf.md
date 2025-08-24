@@ -55,6 +55,24 @@ config:
         #   route: /api
         #   wallarm_application: 3
 
+    proxy_headers:
+      # Rule 1: Internal company proxies
+      - trusted_networks:
+          - 10.0.0.0/8
+          - 192.168.0.0/16
+        original_host:
+          - X-Forwarded-Host
+        real_ip:
+          - X-Forwarded-For
+
+      # Rule 2: External edge proxies (e.g., CDN, reverse proxy)
+      - trusted_networks:
+          - 203.0.113.0/24
+        original_host:
+          - X-Real-Host
+        real_ip:
+          - X-Real-IP
+
     log:
       pretty: false
       level: info
@@ -98,8 +116,8 @@ This specifies the name of the group of filtering nodes you want to add newly de
 
 The Wallarm node operation mode. It can be:
 
-* `connector-server` (default) for [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [Kong API Gateway](../connectors/kong-api-gateway.md), [IBM DataPower](../connectors/ibm-api-connect.md) or [Istio (out-of-band)](../connectors/istio.md)connectors.
-* `envoy-external-filter` for [gRPC-based external processing filter](../connectors/istio-inline.md) for APIs managed by Istio.
+* `connector-server` (default) for MuleSoft [Mule](../connectors/mulesoft.md) or [Flex](../connectors/mulesoft-flex.md) Gateway, [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [Kong API Gateway](../connectors/kong-api-gateway.md), [IBM DataPower](../connectors/ibm-api-connect.md) connectors.
+* `envoy-external-filter` for [gRPC-based external processing filter](../connectors/istio.md) for APIs managed by Istio.
 
 ### config.connector.certificate.enabled (required)
 
@@ -307,6 +325,47 @@ Host-specific traffic [filtration mode](../../admin-en/configure-wallarm-mode.md
 
 Default: `monitoring`.
 
+### config.connector.proxy_headers
+
+Configures how the Native Node extracts the original client IP and host when traffic passes through proxies or load balancers.
+
+* `trusted_networks`: trusted proxy IP ranges (CIDRs). Headers like `X-Forwarded-For` are only trusted if the request comes from these networks.
+
+    If omitted, all networks are trusted (not recommended).
+* `original_host`: headers to use for the original `Host` value, if modified by a proxy.
+* `real_ip`: headers to use for extracting the real client IP address.
+
+You can define multiple rules for different proxy types or trust levels.
+
+!!! info "Rule evaluation order"    
+    Only the first matching rule is applied per request.
+
+Supported in Native Node 0.17.1 and later.
+
+Example:
+
+```yaml
+config:
+  connector:
+    proxy_headers:
+      # Rule 1: Internal company proxies
+      - trusted_networks:
+          - 10.0.0.0/8
+          - 192.168.0.0/16
+        original_host:
+          - X-Forwarded-Host
+        real_ip:
+          - X-Forwarded-For
+
+      # Rule 2: External edge proxies (e.g., CDN, reverse proxy)
+      - trusted_networks:
+          - 203.0.113.0/24
+        original_host:
+          - X-Real-Host
+        real_ip:
+          - X-Real-IP
+```
+
 ### config.connector.log
 
 The `config.connector.log.*` configuration section is available starting with the Native Node Helm chart version 0.10.0. Previously, logging was managed solely via the `config.connector.log_level` parameter.
@@ -355,10 +414,10 @@ Wallarm service type. Can be:
 
 * `LoadBalancer` for running the service as a load balancer with a public IP for easy traffic routing.
 
-    This is suitable for [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [IBM DataPower](../connectors/ibm-api-connect.md) connectors.
+    This is suitable for MuleSoft [Mule](../connectors/mulesoft.md) or [Flex](../connectors/mulesoft-flex.md) Gateway, [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [IBM DataPower](../connectors/ibm-api-connect.md), [Istio](../connectors/istio.md) connectors.
 * `ClusterIP` for internal traffic, without exposing a public IP.
 
-    This is suitable for [Kong API Gateway](../connectors/kong-api-gateway.md) or [Istio](../connectors/istio.md) connectors.
+    This is suitable for [Kong API Gateway](../connectors/kong-api-gateway.md) connectors.
 
 Default: `ClusterIP`.
 
@@ -384,7 +443,76 @@ processing:
   metrics:
     enabled: true
     port: 9090
+
+drop_on_overload: true
 ```
+
+### config.connector.input_filters
+
+Defines which incoming requests should be **inspected** or **bypassed** by the Native Node. This reduces CPU usage by ignoring irrelevant traffic such as static assets or health checks.
+
+By default, all requests are inspected.
+
+!!! warning "Requests skipped from inspection are not analyzed or sent to Wallarm Cloud"
+    As a result, skipped requests do not appear in metrics, API Discovery, API sessions, vulnerability detection and so on. Wallarm features do not apply to them.
+
+**Compatibility**
+
+* Native Node 0.16.1 and higher
+
+**Filtering logic**
+
+The filtering logic is based on 2 lists:
+
+* `inspect`: only requests matching at least one filter here are inspected.
+
+    If omitted or empty, all requests are inspected, unless excluded by `bypass`.
+* `bypass`: requests matching any filter here are never inspected, even if they match `inspect`.
+
+**Filter format**
+
+Each filter is an object that can include:
+
+* `path` or `url`: regex for matching the request path (both are supported and equivalent).
+* `headers`: a map of header names to regex patterns for matching their values.
+
+All regular expressions must follow the [RE2 syntax](https://github.com/google/re2/wiki/Syntax).
+
+**Examples**
+
+=== "Allow requests by token, skip static content"
+    This configuration inspects only requests to versioned API endpoints (e.g. `/api/v1/...`) that include a `Bearer` token in the `Authorization` header.
+    
+    It bypasses requests for static files (images, scripts, styles) and browser-initiated HTML page loads.
+
+    ```yaml
+    config:
+      connector:
+        input_filters:
+          inspect:
+          - path: "^/api/v[0-9]+/.*"
+            headers:
+              Authorization: "^Bearer .+"
+          bypass:
+          - path: ".*\\.(png|jpg|css|js|svg)$"
+          - headers:
+              accept: "text/html"
+    ```
+=== "Allow requests by domain, skip health checks"
+    This configuration inspects only requests with `Host: api.example.com`, skipping all others.
+    
+    Requests to the `/healthz` endpoint are always bypassed, even if they match the inspected host.
+
+    ```yaml
+    config:
+      connector:
+        input_filters:
+          inspect:
+          - headers:
+              host: "^api\\.example\\.com$"
+          bypass:
+          - path: "^/healthz$"
+    ```
 
 ### config.connector.http_inspector.workers
 
@@ -415,3 +543,22 @@ Default: `true`.
 Sets the address and port where Prometheus metrics will be exposed. To access these metrics, use the `/metrics` endpoint.
 
 Default: `:9000` (all network interfaces on the port 9000).
+
+### drop_on_overload
+
+Controls whether the Node drops incoming requests when the processing load exceeds its capacity.
+
+**Compatibility**
+
+* Native Node 0.16.1 and higher
+* For the [Envoy connector](../connectors/istio.md), behavior depends on the `failure_mode_allow` setting
+
+    The `drop_on_overload` configuration is not applied.
+
+When enabled (`true`), if the Node cannot process data in real time, it drops excess input and responds with `503 (Service Unavailable)`. This prevents the Node from accumulating unprocessed requests in internal queues, which could otherwise lead to severe performance degradation or out‑of‑memory errors.
+
+Returning 503 allows upstream services, load balancers, or clients to detect overload conditions and retry requests if needed.
+
+In blocking [mode](../../admin-en/configure-wallarm-mode.md), such requests are not blocked.
+
+Default: `true`.
