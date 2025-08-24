@@ -45,17 +45,9 @@ API Test Patrol capabilities:
 
 ### API Attack Surface Management (AASM)
 
-#### How it works
-
 Wallarm's [API Attack Surface Management](../api-attack-surface/overview.md) (AASM) is an agentless detection solution tailored to the API ecosystem, designed to discover external hosts with their APIs, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities.
 
-#### Configuration
-
-You enable and configure API Attack Surface Management to detect hosts under your selected domains and search for security issues related to these hosts as described [here](../api-attack-surface/setup.md).
-
-For detected hosts, Wallarm will automatically [search for vulnerabilities](../api-attack-surface/security-issues.md).
-
-#### Replacement of old Scanner
+**Replacement of old Scanner**
 
 From May 7, 2025, AASM [replaced the old Scanner](../api-attack-surface/api-surface.md#replacement-of-old-scanner) as a more sophisticated and comfortable tool for host and API discovery.
 
