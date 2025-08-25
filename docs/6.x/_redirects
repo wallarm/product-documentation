@@ -877,3 +877,11 @@
 /5.x/installation/inline/security-edge-inline/ /5.x/installation/security-edge/inline/deployment/
 /5.x/installation/security-edge/deployment/ /5.x/installation/security-edge/inline/deployment/
 /5.x/installation/se-connector/ /5.x/installation/security-edge/se-connector/
+
+/vulnerability-detection/api-test-patrol/* /vulnerability-detection/schema-based-testing/:splat
+/5.x/vulnerability-detection/api-test-patrol/* /5.x/vulnerability-detection/schema-based-testing/:splat
+/4.10/vulnerability-detection/api-test-patrol/* /4.10/vulnerability-detection/schema-based-testing/:splat
+/ja/vulnerability-detection/api-test-patrol/* /ja/vulnerability-detection/schema-based-testing/:splat
+/tr/vulnerability-detection/api-test-patrol/* /tr/vulnerability-detection/schema-based-testing/:splat
+/pt-br/vulnerability-detection/api-test-patrol/* /pt-br/vulnerability-detection/schema-based-testing/:splat
+/ar/vulnerability-detection/api-test-patrol/* /ar/vulnerability-detection/schema-based-testing/:splat
