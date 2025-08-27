@@ -101,15 +101,15 @@ nav:
       - Parsing Requests: user-guides/rules/request-processing.md
       - Rules: user-guides/rules/rules.md
       - Triggers: user-guides/triggers/triggers.md
-  - API Security Testing:
-    - Threat Replay Testing:
+  - Security Testing:
+    - Threat Replay:
       - Overview: vulnerability-detection/threat-replay-testing/overview.md
       - Setup: vulnerability-detection/threat-replay-testing/setup.md
       - Test Results: vulnerability-detection/threat-replay-testing/exploring.md
-    - API Test Patrol:
-      - Overview: vulnerability-detection/api-test-patrol/overview.md
-      - Setup: vulnerability-detection/api-test-patrol/setup.md
-      - Test Run Results: vulnerability-detection/api-test-patrol/explore.md
+    - Schema-Based:
+      - Overview: vulnerability-detection/schema-based-testing/overview.md
+      - Setup: vulnerability-detection/schema-based-testing/setup.md
+      - Test Run Results: vulnerability-detection/schema-based-testing/explore.md
 # - Overview: ...
     # - OWASP Top 10: ...
     # - Known attacks / CVEs: ...
