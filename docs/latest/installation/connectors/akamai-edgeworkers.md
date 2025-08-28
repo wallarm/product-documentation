@@ -46,10 +46,13 @@ To deploy the Wallarm EdgeWorker on Akamai, make sure the following requirements
 
     * Your API services running on a reachable origin server
     * Origin domain resolves to the Akamai property hostname via a CNAME record
-* Akamai property configured to forward traffic to the origin
+* Akamai property configured to forward traffic to the protected origin
 
     * The property must include the **Default Rule** with the **Origin Server** behavior
     * The property must have a valid TLS certificate for the served host
+* Control over a DNS zone (e.g., `customer.com`) and readiness to allocate a dedicated subdomain (e.g., `node.customer.com`) for the Wallarm Node property
+
+    After the property is created, Akamai will return an Edge Hostname (e.g., `node.customer.com.edgesuite.net`). You must create a **CNAME record** in your DNS that points the chosen subdomain to this Edge Hostname.
 
 ## Deployment
 
@@ -79,15 +82,40 @@ To acquire and run the Wallarm code bundle on Akamai EdgeWorkers, follow these s
 1. Create another EdgeWorker ID and import the `wallarm-sp` bundle.
 
     This is the EdgeWorker recommended for spoofing prevention. It does not require a property.
-1. In Akamai Property Manager, create a new property with the `Dynamic Site Accelerator` type for the `wallarm-main` EdgeWorker.
 
-### 3. Configure variables in the origin property
+### 3. Create the Wallarm Node property
+
+1. In Akamai Property Manager, create a new property:
+
+    * **Property name / hostname**: the dedicated Node hostname (e.g., `node.customer.com`). This hostname must belong to a DNS zone you control.
+    * **Property type**: `Dynamic Site Accelerator`.
+    * **Origin type**: `Web server`.
+    * **Origin Hostname**: the actual [address of your deployed Wallarm Node](#1-deploy-a-wallarm-node).
+1. Configure TLS for the property:
+
+    * Either select an **Akamai Managed Certificate** (Akamai will issue and maintain a certificate for `node.customer.com`), or
+    * Upload your own certificate if required.
+1. Save the property. Akamai will generate an Edge Hostname, e.g.:
+
+    ```
+    node.customer.com.edgesuite.net
+    ```
+1. In your DNS zone, create a CNAME record pointing your Node hostname to the Edge Hostname, e.g.:
+
+    ```
+    node.customer.com → node.customer.com.edgesuite.net
+    ```
+1. [Activate the property in staging](https://techdocs.akamai.com/property-mgr/docs/activate-stage), verify functionality, then [activate in production](https://techdocs.akamai.com/property-mgr/docs/activate-prod).
+
+![!Wallarm Node Property in Akamai](../../images/waf-installation/gateways/akamai/wallarm-property.png)
+
+### 4. Configure variables in the origin property
 
 Open your existing origin property → **Edit New Version** and configure the following variables:
 
 | Variable | Description | Required? |
 | -------- | ----------- | --------- |
-| `PMUSER_WALLARM_NODE` | Address of your [Wallarm Node instance](#1-deploy-a-wallarm-node). | Yes |
+| `PMUSER_WALLARM_NODE` | The property name that you have created for the `wallarm-main` EdgeWorker. | Yes |
 | `PMUSER_WALLARM_HEADER_SECRET` | Arbitary secret value for spoofing prevention, e.g. `aj8shd82hjd72hs9`. When the `wallarm-main` EdgeWorker forwards a request back into the same property, it adds the header `x-wlrm-checked` with this value. The `wallarm-sp` EdgeWorker validates the header: if it does not match, the request is blocked. It prevents infinite loops and ensures clients cannot add a fake header to bypass Wallarm checks.<br>Keep private and do not reuse elsewhere. | Yes |
 | `PMUSER_WALLARM_ASYNC` | Determines traffic handling mode: `false` processes traffic through the Wallarm Node directly (synchronous), while `true` analyzes a [copy](../oob/overview.md) of the traffic without affecting the original flow (asynchronous). Default: `false`. | No |
 | `PMUSER_WALLARM_INSPECT_REQ_BODY` | Controls whether to send request bodies to the Wallarm node for analysis or not. Default: `true`. | No |
@@ -97,7 +125,7 @@ Open your existing origin property → **Edit New Version** and configure the fo
 
 You can fine-tune the connector mode and body inspection settings per-route or per-file type by using the **Set Variable** behavior.
 
-### 4. Add Wallarm EdgeWorker rule
+### 5. Add Wallarm EdgeWorker rule
 
 In the origin property, create a new blank rule:
 
@@ -113,7 +141,7 @@ In the origin property, create a new blank rule:
 
 For more complex setups, you can combine this condition with path checks (e.g., apply the rule only to `/api/*` paths) so that only API traffic is processed by Wallarm.
 
-### 5. Add spoofing-prevention rule
+### 6. Add spoofing-prevention rule
 
 In the origin property, create another new blank rule:
 
@@ -131,9 +159,9 @@ This rule ensures that the header `x-wlrm-checked` matches the value of `PMUSER_
 
 For more complex setups, you can combine this condition with path checks (e.g., apply the rule only to `/api/*` paths) so that only API traffic is processed by Wallarm.
 
-### 6. Save and activate the property
+### 7. Save and activate the property
 
-1. Save the new property version.
+1. Save the new origin property version.
 1. [Activate it in the staging environment](https://techdocs.akamai.com/property-mgr/docs/activate-stage).
 1. After verification, [activate in production](https://techdocs.akamai.com/property-mgr/docs/activate-prod).
 
@@ -151,3 +179,15 @@ To test the functionality of the deployed EdgeWorkers, follow these steps:
     ![Attacks in the interface][attacks-in-ui-image]
 
     If the Wallarm node mode is set to blocking, the request will also be blocked.
+
+## Upgrading the Walalrm EdgeWorkers
+
+To upgrade the deployed Wallarm EdgeWorkers to a [newer version](code-bundle-inventory.md#akamai):
+
+1. Proceed to the EdgeWorker [created](#2-obtain-the-wallarm-code-bundle-and-create-edgeworkers) for `wallarm-main`.
+1. Press **Create Version** and upload the new `wallarm-main` code bundle.
+1. [Activate it in the staging environment](https://techdocs.akamai.com/property-mgr/docs/activate-stage).
+1. After verification, [activate in production](https://techdocs.akamai.com/property-mgr/docs/activate-prod).
+1. Repeat the same steps for the `wallarm-sp` code bundle if its version changed.
+
+EdgeWorker upgrades may require a Wallarm node upgrade, especially for major version updates. See the [Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for the self-hosted Node release notes. Regular node updates are recommended to avoid deprecation and simplify future upgrades.
