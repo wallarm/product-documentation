@@ -180,7 +180,7 @@ To test the functionality of the deployed EdgeWorkers, follow these steps:
 
     If the Wallarm node mode is set to blocking, the request will also be blocked.
 
-## Upgrading the Walalrm EdgeWorkers
+## Upgrading the Wallarm EdgeWorkers
 
 To upgrade the deployed Wallarm EdgeWorkers to a [newer version](code-bundle-inventory.md#akamai):
 
