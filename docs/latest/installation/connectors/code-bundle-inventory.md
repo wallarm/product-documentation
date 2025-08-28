@@ -83,6 +83,20 @@ The current version can be found in `Cargo.toml` → `[package]` → `version` p
 
 * [Initial release](mulesoft-flex.md)
 
+## Akamai
+
+[How to upgrade](akamai-edgeworkers.md#upgrading-the-wallarm-edgeworkers)
+
+The current version can be found in `wallarm-main`/`wallarm-sp` → `bundle.json` → `edgeworker-version` of the downloaded code bundle.
+
+| Policy version      | [Native Node version](../../updating-migrating/native-node/node-artifact-versions.md) |
+| ------------------- | ------------------- |
+| 1.x                 | 0.16.3 and higher   |
+
+### 1.0 (2025-08-18)
+
+* [Initial release](akamai-edgeworkers.md)
+
 ## CloudFront
 
 [How to upgrade](aws-lambda.md#upgrading-the-lambdaedge-functions)
