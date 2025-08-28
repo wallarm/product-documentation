@@ -245,7 +245,7 @@ nav:
     - MuleSoft Mule Gateway: installation/connectors/mulesoft.md
     - MuleSoft Flex Gateway: installation/connectors/mulesoft-flex.md
     - Apigee: installation/connectors/apigee.md
-    - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
+    - Akamai: installation/connectors/akamai-edgeworkers.md
     - Azion Edge: installation/connectors/azion-edge.md
     - CloudFront: installation/connectors/aws-lambda.md
     - Cloudflare: installation/connectors/cloudflare.md

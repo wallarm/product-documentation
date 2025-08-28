@@ -83,6 +83,20 @@ The current version can be found in `Cargo.toml` → `[package]` → `version` p
 
 * [Initial release](mulesoft-flex.md)
 
+## Akamai
+
+<!-- [How to upgrade](akamai-edgeworkers.md#upgrading-the-policy) -->
+
+<!-- The current version can be found in `Cargo.toml` → `[package]` → `version` parameter of the downloaded Wallarm policy or in the policy information in the MuleSoft UI. -->
+
+| Policy version      | [Native Node version](../../updating-migrating/native-node/node-artifact-versions.md) |
+| ------------------- | ------------------- |
+| 1.x.x               | 0.16.3 and higher   |
+
+### 1.0.0 (2025-08-18)
+
+* [Initial release](akamai-edgeworkers.md)
+
 ## CloudFront
 
 [How to upgrade](aws-lambda.md#upgrading-the-lambdaedge-functions)
