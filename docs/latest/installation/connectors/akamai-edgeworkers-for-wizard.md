@@ -73,7 +73,7 @@ In the origin property, create another new blank rule:
 [More details](akamai-edgeworkers.md)
 
 <style>
-  h1#cloudfront-for-wizard {
+  h1#akamai-for-wizard {
     display: none;
   }
 
