@@ -41,9 +41,8 @@ The sizing of wstore memory is controlled using the `SLAB_ALLOC_ARENA` attribute
 
 ### Allocating Resources if Using the Amazon Machine Image
 
-* The Wallarm node automatically distributes allocated resources between
-wstore and NGINX.
-* When launching a Wallarm node instance from the [Wallarm NGINX Node AMI](https://aws.amazon.com/marketplace/pp/prodview-5rl4dgi4wvbfe), we recommend using `t3.medium` for testing and `m4.xlarge` for production.
+* The Wallarm node automatically distributes allocated resources between wstore and NGINX.
+* When launching a Wallarm node instance from the [Wallarm NGINX Node AMI](https://aws.amazon.com/marketplace/pp/prodview-5rl4dgi4wvbfe), we recommend using the `t3.medium` instance type for testing and `m4.xlarge` for production.
 
 ## NGINX
 
