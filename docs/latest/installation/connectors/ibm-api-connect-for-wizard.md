@@ -4,7 +4,7 @@ The Wallarm Edge node can be connected to your IBM DataPower in [synchronous](..
 
 Follow the steps below to set up the connection.
 
-**Apply the Wallarm policies to APIs in IBM API Connect**
+**1. Apply the Wallarm policies to APIs in IBM API Connect**
 
 1. Download the provided code bundle for your platform.
 1. Register the request inspection policy:
@@ -32,7 +32,7 @@ Follow the steps below to set up the connection.
 
 In most cases, the `configured-gateway-service` name is `datapower-api-gateway`.
 
-**Integrate Wallarm inspection steps into the assembly pipeline**
+**2. Integrate Wallarm inspection steps into the assembly pipeline**
 
 In your API specification, within the `x-ibm-configuration.assembly.execute` section, add or update the following steps to route traffic through the Wallarm Node:
 
@@ -69,7 +69,7 @@ x-ibm-configuration:
 ...
 ```
 
-**Publish your product with the updated API**
+**3. Publish your product with the updated API**
 
 To apply changes to the traffic flow, re-publish the product that includes the modified API:
 
