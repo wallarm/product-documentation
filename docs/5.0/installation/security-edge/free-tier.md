@@ -63,7 +63,7 @@ Compared to the full Security Edge configuration flow, the **Quick setup** wizar
     * Only one origin can be added
     * Cannot skip [domain ownership verification](inline/deployment.md#3-certificates) (e.g. if your origin is behind a proxy like Cloudflare)
     * [Host redirection](inline/host-redirection.md) is not supported
-    * [Custom blocking page](inline/custom-blocking-page.md)
+    * [Custom blocking page](inline/custom-block-page.md)
     * [NGINX overrides](inline/nginx-overrides.md)
     * [Mutual TLS](inline/mtls.md) configuration is unavailable
 

@@ -1,1 +1,0 @@
---8<-- "latest/installation/security-edge/inline/custom-blocking-page.md"
