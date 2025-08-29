@@ -4,7 +4,7 @@ The Wallarm Edge node can be connected to your MuleSoft Flex Gateway in either [
 
 Follow the steps below to set up the connection.
 
-**Upload the Wallarm policy to MuleSoft Exchange**
+**1. Upload the Wallarm policy to MuleSoft Exchange**
 
 1. Download the provided code bundle for your platform.
 1. Extract the policy archive.
@@ -36,7 +36,7 @@ Follow the steps below to set up the connection.
 
 Your custom policy is now available in your MuleSoft Anypoint Platform Exchange.
 
-**Attach the Wallarm policy to your API**
+**2. Attach the Wallarm policy to your API**
 
 You can attach the Wallarm policy to either an individual API or all APIs.
 
