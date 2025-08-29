@@ -32,7 +32,11 @@
 [aws-ami-traffic-flow]:             ../../../images/waf-installation/aws/aws-ami-flow.png
 [aws-costs]:                        ../../cloud-platforms/aws/costs.md
 [img-security-group]:                ../../../images/aws-ami/security-group.png
-[latest-node-version]:              ../../../updating-migrating/node-artifact-versions.md
+[latest-node-version]:              ../../../updating-migrating/node-artifact-versions.md/#amazon-machine-image-ami
 [aws-costs]:                        ../../../installation/cloud-platforms/aws/costs.md
+[nginx-native-node]:                       ../../../installation/nginx-native-node-internals.md
+[wallarm-logs]:                     ../../../admin-en/configure-logging.md
+[log-level]:                        ../../../installation/native-node/all-in-one-conf.md/#loglevel
+
 
 --8<-- "latest/installation/inline/compute-instances/aws/aws-ami.md"
