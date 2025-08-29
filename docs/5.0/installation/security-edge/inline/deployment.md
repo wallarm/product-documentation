@@ -197,7 +197,7 @@ Traffic routing in this case is managed by your DNS provider. By default, most D
 * [Edge Node deployment in multi regions and providers](multi-region.md)
 * [mTLS for Edge Node to origins](mtls.md)
 * [Host redirection](host-redirection.md)
-* [Custom blocking page](custom-block-page.md)
+* [Custom block page](custom-block-page.md)
 * [NGINX overrides](nginx-overrides.md)
 * [Edge Node upgrade](upgrade-and-management.md)
 * [Telemetry portal](telemetry-portal.md)
