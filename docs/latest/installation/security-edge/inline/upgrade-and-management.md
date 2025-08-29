@@ -18,7 +18,7 @@ The Edge Node section provides real-time statuses of the deployment and configur
     ![!](../../../images/waf-installation/security-edge/inline/nodes-tab.png)
 
 * **Pending cert CNAME**: Waiting for the [certificate CNAME records](deployment.md#5-certificate-cname-configuration) to be added to DNS for certificate issuance (if applicable).
-* **Pending traffic CNAME**: The deployment is complete, awaiting the addition of the [traffic CNAME or A record](deployment.md#6-routing-traffic-to-the-edge-node) to route traffic to the Edge Node.
+* **Pending traffic CNAME** or **Pending traffic A record**: The deployment is complete, awaiting the addition of the [traffic CNAME or A record](deployment.md#6-routing-traffic-to-the-edge-node) to route traffic to the Edge Node.
 * **Deploying**: The Edge Node is currently being set up and will be available soon.
 * **Active**: The Edge Node is fully operational and filtering traffic as configured.
 * **Cert CNAME error**: There was an issue verifying the [certificate CNAME](deployment.md#5-certificate-cname-configuration) in DNS. Please check that the CNAME is correctly configured (if applicable).

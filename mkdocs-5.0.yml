@@ -115,6 +115,8 @@ nav:
       - Multi‑Cloud and Multi‑Region: installation/security-edge/inline/multi-region.md
       - mTLS: installation/security-edge/inline/mtls.md
       - Host Redirection: installation/security-edge/inline/host-redirection.md
+      - Custom blocking page: installation/security-edge/inline/custom-block-page.md
+      - NGINX Overrides: installation/security-edge/inline/nginx-overrides.md
       - Managing deployment: installation/security-edge/inline/upgrade-and-management.md
       - Telemetry portal: installation/security-edge/inline/telemetry-portal.md
     - Connectors: installation/security-edge/se-connector.md
