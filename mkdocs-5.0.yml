@@ -308,6 +308,7 @@ nav:
     - Limiting Request Processing Time: user-guides/rules/configure-overlimit-res-detection.md
     - Splitting Data and Settings by Applications: user-guides/settings/applications.md
     - Blocking Page and Error Code: admin-en/configuration-guides/configure-block-page-and-code.md
+    - Handling Headers Considered Invalid by NGINX: admin-en/configuration-guides/handling-invalid-headers.md
     - Monitoring & Failover:
       - Configuring Failover Method: admin-en/configure-backup-en.md
       - Filtering Node Logs: admin-en/configure-logging.md
