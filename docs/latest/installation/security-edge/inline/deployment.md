@@ -115,6 +115,15 @@ To restrict your origins to trusted traffic only, allow Edge Node connections us
 
 You can specify multiple DNS zones, each with a different certificate issuance approach.
 
+!!! info "CAA records"
+    Some organizations use CAA DNS records to restrict which Certificate Authorities (CAs) are allowed to issue certificates for their domains.
+
+    If you maintain CAA records, make sure to allow Let's Encrypt with the Wallarm Account ID, otherwise certificates for Security Edge cannot be issued:
+
+    ```
+    0 issue "letsencrypt.org; accounturi=https://acme-v02.api.letsencrypt.org/acme/acct/2513765531"
+    ```
+
 ## 4. Hosts
 
 Specify the public domains, ports and subdomains that will direct traffic to the Edge Node for analysis.
