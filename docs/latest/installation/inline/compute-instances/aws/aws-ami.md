@@ -64,7 +64,6 @@ To verify the node is detecting traffic, you can check the metrics and logs as f
     * Error logs: `/var/log/nginx/error.log`
 
 * Review [Wallarm-specific logs][wallarm-logs], which include details such as data sent to the Wallarm Cloud, detected attacks, and more. These logs are located in the `/opt/wallarm/var/log/wallarm` directory.
-* For more detailed diagnostics, set the [`log.level`][log-level]parameter to `debug`.
 
 ## Fine-tune the deployed solution
 
