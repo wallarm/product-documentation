@@ -37,7 +37,20 @@ To manually upgrade the Edge Node, go to **Configure** → **Admin settings** an
 
 Upgrading to a new major version can only be done manually.
 
-For the changelog of versions, refer to the [article](../../../updating-migrating/node-artifact-versions.md#all-in-one-installer). The Edge Node version follows the `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>` format, corresponding to the same version in the linked article. The build number in the Edge Node version indicates minor changes.
+* For the changelog of versions, refer to the [article](../../../updating-migrating/node-artifact-versions.md#all-in-one-installer).
+
+    The Edge Node version follows the `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>` format, corresponding to the same version in the linked article. The build number in the Edge Node version indicates minor changes.
+* The versioning policy and release cycle are described [here](../../../updating-migrating/versioning-policy.md).
+
+## Rolling back to an older version of the Edge Inline
+
+Rollback is possible within minor and patch versions. Downgrading to an earlier major version is not supported.
+
+To roll back the Edge Node:
+
+1. Go to **Configure** → **Admin settings** and select a version you want to roll back to from the list.
+1. Confirm the rollback by clicking **Deploy**.
+1. Wait until the deployment reaches the **Active** status. Once it does, the Edge Node with the selected version is deployed and ready to inspect your traffic.
 
 ## Deleting the Edge Inline
 

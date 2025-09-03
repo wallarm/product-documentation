@@ -104,9 +104,21 @@ To manually upgrade the Edge Node, open your Node for editing and select a versi
 
 Upgrading to a new major version can only be done manually.
 
-For the changelog of versions, refer to the [article](../../updating-migrating/native-node/node-artifact-versions.md#all-in-one-installer). The Edge Node version follows the `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>` format, corresponding to the same version in the linked article. The build number in the Edge Node version indicates minor changes.
+* For the changelog of versions, refer to the [article](../../updating-migrating/native-node/node-artifact-versions.md#all-in-one-installer).
 
-Additionally, you might need to upgrade your connector code bundle. For the changelog and upgrade instructions, see the [Connector Code Bundle Changelog](../connectors/code-bundle-inventory.md).
+    The Edge Node version follows the `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>` format, corresponding to the same version in the linked article. The build number in the Edge Node version indicates minor changes.
+* Additionally, you might need to upgrade your connector code bundle. For the changelog and upgrade instructions, see the [Connector Code Bundle Changelog](../connectors/code-bundle-inventory.md).
+* The versioning policy and release cycle are described [here](../../updating-migrating/versioning-policy.md).
+
+## Rolling back to an older version of the Edge Node
+
+Rollback is possible within minor and patch versions. Downgrading to an earlier major version is not supported.
+
+To roll back the Edge Node:
+
+1. Go to your Edge Connector settings and select a version you want to roll back to from the list.
+1. Confirm the rollback by clicking **Save**.
+1. Wait until the deployment reaches the **Active** status. Once it does, the Edge Node with the selected version is deployed and ready to inspect your traffic.
 
 ## Deleting the Edge Node
 
