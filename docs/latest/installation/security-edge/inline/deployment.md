@@ -121,7 +121,7 @@ You can specify multiple DNS zones, each with a different certificate issuance a
     If you maintain CAA records, make sure to allow Let's Encrypt with the Wallarm Account ID, otherwise certificates for Security Edge cannot be issued:
 
     ```
-    0 issue "letsencrypt.org; accounturi=https://acme-v02.api.letsencrypt.org/acme/acct/2513765531"
+    0 issue "letsencrypt.org;validationmethods=dns-01;accounturi=https://acme-v02.api.letsencrypt.org/acme/acct/2513765531"
     ```
 
 ## 4. Hosts
