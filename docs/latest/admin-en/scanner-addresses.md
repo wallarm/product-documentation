@@ -1,7 +1,7 @@
 [file-ips-list-us]: ../downloads/scanner-ip-addresses-us.txt
 [file-ips-list-eu]: ../downloads/scanner-ip-addresses-eu.txt
 
-# Vulnerability Scanning IPs <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Vulnerability Scanning IPs <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 This document provides the lists of IP addresses for US and EU Clouds from which Wallarm scans company resources for vulnerabilities, integrated WAAP solutions and security posture with [API Attack Surface Management](../api-attack-surface/security-issues.md) and [Threat Replay Testing](../vulnerability-detection/threat-replay-testing/overview.md).
 

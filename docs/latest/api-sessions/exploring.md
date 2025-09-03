@@ -4,7 +4,7 @@
 [link-api-abuse-prevention]:    ../api-abuse-prevention/overview.md
 [img-api-sessions-api-abuse]:   ../images/api-sessions/api-sessions-api-abuse.png
 
-# Exploring API Sessions <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Exploring API Sessions <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 As soon as Wallarm's [API Sessions](overview.md) identified user sessions related to your applications, you can explore them in the **API Sessions** section of Wallarm Console. Learn from this article how to go through the discovered data.
 

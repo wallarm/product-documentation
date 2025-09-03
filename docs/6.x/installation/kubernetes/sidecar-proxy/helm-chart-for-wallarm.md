@@ -5,7 +5,7 @@
 [filtration-mode-priorities-docs]:    ../../../admin-en/configure-wallarm-mode.md#prioritization-of-methods
 [libdetection-docs]:                  ../../../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors
 [passive-detection-docs]:             ../../../about-wallarm/detecting-vulnerabilities.md#passive-detection
-[subscriptions-docs]:                 ../../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security
+[subscriptions-docs]:                 ../../../about-wallarm/subscription-plans.md#core-subscription-plans
 [active-threat-verification-docs]:    ../../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing
 [node-token-types]:                   ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [denylist-docs]:                      ../../../user-guides/ip-lists/overview.md

@@ -1,4 +1,4 @@
-# OpenAPI Security Testing on CI/CD <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# OpenAPI Security Testing on CI/CD <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 OpenAPI Security Testing on CI/CD, powered by Wallarm, offers a solution to identify and address security vulnerabilities within your critical API business scenarios, including shadow and zombie APIs. This article explains how to run and use this solution.
 
@@ -17,7 +17,7 @@ You have the flexibility to select the endpoints you wish to subject to testing:
 
 ## Requirements
 
-* An active **Advanced API Security** [subscription plan](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security). If you are on a different plan, please contact our [sales team](mailto:sales@wallarm.com) to transition to the required one.
+* An active **Advanced API Security** [subscription plan](../about-wallarm/subscription-plans.md#core-subscription-plans). If you are on a different plan, please contact our [sales team](mailto:sales@wallarm.com) to transition to the required one.
 
 ## Running security testing
 

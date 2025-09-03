@@ -51,7 +51,7 @@ Wallarm nodes analyze HTTP and WebSocket traffic sent to the protected resources
 
     Wallarm nodes analyze WebSocket traffic only for [input validation attacks](../attacks-vulns-list.md#attack-types).
 
-Protected resource API can be designed on the basis of the following technologies (limited under the WAAP [subscription plan](subscription-plans.md#waap-and-advanced-api-security)):
+Protected resource API can be designed on the basis of the following technologies (limited under the WAAP [subscription plan](subscription-plans.md#core-subscription-plans)):
 
 * GraphQL
 * gRPC

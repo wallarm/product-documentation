@@ -1,4 +1,4 @@
-# Enumeration Attack Protection <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Enumeration Attack Protection <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm allows protecting your APIs from the [enumeration attacks](../attacks-vulns-list.md#enumeration-attacks) preventing the reveal of information highly valuable for malicious actors. By identifying valid usernames, email addresses, or system resources, attackers can significantly narrow their focus for subsequent attacks. This reconnaissance phase allows attackers to understand the target system better, potentially uncovering vulnerabilities and enabling the planning of more sophisticated and targeted attacks, ultimately increasing the likelihood of a successful breach.
 
@@ -47,7 +47,7 @@ Thus:
 * If you want to specifically highlight the attempts to enumerate valid user or object ID - the **BOLA protection** control.
 
 !!! info "Predecessors"
-    Mitigation controls are sophisticated tools available in the [Advanced API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription. In [Cloud Native WAAP](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription, [brute force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md), [forced browsing protection](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md), and [BOLA protection](../admin-en/configuration-guides/protecting-against-bola-trigger.md) is configured with triggers.
+    Mitigation controls are sophisticated tools available in the [Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription. In [Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription, [brute force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md), [forced browsing protection](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md), and [BOLA protection](../admin-en/configuration-guides/protecting-against-bola-trigger.md) is configured with triggers.
 
 ## Default protection
 
