@@ -1,0 +1,442 @@
+[nginx-node-landing]:  ../installation/nginx-native-node-internals.md#nginx-node
+[nginx-node-6.4.1]: ../updating-migrating/node-artifact-versions.md#641-2025-08-07
+[nginx-node-changelog]: ../updating-migrating/node-artifact-versions.md
+[AIO]: ../installation/nginx/all-in-one.md
+[inline]:  ../installation/nginx-native-node-internals.md#in-line
+[docker]: ../admin-en/installation-docker-en.md
+[IC]: ../admin-en/installation-kubernetes-en.md
+[sidecar]: ../installation/kubernetes/sidecar-proxy/deployment.md
+
+
+# Monitoring the NGINX Node Metrics
+
+The [NGINX Node][nginx-node-landing] exposes metrics in the [Prometheus](https://prometheus.io/docs/instrumenting/exposition_formats/) format, allowing you to monitor its performance, traffic, and detected attacks. This topic explains how to access and interpret these metrics.
+
+There are two types of metrics available:
+
+* Wallarm-specific and general system metrics (e.g., Go runtime, memory usage, process stats, etc.) available at the `http://localhost:9001/metrics` endpoint by default. 
+
+    !!! info "wstore metrics"
+
+        This topic focuses only on Wallarm-specific metrics, which use the `wallarm_wstore_*` naming pattern. We will refer to them as wstore metrics throughout this topic. General system metrics are not covered.
+
+* API Firewall metrics, available at `http://<host>:9010/metrics` unless a custom host or path is configured.
+
+## Accessing wstore metrics
+
+!!! info "Supported Node version and deployment options"
+    wstore metrics are available in [NGINX Node 6.4.1][nginx-node-6.4.1] and later for the following deployment options: [all-in-one installer][AIO], [cloud images][inline], and [Docker image][docker]. [NGINX Ingress Controller][IC] and [Sidecar][sidecar] do not support wstore metrics yet.
+
+By default, the NGINX Node provides wstore metrics at the following endpoint:
+
+```bash
+http://localhost:9001/metrics
+```
+
+This endpoint is accessible only from the local machine. To view it in your browser, you need to either run a browser on the server, use curl from the command line on the server, or establish an SSH tunnel.
+
+You can change the default metrics host and port (`http://localhost:9001/metrics`) in the following ways:
+
+* Change `metrics.listenAddress` in the `/opt/wallarm/wstore/wstore.yaml` file.
+* Provide the `WALLARM_WSTORE_METRICS_LISTEN_ADDRESS` environment variable when deploying the NGINX Node (e.g. from a Docker image or NGINX Ingress Controller).
+
+    !!! info "Environment variable precedence"
+        Environment variables take precedence over the values set in `/opt/wallarm/wstore/wstore.yaml.` For example, if the `metrics.listenAddress` in the YAML file is set to `localhost:9003`, but the `WALLARM_WSTORE_METRICS_LISTEN_ADDRESS` environment variable is set to `0.0.0.0:9005`, the metrics will be available at `http://localhost:9005/metrics`.
+
+[See detailed wstore metrics](#exploring-wstore-metrics). 
+
+## Accessing API Firewall metrics
+
+!!! info "Supported Node version and deployment options"
+    API Firewall metrics are available only for the following deployment options: [all-in-one installer][AIO] and [Docker image][docker]. 
+
+API Firewall, featured at [Black Hat Arsenal USA 2022](https://www.blackhat.com/us-22/arsenal/schedule/index.html#open-source-api-firewall-new-features--functionalities-28038), is a high-performance proxy that validates API requests and responses using OpenAPI and GraphQL schemas. It protects REST and GraphQL endpoints in cloud-native environments by enforcing a positive security model — allowing only calls that match the API specification and blocking everything else.
+
+The product is **open source**, available at DockerHub and already got 1 billion pulls. To support this project, you can [star the repository](https://hub.docker.com/r/wallarm/api-firewall).
+
+Unlike wstore metrics, API Firewall metrics are not enabled by default.
+
+**To enable API Firewall metrics:**
+
+1. Set the `APIFW_METRICS_ENABLED` environment variable to `true` when
+deploying the NGINX Node from
+
+    Once enabled, metrics are available at `http://<host>:9010/metrics` unless custom host or path are used (see step 2 below).
+
+2. (Optional) You can change the default API Firewall metrics endpoint `http://<host>:9010/metrics` using the following environment variables:
+
+    * `APIFW_METRICS_ENDPOINT_NAME` - the path at which the metrics endpoint is exposed.
+    * `APIFW_METRICS_HOST` - the IP address and/or port for the metrics endpoint. When specifying a port, prefix it with a colon (:).
+    Expose the metrics port in your container or deployment configuration (e.g., for the default state, use `-p 9010:9010`).
+
+3. If your NGINX node was deployed using the all-in-one installer, restart NGINX to apply the custom API Firewall metrics settings:
+
+    ```
+    sudo systemctl restart nginx
+    ```
+
+[See detailed API Firewall metrics](#exploring-api-firewall-metrics). 
+
+## Exploring wstore metrics
+
+The following groups of Prometheus metrics are available. 
+
+The exact list of metrics may vary depending on the NGINX Node version. Changes are reflected in the [NGINX Node changelog][nginx-node-changelog].
+
+### Connections and traffic metrics
+---
+#### `wallarm_wstore_connections_total`
+
+The total number of network connections handled by wstore, broken down by connection type (i.e., protocol schema like TCP or TLS).
+
+**Type**: Counter
+**Labels**: 
+* `TCP` 
+* `TLS`
+**Unit**: Count 
+**Example**:
+```
+wallarm_wstore_connections_total{schema="TCP"} 219
+```
+---
+#### `wallarm_wstore_current_connections`
+
+The number of active connections currently established with wstore.
+
+**Type**: Gauge
+**Labels**: None
+**Unit**: Count 
+**Example**:
+```
+wallarm_wstore_current_connections 9
+```
+---
+#### `wallarm_wstore_requests_total`
+
+The total number of requests processed, labeled by the request code and the result of the operation (`success` or `failed`).
+
+**Type**: Counter
+**Labels**: 
+* `code` - type of the IPROTO request (e.g., `IPROTO_CALL`, `IPROTO_CALL_16`, `IPROTO_ID`, etc.)
+* `result` - result of the operation (`success` or `failed`)
+**Unit**: Count
+**Example**:
+```
+wallarm_wstore_requests_total{code="IPROTO_CALL_16",result="success"} 5962210
+```
+---
+#### `wallarm_wstore_iproto_calls_total`
+
+The total number of iproto CALL/CALL_16 requests, broken down by the function name and result.
+
+**Type**: Counter
+**Labels**: 
+* `func` - name of the called function
+* `result` - result of the operation (`success` or `failed`)
+**Unit**: Count 
+**Example**:
+```
+wallarm_wstore_iproto_calls_total{func="wallarm.blocked_stat.read",result="success"} 621473
+```
+
+### Request throttling and load shedding
+---
+#### `wallarm_wstore_throttle_mode`
+
+Shows if wstore is currently throttling requests due to severely insufficient resources. When this metric is `1.0`, wstore is dropping some incoming requests because system resources are critically low.
+
+**Type**: Gauge
+**Labels**: None
+**Unit**: Count
+**Example**:
+```
+wallarm_wstore_throttle_mode 0
+```
+---
+#### `wallarm_wstore_throttled_requests`
+
+The number of requests throttled due to severely insufficient resources, broken down by schema (TCP or TLS).
+
+**Type**: Counter
+**Labels**: 
+* `TCP`
+* `TLS`
+**Unit**: Count
+**Example**:
+```
+wallarm_wstore_throttled_requests{schema="TLS"} 0
+```
+---
+#### `wallarm_wstore_queue_throttled`
+
+The number of requests rejected due to queue throttling, broken down by queue.
+
+**Type**: Counter
+**Labels**: `queue` - name of the wstore queue
+**Unit**: Count 
+**Example**:
+```
+wallarm_wstore_queue_throttled{queue="appstructure"} 0
+```
+
+### Request queue metrics
+---
+#### `wallarm_wstore_queue_size`
+
+The current number of requests in each wstore queue. 
+
+**Type**: Gauge
+**Labels**: 
+* `engine` - e.g., `ring`
+* `name` - name of the wstore queue
+**Unit**: Count 
+**Example**:
+```
+wallarm_wstore_queue_size{engine="ring",name="api_discovery"} 0
+```
+---
+#### `wallarm_wstore_queue_drops`
+
+The number of requests dropped when a wstore queue reaches its maximum size and begins overwriting entries in the ring buffer, broken down by queue.
+	
+**Type**: Counter
+**Labels**: `queue` - name of the wstore queue
+**Unit**: Count 
+**Example**:
+```
+wallarm_wstore_queue_drops{queue="appstructure"} 0
+```
+---
+#### `wallarm_wstore_queue_take_requests`
+
+The number of requests returned from the queue by the `wallarm.requests_processing.take` function, labeled by the result of the operation (`success` or `failed`).
+
+**Type**: Counter
+**Labels**: 
+* `queue` - name of the wstore queue
+* `result` - result of the operation (`success` or `failed`)
+**Unit**: Count 
+**Example**:
+```
+wallarm_wstore_queue_take_requests{queue="appstructure", result="success"} 313187
+```
+---
+#### `wallarm_wstore_queue_ack_drops`
+
+The number of acknowledgement attempts for requests that have already been removed from the wstore queue.
+
+**Type**: Counter
+**Labels**: `queue` - name of the wstore queue
+**Unit**: Count 
+**Example**:
+```
+wallarm_wstore_queue_ack_drops{queue="appstructure"} 0
+```
+---
+#### `wallarm_wstore_queue_ack_return`
+
+The number of requests that were captured but not acknowledged, and were therefore returned to the queue for reprocessing.
+
+**Type**: Counter
+**Labels**: 
+* `queue` - name of the wstore queue
+* `result` - result of the operation (`success` or `failed`)
+**Unit**: Count 
+**Example**:
+```
+wallarm_wstore_queue_ack_return{queue="appstructure",result="failed"} 0
+```
+---
+#### `wallarm_wstore_queue_stats`
+
+The total number of `put`, `ack`, and `take` actions per queue, maintained for backward compatibility.
+
+**Type**: Counter
+**Labels**: none
+* `queue` - name of the wstore queue
+* `action` - type of the queue operation (`put`, `take`, or `ack`)
+**Unit**: Count 
+**Example**:
+```
+wallarm_wstore_queue_stats{queue="appstructure",action="ack"} 770
+```
+
+### Request storage metrics
+---
+#### `wallarm_wstore_request_storage_total_size`
+
+The total size of all stored requests in bytes.
+
+**Type**: Gauge
+**Labels**: None
+**Unit**: Bytes
+**Example**:
+```
+wallarm_wstore_request_storage_total_size 2285568
+```
+---
+#### `wallarm_wstore_request_storage_timeframe_size`
+
+Current time span in seconds between the oldest and newest requests stored in wstore.
+
+**Type**: Gauge
+**Labels**: None
+**Unit**: Seconds
+**Example**:
+```
+wallarm_wstore_request_storage_timeframe_size 308775
+```
+---
+#### `wallarm_wstore_request_storage_drops` 
+
+The number of old requests dropped to make room for new ones when the maximum request storage size is reached.
+
+**Type**: Counter
+**Labels**: None
+**Unit**: Count 
+**Example**:
+```
+wallarm_wstore_request_storage_drops 0
+```
+---
+#### `wallarm_wstore_request_storage_rejects`
+
+The number of incoming requests rejected because they are too large to be stored.
+
+**Type**: Counter
+**Labels**: None
+**Unit**: Count 
+**Example**:
+```
+wallarm_wstore_request_storage_rejects 0
+```
+---
+#### `wallarm_wstore_request_storage_misses`
+
+The number of attempts to retrieve full request information for dropped or stale requests.
+
+**Type**: Counter
+**Labels**: None
+**Unit**: Count
+**Example**:
+```
+wallarm_wstore_request_storage_misses 0
+```
+
+### Internal wstore engine metrics
+---
+#### `wallarm_wstore_kvstore_records_total` 
+
+The total number of records currently stored in the wstore key-value store. 
+
+**Type**: Counter
+**Labels**: None
+**Unit**: Count 
+**Example**:
+```
+wallarm_wstore_kvstore_records_total 770
+```
+---
+#### `wallarm_wstore_kvstore_cleanups` 
+
+The number of old requests cleaned up from the wstore internal key-value store.
+
+**Type**: Counter
+**Labels**: None
+**Unit**: Count 
+**Example**:
+```
+wallarm_wstore_kvstore_cleanups 0
+```
+---
+#### `wallarm_wstore_kvstore_errors` 
+
+The number of errors in the wstore internal key-value store operations, labeled by action type (e.g., cleanup, insert, or drop). 
+
+**Type**: Counter
+**Labels**: 
+* `cleanup` 
+* `drop`
+* `get_size` 
+* `insert`
+**Unit**: Count 
+**Example**:
+```
+wallarm_wstore_kvstore_errors{action="cleanup"} 0
+```
+---
+#### `wallarm_wstore_kvstore_oom_errors_total`
+
+The number of Out Of Memory (OOM) errors occurred during insertion into the wstore key-value store.
+
+**Type**: Counter
+**Labels**: None
+**Unit**: Count 
+**Example**:
+```
+wallarm_wstore_kvstore_oom_errors_total 0
+```
+---
+#### `wallarm_wstore_kvstore_insertions_total` 
+
+The number of requests successfully stored by the wstore into its key-value store.
+
+**Type**: Counter
+**Labels**: None
+**Unit**: Count 
+**Example**:
+```
+wallarm_wstore_kvstore_insertions_total 770
+```
+---
+#### `wallarm_wstore_kvstore_lost_insertions_total`
+
+The number of requests failed to be stored in the wstore key-value store after all retry attempts.
+
+**Type**: Counter
+**Labels**: None
+**Unit**: Count 
+**Example**:
+```
+wallarm_wstore_kvstore_lost_insertions_total 0
+```
+---
+#### `wallarm_wstore_kvstore_drops_total` 
+
+The number of requests lost due to failed cleanups from the wstore internal key-value store.
+
+**Type**: Counter
+**Labels**: None
+**Unit**: Count 
+**Example**:
+```
+wallarm_wstore_kvstore_drops_total 0
+```
+
+## Exploring API Firewall metrics
+
+See the example of API Firewall metrics below.
+Each metric includes `HELP` and `TYPE` metadata lines, which describe its purpose and format in detail.
+
+```
+# HELP wallarm_apifw_http_request_duration_seconds HTTP request duration in seconds
+# TYPE wallarm_apifw_http_request_duration_seconds histogram
+wallarm_apifw_http_request_duration_seconds_bucket{schema_id="1",le="0.001"} 2
+wallarm_apifw_http_request_duration_seconds_bucket{schema_id="1",le="0.005"} 2
+wallarm_apifw_http_request_duration_seconds_bucket{schema_id="1",le="0.025"} 2
+wallarm_apifw_http_request_duration_seconds_bucket{schema_id="1",le="0.05"} 2
+wallarm_apifw_http_request_duration_seconds_bucket{schema_id="1",le="0.25"} 2
+wallarm_apifw_http_request_duration_seconds_bucket{schema_id="1",le="0.5"} 2
+wallarm_apifw_http_request_duration_seconds_bucket{schema_id="1",le="1"} 2
+wallarm_apifw_http_request_duration_seconds_bucket{schema_id="1",le="2.5"} 2
+wallarm_apifw_http_request_duration_seconds_bucket{schema_id="1",le="5"} 2
+wallarm_apifw_http_request_duration_seconds_bucket{schema_id="1",le="+Inf"} 2
+wallarm_apifw_http_request_duration_seconds_sum{schema_id="1"} 0.00028954100000000004
+wallarm_apifw_http_request_duration_seconds_count{schema_id="1"} 2
+# HELP wallarm_apifw_http_requests_total Total number of HTTP requests
+# TYPE wallarm_apifw_http_requests_total counter
+wallarm_apifw_http_requests_total{schema_id="1",status_code="200"} 2
+# HELP wallarm_apifw_service_errors_total Total number of errors occurred in the APIFW service.
+# TYPE wallarm_apifw_service_errors_total counter
+wallarm_apifw_service_errors_total 0
+```
