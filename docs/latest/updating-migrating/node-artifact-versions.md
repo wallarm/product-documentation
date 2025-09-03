@@ -17,6 +17,14 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.4.1 (2025-08-07)
+
+* Added Prometheus metrics support for API Specification Enforcement service operation (based on the built-in API Firewall service):
+
+    * Enable with `APIFW_METRICS_ENABLED=true` in `/opt/wallarm/env.list`
+    * Default endpoint: `:9010/metrics`
+    * Host and endpoint name configurable via variables `APIFW_METRICS_HOST` and `APIFW_METRICS_ENDPOINT_NAME`
+
 ### 6.4.0 (2025-07-31)
 
 * Fixed the stuffed credentials export to the Cloud
@@ -175,6 +183,15 @@ new attack types in logging variables and search bars?
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.4.1 (2025-08-07)
+
+* Added Prometheus metrics support for API Specification Enforcement service operation (based on the built-in API Firewall service):
+
+    * Enable with the environment variable `APIFW_METRICS_ENABLED=true`
+    * Default endpoint: `:9010/metrics`
+    * Expose the metrics port in your container (e.g., for the default state, use `-p 9010:9010`)
+    * Host and endpoint name configurable via variables `APIFW_METRICS_HOST` and `APIFW_METRICS_ENDPOINT_NAME`
 
 ### 6.4.0 (2025-07-31)
 
