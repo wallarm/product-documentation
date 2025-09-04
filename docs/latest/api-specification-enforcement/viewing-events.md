@@ -1,4 +1,4 @@
-# Viewing Events Caused by API Specification Enforcement <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Viewing Events Caused by API Specification Enforcement <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 As soon as you [uploaded](setup.md) your API specification to be used for applying  specification-based security policies and configured the enforcement, the policies are starting to be applied to the requests. This article describes how to view and analyze requests that violate policies in Wallarm Console.
 

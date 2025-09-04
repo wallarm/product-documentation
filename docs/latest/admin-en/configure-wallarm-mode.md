@@ -90,7 +90,7 @@ Note that described configuration is applicable only for [in-line](../installati
 
 ### General filtration mode
 
-You can define the general filtration mode for all incoming requests using mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription) or rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription)..
+You can define the general filtration mode for all incoming requests using mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription) or rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription)..
 
 === "Mitigation controls"
 
@@ -116,7 +116,7 @@ You can define the general filtration mode for all incoming requests using mitig
 
 ### Conditioned filtration mode
 
-You can set filtration mode for specific branches, endpoints and relying on other conditions using mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription) or rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription).
+You can set filtration mode for specific branches, endpoints and relying on other conditions using mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription) or rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription).
 
 === "Mitigation controls"
 

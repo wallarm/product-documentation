@@ -1,6 +1,6 @@
 [api-discovery-enable-link]:        ../api-discovery/setup.md#enable
 
-# API Abuse Prevention Exceptions <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Prevention Exceptions <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 This article describes how to fine tune [API Abuse Prevention](../api-abuse-prevention/overview.md) by marking legitimate bots and disabling bot protection for particular target URLs and request types.
 

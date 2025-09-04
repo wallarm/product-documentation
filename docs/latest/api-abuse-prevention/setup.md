@@ -1,10 +1,10 @@
-# API Abuse Prevention Setup <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Prevention Setup <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 This article describes how to enable and configure the [API Abuse Prevention](../api-abuse-prevention/overview.md) module to detect and mitigate malicious bots and to avoid blocking legitimate activities.
 
 ## Enabling
 
-The API Abuse Prevention module is available in the **Advanced API Security** [subscription plan](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security). It is disabled by default.
+The API Abuse Prevention module is available in the **Advanced API Security** [subscription plan](../about-wallarm/subscription-plans.md#core-subscription-plans). It is disabled by default.
 
 To enable API Abuse Prevention:
 

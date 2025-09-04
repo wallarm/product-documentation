@@ -1,4 +1,4 @@
-# Wallarm API Protection <a href="../subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Wallarm API Protection <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm's API Protection is an advanced set of API and AI protection capabilities. While basic [cloud-native WAAP](../about-wallarm/waap-overview.md) protection already includes support for all API protocols and their inspection for attacks, protection against L7 DDoS, etc., modern APIs are subject to additional risks such as automated threats, API misuse and AI exploitation. The Advanced API Security bundle provides advanced features for more complete risk mitigation.
 
@@ -12,7 +12,7 @@ API Protection includes:
 
 <!--Diagram for API Protection bundle of Wallarm products, being prepared by Iskandar-->
 
-While WAAP is available under the basic Cloud Native WAAP subscription, tools of the API Protection bundle are the part of the [Advanced API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription.
+While WAAP is available under the basic Cloud Native WAAP subscription, tools of the API Protection bundle are the part of the [Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription.
 
 ## API Specification Enforcement
 
@@ -54,7 +54,7 @@ To identify compromised and weak passwords, Wallarm uses a comprehensive databas
 
 ## GraphQL API Protection
 
-Wallarm detects regular attacks (SQLi, RCE, [etc.](../attacks-vulns-list.md)) in GraphQL by default even under the basic [WAAP](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription plan. However, some aspects of the protocol allow implementing [GraphQL specific](../attacks-vulns-list.md#graphql-attacks) attacks related to excessive information exposure and DoS.
+Wallarm detects regular attacks (SQLi, RCE, [etc.](../attacks-vulns-list.md)) in GraphQL by default even under the basic [WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription plan. However, some aspects of the protocol allow implementing [GraphQL specific](../attacks-vulns-list.md#graphql-attacks) attacks related to excessive information exposure and DoS.
 
 Wallarm to protect your APIs from these attacks by setting **GraphQL policy** - a set of limits for the GraphQL requests.
 

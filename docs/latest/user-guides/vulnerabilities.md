@@ -57,7 +57,7 @@ You can filter vulnerabilities by using the [search string](search-and-filters/u
 
 All vulnerabilities should be fixed on the application side because they make your system more vulnerable to malicious actions. If a vulnerability cannot be fixed, using the [virtual patch](rules/vpatch-rule.md) rule can help block related attacks and eliminate the risk of an incident.
 
-## Verifying vulnerabilities <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
+## Verifying vulnerabilities <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
 
 Wallarm regularly rechecks both active and closed vulnerabilities. This involves repeat testing of an infrastructure for a security issue that was discovered earlier. If rechecking result indicates that the vulnerability no longer exists, Wallarm changes its status to **Closed**. This may also occur if the server is temporarily unavailable. Conversely, if the rechecking of a closed vulnerability indicates that it still exists in the application, Wallarm changes its status back to **Active**.
 

@@ -10,12 +10,12 @@ This attack aims to enumerate and access hidden resources (e.g. directories and 
 
 Depending on your subscription plan, one of the following configuration methods for brute force protection will be available:
 
-* Mitigation controls ([Advanced API Security](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription)
-* Triggers ([Cloud Native WAAP](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription)
+* Mitigation controls ([Advanced API Security](../../about-wallarm/subscription-plans.md#core-subscription-plans) subscription)
+* Triggers ([Cloud Native WAAP](../../about-wallarm/subscription-plans.md#core-subscription-plans) subscription)
 
-## Mitigation control-based protection <a href="../../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Mitigation control-based protection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm's Advanced API Security [subscription](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) provides advanced [enumeration attack protection](../../api-protection/enumeration-attack-protection.md), including protection from forced browsing attacks.
+Wallarm's Advanced API Security [subscription](../../about-wallarm/subscription-plans.md#core-subscription-plans) provides advanced [enumeration attack protection](../../api-protection/enumeration-attack-protection.md), including protection from forced browsing attacks.
 
 ## Trigger-based protection
 

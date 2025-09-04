@@ -1,7 +1,7 @@
 [link-cloud-node-synchronization]: ../admin-en/configure-cloud-node-synchronization-en.md
 [img-rules-create-backup]:      ../images/user-guides/rules/rules-create-backup.png
 
-# Mitigation Controls <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Mitigation Controls <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 Mitigation controls extend Wallarm's [attack protection](protecting-against-attacks.md#tools-for-attack-detection) with additional security measures and allow fine-tuning of the Wallarm behavior.
 
@@ -32,7 +32,7 @@ Mitigation controls are automatically grouped into nested branches by endpoint U
 
 Mitigation controls require 
 
-* The [Advanced API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription plan
+* The [Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription plan
 * (most controls) [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.14.1
 
 If you have all of this and still, in Wallarm Console, do not see the **Security controls** → **Mitigation Controls** section, contact the [Wallarm support team](https://support.wallarm.com/) to enable them.

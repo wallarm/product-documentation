@@ -2,7 +2,7 @@
 [link-request-processing]:      request-processing.md
 [img-add-rule]:                 ../../images/user-guides/rules/section-rules-add-rule.png
 [link-attack-detection-tools]:  ../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection
-[link-sub-plans]:               ../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security
+[link-sub-plans]:               ../../about-wallarm/subscription-plans.md#core-subscription-plans
 [link-filtration-mode]:         ../../admin-en/configure-wallarm-mode.md
 [link-nodes]:                   ../../about-wallarm/overview.md#how-wallarm-works
 [link-sessions]:                ../../api-sessions/overview.md

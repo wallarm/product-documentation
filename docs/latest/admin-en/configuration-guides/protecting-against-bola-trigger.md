@@ -6,12 +6,12 @@ Behavioral attacks such as [Broken Object Level Authorization (BOLA)](../../atta
 
 Depending on your subscription plan, one of the following configuration methods for protection from BOLA attacks will be available:
 
-* Mitigation controls ([Advanced API Security](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription)
-* Triggers ([Cloud Native WAAP](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription)
+* Mitigation controls ([Advanced API Security](../../about-wallarm/subscription-plans.md#core-subscription-plans) subscription)
+* Triggers ([Cloud Native WAAP](../../about-wallarm/subscription-plans.md#core-subscription-plans) subscription)
 
-## Mitigation control-based protection <a href="../../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Mitigation control-based protection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm's Advanced API Security [subscription](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) provides advanced [enumeration attack protection](../../api-protection/enumeration-attack-protection.md), including protection from BOLA attacks.
+Wallarm's Advanced API Security [subscription](../../about-wallarm/subscription-plans.md#core-subscription-plans) provides advanced [enumeration attack protection](../../api-protection/enumeration-attack-protection.md), including protection from BOLA attacks.
 
 ## Trigger-based protection
 
@@ -78,6 +78,6 @@ To protect resources from BOLA attacks, real clients' IP addresses are required.
 
 When searching for BOLA attack signs, Wallarm nodes analyze only HTTP requests that do not contain signs of other attack types.
 
-## Automatic protection  <a href="../../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Automatic protection  <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Alternatively or additionally to other BOLA protection measures, you can configure [Automatic BOLA protection for endpoints found by API Discovery](protecting-against-bola.md).
