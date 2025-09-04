@@ -1,8 +1,26 @@
-# Deploying Wallarm from Amazon Machine Image
+[img-security-group]:                ../../../images/aws-ami/security-group.png
+[latest-node-version]:              ../../../updating-migrating/node-artifact-versions.md#amazon-machine-image-ami
+[nginx-native-node]:                       ../../../installation/nginx-native-node-internals.md
+[wallarm-logs]:                     ../../../admin-en/configure-logging.md
+[log-level]:                        ../../../installation/native-node/all-in-one-conf.md#loglevel
 
-This article provides instructions for deploying Wallarm on AWS using the [official Amazon Machine Image (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD). The solution can be deployed either [in-line][inline-docs] or [Out-of-Band][oob-docs].
 
-The latest Wallarm AMI is based on Debian 12 and uses NGINX 1.22.1 from the Debian repository.
+# Deploying the NGINX Node with AWS AMI
+
+This article provides instructions for deploying the Wallarm [NGINX node][nginx-native-node] on AWS [in-line][inline-docs] using the [official Amazon Machine Image (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD).
+
+The image is based on Debian and the NGINX version provided by Debian. Currently, the latest image uses Debian 12, which includes NGINX stable 1.22.1.
+
+Deploying the Wallarm Node from the AMI on AWS typically takes around 10 minutes.
+
+![!](../../../images/waf-installation/aws/aws-ami-flow.png)
+
+!!! info "Security note"
+    This solution is designed to follow AWS security best practices. We recommend avoiding the use of the AWS root account for deployment. Instead, use IAM users or roles with only the necessary permissions.
+
+    The deployment process assumes the principle of least privilege, granting only the minimal access required to provision and operate Wallarm components.
+
+For guidance on estimating AWS infrastructure costs for this deployment, see the [Cost Guidance for Deploying Wallarm in AWS][aws-costs] page.
 
 ## Use cases
 
@@ -10,22 +28,52 @@ The latest Wallarm AMI is based on Debian 12 and uses NGINX 1.22.1 from the Debi
 
 --8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami-latest.md"
 
-## 6. Connect the instance to the Wallarm Cloud
+### 4. Connect the instance to the Wallarm Cloud
 
---8<-- "../include/waf/installation/connect-waf-and-cloud-for-cloud-images.md"
+The instance's node connects to the Wallarm Cloud via the [cloud-init.py][cloud-init-spec] script. This script registers the node with the Wallarm Cloud using a provided token, globally sets it to the monitoring [mode][wallarm-mode], and sets up the node to forward legitimate traffic based on the `--proxy-pass` flag.
 
-## 7. Configure sending traffic to the Wallarm instance
+Run the `cloud-init.py` script on the instance created from the cloud image as follows:
 
---8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob-latest.md"
+=== "US Cloud"
+    ``` bash
+    sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring --proxy-pass <PROXY_ADDRESS> -H us1.api.wallarm.com
+    ```
+=== "EU Cloud"
+    ``` bash
+    sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring --proxy-pass <PROXY_ADDRESS>
+    ```
 
-        If your setup connects the mirroring server to the Wallarm filtering node via public subnets, you need to also specify the appropriate subnet settings in the `set_real_ip_from` and `real_ip_header` directives. If the subnet is internal, this is not needed.
+* `WALLARM_LABELS='group=<GROUP>'` sets a node group name (existing, or, if does not exist, it will be created). It is only applied if using an API token.
+* `<TOKEN>` is the copied value of the token.
+* `<PROXY_ADDRESS>` is the address the Wallarm node proxies legitimate traffic to. It can be the IP of an application instance, a load balancer, or a DNS name (depending on your architecture), with the specified `http` or `https` protocol, e.g., `http://example.com` or `https://192.0.2.1`. [See more information on the proxy address format](https://nginx.org/en/docs/http/ngx_http_proxy_module.html?&_ga=2.23729850.1231698478.1756133814-1504295816.1756133814#proxy_pass).
 
-## 8. Test the Wallarm operation
+### 5. Configure sending traffic to the Wallarm instance
+
+--8<-- "../include/waf/installation/sending-traffic-to-node-inline.md"
+
+### 6. Test the Wallarm operation
 
 --8<-- "../include/waf/installation/cloud-platforms/test-operation-inline.md"
 
-## 9. Fine-tune the deployed solution
+## Verifying the node operation using logs and metrics
 
---8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options-5.0.md"
+To verify the node is detecting traffic, you can check the metrics and logs as follows:
+
+* Check Prometheus metrics exposed by the node:
+
+    ```
+    curl http://127.0.0.1:9001/metrics
+    ```
+
+* Review NGINX logs to inspect incoming requests and errors:
+
+    * Access logs: `/var/log/nginx/access.log`
+    * Error logs: `/var/log/nginx/error.log`
+
+* Review [Wallarm-specific logs][wallarm-logs], which include details such as data sent to the Wallarm Cloud, detected attacks, and more. These logs are located in the `/opt/wallarm/var/log/wallarm` directory.
+
+## Fine-tune the deployed solution
+
+--8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
 
 --8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
