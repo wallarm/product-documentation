@@ -74,6 +74,6 @@ To verify the node is detecting traffic, you can check the metrics and logs as f
 
 ## Fine-tune the deployed solution
 
---8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
+--8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options-5.0.md"
 
 --8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
