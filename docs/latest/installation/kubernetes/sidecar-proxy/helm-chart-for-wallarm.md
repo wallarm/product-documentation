@@ -29,6 +29,10 @@ config:
       disableKeepalive: false
       maxConnectionsPerIp: 0
       maxRequestsPerConnection: 0
+      metrics:
+        enabled: false
+        endpointName: "metrics"
+        host: ":9010"
     fallback: "on"
     mode: monitoring
     modeAllowOverride: "on"
@@ -173,6 +177,28 @@ Since node 5.3.0, the following is presented (see default values in the example 
 | `disableKeepalive` | Disables the keep-alive connections. The server will close all the incoming connections after sending the first response to the client if this option is set to `true`. |
 | `maxConnectionsPerIp` | Maximum number of concurrent client connections allowed per IP. `0` = `unlimited`. |
 | `maxRequestsPerConnection` | Maximum number of requests served per connection. The server closes the connection after the last request. The `Connection: close` header is added to the last response. `0` = `unlimited`. |
+
+## config.wallarm.apiFirewall.metrics
+
+Starting from version 6.5.1, the [API Specification Enforcement][api-spec-enforcement-docs] module can expose Prometheus-compatible metrics.
+
+When enabled, metrics are available by default at `http://<host>:9010/metrics`.
+
+| Setting | Description |
+| ------- | ----------- |
+| `enabled` | Enables Prometheus metrics for the API Specification Enforcement module.<br>By default: `false` (disabled). |
+| `endpointName` | Defines the HTTP path of the API Specification Enforcement metrics endpoint<br>By default: `metrics`. |
+| `host` | Defines the host and port on which the API Specification Enforcement exposes metrics.<br>By default: `:9010` (all interfaces on port 9010). |
+
+```yaml
+config:
+  wallarm:
+    apiFirewall:
+      metrics:
+        enabled: false
+        endpointName: "metrics"
+        host: ":9010"
+```
 
 ## config.wallarm.fallback
 

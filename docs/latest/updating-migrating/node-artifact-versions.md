@@ -17,6 +17,12 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.5.1 (2025-09-09)
+
+* Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
+* Bumped Go version to 1.24
+* Fixed the behavior of the `wallarm_wstore_throttle_mode` Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
+
 ### 6.4.1 (2025-08-07)
 
 * Added Prometheus metrics support for API Specification Enforcement service operation (based on the built-in API Firewall service):
@@ -87,6 +93,17 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](ingress-controller.md)
 
+### 6.5.1 (2025-09-09)
+
+* Added Prometheus metrics support for API Specification Enforcement service operation (based on the built-in API Firewall service)
+
+    Metrics are disabled by default and can be enabled through the new [controller.wallarm.apiFirewall.metrics.*](../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewallmetrics) values.
+* Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
+* Bumped Go version to 1.24
+* Fixed the behavior of the `wallarm_wstore_throttle_mode` Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
+* Upgraded to Community Ingress NGINX Controller version 1.11.8, aligning with the upstream Helm chart version 4.11.8 and Alpine version 3.22.0
+* Fixed the [CVE-2025-5399](https://nvd.nist.gov/vuln/detail/CVE-2025-5399) and [CVE-2025-22872](https://nvd.nist.gov/vuln/detail/CVE-2025-22872) vulnerabilities due to the upstream upgrade
+
 ### 6.4.0 (2025-07-31)
 
 * Fixed the stuffed credentials export to the Cloud
@@ -141,6 +158,15 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.5.1 (2025-09-09)
+
+* Added Prometheus metrics support for API Specification Enforcement service operation (based on the built-in API Firewall service)
+
+    Metrics are disabled by default and can be enabled through the new [config.wallarm.apiFirewall.metrics.*](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md) values.
+* Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
+* Bumped Go version to 1.24
+* Fixed the behavior of the `wallarm_wstore_throttle_mode` Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
+
 ### 6.4.0 (2025-07-31)
 
 * Fixed the stuffed credentials export to the Cloud
@@ -183,6 +209,12 @@ new attack types in logging variables and search bars?
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.5.1 (2025-09-09)
+
+* Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
+* Bumped Go version to 1.24
+* Fixed the behavior of the `wallarm_wstore_throttle_mode` Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
 
 ### 6.4.1 (2025-08-07)
 
@@ -237,6 +269,15 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
+<!-- ### 6.5.1 (2025-09-09)
+
+* Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
+* Bumped Go version to 1.24
+* Fixed the behavior of the `wallarm_wstore_throttle_mode` Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended 
+
+additionally, to check the 6-4 entries
+-->
+
 ### 6.4.0 (2025-07-31)
 
 * Fixed the stuffed credentials export to the Cloud
@@ -278,6 +319,15 @@ new attack types in logging variables and search bars?
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+<!-- ### 6.5.1 (2025-09-09)
+
+* Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
+* Bumped Go version to 1.24
+* Fixed the behavior of the `wallarm_wstore_throttle_mode` Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended 
+
+additionally, to check the 6-4 entries
+-->
 
 ### wallarm-node-6-4-0-20250730-083353 (2025-07-31)
 

@@ -7,9 +7,9 @@ To download all-in-one Wallarm installation script, execute the command:
 
 === "x86_64 version"
     ```bash
-    curl -O https://meganode.wallarm.com/6.4/wallarm-6.4.1.x86_64-glibc.sh
+    curl -O https://meganode.wallarm.com/6.5/wallarm-6.5.1.x86_64-glibc.sh
     ```
 === "ARM64 version (beta)"
     ```bash
-    curl -O https://meganode.wallarm.com/6.4/wallarm-6.4.1.aarch64-glibc.sh
+    curl -O https://meganode.wallarm.com/6.5/wallarm-6.5.1.aarch64-glibc.sh
     ```
