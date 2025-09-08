@@ -2,7 +2,7 @@
 
 These instructions provide you with the steps to deploy the Wallarm NGINX-based Ingress controller to your K8s cluster. The solution is deployed from the Wallarm Helm chart.
 
-The solution is built on the [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) with integrated Wallarm services. The latest version uses Community Ingress NGINX Controller 1.11.5 with NGINX stable 1.25.5.
+The solution is built on the [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) with integrated Wallarm services. The latest version uses Community Ingress NGINX Controller 1.11.8 with NGINX stable 1.25.5, the upstream Helm chart 4.11.8, and Alpine Linux 3.22.0 as the base image.
 
 It has the following architecture:
 
@@ -93,7 +93,7 @@ To install the Wallarm Ingress Controller:
 1. Install the Wallarm packages:
 
     ``` bash
-    helm install --version 6.4.0 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
+    helm install --version 6.5.1 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` is the name for the Helm release of the Ingress controller chart
