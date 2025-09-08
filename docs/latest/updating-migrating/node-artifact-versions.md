@@ -97,7 +97,7 @@ new attack types in logging variables and search bars?
 
 * Added Prometheus metrics support for API Specification Enforcement service operation (based on the built-in API Firewall service)
 
-    Metrics are disabled by default and can be enabled through the new [controller.wallarm.apiFirewall.metrics.*](../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewallmetrics) values.
+    Metrics are disabled by default and can be enabled through the new [`controller.wallarm.apiFirewall.metrics.*`](../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewallmetrics) values.
 * Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 * Bumped Go version to 1.24
 * Fixed the behavior of the `wallarm_wstore_throttle_mode` Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
@@ -162,7 +162,7 @@ new attack types in logging variables and search bars?
 
 * Added Prometheus metrics support for API Specification Enforcement service operation (based on the built-in API Firewall service)
 
-    Metrics are disabled by default and can be enabled through the new [config.wallarm.apiFirewall.metrics.*](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md) values.
+    Metrics are disabled by default and can be enabled through the new [`config.wallarm.apiFirewall.metrics.*`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md) values.
 * Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 * Bumped Go version to 1.24
 * Fixed the behavior of the `wallarm_wstore_throttle_mode` Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
