@@ -43,6 +43,8 @@ For the changelog of versions, refer to the [article](../../../updating-migratin
 
 To delete your Edge deployment, click **Configure** → **Admin settings** → **Delete inline**.
 
+Wallarm prevents you from deleting a Security Edge deployment if there are A or CNAME records still pointing to it. To proceed with deletion, you must first remove those DNS records.
+
 If you intend to delete and re-create the Nodes, you can [adjust the settings of the existing deployment](deployment.md), and the Nodes will be re-deployed with the updated configuration.
 
 If your subscription expires, the Edge Node will be automatically deleted after 14 days.
