@@ -11,7 +11,7 @@ Learn fine-tuning options available for the self-hosted Wallarm Ingress controll
 
 The settings are defined in the [`values.yaml`](https://github.com/wallarm/ingress/blob/main/charts/ingress-nginx/values.yaml) file. By default, the file looks as follows:
 
-```
+```yaml
 controller:
   wallarm:
     enabled: false
@@ -163,6 +163,33 @@ controller:
       extraEnvs:
         - name: EXTRA_ENV_VAR_NAME
           value: EXTRA_ENV_VAR_VALUE
+      metrics:
+        enabled: false
+        port: 9010
+        endpointPath: /metrics
+        host: ":9010"
+        service:
+          servicePort: 9010
+        serviceMonitor:
+          ## Enables creation of the ServiceMonitor resource
+          enabled: false
+          ## Extra labels used to match the Prometheus instance
+          additionalLabels: {}
+          # -- Annotations to be added to the ServiceMonitor
+          annotations: {}
+          ## The label to use to retrieve the job name from
+          ## jobLabel: "app.kubernetes.io/name"
+          namespace: ""
+          namespaceSelector: {}
+          ## Default: scrape .Release.Namespace or namespaceOverride only
+          ## To scrape all, use the following:
+          ## namespaceSelector:
+          ##   any: true
+          scrapeInterval: 30s
+          # honorLabels: true
+          targetLabels: []
+          relabelings: []
+          metricRelabelings: []
 validation:
   enableCel: false
   forbidDangerousAnnotations: false
@@ -309,7 +336,7 @@ This switch [toggles](configuration-guides/wallarm-ingress-controller/best-pract
 
 **Default value**: `false`
 
-### controller.wallarm.apifirewall
+### controller.wallarm.apiFirewall
 
 Controls the configuration of [API Specification Enforcement](../api-specification-enforcement/overview.md), available starting from release 4.10. By default, it is enabled and configured as shown below. If you are using this feature, it is recommended to keep these values unchanged.
 
@@ -348,6 +375,68 @@ Since node 5.1.0, the following is presented (see default values in the example 
 | `disableKeepalive` | Disables the keep-alive connections. The server will close all the incoming connections after sending the first response to the client if this option is set to `true`. |
 | `maxConnectionsPerIp` | Maximum number of concurrent client connections allowed per IP. `0` = `unlimited`. |
 | `maxRequestsPerConnection` | Maximum number of requests served per connection. The server closes the connection after the last request. The `Connection: close` header is added to the last response. `0` = `unlimited`. |
+
+### controller.wallarm.apiFirewall.metrics
+
+Starting from version 6.5.1, the [API Specification Enforcement](../api-specification-enforcement/overview.md) module can expose Prometheus-compatible metrics.
+
+When enabled, metrics are available by default at `http://<host>:9010/metrics`.
+
+| Setting | Description |
+| ------- | ----------- |
+| `enabled` | Enables Prometheus metrics for the API Specification Enforcement module.<br>By default: `false` (disabled). |
+| `port` | Defines the port on which the API Specification Enforcement module exposes metrics. If you change this value, also update `controller.wallarm.apiFirewall.metrics.service.servicePort`.<br>Default: `9010`. |
+| `endpointPath` | Defines the HTTP path of the API Specification Enforcement metrics endpoint<br>By default: `metrics`. |
+| `host` | IP address and port for binding the metrics server.<br>By default: `:9010` (all interfaces on port 9010). |
+
+```yaml
+controller:
+  wallarm:
+    apiFirewall:
+      metrics:
+        enabled: false
+        port: 9010
+        endpointPath: /metrics
+        host: ":9010"
+        service:
+          servicePort: 9010
+```
+
+### controller.wallarm.apiFirewall.metrics.serviceMonitor
+
+If you are using the Prometheus Operator (for example, as part of the kube-prometheus-stack), you can configure the chart to automatically create a `ServiceMonitor` resource for scraping [API Specification Enforcement metrics](#controllerwallarmapifirewallmetrics).
+
+The `serviceMonitor` configuration options are available starting from version 6.5.1.
+
+Configuration options with default values:
+
+```yaml
+controller:
+  wallarm:
+    apiFirewall:
+      metrics:
+        ...
+        serviceMonitor:
+          ## Enables creation of the ServiceMonitor resource
+          enabled: false
+          ## Extra labels used to match the Prometheus instance
+          additionalLabels: {}
+          # -- Annotations to be added to the ServiceMonitor
+          annotations: {}
+          ## The label to use to retrieve the job name from
+          ## jobLabel: "app.kubernetes.io/name"
+          namespace: ""
+          namespaceSelector: {}
+          ## Default: scrape .Release.Namespace or namespaceOverride only
+          ## To scrape all, use the following:
+          ## namespaceSelector:
+          ##   any: true
+          scrapeInterval: 30s
+          # honorLabels: true
+          targetLabels: []
+          relabelings: []
+          metricRelabelings: []
+```
 
 ### controller.wallarm.container_name.extraEnvs
 
