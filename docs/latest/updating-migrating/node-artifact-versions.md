@@ -269,14 +269,11 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
-<!-- ### 6.5.1 (2025-09-09)
+### 6.5.1 (2025-09-09)
 
 * Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 * Bumped Go version to 1.24
 * Fixed the behavior of the `wallarm_wstore_throttle_mode` Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended 
-
-additionally, to check the 6-4 entries
--->
 
 ### 6.4.0 (2025-07-31)
 
@@ -320,14 +317,11 @@ additionally, to check the 6-4 entries
 
 [How to upgrade](cloud-image.md)
 
-<!-- ### 6.5.1 (2025-09-09)
+### wallarm-node-6-5-1-20250908-174655 (2025-09-09)
 
 * Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 * Bumped Go version to 1.24
-* Fixed the behavior of the `wallarm_wstore_throttle_mode` Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended 
-
-additionally, to check the 6-4 entries
--->
+* Fixed the behavior of the `wallarm_wstore_throttle_mode` Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
 
 ### wallarm-node-6-4-0-20250730-083353 (2025-07-31)
 
