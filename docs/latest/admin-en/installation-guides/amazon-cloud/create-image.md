@@ -1,11 +1,7 @@
 [link-docs-aws-autoscaling]:        autoscaling-group-guide.md
 [link-docs-aws-node-setup]:         ../../../installation/cloud-platforms/aws/ami.md
-[link-ssh-keys-guide]:              ../../../installation/cloud-platforms/aws/ami.md#1-create-a-pair-of-ssh-keys-in-aws
-[link-security-group-guide]:        ../../../installation/cloud-platforms/aws/ami.md#2-create-a-security-group
-[link-cloud-connect-guide]:         ../../../installation/cloud-platforms/aws/ami.md#6-connect-the-instance-to-the-wallarm-cloud
-[link-docs-reverse-proxy-setup]:    ../../../installation/cloud-platforms/aws/ami.md#7-configure-sending-traffic-to-the-wallarm-instance
+[link-cloud-connect-guide]:         ../../../installation/inline/compute-instances/aws/aws-ami.md#4-connect-the-instance-to-the-wallarm-cloud
 [link-docs-check-operation]:        ../../../admin-en/uat-checklist-en.md#node-registers-attacks
-
 [img-launch-ami-wizard]:        ../../../images/installation-ami/auto-scaling/common/create-image/launch-ami-wizard.png 
 [img-config-ami-wizard]:        ../../../images/installation-ami/auto-scaling/common/create-image/config-ami-wizard.png  
 [img-explore-created-ami]:      ../../../images/installation-ami/auto-scaling/common/create-image/explore-ami.png
@@ -32,7 +28,7 @@ Before creating an AMI you need to perform an initial configuration of a single 
 1.  [Create][link-docs-aws-node-setup] a filtering node instance in the Amazon cloud.
     
     !!! warning "Private SSH key"
-        Make sure you have access to the private SSH key (stored in PEM format) that you [created][link-ssh-keys-guide] earlier to connect to the filtering node.
+        Make sure you have access to the private SSH key (stored in PEM format) that you created earlier to connect to the filtering node.
 
     !!! warning "Provide the filtering node with an internet connection"
         The filtering node requires access to the Wallarm API server for proper operation. The choice of the Wallarm API server depends on the Wallarm Cloud you are using:
@@ -40,7 +36,7 @@ Before creating an AMI you need to perform an initial configuration of a single 
         *   If you are using the US Cloud, your node needs to be granted access to `https://us1.api.wallarm.com`.
         *   If you are using the EU Cloud, your node needs to be granted access to `https://api.wallarm.com`.
         
-    Make sure that you choose the correct VPC and subnets and [configure a security group][link-security-group-guide] in a way that does not prevent the filtering node from accessing Wallarm API servers.
+    Make sure that you choose the correct VPC and subnets and configure a security group in a way that does not prevent the filtering node from accessing Wallarm API servers.
 
 2.  [Connect][link-cloud-connect-guide] the filtering node to the Wallarm Cloud.
 
