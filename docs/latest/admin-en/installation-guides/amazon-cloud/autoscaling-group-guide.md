@@ -1,11 +1,6 @@
 [link-doc-ami-creation]:        create-image.md
 [link-doc-lb-guide]:            load-balancing-guide.md
-
-[link-ssh-keys-guide]:          ../../../installation/cloud-platforms/aws/ami.md#1-create-a-pair-of-ssh-keys-in-aws
-[link-security-group-guide]:    ../../../installation/cloud-platforms/aws/ami.md#2-create-a-security-group
-
 [link-doc-as-faq]:              https://aws.amazon.com/autoscaling/faqs/
-
 [img-create-lt-wizard]:         ../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/create-launch-template.png
 [img-create-asg-wizard]:        ../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/create-asg-with-template.png
 [img-asg-wizard-1]:             ../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/asg-wizard-1.png
@@ -48,9 +43,9 @@ Create a Launch Template by doing the following steps:
         
         Using a less powerful instance type may lead to issues in filtering node operation. 
 
-5.  Select the name of the [previously created][link-ssh-keys-guide] pair of SSH keys to access the filtering node from the **Key pair name** list.
+5.  Select the name of the previously created pair of SSH keys to access the filtering node from the **Key pair name** list.
 
-6.  Select the [previously created][link-security-group-guide] Security Group from the **Security Groups** list.
+6.  Select the previously created Security Group from the **Security Groups** list.
 
 7.  Click the **Create launch template** button.
 
@@ -102,7 +97,7 @@ To create an Auto Scaling Group, do the following steps:
         * If you are using the US Cloud, your node needs to be granted access to `https://us1.api.wallarm.com`.
         * If you are using the EU Cloud, your node needs to be granted access to `https://api.wallarm.com`.
 
-        Make sure that you choose the correct VPC and subnets and [configure a security group][link-security-group-guide] in a way that does not prevent the filtering node access to Wallarm API servers.
+        Make sure that you choose the correct VPC and subnets and configure a security group in a way that does not prevent the filtering node access to Wallarm API servers.
 
     ![General Auto Scaling Group settings][img-asg-wizard-1]
     
