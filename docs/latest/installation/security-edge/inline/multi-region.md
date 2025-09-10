@@ -63,6 +63,11 @@ If mTLS cannot be used, allow incoming traffic from the Wallarm IP addresses of 
 
 * Azure
 
+    === "Central US"
+        ```
+        104.43.139.76
+        104.43.139.77
+        ```
     === "East US 2"
         ```
         20.65.88.253
