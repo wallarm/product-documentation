@@ -81,6 +81,11 @@ To restrict your origins to trusted traffic only, allow Edge Node connections us
 
         * Azure
 
+            === "Central US"
+                ```
+                104.43.139.76
+                104.43.139.77
+                ```
             === "East US 2"
                 ```
                 20.65.88.253
