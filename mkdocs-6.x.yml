@@ -327,7 +327,10 @@ nav:
       - Configuring Failover Method: admin-en/configure-backup-en.md
       - Filtering Node Logs: admin-en/configure-logging.md
       - Statistics Service: admin-en/configure-statistics-service.md
-      - NGINX Node Metrics: admin-en/nginx-node-metrics.md
+      - NGINX Node Metrics:
+        - Overview: admin-en/nginx-node-metrics.md
+        - General Metrics: admin-en/wstore-metrics.md
+        - API Firewall Metrics: admin-en/apifw-metrics.md
       - Native Node Metrics: admin-en/native-node-metrics.md
       - Using a Mirrored Wallarm Repository:
         - How to Mirror the Wallarm Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
