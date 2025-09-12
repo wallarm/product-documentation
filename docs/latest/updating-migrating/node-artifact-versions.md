@@ -26,7 +26,7 @@ new attack types in logging variables and search bars?
 
 ### 6.4.1 (2025-08-07)
 
-* Added Prometheus metrics support for API Specification Enforcement service operation (based on the built-in API Firewall service):
+* Added [Prometheus metrics support][apifw-metrics] for API Specification Enforcement service operation (based on the built-in API Firewall service):
 
     * Enable with `APIFW_METRICS_ENABLED=true` in `/opt/wallarm/env.list`
     * Default endpoint: `:9010/metrics`
