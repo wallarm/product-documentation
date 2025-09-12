@@ -10,6 +10,7 @@
 [waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
 [ip-lists-docs]:                     ../../user-guides/ip-lists/overview.md
 [link-wallarm-health-check]:        ../../admin-en/uat-checklist-en.md
+[link-cloud-connect-guide]:         ../../installation/inline/compute-instances/aws/aws-ami.md#4-connect-the-instance-to-the-wallarm-cloud
 
 # Upgrading an EOL cloud node image
 
@@ -49,8 +50,8 @@ Copy the settings for processing and proxying requests from the following config
 2. At the launch step, set the following settings:
 
       * Select the image version `6.x`
-      * For AWS, select the [created security group](../../installation/cloud-platforms/aws/ami.md#2-create-a-security-group) in the field **Security Group Settings**
-      * For AWS, select the name of the [created key pair](../../installation/cloud-platforms/aws/ami.md#1-create-a-pair-of-ssh-keys-in-aws) in the field **Key Pair Settings**
+      * For AWS, select the created security group in the field **Security Group Settings**
+      * For AWS, select the name of the created key pair in the field **Key Pair Settings**
 3. Confirm the instance launch.
 4. For GCP, configure the instance following these [instructions](../../installation/cloud-platforms/gcp/machine-image.md#2-configure-the-filtering-node-instance).
 
@@ -68,7 +69,7 @@ Copy the settings for processing and proxying requests from the following config
       * [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)
       * [GCP documentation](https://cloud.google.com/compute/docs/instances/connecting-to-instance)
 2. Create a new Wallarm node and connect it to the Wallarm Cloud using the generated token as described in the instructions for the cloud platform:
-      * [AWS](../../installation/cloud-platforms/aws/ami.md#6-connect-the-instance-to-the-wallarm-cloud)
+      * [AWS][link-cloud-connect-guide]
       * [GCP](../../installation/cloud-platforms/gcp/machine-image.md#5-connect-the-filtering-node-to-the-wallarm-cloud)
 
 ## Step 8: Copy the filtering node settings from the previous version to the new version
