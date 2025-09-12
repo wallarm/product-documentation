@@ -38,9 +38,20 @@ The mentioned and other files must have correct group (second column with `walla
 
 Problems with [`custom_ruleset`](../user-guides/rules/rules.md#ruleset-lifecycle) synchronization can be caused by inconsistency between min custom ruleset version set for you by Wallarm support group and the node version:
 
-1. Get your custom ruleset version via node's [statistics service](../admin-en/configure-statistics-service.md#usage) - `custom_ruleset_ver`.
+1. Get your custom ruleset version via node's [statistics service](../admin-en/configure-statistics-service.md#usage) - `custom_ruleset_ver`. For example:
+
+    ```
+    curl -s http://127.0.0.8/wallarm-status | jq -c '{custom_ruleset_ver}'
+    ```
+
 1. Get your Wallarm node version, for example via Wallarm Console → **Nodes** → your node details, bottom of the window.
-1. Get your settings via Wallarm [API](../api/overview.md), `/v2/client/{clientid}/rules/settings`.
+1. Get your settings via Wallarm [API](../api/overview.md), `/v2/client/{clientid}/rules/settings`. For example:
+
+    ```
+    curl -X GET "https://us1.api.wallarm.com/v2/client/<client_id>/rules/settings"  \
+         -H "accept: application/json" \
+         -H 'X-WallarmAPI-Token: <TOKEN>'
+    ```
 
 ## Node uuid and/or secret cannot be detected
 
