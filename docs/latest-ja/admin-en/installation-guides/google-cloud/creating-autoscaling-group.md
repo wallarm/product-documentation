@@ -8,56 +8,56 @@
 [link-multiple-metrics-policy]:                     https://cloud.google.com/compute/docs/autoscaler/multiple-policies
 [link-creating-load-balancer]:                      load-balancing-guide.md
 
-# 管理対象インスタンスグループの作成と自動スケーリングの有効化
+# オートスケーリングを有効にしたマネージドインスタンスグループの作成
 
-管理対象インスタンスグループを作成し、自動スケーリングを設定するには、次の手順に従ってください:
+マネージドインスタンスグループを作成し、そのオートスケーリングを構成するには、次の手順を実行します。
 
-1.  メニューの **Compute Engine** セクションにある **Instance groups** ページに移動し、**Create instance group** ボタンをクリックします。
+1.  メニューの**Compute Engine**セクションにある**Instance groups**ページに移動し、**Create instance group**ボタンをクリックします。
 
-    ![Creating an instance group][img-creating-instance-group]
+    ![インスタンスグループの作成][img-creating-instance-group]
 
-2.  **Name** フィールドにインスタンスグループの名前を入力します。
+2.  **Name**フィールドにインスタンスグループ名を入力します。
 
-3.  **Group type** 設定で **Managed instance group** を選択します。
+3.  **Group type**設定で**Managed instance group**を選択します。
 
-4.  ドロップダウンリストの **Autoscaling** から **On** オプションを選択して、インスタンスグループの自動スケーリングを有効にします。
+4.  **Autoscaling**ドロップダウンリストから**On**オプションを選択して、インスタンスグループのオートスケーリングを有効にします。
 
-5.  次に、**Autoscaling policy** ドロップダウンリストから必要なスケーリングポリシーを選択します。 
-
-    スケーリングポリシーには、インスタンスグループのサイズを増減させるためのルールが含まれています。システムは、ユーザーが定義したターゲットレベルを維持するために、どのタイミングでインスタンスを追加または削除するかを判断します。
+5.  **Autoscaling policy**ドロップダウンリストから必要なスケーリングポリシーを選択します。 
     
-    以下のポリシーのいずれかを選択できます:
+    スケーリングポリシーには、インスタンスグループの規模を拡大・縮小するためのルールが含まれます。ポリシーの基礎となるメトリックをユーザーが定義した目標値に維持するために、いつグループにインスタンスを追加または削除すべきかをシステムが判断します。
     
-    1.  CPU Usage: グループ内の仮想マシンの平均プロセッサ負荷を所定のレベルに維持するためにグループのサイズが制御されます（[CPU使用率ポリシーのドキュメント][link-cpu-usage-policy]）。
-    2.  HTTP Load Balancing Usage: グループのサイズは、HTTPトラフィックバランサーの負荷を所定のレベルに保つために制御されます（[HTTPロードバランシング使用ポリシーのドキュメント][link-http-load-balancing-policy]）。
-    3.  Stackdriver Monitoring Metric: グループのサイズは、Stackdriver Monitoringの計測器から選択されたメトリックを所定のレベルに維持するために制御されます（[Stackdriver Monitoring Metricポリシーのドキュメント][link-stackdriver-monitoring-metric-policy]）。
-    4.  Multiple Metrics: グループのサイズ変更の判断は複数のメトリックに基づいて行われます（[複数メトリックポリシーのドキュメント][link-multiple-metrics-policy]）。
+    次のいずれかのポリシーを選択できます:
     
-    本ガイドでは、自動スケーリング機構の動作原理を示すために、**CPU Usage** ポリシーを使用します。
+    1.  CPU Usage: グループ内の仮想マシンの平均CPU使用率が所定のレベルになるように、グループの規模を制御します（[CPU Usageポリシーのドキュメント][link-cpu-usage-policy]）。
+    2.  HTTP Load Balancing Usage: HTTPロードバランサの負荷が所定のレベルになるように、グループの規模を制御します（[HTTP Load Balancing Usageポリシーのドキュメント][link-http-load-balancing-policy]）。
+    3.  Stackdriver Monitoring Metric: Stackdriver Monitoringで選択したメトリクスが所定のレベルになるように、グループの規模を制御します（[Stackdriver Monitoring Metricポリシーのドキュメント][link-stackdriver-monitoring-metric-policy]）。
+    4.  Multiple Metrics: 複数のメトリクスに基づいて、グループの規模を変更するかどうかを判断します（[Multiple Metricsポリシーのドキュメント][link-multiple-metrics-policy]）。 
     
-    このポリシーを適用するには、**Target CPU usage** フィールドに必要な平均プロセッサ負荷レベル（パーセンテージ）を指定します。
+    このガイドでは、オートスケーリングの仕組みを説明するために**CPU usage**ポリシーを使用します。
+    
+    このポリシーを適用するには、**Target CPU usage**フィールドに必要な平均CPU使用率（パーセンテージ）を指定します。
     
     !!! info "例"
-        次の構成例は、仮想マシンの平均プロセッサ負荷が60パーセントのレベルに維持されるようにインスタンスグループのサイズを制御する方法を示しています。
-        ![Example: creating an instance group][img-create-instance-group-example]
+        次の設定は、仮想マシンの平均CPU使用率を60%に維持するようインスタンスグループの規模を制御する例です。
+        ![例: インスタンスグループの作成][img-create-instance-group-example]
 
-6.  **Minimum number of instances** フィールドにインスタンスグループの最小サイズを指定します（例：2インスタンス）。
+6.  **Minimum number of instances**フィールドに最小のインスタンスグループ規模を指定します（例: 2台）。
 
-7.  **Maximum number of instances** フィールドにインスタンスグループの最大サイズを指定します（例：10インスタンス）。
+7.  **Maximum number of instances**フィールドに最大のインスタンスグループ規模を指定します（例: 10台）。
 
-8.  **Cool down period** フィールドに、新しく追加されたインスタンスからメトリック値を記録しない期間（例：60秒）を指定します。新しいインスタンス追加後にリソース消費が急増する場合に必要になることがあります。 
+8.  **Cool down period**フィールドに、新しく追加されたインスタンスからのメトリクス値を記録しない期間を指定します（例: 60秒）。新しいインスタンスを追加した直後にリソース消費が急増する場合に必要になることがあります。 
 
     !!! info "クールダウン期間の要件"
-        クールダウン期間は、インスタンス初期化に必要な時間より長くなければなりません。
+        クールダウン期間は、インスタンスの初期化に必要な時間より長くする必要があります。
 
-9.  インスタンスグループのすべてのパラメーターが正しく設定されていることを確認し、**Create** ボタンをクリックします。
+9.  インスタンスグループのすべてのパラメータが正しく構成されていることを確認し、**Create**ボタンをクリックします。
 
-自動スケーリンググループが正常に作成されると、指定された数のインスタンスが自動的に起動します。
+オートスケーリンググループが正常に作成されると、指定した数のインスタンスが自動的に起動します。
 
-自動スケーリンググループが正しく作成されたことは、グループ内の起動済みインスタンスの数とWallarm Cloudに接続されているフィルタリングノードの数を比較することで確認できます。
+グループで起動中のインスタンス数を確認し、それをWallarm Cloudに接続されたフィルタリングノードの数と比較することで、オートスケーリンググループが正しく作成されたことを確認できます。
 
-Wallarm Consoleを使用して確認できます。たとえば、2つのインスタンスにフィルタリングノードが同時に動作している場合、Wallarm Consoleは**Nodes** セクションに対応するWallarmノードの数としてこの数値を表示します。
+これはWallarm Consoleで確認できます。例えば、フィルタリングノードを搭載したインスタンスが2台同時に稼働している場合、Wallarm Consoleの**Nodes**セクションで、該当するWallarm nodeに対してこの数が表示されます。
 
-![The **Nodes** nodes tab on the Wallarm web interface][img-checking-nodes-operation]
+![WallarmのWebインターフェイスの**Nodes**タブ][img-checking-nodes-operation]
 
-次に、[ロードバランサーの作成と設定][link-creating-load-balancer]を進めることができます。
+次に、[ロードバランサの作成と構成][link-creating-load-balancer]に進むことができます。

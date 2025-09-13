@@ -1,0 +1,385 @@
+INHERIT: mkdocs-base.yml
+
+theme:
+  version: "6.x"
+  versionNative: "0.14.x+"
+
+docs_dir: docs/6.x
+site_dir: site
+
+nav:
+  - クイックスタート:
+    - Wallarm 概要: about-wallarm/overview.md
+    - はじめに: quickstart/getting-started.md
+    - サブスクリプションプラン: about-wallarm/subscription-plans.md
+    - Security Edge フリーティア: /installation/security-edge/free-tier/
+    - ベストプラクティス: quickstart/attack-prevention-best-practices.md
+    - 動画ガイド:
+      - Wallarm プラットフォーム設定: demo-videos/overview.md
+      - CVE と関連攻撃の分析: demo-videos/events-inspection.md
+      - API ディスカバリの概要: demo-videos/api-discovery.md
+      - シャドウおよびオーファン API: demo-videos/shadow-api.md
+      - API 不正利用防止の概要: demo-videos/api-abuse-prevention.md
+     #- API Leaks Overview: demo-videos/api-leaks.md
+  - 脅威管理:
+    - 概要: user-guides/events/overview.md
+    - ダッシュボード:
+      - 脅威の防止: user-guides/dashboards/threat-prevention.md
+      - API ディスカバリ: user-guides/dashboards/api-discovery.md
+      - NIST CSF 2.0: user-guides/dashboards/nist-csf-2.md
+      - OWASP API 2023: user-guides/dashboards/owasp-api-top-ten.md
+    - 攻撃とインシデント:
+      - 攻撃の分析: user-guides/events/check-attack.md
+      - インシデントの分析: user-guides/events/check-incident.md
+      - 検索とフィルター: user-guides/search-and-filters/use-search.md
+      - グルーピングとサンプリング: user-guides/events/grouping-sampling.md
+    - 脆弱性:
+      - 脆弱性の検出: about-wallarm/detecting-vulnerabilities.md
+      - 脆弱性の管理: user-guides/vulnerabilities.md
+      - 検索とフィルター: user-guides/search-and-filters/use-search-vuln.md
+    - API セッション: 
+      - 概要: api-sessions/overview.md
+      - セットアップ: api-sessions/setup.md
+      - 探索: api-sessions/exploring.md
+    - レポート: user-guides/search-and-filters/custom-report.md
+  - API 保護:
+    - 概要: about-wallarm/api-protection-overview.md
+    # - OWASP Top 10: ...
+    # - OWASP API Top 10: ...
+    - 仕様の強制適用:
+      - 概要: api-specification-enforcement/overview.md
+      - セットアップ: api-specification-enforcement/setup.md
+      - イベントの表示: api-specification-enforcement/viewing-events.md
+    - 自動 BOLA 保護: admin-en/configuration-guides/protecting-against-bola.md
+    - API 不正利用防止:
+      - 概要: api-abuse-prevention/overview.md
+      - セットアップ: api-abuse-prevention/setup.md
+      - 例外: api-abuse-prevention/exceptions.md
+      - ボット活動の探索: api-abuse-prevention/exploring-bots.md
+    - クレデンシャルスタッフィングの検出: about-wallarm/credential-stuffing.md
+    - GraphQL API 保護: api-protection/graphql-rule.md
+    - 列挙攻撃の保護: api-protection/enumeration-attack-protection.md
+    - DoS 保護: api-protection/dos-protection.md
+    - ファイルアップロード制限: api-protection/file-upload-restriction.md
+    - 緩和制御: about-wallarm/mitigation-controls-overview.md
+  - エージェント型 AI:
+    - AI ディスカバリ: agentic-ai/agentic-ai-discovery.md
+    - エージェント型 AI 保護: agentic-ai/agentic-ai-protection.md
+    - デモ: agentic-ai/demo.md
+  - API ディスカバリ:
+    - 概要: api-discovery/overview.md
+    - セットアップ: api-discovery/setup.md
+    - API インベントリの探索: api-discovery/exploring.md
+    - API の変更の追跡: api-discovery/track-changes.md
+    - 機密データの検出: api-discovery/sensitive-data.md
+    - 機密ビジネスフロー: api-discovery/sbf.md
+    - エンドポイントリスクスコア: api-discovery/risk-score.md
+    - シャドウ、オーファン、ゾンビ API: api-discovery/rogue-api.md
+    - BOLA 自動保護: api-discovery/bola-protection.md
+    - ダッシュボード: api-discovery/dashboard.md
+  - API 攻撃面:
+    - 概要: api-attack-surface/overview.md
+    - セットアップ: api-attack-surface/setup.md
+    - API 攻撃面のディスカバリ: api-attack-surface/api-surface.md
+    - セキュリティ問題の検出: api-attack-surface/security-issues.md
+  - クラウドネイティブ WAAP:
+    - 概要: about-wallarm/waap-overview.md
+    - DDoS 保護: admin-en/configuration-guides/protecting-against-ddos.md
+    - ブルートフォース保護: admin-en/configuration-guides/protecting-against-bruteforce.md
+    - 強制ブラウジング保護: admin-en/configuration-guides/protecting-against-forcedbrowsing.md
+    - レート制限: user-guides/rules/rate-limiting.md
+    - マルチ攻撃保護: admin-en/configuration-guides/protecting-with-thresholds.md
+    - 手動 BOLA 保護: admin-en/configuration-guides/protecting-against-bola-trigger.md
+    - IP によるフィルタリング: user-guides/ip-lists/overview.md
+    - 仮想パッチ: user-guides/rules/vpatch-rule.md
+    - カスタム攻撃検出器: user-guides/rules/regex-rule.md
+    - 機密データのマスキング: user-guides/rules/sensitive-data-rule.md
+    - レスポンスヘッダーの変更: user-guides/rules/add-replace-response-header.md
+    - フィルタリングモード: admin-en/configure-wallarm-mode.md
+    - 検出手順:
+      - 概要: about-wallarm/protecting-against-attacks.md
+      - リクエストの解析: user-guides/rules/request-processing.md
+      - ルール: user-guides/rules/rules.md
+      - トリガー: user-guides/triggers/triggers.md
+  - セキュリティテスト:
+    - 脅威リプレイ:
+      - 概要: vulnerability-detection/threat-replay-testing/overview.md
+      - セットアップ: vulnerability-detection/threat-replay-testing/setup.md
+      - テスト結果: vulnerability-detection/threat-replay-testing/exploring.md
+    - スキーマベース:
+      - 概要: vulnerability-detection/schema-based-testing/overview.md
+      - セットアップ: vulnerability-detection/schema-based-testing/setup.md
+      - テスト実行結果: vulnerability-detection/schema-based-testing/explore.md
+# - Overview: ...
+    # - OWASP Top 10: ...
+    # - Known attacks / CVEs: ...
+    # - Triggers: ...
+  - Security Edge:
+    - 概要: installation/security-edge/overview.md
+    - フリーティア: installation/security-edge/free-tier.md
+    - インライン:
+      - 概要: installation/security-edge/inline/overview.md
+      - デプロイ: installation/security-edge/inline/deployment.md
+      - マルチクラウドおよびマルチリージョン: installation/security-edge/inline/multi-region.md
+      - mTLS: installation/security-edge/inline/mtls.md
+      - ホストリダイレクト: installation/security-edge/inline/host-redirection.md
+      - カスタムブロックページ: installation/security-edge/inline/custom-block-page.md
+      - NGINX オーバーライド: installation/security-edge/inline/nginx-overrides.md
+      - デプロイの管理: installation/security-edge/inline/upgrade-and-management.md
+      - テレメトリポータル: installation/security-edge/inline/telemetry-portal.md
+    - コネクタ: installation/security-edge/se-connector.md
+  - セルフホスト型デプロイ:
+    - 概要: installation/supported-deployment-options.md
+    - Kubernetes:
+      - NGINX Ingress コントローラー: admin-en/installation-kubernetes-en.md
+      - サイドカー:
+        - デプロイ: installation/kubernetes/sidecar-proxy/deployment.md
+        - カスタマイズ: installation/kubernetes/sidecar-proxy/customization.md
+        - スケーリングと高可用性: installation/kubernetes/sidecar-proxy/scaling.md
+        - Helm チャート値: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
+        - Pod のアノテーション: installation/kubernetes/sidecar-proxy/pod-annotations.md
+      - eBPF:
+        - デプロイ: installation/kubernetes/ebpf/deployment.md
+        - Helm チャート値: installation/kubernetes/ebpf/helm-chart-for-wallarm.md
+        - ミラーリング対象パケットの選択: installation/kubernetes/ebpf/selecting-packets.md
+    - パブリッククラウド:
+      - Amazon Web Services:
+        - AMI: installation/cloud-platforms/aws/ami.md
+        - ECS: installation/cloud-platforms/aws/docker-container.md
+        - Terraform モジュール:
+          - AWS VPC 内のプロキシ: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
+          - Amazon API Gateway 用プロキシ: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
+        - AWS WAF 連携: installation/cloud-platforms/aws/aws-waf-integration.md
+        - AWS における NGINX ノードのコスト: installation/cloud-platforms/aws/costs.md
+      - Google Cloud:
+        - マシンイメージ: installation/cloud-platforms/gcp/machine-image.md
+        - GCE: installation/cloud-platforms/gcp/docker-container.md
+      - Microsoft Azure:
+        - Azure Container Instances: installation/cloud-platforms/azure/docker-container.md
+      - Alibaba Cloud:
+        - ECS: installation/cloud-platforms/alibaba-cloud/docker-container.md
+      - Heroku: installation/heroku/docker-image.md
+    - インライン:
+      - 概要: installation/inline/overview.md
+      - コンピュートインスタンス:
+        - オールインワンインストーラー: installation/inline/compute-instances/linux/all-in-one.md
+        - Amazon Web Services:
+          - AMI: installation/inline/compute-instances/aws/aws-ami.md
+          - ECS: installation/inline/compute-instances/aws/aws-ecs.md
+          - Terraform モジュール:
+            - AWS VPC 内のプロキシ: installation/inline/compute-instances/aws/terraform-module-for-aws-vpc.md
+            - Amazon API Gateway 用プロキシ: installation/inline/compute-instances/aws/terraform-module-for-aws-api-gateway.md
+        - Google Cloud:
+          - マシンイメージ: installation/inline/compute-instances/gcp/machine-image.md
+          - GCE: installation/inline/compute-instances/gcp/gce.md
+        - Microsoft Azure:
+          - Azure Container Instances: installation/inline/compute-instances/azure/docker-image.md
+        - Alibaba Cloud:
+          - ECS: installation/inline/compute-instances/alibaba/docker-image.md
+        - NGINX ベースの Docker イメージ: installation/inline/compute-instances/docker/nginx-based.md
+      - Kubernetes:
+        - NGINX Ingress コントローラー: installation/inline/kubernetes/nginx-ingress-controller.md
+        - サイドカーコントローラー:
+          - デプロイ: installation/inline/kubernetes/sidecar-proxy/deployment.md
+          - カスタマイズ: installation/inline/kubernetes/sidecar-proxy/customization.md
+          - スケーリングと高可用性: installation/inline/kubernetes/sidecar-proxy/scaling.md
+          - Helm チャート値: installation/inline/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
+          - Pod のアノテーション: installation/inline/kubernetes/sidecar-proxy/pod-annotations.md
+    - アウトオブバンド:
+      - 概要: installation/oob/overview.md
+      - eBPF:
+        - デプロイ: installation/oob/ebpf/deployment.md
+        - Helm チャート値: installation/oob/ebpf/helm-chart-for-wallarm.md
+        - ミラーリング対象パケットの選択: installation/oob/ebpf/selecting-packets.md
+      - TCP トラフィックミラー解析: installation/oob/tcp-traffic-mirror/deployment.md
+    - すべてのデプロイ成果物:
+      - NGINX とネイティブの概要: installation/nginx-native-node-internals.md
+      - NGINX ノード:
+        - オールインワンインストーラー: installation/nginx/all-in-one.md
+        - NGINX ベースの Docker イメージ: admin-en/installation-docker-en.md
+        - クラウドイメージ:
+          - AWS AMI: installation/packages/aws-ami.md
+          - GCP マシンイメージ: installation/packages/gcp-machine-image.md
+        - AWS 向け Terraform モジュール: installation/cloud-platforms/aws/terraform-module/overview.md
+        - アーティファクトのバージョンと変更履歴: updating-migrating/node-artifact-versions.md
+      - ネイティブノード:
+        - オールインワンインストーラー:
+          - インストール: installation/native-node/all-in-one.md
+          - 構成: installation/native-node/all-in-one-conf.md
+        - Docker イメージ:
+          - デプロイ: installation/native-node/docker-image.md
+          - 構成: /installation/native-node/all-in-one-conf/
+        - AWS AMI:
+          - デプロイ: installation/native-node/aws-ami.md
+          - 構成: /installation/native-node/all-in-one-conf/
+        - Helm チャート:
+          - デプロイ: installation/native-node/helm-chart.md
+          - 構成: installation/native-node/helm-chart-conf.md
+        - アーティファクトのバージョンと変更履歴: updating-migrating/native-node/node-artifact-versions.md
+    - オンプレミス:
+      - 概要: installation/on-premise/overview.md
+      - デプロイ: installation/on-premise/deployment.md
+      - メンテナンス: installation/on-premise/maintenance.md
+    - カスタムデプロイの依頼: installation/custom/request-custom-deployment.md
+    - 追加オプション:
+      - Wallarm と Ingress コントローラーのチェーン構成: admin-en/chaining-wallarm-and-other-ingress-controllers.md
+      - オートスケーリング:
+        - Amazon Web Services:
+          - 概要: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
+          - Amazon マシンイメージの作成: admin-en/installation-guides/amazon-cloud/create-image.md
+          - フィルタリングノードのオートスケーリング設定: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
+          - 受信リクエストの負荷分散設定: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
+        - Google Cloud Platform:
+          - 概要: admin-en/installation-guides/google-cloud/autoscaling-overview.md
+          - Wallarm フィルタリングノード入りイメージの作成: admin-en/installation-guides/google-cloud/create-image.md
+          - フィルタリングノードのインスタンステンプレート作成: admin-en/installation-guides/google-cloud/creating-instance-template.md
+          - オートスケーリング有効のマネージドインスタンスグループの作成: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
+          - 受信リクエストの負荷分散設定: admin-en/installation-guides/google-cloud/load-balancing-guide.md
+      - Wallarm cloud-init スクリプト仕様: installation/cloud-platforms/cloud-init.md
+      - ポストアナリティクスモジュールの個別インストール: admin-en/installation-postanalytics-en.md
+      - マルチテナントノード:
+        - マルチテナンシーの概要: installation/multi-tenant/overview.md
+        - Wallarm コンソールでのテナントアカウント作成: installation/multi-tenant/configure-accounts.md
+        - マルチテナントノードのデプロイと構成: installation/multi-tenant/deploy-multi-tenant-node.md
+      - プライベートクラウドへの Wallarm 導入: installation/cloud-platforms/private-cloud.md
+      - カスタム NGINX パッケージ: installation/custom/custom-nginx-version.md
+  - コネクタのデプロイ:
+    - 概要: installation/connectors/overview.md
+    - MuleSoft Mule Gateway: installation/connectors/mulesoft.md
+    - MuleSoft Flex Gateway: installation/connectors/mulesoft-flex.md
+    - Apigee: installation/connectors/apigee.md
+    - Akamai: installation/connectors/akamai-edgeworkers.md
+    - Azion Edge: installation/connectors/azion-edge.md
+    - CloudFront: installation/connectors/aws-lambda.md
+    - Cloudflare: installation/connectors/cloudflare.md
+    - Kong API Gateway: installation/connectors/kong-api-gateway.md
+    - Istio: installation/connectors/istio.md
+    - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
+    - Fastly: installation/connectors/fastly.md
+    - IBM API Connect: installation/connectors/ibm-api-connect.md
+    - コードバンドルの変更履歴: installation/connectors/code-bundle-inventory.md
+  - 連携とアラート:
+    - 概要: user-guides/settings/integrations/integrations-intro.md 
+    - メールとメッセージング:
+      - メール: user-guides/settings/integrations/email.md
+      - Slack: user-guides/settings/integrations/slack.md
+      - Telegram: user-guides/settings/integrations/telegram.md
+      - Microsoft Teams: user-guides/settings/integrations/microsoft-teams.md
+    - インシデント/タスク管理システム:
+      - Opsgenie: user-guides/settings/integrations/opsgenie.md
+      - PagerDuty: user-guides/settings/integrations/pagerduty.md
+      - Jira: user-guides/settings/integrations/jira.md
+      - ServiceNow: user-guides/settings/integrations/servicenow.md
+    - SIEM/SOAR システム:
+      - Sumo Logic: user-guides/settings/integrations/sumologic.md
+      - Splunk: user-guides/settings/integrations/splunk.md
+      - InsightConnect: user-guides/settings/integrations/insightconnect.md
+      - Microsoft Sentinel: user-guides/settings/integrations/azure-sentinel.md
+    - ログ管理システム:
+      - Datadog: user-guides/settings/integrations/datadog.md
+    - データコレクター:
+      - Fluentd: user-guides/settings/integrations/fluentd.md
+      - Logstash: user-guides/settings/integrations/logstash.md
+      - Amazon S3: user-guides/settings/integrations/amazon-s3.md
+    - データコレクター経由の連携:
+      - Fluentd 経由の IBM QRadar: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
+      - Logstash 経由の IBM QRadar: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
+      - Fluentd 経由の Splunk Enterprise: user-guides/settings/integrations/webhook-examples/fluentd-splunk.md
+      - Logstash 経由の Splunk Enterprise: user-guides/settings/integrations/webhook-examples/logstash-splunk.md
+      - Fluentd 経由の Micro Focus ArcSight Logger: user-guides/settings/integrations/webhook-examples/fluentd-arcsight-logger.md
+      - Logstash 経由の Micro Focus ArcSight Logger: user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md
+      - Fluentd/Logstash 経由の Datadog: user-guides/settings/integrations/webhook-examples/fluentd-logstash-datadog.md
+    - 汎用連携:
+      - Webhook: user-guides/settings/integrations/webhook.md
+  - ユーザー管理:
+    - 概要: user-guides/settings/users.md
+    - ユーザープロファイル: user-guides/settings/account.md
+    - API トークン: user-guides/settings/api-tokens.md
+    - SSO の利用:
+      - 概要: admin-en/configuration-guides/sso/intro.md
+      - セットアップ: admin-en/configuration-guides/sso/setup.md
+      - G Suite の例: admin-en/configuration-guides/sso/sso-gsuite.md
+      - Okta の例: admin-en/configuration-guides/sso/sso-okta.md
+      - トラブルシューティング: admin-en/configuration-guides/sso/troubleshooting.md
+    - LDAP の利用: admin-en/configuration-guides/ldap/ldap.md
+    - アクティビティログ: user-guides/settings/audit-log.md
+  - 運用:
+    # - Autoscaling: ...
+    - Wallarm ノード概要: user-guides/nodes/nodes.md
+    - NGINX ベースノードの設定オプション: admin-en/configure-parameters-en.md
+    - Ingress コントローラーのチューニング:
+      - 設定パラメータ: admin-en/configure-kubernetes-en.md
+      - ベストプラクティス:
+        - エンドユーザー IP の適切な報告: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
+        - 高可用性の考慮事項: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
+        - Ingress コントローラーの監視: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
+    - Wallarm ヘルスチェック: admin-en/uat-checklist-en.md
+    - エンドユーザー IP の適切な報告: admin-en/using-proxy-or-balancer-en.md
+    - リソース割り当て: admin-en/configuration-guides/allocate-resources-for-node.md
+    - リクエスト処理時間の制限: user-guides/rules/configure-overlimit-res-detection.md
+    - アプリケーション別のデータ/設定分割: user-guides/settings/applications.md
+    - ブロックページとエラーコード: admin-en/configuration-guides/configure-block-page-and-code.md
+    - NGINX が無効とみなすヘッダーの処理: admin-en/configuration-guides/handling-invalid-headers.md
+    - 監視とフェイルオーバー:
+      - フェイルオーバー方式の設定: admin-en/configure-backup-en.md
+      - フィルタリングノードのログ: admin-en/configure-logging.md
+      - 統計サービス: admin-en/configure-statistics-service.md
+      - ネイティブノードのメトリクス: admin-en/native-node-metrics.md
+      - ミラーリングした Wallarm リポジトリの使用:
+        - CentOS 向け Wallarm リポジトリのミラー方法: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
+        - ローカル JFrog Artifactory リポジトリからの Wallarm パッケージ（CentOS）のインストール: admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md
+    - Wallarm ノードとクラウドの同期: admin-en/configure-cloud-node-synchronization-en.md
+    - プロキシ経由での Wallarm API へのアクセス: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
+    - NGINX の動的 DNS 解決: admin-en/configure-dynamic-dns-resolution-nginx.md
+    - JA3 フィンガープリンティングを有効化: admin-en/enabling-ja3.md
+    - 自己ホスト型ノードのアップグレード:
+      - Wallarm ノード 6.x および 0.14.x の新機能: updating-migrating/what-is-new.md
+      - 安全なノードアップグレードの推奨事項: updating-migrating/general-recommendations.md
+      - NGINX ノードのアップグレード手順:
+        - DEB/RPM パッケージのアップグレード: updating-migrating/nginx-modules.md
+        - DEB/RPM でインストールしたポストアナリティクスモジュールのアップグレード: updating-migrating/separate-postanalytics.md
+        - オールインワンインストーラーで導入したノードのアップグレード: updating-migrating/all-in-one.md
+        - Wallarm Docker NGINX ベースイメージのアップグレード: updating-migrating/docker-container.md
+        - Wallarm モジュール統合済み NGINX Ingress コントローラーのアップグレード: updating-migrating/ingress-controller.md
+        - Wallarm サイドカープロキシのアップグレード: updating-migrating/sidecar-proxy.md
+        - クラウドノードイメージのアップグレード: updating-migrating/cloud-image.md
+        - マルチテナントノードのアップグレード: updating-migrating/multi-tenant.md
+      - ネイティブノードのアップグレード手順:
+        - オールインワンインストーラー: updating-migrating/native-node/all-in-one.md
+        - Helm チャート: updating-migrating/native-node/helm-chart.md
+        - Docker イメージ: updating-migrating/native-node/docker-image.md
+      - EOL の Wallarm ノード（3.6 以前）のアップグレード:
+        - Wallarm ノードの新機能（EOL ノードをアップグレードする場合）: updating-migrating/older-versions/what-is-new.md
+        - EOL の Wallarm NGINX モジュールのアップグレード: updating-migrating/older-versions/nginx-modules.md
+        - EOL のポストアナリティクスモジュールのアップグレード: updating-migrating/older-versions/separate-postanalytics.md
+        - EOL の Docker NGINX ベースイメージのアップグレード: updating-migrating/older-versions/docker-container.md
+        - EOL の NGINX Ingress コントローラー（Wallarm モジュール統合）のアップグレード: updating-migrating/older-versions/ingress-controller.md
+        - EOL のクラウドノードイメージのアップグレード: updating-migrating/older-versions/cloud-image.md
+        - EOL のマルチテナントノードのアップグレード: updating-migrating/older-versions/multi-tenant.md
+        - EOL の Wallarm ノードからの許可/拒否リストの移行: updating-migrating/migrate-ip-lists-to-node-3.md
+    - ノードのバージョニングポリシー: updating-migrating/versioning-policy.md
+    - 脆弱性スキャン用 IP: admin-en/scanner-addresses.md
+  - リファレンス:
+    - 変更履歴とニュース: news.md
+    - Wallarm API リファレンス:
+      - 概要: api/overview.md
+      - API リクエスト例: api/request-examples.md
+    - Wallarm の SLA: sla.md
+    - Wallarm Terraform プロバイダー: admin-en/managing/terraform-provider.md
+    - アプリケーションの月間リクエスト数の学習: admin-en/operation/learn-incoming-request-number.md
+    - Docker イメージのセキュリティ:
+      - Docker イメージ署名の検証: integrations-devsecops/verify-docker-image-signature.md
+      - Wallarm Docker イメージの SBOM 生成: integrations-devsecops/generate-sbom-for-docker-images.md
+    - データ管理ポリシー:
+      - クライアントデータの責任共有モデル: about-wallarm/shared-responsibility.md
+      - データ保持ポリシー: about-wallarm/data-retention-policy.md
+    - 用語集: glossary-en.md
+    - 攻撃/脆弱性の種類: attacks-vulns-list.md
+  - トラブルシューティング:
+      - 概要: troubleshooting/overview.md
+      - 検知とブロック: troubleshooting/detection-and-blocking.md
+      - パフォーマンス: troubleshooting/performance.md
+      - エンドユーザーの問題: faq/common-errors-after-installation.md
+      - Wallarm Ingress コントローラー: faq/ingress-installation.md
+      - Wallarm クラウド障害: faq/wallarm-cloud-down.md
+      - OWASP ダッシュボードのアラート: faq/node-issues-on-owasp-dashboards.md

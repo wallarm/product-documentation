@@ -1,6 +1,6 @@
-# CVEおよび関連攻撃の解析
+# CVEと関連する攻撃の分析
 
-デモ動画をご覧いただき、Wallarmプラットフォームの[**CVEs**](../user-guides/dashboards/threat-prevention.md)ダッシュボードに慣れ、[**Attacks**](../user-guides/events/check-attack.md)セクションと併用して特定のCVE関連イベントを解析する方法を把握してください。
+デモ動画では、Wallarmプラットフォームの[**CVEs**](../user-guides/dashboards/threat-prevention.md)ダッシュボードの概要と、このダッシュボードを[**Attacks**](../user-guides/events/check-attack.md)セクションと併用して特定のCVE関連イベントを分析する方法を解説します。
 
 <!-- ## Viewing statistics on detected events on the dashboards
 
@@ -46,6 +46,6 @@
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/74s1_X_rhp0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-**関連記事**
+**関連ドキュメント**
 
-* [Threat Prevention dashboard](../user-guides/dashboards/threat-prevention.md)（CVE情報を示す）
+* [Threat Prevention dashboard](../user-guides/dashboards/threat-prevention.md)ではCVE情報を確認できます

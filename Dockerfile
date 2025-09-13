@@ -16,7 +16,7 @@ RUN mkdocs build -f mkdocs-6.x.yml
 RUN mkdocs build -f mkdocs-5.0.yml
 RUN mkdocs build -f mkdocs-4.10.yml
 RUN mkdocs build -f mkdocs-deprecated.yml
-RUN mkdocs build -f mkdocs-ja-4.8.yml
+RUN mkdocs build -f mkdocs-ja-6.x.yml
 RUN mkdocs build -f mkdocs-tr-4.8.yml
 RUN mkdocs build -f mkdocs-pt-BR-4.8.yml
 RUN mkdocs build -f mkdocs-ar-4.10.yml

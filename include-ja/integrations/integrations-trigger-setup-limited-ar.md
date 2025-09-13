@@ -1,18 +1,18 @@
-統合カードを通じて既に設定済みの通知に加え、Wallarmトリガーでは通知用に追加のイベントを選択できます。
+integration cardで既に設定済みの通知に加えて、Wallarm triggersでは通知対象の追加イベントを選択できます:
 
-* 時間間隔（1日、1時間など）ごとに、[attacks](../../../glossary-en.md#attack)、[hits](../../../glossary-en.md#hit)またはインシデントの数が設定した数を超えた場合
+* 時間間隔（日、時間など）あたりの[attacks](../../../glossary-en.md#attack)、[hits](../../../glossary-en.md#hit)、またはincidentsの件数が設定値を超えた場合
 
     !!! info "カウントされないもの"
-        * 攻撃の場合:
-            * [custom regular expressions](../../../user-guides/rules/regex-rule.md)に基づく実験的な攻撃。
-        * ヒットの場合:
-            * [custom regular expressions](../../../user-guides/rules/regex-rule.md)に基づく実験的なヒット。
-            * [sample](../../../user-guides/events/analyze-attack.md#sampling-of-hits)に保存されていないヒット。
+        * attacksの場合:
+            * [custom regular expressions](../../../user-guides/rules/regex-rule.md)に基づく実験的なattacks。
+        * hitsの場合:
+            * [custom regular expressions](../../../user-guides/rules/regex-rule.md)に基づく実験的なhits。
+            * [サンプル](../../../user-guides/events/analyze-attack.md#sampling-of-hits)に保存されていないhits。
 
-* [Changes in API](../../../api-discovery/track-changes.md)が発生した場合
-* 新たな[rogue API](../../../api-discovery/rogue-api.md)（shadow、orphan、zombie）が検出された場合
-* 会社アカウントに新しいユーザーが追加された場合
+* [APIの変更](../../../api-discovery/track-changes.md)が発生しました
+* 新しい[rogue API](../../../api-discovery/rogue-api.md)（shadow、orphan、zombie）が検出されました
+* 会社アカウントに新しいユーザーが追加されました
 
-条件の詳細設定には、一つ以上のフィルタを追加できます。条件とフィルタが設定されると、選択したアラートを送信する統合を選択します。複数の統合を同時に選択できます。
+条件を詳細化するために、1つ以上のフィルターを追加できます。条件とフィルターを設定したら、選択したアラートの送信経路となるintegrationを選択します。同時に複数のintegrationsを選択できます。
 
-![Choosing an integration](../../../images/user-guides/triggers/select-integration.png)
+![integrationの選択](../../../images/user-guides/triggers/select-integration.png)

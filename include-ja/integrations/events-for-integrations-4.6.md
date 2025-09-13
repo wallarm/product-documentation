@@ -1,10 +1,9 @@
 * システム関連：
-    * [ユーザー](../../../user-guides/settings/users.md)の変更（新規作成、削除、役割の変更）
-    * [インテグレーション](integrations-intro.md)の変更（無効、削除）
-    * [アプリケーション](../../../user-guides/settings/applications.md)の変更（新規作成、削除、名称変更）
-* [脆弱性](../../../glossary-en.md#vulnerability)の検出（デフォルトではすべて、または選択されたリスクレベルのみ）：
+    * [ユーザー](../../../user-guides/settings/users.md)の変更です（新規作成、削除、ロール変更）
+    * [統合](integrations-intro.md)の変更です（無効化、削除）
+    * [アプリケーション](../../../user-guides/settings/applications.md)の変更です（新規作成、削除、名前変更）
+* [脆弱性](../../../glossary-en.md#vulnerability)の検出です。デフォルトではすべてのリスクレベルが対象ですが、選択したリスクレベルのみに限定することもできます：
     * 高リスク
     * 中リスク
     * 低リスク
-* [ルール](../../../user-guides/rules/intro.md)および[トリガー](../../../user-guides/triggers/triggers.md)の変更（ルールまたはトリガーの作成、更新、または削除）
-* [スコープ（公開される資産）](../../scanner.md)の変更：ホスト、サービス、およびドメインの更新
+* [ルール](../../../user-guides/rules/intro.md)と[トリガー](../../../user-guides/triggers/triggers.md)の変更です（ルールまたはトリガーの作成、更新、削除）

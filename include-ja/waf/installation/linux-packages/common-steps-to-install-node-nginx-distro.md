@@ -1,4 +1,4 @@
-## 1. Debian/CentOSリポジトリの追加
+## 1. Debian/CentOSリポジトリを追加します
 
 === "Debian 10.x (buster)"
     ```bash
@@ -20,7 +20,7 @@
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.8/x86_64/wallarm-node-repo-4.8-0.el7.noarch.rpm
     ```
-=== "AlmaLinux, Rocky LinuxまたはOracle Linux 8.x"
+=== "AlmaLinux、Rocky LinuxまたはOracle Linux 8.x"
     ```bash
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.8/x86_64/wallarm-node-repo-4.8-0.el8.noarch.rpm
@@ -31,13 +31,13 @@
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.8/x86_64/wallarm-node-repo-4.8-0.el8.noarch.rpm
     ```
 
-## 2. NGINXとWallarmパッケージのインストール
+## 2. WallarmパッケージとともにNGINXをインストールします
 
 このコマンドは次のパッケージをインストールします:
 
-* `nginx`（NGINX用）
-* `libnginx-mod-http-wallarm`または`nginx-mod-http-wallarm`（NGINX-Wallarmモジュール用）
-* `wallarm-node`（[postanalytics][install-postanalytics-docs]モジュール、Tarantoolデータベースおよび追加のNGINX-Wallarmパッケージ用）
+* `nginx`（NGINX用です）
+* `libnginx-mod-http-wallarm`または`nginx-mod-http-wallarm`（NGINX-Wallarmモジュール用です）
+* `wallarm-node`（[ポストアナリティクス][install-postanalytics-docs]モジュール、Tarantoolデータベース、追加のNGINX-Wallarmパッケージを含みます）
 
 === "Debian 10.x (buster)"
     ```bash
@@ -51,7 +51,7 @@
     ```bash
     sudo yum install -y nginx wallarm-node nginx-mod-http-wallarm
     ```
-=== "AlmaLinux, Rocky LinuxまたはOracle Linux 8.x"
+=== "AlmaLinux、Rocky LinuxまたはOracle Linux 8.x"
     ```bash
     sudo yum install -y nginx wallarm-node nginx-mod-http-wallarm
     ```
@@ -60,9 +60,9 @@
     sudo yum install -y nginx wallarm-node nginx-mod-http-wallarm
     ```
 
-## 3. Wallarmモジュールの接続
+## 3. Wallarmモジュールを接続します
 
-システムセットアップ用の設定ファイルをコピーします:
+システム設定用の構成ファイルをコピーします:
 
 === "Debian"
     ```bash
@@ -72,7 +72,7 @@
     ```bash
     sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```
-=== "AlmaLinux, Rocky LinuxまたはOracle Linux 8.x"
+=== "AlmaLinux、Rocky LinuxまたはOracle Linux 8.x"
     ```bash
     sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```
@@ -81,6 +81,6 @@
     sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```
 
-## 4. フィルタリングノードをWallarm Cloudに接続
+## 4. フィルタリングノードをWallarm Cloudに接続します
 
 --8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.md"

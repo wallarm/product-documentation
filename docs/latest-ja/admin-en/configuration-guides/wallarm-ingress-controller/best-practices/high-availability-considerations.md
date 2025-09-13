@@ -1,19 +1,19 @@
-# 高可用性に関する考慮事項（NGINXベースIngressコントローラ）
+# 高可用性に関する考慮事項（NGINXベースのIngressコントローラー）
 
-この記事では、Wallarm Ingressコントローラを高可用性化し、ダウンタイムを防止するための構成推奨事項について説明します。
+本記事では、Wallarm Ingress controllerの高可用性確保とダウンタイム防止に役立つ設定の推奨事項を提供します。
 
 --8<-- "../include/ingress-controller-best-practices-intro.md"
 
-## 構成推奨事項
+## 設定の推奨事項
 
-以下の推奨事項は、本番環境など重要な環境に該当します。
+以下の推奨事項はミッションクリティカル（本番）環境を対象としています。
 
-* 複数のIngressコントローラポッドインスタンスを使用します。この動作は、`values.yaml`ファイル内の属性`controller.replicaCount`で制御します。例えば:
+* IngressコントローラーのPodインスタンスを複数使用します。この挙動は`values.yaml`ファイルの属性`controller.replicaCount`で制御します。例：
     ```
     controller:
       replicaCount: 2
     ```
-* KubernetesクラスターがIngressコントローラポッドを異なるノードに配置するよう強制します。これにより、ノード障害時にIngressサービスのレジリエンスが向上します。この動作は、Kubernetesのpodアンチアフィニティ機能を使用しており、`values.yaml`ファイルに設定されています。例えば:
+* Kubernetesクラスターに対してIngressコントローラーのPodを異なるノードに配置するよう強制します。これはノード障害発生時のIngressサービスの回復性を高めます。この挙動はKubernetesのPodアンチアフィニティ機能で制御でき、`values.yaml`ファイルで設定します。例：
     ```
     controller:
       affinity:
@@ -27,7 +27,7 @@
                   - nginx-ingress
             topologyKey: "kubernetes.io/hostname"
     ```
-* 予期しないトラフィック急増やその他の条件により[Kubernetesのhorizontal pod autoscaling (HPA)](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)機能の使用が正当化されるクラスターでは、`values.yaml`ファイルで以下のように有効化できます:
+* 予期せぬトラフィックスパイクや、[Kubernetesのhorizontal pod autoscaling（HPA）](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)機能の利用が妥当となるその他の状況が想定されるクラスターでは、`values.yaml`ファイルで次のように有効化できます。
     ```
     controller:
       autoscaling:
@@ -37,25 +37,18 @@
         targetCPUUtilizationPercentage: 50
         targetMemoryUtilizationPercentage: 50
     ```
-* Tarantoolデータベースを利用したWallarmのpostanalyticsサービスを少なくとも2インスタンス実行します。これらのポッドは名前に`ingress-controller-wallarm-tarantool`を含みます。この動作は、`values.yaml`ファイル内の属性`controller.wallarm.tarantool.replicaCount`で制御します。例えば:
-    ```
-    controller:
-      wallarm:
-        tarantool:
-          replicaCount: 2
-    ```
 
-## 構成手順
+## 設定手順
 
-これらの構成を設定するには、`helm install`および`helm upgrade`コマンドの`--set`オプションを使用することが推奨されます。例えば:
+上記の設定を適用するには、`helm install`および`helm upgrade`コマンドの`--set`オプションを使用することを推奨します。例：
 
-=== "Ingressコントローラのインストール"
+=== "Ingressコントローラーのインストール"
     ```bash
     helm install --set controller.replicaCount=2 <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 
-    正しいIngressコントローラのインストールには[その他のパラメータ](../../../configure-kubernetes-en.md#additional-settings-for-helm-chart)も必要です。これらも`--set`オプションで渡してください。
-=== "Ingressコントローラパラメータの更新"
+    正しくIngressコントローラーをインストールするには[その他のパラメータ](../../../configure-kubernetes-en.md#additional-settings-for-helm-chart)も必要です。これらも`--set`オプションで指定してください。
+=== "Ingressコントローラーのパラメータ更新"
     ```bash
     helm upgrade --reuse-values --set controller.replicaCount=2 <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```

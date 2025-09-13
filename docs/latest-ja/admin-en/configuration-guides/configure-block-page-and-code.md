@@ -1,125 +1,125 @@
-# NGINXにおけるブロッキングページとエラーコードの設定
+# ブロッキングページとエラーコードの設定（NGINX）
 
-これらの手順は、ブロッキングリクエストに対するレスポンスで返されるブロッキングページおよびエラーコードをカスタマイズする方法について説明します。この設定は、セルフホスト型NGINXノードにのみ該当します。
+本手順では、ブロックされたリクエストへの応答で返されるブロッキングページおよびエラーコードをカスタマイズする方法を説明します。本設定はセルフホスト型のNGINXノードにのみ該当します。
 
-カスタムブロッキングページは、以下の理由によりブロックされたリクエストに対して返されます:
+カスタムのブロッキングページは、以下の理由でブロックされたリクエストに対する応答として返されます:
 
-* リクエストが、[input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks)、[vpatch attacks](../../user-guides/rules/vpatch-rule.md)または[正規表現に基づいて検出された攻撃](../../user-guides/rules/regex-rule.md)のいずれかに該当する悪意のあるペイロードを含む場合。
-* 上記リストの悪意のあるペイロードを含むリクエストが[graylisted IP address](../../user-guides/ip-lists/overview.md)から発信され、ノードがSafe modeでリクエストをフィルタリングしている場合。
-* リクエストが[denylisted IP address](../../user-guides/ip-lists/overview.md)から発信された場合。
+* リクエストに次の種類の悪意あるペイロードが含まれている場合: [入力値検証攻撃](../../attacks-vulns-list.md#attack-types)、[vpatch攻撃](../../user-guides/rules/vpatch-rule.md)、または[正規表現に基づいて検出された攻撃](../../user-guides/rules/regex-rule.md)。
+* 上記の悪意あるペイロードを含むリクエストが[graylistに登録されたIPアドレス](../../user-guides/ip-lists/overview.md)から送信され、ノードがsafe blocking[モード](../configure-wallarm-mode.md)でリクエストをフィルタリングしている場合。
+* リクエストが[denylistに登録されたIPアドレス](../../user-guides/ip-lists/overview.md)から送信された場合。
 
-## 設定の制限
+## 設定の制限事項
 
-ブロッキングページとエラーコードの設定は、NGINXベースのWallarmノード展開でサポートされていますが、Native Node、EnvoyベースおよびCDNベースのWallarmノード展開ではサポートされません。EnvoyベースおよびCDNベースのWallarmノードは、ブロックされたリクエストに対して常にコード`403`を返します。
+ブロッキングページとエラーコードの設定は、セルフホスト型のNGINXベースのWallarmノードのデプロイでサポートされますが、Native Nodeではサポートされません。
 
 ## 設定方法
 
-デフォルトでは、レスポンスコード403とNGINXのデフォルトブロッキングページがクライアントに返されます。以下のNGINXディレクティブを使用してデフォルト設定を変更できます:
+デフォルトでは、レスポンスコード403とデフォルトのNGINXブロッキングページがクライアントに返されます。以下のNGINXディレクティブを使用してデフォルト設定を変更できます:
 
 * `wallarm_block_page`
 * `wallarm_block_page_add_dynamic_path`
 
-### NGINXディレクティブ `wallarm_block_page`
+### NGINXディレクティブ`wallarm_block_page`
 
-`wallarm_block_page` NGINXディレクティブに以下のパラメータを指定することで、ブロッキングページおよびエラーコードを設定できます:
+`wallarm_block_page` NGINXディレクティブに次のパラメータを渡すことで、ブロッキングページとエラーコードを設定できます:
 
-* ブロッキングページのHTMまたはHTMLファイルへのパス。カスタムブロッキングページまたはWallarmが提供する[サンプルブロッキングページ](#customizing-sample-blocking-page)へのパスのいずれかを指定できます。
-* ブロックされたリクエストに対して返されるメッセージのテキスト。
-* クライアントリダイレクトのためのURL。
+* ブロッキングページのHTMまたはHTMLファイルへのパス。カスタムのブロッキングページ、またはWallarmが提供する[サンプルのブロッキングページ](#customizing-sample-blocking-page)のパスを指定できます。
+* ブロックされたリクエストに対する応答で返すメッセージの本文。
+* クライアントをリダイレクトするURL。
 * `response_code`: レスポンスコード。
-* `type`: 指定した設定が返されるブロックされたリクエストの種別。このパラメータは、以下のリストから1つまたは複数の値（カンマで区切る）を受け付けます:
+* `type`: 指定した設定を返す対象となるブロック済みリクエストの種類。以下の一覧から1つまたは複数（カンマ区切り）を指定できます:
 
-    * `attack` (デフォルト): ブロッキングまたはSafe modeでリクエストをフィルタリングするノードによりブロックされたリクエストの場合。
-    * `acl_ip`: 単一オブジェクトまたはサブネットとして[denylist](../../user-guides/ip-lists/overview.md)に追加されたIPアドレスから発信されたリクエストの場合。
-    * `acl_source`: 国、地域またはデータセンターごとに[denylisted](../../user-guides/ip-lists/overview.md)として登録されているIPアドレスから発信されたリクエストの場合。
+    * `attack`（デフォルト）: ブロッキングまたはsafe blocking[モード](../configure-wallarm-mode.md)でフィルタリングノードによりブロックされたリクエスト。
+    * `acl_ip`: 単一IPまたはサブネットとして[denylist](../../user-guides/ip-lists/overview.md)に追加されているIPアドレスからのリクエスト。
+    * `acl_source`: [denylist](../../user-guides/ip-lists/overview.md)に登録された国・地域・データセンターに属するIPアドレスからのリクエスト。
 
-`wallarm_block_page`ディレクティブは、以下の形式でパラメータを受け付けます:
+`wallarm_block_page`ディレクティブは、以下の形式でこれらのパラメータを受け付けます:
 
-* ブロッキングページのHTMまたはHTMLファイルへのパス、エラーコード（オプション）、およびブロックされたリクエストの種別（オプション）
+* ブロッキングページのHTMまたはHTMLファイルへのパス、エラーコード（任意）、ブロック済みリクエストの種類（任意）
 
     ```bash
     wallarm_block_page &/<PATH_TO_FILE/HTML_HTM_FILE_NAME> response_code=<CUSTOM_CODE> type=<BLOCKED_REQUEST_TYPE>;
     ```
     
-    Wallarmは、[customizing-sample-blocking-page](#customizing-sample-blocking-page)としてカスタマイズの出発点として使用できるサンプルブロッキングページを提供します。ページは以下のパスにあります:
+    Wallarmはサンプルのブロッキングページを提供しており、[カスタマイズ](#customizing-sample-blocking-page)の出発点として使用できます。ページは次のパスにあります:
     
-    === "All-in-one installer, AMI or GCP image, NGINX-based Docker image"
+    === "All-in-oneインストーラー、AMIまたはGCPイメージ、NGINXベースのDockerイメージ"
         ```
         &/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html
         ```
-    === "Other deployment options"
+    === "その他のデプロイ方法"
         ```
         &/usr/share/nginx/html/wallarm_blocked.html
         ```
 
-    ブロッキングページ上で[NGINX variables](https://nginx.org/en/docs/varindex.html)を使用できます。このため、ブロッキングページのコードに`${variable_name}`形式で変数名を追加します。例として、ブロックされたリクエストの発信元IPアドレスを表示する`${remote_addr}`があります。
+    ブロッキングページ内で[NGINX変数](https://nginx.org/en/docs/varindex.html)を使用できます。その場合、`${variable_name}`形式で変数名をブロッキングページのコードに追加します。例えば、`${remote_addr}`でブロックされたリクエストの送信元IPアドレスを表示できます。
 
-    !!! warning "DebianおよびCentOSユーザー向けの重要な情報"
-        CentOS/DebianのリポジトリからインストールされたNGINXバージョンが1.11未満の場合、動的ブロッキングページを正しく表示するために、ページコードから`request_id`変数を削除する必要があります:
+    !!! warning "DebianおよびCentOSユーザーへの重要な情報"
+        CentOS/DebianリポジトリからインストールされたNGINX 1.11未満のバージョンを使用している場合、動的なブロッキングページを正しく表示するために、ページのコードから`request_id`変数を削除する必要があります:
         ```
         UUID ${request_id}
         ```
 
-        これは`wallarm_blocked.html`およびカスタムブロックページの両方に該当します。
+        これは`wallarm_blocked.html`およびカスタムのブロックページの双方に適用されます。
 
     [設定例 →](#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code)
-* クライアントリダイレクトのURLおよびブロックされたリクエストの種別（オプション）
+* クライアントのリダイレクト先URL、およびブロック済みリクエストの種類（任意）
 
     ``` bash
     wallarm_block_page /<REDIRECT_URL> type=<BLOCKED_REQUEST_TYPE>;
     ```
 
     [設定例 →](#url-for-the-client-redirection)
-* NGINXの名前付き`location`とブロックされたリクエストの種別（オプション）
+* 名前付きNGINX`location`、およびブロック済みリクエストの種類（任意）
 
     ``` bash
     wallarm_block_page @<NAMED_LOCATION> type=<BLOCKED_REQUEST_TYPE>;
     ```
 
     [設定例 →](#named-nginx-location)
-* HTMまたはHTMLファイルへのパス、エラーコード（オプション）、およびブロックされたリクエストの種別（オプション）を設定する変数名
+* HTMまたはHTMLファイルへのパスを設定する変数名、エラーコード（任意）、ブロック済みリクエストの種類（任意）
 
     ``` bash
     wallarm_block_page &<VARIABLE_NAME> response_code=<CUSTOM_CODE> type=<BLOCKED_REQUEST_TYPE>;
     ```
 
-    !!! warning "NGINX変数を使用してブロッキングページをコード内で初期化する場合"
-        この方法を使用して[NGINX variables](https://nginx.org/en/docs/varindex.html)がコード内で使用されるブロッキングページを設定する場合は、ディレクティブ[`wallarm_block_page_add_dynamic_path`](#nginx-directive-wallarm_block_page_add_dynamic_path)を使用してこのページを初期化してください。
+    !!! warning "コード内でNGINX変数を使用するブロッキングページの初期化"
+        この方法で、コード内に[NGINX変数](https://nginx.org/en/docs/varindex.html)を用いるブロッキングページを設定する場合は、ディレクティブ[`wallarm_block_page_add_dynamic_path`](#nginx-directive-wallarm_block_page_add_dynamic_path)を使用して当該ページを初期化してください。
 
     [設定例 →](#variable-and-error-code)
 
-`wallarm_block_page`ディレクティブは、NGINX設定ファイルの`http`、`server`、`location`ブロック内に設定できます。
+`wallarm_block_page`ディレクティブは、NGINX設定ファイルの`http`、`server`、`location`各ブロック内に設定できます。
 
-### NGINXディレクティブ `wallarm_block_page_add_dynamic_path`
+### <a name="nginx-directive-wallarm_block_page_add_dynamic_path"></a> NGINXディレクティブ`wallarm_block_page_add_dynamic_path`
 
-`wallarm_block_page_add_dynamic_path`ディレクティブは、コード内にNGINX変数が使用されているブロッキングページの初期化に使用します。また、このブロッキングページへのパスは変数を使用して設定されます。そうでない場合、このディレクティブは使用しません。
+`wallarm_block_page_add_dynamic_path`ディレクティブは、コード内でNGINX変数を使用しており、かつそのブロッキングページへのパスも変数で指定されているブロッキングページを初期化するために使用します。その他の場合は、このディレクティブは使用しません。
 
 このディレクティブは、NGINX設定ファイルの`http`ブロック内に設定できます。
 
-## カスタマイズサンプルブロッキングページ
+## <a name="customizing-sample-blocking-page"></a> サンプルのブロッキングページのカスタマイズ
 
-Wallarmが提供するサンプルブロッキングページは、以下のようになっています:
+Wallarmが提供するサンプルのブロッキングページは次のとおりです:
 
-![Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+![Wallarmのブロッキングページ](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
-このサンプルページをカスタマイズの出発点として使用し、以下の点を強化できます:
+このサンプルページをカスタマイズの出発点として用い、次のような拡張が可能です:
 
-* 自社のロゴの追加 – デフォルトではページにロゴは表示されません。
-* 自社のサポートメールの追加 – デフォルトではメールリンクは使用されず、`contact us`フレーズはリンクなしのシンプルなテキストです。
-* その他のHTML要素の変更や独自要素の追加。
+* 会社のロゴを追加する — 既定ではページにロゴは表示されません。
+* 会社のサポート用メールアドレスを追加する — 既定ではメールリンクは使用されず、`contact us`という文言はリンクのない単なるテキストです。
+* その他のHTML要素を変更する、または独自の要素を追加する。
 
 !!! info "カスタムブロッキングページのバリエーション"
-    Wallarmが提供するサンプルページを変更するのではなく、最初からカスタムページを作成することもできます。
+    Wallarm提供のサンプルページを変更する代わりに、ゼロからカスタムページを作成してもかまいません。
 
 ### 一般的な手順
 
-サンプルページ自体を変更すると、Wallarmコンポーネントのアップデート時に変更が失われる可能性があります。そのため、サンプルページをコピーし、新しい名前を付けてから変更することを推奨します。以下の各インストールタイプに応じた手順に従ってください。
+サンプルページ自体を直接変更すると、Wallarmコンポーネントのアップデート時に変更が失われる場合があります。そのため、サンプルページをコピーして新しい名前を付け、その後に変更することを推奨します。以下のセクションに記載のとおり、インストール形態に応じて操作してください。
 
-**<a name="copy"></a>コピー用のサンプルページ**
+**<a name="copy"></a>コピー用サンプルページ**
 
-フィルタリングノードがインストールされている環境にある`/usr/share/nginx/html/wallarm_blocked.html`（または`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`）のコピーを作成できます。あるいは、以下のコードをコピーして新しいファイルとして保存してください:
+フィルタリングノードをインストールした環境にある`/usr/share/nginx/html/wallarm_blocked.html`（`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`）をコピーできます。別案として、以下のコードをコピーし、新しいファイルとして保存してください:
 
-??? info "サンプルページコードの表示"
+??? info "サンプルページのコードを表示"
 
     ```html
     <!DOCTYPE html>
@@ -238,7 +238,7 @@ Wallarmが提供するサンプルブロッキングページは、以下のよ�
             }
         </style>
         <script>
-            // Place your support email here
+            // サポート用メールアドレスをここに指定します
             const SUPPORT_EMAIL = "";
         </script>
     </head>
@@ -247,10 +247,10 @@ Wallarmが提供するサンプルブロッキングページは、以下のよ�
         <div class="content">
             <div id="logo" class="logo">
                 <!--
-                    Place you logo here.
-                    You can use an external image:
+                    ここにロゴを配置します。
+                    外部画像を使用できます:
                     <img src="https://example.com/logo.png" width="160" alt="Company Name" />
-                    Or put your logo source code (like svg) right here:
+                    またはロゴのソースコード（SVGなど）をここに直接記述します:
                     <svg width="160" height="80"> ... </svg>
                 -->
             </div>
@@ -296,7 +296,7 @@ Wallarmが提供するサンプルブロッキングページは、以下のよ�
             <div></div>
         </div>
         <script>
-            // Warning: ES5 code only
+            // 警告: ES5コードのみ
 
             function writeText(str) {
                 const range = document.createRange();
@@ -335,75 +335,77 @@ Wallarmが提供するサンプルブロッキングページは、以下のよ�
 
 **共通ファイルシステム**
 
-NGINXが読み取り権限を持つ任意の場所に、`/usr/share/nginx/html/wallarm_blocked.html`（または`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`）を新しい名前でコピーできます。同一フォルダー内に配置しても構いません。
+`/usr/share/nginx/html/wallarm_blocked.html`（`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`）のコピーを、新しい名前で任意の場所（同じフォルダ内でも可、NGINXが読み取り可能である必要があります）に作成できます。
 
 **Dockerコンテナ**
 
-サンプルブロッキングページを変更する場合、または最初からカスタムページを提供する場合、Dockerの[bind mount](https://docs.docker.com/storage/bind-mounts/)機能を使用できます。これを使用すると、ホストマシン上のページおよびNGINX設定ファイルがコンテナへコピーされ、元のファイルと参照されるため、ホストマシン上のファイルが変更されると、そのコピーも同期されます。
+サンプルのブロッキングページを変更する、またはゼロから独自のページを用意するには、Dockerの[bind mount](https://docs.docker.com/storage/bind-mounts/)機能を利用できます。これを使用すると、ホストマシン上のページとNGINX設定ファイルがコンテナにコピーされ、元ファイルへの参照として扱われるため、ホスト側のファイルを変更するとコンテナ側のコピーに同期され、逆も同様です。
 
-したがって、サンプルブロッキングページを変更する、またはカスタムページを提供するには、以下を実施します:
+そのため、サンプルのブロッキングページを変更する、または独自のページを提供するには、次の手順を実施してください:
 
-1. 初回実行前に、[copy](#copy)によって変更済みの`wallarm_blocked_renamed.html`を準備します。
-1. ブロッキングページへのパスを含むNGINX設定ファイルを準備します。設定例は[こちら](#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code)を参照してください。
-1. 準備済みのブロッキングページおよび設定ファイルを[mounting](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)してコンテナを実行します。
-1. 後に実行中のコンテナでブロッキングページを更新する必要がある場合、ホストマシン上で参照される`wallarm_blocked_renamed.html`を変更し、コンテナ内でNGINXを再起動します。
+1. 初回の実行前に、[準備](#copy)した変更済み`wallarm_blocked_renamed.html`を用意します。
+1. ブロッキングページへのパスを記載したNGINX設定ファイルを用意します。[設定例](#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code)を参照してください。
+1. コンテナを実行し、準備したブロッキングページと設定ファイルを[マウント](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)します。
+1. 稼働中のコンテナ内のブロッキングページを後から更新する必要がある場合は、ホストマシン上の参照元`wallarm_blocked_renamed.html`を変更し、コンテナ内のNGINXを再起動してください。
 
-**Ingressコントローラー**
+**Ingressコントローラ**
 
-サンプルブロッキングページを変更する、またはカスタムページを提供するには、以下を実施します:
+サンプルのブロッキングページを変更する、または独自のページを用意するには、次を実施します:
 
-1. [copy](#copy)によって変更済みの`wallarm_blocked_renamed.html`を準備します。
-1. ファイル[ConfigMapの作成](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files)を実施して`wallarm_blocked_renamed.html`を作成します。
-1. 作成済みのConfigMapをWallarm IngressコントローラーのPodにマウントします。このため、[instructions](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap)に従い、Deploymentオブジェクトを更新します。
+1. 変更済み`wallarm_blocked_renamed.html`を[準備](#copy)します。
+1. `wallarm_blocked_renamed.html`から[ConfigMapを作成](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files)します。
+1. [作成したConfigMapを、Wallarm IngressコントローラのPodにマウント](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap)します。そのために、[手順](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap)に従って、Wallarm Ingressコントローラに対応するDeploymentオブジェクトを更新してください。
 
-    !!! info "ConfigMapマウントディレクトリ"
-        ConfigMapをマウントするディレクトリ内の既存ファイルは削除される可能性があるため、ConfigMapでマウントされるファイル用に新しいディレクトリを作成することを推奨します。
-1. Ingressアノテーションにより、Podにカスタムページの使用を指示します:
+    !!! info "ConfigMapのマウント先ディレクトリ"
+        ConfigMapのマウント先ディレクトリに既存のファイルがある場合は削除されます。
+1. Ingressのアノテーションを指定し、Podにカスタムページの使用を指示します:
 
     ```bash
-    kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page="&/usr/share/nginx/blockpages/wallarm_blocked_renamed.html response_code=445 type=attack;&/usr/share/nginx/blockpages/wallarm_blocked_renamed-2.html response_code=445 type=acl_ip,acl_source"
+    kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page="<PAGE_ADDRESS>"
     ```
 
-### 頻繁に行う変更
+詳細な[例](#ingress-annotations)をご覧ください。
 
-自社のロゴを追加する場合は、`wallarm_blocked_renamed.html`ファイル内で以下の部分を変更し、コメントアウトを解除してください:
+### よく行われる変更
+
+会社のロゴを追加するには、`wallarm_blocked_renamed.html`ファイルの次の部分を編集してコメントアウトを解除してください:
 
 ```html
 <div class="content">
     <div id="logo" class="logo">
         <!--
-            Place you logo here.
-            You can use an external image:
+            ここにロゴを配置します。
+            外部画像を使用できます:
             <img src="https://example.com/logo.png" width="160" alt="Company Name" />
-            Or put your logo source code (like svg) right here:
+            またはロゴのソースコード（SVGなど）をここに直接記述します:
             <svg width="160" height="80"> ... </svg>
         -->
     </div>
 ```
 
-自社のサポートメールを追加する場合は、`wallarm_blocked_renamed.html`ファイル内で`SUPPORT_EMAIL`変数を以下のように変更してください:
+会社のサポート用メールアドレスを追加するには、`wallarm_blocked_renamed.html`ファイルの`SUPPORT_EMAIL`変数を編集してください:
 
 ```html
 <script>
-    // Place your support email here
+    // サポート用メールアドレスをここに指定します
     const SUPPORT_EMAIL = "support@company.com";
 </script>
 ```
 
-値内で`$`を含むカスタム変数を初期化する場合、変数名の前に`{wallarm_dollar}`を追加してこのシンボルをエスケープします。例: `${wallarm_dollar}{variable_name}`。`wallarm_dollar`変数は`&`を返します。
+値に`$`を含むカスタム変数を初期化する場合は、変数名の前に`{wallarm_dollar}`を付けてこの記号をエスケープします。例: `${wallarm_dollar}{variable_name}`。`wallarm_dollar`変数は`&`を返します。
 
 ## 設定例
 
-以下は、`wallarm_block_page`および`wallarm_block_page_add_dynamic_path`ディレクティブを使用して、ブロッキングページとエラーコードを設定する例です。
+以下は、`wallarm_block_page`および`wallarm_block_page_add_dynamic_path`ディレクティブでブロッキングページとエラーコードを設定する例です。
 
-`wallarm_block_page`ディレクティブの`type`パラメータは、各例で明示的に指定されています。`type`パラメータを削除した場合、設定されたブロックページ、メッセージ等は、フィルタリングノードがブロッキングまたはSafe modeでリクエストをブロックした場合にのみ返されます。
+各例では`wallarm_block_page`ディレクティブの`type`パラメータを明示的に指定しています。`type`パラメータを省略した場合、設定したブロックページやメッセージなどは、ブロッキングまたはsafe blocking[モード](../configure-wallarm-mode.md)でフィルタリングノードによりブロックされたリクエストへの応答にのみ返されます。
 
-### ブロッキングページおよびエラーコード付きHTMまたはHTMLファイルへのパス
+### <a name="path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code"></a> ブロッキングページのHTMまたはHTMLファイルとエラーコードのパス
 
-この例では、以下のレスポンス設定を示します:
+この例では、以下の応答設定を示します:
 
-* フィルタリングノードがブロッキングまたはSafe modeでリクエストをブロックした際に、[customizing-sample-blocking-page](#customizing-sample-blocking-page)で変更されたサンプルWallarmブロッキングページ`/opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html`とエラーコード445を返す場合。
-* 任意のdenylisted IPアドレスから発信されたリクエストの場合、カスタムブロッキングページ`/usr/share/nginx/html/block.html`とエラーコード445を返す場合。
+* [変更済み](#customizing-sample-blocking-page)のWallarmサンプルブロッキングページ`/opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html`とエラーコード445を、フィルタリングノードがブロッキングまたはsafe blockingモードでリクエストをブロックした場合に返します。
+* カスタムブロッキングページ`/usr/share/nginx/html/block.html`とエラーコード445を、denylistに登録された任意のIPアドレスからのリクエストの場合に返します。
 
 #### NGINX設定ファイル
 
@@ -412,32 +414,32 @@ wallarm_block_page &/opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.ht
 wallarm_block_page &/usr/share/nginx/html/block.html response_code=445 type=acl_ip,acl_source;
 ```
 
-設定をDockerコンテナに適用するには、該当する設定が記述されたNGINX設定ファイルを`wallarm_blocked_renamed.html`および`block.html`ファイルと共にコンテナにマウントしてください。[Running the container mounting the configuration file →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
+Dockerコンテナに設定を適用するには、適切な設定を含むNGINX設定ファイルを、`wallarm_blocked_renamed.html`および`block.html`ファイルとともにコンテナへマウントします。[設定ファイルをマウントしてコンテナを起動 →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
 
-#### Ingressアノテーション
+#### <a name="ingress-annotations"></a> Ingressアノテーション
 
 Ingressアノテーションを追加する前に:
 
-1. ブロックされた攻撃用の変更済み`wallarm_blocked_renamed.html`と、denylisted IPからのリクエスト用の`wallarm_blocked_renamed-2.html`を[copy](#copy)してください。
-1. 以下を実行してファイルからConfigMapを作成します:
-    
+1. 攻撃ブロック用の変更済み`wallarm_blocked_renamed.html`と、denylistのIPからのブロック用`wallarm_blocked_renamed-2.html`を[準備](#copy)します。
+1. [ファイルからConfigMapを作成します](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files):
+
     ```
     kubectl -n <CONTROLLER_NAMESPACE> create configmap customized-pages --from-file=wallarm_blocked_renamed.html --from-file=wallarm_blocked_renamed-2.html
     ```
-    
-1. 作成済みのConfigMapをWallarm IngressコントローラーのPodに[mount]((https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap))します:
 
-    * 使用するvalues.yamlを以下のように更新します:
+1. 作成したConfigMapをWallarm IngressコントローラのPodに[mount]((https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap))するには、次を実施します:
+
+    * Ingressチャートのデプロイに使用しているvalues.yamlを更新します:
 
         ```
         controller:
             wallarm:
             <...>
-            # -- コントローラのメインコンテナに追加するvolumeMounts.
+            # -- Additional volumeMounts to the controller main container.
             extraVolumeMounts:
             - name: custom-block-pages
               mountPath: /usr/share/nginx/blockpages
-            # -- コントローラPodに追加するvolumes.
+            # -- Additional volumes to the controller pod.
             extraVolumes:
             - name: custom-block-pages
               configMap:
@@ -445,14 +447,14 @@ Ingressアノテーションを追加する前に:
             <...>
         ```
 
-    * 以下を実行してリリースに変更を適用します:
+    * コントローラのリリースに変更を適用します:
 
         ```
         helm -n <CONTROLLER_NAMESPACE> upgrade <CHART-RELEASE-NAME> wallarm/wallarm-ingress --reuse-values -f values.yaml
         ```
         
-        !!! info "ConfigMapマウントディレクトリ"
-            ConfigMapでマウントされるディレクトリ内の既存ファイルは削除される可能性があるため、ConfigMapでマウントされるファイル用に新しいディレクトリを作成することを推奨します。
+        !!! info "ConfigMapのマウント先ディレクトリ"
+            ConfigMapのマウント先ディレクトリに既存ファイルがあると削除される可能性があるため、ConfigMapでマウントするファイル用に新しいディレクトリを作成することを推奨します。
 
 Ingressアノテーション:
 
@@ -460,11 +462,11 @@ Ingressアノテーション:
 kubectl -n <INGRESS_NAMESPACE> annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-block-page="&/usr/share/nginx/blockpages/wallarm_blocked_renamed.html response_code=445 type=attack;&/usr/share/nginx/blockpages/wallarm_blocked_renamed-2.html response_code=445 type=acl_ip,acl_source"
 ```
 
-#### Podアノテーション (Sidecar controller使用時)
+#### Podアノテーション（Sidecarコントローラ使用時）
 
-ブロックページは、`sidecar.wallarm.io/wallarm-block-page`アノテーションを用いてPod単位で設定できます。例:
+`sidecar.wallarm.io/wallarm-block-page`[アノテーション](../../installation/kubernetes/sidecar-proxy/pod-annotations.md)を使用して、Pod単位でブロックページを設定できます。例:
 
-```yaml
+```yaml hl_lines="18"
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -492,9 +494,9 @@ spec:
               containerPort: 80
 ```
 
-### クライアントリダイレクト用URL
+### <a name="url-for-the-client-redirection"></a> クライアントリダイレクト用URL
 
-この例では、denylistedな国、地域またはデータセンターから発信されたリクエストがブロックされた場合、クライアントを`host/err445`にリダイレクトする設定を示します。
+この例では、denylistに登録された国・地域・データセンターからのリクエストをフィルタリングノードがブロックした場合、クライアントを`host/err445`のページへリダイレクトする設定を示します。
 
 #### NGINX設定ファイル
 
@@ -502,7 +504,7 @@ spec:
 wallarm_block_page /err445 type=acl_source;
 ```
 
-設定をDockerコンテナに適用するには、該当する設定が記述されたNGINX設定ファイルをコンテナにマウントしてください。[Running the container mounting the configuration file →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
+Dockerコンテナに設定を適用するには、適切な設定を含むNGINX設定ファイルをコンテナへマウントします。[設定ファイルをマウントしてコンテナを起動 →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
 
 #### Ingressアノテーション
 
@@ -510,9 +512,9 @@ wallarm_block_page /err445 type=acl_source;
 kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page="/err445 type=acl_source"
 ```
 
-### 名前付きNGINX `location`
+### <a name="named-nginx-location"></a> 名前付きNGINX`location`
 
-この例では、ブロック理由（ブロッキングまたはSafe mode、単一IP/サブネット、国や地域、データセンター）に関係なく、クライアントに対して`The page is blocked`というメッセージとエラーコード445を返す設定を示します。
+この例では、リクエストがどの理由でブロックされた場合（ブロッキングまたはsafe blockingモード、送信元が単一IP/サブネット/国または地域/データセンターとしてdenylistに登録されている場合）でも、クライアントにメッセージ`The page is blocked`とエラーコード445を返す設定を示します。
 
 #### NGINX設定ファイル
 
@@ -523,7 +525,7 @@ location @block {
 }
 ```
 
-設定をDockerコンテナに適用するには、該当する設定が記述されたNGINX設定ファイルをコンテナにマウントしてください。[Running the container mounting the configuration file →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
+Dockerコンテナに設定を適用するには、適切な設定を含むNGINX設定ファイルをコンテナへマウントします。[設定ファイルをマウントしてコンテナを起動 →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
 
 #### Ingressアノテーション
 
@@ -532,12 +534,12 @@ kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kub
 kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page="@block type=attack,acl_ip,acl_source"
 ```
 
-### 変数とエラーコード
+### <a name="variable-and-error-code"></a> 変数とエラーコード
 
-この設定は、denylistedなソース（単一IPまたはサブネット）から発信されたリクエストに対して返されます。Wallarmノードは、コード445と、`User-Agent`ヘッダーの値に依存するコンテンツのブロッキングページを返します:
+この設定は、送信元が単一IPまたはサブネットとしてdenylistに登録されている場合にクライアントへ返されます。Wallarmノードはコード445と、`User-Agent`ヘッダーの値に応じて内容が変わるブロッキングページを返します:
 
-* デフォルトでは、[customizing-sample-blocking-page](#customizing-sample-blocking-page)で変更されたサンプルWallarmブロッキングページ`/opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html`が返されます。NGINX変数がブロッキングページのコード内で使用されているため、このページはディレクティブ`wallarm_block_page_add_dynamic_path`で初期化する必要があります。
-* Firefoxユーザー向け — `/usr/share/nginx/html/block_page_firefox.html`（Wallarm Ingressコントローラーを展開している場合、カスタムブロックページファイル用に別のディレクトリ、例：`/usr/custom-block-pages/block_page_firefox.html`を作成することを推奨します）:
+* 既定では、[変更済み](#customizing-sample-blocking-page)のWallarmサンプルブロッキングページ`/opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html`が返されます。ブロッキングページのコードでNGINX変数を使用しているため、このページは`wallarm_block_page_add_dynamic_path`ディレクティブで初期化する必要があります。
+* Firefoxユーザーには`/usr/share/nginx/html/block_page_firefox.html`（Wallarm Ingressコントローラをデプロイしている場合は、カスタムブロックページ用に別ディレクトリを作成することを推奨します。例:`/usr/custom-block-pages/block_page_firefox.html`）を返します:
 
     ```bash
     You are blocked!
@@ -547,14 +549,14 @@ kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kub
     UUID ${request_id}
     ```
 
-    NGINX変数がブロッキングページのコード内で使用されているため、このページはディレクティブ`wallarm_block_page_add_dynamic_path`で初期化する必要があります。
-* Chromeユーザー向け — `/usr/share/nginx/html/block_page_chrome.html`（Wallarm Ingressコントローラーを展開している場合、カスタムブロックページファイル用に別のディレクトリ、例：`/usr/custom-block-pages/block_page_chrome.html`を作成することを推奨します）:
+    このページはブロッキングページのコードでNGINX変数を使用しているため、`wallarm_block_page_add_dynamic_path`ディレクティブで初期化する必要があります。
+* Chromeユーザーには`/usr/share/nginx/html/block_page_chrome.html`（Wallarm Ingressコントローラをデプロイしている場合は、カスタムブロックページ用に別ディレクトリを作成することを推奨します。例:`/usr/custom-block-pages/block_page_chrome.html`）を返します:
 
     ```bash
     You are blocked!
     ```
 
-    NGINX変数がブロッキングページのコード内で使用されていないため、このページは初期化する必要はありません。
+    このページはブロッキングページのコードでNGINX変数を使用していないため、初期化は不要です。
 
 #### NGINX設定ファイル
 
@@ -570,21 +572,21 @@ map $http_user_agent $block_page {
 wallarm_block_page $block_page response_code=445 type=acl_ip;
 ```
 
-設定をDockerコンテナに適用するには、該当する設定が記述されたNGINX設定ファイルを、`wallarm_blocked_renamed.html`、`block_page_firefox.html`および`block_page_chrome.html`ファイルと共にコンテナにマウントしてください。[Running the container mounting the configuration file →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
+Dockerコンテナに設定を適用するには、適切な設定を含むNGINX設定ファイルを、`wallarm_blocked_renamed.html`、`block_page_firefox.html`、`block_page_chrome.html`ファイルとともにコンテナへマウントします。[設定ファイルをマウントしてコンテナを起動 →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
 
-#### Ingressコントローラー
+#### Ingressコントローラ
 
-1. [`helm upgrade`](https://helm.sh/docs/helm/helm_upgrade/)コマンドを使用して、デプロイ済みHelmチャートに`controller.config.http-snippet`パラメータを渡してください:
+1. コマンド[`helm upgrade`](https://helm.sh/docs/helm/helm_upgrade/)を使用して、デプロイ済みのHelmチャートにパラメータ`controller.config.http-snippet`を渡します:
 
     ```bash
     helm upgrade --reuse-values --set controller.config.http-snippet='wallarm_block_page_add_dynamic_path /usr/custom-block-pages/block_page_firefox.html /opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html; map $http_user_agent $block_page { "~Firefox" &/usr/custom-block-pages/block_page_firefox.html; "~Chrome" &/usr/custom-block-pages/block_page_chrome.html; default &/opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html;}' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
-2. `wallarm_blocked_renamed.html`、`block_page_firefox.html`、および`block_page_chrome.html`ファイルからConfigMapを[作成](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files)します。
-3. 作成済みのConfigMapをWallarm IngressコントローラーのPodにマウントします。このため、[instructions](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap)に従い、該当するDeploymentオブジェクトを更新してください。
+2. `wallarm_blocked_renamed.html`、`block_page_firefox.html`、`block_page_chrome.html`から[ConfigMapを作成](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files)します。
+3. 作成したConfigMapをWallarm IngressコントローラのPodにマウントします。そのために、[手順](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap)に従って、Wallarm Ingressコントローラに対応するDeploymentオブジェクトを更新してください。
 
-    !!! info "ConfigMapマウントディレクトリ"
-        ConfigMapでマウントされるディレクトリ内の既存ファイルは削除される可能性があるため、ConfigMapでマウントされるファイル用に新しいディレクトリを作成することを推奨します。
-4. 以下のアノテーションをIngressに追加します:
+    !!! info "ConfigMapのマウント先ディレクトリ"
+        ConfigMapのマウント先ディレクトリに既存ファイルがあると削除される可能性があるため、ConfigMapでマウントするファイル用に新しいディレクトリを作成することを推奨します。
+4. 次のアノテーションをIngressに追加します:
 
     ```bash
     kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page='$block_page response_code=445 type=acl_ip'

@@ -1,32 +1,32 @@
-# APIセッション概要 <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Sessionsの概要 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarmの**APIセッション**はトラフィック内のユーザーセッションに対する可視性を提供します。各セッションにおいて、Wallarmは詳細なリクエストおよび関連するレスポンスデータを収集し、セッション活動の体系的な把握を可能にします。本記事では、APIセッションの概要、解決される課題、その目的および主な機能について説明します。
+Wallarmの**API Sessions**は、トラフィック内のユーザーセッションの可視性を提供します。各セッションについて、Wallarmは詳細なリクエストおよび関連するレスポンスデータを収集し、セッション内のアクティビティを構造化して表示できるようにします。本記事では、API Sessionsの概要として、その目的、解決する課題、および主な機能について説明します。
 
-APIセッションを利用するには[NGINX Wallarm node](../installation/nginx-native-node-internals.md#nginx-node) 5.1.0または[native Wallarm node](../installation/nginx-native-node-internals.md#native-node) 0.8.0が必要です。レスポンス解析はNGINX Wallarm node 5.3.0でサポートされており、現時点ではnative nodeではサポートされておりません。
+API Sessionsを使用するには[NGINX Wallarm node](../installation/nginx-native-node-internals.md#nginx-node) 5.1.0または[native Wallarm node](../installation/nginx-native-node-internals.md#native-node) 0.8.0が必要です。レスポンスのパースにはNGINX Wallarm node 5.3.0またはnative node 0.12.0が必要です。
 
-![!APIセッションセクション - 監視されたセッション](../images/api-sessions/api-sessions.png)
+![!API Sessionsセクション - 監視対象のセッション](../images/api-sessions/api-sessions.png)
 
-## 解決される課題
+## 対応する課題
 
-APIセッションが解決する主要な課題は、Wallarmで検出された個々の攻撃のみを確認する場合に完全なコンテキストが欠如している点です。各セッション内のリクエストとレスポンスの論理的な順序をキャプチャすることで、APIセッションはより広範な攻撃パターンへの洞察を提供し、セキュリティ対策によって影響を受けるビジネスロジックの領域を特定するのに役立ちます。
+API Sessionsが対処する主な課題は、Wallarmが検出した個々の攻撃だけを見ても完全なコンテキストが得られないことです。各セッション内のリクエストとレスポンスの論理的なシーケンスを捕捉することで、API Sessionsはより広範な攻撃パターンへの洞察を提供し、セキュリティ対策がビジネスロジックのどの領域に影響するかを特定するのに役立ちます。
 
-**Wallarmにより正確に識別されたAPIセッションがあるため、これにより**:
+**WallarmによりAPIセッションが正確に識別されることで、次のことが可能になります**:
 
-* API Abuse Preventionによるボット検出が[より正確になります](#api-sessions-and-api-abuse-prevention)。
+* API Abuse Preventionによるボット検出を[より高精度に](#api-sessions-and-api-abuse-prevention)します。
 
-**Wallarmによって監視されたAPIセッションを利用することで、以下が可能になります**:
+**WallarmによりAPI Sessionsが監視されていることで、次のことができます**:
 
-* [ユーザー活動を追跡](exploring.md#full-context-of-threat-actor-activities)できます。1つのセッション内で行われたリクエスト一覧を表示し、対応するレスポンスのパラメータを確認できるため、異常な挙動や通常とは異なるパターンを識別できます。
-* 特定の[false positive](../about-wallarm/protecting-against-attacks.md#false-positives)の調整、[virtual patch](../user-guides/rules/vpatch-rule.md)の適用、[rules](../user-guides/rules/rules.md)の追加、または[API Abuse Prevention](../api-abuse-prevention/overview.md)コントロールの有効化の前に、どのAPIフロー/ビジネスロジックシーケンスが影響を受けるかを把握できます。
-* [ユーザーセッションでリクエストされたエンドポイントを確認](exploring.md)することで、その保護状況、リスクレベルおよび[shadowまたはzombie](../api-discovery/rogue-api.md)といった検出された問題を迅速に評価できます。
-* [パフォーマンスの問題](exploring.md#identifying-performance-issues)やボトルネックを特定して、ユーザー体験の最適化が可能です。
-* 悪意のあるボット活動としてフラグ付けされたリクエストの全シーケンスと対応するレスポンスを確認することで、[API abuse検出の精度](exploring.md#verifying-api-abuse-detection-accuracy)を検証できます。
+* [ユーザーアクティビティを追跡](exploring.md#full-context-of-threat-actor-activities)し、単一セッションで行われたリクエストの一覧を表示して、対応するレスポンスのパラメータも確認できるようにすることで、通常とは異なる行動パターンや典型的な使用からの逸脱を特定できます。
+* 特定の[誤検知](../about-wallarm/protecting-against-attacks.md#false-positives)を調整したり、[virtual patch](../user-guides/rules/vpatch-rule.md)を適用したり、[rules](../user-guides/rules/rules.md)を追加したり、[API Abuse Prevention](../api-abuse-prevention/overview.md)のコントロールを有効化したりする前に、どのAPIフロー/ビジネスロジックのシーケンスが影響を受けるかを把握できます。
+* [ユーザーセッションでリクエストされたエンドポイントを調査](exploring.md)し、その保護状況、リスクレベル、[shadowまたはzombie](../api-discovery/rogue-api.md)であるなどの検出済みの問題を迅速に評価できます。
+* [パフォーマンスの問題](exploring.md#identifying-performance-issues)やボトルネックを特定し、ユーザー体験を最適化できます。
+* 悪意のあるボット活動としてフラグ付けされたリクエストの全シーケンスと対応するレスポンスを併せて確認することで、[API不正検出の精度を検証](exploring.md#verifying-api-abuse-detection-accuracy)できます。
 
-## APIセッションの仕組み
+## API Sessionsの仕組み
 
-Wallarm nodeにより保護されるすべてのトラフィックはセッションに整理され、**APIセッション**セクションに表示されます。
+Wallarm nodeが保護対象として有効になっているすべてのトラフィックはセッションに編成され、**API Sessions**セクションに表示されます。
 
-アプリケーションのロジックに基づいてリクエストをセッションにどのようにグループ化するかをカスタマイズできます。また、リクエストおよび対応するレスポンスのどのパラメータをセッション内に表示するかを指定して、ユーザーが何をどの順序で実行したか（コンテキストパラメータ）を理解するための助けになります。詳細は[APIセッションセットアップ](setup.md)をご参照ください。
+アプリケーションのロジックに基づいて、リクエストをどのようにセッションへグループ化するかをカスタマイズできます。また、セッション内に表示するリクエストおよび対応するレスポンスのどのパラメータを表示するかも指定でき、セッションの内容（ユーザーが何をどの順序で行ったか）を理解しやすくできます。詳細は[API Sessionsの設定](setup.md)を参照してください。
 
 <div>
   <script async src="https://js.storylane.io/js/v2/storylane.js"></script>
@@ -35,18 +35,18 @@ Wallarm nodeにより保護されるすべてのトラフィックはセッシ�
   </div>
 </div>
 
-Wallarmはセッションを**過去1週間分のみ**保存および表示します。最適なパフォーマンスとリソース使用率を確保するため、以前のセッションは削除されます。
+なお、Wallarmはセッションを**直近1週間のみ**保存および表示します。パフォーマンスとリソース消費を最適化するため、これより古いセッションは削除されます。
 
-## APIセッションとAPI Abuse Prevention
+## API SessionsとAPI Abuse Prevention
 
-Wallarmの[API Abuse Prevention](../api-abuse-prevention/overview.md)は、例えば`SESSION-ID`ヘッダーが同一で時間／日付によってのみ分割されたセッションなど、1つまたは複数の関連セッション内のリクエストシーケンスを分析し、悪質なボットを検出します。
+Wallarmの[API Abuse Prevention](../api-abuse-prevention/overview.md)は、1つまたは複数の関連するセッション内のリクエストシーケンスを解析して悪意あるボットを検出します。例えば、`SESSION-ID`ヘッダーの値が同一で、時間/日付だけで区切られているセッション同士です。
 
-したがって、特定のアプリケーションロジックに従い[リクエストがセッションにグループ化される方法](setup.md#session-grouping)をカスタマイズすると、API Abuse Preventionの動作に影響を与え、セッションの識別とボット検出のいずれもより正確になります。
+したがって、アプリケーション固有のロジックに合わせて[リクエストのグループ化方法](setup.md#session-grouping)をカスタマイズすると、API Abuse Preventionの動作に影響し、セッションの識別とボット検出の両方がより正確になります。
 
-## APIセッションにおけるGraphQLリクエスト
+## API SessionsにおけるGraphQLリクエスト
 
-APIセッションは[GraphQLリクエスト](../user-guides/rules/request-processing.md#gql)およびその特定のリクエストポイントへの対応をサポートしており、GraphQLリクエストパラメータの値を抽出して表示するようにセッションを設定できます。
+API Sessionsは、[GraphQLリクエスト](../user-guides/rules/request-processing.md#gql)とその特有のリクエストポイントに対応しており、セッションの設定でGraphQLリクエストパラメータの値を抽出・表示するように構成できます。
 
-![!APIセッションの構成 - GraphQLリクエストパラメータ](../images/api-sessions/api-sessions-graphql.png)
+![!API Sessionsの設定 - GraphQLリクエストパラメータ](../images/api-sessions/api-sessions-graphql.png)
 
-NGINX Node 5.3.0以降を必要とし、現時点ではNative Nodeではサポートされておりません。
+NGINX Node 5.3.0以上またはnative node 0.12.0が必要です。

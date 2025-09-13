@@ -1,8 +1,8 @@
-=== "Ubuntu 14.04"
+=== "Ubuntu 14.04"
     ```bash
     sudo service nagios restart
     ```
-=== "その他のサポート対象のディストリビューション"
+=== "その他のサポート対象ディストリビューション"
     ```bash
     sudo systemctl restart nagios
     ```

@@ -1,154 +1,69 @@
-# Wallarm NGINXノードのためのリソース割当
+# Wallarm NGINXノードのリソース割り当て
 
-Wallarm NGINXノードに割り当てるメモリおよびCPUリソースの量は、リクエスト処理の品質および速度を決定します。本手順書ではセルフホスト型NGINXノードへのメモリ割当の推奨事項について説明します。
+Wallarm NGINXノードに割り当てるメモリおよびCPUリソースの量は、リクエスト処理の品質と速度を左右します。本ドキュメントでは、セルフホスト型NGINXノードのメモリ割り当てに関する推奨事項を説明します。
 
-フィルタリングノードには、主に次の2つのメモリおよびCPUリソースを消費するコンポーネントがあります。
+NGINXフィルタリングノードの主なメモリおよびCPUの消費源は次の2つです。
 
-* [Tarantool](#tarantool)（**postanalyticsモジュール**とも呼ばれます）。これはローカルデータ分析バックエンドであり、フィルタリングノードにおける主要なメモリ消費コンポーネントです。
-* [NGINX](#nginx)は、主要なフィルタリングノードでありリバースプロキシコンポーネントです。
+* [wstore](#wstore)、別名**postanalyticsモジュール**です。これはローカルのデータ分析バックエンドであり、フィルタリングノードにおける主なメモリ消費源です。
+* [NGINX](#nginx)は、フィルタリングノードおよびリバースプロキシの主要コンポーネントです。
 
-NGINXのCPU使用率は、RPSレベル、リクエストおよびレスポンスの平均サイズ、ノードで処理されるカスタムルールセットのルール数、Base64などのデータエンコーディングやデータ圧縮などの種類やレイヤにより大きく影響されます。
+NGINXのCPU使用率は、RPSの水準、リクエストおよびレスポンスの平均サイズ、ノードが処理するカスタムルールセットのルール数、Base64やデータ圧縮などのデータエンコーディングの種類やレイヤーなど、多くの要因に依存します。
 
-平均的に、1つのCPUコアは約500 RPSを処理できます。プロダクションモードで運用する場合、NGINXプロセスには少なくとも1つのCPUコア、Tarantoolプロセスには1つのコアを割り当てることを推奨します。多くの場合、初めはフィルタリングノードに対してリソースを多めに割当し、実際のプロダクショントラフィックレベルにおけるCPUおよびメモリ使用率を確認の上、リソース割当を適正なレベルに段階的に削減することを推奨します（トラフィックスパイクおよびノード冗長性に対して少なくとも2倍のヘッドルームが必要です）。
+平均すると、CPUコア1つで約500 RPSを処理できます。本番モードでの運用時は、NGINXプロセスに少なくともCPUコア1つ、wstoreプロセスにコア1つを割り当てることを推奨します。多くの場合、最初はフィルタリングノードを過剰にプロビジョニングし、実際の本番トラフィックレベルにおけるCPUとメモリの使用状況を確認したうえで、割り当てリソースを徐々に適正水準まで減らすことを推奨します（トラフィックのスパイクやノード冗長性に備えて、最低でも2倍の余裕を確保します）。
 
-## Tarantool
+## wstore
 
---8<-- "../include/allocate-resources-for-waf-node/tarantool-memory.md"
+--8<-- "../include/allocate-resources-for-waf-node/wstore-memory.md"
 
-### Kubernetes Ingress Controllerにおけるリソース割当
+### Kubernetes Ingress Controllerでのリソース割り当て
 
---8<-- "../include/allocate-resources-for-waf-node/tarantool-memory-ingress-controller.md"
+--8<-- "../include/allocate-resources-for-waf-node/wstore-memory-ingress-controller.md"
 
-### All-in-One Installerを使用している場合のリソース割当
+### All-in-One Installerを使用する場合のリソース割り当て
 
-Tarantoolのメモリサイズは、`/opt/wallarm/env.list`設定ファイルの`SLAB_ALLOC_ARENA`属性で制御されています。メモリを割当するには、以下の手順に従ってください。
+wstoreのメモリサイズは、`/opt/wallarm/env.list`構成ファイル内の`SLAB_ALLOC_ARENA`属性で制御します。以下の手順でメモリを割り当てます。
 
-1. `/opt/wallarm/env.list`ファイルを編集のために開きます:
+1. 編集のために`/opt/wallarm/env.list`ファイルを開きます：
 
     ```bash
     sudo vim /opt/wallarm/env.list
     ```
-2. `SLAB_ALLOC_ARENA`属性にメモリサイズを設定します。値は整数または浮動小数点数で指定可能です（小数点はピリオド `.` を使用します）。例:
-
+1. メモリサイズを指定するように`SLAB_ALLOC_ARENA`属性を設定します。値には整数または浮動小数点数を使用できます（小数点はドット`.`です）。例：
     ```
     SLAB_ALLOC_ARENA=1.0
     ```
-3. Wallarmサービスを再起動します:
-
+1. Wallarmサービスを再起動します：
     ```
     sudo systemctl restart wallarm.service
     ```
 
-### その他のデプロイメントオプションにおけるリソース割当
+### Amazon Machine Imageを使用する場合のリソース割り当て
 
-Tarantoolのメモリサイズは、`/etc/default/wallarm-tarantool`設定ファイルの`SLAB_ALLOC_ARENA`属性で制御されています。メモリを割当するには、以下の手順に従ってください。
-
-<ol start="1"><li>Tarantoolの設定ファイルを編集のために開きます:</li></ol>
-
-=== "Debian 10.x (buster)"
-    ```bash
-    sudo vim /etc/default/wallarm-tarantool
-    ```
-=== "Debian 11.x (bullseye)"
-    ```bash
-    sudo vim /etc/default/wallarm-tarantool
-    ```
-=== "Ubuntu 18.04 LTS (bionic)"
-    ```bash
-    sudo vim /etc/default/wallarm-tarantool
-    ```
-=== "Ubuntu 20.04 LTS (focal)"
-    ```bash
-    sudo vim /etc/default/wallarm-tarantool
-    ```
-=== "Ubuntu 22.04 LTS (jammy)"
-    ```bash
-    sudo vim /etc/default/wallarm-tarantool
-    ```
-=== "CentOS 7.x"
-    ```bash
-    sudo vim /etc/sysconfig/wallarm-tarantool
-    ```
-=== "Amazon Linux 2.0.2021x and lower"
-    ```bash
-    sudo vim /etc/sysconfig/wallarm-tarantool
-    ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
-    ```bash
-    sudo vim /etc/sysconfig/wallarm-tarantool
-    ```
-=== "RHEL 8.x"
-    ```bash
-    sudo vim /etc/sysconfig/wallarm-tarantool
-    ```
-
-<ol start="2"><li><code>SLAB_ALLOC_ARENA</code>属性にメモリサイズを設定します。値は整数または浮動小数点数で指定可能です（小数点は<code>.</code>を使用します）。例:</li></ol>
-
-```
-SLAB_ALLOC_ARENA=1.0
-```
-
-<ol start="3"><li>Tarantoolを再起動します:</li></ol>
-
-=== "Debian 10.x (buster)"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
-=== "Debian 11.x (bullseye)"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
-=== "Ubuntu 18.04 LTS (bionic)"
-    ```bash
-    sudo service wallarm-tarantool restart
-    ```
-=== "Ubuntu 20.04 LTS (focal)"
-    ```bash
-    sudo service wallarm-tarantool restart
-    ```
-=== "Ubuntu 22.04 LTS (jammy)"
-    ```bash
-    sudo service wallarm-tarantool restart
-    ```
-=== "CentOS 7.x"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
-=== "Amazon Linux 2.0.2021x and lower"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
-=== "RHEL 8.x"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
+* Wallarmノードは、割り当てられたリソースをwstoreとNGINXの間で自動的に分配します。
+* [Wallarm NGINX Node AMI](https://aws.amazon.com/marketplace/pp/prodview-5rl4dgi4wvbfe)からWallarmノードインスタンスを起動する場合、テスト用途には`t3.medium`インスタンスタイプ、本番には`m4.xlarge`の使用を推奨します。
 
 ## NGINX
 
-NGINXのメモリ消費は様々な要因に左右されます。平均的な消費量は、おおよそ以下のように見積もることができます:
+NGINXのメモリ消費は多くの要因に左右されます。平均的には次の式で見積もれます。
 
 ```
-同時接続リクエスト数 * 平均リクエストサイズ * 3
+Number of concurrent request * Average request size * 3
 ```
 
-例:
+例：
 
-* フィルタリングノードがピーク時に10000の同時リクエストを処理し、
-* 平均リクエストサイズが5 kBの場合、
+* フィルタリングノードはピーク時に10000件の同時リクエストを処理し、
+* リクエストの平均サイズは5 kBです。
 
-NGINXのメモリ消費は次のように見積もることができます:
+NGINXのメモリ消費は次のように見積もれます。
 
 ```
-10000 * 5 kB * 3 = 150000 kB (約150 MB)
+10000 * 5 kB * 3 = 150000 kB (or ~150 MB)
 ```
 
-**メモリ割当を行うには:**
+**メモリ量を割り当てるには：**
 
-* NGINX Ingress controller pod（`ingress-controller`）の場合、`values.yaml`ファイルの以下のセクションを`helm install`または`helm upgrade`の`--set`オプションを使用して設定します:
+* NGINX Ingress controllerのPod（`ingress-controller`）の場合、`helm install`または`helm upgrade`の`--set`オプションを使用して、`values.yaml`ファイル内で次のセクションを設定します。
     ```
     controller:
       resources:
@@ -160,21 +75,21 @@ NGINXのメモリ消費は次のように見積もることができます:
           memory: 1640Mi
     ```
 
-    パラメータを変更するコマンド例:
+    パラメータを変更するコマンドの例：
 
-    === "Ingress controller installation"
+    === "Ingress controllerのインストール"
         ```bash
         helm install --set controller.resources.limits.cpu='2000m',controller.resources.limits.memory='3280Mi' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
 
-        また、正しいIngress controllerのインストールには[他のパラメータ](../configure-kubernetes-en.md#additional-settings-for-helm-chart)も必要です。これらも`--set`オプションで渡してください。
-    === "Updating Ingress controller parameters"
+        正しくIngress controllerをインストールするには、[その他のパラメータ](../configure-kubernetes-en.md#additional-settings-for-helm-chart)も必要です。これらも`--set`オプションで指定してください。
+    === "Ingress controllerのパラメータ更新"
         ```bash
         helm upgrade --reuse-values --set controller.resources.limits.cpu='2000m',controller.resources.limits.memory='3280Mi' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
 
-* その他のデプロイメントオプションの場合、NGINXの設定ファイルを使用してください。
+* その他のデプロイ方法では、NGINXの構成ファイルを使用します。
 
 ## トラブルシューティング
 
-Wallarmノードが予想以上に多くのメモリおよびCPUリソースを消費している場合、リソース使用量を削減するため、[CPU高使用率のトラブルシューティング](../../faq/cpu.md)の記事をご確認の上、記載された手順に従ってください。
+Wallarmノードが想定以上のメモリやCPUを消費する場合は、リソース使用量を削減するために、[CPU高負荷のトラブルシューティング](../../troubleshooting/performance.md#wallarm-node-consumes-too-much-cpu)に記載された推奨事項を確認し、適用してください。

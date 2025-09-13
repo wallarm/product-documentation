@@ -25,146 +25,135 @@
 
 # Wallarm NGINXモジュールのアップグレード
 
-本手順は、個別パッケージからインストールされたWallarm NGINXモジュール4.xをバージョン5.0にアップグレードするための手順を説明します。これらのモジュールは、以下のいずれかの手順に従ってインストールされたものです。
+本手順では、個別パッケージからインストールされたWallarm NGINXモジュール4.xをバージョン6.xにアップグレードする手順を説明します。以下のいずれかの手順に従ってインストールされたモジュールが対象です:
 
-* NGINX stable用の個別パッケージ
-* NGINX Plus用の個別パッケージ
-* ディストリビューション提供のNGINX用の個別パッケージ
+* NGINX stable向けの個別パッケージ
+* NGINX Plus向けの個別パッケージ
+* ディストリビューション提供のNGINX向けの個別パッケージ
 
-!!! info "all-in-one installerを使用したアップグレード"
-    バージョン4.10以降、個別Linuxパッケージが非推奨となったため、アップグレードはWallarmの[all-in-one installer](../installation/nginx/all-in-one.md)を使用して行います。この方法は、以前の手法と比較して、アップグレードプロセスおよび運用展開の保守を簡素化します。
+!!! info "all-in-one installerでのアップグレード"
+    バージョン4.10以降、個別のLinuxパッケージは非推奨となり、Wallarmの[all-in-one installer](../installation/nginx/all-in-one.md)を使用してアップグレードします。この方法は、以前のアプローチと比べて、アップグレード作業と継続的なデプロイ運用を簡素化します。
     
-    インストーラーは自動的に以下の操作を実行します：
+    インストーラーは次の処理を自動で実行します:
 
-    1. OSおよびNGINXバージョンのチェック
-    1. 検出されたOSおよびNGINXバージョン向けのWallarmリポジトリの追加
-    1. これらのリポジトリからWallarmパッケージのインストール
-    1. インストールされたWallarmモジュールをNGINXに接続
-    1. 提供されたトークンを用いて、フィルタリングノードをWallarm Cloudに接続
+    1. OSとNGINXのバージョンを確認します。
+    1. 検出されたOSおよびNGINXのバージョンに対応するWallarmリポジトリを追加します。
+    1. これらのリポジトリからWallarmパッケージをインストールします。
+    1. インストール済みのWallarmモジュールをNGINXに接続します。
+    1. 提供されたトークンを使用してフィルタリングノードをWallarm Cloudに接続します。
 
-    ![手動方式との比較](../images/installation-nginx-overview/manual-vs-all-in-one.png)
+    ![手動手順とAll-in-oneの比較](../images/installation-nginx-overview/manual-vs-all-in-one.png)
 
-サポート終了のノード (3.6以下) をアップグレードするには、[こちらの別の手順](older-versions/nginx-modules.md)を使用してください。
+サポート終了のノード(3.6以下)をアップグレードする場合は、[別の手順](older-versions/nginx-modules.md)を使用してください。
 
-## 必要条件
+## 要件
 
 --8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
 
 ## アップグレード手順
 
-* 同じサーバーにフィルタリングノードとpostanalyticsモジュールがインストールされている場合は、以下の手順に従ってすべてをアップグレードしてください。クリーンなマシンでall-in-one installerを使用して最新版のノードを起動し、動作確認後、従来のノードを停止し、トラフィックを従来のマシンではなく新しいマシンに流すように構成する必要があります。
+* フィルタリングノードとpostanalyticsモジュールが同一サーバーにインストールされている場合は、以下の手順に従って両方をアップグレードしてください。
 
-* フィルタリングノードとpostanalyticsモジュールが異なるサーバーにインストールされている場合は、**最初に**postanalyticsモジュールをアップグレードし、その後に[こちらの手順](../updating-migrating/separate-postanalytics.md)に従ってフィルタリングノードをアップグレードしてください。
+    クリーンなマシンでall-in-one installerを使用して新しいバージョンのノードを起動し、動作をテストしたうえで、旧ノードを停止し、トラフィックが旧マシンではなく新マシンを経由するように構成する必要があります。
 
-## ステップ1：クリーンなマシンの準備
+* フィルタリングノードとpostanalyticsモジュールが別サーバーにインストールされている場合は、[こちらの手順](../updating-migrating/separate-postanalytics.md)に従い、最初にpostanalyticsモジュールを、次にフィルタリングモジュールをアップグレードしてください。
+
+## 手順1: クリーンなマシンを準備する
 
 --8<-- "../include/waf/installation/all-in-one-clean-machine-latest.md"
 
-## ステップ2：最新のNGINXおよび依存関係のインストール
+## 手順2: 最新のNGINXと依存関係をインストールする
 
 --8<-- "../include/waf/installation/all-in-one-nginx.md"
 
-## ステップ3：Wallarmトークンの準備
+## 手順3: Wallarmトークンを準備する
 
 --8<-- "../include/waf/installation/all-in-one-token.md"
 
-## ステップ4：all-in-one Wallarmインストーラーのダウンロード
+## 手順4: Wallarmのall-in-one installerをダウンロードする
 
 --8<-- "../include/waf/installation/all-in-one-installer-download.md"
 
-## ステップ5：all-in-one Wallarmインストーラーの実行
+## 手順5: Wallarmのall-in-one installerを実行する
 
 ### 同一サーバー上のフィルタリングノードとpostanalytics
 
 --8<-- "../include/waf/installation/all-in-one-installer-run.md"
 
-### 異なるサーバー上のフィルタリングノードとpostanalytics
+### 別サーバー上のフィルタリングノードとpostanalytics
 
-!!! warning "フィルタリングノードとpostanalyticsモジュールのアップグレード手順の順序"
-    フィルタリングノードとpostanalyticsモジュールが異なるサーバーにインストールされている場合、フィルタリングノードパッケージの更新前にpostanalyticsパッケージのアップグレードが必要です。
+!!! warning "フィルタリングノードとpostanalyticsモジュールをアップグレードする手順の順序"
+    フィルタリングノードとpostanalyticsモジュールが別サーバーにインストールされている場合は、フィルタリングノードのパッケージを更新する前に、postanalyticsのパッケージをアップグレードする必要があります。
 
-1. [こちらの手順](separate-postanalytics.md)に従ってpostanalyticsモジュールをアップグレードしてください。
-1. フィルタリングノードをアップグレードしてください：
+1. [こちらの手順](separate-postanalytics.md)に従ってpostanalyticsモジュールをアップグレードします。
+1. フィルタリングノードをアップグレードします:
 
     === "APIトークン"
         ```bash
-        # x86_64バージョンを使用する場合:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.x86_64-glibc.sh filtering
+        # x86_64版を使用する場合:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.4.1.x86_64-glibc.sh filtering
 
-        # ARM64バージョンを使用する場合:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.aarch64-glibc.sh filtering
+        # ARM64版を使用する場合:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.4.1.aarch64-glibc.sh filtering
         ```        
 
-        WALLARM_LABELS変数は、ノードが追加されるグループを設定します（Wallarm Console UIにおけるノードの論理グルーピングに使用されます）。
+        `WALLARM_LABELS`変数は、ノードが追加されるグループを設定します(Wallarm Console UIでのノードの論理グルーピングに使用します)。
 
     === "ノードトークン"
         ```bash
-        # x86_64バージョンを使用する場合:
-        sudo sh wallarm-5.3.0.x86_64-glibc.sh filtering
+        # x86_64版を使用する場合:
+        sudo sh wallarm-6.4.1.x86_64-glibc.sh filtering
 
-        # ARM64バージョンを使用する場合:
-        sudo sh wallarm-5.3.0.aarch64-glibc.sh filtering
+        # ARM64版を使用する場合:
+        sudo sh wallarm-6.4.1.aarch64-glibc.sh filtering
         ```
 
-## ステップ6：古いノードマシンから新しいノードマシンへのNGINXおよびpostanalytics構成の転送
+## 手順6: 旧ノードのマシンから新しいマシンへNGINXとpostanalyticsの設定を移行する
 
-古いマシン上の構成ファイルから新しいマシン上のファイルへ、ノードに関連するNGINX構成およびpostanalytics構成を転送します。必要なディレクティブをコピーすることで実施できます。
+必要なディレクティブやファイルをコピーして、旧マシンから新マシンへノード関連のNGINXおよびpostanalyticsの設定を移行します:
 
-**ソースファイル**
+* `/etc/nginx/conf.d/default.conf` または `/**etc/nginx/nginx.conf**` のhttpレベルに関するNGINX設定
 
-古いマシンでは、OSおよびNGINXのバージョンに応じて、NGINX構成ファイルが異なるディレクトリに存在し、名前も異なる場合があります。最も一般的なものは次の通りです：
+    フィルタリングノードとpostanalyticsノードが別サーバーにある場合は、フィルタリングノードのマシン上の`/etc/nginx/nginx.conf`の`http`ブロック内で、`wallarm_tarantool_upstream`を[`wallarm_wstore_upstream`](../admin-en/configure-parameters-en.md#wallarm_wstore_upstream)にリネームします。
+* `/etc/nginx/sites-available/default` トラフィックルーティングのためのNGINXおよびWallarm設定
+* `/etc/nginx/conf.d/wallarm-status.conf` → 新しいマシン上の `/etc/nginx/wallarm-status.conf` にコピーします
 
-* `/etc/nginx/conf.d/default.conf` (NGINX設定)
-* `/etc/nginx/conf.d/wallarm-status.conf` (Wallarmノード監視設定。詳細は[リンク][wallarm-status-instr]に記載)
+    詳細は[リンク][wallarm-status-instr]内にあります。
+* `/etc/wallarm/node.yaml` → 新しいマシン上の `/opt/wallarm/etc/wallarm/node.yaml` にコピーします
 
-また、postanalyticsモジュールの構成（Tarantoolデータベース設定）は通常、以下の場所にあります：
+    別のpostanalyticsサーバーでカスタムのホストとポートを使用している場合は、postanalyticsノードのマシン上でコピーしたファイル内の`tarantool`セクションを`wstore`にリネームします。
 
-* `/etc/default/wallarm-tarantool`または
-* `/etc/sysconfig/wallarm-tarantool`
-
-**ターゲットファイル**
-
-all-in-one installerはOSおよびNGINXのバージョンの組み合わせに応じて動作するため、新しいマシン上の[ターゲットファイル](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/)は名前が異なったり、異なるディレクトリに配置される場合があります。
-
-## ステップ7：NGINXの再起動
+## 手順7: NGINXを再起動する
 
 --8<-- "../include/waf/installation/restart-nginx-systemctl.md"
 
-## ステップ8：Wallarmノードの動作確認
+## 手順8: Wallarmノードの動作をテストする
 
-新しいノードの動作確認を行うには：
+新しいノードの動作をテストするには、次を実行します:
 
-1. テスト用の[SQLI][sqli-attack-docs]および[XSS][xss-attack-docs]攻撃を保護対象リソースのアドレスに送信してください：
+1. テスト用の[SQLインジェクション][sqli-attack-docs]および[クロスサイトスクリプティング(XSS)][xss-attack-docs]を含むリクエストを保護対象のリソースアドレスに送信します:
 
     ```
     curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 
-1. Wallarm Consoleの→ **Attacks** セクション（[US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)）を開き、攻撃がリストに表示されていることを確認してください。
-1. Cloudに保存されているデータ（ルール、IPリスト）が新しいノードと同期されたら、テスト攻撃を実施し、ルールが期待通りに動作することを確認してください。
+1. US CloudまたはEU CloudのWallarm Console → **Attacks**セクションを開き、攻撃が一覧に表示されていることを確認します。
+1. Cloudに保存されているデータ(ルール、IP lists)が新しいノードと同期されたら、いくつかテスト攻撃を実行してルールが期待どおりに動作することを確認します。
 
-## ステップ9：Wallarmノードへのトラフィック送信の設定
+## 手順9: トラフィックをWallarmノードへ送信するよう構成する
 
-使用している展開手法に応じて、以下の設定を実施してください：
+ロードバランサーの転送先を更新して、トラフィックをWallarmインスタンスへ送信するようにします。詳細は、使用しているロードバランサーのドキュメントを参照してください。
 
-=== "インライン"
-    ロードバランサーのターゲットを更新し、トラフィックをWallarmインスタンスに送信するよう設定してください。詳細はお使いのロードバランサーのドキュメントを参照してください。
+トラフィックを新しいノードへ完全に切り替える前に、まず一部のみをリダイレクトし、新しいノードが期待どおりに動作することを確認することを推奨します。
 
-    トラフィックを新しいノードに完全にリダイレクトする前に、部分的にリダイレクトし、新しいノードが期待通りに動作するかを確認することを推奨します。
+## 手順10: 旧ノードを削除する
 
-=== "Out-of-Band"
-    ウェブサーバまたはプロキシサーバ（例：NGINX, Envoy）を構成し、受信トラフィックをWallarmノードにミラーリングしてください。構成の詳細についてはお使いのウェブまたはプロキシサーバのドキュメントを参照することを推奨します。
-
-    [リンク][web-server-mirroring-examples]内に、最も普及しているウェブおよびプロキシサーバ（NGINX, Traefik, Envoy）のサンプル構成例が記載されています。
-
-## ステップ10：古いノードの削除
-
-1. Wallarm Consoleの→ **Nodes** で、対象ノードを選択し**Delete**をクリックして古いノードを削除してください。
-1. 操作を確認してください。
+1. Wallarm Console → **Nodes**で対象のノードを選択し、**Delete**をクリックして旧ノードを削除します。
+1. 操作を確認します。
     
-    ノードがCloudから削除されると、アプリケーションへのリクエストのフィルタリングが停止します。フィルタリングノードの削除は元に戻せません。ノードはノードリストから永久に削除されます。
+    Cloudからノードを削除すると、アプリケーションへのリクエストのフィルタリングは停止します。フィルタリングノードの削除は元に戻せません。ノードはノード一覧から完全に削除されます。
 
-1. 古いノードが存在するマシンを削除するか、またはWallarmノードコンポーネントのみを削除してください：
+1. 旧ノードが動作しているマシンを削除するか、Wallarmノードのコンポーネントのみを削除します:
 
     === "Debian"
         ```bash

@@ -1,96 +1,111 @@
-```markdown
 [api-discovery-enable-link]:        ../api-discovery/setup.md#enable
 
-# GraphQL API Protection <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# GraphQL API保護 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarmでは、基本な[WAAP](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security)サブスクリプションプランでも、GraphQLに対する通常の攻撃(SQLi、RCE、[等](../attacks-vulns-list.md))を[デフォルト](../user-guides/rules/request-processing.md#gql)で検出します。ただし、プロトコルの一部の側面により、過度な情報露出やDoSに関連した[GraphQL固有の](../attacks-vulns-list.md#graphql-attacks)攻撃が実装される可能性があります。本書では、**GraphQLポリシー**、すなわちGraphQLリクエストに対する各種制限を設定することにより、APIをこれらの攻撃から保護する方法について説明します。
+Wallarmは、基本的な[WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans)サブスクリプションプランでも、GraphQLに対する一般的な攻撃（SQLi、RCE、[など](../attacks-vulns-list.md)）を[デフォルトで](../user-guides/rules/request-processing.md#gql)検出します。しかし、プロトコルの一部の側面により、過度な情報露出やDoSに関連する[GraphQL特有の](../attacks-vulns-list.md#graphql-attacks)攻撃が可能になります。本書では、GraphQLリクエストに対する制限の集合である**GraphQLポリシー**を設定することで、Wallarmを使用してこれらの攻撃からAPIを保護する方法を説明します。
 
-拡張保護機能として、GraphQL API Protectionは高度な[API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security)サブスクリプションプランの一部です。プラン購入後は、**Detect GraphQL attacks**[ルール](../user-guides/rules/rules.md)内でお客様の組織のGraphQLポリシーを設定し、保護を開始してください（ノード4.10.4以上が必要です）。
+拡張保護であるGraphQL API保護は、高度な[API Security](../about-wallarm/subscription-plans.md#core-subscription-plans)サブスクリプションプランの一部です。プランを購入したら、**GraphQL API protection**[mitigation control](../about-wallarm/mitigation-controls-overview.md)で組織のGraphQLポリシーを設定して保護を開始します。
 
-## Supported GraphQL formats
+## サポートされるGraphQLフォーマット
 
-GraphQLクエリは通常、GraphQLサーバーエンドポイントへのHTTP POSTリクエストとして送信されます。リクエストには、サーバーに送信される本文のメディアタイプを指定するための`CONTENT-TYPE`ヘッダーが含まれます。Wallarmでは、`CONTENT-TYPE`として以下をサポートします：
+GraphQLクエリは通常、GraphQLサーバーのエンドポイントに対するHTTP POSTリクエストとして送信されます。リクエストには、サーバーに送信される本文のメディアタイプを指定する`CONTENT-TYPE`ヘッダーが含まれます。`CONTENT-TYPE`として、Wallarmは次をサポートします:
 
-* よく使用されるオプション：`application/json`および`application/graphql`
-* その他発生し得るオプション：`text/plain`および`multipart/form-data`
+* 一般的に使用されるオプション: `application/json` と `application/graphql`
+* 発生し得るオプション: `text/plain` と `multipart/form-data`
 
-GraphQLクエリはHTTP GETリクエストとして送信することも可能です。この場合、クエリはURL内のクエリパラメータとして含まれます。GETリクエストはGraphQLクエリに使用できますが、特により複雑なクエリの場合、POSTリクエストほど一般的ではありません。その理由は、GETリクエストが通常、結果が変わらず繰り返し実行可能な冪等な操作に使用され、また長いクエリには長さ制限が問題となる可能性があるためです。
+GraphQLクエリはHTTP GETリクエストとして送信することもあります。この場合、クエリはURLのクエリパラメータとして含まれます。GETリクエストはGraphQLクエリにも使用可能ですが、特に複雑なクエリではPOSTリクエストほど一般的ではありません。これは、GETリクエストが通常は冪等な操作（結果を変えることなく繰り返し可能な操作）に使用され、さらに長さの制限があるため、長いクエリでは問題になり得るためです。
 
-Wallarmは、GraphQLリクエストに対してPOSTおよびGETの両方のHTTPメソッドをサポートします。
+WallarmはGraphQLリクエストに対してPOSTおよびGETの両HTTPメソッドをサポートします。
 
-## Creating and applying the rule
+## 設定方法
 
-GraphQLポリシーを設定し適用するには：
+サブスクリプションプランに応じて、GraphQL API保護の設定方法として次のいずれかが利用可能です:
 
---8<-- "../include/rule-creation-initial-step.md"
-1. **Mitigation controls** → **GraphQL API protection**を選択してください。
-1. **If request is**において、[describe](../user-guides/rules/rules.md#rule-branches)エンドポイントURIやその他の条件を設定してください：
+* Mitigation controls（[Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans)サブスクリプション）
+* Rules（[Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans)サブスクリプション）
 
-    * GraphQLエンドポイントのURI（ルート内にあり、通常`/graphql`を含みます）
-    * POSTまたはGETメソッド - 詳細は[Supported GraphQL formats](#supported-graphql-formats)を参照してください。POSTおよびGETリクエストの双方に同じ制限を設定したい場合は、メソッドを未指定のままにします
-    * `CONTENT-TYPE`ヘッダーの値を設定してください - 詳細は[Supported GraphQL formats](#supported-graphql-formats)を参照してください
+## Mitigation controlベースの保護 <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-        なお、ルール適用のタイミングは、条件の組み合わせを変えることで設定できます。例えば、URIのみを指定し他の条件は未指定にする、またはエンドポイントを指定せずに`CONTENT-TYPE`ヘッダーを`application/graphql`に設定するなどです。さらに、条件を異にする複数のルールを作成し、それぞれに異なる制限や対応策を設定することも可能です。
+!!! tip ""
+    [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.2.0以上が必要で、現時点では[Native Node](../installation/nginx-native-node-internals.md#native-node)ではサポートされていません。
+    
+### デフォルト保護
 
-1. トラフィックのメトリクスに従って、GraphQLリクエストに対する閾値を設定してください（未入力または未選択の場合、この基準による制限は適用されません）：
+Wallarmは[デフォルトの](../about-wallarm/mitigation-controls-overview.md#default-controls)**GraphQL API protection** mitigation controlsを提供します。これらにはGraphQL APIの異常を検出するための一般的な設定が含まれており、`Monitoring`[モード](../about-wallarm/mitigation-controls-overview.md#mitigation-mode)で全トラフィックに対して有効です。
 
-    * **Maximum total query size in kilobytes** - GraphQLクエリ全体のサイズの上限を設定します。過大なクエリを送信することによりサーバーリソースを悪用するDoS攻撃を防ぐために重要です。
-    * **Maximum value size in kilobytes** - GraphQLクエリ内の各値（変数またはクエリパラメータ）の最大サイズを設定します。この制限は、攻撃者が極端に長い文字列値を変数や引数として送信しサーバーを圧倒しようとするExcessive Value Length攻撃を軽減するのに役立ちます。
-    * **Maximum query depth** - GraphQLクエリの許容される最大深度を決定します。クエリ深度を制限することで、悪意のある深くネストされたクエリによるパフォーマンス低下やリソースの枯渇を回避できます。
-    * **Maximum number of aliases** - 単一のGraphQLクエリで使用可能なエイリアスの数の上限を設定します。エイリアスの数を制限することで、エイリアス機能を悪用したリソース枯渇およびDoS攻撃を防止できます。
-    * **Maximum batched queries** - 単一リクエストで送信可能なバッチ化クエリの数を制限します。このパラメータは、攻撃者が複数の操作を一つのリクエストにまとめることでレート制限などのセキュリティ対策を回避するバッチ攻撃を阻止するために不可欠です。
-    * **Block/register introspection queries** - 有効にすると、サーバーはGraphQLスキーマの構造が明らかになる可能性のあるイントロスペクションリクエストを潜在的な攻撃として扱います。イントロスペクションクエリを無効化または監視することは、スキーマが攻撃者に露呈するのを防ぐための重要な対策です。
-    * **Block/register debug requests** - このオプションを有効にすると、debugモードパラメータを含むリクエストは潜在的な攻撃として見なされます。この設定は、本番環境で誤ってdebugモードが有効となっている場合に、攻撃者がバックエンドの機密情報を含む過度なエラーレポートにアクセスするのを防ぐのに有効です。
+GraphQLのデフォルトコントロールを確認するには、Wallarm Console → **Security Controls** → **Mitigation Controls**で、**GraphQL API protection**セクションの`Default`ラベル付きコントロールを確認します。
 
-    デフォルトでは、ポリシーは最大POSTリクエストクエリサイズを100 KB、値サイズを10 KB、クエリ深度およびバッチ化クエリの上限を10、エイリアス数を5に設定し、またスクリーンショットに示されるようにイントロスペクションおよびdebugクエリを拒否します（一般的な正当なGraphQLクエリの統計に基づいて、これらのデフォルト値は変更可能です）：
+デフォルトコントロールは複製や編集、無効化ができます。編集により、アプリケーションの特性、トラフィックパターン、ビジネス文脈に基づいてデフォルトコントロールをカスタマイズできます。例えば、**Scope**を絞ってGraphQL特有のエンドポイントに限定したり、しきい値を調整したりできます。
+
+<!--You can **reset default control to its default configuration** at any time.-->
+
+--8<-- "../include/mc-subject-to-change.md"
+
+### Mitigation controlの作成と適用
+
+GraphQL向けのmitigation controlは、GraphQL特有のエンドポイントに対して作成することを推奨します。システム全体に対するall trafficのmitigation controlとして作成することは推奨しません。
+
+!!! info "mitigation controlに関する一般情報"
+    先に進む前に: **Scope**や**Mitigation mode**の設定方法など、あらゆるmitigation controlの基本については[Mitigation Controls](../about-wallarm/mitigation-controls-overview.md#configuration)の記事をご確認ください。
+
+GraphQLポリシーを設定して適用するには:
+
+1. Wallarm Console → **Mitigation Controls**に進みます。
+1. **Add control** → **GraphQL API protection**を使用します。
+1. mitigation controlを適用する**Scope**を記述します。
+1. トラフィックメトリクスに応じてGraphQLリクエストのしきい値を設定します（空欄/未選択のままの場合、その基準による制限は適用されません）:
+
+    * **Maximum total query size in kilobytes** - GraphQLクエリ全体のサイズ上限を設定します。過度に大きなクエリを送信してサーバーリソースを消費させるDoS攻撃を防ぐうえで重要です。
+    * **Maximum value size in kilobytes** - GraphQLクエリ内の任意の値（変数またはクエリパラメータ）の最大サイズを設定します。非常に長い文字列の値を変数や引数に入れて送信するExcessive Value Length型の攻撃によるサーバーの過負荷を緩和します。
+    * **Maximum query depth** - GraphQLクエリの最大許容ネスト深度を設定します。深いネストを制限することで、悪意ある複雑なクエリによるパフォーマンス低下やリソース枯渇を回避できます。
+    * **Maximum number of aliases** - 1つのGraphQLクエリで使用可能なエイリアス数の上限を設定します。エイリアス機能を悪用して過度に複雑なクエリを作るResource ExhaustionやDoS攻撃を防止します。
+    * **Maximum batched queries** - 1つのリクエスト内で送信可能なバッチクエリ数の上限を設定します。レート制限などのセキュリティ対策を回避するために複数の操作を1つのリクエストにまとめるバッチング攻撃を阻止するうえで重要です。
+    * **Block/register introspection queries** - 有効にすると、スキーマの構造を明らかにし得るイントロスペクションクエリを潜在的な攻撃として扱います。本番でのイントロスペクションの無効化や監視は、スキーマの漏えい防止に有効です。
+    * **Block/register debug requests** - 有効にすると、デバッグモードのパラメータを含むリクエストを潜在的な攻撃として扱います。本番でデバッグモードが誤って有効のままになっているケースを検知し、過度なエラーレポートメッセージを通じたバックエンドの機微情報露出を防ぎます。
+
+    既定では、ポリシーはPOSTリクエストのクエリサイズ上限を100 KB、値のサイズ上限を10 KB、クエリ深度とバッチクエリの上限を10、エイリアスの上限を5に設定し、さらにイントロスペクションとデバッグクエリを拒否します。スクリーンショットのとおりです（デフォルト値は、一般的な正当なGraphQLクエリの統計を考慮して任意の値に変更できます）:
         
-    ![GraphQL thresholds](../images/user-guides/rules/graphql-rule.png)
+    ![GraphQLのしきい値](../images/api-protection/mitigation-controls-graphql.png)
 
-<!-- temporary unavailable, bug: https://wallarm.atlassian.net/browse/PLUTO-6979?focusedCommentId=208654
-## Reaction to policy violation
+1. **Mitigation mode**セクションで実行するアクションを設定します。
+1. **Add**をクリックします。
 
-Reaction to the policy violation is defined by the [filtration mode](../admin-en/configure-wallarm-mode.md) applied to the endpoints targeted by the rule.
+<!--## Exploring GraphQL attacks
 
-If you are using Wallarm in blocking mode and want to safely test GraphQL rules, you can easily enable monitoring mode for `/graphql` routes by creating a **Set filtration mode** rule [specifically](../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console) for your GraphQL route. Note that this rule will apply to all attacks, including SQLi, XSS, etc., so it is not recommended to leave it for a long time.
+You can explore GraphQL policy violations (GraphQL attacks) in Wallarm Console → **Attacks** section. Use the GraphQL specific [search keys](../user-guides/search-and-filters/use-search.md#graphql-tags) or corresponding filters:
 
-![GraphQL policy blocking action](../images/user-guides/rules/graphql-rule-2-action.png)
+![GraphQL attacks](../images/user-guides/rules/graphql-attacks.png)-->
 
-Consider that you node configuration via the [`wallarm_mode_allow_override` directive](../admin-en/configure-wallarm-mode.md#prioritization-of-methods) may be set to ignore rules created in Wallarm Console. If this is a case, [explore](../admin-en/configure-wallarm-mode.md#configuration-methods) and use other ways to change the filtration mode.-->
+### Mitigation controlの例
 
-## Exploring GraphQL attacks
+#### 攻撃をブロックするためのGraphQLエンドポイント向けポリシー設定 <a id="setting-policy-for-your-graphql-endpoints-to-block-attacks"></a>
 
-Wallarm Console→**Attacks**セクションで、GraphQLポリシー違反（GraphQL攻撃）を調査できます。GraphQL専用の[検索キー](../user-guides/search-and-filters/use-search.md#graphql-tags)または対応するフィルターを使用してください：
+`example.com/graphql`配下にあるアプリケーションのGraphQLエンドポイントへのリクエストに対して、潜在的な[GraphQL特有の](../attacks-vulns-list.md#graphql-attacks)攻撃をすべてブロックするための制限を設定したいとします。`example.com`のフィルトレーションモードは`monitoring`です。
 
-![GraphQL attacks](../images/user-guides/rules/graphql-attacks.png)
+これを行うには:
 
-<!--## Rule examples
+1. スクリーンショットのとおりに**GraphQL API protection** mitigation controlを設定します（これらは例の値です。実運用のルールでは、一般的な正当なGraphQLクエリの統計を考慮して独自の値を定義してください）。
 
-### Setting policy for your GraphQL endpoints to block attacks
+    ![エンドポイント向けGraphQLポリシー](../images/api-protection/mitigation-controls-graphql-1.png)
 
-Let us say you want to set limits for the requests to your application GraphQL endpoints located under `example.com/graphql` to block all potential [GraphQL specific](../attacks-vulns-list.md#graphql-attacks) attacks to them. Filtration mode for `example.com` is `monitoring`.
+1. `example.com`のフィルトレーションモードは`monitoring`ですが、GraphQLエンドポイントでは`block`にしたいので、**Override filtration mode**ルールをスクリーンショットのとおりに構成します:
 
-To do so:
+    ![GraphQLポリシーのブロックアクション](../images/user-guides/rules/graphql-rule-1-action.png)
 
-1. Set the **Detect GraphQL attacks** rule as displayed on the screenshot (note that these are the example values - for the real-life rules you should define your own values considering statistics of your common legitimate GraphQL queries):
+#### 特定のエンドポイント向けにポリシーを変更
 
-    ![GraphQL Policy for your endpoints](../images/user-guides/rules/graphql-rule-1.png)
+[前述の](#setting-policy-for-your-graphql-endpoints-to-block-attacks)例の続きとして、`example.com/graphql/v2`の子エンドポイントに対して、より厳格な制限を設定したいとします。制限が厳しくなるため、何かをブロックする前に`monitoring`モードでテストする必要があります。
 
-1. As filtration mode for `example.com` is `monitoring` and you want `block` for its GraphQL endpoints, configure the **Set filtration mode** rule as displayed on the screenshot:
+これを行うには:
 
-    ![GraphQL policy blocking action](../images/user-guides/rules/graphql-rule-1-action.png)
+1. スクリーンショットのとおりに**GraphQL API protection** mitigation controlを設定します（これらは例の値です。実運用のルールでは、一般的な正当なGraphQLクエリの統計を考慮して独自の値を定義してください）。
 
-### Altering policy for specific endpoints
+    ![子エンドポイントに対するより厳格なGraphQLポリシー](../images/api-protection/mitigation-controls-graphql-2.png)
 
-Continuing the [previous](#setting-policy-for-your-graphql-endpoints-to-block-attacks) example, let us say you want to set stricter limits for `example.com/graphql/v2` child endpoint. As limits are stricter, before blocking anything, they should be tested in the `monitoring` mode.
+1. `example.com/graphql`のフィルトレーションモードは`block`で、`example.com/graphql/v2`では`monitoring`にしたいので、**Override filtration mode**ルールをスクリーンショットのとおりに構成します:
 
-To do so:
+    ![GraphQLポリシーのブロックアクション](../images/user-guides/rules/graphql-rule-2-action.png)
 
-1. Set the **Detect GraphQL attacks** rule as displayed on the screenshot (note that these are the example values - for the real-life rules you should define your own values considering statistics of your common legitimate GraphQL queries):
+## ルールベースの保護
 
-    ![GraphQL stricter policy for child endpoint](/../images/user-guides/rules/graphql-rule-2.png)
-
-1. As filtration mode for `example.com/graphql` is `block` and you want `monitoring` for `example.com/graphql/v2`, configure the **Set filtration mode** rule as displayed on the screenshot:
-
-    ![GraphQL policy blocking action](../images/user-guides/rules/graphql-rule-2-action.png)
--->
-```
+**GraphQL API protection** mitigation controlで説明したものと同じ設定を使用します。相違点は、Wallarm Console → **Security Controls** → **Rules**で操作することだけです。

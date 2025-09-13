@@ -1,5 +1,5 @@
 !!! info "前提条件"
-    以下の条件が整っているものとします。
+    次のことを想定します。
     
-    *   [Docker Community Edition](https://docs.docker.com/install/)および[`docker-compose`](https://docs.docker.com/compose/install/)は、すでに`10.0.30.30` Dockerホストにインストールされています。
-    *   `node.example.local`フィルタノードは、すでに展開され、設定済みであり、（例：SSHプロトコル経由での）さらなる構成が可能で、正常に動作しています。
+    *   [Docker Community Edition](https://docs.docker.com/install/)と[`docker-compose`](https://docs.docker.com/compose/install/)が`10.0.30.30`のDockerホストにすでにインストールされています。
+    *   `node.example.local`フィルタノードがすでにデプロイおよび設定済みで、追加の設定（例：SSHプロトコル経由）が可能で、稼働しています。

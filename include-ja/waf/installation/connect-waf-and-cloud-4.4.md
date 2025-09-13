@@ -1,32 +1,33 @@
-The WallarmノードはWallarm Cloudと連携します。フィルタリングノードをCloudに接続するには、次の手順に従ってください：
+Wallarm nodeはWallarm Cloudと連携します。フィルタリングノードをWallarm Cloudに接続するには:
 
-1. [別途インストールされたpostanalyticsモジュールの場合][install-postanalytics-instr]:
-    1. 別途postanalyticsモジュールのインストール時に生成されたノードトークンをコピーします。
-    1. 以下のリストの5番目の手順に進みます。初期トラフィック処理を行うノードとポスト解析を行うノードに同じトークンを使用することを**推奨**します。
-1. Wallarm Console の[US Cloud](https://us1.my.wallarm.com/nodes)または[EU Cloud](https://my.wallarm.com/nodes)で**Nodes**を開き、**Wallarmノード**タイプのノードを作成します。
+1. [postanalyticsモジュールを個別にインストールしている場合][install-postanalytics-instr]:
 
-    ![Wallarmノードの作成][img-create-wallarm-node]
+    1. postanalyticsモジュールの個別インストール時に生成されたノードトークンをコピーします。
+    1. 以下のリストの5番目の手順に進みます。初期トラフィックを処理するノードとpostanalyticsを実行するノードで同じトークンを使用することを**推奨**します。
+1. [USクラウド](https://us1.my.wallarm.com/nodes)または[EUクラウド](https://my.wallarm.com/nodes)のWallarm Console → **Nodes**を開き、**Wallarm node**タイプのノードを作成します。
+
+    ![Wallarm nodeの作成][img-create-wallarm-node]
 1. 生成されたトークンをコピーします。
-1. フィルタリングノードをインストールするマシンで`register-node`スクリプトを実行します：
+1. フィルタリングノードをインストールするマシンで`register-node`スクリプトを実行します:
     
-    === "US Cloud"
+    === "USクラウド"
         ``` bash
         sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> -H us1.api.wallarm.com
         ```
-    === "EU Cloud"
+    === "EUクラウド"
         ``` bash
         sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN>
         ```
     
-    * `<NODE_TOKEN>` はコピーしたトークン値です。
-    * `-n <HOST_NAME>` パラメータを追加することによって、ノードインスタンスのカスタム名を設定できます。最終的なインスタンス名は `HOST_NAME_NodeUUID` になります。
+    * `<NODE_TOKEN>`はコピーしたトークンの値です。
+    * ノードインスタンスのカスタム名を設定するために`-n <HOST_NAME>`パラメータを追加できます。最終的なインスタンス名は`HOST_NAME_NodeUUID`になります。
 
-!!! info "複数のインストールに1つのトークンを使用する場合"
-    選択したデプロイメントオプションにかかわらず、1つのトークンを使用して複数のWallarmノードをCloudに接続できます。このオプションにより、Wallarm Console UI上でノードインスタンスを論理的にグループ化できます：
+!!! info "複数のインストールで1つのトークンを使用する"
+    選択したデプロイオプションに関係なく、1つのトークンを使用して複数のWallarm nodeをWallarm Cloudに接続できます。この方法により、Wallarm ConsoleのUI内でノードインスタンスを論理的にグループ化できます:
 
     ![複数のインスタンスを持つノード][img-node-with-several-instances]
     
-    以下は、複数のインストールに対して1つのトークンを使用する場合の例です：
-    
-    * 開発環境に複数のWallarmノードをデプロイし、各ノードが特定の開発者所有の独自のマシン上にある場合
-    * 初期トラフィック処理ノードとpostanalyticsモジュールが別々のサーバーにインストールされている場合、これらのモジュールを同じノードトークンを使用してWallarm Cloudに接続することを**推奨**します.
+    複数のインストールで1つのトークンを使用することを選択できる例を以下に示します:
+
+    * 開発環境に複数のWallarm nodeをデプロイしており、各ノードが特定の開発者の所有する個別のマシン上にある場合です。
+    * 初期トラフィック処理用ノードとpostanalyticsモジュールが別々のサーバーにインストールされている場合です。これらのモジュールは同じノードトークンを使用してWallarm Cloudに接続することを**推奨**します。

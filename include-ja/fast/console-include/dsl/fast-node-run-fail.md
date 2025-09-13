@@ -1,5 +1,5 @@
 ```
-[info] ノードがWallarm Cloudに接続されました
-[error] 無効なカスタム拡張 'my-extension.yaml': (<unknown>): ブロックマッピングの解析中（行2列3）に、予期されるキーが見つかりませんでした
-[info] 高速スキャナー用のカスタム拡張機能を0個読み込みました
+[info] Node connected to Wallarm Cloud
+[error] Invalid custom extension 'my-extension.yaml': (<unknown>): did not find expected key while parsing a block mapping at line 2 column 3
+[info] Loaded 0 custom extensions for fast scanner
 ```

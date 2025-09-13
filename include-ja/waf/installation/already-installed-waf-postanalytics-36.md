@@ -1,10 +1,9 @@
-```markdown
-!!! info "複数のWallarmノードを導入する場合"
-    お客様の環境に導入されたすべてのWallarmノードは、**同一のバージョン**でなければなりません。別々のサーバーにインストールされたpostanalyticsモジュールも、**同一のバージョン**でなければなりません。
+!!! info "複数のWallarmノードをデプロイする場合"
+    環境にデプロイされるすべてのWallarmノードは、**同じバージョン**である必要があります。別々のサーバーにインストールされたpostanalyticsモジュールも**同じバージョン**である必要があります。
 
-    追加ノードのインストール前に、そのバージョンがお客様の環境に既にデプロイされているモジュールのバージョンと一致していることを確認してください。もしもデプロイ済みのモジュールのバージョンが[廃止済みまたは近い将来に廃止される予定（`4.0`以下）][versioning-policy]の場合は、すべてのモジュールを最新バージョンにアップグレードしてください。
+    追加ノードをインストールする前に、そのバージョンが既にデプロイ済みのモジュールのバージョンと一致していることを確認してください。デプロイ済みのモジュールのバージョンが[非推奨、または間もなく非推奨になる場合（`4.0`以下）][versioning-policy]、すべてのモジュールを最新バージョンにアップグレードしてください。
 
-    同一サーバーにインストールされたフィルタリングノードおよびpostanalyticsのバージョンを確認するには:
+    同一サーバーにインストールされているフィルタリングノードとpostanalyticsのバージョンを確認するには、次を実行します:
 
     === "Debian"
         ```bash
@@ -14,43 +13,42 @@
         ```bash
         apt list wallarm-node
         ```
-    === "CentOS or Amazon Linux 2.0.2021x and lower"
+    === "CentOSまたはAmazon Linux 2.0.2021x以下"
         ```bash
         yum list wallarm-node
         ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    === "AlmaLinux、Rocky LinuxまたはOracle Linux 8.x"
         ```bash
         yum list wallarm-node
         ```
 
-    異なるサーバーにインストールされたフィルタリングノードおよびpostanalyticsのバージョンを確認するには:
+    異なるサーバーにインストールされているフィルタリングノードとpostanalyticsのバージョンを確認するには、次を実行します:
 
     === "Debian"
         ```bash
-        # Wallarmフィルタリングノードがインストールされているサーバーから実行
+        # Wallarmフィルタリングノードがインストールされているサーバーで実行
         apt list wallarm-node-nginx
-        # postanalyticsがインストールされているサーバーから実行
+        # postanalyticsがインストールされているサーバーで実行
         apt list wallarm-node-tarantool
         ```
     === "Ubuntu"
         ```bash
-        # Wallarmフィルタリングノードがインストールされているサーバーから実行
+        # Wallarmフィルタリングノードがインストールされているサーバーで実行
         apt list wallarm-node-nginx
-        # postanalyticsがインストールされているサーバーから実行
+        # postanalyticsがインストールされているサーバーで実行
         apt list wallarm-node-tarantool
         ```
-    === "CentOS or Amazon Linux 2.0.2021x and lower"
+    === "CentOSまたはAmazon Linux 2.0.2021x以下"
         ```bash
-        # Wallarmフィルタリングノードがインストールされているサーバーから実行
+        # Wallarmフィルタリングノードがインストールされているサーバーで実行
         yum list wallarm-node-nginx
-        # postanalyticsがインストールされているサーバーから実行
+        # postanalyticsがインストールされているサーバーで実行
         yum list wallarm-node-tarantool
         ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    === "AlmaLinux、Rocky LinuxまたはOracle Linux 8.x"
         ```bash
-        # Wallarmフィルタリングノードがインストールされているサーバーから実行
+        # Wallarmフィルタリングノードがインストールされているサーバーで実行
         yum list wallarm-node-nginx
-        # postanalyticsがインストールされているサーバーから実行
+        # postanalyticsがインストールされているサーバーで実行
         yum list wallarm-node-tarantool
         ```
-```

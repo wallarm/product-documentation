@@ -1,47 +1,47 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 
-# Wallarm Functionsを備えたAzion Edge Firewall
+# Wallarm Functionsを利用したAzion Edge Firewall
 
-[Azion Edge Functions](https://www.azion.com/en/products/edge-functions/)はネットワークエッジでカスタムコードを実行可能にし、リクエストを処理するためのカスタマーのルール実装を可能にします。Wallarmのカスタムコードを組み込むことにより、受信トラフィックはWallarmノードへプロキシされ、分析およびフィルタリングが行われます。この設定は、すでに[Azion Edge Firewall](https://www.azion.com/en/products/edge-firewall/)で提供されるセキュリティ対策を強化します。本ガイドでは、WallarmノードをAzion Edgeと統合し、Azion Edge上で稼働するサービスを保護する方法について説明します。
+[Azion Edge Functions](https://www.azion.com/en/products/edge-functions/)はネットワークエッジでカスタムコードを実行でき、リクエスト処理のための独自ルールを実装できます。Wallarmのカスタムコードを組み込むことで、受信トラフィックをWallarmノードにプロキシして解析およびフィルタリングできます。この構成は[Azion Edge Firewall](https://www.azion.com/en/products/edge-firewall/)が既に提供するセキュリティ対策を強化します。本ガイドでは、Azion Edge上で稼働するサービスを保護するために、WallarmノードをAzion Edgeに統合する方法を説明します。
 
-本ソリューションは、Wallarmノードを外部にデプロイし、特定のプラットフォームにカスタムコードまたはポリシーを注入することを含みます。これにより、トラフィックは外部のWallarmノードに転送され、潜在的な脅威に対して分析および保護が行われます。Wallarmのコネクタと呼ばれるこれらは、Azion Edge、Akamai Edge、MuleSoft、Apigee、AWS Lambdaなどのプラットフォームと外部のWallarmノードとの間で必須の連携を提供します。この手法により、シームレスな統合、安全なトラフィック分析、リスク軽減、およびプラットフォーム全体のセキュリティが確保されます。
+このソリューションでは、外部にWallarmノードをデプロイし、対象プラットフォームにカスタムコードまたはポリシーを組み込みます。これにより、トラフィックを外部のWallarmノードに誘導して解析し、潜在的な脅威から保護できるようになります。これらはWallarmのコネクタと呼ばれ、Azion Edge、Akamai Edge、MuleSoft、Apigee、AWS Lambdaなどのプラットフォームと外部のWallarmノードをつなぐ必須のリンクとして機能します。このアプローチにより、シームレスな統合、安全なトラフィック解析、リスク低減、プラットフォーム全体のセキュリティを実現します。
 
 ## ユースケース
 
-すべての[Wallarmデプロイメントオプション](../supported-deployment-options.md)の中で、本ソリューションは以下のユースケース向けに推奨されます：
+このソリューションは、以下のユースケースに推奨されます。
 
-* Azion Edgeで稼働するAPIまたはトラフィックの保護。
-* 攻撃の包括的な監視、レポート、および悪意のあるリクエストの即時ブロックを提供するセキュリティソリューションが必要な場合。
+* Azion Edge上で稼働するAPIまたはトラフィックを保護したい場合。
+* 攻撃の包括的な観測・レポートおよび悪意のあるリクエストの即時ブロックを提供するセキュリティソリューションが必要な場合。
 
 ## 制限事項
 
-本ソリューションにはいくつかの制限があり、受信リクエストに対してのみ動作します：
+このソリューションは受信リクエストのみを対象とするため、いくつかの制限があります。
 
-* [Passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection)手法を用いた脆弱性検出は正しく機能しません。本ソリューションは、テスト対象の脆弱性に典型的な悪意のあるリクエストに対するサーバーの応答に基づき、APIが脆弱か否かを判断します。
-* [Wallarm API Discovery](../../api-discovery/overview.md)は、応答分析に依存しているため、トラフィックを元にAPIのインベントリを探索することはできません。
-* [Protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md)は、応答コードの分析が必要なため利用できません。
+* [パッシブ検出](../../about-wallarm/detecting-vulnerabilities.md#passive-detection)方式による脆弱性発見は正しく機能しません。この方式は、テスト対象の脆弱性に典型的な悪意のあるリクエストに対するサーバーの応答に基づいてAPIが脆弱かどうかを判定します。
+* 本ソリューションでは応答解析を利用できないため、[Wallarm API Discovery](../../api-discovery/overview.md)はトラフィックに基づいてAPIインベントリを探索できません。
+* 応答コードの解析を必要とするため、[強制ブラウジング対策](../../admin-en/configuration-guides/protecting-against-bruteforce.md)は利用できません。
 
 ## 要件
 
-デプロイメントを進める前に、以下の要件を満たしていることを確認してください：
+デプロイを進める前に、以下の要件を満たしていることを確認してください。
 
-* Azion Edge技術の理解。
-* Azion Edge上で稼働するAPIまたはトラフィック。
+* Azion Edgeのテクノロジーに関する理解
+* Azion Edge上で稼働するAPIまたはトラフィック
 
-## デプロイメント
+## デプロイ
 
-Wallarmを用いてAzion Edge上のAPIを保護するには、以下の手順に従ってください：
+WallarmでAzion Edge上のAPIを保護するには、次の手順に従ってください。
 
-1. 利用可能なデプロイメントオプションのうちの一つを使用してWallarmノードをデプロイします。
-1. Edge Functions用のWallarmコードを入手し、Azion上で実行します。
+1. 利用可能なデプロイオプションのいずれかを使用してWallarmノードをデプロイします。
+1. Edge Functions用のWallarmコードを入手し、Azionで実行します。
 
-### 1. Wallarmノードのデプロイ
+### 1. Wallarmノードをデプロイする
 
-Azion Edge上でWallarmを利用する場合、トラフィックフローは[in-line](../inline/overview.md)です。
+Azion EdgeでWallarmを利用する場合、トラフィックフローは[インライン](../inline/overview.md)になります。
 
-1. in-lineデプロイメント向けに、[サポートされたWallarmノードのデプロイメントソリューションまたはアーティファクト](../supported-deployment-options.md#in-line)の中から一つを選択し、提供されたデプロイメント手順に従ってください。
-1. 以下のテンプレートを使用して、デプロイされたノードを設定してください：
+1. インラインデプロイ用に、[サポートされているWallarmノードのデプロイソリューションまたはアーティファクト](../supported-deployment-options.md#in-line)のいずれかを選択し、案内された手順に従ってデプロイします。
+1. 次のテンプレートを使用して、デプロイしたノードを構成します。
 
     ```
     server {
@@ -63,7 +63,7 @@ Azion Edge上でWallarmを利用する場合、トラフィックフローは[in
 
         server_name yourdomain-for-wallarm-node.tld;
 
-        ### SSLの設定はこちら
+        ### ここにSSLの設定
 
         access_log off;
         wallarm_mode off;
@@ -81,7 +81,7 @@ Azion Edge上でWallarmを利用する場合、トラフィックフローは[in
         server_name _;
         
         wallarm_mode monitoring;
-        #wallarm_modeブロック;
+        #wallarm_mode block;
 
         real_ip_header X-EDGEWRK-REAL-IP;
         set_real_ip_from unix:;
@@ -92,45 +92,45 @@ Azion Edge上でWallarmを利用する場合、トラフィックフローは[in
     }
     ```
 
-    次の設定に注意してください：
+    以下の構成に注意してください。
 
-    * HTTPSトラフィック用のTLS/SSL証明書：Wallarmノードが安全なHTTPSトラフィックを処理できるように、TLS/SSL証明書を適切に設定してください。具体的な設定は選択したデプロイメント手法に依存します。例えば、NGINXを使用している場合は、[その記事](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/)を参照してください。
-    * [Wallarm operation mode](../../admin-en/configure-wallarm-mode.md)の設定。
-1. デプロイメントが完了したら、後で受信リクエストの転送先として使用するために、ノードインスタンスのIPアドレスを記録してください。
+    * HTTPSトラフィックのTLS/SSL証明書：WallarmノードでセキュアなHTTPSトラフィックを扱えるように、適切にTLS/SSL証明書を構成してください。具体的な設定内容は選択したデプロイ方法に依存します。たとえばNGINXを使用している場合は、[該当記事](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/)を参照してください。
+    * [Wallarmの動作モード](../../admin-en/configure-wallarm-mode.md)の構成。
+1. デプロイが完了したら、後で受信リクエストの転送先アドレスを設定する際に必要になるため、ノードインスタンスのIPを控えておいてください。
 
-### 2. Edge Functions用Wallarmコードの取得とAzionでの実行
+### 2. Edge Functions用のWallarmコードを入手してAzionで実行する
 
-Azion Edge Functions用Wallarmコードを入手し実行するため、以下の手順に従ってください：
+Azion Edge Functions向けのWallarmコードを入手して実行するには、次の手順に従ってください。
 
-1. [support@wallarm.com](mailto:support@wallarm.com)に連絡してWallarmコードを入手してください。
-1. Azion Edgeで**Billing & Subscriptions**に移動し、**Application Acceleration**および**Edge Functions**のサブスクリプションをアクティブにしてください。
-1. 新しい**Edge Application**を作成し、保存してください。
-1. 作成したアプリケーションを開き、**Main Settings**で**Application Acceleration**と**Edge Functions**を有効にしてください。
-1. **Domains**に移動し、**Add Domain**をクリックしてください。
-1. **Edge Functions**に移動し、**Add Function**をクリックして`Edge Firewall`タイプを選択してください。
-1. Wallarmソースコードを貼り付け、`wallarm.node.tld`を[先にデプロイしたWallarmノード](#1-deploy-a-wallarm-node)のアドレスに置き換えてください。
-1. **Edge Firewall**に移動し、**Add Rule Set**をクリック、**Name**を入力、**Domains**を選択し、**Edge Functions**をオンにしてください。
-1. **Functions**タブに切り替え、**Add Function**をクリック、先に作成した関数を選択してください。
-1. **Rules Engine**タブに切り替え、**New Rule**をクリックして、Wallarmによってトラフィックがフィルタリングされるための条件を設定してください：
+1. [support@wallarm.com](mailto:support@wallarm.com)へ連絡してWallarmコードを入手します。
+1. Azion Edgeで、**Billing & Subscriptions**に移動し、**Application Acceleration**と**Edge Functions**のサブスクリプションを有効化します。
+1. 新しい**Edge Application**を作成して保存します。
+1. 作成したアプリケーションを開き → **Main Settings**で**Application Acceleration**と**Edge Functions**を有効化します。
+1. **Domains**に移動し、**Add Domain**をクリックします。
+1. **Edge Functions**に移動し、**Add Function**をクリックして`Edge Firewall`タイプを選択します。
+1. Wallarmソースコードを貼り付け、`wallarm.node.tld`を[前段でデプロイしたWallarmノード](#1-deploy-a-wallarm-node)のアドレスに置き換えます。
+1. **Edge Firewall** → **Add Rule Set** → **Name**を入力 → **Domains**を選択し、**Edge Functions**をオンにします。
+1. **Functions**タブに切り替え、**Add Function**をクリックして先ほど作成した関数を選択します。
+1. **Rules Engine**タブに切り替え → **New Rule**を選択し、Wallarmでフィルタリングするトラフィックの条件を設定します。
 
-    * すべてのリクエストを分析およびフィルタリングするには、`If Request URI starts with /`を選択してください。
-    * **Behaviors**で`Then Run Function`を選択し、先に作成した関数を選んでください。
+    * すべてのリクエストを解析・フィルタリングするには、`If Request URI starts with /`を選択します。
+    * **Behaviors**で`Then Run Function`を選択し、先ほど作成した関数を選びます。
 
 ## テスト
 
-デプロイ済みポリシーの機能をテストするには、以下の手順に従ってください：
+デプロイしたポリシーの機能をテストするには、次の手順に従ってください。
 
-1. テスト用の[Path Traversal][ptrav-attack-docs]攻撃リクエストをAPIに送信してください：
+1. テスト用の[パストラバーサル][ptrav-attack-docs]攻撃を含むリクエストをAPIに送信します。
 
     ```
     curl http://<YOUR_APP_IP_OR_DOMAIN>/etc/passwd
     ```
-1. Wallarm Consoleを開き、[US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)の**Attacks**セクションで攻撃がリストに表示されていることを確認してください。
+1. Wallarm Console → **Attacks**セクションを[US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)で開き、攻撃が一覧に表示されていることを確認します。
     
-    ![インターフェース上の攻撃][attacks-in-ui-image]
+    ![インターフェイスのAttacks][attacks-in-ui-image]
 
-    Wallarmノードのモードがblockingに設定されている場合、リクエストはブロックされます。
+    Wallarmノードのモードがブロックに設定されている場合、リクエストもブロックされます。
 
 ## サポートが必要ですか？
 
-記載のAzion Edgeと連携したWallarmのデプロイメントに関して問題が発生する場合、またはサポートが必要な場合は、[Wallarm support](mailto:support@wallarm.com)チームにご連絡ください。実装プロセス中に直面する課題の解決やガイダンスの提供に対応いたします。
+Azion Edgeと組み合わせた本ドキュメントのWallarmデプロイで問題が発生した場合や支援が必要な場合は、[Wallarm support](mailto:support@wallarm.com)チームにお問い合わせください。実装プロセス中に直面する問題の解決に向けたガイダンスを提供します。
