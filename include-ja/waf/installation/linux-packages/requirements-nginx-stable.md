@@ -1,13 +1,13 @@
-* US CloudまたはEU Cloud用Wallarm Consoleにおいて、two‑factor authenticationが無効な**Administrator**ロールのアカウントにアクセスできること
-* SELinuxが無効であるか、[手順][configure-selinux-instr]に従って設定されていること
-* NGINXバージョン1.24.0
+* [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarm Consoleで**Administrator**ロールを持つアカウントへのアクセスが必要があります
+* SELinuxが無効化されているか、[手順][configure-selinux-instr]に従って設定されている必要があります
+* NGINXバージョン1.24.0が必要があります
 
-    !!! info "カスタムNGINXバージョン"
-        別のバージョンをお使いの場合は、[NGINXのカスタムビルドにWallarmモジュールを接続する方法][nginx-custom]に関する手順を参照してください
-* すべてのコマンドをスーパーユーザー（例：`root`）で実行する
-* パッケージのダウンロードのために`https://repo.wallarm.com`へのアクセスが可能であり、ファイアウォールによってブロックされていないこと
-* US Wallarm Cloudで動作させる場合は`https://us1.api.wallarm.com`、またはEU Wallarm Cloudで動作させる場合は`https://api.wallarm.com`へのアクセスが必要です。アクセスがプロキシサーバー経由でしか設定できない場合は、[手順][configure-proxy-balancer-instr]に従ってください
-* 攻撃検知ルールの更新のダウンロードおよび[allowlisted, denylisted, or graylisted][ip-lists-docs]国・地域またはデータセンターの正確なIP取得のために、下記IPアドレスへのアクセスが必要です
+    !!! info "カスタムNGINXのバージョン"
+        異なるバージョンをお使いの場合は、[NGINXのカスタムビルドにWallarmモジュールを接続する方法][nginx-custom]の手順を参照してください
+* すべてのコマンドをスーパーユーザー（例：`root`）として実行する必要があります
+* パッケージをダウンロードするための`https://repo.wallarm.com`へのアクセスが必要があります。アクセスがファイアウォールでブロックされていないことを確認してください
+* USのWallarm Cloudで作業するための`https://us1.api.wallarm.com`またはEUのWallarm Cloudで作業するための`https://api.wallarm.com`へのアクセスが必要があります。アクセスをプロキシサーバー経由でのみ設定できる場合は、[手順][configure-proxy-balancer-instr]に従ってください
+* 攻撃検出ルールの更新をダウンロードし、[allowlisted, denylisted, or graylisted][ip-lists-docs]の国、地域、またはデータセンターの正確なIPアドレスを取得するため、以下のIPアドレスへのアクセスが必要があります
 
     --8<-- "../include/wallarm-cloud-ips.md"
-* テキストエディタ**vim**、**nano**、またはその他のエディタがインストールされていること。手順書では**vim**が使用されています
+* **vim**、**nano**などのテキストエディターがインストールされている必要があります。本手順では**vim**を使用します

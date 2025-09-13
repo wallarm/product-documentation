@@ -13,7 +13,7 @@ spec:
         app: myapp
     spec:
       containers: 
-      # メインアプリコンテナの定義
+      # お使いのメインアプリケーションコンテナの定義です
       - name: myapp 
         image: <Image>
         resources:
@@ -21,6 +21,6 @@ spec:
             memory: "128Mi"
             cpu: "500m"
         ports:
-        # アプリケーションコンテナが受信リクエストを受け入れるポート
+        # アプリケーションコンテナが外部からのリクエストを受け付けるポートです
         - containerPort: 8080 
 ```

@@ -1,8 +1,8 @@
-=== "DEBベースのディストリビューション"
+=== "DEB系ディストリビューション"
     ```bash
     sudo apt -y install zabbix-agent
     ```
-=== "RPMベースのディストリビューション"
+=== "RPM系ディストリビューション"
     ```bash
     sudo yum install -y zabbix-agent
     ```

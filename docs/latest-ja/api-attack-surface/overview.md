@@ -1,44 +1,58 @@
 # API Attack Surface Management  <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
-Wallarmの**API Attack Surface Management**(**AASM**)は、エージェントレスの検出ソリューションで、すべての外部ホストとそのAPIを検出し、WebおよびAPIベースの攻撃に対する保護状況を評価し、不足しているWAF/WAAPソリューションを特定し、検出されたエンドポイントのセキュリティ上の問題を把握できるように設計されています。
+Wallarmの**API Attack Surface Management**（**AASM**）は、APIエコシステムに特化したエージェントレスの検出ソリューションで、外部ホストとそのAPIを発見し、不足しているWAF/WAAPソリューションを特定し、APIリークやその他の脆弱性を軽減するように設計されています。
 
-API Attack Surface Managementには、以下が含まれます:
+API Attack Surface Managementには次が含まれます:
 
-* [API Attack Surface Discovery (AASD)](api-surface.md)
-* [Security Issues Detection](security-issues.md)
+* [API Attack Surface Discovery（AASD）](api-surface.md)
+* [セキュリティ問題の検出](security-issues.md)
 
 ![AASM](../images/api-attack-surface/aasm.png)
 
-## 動作の仕組み
+## 仕組み
 
-API Attack Surface Managementの作業手順は以下のとおりです:
+API Attack Surface Managementは、以下のセクションで説明する複数の自動化機能を提供します。
 
-* サブスクリプションを購入します。
-* スキャンするルートドメインを設定します。
-* 指定したドメインに対して、Wallarmはサブドメイン／ホストを検索して一覧にします。
+### ステップ1: 外部API攻撃対象領域のディスカバリー
 
-    AASMシステムでは、パッシブDNS解析、SSL/TLS証明書解析、Certificate Transparency Logs解析など、さまざまなOSINT手法を使用してサブドメインを収集し、検索エンジンを介して頻出するサブドメインを列挙します。
+* 外部ホストとそのAPI（CDN、IaaS、PaaSなどのホスティングプロバイダを含む）を[検出](api-surface.md)します。
+* IP解決に基づいてジオロケーションとデータセンターを特定します。
+* 組織が使用している可能性のあるAPIプロトコル（JSON-API、GraphQL、XML-RPC、JSON-RPC、OData、gRPC、WebSocket、SOAP、WebDav、HTML WEBなど）に関するインサイトを提供します。
+* 意図せず公開されているプライベートなAPI仕様を明らかにします。
+* 外部API攻撃対象領域の変化を継続的に監視し、開発やデプロイの過程で導入された新しいAPI、シャドーAPI、不正なエンドポイントを検出します。
+* API攻撃対象領域の検出結果や変更について[通知](setup.md#notifications)します。
 
-* Wallarmは各ホストの地理的位置およびデータセンターを特定します。
-* Wallarmは各ホスト上で公開されているAPIを特定します。
-* Wallarmはホストを保護するセキュリティソリューション(WAF/WAAP)を特定し、その効果を評価します。
-* Wallarmは検出されたドメイン／ホストに対して[セキュリティ上の問題](security-issues.md)を確認します。
-* 検出された場合、セキュリティ上の問題が一覧表示され、解決できるように記述されます。
+### ステップ2: WAFカバレッジのディスカバリーとテスト
 
-## 有効化と設定
+* APIがWAF/WAAPで保護されているかどうかを[検出](api-surface.md)します。
+* WAF/WAAPが検出するよう設定されている脅威の種類をテストします。
+* 検出された各エンドポイントに対して[セキュリティスコア](api-surface.md#security-posture)を算出します。
+* OWASP Top 10の脆弱性に対するルールの不足や、BOLAやクレデンシャルスタッフィングなど最新のAPI特有の脅威に対するカバレッジの欠如など、WAFの設定におけるギャップを特定して報告します。
 
-AASMを利用するには、貴社でWallarmの[API Attack Surface](../about-wallarm/subscription-plans.md#api-attack-surface)サブスクリプションプランが有効になっている必要があります。アクティベートするには、以下のいずれかを実施してください:
+### ステップ3: APIリークと脆弱性の自動検出
 
-* まだWallarmアカウントをお持ちでない場合は、価格情報を確認し、こちらのWallarm公式サイト[here](https://www.wallarm.com/product/aasm)よりAASMをアクティブにしてください。
+* 外部の攻撃対象領域の全体像が把握されると、検出されたアプリとAPIに関連する[APIリークと脆弱性の検出](security-issues.md)を開始します。
+* 脆弱性を重大度で監視・分類し、誤設定、弱い暗号化、古い依存関係といった問題をカテゴライズして、対処の優先順位付けを効果的に行います。
+* 見つかったリークや検出された脆弱性について[通知](setup.md#notifications)します。
 
-    アクティベート時に、使用中のメールアドレスのドメインのスキャンが即時に開始され、セールスチームとの交渉を進めながら利用できます。アクティベート後、対象範囲に追加のドメインを追加できます。
+## 検出される脆弱性の種類
 
-* すでにWallarmアカウントをお持ちの場合は、[sales@wallarm.com](mailto:sales@wallarm.com)にお問い合わせください。
+API Attack Surface Managementは以下を検出します:
 
-サブスクリプションがアクティブ化されると、Wallarm ConsoleのAASMの**API Attack Surface**または**Security Issues**セクション内で、ドメイン検出の設定とセキュリティ上の問題の検索を開始するために、**Configure**をクリックします。対象範囲にドメインを追加し、スキャン状況を確認してください。
+* GraphQLの誤設定
+* 情報露出（デバッグデータ、設定ファイル、ログ、ソースコード、バックアップ）
+* 機密性の高いAPIの露出（例: Prometheusのメトリクス、ステータスページ、システム/デバッグデータを公開するAPI）
+* Path traversal、SQLi、SSRF、XSSなどの最も広く見られるケース
+* リモート管理インターフェイスの露出（API Gatewayの管理インターフェイスを含む）
+* データベース管理インターフェイスの露出
+* SSL/TLSの誤設定
+* API仕様の露出
+* APIキー、PII（ユーザー名とパスワード）、認可トークン（Bearer/JWT）などを含むAPIリーク
+* 古いソフトウェアバージョンとそれに対応するCVE
+* 最も一般的なWebおよびAPI関連のCVE約2,000件
 
-![AASM - configuring scope](../images/api-attack-surface/aasm-scope.png)
+説明付きの全リストは[こちら](security-issues.md#list-of-detected-issues)にあります。
 
-Wallarmはすべてのサブドメインを一覧表示し、該当するセキュリティ上の問題を提示します。なお、ドメインは自動的に毎日再スキャンされ、新たに見つかったサブドメインは自動的に追加され、再スキャン時に検出されなかった以前のサブドメインは一覧に残ります。
+## 有効化とセットアップ
 
-**Configure** → **Status**にて、任意のドメインのスキャンを再開、一時停止、あるいは継続できます。
+API Attack Surface Managementの使用を開始するには、API[Attack Surface Managementのセットアップ](setup.md)に従って有効化と設定を行います。

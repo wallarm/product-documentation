@@ -1,86 +1,97 @@
-# Wallarmプラットフォーム概要
+[link-deployment-se]:           ../installation/security-edge/overview.md
+[link-deployment-hybrid]:       ../installation/supported-deployment-options.md
+[link-deployment-on-prem]:      ../installation/on-premise/overview.md
 
-今日のデジタル時代において、アプリケーション、特にAPIは増大する脅威に直面しています。従来のセキュリティ対策では、APIの脆弱性が見逃される場合や、導入に課題が生じる場合があります。Wallarmを使用すれば、クラウドネイティブ環境やオンプレミス環境に適したWebアプリケーションおよびAPIの保護を単一のプラットフォームで実現できます。
+# Wallarmプラットフォームの概要
 
-企業は、高度なアプリケーションとAPIセキュリティ、容易な導入、およびコストパフォーマンスの高さからWallarmを選びます。Wallarmは、優れたAPIディスカバリー、リスク管理、保護、テスト機能をクラウドネイティブのWAAPおよびAPIセキュリティ機能と組み合わせています。
+今日のデジタル世界では、AIの台頭に伴い、APIが直面する脅威が増大しています。従来型のセキュリティではAPIの脆弱性を見落としたり、導入が難しかったりすることがあります。Wallarmを使用すると、クラウドネイティブおよびオンプレミス環境全体でAPI保護とインベントリの可視化を一元的に提供する単一のプラットフォームを利用できます。
 
-![Diagram](../images/about-wallarm-waf/overview/wallarm-features.png)
+企業は、強化されたAPIセキュリティ、容易な導入、そして価値の高さからWallarmを選択します。高度なAPIセキュリティ機能とともに、APIディスカバリ、リスク管理、リアルタイム保護、テストを組み合わせています。
 
-## 発見
+![図](../images/about-wallarm-waf/overview/wallarm-features.png)
 
-保護するには対象を把握する必要があります。Wallarmはお客様の環境内のAPIを特定し、そのセキュリティリスクを評価する包括的なAPIディスカバリー機能を提供します。以下は、WallarmのAPIディスカバリーが実施する内容です:
+## 検出
 
-* [APIのエンドポイントおよびそのパラメータを検出](../api-discovery/overview.md)し、継続的なトラフィック分析によりAPIビューを更新します。
-* シャドウ、オーファン、ゾンビAPIを含む、不正なエンドポイントを[特定](../api-discovery/rogue-api.md)します。
-* 個人情報などの機微なデータを流出させる可能性のあるエンドポイントを検出します。
+保護するには、対象を把握する必要があります。Wallarmは、お客様の環境内のAPIを特定し、そのセキュリティリスクを評価するための包括的なAPIディスカバリ機能を提供します。WallarmのAPIディスカバリが行うことは次のとおりです:
+
+* [お客様のAPIエンドポイントとそのパラメータを検出](../api-discovery/overview.md)し、継続的なトラフィック解析によってAPIビューを継続的に更新します。
+* [不正なエンドポイントを特定](../api-discovery/rogue-api.md)し、Shadow API、Orphan API、Zombie APIも対象にします。
+* PIIなどの機微データを露出させる可能性があるエンドポイントを特定します。
 * 各エンドポイントのセキュリティリスクや脆弱性を[評価](../api-discovery/risk-score.md)し、リスクスコアを提供します。
 
-![APIディスカバリーで検出されたエンドポイント](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
+![API Discoveryで検出されたエンドポイント](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
 ## 保護
 
-Wallarmはディスカバリー機能を拡張し、トラフィック中のアプリケーションおよびAPI攻撃を検出・ブロックすることで、実質的な保護を実現します。Wallarm独自の検出技術は、高精度な結果を提供し、[OWASP Top 10](https://owasp.org/www-project-top-ten/)および[OWASP API Top 10](https://owasp.org/www-project-api-security/)の脆弱性に対する攻撃検出を含みます。以下は、Wallarmが保護を確実にする方法です:
+Wallarmは、トラフィック内のアプリケーションおよびAPIへの攻撃を検知してブロックすることで、ディスカバリを拡張し実効的な保護を実現します。Wallarmの独自検知技術は高い精度を提供し、[OWASP Top 10](https://owasp.org/www-project-top-ten/)および[OWASP API Top 10](https://owasp.org/www-project-api-security/)の脆弱性を悪用する攻撃の検知も含みます。Wallarmが保護を実現する方法は次のとおりです:
 
-* 攻撃を[inline](../installation/inline/overview.md)および[out-of-band](../installation/oob/overview.md)の両方で検出します。
-* ウェブベースおよびAPI固有の攻撃、たとえばコードインジェクション、リモートコード実行、ブルートフォース、BOLAなどの[さまざまな脅威](../attacks-vulns-list.md)に対抗します。
-* API固有の悪意あるボットの乱用を[特定](../api-abuse-prevention/overview.md)します。
-* カスタマイズ可能な[レート制限](../user-guides/rules/rate-limiting.md)により、Layer7のDoS攻撃に対応します。
-* 組み込みの対策を補完するために、お客様自身の脅威定義を設定して、[カスタム防御策](../user-guides/rules/regex-rule.md)を作成できるようにします。
-* 攻撃をお客様のシステムに存在する脆弱性と関連付け、重要な事象を明示します。
-* [クレデンシャルスタッフィング](../about-wallarm/credential-stuffing.md)の試みを検出します。
+* [インライン](../installation/inline/overview.md)および[アウトオブバンド](../installation/oob/overview.md)の両方で攻撃を検知します。
+* コードインジェクション、リモートコード実行、ブルートフォース、BOLAなど、WebベースからAPI特有のものまで、[多様な脅威](../attacks-vulns-list.md)に対処します。
+* [API特有の悪意あるボットによる悪用](../api-abuse-prevention/overview.md)を検知します。
+* カスタマイズ可能な[レート制限](../user-guides/rules/rate-limiting.md)により、レイヤ7のサービス拒否攻撃に対抗します。
+* 組み込み対策を補完するため、独自の脅威定義を設定して[カスタム防御](../user-guides/rules/regex-rule.md)を作成できます。
+* 攻撃をお客様のシステムの脆弱性とマッピングし、重大なインシデントを浮き彫りにします。
+* [クレデンシャルスタッフィングの試行](../about-wallarm/credential-stuffing.md)を検知します。
 
 ## 対応
 
-Wallarmは、セキュリティ脅威に効果的に対応するためのツールを提供し、詳細なデータ、広範な統合、及びブロック機能を備えています。まず、詳細な情報を提示することで、セキュリティアナリストがお客様の脅威の性質と深刻度を把握できるよう支援します。その後、お客様固有の対応策を調整し、脅威に対処し、関連システムへアラートを送信することが可能です。以下は、Wallarmがどのように支援するかです:
+Wallarmは、詳細なデータ、幅広い連携、ブロッキング機構を提供し、セキュリティ脅威へ効果的に対応するためのツールを提供します。まず詳細な情報を提示し、セキュリティアナリストが脅威の性質と深刻度を判断できるようにします。そのうえで、対応を調整し、脅威へ対処し、関連するシステムへアラートを送信できます。Wallarmが支援する内容は次のとおりです:
 
-* [詳細な攻撃検査](../user-guides/events/check-attack.md)により、エンコードされたリクエストの展開を含む、ヘッダーから本文に至るまで攻撃のあらゆる側面を明らかにします。
-* [ジオロケーションに基づく制御](../user-guides/ip-lists/overview.md)により、VPNやTorネットワークなどの疑わしいトラフィックソースをブロックします。
-* [攻撃ブロック対策](../admin-en/configure-wallarm-mode.md#available-filtration-modes)により、悪意ある活動がお客様のAPIに到達するのを防止します。
-* 最も一般的なセキュリティ、運用、開発ツールとの[統合](../user-guides/settings/integrations/integrations-intro.md)により、検出されたセキュリティ脅威に関するチケット、通知の作成や、データの提供が可能です。対応プラットフォームにはSlack、Sumo Logic、Splunk、Microsoft Sentinelなどが含まれます。
-* Wallarmの脆弱性検出で強調された緊急の問題に対する[バーチャルパッチ](../user-guides/rules/vpatch-rule.md)を提供します。
+* [攻撃の詳細調査](../user-guides/events/check-attack.md)。エンコードされたリクエストの展開を含み、ヘッダーからボディまで攻撃のあらゆる側面を詳細に示します。
+* VPNやTorネットワークなどの疑わしいトラフィックソースをブロックするための[ジオロケーションベースの制御](../user-guides/ip-lists/overview.md)。
+* 悪意のあるアクティビティがAPIに到達するのを防ぐための[攻撃ブロッキング手段](../admin-en/configure-wallarm-mode.md#available-filtration-modes)。
+* 検知されたセキュリティ脅威に関するデータの配信、チケットや通知の作成のために、広く利用されているセキュリティ/運用/開発ツールとの[連携](../user-guides/settings/integrations/integrations-intro.md)。対応プラットフォームにはSlack、Sumo Logic、Splunk、Microsoft Sentinelなどがあります。
+* Wallarmの脆弱性検出で明らかになった緊急の問題に対する[仮想パッチ](../user-guides/rules/vpatch-rule.md)。
 
-![攻撃が含まれるイベント](../images/about-wallarm-waf/overview/events-with-attacks.png)
+![イベント](../images/about-wallarm-waf/overview/events-with-attacks.png)
 
 ## テスト
 
-展開中のリスク管理は防御の第一線ですが、製品アプリケーションやAPIに存在するリスクを低減することが、インシデントを削減する最も効果的な方法です。Wallarmは、以下のテスト機能群を提供することで、アプリケーションおよびAPIのセキュリティ対策を完結させます:
+デプロイ後のリスクを管理することは第一の防衛線ですが、製品のアプリケーションとAPIが抱えるリスク自体を低減することが、インシデントを減らす最も効果的な方法です。Wallarmは、以下のテスト機能群を提供し、脆弱性リスクを見つけて排除することで、アプリケーションとAPIのセキュリティ対策を一連のサイクルとして完結させます:
 
-* パッシブなトラフィック分析により[脆弱性](../user-guides/vulnerabilities.md)を検出します。
-* 検出されたAPIに対して脆弱点を精査します。
-* 観測されたトラフィックから[動的にAPIセキュリティテスト](../vulnerability-detection/threat-replay-testing/overview.md)を作成します。
-* 公開リポジトリ上で露出しているAPIトークンをチェックします。[APIトークン露出のセキュリティ課題](../api-attack-surface/security-issues.md)も確認します。
+* パッシブトラフィック解析により[脆弱性を特定](../user-guides/vulnerabilities.md)します。
+* 特定されたAPIの弱点を検査します。
+* 観測されたトラフィックから[APIセキュリティテストを動的に生成](../vulnerability-detection/threat-replay-testing/overview.md)します。
+* 公開リポジトリに露出したAPIトークンを[チェック](../api-attack-surface/security-issues.md)します。
 
 ![脆弱性](../images/about-wallarm-waf/overview/vulnerabilities.png)
 
-## Wallarmの動作原理
+<a id="how-wallarm-works"></a>
+## Wallarmの仕組み
 
-Wallarmプラットフォームは主に、WallarmフィルタリングノードとWallarm Cloudの2つの主要コンポーネントで構成されています。
+Wallarmのプラットフォームは主に2つのコンポーネント、WallarmフィルタリングノードとWallarm Cloudで構成されています。
 
 ![アーキテクチャ図1](../images/about-wallarm-waf/overview/filtering-node-cloud.png)
 
 ### フィルタリングノード
 
-インターネットとお客様のAPIとの間に配置されるWallarmフィルタリングノードは、以下の機能を果たします:
+インターネットとお客様のAPIの間に配置されるWallarmフィルタリングノードは、次のことを行います:
 
-* 企業全体のネットワークトラフィックを分析し、悪意あるリクエストを軽減します。
+* 企業のネットワーク全体のトラフィックを解析し、悪意のあるリクエストを阻止します。
 * ネットワークトラフィックのメトリクスを収集し、Wallarm Cloudにアップロードします。
-* Wallarm Cloudで定義したリソース固有のセキュリティルールをダウンロードし、トラフィック分析時に適用します。
-* リクエスト内の機微なデータを検出し、お客様のインフラ内で安全に保持するとともに、Cloudや第三者サービスへの送信を防ぎます。
+* Wallarm Cloudで定義したリソース固有のセキュリティルールをダウンロードし、トラフィック解析時に適用します。
+* リクエスト内の機微データを検出し、そのデータがお客様のインフラ内に安全に留まり、第三者サービスであるWallarm Cloudに送信されないようにします。
 
-Wallarmフィルタリングノードは、お客様ご自身のネットワーク内に設置するか、[対応する展開オプション](../installation/supported-deployment-options.md)を通じてWallarm Security Edgeを選択できます。
+Wallarmフィルタリングノードは、[お客様自身のネットワーク](../installation/supported-deployment-options.md)内にセットアップすることも、[Wallarm Security Edge](../installation/security-edge/overview.md)を選択することもできます。
 
-### Cloud
+### クラウド
 
-Wallarm Cloudは以下の機能を提供します:
+Wallarm Cloudは次のことを行います:
 
-* フィルタリングノードがアップロードしたメトリクスを処理します。
-* カスタムのリソース固有セキュリティルールを作成します。
-* 企業の公開資産をスキャンし、脆弱性を検出します。
+* フィルタリングノードがアップロードするメトリクスを処理します。
+* リソース固有のカスタムセキュリティルールを生成します。
+* 企業の公開アセットをスキャンし、脆弱性を検出します。
 * フィルタリングノードから受け取ったトラフィックメトリクスに基づいてAPI構造を構築します。
-* Wallarm Console UIをホストし、Wallarmプラットフォームの操作と設定の指令センターとして、すべてのセキュリティ情報の総合的なビューを提供します。
+* Wallarmプラットフォームのナビゲーションと設定を行うためのコマンドセンターであるWallarm Console UIをホストし、あらゆるセキュリティインサイトを包括的に把握できるようにします。
 
-Wallarmは米国および欧州の両方でCloudインスタンスを提供しており、お客様のデータ保管のご希望や地域サービス運用の要件に合わせた最適な選択が可能です。
+Wallarmは米国と欧州の両方にクラウドインスタンスを提供しており、データ保管の方針や地域でのサービス運用要件を考慮して最適なリージョンを選択できます。
 
-[US Wallarm Cloudに登録する](https://us1.my.wallarm.com/signup)
+[US Wallarm Cloudでサインアップに進む](https://us1.my.wallarm.com/signup)
 
-[EU Wallarm Cloudに登録する](https://my.wallarm.com/signup)
+[EU Wallarm Cloudでサインアップに進む](https://my.wallarm.com/signup)
+
+## Wallarmが動作する場所
+
+上記の[説明した](#how-wallarm-works)Wallarmコンポーネント（フィルタリングノードとクラウド）は、次の3つの形態のいずれかでデプロイできます:
+
+--8<-- "../include/deployment-forms.md"

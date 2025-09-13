@@ -1,7 +1,7 @@
-設定を適用するには、WallarmインスタンスでNGINXを再起動してください:
+設定を反映するには、Wallarmインスタンス上でNGINXを再起動します:
 
 ``` bash
 sudo systemctl restart nginx
 ```
 
-各構成ファイルの変更は、適用するためにNGINXを再起動する必要があります。
+設定ファイルを変更した場合は、反映のためにNGINXを再起動する必要があります。

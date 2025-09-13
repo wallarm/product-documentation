@@ -1,11 +1,11 @@
 # Sidecar HelmチャートのWallarm固有の値
 
-本書は[Wallarm Sidecarのデプロイ](deployment.md)または[アップグレード][sidecar-upgrade-docs]時に変更可能なWallarm固有のHelmチャートの値について説明します。Wallarm固有およびその他のチャート値は、Sidecar Helmチャートのグローバル設定用です。
+このドキュメントでは、[Wallarm Sidecarのデプロイ](deployment.md)または[アップグレード][sidecar-upgrade-docs]の際に変更できる、Wallarm固有のHelmチャート値について説明します。Wallarm固有の値およびその他のチャート値は、Sidecar Helmチャートのグローバル構成に使用します。
 
 !!! info "グローバル設定とPodごとの設定の優先順位"
-    PodごとのannotationsはHelmチャートの値よりも[優先](customization.md#configuration-area)されます。
+    PodごとのアノテーションはHelmチャートの値よりも[優先されます](customization.md#configuration-area)。
 
-変更が必要な[デフォルトの`values.yaml`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml)内のWallarm固有の部分は、以下のようになっています:
+変更が必要になる可能性がある[デフォルトの`values.yaml`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml)のWallarm固有の部分は次のとおりです:
 
 ```yaml
 config:
@@ -44,13 +44,27 @@ config:
     logs:
       extended: false
       format: text
+
 postanalytics:
   external:
     enabled: false
     host: ""
     port: 3313
+  wstore:
+    config:
+      arena: "2.0"
+      serviceAddress: "[::]:3313"
+    ### TLS構成設定（任意）
+    tls:
+      enabled: false
+    #  certFile: "/root/test-tls-certs/server.crt"
+    #  keyFile: "/root/test-tls-certs/server.key"
+    #  caCertFile: "/root/test-tls-certs/ca.crt"
+    #  mutualTLS:
+    #    enabled: false
+    #    clientCACertFile: "/root/test-tls-certs/ca.crt"
   ...
-# カスタムadmission webhook証明書提供用のオプション部分
+# カスタムのadmission webhook証明書をプロビジョニングするための任意のセクション
 # controller:
 #  admissionWebhook:
 #    certManager:
@@ -64,60 +78,60 @@ postanalytics:
 
 ## config.wallarm.api.token
 
-フィルタリングノードのトークン値です。Wallarm APIにアクセスするために必須です。
+フィルタリングノードのトークン値です。Wallarm APIにアクセスするために必要です。
 
-トークンは以下の[種類][node-token-types]の1つを使用できます:
+トークンは次の[種類][node-token-types]のいずれかです:
 
-* **API token (recommended)** - UIの整理のために、動的にノードグループを追加・削除する必要がある場合や、セキュリティ向上のためにトークンのライフサイクルを管理したい場合に最適です。APIトークンを生成するには:
+* **APIトークン（推奨）** - UIの整理のためにノードグループを動的に追加/削除する必要がある場合、またはセキュリティ向上のためにトークンのライフサイクルを管理したい場合に最適です。APIトークンを生成するには:
 
     APIトークンを生成するには:
     
-    1. Wallarm Console → **Settings** → **API tokens**にアクセスし、[US Cloud](https://us1.my.wallarm.com/settings/api-tokens)または[EU Cloud](https://my.wallarm.com/settings/api-tokens)で行います。
-    1. **Deploy**ソースロールを持つAPIトークンを作成します。
-    1. ノードデプロイ時に生成されたトークンを使用し、`config.wallarm.api.nodeGroup`パラメータでグループ名を指定します。異なるAPIトークンを使用して複数のノードを1つのグループに追加できます。
-* **Node token** - 既に使用するノードグループが決まっている場合に適しています。
+    1. [US Cloud](https://us1.my.wallarm.com/settings/api-tokens)または[EU Cloud](https://my.wallarm.com/settings/api-tokens)のいずれかのWallarm Console → Settings → API tokensに移動します。
+    1. 使用タイプが「Node deployment/Deployment」のAPIトークンを作成します。
+    1. ノードのデプロイ時に、生成したトークンを使用し、`config.wallarm.api.nodeGroup`パラメータでグループ名を指定します。異なるAPIトークンを使用して複数のノードを1つのグループに追加できます。
+* **ノードトークン** - 使用するノードグループがすでに分かっている場合に適しています。
 
-    Nodeトークンを生成するには:
+    ノードトークンを生成するには:
     
-    1. Wallarm Console → **Nodes**にアクセスし、[US Cloud](https://us1.my.wallarm.com/nodes)または[EU Cloud](https://my.wallarm.com/nodes)で行います。
+    1. [US Cloud](https://us1.my.wallarm.com/nodes)または[EU Cloud](https://my.wallarm.com/nodes)のいずれかのWallarm Console → Nodesに移動します。
     1. ノードを作成し、ノードグループに名前を付けます。
-    1. ノードデプロイ時に、そのグループのトークンをノードごとに使用します。
+    1. ノードをデプロイする際、当該グループに含めたい各ノードで、そのグループのトークンを使用します。
 
-`config.wallarm.api.existingSecret.enabled: true`の場合、このパラメータは無視されます。
+このパラメータは、[`config.wallarm.api.existingSecret.enabled: true`](#configwallarmapiexistingsecret)の場合は無視されます。
 
 ## config.wallarm.api.host
 
-Wallarm APIエンドポイントです。以下のいずれかになります:
+Wallarm APIのエンドポイントです。次のいずれかを指定します:
 
-* [US cloud][us-cloud-docs]の場合は`us1.api.wallarm.com`
-* [EU cloud][eu-cloud-docs]の場合は`api.wallarm.com`（デフォルト）
+* `us1.api.wallarm.com` — [US cloud][us-cloud-docs]向け
+* `api.wallarm.com` — [EU cloud][eu-cloud-docs]向け（デフォルト）
 
 ## config.wallarm.api.nodeGroup
 
-新たにデプロイされるノードを追加するフィルタリングノードのグループ名を指定します。この形式でのノードグループ化は、**Deploy**ロールを持つAPIトークン（`config.wallarm.api.token`で渡される値）を使用してCloudにノードを作成・接続する場合にのみ利用可能です。
+新たにデプロイしたノードを追加するフィルタリングノードのグループ名を指定します。この方法でのノードのグループ化は、使用タイプが「Node deployment/Deployment」のAPIトークン（値は`config.wallarm.api.token`パラメータで渡します）を使用してCloudにノードを作成・接続する場合にのみ利用できます。
 
 **デフォルト値**: `defaultSidecarGroup`
 
-[**Podのannotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-node-group`.
+[**Podのアノテーション**](pod-annotations.md): `sidecar.wallarm.io/wallarm-node-group`.
 
 ## config.wallarm.api.existingSecret
 
-Helm chartバージョン4.4.4以降、KubernetesのシークレットからWallarmノードトークンを取得するためにこの構成ブロックを使用できます。別々のシークレット管理を行っている環境（例: external secrets operatorを使用）に有用です。
+Helmチャートバージョン4.4.4以降、この設定ブロックを使用してKubernetesのSecretからWallarmノードトークンの値を取得できます。外部のシークレット管理（例: external secretsオペレーターを使用している場合）を行う環境に有用です。
 
-WallarmノードトークンをK8sシークレットに格納し、Helmチャートに取り込むには:
+K8sのSecretにノードトークンを保存し、Helmチャートに取り込むには:
 
-1. Wallarmノードトークンを含むKubernetesシークレットを作成します:
+1. Wallarmノードトークンを使用してKubernetesのSecretを作成します:
 
     ```bash
     kubectl -n wallarm-sidecar create secret generic wallarm-api-token --from-literal=token=<WALLARM_NODE_TOKEN>
     ```
 
-    * デプロイ手順に変更を加えずに実施した場合、`wallarm-sidecar`はWallarm SidecarコントローラーのHelmリリース用に作成されたKubernetesネームスペースです。別のネームスペースを使用する場合は、名前を適宜置き換えてください。
-    * `wallarm-api-token`はKubernetesシークレット名です。
-    * `<WALLARM_NODE_TOKEN>`はWallarm Console UIからコピーしたWallarmノードトークン値です。
+    * デプロイ手順に従い変更を加えていない場合、`wallarm-sidecar`はWallarm Sidecarコントローラーを含むHelmリリース用に作成されたKubernetesのNamespaceです。別のNamespaceを使用している場合は名称を置き換えてください。
+    * `wallarm-api-token`はKubernetesのSecret名です。
+    * `<WALLARM_NODE_TOKEN>`はWallarm ConsoleのUIからコピーしたWallarmノードトークンの値です。
 
-    外部のシークレットオペレーターを使用する場合は、[該当のドキュメント](https://external-secrets.io)に従ってシークレットを作成してください。
-1. `values.yaml`に以下の構成を設定します:
+    外部のシークレットオペレーターを使用する場合は、[適切なドキュメントに従ってシークレットを作成](https://external-secrets.io)してください。
+1. `values.yaml`で次の構成を設定します:
 
     ```yaml
     config:
@@ -130,11 +144,11 @@ WallarmノードトークンをK8sシークレットに格納し、Helmチャー
             secretName: wallarm-api-token
     ```
 
-**デフォルト値**: `existingSecret.enabled: false`（HelmチャートはWallarmノードトークンを`config.wallarm.api.token`から取得します）。
+**デフォルト値**: `existingSecret.enabled: false`。この場合、Helmチャートは`config.wallarm.api.token`からWallarmノードトークンを取得します。
 
 ## config.wallarm.apiFirewall
 
-リリース4.10以降で利用可能な[API Specification Enforcement][api-spec-enforcement-docs]の設定を制御します。デフォルトでは有効になっており、以下の通りに設定されています。この機能を使用している場合、これらの値は変更せずにおくことを推奨します。
+リリース4.10から利用可能な[API Specification Enforcement][api-spec-enforcement-docs]の設定を制御します。デフォルトで有効で、以下のとおりに設定されています。この機能を使用している場合、これらの値は変更しないことを推奨します。
 
 ```yaml
 config:
@@ -149,167 +163,204 @@ config:
       maxRequestsPerConnection: 0
 ```
 
-[node 5.3.0][sidecar-5.3.0-changelog]以降、以下の説明が付いています（上記の例のデフォルト値を参照）:
+ノード5.3.0以降、以下が提供されています（上記の例のデフォルト値を参照してください）:
 
-| 設定項目 | 説明 |
+| 設定 | 説明 |
 | ------- | ----------- |
-| `readBufferSize` | リクエスト読み取り用の接続ごとのバッファサイズです。ヘッダーの最大サイズも制限されます。クライアントが数KB以上のRequestURIや数KB以上のヘッダー（例: 大きなCookie）を送信する場合は、このバッファを増加してください。 |
-| `writeBufferSize` | レスポンス書き込み用の接続ごとのバッファサイズです。 |
-| `maxRequestBodySize` | リクエストボディの最大サイズです。この制限を超えるリクエストボディはサーバが拒否します。 |
-| `disableKeepalive` | keep-alive接続を無効にします。`true`に設定すると、サーバは最初のレスポンス送信後、すべての着信接続を閉じます。 |
-| `maxConnectionsPerIp` | IPごとに許可される同時クライアント接続の最大数です。`0`は`無制限`を意味します。 |
-| `maxRequestsPerConnection` | 接続ごとに処理される最大リクエスト数です。最後のリクエスト後にサーバは接続を閉じ、最後のレスポンスに`Connection: close`ヘッダーが追加されます。`0`は`無制限`を意味します。 |
+| `readBufferSize` | 要求読み込みの接続ごとのバッファサイズです。これはヘッダーの最大サイズも制限します。クライアントが複数KBのRequestURIや複数KBのヘッダー（例: 大きなCookie）を送信する場合はこのバッファを増やしてください。 |
+| `writeBufferSize` | 応答書き込みの接続ごとのバッファサイズです。 |
+| `maxRequestBodySize` | 要求ボディの最大サイズです。この制限を超えるボディを持つ要求はサーバーが拒否します。 |
+| `disableKeepalive` | Keep-Alive接続を無効にします。このオプションが`true`に設定されている場合、サーバーはクライアントへの最初の応答送信後、すべての受信接続を閉じます。 |
+| `maxConnectionsPerIp` | IPごとに許可される同時クライアント接続の最大数です。`0` = `無制限`。 |
+| `maxRequestsPerConnection` | 接続あたりで処理される要求の最大数です。最後の要求後にサーバーは接続を閉じます。最後の応答には`Connection: close`ヘッダーが追加されます。`0` = `無制限`。 |
 
 ## config.wallarm.fallback
 
-デフォルトで`on`に設定されている場合、NGINXサービスは緊急モードに入ることが可能です。proton.dbまたはカスタムルールセットがWallarm Cloudからダウンロードできない場合（サービスが利用できない場合）、この設定によりWallarmモジュールは無効になり、NGINXを稼働状態に保ちます。
+値を`on`（デフォルト）にすると、NGINXサービスは緊急モードに入る能力を持ちます。Wallarm Cloudの利用不能によりproton.dbやカスタムルールセットをダウンロードできない場合、この設定はWallarmモジュールを無効にし、NGINXの動作を維持します。
 
-[**Podのannotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-fallback`.
+[**Podのアノテーション**](pod-annotations.md): `sidecar.wallarm.io/wallarm-fallback`.
 
 ## config.wallarm.mode
 
-グローバルな[トラフィックフィルトレーションモード][configure-wallarm-mode-docs]です。可能な値:
+グローバルな[トラフィックフィルタリングモード][configure-wallarm-mode-docs]です。指定可能な値:
 
 * `monitoring`（デフォルト）
 * `safe_blocking`
 * `block`
 * `off`
 
-[**Podのannotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-mode`.
+[**Podのアノテーション**](pod-annotations.md): `sidecar.wallarm.io/wallarm-mode`.
 
 ## config.wallarm.modeAllowOverride
 
-Cloud内の設定を通じて`wallarm_mode`の値を上書きする[機能の管理][filtration-mode-priorities-docs]です。可能な値:
+Cloudの設定経由で`wallarm_mode`値を[上書きできるかどうか][filtration-mode-priorities-docs]を管理します。指定可能な値:
 
 * `on`（デフォルト）
 * `off`
 * `strict`
 
-[**Podのannotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-mode-allow-override`.
+[**Podのアノテーション**](pod-annotations.md): `sidecar.wallarm.io/wallarm-mode-allow-override`.
 
 ## config.wallarm.enableLibDetection
 
-[libdetection][libdetection-docs]ライブラリを使用してSQL Injection攻撃を追加で検証するかどうかです。可能な値:
+[libdetection][libdetection-docs]ライブラリを使用してSQLインジェクション攻撃を追加で検証するかどうか。指定可能な値:
 
 * `on`（デフォルト）
 * `off`
 
-[**Podのannotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-enable-libdetection`.
+[**Podのアノテーション**](pod-annotations.md): `sidecar.wallarm.io/wallarm-enable-libdetection`.
 
 ## config.wallarm.parseResponse
 
-アプリケーションのレスポンスを攻撃検出のために解析するかどうかです。可能な値:
+アプリケーションの応答を攻撃検知のために解析するかどうか。指定可能な値:
 
 * `on`（デフォルト）
 * `off`
 
-レスポンス解析は、[パッシブ検出][passive-detection-docs]および[脅威再現テスト][active-threat-verification-docs]時の脆弱性検出に必要です。
+応答の解析は、[パッシブ検出][passive-detection-docs]および[脅威リプレイテスト][active-threat-verification-docs]における脆弱性検出に必要です。
 
-[**Podのannotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-parse-response`.
+[**Podのアノテーション**](pod-annotations.md): `sidecar.wallarm.io/wallarm-parse-response`.
 
 ## config.wallarm.aclExportEnable
 
-ノードからCloudへ、[denylisted][denylist-docs] IPからのリクエスト統計情報を送信する機能を`on`で有効、`off`で無効にします。
+denylistに登録された[IP][denylist-docs]からのリクエストに関する統計をノードからCloudへ送信することを`on`で有効化 / `off`で無効化します。
 
-* `config.wallarm.aclExportEnable: "on"`（デフォルト）の場合、denylisted IPからのリクエストに関する統計情報は**Attacks**セクションに[表示][denylist-view-events-docs]されます。
-* `config.wallarm.aclExportEnable: "off"`の場合、denylisted IPからのリクエストに関する統計情報は表示されません。
+* `config.wallarm.aclExportEnable: "on"`（デフォルト）の場合、denylistに登録されたIPからのリクエストに関する統計は**Attacks**セクションに[表示されます][denylist-view-events-docs]。
+* `config.wallarm.aclExportEnable: "off"`の場合、denylistに登録されたIPからのリクエストに関する統計は表示されません。
 
-[**Podのannotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-acl-export-enable`.
+[**Podのアノテーション**](pod-annotations.md): `sidecar.wallarm.io/wallarm-acl-export-enable`.
 
 ## config.wallarm.parseWebsocket
 
-WallarmはWebSocketsを完全にサポートします。デフォルトではWebSocketsのメッセージは攻撃解析されません。この機能を強制するには、API Securityの[サブスクリプションプラン][subscriptions-docs]をアクティベートし、この設定を使用してください。
+WallarmはWebSocketを完全にサポートしています。デフォルトでは、WebSocketのメッセージは攻撃解析されません。この機能を有効化するには、API Securityの[サブスクリプションプラン][subscriptions-docs]を有効にし、この設定を使用します。
 
-可能な値:
+指定可能な値:
 
 * `on`
 * `off`（デフォルト）
 
-[**Podのannotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-parse-websocket`.
+[**Podのアノテーション**](pod-annotations.md): `sidecar.wallarm.io/wallarm-parse-websocket`.
 
 ## config.wallarm.unpackResponse
 
-アプリケーションレスポンスで返される圧縮データを解凍するかどうかです:
+アプリケーションの応答で返される圧縮データを解凍するかどうか:
 
 * `on`（デフォルト）
 * `off`
 
-[**Podのannotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-unpack-response`.
+[**Podのアノテーション**](pod-annotations.md): `sidecar.wallarm.io/wallarm-unpack-response`.
 
 ## config.nginx.workerConnections
 
-NGINXワーカープロセスが開くことができる同時接続数の[最大値](http://nginx.org/en/docs/ngx_core_module.html#worker_connections)です。
+NGINXワーカープロセスが開くことができる[同時接続数](http://nginx.org/en/docs/ngx_core_module.html#worker_connections)の最大値です。
 
-**デフォルト値**: `4096`.
+**デフォルト値**: `4096`。
 
-[**Podのannotation**](pod-annotations.md): `sidecar.wallarm.io/nginx-worker-connections`.
+[**Podのアノテーション**](pod-annotations.md): `sidecar.wallarm.io/nginx-worker-connections`.
 
 ## config.nginx.workerProcesses
 
-[NGINXワーカープロセス数](http://nginx.org/en/docs/ngx_core_module.html#worker_processes)です。
+[NGINXワーカープロセスの数](http://nginx.org/en/docs/ngx_core_module.html#worker_processes)です。
 
-**デフォルト値**: `auto`（CPUコア数に応じてワーカー数が自動設定されます）。
+**デフォルト値**: `auto`。これは、ワーカー数がCPUコア数に設定されることを意味します。
 
-[**Podのannotation**](pod-annotations.md): `sidecar.wallarm.io/nginx-worker-processes`.
+[**Podのアノテーション**](pod-annotations.md): `sidecar.wallarm.io/nginx-worker-processes`.
 
 ## config.nginx.logs.extended
 
-NGINXにおいて拡張ログ記録を有効にします。拡張ログにはリクエスト時間、upstreamレスポンス時間、リクエスト長、接続の詳細等が含まれます。
+NGINXで拡張ログを有効にします。拡張ログには、リクエスト時間、アップストリーム応答時間、リクエスト長、接続の詳細などが含まれます。
 
-5.3.0リリース以降にサポートされています。
+リリース5.3.0以降でサポートされています。
 
-**デフォルト値**: `false`.
+**デフォルト値**: `false`。
 
 ## config.nginx.logs.format
 
-`config.nginx.logs.extended`が`true`に設定されている場合の拡張ログの形式を指定します。`text`および`json`形式がサポートされています。
+`config.nginx.logs.extended`が`true`に設定されている場合の拡張ログの形式を指定します。`text`と`json`形式をサポートします。
 
-5.3.0リリース以降にサポートされています。
+リリース5.3.0以降でサポートされています。
 
-**デフォルト値**: `text`.
+**デフォルト値**: `text`。
 
 ## postanalytics.external.enabled
 
-別ホストにインストールされたWallarmのpostanalytics（Tarantool）モジュールを使用するか、Sidecarソリューションのデプロイ時にインストールされるモジュールを使用するかを決定します。
+Sidecarソリューションのデプロイ時にインストールされたpostanalytics（wstore）モジュールを使用するか、外部ホストにインストールされたものを使用するかを決定します。
 
-この機能はHelmリリース4.6.4からサポートされています。
+この機能はHelmリリース4.6.4以降でサポートされています。
 
-可能な値:
+指定可能な値:
 
-* `false`（デフォルト）：Sidecarソリューションによってデプロイされたpostanalyticsモジュールを使用します。
-* `true`：有効にした場合、`postanalytics.external.host`および`postanalytics.external.port`に外部のpostanalyticsモジュールのアドレスを指定してください。
+* `false`（デフォルト）: Sidecarソリューションがデプロイしたpostanalyticsモジュールを使用します。
+* `true`: 有効にする場合、`postanalytics.external.host`および`postanalytics.external.port`に外部のpostanalyticsモジュールのアドレスを指定してください。
 
-`true`に設定した場合、Sidecarソリューションはpostanalyticsモジュールを実行せず、指定された`postanalytics.external.host`および`postanalytics.external.port`で接続を試みます。
+  `true`に設定した場合、Sidecarソリューションはpostanalyticsモジュールを実行せず、指定された`postanalytics.external.host`および`postanalytics.external.port`で到達できることを期待します。
 
 ## postanalytics.external.host
 
-別途インストールされたpostanalyticsモジュールのドメインまたはIPアドレスです。`postanalytics.external.enabled`が`true`に設定されている場合、必須項目です。
+別途インストールされたpostanalyticsモジュールのドメインまたはIPアドレスです。`postanalytics.external.enabled`が`true`に設定されている場合は必須です。
 
-この機能はHelmリリース4.6.4からサポートされています。
+この機能はHelmリリース4.6.4以降でサポートされています。
 
-例: `tarantool.domain.external`または`10.10.0.100`。
+例: `wstore.domain.external`または`10.10.0.100`。
 
-指定されたホストは、Sidecar HelmチャートがデプロイされているKubernetesクラスターからアクセス可能である必要があります。
+指定したホストには、Sidecar HelmチャートをデプロイしているKubernetesクラスターから到達できる必要があります。
 
 ## postanalytics.external.port
 
-Wallarmのpostanalyticsモジュールが稼働するTCPポートです。デフォルトでは、Sidecarソリューションがこのポート（3313）でモジュールをデプロイするため、ポート3313を使用します。
+Wallarm postanalyticsモジュールが稼働しているTCPポートです。デフォルトでは、Sidecarソリューションがこのポートにモジュールをデプロイするため3313ポートを使用します。
 
-`postanalytics.external.enabled`が`true`に設定されている場合、外部ホスト上でモジュールが稼働しているポートを指定してください。
+`postanalytics.external.enabled`が`true`に設定されている場合、指定した外部ホストでモジュールが稼働しているポートを指定してください。
+
+## postanalytics.wstore.config.serviceAddress
+
+**wstore**が受信接続を受け付けるアドレスとポートを指定します。
+
+リリース6.3.0以降でサポートされています。
+
+**デフォルト値**: `[::]:3313` - すべてのIPv4およびIPv6インターフェースの3313番ポートで待ち受けます。これは6.3.0以前のバージョンのデフォルト動作でもありました。
+
+## postanalytics.wstore.tls
+
+postanalyticsモジュールへの安全な接続を可能にするTLSおよび相互TLS（mTLS）の設定を行います（任意）:
+
+```yaml
+config:
+  wstore:
+    tls:
+      enabled: false
+    #   certFile: "/root/test-tls-certs/server.crt"
+    #   keyFile: "/root/test-tls-certs/server.key"
+    #   caCertFile: "/root/test-tls-certs/ca.crt"
+    #   mutualTLS:
+    #     enabled: false
+    #     clientCACertFile: "/root/test-tls-certs/ca.crt"
+
+```
+
+リリース6.2.0以降でサポートされています。
+
+| パラメータ | 説明 | 必須か |
+| --------- | ----------- | --------- |
+| `enabled` | postanalyticsモジュールへの接続でSSL/TLSを有効または無効にします。デフォルトは`false`（無効）です。 | はい |
+| `certFile` | フィルタリングノードがpostanalyticsモジュールへのSSL/TLS接続を確立する際、自身を認証するために使用するクライアント証明書のパスを指定します。 | 「`mutualTLS.enabled`」が`true`の場合は必須 |
+| `keyFile` | `certFile`で指定したクライアント証明書に対応する秘密鍵のパスを指定します。 | 「`mutualTLS.enabled`」が`true`の場合は必須 |
+| `caCertFile` | postanalyticsモジュールが提示するTLS証明書を検証するために使用する信頼された認証局（CA）証明書のパスを指定します。 | カスタムCAを使用する場合は必須 |
+| `mutualTLS.enabled` | 相互TLS（mTLS）を有効にします。フィルタリングノードとpostanalyticsモジュールの双方が証明書により相互の正当性を検証します。デフォルトは`false`（無効）です。 | いいえ |
+| `mutualTLS.clientCACertFile` | フィルタリングノードが提示するTLS証明書を検証するために使用する信頼された認証局（CA）証明書のパスを指定します。 | カスタムCAを使用する場合は必須 |
 
 ## controller.admissionWebhook.certManager.enabled
 
-既定の[`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen)ではなく、admission webhook証明書の生成に[`cert-manager`](https://cert-manager.io/)を使用するかどうかです。リリース4.10.7以降でサポートされています。
+デフォルトの[`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen)の代わりに[`cert-manager`](https://cert-manager.io/)を使用してadmission webhookの証明書を生成するかどうか。リリース4.10.7以降でサポートされています
 
-**デフォルト値**: `false`.
+**デフォルト値**: `false`。
 
 ## controller.admissionWebhook.secret.enabled
 
-既定の[`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen)ではなく、admission webhook用の証明書を手動でアップロードするかどうかです。リリース4.10.7以降でサポートされています。
+デフォルトの[`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen)を使用する代わりに、admission webhook用の証明書を手動でアップロードするかどうか。リリース4.10.7以降でサポートされています。
 
-**デフォルト値**: `false`.
+**デフォルト値**: `false`。
 
-`true`に設定した場合、base64エンコードされたCA証明書、サーバ証明書、および秘密鍵を指定してください。例:
+`true`に設定した場合、base64でエンコードされたCA証明書、サーバー証明書、および秘密鍵を指定します。例:
 
 ```yaml
 controller:

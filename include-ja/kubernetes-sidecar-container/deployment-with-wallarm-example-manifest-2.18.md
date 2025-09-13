@@ -13,40 +13,40 @@ spec:
         app: myapp
     spec:
       containers:
-        # Wallarm要素: Wallarmサイドカーコンテナの定義
+        # Wallarm要素: Wallarmサイドカーコンテナの定義です。
         - name: wallarm
           image: wallarm/node:2.18.1-5
           imagePullPolicy: Always
           env:
-          # Wallarm APIエンドポイント:
-          # EU Cloudの場合は"api.wallarm.com"
-          # US Cloudの場合は"us1.api.wallarm.com"
+          # WallarmのAPIエンドポイントです: 
+          # "api.wallarm.com" はEU Cloudの場合です。
+          # "us1.api.wallarm.com" はUS Cloudの場合です。
           - name: WALLARM_API_HOST
             value: "api.wallarm.com"
-          # Deployロールのユーザー名
+          # Deployロールを持つユーザーのユーザー名です。
           - name: DEPLOY_USER
             value: "username"
-          # Deployロールのパスワード
+          # Deployロールを持つユーザーのパスワードです。
           - name: DEPLOY_PASSWORD
             value: "password"
           - name: DEPLOY_FORCE
             value: "true"
-          # IPブロッキング機能を有効にするかどうか
+          # IPブロック機能を有効にするかどうかです。
           - name: WALLARM_ACL_ENABLE
             value: "true"
-          # リクエスト分析データ用のメモリ容量（GB単位）
+          # リクエスト分析データ用のメモリ量(GB)です 
           - name: TARANTOOL_MEMORY_GB
             value: "2"
           ports:
           - name: http
-            # Wallarmサイドカーコンテナがリクエストを受け付けるポート
-            # Serviceオブジェクトから
+            # Wallarmサイドカーコンテナがリクエストを受け付けるポートです 
+            # これらのリクエストはServiceオブジェクトから送られます。
             containerPort: 80
           volumeMounts:	
           - mountPath: /etc/nginx/sites-enabled	
             readOnly: true	
             name: wallarm-nginx-conf
-        # メインアプリコンテナの定義
+        # メインアプリケーションコンテナの定義です。
         - name: myapp
           image: <Image>
           resources:
@@ -54,10 +54,10 @@ spec:
               memory: "128Mi"
               cpu: "500m"
           ports:
-          # アプリケーションコンテナが受け付ける着信リクエストのポート
+          # アプリケーションコンテナが受信リクエストを受け付けるポートです。
           - containerPort: 8080
       volumes:
-      # Wallarm要素: wallarm-nginx-confボリュームの定義
+      # Wallarm要素: wallarm-nginx-confボリュームの定義です。
       - name: wallarm-nginx-conf
         configMap:
           name: wallarm-sidecar-nginx-conf

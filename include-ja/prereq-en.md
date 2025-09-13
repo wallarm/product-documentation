@@ -1,5 +1,5 @@
-Wallarmインストールの前提条件:
+Wallarmのインストールの前提条件:
 
-* 対応するオペレーティングシステムです。
-* ルートアクセスが必要です。
-* [US](https://us1.my.wallarm.com)または[EU](https://my.wallarm.com)クラウドのWallarmポータルにおけるWallarmアカウントが必要です。
+* サポート対象のオペレーティングシステムが必要です。
+* root権限が必要です。
+* Wallarmポータルの[米国](https://us1.my.wallarm.com)または[欧州](https://my.wallarm.com)クラウドのWallarmアカウントが必要です。

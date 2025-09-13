@@ -1,19 +1,19 @@
-既に統合カードで設定済みの通知に加えて、Wallarmのトリガーは通知用の追加イベントを選択可能です:
+インテグレーションカードで既に設定した通知に加えて、Wallarmのトリガーでは通知対象にする追加のイベントを選択できます:
 
-* 指定された時間間隔（日、時など）あたりの[攻撃](../../../glossary-en.md#attack)、[ヒット](../../../glossary-en.md#hit)またはインシデントの数が設定された数を超える
+* 時間間隔（例：日、時間など）ごとの[攻撃](../../../glossary-en.md#attack)、[ヒット](../../../glossary-en.md#hit)またはインシデントの件数が設定した数を超えたときです
 
-    !!! info "カウントされないもの"
-        * 攻撃の場合:
-            * [カスタム正規表現](../../../user-guides/rules/regex-rule.md)に基づく実験的攻撃
-        * ヒットの場合:
-            * [カスタム正規表現](../../../user-guides/rules/regex-rule.md)に基づく実験的ヒット
-            * [サンプル](../../../user-guides/events/analyze-attack.md#sampling-of-hits)に保存されなかったヒット
+    !!! info "カウント対象外"
+        * 攻撃の場合：
+            * [カスタム正規表現](../../../user-guides/rules/regex-rule.md)に基づく実験的な攻撃。
+        * ヒットの場合：
+            * [カスタム正規表現](../../../user-guides/rules/regex-rule.md)に基づく実験的なヒット。
+            * [サンプル](../../../user-guides/events/analyze-attack.md#sampling-of-hits)に保存されていないヒット。
 
-* [APIの変更](../../../api-discovery/track-changes.md)が発生する
-* IPアドレスが[denylisted](../../../user-guides/ip-lists/overview.md)された
-* 新しい[rogue API](../../../api-discovery/rogue-api.md)（shadow、orphan、zombie）が検出された
-* 会社アカウントに新しいユーザーが追加された
+* [APIの変更](../../../api-discovery/track-changes.md)が発生したときです
+* IPアドレスが[denylistに追加された](../../../user-guides/ip-lists/overview.md)ときです
+* 新しい[ローグAPI](../../../api-discovery/rogue-api.md)（shadow、orphan、zombie）が検出されたときです
+* 会社アカウントに新しいユーザーが追加されたときです
 
-条件の詳細設定のために、１つ以上のフィルタを追加できます。条件とフィルタが設定され次第、通知を送信するための統合を選択してください。複数の統合を同時に選択できます。
+条件を詳細化するために、1つ以上のフィルターを追加できます。条件とフィルターを設定したら、選択したアラートの送信に使用するインテグレーションを選択します。同時に複数のインテグレーションを選択できます。
 
-![統合の選択](../../../images/user-guides/triggers/select-integration.png)
+![インテグレーションの選択](../../../images/user-guides/triggers/select-integration.png)

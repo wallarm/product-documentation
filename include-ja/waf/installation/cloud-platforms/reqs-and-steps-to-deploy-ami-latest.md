@@ -1,101 +1,105 @@
 ## 要件
 
-* AWSアカウントが必要です
-* AWS EC2やSecurity Groupの基本知識が必要です
-* Wallarmノードの展開に特定のリージョン制限はなく、任意のAWSリージョンを使用できます
-* Wallarm Consoleの[US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)において、**Administrator**ロールが割り当てられたアカウントへのアクセスと二要素認証が無効になっている必要があります
-* US Wallarm Cloudで作業する場合は `https://us1.api.wallarm.com:444`、EU Wallarm Cloudで作業する場合は `https://api.wallarm.com:444` へのアクセスが必要です。アクセスをプロキシサーバ経由でのみ構成できる場合は、[手順][wallarm-api-via-proxy]に従ってください
-* 攻撃検知ルールの更新と[API仕様書][api-spec-enforcement-docs]のダウンロード、ならびに[allowlisted, denylisted, or graylisted][ip-lists-docs]国、リージョン、またはデータセンターに対する正確なIPの取得のため、以下のIPアドレスへのアクセスが必要です
+* AWSアカウントが必要です。
+* AWS EC2とSecurity Groupsの理解が必要です。
+* 任意のAWSリージョンを使用できます。Wallarmノードのデプロイにリージョンの特別な制限はありません。
+
+    Wallarmは単一Availability Zone(AZ)および複数Availability Zone構成の両方をサポートします。マルチAZ構成では、Wallarm Nodesを別々のAvailability Zoneで起動し、高可用性のためにLoad Balancerの背後に配置できます。
+* [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarm Consoleで**Administrator**ロールを持つアカウントへのアクセスが必要です。
+* US Wallarm Cloudで作業する場合は`https://us1.api.wallarm.com:444`に、EU Wallarm Cloudで作業する場合は`https://api.wallarm.com:444`にアクセスできる必要があります。アクセスをプロキシサーバー経由でのみ構成できる場合は、[手順][wallarm-api-via-proxy]を使用してください。
+* 以下のIPアドレスへのアクセスが必要です。これは、攻撃検出ルールと[API仕様][api-spec-enforcement-docs]の更新をダウンロードし、また[allowlisted, denylisted, or graylisted][ip-lists-docs]の国・地域・データセンターの正確なIPを取得するために必要です。
 
     --8<-- "../include/wallarm-cloud-ips.md"
-* Wallarmインスタンス上で全てのコマンドをスーパーユーザー（例: `root`）として実行する必要があります
+* Wallarmインスタンス上で、すべてのコマンドをスーパーユーザー（例:`root`）として実行する必要があります。
 
 ## 1. AWSでSSHキーのペアを作成する
 
-デプロイ中は、SSHを使用して仮想マシンに接続する必要があります。Amazon EC2では、インスタンスへの接続に使用できる公開鍵と秘密鍵のペアを作成できます。
+デプロイの過程で、SSHで仮想マシンに接続する必要があります。Amazon EC2では、インスタンスへの接続に使用できる公開鍵と秘密鍵の名前付きSSHキー・ペアを作成できます。
 
-キーペアを作成するには:
+キー・ペアを作成するには:
 
 1. Amazon EC2ダッシュボードの**Key pairs**タブに移動します。
 2. **Create Key Pair**ボタンをクリックします。
-3. キーペア名を入力し、**Create**ボタンをクリックします。
+3. キー・ペア名を入力し、**Create**ボタンをクリックします。
 
-PEM形式の秘密SSHキーが自動的にダウンロードされます。今後、作成したインスタンスに接続するため、このキーを保存しておいてください。
+PEM形式の秘密SSHキーのダウンロードが自動的に開始されます。今後、作成したインスタンスに接続するためにこのキーを保存してください。
 
-SSHキーの作成に関する詳細情報については、[AWS documentation][link-ssh-keys]をご参照ください。
+SSHキーの作成に関する詳細は、[AWSドキュメント][link-ssh-keys]を参照してください。
 
-## 2. セキュリティグループの作成
+## 2. セキュリティグループを作成する
 
-セキュリティグループは、仮想マシンに対する許可された受信および送信接続を定義します。最終的な接続リストは、保護するアプリケーションによって決まります（例: TCP/80およびTCP/443ポートへの全ての受信接続を許可するなど）。
+セキュリティグループは、仮想マシンに対する受信および送信接続の許可・禁止を定義します。最終的な接続のリストは保護対象のアプリケーションに依存します（例: TCP/80およびTCP/443ポートへのすべての受信接続を許可するなど）。
 
-フィルタリングノード用にセキュリティグループを作成するには:
+Wallarm AMIは最小限の権限セットで動作するように設計されています。インスタンスをデプロイする際は、最小権限の原則に基づいてIAMロールを割り当て、ノードの動作に必要なアクセスのみを付与するようにセキュリティグループを構成することを推奨します。これはAWSのセキュリティベストプラクティスに沿うものです。
+
+フィルタリングノード用のセキュリティグループを作成するには:
 
 1. Amazon EC2ダッシュボードの**Security Groups**タブに移動し、**Create Security Group**ボタンをクリックします。
-2. 表示されるダイアログウィンドウにセキュリティグループ名と任意の説明を入力します。
+2. 表示されるダイアログで、セキュリティグループ名と任意の説明を入力します。
 3. 必要なVPCを選択します。
-4. **Inbound**および**Outbound**タブで受信および送信接続のルールを設定します。
+4. **Inbound**および**Outbound**タブで、受信および送信の接続ルールを構成します。
 5. **Create**ボタンをクリックしてセキュリティグループを作成します。
 
 ![セキュリティグループの作成][img-create-sg]
 
 !!! warning "セキュリティグループからの送信接続のルール"
-    セキュリティグループを作成する際、デフォルトではすべての送信接続が許可されています。フィルタリングノードの送信接続を制限する場合は、該当ノードにWallarm APIサーバーへのアクセスが許可されていることを確認してください。利用するWallarm Cloudによって、選択するWallarm APIサーバーは以下の通りです：
+    セキュリティグループを作成する際、送信接続はデフォルトで全許可です。フィルタリングノードからの送信接続を制限する場合は、Wallarm APIサーバーへのアクセスが許可されていることを必ず確認してください。どのWallarm APIサーバーにアクセスするかは、使用しているWallarm Cloudに依存します。
 
-    * US Cloudを使用する場合、ノードは `us1.api.wallarm.com` へのアクセスが許可されている必要があります。
-    * EU Cloudを使用する場合、ノードは `api.wallarm.com` へのアクセスが許可されている必要があります。
+    *   US Cloudを使用している場合、ノードには`us1.api.wallarm.com`へのアクセスを許可する必要があります。
+    *   EU Cloudを使用している場合、ノードには`api.wallarm.com`へのアクセスを許可する必要があります。
     
-    フィルタリングノードは正しく動作するためにWallarm APIサーバーへのアクセスが必要です。
+    フィルタリングノードが正しく動作するためには、Wallarm APIサーバーへのアクセスが必要です。
 
-セキュリティグループの作成に関する詳細情報は、[AWS documentation][link-sg]をご参照ください。
+セキュリティグループの作成に関する詳細は、[AWSドキュメント][link-sg]を参照してください。
 
-## 3. Wallarmノードインスタンスの起動
+## 3. Wallarmノードインスタンスを起動する
 
-Wallarmのフィルタリングノードを含むインスタンスを起動するには、この[リンク](https://aws.amazon.com/marketplace/pp/B073VRFXSD)にアクセスし、フィルタリングノードをサブスクライブしてください。
+Wallarmフィルタリングノードを含むインスタンスを起動するには、この[リンク](https://aws.amazon.com/marketplace/pp/B073VRFXSD)に移動し、フィルタリングノードをサブスクライブしてください。
 
-インスタンス作成時には、[以前に作成した][anchor1]セキュリティグループを次の手順に従って指定します:
+インスタンスを作成する際は、次の手順で[以前に作成した][anchor1]セキュリティグループを指定する必要があります:
 
-1. Launch Instance Wizardで作業中に、**6. Configure Security Group**タブをクリックしてインスタンス起動ステップに進みます。
-2. **Assign a security group**設定において、**Select an existing security group**オプションを選択します。
-3. 表示されるリストからセキュリティグループを選択します。
+1. Launch Instance Wizardの操作中に、該当するタブをクリックしてインスタンス起動手順の**6. Configure Security Group**に進みます。
+2. **Assign a security group**設定で**Select an existing security group**オプションを選択します。
+3. 表示されるリストから該当のセキュリティグループを選択します。
 
-必要なインスタンス設定を全て指定した後、**Review and Launch**ボタンをクリックしてインスタンスが正しく構成されていることを確認し、**Launch**ボタンをクリックします。
+必要なインスタンス設定をすべて指定したら、**Review and Launch**ボタンをクリックし、インスタンスが正しく構成されていることを確認してから**Launch**ボタンをクリックします。
 
-表示されるウィンドウで、[以前に作成した][anchor2]キーペアを以下の手順で指定します:
+表示されるウィンドウで、次の操作に従って[以前に作成した][anchor2]キー・ペアを指定します:
 
-1. 最初のドロップダウンリストで**Choose an existing key pair**オプションを選択します。
-2. 次のドロップダウンリストでキーペアの名前を選択します。
-3. 2番目のドロップダウンリストで指定したキーペアのPEM形式の秘密鍵にアクセスできることを確認し、チェックボックスにチェックを入れます。
+1. 1つ目のドロップダウンリストで**Choose an existing key pair**オプションを選択します。
+2. 2つ目のドロップダウンリストでキー・ペアの名前を選択します。
+3. 2つ目のドロップダウンリストで指定したキー・ペアのPEM形式の秘密鍵にアクセスできることを確認し、その旨を示すチェックボックスにチェックを入れます。
 4. **Launch Instances**ボタンをクリックします。
 
-インスタンスが事前インストールされたフィルタリングノードとともに起動されます。
+フィルタリングノードがプリインストールされた状態でインスタンスが起動します。
 
-AWSでのインスタンス起動に関する詳細情報は、[AWS documentation][link-launch-instance]をご参照ください。
+AWSでのインスタンス起動に関する詳細は、[AWSドキュメント][link-launch-instance]を参照してください。
 
-## 4. SSHを使用してフィルタリングノードインスタンスに接続する
+## 4. SSHでフィルタリングノードインスタンスに接続する
 
-SSHを使用してインスタンスに接続する方法の詳細情報については、[AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)をご参照ください。
+SSHでインスタンスに接続する方法の詳細は、[AWSドキュメント](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)を参照してください。
 
-`admin`ユーザー名を使用してインスタンスに接続する必要があります。
+インスタンスに接続するには、ユーザー名として`admin`を使用する必要があります。
 
-!!! info "SSH経由での接続に鍵を使用する"
-    以前に[作成した][anchor2]PEM形式の秘密鍵を使用して、SSH経由でインスタンスに接続してください。これは、インスタンス作成時に指定したSSHキーペアの秘密鍵である必要があります。
+!!! info "SSH接続にキーを使用する"
+    SSHでインスタンスに接続するには、[前に作成した][anchor2]PEM形式の秘密鍵を使用してください。これは、インスタンス作成時に指定したSSHキー・ペアの秘密鍵である必要があります。
 
-## 5. Wallarm Cloudにインスタンスを接続するためのトークンを生成する
+## 5. インスタンスをWallarm Cloudに接続するためのトークンを生成する
 
-ローカルのWallarmフィルタリングノードは、[適切な種類][wallarm-token-types]のWallarmトークンを使用してWallarm Cloudに接続する必要があります。APIトークンを使用すると、Wallarm Console UIでノードグループを作成でき、ノードインスタンスを効果的に管理できます。
+ローカルのWallarmフィルタリングノードは、[適切な種類][wallarm-token-types]のWallarmトークンを使用してWallarm Cloudに接続する必要があります。API tokenを使用すると、Wallarm Console UIでノードグループを作成でき、ノードインスタンスを効率的に整理できます。
 
-![グループ化されたノード][img-grouped-nodes]
+![ノードのグループ化][img-grouped-nodes]
 
-トークンを以下の手順で生成します:
+以下の手順でトークンを生成します:
 
-=== "API token"
+=== "APIトークン"
 
-    1. Wallarm Console → **Settings** → **API tokens**にアクセスします（[US Cloud](https://us1.my.wallarm.com/settings/api-tokens)または[EU Cloud](https://my.wallarm.com/settings/api-tokens)）。
-    2. `Deploy`ソースロールのAPIトークンを探すか作成します。
-    3. このトークンをコピーします。
-=== "Node token"
+    1. [US Cloud](https://us1.my.wallarm.com/settings/api-tokens)または[EU Cloud](https://my.wallarm.com/settings/api-tokens)のWallarm Console → **Settings** → **API tokens**を開きます。
+    1. 使用タイプが`Node deployment/Deployment`のAPI tokenを新規作成するか、既存のものを選択します。
+    1. このトークンをコピーします。
+=== "ノードトークン"
 
-    1. Wallarm Console → **Nodes**にアクセスします（[US Cloud](https://us1.my.wallarm.com/nodes)または[EU Cloud](https://my.wallarm.com/nodes)）。
-    2. 次のいずれかを実行します: 
-        * **Wallarm node**タイプのノードを作成し、生成されたトークンをコピーします。
-        * 既存のノードグループを使用する場合、ノードのメニューから**Copy token**を選択してトークンをコピーします。
+    1. [US Cloud](https://us1.my.wallarm.com/nodes)または[EU Cloud](https://my.wallarm.com/nodes)のWallarm Console → **Nodes**を開きます。
+    1. 次のいずれかを実行します: 
+        * タイプが**Wallarm node**のノードを作成し、生成されたトークンをコピーします。
+        * 既存のノードグループを使用する場合、ノードのメニュー → **Copy token**でトークンをコピーします。

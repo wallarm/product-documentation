@@ -1,92 +1,121 @@
-```
-all-in-oneスクリプトをダウンロードしたら、次のコマンドでヘルプをご確認ください:
+オールインワンスクリプトをダウンロードしたら、次のコマンドでヘルプを表示できます:
 
 ```
-sudo sh ./wallarm-5.3.0.x86_64-glibc.sh -- -h
+sudo sh ./wallarm-6.4.1.x86_64-glibc.sh -- -h
 ```
 
-実行すると、以下の出力が表示されます:
+次の出力になります:
 
 ```
 ...
 Usage: setup.sh [options]... [arguments]... [filtering/postanalytics]
 
 OPTION                      DESCRIPTION
--b, --batch                 バッチモード、非対話型インストールです。
-    --install-only          バッチモードでall-in-oneインストーラの最初の段階を開始します。ファイルやバイナリを含む必須設定をコピーし、クラウドへの登録とアクティベーションをバイパスしてノードインストール用にNGINXを設定します。--batchが必要です。
-    --skip-ngx-config       バッチモードの--install-only段階で発生する自動NGINX設定変更を回避します。後に手動で調整を希望するユーザーに適しています。--install-onlyと併用する場合、NGINX設定を変更することなく必須設定のみをコピーします。--batchが必要です。
-    --register-only         バッチモードでall-in-oneインストーラの第二段階を開始し、ノードをCloudに登録しサービスを起動してセットアップを完了します。--batchが必要です。
--t, --token TOKEN           ノードトークン、バッチモードで必須です。
--c, --cloud CLOUD           Wallarm Cloud。USまたはEUのいずれかで、デフォルトはEUです。バッチモードでのみ使用されます。
--H, --host HOST             Wallarm APIアドレス。例として、api.wallarm.comまたはus1.api.wallarm.comがあり、バッチモードでのみ使用されます。
--P, --port PORT             Wallarm APIポート。例として、443があります。
-    --no-ssl                Wallarm APIアクセス時にSSLを無効にします。
-    --no-verify             SSL証明書の検証を無効にします。
--f, --force                 同じ名前のノードが存在する場合、新しいインスタンスを作成します。
+-b, --batch                 Batch mode, non-interactive installation.
+    --install-only          Initiates the first stage of the all-in-one installer in batch mode. Copies essential configurations, including files and binaries, and sets up NGINX for node installation, bypassing Cloud registration and activation. Requires --batch.
+    --skip-ngx-config       Avoids automatic NGINX configuration changes that occur during the --install-only stage in batch mode, suitable for users who prefer manual adjustments later. When used with --install-only, it ensures only essential configurations are copied without altering NGINX settings. Requires --batch.
+    --register-only         Initiates the second stage of the all-in-one installer in batch mode, completing the setup by registering the node in the Cloud and starting its service. Requires --batch.
+-t, --token TOKEN           Node token, required in a batch mode.
+-c, --cloud CLOUD           Wallarm Cloud, one of US/EU, default is EU, only used in a batch mode.
+-H, --host HOST             Wallarm API address, for example, api.wallarm.com or us1.api.wallarm.com, only used in a batch mode.
+-P, --port PORT             Wallarm API pot, for example, 443.
+    --no-ssl                Disable SSL for Wallarm API access.
+    --no-verify             Disable SSL certificates verification.
+-f, --force                 If there is a node with the same name, create a new instance.
 -h, --help
     --version
 ```
 
 ### バッチモード
 
-`--batch`オプションを指定すると、**バッチ（非対話型）**モードが有効となり、スクリプトは`--token`および`--cloud`フラグ、必要に応じて`WALLARM_LABELS`環境変数で設定オプションを指定する必要があります。このモードでは、通常モードのようにステップバイステップでユーザーにデータ入力を促すことはなく、明示的なコマンドによる指示が必要です。
+`--batch`オプションはバッチ(非対話)モードを有効にします。このモードでは、必要に応じて`--token`と`--cloud`フラグ、さらに環境変数`WALLARM_LABELS`で設定値を指定します。デフォルトモードのように対話的に入力を促されることはなく、明示的なコマンド指定が必要です。
 
-以下は、スクリプトが既に[ダウンロード済み][download-aio-step]である前提で、ノードインストール時にバッチモードで実行するコマンドの例です:
+以下は、ノードをインストールするためにバッチモードでスクリプトを実行するコマンド例です。スクリプトはすでに[ダウンロード済み][download-aio-step]であると仮定します:
 
 === "US Cloud"
     ```bash
     # x86_64版を使用する場合:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.x86_64-glibc.sh -- --batch -t <TOKEN> -c US
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.4.1.x86_64-glibc.sh -- --batch -t <TOKEN> -c US
 
     # ARM64版を使用する場合:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.aarch64-glibc.sh -- --batch -t <TOKEN> -c US
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.4.1.aarch64-glibc.sh -- --batch -t <TOKEN> -c US
     ```
 === "EU Cloud"
     ```bash
     # x86_64版を使用する場合:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.x86_64-glibc.sh -- --batch -t <TOKEN>
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.4.1.x86_64-glibc.sh -- --batch -t <TOKEN>
 
     # ARM64版を使用する場合:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.aarch64-glibc.sh -- --batch -t <TOKEN>
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.4.1.aarch64-glibc.sh -- --batch -t <TOKEN>
     ```
 
 ### ノードインストール段階の個別実行
 
-クラウドインフラ用のall-in-oneインストーラを使用して独自のマシンイメージを作成する場合、本記事で説明される標準インストールプロセスだけでは不十分なことがあります。そのため、マシンイメージの作成と展開の要件に対応するため、all-in-oneインストーラの特定の段階を個別に実行する必要があります:
+クラウドインフラ用のマシンイメージをall-in-oneインストーラーで準備する場合、本記事の標準インストール手順だけでは不十分なことがあります。マシンイメージの作成とデプロイ要件に対応するため、all-in-oneインストーラーの特定の段階を個別に実行する必要があります:
 
-1. マシンイメージの構築: この段階では、フィルタリングノードのバイナリ、ライブラリ、設定ファイルをダウンロードし、それらに基づいてマシンイメージを作成する必要があります。`--install-only`フラグを利用して、必要なファイルをコピーし、ノード運用用にNGINX設定を変更します。手動で調整を行いたい場合は、`--skip-ngx-config`フラグを使用することでNGINXファイルの変更を回避できます。
-1. cloud-initを使用したクラウドインスタンスの初期化: インスタンスの初期化時に、ブートストラップフェーズ（クラウド登録とサービス起動）をcloud-initスクリプトで実行できます。この段階は、ビルドフェーズとは独立して実行可能で、ビルド段階でコピーされた`/opt/wallarm/setup.sh`スクリプトに`--register-only`フラグを適用することで実行されます。
+1. マシンイメージの作成: この段階では、フィルタリングノードのバイナリ、ライブラリ、設定ファイルをダウンロードし、それらに基づいてマシンイメージを作成します。`--install-only`フラグを使用すると、スクリプトは必要なファイルをコピーし、ノード稼働のためにNGINXの構成を変更します。手動で調整したい場合は、`--skip-ngx-config`フラグを使用してNGINXファイルの変更をスキップできます。
+1. cloud-initでクラウドインスタンスを初期化: インスタンスの初期化時に、ブートストラップフェーズ(Cloudへの登録とサービス起動)をcloud-initスクリプトで実行できます。この段階は、ビルド段階でコピーされた`/opt/wallarm/setup.sh`スクリプトに`--register-only`フラグを指定することで、ビルド段階とは独立して実行できます。
 
-この機能は、all-in-oneインストーラのバッチモードがバージョン4.10.0からサポートしています。以下のコマンドにより、上記の手順を順次実行できます:
+この機能は、バッチモードのall-in-oneインストーラーのバージョン4.10.0以降でサポートされています。以下のコマンドで、段階的に手順を実行できます:
 
 === "US Cloud"
     ```bash
     # x86_64版を使用する場合:
-    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.0.x86_64-glibc.sh
-    sudo sh wallarm-5.3.0.x86_64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/6.4/wallarm-6.4.1.x86_64-glibc.sh
+    sudo sh wallarm-6.4.1.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
 
     # ARM64版を使用する場合:
-    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.0.aarch64-glibc.sh
-    sudo sh wallarm-5.3.0.aarch64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/6.4/wallarm-6.4.1.aarch64-glibc.sh
+    sudo sh wallarm-6.4.1.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
     ```
 === "EU Cloud"
-    ```bash
+    ```
     # x86_64版を使用する場合:
-    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.0.x86_64-glibc.sh
-    sudo sh wallarm-5.3.0.x86_64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/6.4/wallarm-6.4.1.x86_64-glibc.sh
+    sudo sh wallarm-6.4.1.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
 
     # ARM64版を使用する場合:
-    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.0.aarch64-glibc.sh
-    sudo sh wallarm-5.3.0.aarch64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/6.4/wallarm-6.4.1.aarch64-glibc.sh
+    sudo sh wallarm-6.4.1.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
     ```
 
-最後に、インストールを完了するためには、[Wallarmにトラフィックの解析を有効にする][enable-traffic-analysis-step]と[NGINXを再起動する][restart-nginx-step]必要があります。
+最後に、インストールを完了するには、[Wallarmによるトラフィック解析を有効化][enable-traffic-analysis-step]し、[NGINXを再起動][restart-nginx-step]します。
 
-### フィルタリングとポストアナリティクスノードの個別インストール
+### フィルタリングノードとポストアナリティクスノードの個別インストール
 
-フィルタリング/ポストアナリティクススイッチを使用すると、postanalyticsモジュールを[個別に][separate-postanalytics-installation-aio]インストールするオプションが提供されます。このスイッチが指定されていない場合、既定ではフィルタリングとpostanalyticsの両方のコンポーネントが一緒にインストールされます。
+filtering/postanalyticsスイッチを使用すると、postanalyticsモジュールを[個別に][separate-postanalytics-installation-aio]インストールできます。このスイッチを使用しない場合、フィルタリングとpostanalyticsの両コンポーネントはデフォルトで同時にインストールされます。
+
+### API Discoveryのみのモード
+
+ノードはAPI Discoveryのみのモード(バージョン5.3.7以降で利用可能)で使用できます。このモードでは、ノードの組み込み機構で検知されるもの、および追加設定が必要なもの(例: クレデンシャルスタッフィング、API仕様違反の試行、拒否リスト化・グレーリスト化されたIPからの不正活動)を含む攻撃は、ローカルで(有効化されていれば)検知・ブロックされますが、Wallarm Cloudへはエクスポートされません。Cloudに攻撃データがないため、[Threat Replay Testing][threat-replay-testing-docs]は動作しません。ホワイトリスト化されたIPからのトラフィックは許可されます。
+
+一方で、[API Discovery][api-discovery-docs]、[API session tracking][api-sessions-docs]、[セキュリティ脆弱性検出][vuln-detection-docs]は引き続き完全に機能し、関連するセキュリティエンティティを検出して可視化のためにCloudへアップロードします。
+
+このモードは、まずAPIインベントリを確認して機微データを特定し、そのうえで攻撃データのエクスポートを統制して計画したい方に適しています。ただし、Wallarmは攻撃データを安全に処理し、必要に応じて[機微な攻撃データのマスキング][masking-sensitive-data-rule]を提供するため、攻撃データのエクスポートを無効化することは稀です。
+
+API Discoveryのみのモードを有効化するには:
+
+1. `/etc/wallarm-override/env.list`ファイルを作成または編集します:
+
+    ```
+    sudo mkdir /etc/wallarm-override
+    sudo vim /etc/wallarm-override/env.list
+    ```
+
+    次の変数を追加します:
+
+    ```
+    WALLARM_APID_ONLY=true
+    ```
+
+1. [ノードのインストール手順](#requirements)に従います。
+
+API Discoveryのみのモードが有効な場合、`/opt/wallarm/var/log/wallarm/wcli-out.log`ログには次のメッセージが出力されます:
+
+```json
+{"level":"info","component":"reqexp","time":"2025-01-31T11:59:38Z","message":"requests export skipped (disabled)"}
 ```

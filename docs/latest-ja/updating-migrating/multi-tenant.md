@@ -3,31 +3,31 @@
 
 # マルチテナントノードのアップグレード
 
-本手順では、マルチテナントノード4.xから5.0へのアップグレード手順について説明します。
+本ドキュメントでは、マルチテナントノードを最新の6.xにアップグレードする手順を説明します。
 
-サポートが終了したマルチテナントノード (3.6以下) のアップグレードには、[こちらの別手順](older-versions/multi-tenant.md)をご利用ください。
+サポート終了のマルチテナントノード（3.6以下）をアップグレードする場合は、[別の手順](older-versions/multi-tenant.md)を使用してください。
 
-## 必要条件
+## 前提条件
 
-* [technical tenant account](../installation/multi-tenant/overview.md#tenant-accounts)に**Global administrator**ロールを追加したユーザーによる追加コマンドの実行
-* US Wallarm Cloudで作業する場合は`https://us1.api.wallarm.com`、EU Wallarm Cloudで作業する場合は`https://api.wallarm.com`へのアクセス。ファイアウォールでアクセスがブロックされていないことを確認してください
-* 攻撃検知ルールやAPI仕様の更新ダウンロード、ならびにホワイトリスト、ブラックリスト、またはグレイリストに登録した国、地域、またはデータセンターの正確なIP取得のため、以下のIPアドレスへのアクセス
+* 以降のコマンドを実行するユーザーは、[テクニカルテナントアカウント](../installation/multi-tenant/overview.md#tenant-accounts)配下で**Global administrator**ロールが付与されている必要があります。
+* US Wallarm Cloudを使用している場合は`https://us1.api.wallarm.com`、EU Wallarm Cloudを使用している場合は`https://api.wallarm.com`へアクセスできる必要があります。ファイアウォールでアクセスがブロックされていないことを確認してください。
+* 攻撃検出ルールおよびAPI仕様の更新をダウンロードし、許可リスト、拒否リスト、またはグレーリストに設定した国、地域、またはデータセンターの正確なIPアドレスを取得するために、以下のIPアドレスへアクセスできる必要があります。
 
     --8<-- "../include/wallarm-cloud-ips.md"
 
-## 標準のアップグレード手順に従う
+## 標準アップグレード手順に従う
 
-標準手順は、以下の手順です：
+標準手順は次のとおりです:
 
-* [WallarmをDEB/RPMパッケージからアップグレード](nginx-modules.md)
-* [Wallarmをオールインワンインストーラーでアップグレード](nginx-modules.md)
-* [postanalyticsモジュールをアップグレード](separate-postanalytics.md)
-* [Wallarm Docker NGINXベースのイメージをアップグレード](docker-container.md)
-* [統合WallarmモジュールでNGINX Ingressコントローラーをアップグレード](ingress-controller.md)
-* [Sidecarプロキシをアップグレード](sidecar-proxy.md)
-* [クラウドノードイメージをアップグレード](cloud-image.md)
+* [DEB/RPMパッケージからのWallarmのアップグレード](nginx-modules.md)
+* [オールインワンインストーラーでのWallarmのアップグレード](nginx-modules.md)
+* [postanalyticsモジュールのアップグレード](separate-postanalytics.md)
+* [Wallarm Docker NGINXベースイメージのアップグレード](docker-container.md)
+* [Wallarmモジュール統合済みのNGINX Ingress controllerのアップグレード](ingress-controller.md)
+* [Sidecar proxyのアップグレード](sidecar-proxy.md)
+* [クラウドノードイメージのアップグレード](cloud-image.md)
 
 !!! warning "マルチテナントノードの作成"
-    Wallarmノード作成時に**Multi-tenant node**オプションを選択してください：
+    Wallarmノードの作成時は、**Multi-tenant node**オプションを選択してください:
 
     ![マルチテナントノードの作成](../images/user-guides/nodes/create-multi-tenant-node.png)

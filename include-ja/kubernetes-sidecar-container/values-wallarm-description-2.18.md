@@ -4,25 +4,25 @@ wallarm:
      repository: wallarm/node
      tag: 2.18.1-5
      pullPolicy: Always
-  # Wallarm APIエンドポイント:
-  # "api.wallarm.com" はEU Cloud用です
-  # "us1.api.wallarm.com" はUS Cloud用です
+  # WallarmのAPIエンドポイント: 
+  # EU Cloudの場合は"api.wallarm.com"です
+  # US Cloudの場合は"us1.api.wallarm.com"です
   wallarm_host_api: "api.wallarm.com"
-  # デプロイロールを持つユーザーのユーザー名
+  # Deployロールを持つユーザーのユーザー名です
   deploy_username: "username"
-  # デプロイロールを持つユーザーのパスワード
+  # Deployロールを持つユーザーのパスワードです
   deploy_password: "password"
-  # コンテナが着信リクエストを受け付けるポートを指定します,
-  # この値はports.containerPortと同一である必要があります
-  # メインアプリコンテナの定義内で
+  # コンテナが受信リクエストを受け付けるポートです。
+  # 値はports.containerPortと同一にする必要があります。
+  # メインアプリケーションコンテナの定義内です。
   app_container_port: 80
   # リクエストフィルタリングモード:
-  # "off" に設定するとリクエスト処理が無効になります
-  # "monitoring" に設定するとリクエスト処理は行うがリクエストをブロックしません
-  # "block" に設定すると、すべてのリクエストを処理して悪意のあるものをブロックします
+  # リクエスト処理を無効にするには"off"を使用します
+  # リクエストを処理するがブロックしない場合は"monitoring"を使用します
+  # すべてのリクエストを処理し、悪意のあるものをブロックするには"block"を使用します
   mode: "block"
-  # リクエスト分析データのためのメモリ容量（GB単位）
+  # リクエスト分析データ用のメモリ量(GB)です
   tarantool_memory_gb: 2
-  # "true" に設定するとIPブロック機能が有効になります
+  # IP Blocking機能を有効にするには"true"に設定します
   enable_ip_blocking: "false"
 ```

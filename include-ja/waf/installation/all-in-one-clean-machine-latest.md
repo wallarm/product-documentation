@@ -1,16 +1,15 @@
-When upgrading modules with all-in-one installer, you cannot upgrade an old package installation - instead you need to use a clean machine. Thus, as step 1, prepare a machine with one of the supported OS:
+オールインワンインストーラーを使用してモジュールをアップグレードする場合、既存のパッケージインストールをアップグレードできません。代わりにクリーンなマシンを使用する必要があります。そのため、手順1として、以下のサポート対象OSのいずれかを搭載したマシンを用意します：
 
-* Debian 10、11および12.x
+* Debian 10、11、12.x
 * Ubuntu LTS 18.04、20.04、22.04
 * CentOS 7、8 Stream、9 Stream
 * Alma/Rocky Linux 9
 * RHEL 8.x
 * RHEL 9.x
 * Oracle Linux 8.x
+* Oracle Linux 9.x
 * Redox
 * SuSe Linux
-* その他（リストは随時拡大しておりますので、OSがリストに含まれているかを確認する場合は[Wallarm support team](mailto:support@wallarm.com)にお問い合わせください）
+* その他（対象リストは継続的に拡大しています。ご利用のOSがリストに含まれているかは[Wallarmサポートチーム](mailto:support@wallarm.com)にお問い合わせください）
 
-オールインワン インストーラを使用してモジュールのアップグレードを行う際に、古いパッケージインストール版をアップグレードすることはできません。その代わりに、新規のクリーンマシンをご用意いただく必要があります。
-
-新規のクリーンマシンを使用すると、ある時点で古いノードと新しいノードの両方が存在することになりますが、これは問題ありません。古いノードを停止することなく、新しいノードが正しく動作するかを確認いただけます。
+新しいクリーンなマシンを使用すると、ある時点で旧ノードと新ノードの両方が同時に存在することになります。これは望ましい状態です。旧ノードを停止せずに新ノードが正しく動作するかをテストできます。

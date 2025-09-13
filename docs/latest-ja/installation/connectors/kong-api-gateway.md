@@ -1,20 +1,20 @@
 [self-hosted-connector-node-helm-conf]: ../native-node/helm-chart-conf.md
 
-# Kong Ingress Controller用Wallarmコネクタ
+# Kong Ingress Controller向けWallarmコネクタ
 
-Kong Ingress Controllerによって管理されるAPIを保護するために、WallarmはKubernetes環境にシームレスに統合できるコネクタを提供します。Wallarmフィルタリングノードをデプロイし、カスタムLuaプラグインを介してKongに接続することで、着信トラフィックをリアルタイムに解析し、悪意のあるリクエストがサービスに到達する前にWallarmが軽減できるようにします。
+[Kong Ingress Controller](https://docs.konghq.com/kubernetes-ingress-controller/latest/)が管理するAPIを保護するために、WallarmはKubernetes環境へシームレスに統合できるコネクタを提供します。Wallarmフィルタリングノードをデプロイし、カスタムLuaプラグインでKongに接続すると、受信トラフィックがリアルタイムで解析され、サービスに到達する前にWallarmが悪意のあるリクエストを軽減できます。
 
-Kong Ingress Controller用Wallarmコネクタは[in-line](../inline/overview.md)モードのみサポートします：
+Kong Ingress Controller向けWallarmコネクタがサポートするモードは[インライン](../inline/overview.md)のみです。
 
-![Kong with Wallarm plugin](../../images/waf-installation/gateways/kong/traffic-flow-inline.png)
+![Wallarmプラグインを使用したKong](../../images/waf-installation/gateways/kong/traffic-flow-inline.png)
 
 ## ユースケース
 
-サポートされているすべての[Wallarmのデプロイメントオプション](../supported-deployment-options.md)の中で、このソリューションはKong API Gatewayを実行しているKong Ingress Controllerによって管理されるAPIを保護するために推奨します。
+このソリューションは、Kong API Gatewayを実行するKong Ingress Controllerが管理するAPIの保護に推奨される構成です。
 
 ## 制限事項
 
-本セットアップではWallarmの微調整はWallarm Console UI経由でのみ可能です。この実装では、ファイルベースの設定を必要とするWallarmの一部の機能はサポートしていません。例えば：
+このセットアップでは、Wallarmの詳細な調整はWallarm ConsoleのUI経由でのみ可能です。ファイルベースの設定を必要とする一部のWallarm機能は本実装ではサポートされません。例：
 
 * [マルチテナンシー機能][multitenancy-overview]
 * [アプリケーション設定][applications-docs]
@@ -22,40 +22,41 @@ Kong Ingress Controller用Wallarmコネクタは[in-line](../inline/overview.md)
 
 ## 要件
 
-デプロイを進めるには、次の要件を満たしていることを確認してください：
+デプロイを進める前に、次の要件を満たしていることを確認してください。
 
-* KubernetesクラスターにKong Ingress Controllerがデプロイされ、APIトラフィックを管理していること
+* Kong Ingress Controllerがデプロイされ、KubernetesクラスターでAPIトラフィックを管理していること
 * [Helm v3](https://helm.sh/)パッケージマネージャー
-* `https://us1.api.wallarm.com`（US Wallarm Cloud）または`https://api.wallarm.com`（EU Wallarm Cloud）にアクセス可能であること
-* Wallarm Helmチャートを追加するために`https://charts.wallarm.com`にアクセス可能であること
-* Docker HubのWallarmリポジトリ`https://hub.docker.com/r/wallarm`にアクセス可能であること
-* 攻撃検出ルールの更新のダウンロード、および[許可リスト、拒否リスト、またはグレイリスト](../../user-guides/ip-lists/overview.md)に指定された国、地域、またはデータセンターの正確なIPアドレスを取得するために、以下のIPアドレスにアクセス可能であること
+* `https://us1.api.wallarm.com`（US Wallarm Cloud）または`https://api.wallarm.com`（EU Wallarm Cloud）へのアクセス
+* Wallarm Helmチャートを追加するための`https://charts.wallarm.com`へのアクセス
+* Docker Hub上のWallarmリポジトリ`https://hub.docker.com/r/wallarm`へのアクセス
+* 攻撃検知ルールの更新をダウンロードし、さらに[許可リスト、拒否リスト、グレーリスト](../../user-guides/ip-lists/overview.md)に登録した国・地域・データセンターの正確なIPを取得するために、以下のIPアドレスへアクセスできること
 
     --8<-- "../include/wallarm-cloud-ips.md"
-* **Administrator**アクセスがあり、[US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarm Consoleにアクセス可能であること
+* [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarm Consoleへの**Administrator**アクセス
+* Nodeインスタンスのドメインには信頼できるSSL/TLS証明書が必要です。自己署名証明書はサポートされていません。
 
-## デプロイメント
+## デプロイ
 
-Kong Ingress Controllerによって管理されるAPIを保護するために、以下の手順に従ってください：
+Kong Ingress Controllerが管理するAPIを保護するには、次の手順に従ってください。
 
-1. KubernetesクラスターにWallarmフィルタリングノードサービスをデプロイします。
-1. Kong Ingress Controllerからの着信トラフィックをWallarmフィルタリングノードにルーティングして解析するために、Wallarm Luaプラグインを入手しデプロイします。
+1. WallarmフィルタリングノードをKubernetesクラスターにデプロイします。
+1. Kong Ingress ControllerからWallarmフィルタリングノードへ受信トラフィックをルーティングして解析させるため、Wallarm Luaプラグインを入手してデプロイします。
 
-### 1. Wallarm Native Nodeのデプロイ
+### 1. Wallarm Native Nodeをデプロイする
 
-WallarmノードをKubernetesクラスター上の別個のサービスとしてデプロイするには、[手順](../native-node/helm-chart.md)に従ってください。
+WallarmノードをKubernetesクラスター内の独立したサービスとしてデプロイするには、[手順](../native-node/helm-chart.md)に従ってください。
 
-### 2. Wallarm Luaプラグインの入手とデプロイ
+### 2. Wallarm Luaプラグインを入手してデプロイする
 
-1. Kong Ingress Controller用のWallarm Luaプラグインコードを入手するために[support@wallarm.com](mailto:support@wallarm.com)に連絡してください。
-1. プラグインコードを含むConfigMapを作成してください：
+1. Kong Ingress Controller用のWallarm Luaプラグインのコードを入手するため、[support@wallarm.com](mailto:support@wallarm.com)へご連絡ください。
+1. プラグインコードでConfigMapを作成します：
 
     ```
     kubectl apply -f wallarm-kong-lua.yaml -n <KONG_NS>
     ```
 
-    `<KONG_NS>`はKong Ingress Controllerがデプロイされているnamespaceです。
-1. Kong Ingress Controller用の`values.yaml`ファイルを更新し、Wallarm Luaプラグインのロードを設定してください：
+    `<KONG_NS>`はKong Ingress ControllerがデプロイされているNamespaceです。
+1. Wallarm Luaプラグインを読み込むように、Kong Ingress Controllerの`values.yaml`を更新します：
 
     ```yaml
     gateway:
@@ -64,12 +65,12 @@ WallarmノードをKubernetesクラスター上の別個のサービスとして
         - name: kong-lua
           pluginName: kong-lua
     ```
-1. Kong Ingress Controllerをアップグレードしてください：
+1. Kong Ingress Controllerを更新します：
 
     ```
     helm upgrade --install <KONG_RELEASE_NAME> kong/ingress -n <KONG_NS> --values values.yaml
     ```
-1. `KongClusterPlugin`リソースを作成し、Wallarmノードサービスのアドレスを指定することで、Wallarm Luaプラグインを有効にしてください：
+1. KongClusterPluginリソースを作成し、WallarmノードのServiceアドレスを指定して、Wallarm Luaプラグインを有効化します：
 
     ```yaml
     echo '
@@ -85,8 +86,8 @@ WallarmノードをKubernetesクラスター上の別個のサービスとして
     ' | kubectl apply -f -
     ```
 
-    `wallarm-node`はWallarmノードサービスがデプロイされているnamespaceです。
-1. 選択したサービスに対してプラグインを有効にするため、IngressまたはGateway APIルートに以下の注釈を追加してください：
+    `wallarm-node`はWallarmノードのServiceがデプロイされているNamespaceです。
+1. 対象サービスでプラグインを有効化するため、IngressまたはGateway APIのルートに次のアノテーションを追加します：
 
     ```
     konghq.com/plugins: kong-lua
@@ -95,50 +96,50 @@ WallarmノードをKubernetesクラスター上の別個のサービスとして
 
 ## テスト
 
-デプロイされたコネクタの機能をテストするため、以下の手順に従ってください：
+デプロイしたコネクタの動作をテストするには、次の手順に従ってください。
 
-1. Wallarmポッドが正常に稼働していることを確認してください：
+1. WallarmのPodが起動していることを確認します：
 
     ```
     kubectl -n wallarm-node get pods
     ```
 
-    `wallarm-node`はWallarmノードサービスがデプロイされているnamespaceです。
+    `wallarm-node`はWallarmノードのServiceがデプロイされているNamespaceです。
 
-    各ポッドのステータスは**STATUS: Running**または**READY: N/N**である必要があります。例えば：
+    各Podのステータスは「STATUS: Running」または「READY: N/N」になっている必要があります。例：
 
     ```
     NAME                                READY   STATUS    RESTARTS   AGE
     native-aggregation-5fb5d5444b-6c8n8   3/3     Running   0          51m
     native-processing-7c487bbdc6-4j6mz    3/3     Running   0          51m
     ```
-1. `Kong Gateway` IPを取得してください（通常、`LoadBalancer`サービスとして構成されます）：
+1. Kong GatewayのIPを取得します（通常はLoadBalancer Serviceとして構成されています）：
 
     ```
     export PROXY_IP=$(kubectl get svc --namespace <KONG_NS> <KONG_RELEASE_NAME>-gateway-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
     ```
-1. テスト用の[Path Traversal][ptrav-attack-docs]攻撃を使用して、ロードバランサーにリクエストを送信してください：
+1. テスト用[パストラバーサル][ptrav-attack-docs]攻撃のリクエストをバランサーへ送信します：
 
     ```
     curl -H "Host: kong-lua-test.wallarm" $PROXY_IP/etc/passwd
     ```
 
-    ノードはデフォルトで[monitoring mode][available-filtration-modes]で動作するため、Wallarmノードは攻撃をブロックするのではなく登録します。
-1. Wallarm Consoleの→ **Attacks** セクションを[US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)で開き、攻撃がリストに表示されていることを確認してください。
+    デフォルトではノードは[監視モード][available-filtration-modes]で動作しているため、Wallarmノードは攻撃をブロックせず、記録します。
+1. Wallarm Console → [US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)の**Attacks**セクションを開き、攻撃が一覧に表示されていることを確認します。
 
-    ![Attacks in the interface][attacks-in-ui-image]
+    ![インターフェースのAttacks][attacks-in-ui-image]
 
 ## Wallarm Luaプラグインのアップグレード
 
-デプロイされたWallarm Luaプラグインを[newer version](code-bundle-inventory.md#kong-api-gateway)にアップグレードするには：
+デプロイ済みのWallarm Luaプラグインを[新しいバージョン](code-bundle-inventory.md#kong-api-gateway)にアップグレードするには：
 
-1. Kong Ingress Controller用の更新されたWallarm Luaプラグインコードを入手するため、support@wallarm.comに連絡してください。
-1. プラグインコードを含むConfigMapを更新してください：
+1. Kong Ingress Controller用の最新のWallarm Luaプラグインコードを入手するため、support@wallarm.comへご連絡ください。
+1. プラグインコードでConfigMapを更新します：
 
     ```
     kubectl apply -f wallarm-kong-lua.yaml -n <KONG_NS>
     ```
     
-    `<KONG_NS>`はKong Ingress Controllerがデプロイされているnamespaceです。
+    `<KONG_NS>`はKong Ingress ControllerがデプロイされているNamespaceです。
 
-プラグインのアップグレードには、特にメジャーバージョンの更新の場合、Wallarmノードのアップグレードが必要になることがあります。リリースの更新およびアップグレード手順については[Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md)を参照してください。非推奨を回避し、将来のアップグレードを簡素化するために、定期的なノードの更新を推奨します。
+プラグインのアップグレードでは、特にメジャーバージョン更新時に、Wallarmノードのアップグレードが必要になる場合があります。リリース情報とアップグレード手順は、[Wallarm Native Nodeの変更履歴](../../updating-migrating/native-node/node-artifact-versions.md)を参照してください。将来のアップグレードを容易にし、非推奨による問題を避けるため、ノードを定期的に更新することを推奨します。

@@ -1,4 +1,3 @@
-```markdown
 [nginx-process-time-limit-docs]:    ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]:  ../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.md
@@ -8,87 +7,98 @@
 [ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
 [api-spec-enforcement-docs]:        ../api-specification-enforcement/overview.md
 
-# 統合Wallarmモジュール搭載のNGINX Ingressコントローラーのアップグレード
+# 統合Wallarmモジュール付きNGINX Ingress controllerのアップグレード
 
-本手順では、既にデプロイされたWallarm NGINXベースのIngressコントローラー4.xから、Wallarmノード5.0搭載の新バージョンへのアップグレード手順を説明します。
+本手順では、デプロイ済みのWallarm NGINXベースのIngress Controllerを最新の6.xにアップグレードする手順を説明します。
 
-サポート終了ノード（3.6以下）のアップグレードには、[こちらの手順](older-versions/ingress-controller.md)をご利用ください。
+サポート終了ノード(3.6以下)をアップグレードする場合は、[別の手順](older-versions/ingress-controller.md)を使用してください。
 
 ## 要件
 
 --8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
 
-## ステップ1: Wallarm Helmチャートリポジトリの更新
+## 手順1：Wallarm Helmチャートリポジトリを更新します
 
 ```bash
 helm repo update wallarm
 ```
 
-## ステップ2: 今後のK8sマニフェストの変更内容を確認する
+## 手順2：今後のK8sマニフェストの変更点を確認します
 
-予期しないIngressコントローラーの動作変更を防ぐため、[Helm Diff Plugin](https://github.com/databus23/helm-diff)を使用して、今後のK8sマニフェストの変更内容を確認してください。このプラグインは、デプロイ済みのIngressコントローラーのバージョンのK8sマニフェストと新バージョンとの差分を出力します。
+Ingress controllerの動作が予期せず変わることを避けるため、[Helm Diff Plugin](https://github.com/databus23/helm-diff)を使用して、適用予定のK8sマニフェストの変更をすべて確認します。このプラグインは、稼働中のIngress controllerバージョンと新バージョンのK8sマニフェストの差分を出力します。
 
-プラグインのインストールと実行方法は以下の通りです：
+プラグインをインストールして実行するには：
 
-1. プラグインのインストール：
+1. プラグインをインストールします：
 
     ```bash
     helm plugin install https://github.com/databus23/helm-diff
     ```
-2. プラグインの実行：
+2. プラグインを実行します：
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 5.3.0 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.4.0 -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`：IngressコントローラーチャートのHelmリリース名
-    * `<NAMESPACE>`：IngressコントローラーがデプロイされているNamespace
-    * `<PATH_TO_VALUES>`：Ingressコントローラー5.0設定を定義する`values.yaml`ファイルへのパス–前バージョン実行時に作成したファイルを利用できます
-3. 変更が稼働中のサービスの安定性に影響を及ぼさないことを確認し、stdoutからのエラーを注意深く確認してください。
+    * `<RELEASE_NAME>`: Ingress controllerチャートを含むHelmリリース名です。
+    * `<NAMESPACE>`: Ingress controllerがデプロイされているNamespaceです。
+    * `<PATH_TO_VALUES>`: Ingress Controller 6.xの設定を含む`values.yaml`ファイルへのパスです。以前のバージョンのファイルを流用し、[Tarantoolからwstoreへの移行](what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics)に合わせて更新できます。
 
-    もしstdoutが空の場合は、`values.yaml`ファイルが有効であることを確認してください。
+        Helmの値名が変更されました：`controller.wallarm.tarantool` → `controller.wallarm.postanalytics`。postanalyticsメモリを明示的に[割り当てている](../admin-en/configuration-guides/allocate-resources-for-node.md)場合は、`values.yaml`にこの変更を適用してください。
 
-## ステップ3: Ingressコントローラーのアップグレード
+3. 稼働中のサービスの安定性に影響する変更がないことを確認し、stdoutに出力されたエラーを注意深く確認します。
 
-デプロイ済みのNGINX Ingressコントローラーをアップグレードしてください：
+    stdoutが空の場合は、`values.yaml`ファイルが正しいことを確認します。
+
+## 手順3：Ingress controllerをアップグレードします
+
+!!! info ""
+    本番環境へデプロイする前に、ステージングのKubernetes環境でNGINX Ingress Controllerを先にアップグレードし、変更内容を検証することを推奨します。
+
+デプロイ済みのNGINX Ingress controllerをアップグレードします：
 
 ``` bash
-helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 5.3.0 -f <PATH_TO_VALUES>
+helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.4.0 -f <PATH_TO_VALUES>
 ```
 
-* `<RELEASE_NAME>`：IngressコントローラーチャートのHelmリリース名
-* `<NAMESPACE>`：IngressコントローラーがデプロイされているNamespace
-* `<PATH_TO_VALUES>`：Ingressコントローラー5.0設定を定義する`values.yaml`ファイルへのパス–前バージョン実行時に作成したファイルを利用できます
+* `<RELEASE_NAME>`: Ingress controllerチャートを含むHelmリリース名です。
+* `<NAMESPACE>`: Ingress controllerがデプロイされているNamespaceです。
+* `<PATH_TO_VALUES>`: Ingress Controller 6.xの設定を含む`values.yaml`ファイルへのパスです。以前のバージョンのファイルを流用し、[Tarantoolからwstoreへの移行](what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics)に合わせて更新できます。
+    
+    Helmの値名が変更されました：`controller.wallarm.tarantool` → `controller.wallarm.postanalytics`。postanalyticsメモリを明示的に[割り当てている](../admin-en/configuration-guides/allocate-resources-for-node.md)場合は、`values.yaml`にこの変更を適用してください。
 
-## ステップ4: アップグレード後のIngressコントローラーのテスト
+## 手順4：アップグレードしたIngress controllerをテストします
 
-1. Helmチャートのバージョンがアップグレードされたことを確認してください：
+1. Helmチャートのバージョンがアップグレードされたことを確認します：
 
     ```bash
     helm list -n <NAMESPACE>
     ```
 
-    ここで`<NAMESPACE>`は、IngressコントローラーのHelmチャートがデプロイされたNamespaceです。
+    ここで、`<NAMESPACE>`はIngress controllerを含むHelmチャートがデプロイされているNamespaceです。
 
-    チャートバージョンが`wallarm-ingress-5.3.0`に一致している必要があります。
-2. Pod一覧の取得：
-
+    チャートのバージョンは`wallarm-ingress-6.4.0`である必要があります。
+1. WallarmのPodを取得します：
+    
     ``` bash
     kubectl get pods -n <NAMESPACE> -l app.kubernetes.io/name=wallarm-ingress
     ```
 
-    各Podのステータスは**STATUS: Running**または**READY: N/N**である必要があります。例えば：
+    Podのステータスは**STATUS: Running**かつ**READY: N/N**である必要があります：
 
     ```
-    NAME                                                              READY     STATUS    RESTARTS   AGE
-    ingress-controller-nginx-ingress-controller-675c68d46d-cfck8      3/3       Running   0          5m
-    ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
+    NAME                                                                  READY   STATUS    RESTARTS   AGE
+    ingress-controller-wallarm-ingress-controller-6d659bd79b-952gl        3/3     Running   0          8m7s
+    ingress-controller-wallarm-ingress-controller-wallarm-wstore-7ddmgbfm 3/3     Running   0          8m7s
     ```
-3. Wallarm Ingressコントローラーのアドレスに対して、テスト[パストラバーサル](../attacks-vulns-list.md#path-traversal)攻撃リクエストを送信してください：
+
+    バージョン5.x以下からアップグレードする場合、Tarantoolの個別Podがなくなり、wstoreはメインの`<CHART_NAME>-wallarm-ingress-controller-xxx`Pod内で動作することに気付くはずです。
+1. テスト用の[パストラバーサル](../attacks-vulns-list.md#path-traversal)攻撃をWallarm Ingress controllerのアドレスに送信します：
 
     ```bash
     curl http://<INGRESS_CONTROLLER_IP>/etc/passwd
     ```
 
-    新バージョンのソリューションが、前バージョンと同様に悪意あるリクエストを処理することを確認してください。
-```
+    新しいバージョンのソリューションが、前のバージョンと同様に不正リクエストを処理することを確認します。
+
+ステージング環境でアップグレードが正常に検証できたら、本番環境のアップグレードに進みます。

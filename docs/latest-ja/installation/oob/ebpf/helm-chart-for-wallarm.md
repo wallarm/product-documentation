@@ -1,8 +1,11 @@
-# Wallarm固有のWallarm eBPF Helmチャートの値
+# Wallarm eBPF HelmチャートのWallarm固有の値
 
-本書は、[deployment.md](deployment.md) または eBPF ソリューションのアップグレード時に変更可能な Wallarm 固有の Helm チャート値について説明します。これらの値は、Wallarm eBPF Helm チャートのグローバル構成を制御します。
+本書では、eBPFソリューションの[デプロイ](deployment.md)またはアップグレード時に変更可能な、Wallarm固有のHelmチャート値について説明します。これらの値は、Wallarm eBPF Helmチャートのグローバル設定を制御します。
 
-デフォルトの `values.yaml` 内で変更が必要な Wallarm 固有の部分は、以下のとおりです:
+!!! warning "バージョン4.10に限定"
+    現在、WallarmのeBPFベースのソリューションは[Wallarm Node 4.10](/4.10/installation/oob/ebpf/deployment/)で利用可能な機能のみをサポートします。
+
+デフォルトの`values.yaml`のうち、変更が必要になる場合があるWallarm固有部分は次のとおりです。
 
 ```yaml
 config:
@@ -16,12 +19,12 @@ config:
     mirror:
       allNamespaces: false
       filters: []
-      # - namespace: "default"  # 「default」
-      # - namespace: 'my-namespace'  # 「my-namespace」を指定
-      #   pod_labels:  # Podラベル
+      # - namespace: "default"
+      # - namespace: 'my-namespace'
+      #   pod_labels:
       #     label_name1: 'label_value_1'
       #     label_name2: 'label_value_2,label_value_3'
-      #   pod_annotations:  # Pod注釈
+      #   pod_annotations:
       #      annotation_name1: 'annotation_value_1'
       #      annotation_name2: 'annotation_value_2,annotation_value_4'
     loadBalancerRealIPHeader: 'X-Real-IP'
@@ -60,39 +63,39 @@ processing:
 
 ## config.api.token
 
-これは、[US](https://us1.my.wallarm.com/nodes) または [EU](https://my.wallarm.com/nodes) Cloud の Wallarm Console で作成された Wallarm ノードトークンです。Wallarm API にアクセスするために必要です。
+USまたはEU CloudのWallarm Consoleで作成したWallarmノードトークンです（[US](https://us1.my.wallarm.com/nodes) / [EU](https://my.wallarm.com/nodes)）。Wallarm APIへのアクセスに必要です。
 
 ## config.api.host
 
-Wallarm API のエンドポイントです。次のいずれかになります:
+Wallarm APIのエンドポイントです。次のいずれかです。
 
-* `us1.api.wallarm.com` は [US cloud](../../../about-wallarm/overview.md#cloud) 向けです
-* `api.wallarm.com` は [EU cloud](../../../about-wallarm/overview.md#cloud) 向けです（デフォルト）
+* [USクラウド](../../../about-wallarm/overview.md#cloud)の場合は`us1.api.wallarm.com`
+* [EUクラウド](../../../about-wallarm/overview.md#cloud)の場合は`api.wallarm.com`（デフォルト）
 
 ## config.api.port
 
-Wallarm API のエンドポイントポートです。デフォルトは `443` です。
+Wallarm APIのエンドポイントポートです。デフォルトは`443`です。
 
 ## config.api.useSSL
 
-Wallarm API にアクセスする際に SSL を使用するかどうかを指定します。デフォルトは `true` です。
+Wallarm APIへのアクセスにSSLを使用するかどうかを指定します。デフォルトは`true`です。 
 
 ## config.mutualTLS
 
-mTLS サポートを有効にし、[Wallarm processing node](deployment.md#how-it-works) が eBPF エージェントからのトラフィックの安全性を認証できるようにします。デフォルトは `false`（無効）です。
+mTLSを有効にし、[Wallarm処理ノード](deployment.md#how-it-works)がeBPFエージェントからのトラフィックのセキュリティを認証できるようにします。デフォルトは`false`（無効）です。
 
-このパラメータは Helm チャート バージョン 0.10.26 以降でサポートされています。
+このパラメータはHelmチャートバージョン0.10.26以降でサポートされます。
 
 ## config.agent.mirror.allNamespaces
 
-すべての namespace に対してトラフィックミラーリングを有効にします。デフォルト値は `false` です。
+すべてのNamespaceに対してトラフィックミラーリングを有効にします。デフォルト値は`false`です。
 
-!!! warning "「true」に設定することはお勧めしません"
-    これを「true」に設定すると、データの重複やリソース使用量の増加を招く可能性があります。namespaceラベル、pod注釈、または `values.yaml` の `config.agent.mirror.filters` を使用した selective mirroring を推奨します。
+!!! warning "`true`への設定は推奨しません"
+    これを`true`に設定して有効化すると、データの重複やリソース使用量の増加を招く可能性があります。Namespaceラベル、Podアノテーション、または`values.yaml`の`config.agent.mirror.filters`を用いた[選択的ミラーリング](selecting-packets.md)を推奨します。
 
 ## config.agent.mirror.filters
 
-トラフィックミラーリングのレベルを制御します。以下は `filters` パラメータの例です:
+トラフィックミラーリングの対象範囲を制御します。`filters`パラメータの例は次のとおりです。
 
 ```yaml
 ...
@@ -110,17 +113,17 @@ mTLS サポートを有効にし、[Wallarm processing node](deployment.md#how-i
             annotation_name2: 'annotation_value_2,annotation_value_4'
 ```
 
-[詳細はこちら](selecting-packets.md)
+[詳細](selecting-packets.md)
 
 ## config.agent.loadBalancerRealIPHeader
 
-ロードバランサーが元のクライアントIPアドレスを伝達するために使用するヘッダー名を指定します。正しいヘッダー名を確認するには、お使いのロードバランサーのドキュメントを参照してください。デフォルトは `X-Real-IP` です。
+ロードバランサーが元のクライアントIPアドレスを伝達するために使用するヘッダー名を指定します。正しいヘッダー名については、ご利用のロードバランサーのドキュメントを参照してください。デフォルトは`X-Real-IP`です。
 
-`loadBalancerRealIPHeader` および `loadBalancerTrustedCIDRs` パラメータにより、Wallarm eBPF は Kubernetes クラスター外部の L7 ロードバランサー（例：AWS ALB）を通じたトラフィックの送信元IPアドレスを正確に判別できます。
+`loadBalancerRealIPHeader`と`loadBalancerTrustedCIDRs`パラメータにより、Kubernetesクラスター外部のL7ロードバランサー（例: AWS ALB）経由でトラフィックがルーティングされる場合でも、Wallarm eBPFが送信元IPを正確に特定できるようになります。
 
 ## config.agent.loadBalancerTrustedCIDRs
 
-信頼できる L7 ロードバランサーの CIDR 範囲のホワイトリストを定義します。例:
+信頼するL7ロードバランサーのCIDR範囲の許可リストを定義します。例:
 
 ```yaml
 config:
@@ -130,21 +133,21 @@ config:
       - 192.168.0.0/16
 ```
 
-これらの値を Helm を使用して更新するには:
+Helmを使用してこれらの値を更新するには:
 
 ```
-# リストに項目を追加する場合:
+# リストに単一の項目を追加する場合:
 helm upgrade <RELEASE_NAME> <CHART> --set 'config.agent.loadBalancerTrustedCIDRs[0]=10.10.0.0/24'
 
-# 複数の項目をリストに追加する場合:
+# リストに複数の項目を追加する場合:
 helm upgrade <RELEASE_NAME> <CHART> --set 'config.agent.loadBalancerTrustedCIDRs[0]=10.10.0.0/24,config.agent.loadBalancerTrustedCIDRs[1]=192.168.0.0/16'
 ```
 
 ## processing.metrics
 
-Wallarm ノードの [metrics service](../../../admin-en/configure-statistics-service.md) の構成を制御します。デフォルトでは、このサービスは無効です。
+Wallarmノードの[メトリクスサービス](../../../admin-en/configure-statistics-service.md)の設定を制御します。デフォルトではサービスは無効です。
 
-サービスを有効にする場合、`port`、`path`、および `scrapeInterval` のデフォルト値を保持することを推奨します:
+サービスを有効にする場合は、`port`、`path`、`scrapeInterval`のデフォルト値を維持することを推奨します。
 
 ```yaml
 processing:
@@ -156,13 +159,13 @@ processing:
     scrapeInterval: 30s
 ```
 
-## processing.affinity および processing.nodeSelector
+## processing.affinityとprocessing.nodeSelector
 
-Wallarm eBPF daemonSet がデプロイされる Kubernetes ノードを制御します。デフォルトでは、各ノードにデプロイされます。
+Wallarm eBPFのdaemonSetをデプロイするKubernetesノードを制御します。デフォルトでは各ノードにデプロイされます。
 
-## 変更の適用方法
+## 変更の適用
 
-もし `values.yaml` ファイルを変更し、デプロイ済みのチャートをアップグレードしたい場合は、以下のコマンドを使用してください:
+`values.yaml`ファイルを変更し、デプロイ済みチャートをアップグレードする場合は、次のコマンドを使用します。
 
 ```
 helm upgrade <RELEASE_NAME> wallarm/wallarm-oob -n wallarm-ebpf -f <PATH_TO_VALUES>

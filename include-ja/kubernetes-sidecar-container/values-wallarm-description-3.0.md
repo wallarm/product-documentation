@@ -1,26 +1,27 @@
-```yaml
+```
 wallarm:
   image:
      repository: wallarm/node
      tag: 3.0.0-3
      pullPolicy: Always
-  # Wallarm APIエンドポイント:
+  # Wallarm APIエンドポイント: 
   # "api.wallarm.com"はEU Cloud用です
   # "us1.api.wallarm.com"はUS Cloud用です
   wallarm_host_api: "api.wallarm.com"
-  # Deployロールを持つユーザーのユーザー名
+  # Deployロールを持つユーザーのユーザー名です
   deploy_username: "username"
-  # Deployロールを持つユーザーのパスワード
+  # Deployロールを持つユーザーのパスワードです
   deploy_password: "password"
-  # コンテナが要求を受け付けるポートです,
-  # この値はmain app containerのports.containerPortの定義と同一でなければなりません
+  # コンテナが受信リクエストを受け付けるポートで、
+  # メインアプリケーションコンテナの定義内の
+  # ports.containerPortと同一である必要があります
   app_container_port: 80
-  # 要求フィルトレーションモード:
-  # "off"は要求処理を無効にします
-  # "monitoring"は要求を処理しますがブロックしません
-  # "safe_blocking"はgraylisted IPから発生した悪意ある要求をブロックします
-  # "block"はすべての要求を処理し、悪意ある要求をブロックします
+  # リクエストフィルタリングモード:
+  # "off"はリクエスト処理を無効化します
+  # "monitoring"はリクエストを処理しますが、ブロックしません
+  # "safe_blocking"はグレーリストに登録されたIPからの悪意のあるリクエストをブロックします
+  # "block"はすべてのリクエストを処理し、悪意のあるものをブロックします
   mode: "block"
-  # 要求分析データ用のメモリ容量(GB)
+  # リクエスト分析データ用のメモリ容量(GB)です
   tarantool_memory_gb: 2
 ```

@@ -10,7 +10,7 @@
     ```bash
     sudo systemctl restart nginx
     ```
-=== "AlmaLinux,Rocky LinuxまたはOracle Linux 8.x"
+=== "AlmaLinux、Rocky LinuxまたはOracle Linux 8.x"
     ```bash
     sudo systemctl restart nginx
     ```

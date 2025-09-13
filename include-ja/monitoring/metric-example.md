@@ -1,4 +1,2 @@
-```markdown
-!!! info "メトリックの例"
-    この例では単一の[`wallarm_nginx/gauge-abnormal`](../../admin-en/monitoring/available-metrics.md#number-of-requests)メトリックを使用する方法を示しており、このメトリックはフィルタノードで処理されたリクエスト数を表示します.
-```
+!!! info "メトリクスの例"
+    この例では、単一の[`wallarm_nginx/gauge-abnormal`](../../admin-en/monitoring/available-metrics.md#number-of-requests)メトリクスの使い方を説明します。このメトリクスは、フィルタノードが処理したリクエスト数を示します。
