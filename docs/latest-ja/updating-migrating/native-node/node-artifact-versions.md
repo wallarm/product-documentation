@@ -1,277 +1,258 @@
-# ネイティブNodeアーティファクトのバージョンと変更履歴
+# Native Nodeのアーティファクトのバージョンと変更履歴
 
-本書では、さまざまな形態の[Native Wallarm Node](../../installation/nginx-native-node-internals.md#native-node)0.xの[バージョン](../versioning-policy.md)を一覧表示し、リリース状況の追跡およびアップグレードの計画にお役立ていただけます。
+このドキュメントでは、さまざまな形態で提供される[バージョン](../versioning-policy.md)の[Native Wallarm Node](../../installation/nginx-native-node-internals.md#native-node) 0.14.x+を一覧で示し、リリースの追跡とアップグレード計画に役立てられるようにします。
 
-## オールインワンインストーラー
+## All-in-oneインストーラ
 
-Native Node用オールインワンインストーラーは、[TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md)および[MuleSoft](../../installation/connectors/mulesoft.md)、[CloudFront](../../installation/connectors/aws-lambda.md)、[Cloudflare](../../installation/connectors/cloudflare.md)、[Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md)、[Fastly](../../installation/connectors/fastly.md)コネクタを用いたセルフホステッドノード展開に使用されます。
+Native Nodeのオールインワンインストーラは、[TCPトラフィックミラーの解析](../../installation/oob/tcp-traffic-mirror/deployment.md)およびMuleSoftの[Mule](../../installation/connectors/mulesoft.md)または[Flex](../../installation/connectors/mulesoft-flex.md) Gateway、[Akamai](../../installation/connectors/akamai-edgeworkers.md)、[CloudFront](../../installation/connectors/aws-lambda.md)、[Cloudflare](../../installation/connectors/cloudflare.md)、[Istio](../../installation/connectors/istio.md)、[Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md)、[Fastly](../../installation/connectors/fastly.md)、[IBM DataPower](../../installation/connectors/ibm-api-connect.md)各コネクタを用いたセルフホスト型ノードのデプロイに使用します。
 
-オールインワンインストーラーの更新履歴は、x86_64およびARM64 (beta) バージョンの両方に適用されます。
+オールインワンインストーラの更新履歴はx86_64版とARM64(ベータ)版に同時に適用されます。
 
 [アップグレード方法](all-in-one.md)
 
-### 0.11.0 (2025-01-31)
+### 0.17.1 (2025-08-15)
 
-* API Discoveryのみモードを有効にする[`WALLARM_APID_ONLY`環境変数](../../installation/native-node/all-in-one.md#installer-launch-options)のサポートを追加しました
-
-    このモードでは、攻撃はローカルで遮断され（[有効](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)の場合）、Wallarm Cloudへは転送されず、[API Discovery](../../api-discovery/overview.md)は完全に機能します。このモードはほとんどの環境では不要です。
-* Native NodeのGoReplayとの連携を改善し、以下の構成変更が発生しました:
-
-    ``` diff
-    -version: 2
-    +version: 3
-
-    -middleware:
-    +goreplay:
-      parse_responses: true
-      response_timeout: 5s
-      url_normalize: true
-    ```
-
-    アップグレード時には、`version`の値を更新し、初期構成ファイルで明示的に指定されている場合は`middleware`セクションを`goreplay`に置き換えてください。
-* tcp-captureモードにおける小規模なHTTP解析バグを修正しました.
-
-### 0.10.1 (2025-01-02)
-
-* [API Discovery](../../api-discovery/sbf.md)および[API Sessions](../../api-sessions/exploring.md#sensitive-business-flows)におけるセンシティブなビジネスフローのサポートを追加しました.
-* [Fastly](../../installation/connectors/fastly.md)コネクタのサポートを追加しました.
-* メッシュ起動時のリクエスト損失の可能性を修正しました.
-* [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337)および[CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338)の脆弱性を解消しました.
-* 一部のリクエストが正常に処理されなかった問題を修正し、これによりAPI Sessions、Credential StuffingおよびAPI Abuse Preventionに影響を及ぼす可能性がありました.
-
-### 0.10.0 (2024-12-19)
-
-* tcp-captureモードにおいて、ルート構成選択およびlibprotonによるデータ解析の前にURL正規化を追加しました
-
-    これは[`middleware.url_normalize`](../../installation/native-node/all-in-one-conf.md#goreplayurl_normalize)パラメータで制御され（デフォルトは`true`です）.
-* リクエストのローカル処理時間を制御するために[`http_inspector.wallarm_process_time_limit`](../../installation/native-node/all-in-one-conf.md#http_inspectorwallarm_process_time_limit)パラメータを導入しました
-
-    デフォルトはWallarm Console設定で上書きされない限り`1s`です.
-* Prometheusメトリクスの更新（:9000ポートで利用可能）:
-
-    * 静的なゼロ値が設定された廃止済みメトリクスを削除しました.
-    * `http_inspector_requests_processed`および`http_inspector_threats_found`メトリクスにおいて、`source`ラベルに`anything`を指定可能にしました.
-    * リクエストおよび攻撃数の追跡用に`http_inspector_adjusted_counters`メトリクスを追加しました.
-
-### 0.9.1 (2024-12-10)
-
-* 小規模なバグ修正を行いました.
-
-### 0.9.0 (2024-12-04)
-
-* JSON形式の`/wallarm-status`メトリクスのデフォルトエンドポイントが`metrics.legacy_status.listen_address`パラメータ値である`127.0.0.1:10246`に変更されました.
-
-    このレガシーサービスはNodeの機能にとって重要ですが、直接の操作は必要ありません.
+* Cloudへの資格情報エクスポートに関する不具合を修正しました
+* GraphQLパーサを改善しました
+* スループット向上のため、Nodeとwstore間の内部チャネルを最適化しました
     
-### 0.8.3 (2024-11-14)
+    これにより、Nodeがトラフィックを取り込む速度がpostanalyticsへのエクスポート速度を上回る場合の潜在的なデータ損失を防ぎます。
+* 送信元IPアドレスがないシリアライズ済みリクエストがpostanalyticsへエクスポートに失敗する問題を修正しました
+* バグ修正および内部的な改善を行いました
 
-* MuleSoftコネクタ3.0.xのサポートを追加しました.
+### 0.16.3 (2025-08-05)
 
-### 0.8.2 (2024-11-11)
+* [Akamaiコネクタ](../../installation/connectors/akamai-edgeworkers.md)をサポートしました
+* アップグレード時に`--preserve`フラグを`true`に設定すると無言で失敗する問題を修正しました
 
-* wallarm-statusサービスの動作におけるいくつかのバグを修正しました.
+### 0.16.1 (2025-08-01)
 
-### 0.8.1 (2024-11-06)
+* 高負荷時に過剰な入力をドロップするかを制御する[`drop_on_overload`](../../installation/native-node/all-in-one-conf.md#drop_on_overload)パラメータを導入しました
 
-* 0.8.0で導入された`request_id`形式の回帰問題を修正しました.
+    デフォルトで有効です（`true`）。
+* 新しい[Prometheusメトリクス](../../admin-en/native-node-metrics.md)を追加しました:
 
-### 0.8.0 (2024-11-06)
-
-* [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md)コネクタのサポートを追加しました.
-* [API Sessions](../../api-sessions/overview.md)のサポートを追加しました.
-* リクエスト処理時間の制限を[改善](../what-is-new.md#new-in-limiting-request-processing-time)しました.
-* 以下のパラメータのデフォルト値を変更しました:
-
-    * [`connector.blocking`](../../installation/native-node/all-in-one-conf.md#connectorblocking)パラメータのデフォルトが`true`になり、デプロイ時の手動設定なしでNative Nodeが受信リクエストを遮断する一般機能が有効になりました.
-    * トラフィックフィルトレーションモードを設定する[`route_config.wallarm_mode`](../../installation/native-node/all-in-one-conf.md#route_configwallarm_mode)パラメータのデフォルトが`monitoring`に変更され、初期デプロイに最適な設定が提供されます.
-* ルート構成選択およびlibprotonによるデータ解析の前にURL正規化を追加しました（デフォルトは`true`に設定されている[`controller.url_normalize`](../../installation/native-node/all-in-one-conf.md#connectorurl_normalize)パラメータで制御）。
-* ノード登録時のメモリ使用量を削減しました.
-* その他、いくつかのバグを修正しました.
-
-### 0.7.0 (2024-10-16)
-
-* 処理前に一部の内部サービスコネクタヘッダーが除去されない問題を修正しました.
-* connector-serverモードにおいて、複数のノードレプリカ間で一貫したリクエスト/レスポンスルーティングを可能にするメッシュ機能のサポートを追加しました
-
-    メッシュ機能の設定には、[`connector.mesh`](../../installation/native-node/all-in-one-conf.md#connectormesh)の下に新たな構成パラメータが導入されました.
+    * 一般的なNative Nodeインスタンス情報を提供する`wallarm_gonode_application_info`（例）:
     
-### 0.6.0 (2024-10-10)
-
-* API Discoveryにおける[センシティブデータ検出のカスタマイズ](../../api-discovery/setup.md#customizing-sensitive-data-detection)のサポートを追加しました.
-* [libproton](../../about-wallarm/protecting-against-attacks.md#library-libproton)における重複レスポンスヘッダーのメモリリークを修正しました.
-* [IP lists](../../user-guides/ip-lists/overview.md)に登録されていないが[既知のソース](../../user-guides/ip-lists/overview.md#select-object)を持つIPアドレスに関連するメモリリークを修正しました.
-* アーティファクトの命名を"next"から"native"に更新しました
+        ```bash
+        wallarm_gonode_application_info{deployment_type="node-native-aio-installer",mode="connector-server",version="0.16.1"} 1
+        ```
     
-    `https://meganode.wallarm.com/next/aionext-<VERSION>.<ARCH>.sh` → `https://meganode.wallarm.com/native/aio-native-<VERSION>.<ARCH>.sh`
+    * `wallarm_gonode_http_inspector_balancer_workers`
+    * `wallarm_gonode_http_inspector_debug_container_len`に`type="channel:in"`の場合の`aggregate="sum"`を追加しました
+    * `wallarm_gonode_http_inspector_errors_total`に新しい`type="FlowTimeouts"`を追加しました
+* 内部`http_inspector`モジュールの安定性を改善しました
 
-### 0.5.2 (2024-09-17)
+### 0.16.0 (2025-07-23)
 
-* WAAP+API Securityのサブスクリプションが有効でない場合のインストール失敗問題を修正しました.
-* 攻撃のエクスポート遅延を修正しました.
-* Cメモリアロケータにおけるパフォーマンス低下を引き起こす問題を修正しました.
+* [MuleSoft Flex Gatewayコネクタ](../../installation/connectors/mulesoft-flex.md)をサポートしました
+* どのリクエストをNodeが検査またはバイパスするかを定義できる[`input_filters`](../../installation/native-node/all-in-one-conf.md#input_filters)設定セクションを導入しました
+* メモリリークを修正しました
+* URI・名前空間・タグ名を結合した[**xml_tag**](../../user-guides/rules/request-processing.md#xml)値の区切り文字を`:`から`|`に変更しました
+* denylistに登録されたオリジンとWallarm ConsoleのUIで設定したモードの組み合わせで発生するブロック問題を修正しました
+* 内部的な改善を行いました
 
-### 0.5.1 (2024-09-16)
+### 0.15.1 (2025-07-08)
 
-* [`log.access_log`](../../installation/native-node/all-in-one-conf.md#logaccess_logenabled)パラメータによるアクセスログ出力の構成可能な設定を追加しました.
+* 信頼済みネットワークの設定および実クライアントIP・Hostヘッダー抽出を行う[`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers)設定を導入しました
 
-### 0.5.0 (2024-09-11)
+    これは、`tcp-capture`モードの旧バージョンで使用していた`http_inspector.real_ip_header`を置き換えます。
+* `go-node`バイナリが公開するPrometheusメトリクスのプレフィックスをカスタマイズできる[`metrics.namespace`](../../installation/native-node/all-in-one-conf.md#metricsnamespace)設定オプションを追加しました
+* `keep-alive`接続の上限を制御するため[`connector.per_connection_limits`](../../installation/native-node/all-in-one-conf.md#connectorper_connection_limits)を追加しました
+* 些細な内部ファイル構造の変更を行いました
+* wstoreのポートバインドを修正しました: `0.0.0.0`ではなく`127.0.0.1`にバインドするようにしました
+* [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874)の脆弱性を修正しました
+* [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273)の脆弱性を修正しました
 
-* 小規模な技術改善と最適化を行いました.
+### 0.14.1 (2025-05-07)
 
-### 0.4.3 (2024-09-05)
+* [**enumeration**](../../api-protection/enumeration-attack-protection.md)の緩和コントロールをサポートしました
+* [**DoS保護**](../../api-protection/dos-protection.md)の緩和コントロールをサポートしました
+* [IBM API Connectコネクタ](../../installation/connectors/ibm-api-connect.md)をサポートしました
+* [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406)、[CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115)の脆弱性を修正しました
+* `connector-server`モードで外部ヘルスチェックエンドポイントをサポートしました
 
-* タイプミスにより約0.1%のデータソースメッセージが静かに失われる問題を修正しました.
+    これは新しい[`connector.external_health_check`](../../installation/native-node/all-in-one-conf.md#connectorexternal_health_check)設定セクションで制御します。
+* リクエスト/レスポンスボディが断続的に破損することがある再発性の間欠的なバグを修正しました
+* `tcp-capture`モードで以下の修正と更新を行いました:
 
-### 0.4.1 (2024-08-27)
+    * GoReplayをGo 1.24でビルドするようにしました
+    * 修正: `goreplay`プロセスがクラッシュしても`go-node`プロセスがハングしなくなりました
+    * 修正: GoReplayのヘッダー解析時のスライス範囲外アクセスによるクラッシュを修正しました
+* Wallarm Console → **Nodes**でのNative Nodeバージョン表示の不具合を修正しました
 
-* [`route_config.routes.host`](../../installation/native-node/all-in-one-conf.md#host)構成パラメータにおけるワイルドカードマッチングのサポートを追加しました.
+### 0.14.0 (2025-04-16)
 
-### 0.4.0 (2024-08-22)
-
-* [初回リリース](../../installation/oob/tcp-traffic-mirror/deployment.md)
+* ローカルpostanalytics処理において、Wallarmが開発したサービスである**wstore**を使用するようになり、Tarantoolの使用を廃止しました
+* すべてのフィルタリングノードにインストールされていたcollectdサービスと関連プラグインを削除しました
+    
+    これにより、外部ツールへの依存を減らし、Wallarmの組み込みメカニズムでメトリクスを収集・送信します。
 
 ## Helmチャート
 
-Native Node用Helmチャートは、[MuleSoft](../../installation/connectors/mulesoft.md)、[CloudFront](../../installation/connectors/aws-lambda.md)、[Cloudflare](../../installation/connectors/cloudflare.md)、[Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md)、[Fastly](../../installation/connectors/fastly.md)、[Kong API Gateway](../../installation/connectors/kong-api-gateway.md)、[Istio](../../installation/connectors/istio.md)コネクタを用いたセルフホステッドノードの展開に使用されます.
+Native NodeのHelmチャートは、MuleSoftの[Mule](../../installation/connectors/mulesoft.md)または[Flex](../../installation/connectors/mulesoft-flex.md) Gateway、[Akamai](../../installation/connectors/akamai-edgeworkers.md)、[CloudFront](../../installation/connectors/aws-lambda.md)、[Cloudflare](../../installation/connectors/cloudflare.md)、[Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md)、[Fastly](../../installation/connectors/fastly.md)、[IBM DataPower](../../installation/connectors/ibm-api-connect.md)、[Kong API Gateway](../../installation/connectors/kong-api-gateway.md)、[Istio](../../installation/connectors/istio.md)各コネクタを用いたセルフホスト型ノードのデプロイに使用します。
 
 [アップグレード方法](helm-chart.md)
 
-### 0.11.0 (2025-01-31)
+### 0.17.1 (2025-08-15)
 
-* いくつかのバグを修正しました.
-
-### 0.10.1 (2025-01-02)
-
-* [API Discovery](../../api-discovery/sbf.md)及び[API Sessions](../../api-sessions/exploring.md#sensitive-business-flows)におけるセンシティブなビジネスフローのサポートを追加しました.
-* [Fastly](../../installation/connectors/fastly.md)コネクタのサポートを追加しました.
-* メッシュ起動時のリクエスト損失の可能性を修正しました.
-* [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337)および[CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338)の脆弱性を解消しました.
-* 一部のリクエストが正常に処理されなかった問題を修正しました.
-
-### 0.10.0 (2024-12-19)
-
-* 単一の`config.connector.log_level`パラメータに代えて、[`config.connector.log`](../../installation/native-node/helm-chart-conf.md#configconnectorlog)セクションにおいて、より細かなロギング構成オプションを導入しました.
-* デフォルトのログレベルは`info`になりました（以前は`debug`でした）.
-
-### 0.9.1 (2024-12-10)
-
-* 小規模なバグ修正を行いました.
-
-### 0.9.0 (2024-12-04)
-
-* すべての集約レプリカ間で一貫したトラフィック分散のための修正を行いました.
-* JSON形式の`/wallarm-status`メトリクスのデフォルトエンドポイントが`metrics.legacy_status.listen_address`パラメータ値である`127.0.0.1:10246`に変更されました. このレガシーサービスはNodeの機能にとって重要ですが、直接の操作は必要ありません.
-* 多様なデプロイ条件下での信頼性向上のため、いくつかの小規模な修正を行いました.
-
-### 0.8.3 (2024-11-14)
-
-* MuleSoftコネクタv3.0.xのサポートを追加しました.
-
-### 0.8.2 (2024-11-11)
-
-* wallarm-statusサービスの動作におけるいくつかのバグを修正しました.
-
-### 0.8.1 (2024-11-07)
-
-* [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md)コネクタのサポートを追加しました.
-* [API Sessions](../../api-sessions/overview.md)のサポートを追加しました.
-* リクエスト処理時間の制限を[改善](../what-is-new.md#new-in-limiting-request-processing-time)しました.
-* 以下のパラメータのデフォルト値を変更しました:
-
-    * トラフィックフィルトレーションモードを設定する[`config.connector.mode`](../../installation/native-node/helm-chart-conf.md#configconnectormode)パラメータのデフォルトが`monitoring`に変更され、初期デプロイに最適な設定が提供されます.
-    * ノード登録時のメモリ使用量を削減しました.
-    * その他、いくつかのバグを修正しました.
+* 信頼済みネットワークの設定および実クライアントIP・Hostヘッダー抽出を行う[`proxy_headers`](../../installation/native-node/helm-chart-conf.md#configconnectorproxy_headers)設定を導入しました
+* Cloudへの資格情報エクスポートに関する不具合を修正しました
+* GraphQLパーサを改善しました
+* スループット向上のため、Nodeとwstore間の内部チャネルを最適化しました
     
-### 0.7.0 (2024-10-17)
+    これにより、Nodeがトラフィックを取り込む速度がpostanalyticsへのエクスポート速度を上回る場合の潜在的なデータ損失を防ぎます。
+* 送信元IPアドレスがないシリアライズ済みリクエストがpostanalyticsへエクスポートに失敗する問題を修正しました
+* バグ修正および内部的な改善を行いました
 
-* 処理前に一部の内部サービスコネクタヘッダーが除去されない問題を修正しました.
-* API Discoveryにおける[センシティブデータ検出のカスタマイズ](../../api-discovery/setup.md#customizing-sensitive-data-detection)のサポートを追加しました.
-* [libproton](../../about-wallarm/protecting-against-attacks.md#library-libproton)における重複レスポンスヘッダーのメモリリークを修正しました.
-* [IP lists](../../user-guides/ip-lists/overview.md)に登録されていないが[既知のソース](../../user-guides/ip-lists/overview.md#select-object)を持つIPアドレスに関連するメモリリークを修正しました.
-* アーティファクトの命名を"next"から"native"に更新しました.
+### 0.16.3 (2025-08-05)
+
+* [Akamaiコネクタ](../../installation/connectors/akamai-edgeworkers.md)をサポートしました
+* バグ修正を行いました
+
+### 0.16.1 (2025-08-01)
+
+* どのリクエストをNodeが検査またはバイパスするかを定義できる[`input_filters`](../../installation/native-node/helm-chart-conf.md#configconnectorinput_filters)設定セクションを導入しました
+* 高負荷時に過剰な入力をドロップするかを制御する[`drop_on_overload`](../../installation/native-node/helm-chart-conf.md#drop_on_overload)パラメータを導入しました
+
+    デフォルトで有効です（`true`）。
+* 新しい[Prometheusメトリクス](../../admin-en/native-node-metrics.md)を追加しました:
+
+    * 一般的なNative Nodeインスタンス情報を提供する`wallarm_gonode_application_info`（例）:
     
-    `wallarm/wallarm-node-next` → `wallarm/wallarm-node-native`
-* Wallarm Luaプラグインを有効化するために使用されるKongClusterPlugin Kubernetesリソース内の`config.wallarm_node_address`パラメータ値を更新しました:
+        ```bash
+        wallarm_gonode_application_info{deployment_type="node-native-aio-installer",mode="connector-server",version="0.16.1"} 1
+        ```
+    
+    * `wallarm_gonode_http_inspector_balancer_workers`
+    * `wallarm_gonode_http_inspector_debug_container_len`に`type="channel:in"`の場合の`aggregate="sum"`を追加しました
+    * `wallarm_gonode_http_inspector_errors_total`に新しい`type="FlowTimeouts"`を追加しました
+* [Luaプラグインに依存するIstio向けのWallarm Connector](/5.x/installation/connectors/istio/)を非推奨化しました
 
-    `http://next-processing.wallarm-node.svc.cluster.local:5000` → `http://native-processing.wallarm-node.svc.cluster.local:5000`
+    代わりに[Istio向けgRPCベースの外部処理フィルター](../../installation/connectors/istio.md)の使用を推奨します。
+* 非推奨のIstioコネクタについて、既存デプロイの互換性を確保するため以下の改善を行いました:
 
-### 0.5.3 (2024-10-01)
+    * メッセージのメッシュバランシングロジックを修正しました
+    * メッシュバランシングなしでNode上で全コネクタトラフィックを処理するための`disable_mesh`パラメータを追加しました（デフォルトは`false`で、メッシュバランシングは有効）
+    * `drop_on_overload`パラメータをサポートしました
+* 内部`http_inspector`モジュールの安定性を改善しました
 
-* 初回リリース
+### 0.16.0 (2025-07-23)
+
+* [MuleSoft Flex Gatewayコネクタ](../../installation/connectors/mulesoft-flex.md)をサポートしました
+* メモリリークを修正しました
+* URI・名前空間・タグ名を結合した[**xml_tag**](../../user-guides/rules/request-processing.md#xml)値の区切り文字を`:`から`|`に変更しました
+* denylistに登録されたオリジンとWallarm ConsoleのUIで設定したモードの組み合わせで発生するブロック問題を修正しました
+* 内部的な改善を行いました
+
+### 0.15.1 (2025-07-08)
+
+* 受信**wstore**接続のアドレスとポートをカスタマイズするための[`config.aggregation.serviceAddress`](../../installation/native-node/helm-chart-conf.md#configaggregationserviceaddress)パラメータをサポートしました
+* 些細な内部ファイル構造の変更を行いました
+* [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874)の脆弱性を修正しました
+* [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273)の脆弱性を修正しました
+<!-- * Added [`connector.per_connection_limits`](../../installation/native-node/all-in-one-conf.md#connectorper_connection_limits) to control `keep-alive` connection limits -->
+
+### 0.14.1 (2025-05-07)
+
+* [IBM API Connectコネクタ](../../installation/connectors/ibm-api-connect.md)をサポートしました
+* [CVE-2025-22871](https://nvd.nist.gov/vuln/detail/CVE-2025-22871)の脆弱性を修正しました
+* HelmチャートのヘッドレスServiceにおける`clusterIP: None`の処理を修正しました
+* リクエスト/レスポンスボディが断続的に破損することがある再発性の間欠的なバグを修正しました
+* Wallarm Console → **Nodes**でのNative Nodeバージョン表示の不具合を修正しました
+
+### 0.14.0 (2025-04-16)
+
+* ローカルpostanalytics処理において、Wallarmが開発したサービスである**wstore**を使用するようになり、Tarantoolの使用を廃止しました
+* `values.yaml`内のすべての`tarantool`参照（コンテナ名・パラメータキーを含む）を`wstore`へリネームしました
+
+    設定でこれらのパラメータを上書きしている場合は、名称を対応して更新してください。
+* すべてのフィルタリングノードにインストールされていたcollectdサービスと関連プラグインを削除しました
+    
+    これにより、外部ツールへの依存を減らし、Wallarmの組み込みメカニズムでメトリクスを収集・送信します。
+* Kubernetesのシステムラベルとの競合を避けるため、`*_container_*`に一致するすべてのPrometheusメトリクスでラベル`container`を`type`にリネームしました
 
 ## Dockerイメージ
 
-Native Node用Dockerイメージは、[MuleSoft](../../installation/connectors/mulesoft.md)、[CloudFront](../../installation/connectors/aws-lambda.md)、[Cloudflare](../../installation/connectors/cloudflare.md)、[Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md)、[Fastly](../../installation/connectors/fastly.md)コネクタを用いたセルフホステッドノード展開に使用されます.
+Native NodeのDockerイメージは、MuleSoftの[Mule](../../installation/connectors/mulesoft.md)または[Flex](../../installation/connectors/mulesoft-flex.md) Gateway、[Akamai](../../installation/connectors/akamai-edgeworkers.md)、[CloudFront](../../installation/connectors/aws-lambda.md)、[Cloudflare](../../installation/connectors/cloudflare.md)、[Istio](../../installation/connectors/istio.md)、[Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md)、[Fastly](../../installation/connectors/fastly.md)、[IBM DataPower](../../installation/connectors/ibm-api-connect.md)各コネクタを用いたセルフホスト型ノードのデプロイに使用します。
 
 [アップグレード方法](docker-image.md)
 
-### 0.11.0 (2025-01-31)
+### 0.17.1 (2025-08-15)
 
-* API Discoveryのみモードを有効にする[`WALLARM_APID_ONLY`環境変数](../../installation/native-node/docker-image.md#4-run-the-docker-container)のサポートを追加しました
-
-    このモードでは、攻撃はローカルで遮断され（[有効](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)の場合）、Wallarm Cloudへは転送されず、[API Discovery](../../api-discovery/overview.md)は完全に機能します。このモードはほとんどの環境では不要です.
-
-### 0.10.1 (2025-01-02)
-
-* [API Discovery](../../api-discovery/sbf.md)及び[API Sessions](../../api-sessions/exploring.md#sensitive-business-flows)におけるセンシティブなビジネスフローのサポートを追加しました.
-* [Fastly](../../installation/connectors/fastly.md)コネクタのサポートを追加しました.
-* メッシュ起動時のリクエスト損失の可能性を修正しました.
-* [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337)および[CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338)の脆弱性を解消しました.
-* 一部のリクエストが正常に処理されなかった問題を修正し、これによりAPI Sessions、Credential StuffingおよびAPI Abuse Preventionに影響を及ぼす可能性がありました.
-
-### 0.10.0 (2024-12-19)
-
-* 重大な[CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337)の脆弱性を解消し、その他いくつかの小規模な脆弱性にも対処しました.
-* tcp-captureモードにおいて、ルート構成選択およびlibprotonによるデータ解析の前にURL正規化を追加しました
-
-    （デフォルトは[`middleware.url_normalize`](../../installation/native-node/all-in-one-conf.md#goreplayurl_normalize)パラメータで制御されます）.
-* リクエスト処理時間をローカルで制御するために[`http_inspector.wallarm_process_time_limit`](../../installation/native-node/all-in-one-conf.md#http_inspectorwallarm_process_time_limit)パラメータを導入しました
-
-    デフォルトはWallarm Console設定で上書きされない限り`1s`です.
-* Prometheusメトリクスの更新（:9000ポートで利用可能）:
-
-    * 静的なゼロ値が設定された廃止済みメトリクスを削除しました.
-    * `http_inspector_requests_processed`および`http_inspector_threats_found`メトリクスにおいて、`source`ラベルに`anything`を指定可能にしました.
-    * リクエストおよび攻撃数の追跡用に`http_inspector_adjusted_counters`メトリクスを追加しました.
-
-### 0.9.1 (2024-12-10)
-
-* 小規模なバグ修正を行いました.
-
-### 0.9.0 (2024-12-04)
-
-* すべての集約レプリカ間で一貫したトラフィック分散のための修正を行いました.
-* JSON形式の`/wallarm-status`メトリクスのデフォルトエンドポイントが`metrics.legacy_status.listen_address`パラメータ値である`127.0.0.1:10246`に変更されました. このレガシーサービスはNodeの機能にとって重要ですが、直接操作する必要はありません.
-* 多様なデプロイ条件下での信頼性向上のため、いくつかの小規模な修正を行いました.
-
-### 0.8.3 (2024-11-14)
-
-* MuleSoftコネクタv3.0.xのサポートを追加しました.
-
-### 0.8.2 (2024-11-11)
-
-* wallarm-statusサービスの動作におけるいくつかのバグを修正しました.
-
-### 0.8.1 (2024-11-06)
-
-* [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md)コネクタのサポートを追加しました.
-* [API Sessions](../../api-sessions/overview.md)のサポートを追加しました.
-* リクエスト処理時間の制限を[改善](../what-is-new.md#new-in-limiting-request-processing-time)しました.
-* 以下のパラメータのデフォルト値を変更しました:
-
-    * [`connector.blocking`](../../installation/native-node/all-in-one-conf.md#connectorblocking)パラメータのデフォルトが`true`になり、デプロイ時の手動設定なしでNative Nodeが受信リクエストを遮断する一般機能が有効になります.
-    * トラフィックフィルトレーションモードを設定する[`route_config.wallarm_mode`](../../installation/native-node/all-in-one-conf.md#route_configwallarm_mode)パラメータのデフォルトが`monitoring`に変更され、初期デプロイに最適な設定が提供されます.
-* ルート構成選択およびlibprotonによるデータ解析の前にURL正規化を追加しました（デフォルトは`true`に設定されている[`controller.url_normalize`](../../installation/native-node/all-in-one-conf.md#connectorurl_normalize)パラメータで制御されます）.
-* ノード登録時のメモリ使用量を削減しました.
-* その他、いくつかのバグを修正しました.
-
-### 0.7.0 (2024-10-16)
-
-* 処理前に一部の内部サービスコネクタヘッダーが除去されない問題を修正しました.
-* connector-serverモードにおいて、複数のノードレプリカ間で一貫したリクエスト/レスポンスルーティングを可能にするメッシュ機能のサポートを追加しました
-
-    メッシュ機能の構成には、[`connector.mesh`](../../installation/native-node/all-in-one-conf.md#connectormesh)の下に新たな構成パラメータが導入されました.
+* Cloudへの資格情報エクスポートに関する不具合を修正しました
+* GraphQLパーサを改善しました
+* スループット向上のため、Nodeとwstore間の内部チャネルを最適化しました
     
-### 0.6.0 (2024-10-10)
+    これにより、Nodeがトラフィックを取り込む速度がpostanalyticsへのエクスポート速度を上回る場合の潜在的なデータ損失を防ぎます。
+* 送信元IPアドレスがないシリアライズ済みリクエストがpostanalyticsへエクスポートに失敗する問題を修正しました
+* バグ修正および内部的な改善を行いました
+
+### 0.16.3 (2025-08-05)
+
+* [Akamaiコネクタ](../../installation/connectors/akamai-edgeworkers.md)をサポートしました
+* アップグレード時に`--preserve`フラグを`true`に設定すると無言で失敗する問題を修正しました
+
+### 0.16.1 (2025-08-01)
+
+* 高負荷時に過剰な入力をドロップするかを制御する[`drop_on_overload`](../../installation/native-node/all-in-one-conf.md#drop_on_overload)パラメータを導入しました
+
+    デフォルトで有効です（`true`）。
+* 新しい[Prometheusメトリクス](../../admin-en/native-node-metrics.md)を追加しました:
+
+    * 一般的なNative Nodeインスタンス情報を提供する`wallarm_gonode_application_info`（例）:
+    
+        ```bash
+        wallarm_gonode_application_info{deployment_type="node-native-aio-installer",mode="connector-server",version="0.16.1"} 1
+        ```
+    
+    * `wallarm_gonode_http_inspector_balancer_workers`
+    * `wallarm_gonode_http_inspector_debug_container_len`に`type="channel:in"`の場合の`aggregate="sum"`を追加しました
+    * `wallarm_gonode_http_inspector_errors_total`に新しい`type="FlowTimeouts"`を追加しました
+* 内部`http_inspector`モジュールの安定性を改善しました
+
+### 0.16.0 (2025-07-23)
+
+* [MuleSoft Flex Gatewayコネクタ](../../installation/connectors/mulesoft-flex.md)をサポートしました
+* どのリクエストをNodeが検査またはバイパスするかを定義できる[`input_filters`](../../installation/native-node/all-in-one-conf.md#input_filters)設定セクションを導入しました
+* メモリリークを修正しました
+* URI・名前空間・タグ名を結合した[**xml_tag**](../../user-guides/rules/request-processing.md#xml)値の区切り文字を`:`から`|`に変更しました
+* denylistに登録されたオリジンとWallarm ConsoleのUIで設定したモードの組み合わせで発生するブロック問題を修正しました
+* 内部的な改善を行いました
+
+### 0.15.1 (2025-07-08)
+
+* 信頼済みネットワークの設定および実クライアントIP・Hostヘッダー抽出を行う[`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers)設定を導入しました
+
+    これは、`tcp-capture`モードの旧バージョンで使用していた`http_inspector.real_ip_header`を置き換えます。
+* `go-node`バイナリが公開するPrometheusメトリクスのプレフィックスをカスタマイズできる[`metrics.namespace`](../../installation/native-node/all-in-one-conf.md#metricsnamespace)設定オプションを追加しました
+* `keep-alive`接続の上限を制御するため[`connector.per_connection_limits`](../../installation/native-node/all-in-one-conf.md#connectorper_connection_limits)を追加しました
+* 些細な内部ファイル構造の変更を行いました
+* wstoreのポートバインドを修正しました: `0.0.0.0`ではなく`127.0.0.1`にバインドするようにしました
+* [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874)の脆弱性を修正しました
+* [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273)の脆弱性を修正しました
+
+### 0.14.1 (2025-05-07)
+
+* [IBM API Connectコネクタ](../../installation/connectors/ibm-api-connect.md)をサポートしました
+* [CVE-2025-22871](https://nvd.nist.gov/vuln/detail/CVE-2025-22871)の脆弱性を修正しました
+* 外部ヘルスチェックエンドポイントをサポートしました
+
+    これは新しい[`connector.external_health_check`](../../installation/native-node/all-in-one-conf.md#connectorexternal_health_check)設定セクションで制御します。
+* リクエスト/レスポンスボディが断続的に破損することがある再発性の間欠的なバグを修正しました
+* Wallarm Console → **Nodes**でのNative Nodeバージョン表示の不具合を修正しました
+
+### 0.14.0 (2025-04-16)
+
+* ローカルpostanalytics処理において、Wallarmが開発したサービスである**wstore**を使用するようになり、Tarantoolの使用を廃止しました
+* すべてのフィルタリングノードにインストールされていたcollectdサービスと関連プラグインを削除しました
+    
+    これにより、外部ツールへの依存を減らし、Wallarmの組み込みメカニズムでメトリクスを収集・送信します。
+
+## Amazon Machine Image(AMI)
+
+<!-- How to upgrade -->
+
+### 0.14.0 (2025-05-07)
 
 * 初回リリース

@@ -1,9 +1,9 @@
-```yaml
+```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    # Wallarmエレメント: Wallarm ConfigMap変更後に実行中のPodを更新するための注釈
+    # Wallarm要素: Wallarm ConfigMapの変更後に実行中のPodを更新するためのアノテーションです
     checksum/config: '{{ include (print $.Template.BasePath "/wallarm-sidecar-configmap.yaml") . | sha256sum }}'
   name: myapp
 spec:
@@ -16,7 +16,7 @@ spec:
         app: myapp
     spec:
       containers:
-        # Wallarmエレメント: Wallarm sidecarコンテナの定義
+        # Wallarm要素: Wallarmサイドカーコンテナの定義です
         - name: wallarm
           image: {{ .Values.wallarm.image.repository }}:{{ .Values.wallarm.image.tag }}
           imagePullPolicy: {{ .Values.wallarm.image.pullPolicy | quote }}
@@ -33,13 +33,14 @@ spec:
             value: {{ .Values.wallarm.tarantool_memory_gb | quote }}
           ports:
           - name: http
-            # Wallarm sidecarコンテナがServiceオブジェクトからリクエストを受け付けるポート
+            # Wallarmサイドカーコンテナがリクエストを受け付けるポートです
+            # リクエストはServiceオブジェクトから送信されます
             containerPort: 80
           volumeMounts:
           - mountPath: /etc/nginx/sites-enabled
             readOnly: true
             name: wallarm-nginx-conf
-        # メインアプリコンテナの定義
+        # メインアプリケーションコンテナの定義です
         - name: myapp
           image: <Image>
           resources:
@@ -47,10 +48,10 @@ spec:
               memory: "128Mi"
               cpu: "500m"
           ports:
-          # アプリケーションコンテナが受け付ける着信リクエストのポート
+          # アプリケーションコンテナが受信リクエストを受け付けるポートです
           - containerPort: 8080 
       volumes:
-      # Wallarmエレメント: wallarm-nginx-confボリュームの定義
+      # Wallarm要素: wallarm-nginx-confボリュームの定義です
       - name: wallarm-nginx-conf
         configMap:
           name: wallarm-sidecar-nginx-conf

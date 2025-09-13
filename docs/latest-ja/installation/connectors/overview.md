@@ -1,39 +1,46 @@
-# コネクタとしてWallarmを展開する
+# Wallarmをコネクターとしてデプロイする
 
-APIの展開は、Azion Edge、Akamai Edge、MuleSoft、Apigee、CloudFrontなどの外部ツールを利用するなど、さまざまな方法で実施可能です。これらのAPIをWallarmで保護したい場合、特定のケース向けに設計された「コネクタ」形式のソリューションをご提供します。
+APIのデプロイは、Azion Edge、Akamai Edge、MuleSoft、Apigee、CloudFrontなどの外部ツールを活用するなど、さまざまな方法で実行できます。これらのAPIをWallarmで保護する方法をお探しの場合、そのようなケース向けに設計された「コネクター」という形のソリューションをご提供しています。
 
 ## 仕組み
 
-Wallarmのコネクタソリューションは、APIゲートウェイやエッジプラットフォームなどのサードパーティプラットフォームと統合し、トラフィックのフィルタリングと解析を行います。このソリューションは主に2つのコンポーネントで構成されます。
+Wallarmのコネクターソリューションは、APIゲートウェイやエッジプラットフォームなどのサードパーティプラットフォームと連携して、トラフィックをフィルタリングおよび分析します。このソリューションは主に2つのコンポーネントで動作します：
 
-* **Wallarmノード**は、[Wallarm](../se-connector.md)またはクライアントによってホストされ、トラフィック解析とセキュリティチェックを実行します。
-* サードパーティプラットフォームにインジェクトされ、トラフィックをWallarmノードへ解析のためにルーティングする**Wallarmが提供したコードバンドルまたはポリシー**です。
+* [Wallarm](../security-edge/se-connector.md)またはお客様のいずれかがホストする**Wallarm node**が、トラフィックの解析とセキュリティチェックを実行します。
+* サードパーティプラットフォームに注入され、分析のためにトラフィックをWallarm nodeへルーティングする**Wallarm提供のコードバンドルまたはポリシー**。
 
-コネクタを使用することで、トラフィック解析は[in-line](../inline/overview.md)または[out-of-band](../oob/overview.md)で実施できます。
+コネクターを使用すると、トラフィックは[インライン](../inline/overview.md)または[アウトオブバンド](../oob/overview.md)で分析できます：
 
-=== "インライントラフィックフロー"
+=== "インラインのトラフィックフロー"
 
-    Wallarmが悪意のあるアクティビティを[block](../../admin-en/configure-wallarm-mode.md)するように設定されている場合:
+    Wallarmが悪意のあるアクティビティを[block](../../admin-en/configure-wallarm-mode.md)するように設定されている場合：
 
-    ![image](../../images/waf-installation/general-traffic-flow-for-connectors-inline.png)
-=== "アウトオブバンドトラフィックフロー"
-    ![image](../../images/waf-installation/general-traffic-flow-for-connectors-oob.png)
+    ![画像](../../images/waf-installation/general-traffic-flow-for-connectors-inline.png)
+=== "アウトオブバンドのトラフィックフロー"
+    ![画像](../../images/waf-installation/general-traffic-flow-for-connectors-oob.png)
 
-## 対応プラットフォーム
+## サポート対象プラットフォーム
 
-Wallarmは以下のプラットフォーム向けにコネクタを提供します:
+Wallarmは以下のプラットフォーム向けのコネクターを提供しています。
 
-| コネクタ | 対応トラフィックフローモード | コネクタのホスティング |
+| コネクター | サポートされるトラフィックフローモード | ホスティング形態 |
 | --- | ---- | ---- |
-| [MuleSoft](mulesoft.md) | インライン | Security Edge, セルフホステッド |
-| [Apigee](apigee.md) | インライン | セルフホステッド |
-| [Akamai EdgeWorkers](akamai-edgeworkers.md) | インライン | セルフホステッド |
-| [Azion Edge](azion-edge.md) | インライン | セルフホステッド |
-| [Amazon CloudFront](aws-lambda.md) | インライン, アウトオブバンド | Security Edge, セルフホステッド |
-| [Cloudflare](cloudflare.md) | インライン, アウトオブバンド | Security Edge, セルフホステッド |
-| [Kong Ingress Controller](kong-api-gateway.md) | インライン | セルフホステッド |
-| [Istio Ingress](istio.md) | アウトオブバンド | セルフホステッド |
-| [Broadcom Layer7 API Gateways](layer7-api-gateway.md) | インライン | セルフホステッド |
-| [Fastly](fastly.md) | インライン, アウトオブバンド | Security Edge, セルフホステッド |
+| [MuleSoft Mule Gateway](mulesoft.md) | インライン | Security Edge、セルフホスト |
+| [MuleSoft Flex Gateway](mulesoft-flex.md) | インライン、アウトオブバンド | セルフホスト |
+| [Apigee](apigee.md) | インライン | セルフホスト |
+| [Akamai](akamai-edgeworkers.md) | インライン、アウトオブバンド | セルフホスト |
+| [Azion Edge](azion-edge.md) | インライン | セルフホスト |
+| [Amazon CloudFront](aws-lambda.md) | インライン、アウトオブバンド | Security Edge、セルフホスト |
+| [Cloudflare](cloudflare.md) | インライン、アウトオブバンド | Security Edge、セルフホスト |
+| [Kong Ingress Controller](kong-api-gateway.md) | インライン | セルフホスト |
+| [Istio Ingress](istio.md) | インライン、アウトオブバンド | セルフホスト |
+| [Broadcom Layer7 API Gateways](layer7-api-gateway.md) | インライン | セルフホスト |
+| [Fastly](fastly.md) | インライン、アウトオブバンド | Security Edge、セルフホスト |
+| [IBM DataPower](ibm-api-connect.md) | インライン | Security Edge、セルフホスト |
 
-ご希望のコネクタが見つからない場合は、どうぞお気軽に[Sales team](mailto:sales@wallarm.com)までお問い合わせいただき、ご要件のご相談および検討可能なソリューションについてご確認ください。
+お探しのコネクターが見つからない場合は、要件のご相談や可能な解決策の検討のため、[営業チーム](mailto:sales@wallarm.com)までお気軽にご連絡ください。
+
+!!! info "デプロイの代替案"
+    マネージドのインラインオプションをご希望ですか？[Security Edge](../security-edge/overview.md)をご覧ください。
+
+    従来型のセルフマネージドデプロイ（VM、Kubernetes、クラウド環境）の場合は、[セルフホストNodeのデプロイ](../supported-deployment-options.md)をご参照ください。

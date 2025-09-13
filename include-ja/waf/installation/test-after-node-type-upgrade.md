@@ -1,17 +1,17 @@
-1. アプリケーションのアドレスにテスト用の[パストラバーサル][ptrav-attack-docs]攻撃を送信します:
+1. テスト用の[パストラバーサル][ptrav-attack-docs]攻撃をアプリケーションのアドレスに送信します：
 
     ```
     curl http://localhost/etc/passwd
     ```
 
-    もしトラフィックが`example.com`にプロキシされるように設定されている場合は、リクエストに`-H "Host: example.com"`ヘッダーを含めます。
-1. 新しいタイプのノードが、**通常**のノードと同様にリクエストを処理することを確認します。例としては:
+    トラフィックが`example.com`にプロキシされるように構成されている場合は、リクエストにヘッダー`-H "Host: example.com"`を含めます。
+1. 新しいタイプのノードが、**通常の**ノードと同じ方法でリクエストを処理することを確認します。例えば次のとおりです：
 
-    * 該当の[フィルトレーションモード][waf-mode-instr]が設定されている場合はリクエストをブロックします。
-    * 設定されている場合は[カスタムブロッキングページ][blocking-page-instr]を返します。
-2. Wallarm Console → **Attacks**を開き、[EU Cloud](https://my.wallarm.com/attacks)または[US Cloud](https://us1.my.wallarm.com/attacks)で次の点を確認します:
+    * 適切な[フィルタリングモード][waf-mode-instr]が構成されている場合は、リクエストをブロックします。
+    * 設定されている場合は、[カスタムブロッキングページ][blocking-page-instr]を返します。
+2. [EU Cloud](https://my.wallarm.com/attacks)または[US Cloud](https://us1.my.wallarm.com/attacks)でWallarm Console → **Attacks**を開き、次のことを確認します：
 
-    * 攻撃がリストに表示されます。
-    * ヒットの詳細にWallarmノードUUIDが表示されます。
+    * 攻撃が一覧に表示されていること。
+    * Hit detailsにWallarmノードUUIDが表示されていること。
 
-    ![インターフェース内の攻撃][attacks-in-ui-image]
+    ![インターフェースのAttacks][attacks-in-ui-image]

@@ -1,82 +1,82 @@
-# Alibaba CloudへのWallarm Docker画像のデプロイ
+# Alibaba CloudへのWallarm Dockerイメージのデプロイ
 
-このクイックガイドでは、[NGINXベースのWallarmノードのDocker画像](https://hub.docker.com/r/wallarm/node)を[Alibaba Cloud Elastic Compute Service (ECS)](https://www.alibabacloud.com/product/ecs)を使用してAlibaba Cloudプラットフォームにデプロイする手順を説明します。
+このクイックガイドでは、[NGINXベースのWallarmノードのDockerイメージ](https://hub.docker.com/r/wallarm/node)を[Alibaba Cloud Elastic Compute Service (ECS)](https://www.alibabacloud.com/product/ecs)を使用してAlibaba Cloudプラットフォームへデプロイする手順を説明します。
 
 !!! warning "手順の制限事項"
-    本手順では、ロードバランシングやノードの自動スケーリングの構成については扱っておりません。これらのコンポーネントをご自身で設定する場合は、適切な[Alibaba Cloudのドキュメント](https://www.alibabacloud.com/help/product/27537.htm?spm=a2c63.m28257.a1.82.dfbf5922VNtjka)をお読みになることを推奨します。
+    本手順には、ロードバランシングおよびノードのオートスケーリングの設定は含まれていません。これらを自身で設定する場合は、該当する[Alibaba Cloudのドキュメント](https://www.alibabacloud.com/help/product/27537.htm?spm=a2c63.m28257.a1.82.dfbf5922VNtjka)をお読みになることを推奨します。
 
 ## ユースケース
 
 --8<-- "../include/waf/installation/cloud-platforms/alibaba-ecs-use-cases.md"
 
-## 必要条件
+## 要件
 
 * [Alibaba Cloud Console](https://account.alibabacloud.com/login/login.htm)へのアクセス
-* [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarm Consoleで**Administrator**ロールが与えられており、二要素認証が無効化されたアカウントへのアクセス
-* 下記のIPアドレスへ、攻撃検出ルールおよび[API仕様][api-policy-enf-docs]のアップデートのダウンロード、ならびに[allowlisted, denylisted, or graylisted][graylist-docs]の国、地域、またはデータセンターの正確なIP取得のためのアクセス
+* [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarm Consoleで**Administrator**ロールを持つアカウントへのアクセス
+* 攻撃検知ルールや[API仕様][api-policy-enf-docs]の更新をダウンロードし、さらに[許可リスト・拒否リスト・グレーリスト][graylist-docs]に登録した国、地域、またはデータセンターの正確なIPを取得するために、以下のIPアドレスへアクセスできること
 
     --8<-- "../include/wallarm-cloud-ips.md"
 
-## WallarmノードDockerコンテナの構成オプション
+## WallarmノードDockerコンテナの設定オプション
 
 --8<-- "../include/waf/installation/docker-running-options.md"
 
-## 環境変数によって構成されたWallarmノードDockerコンテナのデプロイ
+## 環境変数で設定したWallarmノードDockerコンテナのデプロイ
 
-環境変数のみで構成されたコンテナ化されたWallarmフィルタリングノードをデプロイするには、Alibaba Cloudインスタンスを作成し、このインスタンス上でDockerコンテナを実行します。これらの手順はAlibaba Cloud Consoleまたは[Alibaba Cloud CLI](https://www.alibabacloud.com/help/doc-detail/25499.htm)を使用して実行できます。本手順ではAlibaba Cloud Consoleを使用します。
+環境変数のみで設定したコンテナ化されたWallarmフィルタリングノードをデプロイするには、Alibaba Cloudインスタンスを作成し、そのインスタンス内でDockerコンテナを実行します。これらの手順はAlibaba Cloud Consoleまたは[Alibaba Cloud CLI](https://www.alibabacloud.com/help/doc-detail/25499.htm)で実行できます。本手順ではAlibaba Cloud Consoleを使用します。
 
 --8<-- "../include/waf/installation/get-api-or-node-token.md"
 
-1. Alibaba Cloud Consoleを開き、サービス一覧から**Elastic Compute Service**→**Instances**に進みます。
-1. 以下のガイドラインおよび[Alibaba Cloudの手順](https://www.alibabacloud.com/help/doc-detail/87190.htm?spm=a2c63.p38356.b99.137.77df24df7fJ2XX)に従ってインスタンスを作成します:
+1. Alibaba Cloud Console→サービスの一覧→**Elastic Compute Service**→**Instances**を開きます。
+1. [Alibaba Cloudの手順](https://www.alibabacloud.com/help/doc-detail/87190.htm?spm=a2c63.p38356.b99.137.77df24df7fJ2XX)および以下のガイドラインに従ってインスタンスを作成します:
 
-    * インスタンスは、任意のオペレーティングシステムのイメージに基づいて構築可能です。
-    * インスタンスは外部リソースからアクセス可能である必要があるため、パブリックIPアドレスまたはドメインがインスタンス設定に構成される必要があります。
-    * インスタンス設定は、[インスタンスに接続するために使用される方法](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l)を反映する必要があります。
-1. [Alibaba Cloudのドキュメント](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l)に記載されているいずれかの方法でインスタンスに接続します。
-1. [該当するオペレーティングシステムの手順](https://docs.docker.com/engine/install/#server)に従って、インスタンスにDockerパッケージをインストールします。
-1. Wallarm Cloudにインスタンスを接続するために使用する、コピー済みのWallarmトークンを使用してインスタンスの環境変数を設定します:
+    * インスタンスは任意のOSイメージに基づいて作成できます。
+    * インスタンスを外部リソースから利用できるようにするため、インスタンス設定でパブリックIPアドレスまたはドメインを構成する必要があります。
+    * インスタンスの設定は、[インスタンスへの接続方法](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l)を反映している必要があります。
+1. [Alibaba Cloudのドキュメント](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l)に記載のいずれかの方法でインスタンスに接続します。
+1. 該当OSの[インストール手順](https://docs.docker.com/engine/install/#server)に従って、インスタンスにDockerパッケージをインストールします。
+1. コピーしたWallarmトークンをインスタンスの環境変数に設定し、Wallarm Cloudへの接続に使用します:
 
     ```bash
     export WALLARM_API_TOKEN='<WALLARM_API_TOKEN>'
     ```
-1. 環境変数を渡し、構成ファイルをマウントして、`docker run`コマンドを使用してWallarmノードDockerコンテナを実行します:
+1. 環境変数を渡し、設定ファイルをマウントして`docker run`コマンドでWallarmノードDockerコンテナを起動します:
 
-    === "Command for the Wallarm US Cloud"
+    === "Wallarm US Cloud向けのコマンド"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:5.3.0
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:6.4.1
         ```
-    === "Command for the Wallarm EU Cloud"
+    === "Wallarm EU Cloud向けのコマンド"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> -p 80:80 wallarm/node:5.3.0
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> -p 80:80 wallarm/node:6.4.1
         ```
         
-    * `-p`: フィルタリングノードがリッスンするポートです。値はインスタンスのポートと同じである必要があります。
-    * `-e`: フィルタリングノードの構成を含む環境変数です（使用可能な変数は以下の表に記載されています）。なお、`WALLARM_API_TOKEN`の値を明示的に渡すことは推奨されません。
+    * `-p`: フィルタリングノードが待ち受けるポート。値はインスタンスのポートと同一にします。
+    * `-e`: フィルタリングノードの設定を行う環境変数（利用可能な変数は下表を参照）。`WALLARM_API_TOKEN`の値を明示的に渡すことは推奨しません。
 
         --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
-1. [フィルタリングノードの稼働確認](#testing-the-filtering-node-operation)を行います。
+1. [フィルタリングノードの動作をテスト](#testing-the-filtering-node-operation)します。
 
-## 構成ファイルをマウントして構成されたWallarmノードDockerコンテナのデプロイ
+## マウントしたファイルで設定したWallarmノードDockerコンテナのデプロイ
 
-環境変数および構成ファイルのマウントによって構成されたコンテナ化されたWallarmフィルタリングノードをデプロイするには、Alibaba Cloudインスタンスを作成し、このインスタンスのファイルシステム上にフィルタリングノードの構成ファイルを配置した上で、インスタンス上でDockerコンテナを実行します。これらの手順はAlibaba Cloud Consoleまたは[Alibaba Cloud CLI](https://www.alibabacloud.com/help/doc-detail/25499.htm)を使用して実行できます。本手順ではAlibaba Cloud Consoleを使用します。
+環境変数とマウントしたファイルで設定したコンテナ化されたWallarmフィルタリングノードをデプロイするには、Alibaba Cloudインスタンスを作成し、そのインスタンスのファイルシステムにフィルタリングノードの設定ファイルを配置して、インスタンス内でDockerコンテナを実行します。これらの手順はAlibaba Cloud Consoleまたは[Alibaba Cloud CLI](https://www.alibabacloud.com/help/doc-detail/25499.htm)で実行できます。本手順ではAlibaba Cloud Consoleを使用します。
 
 --8<-- "../include/waf/installation/get-api-or-node-token.md"
             
-1. Alibaba Cloud Consoleを開き、サービス一覧から**Elastic Compute Service**→**Instances**に進みます。
-1. 以下のガイドラインおよび[Alibaba Cloudの手順](https://www.alibabacloud.com/help/doc-detail/87190.htm?spm=a2c63.p38356.b99.137.77df24df7fJ2XX)に従ってインスタンスを作成します:
+1. Alibaba Cloud Console→サービスの一覧→**Elastic Compute Service**→**Instances**を開きます。
+1. [Alibaba Cloudの手順](https://www.alibabacloud.com/help/doc-detail/87190.htm?spm=a2c63.p38356.b99.137.77df24df7fJ2XX)および以下のガイドラインに従ってインスタンスを作成します:
 
-    * インスタンスは、任意のオペレーティングシステムのイメージに基づいて構築可能です。
-    * インスタンスは外部リソースからアクセス可能である必要があるため、パブリックIPアドレスまたはドメインがインスタンス設定に構成される必要があります。
-    * インスタンス設定は、[インスタンスに接続するために使用される方法](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l)を反映する必要があります。
-1. [Alibaba Cloudのドキュメント](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l)に記載されているいずれかの方法でインスタンスに接続します。
-1. [該当するオペレーティングシステムの手順](https://docs.docker.com/engine/install/#server)に従って、インスタンスにDockerパッケージをインストールします。
-1. Wallarm Cloudにインスタンスを接続するために使用する、コピー済みのWallarmトークンを使用してインスタンスの環境変数を設定します:
+    * インスタンスは任意のOSイメージに基づいて作成できます。
+    * インスタンスを外部リソースから利用できるようにするため、インスタンス設定でパブリックIPアドレスまたはドメインを構成する必要があります。
+    * インスタンスの設定は、[インスタンスへの接続方法](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l)を反映している必要があります。
+1. [Alibaba Cloudのドキュメント](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l)に記載のいずれかの方法でインスタンスに接続します。
+1. 該当OSの[インストール手順](https://docs.docker.com/engine/install/#server)に従って、インスタンスにDockerパッケージをインストールします。
+1. コピーしたWallarmトークンをインスタンスの環境変数に設定し、Wallarm Cloudへの接続に使用します:
 
     ```bash
     export WALLARM_API_TOKEN='<WALLARM_API_TOKEN>'
     ```
-1. インスタンス内で、フィルタリングノードの構成を含む`default`ファイルを配置したディレクトリを作成します（例：ディレクトリ名を`configs`とします）。最小限の設定を記述したファイルの例は以下の通りです:
+1. インスタンス内に、フィルタリングノードの設定を含む`default`ファイルを配置したディレクトリを作成します（例: ディレクトリ名は`configs`）。最小設定の例:
 
     ```bash
     server {
@@ -103,47 +103,48 @@
     }
     ```
 
-    [構成ファイルに指定可能なフィルタリングノードディレクティブのセット →][nginx-waf-directives]
-1. 環境変数を渡し、構成ファイルをマウントして`docker run`コマンドを使用し、WallarmノードDockerコンテナを実行します:
+    [設定ファイルで指定できるフィルタリングノードのディレクティブ一式→][nginx-waf-directives]
+1. 環境変数を渡し、設定ファイルをマウントして`docker run`コマンドでWallarmノードDockerコンテナを起動します:
 
-    === "Command for the Wallarm US Cloud"
+    === "Wallarm US Cloud向けのコマンド"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:5.3.0
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:6.4.1
         ```
-    === "Command for the Wallarm EU Cloud"
+    === "Wallarm EU Cloud向けのコマンド"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_LABELS='group=<GROUP>' -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:5.3.0
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_LABELS='group=<GROUP>' -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:6.4.1
         ```
 
-    * `<INSTANCE_PATH_TO_CONFIG>`: 前の手順で作成した構成ファイルのパスです。例：`configs`
-    * `<DIRECTORY_FOR_MOUNTING>`: コンテナ内で構成ファイルをマウントするディレクトリです。構成ファイルはNGINXが使用する以下のコンテナディレクトリにマウントできます:
+    * `<INSTANCE_PATH_TO_CONFIG>`: 直前の手順で作成した設定ファイルへのパス。例: `configs`。
+    * `<DIRECTORY_FOR_MOUNTING>`: 設定ファイルをマウントするコンテナ内のディレクトリ。設定ファイルは、NGINXが使用する以下のコンテナディレクトリにマウントできます:
 
         * `/etc/nginx/conf.d` — 共通設定
-        * `/etc/nginx/sites-enabled` — 仮想ホスト設定
+        * `/etc/nginx/http.d` — バーチャルホスト設定
         * `/var/www/html` — 静的ファイル
 
-        フィルタリングノードディレクティブは、`/etc/nginx/sites-enabled/default`ファイルに記述する必要があります。
+        フィルタリングノードのディレクティブは`/etc/nginx/http.d/default.conf`ファイルに記述してください。
     
-    * `-p`: フィルタリングノードがリッスンするポートです。値はインスタンスのポートと同じである必要があります。
-    * `-e`: フィルタリングノードの構成を含む環境変数です（使用可能な変数は以下の表に記載されています）。なお、`WALLARM_API_TOKEN`の値を明示的に渡すことは推奨されません。
+    * `-p`: フィルタリングノードが待ち受けるポート。値はインスタンスのポートと同一にします。
+    * `-e`: フィルタリングノードの設定を行う環境変数（利用可能な変数は下表を参照）。`WALLARM_API_TOKEN`の値を明示的に渡すことは推奨しません。
 
         --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
-1. [フィルタリングノードの稼働確認](#testing-the-filtering-node-operation)を行います。
+1. [フィルタリングノードの動作をテスト](#testing-the-filtering-node-operation)します。
 
-## フィルタリングノードの稼働確認
+## フィルタリングノードの動作テスト {#testing-the-filtering-node-operation}
 
-1. Alibaba Cloud Consoleを開き、サービス一覧から**Elastic Compute Service**→**Instances**に進み、**IP address**欄からインスタンスのパブリックIPアドレスをコピーします。
+1. Alibaba Cloud Console→サービスの一覧→**Elastic Compute Service**→**Instances**を開き、**IP address**列からインスタンスのパブリックIPアドレスをコピーします。
 
-    ![Settig up container instance][copy-container-ip-alibaba-img]
+    ![コンテナインスタンスの設定][copy-container-ip-alibaba-img]
 
-    もしIPアドレスが空の場合は、インスタンスが**Running**状態であることをご確認ください。
+    IP addressが空の場合は、インスタンスが**Running**ステータスであることを確認してください。
 
-2. コピーしたアドレスに対して、テストの[Path Traversal][ptrav-attack-docs]攻撃のリクエストを送信します:
+2. コピーしたアドレスに、テスト用の[パストラバーサル][ptrav-attack-docs]攻撃のリクエストを送信します:
 
     ```
     curl http://<COPIED_IP>/etc/passwd
     ```
-3. Wallarm Consoleの[US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)の**Attacks**にアクセスし、攻撃がリストに表示されていることを確認します。
-    ![Attacks in UI][attacks-in-ui-image]
+3. Wallarm Console→**Attacks**（[US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)）を開き、攻撃が一覧に表示されていることを確認します。
+    ![UIのAttacks][attacks-in-ui-image]
+1. 必要に応じて、ノードの他の動作も[テスト][link-docs-check-operation]します。
 
-コンテナのデプロイ中に発生したエラーの詳細を表示するには、[Alibaba Cloudのドキュメント](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l)に記載されているいずれかの方法でインスタンスに接続し、[コンテナログ][logging-docs]を確認してください。インスタンスが利用できない場合は、必要なフィルタリングノードパラメータが正しい値でコンテナに渡されていることをご確認ください。
+コンテナのデプロイ中に発生したエラーの詳細を確認するには、[いずれかの方法でインスタンスに接続](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l)して[コンテナログ][logging-docs]を確認します。インスタンスにアクセスできない場合は、フィルタリングノードの必須パラメータが正しい値でコンテナに渡されていることを確認してください。

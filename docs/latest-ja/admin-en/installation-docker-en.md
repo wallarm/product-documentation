@@ -1,79 +1,79 @@
-# Docker NGINXベースイメージの実行
+# DockerのNGINXベースイメージの実行
 
-WallarmのNGINXベースのフィルタリングノードは[Dockerイメージ](https://hub.docker.com/r/wallarm/node)を使用してデプロイできます。このノードはx86_64アーキテクチャとARM64アーキテクチャの両方をサポートしており、インストール中に自動で識別されます。本記事はDockerイメージからのノード実行方法について説明します。
+WallarmのNGINXベースのフィルタリングノードは、[Dockerイメージ](https://hub.docker.com/r/wallarm/node)を使用してデプロイできます。このノードはx86_64およびARM64アーキテクチャの両方をサポートしており、インストール時に自動的に判別されます。この記事では、[インライントラフィックフィルタリング][inline-docs]のためにDockerイメージからノードを実行する方法を説明します。
 
-DockerイメージはAlpine LinuxとAlpineが提供するNGINXバージョンをベースにしています。現在、最新のイメージはAlpine Linuxバージョン3.20を使用し、NGINX stable 1.26.2が含まれています。
+このDockerイメージはAlpine LinuxおよびAlpineが提供するNGINXのバージョンに基づいています。現在、最新のイメージはAlpine Linux 3.22を使用しており、NGINX stable 1.28.0が含まれています。
 
-## 利用事例
+## ユースケース
 
 --8<-- "../include/waf/installation/docker-images/nginx-based-use-cases.md"
 
-## 必要条件
+## 要件
 
 --8<-- "../include/waf/installation/requirements-docker-nginx-latest.md"
 
-## コンテナ実行時のオプション
+## コンテナの実行オプション
 
 --8<-- "../include/waf/installation/docker-running-options.md"
 
-## 環境変数を渡してコンテナを実行
+## 環境変数を渡してコンテナを実行する
 
-以下の手順でコンテナを実行します。
+コンテナを実行するには:
 
 --8<-- "../include/waf/installation/get-api-or-node-token.md"
 
-1. ノード付きでコンテナを実行:
+1. ノードを含むコンテナを実行します:
 
     === "US Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:5.3.0
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:6.4.1
         ```
     === "EU Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -p 80:80 wallarm/node:5.3.0
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -p 80:80 wallarm/node:6.4.1
         ```
 
-以下の基本的なフィルタリングノード設定を`-e`オプションでコンテナに渡せます:
+オプション`-e`で、次の基本的なフィルタリングノード設定をコンテナに渡せます:
 
 --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
 
-このコマンドは以下を実行します:
+このコマンドは次の処理を行います:
 
-* 最小限のNGINX設定を含む`default`ファイルを作成し、フィルタリングノードの設定をコンテナ内の`/etc/nginx/sites-enabled`ディレクトリに渡します。
-* Wallarm Cloudにアクセスするためのフィルタリングノードの認証情報ファイルをコンテナ内の`/opt/wallarm/etc/wallarm`ディレクトリに作成します:
-    * フィルタリングノードUUIDとシークレットキーを含む`node.yaml`
+* 最小限のNGINX構成を含む`default.conf`を作成し、フィルタリングノードの設定をコンテナの`/etc/nginx/http.d`ディレクトリに配置します。
+* Wallarm Cloudへのアクセスに必要なフィルタリングノードの認証情報ファイルをコンテナの`/opt/wallarm/etc/wallarm`ディレクトリに作成します:
+    * フィルタリングノードのUUIDとシークレットキーを含む`node.yaml`
     * Wallarmの秘密鍵を含む`private.key`
 * リソース`http://NGINX_BACKEND:80`を保護します。
 
-## 設定ファイルをマウントしてコンテナを実行
+## 設定ファイルをマウントしてコンテナを実行する
 
-事前に作成した設定ファイルを`-v`オプションでDockerコンテナにマウントできます。ファイルには以下の設定が含まれている必要があります:
+準備済みの設定ファイルは、`-v`オプションでDockerコンテナにマウントできます。ファイルには次の設定が含まれている必要があります:
 
-* [フィルタリングノードディレクティブ][nginx-directives-docs]
+* [フィルタリングノードのディレクティブ][nginx-directives-docs]
 * [NGINX設定](https://nginx.org/en/docs/beginners_guide.html)
 
-以下の手順でコンテナを実行します:
+コンテナを実行するには:
 
 --8<-- "../include/waf/installation/get-api-or-node-token.md"
 
-1. ノード付きでコンテナを実行:
+1. ノードを含むコンテナを実行します:
 
     === "US Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:5.3.0
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/http.d/default.conf -p 80:80 wallarm/node:6.4.1
         ```
     === "EU Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:5.3.0
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v /configs/default:/etc/nginx/http.d/default.conf -p 80:80 wallarm/node:6.4.1
         ```
 
-    * `-e`オプションはコンテナに以下の必須環境変数を渡します:
+    * オプション`-e`は、次の必須環境変数をコンテナに渡します:
 
         --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+    
+    * オプション`-v`は、設定ファイル`default.conf`を含むディレクトリをコンテナの`/etc/nginx/http.d`ディレクトリにマウントします。
 
-    * `-v`オプションは設定ファイル`default`が配置されたディレクトリをコンテナ内の`/etc/nginx/sites-enabled`ディレクトリにマウントします。
-
-        ??? info "例 `/etc/nginx/sites-enabled` 最小限の内容を参照"
+        ??? info "例: `/etc/nginx/http.d/default.conf`の最小構成"
             ```bash
             server {
                     listen 80 default_server;
@@ -99,18 +99,18 @@ DockerイメージはAlpine LinuxとAlpineが提供するNGINXバージョンを
             }
             ```
 
-        ??? info "他の設定ファイルのマウント"
-            NGINXが使用するコンテナ内ディレクトリ:
+        ??? info "その他の設定ファイルをマウントする"
+            NGINXが使用するコンテナ内のディレクトリ:
 
-            * `/etc/nginx/nginx.conf` - メインのNGINX設定ファイルです。このファイルをマウントする場合、Wallarmの正常な動作のために追加の手順が必要です:
+            * `/etc/nginx/nginx.conf` - これはNGINXのメイン設定ファイルです。このファイルをマウントする場合は、Wallarmを正しく動作させるために追加の手順が必要です:
 
-                1. `nginx.conf`のトップレベルに以下の設定を追加します:
+                1. `nginx.conf`のトップレベルに次の設定を追加します:
 
                     ```
-                    include /etc/nginx/modules-enabled/*.conf;
+                    include /etc/nginx/modules/*.conf;
                     ```
-                1. `nginx.conf`の`http`ブロック内に`wallarm_srv_include /etc/nginx/wallarm-apifw-loc.conf;`ディレクティブを追加します。これは[API Specification Enforcement][api-policy-enf-docs]の設定ファイルへのパスを指定します。
-                1. `wallarm-apifw-loc.conf`ファイルを指定パスにマウントします。内容は以下のとおりです:
+                1. `nginx.conf`の`http`ブロックに`wallarm_srv_include /etc/nginx/wallarm-apifw-loc.conf;`ディレクティブを追加します。これは[API仕様の適用][api-policy-enf-docs]用の設定ファイルへのパスを指定します。
+                1. 指定のパスに`wallarm-apifw-loc.conf`ファイルをマウントします。内容は次のとおりです:
 
                     ```
                     location ~ ^/wallarm-apifw(.*)$ {
@@ -118,7 +118,7 @@ DockerイメージはAlpine LinuxとAlpineが提供するNGINXバージョンを
                             proxy_pass http://127.0.0.1:8088$1;
                             error_page 404 431         = @wallarm-apifw-fallback;
                             error_page 500 502 503 504 = @wallarm-apifw-fallback;
-                            allow 127.0.0.0/8;
+                            allow 127.0.0.8/8;
                             deny all;
                     }
 
@@ -127,11 +127,10 @@ DockerイメージはAlpine LinuxとAlpineが提供するNGINXバージョンを
                             return 500 "API FW fallback";
                     }
                     ```
-                1. `/etc/nginx/conf.d/wallarm-status.conf`ファイルを以下の内容でマウントします。ノードメトリクスをWallarm Cloudに正しくアップロードするため、提供された設定のいずれの行も変更しないことが重要です。
+                1. 下記の内容で`/etc/nginx/conf.d/wallarm-status.conf`ファイルをマウントします。提供された設定の行は変更しないことが重要です。変更すると、ノードメトリクスのWallarm Cloudへの正常なアップロードに支障をきたす可能性があります。
 
                     ```
                     server {
-                      # ポートはNGINX_PORT変数の値と一致する必要があります
                       listen 127.0.0.8:80;
 
                       server_name localhost;
@@ -149,11 +148,11 @@ DockerイメージはAlpine LinuxとAlpineが提供するNGINXバージョンを
                       }
                     }
                     ```
-                1. NGINX設定ファイル内で、`/wallarm-status`エンドポイントに以下の設定を行います:
+                1. NGINXの設定ファイル内で、`/wallarm-status`エンドポイントに対して次の設定を行います:
 
                     ```
                     location /wallarm-status {
-                        # 許可するアドレスはWALLARM_STATUS_ALLOW変数の値と一致する必要があります
+                        # 許可するアドレスはWALLARM_STATUS_ALLOW変数の値と一致させてください
                         allow xxx.xxx.x.xxx;
                         allow yyy.yyy.y.yyy;
                         deny all;
@@ -161,33 +160,33 @@ DockerイメージはAlpine LinuxとAlpineが提供するNGINXバージョンを
                         wallarm_mode off;
                     }
                     ```
-            * `/etc/nginx/conf.d` — 共通の設定
-            * `/etc/nginx/sites-enabled` — バーチャルホストの設定
+            * `/etc/nginx/conf.d` — 共通設定
+            * `/etc/nginx/http.d` — 仮想ホストの設定
             * `/opt/wallarm/usr/share/nginx/html` — 静的ファイル
 
-            必要に応じて、上記のコンテナ内ディレクトリに任意のファイルをマウントできます。フィルタリングノードディレクティブは`/etc/nginx/sites-enabled/default`ファイルに記述する必要があります。
+            必要に応じて、上記のコンテナディレクトリへ任意のファイルをマウントできます。フィルタリングノードのディレクティブは`/etc/nginx/http.d/default.conf`ファイルに記述してください。
 
-このコマンドは以下を実行します:
+このコマンドは次の処理を行います:
 
-* ファイル`default`をコンテナ内の`/etc/nginx/sites-enabled`ディレクトリにマウントします。
-* Wallarm Cloudにアクセスするためのフィルタリングノード認証情報ファイルをコンテナ内の`/opt/wallarm/etc/wallarm`ディレクトリに作成します:
-    * フィルタリングノードUUIDとシークレットキーを含む`node.yaml`
+* `default.conf`ファイルを`/etc/nginx/http.d`コンテナディレクトリにマウントします。
+* Wallarm Cloudへのアクセスに必要なフィルタリングノードの認証情報ファイルをコンテナの`/opt/wallarm/etc/wallarm`ディレクトリに作成します:
+    * フィルタリングノードのUUIDとシークレットキーを含む`node.yaml`
     * Wallarmの秘密鍵を含む`private.key`
 * リソース`http://example.com`を保護します。
 
 ## ログ設定
 
-ログはデフォルトで有効になっています。ログディレクトリは以下のとおりです:
+ログはデフォルトで有効です。ログディレクトリは次のとおりです:
 
-* `/var/log/nginx` — NGINXログ
-* `/opt/wallarm/var/log/wallarm` — [Wallarmノードログ][logging-instr]
+* `/var/log/nginx` — NGINXのログ
+* `/opt/wallarm/var/log/wallarm` — [Wallarmノードのログ][logging-instr]
 
-## Wallarmノード動作のテスト
+## Wallarmノードの動作テスト
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-## 利用事例の構成
+## ユースケースの設定
 
-Dockerコンテナにマウントされる設定ファイルには、[利用可能なディレクティブ][nginx-directives-docs]に記載のフィルタリングノード構成を示す必要があります。以下は一般的に使用されるフィルタリングノード構成オプションの例です:
+Dockerコンテナにマウントする設定ファイルには、[利用可能なディレクティブ][nginx-directives-docs]でフィルタリングノードの設定を記述する必要があります。以下は、よく使用されるフィルタリングノードの設定オプションです:
 
 --8<-- "../include/waf/installation/common-customization-options-docker-4.4.md"

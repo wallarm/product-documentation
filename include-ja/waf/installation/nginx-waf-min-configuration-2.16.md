@@ -1,31 +1,30 @@
-```markdown
-NGINXおよびWallarmフィルタリングノードの主な設定ファイルは、以下のディレクトリにあります：
+NGINXとWallarmフィルタリングノードの主な設定ファイルは、次のディレクトリにあります：
 
 * `/etc/nginx/conf.d/default.conf`（NGINXの設定）
-* `/etc/nginx/conf.d/wallarm.conf`（グローバルなフィルタリングノードの設定）
+* `/etc/nginx/conf.d/wallarm.conf`（フィルタリングノードのグローバル設定）
 
-    このファイルは、すべてのドメインに適用される設定用です。異なるドメイングループに異なる設定を適用する場合は、`default.conf`を使用するか、各ドメイングループごとに新しい設定ファイル（例：`example.com.conf`や`test.com.conf`）を作成してください。NGINX設定ファイルに関する詳細な情報は、[公式NGINXドキュメント](https://nginx.org/en/docs/beginners_guide.html)に記載されています。
-* `/etc/nginx/conf.d/wallarm-status.conf`（Wallarmノードの監視設定）。詳細な説明は[こちらのリンク][wallarm-status-instr]に記載されています。
-* `/etc/default/wallarm-tarantool`または`/etc/sysconfig/wallarm-tarantool`（Tarantoolデータベースの設定）
+    このファイルはすべてのドメインに適用される設定に使用します。異なるドメイングループに異なる設定を適用するには、`default.conf`ファイルを使用するか、各ドメイングループごとに新しい設定ファイル（例：`example.com.conf`や`test.com.conf`）を作成します。NGINXの設定ファイルに関する詳細は[公式NGINXドキュメント](https://nginx.org/en/docs/beginners_guide.html)をご参照ください。
+* `/etc/nginx/conf.d/wallarm-status.conf`（Wallarmノードの監視設定）。詳細な説明は[リンク][wallarm-status-instr]にあります
+* `/etc/default/wallarm-tarantool` または `/etc/sysconfig/wallarm-tarantool`（Tarantoolデータベースの設定）
 
-#### リクエストフィルトレーションモード
+#### リクエストフィルタリングモード
 
-デフォルトでは、フィルタリングノードは`off`状態であり、受信リクエストの解析を行いません。リクエストの解析を有効にするには、以下の手順に従ってください：
+デフォルトでは、フィルタリングノードはステータス`off`で、受信リクエストを解析しません。リクエスト解析を有効にするには、次の手順に従ってください：
 
-1. ファイル`/etc/nginx/conf.d/default.conf`を開いてください：
+1. ファイル`/etc/nginx/conf.d/default.conf`を開きます：
 
     ```bash
     sudo vim /etc/nginx/conf.d/default.conf
     ```
-2. `https`、`server`または`location`ブロック内に`wallarm_mode monitoring;`の行を追加してください。
+2. `https`、`server`または`location`ブロックに`wallarm_mode monitoring;`という行を追加します：
 
 ??? note "ファイル`/etc/nginx/conf.d/default.conf`の例"
 
     ```bash
     server {
-        # フィルタリング対象のリクエストのポート
+        # フィルタリング対象のポート
         listen       80;
-        # フィルタリング対象のリクエストのドメイン
+        # フィルタリング対象のドメイン
         server_name  localhost;
         # フィルタリングノードのモード
         wallarm_mode monitoring;
@@ -42,48 +41,47 @@ NGINXおよびWallarmフィルタリングノードの主な設定ファイル�
     }
     ```
 
-`monitoring`モードで動作している場合、フィルタリングノードはリクエスト内の攻撃の兆候を検出しますが、検出された攻撃をブロックしません。フィルタリングノードの導入後、数日間はトラフィックを`monitoring`モードでフィルタリングし、その後で`block`モードに切り替えることを推奨します。[フィルタリングノードの運用モードの設定に関する推奨事項を確認 →][waf-mode-recommendations]
+`monitoring`モードで動作している場合、フィルタリングノードはリクエスト内の攻撃の兆候を検出しますが、検出された攻撃をブロックしません。フィルタリングノードの導入後は数日間、トラフィックを`monitoring`モードでフィルタリングノード経由に流し、その後に`block`モードを有効にすることを推奨します。[フィルタリングノードの運用モード設定に関する推奨事項はこちら →][waf-mode-recommendations]
 
 #### メモリ
 
-!!! info "別サーバー上のPostanalyticsモジュール"
-    別サーバー上にPostanalyticsモジュールをインストールしている場合、この手順はスキップしてください。すでにモジュールが設定済みです。
+!!! info "別サーバー上のpostanalyticsモジュール"
+    別サーバーにpostanalyticsモジュールをインストール済みの場合は、この手順をスキップしてください。すでにモジュールの設定が完了しています。
 
-WallarmノードはインメモリストレージのTarantoolを使用しています。必要なリソースの詳細については[こちら][memory-instr]をご参照ください。なお、テスト環境では、本番環境より低いリソースを割り当てることが可能です。
+WallarmノードはインメモリストレージのTarantoolを使用します。必要なリソース量の詳細は[こちら][memory-instr]をご確認ください。テスト環境では本番環境より少ないリソースを割り当てることができます。
 
-Tarantool用のメモリを割り当てるには：
+Tarantoolに割り当てるメモリを設定するには：
 
-1. 編集モードでTarantoolの設定ファイルを開いてください：
+1. Tarantoolの設定ファイルを編集モードで開きます：
 
     === "Debian"
-        ```bash
+        ``` bash
         sudo vim /etc/default/wallarm-tarantool
         ```
     === "Ubuntu"
-        ```bash
+        ``` bash
         sudo vim /etc/default/wallarm-tarantool
         ```
-    === "CentOS or Amazon Linux 2.0.2021x and lower"
-        ```bash
+    === "CentOSまたはAmazon Linux 2.0.2021x以前"
+        ``` bash
         sudo vim /etc/sysconfig/wallarm-tarantool
         ```
-2. `SLAB_ALLOC_ARENA`ディレクティブにGB単位のメモリサイズを指定してください。値は整数または浮動小数点数で指定可能です（小数点記号は`.`です）。
+2. `SLAB_ALLOC_ARENA`ディレクティブにGB単位のメモリサイズを指定します。値は整数または浮動小数点数です（小数点はドット`.`です）。
 
-    Tarantool用のメモリ割当に関する詳細な推奨事項は、これらの[手順][memory-instr]に記載されています。
-3. 変更を反映するため、Tarantoolを再起動してください：
+    Tarantoolへのメモリ割り当てに関する詳細な推奨事項は[こちらの手順][memory-instr]に記載しています。
+3. 変更を適用するために、Tarantoolを再起動します：
 
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```
 
-#### 別サーバー上のPostanalyticsサーバのアドレス
+#### 別サーバー上のpostanalyticsのアドレス
 
-!!! info "NGINX-WallarmとPostanalyticsが同一サーバー上にある場合"
-    NGINX-WallarmとPostanalyticsモジュールが同一サーバー上にインストールされている場合、この手順はスキップしてください。
+!!! info "同一サーバー上のNGINX-Wallarmとpostanalytics"
+    NGINX-Wallarmとpostanalyticsモジュールが同一サーバーにインストールされている場合は、この手順をスキップしてください。
 
 --8<-- "../include/waf/configure-separate-postanalytics-address-nginx.md"
 
 #### その他の設定
 
-その他のNGINXおよびWallarmノード設定を更新するには、NGINXのドキュメントと[利用可能なWallarmノードディレクティブ][waf-directives-instr]のリストをご参照ください。
-```
+他のNGINXおよびWallarmノードの設定を更新するには、NGINXのドキュメントと[利用可能なWallarmノードディレクティブ][waf-directives-instr]の一覧を参照してください。

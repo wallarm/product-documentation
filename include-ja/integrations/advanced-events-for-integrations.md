@@ -1,13 +1,19 @@
-* [ヒット](../../../glossary-en.md#hit)が検出されただけ、以下を除く:
+* [Hits](../../../glossary-en.md#hit)の検出（以下を除く）：
+  
+    * [カスタム正規表現](../../rules/regex-rule.md)に基づき検出された実験的なHitsです。実験的でないHitsは通知が送信されます。
+    * [サンプル](../../events/grouping-sampling.md#sampling-of-hits)に保存されていないHitsです。
 
-    * 実験的なヒットは[カスタム正規表現](../../rules/regex-rule.md)に基づいて検出されます。実験的でないヒットは通知を発生させます。
-    * サンプルに保存されなかったヒット
-
-* システム関連:
-    * [ユーザー](../../../user-guides/settings/users.md)の変更（新規作成、削除、ロールの変更）
-    * [インテグレーション](integrations-intro.md)の変更（無効化、削除）
-    * [アプリケーション](../../../user-guides/settings/applications.md)の変更（新規作成、削除、名称の変更）
-* [脆弱性](../../../glossary-en.md#vulnerability)が検出されます。既定ではすべて検出されますが、選択したリスクレベル―高、中、低―のみが対象です。
-* [ルール](../../../user-guides/rules/rules.md)及び[トリガー](../../../user-guides/triggers/triggers.md)が変更されます（ルールまたはトリガーの新規作成、更新、削除）
-* [スコープ (公開資産)](../../scanner.md)が変更されます：ホスト、サービス、ドメインの更新
-* 1時間ごとに、前の1時間で処理されたリクエスト数を示す通知を受け取ることができます
+* システム関連：
+    * [User](../../../user-guides/settings/users.md)の変更（新規作成、削除、ロール変更）
+    * [Integration](integrations-intro.md)の変更（無効化、削除）
+    * [Application](../../../user-guides/settings/applications.md)の変更（新規作成、削除、名称変更）
+    * [rogue API detection](../../../api-discovery/rogue-api.md#step-1-upload-specification)または[API仕様の適用](../../../api-specification-enforcement/setup.md#step-1-upload-specification)に使用する仕様の定期更新時のエラー
+* [Vulnerabilities](../../../glossary-en.md#vulnerability)の検出です。デフォルトではすべてが対象ですが、選択したrisk level(s)（high、medium、low）のみに限定できます。
+* [Rules](../../../user-guides/rules/rules.md)および[triggers](../../../user-guides/triggers/triggers.md)の変更（ルールまたはトリガーの作成、更新、削除）です。
+* （[AASM Enterprise](../../../api-attack-surface/setup.md#enabling)が必要です）[Security issues](../../../api-attack-surface/security-issues.md)の検出です。すべて、または選択した[risk level(s)](../../../api-attack-surface/security-issues.md#issue-risk-level)のみを対象にできます：
+    * Critical risk
+    * High risk
+    * Medium risk
+    * Low risk
+    * Info risk
+* 毎時、直前の1時間に処理されたリクエスト数を通知で受け取ることができます。

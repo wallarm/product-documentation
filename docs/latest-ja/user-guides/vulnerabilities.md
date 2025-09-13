@@ -1,99 +1,86 @@
 # 脆弱性の管理
 
-脆弱性とは、攻撃者が悪用することにより、システムにおいて不正な悪意ある操作を実行する可能性のあるインフラストラクチャ上のセキュリティ上の欠陥のことです。Wallarm Consoleの**Vulnerabilities**セクションでは、Wallarmがシステム上で検出したセキュリティ上の欠陥を分析および管理できます。
+脆弱性とは、インフラストラクチャに存在するセキュリティ上の欠陥であり、攻撃者に悪用されるとシステムに対して不正な悪意ある操作を実行されるおそれがあります。Wallarm Consoleでは、Wallarmがお客様のシステムで検出したセキュリティ上の欠陥を以下で分析・管理できます:
 
-Wallarmは、セキュリティの脆弱性を発見するために、様々な手法を使用しています。手法は以下の通りです:
 
-* **Passive detection**: リアルトラフィック（リクエストとレスポンスの両方）を解析することで脆弱性が発見される手法です。この状況は、実際のセキュリティインシデント中に脆弱性が悪用された場合や、リクエストに改竄されたJWTsなど直接的な脆弱性悪用がなくとも脆弱性の兆候が見られる場合に発生します。
-* **Threat Replay Testing**: 脆弱性が攻撃の検証プロセス中に発見された手法です。
-* **Vulnerability Scanner**: 脆弱性が[exposed asset](scanner.md)スキャンプロセス中に発見された手法です。
-* **API Discovery insights**: 脆弱性がGETリクエストのクエリパラメータにおけるPII転送を原因として、[API Discovery](../api-discovery/overview.md)モジュールによって発見された手法です。
+* **Vulnerabilities**セクションで
+* **AASM** → **Security Issues**セクションで
 
-Wallarmは**Vulnerabilities**セクションに、検出されたすべての脆弱性の履歴を保存します:
+Wallarmは、セキュリティ上の弱点を[発見](../about-wallarm/detecting-vulnerabilities.md)するために、次のさまざまな手法を用います:
 
-![Vulnerabilities tab](../images/user-guides/vulnerabilities/check-vuln.png)
+* **受動的検出**: リクエストとレスポンスを含む実トラフィックを分析して脆弱性が見つかった場合です。これは、実際の欠陥が悪用されているセキュリティインシデントの最中に発生することもあれば、欠陥を直接悪用していなくても、侵害されたJWTのようにリクエストに脆弱性の兆候が表れている場合にも発生します。
+* **Threat Replay Testing**: Wallarmが実行する[攻撃リプレイのセキュリティテスト](../vulnerability-detection/threat-replay-testing/overview.md)中に脆弱性が見つかった場合です。
+* **API Attack Surface Management (AASM)**: 外部ホストとそのAPIを[検出](../api-attack-surface/overview.md)し、それぞれについて不足しているWAF/WAAPソリューションを特定し、脆弱性を見つけます。
+* **API Discovery insights**: GETリクエストのクエリパラメータでPIIが送信されていることを[API Discovery](../api-discovery/overview.md)モジュールが検知したことにより、脆弱性が見つかった場合です。
+
+Wallarmは、検出されたすべての脆弱性の履歴を**Vulnerabilities**セクションに保存します:
+
+![Vulnerabilitiesタブ](../images/user-guides/vulnerabilities/check-vuln.png)
 
 ## 脆弱性のライフサイクル
 
-脆弱性のライフサイクルには、評価、修正、検証の各段階が含まれており、各段階においてWallarmは問題を徹底的に解決し、システムを強化するために必要なデータを提供します。さらに、Wallarm Consoleでは**Active**および**Closed**のステータスを利用することで、脆弱性の状況を容易に監視および管理できます。
+脆弱性のライフサイクルには、評価、修復、検証の各段階があります。各段階で、Wallarmは課題に的確に対処しシステムを強化するために必要なデータを提供します。さらに、Wallarm Consoleでは、**Active**と**Closed**のステータスを活用して、脆弱性の状態を容易に監視・管理できます。
 
-* **Active**ステータスは、脆弱性がインフラストラクチャ上に存在することを示します。
-* **Closed**ステータスは、アプリケーション側で脆弱性が解決された場合、または誤検知であると判断された場合に使用されます。
+* **Active**ステータスは、脆弱性がインフラストラクチャに存在していることを示します。
+* **Closed**ステータスは、脆弱性がアプリケーション側で解消された場合、または誤検知と判断された場合に使用します。
 
-    正確な対象が脆弱性として誤って判断される場合に[false positive](../about-wallarm/detecting-vulnerabilities.md#false-positives)が発生します。誤検知だと考えられる脆弱性に遭遇した場合は、脆弱性メニューから適切なオプションを使用して報告できます。これにより、Wallarmの脆弱性検出の精度向上に寄与します。Wallarmは脆弱性を誤検知として再分類し、ステータスを**Closed**に変更し、以降は[rechecking](#verifying-vulnerabilities)の対象にしません。
+    [誤検知](../about-wallarm/detecting-vulnerabilities.md#false-positives)とは、正当な対象が誤って脆弱性として識別されることです。誤検知と思われる脆弱性に遭遇した場合は、脆弱性メニューの該当オプションを使用して報告できます。これはWallarmの脆弱性検出の精度向上に役立ちます。Wallarmは当該脆弱性を誤検知として再分類し、ステータスを**Closed**に変更して、以後の[再確認](#verifying-vulnerabilities)の対象外にします。
 
-脆弱性を管理する際には、脆弱性のステータスを手動で切り替えることができます。さらに、Wallarmは脆弱性を定期的に[rechecks](#verifying-vulnerabilities)し、結果に応じて脆弱性のステータスを自動的に変更します。
+脆弱性を管理する際は、ステータスを手動で切り替えることができます。加えて、Wallarmは定期的に脆弱性を[再確認](#verifying-vulnerabilities)し、結果に応じて自動的にステータスを変更します。
 
-![Vulnerability lifecycle](../images/user-guides/vulnerabilities/vulnerability-lifecycle.png)
+![脆弱性のライフサイクル](../images/user-guides/vulnerabilities/vulnerability-lifecycle.png)
 
-脆弱性のライフサイクルにおける変更は、脆弱性の変更履歴に反映されます。
+脆弱性のライフサイクルの変更は、脆弱性の変更履歴に反映されます。
 
-## 脆弱性の評価と修正
+## 脆弱性の評価と修復
 
-Wallarmは、各脆弱性に対して、リスクレベルの評価やセキュリティ問題に対処するための措置を講じるのに役立つ詳細情報を提供します:
+Wallarmは各脆弱性に対し、リスクレベルの評価やセキュリティ課題への対処に役立つ詳細情報を提供します:
 
-* Wallarmシステム内での脆弱性の一意の識別子
-* 脆弱性の悪用による影響の危険度を示すリスクレベル
+* Wallarmシステムにおける脆弱性の一意の識別子
+* 脆弱性が悪用された場合の影響の危険度を示すリスクレベル
 
-    WallarmはCommon Vulnerability Scoring System (CVSS)フレームワークを用いて、脆弱性悪用の可能性やシステムへの潜在的影響などに基づき、自動的に脆弱性のリスクを表示します。お客様独自のシステム要件やセキュリティ優先事項に基づき、リスクレベルを独自の値に変更できます。
-* 脆弱性を悪用する攻撃のタイプに対応する[Type of the vulnerability](../attacks-vulns-list.md)
+    Wallarmは、共通脆弱性評価システム（CVSS）フレームワーク、脆弱性が悪用される可能性、システムへの潜在的影響などに基づいて、脆弱性のリスクを自動的に示します。固有のシステム要件やセキュリティの優先順位に基づき、リスクレベルを任意の値に変更できます。
+* [脆弱性のタイプ](../attacks-vulns-list.md)（当該脆弱性を悪用する攻撃のタイプにも対応）
 * 脆弱性が存在するドメインとパス
-* 脆弱性を悪用するために悪意あるペイロードを渡す際に使用されるパラメータ
-* 脆弱性が[検出](../about-wallarm/detecting-vulnerabilities.md#vulnerability-detection-methods)された手法
-* 脆弱性が悪用された場合に影響を受ける可能性のある対象コンポーネント。**Server**、**Client**、**Database**のいずれかとなります。
+* 脆弱性の悪用に使用され得る悪意あるペイロードを渡すためのパラメータ
+* 脆弱性が[検出](../about-wallarm/detecting-vulnerabilities.md#vulnerability-detection-methods)された方法
+* 脆弱性が悪用された場合に影響を受け得る対象コンポーネント（**Server**、**Client**、**Database**）
 * 脆弱性が検出された日時
-* 脆弱性の最終[verification date](#verifying-vulnerabilities)
-* 脆弱性の詳細な説明、悪用の例、および推奨される修正手順
-* 関連するインシデント
+* 直近の[検証日](#verifying-vulnerabilities)
+* 脆弱性の詳細な説明、悪用例、および推奨される修復手順
+* 関連インシデント
 * 脆弱性ステータスの変更履歴
 
-脆弱性は[search string](search-and-filters/use-search.md)や事前定義されたフィルターを使用して絞り込みができます。
+脆弱性は、[検索文字列](search-and-filters/use-search.md)や事前定義済みフィルターを使用して絞り込めます。
 
-![Vulnerability detailed information](../images/user-guides/vulnerabilities/vuln-info.png)
+![脆弱性の詳細情報](../images/user-guides/vulnerabilities/vuln-info.png)
 
-すべての脆弱性は、システムが悪意のある行動に対してより脆弱になるため、アプリケーション側で修正する必要があります。脆弱性が修正できない場合は、[virtual patch](rules/vpatch-rule.md)ルールを使用することで、関連する攻撃をブロックし、インシデントのリスクを排除する手助けとなります。
+すべての脆弱性は、システムを悪意ある行為に対してより脆弱にしてしまうため、アプリケーション側で修正する必要があります。脆弱性を修正できない場合は、[virtual patch](rules/vpatch-rule.md)ルールを使用することで関連する攻撃をブロックし、インシデントのリスクを排除できます。
 
-## 脆弱性の検証 <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
+## 脆弱性の検証 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
 
-Wallarmは、activeおよびclosedな脆弱性を定期的に再チェックします。これは、以前に検出されたセキュリティ上の問題に対してインフラストラクチャの再テストを実施することを意味します。再チェックの結果、脆弱性がもはや存在しないことが示された場合、Wallarmはそのステータスを**Closed**に変更します。サーバが一時的に利用できない場合にも同様のことが発生する可能性があります。逆に、closedな脆弱性の再チェックがアプリケーション上で依然として存在することを示した場合、Wallarmはステータスを**Active**に戻します。
+Wallarmは、ActiveとClosedの両方の脆弱性を定期的に再確認します。これは、以前に発見されたセキュリティ問題についてインフラストラクチャを再度テストすることを意味します。再確認の結果、脆弱性がもはや存在しないと示された場合、Wallarmはそのステータスを**Closed**に変更します。これはサーバーが一時的に利用できない場合にも発生することがあります。逆に、既にClosedにした脆弱性の再確認でアプリケーションに依然として存在すると示された場合、Wallarmはそのステータスを**Active**に戻します。
 
-Activeな脆弱性および1か月以内に修正された脆弱性は1日1回再チェックされます。1か月以上前に修正された脆弱性は1週間に1回再チェックされます。
+Activeの脆弱性および1か月以内に修正された脆弱性は、1日1回再確認します。1か月以上前に修正された脆弱性は、週1回再確認します。
 
-初期の脆弱性検出手法に応じて、テストは**Vulnerability Scanner**または**Threat Replay Testing**モジュールのいずれかによって実施されます。自動再チェックプロセスの構成設定は、[**Configure**](#configuring-vulnerability-detection)ボタンにより制御できます。
+初回の検出方法に応じて、テストは**API Attack Surface Management (AASM)**または**Threat Replay Testing**モジュールによって実行されます。
 
-Passive detectionで検出された脆弱性は再チェックできません。
+受動的に検出された脆弱性は再確認できません。
 
-脆弱性を手動で再チェックする必要がある場合は、脆弱性メニューの該当オプションを使用して再チェックプロセスを実行できます:
+脆弱性を手動で再確認する必要がある場合は、脆弱性メニューの該当オプションから再確認プロセスを開始できます:
 
-![A vulnerability that can be rechecked](../images/user-guides/vulnerabilities/recheck-vuln.png)
-
-## 脆弱性検出の構成
-
-**Configure**ボタンを使用して、脆弱性検出の構成を次のオプションで詳細に調整できます:
-
-* Vulnerability Scannerを使用して検出する特定の脆弱性タイプを選択できます。デフォルトでは、Scannerは利用可能なすべての脆弱性タイプを対象とするように設定されています。
-* 脆弱性および[exposed asset](scanner.md)検出プロセスの両方を含む**Basic Scanner functionality**の有効化／無効化が可能です。デフォルトでは、この機能は有効になっています。
-
-    **Scanner**セクションでも同じトグルスイッチが表示され、片方のセクションでスイッチを変更すると、もう一方も自動的に更新されます。
-* **Recheck vulnerabilities**オプションを使用して、Scannerによる脆弱性の再チェックを有効または無効にできます。
-* 脆弱性検出および再チェックのために、**Threat Replay Testing**モジュールを有効または無効にできます。このオプションは再チェックプロセスだけでなく、モジュール自体を制御することに注意してください。
-
-    デフォルトでは、このモジュールは無効になっています。有効化する前に、[best practices](../vulnerability-detection/threat-replay-testing/setup.md)による構成について確認してください。
-
-![Vuln scan settings](../images/user-guides/vulnerabilities/vuln-scan-settings.png)
-
-さらに、UIの[**Scanner**](scanner.md)セクションでは、Vulnerability Scannerがどのexposed assetをスキャンするか、および各アセットに許可されるScannerによって生成されるRPS/RPMを制御できます。
+![再確認可能な脆弱性](../images/user-guides/vulnerabilities/recheck-vuln.png)
 
 ## 脆弱性レポートのダウンロード
 
-UI内の該当ボタンを使用して、脆弱性データをPDFまたはCSVレポートにエクスポートできます。Wallarmは指定されたアドレスにレポートをメールで送信します。
+UIの該当ボタンを使用して、脆弱性データをPDFまたはCSVレポートにエクスポートできます。Wallarmは、指定したアドレスにレポートをメールで送付します。
 
-PDFは、脆弱性およびインシデントの要約を含む視覚的に豊かなレポートの提示に適しており、CSVは各脆弱性に関する詳細情報を提供するため、技術的な目的に適しています。CSVは、ダッシュボードの作成や最も脆弱なAPIホスト/アプリケーションのリスト作成などに利用できます。
+PDFは、脆弱性やインシデントの概要を含む視覚的にリッチなレポートの提示に適しています。一方、CSVは各脆弱性の詳細情報を提供でき、技術的な用途に適しています。CSVは、ダッシュボードの作成、最も脆弱なAPIホスト/アプリケーションの一覧作成などに活用できます。
 
-## API呼び出しによる脆弱性取得
+## 脆弱性を取得するAPI呼び出し
 
-脆弱性の詳細を取得するために、Wallarm Console UIのほかに[Wallarm APIを直接呼び出す](../api/overview.md)こともできます。以下は該当するAPI呼び出しの例です。
+脆弱性の詳細を取得するには、Wallarm ConsoleのUIに加えて、[Wallarm APIを直接呼び出す](../api/overview.md)こともできます。以下は対応するAPI呼び出しの例です。
 
-過去24時間以内の**Active**ステータスの脆弱性から最初の50件を取得するには、以下のリクエストを使用してください。`TIMESTAMP`は24時間前の日付を[Unix Timestamp](https://www.unixtimestamp.com/)形式に変換した値に置き換えます:
+直近24時間以内でステータスが**Active**の最初の50件の脆弱性を取得するには、次のリクエストを使用し、`TIMESTAMP`を24時間前の日付を[Unixタイムスタンプ](https://www.unixtimestamp.com/)形式に変換した値に置き換えてください:
 
 --8<-- "../include/api-request-examples/get-vulnerabilities.md"

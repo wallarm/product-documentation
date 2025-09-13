@@ -1,86 +1,87 @@
-# Wallarm Consoleでテナントアカウントを作成
+# Wallarm Consoleでテナントアカウントを作成する
 
-以下の手順は、[テナントアカウント](overview.md)を正しく構成するためのものです。
+本手順では、[テナントアカウント](overview.md)を正しく設定するための手順を説明します。
 
 --8<-- "../include/waf/features/multi-tenancy/partner-client-term.md"
 
 ## テナントアカウントの設定
 
-テナントアカウントを設定するには、以下の手順を実施してください:
+テナントアカウントを設定するには、次の手順を実行します。
 
-1. Wallarm Consoleにサインアップし、ご利用のアカウント向けにマルチテナンシー機能有効化のリクエストをWallarm technical supportへ送信します。
-2. テナントアカウントを作成します。
-3. テナント及びそのアプリケーションに特定のトラフィックを関連付けます。
+1. Wallarm Consoleにサインアップし、マルチテナンシー機能の有効化をWallarmテクニカルサポートに依頼します。
+1. テナントアカウントを作成します。
+1. 特定のトラフィックをテナントおよびそのアプリケーションに関連付けます。
 
-### ステップ1: サインアップしてマルチテナンシー機能有効化リクエストを送信
+### ステップ1: サインアップし、マルチテナンシー機能の有効化を依頼する
 
-1. [US Cloud](https://us1.my.wallarm.com/signup)または[EU Cloud](https://my.wallarm.com/signup)でWallarm Consoleにアクセスし、登録フォームに入力し内容を確認してください。
+1. Wallarm Consoleの[US Cloud](https://us1.my.wallarm.com/signup)または[EU Cloud](https://my.wallarm.com/signup)で登録フォームに入力し、確認します。
 
     ![登録フォーム](../../images/signup-en.png)
 
     !!! info "企業メールアドレス"
-        企業メールアドレスを使用してサインアップしてください。
-2. メールボックスを確認し、受信したメッセージ内のリンクをクリックしてアカウントを有効化してください。
-3. [Wallarm technical support](mailto:support@wallarm.com)に対して、アカウントでのマルチテナンシー機能有効化リクエストを送信してください。リクエストには以下の情報を含めてください:
-    * 使用しているWallarm Cloudの名前（US CloudまたはEU Cloud）
-    * グローバルアカウント及びテクニカルテナントアカウントの名称
-    * テナントアカウントへアクセスを付与する従業員のメールアドレス（マルチテナンシー機能有効化後は、従業員を自ら追加できます）
-    * ブランディングされたWallarm Consoleのロゴ
-    * Wallarm Consoleのカスタムドメイン、そのドメインの証明書と暗号化キー
-    * あなたのテクニカルサポート用メールアドレス
+        企業のメールアドレスでサインアップしてください。
+2. メールを開き、受信したメッセージのリンクからアカウントを有効化します。
+3. ご利用のアカウントのマルチテナンシー機能を有効化するよう、[Wallarmテクニカルサポート](mailto:support@wallarm.com)に依頼を送信します。依頼には次の情報を含めてください。
+    * 使用中のWallarm Cloud名（US CloudまたはEU Cloud）
+    * グローバルアカウントおよびテクニカルテナントアカウントの名称
+    * テナントアカウントへのアクセスを付与する従業員のメールアドレス（マルチテナンシー機能の有効化後は、従業員を自身で追加できるようになります）
+    * ブランド適用用のWallarm Consoleロゴ
+    * Wallarm Console用のカスタムドメイン、そのドメインの証明書と暗号化キー
+    * 貴社のテクニカルサポート用メールアドレス
 
-リクエストを受領後、Wallarm technical supportは以下の処理を行います:
+依頼を受領後、Wallarmテクニカルサポートは次を実施します。
 
-1. Wallarm Cloud内にグローバルアカウントとテクニカルテナントアカウントを作成します。
-2. あなたをテクニカルクライアントアカウントのユーザーリストに[役割](../../user-guides/settings/users.md)「Global administrator」として追加します。
-3. 従業員のメールアドレスが提供された場合、Wallarm technical supportはテクニカルテナントアカウントのユーザーリストに[役割](../../user-guides/settings/users.md)「Global read only」として従業員を追加します。
+1. Wallarm Cloudにグローバルアカウントとテクニカルテナントアカウントを作成します。
+2. テクニカルクライアントアカウントのユーザー一覧に、**Global administrator**の[ロール](../../user-guides/settings/users.md)であなたを追加します。
+3. 従業員のメールアドレスが提供されている場合、Wallarmテクニカルサポートは、テクニカルテナントアカウントのユーザー一覧に**Global read only**の[ロール](../../user-guides/settings/users.md)で従業員を追加します。
 
-    未登録の従業員には、新たなパスワード設定リンクが記載されたメールが送信され、テクニカルテナントアカウントへのアクセスが可能となります。
-4. あなたのUUID（マルチテナンシーを利用して分離環境を運用するWallarm partner companyまたはWallarm clientを示すメインテナントUUID）を送信します。  
-    受領したUUIDは以降の手順で必要となります。
+    未登録の従業員には、テクニカルテナントアカウントにアクセスするための新しいパスワードを設定するリンクを含むメールが届きます。
+4. あなたのUUID（隔離環境向けにマルチテナンシーを使用するWallarmパートナー企業またはWallarmクライアントを示すメインテナントUUID）を送付します。
 
-### ステップ2: テナントを作成
+    受領したUUIDは後続の手順で必要になります。
+
+### ステップ2: テナントを作成する
 
 #### Wallarm Console経由
 
-**Global administrator**アカウントで、Wallarm Console → tenant selector → **Create tenant**を使用してテナントを作成できます。
+Global administratorアカウントで、Wallarm Console → tenant selector → **Create tenant**からテナントを作成できます。
 
-![Wallarm Console経由でテナントを作成](../../images/partner-waf-node/tenant-create-via-ui.png)
+![!Wallarm Consoleでのテナント作成](../../images/partner-waf-node/tenant-create-via-ui.png)
 
-新しいテナント向けに、新たな**Administrator**[ユーザー](../../user-guides/settings/users.md#user-roles)を作成できます。招待メールは指定されたアドレスに送信されます。
+新しいテナント向けに新規のAdministrator[ユーザー](../../user-guides/settings/users.md#user-roles)を作成できます。指定したアドレスに招待メールが送信されます。
 
 #### Wallarm API経由
 
-テナントを作成するには、Wallarm APIへ認証済みリクエストを送信します。認証済みリクエストは、ご自身のAPIクライアントまたは認証方式が定義されている[Wallarm API Console](../../api/overview.md)から送信できます:
+テナントを作成するには、Wallarm APIに対して認証済みリクエストを送信できます。認証済みリクエストは、独自のAPIクライアントから送信するか、認証方法が定義された[Wallarm API Console](../../api/overview.md)から送信できます。
 
-* **Wallarm API Console**からリクエストを送信する場合は、**Global administrator**ユーザーとしてWallarm Consoleにサインインし、以下のURLで利用可能なWallarm API Consoleページを更新する必要があります:
-    * US Cloudは https://apiconsole.us1.wallarm.com/
-    * EU Cloudは https://apiconsole.eu1.wallarm.com/
-* **ご自身のAPIクライアント**からリクエストを送信する場合、リクエストに[Global Administratorの権限を持つAPI token](../../user-guides/settings/api-tokens.md)を渡す必要があります.
+* **Wallarm API Console**からリクエストを送信する場合は、**Global administrator**ユーザーロールでWallarm Consoleにサインインし、以下のWallarm API Consoleページを更新します。
+    * https://apiconsole.us1.wallarm.com/ US Cloud向け
+    * https://apiconsole.eu1.wallarm.com/ EU Cloud向け
+* **独自のAPIクライアント**からリクエストを送信する場合は、リクエストに[Global Administratorの権限を持つAPIトークン](../../user-guides/settings/api-tokens.md)を渡す必要があります。
 
-この手順で、グローバルアカウントに連携したテナントアカウントが作成されます。
+このステップでは、グローバルアカウントに紐づいたテナントアカウントが作成されます。
 
-1. 以下のパラメーターを用いて、ルート `/v1/objects/client/create` へPOSTリクエストを送信してください:
+1. 次のパラメータを指定して、ルート`/v1/objects/client/create`にPOSTリクエストを送信します。
 
-    パラメーター | 説明 | リクエスト部 | 必須
-    ------------ | ---- | ------------ | ----
-    `X-WallarmApi-Token` | [Global Administratorの権限を持つAPI token](../../user-guides/settings/api-tokens.md). | Header | ご自身のAPIクライアントからリクエストを送信する場合は必須
-    `name` | テナントの名称. | Body | 必須
-    `vuln_prefix` | Wallarmが脆弱性追跡及びテナントとの関連付けに使用する脆弱性プレフィックス. このプレフィックスは4つの大文字または数字を含み、テナントの名称に関連している必要があります（例：テナント "Tenant" の場合は `TNNT`）. | Body | 必須
-    `partner_uuid` | グローバルアカウント作成時に受領した[メインテナントUUID](#step-1-sign-up-and-send-a-request-to-activate-the-multitenancy-feature). | Body | 必須
+    パラメータ | 説明 | リクエスト部位 | 必須
+    --------- | -------- | ------------- | ---------
+    `X-WallarmApi-Token` | **Global Administrator**の権限を持つ[APIトークン](../../user-guides/settings/api-tokens.md)。 | ヘッダー | はい（独自のAPIクライアントからリクエストを送信する場合）
+    `name` | テナント名。 | ボディ | はい
+    `vuln_prefix` | 脆弱性トラッキングおよびテナントとの関連付けにWallarmが使用する脆弱性プレフィックス。プレフィックスは4文字の大文字または数字で構成し、テナント名に関連したものにします。例: テナント`Tenant`に対しては`TNNT`。 | ボディ | はい
+    `partner_uuid` | グローバルアカウント作成時に受領した[メインテナントUUID](#step-1-sign-up-and-send-a-request-to-activate-the-multitenancy-feature)。 | ボディ | はい
 
-    ??? info "ご自身のAPIクライアントから送信したリクエストの例"
-        === "USクラウド"
+    ??? info "独自のAPIクライアントから送信するリクエスト例を表示"
+        === "US Cloud"
             ```bash
             curl -v -X POST "https://us1.api.wallarm.com/v1/objects/client/create" -H "X-WallarmApi-Token: <YOUR_TOKEN>" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
             ```
-        === "EUクラウド"
-            ```bash
+        === "EU Cloud"
+            ``` bash
             curl -v -X POST "https://api.wallarm.com/v1/objects/client/create" -H "X-WallarmApi-Token: <YOUR_TOKEN>" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
             ```
 
-    ??? info "レスポンスの例を表示"
-        ```bash
+    ??? info "レスポンス例を表示"
+        ``` bash
         {
         "status":200,
         "body": {
@@ -95,20 +96,20 @@
         }
         ```
 
-2. レスポンスから`uuid`パラメーターの値をコピーしてください。このパラメーターはテナントアカウントにトラフィックを関連付ける際に使用されます.
+2. レスポンスの`uuid`パラメータの値を控えます。このパラメータは、テナントのトラフィックをテナントアカウントに紐付ける際に使用します。
 
-作成されたテナントは、[global users](../../user-guides/settings/users.md#user-roles)向けにWallarm Consoleに表示されます。例えば、`Tenant 1`や`Tenant 2`が該当します:
+作成したテナントは、[グローバルユーザー](../../user-guides/settings/users.md#user-roles)に対してWallarm Consoleに表示されます。例えば、`Tenant 1`や`Tenant 2`です。
 
-![Wallarm Consoleにおけるテナントのセレクター](../../images/partner-waf-node/clients-selector-in-console.png)
+![Wallarm Consoleのテナントセレクタ](../../images/partner-waf-node/clients-selector-in-console.png)
 
-### ステップ3: テナントに特定のトラフィックを関連付ける
+### ステップ3: 特定のトラフィックをテナントに関連付ける
 
 !!! info "設定のタイミング"
-    この設定はノードのデプロイ時に実施され、すべてのテナントのトラフィックが単一のWallarmノードにより[処理されているまたは処理される](deploy-multi-tenant-node.md)場合にのみ適用されます。
+    この設定は、ノードのデプロイ時に実施し、すべてのテナントのトラフィックが1つのWallarmノードのみで[処理されている、または処理される予定](deploy-multi-tenant-node.md)の場合に限ります。
 
-    各テナントのトラフィックを別々のノードで処理している場合は、この手順をスキップし、[ノードのデプロイと設定](deploy-multi-tenant-node.md)に進んでください.
+    各テナントのトラフィックを個別のノードが処理する場合は、このステップをスキップして[ノードのデプロイと設定](deploy-multi-tenant-node.md)に進んでください。
 
-Wallarm Cloudにどのトラフィックがどのテナントアカウントに表示されるかの情報を提供するため、作成したテナントに特定のトラフィックを関連付ける必要があります。これを実現するには、NGINXの設定ファイルにおいて、テナントの`uuid`（**ステップ3**で取得）を[`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid)ディレクティブの値として指定します。例えば:
+どのトラフィックをどのテナントアカウントの配下に表示すべきかをWallarm Cloudに伝えるため、特定のトラフィックを作成したテナントに関連付ける必要があります。そのために、NGINXの設定ファイルにテナントを含め、`wallarm_partner_client_uuid`ディレクティブの値としてその`uuid`（**ステップ3**で取得）を指定します。例:
 
 ```
 server {
@@ -118,32 +119,32 @@ server {
 }
 ```
 
-上記の設定では、`tenant1.com`を対象とするトラフィックがクライアント`11111111-1111-1111-1111-111111111111`に関連付けられます.
+上記の設定では、`tenant1.com`宛のトラフィックはクライアント`11111111-1111-1111-1111-111111111111`に関連付けられます。
 
-## アカウントへのユーザーアクセスの提供
+## アカウントへのアクセス権をユーザーに付与する
 
-* テクニカルテナントアカウントには、ユーザーに付与できる**global**および**regular**[役割](../../user-guides/settings/users.md)が存在します.
-    
-    Globalユーザーはすべての連携されたテナントアカウントへアクセスできます.
-    
-    Regularユーザーはテクニカルテナントアカウントのみへのアクセスが可能です.
-* 一部のテナントアカウントには、ユーザーに付与できるのは**regular**[役割](../../user-guides/settings/users.md)のみです.
-    
-    ユーザーは特定のテナントアカウント内で、ブロックされたリクエストの追跡、発見された脆弱性の解析、およびフィルタリングノードの追加設定を行うことができます. 役割が許可している場合、ユーザーは相互に自らを追加することが可能です.
+* テクニカルテナントアカウントには、ユーザーに付与できる**グローバル**および**通常**の[ロール](../../user-guides/settings/users.md)があります。
 
-[マルチテナントノードのデプロイと設定に進む →](deploy-multi-tenant-node.md)
+    グローバルユーザーは、リンクされたすべてのテナントアカウントにアクセスできます。
 
-## Wallarm Consoleにおけるテナントアカウントの無効化と有効化
+    通常ユーザーは、テクニカルテナントアカウントのみにアクセスできます。
+* 各テナントアカウント上では、ユーザーに付与できるのは**通常**の[ロール](../../user-guides/settings/users.md)のみです。
 
-Wallarm Consoleでは、**Global administrator**ロールを持つユーザーが、その管理対象のグローバルアカウントに連携しているテナントアカウントを無効化できます。テナントアカウントが無効化されると:
+    ユーザーは、特定のテナントアカウント内でブロックされたリクエストの追跡、検出された脆弱性の分析、フィルタリングノードの追加設定を実行できます。ロールが許可している場合、ユーザーは相互にユーザーを追加できます。
 
-* このテナントアカウントのユーザーはWallarm Consoleへアクセスできなくなります.
-* この[テナントレベル](deploy-multi-tenant-node.md#multi-tenant-node-characteristics)に設置されたフィルタリングノードはトラフィックの処理を停止します.
+[マルチテナントノードのデプロイと設定へ →](deploy-multi-tenant-node.md)
 
-無効化されたアカウントは削除されず、再度有効化することが可能です.
+## Wallarm Consoleでのテナントアカウントの無効化と有効化
 
-テナントアカウントを無効化するには、tenant selector内のテナントメニューから**Deactivate**を選択し、確認してください。テナントアカウントは無効化され、テナントリストから非表示となります.
+Wallarm Consoleでは、**Global administrator**ロールのユーザーが、その管理対象のグローバルアカウントにリンクされたテナントアカウントを無効化できます。テナントアカウントを無効化すると、次の影響があります。
 
-![テナント - 無効化](../../images/partner-waf-node/tenant-deactivate.png)
+* このテナントアカウントのユーザーはWallarm Consoleにアクセスできません。
+* この[テナントレベル](deploy-multi-tenant-node.md#multi-tenant-node-characteristics)にインストールされているフィルタリングノードはトラフィックの処理を停止します。
 
-以前に無効化されたテナントアカウントを再度有効化するには、tenant selectorで**Show deactivated tenants**をクリックし、該当テナントの**Activate**を選択してください.
+無効化されたアカウントは削除されず、再度有効化できます。
+
+テナントアカウントを無効化するには、tenant selectorでtenant menuから**Deactivate**を選択し、確認します。テナントアカウントは無効化され、テナント一覧から非表示になります。
+
+![テナント - Deactivate](../../images/partner-waf-node/tenant-deactivate.png)
+
+以前に無効化したテナントアカウントを有効化するには、tenant selectorで**Show deactivated tenants**をクリックし、対象テナントで**Activate**を選択します。

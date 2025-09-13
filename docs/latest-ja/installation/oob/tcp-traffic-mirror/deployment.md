@@ -1,75 +1,75 @@
 # TCPトラフィックミラー解析用ノードのデプロイ
 
-Wallarmは、TCPトラフィックミラー解析専用に設計されたフィルタリングノードをデプロイするためのアーティファクトを提供します。本ガイドでは、このフォームファクターのWallarmフィルタリングノードをデプロイおよび設定する方法について説明します。
+Wallarmは、TCPトラフィックのミラー解析に特化したフィルタリングノードのデプロイ用アーティファクトを提供します。本ガイドでは、このフォームファクターでWallarmフィルタリングノードをデプロイおよび構成する方法を説明します。
 
 ## ユースケース
 
-すべてのサポートされている [out-of-band deployment options](../../supported-deployment-options.md#out-of-band) の中で、以下のシナリオに対して本ソリューションを推奨します：
+サポートされている[アウトオブバンドのデプロイオプション](../../supported-deployment-options.md#out-of-band)の中で、本ソリューションは以下のシナリオに推奨されます。
 
-* ネットワーク層でミラーされたTCPトラフィックのキャプチャを希望し、この特定のトラフィックを解析するセキュリティソリューションを必要とする場合。
-* NGINXまたはEnvoyベースのデプロイメントアーティファクトが利用できない、遅すぎる、またはリソースを過剰に消費する場合。このとき、HTTPトラフィックミラー解析を実施することはリソースを大量に消費する可能性があります。TCPトラフィックミラー解析はウェブサーバから独立して実行されるため、これらの問題を回避できます。
-* レスポンスデータに依存する[脆弱性検出](../../../about-wallarm/detecting-vulnerabilities.md)や[APIディスカバリー](../../../api-discovery/overview.md)などの機能が有効となる、レスポンス解析も行うセキュリティソリューションを必要とする場合。
+* ネットワーク層でミラーされたTCPトラフィックを取得し、その特定のトラフィックを分析するセキュリティソリューションが必要な場合。
+* NGINXベースのデプロイアーティファクトが利用できない、遅い、またはリソース消費が多い場合。この場合、HTTPトラフィックのミラー解析はリソース負荷が高くなり得ます。TCPトラフィックのミラー解析はWebサーバーから独立して動作するため、これらの問題を回避します。
+* レスポンスの解析も行い、レスポンスデータに依存する[脆弱性検出](../../../about-wallarm/detecting-vulnerabilities.md)や[APIディスカバリー](../../../api-discovery/overview.md)などの機能を有効化したい場合。
 
-## 動作の仕組み
+## 仕組み
 
-本ソリューションは、ウェブサーバ（NGINXなど）から独立して、ネットワークインターフェースから直接ミラーされたTCPトラフィックをキャプチャするout-of-band (OOB) モードで動作します。キャプチャしたトラフィックは解析され、再構築された後、脅威が検出されます。
+このソリューションはアウトオブバンド（OOB）モードで動作し、NGINXのようなWebサーバーとは独立してネットワークインターフェースから直接ミラーされたTCPトラフィックを取得します。取得したトラフィックは解析・再構成され、脅威の有無を分析します。
 
-ノードはミラーターゲットとして機能し、複数のトラフィックソース間でシームレスに切り替えます。このソリューションは、VLAN (802.1q)、VXLAN、またはSPANでタグ付けされたトラフィックをサポートします。
+ミラーのターゲットとして機能し、複数のトラフィックソース間をシームレスに切り替えます。VLAN（802.1q）、VXLAN、またはSPANでタグ付けされたトラフィックをサポートします。
 
-さらに、本ソリューションはレスポンスミラーパース解析を有効にし、Wallarmの機能である[脆弱性検出](../../../about-wallarm/detecting-vulnerabilities.md)や[APIディスカバリー](../../../api-discovery/overview.md)など、レスポンスデータに依存する機能を提供します。
+さらに、レスポンスミラーの解析を有効にし、レスポンスデータに依存するWallarmの機能を提供します。これには[脆弱性検出](../../../about-wallarm/detecting-vulnerabilities.md)、[APIディスカバリー](../../../api-discovery/overview.md)などが含まれます。
 
-![!TCP traffic mirror scheme](../../../images/waf-installation/oob/tcp-mirror-analysis.png)
+![!TCPトラフィックミラーの模式図](../../../images/waf-installation/oob/tcp-mirror-analysis.png)
 
-## 要件
+## 前提条件
 
-* [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarm Consoleにおいて、**Administrator**ロールを持つアカウントへのアクセスを有すること。
-* ノードを実行する予定のマシンは、以下の要件を満たしている必要があります：
+* [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarm Consoleで**Administrator**ロールを持つアカウントへのアクセス。
+* ノードを実行するマシンは以下の条件を満たす必要があります。
 
     * Linux OS
     * x86_64/ARM64アーキテクチャ
-    * すべてのコマンドをスーパーユーザー（例：`root`）として実行すること
-    * Wallarmインストーラをダウンロードするために`https://meganode.wallarm.com`へのアウトゴーイング接続が許可されていること
-    * US Wallarm Cloudを利用する場合は`https://us1.api.wallarm.com`、EU Wallarm Cloudを利用する場合は`https://api.wallarm.com`へのアウトゴーイング接続が許可されていること
-    * 攻撃検出ルールおよび[API仕様](../../../api-specification-enforcement/overview.md)の更新のダウンロード、ならびに[allowlisted, denylisted, or graylisted](../../../user-guides/ip-lists/overview.md)な国、地域、またはデータセンターの正確なIPを取得するため、下記のIPアドレスへのアウトゴーイング接続が許可されていること
+    * すべてのコマンドをスーパーユーザー（例: `root`）として実行します。
+    * Wallarmインストーラーをダウンロードするために`https://meganode.wallarm.com`への外向き接続が許可されていること
+    * US Wallarm Cloudで動作するために`https://us1.api.wallarm.com`、EU Wallarm Cloudで動作するために`https://api.wallarm.com`への外向き接続が許可されていること
+    * 攻撃検出ルールおよび[API仕様](../../../api-specification-enforcement/overview.md)の更新をダウンロードし、また[許可リスト、拒否リスト、グレーリスト](../../../user-guides/ip-lists/overview.md)に登録した国、地域、またはデータセンターの正確なIPを取得するために、以下のIPアドレスへの外向き接続が許可されていること
 
         --8<-- "../include/wallarm-cloud-ips.md"
-* トラフィックおよびレスポンスミラーリングは、送信元とターゲットの両方を設定し、準備されたインスタンスをミラータゲットとして選択する必要があります。特定の環境要件（トラフィックミラーリング設定に関して特定のプロトコルを許可するなど）を満たす必要があります。
-* ミラーされたトラフィックは、VLAN (802.1q)、VXLAN、またはSPANのいずれかでタグ付けされます。
+* トラフィックとレスポンスのミラーリングが、送信元とターゲットの双方で構成され、用意したインスタンスがミラーターゲットとして選択されている必要があります。トラフィックミラーリングの構成では、特定のプロトコルを許可するなど、環境固有の要件を満たす必要があります。
+* ミラーリングされたトラフィックにはVLAN（802.1q）、VXLAN、またはSPANのタグが付与されている必要があります。
 
-## Step 1: Wallarmトークンの準備
+## 手順1: Wallarmトークンの準備
 
-ノードをインストールするには、Wallarm Cloudにノードを登録するためのトークンが必要です。トークンの準備手順は下記の通りです：
+ノードをインストールするには、Wallarm Cloudにノードを登録するためのトークンが必要です。トークンを準備するには:
 
-1. Wallarm Console → **Settings** → **API tokens** をUS Cloudの[Wallarm Console](https://us1.my.wallarm.com/settings/api-tokens)またはEU Cloudの[Wallarm Console](https://my.wallarm.com/settings/api-tokens)で開きます。
-1. `Deploy`ソースロールのAPIトークンを作成または選択します。
+1. [US Cloud](https://us1.my.wallarm.com/settings/api-tokens)または[EU Cloud](https://my.wallarm.com/settings/api-tokens)のWallarm Consoleで、**Settings** → **API tokens**を開きます。
+1. 使用タイプが`Node deployment/Deployment`のAPIトークンを探すか作成します。
 1. このトークンをコピーします。
 
-## Step 2: Wallarmインストーラーのダウンロード
+## 手順2: Wallarmインストーラーのダウンロード
 
-Wallarmは、以下のプロセッサ向けのインストールを推奨します：
+Wallarmは以下のプロセッサ向けのインストールを提供します。
 
 * x86_64
 * ARM64
 
-Wallarmインストールスクリプトをダウンロードし、実行可能にするには、以下のコマンドを使用します：
+Wallarmのインストールスクリプトをダウンロードし、実行可能にするには次のコマンドを使用します。
 
-=== "x86_64 version"
+=== "x86_64版"
     ```bash
-    curl -O https://meganode.wallarm.com/native/aio-native-0.11.0.x86_64.sh
-    chmod +x aio-native-0.11.0.x86_64.sh
+    curl -O https://meganode.wallarm.com/native/aio-native-0.17.1.x86_64.sh
+    chmod +x aio-native-0.17.1.x86_64.sh
     ```
-=== "ARM64 version"
+=== "ARM64版"
     ```bash
-    curl -O https://meganode.wallarm.com/native/aio-native-0.11.0.aarch64.sh
-    chmod +x aio-native-0.11.0.aarch64.sh
+    curl -O https://meganode.wallarm.com/native/aio-native-0.17.1.aarch64.sh
+    chmod +x aio-native-0.17.1.aarch64.sh
     ```
 
-## Step 3: 設定ファイルの準備
+## 手順3: 設定ファイルの準備
 
-インスタンス上に`wallarm-node-conf.yaml`ファイルを作成します。本ソリューションでは、ネットワークインターフェースとトラフィックフォーマット（例：VLAN、VXLAN）を識別するための適切な設定が必要です。ファイルのサンプル内容は以下の通りです：
+インスタンス上に`wallarm-node-conf.yaml`ファイルを作成します。本ソリューションでは、ネットワークインターフェースおよびトラフィック形式（例: VLAN、VXLAN）を特定できるよう適切に構成する必要があります。ファイル内容の例:
 
 ```yaml
-version: 3
+version: 4
 
 mode: tcp-capture
 
@@ -80,17 +80,17 @@ goreplay:
       - vxlan
 ```
 
-[記事](../../native-node/all-in-one-conf.md)には、他のサポートされる設定パラメータの一覧が記載されています。
+[この記事](../../native-node/all-in-one-conf.md)に、サポートされている追加の設定パラメータ一覧があります。
 
 ### モードの設定（必須）
 
-TCPトラフィックミラー解析のために、本ソリューションを実行するには、対応するパラメータに`tcp-capture`モードを指定する必要があります。
+TCPトラフィックミラー解析用にソリューションを実行するには、対象のパラメータに`tcp-capture`モードを指定する必要があります。
 
-### リスニングするネットワークインターフェースの選択
+### リッスンするネットワークインターフェースの選択
 
-トラフィックをキャプチャするためのネットワークインターフェースを指定するには：
+トラフィックをキャプチャするネットワークインターフェースを指定するには:
 
-1. ホスト上で利用可能なネットワークインターフェースを確認します：
+1. ホストで利用可能なネットワークインターフェースを確認します。
 
     ```
     ip addr show
@@ -98,10 +98,10 @@ TCPトラフィックミラー解析のために、本ソリューションを�
 
 1. `filter`パラメータにネットワークインターフェースを指定します。
 
-    値はネットワークインターフェースとポートがコロン（`:`）で区切られた形式である必要があります。フィルターの例としては、`eth0:`, `eth0:80`, または全インターフェース上の特定のポートを傍受するための`:80`などが挙げられます。例：
+    値はネットワークインターフェースとポートをコロン（:）で区切った形式である必要があります。フィルターの例は`eth0:`、`eth0:80`、または（すべてのインターフェース上の特定ポートを傍受する）`:80`です。例:
 
     ```yaml
-    version: 3
+    version: 4
 
     mode: tcp-capture
 
@@ -111,10 +111,10 @@ TCPトラフィックミラー解析のために、本ソリューションを�
 
 ### VLANのキャプチャ
 
-ミラーされたトラフィックがVLANでラップされている場合は、追加の引数を指定します：
+ミラーリングされたトラフィックがVLANでラップされている場合は、追加の引数を指定します。
 
 ```yaml
-version: 3
+version: 4
 
 mode: tcp-capture
 
@@ -123,16 +123,16 @@ goreplay:
   extra_args:
     - -input-raw-vlan
     - -input-raw-vlan-vid
-    # VLANのVID、例：
+    # VLANのVIDの例:
     # - 42
 ```
 
 ### VXLANのキャプチャ
 
-ミラーされたトラフィックがVXLAN（AWSで一般的）でラップされている場合は、追加の引数を指定します：
+ミラーリングされたトラフィックがVXLAN（AWSで一般的）でラップされている場合は、追加の引数を指定します。
 
 ```yaml
-version: 3
+version: 4
 
 mode: tcp-capture
 
@@ -141,150 +141,165 @@ goreplay:
   extra_args:
     - -input-raw-engine
     - vxlan
-    # カスタムVXLAN UDPポート、例：
+    # カスタムVXLANのUDPポートの例:
     # - -input-raw-vxlan-port 
     # - 4789
-    # 特定のVNI (デフォルトではすべてのVNIがキャプチャ対象)、例：
+    # 特定のVNI（デフォルトではすべてのVNIを捕捉）の例:
     # - -input-raw-vxlan-vni
     # - 1
 ```
 
-### 元のクライアントIPアドレスの識別
+### 元のクライアントIPとHostヘッダーの特定
 
-デフォルトでは、WallarmはネットワークパケットのIPヘッダーから送信元IPアドレスを読み取ります。しかし、プロキシやロードバランサが自身のIPに変更する可能性があります。
+トラフィックがプロキシやロードバランサーを通過する際、これらが元のクライアントIPアドレスや`Host`ヘッダーを自分自身の値に置き換えることがよくあります。元の情報を保持するため、これらの中間機器は通常、`X-Forwarded-For`、`X-Real-IP`、`X-Forwarded-Host`のようなHTTPヘッダーを追加します。
 
-実際のクライアントIPを保持するために、これらの中継機はしばしばHTTPヘッダー（例：`X-Real-IP`、`X-Forwarded-For`）を追加します。`real_ip_header`パラメータは、元のクライアントIPを抽出するためにWallarmが使用するヘッダーを指定します。例：
+Native Nodeが元のクライアントおよび対象ホストを正しく特定できるようにするには、[`proxy_headers`](../../native-node/all-in-one-conf.md#proxy_headers)設定ブロックを使用します。例:
 
 ```yaml
-version: 3
+version: 4
 
 mode: tcp-capture
 
-http_inspector:
-  real_ip_header: "X-Real-IP"
+proxy_headers:
+  # ルール1: 社内プロキシ
+  - trusted_networks:
+      - 10.0.0.0/8
+      - 192.168.0.0/16
+    original_host:
+      - X-Forwarded-Host
+    real_ip:
+      - X-Forwarded-For
+
+  # ルール2: 外部エッジプロキシ（例: CDN、リバースプロキシ）
+  - trusted_networks:
+      - 203.0.113.0/24
+    original_host:
+      - X-Real-Host
+    real_ip:
+      - X-Real-IP
 ```
 
-## Step 4: Wallarmインストーラーの実行
+## 手順4: Wallarmインストーラーの実行
 
-TCPトラフィックミラー解析用のWallarmノードをインストールするため、以下のコマンドを実行します：
+TCPトラフィックミラー解析用のWallarmノードをインストールするには、次のコマンドを実行します。
 
-=== "x86_64 version"
+=== "x86_64版"
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.11.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.17.1.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.11.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.17.1.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
     ```
-=== "ARM64 version"
+=== "ARM64版"
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.11.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.17.1.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.11.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.17.1.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
     ```
 
-* 変数`WALLARM_LABELS`は、ノードが追加されるグループを設定します（Wallarm Console UI上でのノードの論理的なグルーピングに使用されます）。
-* `<API_TOKEN>`は、`Deploy`ロール用に生成されたAPIトークンを指定します。
-* `<PATH_TO_CONFIG>`は、前もって準備した設定ファイルのパスを指定します。
+* `WALLARM_LABELS`変数は、このノードが追加されるグループを設定します（Wallarm Console UIでのノードの論理的なグルーピングに使用します）。
+* `<API_TOKEN>`は、使用タイプ`Node deployment/Deployment`で生成したAPIトークンを指定します。
+* `<PATH_TO_CONFIG>`は、事前に用意した設定ファイルへのパスを指定します。
 
-提供された設定ファイルは、`/opt/wallarm/etc/wallarm/go-node.yaml`にコピーされます。
+指定した設定ファイルは/opt/wallarm/etc/wallarm/go-node.yamlにコピーされます。
 
-必要に応じて、インストール完了後にコピーされたファイルを変更できます。変更を適用するには、`sudo systemctl restart wallarm`でWallarmサービスを再起動する必要があります。
+必要に応じて、インストール完了後にコピーされたファイルを変更できます。変更を反映するには、`sudo systemctl restart wallarm`でWallarmサービスを再起動する必要があります。
 
-## Step 5: ソリューションのテスト
+## 手順5: ソリューションのテスト
 
-ミラーソースのアドレスに対して、[Path Traversal](../../../attacks-vulns-list.md#path-traversal)攻撃のテストを送信します。`<MIRROR_SOURCE_ADDRESS>`の部分を、実際のインスタンスのIPアドレスまたはDNS名に置き換えてください：
+`<MIRROR_SOURCE_ADDRESS>`をインスタンスの実IPアドレスまたはDNS名に置き換えて、ミラーの送信元アドレスへテスト用の[パストラバーサル](../../../attacks-vulns-list.md#path-traversal)攻撃を送信します。
 
 ```
 curl http://<MIRROR_SOURCE_ADDRESS>/etc/passwd
 ```
 
-TCPトラフィックミラー解析用のWallarmソリューションはout-of-bandで動作するため、攻撃をブロックするのではなく、攻撃を登録するのみです。
+TCPトラフィックミラー解析用のWallarmソリューションはアウトオブバンドで動作するため、攻撃をブロックせず、記録のみを行います。
 
-攻撃が登録されていることを確認するには、Wallarm Consoleの**Events**に進んでください：
+攻撃が記録されたことを確認するには、Wallarm Console → **Events**に進みます。
 
-![!Attacks in the interface](../../../images/waf-installation/epbf/ebpf-attack-in-ui.png)
+![!インターフェースでの攻撃](../../../images/waf-installation/epbf/ebpf-attack-in-ui.png)
 
-## ノード動作の検証
+## ノードの動作確認
 
-* キャプチャ対象のネットワークインターフェースにトラフィックがあるか確認するには、以下のコマンドを実行してください：
+* キャプチャ対象のネットワークインターフェースにトラフィックがあるか確認するには、マシン上で次のコマンドを実行します。
 
     ```
     sudo tcpdump -i <INTERFACE_NAME>
     ```
-* ノードがトラフィックを検出しているかを検証するには、ログを確認してください：
+* ノードがトラフィックを検出しているか確認するには、ログを確認できます。
 
-    * Native Nodeのログはデフォルトで`/opt/wallarm/var/log/wallarm/go-node.log`に出力されます。
-    * Wallarm Cloudへのデータ送信、攻撃の検出など、フィルタリングノードの[標準ログ](../../../admin-en/configure-logging.md)は`/opt/wallarm/var/log/wallarm`ディレクトリにあります。
+    * デフォルトでは、Native Nodeのログは`/opt/wallarm/var/log/wallarm/go-node.log`に出力されます。
+    * データがWallarm Cloudに送信されているか、攻撃が検出されたかなどの[標準ログ](../../../admin-en/configure-logging.md)は、`/opt/wallarm/var/log/wallarm`ディレクトリにあります。
 
-追加のデバッグには、[`log.level`](../../native-node/all-in-one-conf.md#loglevel)パラメータを`debug`に設定してください。
+追加のデバッグには、[`log.level`](../../native-node/all-in-one-conf.md#loglevel)パラメータを`debug`に設定します。
 
-## インストーラー起動オプション
+## インストーラーの起動オプション
 
-* all-in oneスクリプトをダウンロードしたら、以下のコマンドで**ヘルプ**を表示できます：
+* all-in-oneスクリプトをダウンロードしたら、次で**ヘルプ**を表示できます。
 
-    === "x86_64 version"
+    === "x86_64版"
         ```
-        sudo ./aio-native-0.11.0.x86_64.sh -- --help
+        sudo ./aio-native-0.17.1.x86_64.sh -- --help
         ```
-    === "ARM64 version"
+    === "ARM64版"
         ```
-        sudo ./aio-native-0.11.0.aarch64.sh -- --help
+        sudo ./aio-native-0.17.1.aarch64.sh -- --help
         ```
-* **interactive**モードでインストーラーを実行し、最初のステップで`tcp-capture`モードを選択することも可能です：
+* **対話**モードでインストーラーを実行し、最初のステップで`tcp-capture`モードを選択することもできます。
 
-    === "x86_64 version"
+    === "x86_64版"
         ```
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.11.0.x86_64.sh
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.17.1.x86_64.sh
         ```
-    === "ARM64 version"
+    === "ARM64版"
         ```
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.11.0.aarch64.sh
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.17.1.aarch64.sh
         ```
-* ノードをAPIディスカバリー専用モードで使用することもできます（バージョン0.11.0から利用可能）。このモードでは、ノードの組み込みメカニズムや追加設定を要する認証情報の流出、API仕様違反の試み、ブルートフォースなどにより検出された攻撃は、Wallarm Cloudへはエクスポートされず、ローカルに[ログ](../../../admin-en/configure-logging.md)として記録されます。Cloud上に攻撃データが存在しないため、[Threat Replay Testing](../../../vulnerability-detection/threat-replay-testing/overview.md)は機能しません。
+* ノードをAPIディスカバリー専用モード（バージョン0.12.1以降で利用可能）で使用できます。このモードでは、ノードの組み込みメカニズムで検出された攻撃や、追加の設定を要する攻撃（例: 資格情報詰め込み、API仕様違反の試行、ブルートフォース）を含む攻撃は検出され、[ローカルにログ記録されます](../../../admin-en/configure-logging.md)が、Wallarm Cloudにはエクスポートされません。Wallarm Cloudに攻撃データがないため、[脅威リプレイテスト](../../../vulnerability-detection/threat-replay-testing/overview.md)は動作しません。
 
-    一方で、[APIディスカバリー](../../../api-discovery/overview.md)、[APIセッション追跡](../../../api-sessions/overview.md)、および[セキュリティ脆弱性検出](../../../about-wallarm/detecting-vulnerabilities.md)は、関連するセキュリティエンティティの検出とCloudへのアップロードにより、引き続き完全に機能します。
+    一方で、[APIディスカバリー](../../../api-discovery/overview.md)、[APIセッション追跡](../../../api-sessions/overview.md)、および[脆弱性検出](../../../about-wallarm/detecting-vulnerabilities.md)は引き続き完全に機能し、該当するセキュリティエンティティを検出して可視化のためにWallarm Cloudへアップロードします。
 
-    このモードは、まずAPIインベントリを確認し、重要なデータを特定した上で、制御された攻撃データエクスポートを計画する場合に利用されます。ただし、攻撃エクスポートを無効にするケースは稀であり、Wallarmは攻撃データを安全に処理し、必要に応じて[センシティブな攻撃データマスキング](../../../user-guides/rules/sensitive-data-rule.md)も提供します。
+    このモードは、まずAPI資産を見直して機密データを特定し、その上で攻撃データのエクスポートを計画的に行いたい方に適しています。ただし、攻撃データのエクスポートを無効にするケースはまれです。Wallarmは攻撃データを安全に処理し、必要に応じて[機密攻撃データのマスキング](../../../user-guides/rules/sensitive-data-rule.md)を提供します。
 
-    APIディスカバリー専用モードを有効にするには：
+    APIディスカバリー専用モードを有効にするには:
 
-    1. `/etc/wallarm-override/env.list`ファイルを作成または変更します：
+    1. `/etc/wallarm-override/env.list`ファイルを作成するか変更します。
 
         ```
         sudo mkdir /etc/wallarm-override
-        sudo vim env.list
+        sudo vim /etc/wallarm-override/env.list
         ```
 
-        以下の変数を追加します：
+        次の変数を追加します。
 
         ```
         WALLARM_APID_ONLY=true
         ```
     
-    1. [Step 1: Wallarmトークンの準備](#step-1-prepare-wallarm-token)の手順に従ってノードをインストールします。
+    1. [手順1のノードインストール手順](#step-1-prepare-wallarm-token)に従います。
 
 ## アップグレードと再インストール
 
-* ノードのアップグレードには、[こちらの手順](../../../updating-migrating/native-node/all-in-one.md)に従ってください。
-* アップグレードまたは再インストールプロセスに問題がある場合：
+* ノードをアップグレードするには、[手順](../../../updating-migrating/native-node/all-in-one.md)に従います。
+* アップグレードまたは再インストールで問題がある場合:
 
-    1. 現在のインストールを削除します：
+    1. 現在のインストールを削除します。
 
         ```
         sudo systemctl stop wallarm && sudo rm -rf /opt/wallarm
         ```
     
-    1. 上記のインストール手順に従って、通常通りノードを再インストールします。
+    1. 上記のインストール手順に従って通常どおりノードをインストールします。
 
 ## 制限事項
 
-* 本ソリューションは、実際のトラフィックフローとは独立してトラフィックを解析するout-of-band (OOB)動作であるため、以下のような固有の制限があります：
+* 実際のフローとは独立してトラフィックを分析するアウトオブバンド（OOB）動作のため、いくつかの制約があります。
 
-    * 悪意あるリクエストを即座にブロックすることはできません。Wallarmは攻撃を観測し、Wallarm Consoleに[詳細](../../../user-guides/events/check-attack.md)を提供するのみです。
-    * 対象サーバーへの負荷を制限することが不可能なため、[レートリミッティング](../../../user-guides/rules/rate-limiting.md)はサポートされません。
-    * [IPアドレスによるフィルタリング](../../../user-guides/ip-lists/overview.md)はサポートされません。
-* 本ソリューションは、暗号化されていないHTTPトラフィックのみに対して、生のTCP上で解析を行い、暗号化されたHTTPSトラフィックは解析しません。
-* 現在、HTTPキープアライブ接続上のレスポンス解析はサポートされていません。
+    * 悪意のあるリクエストを即時にブロックしません。Wallarmは攻撃を観測し、[Wallarm Consoleでの詳細](../../../user-guides/events/check-attack.md)を提供します。
+    * 宛先サーバーの負荷を制限できないため、[レート制限](../../../user-guides/rules/rate-limiting.md)はサポートしていません。
+    * [IPアドレスによるフィルタリング](../../../user-guides/ip-lists/overview.md)はサポートしていません。
+* 本ソリューションは生のTCP上の平文HTTPトラフィックのみを分析し、暗号化されたHTTPSトラフィックは対象外です。
+* 現時点ではHTTP keep-alive接続上のレスポンス解析をサポートしていません。

@@ -1,16 +1,15 @@
-```markdown
-## 1. NGINX Plusと依存関係のインストール
+## 1. NGINX Plusと依存関係をインストールします
 
-NGINX Plusとその依存関係を[公式NGINXの手順](https://www.nginx.com/resources/admin-guide/installing-nginx-plus/)に従ってインストールします。
+これらの[公式のNGINX手順](https://www.nginx.com/resources/admin-guide/installing-nginx-plus/)に従ってNGINX Plusとその依存関係をインストールします。
 
-!!! info "Amazon Linux 2.0.2021x以前でのインストール"
-    Amazon Linux 2.0.2021x以前でNGINX Plusをインストールする場合は、CentOS 7の手順を使用してください。
+!!! info "Amazon Linux 2.0.2021x以下へのインストール"
+    Amazon Linux 2.0.2021x以下にNGINX Plusをインストールするには、CentOS 7の手順を使用します。
 
-## 2. Wallarmリポジトリの追加
+## 2. Wallarmリポジトリを追加します
 
-Wallarm nodeはWallarmリポジトリからインストールおよび更新されます。プラットフォームごとに以下のコマンドを使用してリポジトリを追加します:
+WallarmノードはWallarmリポジトリからインストールおよび更新されます。リポジトリを追加するには、ご利用のプラットフォーム向けの次のコマンドを使用します:
 
-=== "Debian 11.x(bullseye)"
+=== "Debian 11.x（bullseye）"
     ```bash
     sudo apt -y install dirmngr
     curl -fSsL https://repo.wallarm.com/wallarm.gpg | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/wallarm.gpg --import
@@ -18,19 +17,19 @@ Wallarm nodeはWallarmリポジトリからインストールおよび更新さ�
     sh -c "echo 'deb https://repo.wallarm.com/debian/wallarm-node bullseye/4.8/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
-=== "Ubuntu 18.04 LTS(bionic)"
+=== "Ubuntu 18.04 LTS（bionic）"
     ```bash
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
     sh -c "echo 'deb https://repo.wallarm.com/ubuntu/wallarm-node bionic/4.8/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
-=== "Ubuntu 20.04 LTS(focal)"
+=== "Ubuntu 20.04 LTS（focal）"
     ```bash
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
     sh -c "echo 'deb https://repo.wallarm.com/ubuntu/wallarm-node focal/4.8/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
-=== "Ubuntu 22.04 LTS(jammy)"
+=== "Ubuntu 22.04 LTS（jammy）"
     ```bash
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
     sh -c "echo 'deb https://repo.wallarm.com/ubuntu/wallarm-node jammy/4.8/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
@@ -41,7 +40,7 @@ Wallarm nodeはWallarmリポジトリからインストールおよび更新さ�
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.8/x86_64/wallarm-node-repo-4.8-0.el7.noarch.rpm
     ```
-=== "Amazon Linux 2.0.2021x以前"
+=== "Amazon Linux 2.0.2021x以下"
     ```bash
     sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.8/x86_64/wallarm-node-repo-4.8-0.el7.noarch.rpm
@@ -57,12 +56,12 @@ Wallarm nodeはWallarmリポジトリからインストールおよび更新さ�
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.8/x86_64/wallarm-node-repo-4.8-0.el8.noarch.rpm
     ```
 
-## 3. Wallarmパッケージのインストール
+## 3. Wallarmパッケージをインストールします
 
-以下のパッケージが必要です:
+次のパッケージが必要です:
 
-* `nginx-plus-module-wallarm`: NGINX Plus-Wallarmモジュール用
-* `wallarm-node`: [ポストアナリティクス][install-postanalytics-instr]モジュール、Tarantoolデータベースおよび追加のNGINX Plus-Wallarmパッケージ用
+* `nginx-plus-module-wallarm`（NGINX Plus-Wallarmモジュール用）
+* `wallarm-node`（[postanalytics][install-postanalytics-instr]モジュール、Tarantoolデータベース、追加のNGINX Plus-Wallarmパッケージ用）
 
 === "Debian"
     ```bash
@@ -72,7 +71,7 @@ Wallarm nodeはWallarmリポジトリからインストールおよび更新さ�
     ```bash
     sudo apt -y install --no-install-recommends wallarm-node nginx-plus-module-wallarm
     ```
-=== "CentOSまたはAmazon Linux 2.0.2021x以前"
+=== "CentOSまたはAmazon Linux 2.0.2021x以下"
     ```bash
     sudo yum install -y wallarm-node nginx-plus-module-wallarm
     ```
@@ -85,20 +84,20 @@ Wallarm nodeはWallarmリポジトリからインストールおよび更新さ�
     sudo yum install -y wallarm-node nginx-plus-module-wallarm
     ```
 
-## 4. Wallarmモジュールの接続
+## 4. Wallarmモジュールを接続します
 
-1. `/etc/nginx/nginx.conf`ファイルを開きます:
+1. ファイル`/etc/nginx/nginx.conf`を開きます:
 
     ```bash
     sudo vim /etc/nginx/nginx.conf
     ```
-2. `worker_processes`ディレクティブの直後に次のディレクティブを追加します:
+2. 次のディレクティブを`worker_processes`ディレクティブの直後に追加します:
 
     ```bash
     load_module modules/ngx_http_wallarm_module.so;
     ```
 
-    追加ディレクティブを含む設定例:
+    追加したディレクティブを含む設定例:
 
     ```
     user  nginx;
@@ -109,13 +108,12 @@ Wallarm nodeはWallarmリポジトリからインストールおよび更新さ�
     pid        /var/run/nginx.pid;
     ```
 
-3. システム設定用の設定ファイルをコピーします:
+3. システムセットアップ用の構成ファイルをコピーします:
 
     ``` bash
     sudo cp /usr/share/doc/nginx-plus-module-wallarm/examples/*.conf /etc/nginx/conf.d/
     ```
 
-## 5. フィルタリングノードをWallarm Cloudに接続
+## 5. フィルタリングノードをWallarm Cloudに接続します
 
 --8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.md"
-```

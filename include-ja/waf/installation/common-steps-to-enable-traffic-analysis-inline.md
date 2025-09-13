@@ -1,14 +1,14 @@
-デフォルトでは、デプロイされたWallarm Nodeは受信トラフィックを解析しません。
+デフォルトでは、デプロイ済みのWallarm Nodeは受信トラフィックを解析しません。
 
-受信トラフィックの解析および正当なトラフィックのプロキシを有効にするには、通常`/etc/nginx/sites-available/default`に配置されている[NGINX構成ファイル](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/)を更新します。
+トラフィック解析を有効化し正規のトラフィックをプロキシするには、通常は`/etc/nginx/sites-available/default`にある[NGINX設定ファイル](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/)を更新します。
     
-以下の最小限の構成調整が必要です：
+必要な最小限の設定変更は次のとおりです。
 
-1. Wallarm Nodeを`wallarm_mode monitoring;`に設定します。このモードは初期デプロイおよびテストに推奨です。
+1. Wallarm Nodeを`wallarm_mode monitoring;`に設定します。このモードは初期デプロイやテストに推奨されます。
 
-    Wallarmは、ブロッキングやセーフブロッキングなどの他のモードもサポートしており、[詳細をご参照ください][waf-mode-instr]。
-1. ノードが正当なトラフィックを転送すべき場所を、必要な箇所で`proxy_pass`ディレクティブを追加して指定します。これは、アプリケーションサーバのIP、ロードバランサ、またはDNS名である可能性があります。
-1. 必要なら、修正箇所から`try_files`ディレクティブを削除し、ローカルファイルの干渉なくトラフィックがWallarmに向けられるようにします。
+    Wallarmは、blockingやsafe blockingなど、より多くのモードもサポートしており、詳細は[こちら][waf-mode-instr]をご覧ください。
+1. 必要なlocationに`proxy_pass`ディレクティブを追加して、正規のトラフィックの転送先を決定します。宛先はアプリケーションサーバーのIP、ロードバランサー、またはDNS名に設定できます。
+1. 存在する場合は、ローカルファイルによる干渉なしにトラフィックがWallarmへ送られるよう、変更したlocationから`try_files`ディレクティブを削除します。
 
 ```diff
 server {

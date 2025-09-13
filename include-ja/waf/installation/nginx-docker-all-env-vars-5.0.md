@@ -1,0 +1,15 @@
+環境変数 | 説明| 必須
+--- | ---- | ----
+`WALLARM_API_TOKEN` | WallarmノードまたはAPIトークンです。 | はい
+`WALLARM_LABELS` | <p>ノード4.6以降で利用可能です。`WALLARM_API_TOKEN`が`Deploy`ロールを持つ[APIトークン][api-token]に設定されている場合にのみ機能します。ノードインスタンスのグループ化に使用する`group`ラベルを設定します。例えば:</p> <p>`WALLARM_LABELS="group=<GROUP>"`</p> <p>...これにより、ノードインスタンスは`<GROUP>`インスタンスグループ（既存のもの。存在しない場合は作成されます）に配置されます。</p> | はい（APIトークンの場合）
+`NGINX_BACKEND` | Wallarmソリューションで保護するリソースのドメインまたはIPアドレスです。 | はい
+`WALLARM_API_HOST` | Wallarm APIサーバーは以下のとおりです:<ul><li>US Cloudの場合は`us1.api.wallarm.com`</li><li>EU Cloudの場合は`api.wallarm.com`</li></ul>デフォルト値は`api.wallarm.com`です。 | いいえ
+`WALLARM_MODE` | ノードモードは以下のとおりです:<ul><li>`block` 悪意のあるリクエストをブロックします</li><li>`safe_blocking` [グレーリスト化されたIPアドレス][graylist-docs]から発生した悪意のあるリクエストのみをブロックします</li><li>`monitoring` リクエストを解析しますがブロックしません</li><li>`off` トラフィックの解析と処理を無効にします</li></ul>デフォルト値は`monitoring`です。<br>[フィルタリングモードの詳細 →][filtration-modes-docs] | いいえ
+`WALLARM_APPLICATION` | Wallarm Cloudで使用される、保護対象アプリケーションの一意の識別子です。値は`0`を除く正の整数を指定できます。<br><br>デフォルト値（変数がコンテナに渡されない場合）は`-1`で、Wallarm Console → Settings → Applicationに表示される**デフォルト**アプリケーションを示します。<br><br>[アプリケーションの設定の詳細 →][application-configuration] | いいえ
+`TARANTOOL_MEMORY_GB` | [Tarantoolに割り当てるメモリ量][allocating-memory-guide]です。値は整数または浮動小数点数を指定できます（小数点はドット<code>.</code>です）。デフォルト値は1ギガバイトです。 | いいえ
+`NGINX_PORT` | NGINXがDockerコンテナ内で使用するポートを設定します。<br><br>Dockerイメージ`4.0.2-1`以降、[`wallarm-status`][node-status-docs]サービスは自動的にNGINXと同じポートで動作します。<br><br>デフォルト値（変数がコンテナに渡されない場合）は`80`です。<br><br>構文は`NGINX_PORT='443'`です。 | いいえ
+<a name="wallarm-status-allow-env-var"></a>`WALLARM_STATUS_ALLOW` | Dockerコンテナ外部から[`/wallarm-status`エンドポイント][node-status-docs]へアクセス可能にするカスタムCIDRです。例: `10.0.0.0/8`。複数の値を渡す必要がある場合は、区切りにコンマ`,`を使用します。外部からサービスにアクセスするには、DockerコンテナのIPを使用し、`/wallarm-status`エンドポイントのパスを指定します。 | いいえ
+`DISABLE_IPV6`| 空でない任意の値が設定されている場合、この変数によりNGINXの設定ファイルから`listen [::]:80 default_server ipv6only=on;`の行が削除され、NGINXはIPv6接続を処理しなくなります。<br><br>変数が明示的に指定されていない、または空値`""`の場合、NGINXはIPv6およびIPv4の両方の接続を処理します。 | いいえ
+`WALLARM_APIFW_ENABLE` | この設定は、リリース4.10以降で利用可能な[API仕様の強制][api-policy-enf-docs]を有効/無効に切り替えます。なお、この機能を有効化しても、Wallarm Console UIで必要なサブスクリプションおよび設定の代わりにはなりません。<br><br>デフォルト値は`true`で、機能が有効になります。 | いいえ
+`APIFW_API_MODE_MAX_ERRORS_IN_RESPONSE`（5.x系の5.3.12以降） | [API仕様の強制][api-policy-enf-docs]の実行中に、1つのリクエストで検出できるエラー数を制限します。<br><br>デフォルト値は`3`です。<br><br>この値を増やす場合は、適切にマウントされた設定ファイルで[`subrequest_output_buffer_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#subrequest_output_buffer_size) NGINXディレクティブの値も増やしてください。 | いいえ
+`WALLARM_APID_ONLY`（5.3.7以降） | このモードでは、トラフィックで検出された攻撃はノードによりローカルでブロックされます（[有効化][filtration-modes]されている場合）。ただしWallarm Cloudにはエクスポートされません。同時に、[APIディスカバリー][api-discovery-docs]などの一部の機能は引き続き完全に機能し、APIインベントリを検出してCloudにアップロードし、可視化します。このモードは、まずAPIインベントリをレビューして機微データを特定し、その後、計画的に攻撃データのエクスポートを制御したい方に適しています。しかし、Wallarmは攻撃データを安全に処理し、必要に応じて[機微な攻撃データのマスキング][sensitive-data-rule]を提供するため、攻撃データのエクスポートを無効にするケースは稀です。[詳細][apid-only-mode-details]<br>デフォルト値は`false`です。 | いいえ

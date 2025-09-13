@@ -1,2 +1,2 @@
-* Wallarm ConsoleでWallarm-hostedノードのステータスが**Failed**の場合，デプロイに問題が発生しました．[Wallarm Support portal](https://support.wallarm.com/)にご報告ください．調査します．
-* その他の問題やサポートが必要な場合も，[Wallarm Support portal](https://support.wallarm.com/)にリクエストを残してください．デプロイの問題に対応できます．
+* Wallarm ConsoleでWallarmがホストするノードのステータスが**Failed**の場合、デプロイに問題が発生しています。[Wallarm Support portal](https://support.wallarm.com/)からご報告ください。調査します。
+* その他の問題がある場合やサポートが必要な場合も、[Wallarm Support portal](https://support.wallarm.com/)にリクエストをお寄せください。デプロイに関するどのような問題でもサポートします。

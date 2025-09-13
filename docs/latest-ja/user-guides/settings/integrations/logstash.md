@@ -1,12 +1,12 @@
 # Logstash
 
-[Logstash](https://www.elastic.co/logstash) はElasticが開発したオープンソースのデータ処理およびログ管理ツールです。Wallarmを設定して、検出されたイベントの通知をLogstashに送信できます。
+[Logstash](https://www.elastic.co/logstash)はElasticにより開発されたオープンソースのデータ処理およびログ管理ツールです。WallarmをLogstashに検出イベントの通知を送信するように設定できます。
 
-## 通知フォーマット
+## 通知形式
 
-WallarmはJSON形式の**webhooks**を介してLogstashに通知を送信します。JSONオブジェクトのセットは、Wallarmが通知するイベントによって異なります。
+Wallarmは**webhooks**によるJSON形式でLogstashに通知を送信します。JSONオブジェクトのセットは、Wallarmが通知するイベントによって異なります。
 
-新たに検出されたヒットの通知例:
+新しいhitが検出された場合の通知例:
 
 ```json
 [
@@ -61,50 +61,50 @@ WallarmはJSON形式の**webhooks**を介してLogstashに通知を送信しま�
 
 ## 要件
 
-Logstashの設定は以下の要件を満たす必要があります:
+Logstashの構成は次の要件を満たす必要があります:
 
-* POSTおよびPUTリクエストを受け付けます
-* HTTPSリクエストを受け付けます
-* パブリックURLを持ちます
+* POSTまたはPUTリクエストを受け付けること
+* HTTPSリクエストを受け付けること
+* パブリックURLを持っていること
 
-Logstashの設定例:
+Logstashの構成例:
 
 ```bash linenums="1"
 input {
-  http { # HTTPとHTTPSトラフィック用のinputプラグイン
+  http { # HTTPおよびHTTPSトラフィック用のinputプラグイン
     port => 5044 # 受信リクエスト用のポート
     ssl => true # HTTPSトラフィックの処理
     ssl_certificate => "/etc/server.crt" # LogstashのTLS証明書
-    ssl_key => "/etc/server.key" # TLS証明書の秘密鍵
+    ssl_key => "/etc/server.key" # TLS証明書用の秘密鍵
   }
 }
 output {
-  stdout {} # コマンドライン上にLogstashログを出力するoutputプラグイン
+  stdout {} # コマンドラインにLogstashのログを出力するためのoutputプラグイン
   ...
 }
 ```
 
-詳細は[公式Logstashドキュメント](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html)をご覧ください。
+詳細は[Logstashの公式ドキュメント](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html)をご参照ください。
 
-## 統合の設定
+## インテグレーションの設定
 
-1. Wallarm Console → **Integrations** → **Logstash**でLogstash統合の設定に進みます。
-2. 統合名を入力します。
-3. 対象のLogstash URL (Webhook URL)を指定します。
-4. 必要に応じて詳細設定を行います:
+1. Wallarm Console → **Integrations** → **Logstash**でLogstashインテグレーションの設定に進みます。
+1. インテグレーション名を入力します。
+1. 対象のLogstash URL（Webhook URL）を指定します。
+1. 必要に応じて詳細設定を構成します:
 
     --8<-- "../include/integrations/webhook-advanced-settings.md"
-5. 通知をトリガーするイベントタイプを選択します。
+1. 通知をトリガーするイベントタイプを選択します。
 
-    ![Logstash統合](../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+    ![Logstashインテグレーション](../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
     利用可能なイベントの詳細:
 
     --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-6. **Test integration**をクリックして、設定の正確性、Wallarm Cloudの到達性、および通知フォーマットをご確認ください。
+1. **Test integration**をクリックして、設定の正しさ、Wallarm Cloudの可用性、および通知形式を確認します。
 
-    テスト用のLogstashログ:
+    テスト用Logstashログ:
 
     ```json
     [
@@ -151,43 +151,43 @@ output {
     ]
     ```
 
-7. **Add integration**をクリックします。
+1. **Add integration**をクリックします。
 
 --8<-- "../include/cloud-ip-by-request.md"
 
-## 追加アラートの設定
+## 追加のアラートの設定
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
 
-## 中間データ収集ツールとしてのLogstashの利用
+## 中間データコレクターとしてLogstashを使用する
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-例えば:
+例:
 
-![Webhookのフロー](../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
+![Webhookフロー](../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
 
-このスキームを使用してWallarmイベントをログに記録するには:
+この方式でWallarmのイベントを記録するには:
 
-1. データ収集ツールを構成して、受信したwebhooksを読み取り、ログを次のシステムに転送します。Wallarmはwebhooksを介してイベントをデータ収集ツールに送信します。
-2. SIEMシステムを構成して、データ収集ツールからログを取得し読み取ります。
-3. Wallarmを構成して、データ収集ツールにログを送信します。
+1. データコレクターが受信したwebhooksを読み取り、ログを次のシステムに転送するように構成します。Wallarmはwebhooks経由でイベントをデータコレクターに送信します。
+1. SIEMシステムがデータコレクターからログを取得して読み取れるように構成します。
+1. Wallarmがログをデータコレクターに送信するように構成します。
 
-Wallarmはwebhooksを介して任意のデータ収集ツールにログを送信できます。
+    Wallarmはwebhooksを介して任意のデータコレクターにログを送信できます。
 
-WallarmをFluentdまたはLogstashと統合するには、Wallarm Console UIの該当する統合カードを使用できます。
+    WallarmをFluentdまたはLogstashと統合するには、Wallarm Console UIの対応するintegration cardsを使用できます。
 
-Wallarmをその他のデータ収集ツールと統合するには、Wallarm Console UIの[webhook統合カード](webhook.md)を使用できます。
+    その他のデータコレクターとWallarmを統合するには、Wallarm Console UIの[webhook integration card](webhook.md)を使用できます。
 
-ログをSIEMシステムに転送する人気のデータ収集ツールとの統合の設定例をいくつか説明します:
+以下に、SIEMシステムへログを転送する一般的なデータコレクターとのインテグレーション設定例をいくつか示します:
 
 * [Wallarm → Logstash → IBM QRadar](webhook-examples/logstash-qradar.md)
 * [Wallarm → Logstash → Splunk Enterprise](webhook-examples/logstash-splunk.md)
 * [Wallarm → Logstash → Micro Focus ArcSight Logger](webhook-examples/logstash-arcsight-logger.md)
 * [Wallarm → Logstash → Datadog](webhook-examples/fluentd-logstash-datadog.md)
 
-Wallarmは[Datadog API経由のDatadogとのネイティブ統合](datadog.md)もサポートします。ネイティブ統合では中間データ収集ツールは不要です。
+    Wallarmは[Datadog API経由のDatadogとのネイティブインテグレーション](datadog.md)にも対応しています。ネイティブインテグレーションでは中間データコレクターは不要です。
 
-## 統合の無効化および削除
+## インテグレーションの無効化と削除
 
 --8<-- "../include/integrations/integrations-disable-delete.md"

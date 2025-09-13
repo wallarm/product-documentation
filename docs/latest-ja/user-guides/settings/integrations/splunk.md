@@ -1,37 +1,37 @@
 [splunk-dashboard-by-wallarm-img]: ../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
 
-# Splunk
+#   Splunk
 
-[Splunk](https://www.splunk.com/)は、ログ、イベント、その他の運用およびビジネスデータなど、マシン生成データの検索、監視、解析のためのプラットフォームです。Wallarmを使用してSplunkにアラートを送信するように設定できます。
+[Splunk](https://www.splunk.com/)は、ログ、イベント、その他の運用・業務データなどの機械生成データを検索、監視、分析するために設計されたプラットフォームです。Wallarmを設定してSplunkにアラートを送信できます。
 
-## 統合の設定
+##  インテグレーションの設定
 
-Splunk UIにて:
+Splunk UIで:
 
-1. **Settings** ➝ **Add Data** ➝ **Monitor**を開いてください。
-2. **HTTP Event Collector**オプションを選択し、統合名を入力して**Next**をクリックしてください。
-3. **Input Settings**ページでデータタイプの選択をスキップし、**Review Settings**に進んでください。
-4. 設定内容を確認し、**Submit**をクリックしてください。
-5. 表示されたトークンをコピーしてください。
+1. **Settings** ➝ **Add Data** ➝ **Monitor**を開きます。
+2. **HTTP Event Collector**オプションを選択し、インテグレーション名を入力して**Next**をクリックします。
+3. Input Settingsページではデータタイプの選択をスキップし、Review Settingsへ進みます。
+4. 設定内容を確認して**Submit**します。
+5. 表示されたトークンをコピーします。
 
-Wallarm UIにて:
+Wallarm UIで:
 
-1. **Integrations**セクションを開いてください。
-2. **Splunk**ブロックをクリックするか、**Add integration**ボタンをクリックして**Splunk**を選択してください。
-3. 統合名を入力してください。
-4. コピーしたトークンを**HEC token**フィールドに貼り付けてください。
-5. HEC URIおよびSplunkインスタンスのポート番号を**HEC URI:PORT**フィールドに貼り付けてください。例: `https://hec.splunk.com:8088`。
-6. 通知をトリガーするイベントタイプを選択してください。
+1. **Integrations**セクションを開きます。
+1. **Splunk**ブロックをクリックするか、**Add integration**ボタンをクリックして**Splunk**を選択します。
+1. インテグレーション名を入力します。
+1. コピーしたトークンを**HEC token**フィールドに貼り付けます。
+1. SplunkインスタンスのHEC URIとポート番号を**HEC URI:PORT**フィールドに貼り付けます。例えば: `https://hec.splunk.com:8088`。
+1. 通知をトリガーするイベントタイプを選択します。
 
-    ![Splunk integration](../../../images/user-guides/settings/integrations/add-splunk-integration.png)
+    ![Splunkインテグレーション](../../../images/user-guides/settings/integrations/add-splunk-integration.png)
 
     利用可能なイベントの詳細:
 
     --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-7. **Test integration**をクリックして、設定の正確性、Wallarm Cloudの可用性、および通知形式を確認してください。
+1. 構成の正しさ、Wallarm Cloudへの接続可否、通知形式を確認するには、**Test integration**をクリックします。
 
-    JSON形式でSplunk通知のテスト:
+    JSON形式のSplunk通知のテスト:
 
     ```json
     {
@@ -76,7 +76,7 @@ Wallarm UIにて:
     }
     ```
 
-8. **Add integration**をクリックしてください。
+1. **Add integration**をクリックします。
 
 --8<-- "../include/cloud-ip-by-request.md"
 
@@ -84,14 +84,14 @@ Wallarm UIにて:
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
 
-## イベントをダッシュボードに整理する
+## ダッシュボードにイベントを整理する
 
 --8<-- "../include/integrations/application-for-splunk.md"
 
-## 統合の無効化と削除
+## インテグレーションの無効化と削除
 
 --8<-- "../include/integrations/integrations-disable-delete.md"
 
-## システム利用不可および統合パラメータの誤り
+## システムの利用不可およびインテグレーションパラメータの誤り
 
 --8<-- "../include/integrations/integration-not-working.md"
