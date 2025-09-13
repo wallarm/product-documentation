@@ -1,49 +1,49 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 
-# Wallarm Proxy Bundleを使用したApigee Edge
+# Apigee EdgeとWallarm Proxy Bundle
 
-[Apigee Edge](https://docs.apigee.com/api-platform/get-started/what-apigee-edge)は、APIゲートウェイがクライアントアプリケーションによるAPIへのアクセスのエントリーポイントとなるAPI管理プラットフォームです。ApigeeでAPIのセキュリティを向上させるために、本記事に記載の通りWallarmのAPIプロキシバンドルを統合できます。
+[Apigee Edge](https://docs.apigee.com/api-platform/get-started/what-apigee-edge)はAPIゲートウェイを備えたAPI管理プラットフォームで、クライアントアプリケーションがAPIにアクセスするためのエントリポイントとして機能します。ApigeeのAPIセキュリティを強化するために、本記事で説明するWallarmのAPIプロキシバンドルを統合できます。
 
-本ソリューションは、外部にWallarmノードをデプロイし、特定プラットフォームにカスタムコードまたはポリシーを注入することで実現します。これにより、トラフィックは潜在的な脅威に対する解析と防御のために外部のWallarmノードへ誘導されます。Wallarmのコネクタと呼ばれるこれらの要素は、Azion Edge、Akamai Edge、MuleSoft、Apigee、AWS Lambdaなどのプラットフォームと外部Wallarmノードとの必須の連携点として機能します。このアプローチにより、シームレスな統合、安全なトラフィック解析、リスク軽減、全体的なプラットフォームセキュリティが確保されます。
+本ソリューションは、外部にWallarm nodeをデプロイし、対象プラットフォームにカスタムコードやポリシーを組み込むものです。これにより、トラフィックを外部のWallarm nodeに転送して解析し、潜在的な脅威から保護できます。これらはWallarmのコネクタと呼ばれ、Azion Edge、Akamai Edge、MuleSoft、Apigee、AWS Lambdaと外部のWallarm nodeを結ぶ重要なリンクとして機能します。このアプローチにより、シームレスな統合、安全なトラフィック解析、リスク軽減、プラットフォーム全体のセキュリティが実現します。
 
 ## ユースケース
 
-すべてのサポートされている[Wallarmデプロイメントオプション](../supported-deployment-options.md)の中で、本ソリューションは以下のユースケースに対して推奨されます：
+本ソリューションは次のユースケースに推奨されます。
 
-* 単一のAPIプロキシのみでApigeeプラットフォーム上にデプロイされたAPIの保護。
-* 不正リクエストの即時ブロック、包括的な攻撃検出およびレポーティングを提供するセキュリティソリューションが必要な場合。
+* 単一のAPIプロキシでApigeeプラットフォームにデプロイされたAPIを保護する場合。
+* 攻撃の網羅的な観測・レポートと、悪意のあるリクエストの即時ブロックを提供するセキュリティソリューションが必要な場合。
 
 ## 制限事項
 
-本ソリューションには、着信リクエストにのみ対応するという制限があります：
+本ソリューションは受信リクエストのみに対して機能するため、いくつかの制限があります。
 
-* [パッシブ検出](../../about-wallarm/detecting-vulnerabilities.md#passive-detection)方式を用いた脆弱性検出は正しく機能しません。本ソリューションは、テスト対象の脆弱性に典型的な悪意あるリクエストに対するサーバーレスポンスに基づいてAPIが脆弱か否かを判断します。
-* [Wallarm API Discovery](../../api-discovery/overview.md)は、レスポンス解析に依存するため、お客様のトラフィックに基づいたAPI在庫の探索は行えません。
-* [強制ブラウジングに対する保護](../../admin-en/configuration-guides/protecting-against-bruteforce.md)は、レスポンスコード解析を必要とするため利用できません。
+* [パッシブ検出](../../about-wallarm/detecting-vulnerabilities.md#passive-detection)手法による脆弱性の発見は適切に機能しません。本ソリューションは、テスト対象の脆弱性に典型的な悪意のあるリクエストに対するサーバーレスポンスに基づいて、APIが脆弱かどうかを判断します。
+* [Wallarm API Discovery](../../api-discovery/overview.md)はレスポンス解析に依存するため、トラフィックに基づくAPIインベントリの探索はできません。
+* レスポンスコードの解析が必要なため、[強制ブラウジングからの保護](../../admin-en/configuration-guides/protecting-against-bruteforce.md)は利用できません。
 
-## 必要条件
+## 要件
 
-デプロイを進めるためには、以下の条件を満たしている必要があります：
+デプロイを進める前に、以下の要件を満たしていることを確認してください。
 
-* Apigeeプラットフォームの理解。
-* お客様のAPIがApigee上で稼働していること。
+* Apigeeプラットフォームについての理解があること。
+* APIがApigee上で稼働していること。
 
 ## デプロイ
 
-Apigeeプラットフォーム上のAPIを保護するため、以下の手順に従ってください：
+Apigeeプラットフォーム上のAPIを保護するには、次の手順に従ってください。
 
-1. GCPインスタンスにWallarmノードをデプロイします。
-1. Wallarmプロキシバンドルを取得し、Apigeeにアップロードします。
+1. GCPインスタンス上にWallarm nodeをデプロイします。
+1. Wallarm proxy bundleを入手し、Apigeeにアップロードします。
 
-### 1. Wallarmノードのデプロイ
+### 1. Wallarm nodeをデプロイする
 
-Apigee上でWallarmプロキシを使用する場合、トラフィックフローは[インライン](../inline/overview.md)で動作します。そのため、Google Cloud Platform上でのインラインデプロイに対応する、サポートされているWallarmノードデプロイメントアーティファクトのいずれかを選択してください：
+ApigeeでWallarm proxyを使用する場合、トラフィックフローは[インライン](../inline/overview.md)で動作します。そのため、Google Cloud Platformでのインラインデプロイに対応した、サポート済みのWallarm nodeのデプロイアーティファクトから1つ選択してください。
 
 * [GCP Machine Image](../packages/gcp-machine-image.md)
 * [Google Compute Engine (GCE)](../cloud-platforms/gcp/docker-container.md)
 
-以下のテンプレートを使用してデプロイされたノードを構成します：
+以下のテンプレートを使用してデプロイしたWallarm nodeを構成してください。
 
 ```
 server {
@@ -76,33 +76,33 @@ server {
 }
 ```
 
-デプロイが完了したら、着信リクエストの転送設定に必要なノードインスタンスのIPアドレスを確認してください。なお、IPは内部IPでも構いません。
+デプロイが完了したら、受信リクエストの転送設定に必要となるため、ノードインスタンスのIPアドレスを控えておいてください。なお、IPは内部IPで問題ありません。外部IPである必要はありません。
 
-### 2. Wallarmプロキシバンドルの取得とApigeeへのアップロード
+### 2. Wallarm proxy bundleを入手してApigeeにアップロードする
 
-本統合では、APIプロキシをApigee上に作成し、正当なトラフィックをAPIへルーティングします。これを実現するために、Wallarmはカスタム構成バンドルを提供します。以下の手順に従い、Apigee上のAPIプロキシにWallarmバンドルを[使用](https://docs.apigee.com/api-platform/fundamentals/build-simple-api-proxy)してください：
+本統合では、正当なトラフィックをAPIにルーティングするAPIプロキシをApigee上に作成します。そのために、Wallarmはカスタム構成バンドルを提供します。Apigee上のAPIプロキシでWallarmバンドルを入手して[使用](https://docs.apigee.com/api-platform/fundamentals/build-simple-api-proxy)するには、次の手順に従ってください。
 
-1. [support@wallarm.com](mailto:support@wallarm.com)に連絡し、Apigee用のWallarmプロキシバンドルを取得します。
+1. Apigee向けWallarm proxy bundleを入手するため、[support@wallarm.com](mailto:support@wallarm.com)に連絡します。
 1. Apigee Edge UIで、**Develop** → **API Proxies** → **+Proxy** → **Upload proxy bundle**に移動します。
 1. Wallarmサポートチームから提供されたバンドルをアップロードします。
-1. インポートされた構成ファイルを開き、`prewall.js`および`postwall.js`に[WallarmノードインスタンスのIPアドレス](#1-deploy-a-wallarm-node)を指定します。
-1. 構成を保存し、デプロイします。
+1. インポートした構成ファイルを開き、`prewall.js`および`postwall.js`で[Wallarm nodeインスタンスのIPアドレス](#1-deploy-a-wallarm-node)を指定します。
+1. 構成を保存してデプロイします。
 
 ## テスト
 
-デプロイされたポリシーの動作をテストするには、以下の手順に従ってください：
+デプロイしたポリシーの機能をテストするには、次の手順に従ってください。
 
-1. お客様のAPIに対してテスト用の[パストラバーサル攻撃][ptrav-attack-docs]リクエストを送信します：
+1. テスト用の[パストラバーサル][ptrav-attack-docs]攻撃を含むリクエストをAPIに送信します:
 
     ```
     curl http://<YOUR_APP_IP_OR_DOMAIN>/etc/passwd
     ```
-1. Wallarm Consoleの[US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)の**Attacks**セクションを開き、攻撃がリストに表示されていることを確認します。
+1. Wallarm Consoleで[US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)の**Attacks**セクションを開き、攻撃が一覧に表示されていることを確認します。
     
-    ![Attacks in the interface][attacks-in-ui-image]
+    ![インターフェイスのAttacks][attacks-in-ui-image]
 
-    Wallarmノードのモードがblockingに設定されている場合、リクエストはブロックされます。
+    Wallarm nodeのモードがblockingに設定されている場合、このリクエストもブロックされます。
 
 ## サポートが必要ですか？
 
-記載のApigeeとの連携におけるWallarmのデプロイに関して問題が発生した場合やサポートが必要な場合は、[Wallarmサポート](mailto:support@wallarm.com)チームにご連絡ください。実装プロセス中に発生する問題解決のガイダンスを提供いたします。
+Apigeeと連携した本記事のWallarmデプロイについて問題が発生した場合や支援が必要な場合は、[Wallarm support](mailto:support@wallarm.com)チームにご連絡ください。導入プロセス中に直面する可能性のある問題の解決や各種ガイダンスを提供します。

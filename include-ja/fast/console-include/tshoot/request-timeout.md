@@ -1,4 +1,4 @@
-```
-読み込み中...
-[error] 新しいインスタンスを作成できません - リクエストタイムアウト
-```
+    ```
+    Loading...
+    [error] Can't create new instance - Request Timeout
+    ```

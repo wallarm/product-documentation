@@ -1,6 +1,6 @@
-!!! warning "Wallarmクラウドに関する注意"
-    FASTは利用可能なWallarmクラウドの1つと連携します。
+!!! warning "Wallarm cloudsに関する注意"
+    FASTは利用可能なWallarm cloudsのいずれかと連携します。
     
-    特に明記されていない限り、ドキュメント内のすべての情報は全てのクラウドに同等に適用されます。
+    本ドキュメントの情報は、特に明記がない限り、すべてのWallarm cloudsに同様に適用されます。
     
-    簡単さのために、ドキュメント全体でFASTはアメリカのWallarmクラウドと連携すると想定されています。もし別のクラウドと連携する必要がある場合は、[WallarmポータルとAPIサーバの対応するアドレス](../cloud-list.md)を使用してください。
+    説明を簡単にするため、本ドキュメントではFASTが米国のWallarm cloudと連携するものとします。別のWallarm cloudと連携する必要がある場合は、[Wallarm portalとAPIサーバーの該当するアドレス](../cloud-list.md)を使用してください。

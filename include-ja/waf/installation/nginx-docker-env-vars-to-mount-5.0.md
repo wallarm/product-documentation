@@ -1,0 +1,7 @@
+環境変数 | 説明| 必須
+--- | ---- | ----
+`WALLARM_API_TOKEN` | WallarmノードまたはAPIトークンです。 | はい
+`WALLARM_API_HOST` | Wallarm APIサーバー:<ul><li>`us1.api.wallarm.com`はUS Cloud向けです</li><li>`api.wallarm.com`はEU Cloud向けです</li></ul>デフォルト: `api.wallarm.com`です。 | いいえ
+`WALLARM_LABELS` | <p>ノード4.6以降で利用できます。`WALLARM_API_TOKEN`が`Deploy`ロールを持つ[APIトークン][api-token]に設定されている場合にのみ動作します。ノードインスタンスのグループ化のために`group`ラベルを設定します。例えば:</p> <p>`WALLARM_LABELS="group=<GROUP>"`</p> <p>この設定により、ノードインスタンスは`<GROUP>`インスタンスグループに配置されます（既存のグループがある場合はそこに、存在しない場合は作成されます）。</p> | はい（APIトークンの場合）
+`WALLARM_APID_ONLY` (5.3.7以降) | このモードでは、トラフィックで検出された攻撃は（[有効化][filtration-modes]されている場合）ノードがローカルでブロックしますが、Wallarm Cloudへはエクスポートしません。一方で、[API Discovery][api-discovery-docs]や一部のその他の機能は引き続き完全に機能し、APIインベントリを検出してWallarm Cloudへアップロードし、可視化します。このモードは、まずAPIインベントリを確認して機微なデータを特定し、そのうえで攻撃データのエクスポートを計画的に実施したい方に適しています。しかし、Wallarmは攻撃データを安全に処理し、必要に応じて[機微な攻撃データのマスキング][sensitive-data-rule]も提供しますので、攻撃データのエクスポートを無効化するケースはまれです。[詳細][apid-only-mode-details]<br>デフォルト: `false`です。 | いいえ
+`APIFW_API_MODE_MAX_ERRORS_IN_RESPONSE` (5.x系の5.3.12以降) | [API Specification Enforcement][api-policy-enf-docs]の実行中に、1つのリクエストで検出できるエラー数を制限します。<br><br>デフォルト値は`3`です。<br><br>この値を増やす場合は、適切なマウントされた設定ファイルで[`subrequest_output_buffer_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#subrequest_output_buffer_size) NGINXディレクティブの値も増やしてください。 | いいえ

@@ -1,20 +1,21 @@
-* [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarmコンソールにおいて**Administrator**ロールのアカウントへアクセスします。
-* 対応OS:
+* Wallarm Consoleの[US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)に対して**Administrator**ロールを持つアカウントへのアクセス権が必要です。
+* サポート対象OS：
 
-    * Debian 10、11、12.x
+    * Debian 10、11および12.x
     * Ubuntu LTS 18.04、20.04、22.04
     * CentOS 7、8 Stream、9 Stream
     * Alma/Rocky Linux 9
+    * Oracle Linux 9.x
     * RHEL 8.x
     * RHEL 9.x
     * Oracle Linux 8.x
     * Redox
     * SuSe Linux
-    * その他（リストは常に拡大しており、該当OSが含まれているか、[Wallarm support team](mailto:support@wallarm.com)にお問い合わせください）
+    * その他（対象は継続的に拡大しています。お使いのOSが対象かどうかは[Wallarmサポートチーム](mailto:support@wallarm.com)にご確認ください）
 
-* オールインワンWallarmインストーラーをダウンロードするため、`https://meganode.wallarm.com`へのアクセスが必要です。ファイアウォールによりアクセスがブロックされていないことを確認します。
-* US Wallarm Cloudを利用する場合は`https://us1.api.wallarm.com`へのアクセス、あるいはEU Wallarm Cloudを利用する場合は`https://api.wallarm.com`へのアクセスが必要です。プロキシサーバー経由でのみアクセスを構成できる場合は、[instructions][configure-proxy-balancer-instr]を参照します。
-* 攻撃検知ルールのアップデートと[API specifications][api-spec-enforcement-docs]のダウンロード、さらに[allowlisted, denylisted, or graylisted][ip-lists-docs]国、地域、またはデータセンターに対する正確なIP情報の取得のため、以下のIPアドレスへのアクセスが必要です。
+* オールインワンのWallarmインストーラーをダウンロードするための`https://meganode.wallarm.com`へのアクセスが必要です。アクセスがファイアウォールでブロックされていないことを確認してください。
+* US Wallarm Cloudで作業するための`https://us1.api.wallarm.com`へのアクセス、またはEU Wallarm Cloudで作業するための`https://api.wallarm.com`へのアクセスが必要です。アクセスをプロキシサーバー経由でのみ設定できる場合は、[手順][configure-proxy-balancer-instr]に従ってください。
+* 攻撃検出ルールおよび[API仕様][api-spec-enforcement-docs]の更新をダウンロードし、また、[許可リスト、拒否リスト、またはグレーリスト][ip-lists-docs]に設定した国、地域、またはデータセンターの正確なIPを取得するために、以下のIPアドレスへのアクセスが必要です。
 
     --8<-- "../include/wallarm-cloud-ips.md"
-* すべてのコマンドをスーパーユーザー（例：`root`）として実行します。
+* すべてのコマンドはスーパーユーザー（例：`root`）として実行します。

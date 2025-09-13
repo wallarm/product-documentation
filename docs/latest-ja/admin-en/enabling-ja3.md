@@ -1,23 +1,23 @@
-# JA3フィンガープリンティングを有効化する
+# JA3フィンガープリンティングの有効化
 
-本記事では、NGINXなどの主要なソフトウェアや、AWS、Google Cloud、Azureといったインフラにおいて、JA3フィンガープリンティングを有効化する方法について説明します。
+本記事では、NGINXなどの主要なソフトウェアやAWS、Google Cloud、AzureなどのインフラでJA3フィンガープリンティングを有効化する方法を説明します。
 
 ## 概要
 
-攻撃者は、ユーザーエージェント(UA)の偽装やIPローテーションなど、セキュリティ対策を回避するための様々な手法を頻繁に用います。これらの手法により、未認証トラフィックにおける行動ベースの攻撃が検出しにくくなります。[JA3フィンガープリンティング](https://www.peakhour.io/learning/fingerprinting/what-is-ja3-fingerprinting/)は、クライアントとサーバ間のTLSネゴシエーション中に定義される特定のパラメーターからMD5ハッシュを生成します。このフィンガープリンティング手法は、[API session](../api-sessions/overview.md)の処理の一環として脅威アクターの識別を強化し、[API abuse prevention](../api-abuse-prevention/overview.md)のための行動プロファイル構築にも寄与します。
+攻撃者は、ユーザーエージェント（UA）偽装やIPローテーションなど、セキュリティ対策を回避するさまざまな手法を頻繁に用います。これらの手法により、未認証トラフィックにおける振る舞いベースの攻撃の検知が難しくなります。[JA3フィンガープリンティング](https://www.peakhour.io/learning/fingerprinting/what-is-ja3-fingerprinting/)は、クライアントとサーバー間のTLSネゴシエーション中に定義される特定のパラメータからMD5ハッシュを生成します。このフィンガープリンティング手法は、[APIセッション](../api-sessions/overview.md)処理の一環として脅威アクターの識別を強化し、[API不正利用対策](../api-abuse-prevention/overview.md)における行動プロファイルの構築にも寄与します。
 
 ## NGINX
 
-NGINXでJA3フィンガープリンティングを取得する機能により、すべてのNGINXベースのWallarm [deployment options](..//installation/nginx-native-node-internals.md#nginx-node)でこの識別手法が利用可能となります。JA3用のNGINXモジュールは2種類存在します：
+NGINXからJA3フィンガープリントを取得できると、NGINXベースのWallarmのすべての[デプロイオプション](..//installation/nginx-native-node-internals.md#nginx-node)でこの識別手法を利用できます。JA3用のNGINXモジュールは2つあります。
 
 | モジュール | 説明 | インストール |
 | - | - | - |
-| [nginx-ssl-ja3](https://github.com/fooinha/nginx-ssl-ja3) | JA3用のメインNGINXモジュールです。`THIS IS NOT PRODUCTION`の表示があるため、成功が保証されません。 | [Instructions](https://github.com/fooinha/nginx-ssl-ja3#compilation-and-installation) |
-| [nginx-ssl-fingerprint](https://github.com/phuslu/nginx-ssl-fingerprint) | JA3用の第2のNGINXモジュールです。`high performance`の評価があり、スターやフォークも多くなっています。 | [Instructions](https://github.com/phuslu/nginx-ssl-fingerprint#quick-start) |
+| [nginx-ssl-ja3](https://github.com/fooinha/nginx-ssl-ja3) | JA3向けの主要なnginxモジュールです。`THIS IS NOT PRODUCTION`の表示があるため、動作の保証はありません。 | [手順](https://github.com/fooinha/nginx-ssl-ja3#compilation-and-installation) |
+| [nginx-ssl-fingerprint](https://github.com/phuslu/nginx-ssl-fingerprint) | JA3向けの2つ目のnginxモジュールです。`high performance`のラベルがあり、スターやフォークもあります。 | [手順](https://github.com/phuslu/nginx-ssl-fingerprint#quick-start) |
 
-どちらのモジュールにおいても、OpenSSLとNGINXのパッチを当てる必要があります。
+どちらのモジュールでも、OpenSSLとNGINXにパッチを適用する必要があります。
 
-`nginx-ssl-fingerprint`モジュールからのモジュールインストール例:
+モジュールのインストール例（`nginx-ssl-fingerprint`モジュールからの例）:
 
 ```
 # クローン
@@ -43,29 +43,29 @@ $ objs/nginx -p . -c $(pwd)/../nginx-ssl-fingerprint/nginx.conf
 $ curl -k https://127.0.0.1:8444
 ```
 
-Example NGINX configuration:
+NGINX設定の例:
 
 ```
 server {
   listen 80;
   server_name example.com;
   …
-  # 他のアプリケーションにJA3フィンガープリンティングヘッダーをプロキシパスします。
+  # JA3フィンガープリントのヘッダーを別のアプリにプロキシ転送します。
   proxy_set_header X-Client-TLS-FP-Value $http_ssl_ja3_hash;
   proxy_set_header X-Client-TLS-FP–Raw-Value $http_ssl_ja3;
 
-  # プロキシされたアプリケーションへリクエストを転送します。
+  # リクエストをプロキシ先のアプリに転送します。
   proxy_pass http://app:8080;
 }
 ```
 
 ## AWS
 
-AWS CloudFrontから[JA3フィンガープリンティングを取得](https://aws.amazon.com/about-aws/whats-new/2022/11/amazon-cloudfront-supports-ja3-fingerprint-headers/)する設定が可能です。
+[AWS CloudFrontからJA3フィンガープリントを取得するように設定](https://aws.amazon.com/about-aws/whats-new/2022/11/amazon-cloudfront-supports-ja3-fingerprint-headers/)できます。
 
-WallarmはCloudFrontと連携し、`CloudFront-Viewer-JA3-Fingerprint`および`CloudFront-Viewer-TLS`のJA3ヘッダーを取得できます：
+WallarmはCloudFrontと連携して、`CloudFront-Viewer-JA3-Fingerprint`および`CloudFront-Viewer-TLS`のJA3ヘッダーを取得できます。
 
-1. CloudFrontコンソールにアクセスし、**Origin Request Policies**タブを選択します。
+1. CloudFrontコンソールに移動し、**Origin Request Policies**タブを選択します。
 1. **Create Origin Request Policy**をクリックし、ポリシーの詳細を設定します。
 
     ![CloudFront - オリジンリクエストポリシーの作成](../images/configuration-guides/ja3/aws-cloudfront-create-origin-request-policy.png)
@@ -75,31 +75,31 @@ WallarmはCloudFrontと連携し、`CloudFront-Viewer-JA3-Fingerprint`および`
 
     ![CloudFront - オリジンリクエストポリシーへのヘッダー追加](../images/configuration-guides/ja3/aws-cloudfront-origin-request-policy-add-header.png)
 
-1. **Create**をクリックします。これにより、オリジンリクエストポリシーが作成されます。
-1. 作成したリクエストポリシーをCloudFrontディストリビューションに紐づけるには、以下の手順に従います。
-1. CloudFrontコンソールで、ポリシーを紐づけるディストリビューションを選択します。
+1. **Create**をクリックします。これでオリジンリクエストポリシーが作成されます。
+1. 作成したリクエストポリシーをCloudFrontディストリビューションにアタッチするには、以下の手順に従います。
+1. CloudFrontコンソールで、ポリシーをアタッチするディストリビューションを選択します。
 1. **Origin Request Policies**の横にある**Edit**ボタンをクリックします。
-1. 作成したポリシーの横のチェックボックスを選択し、変更を保存します。
+1. 作成したポリシーのチェックボックスを選択して、変更を保存します。
 
-    ![CloudFront - ディストリビューションへのポリシー紐づけ](../images/configuration-guides/ja3/aws-cloudfront-attach-policy-to-distribution.png)
+    ![CloudFront - ディストリビューションへのポリシーのアタッチ](../images/configuration-guides/ja3/aws-cloudfront-attach-policy-to-distribution.png)
 
-これで、オリジンリクエストポリシーがCloudFrontディストリビューションに紐づけられました。ディストリビューションにリクエストを行うクライアントのリクエストには、`CloudFront-Viewer-JA3-Fingerprint`ヘッダーが追加されます。
+    これでオリジンリクエストポリシーがCloudFrontディストリビューションにアタッチされました。ディストリビューションにリクエストを送信するクライアントのリクエストには、`CloudFront-Viewer-JA3-Fingerprint`ヘッダーが追加されます。
 
 ## Google Cloud
 
-クラシックGoogle Cloud Application Load Balancerにおいて、カスタムヘッダーを設定し、`tls_ja3_fingerprint`変数を通じてその値を取得することで、JA3フィンガープリンティングを取得する設定が可能です：
+従来のGoogle Cloud Application Load Balancerでカスタムヘッダーを設定し、`tls_ja3_fingerprint`変数経由でその値を取得することで、JA3フィンガープリントを取得するように設定できます。
 
-1. Google Cloudコンソールにアクセスし、→ **Load balancing**をクリックします。
+1. Google Cloudコンソールに移動し、**Load balancing**を開きます。
 1. **Backends**をクリックします。
-1. バックエンドサービスの名前をクリックし、次に**Edit**をクリックします。
+1. バックエンドサービス名をクリックし、**Edit**をクリックします。
 1. **Advanced configurations**をクリックします。
-1. **Custom request headers**の下で、**Add header**をクリックします。
-1. **Header name**に適当なヘッダー名を入力し、**Header value**に`tls_ja3_fingerprint`と設定します。
+1. **Custom request headers**の下で**Add header**をクリックします。
+1. **Header name**を入力し、**Header value**に`tls_ja3_fingerprint`を設定します。
 1. 変更を保存します。
 
-詳細な手順については[こちら](https://cloud.google.com/load-balancing/docs/https/custom-headers)を参照してください。
+詳細な手順は[こちら](https://cloud.google.com/load-balancing/docs/https/custom-headers)をご覧ください。
 
-Example configuration request:
+設定リクエストの例:
 
 ```
 PATCH https://compute.googleapis.com/compute/v1/projects/PROJECT_ID/global/backendServices/BACKEND_SERVICE_NAME
@@ -110,4 +110,4 @@ PATCH https://compute.googleapis.com/compute/v1/projects/PROJECT_ID/global/backe
 
 ## Azure
 
-[Azure Wallarm展開](../installation/cloud-platforms/azure/docker-container.md)の場合、[上記](#nginx)のNGINXによるJA3フィンガープリンティングの取得方法を使用します。
+[AzureでのWallarmデプロイ](../installation/cloud-platforms/azure/docker-container.md)では、[上記](#nginx)で説明したNGINXからJA3フィンガープリントを取得する方法を使用します。

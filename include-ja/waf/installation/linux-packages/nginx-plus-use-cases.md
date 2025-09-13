@@ -1,4 +1,4 @@
-すべてのサポートされている[Wallarm deployment options][platform]の中で、NGINX Plus向けのDEB/RPMパッケージは以下の**ユースケース**におけるWallarmのデプロイに推奨します:
+サポートされている[Wallarmのデプロイオプション][platform]の中では、NGINX Plus向けDEB/RPMパッケージが次の**ユースケース**でのWallarmのデプロイに推奨されます：
 
-* お客様のインフラがコンテナベースの手法を使用せずにベアメタルまたは仮想マシンをベースとしている場合。通常、これらのセットアップはAnsibleやSaltStackなどのInfrastructure as Code (IaC)ツールで管理されます。
-* お客様のサービスがNGINX Plusを中心に構築されている場合。Wallarmはこれらのパッケージを利用して機能を拡張できます。
+* インフラストラクチャはコンテナベースの方式を使用せず、ベアメタルまたは仮想マシンを基盤としています。通常、これらの環境はAnsibleやSaltStackなどのInfrastructure as Code（IaC）ツールで管理されます。
+* サービスはNGINX Plusを中心に構築されています。Wallarmは、これらのパッケージを使用してNGINX Plusの機能を拡張できます。

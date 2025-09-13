@@ -1,5 +1,5 @@
-1. Wallarm Consoleに進みます:
+1. Wallarm Consoleに移動します:
 
-    * **Rules** → **Add rule**または自分のブランチ → **Add rule**.
-    * **Attacks** / **Incidents** → attack/incident → hit → **Rule**.
-    * **API Discovery**（[有効の場合][api-discovery-enable-link]） → 自分のエンドポイント → **Create rule**.
+    * **Rules** → **Add rule**またはyour branch → **Add rule**。
+    * **Attacks** / **Incidents** → attack/incident → hit → **Rule**。
+    * **API Discovery** ([有効化済み][api-discovery-enable-link]の場合) → your endpoint → **Create rule**。

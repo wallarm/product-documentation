@@ -1,47 +1,51 @@
 # LDAPの使用
 
-企業がすでにLDAPソリューションを使用している場合、企業のユーザーをWallarmポータルに認証するためにLDAPテクノロジーを使用できます。本記事では、ディレクトリサービスとのLDAP統合の設定方法について説明します。
+貴社がすでにLDAPソリューションを使用している場合、LDAP技術を使用して貴社のユーザーをWallarm Consoleに対して認証できます。本記事では、ディレクトリサービスとのLDAP統合を構成する方法を説明します。
 
 ## 概要
 
-Wallarmは、[Microsoft Active Directory (AD)](https://learn.microsoft.com/en-us/entra/architecture/auth-ldap)などの企業の既存ユーザー管理システム（[ディレクトリサービス](https://en.wikipedia.org/wiki/Directory_service#LDAP_implementations)）とシームレスに統合できるよう、LDAPプロトコルを通じた統合をサポートします。これにより、以下が可能になります。
+貴社の既存のユーザー管理システム（[ディレクトリサービス](https://en.wikipedia.org/wiki/Directory_service#LDAP_implementations)）、たとえば[Microsoft Active Directory (AD)](https://learn.microsoft.com/en-us/entra/architecture/auth-ldap)とシームレスに統合できるよう、WallarmはLDAPプロトコルを介したこれらのシステムとの統合をサポートしています。こうした統合により、次のことが可能です:
 
-* ディレクトリサービスに保存された資格情報を使用して、Wallarm Consoleに事前登録することなく企業ユーザーがログインできるようにします。
-* ディレクトリサービスからWallarm Consoleへユーザーの役割や権限を転送します。
-* ディレクトリサービスがサポートするデータ暗号化を使用できます。
+* ディレクトリサービスに保存された認証情報を使用して、Wallarm Consoleへの事前登録なしに貴社のユーザーがWallarm Consoleにログインできるようにします。
+* ディレクトリサービスからWallarm Consoleへユーザーロールと権限を転送します。
+* ディレクトリサービスがサポートするデータ暗号化を使用します。
 
-## 必要条件
+## 要件
 
-* LDAPの設定は、アクティベーションされるまで利用できません。アクティベーションについては[Wallarmサポートチーム](mailto:support@wallarm.com)にお問い合わせください。
-* 認証はLDAPまたはSSOのいずれかを使用でき、両方を同時に使用することはできません。LDAPの設定を行うには、まずSSOを削除してください。
-* LDAP内のユーザーは、以下の属性を持っている必要があります。
+* LDAP設定は有効化されるまで利用できません。有効化には[Wallarmサポートチーム](mailto:support@wallarm.com)へご連絡ください。
+* 認証はLDAPまたはSSOのいずれか一方のみを使用できます。LDAPを構成するには、SSOを利用している場合はまずSSOを削除してください。
+* ファイアウォールは、WallarmのIPアドレスからの受信リクエストを許可するように構成する必要があります:
+
+    --8<-- "../include/wallarm-cloud-ips.md"
+
+* LDAP内のユーザーには次の属性が必要です: 
 
     * `displayName`
-    * `mail`または`email`（カスタマイズ可能）
+    * `mail` または `email`（カスタマイズ可能です）
 
-* グループは以下の条件を満たす必要があります。
+* グループは次を満たす必要があります: 
 
-    * `groupOfNames`または`groupOfUniqueNames`であること。
-    * `member`属性を持っていること。
+    * `groupOfNames` または `groupOfUniqueNames` であること
+    * `member` 属性を持つこと
 
-## セットアップ
+## 設定
 
-[必要条件](#必要条件)が満たされている場合、Wallarm Consoleの**Integrations** → **LDAP** → **LDAP**でLDAP統合を設定できます。
+[要件](#requirements)が満たされている場合、Wallarm Consoleの**Integrations** → **LDAP** → **LDAP**でLDAP統合を設定できます。
 
 ![LDAP統合の設定](../../../images/admin-guides/configuration-guides/ldap/configuring-ldap.png)
 
-LDAP統合では、LDAPグループをWallarmの[ユーザー役割](../../../user-guides/settings/users.md#user-roles)にマッピングする必要があります。少なくとも1つのLDAPグループをマッピングし、必要に応じて追加することができます。
+LDAP統合では、LDAPグループをWallarmの[ユーザーロール](../../../user-guides/settings/users.md#user-roles)にマッピングする必要があります。少なくとも1つのLDAPグループをマッピングし、必要に応じて追加できます。
 
 !!! info "LDAPグループDN"
-    **LDAPグループ名**として、グループDNを使用します。例えば、 
+    **LDAP group name**にはグループDNを使用してください。例: 
     
     `cn=wallarm_partner_admin,ou=groups,dc=users,dc=example,dc=com`
 
-基本オプションとして、以下を設定します。
+基本オプションとして、次を設定します: 
 
-* **LDAP Server**にLDAPサーバのURLとポートを設定します。
-* ベースディストリビューション名**Base DN**を設定します。
-* **Bind DN**とパスワード：LDAPサーバにバインド（接続）するために使用するLDAP階層内のオブジェクトの完全な名前と、それに対応するパスワードを設定します。
-* **Email attribute name**は、ユーザーのメールアドレスが保存されるLDAPサーバ上のフィールド名を指定します。
-* 認証タイプは`Simple`に設定され、変更できません。
+* **LDAP Server**にLDAPサーバーのURLとポートを設定します。
+* **Base DN**（ベース識別名）を設定します。
+* **Bind DN**およびパスワード: LDAPサーバーにバインド（接続）するために使用する、LDAP階層内のオブジェクトの完全名です。パスワードを伴う必要があります。
+* **Email attribute name**は、ユーザーのメールアドレスを保存するLDAPサーバー上のフィールド名を指定します。
+* 認証タイプは`Simple`に設定されており、変更できません。
 * SSL/TLS暗号化を使用する場合は、対応する証明書と秘密鍵の値を貼り付けて設定します。

@@ -1,16 +1,15 @@
 # データ保持ポリシー
 
-このポリシーはWallarmが収集し、Wallarm Cloudに保存されたさまざまなデータセットの保持期間を概説します。
+本ポリシーは、Wallarmが収集しWallarm Cloudに保存する各種データセットの保持期間を定めます。
 
-| データセット                                                                                                                                                                                           | 有料サブスクリプション | 無料プラン |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|------------------|
-| フィルタリングノードで検出された攻撃、hits、インシデントに関するデータ                                                                                                                                    | 6ヶ月           | 3ヶ月           |
-| 正規および悪意のある要求に関連する[user sessions](../api-sessions/overview.md)のデータ                                                                                                                    | 1週間           | 1週間           |
-| フィルタリングノードまたは**Threat Replay Testing**モジュールで検出された脆弱性に関するデータ                                                                                                           | 6ヶ月           | 3ヶ月           |
-| 脆弱性スキャナーで検出された脆弱性に関するデータ                                                                                                                                                         | 6ヶ月           | 3ヶ月           |
-| [Threat Prevention dashboard](../user-guides/dashboards/threat-prevention.md)に表示される処理済みおよびブロックされたリクエストの統計                                                                             | 6ヶ月           | 3ヶ月           |
-| Exposed asset Scannerで検出された[企業の公開資産](../user-guides/scanner.md)                                                                                                                           | 6ヶ月           | 3ヶ月           |
-| [許可リスト、拒否リスト、およびグレイリストに登録されたIPアドレス]の履歴                                                                                                                               | 3ヶ月           | 3ヶ月           |
-| Wallarmノードによるトラフィック処理のために自動生成または手動で作成された[rules](../user-guides/rules/rules.md)                                                                                        | ∞                | ∞                |
-| Wallarmアカウントの設定: [users](../user-guides/settings/users.md)、[applications](../user-guides/settings/applications.md)、[integrations](../user-guides/settings/integrations/integrations-intro.md)、[triggers](../user-guides/triggers/triggers.md) | ∞                | ∞                |
-| [Audit log](../user-guides/settings/audit-log.md)の記録                                                                                                                                                  | 6ヶ月           | 3ヶ月           |
+| データセット                                                                                                                                                                                                                                | 有料サブスクリプション | 無料プラン |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|------------------|
+| フィルタリングノードによって検出された攻撃、hits、インシデントに関するデータ                                                                                                                                                                         | 6か月        | 3か月 |
+| 正当および悪意のあるリクエストが属する[ユーザーセッション](../api-sessions/overview.md)に関するデータ  | 1週間 | 1週間 |
+| フィルタリングノードまたは**Threat Replay Testing**モジュールによって検出された脆弱性に関するデータ                                                                                                                                                                  | 6か月        | 3か月 |
+| [Vulnerability Scanner](../api-attack-surface/api-surface.md#replacement-of-old-scanner)によって検出された脆弱性に関するデータ                                                                                                                                                                          | 6か月        | 3か月 |
+| [Threat Prevention dashboard](../user-guides/dashboards/threat-prevention.md)に表示される処理済みおよびブロックされたリクエストに関する統計                                                                                                                          | 6か月        | 3か月 |
+| [allowlisted, denylisted, and graylisted IP addresses](../user-guides/ip-lists/overview.md)の履歴                                                                                                                                                                     | 3か月         | 3か月 |
+| Wallarmノードがトラフィックを処理するために自動生成または手動で作成された[rules](../user-guides/rules/rules.md)                                                                                                              | ∞                | ∞ |
+| Wallarmアカウント構成: [users](../user-guides/settings/users.md), [applications](../user-guides/settings/applications.md), [integrations](../user-guides/settings/integrations/integrations-intro.md), [triggers](../user-guides/triggers/triggers.md) | ∞                | ∞ |
+| [Audit log](../user-guides/settings/audit-log.md)の記録                                                                                                                                                                           | 6か月         | 3か月         |

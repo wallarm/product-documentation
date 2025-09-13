@@ -1,46 +1,50 @@
-# 重要なビジネスフロー <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# 機密性の高いビジネスフロー <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-この重要なビジネスフロー機能により、Wallarmの[API Discovery](overview.md)は認証、アカウント管理、請求などのビジネスフローや機能にとって重要なエンドポイントを自動的に識別できます。本記事では、この重要なビジネスフロー機能の使用方法について解説します。
+機密性の高いビジネスフロー機能により、Wallarmの[API Discovery](overview.md)は、認証、アカウント管理、課金などのビジネスフローや機能にとって重要なエンドポイントを自動的に特定します。本記事では、機密性の高いビジネスフロー機能の使い方を説明します。
 
 NGINX Node 5.2.11またはNative Node 0.10.1以上が必要です。
 
-## 対象の課題
+## 対象となる課題
 
-重要なビジネスフローの濫用は、OWASP API Top 10リスクのうち6番目（[API6](https://owasp.org/API-Security/editions/2023/en/0xa6-unrestricted-access-to-sensitive-business-flows/)）に位置づけられます。これらの重要なビジネスフローを保護することで、事業継続性を確保し、機微なデータの漏洩、信用リスク、財務的損失を防ぐことができます。
+機密性の高いビジネスフローの乱用は、OWASP API Top 10のリスクの中で6位（[API6](https://owasp.org/API-Security/editions/2023/en/0xa6-unrestricted-access-to-sensitive-business-flows/)）に位置づけられています。これらのビジネスフローを保護することで、事業継続性を確保し、機密データの漏えい、評判リスク、金銭的損害を防ぎます。
 
-この重要なビジネスフロー機能により、Wallarmは事業上重要な機能の状態を明示し、以下の点で支援します:
+機密性の高いビジネスフロー機能により、Wallarmはビジネスクリティカルな機能の健全性を可視化し、次のことに役立ちます:
 
-* 重要なビジネスフローに関連するエンドポイントを定期的に監視・監査し、脆弱性や侵害の有無を確認します。
-* 開発、保守、およびセキュリティ対策の優先順位を付けます。
-* 暗号化、認証、アクセス制御、レートリミットなどの強固なセキュリティ対策を実施します。
-* データ保護対策の監査証跡や証拠を容易に作成できるようにします。
+* 機密性の高いビジネスフローに関連するエンドポイントを、脆弱性や侵害の観点から定期的に監視および監査します。
+* 開発・保守・セキュリティ対応における優先順位付けを行います。
+* より強固なセキュリティ対策（例: 暗号化、認証、アクセス制御、レート制限）を実装します。
+* 監査証跡やデータ保護対策の証拠を容易に作成します。
 
 ## 自動タグ付け
 
-利便性のため、API Discoveryはエンドポイントを自動的に重要なビジネスフローに属するものとしてタグ付けします。新しいエンドポイントを発見すると、そのエンドポイントが1つ以上の重要なビジネスフローに属する可能性があるかどうかをチェックします。
+利便性のため、API Discoveryはエンドポイントを機密性の高いビジネスフローに自動でタグ付けします。新しいエンドポイントを検出すると、そのエンドポイントが1つ以上の機密性の高いビジネスフローに該当する可能性があるかどうかを確認します:
 
 --8<-- "../include/default-sbf.md"
 
-エンドポイントURL内のキーワードを使用して自動チェックが実施されます。たとえば、`payment`、`subscription`、`purchase`といったキーワードは自動的にエンドポイントを**Billing**フローに関連付け、`auth`、`token`、`login`などのキーワードは**Authentication**フローに紐付けます。該当するキーワードが検出された場合、そのエンドポイントは自動的に適切なビジネスフローに割り当てられます。
+自動チェックは、エンドポイントURL内のキーワードを用いて実行されます。例えば、`payment`、`subscription`、`purchase`といったキーワードは、そのエンドポイントを**Billing**フローに自動的に関連付けます。一方、`auth`、`token`、`login`といったキーワードは**Authentication**フローに関連付けます。一致が検出された場合、エンドポイントは適切なフローに自動的に割り当てられます。
 
-## エンドポイントを手動でタグ付け
+自動タグ付けにより、多くの機密性の高いビジネスフローが検出されます。ただし、以下のセクションのとおり、割り当てられたビジネスフローの一覧は手動で調整することも可能です。
 
-[自動タグ付け](#automatic-tagging)の結果を調整するために、エンドポイントが属する重要なビジネスフローのリストを手動で編集できます。また、キーワードリストに直接該当しないエンドポイントにも手動でタグを付与することができます。
+## エンドポイントの手動タグ付け
 
-エンドポイントが属するフローのリストを編集するには、Wallarm ConsoleのAPI Discoveryに移動し、対象エンドポイントの**Business flow & sensitive data**内でリストから1つまたは複数のフローを選択します。
+[自動タグ付け](#automatic-tagging)の結果を調整するには、そのエンドポイントが属する機密性の高いビジネスフローの一覧を手動で編集できます。キーワード一覧に直接該当しないエンドポイントにも、手動でタグ付けできます。
 
-![API Discovery - Sensitive business flows](../images/about-wallarm-waf/api-discovery/api-discovery-sbf.png)
+エンドポイントが属するフローの一覧を編集するには、Wallarm ConsoleでAPI Discoveryに移動し、対象のエンドポイントの**Business flow & sensitive data**で、リストから1つ以上のフローを選択します。
 
-## セッション内のビジネスフロー
+![API Discovery - 機密性の高いビジネスフロー](../images/about-wallarm-waf/api-discovery/api-discovery-sbf.png)
 
-Wallarmの[API Sessions](../api-sessions/overview.md)は、ユーザーの操作シーケンスを完全に把握できるため、悪意のある行為者のロジックをより明確に把握できます。セッションのリクエストがAPI Discoveryにて重要なビジネスフローとしてタグ付けされたエンドポイントに影響を与える場合、そのセッションは自動的に[タグ付け](../api-sessions/exploring.md#sensitive-business-flows)され、このビジネスフローに影響を及ぼしていると判断されます。
+エンドポイントの詳細画面でも同様の操作ができます。
 
-セッションに重要なビジネスフロータグが割り当てられると、特定のビジネスフローでフィルターをかけることが可能となり、分析に最も重要なセッションを容易に選択できます。
+## API Sessionsにおけるビジネスフロー
 
-![API Sessions - 重要なビジネスフロー](../images/api-sessions/api-sessions-sbf-no-select.png)
+Wallarmの[API Sessions](../api-sessions/overview.md)は、ユーザー活動の全シーケンスを提供し、攻撃者のロジックをより可視化するために使用します。セッション内のリクエストが、API Discoveryで特定の機密性の高いビジネスフローにとって重要とタグ付けされたエンドポイントに影響する場合、そのセッションにも同じビジネスフローに影響するものとして自動的に[タグ付け](../api-sessions/exploring.md#sensitive-business-flows)されます。
 
-## ビジネスフローによるフィルター
+セッションに機密性の高いビジネスフローのタグが付与されると、特定のビジネスフローでフィルタリングできるようになり、分析対象として重要なセッションを選びやすくなります。
 
-エンドポイントに重要なビジネスフロータグが割り当てられると、特定のビジネスフロー（**Business flow**フィルター）で全ての発見されたエンドポイントをフィルターすることが可能となり、最も重要なビジネス機能の保護がより容易になります。
+![!API Sessions - 機密性の高いビジネスフロー](../images/api-sessions/api-sessions-sbf-no-select.png)
 
-![API Discovery - Filtering by sensitive business flows](../images/about-wallarm-waf/api-discovery/api-discovery-sbf-filter.png)
+## ビジネスフローによるフィルタリング
+
+エンドポイントに機密性の高いビジネスフローのタグが付与されると、検出されたすべてのエンドポイントを特定のビジネスフローでフィルタリングできるようになり（**Business flow**フィルター）、最も重要なビジネス機能の保護を容易にします。
+
+![API Discovery - 機密性の高いビジネスフローでのフィルタリング](../images/about-wallarm-waf/api-discovery/api-discovery-sbf-filter.png)

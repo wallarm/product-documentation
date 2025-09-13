@@ -1,117 +1,224 @@
-# Wallarmユーザー受け入れテストチェックリスト
+[ptrav-attack-docs]:             ../attacks-vulns-list.md#path-traversal
+[attacks-in-ui-image]:           ../images/admin-guides/test-attacks-quickstart.png
 
-このセクションでは、Wallarmインスタンスが正しく動作していることを確認するためのチェックリストを提供します。
+# ノード導入後のWallarmヘルスチェック
 
-| 操作                                                                                                                                                        | 期待される動作                   | 確認  |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------|-------|
-| [Wallarmノードが攻撃を検出します](#wallarm-node-detects-attacks)                                                                     | 攻撃が検出されます                |       |
-| [Wallarmインターフェイスにログインできます](#you-can-log-into-the-wallarm-interface)                                                 | ログインできます                      |       |
-| [Wallarmインターフェイスが秒間リクエストを表示します](#wallarm-interface-shows-requests-per-second)                                       | リクエスト統計が表示されます          |       |
-| [Wallarmがリクエストを誤検知としてマークしブロックを解除します](#wallarm-marks-requests-as-false-and-stops-blocking-them)               | Wallarmがリクエストをブロックしません |       |
-| [Wallarmが脆弱性を検出しセキュリティインシデントを作成します](#wallarm-detects-vulnerabilities-and-creates-security-incidents) | セキュリティインシデントが作成されます      |       |
-| [Wallarmがペリメータを検出します](#wallarm-detects-perimeter)                                                                                   | スコープが発見されます                 |       |
-| [IPホワイトリスト、ブラックリスト、およびグレイリストが機能します](#ip-allowlisting-denylisting-and-graylisting-work)                                                                                         | IPアドレスがブロックされます            |       |
-| [ユーザーが設定され適切なアクセス権を持ちます](#users-can-be-configured-and-have-proper-access-rights)                   | ユーザーが作成・更新されます    |       |
-| [ユーザーアクティビティログに記録があります](#user-activity-log-has-records)                                                                   | ログに記録が存在します                 |       |
-| [レポート機能が動作します](#reporting-works)                                                                                               | レポートが受信されます                 |       |
+本書は、新しいフィルタリングノードを導入した後にWallarmが正しく動作していることを確認するためのチェックリストです。既存のノードの健全性確認にも本手順を使用できます。
 
-## Wallarmノードが攻撃を検出します
+!!! info "ヘルスチェック結果"
+    記載の期待結果と実際の結果に差異がある場合、ノードの機能に問題がある兆候である可能性があります。そのような不一致には特に注意を払い、必要に応じて[Wallarmサポートチーム](https://support.wallarm.com/)にお問い合わせください。
 
-1. リソースに対し悪意あるリクエストを送信します：
+## ノードがCloudに登録されている
 
-   ```
-   http://<resource_URL>/etc/passwd
-   ```
+確認方法:
 
-2. 以下のコマンドを実行し、攻撃カウントが増加したか確認します：
+1. Wallarm Console → **Configuration** → **Nodes**を開きます。
+1. アクティブなノードのみが表示されるようにフィルターを適用します。
+1. 一覧から対象ノードを見つけ、クリックして詳細を表示します。
 
-   ```
-   curl http://127.0.0.8/wallarm-status
-   ```
+## ノードが攻撃を記録している
 
-詳細は[フィルターノードの動作確認](installation-check-operation-en.md)を参照してください。
+確認方法:
 
-## Wallarmインターフェイスにログインできます
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-1. ご利用のクラウドに応じたリンクにアクセスします： 
-   * USクラウドをご使用の場合は、<https://us1.my.wallarm.com>のリンクにアクセスします。
-   * EUクラウドをご使用の場合は、<https://my.wallarm.com/>のリンクにアクセスします。
-2. 正常にログインできるか確認します。
+## ノードがすべてのトラフィックを記録している
 
-詳細は[脅威防止ダッシュボード概要](../user-guides/dashboards/threat-prevention.md)を参照してください。
+完全な可視性を確保するため、Wallarmの[API Sessions](../api-sessions/overview.md)は悪意のあるリクエストと正当なリクエストのすべてを段階的なユーザーセッションの形式で表示します。
 
-## Wallarmインターフェイスが秒間リクエストを表示します
+確認方法:
 
-1. リソースにリクエストを送信します：
+1. ノードで保護されているリソースにリクエストを送信します:
 
-   ```
-   curl http://<resource_URL>
-   ```
+      ```
+      curl http://<resource_URL>
+      ```
 
-   またはbashスクリプトを用いて複数のリクエストを送信します：
+      またはbashスクリプトで複数のリクエストを送信します:
 
-   ```
-   for (( i=0 ; $i<10 ; i++ )) ;
-   do 
-      curl http://<resource_URL> ;
-   done
-   ```
+      ```
+      for (( i=0 ; $i<10 ; i++ )) ;
+      do 
+         curl http://<resource_URL> ;
+      done
+      ```
 
-   この例は10リクエストの場合です。
+      この例では10件のリクエストを送信します。
 
-2. Wallarmインターフェイスに秒間で検出されたリクエストが表示されているか確認します。
+1. **Events** → **API Sessions**を開きます。
+1. 送信したリクエストと先ほど送信した攻撃が同一のセッション内にまとまっていることを確認します。
 
-詳細は[脅威防止ダッシュボード](../user-guides/dashboards/threat-prevention.md)を参照してください。
+## ノードの統計サービスが動作している
 
-## Wallarmがリクエストを誤検知としてマークしブロックを解除します
+`/wallarm-status` URLにアクセスすると、フィルタリングノードの動作統計を取得できます。
 
-1. Attacksタブで攻撃の詳細を展開します。 
-2. ヒットを選択し、Falseをクリックします。
-3. 約3分間待ちます。
-4. リクエストを再送信し、Wallarmが攻撃として検出しブロックするか確認します。
+!!! info "統計サービス"
+    統計サービスの詳細と設定方法は[こちら](../admin-en/configure-statistics-service.md)をご覧ください。
 
-詳細は[誤検知の操作](../user-guides/events/check-attack.md#false-positives)を参照してください。
+確認方法:
 
-## Wallarmが脆弱性を検出しセキュリティインシデントを作成します
+1. ノードがインストールされているマシン上で次のコマンドを実行します:
 
-1. リソースに対しオープンな脆弱性が存在することを確認します。
-2. 脆弱性を悪用するための悪意あるリクエストを送信します。
-3. Wallarmインターフェイスにインシデントが検出されているか確認します。
+      ```
+      curl http://127.0.0.8/wallarm-status
+      ```
 
-詳細は[インシデントの確認](../user-guides/events/check-incident.md)を参照してください。
+1. 出力を確認します。次のように表示されるはずです:
 
-## Wallarmがペリメータを検出します
+      ```json
+      {
+            "requests": 11,
+            "streams": 0,
+            "messages": 0,
+            "attacks": 1,
+            "blocked": 0,
+            "blocked_by_acl": 0,
+            "blocked_by_antibot": 0,
+            "acl_allow_list": 0,
+            "abnormal": 11,
+            "tnt_errors": 0,
+            "api_errors": 0,
+            "requests_lost": 0,
+            "overlimits_time": 0,
+            "segfaults": 0,
+            "memfaults": 0,
+            "softmemfaults": 0,
+            "proton_errors": 0,
+            "time_detect": 0,
+            "db_id": 199,
+            "lom_id": 1726,
+            "custom_ruleset_id": 1726,
+            "custom_ruleset_ver": 56,
+            "db_apply_time": 1750365841,
+            "lom_apply_time": 1750365842,
+            "custom_ruleset_apply_time": 1750365842,
+            "proton_instances": {
+                  "total": 2,
+                  "success": 2,
+                  "fallback": 0,
+                  "failed": 0
+            },
+            "stalled_workers_count": 0,
+            "stalled_workers": [],
+            "ts_files": [
+            {
+                  "id": 1726,
+                  "size": 11887,
+                  "mod_time": 1750365842,
+                  "fname": "/opt/wallarm/etc/wallarm/custom_ruleset"
+            }
+            ],
+            "db_files": [
+            {
+                  "id": 199,
+                  "size": 355930,
+                  "mod_time": 1750365841,
+                  "fname": "/opt/wallarm/etc/wallarm/proton.db"
+            }
+            ],
+            "startid": 2594491974706159096,
+            "compatibility": 4,
+            "config_revision": 0,
+            "rate_limit": {
+            "shm_zone_size": 67108864,
+            "buckets_count": 2,
+            "entries": 0,
+            "delayed": 0,
+            "exceeded": 0,
+            "expired": 0,
+            "removed": 0,
+            "no_free_nodes": 0
+            },
+            "timestamp": 1750371146.209885,
+            "split": {
+            "clients": [
+                  {
+                  "client_id": null,
+                  "requests": 11,
+                  "streams": 0,
+                  "messages": 0,
+                  "attacks": 1,
+                  "blocked": 0,
+                  "blocked_by_acl": 0,
+                  "blocked_by_antibot": 0,
+                  "overlimits_time": 0,
+                  "time_detect": 0,
+                  "applications": [
+                  {
+                        "app_id": -1,
+                        "requests": 11,
+                        "streams": 0,
+                        "messages": 0,
+                        "attacks": 1,
+                        "blocked": 0,
+                        "blocked_by_acl": 0,
+                        "blocked_by_antibot": 0,
+                        "overlimits_time": 0,
+                        "time_detect": 0
+                  }
+                  ]
+                  }
+            ]
+            }
+      }
+      ```
 
-1. Scannerタブで、リソースのドメインを追加します。
-2. 追加したドメインに関連するすべてのリソースが認識されているか確認します。
+      これは、フィルタリングノードの統計サービスが起動しており正常に動作していることを意味します。
 
-詳細は[スキャナーの操作](../user-guides/scanner.md)を参照してください。
+## ノードのログが収集されている
 
-## IPホワイトリスト、ブラックリスト、およびグレイリストが機能します
+確認方法:
 
-1. IPリストの基本ロジックを学びます[core logic of IP lists](../user-guides/ip-lists/overview.md)。
-2. IPアドレスを[allowlist](../user-guides/ip-lists/overview.md)、[denylist](../user-guides/ip-lists/overview.md)、および[graylist](../user-guides/ip-lists/overview.md)に追加します。
-3. フィルターノードがリストに追加されたIPからのリクエストを正しく処理するか確認します。
+1. ノードがインストールされているマシンで`/opt/wallarm/var/log/wallarm`に移動します。
+1. `wcli-out.log`の内容を確認します。ブルートフォース検出、Cloudへの攻撃エクスポート、Cloudとのノード同期状況など、ほとんどのWallarmサービスのログが記録されています。
 
-## ユーザーが設定され適切なアクセス権を持ちます
+その他のログおよびログ設定の詳細は[こちら](../admin-en/configure-logging.md)をご覧ください。
 
-1. WallarmシステムでAdministratorロールを持っていることを確認します。
-2. [Configuring users](../user-guides/settings/users.md)に記載されている通り、ユーザーの作成、ロール変更、無効化、削除を行います。
+## ノードが脆弱性を記録している
 
-詳細は[Configuring users](../user-guides/settings/users.md)を参照してください。
+Wallarmはお使いのアプリケーションAPIの[脆弱性](../glossary-en.md#vulnerability)を検出します。
 
-## ユーザーアクティビティログに記録があります
+確認方法:
 
-1. Settings→Usersに移動します。
-2. User Activity Logに記録が存在するか確認します。
+1. ご利用のリソースに次のリクエストを送信します:
 
-詳細は[User activity log](../user-guides/settings/audit-log.md)を参照してください。
+      ```
+      curl <RECOURSE_URL> -H 'jwt: eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJjbGllbmRfaWQiOiIxIn0.' -H 'HOST: <TEST_HOST_NAME>'
+      ```
 
-## レポート機能が動作します
+      なお、そのホストに対してすでに[脆弱なJWT](../attacks-vulns-list.md#weak-jwt)の脆弱性が検出されている場合（ステータスが何であっても、クローズ済みでも同様です）、新たな脆弱性が登録されることを確認するには、異なる`TEST_HOST_NAME`を指定する必要があります。
 
-1. Attacksタブで検索クエリを入力します。
-2. 右側のreportボタンをクリックします。
-3. メールアドレスを入力し、再度reportボタンをクリックします。
-4. レポートが受信されるか確認します。
+1. Wallarm Console → **Events** → **Vulnerabilities**を開き、weak JWTの脆弱性が一覧に表示されたかを確認します。
 
-詳細は[カスタムレポートの作成](../user-guides/search-and-filters/custom-report.md)を参照してください。
+## IPリストが機能している
+
+Wallarmでは、リクエスト送信元のIPアドレスをAllowlist、Denylist、Graylistに分類することでアプリケーションAPIへのアクセスを制御できます。IPリストの基本ロジックは[こちら](../user-guides/ip-lists/overview.md)をご覧ください。
+
+確認方法:
+
+1. Wallarm Console → **Events** → **Attacks**を開き、[ノードが攻撃を記録している](#node-registers-attacks)の確認で作成した攻撃を見つけます。
+1. 攻撃の送信元IPをコピーします。
+1. Security Controls → **IP Lists** → **Allowlist**に移動し、コピーした送信元IPをこのリストに追加します。
+1. 新しいIPリストの状態がフィルタリングノードに反映されるまで待ちます（約2分）。
+1. 同じIPから同じ攻撃を再送します。**Attacks**には何も表示されないはずです。
+1. **Allowlist**からそのIPを削除します。
+1. そのIPを**Denylist**に追加します。
+1. [ノードがすべてのトラフィックを記録している](#node-registers-all-traffic)の手順と同様に正当なリクエストを送信します。これらのリクエストは正当であっても**Attacks**にブロックとして表示されるはずです。
+
+## ルールが機能している
+
+Wallarmでは、[ルール](../user-guides/rules/rules.md)を使用して、システムが悪意のあるリクエストを検出する方法や検出時の動作を変更できます。ルールはWallarm ConsoleからCloud上で作成し、カスタムルールセットとして構成され、Cloudからフィルタリングノードに配信されて適用されます。
+
+確認方法:
+
+1. 次のいずれかの方法で現在のカスタムルールセットのIDと日時を確認します:
+
+      * Wallarm Console → **Configuration** → **Nodes**で対象ノードの詳細を開き、custom_rulesetのID番号とインストール時刻を確認します。
+      * [ノードの統計](#node-statistics-service-works)で`custom_ruleset_id`と`custom_ruleset_apply_time`を確認します。
+      * `wcli-out.log`の[ノードログ](#node-logs-are-collected)で、最新の"lom"を含む行を確認し、その行の"version"と"time"に注目します。
+
+1. Security Controls → **Rules**に移動します。
+1. **Add rule** → **Fine-tuning attack detection** → **Ignore certain attacks**を使用し、リクエストの`uri`部分で**Path traversal**を無視するように選択してルールを作成します。
+1. 手順1で確認した値が更新されたことを確認します（2～4分かかる場合があります）。
+1. [ノードが攻撃を記録している](#node-registers-attacks)の確認で実行した攻撃を再実行します。今回はこの攻撃は無視され、**Attacks**に表示されないはずです。
+1. そのルールを削除します。

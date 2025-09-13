@@ -1,13 +1,13 @@
-デフォルトでは、展開済みのWallarmノードは受信トラフィックを解析しません。
+デフォルトでは、デプロイ済みのWallarmノードは受信トラフィックを解析しません。
 
-インストール済みノードが存在するマシンのNGINX [configuration file](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) に、Wallarmがトラフィックミラーを処理できるように、以下の設定を行います:
+ミラーされたトラフィックをWallarmで処理できるよう、ノードをインストールしたマシン上のNGINX[設定ファイル](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/)で次の設定を行います:
 
-1. Wallarmノードがミラーされたトラフィックを受け入れるために、NGINXの`server`ブロック内に以下の設定を追加します:
+1. Wallarmノードがミラーされたトラフィックを受け付けるよう、NGINXの`server`ブロックに以下を設定します:
 
     ```
     wallarm_force server_addr $http_x_server_addr;
     wallarm_force server_port $http_x_server_port;
-    # 222.222.222.22 をミラーサーバーのアドレスに変更します
+    # 222.222.222.22をミラーリングサーバのアドレスに変更します
     set_real_ip_from  222.222.222.22;
     real_ip_header    X-Forwarded-For;
     real_ip_recursive on;
@@ -16,22 +16,22 @@
     wallarm_force response_size 0;
     ```
 
-    * `set_real_ip_from` および `real_ip_header` ディレクティブは、Wallarm Consoleが[攻撃者のIPアドレスを表示する][proxy-balancer-instr]ために必要です。
-    * `wallarm_force_response_*` ディレクティブは、ミラーされたトラフィックからのコピー以外のすべてのリクエストの解析を無効にするために必要です。
-1. Wallarmノードがミラーされたトラフィックを解析するために、`wallarm_mode`ディレクティブを`monitoring`に設定します:
+    * `set_real_ip_from`および`real_ip_header`ディレクティブは、Wallarm Consoleが[攻撃者のIPアドレスを表示][proxy-balancer-instr]するために必要です。
+    * `wallarm_force_response_*`ディレクティブは、ミラーされたトラフィックから受け取ったコピーを除くすべてのリクエストの解析を無効化するために必要です。
+1. Wallarmノードがミラーされたトラフィックを解析できるよう、`wallarm_mode`ディレクティブを`monitoring`に設定します。
 
     ```
     server {
         listen 80;
         listen [::]:80 ipv6only=on;
         wallarm_mode monitoring;
-    
+
         ...
     }
     ```
 
-    悪意のあるリクエストは[ブロックできない][oob-advantages-limitations]ため、Wallarmが受け入れる唯一の[モード][waf-mode-instr]はmonitoringです。インラインデプロイメントの場合、safe blockingおよびblockingモードも存在しますが、`wallarm_mode`ディレクティブにmonitoring以外の値を設定しても、ノードはトラフィックを監視し続け、悪意のあるトラフィックのみを記録します（offモードを除く）。
-1. 存在する場合、NGINXのlocationから`try_files`ディレクティブを削除し、ローカルのファイル干渉なしにトラフィックをWallarmへ転送できるようにします:
+    悪意のあるリクエストは[ブロックできない][oob-advantages-limitations]ため、Wallarmが受け付ける[モード][waf-mode-instr]はmonitoringのみです。インラインデプロイメントではsafe blockingおよびblockingモードも利用できますが、`wallarm_mode`ディレクティブをmonitoring以外の値に設定しても、ノードは引き続きトラフィックを監視し、悪意のあるトラフィックのみを記録します（offに設定したモードを除く）。
+1. ローカルファイルによる干渉なくトラフィックがWallarmにルーティングされるよう、存在する場合はNGINXのlocationブロックから`try_files`ディレクティブを削除します:
     
     ```diff
     server {

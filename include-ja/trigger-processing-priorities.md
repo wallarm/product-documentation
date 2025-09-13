@@ -1,10 +1,10 @@
-When there are several triggers with identical conditions (for example, **Brute force**, **Forced browsing**, **BOLA**) and some of them have nesting level URI, requests to lower nesting level URI will be counted only in the trigger with the filter by the lower nesting level URI.
+同一の条件を持つtriggerが複数存在し(例えば、**Brute force**、**Forced browsing**、**BOLA**)、その一部がURIのネストレベルでフィルターを設定している場合、より下位のネストレベルのURIへのリクエストは、その下位ネストレベルのURIでフィルターするtriggerでのみカウントされます。
 
-Triggers without URI filter are considered to be the higher nesting level.
+URIフィルターのないtriggerは、より上位のネストレベルと見なされます。
 
 **例:**
 
-* 最初のトリガーは特定の条件を持っており、URIフィルタが設定されていません（任意のアプリケーションまたはその一部へのリクエストがこのトリガーで計上されます）。
-* 同じ条件を持つ2つ目のトリガーはURIフィルタとして`example.com/api`を指定しています。
+* ある条件を持つ最初のtriggerにはURIによるフィルターがありません(任意のアプリケーションまたはその一部へのリクエストがこのtriggerでカウントされます)。
+* 同じ条件を持つ2つ目のtriggerにはURI`example.com/api`によるフィルターがあります。
 
-`example.com/api`へのリクエストは、`example.com/api`フィルタを持つ2つ目のトリガーのみで計上されます。
+`example.com/api`へのリクエストは、`example.com/api`でフィルターする2つ目のtriggerでのみカウントされます。

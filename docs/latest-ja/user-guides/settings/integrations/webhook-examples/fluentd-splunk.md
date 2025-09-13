@@ -2,57 +2,57 @@
 
 # Fluentd経由のSplunk Enterprise
 
-本手順書では、WallarmとFluentdのデータ収集機能を統合し、イベントをSplunk SIEMシステムへ転送するためのサンプル統合方法を示します。
+本書では、WallarmをデータコレクターのFluentdと連携し、イベントをSplunk SIEMシステムへ転送するためのインテグレーション例を示します。
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-scheme.png)
+![Webhookのフロー](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-scheme.png)
 
 ## 使用リソース
 
-* [Splunk Enterprise](#splunk-enterprise-configuration)（WEB URL `https://109.111.35.11:8000`およびAPI URL `https://109.111.35.11:8088`）
-* [Fluentd](#fluentd-configuration)（Debian 11.x (bullseye)にインストールされ、URL `https://fluentd-example-domain.com`で利用可能）
-* EUクラウドのWallarm Consoleに管理者アクセス権があり、[Fluentd統合の設定](#configuration-of-fluentd-integration)が可能
+* WEB URL `https://109.111.35.11:8000` とAPI URL `https://109.111.35.11:8088` を持つ[Splunk Enterprise](#splunk-enterprise-configuration)を使用します
+* Debian 11.x (bullseye)にインストールされ、`https://fluentd-example-domain.com`で利用可能な[Fluentd](#fluentd-configuration)を使用します
+* [EUクラウド](https://my.wallarm.com)のWallarm Consoleへの管理者アクセスを使用して、[Fluentdインテグレーションを構成します](#configuration-of-fluentd-integration)
 
 --8<-- "../include/cloud-ip-by-request.md"
 
-Splunk EnterpriseおよびFluentdのサービスへのリンクは例示であるため、実際の応答はありません。
+Splunk EnterpriseおよびFluentdサービスへのリンクはサンプルとして記載しているため、応答しません。
 
-### Splunk Enterpriseの設定
+### Splunk Enterpriseの構成 {#splunk-enterprise-configuration}
 
-Fluentdのログは、`Wallarm Fluentd logs`という名称およびその他のデフォルト設定でSplunk HTTP Event Controllerに送信されます。
+Fluentdのログは、名前を`Wallarm Fluentd logs`とし、その他のデフォルト設定でSplunk HTTP Event Controllerへ送信します:
 
-![HTTP Event Collector Configuration](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-setup.png)
+![HTTP Event Collectorの設定](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-setup.png)
 
-HTTP Event Controllerにアクセスするために、生成されたトークン `f44b3179-91aa-44f5-a6f7-202265e10475` が使用されます。
+HTTP Event Controllerへのアクセスには、生成されたトークン`f44b3179-91aa-44f5-a6f7-202265e10475`を使用します。
 
-Splunk HTTP Event Controllerの詳細な設定手順については、[公式Splunkドキュメント](https://docs.splunk.com/Documentation/Splunk/8.0.5/Data/UsetheHTTPEventCollector)を参照してください。
+Splunk HTTP Event Controllerの設定の詳細は[Splunk公式ドキュメント](https://docs.splunk.com/Documentation/Splunk/8.0.5/Data/UsetheHTTPEventCollector)にあります。
 
-### Fluentdの設定
+### Fluentdの構成 {#fluentd-configuration}
 
-Wallarmはwebhooks経由でFluentd中間データ収集機能にログを送信するため、Fluentdの設定は以下の要件を満たす必要があります。
+WallarmはWebhook経由で中間のデータコレクターであるFluentdへログを送信するため、Fluentdの構成は次の要件を満たす必要があります:
 
-* POSTまたはPUTリクエストを受け付ける
-* HTTPSリクエストを受け付ける
-* パブリックURLを持つ
-* ログをSplunk Enterpriseへ転送する（この例では、`splunk_hec`プラグインを使用してログを転送します）
+* POSTまたはPUTリクエストを受け付けます
+* HTTPSリクエストを受け付けます
+* 公開URLでアクセス可能です
+* ログをSplunk Enterpriseへ転送します。この例では、ログ転送に`splunk_hec`プラグインを使用します
 
-Fluentdは`td-agent.conf`ファイルで設定されます。
+Fluentdは`td-agent.conf`ファイルで次のように構成します:
 
-* 受信するwebhookの処理は、`source`ディレクティブで設定されます：
-    * トラフィックはポート9880に送信されます
-    * FluentdはHTTPS接続のみを受け付けるように設定されています
-    * 公開された信頼できるCAにより署名されたFluentd TLS証明書は、`/etc/ssl/certs/fluentd.crt`ファイル内に配置されています
-    * TLS証明書の秘密鍵は、`/etc/ssl/private/fluentd.key`ファイル内にあります
-* ログのSplunkへの転送およびログ出力は、`match`ディレクティブで設定されます：
-    * すべてのイベントログはFluentdからコピーされ、出力プラグイン[fluent-plugin-splunk-hec](https://github.com/splunk/fluent-plugin-splunk-hec)経由でSplunk HTTP Event Controllerへ転送されます
-    * Fluentdのログは、さらにJSON形式でコマンドラインに表示されます（コード行19～22）。この設定は、イベントがFluentd経由でログに記録されることを確認するために使用されます
+* 受信Webhookの処理は`source`ディレクティブで設定します:
+    * トラフィックはポート9880へ送信します
+    * FluentdはHTTPS接続のみを受け付けるように構成します
+    * 公的に信頼されたCAが署名したFluentdのTLS証明書は`/etc/ssl/certs/fluentd.crt`に配置します
+    * TLS証明書の秘密鍵は`/etc/ssl/private/fluentd.key`に配置します
+* ログのSplunkへの転送とログ出力は`match`ディレクティブで設定します:
+    * すべてのイベントログをFluentdからコピーし、出力プラグイン[fluent-plugin-splunk-hec](https://github.com/splunk/fluent-plugin-splunk-hec)経由でSplunk HTTP Event Controllerへ転送します
+    * Fluentdのログは、追加でコマンドラインにJSON形式で出力します（コードの19〜22行目）。この設定は、イベントがFluentd経由で記録されていることを検証するために使用します
 
 ```bash linenums="1"
 <source>
-  @type http # HTTPおよびHTTPSトラフィック用入力プラグイン
-  port 9880 # 受信リクエスト用ポート
-  <transport tls> # 接続処理の設定
+  @type http # HTTPおよびHTTPSトラフィック用の入力プラグインです
+  port 9880 # 受信リクエスト用のポートです
+  <transport tls> # 接続処理のための設定です
     cert_path /etc/ssl/certs/fluentd.crt
     private_key_path /etc/ssl/private/fluentd.key
   </transport>
@@ -60,57 +60,57 @@ Fluentdは`td-agent.conf`ファイルで設定されます。
 <match **>
   @type copy
   <store>
-      @type splunk_hec # Splunk API経由でログを転送するための出力プラグイン fluent-plugin-splunk-hec
-      hec_host 109.111.35.11 # Splunkホスト
-      hec_port 8088 # Splunk APIポート
-      hec_token f44b3179-91aa-44f5-a6f7-202265e10475 # HTTP Event Controllerトークン
+      @type splunk_hec # HTTP Event Controller経由でSplunk APIへログを転送するための出力プラグインfluent-plugin-splunk-hecです
+      hec_host 109.111.35.11 # Splunkホストです
+      hec_port 8088 # Splunk APIポートです
+      hec_token f44b3179-91aa-44f5-a6f7-202265e10475 # HTTP Event Controllerトークンです
     <format>
-      @type json # 転送されるログの形式
+      @type json # 転送されるログのフォーマットです
     </format>
   </store>
   <store>
-     @type stdout # コマンドラインにFluentdログを出力するための出力プラグイン
-     output_type json # コマンドラインに出力されるログの形式
+     @type stdout # コマンドラインにFluentdログを出力するための出力プラグインです
+     output_type json # コマンドラインに出力されるログのフォーマットです
   </store>
 </match>
 ```
 
-設定ファイルの詳細な説明については、[公式Fluentdドキュメント](https://docs.fluentd.org/configuration/config-file)を参照してください。
+設定ファイルのより詳細な説明は[Fluentdの公式ドキュメント](https://docs.fluentd.org/configuration/config-file)にあります。
 
-!!! info "Fluentd設定のテスト"
-    Fluentdのログが作成され、Splunkへ転送されることを確認するために、PUTまたはPOSTリクエストをFluentdに送信することができます。
+!!! info "Fluentdの構成のテスト"
+    Fluentdのログが作成されSplunkへ転送されていることを確認するには、FluentdにPUTまたはPOSTリクエストを送信できます。
 
     **リクエスト例:**
     ```curl
     curl -X POST 'https://fluentd-example-domain.com' -H "Content-Type: application/json" -H "Authorization: Splunk f44b3179-91aa-44f5-a6f7-202265e10475" -d '{"key1":"value1", "key2":"value2"}'
     ```
 
-    **Fluentdログ:**
-    ![Fluentdログ](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-curl-log.png)
+    **Fluentdのログ:**
+    ![Fluentdのログ](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-curl-log.png)
 
-    **Splunkログ:**
-    ![Splunkログ](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-curl-log.png)
+    **Splunkのログ:**
+    ![Splunkのログ](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-curl-log.png)
 
-### Fluentd統合の設定
+### Fluentdインテグレーションの構成 {#configuration-of-fluentd-integration}
 
 --8<-- "../include/integrations/webhook-examples/create-fluentd-webhook.md"
 
-![FluentdとのWebhook統合](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+![FluentdとのWebhookインテグレーション](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
-[Fluentd統合設定の詳細](../fluentd.md)
+[Fluentdインテグレーションの構成の詳細](../fluentd.md)
 
 ## テスト例
 
 --8<-- "../include/integrations/webhook-examples/send-test-webhook.md"
 
-Fluentdは次のようにイベントをログに記録します。
+Fluentdはイベントを次のように記録します:
 
-![FluentdからSplunkへの新規ユーザのログ](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-user-log.png)
+![FluentdからSplunkへの新規ユーザーログ](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-user-log.png)
 
-Splunkのイベントには、次のエントリーが表示されます。
+Splunkのイベントに以下のエントリが表示されます:
 
-![FluentdからSplunkへの新規ユーザカード](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-user.png)
+![FluentdからSplunkに表示される新規ユーザーのカード](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-user.png)
 
-## Splunk Enterpriseでイベントを整理しダッシュボードに表示する
+## Splunk Enterpriseでイベントをダッシュボードに整理して表示する
 
 --8<-- "../include/integrations/application-for-splunk.md"

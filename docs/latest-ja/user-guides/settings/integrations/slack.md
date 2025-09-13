@@ -1,15 +1,15 @@
 # Slack
 
-[Slack](https://slack.com/) は幅広く使用されているクラウドベースのチーム共同作業およびメッセージングプラットフォームです．組織内のコミュニケーションと共同作業を促進するため，チームがメッセージを交換し，ファイルを共有し，その他のツールやサービスと統合するための集中管理スペースを提供します．Wallarmを使用してSlackチャンネルに通知を送信するよう設定できます．複数の異なるSlackチャンネルまたはアカウントに通知を送信する場合は，複数のSlack統合を作成してください．
+[Slack](https://slack.com/)は広く使用されているクラウドベースのチームコラボレーションおよびメッセージングプラットフォームです。チームがメッセージをやり取りし、ファイルを共有し、他のツールやサービスと連携するための集中スペースを提供することで、組織内のコミュニケーションとコラボレーションを促進するよう設計されています。WallarmからSlackチャンネルに通知を送信するように設定できます。複数の異なるSlackチャンネルやアカウントに通知を送信したい場合は、Slack integrationを複数作成します。
 
-## 統合のセットアップ
+## Integrationの設定
 
-1. **Integrations**セクションを開きます．
-2. **Slack**ブロックをクリックするか，**Add integration**ボタンをクリックして**Slack**を選びます．
-3. 統合名を入力します．
-4. [Webhook settings in Slack](https://my.slack.com/services/incoming-webhook/) を開き，メッセージを投稿するチャンネルを選択して新しいWebhookを追加します．
-5. 指定されたWebhook URLをコピーし，Wallarm UI内の**Webhook URL**フィールドに貼り付けます．
-6. 通知をトリガーするイベントタイプを選択します．
+1. **Integrations**セクションを開きます。
+1. **Slack**ブロックをクリックするか、**Add integration**ボタンをクリックして**Slack**を選択します。
+1. integrationの名前を入力します。
+1. [SlackのWebhook設定](https://my.slack.com/services/incoming-webhook/)を開き、メッセージを投稿するチャンネルを選択して新しいWebhookを追加します。
+1. 提供されたWebhook URLをコピーし、Wallarm UIの**Webhook URL**フィールドに値を貼り付けます。
+1. 通知をトリガーするイベントタイプを選択します。
 
     ![Slack integration](../../../images/user-guides/settings/integrations/add-slack-integration.png)
 
@@ -17,9 +17,9 @@
       
     --8<-- "../include/integrations/events-for-integrations.md"
 
-7. **Test integration**をクリックして，設定の正確性，Wallarm Cloudの利用状況，および通知形式を確認します．
+1. **Test integration**をクリックして、設定の正しさ、Wallarm Cloudの到達性、および通知形式を確認します。
 
-    これにより，プレフィックス `[Test message]` を付けたテスト通知が送信されます．
+    これにより、`[Test message]`というプレフィックス付きのテスト通知が送信されます:
 
     ```
     [Test message] [Test partner] Network perimeter has changed
@@ -33,28 +33,27 @@
     Cloud: EU
     ```
 
-8. **Add integration**をクリックします．
+1. **Add integration**をクリックします。
 
-## 追加アラートのセットアップ
+## 追加アラートの設定
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
 
-### 例: 1分間に2つ以上のSQLiヒットが検出された場合のSlack通知
+### 例: 1分間に2件以上のSQLi hitsが検出された場合のSlack通知
 
-保護対象リソースに対して2つ以上のSQLi[ヒット](../../../glossary-en.md#hit)が送信された場合，このイベントに関する通知がSlackチャンネルに送信されます．
+保護対象リソースに2件以上のSQLi [hits](../../../glossary-en.md#hit)が送られた場合、このイベントに関する通知がSlackチャンネルに送信されます。
 
-![Example of a trigger sending the notification to Slack](../../../images/user-guides/triggers/trigger-example1.png)
+![Slackに通知を送信するトリガーの例](../../../images/user-guides/triggers/trigger-example1.png)
 
 **トリガーをテストするには:**
 
-保護対象リソースに対して以下のリクエストを送信します．
+保護対象リソースに以下のリクエストを送信します:
 
 ```bash
 curl 'http://localhost/?id=1%27%20UNION%20SELECT%20username,%20password%20FROM%20users--<script>prompt(1)</script>'
 curl 'http://localhost/?id=1%27%20select%20version();'
 ```
-
-Slackチャンネルを開き，ユーザー**wallarm**から以下の通知が受信されたことを確認します．
+Slackチャンネルを開き、次のとおりユーザー**wallarm**からの通知が受信されていることを確認します:
 
 ```
 [Wallarm] Trigger: The number of detected hits exceeded the threshold
@@ -74,25 +73,25 @@ Client: TestCompany
 Cloud: EU
 ```
 
-* 「Notification about SQLi hits」はトリガー名です．
-* 「TestCompany」はWallarm Consoleでの会社アカウント名です．
-* 「EU」は会社アカウントが登録されているWallarm Cloudです．
+* `Notification about SQLi hits` はトリガー名です
+* `TestCompany` はWallarm Consoleにおける貴社の会社アカウント名です
+* `EU` は貴社の会社アカウントが登録されているWallarm Cloudです
 
-### 例: アカウントに新ユーザーが追加された場合のSlackおよびメール通知
+### 例: アカウントに新規ユーザーが追加された場合のSlackおよびメール通知
 
-Wallarm Consoleで会社アカウントに**Administrator**または**Analyst**ロールの新ユーザーが追加された場合，統合で指定されたメールアドレスおよびSlackチャンネルにこのイベントに関する通知が送信されます．
+Wallarm Consoleの会社アカウントに**Administrator**または**Analyst**ロールの新しいユーザーが追加されると、このイベントに関する通知がintegrationに指定したメールアドレスとSlackチャンネルに送信されます。
 
-![Example of a trigger sending the notification to Slack and by email](../../../images/user-guides/triggers/trigger-example2.png)
+![Slackおよびメールで通知を送信するトリガーの例](../../../images/user-guides/triggers/trigger-example2.png)
 
 **トリガーをテストするには:**
 
-1. Wallarm Consoleの → **Settings** → **Users** を開き，新しいユーザーを追加します．例:
+1. Wallarm Consoleで**Settings** → **Users**を開き、新しいユーザーを追加します。例:
 
-    ![Added user](../../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)
-2. メールの受信トレイを開き，以下のメッセージが受信されていることを確認します．
+    ![追加したユーザー](../../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)
+2. メールの受信トレイを開き、次のメッセージが受信されていることを確認します:
 
-    ![Email about new user added](../../../images/user-guides/triggers/test-new-user-email-message.png)
-3. Slackチャンネルを開き，ユーザー**wallarm**から以下の通知が受信されていることを確認します．
+    ![新規ユーザー追加に関するメール](../../../images/user-guides/triggers/test-new-user-email-message.png)
+3. Slackチャンネルを開き、次のとおりユーザー**wallarm**からの通知が受信されていることを確認します:
 
     ```
     [Wallarm] Trigger: New user was added to the company account
@@ -106,17 +105,17 @@ Wallarm Consoleで会社アカウントに**Administrator**または**Analyst**�
     Cloud: EU
     ```
 
-    * 「John Smith」と「johnsmith@example.com」は追加されたユーザーの情報です．
-    * 「Analyst」は追加されたユーザーのロールです．
-    * 「John Doe」と「johndoe@example.com」は新ユーザーを追加したユーザーの情報です．
-    * 「Added user」はトリガー名です．
-    * 「TestCompany」はWallarm Consoleでの会社アカウント名です．
-    * 「EU」は会社アカウントが登録されているWallarm Cloudです．
+    * `John Smith` と `johnsmith@example.com` は追加されたユーザーの情報です
+    * `Analyst` は追加されたユーザーのロールです
+    * `John Doe` と `johndoe@example.com` は新しいユーザーを追加したユーザーの情報です
+    * `Added user` はトリガー名です
+    * `TestCompany` はWallarm Consoleにおける貴社の会社アカウント名です
+    * `EU` は貴社の会社アカウントが登録されているWallarm Cloudです
 
-## 統合の無効化と削除
+## integrationの無効化と削除
 
 --8<-- "../include/integrations/integrations-disable-delete.md"
 
-## システムの利用不可および統合パラメータの不正
+## システムの利用不可およびintegrationパラメータの誤り
 
 --8<-- "../include/integrations/integration-not-working.md"

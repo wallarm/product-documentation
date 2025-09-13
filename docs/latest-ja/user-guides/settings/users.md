@@ -1,4 +1,3 @@
-```markdown
 [link-audit-log]:               audit-log.md
 
 [link-glossary-incident]:       ../../glossary-en.md#security-incident
@@ -17,136 +16,161 @@
 [img-disable-delete-multi]:     ../../images/user-guides/settings/users-multi-disable-access.png
 [img-enable-delete-multi]:      ../../images/user-guides/settings/users-multi-enable-access.png    
 
-# ユーザー管理
+# ユーザーの管理
 
-Wallarmアカウントにチームメンバーを招待し、各メンバーに特定の役割を割り当てることで、機密情報の保護およびアカウント操作の制限を実現できます。**Settings** → **Users**でユーザーを管理してください。
+チームメンバーをWallarmアカウントに招待し、機密情報を保護してアカウントでの操作を制限するために各メンバーに特定のロールを割り当てます。ユーザーの管理は**Settings** → **Users**で行います。
 
-ユーザー管理の権限は、**Administrator**および**Global Administrator**のみが有します。
+**Administrator**および**Global Administrator**ロールのみがユーザー管理権限を持ちます。
 
-## ユーザーの役割
+## ユーザーロール
 
-Wallarmクライアントのユーザーには、以下の役割を割り当てることができます。
+Wallarmクライアントのユーザーには次のロールがあります。
 
-- **Administrator**：すべてのWallarm設定にアクセスできます。
-- **Analyst**：主要なWallarm設定の表示、および攻撃、[incidents][link-glossary-incident]、[vulnerabilities][link-glossary-vulnerability]に関する情報の管理が可能です。
-- **Read Only**：主要なWallarm設定の表示のみ可能です。
-- **API Developer**：[API Discovery](../../api-discovery/overview.md)モジュールで検出されたAPIのインベントリを表示およびダウンロードできます。この役割は、会社のAPIに関する最新データを取得するためだけにWallarmを利用するユーザーを区別するためのものです。これらのユーザーは、**API Discovery**、そのダッシュボード、および**Settings → Profile**以外のWallarm Consoleのセクションにはアクセスできません。
-- **Deploy**：`addnode`スクリプトを使用してWallarmのフィルタリングノードを作成できますが、Wallarm Consoleへのアクセスはありません。
+* **Administrator**: Wallarmのすべての設定にアクセスできます。
+* **Analyst**: 主要なWallarm設定の閲覧が可能で、攻撃、[インシデント][link-glossary-incident]、[脆弱性][link-glossary-vulnerability]に関する情報を管理できます。
+* **Read Only**: 主要なWallarm設定を閲覧できます。
+* **API Developer**: [API Discovery](../../api-discovery/overview.md)モジュールが検出したAPIインベントリの閲覧とダウンロードが可能です。このロールは、会社のAPIに関する最新データをWallarmで取得することのみが必要なユーザーを区別するためのものです。これらのユーザーは**API Discovery**、そのdashboard、**Settings → Profile**以外のWallarm Consoleのセクションにはアクセスできません。
+* **Deploy**: `addnode`スクリプトを使用してWallarmフィルタリングノードを作成できますが、Wallarm Consoleにはアクセスできません。
 
-!!! warning "Wallarmノード4.0のインストールにDeploy役割を使用する場合"
-    **Deploy**ユーザーの役割は、バージョン4.0のリリースで[`addnode`スクリプトが非推奨になった](../../updating-migrating/older-versions/what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-api-tokens)ため、ノード3.6以下のみのインストールで使用することを推奨します。
+    !!! warning "Wallarmノード4.0のインストールにDeployロールを使用する場合"
+        [バージョン4.0のリリースで`addnode`スクリプトは非推奨になった](../../updating-migrating/older-versions/what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-api-tokens)ため、**Deploy**ユーザーロールの使用はノード3.6以下のインストールにのみ推奨されます。
 
-[multitenancy](../../installation/multi-tenant/overview.md)機能により、グローバル役割である**Global Administrator**、**Global Analyst**、**Global Read Only**を使用することも可能です。グローバル役割は技術テナントアカウントおよびリンクされたテナントアカウントへのアクセスを提供し、通常の役割は技術テナントアカウントのみへのアクセスを提供します。
+[マルチテナンシー](../../installation/multi-tenant/overview.md)機能により、グローバルロールの**Global Administrator**、**Global Analyst**、**Global Read Only**も使用できます。グローバルロールはテクニカルテナントアカウントおよびリンクされたテナントアカウントへのアクセスを付与し、通常ロールはテクニカルテナントアカウントのみにアクセスを付与します。
 
-Wallarmの各エンティティに対する異なるユーザー役割のアクセス権に関する詳細な情報は、以下の表に示されています。エンティティ管理にはエンティティの作成、編集、削除が含まれます。
+各ユーザーロールのWallarmエンティティへのアクセス権の詳細は以下の表のとおりです。エンティティの管理には、作成・編集・削除が含まれます。
 
-| エンティティ                              | Administrator/Global Administrator | Analyst/Global Analyst | Read Only/Global Read Only | API Developer         |
-|-------------------------------------------|--------------------------------------|------------------------|----------------------------|-----------------------|
-| **フィルタリングノード**                  | 表示および管理                       | 表示                   | 表示                       | -                     |
-| **ダッシュボード**                        | 表示                                 | 表示                   | 表示                       | -                     |
-| **攻撃**                                  | 表示および管理                       | 表示および管理         | 表示                       | -                     |
-| **インシデント**                          | 表示および管理                       | 表示および管理         | 表示                       | -                     |
-| **APIセッション**                         | 表示および管理                       | 表示                   | 表示                       | -                     |
-| **脆弱性**                                | 表示および管理                       | 表示および管理         | 表示                       | -                     |
-| **API DiscoveryによるAPIインベントリ**    | 表示および管理                       | 表示および管理         | -                          | 表示およびダウンロード|
-| **API仕様**                               | 表示および管理                       | 表示                   | 表示                       | 表示                  |
-| **スキャナー**                            | 表示および管理                       | 表示および管理         | 表示                       | -                     |
-| **トリガー**                              | 表示および管理                       | -                      | -                          | -                     |
-| **IPリスト**                              | 表示、管理、およびエクスポート         | 表示、管理、およびエクスポート | 表示およびエクスポート         | -                     |
-| **ルール**                                | 表示および管理                       | 表示および管理         | 表示                       | -                     |
-| **クレデンシャルスタッフィング検出**      | 表示および管理                       | 表示および管理         | 表示                       | -                     |
-| **BOLA保護**                              | 表示および管理                       | 表示                   | -                          | -                     |
-| **Security Edge**                         | 表示および管理                       | 表示                   | -                          | -                     |
-| **統合**                                  | 表示および管理                       | -                      | -                          | -                     |
-| **フィルトレーションモード**              | 表示および管理                       | 表示                   | 表示                       | -                     |
-| **アプリケーション**                      | 表示および管理                       | 表示                   | 表示                       | -                     |
-| **ユーザー**                              | 表示および管理                       | -                      | 表示                       | -                     |
-| **APIトークン**                           | 個人および共有トークンの管理           | 個人トークンの管理     | -                          | -                     |
-| **アクティビティログ**                    | 表示                                 | -                      | 表示                       | -                     |
+| エンティティ              | Administrator / Global Administrator | Analyst / Global Analyst | Read Only / Global Read Only | API Developer |
+|---------------------|--------------------------------------|--------------------------|------------------------------|---|
+| **Filtering nodes**       | 閲覧・管理                      | 閲覧                     | 閲覧                         | - |
+| **Dashboard**       | 閲覧                                 | 閲覧                     | 閲覧                         | - |
+| **Attacks**          | 閲覧・管理                      | 閲覧・管理          | 閲覧                         | - |
+| **Incidents**          | 閲覧・管理                      | 閲覧・管理          | 閲覧                         | - |
+| **API Sessions**          | 閲覧・管理                      | 閲覧          | 閲覧                         | - |
+| **Vulnerabilities** | 閲覧・管理                      | 閲覧・管理          | 閲覧              | - |
+| **API inventory by API Discovery**   | 閲覧・管理                      | 閲覧・管理          | -                            | 閲覧・ダウンロード |
+| **API Specifications**   | 閲覧・管理                      | 閲覧          | 閲覧                            | 閲覧 |
+| **Triggers**        | 閲覧・管理                      | -                        | -                            | - |
+| **IP lists**       | 閲覧・管理・エクスポート             | 閲覧・管理・エクスポート | 閲覧・エクスポート              | - |
+| **Rules**           | 閲覧・管理                      | 閲覧・管理          | 閲覧                         | - |
+| **Credential Stuffing Detection**           | 閲覧・管理                      | 閲覧・管理          | 閲覧                         | - |
+| **BOLA protection**           | 閲覧・管理                      | 閲覧          | - | - |
+| **Security Edge**    | 閲覧・管理                      | 閲覧                        | -                            | - |
+| **Integrations**    | 閲覧・管理                      | -                        | -                            | - |
+| **Filtration mode**        | 閲覧・管理                      | 閲覧                     | 閲覧                         | - |
+| **Applications**    | 閲覧・管理                      | 閲覧                     | 閲覧                         | - |
+| **Users**           | 閲覧・管理                      | -                        | 閲覧                         | - |
+| **API tokens**           | 個人用および共有トークンの管理 | 個人用トークンの管理 | - | - |
+| **Activity log**    | 閲覧                                 | -                        | 閲覧                         | - |
 
 ## ユーザーの招待
 
-アカウントにユーザーを追加する方法は2通りあり、いずれも招待リンクの作成および共有を伴います。Wallarmがユーザーの指定するメールアドレスに自動的に招待リンクを送信するか、リンクを直接ユーザーと共有するかのいずれかです。
+ユーザーをアカウントに追加する方法は2つあります。どちらも招待リンクの作成と共有を伴います。Wallarmから指定したユーザーのメールアドレスに招待リンクを自動送信するか、生成したリンクを直接共有できます。
 
-### 自動メール招待
+### メールによる自動招待
 
-この方法では、あらかじめユーザーの役割、メールアドレス、および氏名を設定しておくと、Wallarmが指定されたユーザーのメールアドレスにログインおよびパスワード設定用のリンク付き招待メールを自動的に送信します。ユーザーはそのリンクに従ってサインアップ手続きを完了してください。
+この方法では、あらかじめユーザーのロール、メールアドレス、氏名を設定しておくと、Wallarmがログイン用リンク付きの招待メールをそのユーザーのメールアドレスへ自動送信します。ユーザーはリンクに従ってサインアップを完了します。
 
-招待リンクを自動的に送信するには、**Add new user**ボタンをクリックし、フォームに入力してください：
+招待リンクを自動送信するには、**Add user**ボタンをクリックしてフォームに入力します。
 
-![New user form][img-add-user]
+![新規ユーザーのフォーム][img-add-user]
 
-フォーム送信後、ユーザーはユーザー一覧に追加され、招待リンク付きのメールが送信されます。
+フォームを送信すると、ユーザーはユーザー一覧に追加され、招待リンクを含むメールを受信します。
 
-### 手動招待リンクの共有
+### 招待リンクの手動共有
 
-**Invite by link**オプションを使用して、チームメンバーのメールアドレス、役割、およびリンクの有効期間を選択することで招待リンクを生成してください。その後、このリンクを対象のユーザーと共有してください。
+**Invite by link**オプションを使用して、チームメンバーのメールアドレス、ロール、リンクの有効期間を選択し、招待リンクを生成します。その後、リンクを対象ユーザーに共有します。
 
-![New user inv link][img-add-user-invitation-link]
+![新規ユーザーの招待リンク][img-add-user-invitation-link]
 
-このリンクは、Wallarmサインアップページへ誘導し、パスワードの設定と氏名の入力によりアカウント作成を行います。
+このリンクはWallarmのサインアップページに遷移し、ユーザーはパスワードの選択と氏名の入力によってアカウントを作成できます。
 
-サインアップ完了後、ユーザー一覧に追加され、確認メールが送信されます。
+サインアップ後、ユーザーはユーザー一覧に追加され、確認メールを受信します。
+
+## SSOによる自動作成
+
+SAML SSOソリューションから直接、Wallarm Consoleのユーザーとその権限を管理できます。この場合、SAML SSOソリューションでWallarmのロールにマッピングされたグループを用意します。これらのグループ内で新しいユーザーを作成すると、Wallarm側に自動的にユーザーが作成され、以下が付与されます。
+
+* 対応するWallarmロール
+* SSOの認証情報で即座にWallarm Consoleへアクセス
+* ロールで規定された権限
+
+これを機能させるには、[こちら](../../admin-en/configuration-guides/sso/setup.md#step-4-saml-sso-solution-configure-provisioning)の説明に従って、WallarmとSAML SSOソリューション間のインテグレーションを**provisioning**オプション有効で構成する必要があります。
 
 ## ユーザー設定の変更
 
-ユーザーが一覧に表示されたら、対応するユーザーメニューの**Edit user settings**オプションを使用して設定を編集できます。これにより、割り当てられたユーザー役割、ファーストネーム、およびラストネームを変更できます。
+ユーザーがユーザー一覧に表示されたら、該当ユーザーのメニューから**Edit user settings**オプションを使用して設定を編集できます。割り当てられたユーザーロール、名、姓を変更できます。
 
-## 2FAの無効化
+## 2FAの管理
 
-ユーザーが[二要素認証(2FA)を有効にしている](account.md#enabling-two-factor-authentication)場合にリセットが必要なときは、ユーザーメニューから**Disable 2FA**オプションを選択してください。Wallarm管理者アカウントのパスワードを入力して操作を確認してください。
+<a id="enforcing-for-all-users"></a>
+### 全ユーザーへの強制
 
-![User actions menu][img-user-menu-disable-2fa]
+会社の全ユーザーに二要素認証(2FA)の使用を強制できます。実施するには次のとおりです。
 
-これにより、対象ユーザーの2FAが無効化されます。ユーザーはプロフィール設定から2FAを再度有効化できます。
+1. Wallarm Console → **Settings** → **General**を開きます。
+1. **Sign-in management**セクションで、**Enforce two-factor authentication for all company users**オプションを選択し、確認します。
+
+![2FA - 全会社ユーザーに対して有効化](../../images/user-guides/settings/2fa-enforce.png)
+
+有効化すると、会社アカウントのすべてのユーザーは回避できず、ログイン前に2FAを設定する必要があります。次回ログイン時に2FAが必須であることが通知され、2FAの構成オプションが提示されます。ただし、このオプションを有効化しても現在のユーザーセッションには影響しません。
+
+強制モードは後からいつでも無効化できます。無効化後、ユーザーには通知されず、[ユーザー本人](account.md#enabling-two-factor-authentication)または[あなた（管理者）](#disabling-for-selected-users)がそのユーザーに対して手動で無効化するまで、引き続き2FAを使用します。
+
+<a id="disabling-for-selected-users"></a>
+### 特定ユーザーの無効化
+
+ユーザーに[二要素認証(2FA)が有効](account.md#enabling-two-factor-authentication)で、リセットする必要がある場合、ユーザーメニューから**Disable 2FA**オプションを選択します。Wallarm管理者アカウントのパスワードを入力して操作を確認します。[2FAの強制モード](#enforcing-for-all-users)が有効な場合、個別ユーザーの2FAを無効化することはできません。
+
+![ユーザー操作メニュー][img-user-menu-disable-2fa]
+
+これで選択したユーザーの2FAが無効になります。ユーザーは自分のProfile設定から2FAを再度有効化できます。
 
 ## ユーザーの無効化と削除
 
-* アカウント情報を削除せずに一時的にユーザーのWallarmアカウントのログイン機能を停止する場合は、その名前の横にある**Disable access**オプションを使用してください。この操作により、メインのユーザー一覧でグレー表示となり、**Disabled**タブに一覧表示されます。**Enable access**を選択することでアカウントを再有効化でき、再度Wallarmにログインしてアクセスできるようになります。
-* 永続的に削除し、ログインアクセス権を永久に取り消すには、ユーザーメニューから**Delete**を選択してください。この操作はユーザー一覧から完全に削除され、取り消すことはできません。
+* アカウント情報を削除せずに一時的にユーザーのWallarmアカウントへのログインを停止するには、名前の横の**Disable access**オプションを使用します。この操作により、メインのユーザー一覧でグレー表示となり、**Disabled**タブに表示されます。**Enable access**を選択してアカウントを再有効化すると、再びWallarmへログイン・アクセスできるようになります。
+* 永久に削除してログインアクセスを恒久的に取り消すには、ユーザーメニューから**Delete**を選択します。この操作によりユーザーはユーザー一覧から完全に削除され、元に戻せません。
 
-## 新規ユーザーアラート
+## 新規ユーザーのアラート
 
-**User added**条件の[トリガー](../triggers/triggers.md)を設定することで、Wallarmアカウントに新規ユーザーが追加された際に即時通知を受け取れます。特定の役割または任意の新規ユーザー追加について通知を受け取るように選択できます。
+[trigger](../triggers/triggers.md)で**User added**条件を設定すると、Wallarmアカウントに新しいユーザーが追加された際に即時アラートを受け取れます。特定のロール、またはすべての新規ユーザー追加について通知を受けるように選択できます。
 
-これらの通知に興味のあるチームメンバーは、それぞれ自身でトリガーの設定を行ってください。
+これらの通知を受け取りたいチームメンバーは、各自でトリガーを設定する必要があります。
 
-**トリガー例：Slackへの新規ユーザーアラート**
+**トリガー例: Slackへの新規ユーザーアラート**
 
-Wallarm Consoleの会社アカウントに**Administrator**または**Analyst**役割の新規ユーザーが追加されると、このイベントに関する通知が統合で指定されたメールアドレスおよびSlackチャンネルに送信されます。
+Wallarm Consoleの会社アカウントに**Administrator**または**Analyst**ロールの新規ユーザーが追加された場合、インテグレーションで指定したメールアドレスおよびSlackチャンネルにこのイベントの通知が送信されます。
 
-![Example of a trigger sending the notification to Slack and by email](../../images/user-guides/triggers/trigger-example2.png)
+![Slackおよびメールに通知を送るトリガーの例](../../images/user-guides/triggers/trigger-example2.png)
 
-**トリガーのテスト方法：**
+**トリガーをテストする手順:**
 
-1. Wallarm Consoleの**Settings** → **Users**を開き、新規ユーザーを追加してください。
-2. メール受信トレイを確認し、以下のメッセージが届いていることを確認してください：
+1. Wallarm Console → **Settings** → **Users**を開き、新しいユーザーを追加します。
+2. メールのInboxを開き、次のメッセージが受信されていることを確認します。
 
-    ![Email about new user added](../../images/user-guides/triggers/test-new-user-email-message.png)
-3. Slackチャンネルを開き、ユーザー**wallarm**から以下の通知が届いていることを確認してください：
+    ![新規ユーザー追加に関するメール](../../images/user-guides/triggers/test-new-user-email-message.png)
+3. Slackチャンネルを開き、ユーザー**wallarm**から次の通知が受信されていることを確認します。
 
     ```
-    [Wallarm] Trigger: New user was added to the company account
-
+    [Wallarm] Trigger: 会社アカウントに新しいユーザーが追加されました
+    
     Notification type: create_user
-
-    A new user John Smith <johnsmith@example.com> with the role Analyst was added to the company account by John Doe <johndoe@example.com>.
-    This notification was triggered by the "Added user" trigger.
+    
+    新しいユーザー John Smith <johnsmith@example.com>（ロール: Analyst）が、John Doe <johndoe@example.com>により会社アカウントに追加されました。
+    この通知は "Added user" トリガーによってトリガーされました。
 
     Client: TestCompany
     Cloud: EU
     ```
 
-    * `John Smith`および`johnsmith@example.com`は、追加されたユーザーに関する情報です
-    * `Analyst`は、追加されたユーザーの役割です
-    * `John Doe`および`johndoe@example.com`は、新規ユーザーを追加したユーザーに関する情報です
-    * `Added user`は、トリガー名です
-    * `TestCompany`は、Wallarm Consoleの会社アカウント名です
-    * `EU`は、会社アカウントが登録されているWallarm Cloudです
+    * `John Smith` と `johnsmith@example.com` は追加されたユーザーの情報です
+    * `Analyst` は追加されたユーザーのロールです
+    * `John Doe` と `johndoe@example.com` は新しいユーザーを追加したユーザーの情報です
+    * `Added user` はトリガー名です
+    * `TestCompany` はWallarm Consoleにおける貴社の会社アカウント名です
+    * `EU` は貴社の会社アカウントが登録されているWallarm Cloudです
 
 ## ログアウト管理
 
-**Administrator**および**Global Administrator**[roles](users.md#user-roles)は、**Settings** → **General**で会社アカウントのログアウトタイムアウトを設定できます。この設定はすべてのアカウントユーザーに影響します。アイドルタイムアウトおよび絶対タイムアウトを設定可能です。
+**Administrator**および**Global Administrator**の[ロール](users.md#user-roles)は、**Settings** → **General**で会社アカウントのログアウトタイムアウトを設定できます。設定はすべてのアカウントユーザーに適用されます。アイドルタイムアウトと絶対タイムアウトを設定できます。
 
-![General tab](../../images/user-guides/settings/general-tab.png)
-```
+![Generalタブ](../../images/user-guides/settings/general-tab.png)

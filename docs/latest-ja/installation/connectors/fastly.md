@@ -1,4 +1,3 @@
-```markdown
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
@@ -6,90 +5,96 @@
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
+[helm-chart-native-node]:           ../native-node/helm-chart.md
+[custom-blocking-page]:             ../../admin-en/configuration-guides/configure-block-page-and-code.md
+[rate-limiting]:                    ../../user-guides/rules/rate-limiting.md
+[multi-tenancy]:                    ../multi-tenant/overview.md
 
 # Fastly向けWallarmコネクタ
 
-[Fastly](https://www.fastly.com/)は、コンテンツデリバリーネットワーク(CDN)サービス、リアルタイムなアプリケーションデリバリー、キャッシング、およびCompute@Edgeによるエッジ上でのカスタムロジック実行を提供する強力なエッジクラウドプラットフォームです。Wallarmコネクタを使用することで、Fastly上で稼働するAPIを保護できます。
+[Fastly](https://www.fastly.com/)は、CDNサービス、リアルタイムアプリケーション配信、キャッシュ、エッジでカスタムロジックを実行するCompute@Edgeを提供する強力なエッジクラウドプラットフォームです。Wallarmコネクタを使用すると、Fastly上で稼働するAPIを保護できます。
 
-FastlyのコネクタとしてWallarmを使用するには、**Wallarm Nodeを外部に展開し**、Wallarmが提供するバイナリを使用して**Fastly Computeサービスを実行し**、Wallarm Nodeへトラフィックをルーティングして解析を行う必要があります。
+WallarmをFastlyコネクタとして使用するには、Wallarm Nodeを外部にデプロイし、Wallarmが提供するバイナリを使用してFastlyのComputeサービスを実行し、トラフィックを解析のためにWallarm Nodeへルーティングする必要があります。
 
-Fastlyコネクタは、[インライントラフィックフロー](../inline/overview.md)と[アウトオブバンドトラフィックフロー](../oob/overview.md)の両方に対応しています。
+Fastlyコネクタは、[インライン](../inline/overview.md)および[アウトオブバンド](../oob/overview.md)のトラフィックフローの両方をサポートします。
 
 <!-- === "インライントラフィックフロー"
 
-    Wallarmが悪意のあるアクティビティをブロックする設定の場合:
+    Wallarmが悪意のあるアクティビティをブロックするように構成されている場合:
 
-    ![Wallarmを使用したFastly - インラインスキーム](../../images/waf-installation/gateways/fastly/fastly-traffic-flow-inline.png)
+    ![FastlyとWallarm - インライン構成](../../images/waf-installation/gateways/fastly/fastly-traffic-flow-inline.png)
 === "アウトオブバンドトラフィックフロー"
-    ![Wallarmを使用したFastly - アウトオブバンドスキーム](../../images/waf-installation/gateways/fastly/fastly-traffic-flow-oob.png) -->
+    ![FastlyとWallarm - アウトオブバンド構成](../../images/waf-installation/gateways/fastly/fastly-traffic-flow-oob.png) -->
 
 ## ユースケース
 
-サポートされているすべての[Wallarmの展開オプション](../supported-deployment-options.md)の中で、Fastly経由でトラフィックを配信する場合にこのソリューションが推奨されます。
+このソリューションは、トラフィックをFastly経由で配信している場合に推奨されます。
 
 ## 制限事項
 
-* Wallarmルールによる[レート制限](../../user-guides/rules/rate-limiting.md)はサポートされていません。
-* [マルチテナンシー](../multi-tenant/overview.md)はまだサポートされていません。
+* [Helm chart][helm-chart-native-node]を使用して`LoadBalancer`タイプでWallarmサービスをデプロイする場合、Nodeインスタンスのドメインには信頼されたSSL/TLS証明書が必要です。自己署名証明書はまだサポートされていません。
+* Wallarmルールによる[レート制限][rate-limiting]はサポートされません。
+* [マルチテナンシー][multi-tenancy]にはまだ対応していません。
 
-## 要件
+## 前提条件
 
-デプロイを進めるためには、次の要件を満たしている必要があります:
+デプロイを進める前に、以下の要件を満たしていることを確認してください。
 
-* Fastlyの技術についての理解
-* Fastlyを経由して稼働しているAPIまたはトラフィック
-* [Fastly CLIがインストールされている](https://www.fastly.com/documentation/reference/tools/cli/#installing)
+* Fastlyのテクノロジーへの理解があること。
+* Fastly経由でAPIやトラフィックを配信していること。
+* [Fastly CLIのインストール](https://www.fastly.com/documentation/reference/tools/cli/#installing)。
 
 ## デプロイ
 
-### 1. Wallarm Nodeを展開する
+### 1. Wallarm Nodeをデプロイする
 
-Wallarm NodeはWallarmプラットフォームのコアコンポーネントであり、受信トラフィックを検査し、悪意のあるアクティビティを検出して脅威を緩和するように設定できます。
+Wallarm NodeはWallarmプラットフォームの中核コンポーネントで、受信トラフィックを検査し、悪意のあるアクティビティを検出し、脅威を緩和するように構成できます。
 
-必要とする管理レベルに応じて、Wallarmがホストするノードまたは独自のインフラストラクチャ上に展開できます。
+必要なコントロールの度合いに応じて、Wallarmがホストするか、ご自身のインフラストラクチャにデプロイできます。
 
-=== "Edge node"
-    コネクタ用にWallarmがホストするノードを展開するには、[こちらの手順](../se-connector.md)に従ってください。
-=== "Self-hosted node"
-    セルフホストノードの展開に適したアーティファクトを選択し、添付の手順に従ってください:
+=== "Edgeノード"
+    コネクタ向けにWallarmホストのノードをデプロイするには、[手順](../security-edge/se-connector.md)に従います。
+=== "セルフホストノード"
+    セルフホストノードのデプロイ用アーティファクトを選択し、記載の手順に従います。
 
-    * ベアメタルまたは仮想マシン上のLinux環境向け[オールインワンインストーラー](../native-node/all-in-one.md)
-    * コンテナ化された展開環境向け[Dockerイメージ](../native-node/docker-image.md)
-    * Kubernetesを利用するインフラ向け[Helmチャート](../native-node/helm-chart.md)
+    * ベアメタルまたはVM上のLinuxインフラ向けの[All-in-one installer](../native-node/all-in-one.md)
+    * コンテナ化デプロイを使用する環境向けの[Docker image](../native-node/docker-image.md)
+    * AWSインフラ向けの[AWS AMI](../native-node/aws-ami.md)
+    * Kubernetesを利用するインフラ向けの[Helm chart](../native-node/helm-chart.md)
 
-### 2. FastlyにWallarmコードを展開する
+### 2. FastlyにWallarmコードをデプロイする
 
-FastlyからWallarm Nodeへトラフィックをルーティングするため、対応するWallarmロジックを実装したFastly Computeサービスを展開する必要があります:
+FastlyからWallarm Nodeへトラフィックをルーティングするには、対応するWallarmロジックを組み込んだFastlyのComputeサービスをデプロイする必要があります。
 
-1. Wallarm Consoleの**Security Edge** → **Connectors** → **Download code bundle**に進み、Wallarmパッケージをダウンロードしてください。
+1. Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle**に進み、Wallarmパッケージをダウンロードします。
 
-    セルフホストノードを使用している場合は、パッケージ入手のためにsales@wallarm.comにお問い合わせください。
-1. Fastly UIの**Account** → **API tokens** → **Personal tokens** → **Create token**に移動してください:
+    セルフホストノードを実行している場合は、パッケージを入手するためにsales@wallarm.comに連絡してください。
+1. **Fastly** UI → **Account** → **API tokens** → **Personal tokens** → **Create token**に進みます。
 
-    * タイプ：Automation token
-    * スコープ：Global API access
-    * 特別な変更が必要な場合を除き、他の設定はデフォルトのままにしてください
+    * Type: Automation token
+    * Scope: Global API access
+    * 特別な変更が必要でない限り、他の設定はデフォルトのままにします
 
     ![](../../images/waf-installation/gateways/fastly/generate-token.png)
-1. Fastly UIの**Compute** → **Compute services** → **Create service** → **Use a local project**に移動し、Wallarm用のインスタンスを作成してください。
+1. **Fastly** UI → **Compute** → **Compute services** → **Create service** → **Use a local project**に進み、Wallarm用のインスタンスを作成します。
 
-    作成後、生成された`--service-id`をコピーしてください:
+    作成後、生成された`--service-id`を控えます。
 
     ![](../../images/waf-installation/gateways/fastly/create-compute-service.png)
-1. Wallarmパッケージが保存されているローカルディレクトリへ移動し、展開してください:
+1. Wallarmパッケージを含むローカルディレクトリに移動し、デプロイします。
 
     ```
     fastly compute deploy --service-id=<SERVICE_ID> --package=wallarm-api-security.tar.gz --token=<FASTLY_TOKEN>
     ```
 
-    成功メッセージ:
+    成功時のメッセージ:
 
     ```
     SUCCESS: Deployed package (service service_id, version 1)
     ```
 
-    ??? warning "fastly.tomlの読み込みエラー"
-        次のエラーが発生した場合:
+    ??? warning "fastly.tomlの読み取りエラー"
+        次のエラーが表示される場合:
 
         ```
         ✗ Verifying fastly.toml
@@ -99,55 +104,54 @@ FastlyからWallarm Nodeへトラフィックをルーティングするため�
 
         `fastly compute publish`ではなく、提供された`fastly compute deploy`を使用していることを確認してください。
 
-### 3. Wallarm Nodeおよびバックエンドのホストを指定する
+### 3. Wallarm Nodeとバックエンドのホストを指定する
 
-解析および転送のために正しくトラフィックをルーティングするには、Fastlyサービス設定でWallarm Nodeとバックエンドのホストを定義する必要があります:
+解析および転送のために適切にトラフィックをルーティングするには、Fastlyのサービス構成でWallarm Nodeとバックエンドの各ホストを定義する必要があります。
 
-1. Fastly UIの**Compute** → **Compute services** → Wallarmサービス → **Edit configuration**に移動してください。
-1. **Origins**に移動し、**Create hosts**を選択してください:
+1. **Fastly** UI → **Compute** → **Compute services** → Wallarmサービス → **Edit configuration**に進みます。
+1. **Origins**に移動し、**Create hosts**を選択します。
 
-    * [Wallarm Nodeのアドレス](#1-deploy-a-wallarm-node)を`wallarm-node`ホストとして追加し、Wallarm Nodeへの解析用トラフィックをルーティングしてください。
-    * Nodeから元のバックエンドへトラフィックを転送するため、バックエンドのアドレスを別のホスト(例：`backend`)として追加してください。
+    * 解析のためにトラフィックをWallarm Nodeへルーティングできるよう、`wallarm-node`ホストとしてWallarm NodeのURLを追加します。
+    * ノードからオリジンバックエンドへトラフィックを転送できるよう、別のホストとしてバックエンドのアドレス（例: `backend`）を追加します。
 
     ![](../../images/waf-installation/gateways/fastly/hosts.png)
-1. 新しいサービスバージョンを**Activate**してください。
+1. 新しいサービスバージョンを**Activate**します。
 
-### 4. Wallarm config storeを作成する
+### 4. Wallarmのconfig storeを作成する
 
-Wallarm固有の設定を定義する`wallarm_config` configを作成してください:
+Wallarm固有の設定を定義する`wallarm_config`のconfigを作成します。
 
-1. Fastly UIの**Resources** → **Config stores** → **Create a config store**に移動し、以下のキーと値を持つ`wallarm_config` storeを作成してください:
+1. **Fastly** UI → **Resources** → **Config stores** → **Create a config store**に進み、以下のキーと値の項目で`wallarm_config`ストアを作成します。
 
-    | Parameter                         | Description                                                                                                                                                                | Required? |
-    | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-    | `WALLARM_BACKEND`                 | Computeサービスの設定で指定された[Wallarm Nodeインスタンス](#1-deploy-a-wallarm-node)のホスト名。                                                                          | Yes       |
-    | `ORIGIN_BACKEND`                  | Computeサービスの設定で指定されたバックエンドのホスト名。                                                                                                                  | Yes       |
-    | `WALLARM_MODE_ASYNC`              | 元のフローに影響を与えずにトラフィックの[コピー](../oob/overview.md)解析を有効にする(`true`)またはインライン解析を行う(`false`、デフォルト)。                           | No        |
-    | `WALLARM_DEBUG`                   | デバッグ情報をテイリングログに書き出す(`true`)か無効にする(`false`、デフォルト)。                                                                                       | No        |
-    | `WALLARM_RESPONSE_BODY_SIZE_LIMIT`| Nodeが解析可能なレスポンスボディのサイズ制限(バイト単位)。`none`(デフォルト)などの数値以外の値は制限なしを意味します。                                                   | No        |
-    | `ORIGIN_PASS_CACHE`               | リクエストをバックエンドに送信する際にFastlyのキャッシングレイヤーをバイパスしてパススルー動作を強制する(`true`)。デフォルトではFastlyのキャッシングレイヤーが使用される(`false`)。 | No        |
-    | `ORIGIN_PRESERVE_HOST`            | クライアントリクエストの元の`Host`ヘッダーを維持し、`X-Forwarded-Host`ヘッダーを介してオリジンバックエンドのホスト名に置き換えない。元の`Host`に依存するバックエンドに有用です。デフォルト：`false`。 | No        |
-    | `LOGGING_ENDPOINT`                | コネクタ用の[logging endpoint](https://www.fastly.com/documentation/guides/integrations/logging/)を設定します。デフォルトではテイリングログ(stderr)が使用される。        | No        |
+    | パラメータ | 説明 | 必須？ |
+    | --------- | ---- | ------ |
+    | `WALLARM_BACKEND` | Computeサービス設定で指定したWallarm Nodeインスタンスのホスト名。 | はい |
+    | `ORIGIN_BACKEND` | Computeサービス設定で指定したバックエンドのホスト名。 | はい |
+    | `WALLARM_MODE_ASYNC` | 元のフローに影響を与えずにトラフィックの[コピー](../oob/overview.md)を解析する（`true`）か、インラインで解析する（`false`、デフォルト）かを切り替えます。 | いいえ |
 
-1. config storeをWallarm Computeサービスに**リンク**してください.
+    [その他のパラメータ](fastly.md#configuration-options)
+1. 作成したconfig storeをWallarmのComputeサービスに**リンク**します。
 
 ![](../../images/waf-installation/gateways/fastly/config-store.png)
 
-!!! info "複数サービスでのconfig storeの共有"
-    WallarmのComputeサービスを複数実行している場合、`wallarm_config` config storeはすべてのサービス間で共有されます。そのため、すべてのサービスで同じオリジンバックエンド名を使用する必要がありますが、実際のバックエンドの値は各サービスの設定でカスタマイズ可能です。
+!!! info "複数サービス向けのConfig store"
+    Wallarm向けのComputeサービスを複数実行する場合は、次のいずれかを実施できます。
+    
+    * 異なる構成のconfig storeを複数作成し、それぞれを対応するサービスにリンクします。
+    * 同じconfig store（例: `wallarm_config`）を複数のサービスで共有します。なお、すべてのサービスは同一のオリジンバックエンド名を使用する必要がありますが、実際のバックエンド値は各サービスの設定でカスタマイズできます。
 
-### 5.（オプション）カスタムブロッキングページを設定する
+### 5.（オプション）カスタムブロックページを設定する
 
-Wallarm Nodeがインラインモードで動作し、[ブロック](../../admin-en/configure-wallarm-mode.md)攻撃を実施する場合、悪意のあるリクエストに対してHTTP 403のステータスコードで応答します。応答をカスタマイズするため、FastlyのKV storeを使用してカスタムHTMLブロッキングページを設定できます:
+Wallarm Nodeがインラインモードで動作し[ブロック](../../admin-en/configure-wallarm-mode.md)する場合、悪意のあるリクエストにはHTTP 403ステータスコードで応答します。応答をカスタマイズするには、FastlyのKV storeを使用してカスタムHTMLブロックページを設定できます。
 
-1. Fastly UIの**Resources** → **KV stores** → **Create a KV store**に移動し、`wallarm`という名前のKV storeを作成してください.
-1. `block_page.html`というキーを追加し、カスタムHTMLブロッキングページをアップロードしてください。このページはブロックされたリクエストに返されます.
-1. KV storeをWallarm Computeサービスに**リンク**してください.
+1. **Fastly** UI → **Resources** → **KV stores** → **Create a KV store**に進み、`wallarm`という名前のストアを作成します。
+1. `block_page.html`というキーを追加し、カスタムHTMLブロックページをアップロードします。このページはブロックされたリクエストに返されます。
+1. KV storeをWallarmのComputeサービスに**リンク**します。
 
 ![](../../images/waf-installation/gateways/fastly/custom-block-page.png)
 
-??? info "カスタムブロッキングページ用のWallarmテンプレートの表示"
-    出発点として、以下のWallarm提供のテンプレートをカスタムブロッキングページとして使用できます。ユーザーに表示する情報やご希望のデザインに合わせて、必要に応じて調整してください:
+??? info "カスタムブロックページ用のWallarmテンプレートを表示"
+    開始点として、以下のWallarm提供テンプレートをカスタムブロックページに使用できます。必要に応じて調整し、ユーザーに表示したい情報やデザインに合わせてください。
 
     ```html
     <!DOCTYPE html>
@@ -157,7 +161,7 @@ Wallarm Nodeがインラインモードで動作し、[ブロック](../../admin
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>ブロックされました</title>
+        <title>You are blocked</title>
         <link href="https://fonts.googleapis.com/css?family=Poppins:700|Roboto|Roboto+Mono&display=swap" rel="stylesheet">
         <style>
             html {
@@ -266,7 +270,7 @@ Wallarm Nodeがインラインモードで動作し、[ブロック](../../admin
             }
         </style>
         <script>
-            // サポート用メールアドレスをここに記入してください
+            // サポート用メールアドレスをここに設定してください
             const SUPPORT_EMAIL = "";
         </script>
     </head>
@@ -276,9 +280,9 @@ Wallarm Nodeがインラインモードで動作し、[ブロック](../../admin
             <div id="logo" class="logo">
                 <!--
                     ここにロゴを配置してください。
-                    外部画像を使用することもできます:
+                    外部画像を使用できます:
                     <img src="https://example.com/logo.png" width="160" alt="Company Name" />
-                    もしくはロゴのソースコード(例：svg)をここに記述してください:
+                    またはロゴのソースコード（SVGなど）をここに直接記述できます:
                     <svg width="160" height="80"> ... </svg>
                 -->
             </div>
@@ -294,20 +298,20 @@ Wallarm Nodeがインラインモードで動作し、[ブロック](../../admin
                         <path d="M103.5 146.625V146.668" stroke="#F24444" stroke-width="16" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    <div class="alert-title">悪意のあるアクティビティをブロックしました</div>
-                    <div class="alert-desc">悪意のあるリクエストとして認識されたため、リクエストがブロックされました。</div>
+                    <div class="alert-title">Malicious activity blocked</div>
+                    <div class="alert-desc">Your request is blocked since it was identified as a malicious one.</div>
                 </div>
                 <div class="info">
-                    <div class="info-title">原因</div>
+                    <div class="info-title">Why it happened</div>
                     <div class="info-text">
-                        悪意のあるコードシーケンスと類似する記号を使用したか、特定のファイルをアップロードした可能性があります。
+                        You might have used symbols similar to a malicious code sequence, or uploaded a specific file.
                     </div>
 
                     <div class="info-divider"></div>
 
-                    <div class="info-title">対処方法</div>
+                    <div class="info-title">What to do</div>
                     <div class="info-text">
-                        リクエストが正当と判断された場合、<a id="mailto" href="" class="info-mailto">お問い合わせ</a>いただき、最後の操作内容と以下のデータを提供してください。
+                        If your request is considered to be legitimate, please <a id="mailto" href="" class="info-mailto">contact us</a> and provide your last action description and the following data:
                     </div>
 
                     <div id="data" class="info-data">
@@ -317,14 +321,14 @@ Wallarm Nodeがインラインモードで動作し、[ブロック](../../admin
                     </div>
 
                     <button id="copy-btn" class="info-copy">
-                        詳細をコピー
+                        Copy details
                     </button>
                 </div>
             </div>
             <div></div>
         </div>
         <script>
-            // 警告：ES5コードのみ
+            // 注意: ES5コードのみ
 
             function writeText(str) {
                 const range = document.createRange();
@@ -363,35 +367,49 @@ Wallarm Nodeがインラインモードで動作し、[ブロック](../../admin
 
 ## テスト
 
-展開したソリューションの機能をテストするには、以下の手順に従ってください:
+デプロイ済みソリューションの機能をテストするには、次の手順に従います。
 
-1. Wallarm Computeサービスのドメインに対して、テスト用の[パストラバーサル][ptrav-attack-docs]攻撃を含むリクエストを送信してください:
+1. テスト用の[パストラバーサル][ptrav-attack-docs]攻撃を含むリクエストをWallarmのComputeサービスのドメインへ送信します。
 
     ```
     curl http://<WALLARM_FASTLY_SERVICE>/etc/passwd
     ```
-1. Wallarm Consoleの[US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)内の**Attacks**セクションを開き、攻撃が一覧に表示されていることを確認してください.
+1. Wallarm Console → **Attacks**セクションを[US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)で開き、攻撃が一覧に表示されていることを確認します。
     
-    ![インターフェースに表示された攻撃][attacks-in-ui-image]
+    ![インターフェイスのAttacks][attacks-in-ui-image]
 
-    Wallarm Nodeモードが[blocking](../../admin-en/configure-wallarm-mode.md)に設定され、トラフィックがインラインで流れる場合、リクエストはブロックされます。
+    Wallarm Nodeのモードが[ブロック](../../admin-en/configure-wallarm-mode.md)に設定され、トラフィックがインラインで流れている場合は、そのリクエストもブロックされます。
 
-## Fastly上のWallarm Computeサービスのアップグレード
+## 構成オプション
 
-展開したFastly Computeサービスを[新しいバージョン](code-bundle-inventory.md#fastly)にアップグレードするには、以下の手順に従ってください:
+Wallarmのconfig storeでは、次のキーと値の項目を指定できます。
 
-1. Wallarm Consoleの**Security Edge** → **Connectors** → **Download code bundle**に進み、更新されたコードバンドルをダウンロードしてください.
+| パラメータ | 説明 | 必須？ |
+| --------- | ---- | ------ |
+| `WALLARM_BACKEND` | Computeサービス設定で指定したWallarm Nodeインスタンスのホスト名。 | はい |
+| `ORIGIN_BACKEND` | Computeサービス設定で指定したバックエンドのホスト名。 | はい |
+| `WALLARM_MODE_ASYNC` | 元のフローに影響を与えずにトラフィックの[コピー](../oob/overview.md)を解析する（`true`）か、インラインで解析する（`false`、デフォルト）かを切り替えます。 | いいえ |
+| `WALLARM_DEBUG` | デバッグ情報をテーリングログに出力します（`true`）。無効にするには`false`（デフォルト）。 | いいえ |
+| `WALLARM_RESPONSE_BODY_SIZE_LIMIT` | Nodeが解析できるレスポンスボディサイズの上限（バイト単位）。`none`（デフォルト）のような数値以外の値は無制限を意味します。 | いいえ |
+| `ORIGIN_PASS_CACHE` | オリジンバックエンドへ送信されるリクエストをFastlyのキャッシュレイヤーを経由せずに透過的に通過させます（`true`）。デフォルトではFastlyのキャッシュレイヤーを使用します（`false`）。 | いいえ |
+| `ORIGIN_PRESERVE_HOST` | オリジンバックエンドのホスト名で`X-Forwarded-Host`ヘッダーに置き換える代わりに、クライアントリクエストの元の`Host`ヘッダーを保持します。元の`Host`に依存してルーティングやログ記録を行うバックエンドに有用です。デフォルト: `false`。 | いいえ |
+| `LOGGING_ENDPOINT` | コネクタの[logging endpoint](https://www.fastly.com/documentation/guides/integrations/logging/)を設定します。デフォルトはテーリングログ（stderr）。 | いいえ |
 
-    セルフホストノードを使用している場合、更新されたコードバンドルを入手するためにsales@wallarm.comにお問い合わせください.
-1. 更新された`wallarm-api-security.tar.gz` Wallarmパッケージアーカイブがあるディレクトリに移動し、以下を実行してください:
+## Fastly上のWallarm Computeサービスをアップグレードする
+
+デプロイ済みのFastly Computeサービスを[新しいバージョン](code-bundle-inventory.md#fastly)へアップグレードするには:
+
+1. Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle**に進み、更新されたコードバンドルをダウンロードします。
+
+    セルフホストノードを実行している場合は、更新されたコードバンドルを入手するためにsales@wallarm.comに連絡してください。
+1. 更新された`wallarm-api-security.tar.gz`のWallarmパッケージアーカイブを含むディレクトリへ移動し、次を実行します。
 
     ```
     fastly compute deploy --service-id=<SERVICE_ID> --package=wallarm-api-security.tar.gz --token=<FASTLY_TOKEN>
     ```
 
-    * `<SERVICE_ID>`は展開したWallarmサービスのIDに置き換えてください.
-    * `<FASTLY_TOKEN>`はデプロイメントに使用したFastly APIトークンに置き換えてください.
-1. Fastly UIで新しいサービスバージョンを**Activate**してください.
+    * `<SERVICE_ID>` は、デプロイ済みのWallarmサービスのIDです。
+    * `<FASTLY_TOKEN>` は、デプロイに使用するFastlyのAPIトークンです。
+1. Fastly UIで新しいサービスバージョンを**Activate**します。
 
-Computeサービスのアップグレードには、特にメジャーバージョンアップの場合、Wallarm Nodeのアップグレードが必要になる場合があります。リリースの更新およびアップグレード手順については、[Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md)を参照してください。将来のアップグレードの簡易化および非推奨を回避するために、定期的なノードの更新を推奨します.
-```
+Computeサービスのアップグレードでは、特にメジャーバージョン更新時にWallarm Nodeのアップグレードが必要になる場合があります。セルフホストNodeのリリースノートとアップグレード手順は[Native Nodeの変更履歴](../../updating-migrating/native-node/node-artifact-versions.md)を参照するか、[Edgeコネクタのアップグレード手順](../security-edge/se-connector.md#upgrading-the-edge-node)を参照してください。非推奨を避け、将来のアップグレードを容易にするために、Nodeを定期的に更新することを推奨します。

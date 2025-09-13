@@ -1,4 +1,4 @@
-# インストールオプションの概要
+#   インストールオプションの概要
 
 [img-postanalytics-options]:    ../images/installation-nginx-overview/postanalytics-options.png
 [img-nginx-options]:            ../images/installation-nginx-overview/nginx-options.png
@@ -15,48 +15,48 @@
 
 <!-- !!!!! TO MOVE -->
 
-Wallarmフィルタリングノード（NGINXまたはNGINX Plusで利用されるもの）は、以下のモジュールで構成されています:
-*   NGINX (NGINX Plus)に接続するモジュール
+NGINXまたはNGINX Plusと併用するWallarmフィルタリングノードは、次のモジュールで構成されます。
+*   NGINX（NGINX Plus）に接続するモジュール
 *   postanalyticsモジュール
 
-モジュールのインストールおよび設定順序は、NGINXまたはNGINX Plusのインストール方法によって異なります。
+モジュールのインストールと設定の順序は、NGINXまたはNGINX Plusのインストール方法に依存します。
 
-本ドキュメントには以下のセクションが含まれます:
+本ドキュメントには次のセクションが含まれます。
 
 *   [モジュールの概要][anchor-mod-overview]
-*   特定のモジュールのインストールおよび設定手順への[リンク][anchor-mod-installation]
+*   各モジュールのインストールおよび設定手順への[リンク][anchor-mod-installation]
 
-## モジュールの概要
+##  モジュールの概要
 
-フィルタリングノードがリクエストを処理する際、受信トラフィックは初期処理を経た後、Wallarmモジュールによる処理が順次実行されます。
+フィルタリングノードでリクエストを処理する場合、受信トラフィックは初期処理を経て、順にWallarmモジュールによる処理に進みます。
 
-1.  初期トラフィックの処理は、システムに既にインストールされている[NGINX][anchor-mod-inst-nginx]または[NGINX Plus][anchor-mod-inst-nginxplus]に接続するモジュールで実施されます。
-2.  その後のトラフィックの処理は、[postanalyticsモジュール][anchor-mod-inst-postanalytics]によって行われます。このモジュールは適切に動作するために大量のメモリを必要とするため、以下のいずれかのインストールオプションを選択できます:
-    *   NGINX/NGINX Plusと同じサーバーにインストールする（サーバー構成が許す場合）
-    *   NGINX/NGINX Plusとは別のサーバー群にインストールする
+1.  初期のトラフィック処理は、システムにすでにインストールされている[NGINX][anchor-mod-inst-nginx]または[NGINX Plus][anchor-mod-inst-nginxplus]に接続するモジュールが実行します。
+2.  以降のトラフィック処理は[postanalyticsモジュール][anchor-mod-inst-postanalytics]が実行します。このモジュールは適切に動作するために多くのメモリを必要とします。そのため、次のいずれかのインストールオプションを選択できます。
+    *   NGINX/NGINX Plusと同じサーバーにインストール（サーバー構成が許す場合）
+    *   NGINX/NGINX Plusとは別のサーバー群にインストール
 
-![Postanalytics Module Installation Options][img-postanalytics-options]
+![postanalyticsモジュールのインストールオプション][img-postanalytics-options]
 
-## モジュールのインストールおよび設定
+##  モジュールのインストールと設定
 
 ### NGINX用モジュール
 
-!!! warning "インストールするモジュールの選択について"
-    Wallarmモジュールのインストールおよび接続手順は、使用しているNGINXのインストール方法によって異なります。
+!!! warning "インストールするモジュールの選択"
+    Wallarmモジュールのインストールおよび接続手順は、ご利用のNGINXのインストール方法に依存します。
 
-NGINX用のWallarmモジュールは、以下のいずれかのインストール方法により接続できます（各インストールオプションの手順へのリンクが括弧内に記載されています）:
+NGINX用のWallarmモジュールは、次のいずれかの方法で接続できます（各インストールオプションの手順へのリンクは括弧内に記載しています）。
 
-![Module for NGINX Installation Options][img-nginx-options]
+![NGINX用モジュールのインストールオプション][img-nginx-options]
 
-*   ソースファイルからNGINXをビルドする ([手順][link-ig-nginx])
-*   NGINXリポジトリからNGINXパッケージをインストールする ([手順][link-ig-nginx])
-*   DebianリポジトリからNGINXパッケージをインストールする ([手順][link-ig-nginx-distr])
-*   CentOSリポジトリからNGINXパッケージをインストールする ([手順][link-ig-nginx-distr])
+*   ソースファイルからNGINXをビルド（[手順][link-ig-nginx]）
+*   NGINXリポジトリからNGINXパッケージをインストール（[手順][link-ig-nginx]）
+*   DebianリポジトリからNGINXパッケージをインストール（[手順][link-ig-nginx-distr]）
+*   CentOSリポジトリからNGINXパッケージをインストール（[手順][link-ig-nginx-distr]）
 
 ### NGINX Plus用モジュール
 
-[これらの][link-ig-nginxplus]手順には、NGINX Plus用モジュールへのWallarm接続方法が記載されています。
+これらの[手順][link-ig-nginxplus]では、WallarmをNGINX Plusモジュールに接続する方法を説明します。
 
 ### postanalyticsモジュール
 
-同一サーバー上でNGINX/NGINX Plusと共にインストールする場合も、別サーバーにインストールする場合も、postanalyticsモジュールのインストールおよび設定手順は、[NGINX][anchor-mod-inst-nginx]用モジュールのインストールセクションおよび[NGINX Plus][anchor-mod-inst-nginxplus]用モジュールのインストールセクションに記載されています。
+postanalyticsモジュールのインストールおよび設定（NGINX/NGINX Plusと同一サーバー、または別サーバー）の手順は、[NGINX][anchor-mod-inst-nginx]モジュールのインストールセクションおよび[NGINX Plus][anchor-mod-inst-nginxplus]モジュールのインストールセクションに記載しています。

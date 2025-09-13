@@ -1,344 +1,314 @@
-```markdown
-# NGINX Nodeアーティファクトのバージョンと変更履歴
+# NGINXノードのアーティファクトのバージョンと変更履歴
 
-本ドキュメントでは、さまざまな形態における[NGINX Wallarm Node](../installation/nginx-native-node-internals.md#nginx-node) 5.xの利用可能な[バージョン](versioning-policy.md)を一覧し、リリースの追跡およびアップグレードの計画に役立つ情報を提供します。
+このドキュメントでは、各種形態で提供される[NGINX Wallarm Node](../installation/nginx-native-node-internals.md#nginx-node) 6.xの[バージョン](versioning-policy.md)を一覧化し、リリースの追跡とアップグレード計画に役立てます。
 
-## オールインワンインストーラー
+## all-in-oneインストーラー
 
-バージョン4.10以降、Wallarm Nodeのインストールおよびアップグレードは**常に**[オールインワンインストーラー](../installation/nginx/all-in-one.md)を用いて実施されます。個別のLinuxパッケージによる手動アップグレードはもうサポートされません。
+バージョン4.10以降、Wallarmノードのインストールとアップグレードは[all-in-oneインストーラー](../installation/nginx/all-in-one.md)のみで実行します。個別のLinuxパッケージによる手動アップグレードはサポートされなくなりました。
 
-オールインワンインストーラーの更新履歴は、x86_64版およびARM64(beta)版の両方に同時に適用されます。
+all-in-oneインストーラーの更新履歴はx86_64版およびARM64（ベータ）版に同時に適用されます。
 
 [DEB/RPMパッケージからの移行方法](nginx-modules.md)
 
-[前のオールインワンインストーラー版からの移行方法](all-in-one.md)
+[以前のall-in-oneインストーラーからの移行方法](all-in-one.md)
 
-### 5.3.0 (2024-01-29)
+<!-- ### 6.5.0
+new loggin variable wallarm_block_reason
+new attack types in logging variables and search bars?
+-->
 
-* API Sessionsにおけるレスポンスパラメータのサポートを追加し、ユーザー活動の完全なコンテキストおよびより正確な[セッショングルーピング](../api-sessions/setup.md#session-grouping)を提供します（詳細な[変更内容](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions)を参照）。
-* 完全な[GraphQLパーサー](../user-guides/rules/request-processing.md#gql)を追加し、以下の機能を実現します（詳細な[変更内容](../updating-migrating/what-is-new.md#full-fledged-graphql-parser)を参照）:
+### 6.4.1 (2025-08-07)
 
-    * GraphQL特有のリクエストポイントにおける入力検証攻撃の検出精度の向上
-    * 特定のGraphQLポイントに対する攻撃検出の微調整（例：特定のポイントで特定の攻撃タイプの検出を無効化）
-    * API SessionsにおいてGraphQLリクエストの特定部分の解析
-* シリアライズされたリクエスト内の無効な時刻値を修正し、[リソースオーバーリミット](../user-guides/rules/configure-overlimit-res-detection.md)攻撃を正しく表示します。
+* PrometheusメトリクスによるAPI Specification Enforcementサービスの動作（組み込みのAPI Firewallサービスに基づく）のサポートを追加しました:
 
-### 5.2.11 (2024-12-25)
+    * `/opt/wallarm/env.list`で`APIFW_METRICS_ENABLED=true`を設定して有効化します
+    * デフォルトのエンドポイント: `:9010/metrics`
+    * 変数`APIFW_METRICS_HOST`と`APIFW_METRICS_ENDPOINT_NAME`でホストとエンドポイント名を設定できます
 
-* NGINX Mainline v1.27.2および1.27.3のサポートを追加します。
-* NGINX Plus R33のサポートを追加します。
-* [API Discovery](../api-discovery/sbf.md)および[API Sessions](../api-sessions/exploring.md#sensitive-business-flows)において、機微なビジネスフローのサポートを追加します。
-* [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337)および[CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338)の脆弱性を解決しました。
-* 一部のリクエストが正常に処理されず、API Sessions、Credential Stuffing、およびAPI Abuse Preventionに影響を及ぼす可能性がある問題を修正しました。
+### 6.4.0 (2025-07-31)
 
-### 5.2.1 (2024-12-07)
+* stuffed credentialsのCloudへのエクスポートを修正しました
+* GraphQLパーサーを改善しました
+* バグ修正と内部的な改善を行いました
 
-* 拡張ロギングのために、新たに`$wallarm_attack_point_list`および`$wallarm_attack_stamp_list`変数を導入しました（[NGINXベースフィルターノードの拡張ロギング設定](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)を参照）。
+### 6.3.1 (2025-07-23)
 
-    これらの変数は、悪意のあるペイロードと攻撃サインIDを含むリクエストポイントを記録し、Nodeの動作の高度なデバッグを可能にします。
-* 軽微なバグ修正を行いました。
+* メモリリークを修正しました
 
-### 5.1.1 (2024-11-08)
+### 6.3.0 (2025-07-08)
 
-* `wallarm-status`サービスの動作におけるいくつかのバグを修正しました。
+* [ファイルアップロード制限ポリシー](../api-protection/file-upload-restriction.md)をサポートしました
+* [API Abuse Prevention](../api-abuse-prevention/overview.md)による[無制限なリソース消費](../attacks-vulns-list.md#unrestricted-resource-consumption)の緩和をサポートしました
+* ルールにおいて、URI・名前空間・タグ名を組み合わせた[**xml_tag**](../user-guides/rules/request-processing.md#xml)値の区切り文字を`:`から`|`に変更しました
+* 内部的な改善を行いました
+<!-- * [Node part only, no public announcement yet] Added support for SOAP-XML API Discovery
+* [Node part only, no public announcement yet] Added support file upload restriction policy -->
 
-### 5.1.0 (2024-11-06)
+### 6.2.1 (2025-06-23)
 
-* [API Sessions](../api-sessions/overview.md)のサポートを追加しました。
-* リクエスト処理時間の制限を[改善](what-is-new.md#new-in-limiting-request-processing-time)しました。
-* Node登録時のメモリ使用量を削減しました。
+* 内部のファイル構成を一部変更しました
 
-### 5.0.3 (2024-10-10)
+### 6.2.0 (2025-06-20)
 
-* API Discoveryにおいて[機微なデータ検出のカスタマイズ](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection)のサポートを追加しました。
-* [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)における重複レスポンスヘッダーでのメモリリークを修正しました。
-* [IPリスト](../user-guides/ip-lists/overview.md)に存在しないが既知のソースを持つIPアドレスに関連するメモリリークを修正しました（[選択オブジェクト](../user-guides/ip-lists/overview.md#select-object)を参照）。
+* gRPCトラフィックのストリーム処理を最適化しました
+* gRPCおよびWebSocketトラフィックにおける単一メッセージペイロードとストリーム全体のボディサイズの最大値を制御するため、NGINXディレクティブ[`wallarm_max_request_stream_message_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_stream_message_size)と[`wallarm_max_request_stream_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_stream_size)を導入しました
+* 処理済みのgRPC/WebSocketストリームとメッセージの数を報告するため、[`/wallarm-status`サービス](../admin-en/configure-statistics-service.md)の出力に`streams`と`messages`パラメータを追加しました
+* Nodeが解析するHTTPリクエストボディの最大サイズを制御するため、NGINXディレクティブ[`wallarm_max_request_body_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_body_size)を導入しました
+* NGINX-Wallarmモジュールとpostanalyticsモジュールを別々にインストールしている場合の両者間での[SSL/TLSおよびmTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module)をサポートしました
+* wstoreのポートバインディングを修正しました: `0.0.0.0`ではなく`127.0.0.1`にバインドされるようにしました
+* 軽微なバグを修正しました
 
-### 5.0.2 (2024-09-18)
+### 6.1.0 (2025-05-09)
 
-* WAAP+API Securityのサブスクリプションが有効化されていない場合に発生するインストール失敗の問題を修正しました。
-* 攻撃エクスポートの遅延を解消しました。
+* バグ修正: 許可リストに登録されたソースからの攻撃は、**Attacks**セクションに表示されなくなりました
+* 識別を容易にするため、wstoreのログに`"component": "wstore"`が含まれるようになりました
 
-### 5.0.1 (2024-08-21)
+### 6.0.3 (2025-05-07)
 
-* 初回リリース5.0です（[変更履歴](what-is-new.md)を参照）。
-* NGINX v1.26.2stableのサポートを追加しました。
+* Amazon Linux 2をサポートしました
+* カスタムNGINXでのインストールの問題を修正しました
 
-## Wallarm NGINX Ingress Controller用Helmチャート
+### 6.0.2 (2025-04-29)
+
+* NGINX stable 1.28.0をサポートしました
+* NGINX mainline 1.27.5をサポートしました
+
+### 6.0.1 (2025-04-22)
+
+* [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406)、[CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115)の脆弱性を修正しました
+
+### 6.0.0 (2025-04-03)
+
+* 6.0の初回リリースです。[変更履歴はこちら](what-is-new.md)
+
+## Wallarm NGINX Ingress controller用Helmチャート
 
 [アップグレード方法](ingress-controller.md)
 
-### 5.3.0 (2024-01-29)
+### 6.4.0 (2025-07-31)
 
-* API Sessionsにおけるレスポンスパラメータのサポートを追加し、ユーザー活動の完全なコンテキストおよびより正確な[セッショングルーピング](../api-sessions/setup.md#session-grouping)を提供します（詳細な[変更内容](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions)を参照）。
-* 完全な[GraphQLパーサー](../user-guides/rules/request-processing.md#gql)を追加し、以下の機能を実現します（詳細な[変更内容](../updating-migrating/what-is-new.md#full-fledged-graphql-parser)を参照）:
+* stuffed credentialsのCloudへのエクスポートを修正しました
+* GraphQLパーサーを改善しました
+* バグ修正と内部的な改善を行いました
 
-    * GraphQL特有のリクエストポイントにおける入力検証攻撃の検出精度の向上
-    * 特定のGraphQLポイントに対する攻撃検出の微調整（例：特定のポイントで特定の攻撃タイプの検出を無効化）
-    * API SessionsにおいてGraphQLリクエストの特定部分の解析
-* シリアライズされたリクエスト内の無効な時刻値を修正し、[リソースオーバーリミット](../user-guides/rules/configure-overlimit-res-detection.md)攻撃を正しく表示します。
+### 6.3.1 (2025-07-23)
 
-### 5.2.12 (2025-01-08)
+* メモリリークを修正しました
 
-* コントローラーにおける[CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338)の脆弱性を解決しました。
+### 6.3.0 (2025-07-08)
 
-### 5.2.11 (2024-12-27)
+* [ファイルアップロード制限ポリシー](../api-protection/file-upload-restriction.md)をサポートしました
+* [API Abuse Prevention](../api-abuse-prevention/overview.md)による[無制限なリソース消費](../attacks-vulns-list.md#unrestricted-resource-consumption)の緩和をサポートしました
+* 危険な`server-snippet`および`configuration-snippet`アノテーションをブロックするCELルールを切り替えるための[`validation.forbidDangerousAnnotations`](../admin-en/configure-kubernetes-en.md#validationforbiddangerousannotations)チャート値を追加しました
 
-* [API Discovery](../api-discovery/sbf.md)および[API Sessions](../api-sessions/exploring.md#sensitive-business-flows)において、機微なビジネスフローのサポートを追加しました。
-* [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337)および[CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338)の脆弱性を解決しました。
-* 一部のリクエストが正常に処理されず、API Sessions、Credential Stuffing、およびAPI Abuse Preventionに影響を及ぼす可能性がある問題を修正しました。
+    デフォルトでは`false`に設定されており、危険なアノテーションはブロックされません。
 
-### 5.2.2 (2024-12-11)
+    Node 6.2.0の挙動は変更ありません（`validation.enableCel`が`true`のときはデフォルトでアノテーションがブロックされます）。
+* 受信**wstore**接続のアドレスとポートをカスタマイズできるよう、[`controller.wallarm.postanalytics.serviceAddress`](../admin-en/configure-kubernetes-en.md#controllerwallarmpostanalyticsserviceaddress)パラメータをサポートしました
+* ルールにおいて、URI・名前空間・タグ名を組み合わせた[**xml_tag**](../user-guides/rules/request-processing.md#xml)値の区切り文字を`:`から`|`に変更しました
+* 内部的な改善を行いました
 
-* [GHSA-c5pj-mqfh-rvc3](https://scout.docker.com/vulnerabilities/id/GHSA-c5pj-mqfh-rvc3)の脆弱性に対する修正を再適用しました。
+### 6.2.0 (2025-06-20)
 
-### 5.2.1 (2024-12-07)
+* gRPCトラフィックのストリーム処理を最適化しました
+* gRPCおよびWebSocketトラフィックにおける単一メッセージペイロードとストリーム全体のボディサイズの最大値を制御するため、NGINXディレクティブ[`wallarm_max_request_stream_message_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_stream_message_size)と[`wallarm_max_request_stream_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_stream_size)を導入しました
+* 処理済みのgRPC/WebSocketストリームとメッセージの数を報告するため、[`/wallarm-status`サービス](../admin-en/configure-statistics-service.md)の出力に`streams`と`messages`パラメータを追加しました
+* Nodeが解析するHTTPリクエストボディの最大サイズを制御するため、NGINXディレクティブ[`wallarm_max_request_body_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_body_size)を導入しました
+* フィルタリングノードとpostanalyticsモジュール間の[SSL/TLSおよびmTLS](../admin-en/configure-kubernetes-en.md#controllerwallarmpostanalyticstls)をサポートしました
+* `values.yaml`内の統合コンポーネント`controller.wallarm.wcli`を、2つの個別に[設定可能なユニット](../admin-en/configure-kubernetes-en.md)である`wcliController`と`wcliPostanalytics`に分割し、コンテナをきめ細かく制御できるようにしました
+* 軽微なバグを修正しました
 
-* Community Ingress NGINX Controllerバージョン1.11.3にアップグレードし、上流のHelmチャートバージョン4.11.3と整合させました。
-* Community Ingress NGINX Controllerのアップグレードにより、以下の破壊的変更が導入されました:
+### 6.1.0 (2025-05-09)
 
-    * OpentracingおよびZipkinモジュールのサポートを廃止し、Opentelemetryのみをサポート
-    * `PodSecurityPolicy`のサポートを廃止
-* Kubernetesバージョン1.30までの互換性が拡張されました。
-* NGINX 1.25.5に更新されました。
-* 軽微なバグ修正を行いました。
+* バグ修正: 許可リストに登録されたソースからの攻撃は、**Attacks**セクションに表示されなくなりました
+* 識別を容易にするため、wstoreのログに`"component": "wstore"`が含まれるようになりました
 
-### 5.1.1 (2024-11-14)
+### 6.0.2 (2025-04-25)
 
-* [GHSA-c5pj-mqfh-rvc3](https://scout.docker.com/vulnerabilities/id/GHSA-c5pj-mqfh-rvc3)の脆弱性を修正しました。
-* `wallarm-status`サービスの動作におけるいくつかのバグを修正しました。
+* Validating Admission Policies経由でIngressリソースの検証を有効化するための[`validation.enableCel`](../admin-en/configure-kubernetes-en.md#validationenablecel)パラメータを追加しました
 
-### 5.1.0 (2024-11-06)
+### 6.0.1 (2025-04-22)
 
-* [API Sessions](../api-sessions/overview.md)のサポートを追加しました。
-* リクエスト処理時間の制限を[改善](what-is-new.md#new-in-limiting-request-processing-time)しました。
-* Node登録時のメモリ使用量を削減しました。
-* API Specification Enforcement用の新しい設定を追加しました:
+* [CVE-2025-22871](https://nvd.nist.gov/vuln/detail/CVE-2025-22871)の脆弱性を修正しました
 
-    * `readBufferSize`
-    * `writeBufferSize`
-    * `maxRequestBodySize`
-    * `disableKeepalive`
-    * `maxConnectionsPerIp`
-    * `maxRequestsPerConnection`
+### 6.0.0 (2025-04-03)
 
-    設定の説明およびデフォルト値は[こちら](../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewall)を参照してください。
-
-### 5.0.3 (2024-10-10)
-
-* API Discoveryにおいて[機微なデータ検出のカスタマイズ](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection)のサポートを追加しました。
-* [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)における重複レスポンスヘッダーでのメモリリークを修正しました。
-* [IPリスト](../user-guides/ip-lists/overview.md)に含まれるべきではないが[既知のソース](../user-guides/ip-lists/overview.md#select-object)を持つIPアドレスに関連するメモリリークを修正しました。
-
-### 5.0.2 (2024-09-18)
-
-* WAAP+API Securityのサブスクリプションが有効化されていない場合に発生するインストール失敗の問題を修正しました。
-* 攻撃エクスポートの遅延を解消しました。
-
-### 5.0.1 (2024-08-21)
-
-* 初回リリース5.0です（[変更履歴](what-is-new.md)を参照）。
+* 6.0の初回リリースです。[変更履歴はこちら](what-is-new.md)
 
 ## Sidecar用Helmチャート
 
 [アップグレード方法](sidecar-proxy.md)
 
-### 5.3.0 (2024-01-29)
+### 6.4.0 (2025-07-31)
 
-* API Sessionsにおけるレスポンスパラメータのサポートを追加し、ユーザー活動の完全なコンテキストおよびより正確な[セッショングルーピング](../api-sessions/setup.md#session-grouping)を提供します（詳細な[変更内容](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions)を参照）。
-* 完全な[GraphQLパーサー](../user-guides/rules/request-processing.md#gql)を追加し、以下の機能を実現します（詳細な[変更内容](../updating-migrating/what-is-new.md#full-fledged-graphql-parser)を参照）:
+* stuffed credentialsのCloudへのエクスポートを修正しました
+* GraphQLパーサーを改善しました
+* バグ修正と内部的な改善を行いました
 
-    * GraphQL特有のリクエストポイントにおける入力検証攻撃の検出精度の向上
-    * 特定のGraphQLポイントに対する攻撃検出の微調整（例：特定のポイントで特定の攻撃タイプの検出を無効化）
-    * API SessionsにおいてGraphQLリクエストの特定部分の解析
-* シリアライズされたリクエスト内の無効な時刻値を修正し、[リソースオーバーリミット](../user-guides/rules/configure-overlimit-res-detection.md)攻撃を正しく表示します。
-* API Specification Enforcement用の新しい設定を追加しました:
+### 6.3.1 (2025-07-23)
 
-    * `readBufferSize`
-    * `writeBufferSize`
-    * `maxRequestBodySize`
-    * `disableKeepalive`
-    * `maxConnectionsPerIp`
-    * `maxRequestsPerConnection`
+* メモリリークを修正しました
 
-    設定の説明およびデフォルト値は[こちら](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwallarmapifirewall)を参照してください。
-* NGINXにおける拡張ロギングのため、Helmチャート値[`config.nginx.logs.extended`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#confignginxlogsextended)および[`config.nginx.logs.format`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#confignginxlogsformat)を追加しました。
+### 6.3.0 (2025-07-08)
 
-### 5.2.11 (2024-12-27)
+* [ファイルアップロード制限ポリシー](../api-protection/file-upload-restriction.md)をサポートしました
+* [API Abuse Prevention](../api-abuse-prevention/overview.md)による[無制限なリソース消費](../attacks-vulns-list.md#unrestricted-resource-consumption)の緩和をサポートしました
+* 受信**wstore**接続のアドレスとポートをカスタマイズできるよう、[`postanalytics.wstore.config.serviceAddress`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#postanalyticswstoreconfigserviceaddress)パラメータをサポートしました
+* ルールにおいて、URI・名前空間・タグ名を組み合わせた[**xml_tag**](../user-guides/rules/request-processing.md#xml)値の区切り文字を`:`から`|`に変更しました
+* 内部的な改善を行いました
 
-* [API Discovery](../api-discovery/sbf.md)および[API Sessions](../api-sessions/exploring.md#sensitive-business-flows)において、機微なビジネスフローのサポートを追加しました。
-* [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337)および[CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338)の脆弱性を解決しました。
-* 一部のリクエストが正常に処理されず、API Sessions、Credential Stuffing、およびAPI Abuse Preventionに影響を及ぼす可能性がある問題を修正しました。
+### 6.2.0 (2025-06-20)
 
-### 5.2.1 (2024-12-09)
+* gRPCトラフィックのストリーム処理を最適化しました
+* フィルタリングノードとpostanalyticsモジュール間の[SSL/TLSおよびmTLS](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#postanalyticswstoretls)をサポートしました
+* Alpineのバージョンを3.22に更新しました
+* NGINXをバージョン1.28.0にアップグレードしました
+* 軽微なバグを修正しました
 
-* 拡張ロギングのために、新たに`$wallarm_attack_point_list`および`$wallarm_attack_stamp_list`変数を導入しました（[NGINXベースフィルターノードの拡張ロギング設定](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)を参照）。
+### 6.1.0 (2025-05-09)
 
-    これらの変数は、悪意のあるペイロードと攻撃サインIDを含むパラメータを記録し、Nodeの動作の高度なデバッグを可能にします。
-* 軽微なバグ修正を行いました。
+* バグ修正: 許可リストに登録されたソースからの攻撃は、**Attacks**セクションに表示されなくなりました
+* 識別を容易にするため、wstoreのログに`"component": "wstore"`が含まれるようになりました
 
-### 5.1.0 (2024-11-06)
+### 6.0.1 (2025-04-22)
 
-* [API Sessions](../api-sessions/overview.md)のサポートを追加しました。
-* リクエスト処理時間の制限を[改善](what-is-new.md#new-in-limiting-request-processing-time)しました。
-* Node登録時のメモリ使用量を削減しました。
+* [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406)、[CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115)の脆弱性を修正しました
 
-### 5.0.3 (2024-10-10)
+### 6.0.0 (2025-04-03)
 
-* API Discoveryにおいて[機微なデータ検出のカスタマイズ](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection)のサポートを追加しました。
-* [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)における重複レスポンスヘッダーでのメモリリークを修正しました。
-* [IPリスト](../user-guides/ip-lists/overview.md)に含まれないが[既知のソース](../user-guides/ip-lists/overview.md#select-object)を持つIPアドレスに関連するメモリリークを修正しました。
+* 6.0の初回リリースです。[変更履歴はこちら](what-is-new.md)
 
-### 5.0.2 (2024-09-19)
-
-* WAAP+API Securityのサブスクリプションが有効化されていない場合に発生するインストール失敗の問題を修正しました。
-* 攻撃エクスポートの遅延を解消しました。
-
-### 5.0.1 (2024-08-21)
-
-* 初回リリース5.0です（[変更履歴](what-is-new.md)を参照）。
-
-<!-- ## Helm chart for Wallarm eBPF‑based solution
-
-### 0.10.22 (2024-03-01)
-
-* [初回リリース](../installation/oob/ebpf/deployment.md) -->
-
-## NGINXベースDockerイメージ
+## NGINXベースのDockerイメージ
 
 [アップグレード方法](docker-container.md)
 
-### 5.3.0 (2024-01-29)
+### 6.4.1 (2025-08-07)
 
-* API Sessionsにおけるレスポンスパラメータのサポートを追加し、ユーザー活動の完全なコンテキストおよびより正確な[セッショングルーピング](../api-sessions/setup.md#session-grouping)を提供します（詳細な[変更内容](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions)を参照）。
-* 完全な[GraphQLパーサー](../user-guides/rules/request-processing.md#gql)を追加し、以下の機能を実現します（詳細な[変更内容](../updating-migrating/what-is-new.md#full-fledged-graphql-parser)を参照）:
+* PrometheusメトリクスによるAPI Specification Enforcementサービスの動作（組み込みのAPI Firewallサービスに基づく）のサポートを追加しました:
 
-    * GraphQL特有のリクエストポイントにおける入力検証攻撃の検出精度の向上
-    * 特定のGraphQLポイントに対する攻撃検出の微調整（例：特定のポイントで特定の攻撃タイプの検出を無効化）
-    * API SessionsにおいてGraphQLリクエストの特定部分の解析
-* シリアライズされたリクエスト内の無効な時刻値を修正し、[リソースオーバーリミット](../user-guides/rules/configure-overlimit-res-detection.md)攻撃を正しく表示します。
+    * 環境変数`APIFW_METRICS_ENABLED=true`で有効化します
+    * デフォルトのエンドポイント: `:9010/metrics`
+    * コンテナ内でメトリクスポートを公開してください（例: デフォルト状態では`-p 9010:9010`を使用します）
+    * 変数`APIFW_METRICS_HOST`と`APIFW_METRICS_ENDPOINT_NAME`でホストとエンドポイント名を設定できます
 
-### 5.2.11 (2024-12-25)
+### 6.4.0 (2025-07-31)
 
-* [API Discovery](../api-discovery/sbf.md)および[API Sessions](../api-sessions/exploring.md#sensitive-business-flows)において、機微なビジネスフローのサポートを追加しました。
-* [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337)および[CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338)の脆弱性を解決しました。
-* 一部のリクエストが正常に処理されず、API Sessions、Credential Stuffing、およびAPI Abuse Preventionに影響を及ぼす可能性がある問題を修正しました。
+* stuffed credentialsのCloudへのエクスポートを修正しました
+* GraphQLパーサーを改善しました
+* バグ修正と内部的な改善を行いました
 
-### 5.2.1 (2024-12-07)
+### 6.3.1 (2025-07-23)
 
-* 拡張ロギングのために、新たに`$wallarm_attack_point_list`および`$wallarm_attack_stamp_list`変数を導入しました（[NGINXベースフィルターノードの拡張ロギング設定](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)を参照）。
+* メモリリークを修正しました
 
-    これらの変数は、悪意のあるペイロードと攻撃サインIDを含むパラメータを記録し、Nodeの動作の高度なデバッグを可能にします。
-* イメージのソースおよびDockerfileを[GitHub](https://github.com/wallarm/docker-wallarm-node)から内部のGitLabリポジトリへ移動しました。
+### 6.3.0 (2025-07-08)
 
-### 5.1.0-1 (2024-11-06)
+* [ファイルアップロード制限ポリシー](../api-protection/file-upload-restriction.md)をサポートしました
+* [API Abuse Prevention](../api-abuse-prevention/overview.md)による[無制限なリソース消費](../attacks-vulns-list.md#unrestricted-resource-consumption)の緩和をサポートしました
+* ルールにおいて、URI・名前空間・タグ名を組み合わせた[**xml_tag**](../user-guides/rules/request-processing.md#xml)値の区切り文字を`:`から`|`に変更しました
+* 内部的な改善を行いました
 
-* [API Sessions](../api-sessions/overview.md)のサポートを追加しました。
-* リクエスト処理時間の制限を[改善](what-is-new.md#new-in-limiting-request-processing-time)しました。
-* Node登録時のメモリ使用量を削減しました。
+### 6.2.0 (2025-06-20)
 
-### 5.0.3-1 (2024-10-10)
+* gRPCトラフィックのストリーム処理を最適化しました
+* 処理済みのgRPC/WebSocketストリームとメッセージの数を報告するため、[`/wallarm-status`サービス](../admin-en/configure-statistics-service.md)の出力に`streams`と`messages`パラメータを追加しました
+* NGINX-Wallarmモジュールとpostanalyticsモジュールを別々にインストールしている場合の両者間での[SSL/TLSおよびmTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module)をサポートしました
+* wstoreのポートバインディングを修正しました: `0.0.0.0`ではなく`127.0.0.1`にバインドされるようにしました
+* Alpineのバージョンを3.22に更新しました
+* NGINXをバージョン1.28.0にアップグレードしました
+* 軽微なバグを修正しました
 
-* API Discoveryにおいて[機微なデータ検出のカスタマイズ](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection)のサポートを追加しました。
-* [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)における重複レスポンスヘッダーでのメモリリークを修正しました。
-* [IPリスト](../user-guides/ip-lists/overview.md)に含まれないが[既知のソース](../user-guides/ip-lists/overview.md#select-object)を持つIPアドレスに関連するメモリリークを修正しました。
+### 6.1.0 (2025-05-09)
 
-### 5.0.2-1 (2024-09-18)
+* バグ修正: 許可リストに登録されたソースからの攻撃は、**Attacks**セクションに表示されなくなりました
+* 識別を容易にするため、wstoreのログに`"component": "wstore"`が含まれるようになりました
 
-* WAAP+API Securityのサブスクリプションが有効化されていない場合に発生するインストール失敗の問題を修正しました。
-* 攻撃エクスポートの遅延を解消しました。
+### 6.0.1 (2025-04-22)
 
-### 5.0.1-1 (2024-08-21)
+* [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406)、[CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115)の脆弱性を修正しました
 
-* 初回リリース5.0です（[変更履歴](what-is-new.md)を参照）。
-* NGINX v1.26.2stableのサポートを追加しました。
+### 6.0.0 (2025-04-03)
 
-<!-- ## Envoy-based Docker image
-
-!!! info "Pending upgrade to 4.10"
-    This artifact has not been updated to Wallarm node 4.10 yet; an upgrade is pending. The 4.10 features are not supported on nodes deployed with this artifact.
-
-[アップグレード方法](docker-container.md)
-
-### 4.8.0-1 (2023-10-19)
-
-* 初回リリース4.8です（[変更履歴](what-is-new.md)を参照）。 -->
+* 6.0の初回リリースです。[変更履歴はこちら](what-is-new.md)
 
 ## Amazon Machine Image (AMI)
 
 [アップグレード方法](cloud-image.md)
 
-### 5.3.0 (2024-01-30)
+### 6.4.0 (2025-07-31)
 
-* API Sessionsにおけるレスポンスパラメータのサポートを追加し、ユーザー活動の完全なコンテキストおよびより正確な[セッショングルーピング](../api-sessions/setup.md#session-grouping)を提供します（詳細な[変更内容](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions)を参照）。
-* 完全な[GraphQLパーサー](../user-guides/rules/request-processing.md#gql)を追加し、以下の機能を実現します（詳細な[変更内容](../updating-migrating/what-is-new.md#full-fledged-graphql-parser)を参照）:
+* stuffed credentialsのCloudへのエクスポートを修正しました
+* GraphQLパーサーを改善しました
+* バグ修正と内部的な改善を行いました
 
-    * GraphQL特有のリクエストポイントにおける入力検証攻撃の検出精度の向上
-    * 特定のGraphQLポイントに対する攻撃検出の微調整（例：特定のポイントで特定の攻撃タイプの検出を無効化）
-    * API SessionsにおいてGraphQLリクエストの特定部分の解析
-* シリアライズされたリクエスト内の無効な時刻値を修正し、[リソースオーバーリミット](../user-guides/rules/configure-overlimit-res-detection.md)攻撃を正しく表示します。
+### 6.3.1 (2025-07-23)
 
-### 5.2.11 (2024-12-28)
+* メモリリークを修正しました
 
-* [API Discovery](../api-discovery/sbf.md)および[API Sessions](../api-sessions/exploring.md#sensitive-business-flows)において、機微なビジネスフローのサポートを追加しました。
-* [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337)および[CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338)の脆弱性を解決しました。
-* 一部のリクエストが正常に処理されず、API Sessions、Credential Stuffing、およびAPI Abuse Preventionに影響を及ぼす可能性がある問題を修正しました。
+### 6.3.0 (2025-07-08)
 
-### 5.2.1 (2024-12-07)
+* [ファイルアップロード制限ポリシー](../api-protection/file-upload-restriction.md)をサポートしました
+* [API Abuse Prevention](../api-abuse-prevention/overview.md)による[無制限なリソース消費](../attacks-vulns-list.md#unrestricted-resource-consumption)の緩和をサポートしました
+* ルールにおいて、URI・名前空間・タグ名を組み合わせた[**xml_tag**](../user-guides/rules/request-processing.md#xml)値の区切り文字を`:`から`|`に変更しました
+* 内部的な改善を行いました
 
-* 拡張ロギングのために、新たに`$wallarm_attack_point_list`および`$wallarm_attack_stamp_list`変数を導入しました（[NGINXベースフィルターノードの拡張ロギング設定](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)を参照）。
+### 6.2.0 (2025-06-20)
 
-    これらの変数は、悪意のあるペイロードと攻撃サインIDを含むパラメータを記録し、Nodeの動作の高度なデバッグを可能にします。
-* 軽微なバグ修正を行いました。
+* gRPCトラフィックのストリーム処理を最適化しました
+* 処理済みのgRPC/WebSocketストリームとメッセージの数を報告するため、[`/wallarm-status`サービス](../admin-en/configure-statistics-service.md)の出力に`streams`と`messages`パラメータを追加しました
+* NGINX-Wallarmモジュールとpostanalyticsモジュールを別々にインストールしている場合の両者間での[SSL/TLSおよびmTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module)をサポートしました
+* wstoreのポートバインディングを修正しました: `0.0.0.0`ではなく`127.0.0.1`にバインドされるようにしました
+* 軽微なバグを修正しました
 
-### 5.1.0-1 (2024-11-06)
+### 6.1.0 (2025-05-09)
 
-* [API Sessions](../api-sessions/overview.md)のサポートを追加しました。
-* リクエスト処理時間の制限を[改善](what-is-new.md#new-in-limiting-request-processing-time)しました。
-* Node登録時のメモリ使用量を削減しました。
+* バグ修正: 許可リストに登録されたソースからの攻撃は、**Attacks**セクションに表示されなくなりました
+* 識別を容易にするため、wstoreのログに`"component": "wstore"`が含まれるようになりました
 
-### 5.0.3-1 (2024-10-10)
+### 6.0.1 (2025-04-22)
 
-* API Discoveryにおいて[機微なデータ検出のカスタマイズ](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection)のサポートを追加しました。
-* [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)における重複レスポンスヘッダーでのメモリリークを修正しました。
-* [IPリスト](../user-guides/ip-lists/overview.md)に含まれないが[既知のソース](../user-guides/ip-lists/overview.md#select-object)を持つIPアドレスに関連するメモリリークを修正しました。
+* [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406)、[CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115)の脆弱性を修正しました
 
-### 5.0.2-1 (2024-09-19)
+### 6.0.0 (2025-04-03)
 
-* WAAP+API Securityのサブスクリプションが有効化されていない場合に発生するインストール失敗の問題を修正しました。
-* 攻撃エクスポートの遅延を解消しました。
-
-### 5.0.1-1 (2024-08-21)
-
-* 初回リリース5.0です（[変更履歴](what-is-new.md)を参照）。
+* 6.0の初回リリースです。[変更履歴はこちら](what-is-new.md)
 
 ## Google Cloud Platformイメージ
 
 [アップグレード方法](cloud-image.md)
 
-### wallarm-node-5-3-20250129-150255 (2025-01-30)
+### wallarm-node-6-4-0-20250730-083353 (2025-07-31)
 
-* API Sessionsにおけるレスポンスパラメータのサポートを追加し、ユーザー活動の完全なコンテキストおよびより正確な[セッショングルーピング](../api-sessions/setup.md#session-grouping)を提供します（詳細な[変更内容](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions)を参照）。
-* 完全な[GraphQLパーサー](../user-guides/rules/request-processing.md#gql)を追加し、以下の機能を実現します（詳細な[変更内容](../updating-migrating/what-is-new.md#full-fledged-graphql-parser)を参照）:
+* stuffed credentialsのCloudへのエクスポートを修正しました
+* GraphQLパーサーを改善しました
+* バグ修正と内部的な改善を行いました
 
-    * GraphQL特有のリクエストポイントにおける入力検証攻撃の検出精度の向上
-    * 特定のGraphQLポイントに対する攻撃検出の微調整（例：特定のポイントで特定の攻撃タイプの検出を無効化）
-    * API SessionsにおいてGraphQLリクエストの特定部分の解析
-* シリアライズされたリクエスト内の無効な時刻値を修正し、[リソースオーバーリミット](../user-guides/rules/configure-overlimit-res-detection.md)攻撃を正しく表示します.
+### wallarm-node-6-3-1-20250721-082413 (2025-07-23)
 
-### wallarm-node-5-2-20241227-095327 (2024-12-27)
+* メモリリークを修正しました
 
-* [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337)および[CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338)の脆弱性を解決しました。
-* 一部のリクエストが正常に処理されず、API Sessions、Credential Stuffing、およびAPI Abuse Preventionに影響を及ぼす可能性がある問題を修正しました。
+### wallarm-node-6-3-0-20250708-175541 (2025-07-08)
 
-### wallarm-node-5-2-20241209-114655 (2024-12-07)
+* ルールにおいて、URI・名前空間・タグ名を組み合わせた[**xml_tag**](../user-guides/rules/request-processing.md#xml)値の区切り文字を`:`から`|`に変更しました
+* 内部的な改善を行いました
 
-* 拡張ロギングのために、新たに`$wallarm_attack_point_list`および`$wallarm_attack_stamp_list`変数を導入しました（[NGINXベースフィルターノードの拡張ロギング設定](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)を参照）。
+### wallarm-node-6-2-0-20250618-150224 (2025-06-20)
 
-    これらの変数は、悪意のあるペイロードと攻撃サインIDを含むパラメータを記録し、Nodeの動作の高度なデバッグを可能にします。
-* 軽微なバグ修正を行いました。
+* gRPCトラフィックのストリーム処理を最適化しました
+* 処理済みのgRPC/WebSocketストリームとメッセージの数を報告するため、[`/wallarm-status`サービス](../admin-en/configure-statistics-service.md)の出力に`streams`と`messages`パラメータを追加しました
+* NGINX-Wallarmモジュールとpostanalyticsモジュールを別々にインストールしている場合の両者間での[SSL/TLSおよびmTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module)をサポートしました
+* wstoreのポートバインディングを修正しました: `0.0.0.0`ではなく`127.0.0.1`にバインドされるようにしました
+* 軽微なバグを修正しました
 
-### wallarm-node-5-1-20241108-120238 (2024-11-08)
+### wallarm-node-6-1-0-20250508-144827 (2025-05-09)
 
-* 初回リリース5.xです（[変更履歴](what-is-new.md)を参照）。
-```
+* バグ修正: 許可リストに登録されたソースからの攻撃は、**Attacks**セクションに表示されなくなりました
+* 識別を容易にするため、wstoreのログに`"component": "wstore"`が含まれるようになりました
+
+### wallarm-node-6-0-1-20250422-104749 (2025-04-22)
+
+* [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406)、[CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115)の脆弱性を修正しました
+
+### wallarm-node-6-0-0-20250403-102125 (2025-04-03)
+
+* 6.0の初回リリースです。[変更履歴はこちら](what-is-new.md)

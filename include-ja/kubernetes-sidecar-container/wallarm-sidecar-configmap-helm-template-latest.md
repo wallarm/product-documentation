@@ -1,4 +1,4 @@
-```yaml
+```
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -12,7 +12,7 @@ data:
           root /usr/share/nginx/html;
           index index.html index.htm;
           wallarm_mode {{ .Values.wallarm.mode | quote }};
-          # wallarm_applicationの値は1です;
+          # wallarm_application 1;
           set_real_ip_from 0.0.0.0/0;
           real_ip_header X-Forwarded-For;
           location / {

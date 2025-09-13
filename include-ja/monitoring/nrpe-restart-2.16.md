@@ -2,7 +2,7 @@
     ```bash
     sudo service nrpe restart
     ```
-=== "その他のサポートされているディストリビューション"
+=== "その他のサポート対象ディストリビューション"
     ```bash
     sudo systemctl restart nrpe
     ```
