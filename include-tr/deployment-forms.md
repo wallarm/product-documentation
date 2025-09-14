@@ -1,0 +1,3 @@
+* [Security Edge][link-deployment-se]: tamamen bulut tabanlı dağıtım. Hem Wallarm filtering node'ları hem de Wallarm Cloud bileşenleri Wallarm tarafından yönetilir.
+* [Hibrit][link-deployment-hybrid]: Wallarm müşterileri Wallarm filtering node'ları dağıtır ve yönetir, Wallarm ise Wallarm Cloud bileşenini yönetir.
+* [Şirket içi][link-deployment-on-prem]: hem Wallarm filtering node hem de Wallarm Cloud bileşenleri müşteri tarafından barındırılır ve yönetilir.

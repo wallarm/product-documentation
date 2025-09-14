@@ -1,13 +1,19 @@
-* [Hits](../../../glossary-en.md#hit) tespit edilenler, aşağıdakiler hariç:
+* [Hits](../../../glossary-en.md#hit) tespit edildi, şu durumlar hariç:
 
-    * [custom regular expression](../../rules/regex-rule.md) temelinde tespit edilen deneysel hits. Deneysel olmayan hits bildirimleri tetikler.
-    * [sample](../../events/grouping-sampling.md#sampling-of-hits) içerisine kaydedilmeyen hits.
+    * [özel düzenli ifade](../../rules/regex-rule.md) temelinde tespit edilen deneysel Hits. Deneysel olmayan Hits bildirimleri tetikler.
+    * [örneklem](../../events/grouping-sampling.md#sampling-of-hits) içinde kaydedilmeyen Hits.
 
-* Sistemle ilgili:
-    * [User](../../../user-guides/settings/users.md) değişiklikleri (yeni oluşturulan, silinen, rol değişikliği)
-    * [Integration](integrations-intro.md) değişiklikleri (devre dışı bırakılan, silinen)
-    * [Application](../../../user-guides/settings/applications.md) değişiklikleri (yeni oluşturulan, silinen, isim değişikliği)
-* Varsayılan olarak veya yalnızca seçilen risk seviyesi(ler) - yüksek, orta veya düşük - için tespit edilen [Vulnerabilities](../../../glossary-en.md#vulnerability).
-* [Rules](../../../user-guides/rules/rules.md) ve [triggers](../../../user-guides/triggers/triggers.md) değişiklikleri (kural veya trigger oluşturma, güncelleme veya silme)
-* [Scope (exposed assets)](../../scanner.md) değişikliği: host, servis ve domain güncellemeleri
-* Saatlik olarak, önceki saatte işlenen istek sayısını içeren bir bildirim alabilirsiniz
+* Sistem ile ilgili:
+    * [User](../../../user-guides/settings/users.md) değişiklikleri (yeni oluşturuldu, silindi, rol değişikliği)
+    * [Integration](integrations-intro.md) değişiklikleri (devre dışı bırakıldı, silindi)
+    * [Application](../../../user-guides/settings/applications.md) değişiklikleri (yeni oluşturuldu, silindi, ad değişikliği)
+    * [rogue API tespiti](../../../api-discovery/rogue-api.md#step-1-upload-specification) veya [API spesifikasyonunun uygulanması](../../../api-specification-enforcement/setup.md#step-1-upload-specification) için kullanılan spesifikasyonların düzenli güncellenmesi sırasında oluşan hatalar
+* [Vulnerabilities](../../../glossary-en.md#vulnerability) tespit edildi, varsayılan olarak tümü veya yalnızca seçilen risk seviyesi/seviyeleri için - high, medium veya low.
+* [Rules](../../../user-guides/rules/rules.md) ve [triggers](../../../user-guides/triggers/triggers.md) değiştirildi (kural veya tetikleyici oluşturma, güncelleme ya da silme)
+* ([AASM Enterprise](../../../api-attack-surface/setup.md#enabling) gerektirir) [Security issues](../../../api-attack-surface/security-issues.md) tespit edildi, tümü veya yalnızca seçilen [risk level(s)](../../../api-attack-surface/security-issues.md#issue-risk-level):
+    * Critical risk
+    * High risk
+    * Medium risk
+    * Low risk
+    * Info risk
+* Saatlik olarak, önceki saat içinde işlenen istek sayısını içeren bir bildirim alabilirsiniz

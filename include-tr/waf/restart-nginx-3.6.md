@@ -6,11 +6,11 @@
     ```bash
     sudo service nginx restart
     ```
-=== "CentOS or Amazon Linux 2.0.2021x and lower"
+=== "CentOS veya Amazon Linux 2.0.2021x ve altı"
     ```bash
     sudo systemctl restart nginx
     ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+=== "AlmaLinux, Rocky Linux veya Oracle Linux 8.x"
     ```bash
     sudo systemctl restart nginx
     ```

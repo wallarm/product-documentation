@@ -1,13 +1,13 @@
-## 1. NGINX Plus ve Bağımlılıkları Kurun
+## 1. NGINX Plus ve bağımlılıkları yükleyin
 
-NGINX Plus ve bağımlılıklarını şu [official NGINX instructions](https://www.nginx.com/resources/admin-guide/installing-nginx-plus/) kullanarak kurun.
+NGINX Plus ve bağımlılıklarını şu [resmi NGINX talimatlarını](https://www.nginx.com/resources/admin-guide/installing-nginx-plus/) kullanarak yükleyin.
 
-!!! info "Amazon Linux 2.0.2021x ve öncesinde kurulum"
-    Amazon Linux 2.0.2021x ve öncesinde NGINX Plus'ı kurmak için CentOS 7 talimatlarını kullanın.
+!!! info "Amazon Linux 2.0.2021x ve altına kurulum"
+    Amazon Linux 2.0.2021x ve altına NGINX Plus kurmak için CentOS 7 talimatlarını kullanın.
 
 ## 2. Wallarm depolarını ekleyin
 
-Wallarm node, Wallarm depolarından kurulur ve güncellenir. Depoları eklemek için, platformunuza ait komutları kullanın:
+Wallarm düğümü, Wallarm depolarından kurulur ve güncellenir. Depoları eklemek için platformunuza uygun komutları kullanın:
 
 === "Debian 11.x (bullseye)"
     ```bash
@@ -40,7 +40,7 @@ Wallarm node, Wallarm depolarından kurulur ve güncellenir. Depoları eklemek i
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.8/x86_64/wallarm-node-repo-4.8-0.el7.noarch.rpm
     ```
-=== "Amazon Linux 2.0.2021x ve öncesi"
+=== "Amazon Linux 2.0.2021x ve altı"
     ```bash
     sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.8/x86_64/wallarm-node-repo-4.8-0.el7.noarch.rpm
@@ -56,11 +56,11 @@ Wallarm node, Wallarm depolarından kurulur ve güncellenir. Depoları eklemek i
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.8/x86_64/wallarm-node-repo-4.8-0.el8.noarch.rpm
     ```
 
-## 3. Wallarm paketlerini kurun
+## 3. Wallarm paketlerini yükleyin
 
 Aşağıdaki paketler gereklidir:
 
-* `nginx-plus-module-wallarm` NGINX Plus-Wallarm modülü için
+* NGINX Plus-Wallarm modülü için `nginx-plus-module-wallarm`
 * [postanalytics][install-postanalytics-instr] modülü, Tarantool veritabanı ve ek NGINX Plus-Wallarm paketleri için `wallarm-node`
 
 === "Debian"
@@ -71,7 +71,7 @@ Aşağıdaki paketler gereklidir:
     ```bash
     sudo apt -y install --no-install-recommends wallarm-node nginx-plus-module-wallarm
     ```
-=== "CentOS veya Amazon Linux 2.0.2021x ve öncesi"
+=== "CentOS veya Amazon Linux 2.0.2021x ve altı"
     ```bash
     sudo yum install -y wallarm-node nginx-plus-module-wallarm
     ```
@@ -91,7 +91,7 @@ Aşağıdaki paketler gereklidir:
     ```bash
     sudo vim /etc/nginx/nginx.conf
     ```
-2. `worker_processes` yönergesinin hemen sonrasına aşağıdaki yönergeyi ekleyin:
+2. `worker_processes` yönergesinin hemen ardından aşağıdaki yönergeyi ekleyin:
 
     ```bash
     load_module modules/ngx_http_wallarm_module.so;
@@ -114,6 +114,6 @@ Aşağıdaki paketler gereklidir:
     sudo cp /usr/share/doc/nginx-plus-module-wallarm/examples/*.conf /etc/nginx/conf.d/
     ```
 
-## 5. Wallarm filtering node'unu Wallarm Cloud'a bağlayın
+## 5. Filtreleme düğümünü Wallarm Cloud'a bağlayın
 
 --8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.md"

@@ -1,26 +1,26 @@
 [file-ips-list-us]: ../downloads/scanner-ip-addresses-us.txt
 [file-ips-list-eu]: ../downloads/scanner-ip-addresses-eu.txt
 
-# Wallarm Scanner Adresleri <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Güvenlik Açığı Tarama IP'leri <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Bu belge, US ve EU Cloud'lar için [Wallarm Scanner](../user-guides/scanner.md) IP adresi listelerini sağlar.
+Bu belge, Wallarm'ın [API Attack Surface Management](../api-attack-surface/security-issues.md) ve [Threat Replay Testing](../vulnerability-detection/threat-replay-testing/overview.md) ile şirket kaynaklarını güvenlik açıkları açısından taradığı, entegre WAAP çözümleri ve güvenlik duruşunu değerlendirdiği US Cloud ve EU Cloud için IP adresi listelerini sağlar.
 
-Wallarm dışındaki, trafiği otomatik olarak filtreleyip engellemek için kullandığınız yazılım ya da donanım altyapılarınızın **whitelist**'lerine ilgili listeden adresler eklemeniz önerilir. Bu, [Wallarm Scanner'ın engellenmesini önleyecektir](../user-guides/scanner.md#preventing-scanner-from-being-blocked).
+Otomatik olarak trafiği filtreleyip engellemek için kullandığınız (Wallarm haricinde) yazılım veya donanım çözümlerinizin **beyaz listelerine** ilgili listedeki adresleri eklemeniz önerilir. Bu, Wallarm bileşenlerinin bu çözümler tarafından engellenmesini önleyecektir.
 
 ## US Cloud
 
-Wallarm'ın şirket kaynaklarını [vulnerability](../glossary-en.md#vulnerability) taraması ve saldırı ile güvenlik açıklarını yeniden kontrol etmesi için US Cloud'dan (https://us1.my.wallarm.com) yaptığı taramalarda kullanılan IP adresleri listesi:
+Wallarm'ın [US Cloud](https://us1.my.wallarm.com) içinde varlıklarınızı taradığı IP adresleri:
 
 --8<-- "../include/scanner-ip-request-us.md"
 
-!!! info "IP adresleri listesini edinin"
-    [Tarayıcıların IP adreslerini içeren düz metin dosyasını indirin.][file-ips-list-us]
+!!! info "IP adresleri listesini indirin"
+    [US Cloud için Wallarm'ın varlık tarama IP'lerinin listesini içeren düz metin dosyasını indirin][file-ips-list-us]
 
 ## EU Cloud
 
-Wallarm'ın şirket kaynaklarını [vulnerability](../glossary-en.md#vulnerability) taraması ve saldırı ile güvenlik açıklarını yeniden kontrol etmesi için EU Cloud'dan (https://my.wallarm.com) yaptığı taramalarda kullanılan IP adresleri listesi:
+Wallarm'ın [EU Cloud](https://my.wallarm.com) içinde varlıklarınızı taradığı IP adresleri:
 
 --8<-- "../include/scanner-ip-request.md"
 
-!!! info "IP adresleri listesini edinin"
-    [Tarayıcıların IP adreslerini içeren düz metin dosyasını indirin.][file-ips-list-eu]
+!!! info "IP adresleri listesini indirin"
+    [EU Cloud için Wallarm'ın varlık tarama IP'lerinin listesini içeren düz metin dosyasını indirin][file-ips-list-eu]

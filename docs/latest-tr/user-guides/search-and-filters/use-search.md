@@ -23,128 +23,130 @@
 
 # Olay Arama ve Filtreler
 
-Wallarm, tespit edilen olayları (saldırılar ve olaylar) aramak için kullanışlı yöntemler sunar. Wallarm Console'da **Attacks** ve **Incidents** bölümlerinde aşağıdaki arama yöntemleri mevcuttur:
+Wallarm, tespit edilen olaylar (saldırılar ve olaylar) için uygun arama yöntemleri sağlar. Wallarm Console içindeki **Attacks** ve **Incidents** bölümlerinde aşağıdaki arama yöntemleri mevcuttur:
 
-* **Filtreler**: Filtreleme kriterlerini seçmek için
-* **Arama Alanı**: İnsan diline benzer öznitelikler ve modifikatörlerle arama sorguları girmek için
+* Filtreleme kriterlerini seçmek için **Filters**
+* İnsan diline benzer öznitelik ve değiştiricilerle arama sorguları girmek için **Search field**
 
-Filtrelerde belirlenen değerler otomatik olarak arama alanına aktarılır ve tersi de geçerlidir.
+Filtrelerde ayarlanan değerler otomatik olarak arama alanına kopyalanır ve tersi de geçerlidir.
 
-Herhangi bir arama sorgusu veya filtre kombinasyonunu **Save a query** seçeneğine tıklayarak kaydedebilirsiniz.
+Herhangi bir arama sorgusu veya filtre kombinasyonu **Save a query** tıklanarak kaydedilebilir.
 
-## Filtreler
+## Filters
 
-Mevcut filtreler, Wallarm Console'da çeşitli biçimlerde sunulur:
+Mevcut filtreler, Wallarm Console içinde birden fazla biçimde sunulur:
 
-* **Filtreler Paneli**: **Filter** butonuyla genişletilip daraltılabilen panel
-* Belirli parametre değerlerine sahip olayları hariç tutmak veya yalnızca göstermek için hızlı filtreler
+* **Filter** düğmesi kullanılarak genişletilen ve daraltılan Filters paneli
+* Belirli parametre değerlerine sahip olayları hariç tutmak veya yalnızca bunları göstermek için Quick filters
 
-![Filters in the UI](../../images/user-guides/search-and-filters/filters.png)
+![UI'de Filters](../../images/user-guides/search-and-filters/filters.png)
 
-Farklı filtrelerden değerler seçildiğinde, sonuçlar bu koşulların tümünü karşılar. Aynı filtre için farklı değerler belirtilirse, sonuçlardan herhangi biri karşılanır.
+Farklı filtrelerin değerleri seçildiğinde, sonuçlar bu koşulların tümünü sağlayacaktır. Aynı filtre için farklı değerler belirtildiğinde, sonuçlar bu koşullardan herhangi birini sağlayacaktır.
 
-## Arama Alanı
+## Search field
 
-Arama alanı, insan diline benzer öznitelikler ve modifikatörler içeren sorguları kabul eder; bu da sorgu göndermeyi sezgisel hale getirir. Örneğin:
+Arama alanı, sorgu göndermeyi sezgisel hale getiren, insan diline benzer öznitelik ve değiştiricilere sahip sorguları kabul eder. Örneğin:
 
-* `attacks xss`: Tüm [XSS saldırılarını][al-xss] aramak için
-* `attacks today`: Bugün gerçekleşen tüm saldırıları aramak için
-* `xss 12/14/2020`: 14 Aralık 2020 tarihinde gerçekleşen [cross‑site scripting][al-xss] ile ilgili tüm şüphe, saldırı ve olayları aramak için
-* `p:xss 12/14/2020`: 14 Aralık 2020 itibariyle xss HTTP istek parametresi içinde (örneğin, `http://localhost/?xss=attack-here`) tüm şüphe, saldırı ve olayları aramak için
-* `attacks 9-12/2020`: Eylül'den Aralık 2020'ye kadar olan tüm saldırıları aramak için
-* `rce /catalog/import.php`: Dünden itibaren `/catalog/import.php` yolundaki tüm [RCE][al-rce] saldırılarını ve olaylarını aramak için
+* `attacks xss`: tüm [XSS saldırılarını][al-xss] aramak için
+* `attacks today`: bugün gerçekleşen tüm saldırıları aramak için
+* `xss 12/14/2020`: 14 Aralık 2020 tarihindeki tüm [cross‑site scripting][al-xss] şüpheleri, saldırıları ve olaylarını aramak için
+* `p:xss 12/14/2020`: 14 Aralık 2020 itibarıyla xss HTTP istek parametresi içinde (örn. `http://localhost/?xss=attack-here`) tüm türlerdeki tüm şüpheleri, saldırıları ve olaylarını aramak için
+* `attacks 9-12/2020`: Eylül-Aralık 2020 arasındaki tüm saldırıları aramak için
+* `rce /catalog/import.php`: dünden beri `/catalog/import.php` yolundaki tüm [RCE][al-rce] saldırılarını ve olaylarını aramak için
 
-Farklı parametrelerin değerleri belirtildiğinde, sonuçlar bu koşulların tümünü karşılar; aynı parametre için farklı değerler belirtilirse, sonuçlardan herhangi biri karşılanır.
+Farklı parametrelerin değerleri belirtildiğinde, sonuçlar bu koşulların tümünü karşılar. Aynı parametre için farklı değerler belirtildiğinde, sonuçlar bu koşullardan herhangi birini karşılar.
 
-!!! info "Öznitelik Değerini NOT Yapma"
-    Bir öznitelik değerini olumsuzlamak için, öznitelik veya modifikatör adından önce `!` kullanın. Örneğin: `attacks !ip:111.111.111.111` ifadesi, kaynak adresi `111.111.111.111` hariç tüm IP adreslerinden gelen saldırıları gösterir.
+!!! info "Öznitelik değerini NOT olarak ayarlama"
+    Öznitelik değerini olumsuzlamak için, lütfen öznitelik veya değiştirici adından önce `!` kullanın. Örneğin: `attacks !ip:111.111.111.111`, `111.111.111.111` dışındaki herhangi bir IP adresinden kaynaklanan tüm saldırıları göstermek için.
 
-Aşağıda, arama sorgularında kullanılabilecek öznitelik ve modifikatörlerin listesi verilmiştir.
+Aşağıda, arama sorgularında kullanılabilen öznitelik ve değiştiricilerin listesini bulacaksınız.
 
-### Nesne Türüne Göre Arama
+### Nesne türüne göre arama
 
-Arama dizesinde belirtin:
+Arama dizgesine belirtin:
 
-* `attack`, `attacks`: Bilinen açıkları hedeflemeyen saldırıları aramak için.
-* `incident`, `incidents`: Bilinen bir açığı kullanan saldırıların gerçekleştiği olayları aramak için.
+* `attack`, `attacks`: yalnızca bilinen güvenlik açıklarını hedef almayan saldırıları aramak için.
+* `incident`, `incidents`: yalnızca olayları (bilinen bir güvenlik açığından yararlanan saldırılar) aramak için.
 
-### Saldırı Tipine Göre Arama
+### Saldırı türüne göre arama
 
-Arama dizesinde belirtin:
+Arama dizgesine belirtin:
 
 * `sqli`: [SQL injection][al-sqli] saldırılarını aramak için.
 * `xss`: [Cross Site Scripting][al-xss] saldırılarını aramak için.
 * `rce`: [OS Commanding][al-rce] saldırılarını aramak için.
-* `brute`: [brute-force][al-brute-force] saldırıları ve bu tipe ait saldırılar nedeniyle [denylisted](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) IP'lerden gelen engellenmiş istekleri aramak için.
+* `brute`: [brute-force][al-brute-force] saldırılarını ve bu tür saldırılar nedeniyle [denylisted](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) IP’lerden gelen engellenen istekleri aramak için.
 * `ptrav`: [path traversal][al-path-traversal] saldırılarını aramak için.
 * `crlf`: [CRLF injection][al-crlf] saldırılarını aramak için.
 * `redir`: [open redirect][al-open-redirect] saldırılarını aramak için.
 * `nosqli`: [NoSQL injection][al-nosqli] saldırılarını aramak için.
 * `data_bomb`: [logic bomb][al-logic-bomb] saldırılarını aramak için.
-* `ssti`: [Server‑Side Template Injections][ssti-injection] saldırılarını aramak için.
-* `invalid_xml`: [güvensiz XML başlığının kullanımı][invalid-xml] saldırılarını aramak için.
-* `overlimit_res`: [hesaplama kaynaklarının aşırı kullanımına yönelik saldırıları][al-overlimit] aramak için.
+* `ssti`: [Server‑Side Template Injections][ssti-injection] aramak için.
+* `invalid_xml`: [güvensiz XML başlığının kullanımı][invalid-xml]nı aramak için.
+* `overlimit_res`: [hesaplama kaynaklarının aşırı kullanımını][al-overlimit] hedefleyen saldırıları aramak için.
 * `xxe`: [XML External Entity][al-xxe] saldırılarını aramak için.
 * `vpatch`: [virtual patches][al-virtual-patch] aramak için.
-* `dirbust`: [forced browsing][al-forced-browsing] saldırıları ve bu tipe ait saldırılar nedeniyle [denylisted](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) IP'lerden gelen engellenmiş istekleri aramak için.
+* `dirbust`: [forced browsing][al-forced-browsing] saldırılarını ve bu tür saldırılar nedeniyle [denylisted](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) IP’lerden gelen engellenen istekleri aramak için.
 * `ldapi`: [LDAP injection][al-ldapi] saldırılarını aramak için.
 * `scanner`: [port scanner][al-port-scanner] saldırılarını aramak için.
-* `infoleak`: [information disclosure][al-infoleak] saldırılarını aramak için.
-* `mail_injection`: [Email Injections][email-injection] saldırılarını aramak için.
-* `ssi`: [SSI Injections][ssi-injection] saldırılarını aramak için.
-* `overlimit_res`: [kaynak aşırı kullanımı][overlimit-res] tipindeki saldırıları aramak için.
-* `experimental`: [özel düzenli ifade tabanlı](../rules/regex-rule.md) tespit edilen deneysel saldırıları aramak için.
-* `bola`: [BOLA (IDOR) açığını][../../attacks-vulns-list.md#broken-object-level-authorization-bola] kullanan saldırıları ve bu nedenle [denylisted](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) IP'lerden gelen engellenmiş istekleri aramak için.
+* `infoleak`: [bilgi ifşası][al-infoleak] saldırılarını aramak için.
+* `mail_injection`: [Email Injections][email-injection] aramak için.
+* `ssi`: [SSI Injections][ssi-injection] aramak için.
+* `overlimit_res`: [resource overlimiting][overlimit-res] türündeki saldırıları aramak için.
+* `experimental`: [custom regular expression](../rules/regex-rule.md) temelinde tespit edilen deneysel saldırıları aramak için.
+* `bola`: [BOLA (IDOR) güvenlik açığını](../../attacks-vulns-list.md#broken-object-level-authorization-bola) istismar eden saldırıları ve bu tür saldırılar nedeniyle [denylisted](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) IP’lerden gelen engellenen istekleri aramak için.
 * `mass_assignment`: [Mass Assignment](../../attacks-vulns-list.md#mass-assignment) saldırı girişimlerini aramak için.
-* `api_abuse`: [şüpheli API etkinliğini](../../attacks-vulns-list.md#suspicious-api-activity) aramak için.
-* `account_takeover` (`api_abuse` 4.10.6 öncesinde): [hesap ele geçirme girişimlerini](../../attacks-vulns-list.md#account-takeover) aramak için.
-* `scraping` (`api_abuse` 4.10.6 öncesinde): [scraping girişimlerini](../../attacks-vulns-list.md#scraping) aramak için.
-* `security_crawlers` (`api_abuse` 4.10.6 öncesinde): [security crawlers tarafından yapılan tarama girişimlerini](../../attacks-vulns-list.md#security-crawlers) aramak için.
-* `ssrf`: [Server‑side Request Forgery (SSRF) saldırılarını](../../attacks-vulns-list.md#serverside-request-forgery-ssrf) aramak için.
-* `blocked_source`: **manuel** olarak [denylisted](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) IP'lerden gelen saldırıları aramak için.
-* `multiple_payloads`: [Number of malicious payloads](../../admin-en/configuration-guides/protecting-with-thresholds.md) tetikleyicisi ile tespit edilen saldırılar ile bu tip saldırılar nedeniyle [denylisted](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) IP'lerden gelen engellenmiş istekleri aramak için.
-* `credential_stuffing`: Çalınan kimlik doğrulama bilgilerini kullanma girişimlerini ([credential stuffing](../../about-wallarm/credential-stuffing.md)) aramak için.
+* `api_abuse`: [şüpheli bot etkinliğini](../../attacks-vulns-list.md#suspicious-api-activity) aramak için.
+* `account_takeover` (4.10.6’dan önce `api_abuse`): [hesap ele geçirme girişimlerini](../../attacks-vulns-list.md#account-takeover) aramak için.
+* `scraping` (4.10.6’dan önce `api_abuse`): [scraping girişimlerini](../../attacks-vulns-list.md#scraping) aramak için.
+* `security_crawlers` (4.10.6’dan önce `api_abuse`): [security crawlers tarafından gerçekleştirilen tarama girişimlerini](../../attacks-vulns-list.md#security-crawlers) aramak için.
+* `resource_consumption`: [unrestricted resource consumption](../../attacks-vulns-list.md#unrestricted-resource-consumption) bot girişimlerini aramak için
+* `ssrf`: [Server‑side Request Forgery (SSRF) ve saldırıları](../../attacks-vulns-list.md#serverside-request-forgery-ssrf) aramak için.
+* `blocked_source`: **manuel** olarak [denylisted](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) IP’lerden gelen saldırıları aramak için.
+* `multiple_payloads`: [Number of malicious payloads](../../admin-en/configuration-guides/protecting-with-thresholds.md) tetikleyicisiyle tespit edilen saldırıları ve bu tür saldırılar nedeniyle [denylisted](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) IP’lerden gelen engellenen istekleri aramak için.
+* `credential_stuffing`: çalıntı kimlik doğrulama bilgilerini kullanma girişimlerini ([credential stuffing](../../about-wallarm/credential-stuffing.md)) aramak için.
 * `ebpf`: [Wallarm eBPF tabanlı çözümü](../../installation/oob/ebpf/deployment.md) tarafından tespit edilen saldırıları aramak için.
-* <a name="graphql-tags"></a> `graphql_attacks`: Organizasyonun GraphQL politikasını ihlal eden tüm olayları aramak için. Ayrıca, belirli ihlaller şu şekilde aranabilir:
-    * `gql_doc_size`: İzin verilen maksimum toplam sorgu boyutunun ihlali
-    * `gql_value_size`: İzin verilen maksimum değer boyutunun ihlali
-    * `gql_depth`: İzin verilen maksimum sorgu derinliğinin ihlali
-    * `gql_aliases`: İzin verilen maksimum alias sayısının ihlali
-    * `gql_docs_per_batch`: İzin verilen maksimum toplu sorgu sayısının ihlali
-    * `gql_introspection`: Yasaklanmış introspection sorgusu
-    * `gql_debug`: Yasaklanmış debug modu sorgusu
-* <a name="spec-violation-tags"></a>`api_specification`: [spesifikasyona dayalı](../../api-specification-enforcement/overview.md) ihlalleri aramak için. Ayrıca, belirli ihlaller şu şekilde aranabilir:
-    * `undefined_endpoint`: Spesifikasyonunuzda yer almayan bir uç noktaya yapılan istek girişimi
-    * `undefined_parameter`: Spesifikasyonunuzda yer almayan parametreleri içerdiği için saldırı olarak işaretlenen istekler
-    * `missing_parameter`: Spesifikasyonunuzda gerekli olarak işaretlenen parametre veya değeri içermediği için saldırı olarak işaretlenen istekler
-    * `invalid_parameter_value`: Parametre değerlerinden bazılarının, spesifikasyonunuzda tanımlanan tür/formatla uyumsuz olması nedeniyle saldırı olarak işaretlenen istekler
-    * `missing_auth`: Gerekli kimlik doğrulama bilgilerini içermediği için saldırı olarak işaretlenen istekler
-    * `invalid_request`: Geçersiz bir JSON içerdiği için saldırı olarak işaretlenen istekler
-    * Yardımcı arama etiketi - `processing_overlimit`: API Specification Enforcement, istekleri spesifikasyonlara karşı değerlendirirken sınırlamalara tabidir – bu sınırlamalar aşıldığında, isteği işlemeyi durdurur ve bu durum hakkında bilgi veren bir olay oluşturur
-    * bkz: `spec:'<SPECIFICATION-ID>'` [buradan](#search-by-specification)
+* `file_upload_violation`: [dosya yükleme kısıtlama politikalarının](../../api-protection/file-upload-restriction.md) ihlallerini aramak için.
+* <a name="graphql-tags"></a> `graphql_attacks`: [kuruluşun GraphQL politikasının](../../api-protection/graphql-rule.md) tüm ihlallerini aramak için. Ayrıca, belirli ihlaller şu şekilde aranabilir:
+    * `gql_doc_size`: izin verilen maksimum toplam sorgu boyutunun ihlali
+    * `gql_value_size`: izin verilen maksimum değer boyutunun ihlali
+    * `gql_depth`: izin verilen maksimum sorgu derinliğinin ihlali
+    * `gql_aliases`: izin verilen maksimum takma ad sayısının ihlali
+    * `gql_docs_per_batch`: izin verilen maksimum toplu sorgu sayısının ihlali
+    * `gql_introspection`: yasaklanmış içgözlem sorgusu
+    * `gql_debug`: yasaklanmış debug modu sorgusu
+* <a name="spec-violation-tags"></a>`api_specification`: [specification-based](../../api-specification-enforcement/overview.md) tüm ihlalleri aramak için. Ayrıca, belirli ihlaller şu şekilde aranabilir:
+    * `undefined_endpoint`: spesifikasyonunuzda yer almayan endpoint’i talep etme girişimi
+    * `undefined_parameter`: spesifikasyonunuzda bu endpoint için yer almayan parametreleri içerdiği için saldırı olarak işaretlenen istekler
+    * `missing_parameter`: spesifikasyonunuzda gerekli olarak işaretlenen parametreyi veya değerini içermediği için saldırı olarak işaretlenen istekler
+    * `invalid_parameter_value`: bazı parametre değerleri, spesifikasyonunuzda tanımlanan tür/format ile uyumlu olmadığı için saldırı olarak işaretlenen istekler
+    * `missing_auth`: gerekli kimlik doğrulama yöntemi bilgilerini içermediği için saldırı olarak işaretlenen istekler
+    * `invalid_request`: geçersiz JSON içerdiği için saldırı olarak işaretlenen istekler
+    * yardımcı arama etiketi - `processing_overlimit`: API Specification Enforcement, istekleri spesifikasyonlarla karşılaştırırken sınırlara sahiptir - bu sınırlar aşıldığında, isteği işlemeyi durdurur ve bunu bildiren bir olay oluşturur
+    * ayrıca bakınız: `spec:'<SPECIFICATION-ID>'` [burada](#search-by-specification)
 
-Bir saldırı adı, büyük ve küçük harflerle belirtilebilir: `SQLI`, `sqli` ve `SQLi` aynıdır.
+Bir saldırı adı hem büyük hem de küçük harflerle belirtilebilir: `SQLI`, `sqli` ve `SQLi` eşit derecede doğrudur.
 
-### OWASP En Üst Tehditlere Göre Arama
+### OWASP en önemli tehditleriyle ilişkili saldırıları arayın
 
-OWASP tehdidi etiketlerini kullanarak, OWASP en üst tehditlerle ilişkili saldırıları bulabilirsiniz. Bu saldırıları aramak için kullanılan format `owasp_api1_2023` şeklindedir.
+OWASP tehdit etiketlerini kullanarak OWASP en önemli tehditleriyle ilişkili saldırıları bulabilirsiniz. Bu saldırıları aramak için biçim `owasp_api1_2023` şeklindedir.
 
-Bu etiketler, OWASP tarafından tanımlanan tehditlerin orijinal numaralandırmasını temsil eder. Wallarm, saldırıları 2023 versiyonuna ait OWASP API Top tehditleriyle ilişkilendirir.
+Bu etiketler, OWASP tarafından tanımlanan tehditlerin orijinal numaralandırmasına karşılık gelir. Wallarm, saldırıları 2023 sürümünün OWASP API Top tehditleriyle ilişkilendirir.
 
-### Bilinen Saldırılara Göre Arama (CVE ve İyi Bilinen Exploitler)
+### Bilinen saldırılara göre arama (CVE ve iyi bilinen exploit’ler)
 
-* `known`: CVE açıklarını veya diğer iyi bilinen zafiyet tiplerini kullanan istekleri kesin olarak aramak için.
+* `known`: CVE güvenlik açıklarını veya diğer iyi bilinen güvenlik açığı türlerini istismar ettikleri için kesin olarak saldırı olan istekleri aramak için.
 
-    Belirli bir CVE veya başka iyi bilinen bir zafiyet tipine göre saldırıları filtrelemek için `known` etiketiyle birlikte veya ondan ayrı olarak ilgili etiketi geçebilirsiniz. Örneğin: `known:CVE-2004-2402 CVE-2018-6008` veya `CVE-2004-2402 CVE-2018-6008` ifadesi, [CVE-2004-2402](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2004-2402) ve [CVE-2018-6008](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-6008) açıklıklarını kullanan saldırıları arayacaktır.
-* `!known`: Potansiyel yanlış pozitifler. Bu istekler, pek bilinmeyen exploitler içerebilir veya exploitlerin meşru parametre değerlerine dönüştüğü bağlamları içerebilir.
+    Belirli bir CVE veya başka bir iyi bilinen güvenlik açığı türüne göre saldırıları filtrelemek için, `known` etiketine ek olarak veya ondan ayrı uygun etiketi iletebilirsiniz. Örneğin: `known:CVE-2004-2402 CVE-2018-6008` veya `CVE-2004-2402 CVE-2018-6008`, [CVE-2004-2402](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2004-2402) ve [CVE-2018-6008](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-6008) güvenlik açıklarını istismar eden saldırıları aramak için.
+* `!known`: potansiyel false positive’ler. Bu istekler az bilinen exploit’ler veya exploit’leri meşru parametre değerlerine dönüştüren bağlam içerebilir.
 
-CVE ve iyi bilinen exploitlere göre saldırıları filtrelemek için, olay türlerine göre hızlı filtreler ve **CVE and exploits** kullanılabilir.
+CVE ve iyi bilinen exploit’lere göre saldırıları filtrelemek için, olay türleri ve **CVE and exploits** için Quick filters kullanılabilir.
 
-### API Protokollerine Göre Arama
+### API protokollerine göre hits arama
 
-API protokollerine göre istekleri filtrelemek için `proto:` veya `protocol:` etiketini kullanın.
+Hits’i API protokollerine göre filtrelemek için `proto:` veya `protocol:` etiketini kullanın.
 
-Bu etiket aşağıdaki değerleri kabul eder:
+Bu etiket aşağıdaki değerleri alır:
 
 * `proto:graphql`
 * `proto:grpc`
@@ -156,11 +158,11 @@ Bu etiket aşağıdaki değerleri kabul eder:
 * `proto:webdav`
 * `proto:json-rpc`
 
-### Kimlik Doğrulama Protokollerine Göre Arama
+### Kimlik doğrulama protokollerine göre hits arama
 
-Saldırganların kullandığı kimlik doğrulama protokollerine göre istekleri filtrelemek için `auth:` etiketini kullanın.
+Saldırganların kullandığı kimlik doğrulama protokollerine göre hits’i filtrelemek için `auth:` etiketini kullanın.
 
-Bu etiket aşağıdaki değerleri kabul eder:
+Bu etiket aşağıdaki değerleri alır:
 
 * `auth:none`
 * `auth:api-key`
@@ -176,127 +178,127 @@ Bu etiket aşağıdaki değerleri kabul eder:
 * `auth:oauth2`
 * `auth:scram`
 
-### Saldırı Hedefine Göre Arama
+### Saldırı hedefine göre arama
 
-Arama dizesinde belirtin:
+Arama dizgesine belirtin:
 
-* `client`: İstemci verilerini hedef alan saldırıları aramak için.
-* `database`: Veritabanı saldırılarını aramak için.
-* `server`: Uygulama sunucusu saldırılarını aramak için.
+* `client`: istemci verilerine yönelik saldırıları aramak için.
+* `database`: veritabanına yönelik saldırıları aramak için.
+* `server`: uygulama sunucusuna yönelik saldırıları aramak için.
 
-### Risk Seviyesine Göre Arama
+### Risk seviyesine göre arama
 
-Arama dizesinde risk seviyesini belirtin:
+Arama dizgesinde risk seviyesini belirtin:
 
-* `low`: Düşük risk seviyesi.
-* `medium`: Orta risk seviyesi.
-* `high`: Yüksek risk seviyesi.
+* `low`: düşük risk seviyesi.
+* `medium`: orta risk seviyesi.
+* `high`: yüksek risk seviyesi.
 
-### Olay Zamanına Göre Arama
+### Olay zamanına göre arama
 
-Arama dizesinde zaman aralığı belirtin. Eğer dönem belirtilmezse, arama son 24 saat içinde gerçekleşen olaylar arasında yapılır.
+Arama dizgesinde zaman aralığını belirtin. Eğer dönem belirtilmezse, arama son 24 saat içinde gerçekleşen olaylar içinde yapılır.
 
-Aşağıdaki yöntemlerle dönem belirtebilirsiniz:
+Dönemi belirtmenin şu yöntemleri vardır:
 
-* Tarih ile: `11/10/2020-11/14/2020`
-* Tarih ve saat ile (saniyeler göz ardı edilir): `11/10/2020 11:11`, `11:30-12:22`, `11/10/2020 11:12-01/14/2020 12:14`
-* Belirli bir zamana göre: `>11/10/20`
-* Dize takma adları kullanarak:
-    * `yesterday`: Dünkü tarihi temsil eder
-    * `today`: Bugünkü tarihi temsil eder
-    * `last <unit>`: Geçmiş birimin başından mevcut tarih ve saate kadar olan periyodu ifade eder
+* Tarihe göre: `11/10/2020-11/14/2020`
+* Tarih ve saate göre (saniyeler dikkate alınmaz): `11/10/2020 11:11`, `11:30-12:22`, `11/10/2020 11:12-01/14/2020 12:14`
+* Belirli bir zamana göre ilişkili: `>11/10/20`
+* Dize takma adlarını kullanarak:
+    * `yesterday` dünkü tarihe eşittir
+    * `today` bugünün tarihine eşittir
+    * `last <unit>`, geçmişteki ilgili birimin başından mevcut tarih ve zamana kadar olan döneme eşittir
 
-        `week`, `month`, `year` veya bu birimlerin sayısı `<unit>` yerine kullanılabilir. Örneğin: `last week`, `last 3 month` veya `last 3 months`.
+        `<unit>` olarak `week`, `month`, `year` veya bu birimlerin sayısı kullanılabilir. Örneğin: `last week`, `last 3 month` veya `last 3 months`.
     
-    * `this <unit>`: Geçerli birimi temsil eder
+    * `this <unit>` mevcut birime eşittir
 
-        `week`, `month`, `year` gibi birimler `<unit>` olarak kullanılabilir. Örneğin: `this week`, bugün Çarşamba ise Pazartesi, Salı ve Çarşamba günleri tespit edilen olayları döndürür.
+        `<unit>` olarak `week`, `month`, `year` kullanılabilir. Örneğin: bugün Çarşamba ise `this week`, bu hafta Pazartesi, Salı ve Çarşamba günü tespit edilen olayları döndürür.
 
-Tarih ve saat formatı, [profile](../settings/account.md) bölümünde belirlenen ayarlara bağlıdır:
+Tarih ve saat biçimi, [profilinizde](../settings/account.md) belirtilen ayarlara bağlıdır:
 
-* **MDY** seçili ise MM/DD/YYYY
-* **DMY** seçili ise DD/MM/YYYY
-* **24‑hour** seçili ise `13:00`
-* **24‑hour** seçili değilse `1pm`
+* **MDY** seçilirse MM/DD/YYYY
+* **DMY** seçilirse DD/MM/YYYY
+* **24‑hour** işaretliyse `13:00`
+* **24‑hour** işaretli değilse `1pm`
 
-Ay, hem sayı hem de isim olarak belirtilebilir: Ocak ayı için `01`, `1`, `January`, `Jan` gibi. Yıl ise tam (örneğin, `2020`) veya kısaltılmış (örneğin, `20`) olarak belirtilebilir. Eğer tarihte yıl belirtilmemişse, mevcut yıl kullanılır.
+Ay hem sayı hem de ad olarak belirtilebilir: Ocak için `01`, `1`, `January`, `Jan`. Yıl hem tam biçimde (`2020`) hem de kısaltılmış biçimde (`20`) belirtilebilir. Eğer tarihte yıl belirtilmemişse, geçerli yıl kullanılır.
 
-### IP Adresine Göre Arama
+### IP adresine göre arama
 
-IP adresine göre arama yapmak için `ip:` önekini kullanın; ardından şunları belirtebilirsiniz:
-*   Belirli bir IP adresi, örneğin `192.168.0.1`—bu durumda saldırı ve olay kaynak adresi bu IP ile eşleşen tüm sonuçlar bulunur.
-*   Bir IP adres aralığını ifade eden bir ifade.
-*   Bir saldırı veya olaya ilişkin toplam IP adresi sayısı.
+IP adresine göre arama yapmak için `ip:` önekini kullanın, ardından şunları belirtebilirsiniz:
+*   Belirli bir IP adresi, örneğin `192.168.0.1` — bu durumda, saldırının kaynak adresi bu IP adresine karşılık gelen tüm saldırılar ve olaylar bulunacaktır.
+*   IP adres aralığını tanımlayan bir ifade.
+*   Bir saldırı veya olayla ilişkili toplam IP adresi sayısı.
 
-#### IP Adresi Aralığına Göre Arama
+#### IP adresi aralığına göre arama
 
-Gerekli IP aralığını belirlemek için aşağıdakileri kullanabilirsiniz:
-*   Açıkça belirlenmiş IP adres aralığı:
+Gerekli IP adresi aralığını ayarlamak için şunları kullanabilirsiniz:
+*   Açık bir IP adres aralığı:
     *   `192.168.0.0-192.168.63.255`
     *   `10.0.0.0-10.255.255.255`
-*   IP adresinin bir kısmı:
-    *   `192.168.` — `192.168.0.0-192.168.255.255` ile eşdeğerdir. `*` modifikatörüyle de kullanılabilir — `192.168.*`
-    *   `192.168.0.` — `192.168.0.0-192.168.0.255` ile eşdeğerdir.
-*   Son oktet içinde değer aralığı bulunan bir IP adresi veya kısmı:
-    *   `192.168.1.0-255` — `192.168.1.0-192.168.1.255` ile eşdeğerdir.
-    *   `192.168.0-255` — `192.168.0.0-192.168.255.255` ile eşdeğerdir.
+*   Bir IP adresinin bir kısmı:
+    *   `192.168.` — `192.168.0.0-192.168.255.255` ile eşdeğerdir. `*` değiştiricisiyle gereksiz biçim de kabul edilir — `192.168.*`
+    *   `192.168.0.` — `192.168.0.0-192.168.0.255` ile eşdeğerdir
+*   İfadedeki son oktet içinde değer aralığı olan bir IP adresi veya onun bir kısmı:
+    *   `192.168.1.0-255` — `192.168.1.0-192.168.1.255` ile eşdeğerdir
+    *   `192.168.0-255` — `192.168.0.0-192.168.255.255` ile eşdeğerdir
     
     !!! warning "Önemli"
-        Bir oktet içinde değer aralığı kullanılırken, sonunda nokta kullanılmaz.
+        Bir oktet içinde değer aralığı kullanıldığında, sonda nokta konulmaz.
 
-*   Alt ağ ön ekleri ([CIDR notasyonu](https://tools.ietf.org/html/rfc4632)):
-    *   `192.168.1.0/24` — `192.168.1.0-192.168.1.255` ile eşdeğerdir.
-    *   `192.168.0.0/17` — `192.168.0.1-192.168.127.255` ile eşdeğerdir.
+*   Alt ağ önekleri ([CIDR notasyonu](https://tools.ietf.org/html/rfc4632)):
+    *   `192.168.1.0/24` — `192.168.1.0-192.168.1.255` ile eşdeğerdir
+    *   `192.168.0.0/17` — `192.168.0.1-192.168.127.255` ile eşdeğerdir
 
 !!! note
-    IP adres aralıklarını tanımlamak için yukarıdaki yöntemleri birleştirebilirsiniz. Bunu yapmak için, ip: ön ekiyle gereken tüm aralıkları ayrı ayrı listeleyin.
+    Yukarıdaki IP adres aralıklarını tanımlama yöntemlerini birleştirebilirsiniz. Bunu yapmak için, gerekli tüm aralıkları ip: önekiyle ayrı ayrı listeleyin.
     
     **Örnek**: `ip:192.168.0.0/24 ip:10.10. ip:10.0.10.0-128`
 
-#### IP Adresi Sayısına Göre Arama
+#### IP adresi sayısına göre arama
 
-Bir saldırı veya olaya ilişkin toplam IP adresi sayısına göre arama yapılabilir (sadece saldırılar ve olaylar için):
-*   `ip:1000+ last month` — Geçen ay içerisinde 1000'den fazla benzersiz IP adresine sahip saldırı ve olayları arar (eşdeğer: `attacks incidents ip:1000+ last month`).
-*   `xss ip:100+` — Tüm cross‑site scripting saldırılarını ve olaylarını aramak için. Saldırgan IP sayısı 100'den az ise sonuç boş döner.
-*   `xss p:id ip:100+` — `id` parametresine yönelik tüm XSS saldırılarını aramak için (`?id=aaa`). Bu, yalnızca farklı IP adreslerinin sayısı 100'ü aşarsa sonuç verir.
+Bir saldırı veya olayla ilişkili toplam IP adresi sayısına göre arama yapmak mümkündür (yalnızca saldırılar ve olaylar için):
+*   `ip:1000+ last month` — son bir ay içinde benzersiz IP adresi sayısı 1000’den fazla olan saldırı ve olayları aramak için (`attacks incidents ip:1000+ last month` ile eşdeğer).
+*   `xss ip:100+` — tüm cross‑site scripting saldırılarını ve olaylarını aramak için. Saldıran IP adreslerinin (XSS saldırı türü ile) sayısı 100’den azsa, arama sonucu boş olacaktır.
+*   `xss p:id ip:100+` — id parametresiyle (`?id=aaa`) ilgili tüm XSS saldırılarını ve olaylarını aramak için. Bu, yalnızca farklı IP adreslerinin sayısı 100’ü aştığında sonuç döndürecektir.
 
-### Saldırının Geldiği Veri Merkezine Göre Arama
+### IP adresinin ait olduğu veri merkezine göre arama
 
-Saldırının geldiği IP adresinin ait olduğu veri merkezine göre arama yapmak için `source:` önekini kullanın.
+Saldırıların geldiği IP adresinin ait olduğu veri merkezine göre arama yapmak için `source:` önekini kullanın.
 
-Bu öznitelik değeri şunlardan biri olabilir:
+Bu öznitelik değeri şunlar olabilir:
 
-* `tor` – Tor ağı için
-* `proxy` – Genel veya web proxy sunucusu için
-* `vpn` – VPN için
-* `aws` – Amazon için
-* `azure` – Microsoft Azure için
-* `gce` – Google Cloud Platform için
-* `ibm` – IBM Cloud için
-* `alibaba` – Alibaba Cloud için
-* `huawei` – Huawei Cloud için
-* `rackspace` – Rackspace Cloud için
-* `plusserver` – PlusServer için
-* `hetzner` – Hetzner için
-* `oracle` – Oracle Cloud için
-* `ovh` – OVHcloud için
-* `tencent` – Tencent için
-* `linode` – Linode için
-* `docean` – Digital Ocean için
+* `tor` Tor ağı için
+* `proxy` genel veya web proxy sunucusu için
+* `vpn` VPN için
+* `aws` Amazon için
+* `azure` Microsoft Azure için
+* `gce` Google Cloud Platform için
+* `ibm` IBM Cloud için
+* `alibaba` Alibaba Cloud için
+* `huawei` Huawei Cloud için
+* `rackspace` Rackspace Cloud için
+* `plusserver` PlusServer için
+* `hetzner` Hetzner için
+* `oracle` Oracle Cloud için
+* `ovh` OVHcloud için
+* `tencent` Tencent için
+* `linode` Linode için
+* `docean` Digital Ocean için
 
-### IP Adresinin Kayıtlı Olduğu Ülke veya Bölgeye Göre Arama
+### IP adresinin kayıtlı olduğu ülke veya bölgeye göre arama
 
-Saldırının geldiği IP adresinin kayıtlı olduğu ülke veya bölgeye göre arama yapmak için `country:` önekini kullanın.
+Saldırıların geldiği IP adresinin kayıtlı olduğu ülke veya bölgeye göre arama yapmak için `country:` önekini kullanın.
 
-Ülke/bölge adı, [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) standardına uygun formatta, büyük veya küçük harflerle belirtilmelidir. Örneğin: `country:CN` veya `country:cn` Çin'den gelen saldırılar için.
+Ülke/bölge adı, [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) standardına uygun biçimde, büyük veya küçük harflerle özniteliğe iletilmelidir. Örneğin: Çin’den kaynaklanan saldırılar için `country:CN` veya `country:cn`.
 
-### İyi Bilinen Kötü Amaçlı IP'lerden Gelen Olayları Arama
+### İyi bilinen kötü amaçlı IP’lerden kaynaklanan olayları arama
 
-Wallarm, kötü niyetli etkinliklerle ilişkili geniş çapta bilinen IP adreslerini kamu kaynaklarından tarar. Ardından, doğruluğu sağlamak için bu bilgileri doğrularız; bu sayede, bu IP'leri denylist'e eklemek gibi gerekli önlemleri almanız daha kolay hale gelir.
+Wallarm, kötü amaçlı etkinliklerle ilişkilendirildiği yaygın olarak kabul edilen IP adresleri için herkese açık kaynakları tarar. Ardından, bu bilgiyi doğrulayıp doğruluğunu sağlarız; böylece bu IP’leri denylist’e eklemek gibi gerekli adımları atmanız kolaylaşır.
 
-Bu kötü amaçlı IP adreslerinden gelen olayları aramak için `source:malicious` etiketini kullanın. Bu, **Malicious IPs**'i temsil eder ve denylist'te, kaynak türüne göre engellemede bu şekilde adlandırılır.
+Bu kötü amaçlı IP adreslerinden kaynaklanan olayları aramak için `source:malicious` etiketini kullanın. Bu, **Malicious IPs** anlamına gelir ve denylist’te, kaynak türüne göre engelleme bölümünde buna göre adlandırılmıştır.
 
-Bu nesneye ilişkin veriler aşağıdaki kaynakların kombinasyonundan alınır:
+Bu nesne için verileri aşağıdaki kaynakların bir kombinasyonundan çekiyoruz:
 
 * [Collective Intelligence Network Security](http://cinsscore.com/list/ci-badguys.txt)
 * [Proofpoint Emerging Threats Rules](https://rules.emergingthreats.net/blockrules/compromised-ips.txt)
@@ -306,77 +308,77 @@ Bu nesneye ilişkin veriler aşağıdaki kaynakların kombinasyonundan alınır:
 * [NGINX ultimate bad bot blocker](https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/blob/master/_generator_lists/bad-ip-addresses.list)
 * [IPsum](https://github.com/stamparm/ipsum)
 
-### Sunucu Yanıt Durumuna Göre Arama
+### Sunucu yanıt durumuna göre arama
 
-Sunucu yanıt durumuna göre arama yapmak için `statuscode:` önekini kullanın.
+Sunucu yanıt durumuna göre arama yapmak için `statuscode:` önekini belirtin.
 
 Yanıt durumu şu şekilde belirtilebilir:
 * 100 ile 999 arasında bir sayı.
-* «N–M» aralığı, burada N ile M 100 ile 999 arasındaki rakamlardır.
-* «N+» veya «N-» aralıkları, burada N 100 ile 999 arasında bir sayıdır.
+* «N–M» aralığı, burada N ve M 100 ile 999 arasında rakamlardır.
+* «N+» ve «N-» aralıkları, burada N 100 ile 999 arasında bir sayıdır.
 
-### Sunucu Yanıt Boyutuna Göre Arama
+### Sunucu yanıt boyutuna göre arama
 
 Sunucu yanıt boyutuna göre arama yapmak için `s:` veya `size:` önekini kullanın.
 
-Herhangi bir tam sayı değeri aranabilir. 999 üzerindeki rakamlar ön ek olmaksızın belirtilebilir. «N–M», «N+» ve «N-» aralıkları, 999 üzerindeki rakamlar için de ön ek olmadan belirtilebilir.
+Herhangi bir tam sayı değeri arayabilirsiniz. 999’un üzerindeki rakamlar önek olmadan belirtilebilir. «N–M», «N+» ve «N-» aralıkları belirtilebilir, bu aralıklarda 999’un üzerindeki rakamlar da önek olmadan belirtilebilir.
 
-### HTTP İstek Yöntemine Göre Arama
+### HTTP istek yöntemine göre arama
 
-HTTP istek yöntemine göre arama yapmak için `method:` önekini kullanın.
+HTTP istek yöntemine göre arama yapmak için `method:` önekini belirtin.
 
-`GET`, `POST`, `PUT`, `DELETE`, `OPTIONS` gibi değerleri aramak için büyük harf kullanıldığında, ön ek olmadan da belirtebilirsiniz; diğer değerler için ön ek gereklidir.
+`GET`, `POST`, `PUT`, `DELETE`, `OPTIONS` için: büyük harf kullanılıyorsa, arama dizgesi öneksiz belirtilebilir. Diğer tüm değerler için önek belirtilmelidir.
 
-### Hit Sayısına Göre Arama
+### Saldırı/olay içindeki hits sayısına göre arama
 
-Saldırıları ve olayları hit (vuruş) sayısına göre aramak için `N:` önekini kullanın.
+Saldırıları ve olayları hits sayısına göre aramak için `N:` önekini belirtin.
 
-Örneğin, 100'den fazla hite sahip saldırıları aramak için: `attacks N:>100`. Veya 10'dan az hite sahip saldırıları aramak için `attacks N:<10` kullanabilirsiniz.
+Örneğin, 100’den fazla hits’e sahip saldırıları arayabilirsiniz: `attacks N:>100`. Veya `attacks N:<10` ile 10’dan az hits’e sahip saldırıları arayabilirsiniz.
 
-### Domain'e Göre Arama
+### Alan adına göre arama
 
-Domain'e göre arama yapmak için `d:` veya `domain:` önekini kullanın.
+Alan adına göre arama yapmak için `d:` veya `domain:` önekini kullanın.
 
-İkinci seviye veya daha yüksek bir domain olabilecek herhangi bir dize, önek olmaksızın belirtilebilir. Dilerseniz, herhangi bir dize önekle de belirtilebilir.
+İkinci veya daha yüksek seviyedeki bir alan adı olabilecek herhangi bir dize önek olmadan belirtilebilir. Herhangi bir dize önek ile belirtilebilir. 
 
-Domain içinde maske kullanılabilir. `*` sembolü, herhangi bir karakter dizisini; `?` sembolü ise tek bir karakteri temsil eder.
+Bir alan içinde maskeler kullanabilirsiniz. `*` sembolü herhangi bir sayıda karakteri, `?` sembolü ise tek bir karakteri değiştirir.
 
-### Yol (Path) Göre Arama
+### Path’e göre arama
 
-Yolu aramak için:
+Path’e göre arama yapmak için ya:
 
-* `u:` veya `url:` önekini kullanarak ve `/` ile başlayan yolu tırnak içine alarak belirtin, örneğin: `url:"/api/users"`, veya
-* Ön ek kullanmadan, `/` ile başlayarak belirtin, örneğin: `/api/users`
+* `u:` veya `url:` önekini kullanın ve `/` ile başlayan path’i tırnak içinde belirtin, örn.: `url:"/api/users"`, veya
+* Girişi herhangi bir önek olmadan `/` ile başlatın, örn.: `/api/users`
 
-### Uygulamaya Göre Arama
+### Uygulamaya göre arama
 
-Saldırının gönderildiği uygulamaya göre arama yapmak için `application:` veya `app:` önekini kullanın (önceden desteklenen `pool:` öneki hala desteklenmektedir ancak önerilmez).
+Saldırının gönderildiği uygulamaya göre arama yapmak için `application:` veya `app:` önekini kullanın (eski `pool:` öneki hâlâ desteklenir ancak önerilmez).
 
-Öznitelik değeri, **Settings** bölümündeki **Applications** sekmesinde ayarlanan uygulama adıdır. Örneğin: `application:'Example application'`.
+Öznitelik değeri, **Settings** bölümündeki **Applications** sekmesinde ayarlanmış uygulama adıdır. Örneğin: `application:'Example application'`.
 
-### Parametre veya Parser'e Göre Arama
+### Parametre veya ayrıştırıcıya göre arama
 
-Parametre veya parser'e göre arama yapmak için `p:`, `param:`, veya `parameter:` önekini ya da `=` sonekini kullanın. Sonek kullanıldığında, `/` ile başlamayan dize parametre olarak kabul edilir (sonundaki `=` karakteri değere dahil edilmez).
+Parametre veya ayrıştırıcıya göre arama yapmak için `p:`, `param:` veya `parameter:` önekini ya da `=` sonekinı kullanın. Sonek kullanılıyorsa, `/` ile başlamayan bir dize parametre olarak kabul edilir (bu durumda sondaki `=` karakteri değere dahil edilmez).
 
-Mümkün öznitelik değerleri:
+Olası öznitelik değerleri:
 
-* Hedef alınan parametrenin adı.
+* Hedeflenen parametrenin adı.
 
-    Örneğin, `xss` parametresine yönelik saldırıları aramak, ancak XSS saldırıları aramamak için (örneğin, GET parametresinde `xss` bulunan SQL injection saldırıları), arama dizesinde `attacks sqli p:xss` belirtin.
-* Wallarm node'unun parametre değerini okumak için kullandığı [parser](../rules/request-processing.md) adı. Ad büyük harflerle yazılmalıdır.
+    Örneğin, `xss` parametresini hedef alan saldırıları (örneğin, GET parametresinde `xss` bulunan bir SQL enjeksiyon saldırısı) ancak XSS saldırılarını değil bulmanız gerekiyorsa, arama dizgesine `attacks sqli p:xss` belirtin.
+* Wallarm node’un parametre değerini okumak için kullandığı [parser](../rules/request-processing.md) adı. Ad büyük harf olmalıdır.
 
-    Örneğin, herhangi bir parametre için BASE64 parser tarafından değerlendirilen saldırıları bulmak amacıyla `attacks p:*BASE64` kullanılabilir.
-* Parametreler ve parser'ların sıralaması.
+    Örneğin, `attacks p:*BASE64`, base64 ayrıştırıcı tarafından ayrıştırılan herhangi bir parametreyi hedef alan saldırıları bulmak için.
+* Parametreler ve ayrıştırıcılar dizisi.
 
-    Örneğin: `attacks p:"POST_JSON_DOC_HASH_from"` ifadesi, JSON gövdesindeki `from` parametresinde gönderilen saldırıları bulur.
+    Örneğin: `attacks p:"POST_JSON_DOC_HASH_from"`, bir isteğin JSON gövdesindeki `from` parametresinde gönderilen saldırıları bulmak için.
 
-Değer içerisinde maske kullanılabilir. `*` sembolü herhangi bir karakter dizisini, `?` sembolü ise tek bir karakteri temsil eder.
+Bir değer içinde maskeler kullanabilirsiniz. `*` sembolü herhangi bir sayıda karakteri, `?` sembolü tek bir karakteri değiştirir.
 
-### Olaylarda Anomali Arama
+### Olaylarda anomalileri arama
 
-Olaylardaki anomalileri aramak için `a:` veya `anomaly:` önekini kullanın.
+Olaylarda anomalileri aramak için `a:` veya `anomaly:` önekini kullanın.
 
-Bir anomali aramasını daraltmak için şu parametreleri kullanabilirsiniz:
+Anomali aramasını daraltmak için aşağıdaki parametreleri kullanın:
 
 * `size`
 * `statuscode`
@@ -387,51 +389,51 @@ Bir anomali aramasını daraltmak için şu parametreleri kullanabilirsiniz:
 
 Örnek:
 
-`attacks sqli a:size` ifadesi, isteklerinde yanıt boyutu anomalileri bulunan tüm SQL injection saldırılarını arar.
+`attacks sqli a:size`, isteklerinde yanıt boyutu anomalileri olan tüm SQL enjeksiyon saldırılarını arayacaktır.
 
-### İstek Tanımlayıcısına Göre Arama
+### İstek tanımlayıcısına göre arama
 
-Saldırıları ve olayları istek tanımlayıcısına göre aramak için `request_id` önekini kullanın.
-`request_id` parametresinin biçimi şu şekildedir: `a79199bcea606040cc79f913325401fb`. Kolay okunabilmesi için, aşağıdaki örneklerde bu parametre `<requestId>` kısaltmasıyla değiştirilmiştir.
-
-Örnekler:
-*   `attacks incidents request_id:<requestId>`: `request_id` değeri `<requestId>` olan bir saldırı veya olayı aramak için.
-*   `attacks incidents !request_id:<requestId>`: `request_id` değeri `<requestId>` olmayan saldırı ve olayları aramak için.
-*   `attacks incidents request_id`: Herhangi bir `request_id`'ye sahip saldırı ve olayları aramak için.
-*   `attacks incidents !request_id`: Herhangi `request_id`'si olmayan saldırı ve olayları aramak için.
-
-### Örneklenmiş (Sampled) Hit'lere Göre Arama
-
-[Sampled hits](../events/grouping-sampling.md#sampling-of-hits) aramak için arama dizesine `sampled` ekleyin.
-
-### Node UUID'ye Göre Arama
-
-Belirli bir node tarafından tespit edilen saldırıları aramak için `node_uuid` önekini, ardından node UUID'sini yazın.
+Saldırıları ve olayları istek tanımlayıcısına göre aramak için `request_id` önekini belirtin.
+`request_id` parametresi şu değer biçimine sahiptir: `a79199bcea606040cc79f913325401fb`. Okumayı kolaylaştırmak için, aşağıdaki örneklerde bu parametre `<requestId>` kısaltma yer tutucusuyla değiştirilmiştir.
 
 Örnekler:
+*   `attacks incidents request_id:<requestId>`: `request_id`’si `<requestId>`’e eşit olan bir saldırı veya olayı aramak için.
+*   `attacks incidents !request_id:<requestId>`: `request_id`’si `<requestId>`’e eşit olmayan saldırıları ve olayları aramak için.
+*   `attacks incidents request_id`: herhangi bir `request_id`’ye sahip saldırıları ve olayları aramak için.
+*   `attacks incidents !request_id`: herhangi bir `request_id` bulunmayan saldırıları ve olayları aramak için.
 
-* `attacks incidents today node_uuid:<NODE UUID>`: Bugüne dair, bu `<NODE UUID>`'ye sahip node tarafından tespit edilen tüm saldırı ve olayları aramak için.
-* `attacks today !node_uuid:<NODE UUID>`: Bugünkü saldırılar arasında, bu `<NODE UUID>`'ye sahip olmayan tüm node'lar tarafından tespit edilenleri aramak için.
+### Örneklenen hits’i arama
 
-!!! info "Sadece Yeni Saldırıları Ara"
-    31 Mayıs 2023'ten sonra tespit edilen saldırılar, node UUID ile arama yapıldığında gösterilecektir.
+[Örneklenen hits](../events/grouping-sampling.md#sampling-of-hits) için arama yapmak üzere arama dizgesine `sampled` ekleyin.
 
-Node UUID'sini **Nodes** bölümünde, [node detaylarında](../../user-guides/nodes/nodes.md#viewing-details-of-a-node) bulabilirsiniz. UUID'e tıklayarak kopyalayabilir veya **View events from this node for the day** seçeneğine tıklayarak (saldırılar bölümüne geçiş yapar) görüntüleyebilirsiniz.
+### Node UUID’sine göre arama
 
-### Spesifikasyona Göre Arama
+Belirli bir node tarafından tespit edilen saldırıları aramak için `node_uuid` önekini ve ardından node UUID’sini belirtin.
 
-Belirli [spesifikasyon politikası ihlallerine](../../api-specification-enforcement/overview.md) ilişkin olayları listelemek için arama alanına `spec:'<SPECIFICATION-ID>'` ifadesini yazın. `<SPECIFICATION-ID>`'yi almak için, **API Specifications** bölümünde spesifikasyonunuzu düzenlemek üzere açın – tarayıcı adres çubuğunda `specid` görüntülenecektir.
+Örnekler:
 
-![Specification - use for applying security policies](../../images/api-specification-enforcement/api-specification-enforcement-events.png)
+* `attacks incidents today node_uuid:<NODE UUID>`: bu `<NODE UUID>`’ye sahip node tarafından bugün bulunan tüm saldırıları ve olayları aramak için.
+* `attacks today !node_uuid:<NODE UUID>`: `<NODE UUID>`’ye sahip node hariç herhangi bir node tarafından bugün bulunan tüm saldırıları aramak için.
 
-Engellenmiş ve izlenen olaylar, yapılandırılmış politika ihlali eylemlerine bağlı olarak sunulabilir. Olay detaylarında, ihlal tipi ve ilgili spesifikasyona bağlantı gösterilir.
+!!! info "Yalnızca yeni saldırıları arayın"
+    Node UUID’sine göre arama yaparken yalnızca 31 Mayıs 2023’ten sonra tespit edilen saldırılar görüntülenecektir.
 
-### Düzenli İfade Tabanlı Müşteri Kuralına Göre Arama
+Node UUID’sini **Nodes** bölümünde, [node details](../../user-guides/nodes/nodes.md#viewing-details-of-a-node) içinde bulabilirsiniz. Kopyalamak için UUID’ye tıklayın veya **View events from this node for the day** öğesine tıklayın (bu, **Attacks** bölümüne geçer).
 
-[Regexp tabanlı müşteri kuralları](../../user-guides/rules/regex-rule.md) tarafından tespit edilen saldırıları listelemek için arama alanına `custom_rule` yazın.
+### Spesifikasyona göre arama
 
-Bu tip saldırılardan her birinin detaylarında ilgili kurallara bağlantılar sunulur (birden fazla olabilir). Kurala erişmek ve gerekirse düzenlemek için bağlantıya tıklayın.
+Belirli [spesifikasyon politikası ihlalleri](../../api-specification-enforcement/overview.md) ile ilgili olayların listesini almak için arama alanına `spec:'<SPECIFICATION-ID>'` belirtin. `<SPECIFICATION-ID>`’yi almak için **API Specifications** içinde spesifikasyonunuzu düzenleme için açın - `specid` tarayıcınızın adres alanında görüntülenecektir.
 
-![Attack detected by regexp-based customer rule - editing rule](../../images/user-guides/search-and-filters/detected-by-custom-rule.png)
+![Spesifikasyon - güvenlik politikalarını uygulamak için kullanın](../../images/api-specification-enforcement/api-specification-enforcement-events.png)
 
-`!custom_rule` kullanarak, regexp tabanlı herhangi bir müşteri kuralıyla ilişkili olmayan saldırıları listeleyebilirsiniz.
+Yapılandırılan politika ihlali eylemlerine bağlı olarak engellenen ve izlenen olaylar sunulabilir. Olay ayrıntılarında, ihlal türü ve neden olan spesifikasyona bağlantı görüntülenir.
+
+### Regexp tabanlı müşteri kuralına göre arama
+
+[Regexp tabanlı müşteri kuralları](../../user-guides/rules/regex-rule.md) tarafından tespit edilen saldırıların listesini almak için arama alanına `custom_rule` belirtin.
+
+Bu tür saldırıların her biri için, ayrıntılarında ilgili kurallara bağlantılar sunulur (birden fazla olabilir). Gerekirse kuralların ayrıntılarına erişmek ve düzenlemek için bağlantıya tıklayın.
+
+![Regexp tabanlı müşteri kuralı tarafından tespit edilen saldırı - kuralı düzenleme](../../images/user-guides/search-and-filters/detected-by-custom-rule.png)
+
+Herhangi bir regexp tabanlı müşteri kuralıyla ilişkili olmayan saldırıların listesini almak için `!custom_rule` kullanabilirsiniz.

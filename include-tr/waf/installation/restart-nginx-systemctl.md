@@ -1,4 +1,4 @@
-NGINX'i aşağıdaki komutu kullanarak yeniden başlatın:
+Aşağıdaki komutu kullanarak NGINX'i yeniden başlatın:
 
 ```bash
 sudo systemctl restart nginx

@@ -1,18 +1,18 @@
-# Terraform Kullanarak Wallarm Yönetimi
+# Terraform kullanarak Wallarm'ı yönetme
 
-Eğer altyapılarınızı yönetmek için [Terraform](https://www.terraform.io/) kullanıyorsanız, Wallarm'ı yönetmek için de bu aracı kullanmak sizin için uygun bir seçenek olabilir. Terraform için [Wallarm provider](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) bu imkanı sunar.
+Altyapılarınızı yönetmek için [Terraform](https://www.terraform.io/) kullanıyorsanız, Wallarm'ı yönetmek için de onu kullanmak sizin için rahat bir seçenek olabilir. Terraform için [Wallarm provider](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) bunu yapmanıza olanak tanır.
 
 ## Gereksinimler
 
 * [Terraform](https://www.terraform.io/) temellerini bilmek
-* Terraform 0.15.5 veya daha üstü binary
-* [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) üzerindeki Wallarm hesabı
-* US veya EU [Cloud](../../about-wallarm/overview.md#cloud) içindeki Wallarm Console’da **Administrator** [rolüne](../../user-guides/settings/users.md#user-roles) sahip hesaba erişim
-* US Wallarm Cloud ile çalışıyorsanız `https://us1.api.wallarm.com` ya da EU Wallarm Cloud ile çalışıyorsanız `https://api.wallarm.com` erişimi. Lütfen erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun
+* Terraform 0.15.5 veya daha yeni ikili dosya
+* [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) üzerinde Wallarm hesabı
+* US veya EU [Bulut](../../about-wallarm/overview.md#cloud) ortamında Wallarm Console içinde **Administrator** [rolüne](../../user-guides/settings/users.md#user-roles) sahip hesaba erişim
+* US Wallarm Cloud ile çalışırken `https://us1.api.wallarm.com`a veya EU Wallarm Cloud ile çalışırken `https://api.wallarm.com`a erişim. Lütfen erişimin güvenlik duvarı tarafından engellenmediğinden emin olun
 
-## Provider Kurulumu
+## Sağlayıcının kurulumu
 
-1. Terraform konfigürasyonunuza aşağıdakini kopyalayıp yapıştırın:
+1. Aşağıdakini Terraform yapılandırmanıza kopyalayıp yapıştırın:
 
     ```
     terraform {
@@ -27,22 +27,22 @@ Eğer altyapılarınızı yönetmek için [Terraform](https://www.terraform.io/)
     }
 
     provider "wallarm" {
-      # Configuration options
+      # Yapılandırma seçenekleri
     }
     ```
 
 1. `terraform init` komutunu çalıştırın.
 
-## Provider'ı Wallarm Hesabınıza Bağlama
+## Sağlayıcıyı Wallarm hesabınıza bağlama
 
-Wallarm Terraform provider'ını US veya EU [Cloud](../../about-wallarm/overview.md#cloud) üzerindeki Wallarm hesabınıza bağlamak için, Terraform konfigürasyonunuzda API erişim kimlik bilgilerinizi ayarlayın:
+Wallarm Terraform provider'ını [US](https://us1.my.wallarm.com/signup) veya [EU](https://my.wallarm.com/signup) Cloud içindeki Wallarm hesabınıza bağlamak için, Terraform yapılandırmanızda API erişim kimlik bilgilerini ayarlayın:
 
 === "US Cloud"
     ```
     provider "wallarm" {
       api_token = "<WALLARM_API_TOKEN>"
       api_host = "https://us1.api.wallarm.com"
-      # Multitenancy özelliği kullanılıyorsa zorunludur:
+      # Yalnızca çoklu kiracılık özelliği kullanıldığında gereklidir:
       # client_id = <CLIENT_ID>
     }
     ```
@@ -51,39 +51,38 @@ Wallarm Terraform provider'ını US veya EU [Cloud](../../about-wallarm/overview
     provider "wallarm" {
       api_token = "<WALLARM_API_TOKEN>"
       api_host = "https://api.wallarm.com"
-      # Multitenancy özelliği kullanılıyorsa zorunludur:
+      # Yalnızca çoklu kiracılık özelliği kullanıldığında gereklidir:
       # client_id = <CLIENT_ID>
     }
     ```
 
-* `<WALLARM_API_TOKEN>`, Wallarm hesabınızın API erişimine izin verir. [How to get it →](../../user-guides/settings/api-tokens.md)
-* `<CLIENT_ID>`, kiracı (client) ID’sidir; yalnızca [multitenancy](../../installation/multi-tenant/overview.md) özelliği kullanılıyorsa gereklidir. Burada açıklandığı gibi `id` (uuid değil) alın [buraya](../../installation/multi-tenant/configure-accounts.md#via-the-wallarm-api) bakın.
+* `<WALLARM_API_TOKEN>`, Wallarm hesabınızın API'sine erişim sağlar. [Nasıl alınır →](../../user-guides/settings/api-tokens.md)
+* `<CLIENT_ID>`, kiracının (müşteri) kimliğidir; yalnızca [çoklu kiracılık](../../installation/multi-tenant/overview.md) özelliği kullanıldığında gereklidir. [Burada](../../installation/multi-tenant/configure-accounts.md#via-the-wallarm-api) açıklandığı gibi `uuid` değil `id` değerini alın.
 
-Wallarm provider dökümantasyonunda [detayları](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) inceleyebilirsiniz.
+Ayrıntılar için Wallarm provider belgelerine bakın: [ayrıntılar](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs).
 
-## Provider ile Wallarm Yönetimi
+## Sağlayıcı ile Wallarm'ı yönetme
 
-Wallarm provider sayesinde, Terraform üzerinden şunları yönetebilirsiniz:
+Wallarm provider ile, Terraform aracılığıyla şunları yönetebilirsiniz:
 
-* [Kendi Kendine Barındırılan Düğümler](../../user-guides/nodes/nodes.md)
+* [Kendi barındırılan düğümler](../../user-guides/nodes/nodes.md)
 * [Uygulamalar](../../user-guides/settings/applications.md)
 * [Kurallar](../../user-guides/rules/rules.md)
 * [Tetikleyiciler](../../user-guides/triggers/triggers.md)
-* [Denylist](../../user-guides/ip-lists/overview.md), [allowlist](../../user-guides/ip-lists/overview.md) ve [graylist](../../user-guides/ip-lists/overview.md) içindeki IP'ler
+* [denylist](../../user-guides/ip-lists/overview.md), [allowlist](../../user-guides/ip-lists/overview.md) ve [graylist](../../user-guides/ip-lists/overview.md) içindeki IP'ler
 * [Kullanıcılar](../../user-guides/settings/users.md)
 * [Entegrasyonlar](../../user-guides/settings/integrations/integrations-intro.md)
-* Global [filtration mode](../../admin-en/configure-wallarm-mode.md)
-* [Scanner](../../user-guides/scanner.md) kapsamı
-* [Vulnerabilities](../../user-guides/vulnerabilities.md)
+* Global [filtreleme modu](../../admin-en/configure-wallarm-mode.md)
+* [Güvenlik açıkları](../../user-guides/vulnerabilities.md)
 
-!!! info "Wallarm Terraform provider ve Edge Düğümleri"
-    Şu anda, Edge [inline](../../installation/security-edge/deployment.md) ve [connector](../../installation/se-connector.md) düğümleri Wallarm Terraform provider aracılığıyla yönetilememektedir.
+!!! info "Wallarm Terraform provider ve Edge düğümleri"
+    Şu anda, Edge [inline](../../installation/security-edge/inline/overview.md) ve [connector](../../installation/security-edge/se-connector.md) düğümleri Wallarm Terraform provider üzerinden yönetilememektedir.
 
-Liste halinde belirtilen işlemlerin nasıl gerçekleştirileceğini Wallarm provider [dökümantasyonunda](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) görebilirsiniz.
+Listelenen işlemlerin nasıl gerçekleştirileceğini Wallarm provider [belgelerinde](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) görebilirsiniz.
 
-## Kullanım Örneği
+## Kullanım örneği
 
-Aşağıda Wallarm için Terraform konfigürasyon örneği verilmiştir:
+Aşağıda Wallarm için Terraform yapılandırma örneği verilmiştir:
 
 ```
 provider "wallarm" {
@@ -118,22 +117,22 @@ resource "wallarm_rule_mode" "tiredful_api_mode" {
 }
 ```
 
-Konfigürasyon dosyasını kaydedin, ardından `terraform apply` komutunu çalıştırın.
+Yapılandırma dosyasını kaydedin, ardından `terraform apply` komutunu çalıştırın.
 
-Konfigürasyonun yaptığı işlemler şunlardır:
+Yapılandırma şunları yapar:
 
-* Sağlanan Wallarm API token ile US Cloud’daki şirket hesabına bağlanır.
+* US Cloud → şirket hesabına, sağlanan Wallarm API belirteci ile bağlanır.
 * `resource "wallarm_global_mode" "global_block"` → global filtreleme modunu `Local settings (default)` olarak ayarlar; bu, filtreleme modunun her düğümde yerel olarak kontrol edildiği anlamına gelir.
-* `resource "wallarm_application" "tf_app"` → ID’si `42` olan `Terraform Application 001` adlı uygulamayı oluşturur.
-* `resource "wallarm_rule_mode" "tiredful_api_mode"` → ID’si `42` olan uygulamaya HTTPS protokolü üzerinden gönderilen tüm istekler için trafik filtreleme modunu `Monitoring` olarak ayarlar.
+* `resource "wallarm_application" "tf_app"` → `Terraform Application 001` adlı, `42` kimliğine sahip uygulamayı oluşturur.
+* `resource "wallarm_rule_mode" "tiredful_api_mode"` → HTTPS protokolü üzerinden `42` kimlikli uygulamaya gönderilen tüm istekler için trafik filtreleme modunu `Monitoring` olarak ayarlayan bir kural oluşturur.
 
-## Wallarm ve Terraform Hakkında Daha Fazla Bilgi
+## Wallarm ve Terraform hakkında daha fazla bilgi
 
-Terraform, kullanıcıların public [registry](https://www.terraform.io/registry#navigating-the-registry) üzerinden erişebildiği (**[providers](https://www.terraform.io/language/providers)**) entegrasyonları ve hazır konfigürasyonları (**[modules](https://www.terraform.io/language/modules)**) destekler; bu registry birçok satıcı tarafından oluşturulmaktadır.
+Terraform, bir dizi entegrasyonu (**[providers](https://www.terraform.io/language/providers)**) ve kullanıma hazır yapılandırmaları (**[modules](https://www.terraform.io/language/modules)**) birden çok sağlayıcı tarafından sağlanan herkese açık [kayıt](https://www.terraform.io/registry#navigating-the-registry) üzerinden kullanıcılara sunar.
 
-Bu registry'e Wallarm tarafından şunlar yayınlanmıştır:
+Bu kayıt içine Wallarm şunları yayımladı:
 
-* Terraform üzerinden Wallarm'ı yönetmek için [Wallarm provider](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs). Bu makalede açıklanmıştır.
-* Terraform uyumlu ortamdan AWS’ye düğümü dağıtmak için [Wallarm module](../../installation/cloud-platforms/aws/terraform-module/overview.md).
+* Terraform aracılığıyla Wallarm'ı yönetmek için [Wallarm provider](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs). Bu yazıda açıklanmıştır.
+* Terraform uyumlu bir ortamdan AWS'ye düğüm dağıtmak için [Wallarm modülü](../../installation/cloud-platforms/aws/terraform-module/overview.md).
 
-Bu iki araç, farklı amaçlara hizmet eden bağımsız araçlardır. Birini kullanmak diğerine ihtiyaç duymaz.
+Bu ikisi farklı amaçlar için kullanılan, birbirinden bağımsız araçlardır. Birini kullanmak için diğerine ihtiyaç yoktur.

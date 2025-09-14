@@ -1,50 +1,52 @@
 [waf-mode-instr]:   ../admin-en/configure-wallarm-mode.md
 
-# API Specification Enforcement Setup <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Specification Enforcement Kurulumu <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Bu makale, [yüklenen API specification](overview.md) dosyanıza dayalı API korumanızı nasıl etkinleştireceğinizi ve yapılandıracağınızı açıklar.
+Bu makale, [yüklediğiniz API spesifikasyonuna](overview.md) dayalı API korumanızı nasıl etkinleştireceğinizi ve yapılandıracağınızı açıklar.
 
-## Adım 1: Specification Yükleme
+## Adım 1: Spesifikasyonu yükleyin
 
-1. [US Cloud](https://us1.my.wallarm.com/api-specifications/) veya [EU Cloud](https://my.wallarm.com/api-specifications/) üzerindeki **API Specifications** bölümünde **Upload specification** düğmesine tıklayın.
-1. Specification yükleme parametrelerini ayarlayın ve yüklemeyi başlatın.
+1. [US Cloud](https://us1.my.wallarm.com/api-specifications/) veya [EU Cloud](https://my.wallarm.com/api-specifications/) içindeki **API Specifications** bölümünde **Upload specification** öğesine tıklayın.
+1. Spesifikasyon yükleme parametrelerini belirleyin ve yüklemeyi başlatın.
 
-    ![Upload specification](../images/api-specification-enforcement/specificaton-upload.png)
+    ![Spesifikasyon yükleme](../images/api-specification-enforcement/specificaton-upload.png)
 
-Specification dosyası başarıyla yüklenene kadar API specification enforcement yapılandırmasına başlayamayacağınızı unutmayın.
+Spesifikasyon dosyası, API spesifikasyonu sözdizimine uygunluk açısından kontrol edilir; geçerli değilse yüklenmez. Spesifikasyon dosyası başarıyla yüklenene kadar API specification enforcement yapılandırmasını başlatamayacağınızı unutmayın.
 
-## Adım 2: Politika İhlallerinde Alınacak Aksiyonları Belirleme
+Spesifikasyonu bir URI’den yüklemeyi ve **Regularly update the specification** (saatte bir) seçeneğini seçerseniz, düzenli güncelleme sırasında hatalar olabilir: URI kullanılamaz olabilir veya güncellenen spesifikasyon dosyası API spesifikasyonu sözdizimine uymayabilir. Bu tür hatalara ilişkin bildirimler almak için, yapılandırdığınız [**Integrations**](../user-guides/settings/integrations/integrations-intro.md) içinde **System related** olaylarını seçin—spesifikasyon yükleme hatalarıyla ilgili bildirimler bu kategoriye dahildir.
+
+## Adım 2: İlkeler ihlalleri için eylemleri belirleyin
 
 1. **API specification enforcement** sekmesine tıklayın.
 
-    !!! info "Rogue API detection"
-        * Güvenlik politikalarını uygulamanın yanı sıra, specification'lar [API Discovery](../api-discovery/overview.md) modülü tarafından [rogue API detection](../api-discovery/rogue-api.md) için de kullanılabilir. API Discovery etkinse bu sekme görüntülenir.
-        * Specification'ı güvenlik politikalarını uygulamak için kullanmadan önce, API Discovery ile rogue (gölge, zombi ve yetimsiz) API'leri aramak için kullanmanız tavsiye edilir. Böylece specification'ınızın müşterilerinizin asıl isteklerinden ne kadar farklı olduğunu anlayabilir; bu farklılıklar, güvenlik politikaları uygulandıktan sonra ilgili isteklerin engellenmesine yol açabilir.
+    !!! info "Rogue API tespiti"
+        * Güvenlik politikalarını uygulamanın yanı sıra, spesifikasyonlar [API Discovery](../api-discovery/overview.md) modülü tarafından [rogue API tespiti](../api-discovery/rogue-api.md) için de kullanılabilir. API Discovery etkinse sekme görüntülenir.
+        * Spesifikasyonu güvenlik politikalarını uygulamak için kullanmadan önce, API Discovery kullanarak rogue (gölge, zombi ve yetim) API’leri aramak için kullanmanız önerilir. Bu şekilde, spesifikasyonunuzun istemcilerinizin gerçek isteklerinden ne kadar farklı olduğunu anlayabilirsiniz—bu farklar, güvenlik politikaları uygulandıktan sonra ilgili isteklerin engellenmesine büyük olasılıkla neden olacaktır.
 
-1. **Use for API specification enforcement** seçeneğini seçin.
-1. Politika ihlali aksiyonlarını etkinleştirmek istediğiniz host veya endpoint'i belirtin.
+1. **Use for API specification enforcement** seçeneğini belirleyin.
+1. İlke ihlali eylemlerini etkinleştirmek istediğiniz host veya endpoint’i belirtin.
 
-    * Yüklenen specification'ın uygulanacağı endpoint'leri yanlış belirtirseniz, birçok [false positive](../about-wallarm/protecting-against-attacks.md#false-positives) olayı ortaya çıkabilir.
-    * Aynı host için birden fazla specification'a sahipseniz, ancak bunlar farklı endpoint'ler için geçerliyse (örneğin `domain.com/v1/api/users/` ve `domain.com/v1/api/orders/`), specification'ın hangi endpointlere uygulanacağını **belirtmeniz gerekmektedir**.
-    * Bir host'a bir specification ekleyip sonra bu host'un belirli endpointlerine ayrı bir specification eklediğinizde, her iki specification da bu endpointlere uygulanacaktır.
-    * Bu değer, [URI constructor](../user-guides/rules/rules.md#uri-constructor) veya [advanced edit form](../user-guides/rules/rules.md#advanced-edit-form) aracılığıyla yapılandırılabilir.
+    * Yüklenen spesifikasyonun hangi endpoint’lere uygulanacağını yanlış belirtirseniz, çok sayıda [yanlış pozitif](../about-wallarm/protecting-against-attacks.md#false-positives) olay oluşacaktır.
+    * Aynı host’a uygulanan ancak farklı endpoint’lere ait birden fazla spesifikasyonunuz varsa (örneğin `domain.com/v1/api/users/` ve `domain.com/v1/api/orders/`), spesifikasyonun hangi endpoint’lere uygulanması gerektiğini belirtmeniz **zorunludur**.
+    * Bir host’a bir spesifikasyon ekleyip ardından bu host’un belirli endpoint’lerine başka bir spesifikasyon eklerseniz, her iki spesifikasyon da bu endpoint’lere uygulanacaktır.
+    * Değer, [URI constructor](../user-guides/rules/rules.md#uri-constructor) veya [advanced edit form](../user-guides/rules/rules.md#advanced-edit-form) üzerinden yapılandırılabilir.
 
-1. İstekler specification'ınızı ihlal ederse sistemin nasıl tepki vereceğini ayarlayın.
+1. İstekler spesifikasyonunuzu ihlal ederse sistemin nasıl tepki vereceğini ayarlayın.
 
-    ![Specification - use for applying security policies](../images/api-specification-enforcement/specification-use-for-api-policies-enforcement.png)
+    ![Spesifikasyon - güvenlik politikalarını uygulamak için kullanım](../images/api-specification-enforcement/specification-use-for-api-policies-enforcement.png)
 
     Olası ihlallerle ilgili ayrıntılar:
 
     --8<-- "../include/api-policies-enforcement/api-policies-violations.md"
 
-Specification'ı ilk kez güvenlik politikaları belirlemek için kullanırken, specification'ın gerekli endpointlerde uygulandığından ve gerçek hataları tespit ettiğinden emin olmak için tepki olarak `Monitor` seçeneğinin ayarlanması tavsiye edilir.
+    Spesifikasyonu güvenlik politikalarını ayarlamak için ilk kez kullanırken, spesifikasyonun gerekli endpoint’lere uygulandığından ve gerçek hataları tespit ettiğinden emin olmak için tepki olarak `Monitor` ayarlanması önerilir.
 
-## Devre Dışı Bırakma
+## Devre dışı bırakma
 
-API Specification Enforcement, **Use for API specification enforcement** seçeneği etkin olan yüklenen veya birden fazla specification'a dayanmaktadır. Bu seçeneğin bazı specification'lar için kaldırılması veya bir specification'ın silinmesi, bu specification'a dayalı korumanın sonlandırılmasına yol açar.
+API Specification Enforcement’ın çalışması, yüklenmiş ve her biri için **Use for API specification enforcement** seçeneği işaretli bir veya birden fazla spesifikasyona dayanır. Bu seçeneğin bazı spesifikasyonlar için işaretinin kaldırılmasının veya bu spesifikasyonun silinmesinin, o spesifikasyona dayalı korumayı durduracağını dikkate alın.
 
-Ayrıca, API Specification Enforcement işlevselliğini API'nizin sadece belirli bölümleri için devre dışı bırakmanız gerektiğinde şu yöntemlerden yararlanabilirsiniz:
+Ayrıca, bazı durumlarda API Specification Enforcement işlevselliğini API’nizin yalnızca bazı bölümleri için devre dışı bırakmanız gerekebilir. Bu şu şekilde yapılabilir:
 
-* [all-in-one installer](../installation/nginx/all-in-one.md) dağıtımları için, API Specification Enforcement'ın [`wallarm_enable_apifw`](../admin-en/configure-parameters-en.md#wallarm_enable_apifw) NGINX yönergesinin `off` olarak ayarlandığı herhangi bir `server` bölümünde.
-* NGINX tabanlı Docker görüntüsü için, `WALLARM_APIFW_ENABLE` [environment variable](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) değerinin `false` olarak ayarlanması.
-* NGINX Ingress Controller için, `enable` değeri `false` olarak ayarlanmış [`controller.wallarm.apifirewall`](../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewall) değerler grubunun kullanılması.
+* [all-in-one installer](../installation/nginx/all-in-one.md) kurulumları için, API Specification Enforcement kullanılan herhangi bir `server` bölümünde [`wallarm_enable_apifw`](../admin-en/configure-parameters-en.md#wallarm_enable_apifw) NGINX yönergesini `off` olarak ayarlayarak.
+* NGINX tabanlı Docker imajı için, `WALLARM_APIFW_ENABLE` [ortam değişkenini](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) `false` olarak ayarlayarak.
+* NGINX Ingress Controller için, [`controller.wallarm.apifirewall`](../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewall) değer grubunda `enable` değerini `false` olarak ayarlayarak.

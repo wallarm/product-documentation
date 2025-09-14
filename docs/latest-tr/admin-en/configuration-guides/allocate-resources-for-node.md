@@ -1,34 +1,34 @@
-# Wallarm NGINX Node için Kaynak Ayırma
+# Wallarm NGINX node için Kaynak Ayırma
 
-Wallarm NGINX düğümü için ayrılan bellek ve CPU kaynak miktarı, isteklerin işlenme kalitesini ve hızını belirler. Bu talimatlar, kendi kendine barındırılan NGINX düğümü için bellek tahsisi ile ilgili önerileri açıklamaktadır.
+Wallarm NGINX node için ayrılan bellek ve CPU kaynaklarının miktarı istek işleme kalitesini ve hızını belirler. Bu talimatlar, self-hosted NGINX node bellek tahsisine yönelik önerileri açıklar.
 
-Bir filtreleme düğümünde iki ana bellek ve CPU tüketicisi bulunmaktadır:
+Bir NGINX filtreleme düğümünde bellek ve CPU kaynaklarını tüketen iki ana bileşen vardır:
 
-* [Tarantool](#tarantool), **postanalytics module** olarak da adlandırılır. Bu, yerel veri analiz arka planı ve bir filtreleme düğümündeki birincil bellek tüketicisidir.
-* [NGINX](#nginx) asıl filtreleme düğümü ve ters proxy bileşenidir.
+* [wstore](#wstore), **post-analiz modülü** olarak da adlandırılır. Bu, yerel veri analitiği arka ucu olup filtreleme düğümündeki birincil bellek tüketicisidir.
+* [NGINX](#nginx) ana filtreleme düğümü ve ters proxy bileşenidir.
 
-NGINX CPU kullanımı, RPS seviyesi, istek ve yanıt ortalama boyutu, düğüm tarafından işlenen özel kurallar seti sayısı, Base64 gibi veri kodlamalarının veya veri sıkıştırmanın kullanılan tipleri ve katmanları gibi birçok faktöre bağlıdır.
+NGINX CPU kullanımı; RPS düzeyi, istek ve yanıtın ortalama boyutu, düğümün işlediği özel kurallar kümesindeki kural sayısı, Base64 veya veri sıkıştırma gibi kullanılan veri kodlamalarının türleri ve katmanları vb. birçok faktöre bağlıdır.
 
-Ortalama olarak, bir CPU çekirdeği yaklaşık 500 RPS işleyebilir. Üretim modunda çalışırken, NGINX işlemi için en az bir CPU çekirdeği ve Tarantool işlemi için bir çekirdek tahsis edilmesi önerilir. Çoğu durumda, başlangıçta bir filtreleme düğümünün kaynaklarının aşırı tahsis edilmesi, gerçek üretim trafiği seviyeleri için gerçek CPU ve bellek kullanımının izlenmesi ve tahsis edilen kaynakların kademeli olarak makul bir seviyeye (trafik zirveleri ve düğüm yedekliliği için en az 2 kat boşluklu) düşürülmesi önerilir.
+Ortalama olarak bir CPU çekirdeği yaklaşık 500 RPS işleyebilir. Production modda çalışırken NGINX süreci için en az 1 CPU çekirdeği ve wstore süreci için 1 çekirdek ayırmanız önerilir. Çoğu durumda, önce filtreleme düğümünü fazla tahsis etmek, gerçek production trafik seviyeleri için fiili CPU ve bellek kullanımını gözlemlemek ve ayrılan kaynakları kademeli olarak makul bir seviyeye düşürmek (trafik sıçramaları ve düğüm yedekliliği için en az 2x marjla) önerilir.
 
-## Tarantool
+## wstore
 
---8<-- "../include/allocate-resources-for-waf-node/tarantool-memory.md"
+--8<-- "../include/allocate-resources-for-waf-node/wstore-memory.md"
 
-### Kubernetes Ingress Controller’da Kaynak Tahsisi
+### Kubernetes Ingress denetleyicisinde Kaynak Ayırma
 
---8<-- "../include/allocate-resources-for-waf-node/tarantool-memory-ingress-controller.md"
+--8<-- "../include/allocate-resources-for-waf-node/wstore-memory-ingress-controller.md"
 
-### All-in-One Installer Kullanılıyorsa Kaynak Tahsisi
+### All-in-One Installer kullanılıyorsa Kaynak Ayırma
 
-Tarantool belleğinin boyutlandırılması, `/opt/wallarm/env.list` yapılandırma dosyasındaki `SLAB_ALLOC_ARENA` özniteliği kullanılarak kontrol edilir. Bellek tahsis etmek için:
+wstore belleğinin boyutlandırılması, `/opt/wallarm/env.list` yapılandırma dosyasındaki `SLAB_ALLOC_ARENA` özniteliği kullanılarak kontrol edilir. Bellek ayırmak için:
 
-1. `/opt/wallarm/env.list` dosyasını düzenleme modunda açın:
+1. `/opt/wallarm/env.list` dosyasını düzenlemek üzere açın:
 
     ```bash
     sudo vim /opt/wallarm/env.list
     ```
-1. `SLAB_ALLOC_ARENA` özniteliğini bellek boyutuna ayarlayın. Değer bir tam sayı veya ondalık sayı (ondalık ayırıcı olarak nokta `.` kullanılır) olabilir. Örneğin:
+1. `SLAB_ALLOC_ARENA` özniteliğini bellek boyutuna ayarlayın. Değer tam sayı veya kayan nokta olabilir (ondalık ayırıcı nokta `.` olmalıdır). Örneğin:
 
     ```
     SLAB_ALLOC_ARENA=1.0
@@ -39,97 +39,14 @@ Tarantool belleğinin boyutlandırılması, `/opt/wallarm/env.list` yapılandır
     sudo systemctl restart wallarm.service
     ```
 
-### Diğer Dağıtım Seçeneklerinde Kaynak Tahsisi
+### Amazon Machine Image kullanılıyorsa Kaynak Ayırma
 
-Tarantool belleğinin boyutlandırılması, `/etc/default/wallarm-tarantool` yapılandırma dosyasındaki `SLAB_ALLOC_ARENA` özniteliği kullanılarak kontrol edilir. Bellek tahsis etmek için:
-
-<ol start="1"><li>Tarantool yapılandırma dosyasını düzenleme modunda açın:</li></ol>
-
-=== "Debian 10.x (buster)"
-    ```bash
-    sudo vim /etc/default/wallarm-tarantool
-    ```
-=== "Debian 11.x (bullseye)"
-    ```bash
-    sudo vim /etc/default/wallarm-tarantool
-    ```
-=== "Ubuntu 18.04 LTS (bionic)"
-    ```bash
-    sudo vim /etc/default/wallarm-tarantool
-    ```
-=== "Ubuntu 20.04 LTS (focal)"
-    ```bash
-    sudo vim /etc/default/wallarm-tarantool
-    ```
-=== "Ubuntu 22.04 LTS (jammy)"
-    ```bash
-    sudo vim /etc/default/wallarm-tarantool
-    ```
-=== "CentOS 7.x"
-    ```bash
-    sudo vim /etc/sysconfig/wallarm-tarantool
-    ```
-=== "Amazon Linux 2.0.2021x and lower"
-    ```bash
-    sudo vim /etc/sysconfig/wallarm-tarantool
-    ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
-    ```bash
-    sudo vim /etc/sysconfig/wallarm-tarantool
-    ```
-=== "RHEL 8.x"
-    ```bash
-    sudo vim /etc/sysconfig/wallarm-tarantool
-    ```
-
-<ol start="2"><li><code>SLAB_ALLOC_ARENA</code> özniteliğini bellek boyutuna ayarlayın. Değer bir tam sayı veya ondalık sayı (ondalık ayırıcı olarak <code>.</code> kullanılır) olabilir. Örneğin:</li></ol>
-
-```
-SLAB_ALLOC_ARENA=1.0
-```
-
-<ol start="3"><li>Tarantool’u yeniden başlatın:</li></ol>
-
-=== "Debian 10.x (buster)"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
-=== "Debian 11.x (bullseye)"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
-=== "Ubuntu 18.04 LTS (bionic)"
-    ```bash
-    sudo service wallarm-tarantool restart
-    ```
-=== "Ubuntu 20.04 LTS (focal)"
-    ```bash
-    sudo service wallarm-tarantool restart
-    ```
-=== "Ubuntu 22.04 LTS (jammy)"
-    ```bash
-    sudo service wallarm-tarantool restart
-    ```
-=== "CentOS 7.x"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
-=== "Amazon Linux 2.0.2021x and lower"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
-=== "RHEL 8.x"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
+* Wallarm node, ayrılan kaynakları wstore ve NGINX arasında otomatik olarak dağıtır.
+* [Wallarm NGINX Node AMI](https://aws.amazon.com/marketplace/pp/prodview-5rl4dgi4wvbfe) üzerinden bir Wallarm node örneği başlatırken, test için `t3.medium` ve production için `m4.xlarge` örnek tiplerini kullanmanızı öneririz.
 
 ## NGINX
 
-NGINX’in bellek tüketimi birçok faktöre bağlıdır. Ortalama olarak, aşağıdaki gibi tahmin edilebilir:
+NGINX bellek tüketimi birçok faktöre bağlıdır. Ortalama olarak aşağıdaki şekilde tahmin edilebilir:
 
 ```
 Eşzamanlı istek sayısı * Ortalama istek boyutu * 3
@@ -137,18 +54,18 @@ Eşzamanlı istek sayısı * Ortalama istek boyutu * 3
 
 Örneğin:
 
-* Filtreleme düğümü, zirvede 10000 eşzamanlı isteği işlemektedir,
-* ortalama istek boyutu 5 kB’dır.
+* Filtreleme düğümü, zirvede 10000 eşzamanlı isteği işliyor,
+* ortalama istek boyutu 5 kB.
 
-NGINX bellek tüketimi şu şekilde tahmin edilebilir:
+NGINX bellek tüketimi aşağıdaki gibi tahmin edilebilir:
 
 ```
 10000 * 5 kB * 3 = 150000 kB (veya ~150 MB)
 ```
 
-**Bellek miktarını tahsis etmek için:**
+**Bellek miktarını ayarlamak için:**
 
-* NGINX Ingress controller pod’u (`ingress-controller`) için, `values.yaml` dosyasında aşağıdaki bölümleri `helm install` veya `helm upgrade` komutlarının `--set` seçeneği ile yapılandırın:
+* NGINX Ingress denetleyici pod'u (`ingress-controller`) için, `helm install` veya `helm upgrade` komutlarının `--set` seçeneğini kullanarak `values.yaml` dosyasındaki aşağıdaki bölümleri yapılandırın:
     ```
     controller:
       resources:
@@ -162,19 +79,19 @@ NGINX bellek tüketimi şu şekilde tahmin edilebilir:
 
     Parametreleri değiştiren komut örnekleri:
 
-    === "Ingress controller kurulumu"
+    === "Ingress denetleyicisinin kurulumu"
         ```bash
         helm install --set controller.resources.limits.cpu='2000m',controller.resources.limits.memory='3280Mi' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
 
-        Doğru Ingress controller kurulumu için [diğer parametreler](../configure-kubernetes-en.md#additional-settings-for-helm-chart) de gereklidir. Lütfen bunları da `--set` seçeneğine ekleyin.
-    === "Ingress controller parametrelerini güncelleme"
+        Doğru Ingress denetleyicisi kurulumu için [diğer parametreler](../configure-kubernetes-en.md#additional-settings-for-helm-chart) de gereklidir. Lütfen bunları da `--set` seçeneğinde iletin.
+    === "Ingress denetleyicisi parametrelerini güncelleme"
         ```bash
         helm upgrade --reuse-values --set controller.resources.limits.cpu='2000m',controller.resources.limits.memory='3280Mi' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
 
-* Diğer dağıtım seçenekleri için, NGINX yapılandırma dosyalarını kullanın.
+* diğer dağıtım seçenekleri için NGINX yapılandırma dosyalarını kullanın.
 
 ## Sorun Giderme
 
-Bir Wallarm düğümü beklenenden daha fazla bellek ve CPU tüketiyorsa, kaynak kullanımını azaltmak için [CPU yüksek kullanım sorun giderme](../../faq/cpu.md) makalesindeki önerileri inceleyin ve uygulayın.
+Bir Wallarm node beklenenden daha fazla bellek ve CPU tüketiyorsa, kaynak kullanımını azaltmak için [CPU yüksek kullanım sorun giderme](../../troubleshooting/performance.md#wallarm-node-consumes-too-much-cpu) makalesindeki önerileri inceleyip uygulayın.

@@ -1,31 +1,31 @@
-# Wallarm Sidecar Ölçeklendirme ve Yüksek Kullanılabilirlik
+# Wallarm Sidecar'ın Ölçeklendirilmesi ve Yüksek Erişilebilirliği
 
-Bu rehber, [Wallarm Sidecar solution][sidecar-docs] için ölçeklendirme, Yüksek Kullanılabilirlik (HA) ve kaynakların doğru tahsisi konusundaki nüanslara odaklanmaktadır. Bu ayarları etkili bir şekilde yapılandırarak, Wallarm Sidecar'in güvenilirliğini ve performansını artırabilir, minimum kesinti süresi ve verimli istek işleme sağlayabilirsiniz.
+Bu kılavuz, [Wallarm Sidecar çözümünün][sidecar-docs] ölçeklendirilmesi, Yüksek Erişilebilirlik (HA) ve doğru kaynak tahsisi ayrıntılarına odaklanır. Bu ayarları etkili şekilde yapılandırarak Wallarm Sidecar’ın güvenilirliğini ve performansını artırabilir, minimum kesinti süresi ve verimli istek işleme sağlayabilirsiniz.
 
 Yapılandırma genel olarak iki bölüme ayrılır:
 
-* Wallarm Sidecar kontrol düzlemi için ayrılmış ayarlar
-* Enjekte edilmiş sidecar içeren uygulama iş yükü için ayarlar
+* Wallarm Sidecar denetim düzlemi (control plane) için ayrılmış ayarlar
+* Enjekte edilmiş sidecar ile uygulama iş yükü için ayarlar
 
-Wallarm Sidecar'in ölçeklendirmesi ve yüksek kullanılabilirliği, standart Kubernetes uygulamalarına dayanmaktadır. Önerilerimizi uygulamaya geçmeden önce temelleri kavramak için aşağıdaki bağlantılara göz atabilirsiniz:
+Wallarm Sidecar’ın ölçeklendirilmesi ve yüksek erişilebilirliği standart Kubernetes uygulamalarına dayanır. Önerilerimizi uygulamadan önce temelleri kavramak için şu önerilen bağlantılara göz atmayı düşünebilirsiniz:
 
-* [Kubernetes Horizontal Pod Autoscaling (HPA)](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/)
-* [Highly available clusters in Kubernetes](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/)
-* [Assigning CPU resources to containers and pods](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/)
+* [Kubernetes Yatay Pod Otomatik Ölçeklendirme (HPA)](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/)
+* [Kubernetes'te yüksek erişilebilir kümeler](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/)
+* [Konteynerlere ve Pod'lara CPU kaynaklarının atanması](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/)
 
-## Wallarm Sidecar Kontrol Düzlemi Ölçeklendirmesi
+## Wallarm Sidecar denetim düzleminin ölçeklendirilmesi
 
-Wallarm Sidecar çözümü, [controller ve postanalytics (Tarantool) olmak üzere iki bileşenden oluşmaktadır][sidecar-arch-docs]. Her biri, `replicas`, `requests` ve `podAntiAffinity` gibi Kubernetes parametrelerini içeren bireysel ölçeklendirme yapılandırmalarını gerektirir.
+Wallarm Sidecar çözümü [iki bileşenden oluşur: controller ve postanalytics (wstore)][sidecar-arch-docs]. Her biri için ayrı ölçeklendirme yapılandırmaları gerekir; `replicas`, `requests` ve `podAntiAffinity` gibi Kubernetes parametrelerini içerir.
 
 ### Controller
 
-Sidecar Controller, uygulamanın Pod'una sidecar konteynerler enjekte eden bir mutating admission webhook olarak işlev görür. Çoğu durumda HPA ölçeklendirmesi gerekli değildir. HA dağıtımı için, `values.yaml` dosyasındaki aşağıdaki ayarları göz önünde bulundurun:
+Sidecar Controller, uygulamanın Pod’una sidecar konteynerleri enjekte eden mutating admission webhook olarak çalışır. Çoğu durumda, HPA ile ölçeklendirme gerekmez. HA dağıtımı için `values.yaml` dosyasındaki aşağıdaki ayarları göz önünde bulundurun:
 
-* Birden fazla Sidecar Pod örneği kullanın. Bu, [`controller.replicaCount`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L877) özelliği ile kontrol edilir.
-* Opsiyonel olarak, controller Pod'u için rezerve edilmiş kaynakları sağlamak amacıyla [`controller.resources.requests.cpu` ve `controller.resources.requests.memory`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L1001) ayarlayın.
-* Opsiyonel olarak, pod anti-affinity kullanarak controller pod'larını farklı nodelara dağıtın; böylece bir node arızası durumunda dayanıklılık sağlanır.
+* Sidecar Pod’undan birden fazla örnek kullanın. Bunu [`controller.replicaCount`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L867) özniteliği ile denetleyin.
+* İsteğe bağlı olarak, denetleyici Pod’u için ayrılmış kaynakları sağlamak üzere [`controller.resources.requests.cpu` ve `controller.resources.requests.memory`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L991) değerlerini belirleyin.
+* İsteğe bağlı olarak, bir düğüm arızası durumunda dayanıklılık sağlamak için denetleyici Pod’larını farklı düğümlere dağıtmak amacıyla pod anti-affinity kullanın.
 
-Aşağıda, bu önerilerin uygulandığı `values.yaml` dosyasındaki `controller` bölümüne dair bir örnek bulunmaktadır:
+Aşağıda, bu önerileri içeren `values.yaml` dosyasındaki `controller` bölümünün ayarlanmış bir örneği verilmiştir:
 
 ```yaml
 controller:
@@ -48,40 +48,44 @@ controller:
           topologyKey: kubernetes.io/hostname
   resources:
     limits:
-      cpu: 100m
-      memory: 128Mi
+      cpu: 250m
+      memory: 300Mi
     requests:
       cpu: 50m
-      memory: 32Mi
+      memory: 150Mi
 ```
 
-### Postanalytics (Tarantool)
+### Postanalytics (wstore)
 
-Postanalytics bileşeni, uygulama iş yükünüze enjekte edilen tüm sidecar konteynerlerinden gelen trafiği işler. Bu bileşen, HPA tarafından ölçeklendirilemez.
+postanalytics bileşeni, uygulama iş yükünüze enjekte edilen tüm sidecar konteynerlerinden gelen trafiği işler. Bu bileşen HPA ile ölçeklenemez.
 
-HA dağıtımı için, `values.yaml` dosyasındaki aşağıdaki ayarları kullanarak el ile replikaların sayısını ayarlayabilirsiniz:
+HA dağıtımı için, `values.yaml` dosyasındaki aşağıdaki ayarları kullanarak replika sayısını manuel olarak ayarlayabilirsiniz:
 
-* Birden fazla Tarantool Pod örneği kullanın. Bu, [`postanalytics.replicaCount`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L382) özelliği ile kontrol edilir.
-* Beklenen uygulama iş yükündeki trafik hacmine bağlı olarak, Tarantool'un kullanacağı maksimum belleği belirleyen [`postanalytics.tarantool.config.arena`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L610C7-L610C7) ayarını gigabayt (GB) cinsinden yapılandırın. Hesaplama yönergeleri için [tarantool-memory-recommendations] önerilerimize bakabilirsiniz.
-* Zirve talebini karşılamak ve bellekle ilgili çökme durumlarını önlemek için `arena` değeriyle uyumlu olacak şekilde [`postanalytics.tarantool.resources.limits` ve `postanalytics.tarantool.resources.requests`](https://github.com/wallarm/sidecar/blob/4eb1a4c4f8d20989757c50c40e192eb7eb1f2169/helm/values.yaml#L639) ayarlarını hizalayın. Tarantool'un optimal çalışması için `requests` değeri en az `arena` değerinde olmalıdır. Detaylı bilgi için [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) sayfasına bakın.
-* Opsiyonel olarak, Tarantool Pod'u için özel kaynak tahsisi sağlamak amacıyla `postanalytics` bölümündeki diğer tüm konteynerler için `resources.requests` ve `resources.limits` ayarlarını yapın. Bu konteynerler `postanalytics.init`, `postanalytics.supervisord` ve `postanalytics.appstructure`'ü içerir.
-* Opsiyonel olarak, bir node arızası durumunda dayanıklılık sağlamak için postanalytics pod'larını farklı nodelara dağıtmak üzere pod anti-affinity uygulayın.
+* postanalytics Pod’undan birden fazla örnek kullanın. Bunu [`postanalytics.replicaCount`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L447) özniteliğiyle denetleyin.
+* Beklenen uygulama iş yükü trafik hacmine bağlı olarak [`postanalytics.wstore.config.arena`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L625) değerini gigabayt (GB) cinsinden yapılandırın. Bu ayar, wstore’un kullanacağı maksimum belleği belirler. Hesaplama yönergeleri için, [diğer dağıtım seçeneklerine yönelik aynı önerilerimizi][wstore-memory-recommendations] yararlı bulabilirsiniz.
 
-Aşağıda, bu önerilerin uygulandığı `values.yaml` dosyasındaki `postanalytics` bölümüne dair bir örnek bulunmaktadır:
+    [NGINX Node 5.x and earlier][what-is-new-wstore] sürümlerinde, parametrenin adı `postanalytics.tarantool.config.arena` idi. Yükseltme sırasında yeniden adlandırma gereklidir.
+* [`postanalytics.wstore.resources.limits` ve `postanalytics.wstore.resources.requests`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L654) değerlerini `arena` yapılandırmasıyla hizalayın. Zirve talebi karşılamak ve bellekle ilgili çöküşleri önlemek için `limits` değerini `arena` değerine eşit veya daha yüksek ayarlayın. wstore’un en iyi performansı için `requests` değerinin `arena` değerine eşit veya ondan büyük olduğundan emin olun. Daha fazla bilgi için [Kubernetes belgelerine](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) bakın.
+
+    [NGINX Node 5.x and earlier][what-is-new-wstore] sürümlerinde, parametrelerin adı `postanalytics.tarantool.resources.limits` ve `postanalytics.tarantool.resources.requests` idi. Yükseltme sırasında yeniden adlandırma gereklidir.
+* İsteğe bağlı olarak, postanalytics (wstore) Pod’u için ayrılmış kaynak tahsisi sağlamak amacıyla `postanalytics` bölümü içindeki diğer tüm konteynerler için de `resources.requests` ve `resources.limits` ayarlayın. Bu konteynerler `postanalytics.init`, `postanalytics.supervisord` ve `postanalytics.appstructure` içerir.
+* İsteğe bağlı olarak, bir düğüm arızası durumunda dayanıklılık sağlamak için postanalytics Pod’larını farklı düğümlere dağıtmak amacıyla pod anti-affinity uygulayın.
+
+Aşağıda, bu önerileri içeren `values.yaml` dosyasındaki `postanalytics` bölümünün ayarlanmış bir örneği verilmiştir:
 
 ```yaml
 postanalytics:
   replicaCount: 2
-  tarantool:
+  wstore:
     config:
-      arena: "1.0"
+      arena: "2.0"
     resources:
       limits:
-        cpu: 500m
-        memory: 1Gi
+        cpu: 1000m
+        memory: 2Gi
       requests:
-        cpu: 100m
-        memory: 1Gi
+        cpu: 500m
+        memory: 2Gi
   init:
     resources:
       limits:
@@ -124,29 +128,29 @@ postanalytics:
           topologyKey: kubernetes.io/hostname
 ```
 
-## Enjekte Edilmiş Sidecar Konteynerleri ile Uygulama İş Yükünün Ölçeklendirilmesi
+## Enjekte edilmiş sidecar konteynerleriyle uygulama iş yükünün ölçeklendirilmesi
 
-Uygulama iş yüklerini yönetmek için Horizontal Pod Autoscaling (HPA) kullanırken, Wallarm Sidecar tarafından enjekte edilenler dahil olmak üzere Pod içindeki her konteyner için `resources.requests` ayarının yapılandırılması esastır.
+Uygulama iş yüklerini yönetmek için Horizontal Pod Autoscaling (HPA) kullanırken, Wallarm Sidecar tarafından enjekte edilenler de dahil olmak üzere Pod’daki her konteyner için `resources.requests` yapılandırmak esastır.
 
 ### Önkoşullar
 
-Wallarm konteynerleri için [HPA uygulamasını](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/) başarıyla gerçekleştirebilmek için şu önkoşulların yerine getirildiğinden emin olun:
+Wallarm konteynerleri için [HPA uygulamasını](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/) başarıyla gerçekleştirmek üzere, aşağıdaki önkoşulların sağlandığından emin olun:
 
 * Kubernetes kümenizde [Metrics Server](https://github.com/kubernetes-sigs/metrics-server#readme) dağıtılmış ve yapılandırılmış olmalıdır.
-* Uygulama podundaki tüm konteynerler, init konteynerleri de dahil, için [`resources.request`](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/) yapılandırılmış olmalıdır.
+* Uygulama Pod’undaki init konteynerler dahil tüm konteynerler için [`resources.request`](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/) yapılandırılmış olmalıdır.
 
-    Uygulama konteyneri için kaynak tahsisi manifest dosyasında belirtilmelidir. Wallarm tarafından enjekte edilen konteynerler için kaynak ayarları aşağıda belirtilmiştir; bu ayarlar hem [genel hem de pod başına] tahsis edilebilir [sidecar-conf-area].
+    Uygulama konteyneri için kaynak tahsisi manifestinde belirtilmelidir. Wallarm tarafından enjekte edilen konteynerler için kaynak ayarları aşağıda özetlenmiştir; tahsis hem [genel düzeyde hem de Pod başına][sidecar-conf-area] yapılabilir.
 
-### Helm Chart Değerleri ile Genel Tahsis
+### Helm chart değerleriyle genel tahsis
 
-| Konteyner dağıtım deseni   | Konteyner adı         | Chart değeri                                      |
-|----------------------------|-----------------------|--------------------------------------------------|
-| [Split, Single][single-split-deployment] | sidecar-proxy         | config.sidecar.containers.proxy.resources        |
-| Split                      | sidecar-helper        | config.sidecar.containers.helper.resources       |
-| Split, Single              | sidecar-init-iptables | config.sidecar.initContainers.iptables.resources |
-| Split                      | sidecar-init-helper   | config.sidecar.initContainers.helper.resources   |
+| Konteyner dağıtım deseni | Konteyner adı        | Chart değeri                                     |
+|-------------------|-----------------------|--------------------------------------------------|
+| [Split, Single][single-split-deployment]     | sidecar-proxy         | config.sidecar.containers.proxy.resources        |
+| Split             | sidecar-helper        | config.sidecar.containers.helper.resources       |
+| Split, Single     | sidecar-init-iptables | config.sidecar.initContainers.iptables.resources |
+| Split             | sidecar-init-helper   | config.sidecar.initContainers.helper.resources   |
 
-Konteynerler için kaynakların (requests & limits) genel yönetimine dair Helm chart değer örneği:
+Kaynakları (requests ve limits) genel olarak yönetmek için Helm chart değerleri örneği:
 
 ```yaml
 config:
@@ -187,16 +191,16 @@ config:
             memory: 64Mi
 ```
 
-### Pod Düzeyinde Anotasyonlarla Tahsis
+### Pod’un açıklamalarıyla (annotations) Pod başına tahsis
 
-| Konteyner dağıtım deseni   | Konteyner adı         | Anotasyon                                                             |
-|----------------------------|-----------------------|------------------------------------------------------------------------|
-| [Single, Split][single-split-deployment] | sidecar-proxy         | sidecar.wallarm.io/proxy-{cpu,memory,cpu-limit,memory-limit}         |
-| Split                      | sidecar-helper        | sidecar.wallarm.io/helper-{cpu,memory,cpu-limit,memory-limit}         |
-| Single, Split              | sidecar-init-iptables | sidecar.wallarm.io/init-iptables-{cpu,memory,cpu-limit,memory-limit} |
-| Split                      | sidecar-init-helper   | sidecar.wallarm.io/init-helper-{cpu,memory,cpu-limit,memory-limit}   |
+| Konteyner dağıtım deseni | Konteyner adı        | Açıklama                                                             |
+|-------------------|-----------------------|------------------------------------------------------------------------|
+| [Single, Split][single-split-deployment]     | sidecar-proxy         | sidecar.wallarm.io/proxy-{cpu,memory,cpu-limit,memory-limit}         |
+| Split             | sidecar-helper        | sidecar.wallarm.io/helper-{cpu,memory,cpu-limit,memory-limit}        |
+| Single, Split     | sidecar-init-iptables | sidecar.wallarm.io/init-iptables-{cpu,memory,cpu-limit,memory-limit} |
+| Split             | sidecar-init-helper   | sidecar.wallarm.io/init-helper-{cpu,memory,cpu-limit,memory-limit}   |
 
-Pod başına kaynak tahsisini (requests & limits) yönetmek için anotasyon örneği (aktif olan `single` konteyner deseniyle):
+Pod başına kaynakları (requests ve limits) yönetmek için annotation örneği (`single` konteyner deseni etkin):
 
 ```yaml hl_lines="16-24"
 apiVersion: apps/v1
@@ -234,7 +238,7 @@ spec:
 
 ## Örnek
 
-Aşağıda, yukarıda açıklanan ayarların uygulandığı Wallarm Chart'ın `values.yaml` dosyası örneği verilmiştir. Bu örnek, Wallarm tarafından enjekte edilen konteynerler için kaynakların genel olarak tahsis edildiğini varsayar.
+Aşağıda, yukarıda açıklanan ayarların uygulandığı Wallarm chart’ının `values.yaml` dosyası örneği bulunmaktadır. Bu örnek, Wallarm tarafından enjekte edilen konteynerler için kaynakların genel olarak tahsis edildiğini varsayar.
 
 ```yaml
 controller:
@@ -257,23 +261,23 @@ controller:
           topologyKey: kubernetes.io/hostname
   resources:
     limits:
-      cpu: 100m
-      memory: 128Mi
+      cpu: 250m
+      memory: 300Mi
     requests:
       cpu: 50m
-      memory: 32Mi
+      memory: 150Mi
 postanalytics:
   replicaCount: 2
-  tarantool:
+  wstore:
     config:
-      arena: "1.0"
+      arena: "2.0"
     resources:
       limits:
-        cpu: 500m
-        memory: 1Gi
+        cpu: 1000m
+        memory: 2Gi
       requests:
-        cpu: 100m
-        memory: 1Gi
+        cpu: 500m
+        memory: 2Gi
   init:
     resources:
       limits:

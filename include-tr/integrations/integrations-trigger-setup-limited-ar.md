@@ -1,18 +1,18 @@
-Entegrasyon kartı üzerinden halihazırda ayarladığınız bildirimlerin yanı sıra, Wallarm triggers fazladan bildirimler için ek olaylar seçmenize olanak tanır:
+Entegration card üzerinden zaten yapılandırdığınız bildirimlere ek olarak, Wallarm tetikleyicileri bildirimler için ek olaylar seçmenize olanak tanır:
 
-* Belirli bir zaman aralığında (gün, saat vb.) [saldırı](../../../glossary-en.md#attack), [hit](../../../glossary-en.md#hit) veya olay sayısının ayarlanan değeri aşması
+* Zaman aralığı başına (gün, saat vb.) [saldırıların](../../../glossary-en.md#attack), [hitlerin](../../../glossary-en.md#hit) veya olayların sayısı belirlenen sayıyı aşarsa
 
-    !!! info "Sayılmayanlar"
+    !!! info "Nelerin sayılmadığı"
         * Saldırılar için:
-            * [Özel düzenli ifadeler](../../../user-guides/rules/regex-rule.md) temelindeki deneysel saldırılar.
+            * [özel düzenli ifadelere](../../../user-guides/rules/regex-rule.md) dayanan deneysel saldırılar.
         * Hitler için:
-            * [Özel düzenli ifadeler](../../../user-guides/rules/regex-rule.md) temelindeki deneysel hitler.
-            * [Örneklemede](../../../user-guides/events/analyze-attack.md#sampling-of-hits) yer almayan hitler.
+            * [özel düzenli ifadelere](../../../user-guides/rules/regex-rule.md) dayanan deneysel hitler.
+            * [örneklemde](../../../user-guides/events/analyze-attack.md#sampling-of-hits) kaydedilmeyen hitler.
 
-* [API değişiklikleri](../../../api-discovery/track-changes.md) gerçekleşti
+* [API'de değişiklikler](../../../api-discovery/track-changes.md) gerçekleşti
 * Yeni [rogue API](../../../api-discovery/rogue-api.md) (shadow, orphan, zombie) tespit edildi
-* Şirket hesabına yeni kullanıcı eklendi
+* Şirket hesabına yeni bir kullanıcı eklendi
 
-Koşul detaylandırması için bir veya daha fazla filtre ekleyebilirsiniz. Koşul ve filtreler belirlendikten sonra, seçilen uyarının gönderileceği entegrasyonu seçin. Aynı anda birden fazla entegrasyon seçebilirsiniz.
+Koşulu ayrıntılandırmak için bir veya daha fazla filtre ekleyebilirsiniz. Koşul ve filtreler ayarlanır ayarlanmaz, seçilen uyarının gönderileceği entegrasyonu seçin. Aynı anda birden fazla entegrasyon seçebilirsiniz.
 
-![Bir entegrasyon seçimi](../../../images/user-guides/triggers/select-integration.png)
+![Entegrasyon seçimi](../../../images/user-guides/triggers/select-integration.png)

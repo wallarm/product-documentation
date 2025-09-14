@@ -1,44 +1,44 @@
-### Adım 1: Bir koşul seçme
+### Adım 1: Koşul seçimi
 
 Bildirim için aşağıdaki koşullar mevcuttur:
 
-* Zaman aralığı (gün, saat, vb.) başına [attacks](../../../glossary-en.md#attack), [hits](../../../glossary-en.md#hit) veya olay sayısının belirlenen değeri aşması
+* Belirli bir zaman aralığı (gün, saat vb.) başına [saldırıların](../../../glossary-en.md#attack), [hits](../../../glossary-en.md#hit) veya incidents sayısı belirlenen sayıyı aşıyor
 
     !!! info "Sayılmayanlar"
         * Saldırılar için: 
-            * [Custom regular expressions](../../../user-guides/rules/regex-rule.md) tabanlı deneysel saldırılar.
-        * Hits için:
-            * [Custom regular expressions](../../../user-guides/rules/regex-rule.md) tabanlı deneysel hitler.
-            * [Sample](../../events/grouping-sampling.md#sampling-of-hits) içinde saklanmayan hitler.
+            * [Özel düzenli ifadelere](../../../user-guides/rules/regex-rule.md) dayanan deneysel saldırılar.
+        * hits için:
+            * [Özel düzenli ifadelere](../../../user-guides/rules/regex-rule.md) dayanan deneysel hits.
+            * [Örneklemde](../../events/grouping-sampling.md#sampling-of-hits) kaydedilmeyen Hits.
 
-* Kara listeye alınmış IP
-* [API'deki Değişiklikler](../../about-wallarm/api-discovery.md#tracking-changes-in-api)
-* Kullanıcı ekledi
+* Yasaklı IP
+* [API'deki değişiklikler](../../about-wallarm/api-discovery.md#tracking-changes-in-api)
+* Kullanıcı eklendi
 
 ### Adım 2: Filtre ekleme
 
-Filtreler, koşulun detayı için kullanılır. Aşağıdaki filtreler mevcuttur:
+Filtreler, koşulu ayrıntılandırmak için kullanılır. Şu filtreler mevcuttur:
 
-* **Tür**; istekte tespit edilen saldırı türü veya isteğin yöneltildiği güvenlik açığı türü ([attacks](../../attacks-vulns-list.md)).
-* **Application**; isteği alan veya olayın tespit edildiği [uygulama](../settings/applications.md).
-* **IP**; isteğin gönderildiği IP adresidir.
+* **Type**, istekte tespit edilen saldırının [türü](../../attacks-vulns-list.md) veya isteğin yöneltildiği güvenlik açığı türüdür.
+* **Application**, isteği alan ya da bir incident tespit edilen [uygulamadır](../settings/applications.md).
+* **IP**, isteğin gönderildiği IP adresidir.
 
-    Bu filtre yalnızca tek IP adresi bekler; alt ağlara, konumlara ve kaynak türlerine izin vermez.
-* **Domain**; isteği alan veya olayın tespit edildiği alan adıdır.
-* **Response status**; isteğe yanıt olarak döndürülen yanıt kodudur.
-* **Target**; saldırının yöneltildiği veya olayın tespit edildiği uygulama mimarisi kısmıdır. Alabilecek değerler: `Server`, `Client`, `Database`.
+    Bu filtre yalnızca tekil IP'leri bekler; alt ağlara, konumlara ve kaynak türlerine izin vermez.
+* **Domain**, isteği alan veya bir incident tespit edilen alan adıdır.
+* **Response status**, istek için döndürülen yanıt kodudur.
+* **Target**, saldırının yöneltildiği veya incident'in tespit edildiği uygulama mimarisi parçasıdır. Aşağıdaki değerleri alabilir: `Server`, `Client`, `Database`.
 
-Wallarm Console arayüzünde bir veya daha fazla filtre seçin ve bu filtreler için değerler belirleyin.
+Wallarm Console arayüzünde bir veya daha fazla filtre seçin ve bunlar için değerleri ayarlayın.
 
-### Adım 3: Entegrasyon seçimi
+### Adım 3: Entegrasyonu seçme
 
-Bu adımda, seçilen uyarının gönderileceği entegrasyonu belirlersiniz. Aynı anda birden fazla entegrasyon seçebilirsiniz.
+Bu adımda, seçilen uyarının gönderileceği entegrasyonu seçersiniz. Aynı anda birden fazla entegrasyon seçebilirsiniz.
 
-![Entegrasyon seçimi](../../images/user-guides/triggers/select-integration.png)
+![Bir entegrasyon seçme](../../images/user-guides/triggers/select-integration.png)
 
 ### Adım 4: Tetikleyiciyi kaydetme
 
-1. Tetikleyici oluşturma açılır penceresinde **Create** düğmesine tıklayın.
-2. İsteğe bağlı olarak, tetikleyicinin adını ve açıklamasını belirleyin ve **Done** düğmesine tıklayın.
+1. Tetikleyici oluşturma modal iletişim kutusunda **Create** düğmesine tıklayın.
+2. İsteğe bağlı olarak tetikleyicinin adını ve açıklamasını belirtin ve **Done** düğmesine tıklayın.
 
-Eğer tetikleyicinin adı ve açıklaması belirtilmemişse, tetikleyici `New trigger by <username>, <creation_date>` adıyla ve boş açıklamayla oluşturulur.
+Tetikleyici adı ve açıklaması belirtilmezse, tetikleyici `New trigger by <username>, <creation_date>` adıyla ve boş bir açıklamayla oluşturulur.

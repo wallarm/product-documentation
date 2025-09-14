@@ -1,34 +1,33 @@
 # Kullanıcı etkinlik günlüğü
 
-Wallarm Console'un **Ayarlar** → **Etkinlik günlüğü** sekmesinde, Wallarm sistemindeki kullanıcı işlemlerinin geçmişini kontrol edebilirsiniz. Günlükler, aşağıdaki nesnelerin oluşturulması, güncellenmesi ve silinmesiyle ilgili bilgileri içerir:
+Wallarm Console'daki **Settings** → **Activity log** sekmesinde, Wallarm sistemindeki kullanıcı eylemlerinin geçmişini görüntüleyebilirsiniz. Günlükler, aşağıdaki nesnelerin oluşturulması, güncellenmesi ve silinmesine ilişkin bilgileri içerir:
 
-* [exposed assets](../scanner.md)'da yer alan IP adresi veya alt ağ
 * Ağ çevresindeki alan adları
-* Ağ çevresindeki servisler (portlar)
+* Ağ çevresindeki hizmetler (portlar)
 * Ağ çevresindeki alan adları ve ilişkili IP adresleri
-* [İki‑faktörlü kimlik doğrulama](account.md#enabling-two-factor-authentication)
+* [Two‑factor authentication](account.md#enabling-two-factor-authentication)
 * [API tokens](api-tokens.md)
 * [Users](users.md)
-* Trafik işleme [kuralları](../rules/rules.md)
-* [Özel kurallar seti yedeklemeleri](../rules/rules.md#backup-and-restore)
+* Trafik işleme [rules](../rules/rules.md)
+* [Custom ruleset backups](../rules/rules.md#backup-and-restore)
 * [Wallarm nodes](../nodes/nodes.md)
 * [Triggers](../triggers/triggers.md)
 * [Integrations](integrations/integrations-intro.md)
-* [Engellenen IP adresi](../ip-lists/overview.md)
-* [Hit örneklemesi](../events/grouping-sampling.md#sampling-of-hits)
+* [Blocked IP address](../ip-lists/overview.md)
+* [Hit sampling](../events/grouping-sampling.md#sampling-of-hits)
 
-Günlükler ayrıca aşağıdaki işlemler ve nesneler hakkında bilgileri de içerir:
+Günlükler ayrıca aşağıdaki eylemler ve nesneler hakkında bilgiler içerir:
 
-* [Yanlış pozitif olarak işaretlenmiş güvenlik açığı](../vulnerabilities.md#vulnerability-lifecycle)
+* [false positive olarak işaretlenen zafiyet](../vulnerabilities.md#vulnerability-lifecycle)
 * [Yeniden kontrol edilen saldırı](../../vulnerability-detection/threat-replay-testing/overview.md)
 
-![Etkinlik günlüğü](../../images/user-guides/settings/audit-log.png)
+![Activity log](../../images/user-guides/settings/audit-log.png)
 
-**Etkinlik günlüğü kayıtlarını filtrelemek için** aşağıdaki parametreleri kullanabilirsiniz:
+**Activity log kayıtlarını filtrelemek için**, aşağıdaki parametreleri kullanabilirsiniz:
 
-* İşlemi gerçekleştiren kullanıcıdaki büyük/küçük harf duyarlı veri
+* Eylemi gerçekleştiren kullanıcı bilgisi (büyük/küçük harf duyarlı)
 
-      Eğer işlem Wallarm teknik destek ekibi tarafından gerçekleştirildiyse, kullanıcı adı `Technical support` olarak gelir. Bu değer, etkinlik günlüğü kayıtlarını sıralamak için kullanılamaz.
-* İşlem türü
-* İşlemin gerçekleştirildiği nesnenin adı
-* İşlemin gerçekleştirildiği tarih
+      Eylem Wallarm teknik destek ekibi tarafından gerçekleştirildiyse, kullanıcı adı `Technical support` olur. Bu değer Activity log kayıtlarını sıralamak için kullanılamaz.
+* Eylem türü
+* Eylemin uygulandığı nesnenin adı
+* Eylemin gerçekleştirildiği tarih

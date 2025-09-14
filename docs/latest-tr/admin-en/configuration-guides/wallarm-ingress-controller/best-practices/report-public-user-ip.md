@@ -1,14 +1,14 @@
-# Uç Kullanıcı Genel IP Adresinin Doğru Raporlanması (NGINX Tabanlı Ingress Controller)
+# Uç Kullanıcının Genel IP Adresinin Doğru Bildirilmesi (NGINX tabanlı Ingress denetleyicisi)
 
-Bu talimatlar, bir yük dengeleyicinin arkasına yerleştirilen bir controller durumunda, istemcinin (uç kullanıcı) kaynak IP adresinin tanımlanması için gereken Wallarm Ingress controller yapılandırmasını açıklamaktadır.
+Bu talimatlar, bir denetleyici bir yük dengeleyicinin arkasına yerleştirildiğinde istemcinin (uç kullanıcının) kaynak IP adresini belirlemek için gereken Wallarm Ingress controller yapılandırmasını açıklar.
 
-Varsayılan olarak, Ingress controller, doğrudan internete açık olduğunu ve bağlanan istemcilerin IP adreslerinin gerçek IP adresleri olduğunu varsayar. Ancak, istekler, Ingress controller'a gönderilmeden önce bir yük dengeleyici (örn. AWS ELB veya Google Network Load Balancer) üzerinden iletilebilir.
+Varsayılan olarak, Ingress denetleyicisi doğrudan İnternet'e açık olduğunu ve bağlanan istemcilerin IP adreslerinin gerçek IP'leri olduğunu varsayar. Ancak, istekler Ingress denetleyicisine gönderilmeden önce bir yük dengeleyiciden (ör. AWS ELB veya Google Network Load Balancer) geçirilebilir.
 
-Yük dengeleyicinin arkasına yerleştirilen bir controller durumlarında, Ingress controller, yük dengeleyici IP adresini gerçek uç kullanıcı IP'si olarak kabul eder; bu durum [bazı Wallarm özelliklerinin hatalı çalışmasına](../../../using-proxy-or-balancer-en.md#possible-problems-of-using-a-proxy-server-or-load-balancer-ip-address-as-a-request-source-address) yol açabilir. Doğru uç kullanıcı IP adreslerini Ingress controller'a bildirmek için, lütfen controller'ı aşağıda açıklandığı şekilde yapılandırın.
+Denetleyici bir yük dengeleyicinin arkasına yerleştirildiğinde, Ingress denetleyicisi yük dengeleyicinin IP'sini gerçek uç kullanıcı IP'si olarak kabul eder; bu da [bazı Wallarm özelliklerinin hatalı çalışmasına](../../../using-proxy-or-balancer-en.md#possible-problems-of-using-a-proxy-server-or-load-balancer-ip-address-as-a-request-source-address) yol açabilir. Doğru uç kullanıcı IP adreslerini Ingress denetleyicisine bildirmek için lütfen denetleyiciyi aşağıda açıklandığı şekilde yapılandırın.
 
-## Adım 1: Ağ Katmanında Gerçek İstemci IP'sinin Geçilmesini Etkinleştirin
+## Adım 1: Ağ katmanında gerçek istemci IP'sinin iletilmesini etkinleştirin
 
-Bu özellik, kullanılan bulut platformuna büyük ölçüde bağlıdır; çoğu durumda, `values.yaml` dosyası özniteliği `controller.service.externalTrafficPolicy` değeri `Local` olarak ayarlanarak etkinleştirilebilir:
+Bu özellik büyük ölçüde kullanılan bulut platformuna bağlıdır; çoğu durumda, `values.yaml` dosyasındaki `controller.service.externalTrafficPolicy` özelliğini `Local` değerine ayarlayarak etkinleştirilebilir:
 
 ```
 controller:
@@ -16,11 +16,11 @@ controller:
     externalTrafficPolicy: "Local"
 ```
 
-## Adım 2: Ingress Controller'ın X-FORWARDED-FOR HTTP İstek Başlığından Değeri Almasını Etkinleştirin
+## Adım 2: Ingress denetleyicisinin X-FORWARDED-FOR HTTP istek başlığından değeri almasını etkinleştirin
 
-Genellikle, yük dengeleyiciler, özgün istemci IP adresini içeren HTTP başlığı [`X-Forwarded-For`](https://en.wikipedia.org/wiki/X-Forwarded-For) ekler. Tam başlık adını yük dengeleyici dokümantasyonunda bulabilirsiniz.
+Genellikle, yük dengeleyiciler, orijinal istemci IP adresini içeren [`X-Forwarded-For`](https://en.wikipedia.org/wiki/X-Forwarded-For) HTTP başlığını ekler. Kesin başlık adını yük dengeleyicinizin dokümantasyonunda bulabilirsiniz.
 
-Wallarm Ingress controller, controller `values.yaml` dosyası aşağıdaki şekilde yapılandırıldığında, bu başlıktan gerçek uç kullanıcı IP adresini alabilir:
+Wallarm Ingress controller, `values.yaml` aşağıdaki gibi yapılandırılmışsa gerçek uç kullanıcı IP adresini bu başlıktan alabilir:
 
 ```
 controller:
@@ -29,7 +29,7 @@ controller:
     forwarded-for-header: "X-Forwarded-For"
 ```
 
-* [Documentation on the `enable-real-ip` parameter](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#enable-real-ip)
-* [`forwarded-for-header`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#forwarded-for-header) parametresinde, özgün istemci IP adresini içeren yük dengeleyici başlık adını belirtiniz
+- [`enable-real-ip` parametresi hakkında dokümantasyon](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#enable-real-ip)
+- [`forwarded-for-header`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#forwarded-for-header) parametresinde, orijinal istemci IP adresini içeren yük dengeleyici başlığının adını belirtin
 
 --8<-- "../include/ingress-controller-best-practices-intro.md"

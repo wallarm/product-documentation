@@ -1,22 +1,23 @@
-Starting from the version 3.6, you can fine-tune the `overlimit_res` attack detection using the rule in Wallarm Console.
+Sürüm 3.6'dan itibaren, Wallarm Console içindeki kuralı kullanarak `overlimit_res` saldırı tespitine ince ayar yapabilirsiniz.
 
-Daha önce, [`wallarm_process_time_limit`][nginx-process-time-limit-docs] ve [`wallarm_process_time_limit_block`][nginx-process-time-limit-block-docs] NGINX yönergeleri kullanılmıştı. Yeni kural sürümüyle birlikte listelenen yönergeler kullanımdan kaldırılmış kabul edilmekte ve gelecekteki sürümlerde silinecektir.
+Daha önce, [`wallarm_process_time_limit`][nginx-process-time-limit-docs] ve [`wallarm_process_time_limit_block`][nginx-process-time-limit-block-docs] NGINX yönergeleri kullanılıyordu. Yeni kuralın yayımlanmasıyla birlikte listelenen yönergeler kullanımdan kaldırılmış sayılır ve gelecekteki sürümlerde kaldırılacaktır.
 
-Eğer `overlimit_res` saldırı tespit ayarları yukarıdaki yönergelerle özelleştirildiyse, bunların kural üzerinden aktarılması önerilir:
+`overlimit_res` saldırı tespiti ayarları listelenen yönergelerle özelleştirildiyse, bunları aşağıdaki şekilde kurala taşımanız önerilir:
 
-1. Wallarm Console → **Kurallar** bölümünü açın ve [**Limit request processing time**][overlimit-res-rule-docs] kural ayarlarına gidin.
-1. Kuralı, NGINX yönergeleri ile yapılandırıldığı gibi ayarlayın:
-    * Kural koşulu, `wallarm_process_time_limit` ve `wallarm_process_time_limit_block` yönergelerinin belirtildiği NGINX yapılandırma bloğuyla eşleşmelidir.
-    * Tek bir isteğin işlenmesi için düğüm zaman sınırı (milisaniye): `wallarm_process_time_limit` değeri.
+1. Wallarm Console → **Rules** bölümünü açın ve [**Limit request processing time**][overlimit-res-rule-docs] kuralı yapılandırmasına ilerleyin.
+1. Kuralı NGINX yönergelerinde yaptığınız gibi yapılandırın:
+
+    * Kural koşulu, `wallarm_process_time_limit` ve `wallarm_process_time_limit_block` yönergelerinin belirtildiği NGINX yapılandırma bloğu ile eşleşmelidir.
+    * Düğümün tek bir isteği işlemesi için zaman sınırı (milisaniye): `wallarm_process_time_limit` değeri.
     
         !!! warning "Sistem belleğinin tükenme riski"
-            Yüksek zaman sınırı ve/veya sınır aşıldıktan sonra isteğin işlenmeye devam etmesi, bellek tükenmesine veya süresiz istek işlenmesine neden olabilir.
+            Zaman sınırının yüksek olması ve/veya sınır aşıldıktan sonra isteğin işlenmesine devam edilmesi, bellek tükenmesine veya isteklerin zamanında işlenememesine yol açabilir.
     
-    * Düğüm, [node filtration mode][waf-mode-instr]'e bağlı olarak `overlimit_res` saldırısını engelleyecek veya geçecektir:
-    
-        * **monitoring** modunda, düğüm orijinal isteği uygulama adresine iletir. Uygulama, işlenen ve işlenmeyen istek parçalarında yer alan saldırılara maruz kalma riski taşır.
-        * **safe blocking** modunda, istek [graylisted][graylist-docs] IP adresinden geliyorsa düğüm isteği engeller. Aksi takdirde, düğüm orijinal isteği uygulama adresine iletir. Uygulama, işlenen ve işlenmeyen istek parçalarında yer alan saldırılara maruz kalma riski taşır.
-        * **block** modunda, düğüm isteği engeller.
+    * Düğüm, [node filtration mode][waf-mode-instr] değerine bağlı olarak `overlimit_res` saldırısını engeller veya geçirir:
+
+        * **monitoring** modunda düğüm orijinal isteği uygulama adresine iletir. Uygulama, hem işlenmiş hem de işlenmemiş istek parçalarına dahil edilen saldırılar tarafından istismar edilme riski taşır.
+        * **safe blocking** modunda, istek [graylisted][graylist-docs] IP adresinden geliyorsa düğüm isteği engeller. Aksi halde, düğüm orijinal isteği uygulama adresine iletir. Uygulama, hem işlenmiş hem de işlenmemiş istek parçalarına dahil edilen saldırılar tarafından istismar edilme riski taşır.
+        * **block** modunda düğüm isteği engeller.
 1. NGINX yapılandırma dosyasından `wallarm_process_time_limit` ve `wallarm_process_time_limit_block` NGINX yönergelerini silin.
 
-Eğer `overlimit_res` saldırı tespiti hem yönergeler hem de kural kullanılarak ince ayar yapıldıysa, düğüm istekleri kuralın belirlediği şekilde işleyecektir.
+    `overlimit_res` saldırı tespiti hem yönergeler hem de kural kullanılarak ince ayar yapılıyorsa, düğüm istekleri kuralın belirlediği şekilde işler.

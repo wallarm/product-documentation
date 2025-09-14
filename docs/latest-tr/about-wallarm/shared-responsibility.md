@@ -1,48 +1,89 @@
-# Müşterilerin Verileri için Paylaşılan Sorumluluk Güvenlik Modeli
+[link-deployment-se]:           ../installation/security-edge/overview.md
+[link-deployment-hybrid]:       ../installation/supported-deployment-options.md
+[link-deployment-on-prem]:      ../installation/on-premise/overview.md
 
-Wallarm, paylaşılan sorumluluk güvenlik modeline dayanmaktadır. Bu modelde, müşterilerin verilerinin güvenliği (kişisel olarak tanımlanabilir bilgiler (PII) ve Kart Sahibi Verileri dahil) söz konusu olduğunda, tüm tarafların (Wallarm ve müşterileri) farklı sorumluluk alanları bulunmaktadır.
+# Müşteri Verileri için Paylaşılan Sorumluluk
 
-Wallarm, farklı sorumluluk alanlarında iki ana bileşene sahip hibrit bir çözümdür (parça yazılım, parça SaaS):
+Wallarm, paylaşılan sorumluluk güvenlik modeline dayanır. Bu modelde, tüm tarafların (Wallarm ve müşterileri) müşteri verilerinin güvenliği söz konusu olduğunda, kişisel olarak tanımlanabilir bilgiler (PII) ve kart sahibi verileri dahil olmak üzere farklı sorumluluk alanları vardır.
 
-* **Wallarm filtering node** yazılımı, altyapınıza kurulmuş olup sizin tarafınızdan yönetilir. Wallarm node bileşeni, son kullanıcı isteklerini filtrelemek, uygulamanıza güvenli istekler göndermek ve kötü amaçlı istekleri engellemekten sorumludur. Wallarm node, trafiği iletir ve bir isteğin kötü amaçlı olup olmadığına yerel olarak karar verir. Trafik analiz için Wallarm Cloud'a yansıtılmaz.
-* **Wallarm Cloud**, Wallarm tarafından yönetilen bir bulut bileşenidir ve filtreleme nodelarından işlenen isteklerle ilgili meta bilgileri ve tespit edilen saldırıları almak; ayrıca uygulamaya özel filtreleme kuralları oluşturup bunların nodeların indirmesi için kullanılabilir hale getirilmesinden sorumludur. Wallarm Console ve genel API, güvenlik raporlarını ve bireysel olayları görme; trafik filtreleme kuralları, Wallarm Console kullanıcıları, dış entegrasyonlar vb. yönetimine olanak tanır.
+## Genel Bakış
 
-![Sorumluluklar Şeması](../images/shared-responsibility.png)
+Wallarm'ın iki ana bileşeni vardır: **Wallarm filtering node** ve **Wallarm Cloud**. Genel açıklamalarını [burada](../about-wallarm/overview.md#how-wallarm-works) görebilirsiniz. Bu bileşenler, Wallarm ile müşterinin sorumluluklarının farklı şekilde paylaşıldığı üç formdan biriyle dağıtılabilir:
 
-## Wallarm Sorumlulukları
+--8<-- "../include/deployment-forms.md"
 
-Wallarm aşağıdaki noktalardan sorumludur:
+![Sorumluluklar şeması](../images/shared-responsibility-variants.png)
 
-* Wallarm bulut ortamlarının güvenliği ve erişilebilirliği, Wallarm filtering node kodunun güvenliği ve iç Wallarm sistemlerinin güvenliği.
+## Security Edge
 
-    Buna, ancak bunlarla sınırlı olmamak üzere: sunucu düzeyi yamaları, Wallarm bulut hizmetini sunmak için gerekli servislerin işletilmesi, güvenlik açıkları testi, güvenlik olay kaydı ve izleme, olay yönetimi, operasyonel izleme ve 7/24 destek dahildir. Wallarm ayrıca Wallarm bulut ortamlarının sunucu ve çevresel güvenlik duvarı yapılandırmalarını (güvenlik grupları) yönetmekle de sorumludur.
+Bu dağıtım biçiminde, hem Wallarm filtering node'lar hem de Wallarm Cloud bileşenleri Wallarm tarafından yönetilir; dolayısıyla sorumlulukların çoğu Wallarm tarafındadır.
 
-* Wallarm filtering node bileşeninin periyodik olarak güncellenmesi. Bu güncellemelerin uygulanmasının müşterinin sorumluluğunda olduğunu unutmayın.
+**Wallarm'ın sorumlulukları**
 
-* İstenildiği takdirde, size en güncel Wallarm SOC 2 Type II denetim raporunun bir kopyasını sağlamaktır.
+* Wallarm bulut ortamlarının güvenliği ve erişilebilirliği, Wallarm filtering node kodunun güvenliği ve Wallarm'ın dahili sistemlerinin güvenliği.
 
-## Müşteri Sorumlulukları
+    Buna şunlar dahildir ancak bunlarla sınırlı değildir: sunucu düzeyinde yamalama, Wallarm bulut hizmetini sunmak için gerekli hizmetlerin işletilmesi, zafiyet testleri, güvenlik olaylarının günlüklenmesi ve izlenmesi, olay yönetimi, operasyonel izleme ve 7/24 destek. Wallarm ayrıca Wallarm bulut ortamlarının sunucu ve çevre güvenlik duvarı yapılandırmalarını (güvenlik grupları) yönetmekten sorumludur.
 
-Wallarm müşterileri aşağıdaki noktalardan sorumludur:
+* [Edge Inline Node](../installation/security-edge/inline/upgrade-and-management.md#upgrading-the-edge-inline) veya [Edge Connector Node](../installation/security-edge/se-connector.md#upgrading-the-edge-node) bileşenlerinin [periyodik olarak](../updating-migrating/versioning-policy.md) yükseltilmesi.
+* Talep edilmesi halinde en son Wallarm SOC 2 Type II denetim raporunun bir kopyasının sağlanması.
+* Wallarm tarafından sunulan hizmetlerin sürekliliğine yardımcı olacak bir iş sürekliliği ve felaket kurtarma planının (BCDRP) geliştirilmesi ve gerekli olduğunda uygulanması.
 
-* Wallarm ile ilişkili tüm dahili bileşenler için genel BT sistem erişimi ve sistem kullanım uygunluğu konusunda sağlam ve tutarlı dahili kontrollerin uygulanması, buna Wallarm filtering node ve Wallarm Cloud da dahildir.
+**Müşteri sorumlulukları**
 
-* Wallarm hizmetleriyle ilişkili önemli fonksiyonlar veya faaliyetlerde daha önce yer alan ve artık görevde olmayan kullanıcı hesaplarının kaldırılmasını uygulamak.
+* Wallarm'ın hizmetleriyle ilişkili herhangi bir esaslı fonksiyon veya faaliyette daha önce yer almış ve iş akdi sonlandırılmış kullanıcıların kullanıcı hesaplarının kaldırılmasını uygulamak.
+* Wallarm tarafından gerçekleştirilen hizmetlerle doğrudan ilgili personeldeki değişiklikleri zamanında Wallarm’a bildirmek. Bu personel, Wallarm tarafından sağlanan hizmetlerle doğrudan ilişkili finansal, teknik veya yardımcı idari işlevlerde görev alabilir.
 
-* Müşteri güvenlik alanını terk edebilecek ve tespit edilen kötü amaçlı isteklerin raporlanması kapsamında Wallarm Cloud'a gönderilen herhangi bir hassas veri için uygun [veri maskeleme kuralları](../user-guides/rules/sensitive-data-rule.md) yapılandırmak.
+## Hibrit
 
-* Wallarm hizmetleriyle ilişkili müşteri organizasyonları için işlemlerin uygun şekilde yetkilendirildiğinden, işlemlerin güvenli, zamanında ve eksiksiz olduğundan emin olmak.
+Bu dağıtım biçiminde, Wallarm müşterileri Wallarm filtering node'ları dağıtır ve yönetir; Wallarm ise Wallarm Cloud bileşenini yönetir; dolayısıyla sorumluluklar eşit şekilde paylaşılır.
 
-* Wallarm tarafından gerçekleştirilen hizmetlerle doğrudan ilgilenen personeldeki herhangi bir değişikliği Wallarm'a zamanında bildirmek. Bu personel, Wallarm tarafından sağlanan hizmetlerle doğrudan ilişkili finansal, teknik veya ek idari işlevlerde yer alabilir.
+**Wallarm'ın sorumlulukları**
 
-* Wallarm tarafından yayınlanan yeni yazılım güncellemeleriyle filtering nodeların zamanında güncellenmesi.
+* Wallarm bulut ortamlarının güvenliği ve erişilebilirliği, Wallarm filtering node kodunun güvenliği ve Wallarm'ın dahili sistemlerinin güvenliği.
+* Wallarm filtering node bileşeninin [periyodik olarak](../updating-migrating/versioning-policy.md) güncellenmesi. Bu güncellemelerin uygulanmasının müşterinin sorumluluğunda olduğunu lütfen unutmayın.
+* Talep edilmesi halinde en son Wallarm SOC 2 Type II denetim raporunun bir kopyasının sağlanması.
 
-* Wallarm tarafından sağlanan hizmetlerin devamını destekleyecek bir iş sürekliliği ve felaket kurtarma planı (BCDRP) geliştirmek ve gerekirse uygulamaya koymak.
+**Müşteri sorumlulukları**
 
-## Hassas Verilerin Maskelemesi
+Wallarm müşterileri aşağıdaki hususlardan sorumludur:
 
-Herhangi bir üçüncü taraf hizmette olduğu gibi, bir Wallarm müşterisinin hangi müşteri verilerinin Wallarm'a gönderildiğini anlaması ve hassas verilerin hiçbir zaman Wallarm Cloud'a ulaşmayacağından emin olması önemlidir. PCI DSS, GDPR ve diğer gereksinimlere sahip Wallarm müşterilerinin özel kurallar kullanarak hassas verileri maskelemeleri önerilir.
+* Wallarm ile ilişkili tüm dahili bileşenler (Wallarm filtering node ve Wallarm Cloud dahil) için genel BT sistemi erişimi ve sistem kullanımının uygunluğuna yönelik sağlam ve tutarlı iç kontrollerin uygulanması.
 
-Filtreleme nodelardan Wallarm Cloud'a gönderilen ve hassas detaylar içerebilecek tek veri, tespit edilen kötü amaçlı isteklerle ilgili bilgilerdir. Kötü amaçlı bir isteğin herhangi bir hassas veri içermesi oldukça düşük bir ihtimaldir. Ancak, önerilen yaklaşım, `token`, `password`, `api_key`, `email`, `cc_number` vb. gibi PII veya kredi kartı detayları içerebilecek HTTP istek alanlarını maskelemektir. Bu yaklaşım, belirtilen bilgi alanlarının güvenlik çevrenizden asla çıkmayacağının garantisini verecektir.
+* Wallarm’ın hizmetleriyle ilişkili herhangi bir esaslı fonksiyon veya faaliyette daha önce yer almış ve iş akdi sonlandırılmış kullanıcıların kullanıcı hesaplarının kaldırılmasını uygulamak.
 
-Filtreleme nodedan Wallarm Cloud'a saldırı bilgilerini gönderirken hangi alanların (istek URI'si, başlıkları veya gövdesi içerisinde) hariç tutulması gerektiğini belirtmek için **Mask sensitive data** adlı özel bir kural uygulayabilirsiniz. Verilerin maskelemesi hakkında ek bilgi için lütfen [belgeye](../user-guides/rules/sensitive-data-rule.md) bakın veya [Wallarm destek ekibi](mailto:request@wallarm.com) ile iletişime geçin.
+* Müşterinin güvenlik çevresini terk edebilecek ve tespit edilen kötü amaçlı isteklerin raporlanmasının bir parçası olarak Wallarm Cloud'a gönderilen hassas veriler için uygun [veri maskeleme kurallarını](../user-guides/rules/sensitive-data-rule.md) yapılandırmak.
+
+* Wallarm’ın hizmetleriyle ilgili müşteri kuruluşlarına ait işlemlerin uygun şekilde yetkilendirildiğini ve işlemlerin güvenli, zamanında ve eksiksiz olduğunu sağlamak.
+
+* Wallarm tarafından gerçekleştirilen hizmetlerle doğrudan ilgili personeldeki değişiklikleri zamanında Wallarm’a bildirmek. Bu personel, Wallarm tarafından sağlanan hizmetlerle doğrudan ilişkili finansal, teknik veya yardımcı idari işlevlerde görev alabilir.
+
+* Wallarm tarafından yayımlanan yeni yazılım güncellemeleriyle filtering node'ları zamanında güncellemek.
+
+* Wallarm tarafından sunulan hizmetlerin sürekliliğine yardımcı olacak bir iş sürekliliği ve felaket kurtarma planının (BCDRP) geliştirilmesi ve gerekli olduğunda uygulanması.
+
+## On-Premise
+
+Bu dağıtım biçiminde, hem Wallarm filtering node hem de Wallarm Cloud bileşenleri müşteri tarafından barındırılır ve yönetilir; dolayısıyla sorumlulukların (kontrol ile birlikte) çoğu müşteri tarafına aittir.
+
+**Wallarm'ın sorumlulukları**
+
+* Wallarm filtering node ve Cloud kodunun güvenliği.
+* Wallarm filtering node ve Cloud bileşenlerinin periyodik olarak güncellenmesi. Bu güncellemelerin uygulanmasının müşterinin sorumluluğunda olduğunu lütfen unutmayın.
+
+**Müşteri sorumlulukları**
+
+* Wallarm filtering node'ların ve Cloud dağıtımı için kullanılan ortamların güvenliğini ve erişilebilirliğini sağlamak.
+* Wallarm tarafından yayımlanan yeni yazılım güncellemeleriyle filtering node'ları ve Cloud'u zamanında güncellemek.
+* Wallarm ile ilişkili tüm dahili bileşenler (Wallarm filtering node ve Wallarm Cloud dahil) için genel BT sistemi erişimi ve sistem kullanımının uygunluğuna yönelik sağlam ve tutarlı iç kontrollerin uygulanması.
+* Wallarm’ın hizmetleriyle ilişkili herhangi bir esaslı fonksiyon veya faaliyette daha önce yer almış ve iş akdi sonlandırılmış kullanıcıların kullanıcı hesaplarının kaldırılmasını uygulamak.
+* Wallarm’ın hizmetleriyle ilgili müşteri kuruluşlarına ait işlemlerin uygun şekilde yetkilendirildiğini ve işlemlerin güvenli, zamanında ve eksiksiz olduğunu sağlamak.
+* Wallarm tarafından sunulan hizmetlerin sürekliliğine yardımcı olacak bir iş sürekliliği ve felaket kurtarma planının (BCDRP) geliştirilmesi ve gerekli olduğunda uygulanması.
+
+## Wallarm Cloud'da Müşteri Verilerinin Depolanması
+
+Wallarm'ın hibrit ve bulut dağıtımlarında, filtering node'lardan gönderilen tüm veriler, tamamen Wallarm tarafından yönetilen Wallarm Cloud'da depolanır:
+
+* İstek ve saldırı verileri PostgreSQL veritabanında saklanır; ilişkili içerik Google Cloud Storage (S3 ile uyumlu) üzerinde kalıcı hale getirilir ve performans için Redis'te önbelleğe alınır. Google Cloud dışındaki üçüncü taraf hizmetler kullanılmaz.
+* Tüm depolama, Wallarm’ın güvenli altyapısının bir parçası olarak Google Cloud Platform üzerinde barındırılır.
+* GCP, GDPR ve diğer uluslararası veri koruma standartlarına uygundur; bu da veri güvenliği ve gizliliğini sağlar.
+* Wallarm, verilerin tercih edilen yargı bölgeleri içinde kalmasını sağlamak için birden fazla [bölgede](overview.md#cloud) (ABD ve AB) dağıtımı destekler.

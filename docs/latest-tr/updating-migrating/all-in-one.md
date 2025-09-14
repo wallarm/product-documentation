@@ -1,203 +1,42 @@
 [statistics-service-all-parameters]:        ../admin-en/configure-statistics-service.md
 [img-attacks-in-interface]:                 ../images/admin-guides/test-attacks-quickstart.png
-[tarantool-status]:                         ../images/tarantool-status.png
 [configure-proxy-balancer-instr]:           ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [ptrav-attack-docs]:                        ../attacks-vulns-list.md#path-traversal
 
-# Tümü Bir Arada Yükleyici ile Wallarm NGINX Düğümünü Güncelleme
+# All-in-One Yükleyici ile Wallarm NGINX Node'unu Yükseltme
 
-Bu talimatlar, [all-in-one installer](../installation/nginx/all-in-one.md) kullanılarak kurulan Wallarm düğüm 4.x'in 5.0 sürümüne nasıl güncelleneceğini açıklamaktadır.
+Bu talimatlar, [all‑in‑one installer](../installation/nginx/all-in-one.md) kullanılarak kurulan Wallarm node'unu en son 6.x sürümüne yükseltme adımlarını açıklar.
 
-!!! info "Wallarm Servislerinin Yeniden Kurulması Gerekmektedir"
-    4.x sürümünden, tümü bir arada yükleyici kullanılarak güncelleme yapılırken, düğümün temiz bir kurulumunun gerçekleştirilmesi önerilir. Güvenli bir prosedür için, yeni düğümü yeni bir makineye kurun, trafiği yeni makineye yönlendirin ve ardından eski makineyi kaldırın.
+!!! info "Wallarm servislerinin yeniden kurulması gereklidir"
+    Güvenli bir yükseltme prosedürü için, yeni Node'u yeni bir makineye kurun, trafiği yeni makineye yönlendirin ve ardından eskiyi kaldırın.
     
-    Alternatif olarak, mevcut makinenizdeki servisleri durdurup kaldırabilir ve sonrasında düğümü yeniden kurabilirsiniz. Ancak bu, önerilmeyen bir kesinti süresine neden olabilir.
+    Alternatif olarak, mevcut makinenizdeki servisleri durdurup kaldırabilir ve ardından node'u yeniden kurabilirsiniz. Ancak bu, önerilmeyen bazı kesinti sürelerine neden olabilir.
 
-    Bu makale, en güvenli geçiş yöntemini açıklamaktadır.
+    Bu makale en güvenli geçiş yöntemini açıklar.
 
-## Gereksinimler
+## Adım 1: Yeni node sürümünü temiz bir makineye kurun
 
---8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
+1. 5.x veya daha eski bir sürümden yükseltiyor ve postanalytics modülü ayrı kurulmuşsa, mevcut yapılandırmalarınızı [postanalytics için Tarantool’un wstore ile değiştirilmesi](what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics) doğrultusunda kopyalayıp güncelleyin:
 
-<!-- ## Upgrade procedure
+    * Filtreleme node'u makinesinde, `/etc/nginx/nginx.conf` dosyasının `http` bloğunda `wallarm_tarantool_upstream` ögesini [`wallarm_wstore_upstream`](../admin-en/configure-parameters-en.md#wallarm_wstore_upstream) olarak yeniden adlandırın.
+    * Postanalytics makinesinde (özel bir host ve port kullanıyorsanız), `/opt/wallarm/etc/wallarm/node.yaml` içinde `tarantool` bölümünü `wstore` olarak yeniden adlandırın.
+1. Node’un en yeni sürümünü, NGINX’in en güncel sürümüyle birlikte, **yeni bir makineye** aşağıdaki kılavuzlardan birini izleyerek kurun. Kılavuz, makine için gereksinimleri de kapsar.
 
-Güncelleme prosedürü, filtreleme düğümü ve postanalytics modüllerinin nasıl yüklendiğine bağlı olarak farklılık gösterir:
+    * [Filtreleme ve postanalytics modülleri aynı sunucuda](../installation/nginx/all-in-one.md) - önceki yapılandırma dosyalarınızı aktarabilir ve yeniden kullanabilirsiniz.
+    * [Filtreleme ve postanalytics modülleri farklı sunucularda](../admin-en/installation-postanalytics-en.md) - 1. adımda güncellenen yapılandırma dosyalarını kullanın.
+1. Trafiği yeni node’un işlemesi için yeni makineye yönlendirin.
 
-* [Aynı sunucuda](#filtering-node-and-postanalytics-on-the-same-server): modüller birlikte güncellenir
-* [Farklı sunucularda](#filtering-node-and-postanalytics-on-different-servers): **önce** postanalytics modülü, **sonra** filtreleme modülü güncellenir -->
+## Adım 2: Eski node’u kaldırın
 
-<!-- ## Filtering node and postanalytics on the same server
-
-Aynı sunucuda, tümü bir arada yükleyici kullanılarak kurulan filtreleme düğümü ve postanalytics modüllerini birlikte güncellemek için aşağıdaki prosedürü kullanın. -->
-
-## Adım 1: Temiz Bir Makinede Yeni Düğüm Sürümünü Yükleyin
-
-Yeni düğümün en güncel sürümünü, en son NGINX ile birlikte **yeni bir makineye** aşağıdaki kılavuzlardan birini izleyerek yükleyin. Kılavuz aynı zamanda makine için gereksinimleri de kapsamaktadır.
-
-* [Aynı sunucuda filtreleme ve postanalytics modülleri](../installation/nginx/all-in-one.md)
-* [Farklı sunucularda filtreleme ve postanalytics modülleri](../admin-en/installation-postanalytics-en.md)
-
-Yükleme sırasında, önceki düğüm için kullandığınız yapılandırma dosyalarını aktarabilir ve kullanabilirsiniz – düğüm yapılandırmasında herhangi bir değişiklik yapılmamıştır.
-
-Ardından, trafiği yeni makineye yönlendirerek yeni düğümün bu trafiği işlemesini sağlayın.
-
-## Adım 2: Eski Düğümü Kaldırın
-
-1. Trafik yeni makineye yönlendirildikten ve Wallarm Cloud'da saklanan verileriniz (kurallar, IP listeleri) senkronize edildikten sonra, kurallarınızın beklendiği gibi çalıştığından emin olmak için bazı test saldırıları gerçekleştirin.
-2. Wallarm Console → **Düğümler** bölümünde, düğümünüzü seçip **Sil** butonuna tıklayarak eski düğümü kaldırın.
-3. İşlemi onaylayın.
+1. Trafik yeni makineye yönlendirildikten ve Cloud üzerinde saklanan verileriniz (kurallar, IP listeleri) senkronize edildikten sonra, kurallarınızın beklendiği gibi çalıştığından emin olmak için bazı test saldırıları gerçekleştirin.
+1. Wallarm Console → **Nodes** içinde eski node’u seçip **Delete** tıklayarak silin.
+1. İşlemi onaylayın.
     
-    Düğüm Cloud'dan silindiğinde, uygulamalarınıza gelen isteklerin filtrelenmesi duracaktır. Filtreleme düğümünün silinmesi geri alınamaz. Düğüm, düğümler listesinden kalıcı olarak kaldırılır.
+    Node Cloud’dan silindiğinde, uygulamalarınıza gelen isteklerin filtrelenmesini durduracaktır. Filtreleme node’unun silinmesi geri alınamaz. Node, node listesinde kalıcı olarak silinir.
 
-4. Eski düğüm içeren makineyi silin veya sadece Wallarm düğüm bileşenlerini temizleyin:
+1. Eski node’un bulunduğu makineyi silin veya yalnızca Wallarm node bileşenlerinden temizleyin:
 
     ```
     sudo systemctl stop wallarm
     sudo rm -rf /opt/wallarm
     ```
-
-<!-- ### Adım 1: Wallarm Jetonu Hazırlayın
-
-Düğümü güncellemek için [bu türlerden](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation) bir Wallarm jetonuna ihtiyacınız olacak. Bir jeton hazırlamak için:
-
-=== "API jetonu"
-
-    1. Wallarm Console → **Ayarlar** → **API jetonları** bölümünü [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens) üzerinden açın.
-    1. `Deploy` kaynak rolüne sahip API jetonunu bulun veya oluşturun.
-    1. Bu jetonu kopyalayın.
-
-=== "Düğüm jetonu"
-
-    Güncelleme için, kurulum sırasında kullanılan aynı düğüm jetonunu kullanın:
-
-    1. Wallarm Console → **Düğümler** bölümünü [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) üzerinden açın.
-    1. Mevcut düğüm grubunuzda, düğüm menüsünden → **Jetonu Kopyala** seçeneği ile jetonu kopyalayın.
-
-### Adım 2: En Son Sürüm Tümü Bir Arada Wallarm Yükleyicisini İndirin
-
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
-
-### Adım 3: Tümü Bir Arada Wallarm Yükleyicisini Çalıştırın
-
-İndirilen betiği çalıştırın:
-
-=== "API jetonu"
-    ```bash
-    # x86_64 versiyonu kullanılıyorsa:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
-
-    # ARM64 versiyonu kullanılıyorsa:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
-    ```
-=== "Düğüm jetonu"
-    ```bash
-    # x86_64 versiyonu kullanılıyorsa:
-    sudo sh wallarm-5.3.0.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
-
-    # ARM64 versiyonu kullanılıyorsa:
-    sudo sh wallarm-5.3.0.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
-    ```
-
-* `<GROUP>`, düğümün ekleneceği grubu belirler (Wallarm Console arayüzünde düğümlerin mantıksal gruplandırılması için kullanılır). Yalnızca API jetonu kullanıldığında uygulanır.
-* `<TOKEN>`, kopyalanan jetonun değeridir.
-* `<CLOUD>`, yeni düğümün kaydedileceği Wallarm Cloud'dur. `US` veya `EU` olabilir.
-
-### Adım 4: NGINX'i Yeniden Başlatın
-
---8<-- "../include/waf/installation/restart-nginx-systemctl.md"
-
-### Adım 5: Wallarm Düğümünün Çalışmasını Test Edin
-
-Yeni düğümün çalışmasını test etmek için:
-
-1. Korunan bir kaynak adresine test [Path Traversal][ptrav-attack-docs] saldırısı içeren isteği gönderin:
-
-    ```
-    curl http://localhost/etc/passwd
-    ```
-
-1. Wallarm Console → **Saldırılar** bölümünü [US Cloud](https://us1.my.wallarm.com/attacks) veya [EU Cloud](https://my.wallarm.com/attacks) üzerinden açın ve saldırıların listede göründüğünden emin olun.
-1. Cloud'da saklanan verileriniz (kurallar, IP listeleri) yeni düğüme senkronize edilir edilmez, kurallarınızın beklendiği gibi çalıştığından emin olmak için bazı test saldırıları gerçekleştirin. -->
-
-<!-- ### Adım 1: Wallarm Jetonu Hazırlayın
-
-Düğümü güncellemek için [bu türlerden](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation) bir Wallarm jetonuna ihtiyacınız olacak. Bir jeton hazırlamak için:
-
-=== "API jetonu"
-
-    1. Wallarm Console → **Ayarlar** → **API jetonları** bölümünü [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens) üzerinden açın.
-    1. `Deploy` kaynak rolüne sahip API jetonunu bulun veya oluşturun.
-    1. Bu jetonu kopyalayın.
-
-=== "Düğüm jetonu"
-
-    Güncelleme için, kurulum sırasında kullanılan aynı düğüm jetonunu kullanın:
-
-    1. Wallarm Console → **Düğümler** bölümünü [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) üzerinden açın.
-    1. Mevcut düğüm grubunuzda, düğüm menüsünden → **Jetonu Kopyala** seçeneği ile jetonu kopyalayın.
-
-### Adım 2: Tümü Bir Arada Wallarm Yükleyicisinin En Son Sürümünü Postanalytics Makinesine İndirin
-
-Bu adım, postanalytics makinesinde gerçekleştirilir.
-
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
-
-### Adım 3: Postanalytics'i Güncellemek için Tümü Bir Arada Wallarm Yükleyicisini Çalıştırın
-
-Bu adım, postanalytics makinesinde gerçekleştirilir.
-
-=== "API jetonu"
-    ```bash
-    # x86_64 versiyonu kullanılıyorsa:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
-
-    # ARM64 versiyonu kullanılıyorsa:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
-    ```
-=== "Düğüm jetonu"
-    ```bash
-    # x86_64 versiyonu kullanılıyorsa:
-    sudo sh wallarm-5.3.0.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
-
-    # ARM64 versiyonu kullanılıyorsa:
-    sudo sh wallarm-5.3.0.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
-    ```
-
-* `<GROUP>`, düğümün ekleneceği grubu belirler (Wallarm Console arayüzünde düğümlerin mantıksal gruplandırılması için kullanılır). Yalnızca API jetonu kullanıldığında uygulanır.
-* `<TOKEN>`, kopyalanan jetonun değeridir.
-* `<CLOUD>`, yeni düğümün kaydedileceği Wallarm Cloud'dur. `US` veya `EU` olabilir.
-
-### Adım 4: Filtreleme Düğümü Makinesi için Tümü Bir Arada Wallarm Yükleyicisinin En Son Sürümünü İndirin
-
-Bu adım, filtreleme düğümü makinesinde gerçekleştirilir.
-
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
-
-### Adım 5: Filtreleme Düğümünü Güncellemek için Tümü Bir Arada Wallarm Yükleyicisini Çalıştırın
-
-Bu adım, filtreleme düğümü makinesinde gerçekleştirilir.
-
-=== "API jetonu"
-    ```bash
-    # x86_64 versiyonu kullanılıyorsa:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
-
-    # ARM64 versiyonu kullanılıyorsa:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
-    ```
-=== "Düğüm jetonu"
-    ```bash
-    # x86_64 versiyonu kullanılıyorsa:
-    sudo sh wallarm-5.3.0.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
-
-    # ARM64 versiyonu kullanılıyorsa:
-    sudo sh wallarm-5.3.0.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
-    ```
-
-* `<GROUP>`, düğümün ekleneceği grubu belirler (Wallarm Console arayüzünde düğümlerin mantıksal gruplandırılması için kullanılır). Yalnızca API jetonu kullanıldığında uygulanır.
-* `<TOKEN>`, kopyalanan jetonun değeridir.
-* `<CLOUD>`, yeni düğümün kaydedileceği Wallarm Cloud'dur. `US` veya `EU` olabilir.
-
-### Adım 6: Filtreleme Düğümü ile Ayrı Postanalytics Modüllerinin Etkileşimini Kontrol Edin
-
---8<-- "../include/waf/installation/all-in-one-postanalytics-check.md" -->

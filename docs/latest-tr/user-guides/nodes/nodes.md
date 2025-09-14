@@ -1,117 +1,116 @@
-# Wallarm nodes
+# Wallarm düğümleri
 
-Wallarm Console kullanıcı arayüzündeki **Nodes** bölümü, kendi kendine barındırılan node örneklerini yönetmenizi sağlar.
+Wallarm Console UI'nin **Nodes** bölümü, kendi barındırdığınız düğüm örneklerini yönetmenize olanak tanır.
 
-Wallarm node modülleri, Wallarm'ın kötü niyetli trafiği engellemesi için müşterinin ortamına dağıtılmalıdır. Wallarm node, kötü niyetli istekleri engelleyerek ve meşru istekleri korunan kaynağa ileterek bir proxy olarak çalışır.
+Wallarm node modülleri, kötü amaçlı trafiği azaltmak için müşterinin ortamına dağıtılmalıdır. Wallarm node, kötü amaçlı istekleri azaltıp meşru istekleri korunan kaynağa ileten bir proxy olarak çalışır.
 
 Wallarm node UI yönetim seçenekleri:
 
-* Yeni node oluşturma
-* Yüklenmiş node'ların özelliklerini ve metriklerini görüntüleme
-* Node tokenlarını yeniden oluşturma
-* Node'ları yeniden adlandırma
-* Node'ları silme
+* Yeni düğümler oluşturma
+* Kurulu düğümlerin özelliklerini ve metriklerini görüntüleme
+* Düğüm token'larını yeniden oluşturma
+* Düğümleri yeniden adlandırma
+* Düğümleri silme
 
 ![Nodes](../../images/user-guides/nodes/table-nodes.png)
 
 !!! info "Yönetici erişimi"
-    Wallarm node/token oluşturma, silme ve yeniden oluşturma işlemleri yalnızca **Administrator** veya **Global Administrator** rolüne sahip kullanıcılara açıktır. Yüklenmiş node'ların detaylarını görüntüleme tüm kullanıcılar tarafından yapılabilir.
+    Wallarm düğümlerinin/token'larının oluşturulması, silinmesi ve yeniden oluşturulması yalnızca **Administrator** veya **Global Administrator** rolüne sahip kullanıcılar için kullanılabilir. Kurulu düğümlerin ayrıntılarını görüntüleme tüm kullanıcılar için mevcuttur.
 
-!!! warning "Normal ve cloud türündeki node'lar kaldırıldı"
-    4.6 sürümünden itibaren, yalnızca [**Wallarm node** türü mevcuttur](../../updating-migrating/older-versions/what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-api-tokens).
+!!! warning "Normal ve bulut düğüm türleri kaldırıldı"
+    Sürüm 4.6'dan itibaren yalnızca [**Wallarm node** türü kullanılabilir](../../updating-migrating/older-versions/what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-api-tokens).
 
-    **Wallarm node**, [desteklenen herhangi bir ortamda](../../installation/supported-deployment-options.md) kayıt ve yapılandırma işlemini tekilleştirilmiş bir yaklaşımla kullanır.
+    **Wallarm node**, [desteklenen herhangi bir ortamda](../../installation/supported-deployment-options.md) kayıt ve yapılandırma için birleşik bir yaklaşım kullanır.
 
-## Node Oluşturma
+## Bir düğüm oluşturma
 
-[Uygun token](#api-and-node-tokens-for-node-creation) kullanılarak bir Wallarm node oluşturmak için:
+[uygun token](#api-and-node-tokens-for-node-creation) kullanarak bir Wallarm node oluşturmak için:
 
 === "API token ile"
 
-    1. Wallarm Console → **Settings** → **API tokens** bölümünü [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens) üzerinden açın.
-    1. `Deploy` kaynak rolüne sahip bir API token’ı bulun veya oluşturun.
-    1. Bu token’ı kopyalayın.
-    1. API token’ınızı kullanarak yeni node’u [uygun ortama](../../installation/supported-deployment-options.md) dağıtın. Node kaydedildikten sonra, Wallarm Console’daki **Nodes** bölümünde otomatik olarak görünecektir.
+    1. Wallarm Console → **Settings** → **API tokens**'ı [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens)'da açın.
+    1. Kullanım türü `Node deployment/Deployment` olan bir API token'ı bulun veya oluşturun.
+    1. Bu token'ı kopyalayın.
+    1. API token'ınızı kullanarak yeni düğümü [uygun ortama](../../installation/supported-deployment-options.md) dağıtın. Düğüm kaydedildikten sonra, Wallarm Console'un **Nodes** bölümünde otomatik olarak görünecektir.
 
 === "Node token ile"
 
-    1. Wallarm Console → **Nodes** bölümünü [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) üzerinden açın ve **Wallarm node** türünde node oluşturun.
+    1. Wallarm Console → **Nodes**'u [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes)'da açın ve **Wallarm node** türünde düğümü oluşturun.
 
-        ![Wallarm node creation](../../images/user-guides/nodes/create-cloud-node.png)
+        ![Wallarm node oluşturma](../../images/user-guides/nodes/create-cloud-node.png)
     
-    1. Oluşturulan token’ı kopyalayın.
-    1. Node token’ınızı kullanarak yeni node’u [uygun ortama](../../installation/supported-deployment-options.md) dağıtın.
+    1. Oluşturulan token'ı kopyalayın.
+    1. Node token'ınızı kullanarak yeni düğümü [uygun ortama](../../installation/supported-deployment-options.md) dağıtın.
 
-!!! info "Multi-tenant seçeneği"
-    **Multi-tenant** seçeneği, Wallarm’ın aynı anda birkaç bağımsız şirket altyapısı veya izole ortamı korumasına olanak tanır. [Daha fazla bilgi edinin](../../installation/multi-tenant/overview.md)
+!!! info "Çok kiracılı (multi-tenant) seçenek"
+    **multi-tenant** seçeneği, Wallarm'ı aynı anda birden fazla bağımsız şirket altyapısını veya izole ortamı korumak için kullanmanıza olanak tanır. [Daha fazla bilgi edinin](../../installation/multi-tenant/overview.md)
 
-    === "API token kurulumu"
+    === "API token ile kurulum"
 
-        Mevcut node menüsünden node kurulumundan sonra node’u multi-tenant moda geçirebilirsiniz.
+        Bir düğümü kurulumdan sonra mevcut düğümün menüsünden multi-tenant moduna geçirebilirsiniz.
 
-    === "Node token kurulumu"
+    === "Node token ile kurulum"
     
-        Bir node’u multi-tenant moda, oluşturma sırasında veya mevcut node menüsünden geçirebilirsiniz.
+        Bir düğümü, oluşturma sırasında veya mevcut düğümün menüsünden multi-tenant moduna geçirebilirsiniz.
 
-## Bir Node’un Detaylarını Görüntüleme
+## Bir düğümün ayrıntılarını görüntüleme
 
-Yüklenmiş filtreleme node’unun detayları, her filtreleme node’unun tablosunda ve kartında görüntülenir. Kartı açmak için ilgili tablo kaydına tıklayın.
+Kurulu filtreleme düğümünün ayrıntıları, her filtreleme düğümünün tablosunda ve kartında görüntülenir. Kartı açmak için ilgili tablo kaydına tıklayın.
 
-Aşağıdaki node özellikleri ve metrikleri mevcuttur:
+Aşağıdaki düğüm özellikleri ve metrikleri mevcuttur:
 
-* Node oluşturulurken verilen node adı
-* Saniyedeki ortalama istek sayısı (RPS)
-* Node IP adresi
-* Benzersiz node kimliği (UUID)
-* Wallarm node token’ı (**Administrator** veya **Global Administrator** [rolüne](../settings/users.md) sahip kullanıcılara görüntülenir)
-* Filtreleme node ile Wallarm Cloud arasındaki son senkronizasyon zamanı
-* Filtreleme node oluşturulma tarihi
-* Mevcut ay içerisinde node tarafından işlenen istek sayısı; ayrıca **Bugünkü bu node’dan gelen olayları görüntüle** seçeneği ile (bu, **Attacks** bölümüne geçiş yapar)
-* Kullanılan LOM ve proton.db versiyonları
-* Yüklenmiş Wallarm paketleri, NGINX ve Envoy versiyonları (varsa)
+* Düğüm oluşturulurken düğüme verilen düğüm adı
+* Saniye başına ortalama istek sayısı (RPS)
+* Düğüm IP adresi
+* Benzersiz düğüm tanımlayıcısı (UUID)
+* Wallarm node token'ı (yalnızca **Administrator** veya **Global Administrator** [rolüne](../settings/users.md) sahip kullanıcılar için görünür)
+* Filtreleme düğümünün Wallarm Cloud ile son eşitlenme zamanı
+* Filtreleme düğümünün oluşturulma tarihi
+* Düğüm tarafından cari ayda işlenen istek sayısı, ayrıca **View events from this node for the day** özelliğini kullanabilirsiniz (sizi **Attacks** bölümüne geçirir)
+* Kullanılan LOM ve proton.db sürümleri
+* Kurulu Wallarm paketleri ve NGINX sürümleri (varsa)
 
-![Node card](../../images/user-guides/nodes/view-wallarm-node.png)
+![Düğüm kartı](../../images/user-guides/nodes/view-wallarm-node.png)
 
-Eğer bir Wallarm node, birden fazla örnek için kurulmuşsa (örneğin, ilk trafik işleme ve farklı sunucu örnekleri tarafından gerçekleştirilen istek sonrası analitik için), ilgili filtreleme node’larına ait kayıt tablodaki tek bir kayıt altında gruplanır. Özellikler ve metrikler her bir örnek için ayrı ayrı gösterilir.
+Bir Wallarm node birden fazla örnek için kuruluysa (ör. başlangıç trafik işleme ve istek post-analitiği farklı sunucu örnekleri tarafından gerçekleştiriliyorsa), karşılık gelen filtreleme düğümü sayısı tabloda tek bir kayıtta gruplanır. Özellikler ve metrikler her örnek için mevcut olacaktır.
 
-Wallarm'da, node örnekleri, `hostname_NodeUUID` formatında adlandırılır, burada:
+Wallarm'da, düğüm örnekleri `hostname_NodeUUID` olarak adlandırılır; burada: 
 
-* `hostname`, node örneğinin çalıştırıldığı makinenin adıdır
-* `NodeUUID`, benzersiz node kimliğidir (UUID)
+* `hostname`, düğüm örneğinin başlatıldığı çalışma makinesinin adıdır
+* `NodeUUID`, benzersiz düğüm tanımlayıcısıdır (UUID)
 
-Node kurulumu sırasında `-n` parametresini kullanarak `hostname` değerini manuel olarak ayarlayabilirsiniz.
+## Düğüm token'ını yeniden oluşturma
 
-## Node Token’ını Yeniden Oluşturma
+Token'ı yeniden oluşturmak, düğüm için yeni bir token oluşturur. 
 
-Token yeniden oluşturma, node için yeni bir token üretir.
+1. Wallarm Console → **Nodes**'u açın.
+2. Düğüm menüsünde veya kartında **Regenerate token**'a tıklayın.
+3. Düğüm zaten altyapınıza kurulmuşsa, yeni token değerini kopyalayın ve kurulu düğüm ayarları içinde belirtin.
 
-1. Wallarm Console → **Nodes** bölümünü açın.
-2. Node menüsünde veya kartında **Regenerate token** seçeneğine tıklayın.
-3. Node altyapınızda zaten kurulu ise, yeni token değerini kopyalayın ve kurulu node ayarları içerisinde belirtin.
+![Düğüm token'ını yeniden oluşturma](../../images/user-guides/nodes/generate-new-token.png)
 
-![Regenerating node token](../../images/user-guides/nodes/generate-new-token.png)
+## Bir düğümü silme
 
-## Node Silme
+Düğüm silindiğinde, uygulamanıza gelen isteklerin filtrasyonu duracaktır. Filtreleme düğümünü silme işlemi geri alınamaz. Düğüm, düğüm listesinden kalıcı olarak silinecektir.
 
-Node silindiğinde, uygulamanıza gelen isteklerin filtrelenmesi duracaktır. Filtreleme node’unun silinmesi geri alınamaz. Node, node listesinden kalıcı olarak silinir.
+1. Wallarm Console → **Nodes**'u açın.
+1. Bir veya daha fazla düğümü seçin ve **Delete**'e tıklayın. Ayrıca düğümü düğüm menüsündeki veya düğüm kartındaki bir düğmeyi seçerek de silebilirsiniz.
+1. İşlemi onaylayın.
 
-1. Wallarm Console → **Nodes** bölümünü açın.
-2. Bir veya daha fazla node seçin ve **Delete** seçeneğine tıklayın. Ayrıca, node menüsündeki veya node kartındaki düğme aracılığıyla da filtreleme node’u silebilirsiniz.
-3. İşlemi onaylayın.
+<a id="api-and-node-tokens-for-node-creation"></a>
+## Düğüm oluşturma için API ve node token'ları
 
-## API ve Node Token’ları ile Node Oluşturma
+Wallarm filtreleme düğümü, Wallarm Cloud ile etkileşime girer. Düğümün Wallarm Cloud API'sine erişebilmesi için Cloud tarafında bir token oluşturmanız ve düğümün bulunduğu makinede kullanmanız gerekir. Bu amaçla **API tokens** (önerilir) veya **Node tokens** kullanın:
 
-Wallarm filtreleme node’u, Wallarm Cloud ile etkileşime girer. Node’a Wallarm Cloud API erişimi sağlamak için, Cloud tarafında bir token oluşturmanız ve bu token’ı node’un bulunduğu makinede kullanmanız gerekir. Bu amaçla **API tokens** (tavsiye edilir) veya **node tokens** kullanın:
+* [`**API tokens**`](../settings/api-tokens.md) kullanım türü `Node deployment/Deployment` olduğunda:
 
-* [**API tokens**](../settings/api-tokens.md) `Deploy` rolü ile aşağıdaki durumlarda:
+    * UI'da düğümleri mantıksal olarak organize etmek için kullanılan düğüm grubu sayısı önceden bilinmiyorsa (düğüm grupları sürekli eklenecek/kaldırılacaksa - API tokens ile bu grupları `group` etiket değerini ayarlayan `WALLARM_LABELS` değişkeniyle kolayca yönetebilirsiniz).
+    * Token'ın yaşam döngüsünü kontrol etmeniz gerekiyorsa (son kullanma tarihini belirtebilir veya API tokens'ı devre dışı bırakabilirsiniz; bu da onları daha güvenli yapar).
 
-    * UI'da node'ları mantıksal olarak organize etmek için kullanılacak node gruplarının sayısı önceden bilinmediğinde (node grupları sürekli eklenip/çıkarılacaktır - API tokens ile `WALLARM_LABELS` değişkeni kullanılarak `group` etiket değeri kolayca yönetilebilir).
-    * Token’ın yaşam döngüsünü kontrol etmeniz gerektiğinde (son kullanma tarihi belirleyebilir veya API token’larını devre dışı bırakabilirsiniz, böylece daha güvenli hale gelir).
+        !!! info "Bazı dağıtım seçenekleri API tokens'ı desteklemez"
+            API tokens şu anda [Terraform module](../../installation/cloud-platforms/aws/terraform-module/overview.md) tabanlı AWS dağıtımları için kullanılamaz. Bunun yerine node tokens kullanın.
 
-        !!! info "API token'lar bazı dağıtım seçenekleri tarafından desteklenmemektedir"
-            API token’lar şu anda [Terraform module](../../installation/cloud-platforms/aws/terraform-module/overview.md) tabanlı AWS dağıtımları için kullanılamamaktadır. Bunun yerine node token kullanın.
+* Önceden hangi düğüm gruplarının bulunacağını biliyorsanız **Node tokens**. Düğüm grubunu oluşturmak ve adlandırmak için **Nodes** → **Create node**'u kullanın. Düğüm dağıtımı sırasında, gruba dahil etmek istediğiniz her düğüm için grubun token'ını kullanın.
 
-* Node token’ları, hangi node gruplarının sunulacağını önceden bildiğinizde kullanın. **Nodes** → **Create node** seçeneğini kullanarak node grubunu oluşturup adlandırın. Node dağıtımı sırasında, gruba dahil etmek istediğiniz her node için grubun token’ını kullanın.
-
-!!! info "Autoscaling desteği"
-    Her iki token türü de bazı cloud/distribüsyon varyantlarında mevcut olan node autoscaling özelliğini destekler.
+!!! info "Otomatik ölçeklendirme desteği"
+    Her iki token türü de bazı bulutlarda/kurulum varyantlarında mevcut olan düğüm otomatik ölçeklendirme özelliğini destekler.

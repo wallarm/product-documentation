@@ -1,4 +1,4 @@
-# Saldırı ve Güvenlik Açığı Türleri
+#   Saldırı ve Güvenlik Açığı Türleri
 
 [cwe-20]:   https://cwe.mitre.org/data/definitions/20.html
 [cwe-22]:   https://cwe.mitre.org/data/definitions/22.html
@@ -67,31 +67,45 @@
 [ssi-wiki]:     https://en.wikipedia.org/wiki/Server_Side_Includes
 [link-owasp-csrf-cheatsheet]:               https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
 
-Bu makale, [OWASP Top 10](https://owasp.org/www-project-top-ten/) ve [OWASP API Top 10](https://owasp.org/www-project-api-security/) güvenlik risk listelerinde yer alan saldırılar dahil olmak üzere, Wallarm filtreleme düğümünün tespit edebileceği saldırı ve güvenlik açıklarını listelemekte ve kısaca açıklamaktadır. Listedeki güvenlik açıklarının ve saldırıların çoğu, [Common Weakness Enumeration][link-cwe] (CWE) olarak da bilinen yazılım zayıflığı türleri listesinden biri ya da daha fazla kodla birlikte verilmektedir.
+Bu makale, Wallarm’ın, [OWASP Top 10](https://owasp.org/www-project-top-ten/) ve [OWASP API Top 10](https://owasp.org/www-project-api-security/) güvenlik risk listelerinde yer alanlar da dahil tespit edebildiği saldırı ve güvenlik açıklarını listeler ve açıklar. Listedeki güvenlik açıklarının ve saldırıların çoğuna, [Common Weakness Enumeration][link-cwe] (CWE) olarak da bilinen yazılım zayıflık türleri listesinde yer alan bir veya daha fazla kod eşlik eder.
 
-Wallarm, listelenen güvenlik açıklarını ve saldırıları **otomatik olarak tespit eder** ve [filtrasyon modu](admin-en/configure-wallarm-mode.md) uyarınca işlem yapar. Özel [kurallarınız](user-guides/rules/rules.md) ve [tetikleyicileriniz](user-guides/triggers/triggers.md) tarafından varsayılan davranışta değişiklik yapılabileceğini unutmayın.
+!!! info "Yapılandırma gerekmez"
+    Saldırı/güvenlik açığı açıklamasında belirli bir yapılandırmadan bahsedilmiyorsa, bu Wallarm’ın bu saldırı/güvenlik açığını sizden herhangi bir yapılandırma gerektirmeden varsayılan olarak tespit ettiği ve bunu [filtration mode](admin-en/configure-wallarm-mode.md) ile uyumlu şekilde ele aldığı anlamına gelir.
 
-!!! info "Bazı saldırı türleri için gerekli yapılandırma"
-    Zira davranışsal saldırılar ([brute force](#brute-force-attack), [forced browsing](#forced-browsing), [BOLA](#broken-object-level-authorization-bola)), [API suiistimali](#suspicious-api-activity), [GraphQL](#graphql-attacks) ve [credential stuffing](#credential-stuffing) gibi bazı saldırılar varsayılan olarak tespit edilmez. Bu tür saldırılar/güvenlik açıkları için gerekli yapılandırma özel olarak tanımlanmıştır.
+## Saldırı türleri
 
-<!-- ??? info "Wallarm'ın OWASP Top 10'a karşı koruma sağladığına dair videoyu izle"
+Teknik olarak, Wallarm tarafından tespit edilebilen tüm saldırılar iki türe ayrılır:
+
+* **Girdi doğrulama saldırıları**, isteklere gönderilen belirli sembol kombinasyonları ile karakterize edilir ([SQL enjeksiyonu](#sql-injection), [çapraz site betik çalıştırma](#crosssite-scripting-xss), [uzaktan kod yürütme](#remote-code-execution-rce), [yol geçişi](#path-traversal) ve diğerleri).
+
+    Girdi doğrulama saldırılarını tespit etmek için isteklerin sözdizimsel analizi gerekir - belirli sembol kombinasyonlarını tespit etmek üzere bunları ayrıştırmak.
+
+    Wallarm, SVG, JPEG, PNG, GIF, PDF vb. ikili dosyalar dahil olmak üzere bir isteğin herhangi bir bölümündeki girdi doğrulama saldırılarını tespit eder.
+
+    Wallarm, girdi doğrulama saldırılarını ve ilgili güvenlik açıklarını **otomatik olarak tespit eder** ve [filtration mode](admin-en/configure-wallarm-mode.md) ile uyumlu şekilde işlem yapar. Varsayılan davranışta, özel [kurallarınızın](user-guides/rules/rules.md) ve [tetikleyicilerinizin](user-guides/triggers/triggers.md) yapmış olabileceği değişiklikler olabileceğini unutmayın.
+
+* **Davranışsal saldırılar**, belirli istek sözdizimi **ve/veya** istek sayısı ile istekler arası zamanın belirli bir korelasyonu ile karakterize edilir ([kaba kuvvet](#brute-force-attack), [zorla gezinme](#forced-browsing), [BOLA](#broken-object-level-authorization-bola), [API suistimali](#suspicious-api-activity), [kimlik bilgisi doldurma](#credential-stuffing) ve diğerleri).
+
+    Davranışsal saldırıları tespit etmek için isteklerin sözdizimsel analizinin ve istek sayısı ile istekler arası zamanın korelasyon analizinin yapılması gerekir.
+
+<!-- ??? info "Watch video about how Wallarm protects against OWASP Top 10"
     <div class="video-wrapper">
     <iframe width="1280" height="720" src="https://www.youtube.com/embed/27CBsTQUE-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div> -->
 
-## DDoS Saldırıları
+## DDoS saldırıları
 
-DDoS (Dağıtılmış Hizmet Reddi) saldırısı, bir saldırganın bir web sitesi veya çevrimiçi hizmeti, çoklu kaynaklardan gelen trafikle aşırı yükleyerek hizmet dışı bırakmayı amaçladığı siber saldırı türüdür.
+DDoS (Distributed Denial of Service - Dağıtık Hizmet Reddi) saldırısı, bir saldırganın bir web sitesini veya API’yi birden fazla kaynaktan gelen trafikle bunaltarak kullanılamaz hale getirmeye çalıştığı bir siber saldırı türüdür.
 
-Saldırganların DDoS saldırısı başlatmak için kullanabileceği birçok teknik vardır ve kullandıkları yöntemler ile araçlar önemli ölçüde farklılık gösterebilir. Bazı saldırılar nispeten basit olup, bir sunucuya çok sayıda bağlantı isteği gönderme gibi düşük seviye teknikler kullanırken, bazıları IP adreslerini sahte olarak gösterme veya ağ altyapısındaki güvenlik açıklarından yararlanma gibi karmaşık taktikler kullanır.
+Saldırganların bir DDoS saldırısı başlatmak için kullanabileceği birçok teknik vardır ve kullandıkları yöntem ve araçlar önemli ölçüde değişebilir. Bazı saldırılar nispeten basittir ve bir sunucuya çok sayıda bağlantı isteği gönderme gibi düşük seviyeli teknikler kullanırken, diğerleri IP adresi sahteciliği veya ağ altyapısındaki güvenlik açıklarından yararlanma gibi karmaşık taktikler kullanır.
 
-[DDoS'e Karşı Kaynak Koruma Kılavuzumuzu okuyun](admin-en/configuration-guides/protecting-against-ddos.md)
+[DDoS’a karşı kaynakları koruma rehberimizi okuyun](admin-en/configuration-guides/protecting-against-ddos.md)
 
-## Sunucu Tarafı Saldırıları
+## Sunucu tarafı saldırılar
 
-### SQL enjeksiyonu
+### SQL injection
 
-**Güvenlik Açığı/Saldırı**
+**Güvenlik açığı/Saldırı**
 
 **CWE kodu:** [CWE-89][cwe-89]
 
@@ -99,18 +113,20 @@ Saldırganların DDoS saldırısı başlatmak için kullanabileceği birçok tek
 
 **Açıklama:**
 
-Bu saldırıya karşı açıklık, kullanıcı girdisinin yetersiz filtrelenmesinden kaynaklanır. Bir SQL enjeksiyonu saldırısı, SQL veritabanına özel olarak hazırlanmış bir sorgunun enjekte edilmesiyle gerçekleştirilir.
+Bu saldırıya karşı zafiyet, kullanıcı girdisinin yetersiz filtrelenmesi nedeniyle ortaya çıkar. SQL enjeksiyonu saldırısı, bir SQL veritabanına özel olarak hazırlanmış bir sorgu enjekte edilerek gerçekleştirilir.
 
-Bir SQL enjeksiyonu saldırısı, saldırgana [SQL sorgusuna](https://www.wallarm.com/what/structured-query-language-injection-sqli-part-1) keyfi SQL kodu enjekte etme imkanı tanır. Bu durum, saldırganın gizli verilere erişim sağlama, bu verileri okuma ve değiştirme ile DBMS yönetici haklarını elde etmesine neden olabilir.
+SQL enjeksiyonu saldırısı, bir [SQL sorgusuna](https://www.wallarm.com/what/structured-query-language-injection-sqli-part-1) rastgele SQL kodu enjekte etmeye olanak tanır. Bu, saldırgana gizli verileri okuma ve değiştirme erişimi ile birlikte DBMS yönetici haklarının verilmesine yol açabilir.
 
 **Wallarm korumasına ek olarak:**
 
-* Bir web uygulamasının girdi olarak aldığı tüm parametreleri zararlı kodların çalıştırılmasını önlemek amacıyla temizleyin ve filtreleyin.
-* [OWASP SQL Injection Prevention Cheat Sheet][link-owasp-sqli-cheatsheet] önerilerini uygulayın.
+Wallarm’ın uyguladığı koruma önlemlerine ek olarak şu önerileri takip edebilirsiniz:
 
-### NoSQL enjeksiyonu
+*   Kötü amaçlı öğelerin çalıştırılmasını önlemek için tüm API istek parametrelerini temizleyin ve filtreleyin.
+*   [OWASP SQL Injection Önleme Kılavuzu][link-owasp-sqli-cheatsheet] önerilerini uygulayın.
 
-**Güvenlik Açığı/Saldırı**
+### NoSQL injection
+
+**Güvenlik açığı/Saldırı**
 
 **CWE kodu:** [CWE-943][cwe-943]
 
@@ -118,15 +134,15 @@ Bir SQL enjeksiyonu saldırısı, saldırgana [SQL sorgusuna](https://www.wallar
 
 **Açıklama:**
 
-Bu saldırıya açıklık, kullanıcı girdisinin yetersiz filtrelenmesinden kaynaklanır. Bir NoSQL enjeksiyonu saldırısı, NoSQL veritabanına özel olarak hazırlanmış bir sorgunun enjekte edilmesiyle gerçekleştirilir.
+Bu saldırıya karşı zafiyet, kullanıcı girdisinin yetersiz filtrelenmesi nedeniyle ortaya çıkar. NoSQL enjeksiyonu saldırısı, bir NoSQL veritabanına özel olarak hazırlanmış bir sorgu enjekte edilerek gerçekleştirilir.
 
 **Wallarm korumasına ek olarak:**
 
-* Kullanıcı girdisinin içindeki zararlı kodların çalıştırılmasını önlemek amacıyla tüm girişleri temizleyin ve filtreleyin.
+* Kötü amaçlı bir öğenin girdide çalıştırılmasını önlemek için tüm kullanıcı girdisini temizleyin ve filtreleyin.
 
-### Uzaktan kod çalıştırma (RCE)
+### Remote code execution (RCE)
 
-**Güvenlik Açığı/Saldırı**
+**Güvenlik açığı/Saldırı**
 
 **CWE kodları:** [CWE-78][cwe-78], [CWE-94][cwe-94] ve diğerleri
 
@@ -134,19 +150,19 @@ Bu saldırıya açıklık, kullanıcı girdisinin yetersiz filtrelenmesinden kay
 
 **Açıklama:**
 
-Bir saldırgan, bir web uygulamasına yapılacak isteğe kötü niyetli kod enjekte edebilir ve uygulama bu kodu çalıştırır. Ayrıca, saldırgan web uygulamasının çalıştığı işletim sistemi üzerinde belirli komutları çalıştırmayı deneyebilir.
+Bir saldırgan, API’nize gönderdiği isteğe kötü amaçlı kod enjekte edebilir ve bu betik sunucuda yürütülür. Ayrıca saldırgan, savunmasız uygulamanın çalıştığı işletim sistemi için belirli komutları çalıştırmayı deneyebilir. 
 
-Bir RCE saldırısının başarılı olması durumunda, saldırgan;
+Bir RCE saldırısı başarılı olursa, bir saldırgan aşağıdakiler de dahil olmak üzere geniş bir eylem yelpazesi gerçekleştirebilir:
 
-* Kırılgan web uygulamasının verilerinin gizliliğini, erişilebilirliğini ve bütünlüğünü tehlikeye atabilir.
-* Web uygulamasının çalıştığı sunucu ve işletim sistemi üzerinde kontrol sağlayabilir.
-* Diğer pek çok işlemi gerçekleştirebilir.
+*   Savunmasız verilerin gizliliğini, erişilebilirliğini ve bütünlüğünü tehlikeye atma.
+*   Uygulamanın çalıştığı işletim sistemi ve sunucunun kontrolünü ele geçirme.
+*   Diğer olası eylemler.
 
-Bu güvenlik açığı, kullanıcı girdisinin hatalı doğrulanması ve ayrıştırılmasından kaynaklanır.
+Bu güvenlik açığı, kullanıcı girdisinin yanlış doğrulanması ve ayrıştırılmasından kaynaklanır.
 
 **Wallarm korumasına ek olarak:**
 
-* Zararlı kodların çalıştırılmasını önlemek amacıyla tüm kullanıcı girdilerini temizleyin ve filtreleyin.
+* Girdideki bir öğenin çalıştırılmasını önlemek için tüm kullanıcı girdisini temizleyin ve filtreleyin.
 
 ### SSI enjeksiyonu
 
@@ -158,26 +174,26 @@ Bu güvenlik açığı, kullanıcı girdisinin hatalı doğrulanması ve ayrış
 
 **Açıklama:**
 
-[SSI (Server Side Includes)][ssi-wiki], sunucu tarafında çalıştırılan ve bir web sayfasına bir veya daha fazla dosya içeriğini eklemek için kullanılan basit bir yorumlanabilir betik dilidir. Apache ve NGINX web sunucuları tarafından desteklenmektedir.
+[SSI (Server Side Includes)][ssi-wiki], bir web sunucusundaki bir web sayfasına bir veya daha fazla dosyanın içeriğini dahil etmek için en kullanışlı olan basit, yorumlanan sunucu tarafı bir betik dilidir. Apache ve NGINX web sunucuları tarafından desteklenir.
 
-SSI enjeksiyonu, bir web uygulamasında kötü niyetli yükleri HTML sayfalarına enjekte ederek veya uzaktan keyfi kod çalıştırarak istismar yapılmasına imkan tanır. Uygulamada kullanılan SSI'nin manipülasyonu veya kullanıcı giriş alanları üzerinden zorunlu hale getirilmesi yoluyla istismar edilebilir.
+SSI Enjeksiyonu, HTML sayfalarına kötü amaçlı payload’lar enjekte edilerek veya uzaktan rastgele kodlar çalıştırılarak bir uygulamadan yararlanılmasına izin verir. Uygulamada kullanılan SSI’nin manipülasyonu yoluyla ya da kullanıcı girdi alanları üzerinden SSI kullanımını zorlayarak istismar edilebilir.
 
 **Örnek:**
 
-Saldırgan, çıktı mesajını değiştirip kullanıcı davranışını etkileyebilir. SSI enjeksiyonu örneği:
+Bir saldırgan, mesaj çıktısını değiştirebilir ve kullanıcı davranışını değiştirebilir. SSI Enjeksiyonu örneği:
 
 ```bash
-<!--#config errmsg="Erişim reddedildi, lütfen kullanıcı adınızı ve şifrenizi girin"-->
+<!--#config errmsg="Access denied, please enter your username and password"-->
 ```
 
 **Wallarm korumasına ek olarak:**
 
-* Zararlı yüklerin çalıştırılmasını önlemek amacıyla tüm kullanıcı girdilerini temizleyin ve filtreleyin.
-* [OWASP Input Validation Cheatsheet][link-owasp-inputval-cheatsheet] önerilerini uygulayın.
+* Girdideki kötü amaçlı payload’ların çalıştırılmasını önlemek için tüm kullanıcı girdisini temizleyin ve filtreleyin.
+* [OWASP Girdi Doğrulama Kılavuzu][link-owasp-inputval-cheatsheet] önerilerini uygulayın.
 
-### Sunucu Tarafı Şablon Enjeksiyonu (SSTI)
+### Sunucu tarafı şablon enjeksiyonu (SSTI)
 
-**Güvenlik Açığı/Saldırı**
+**Güvenlik açığı/Saldırı**
 
 **CWE kodları:** [CWE-94][cwe-94], [CWE-159][cwe-159]
 
@@ -185,19 +201,19 @@ Saldırgan, çıktı mesajını değiştirip kullanıcı davranışını etkiley
 
 **Açıklama:**
 
-Saldırgan, bir web sunucusunda SSTI saldırılarına karşı savunmasız olan kullanıcı tarafından doldurulan form alanına çalıştırılabilir kod enjekte edebilir; böylece kod, web sunucusu tarafından ayrıştırılıp çalıştırılır.
+Bir saldırgan, SSTI saldırılarına karşı savunmasız bir web sunucusundaki kullanıcı tarafından doldurulan bir forma yürütülebilir kod enjekte edebilir ve bu kod web sunucusu tarafından ayrıştırılıp yürütülür.
 
-Başarılı bir saldırı, savunmasız bir web sunucusunun tamamen ele geçirilmesine yol açabilir; bu durum, saldırgana keyfi istekler gönderme, sunucu dosya sistemlerini inceleme ve belirli koşullarda uzaktan keyfi kod çalıştırma (detaylar için [RCE saldırısına][anchor-rce] bakınız) gibi pek çok işlemi yapabilme imkanı tanır.
+Başarılı bir saldırı, savunmasız bir web sunucusunun tamamen tehlikeye girmesine neden olabilir; potansiyel olarak bir saldırganın keyfi istekler yürütmesine, sunucunun dosya sistemlerini keşfetmesine ve belirli koşullar altında uzaktan keyfi kod yürütmesine (ayrıntılar için [RCE saldırısına][anchor-rce] bakın) ve daha pek çok şeye olanak tanır.   
 
-Bu güvenlik açığı, kullanıcı girdisinin hatalı doğrulanması ve ayrıştırılmasından kaynaklanır.
+Bu güvenlik açığı, kullanıcı girdisinin yanlış doğrulanması ve ayrıştırılmasından kaynaklanır.
 
 **Wallarm korumasına ek olarak:**
 
-* Zararlı kodların çalıştırılmasını önlemek amacıyla tüm kullanıcı girdilerini temizleyin ve filtreleyin.
+* Girdideki bir öğenin çalıştırılmasını önlemek için tüm kullanıcı girdisini temizleyin ve filtreleyin.
 
 ### LDAP enjeksiyonu
 
-**Güvenlik Açığı/Saldırı**
+**Güvenlik açığı/Saldırı**
 
 **CWE kodu:** [CWE-90][cwe-90]
 
@@ -205,16 +221,18 @@ Bu güvenlik açığı, kullanıcı girdisinin hatalı doğrulanması ve ayrış
 
 **Açıklama:**
 
-LDAP enjeksiyonları, saldırgana, LDAP sunucusuna yapılacak istekleri modifiye ederek LDAP arama filtrelerini değiştirme imkanı tanıyan saldırı sınıfını temsil etmektedir.
+LDAP enjeksiyonları, bir saldırganın bir LDAP sunucusuna yönelik istekleri değiştirerek LDAP arama filtrelerini değiştirmesine olanak tanıyan bir saldırı sınıfını temsil eder.
 
-Başarılı bir LDAP enjeksiyonu saldırısı, LDAP kullanıcıları ve hostları hakkındaki gizli verilere okuma ve yazma işlemleri için yetki verebilir.
+Başarılı bir LDAP enjeksiyonu saldırısı, potansiyel olarak LDAP kullanıcıları ve ana bilgisayarları hakkındaki gizli veriler üzerinde okuma ve yazma işlemlerine erişim sağlar.
 
-Bu güvenlik açığı, kullanıcı girdisinin hatalı doğrulanması ve ayrıştırılmasından kaynaklanır.
+Bu güvenlik açığı, kullanıcı girdisinin yanlış doğrulanması ve ayrıştırılmasından kaynaklanır.
 
 **Wallarm korumasına ek olarak:**
 
-* Bir web uygulamasının girdi olarak aldığı tüm parametreleri zararlı kodların çalıştırılmasını önlemek amacıyla temizleyin ve filtreleyin.
-* [OWASP LDAP Injection Prevention Cheat Sheet][link-owasp-ldapi-cheatsheet] önerilerini uygulayın.
+Wallarm’ın uyguladığı koruma önlemlerine ek olarak şu önerileri takip edebilirsiniz:
+
+*   Girdideki bir öğenin çalıştırılmasını önlemek için bir uygulamanın girdi olarak aldığı tüm parametreleri temizleyin ve filtreleyin.
+*   [OWASP LDAP Injection Önleme Kılavuzu][link-owasp-ldapi-cheatsheet] önerilerini uygulayın.
 
 ### E-posta enjeksiyonu
 
@@ -226,18 +244,18 @@ Bu güvenlik açığı, kullanıcı girdisinin hatalı doğrulanması ve ayrış
 
 **Açıklama:**
 
-E-posta enjeksiyonu, bir web uygulaması iletişim formu aracılığıyla gönderilen kötü niyetli [IMAP][link-imap-wiki]/[SMTP][link-smtp-wiki] ifadesidir ve standart e-posta sunucu davranışını değiştirmeyi amaçlar.
+E-posta Enjeksiyonu, standart e-posta sunucusu davranışını değiştirmek için genellikle uygulama iletişim formu üzerinden gönderilen kötü amaçlı bir [IMAP][link-imap-wiki]/[SMTP][link-smtp-wiki] ifadesidir.
 
-Bu saldırıya açıklık, iletişim formuna girilen verilerin yetersiz doğrulanmasından kaynaklanır. E-posta enjeksiyonu, e-posta istemcisi kısıtlamalarını aşmak, kullanıcı verilerini çalmak ve spam göndermek için kullanılabilir.
+Bu saldırıya karşı zafiyet, iletişim formuna girilen verilerin zayıf doğrulanması nedeniyle ortaya çıkar. E-posta Enjeksiyonu, e-posta istemcisi kısıtlamalarının atlanmasına, kullanıcı verilerinin çalınmasına ve spam gönderilmesine olanak tanır.
 
 **Wallarm korumasına ek olarak:**
 
-* Zararlı yüklerin çalıştırılmasını önlemek amacıyla tüm kullanıcı girdilerini temizleyin ve filtreleyin.
-* [OWASP Input Validation Cheatsheet][link-owasp-inputval-cheatsheet] önerilerini uygulayın.
+* Girdideki kötü amaçlı payload’ların çalıştırılmasını önlemek için tüm kullanıcı girdisini temizleyin ve filtreleyin.
+* [OWASP Girdi Doğrulama Kılavuzu][link-owasp-inputval-cheatsheet] önerilerini uygulayın.
 
-### Sunucu Tarafı İstek Sahteciliği (SSRF)
+### Sunucu tarafı istek sahteciliği (SSRF)
 
-**Güvenlik Açığı/Saldırı**
+**Güvenlik açığı/Saldırı**
 
 **CWE kodu:** [CWE-918][cwe-918]
 
@@ -245,16 +263,16 @@ Bu saldırıya açıklık, iletişim formuna girilen verilerin yetersiz doğrula
 
 **Açıklama:**
 
-Başarılı bir SSRF saldırısı, saldırgana hedef web sunucusu adına istek gönderme imkanı tanıyabilir; bu durum, web uygulamasında kullanılan ağ portlarının tespit edilmesi, dahili ağların taranması ve yetkilendirme mekanizmalarının aşılması gibi sonuçlar doğurabilir.
+Başarılı bir SSRF saldırısı, bir saldırganın saldırıya uğrayan web sunucusu adına istekler yapmasına izin verebilir; bu da kullanılan ağ bağlantı noktalarının ortaya çıkmasına, dahili ağların taranmasına ve yetkilendirmenin atlanmasına yol açabilir.
 
 **Wallarm korumasına ek olarak:**
 
-* Bir web uygulamasının girdi olarak aldığı tüm parametreleri zararlı kodların çalıştırılmasını önlemek amacıyla temizleyin ve filtreleyin.
-* [OWASP SSRF Prevention Cheat Sheet][link-owasp-ssrf-cheatsheet] önerilerini uygulayın.
+*   Girdideki kötü amaçlı bir öğenin çalıştırılmasını önlemek için tüm istek parametrelerini temizleyin ve filtreleyin.
+*   [OWASP SSRF Önleme Kılavuzu][link-owasp-ssrf-cheatsheet] önerilerini uygulayın.
 
-### Yol Gezintisi (Path Traversal)
+### Yol geçişi
 
-**Güvenlik Açığı/Saldırı**
+**Güvenlik açığı/Saldırı**
 
 **CWE kodu:** [CWE-22][cwe-22]
 
@@ -262,18 +280,20 @@ Başarılı bir SSRF saldırısı, saldırgana hedef web sunucusu adına istek g
 
 **Açıklama:**
 
-Bir yol gezintisi saldırısı, saldırgana, web uygulamasındaki parametrelerin değiştirilmesi yoluyla, dosya veya dizin yolunu manipüle ederek dosya sisteminde saklanan gizli verilere erişim imkanı sağlar.
+Yol geçişi saldırısı, bir saldırganın var olan yolları istek parametreleri aracılığıyla değiştirerek savunmasız web uygulamasının veya API’nin bulunduğu dosya sisteminde depolanan gizli veri içeren dosya ve dizinlere erişmesine olanak tanır.
 
-Bu saldırıya açıklık, kullanıcı tarafından bir dosya veya dizin talep edilirken girdinin yetersiz filtrelenmesinden kaynaklanır.
+Bu saldırıya karşı zafiyet, bir kullanıcı bir dosya veya dizin talep ettiğinde kullanıcı girdisinin yetersiz filtrelenmesinden kaynaklanır.
 
 **Wallarm korumasına ek olarak:**
 
-* Bir web uygulamasının girdi olarak aldığı tüm parametreleri zararlı kodların çalıştırılmasını önlemek amacıyla temizleyin ve filtreleyin.
-* Bu tür saldırıları önlemeye yönelik ek öneriler [burada][link-ptrav-mitigation] mevcuttur.
+Wallarm’ın uyguladığı koruma önlemlerine ek olarak şu önerileri takip edebilirsiniz:
 
-### XML dış varlık saldırısı (XXE)
+*   Girdideki kötü amaçlı bir öğenin çalıştırılmasını önlemek için tüm istek parametrelerini temizleyin ve filtreleyin.
+*   Bu tür saldırıları azaltmaya yönelik ek öneriler [burada][link-ptrav-mitigation] mevcuttur.
 
-**Güvenlik Açığı/Saldırı**
+### XML dış varlık (XXE) saldırısı
+
+**Güvenlik açığı/Saldırı**
 
 **CWE kodu:** [CWE-611][cwe-611]
 
@@ -281,22 +301,22 @@ Bu saldırıya açıklık, kullanıcı tarafından bir dosya veya dizin talep ed
 
 **Açıklama:**
 
-XXE açığı, saldırgana, bir XML ayrıştırıcısı tarafından değerlendirilecek ve hedef web sunucusu üzerinde çalıştırılacak dış bir varlığın XML belgesine enjekte edilmesine imkan tanır.
+XXE güvenlik açığı, bir saldırganın bir XML belgesine harici bir varlık enjekte etmesine ve bunun bir XML ayrıştırıcı tarafından değerlendirilip hedef web sunucusunda yürütülmesine olanak tanır.
 
-Başarılı bir saldırı sonucunda, saldırgan;
+Başarılı bir saldırı sonucunda, bir saldırgan şunları yapabilir:
 
-* Web uygulamasının gizli verilerine erişim sağlayabilir,
-* Dahili veri ağlarını tarayabilir,
-* Web sunucusunda bulunan dosyaları okuyabilir,
-* [SSRF][anchor-ssrf] saldırısı gerçekleştirebilir,
-* Hizmet Reddi (DoS) saldırısı yapabilir.
+*   Gizli verilere erişmek
+*   Dahili veri ağlarını taramak
+*   Web sunucusunda bulunan dosyaları okumak
+*   Bir [SSRF][anchor-ssrf] saldırısı gerçekleştirmek
+*   Hizmet Reddi (DoS) saldırısı gerçekleştirmek
 
-Bu güvenlik açığı, XML dış varlıklarının ayrıştırılmasına yönelik kısıtlamaların olmamasından kaynaklanır.
+Bu güvenlik açığı, bir uygulamada XML harici varlıklarının ayrıştırılmasına yönelik kısıtlamaların olmamasından kaynaklanır.
 
 **Wallarm korumasına ek olarak:**
 
-* Kullanıcı tarafından sağlanan XML belgeleriyle çalışırken XML dış varlıklarının ayrıştırılmasını devre dışı bırakın.
-* [OWASP XXE Prevention Cheat Sheet][link-owasp-xxe-cheatsheet] önerilerini uygulayın.
+*   Kullanıcı tarafından sağlanan XML belgeleriyle çalışırken XML harici varlıklarının ayrıştırılmasını devre dışı bırakın.
+*   [OWASP XXE Önleme Kılavuzu][link-owasp-xxe-cheatsheet] önerilerini uygulayın.
 
 ### Kaynak taraması
 
@@ -306,23 +326,23 @@ Bu güvenlik açığı, XML dış varlıklarının ayrıştırılmasına yöneli
 
 **Wallarm kodu:** `scanner`
 
-**Açıklama:**
+**Açıklama:**    
 
-Bir HTTP isteğine, bu isteğin, korunan bir kaynağa yönelik saldırı veya tarama amacıyla yapılan üçüncü taraf tarayıcı yazılım aktivitesinin parçası olduğuna inanılırsa, `scanner` kodu atanır. Wallarm Tarayıcı isteği, kaynak taraması saldırısı olarak kabul edilmez. Bu bilgi, daha sonra bu hizmetlere yönelik saldırıda kullanılabilir.
+Bir HTTP isteğine, bu isteğin korunan bir kaynağa yönelik saldırı veya tarama amacı taşıyan üçüncü taraf tarayıcı yazılımlarının bir parçası olduğuna inanılıyorsa `scanner` kodu atanır. Wallarm Scanner’ın istekleri bir kaynak taraması saldırısı olarak değerlendirilmez. Bu bilgi sonrasında bu hizmetlere saldırmak için kullanılabilir.
 
 **Wallarm korumasına ek olarak:**
 
-* Ağ çevresi taramalarının önlenmesi için IP adresi beyaz listeleme ve kara listeleme uygulayın, ayrıca kimlik doğrulama/yetkilendirme mekanizmaları kullanın.
-* Sunucuya yönelik tarama alanını, ağ duvarı arkasına yerleştirerek en aza indirin.
-* Hizmetlerinizin çalışması için gerekli ve yeterli olan portları tanımlayın.
-* Ağ seviyesinde ICMP protokolünün kullanımını sınırlayın.
-* BT altyapınızın donanım ve yazılımını periyodik olarak güncelleyin.
+*   IP adres allowlist/denylist kullanımı ve kimlik doğrulama/yetkilendirme mekanizmalarıyla birlikte ağ çevresi tarama olasılığını sınırlayın.
+*   Ağ çevresini bir güvenlik duvarının arkasına yerleştirerek tarama yüzeyini en aza indirin.
+*   Hizmetlerinizin çalışması için gerekli ve yeterli olan bağlantı noktaları kümesini tanımlayın.
+*   Ağ düzeyinde ICMP protokolü kullanımını kısıtlayın.
+*   BT altyapınızın donanım ve yazılımlarını periyodik olarak güncelleyin.
 
-## İstemci Tarafı Saldırıları
+## İstemci tarafı saldırılar
 
-### Cross‑site Scripting (XSS)
+### Çapraz site betik çalıştırma (XSS)
 
-**Güvenlik Açığı/Saldırı**
+**Güvenlik açığı/Saldırı**
 
 **CWE kodu:** [CWE-79][cwe-79]
 
@@ -330,31 +350,31 @@ Bir HTTP isteğine, bu isteğin, korunan bir kaynağa yönelik saldırı veya ta
 
 **Açıklama:**
 
-Cross‑site scripting saldırısı, saldırgana, kullanıcının tarayıcısında önceden hazırlanmış keyfi kodu çalıştırma imkanı tanır.
+Çapraz site betik çalıştırma saldırısı, bir saldırganın kullanıcının tarayıcısında hazırlanmış rastgele bir kod çalıştırmasına olanak tanır.
 
-XSS saldırısının birkaç türü vardır:
+Birkaç XSS saldırı türü vardır:
 
-*   Stored XSS: Kötü niyetli kodun, web uygulamasının sayfasına önceden gömülü olmadığı durumdur.
+*   Kalıcı XSS, kötü amaçlı kodun web uygulamasının sayfasına önceden gömülü olduğu durumdur.
 
-    Web uygulaması, stored XSS saldırısına karşı savunmasızsa, saldırgan, kötü niyetli kodu web uygulamasının HTML sayfasına enjekte edebilir; ayrıca, bu kod kalıcı olarak saklanır ve enfekte olmuş web sayfasını talep eden herhangi bir kullanıcının tarayıcısı tarafından çalıştırılır.
+    Web uygulaması kalıcı XSS saldırısına karşı savunmasızsa, bir saldırgan web uygulamasının HTML sayfasına kötü amaçlı kod enjekte edebilir; dahası, bu kod, enfekte sayfayı isteyen herhangi bir kullanıcının tarayıcısı tarafından kalıcı olarak yürütülür.
     
-*   Reflected XSS: Saldırganın, kullanıcının özel olarak hazırlanmış bir linki açmasını sağlaması durumudur.      
+*   Yansıtılmış XSS, bir saldırganın bir kullanıcıyı özel olarak hazırlanmış bir bağlantıyı açması için kandırdığı durumdur.      
 
-*   DOM‑tabanlı XSS: Web uygulamasının sayfasına yerleşmiş JavaScript kod parçası, girdiyi ayrıştırıp, bir hata nedeniyle, JavaScript komutu olarak çalıştırması durumudur.
+*   DOM tabanlı XSS, web uygulamasının sayfasına gömülü bir JavaScript kod parçacığının girişi ayrıştırdığı ve bu kod parçacığındaki hatalar nedeniyle girişi bir JavaScript komutu olarak yürüttüğü durumdur.
 
-Yukarıda belirtilen güvenlik açıklarından herhangi biri istismar edildiğinde, keyfi bir JavaScript kodunun çalıştırılması söz konusu olur. XSS saldırısının başarılı olması durumunda, saldırgan bir kullanıcının oturumunu veya kimlik bilgilerini çalabilir, kullanıcı adına istek gönderebilir ve diğer zararlı işlemleri gerçekleştirebilir.
+Yukarıda listelenen güvenlik açıklarından herhangi birinin istismar edilmesi, rastgele bir JavaScript kodunun yürütülmesine yol açar. XSS saldırısı başarılı olduğunda, bir saldırgan bir kullanıcının oturumunu veya kimlik bilgilerini çalabilir, kullanıcı adına istekler yapabilir ve diğer kötü niyetli eylemleri gerçekleştirebilir.
 
-Bu güvenlik açıkları, kullanıcı girdisinin hatalı doğrulanması ve ayrıştırılmasından kaynaklanır.
+Bu güvenlik açığı sınıfı, kullanıcı girdisinin yanlış doğrulanması ve ayrıştırılmasından kaynaklanır.
 
 **Wallarm korumasına ek olarak:**
 
-* Bir web uygulamasının girdi olarak aldığı tüm parametreleri zararlı kodların çalıştırılmasını önlemek amacıyla temizleyin ve filtreleyin.
-* Web uygulaması sayfalarını oluştururken, dinamik olarak üretilen tüm girdileri temizleyin ve uygun şekilde kaçış karakterlerini kullanın.
-* [OWASP XSS Prevention Cheat Sheet][link-owasp-xss-cheatsheet] önerilerini uygulayın.
+* Girdideki bir öğenin çalıştırılmasını önlemek için bir uygulamanın girdi olarak aldığı tüm parametreleri temizleyin ve filtreleyin.
+* Web uygulamasının sayfalarını oluştururken, dinamik olarak oluşturulan tüm öğeleri temizleyin ve kaçışlayın.
+* [OWASP XSS Önleme Kılavuzu][link-owasp-xss-cheatsheet] önerilerini uygulayın.
 
-### Açık Yönlendirme
+### Açık yönlendirme
 
-**Güvenlik Açığı/Saldırı**
+**Güvenlik açığı/Saldırı**
 
 **CWE kodu:** [CWE-601][cwe-601]
 
@@ -362,18 +382,18 @@ Bu güvenlik açıkları, kullanıcı girdisinin hatalı doğrulanması ve ayrı
 
 **Açıklama:**
 
-Saldırgan, meşru bir web uygulaması aracılığıyla kullanıcıyı kötü niyetli bir web sayfasına yönlendirmek için açık yönlendirme saldırısını kullanabilir.
+Bir saldırgan, meşru bir web uygulaması aracılığıyla bir kullanıcıyı kötü amaçlı bir web sayfasına yönlendirmek için açık yönlendirme saldırısını kullanabilir.
 
-Bu saldırıya açıklık, URL girdilerinin hatalı filtrelenmesinden kaynaklanır.
+Bu saldırıya karşı zafiyet, URL girdilerinin yanlış filtrelenmesinden kaynaklanır.
 
 **Wallarm korumasına ek olarak:**
 
-* Bir web uygulamasının girdi olarak aldığı tüm parametreleri zararlı kodların çalıştırılmasını önlemek amacıyla temizleyin ve filtreleyin.
-* Kullanıcılara yapılacak tüm yönlendirmeler hakkında bilgi verin ve açık izinlerini isteyin.
+*   Girdideki bir öğenin çalıştırılmasını önlemek için bir uygulamanın girdi olarak aldığı tüm parametreleri temizleyin ve filtreleyin.
+*   Kullanıcıları tüm bekleyen yönlendirmeler hakkında bilgilendirin ve açık izin isteyin.
 
 ### CRLF enjeksiyonu
 
-**Güvenlik Açığı/Saldırı**
+**Güvenlik açığı/Saldırı**
 
 **CWE kodu:** [CWE-93][cwe-93]
 
@@ -381,134 +401,143 @@ Bu saldırıya açıklık, URL girdilerinin hatalı filtrelenmesinden kaynaklan�
 
 **Açıklama:**
 
-CRLF enjeksiyonları, saldırgana, bir sunucuya (ör. HTTP isteği) Carriage Return (CR) ve Line Feed (LF) karakterleri enjekte etme imkanı tanıyan saldırı sınıfını temsil eder.
+CRLF enjeksiyonları, bir saldırganın bir sunucuya (ör. HTTP isteği) gönderilen bir isteğe Satır Başı (CR) ve Satır Sonu (LF) karakterlerini enjekte etmesine olanak tanıyan bir saldırı sınıfını temsil eder.
 
-Diğer faktörlerle birleştiğinde, bu CR/LF karakter enjeksiyonu, HTTP Response Splitting [CWE-113][cwe-113], HTTP Response Smuggling [CWE-444][cwe-444] gibi pek çok güvenlik açığını istismar etmeye yardımcı olabilir.
+Diğer faktörlerle birleştirildiğinde, bu tür CR/LF karakter enjeksiyonu, çeşitli güvenlik açıklarının istismar edilmesine yardımcı olabilir (ör. HTTP Yanıt Bölme [CWE-113][cwe-113], HTTP Yanıt Kaçakçılığı [CWE-444][cwe-444]).
 
-Başarılı bir CRLF enjeksiyonu saldırısı, saldırgana;
+Başarılı bir CRLF enjeksiyonu saldırısı, bir saldırgana güvenlik duvarlarını atlama, önbellek zehirleme yapma, meşru web sayfalarının yerine kötü amaçlı olanları koyma, “Açık yönlendirme” saldırısını gerçekleştirme ve daha pek çok eylemi yapma imkanı verebilir. 
 
-* Güvenlik duvarlarını aşma,
-* Önbellek zehirlemesi,
-* Meşru web sayfalarını kötü niyetli olanlarla değiştirme,
-* "Açık yönlendirme" saldırısını gerçekleştirme ve daha birçok işlemi yapma imkanı tanır.
-
-Bu güvenlik açığı, kullanıcı girdisinin hatalı doğrulanması ve ayrıştırılmasından kaynaklanır.
+Bu güvenlik açığı, kullanıcı girdisinin yanlış doğrulanması ve ayrıştırılmasından kaynaklanır.
 
 **Wallarm korumasına ek olarak:**
 
-* Zararlı kodların çalıştırılmasını önlemek amacıyla tüm kullanıcı girdilerini temizleyin ve filtreleyin.
+* Girdideki bir öğenin çalıştırılmasını önlemek için tüm kullanıcı girdisini temizleyin ve filtreleyin.
 
-## Toplu Saldırılar
+## Numaralandırma saldırıları
 
-### Brute-force Saldırısı
+Numaralandırma saldırısı, kötü niyetli bir aktörün, farklı girdileri sistemli bir şekilde deneyerek ve yanıtları gözlemleyerek hedef bir sistem, ağ veya uygulama hakkında geçerli bilgiler toplamaya çalıştığı bir siber saldırı türüdür. Amaç, sistem içinde var olan geçerli kullanıcı adlarını, e-postaları, hesap adlarını, kaynakları veya hizmetleri belirlemektir.
+
+### Genel numaralandırma saldırısı
+
+**Saldırı**
+
+**Wallarm kodu:** `Enum`
+
+**Açıklama:**
+
+Uygulamalarınızın normalde açığa çıkarılmayan herhangi bir verisini numaralandırma girişimi (kullanıcı hesapları, isimler, e-postalar, belirteçler, kimlik bilgisi çiftleri, sistem yapılandırması, hizmetler, herhangi bir parametre).
+
+**Gerekli yapılandırma:**
+
+Wallarm, yalnızca bir veya daha fazla [numaralandırma azaltma kontrolü](api-protection/enumeration-attack-protection.md) varsa genel numaralandırma saldırılarını tespit eder ve azaltır (Advanced API Security [subscription](about-wallarm/subscription-plans.md#core-subscription-plans) gerektirir).
+
+[Varsayılan kontroller](api-protection/enumeration-attack-protection.md#generic-enumeration), izleme modunda sunulur (yeni müşteriler için) veya devre dışıdır (gerekirse etkinleştirin).
+
+**Wallarm korumasına ek olarak:**
+
+*   Bir API veya belirli uç noktalar için belirli bir zaman aralığındaki istek sayısını sınırlayın.
+*   Bir API veya belirli uç noktalar için belirli bir zaman aralığındaki kimlik doğrulama/yetkilendirme denemelerinin sayısını sınırlayın.
+*   Belirli sayıda başarısız denemeden sonra yeni kimlik doğrulama/yetkilendirme denemelerini engelleyin.
+*   Uygulamayı, uygulamanın kapsamı dışında kalanlar hariç, üzerinde çalıştığı sunucudaki herhangi bir dosya veya dizine erişmekten kısıtlayın.
+
+### Kaba kuvvet saldırısı
 
 **Saldırı**
 
 **CWE kodları:** [CWE-307][cwe-307], [CWE-521][cwe-521], [CWE-799][cwe-799]
 
-**Wallarm kodu:** `brute`
+**Wallarm kodu:** `brute` (**Attacks** içinde), `Brute force` (**API Sessions** içinde)
 
 **Açıklama:**
 
-Brute-force saldırısı, belirli bir yük içeren çok sayıda isteğin sunucuya gönderilmesiyle gerçekleşir. Bu yükler, belirli yöntemlerle üretilebilir veya bir sözlükten alınmış olabilir. Sunucunun yanıtı, yük verisindeki doğru kombinasyonu bulmak üzere analiz edilir.
+Kaba kuvvet saldırısı, önceden tanımlanmış bir payload ile çok sayıda isteğin sunucuya gönderilmesiyle meydana gelir. Bu payload’lar bir şekilde oluşturulmuş olabilir veya bir sözlükten alınmış olabilir. Ardından, sunucunun yanıtı, payload’daki verilerin doğru kombinasyonunu bulmak için analiz edilir.
 
-Başarılı bir brute-force saldırısı, kimlik doğrulama ve yetkilendirme mekanizmalarının aşılmasına veya web uygulamasının gizli kaynaklarının (diziler, dosyalar, site bölümleri vb.) açığa çıkmasına yol açabilir; böylece saldırgana diğer zararlı işlemleri gerçekleştirme imkanı tanır.
+Başarılı bir kaba kuvvet saldırısı, potansiyel olarak kimlik doğrulama ve yetkilendirme mekanizmalarını atlayabilir ve/veya gizli kaynakları (dizinler, dosyalar, web sitesi bölümleri vb.) ortaya çıkarabilir; böylece diğer kötü niyetli eylemleri gerçekleştirme imkanı verir.
 
 **Gerekli yapılandırma:**
 
-Wallarm, brute-force saldırılarını yalnızca en az bir veya daha fazla [brute-force tetikleyicisi](admin-en/configuration-guides/protecting-against-bruteforce.md) ve/veya [rate limit kuralı](user-guides/rules/rate-limiting.md) yapılandırılmışsa tespit edip hafifletir.
+Wallarm, yalnızca aşağıdakilerden biri varsa kaba kuvvet saldırılarını tespit eder ve azaltır: 
+
+* [Genel numaralandırmaya karşı koruma](#generic-enumeration-attack)
+* Abonelik planınızda mevcut yöntemle yapılandırılmış [Brute force protection](admin-en/configuration-guides/protecting-against-bruteforce.md)
+* [Rate limit rules](user-guides/rules/rate-limiting.md)
+
+[Varsayılan kontroller](api-protection/enumeration-attack-protection.md#default-protection), izleme modunda sunulur (yeni müşteriler için) veya devre dışıdır (gerekirse etkinleştirin).
 
 **Wallarm korumasına ek olarak:**
 
-* Belirli bir zaman dilimindeki istek sayısını sınırlayın.
-* Bir web uygulaması için belirli bir zaman dilimi içerisindeki kimlik doğrulama/yetkilendirme denemelerini sınırlayın.
-* Belirli sayıda başarısız denemeden sonra yeni kimlik doğrulama/yetkilendirme denemelerini engelleyin.
-* Uygulamanın çalıştığı sunucuda, erişim izni olmayan dosya veya dizinlere erişimi kısıtlayın.
+*   Bir API veya belirli uç noktalar için belirli bir zaman aralığındaki istek sayısını sınırlayın.
+*   Bir API veya belirli uç noktalar için belirli bir zaman aralığındaki kimlik doğrulama/yetkilendirme denemelerinin sayısını sınırlayın.
+*   Belirli sayıda başarısız denemeden sonra yeni kimlik doğrulama/yetkilendirme denemelerini engelleyin.
+*   Uygulamayı, uygulamanın kapsamı dışında kalanlar hariç, üzerinde çalıştığı sunucudaki herhangi bir dosya veya dizine erişmekten kısıtlayın.
 
-### Zorunlu Gözatma (Forced Browsing)
+### Bozuk nesne düzeyi yetkilendirme (BOLA)
+
+**Güvenlik açığı/Saldırı**
+
+**CWE kodu:** [CWE-639][cwe-639]
+
+**Wallarm kodu:** Güvenlik açıkları için `idor`, `bola` (**Attacks** içinde), `BOLA` (**API Sessions** içinde)
+
+**Açıklama:**
+
+Saldırganlar, isteğe gönderilen bir nesnenin kimliğini (ID) manipüle ederek bozuk nesne düzeyi yetkilendirmeye karşı savunmasız API uç noktalarından yararlanabilir. Bu, hassas verilere yetkisiz erişime yol açabilir.
+
+Bu sorun, API tabanlı uygulamalarda son derece yaygındır çünkü sunucu bileşeni genellikle istemcinin durumunu tamamen takip etmez ve bunun yerine erişilecek nesneleri belirlemek için istemciden gönderilen nesne kimlikleri gibi parametrelere daha fazla güvenir.
+
+API uç noktasının mantığına bağlı olarak, bir saldırgan web uygulamaları, API’ler ve kullanıcılar üzerindeki verileri yalnızca okuyabilir veya bunları değiştirebilir.
+
+Bu güvenlik açığı IDOR (Insecure Direct Object Reference) olarak da bilinir.
+
+[Güvenlik açığı hakkında daha fazla ayrıntı](https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/)
+
+**Gerekli yapılandırma:**
+
+Wallarm, bu tür güvenlik açıklarını otomatik olarak keşfeder ancak BOLA saldırılarını yalnızca aşağıdakilerden biri varsa tespit eder ve azaltır:
+
+* [Genel numaralandırmaya karşı koruma](#generic-enumeration-attack)
+* Abonelik planınızda mevcut yöntemle yapılandırılmış [BOLA koruması](admin-en/configuration-guides/protecting-against-bola-trigger.md)
+* [API Discovery](api-discovery/overview.md) tarafından keşfedilen uç noktalar için [Otomatik BOLA koruması](admin-en/configuration-guides/protecting-against-bola.md)
+
+[Varsayılan kontroller](api-protection/enumeration-attack-protection.md#default-protection), izleme modunda sunulur (yeni müşteriler için) veya devre dışıdır (gerekirse etkinleştirin).
+
+### Zorla gezinme
 
 **Saldırı**
 
 **CWE kodu:** [CWE-425][cwe-425]
 
-**Wallarm kodu:** `dirbust`
+**Wallarm kodu:** `dirbust` (**Attacks** içinde), `Forced browsing` (**API Sessions** içinde)
 
 **Açıklama:**
 
-Bu saldırı, brute-force saldırıları sınıfına girer. Bu saldırının amacı, bir web uygulamasının gizli kaynaklarını, yani dizin ve dosyaları tespit etmektir. Bu, belirli bir şablona dayalı olarak üretilen veya hazır bir sözlük dosyasından çıkarılan farklı dosya ve dizin isimleri denenerek gerçekleştirilir.
+Bu saldırının amacı, yani dizinler ve dosyalar gibi gizli kaynakları tespit etmektir. Bu, bir şablona göre oluşturulan veya hazırlanmış bir sözlük dosyasından çıkarılan farklı dosya ve dizin adlarının denenmesiyle başarılır.
 
-Başarılı bir zorunlu gözatma saldırısı, web uygulaması arayüzünden açıkça erişilemeyen ama doğrudan erişim sağlandığında ortaya çıkan gizli kaynaklara erişim imkanı tanır.
-
-**Gerekli yapılandırma:**
-
-Wallarm, zorunlu gözatma saldırılarını yalnızca en az bir veya daha fazla [zorunlu gözatma tetikleyicisi](admin-en/configuration-guides/protecting-against-forcedbrowsing.md) yapılandırılmışsa tespit edip hafifletir.
-
-**Wallarm korumasına ek olarak:**
-
-* Kullanıcıların, doğrudan erişmeleri yasak olan kaynaklara erişimini (örneğin, kimlik doğrulama veya yetkilendirme mekanizmaları ile) sınırlayın.
-* Belirli bir zaman dilimindeki istek sayısını sınırlayın.
-* Belirli bir zaman diliminde kimlik doğrulama/yetkilendirme denemelerini sınırlayın.
-* Başarısız denemeler belirli bir sayıya ulaştığında yeni kimlik doğrulama/yetkilendirme denemelerini engelleyin.
-* Web uygulamasının dosya ve dizinleri için gerekli ve yeterli erişim haklarını tanımlayın.
-
-### Credential Stuffing
-
-**Saldırı**
-
-**Wallarm kodu:** `credential_stuffing`
-
-**Açıklama:**
-
-Hackerların, ele geçirilmiş kullanıcı kimlik bilgileri listelerini kullanarak, birden fazla web sitesinde yetkisiz erişim elde ettiği siber saldırı türüdür. Bu saldırı tehlikelidir çünkü birçok kişi farklı hizmetlerde aynı kullanıcı adı ve şifreyi kullanır veya yaygın zayıf şifreler tercih eder. Başarılı bir credential stuffing saldırısı daha az deneme gerektirir; bu nedenle saldırganlar istekleri çok daha seyrek gönderebilir, bu da brute force koruması gibi standart önlemleri etkisiz hale getirebilir.
+Başarılı bir zorla gezinme saldırısı, uygulama arayüzünden açıkça erişilebilir olmayan ancak doğrudan erişildiğinde açığa çıkan gizli kaynaklara erişim sağlayabilir.
 
 **Gerekli yapılandırma:**
 
-Wallarm, credential stuffing girişimlerini yalnızca filtreleme düğümü 4.10 veya daha yüksek sürümdeyse ve [Credential Stuffing Detection](about-wallarm/credential-stuffing.md) işlevselliği etkinleştirilmiş ve uygun şekilde yapılandırılmışsa tespit eder.
+Wallarm, yalnızca abonelik planınızda mevcut yöntemle yapılandırılmış [zorla gezinmeye karşı koruma](admin-en/configuration-guides/protecting-against-forcedbrowsing.md) varsa zorla gezinmeyi tespit eder ve azaltır.
+
+[Varsayılan kontroller](api-protection/enumeration-attack-protection.md#forced-browsing), izleme modunda sunulur (yeni müşteriler için) veya devre dışıdır (gerekirse etkinleştirin).
 
 **Wallarm korumasına ek olarak:**
 
-* [OWASP credential stuffing açıklamasını](https://owasp.org/www-community/attacks/Credential_stuffing) ve "Credential Stuffing Prevention Cheat Sheet"i inceleyin.
-* Kullanıcıları güçlü şifreler kullanmaları konusunda zorlayın.
-* Kullanıcıların farklı kaynaklar için aynı şifreyi kullanmamalarını önerin.
-* İki faktörlü kimlik doğrulamayı etkinleştirin.
-* Ek CAPTCHA çözümleri kullanın.
+*   Kullanıcıların doğrudan erişmesi gerekmeyen kaynaklara erişimini kısıtlayın veya sınırlayın (ör. bazı kimlik doğrulama veya yetkilendirme mekanizmalarını kullanarak).
+*   Bir API veya belirli uç noktalar için belirli bir zaman aralığındaki istek sayısını sınırlayın.
+*   Bir API veya belirli uç noktalar için belirli bir zaman aralığındaki kimlik doğrulama/yetkilendirme denemelerinin sayısını sınırlayın.
+*   Belirli sayıda başarısız denemeden sonra yeni kimlik doğrulama/yetkilendirme denemelerini engelleyin.
+*   Dosya ve dizinler için gerekli ve yeterli erişim haklarını ayarlayın.
 
-## Erişim Düzeyi 
-
-### Broken Object Level Authorization (BOLA)
-
-**Güvenlik Açığı/Saldırı**
-
-**CWE kodu:** [CWE-639][cwe-639]
-
-**Wallarm kodu:** `idor` güvenlik açıkları için, `bola` saldırılar için
-
-**Açıklama:**
-
-Saldırganlar, istekte gönderilen nesne ID'sini manipüle ederek, broken object level authorization'a karşı savunmasız API uç noktalarını istismar edebilir. Bu durum, hassas verilere izinsiz erişime yol açabilir.
-
-Bu sorun, API tabanlı uygulamalarda son derece yaygındır çünkü sunucu bileşeni genellikle istemcinin durumunu tam olarak takip etmez; bunun yerine, istemciden gönderilen nesne ID'si gibi parametrelere dayanarak hangi nesnelere erişileceğine karar verir.
-
-API uç noktası mantığına bağlı olarak, saldırgan yalnızca web uygulamalarındaki, API'lerdeki ve kullanıcı verilerindeki bilgileri okuyabilir veya değiştirebilir.
-
-Bu güvenlik açığı aynı zamanda IDOR (Insecure Direct Object Reference) olarak da bilinir.
-
-[Bu güvenlik açığı hakkında daha fazla detay](https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/)
-
-**Gerekli yapılandırma:**
-
-Wallarm, bu tür güvenlik açıklarını otomatik olarak keşfeder. BOLA saldırılarını tespit edip engellemek için şunlardan birini veya birkaçını yapın:
-
-* [API Discovery](api-discovery/overview.md) modülünü etkinleştirin ve bu modül tarafından tespit edilen uç noktalar için [otomatik BOLA korumasını](admin-en/configuration-guides/protecting-against-bola.md) yapılandırın.
-* Bir veya daha fazla [**BOLA** tetikleyicisi](admin-en/configuration-guides/protecting-against-bola.md) yapılandırın.
+## Erişim düzeyi 
 
 **Wallarm korumasına ek olarak:**
 
-* Kullanıcı politikaları ve hiyerarşisine dayalı, uygun bir yetkilendirme mekanizması uygulayın.
-* Nesnelerin ID'leri için [GUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) olarak rastgele ve öngörülemez değerler kullanmaya özen gösterin.
-* Yetkilendirme mekanizmasını değerlendiren testler yazın. Testleri bozan kırılgan değişiklikleri dağıtmayın.
+* Kullanıcı politikaları ve hiyerarşisine dayanan uygun bir yetkilendirme mekanizması uygulayın.
+* Nesne kimlikleri için [GUID’ler](https://en.wikipedia.org/wiki/Universally_unique_identifier) gibi rastgele ve öngörülemeyen değerler kullanmayı tercih edin.
+* Yetkilendirme mekanizmasını değerlendirecek testler yazın. Testleri bozan güvenlik açığı içeren değişiklikleri dağıtmayın.
 
-### Toplu Atama (Mass Assignment)
+### Toplu atama
 
 **Saldırı**
 
@@ -516,19 +545,19 @@ Wallarm, bu tür güvenlik açıklarını otomatik olarak keşfeder. BOLA saldı
 
 **Açıklama:**
 
-Toplu atama saldırısında, saldırganlar HTTP istek parametrelerini, program kodu değişkenlerine ya da nesnelere bağlamaya çalışır. Bir API savunmasızsa ve bağlama işlemi yapılabiliyorsa, saldırganlar ifşa edilmemesi gereken hassas nesne özelliklerini değiştirebilir; bu durum yetki yükselmesi, güvenlik mekanizmalarının atlatılması gibi sonuçlara yol açabilir.
+Bir toplu atama saldırısında saldırganlar, HTTP istek parametrelerini program kodu değişkenlerine veya nesnelere bağlamaya çalışır. Bir API savunmasızsa ve bağlamaya izin veriyorsa, saldırganlar, ortaya çıkarılması amaçlanmayan hassas nesne özelliklerini değiştirebilir; bu da ayrıcalık artırımı, güvenlik mekanizmalarının atlanması ve daha fazlasına yol açabilir.
 
-Toplu atama saldırısına karşı savunmasız API'ler, istemci girdilerini uygun filtreleme olmaksızın içsel değişkenlere veya nesne özelliklerine dönüştürmeye izin verir. Bu güvenlik açığı, [OWASP API Security Top 10 2023 (API3:2023 Broken Object Property Level Authorization)](https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/) listesinde yer almaktadır.
+Toplu Atama saldırılarına karşı savunmasız API’ler, uygun filtreleme olmadan istemci girdisini dahili değişkenlere veya nesne özelliklerine dönüştürmeye izin verir. Bu güvenlik açığı, en ciddi API güvenlik risklerinden biri olan [OWASP API Security Top 10 2023 (API3:2023 Broken Object Property Level Authorization)](https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/) listesinde yer alır.
 
 **Wallarm korumasına ek olarak:**
 
-* İstemci girdisini otomatik olarak kod değişkenlerine veya nesne özelliklerine bağlayan fonksiyonlardan kaçının.
-* Sadece istemcinin güncellemesi gereken özellikleri beyaz listeye alın ve özel özellikleri kara listeleyin.
-* Varsa, girdiler için açıkça tanımlanmış ve zorunlu kılınmış şemaları tanımlayın ve uygulayın.
+* İstemci girdisini kod değişkenlerine veya nesne özelliklerine otomatik olarak bağlayan fonksiyonları kullanmaktan kaçının.
+* İstemci tarafından güncellenmesi gereken özellikleri yalnızca allowlist etmek ve özel özellikleri blocklist’e almak için yerleşik fonksiyon özelliklerini kullanın.
+* Uygunsa, girdi veri payload’ları için şemaları açıkça tanımlayın ve zorunlu kılın.
 
-## API Suiistimali
+## API suistimali
 
-### Şüpheli API Aktivitesi
+### Şüpheli API etkinliği
 
 **Saldırı**
 
@@ -536,121 +565,152 @@ Toplu atama saldırısına karşı savunmasız API'ler, istemci girdilerini uygu
 
 **Açıklama:**
 
-Sunucu yanıt süresinin artması, sahte hesap oluşturma ve scalping gibi temel bot tiplerini içeren bir saldırı kümesidir.
+Sunucu yanıt süresinde artış, sahte hesap oluşturma ve scalping’i içeren temel bot türleri kümesi.
 
 **Gerekli yapılandırma:**
 
-Wallarm, API suiistimali saldırılarını yalnızca [API Abuse Prevention](api-abuse-prevention/overview.md) modülü etkinleştirilmiş ve doğru yapılandırılmışsa tespit edip hafifletir.
+Wallarm, yalnızca [API Abuse Prevention](api-abuse-prevention/overview.md) modülü etkin ve düzgün yapılandırılmışsa API suistimali saldırılarını tespit eder ve azaltır.
 
 **API Abuse Prevention** modülü, aşağıdaki bot türlerini tespit etmek için karmaşık bot tespit modelini kullanır:
 
-* Sunucu yanıt süresini artırmaya ya da sunucunun hizmet veremez hale gelmesine yönelik nüfuz amacıyla yapılan API suiistimali; genellikle kötü niyetli trafik artışları ile sağlanır.
-* [Sahte hesap oluşturma](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-019_Account_Creation) ve [Spamming](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-017_Spamming) gerçek kullanıcıların işlemlerini yavaşlatan, destek ekibi veya pazarlama ekibinin gerçek kullanıcı isteklerini işleme sürecini aksatabilecek saldırılardır.
-* [Scalping](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-005_Scalping), çevrimiçi mağaza ürünlerinin gerçek müşterilerin erişimine kapatılması amacıyla, tüm ürünleri (satış yapılmadan) rezerve ederek stoğu tükettirme saldırısıdır.
+* Sunucu yanıt süresini artırmaya veya sunucuyu kullanılamaz hale getirmeye yönelik API suistimali. Genellikle kötü amaçlı trafik artışları ile başarılır.
+* [Sahte hesap oluşturma](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-019_Account_Creation) ve [Spam gönderme](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-017_Spamming), sahte hesaplar oluşturma veya sahte içeriği (ör. geri bildirim) onaylamadır. Genellikle hizmetin kullanılamaz hale gelmesine yol açmaz ancak normal iş süreçlerini yavaşlatır veya bozar, örneğin:
 
-Eğer metrikler, bot saldırısına yönelik belirtileri işaret ediyorsa, modül anomali kaynağını 1 saat boyunca [kara listeye veya gri listeye](api-abuse-prevention/setup.md#creating-profiles) alır.
+    * Destek ekibinin gerçek kullanıcı isteklerini işlemesi
+    * Pazarlama ekibinin gerçek kullanıcı istatistiklerini toplaması
+
+* [Scalping](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-005_Scalping), botların çevrimiçi mağaza ürünlerini gerçek müşteriler için kullanılamaz hale getirmesi ile karakterize edilir; örneğin, tüm ürünleri rezerve ederek stokta kalmamalarına yol açmak ancak kâr sağlamamak.
+
+Metrikler bot saldırısı işaretlerine işaret ederse, modül anomali trafiğinin kaynağını 1 saatliğine [denylist’e veya graylist’e](api-abuse-prevention/setup.md#creating-profiles) alır.
 
 **Wallarm korumasına ek olarak:**
 
-* [OWASP, otomatik tehditlere ilişkin açıklamaları](https://owasp.org/www-project-automated-threats-to-web-applications/) inceleyin.
-* Uygulamanızla alakasız bölgelerin ve kaynakların (örneğin, Tor gibi) IP adreslerini kara listeye alın.
-* Sunucu tarafında istekler için rate limit (oran sınırı) yapılandırın.
+* [Otomatik tehditlere ilişkin OWASP açıklamasıyla](https://owasp.org/www-project-automated-threats-to-web-applications/) tanışın.
+* Uygulamanızla kesinlikle ilgili olmayan bölgelerin ve kaynakların (Tor gibi) IP adreslerini denylist’e alın.
+* Sunucu tarafı istek hız sınırı yapılandırın.
 * Ek CAPTCHA çözümleri kullanın.
-* Bot saldırısına ilişkin belirtileri tespit etmek için uygulama analitiklerinizi izleyin.
+* Uygulama analizlerinizde bot saldırısı işaretlerini arayın.
 
-### Hesap Ele Geçirme
+### Hesap ele geçirme
 
 **Saldırı**
 
-**Wallarm kodu:** `account_takeover` (`api_abuse` 4.10.6 öncesinde)
+**Wallarm kodu:** `account_takeover` (4.10.6’dan önce `api_abuse`)
 
 **Açıklama:**
 
-Bir saldırganın, başka bir kişinin hesabına, o kişinin izni veya bilgisi olmaksızın erişim sağlaması durumudur. Hesaba erişim sağlandıktan sonra, saldırgan hesabı, hassas bilgileri çalmak, dolandırıcılık işlemleri gerçekleştirmek, spam veya kötü amaçlı yazılım yaymak gibi çeşitli amaçlarla kullanabilir.
+Kötü niyetli bir aktörün başka birinin hesabına onun izni veya bilgisi olmadan erişim elde ettiği bir siber saldırı türü. Hesaba erişim sağladıktan sonra, hassas bilgileri çalmak, sahte işlemler yapmak veya spam ya da kötü amaçlı yazılım yaymak gibi çeşitli amaçlar için kullanılabilir.
 
 **Gerekli yapılandırma:**
 
-Wallarm, hesap ele geçirme saldırılarını yalnızca [API Abuse Prevention](api-abuse-prevention/overview.md) modülü etkinleştirilmiş ve doğru yapılandırılmışsa tespit edip hafifletir.
+Wallarm, yalnızca [API Abuse Prevention](api-abuse-prevention/overview.md) modülü etkin ve düzgün yapılandırılmışsa hesap ele geçirme saldırılarını tespit eder ve azaltır.
 
-API Abuse Prevention, [detektörlerin](api-abuse-prevention/overview.md#how-api-abuse-prevention-works) yanı sıra, aşağıdaki hesap ele geçirme saldırılarını tespit edecek şekilde özel detektörler içerir:
+Ortak [dedektörlere](api-abuse-prevention/overview.md#how-api-abuse-prevention-works) ek olarak, API Abuse Prevention farklı hesap ele geçirme saldırılarını tespit etmeye yönelik özel dedektörler içerir: 
 
-* IP havuzu kullanılarak gerçekleştirilen hesap ele geçirme saldırıları için **IP rotasyonu**.
-* Oturum havuzu kullanılarak gerçekleştirilen hesap ele geçirme saldırıları için **Session rotasyonu**.
-* Uzun süre boyunca kademeli olarak gerçekleşen hesap ele geçirme saldırıları için **Persistent ATO**.
+* **IP rotation** – bir IP adresleri havuzu kullanan hesap ele geçirme saldırıları için.
+* **Session rotation** – bir IP oturumları havuzu kullanan hesap ele geçirme saldırıları için.
+* **Persistent ATO** – uzun bir süre boyunca kademeli olarak gerçekleşen hesap ele geçirme saldırıları için.
+* **Credential stuffing** – istikrarlı istek öznitelikleri korunurken farklı kimlik bilgileriyle tekrarlanan oturum açma denemelerini içeren hesap ele geçirme saldırıları için ([kimlik bilgisi doldurma](#credential-stuffing)).
+* **Low-frequency credential stuffing** – sonrasında API etkileşimi olmadan ([kimlik bilgisi doldurma](#credential-stuffing)) izole veya minimal kimlik doğrulama denemeleri ile karakterize edilen hesap ele geçirme saldırıları için: saldırganlar tespitten kaçınmak için oturum veya istemci başına oturum açma denemelerini kasıtlı olarak sınırlar. Bu tür saldırılar genellikle çalıntı, sentetik veya otomatik oluşturulmuş kimlik bilgilerini kullanır ve birden çok IP adresi, oturum veya zaman dilimi arasında dağıtılır.
 
-API Abuse Prevention, kritik uç noktalar veya kimlik doğrulama/ kayıt uç noktalarına yönelik brute force saldırısı şeklinde gerçekleştirilen [credential cracking](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-007_Credential_Cracking.html) girişimlerini tespit eder. Kabul edilebilir davranış metriklerinin otomatik eşiği, 1 saat boyunca meşru trafiğe dayanarak hesaplanır.
+API Abuse Prevention, genellikle kritik uç noktalara ve/veya kimlik doğrulama ve/veya kayıt uç noktalarıyla ilişkili uç noktalara yönelik kaba kuvvet saldırısı olarak yapılan [kimlik bilgisi kırma](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-007_Credential_Cracking.html) işlemini gerçekleştiren botları tespit eder. Kabul edilebilir davranış metriklerinin otomatik eşiği, 1 saat boyunca meşru trafik temel alınarak hesaplanır.
 
 **Wallarm korumasına ek olarak:**
 
-* [OWASP, otomatik tehditlere ilişkin açıklamaları](https://owasp.org/www-project-automated-threats-to-web-applications/) inceleyin.
-* Güçlü şifreler kullanın.
-* Farklı kaynaklar için aynı şifreleri kullanmayın.
+* [Otomatik tehditlere ilişkin OWASP açıklamasıyla](https://owasp.org/www-project-automated-threats-to-web-applications/) tanışın.
+* Güçlü parolalar kullanın.
+* Farklı kaynaklar için aynı parolaları kullanmayın.
 * İki faktörlü kimlik doğrulamayı etkinleştirin.
 * Ek CAPTCHA çözümleri kullanın.
 * Hesapları şüpheli etkinliklere karşı izleyin.
 
-### Güvenlik Tarayıcıları
+### Güvenlik tarayıcıları
 
 **Saldırı**
 
-**Wallarm kodu:** `security_crawlers` (`api_abuse` 4.10.6 öncesinde)
+**Wallarm kodu:** `security_crawlers` (4.10.6’dan önce `api_abuse`)
 
 **Açıklama:**
 
-Güvenlik tarayıcıları, web sitelerindeki güvenlik açıklarını tespit etmek üzere tasarlanmış olmakla birlikte, kötü niyetli amaçlar için de kullanılabilir. Saldırganlar, savunmasız web sitelerini belirleyip, bunları istismar etmek amacıyla bu tarayıcıları kullanabilir.
+Güvenlik tarayıcıları web sitelerini ve API’leri taramak, güvenlik açıklarını ve güvenlik sorunlarını tespit etmek için tasarlanmış olsa da kötü amaçlı amaçlarla da kullanılabilir. Kötü niyetli aktörler, savunmasız API’leri belirlemek ve kendi çıkarları için bunlardan yararlanmak için bunları kullanabilir.
 
-Ayrıca, bazı güvenlik tarayıcıları kötü tasarlanmış olabilir ve sunucuları aşırı yükleyerek, çökmelere veya diğer türde kesintilere neden olabilir.
+Dahası, bazı güvenlik tarayıcıları kötü tasarlanmış olabilir ve sunucuları bunaltarak çökmesine veya diğer türde kesintilere yol açarak yanlışlıkla web sitelerine zarar verebilir.
 
 **Gerekli yapılandırma:**
 
-Wallarm, güvenlik tarayıcılarına yönelik saldırıları yalnızca [API Abuse Prevention](api-abuse-prevention/overview.md) modülü etkinleştirilmiş ve doğru yapılandırılmışsa tespit edip hafifletir.
+Wallarm, yalnızca [API Abuse Prevention](api-abuse-prevention/overview.md) modülü etkin ve düzgün yapılandırılmışsa güvenlik tarayıcıları saldırılarını tespit eder ve azaltır.
 
 **API Abuse Prevention** modülü, aşağıdaki güvenlik tarayıcı bot türlerini tespit etmek için karmaşık bot tespit modelini kullanır:
 
-* Uygulamayı profil çıkarmak amacıyla, bilgi çıkarmak için spesifik istekler gönderilen [Fingerprinting](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-004_Fingerprinting.html)
-* Uygulamanın bileşimi, konfigürasyonu ve güvenlik mekanizmaları hakkında mümkün olduğunca bilgi toplamak amacıyla gerçekleştirilen [Footprinting](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-018_Footprinting.html)
-* Servis güvenlik açığı taraması yapılan [Vulnerability scanning](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-014_Vulnerability_Scanning)
+* [Fingerprinting](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-004_Fingerprinting.html), bir API’yi profillemek için bilgi ortaya çıkaran spesifik istekleri kullanır.
+* [Footprinting](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-018_Footprinting.html), API’nin bileşimi, yapılandırması ve güvenlik mekanizmaları hakkında mümkün olduğunca çok şey öğrenmeyi amaçlayan bilgi toplama faaliyetidir.
+* [Zafiyet tarama](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-014_Vulnerability_Scanning), hizmet güvenlik açıklarını arama ile karakterize edilir.
 
 **Wallarm korumasına ek olarak:**
 
-* [OWASP, otomatik tehditlere ilişkin açıklamaları](https://owasp.org/www-project-automated-threats-to-web-applications/) inceleyin.
+* [Otomatik tehditlere ilişkin OWASP açıklamasıyla](https://owasp.org/www-project-automated-threats-to-web-applications/) tanışın.
 * SSL sertifikaları kullanın.
 * Ek CAPTCHA çözümleri kullanın.
-* Rate limiting (oran sınırı) uygulayın.
-* Zararlı etkinlikleri gösterebilecek trafik desenlerini izlemek için trafiğinizi kontrol edin.
-* Arama motoru tarayıcılarına hangi sayfaları tarayabileceklerini veya tarayamayacaklarını belirten robots.txt dosyasını kullanın.
+* Hız sınırlama uygulayın.
+* Trafiğinizi, kötü amaçlı etkinliği gösterebilecek kalıpları bulmak için izleyin.
+* Arama motoru tarayıcılarına hangi sayfaları tarayabileceklerini ve tarayamayacaklarını söylemek için robots.txt dosyası kullanın.
 * Yazılımları düzenli olarak güncelleyin.
-* Bir içerik dağıtım ağı (CDN) kullanın.
+* İçerik dağıtım ağı (CDN) kullanın.
 
 ### Scraping
 
 **Saldırı**
 
-**Wallarm kodu:** `scraping` (`api_abuse` 4.10.6 öncesinde)
+**Wallarm kodu:** `scraping` (4.10.6’dan önce `api_abuse`)
 
 **Açıklama:**
 
-Web scraping, veri kazıma ya da web haritalaması olarak da bilinir; web sitelerinden otomatik olarak veri çıkarma sürecidir. Web sayfalarından veri çekmek ve bunu yapılandırılmış bir formatta (ör. elektronik tablo veya veritabanı) kaydetmek için yazılım veya kod kullanılır.
+Scraping, veri kazıma veya web hasadı olarak da bilinir, web sitelerinden ve API’lerden verilerin otomatik olarak çıkarılması sürecidir. Web sayfalarından ve API’lerden verileri almak ve çıkarmak ve bunları elektronik tablo veya veritabanı gibi yapılandırılmış bir biçimde kaydetmek için yazılım veya kod kullanmayı içerir.
 
-Web scraping, kötü niyetli amaçlarla da kullanılabilir. Örneğin, scraping araçları, giriş bilgileri, kişisel bilgiler veya finansal veriler gibi hassas bilgileri çalmak için kullanılabilir. Ayrıca, scraping araçları, bir web sitesinde erişilebilir olan verileri aşırı derecede çekerek hizmetin performansını düşürebilir veya Hizmet Reddi (DoS) saldırısına yol açabilir.
+Scraping kötü amaçlarla kullanılabilir. Örneğin, kazıyıcılar API’lerden oturum açma bilgileri, kişisel bilgiler veya finansal veriler gibi hassas bilgileri çalmak için kullanılabilir. Kazıyıcılar ayrıca, API’nın performansını düşürecek şekilde spam yapmak veya veri kazımak için de kullanılabilir ve bu da hizmet reddi (DoS) saldırılarına neden olabilir.
 
 **Gerekli yapılandırma:**
 
-Wallarm, scraping saldırılarını yalnızca [API Abuse Prevention](api-abuse-prevention/overview.md) modülü etkinleştirilmiş ve doğru yapılandırılmışsa tespit edip hafifletir.
+Wallarm, yalnızca [API Abuse Prevention](api-abuse-prevention/overview.md) modülü etkin ve düzgün yapılandırılmışsa scraping saldırılarını tespit eder ve azaltır.
 
-**API Abuse Prevention** modülü, uygulamadan erişilebilen verilerin veya işlenmiş çıktının toplanması sonucu, özel veya ücretli içeriğin kullanıcıya açığa çıkmasına neden olabilecek [scraping](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-011_Scraping) bot türünü tespit etmek için karmaşık bot tespit modelini kullanır.
+**API Abuse Prevention** modülü, uygulamadan erişilebilir verileri ve/veya işlenmiş çıktıyı toplayan ve özel veya ücretsiz olmayan içeriğin herhangi bir kullanıcı için kullanılabilir hale gelmesiyle sonuçlanabilecek [scraping](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-011_Scraping) bot türünü tespit etmek için karmaşık bot tespit modelini kullanır.
 
 **Wallarm korumasına ek olarak:**
 
-* [OWASP, otomatik tehditlere ilişkin açıklamaları](https://owasp.org/www-project-automated-threats-to-web-applications/) inceleyin.
+* [Otomatik tehditlere ilişkin OWASP açıklamasıyla](https://owasp.org/www-project-automated-threats-to-web-applications/) tanışın.
 * Ek CAPTCHA çözümleri kullanın.
-* Arama motoru tarayıcılarına hangi sayfaları tarayabileceklerini veya tarayamayacaklarını belirten robots.txt dosyasını kullanın.
-* Zararlı etkinlikleri gösterebilecek trafik desenlerini izlemek için trafiğinizi kontrol edin.
-* Rate limiting (oran sınırı) uygulayın.
-* Verileri şifreleyin veya karma hale getirin.
-* Yasal işlem başlatın.
+* Arama motoru tarayıcılarına hangi sayfaları tarayabileceklerini ve tarayamayacaklarını söylemek için robots.txt dosyası kullanın.
+* Trafiğinizi, kötü amaçlı etkinliği gösterebilecek kalıpları bulmak için izleyin.
+* Hız sınırlama uygulayın.
+* Verileri gizleyin veya şifreleyin.
+* Hukuki yollara başvurun.
 
-## GraphQL Saldırıları
+### Sınırsız kaynak tüketimi
+
+**Saldırı**
+
+**Wallarm kodu:** `resource_consumption`
+
+**Açıklama:**
+
+Uygun sınırlar olmadan otomatik bir istemcinin aşırı API veya uygulama kaynaklarını tükettiği bir suistimal davranışı türü. Buna, büyük miktarda kötü amaçlı olmayan istek gönderme, işlemci, bellek veya bant genişliğini tüketme ve meşru kullanıcılar için hizmet bozulmasına neden olma dahil olabilir.
+
+Uygun sınırların yokluğu şu şekillerde ortaya çıkabilir:
+
+* **Yanıt zamanlaması** (**Yanıt süresi anomali** [bot dedektörü](api-abuse-prevention/overview.md#how-api-abuse-prevention-works)) – API yanıtlarının gecikmesindeki normal dışı kalıplar, otomatik suistimal veya arka uç istismar girişimlerini işaret edebilir. İstekler, temel trafikle karşılaştırıldığında sürekli olarak olağan dışı yüksek veya düzensiz şekilde dalgalanan yanıt süreleri üretir. Bu anomaliler, botların hesaplama açısından pahalı sorgular göndermesinden, sistemi ölçmek için kasıtlı gecikmelerden veya hız sınırlarının altında kalmaya çalışan yavaş saldırı tekniklerinden kaynaklanabilir.
+* **İstek boyutu** (**Aşırı istek tüketimi** [bot dedektörü](api-abuse-prevention/overview.md#how-api-abuse-prevention-works)) – API’ya anormal derecede büyük istek payload’ları, arka uç işlem kaynaklarının suistimalini veya yanlış kullanımını gösterebilir. Bu davranış, aşırı büyük JSON gövdeleri, dosya yüklemeleri veya ayrıştırma, doğrulama veya depolama kapasitelerini tüketmeye yönelik derin iç içe yapılara başvurmayı içerebilir. Saldırganlar, arka uç yükünü artırmak, hız sınırlarını atlamak veya sistem sınırlarını keşfetmek için bu payload’lardan yararlanır.
+* **Yanıt boyutu** (**Aşırı yanıt tüketimi** [bot dedektörü](api-abuse-prevention/overview.md#how-api-abuse-prevention-works)) – yaşam döngüleri boyunca aktarılan toplam yanıt verisi hacminde şüpheli büyüklük. [Tüm bir oturum](api-sessions/overview.md) boyunca toplanan yanıt boyutları, yavaş damla veya dağıtılmış scraping saldırılarını ortaya çıkarır. Bu oturumlar istek başına zararsız görünebilir, ancak zamanla önemli veri sızıntısıyla sonuçlanır.
+
+**Gerekli yapılandırma:**
+
+!!! tip ""
+    [NGINX Node](installation/nginx-native-node-internals.md#nginx-node) 6.3.0 veya üzeri gerektirir ve şu an için [Native Node](installation/nginx-native-node-internals.md#native-node) tarafından desteklenmez.
+
+Wallarm, yalnızca [API Abuse Prevention](api-abuse-prevention/overview.md) modülü etkin ve düzgün yapılandırılmışsa sınırsız kaynak tüketimi saldırılarını tespit eder ve azaltır.
+
+Bu bot saldırı türü tespitinin hassas olması için, [API Sessions](api-sessions/overview.md) doğru şekilde [yapılandırılmalıdır](api-sessions/setup.md).
+
+## GraphQL saldırıları
 
 **Saldırı**
 
@@ -658,140 +718,142 @@ Wallarm, scraping saldırılarını yalnızca [API Abuse Prevention](api-abuse-p
 
 **Açıklama:**
 
-GraphQL, aşırı bilgi açığa çıkarma ve Hizmet Reddi (DoS) saldırılarına yönelik protokole özgü saldırıların uygulanmasına imkan tanıyan özelliklere sahiptir; detaylar alt bölümlerde açıklanmıştır.
+GraphQL, aşırı bilgi ifşası ve DoS ile ilgili protokole özgü saldırıların uygulanmasına izin veren özelliklere sahiptir; alt bölümlerde ayrıntıları görün.
 
-Bu tür tehditleri önlemenin yeterli bir önlemi, GraphQL istekleri için istek ve değer boyutları, sorgu derinliği, toplu sorgu sayısı gibi limitlerin belirlenmesidir. Wallarm'da, bu limitleri [GraphQL policy](api-protection/graphql-rule.md) içerisinde ayarlarsınız; limitleri aşan herhangi bir GraphQL isteği, GraphQL saldırısı olarak değerlendirilir.
+Bu tür tehditleri önlemek için uygun bir tedbir, istek ve değer boyutları, sorgu derinliği, izin verilen toplu sorgu sayısı vb. gibi GraphQL istekleri için sınırlar belirlemektir. Wallarm’da bu sınırları [GraphQL policy](api-protection/graphql-rule.md) içinde belirlersiniz - sınırları aşan herhangi bir GraphQL isteği, GraphQL saldırısı olarak kabul edilir.
 
 **Gerekli yapılandırma:**
 
-Wallarm, GraphQL saldırılarını yalnızca en az bir veya daha fazla [GraphQL saldırılarını tespit eden kural](api-protection/graphql-rule.md) yapılandırılmışsa tespit edip hafifletir (node 4.10.3 veya daha yüksek gerektirir).
+Wallarm, yalnızca bir veya daha fazla [GraphQL saldırılarını tespit et] azaltma kontrolü veya kuralı yapılandırılmışsa (node 4.10.3 veya üzeri gerekir) GraphQL saldırılarını tespit eder ve azaltır.
+
+[Varsayılan kontroller](api-protection/graphql-rule.md#default-protection), izleme modunda sunulur (yeni müşteriler için) veya devre dışıdır (gerekirse etkinleştirin).
 
 **Wallarm korumasına ek olarak:**
 
-* Hassas veya kısıtlanmış GraphQL API'lerine erişim için kimlik doğrulamayı zorunlu kılın.
-* Enjeksiyon saldırılarını önlemek ve kötü niyetli girdi değerlerini korumak amacıyla girdileri ve çıktıları temizleyin.
-* İstek detayları ve yanıt verileri de dahil olmak üzere, GraphQL sorgu etkinliğini izlemek ve analiz etmek için kapsamlı günlükleme mekanizmaları uygulayın.
-* GraphQL sunucularını, kısıtlı izinler ve erişim kontrollerine sahip güvenli çalışma ortamlarında çalıştırın.
+* Hassas veya kısıtlı GraphQL API’lerine erişim için kimlik doğrulaması gerektirin.
+* Enjeksiyon saldırılarını önlemek ve kötü amaçlı giriş değerlerine karşı korumak için girdileri ve çıktıları temizleyin.
+* İstek ayrıntıları ve yanıt verileri dahil olmak üzere GraphQL sorgu etkinliğini izlemek ve analiz etmek için kapsamlı günlükleme mekanizmaları uygulayın.
+* Sınırlı izinler ve erişim kontrolleriyle güvenli yürütme ortamlarında GraphQL sunucularını çalıştırın.
 
-### GraphQL Sorgu Boyutu
+### GraphQL sorgu boyutu
 
-**Wallarm kodu:** `gql_doc_size`: izin verilen maksimum toplam sorgu boyutunun ihlali
+**Wallarm kodu:** `gql_doc_size`: izin verilen maksimum toplam sorgu boyutu ihlali
 
 **Açıklama:** 
 
-Saldırgan, GraphQL uç noktalarına yönelik Hizmet Reddi (DoS) saldırısı gerçekleştirmek veya diğer sorunlara yol açmak amacıyla aşırı büyük girdilerden yararlanabilir.
+Bir saldırgan, GraphQL uç noktaları için Hizmet Reddi (DoS) gerçekleştirmek veya sunucunun aşırı büyük girdileri nasıl ele aldığından yararlanarak başka sorunlara neden olmak isteyebilir.
 
-### GraphQL Değer Boyutu
+### GraphQL değer boyutu
 
-**Wallarm kodu:** `gql_value_size`: izin verilen maksimum değer boyutunun ihlali
+**Wallarm kodu:** `gql_value_size`: izin verilen maksimum değer boyutu ihlali
 
 **Açıklama:**
 
-Saldırgan, sunucunun kaynaklarını zorlamak amacıyla, bir değişken veya argüman için aşırı uzun bir dize değeri içeren GraphQL isteği gönderebilir (Aşırı Değer Uzunluğu saldırısı).
+Bir saldırgan, sunucu kaynaklarını bunaltmak için değişken veya argüman için aşırı uzun bir dize değeri içeren GraphQL isteği gönderebilir (Aşırı Değer Uzunluğu saldırısı).
 
-### GraphQL Sorgu Derinliği
+### GraphQL sorgu derinliği
 
-**Wallarm kodu:** `gql_depth`: izin verilen maksimum sorgu derinliğinin ihlali
-
-**Açıklama:** 
-
-GraphQL sorguları iç içe geçebilir; bu durum, tek bir istekle karmaşık veri yapıları talep etme esnekliği sağlasa da, saldırgan tarafından aşırı iç içe geçmiş sorgu oluşturularak sunucunun zorlanmasına yol açabilir.
-
-### GraphQL Takma Adlar
-
-**Wallarm kodu:** `gql_aliases`: izin verilen maksimum takma ad sayısının ihlali
+**Wallarm kodu:** `gql_depth`: izin verilen maksimum sorgu derinliği ihlali
 
 **Açıklama:** 
 
-GraphQL'de, takma adlar, çakışmaları önlemek ve daha iyi veri organizasyonu sağlamak amacıyla sonuç alanlarını yeniden adlandırma imkanı sunar; ancak, saldırgan bu özelliği, Kaynak Tüketimi veya Hizmet Reddi (DoS) saldırısı başlatmak için istismar edebilir.
+GraphQL sorguları iç içe olabilir; bu, tek seferde karmaşık veri yapılarını istemeyi sağlar; ancak bu esneklik, potansiyel olarak sunucuyu bunaltabilecek derin iç içe sorgular oluşturmak için kötüye kullanılabilir.
 
-### GraphQL Toplu Sorgulama
+### GraphQL takma adları
 
-**Wallarm kodu:** `gql_docs_per_batch`: izin verilen maksimum toplu sorgu sayısının ihlali
+**Wallarm kodu:** `gql_aliases`: izin verilen maksimum takma ad sayısı ihlali
 
 **Açıklama:** 
 
-GraphQL'de, birden fazla sorgu (işlem), tek bir HTTP isteğinde toplu olarak gönderilebilir; saldırgan, toplu sorgu saldırısı düzenleyip, rate limiting (oran sınırı) gibi güvenlik önlemlerini aşmaya çalışabilir.
+GraphQL’de takma adlar, sonuç alanlarını yeniden adlandırarak çakışmaları önleme ve daha iyi veri organizasyonu sağlama olanağı sunar; ancak, bir saldırgan bu özelliği Kaynak Tüketimi veya Hizmet Reddi (DoS) saldırısı başlatmak için kötüye kullanabilir.
 
-### GraphQL Introspection
+### GraphQL batching
+
+**Wallarm kodu:** `gql_docs_per_batch`: izin verilen maksimum toplu sorgu sayısı ihlali
+
+**Açıklama:** 
+
+GraphQL’de, bir tek HTTP isteğinde birden fazla sorgu (operasyon) toplu işlenebilir; birden fazla işlemi tek bir istekte birleştirerek, bir saldırgan hız sınırlama gibi güvenlik önlemlerini atlatmaya çalışarak batching saldırısı düzenleyebilir.
+
+### GraphQL introspection
 
 **Wallarm kodu:** `gql_introspection`: yasak introspection sorgusu
 
 **Açıklama:** 
 
-Saldırgan, GraphQL introspection sistemini kullanarak, GraphQL API şeması hakkında detaylı bilgi edinebilir; bu sorgulama ile API'deki tüm tipler, sorgular, mutasyonlar ve alanlar hakkında bilgi toplayarak, daha hassas ve zararlı sorgular oluşturabilir.
+Bir saldırgan, GraphQL introspection sisteminden yararlanarak GraphQL API’sinin şeması hakkında ayrıntılar ortaya çıkarabilir; sistemi sorgulayarak, API’de mevcut tüm türler, sorgular, mutasyonlar ve alanlar hakkında bilgi edinme ve bu verileri daha kesin ve zarar verici sorgular oluşturmak için kullanma potansiyeline sahiptir.
 
-### GraphQL Debug
+### GraphQL debug
 
 **Wallarm kodu:** `gql_debug`: yasak debug modu sorgusu
 
 **Açıklama:**
 
-GraphQL'de, geliştiriciler tarafından debug modu açık bırakıldığında, saldırgan aşırı hata raporlama mesajlarından (örneğin, tüm yığın izleri veya traceback'ler) değerli bilgiler toplayabilir. Saldırgan, URI'de “debug=1“ parametresiyle debug moduna erişim sağlayabilir.
+GraphQL’de, debug modu geliştiriciler tarafından açık bırakıldığında, bir saldırgan tüm yığın izleri veya geri izlemeler gibi aşırı hata raporlama mesajlarından değerli bilgiler toplayabilir. Bir saldırgan, URI’de “debug=1“ parametresiyle debug moduna erişebilir.
 
-## API Spesifikasyonu
+## API spesifikasyonu
 
 **Saldırı**
 
-**Wallarm kodu:** `api_specification` tüm spesifikasyon tabanlı ihlalleri gösterir. Özel ihlaller alt bölümlerde açıklanmıştır.
+**Wallarm kodu:** `api_specification`, tüm spesifikasyon tabanlı ihlalleri gösterir. Özel ihlaller alt bölümlerde açıklanmıştır.
 
 **Açıklama:**
 
-[API Specification Enforcement](api-specification-enforcement/overview.md), yüklediğiniz spesifikasyonlara dayalı olarak API'larınıza güvenlik politikaları uygulamak üzere tasarlanmıştır. Birincil işlevi, spesifikasyonunuzdaki uç nokta açıklamaları ile REST API'larınıza yapılan istekler arasındaki uyumsuzlukları tespit etmektir. Bu tür uygunsuzluklar tespit edildiğinde, sistem bunları ele almak için önceden tanımlanmış işlemleri gerçekleştirebilir.
+[API Specification Enforcement](api-specification-enforcement/overview.md), yüklediğiniz spesifikasyonlara dayanarak API’lerinize güvenlik politikaları uygulamak için tasarlanmıştır. Birincil işlevi, spesifikasyonunuzdaki uç nokta açıklamaları ile REST API’lerinize yapılan gerçek istekler arasındaki tutarsızlıkları tespit etmektir. Bu tür tutarsızlıklar tespit edildiğinde, sistem bunları ele almak için önceden tanımlanmış eylemler gerçekleştirebilir.
 
-API Specification Enforcement, isteklerin spesifikasyonla karşılaştırılması sırasında uygulanan limitler aşıldığında, isteğin işlenmesini durdurur ve bu durumu belirten bir etkinlik oluşturur (bkz. [işleme aşımı](#processing-overlimit)).
+API Specification Enforcement’ın, istekleri spesifikasyonlarla karşılaştırırken uygulanan sınırlara sahip olduğunu unutmayın - bu limitler aşıldığında, isteği işlemeyi durdurur ve bu konuda bilgi veren olayı oluşturur: bkz. [işleme limiti aşımı](#processing-overlimit).
 
-### Tanımsız Uç Nokta
+### Tanımsız uç nokta
 
 **Wallarm kodu:** `undefined_endpoint`
 
 **Açıklama:**
 
-Spesifikasyonunuzda yer almayan bir uç noktanın istenmesidir.
+Spesifikasyonunuzda yer almayan uç noktanın istenmesine yönelik bir girişim.
 
-### Tanımsız Parametre
+### Tanımsız parametre
 
 **Wallarm kodu:** `undefined_parameter`
 
 **Açıklama:**
 
-Spesifikasyonunuzda bu uç nokta için belirtilmeyen parametreleri içeren istekler saldırı olarak işaretlenir.
+Spesifikasyonunuzda bu uç nokta için yer almayan parametreleri içerdiği için saldırı olarak işaretlenen istekler.
 
-### Geçersiz Parametre
+### Geçersiz parametre
 
 **Wallarm kodu:** `invalid_parameter_value`
 
 **Açıklama:**
 
-Parametrenin değerinin, spesifikasyonunuzda tanımlanan tip/format ile uyumlu olmaması nedeniyle istekler saldırı olarak işaretlenir.
+Parametrelerden bazılarının değerinin, spesifikasyonunuzda tanımlanan tür/format ile uyumlu olmaması nedeniyle saldırı olarak işaretlenen istekler.
 
-### Eksik Parametre
+### Eksik parametre
 
 **Wallarm kodu:** `missing_parameter`
 
 **Açıklama:**
 
-Spesifikasyonunuzda zorunlu olarak işaretlenen parametre veya değerin istek içinde yer almaması nedeniyle saldırı olarak işaretlenir.
+Spesifikasyonunuzda gerekli olarak işaretlenen parametreyi veya değerini içermediği için saldırı olarak işaretlenen istekler.
 
-### Eksik Kimlik Doğrulama
+### Eksik kimlik doğrulama
 
 **Wallarm kodu:** `missing_auth`
 
 **Açıklama:**
 
-Gerekli kimlik doğrulama yöntemine ilişkin bilgilerin eksik olduğu istekler saldırı olarak işaretlenir.
+Gerekli kimlik doğrulama yöntemi hakkında bilgi içermediği için saldırı olarak işaretlenen istekler.
 
-### Geçersiz İstek
+### Geçersiz istek
 
 **Wallarm kodu:** `invalid_request`
 
 **Açıklama:**
 
-Geçersiz JSON içeren istekler saldırı olarak işaretlenir.
+Geçersiz JSON içerdiği için saldırı olarak işaretlenen istekler.
 
-## Veri İşleme
+## Veri işleme
 
-### Data Bomb
+### Veri bombası
 
 **Saldırı**
 
@@ -801,16 +863,16 @@ Geçersiz JSON içeren istekler saldırı olarak işaretlenir.
 
 **Açıklama:**
 
-Wallarm, içeriğinde Zip veya XML bombası geçen istekleri Data bomb saldırısı olarak işaretler:
+Bir istek, Zip veya XML bombası içeriyorsa Wallarm isteği Veri bombası saldırısı olarak işaretler:
 
-* [Zip bomb](https://en.wikipedia.org/wiki/Zip_bomb) — okuyan program veya sistemi çökertecek ya da işlevsiz hale getirecek şekilde tasarlanmış kötü niyetli bir arşiv dosyasıdır. Zip bomb, programın niyetinde olduğu gibi çalışmasına izin verir, fakat arşiv, açılması için aşırı miktarda zaman, disk alanı ve/veya hafıza gerektirecek şekilde hazırlanmıştır.
-* [XML bombası (billion laughs attack)](https://en.wikipedia.org/wiki/Billion_laughs_attack) — XML ayrıştırıcılarına yönelik Hizmet Reddi (DoS) saldırısı türüdür. Saldırgan, XML varlıklarında kötü niyetli yükler gönderir.
+* [Zip bombası](https://en.wikipedia.org/wiki/Zip_bomb), onu okuyan programı veya sistemi çökertmek veya kullanışsız hale getirmek için tasarlanmış kötü amaçlı bir arşiv dosyasıdır. Zip bombası, programın amacı doğrultusunda çalışmasına izin verir, ancak arşiv, açılmasının orantısız miktarda zaman, disk alanı ve/veya bellek gerektirecek şekilde hazırlanmıştır.
+* [XML bombası (billion laughs attack)](https://en.wikipedia.org/wiki/Billion_laughs_attack), XML belgelerinin ayrıştırıcılarını hedef alan bir DoS saldırı türüdür. Bir saldırgan, XML varlıklarında kötü amaçlı payload’lar gönderir.
 
-    Örneğin, `entityOne` 20 adet `entityTwo` olarak tanımlanabilir; bu da kendileri 20 adet `entityThree` olarak tanımlanabilir. Aynı desen `entityEight`e kadar tekrarlandığında, XML ayrıştırıcısı, `entityOne`in tek bir örneğini 1.280.000.000 adet `entityEight` olarak açar — yaklaşık 5 GB hafıza tüketir.
+    Örneğin, `entityOne` 20 adet `entityTwo` olarak tanımlanabilir; bunlar da 20 adet `entityThree` olarak tanımlanabilir. Aynı kalıp `entityEight`e kadar devam ederse, XML ayrıştırıcı tek bir `entityOne` oluşumunu 1 280 000 000 `entityEight`e açar — 5 GB bellek kullanır.
 
 **Wallarm korumasına ek olarak:**
 
-* Gelen istek boyutlarını sınırlayarak sistemin zarar görmesini engelleyin.
+* Gelen isteklerin boyutunu, sisteminize zarar veremeyecek şekilde sınırlayın.
 
 ### Geçersiz XML
 
@@ -820,9 +882,9 @@ Wallarm, içeriğinde Zip veya XML bombası geçen istekleri Data bomb saldırı
 
 **Açıklama:**  
 
-Bir istek, gövdesinde bir XML belgesi içeriyor ve belgedeki kodlama, XML başlığında belirtilen kodlamadan farklı ise, `invalid_xml` olarak işaretlenir.
+Bir isteğin gövdesi bir XML belgesi içeriyor ve belgenin kodlaması XML başlığında belirtilen kodlamadan farklıysa istek `invalid_xml` olarak işaretlenir.
 
-### İşleme Aşım
+### İşleme limiti aşımı
 
 **Saldırı**
 
@@ -830,9 +892,9 @@ Bir istek, gövdesinde bir XML belgesi içeriyor ve belgedeki kodlama, XML başl
 
 **Açıklama:**
 
-**Spesifikasyon işleme aşımı** olayı, [API Specification Enforcement](#api_specification) işleminde uygulanan limitlerin ihlal edilmesi durumunda saldırı listesine eklenir.
+İstekleri işlerken [API Specification Enforcement](#api-specification) için uygulanan limitlerin ihlali durumunda, **Specification processing overlimit** olayı saldırı listesine eklenir.
 
-### Kaynak Aşımı
+### Kaynak limiti aşımı
 
 **Saldırı**
 
@@ -840,13 +902,13 @@ Bir istek, gövdesinde bir XML belgesi içeriyor ve belgedeki kodlama, XML başl
 
 **Açıklama:**
 
-Wallarm düğümü, gelen isteklerin işlenmesi için harcanacak sürenin `N` milisaniyeden (varsayılan değer: `1000`) fazla olmamasını sağlayacak şekilde yapılandırılmıştır. İstek, belirtilen zaman dilimi içerisinde işlenemezse, isteğin işlenmesi durdurulur ve istek `overlimit_res` saldırısı olarak işaretlenir.
+Wallarm düğümü, gelen isteklerin işlenmesine `N` milisaniyeden fazla zaman harcamayacak şekilde yapılandırılmıştır (varsayılan değer: `1000`). İstek belirtilen zaman aralığında işlenmezse, isteğin işlenmesi durdurulur ve istek `overlimit_res` saldırısı olarak işaretlenir. 
 
-Özel zaman sınırı belirleyerek, limiti aştığında düğümün varsayılan davranışını değiştirmek için [**Limit request processing time**](user-guides/rules/configure-overlimit-res-detection.md) kuralını kullanabilirsiniz.
+Sınır aşıldığında düğümün varsayılan davranışını değiştirmek ve özel zaman sınırı belirlemek için [**Limit request processing time**](user-guides/rules/configure-overlimit-res-detection.md) kuralını kullanabilirsiniz.
 
-İstek işleme süresinin sınırlandırılması, Wallarm düğümlerine yönelik bypass saldırıları önlemeye yardımcı olur. Bazı durumlarda, `overlimit_res` olarak işaretlenen istekler, Wallarm düğüm modüllerine tahsis edilen kaynakların yetersizliğini gösterebilir.
+İstek işleme süresini sınırlamak, Wallarm düğümlerini hedefleyen atlatma saldırılarını önler. Bazı durumlarda, `overlimit_res` olarak işaretlenen istekler, Wallarm düğüm modülleri için ayrılan kaynakların yetersiz olduğuna ve uzun istek işleme sürelerine işaret edebilir.
 
-## Engellenmiş Kaynak
+## Engellenen kaynak
 
 **Saldırı**
 
@@ -854,9 +916,9 @@ Wallarm düğümü, gelen isteklerin işlenmesi için harcanacak sürenin `N` mi
 
 **Açıklama:**
 
-Manuel olarak [kara listeye alınmış](user-guides/ip-lists/overview.md) IP'lerden gelen saldırılar.
+**Manuel** olarak [denylist’e alınmış](user-guides/ip-lists/overview.md) IP’lerden gelen saldırılar.
 
-## Sanal Yama (Virtual patch)
+## Sanal yama
 
 **Saldırı**
 
@@ -864,28 +926,28 @@ Manuel olarak [kara listeye alınmış](user-guides/ip-lists/overview.md) IP'ler
 
 **Açıklama:**     
 
-Bir istek, [sanal yama mekanizması][doc-vpatch] tarafından hafifletilen saldırının parçası ise `vpatch` olarak işaretlenir.
+Bir istek, [sanal yama mekanizması][doc-vpatch] tarafından azaltılmış bir saldırının parçasıysa `vpatch` olarak işaretlenir.
 
 **Gerekli yapılandırma:**
 
-Sanal yamalama, [filtrasyon modu](admin-en/configure-wallarm-mode.md) ne bakılmaksızın, belirli veya tüm isteklerin engellenmesi işlemidir. Sanal yamalar, [manuel olarak][doc-vpatch] oluşturulan özel kurallardır.
+Sanal yama, mevcut [filtration mode](admin-en/configure-wallarm-mode.md)’dan bağımsız olarak belirli bir uç noktaya yönelik belirli veya tüm isteklerin engellenmesidir. Sanal yamalar, [manuel olarak][doc-vpatch] oluşturduğunuz özel kurallardır.
 
 **Wallarm korumasına ek olarak:**
 
-* Yamayla hafifletilen güvenlik açığını analiz edin ve yamanın gereksiz hale gelmesi için giderin.
+* Yamayla azaltılan güvenlik açığını analiz edin ve yamaya artık ihtiyaç duyulmayacak şekilde giderin.
 
-<!--### API Leak
+<!--### API leak
 
-**Wallarm kodu:** `apileak`
+**Wallarm code:** `apileak`
 
-Açıklama: TBD (dokümanlarda belirtilmemiş, ancak UI'da yer almaktadır)
+Description TBD (not presented in docs, but presented in UI)
 -->
 
 ## Diğer
 
-### Kimlik Doğrulama Atlatma
+### Kimlik doğrulamayı atlatma
 
-**Güvenlik Açığı**
+**Güvenlik açığı**
 
 **CWE kodu:** [CWE-288][cwe-288]
 
@@ -893,19 +955,41 @@ Açıklama: TBD (dokümanlarda belirtilmemiş, ancak UI'da yer almaktadır)
 
 **Açıklama:**
 
-Kimlik doğrulama mekanizmaları bulunsa bile, bir web uygulaması, ana kimlik doğrulama mekanizmasını atlatan veya zayıflıklarını istismar eden alternatif kimlik doğrulama yöntemlerine sahip olabilir. Bu durum, saldırgana kullanıcı veya yönetici izinleriyle erişim sağlama imkanı tanıyabilir.
+Bir uygulama veya API, kimlik doğrulama mekanizmalarına sahip olmasına rağmen, ana kimlik doğrulama mekanizmasını atlamaya veya bu mekanizmanın zayıflıklarından yararlanmaya izin veren alternatif kimlik doğrulama yöntemlerine sahip olabilir. Bu faktörlerin birleşimi, bir saldırganın kullanıcı veya yönetici izinleriyle erişim elde etmesiyle sonuçlanabilir.
 
-Başarılı bir kimlik doğrulama atlatma saldırısı, kullanıcıların gizli verilerinin açığa çıkmasına veya savunmasız uygulamanın yönetici izinleriyle ele geçirilmesine neden olabilir.
+Başarılı bir kimlik doğrulamayı atlatma saldırısı, potansiyel olarak kullanıcıların gizli bilgilerinin ifşa edilmesine veya yönetici izinleriyle savunmasız API’nin kontrolünün ele geçirilmesine yol açar.
 
 **Wallarm korumasına ek olarak:**
 
 * Mevcut kimlik doğrulama mekanizmalarını geliştirin ve güçlendirin.
-* Saldırganların, önceden tanımlı mekanizmalar vasıtasıyla kimlik doğrulama prosedürünü atlayarak uygulamaya erişim sağlamasına neden olabilecek alternatif kimlik doğrulama yöntemlerini ortadan kaldırın.
-* [OWASP Authentication Cheat Sheet][link-owasp-auth-cheatsheet] önerilerini uygulayın.
+* Önceden tanımlı mekanizmalar aracılığıyla gerekli kimlik doğrulama prosedürünü atlayarak bir API’ye erişime izin verebilecek alternatif kimlik doğrulama yöntemlerini ortadan kaldırın.
+* [OWASP Authentication Kılavuzu][link-owasp-auth-cheatsheet] önerilerini uygulayın.
 
-### Cross-site Request Forgery (CSRF)
+### Kimlik bilgisi doldurma
 
-**Güvenlik Açığı**
+**Saldırı**
+
+**Wallarm kodu:** `credential_stuffing`
+
+**Açıklama:**
+
+Saldırganların, birden fazla kaynaktaki kullanıcı hesaplarına yetkisiz erişim elde etmek için ele geçirilmiş kullanıcı kimlik bilgileri listelerini kullandıkları bir siber saldırı. Bu saldırı tehlikelidir çünkü birçok kişi farklı hizmetlerde aynı kullanıcı adı ve parolayı yeniden kullanır veya popüler zayıf parolalar kullanır. Başarılı bir kimlik bilgisi doldurma saldırısı daha az deneme gerektirir; bu nedenle saldırganlar istekleri çok daha seyrek gönderebilir, bu da kaba kuvvet koruması gibi standart önlemleri etkisiz hale getirir. 
+
+**Gerekli yapılandırma:**
+
+Wallarm, yalnızca filtreleme düğümü sürümü 4.10 veya üzeri ise ve [Credential Stuffing Detection](about-wallarm/credential-stuffing.md) işlevi etkinleştirilmiş ve düzgün yapılandırılmışsa kimlik bilgisi doldurma girişimlerini tespit eder.
+
+**Wallarm korumasına ek olarak:**
+
+* [OWASP kimlik bilgisi doldurma açıklamasıyla](https://owasp.org/www-community/attacks/Credential_stuffing), “Credential Stuffing Prevention Cheat Sheet” dahil tanışın.
+* Kullanıcıları güçlü parolalar kullanmaya zorlayın.
+* Kullanıcılara farklı kaynaklar için aynı parolaları kullanmamalarını önerin.
+* İki faktörlü kimlik doğrulamayı etkinleştirin.
+* Ek CAPTCHA çözümleri kullanın.
+
+### Siteler arası istek sahteciliği (CSRF)
+
+**Güvenlik açığı**
 
 **CWE kodu:** [CWE-352][cwe-352]
 
@@ -913,58 +997,80 @@ Başarılı bir kimlik doğrulama atlatma saldırısı, kullanıcıların gizli 
 
 **Açıklama:**
 
-Cross-site request forgery (CSRF), hedef web uygulamasında o an kimlik doğrulaması yapılmış olan bir kullanıcının, istenmeyen işlemleri gerçekleştirmeye zorlanmasıdır. Sosyal mühendislik (örneğin, e-posta veya sohbet yoluyla link gönderme) yardımıyla saldırgan, bir web uygulamasının kullanıcısını, saldırganın belirlediği işlemleri gerçekleştirmeye ikna edebilir.
+Siteler arası istek sahteciliği (CSRF), son kullanıcının, halihazırda kimlik doğrulaması yapılmış olduğu bir uygulamada istenmeyen eylemler gerçekleştirmeye zorlandığı bir saldırıdır. Biraz sosyal mühendislik yardımıyla (e-posta veya sohbet yoluyla bağlantı gönderme gibi), bir saldırgan, bir uygulamanın kullanıcılarını saldırganın seçtiği eylemleri gerçekleştirmeleri için kandırabilir.
 
-İlgili güvenlik açığı, kullanıcının tarayıcısının, hedef alan adı için ayarlanmış oturum çerezlerini otomatik olarak eklemesinden kaynaklanır.
+İlgili güvenlik açığı, kullanıcının tarayıcısının, çapraz site isteği gerçekleştirilirken hedef alan adı için ayarlanmış kullanıcı oturum çerezlerini otomatik olarak eklemesi nedeniyle ortaya çıkar.
 
-Çoğu site için, bu çerezler site ile ilişkili kimlik bilgilerini içerir. Bu nedenle kullanıcı, o an siteye giriş yapmışsa, site, saldırgan tarafından gönderilen sahte istek ile kullanıcının gönderdiği meşru istek arasında ayrım yapamaz.
+Çoğu site için bu çerezler, siteyle ilişkili kimlik bilgilerini içerir. Bu nedenle, kullanıcı şu anda siteye kimlik doğrulaması yapmışsa, site mağdur tarafından gönderilen sahte istek ile mağdur tarafından gönderilen meşru istek arasında ayrım yapmanın bir yoluna sahip olmayacaktır.
 
-Sonuç olarak, saldırgan, savunmasız web uygulamasına, kötü niyetli bir web sitesi aracılığıyla, meşru bir kullanıcının yerine geçerek istek gönderebilir; saldırganın, kullanıcının çerezlerine bile erişmesine gerek yoktur.
+Sonuç olarak, saldırgan, kötü amaçlı bir web sitesinden, meşru bir kullanıcı gibi davranarak, savunmasız web uygulamasına bir istek gönderebilir; saldırganın, o kullanıcının çerezlerine erişmesi bile gerekmez.
 
-Wallarm, CSRF saldırılarını tespit eder ancak engellemez. CSRF problemi, modern tarayıcılar tarafından içerik güvenlik politikaları (CSP) vasıtasıyla çözülmüştür.
+Wallarm yalnızca CSRF güvenlik açıklarını keşfeder, ancak CSRF saldırılarını tespit etmez ve dolayısıyla engellemez. CSRF sorunu tüm modern tarayıcılarda içerik güvenliği politikaları (CSP) ile çözülmüştür.
 
 **Koruma:**
 
-CSRF, tarayıcılar tarafından çözülmektedir; diğer koruma yöntemleri daha az faydalı olsa da yine de uygulanabilir:
+CSRF tarayıcılar tarafından çözülür, diğer koruma yöntemleri daha az faydalıdır ancak yine de kullanılabilir:
 
-* CSRF tokenları gibi anti-CSRF koruma mekanizmaları uygulayın.
-* `SameSite` çerez özelliğini ayarlayın.
-* [OWASP CSRF Prevention Cheat Sheet][link-owasp-csrf-cheatsheet] önerilerini uygulayın.
+*   CSRF jetonları ve diğerleri gibi anti-CSRF koruma mekanizmalarını kullanın.
+*   `SameSite` çerez özniteliğini ayarlayın.
+*   [OWASP CSRF Önleme Kılavuzu][link-owasp-csrf-cheatsheet] önerilerini uygulayın.
 
-### Bilgi Açığa Çıkması
+### Dosya yükleme ihlali
 
-**Güvenlik Açığı/Saldırı**
+**Saldırı**
 
-**CWE kodları:** [CWE-200][cwe-200] (ayrıca bkz: [CWE-209][cwe-209], [CWE-215][cwe-215], [CWE-538][cwe-538], [CWE-541][cwe-541], [CWE-548][cwe-548], [CWE-598][cwe-598])
+**Wallarm kodu:** `file_upload_violation`
+
+**Açıklama:**
+
+[Unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md), [OWASP API Top 10 2023](user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) en ciddi API güvenlik riskleri listesine dahil edilmiştir. Kendi başına bir tehdit olmakla birlikte (aşırı yük nedeniyle hizmetin yavaşlaması veya tamamen çökmesi), bu aynı zamanda örneğin numaralandırma saldırıları gibi farklı saldırı türlerinin temelini oluşturur. Çok büyük dosya yüklemeye izin verilmesi, bu risklerin nedenlerinden biridir.
+
+**Gerekli yapılandırma:**
+
+Wallarm, yalnızca abonelik planınızda mevcut yöntemle yapılandırılmış bir veya daha fazla [policy](api-protection/file-upload-restriction.md) varsa dosya yükleme kısıtlamaları uygular.
+
+Dosya boyutu yükleme kısıtlamalarının, Wallarm tarafından sunulan [sınırsız kaynak tüketimini önlemeye yönelik tek önlem](api-protection/file-upload-restriction.md#comparison-to-other-measures-for-preventing-unrestricted-resource-consumption) olmadığını unutmayın.
+
+**Wallarm korumasına ek olarak:**
+
+* İstemci tarafı JavaScript ile dosya boyutu doğrulaması kurun
+* Büyük dosyaları reddedecek şekilde web sunucusunu (Nginx veya Apache gibi) yapılandırın
+* Uygulamanızın kodu içerisinde dosya boyutu kontrolü kurun
+
+### Bilgi ifşası
+
+**Güvenlik açığı/Saldırı**
+
+**CWE kodları:** [CWE-200][cwe-200] (ayrıca bkz.: [CWE-209][cwe-209], [CWE-215][cwe-215], [CWE-538][cwe-538], [CWE-541][cwe-541], [CWE-548][cwe-548], [CWE-598][cwe-598])
 
 **Wallarm kodu:** `infoleak`
 
 **Açıklama:**
 
-Bu güvenlik açığı, bir uygulamanın, saldırganlara gelecekteki zararlı işlemler için kullanılabilecek hassas verileri yetkisiz olarak ifşa etmesi anlamına gelir.
+Bu güvenlik açığı, bir uygulamanın hassas bilgileri yetkisiz olarak ifşa etmesini içerir ve potansiyel olarak saldırganlara daha fazla kötü niyetli faaliyet için hassas veriler sağlar.
 
-Hassas bilgilerin bazı türleri:
+Bazı hassas bilgi türleri:
 
-* E-posta, finansal veri, iletişim bilgileri gibi özel, kişisel bilgiler.
-* Hata mesajları, yığın izleri vs. gibi teknik bilgiler.
-* İşletim sistemi, yüklü paketler gibi sistem durumu ve ortam bilgisi.
-* Kaynak kodu veya içsel durum.
+* E-postalar, finansal veriler, iletişim bilgileri vb. gibi özel, kişisel bilgiler
+* Hata mesajlarında, yığın izinde açığa çıkan teknik bilgiler
+* İşletim sistemi ve yüklü paketler gibi sistem durumu ve ortam
+* Kaynak kodu veya dahili durum
 
-Wallarm, bilgi açığa çıkmasını iki şekilde tespit eder:
+Wallarm, bilgi ifşasını iki şekilde tespit eder:
 
-* Sunucu yanıtı analizi: Wallarm, [güvenlik açığı tespit yöntemleri](about-wallarm/detecting-vulnerabilities.md#vulnerability-detection-methods) kullanarak, uygulama yanıtlarının yanlışlıkla hassas bilgileri ifşa edip etmediğini analiz eder.
-* API Discovery içgörüleri: [API Discovery](api-discovery/overview.md) modülü tarafından tespit edilen uç noktalar, GET isteklerinin sorgu parametrelerinde Kişisel Tanımlanabilir Bilgiler (PII) içerdiğinde, Wallarm bunları savunmasız olarak değerlendirir.
+* Sunucu yanıtı analizi: Wallarm, sunucu yanıtlarını analiz etmek için pasif tespit, güvenlik açığı taraması ve tehdit yeniden oynatma testi gibi [teknikleri](about-wallarm/detecting-vulnerabilities.md#vulnerability-detection-methods) kullanır. Bu yöntemler, uygulama yanıtlarının yanlışlıkla hassas bilgileri ifşa edip etmediğini kontrol ederek güvenlik açıklarını belirlemeyi amaçlar.
+* API Discovery içgörüleri: [API Discovery](api-discovery/overview.md) modülü tarafından tanımlanan uç noktalar, GET isteklerinin sorgu parametrelerinde Kişisel Olarak Tanımlanabilir Bilgileri (PII) aktardığında, Wallarm bunları savunmasız olarak tanır.
 
-Wallarm, `infoleak` saldırılarını özel olarak sınıflandırmaz ancak gerçekleştiğinde ilgili güvenlik olaylarını tespit eder. Bu tür olaylar nadirdir. Wallarm tespit mekanizmaları, böyle bir durumun ortaya çıkması halinde sizi hızlıca uyarır, böylece açığı hızla giderebilirsiniz. Ayrıca, Wallarm filtreleme düğümünün [engelleme modunda](admin-en/configure-wallarm-mode.md#available-filtration-modes) kullanılması, saldırı girişimlerini engelleyerek veri sızıntısı ihtimalini azaltır.
+Wallarm, `infoleak` saldırılarını özel olarak sınıflandırmaz ancak ilgili güvenlik olaylarını gerçekleştiğinde tespit eder ve kaydeder. Ancak, olaylar nadirdir. Wallarm’ın tespit mekanizmaları, böyle bir ifşa başlarsa sizi derhal uyarır ve güvenlik açığının hızlı bir şekilde giderilmesini sağlar. Ek olarak, Wallarm’ın filtreleme düğümünü [blocking mode](admin-en/configure-wallarm-mode.md#available-filtration-modes)’da kullanmak, herhangi bir saldırı girişimini engelleyerek ifşaları önlemeye yardımcı olur ve veri sızıntısı olasılığını önemli ölçüde azaltır.
 
 **Wallarm korumasına ek olarak:**
 
-* Web uygulamalarının hassas bilgileri görüntüleme yeteneğini kaldırın.
-* Kayıt ve giriş formları gibi hassas verilerin iletiminde GET yerine POST HTTP metodunu tercih edin.
+* Web uygulamalarının herhangi bir hassas bilgiyi görüntüleme yeteneğine sahip olmasını yasaklayın.
+* Tercihen, kayıt ve oturum açma formları gibi hassas verileri iletmek için GET yerine POST HTTP yöntemini kullanın.
 
-### Savunmasız Bileşen
+### Güvenlik açığı bulunan bileşen
 
-**Güvenlik Açığı**
+**Güvenlik açığı**
 
 **CWE kodları:** [CWE-937][cwe-937], [CWE-1035][cwe-1035], [CWE-1104][cwe-1104]
 
@@ -972,21 +1078,21 @@ Wallarm, `infoleak` saldırılarını özel olarak sınıflandırmaz ancak gerç
 
 **Açıklama:**
 
-Bu güvenlik açığı, web uygulamanızın veya API'nizin savunmasız veya güncel olmayan bir bileşen kullanması durumunda ortaya çıkar. Bu, işletim sistemi, web/uygulama sunucusu, veritabanı yönetim sistemi (DBMS), çalışma ortamları, kütüphaneler ve diğer bileşenleri içerebilir.
+Uygulamanız veya API’niz güvenlik açığı bulunan veya güncel olmayan bir bileşen kullanıyorsa bu güvenlik açığı meydana gelir. Buna bir işletim sistemi, web/uygulama sunucusu, veritabanı yönetim sistemi (DBMS), çalışma zamanı ortamları, kütüphaneler ve diğer bileşenler dahil olabilir.
 
-Bu güvenlik açığı, [A06:2021 – Vulnerable and Outdated Components](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components) ile eşleştirilir.
+Bu güvenlik açığı, [A06:2021 – Vulnerable and Outdated Components](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components) ile eşleştirilmiştir.
 
 **Wallarm korumasına ek olarak:**
 
-* Kullanılmayan bağımlılıkları, gereksiz özellikleri, bileşenleri, dosyaları ve dokümantasyonu ortadan kaldırın.
-* Hem istemci hem de sunucu tarafı bileşenlerinin (örneğin; framework, kütüphane) versiyonlarının ve bağımlılıklarının envanterini sürekli olarak çıkartın (OWASP Dependency Check, retire.js gibi araçlar kullanın).
-* Bileşenlerdeki güvenlik açıklarını izlemek için Common Vulnerabilities and Exposures (CVE) ve National Vulnerability Database (NVD) gibi kaynakları sürekli takip edin.
-* Bileşenleri güvenli bağlantılar üzerinden, resmi kaynaklardan edinin. Değiştirilmiş, kötü amaçlı bileşenlerin dahil edilme olasılığını azaltmak için imzalı paketleri tercih edin.
-* Bakımı yapılmayan veya eski versiyonlar için güvenlik yamaları oluşturulmayan kütüphane ve bileşenleri izleyin; yamalama mümkün değilse, sanal yama uygulamasını devreye alın.
+* Kullanılmayan bağımlılıkları, gereksiz özellikleri, bileşenleri, dosyaları ve dokümantasyonu kaldırın.
+* OWASP Dependency Check, retire.js vb. gibi araçları kullanarak hem istemci hem de sunucu tarafı bileşenlerin (ör. framework’ler, kütüphaneler) ve bunların bağımlılıklarının sürümlerini sürekli olarak envanterleyin.
+* Bileşenlerdeki güvenlik açıkları için Common Vulnerability and Exposures (CVE) ve National Vulnerability Database (NVD) gibi kaynakları sürekli izleyin.
+* Bileşenleri yalnızca resmi kaynaklardan güvenli bağlantılar üzerinden edinin. Değiştirilmiş, kötü amaçlı bir bileşen dahil etme şansını azaltmak için imzalı paketleri tercih edin.
+* Bakımı yapılmayan veya eski sürümler için güvenlik yamaları oluşturulmayan kütüphaneleri ve bileşenleri izleyin. Yama mümkün değilse, keşfedilen sorunu izlemek, tespit etmek veya ondan korumak için sanal yama dağıtmayı düşünün.
 
 ### Zayıf JWT
 
-**Güvenlik Açığı**
+**Güvenlik açığı**
 
 **CWE kodu:** [CWE-1270][cwe-1270], [CWE-1294][cwe-1294]
 
@@ -994,18 +1100,18 @@ Bu güvenlik açığı, [A06:2021 – Vulnerable and Outdated Components](https:
 
 **Açıklama:**
 
-[JSON Web Token (JWT)](https://jwt.io/), API’ler gibi kaynaklar arasında güvenli veri alışverişi sağlamak için kullanılan popüler bir kimlik doğrulama standardıdır.
+[JSON Web Token (JWT)](https://jwt.io/), API’ler gibi kaynaklar arasında verileri güvenli bir şekilde değiş tokuş etmek için kullanılan popüler bir kimlik doğrulama standardıdır.
 
-JWT’nin tehlikeye girmesi, kimlik doğrulama mekanizmalarının kırılması nedeniyle saldırganlara web uygulamalarına ve API’lere tam erişim imkanı tanır. JWT ne kadar zayıfsa, ele geçirilme ihtimali de o kadar yüksek olur.
+JWT’nin ele geçirilmesi, kimlik doğrulama mekanizmalarının kırılması saldırganlara uygulamalarınıza ve API’lerinize tam erişim sağladığından, yaygın bir saldırı amacıdır. JWT ne kadar zayıfsa, ele geçirilme olasılığı o kadar yüksektir.
 
-Wallarm, JWT’lerin zayıf olduğunu şu durumlarda kabul eder:
+Wallarm, JWT’leri zayıf olarak kabul eder, eğer:
 
-* Şifrelenmemiş – imzalama algoritması yok ( `alg` alanı `none` veya yok).
-* Kırılmış gizli anahtarlar kullanılarak imzalanmış olması.
+* Şifrelenmemişse - imzalama algoritması yoksa (`alg` alanı `none` veya yok).
+* Ele geçirilmiş gizli anahtarlarla imzalanmışsa.
 
-Zayıf bir JWT tespit edildiğinde, Wallarm ilgili [güvenlik açığını](user-guides/vulnerabilities.md) kaydeder.
+Zayıf bir JWT tespit edildiğinde Wallarm, karşılık gelen [güvenlik açığını](user-guides/vulnerabilities.md) kaydeder.
 
 **Wallarm korumasına ek olarak:**
 
-* [OWASP JSON Web Token Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html) önerilerini uygulayın.
-* [JWT uygulamanızın yaygın anahtarları kontrol edin](https://lab.wallarm.com/340-weak-jwt-secrets-you-should-check-in-your-code/)
+* [OWASP JSON Web Token Kılavuzu](https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html) önerilerini uygulayın
+* [JWT uygulamanızın bilinen zayıf sırlara karşı savunmasız olup olmadığını kontrol edin](https://lab.wallarm.com/340-weak-jwt-secrets-you-should-check-in-your-code/)

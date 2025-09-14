@@ -1,41 +1,41 @@
 # Atlassian Jira
 
-[Jira](https://www.atlassian.com/software/jira), Atlassian tarafından geliştirilen yaygın kullanılan bir proje yönetimi ve sorun takip yazılımıdır. Wallarm'ı, [vulnerabilities](../../../glossary-en.md#vulnerability) tespit edildiğinde, tüm risk seviyeleri veya yalnızca seçilen risk düzeyi(ler) - yüksek, orta veya düşük - için Jira'da sorun oluşturacak şekilde yapılandırabilirsiniz.
+[Jira](https://www.atlassian.com/software/jira), Atlassian tarafından geliştirilen, yaygın olarak kullanılan bir proje yönetimi ve issue takip yazılımıdır. [Zafiyetler](../../../glossary-en.md#vulnerability) tespit edildiğinde, seçilen risk düzeyi/düzeyleri (yüksek, orta veya düşük) için veya tümü için, Jira'da issue oluşturacak şekilde Wallarm'ı yapılandırabilirsiniz.
 
-## Entegrasyonu Kurma
+## Entegrasyonu yapılandırma
 
-Jira UI'de: 
+Jira UI'da: 
 
-1. [Burada](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/#Create-an-API-token) açıklandığı gibi API token'ı oluşturun.
-1. Oluşturulan API token'ını kopyalayın.
+1. API belirtecini [burada](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/#Create-an-API-token) açıklandığı gibi oluşturun.
+1. Oluşturulan API belirtecini kopyalayın.
 
-Wallarm UI'de:
+Wallarm UI'da:
 
-1. Wallarm Console → **Integrations** → **Jira** bölümünü açın.
+1. Wallarm Console → **Integrations** → **Jira**'yı açın.
 1. Bir entegrasyon adı girin.
-1. Jira host'unu girin (örneğin, `https://company-x.atlassian.net/`).
-1. Jira'nın kimlik doğrulama için istediği ve oluşturulan sorunlarda Reporter'ı belirlemek için kullanılacak olan Jira kullanıcı e-posta adresini girin.
-1. Oluşturulan API token'ını yapıştırın. Belirtilen Jira host'unda Wallarm'ın kimlik doğrulaması için e-posta ve token kontrol edilecektir. Başarılı olursa, bu Jira kullanıcısına ait mevcut alanlar listelenecektir.
-1. Sorun oluşturulacak Jira alanını seçin. Seçildiğinde, bu alanda desteklenen sorun türlerinin listesi gösterilecektir.
-1. Oluşturulan sorunların ait olacağı Jira sorun türünü seçin.
-1. Bildirimleri tetiklemek için olay türlerini seçin. Tüm vulnerabilities veya yalnızca belirli risk düzeylerindeki olaylar seçilebilir.
+1. Jira host'unu girin (ör. `https://company-x.atlassian.net/`).
+1. Kimlik doğrulama için Jira'nın gerektirdiği ve oluşturulan issue'lar için Reporter'ı tanımlamakta da kullanılacak olan Jira kullanıcı e‑postasını girin.
+1. Oluşturulan API belirtecini yapıştırın. Belirtilen Jira host'unda Wallarm'ı kimlik doğrulamak için e‑posta ve belirteç kontrol edilecektir. Başarılı olursa, bu Jira kullanıcısının erişebildiği alanlar listelenecektir.
+1. Issue'ların oluşturulacağı Jira alanını seçin. Seçildiğinde, bu alanda desteklenen issue türleri listelenecektir.
+1. Oluşturulan issue'ların ait olacağı Jira issue türünü seçin.
+1. Bildirimleri tetikleyecek olay türlerini seçin. Tüm zafiyetler veya yalnızca belirli risk düzey(ler)indekiler seçilebilir.
 
-    ![Jira integration](../../../images/user-guides/settings/integrations/add-jira-integration.png)
+    ![Jira entegrasyonu](../../../images/user-guides/settings/integrations/add-jira-integration.png)
 
-1. Yapılandırmanın doğruluğunu, Wallarm Cloud'un kullanılabilirliğini ve bildirim formatını kontrol etmek için **Test integration** düğmesine tıklayın.
+1. Yapılandırmanın doğruluğunu, Wallarm Cloud kullanılabilirliğini ve bildirim biçimini kontrol etmek için **Test integration**'ı tıklayın.
 
-    Test Jira issue creation:
+    Jira issue oluşturmayı test edin:
 
-    ![Test Jira issue creation](../../../images/user-guides/settings/integrations/test-jira-issue-creation.png)
+    ![Jira issue oluşturmayı test etme](../../../images/user-guides/settings/integrations/test-jira-issue-creation.png)
 
-1. **Add integration** düğmesine tıklayın.
+1. **Add integration**'a tıklayın.
 
 --8<-- "../include/cloud-ip-by-request.md"
 
-## Entegrasyonu Devre Dışı Bırakma ve Silme
+## Bir entegrasyonu devre dışı bırakma ve silme
 
 --8<-- "../include/integrations/integrations-disable-delete.md"
 
-## Sistem Kullanılamazlığı ve Yanlış Entegrasyon Parametreleri
+## Sistemin kullanılamaması ve hatalı entegrasyon parametreleri
 
 --8<-- "../include/integrations/integration-not-working.md"

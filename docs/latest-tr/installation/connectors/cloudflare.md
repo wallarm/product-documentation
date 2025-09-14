@@ -5,119 +5,128 @@
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
+[helm-chart-native-node]:           ../native-node/helm-chart.md
+[custom-blocking-page]:             ../../admin-en/configuration-guides/configure-block-page-and-code.md
+[rate-limiting]:                    ../../user-guides/rules/rate-limiting.md
+[multi-tenancy]:                    ../multi-tenant/overview.md
 
-# Wallarm Connector for Cloudflare
+# Cloudflare için Wallarm Bağlayıcısı
 
-[Cloudflare](https://www.cloudflare.com/) güvenlik ve performans hizmetidir. Bu hizmet; CDN, WAF, DNS hizmetleri ve SSL/TLS şifreleme gibi, web sitelerinin ve internet uygulamalarının güvenliğini, hızını ve güvenilirliğini artırmaya yönelik özellikler sunar. Wallarm, Cloudflare üzerinde çalışan API'leri korumak için bir connector görevi görebilir.
+[Cloudflare](https://www.cloudflare.com/), web sitelerinin ve internet uygulamalarının güvenliğini, hızını ve güvenilirliğini artırmak için tasarlanmış CDN, WAF, DNS hizmetleri ve SSL/TLS şifreleme dahil özellikler sunan bir güvenlik ve performans servisidir. Wallarm, Cloudflare üzerinde çalışan API’leri güvence altına almak için bir bağlayıcı olarak görev yapabilir.
 
-Cloudflare için Wallarm'ı bir connector olarak kullanmak için, **Wallarm Node’u dışarıda konuşlandırmanız** ve trafiği analiz için Wallarm tarafından sağlanan kodu kullanarak Cloudflare worker’ı çalıştırıp Wallarm Node’a yönlendirmeniz gerekir.
+Wallarm’ı Cloudflare için bir bağlayıcı olarak kullanmak için, **Wallarm Node’u harici olarak dağıtmanız** ve trafiği analiz için Wallarm Node’a yönlendirmek üzere **Wallarm tarafından sağlanan kodu kullanarak bir Cloudflare worker çalıştırmanız** gerekir.
 
-<a name="cloudflare-modes"></a> Cloudflare connector, her iki [in-line](../inline/overview.md) ve [out-of-band](../oob/overview.md) trafik akışını destekler:
+<a name="cloudflare-modes"></a> Cloudflare bağlayıcısı hem [in-line](../inline/overview.md) hem de [out-of-band](../oob/overview.md) trafik akışlarını destekler:
 
-=== "In-line traffic flow"
+=== "Satır içi trafik akışı"
 
-    Eğer Wallarm, kötü niyetli etkinlikleri engelleyecek şekilde yapılandırılmışsa:
+    Wallarm kötü amaçlı etkinliği engelleyecek şekilde yapılandırılmışsa:
 
-    ![Cloudflare with Wallarm - in-line scheme](../../images/waf-installation/gateways/cloudflare/cloudflare-traffic-flow-inline.png)
-=== "Out-of-band traffic flow"
-    ![Cloudflare with Wallarm - out-of-band scheme](../../images/waf-installation/gateways/cloudflare/cloudflare-traffic-flow-oob.png)
+    ![Wallarm ile Cloudflare - satır içi şema](../../images/waf-installation/gateways/cloudflare/cloudflare-traffic-flow-inline.png)
+=== "Bant dışı trafik akışı"
+    ![Wallarm ile Cloudflare - bant dışı şema](../../images/waf-installation/gateways/cloudflare/cloudflare-traffic-flow-oob.png)
 
-## Use cases
+## Kullanım senaryoları
 
-Desteklenen tüm [Wallarm deployment options](../supported-deployment-options.md) arasında, uygulamalarınıza Cloudflare üzerinden erişim sağladığınız durumlarda bu çözüm önerilir.
+Bu çözüm, uygulamalarınıza Cloudflare aracılığıyla erişim sağladığınız durumlarda önerilir.
 
-## Limitations
+## Kısıtlamalar
 
-* Wallarm kuralı tarafından uygulanan [Rate limiting](../../user-guides/rules/rate-limiting.md) desteklenmemektedir.
-* [Multitenancy](../multi-tenant/overview.md) henüz desteklenmemektedir.
+* [Helm chart][helm-chart-native-node] kullanarak `LoadBalancer` türünde Wallarm servisini dağıtırken, Node örneği alan adı için **güvenilir** bir SSL/TLS sertifikası gereklidir. Kendi imzaladığınız sertifikalar henüz desteklenmemektedir.
+* Wallarm kuralı ile [hız sınırlama][rate-limiting] desteklenmez.
+* [Çok kiracılık][multi-tenancy] henüz desteklenmiyor.
 
-## Requirements
+## Gereksinimler
 
-Dağıtım işlemine devam etmeden önce, aşağıdaki gereksinimleri karşıladığınızdan emin olun:
+Dağıtıma devam etmeden önce aşağıdaki gereksinimleri karşıladığınızdan emin olun:
 
-* Cloudflare teknolojilerini anlama.
-* Cloudflare üzerinden çalışan API'ler veya trafik.
+* Cloudflare teknolojilerine hakimiyet.
+* Cloudflare üzerinden akan API’ler veya trafik.
 
-## Deployment
+## Dağıtım
 
-### 1. Deploy a Wallarm Node
+<a name="1-deploy-a-wallarm-node"></a>
+### 1. Bir Wallarm Node dağıtın
 
-Wallarm Node, dağıtmanız gereken Wallarm platformunun temel bileşenidir. Gelen trafiği inceler, kötü niyetli etkinlikleri tespit eder ve tehditleri azaltmak için yapılandırılabilir.
+Wallarm Node, dağıtmanız gereken Wallarm platformunun çekirdek bileşenidir. Gelen trafiği denetler, kötü amaçlı faaliyetleri tespit eder ve tehditleri azaltacak şekilde yapılandırılabilir.
 
-Wallarm Node’u, ihtiyaç duyduğunuz kontrol seviyesine bağlı olarak Wallarm tarafından barındırılan ya da kendi altyapınızda konuşlandırabilirsiniz.
+Gereksinim duyduğunuz kontrol düzeyine bağlı olarak, Wallarm tarafından barındırılan veya kendi altyapınızda dağıtabilirsiniz.
 
 === "Edge node"
-    Bağlayıcı için Wallarm tarafından barındırılan bir node’u konuşlandırmak için [talimatları](../se-connector.md) izleyin.
+    Bağlayıcı için Wallarm tarafından barındırılan bir node dağıtmak için [talimatları](../security-edge/se-connector.md) izleyin.
 === "Self-hosted node"
-    Self-hosted node dağıtımı için bir artefakt seçin ve ekli talimatları izleyin:
+    Kendinden barındırılan node dağıtımı için bir artifakt seçin ve ekli talimatları izleyin:
 
-    * Bare metal veya sanal makinelerdeki Linux altyapıları için [All-in-one installer](../native-node/all-in-one.md)
-    * Konteynerleştirilmiş dağıtımlar kullanan ortamlar için [Docker image](../native-node/docker-image.md)
+    * Bare metal veya VM’lerde Linux altyapıları için [Hepsi-bir-arada yükleyici](../native-node/all-in-one.md)
+    * Konteynerleştirilmiş dağıtımlar kullanan ortamlar için [Docker imajı](../native-node/docker-image.md)
+    * AWS altyapıları için [AWS AMI](../native-node/aws-ami.md)
     * Kubernetes kullanan altyapılar için [Helm chart](../native-node/helm-chart.md)
 
-### 2. Obtain and deploy the Wallarm worker code
+### 2. Wallarm worker kodunu edinin ve dağıtın
 
-Wallarm Node’a trafiği yönlendiren bir Cloudflare worker çalıştırmak için:
+Trafiği Wallarm Node’a yönlendiren bir Cloudflare worker çalıştırmak için:
 
-1. Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** bölümüne gidin ve platformunuz için bir kod paketi indirin.
+1. Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** yoluna gidin ve platformunuz için bir kod paketi indirin.
 
-    Eğer self-hosted bir node kullanıyorsanız, kod paketini almak için sales@wallarm.com ile iletişime geçin.
-1. İndirdiğiniz kodu kullanarak bir [Cloudflare worker](https://developers.cloudflare.com/workers/get-started/dashboard/) oluşturun.
-1. `wallarm_node` parametresine, [Wallarm Node instance](#1-deploy-a-wallarm-node) adresinizi ayarlayın.
-1. Gerekirse, [diğer parametreleri](#configuration-options) değiştirin.
+    Kendinden barındırılan node çalıştırıyorsanız, kod paketini almak için sales@wallarm.com ile iletişime geçin.
+1. İndirilen kodu kullanarak [Bir Cloudflare worker oluşturun](https://developers.cloudflare.com/workers/get-started/dashboard/).
+1. `wallarm_node` parametresinde Wallarm node URL’sini ayarlayın.
+1. [Eşzamansız (bant dışı)](../oob/overview.md) mod kullanıyorsanız, `wallarm_mode` parametresini `async` olarak ayarlayın.
+1. Gerekirse, [diğer parametreleri](cloudflare.md#configuration-options) değiştirin.
 
     ![Cloudflare worker](../../images/waf-installation/gateways/cloudflare/worker-deploy.png)
-1. **Website** → kendi domaininizde, **Workers Routes** → **Add route** bölümüne gidin:
+1. **Website** → your domain içinde, **Workers Routes** → **Add route** yoluna gidin:
 
-    * **Route** alanında, analiz için Wallarm’a yönlendirilecek yolları belirtin (ör. tüm yollar için `*.example.com/*`).
+    * **Route** alanında, Wallarm tarafından analiz edilmek üzere yönlendirilecek yolları belirtin (örn., tüm yollar için `*.example.com/*`).
     * **Worker** alanında, oluşturduğunuz Wallarm worker’ı seçin.
 
-    ![Cloudflare add route](../../images/waf-installation/gateways/cloudflare/add-route.png)
+    ![Cloudflare rota ekle](../../images/waf-installation/gateways/cloudflare/add-route.png)
 
-## Testing
+## Test
 
-Dağıtılan çözümün işlevselliğini test etmek için, aşağıdaki adımları takip edin:
+Dağıtılan çözümün işlevselliğini test etmek için:
 
-1. API'nize, test [Path Traversal][ptrav-attack-docs] saldırısını içeren isteği gönderin:
+1. API’nize test [Yol Geçişi][ptrav-attack-docs] saldırısını içeren isteği gönderin:
 
     ```
     curl http://<YOUR_APP_IP_OR_DOMAIN>/etc/passwd
     ```
-1. Wallarm Console → **Attacks** bölümünü [US Cloud](https://us1.my.wallarm.com/attacks) veya [EU Cloud](https://my.wallarm.com/attacks) üzerinden açın ve saldırının listede görüntülendiğinden emin olun.
+1. Wallarm Console → **Attacks** bölümünü [US Cloud](https://us1.my.wallarm.com/attacks) veya [EU Cloud](https://my.wallarm.com/attacks) üzerinde açın ve saldırının listede görüntülendiğinden emin olun.
     
-    ![Attacks in the interface][attacks-in-ui-image]
+    ![Arayüzde saldırılar][attacks-in-ui-image]
 
-    Eğer Wallarm Node modu [blocking](../../admin-en/configure-wallarm-mode.md) olarak ayarlandıysa ve trafik in-line akışındaysa, istek de engellenecektir.
+    Wallarm Node modu [blocking](../../admin-en/configure-wallarm-mode.md) olarak ayarlıysa ve trafik satır içi akıyorsa, istek aynı zamanda engellenecektir.
 
-## Configuration options
+<a name="configuration-options"></a>
+## Yapılandırma seçenekleri
 
-Worker kodunda, aşağıdaki parametreleri belirtebilirsiniz:
+Worker kodunda aşağıdaki parametreleri belirtebilirsiniz:
 
-| Parametre | Açıklama | Gerekli? |
+| Parametre | Açıklama | Gerekli mi? |
 | --------- | ----------- | --------- |
-| `wallarm_node` | [Wallarm Node instance](#1-deploy-a-wallarm-node) adresinizi ayarlar. | Evet |
-| `wallarm_mode` | Trafik işleme modunu belirler: Varsayılan `inline` modu trafiği doğrudan Wallarm Node üzerinden işlerken, `async` modu orijinal akışı etkilemeden trafiğin bir [kopyasını](../oob/overview.md) analiz eder. | Hayır |
-| `wallarm_send_rsp_body` | Şema [discovery](../../api-discovery/overview.md) ve [brute force](../../admin-en/configuration-guides/protecting-against-bruteforce.md) gibi gelişmiş saldırı tespiti için response body analizini etkinleştirir. Varsayılan: `true` (etkin). | Hayır |
-| `wallarm_response_body_limit` | Node'un ayrıştırıp analiz edebileceği response body boyutunun (bayt cinsinden) sınırı. Varsayılan: `0x4000`. | Hayır |
-| `wallarm_block_page.custom_path`<br>(Worker version 1.0.1+) | Node tarafından HTTP 403 yanıtlarında döndürülen, örneğin: `https://example.com/block-page.html` gibi özel engelleme sayfasının URL'si.<br>Varsayılan: `null` (eğer `html_page` `true` ise detaylı Wallarm tarafından sağlanan hata sayfası kullanılır). | Hayır |
-| `wallarm_block_page.html_page`<br>(Worker version 1.0.1+) | Kötü niyetli istekler için özel HTML engelleme sayfasını etkinleştirir. Varsayılan: `false` (basit bir HTTP 403 döner). | Hayır |
-| `wallarm_block_page.support_email`<br>(Worker version 1.0.1+) | Sorun bildirmek için engelleme sayfasında görüntülenen e-posta. Varsayılan: `support@mycorp.com`. | Evet, eğer `html_page` `true` ise |
+| `wallarm_node` | [Wallarm Node örneğinizin](#1-deploy-a-wallarm-node) adresini ayarlar. | Evet |
+| `wallarm_mode` | Trafik işleme modunu belirler: Varsayılan `inline`, trafiği doğrudan Wallarm Node üzerinden işlerken, `async` trafiğin orijinal akışını etkilemeden bir [kopyasını](../oob/overview.md) analiz eder. | Hayır |
+| `wallarm_send_rsp_body` | Şema [keşfi](../../api-discovery/overview.md) ve [kaba kuvvet](../../admin-en/configuration-guides/protecting-against-bruteforce.md) gibi gelişmiş saldırı tespiti için yanıt gövdesi analizini etkinleştirir. Varsayılan: `true` (etkin). | Hayır |
+| `wallarm_response_body_limit` | Node’un ayrıştırıp analiz edebileceği yanıt gövdesi boyutu (bayt cinsinden) sınırı. Varsayılan: `0x4000`. | Hayır |
+| `wallarm_block_page.custom_path`<br>(Worker sürüm 1.0.1+) | Node’dan gelen HTTP 403 yanıtlarıyla döndürülen özel engelleme sayfasının URL’si, örn.: `https://example.com/block-page.html`.<br>Varsayılan: `null` (`html_page` `true` ise ayrıntılı, Wallarm tarafından sağlanan hata sayfası kullanılır). | Hayır |
+| `wallarm_block_page.html_page`<br>(Worker sürüm 1.0.1+) | Kötü amaçlı istekler için özel bir HTML engelleme sayfasını etkinleştirir. Varsayılan: `false` (basit bir HTTP 403 döndürür). | Hayır |
+| `wallarm_block_page.support_email`<br>(Worker sürüm 1.0.1+) | Engelleme sayfasında sorun bildirmek için görüntülenen e-posta. Varsayılan: `support@mycorp.com`. | Evet, `html_page` `true` ise |
 
-??? info "Show Wallarm-provided error page"
-    HTTP 403 yanıtlarında döndürülen Wallarm tarafından sağlanan hata sayfası aşağıdaki gibidir:
+??? info "Wallarm tarafından sağlanan hata sayfasını göster"
+    HTTP 403 yanıtlarıyla döndürülen, Wallarm tarafından sağlanan hata sayfası aşağıdaki gibidir:
 
-    ![Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+    ![Wallarm engelleme sayfası](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
-## Upgrading the Cloudflare worker
+## Cloudflare worker’ı yükseltme
 
-Dağıtılmış Cloudflare worker'ını [yeni bir sürüme](code-bundle-inventory.md#cloudflare) güncellemek için:
+Dağıtılan Cloudflare worker’ınızı [daha yeni bir sürüme](code-bundle-inventory.md#cloudflare) yükseltmek için:
 
-1. Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** bölümüne gidin ve güncellenmiş Wallarm Cloudflare kod paketini indirin.
+1. Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** yoluna gidin ve güncellenmiş Wallarm Cloudflare kod paketini indirin.
 
-    Eğer self-hosted node kullanıyorsanız, güncellenmiş kod paketini almak için sales@wallarm.com ile iletişime geçin.
-1. Dağıtılmış Cloudflare worker'ınızdaki kodu, güncellenmiş paket ile değiştirin.
+    Kendinden barındırılan node çalıştırıyorsanız, güncellenmiş kod paketini almak için sales@wallarm.com ile iletişime geçin.
+1. Dağıtılmış Cloudflare worker’ınızdaki kodu güncellenmiş paketle değiştirin.
 
-    `wallarm_node`, `wallarm_mode` ve benzeri parametrelerin mevcut değerlerini koruyun.
-1. **Deploy** edin.
+    `wallarm_node`, `wallarm_mode` ve diğer parametreler için mevcut değerleri koruyun.
+1. Güncellenmiş işlevleri **Deploy** edin.
 
-Worker güncellemeleri, özellikle büyük sürüm güncellemelerinde, Wallarm Node güncellemesi gerektirebilir. Sürüm güncellemeleri ve yükseltme talimatları için [Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md)'a bakın. Gelecekteki yükseltmeleri kolaylaştırmak ve kullanım dışı bırakmayı önlemek için düzenli node güncellemeleri önerilir.
+Worker yükseltmeleri, özellikle ana sürüm güncellemelerinde, bir Wallarm Node yükseltmesi gerektirebilir. Kendi barındırdığınız Node sürüm notları ve yükseltme talimatları için [Native Node değişiklik günlüğüne](../../updating-migrating/native-node/node-artifact-versions.md) veya [Edge node yükseltme prosedürüne](../security-edge/se-connector.md#upgrading-the-edge-node) bakın. Eski sürümlerin kullanım dışı kalmasını önlemek ve gelecekteki yükseltmeleri kolaylaştırmak için düzenli node güncellemeleri önerilir.

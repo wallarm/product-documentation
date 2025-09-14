@@ -1,4 +1,4 @@
-# Değişiklik Günlüğü & Haberler
+# Değişiklik günlüğü ve haberler
 
 <div class="announcekit-widget"></div>
 

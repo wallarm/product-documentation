@@ -1,23 +1,23 @@
-# API Specification Enforcement Nedeniyle Oluşan Olayların Görüntülenmesi <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Spesifikasyonu Zorlaması Nedeniyle Oluşan Olayları Görüntüleme <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-API spesifikasyonunuzu, spesifikasyona dayalı güvenlik politikalarını uygulamak için kullanıma almak ve enforcement'ı yapılandırmak üzere [yüklediğiniz](setup.md) andan itibaren, politikalar gelen isteklere uygulanmaya başlanır. Bu makale, Wallarm Console’da politika ihlali gerçekleştiren isteklerin nasıl görüntüleneceğini ve analiz edileceğini açıklamaktadır.
+Spesifikasyon tabanlı güvenlik politikalarını uygulamak için API spesifikasyonunuzu [yüklediğiniz](setup.md) ve zorlamayı yapılandırdığınız anda, politikalar isteklere uygulanmaya başlar. Bu makale, Wallarm Console içinde politikaları ihlal eden istekleri nasıl görüntüleyip analiz edeceğinizi açıklar.
 
-## Politika İhlali Gerçeğe Dönen İstekler Hakkında İstatistikler
+## Politikaları ihlal eden isteklere ilişkin istatistikler
 
-Politika ihlallerindeki eğilimleri takip etmek için, Wallarm Console’daki **API Specifications** → seçtiğiniz spesifikasyon → **Policy violations** sütunundaki spesifikasyon ihlallerinin sayısını kontrol edin. Bu veri, son 7 güne ait iç görüler sağlar.
+Politika ihlali eğilimlerini izlemek için, Wallarm Console içinde **API Specifications** → your specification → **Policy violations** sütunundaki spesifikasyon ihlallerinin sayısını kontrol edin. Bu veriler son 7 güne ilişkin içgörü sağlar.
 
-Bu sayıya tıklayarak **Attacks** bölümündeki ayrıntıları görebilirsiniz.
+Bu sayıya tıklayarak ayrıntıları **Attacks** bölümünde görebilirsiniz.
 
-## Politika İhlali Gerçeğe Dönen İsteklerin Analizi
+## Politikaları ihlal eden isteklerin analizi 
 
-Spesifikasyona dayalı politika ihlalleriyle ilgili olayları bulmak için, **Attacks** bölümünde [uygun arama anahtarlarını](../user-guides/search-and-filters/use-search.md#spec-violation-tags) veya ilgili filtreleri kullanın.
+Spesifikasyon tabanlı politika ihlalleriyle ilgili olayları bulmak için **Attacks** bölümünde [uygun arama anahtarlarını](../user-guides/search-and-filters/use-search.md#spec-violation-tags) veya ilgili filtreleri kullanın.
 
-Yapılandırılmış politika ihlali eylemlerine bağlı olarak, engellenen ve izlenen olaylar görüntülenebilir. Olay ayrıntılarında, ihlal türü ve ihlale neden olan spesifikasyona bağlantı gösterilir.
+Yapılandırılmış politika ihlali eylemlerine bağlı olarak engellenen ve izlenen olaylar gösterilebilir. Olay ayrıntılarında ihlal türü ve buna neden olan spesifikasyona bağlantı görüntülenir.
 
-![Specification - use for applying security policies](../images/api-specification-enforcement/api-specification-enforcement-events.png)
+![Spesifikasyon - güvenlik politikalarını uygulamak için kullanım](../images/api-specification-enforcement/api-specification-enforcement-events.png)
 
-## Aşım (Overlimit) Olayları
+## Limit aşımı olayları
 
-Spesifikasyon politikalarınıza ilişkin olayları incelerken, API Specification Enforcement tarafından istekleri işlerken uygulanan limitlerle ilgili **Specification processing overlimit** türündeki olayı görebilirsiniz. Ayrıntılar ve olası eylemlerinizin tanımını [buradan](overview.md#how-it-works) inceleyin.
+Spesifikasyon politikalarınızla ilgili olayları görüntülerken, istekler işlenirken API Spesifikasyonu Zorlaması için uygulanan limitlere ilişkin **Specification processing overlimit** türünde bir olaya rastlayabilirsiniz. Ayrıntılar ve olası eylemlerinizin açıklaması için [buraya](overview.md#how-it-works) bakın.
 
-**Attacks** bölümünde, aşım olaylarını `processing_overlimit` arama anahtarı veya **Processing overlimit** filtresi ile bulabilirsiniz.
+Limit aşımı olaylarını **Attacks** bölümünde `processing_overlimit` arama anahtarı veya **Processing overlimit** filtresiyle bulabilirsiniz.

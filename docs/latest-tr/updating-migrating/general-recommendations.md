@@ -1,57 +1,57 @@
-# Güvenli Node Güncelleme Önerileri
+# Güvenli Node Yükseltme Önerileri
 
-Bu doküman, Wallarm Nodes’un güvenli şekilde güncellenmesi için önerileri ve ilişkili riskleri açıklamaktadır.
+Bu belge, Wallarm Node'larının güvenli yükseltilmesi için önerileri ve ilgili riskleri açıklar.
 
-## Ortak öneriler
+## Genel öneriler
 
-* Filtreleme node güncelleme sürecini dikkatlice planlayın ve izleyin. Wallarm node’larının yeni sürümlerinin tahmini yayın tarihlerine [Wallarm node versioning policy](versioning-policy.md) sayfasından ulaşabilirsiniz.
-* Altyapınızda birden fazla Wallarm node yüklüyse, bunları kademeli olarak güncelleyin. İlk node güncellendikten sonra, node modüllerinin bir gün içinde çalışmasını izleyin ve ilk node düzgün çalışıyorsa diğer Wallarm node’ları kademeli olarak güncelleyin.
-* Geliştirme ve üretim ortamlarının ayrıldığı modelde, filtreleme node’u kademeli olarak güncelleyin. İlk olarak, üretim dışı ortamlarda yeni sürümü uygulayın ve test edin, ardından üretim ortamlarında güncelleme yapın. Ayrıntılı öneriler, [ayrı ortamlarda Wallarm node yapılandırma talimatlarında](../admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments.md#gradual-rollout-of-new-wallarm-node-changes) açıklanmıştır.
-* Filtreleme node’u güncellemeden önce, kullanabileceğiniz herhangi bir yöntemle (örneğin [traffic filtration mode](../admin-en/configure-wallarm-mode.md)’u `off` olarak ayarlayarak) node üzerinden trafik yönlendirmesini devre dışı bırakın.
-* Filtreleme node modülü güncellendikten sonra, node filtreleme modunu `monitoring` olarak ayarlayın. Tüm modüller doğru çalışırsa ve `monitoring` modunda bir gün boyunca anormal sayıda yeni yanlış pozitif olmazsa, filtreleme node’u `block` moduna alın.
-* [NGINX node](../installation/nginx-native-node-internals.md#nginx-node) kullanıyorsanız, Wallarm node güncellemelerini uygulamadan önce NGINX’i mevcut en son sürüme güncelleyin. Altyapınız belirli bir NGINX sürümü kullanmak zorundaysa, özel bir NGINX sürümü için Wallarm modülünün oluşturulması amacıyla lütfen [Wallarm teknik destek](mailto:support@wallarm.com)’e başvurun.
+* Filtreleme node'u güncelleme sürecini dikkatle planlayın ve izleyin. Wallarm node'larının yeni sürümlerine ilişkin tahmini yayın tarihleri [Wallarm node sürümleme politikası](versioning-policy.md) içinde yayınlanır.
+* Altyapınızda birden fazla Wallarm node kuruluysa, bunları kademeli olarak güncelleyin. İlk node'u güncelledikten sonra, bir gün boyunca node modüllerinin çalışmasını izleyin ve ilk node düzgün çalışıyorsa diğer Wallarm node'ları kademeli olarak güncelleyin.
+* Geliştirme ve üretim ortamları ayrılmış modelde, filtreleme node'unu kademeli olarak güncelleyin. Önce yeni sürümü üretim dışı ortamlara uygulayın ve test edin, ardından üretim ortamlarında uygulayın.
+* Filtreleme node'unu yükseltmeden önce, node üzerinden trafik yönlendirmesini mevcut yöntemlerden herhangi biriyle devre dışı bırakın (ör. [trafik filtreleme modu](../admin-en/configure-wallarm-mode.md) değerini `off` olarak ayarlayarak).
+* Filtreleme node modülü yükseltildikten sonra node filtreleme modunu `monitoring` olarak ayarlayın. Tüm modüller doğru çalışıyorsa ve `monitoring` modunda bir gün boyunca anormal sayıda yeni yanlış pozitif yoksa, filtreleme node'unu `block` moduna alın.
+* Eğer [NGINX node](../installation/nginx-native-node-internals.md#nginx-node) kullanıyorsanız, Wallarm node güncellemelerini uygulamadan önce NGINX'i mevcut en son sürüme yükseltin. Altyapınız belirli bir NGINX sürümünü kullanmak zorundaysa, özel bir NGINX sürümü için Wallarm modülünün derlenmesi amacıyla lütfen [Wallarm teknik destek](mailto:support@wallarm.com) ile iletişime geçin.
 
 ## Olası riskler
 
-Aşağıda, filtreleme node’unun güncellenmesi sırasında ortaya çıkabilecek riskler yer almaktadır. Risklerin etkisini azaltmak için güncelleme yaparken ilgili yönergeleri uygulayın.
+Aşağıda, filtreleme node'unu güncellerken ortaya çıkabilecek riskler yer almaktadır. Risklerin etkisini azaltmak için güncelleme sırasında ilgili yönergeleri izleyin.
 
 ### Değişen işlevsellik
 
-* [Wallarm Node 5.x ve 0.x’te neler yeni](what-is-new.md)
-* [EOL node (3.6 veya daha düşük) güncelleniyorsa neler yeni](older-versions/what-is-new.md)
+* [Wallarm Node 6.x ve 0.14.x+ içindeki yenilikler](what-is-new.md)
+* [EOL node'u (3.6 veya daha düşük) yükseltiyorsanız neler yeni](older-versions/what-is-new.md)
 
 ### Yeni yanlış pozitifler
 
-Her yeni filtreleme node sürümüyle trafik analizi iyileştirilmektedir. Bu, yanlış pozitif sayısının her yeni sürümde azalacağı anlamına gelmektedir. Ancak, her korunan uygulamanın kendine özgü özellikleri bulunduğundan, bloklama modunu (`block`) etkinleştirmeden önce filtreleme node’unun `monitoring` modundaki çalışmasını analiz etmenizi öneririz.
+Filtreleme node'unun her yeni sürümüyle trafik analizini geliştiriyoruz. Bu, her yeni sürümle yanlış pozitif sayısının azaldığı anlamına gelir. Ancak, korunan her uygulamanın kendine özgü özellikleri vardır, bu nedenle engelleme modunu (`block`) etkinleştirmeden önce yeni filtreleme node sürümünün `monitoring` modundaki çalışmasını analiz etmenizi öneririz.
 
-Güncelleme sonrasında yeni yanlış pozitif sayısını analiz etmek için:
+Güncellemeden sonra yeni yanlış pozitiflerin sayısını analiz etmek için:
 
-1. Filtreleme node’unun yeni sürümünü `monitoring` [modunda](../admin-en/configure-wallarm-mode.md) dağıtın ve trafiği filtreleme node’una gönderin.
-2. Bir süre sonra, Wallarm Console → **Attacks** bölümünü açın ve saldırı olarak yanlış tanımlanan istek sayısını analiz edin.
-3. Yanlış pozitif sayısında anormal bir artış fark ederseniz, lütfen [Wallarm teknik destek](mailto:support@wallarm.com)’e başvurun.
+1. Filtreleme node'unun yeni sürümünü `monitoring` [modunda](../admin-en/configure-wallarm-mode.md) devreye alın ve filtreleme node'una trafik gönderin.
+2. Bir süre sonra, Wallarm Console → Attacks bölümünü açın ve yanlışlıkla saldırı olarak tanınan isteklerin sayısını analiz edin.
+3. Yanlış pozitif sayısında anormal bir artış tespit ederseniz, lütfen [Wallarm teknik destek](mailto:support@wallarm.com) ile iletişime geçin.
 
-### Artan kaynak kullanımı
+### Kullanılan kaynak miktarında artış
 
-Bazı yeni filtreleme node özelliklerinin kullanılması, kullanılan kaynak miktarında değişikliklere neden olabilir. Kullanılan kaynak miktarındaki değişikliklere dair bilgiler [What is new](what-is-new.md) bölümünde vurgulanmaktadır.
+Bazı yeni filtreleme node özelliklerinin kullanımı, kullanılan kaynak miktarında değişikliklere neden olabilir. Kullanılan kaynak miktarındaki değişikliklerle ilgili bilgiler [Yenilikler](what-is-new.md) bölümünde vurgulanmıştır.
 
-Ayrıca, filtreleme node çalışmasını izlemek önerilir: Gerçek kullanılan kaynak miktarı ile dokümantasyonda belirtilen miktar arasında önemli farklar bulursanız, lütfen [Wallarm teknik destek](mailto:support@wallarm.com)’e başvurun.
+Ayrıca filtreleme node'unun çalışmasını izlemeniz önerilir: belgelerde belirtilen miktarla fiilen kullanılan kaynak miktarı arasında önemli farklılıklar bulursanız, lütfen [Wallarm teknik destek](mailto:support@wallarm.com) ile iletişime geçin.
 
 ## Güncelleme süreci
 
-Wallarm node güncelleme süreci platforma ve kurulum biçimlerine bağlıdır. Lütfen kurulum biçimini seçin ve ilgili talimatları takip edin:
+Wallarm node güncelleme süreci, platforma ve kurulum biçimlerine bağlıdır. Lütfen kurulum biçimini seçin ve ilgili talimatları izleyin:
 
 * NGINX Node:
 
-    * [Modules for NGINX, NGINX Plus](nginx-modules.md)
-    * [All-in-one installer](all-in-one.md)
-    * [Docker container with the modules for NGINX or Envoy](docker-container.md)
-    * [NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
+    * [NGINX, NGINX Plus için modüller](nginx-modules.md)
+    * [Hepsi bir arada yükleyici](all-in-one.md)
+    * [NGINX modülleriyle Docker konteyneri](docker-container.md)
+    * [Entegre Wallarm modüllerine sahip NGINX Ingress controller](ingress-controller.md)
     * [Sidecar](sidecar-proxy.md)
-    * [Cloud node image](cloud-image.md)
-    * [Multi-tenant node](multi-tenant.md)
-    * [Migrating allowlists and denylists from Wallarm node 2.18 and lower to 5.0](migrate-ip-lists-to-node-3.md)
+    * [Cloud node imajı](cloud-image.md)
+    * [Çok kiracılı node](multi-tenant.md)
+    * [Wallarm node 2.18 ve altından 6.x'e allowlist ve denylist'lerin taşınması](migrate-ip-lists-to-node-3.md)
 * Native Node:
 
-    * [All-in-one installer](native-node/all-in-one.md)
+    * [Hepsi bir arada yükleyici](native-node/all-in-one.md)
     * [Helm chart](native-node/helm-chart.md)
-    * [Docker image](native-node/docker-image.md)
+    * [Docker imajı](native-node/docker-image.md)

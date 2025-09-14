@@ -23,180 +23,175 @@
 [web-server-mirroring-examples]:    ../../installation/oob/web-server-mirroring/overview.md#configuration-examples-for-traffic-mirroring
 [ip-lists-docs]:                     ../../user-guides/ip-lists/overview.md
 
-# EOL Wallarm NGINX Modüllerinin Yükseltilmesi
+# EOL durumundaki Wallarm NGINX modüllerinin yükseltilmesi
 
-Bu yönergeler, ömrünü tamamlamış (EOL) Wallarm NGINX modüllerini (sürüm 3.6 ve altı) 5.0 sürümüne yükseltmek için gereken adımları açıklamaktadır. Wallarm NGINX modülleri, aşağıdaki yönergelerden birine uygun olarak kurulan modüllerdir:
+Bu talimatlar, destek süresi dolmuş (EOL) Wallarm NGINX modüllerinin (sürüm 3.6 ve altı) en son 6.x sürümüne yükseltilmesi adımlarını açıklar. Wallarm NGINX modülleri, aşağıdaki talimatlardan birine göre kurulan modüllerdir:
 
-* NGINX stable için ayrı paketler
-* NGINX Plus için ayrı paketler
-* Dağıtım tarafından sağlanan NGINX için ayrı paketler
+* NGINX stable için bireysel paketler
+* NGINX Plus için bireysel paketler
+* Dağıtımın sağladığı NGINX için bireysel paketler
 
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
-!!! info "Tümünü Bir Arada Yükleyici ile Yükseltme"
-    Güncelleme, Wallarm'ın [all-in-one installer](../../installation/nginx/all-in-one.md) aracı kullanılarak gerçekleştirilir; çünkü ayrı Linux paketleri kullanımdan kaldırılmıştır. Bu yöntem, önceki yaklaşıma kıyasla yükseltme sürecini ve devam eden dağıtım bakımını sadeleştirir.
+!!! info "Tüm‑bir‑arada yükleyici ile yükseltme"
+    Yükseltme, bireysel Linux paketleri kullanımdan kaldırıldığı için Wallarm'ın [all-in-one installer](../../installation/nginx/all-in-one.md) aracıyla gerçekleştirilir. Bu yöntem, önceki yaklaşıma kıyasla yükseltme sürecini ve sürekli dağıtım bakımını basitleştirir.
     
-    Yükleyici otomatik olarak aşağıdaki işlemleri gerçekleştirir:
+    Yükleyici aşağıdaki işlemleri otomatik olarak gerçekleştirir:
 
-    1. İşletim sisteminizi ve NGINX sürümünüzü kontrol eder.
-    1. Tespit edilen OS ve NGINX sürümü için Wallarm repositorilerini ekler.
-    1. Bu repositorilerden Wallarm paketlerini kurar.
-    1. Kurulan Wallarm modülünü NGINX'inize entegre eder.
+    1. İşletim sisteminizi ve NGINX sürümünü kontrol eder.
+    1. Algılanan OS ve NGINX sürümü için Wallarm depolarını ekler.
+    1. Bu depolardan Wallarm paketlerini kurar.
+    1. Kurulan Wallarm modülünü NGINX'inize bağlar.
     1. Sağlanan token ile filtreleme düğümünü Wallarm Cloud'a bağlar.
 
-        Ayrı Linux paketleri ile manuel yükseltme artık desteklenmemektedir.
+        Bireysel Linux paketleriyle manuel yükseltme artık desteklenmemektedir.
 
-    ![Manual ile all-in-one karşılaştırması](../../images/installation-nginx-overview/manual-vs-all-in-one.png)
+    ![Tüm‑bir‑arada ile manuelliğin karşılaştırması](../../images/installation-nginx-overview/manual-vs-all-in-one.png)
 
-## Wallarm Teknik Destek Ekibini, EOL Düğüm Yükseltmesi Yapacağınızı Bildirin
+## EOL düğümü yükselttiğinizi Wallarm teknik desteğine bildirin
 
-Ömrünü tamamlamış Wallarm NGINX modüllerini (sürüm 3.6 ve altı) 5.0 sürümüne yükseltiyorsanız, [Wallarm teknik destek ekibini](mailto:support@wallarm.com) bu durumdan haberdar edin ve yardım isteyin.
+Destek süresi dolmuş (EOL) Wallarm NGINX modüllerini (sürüm 3.6 ve altı) 6.x sürümüne yükseltiyorsanız, [Wallarm teknik desteği](mailto:support@wallarm.com) ile iletişime geçip bilgi verin ve yardım isteyin.
 
-Diğer yardımların yanı sıra, Wallarm hesabınız için yeni IP listesi mantığını etkinleştirmelerini talep edin. Yeni IP listesi mantığı etkinleştirildiğinde, lütfen Wallarm Console'u açın ve [**IP lists**](../../user-guides/ip-lists/overview.md) bölümünün mevcut olduğundan emin olun.
+Diğer yardımların yanı sıra, Wallarm hesabınız için yeni IP lists mantığının etkinleştirilmesini talep edin. Yeni IP lists mantığı etkinleştirildiğinde lütfen Wallarm Console'u açın ve [**IP lists**](../../user-guides/ip-lists/overview.md) bölümünün mevcut olduğunu doğrulayın.
 
 ## Gereksinimler
 
 --8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
 
-## Yükseltme Prosedürü
+## Yükseltme prosedürü
 
-* Eğer filtreleme düğümü ile postanalytics modülleri aynı sunucuda kuruluysa, hepsini yükseltmek için aşağıdaki yönergeleri takip edin.
+* Filtreleme düğümü ve postanalytics modülleri aynı sunucuya kuruluysa, tümünü yükseltmek için aşağıdaki talimatları izleyin.
 
-    Yeni bir makinede, all-in-one installer kullanarak daha yeni sürümde bir düğüm çalıştırmanız, düzgün çalıştığını test ettikten sonra eskisini durdurup trafiğin eski makine yerine yeni makine üzerinden yönlendirilmesini sağlamanız gerekecektir.
+    Daha yeni sürümü temiz bir makinede all-in-one yükleyiciyle çalıştırmanız, düzgün çalıştığını test etmeniz, ardından öncekini durdurmanız ve trafiği önceki makine yerine yeni makineden akacak şekilde yapılandırmanız gerekecektir.
 
-* Eğer filtreleme düğümü ile postanalytics modülleri farklı sunucularda kuruluysa, **önce** postanalytics modülünü ve **sonra** [bu yönergeleri](separate-postanalytics.md) takip ederek filtreleme modülünü yükseltin.
+* Filtreleme düğümü ve postanalytics modülleri farklı sunucularda kuruluysa, bu [talimatları](separate-postanalytics.md) izleyerek önce postanalytics modülünü, sonra filtreleme modülünü yükseltin.
 
-## Adım 1: Threat Replay Testing Modülünü Devre Dışı Bırakın (node 2.16 veya altı yükseltiliyorsa)
+## Adım 1: Threat Replay Testing modülünü devre dışı bırakın (sadece düğüm 2.16 veya altından yükseltiliyorsa)
 
-Eğer Wallarm düğümünüzü 2.16 veya daha düşük bir sürümden yükseltiyorsanız, lütfen Wallarm Console → **Vulnerabilities** → **Configure** bölümünden [Threat Replay Testing](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing) modülünü devre dışı bırakın.
+Wallarm düğümünü 2.16 veya altından yükseltiyorsanız, lütfen Wallarm Console → **Vulnerabilities** → **Configure** içinde [Threat Replay Testing](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing) modülünü devre dışı bırakın.
 
-Bu modülün çalışması, yükseltme sürecinde [yanlış pozitif sonuçlara](../../about-wallarm/protecting-against-attacks.md#false-positives) neden olabilir. Modülü devre dışı bırakmak bu riski minimize eder.
+Modülün çalışması yükseltme sürecinde [false positive](../../about-wallarm/protecting-against-attacks.md#false-positives) üretebilir. Modülü devre dışı bırakmak bu riski en aza indirir.
 
-## Adım 2: Temiz Bir Makine Hazırlayın
+## Adım 2: Temiz makine hazırlayın
 
 --8<-- "../include/waf/installation/all-in-one-clean-machine-latest.md"
 
-## Adım 3: NGINX ve Bağımlılıkları Kurun
+## Adım 3: NGINX ve bağımlılıklarını kurun
 
 --8<-- "../include/waf/installation/all-in-one-nginx.md"
 
-## Adım 4: Wallarm Token'ını Hazırlayın
+## Adım 4: Wallarm token hazırlayın
 
 --8<-- "../include/waf/installation/all-in-one-token.md"
 
-## Adım 5: All-in-one Wallarm Yükleyicisini İndirin
+## Adım 5: Tüm‑bir‑arada Wallarm yükleyicisini indirin
 
 --8<-- "../include/waf/installation/all-in-one-installer-download.md"
 
-## Adım 6: All-in-one Wallarm Yükleyicisini Çalıştırın
+## Adım 6: Tüm‑bir‑arada Wallarm yükleyicisini çalıştırın
 
-### Filtreleme Düğümü ve Postanalytics Aynı Sunucuda
+### Aynı sunucuda filtreleme düğümü ve postanalytics
 
 --8<-- "../include/waf/installation/all-in-one-installer-run.md"
 
-### Filtreleme Düğümü ve Postanalytics Farklı Sunucularda
+### Farklı sunucularda filtreleme düğümü ve postanalytics
 
-!!! warning "Filtreleme düğümü ve postanalytics modüllerinin yükseltilme sırası"
-    Eğer filtreleme düğümü ile postanalytics modülleri farklı sunucularda kuruluysa, postanalytics paketlerini yükseltmeden önce filtreleme düğümü paketlerini güncellemeniz gerekmektedir.
+!!! warning "Filtreleme düğümü ve postanalytics modüllerini yükseltme adımlarının sırası"
+    Filtreleme düğümü ve postanalytics modülleri farklı sunuculara kuruluysa, filtreleme düğümü paketlerini güncellemeden önce postanalytics paketlerinin yükseltilmesi gerekir.
 
-1. [Bu yönergeleri](separate-postanalytics.md) takip ederek postanalytics modülünü yükseltin.
+1. Postanalytics modülünü şu [talimatları](separate-postanalytics.md) izleyerek yükseltin.
 1. Filtreleme düğümünü yükseltin:
 
-    === "API token"
+    === "API belirteci"
         ```bash
-        # x86_64 sürümü kullanılıyorsa:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.x86_64-glibc.sh filtering
+        # x86_64 sürümünü kullanıyorsanız:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.5.1.x86_64-glibc.sh filtering
 
-        # ARM64 sürümü kullanılıyorsa:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.aarch64-glibc.sh filtering
+        # ARM64 sürümünü kullanıyorsanız:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.5.1.aarch64-glibc.sh filtering
         ```        
 
-        `WALLARM_LABELS` değişkeni, düğümün ekleneceği grubu ayarlar (Wallarm Console UI'da düğümlerin mantıksal gruplandırılması için kullanılır).
+        `WALLARM_LABELS` değişkeni, düğümün ekleneceği grubu belirler (Wallarm Console UI içinde düğümlerin mantıksal gruplaması için kullanılır).
 
-    === "Node token"
+    === "Node belirteci"
         ```bash
-        # x86_64 sürümü kullanılıyorsa:
-        sudo sh wallarm-5.3.0.x86_64-glibc.sh filtering
+        # x86_64 sürümünü kullanıyorsanız:
+        sudo sh wallarm-6.5.1.x86_64-glibc.sh filtering
 
-        # ARM64 sürümü kullanılıyorsa:
-        sudo sh wallarm-5.3.0.aarch64-glibc.sh filtering
+        # ARM64 sürümünü kullanıyorsanız:
+        sudo sh wallarm-6.5.1.aarch64-glibc.sh filtering
         ```
 
-## Adım 7: Önceki Wallarm Düğüm Sürümünden Allowlist ve Denylist'leri 5.0'a Taşıyın (sadece node 2.18 veya altı yükseltiliyorsa)
+## Adım 7: İzinli listeleri ve engelli listeleri önceki Wallarm düğümü sürümünden 6.x'e taşıyın (sadece düğüm 2.18 veya altından yükseltiliyorsa)
 
-Eğer düğümünüzü 2.18 veya daha düşük bir sürümden yükseltiyorsanız, önceki Wallarm düğüm sürümündeki allowlist ve denylist yapılandırmasını en güncel sürüme [taşıyın](../migrate-ip-lists-to-node-3.md).
+Düğümü 2.18 veya altından yükseltiyorsanız, izinli liste ve engelli liste yapılandırmasını önceki Wallarm düğümü sürümünden en yeni sürüme [taşıyın](../migrate-ip-lists-to-node-3.md).
 
-## Adım 8: Eski Düğüm Sunucusundan NGINX ve Postanalytics Yapılandırmalarını Yeni Olanına Aktarın
+## Adım 8: NGINX ve postanalytics yapılandırmasını eski düğüm makinesinden yeniye aktarın
 
-Eski makinede yer alan düğümle ilgili NGINX yapılandırması ve postanalytics yapılandırmasını, gerekli yönergeleri kopyalayarak yeni makinedeki dosyalara aktarın.
+Gerekli yönergeleri veya dosyaları kopyalayarak düğüme ilişkin NGINX ve postanalytics yapılandırmalarını eski makineden yeniye taşıyın:
 
-**Kaynak Dosyalar**
+* `/etc/nginx/conf.d/default.conf` veya `/etc/nginx/nginx.conf` (`http` seviyesine ilişkin NGINX ayarları)
 
-Eski makinede, işletim sistemine ve NGINX sürümüne bağlı olarak NGINX yapılandırma dosyaları farklı dizinlerde ve farklı isimlerde bulunabilir. En yaygın olanlar şunlardır:
+    Filtreleme ve postanalytics düğümleri farklı sunuculardaysa, filtreleme düğümü makinesindeki `/etc/nginx/nginx.conf` dosyasının `http` bloğunda `wallarm_tarantool_upstream` adını [`wallarm_wstore_upstream`](../../admin-en/configure-parameters-en.md#wallarm_wstore_upstream) olarak değiştirin.
+* `/etc/nginx/sites-available/default` (trafik yönlendirme için NGINX ve Wallarm ayarları)
+* `/etc/nginx/conf.d/wallarm-status.conf` → yeni makinede `/etc/nginx/wallarm-status.conf` konumuna kopyalayın
 
-* NGINX ayarlarını içeren `/etc/nginx/conf.d/default.conf`
-* Wallarm düğüm izleme ayarlarını içeren `/etc/nginx/conf.d/wallarm-status.conf`. Detaylı açıklama [linkte][wallarm-status-instr] mevcuttur.
+    Ayrıntılı açıklama [bağlantı][wallarm-status-instr] içinde mevcuttur.
+* `/etc/wallarm/node.yaml` → yeni makinede `/opt/wallarm/etc/wallarm/node.yaml` konumuna kopyalayın
 
-Ayrıca, postanalytics modülünün (Tarantool veritabanı ayarlarının) yapılandırması genellikle aşağıdakilerden birinde bulunur:
+    Ayrı bir postanalytics sunucusunda özel bir ana bilgisayar ve bağlantı noktası kullanıyorsanız, kopyalanan dosyada postanalytics düğümü makinesinde `tarantool` bölümünü `wstore` olarak yeniden adlandırın.
 
-* `/etc/default/wallarm-tarantool` veya
-* `/etc/sysconfig/wallarm-tarantool`
+### Kullanımdan kaldırılan NGINX yönergelerini yeniden adlandırın
 
-**Hedef Dosyalar**
-
-All-in-one installer, işletim sistemi ve NGINX sürümlerinin farklı kombinasyonlarıyla çalıştığından, yeni makinenizde [hedef dosyalar](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) farklı isimlerde ve farklı dizinlerde olabilir.
-
-Yapılandırma aktarılırken aşağıdaki adımların uygulanması gerekmektedir.
-
-### Kullanımdan Kaldırılmış NGINX Direktiflerini Yeniden Adlandırın
-
-Açıkça yapılandırma dosyalarında belirtilmişse, aşağıdaki NGINX direktiflerinin isimlerini değiştirin:
+Aşağıdaki NGINX yönergeleri yapılandırma dosyalarında açıkça belirtilmişse adlarını değiştirin:
 
 * `wallarm_instance` → [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application)
 * `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)
 * `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../../admin-en/configure-parameters-en.md#wallarm_protondb_path)
 * `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
+* `wallarm_tarantool_upstream` → [`wallarm_wstore_upstream`](../../admin-en/configure-parameters-en.md#wallarm_wstore_upstream)
 
-Sadece direktif isimlerini değiştirdik; mantıkları aynı kalmaktadır. Eski isimdeki direktifler geçici olarak desteklenmeye devam etmektedir, ancak yeniden adlandırmanız tavsiye edilir.
+Yalnızca yönergelerin adları değişti, mantıkları aynı kaldı. Eski adlara sahip yönergeler yakında kullanımdan kaldırılacaktır, bu nedenle önceden yeniden adlandırmanız önerilir.
 
-### Düğüm Loglama Değişkenlerini Güncelleyin
+### Düğüm günlükleme değişkenlerini güncelleyin
 
-Yeni düğüm sürümünde, [düğüm loglama değişkenlerinde](../../admin-en/configure-logging.md#filter-node-variables) aşağıdaki değişiklikler uygulanmıştır:
+Yeni düğüm sürümünde [düğüm günlükleme değişkenlerinde](../../admin-en/configure-logging.md#filter-node-variables) aşağıdaki değişiklikler uygulanmıştır:
 
-* `wallarm_request_time` değişkeni `wallarm_request_cpu_time` olarak yeniden adlandırılmıştır.
+* `wallarm_request_time` değişkeninin adı `wallarm_request_cpu_time` olarak değiştirilmiştir.
 
-    Sadece değişken adı değiştirilmiş olup, mantığı aynıdır. Eski isim geçici olarak desteklenmektedir, fakat yine de yeniden adlandırmanız önerilir.
-* `wallarm_request_mono_time` değişkeni eklenmiştir – sıraya, kuyruğa alınan zaman ile 
-    * Kuyrukta geçirilen süre 
-    * İsteğin işlenmesinde CPU'nun harcadığı saniye cinsinden toplam zaman
-  bilgisini loglamak isterseniz, bu değişkeni log formatınızın yapılandırmasına ekleyin.
+    Yalnızca değişken adı değişti, mantığı aynı kaldı. Eski ad geçici olarak desteklenmektedir ancak yine de değişkenin yeniden adlandırılması önerilir.
+* `wallarm_request_mono_time` değişkeni eklendi – aşağıdaki toplamın loglanmasına ihtiyaç duyuyorsanız günlük formatı yapılandırmasına ekleyin:
 
-### Wallarm Düğüm Filtrasyon Modu Ayarlarını Son Sürümlerde Yapılan Değişikliklere Göre Ayarlayın
+    * Kuyrukta geçen süre
+    * CPU'nun isteği işlerken harcadığı süre (saniye)
 
-1. Aşağıda listelenen ayarların beklenen davranışlarının, [`off` ve `monitoring` filtrasyon modlarının değişmiş mantığına](what-is-new.md#filtration-modes) uygunluğunu kontrol edin:
-      * [`wallarm_mode` direktifi](../../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [Wallarm Console'da yapılandırılan genel filtrasyon kuralı](../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console)
-      * [Wallarm Console'da yapılandırılan endpoint odaklı filtrasyon kuralları](../../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console)
-2. Eğer beklenen davranış, değişen filtrasyon modu mantığıyla örtüşmüyorsa, [bu yönergeleri](../../admin-en/configure-wallarm-mode.md) kullanarak ayarları güncelleyin.
+### En son sürümlerde yayınlanan değişikliklere göre Wallarm düğümü filtreleme modu ayarlarını uyarlayın
 
-### `overlimit_res` Saldırı Tespit Yapılandırmasını Direktiflerden Kurala Taşıyın
+1. Aşağıda listelenen ayarların beklenen davranışının, [`off` ve `monitoring` filtreleme modlarının değişen mantığı](what-is-new.md#filtration-modes) ile uyumlu olduğundan emin olun:
+      * [Yönerge `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
+      * [Wallarm Console'da yapılandırılmış genel filtreleme kuralı](../../admin-en/configure-wallarm-mode.md#general-filtration-mode)
+      * [Wallarm Console'da yapılandırılmış uç nokta hedefli filtreleme kuralları](../../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode)
+2. Beklenen davranış değişen filtreleme modu mantığıyla uyuşmuyorsa, [talimatları](../../admin-en/configure-wallarm-mode.md) kullanarak filtreleme modu ayarlarını yayınlanan değişikliklere göre uyarlayın.
+
+### `overlimit_res` saldırı algılama yapılandırmasını yönergelerden kurala taşıyın
 
 --8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-nginx.md"
 
-### `wallarm-status.conf` Dosyası İçeriğini Güncelleyin
+### `wallarm-status.conf` dosya içeriğini güncelleyin
 
-Aşağıdaki gibi `/etc/nginx/conf.d/wallarm-status.conf` dosyasının içeriğini güncelleyin:
+`/etc/nginx/conf.d/wallarm-status.conf` içeriğini aşağıdaki gibi güncelleyin:
 
 ```
 server {
   listen 127.0.0.8:80;
   server_name localhost;
 
-  allow 127.0.0.0/8;   # Filtre düğüm sunucusunun yalnızca loopback adresleri için erişim sağlanır  
+  allow 127.0.0.8/8;   # Erişim yalnızca filtreleme düğümü sunucusunun loopback adresleri için kullanılabilir  
   deny all;
 
   wallarm_mode off;
-  disable_acl "on";   # İstek kaynaklarının kontrolü devre dışı bırakılmış olup, yasaklanmış IP'lerin wallarm-status servisine erişimine izin verilir. https://docs.wallarm.com/admin-en/configure-parameters-en/#disable_acl
+  disable_acl "on";   # İstek kaynaklarının kontrolü devre dışıdır, denylisted IP'lerin wallarm-status servisine istek yapmasına izin verilir. https://docs.wallarm.com/admin-en/configure-parameters-en/#disable_acl
+  wallarm_enable_apifw off;
   access_log off;
 
   location ~/wallarm-status$ {
@@ -205,63 +200,55 @@ server {
 }
 ```
 
-[İstatistik servisi yapılandırması hakkında daha fazla bilgi](../../admin-en/configure-statistics-service.md)
+[İstatistik servisinin yapılandırılması hakkında daha fazla ayrıntı](../../admin-en/configure-statistics-service.md)
 
-### Wallarm Engelleme Sayfasını Güncelleyin
+### Wallarm engelleme sayfasını güncelleyin
 
-Yeni düğüm sürümünde, Wallarm örnek engelleme sayfası [değiştirilmiştir](what-is-new.md#new-blocking-page). Sayfadaki logo ve destek e-posta adresi varsayılan olarak boş bırakılmıştır.
+Yeni düğüm sürümünde Wallarm örnek engelleme sayfası [değiştirildi](what-is-new.md#new-blocking-page). Sayfadaki logo ve destek e‑postası artık varsayılan olarak boştur.
 
-Eğer engellenen isteklere yanıt olarak dönen sayfa olarak `&/usr/share/nginx/html/wallarm_blocked.html` yapılandırıldıysa, [yeni örnek sayfa](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) kopyalanıp özelleştirilerek kullanılmalıdır.
+Eğer `&/usr/share/nginx/html/wallarm_blocked.html` sayfası engellenen isteklere yanıt olarak döndürülmek üzere yapılandırılmışsa, yeni örnek sayfanın sürümünü [kopyalayıp özelleştirin](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page).
 
-## Adım 9: API Portunu Güncelleyin
+## Adım 9: API portunu güncelleyin
 
 --8<-- "../include/waf/upgrade/api-port-443.md"
 
-## Adım 10: Threat Replay Testing Modülünü Yeniden Etkinleştirin (sadece node 2.16 veya altı yükseltiliyorsa)
+## Adım 10: Threat Replay Testing modülünü yeniden etkinleştirin (sadece düğüm 2.16 veya altından yükseltiliyorsa)
 
-[Threat Replay Testing modülü kurulumu için önerileri](../../vulnerability-detection/threat-replay-testing/setup.md) inceleyin ve gerekiyorsa modülü yeniden etkinleştirin.
+[Threat Replay Testing modülü kurulumuna ilişkin öneriyi](../../vulnerability-detection/threat-replay-testing/setup.md) inceleyin ve gerekirse yeniden etkinleştirin.
 
-Bir süre sonra, modülün çalışmasının yanlış pozitif sonuçlara yol açmadığından emin olun. Yanlış pozitifler tespit ederseniz, lütfen [Wallarm teknik destek ekibiyle](mailto:support@wallarm.com) iletişime geçin.
+Bir süre sonra, modülün çalışmasının false positive üretmediğinden emin olun. False positive tespit ederseniz lütfen [Wallarm teknik desteği](mailto:support@wallarm.com) ile iletişime geçin.
 
-## Adım 11: NGINX'i Yeniden Başlatın
+## Adım 11: NGINX'i yeniden başlatın
 
 --8<-- "../include/waf/installation/restart-nginx-systemctl.md"
 
-## Adım 12: Wallarm Düğümünün Çalışmasını Test Edin
+## Adım 12: Wallarm düğümü çalışmasını test edin
 
 Yeni düğümün çalışmasını test etmek için:
 
-1. Korumalı kaynak adresine test [SQLI][sqli-attack-docs] ve [XSS][xss-attack-docs] saldırıları içeren bir istek gönderin:
+1. Korunan kaynak adresine test [SQLI][sqli-attack-docs] ve [XSS][xss-attack-docs] saldırıları içeren bir istek gönderin:
 
     ```
     curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 
-1. Wallarm Console → **Attacks** bölümünü [US Cloud](https://us1.my.wallarm.com/attacks) veya [EU Cloud](https://my.wallarm.com/attacks) üzerinden açın ve saldırıların listelendiğini doğrulayın.
-1. Bulut ortamınızda veriler (kurallar, IP listeleri) yeni düğüme senkronize edildikten sonra, kuralların beklendiği gibi çalıştığını test etmek için birkaç test saldırısı gerçekleştirin.
+1. Wallarm Console → **Attacks** bölümünü [US Cloud](https://us1.my.wallarm.com/attacks) veya [EU Cloud](https://my.wallarm.com/attacks) içinde açın ve saldırıların listede göründüğünden emin olun.
+1. Cloud üzerinde saklanan verileriniz (kurallar, IP lists) yeni düğümle senkronize olur olmaz, kurallarınızın beklendiği gibi çalıştığından emin olmak için bazı test saldırıları gerçekleştirin.
 
-## Adım 13: Trafiğin Wallarm Düğümüne Yönlendirilmesini Yapılandırın
+## Adım 13: Trafiğin Wallarm düğümüne gönderilmesini yapılandırın
 
-Kullanılan dağıtım yaklaşımına bağlı olarak, aşağıdaki ayarları gerçekleştirin:
+Yük dengeleyicinizin hedeflerini Wallarm örneğine trafik gönderecek şekilde güncelleyin. Ayrıntılar için, yük dengeleyicinizin belgelerine bakın.
 
-=== "Inline"
-    Yük dengeleyicinizin hedeflerini, trafiği Wallarm örneğine yönlendirecek şekilde güncelleyin. Ayrıntılar için lütfen yük dengeleyici dokümantasyonunuza başvurun.
+Trafiği tamamen yeni düğüme yönlendirmeden önce, önce kısmen yönlendirmeniz ve yeni düğümün beklendiği gibi davrandığını kontrol etmeniz önerilir.
 
-    Trafiğin tamamen yeni düğüme yönlendirilmesinden önce, kısmi olarak yönlendirip yeni düğüm davranışını kontrol etmeniz önerilir.
+## Adım 14: Eski düğümü kaldırın
 
-=== "Out-of-Band"
-    Web veya proxy sunucunuz (örneğin, NGINX, Envoy) gelen trafiği Wallarm düğümüne yansıtacak şekilde yapılandırın. Yapılandırma ayrıntıları için ilgili web veya proxy sunucu dokümantasyonuna bakmanızı tavsiye ederiz.
-
-    [Buradaki linkte][web-server-mirroring-examples], en popüler web ve proxy sunucuları (NGINX, Traefik, Envoy) için örnek yapılandırma bulunmaktadır.
-
-## Adım 14: Eski Düğümü Kaldırın
-
-1. Wallarm Console → **Nodes** bölümünden eski düğümü seçip **Delete** butonuna tıklayarak silin.
+1. Wallarm Console → **Nodes** içinde düğümünüzü seçip **Delete** tıklayarak eski düğümü silin.
 1. İşlemi onaylayın.
     
-    Düğüm Cloud üzerinden silindiğinde, uygulamalarınıza gelen isteklerin filtrelenmesi duracaktır. Filtreleme düğümünü silmek geri alınamaz. Düğüm listeden kalıcı olarak kaldırılacaktır.
+    Düğüm Cloud'dan silindiğinde, uygulamalarınıza gelen isteklerin filtrelenmesini durduracaktır. Filtreleme düğümünü silme işlemi geri alınamaz. Düğüm, düğümler listesinden kalıcı olarak silinecektir.
 
-1. Eski düğümün bulunduğu makineyi silin veya sadece Wallarm düğüm bileşenlerinden temizleyin:
+1. Eski düğümlü makineyi silin veya sadece Wallarm düğüm bileşenlerinden temizleyin:
 
     === "Debian"
         ```bash
@@ -284,8 +271,8 @@ Kullanılan dağıtım yaklaşımına bağlı olarak, aşağıdaki ayarları ger
         sudo yum remove wallarm-node nginx-module-wallarm
         ```
 
-## Ayarların Özelleştirilmesi
+## Ayarların özelleştirilmesi
 
-Wallarm modülleri 5.0 sürümüne güncellenmiştir. Önceki filtreleme düğümü ayarları, yeni sürüme otomatik olarak uygulanacaktır. Ek ayarlar yapmak için [mevcut direktifleri](../../admin-en/configure-parameters-en.md) kullanın.
+Wallarm modülleri 6.x sürümüne güncellendi. Önceki filtreleme düğümü ayarları yeni sürüme otomatik olarak uygulanacaktır. Ek ayarlar yapmak için [kullanılabilir yönergeleri](../../admin-en/configure-parameters-en.md) kullanın.
 
 --8<-- "../include/waf/installation/common-customization-options-nginx-4.4.md"

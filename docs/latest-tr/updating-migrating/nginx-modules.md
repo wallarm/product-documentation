@@ -1,148 +1,159 @@
-```markdown
-# Wallarm NGINX Modüllerinin Yükseltilmesi
+[wallarm-status-instr]:             ../admin-en/configure-statistics-service.md
+[ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
+[attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
+[waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
+[blocking-page-instr]:              ../admin-en/configuration-guides/configure-block-page-and-code.md
+[logging-instr]:                    ../admin-en/configure-logging.md
+[proxy-balancer-instr]:             ../admin-en/using-proxy-or-balancer-en.md
+[process-time-limit-instr]:         ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
+[configure-selinux-instr]:          ../admin-en/configure-selinux.md
+[configure-proxy-balancer-instr]:   ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
+[install-postanalytics-instr]:      ../admin-en/installation-postanalytics-en.md
+[dynamic-dns-resolution-nginx]:     ../admin-en/configure-dynamic-dns-resolution-nginx.md
+[img-wl-console-users]:             ../images/check-users.png 
+[img-create-wallarm-node]:      ../images/user-guides/nodes/create-cloud-node.png
+[nginx-process-time-limit-docs]:    ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
+[nginx-process-time-limit-block-docs]:  ../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
+[overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.md
+[graylist-docs]:                     ../user-guides/ip-lists/overview.md
+[wallarm-token-types]:              ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
+[oob-docs]:                         ../installation//oob/overview.md
+[sqli-attack-docs]:                 ../attacks-vulns-list.md#sql-injection
+[xss-attack-docs]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
+[web-server-mirroring-examples]:    ../installation/oob/web-server-mirroring/overview.md#configuration-examples-for-traffic-mirroring
+[ip-lists-docs]:                     ../user-guides/ip-lists/overview.md
 
-Bu talimatlar, Wallarm NGINX modüllerinin 4.x sürümünü ayrı paketlerden kurulanların 5.0 sürümüne yükseltilmesi için adımları tanımlar. Bu modüller aşağıdaki talimatlardan biri doğrultusunda kurulmuştur:
+# Wallarm NGINX modüllerini yükseltme
 
-* NGINX stable için ayrı paketler
-* NGINX Plus için ayrı paketler
-* Dağıtım tarafından sağlanan NGINX için ayrı paketler
+Bu talimatlar, bireysel paketlerden kurulmuş Wallarm NGINX modüllerini 4.x’ten 6.x sürümüne yükseltme adımlarını açıklar. Bunlar, aşağıdaki talimatlardan biriyle kurulmuş modüllerdir:
 
-!!! info "All-in-one installer ile Yükseltme"
-    4.10 sürümünden itibaren, bireysel Linux paketleri kullanımdan kaldırıldığından, yükseltme Wallarm'ın [all-in-one installer](../installation/nginx/all-in-one.md) kullanılarak gerçekleştirilmektedir. Bu yöntem, önceki yaklaşıma kıyasla yükseltme sürecini ve sürekli dağıtım bakımını basitleştirir.
+* NGINX stable için bireysel paketler
+* NGINX Plus için bireysel paketler
+* Dağıtımın sağladığı NGINX için bireysel paketler
+
+!!! info "Tümü bir arada yükleyici ile yükseltme"
+    4.10 sürümünden itibaren, bireysel Linux paketleri kullanım dışı bırakıldığından yükseltme Wallarm’ın [all-in-one installer](../installation/nginx/all-in-one.md) aracı ile gerçekleştirilir. Bu yöntem, önceki yaklaşıma kıyasla yükseltme sürecini ve devam eden kurulum bakımını basitleştirir.
     
-    Yükleyici otomatik olarak aşağıdaki işlemleri gerçekleştirir:
+    Yükleyici aşağıdaki işlemleri otomatik olarak gerçekleştirir:
 
-    1. İşletim sistemi ve NGINX sürümünüzün kontrol edilmesi.
-    1. Algılanan işletim sistemi ve NGINX sürümü için Wallarm depolarının eklenmesi.
-    1. Bu depolardan Wallarm paketlerinin kurulması.
-    1. Kurulan Wallarm modülünün NGINX'inize entegre edilmesi.
-    1. Sağlanan token kullanılarak filtreleme node'unun Wallarm Cloud'a bağlanması.
+    1. İşletim sisteminizi ve NGINX sürümünü kontrol eder.
+    1. Algılanan işletim sistemi ve NGINX sürümü için Wallarm depolarını ekler.
+    1. Bu depolardan Wallarm paketlerini kurar.
+    1. Kurulu Wallarm modülünü NGINX’inize bağlar.
+    1. Sağlanan belirteç ile filtreleme düğümünü Wallarm Cloud’a bağlar.
 
-    ![All-in-one compared to manual](../images/installation-nginx-overview/manual-vs-all-in-one.png)
+    ![Manuele kıyasla tümü bir arada](../images/installation-nginx-overview/manual-vs-all-in-one.png)
 
-Ömrünü tamamlamış node'u (3.6 veya daha düşük) yükseltmek için lütfen [farklı talimatları](older-versions/nginx-modules.md) kullanın.
+Kullanım ömrü sona ermiş düğümü (3.6 veya altı) yükseltmek için lütfen [farklı talimatları](older-versions/nginx-modules.md) kullanın.
 
 ## Gereksinimler
 
 --8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
 
-## Yükseltme Prosedürü
+## Yükseltme prosedürü
 
-* Eğer filtreleme node ve postanalytics modülleri aynı sunucuda kurulu ise, aşağıdaki talimatları izleyerek tüm modülleri yükseltin.
+* Filtreleme düğümü ve postanalytics modülleri aynı sunucuda yüklüyse, tümünü yükseltmek için aşağıdaki talimatları izleyin.
 
-    Yeni sürümü çalışır durumda bir node'u temiz bir makinada all-in-one installer kullanarak çalıştırmanız, düzgün çalıştığını test etmeniz, eski node'u durdurmanız ve eski node yerine yeni makinadan trafik akışını yapılandırmanız gerekecektir.
+    Yeni bir makinede tümü bir arada yükleyici ile daha yeni sürüm bir düğüm çalıştırmanız, düzgün çalıştığını test etmeniz ve önceki düğümü durdurup trafiği eski makine yerine yeni makine üzerinden akacak şekilde yapılandırmanız gerekecektir.
 
-* Eğer filtreleme node ve postanalytics modülleri farklı sunucularda kuruluysa, **önce** postanalytics modülünü ve **sonra** [bu talimatları](../updating-migrating/separate-postanalytics.md) izleyerek filtreleme modülünü yükseltin.
+* Filtreleme düğümü ve postanalytics modülleri farklı sunucularda yüklüyse, [bu talimatları](../updating-migrating/separate-postanalytics.md) izleyerek önce postanalytics modülünü, ardından filtreleme modülünü yükseltin.
 
-## Adım 1: Temiz Makine Hazırlama
+## Adım 1: Temiz makine hazırlayın
 
 --8<-- "../include/waf/installation/all-in-one-clean-machine-latest.md"
 
-## Adım 2: En Son NGINX ve Bağımlılıkları Kurma
+## Adım 2: En güncel NGINX’i ve bağımlılıkları kurun
 
 --8<-- "../include/waf/installation/all-in-one-nginx.md"
 
-## Adım 3: Wallarm Token Hazırlama
+## Adım 3: Wallarm belirteci hazırlayın
 
 --8<-- "../include/waf/installation/all-in-one-token.md"
 
-## Adım 4: All-in-One Wallarm Yükleyicisini İndirin
+## Adım 4: Tümü bir arada Wallarm yükleyicisini indirin
 
 --8<-- "../include/waf/installation/all-in-one-installer-download.md"
 
-## Adım 5: All-in-One Wallarm Yükleyicisinin Çalıştırılması
+## Adım 5: Tümü bir arada Wallarm yükleyicisini çalıştırın
 
-### Aynı Sunucuda Filtreleme Node ve Postanalytics
+### Filtreleme düğümü ve postanalytics aynı sunucuda
 
 --8<-- "../include/waf/installation/all-in-one-installer-run.md"
 
-### Farklı Sunucularda Filtreleme Node ve Postanalytics
+### Filtreleme düğümü ve postanalytics farklı sunucularda
 
-!!! warning "Filtreleme Node ve Postanalytics Modüllerinin Yükseltilme Adımlarının Sıralaması"
-    Eğer filtreleme node ve postanalytics modülleri farklı sunucularda kuruluysa, filtreleme node paketlerini güncellemeden önce postanalytics paketlerini yükseltmek gerekmektedir.
+!!! warning "Filtreleme düğümü ve postanalytics modüllerini yükseltme adımlarının sırası"
+    Filtreleme düğümü ve postanalytics modülleri farklı sunuculara kurulmuşsa, filtreleme düğümü paketlerini güncellemeden önce postanalytics paketlerini yükseltmek gereklidir.
 
-1. Postanalytics modülünü bu [talimatları](separate-postanalytics.md) izleyerek yükseltin.
-1. Filtreleme node'u yükseltin:
+1. Postanalytics modülünü şu [talimatları](separate-postanalytics.md) izleyerek yükseltin.
+1. Filtreleme düğümünü yükseltin:
 
-    === "API token"
+    === "API belirteci"
         ```bash
-        # Eğer x86_64 sürümü kullanılıyorsa:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.x86_64-glibc.sh filtering
+        # x86_64 sürümünü kullanıyorsanız:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.5.1.x86_64-glibc.sh filtering
 
-        # Eğer ARM64 sürümü kullanılıyorsa:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.aarch64-glibc.sh filtering
+        # ARM64 sürümünü kullanıyorsanız:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.5.1.aarch64-glibc.sh filtering
         ```        
 
-        `WALLARM_LABELS` değişkeni, node'un ekleneceği grubu ayarlar (Wallarm Console UI'da node'ların mantıksal gruplandırılması için kullanılır).
+        `WALLARM_LABELS` değişkeni, düğümün ekleneceği grubu ayarlar (Wallarm Console UI içinde düğümlerin mantıksal gruplandırılması için kullanılır).
 
-    === "Node token"
+    === "Node belirteci"
         ```bash
-        # Eğer x86_64 sürümü kullanılıyorsa:
-        sudo sh wallarm-5.3.0.x86_64-glibc.sh filtering
+        # x86_64 sürümünü kullanıyorsanız:
+        sudo sh wallarm-6.5.1.x86_64-glibc.sh filtering
 
-        # Eğer ARM64 sürümü kullanılıyorsa:
-        sudo sh wallarm-5.3.0.aarch64-glibc.sh filtering
+        # ARM64 sürümünü kullanıyorsanız:
+        sudo sh wallarm-6.5.1.aarch64-glibc.sh filtering
         ```
 
-## Adım 6: Eski Node Makinesinden Yeniye NGINX ve Postanalytics Yapılandırmasının Aktarılması
+## Adım 6: Eski düğüm makinesinden yeniye NGINX ve postanalytics yapılandırmasını aktarın
 
-Eski makinedeki yapılandırma dosyalarından yeni makinadaki dosyalara node ile ilgili NGINX yapılandırması ve postanalytics yapılandırmasını aktarın. Gerekli direktifleri kopyalayarak bunu gerçekleştirebilirsiniz.
+Gerekli yönergeleri veya dosyaları kopyalayarak düğümle ilgili NGINX ve postanalytics yapılandırmalarını eski makineden yeniye taşıyın:
 
-**Kaynak Dosyalar**
+* `/etc/nginx/conf.d/default.conf` veya `http` seviyesi için NGINX ayarlarının bulunduğu `/etc/nginx/nginx.conf`
 
-Eski bir makinada, işletim sistemi ve NGINX sürümüne bağlı olarak NGINX yapılandırma dosyaları farklı dizinlerde yer alabilir ve farklı isimlere sahip olabilir. En yaygın olanlar şunlardır:
+    Filtreleme ve postanalytics düğümleri farklı sunuculardaysa, filtreleme düğümü makinesindeki `/etc/nginx/nginx.conf` dosyasının `http` bloğunda `wallarm_tarantool_upstream` adını [`wallarm_wstore_upstream`](../admin-en/configure-parameters-en.md#wallarm_wstore_upstream) olarak değiştirin.
+* Trafik yönlendirme için NGINX ve Wallarm ayarlarını içeren `/etc/nginx/sites-available/default`
+* `/etc/nginx/conf.d/wallarm-status.conf` → yeni makinede `/etc/nginx/wallarm-status.conf` konumuna kopyalayın
 
-* `/etc/nginx/conf.d/default.conf` – NGINX ayarlarını içerir.
-* `/etc/nginx/conf.d/wallarm-status.conf` – Wallarm node izleme ayarlarını içerir. Detaylı açıklama [link][wallarm-status-instr] içinde bulunmaktadır.
+    Ayrıntılı açıklama [bağlantıda][wallarm-status-instr] mevcuttur.
+* `/etc/wallarm/node.yaml` → yeni makinede `/opt/wallarm/etc/wallarm/node.yaml` konumuna kopyalayın
 
-Ayrıca, postanalytics modülünün yapılandırması (Tarantool veritabanı ayarları) genellikle burada bulunur:
+    Ayrı postanalytics sunucusunda özel host ve port kullanıyorsanız, kopyalanan dosyada postanalytics düğümü makinesinde `tarantool` bölümünün adını `wstore` olarak değiştirin.
 
-* `/etc/default/wallarm-tarantool` veya
-* `/etc/sysconfig/wallarm-tarantool`
-
-**Hedef Dosyalar**
-
-All-in-one installer, işletim sistemi ve NGINX sürümlerinin farklı kombinasyonlarıyla çalıştığından, yeni makinenizde [hedef dosyalar](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) farklı isimlere sahip olabilir ve farklı dizinlerde yer alabilir.
-
-## Adım 7: NGINX'i Yeniden Başlatın
+## Adım 7: NGINX’i yeniden başlatın
 
 --8<-- "../include/waf/installation/restart-nginx-systemctl.md"
 
-## Adım 8: Wallarm Node İşleyişini Test Edin
+## Adım 8: Wallarm düğümü çalışmasını test edin
 
-Yeni node işleyişini test etmek için:
+Yeni düğümün çalışmasını test etmek için:
 
-1. Korumalı kaynak adresine test [SQLI][sqli-attack-docs] ve [XSS][xss-attack-docs] saldırıları içeren isteği gönderin:
+1. Korunan kaynak adresine test [SQLI][sqli-attack-docs] ve [XSS][xss-attack-docs] saldırıları içeren isteği gönderin:
 
     ```
     curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 
-1. Wallarm Console → **Attacks** bölümünü [US Cloud](https://us1.my.wallarm.com/attacks) veya [EU Cloud](https://my.wallarm.com/attacks) üzerinden açın ve saldırıların listede görüntülendiğinden emin olun.
-1. Cloud'da depolanan verileriniz (kurallar, IP listeleri) yeni node ile senkronize olunca, kurallarınızın beklendiği gibi çalıştığını test etmek için bazı saldırılar gerçekleştirin.
+1. Wallarm Console → **Attacks** bölümünü [US Cloud](https://us1.my.wallarm.com/attacks) veya [EU Cloud](https://my.wallarm.com/attacks) içinde açın ve saldırıların listede görüntülendiğinden emin olun.
+1. Cloud’da saklanan verileriniz (kurallar, IP lists) yeni düğümle senkronize edildiğinde, kurallarınızın beklendiği gibi çalıştığından emin olmak için bazı test saldırıları gerçekleştirin.
 
-## Adım 9: Wallarm Node'a Trafik Gönderimini Yapılandırın
+## Adım 9: Trafiği Wallarm düğümüne göndermeyi yapılandırın
 
-Kullanılan dağıtım yaklaşımına bağlı olarak, aşağıdaki ayarları yapın:
+Yük dengeleyicinizin hedeflerini Wallarm örneğine trafik gönderecek şekilde güncelleyin. Ayrıntılar için lütfen yük dengeleyicinizin belgelerine bakın.
 
-=== "In-line"
-    Yük dengeleyicinizin hedeflerini, trafiği Wallarm instance'ına yönlendirecek şekilde güncelleyin. Detaylar için lütfen yük dengeleyici dokümantasyonuna bakın.
+Tüm trafiği yeni düğüme yönlendirmeden önce, öncelikle kısmi yönlendirme yapmanız ve yeni düğümün beklenildiği gibi davrandığını kontrol etmeniz önerilir.
 
-    Trafiğin yeni node'a tamamen yönlendirilmesinden önce, kısmen yönlendirilmesi ve yeni node'un beklendiği gibi davrandığının kontrol edilmesi önerilir.
+## Adım 10: Eski düğümü kaldırın
 
-=== "Out-of-Band"
-    Web veya proxy sunucunuzun (örn. NGINX, Envoy) gelen trafiği Wallarm node'una ayna yoluyla yönlendirecek şekilde yapılandırın. Yapılandırma detayları için web veya proxy sunucusu dokümantasyonuna bakmanız önerilir.
-
-    [web-server-mirroring-examples] içindeki bağlantıda, en popüler web ve proxy sunucuları (NGINX, Traefik, Envoy) için örnek yapılandırmayı bulabilirsiniz.
-
-## Adım 10: Eski Node'u Kaldırın
-
-1. Wallarm Console → **Nodes** bölümünde node'unuzu seçip **Delete**'e tıklayarak eski node'u silin.
+1. Wallarm Console → **Nodes** içinde eski düğümü seçip **Delete**’e tıklayarak silin.
 1. İşlemi onaylayın.
     
-    Node Cloud'dan silindiğinde, uygulamalarınıza gelen taleplerin filtrelenmesi duracaktır. Filtreleme node'unun silinmesi geri alınamaz. Node, node listesinden kalıcı olarak silinecektir.
+    Düğüm Cloud’dan silindiğinde, uygulamalarınıza gelen isteklerin filtrelenmesini durduracaktır. Filtreleme düğümünü silme işlemi geri alınamaz. Düğüm, düğümler listesinden kalıcı olarak kaldırılacaktır.
 
-1. Eski node içeren makineyi silin veya sadece Wallarm node bileşenlerinden temizleyin:
+1. Eski düğümlü makineyi silin veya sadece Wallarm düğüm bileşenlerinden temizleyin:
 
     === "Debian"
         ```bash
@@ -164,4 +175,3 @@ Kullanılan dağıtım yaklaşımına bağlı olarak, aşağıdaki ayarları yap
         ```bash
         sudo yum remove wallarm-node nginx-module-wallarm
         ```
-```

@@ -1,5 +1,5 @@
 1. Wallarm Console'a gidin:
 
-    * **Rules** → **Add rule** veya şubeniz → **Add rule**.
+    * **Rules** → **Add rule** veya your branch → **Add rule**.
     * **Attacks** / **Incidents** → attack/incident → hit → **Rule**.
-    * **API Discovery** (if [enabled][api-discovery-enable-link]) → uç noktanız → **Create rule**.
+    * **API Discovery** ([etkin][api-discovery-enable-link] ise) → your endpoint → **Create rule**.

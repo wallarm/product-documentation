@@ -1,8 +1,11 @@
-# Wallarm'e Özgü Wallarm eBPF Helm Chart Değerleri
+# Wallarm eBPF Helm Chart'ının Wallarm'a Özgü Değerleri
 
-Bu doküman, [deployment](deployment.md) sırasında veya eBPF çözümü yükseltildiğinde değiştirilebilen Wallarm'e özgü Helm chart değerleri hakkında bilgi sağlar. Bu değerler, Wallarm eBPF Helm chart'ın genel yapılandırmasını kontrol eder.
+Bu belge, eBPF çözümünün [dağıtımı](deployment.md) veya yükseltilmesi sırasında değiştirilebilen Wallarm'a özgü Helm chart değerleri hakkında bilgi sağlar. Bu değerler, Wallarm eBPF Helm chart'ının genel yapılandırmasını kontrol eder.
 
-Varsayılan `values.yaml` dosyasının, değiştirmeniz gerekebilecek Wallarm'e özgü kısmı aşağıdaki gibi görünmektedir:
+!!! warning "Sürüm 4.10 ile sınırlı"
+    Wallarm eBPF tabanlı çözüm şu anda yalnızca [Wallarm Node 4.10](/4.10/installation/oob/ebpf/deployment/) içinde mevcut özellikleri destekler.
+
+Değiştirmeniz gerekebilecek varsayılan `values.yaml` dosyasının Wallarm'a özgü kısmı aşağıdaki gibidir:
 
 ```yaml
 config:
@@ -60,39 +63,39 @@ processing:
 
 ## config.api.token
 
-Wallarm Console'da [US](https://us1.my.wallarm.com/nodes) veya [EU](https://my.wallarm.com/nodes) Cloud üzerinde oluşturulan Wallarm node token'ı. Wallarm API'ye erişmek için gereklidir.
+Wallarm Console içinde [US](https://us1.my.wallarm.com/nodes) veya [EU](https://my.wallarm.com/nodes) Cloud'da oluşturulan Wallarm node token'ı. Wallarm API'ye erişim için gereklidir.
 
 ## config.api.host
 
-Wallarm API uç noktası. Aşağıdakilerden biri olabilir:
+Wallarm API uç noktası. Şunlardan biri olabilir:
 
-* [US cloud](../../../about-wallarm/overview.md#cloud) için `us1.api.wallarm.com`
-* [EU cloud](../../../about-wallarm/overview.md#cloud) için `api.wallarm.com` (varsayılan)
+* [ABD bulutu](../../../about-wallarm/overview.md#cloud) için `us1.api.wallarm.com`
+* [AB bulutu](../../../about-wallarm/overview.md#cloud) için `api.wallarm.com` (varsayılan)
 
 ## config.api.port
 
-Wallarm API uç nokta portu. Varsayılan olarak `443`.
+Wallarm API uç noktası portu. Varsayılan olarak `443`.
 
 ## config.api.useSSL
 
-Wallarm API'ye erişimde SSL kullanılıp kullanılmayacağını belirtir. Varsayılan olarak `true`.
+Wallarm API'ye erişirken SSL kullanılıp kullanılmayacağını belirtir. Varsayılan olarak `true`.
 
 ## config.mutualTLS
 
-eBPF agent'ten gelen trafiğin güvenliğini Wallarm [processing node](deployment.md#how-it-works) tarafından doğrulatmaya yarayan mTLS desteğini etkinleştirir. Varsayılan olarak `false` (devre dışı).
+[eBPF ajanından](deployment.md#how-it-works) gelen trafiğin güvenliğini doğrulamak için Wallarm işleme düğümünün mTLS desteğini etkinleştirir. Varsayılan olarak `false` (devre dışı).
 
-Bu parametre, Helm chart sürüm 0.10.26'dan itibaren desteklenmektedir.
+Bu parametre Helm chart sürümü 0.10.26'dan itibaren desteklenir.
 
 ## config.agent.mirror.allNamespaces
 
-Tüm namespace'ler için trafik yansımayı etkinleştirir. Varsayılan değer `false`.
+Tüm namespace'ler için trafik yansıtmayı etkinleştirir. Varsayılan değer `false`'tur.
 
-!!! warning "true olarak ayarlanması önerilmez"
-    Bu değerin `true` olarak ayarlanması, veri çoğaltmasına ve artan kaynak kullanımına neden olabilir. `values.yaml` içindeki namespace etiketleri, pod anotasyonları veya `config.agent.mirror.filters` kullanılarak yapılan [seçici yansıtma](selecting-packets.md) tercih edilmelidir.
+!!! warning "`true` olarak ayarlanması önerilmez"
+    Bunu `true` yaparak etkinleştirmek veri çoğalmasına ve artan kaynak kullanımına neden olabilir. Namespace etiketleri, pod açıklamaları veya `values.yaml` içindeki `config.agent.mirror.filters` kullanarak [seçici yansıtmayı](selecting-packets.md) tercih edin.
 
 ## config.agent.mirror.filters
 
-Trafik yansıtmanın seviyesini kontrol eder. İşte `filters` parametresine bir örnek:
+Trafik yansıtma düzeyini kontrol eder. `filters` parametresine bir örnek:
 
 ```yaml
 ...
@@ -110,17 +113,17 @@ Trafik yansıtmanın seviyesini kontrol eder. İşte `filters` parametresine bir
             annotation_name2: 'annotation_value_2,annotation_value_4'
 ```
 
-[Detaylar için daha fazla bilgi](selecting-packets.md)
+[Daha fazla ayrıntı](selecting-packets.md)
 
 ## config.agent.loadBalancerRealIPHeader
 
-Bir load balancer'ın orijinal istemci IP adresini iletmek için kullandığı header adını belirtir. Doğru header adını belirlemek için load balancer dokümantasyonunuza bakınız. Varsayılan olarak `X-Real-IP`.
+Bir yük dengeleyicinin orijinal istemci IP adresini iletmek için kullandığı başlık adını belirtir. Doğru başlık adını belirlemek için yük dengeleyicinizin belgelerine bakın. Varsayılan olarak `X-Real-IP`.
 
-`loadBalancerRealIPHeader` ve `loadBalancerTrustedCIDRs` parametreleri, Wallarm eBPF'in Kubernetes kümesi dışındaki bir L7 load balancer (örneğin AWS ALB) üzerinden yönlendirilen trafiğin kaynak IP'sini doğru bir şekilde belirlemesini sağlar.
+`loadBalancerRealIPHeader` ve `loadBalancerTrustedCIDRs` parametreleri, trafik Kubernetes kümesi dışındaki bir L7 yük dengeleyici (örn. AWS ALB) üzerinden yönlendirildiğinde Wallarm eBPF'in kaynak IP'yi doğru şekilde belirlemesini sağlar.
 
 ## config.agent.loadBalancerTrustedCIDRs
 
-Güvenilir L7 load balancer'lar için CIDR aralıklarının beyaz listesini tanımlar. Örnek:
+Güvenilen L7 yük dengeleyiciler için CIDR aralıklarının bir listesini tanımlar. Örnek:
 
 ```yaml
 config:
@@ -130,7 +133,7 @@ config:
       - 192.168.0.0/16
 ```
 
-Helm kullanarak bu değerleri güncellemek için:
+Bu değerleri Helm kullanarak güncellemek için:
 
 ```
 # Listeye tek bir öğe eklemek için:
@@ -142,9 +145,9 @@ helm upgrade <RELEASE_NAME> <CHART> --set 'config.agent.loadBalancerTrustedCIDRs
 
 ## processing.metrics
 
-Wallarm node [metrics service](../../../admin-en/configure-statistics-service.md) yapılandırmasını kontrol eder. Varsayılan olarak, servis devre dışıdır.
+Wallarm düğümünün [metrik hizmeti](../../../admin-en/configure-statistics-service.md) yapılandırmasını kontrol eder. Varsayılan olarak hizmet devre dışıdır.
 
-Servisi etkinleştirirseniz, `port`, `path` ve `scrapeInterval` için varsayılan değerleri korumanız önerilir:
+Hizmeti etkinleştirirseniz, `port`, `path` ve `scrapeInterval` için varsayılan değerleri korumanız önerilir:
 
 ```yaml
 processing:
@@ -158,11 +161,11 @@ processing:
 
 ## processing.affinity ve processing.nodeSelector
 
-Wallarm eBPF daemonSet'in dağıtıldığı Kubernetes düğümlerini kontrol eder. Varsayılan olarak, her düğüme dağıtılır.
+Wallarm eBPF DaemonSet'inin hangi Kubernetes düğümlerine dağıtılacağını kontrol eder. Varsayılan olarak her düğüme dağıtılır.
 
-## Değişikliklerin Uygulanması
+## Değişiklikleri uygulama
 
-`values.yaml` dosyasında değişiklik yaptıysanız ve dağıtılmış chart'ınızı yükseltmek istiyorsanız, aşağıdaki komutu kullanınız:
+`values.yaml` dosyasını değiştirir ve dağıtılmış chart'ınızı yükseltmek isterseniz, aşağıdaki komutu kullanın:
 
 ```
 helm upgrade <RELEASE_NAME> wallarm/wallarm-oob -n wallarm-ebpf -f <PATH_TO_VALUES>

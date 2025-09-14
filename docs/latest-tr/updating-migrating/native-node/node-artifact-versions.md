@@ -1,284 +1,258 @@
-# Native Node Artifact Versions and Changelog
+# Native Node Yapı Artifakt Sürümleri ve Değişiklik Günlüğü
 
-Bu belge, çeşitli form faktörlerinde mevcut olan [versions](../versioning-policy.md) listesini sunar [Native Wallarm Node](../../installation/nginx-native-node-internals.md#native-node) 0.x için, sürümleri takip etmenize ve yükseltmeleri planlamanıza yardımcı olur.
+Bu belge, çeşitli dağıtım biçimlerindeki [sürümleri](../versioning-policy.md) 0.14.x+ [Native Wallarm Node](../../installation/nginx-native-node-internals.md#native-node) için listeler; sürümleri takip etmenize ve yükseltme planlamanıza yardımcı olur.
 
-## All-in-one installer
+## Hepsi-bir-arada yükleyici
 
-Native Node için all-in-one installer, [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) ve yerel barındırılan node dağıtımı için kullanılır; [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md) ve [Fastly](../../installation/connectors/fastly.md) connector'ları ile birlikte.
+Native Node için hepsi-bir-arada yükleyici, [TCP trafik aynası analizi](../../installation/oob/tcp-traffic-mirror/deployment.md) ve MuleSoft [Mule](../../installation/connectors/mulesoft.md) veya [Flex](../../installation/connectors/mulesoft-flex.md) Gateway, [Akamai](../../installation/connectors/akamai-edgeworkers.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Istio](../../installation/connectors/istio.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md) bağlayıcıları ile self-hosted node dağıtımı için kullanılır.
 
-All-in-one installer güncellemelerinin geçmişi, x86_64 ve ARM64 (beta) sürümleri için aynı şekilde uygulanır.
+Hepsi-bir-arada yükleyici güncellemelerinin geçmişi, x86_64 ve ARM64 (beta) sürümlerine eşzamanlı olarak uygulanır.
 
-[How to upgrade](all-in-one.md)
+[Nasıl yükseltilir](all-in-one.md)
 
-### 0.11.0 (2025-01-31)
+### 0.17.1 (2025-08-15)
 
-* Sadece [API Discovery](../../api-discovery/overview.md) modunu etkinleştiren [`WALLARM_APID_ONLY` environment variable](../../installation/native-node/all-in-one.md#installer-launch-options) desteği eklendi
-
-    Bu modda, saldırılar yerel olarak engellenir (eğer [etkinleştirilmişse](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)) fakat Wallarm Cloud'a aktarılmaz, [API Discovery](../../api-discovery/overview.md) ise tam işlevselliğini korur. Bu mod çoğu ortamda nadiren gereklidir, genellikle bu modu kullanmaya gerek yoktur.
-* GoReplay ile Native Node'un etkileşimi iyileştirildi, bu da aşağıdaki yapılandırma değişikliklerine yol açtı:
-
-    ``` diff
-    -version: 2
-    +version: 3
-
-    -middleware:
-    +goreplay:
-      parse_responses: true
-      response_timeout: 5s
-      url_normalize: true
-    ```
-
-    Yükseltme sırasında, `version` değerini güncelleyin ve başlangıç yapılandırma dosyasında açıkça belirtilmişse `middleware` bölümünü `goreplay` ile değiştirin.
-* `tcp-capture` modundaki küçük bir HTTP ayrıştırma hatası düzeltildi
-
-### 0.10.1 (2025-01-02)
-
-* [API Discovery](../../api-discovery/sbf.md) ve [API Sessions](../../api-sessions/exploring.md#sensitive-business-flows) için hassas iş akışları desteği eklendi
-* [Fastly](../../installation/connectors/fastly.md) connector desteği eklendi
-* Mesh başlangıcında olası istek kaybı düzeltildi
-* [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) ve [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) güvenlik açıkları giderildi
-* Bazı isteklerin başarısız işlendiği, API Sessions, Credential Stuffing ve API Abuse Prevention'ı potansiyel olarak etkileyen bir sorun düzeltildi
-
-### 0.10.0 (2024-12-19)
-
-* `tcp-capture` modunda rota yapılandırmalarının seçilmesinden ve libproton ile verilerin analizinden önce URL normalleştirme eklendi
-
-    Bu, [`middleware.url_normalize`](../../installation/native-node/all-in-one-conf.md#goreplayurl_normalize) parametresi ile kontrol edilir (varsayılan olarak `true`).
-* İstek işleme süresini yerel olarak kontrol etmek için [`http_inspector.wallarm_process_time_limit`](../../installation/native-node/all-in-one-conf.md#http_inspectorwallarm_process_time_limit) parametresi tanıtıldı
-
-    Varsayılan, Wallarm Console ayarları tarafından ezilmediği sürece `1s`'dir.
-* Prometheus metrik güncellemeleri (port :9000'da mevcut):
-
-    * Statik sıfır değerlerine sahip gereksiz metrikler kaldırıldı.
-    * `http_inspector_requests_processed` ve `http_inspector_threats_found` metrikleri, `source` etiket değerlerinde `anything` belirtilmesine olanak tanıyacak şekilde geliştirildi.
-    * İstek ve saldırı sayımlarını izlemek için `http_inspector_adjusted_counters` metrik eklendi.
-
-### 0.9.1 (2024-12-10)
-
-* Küçük hata düzeltmeleri
-
-### 0.9.0 (2024-12-04)
-
-* JSON formatındaki `/wallarm-status` metrikleri için varsayılan uç nokta, `127.0.0.1:10246` olarak değiştirildi (bu, `metrics.legacy_status.listen_address` parametresi değeridir). Bu eski hizmet, Node işlevselliği için kritik olup doğrudan etkileşim gerektirmez.
-
-### 0.8.3 (2024-11-14)
-
-* MuleSoft connector 3.0.x desteği eklendi
-
-### 0.8.2 (2024-11-11)
-
-* `wallarm-status` hizmeti işlemlerinde bazı hatalar düzeltildi
-
-### 0.8.1 (2024-11-06)
-
-* 0.8.0'da tanıtılan `request_id` formatındaki gerileme düzeltildi
-
-### 0.8.0 (2024-11-06)
-
-* [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md) connector desteği eklendi
-* [API Sessions](../../api-sessions/overview.md) desteği eklendi
-* İstek işleme süresini sınırlamada [iyileştirme](../what-is-new.md#new-in-limiting-request-processing-time) yapıldı
-* Aşağıdaki parametreler için varsayılan değerler değiştirildi:
-
-    * Artık [`connector.blocking`](../../installation/native-node/all-in-one-conf.md#connectorblocking) parametresinin varsayılan değeri `true` olup, dağıtım sırasında Native Node'un manuel yapılandırmaya gerek kalmadan gelen istekleri engelleme yeteneği etkinleştirilmiştir.
-    * Trafik filtrasyon modunu belirleyen [`route_config.wallarm_mode`](../../installation/native-node/all-in-one-conf.md#route_configwallarm_mode) parametresinin varsayılan değeri `monitoring` olarak ayarlanmış, böylece ilk dağıtımlar için optimal bir yapılandırma sağlanmıştır.
-* Rota yapılandırmalarının seçilmesinden ve libproton ile verilerin analizi öncesinde URL normalleştirme eklendi (varsayılan olarak `true` olan [`controller.url_normalize`](../../installation/native-node/all-in-one-conf.md#connectorurl_normalize) parametresi ile kontrol edilir)
-* Node kaydı sırasında bellek kullanımı azaltıldı
-* Bazı hata düzeltmeleri yapıldı
-
-### 0.7.0 (2024-10-16)
-
-* İşlem öncesinde bazı dahili servis connector başlıklarının kaldırılmadığına dair sorun düzeltildi
-* `connector-server` modunda mesh özelliği için destek eklendi, bu da birden fazla node kopyası arasında tutarlı istek/yanıt yönlendirmesini etkinleştirir
-
-    Bu, mesh işlevselliğini yapılandırmak için [`connector.mesh`](../../installation/native-node/all-in-one-conf.md#connectormesh) altındaki yeni yapılandırma parametrelerini tanıtır.
-
-### 0.6.0 (2024-10-10)
-
-* [API Discovery](../../api-discovery/setup.md#customizing-sensitive-data-detection) kapsamında hassas veri algılamayı kişiselleştirme desteği eklendi
-* [libproton](../../about-wallarm/protecting-against-attacks.md#library-libproton) içindeki yinelenen yanıt başlıklarındaki bellek sızıntısı düzeltildi
-* [IP lists](../../user-guides/ip-lists/overview.md) içerisinde yer almayan, ancak [bilinen kaynak](../../user-guides/ip-lists/overview.md#select-object) ile ilişkili IP adreslerine ilişkin bellek sızıntısı giderildi
-* Artefakt isimlendirmesi "next" den "native"e güncellendi
+* Buluta kimlik bilgileri dışa aktarımı düzeltildi
+* GraphQL ayrıştırıcı iyileştirildi
+* Trafik kapasitesini artırmak için Node ile wstore arasındaki dahili kanal optimize edildi
     
-    `https://meganode.wallarm.com/next/aionext-<VERSION>.<ARCH>.sh` → `https://meganode.wallarm.com/native/aio-native-<VERSION>.<ARCH>.sh`
+    Bu, Node trafiği postanalytics’e aktarma hızından daha hızlı içeri alırken olası veri kaybını önler.
+* Kaynak IP adresi olmayan serileştirilmiş isteklerin postanalytics’e aktarımının başarısız olmasına neden olan sorun giderildi
+* Hata düzeltmeleri ve dahili iyileştirmeler
 
-### 0.5.2 (2024-09-17)
+### 0.16.3 (2025-08-05)
 
-* WAAP + API Security aboneliği etkinleştirilmediğinde oluşan kurulum hatası düzeltildi
-* Saldırı aktarımındaki gecikmeler giderildi
-* C bellek ayırıcı ile ilgili performans yavaşlamasına yol açan sorun giderildi
+* [Akamai bağlayıcısı](../../installation/connectors/akamai-edgeworkers.md) desteği eklendi
+* `--preserve` bayrağı `true` olarak ayarlandığında yükseltme sırasında oluşan sessiz hata giderildi
 
-### 0.5.1 (2024-09-16)
+### 0.16.1 (2025-08-01)
 
-* [`log.access_log` parametreleri](../../installation/native-node/all-in-one-conf.md#logaccess_logenabled) aracılığıyla yapılandırılabilir erişim günlük çıktısı eklendi
+* Yüksek yük altında fazla girdilerin düşürülmesini kontrol etmek için [`drop_on_overload`](../../installation/native-node/all-in-one-conf.md#drop_on_overload) parametresi tanıtıldı
 
-### 0.5.0 (2024-09-11)
+    Varsayılan olarak etkin (`true`).
+* Yeni [Prometheus metrikleri](../../admin-en/native-node-metrics.md) eklendi:
 
-* Küçük teknik iyileştirmeler ve optimizasyonlar yapıldı
+    * Genel Native Node örneği bilgilerini içeren `wallarm_gonode_application_info`, örn.:
+    
+        ```bash
+        wallarm_gonode_application_info{deployment_type="node-native-aio-installer",mode="connector-server",version="0.16.1"} 1
+        ```
+    
+    * `wallarm_gonode_http_inspector_balancer_workers`
+    * `wallarm_gonode_http_inspector_debug_container_len` artık `type="channel:in"` için `aggregate="sum"` içerir
+    * `wallarm_gonode_http_inspector_errors_total` artık yeni bir `type="FlowTimeouts"` içerir
+* Dahili `http_inspector` modülünde kararlılık iyileştirildi
 
-### 0.4.3 (2024-09-05)
+### 0.16.0 (2025-07-23)
 
-* Yazım hatası nedeniyle veri kaynağı mesajlarının yaklaşık %0.1'inin sessizce kaybolmasına neden olan sorun düzeltildi
+* [MuleSoft Flex Gateway bağlayıcısı](../../installation/connectors/mulesoft-flex.md) desteği eklendi
+* Node’un hangi istekleri incelemesi veya atlaması gerektiğinin tanımlanmasına olanak tanıyan [`input_filters`](../../installation/native-node/all-in-one-conf.md#input_filters) yapılandırma bölümü tanıtıldı
+* Bellek sızıntısı düzeltildi
+* Kurallarda, URI, ad alanı ve etiket adını birleştiren [**xml_tag**](../../user-guides/rules/request-processing.md#xml) değerlerinde kullanılan ayırıcı `:` yerine `|` olarak değiştirildi
+* Yasaklı kaynaklar ve Wallarm Console UI üzerinden yapılandırılan mod ile ilgili engelleme sorunu düzeltildi
+* Dahili iyileştirmeler
 
-### 0.4.1 (2024-08-27)
+### 0.15.1 (2025-07-08)
 
-* [`route_config.routes.host`](../../installation/native-node/all-in-one-conf.md#host) yapılandırma parametresinde joker eşleştirme desteği eklendi
+* Güvenilir ağları yapılandırmak ve gerçek istemci IP’si ile host başlıklarını çıkarmak için [`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers) yapılandırması tanıtıldı
 
-### 0.4.0 (2024-08-22)
+    Bu, önceki sürümlerde `tcp-capture` modunda kullanılan `http_inspector.real_ip_header`’ın yerini alır.
+* `go-node` ikili dosyası tarafından sunulan Prometheus metriklerinin önekini özelleştirmek için [`metrics.namespace`](../../installation/native-node/all-in-one-conf.md#metricsnamespace) yapılandırma seçeneği eklendi
+* `keep-alive` bağlantı sınırlarını kontrol etmek için [`connector.per_connection_limits`](../../installation/native-node/all-in-one-conf.md#connectorper_connection_limits) eklendi
+* Küçük dahili dosya yapısı değişikliği
+* wstore port bağlama düzeltildi: artık `0.0.0.0` yerine `127.0.0.1`’e bağlanır
+* [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874) güvenlik açığı giderildi
+* [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) güvenlik açığı giderildi
 
-* [İlk sürüm](../../installation/oob/tcp-traffic-mirror/deployment.md)
+### 0.14.1 (2025-05-07)
+
+* [**enumeration**](../../api-protection/enumeration-attack-protection.md) azaltma kontrolleri desteği eklendi
+* [**DoS koruması**](../../api-protection/dos-protection.md) azaltma kontrolü desteği eklendi
+* [IBM API Connect bağlayıcısı](../../installation/connectors/ibm-api-connect.md) desteği eklendi
+* [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115) güvenlik açıkları giderildi
+* `connector-server` modunda harici sağlık denetimi uç noktası desteği eklendi
+
+    Bu, yeni [`connector.external_health_check`](../../installation/native-node/all-in-one-conf.md#connectorexternal_health_check) yapılandırma bölümüyle kontrol edilir.
+* İstek ve yanıt gövdelerinin ara sıra bozulmasına neden olabilen tekrarlayan aralıklı bir hata düzeltildi
+* `tcp-capture` modunda aşağıdaki düzeltmeler ve güncellemeler yapıldı:
+
+    * GoReplay artık Go 1.24 ile derleniyor
+    * Düzeltildi: `goreplay` işlemi çöktüğünde `go-node` işlemi artık askıda kalmıyor
+    * GoReplay’de başlık ayrıştırma sırasında slice sınır aşımının neden olduğu bir çökme düzeltildi
+* Wallarm Console → **Nodes** içinde Native Node sürümlerinin hatalı görüntülenmesi düzeltildi
+
+### 0.14.0 (2025-04-16)
+
+* Wallarm Node artık yerel postanalytics işleme için Tarantool yerine Wallarm tarafından geliştirilen bir servis olan **wstore**’u kullanıyor
+* Daha önce tüm filtreleme nodelarında kurulan collectd servisi ve ilgili eklentileri kaldırıldı
+    
+    Metrikler artık Wallarm’ın yerleşik mekanizmalarıyla toplanıp gönderilmektedir; bu da harici araçlara bağımlılığı azaltır.
 
 ## Helm chart
 
-Native Node için Helm chart, yerel barındırılan node dağıtımları için [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [Kong API Gateway](../../installation/connectors/kong-api-gateway.md) ve [Istio](../../installation/connectors/istio.md) connector'ları ile birlikte kullanılır.
+Native Node için Helm chart, MuleSoft [Mule](../../installation/connectors/mulesoft.md) veya [Flex](../../installation/connectors/mulesoft-flex.md) Gateway, [Akamai](../../installation/connectors/akamai-edgeworkers.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md), [Kong API Gateway](../../installation/connectors/kong-api-gateway.md) ve [Istio](../../installation/connectors/istio.md) bağlayıcıları ile self-hosted node dağıtımları için kullanılır.
 
-[How to upgrade](helm-chart.md)
+[Nasıl yükseltilir](helm-chart.md)
 
-### 0.11.0 (2025-01-31)
+### 0.17.1 (2025-08-15)
 
-* Bazı hatalar düzeltildi
-
-### 0.10.1 (2025-01-02)
-
-* [API Discovery](../../api-discovery/sbf.md) ve [API Sessions](../../api-sessions/exploring.md#sensitive-business-flows) için hassas iş akışları desteği eklendi
-* [Fastly](../../installation/connectors/fastly.md) connector desteği eklendi
-* Mesh başlangıcında olası istek kaybı düzeltildi
-* [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) ve [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) güvenlik açıkları giderildi
-* Bazı isteklerin başarısız işlendiği, API Sessions, Credential Stuffing ve API Abuse Prevention'ı potansiyel olarak etkileyen sorun giderildi
-
-### 0.10.0 (2024-12-19)
-
-* Artık daha ayrıntılı günlük yapılandırma seçenekleri [`config.connector.log`](../../installation/native-node/helm-chart-conf.md#configconnectorlog) bölümünde tanıtıldı, tek `config.connector.log_level` parametresi yerine
-* Varsayılan günlük seviyesi artık `info` (önceden `debug` idi)
-
-### 0.9.1 (2024-12-10)
-
-* Küçük hata düzeltmeleri
-
-### 0.9.0 (2024-12-04)
-
-* Tüm toplama kopyaları arasında tutarlı trafik dağılımı için bazı düzeltmeler yapıldı.
-* JSON formatındaki `/wallarm-status` metrikleri için varsayılan uç nokta `127.0.0.1:10246` olarak değiştirildi (bu, `metrics.legacy_status.listen_address` parametresinin değeridir). Bu eski hizmet, Node işlevselliği için kritik olup doğrudan etkileşim gerektirmez.
-* Çeşitli dağıtım koşulları altında güvenilirliği artırmak için küçük düzeltmeler yapıldı.
-
-### 0.8.3 (2024-11-14)
-
-* MuleSoft connector v3.0.x desteği eklendi
-
-### 0.8.2 (2024-11-11)
-
-* `wallarm-status` hizmeti işlemlerinde bazı hatalar düzeltildi
-
-### 0.8.1 (2024-11-07)
-
-* [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md) connector desteği eklendi
-* [API Sessions](../../api-sessions/overview.md) desteği eklendi
-* İstek işleme süresini sınırlamada [iyileştirme](../what-is-new.md#new-in-limiting-request-processing-time) yapıldı
-* Aşağıdaki parametrelerin varsayılan değerleri değiştirildi:
-
-    * Artık [`connector.blocking`](../../installation/native-node/all-in-one-conf.md#connectorblocking) parametresinin varsayılan değeri `true` olup, dağıtım sırasında Native Node'un manuel yapılandırmaya gerek kalmadan gelen istekleri engelleme yeteneği etkinleştirilmiştir.
-    * Trafik filtrasyon modunu belirleyen [`route_config.wallarm_mode`](../../installation/native-node/all-in-one-conf.md#route_configwallarm_mode) parametresinin varsayılan değeri `monitoring` olarak ayarlanmış, böylece ilk dağıtımlar için optimal bir yapılandırma sağlanmıştır.
-* Rota yapılandırmalarının seçilmesinden ve libproton ile verilerin analizi öncesinde URL normalleştirme eklendi (varsayılan olarak `true` olan [`controller.url_normalize`](../../installation/native-node/all-in-one-conf.md#connectorurl_normalize) parametresi ile kontrol edilir)
-* Node kaydı sırasında bellek kullanımı azaltıldı
-* Bazı hata düzeltmeleri yapıldı
-
-### 0.7.0 (2024-10-17)
-
-* İşlem öncesinde bazı dahili servis connector başlıklarının kaldırılmadığına dair sorun düzeltildi
-* [API Discovery](../../api-discovery/setup.md#customizing-sensitive-data-detection) kapsamında hassas veri algılamayı kişiselleştirme desteği eklendi
-* [libproton](../../about-wallarm/protecting-against-attacks.md#library-libproton) içindeki yinelenen yanıt başlıklarında bellek sızıntısı düzeltildi
-* [IP lists](../../user-guides/ip-lists/overview.md) içerisinde yer almayan, ancak [bilinen kaynak](../../user-guides/ip-lists/overview.md#select-object) ile ilişkili IP adreslerine ilişkin bellek sızıntısı giderildi
-* Artefakt isimlendirmesi "next"ten "native"e güncellendi
+* Güvenilir ağları yapılandırmak ve gerçek istemci IP’si ile host başlıklarını çıkarmak için [`proxy_headers`](../../installation/native-node/helm-chart-conf.md#configconnectorproxy_headers) yapılandırması tanıtıldı
+* Buluta kimlik bilgileri dışa aktarımı düzeltildi
+* GraphQL ayrıştırıcı iyileştirildi
+* Trafik kapasitesini artırmak için Node ile wstore arasındaki dahili kanal optimize edildi
     
-    `wallarm/wallarm-node-next` → `wallarm/wallarm-node-native`
-* Wallarm Lua eklentisini aktive etmek için kullanılan `KongClusterPlugin` Kubernetes kaynağındaki `config.wallarm_node_address` parametresi değeri güncellendi:
+    Bu, Node trafiği postanalytics’e aktarma hızından daha hızlı içeri alırken olası veri kaybını önler.
+* Kaynak IP adresi olmayan serileştirilmiş isteklerin postanalytics’e aktarımının başarısız olmasına neden olan sorun giderildi
+* Hata düzeltmeleri ve dahili iyileştirmeler
 
-    `http://next-processing.wallarm-node.svc.cluster.local:5000` → `http://native-processing.wallarm-node.svc.cluster.local:5000`
+### 0.16.3 (2025-08-05)
 
-### 0.5.3 (2024-10-01)
+* [Akamai bağlayıcısı](../../installation/connectors/akamai-edgeworkers.md) desteği eklendi
+* Hata düzeltmeleri
+
+### 0.16.1 (2025-08-01)
+
+* Node’un hangi istekleri incelemesi veya atlaması gerektiğinin tanımlanmasına olanak tanıyan [`input_filters`](../../installation/native-node/helm-chart-conf.md#configconnectorinput_filters) yapılandırma bölümü tanıtıldı
+* Yüksek yük altında fazla girdilerin düşürülmesini kontrol etmek için [`drop_on_overload`](../../installation/native-node/helm-chart-conf.md#drop_on_overload) parametresi tanıtıldı
+
+    Varsayılan olarak etkin (`true`).
+* Yeni [Prometheus metrikleri](../../admin-en/native-node-metrics.md) eklendi:
+
+    * Genel Native Node örneği bilgilerini içeren `wallarm_gonode_application_info`, örn.:
+    
+        ```bash
+        wallarm_gonode_application_info{deployment_type="node-native-aio-installer",mode="connector-server",version="0.16.1"} 1
+        ```
+    
+    * `wallarm_gonode_http_inspector_balancer_workers`
+    * `wallarm_gonode_http_inspector_debug_container_len` artık `type="channel:in"` için `aggregate="sum"` içerir
+    * `wallarm_gonode_http_inspector_errors_total` artık yeni bir `type="FlowTimeouts"` içerir
+* [Lua eklentisine dayanan Istio için Wallarm Connector](/5.x/installation/connectors/istio/) kullanım dışı bırakıldı
+
+    Bunun yerine [Istio için gRPC tabanlı harici işleme filtresi](../../installation/connectors/istio.md) kullanmanızı öneririz.
+* Kullanım dışı bırakılan Istio bağlayıcısı için, mevcut dağıtımlarda uyumluluğu sağlamak amacıyla aşağıdaki iyileştirmeler yapıldı:
+
+    * Mesajlar için mesh dengeleme mantığı düzeltildi
+    * Tüm bağlayıcı trafiğini mesh dengeleme olmadan Node üzerinde işlemek için `disable_mesh` parametresi eklendi (varsayılan `false` - mesh dengeleme etkindir)
+    * `drop_on_overload` parametresi desteği eklendi
+* Dahili `http_inspector` modülünde kararlılık iyileştirildi
+
+### 0.16.0 (2025-07-23)
+
+* [MuleSoft Flex Gateway bağlayıcısı](../../installation/connectors/mulesoft-flex.md) desteği eklendi
+* Bellek sızıntısı düzeltildi
+* Kurallarda, URI, ad alanı ve etiket adını birleştiren [**xml_tag**](../../user-guides/rules/request-processing.md#xml) değerlerinde kullanılan ayırıcı `:` yerine `|` olarak değiştirildi
+* Yasaklı kaynaklar ve Wallarm Console UI üzerinden yapılandırılan mod ile ilgili engelleme sorunu düzeltildi
+* Dahili iyileştirmeler
+
+### 0.15.1 (2025-07-08)
+
+* Gelen **wstore** bağlantıları için adres ve portu özelleştirmek amacıyla [`config.aggregation.serviceAddress`](../../installation/native-node/helm-chart-conf.md#configaggregationserviceaddress) parametresi desteği eklendi
+* Küçük dahili dosya yapısı değişikliği
+* [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874) güvenlik açığı giderildi
+* [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) güvenlik açığı giderildi
+<!-- * Added [`connector.per_connection_limits`](../../installation/native-node/all-in-one-conf.md#connectorper_connection_limits) to control `keep-alive` connection limits -->
+
+### 0.14.1 (2025-05-07)
+
+* [IBM API Connect bağlayıcısı](../../installation/connectors/ibm-api-connect.md) desteği eklendi
+* [CVE-2025-22871](https://nvd.nist.gov/vuln/detail/CVE-2025-22871) güvenlik açığı giderildi
+* Helm chart headless service içinde `clusterIP: None` işleme düzeltildi
+* İstek ve yanıt gövdelerinin ara sıra bozulmasına neden olabilen tekrarlayan aralıklı bir hata düzeltildi
+* Wallarm Console → **Nodes** içinde Native Node sürümlerinin hatalı görüntülenmesi düzeltildi
+
+### 0.14.0 (2025-04-16)
+
+* Wallarm Node artık yerel postanalytics işleme için Tarantool yerine Wallarm tarafından geliştirilen bir servis olan **wstore**’u kullanıyor
+* `values.yaml` içindeki tüm `tarantool` referansları (container adları ve parametre anahtarları dahil) `wstore` olarak yeniden adlandırıldı
+
+    Bu parametreleri yapılandırmanızda geçersiz kılıyorsanız, adlarını buna göre güncelleyin.
+* Daha önce tüm filtreleme nodelarında kurulan collectd servisi ve ilgili eklentileri kaldırıldı
+    
+    Metrikler artık Wallarm’ın yerleşik mekanizmalarıyla toplanıp gönderilmektedir; bu da harici araçlara bağımlılığı azaltır.
+* Kubernetes sistem etiketleriyle çakışmaları önlemek için `*_container_*` ile eşleşen tüm Prometheus metriklerinde `container` etiketi `type` olarak yeniden adlandırıldı
+
+## Docker imajı
+
+Native Node için Docker imajı, MuleSoft [Mule](../../installation/connectors/mulesoft.md) veya [Flex](../../installation/connectors/mulesoft-flex.md) Gateway, [Akamai](../../installation/connectors/akamai-edgeworkers.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Istio](../../installation/connectors/istio.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md) bağlayıcıları ile self-hosted node dağıtımı için kullanılır.
+
+[Nasıl yükseltilir](docker-image.md)
+
+### 0.17.1 (2025-08-15)
+
+* Buluta kimlik bilgileri dışa aktarımı düzeltildi
+* GraphQL ayrıştırıcı iyileştirildi
+* Trafik kapasitesini artırmak için Node ile wstore arasındaki dahili kanal optimize edildi
+    
+    Bu, Node trafiği postanalytics’e aktarma hızından daha hızlı içeri alırken olası veri kaybını önler.
+* Kaynak IP adresi olmayan serileştirilmiş isteklerin postanalytics’e aktarımının başarısız olmasına neden olan sorun giderildi
+* Hata düzeltmeleri ve dahili iyileştirmeler
+
+### 0.16.3 (2025-08-05)
+
+* [Akamai bağlayıcısı](../../installation/connectors/akamai-edgeworkers.md) desteği eklendi
+* `--preserve` bayrağı `true` olarak ayarlandığında yükseltme sırasında oluşan sessiz hata giderildi
+
+### 0.16.1 (2025-08-01)
+
+* Yüksek yük altında fazla girdilerin düşürülmesini kontrol etmek için [`drop_on_overload`](../../installation/native-node/all-in-one-conf.md#drop_on_overload) parametresi tanıtıldı
+
+    Varsayılan olarak etkin (`true`).
+* Yeni [Prometheus metrikleri](../../admin-en/native-node-metrics.md) eklendi:
+
+    * Genel Native Node örneği bilgilerini içeren `wallarm_gonode_application_info`, örn.:
+    
+        ```bash
+        wallarm_gonode_application_info{deployment_type="node-native-aio-installer",mode="connector-server",version="0.16.1"} 1
+        ```
+    
+    * `wallarm_gonode_http_inspector_balancer_workers`
+    * `wallarm_gonode_http_inspector_debug_container_len` artık `type="channel:in"` için `aggregate="sum"` içerir
+    * `wallarm_gonode_http_inspector_errors_total` artık yeni bir `type="FlowTimeouts"` içerir
+* Dahili `http_inspector` modülünde kararlılık iyileştirildi
+
+### 0.16.0 (2025-07-23)
+
+* [MuleSoft Flex Gateway bağlayıcısı](../../installation/connectors/mulesoft-flex.md) desteği eklendi
+* Node’un hangi istekleri incelemesi veya atlaması gerektiğinin tanımlanmasına olanak tanıyan [`input_filters`](../../installation/native-node/all-in-one-conf.md#input_filters) yapılandırma bölümü tanıtıldı
+* Bellek sızıntısı düzeltildi
+* Kurallarda, URI, ad alanı ve etiket adını birleştiren [**xml_tag**](../../user-guides/rules/request-processing.md#xml) değerlerinde kullanılan ayırıcı `:` yerine `|` olarak değiştirildi
+* Yasaklı kaynaklar ve Wallarm Console UI üzerinden yapılandırılan mod ile ilgili engelleme sorunu düzeltildi
+* Dahili iyileştirmeler
+
+### 0.15.1 (2025-07-08)
+
+* Güvenilir ağları yapılandırmak ve gerçek istemci IP’si ile host başlıklarını çıkarmak için [`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers) yapılandırması tanıtıldı
+
+    Bu, önceki sürümlerde `tcp-capture` modunda kullanılan `http_inspector.real_ip_header`’ın yerini alır.
+* `go-node` ikili dosyası tarafından sunulan Prometheus metriklerinin önekini özelleştirmek için [`metrics.namespace`](../../installation/native-node/all-in-one-conf.md#metricsnamespace) yapılandırma seçeneği eklendi
+* `keep-alive` bağlantı sınırlarını kontrol etmek için [`connector.per_connection_limits`](../../installation/native-node/all-in-one-conf.md#connectorper_connection_limits) eklendi
+* Küçük dahili dosya yapısı değişikliği
+* wstore port bağlama düzeltildi: artık `0.0.0.0` yerine `127.0.0.1`’e bağlanır
+* [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874) güvenlik açığı giderildi
+* [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) güvenlik açığı giderildi
+
+### 0.14.1 (2025-05-07)
+
+* [IBM API Connect bağlayıcısı](../../installation/connectors/ibm-api-connect.md) desteği eklendi
+* [CVE-2025-22871](https://nvd.nist.gov/vuln/detail/CVE-2025-22871) güvenlik açığı giderildi
+* Harici sağlık denetimi uç noktası desteği eklendi
+
+    Bu, yeni [`connector.external_health_check`](../../installation/native-node/all-in-one-conf.md#connectorexternal_health_check) yapılandırma bölümüyle kontrol edilir.
+* İstek ve yanıt gövdelerinin ara sıra bozulmasına neden olabilen tekrarlayan aralıklı bir hata düzeltildi
+* Wallarm Console → **Nodes** içinde Native Node sürümlerinin hatalı görüntülenmesi düzeltildi
+
+### 0.14.0 (2025-04-16)
+
+* Wallarm Node artık yerel postanalytics işleme için Tarantool yerine Wallarm tarafından geliştirilen bir servis olan **wstore**’u kullanıyor
+* Daha önce tüm filtreleme nodelarında kurulan collectd servisi ve ilgili eklentileri kaldırıldı
+    
+    Metrikler artık Wallarm’ın yerleşik mekanizmalarıyla toplanıp gönderilmektedir; bu da harici araçlara bağımlılığı azaltır.
+
+## Amazon Machine Image (AMI)
+
+<!-- How to upgrade -->
+
+### 0.14.0 (2025-05-07)
 
 * İlk sürüm
-
-## Docker image
-
-Native Node için Docker image, yerel barındırılan node dağıtımı için [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md) ve [Fastly](../../installation/connectors/fastly.md) connector'ları ile birlikte kullanılır.
-
-[How to upgrade](docker-image.md)
-
-### 0.11.0 (2025-01-31)
-
-* Sadece [API Discovery](../../api-discovery/overview.md) modunu etkinleştiren [`WALLARM_APID_ONLY` environment variable](../../installation/native-node/docker-image.md#4-run-the-docker-container) desteği eklendi
-
-    Bu modda, saldırılar yerel olarak engellenir (eğer [etkinleştirilmişse](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)) fakat Wallarm Cloud'a aktarılmaz, [API Discovery](../../api-discovery/overview.md) ise tam işlevselliğini korur. Bu mod çoğu ortamda nadiren gereklidir, genellikle bu modu kullanmaya gerek yoktur.
-
-### 0.10.1 (2025-01-02)
-
-* [API Discovery](../../api-discovery/sbf.md) ve [API Sessions](../../api-sessions/exploring.md#sensitive-business-flows) için hassas iş akışları desteği eklendi
-* [Fastly](../../installation/connectors/fastly.md) connector desteği eklendi
-* Mesh başlangıcında olası istek kaybı düzeltildi
-* [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) ve [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) güvenlik açıkları giderildi
-* Bazı isteklerin başarısız işlendiği, API Sessions, Credential Stuffing ve API Abuse Prevention'ı potansiyel olarak etkileyen sorun giderildi
-
-### 0.10.0 (2024-12-19)
-
-* Kritik [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) güvenlik açığı giderildi ve birkaç küçük güvenlik açığı düzeltildi
-* `tcp-capture` modunda rota yapılandırmalarının seçilmesinden ve libproton ile verilerin analizinden önce URL normalleştirme eklendi
-
-    Bu, [`middleware.url_normalize`](../../installation/native-node/all-in-one-conf.md#goreplayurl_normalize) parametresi ile kontrol edilir (varsayılan olarak `true`).
-* İstek işleme süresini yerel olarak kontrol etmek için [`http_inspector.wallarm_process_time_limit`](../../installation/native-node/all-in-one-conf.md#http_inspectorwallarm_process_time_limit) parametresi tanıtıldı
-
-    Varsayılan, Wallarm Console ayarları tarafından ezilmediği sürece `1s`'dir.
-* Prometheus metrik güncellemeleri (port :9000'da mevcut):
-
-    * Statik sıfır değerlerine sahip gereksiz metrikler kaldırıldı.
-    * `http_inspector_requests_processed` ve `http_inspector_threats_found` metrikleri, `source` etiket değerlerinde `anything` belirtilmesine olanak tanıyacak şekilde geliştirildi.
-    * İstek ve saldırı sayımlarını izlemek için `http_inspector_adjusted_counters` metrik eklendi.
-
-### 0.9.1 (2024-12-10)
-
-* Küçük hata düzeltmeleri
-
-### 0.9.0 (2024-12-04)
-
-* Tüm toplama kopyaları arasında tutarlı trafik dağılımı için bazı düzeltmeler yapıldı.
-* JSON formatındaki `/wallarm-status` metrikleri için varsayılan uç nokta `127.0.0.1:10246` olarak değiştirildi (bu, `metrics.legacy_status.listen_address` parametresinin değeridir). Bu eski hizmet, Node işlevselliği için kritik olup doğrudan etkileşim gerektirmez.
-* Çeşitli dağıtım koşulları altında güvenilirliği artırmak için küçük düzeltmeler yapıldı.
-
-### 0.8.3 (2024-11-14)
-
-* MuleSoft connector v3.0.x desteği eklendi
-
-### 0.8.2 (2024-11-11)
-
-* `wallarm-status` hizmeti işlemlerinde bazı hatalar düzeltildi
-
-### 0.8.1 (2024-11-06)
-
-* [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md) connector desteği eklendi
-* [API Sessions](../../api-sessions/overview.md) desteği eklendi
-* İstek işleme süresini sınırlamada [iyileştirme](../what-is-new.md#new-in-limiting-request-processing-time) yapıldı
-* Aşağıdaki parametrelerin varsayılan değerleri değiştirildi:
-
-    * Artık [`connector.blocking`](../../installation/native-node/all-in-one-conf.md#connectorblocking) parametresinin varsayılan değeri `true` olup, dağıtım sırasında Native Node'un manuel yapılandırmaya gerek kalmadan gelen istekleri engelleme yeteneği etkinleştirilmiştir.
-    * Trafik filtrasyon modunu belirleyen [`route_config.wallarm_mode`](../../installation/native-node/all-in-one-conf.md#route_configwallarm_mode) parametresinin varsayılan değeri `monitoring` olarak ayarlanmış, böylece ilk dağıtımlar için optimal bir yapılandırma sağlanmıştır.
-* Rota yapılandırmalarının seçilmesinden ve libproton ile verilerin analizi öncesinde URL normalleştirme eklendi (varsayılan olarak `true` olan [`controller.url_normalize`](../../installation/native-node/all-in-one-conf.md#connectorurl_normalize) parametresi ile kontrol edilir)
-* Node kaydı sırasında bellek kullanımı azaltıldı
-* Bazı hata düzeltmeleri yapıldı
-
-### 0.7.0 (2024-10-16)
-
-* İşlem öncesinde bazı dahili servis connector başlıklarının kaldırılmadığına dair sorun düzeltildi
-* [API Discovery](../../api-discovery/setup.md#customizing-sensitive-data-detection) kapsamında hassas veri algılamayı kişiselleştirme desteği eklendi
-* [libproton](../../about-wallarm/protecting-against-attacks.md#library-libproton) içindeki yinelenen yanıt başlıklarında bellek sızıntısı düzeltildi
-* [IP lists](../../user-guides/ip-lists/overview.md) içerisinde yer almayan, ancak [bilinen kaynak](../../user-guides/ip-lists/overview.md#select-object) ile ilişkili IP adreslerine ilişkin bellek sızıntısı giderildi
-* Artefakt isimlendirmesi "next"ten "native"e güncellendi
-    
-    `wallarm/wallarm-node-next` → `wallarm/wallarm-node-native`
-* Wallarm Lua eklentisini aktive etmek için kullanılan `KongClusterPlugin` Kubernetes kaynağındaki `config.wallarm_node_address` parametresi değeri güncellendi:
-
-    `http://next-processing.wallarm-node.svc.cluster.local:5000` → `http://native-processing.wallarm-node.svc.cluster.local:5000`
-
-### 0.5.3 (2024-10-01)
-
-* İlk sürüm
-

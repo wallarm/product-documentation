@@ -1,4 +1,4 @@
-* Korunacak web sitesi üçüncü seviye (veya daha düşük) bir alan adı olmalıdır
-* Web sitesiyle ilişkilendirilen IPv4 (IPv6 desteklenmiyor)
-* Alan adının DNS kayıtlarını düzenlemek için yeterli erişim izinlerine sahip olunmalıdır
-* CDN düğümünü yapılandıran kullanıcıya atanan **Administrator** [role][user-roles-docs]
+* Korunacak web sitesi üçüncü düzey (veya daha alt) alan adı olmalıdır
+* Web sitesiyle ilişkili IPv4 adresi (IPv6 desteklenmez)
+* Etki alanının DNS kayıtlarını düzenlemek için yeterli erişim yetkileri
+* CDN düğümünü yapılandıran kullanıcıya atanmış **Administrator** [rol][user-roles-docs]

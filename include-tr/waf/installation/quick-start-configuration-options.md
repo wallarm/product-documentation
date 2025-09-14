@@ -1,5 +1,5 @@
-* [Trafik filtreleme modu yapılandırması][operation-mode-rule-docs]
+* [Trafik filtreleme modunun yapılandırılması][operation-mode-rule-docs]
 * [Trafik filtreleme kurallarının özelleştirilmesi][rules-docs]
-* [IP adresi beyaz listeye ekleme, kara listeye ekleme ve gri listeye ekleme][ip-lists-docs]
-* [DevOps araçlarıyla yerel entegrasyonlar][integration-docs] ve [tetikleyiciler][trigger-docs] aracılığıyla yapılandırılmış sistem olay bildirimleri
-* [libdetection kullanılarak gerçekleştirilen çift saldırı tespiti][enable-libdetection-docs]
+* [IP adreslerinin allowlist'e, denylist'e ve graylist'e alınması][ip-lists-docs]
+* [DevOps araçlarıyla yerel entegrasyonlar][integration-docs] ve [triggers][trigger-docs] aracılığıyla yapılandırılan sistem olay bildirimleri
+* [**libdetection** ile saldırıların çift tespiti][enable-libdetection-docs]

@@ -1,19 +1,19 @@
-Wallarm CDN node, korunan sunucuya ters proxy olarak çalışır. Gelen trafiği analiz eder, kötü niyetli istekleri engeller ve geçerli istekleri korunan sunucuya iletir.
+Wallarm CDN düğümü korunan sunucuya ters proxy olarak çalışır. Gelen trafiği analiz eder, kötü amaçlı istekleri engeller ve meşru istekleri korunan sunucuya iletir.
 
-![CDN node operation scheme][cdn-node-operation-scheme]
+![CDN düğümünün çalışma şeması][cdn-node-operation-scheme]
 
-!!! warning "CDN node ile ne korunabilir"
-    CDN node ile üçüncü seviye (veya alt seviye, örneğin 4., 5. vb.) alan adlarını koruyabilirsiniz. Örneğin, `ple.example.com` için CDN node oluşturabilirsiniz, ancak `example.com` için oluşturamazsınız.
+!!! warning "CDN düğümü ile neler korunabilir"
+    CDN düğümü ile üçüncü seviye (ya da daha alt, ör. 4., 5. vb.) alan adlarını koruyabilirsiniz. Örneğin, `ple.example.com` için CDN düğümü oluşturabilirsiniz ancak `example.com` için oluşturamazsınız.
 
-Wallarm CDN node'un diğer özelliklerine gelince:
+Wallarm CDN düğümünün diğer özellikleri:
 
-* Üçüncü taraf bulut sağlayıcısı (Section.io) tarafından barındırılır, dolayısıyla CDN node'u dağıtmak için altyapınızdan herhangi bir kaynak gerektirmez.
+* Üçüncü taraf bulut sağlayıcı (Section.io) tarafından barındırılır, bu nedenle CDN düğümünü dağıtmak için altyapınızdan hiçbir kaynağa gerek yoktur.
 
-    !!! info "İstek verilerinin üçüncü taraf bulut sağlayıcısına yüklenmesi"
-        İşlenen isteklerle ilgili bazı veriler Lumen servisine yüklenir.
-* Bazı istek verilerini Wallarm Cloud'a yükler. [Yüklenen veriler ve hassas verilerin kesilmesi hakkında daha fazla bilgi edinin][data-to-wallarm-cloud-docs]
-* Şüpheli trafiği belirlemek ve engellemek için [IP graylist içeriğine][graylist-populating-docs] dayanarak **güvenli engelleme** modunda [çalışır][operation-modes-docs].
+    !!! info "İstek verilerinin üçüncü taraf bulut sağlayıcıya yüklenmesi"
+        İşlenen isteklere ilişkin bazı veriler Lumen hizmetine yüklenir.
+* Bazı istek verilerini Wallarm Cloud'a yükler. [Yüklenen veriler ve hassas verilerin kırpılması hakkında daha fazla bilgi edinin][data-to-wallarm-cloud-docs]
+* Şüpheli trafiği tanımlayıp engellemek için [IP graylist içeriklerine][graylist-populating-docs] dayanarak **safe blocking** modunda [çalışır][operation-modes-docs].
 
     Modu değiştirmek için ilgili [kuralı][operation-mode-rule-docs] kullanın.
-* CDN node, tamamen Wallarm Console UI üzerinden yapılandırılır. Başka bir şekilde değiştirilebilecek tek ayar, korunan kaynağın DNS kayıtlarına Wallarm CNAME kaydının eklenmesidir.
-* Node'unuz için [uygulama yapılandırması][link-app-conf] yapılması amacıyla [Wallarm destek ekibine](mailto:support@wallarm.com) başvurabilirsiniz.
+* CDN düğümü tamamen Wallarm Console UI üzerinden yapılandırılır. UI dışında değiştirilecek tek ayar, Wallarm CNAME kaydının korunan kaynağın DNS kayıtlarına eklenmesidir.
+* Düğümünüz için [uygulama yapılandırması][link-app-conf] yapılması talebini [Wallarm destek ekibine](mailto:support@wallarm.com) iletebilirsiniz.

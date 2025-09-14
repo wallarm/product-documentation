@@ -1,101 +1,67 @@
 ## Gereksinimler
 
 * Bir AWS hesabı
-* AWS EC2, Security Groups konularında bilgi sahibi olmak
-* Seçtiğiniz herhangi bir AWS bölgesi, Wallarm node dağıtımı için bölgeye özgü kısıtlamalar yoktur
-* [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) için Wallarm Console'da iki faktörlü kimlik doğrulamanın kapalı olduğu **Administrator** rolüne sahip hesaba erişim
-* US Wallarm Cloud ile çalışmak için `https://us1.api.wallarm.com:444` erişimi veya EU Wallarm Cloud ile çalışmak için `https://api.wallarm.com:444` erişimi. Eğer erişim sadece proxy sunucusu üzerinden yapılandırılabiliyorsa, o zaman [instructions][wallarm-api-via-proxy] talimatlarını kullanın.
-* Güncelleme indirmeleri, [API specifications][api-spec-enforcement-docs] ve [allowlisted, denylisted, or graylisted][ip-lists-docs] ülkeler, bölgeler veya veri merkezleri için hassas IP'leri almak amacıyla aşağıdaki IP adreslerine erişim
+* AWS EC2 ve Security Group'lar hakkında bilgi
+* İstediğiniz herhangi bir AWS bölgesi; Wallarm Node dağıtımı için bölgeye özel bir kısıtlama yoktur.
 
-    --8<-- "../include/wallarm-cloud-ips.md"
-* Tüm komutları bir Wallarm örneğinde süper kullanıcı (ör. `root`) olarak çalıştırma
+    Wallarm, tek erişilebilirlik bölgesi (AZ) ve çoklu erişilebilirlik bölgesi dağıtımlarını destekler. Çoklu-AZ kurulumlarında, Wallarm Node'ları ayrı erişilebilirlik bölgelerinde başlatılabilir ve yüksek erişilebilirlik için bir Load Balancer arkasına yerleştirilebilir.
+* [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) için Wallarm Console'da **Administrator** rolüne sahip hesaba erişim
+* Tüm komutların bir Wallarm instance'ında süper kullanıcı (ör. `root`) olarak çalıştırılması
+ 
+## Kurulum
 
-## 1. AWS'de Bir SSH Anahtar Çifti Oluşturma
+### 1. Bir Wallarm Node instance'ı başlatın
 
-Dağıtım sürecinde, sanal makineye SSH üzerinden bağlanmanız gerekecektir. Amazon EC2, örneğe bağlanmak için kullanılabilecek adlandırılmış bir genel ve özel SSH anahtar çifti oluşturulmasına izin verir.
+[Wallarm NGINX Node AMI](https://aws.amazon.com/marketplace/pp/prodview-5rl4dgi4wvbfe) kullanarak bir EC2 instance'ı başlatın.
 
-Bir anahtar çifti oluşturmak için:
+Önerilen yapılandırma: 
 
-1. Amazon EC2 gösterge panelinde **Key pairs** sekmesine gidin.
-2. **Create Key Pair** düğmesine tıklayın.
-3. Bir anahtar çifti adı girin ve **Create** düğmesine tıklayın.
+* Mevcut en güncel [AMI sürümü][latest-node-version]
+* Tercih ettiğiniz herhangi bir AWS bölgesi
+* EC2 instance türü: `t3.medium` (test için) veya `m4.xlarge` (prod için), ayrıntılar için [maliyet rehberine bakın][aws-costs]
+* Instance'a erişim için [SSH anahtar çifti](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html)
+* Altyapınıza bağlı olarak uygun [VPC ve alt ağ](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html)
+* [Security Group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-security-group.html) üzerinden 22, 80 ve 443 numaralı portlara inbound erişim
 
-PEM formatında bir özel SSH anahtarı otomatik olarak indirilmeye başlayacaktır. Gelecekte oluşturulan örneğe bağlanmak için anahtarı saklayın.
+    !!! info "Wallarm tarafından önceden yapılandırılmış bir Security Group kullanma"
+        Instance'ı dağıtıp bir Security Group oluşturduğunuzda, AWS size Wallarm tarafından önceden yapılandırılmış olanı kullanmayı önerir. Bu grup, inbound erişim için gerekli tüm portları zaten açık durumda sağlar.
 
-SSH anahtarlarının oluşturulmasıyla ilgili detaylı bilgileri görmek için [AWS documentation][link-ssh-keys]'a gidin.
+        ![!Önceden yapılandırılmış Security Group][img-security-group]
 
-## 2. Bir Security Group Oluşturma
+* [Security Group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-security-group.html) üzerinden aşağıdakilere outbound erişim:
 
-Bir Security Group, sanal makineler için izin verilen ve yasaklanan gelen ve giden bağlantıları tanımlar. Nihai bağlantı listesi, korunan uygulamaya bağlıdır (örneğin, TCP/80 ve TCP/443 portlarına gelen tüm bağlantılara izin vermek).
+    * Wallarm yükleyicisini indirmek için `https://meganode.wallarm.com`
+    * US Wallarm Cloud ile çalışmak için `https://us1.api.wallarm.com` veya EU Wallarm Cloud ile çalışmak için `https://api.wallarm.com`. Erişim yalnızca proxy sunucusu üzerinden yapılandırılabiliyorsa, [talimatları][wallarm-api-via-proxy] kullanın
+    * Saldırı tespit kurallarına ve [API spesifikasyonlarına][api-spec-enforcement-docs] yönelik güncellemeleri indirmek ve [izinli, yasaklı veya gri listede olan][ip-lists-docs] ülkeleriniz, bölgeleriniz veya veri merkezleriniz için kesin IP'leri almak amacıyla aşağıdaki IP adresleri
 
-Filtreleme düğümü için bir security group oluşturmak üzere:
+        --8<-- "../include/wallarm-cloud-ips.md"
 
-1. Amazon EC2 gösterge panelinde **Security Groups** sekmesine gidin ve **Create Security Group** düğmesine tıklayın.
-2. Açılan iletişim kutusuna bir security group adı ve isteğe bağlı bir açıklama girin.
-3. Gerekli VPC'yi seçin.
-4. **Inbound** ve **Outbound** sekmelerinde gelen ve giden bağlantı kurallarını yapılandırın.
-5. Security group'u oluşturmak için **Create** düğmesine tıklayın.
+### 2. SSH ile Wallarm Node instance'ına bağlanın
 
-![Creating a security group][img-create-sg]
+Çalışan EC2 instance’ınıza bağlanmak için [seçtiğiniz SSH anahtarını kullanın](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-to-linux-instance.html):
 
-!!! uyarı "Security group'tan çıkan bağlantı kuralları"
-    Bir security group oluşturulurken, tüm giden bağlantılar varsayılan olarak izin verilir. Eğer filtreleme düğümünden çıkan bağlantıları kısıtlıyorsanız, düğüme bir Wallarm API sunucusuna erişim izni verildiğinden emin olun. Kullanılan Wallarm Cloud'a bağlı olarak Wallarm API sunucusunun seçimi şunlardır:
+```bash
+ssh -i <your-key.pem> admin@<your-ec2-public-ip>
+```
 
-    * US Cloud kullanıyorsanız, düğümünüzün `us1.api.wallarm.com` adresine erişimi olmalıdır.
-    * EU Cloud kullanıyorsanız, düğümünüzün `api.wallarm.com` adresine erişimi olmalıdır.
-    
-    Filtreleme düğümünün düzgün çalışabilmesi için bir Wallarm API sunucusuna erişim gereklidir.
+Instance'a bağlanmak için `admin` kullanıcı adını kullanmanız gerekir.
 
-Security group oluşturmayla ilgili detaylı bilgileri görmek için [AWS documentation][link-sg]'a gidin.
+### 3. Bir instance'ı Wallarm Cloud'a bağlamak için bir token oluşturun
 
-## 3. Bir Wallarm Node Örneği Başlatma
+Wallarm node’unun Wallarm Cloud'a uygun türde bir [Wallarm token][wallarm-token-types] ile bağlanması gerekir. Bir API token, Wallarm Console UI içinde bir node grubu oluşturmanıza olanak tanır; bu, node instance’larınızı daha etkili şekilde organize etmenize yardımcı olur.
 
-Wallarm filtreleme düğümüne sahip bir örnek başlatmak için, bu [link](https://aws.amazon.com/marketplace/pp/B073VRFXSD)'e gidin ve filtreleme düğümüne abone olun.
+![Gruplandırılmış node'lar][img-grouped-nodes]
 
-Bir örnek oluştururken, aşağıdaki gibi daha önce oluşturulan [anchor1] security group'unu belirtmeniz gerekir:
+Token’ı şu şekilde oluşturun:
 
-1. Launch Instance Sihirbazı ile çalışırken, ilgili sekmeye tıklayarak **6. Configure Security Group** örnek başlatma adımına gidin.
-2. **Assign a security group** ayarı altında **Select an existing security group** seçeneğini seçin.
-3. Görünen listeden security group'u seçin.
+=== "API belirteci"
 
-Gerekli tüm örnek ayarlarını belirttikten sonra, **Review and Launch** düğmesine tıklayın, örneğin doğru yapılandırıldığından emin olun ve **Launch** düğmesine tıklayın.
-
-Açılan pencerede, aşağıdaki adımları izleyerek daha önce oluşturulan [anchor2] key pair'i belirtin:
-
-1. İlk açılır listeden **Choose an existing key pair** seçeneğini seçin.
-2. İkinci açılır listeden anahtar çiftinin adını seçin.
-3. İkinci açılır listede belirttiğiniz SSH key pair'ine ait PEM formatındaki özel anahtara erişiminiz olduğundan emin olun ve bunu onaylamak için kutucuğu işaretleyin.
-4. **Launch Instances** düğmesine tıklayın.
-
-Örnek, önceden yüklenmiş filtreleme düğümü ile başlatılacaktır.
-
-AWS'de örnek başlatmayla ilgili detaylı bilgileri görmek için [AWS documentation][link-launch-instance]'a gidin.
-
-## 4. SSH ile Filtreleme Düğümü Örneğine Bağlanma
-
-Bir örneğe SSH ile bağlanma yöntemleriyle ilgili detaylı bilgileri görmek için [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)'a gidin.
-
-Örneğe bağlanmak için `admin` kullanıcı adını kullanmanız gerekmektedir.
-
-!!! bilgi "SSH ile bağlanmak için anahtarın kullanılması"
-    Örneğe SSH ile bağlanmak için daha önce oluşturduğunuz [anchor2] PEM formatındaki özel anahtarı kullanın. Bu, örnek oluşturulurken belirttiğiniz SSH key pair'inin özel anahtarı olmalıdır.
-
-## 5. Bir Örneği Wallarm Cloud'a Bağlamak için Token Oluşturma
-
-Yerel Wallarm filtreleme düğümünün, Wallarm Cloud ile Wallarm token'ı kullanarak bağlantı kurması gerekmektedir. Bir API token'ı, Wallarm Console UI üzerinde bir node grubunun oluşturulmasını sağlar; bu da node örneklerinizi etkin bir şekilde organize etmenize yardımcı olur.
-
-![Grouped nodes][img-grouped-nodes]
-
-Token'ı aşağıdaki şekilde oluşturun:
-
-=== "API token"
-
-    1. Wallarm Console → **Settings** → **API tokens** bölümünü [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens)'da açın.
-    1. `Deploy` kaynak rolüne sahip bir API token'ı bulun veya oluşturun.
+    1. Wallarm Console → **Settings** → **API tokens** bölümünü [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens) içinde açın.
+    1. Kullanım türü `Node deployment/Deployment` olan bir API token'ı bulun veya oluşturun.
     1. Bu token'ı kopyalayın.
-=== "Node token"
+=== "Node token'ı"
 
-    1. Wallarm Console → **Nodes** bölümünü [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes)'da açın.
-    1. Aşağıdakilerden birini yapın: 
-        * **Wallarm node** tipinde bir node oluşturun ve oluşturulan token'ı kopyalayın.
-        * Mevcut bir node grubunu kullanın - node menüsünü kullanarak token'ı kopyalayın → **Copy token**.
+    1. Wallarm Console → **Nodes** bölümünü [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) içinde açın.
+    1. Şunlardan birini yapın: 
+        * **Wallarm node** türünde bir node oluşturun ve üretilen token'ı kopyalayın.
+        * Mevcut node grubunu kullanın - node'un menüsünü kullanarak → **Copy token** ile token'ı kopyalayın.

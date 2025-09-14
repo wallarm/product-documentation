@@ -1,170 +1,178 @@
-```markdown
-# Wallarm Node 5.x ve 0.x Sürümlerinde Neler Yeni?
+# Wallarm Node 6.x ve 0.14.x’te Neler Yeni
 
-Bu belge, NGINX Node 5.x ve Native Node 0.x ana sürümleri için değişiklik günlüklerini tanımlamaktadır. Eski ana düğüm sürümlerinden yükseltiyorsanız, bu belgeye güvenebilirsiniz.
+Bu değişiklik günlüğü NGINX Node 6.x ve Native Node 0.14.x+ güncellemelerini kapsar. Daha eski bir sürümden yükseltiyorsanız [bu](../updating-migrating/older-versions/what-is-new.md) belgeye bakın.
 
-Wallarm Node'un küçük sürümlerindeki detaylı değişiklik günlüğü için [NGINX Node artifact inventory](node-artifact-versions.md) veya [Native Node artifact inventory](native-node/node-artifact-versions.md)'na bakın.
+Wallarm Node’un küçük sürümlerine ait ayrıntılı değişiklik günlüğü için [NGINX Node eser (artifact) envanteri](node-artifact-versions.md) veya [Native Node eser (artifact) envanteri](native-node/node-artifact-versions.md) sayfalarına bakın.
 
-## API Oturumları
+Bu sürüm, Wallarm Node’un performansını ve sürdürülebilirliğini artırmayı amaçlayan temel mimari iyileştirmeler içerir. Bu yenilikler, yakında gelecek özellikler için de zemin hazırlar.
+
+## Postanalytics için Tarantool’un wstore ile değiştirilmesi
+
+Wallarm Node, yerel postanalytics işlemede Tarantool yerine artık **Wallarm tarafından geliştirilen wstore hizmetini** kullanır.
+
+Bunun sonucunda NGINX Node’da aşağıdaki değişiklikler yapılmıştır:
+
+* [All-in-one yükleyici](../installation/nginx/all-in-one.md), [AWS](../installation/cloud-platforms/aws/ami.md)/[GCP](../installation/cloud-platforms/gcp/machine-image.md) imajları:
+
+    * Postanalytics modülü ayrı bir NGINX hizmetinden konuşlandırıldığında sunucu adresini tanımlayan NGINX yönergesi `wallarm_tarantool_upstream`, [`wallarm_wstore_upstream`](../admin-en/configure-parameters-en.md#wallarm_wstore_upstream) olarak yeniden adlandırıldı.
+
+        Geriye dönük uyumluluk, kullanım dışı uyarısıyla korunur:
+
+        ```
+        2025/03/04 20:43:04 [warn] 3719#3719: "wallarm_tarantool_upstream" directive is deprecated, use "wallarm_wstore_upstream" instead in /etc/nginx/nginx.conf:19
+        ```
+    
+    * [Günlük dosyasının](../admin-en/configure-logging.md) adı değişti: `/opt/wallarm/var/log/wallarm/tarantool-out.log` → `/opt/wallarm/var/log/wallarm/wstore-out.log`.
+    * Yeni wstore yapılandırma dosyası `/opt/wallarm/wstore/wstore.yaml`, `/etc/default/wallarm-tarantool` veya `/etc/sysconfig/wallarm-tarantool` gibi eski Tarantool yapılandırma dosyalarının yerini alır.
+    * `/opt/wallarm/etc/wallarm/node.yaml` içindeki `tarantool` bölümü artık `wstore`. Geriye dönük uyumluluk, kullanım dışı uyarısıyla korunur.
+* [Docker imajı](../admin-en/installation-docker-en.md):
+
+    * Yukarıdaki tüm değişiklikler konteyner içinde uygulanmıştır.
+    * Önceden, Tarantool için bellek `TARANTOOL_MEMORY_GB` ortam değişkeniyle ayrılıyordu. Artık aynı ilkeye uyularak yeni değişken kullanılır: `TARANTOOL_MEMORY_GB` → `SLAB_ALLOC_ARENA`.
+    * Konteyner dizin yapısı Alpine Linux kurallarına uyacak şekilde düzenlendi. Özellikle:
+
+        * `/etc/nginx/modules-available` ve `/etc/nginx/modules-enabled` içeriği `/etc/nginx/modules` konumuna taşındı.
+        * `/etc/nginx/sites-available` ve `/etc/nginx/sites-enabled` içeriği `/etc/nginx/http.d` konumuna taşındı.
+    
+    * `/wallarm-status` servisi için izinli IP adreslerini belirleyen varsayılan `allow` değeri 127.0.0.8/8 yerine artık 127.0.0.0/8’tir.
+* [Kubernetes Ingress Controller](../admin-en/installation-kubernetes-en.md):
+    
+    * Tarantool artık ayrı bir pod değildir, wstore ana `<CHART_NAME>-wallarm-ingress-controller-xxx` pod’unda çalışır.
+    * Helm değerleri yeniden adlandırıldı: `controller.wallarm.tarantool` → `controller.wallarm.postanalytics`.
+* [Kubernetes Sidecar Controller](../installation/kubernetes/sidecar-proxy/deployment.md):
+
+    * Helm değerleri yeniden adlandırıldı: `postanalytics.tarantool.*` → [`postanalytics.wstore.*`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L625).
+    * Sidecar konuşlandırması için Helm chart’ından aşağıdaki Docker imajları kaldırılmıştır:
+
+        * [wallarm/ingress-collectd](https://hub.docker.com/r/wallarm/ingress-collectd)
+        * [wallarm/ingress-tarantool](https://hub.docker.com/r/wallarm/ingress-tarantool)
+        * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
+        * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
+        
+        Bu imajların yerini ilgili servisleri çalıştıran [wallarm/node-helpers](https://hub.docker.com/r/wallarm/node-helpers) imajı almıştır.
+
+Aşağıda verilen Node yükseltme talimatlarına bu değişiklikler dahil edilmiştir.
+
+## collectd’nin kaldırılması
+
+Önceden tüm filtreleme nodelarına kurulan collectd servisi ve ilişkili eklentileri kaldırılmıştır. Metrikler artık Wallarm’ın yerleşik mekanizmalarıyla toplanıp gönderilir; bu da harici araçlara bağımlılığı azaltır.
+
+Collectd’nin sağladığı Prometheus ve JSON biçimindeki aynı metrikleri sunan [`/wallarm-status` endpointini](../admin-en/configure-statistics-service.md) kullanın.
+
+Bu değişikliğin sonucu olarak yapılandırma kurallarında da şunlar değişti:
+
+* `/opt/wallarm/etc/collectd/wallarm-collectd.conf.d/wallarm-tarantool.conf` collectd yapılandırma dosyası artık kullanılmamaktadır.
+* Önceden metrikleri bir ağ eklentisi üzerinden iletmek için collectd kullandıysanız, örneğin:
+
+    ```
+    LoadPlugin network
+
+    <Plugin "network">
+        Server "<Server IPv4/v6 address or FQDN>" "<Server port>"
+    </Plugin>
+    ```
+
+    artık Prometheus ile `/wallarm-status` endpointinin scrape edilmesine geçmelisiniz.
+
+## Mitigation Controls
+
+Tüm Wallarm saldırı azaltma ayarlarının birleşik yönetimi için [**Mitigation Controls**](../about-wallarm/mitigation-controls-overview.md) merkezini sunuyoruz. Mitigation Controls ile şunları yapabilirsiniz:
+
+* Tüm Wallarm azaltma ayarlarını tek bir yerden görüntüleyip yönetmek.
+* Hepsini birleşik bir şekilde yönetmek (tüm kontroller benzer yapılandırma arayüzü ve seçeneklere sahiptir).
+* Her bir kontrolün mevcut modunu kolayca görmek: aktif mi? sadece izliyor mu yoksa engelliyor mu?
+* Her kontrol tarafından yakalanan saldırılara hızlı bir genel bakış almak.
+
+![UI’de Mitigation Controls sayfası](../images/user-guides/mitigation-controls/mc-main-page.png)
+
+### Numaralandırma saldırısı koruması
 
 !!! tip ""
-    [NGINX Node 5.1.0 ve üzeri](node-artifact-versions.md) ve [Native Node 0.8.1 ve üzeri](native-node/node-artifact-versions.md)
+    [NGINX Node 6.1.0 ve üzeri](node-artifact-versions.md) ve [Native Node 0.14.1 ve üzeri](native-node/node-artifact-versions.md)
 
-API ekonomisine özel benzersiz bir güvenlik özelliğini tanıtıyoruz - [API Oturumları](../api-sessions/overview.md). Bu ekleme, saldırılar, anomaliler ve kullanıcı davranışları hakkında API'leriniz genelinde görünürlük sağlayarak, kullanıcıların API'leriniz ve uygulamalarınızla nasıl etkileşime girdiğine dair şeffaflık sunar.
+[Numaralandırma saldırılarına](../attacks-vulns-list.md#enumeration-attacks) karşı yeni seviye koruma, numaralandırma Mitigation Controls ile gelir:
 
-![!API Oturumları bölümü - izlenen oturumlar](../images/api-sessions/api-sessions.png)
+* [Enumeration attack protection](../api-protection/enumeration-attack-protection.md)
+* [BOLA enumeration protection](../api-protection/enumeration-attack-protection.md)
+* [Forced browsing protection](../api-protection/enumeration-attack-protection.md)
+* [Brute force protection](../api-protection/enumeration-attack-protection.md)
 
-Saldırganlar, eylemlerini meşru kullanıcı davranışlarıyla harmanlayarak savunmasız uç noktaları sıkça hedef alır. Bu oturumların tam olarak nasıl gerçekleştiğine dair bağlam olmadan, kalıpları veya tehditleri tespit etmek, çeşitli araçlar ve sistemler içeren zaman alıcı bir sürece dönüşür. Kuruluşlar, API düzeyinde yeterli görünürlüğe sahip değillerdir.
+Daha önce bu koruma için kullanılan tetikleyicilerle karşılaştırıldığında, Mitigation Controls:
 
-API Oturumları sayesinde, güvenlik ekipleri artık kullanıcı oturumuna göre gruplanmış tüm ilgili etkinlikleri görebilir, saldırı dizilerini, kullanıcı anomalilerini ve normal davranışları eşsiz şekilde gözlemleyebilir. Eskiden saatler veya günler süren incelemeler, artık sadece birkaç dakika içinde Wallarm Konsolu üzerinden gerçekleştirilebilir.
+* Numaralandırma girişimleri için izlenecek parametrelerin seçilmesine izin verir.
+* Hangi isteklerin sayılacağı konusunda gelişmiş ve detaylı filtreleme imkanı sağlar.
+* [API Sessions](../api-sessions/overview.md) ile derin entegrasyon sağlar: tespit edilen saldırılar ilgili oturum içinde gösterilir ve oturum faaliyetlerinin neden saldırı olarak işaretlenip engellendiğine dair tam bağlam sunulur.
 
-Önemli özellikler:
+![BOLA protection mitigation control - örnek](../images/user-guides/mitigation-controls/mc-bola-example-01.png)
 
-* Saldırılar, anomaliler ve kullanıcı davranışları hakkında görünürlük: Her oturumda yapılan her isteği inceleyerek saldırı vektörlerini ve şüpheli kalıpları takip edin.
-* Hem eski hem de modern oturumları destekleme: Uygulamalarınız cookie tabanlı oturumlara veya JWT/OAuth'a dayansa da, Wallarm API Oturumları tam uyumluluk ve görünürlük sağlar.
-* Bireysel saldırılar ile oturumları arasında sorunsuzca geçiş yapma.
-
-API Oturumları ile güvenlik ekipleri artık kolayca:
-
-* Tehdit aktörlerinin tüm etkinliklerini inceleyerek potansiyel saldırı yollarını ve tehlikeye girmiş kaynakları anlayabilir.
-* Gölge veya zombi API'lere nasıl erişildiğini belirleyerek, dökümante edilmemiş veya güncelliğini yitirmiş API'lerden kaynaklanan riskleri azaltabilir.
-* Güvenlik incelemeleri sırasında işbirliğini teşvik etmek için önemli bulguları meslektaşlarla paylaşabilir.
-
-[Devamını oku](../api-sessions/overview.md)
-
-## API Oturumlarında Yanıt Parametreleri
+### DoS protection
 
 !!! tip ""
-    [NGINX Node 5.3.0 ve üzeri](node-artifact-versions.md), [Native Node](native-node/node-artifact-versions.md) tarafından şu ana kadar desteklenmiyor
+    [NGINX Node 6.1.0 ve üzeri](node-artifact-versions.md) ve [Native Node 0.14.1 ve üzeri](native-node/node-artifact-versions.md)
 
-Wallarm'ın [API Oturumları](../api-sessions/overview.md), kullanıcı etkinlik dizileri hakkında görünürlük sağlar. Bu ekleme sayesinde, her oturum içinde yalnızca istekler değil, aynı zamanda yanıt bilgileri de mevcut:
+[Unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md), en ciddi API güvenlik risklerinin yer aldığı [OWASP API Top 10 2023](../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) listesine dahildir. Kendi başına bir tehdit olmakla birlikte (yük altında hizmetin yavaşlaması veya tamamen çökmesi), aynı zamanda örneğin numaralandırma saldırıları gibi farklı saldırı türlerinin de temelini oluşturur. Belirli bir zamanda çok fazla isteğe izin verilmesi bu risklerin başlıca nedenlerinden biridir.
 
-* Yanıtların herhangi bir başlığını ve parametresini, ilgili isteklerinde görüntülenecek şekilde yapılandırabilirsiniz; bu sayede kullanıcı etkinliklerine dair net ve eksiksiz bir resim elde edersiniz.
-* İstekleri oturumlara gruplandırmayı daha hassas hale getiren oturumlar için gruplama anahtarları olarak yanıt parametrelerini kullanabilirsiniz (bkz. [örnek](../api-sessions/setup.md#grouping-keys-example)).
+Wallarm, API’nize aşırı trafiği önlemeye yardımcı olmak için yeni [**DoS protection**](../api-protection/dos-protection.md) Mitigation Control’ünü sunar.
 
-![!API Oturumları - gruplama anahtarlarının çalışma örneği](../images/api-sessions/api-sessions-grouping-keys.png)
+![DoS protection - JWT örneği](../images/api-protection/mitigation-controls-dos-protection-jwt.png)
 
-## İstek İşleme Süresinin Sınırlandırılmasında Yenilikler
+### Varsayılan kontroller
 
-!!! tip ""
-    [NGINX Node 5.1.0 ve üzeri](node-artifact-versions.md) ve [Native Node 0.8.1 ve üzeri](native-node/node-artifact-versions.md)
+Wallarm, etkinleştirildiğinde Wallarm platformunun tespit kabiliyetlerini önemli ölçüde artıran bir dizi [varsayılan Mitigation Controls](../about-wallarm/mitigation-controls-overview.md#default-controls) sağlar. Bu kontroller, çeşitli yaygın saldırı kalıplarına karşı güçlü koruma sunacak şekilde önceden yapılandırılmıştır. Mevcut varsayılan Mitigation Controls şunları içerir:
 
-Wallarm, sistem belleğinin tükenmesini önlemek için isteğin işlenme süresini [sınırlar](../user-guides/rules/configure-overlimit-res-detection.md), bu durum node'un devre dışı kalmasına ve uygulamalarınızın korunmasız kalmasına neden olabilir. Şimdi, bu mekanizmanın şeffaflığı artırıldı:
+* [GraphQL protection](../api-protection/graphql-rule.md)
+* Kullanıcı kimlikleri, nesne kimlikleri ve dosya adları için [BOLA (Broken Object Level Authorization) enumeration protection](../api-protection/enumeration-attack-protection.md#bola)
+* Parolalar, OTP’ler ve kimlik doğrulama kodları için [Brute force protection](../api-protection/enumeration-attack-protection.md#brute-force)
+* [Forced browsing protection](../api-protection/enumeration-attack-protection.md#forced-browsing) (404 yoklama)
+* [Enumeration attack protection](../api-protection/enumeration-attack-protection.md#generic-enumeration), aşağıdakiler dahil:
+    
+    * Kullanıcı/e-posta numaralandırması
+    * SSRF (Server-Side Request Forgery) numaralandırması
+    * User-Agent rotasyonu
 
-* Sınırın aşıldığı tüm durumlar kaydedilir ve hemen **Saldırılar** bölümünde `overlimit_res` olayları olarak görüntülenir - bunları kolayca tespit edip analiz edebilirsiniz.
-* Sınırın aşıldığı tüm durumlarda, isteklerin işlenmesi durdurulur.
-* Sistem davranışının yapılandırılması artık daha kolay - genel yapılandırma **Ayarlar** → **Genel** bölümünde görüntülenir ve oradan değiştirilebilir.
-* **İstek işleme süresini sınırla** (önceki adıyla **overlimit_res saldırı tespiti için ince ayar**) kuralı, belirli uç noktalar için farklı yapılandırmalar belirlemek üzere sadeleştirildi.
+## Dosya yükleme kısıtlama politikası
 
-## API Discovery'de Hassas Veri Tespitinin Özelleştirilmesi
+Wallarm artık yüklenen dosyaların boyutunu doğrudan kısıtlamak için araçlar sağlar. Bu, en ciddi API güvenlik risklerinin yer aldığı [OWASP API Top 10 2023](../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) listesine dahil [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) riskini önlemeye yönelik önlemler setinin bir parçasıdır.
 
-!!! tip ""
-    [NGINX Node 5.0.3 ve üzeri](node-artifact-versions.md) ve [Native Node 0.7.0 ve üzeri](native-node/node-artifact-versions.md)
+Abonelik planınıza bağlı olarak, yükleme kısıtlamaları bir Mitigation Control veya kural aracılığıyla uygulanır. Dosya boyutu kısıtlarını tüm istek için veya isteğin seçili bir noktası için belirleyebilirsiniz.
 
-API Discovery, API'leriniz tarafından tüketilen ve taşınan hassas verileri tespit eder ve vurgular. Artık mevcut tespit sürecini [ince ayar yapabilir](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection) ve kendi hassas veri kalıplarınızı ekleyebilirsiniz.
+![Dosya yükleme kısıtlama MC - örnek](../images/api-protection/mitigation-controls-file-upload-1.png)
 
-Hassas verinin nasıl tespit edileceğini ve hangi hassas verinin tespit edileceğini tanımlamak için kalıplar kullanılır. Varsayılan kalıpları değiştirmek ve kendi kalıplarınızı eklemek için, Wallarm Konsolu'nda **API Discovery** → **Configure API Discovery** → **Sensitive data** bölümüne gidin.
-
-## API Discovery ve API Oturumlarında Hassas İş Akışları
-
-!!! tip ""
-    [NGINX Node 5.2.11 ve üzeri](node-artifact-versions.md) ve [Native Node 0.10.1 ve üzeri](native-node/node-artifact-versions.md)
-
-Hassas iş akışı özelliği ile, Wallarm'ın [API Discovery'si](../api-discovery/overview.md), kimlik doğrulama, hesap yönetimi, faturalama gibi belirli iş akışları ve işlevler için kritik olan uç noktaları otomatik olarak tespit edebilir.
-
-Bu, hassas iş akışlarıyla ilgili uç noktaların düzenli olarak izlenmesini ve zafiyet veya ihlallere karşı denetlenmesini sağlar; böylece geliştirme, bakım ve güvenlik çabalarına öncelik verilir.
-
-![API Discovery - Hassas iş akışları](../images/about-wallarm-waf/api-discovery/api-discovery-sbf.png)
-
-Tespit edilen hassas iş akışları, Wallarm'ın [API Oturumları](../api-sessions/overview.md)'na aktarılır: bir oturumdaki istekler, API Discovery'de belirli hassas iş akışları için önemli olarak etiketlenmiş uç noktalardan etkileniyorsa, bu oturum otomatik olarak [etiketlenir](../api-sessions/exploring.md#sensitive-business-flows) ve bu iş akışını etkilediği belirtilir.
-
-Oturumlara hassas iş akışı etiketleri atandıktan sonra, belirli bir iş akışına göre filtreleme yapılabilir; bu da analiz için en önemli olan oturumları seçmeyi kolaylaştırır.
-
-![!API Oturumları - hassas iş akışları](../images/api-sessions/api-sessions-sbf-no-select.png)
-
-## Tam Donanımlı GraphQL Çözücü
+## Unrestricted resource consumption’a karşı koruma
 
 !!! tip ""
-    [NGINX Node 5.3.0 ve üzeri](node-artifact-versions.md), [Native Node](native-node/node-artifact-versions.md) tarafından şu ana kadar desteklenmiyor
+    [NGINX Node 6.3.0 ve üzeri](node-artifact-versions.md) ve şu an için [Native Node](../installation/nginx-native-node-internals.md#native-node) tarafından desteklenmiyor.
 
-Tam donanımlı [GraphQL çözücüsü](../user-guides/rules/request-processing.md#gql), GraphQL istekleri içindeki giriş doğrulama saldırılarının (örneğin, SQL enjeksiyonları) tespitini önemli ölçüde geliştiren bir iyileştirmedir ve **daha yüksek doğruluk ve minimal yanlış pozitif** sunar.
+Wallarm’ın [API Abuse Prevention](../api-abuse-prevention/overview.md) özelliği, [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) — otomatik bir istemcinin uygun sınırlar olmaksızın aşırı API veya uygulama kaynağı tükettiği kötüye kullanım davranışını — önleme olanağı sunar. Buna çok sayıda zararsız isteğin gönderilmesi, işlemci, bellek veya bant genişliğinin tüketilmesi ve meşru kullanıcılar için hizmetin kötüleşmesine yol açılması dahildir.
 
-Ana faydalar:
+![API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
 
-* **Geliştirilmiş tespit**: Giriş doğrulama saldırılarının (örneğin, SQL enjeksiyonları) tespiti.
-* **Detaylı parametre bilgileri**: GraphQL istek parametrelerinin değerlerini API Oturumlarında çıkartır ve oturum bağlamı parametreleri olarak kullanır.
+Bu tür otomatik tehditleri tespit etmek için API Abuse Prevention, üç yeni [dedektör](../api-abuse-prevention/overview.md#how-api-abuse-prevention-works) sunar:
 
-    ![!API Oturumları yapılandırması - GraphQL istek parametresi](../images/api-sessions/api-sessions-graphql.png)
+* **Response time anomaly** — API yanıt gecikmelerindeki otomatik kötüye kullanım veya arka uç istismarı girişimlerini işaret edebilecek anormal kalıpları belirler.
+* **Excessive request consumption** — API’ye anormal derecede büyük istek yükleri gönderen istemcileri belirler; bu, arka uç işlem kaynaklarının kötüye kullanıldığını gösterebilir.
+* **Excessive response consumption** — yaşam süreleri boyunca aktarılan toplam yanıt verisi hacmine göre şüpheli oturumları işaretler. Tekil isteklere odaklanan dedektörlerden farklı olarak, bu dedektör tüm bir oturum boyunca yanıt boyutlarını toplayarak damla-damla veri çekme veya dağıtık scraping saldırılarını tespit eder.
 
-* **Kesin saldırı araması**: Argümanlar, direktifler ve değişkenler gibi belirli GraphQL istek bileşenlerinde saldırıları tam olarak tespit eder.
-* **Gelişmiş kural uygulaması**: Belirli GraphQL istek kısımlarına yönelik detaylı koruma kuralları uygular. Bu, GraphQL isteğinin tanımlı bölümlerinde belirli saldırı türlerine karşı hariç tutmaları yapılandırmak için ince ayar yapılmasına olanak tanır.
+## Hangi Wallarm nodelarının yükseltilmesi önerilir?
 
-    ![GraphQL istek noktasına uygulanan kural örneği](../images/user-guides/rules/rule-applied-to-graphql-point.png)
+* Wallarm sürümleriyle güncel kalmak ve [kurulu modüllerin kullanım dışı kalmasını](versioning-policy.md#version-support-policy) önlemek için 4.10 ve 5.x sürümündeki istemci ve çok kiracılı (multi-tenant) Wallarm NGINX Node’ları.
+* [Desteklenmeyen](versioning-policy.md#version-list) sürümlerdeki (4.8 ve altı) istemci ve çok kiracılı Wallarm nodeları.
 
-## Konnektörler ve TCP Trafik Aynası için Native Node
+    3.6 veya altı bir sürümden yükseltiyorsanız, tüm değişiklikleri [ayrı listeden](older-versions/what-is-new.md) öğrenin.
 
-NGINX'e bağlı olmaksızın çalışan yeni bir dağıtım seçeneği olan Native Node'u tanıtmaktan heyecan duyuyoruz. Bu çözüm, NGINX'in gerekli olmadığı veya platform bağımsız bir yaklaşımın tercih edildiği ortamlar için geliştirilmiştir.
-
-Şu anda, aşağıdaki dağıtımlar için özelleştirilmiştir:
-
-* MuleSoft, Cloudflare, CloudFront, Broadcom Layer7 API Gateway, Fastly konnektörleri - hem istek hem yanıt analizleriyle
-* Kong API Gateway ve Istio Ingress konnektörleri
-* TCP trafik aynası analizi
-
-[Devamını oku](../installation/nginx-native-node-internals.md#native-node)
-
-## NGINX Node Teknoloji Yığını Değişiklikleri
-
-[Wallarm NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 5.x, **Ruby tabanlı** uygulamadan **Go dili** tabanlı bir uygulamaya geçiş yapacak şekilde yeniden tasarlandı. Bu sürümle, çözümü şimdi ve gelecekteki geliştirmeler için daha hızlı, daha ölçeklenebilir ve daha kaynak verimli hale getirmeye odaklanıyoruz.
-
-### Ölçümler
-
-Belirli ölçümler açısından, Wallarm postanalytics modülünde aşağıdaki performans iyileştirmeleri yapılmıştır:
-
-* CPU kullanımı 0.5 CPU çekirdeğinden 0.1 CPU çekirdeğine düşürülmüştür.
-* Bellek kullanımı, saniyede 500 istek trafiğinde 400 MB azaltılmıştır.
-
-### Dosya Sistemi Değişiklikleri
-
-Teknoloji yığını değişiklikleri ile birlikte, NGINX Node artifact'larının dosya sistemi aşağıdaki şekilde değiştirilmiştir:
-
-* Log dosya sistemi: Önceden, loglar her biri belirli bir betik için ayrı dosyalarda kaydediliyordu. Artık, neredeyse tüm servislerden gelen loglar, `wcli-out.log` adlı tek bir dosyada kaydedilmektedir.
-* Tanılama betiği yolu değişikliği: `/opt/wallarm/usr/share/wallarm-common/collect-info.sh` dosyası `/opt/wallarm/collect-info.sh` yoluna taşınmıştır.
-
-### Ek Özellik Tanıtımları
-
-NGINX Node 5.2 sürümünden itibaren, yeni özellikler yalnızca yeni Go tabanlı uygulamaya sahip düğümlerde tanıtılacaktır. Bu yeni özellikler, önceki sürüme (4.10) geri taşınmayacaktır.
-
-## Sürüm Yönetimi Politikasındaki Değişiklikler
-
-NGINX Node teknoloji yığını güncellemeleri ve Native Node'un tanıtılması ile birlikte, [Wallarm Node sürüm yönetimi politikası](versioning-policy.md) güncellenmiştir:
-
-* Wallarm artık en güncel iki ana sürümü, en son küçük sürümleriyle desteklemektedir.
-* İki sürüm gerideki sürümler (örneğin, 6.x → 4.x) için destek, yeni bir ana sürüm yayınlandıktan 3 ay sonra sona ermektedir.
-* Ana sürümler her 6 ayda bir veya önemli yeni özellikler ve geriye dönük uyumsuz değişiklikler için yayınlanmaktadır.
-* Küçük sürümler mevcut işlevsellik içinde iyileştirmelere odaklanarak aylık olarak (+1 artış) yayınlanmaktadır.
-* Native Node, Wallarm NGINX Node ile aynı sürüm yönetim desenini izlemektedir; eş zamanlı sürümler ve özellik eşitliği söz konusudur. Ancak, Native Node ana sürüm numaralandırması 0'dan başlamaktadır.
-
-## Hangi Wallarm Düğümlerinin Yükseltilmesi Tavsiye Edilmektedir?
-
-* Güncel Wallarm sürümleriyle uyumlu kalmak ve [yüklenen modülün kullanım dışı kalmasını](versioning-policy.md#version-support-policy) önlemek için 4.8 ve 4.10 sürümündeki Client ve multi-tenant Wallarm NGINX Düğümleri.
-* [Desteklenmeyen](versioning-policy.md#version-list) sürümlerdeki (4.6 ve altı) Client ve multi-tenant Wallarm düğümleri.
-
-    Sürüm 3.6 veya altından yükseltme yapıyorsanız, [ayrı listeden](older-versions/what-is-new.md) tüm değişiklikleri öğrenin.
-
-## Yükseltme Süreci
+## Yükseltme süreci
 
 1. [Modül yükseltme için önerileri](general-recommendations.md) gözden geçirin.
-2. Wallarm düğüm dağıtım seçeneğinize uygun talimatları izleyerek yüklenen modülleri yükseltin:
+2. Wallarm node konuşlandırma seçeneğinize uygun talimatları izleyerek kurulu modülleri yükseltin:
 
     * NGINX Node:
         * [DEB/RPM paketleri](nginx-modules.md)
         * [All-in-one yükleyici](all-in-one.md)
-        * [NGINX için modüller içeren Docker konteyneri](docker-container.md)
-        * [Wallarm modülleri entegre edilmiş NGINX Ingress Denetleyicisi](ingress-controller.md)
-        * [Sidecar denetleyici](sidecar-proxy.md)
-        * [Cloud düğüm imajı](cloud-image.md)
-        * [Multi-tenant düğüm](multi-tenant.md)
+        * [NGINX için modüllere sahip Docker konteyneri](docker-container.md)
+        * [Wallarm modülleri entegre NGINX Ingress controller](ingress-controller.md)
+        * [Sidecar controller](sidecar-proxy.md)
+        * [Bulut node imajı](cloud-image.md)
+        * [Multi-tenant node](multi-tenant.md)
     
     * Native Node:
         * [All-in-one yükleyici](native-node/all-in-one.md)
@@ -173,5 +181,4 @@ NGINX Node teknoloji yığını güncellemeleri ve Native Node'un tanıtılması
 
 ----------
 
-[Other updates in Wallarm products and components →](https://changelog.wallarm.com/)
-```
+[Wallarm ürün ve bileşenlerindeki diğer güncellemeler →](https://changelog.wallarm.com/)

@@ -2,7 +2,7 @@
     ```bash
     sudo service collectd restart
     ```
-=== "Diğer Desteklenen Dağıtımlar"
+=== "Diğer desteklenen dağıtımlar"
     ```bash
     sudo systemctl restart collectd
     ```

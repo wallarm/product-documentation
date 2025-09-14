@@ -1,8 +1,7 @@
-```markdown
-!!! info "Wallarm Cloud IP addresses"
-    Sisteminizin Wallarm Cloud erişimini sağlamak için, genel IP adreslerinin bir listesine ihtiyacınız olabilir:
+!!! info "Wallarm Cloud IP adresleri"
+    Wallarm Cloud'un sisteminize erişmesini sağlamak için, genel IP adreslerinin bir listesine ihtiyaç duyabilirsiniz:
 
-    === "US Cloud"
+    === "ABD Cloud"
         ```
         35.235.66.155
         34.102.90.100
@@ -20,7 +19,7 @@
         34.94.238.221
         34.94.9.23
         ```
-    === "EU Cloud"
+    === "AB Cloud"
         ```
         34.141.230.156
         34.91.138.113
@@ -28,4 +27,3 @@
         35.204.127.78
         34.90.24.155
         ```
-```

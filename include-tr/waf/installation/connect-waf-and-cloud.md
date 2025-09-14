@@ -1,12 +1,12 @@
-The Wallarm node, Wallarm Cloud ile etkileşime girer. Filtreleme node'unu Cloud'a bağlamak için aşağıdaki adımları izleyin:
+Wallarm node, Wallarm Cloud ile etkileşime girer. Filtreleme düğümünü Cloud'a bağlamak için aşağıdaki adımları izleyin:
 
-1. Wallarm hesabınızın Wallarm Console'da **Administrator** veya **Deploy** rolünün etkinleştirildiğinden ve iki faktörlü doğrulamanın devre dışı bırakıldığından emin olun.
+1. Wallarm hesabınızda, Wallarm Console içinde **Administrator** veya **Deploy** rolünün etkin ve two-factor authentication'ın devre dışı olduğundan emin olun.
      
-    Belirtilen ayarları [US Cloud](https://us1.my.wallarm.com/settings/users) veya [EU Cloud](https://my.wallarm.com/settings/users) üzerindeki kullanıcı listesine giderek kontrol edebilirsiniz.
+    Bu ayarları, [US Cloud](https://us1.my.wallarm.com/settings/users) veya [EU Cloud](https://my.wallarm.com/settings/users) içindeki users list sayfasına giderek kontrol edebilirsiniz.
 
-    ![User list in Wallarm console][img-wl-console-users]
+    ![Wallarm Console'da kullanıcı listesi][img-wl-console-users]
 
-2. Wallarm node'unun yüklü olduğu bir sistemde `addnode` betiğini çalıştırın:
+2.  Wallarm node yüklü olan bir sistemde `addnode` betiğini çalıştırın:
     
     === "US Cloud"
         ``` bash
@@ -16,8 +16,8 @@ The Wallarm node, Wallarm Cloud ile etkileşime girer. Filtreleme node'unu Cloud
         ``` bash
         sudo /usr/share/wallarm-common/addnode
         ```
-3. Wallarm Console hesabınızın e-posta adresini ve şifresini girin.
-4. Filtreleme node'unun adını girin veya otomatik olarak oluşturulan adı kullanmak için Enter'a basın.
+3. Wallarm Console içindeki hesabınız için e-posta ve parolayı girin.
+4. Filtreleme düğümünün adını girin veya otomatik olarak oluşturulan adı kullanmak için Enter tuşuna basın.
 
-    Belirtilen ad, daha sonra Wallarm Console → **Nodes** bölümünden değiştirilebilir.
-5. [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) üzerindeki Wallarm Console → **Nodes** bölümünü açın ve listenin içine yeni bir filtreleme node'u eklendiğini doğrulayın.
+    Belirtilen ad daha sonra Wallarm Console → Nodes içinde değiştirilebilir.
+5. [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) içindeki Wallarm Console → Nodes bölümünü açın ve yeni bir filtreleme düğümünün listeye eklendiğinden emin olun.

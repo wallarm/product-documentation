@@ -2,7 +2,7 @@
     ```bash
     sudo service nrpe restart
     ```
-=== "Diğer desteklenen dağıtımlar"
+=== "Desteklenen diğer dağıtımlar"
     ```bash
     sudo systemctl restart nrpe
     ```

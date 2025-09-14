@@ -1,6 +1,6 @@
-1. İndirilen scripti çalıştırın:
+1. İndirilen betiği çalıştırın:
 
-    === "API token"
+    === "API belirteci"
         ```bash
         # x86_64 sürümünü kullanıyorsanız:
         sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.10.x86_64-glibc.sh
@@ -9,9 +9,9 @@
         sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.10.aarch64-glibc.sh
         ```        
 
-        `WALLARM_LABELS` değişkeni, node'un Wallarm Console UI'da düğümlerin mantıksal gruplandırılması amacıyla ekleneceği grubu ayarlar.
+        `WALLARM_LABELS` değişkeni, düğümün ekleneceği grubu ayarlar (Wallarm Console UI içinde düğümlerin mantıksal gruplandırılması için kullanılır).
 
-    === "Node token"
+    === "Düğüm belirteci"
         ```bash
         # x86_64 sürümünü kullanıyorsanız:
         sudo sh wallarm-4.8.10.x86_64-glibc.sh

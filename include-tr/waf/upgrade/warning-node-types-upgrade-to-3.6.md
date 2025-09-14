@@ -1,5 +1,3 @@
-```markdown
-!!! warning "Breaking changes and recommendations for different node type upgrade"
-    * Eğer Wallarm node 2.18 veya daha düşük bir sürüm yükseltiliyorsa, lütfen unutmayın ki 3.x sürümü **breaking changes** içerir. 2.18 ve daha düşük sürüm modüllerini 3.6'ya kadar yükseltmeden önce, lütfen [Wallarm node değişiklikleri](older-versions/what-is-new.md) listesini dikkatlice inceleyin ve olası bir yapılandırma değişikliğini göz önünde bulundurun.
-    * Hem normal (client) hem de [multi-tenant](../installation/multi-tenant/overview.md) node'larının 3.6 sürümüne kadar yükseltilmesini öneriyoruz. Bu, Wallarm sürümleri ile güncel kalmanızı sağlar ve [yüklü modül kullanım dışı bırakılmasını](versioning-policy.md#version-support) önler.
-```
+!!! warning "Uyumluluğu bozan değişiklikler ve farklı node türlerinin yükseltilmesine yönelik öneriler"
+    * Wallarm node 2.18 veya daha düşük bir sürümden yükseltiyorsanız, 3.x sürümünün **uyumluluğu bozan değişiklikler** içerdiğini lütfen unutmayın. 2.18 ve altındaki modülleri 3.6'ya yükseltmeden önce, [Wallarm node değişiklikleri](older-versions/what-is-new.md) listesini dikkatle inceleyin ve olası bir yapılandırma değişikliğini değerlendirin.
+    * Hem normal (client) hem de [çok kiracılı](../installation/multi-tenant/overview.md) node'ları 3.6 sürümüne yükseltmenizi öneririz. Bu, Wallarm sürümleriyle güncel kalmanızı ve [yüklü modülün kullanımdan kaldırılmasını](versioning-policy.md#version-support) önlemeyi sağlar.

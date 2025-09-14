@@ -1,9 +1,4 @@
-Among all supported [Wallarm deployment options][deployment-platform-docs], AMI is recommended for Wallarm deployment in these **use cases**:
+Desteklenen tüm [Wallarm dağıtım seçenekleri][deployment-platform-docs] arasında, bu **kullanım durumlarında** Wallarm dağıtımı için AMI önerilir:
 
-* Your existing infrastructure resides on AWS.
-* You aim to deploy a security solution as a separate cloud instance, rather than installing it directly on frontend systems like NGINX.
-
-Tüm desteklenen [Wallarm deployment options][deployment-platform-docs] arasında, AMI aşağıdaki **kullanım durumlarında** Wallarm dağıtımı için önerilmektedir:
-
-* Mevcut altyapınız AWS üzerinde yer almaktadır.
-* Güvenlik çözümünü doğrudan NGINX gibi ön uç sistemlere kurmak yerine ayrı bir bulut örneği olarak dağıtmayı hedefliyorsunuz.
+* Mevcut altyapınız AWS üzerinde bulunuyorsa.
+* NGINX gibi ön uç sistemlerine doğrudan kurmak yerine, güvenlik çözümünü ayrı bir bulut örneği olarak dağıtmayı hedefliyorsanız.
