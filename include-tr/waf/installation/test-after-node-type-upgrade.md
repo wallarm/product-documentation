@@ -1,17 +1,17 @@
-1. Uygulama adresine test [Path Traversal][ptrav-attack-docs] saldırısı ile isteği gönderin:
+1. Test [Dizin Geçişi][ptrav-attack-docs] saldırısını içeren isteği uygulama adresine gönderin:
 
     ```
     curl http://localhost/etc/passwd
     ```
 
-    Eğer trafik `example.com` adresine proxylenmek üzere yapılandırıldıysa, isteğe `-H "Host: example.com"` başlığını ekleyin.
-1. Yeni tipteki node'un isteği **normal** node gibi aynı şekilde işlediğinden emin olun, örneğin:
+    Trafik `example.com` adresine proxy üzerinden yönlendirilecek şekilde yapılandırıldıysa, isteğe `-H "Host: example.com"` başlığını ekleyin.
+1. Yeni türdeki node'un isteği **standart** node'un yaptığı şekilde işlediğinden emin olun; örneğin:
 
-    * Uygun [filtrasyon modu][waf-mode-instr] yapılandırılmışsa talebi engeller.
-    * Yapılandırılmışsa [özel engelleme sayfası][blocking-page-instr]'nı döndürür.
-2. [EU Cloud](https://my.wallarm.com/attacks) veya [US Cloud](https://us1.my.wallarm.com/attacks) üzerindeki Wallarm Console → **Attacks** bölümünü açın ve şunlardan emin olun:
+    * Uygun [filtreleme modu][waf-mode-instr] yapılandırıldıysa isteği engeller.
+    * Yapılandırıldıysa [özel engelleme sayfasını][blocking-page-instr] döndürür.
+2. [EU Cloud](https://my.wallarm.com/attacks) veya [US Cloud](https://us1.my.wallarm.com/attacks) içinde Wallarm Console → **Attacks** bölümünü açın ve şunları doğrulayın:
 
-    * Saldırı listede görüntüleniyor.
-    * Vuruş detayları Wallarm node UUID'sini gösteriyor.
+    * Saldırı listede görüntülenir.
+    * Hit details, Wallarm node UUID bilgisini gösterir.
 
-    ![Attacks in the interface][attacks-in-ui-image]
+    ![Arayüzdeki Attacks][attacks-in-ui-image]

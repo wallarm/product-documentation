@@ -1,7 +1,7 @@
-!!! warning "Wallarm cloudlarından birine FAST node Bağlama"
-    Bir FAST node, [mevcut Wallarm cloudları](../cloud-list.md)'ndan biriyle etkileşim kurar. Varsayılan olarak, bir FAST node, Amerikan cloud'unda bulunan Wallarm API sunucusuyla çalışır.
+!!! warning "FAST node'u Wallarm cloud'larından birine bağlama"
+    Bir FAST node, [mevcut Wallarm cloud'larından](../cloud-list.md) biriyle etkileşime girer. Varsayılan olarak, bir FAST node Amerikan Wallarm cloud'unda bulunan Wallarm API sunucusuyla çalışır.
     
-    FAST node'un başka bir cloud'daki API sunucusunu kullanmasını sağlamak için, node konteynerine gerekli Wallarm API sunucusunun adresine işaret eden `WALLARM_API_HOST` ortam değişkenini iletin.
+    Bir FAST node'un başka bir cloud'daki API sunucusunu kullanmasını sağlamak için, gerekli Wallarm API sunucusunun adresini gösteren `WALLARM_API_HOST` ortam değişkenini node konteynerine iletin.
 
     Örnek (Avrupa Wallarm cloud'unda bulunan API sunucusunu kullanan bir FAST node için):
 

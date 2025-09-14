@@ -3,47 +3,45 @@
 
 # Özel Bulutlarda Wallarm Dağıtımı
 
-Özel bulutlar, yalnızca tek bir organizasyon veya varlığa özel dağıtılan bulut ortamlarıdır ve kaynaklar üzerinde özel kullanım ve kontrol sağlar. Bu makale, özel bulutlara Wallarm düğümü dağıtımının ilkelerini genel hatlarıyla sunmaktadır.
+Özel bulutlar, kaynaklar üzerinde özel kullanım ve kontrol sağlayan, yalnızca tek bir kuruluş veya varlık için devreye alınmış bulut ortamlarıdır. Bu makale, Wallarm düğümünün özel bulutlara dağıtım ilkelerine genel bir bakış sunar.
 
-## Adım 1: Wallarm Dağıtımınızın Kapsamını ve Yaklaşımını Anlayın
+## Adım 1: Kapsamınızı ve Wallarm dağıtım yaklaşımınızı anlayın
 
-Özel bulutunuzda Wallarm'u dağıtmadan önce, uygulama manzaranızın kapsamını anlamak ve Wallarm dağıtımı için en uygun yaklaşımı belirlemek esastır. Bu değerlendirme sırasında aşağıdaki özellikleri göz önünde bulundurun:
+Özel bulutunuza Wallarm dağıtmadan önce, uygulama ortamınızın kapsamını anlamanız ve Wallarm dağıtımı için en uygun yaklaşımı belirlemeniz önemlidir. Bu değerlendirme sırasında aşağıdaki özellikleri göz önünde bulundurun:
 
-* Güvence altına alınacak kapsamın değerlendirilmesi: Uygulama manzaranızı değerlendirin ve korunması gereken kritik uygulamaları belirleyin. Veri hassasiyeti, ihlallerin potansiyel etkisi ve uyum gereksinimleri gibi faktörleri göz önünde bulundurun. Bu değerlendirme, özel bulutunuzdaki en önemli varlıkları korumaya yönelik çabalarınızı önceliklendirmenize ve odaklanmanıza yardımcı olur.
-* [In-line](../inline/overview.md) ve [out-of-band (OOB)](../oob/overview.md) analizi: Wallarm'u in-line analiz için mi yoksa out-of-band trafik analizi için mi dağıtmak istediğinizi belirleyin. In-line analiz, Wallarm düğümlerinin uygulamalarınızın trafik yoluna yerleştirilmesini içerirken; OOB analiz, yansıtılan trafiğin yakalanması ve analiz edilmesini içerir.
-* Wallarm düğümlerinin yerleştirilmesi: Seçtiğiniz yaklaşıma (in-line veya OOB analiz) bağlı olarak, özel bulut altyapınız içinde Wallarm düğümlerinin uygun yerleşimini belirleyin. In-line analiz için, Wallarm düğümlerini uygulamalarınıza yakın, örneğin aynı VLAN veya alt ağ içinde yerleştirmeyi düşünün. OOB analiz için ise, yansıtılan trafiğin analiz için doğru şekilde Wallarm düğümlerine yönlendirileceğinden emin olun.
+* Güvence altına alınacak kapsamın değerlendirilmesi: uygulama ortamınızı değerlendirin ve korunması gereken kritik uygulamaları belirleyin. Veri hassasiyeti, ihlallerin potansiyel etkisi ve uyumluluk gereklilikleri gibi faktörleri dikkate alın. Bu değerlendirme, özel bulutunuzdaki en önemli varlıkları korumaya odaklanmanızı ve önceliklendirmenizi sağlar.
+* [Hat içi](../inline/overview.md) ile [bant dışı (OOB)](../oob/overview.md) analiz: Wallarm’ı hat içi analiz için mi yoksa bant dışı trafik analizi için mi dağıtmak istediğinizi belirleyin. Hat içi analiz, Wallarm düğümlerinin uygulamalarınızın trafik yoluna yerleştirilmesini içerirken, OOB analiz yansıtılan trafiğin yakalanıp analiz edilmesini içerir.
+* Wallarm düğümlerinin konumlandırılması: Seçtiğiniz yaklaşıma (hat içi veya OOB analiz) bağlı olarak, özel bulut altyapınız içinde Wallarm düğümlerinin uygun konumunu belirleyin. Hat içi analiz için, Wallarm düğümlerini uygulamalarınıza yakın, örneğin aynı VLAN veya alt ağ içinde konumlandırmayı düşünün. OOB analiz için, yansıtılan trafiğin analiz için Wallarm düğümlerine düzgün şekilde yönlendirileceğinden emin olun.
 
-## Adım 2: Wallarm İçin Giden Bağlantılara İzin Verin
+## Adım 2: Wallarm için giden bağlantılara izin verin
 
-Özel bulutlarda, genellikle giden bağlantılar üzerinde kısıtlamalar bulunur. Wallarm'un düzgün çalışmasını sağlamak için, kurulum sırasında paketleri indirmesine, yerel düğüm örnekleri ile Wallarm Cloud arasında ağ bağlantısı kurmasına ve Wallarm özelliklerini tam olarak aktif hale getirmesine olanak tanıyacak şekilde giden bağlantıların etkinleştirilmesi gerekmektedir.
+Özel bulutlarda, giden bağlantılara sıklıkla kısıtlamalar getirilir. Wallarm’ın düzgün çalışmasını sağlamak için, kurulum sırasında paketleri indirebilmesi, yerel düğüm örnekleri ile Wallarm Cloud arasında ağ bağlantısı kurabilmesi ve Wallarm özelliklerini tam olarak işler hale getirebilmesi amacıyla giden bağlantıları etkinleştirmek gerekir.
 
-Özel bulutlarda erişim genellikle IP adreslerine dayalı olarak verilir. Wallarm, aşağıdaki DNS kayıtlarına erişim gerektirir:
+Özel bulutlarda erişim genellikle IP adreslerine göre verilir. Wallarm’ın aşağıdaki DNS kayıtlarına erişmesi gerekir:
 
-* Güvenlik kurallarını almak, saldırı verilerini yüklemek vb. işlemler için Wallarm Cloud'a erişim sağlayacak aşağıdaki adresler:
-
-    --8<-- "../include/wallarm-cloud-ips.md"
-* Wallarm'u bir Docker imajından çalıştırmayı seçerseniz, Docker Hub tarafından kullanılan IP adresleri.
-* `35.244.197.238` (`https://meganode.wallarm.com`) [all-in-one installer](../nginx/all-in-one.md) aracılığıyla Wallarm'u kurmak içindir. Yükleyici bu adresten indirilmektedir.
-* Saldırı tespit kurallarının güncellemelerini ve [API specifications][api-spec-enforcement-docs]'u indirmek, ayrıca [izin verilen, yasaklanan veya gri listeye alınmış][ip-lists-docs] ülkeleriniz, bölgeleriniz veya veri merkezleriniz için doğru IP'leri almak üzere aşağıdaki IP adresleri:
+* Güvenlik kurallarını almak, saldırı verilerini yüklemek vb. için Wallarm Cloud’a erişim sağlamak üzere aşağıdaki adresler:
 
     --8<-- "../include/wallarm-cloud-ips.md"
+* Wallarm’ı bir Docker imajından çalıştırmayı seçerseniz Docker Hub tarafından kullanılan IP adresleri.
+* `35.244.197.238` (`https://meganode.wallarm.com`) adresi; Wallarm’ı [All‑in‑One Installer](../nginx/all-in-one.md) ile kurmak için. Yükleyici bu adresten indirilir.
+* Saldırı tespit kurallarının güncellemelerini ve [API spesifikasyonlarını][api-spec-enforcement-docs] indirmek ve ayrıca [allowlisted, denylisted, or graylisted][ip-lists-docs] ülkeleriniz, bölgeleriniz veya veri merkezleriniz için kesin IP’leri almak üzere aşağıdaki IP adresleri.
 
-## Adım 3: Dağıtım Modelini ve Wallarm Ürünü Seçin
+    --8<-- "../include/wallarm-cloud-ips.md"
 
-Wallarm, kuruluşların özel bulut ortamları için en uygun seçeneği belirlemesine olanak tanıyan esnek dağıtım modelleri sunar. En yaygın iki dağıtım modeli **virtual appliance deployment** ve **Kubernetes deployment**'tır.
+## Adım 3: Dağıtım modelini ve Wallarm artifaktını seçin
 
-### Virtual appliance deployment
+Wallarm, kuruluşların özel bulut ortamları için en uygun seçeneği belirlemesine olanak tanıyan esnek dağıtım modelleri sunar. İki yaygın dağıtım modeli, **sanal aygıt dağıtımı** ve **Kubernetes dağıtımı**dır.
 
-Bu modelde, Wallarm'u özel bulut altyapınız içinde bir virtual appliance olarak dağıtırsınız. Virtual appliance, bir VM veya konteyner olarak kurulabilir. Aşağıdaki ürünlerden birini kullanarak Wallarm düğümünü dağıtmayı seçebilirsiniz:
+### Sanal aygıt dağıtımı
 
-* Docker images:
-    * [NGINX-based Docker image](../../admin-en/installation-docker-en.md)
-    * [Envoy-based Docker image](../../admin-en/installation-guides/envoy/envoy-docker.md)
-* [All‑in‑One Installer for Linux](../nginx/all-in-one.md)
+Bu modelde, Wallarm’ı özel bulut altyapınız içinde bir sanal aygıt olarak dağıtırsınız. Sanal aygıt, bir VM veya konteyner olarak kurulabilir. Wallarm düğümünü aşağıdaki artifaktlardan biriyle dağıtmayı seçebilirsiniz:
 
-### Kubernetes deployment
+* [NGINX tabanlı Docker imajı](../../admin-en/installation-docker-en.md)
+* [Linux için All‑in‑One Installer](../nginx/all-in-one.md)
 
-Eğer özel bulutunuz konteyner orkestrasiyonu için Kubernetes kullanıyorsa, Wallarm Kubernetes'e özgü bir çözüm olarak dağıtılabilir. Kubernetes kümeleriyle sorunsuz bir şekilde entegre olur; ingress controller'lar, sidecar konteynerlar veya özel Kubernetes kaynakları gibi özelliklerden yararlanır. Aşağıdaki çözümlerden birini kullanarak Wallarm'u dağıtmayı seçebilirsiniz:
+### Kubernetes dağıtımı
 
-* [NGINX-based Ingress controller](../../admin-en/installation-kubernetes-en.md)
-* [Sidecar controller](../kubernetes/sidecar-proxy/deployment.md)
+Özel bulutunuz kapsayıcı orkestrasyonu için Kubernetes kullanıyorsa, Wallarm Kubernetes-yerel bir çözüm olarak dağıtılabilir. Ingress denetleyicileri, sidecar konteynerleri veya özel Kubernetes kaynakları gibi özelliklerden yararlanarak Kubernetes kümeleriyle sorunsuz şekilde bütünleşir. Wallarm’ı aşağıdaki çözümlerden birini kullanarak dağıtmayı seçebilirsiniz:
+
+* [NGINX tabanlı Ingress denetleyicisi](../../admin-en/installation-kubernetes-en.md)
+* [Sidecar denetleyicisi](../kubernetes/sidecar-proxy/deployment.md)

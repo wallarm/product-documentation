@@ -1,9 +1,9 @@
-1. Wallarm Console → **Nodes** bölümünde postanalytics modül düğümünüzü seçip **Delete** butonuna tıklayarak eski postanalytics modülünü silin.
-1. İşlemi onaylayın.
+1. Wallarm Console → **Nodes** bölümünde, postanalytics modülü düğümünüzü seçip **Delete**'e tıklayarak eski postanalytics modülünü silin.
+1. Eylemi onaylayın.
     
-    Postanalytics modül düğümü Cloud'dan silindiğinde, uygulamalarınıza gelen isteklerin filtrelenmesine katılımı duracaktır. Silme işlemi geri alınamaz. Postanalytics modül düğümü, düğümler listesinden kalıcı olarak silinecektir.
+    postanalytics modülü düğümü Wallarm Cloud'dan silindiğinde, uygulamalarınıza gelen isteklerin filtrelenmesine katılmayı durduracaktır. Silme işlemi geri alınamaz. postanalytics modülü düğümü düğüm listesinden kalıcı olarak silinecektir.
 
-1. Eski postanalytics modülünün bulunduğu makineyi kaldırın veya sadece Wallarm postanalytics modül bileşenlerinden temizleyin:
+1. Eski postanalytics modülü içeren makineyi silin veya sadece Wallarm postanalytics modül bileşenlerini kaldırın:
 
     === "Debian"
         ```bash
@@ -13,11 +13,11 @@
         ```bash
         sudo apt remove wallarm-node-tarantool
         ```
-    === "CentOS or Amazon Linux 2.0.2021x and lower"
+    === "CentOS veya Amazon Linux 2.0.2021x ve altı"
         ```bash
         sudo yum remove wallarm-node-tarantool
         ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    === "AlmaLinux, Rocky Linux veya Oracle Linux 8.x"
         ```bash
         sudo yum remove wallarm-node-tarantool
         ```

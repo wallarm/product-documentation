@@ -16,83 +16,83 @@
 [img-current-attack]:       ../../images/user-guides/events/analyze-current-attack.png
 [glossary-attack-vector]:   ../../glossary-en.md#malicious-payload
 
-# Vuruşların Gruplanması ve Örneklenmesi
+# Hit'lerin Gruplandırılması ve Örneklenmesi
 
-[analyzing attacks](check-attack.md) işlemi sırasında, kötü niyetli isteklerin nasıl sunulduğunu anlamak önemlidir. Wallarm, saldırı listesini sadeleştirmek için vuruş gruplama ve örnekleme teknikleri kullanır. Bu teknikler bu makalede açıklanmıştır.
+[saldırıları analiz ederken](check-attack.md), kötü amaçlı isteklerin nasıl sunulduğunu anlamak önemlidir. Wallarm, saldırı listesini basitleştirmek için hit gruplandırma ve örnekleme tekniklerini kullanır. Bu teknikler bu makalede açıklanmaktadır.
 
-## Vuruşların Gruplanması
+## Hit'lerin gruplandırılması
 
-Wallarm, [vuruşları](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) iki gruplama yöntemi kullanarak tek bir saldırı altında toplar:
+Wallarm, [hit'leri](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) tek bir saldırıda aşağıdaki iki gruplandırma yöntemiyle bir araya getirir:
 
-* Temel gruplama
-* Kaynak IP tarafından vuruşların gruplandırılması
+* Temel gruplandırma
+* Kaynak IP'ye göre hit gruplandırma
 
-Bu yöntemler birbirini dışlamaz. Vuruşlar her iki yönteme ait özellikler taşıyorsa, tümü tek bir saldırı altında gruplanır.
+Bu yöntemler birbirini dışlamaz. Hit'ler her iki yöntemin özelliklerini taşıyorsa, hepsi tek bir saldırıda gruplandırılır.
 
-### Temel Gruplama
+### Temel gruplandırma
 
-Vuruşlar, aynı saldırı türüne, kötü niyetli payload içeren parametreye ve vuruşların gönderildiği adrese sahip olduklarında gruplanır. Vuruşlar, aynı veya farklı IP adreslerinden gelebilir ve aynı saldırı türü içinde kötü niyetli payload değerleri farklı olabilir.
+Hit'ler aynı saldırı türüne, kötü amaçlı payload içeren parametreye ve hit'lerin gönderildiği adrese sahipse gruplandırılır. Hit'ler aynı veya farklı IP adreslerinden gelebilir ve aynı saldırı türü içinde kötü amaçlı payload değerleri farklı olabilir.
 
-Bu vuruş gruplama yöntemi temel olup tüm vuruşlara uygulanır ve devre dışı bırakılamaz veya değiştirilemez.
+Bu hit gruplandırma yöntemi temeldir, tüm hit'lere uygulanır ve devre dışı bırakılamaz veya değiştirilemez.
 
-### Kaynak IP Tarafından Gruplama
+### Kaynak IP'ye göre hit gruplandırma
 
-Vuruşlar, aynı kaynak IP adresine sahip olduklarında gruplanır. Gruplandırılan vuruşlar farklı saldırı türlerine, kötü niyetli payloadlara ve URL'lere sahipse, saldırı parametreleri saldırı listesinde `[multiple]` etiketi ile işaretlenir.
+Hit'ler aynı kaynak IP adresine sahipse gruplandırılır. Gruplandırılan hit'lerin saldırı türleri, kötü amaçlı payload'ları ve URL'leri farklıysa, saldırı parametreleri saldırı listesinde `[multiple]` etiketiyle işaretlenir.
 
-Bu vuruş gruplama yöntemi, Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb ve Virtual patch saldırı türleri dışındaki tüm vuruşlarda çalışır.
+Bu hit gruplandırma yöntemi Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb ve Virtual patch saldırı türleri dışındaki tüm hit'ler için çalışır.
 
-Vuruşlar bu yöntemle gruplanırsa, [**Mark as false positive**](check-attack.md#false-positives) düğmesi ve [active verification](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing) seçeneği saldırı için kullanılamaz.
+Hit'ler bu yöntemle gruplandırılmışsa, [**Mark as false positive**](check-attack.md#false-positives) butonu ve [active verification](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing) seçeneği bu saldırı için kullanılamaz.
 
-Kaynak IP'ye göre gruplama, varsayılan olarak Wallarm Console → **Triggers** menüsünde bulunan **Hits from the same IP** varsayılan tetikleyicisi ile etkindir; bu tetikleyici, tek bir IP adresinden 15 dakika içinde 50'den fazla vuruş geldiğinde devreye girer.
+Kaynak IP'ye göre gruplandırma varsayılan olarak Wallarm Console → **Triggers** bölümünde, tek bir IP adresi 15 dakika içinde 50'den fazla hit ürettiğinde tetiklenen **Hits from the same IP** varsayılan trigger'ı ile etkindir.
 
-![Example of a trigger for hit grouping](../../images/user-guides/triggers/trigger-example-group-hits.png)
+![Hit gruplandırma için trigger örneği](../../images/user-guides/triggers/trigger-example-group-hits.png)
 
-Kaynak IP'ye göre gruplamayı ihtiyaçlarınıza göre ayarlayabilirsiniz: bunu **Hits from the same IP** tipinde kendi özel tetikleyicilerinizi oluşturarak yapın. Herhangi bir özel tetikleyici oluşturduğunuzda varsayılan tetikleyici silinir; tüm özel tetikleyicilerinizi sildiğinizde, varsayılan tekrar geri yüklenir. Varsayılan tetikleyiciyi geçici olarak devre dışı bırakarak gruplamayı duraklatmanız da mümkündür.
+Kaynak IP'ye göre gruplandırmayı ihtiyaçlarınıza göre ayarlayabilirsiniz: **Hits from the same IP** tipindeki kendi özel trigger'larınızı oluşturarak bunu yapın. Herhangi bir özel trigger oluşturmak varsayılan olanı siler, tüm özel trigger'larınızı silerseniz varsayılan geri yüklenir. Ayrıca varsayılan trigger'ı geçici olarak devre dışı bırakarak gruplandırmayı duraklatabilirsiniz.
 
-## Vuruşların Örneklenmesi
+## Hit'lerin örneklenmesi
 
-Saldırı detayları oluşturulurken, Wallarm, yalnızca benzersiz [vuruşları](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) göstererek saldırı hakkındaki bilgileri analiz için daha konforlu hale getirir - benzer ve aynı vuruşlar Wallarm Cloud'a yükleme sırasında atlanır ve görüntülenmez. Bu sürece vuruş **örnekleme** denir.
+Saldırı ayrıntılarını oluştururken, Wallarm yalnızca benzersiz [hit'leri](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) göstererek saldırıyla ilgili bilgileri analiz için daha konforlu hale getirir - benzersiz olmayan (karşılaştırılabilir ve özdeş) hit'ler Wallarm Cloud'a yüklenmekten çıkarılır ve görüntülenmez. Bu sürece hit **örnekleme** denir.
 
-Vuruş örneklemesi, saldırı tespit kalitesini etkilemez, ancak yavaşlamayı önlemeye yardımcı olur. Wallarm node, örnekleme etkin olsa bile saldırı tespiti ve [blocking](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) işlemine devam eder.
+Hit örnekleme, saldırı tespitinin kalitesini etkilemez ancak yavaşlamasını önlemeye yardımcı olur. Wallarm node, hit örnekleme etkin olsa bile saldırı tespitini ve [engellemeyi](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) sürdürür.
 
-**Hits sampling is enabled** bildirimi, örneklemenin şu anda aktif olduğunu gösterir. Sadece örneklemenin uygulandığı saldırıları görmek için bu bildirime tıklayabilir veya arama alanına [`sampled`](../search-and-filters/use-search.md#search-for-sampled-hits) ekleyebilirsiniz. Saldırı detaylarında benzer kaç vuruşun tespit edildiğini ancak görüntülenmediğini göreceksiniz:
+**Hits sampling is enabled** bildirimi, örneklemenin şu anda çalıştığını gösterir. Yalnızca örneklemenin uygulandığı saldırıları görmek için bu bildirime tıklayabilir veya arama alanına [`sampled`](../search-and-filters/use-search.md#search-for-sampled-hits) ekleyebilirsiniz. Saldırı ayrıntılarında, kaç benzer hit'in tespit edildiğini ancak gösterilmediğini göreceksiniz:
 
-![Dropped hits](../../images/user-guides/events/bruteforce-dropped-hits.png)
+![Düşürülen hit'ler](../../images/user-guides/events/bruteforce-dropped-hits.png)
 
-!!! info "Saldırı listesindeki atlanan vuruşların görüntülenmesi"
-    Atlanan vuruşlar Wallarm Cloud'a yüklenmediği için, bazı vuruşlar veya tüm saldırılar saldırı listesinde yer almayabilir.
+!!! info "Saldırı listesinde düşürülen hit'lerin görüntülenmesi"
+    Düşürülen hit'ler Wallarm Cloud'a yüklenmediğinden, belirli hit'ler veya tüm saldırılar saldırı listesinde bulunmayabilir.
 
-Atlanan istekler, Wallarm node tarafından işlenen istekler olmaya devam ettiğinden, node detaylarındaki RPS değeri atlanan her istek ile artar. [Threat Prevention dashboard](../dashboards/threat-prevention.md) üzerindeki istek ve vuruş sayısı da atlanan vuruş sayısını içerir.
+Düşürülen istekler yine de Wallarm node tarafından işlenen istekler olduğundan, node ayrıntıları UI'ında RPS değeri her düşürülen istekle birlikte artar. [Threat Prevention dashboard](../dashboards/threat-prevention.md) üzerindeki istek ve hit sayısı da düşürülen hit'lerin sayısını içerir.
 
-**Vuruş örneklemesi etkin olduğunda**
+**Hit örnekleme etkin olduğunda**
 
-* [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks) için, vuruş örneklemesi varsayılan olarak devre dışı bırakılmıştır. Trafiğinizdeki saldırı yüzdesi yüksekse, vuruş örneklemesi iki ardışık aşamada gerçekleştirilir: **extreme** ve **regular**.
-* [behavioral attacks](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks), [Data bomb](../../attacks-vulns-list.md#data-bomb) ve [Resource overlimiting](../../attacks-vulns-list.md#resource-overlimit) saldırıları için: **regular** örnekleme algoritması varsayılan olarak etkindir. Trafiğinizdeki saldırı yüzdesi yüksekse, **extreme** örnekleme ancak o zaman başlar.
-* Denylisted IP'lerden gelen etkinlikler için, örnekleme node tarafında yapılandırılır. Node, Cloud'a yalnızca ilk 10 aynı isteği yüklerken, diğer vuruşlara örnekleme algoritması uygular.
+* [Girdi doğrulama saldırıları](../../attacks-vulns-list.md#attack-types) için, hit örnekleme varsayılan olarak devre dışıdır. Trafiğinizdeki saldırı yüzdesi yüksekse, hit örnekleme art arda iki aşamada gerçekleştirilir: **aşırı** ve **normal**.
+* [Davranışsal saldırılar](../../attacks-vulns-list.md#attack-types), [Data bomb](../../attacks-vulns-list.md#data-bomb) ve [Resource overlimiting](../../attacks-vulns-list.md#resource-overlimit) saldırıları için: **normal** örnekleme algoritması varsayılan olarak etkindir. **Aşırı** örnekleme yalnızca trafiğinizdeki saldırı yüzdesi yüksekse başlar.
+* Denylist'e alınmış IP'lerden gelen olaylar için örnekleme node tarafında yapılandırılır. Cloud'a yalnızca ilk 10 özdeş isteği yükler, geri kalan hit'lere örnekleme algoritması uygular.
 
-Trafikteki saldırı yüzdesi azaldığında örnekleme otomatik olarak devre dışı bırakılacaktır.
+Trafikteki saldırı yüzdesi azaldığında örnekleme otomatik olarak devre dışı bırakılır.
 
-### Extreme Örnekleme
+### Aşırı örnekleme
 
-Extreme örnekleme algoritmasının temel mantığı şöyledir:
+Aşırı örnekleme algoritmasının temel mantığı aşağıdaki gibidir:
 
-* Vuruşlar [input validation](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks) tipindeyse, algoritma Cloud'a yalnızca benzersiz [kötü niyetli payloadlara](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) sahip olanları yükler. Bir saat içinde aynı payloada sahip birkaç vuruş tespit edilirse, yalnızca ilk tespit edilen Cloud'a yüklenir, diğerleri atlanır.
-* Vuruşlar [behavioral](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks), [Data bomb](../../attacks-vulns-list.md#data-bomb) veya [Resource overlimiting](../../attacks-vulns-list.md#resource-overlimit) tipindeyse, algoritma Cloud'a yalnızca tespit edilen ilk %10'unu yükler.
+* Hit'ler [girdi doğrulama](../../attacks-vulns-list.md#attack-types) türündeyse, algoritma Cloud'a yalnızca benzersiz [kötü amaçlı payload](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) içerenleri yükler. Bir saat içinde aynı payload'a sahip birden fazla hit tespit edilirse, bunların yalnızca ilki Cloud'a yüklenir, diğerleri düşürülür.
+* Hit'ler [davranışsal](../../attacks-vulns-list.md#attack-types), [Data bomb](../../attacks-vulns-list.md#data-bomb) veya [Resource overlimiting](../../attacks-vulns-list.md#resource-overlimit) türündeyse, algoritma bir saat içinde tespit edilenlerin yalnızca ilk %10'unu Cloud'a yükler.
 
-### Regular Örnekleme
+### Normal örnekleme
 
-Regular algoritma, extreme aşama sonrası kaydedilen vuruşları işler; vuruşlar [behavioral](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks), [Data bomb](../../attacks-vulns-list.md#data-bomb) veya [Resource overlimiting](../../attacks-vulns-list.md#resource-overlimit) tipindeyse, extreme örnekleme devre dışı bırakılmışsa orijinal vuruş kümesi işlenir.
+Normal algoritma, [davranışsal](../../attacks-vulns-list.md#attack-types), [Data bomb](../../attacks-vulns-list.md#data-bomb) veya [Resource overlimiting](../../attacks-vulns-list.md#resource-overlimit) türünde olmadıkça yalnızca aşırı aşamadan sonra kaydedilen hit'leri işler. Bu tür hit'ler için aşırı örnekleme devre dışıysa, normal algoritma orijinal hit kümesini işler.
 
-Regular örnekleme algoritmasının temel mantığı şöyledir:
+Normal örnekleme algoritmasının temel mantığı aşağıdaki gibidir:
 
-1. Her saat için ilk 5 aynı vuruş, Wallarm Cloud'da örnek olarak kaydedilir. Geri kalan vuruşlar örneğe kaydedilmez, ancak sayıları ayrı bir parametrede kaydedilir.
+1. Her saat için ilk 5 özdeş hit, Wallarm Cloud'da örnek olarak saklanır. Geri kalan hit'ler örneğe kaydedilmez, ancak sayıları ayrı bir parametrede kaydedilir.
 
-    Vuruşlar, aşağıdaki tüm parametrelerin aynı değerlere sahip olması durumunda aynıdır:
+    Hit'ler, aşağıdaki parametrelerin tamamı aynı değerlere sahipse özdeştir:
 
     * Saldırı türü
-    * Kötü niyetli payload içeren parametre
+    * Kötü amaçlı payload içeren parametre
     * Hedef adres
     * İstek yöntemi
     * Yanıt kodu
     * Kaynak IP adresi
-2. Vuruş örnekleri, etkinlik listesinde [saldırılara](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) gruplanır.
+2. Hit örnekleri, olay listesinde [saldırılar](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) halinde gruplandırılır.

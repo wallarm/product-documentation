@@ -1,5 +1,4 @@
-To add particular IPs or subnets to the IP list, send the following request for each IP/subnet:
-IP listesine belirli IP'leri veya alt ağları eklemek için, her IP/alt ağ için aşağıdaki isteği gönderin:
+Belirli IP adreslerini veya alt ağları IP listesine eklemek için, her IP/alt ağ için aşağıdaki isteği gönderin:
 
 === "US Cloud"
     ```bash

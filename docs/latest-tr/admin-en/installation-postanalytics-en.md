@@ -1,200 +1,206 @@
-[tarantool-status]:           ../images/tarantool-status.png
 [configure-selinux-instr]:    configure-selinux.md
 [configure-proxy-balancer-instr]:   configuration-guides/access-to-wallarm-api-via-proxy.md
 [img-wl-console-users]:             ../images/check-user-no-2fa.png
 [wallarm-token-types]:              ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 
-# Ayrı Postanalytics Modülü Kurulumu
+# Ayrı Postanalytics Modülünün Kurulumu
 
-Wallarm'ın istek işleme sürecinde, istatistiksel istek analizine yönelik postanalytics aşaması da dahil olmak üzere iki aşama yer alır. Postanalytics bellek yoğun bir işlemdir, bu nedenle optimize edilmiş performans için ayrı bir sunucuda gerçekleştirilmesi gerekebilir. Bu makale, postanalytics modülünün ayrı bir sunucuya nasıl kurulacağını açıklar.
+Wallarm’ın istek işleme süreci iki aşamadan oluşur; bunlardan biri istatistiksel istek analizi yapan postanalytics aşamasıdır. Postanalytics bellek açısından yoğun olduğundan, performansı optimize etmek için ayrı bir sunucuda çalıştırılması gerekebilir. Bu makale, postanalytics modülünün ayrı bir sunucuya nasıl kurulacağını açıklar.
 
 ## Genel Bakış
 
-Wallarm düğümündeki istek işleme süreci iki aşamadan oluşur:
+Wallarm düğümünde isteklerin işlenmesi iki aşamadan oluşur:
 
-* NGINX-Wallarm modülündeki temel işleme; bu aşama bellek açısından yoğun değildir ve sunucu gereksinimlerini değiştirmeden ön uç sunucularında çalıştırılabilir.
-* İşlenen isteklerin istatistiksel analizi, bellek yoğun olan postanalytics modülünde yapılır.
+* Bellek açısından talepkâr olmayan ve sunucu gereksinimlerini değiştirmeden ön uç sunucularda çalıştırılabilen NGINX‑Wallarm modülünde birincil işleme.
+* İşlenmiş isteklerin istatistiksel analizi olan ve bellek açısından talepkâr olan postanalytics modülü.
 
-Aşağıdaki şemalar, modül etkileşimini aynı sunucuda ve farklı sunucularda kurulum senaryolarıyla göstermektedir.
+Aşağıdaki şemalar, modüllerin aynı sunucuda ve farklı sunucularda kurulu olduğu iki senaryoda etkileşimini göstermektedir.
 
-=== "NGINX-Wallarm ve postanalytics aynı sunucuda"
-    ![Postanalytics ile nginx-wallarm arasındaki trafik akışı](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-the-same-server.png)
-=== "NGINX-Wallarm ve postanalytics farklı sunucularda"
-    ![Postanalytics ile nginx-wallarm arasındaki trafik akışı](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-different-servers.png)
+=== "NGINX‑Wallarm ve postanalytics tek sunucuda"
+    ![Postanalytics ve nginx-wallarm arasındaki trafik akışı](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-the-same-server.png)
+=== "NGINX‑Wallarm ve postanalytics farklı sunucularda"
+    ![Postanalytics ve nginx-wallarm arasındaki trafik akışı](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-different-servers.png)
 
 ## Gereksinimler
 
 --8<-- "../include/waf/installation/all-in-one/separate-postanalytics-reqs.md"
 
-## Adım 1: all-in-one Wallarm Kurulum Paketini İndirin
+## Adım 1: Tümleşik Wallarm yükleyicisini indirin
 
-Tüm bileşenleri içeren Wallarm kurulum betiğini indirmek için aşağıdaki komutu çalıştırın:
+Tümleşik Wallarm kurulum betiğini indirmek için şu komutu çalıştırın:
 
 === "x86_64 sürümü"
     ```bash
-    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.0.x86_64-glibc.sh
+    curl -O https://meganode.wallarm.com/6.5/wallarm-6.5.1.x86_64-glibc.sh
     ```
 === "ARM64 sürümü"
     ```bash
-    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.0.aarch64-glibc.sh
+    curl -O https://meganode.wallarm.com/6.5/wallarm-6.5.1.aarch64-glibc.sh
     ```
 
-## Adım 2: Wallarm Token'ını Hazırlayın
+## Adım 2: Wallarm token’ını hazırlayın
 
-Düğüm kurulumunu gerçekleştirmek için [uygun tipteki][wallarm-token-types] bir Wallarm token'ına ihtiyacınız vardır. Bir token hazırlamak için:
+Düğümü kurmak için [uygun türde][wallarm-token-types] bir Wallarm token’ına ihtiyacınız olacak. Token hazırlamak için:
 
 === "API token"
 
-    1. Wallarm Console → **Settings** → **API tokens** bölümünü [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens) üzerinden açın.
-    1. `Deploy` kaynak rolüne sahip bir API token'ı bulun veya oluşturun.
-    1. Bu token'ı kopyalayın.
+    1. Wallarm Console → **Settings** → **API tokens** bölümünü [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens) üzerinde açın.
+    1. `Node deployment/Deployment` kullanım türüne sahip bir API token’ı bulun veya oluşturun.
+    1. Bu token’ı kopyalayın.
 
 === "Node token"
 
-    1. Wallarm Console → **Nodes** bölümünü [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) üzerinden açın.
-    1. Aşağıdakilerden birini yapın:
-        * **Wallarm node** türünde bir düğüm oluşturup üretilen token'ı kopyalayın.
-        * Mevcut bir düğüm grubunu kullanın – düğümün menüsünden **Copy token** seçeneği ile token'ı kopyalayın.
+    1. Wallarm Console → **Nodes** bölümünü [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) üzerinde açın.
+    1. Aşağıdakilerden birini yapın: 
+        * **Wallarm node** türünde bir düğüm oluşturun ve üretilen token’ı kopyalayın.
+        * Mevcut düğüm grubunu kullanın - düğüm menüsünden → **Copy token** ile token’ı kopyalayın.
 
-## Adım 3: all-in-one Wallarm Kurulum Paketini Çalıştırarak Postanalytics'i Kurun
+## Adım 3: Postanalytics’i kurmak için tümleşik Wallarm yükleyicisini çalıştırın
 
-Postanalytics'i all-in-one kurulum betiği ile ayrı olarak kurmak için şu komutu kullanın:
+Postanalytics’i tümleşik yükleyici ile ayrı olarak kurmak için:
 
 === "API token"
     ```bash
     # x86_64 sürümünü kullanıyorsanız:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.x86_64-glibc.sh postanalytics
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.5.1.x86_64-glibc.sh postanalytics
 
     # ARM64 sürümünü kullanıyorsanız:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.aarch64-glibc.sh postanalytics
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.5.1.aarch64-glibc.sh postanalytics
     ```        
 
-    `WALLARM_LABELS` değişkeni, düğümün eklenmesi gereken grubu belirler (Wallarm Console arayüzünde düğümlerin mantıksal gruplandırması için kullanılır).
+    `WALLARM_LABELS` değişkeni, düğümün ekleneceği grubu ayarlar (Wallarm Console UI içinde düğümlerin mantıksal gruplaması için kullanılır).
 
 === "Node token"
     ```bash
     # x86_64 sürümünü kullanıyorsanız:
-    sudo sh wallarm-5.3.0.x86_64-glibc.sh postanalytics
+    sudo sh wallarm-6.5.1.x86_64-glibc.sh postanalytics
 
     # ARM64 sürümünü kullanıyorsanız:
-    sudo sh wallarm-5.3.0.aarch64-glibc.sh postanalytics
+    sudo sh wallarm-6.5.1.aarch64-glibc.sh postanalytics
     ```
 
-## Adım 4: Postanalytics Modülünü Yapılandırın
+## Adım 4: Postanalytics modülünü yapılandırın
 
-### Kaynaklar ve Bellek
+### Kaynaklar ve bellek
 
-Tarantool'un ne kadar bellek kullanacağını değiştirmek için, `/opt/wallarm/env.list` dosyasında `SLAB_ALLOC_ARENA` ayarını arayın. Bu ayar varsayılan olarak 1 GB kullanacak şekilde belirlenmiştir. Bu değeri değiştirmek gerekiyorsa, Tarantool'un ihtiyaç duyduğu bellek miktarına göre ayarlayabilirsiniz. Ne kadar bellek ayarlanacağına ilişkin yardım için [önerilerimize](configuration-guides/allocate-resources-for-node.md) bakın.
+wstore’un ne kadar bellek kullandığını değiştirmek için `/opt/wallarm/env.list` dosyasındaki `SLAB_ALLOC_ARENA` ayarına bakın. Varsayılan olarak 1 GB kullanacak şekilde ayarlanmıştır. Değiştirmek gerekirse, değeri wstore’un ihtiyaç duyduğu gerçek bellek miktarına uyacak şekilde ayarlayabilirsiniz. Ne kadar ayarlanacağına dair yardım için [önerilerimize](configuration-guides/allocate-resources-for-node.md) bakın.
 
-Tahsis edilen belleği değiştirmek için:
+Ayrılan belleği değiştirmek için:
 
 1. `/opt/wallarm/env.list` dosyasını düzenlemek üzere açın:
 
     ```bash
     sudo vim /opt/wallarm/env.list
     ```
-1. `SLAB_ALLOC_ARENA` özniteliğini bellek boyutuna eşleyin. Değer tam sayı veya ondalık (ondalık ayırıcı olarak nokta `.`) olabilir. Örneğin:
+1. `SLAB_ALLOC_ARENA` özniteliğini bellek boyutuna ayarlayın. Değer bir tam sayı veya ondalık (ondalık ayırıcı olarak nokta `.`) olabilir. Örneğin:
 
     ```
     SLAB_ALLOC_ARENA=2.0
     ```
 
-### Host ve Port
+### Ana makine ve port
 
-Varsayılan olarak, postanalytics modülü host'un tüm IPv4 adreslerinden (0.0.0.0) port 3313 üzerinden bağlantıları kabul edecek şekilde ayarlanmıştır. Değişiklik yapılmadığı sürece varsayılan yapılandırmanın kullanılması önerilir.
+Varsayılan olarak, postanalytics modülü ana makinenin tüm IPv4 adreslerinde (0.0.0.0) 3313 portunu kullanarak bağlantıları kabul edecek şekilde ayarlanmıştır. Değişiklik gerekmiyorsa varsayılan yapılandırmanın korunması önerilir.
 
-Ancak, varsayılan yapılandırmada değişiklik yapmanız gerekiyorsa:
+Bununla birlikte, varsayılan yapılandırmayı değiştirmeniz gerekiyorsa:
 
-1. `/opt/wallarm/env.list` dosyasını düzenlemek üzere açın:
-
-    ```bash
-    sudo vim /opt/wallarm/env.list
-    ```
-1. İhtiyaca göre `HOST` ve `PORT` değerlerini güncelleyin. Henüz tanımlı değilse, `PORT` değişkenini aşağıdaki gibi tanımlayın:
+1. Postanalytics hizmetinin bulunduğu makinede, `/opt/wallarm/wstore/wstore.yaml` dosyasını düzenlemek üzere açın:
 
     ```bash
-    # tarantool
-    HOST=0.0.0.0
-    PORT=3300
+    sudo vim /opt/wallarm/wstore/wstore.yaml
     ```
-1. `/opt/wallarm/etc/wallarm/node.yaml` dosyasını düzenlemek üzere açın:
+1. `service.address` parametresine yeni IP adresi ve port değerlerini belirtin, örneğin:
+
+    ```yaml
+    service:
+      address: 192.158.1.38:3313
+    ```
+
+    `service.address` parametresi aşağıdaki değer biçimlerine izin verir:
+
+    * IP adresi:Port, ör. `192.158.1.38:3313`
+    * Tüm IP’lerde belirli port, ör. `:3313`
+1. Postanalytics hizmetinin bulunduğu makinede, `/opt/wallarm/etc/wallarm/node.yaml` dosyasını düzenlemek üzere açın:
 
     ```bash
     sudo vim /opt/wallarm/etc/wallarm/node.yaml
     ```
-1. `tarantool` parametreleri için yeni `host` ve `port` değerlerini aşağıdaki şekilde girin:
-
+1. `wstore.host` ve `wstore.port` parametrelerinde yeni IP adresi ve port değerlerini belirtin, örneğin:
     ```yaml
-    hostname: <postanalytics düğüm adı>
-    uuid: <postanalytics düğümün UUID'si>
-    secret: <postanalytics düğümün gizli anahtarı>
-    tarantool:
-        host: '0.0.0.0'
-        port: 3300
+    api:
+      uuid: <postanalytics düğümünün UUID’si>
+      secret: <postanalytics düğümünün gizli anahtarı>
+    wstore:
+      host: '0.0.0.0'
+      port: 3300
     ```
 
-## Adım 5: Postanalytics Modülü için Gelen Bağlantılara İzin Verin
+## Adım 5: Postanalytics modülü için gelen bağlantıları etkinleştirin
 
-Postanalytics modülü varsayılan olarak port 3313'ü kullanır, ancak bazı bulut platformları bu port üzerindeki gelen bağlantıları engelleyebilir.
+Postanalytics modülü varsayılan olarak 3313 portunu kullanır, ancak bazı bulut platformları bu porttaki gelen bağlantıları engelleyebilir.
 
-NGINX-Wallarm modülünün Tarantool örneğine bağlanabilmesi için, port 3313 veya sizin belirlediğiniz özel port üzerinden gelen bağlantılara izin verin.
+Entegrasyonu garanti etmek için, 3313 portu veya özel portunuz üzerinde gelen bağlantılara izin verin. Bu adım, ayrı kurulan NGINX‑Wallarm modülünün wstore örneğine bağlanabilmesi için gereklidir.
 
-## Adım 6: Wallarm Servislerini Yeniden Başlatın
+## Adım 6: Wallarm servislerini yeniden başlatın
 
-Gerekli değişiklikleri yaptıktan sonra, postanalytics modülünün bulunduğu makinadaki Wallarm servislerini güncellemelerin uygulanabilmesi için yeniden başlatın:
+Gerekli değişiklikleri yaptıktan sonra, güncellemeleri uygulamak için postanalytics modülünü barındıran makinedeki Wallarm servislerini yeniden başlatın:
 
 ```
 sudo systemctl restart wallarm.service
 ```
 
-## Adım 7: Ayrı Bir Sunucuda NGINX-Wallarm Modülünü Kurun
+## Adım 7: NGINX‑Wallarm modülünü ayrı bir sunucuya kurun
 
-Postanalytics modülü ayrı bir sunucuda kurulduktan sonra:
+Postanalytics modülü ayrı sunucuya kurulduktan sonra:
 
-1. NGINX-Wallarm modülünü, ilgili [kılavuzu](../installation/nginx/all-in-one.md) takip ederek farklı bir sunucuya kurun.
-1. Farklı bir sunucuda NGINX-Wallarm modülü kurulum betiğini çalıştırırken, örneğin `filtering` seçeneğini de ekleyin:
+1. Farklı bir sunucuya NGINX‑Wallarm modülünü ilgili [kılavuzu](../installation/nginx/all-in-one.md) izleyerek kurun.
+1. NGINX‑Wallarm modülünün kurulum betiğini ayrı sunucuda çalıştırırken `filtering` seçeneğini ekleyin, örneğin:
 
     === "API token"
         ```bash
         # x86_64 sürümünü kullanıyorsanız:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.x86_64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.5.1.x86_64-glibc.sh filtering
 
         # ARM64 sürümünü kullanıyorsanız:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.aarch64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.5.1.aarch64-glibc.sh filtering
         ```        
 
-        `WALLARM_LABELS` değişkeni, düğümün eklenmesi gereken grubu belirler (Wallarm Console arayüzünde düğümlerin mantıksal gruplandırması için kullanılır).
+        `WALLARM_LABELS` değişkeni, düğümün ekleneceği grubu ayarlar (Wallarm Console UI içinde düğümlerin mantıksal gruplaması için kullanılır).
 
     === "Node token"
         ```bash
         # x86_64 sürümünü kullanıyorsanız:
-        sudo sh wallarm-5.3.0.x86_64-glibc.sh filtering
+        sudo sh wallarm-6.5.1.x86_64-glibc.sh filtering
 
         # ARM64 sürümünü kullanıyorsanız:
-        sudo sh wallarm-5.3.0.aarch64-glibc.sh filtering
+        sudo sh wallarm-6.5.1.aarch64-glibc.sh filtering
         ```
 
-## Adım 8: NGINX-Wallarm Modülünü Postanalytics Modülüne Bağlayın
+## Adım 8: NGINX‑Wallarm modülünü postanalytics modülüne bağlayın
 
-NGINX-Wallarm modülünün bulunduğu makinede, NGINX [yapılandırma dosyasında](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/), postanalytics modülü sunucu adresini belirtin:
+NGINX‑Wallarm modülünün kurulu olduğu makinede, NGINX [yapılandırma dosyasında](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) (genellikle `/etc/nginx/nginx.conf`), postanalytics modülü sunucu adresini belirtin:
 
 ```
-upstream wallarm_tarantool {
-    server <ip1>:3313 max_fails=0 fail_timeout=0 max_conns=1;
-    server <ip2>:3313 max_fails=0 fail_timeout=0 max_conns=1;
-    
-    keepalive 2;
-    }
-
+http {
     # omitted
 
-wallarm_tarantool_upstream wallarm_tarantool;
+    upstream wallarm_wstore {
+        server <ip1>:3313 max_fails=0 fail_timeout=0 max_conns=1;
+        server <ip2>:3313 max_fails=0 fail_timeout=0 max_conns=1;
+    
+        keepalive 2;
+    }
+
+    wallarm_wstore_upstream wallarm_wstore;
+
+    # omitted
+}
 ```
 
-* Her upstream Tarantool sunucusu için `max_conns` değeri, aşırı bağlantı oluşumunu önlemek amacıyla belirtilmelidir.
-* `keepalive` değeri, Tarantool sunucuları sayısından düşük olmamalıdır.
+* Aşırı bağlantı oluşturulmasını önlemek için her bir upstream wstore sunucusu için `max_conns` değeri belirtilmelidir.
+* `keepalive` değeri, wstore sunucularının sayısından düşük olmamalıdır.
 
-Yapılandırma dosyası değiştirildikten sonra, NGINX/NGINX Plus'ın NGINX-Wallarm modülünün bulunduğu sunucuda yeniden başlatıldığından emin olun:
+Yapılandırma dosyası değiştirildikten sonra, NGINX‑Wallarm modülü sunucusunda NGINX/NGINX Plus’ı yeniden başlatın:
 
 === "Debian"
     ```bash
@@ -208,7 +214,7 @@ Yapılandırma dosyası değiştirildikten sonra, NGINX/NGINX Plus'ın NGINX-Wal
     ```bash
     sudo systemctl restart nginx
     ```
-=== "AlmaLinux, Rocky Linux veya Oracle Linux 8.x"
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
     sudo systemctl restart nginx
     ```
@@ -217,59 +223,204 @@ Yapılandırma dosyası değiştirildikten sonra, NGINX/NGINX Plus'ın NGINX-Wal
     sudo systemctl restart nginx
     ```
 
-## Adım 9: NGINX‑Wallarm ve Ayrı Postanalytics Modüllerinin Etkileşimini Kontrol Edin
+## Adım 9: NGINX‑Wallarm ve ayrı postanalytics modüllerinin etkileşimini kontrol edin
 
-NGINX‑Wallarm ve ayrı postanalytics modüllerinin etkileşimini kontrol etmek için, korunan uygulamanın adresine test saldırı isteği gönderebilirsiniz:
+NGINX‑Wallarm ve ayrı postanalytics modüllerinin etkileşimini kontrol etmek için, korunan uygulamanın adresine test saldırısı içeren bir istek gönderebilirsiniz:
 
 ```bash
 curl http://localhost/etc/passwd
 ```
 
-Eğer NGINX‑Wallarm ve ayrı postanalytics modülleri doğru şekilde yapılandırıldıysa, saldırı Wallarm Cloud'a yüklenecek ve Wallarm Console'daki **Attacks** bölümünde görüntülenecektir:
+NGINX‑Wallarm ve ayrı postanalytics modülleri doğru yapılandırılmışsa, saldırı Wallarm Cloud’a yüklenecek ve Wallarm Console’un **Attacks** bölümünde görüntülenecektir:
 
-![Arayüzdeki Saldırılar](../images/admin-guides/test-attacks-quickstart.png)
+![Arayüzde Attacks](../images/admin-guides/test-attacks-quickstart.png)
 
-Saldırı Cloud'a yüklenmediyse, lütfen servislerin çalışmasında herhangi bir hata olmadığından emin olun:
+Saldırı Cloud’a yüklenmediyse, lütfen servislerin çalışmasında hata olmadığından emin olun:
 
-* Postanalytics modül loglarını analiz edin:
+* Postanalytics modülü günlüklerini analiz edin
 
     ```bash
-    sudo cat /opt/wallarm/var/log/wallarm/tarantool-out.log
+    sudo cat /opt/wallarm/var/log/wallarm/wstore-out.log
     ```
 
-    Eğer `SystemError binary: failed to bind: Cannot assign requested address` kaydı varsa, belirtilen adres ve port üzerinden sunucunun bağlantıları kabul ettiğinden emin olun.
-* NGINX‑Wallarm modülünün bulunduğu sunucuda, NGINX loglarını analiz edin:
+    `SystemError binary: failed to bind: Cannot assign requested address` benzeri bir kayıt varsa, sunucunun belirtilen adres ve port üzerinden bağlantı kabul ettiğinden emin olun.
+* NGINX‑Wallarm modülünün bulunduğu sunucuda, NGINX günlüklerini analiz edin:
 
     ```bash
     sudo cat /var/log/nginx/error.log
     ```
 
-    Eğer `[error] wallarm: <address> connect() failed` kaydı varsa, NGINX‑Wallarm modülü yapılandırma dosyalarında ayrı postanalytics modülünün adresinin doğru girildiğinden ve ayrı postanalytics sunucusunun belirtilen adres ve port üzerinden bağlantıları kabul ettiğinden emin olun.
-* NGINX‑Wallarm modülünün bulunduğu sunucuda, işlenen isteklerin istatistiklerini aşağıdaki komutla alın ve `tnt_errors` değerinin 0 olduğundan emin olun:
+    `[error] wallarm: <address> connect() failed` benzeri bir kayıt varsa, ayrı postanalytics modülünün adresinin NGINX‑Wallarm modülü yapılandırma dosyalarında doğru belirtildiğinden ve ayrı postanalytics sunucusunun belirtilen adres ve port üzerinden bağlantı kabul ettiğinden emin olun.
+* NGINX‑Wallarm modülünün bulunduğu sunucuda, aşağıdaki komutla işlenen isteklerin istatistiğini alın ve `tnt_errors` değerinin 0 olduğundan emin olun
 
     ```bash
     curl http://127.0.0.8/wallarm-status
     ```
 
-    [İstatistik servisi tarafından döndürülen tüm parametrelerin açıklaması →](configure-statistics-service.md)
+    [İstatistik servisinin döndürdüğü tüm parametrelerin açıklaması →](configure-statistics-service.md)
 
-## Postanalytics Modülünün Korunması
+## NGINX‑Wallarm modülü ile postanalytics modülü arasında SSL/TLS ve mTLS
 
-!!! warning "Kurulmuş postanalytics modülünü koruyun"
-    Yeni kurulan Wallarm postanalytics modülünü bir güvenlik duvarı ile korumanızı **şiddetle tavsiye ederiz**. Aksi halde, aşağıdaki riskler ortaya çıkabilir:
+İsteğe bağlı olarak, NGINX‑Wallarm modülü ile postanalytics arasında SSL/TLS üzerinden güvenli bağlantı kurabilirsiniz. Hem tek yönlü sunucu sertifikası doğrulaması hem de karşılıklı TLS desteklenir.
+
+6.2.0 sürümünden itibaren kullanılabilir.
+
+### Postanalytics modülüne SSL/TLS bağlantısı
+
+NGINX‑Wallarm modülünden postanalytics modülüne güvenli SSL/TLS bağlantısını etkinleştirmek için:
+
+1. Çalışan postanalytics modülünün ana makinesinin FQDN’i veya IP adresi için bir sunucu sertifikası çıkarın.
+1. Postanalytics sunucusunda, `/opt/wallarm/wstore/wstore.yaml` dosyasında SSL/TLS’i etkinleştirin:
+
+    ```yaml
+    service:
+      TLS:
+        enabled: true
+        address: 0.0.0.0:6388
+        certFile: "/opt/wallarm/wstore/wstore.crt"
+        keyFile: "/opt/wallarm/wstore/wstore.key"
+        # caCertFile: "/opt/wallarm/wstore/wstore-ca.crt"
+    ```
+
+    * `enabled`: postanalytics modülü için SSL/TLS’i etkinleştirir veya devre dışı bırakır. Varsayılan `false`’tur.
+    * `address`: postanalytics modülünün gelen TLS bağlantılarını kabul ettiği adres ve port. Belirtilen adresin gelen bağlantılara izin vermesi gerekir.
+    * `certFile`: TLS el sıkışması sırasında istemciye (NGINX‑Wallarm modülü) sunulan sunucu sertifikasının yolu.
+    * `keyFile`: sunucu sertifikasına karşılık gelen özel anahtarın yolu.
+    * `caCertFile` (isteğe bağlı): sunucu için özel CA sertifikasının yolu.
+1. Postanalytics sunucusunda Wallarm servislerini yeniden başlatın:
+
+    ```
+    sudo systemctl restart wallarm.service
+    ```
+1. NGINX‑Wallarm sunucusunda, NGINX [yapılandırma dosyasında](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) (genellikle, `/etc/nginx/nginx.conf`):
+
+    1. TLS üzerinden postanalytics için kullanılan upstream’i yapılandırın.
+    1. [`wallarm_wstore_upstream`](configure-parameters-en.md#wallarm_wstore_upstream) yönergesine `ssl=on` seçeneğini ekleyin.
+    1. Postanalytics modülü özel bir CA tarafından imzalanmış bir sertifika kullanıyorsa, CA sertifikasını NGINX‑Wallarm sunucusuna yükleyin ve yolunu [`wallarm_wstore_ssl_ca_cert_file`](configure-parameters-en.md#wallarm_wstore_ssl_ca_cert_file) içinde belirtin.
     
-    *   İşlenen istekler hakkında bilgi sızdırılması
-    *   Rastgele Lua kodlarının ve işletim sistemi komutlarının çalıştırılması
+        Bu dosya, postanalytics sunucusunda yapılandırılmış `service.TLS.caCertFile` ile aynı olmalıdır.
+
+    ```
+    http {
+        upstream wallarm_wstore {
+            server postanalytics.server.com:6388 max_fails=0 fail_timeout=0 max_conns=1;
+            keepalive 1;
+        }
+    
+        wallarm_wstore_upstream wallarm_wstore ssl=on;
+
+        # wallarm_wstore_ssl_ca_cert_file /path/to/wstore-ca.crt;
+    }
+    ```
+1. NGINX‑Wallarm sunucusunda NGINX’i yeniden başlatın:
+
+    === "Debian"
+        ```bash
+        sudo systemctl restart nginx
+        ```
+    === "Ubuntu"
+        ```bash
+        sudo service nginx restart
+        ```
+    === "CentOS"
+        ```bash
+        sudo systemctl restart nginx
+        ```
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+        ```bash
+        sudo systemctl restart nginx
+        ```
+    === "RHEL 8.x"
+        ```bash
+        sudo systemctl restart nginx
+        ```
+1. [Entegrasyonu kontrol edin](#step-9-check-the-nginxwallarm-and-separate-postanalytics-modules-interaction).
+
+### Karşılıklı TLS (mTLS)
+
+Hem NGINX‑Wallarm modülünün hem de postanalytics modülünün birbirlerinin sertifikalarını doğruladığı karşılıklı kimlik doğrulamayı etkinleştirmek için:
+
+1. Yukarıda açıklandığı gibi, postanalytics modülüne [SSL/TLS bağlantısını etkinleştirin](#ssltls-connection-to-the-postanalytics-module).
+1. Çalışan NGINX‑Wallarm modülünün ana makinesinin FQDN’i veya IP adresi için bir istemci sertifikası çıkarın.
+1. NGINX‑Wallarm sunucusunda, istemci sertifikasını ve özel anahtarı yükleyin ve yollarını [`wallarm_wstore_ssl_cert_file`](configure-parameters-en.md#wallarm_wstore_ssl_cert_file) ve [`wallarm_wstore_ssl_key_file`](configure-parameters-en.md#wallarm_wstore_ssl_key_file) içinde belirtin:
+
+    ```
+    http {
+        upstream wallarm_wstore {
+            server postanalytics.server.com:6388 max_fails=0 fail_timeout=0 max_conns=1;
+            keepalive 1;
+        }
+    
+        wallarm_wstore_upstream wallarm_wstore ssl=on;
+
+        wallarm_wstore_ssl_cert_file /path/to/client.crt;
+        wallarm_wstore_ssl_key_file /path/to/client.key;
+        
+        # wallarm_wstore_ssl_ca_cert_file /path/to/wstore-ca.crt;
+    }
+    ```
+
+    Ardından, NGINX’i yeniden başlatın:
+
+    === "Debian"
+        ```bash
+        sudo systemctl restart nginx
+        ```
+    === "Ubuntu"
+        ```bash
+        sudo service nginx restart
+        ```
+    === "CentOS"
+        ```bash
+        sudo systemctl restart nginx
+        ```
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+        ```bash
+        sudo systemctl restart nginx
+        ```
+    === "RHEL 8.x"
+        ```bash
+        sudo systemctl restart nginx
+        ```
+
+1. Postanalytics sunucusunda, `/opt/wallarm/wstore/wstore.yaml` içinde mTLS’i etkinleştirin:
+
+    ```yaml
+    service:
+      TLS:
+        enabled: true
+        address: 0.0.0.0:6388
+        certFile: "/opt/wallarm/wstore/wstore.crt"
+        keyFile: "/opt/wallarm/wstore/wstore.key"
+        # caCertFile: "/opt/wallarm/wstore/wstore-ca.crt"
+        mutualTLS:
+          enabled: true
+          # clientCACertFile: "/opt/wallarm/wstore/client-ca.crt"
+    ```
+
+    * `mutualTLS.enabled`: mTLS’i etkinleştirir veya devre dışı bırakır. Varsayılan `false`’tur.
+    * `mutualTLS.clientCACertFile` (isteğe bağlı): NGINX‑Wallarm istemcisi için özel CA sertifikasının yolu.
+
+
+    Ardından, Wallarm servislerini yeniden başlatın:
+
+    ```
+    sudo systemctl restart wallarm.service
+    ```
+
+## Postanalytics modülü koruması
+
+!!! warning "Yüklenen postanalytics modülünü koruyun"
+    Yeni kurulan Wallarm postanalytics modülünü bir güvenlik duvarı ile korumanızı şiddetle öneririz. Aksi takdirde, aşağıdakilerle sonuçlanabilecek yetkisiz erişim riski vardır:
+    
+    *   İşlenen isteklere ilişkin bilgilerin ifşası
+    *   Keyfi Lua kodu ve işletim sistemi komutlarının çalıştırılabilmesi
    
-    NGINX-Wallarm modülü ile aynı sunucuda postanalytics modülünü dağıtıyorsanız, böyle bir risk söz konusu değildir. Çünkü postanalytics modülü `3313` portunu dinleyecektir.
+    Lütfen, postanalytics modülünü NGINX‑Wallarm modülü ile aynı sunucuda dağıtıyorsanız böyle bir riskin olmadığını unutmayın. Bunun nedeni, postanalytics modülünün `3313` portunu dinlemesidir.
     
-    **Ayrı kurulmuş postanalytics modülü için uygulanması gereken güvenlik duvarı ayarları şunlardır:**
+    **Ayrı olarak kurulan postanalytics modülüne uygulanması gereken güvenlik duvarı ayarları şunlardır:**
     
-    *   Postanalytics modülünün Wallarm API sunucuları ile etkileşimde bulunabilmesi için HTTPS trafiğine izin verin:
-        *   `us1.api.wallarm.com` – US Wallarm Cloud API sunucusu
-        *   `api.wallarm.com` – EU Wallarm Cloud API sunucusu
-    *   Sadece Wallarm filtering düğümlerinin IP adreslerinden gelen bağlantılara izin vererek `3313` Tarantool portuna TCP ve UDP protokolleri üzerinden erişimi kısıtlayın.
-
-## Tarantool Sorun Giderme
-
-[Tarantool troubleshooting](../faq/tarantool.md)
+    *   Postanalytics modülünün bu sunucularla etkileşime geçebilmesi için Wallarm API sunucularına giden ve bu sunuculardan gelen HTTPS trafiğine izin verin:
+        *   `us1.api.wallarm.com`, US Wallarm Cloud’daki API sunucusudur
+        *   `api.wallarm.com`, EU Wallarm Cloud’daki API sunucusudur
+    *   TCP ve UDP protokolleri üzerinden `3313` wstore portuna erişimi kısıtlayın; yalnızca Wallarm filtreleme düğümlerinin IP adreslerinden gelen bağlantılara izin verin.

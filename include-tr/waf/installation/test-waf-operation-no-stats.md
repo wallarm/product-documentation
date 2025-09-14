@@ -1,9 +1,12 @@
-1. Test [Path Traversal][ptrav-attack-docs] saldırısı ile korunan bir kaynak adresine istek gönderin:
+1. Korunan bir kaynak adresine test [Dizin Geçişi][ptrav-attack-docs] saldırısıyla istek gönderin:
 
     ```
     curl http://localhost/etc/passwd
     ```
 
-    Trafik `example.com` adresine proxy edilecek şekilde yapılandırıldıysa, isteğe `-H "Host: example.com"` başlığını ekleyin.
-2. Wallarm Console → **Attacks** bölümünü [US Cloud](https://us1.my.wallarm.com/attacks) veya [EU Cloud](https://my.wallarm.com/attacks) içinde açın ve saldırının listede görüntülendiğinden emin olun.
-    ![Attacks in the interface][attacks-in-ui-image]
+    Trafik `example.com` adresine proxy üzerinden iletilecek şekilde yapılandırıldıysa, isteğe `-H "Host: example.com"` başlığını ekleyin.
+1. Wallarm Console → [US Cloud](https://us1.my.wallarm.com/attacks) veya [EU Cloud](https://my.wallarm.com/attacks) içindeki **Attacks** bölümünü açın ve saldırının listede görüntülendiğinden emin olun.
+
+    ![Arayüzde Attacks][attacks-in-ui-image]
+
+1. İsteğe bağlı olarak, düğümün çalışmasının diğer yönlerini [test edin][link-wallarm-health-check].

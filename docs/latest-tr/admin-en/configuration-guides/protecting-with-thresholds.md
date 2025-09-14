@@ -1,59 +1,60 @@
-# Multi-Saldırı Yapıcılarından Korunma
+# Çoklu Saldırı Faillerine Karşı Koruma
 
-Wallarm, [engelleme modunda](../../admin-en/configure-wallarm-mode.md) olduğunda, kötü amaçlı içerikli tüm istekleri otomatik olarak engeller ve yalnızca meşru isteklerin geçişine izin verir. Aynı IP'den gelen farklı kötü amaçlı içeriklerin sayısı (genellikle **multi-attack perpetrator** olarak adlandırılan) belirli bir eşiği aştığında, Wallarm tepkisini ayarlayarak uygulamalarınız ve API'niz için ek koruma yapılandırabilirsiniz.
+Wallarm [blocking mode](../../admin-en/configure-wallarm-mode.md) konumundayken, kötü amaçlı payload içeren tüm istekleri otomatik olarak engeller ve yalnızca meşru isteklerin geçmesine izin verir. Aynı IP’den gelen farklı kötü amaçlı payload sayısı (sıklıkla “multi-attack perpetrator” olarak anılır) belirli bir eşiği aşarsa, Wallarm’ın tepkisini ayarlayarak uygulamalarınız ve API’niz için ek koruma yapılandırabilirsiniz.
 
-Bu tür saldırganlar otomatik olarak denylist'e alınabilir; bu liste, geçmişte çok sayıda kötü amaçlı istek üretmiş olmaları nedeniyle, kötü amaçlı olup olmadıkları analiz edilmeksizin **tüm isteklerini engellemeye** başlar.
+Bu tür failler otomatik olarak denylist’e alınabilir; bu da onlardan gelen tüm isteklerin engellenmesini sağlar. Bu durumda, söz konusu kaynaktan geçmişte çok sayıda kötü amaçlı istek üretildiği için, isteklerin kötü amaçlı olup olmadığını analiz etmeye zaman harcanmaz.
 
 ## Yapılandırma
 
-Çoklu saldırı yapıcılardan korunmayı nasıl yapılandıracağınızı öğrenmek için aşağıdaki örneği inceleyin.
+Aşağıdaki örneği göz önünde bulundurarak çoklu saldırı faillerine karşı korumayı nasıl yapılandıracağınızı öğrenin.
 
-Diyelim ki, bir IP'den saatte 3'ten fazla kötü amaçlı içerik gelmesini, o IP'yi tamamen engellemek için yeterli bir neden olarak değerlendiriyorsunuz. Bunu yapmak için ilgili eşiği ayarlayıp, sisteme orijinal IP'yi 1 saat boyunca engellemesi talimatını verirsiniz.
+Diyelim ki bazı IP’lerden saatte 3’ten fazla kötü amaçlı payload gelmesini, IP’yi tamamen engellemek için yeterli bir sebep olarak değerlendiriyorsunuz. Bunu yapmak için ilgili eşiği ayarlayın ve sistemin kaynak IP’yi 1 saatliğine engellemesini belirtin.
 
 Bu korumayı sağlamak için:
 
-1. Wallarm Console'u açın → **Triggers** kısmına gidin ve tetikleyici oluşturma penceresini açın.
+1. Wallarm Console → **Triggers**’ı açın ve tetikleyici oluşturma penceresini açın.
 1. **Number of malicious payloads** koşulunu seçin.
-1. Eşiği `her saat aynı IP'den 3'ten fazla kötü amaçlı istek` olarak ayarlayın.
+1. Eşiği şu şekilde ayarlayın: `more than 3 malicious requests from the same IP per hour`.
 
     !!! info "Sayılmayanlar"
-        Deneysel içerikler, [custom regular expressions](../../user-guides/rules/regex-rule.md) kullanılarak oluşturulur.
+        [custom regular expressions](../../user-guides/rules/regex-rule.md) tabanlı deneysel payload’lar.
         
-1. Hiçbir filtre ayarlamayın, ancak diğer durumlarda aşağıdaki filtreleri ayrı ya da birlikte kullanabileceğinizi unutmayın:
+1. Herhangi bir filtre ayarlamayın, ancak diğer durumlarda aşağıdakileri ayrı ayrı veya birleştirerek kullanabileceğinizi unutmayın:
 
-    * **Type**; istekte tespit edilen bir saldırı [type](../../attacks-vulns-list.md) veya isteğin yöneldiği güvenlik açığı türüdür.
-    * **Application**; isteği alan [application](../../user-guides/settings/applications.md)'dır.
-    * **IP**; isteğin gönderildiği IP adresidir. Filtre yalnızca tek IP'leri bekler; alt ağlara, lokasyonlara ve kaynak türlerine izin vermez.
-    * **Domain**; isteği alan alan adıdır.
-    * **Response status**; isteğe döndürülen yanıt kodudur.
-  
-1. **Denylist IP address - `Block for 1 hour`** tetikleyici tepkisini seçin. Eşiğin aşılmasının ardından Wallarm, orijinal IP'yi [denylist](../../user-guides/ip-lists/overview.md)'e ekleyecek ve bundan sonraki tüm istekleri engelleyecektir.
+    * **Type**, istekte tespit edilen saldırı türü veya isteğin yöneldiği güvenlik açığı türüdür ([type](../../attacks-vulns-list.md)).
+    * **Application**, isteği alan [application](../../user-guides/settings/applications.md) öğesidir.
+    * **IP**, isteğin gönderildiği IP adresidir. Filtre yalnızca tekil IP’leri bekler; alt ağlar, konumlar ve kaynak türlerine izin vermez.
+    * **Domain**, isteği alan alan adıdır.
+    * **Response status**, isteğe döndürülen yanıt kodudur.
 
-    Not: Çoklu saldırı koruması nedeniyle bot IP denylist'e eklenmiş olsa dahi, varsayılan olarak Wallarm, bu IP'den gelen engellenmiş isteklerle ilgili istatistikleri toplar ve [görüntüler](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips).
+1. **Denylist IP address** - `Block for 1 hour` tetikleyici tepkisini seçin. Eşik aşıldığında Wallarm, kaynak IP’yi [denylist](../../user-guides/ip-lists/overview.md)’e alacak ve bundan sonraki tüm istekleri engelleyecektir.
 
-    ![Default trigger](../../images/user-guides/triggers/trigger-example-default.png)
+    Çoklu saldırı koruması tarafından bot IP’si denylist’e alınmış olsa bile, varsayılan olarak Wallarm, ondan kaynaklanan engellenen isteklerle ilgili istatistikleri toplar ve [görüntüler](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips).
+
+    ![Varsayılan tetikleyici](../../images/user-guides/triggers/trigger-example-default.png)
         
-1. Tetikleyiciyi kaydedin ve [Cloud and node synchronization completion](../configure-cloud-node-synchronization-en.md)'ın tamamlanmasını bekleyin (genellikle 2-4 dakika sürer).
+1. Tetikleyiciyi kaydedin ve [Cloud ve node eşitlemesinin tamamlanmasını](../configure-cloud-node-synchronization-en.md) bekleyin (genellikle 2-4 dakika sürer).
 
-## Önceden Yapılandırılmış Tetikleyici
+<a id="pre-configured-trigger"></a>
+## Önceden yapılandırılmış tetikleyici
 
-Yeni şirket hesapları, 1 saat içerisinde 3'ten fazla farklı [kötü amaçlı içerik](../../glossary-en.md#malicious-payload) üretildiğinde, IP'yi 1 saat boyunca graylist'e ekleyen, önceden yapılandırılmış (varsayılan) **Number of malicious payloads** tetikleyicisiyle birlikte gelir.
+Yeni şirket hesaplarında, 1 saat içinde 3’ten fazla farklı [malicious payloads](../../glossary-en.md#malicious-payload) üretildiğinde IP’yi 1 saatliğine graylist’e alan, önceden yapılandırılmış (default) **Number of malicious payloads** tetikleyicisi bulunur.
 
-[Graylist](../../user-guides/ip-lists/overview.md), düğüm tarafından işlenen şüpheli IP adreslerinin bulunduğu listedir: Graylist'e alınan bir IP kötü amaçlı istek oluşturduğunda, düğüm bu istekleri engellerken meşru isteklerin geçişine izin verir. Graylist'e karşılık, [denylist](../../user-guides/ip-lists/overview.md) ise uygulamalarınıza ulaşmasına hiç izin verilmeyen IP adreslerini belirtir - düğüm, denylist'e eklenmiş kaynaklar tarafından üretilen meşru trafiği bile engeller. IP graylist'e alma, [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives) oranını azaltmaya yönelik seçeneklerden biridir.
+[Graylist](../../user-guides/ip-lists/overview.md), node tarafından şu şekilde işlenen şüpheli IP adresleri listesidir: graylist’teki bir IP kötü amaçlı istekler üretirse node bunları engeller, ancak meşru isteklere izin verir. Graylist’in aksine, [denylist](../../user-guides/ip-lists/overview.md), uygulamalarınıza hiç ulaşmasına izin verilmeyen IP adreslerini gösterir – node, denylist’teki kaynaklar tarafından üretilen meşru trafiği bile engeller. IP graylisting, [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives) azaltılmasına yönelik seçeneklerden biridir.
 
-Tetikleyici, herhangi bir node filtreleme modunda etkin olduğundan, düğüm modundan bağımsız olarak IP'leri graylist'e alır.
+Tetikleyici, node’un herhangi bir filtreleme modunda çalışır; dolayısıyla node mode’dan bağımsız olarak IP’leri graylist’e alır.
 
-Ancak, düğüm graylist'i yalnızca **safe blocking** modunda analiz eder. Graylist'e alınmış IP'lerden gelen kötü amaçlı istekleri engellemek için, önce özelliklerini öğrenerek düğüm [modunu](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) safe blocking'e geçirin.
+Bununla birlikte, node graylist’i yalnızca **safe blocking** modunda analiz eder. Graylist’teki IP’lerden gelen kötü amaçlı istekleri engellemek için, önce özelliklerini öğrenerek node [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)’unu safe blocking olarak değiştirin.
 
-Brute force, Forced browsing, Resource overlimit, Data bomb veya Virtual patch saldırı türleri bu tetikleyicide dikkate alınmaz.
+Brute force, Forced browsing, Resource overlimit, Data bomb veya Virtual patch saldırı türlerine sahip Hits bu tetikleyicide dikkate alınmaz.
 
-Varsayılan tetikleyiciyi geçici olarak devre dışı bırakabilir, düzenleyebilir veya silebilirsiniz.
+Default tetikleyiciyi geçici olarak devre dışı bırakabilir, değiştirebilir veya silebilirsiniz.
 
-## Test
+## Test etme
 
-Aşağıdakiler, [önceden yapılandırılmış tetikleyici](#pre-configured-trigger) için test örneğidir. Bunları tetikleyici görünümünüze göre ayarlayabilirsiniz.
+Aşağıda, [pre-configured trigger](#pre-configured-trigger) için test örneği verilmiştir. Bunu kendi tetikleyici görünümünüze uyarlayabilirsiniz.
 
-1. Aşağıdaki istekleri korunan kaynağa gönderin:
+1. Korumalı kaynağa aşağıdaki istekleri gönderin:
 
     ```bash
     curl 'http://localhost/?id=1%27%20UNION%20SELECT%20username,%20password%20FROM%20users--<script>prompt(1)</script>'
@@ -61,10 +62,10 @@ Aşağıdakiler, [önceden yapılandırılmış tetikleyici](#pre-configured-tri
     curl http://localhost/instructions.php/etc/passwd
     ```
 
-    Bunlar, [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) ve [Path Traversal](../../attacks-vulns-list.md#path-traversal) türlerinden toplam 4 kötü amaçlı içeriktir.
-1. Wallarm Console'u açın → **IP lists** → **Graylist** bölümüne gidin ve isteklerin gönderildiği IP adresinin 1 saat boyunca graylist'e alındığını kontrol edin.
+    [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) ve [Path Traversal](../../attacks-vulns-list.md#path-traversal) türlerinde 4 kötü amaçlı payload vardır.
+1. Wallarm Console → **IP lists** → **Graylist**’i açın ve isteklerin geldiği IP adresinin 1 saatliğine graylist’e alındığını kontrol edin.
 1. **Attacks** bölümünü açın ve saldırıların listede görüntülendiğini kontrol edin:
 
-    ![Three malicious payloads in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
+    ![UI'de üç kötü amaçlı payload](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
 
-    Saldırıları aramak için `multiple_payloads` [arama etiketi](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) kullanabilirsiniz.
+    Saldırıları aramak için `multiple_payloads` [arama etiketi](../../user-guides/search-and-filters/use-search.md#search-by-attack-type)’ni kullanabilirsiniz.

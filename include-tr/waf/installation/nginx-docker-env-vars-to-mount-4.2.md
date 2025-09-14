@@ -1,4 +1,4 @@
-Environment variable | Açıklama | Gerekli
+Ortam değişkeni | Açıklama| Gerekli
 --- | ---- | ----
-`WALLARM_API_TOKEN` | Wallarm düğüm token'ı.<br><div class="admonition info"> <p class="admonition-title">Wallarm Cloud erişimini yapılandıran önceki değişkenler</p> <p>Sürüm 4.0'dan önce, `WALLARM_API_TOKEN`'dan önce kullanılan değişkenler `DEPLOY_USERNAME` ve `DEPLOY_PASSWORD` idi. Yeni sürümden itibaren, Wallarm Cloud erişimi için yeni token tabanlı yaklaşımın kullanılması tavsiye edilmektedir. [Yeni düğüm sürümüne geçiş hakkında daha fazla bilgi](/updating-migrating/docker-container/)</p></div> | Yes
-`WALLARM_API_HOST` | Wallarm API sunucusu:<ul><li>US Cloud için: `us1.api.wallarm.com`</li><li>EU Cloud için: `api.wallarm.com`</li></ul>Varsayılan: `api.wallarm.com`. | No
+`WALLARM_API_TOKEN` | Wallarm düğüm belirteci.<br><div class="admonition info"> <p class="admonition-title">Wallarm Cloud erişimini yapılandıran önceki değişkenler</p> <p>Sürüm 4.0 yayınlanmadan önce, `WALLARM_API_TOKEN`'dan önce kullanılan değişkenler `DEPLOY_USERNAME` ve `DEPLOY_PASSWORD` idi. Yeni sürümle birlikte, Wallarm Cloud'a erişim için belirteç tabanlı yeni yaklaşımın kullanılması önerilir. [Yeni düğüm sürümüne geçiş hakkında daha fazla ayrıntı](/updating-migrating/docker-container/)</p></div> | Evet
+`WALLARM_API_HOST` | Wallarm API sunucusu:<ul><li>`us1.api.wallarm.com` US Cloud için</li><li>`api.wallarm.com` EU Cloud için</li></ul>Varsayılan olarak: `api.wallarm.com`. | Hayır

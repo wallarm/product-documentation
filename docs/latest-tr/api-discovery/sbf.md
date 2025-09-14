@@ -1,48 +1,50 @@
-# Hassas İş Akışları <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Hassas İş Akışları <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Hassas iş akışı özelliği sayesinde, Wallarm'ın [API Discovery](overview.md) aracı; kimlik doğrulama, hesap yönetimi, faturalandırma ve benzeri kritik yetenekler gibi belirli iş akışları ve fonksiyonlar için hayati önem taşıyan uç noktaları otomatik olarak tanımlayabilir. Bu makalede, hassas iş akışı işlevselliğinin nasıl kullanılacağını öğrenin.
+Hassas iş akışı yeteneğiyle Wallarm'ın [API Discovery](overview.md) özelliği, kimlik doğrulama, hesap yönetimi, faturalama ve benzeri kritik yetenekler gibi belirli iş akışları ve işlevler için kritik olan uç noktaları otomatik olarak tanımlar. Bu makaleden hassas iş akışı işlevini nasıl kullanacağınızı öğrenin.
 
-NGINX Node 5.2.11 veya Native Node 0.10.1 veya daha üst bir sürüm gerekmektedir.
+NGINX Node 5.2.11 veya Native Node 0.10.1 ya da üzeri gereklidir.
 
-## Ele Alınan Sorunlar
+## Ele alınan sorunlar
 
-Hassas iş akışlarının kötüye kullanılması, OWASP API Top 10 riskleri arasında altıncı sırada yer almaktadır ([API6](https://owasp.org/API-Security/editions/2023/en/0xa6-unrestricted-access-to-sensitive-business-flows/)). Bu hassas iş akışlarını korumak; iş sürekliliğini sağlar, hassas verilerin sızmasını, itibar kaybını ve finansal zararı önler.
+Hassas iş akışlarının kötüye kullanımı, OWASP API Top 10 riskleri arasında altıncı sırada ([API6](https://owasp.org/API-Security/editions/2023/en/0xa6-unrestricted-access-to-sensitive-business-flows/)) yer alır. Bu hassas iş akışlarını korumak, iş sürekliliğini sağlar, hassas verilerin sızdırılmasını, itibar risklerini ve finansal zararları önler.
 
-Hassas iş akışları özelliği ile Wallarm, iş açısından kritik fonksiyonların sağlığını ortaya koyar ve şunlara yardımcı olur:
+Hassas iş akışları yeteneğiyle Wallarm, işletme açısından kritik işlevlerin sağlık durumunu vurgular ve şunlara yardımcı olur:
 
-* Hassas iş akışı ile ilişkili uç noktaları düzenli olarak izlemek ve denetlemek.
-* Geliştirme, bakım ve güvenlik çalışmaları için önceliklendirmek.
-* Daha güçlü güvenlik önlemleri uygulamak (örneğin, şifreleme, kimlik doğrulama, erişim kontrolleri ve hız sınırlamaları).
-* Denetim izlerini ve veri koruma önlemlerinin kanıtlarını kolaylıkla oluşturmak.
+* Hassas iş akışlarıyla ilişkili uç noktaları zafiyet veya ihlaller açısından düzenli olarak izlemek ve denetlemek.
+* Geliştirme, bakım ve güvenlik çalışmalarında bunlara öncelik vermek.
+* Daha güçlü güvenlik önlemleri uygulamak (örn. şifreleme, kimlik doğrulama, erişim kontrolleri ve hız sınırları).
+* Denetim izlerini ve veri koruma önlemlerine ilişkin kanıtları kolayca üretmek.
 
-## Otomatik Etiketleme
+## Otomatik etiketleme
 
-Kolaylık olması açısından, API Discovery, uç noktaları otomatik olarak hassas iş akışlarına ait olarak etiketler - yeni bir uç nokta keşfedildiğinde, bu uç noktanın bir veya daha fazla hassas iş akışına ait olma potansiyelini kontrol eder:
+Kolaylık olması için, API Discovery uç noktaları hassas iş akışlarına ait olup olmadıklarıyla otomatik olarak etiketler - yeni bir uç nokta keşfedildiğinde, bu uç noktanın bir veya daha fazla hassas iş akışına potansiyel olarak ait olup olmadığını kontrol eder:
 
 --8<-- "../include/default-sbf.md"
 
-Otomatik kontroller, uç nokta URL'sindeki anahtar kelimeler kullanılarak gerçekleştirilir. Örneğin; `payment`, `subscription` veya `purchase` gibi anahtar kelimeler, uç noktayı otomatik olarak **Faturalandırma** akışı ile ilişkilendirirken, `auth`, `token` veya `login` gibi anahtar kelimeler uç noktayı **Kimlik Doğrulama** akışıyla bağlar. Eşleşmeler tespit edildiğinde, uç nokta otomatik olarak uygun akışa atanır.
+Otomatik kontroller, uç nokta URL'sindeki anahtar kelimeler kullanılarak gerçekleştirilir. Örneğin, `payment`, `subscription` veya `purchase` gibi anahtar kelimeler, uç noktayı otomatik olarak **Billing** akışıyla ilişkilendirirken; `auth`, `token` veya `login` gibi anahtar kelimeler onu **Authentication** akışıyla ilişkilendirir. Eşleşme algılanırsa uç nokta otomatik olarak uygun akışa atanır.
 
-## Uç Noktaları Manuel Etiketleme
+Otomatik etiketleme, hassas iş akışlarının çoğunu keşfeder. Ancak, aşağıdaki bölümde açıklandığı gibi atanan iş akışlarının listesini manuel olarak da ayarlamak mümkündür.
 
-[Otomatik etiketleme](#automatic-tagging) sonuçlarını ayarlamak için, uç noktanın ait olduğu hassas iş akışları listesini manuel olarak düzenleyebilirsiniz. Ayrıca, anahtar kelime listesine doğrudan uymayan uç noktaları da manuel olarak etiketleyebilirsiniz.
+## Uç noktaları manuel etiketleme
 
-Uç noktanın ait olduğu iş akışı listesini düzenlemek için, Wallarm Console'da API Discovery bölümüne gidin; ardından, uç noktanız için **Business flow & sensitive data** kısmında listeden bir veya daha fazla iş akışı seçin.
+[otomatik etiketleme](#automatic-tagging) sonuçlarını ayarlamak için, uç noktanın ait olduğu hassas iş akışları listesini manuel olarak düzenleyebilirsiniz. Anahtar kelime listesine doğrudan girmeyen uç noktaları da manuel olarak etiketleyebilirsiniz.
 
-![API Discovery - Hassas İş Akışları](../images/about-wallarm-waf/api-discovery/api-discovery-sbf.png)
+Uç noktanın ait olduğu akışların listesini düzenlemek için Wallarm Console içinde API Discovery'ye gidin; ardından uç noktanız için, **Business flow & sensitive data** bölümünde listeden bir veya birkaç akış seçin.
 
-Aynısını uç nokta detaylarında da yapabilirsiniz.
+![API Discovery - Hassas iş akışları](../images/about-wallarm-waf/api-discovery/api-discovery-sbf.png)
 
-## Oturumlardaki İş Akışları
+Aynısını uç nokta ayrıntılarında da yapabilirsiniz.
 
-Wallarm'ın [API Sessions](../api-sessions/overview.md) aracı, kullanıcı aktivitelerinin tam sırasını sunarak kötü niyetli aktörlerin mantığına daha fazla görünürlük kazandırır. Eğer bir oturumun istekleri, API Discovery'de hassas iş akışları için önemli olarak etiketlenen uç noktaları etkiliyorsa, bu oturum otomatik olarak [etiketlenir](../api-sessions/exploring.md#sensitive-business-flows) ve ilgili iş akışını etkilediği belirtilir.
+## Oturumlarda iş akışları
 
-Oturumlar hassas iş akışı etiketleri ile atandıktan sonra, belirli bir iş akışına göre filtreleme yapılabilir; bu durum, analiz edilmesi en önemli oturumların seçilmesini kolaylaştırır.
+Wallarm'ın [API Sessions](../api-sessions/overview.md) özelliği, size kullanıcı aktivitelerinin tam dizisini sunmak ve böylece kötü niyetli aktörlerin mantığına daha fazla görünürlük sağlamak için kullanılır. Bir oturumun istekleri, API Discovery içinde bazı hassas iş akışları için önemli olarak etiketlenen uç noktaları etkiliyorsa, bu oturum da ilgili iş akışını etkiliyor olarak otomatik olarak [etiketlenir](../api-sessions/exploring.md#sensitive-business-flows).
+
+Oturumlara hassas iş akışı etiketleri atandıktan sonra, onları belirli bir iş akışına göre filtrelemek mümkün hale gelir; bu da analiz edilmesi en önemli oturumları seçmeyi kolaylaştırır.
 
 ![!API Sessions - hassas iş akışları](../images/api-sessions/api-sessions-sbf-no-select.png)
 
-## İş Akışına Göre Filtreleme
+## İş akışına göre filtreleme
 
-Uç noktalar hassas iş akışı etiketleri ile atandıktan sonra, tüm keşfedilen uç noktaları belirli bir iş akışına göre filtrelemek (**Business flow** filtresi) mümkün hale gelir; bu durum en kritik iş yeteneklerini korumayı kolaylaştırır.
+Uç noktalara hassas iş akışı etiketleri atandıktan sonra, keşfedilen tüm uç noktaları belirli bir iş akışına göre filtrelemek (the **Business flow** filter) mümkün hale gelir; bu da en kritik iş yeteneklerini korumayı kolaylaştırır.
 
 ![API Discovery - Hassas iş akışlarına göre filtreleme](../images/about-wallarm-waf/api-discovery/api-discovery-sbf-filter.png)

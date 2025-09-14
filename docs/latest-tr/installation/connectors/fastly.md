@@ -1,4 +1,3 @@
-```markdown
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
@@ -6,14 +5,18 @@
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
+[helm-chart-native-node]:           ../native-node/helm-chart.md
+[custom-blocking-page]:             ../../admin-en/configuration-guides/configure-block-page-and-code.md
+[rate-limiting]:                    ../../user-guides/rules/rate-limiting.md
+[multi-tenancy]:                    ../multi-tenant/overview.md
 
-# Wallarm Connector for Fastly
+# Fastly için Wallarm Bağlayıcısı
 
-[Fastly](https://www.fastly.com/) güçlü bir edge bulut platformudur; İçerik Dağıtım Ağı (CDN) hizmetleri, gerçek zamanlı uygulama teslimi, önbellekleme ve kenarda özel mantık çalıştırmak için Compute@Edge sunar. Wallarm connector ile Fastly üzerinde çalışan API'lerinizi güvence altına alabilirsiniz.
+[Fastly](https://www.fastly.com/), İçerik Dağıtım Ağı (CDN) hizmetleri, gerçek zamanlı uygulama teslimi, önbellekleme ve uçta özel mantık çalıştırmak için Compute@Edge sunan güçlü bir edge bulut platformudur. Wallarm bağlayıcısı ile Fastly üzerinde çalışan API’leri güvenceye alabilirsiniz.
 
-Wallarm'u Fastly connector olarak kullanmak için, **Wallarm Node'u harici olarak dağıtmanız** ve **Wallarm tarafından sağlanan ikili dosyaları kullanarak Fastly Compute servisini çalıştırmanız** gerekmektedir; böylece trafiği analiz için Wallarm Node'a yönlendirebilirsiniz.
+Wallarm’ı bir Fastly bağlayıcısı olarak kullanmak için, trafiği analiz için Wallarm Node’a yönlendirmek üzere, **Wallarm Node’u harici olarak dağıtmanız** ve **Wallarm tarafından sağlanan ikilileri kullanarak bir Fastly Compute hizmeti çalıştırmanız** gerekir.
 
-Fastly connector, hem [in-line](../inline/overview.md) hem de [out-of-band](../oob/overview.md) trafik akışlarını destekler.
+Fastly bağlayıcısı hem [in-line](../inline/overview.md) hem de [out-of-band](../oob/overview.md) trafik akışlarını destekler.
 
 <!-- === "In-line traffic flow"
 
@@ -23,60 +26,62 @@ Fastly connector, hem [in-line](../inline/overview.md) hem de [out-of-band](../o
 === "Out-of-band traffic flow"
     ![Fastly with Wallarm - out-of-band scheme](../../images/waf-installation/gateways/fastly/fastly-traffic-flow-oob.png) -->
 
-## Kullanım Senaryoları
+## Kullanım senaryoları
 
-Desteklenen tüm [Wallarm deployment options](../supported-deployment-options.md) arasında, bu çözüm Fastly üzerinden trafik dağıttığınız durumlarda tavsiye edilmektedir.
+Bu çözüm, trafiği Fastly üzerinden ilettiğiniz durumlarda önerilir.
 
 ## Sınırlamalar
 
-* Wallarm kuralı tarafından [Rate limiting](../../user-guides/rules/rate-limiting.md) desteklenmemektedir.
-* [Multitenancy](../multi-tenant/overview.md) henüz desteklenmemektedir.
+* [Helm chart][helm-chart-native-node] kullanarak `LoadBalancer` türünde Wallarm hizmeti dağıtılırken, Node örneği alan adı için **güvenilir** bir SSL/TLS sertifikası gereklidir. Öz imzalı sertifikalar henüz desteklenmemektedir.
+* Wallarm kuralı ile [Oran sınırlaması][rate-limiting] desteklenmez.
+* [Çok kiracılık][multi-tenancy] henüz desteklenmiyor.
 
 ## Gereksinimler
 
-Dağıtıma devam edebilmek için aşağıdaki gereksinimleri karşıladığınızdan emin olun:
+Dağıtıma devam etmeden önce aşağıdaki gereksinimleri karşıladığınızdan emin olun:
 
-* Fastly teknolojilerinin anlaşılması.
-* Fastly üzerinden çalışan API'ler veya trafik.
-* [Fastly CLI'nin kurulmuş olması](https://www.fastly.com/documentation/reference/tools/cli/#installing).
+* Fastly teknolojilerine hakimiyet.
+* Fastly üzerinden akan API’ler veya trafik.
+* [Fastly CLI kurulu](https://www.fastly.com/documentation/reference/tools/cli/#installing).
 
 ## Dağıtım
 
-### 1. Bir Wallarm Node Dağıtın
+### 1. Bir Wallarm Node’u dağıtın
 
-Wallarm Node, gelen trafiği inceleyen, kötü niyetli faaliyetleri tespit eden ve tehditleri azaltmak üzere yapılandırılabilen Wallarm platformunun temel bileşenidir.
+Wallarm Node, dağıtmanız gereken Wallarm platformunun çekirdek bileşenidir. Gelen trafiği inceler, kötü niyetli aktiviteleri tespit eder ve tehditleri azaltacak şekilde yapılandırılabilir.
 
-Bunu, ihtiyacınız olan kontrol seviyesine bağlı olarak Wallarm tarafından barındırılan veya kendi altyapınızda barındırılan bir şekilde dağıtabilirsiniz.
+Gerektiğiniz kontrol seviyesine bağlı olarak, Wallarm tarafından barındırılmış şekilde veya kendi altyapınızda dağıtabilirsiniz.
 
-=== "Edge node"
-    Connector için Wallarm tarafından barındırılan node dağıtmak üzere, [talimatları](../se-connector.md) izleyin.
-=== "Self-hosted node"
-    Kendi barındırdığınız node dağıtımı için bir artefakt seçin ve ekli talimatları izleyin:
+=== "Edge düğümü"
+    Bağlayıcı için Wallarm tarafından barındırılan bir düğüm dağıtmak üzere [talimatları](../security-edge/se-connector.md) izleyin.
+=== "Kendi barındırılan düğüm"
+    Kendi barındırılan bir düğüm dağıtımı için bir yapıt seçin ve iliştirilmiş talimatları izleyin:
 
-    * Bare metal veya VM'lerde Linux altyapıları için [All-in-one installer](../native-node/all-in-one.md)
-    * Konteynerleştirilmiş dağıtımları kullanan ortamlar için [Docker image](../native-node/docker-image.md)
-    * Kubernetes kullanılan altyapılar için [Helm chart](../native-node/helm-chart.md)
+    * Bare metal veya VM’lerdeki Linux altyapıları için [Hepsi bir arada yükleyici](../native-node/all-in-one.md)
+    * Konteynerleştirilmiş dağıtımlar kullanan ortamlar için [Docker imajı](../native-node/docker-image.md)
+    * AWS altyapıları için [AWS AMI](../native-node/aws-ami.md)
+    * Kubernetes kullanan altyapılar için [Helm chart](../native-node/helm-chart.md)
 
-### 2. Wallarm kodunu Fastly üzerinde dağıtın
+### 2. Fastly üzerinde Wallarm kodunu dağıtın
 
-Fastly’den gelen trafiği Wallarm Node’a yönlendirmek için, uygun Wallarm mantığına sahip bir Fastly Compute servisi dağıtmanız gerekmektedir:
+Fastly’den Wallarm Node’a trafiği yönlendirmek için, ilgili Wallarm mantığını içeren bir Fastly Compute hizmeti dağıtmanız gerekir:
 
-1. Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** yolunu izleyerek Wallarm paketini indirin.
+1. Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** bölümüne gidip Wallarm paketini indirin.
 
-    Eğer self-hosted node kullanıyorsanız, paket için sales@wallarm.com ile iletişime geçin.
-1. **Fastly** UI → **Account** → **API tokens** → **Personal tokens** → **Create token** bölümüne gidin:
+    Kendi barındırdığınız düğümü çalıştırıyorsanız, paketi almak için sales@wallarm.com ile iletişime geçin.
+1. **Fastly** UI → **Account** → **API tokens** → **Personal tokens** → **Create token** yoluna gidin:
 
-    * Tür: Automation token
-    * Kapsam: Global API erişimi
-    * Diğer ayarları, özel bir değişiklik gerekmedikçe varsayılan bırakın
+    * Type: Automation token
+    * Scope: Global API access
+    * Özel değişiklikler gerekmiyorsa diğer ayarları varsayılan halinde bırakın
 
     ![](../../images/waf-installation/gateways/fastly/generate-token.png)
-1. **Fastly** UI → **Compute** → **Compute services** → **Create service** → **Use a local project** yolunu izleyerek Wallarm için bir örnek oluşturun.
+1. **Fastly** UI → **Compute** → **Compute services** → **Create service** → **Use a local project** yoluna gidin ve Wallarm için bir örnek oluşturun.
 
     Oluşturulduktan sonra, üretilen `--service-id` değerini kopyalayın:
 
     ![](../../images/waf-installation/gateways/fastly/create-compute-service.png)
-1. Wallarm paketini içeren yerel dizine gidin ve dağıtımı gerçekleştirin:
+1. Wallarm paketini içeren yerel dizine gidin ve dağıtın:
 
     ```
     fastly compute deploy --service-id=<SERVICE_ID> --package=wallarm-api-security.tar.gz --token=<FASTLY_TOKEN>
@@ -88,7 +93,7 @@ Fastly’den gelen trafiği Wallarm Node’a yönlendirmek için, uygun Wallarm 
     SUCCESS: Deployed package (service service_id, version 1)
     ```
 
-    ??? warning "Error reading fastly.toml"
+    ??? warning "fastly.toml okunurken hata"
         Aşağıdaki hatayı alırsanız:
 
         ```
@@ -97,57 +102,56 @@ Fastly’den gelen trafiği Wallarm Node’a yönlendirmek için, uygun Wallarm 
         ERROR: error reading fastly.toml.
         ```
 
-        Sağlanan `fastly compute deploy` komutunu, `fastly compute publish` yerine kullandığınızdan emin olun.
+        `fastly compute publish` yerine sağlanan `fastly compute deploy` komutunu kullandığınızdan emin olun.
 
-### 3. Wallarm Node’un ve arka uç sunucusunun hostlarını belirtin
+### 3. Wallarm Node’un ve arka ucun hostlarını belirtin
 
-Analiz ve iletim için düzgün trafik yönlendirmesi yapabilmek adına, Fastly servis yapılandırmasında Wallarm Node ve arka uç sunucu hostlarını tanımlamanız gerekmektedir:
+Analiz ve iletim için doğru trafik yönlendirmesi amacıyla, Fastly hizmeti yapılandırmasında Wallarm Node ve arka uç hostlarını tanımlamanız gerekir:
 
-1. **Fastly** UI → **Compute** → **Compute services** → Wallarm servisine gidin → **Edit configuration** bölümüne geçin.
-1. **Origins** kısmına gidin ve **Create hosts** seçeneğini kullanın:
+1. **Fastly** UI → **Compute** → **Compute services** → Wallarm service → **Edit configuration** yoluna gidin.
+1. **Origins** bölümüne gidin ve **Create hosts**:
 
-    * Trafiğin analiz için Wallarm Node’a yönlendirilmesi amacıyla, [Wallarm Node adresini](#1-deploy-a-wallarm-node) `wallarm-node` hostu olarak ekleyin.
-    * Node’dan orijinal arka uca trafik iletimi için, arka uç adresinizi başka bir host (örneğin, `backend`) olarak ekleyin.
+    * Analiz için trafiği Wallarm node’una yönlendirmek üzere `wallarm-node` host’u olarak Wallarm node URL’sini ekleyin.
+    * Düğümden gelen trafiği kaynak arka ucunuza iletmek için arka uç adresinizi başka bir host (ör. `backend`) olarak ekleyin.
 
     ![](../../images/waf-installation/gateways/fastly/hosts.png)
-1. Yeni servis versiyonunu **Activate** edin.
+1. Yeni hizmet sürümünü **Activate** edin.
 
-### 4. Wallarm config store’u oluşturun
+### 4. Wallarm config store oluşturun
 
-Wallarm’a özgü ayarları tanımlayan `wallarm_config` konfigürasyonunu oluşturun:
+Wallarm’a özel ayarları tanımlayan `wallarm_config` yapılandırmasını oluşturun:
 
-1. **Fastly** UI → **Resources** → **Config stores** → **Create a config store** yolunu izleyerek, aşağıdaki anahtar-değer çiftleriyle `wallarm_config` store’unu oluşturun:
+1. **Fastly** UI → **Resources** → **Config stores** → **Create a config store** yoluna gidin ve aşağıdaki anahtar-değer öğeleriyle `wallarm_config` deposunu oluşturun:
 
-    | Parameter | Açıklama | Zorunlu mu? |
-    | --------- | ----------- | --------- |
-    | `WALLARM_BACKEND` | Compute servis ayarlarında belirtilen [Wallarm Node instance](#1-deploy-a-wallarm-node) için host adı. | Evet |
-    | `ORIGIN_BACKEND` | Compute servis ayarlarında belirtilen arka uç için host adı. | Evet |
-    | `WALLARM_MODE_ASYNC` | Trafiğin kopyasını analiz ederken orijinal akışı etkilemeden (`true`) veya inline analiz (`false`, varsayılan) yapar. | Hayır |
-    | `WALLARM_DEBUG` | Hata ayıklama bilgilerini loglamayı etkinleştirir (`true`) veya devre dışı bırakır (`false`, varsayılan). | Hayır |
-    | `WALLARM_RESPONSE_BODY_SIZE_LIMIT` | Node’un analiz edip işleyebileceği yanıt gövdesi boyut limiti (bayt cinsinden). `none` gibi sayısal olmayan ifadeler (varsayılan) limitsiz demektir. | Hayır |
-    | `ORIGIN_PASS_CACHE` | Fastly’nin önbellek katmanını atlayarak istekleri arka uca iletmek için zorunlu geçiş davranışı sağlar (`true`). Varsayılan olarak Fastly’nin önbellek katmanı kullanılır (`false`). | Hayır |
-    | `ORIGIN_PRESERVE_HOST` | İstemci isteğindeki orijinal `Host` başlığını, arka uç sunucusunun hostname’i ile değiştirmek yerine korur. Rotalama veya loglama için orijinal `Host` bilgisine ihtiyaç duyan arka uçlar için yararlıdır. Varsayılan: `false`. | Hayır |
-    | `LOGGING_ENDPOINT` | Connector için bir [logging endpoint](https://www.fastly.com/documentation/guides/integrations/logging/) belirler. Varsayılan: loglar (stderr). | Hayır |
+    | Parametre | Açıklama | Gerekli mi? |
+    | --------- | -------- | ----------- |
+    | `WALLARM_BACKEND` | Compute hizmeti ayarlarında belirtilen Wallarm Node örneği için ana makine adı. | Evet |
+    | `ORIGIN_BACKEND` | Compute hizmeti ayarlarında belirtilen arka uç için ana makine adı. | Evet |
+    | `WALLARM_MODE_ASYNC` | Orijinal akışı etkilemeden trafiğin [kopya](../oob/overview.md) analizi (`true`) veya satır içi analiz (`false`, varsayılan). | Hayır |
 
-1. Config store’u Wallarm Compute servisine **Link** edin.
+    [Daha fazla parametre](fastly.md#configuration-options)
+1. Config store’u Wallarm Compute hizmetine **Link** edin.
 
 ![](../../images/waf-installation/gateways/fastly/config-store.png)
 
-!!! info "Birden fazla servis ile config store paylaşımı"
-    Birden fazla Wallarm Compute servisi çalıştırıyorsanız, `wallarm_config` tüm servisler arasında paylaşılır. Dolayısıyla, tüm servislerin aynı origin backend adını kullanması gerekir; ancak gerçek backend değeri her servisin ayarlarında özelleştirilebilir.
+!!! info "Birden çok hizmet için Config stores"
+    Wallarm için birden fazla Compute services çalıştırıyorsanız, aşağıdakilerden birini yapabilirsiniz:
+    
+    * Farklı yapılandırmalara sahip birden çok config store oluşturup her birini ilgili hizmete bağlayın.
+    * Aynı config store’u (örneğin, `wallarm_config`) birden çok hizmet arasında paylaşın. Tüm hizmetlerin aynı origin backend adını kullanması gerektiğini, ancak gerçek backend değerinin her hizmetin ayarlarında özelleştirilebileceğini unutmayın.
 
-### 5. (Opsiyonel) Özel bir engelleme sayfası oluşturun
+### 5. (İsteğe bağlı) Özel bir engelleme sayfası ayarlayın
 
-Wallarm Node inline modda çalışırken ve [saldırıları engelliyorsa](../../admin-en/configure-wallarm-mode.md), kötü niyetli isteklere HTTP 403 durum kodu ile yanıt verir. Yanıtı özelleştirmek için, Fastly’de KV store kullanarak özel bir HTML engelleme sayfası yapılandırabilirsiniz:
+Wallarm Node satır içi modda çalışırken ve saldırıları [engellediğinde](../../admin-en/configure-wallarm-mode.md), kötü amaçlı isteklere HTTP 403 durum kodları ile yanıt verir. Yanıtı özelleştirmek için, Fastly’de bir KV store kullanarak özel bir HTML engelleme sayfası yapılandırabilirsiniz:
 
-1. **Fastly** UI → **Resources** → **KV stores** → **Create a KV store** yolunu izleyerek `wallarm` adlı bir KV store oluşturun.
-1. `block_page.html` adında bir anahtar ekleyin ve özel HTML engelleme sayfanızı yükleyin. Bu sayfa, engellenen isteklere dönecektir.
-1. KV store’u Wallarm Compute servisine **Link** edin.
+1. **Fastly** UI → **Resources** → **KV stores** → **Create a KV store** yoluna gidin ve `wallarm` adında bir store oluşturun.
+1. `block_page.html` adında bir anahtar ekleyin ve özel HTML engelleme sayfanızı yükleyin. Bu sayfa, engellenen isteklere döndürülecektir.
+1. KV store’u Wallarm Compute hizmetine **Link** edin.
 
 ![](../../images/waf-installation/gateways/fastly/custom-block-page.png)
 
-??? info "Özel engelleme sayfası için Wallarm şablonunu göster"
-    Başlangıç noktası olarak, özel bir engelleme sayfası için Wallarm tarafından sağlanan aşağıdaki şablonu kullanabilirsiniz. İstediğiniz bilgileri gösterecek şekilde ve tasarımınıza uygun olarak düzenleyin:
+??? info "Özel bir engelleme sayfası için Wallarm şablonunu göster"
+    Başlangıç noktası olarak, özel bir engelleme sayfası için aşağıdaki Wallarm tarafından sağlanan şablonu kullanabilirsiniz. Kullanıcılara göstermek istediğiniz bilgileri içerecek ve istediğiniz tasarımla eşleşecek şekilde gerektiği gibi uyarlayın:
 
     ```html
     <!DOCTYPE html>
@@ -266,7 +270,7 @@ Wallarm Node inline modda çalışırken ve [saldırıları engelliyorsa](../../
             }
         </style>
         <script>
-            // Place your support email here
+            // Destek e-posta adresinizi buraya yerleştirin
             const SUPPORT_EMAIL = "";
         </script>
     </head>
@@ -275,10 +279,10 @@ Wallarm Node inline modda çalışırken ve [saldırıları engelliyorsa](../../
         <div class="content">
             <div id="logo" class="logo">
                 <!--
-                    Place you logo here.
-                    You can use an external image:
+                    Logonuzu buraya yerleştirin.
+                    Harici bir resim kullanabilirsiniz:
                     <img src="https://example.com/logo.png" width="160" alt="Company Name" />
-                    Or put your logo source code (like svg) right here:
+                    Ya da logo kaynak kodunuzu (örneğin svg) doğrudan buraya koyabilirsiniz:
                     <svg width="160" height="80"> ... </svg>
                 -->
             </div>
@@ -324,7 +328,7 @@ Wallarm Node inline modda çalışırken ve [saldırıları engelliyorsa](../../
             <div></div>
         </div>
         <script>
-            // Warning: ES5 code only
+            // Uyarı: Yalnızca ES5 kodu
 
             function writeText(str) {
                 const range = document.createRange();
@@ -361,37 +365,51 @@ Wallarm Node inline modda çalışırken ve [saldırıları engelliyorsa](../../
     </body>
     ```
 
-## Test Etme
+## Test
 
-Dağıtılan çözümün işleyişini test etmek için aşağıdaki adımları izleyin:
+Dağıtılan çözümün işlevselliğini test etmek için şu adımları izleyin:
 
-1. Wallarm Compute servisi domainine [Path Traversal][ptrav-attack-docs] saldırısı içeren isteği gönderin:
+1. Wallarm Compute hizmeti alan adına test [Yol Geçişi (Path Traversal)][ptrav-attack-docs] saldırısı içeren isteği gönderin:
 
     ```
     curl http://<WALLARM_FASTLY_SERVICE>/etc/passwd
     ```
-1. Wallarm Console → **Attacks** bölümüne gidin (US Cloud için [https://us1.my.wallarm.com/attacks](https://us1.my.wallarm.com/attacks) veya EU Cloud için [https://my.wallarm.com/attacks](https://my.wallarm.com/attacks)) ve saldırının listede gösterildiğinden emin olun.
+1. Wallarm Console → **Attacks** bölümünü [US Cloud](https://us1.my.wallarm.com/attacks) veya [EU Cloud](https://my.wallarm.com/attacks) içinde açın ve saldırının listede görüntülendiğinden emin olun.
     
-    ![Attacks in the interface][attacks-in-ui-image]
+    ![Arayüzde saldırılar][attacks-in-ui-image]
 
-    Eğer Wallarm Node modu [blocking](../../admin-en/configure-wallarm-mode.md) olarak ayarlandıysa ve trafik inline akıyorsa, istek de engellenecektir.
+    Wallarm Node modu [engelleme](../../admin-en/configure-wallarm-mode.md) olarak ayarlandıysa ve trafik in-line akıyorsa, istek de engellenecektir.
 
-## Fastly üzerindeki Wallarm Compute servisini güncelleme
+## Yapılandırma seçenekleri
 
-Dağıtılan Fastly Compute servisini [yeni bir sürüme](code-bundle-inventory.md#fastly) güncellemek için:
+Wallarm config store içinde aşağıdaki anahtar-değer öğelerini belirtebilirsiniz:
 
-1. Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** yolunu izleyerek güncellenmiş kod paketini indirin.
+| Parametre | Açıklama | Gerekli mi? |
+| --------- | -------- | ----------- |
+| `WALLARM_BACKEND` | Compute hizmeti ayarlarında belirtilen Wallarm Node örneği için ana makine adı. | Evet |
+| `ORIGIN_BACKEND` | Compute hizmeti ayarlarında belirtilen arka uç için ana makine adı. | Evet |
+| `WALLARM_MODE_ASYNC` | Orijinal akışı etkilemeden trafiğin [kopya](../oob/overview.md) analizi (`true`) veya satır içi analiz (`false`, varsayılan). | Hayır |
+| `WALLARM_DEBUG` | Hata ayıklama bilgilerini tailing loglara yazar (`true`) veya devre dışı bırakır (`false`, varsayılan). | Hayır |
+| `WALLARM_RESPONSE_BODY_SIZE_LIMIT` | Node’un ayrıştırıp analiz edebileceği yanıt gövdesi boyutu sınırı (bayt cinsinden). `none` (varsayılan) gibi sayısal olmayan değerler sınır olmadığı anlamına gelir. | Hayır |
+| `ORIGIN_PASS_CACHE` | Fastly’nin önbellekleme katmanı atlanarak, origin backend’e gönderilen istekler için doğrudan iletme davranışını zorlar (`true`). Varsayılan olarak Fastly’nin önbellekleme katmanı kullanılır (`false`). | Hayır |
+| `ORIGIN_PRESERVE_HOST` | `Host` başlığını origin backend’in ana makine adı ile `X-Forwarded-Host` başlığı üzerinden değiştirmek yerine istemci isteğindeki orijinal `Host` başlığını korur. Orijinal `Host`’a dayanan yönlendirme veya günlükleme yapan arka uçlar için yararlıdır. Varsayılan: `false`. | Hayır |
+| `LOGGING_ENDPOINT` | Bağlayıcı için bir [logging endpoint](https://www.fastly.com/documentation/guides/integrations/logging/) ayarlar. Varsayılan: tailing loglar (stderr). | Hayır |
 
-    Eğer self-hosted node kullanıyorsanız, güncellenmiş kod paketi için sales@wallarm.com ile iletişime geçin.
-1. Güncellenmiş `wallarm-api-security.tar.gz` Wallarm paket arşivini içeren dizine gidin ve şu komutu çalıştırın:
+## Fastly üzerindeki Wallarm Compute hizmetini yükseltme
+
+Dağıtılmış Fastly Compute hizmetini [daha yeni bir sürüme](code-bundle-inventory.md#fastly) yükseltmek için:
+
+1. Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** bölümüne gidin ve güncellenmiş kod paketini indirin.
+
+    Kendi barındırdığınız düğümü çalıştırıyorsanız, güncellenmiş kod paketini almak için sales@wallarm.com ile iletişime geçin.
+1. Güncellenmiş `wallarm-api-security.tar.gz` Wallarm paket arşivinin bulunduğu dizine gidin ve şunu çalıştırın:
 
     ```
     fastly compute deploy --service-id=<SERVICE_ID> --package=wallarm-api-security.tar.gz --token=<FASTLY_TOKEN>
     ```
 
-    * `<SERVICE_ID>`: Dağıtılmış Wallarm servisi ID’niz.
-    * `<FASTLY_TOKEN>`: Dağıtım için kullanılan Fastly API token’ınız.
-1. Fastly UI üzerinden yeni servis versiyonunu **Activate** edin.
+    * `<SERVICE_ID>`: Dağıttığınız Wallarm hizmetinin kimliği.
+    * `<FASTLY_TOKEN>`: Dağıtımda kullanılan Fastly API belirteci.
+1. Fastly UI içinde yeni hizmet sürümünü **Activate** edin.
 
-Compute servis güncellemeleri, özellikle büyük sürüm geçişlerinde Wallarm Node güncellemesi gerektirebilir. Sürüm güncellemeleri ve yükseltme talimatları için [Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) bölümüne bakın. Gelecekteki yükseltmeleri kolaylaştırmak ve eskimeyi önlemek adına düzenli node güncellemeleri yapılması önerilir.
-```
+Compute service yükseltmeleri, özellikle majör sürüm güncellemelerinde, bir Wallarm Node yükseltmesi gerektirebilir. Kendi barındırılan Node sürüm notları ve yükseltme talimatları için [Native Node değişiklik günlüğüne](../../updating-migrating/native-node/node-artifact-versions.md) veya [Edge bağlayıcı yükseltme prosedürüne](../security-edge/se-connector.md#upgrading-the-edge-node) bakın. Eskimeyi önlemek ve gelecekteki yükseltmeleri kolaylaştırmak için düzenli node güncellemeleri önerilir.

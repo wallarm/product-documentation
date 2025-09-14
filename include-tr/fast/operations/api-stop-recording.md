@@ -1,10 +1,10 @@
-| API call: | `POST /v1/test_run/test_run_id/action/stop` |      |
+| API çağrısı: | `POST /v1/test_run/test_run_id/action/stop` |      |
 | ------------- | ------------------------------------------ | ---- |
-| Authorization: | Gerekli | Token ile birlikte |
-| HTTP header with the token: | `X-WallarmAPI-Token` | Token değerini API sunucusuna iletmek için kullanılır |
-| Parameters: | `test_run_id` **(gerekli)** | Standart isteklerin kaydının durdurulacağı test çalıştırmasının tanımlayıcısı |
+| Yetkilendirme: | Gerekli | Token ile |
+| Token içeren HTTP başlığı: | `X-WallarmAPI-Token` | Token değerini API sunucusuna iletmek için kullanılır |
+| Parametreler: | `test_run_id` **(gerekli)** | Temel isteklerin kaydını durdurmak istediğiniz test çalışmasının tanımlayıcısı |
 
-**Bir istek örneği:**
+**İstek örneği:**
 ```
 curl --request GET \
   --url https://us1.api.wallarm.com/v1/test_run/tr_1234/action/stop \
@@ -12,7 +12,7 @@ curl --request GET \
   --header 'X-WallarmAPI-Token: token_Qwe12345'
 ```
 
-**Bir yanıt örneği:**
+**Yanıt örneği:**
 ```
 {
   "status": 200,

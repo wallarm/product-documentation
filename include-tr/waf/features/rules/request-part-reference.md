@@ -1,1 +1,1 @@
-Lütfen unutmayın ki, **In this part of request** kısmına eklediğiniz seçenekler, Wallarm'ın gerekli istek öğesini okumak için [apply parsers][request-processing] hangi sırayla uygulayacağını yansıtacak şekilde belirli bir sırada olmalıdır.
+Unutmayın: **In this part of request** bölümüne eklediğiniz seçenekler, Wallarm'ın gerekli istek öğesini okumak için ayrıştırıcıları hangi sırayla [uygulayacağını][request-processing] yansıtacak şekilde belirli bir sırada yer almalıdır.

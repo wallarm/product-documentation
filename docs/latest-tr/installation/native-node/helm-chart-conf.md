@@ -1,19 +1,19 @@
 [us-cloud-docs]:                      ../../about-wallarm/overview.md#cloud
 [eu-cloud-docs]:                      ../../about-wallarm/overview.md#cloud
 
-# Helm Çizelgesi ile Native Node Yapılandırılması
+# Helm Chart ile Native Node'u Yapılandırma
 
-Özel olarak barındırılan [Wallarm Native Node](../nginx-native-node-internals.md#native-node) Helm Chart kullanılarak dağıtılırken, yapılandırma `values.yaml` dosyasında veya CLI aracılığıyla belirtilir. Bu belge, mevcut yapılandırma parametrelerini özetlemektedir.
+Helm chart kullanarak self-hosted [Wallarm Native Node](../nginx-native-node-internals.md#native-node) dağıtırken, yapılandırma `values.yaml` dosyasında veya CLI üzerinden belirtilir. Bu belge, kullanılabilir yapılandırma parametrelerini açıklar.
 
-Dağıtımdan sonra ayarları değiştirmek için, değiştirmek istediğiniz parametrelerle birlikte aşağıdaki komutu kullanın:
+Dağıtımdan sonra ayarları değiştirmek için, değiştirmek istediğiniz parametrelerle aşağıdaki komutu kullanın:
 
 ```
 helm upgrade --set config.api.token=<VALUE> <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node
 ```
 
-## Temel Ayarlar
+## Temel ayarlar
 
-Varsayılan `values.yaml` dosyasının, temel olarak değiştirmeniz gerekebilecek Wallarm’a özgü kısmı aşağıdaki gibidir:
+Varsayılan `values.yaml` dosyasının, temelde değiştirmeniz gerekebilecek Wallarm'a özgü bölümü aşağıdaki gibidir:
 
 ```yaml
 config:
@@ -40,10 +40,10 @@ config:
         # key: LS0...
     
     allowed_hosts: []
-    mode: monitoring
 
     route_config: {}
       # wallarm_application: -1
+      # wallarm_mode: monitoring
       # routes:
         # - route: "/api/v1"
         #   wallarm_application: 1
@@ -55,6 +55,24 @@ config:
         #   route: /api
         #   wallarm_application: 3
 
+    proxy_headers:
+      # Kural 1: Şirket içi proxy'ler
+      - trusted_networks:
+          - 10.0.0.0/8
+          - 192.168.0.0/16
+        original_host:
+          - X-Forwarded-Host
+        real_ip:
+          - X-Forwarded-For
+
+      # Kural 2: Harici uç proxy'ler (örn., CDN, ters proxy)
+      - trusted_networks:
+          - 203.0.113.0/24
+        original_host:
+          - X-Real-Host
+        real_ip:
+          - X-Real-IP
+
     log:
       pretty: false
       level: info
@@ -62,6 +80,9 @@ config:
       access_log:
         enabled: true
         verbose: false
+
+  aggregation:
+    serviceAddress: "[::]:3313"
 
 processing:
   service:
@@ -71,37 +92,44 @@ processing:
 
 ### config.api.token (gerekli)
 
-[Wallarm Cloud] ile bağlantı kurmak için bir [API token](../../user-guides/settings/api-tokens.md) gereklidir.
+Node'u Wallarm Cloud'a bağlamak için [API token](../../user-guides/settings/api-tokens.md).
 
-Bir API token oluşturmak için:
+API token oluşturmak için:
 
-1. Wallarm Console → **Settings** → **API tokens** bölümüne gidin; [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens)'dan birini seçin.
-1. **Deploy** kaynak rolü ile bir API token oluşturun.
+1. Wallarm Console → Settings → API tokens bölümüne [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens) üzerinde gidin.
+1. Kullanım türü olarak Node deployment/Deployment olan bir API token oluşturun.
 
 ### config.api.host
 
-Wallarm API uç noktası. Şunlar olabilir:
+Wallarm API uç noktası. Şunlardan biri olabilir:
 
-* [US Cloud][us-cloud-docs] için `us1.api.wallarm.com`
-* [EU Cloud][eu-cloud-docs] için `api.wallarm.com` (varsayılan)
+* [US cloud][us-cloud-docs] için `us1.api.wallarm.com`
+* [EU cloud][eu-cloud-docs] için `api.wallarm.com` (varsayılan)
 
 ### config.api.nodeGroup
 
-Yeni dağıtılan düğümlerin ekleneceği filtreleme düğümleri grubunun adını belirtir.
+Yeni dağıtılan node'ları eklemek istediğiniz filtreleme node'ları grubunun adını belirtir.
 
-**Varsayılan değer**: `defaultNodeNextGroup`
+Varsayılan değer: `defaultNodeNextGroup`
+
+### config.connector.mode
+
+Wallarm node çalışma modu. Şunlar olabilir:
+
+* MuleSoft [Mule](../connectors/mulesoft.md) veya [Flex](../connectors/mulesoft-flex.md) Gateway, [Akamai](../connectors/akamai-edgeworkers.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [Kong API Gateway](../connectors/kong-api-gateway.md), [IBM DataPower](../connectors/ibm-api-connect.md) konektörleri için `connector-server` (varsayılan)
+* Istio tarafından yönetilen API'ler için [gRPC tabanlı harici işleme filtresi](../connectors/istio.md) için `envoy-external-filter`
 
 ### config.connector.certificate.enabled (gerekli)
 
-Wallarm Load Balancer'ın güvenli iletişim için SSL/TLS sertifikası kullanıp kullanmayacağını kontrol eder.
+Güvenli iletişim için Wallarm Load Balancer'ın SSL/TLS sertifikası kullanıp kullanmayacağını kontrol eder.
 
-Bunun **`true` olarak ayarlanması** ve iletişim için **güvenilir bir sertifika** verilmiş olması gerekmektedir.
+İletişim için bu değer `true` olmalı ve güvenilen sertifika sağlanmış olmalıdır.
 
-SSL/TLS iletişimini yönetmek için `certManager`, `existingSecret` veya `customSecret` yöntemlerinden birini kullanabilirsiniz.
+SSL/TLS iletişimini yönetmek için `certManager`, `existingSecret` veya `customSecret` yaklaşımlarından birini kullanabilirsiniz.
 
 #### certManager
 
-Kümenizde [`cert-manager`](https://cert-manager.io/) kullanıyor ve SSL/TLS sertifikasını oluşturmak için onu tercih ediyorsanız, bu bölümde ilgili yapılandırmayı belirtin.
+Kümenizde [`cert-manager`](https://cert-manager.io/) kullanıyorsanız ve SSL/TLS sertifikasını bununla üretmeyi tercih ediyorsanız, ilgili yapılandırmayı bu bölümde belirtin.
 
 Örnek yapılandırma:
 
@@ -113,15 +141,15 @@ config:
       certManager:
         enabled: true
         issuerRef:
-          # cert-manager Issuer veya ClusterIssuer'ın adı
+          # cert-manager Issuer veya ClusterIssuer ad
           name: letsencrypt-prod
-          # Issuer (namespace çapında) veya ClusterIssuer (küme çapında) olup olmadığı
+          # Issuer (namespace kapsamlı) mı yoksa ClusterIssuer (küme genelinde) mı
           kind: ClusterIssuer
 ```
 
 #### existingSecret
 
-Aynı namespace içindeki mevcut Kubernetes gizli anahtarından SSL/TLS sertifikasını çekmek için bu yapılandırma bloğunu kullanabilirsiniz.
+Aynı namespace içindeki mevcut bir Kubernetes secret'ından SSL/TLS sertifikası çekmek için bu yapılandırma bloğunu kullanabilirsiniz.
 
 Örnek yapılandırma:
 
@@ -132,15 +160,15 @@ config:
       enabled: true
       existingSecret:
         enabled: true
-        # Sertifika ve özel anahtarı içeren Kubernetes gizli anahtarının adı
+        # Sertifika ve özel anahtarı içeren Kubernetes secret'ın adı
         name: my-secret-name
 ```
 
 #### customSecret
 
-`customSecret` yapılandırması, Kubernetes gizli anahtarlarına veya cert-manager'a bağlı kalmadan, sertifikayı doğrudan yapılandırma dosyası içinde tanımlamanıza olanak tanır.
+`customSecret` yapılandırması, Kubernetes secret'ları veya cert-manager gibi harici kaynaklara bağlı kalmadan sertifikayı doğrudan yapılandırma dosyasında tanımlamanıza olanak tanır.
 
-Sertifika, özel anahtar ve isteğe bağlı olarak bir CA, base64 kodlanmış değerler olarak belirtilmelidir.
+Sertifika, özel anahtar ve isteğe bağlı olarak bir CA, base64 kodlu değerler olarak belirtilmelidir.
 
 Örnek yapılandırma:
 
@@ -158,36 +186,36 @@ config:
 
 ### config.connector.allowed_hosts
 
-İzin verilen ana bilgisayar adlarının listesi.
+İzin verilen ana makine adlarının listesi.
 
-**Varsayılan değer**: Tüm ana bilgisayar adlarına izin verilir.
+Varsayılan değer: tüm host'lara izin verilir.
 
-Bu parametre joker karakter eşleştirmeyi destekler:
+Bu parametre joker karakter eşlemesini destekler:
 
-* `*` ayırıcı olmayan karakterlerden oluşan herhangi bir diziyi eşleştirir
-* `?` ayırıcı olmayan herhangi tek karakteri eşleştirir
+* `*` ayırıcı olmayan karakterlerin herhangi bir dizisini eşleştirir
+* `?` tek bir ayırıcı olmayan karakteri eşleştirir
 * `'[' [ '^' ] { character-range } ']'`
 
-??? info "Joker karakter eşleştirme sözdizimi detayları"
+??? info "Joker eşleme sözdizimi ayrıntıları"
     ```
-    // Desen sözdizimi şöyledir:
+    // Desen sözdizimi:
     //
     //	pattern:
     //		{ term }
     //	term:
-    //		'*'         ayırıcı olmayan karakterlerden oluşan herhangi diziyi eşleştirir
-    //		'?'         ayırıcı olmayan herhangi tek karakteri eşleştirir
+    //		'*'         ayırıcı olmayan karakterlerin herhangi bir dizisini eşleştirir
+    //		'?'         tek bir ayırıcı olmayan karakteri eşleştirir
     //		'[' [ '^' ] { character-range } ']'
-    //		            karakter sınıfı (boş olmamalıdır)
-    //		c           karakter c ile eşleşir (c != '*', '?', '\\', '[')
-    //		'\\' c      karakter c ile eşleşir
+    //		            karakter sınıfı (boş olamaz)
+    //		c           c karakterini eşleştirir (c != '*', '?', '\\', '[')
+    //		'\\' c      c karakterini eşleştirir
     //
     //	character-range:
-    //		c           karakter c ile eşleşir (c != '\\', '-', ']')
-    //		'\\' c      karakter c ile eşleşir
-    //		lo '-' hi   lo <= c <= hi için karakter c ile eşleşir
+    //		c           c karakterini eşleştirir (c != '\\', '-', ']')
+    //		'\\' c      c karakterini eşleştirir
+    //		lo '-' hi   lo <= c <= hi için c karakterini eşleştirir
     //
-    // Eşleşme, deseni yalnızca bir alt dize değil, adın tamamına eşleşecek şekilde gerektirir.
+    // Eşleşme, desenin adın tamamıyla eşleşmesini gerektirir, yalnızca bir alt diziyle değil.
     ```
 
 Örneğin:
@@ -200,33 +228,37 @@ config:
       - "*.test.com"
 ```
 
-### config.connector.mode
-
-Genel trafik [filtreleme modu](../../admin-en/configure-wallarm-mode.md): `block`, `safe_blocking`, `monitoring` veya `off`. OOB modunda trafik engelleme desteklenmez.
-
-Varsayılan: `monitoring`.
-
-Bu mod, belirli yollar için [üstüne yazılabilir](#wallarm_mode).
-
 ### config.connector.route_config
 
-Belirli yollar için ayarların belirtildiği yapılandırma bölümüdür.
+Belirli rotalar için ayarları belirttiğiniz yapılandırma bölümü.
 
 ### config.connector.route_config.wallarm_application
 
-[Wallarm uygulama kimliği](../../user-guides/settings/applications.md). Bu değer, belirli yollar için geçersiz kılınabilir.
+[Wallarm uygulama ID'si](../../user-guides/settings/applications.md). Bu değer, belirli rotalar için geçersiz kılınabilir.
 
 Varsayılan: `-1`.
 
+### config.connector.route_config.wallarm_mode
+
+Trafik [filtrasyon modu](../../admin-en/configure-wallarm-mode.md): `block`, `safe_blocking`, `monitoring` veya `off`. OOB modunda, trafik engelleme desteklenmez.
+
+Bu değer, belirli rotalar için geçersiz kılınabilir.
+
+!!! info "`off` değeri için sözdizimi"
+    `off` değeri `"off"` olarak tırnak içine alınmalıdır.
+
+Varsayılan: `monitoring`.
+
 ### config.connector.route_config.routes
 
-Belirli uç noktalar için Wallarm yapılandırmasını ayarlar. Wallarm modu ve uygulama kimlikleri içerir. Örnek yapılandırma:
+Rota özel Wallarm yapılandırmasını ayarlar. Wallarm modu ve uygulama ID'lerini içerir. Örnek yapılandırma:
 
 ```yaml
 config:
   connector:
     route_config:
       wallarm_application: 10
+      wallarm_mode: monitoring
       routes:
         - host: example.com
           wallarm_application: 1
@@ -237,12 +269,12 @@ config:
           route: /api
           wallarm_application: 100
         - route: /testing
-          wallarm_mode: off
+          wallarm_mode: block
 ```
 
 #### host
 
-Yolun ana bilgisayarını belirtir. Bu parametre, [`config.connector.allowed_hosts`](#configconnectorallowed_hosts) parametresi ile aynı joker eşleştirmeyi destekler.
+Rota host'unu belirtir. Bu parametre, [`config.connector.allowed_hosts`](#configconnectorallowed_hosts) parametresi ile aynı şekilde joker eşlemeyi destekler.
 
 Örneğin:
 
@@ -257,24 +289,24 @@ config:
 
 #### routes.route veya route
 
-Belirli yolları tanımlar. Yollar NGINX benzeri öneklerle yapılandırılabilir:
+Belirli rotaları tanımlar. Rotalar, NGINX benzeri öneklerle yapılandırılabilir:
 
 ```yaml
 - route: [ = | ~ | ~* | ^~ |   ]/location
-        #  |   |   |    |    ^ önek (regex'lerden daha düşük öncelikli)
-        #  |   |   |    ^ önek (regex'lerden daha yüksek öncelikli)
-        #  |   |   ^regex, büyük/küçük harf duyarsız
-        #  |   ^regex, büyük/küçük harf duyarlı
+        #  |   |   |    |    ^ ön ek (regex'lerden daha düşük öncelik)
+        #  |   |   |    ^ ön ek (regex'lerden daha yüksek öncelik)
+        #  |   |   ^re büyük/küçük harf duyarsız
+        #  |   ^re büyük/küçük harf duyarlı
         #  ^tam eşleşme
 ```
 
-Örneğin, yalnızca tam eşleşme için:
+Örneğin, yalnızca tam rotayı eşleştirmek için:
 
 ```yaml
 - route: =/api/login
 ```
 
-Düzenli ifadelerle yolları eşleştirmek için:
+Rotaları düzenli ifadeyle eşleştirmek için:
 
 ```yaml
 - route: ~/user/[0-9]+/login.*
@@ -282,33 +314,77 @@ Düzenli ifadelerle yolları eşleştirmek için:
 
 #### wallarm_application
 
-Belirli uç noktalar için `route_config.wallarm_application` değerinin üzerine yazan [Wallarm uygulama kimliğini](../../user-guides/settings/applications.md) ayarlar.
+[Wallarm uygulama ID'sini](../../user-guides/settings/applications.md) ayarlar. Belirli uç noktalar için `route_config.wallarm_application` değerini geçersiz kılar.
 
 #### wallarm_mode
 
-Ana bilgisayara özgü trafik [filtreleme modu](../../admin-en/configure-wallarm-mode.md): `block`, `safe_blocking`, `monitoring` veya `off`. OOB modunda trafik engelleme desteklenmez.
+Host'a özel trafik [filtrasyon modu](../../admin-en/configure-wallarm-mode.md): `block`, `safe_blocking`, `monitoring` veya `off`. OOB modunda, trafik engelleme desteklenmez.
+
+!!! info "`off` değeri için sözdizimi"
+    `off` değeri `"off"` olarak tırnak içine alınmalıdır.
 
 Varsayılan: `monitoring`.
 
+### config.connector.proxy_headers
+
+Trafik proxy'ler veya yük dengeleyiciler üzerinden geçtiğinde Native Node'un orijinal istemci IP'sini ve host'unu nasıl çıkaracağını yapılandırır.
+
+* `trusted_networks`: güvenilen proxy IP aralıkları (CIDR'ler). `X-Forwarded-For` gibi başlıklar yalnızca istek bu ağlardan geliyorsa güvenilir kabul edilir.
+
+    Atlanırsa, tüm ağlar güvenilir kabul edilir (önerilmez).
+* `original_host`: bir proxy tarafından değiştirilmişse orijinal `Host` değerini almak için kullanılacak başlıklar.
+* `real_ip`: gerçek istemci IP adresini çıkarmak için kullanılacak başlıklar.
+
+Farklı proxy türleri veya güven seviyeleri için birden fazla kural tanımlayabilirsiniz.
+
+!!! info "Kural değerlendirme sırası"    
+    İstek başına yalnızca ilk eşleşen kural uygulanır.
+
+Native Node 0.17.1 ve sonrasında desteklenir.
+
+Örnek:
+
+```yaml
+config:
+  connector:
+    proxy_headers:
+      # Kural 1: Şirket içi proxy'ler
+      - trusted_networks:
+          - 10.0.0.0/8
+          - 192.168.0.0/16
+        original_host:
+          - X-Forwarded-Host
+        real_ip:
+          - X-Forwarded-For
+
+      # Kural 2: Harici uç proxy'ler (örn., CDN, ters proxy)
+      - trusted_networks:
+          - 203.0.113.0/24
+        original_host:
+          - X-Real-Host
+        real_ip:
+          - X-Real-IP
+```
+
 ### config.connector.log
 
-`config.connector.log.*` yapılandırma bölümü, Native Node Helm Chart sürüm 0.10.0'dan itibaren kullanılabilir. Önceki sürümlerde loglama yalnızca `config.connector.log_level` parametresiyle yönetiliyordu.
+`config.connector.log.*` yapılandırma bölümü, Native Node Helm chart sürümü 0.10.0 ile kullanılabilir hale gelmiştir. Önceden, kayıtlar yalnızca `config.connector.log_level` parametresi ile yönetilirdi.
 
 #### pretty
 
-Hata ve erişim loglarının formatını kontrol eder. İnsan tarafından okunabilir loglar için `true`, JSON loglar için `false` olarak ayarlayın.
+Hata ve erişim log formatını kontrol eder. İnsan tarafından okunabilir loglar için `true`, JSON loglar için `false` ayarlayın.
 
 Varsayılan: `false`.
 
 #### level
 
-Log seviyesi; `debug`, `info`, `warn`, `error`, `fatal` seçeneklerinden biri olabilir.
+Log seviyesi, `debug`, `info`, `warn`, `error`, `fatal` olabilir.
 
 Varsayılan: `info`.
 
 #### log_file
 
-Hata ve erişim loglarının çıktısının yönlendirileceği hedefi belirtir. Seçenekler `stdout`, `stderr` veya bir log dosyası yoludur.
+Hata ve erişim log çıktısının hedefini belirtir. Seçenekler `stdout`, `stderr` veya bir log dosyasına giden yol.
 
 Varsayılan: `stdout`.
 
@@ -320,32 +396,40 @@ Varsayılan: `true`.
 
 #### access_log.verbose
 
-Erişim log çıktısında her istek hakkında ayrıntılı bilgilerin yer alıp almayacağını kontrol eder.
+Erişim log çıktısında her istek hakkında ayrıntılı bilginin dahil edilip edilmeyeceğini kontrol eder.
 
 Varsayılan: `false`.
 
+### config.aggregation.serviceAddress
+
+**wstore**'un gelen bağlantıları kabul ettiği adresi ve portu belirtir.
+
+Sürüm 0.15.1'den itibaren desteklenir.
+
+Varsayılan değer: `[::]:3313` - tüm IPv4 ve IPv6 arayüzlerinde 3313 portunu dinler. Bu, 0.15.1'den önceki sürümlerde de varsayılan davranıştı.
+
 ### processing.service.type
 
-Wallarm hizmet türü. Şunlar olabilir:
+Wallarm servis türü. Şunlar olabilir:
 
-* Hizmeti genel IP ile bir yük dengeleyici olarak çalıştırmak için `LoadBalancer`.
+* Trafiği yönlendirmeyi kolaylaştırmak için genel IP'ye sahip bir yük dengeleyici olarak servisi çalıştırmak üzere `LoadBalancer`.
 
-    Bu seçenek, [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md) ve [Fastly](../connectors/fastly.md) konektörleri için uygundur.
-* Genel IP açığa çıkarmaksızın, dahili trafik için `ClusterIP`.
+    Bu, MuleSoft [Mule](../connectors/mulesoft.md) veya [Flex](../connectors/mulesoft-flex.md) Gateway, [Akamai](../connectors/akamai-edgeworkers.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [IBM DataPower](../connectors/ibm-api-connect.md), [Istio](../connectors/istio.md) konektörleri için uygundur.
+* Genel bir IP açığa çıkarmadan dahili trafik için `ClusterIP`.
 
-    Bu seçenek, [Kong API Gateway](../connectors/kong-api-gateway.md) veya [Istio](../connectors/istio.md) konektörleri için uygundur.
+    Bu, [Kong API Gateway](../connectors/kong-api-gateway.md) konektörleri için uygundur.
 
 Varsayılan: `ClusterIP`.
 
 ### processing.service.port
 
-Wallarm hizmet portu.
+Wallarm servis portu.
 
 Varsayılan: `5000`.
 
-## Gelişmiş Ayarlar
+## Gelişmiş ayarlar
 
-Ek olarak değiştirmeniz gerekebilecek, varsayılan `values.yaml` dosyasının Wallarm’a özgü kısmı aşağıdaki gibidir:
+Varsayılan `values.yaml` dosyasının, ek olarak değiştirmeniz gerekebilecek Wallarm'a özgü bölümü aşağıdaki gibidir:
 
 ```yaml
 config:
@@ -359,34 +443,122 @@ processing:
   metrics:
     enabled: true
     port: 9090
+
+drop_on_overload: true
 ```
+
+### config.connector.input_filters
+
+Hangi gelen isteklerin Native Node tarafından **inceleneceğini** veya **atlanacağını** tanımlar. Bu, statik varlıklar veya sağlık kontrolleri gibi alakasız trafiği yok sayarak CPU kullanımını azaltır.
+
+Varsayılan olarak, tüm istekler incelenir.
+
+!!! warning "İnceleme dışı bırakılan istekler analiz edilmez veya Wallarm Cloud'a gönderilmez"
+    Sonuç olarak, atlanan istekler metriklerde, API Discovery, API sessions, zafiyet tespiti vb. yer almaz. Wallarm özellikleri bunlara uygulanmaz.
+
+Uyumluluk
+
+* Native Node 0.16.1 ve üzeri
+
+Filtreleme mantığı
+
+Filtreleme mantığı 2 listeye dayanır:
+
+* `inspect`: burada en az bir filtreyle eşleşen istekler incelenir.
+
+    Atlanır veya boş bırakılırsa, `bypass` tarafından hariç tutulmadıkça tüm istekler incelenir.
+* `bypass`: burada herhangi bir filtreyle eşleşen istekler, `inspect` ile eşleşseler bile asla incelenmez.
+
+Filtre biçimi
+
+Her filtre şu öğeleri içerebilen bir nesnedir:
+
+* `path` veya `url`: istek yolunu eşleştirmek için regex (her ikisi de desteklenir ve eşdeğerdir).
+* `headers`: başlık adlarını değerlerini eşleştirmek için regex kalıplarına eşleyen bir harita.
+
+Tüm düzenli ifadeler [RE2 sözdizimini](https://github.com/google/re2/wiki/Syntax) izlemelidir.
+
+Örnekler
+
+=== "Token ile istekleri izinli kıl, statik içeriği atla"
+    Bu yapılandırma yalnızca `Authorization` başlığında bir `Bearer` token içeren, sürümlenmiş API uç noktalarına (örn. `/api/v1/...`) yapılan istekleri inceler.
+    
+    Görüntüler, betikler, stiller gibi statik dosyalar ve tarayıcı tarafından başlatılan HTML sayfa yüklemeleri atlanır.
+
+    ```yaml
+    config:
+      connector:
+        input_filters:
+          inspect:
+          - path: "^/api/v[0-9]+/.*"
+            headers:
+              Authorization: "^Bearer .+"
+          bypass:
+          - path: ".*\\.(png|jpg|css|js|svg)$"
+          - headers:
+              accept: "text/html"
+    ```
+=== "Alan adına göre istekleri izinli kıl, sağlık kontrollerini atla"
+    Bu yapılandırma yalnızca `Host: api.example.com` olan istekleri inceler, diğerlerinin tamamını atlar.
+    
+    `/healthz` uç noktasına yapılan istekler, incelenen host ile eşleşseler bile her zaman atlanır.
+
+    ```yaml
+    config:
+      connector:
+        input_filters:
+          inspect:
+          - headers:
+              host: "^api\\.example\\.com$"
+          bypass:
+          - path: "^/healthz$"
+    ```
 
 ### config.connector.http_inspector.workers
 
-Wallarm işçi sayısını belirtir.
+Wallarm worker sayısı.
 
-Varsayılan: `auto`, yani işçi sayısı CPU çekirdek sayısına göre ayarlanır.
+Varsayılan: `auto`, yani worker sayısı CPU çekirdeği sayısıdır.
 
 ### config.connector.http_inspector.api_firewall_enabled
 
-[API Specification Enforcement](../../api-specification-enforcement/overview.md) etkinleştirilip etkinleştirilmeyeceğini kontrol eder. Bu özelliğin etkinleştirilmesi, Wallarm Console UI üzerinden gerekli abonelik ve yapılandırmanın yerine geçmez.
+[API Specification Enforcement](../../api-specification-enforcement/overview.md)'ın etkin olup olmadığını kontrol eder. Lütfen bu özelliği etkinleştirmenin, Wallarm Console UI üzerinden gerekli abonelik ve yapılandırmanın yerine geçmediğini unutmayın.
 
 Varsayılan: `true`.
 
 ### config.connector.http_inspector.wallarm_dir
 
-Düğüm yapılandırma dosyalarının bulunacağı dizin yolunu belirtir. Genellikle bu parametreyi değiştirmeniz gerekmez. Yardıma ihtiyaç duyarsanız, lütfen [Wallarm destek ekibi](mailto:support@wallarm.com) ile iletişime geçin.
+Node yapılandırma dosyaları için dizin yolunu belirtir. Genellikle, bu parametreyi değiştirmeniz gerekmez. Yardıma ihtiyacınız olursa lütfen [Wallarm destek ekibi](mailto:support@wallarm.com) ile iletişime geçin.
 
 Varsayılan: `/opt/wallarm/etc/wallarm`.
 
 ### processing.metrics.enabled
 
-[Prometheus metriklerinin](../../admin-en/configure-statistics-service.md#usage) etkin olup olmadığını kontrol eder. Wallarm düğümünün düzgün çalışması için bu parametre `true` olarak ayarlanmalıdır.
+[Prometheus metriklerinin](../../admin-en/configure-statistics-service.md#usage) etkin olup olmadığını kontrol eder. Wallarm node bu olmadan düzgün çalışmadığından bu parametre `true` olarak ayarlanmalıdır.
 
 Varsayılan: `true`.
 
 ### processing.metrics.port
 
-Prometheus metriklerinin hangi adres ve port üzerinden sunulacağını ayarlar. Bu metriklere erişmek için `/metrics` uç noktasını kullanın.
+Prometheus metriklerinin sunulacağı adresi ve portu ayarlar. Bu metriklere erişmek için `/metrics` uç noktasını kullanın.
 
 Varsayılan: `:9000` (9000 portunda tüm ağ arayüzleri).
+
+### drop_on_overload
+
+İşleme yükü kapasiteyi aştığında Node'un gelen istekleri düşürüp düşürmeyeceğini kontrol eder.
+
+Uyumluluk
+
+* Native Node 0.16.1 ve üzeri
+* [Envoy konektörü](../connectors/istio.md) için, davranış `failure_mode_allow` ayarına bağlıdır
+
+    `drop_on_overload` yapılandırması uygulanmaz.
+
+Etkinleştirildiğinde (`true`), Node verileri gerçek zamanlı işleyemezse, fazla girdiyi düşürür ve `503 (Service Unavailable)` ile yanıt verir. Bu, Node'un işlenmemiş istekleri dahili kuyruklarda biriktirmesini engeller; aksi takdirde ciddi performans düşüşlerine veya bellek yetersizliği hatalarına yol açabilir.
+
+503 döndürmek, yukarı akış servislerinin, yük dengeleyicilerin veya istemcilerin aşırı yük koşullarını algılamasını ve gerekirse istekleri yeniden denemesini sağlar.
+
+Engelleme [modunda](../../admin-en/configure-wallarm-mode.md), bu tür istekler engellenmez.
+
+Varsayılan: `true`.

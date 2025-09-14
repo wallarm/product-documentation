@@ -10,63 +10,63 @@
 
 # Olay Analizi
 
-Wallarm Console'da, **Olaylar** bölümünde tespit edilen olayları analiz edebilirsiniz. Gerekli verileri bulmak için lütfen [burada][use-search] açıklanan arama alanını kullanın veya gerekli arama filtrelerini elle ayarlayın.
+Wallarm Console içinde, tespit edilen [olayları](../../glossary-en.md#security-incident) **Incidents** bölümünde analiz edebilirsiniz. Gerekli verileri bulmak için, [burada][use-search] açıklandığı şekilde arama alanını kullanın veya gerekli arama filtrelerini manuel olarak ayarlayın.
 
-## Olayları Kontrol Etme
+## Olayları kontrol etme
 
-![Olaylar sekmesi][img-incidents-tab]
+![Incidents sekmesi][img-incidents-tab]
 
-* **Tarih**: Zararlı isteğin gerçekleştiği tarih ve saat.
-    * Kısa aralıklarla aynı tipten birkaç istek tespit edildiyse, saldırı süresi tarihin altında görünür. Süre, belirli zaman aralığında belli bir tipteki ilk istekle aynı tipteki son istek arasındaki zaman dilimidir.
-    * Eğer saldırı şu anda gerçekleşiyorsa, uygun bir etiket görüntülenir.
-* **Payloads**: Saldırı türü ve benzersiz [malicious payload](../../glossary-en.md#malicious-payload) sayısı.
-* **Hits**: Belirtilen zaman diliminde saldırıdaki isteklerin (hitlerin) sayısı.
-* **Top IP / Kaynak**: Zararlı isteklerin geldiği IP adresi. Zararlı istekler birkaç IP adresinden geliyorsa, arayüz en çok isteğe neden olan IP adresini gösterir. IP adresi için ayrıca şu veriler de görüntülenir:
-     * Belirtilen zaman diliminde aynı saldırı kapsamında isteklerin geldiği IP adreslerinin toplam sayısı.
-     * IP adresinin kayıtlı olduğu ülke/bölge (IP2Location veya benzeri veri tabanlarında bulunması durumunda)
-     * Kaynak türü, örneğin **Public proxy**, **Web proxy**, **Tor** veya IP'nin kayıtlı olduğu cloud platformu vb. (IP2Location veya benzeri veri tabanlarında bulunması durumunda)
-     * IP adresi kötü niyetli aktiviteler için biliniyorsa **Malicious IPs** etiketi görüntülenecektir. Bu, kamuya açık kayıtlar ve uzman doğrulamaları temel alınarak sağlanır.
-* **Domain / Path**: İsteğin hedef aldığı domain, path ve application ID.
-* **Status**: Saldırı engelleme durumu (ayrıca [traffic filtration mode](../../admin-en/configure-wallarm-mode.md)'a bağlı):
-     * Blocked: Saldırının tüm hitleri filtreleme düğümü tarafından engellendi.
-     * Partially blocked: Saldırının bazı hitleri engellenirken bazıları sadece kaydedildi.
-     * Monitoring: Saldırının tüm hitleri kaydedildi fakat engellenmedi.
-* **Parameter**: Zararlı isteğin parametreleri ve isteğe uygulanan [parsers](../rules/request-processing.md) etiketleri.
-* **Vulnerabilities**: Olayın faydalandığı güvenlik açığı. Güvenlik açığına tıkladığınızda detaylı açıklaması ve nasıl düzeltileceğine dair talimatlar görüntülenir.
+* **Date**: Kötü amaçlı isteğin tarih ve saati.
+    * Aynı türden birkaç istek kısa aralıklarla tespit edildiyse, tarih altında saldırı süresi görüntülenir. Süre, belirtilen zaman aralığında belirli bir türdeki ilk istek ile aynı türdeki son istek arasındaki zaman periyodudur. 
+    * Saldırı şu anda gerçekleşiyorsa, uygun bir etiket görüntülenir.
+* **Payloads**: Saldırı türü ve benzersiz [kötü amaçlı payload](../../glossary-en.md#malicious-payload) sayısı. 
+* **Hits**: Belirtilen zaman dilimindeki saldırıdaki hit (istek) sayısı. 
+* **Top IP / Source**: Kötü amaçlı isteklerin kaynaklandığı IP adresi. Kötü amaçlı istekler birden fazla IP adresinden geliyorsa, arayüz en fazla isteğin geldiği IP adresini gösterir. IP adresi için ayrıca aşağıdaki veriler görüntülenir:
+     * Belirtilen zaman aralığında aynı saldırı kapsamındaki isteklerin kaynaklandığı toplam IP adresi sayısı. 
+     * IP adresinin kayıtlı olduğu ülke/bölge (IP2Location veya benzeri veritabanlarında bulunduysa)
+     * Kaynak türü; ör. **Public proxy**, **Web proxy**, **Tor** ya da IP'nin kayıtlı olduğu bulut platformu vb. (IP2Location veya benzeri veritabanlarında bulunduysa)
+     * IP adresi kötü amaçlı etkinliklerle biliniyorsa, **Malicious IPs** etiketi görünür. Bu, kamuya açık kayıtlar ve uzman doğrulamaları temel alınarak belirlenir
+* **Domain / Path**: İsteğin hedeflediği alan adı, yol ve uygulama kimliği (ID).
+* **Status**: Saldırı engelleme durumu ([trafik filtreleme modu](../../admin-en/configure-wallarm-mode.md) değerine bağlıdır):
+     * Blocked: saldırıdaki tüm hit'ler filtreleme düğümü tarafından engellendi.
+     * Partially blocked: saldırıdaki bazı hit'ler engellendi, diğerleri yalnızca kaydedildi.
+     * Monitoring: saldırıdaki tüm hit'ler kaydedildi ancak engellenmedi.
+* **Parameter**: Kötü amaçlı isteğin parametreleri ve isteğe uygulanan [ayrıştırıcılar](../rules/request-processing.md) etiketleri
+* **Vulnerabilities**: Olayın istismar ettiği güvenlik açığı. Güvenlik açığına tıklamak, ayrıntılı açıklamasına ve nasıl düzeltileceğine ilişkin talimatlara götürür.
 
-En son istek zamanına göre olayları sıralamak için **Sort by latest hit** anahtarını kullanabilirsiniz.
+Olayları son isteğin zamanına göre sıralamak için, **Sort by latest hit** anahtarını kullanabilirsiniz.
 
-## Tehdit Aktörünün Tüm Faaliyetlerinin Tam Bağlamı
+## Tehdit aktörü faaliyetlerinin tam bağlamı {#full-context-of-threat-actor-activities}
 
 --8<-- "../include/request-full-context.md"
 
-## Olaylara Yanıt Verme
+## Olaylara yanıt verme
 
-[Olaylar](../../glossary-en.md#security-incident), tespit edilmiş bir güvenlik açığına yönelik saldırılardır.
+[Olaylar](../../glossary-en.md#security-incident), doğrulanmış bir güvenlik açığını hedef alan saldırılardır.
 
-![Olaylar sekmesi][img-incidents-tab]
+![Incidents sekmesi][img-incidents-tab]
 
-Olay **Olaylar** bölümünde göründükten sonra:
+**Incidents** bölümünde bir olay göründüğünde:
 
-1. Opsiyonel olarak (önerilir), olayın zararlı isteklerinin [tam bağlamını](#full-context-of-threat-actor-activities) araştırın: bu isteklerin hangi [kullanıcı oturumuna](../../api-sessions/overview.md) ait olduğu ve bu oturumdaki isteklerin tam dizisinin ne olduğu.
-
-     Bu, tehdit aktörünün tüm aktivitesini ve mantığını görmenizi, saldırı vektörlerini anlamanızı ve hangi kaynakların tehlikeye girebileceğini belirlemenizi sağlar.
+1. İsteğe bağlı olarak (önerilir), olayın kötü amaçlı isteklerinin [tam bağlamını](#full-context-of-threat-actor-activities) araştırın: hangi [kullanıcı oturumuna](../../api-sessions/overview.md) ait olduklarını ve bu oturumdaki isteklerin tam sıralamasını.
   
-1. Güvenlik Açıkları sütunundaki bağlantıyı takip edin; bu, ilgili güvenlik açığı hakkında ayrıntılı bilgi, nasıl düzeltileceğine dair talimatlar ve ilgili olayların listesini sunar.
+     Bu, tehdit aktörünün tüm etkinliğini ve mantığını görmenizi, saldırı vektörlerini ve hangi kaynakların tehlikeye atılabileceğini anlamanızı sağlar.
+  
+1. **Vulnerabilities** sütunundaki bağlantıyı takip ederek, bu güvenlik açığının nasıl düzeltileceğine ilişkin talimatlar ve ilgili olaylar listesi de dahil olmak üzere ayrıntılı güvenlik açığı bilgilerini alın. 
 
-     ![Güvenlik açığı detaylı bilgi](../../images/user-guides/vulnerabilities/vuln-info.png)
+     ![Güvenlik açığına ilişkin ayrıntılı bilgiler](../../images/user-guides/vulnerabilities/vuln-info.png)
 
-     **Güvenlik açığını düzeltin** ve ardından Wallarm'da kapalı olarak işaretleyin. Ayrıntılı bilgi için lütfen [Güvenlik Açıklarını Yönetme](../vulnerabilities.md) makalesine bakın.
-1. Listedeki olaya geri dönün, sistem tepkisini hangi mekanizmanın tetiklediğini inceleyin (saldırıların `Blocked`, `Partially blocked` ve `Monitoring` [durumlarına](check-attack.md#attack-analysis) dikkat edin), sistemin benzer isteklere gelecekte nasıl davranacağını ve gerekirse bu gelecekteki davranışı nasıl ayarlayacağınızı belirleyin.
+     Güvenlik açığını düzeltin ve ardından Wallarm içinde kapalı olarak işaretleyin. Ayrıntılar için [Güvenlik Açıklarını Yönetme](../vulnerabilities.md) makalesine bakın.
+1. Listede olaya geri dönün, sistem tepkisine hangi mekanizmanın neden olduğunu araştırın (saldırıların `Blocked`, `Partially blocked` ve `Monitoring` [durumlarına](check-attack.md#attack-analysis) dikkat edin), sistemin benzer isteklere gelecekte nasıl davranacağını ve gerekirse bu gelecekteki davranışın nasıl ayarlanacağını değerlendirin.
 
-     Olaylar için bu araştırma ve ayarlama, diğer saldırılar için [aynı şekilde](check-attack.md#responding-to-attacks) yapılmaktadır.
+     Olaylar için bu araştırma ve ayarlama, diğer tüm saldırılarda olduğu [gibi](check-attack.md#responding-to-attacks) aynı şekilde gerçekleştirilir.
 
-## Olayları Almak için API Çağrıları
+## Olayları almak için API çağrıları
 
-Olay detaylarını almak için Wallarm Console UI'nin yanı sıra [Wallarm API'sını direkt olarak çağırabilirsiniz](../../api/overview.md). Aşağıda, **son 24 saatte tespit edilen ilk 50 olayı almak** için API çağrısının örneği verilmiştir.
+Olay ayrıntılarını almak için, Wallarm Console arayüzünü kullanmanın yanı sıra [Wallarm API'yi doğrudan çağırabilirsiniz](../../api/overview.md). Aşağıda, son 24 saatte tespit edilen ilk 50 olayı alma amaçlı API çağrısına bir örnek verilmiştir.
 
-İstek, saldırıların listesini almak için kullanılan [isteğe benzer](check-attack.md#api-calls-to-get-attacks); `"!vulnid": null` ifadesi olayları talep etmek amacıyla eklenmiştir. Bu ifade, API'ya belirli bir vulnerability ID'si olmayan tüm saldırıları göz ardı etmesini söyler ve sistemin saldırılar ile olaylar arasındaki ayrımı yapma biçimidir.
+İstek, saldırı listesi için [kullanılan](check-attack.md#api-calls) istekle benzerdir; olayı sorgulamak için isteğe `"!vulnid": null` terimi eklenir. Bu terim, API'ye güvenlik açığı kimliği (ID) belirtilmemiş tüm saldırıları yok saymasını söyler ve sistemin saldırıları olaylardan bu şekilde ayırt etmesini sağlar.
 
-Lütfen `TIMESTAMP` değerini, 24 saat öncesinin [Unix Timestamp](https://www.unixtimestamp.com/) formatına dönüştürülmüş tarihiyle değiştirin.
+Lütfen `TIMESTAMP` değerini, 24 saat önceki tarihin [Unix Zaman Damgası](https://www.unixtimestamp.com/) biçimine dönüştürülmüş haliyle değiştirin.
 
 --8<-- "../include/api-request-examples/get-incidents-en.md"

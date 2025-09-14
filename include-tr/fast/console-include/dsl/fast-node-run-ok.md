@@ -1,6 +1,4 @@
-```
-[info] Wallarm Cloud'a bağlı node
-[info] Hızlı tarayıcı için 1 özel uzantı yüklendi
-[info] Hızlı tarayıcı için 30 varsayılan uzantı yüklendi
-[info] TestRun kontrol edilmek üzere bekleniyor...
-```
+[info] Düğüm Wallarm Cloud'a bağlandı
+[info] fast scanner için 1 özel eklenti yüklendi
+[info] fast scanner için 30 varsayılan eklenti yüklendi
+[info] Kontrol için TestRun bekleniyor...

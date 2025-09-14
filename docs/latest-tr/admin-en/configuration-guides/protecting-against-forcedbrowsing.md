@@ -1,79 +1,93 @@
-# Zorla Tarama Saldırısından Korunma
+# Zorla Gezintiye Karşı Koruma
 
-Zorla tarama saldırısı, Wallarm tarafından kutudan çıkar çıkmaz tespit edilmeyen saldırı türlerinden biridir ve tespiti, bu kılavuzda açıklandığı şekilde uygun şekilde yapılandırılmalıdır.
+Zorla gezinti saldırısı, Wallarm tarafından varsayılan olarak tespit edilmeyen saldırı türlerinden biridir; tespiti bu kılavuzda açıklandığı şekilde uygun şekilde yapılandırılmalıdır.
 
-[Forced browsing](../../attacks-vulns-list.md#forced-browsing) saldırıları, sınırlı bir zaman dilimi boyunca farklı URI'lere yapılan isteklere çok sayıda 404 yanıt kodu döndürülmesiyle karakterize edilir.
+[Zorla gezinti](../../attacks-vulns-list.md#forced-browsing) saldırıları, sınırlı bir zaman aralığında farklı URI’lere yapılan isteklere 404 yanıt kodlarının yüksek sayıda dönmesi ile karakterize edilir.
+    
+Bu saldırı, gizli kaynakları (ör. uygulama bileşenlerine ilişkin bilgileri içeren dizinler ve dosyalar) numaralandırmayı ve bunlara erişmeyi amaçlar. Zorla gezinti saldırı türü genellikle saldırganların uygulama hakkında bilgi toplamasına ve bu bilgiyi kötüye kullanarak diğer saldırı türlerini gerçekleştirmesine olanak tanır.
 
-Bu saldırının amacı, gizli kaynakları (ör. uygulama bileşenleri hakkında bilgileri içeren dizinler ve dosyalar) sıralamak ve erişmektir. Zorla tarama saldırısı türü, saldırganların uygulama hakkında bilgi toplamasına ve bu bilgiyi kullanarak diğer saldırı türlerini gerçekleştirmesine olanak tanır.
+## Yapılandırma yöntemi
 
-Zorla taramaya karşı korumanın yanı sıra, benzer şekilde [brute-force saldırılara](protecting-against-bruteforce.md) karşı da koruma yapılandırabilirsiniz.
+Abonelik planınıza bağlı olarak, kaba kuvvet koruması için aşağıdaki yapılandırma yöntemlerinden biri kullanılabilir:
 
-## Yapılandırma
+* Mitigation kontrolleri ([Advanced API Security](../../about-wallarm/subscription-plans.md#core-subscription-plans) aboneliği)
+* Triggers ([Cloud Native WAAP](../../about-wallarm/subscription-plans.md#core-subscription-plans) aboneliği)
 
-Aşağıdaki örneğe bakarak zorla tarama korumasının nasıl yapılandırılacağını öğrenin.
+## Mitigation kontrolüne dayalı koruma <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-Diyelim ki, online `book-sale` uygulamasına sahipsiniz. `book-sale-example.com` alanı altındaki gizli dizin ve dosya adlarını kötü niyetli aktörlerin denemesini (zorla tarama saldırısı) engellemek istiyorsunuz. Bu korumayı sağlamak için, alan adınıza gelen belirli bir zaman aralığındaki 404 yanıtı sayısını sınırlayabilir ve bu sınırı aşan IP'leri engelleyecek şekilde ayarlayabilirsiniz:
+Wallarm'ın Advanced API Security [aboneliği](../../about-wallarm/subscription-plans.md#core-subscription-plans), zorla gezinti saldırılarına karşı koruma da dahil olmak üzere gelişmiş [numaralandırma saldırı koruması](../../api-protection/enumeration-attack-protection.md) sağlar.
+
+## Trigger tabanlı koruma
+
+### Configuring
+
+Aşağıdaki örneği inceleyerek zorla gezinti korumasını nasıl yapılandıracağınızı öğrenin.
+
+Diyelim ki çevrimiçi `book-sale` uygulamasına sahipsiniz. `book-sale-example.com` alan adınız altında gizli dizin ve dosya adlarını denemeye çalışan kötü niyetli aktörleri (zorla gezinti saldırısı) engellemek istiyorsunuz. Bu korumayı sağlamak için alan adınız için belirli bir zaman aralığında 404 yanıtlarının sayısını sınırlayabilir ve bu limiti aşan IP’leri engelleyecek şekilde ayarlayabilirsiniz:
 
 Bu korumayı sağlamak için:
 
-1. Wallarm Console → **Triggers** bölümünü açın ve tetikleyici oluşturma penceresini açın.
+1. Wallarm Console → **Triggers**’ı açın ve tetikleyici oluşturma penceresini açın.
 1. **Forced browsing** koşulunu seçin.
-1. Aynı kaynak IP'den gelen isteklere döndürülmüş 404 yanıt kodu sayısı eşiğini, 30 saniyede 30 olacak şekilde ayarlayın.
+1. Aynı kaynak IP’den gelen isteklere dönen 404 yanıt kodları sayısı için eşiği 30 saniyede 30 olarak ayarlayın.
 
-    Dikkat edin, bunlar örnek değerlerdir - kendi trafiğiniz için bir tetikleyici yapılandırırken, meşru kullanım istatistiklerini göz önünde bulundurarak uygun bir eşik belirlemelisiniz.
-
-1. Aşağıdaki gibi **URI** filtresini ayarlayın:
-
-    * Yol içinde yer alan `**` [joker karakter](../../user-guides/rules/rules.md#using-wildcards), "herhangi bir sayıda bileşen" anlamına gelir. Bu, `book-sale-example.com` altındaki tüm adresleri kapsayacaktır.
-
-        ![Forced browsing trigger example](../../images/user-guides/triggers/trigger-example5-4.8.png)
-
-    * Bu örnekte ihtiyaç duyduğunuz deseni yapılandırmanın yanı sıra belirli URI'ler (örneğin, kaynak dosya dizininizin URI'si) girebilir veya herhangi bir URI belirtilmeden tetikleyicinin herhangi bir uç noktada çalışmasını sağlayabilirsiniz.
-    * İç içe URI'ler kullanıyorsanız, [tetikleyici işleme önceliklerini](../../user-guides/triggers/triggers.md#trigger-processing-priorities) göz önünde bulundurun.
-
-1. Bu durumda şunları kullanmayın:
-
-    * **Application** filtresi – ancak, yalnızca belirli uygulamaların alan adlarına veya uç noktalarına yönelik isteklere tepki veren tetikleyiciler ayarlamak için kullanabileceğinizi unutmayın.
-    * **IP** filtresi – ancak, yalnızca belirli IP'lerden gelen isteklere tepki veren tetikleyiciler ayarlamak için kullanabileceğinizi unutmayın.
+    Bunların örnek değerler olduğunu unutmayın - kendi trafiğiniz için tetikleyiciyi yapılandırırken, meşru kullanım istatistiklerinizi dikkate alarak bir eşik tanımlamalısınız.
     
-1. **Denylist IP address** tetikleyici tepkisini seçin – `Block for 4 hour`. Wallarm, eşik aşıldıktan sonra kaynak IP'yi [denylist'e](../../user-guides/ip-lists/overview.md) ekleyecek ve bundan sonraki tüm istekleri engelleyecektir.
+    !!! info "İzin verilen eşik zaman aralıkları"
+        Eşik zaman aralığını ayarlarken, seçilen birime bağlı olarak değer 30 saniyenin veya 10 dakikanın katı olmalıdır.
 
-    Dikkat edin, bot IP'si zorla tarama koruması tarafından denylist'e eklense bile, varsayılan olarak Wallarm, ondan gelen engellenmiş isteklerin istatistiklerini toplar ve [gösterir](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips).
+1. **URI** filtresini aşağıdaki ekran görüntüsünde gösterildiği gibi ayarlayın; şunları içerecek şekilde:
 
-1. **Mark as forced browsing** tetikleyici tepkisini seçin. Eşik aşıldıktan sonra gelen istekler zorla tarama saldırısı olarak işaretlenecek ve Wallarm Console'un **Attacks** bölümünde görüntülenecektir. Bazen, saldırı hakkında bilgi edinmek için yalnızca bu tepkiyi almak, herhangi bir şeyi engellememek amacıyla yeterli olabilir.
+    * Yolda "bileşen sayısı sınırsız" anlamına gelen `**` [joker karakteri](../../user-guides/rules/rules.md#using-wildcards). Bu, `book-sale-example.com` altındaki tüm adresleri kapsar.
+
+        ![Zorla gezinti tetikleyicisi örneği](../../images/user-guides/triggers/trigger-example5-4.8.png)
+
+    * Bu örnekte ihtiyaç duyduğumuz deseni yapılandırmanın yanı sıra, belirli URI’ler girebilir (örneğin, kaynak dosya dizininizin URI’si) veya herhangi bir URI belirtmeyerek tetikleyicinin tüm uç noktalarda çalışmasını sağlayabilirsiniz.
+    * İç içe URI’ler kullanıyorsanız, [tetikleyici işleme önceliklerini](../../user-guides/triggers/triggers.md#trigger-processing-priorities) göz önünde bulundurun.
+
+1. Bu durumda şunları kullanmayın: 
+
+    * **Application** filtresi, ancak seçili uygulamaların alan adlarını veya belirli uç noktalarını hedefleyen isteklere yalnızca tepki verecek şekilde tetikleyiciler ayarlamak için bunu kullanabileceğinizi unutmayın.
+    * **IP** filtresi, ancak belirli IP’lerden gelen isteklere yalnızca tepki verecek şekilde tetikleyiciler ayarlamak için bunu kullanabileceğinizi unutmayın.
+
+1. **Denylist IP address** - `Block for 4 hour` tetikleyici tepkisini seçin. Eşik aşıldığında Wallarm, kaynak IP’yi [denylist](../../user-guides/ip-lists/overview.md) listesine ekleyecek ve bundan sonraki tüm istekleri engelleyecektir.
+
+    Bot IP’si zorla gezinti koruması tarafından denylist’e eklense bile, varsayılan olarak Wallarm, ondan gelen engellenen isteklere ilişkin istatistikleri toplar ve [görüntüler](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips).
+
+1. **Mark as forced browsing** tetikleyici tepkisini seçin. Eşik aşıldıktan sonra alınan istekler zorla gezinti saldırısı olarak işaretlenecek ve Wallarm Console’un **Attacks** bölümünde görüntülenecektir. Bazen, herhangi bir şeyi engellemeden saldırı hakkında bilgi sahibi olmak için bu tepkiyi tek başına kullanabilirsiniz.
 1. Tetikleyiciyi kaydedin ve [Cloud ve node senkronizasyonunun tamamlanmasını](../configure-cloud-node-synchronization-en.md) bekleyin (genellikle 2-4 dakika sürer).
 
-Zorla tarama koruması için birden fazla tetikleyici yapılandırabilirsiniz.
+Zorla gezinti koruması için birden fazla tetikleyici yapılandırabilirsiniz.
 
-## Test Etme
+### Test
 
-!!! info "Ortamınızda Test Etme"
-    Ortamınızda **Forced browsing** tetikleyicisini test etmek için, aşağıdaki tetikleyici ve isteklerde, alan adını herhangi bir genel alan adı ile (ör. `example.com`) değiştirin.
+!!! info "Ortamınızda test"
+    Kendi ortamınızda **Forced browsing** tetikleyicisini test etmek için, aşağıdaki tetikleyicide ve isteklerde alan adını herkese açık herhangi biriyle (ör. `example.com`) değiştirin.
 
-[Yapılandırma](#yapılandırma) bölümünde açıklanan tetikleyiciyi test etmek için:
+[Configuring](#configuring) bölümünde açıklanan tetikleyiciyi test etmek için:
 
-1. Korunan URI'ye yapılandırılan eşik değeri aşan sayıda istek gönderin. Örneğin, `https://book-sale-example.com/config.json` adresine 50 istek gönderin (eşleşme: `https://book-sale-example.com/**.**`):
+1. Korumalı URI’ye, yapılandırılmış eşiği aşacak sayıda istek gönderin. Örneğin, `https://book-sale-example.com/config.json` adresine 50 istek ( `https://book-sale-example.com/**.**` ile eşleşir):
 
     ```bash
     for (( i=0 ; $i<51 ; i++ )) ; do curl https://book-sale-example.com/config.json ; done
     ```
-2. Eğer tetikleyici tepkisi **Denylist IP address** ise, Wallarm Console → **IP lists** → **Denylist** bölümünü açın ve kaynak IP adresinin engellendiğini kontrol edin.
+2. Tetikleyici tepkisi **Denylist IP address** ise, Wallarm Console → **IP lists** → **Denylist**’i açın ve kaynak IP adresinin engellendiğini kontrol edin.
 
-    Eğer tetikleyici tepkisi **Graylist IP address** ise, Wallarm Console'un **IP lists** → **Graylist** bölümünü kontrol edin.
-3. **Attacks** bölümünü açın ve isteklerin zorla tarama saldırısı olarak listelendiğini kontrol edin.
+    Tetikleyici tepkisi **Graylist IP address** ise, Wallarm Console’un **IP lists** → **Graylist** bölümünü kontrol edin.
+3. **Attacks** bölümünü açın ve isteklerin zorla gezinti saldırısı olarak listede görüntülendiğini kontrol edin.
 
-    ![Forced browsing attack in the interface](../../images/user-guides/events/forced-browsing-attack.png)
+    ![Arayüzde zorla gezinti saldırısı](../../images/user-guides/events/forced-browsing-attack.png)
 
-    Görüntülenen istek sayısı, tetikleyici eşik değerini aştıktan sonra gönderilen istek sayısıyla uyumludur ([davranışsal saldırıların tespiti hakkında daha fazla bilgi](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)). Bu sayı 5'ten fazla ise, istek örneklemesi uygulanır ve istek detayları yalnızca ilk 5 istek için gösterilir ([istek örneklemesi hakkında daha fazla bilgi](../../user-guides/events/grouping-sampling.md#sampling-of-hits)).
+    Görüntülenen istek sayısı, tetikleyici eşiği aşıldıktan sonra gönderilen istek sayısına karşılık gelir ([davranışsal saldırıların tespiti hakkında daha fazla bilgi](../../attacks-vulns-list.md#attack-types)). Bu sayı 5’ten büyükse, istek örnekleme uygulanır ve istek ayrıntıları yalnızca ilk 5 hit için görüntülenir ([istek örnekleme hakkında daha fazla bilgi](../../user-guides/events/grouping-sampling.md#sampling-of-hits)).
 
-    Zorla tarama saldırılarını aramak için `dirbust` filtresini kullanabilirsiniz. Tüm filtreler [arama kullanımı yönergelerinde](../../user-guides/search-and-filters/use-search.md) açıklanmıştır.
+    Zorla gezinti saldırılarını aramak için `dirbust` filtresini kullanabilirsiniz. Tüm filtreler [arama kullanımına ilişkin talimatlarda](../../user-guides/search-and-filters/use-search.md) açıklanmıştır.
 
-## Gereksinimler ve Kısıtlamalar
+### Gereksinimler ve kısıtlamalar
 
 **Gereksinimler**
 
-Zorla tarama saldırılarına karşı kaynakları korumak için gerçek istemci IP adresleri gereklidir. Eğer filtreleme düğümü bir proxy sunucusu veya yük dengeleyicinin arkasında dağıtıldıysa, gerçek istemci IP adreslerini gösterecek şekilde [yapılandırın](../using-proxy-or-balancer-en.md).
+Kaynakları zorla gezinti saldırılarından korumak için gerçek istemci IP adresleri gereklidir. Filtreleme node’u bir proxy sunucusunun veya yük dengeleyicinin arkasına konuşlandırılmışsa, gerçek istemci IP adreslerinin görüntülenmesini [yapılandırın](../using-proxy-or-balancer-en.md).
 
 **Kısıtlamalar**
 
-Zorla tarama saldırısı belirtileri aranırken, Wallarm düğümleri yalnızca diğer saldırı türlerinin belirtilerini taşımayan HTTP isteklerini analiz eder.
+Zorla gezinti saldırısı işaretlerini ararken, Wallarm node’ları yalnızca diğer saldırı türlerinin işaretlerini içermeyen HTTP isteklerini analiz eder.

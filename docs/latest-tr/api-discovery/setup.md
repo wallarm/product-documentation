@@ -1,61 +1,48 @@
-# API Discovery Kurulumu <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discovery Kurulumu <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Bu makale, [API Discovery](overview.md) modülünü nasıl etkinleştireceğinizi, yapılandıracağınızı ve hata ayıklayacağınızı açıklamaktadır.
+Bu makale, [API Discovery](overview.md) modülünün nasıl etkinleştirileceğini, yapılandırılacağını ve hata ayıklanacağını açıklar.
 
-## Etkinleştirme
+## Etkinleştir
 
-API Discovery, Wallarm node kurulumu [tüm biçimlerine](../installation/supported-deployment-options.md) dahildir. Node dağıtımında, API Discovery modülü kurulur ancak varsayılan olarak devre dışı bırakılır.
+API Discovery, Wallarm düğümü kurulumunun tüm [self-hosted](../installation/supported-deployment-options.md), [Security Edge](../installation/security-edge/overview.md) ve [Connector](../installation/connectors/overview.md) biçimlerine dahildir. Düğüm dağıtımı sırasında API Discovery modülü kurulur ancak varsayılan olarak devre dışı bırakılır.
 
-API Discovery'ı etkinleştirip doğru şekilde çalıştırmak için:
+API Discovery özelliğini doğru şekilde etkinleştirip çalıştırmak için:
 
-1. [Abonelik planınızın](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) **API Discovery** içermesine dikkat edin. Abonelik planını değiştirmek için lütfen [sales@wallarm.com](mailto:sales@wallarm.com) adresine talepte bulunun.
-1. Wallarm Console → **API Discovery** → **Configure API Discovery** bölümüne gidip API Discovery ile trafik analizini etkinleştirin.
+1. [Abonelik planınızın](../about-wallarm/subscription-plans.md#core-subscription-plans) **API Discovery** içerdiğinden emin olun. Abonelik planını değiştirmek için lütfen [sales@wallarm.com](mailto:sales@wallarm.com) adresine talep gönderin.
+1. Wallarm Console → **API Discovery** → **Configure API Discovery** içinde, API Discovery ile trafik analizini etkinleştirin.
 
-API Discovery modülü etkinleştirildiğinde, trafik analizi ve API envanterinin oluşturulması başlayacaktır. API envanteri, Wallarm Console’un **API Discovery** bölümünde görüntülenecektir.
+API Discovery modülü etkinleştirildiğinde, trafik analizi ve API envanteri oluşturulmaya başlanır. API envanteri, Wallarm Console'un **API Discovery** bölümünde görüntülenecektir.
 
-## Yapılandırma
+## Yapılandır
 
-**API Discovery** bölümündeki **Configure API Discovery** butonuna tıklayarak, API keşfi için uygulamaların seçilmesi ve risk skoru hesaplamasının özelleştirilmesi gibi API Discovery ayarlarını detaylandırabileceğiniz seçeneklere ulaşabilirsiniz.
+**API Discovery** bölümündeki **Configure API Discovery** düğmesine tıklayarak, API keşfi için uygulama seçimi ve risk puanı hesaplamasını özelleştirme gibi ince ayar seçeneklerine geçersiniz.
 
-### API Discovery için Uygulamaların Seçilmesi
+### API Discovery için uygulamaları seçme
 
-API Discovery'ı tüm uygulamalar veya sadece seçili uygulamalar için etkinleştirebilir/devre dışı bırakabilirsiniz:
+API Discovery'yi tüm uygulamalar için veya yalnızca seçilenler için etkinleştirebilir/devre dışı bırakabilirsiniz:
 
-1. Uygulamaların, [Setting up applications](../user-guides/settings/applications.md) makalesinde açıklandığı şekilde eklendiğinden emin olun.
+1. Uygulamaların [Uygulamaların ayarlanması](../user-guides/settings/applications.md) makalesinde açıklandığı şekilde eklendiğinden emin olun.
 
-   Uygulamalar yapılandırılmamışsa, tüm API'lerin yapıları tek bir ağaç altında gruplanır.
+    Uygulamalar yapılandırılmamışsa, tüm API'lerin yapıları tek bir ağaçta gruplanır.
 
-1. Gerekli uygulamalarda Wallarm Console → **API Discovery** → **Configure API Discovery** bölümünden API Discovery'yı etkinleştirin.
+1. Gerekli uygulamalar için Wallarm Console → **API Discovery** → **Configure API Discovery** içinde API Discovery'yi etkinleştirin.
 
     ![API Discovery – Settings](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
 
-**Settings** → **[Applications](../user-guides/settings/applications.md)** bölümünden yeni bir uygulama eklediğinizde, uygulama otomatik olarak API discovery listesine **devre dışı** durumuyla eklenir.
+**Settings** → **[Applications](../user-guides/settings/applications.md)** içinde yeni bir uygulama eklediğinizde, API keşfi için uygulamalar listesine otomatik olarak **devre dışı** durumda eklenir.
 
-### Risk Skoru Hesaplamasının Özelleştirilmesi
+### Risk puanı hesaplamasını özelleştirme
 
-[risk score](risk-score.md) hesaplamasında her faktörün ağırlığını ve hesaplama yöntemini yapılandırabilirsiniz.
+[risk puanı](risk-score.md) hesaplamasında her faktörün ağırlığını ve hesaplama yöntemini yapılandırabilirsiniz.
 
-### Hassas Veri Tespitinin Özelleştirilmesi
+### Hassas veri tespitini özelleştirme
 
-API Discovery, API'leriniz tarafından kullanılan ve taşınan hassas verileri [tespit edip vurgular](sensitive-data.md). Mevcut tespit sürecini ince ayarlayabilir ve tespit edilecek kendi veri tiplerinizi ekleyebilirsiniz.
+API Discovery, API'leriniz tarafından tüketilen ve taşınan [hassas verileri tespit eder ve vurgular](sensitive-data.md). Mevcut tespit sürecini ince ayar yapabilir ve tespit edilecek kendi veri türlerinizle genişletebilirsiniz.
 
-Mevcut yapılandırmayı görmek ve değişiklik yapmak için, Wallarm Console’da **API Discovery** → **Configure API Discovery** → **Sensitive data** bölümüne gidin. Burada mevcut hassas veri kalıplarını inceleyebilir, değiştirebilir ve kendi kalıplarınızı ekleyebilirsiniz.
+Geçerli yapılandırmayı görüntülemek ve değişiklik yapmak için Wallarm Console içinde **API Discovery** → **Configure API Discovery** → **Sensitive data** yoluna gidin. Burada mevcut hassas veri desenlerini görüntüleyip değiştirebilir ve kendi desenlerinizi ekleyebilirsiniz.
 
-[Detaylar için buraya tıklayın →](sensitive-data.md#customizing-sensitive-data-detection)
+[Ayrıntılar için buraya bakın →](sensitive-data.md#customizing-sensitive-data-detection)
 
-## Hata Ayıklama
+## Hata ayıklama
 
-API Discovery günlüklerini almak ve analiz etmek için aşağıdaki yöntemleri kullanabilirsiniz:
-
-* Node’un çalıştığı makinada `/opt/wallarm/var/log/wallarm/appstructure-out.log` günlük dosyasını okuyun.
-* Eğer Wallarm node, Kubernetes Ingress kontrolcüsü olarak dağıtılmışsa: Tarantool ve `wallarm-appstructure` konteynerlerini çalıştıran podun durumunu kontrol edin. Pod durumu **Running** olmalıdır.
-
-    ```bash
-    kubectl get po -l app=nginx-ingress,component=controller-wallarm-tarantool
-    ```
-
-    `wallarm-appstructure` konteynerinin günlüklerini okuyun:
-
-    ```bash
-    kubectl logs -l app=nginx-ingress,component=controller-wallarm-tarantool -c wallarm-appstructure
-    ```
+API Discovery günlüklerini almak ve analiz etmek için, düğümün çalıştığı Linux makinede `/opt/wallarm/var/log/wallarm/appstructure-out.log` günlük dosyasını okuyabilirsiniz.

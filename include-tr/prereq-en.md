@@ -1,5 +1,5 @@
-Wallarm kurulumu önkoşulları:
+Wallarm kurulum önkoşulları:
 
-* Desteklenen işletim sistemi.
+* Desteklenen bir işletim sistemi.
 * Root erişimi.
-* [US](https://us1.my.wallarm.com) veya [EU](https://my.wallarm.com) cloud'da Wallarm portalı üzerindeki Wallarm hesabı.
+* Wallarm portalında [ABD](https://us1.my.wallarm.com) veya [AB](https://my.wallarm.com) bulutunda Wallarm hesabı.

@@ -1,47 +1,47 @@
-The Wallarm filtering node, Wallarm Cloud ile etkileşir. Düğümü Cloud’a bağlamanız gerekir.
+Wallarm filtreleme düğümü, Wallarm Cloud ile etkileşime girer. Düğümü Cloud’a bağlamanız gerekir.
 
-Cloud’a düğümü bağlarken, Wallarm Console UI’de görüntülenecek düğüm adını ayarlayabilir ve düğümü uygun **node group** içerisine (UI’de düğümleri mantıksal olarak organize etmek için kullanılır) ekleyebilirsiniz.
+Düğümü Cloud’a bağlarken, düğümün Wallarm Console UI içinde görüntüleneceği adını belirleyebilir ve düğümü uygun **node group**’a yerleştirebilirsiniz (UI içinde düğümleri mantıksal olarak düzenlemek için kullanılır).
 
-![Grouped nodes][img-grouped-nodes]
+![Gruplandırılmış düğümler][img-grouped-nodes]
 
-Düğümü Cloud’a bağlamak için, [appropriate type][wallarm-token-types] Wallarm token’ından kullanın:
+Düğümü Cloud’a bağlamak için, [uygun türde][wallarm-token-types] bir Wallarm token’ı kullanın:
 
-=== "API token"
+=== "API token'ı"
 
-1. [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens) üzerinden Wallarm Console → **Settings** → **API tokens** sayfasını açın.
-2. `Deploy` kaynak rolüne sahip API token’ını bulun veya oluşturun.
-3. Bu token’ı kopyalayın.
-4. Filtreleme düğümünü kurduğunuz makinede `register-node` betiğini çalıştırın:
+    1. Wallarm Console → **Settings** → **API tokens** yolunu [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens) içinde açın.
+    1. `Node deployment/Deployment` kullanım türüne sahip bir API token bulun veya oluşturun.
+    1. Bu token'ı kopyalayın.
+    1. Filtreleme düğümünü kurduğunuz makinede `register-node` komut dosyasını çalıştırın:
 
-    === "US Cloud"
-        ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>' -H us1.api.wallarm.com
-        ```
-    === "EU Cloud"
-        ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>'
-        ```
+        === "US Cloud"
+            ``` bash
+            sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>' -H us1.api.wallarm.com
+            ```
+        === "EU Cloud"
+            ``` bash
+            sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>'
+            ```
         
-    * `<TOKEN>`, `Deploy` rolüne sahip API token’ın kopyalanmış değeridir.
-    * `--labels 'group=<GROUP>'` parametresi, düğümünüzü `<GROUP>` düğüm grubuna ekler (varsa mevcut, yoksa oluşturulur).
+        * `<TOKEN>`, `Deploy` rolüne sahip API token'ın kopyalanmış değeridir.
+        * `--labels 'group=<GROUP>'` parametresi düğümünüzü `<GROUP>` node group’una yerleştirir (mevcutsa o grup kullanılır, mevcut değilse oluşturulur).
 
-=== "Node token"
+=== "Node token'ı"
 
-1. [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) üzerinden Wallarm Console → **Nodes** sayfasını açın.
-2. Aşağıdakilerden birini yapın:
-    * **Wallarm node** türünde düğüm oluşturun ve oluşturulan token’ı kopyalayın.
-    * Var olan düğüm grubunu kullanın – düğüm menüsünden **Copy token** seçeneği ile token’ı kopyalayın.
-3. Filtreleme düğümünü kurduğunuz makinede `register-node` betiğini çalıştırın:
+    1. Wallarm Console → **Nodes** yolunu [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) içinde açın.
+    1. Şunlardan birini yapın: 
+        * "Wallarm node" türünde düğümü oluşturun ve üretilen token'ı kopyalayın.
+        * Mevcut node group'u kullanın - node's menu → **Copy token** ile token'ı kopyalayın.
+    1. Filtreleme düğümünü kurduğunuz makinede `register-node` komut dosyasını çalıştırın:
 
-    === "US Cloud"
-        ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <TOKEN> -H us1.api.wallarm.com
-        ```
-    === "EU Cloud"
-        ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <TOKEN>
-        ```
+        === "US Cloud"
+            ``` bash
+            sudo /usr/share/wallarm-common/register-node -t <TOKEN> -H us1.api.wallarm.com
+            ```
+        === "EU Cloud"
+            ``` bash
+            sudo /usr/share/wallarm-common/register-node -t <TOKEN>
+            ```
 
-    * `<TOKEN>`, kopyaladığınız düğüm token’ının değeridir.
+    * `<TOKEN>`, node token'ının kopyalanmış değeridir.
 
-* Düğüm örneğiniz için özel bir isim ayarlamak isterseniz, `-n <HOST_NAME>` parametresini ekleyebilirsiniz. Nihai örnek adı: `HOST_NAME_NodeUUID` olacaktır.
+* Düğüm örneğinize özel bir ad atamak için `-n <HOST_NAME>` parametresini ekleyebilirsiniz. Son örnek adı şu olacaktır: `HOST_NAME_NodeUUID`.

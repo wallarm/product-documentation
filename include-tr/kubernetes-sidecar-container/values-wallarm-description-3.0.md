@@ -1,27 +1,24 @@
-```
 wallarm:
   image:
      repository: wallarm/node
      tag: 3.0.0-3
      pullPolicy: Always
   # Wallarm API uç noktası: 
-  # AB Cloud için "api.wallarm.com"
-  # ABD Cloud için "us1.api.wallarm.com"
+  # "api.wallarm.com" EU Cloud için
+  # "us1.api.wallarm.com" US Cloud için
   wallarm_host_api: "api.wallarm.com"
   # Deploy rolüne sahip kullanıcının kullanıcı adı
   deploy_username: "username"
-  # Deploy rolüne sahip kullanıcının şifresi
+  # Deploy rolüne sahip kullanıcının parolası
   deploy_password: "password"
   # Konteynerin gelen istekleri kabul ettiği port,
-  # değer ana uygulama konteynerinizin ports.containerPort tanımına
-  # tam olarak uymalıdır
+  # değer ana uygulama konteynerinizin tanımındaki ports.containerPort ile aynı olmalıdır
   app_container_port: 80
   # İstek filtreleme modu:
-  # "off" istek işlemenin devre dışı bırakılmasını sağlar
-  # "monitoring" istekleri işler ancak engellemez
-  # "safe_blocking" gri listeye alınmış IP'lerden gelen kötü niyetli istekleri engeller
-  # "block" tüm istekleri işleyip kötü niyetlileri engeller
+  # İstek işlemeyi devre dışı bırakmak için "off"
+  # İstekleri işlemek ancak engellememek için "monitoring"
+  # Gri listeye alınmış IP adreslerinden gelen kötü amaçlı istekleri engellemek için "safe_blocking"
+  # Tüm istekleri işlemek ve kötü amaçlı olanları engellemek için "block"
   mode: "block"
-  # İstek analiz verileri için ayrılan GB cinsinden bellek miktarı
+  # İstek analitiği verileri için GB cinsinden bellek miktarı
   tarantool_memory_gb: 2
-```

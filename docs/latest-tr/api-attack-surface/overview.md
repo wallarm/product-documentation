@@ -1,44 +1,58 @@
 # API Attack Surface Management  <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
-Wallarm'ın **API Attack Surface Management** (**AASM**), tüm dış hostları API'leriyle keşfetmek, Web ve API tabanlı saldırılara karşı korumalarını değerlendirmek, eksik WAF/WAAP çözümlerini belirlemek ve keşfedilen uç noktaların güvenlik sorunlarını tespit etmek üzere tasarlanmış ajan gerektirmeyen bir tespit çözümüdür.
+Wallarm'ın **API Attack Surface Management** (**AASM**) çözümü, API ekosistemine özel tasarlanmış ajan gerektirmeyen bir tespit çözümüdür; harici ana makineleri ve bunların API'lerini keşfetmek, eksik WAF/WAAP çözümlerini belirlemek ve API sızıntıları ile diğer güvenlik açıklarını azaltmak için tasarlanmıştır.
 
 API Attack Surface Management şunları içerir:
 
 * [API Attack Surface Discovery (AASD)](api-surface.md)
-* [Security Issues Detection](security-issues.md)
+* [Güvenlik Sorunları Tespiti](security-issues.md)
 
 ![AASM](../images/api-attack-surface/aasm.png)
 
-## Nasıl Çalışır
+## Nasıl çalışır
 
-API Attack Surface Management ile çalışma aşağıdaki gibidir:
+API Attack Surface Management, aşağıdaki bölümlerde açıklanan birden çok otomatik etkinlik sağlar.
 
-* Abonelik satın alırsınız.
-* Tarama yapılacak root alan adlarınızı belirlersiniz.
-* Belirtilen alan adları için, Wallarm alt alan adları/hostları arar ve listeler.
+### Adım 1: Harici API saldırı yüzeyi keşfi
 
-    AASM sistemi, pasif DNS analizi, SSL/TLS sertifika analizi, Certificate Transparency Logs analizi gibi çeşitli OSINT yöntemleri ile, arama motorları aracılığıyla ve en sık karşılaşılan alt alan adlarının sayımlanması yoluyla alt alan adlarını toplar.
+* [Keşfeder](api-surface.md) harici ana makineleri ve bunların API'lerini (barındırma yapan ör. CDN, IaaS veya PaaS sağlayıcıları dahil).
+* IP çözümlemesine dayanarak coğrafi konumları ve veri merkezlerini tanımlar.
+* Bir kuruluşun kullanmakta olduğu muhtemel API protokollerine (JSON-API, GraphQL, XML-RPC, JSON-RPC, OData, gRPC, WebSocket, SOAP, WebDav, HTML WEB ve daha fazlası) ilişkin içgörüler sunar.
+* İstemeden herkese açık hale getirilmiş özel API spesifikasyonlarını ortaya çıkarır.
+* Geliştirme veya dağıtım sırasında eklenen yeni API'leri, gölge API'leri ve yetkisiz uç noktaları tespit etmek için harici API saldırı yüzeyindeki değişiklikleri sürekli izler.
+* API saldırı yüzeyinizdeki keşif sonuçları ve değişiklikler hakkında sizi [bildirimlerle](setup.md#notifications) bilgilendirir.
 
-* Wallarm, her host için coğrafi konum ve veri merkezini belirler.
-* Wallarm, her host üzerindeki açığa çıkan API'leri tanımlar.
-* Wallarm, hostu koruyan güvenlik çözümleri (WAF/WAAP) belirler ve verimliliklerini değerlendirir.
-* Wallarm, bulunan alan adları/hostlar için [güvenlik sorunlarını](security-issues.md) kontrol eder.
-* Eğer tespit edilirse, güvenlik sorunları listelenir ve çözebilmeniz için açıklanır.
+### Adım 2: WAF kapsam keşfi ve testleri
 
-## Etkinleştirme ve Kurulum
+* API'lerin WAF/WAAP ile korunup korunmadığını [keşfeder](api-surface.md).
+* WAF/WAAP'ların algılamak üzere yapılandırıldığı tehdit türlerini test eder.
+* Keşfedilen her uç nokta için bir [güvenlik puanı](api-surface.md#security-posture) hesaplar.
+* WAF yapılandırmalarındaki boşlukları belirler ve raporlar; örneğin OWASP Top 10 güvenlik açıkları için eksik kurallar veya BOLA ve kimlik bilgisi doldurma (credential stuffing) gibi modern API'ye özgü tehditlere yönelik kapsama eksikliği.
 
-AASM'i kullanmak için, Wallarm'ın [API Attack Surface](../about-wallarm/subscription-plans.md#api-attack-surface) abonelik planının şirketinizde aktif olması gerekir. Etkinleştirmek için aşağıdakilerden birini yapın:
+### Adım 3: Otomatik API sızıntısı ve güvenlik açığı tespiti
 
-* Eğer henüz bir Wallarm hesabınız yoksa, fiyatlandırma bilgilerini alın ve Wallarm'ın resmi sitesinde [buradan](https://www.wallarm.com/product/aasm) AASM'i etkinleştirin.
+* Harici saldırı yüzeyi haritası keşfedildikten sonra, keşfedilen uygulama ve API'lerle ilgili [API sızıntılarını ve güvenlik açıklarını keşfetmeye](security-issues.md) başlar.
+* Güvenlik açıklarını ciddiyetine göre izler ve sınıflandırır; yanlış yapılandırmalar, zayıf şifreleme veya güncel olmayan bağımlılıklar gibi sorunları kategorize ederek düzeltme çalışmalarına etkin öncelik verilmesini sağlar.
+* Bulunan sızıntılar ve tespit edilen güvenlik açıkları hakkında sizi [bildirimlerle](setup.md#notifications) bilgilendirir.
 
-    Etkinleştirme sırasında, kullanılan e-posta alan adının taranması satış ekibi ile görüşürken hemen başlar. Etkinleştirmeden sonra, ek alan adlarını kapsamınıza ekleyebilirsiniz.
+## Tespit edilen güvenlik açığı türleri
 
-* Eğer zaten bir Wallarm hesabınız varsa, [sales@wallarm.com](mailto:sales@wallarm.com) ile iletişime geçin.
+API Attack Surface Management şunları tespit eder:
 
-Abonelik etkinleştirildikten sonra, alan tespiti yapılandırmak ve güvenlik sorunlarını aramaya başlamak için Wallarm Console → AASM → **API Attack Surface** veya **Security Issues** bölümünde **Configure**'a tıklayın. Alan adlarınızı kapsamınıza ekleyin, tarama durumunu kontrol edin.
+* GraphQL yanlış yapılandırmaları
+* Bilgi ifşaları (hata ayıklama verileri, yapılandırma dosyaları, günlükler, kaynak kodu, yedekler)
+* Hassas API'lerin ifşası (örn. Prometheus metrikleri, durum sayfaları, sistem/hata ayıklama verisi ifşa eden API'ler)
+* En yaygın Path traversal, SQLi, SSRF, XSS vb. vakaları
+* Uzaktan yönetim arayüzlerinin ifşası (API Gateway'in yönetim arayüzleri dahil)
+* Veritabanı yönetim arayüzlerinin ifşası
+* SSL/TLS yanlış yapılandırmaları
+* API spesifikasyonunun ifşası
+* API Anahtarları, PII (kullanıcı adları ve parolalar), yetkilendirme belirteçleri (Bearer/JWT) ve daha fazlasını içeren API sızıntıları
+* Güncel olmayan yazılım sürümleri ve bunlara karşılık gelen CVE'ler
+* ~2k en popüler web ve API ile ilgili CVE
 
-![AASM - configuring scope](../images/api-attack-surface/aasm-scope.png)
+Açıklamalarla birlikte tam listeyi [burada](security-issues.md#list-of-detected-issues) görebilirsiniz.
 
-Wallarm, tüm alt alan adlarını listeleyecek ve varsa onlarla ilgili güvenlik sorunlarını gösterecektir. Alan adlarının günlük olarak otomatik yeniden tarandığını unutmayın - yeni alt alan adları otomatik olarak eklenecek, daha önce listelenip yeniden taramada bulunamayanlar listede kalacaktır.
+## Etkinleştirme ve kurulum
 
-Herhangi bir alan için **Configure** → **Status** bölümüne giderek taramayı yeniden başlatabilir, duraklatabilir veya devam ettirebilirsiniz.
+API Attack Surface Management'i kullanmaya başlamak için, API [Attack Surface Management Kurulumu](setup.md) bölümünde açıklandığı şekilde etkinleştirin ve yapılandırın.

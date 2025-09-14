@@ -1,4 +1,4 @@
-Among all supported [Wallarm deployment options][deployment-platform-docs], GCP Machine Image, aşağıdaki **kullanım durumları** için Wallarm dağıtımı önerilmektedir:
+Desteklenen tüm [Wallarm dağıtım seçenekleri][deployment-platform-docs] arasında, şu **kullanım durumları** için Wallarm dağıtımı adına GCP Machine Image önerilir:
 
-* Mevcut altyapınız GCP'de yer alıyorsa.
-* NGINX gibi ön uç sistemlere doğrudan kurulum yapmak yerine, güvenlik çözümünü ayrı bir bulut örneği olarak dağıtmayı hedefliyorsanız.
+* Mevcut altyapınız GCP üzerinde yer alıyor.
+* NGINX gibi ön uç sistemlere doğrudan kurmak yerine, güvenlik çözümünü ayrı bir bulut örneği olarak devreye almak istiyorsunuz.

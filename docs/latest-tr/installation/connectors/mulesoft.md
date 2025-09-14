@@ -1,4 +1,3 @@
-```markdown
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
@@ -6,78 +5,83 @@
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
+[helm-chart-native-node]:           ../native-node/helm-chart.md
+[custom-blocking-page]:             ../../admin-en/configuration-guides/configure-block-page-and-code.md
+[rate-limiting]:                    ../../user-guides/rules/rate-limiting.md
+[multi-tenancy]:                    ../multi-tenant/overview.md
 
-# Wallarm Connector for MuleSoft
+# MuleSoft Mule Gateway için Wallarm Connector
 
-[MuleSoft](https://www.mulesoft.com/) entegrasyon platformu, API ağ geçidi aracılığıyla istemci uygulamaların API'lara erişim sağlaması için giriş noktası sunarak, hizmetler arasında sorunsuz bağlantı ve veri entegrasyonu sağlamaktadır. Wallarm, MuleSoft üzerinde çalışan API'ları güvence altına almak amacıyla bir konnektör olarak görev yapabilir.
+Bu kılavuz, [Mule Gateway](https://docs.mulesoft.com/mule-gateway/mule-gateway-capabilities-mule4) tarafından yönetilen Mule API'lerinizi Wallarm connector kullanarak nasıl güvenceye alacağınızı açıklar.
 
-Wallarm'ı MuleSoft için bir konnektör olarak kullanmak için, **Wallarm düğümünü dışarıda dağıtmanız** ve **MuleSoft üzerinde Wallarm tarafından sağlanan politikayı uygulamanız** gerekmektedir; bu, trafiğin analiz için Wallarm düğümüne yönlendirilmesini sağlar.
+Mule Gateway için Wallarm'ı bir connector olarak kullanmak için, **Wallarm node'u harici olarak dağıtmanız** ve trafiği analiz için Wallarm node'una yönlendirmek üzere **MuleSoft içinde Wallarm tarafından sağlanan policy'yi uygulamanız** gerekir.
 
-Wallarm connector for MuleSoft yalnızca [in-line](../inline/overview.md) trafik analizini desteklemektedir:
+Mule Gateway için Wallarm connector yalnızca [in-line](../inline/overview.md) trafik analizini destekler:
 
 ![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-mule-gateway-inline.png)
 
-## Kullanım Durumları
+## Kullanım senaryoları
 
-Desteklenen tüm [Wallarm dağıtım seçenekleri](../supported-deployment-options.md) arasında, bu çözüm, yalnızca tek bir politika ile MuleSoft Anypoint platformunda dağıtılan API'ların güvence altına alınması için önerilen seçenektir.
+Bu çözüm, Mule Gateway tarafından yönetilen Mule API'lerini güvenceye almak için önerilen yaklaşımdır.
 
 ## Sınırlamalar
 
-* Wallarm kuralı tarafından uygulanan [Rate limiting](../../user-guides/rules/rate-limiting.md) desteklenmemektedir.
-* [Multitenancy](../multi-tenant/overview.md) henüz desteklenmemektedir.
+--8<-- "../include/waf/installation/connectors/native-node-limitations.md"
 
 ## Gereksinimler
 
-Dağıtıma devam edebilmek için, aşağıdaki gereksinimleri karşıladığınızdan emin olun:
+Dağıtıma devam edebilmek için aşağıdaki gereksinimleri karşıladığınızdan emin olun:
 
-* MuleSoft platformunun anlaşılması.
-* Host sisteminizde yüklü ve çalışan [Docker](https://docs.docker.com/engine/install/).
+* MuleSoft platformunu anlama.
+* Anypoint Platform içinde Enterprise aboneliği (özel policy dağıtımı ve harici trafik yönlendirme için gereklidir).
+* Ana sisteminizde [Docker](https://docs.docker.com/engine/install/) yüklü ve çalışır durumda.
 * [Maven (`mvn`)](https://maven.apache.org/install.html).
-* Kuruluşunuzun MuleSoft Anypoint Platform hesabına artifact yüklemenizi sağlayan MuleSoft Exchange katkı sağlayıcı rolünün atanmış olması.
-* [MuleSoft Exchange kimlik bilgilerinizin (kullanıcı adı ve şifre)](https://docs.mulesoft.com/mule-gateway/policies-custom-upload-to-exchange#deploying-a-policy-created-using-the-maven-archetype) `<MAVEN_DIRECTORY>/conf/settings.xml` dosyasında belirtilmiş olması.
-* Uygulamanızın ve API'nizin MuleSoft üzerinde bağlantılı ve çalışır durumda olması.
-* Wallarm Console'da [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) için **Administrator** rolüne sahip hesaba erişiminizin bulunması.
+* MuleSoft kullanıcınızın MuleSoft Anypoint Platform hesabınıza artifact yükleme yetkisi olması.
+* [MuleSoft Exchange kimlik bilgileriniz (kullanıcı adı ve parola)](https://docs.mulesoft.com/mule-gateway/policies-custom-upload-to-exchange#deploying-a-policy-created-using-the-maven-archetype) `<MAVEN_DIRECTORY>/conf/settings.xml` dosyasında belirtilmiş olmalı.
+* Uygulamanız ve API'niz bağlantılı olmalı ve Mule Gateway üzerinde çalışıyor olmalı.
+* Wallarm Console içindeki [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) için **Administrator** rolüne sahip hesaba erişim.
 
 ## Dağıtım
 
-### 1. Bir Wallarm düğümü dağıtın
+### 1. Bir Wallarm node'u dağıtın
 
-Wallarm düğümü, gelen trafiği inceleyen, kötü amaçlı etkinlikleri tespit eden ve tehditleri azaltmak için yapılandırılabilen Wallarm platformunun temel bileşenidir. 
+Wallarm node, dağıtmanız gereken Wallarm platformunun çekirdek bir bileşenidir. Gelen trafiği inceler, kötü amaçlı etkinlikleri tespit eder ve tehditleri azaltacak şekilde yapılandırılabilir.
 
-Bunu, gereksinim duyduğunuz kontrol düzeyine bağlı olarak, ya Wallarm tarafından barındırılan ya da kendi altyapınızda dağıtabilirsiniz.
+Gereksinim duyduğunuz kontrol seviyesine bağlı olarak, Wallarm tarafından barındırılan şekilde veya kendi altyapınızda dağıtabilirsiniz.
 
 === "Edge node"
-    Konnektör için Wallarm tarafından barındırılan bir düğüm dağıtmak amacıyla, [talimatları](../se-connector.md) izleyin.
+    Connector için Wallarm tarafından barındırılan bir node dağıtmak üzere [talimatları](../security-edge/se-connector.md) izleyin.
 === "Self-hosted node"
-    Kendi kendine barındırılan bir düğüm dağıtımı için bir artifact seçin ve ekli talimatları izleyin:
+    Self-hosted node dağıtımı için bir artifact seçin ve ekli talimatları izleyin:
 
-    * Bare metal veya VM'ler üzerinde Linux altyapıları için [All-in-one installer](../native-node/all-in-one.md)
-    * Konteynerleştirilmiş dağıtımları kullanan ortamlar için [Docker image](../native-node/docker-image.md)
+    * Linux altyapıları (bare metal veya VM'ler) için [Tümü-bir-arada yükleyici](../native-node/all-in-one.md)
+    * Container tabanlı dağıtımlar kullanan ortamlar için [Docker imajı](../native-node/docker-image.md)
+    * AWS altyapıları için [AWS AMI](../native-node/aws-ami.md)
     * Kubernetes kullanan altyapılar için [Helm chart](../native-node/helm-chart.md)
 
-### 2. Wallarm politikasını MuleSoft Exchange'e elde edin ve yükleyin
+### 2. Obtain and upload the Wallarm policy to MuleSoft Exchange
 
-Wallarm politikasını MuleSoft Exchange'e elde etmek ve yüklemek için aşağıdaki adımları izleyin:
+Wallarm policy'sini MuleSoft Exchange'e almak ve yüklemek için şu adımları izleyin:
 
-1. Wallarm Console → **Security Edge** → **Connectors** bölümüne gidin → **Download code bundle** seçeneğine tıklayın ve platformunuza uygun bir code bundle indirin.
+1. Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** yolunu izleyin ve platformunuz için bir code bundle indirin.
 
-    Eğer kendi kendine barındırılan bir düğüm kullanıyorsanız, code bundle almak için sales@wallarm.com ile iletişime geçin.
-1. Politika arşivini çıkarın.
+    Self-hosted node çalıştırıyorsanız, code bundle almak için sales@wallarm.com ile iletişime geçin.
+1. Policy arşivini çıkarın.
 1. `pom.xml` dosyası içinde aşağıdakileri belirtin:
 
-    === "Global instance"
-        1. MuleSoft Anypoint Platform → **Access Management** → **Business Groups** bölümüne gidin → kuruluşunuzu seçin → ID'sini kopyalayın.
-        1. Kopyalanan grup ID'sini `pom.xml` dosyasındaki `groupId` parametresine belirtin:
+    === "Küresel örnek"
+        1. MuleSoft Anypoint Platform → **Access Management** → **Business Groups** → kurumunuzu seçin → kimliğini (ID) kopyalayın.
+        1. Kopyalanan grup kimliğini `pom.xml` dosyasındaki `groupId` parametresine belirtin:
 
         ```xml hl_lines="2"
         <?xml version="1.0" encoding="UTF-8"?>
             <groupId>BUSINESS_GROUP_ID</groupId>
             <artifactId>wallarm</artifactId>
         ```
-    === "Regional instance"
-        1. MuleSoft Anypoint Platform → **Access Management** → **Business Groups** bölümüne gidin → kuruluşunuzu seçin → ID'sini kopyalayın.
-        1. Kopyalanan grup ID'sini `pom.xml` dosyasındaki `groupId` parametresine belirtin.
-        1. Belirli bölgelerde barındırılan MuleSoft instance'ları için, `pom.xml` dosyasını ilgili bölgesel URL'leri kullanacak şekilde güncelleyin. Örneğin, MuleSoft'un Avrupa instance'ı için:
+    === "Bölgesel örnek"
+        1. MuleSoft Anypoint Platform → **Access Management** → **Business Groups** → kurumunuzu seçin → kimliğini (ID) kopyalayın.
+        1. Kopyalanan grup kimliğini `pom.xml` dosyasındaki `groupId` parametresine belirtin.
+        1. Belirli bölgelerde barındırılan MuleSoft örnekleri için, `pom.xml` dosyasını ilgili bölgesel URL'leri kullanacak şekilde güncelleyin. Örneğin, Avrupa'daki bir MuleSoft örneği için:
 
         ```xml hl_lines="2 7 14 24"
         <?xml version="1.0" encoding="UTF-8"?>
@@ -108,10 +112,10 @@ Wallarm politikasını MuleSoft Exchange'e elde etmek ve yüklemek için aşağ�
                 </repository>
             </repositories>
         ```
-1. `conf` klasörünü oluşturun ve içerisine aşağıdaki içeriğe sahip bir `settings.xml` dosyası oluşturun:
+1. `conf` dizinini oluşturun ve içinde aşağıdaki içerik ile bir `settings.xml` dosyası oluşturun:
 
-    === "Username and password"
-        `username` ve `password` bilgilerini gerçek kimlik bilgilerinizle değiştirdiğinizden emin olun:
+    === "Kullanıcı adı ve parola"
+        `username` ve `password` ifadelerini gerçek kimlik bilgilerinizle değiştirin:
 
         ```xml
         <?xml version="1.0" encoding="UTF-8"?>
@@ -124,11 +128,16 @@ Wallarm politikasını MuleSoft Exchange'e elde etmek ve yüklemek için aşağ�
                 <username>myusername</username>
                 <password>mypassword</password>
             </server>
+            <server>
+                <id>mulesoft-releases-ee</id>
+                <username>myusername</username>
+                <password>mypassword</password>
+            </server>
         </servers>
         </settings>
         ```
-    === "Token (if MFA is enabled)"
-        [Token'ınızı oluşturun ve belirtin](https://docs.mulesoft.com/access-management/saml-bearer-token) ve bunu `password` parametresine ekleyin:
+    === "Token (MFA etkinse)"
+        [`password` parametresinde token'ınızı oluşturun ve belirtin](https://docs.mulesoft.com/access-management/saml-bearer-token):
 
         ```xml
         <?xml version="1.0" encoding="UTF-8"?>
@@ -141,85 +150,76 @@ Wallarm politikasını MuleSoft Exchange'e elde etmek ve yüklemek için aşağ�
                 <username>~~~Token~~~</username>
                 <password>01234567-89ab-cdef-0123-456789abcdef</password>
             </server>
+            <server>
+                <id>mulesoft-releases-ee</id>
+                <username>~~~Token~~~</username>
+                <password>01234567-89ab-cdef-0123-456789abcdef</password>
+            </server>
         </servers>
         </settings>
         ```
-1. Aşağıdaki komutu kullanarak politikayı MuleSoft'a dağıtın:
+1. Aşağıdaki komutu kullanarak policy'yi MuleSoft'a dağıtın:
 
     ```
     mvn clean deploy -s conf/settings.xml
     ```
 
-Artık özel politikanız MuleSoft Anypoint Platform Exchange'te kullanılabilir durumda.
+Özel policy'niz artık MuleSoft Anypoint Platform Exchange içinde kullanılabilir.
 
 ![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
 
-### 3. Wallarm politikasını API'nize ekleyin
+### 3. Policy'yi API'nize ekleyin
 
-Wallarm politikasını tüm API'lara veya bireysel bir API'ya ekleyebilirsiniz.
+Wallarm policy'yi tek bir API'ye veya tüm API'lere ekleyebilirsiniz.
 
-#### Politikayı bireysel bir API'ya eklemek
-
-Wallarm politikasını bireysel bir API ile güvence altına almak için aşağıdaki adımları izleyin:
-
-1. Anypoint Platform'da **API Manager** bölümüne gidin ve ilgili API'yı seçin.
-1. **Policies** → **Add policy** bölümüne gidin ve Wallarm politikasını seçin.
-1. [Wallarm düğüm örneği](#1-deploy-a-wallarm-node) adresini, `http://` veya `https://` öneki ile birlikte belirtin.
-1. Gerekirse, diğer parametreleri de güncelleyin.
-1. Politikayı uygulayın.
+1. Policy'yi tek bir API'ye uygulamak için Anypoint Platform → **API Manager** → ilgili API'yi seçin → **Policies** → **Add policy** yolunu izleyin.
+1. Policy'yi tüm API'lere uygulamak için Anypoint Platform → **API Manager** → **Automated Policies** → **Add automated policy** yolunu izleyin.
+1. Exchange içinden Wallarm policy'yi seçin.
+1. `http://` veya `https://` dahil olmak üzere Wallarm node URL'sini belirtin.
+1. Gerekirse diğer parametreleri değiştirin.
+1. Policy'yi uygulayın.
 
 ![Wallarm policy](../../images/waf-installation/gateways/mulesoft/policy-setup.png)
 
-#### Politikayı tüm API'lara eklemek
+## Test
 
-MuleSoft'un [Automated policy seçeneğini](https://docs.mulesoft.com/mule-gateway/policies-automated-overview) kullanarak Wallarm politikasını tüm API'lara uygulamak için aşağıdaki adımları izleyin:
+Dağıtılan policy'nin işlevselliğini test etmek için şu adımları izleyin:
 
-1. Anypoint Platform'da **API Manager** → **Automated Policies** bölümüne gidin.
-1. **Add automated policy** butonuna tıklayın ve Wallarm politikasını Exchange üzerinden seçin.
-1. [Wallarm düğüm örneği](#1-deploy-a-wallarm-node) adresini, `http://` veya `https://` önekini ekleyerek belirtin.
-1. Gerekirse, diğer parametreleri de güncelleyin.
-1. Politikayı uygulayın.
-
-## Test Etme
-
-Dağıtımı gerçekleştirilen politikanın işlevselliğini test etmek için aşağıdaki adımları izleyin:
-
-1. API'nıza, test [Path Traversal][ptrav-attack-docs] saldırısını içeren isteği gönderin:
+1. API'nize test [Yol Geçişi][ptrav-attack-docs] saldırısını içeren isteği gönderin:
 
     ```
-    curl http://<YOUR_APP_DOMAIN>/etc/passwd
+    curl http://<GATEWAY_URL>/etc/passwd
     ```
-1. Wallarm Console → **Attacks** bölümüne ( [US Cloud](https://us1.my.wallarm.com/attacks) veya [EU Cloud](https://my.wallarm.com/attacks) ) gidin ve saldırının listede görüntülendiğinden emin olun.
+1. Wallarm Console → [US Cloud](https://us1.my.wallarm.com/attacks) veya [EU Cloud](https://my.wallarm.com/attacks) içindeki **Attacks** bölümünü açın ve saldırının listede görüntülendiğinden emin olun.
     
-    ![Attacks in the interface][attacks-in-ui-image]
+    ![Arayüzdeki saldırılar][attacks-in-ui-image]
 
-    Eğer Wallarm düğüm modu [blocking](../../admin-en/configure-wallarm-mode.md) olarak ayarlanmışsa ve trafik in-line olarak akıyorsa, istek aynı zamanda engellenecektir.
+    Wallarm node modu [engelleme](../../admin-en/configure-wallarm-mode.md) olarak ayarlanmışsa ve trafik in-line akıyorsa, istek aynı zamanda engellenecektir.
 
-## Sorun Giderme
+## Sorun giderme
 
-Çözüm beklenen şekilde çalışmıyorsa, MuleSoft Anypoint Platform → **Runtime Manager** → uygulamanıza → **Logs** bölümünden API loglarını kontrol edebilirsiniz.
+Çözüm beklendiği gibi çalışmıyorsa, MuleSoft Anypoint Platform → **Runtime Manager** → uygulamanız → **Logs** yoluyla API'nizin günlüklerine bakın.
 
-Ayrıca, API Manager'da API'nıza giderek ve **Policies** sekmesinde uygulanan politikaları kontrol ederek politikanın uygulanıp uygulanmadığını doğrulayabilirsiniz. Otomatik politikalar için, **See covered APIs** seçeneğini kullanarak kapsanan API'ları ve hariç tutulma nedenlerini görebilirsiniz.
+Ayrıca **API Manager** içinde API'nize giderek ve **Policies** sekmesinde uygulanan policy'leri inceleyerek policy'nin API'ye uygulanıp uygulanmadığını doğrulayabilirsiniz. Automated policy'ler için, kapsanan API'leri ve varsa hariç tutma nedenlerini görmek üzere **See covered APIs** seçeneğini kullanabilirsiniz.
 
-## Politikanın Yükseltilmesi
+## Policy'yi yükseltme
 
-Dağıtılmış Wallarm politikasını [yeni bir sürüme](code-bundle-inventory.md#mulesoft) yükseltmek için:
+Dağıtılan Wallarm policy'yi [daha yeni bir sürüme](code-bundle-inventory.md#mulesoft-mule-gateway) yükseltmek için:
 
-1. Güncellenmiş Wallarm politikasını indirin ve [Adım 2](#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange) bölümünde tarif edildiği şekilde MuleSoft Exchange'e yükleyin.
-1. Yeni sürüm Exchange'te göründüğünde, **API Manager** → ilgili API → **Policies** → Wallarm policy → **Edit configuration** → **Advanced options** bölümüne gidin ve açılır listeden yeni politika sürümünü seçin.
-1. Eğer yeni sürüm ek parametreler getiriyorsa, gerekli değerleri girin.
+1. Güncellenmiş Wallarm policy'yi indirin ve [Adım 2](#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange)'de açıklandığı gibi MuleSoft Exchange'e yükleyin.
+1. Yeni sürüm Exchange'de göründüğünde **API Manager** → API'niz → **Policies** → Wallarm policy → **Edit configuration** → **Advanced options** yolunu izleyin ve açılır listeden yeni policy sürümünü seçin.
+1. Yeni sürüm ek parametreler getiriyorsa, gerekli değerleri sağlayın.
 
-    Örneğin, 2.x'ten 3.x'e yükseltiliyorsa:
+    Örneğin 2.x'ten 3.x'e yükseltiliyorsa:
 
-    * **CLIENT HOST EXPRESSION**: özel bir değişiklik gerekmedikçe varsayılan değer olan `#[attributes.headers['x-forwarded-host']]` kullanılmalıdır.
-    * **CLIENT IP EXPRESSION**: özel bir değişiklik gerekmedikçe varsayılan değer olan `#[attributes.headers['x-forwarded-for']]` kullanılmalıdır.
+    * **CLIENT HOST EXPRESSION**: özel bir değişiklik gerekmedikçe varsayılan değer `#[attributes.headers['x-forwarded-host']]` kullanın.
+    * **CLIENT IP EXPRESSION**: özel bir değişiklik gerekmedikçe varsayılan değer `#[attributes.headers['x-forwarded-for']]` kullanın.
 1. Değişiklikleri kaydedin.
 
-Eğer Wallarm politikası otomatik olarak uygulanıyorsa, doğrudan yükseltme mümkün olmayabilir. Bu durumda, mevcut politikayı kaldırıp yeni sürümü manuel olarak uygulamanız gerekir.
+Wallarm policy, automated policy olarak uygulanmışsa doğrudan yükseltme mümkün olmayabilir. Bu durumda mevcut policy'yi kaldırın ve yeni sürümü manuel olarak yeniden uygulayın.
 
-Politika yükseltmeleri, özellikle büyük sürüm güncellemeleri için Wallarm düğüm yükseltmesi gerektirebilir. Yayın güncellemeleri ve yükseltme talimatları için [Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) bölümünü inceleyin. Gelecekteki yükseltmeleri basitleştirmek ve uyumsuzlukları önlemek için düzenli düğüm güncellemeleri önerilir.
+Policy yükseltmeleri, özellikle ana sürüm güncellemelerinde, bir Wallarm node yükseltmesi gerektirebilir. Self-hosted Node sürüm notları ve yükseltme talimatları için [Native Node değişiklik günlüğüne](../../updating-migrating/native-node/node-artifact-versions.md) veya [Edge connector yükseltme prosedürüne](../security-edge/se-connector.md#upgrading-the-edge-node) bakın. Gelecekteki yükseltmeleri kolaylaştırmak ve kullanımdan kaldırmaları önlemek için düzenli node güncellemeleri önerilir.
 
-## Politikanın Kaldırılması
+## Policy'yi kaldırma
 
-Wallarm politikasını kaldırmak için, otomatik politika listesinde veya bireysel API'ya uygulanan politikalar listesindeki **Remove policy** seçeneğini kullanın.
-```
+Wallarm policy'yi kaldırmak için, otomatik policy listesinde veya tek bir API'ye uygulanan policy'ler listesinde **Remove policy** seçeneğini kullanın.

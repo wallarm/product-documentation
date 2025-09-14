@@ -1,51 +1,51 @@
-# IP ile Filtreleme
+# IP'ye göre filtreleme
 
-Wallarm Console'un **IP lists** bölümünde, IP adreslerini, coğrafi konumları, veri merkezlerini veya kaynak türlerini allowlist, denylist ve graylist uygulayarak uygulamalarınıza erişimi kontrol edebilirsiniz.
+Wallarm Console'un **IP lists** bölümünde, IP adreslerini, coğrafi konumları, veri merkezlerini veya source types'ları allowlisting, denylisting ve graylisting uygulayarak uygulamalarınıza erişimi kontrol edebilirsiniz.
 
-* **Allowlist**; hiçbir kontrolden geçmeden Wallarm korumasını atlayarak uygulamalarınıza erişim sağlayan güvenilir kaynakların listesidir.
-* **Denylist**; uygulamalarınıza erişim sağlayamayan kaynakların listesidir – bu kaynaklardan gelen tüm istekler engellenecektir.
-* **Graylist**; yalnızca **safe blocking** [filtration mode](../../admin-en/configure-wallarm-mode.md) kapsamında işlenen şüpheli kaynakların listesidir: graylisted IP kötü niyetli istekler gönderirse, düğüm bunları engellerken meşru isteklerin geçmesine izin verir.
+* **Allowlist**, Wallarm korumasını atlayan ve uygulamalarınıza herhangi bir kontrol olmadan erişen güvenilir kaynaklar listesidir.
+* **Denylist**, uygulamalarınıza erişemeyen kaynaklar listesidir - bunlardan gelen tüm istekler engellenecektir.
+* **Graylist**, yalnızca **Safe blocking** [filtration mode](../../admin-en/configure-wallarm-mode.md) modunda şu şekilde düğüm tarafından işlenen şüpheli kaynaklar listesidir: graylist'teki IP kötü amaçlı istekler gönderirse, düğüm bu istekleri engellerken meşru istekleri izin verir; diğer IP'lerden gelen istekler ise asla engellenmez, ancak kötü amaçlı olanlar tespit edilir ve **Attacks** bölümünde `Monitoring` durumuyla görüntülenir.
 
-    Graylisted IP'lerden gelen kötü niyetli istekler, şu saldırıların izlerini içerir:
+    Graylist'teki IP'lerden gelen kötü amaçlı istekler aşağıdaki saldırı türlerinin belirtilerini içeren isteklere karşılık gelir:
 
-    * [Input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks)
-    * [Attacks of the vpatch type](../rules/vpatch-rule.md)
-    * [Attacks detected based on regular expressions](../rules/regex-rule.md)
+    * [Girdi doğrulama saldırıları](../../attacks-vulns-list.md#attack-types)
+    * [vpatch türü saldırılar](../rules/vpatch-rule.md)
+    * [Düzenli ifadelere dayalı olarak tespit edilen saldırılar](../rules/regex-rule.md)
 
-![All IP lists](../../images/user-guides/ip-lists/ip-lists-home-apps.png)
+![Tüm IP listeleri](../../images/user-guides/ip-lists/ip-lists-home-apps.png)
 
-## Allowlist, Denylist ve Graylist'in Birlikte Çalışması
+## Allowlist, denylist ve graylist birlikte nasıl çalışır
 
-Filtreleme düğümü, IP listelerini analiz ederken seçilen [mode](../../admin-en/configure-wallarm-mode.md) temelinde farklı yaklaşımlar kullanır. Bazı modlarda allowlist, denylist ve graylist yani üç tip IP listeleri değerlendirilirken, diğer modlarda yalnızca belirli IP listelerine odaklanılır.
+Filtreleme düğümü, IP listelerini analiz etmek için seçilen çalışma [mode](../../admin-en/configure-wallarm-mode.md)'una göre farklı yaklaşımlar kullanır. Bazı modlarda allowlists, denylists ve graylists olmak üzere üç tür IP listesinin tamamını değerlendirir. Ancak, diğer modlarda yalnızca belirli IP listelerine odaklanır.
 
-Aşağıdaki görsel, her çalışma modunda IP listelerinin kombinasyonlarını ve öncelik sıralamasını göstermekte; hangi listelerin her durumda dikkate alındığını vurgulamaktadır:
+Aşağıda sunulan görsel, her çalışma modunda IP listelerinin önceliklerini ve kombinasyonlarını görsel olarak temsil ederek hangi listelerin dikkate alındığını vurgular:
 
-![IP list priorities](../../images/user-guides/ip-lists/ip-lists-priorities.png)
+![IP listesi öncelikleri](../../images/user-guides/ip-lists/ip-lists-priorities.png)
 
-Bu demektir ki:
+Bunun anlamı şudur:
 
-* Herhangi bir modda, IP daha önceki listede bulunursa sonraki liste dikkate alınmaz.
-* Graylist yalnızca `Safe blocking` modunda değerlendirilir.
+* Herhangi bir modda, IP önceki listede bulunursa, bir sonraki dikkate alınmaz.
+* Graylist yalnızca `Safe blocking` modunda dikkate alınır.
 
 !!! warning "İstisnalar"
-    Eğer [`wallarm_acl_access_phase off`](../../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) ayarlanmışsa, Wallarm düğümü `Monitoring` modunda denylist'teki IP'lerden gelen istekleri engellemez.
+    Eğer [`wallarm_acl_access_phase off`](../../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) ise, Wallarm düğümü `Monitoring` modunda denylist'teki IP'lerden gelen istekleri engellemez.
 
-## IP Listelerinin Yapılandırılması
+## IP listelerini yapılandırma
 
 Adımlar:
 
 1. Amacınıza bağlı olarak hangi listeyi kullanacağınıza karar verin.
-1. [Eklenecek nesneyi seçin](#select-object): IP, alt ağ, konum, kaynak türü.
-1. Nesnenin listede kalacağı [süreyı seçin](#select-time-to-stay-in-list) (genellikle sonsuza dek değil).
-1. [Hedef uygulamaya göre sınırlandırma yapın](#limit-by-target-application) (tüm istekler değil, yalnızca belirli uygulamayı hedef alanlar).
+1. [Hangi nesnenin ekleneceğini](#select-object) seçin: IP, alt ağ, konum, source type.
+1. Nesnenin listede kalacağı [süreyi seçin](#select-time-to-stay-in-list) (genellikle sonsuza kadar değildir).
+1. [Hedef uygulamaya göre sınırlandırın](#limit-by-target-application) (tüm istekler değil, yalnızca belirli uygulamayı hedefleyenler).
 
-### Select object
+### Nesne seçin {#select-object}
 
-Herhangi bir IP listesine aşağıdakileri eklemek için **Add object** seçeneğini kullanın:
+Herhangi bir IP listesine aşağıdakileri eklemek için **Add object** kullanın:
 
-* **IP veya alt ağ** – desteklenen maksimum alt ağ maskesi, IPv6 adresleri için `/32` ve IPv4 adresleri için `/12`'dir.
+* **IP veya alt ağ** - desteklenen maksimum alt ağ maskesi IPv6 adresleri için `/32`, IPv4 adresleri için `/12`'dir.
 
-* Bu ülke veya bölgedeki tüm IP adreslerini eklemek için **Location** (ülke veya bölge)
+* Bu ülke veya bölgede kayıtlı tüm IP adreslerini eklemek için **Konum** (ülke veya bölge)
 * Bu türe ait tüm IP adreslerini eklemek için **Source type**. Mevcut türler:
 
     * Search Engines
@@ -53,26 +53,26 @@ Herhangi bir IP listesine aşağıdakileri eklemek için **Add object** seçene�
     * Anonymous sources (Tor, Proxy, VPN)
     * [Malicious IPs](#malicious-ip-feeds)
 
-![Add object to IP list](../../images/user-guides/ip-lists/add-ip-to-list.png)
+![IP listesine nesne ekleme](../../images/user-guides/ip-lists/add-ip-to-list.png)
 
-!!! info "IP Listelerinin Otomatik Doldurulması"
-    Nesneleri manuel olarak eklemenin yanı sıra, **tercih edilen** olan [automatic list population](#automatic-listing) özelliğini de kullanabilirsiniz.
+!!! info "IP listelerinin otomatik doldurulması"
+    Nesneleri manuel eklemeye ek olarak, **tercih edilen** [otomatik liste doldurmayı](#automatic-listing) kullanabileceğinizi unutmayın.
 
-### Listede Kalma Süresini Seçin
+### Listede kalma süresini seçin {#select-time-to-stay-in-list}
 
-Bir nesneyi listeye eklerken, eklenme süresini belirtirsiniz. Minimum süre 5 dakika, varsayılan süre 1 saat ve maksimum süre sonsuza dek olabilir. Süresi dolduğunda nesne otomatik olarak listeden silinir.
+Bir nesneyi listeye eklerken, ne kadar süreyle ekleneceğini belirtirsiniz. Minimum süre 5 dakika, varsayılan 1 saat, maksimum ise sonsuzdur. Süre dolduğunda nesne listeden otomatik olarak silinir.
 
-Belirtilen süre, herhangi bir zamanda değiştirilebilir – nesnenin menüsünde **Change time period** seçeneğine tıklayarak ayarlamaları yapabilirsiniz.
+Belirtilen süreyi daha sonra istediğiniz anda değiştirebilirsiniz - bunu yapmak için nesnenin menüsünde **Change time period**'a tıklayın ve ayarlamaları yapın.
 
-Manuel nesne ekleme ve silme işlemleriyle birlikte bu sürenin ayarlanması, zaman içinde IP listelerinde değişikliklere neden olur. Tüm listelerin [geçmiş durumlarını](#ip-list-history) görüntüleyebilirsiniz.
+Bu süreyi ayarlamak, nesneleri manuel ekleme ve silme ile birlikte, IP listelerinin zamanla değişmesine yol açar. Tüm listelerin [geçmiş durumlarını](#ip-list-history) görüntüleyebilirsiniz.
 
-### Hedef Uygulamaya Göre Sınırlandırma
+### Hedef Applications ile sınırlandırma {#limit-by-target-application}
 
-Bir nesneyi listeye eklediğinizde, varsayılan olarak listelenen IP'den gelen tüm istekler işlenir. Ancak, bunu sadece belirli [applications](../../user-guides/settings/applications.md) için sınırlayabilirsiniz: bir veya birkaç uygulama seçin; böylece listelenen IP'den gelen istekler yalnızca o uygulamalara özgü işlenir.
+Bir nesneyi listeye eklerken, varsayılan olarak listelenen IP'den gelen tüm istekler işlenir. Ancak bunu hedef [applications](../../user-guides/settings/applications.md) ile sınırlayabilirsiniz: bir veya birkaç application seçin ve yalnızca listelenen IP'den bu applications'a yönelik istekler işlenecektir.
 
-## Malicious IP Feeds
+## Kötü amaçlı IP beslemeleri {#malicious-ip-feeds}
 
-**Malicious IPs** [source type](#select-object)'ını herhangi bir IP listesine eklediğinizde, bu seçenek kötü niyetli faaliyetleri nedeniyle bilinen, kamu kaynaklarında yer alan ve uzman analizleriyle doğrulanmış tüm IP adreslerini içerir. Bu veriler, aşağıdaki kaynakların kombinasyonundan çekilmektedir:
+**Malicious IPs** [source type](#select-object)'ını IP listelerinden birine eklerken, bunun herkese açık kaynaklarda belirtilen ve uzman analiziyle doğrulanmış, kötü amaçlı etkinlikle iyi bilinen tüm IP adreslerini içereceğini dikkate alın. Bu verileri aşağıdaki kaynakların bir kombinasyonundan çekiyoruz:
 
 * [Collective Intelligence Network Security](http://cinsscore.com/list/ci-badguys.txt)
 * [Proofpoint Emerging Threats Rules](https://rules.emergingthreats.net/blockrules/compromised-ips.txt)
@@ -82,17 +82,17 @@ Bir nesneyi listeye eklediğinizde, varsayılan olarak listelenen IP'den gelen t
 * [NGINX ultimate bad bot blocker](https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/blob/master/_generator_lists/bad-ip-addresses.list)
 * [IPsum](https://github.com/stamparm/ipsum)
 
-## IP Listesi Geçmişi
+## IP listesi geçmişi {#ip-list-history}
 
-IP listeleri yalnızca mevcut durumu değil, geçmişteki durumları da içerir ve farklılık gösterir. Belirli tarihleri seçerek IP listelerinin içeriğini inceleyebilir, sistemin ekleme işleminin (manuel veya otomatik) tam zamanlaması ile ilgili ayrıntılı bir **History** raporu görüntüleyebilirsiniz. Rapor ayrıca değişikliklerden sorumlu kişilere ve her eklemenin nedenine dair veriler sunar. Bu tür bilgiler, uyumluluk ve raporlama için bir denetim izi oluşturulmasına yardımcı olur.
+IP listelerinin yalnızca mevcut durumu değil, aynı zamanda [geçmişteki](#select-time-to-stay-in-list) durumları da vardır ve bunlar farklı olabilir. IP listesi içeriğini incelemek için belirli tarihleri seçin; sistem, ekleme zamanı ve yönteminin (manuel veya otomatik) ayrıntılı olarak yer aldığı bir **History** döndürecektir. Rapor ayrıca değişikliklerden sorumlu kişilere ve her eklemenin nedenlerine ilişkin verileri de sunar. Bu tür içgörüler, uyumluluk ve raporlama için bir denetim izi sağlamaya yardımcı olur.
 
-![IP List history](../../images/user-guides/ip-lists/ip-list-history.png)
+![IP Listesi geçmişi](../../images/user-guides/ip-lists/ip-list-history.png)
 
-Listede yer alan güncel nesneleri görmek için **Now** sekmesine geçebilirsiniz.
+Listenin mevcut durumunu almak için **Now** sekmesine geri dönerek, listede şu anda yer alan nesneleri görüntüleyebilirsiniz.
 
-## Automatic listing
+## Otomatik listeleme {#automatic-listing}
 
-Wallarm, şüpheli trafik üreten IP adreslerini otomatik olarak denylist veya graylist'e ekleyecek şekilde yapılandırılabilir. Bu, şu durumlar için yapılabilir:
+Wallarm'ın şüpheli trafik üreten IP adreslerini otomatik olarak denylist'e veya graylist'e almasını etkinleştirebilirsiniz. Bu, şu durumlar için yapılabilir:
 
 * [API abuse prevention](../../api-abuse-prevention/overview.md)
 * [Brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
@@ -100,78 +100,79 @@ Wallarm, şüpheli trafik üreten IP adreslerini otomatik olarak denylist veya g
 * [BOLA protection](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
 * [Multi-attack protection](../../admin-en/configuration-guides/protecting-with-thresholds.md)
 
-Manuel olarak otomatik listeye eklenen bir IP'yi sildiğinizde, yeni kötü niyetli aktivite tespit edilirse otomatik olarak tekrar ekleneceğini unutmayın; ancak:
+Şunu unutmayın: Otomatik olarak listeye alınmış bir IP'yi manuel olarak silerseniz, yeni kötü amaçlı etkinlik tespit edilirse tekrar otomatik olarak eklenecektir ancak:
 
-* **Önceki süre**nin yarısından **önce** eklenmeyecektir.
+* **Önceki sürenin** yarısından önce değil
 
-    Örneğin, bir IP adresi BOLA saldırısı nedeniyle otomatik olarak denylist'e 4 saat eklendiyse ve siz denylist'ten sildiyseniz, sonraki 2 saat boyunca, saldırı gerçekleşse bile otomatik olarak eklenmeyecektir.
+    Örneğin, bir IP adresi üzerinden gelen bir BOLA saldırısı nedeniyle otomatik olarak 4 saatliğine denylist'e alındıysa ve siz onu denylist'ten silerseniz, saldırılar olsa bile sonraki 2 saat içinde tekrar eklenmez.
 
-* **API Abuse Prevention** için – anında
+* **API Abuse Prevention** için - derhal
 
-## Denylist'e Alınan IP'lerden Gelen İstekler
+## Denylist'teki IP'lerden gelen istekler
 
-IP denylist'te olsa bile, bu IP'den gelen sonraki istekler hakkında bilgi sahibi olmak faydalıdır. Bu, IP'nin davranışlarının ayrıntılı analizini yapmanıza olanak tanır. Wallarm, denylist'teki kaynak IP'lerden gelen engellenmiş isteklerle ilgili istatistikleri toplayıp gösterir.
+Bir IP denylist'te olsa bile, ondan gelen sonraki istekler hakkında bilgi sahibi olmak iyidir. Bu, IP'nin davranışının hassas analizini yapmayı sağlar. Wallarm, denylist'teki kaynak IP'lerden engellenen isteklere ilişkin istatistikleri toplar ve gösterir.
 
-!!! info "Özelliğin Kullanılabilirliği"
-    Bu özellik, NGINX tabanlı düğümler için node version 4.8'den itibaren kullanılabilir. Bunu [wallarm_acl_export_enable](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable) yönergesiyle kontrol edebilirsiniz.
+!!! info "Özellik kullanılabilirliği"
+    Özellik, NGINX tabanlı düğümler için düğüm sürüm 4.8'den itibaren mevcuttur. Bunu [wallarm_acl_export_enable](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable) yönergesiyle kontrol edebilirsiniz.
 
-Bu bilgiler aşağıdakiler için mevcuttur:
+Bu bilgiler şunlar için kullanılabilir:
 
-* Manuel olarak denylist'e eklenen IP'ler
-* Otomatik olarak denylist'e eklenen IP'ler:
+* Manuel olarak denylist'e alınan IP'ler
+* Şu mekanizmalar tarafından otomatik olarak denylist'e alınan IP'ler:
+
     * [API abuse prevention](../../api-abuse-prevention/overview.md)
     * [Brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
     * [Forced browsing protection](../../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
     * [BOLA protection](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
     * [Multi-attack protection](../../admin-en/configuration-guides/protecting-with-thresholds.md)
 
-Belirtilen davranışsal saldırılar, ilgili tetikleyici eşik değerlerine bağlı olarak belirli bir istatistik miktarı toplandıktan sonra tespit edilebilir. Bu nedenle, denylist'e eklemeden önce ilk aşamada Wallarm bu bilgileri toplar; ancak, tüm istekler `Monitoring` statüsünde geçer ve görüntülenir.
+Listelenen davranışsal saldırılar yalnızca belirli istatistikler biriktirildikten sonra tespit edilebilir; gerekli miktar ilgili tetikleyici eşiklerine bağlıdır. Bu nedenle ilk aşamada, denylist'e alınmadan önce, Wallarm bu bilgiyi toplar ancak tüm istekler iletilir ve `Monitoring` durumuyla saldırılar olarak görüntülenir.
 
-Eşik değerler aşıldığında, Wallarm IP'yi denylist'e ekler ve sonraki istekleri engeller. Bu IP'ye ait istekleri saldırı listesinde `Blocked` olarak görebilirsiniz. Bu durum, manuel olarak denylist'e eklenen IP'ler için de geçerlidir.
+Tetikleyici eşikleri aşıldığında, Wallarm IP'yi denylist'e ekler ve sonraki istekleri engeller. Bu IP'den gelen `Blocked` istekleri Attacks listesinde görürsünüz. Bu, manuel olarak denylist'e alınan IP'ler için de geçerlidir.
 
-![Events related to denylisted IPs - sending data enabled](../../images/user-guides/events/events-denylisted-export-enabled.png)
+![Denylist'teki IP'lerle ilgili olaylar - veri gönderimi etkin](../../images/user-guides/events/events-denylisted-export-enabled.png)
 
-Denylist'e eklenen IP'lerden gelen istekleri bulmak için [search tags of filters](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) kullanın: [API abuse related](../../attacks-vulns-list.md#api-abuse), `brute`, `dirbust`, `bola`, `multiple_payloads` (otomatik olarak eklenenler için), `blocked_source` (manuel olarak eklenenler için).
+Denylist'teki IP'lerden gelen istekleri bulmak için [search tags of filters](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) kullanın: otomatik listelemeler için [API abuse related](../../attacks-vulns-list.md#api-abuse), `brute`, `dirbust`, `bola`, `multiple_payloads`, manuel olanlar için `blocked_source`.
 
-Not: Arama/filtreler, hem `Monitoring` statüsündeki saldırıları hem de – eğer veri gönderimi etkinse – her saldırı türü için `Blocked` statüsündeki saldırıları görüntüler. Manuel olarak denylist'e eklenen IP'ler için hiçbir zaman `Monitoring` statüsünde saldırı görülmez.
+Search/filters'ın, her saldırı türü için hem `Monitoring` durumundaki saldırıları hem de - bilgi gönderimi etkinse - `Blocked` durumundakileri göstereceğini unutmayın. Manuel olarak denylist'e alınan IP'ler için `Monitoring` durumunda bir saldırı hiç oluşmaz.
 
-`Blocked` statüsündeki saldırılar arasında, denylist'e alınmanın nedenine dair BOLA ayarları, API Abuse Prevention, tetikleyici veya denylist kaydı oluşturan nedenleri görmek için etiketleri kullanın.
+`Blocked` durumundaki saldırılar arasında, denylist'e alınma nedenine geçmek için etiketleri kullanın - BOLA ayarları, API Abuse Prevention, trigger veya denylist'teki ilgili kayıt.
 
-## Denylist'e Alınan IP'lerle İlgili Bildirimler Alma
+## Denylist'e alınan IP'ler için bildirim alma
 
-Günlük olarak kullandığınız mesajlaşma uygulamaları veya SIEM sistemleri aracılığıyla yeni denylist'e eklenen IP'ler hakkında bildirim alabilirsiniz. Bildirimleri etkinleştirmek için, **Triggers** bölümünde, **Denylisted IP** koşuluna sahip bir veya birkaç tetikleyici yapılandırın, örneğin:
+Her gün kullandığınız mesajlaşma veya SIEM sistemleri üzerinden yeni denylist'e alınan IP'ler hakkında bildirimler alabilirsiniz. Bildirimleri etkinleştirmek için, **Triggers** bölümünde **Denylisted IP** koşuluna sahip bir veya birkaç trigger yapılandırın, örneğin:
 
-![Example of trigger for denylisted IP](../../images/user-guides/triggers/trigger-example4.png)
+![Denylist'e alınan IP için tetikleyici örneği](../../images/user-guides/triggers/trigger-example4.png)
 
-**Tetikleyiciyi test etmek için:**
+**Trigger'ı test etmek için:**
 
-1. Wallarm Console → **Integrations** bölümüne gidin ve [integration with Slack](../../user-guides/settings/integrations/slack.md) yapılandırın.
-1. **Triggers** bölümünde, yukarıda gösterildiği gibi bir tetikleyici oluşturun.
-1. **IP Lists** → **Denylist** bölümüne gidip, `1.1.1.1` IP adresini "It is a malicious bot" nedeni ile ekleyin.
-1. Slack kanalınızdaki mesajları kontrol edin:
+1. Wallarm Console → **Integrations** bölümüne [US](https://us1.my.wallarm.com/integrations/) veya [EU](https://my.wallarm.com/integrations/) cloud'unda gidin ve [Slack ile entegrasyonu](../../user-guides/settings/integrations/slack.md) yapılandırın.
+1. **Triggers** içinde, yukarıda gösterildiği gibi bir trigger oluşturun.
+1. **IP Lists** → **Denylist**'e gidin ve `1.1.1.1` IP'sini "It is a malicious bot" nedeni ile ekleyin.
+1. Slack kanalınızdaki şu gibi mesajları kontrol edin:
     ```
-    [wallarm] New IP address has been denylisted
+    [wallarm] Yeni bir IP adresi denylist'e alındı
     
     Notification type: ip_blocked
 
-    IP address 1.1.1.1 has been denylisted until 2024-01-19 15:02:16 +0300 
-    for the reason "It is a malicious bot". You can review denylisted IP addresses
-    in the "IP lists → Denylist" section of Wallarm Console.
+    IP address 1.1.1.1, "It is a malicious bot" nedeniyle 
+    2024-01-19 15:02:16 +0300 tarihine kadar denylist'e alındı. Denylist'e alınan IP adreslerini
+    Wallarm Console'un "IP lists → Denylist" bölümünde inceleyebilirsiniz.
 
-    This notification was triggered by the "Notify about new denylisted IPs" trigger.
-    The IP is blocked for the application default.
+    Bu bildirim "Notify about new denylisted IPs" trigger'ı tarafından tetiklendi.
+    IP, application default için engellendi.
 
     Client: Your Company
     Cloud: EU
     ```
 
-## Yük Dengeleyiciler ve CDN'lerin Arkasında Bulunan Düğümlerin IP Listeleri ile Çalışması
+## Yük dengeleyiciler ve CDN'lerin arkasındaki düğümlerin IP listeleriyle çalışacak şekilde yapılandırılması
 
-Eğer Wallarm düğümünüz bir yük dengeleyici veya CDN'in arkasında yer alıyorsa, son kullanıcı IP adreslerinin doğru raporlanabilmesi için Wallarm düğümünüzü yapılandırdığınızdan emin olun:
+Wallarm düğümü bir yük dengeleyici veya CDN'in arkasında bulunuyorsa, son kullanıcı IP adreslerini doğru şekilde raporlamak için Wallarm düğümünüzü yapılandırdığınızdan emin olun:
 
-* [NGINX tabanlı Wallarm düğümleri için talimatlar](../../admin-en/using-proxy-or-balancer-en.md) (AWS / GCP görüntüleri ve Docker düğüm konteyneri dahil)
-* [Wallarm Kubernetes Ingress controller olarak dağıtılmış filtreleme düğümleri için talimatlar](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
+* [NGINX tabanlı Wallarm düğümleri için talimatlar](../../admin-en/using-proxy-or-balancer-en.md) (AWS / GCP imajları ve Docker düğüm konteyneri dahil)
+* [Wallarm Kubernetes Ingress controller olarak dağıtılan filtreleme düğümleri için talimatlar](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
 
-## API ile Listelerin Yönetilmesi
+## API üzerinden listeleri yönetme
 
-Wallarm API'yi doğrudan [çağırarak](../../api/request-examples.md#api-calls-to-get-populate-and-delete-ip-list-objects) herhangi bir IP listesinin içeriğini alabilir, nesneler ekleyebilir ve nesneleri silebilirsiniz.
+Herhangi bir IP listesinin içeriğini alabilir, nesnelerle doldurabilir ve doğrudan [Wallarm API'yi arayarak](../../api/request-examples.md#api-calls-to-get-populate-and-delete-ip-list-objects) nesneleri listeden silebilirsiniz.

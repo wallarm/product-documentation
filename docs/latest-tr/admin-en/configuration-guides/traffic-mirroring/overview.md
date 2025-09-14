@@ -1,37 +1,37 @@
-# Aynalanmış Trafiği Filtreleme
+# Yansıtılmış trafiğin filtrelenmesi
 
-Wallarm node dağıtım yaklaşımlarından biri, aynalanmış HTTP trafiği filtrasyonu için asenkron tabanlı dağıtımdır. Bu makale, bu dağıtım uygulaması için gerekli yapılandırmayı anlatır ve bazı örnekler sunar.
+Wallarm node dağıtım yaklaşımlarından biri, yansıtılmış HTTP trafiğinin filtrelenmesi için asenkron temelli bir dağıtımdır. Bu makale, bu dağıtımın uygulanması için gereken yapılandırma konusunda talimatlar verir ve bazı örnekler sunar.
 
-Trafik yansıtma, orijinal gelen trafiğin paralel olarak birden fazla backend'e gönderilmesini sağlar. Ek bir backend olarak bir Wallarm node kurulumu, istemcilere hiçbir etkisi olmadan trafik yansı kopyasının filtrelenmesini gerçekleştirmenize olanak tanır – gelen her istek, hedeflendiği sunuculara ulaşır.
+Trafik yansıtma, gelen özgün trafiğin paralel olarak birden fazla backend'e gönderilmesini sağlar. Wallarm node'u ek bir backend olarak kurmak, trafiğin yansımasını (kopyasını) müşteriler üzerinde hiçbir etki olmadan filtrelemenizi sağlar - gelen tüm istekler yine hedeflendikleri sunuculara ulaşır.
 
-Aşağıda, yansıtma seçeneği etkinleştirilmiş trafik akış diyagramının bir örneği verilmiştir:
+Yansıtma seçeneği etkinleştirilmiş trafik akış diyagramı örneği:
 
-![Mirror scheme](../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
+![Yansıtma şeması](../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
 
-## Yaklaşım Kullanım Durumları
+## Yaklaşımın kullanım senaryaları
 
-Aynalanmış trafiği filtrelemek için Wallarm node kurulumu aşağıdaki durumlar için faydalıdır:
+Yansıtılmış trafiği filtrelemek için Wallarm node'unun kurulması şu amaçlar için yararlıdır:
 
-* Güvenlik çözümünün uygulamanın performansını etkilemediğinden emin olun.
-* Wallarm çözümünü, modül üretim sisteminde çalıştırılmadan önce trafik kopyası üzerinde eğitin.
+* Güvenlik çözümünün uygulamanın performansını etkilemeyeceğinden emin olmak.
+* Modülü üretim sisteminde çalıştırmadan önce Wallarm çözümünü trafik kopyası üzerinde eğitmek.
 
-## Aynalanmış Trafik Filtrasyonunun Sınırlamaları
+## Yansıtılmış trafik filtrelemenin sınırlamaları
 
-Dağıtım yaklaşımının güvenli olmasına rağmen, bazı sınırlamaları bulunmaktadır:
+Bu dağıtım yaklaşımı güvenli olmakla birlikte, bazı sınırlamaları vardır:
 
-* Yalnızca NGINX tabanlı Wallarm node'ları aynalanmış trafik filtrasyonunu destekler.
-* Wallarm node, mevcut trafik akışından bağımsız olarak trafik analizi gerçekleştirildiği için zararlı istekleri anında engellemez.
-* Wallarm, yalnızca gelen isteklerin kopyalarına sahip olduğu ve sunucu yanıtlarının yansıtılamadığı için uygulama ve API [vulnerabilities](../../../about-wallarm/detecting-vulnerabilities.md) tespit edemez.
-* Çözüm, ek bir bileşen gerektirir – trafik yansıtma sağlayan web sunucusu veya benzer bir araç (ör. NGINX, Envoy, Istio, Traefik, custom Kong module, vb).
+* Yalnızca NGINX tabanlı Wallarm node'ları yansıtılmış trafik filtrelemeyi destekler.
+* Wallarm node, trafik analizi gerçek trafik akışından bağımsız olarak ilerlediği için kötü amaçlı istekleri anında engellemez.
+* Wallarm, düğüm yalnızca gelen isteklerin kopyalarına sahip olduğundan ve sunucu yanıtları yansıtılamadığından uygulama ve API [zafiyetlerini](../../../about-wallarm/detecting-vulnerabilities.md) tespit etmez.
+* Çözüm ek bir bileşen gerektirir - trafik yansıtma sağlayan web sunucusu veya benzer bir araç (örn. NGINX, Envoy, Istio, Traefik, özel Kong modülü vb.).
 
 ## Yapılandırma
 
-Aynalanmış trafiği filtrelemek için Wallarm'ı uygulamak amacıyla:
+Yansıtılmış trafiği filtrelemek için Wallarm'ı uygulamak:
 
 1. Gelen trafiği ek bir backend'e yansıtacak şekilde web sunucunuzu yapılandırın.
-1. [Wallarm node'u](../../../installation/supported-deployment-options.md) ek bir backend olarak kurun ve aynalanmış trafiği filtreleyecek şekilde yapılandırın.
+1. Wallarm node'u ek bir backend olarak [kurun](../../../installation/supported-deployment-options.md) ve yansıtılmış trafiği filtreleyecek şekilde yapılandırın.
 
-Trafik yansıtma, birçok web sunucusu tarafından desteklenmektedir. Aşağıdaki bağlantılarda, en popüler olanları için **örnek yapılandırmaları** bulabilirsiniz:
+Trafik yansıtma birçok web sunucusu tarafından desteklenir. Aşağıdaki bağlantılarda, en popülerleri için **örnek yapılandırma**yı bulabilirsiniz:
 
 * [NGINX](nginx-example.md)
 * [Traefik](traefik-example.md)

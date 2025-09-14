@@ -7,25 +7,25 @@
 [ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
 [api-spec-enforcement-docs]:        ../api-specification-enforcement/overview.md
 
-# Wallarm modülleri entegre edilmiş NGINX Ingress controller'ın yükseltilmesi
+# Entegre Wallarm modülleriyle NGINX Ingress controller'ı yükseltme
 
-Bu talimatlar, dağıtılmış Wallarm NGINX tabanlı Ingress Controller 4.x'in Wallarm node 5.0 içeren yeni sürüme nasıl yükseltileceğini açıklar.
+Bu talimatlar, dağıtılmış Wallarm NGINX tabanlı Ingress Controller'ı en son 6.x sürümüne yükseltme adımlarını açıklar.
 
-Ömrünü tamamlamış node'u (3.6 veya daha düşük) yükseltmek için lütfen [farklı talimatları](older-versions/ingress-controller.md) kullanın.
+Ömrü dolmuş node’u (3.6 veya daha düşük) yükseltmek için lütfen [farklı talimatları](older-versions/ingress-controller.md) kullanın.
 
 ## Gereksinimler
 
 --8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
 
-## Adım 1: Wallarm Helm grafik deposunu güncelleyin
+## Adım 1: Wallarm Helm chart deposunu güncelleyin
 
 ```bash
 helm repo update wallarm
 ```
 
-## Adım 2: Tüm gelecek K8s manifest değişikliklerini gözden geçirin
+## Adım 2: Gelecek tüm K8s manifest değişikliklerini inceleyin
 
-Beklenmeyen Ingress controller davranışı değişikliklerini önlemek için, dağıtılmış Ingress controller sürümü ile yeni sürüm arasındaki farkları gösteren [Helm Diff Plugin](https://github.com/databus23/helm-diff) kullanılarak tüm gelecek K8s manifest değişikliklerini gözden geçirin.
+Ingress controller davranışının beklenmedik şekilde değişmesini önlemek için, [Helm Diff Plugin](https://github.com/databus23/helm-diff) kullanarak gelecek tüm K8s manifest değişikliklerini inceleyin. Bu eklenti, dağıtılmış Ingress controller sürümünün K8s manifestleri ile yenisinin manifestleri arasındaki farkı çıktılar.
 
 Eklentiyi yüklemek ve çalıştırmak için:
 
@@ -37,56 +37,68 @@ Eklentiyi yüklemek ve çalıştırmak için:
 2. Eklentiyi çalıştırın:
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 5.3.0 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.5.1 -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`: Ingress controller grafiğini içeren Helm sürümünün adı
-    * `<NAMESPACE>`: Ingress controller'ın dağıtıldığı namespace
-    * `<PATH_TO_VALUES>`: Ingress controller 5.0 ayarlarını tanımlayan `values.yaml` dosyasının yolu - önceki Ingress controller sürümünü çalıştırmak için oluşturulmuş olanı kullanabilirsiniz
-3. Çalışan servislerin kararlılığını etkileyecek hiçbir değişiklik olmadığından emin olun ve stdout'daki hataları dikkatle inceleyin.
+    * `<RELEASE_NAME>`: Ingress controller chart’ına ait Helm sürümünün adı.
+    * `<NAMESPACE>`: Ingress controller’ın dağıtıldığı namespace.
+    * `<PATH_TO_VALUES>`: Ingress Controller 6.x ayarlarını içeren `values.yaml` dosyasının yolu. Önceki sürümün dosyasını yeniden kullanabilir, [Tarantool'dan wstore'a geçiş](what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics) için güncelleyebilirsiniz.
 
-    Eğer stdout boşsa, `values.yaml` dosyasının geçerli olduğundan emin olun.
+        Helm değerleri yeniden adlandırıldı: `controller.wallarm.tarantool` → `controller.wallarm.postanalytics`. Postanalytics belleğini açıkça [ayırdıysanız](../admin-en/configuration-guides/allocate-resources-for-node.md), bu değişikliği `values.yaml` içinde uygulayın.
 
-## Adım 3: Ingress controller'ı güncelleyin
+3. Çalışan servislerin kararlılığını etkileyebilecek hiçbir değişiklik olmadığından emin olun ve stdout’taki hataları dikkatlice inceleyin.
 
-Dağıtılmış NGINX Ingress controller'ı yükseltin:
+    stdout boşsa, `values.yaml` dosyasının geçerli olduğundan emin olun.
 
-```bash
-helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 5.3.0 -f <PATH_TO_VALUES>
+## Adım 3: Ingress controller’ı yükseltin
+
+!!! info ""
+    Değişiklikleri üretime almadan önce doğrulamak için NGINX Ingress Controller'ı önce bir hazırlık (staging) Kubernetes ortamında yükseltmeniz önerilir.
+
+Dağıtılmış NGINX Ingress controller’ı yükseltin:
+
+``` bash
+helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.5.1 -f <PATH_TO_VALUES>
 ```
 
-* `<RELEASE_NAME>`: Ingress controller grafiğini içeren Helm sürümünün adı
-* `<NAMESPACE>`: Ingress controller'ın dağıtıldığı namespace
-* `<PATH_TO_VALUES>`: Ingress controller 5.0 ayarlarını tanımlayan `values.yaml` dosyasının yolu - önceki Ingress controller sürümünü çalıştırmak için oluşturulmuş olanı kullanabilirsiniz
+* `<RELEASE_NAME>`: Ingress controller chart’ına ait Helm sürümünün adı
+* `<NAMESPACE>`: Ingress controller’ın dağıtıldığı namespace
+* `<PATH_TO_VALUES>`: Ingress Controller 6.x ayarlarını içeren `values.yaml` dosyasının yolu. Önceki sürümün dosyasını yeniden kullanabilir, [Tarantool'dan wstore'a geçiş](what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics) için güncelleyebilirsiniz:
+    
+    Helm değerleri yeniden adlandırıldı: `controller.wallarm.tarantool` → `controller.wallarm.postanalytics`. Postanalytics belleğini açıkça [ayırdıysanız](../admin-en/configuration-guides/allocate-resources-for-node.md), bu değişikliği `values.yaml` içinde uygulayın.
 
-## Adım 4: Güncellenmiş Ingress controller'ı test edin
+## Adım 4: Yükseltilmiş Ingress controller’ı test edin
 
-1. Helm grafiğinin sürümünün güncellendiğinden emin olun:
+1. Helm chart sürümünün yükseltildiğinden emin olun:
 
     ```bash
     helm list -n <NAMESPACE>
     ```
 
-    Burada `<NAMESPACE>`, Ingress controller grafiğinin dağıtıldığı namespace'tir.
+    Burada `<NAMESPACE>`, Ingress controller ile Helm chart’ın dağıtıldığı namespace’tir.
 
-    Grafik sürümü `wallarm-ingress-5.3.0` ile eşleşmelidir.
-1. Pod listesini alın:
+    Chart sürümü `wallarm-ingress-6.5.1` ile karşılık gelmelidir.
+1. Wallarm pod’unu alın:
     
-    ```bash
+    ``` bash
     kubectl get pods -n <NAMESPACE> -l app.kubernetes.io/name=wallarm-ingress
     ```
 
-    Her pod'un durumu **STATUS: Running** veya **READY: N/N** olmalıdır. Örneğin:
+    Pod durumu **STATUS: Running** ve **READY: N/N** olmalıdır:
 
     ```
-    NAME                                                              READY     STATUS    RESTARTS   AGE
-    ingress-controller-nginx-ingress-controller-675c68d46d-cfck8      3/3       Running   0          5m
-    ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
+    NAME                                                                  READY   STATUS    RESTARTS   AGE
+    ingress-controller-wallarm-ingress-controller-6d659bd79b-952gl        3/3     Running   0          8m7s
+    ingress-controller-wallarm-ingress-controller-wallarm-wstore-7ddmgbfm 3/3     Running   0          8m7s
     ```
-1. Wallarm Ingress controller adresine test [Path Traversal](../attacks-vulns-list.md#path-traversal) saldırısı ile istek gönderin:
+
+    5.x veya daha düşük bir sürümden yükseltme yapıyorsanız, artık ayrı bir Tarantool pod’u olmadığını fark edeceksiniz; wstore, ana `<CHART_NAME>-wallarm-ingress-controller-xxx` pod’u içinde çalışır.
+1. Wallarm Ingress controller adresine test amaçlı [Yol Geçişi](../attacks-vulns-list.md#path-traversal) saldırısı içeren isteği gönderin:
 
     ```bash
     curl http://<INGRESS_CONTROLLER_IP>/etc/passwd
     ```
 
-    Yeni sürümün, kötü niyetli isteği önceki sürümde olduğu gibi işlediğini kontrol edin.
+    Yeni sürümün çözümünün kötü amaçlı isteği önceki sürümde olduğu gibi işlediğini kontrol edin.
+
+Yükseltme hazırlık ortamında başarıyla doğrulandıktan sonra üretim ortamını yükseltmeye devam edin.

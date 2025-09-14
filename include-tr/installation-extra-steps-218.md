@@ -1,44 +1,44 @@
-##   Ek Ayarlar
+##   Ek ayarlar
 
-Filtreleme düğümü, kurulum sonrasında bazı ek yapılandırmalar gerektirebilir.
+Filtreleme düğümü, kurulumdan sonra bazı ek yapılandırmalar gerektirebilir.
 
-Aşağıdaki belge, gerekirse uygulayabileceğiniz bazı tipik yapılandırmaları listeler.
+Aşağıdaki belge, gerekirse uygulayabileceğiniz birkaç tipik kurulumu listeler.
 
-Diğer mevcut ayarlar hakkında daha fazla bilgi edinmek için [Yönetici Kılavuzu](admin-intro-en.md) içerisindeki **Yapılandırma** bölümüne geçin.
+Diğer kullanılabilir ayarlar hakkında daha fazla bilgi için, [Yönetici kılavuzunun](admin-intro-en.md) **Yapılandırma** bölümüne ilerleyin.
 
-### İstemcinin Gerçek IP'sinin Görüntülenmesini Yapılandırma
+### İstemcinin gerçek IP’sinin görüntülenmesini yapılandırma
 
-Filtreleme düğümü, ek yapılandırma olmaksızın bir proxy sunucusu veya yük dengeleyicisi arkasında dağıtıldıysa, istek kaynağı adresi, istemcinin gerçek IP adresiyle aynı olmayabilir. Bunun yerine, proxy sunucusu veya yük dengeleyicisinin IP adreslerinden biri olabilir.
+Filtreleme düğümü bir proxy sunucusu veya yük dengeleyicinin arkasına ek bir yapılandırma olmadan yerleştirilirse, isteğin kaynak adresi, istemcinin gerçek IP adresine eşit olmayabilir. Bunun yerine, proxy sunucusunun veya yük dengeleyicinin IP adreslerinden birine eşit olabilir.
 
-Bu durumda, filtreleme düğümünün istek kaynağı adresi olarak istemcinin IP adresini almasını istiyorsanız, proxy sunucusu veya yük dengeleyici için [ek yapılandırma](using-proxy-or-balancer-en.md) yapmanız gerekir.
+Bu durumda, filtreleme düğümünün istemcinin IP adresini istek kaynağı adresi olarak almasını istiyorsanız, proxy sunucusunu veya yük dengeleyiciyi [ek yapılandırma](using-proxy-or-balancer-en.md) ile ayarlamanız gerekir.
 
-### Wallarm Scanner Adreslerinin Beyaz Listeye Eklenmesi
+### Wallarm Scanner adreslerini izin listesine ekleme
 
-Wallarm Scanner, şirketinizin kaynaklarını güvenlik açıkları açısından kontrol eder. Tarama, kullandığınız Wallarm Cloud türüne bağlı olarak aşağıdaki listelerden birinde yer alan IP adresleri kullanılarak gerçekleştirilir:
+Wallarm Scanner, şirketinizin kaynaklarını güvenlik açıkları için kontrol eder. Tarama, kullandığınız Wallarm Cloud türüne bağlı olarak aşağıdaki listelerden birindeki IP adresleri kullanılarak yapılır:
 
-* [US Scanner addresses for US Cloud users](scanner-address-us-cloud.md)
-* [EU Scanner addresses for EU Cloud users](scanner-address-eu-cloud.md)
+* [US Cloud kullanıcıları için US Scanner adresleri](scanner-address-us-cloud.md)
+* [EU Cloud kullanıcıları için EU Scanner adresleri](scanner-address-eu-cloud.md)
 
-Wallarm Scanner kullanıyorsanız, ağ kapsamlı güvenlik yazılımınızda (örneğin: güvenlik duvarları, saldırı tespit sistemleri vb.) Wallarm Scanner IP adreslerinin yer aldığı beyaz liste yapılandırmalarını gerçekleştirmeniz gerekir.
+Wallarm Scanner’ı kullanıyorsanız, ağınızdaki güvenlik yazılımlarında (güvenlik duvarları, saldırı tespit sistemleri vb. gibi) Wallarm Scanner IP adreslerini içerecek şekilde izin listelerini yapılandırmanız gerekir.
 
-Örneğin, varsayılan ayarlarla yapılandırılmış bir Wallarm filtreleme düğümü engelleme modunda konumlandırıldığından, Wallarm Scanner bu düğüm arkasındaki kaynakları tarayamaz.
+Örneğin, varsayılan ayarlarla bir Wallarm filtreleme düğümü engelleme modunda çalışır ve bu da Wallarm Scanner’ın filtreleme düğümünün arkasındaki kaynakları tarayamamasına neden olur.
 
-Wallarm Scanner'ı tekrar çalışır hale getirmek için, bu filtreleme düğümünde [Scanner IP adreslerini beyaz listeye ekleyin](scanner-ips-allowlisting.md).
+Scanner’ın tekrar çalışabilmesi için, bu filtreleme düğümünde [Scanner’ın IP adreslerini izin listesine alın](scanner-ips-allowlisting.md).
 
-### Tek İstek İşlem Süresini Sınırlama
+### Tek bir isteğin işlenme süresini sınırlama
 
-Tek bir isteğin filtreleme düğümü tarafından işlenme süresi sınırını belirtmek için [`wallarm_process_time_limit`](configure-parameters-en.md#wallarm_process_time_limit) Wallarm yönergesini kullanın.
+Filtreleme düğümünün tek bir isteği işlemesi için süre sınırını belirtmek üzere [`wallarm_process_time_limit`](configure-parameters-en.md#wallarm_process_time_limit) Wallarm yönergesini kullanın.
 
-Eğer isteğin işlenmesi, yönergede belirtilen süreden daha uzun sürerse, hata bilgisi log dosyasına kaydedilir ve istek `overlimit_res` saldırısı olarak işaretlenir.
+İsteğin işlenmesi yönergede belirtilenden daha uzun sürerse, hataya ilişkin bilgiler günlük dosyasına yazılır ve istek bir `overlimit_res` saldırısı olarak işaretlenir.
 
-### Sunucu Yanıt Bekleme Süresini Sınırlama
+### Sunucu yanıtını bekleme süresini sınırlama
 
-Proxy sunucu yanıtını okuma zaman aşımını belirtmek için [`proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout) NGINX yönergesini kullanın.
+Proxy sunucusunun yanıtını okuma zaman aşımını belirtmek için [`proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout) NGINX yönergesini kullanın.
 
-Bu süre içinde sunucudan hiçbir şey gönderilmezse, bağlantı kapatılır.
+Sunucu bu süre boyunca hiçbir şey göndermezse, bağlantı kapatılır.
 
-### Maksimum İstek Boyutunu Sınırlama
+### Azami istek boyutunu sınırlama
 
-İstemcinin isteğinin gövdesinin maksimum boyut sınırını belirtmek için [`client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) NGINX yönergesini kullanın.
+İstemcinin isteğinin gövdesi için azami boyut sınırını belirtmek üzere [`client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) NGINX yönergesini kullanın.
 
-Bu sınır aşılırsa, NGINX istemciye `413` (`Payload Too Large`) kodu, diğer adıyla `Request Entity Too Large` mesajıyla yanıt verir.
+Bu sınır aşılırsa, NGINX istemciye `413` (`Payload Too Large`) kodu ile yanıt verir; bu aynı zamanda `Request Entity Too Large` iletisi olarak da bilinir.

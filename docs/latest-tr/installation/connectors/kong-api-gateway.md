@@ -2,60 +2,61 @@
 
 # Kong Ingress Controller için Wallarm Connector
 
-Kong Ingress Controller tarafından yönetilen API'leri güvence altına almak için [Kong Ingress Controller](https://docs.konghq.com/kubernetes-ingress-controller/latest/) ile sorunsuz entegrasyon sağlayan bir Wallarm connector sunuyoruz. Wallarm filtreleme düğümünü dağıtıp, Kong ile özel bir Lua eklentisi aracılığıyla bağlayarak, gelen trafik gerçek zamanlı olarak analiz edilir ve Wallarm, kötü niyetli isteklerin hizmetlerinize ulaşmadan önce etkisiz hale getirilmesini sağlar.
+[Kong Ingress Controller](https://docs.konghq.com/kubernetes-ingress-controller/latest/) tarafından yönetilen API’leri korumak için Wallarm, Kubernetes ortamınıza sorunsuzca entegre olan bir connector sağlar. Wallarm filtreleme düğümünü dağıtıp özel bir Lua eklentisi aracılığıyla Kong’a bağlayarak, gelen trafik gerçek zamanlı analiz edilir ve istekler hizmetlerinize ulaşmadan önce Wallarm kötü amaçlı istekleri engelleyebilir.
 
-Kong Ingress Controller için Wallarm connector yalnızca [in-line](../inline/overview.md) modu ile desteklenmektedir:
+Kong Ingress Controller için Wallarm connector yalnızca [in-line](../inline/overview.md) modunu destekler:
 
-![Kong with Wallarm plugin](../../images/waf-installation/gateways/kong/traffic-flow-inline.png)
+![Wallarm eklentisi ile Kong](../../images/waf-installation/gateways/kong/traffic-flow-inline.png)
 
-## Kullanım Durumları
+## Kullanım senaryoları
 
-Tüm desteklenen [Wallarm dağıtım seçenekleri](../supported-deployment-options.md) arasında, bu çözüm Kong API Gateway’i çalıştıran Kong Ingress Controller tarafından yönetilen API’lerin güvenliğini sağlamak için önerilen çözümdür.
+Bu çözüm, Kong API Gateway çalıştıran Kong Ingress Controller tarafından yönetilen API’lerin güvenliğini sağlamak için önerilir.
 
-## Kısıtlamalar
+## Sınırlamalar
 
-Bu kurulum, Wallarm’ı sadece Wallarm Console UI üzerinden ince ayar yapmaya olanak tanır. Dosya tabanlı yapılandırma gerektiren bazı Wallarm özellikleri bu uygulamada desteklenmemektedir, örneğin:
+Bu kurulum, Wallarm’ın yalnızca Wallarm Console UI üzerinden ince ayar yapılmasına izin verir. Dosya tabanlı yapılandırma gerektiren bazı Wallarm özellikleri bu uygulamada desteklenmez, örneğin:
 
-* [Multitenancy feature][multitenancy-overview]
-* [Application configuration][applications-docs]
-* [Custom blocking page and code setup][custom-blocking-page-docs]
+* [Multitenancy özelliği][multitenancy-overview]
+* [Uygulama yapılandırması][applications-docs]
+* [Özel engelleme sayfası ve kod kurulumu][custom-blocking-page-docs]
 
 ## Gereksinimler
 
-Dağıtıma devam edebilmek için aşağıdaki gereksinimlerin karşılandığından emin olun:
+Dağıtıma devam etmeden önce aşağıdaki gereksinimleri karşıladığınızdan emin olun:
 
-* Kubernetes kümenizde API trafiğinizi yöneten Kong Ingress Controller’ın dağıtılmış olması
+* Kubernetes kümesinde dağıtılmış ve API trafiğinizi yöneten Kong Ingress Controller
 * [Helm v3](https://helm.sh/) paket yöneticisi
 * `https://us1.api.wallarm.com` (US Wallarm Cloud) veya `https://api.wallarm.com` (EU Wallarm Cloud) erişimi
 * Wallarm Helm chart’ını eklemek için `https://charts.wallarm.com` erişimi
-* Docker Hub üzerindeki Wallarm depolarına erişim: `https://hub.docker.com/r/wallarm`
-* Saldırı tespit kuralları için güncellemeleri indirmek ve [allowlisted, denylisted, or graylisted](../../user-guides/ip-lists/overview.md) ülkeler, bölgeler veya veri merkezleri için kesin IP’leri almak amacıyla aşağıdaki IP adreslerine erişim
+* Docker Hub üzerindeki Wallarm depolarına `https://hub.docker.com/r/wallarm` erişimi
+* Saldırı tespit kurallarının güncellemelerini indirmek ve [allowlisted, denylisted veya graylisted](../../user-guides/ip-lists/overview.md) ülkeleriniz, bölgeleriniz veya veri merkezleriniz için kesin IP’leri almak amacıyla aşağıdaki IP adreslerine erişim
 
     --8<-- "../include/wallarm-cloud-ips.md"
-* [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) için Wallarm Console’a **Yönetici** erişimi
+* [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) için Wallarm Console’a **Administrator** erişimi
+* Node örneği alan adı için **güvenilir** bir SSL/TLS sertifikası gereklidir. Öz imzalı sertifikalar henüz desteklenmemektedir.
 
 ## Dağıtım
 
-Kong Ingress Controller tarafından yönetilen API’leri güvence altına almak için aşağıdaki adımları izleyin:
+Kong Ingress Controller tarafından yönetilen API’leri güvenceye almak için şu adımları izleyin:
 
-1. Kubernetes kümenizde Wallarm filtreleme düğüm servisini dağıtın.
+1. Kubernetes kümenizde Wallarm filtreleme düğümü servisini dağıtın.
 1. Gelen trafiği analiz için Kong Ingress Controller’dan Wallarm filtreleme düğümüne yönlendirmek üzere Wallarm Lua eklentisini edinin ve dağıtın.
 
-### 1. Wallarm Native Node Dağıtımı
+### 1. Wallarm Native Node dağıtın
 
-Kubernetes kümenizde Wallarm düğümünü ayrı bir servis olarak dağıtmak için [talimatları](../native-node/helm-chart.md) izleyin.
+Wallarm düğümünü Kubernetes kümenizde ayrı bir servis olarak dağıtmak için [talimatları](../native-node/helm-chart.md) izleyin.
 
 ### 2. Wallarm Lua eklentisini edinin ve dağıtın
 
-1. Kong Ingress Controller için Wallarm Lua eklenti kodunu edinebilmek amacıyla [support@wallarm.com](mailto:support@wallarm.com) ile iletişime geçin.
-1. Eklenti kodunu içeren bir ConfigMap oluşturun:
+1. Kong Ingress Controller’ınız için Wallarm Lua eklenti kodunu edinmek amacıyla [support@wallarm.com](mailto:support@wallarm.com) ile iletişime geçin.
+1. Eklenti kodu ile bir ConfigMap oluşturun:
 
     ```
     kubectl apply -f wallarm-kong-lua.yaml -n <KONG_NS>
     ```
 
-    `<KONG_NS>`, Kong Ingress Controller’ın dağıtıldığı namespace’tir.
-1. Wallarm Lua eklentisini yükleyecek şekilde Kong Ingress Controller için `values.yaml` dosyanızı güncelleyin:
+    `<KONG_NS>`, Kong Ingress Controller’ın dağıtıldığı ad alanıdır.
+1. Wallarm Lua eklentisini yüklemek için Kong Ingress Controller’a ait `values.yaml` dosyanızı güncelleyin:
 
     ```yaml
     gateway:
@@ -69,7 +70,7 @@ Kubernetes kümenizde Wallarm düğümünü ayrı bir servis olarak dağıtmak i
     ```
     helm upgrade --install <KONG_RELEASE_NAME> kong/ingress -n <KONG_NS> --values values.yaml
     ```
-1. Wallarm düğüm servisi adresini belirterek bir `KongClusterPlugin` kaynağı oluşturarak Wallarm Lua eklentisini etkinleştirin:
+1. Bir `KongClusterPlugin` kaynağı oluşturarak ve Wallarm düğüm servis adresini belirterek Wallarm Lua eklentisini etkinleştirin:
 
     ```yaml
     echo '
@@ -85,17 +86,17 @@ Kubernetes kümenizde Wallarm düğümünü ayrı bir servis olarak dağıtmak i
     ' | kubectl apply -f -
     ```
 
-    `wallarm-node`, Wallarm düğüm servisi dağıtılan namespace’tir.
-1. Seçili servisler için eklentiyi etkinleştirmek amacıyla Ingress veya Gateway API rotanıza aşağıdaki anotasyonları ekleyin:
+    `wallarm-node`, Wallarm düğüm servisinin dağıtıldığı ad alanıdır.
+1. Seçili servisler için eklentiyi etkinleştirmek üzere Ingress’inize veya Gateway API rotanıza aşağıdaki anotasyonları ekleyin:
 
     ```
     konghq.com/plugins: kong-lua
     kubernetes.io/ingress.class: kong
     ```
 
-## Test Etme
+## Test
 
-Dağıtılan connector’un işlevselliğini test etmek için aşağıdaki adımları izleyin:
+Dağıtılan connector’ün işlevselliğini test etmek için şu adımları izleyin:
 
 1. Wallarm pod’larının çalışır durumda olduğunu doğrulayın:
 
@@ -103,42 +104,42 @@ Dağıtılan connector’un işlevselliğini test etmek için aşağıdaki adım
     kubectl -n wallarm-node get pods
     ```
 
-    `wallarm-node`, Wallarm düğüm servisi dağıtılan namespace’tir.
+    `wallarm-node`, Wallarm düğüm servisinin dağıtıldığı ad alanıdır.
 
-    Her pod’un durumu **STATUS: Running** veya **READY: N/N** şeklinde olmalıdır. Örneğin:
+    Her pod durumunun **STATUS: Running** veya **READY: N/N** olması gerekir. Örneğin:
 
     ```
-    NAME                                READY   STATUS    RESTARTS   AGE
+    NAME                                  READY   STATUS    RESTARTS   AGE
     native-aggregation-5fb5d5444b-6c8n8   3/3     Running   0          51m
     native-processing-7c487bbdc6-4j6mz    3/3     Running   0          51m
     ```
-1. Genellikle `LoadBalancer` servisi olarak yapılandırılan Kong Gateway IP’sini alın:
+1. Kong Gateway IP’sini alın (genellikle bir `LoadBalancer` servisi olarak yapılandırılır):
 
     ```
     export PROXY_IP=$(kubectl get svc --namespace <KONG_NS> <KONG_RELEASE_NAME>-gateway-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
     ```
-1. Test [Path Traversal][ptrav-attack-docs] saldırısı ile dengeleyiciye istek gönderin:
+1. Test [Path Traversal][ptrav-attack-docs] saldırısıyla balancera istek gönderin:
 
     ```
     curl -H "Host: kong-lua-test.wallarm" $PROXY_IP/etc/passwd
     ```
 
-    Düğüm varsayılan olarak [monitoring mode][available-filtration-modes] da çalıştığı için Wallarm düğümü saldırıyı engellemez; yalnızca kaydeder.
-1. Wallarm Console → **Attacks** bölümünü [US Cloud](https://us1.my.wallarm.com/attacks) veya [EU Cloud](https://my.wallarm.com/attacks) üzerinden açarak saldırının listede göründüğünden emin olun.
+    Düğüm varsayılan olarak [monitoring mode][available-filtration-modes] modunda çalıştığından, Wallarm düğümü saldırıyı engellemez ancak kaydeder.
+1. Wallarm Console → [US Cloud](https://us1.my.wallarm.com/attacks) veya [EU Cloud](https://my.wallarm.com/attacks) içindeki **Attacks** bölümünü açın ve saldırının listede görüntülendiğinden emin olun.
 
-    ![Attacks in the interface][attacks-in-ui-image]
+    ![Arayüzde Attacks][attacks-in-ui-image]
 
-## Wallarm Lua eklentisinin Güncellenmesi
+## Wallarm Lua eklentisini yükseltme
 
-Dağıtılan Wallarm Lua eklentisini [yeni bir sürüme](code-bundle-inventory.md#kong-api-gateway) güncellemek için:
+Dağıtılmış Wallarm Lua eklentisini [daha yeni bir sürüme](code-bundle-inventory.md#kong-api-gateway) yükseltmek için:
 
-1. Kong Ingress Controller için güncellenmiş Wallarm Lua eklenti kodunu edinebilmek amacıyla [support@wallarm.com](mailto:support@wallarm.com) ile iletişime geçin.
-1. ConfigMap’i eklenti kodu ile güncelleyin:
+1. Kong Ingress Controller’ınız için güncellenmiş Wallarm Lua eklenti kodunu edinmek üzere support@wallarm.com ile iletişime geçin.
+1. Eklenti kodu ile ConfigMap’i güncelleyin:
 
     ```
     kubectl apply -f wallarm-kong-lua.yaml -n <KONG_NS>
     ```
     
-    `<KONG_NS>`, Kong Ingress Controller’ın dağıtıldığı namespace’tir.
+    `<KONG_NS>`, Kong Ingress Controller’ın dağıtıldığı ad alanıdır.
 
-Eklenti güncellemeleri, özellikle büyük sürüm yükseltmeleri için Wallarm düğüm güncellemesini gerektirebilir. Sürüm güncellemeleri ve yükseltme talimatları için [Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) belgesine bakın. Gelecekteki yükseltmeleri kolaylaştırmak ve kullanım dışı kalmayı önlemek için düzenli düğüm güncellemeleri yapılması önerilmektedir.
+Eklenti yükseltmeleri, özellikle ana sürüm güncellemelerinde, bir Wallarm düğüm yükseltmesi gerektirebilir. Sürüm güncellemeleri ve yükseltme talimatları için [Wallarm Native Node değişiklik günlüğüne](../../updating-migrating/native-node/node-artifact-versions.md) bakın. Kullanımdan kaldırmaları önlemek ve gelecekteki yükseltmeleri kolaylaştırmak için düzenli düğüm güncellemeleri önerilir.

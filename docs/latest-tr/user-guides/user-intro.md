@@ -8,43 +8,43 @@
 
 # Kullanıcı Kılavuzuna Giriş
 
-Bu kılavuz, Wallarm işleyiş seçenekleri hakkında bilgi sağlar. Bu işlemlerin hepsi Wallarm portalı kullanılarak gerçekleştirilir.
+Bu kılavuz, Wallarm'ın kullanım seçenekleri hakkında bilgi sağlar. Bu işlemlerin tamamı Wallarm portalı üzerinden gerçekleştirilir.
 
 !!! info "Gerekli Erişim Hakları"
 
-    Bu kılavuzda açıklanan işlemlerin çoğunu gerçekleştirmek için analist erişimine sahip olmanız gerekir. [US](https://us1.my.wallarm.com/settings/users) veya [EU](https://my.wallarm.com/settings/users) cloud üzerindeki Wallarm portalında, *Settings* → *Users* sekmesi üzerinden analist erişimini ayarlayabilirsiniz.
+    Bu kılavuzda açıklanan işlemlerin çoğunu gerçekleştirmek için analyst erişimine sahip olmanız gerekir. Analyst erişimini Wallarm portalında *Settings* → *Users* sekmesinden [US](https://us1.my.wallarm.com/settings/users) veya [EU](https://my.wallarm.com/settings/users) bulutunda ayarlayabilirsiniz.
 
-## Wallarm Portal Genel Bakış
+##  Wallarm Portalına Genel Bakış
 
-![The portal overview][img-wallarm-portal-overview]
+![Portal genel görünümü][img-wallarm-portal-overview]
 
-Wallarm portalına giriş yaptıktan sonra, aşağıdakilerle karşılaşacaksınız:
-*   Portalın sol tarafında, sekmeler içeren bir yan menü.
+Wallarm portalına giriş yaptıktan sonra aşağıdakilerle karşılaşırsınız:
+*   Portalın sol tarafında sekmelerden oluşan bir kenar çubuğu.
 
-    Bu sekmeleri, Wallarm çözümünün bir bileşeninden diğerine geçiş yapmak için kullanın.
+    Wallarm çözümünün bir bileşeninden diğerine geçmek için bu sekmeleri kullanın.
     
-    Bazı bileşen sayfalarında, yatay olarak hizalanmış kendi sekmeleri bulunur.
+    Bazı bileşenlerin sayfalarında, yatay hizalanmış kendi sekmeleri bulunur.
     
-    Yan menünün altında *Help & Docs* düğmesi yer alır. Bu düğmeye tıkladığınızda, portalın sağ tarafında *Quick Help* yan menüsü açılacak, böylece çeşitli ürün bilgilerini inceleyebilir ve destek ekibine mesaj gönderebilirsiniz.
+    Kenar çubuğunun en altında *Help & Docs* düğmesi bulunur. Bu düğmeye tıkladığınızda, portalın sağ tarafında *Quick Help* kenar çubuğu açılır; burada çeşitli ürün bilgilerini inceleyebilir ve destek ekibine mesaj gönderebilirsiniz.
     
-    !!! info "Bileşen Kullanılabilirliği Hakkında Bir Not"
-        Wallarm portalınız, bu Kullanıcı Kılavuzunda gösterilen ekran görüntülerinden farklı görünebilir.
+    !!! info "Bileşen Kullanılabilirliği Hakkında Not"
+        Wallarm portalınız bu Kullanıcı Kılavuzunda gösterilen ekran görüntülerinden farklı görünebilir.
         
-        Bazı bileşenlerin ve kullanıcı arayüzü öğelerinin kullanılabilirliği, kullanılan aboneliklere bağlıdır.
+        Bazı bileşenlerin ve UI öğelerinin kullanılabilirliği, kullanılan aboneliklere bağlıdır.
         
-        Daha fazla ayrıntı için [“Subscriptions”][doc-subscriptions] belgesine bakın.
+        Daha fazla ayrıntı için [“Abonelikler”][doc-subscriptions] belgesine bakın.
     
-*   Portalın en üstünde bir arama kutusu.
+*   Portalın üst kısmında bir arama kutusu.
 
-    Bu arama kutusu, *Events* sekmesi hariç portalın her yerinde mevcuttur. Bir arama sorgusu girin ve *Events* sekmesinde arama sonuçlarına yönlendirileceksiniz.
+    Bu arama kutusu, *Events* sekmesi hariç portalın her yerinde kullanıma açıktır. Bir arama sorgusu yazdığınızda, *Events* sekmesindeki arama sonuçlarına yönlendirilirsiniz. 
 
-    [“Using Search”][doc-use-search] belgesi, arama sorgusu sözdizimini tanıtır ve aramanın nasıl kullanılacağını açıklar.
+    [“Aramayı Kullanma”][doc-use-search] belgesi, arama sorgusu sözdizimini tanıtır ve aramanın nasıl kullanılacağını açıklar.
 
-*   Arama kutusunun yakınında, portalın sağ üst köşesinde bir *Settings* düğmesi bulunur. Bu düğme, küçük dişli çark şeklindedir.
+*   Portalın sağ üst köşesinde, arama kutusunun yanında bir *Settings* düğmesi. Bu düğme küçük bir dişli gibi görünür.
 
-    Bu düğmeyi, Wallarm ayarlar sayfasını açmak için kullanın.
+    Wallarm ayarları sayfasını açmak için bu düğmeyi kullanın.
     
-*   Yaptığınız işlemlere bağlı olarak, portalın en sağ tarafında ek yan menüler görüntülenebilir.     
+*   Yaptığınız işlemlere bağlı olarak, portalın en sağında bazı ek kenar çubukları görüntülenebilir.     
 
 <!-- ## Demo videos
 

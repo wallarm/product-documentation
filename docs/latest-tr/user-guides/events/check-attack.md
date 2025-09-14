@@ -1,15 +1,33 @@
-```markdown
+[link-using-search]:    ../search-and-filters/use-search.md
+[img-current-attacks]:  ../../images/glossary/attack-with-one-hit-example.png
+[img-incidents-tab]:    ../../images/user-guides/events/incident-vuln.png
+[img-show-falsepositive]: ../../images/user-guides/events/filter-for-falsepositive.png
+[use-search]:             ../search-and-filters/use-search.md
+[search-by-attack-status]: ../search-and-filters/use-search.md#search-attacks-by-the-action
+[img-verify-attack]:            ../../images/user-guides/events/verify-attack.png
+[al-brute-force-attack]:      ../../attacks-vulns-list.md#brute-force-attack
+[al-forced-browsing]:         ../../attacks-vulns-list.md#forced-browsing
+[al-bola]:                    ../../attacks-vulns-list.md#broken-object-level-authorization-bola
+[link-analyzing-attacks]:       analyze-attack.md
+[img-false-attack]:             ../../images/user-guides/events/false-attack.png
+[img-removed-attack-info]:      ../../images/user-guides/events/removed-attack-info.png
+[link-check-attack]:        check-attack.md
+[link-false-attack]:        false-attack.md
+[img-current-attack]:       ../../images/user-guides/events/analyze-current-attack.png
+[glossary-attack-vector]:   ../../glossary-en.md#malicious-payload
+[link-attacks]:         ../../user-guides/events/check-attack.md
+[link-incidents]:       ../../user-guides/events/check-incident.md
+[link-sessions]:        ../../api-sessions/overview.md
+
 # Saldırı Analizi
 
-Bu makale, Wallarm düğümü tarafından tespit edilen saldırıları nasıl analiz edebileceğinizi ve bu saldırılarla ilgili hangi işlemleri yapabileceğinizi açıklamaktadır.
+Bu makale, Wallarm düğümü tarafından tespit edilen saldırıları nasıl analiz edebileceğinizi ve bunlarla ilgili hangi işlemleri gerçekleştirebileceğinizi açıklar.
 
 ### Saldırı analizi
 
-Wallarm platformu tarafından tespit edilen tüm [saldırılar](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) Wallarm Console'un **Saldırılar** bölümünde görüntülenir. Saldırı listesini saldırı tarihi, türü ve diğer kriterlere göre [filtreleyebilir](../../user-guides/search-and-filters/use-search.md) ve ayrıntılı analiz için herhangi bir saldırıyı ve buna dahil istekleri genişletebilirsiniz.
+Wallarm platformu tarafından tespit edilen tüm [saldırılar](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components), Wallarm Console’un **Attacks** bölümünde görüntülenir. Listeyi saldırı tarihi, türü ve diğer kriterlere göre [filtreleyebilir](../../user-guides/search-and-filters/use-search.md), ayrıntılı analiz için herhangi bir saldırıyı ve içerdiği istekleri genişletebilirsiniz.
 
-Tespit edilen bir saldırı [yanlış pozitif](#false-positives) olarak belirlenirse, gelecekte benzer yanlış pozitiflerin önüne geçmek için hemen işaretleyebilirsiniz. Ayrıca, tespit edilen saldırılara dayanarak, ek Wallarm yapılandırmalarını yapmak ve sonraki benzer tehditleri azaltmak için kurallar oluşturabilirsiniz.
-
-Ek olarak, [aktif doğrulama](../../vulnerability-detection/threat-replay-testing/overview.md) etkinse saldırı listesinde doğrudan [durumunu](../../vulnerability-detection/threat-replay-testing/exploring.md#possible-statuses) kontrol edebilirsiniz.
+Tespit edilen bir saldırı [yanlış pozitif](#false-positives) çıkarsa, gelecekte benzer yanlış pozitiflerin önüne geçmek için onu hemen böyle işaretleyebilirsiniz. Ayrıca tespit edilen saldırılar temelinde kurallar oluşturabilir ve benzer tehditleri azaltmak için diğer Wallarm yapılandırmalarını gerçekleştirebilirsiniz.
 
 <div>
   <script src="https://js.storylane.io/js/v1/storylane.js"></script>
@@ -18,77 +36,156 @@ Ek olarak, [aktif doğrulama](../../vulnerability-detection/threat-replay-testin
   </div>
 </div>
 
-Wallarm'da:
+Wallarm’da:
 
-* **Saldırı**, [hitlerin](grouping-sampling.md#grouping-of-hits) bir grubudur
-* **Hit**, düğüm tarafından eklenen kötü niyetli istek ve meta veridir
-* **Kötü niyetli yük**, saldırı işareti içeren isteğin bir parçasıdır
+* **Saldırı (Attack)** bir [hit](grouping-sampling.md#grouping-of-hits) grubudur
+* **Hit**, düğüm tarafından eklenen meta verilerle birlikte kötü amaçlı bir istektir
+* **Kötü amaçlı payload**, saldırı işareti taşıyan istek parçasıdır
 
-Ayrıntılı bilgileri [buradan](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) okuyabilirsiniz.
+Ayrıntıları [burada](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) okuyun.
 
-Her saldırı detayı, saldırının hitleri ve kötü niyetli yük özetleri gibi analiz için gerekli tüm bilgileri içerir. Analizi basitleştirmek için, saldırı detaylarında yalnızca benzersiz hitler saklanır. Tekrarlanan kötü niyetli istekler Wallarm Cloud'a yüklenmekten çıkarılır ve görüntülenmez. Bu işleme [hit örneklemesi](grouping-sampling.md#sampling-of-hits) denir.
+Her saldırı ayrıntısı, saldırının hit’leri ve kötü amaçlı payload özetini içeren analiz için gerekli tüm bilgileri barındırır. Analizi basitleştirmek için, saldırı ayrıntılarında yalnızca benzersiz hit’ler saklanır. Tekrarlanan kötü amaçlı istekler Wallarm Cloud’a yüklenmez ve görüntülenmez. Bu işleme [hit örnekleme](grouping-sampling.md#sampling-of-hits) denir.
 
-Hit örneklemesi, saldırı tespitinin kalitesini etkilemez; Wallarm düğümü, hit örneklemesi etkin olsa dahi uygulamalarınızı ve API'lerinizi korumaya devam eder.
+Hit örnekleme, saldırı tespiti kalitesini etkilemez ve Wallarm düğümü, hit örnekleme açık olsa bile uygulamalarınızı ve API’lerinizi korumaya devam eder.
 
-## Tehdit aktörlerinin faaliyetlerinin tam bağlamı
+<a id="full-context-of-threat-actor-activities"></a>
+## Tehdit aktörü faaliyetlerinin tam bağlamı
 
 --8<-- "../include/request-full-context.md"
 
-## Yanlış Pozitifler
+<a id="false-positives"></a>
+## Yanlış pozitifler
 
-Yanlış pozitif, meşru bir istekte [saldırı işaretlerinin](../../about-wallarm/protecting-against-attacks.md#library-libproton) tespit edilmesi durumunda meydana gelir.
+Yanlış pozitif, meşru istekte [saldırı işaretleri](../../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors) tespit edildiğinde oluşur.
 
-Filtreleme düğümünün bu tür istekleri gelecekte saldırı olarak algılamasını önlemek için, **saldırının tüm veya belirli isteklerini yanlış pozitif olarak işaretleyebilirsiniz**. Bu, benzer isteklerde benzer saldırı işareti tespitini atlamak için otomatik olarak bir kural oluşturur, ancak Wallarm Console'da görünmez.
+Filtreleme düğümünün gelecekte bu tür istekleri saldırı olarak algılamasını önlemek için, **saldırının tüm ya da belirli isteklerini yanlış pozitif olarak işaretleyebilirsiniz**. Bu, benzer isteklerde benzer saldırı işareti tespitini atlayacak bir kuralı otomatik olarak oluşturur, ancak Wallarm Console’da görünmez.
 
-Yanlış pozitif işaretini, uygulandıktan birkaç saniye içinde geri alabilirsiniz. Bunu daha sonra geri almak isterseniz, [Wallarm teknik desteğine](mailto: support@wallarm.com) bir istek gönderilmesi gerekmektedir.
+Yanlış pozitif işaretini yalnızca uygulandıktan sonraki birkaç saniye içinde geri alabilirsiniz. Daha sonra geri almak isterseniz, bu yalnızca [Wallarm teknik desteğine](mailto: support@wallarm.com) talep göndererek yapılabilir.
 
-Saldırı listesinin varsayılan görünümü yalnızca gerçek saldırıları (yanlış pozitifler hariç) sunar - bunu değiştirmek için, **Tüm saldırılar** altında **Varsayılan görünüm** den **Yanlış pozitiflerle** veya **Yalnızca yanlış pozitiflerle** seçeneğine geçin.
+Saldırı listesi varsayılan görünümü yalnızca güncel saldırıları (yanlış pozitifler olmadan) gösterir – bunu değiştirmek için, **All attacks** altında **Default view**’den **With false positives** veya **Only false positives** seçeneğine geçin.
 
-![Yanlış pozitif filtre](../../images/user-guides/events/filter-for-falsepositive.png)
+![Yanlış pozitif filtresi](../../images/user-guides/events/filter-for-falsepositive.png)
 
-## Saldırılara Yanıt Verme
+## Saldırılara yanıt verme
 
-Uygulamalarınızın ve API'lerinizin saldırılardan doğru şekilde korunup korunmadığını anlamak çok önemlidir; böylece, gerekirse koruma önlemlerini ayarlayabilirsiniz. **Saldırılar** bölümündeki bilgileri kullanarak bu anlayışı elde edebilir ve buna göre yanıt verebilirsiniz.
+Uygun olduğunda koruma tedbirlerini ayarlayabilmek için uygulamalarınızın ve API’lerinizin saldırılara karşı düzgün şekilde korunup korunmadığını anlamak önemlidir. Bu anlayışı edinmek ve uygun şekilde yanıtlamak için **Attacks** bölümündeki bilgileri kullanabilirsiniz.
 
-Bu görevle uğraşırken, hangi tür saldırının gerçekleştiğini tespit etmeniz gerekecektir; bu, Wallarm'ın hangi mekanizmalarının koruma sağladığını anlamanıza ve gerekirse bu mekanizmaları ayarlamanıza yardımcı olacaktır:
+Bu görevle uğraşırken, hangi tür saldırının gerçekleştiğini belirlemeniz gerekir; bu size hangi Wallarm mekanizmalarının koruma sağladığını gösterecek ve gerekirse bu mekanizmaları ayarlamanıza yardımcı olacaktır:
 
-1. **Tespit et** - **Yük** alanı bağlam menüsünde **Yalnızca göster** seçeneğini seçin, ardından **Tür** filtresine ve arama alanı içeriğine dikkat edin.
-1. Koruma için ne yapıldığını kontrol edin - **Durum** sütununa bakın:
+1. **Belirleyin** - **Payload** alanı bağlam menüsünden **Show only**’yi seçin, ardından **Type** filtresine ve arama alanı içeriğine dikkat edin.
+1. Koruma için neler yapıldığını kontrol edin - **Status** sütununa bakın:
 
-    * `Blocked` - saldırının tüm hitleri filtreleme düğümü tarafından engellendi.
-    * `Partially blocked` - saldırının bazı hitleri engellendi, bazıları yalnızca kaydedildi.
-    * `Monitoring` - saldırının tüm hitleri kaydedildi ancak engellenmedi.
-    * `Bot detected` - bu bir bottur, saldırı içindeki eyleme bakın.
+    * `Blocked` - saldırının tüm hit’leri filtreleme düğümü tarafından engellendi.
+    * `Partially blocked` - saldırının bazı hit’leri engellendi, diğerleri yalnızca kaydedildi.
+    * `Monitoring` - saldırının tüm hit’leri kaydedildi ancak engellenmedi.
+    * `Bot detected` - bu bir bottur, saldırı içindeki eylemi kontrol edin.
 
-1. Opsiyonel (önerilir), saldırının kötü niyetli isteklerinin [tam bağlamını](#full-context-of-threat-actor-activities) araştırın: hangi [kullanıcı oturumuna](../../api-sessions/overview.md) ait olduklarını ve bu oturumdaki isteklerin tam sırasını inceleyin.
+1. İsteğe bağlı (önerilir) olarak, saldırının kötü amaçlı isteklerinin [tam bağlamını araştırın](#full-context-of-threat-actor-activities): bunların hangi [kullanıcı oturumuna](../../api-sessions/overview.md) ait olduğunu ve bu oturumdaki isteklerin tam sırasını.
 
-    Bu, tehdit aktörünün tüm etkinliğini ve mantığını görmenizi, saldırı vektörlerini anlamanızı ve hangi kaynakların tehlikeye girebileceğini belirlemenizi sağlar.
+    Bu, tehdit aktörünün tüm faaliyetlerini ve mantığını görmenizi, saldırı vektörlerini ve hangi kaynakların tehlikeye atılabileceğini anlamanızı sağlar.
 
-1. Eğer bu gerçek bir saldırı olmadığını düşünüyorsanız, bunu [yanlış pozitif](#false-positives) olarak işaretleyin.
-1. **Anlayın** - saldırıyı tespit edip tepki veren Wallarm mekanizmasını kavrayın.
-1. **Ayarlayın** - Wallarm'ın davranışını (mekanizmanın "nasıl" çalıştığına bağlı olarak) yeniden yapılandırın.
+1. Gerçek bir saldırı olmadığını düşünüyorsanız, [yanlış pozitif](#false-positives) olarak işaretleyin.
+1. **Anlayın** - saldırıyı tespit eden ve yanıtlayan Wallarm mekanizmasının farkında olun.
+1. **Ayarlayın** - Wallarm’ın davranışını ayarlayın (mekanizmaya göre “nasıl” değişir).
 
-| Tespit et | Anlayın | Ayarla | 
+| Belirleyin | Anlayın | Ayarlayın | 
 | -- | -- | -- |
-| `sqli`, `xss`, `rce`, `ptrav`, `crlf`, `nosqli`, `ssi` [vb.](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) | [Saldırı tespiti için standart araçlar](../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection) (libproton, libdetection ve kurallar) | Bir saldırıyı genişletin ve saldırı için CVE’lerin özetini, ayrıca ayrı istekler için CVE’leri inceleyin. Düğüm moduna (``final_wallarm_mode`` etiketi) dikkat edin, **Rules** bölümünü ([US](https://us1.my.wallarm.com/rules) veya [EU](https://my.wallarm.com/rules)) ziyaret edin, saldırıdaki uygulama adına göre analiz edin. Gerekirse, kuralları veya uygulamalara ya da onların belirli ana makinelerine/endpointslerine göre [filtreleme modunu](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) ayarlayın. |
-| [`custom_rule`](../../user-guides/search-and-filters/use-search.md#search-by-regexp-based-customer-rule) | [Özel saldırı algılayıcı](../../user-guides/rules/regex-rule.md) | Bir saldırıyı genişletin ve **Detected by custom rules** bağlantısını takip edin - gerekirse, kuralı [değiştirin](../../user-guides/rules/regex-rule.md) ve belirli dallar için [kısmi devre dışı bırakmayı](../../user-guides/rules/regex-rule.md#partial-disabling) uygulayın. |
-| `vpatch` | [Sanal yamalama](../../user-guides/rules/vpatch-rule.md) | **Rules** bölümünü ([US](https://us1.my.wallarm.com/rules) veya [EU](https://my.wallarm.com/rules)) ziyaret edin, "Create virtual patch" kuralını arayın; gerekirse, saldırıyla ilgili kuralı ayarlayın. Sanal yamalar filtreleme modundan bağımsız çalışır. |
-| `brute`,<br>`dirbust`,<br>`bola`,<br>`multiple_payloads` | [Trigger](../../user-guides/triggers/triggers.md) ve IP listeleri: [denylisted IP’lerden gelen istekler](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) | Bir saldırıyı genişletin ve istekleri analiz ettikten sonra, görüntülenen trigger adına tıklayın ve gerekirse parametreleri değiştirin. Ayrıca trigger etiketlerine dikkat edin, ardından **Triggers** ([US](https://us1.my.wallarm.com/triggers) veya [EU](https://my.wallarm.com/triggers)) bölümüne gidin ve isimle trigger'ı bulun, gerekirse ayarlayın. <br> Eğer eylem [`Blocked`](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) ise, bu denylist üzerinden yapılır - **IP Lists** bölümüne ([US](https://us1.my.wallarm.com/ip-lists) veya [EU](https://my.wallarm.com/ip-lists)) gidin ve IP'yi arayın; gerekirse, denylist'te IP'nin kalma süresini ayarlayın. |
-| `blocked_source` | IP listeleri: [denylisted IP’lerden gelen istekler](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) | Bir saldırıyı genişletin ve denylist'ten gelen istekleri analiz edin; ardından, görüntülenen trigger adına tıklayın ve gerekirse trigger ayarlarını değiştirin. Manuel olarak denylist’e eklenen IP’ler (`blocked_source`) için, **IP Lists** bölümüne ([US](https://us1.my.wallarm.com/ip-lists) veya [EU](https://my.wallarm.com/ip-lists)) gidin ve IP'yi arayın; gerekirse, denylist'te IP'nin kalma süresini ayarlayın. |
-| **Belirli modül veya fonksiyon:** |
-| `api_abuse`, `account_takeover`, `security_crawlers`, `scraping` ([ayrıntılar](../../attacks-vulns-list.md#api-abuse)) <br> - tümü için **Bot detected** durumu göz önünde bulundurulmalıdır | [API Abuse Prevention](../../api-abuse-prevention/overview.md) ve IP listeleri: [denylisted IP’lerden gelen istekler](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) | Bir saldırıyı genişletin ve [heatmap'leri](../../api-abuse-prevention/exploring-bots.md#attacks) analiz ederek bunun bir bot olduğuna dair [güveni](../../api-abuse-prevention/overview.md#how-api-abuse-prevention-works) tespit edin, saldırı tarihine ve kaynak IP'ye dikkat edin. <br> Eğer eylem [`Blocked`](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) ise, bu denylist üzerinden yapılır - **IP Lists** bölümünde, tarihi ve IP'yi filtreleyin, IP adresi ayrıntılarını görmek için **Reason** sütununa tıklayın, bu ayrıntıları inceleyin, **Triggered profile** bağlantısını tıklayın, inceleyin ve gerekirse [değiştirin](../../api-abuse-prevention/setup.md#creating-profiles). <br><br> **Ayrıca, şunları da yapabilirsiniz**: <br> <ul><li>Bu IP için asla engellenmemesi adına [kaynak IP’yi istisna listesine ekleyin](../../api-abuse-prevention/exceptions.md). Ayrıca, istisna listesinden IP'yi kaldırabilirsiniz (**API Abuse Prevention** → **Exception list** bölümüne giderek)</li> <li>API abuse yapılandırması otomatik olarak bunu yapmasa bile, kaynak IP’yi denylist’e ekleyin.</li></ul> **Ek olarak şunları yapabilirsiniz**:  **IP Lists** bölümünde, ilgili saldırıları görmek için IP adresine tıklayın.|
-| `bola` | [BOLA otomatik koruması](../../api-discovery/bola-protection.md) [API Discovery](../../api-discovery/overview.md) tarafından | Bir saldırıyı genişletin, eğer trigger bağlantısı içermiyorsa (bu, BOLA'dan manuel korumanın işareti) o zaman bu, **API Discovery** ([US](https://us1.my.wallarm.com/api-discovery) veya [EU](https://my.wallarm.com/api-discovery)) modülü tarafından sağlanan otomatik korumadır. Gerekirse, **BOLA Protection** ([US](https://us1.my.wallarm.com/bola-protection) veya [EU](https://my.wallarm.com/bola-protection)) bölümüne giderek bu korumayı devre dışı bırakın veya şablon ayarlarını düzenleyin. |
-| `undefined_endpoint`, `undefined_parameter`, `invalid_parameter_value`, `missing_parameter`, `missing_auth`, `invalid_request`  (`api_specification` ile hepsini arayın, [ayrıntılar](../../attacks-vulns-list.md#api-specification)) | [API Specification Enforcement](../../api-specification-enforcement/overview.md) | Bir saldırıyı genişletin ve ihlal edilen spesifikasyona ait bağlantıyı takip edin. Spesifikasyon diyalogunda, **API specification enforcement** sekmesini kullanarak ayarları yeniden düzenleyin; **Specification upload** sekmesi üzerinden en güncel spesifikasyonu yüklemeyi de düşünebilirsiniz. |
-| `gql_doc_size`, `gql_value_size`, `gql_depth`, `gql_aliases`, `gql_docs_per_batch`, `gql_introspection`, `gql_debug` (`graphql_attacks` ile hepsini arayın, [ayrıntılar](../../attacks-vulns-list.md#graphql-attacks)) | [GraphQL API Protection](../../api-protection/graphql-rule.md) | Bir saldırıyı genişletin ve **GraphQL security policies** bağlantısını takip edin - gerekirse, mevcut **Detect GraphQL attacks** kural(lar)ını değiştirin veya belirli dallar için ek kural(lar) oluşturun. |
+| `sqli`, `xss`, `rce`, `ptrav`, `crlf`, `nosqli`, `ssi` [vb.](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) | [Saldırı tespiti için standart araçlar](../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection) (libproton, libdetection ve kurallar) | Bir saldırıyı genişletin ve saldırı için CVE özetini ve ayrı istekler için CVE’leri [inceleyin](../../demo-videos/events-inspection.md). Düğüm moduna (`final_wallarm_mode` etiketi) dikkat edin, **Rules** ([US](https://us1.my.wallarm.com/rules) veya [EU](https://my.wallarm.com/rules)) bölümünü ziyaret edin, saldırıdan uygulama adına göre kuralları analiz edin. Gerekirse, kuralları veya uygulamalar ya da bunların belirli host ya da uç noktaları için [filtration mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)’u ayarlayın. |
+| [`custom_rule`](../../user-guides/search-and-filters/use-search.md#search-by-regexp-based-customer-rule) | [Özel saldırı dedektörü](../../user-guides/rules/regex-rule.md) | Bir saldırıyı genişletin ve **Detected by custom rules** bağlantı(lar)ını takip edin - gerekirse, kural(lar)ı [değiştirin](../../user-guides/rules/regex-rule.md), belirli dallar için [kısmi olarak devre dışı bırakma](../../user-guides/rules/regex-rule.md#partial-disabling) dahil. |
+| `vpatch` | [Sanal yama](../../user-guides/rules/vpatch-rule.md) | **Rules** bölümünü ziyaret edin ([US](https://us1.my.wallarm.com/rules) veya [EU](https://my.wallarm.com/rules)), “Create virtual patch” kurallarını arayın, gerekirse saldırınızla ilgili kuralı ayarlayın. Sanal yamaların filtration mode’dan bağımsız çalıştığını unutmayın. |
+| `brute`,<br>`dirbust`,<br>`bola`,<br>`multiple_payloads` | [Trigger](../../user-guides/triggers/triggers.md) ve IP listeleri: [denylist’teki IP’lerden gelen istekler](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) | Bir saldırıyı genişletin ve istekleri analiz ettikten sonra, görüntülenen trigger adını (varsa) tıklayın ve parametrelerini değiştirin. Ayrıca trigger etiketlerine dikkat edin, ardından **Triggers** ([US](https://us1.my.wallarm.com/triggers) veya [EU](https://my.wallarm.com/triggers)) bölümüne gidin ve ada göre trigger’ı bulun, gerekiyorsa - ayarlayın. <br> Eylem [`Blocked`](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) ise, bu denylist aracılığıyla yapılır - **IP Lists** ([US](https://us1.my.wallarm.com/ip-lists) veya [EU](https://my.wallarm.com/ip-lists)) bölümüne gidin ve IP’ye göre arama yapın: gerekiyorsa, IP’nin denylist’te kalma süresini ayarlayın. |
+| `blocked_source` | IP listeleri: [denylist’teki IP’lerden gelen istekler](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) | Bir saldırıyı genişletin ve denylist’teki IP’den gelen istekleri analiz edin; ardından, görüntülenen trigger adını tıklayın ve gerekirse trigger ayarlarını değiştirin. Manuel olarak denylist’e eklenen IP’ler (`blocked_source`) için **IP Lists** ([US](https://us1.my.wallarm.com/ip-lists) veya [EU](https://my.wallarm.com/ip-lists)) bölümüne gidin ve IP’ye göre arayın: gerekiyorsa, IP’nin denylist’te kalma süresini ayarlayın. |
+| **Belirli modül veya işlev:** |
+| `api_abuse`, `account_takeover`, `security_crawlers`, `scraping`, `resource_consumption` ([ayrıntılar](../../attacks-vulns-list.md#api-abuse)) <br> - tümü için **Bot detected** durumuna dikkat edin | [API Abuse Prevention](../../api-abuse-prevention/overview.md) ve IP listeleri: [denylist’teki IP’lerden gelen istekler](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) | Bir saldırıyı genişletin ve bunun bir bot olduğuna dair [güveni](../../api-abuse-prevention/overview.md#how-api-abuse-prevention-works) kanıtlayan [ısı haritalarını](../../api-abuse-prevention/exploring-bots.md#attacks) analiz edin, saldırı tarihine ve kaynak IP’ye dikkat edin. <br> Eylem [`Blocked`](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) ise, bu denylist üzerinden yapılmıştır - **IP lists**’e gidin, tarihe ve IP’ye göre filtreleyin, IP adresi ayrıntılarını görmek için **Reason** sütununa tıklayın, bu ayrıntıları inceleyin, **Triggered profile**’a tıklayın, bunu inceleyin ve gerekirse [değiştirin](../../api-abuse-prevention/setup.md#creating-profiles). <br><br> **Ayrıca şunları yapabilirsiniz**: <br> <ul><li>Bu IP’nin asla engellenmemesi için kaynak IP’yi [istisna listesine ekleyin](../../api-abuse-prevention/exceptions.md). Ayrıca, istisna listesinden IP’yi kaldırabilirsiniz (**API Abuse Prevention** → **Exception list**)</li> <li>API abuse yapılandırması bunu otomatik yapması beklenmese bile, kaynak IP’yi denylist’e ekleyin.</li></ul> **Ek olarak**: **IP Lists** içinde, **Events**’e geri dönmek ve tüm ilgili saldırıları görmek için IP adresinin kendisine tıklayın.|
+| `bola` | [API Discovery](../../api-discovery/overview.md) tarafından [BOLA otomatik koruması](../../api-discovery/bola-protection.md) | Bir saldırıyı genişletin, eğer tetikleyiciye bağlantı içermiyorsa (BOLA’dan manuel korumanın işareti) bu, **API Discovery** ([US](https://us1.my.wallarm.com/api-discovery) veya [EU](https://my.wallarm.com/api-discovery)) modülü tarafından sağlanan otomatik korumadır. Gerekirse, bu korumayı devre dışı bırakmak veya ayarlarıyla birlikte şablonu ayarlamak için **BOLA Protection** ([US](https://us1.my.wallarm.com/bola-protection) veya [EU](https://my.wallarm.com/bola-protection)) bölümüne gidin. |
+| `undefined_endpoint`, `undefined_parameter`, `invalid_parameter_value`, `missing_parameter`, `missing_auth`, `invalid_request`  (hepsini aramak için `api_specification`, [ayrıntılar](../../attacks-vulns-list.md#api-specification)) | [API Specification Enforcement](../../api-specification-enforcement/overview.md) | Bir saldırıyı genişletin ve ihlal edilen spesifikasyona giden bağlantıyı takip edin. Spesifikasyon iletişim kutusunda ayarları düzenlemek için **API specification enforcement** sekmesini kullanın, **Specification upload** sekmesi ile spesifikasyonun en son sürümünü yüklemeyi değerlendirin. |
+| `gql_doc_size`, `gql_value_size`, `gql_depth`, `gql_aliases`, `gql_docs_per_batch`, `gql_introspection`, `gql_debug` (hepsini aramak için `graphql_attacks`, [ayrıntılar](../../attacks-vulns-list.md#graphql-attacks)) | [GraphQL API Protection](../../api-protection/graphql-rule.md) | Bir saldırıyı genişletin ve **GraphQL security policies** bağlantısını takip edin - gerekirse mevcut **Detect GraphQL attacks** kural(lar)ını değiştirin veya belirli dallar için ek kurallar oluşturun. |
+| `credential_stuffing` | [Credential Stuffing Detection](../../about-wallarm/credential-stuffing.md) | Bir saldırıyı genişletin ve kullanılmaya çalışılan ele geçirilmiş kimlik bilgileri listesini kontrol edin, Credential Stuffing ([US](https://wallarm.us1.wallarm.com/credential-stuffing), [EU](https://my.wallarm.com/credential-stuffing) Cloud) bölümüne gidin ve özellikle izlenen kimlik doğrulama uç noktaları listesini, bu liste için önerileri ve ele geçirilmiş kimlik bilgileri hakkında yapılandırılmış bildirimleri içeren [yapılandırmayı](../../about-wallarm/credential-stuffing.md#configuring) kontrol edin. |
 
-## Saldırıları Almak için API Çağrıları
+## Panolar
 
-Saldırı detaylarını almak için, Wallarm Console arayüzü dışında [Wallarm API'sine doğrudan çağrı yapabilirsiniz](../../api/overview.md). Aşağıda **son 24 saatte tespit edilen ilk 50 saldırıyı almak için** API çağrısının örneği verilmiştir.
+Wallarm, tespit edilen saldırıları analiz etmenize yardımcı olacak kapsamlı panolar sağlar.
 
-Lütfen `TIMESTAMP` yerine, 24 saat öncesinin [Unix Timestamp](https://www.unixtimestamp.com/) formatına çevrilmiş tarihini koyun.
+Wallarm’ın [Threat Prevention](../../user-guides/dashboards/threat-prevention.md) panosu, saldırılarla ilgili çok yönlü bilgiler dahil olmak üzere sisteminizin güvenlik duruşuna ilişkin genel metrikler sunar: kaynakları, hedefleri, türleri ve protokolleri.
+
+![Threat Prevention panosu](../../images/user-guides/dashboard/threat-prevention.png)
+
+[OWASP API Security Top 10](../../user-guides/dashboards/owasp-api-top-ten.md) panosu, saldırı bilgileri de dahil olmak üzere sisteminizin OWASP API Top 10 tehditlerine karşı güvenlik duruşuna ilişkin ayrıntılı görünürlük sağlar.
+
+![OWASP API Top 10](../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
+
+## Bildirimler
+
+Wallarm, tespit edilen saldırılar, hit’ler ve kötü amaçlı payload’lar hakkında size bildirim gönderebilir. Bu sayede sisteminize yönelik saldırı girişimlerinden haberdar olur ve tespit edilen kötü amaçlı trafiği hızlıca analiz edebilirsiniz. Kötü amaçlı trafiğin analizi, yanlış pozitiflerin raporlanmasını, meşru isteklerin geldiği IP’lerin allowlist’e eklenmesini ve saldırı kaynaklarının denylist’e alınmasını içerir.
+
+Bildirimleri yapılandırmak için:
+
+1. Bildirim göndermek için sistemlerle [yerel entegrasyonları](../../user-guides/settings/integrations/integrations-intro.md) yapılandırın (örn. PagerDuty, Opsgenie, Splunk, Slack, Telegram).
+2. Bildirim gönderme koşullarını ayarlayın:
+
+    * Tespit edilen her hit için bildirim almak üzere, entegrasyon ayarlarında uygun seçeneği belirleyin.
+
+        ??? info "JSON formatında tespit edilen hit bildirimi örneğini görün"
+            ```json
+            [
+                {
+                    "summary": "[Wallarm] New hit detected",
+                    "details": {
+                    "client_name": "TestCompany",
+                    "cloud": "EU",
+                    "notification_type": "new_hits",
+                    "hit": {
+                        "domain": "www.example.com",
+                        "heur_distance": 0.01111,
+                        "method": "POST",
+                        "parameter": "SOME_value",
+                        "path": "/news/some_path",
+                        "payloads": [
+                            "say ni"
+                        ],
+                        "point": [
+                            "post"
+                        ],
+                        "probability": 0.01,
+                        "remote_country": "PL",
+                        "remote_port": 0,
+                        "remote_addr4": "8.8.8.8",
+                        "remote_addr6": "",
+                        "tor": "none",
+                        "request_time": 1603834606,
+                        "create_time": 1603834608,
+                        "response_len": 14,
+                        "response_status": 200,
+                        "response_time": 5,
+                        "stamps": [
+                            1111
+                        ],
+                        "regex": [],
+                        "stamps_hash": -22222,
+                        "regex_hash": -33333,
+                        "type": "sqli",
+                        "block_status": "monitored",
+                        "id": [
+                            "hits_production_999_202010_v_1",
+                            "c2dd33831a13be0d_AC9"
+                        ],
+                        "object_type": "hit",
+                        "anomaly": 0
+                        }
+                    }
+                }
+            ]
+            ```
+    
+    * Saldırı, hit veya kötü amaçlı payload sayısı için bir eşik belirlemek ve eşik aşıldığında bildirim almak üzere uygun [trigger](../../user-guides/triggers/triggers.md)ları yapılandırın.
+
+## API çağrıları
+
+Saldırı ayrıntılarını almak için, Wallarm Console UI’ının yanı sıra [Wallarm API’yi doğrudan çağırabilirsiniz](../../api/overview.md). Aşağıda, **son 24 saatte tespit edilen ilk 50 saldırıyı alma** için bir API çağrısı örneği bulunmaktadır.
+
+Lütfen `TIMESTAMP` değerini, 24 saat önceki tarihi [Unix Timestamp](https://www.unixtimestamp.com/) formatına dönüştürerek değiştirin.
 
 --8<-- "../include/api-request-examples/get-attacks-en.md"
 
-!!! warning "100 veya daha fazla saldırı alınması"
-    Saldırı ve hit setlerinde 100 veya daha fazla kayıt bulunan durumlarda, büyük veri setlerini tek seferde almak yerine, performansı optimize etmek için bunları daha küçük parçalara ayırarak almanız en iyisidir. [İlgili istek örneğini inceleyin](../../api/request-examples.md#get-a-large-number-of-attacks-100-and-more)
-```
+!!! warning "100 veya daha fazla saldırıyı almak"
+    100 veya daha fazla kayıttan oluşan saldırı ve hit kümeleri için, performansı optimize etmek amacıyla büyük veri kümelerini tek seferde almak yerine daha küçük parçalara bölerek almak en iyisidir. [İlgili istek örneğini inceleyin](../../api/request-examples.md#get-a-large-number-of-attacks-100-and-more)

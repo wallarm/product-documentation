@@ -1,120 +1,125 @@
-# Shadow, Orphan, Zombie API <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Gölge, Yetim, Zombi API <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-[API Discovery](overview.md) modülü, yüklediğiniz spesifikasyonu canlı trafiğe karşılaştırarak otomatik olarak shadow, orphan ve zombie API'leri tespit eder.
+[API Discovery](overview.md) modülü, yüklediğiniz spesifikasyonu canlı trafikle karşılaştırarak shadow, orphan ve zombie API'leri otomatik olarak belirler.
 
-|Rogue API türü | Nedir? |
+|Rogue API türü | Nedir? |
 |--|--|
-| [Shadow API](#shadow-api) | Organizasyon altyapısı içinde, uygun yetkilendirme veya denetim olmaksızın var olan belgelenmemiş API.|
-| [Orphan API](#orphan-api) | Trafik almayan, belgelenmiş API. |
-| [Zombie API](#zombie-api) | Herkesin devre dışı bırakıldığını düşündüğü, aslında hala kullanılan deprecated API'ler. |
+| [Shadow API](#shadow-api) | Bir kuruluşun altyapısında uygun yetkilendirme veya denetim olmaksızın var olan, belgelenmemiş bir API.|
+| [Orphan API](#orphan-api) | Trafik almayan, belgelenmiş bir API. |
+| [Zombie API](#zombie-api) | Herkesin devre dışı bırakıldığını varsaydığı ancak aslında hâlâ kullanılan kullanımdan kalkmış API'ler. |
 
-![API Discovery - rogue API'leri vurgulama ve filtreleme](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
+![API Discovery - Rogue API'yi vurgulama ve filtreleme](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
 ## Setup
 
-Rogue API'lerini bulmaya başlamak için, spesifikasyonu yüklemeniz, rogue API tespitinde kullanılacağını seçmeniz ve tespit parametrelerini ayarlamanız gerekir.
+Rogue API'leri bulmaya başlamak için bir spesifikasyon yüklemeniz, rogue API tespiti için kullanılacak şekilde seçmeniz ve tespit parametrelerini ayarlamanız gerekir.
 
-Hem spesifikasyon hem de API zamanla değiştiği için, aşağıdakileri göz önünde bulundurun:
+Hem spesifikasyon hem de API zaman içinde değiştiğinden, aşağıdakileri dikkate alın:
 
-* Karşılaştırma ilk kurulumdan sonra başlar.
-* Herhangi bir [API değişikliği](track-changes.md) tespit edilirse karşılaştırma yeniden başlatılır.
-* Yeni ayarları kaydettiğinizde karşılaştırma yeniden başlatılır.
-* Yeni dosya seçerseniz (isim veya tam URI ile) karşılaştırma yeniden başlatılır.
-* URI'den yüklenen dosyada değişiklik varsa ve **Spesifikasyonu düzenli olarak güncelle** (her saat) seçeneği işaretlendiyse karşılaştırma yeniden başlatılır.
-* Spesifikasyon menüsü üzerinden **Karşılaştırmayı yeniden başlat** seçeneğini kullanarak karşılaştırmayı istediğiniz an yeniden başlatabilirsiniz.
+* Karşılaştırma ilk kurulumdan sonra başlar
+* [API'de değişiklikler](track-changes.md) bulunursa karşılaştırma yeniden başlar
+* Onun için yeni ayarları kaydederseniz karşılaştırma yeniden başlar
+* Yeni dosya seçerseniz (ada veya tam URI'ye göre) karşılaştırma yeniden başlar
+* URI'den yüklenen dosya değişmişse ve **Regularly update the specification** (her saat) seçeneği işaretliyse karşılaştırma yeniden başlar
 
-Ayrıca, daha önce yüklediğiniz spesifikasyonu **API Specifications** → spesifikasyon detay penceresi → **Spesifikasyonu indir** üzerinden indirebilirsiniz.
+    URI kullanılamayabilir veya güncellenen spesifikasyon dosyası API spesifikasyon sözdizimine uygun olmayabilir; otomatik güncelleme sırasında bir hata oluşabilir. Bu tür hatalar hakkında bildirim almak için, yapılandırdığınız [**Integrations**](../user-guides/settings/integrations/integrations-intro.md) içinde **System related** olaylarını seçin—spesifikasyon yükleme hatalarına ilişkin bildirimler bu kategoriye dahildir.
 
-### Adım 1: Spesifikasyonu yükleyin
+* Spesifikasyon menüsü → **Restart comparison** üzerinden karşılaştırmayı istediğiniz an yeniden başlatabilirsiniz.
 
-1. [US Cloud](https://us1.my.wallarm.com/api-specifications/) veya [EU Cloud](https://my.wallarm.com/api-specifications/) üzerindeki **API Specifications** bölümünde **Upload specification** butonuna tıklayın.
-2. Spesifikasyon yükleme parametrelerini ayarlayın ve yüklemeyi başlatın.
+Ayrıca daha önce yüklenmiş spesifikasyonu **API Specifications** → spesifikasyon ayrıntıları penceresi → **Download specification** üzerinden indirebilirsiniz.
 
-    ![Spesifikasyonu yükle](../images/api-specification-enforcement/specificaton-upload.png)
+### Adım 1: Spesifikasyon yükleme
 
-Spesifikasyon dosyası başarıyla yüklenene kadar rogue API tespitini yapılandıramayacağınızı unutmayın.
+1. [US Cloud](https://us1.my.wallarm.com/api-specifications/) veya [EU Cloud](https://my.wallarm.com/api-specifications/) içindeki **API Specifications** bölümünde **Upload specification**'ı tıklayın.
+1. Spesifikasyon yükleme parametrelerini ayarlayın ve yüklemeyi başlatın.
+
+    ![Spesifikasyon yükleme](../images/api-specification-enforcement/specificaton-upload.png)
+
+Spesifikasyon dosyası, API spesifikasyon sözdizimine uygunluk açısından kontrol edilir ve geçerli değilse yüklenmez. Spesifikasyon dosyası başarıyla yüklenene kadar rogue API tespitini yapılandırmaya başlayamayacağınızı unutmayın.
+
+Spesifikasyonu bir URI'den yüklemeyi ve **Regularly update the specification** (her saat) seçeneğini seçerseniz, düzenli güncelleme sırasında hatalar oluşabilir: URI kullanılamayabilir veya güncellenen spesifikasyon dosyası API spesifikasyon sözdizimine uygun olmayabilir. Bu tür hatalar hakkında bildirim almak için, yapılandırdığınız [**Integrations**](../user-guides/settings/integrations/integrations-intro.md) içinde **System related** olaylarını seçin—spesifikasyon yükleme hatalarına ilişkin bildirimler bu kategoriye dahildir.
 
 ### Adım 2: Rogue API tespit parametrelerini ayarlayın
 
-1. **Rogue APIs detection** sekmesine tıklayın.
+1. **Rogue APIs detection** sekmesini tıklayın.
 
-    !!! info "API specification enforcement"
+    !!! info "API spesifikasyon zorlaması"
         Rogue API tespitinin yanı sıra, spesifikasyonlar [API specification enforcement](../api-specification-enforcement/overview.md) için de kullanılabilir.
 
-2. **Use for rogue APIs detection** seçeneğini işaretleyin.
-3. **Applications** ve **Hosts** seçeneklerini seçin - yalnızca seçilen host'lara ait uç noktalar rogue API'ler için aranacaktır.
+1. **Use for rogue APIs detection** seçeneğini işaretleyin.
+1. **Applications** ve **Hosts** seçin - yalnızca seçilen host'larla ilişkili uç noktalar rogue API'ler için aranacaktır.
 
-    ![API Discovery - API Specifications - rogue API'leri bulmak için API spesifikasyonu yükleniyor](../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
+    ![API Discovery - Rogue API'leri bulmak için API spesifikasyonunu yükleme](../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
 
-### Devre Dışı Bırakma
+### Devre dışı bırakma
 
-Rogue API tespiti, **Use for rogue APIs detection** seçeneği işaretli olan yüklenmiş bir veya birkaç spesifikasyona dayanmaktadır. Bu seçeneğin bazı spesifikasyonlar için işaretinin kaldırılması veya ilgili spesifikasyonun silinmesi aşağıdaki sonuçlara yol açacaktır:
+Rogue API tespiti, yüklenen spesifikasyona veya **Use for rogue APIs detection** seçeneği işaretli birden çok spesifikasyona dayanır. Bu seçeneğin işaretini bazı spesifikasyonlar için kaldırmanın veya bu spesifikasyonu silmenin şu sonuçlara yol açacağını dikkate alın:
 
 * Bu spesifikasyona dayalı rogue API tespitinin durması ve 
-* Önceden bu spesifikasyona dayalı olarak tespit edilen rogue API'lere ait **tüm verilerin kaldırılması**
+* Daha önce bu spesifikasyona dayanarak bulunan rogue API'lere ait **tüm verilerin kaldırılması**
 
-## Bulunan Rogue API'leri Görüntüleme
+## Bulunan Rogue API'leri görüntüleme
 
-Karşılaştırma tamamlandığında, **API Specifications** listesindeki her bir spesifikasyon için rogue (shadow, orphan ve zombie) API sayısı görüntülenecektir.
+Karşılaştırma tamamlandığında, **API Specifications** listesindeki her spesifikasyon için rogue (shadow, orphan ve zombie) API sayısı görüntülenecektir.
 
 ![API Specifications bölümü](../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
 
-Ayrıca rogue API'ler **API Discovery** bölümünde görüntülenecektir. Seçilen karşılaştırmalara ait, yalnızca shadow, orphan ve/veya zombie API'leri görmek için **Rogue APIs** filtresini kullanabilir, diğer uç noktaları filtreleyebilirsiniz.
+Ayrıca rogue API'ler **API Discovery** bölümünde de görüntülenir. Seçilen karşılaştırmalarla ilişkili yalnızca shadow, orphan ve/veya zombie API'leri görmek ve kalan uç noktaları filtrelemek için **Rogue APIs** filtresini kullanın.
 
-![API Discovery - rogue API'leri vurgulama ve filtreleme](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
+![API Discovery - Rogue API'yi vurgulama ve filtreleme](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
-Böyle uç noktaların detaylarında, **Specification conflicts** bölümünde shadow/zombie/orphan tespiti için kullanılan spesifikasyon(lar) belirtilir.
+Bu tür uç noktaların ayrıntılarında, **Specification conflicts** bölümünde, shadow/zombie/orphan tespitinde kullanılan spesifikasyon(lar) belirtilir.
 
-Shadow API'ler [API Discovery Dashboard](dashboard.md)'da en riskli uç noktalar arasında görüntülenmektedir.
+Shadow API'ler ayrıca [API Discovery Dashboard](dashboard.md) üzerinde en riskli uç noktalar arasında görüntülenir.
 
 ## Spesifikasyon sürümleri ve zombie API'ler
 
-Shadow ve orphan API'lerin aksine, [zombie API](#zombie-api) farklı spesifikasyon sürümlerinin karşılaştırılmasını gerektirir:
+Shadow ve orphan API'lerin aksine, [zombie API'ler](#zombie-api) farklı spesifikasyon sürümlerinin karşılaştırılmasını gerektirir:
 
-* Eğer [kurulum](#setup) sırasında **Spesifikasyonu düzenli olarak güncelle** seçeneği işaretlendiyse, spesifikasyonun barındırıldığı URL'e sadece yeni sürümü koymanız yeterli olacaktır - bu işlem saatlik takvimle veya spesifikasyon menüsünden **Karşılaştırmayı yeniden başlat** seçeneğini tıklarsanız hemen işlenecektir.
-* **Spesifikasyonu düzenli olarak güncelle** seçeneği işaretlenmediyse:
+* [setup](#setup) sırasında **Regularly update the specification** seçeneği işaretlendiyse, spesifikasyonunuzu barındırdığınız URL'ye yeni sürümü koymanız yeterlidir - saatlik plana göre veya spesifikasyon menüsünden **Restart comparison** seçerseniz hemen işlenecektir.
+* **Regularly update the specification** seçeneği işaretlenmediyse:
 
-    * URL'den yükleme yapılıyorsa ve orada yeni içerik varsa, sadece **Karşılaştırmayı yeniden başlat** butonuna tıklayın.
-    * Yerel makinadan yükleme yapılıyorsa, spesifikasyon diyaloğunu açın, yeni dosyayı seçin ve değişiklikleri kaydedin. Dosyanın farklı bir adı olmalıdır.
+    * URL'den yükleme yapıyor ve orada yeni içerik varsa, sadece **Restart comparison**'ı tıklayın
+    * Yerel makineden yükleme yapıyorsanız, spesifikasyon penceresini açın, yeni dosyayı seçin ve değişiklikleri kaydedin. Dosyanın adı farklı olmalıdır.
 
-Listelenen tüm durumlar, yeni içeriği spesifikasyonun yeni sürümü olarak kabul edecektir. Sürümler karşılaştırılacak ve zombie API görüntülenecektir.
+Yukarıdakilerin tümü yeni içeriği spesifikasyonun bir sonraki sürümü olarak kabul edecektir. Sürümler karşılaştırılacak ve zombie API görüntülenecektir.
 
-## Birden Fazla Spesifikasyon ile Çalışma
+## Birden çok spesifikasyonla çalışma
 
-API'nizin farklı yönlerini tanımlamak için ayrı ayrı birkaç spesifikasyon kullanıyorsanız, bunların birkaçını veya tamamını Wallarm'a yükleyebilirsiniz.
+API'nizin farklı yönlerini tanımlamak için birden fazla ayrı spesifikasyon kullanmanız durumunda, bunların birkaçını veya tümünü Wallarm'a yükleyebilirsiniz.
 
-**API Discovery** bölümünde, **Compare to...** filtresini kullanarak spesifikasyon karşılaştırmalarını seçin - rogue API'ler yalnızca bu karşılaştırmalar için **Issues** sütununda özel işaretlerle vurgulanacaktır.
+**API Discovery** bölümünde, spesifikasyon karşılaştırmalarını seçmek için **Compare to...** filtresini kullanın - yalnızca bu karşılaştırmalar için **Issues** sütununda özel işaretlerle rogue API'ler vurgulanacaktır.
 
-![API Discovery - rogue API'leri vurgulama ve filtreleme](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
+![API Discovery - Rogue API'yi vurgulama ve filtreleme](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
-## Bildirim Alma
+## Bildirim alma
 
-[SIEM, SOAR, log yönetim sistemi veya messenger](../user-guides/settings/integrations/integrations-intro.md) üzerinden yeni keşfedilen rogue API'ler hakkında anında bildirim almak için, Wallarm Console'daki **Triggers** bölümünde **Rogue API detected** koşuluna sahip bir veya daha fazla tetikleyici yapılandırın.
+Yeni keşfedilen rogue API'ler hakkında [SIEM, SOAR, günlük yönetim sistemi veya mesajlaşma aracınıza](../user-guides/settings/integrations/integrations-intro.md) anında bildirim almak için, Wallarm Console'un **Triggers** bölümünde **Rogue API detected** koşuluna sahip bir veya daha fazla tetikleyici (trigger) yapılandırın.
 
-Yeni keşfedilen shadow, orphan veya zombie API'ler veya bunların hepsi hakkında mesaj alabilirsiniz. Ayrıca, izlemek istediğiniz uygulama veya host ve tespitlerinde kullanılan spesifikasyona göre bildirimi daraltabilirsiniz.
+Yeni keşfedilen shadow, orphan veya zombie API'ler hakkında ayrı ayrı ya da hepsi hakkında mesajlar alabilirsiniz. Ayrıca izlemek istediğiniz uygulama veya host'a ve tespitlerinde kullanılan spesifikasyona göre bildirimleri daraltabilirsiniz.
 
-**Bildirimlerin gönderim şekli**
+**Bildirimlerin iletilme şekli**
     
-* Her yeni tespit edilen rogue API 1 bildirim mesajı oluşturur.
-* Aynı rogue API hakkında zaten bildirim aldıysanız, karşılaştırma kaç kere çalıştırılırsa çalıştırılsın tekrar gönderilmez.
-* Yüklenen spesifikasyonun ayarlarını güncellerseniz, tüm **orphan** API'lere ait bildirimler yeniden gönderilir (bu durum shadow veya zombie API'ler için geçerli değildir).
+* Bulunan her yeni rogue API 1 bildirim mesajı üretir
+* Daha önce bir rogue API hakkında bildirim aldıysanız, karşılaştırma kaç kez çalıştırılırsa çalıştırılsın yeniden gönderilmez
+* Yüklenen spesifikasyonun ayarlarını güncellerseniz, tüm **orphan** API'lere ilişkin bildirimler yeniden gönderilir (bu, shadow veya zombie API'ler için geçerli değildir)
 
-**Tetikleyici örneği: Slack'de yeni keşfedilen shadow uç noktalar hakkında bildirim**
+**Tetikleyici örneği: Slack'te yeni keşfedilen shadow uç noktalar hakkında bildirim**
 
-Bu örnekte, API Discovery `Specification-01` içerisinde listelenmeyen yeni uç noktaları (shadow API'ler) tespit ederse, bu durum Slack kanalınıza yapılandırılmış olan bildirimle gönderilir.
+Bu örnekte, API Discovery `Specification-01` içinde listelenmeyen yeni uç noktalar bulursa (shadow API'ler), bununla ilgili bildirim yapılandırdığınız Slack kanalınıza gönderilir.
 
-![Rogue API detected trigger](../images/user-guides/triggers/trigger-example-rogue-api.png)
+![Rogue API detected tetikleyicisi](../images/user-guides/triggers/trigger-example-rogue-api.png)
 
 **Tetikleyiciyi test etmek için:**
 
-1. Wallarm Console → **Integrations** bölümüne [US](https://us1.my.wallarm.com/integrations/) veya [EU](https://my.wallarm.com/integrations/) cloud üzerinden gidin ve [Slack ile entegrasyon](../user-guides/settings/integrations/slack.md) yapılandırmasını gerçekleştirin.
-2. **API Discovery** bölümünde, istediğiniz API host'una göre uç noktaları filtreleyin, ardından sonuçları bir spesifikasyon olarak indirin ve adını `Specification-01` olarak belirleyin.
-3. **API Specifications** bölümünde, karşılaştırma için `Specification-01` dosyasını yükleyin.
-4. **Triggers** bölümünde, yukarıda gösterildiği gibi bir tetikleyici oluşturun.
-5. Yerel `Specification-01` dosyanızdan bazı uç noktaları silin.
-6. **API Specifications** bölümünde, karşılaştırma için `Specification-01` dosyanızı yeniden yükleyin.
-7. Uç noktanızın **Issues** sütununda shadow API işareti aldığını kontrol edin.
-8. Slack kanalınızdaki mesajları kontrol edin. Örneğin:
+1. Wallarm Console → [US](https://us1.my.wallarm.com/integrations/) veya [EU](https://my.wallarm.com/integrations/) cloud'daki **Integrations** bölümüne gidin ve [Slack ile entegrasyonu](../user-guides/settings/integrations/slack.md) yapılandırın.
+1. **API Discovery** bölümünde uç noktaları seçtiğiniz bir API host'una göre filtreleyin, ardından sonuçları bir spesifikasyon olarak indirin ve adını `Specification-01` koyun.
+1. **API Specifications** bölümünde karşılaştırma için `Specification-01`'i yükleyin.
+1. **Triggers** bölümünde yukarıda gösterildiği gibi bir tetikleyici oluşturun.
+1. Yerel `Specification-01` dosyanızdan bazı uç noktaları silin.
+1. **API Specifications** içinde `Specification-01`'inizi karşılaştırma için yeniden yükleyin.
+1. Uç noktanızın **Issues** sütununda shadow API işaretini aldığını kontrol edin.
+1. Slack kanalınızdaki şu tür mesajları kontrol edin:
 
     ```
     [wallarm] A new shadow endpoint has been discovered in your API
@@ -137,34 +142,34 @@ Bu örnekte, API Discovery `Specification-01` içerisinde listelenmeyen yeni uç
           specification_name: Specification-01
     ```
 
-## Rogue API türleri ve riskler
+## Rogue API türleri ve riskleri
 
 ### Shadow API
 
-**Shadow API**, organizasyon altyapısı içinde, uygun yetkilendirme veya denetim olmaksızın var olan belgelenmemiş API'ye atıfta bulunur.
+**Shadow API**, bir kuruluşun altyapısında uygun yetkilendirme veya denetim olmaksızın var olan, belgelenmemiş bir API'yi ifade eder.
 
-Shadow API'ler, saldırganların kritik sistemlere erişim sağlaması, değerli verileri çalması veya operasyonları aksatması gibi durumlarla işletmeleri riske atabilir; ayrıca API'ler kritik veriye erişimin kapısı olarak işlev gördüğünden ve OWASP API açıklarının API güvenliğini aşmak için kullanılabilmesinden dolayı risk daha da artmaktadır.
+Shadow API'ler işletmeleri riske atar; saldırganlar bunları kritik sistemlere erişmek, değerli verileri çalmak veya operasyonları kesintiye uğratmak için kötüye kullanabilir. Bu risk, API'lerin genellikle kritik verilerin bekçisi olarak hareket etmesi ve çeşitli OWASP API güvenlik açıklarının API güvenliğini atlatmak için istismar edilebilmesi gerçeğiyle daha da artar.
 
-Yüklenen API spesifikasyonlarınıza göre, shadow API, gerçek trafikte yer alan (API Discovery tarafından tespit edilen) ancak spesifikasyonunuzda yer almayan uç noktadır.
+Yüklediğiniz API spesifikasyonları açısından shadow API, gerçek trafikte bulunan (API Discovery tarafından tespit edilen) ancak spesifikasyonunuzda yer almayan bir uç noktadır.
 
-Wallarm ile shadow API tespit ettikçe, eksik uç noktaları içerecek şekilde spesifikasyonlarınızı güncelleyip, API envanterinizi tam görünümle izleme ve güvenlik faaliyetlerini sürdürebilirsiniz.
+Wallarm ile shadow API'leri buldukça, eksik uç noktaları içerecek şekilde spesifikasyonlarınızı güncelleyebilir ve API envanterinizin tam görünümünde izleme ve güvenlik faaliyetlerini yürütebilirsiniz.
 
 ### Orphan API
 
-**Orphan API**, trafik almayan, belgelenmiş API'ye atıfta bulunur.
+**Orphan API**, trafik almayan belgelenmiş bir API'yi ifade eder.
 
-Orphan API'lerin varlığı, şu adımları içerebilecek bir doğrulama sürecinin nedeni olabilir:
+Orphan API'lerin varlığı, şu adımları içeren bir doğrulama sürecinin nedeni olabilir:
 
-* Gerçekten trafik alınıp alınmadığını veya Wallarm düğümleri tarafından trafiğin görünür olup olmadığını (düğümlerin, tüm trafiğin üzerinden geçtiği şekilde dağıtılmaması, yanlış trafik yönlendirmesi veya başka bir Web Gateway'in unutulmuş olması gibi) anlamak için Wallarm trafik kontrol ayarlarının incelenmesi.
-* Belirli uç noktaların bazı uygulamalar tarafından hiç trafik almaması mı gerektiğini yoksa bir yapılandırma hatası mı olduğunu belirlemek.
-* Artık kullanılmayan uç noktalar üzerine karar vermek: önceki uygulama sürümlerinde kullanılan ancak güncel sürümde kullanılmayan uç noktaların spesifikasyondan silinip silinmemesi, böylece güvenlik kontrol çabalarının azaltılması.
+* Trafiğin gerçekten alınmadığını mı yoksa Wallarm düğümlerine görünmediğini mi anlamak için Wallarm trafik kontrol ayarlarının incelenmesi (tüm trafik düğümlerden geçmeyecek şekilde konuşlandırılmış olabilir; bu hatalı trafik yönlendirmesi olabilir veya üzerine düğüm koymanın unutulduğu başka bir Web Gateway bulunuyor olabilir vb.).
+* Belirli uygulamaların belirli uç noktalarda trafik almaması gerekip gerekmediğinin veya bir yanlış yapılandırmanın söz konusu olup olmadığının belirlenmesi.
+* Eskimiş uç noktalar hakkında karar verilmesi: önceki uygulama sürümlerinde kullanılan ancak mevcut sürümde kullanılmayanlar—güvenlik kontrol çabasını azaltmak için spesifikasyondan silinmeli mi?
 
 ### Zombie API
 
-**Zombie API**, herkesin devre dışı bırakıldığını düşündüğü fakat aslında hala kullanımda olan deprecated API'lere atıfta bulunur.
+**Zombie API**, herkesin devre dışı bırakıldığını varsaydığı ancak aslında hâlâ kullanılan kullanımdan kalkmış API'leri ifade eder.
 
-Zombie API riskleri, belgelenmemiş (shadow) API'lerdeki risklere benzer ancak devre dışı bırakılma nedenlerinin genellikle daha kolay kırılabilen güvensiz tasarımlardan kaynaklanması nedeniyle daha büyük olabilir.
+Zombie API riskleri, belgelenmemiş (shadow) API'lerle benzerdir ancak çoğu zaman daha kötüdür; çünkü devre dışı bırakılma gerekçesi genellikle daha kolay ihlal edilebilen güvensiz tasarımlardır.
 
-Yüklenen API spesifikasyonlarınıza göre, zombie API, önceki sürümünüzde yer alan, mevcut sürümde bulunmayan (yani, bu uç noktanın silinmesi niyet edilmiş olsa da) ancak gerçek trafikte halen var olan uç noktadır (API Discovery tarafından tespit edilir).
+Yüklediğiniz API spesifikasyonları açısından zombie API, spesifikasyonunuzun önceki sürümünde bulunan ancak mevcut sürümde bulunmayan (yani bu uç noktanın silinmesi amaçlanmış) ancak gerçek trafikte hâlâ bulunan (API Discovery tarafından tespit edilen) bir uç noktadır.
 
-Wallarm ile zombie API tespit etmek, uygulamalarınızın API yapılandırmasını yeniden kontrol etmek için bir neden olabilir; böylece bu uç noktaların gerçekten devre dışı bırakıldığından emin olabilirsiniz.
+Wallarm ile zombie API bulmak, bu tür uç noktaları gerçekten devre dışı bırakmak için uygulamalarınızın API yapılandırmasını yeniden kontrol etme nedeni olabilir.
