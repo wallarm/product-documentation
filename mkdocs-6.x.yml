@@ -102,6 +102,7 @@ nav:
       - Rules: user-guides/rules/rules.md
       - Triggers: user-guides/triggers/triggers.md
   - Security Testing:
+    - Overview: vulnerability-detection/security-testing-overview.md
     - Threat Replay:
       - Overview: vulnerability-detection/threat-replay-testing/overview.md
       - Setup: vulnerability-detection/threat-replay-testing/setup.md
