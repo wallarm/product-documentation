@@ -257,6 +257,7 @@ nav:
     - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
     - Fastly: installation/connectors/fastly.md
     - IBM API Connect: installation/connectors/ibm-api-connect.md
+    - Azure API Management: installation/connectors/azure-api-management.md
     - Code Bundle Changelog: installation/connectors/code-bundle-inventory.md
   - Integrations and Alerts:
     - Overview: user-guides/settings/integrations/integrations-intro.md 
