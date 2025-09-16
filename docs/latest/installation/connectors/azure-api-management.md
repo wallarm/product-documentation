@@ -85,12 +85,12 @@ The Azure API Management connector package includes 4 XML files:
 
 * Synchronous mode:
 
-    * `wallarm-sync-request.xml`
-    * `wallarm-sync-response.xml`
+    * `wallarm-inline-request.xml`
+    * `wallarm-inline-response.xml`
 * Asynchronous mode:
 
-    * `wallarm-async-request.xml`
-    * `wallarm-async-response.xml`
+    * `wallarm-out-of-band-request.xml`
+    * `wallarm-out-of-band-response.xml`
 
 Each mode requires 2 fragments: one for requests (inbound) and one for responses (outbound).
 
@@ -99,12 +99,12 @@ The steps below use the Azure Portal UI, but you can also deploy policy fragment
 1. Contact sales@wallarm.com to get the policy fragments.
 1. Extract the policy archive.
 1. Navigate to Azure Portal → **API Management** service → **APIs** → **Policy fragments** → **Create**.
-1. Create a request policy fragment using either `wallarm-sync-request.xml` or `wallarm-async-request.xml`, depending on your chosen traffic analysis mode.
+1. Create a request policy fragment using either `wallarm-inline-request.xml` or `wallarm-out-of-band-request.xml`, depending on your chosen traffic analysis mode.
    
     Name the fragment consistently with the file.
 
     ![Wallarm request policy fragment](../../images/waf-installation/gateways/azure-apim/request-policy-fragment.png)
-1. Create a response policy fragment using either `wallarm-sync-response.xml` or `wallarm-async-response.xml`.
+1. Create a response policy fragment using either `wallarm-inline-response.xml` or `wallarm-out-of-band-response.xml`.
    
     Name the fragment consistently with the file.
 
