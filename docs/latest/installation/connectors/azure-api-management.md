@@ -43,7 +43,7 @@ This solution is the recommended one for securing APIs managed by the Azure APIM
 To proceed with the deployment, ensure that you meet the following requirements:
 
 * Understanding of the Azure API Management service.
-* Your APIs are running in Azure APIM.
+* Your APIs are published via Azure API Management.
 * A user with the appropriate [role in Azure APIM](https://learn.microsoft.com/en-us/azure/api-management/api-management-role-based-access-control):
 
     * **API Management Workspace Contributor** - for managing policy fragments within a workspace.
