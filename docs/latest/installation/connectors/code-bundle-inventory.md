@@ -176,3 +176,17 @@ The current version can be found in the Wallarm policy file → `info.version`. 
 ### 1.0.1 (2025-05-20)
 
 * Initial release
+
+## Azure API Management
+
+[How to upgrade](azure-api-management.md#upgrading-the-policies)
+
+The current version can be found in the Wallarm policy file → `X-Wallarm-Connector-Version` value. All policies use the same version number.
+
+| Policy version      | [Native Node version](../../updating-migrating/native-node/node-artifact-versions.md) |
+| ------------------- | ------------------- |
+| 1.0.x               | 0.18.0 and higher   |
+
+### 1.0.0 (2025-09-17)
+
+* Initial release
