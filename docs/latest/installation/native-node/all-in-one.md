@@ -7,7 +7,7 @@ The [Wallarm Native Node](../nginx-native-node-internals.md), which operates ind
 
 ## Use cases and deployment modes
 
-* When deploying a Wallarm node as part of a connector solution for MuleSoft [Mule](../connectors/mulesoft.md) or [Flex](../connectors/mulesoft-flex.md) Gateway, [Akamai](../connectors/akamai-edgeworkers.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [IBM DataPower](../connectors/ibm-api-connect.md) on a self-hosted Linux OS machine.
+* When deploying a Wallarm node as part of a connector solution for MuleSoft [Mule](../connectors/mulesoft.md) or [Flex](../connectors/mulesoft-flex.md) Gateway, [Akamai](../connectors/akamai-edgeworkers.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [IBM DataPower](../connectors/ibm-api-connect.md), [Azure API Management](../connectors/azure-api-management.md) on a self-hosted Linux OS machine.
 
     Use the installer in `connector-server` mode.
 * When you need a security solution for [TCP traffic mirror analysis](../oob/tcp-traffic-mirror/deployment.md).
@@ -208,6 +208,7 @@ If needed, you can change the copied file after the installation is finished. To
         * [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md#2-add-the-nodes-ssltls-certificate-to-the-policy-manager)
         * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly)
         * [IBM DataPower](../connectors/ibm-api-connect.md#2-obtain-and-apply-the-wallarm-policies-to-apis-in-ibm-api-connect)
+        * [Azure API Management](../connectors/azure-api-management.md#2-create-named-values-in-azure)
 === "tcp-capture"
     [Proceed to the deployment testing](../oob/tcp-traffic-mirror/deployment.md#step-5-test-the-solution).
 === "envoy-external-filter"
