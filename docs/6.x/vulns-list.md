@@ -1,0 +1,1 @@
+--8<-- "latest/vulns-list.md"

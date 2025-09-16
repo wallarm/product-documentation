@@ -382,6 +382,7 @@ nav:
       - Data Retention Policy: about-wallarm/data-retention-policy.md
     - Glossary: glossary-en.md
     - Attack / Vulnerability Types: attacks-vulns-list.md
+    - Detected Vulnerabilities: vulns-list.md
   - Troubleshooting:
       - Overview: troubleshooting/overview.md
       - Detection and Blocking: troubleshooting/detection-and-blocking.md
