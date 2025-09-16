@@ -16,12 +16,12 @@ This guide describes how to secure your APIs managed by [Azure API Management (A
 
 To use Wallarm as a connector for Azure APIM, you need to **deploy the Wallarm Node externally** and **apply the Wallarm-provided policy fragments in Azure** to route traffic to the Wallarm Node for analysis.
 
-The Wallarm connector for Azure APIM supports both [synchronous (in-line)](../inline/overview.md) and [asynchronous (out‑of‑band)](../oob/overview.md) traffic analysis.
+The Wallarm connector for Azure APIM supports both [synchronous (in-line)](../inline/overview.md) and [asynchronous (out‑of‑band)](../oob/overview.md) traffic analysis:
 
-<!-- === "Synchronous traffic flow"
+=== "Synchronous traffic flow"
     ![Azure APIM with Wallarm policy, synchronous traffic analysis](../../images/waf-installation/gateways/azure-apim/traffic-flow-azure-apim-inline.png)
 === "Asynchronous traffic flow"
-    ![Azure APIM with Wallarm policy, asynchronous traffic analysis](../../images/waf-installation/gateways/mulesoft/traffic-flow-azure-apim-oob.png) -->
+    ![Azure APIM with Wallarm policy, asynchronous traffic analysis](../../images/waf-installation/gateways/azure-apim/traffic-flow-azure-apim-oob.png)
 
 ## Use cases
 
