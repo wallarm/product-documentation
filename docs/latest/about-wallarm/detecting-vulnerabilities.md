@@ -6,7 +6,7 @@ Due to negligence or inadequate information when building or implementing an app
 
 A vulnerability is an error made due to negligence or inadequate information when building or implementing an application. A vulnerability can be exploited by an attacker to cross privilege boundaries (i.e. perform unauthorized actions) within an application.
 
-## Vulnerability detection methods
+## Detection methods
 
 When scanning the application for active vulnerabilities, Wallarm sends requests with attack signs to the protected application address and analyzes application responses. If the response matches one or more pre‑defined vulnerability signs, Wallarm records active vulnerability.
 
@@ -16,6 +16,7 @@ To detect vulnerabilities in the application, Wallarm uses the following methods
 
 * **Passive detection**: identifies vulnerabilities by analyzing real traffic, including both requests and responses. This can happen during a security incident, where a real flaw is exploited, or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation.
 * **Threat Replay Testing**: lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. This module finds possible vulnerabilities by probing application endpoints using real attack data from the traffic. By default this method is disabled.
+* **Schema-Based Testing**: actively scans target applications for vulnerabilities, basing test requests on provided application's OpenAPI specification or Postman collection.
 * **API Attack Surface Management (AASM)**: discovers external hosts with their APIs, for each of them identifies missing WAF/WAAP solutions and vulnerabilities.
 * **API Discovery insights**: the vulnerability was found by [API Discovery](../api-discovery/overview.md) module due to PII transfer in query parameters of GET requests.
 
@@ -35,19 +36,30 @@ The Threat Replay Testing capabilities:
 * **Safe & smart simulation**: Skips sensitive authentication details and removes harmful code in tests. Simulates attack techniques for max security, not risking actual harm.
 * **Safe non-production tests**: Enables you to [run vulnerability checks in a staging or development setup](../vulnerability-detection/threat-replay-testing/setup.md) using real production data, but without the risks like system overload or data exposure.
 
+### Schema-Based Testing
+
+Wallarm's [Schema-Based Testing](../vulnerability-detection/schema-based-testing/overview.md) performs dynamic security testing of your applications and APIs to identify a wide range of vulnerabilities.
+
+Schema-Based Testing capabilities:
+
+* Tests based on provided application's OpenAPI specification or Postman collection.
+* Deep, dynamic analysis of API endpoints.
+* Detection of vulnerabilities in the application or API itself, as well as security misconfigurations in the underlying infrastructure or environment.
+* Lightweight execution via Docker container.
+
 ### API Attack Surface Management (AASM)
 
-#### How it works
+**How it works**
 
 Wallarm's [API Attack Surface Management](../api-attack-surface/overview.md) (AASM) is an agentless detection solution tailored to the API ecosystem, designed to discover external hosts with their APIs, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities.
 
-#### Configuration
+**Configuration**
 
 You enable and configure API Attack Surface Management to detect hosts under your selected domains and search for security issues related to these hosts as described [here](../api-attack-surface/setup.md).
 
 For detected hosts, Wallarm will automatically [search for vulnerabilities](../api-attack-surface/security-issues.md).
 
-#### Replacement of old Scanner
+**Replacement of old Scanner**
 
 From May 7, 2025, AASM [replaced the old Scanner](../api-attack-surface/api-surface.md#replacement-of-old-scanner) as a more sophisticated and comfortable tool for host and API discovery.
 
