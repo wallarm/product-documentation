@@ -67,7 +67,7 @@
 [ssi-wiki]:     https://en.wikipedia.org/wiki/Server_Side_Includes
 [link-owasp-csrf-cheatsheet]:               https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
 
-This article lists and describes attacks and vulnerabilities that Wallarm can detect including those presented in the [OWASP Top 10](https://owasp.org/www-project-top-ten/) and [OWASP API Top 10](https://owasp.org/www-project-api-security/) security risk lists. Most of the vulnerabilities and attacks on the list are accompanied by one or more codes from the list of software weakness types, also known as the [Common Weakness Enumeration][link-cwe] or CWE.
+This article lists and describes attacks and [vulnerabilities](about-wallarm/detecting-vulnerabilities.md) that Wallarm can detect including those presented in the [OWASP Top 10](https://owasp.org/www-project-top-ten/) and [OWASP API Top 10](https://owasp.org/www-project-api-security/) security risk lists. Most of the vulnerabilities and attacks on the list are accompanied by one or more codes from the list of software weakness types, also known as the [Common Weakness Enumeration][link-cwe] or CWE.
 
 !!! info "No configuration required"
     If in the attack/vulnerability description no specific configuration is mentioned, this means Wallarm detects this attack/vulnerability by default **without any configuration** from you side and handles it in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md).
@@ -92,6 +92,21 @@ Technically, all attacks that can be detected by Wallarm are divided into two ty
     <div class="video-wrapper">
     <iframe width="1280" height="720" src="https://www.youtube.com/embed/27CBsTQUE-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div> -->
+
+## Vulnerability types
+
+This article lists [vulnerability](about-wallarm/detecting-vulnerabilities.md) types detected by Wallarm - in case it has corresponding attack, they are described together. Note that Wallarm provides different [methods](about-wallarm/detecting-vulnerabilities.md#detection-methods) for vulnerability detection, they are listed in each vulnerability description.
+
+Search for "Vulnerability by" text to go through all vulnerabilities, and for method name, like "TRT", to understand what can be found by each method.
+
+!!! info "Method abbreviations"
+    Passive - built-in node function, no configuration required, "passive" as does not send anything itself
+    TRT - [Treat Replay Testing](../vulnerability-detection/threat-replay-testing/overview.md)
+    SBT - [Schema-Based Testing](../vulnerability-detection/schema-based-testing/overview.md)
+    AASM - [API Attack Surface Management](../api-attack-surface/overview.md)
+    APID - [API Discovery](../api-discovery/overview.md)
+
+Read [here](about-wallarm/detecting-vulnerabilities.md#combining-methods) why and how you can combine different methods for vulnerability detection.
 
 ## DDoS attacks
 
@@ -142,7 +157,7 @@ Vulnerability to this attack occurs due to insufficient filtering of user input.
 
 ### Remote code execution (RCE)
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](#vulnerability-types) passive, TRT, AASM, SBT.
 
 **CWE codes:** [CWE-78][cwe-78], [CWE-94][cwe-94] and others
 
