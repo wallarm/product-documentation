@@ -335,7 +335,7 @@ If the Node is deployed in synchronous mode with [blocking enabled](../../admin-
 
 ## Upgrading the policies
 
-To upgrade the deployed Wallarm policies to a [newer version](code-bundle-inventory.md#apigee-api-management):
+To upgrade the deployed Wallarm policies to a [newer version](code-bundle-inventory.md#apigee):
 
 1. [Download](#2-obtain-the-connector-code-bundle) the updated Apigee connector code bundle from Wallarm.
 1. Import the new versions of the shared flows (`Wallarm-Inline-*` or `Wallarm-OOB-*`) into Apigee, as described in [Step 4](#4-deploy-wallarm-shared-flows).

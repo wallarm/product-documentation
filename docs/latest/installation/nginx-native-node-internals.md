@@ -47,25 +47,12 @@ Find an NGINX Node deployment solution for your Kubernetes environment:
 
 ### Connectors
 
-API deployment can be done in various ways, including utilizing external tools such as Azion Edge, Akamai Edge, MuleSoft, Apigee, and CloudFront. If you are looking for a way to secure these APIs with Wallarm, we offer a solution in the form of ["connectors"](connectors/overview.md) specifically designed for such cases.
+API deployment can be done in various ways, including utilizing external tools such as Azion Edge. If you are looking for a way to secure these APIs with Wallarm, we offer a solution in the form of ["connectors"](connectors/overview.md) specifically designed for such cases.
 
 The NGINX Node is used for the platforms listed below, however the analysis is limited to incoming requests.
 
 <div class="do-section">
     <div class="do-main">
-
-        <a class="do-card" href="../../installation/connectors/apigee/">
-            <img class="non-zoomable" src="../../images/platform-icons/apigee.svg" />
-            <h3>Apigee</h3>
-            <p>Secure APIs running on Apigee</p>
-        </a>
-
-        <a class="do-card" href="../../installation/connectors/akamai-edgeworkers/">
-            <img class="non-zoomable" src="../../images/platform-icons/akamai.svg" />
-            <h3>Akamai EdgeWorkers</h3>
-            <p>Secure APIs running on Akamai EdgeWorkers</p>
-        </a>
-
         <a class="do-card" href="../../installation/connectors/azion-edge/">
             <img class="non-zoomable" src="../../images/platform-icons/azion-edge.svg" />
             <h3>Azion Edge</h3>
@@ -227,7 +214,7 @@ Find your **use case below** and deploy the Native Node in the appropriate form-
 
 ### Connectors
 
-API deployment can be done in various ways, including utilizing external tools such as Azion Edge, Akamai Edge, MuleSoft, Apigee, and CloudFront. If you are looking for a way to secure these APIs with Wallarm, we offer a solution in the form of ["connectors"](connectors/overview.md) specifically designed for such cases.
+API deployment can be done in various ways, including utilizing external tools such as Akamai Edge, MuleSoft, etc. If you are looking for a way to secure these APIs with Wallarm, we offer a solution in the form of ["connectors"](connectors/overview.md) specifically designed for such cases.
 
 The Native Node works with the following platforms with no limitations:
 
@@ -243,6 +230,18 @@ The Native Node works with the following platforms with no limitations:
             <img class="non-zoomable" src="../../images/platform-icons/mulesoft-flex-gateway.png" />
             <h3>MuleSoft Flex Gateway</h3>
             <p>Deploy Wallarm to secure APIs managed by the Flex Gateway</p>
+        </a>
+
+        <a class="do-card" href="../../installation/connectors/apigee/">
+            <img class="non-zoomable" src="../../images/platform-icons/apigee.svg" />
+            <h3>Apigee</h3>
+            <p>Secure APIs running on Apigee</p>
+        </a>
+
+        <a class="do-card" href="../../installation/connectors/akamai-edgeworkers/">
+            <img class="non-zoomable" src="../../images/platform-icons/akamai.svg" />
+            <h3>Akamai EdgeWorkers</h3>
+            <p>Secure APIs running on Akamai EdgeWorkers</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/aws-lambda/">
@@ -285,6 +284,12 @@ The Native Node works with the following platforms with no limitations:
             <img class="non-zoomable" src="../../images/platform-icons/ibm-api-connect.svg" />
             <h3>IBM API Connect</h3>
             <p>Deploy Wallarm to secure APIs managed through IBM API Connect</p>
+        </a>
+        
+        <a class="do-card" href="../../installation/connectors/azure-api-management/">
+            <img class="non-zoomable" src="../../images/platform-icons/azure-apim.svg" />
+            <h3>Azure API Management</h3>
+            <p>Deploy Wallarm to secure APIs managed by Azure API Management</p>
         </a>
     </div>
 </div>
