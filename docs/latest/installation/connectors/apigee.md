@@ -18,10 +18,10 @@ To use Wallarm as a connector for Apigee APIM, you need to **deploy the Wallarm 
 
 The Wallarm connector for Apigee APIM supports both [synchronous (in-line)](../inline/overview.md) and [asynchronous (out‑of‑band)](../oob/overview.md) traffic analysis.
 
-<!-- === "Synchronous traffic flow"
+=== "Synchronous traffic flow"
     ![Apigee APIM with Wallarm policy, synchronous traffic analysis](../../images/waf-installation/gateways/apigee/traffic-flow-apigee-inline.png)
 === "Asynchronous traffic flow"
-    ![Apigee APIM with Wallarm policy, asynchronous traffic analysis](../../images/waf-installation/gateways/apigee/traffic-flow-apigee-oob.png) -->
+    ![Apigee APIM with Wallarm policy, asynchronous traffic analysis](../../images/waf-installation/gateways/apigee/traffic-flow-apigee-oob.png)
 
 ## Use cases
 
