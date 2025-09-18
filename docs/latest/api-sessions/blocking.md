@@ -11,7 +11,7 @@ This includes requests marked as part of attack/blocked by different [tools for 
 ## Blocking sessions
 
 !!! tip ""
-    Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.1 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
+    Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.5.1 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
 
 Session blocking allows for more intelligent security decisions based on the state of the current interaction with the application, rather than just its network origins ([source IP addresses](../user-guides/ip-lists/overview.md)). It is required for the cases of:
 
