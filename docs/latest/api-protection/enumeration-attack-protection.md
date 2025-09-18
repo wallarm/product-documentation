@@ -139,7 +139,7 @@ When some request meets [scope](#scope) and [advanced filters](#scope-filters) a
 
 **Brute force, BOLA and generic enumeration protection**
 
-These kinds of protection count the number of unique values seen for each [enumerated parameter](#enumerated-parameters) within a specified timeframe (in seconds). Each parameter listed in the **Enumerated parameters** section is tracked independently.
+These kinds of protection count the number of unique values seen for each [enumerated parameter](#enumerated-parameters) within a specified timeframe. Each parameter listed in the **Enumerated parameters** section is tracked independently.
 
 Once threshold is reached by any of parameters, Wallarm performs action in accordance with the [Mitigation mode](#mitigation-mode).
 
