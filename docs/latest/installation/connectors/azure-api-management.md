@@ -157,17 +157,6 @@ Example of per-API application:
 
 ![Wallarm policy fragment applied to individual API on Azure APIM](../../images/waf-installation/gateways/azure-apim/policies-for-indiv-api.png)
 
-## Block page customization
-
-If the Node is deployed in synchronous mode with [blocking enabled](../../admin-en/configure-wallarm-mode.md), you can customize the block page returned for blocked malicious requests.
-
-To do this:
-
-1. Navigate to Azure Portal → **API Management** → **APIs** → **Policy fragments**.
-1. Open the `wallarm-sync-request` fragment and edit the `<set-body>` section:
-
-![Customizing Wallarm block page for Azure APIM connector](../../images/waf-installation/gateways/azure-apim/customize-block-page.png)
-
 ## Testing
 
 Test the deployed policy fragments with both legitimate and malicious traffic.
@@ -178,11 +167,11 @@ Test the deployed policy fragments with both legitimate and malicious traffic.
 
     ![Azure APIM Trace legitimate request](../../images/waf-installation/gateways/azure-apim/trace-legitimate-request.png)
 
-2. Review the HTTP response trace - you should see the inbound policy `request-forwarder`:
+1. Review the HTTP response trace - you should see the inbound policy `request-forwarder`:
 
     ![Azure APIM Trace legitimate request - view log on request forwarded to Wallarm Node](../../images/waf-installation/gateways/azure-apim/trace-legitimate-request-result.png)
 
-3. In Wallarm Console → **API Sessions**, verify that the legitimate request is displayed:
+1. In Wallarm Console → **API Sessions**, verify that the legitimate request is displayed:
 
     ![Wallarm Console: legitimate request in API Sessions](../../images/waf-installation/gateways/azure-apim/legitimate-request-in-sessions.png)
 
@@ -192,8 +181,9 @@ Test the deployed policy fragments with both legitimate and malicious traffic.
 
     ![Azure APIM Trace SQLi attack](../../images/waf-installation/gateways/azure-apim/trace-sqli-attack.png)
 
-    * In synchronous mode with [blocking enabled](../../admin-en/configure-wallarm-mode.md), the request will be blocked with `403`.
-    * In asynchronous mode, the request will reach the API and will be logged in Wallarm Console.
+    * Synchronous mode with [blocking enabled](../../admin-en/configure-wallarm-mode.md): the request is blocked with `403`.
+    * Synchronous mode (monitoring): request reaches the API and is logged in Wallarm Console.  
+    * Asynchronous mode: request reaches the API and is logged in Wallarm Console.
 1. In Wallarm Console → **API Sessions**, verify that the malicious request is logged: 
 
     ![Wallarm Console: malicious request in API Sessions](../../images/waf-installation/gateways/azure-apim/attack-in-sessions.png)
@@ -202,6 +192,17 @@ Test the deployed policy fragments with both legitimate and malicious traffic.
     ![SQLi attacks in the interface (Azure APIM connector for Wallarm)](../../images/waf-installation/gateways/azure-apim/attack-in-attack-section.png)
 
     The attack will appear 3 times due to [APIM headers](#limitations).
+
+## Block page customization
+
+If the Node is deployed in synchronous mode with [blocking enabled](../../admin-en/configure-wallarm-mode.md), you can customize the block page returned for blocked malicious requests.
+
+To do this:
+
+1. Navigate to Azure Portal → **API Management** → **APIs** → **Policy fragments**.
+1. Open the `wallarm-sync-request` fragment and edit the `<set-body>` section:
+
+![Customizing Wallarm block page for Azure APIM connector](../../images/waf-installation/gateways/azure-apim/customize-block-page.png)
 
 ## Upgrading the policies
 
