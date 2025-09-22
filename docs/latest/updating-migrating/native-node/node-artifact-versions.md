@@ -13,6 +13,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 0.18.0 (2025-09-17)
 
 * Added support for the [Azure API Management connector](../../installation/connectors/azure-api-management.md)
+* Added support for the [Apigee API Management connector](../../installation/connectors/apigee.md)
 
 ### 0.17.1 (2025-08-15)
 
@@ -193,6 +194,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 ### 0.18.0 (2025-09-17)
 
 * Added support for the [Azure API Management connector](../../installation/connectors/azure-api-management.md)
+* Added support for the [Apigee API Management connector](../../installation/connectors/apigee.md)
 
 ### 0.17.1 (2025-08-15)
 
