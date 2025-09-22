@@ -27,7 +27,7 @@ Wallarm offers connectors for the following platforms:
 | --- | ---- | ---- |
 | [MuleSoft Mule Gateway](mulesoft.md) | In-line | Security Edge, self-hosted |
 | [MuleSoft Flex Gateway](mulesoft-flex.md) | In-line, out-of-band | Self-hosted |
-| [Apigee](apigee.md) | In-line |Self-hosted |
+| [Apigee](apigee.md) | In-line, out-of-band |Self-hosted |
 | [Akamai](akamai-edgeworkers.md) | In-line, out-of-band |Self-hosted |
 | [Azion Edge](azion-edge.md) | In-line |Self-hosted |
 | [Amazon CloudFront](aws-lambda.md) | In-line, out-of-band | Security Edge, self-hosted |
@@ -37,6 +37,7 @@ Wallarm offers connectors for the following platforms:
 | [Broadcom Layer7 API Gateways](layer7-api-gateway.md) | In-line | Self-hosted |
 | [Fastly](fastly.md) | In-line, out-of-band | Security Edge, self-hosted |
 | [IBM DataPower](ibm-api-connect.md) | In-line | Security Edge, self-hosted |
+| [Azure API Management](azure-api-management.md) | In-line, out-of-band | Self-hosted |
 
 If you couldn't find the connector you are looking for, please feel free to contact our [Sales team](mailto:sales@wallarm.com) to discuss your requirements and explore potential solutions.
 

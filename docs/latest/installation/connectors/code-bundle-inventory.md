@@ -83,6 +83,20 @@ The current version can be found in `Cargo.toml` → `[package]` → `version` p
 
 * [Initial release](mulesoft-flex.md)
 
+## Apigee
+
+[How to upgrade](apigee.md#upgrading-the-policies)
+
+<!-- The current version can be found in ... -->
+
+| Policy version      | [Native Node version](../../updating-migrating/native-node/node-artifact-versions.md) |
+| ------------------- | ------------------- |
+| 1.x                 | 0.18.0 and higher   |
+
+### 1.0.0 (2025-09-17)
+
+* [Initial release](apigee.md)
+
 ## Akamai
 
 [How to upgrade](akamai-edgeworkers.md#upgrading-the-wallarm-edgeworkers)
@@ -176,3 +190,17 @@ The current version can be found in the Wallarm policy file → `info.version`. 
 ### 1.0.1 (2025-05-20)
 
 * Initial release
+
+## Azure API Management
+
+[How to upgrade](azure-api-management.md#upgrading-the-policies)
+
+The current version can be found in the Wallarm policy file → `X-Wallarm-Connector-Version` value. All policies use the same version number.
+
+| Policy version      | [Native Node version](../../updating-migrating/native-node/node-artifact-versions.md) |
+| ------------------- | ------------------- |
+| 1.0.x               | 0.18.0 and higher   |
+
+### 1.0.0 (2025-09-17)
+
+* [Initial release](azure-api-management.md)
