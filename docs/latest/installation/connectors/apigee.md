@@ -14,28 +14,42 @@
 
 This guide describes how to secure your APIs managed by [Apigee API Management (APIM)](https://cloud.google.com/apigee) using the Wallarm connector.
 
+## Overview
+
 To use Wallarm as a connector for Apigee APIM, you need to **deploy the Wallarm Node externally** and **apply the Wallarm-provided shared flows in Apigee** to route traffic to the Wallarm Node for analysis.
 
-The Wallarm connector for Apigee APIM supports both [synchronous (in-line)](../inline/overview.md) and [asynchronous (out‑of‑band)](../oob/overview.md) traffic analysis.
+The Wallarm connector for Apigee APIM supports the **synchronous** and **asynchronous** traffic analysis:
 
 === "Synchronous traffic flow"
+    In [synchronous (inline)](../inline/overview.md) mode, the policy intercepts requests and sends them to the Wallarm Node for inspection. Based on the Node's [filtration mode](../../admin-en/configure-wallarm-mode.md), malicious requests may be blocked with `403`, providing real-time threat mitigation.
+
     ![Apigee APIM with Wallarm policy, synchronous traffic analysis](../../images/waf-installation/gateways/apigee/traffic-flow-apigee-inline.png)
 === "Asynchronous traffic flow"
+    In [asynchronous (out-of-band)](../oob/overview.md) mode, traffic is mirrored to the Node without affecting the original flow. Malicious requests are logged in Wallarm Console but not blocked.
+
     ![Apigee APIM with Wallarm policy, asynchronous traffic analysis](../../images/waf-installation/gateways/apigee/traffic-flow-apigee-oob.png)
 
 ## Use cases
 
-This solution is the recommended one for securing APIs managed by the Apigee APIM service.
+This solution is recommended for securing APIs managed by the Apigee APIM service.
 
 ## Limitations
 
---8<-- "../include/waf/installation/connectors/native-node-limitations.md"
+* [Custom blocking code][custom-blocking-page] configuration is not supported.
+
+    All [blocked](../../admin-en/configure-wallarm-mode.md) malicious traffic is returned with status code `403` by default. You can customize the block page content, but not the response code itself.
+* [Rate limiting][rate-limiting] by Wallarm rules is not supported.
+    
+    Rate limiting cannot be enforced on the Wallarm side for this connector. If rate limiting is required, use [Apigee policies](https://cloud.google.com/apigee/docs/api-platform/develop/rate-limiting).
+* [Multitenancy][multi-tenancy] is not supported.
+
+    All protected APIs are managed under a single Wallarm account; separating protection across multiple accounts for different infrastructures or environments is not yet supported.
 
 ## Requirements
 
-To proceed with the deployment, ensure that you meet the following requirements:
+Before deployment, ensure the following prerequisites are met:
 
-* Understanding of the Apigee API Management service.
+* Familiarity with Apigee API Management.
 * APIs published via Apigee. Supported distributions:
 
     * Apigee OPDK
@@ -46,6 +60,7 @@ To proceed with the deployment, ensure that you meet the following requirements:
 * [Google Cloud SDK (gcloud CLI) installed and configured](https://cloud.google.com/sdk/docs/quickstart) (if managing Apigee from CLI).
 * Access to the **Administrator** account in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
 * Native Node [version 0.18.0 or higher](../../updating-migrating/native-node/node-artifact-versions.md).
+* A valid **trusted** SSL/TLS certificate for the Wallarm Node domain (self-signed certificates are not supported).
 
 ## Deployment
 
@@ -74,13 +89,13 @@ The bundle contains:
 
 * `sharedflows/` - Wallarm shared flow bundles to deploy in Apigee:
   
-    * `Wallarm-Inline-Request-Flow.zip` and `Wallarm-Inline-Response-Flow.zip` for synchronous analysis
-    * `Wallarm-OOB-Request-Flow.zip` and `Wallarm-OOB-Response-Flow.zip` for asynchronous analysis
+    * `Wallarm-Inline-Request-Flow.zip` and `Wallarm-Inline-Response-Flow.zip` for [synchronous](../inline/overview.md) analysis
+    * `Wallarm-OOB-Request-Flow.zip` and `Wallarm-OOB-Response-Flow.zip` for [asynchronous](../oob/overview.md) analysis
 
 * `proxies/` - sample, ready-to-use API proxies you can modify and reuse:
 
-    * `wallarm-single-proxy-sync` - sample proxy with the Wallarm connector policies preconfigured for [synchronous](../inline/overview.md) analysis
-    * `wallarm-single-proxy-async` - sample proxy with the Wallarm connector policies preconfigured for [asynchronous](../oob/overview.md) analysis
+    * `wallarm-single-proxy-sync` - sample proxy with the Wallarm connector policies preconfigured for synchronous analysis
+    * `wallarm-single-proxy-async` - sample proxy with the Wallarm connector policies preconfigured for asynchronous analysis
 
     While this guide walks you through deployment from scratch, these samples can serve as a shortcut or reference.
 
@@ -122,7 +137,7 @@ Define the `WallarmConfig` [key value map (KVM)](https://cloud.google.com/apigee
     | KVM entry | Description | Required? |
     | --------- | ----------- | --------- |
     | `node_url`| Full domain name of your [Wallarm Node](#1-deploy-a-wallarm-node) including protocol (e.g., `https://wallarm-node-instance.com`). | Yes |
-    | `ignore_errors` | Defines error-handling behavior in synchronous traffic analysis when the Node is unavailable (e.g., timeouts):<ul><li>`true` (default) - requests are forwarded to APIs</li><li>`false` - block such requests with status `403`</li></ul> | No |
+    | `ignore_errors` | Defines error-handling behavior in synchronous traffic analysis when the Node is unavailable (e.g., timeouts):<ul><li>`true` (default) - requests are forwarded to APIs when the Node is not available</li><li>`false` - block requests with status code `403` when the Node is not available</li></ul>If not specified, the connector defaults to `true`, meaning requests are always forwarded to APIs when the Node is unavailable. | No |
 
     === "Apigee API Management"
         Use the following [Apigee API call](https://cloud.google.com/apigee/docs/reference/apis/apigee/rest/v1/organizations.environments.keyvaluemaps.entries/create) to add entries to the environment-level KVM:
@@ -190,7 +205,7 @@ Define the `WallarmConfig` [key value map (KVM)](https://cloud.google.com/apigee
 
 Each traffic analysis mode (synchronous or asynchronous) requires 2 shared flows: one for requests and one for responses.
 
-1. In Google Cloud Console → **Proxy development** → **Shared flows**, **Upload bundle** from either `Wallarm-Inline-Request-Flow.zip` or `Wallarm-OOB-Request-Flow.zip` depending on the chosen mode.
+1. In Google Cloud Console → **Proxy development** → **Shared flows**, **Upload bundle** from `Wallarm-Inline-Request-Flow.zip` for synchronous mode or from `Wallarm-OOB-Request-Flow.zip` for asynchronous mode.
 
     ![Upload Wallarm shared flow bundle in the Google Console UI](../../images/waf-installation/gateways/apigee/upload-flow-bundle.png)
 1. **Deploy** the uploaded flow. Verify that it shows a green "Ok" status for each target environment.  
@@ -211,13 +226,13 @@ You can apply the Wallarm shared flows globally to all API proxies in an environ
     1. Proceed to Google Cloud Console → **Management** → **Environments** → select your environment → **Flow hooks**.
     1. Assign the deployed Wallarm flows:
 
-    * **Pre-proxy** → `Wallarm-Sync-Request-Flow` or `Wallarm-Async-Request-Flow`, depending on the selected mode.
-        
-        Requests are forwarded (synchronous) or mirrored (asynchronous) to the Wallarm Node for inspection before reaching the API proxy.
+        * **Pre-proxy** → `Wallarm-Sync-Request-Flow` for synchronous mode or `Wallarm-Async-Request-Flow` for asynchronous mode.
+            
+            Requests are forwarded (synchronous) or mirrored (asynchronous) to the Wallarm Node for inspection before reaching the API proxy.
 
-    * **Post-proxy** → `Wallarm-Sync-Response-Flow` or `Wallarm-Async-Response-Flow`, depending on the selected mode.
-        
-        Responses from the target service are mirrored to the Wallarm Node for inspection.
+        * **Post-proxy** → `Wallarm-Sync-Response-Flow` for synchronous mode or `Wallarm-Async-Response-Flow` for asynchronous mode.
+            
+            Responses from the target service are mirrored to the Wallarm Node for inspection.
 
     ![Flow hooks for environment in Apigee](../../images/waf-installation/gateways/apigee/wallarm-flow-hooks.png)
 
@@ -233,12 +248,12 @@ You can apply the Wallarm shared flows globally to all API proxies in an environ
 
         * Policy type: `Flow Callout`
         * Name and Display name: `FC-Wallarm-Node-Request`
-        * Sharedflow: `Wallarm-Sync-Request-Flow` or `Wallarm-Async-Request-Flow` depending on the chosen mode
+        * Sharedflow: `Wallarm-Sync-Request-Flow` for synchronous mode or `Wallarm-Async-Request-Flow` for asynchronous mode
     1. Create the response policy:
 
         * Policy type: `Flow Callout`
         * Name and Display name: `FC-Wallarm-Node-Response`
-        * Sharedflow: `Wallarm-Sync-Response-Flow` or `Wallarm-Async-Response-Flow` depending on the chosen mode
+        * Sharedflow: `Wallarm-Sync-Response-Flow` for synchronous mode or `Wallarm-Async-Response-Flow` for asynchronous mode
 
         ![Flow callout for requests in Apigee](../../images/waf-installation/gateways/apigee/wallarm-flow-callout-policy.png)
 
@@ -331,7 +346,7 @@ If the Node is deployed in synchronous mode with [blocking enabled](../../admin-
     Update the content inside the `<FaultResponse><Set><Payload>` tag. Make sure the payload is wrapped in CDATA.
 1. **Save** and **deploy** a new flow revision.
 
-    ![Customizing Wallarm block page for Apigee APIM connector](../../images/waf-installation/gateways/apigee/customize-block-page.png)
+![Customizing Wallarm block page for Apigee APIM connector](../../images/waf-installation/gateways/apigee/customize-block-page.png)
 
 ## Upgrading the policies
 
