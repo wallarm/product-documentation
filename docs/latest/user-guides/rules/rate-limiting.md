@@ -120,10 +120,12 @@ For example, the rule limiting each customer by 10 POST requests per minute to `
 
 The rate limit functionality has the following limitations and peculiarities:
 
-* Rate limiting rule is supported by all [Security Edge](../../installation/security-edge/overview.md) and [self-hosted](../../installation/supported-deployment-options.md) deployment forms **except for**:
+* Rate limiting rule is supported by [Security Edge Inline](../../installation/security-edge/inline/overview.md) and [self-hosted NGINX Node](../../installation/nginx-native-node-internals.md#nginx-node) only.
 
-    * OOB Wallarm deployment
-    * MuleSoft, Amazon CloudFront, Cloudflare, Broadcom Layer7 API Gateway, Fastly connectors
+    The following deployment options do not support the rule:
+
+    * [OOB Wallarm deployment](../../installation/oob/overview.md)
+    * [Wallarm Connectors](../../installation/connectors/overview.md)
 * The maximum allowed length of parameter values by which you measure limits is 8000 symbols.
 * If you have multiple Wallarm nodes and the incoming traffic on each node meets the rate limit rule, they are limited independently.
 * When multiple rate limit rules apply to incoming requests, the rule with the lowest rate limit is used to limit the requests.
