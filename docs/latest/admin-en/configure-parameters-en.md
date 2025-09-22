@@ -315,8 +315,6 @@ A path to the Wallarm private key used for encryption/decryption of proton.db an
 
 ### wallarm_max_request_body_size
 
-Hidden from public usage
-
 Defines the maximum size (in bytes) of an HTTP request body that will be analyzed by the Node. If the request body exceeds the specified limit, the excess part is skipped and not inspected for threats.
 
 The directive is available from release 6.2.0 onwards.
