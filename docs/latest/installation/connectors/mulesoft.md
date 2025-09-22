@@ -22,7 +22,7 @@ The Wallarm connector for Mule Gateway supports only [in-line](../inline/overvie
 
 ## Use cases
 
-This solution is the recommended one for securing Mule APIs managed by Mule Gateway.
+This solution is recommended for securing Mule APIs managed by Mule Gateway.
 
 ## Limitations
 
