@@ -14,22 +14,36 @@
 
 This guide describes how to secure your APIs managed by [Azure API Management (APIM)](https://azure.microsoft.com/en-us/products/api-management) using the Wallarm connector.
 
-To use Wallarm as a connector for Azure APIM, you need to **deploy the Wallarm Node externally** and **apply the Wallarm-provided policy fragments in Azure** to route traffic to the Wallarm Node for analysis.
+## Overview
 
-The Wallarm connector for Azure APIM supports both [synchronous (in-line)](../inline/overview.md) and [asynchronous (out‑of‑band)](../oob/overview.md) traffic analysis:
+To use Wallarm as a connector for Azure APIM, you need to **deploy the Wallarm Node externally** and **apply Wallarm policy fragments in Azure** to route traffic to the Node for analysis.
 
-=== "Synchronous traffic flow"
+The Wallarm connector for Azure APIM supports the **synchronous** and **asynchronous** traffic analysis:
+
+=== "Synchronous traffic analysis"
+    In [synchronous (inline)](../inline/overview.md) mode, the policy intercepts requests and sends them to the Wallarm Node for inspection. Based on the Node's [filtration mode](../../admin-en/configure-wallarm-mode.md), malicious requests may be blocked with `403`, providing real-time threat mitigation.
+
     ![Azure APIM with Wallarm policy, synchronous traffic analysis](../../images/waf-installation/gateways/azure-apim/traffic-flow-azure-apim-inline.png)
-=== "Asynchronous traffic flow"
+=== "Asynchronous traffic analysis"
+    In [asynchronous (out-of-band)](../oob/overview.md) mode, traffic is mirrored to the Node without affecting the original flow. Malicious requests are logged in Wallarm Console but not blocked.
+
     ![Azure APIM with Wallarm policy, asynchronous traffic analysis](../../images/waf-installation/gateways/azure-apim/traffic-flow-azure-apim-oob.png)
 
 ## Use cases
 
-This solution is the recommended one for securing APIs managed by the Azure APIM service.
+This solution is recommended for securing APIs managed by the Azure APIM service.
 
 ## Limitations
 
---8<-- "../include/waf/installation/connectors/native-node-limitations.md"
+* [Custom blocking code][custom-blocking-page] configuration is not supported.
+
+    All [blocked](../../admin-en/configure-wallarm-mode.md) malicious traffic is returned with status code `403` by default. You can customize the block page content, but not the response code itself.
+* [Rate limiting][rate-limiting] by Wallarm rules is not supported.
+    
+    Rate limiting cannot be enforced on the Wallarm side for this connector. If rate limiting is required, use [Azure APIM's built-in policies](https://learn.microsoft.com/en-us/azure/api-management/rate-limit-policy).
+* [Multitenancy][multi-tenancy] is not supported.
+
+    All protected APIs are managed under a single Wallarm account; separating protection across multiple accounts for different infrastructures or environments is not yet supported.
 * Attacks in query parameters are registered **3 times**. 
 
     This is because the Azure Application Gateway adds the `X-ORIGINAL-URL` and `X-WAWS-UNENCODED-URL` headers, which fully reflect the original URI including the attack pattern. Therefore, a single malicious query parameter will result in 3 detections:
@@ -40,16 +54,17 @@ This solution is the recommended one for securing APIs managed by the Azure APIM
 
 ## Requirements
 
-To proceed with the deployment, ensure that you meet the following requirements:
+Before deployment, ensure the following prerequisites are met:
 
-* Understanding of the Azure API Management service.
-* Your APIs are published via Azure API Management.
-* A user with the appropriate [role in Azure APIM](https://learn.microsoft.com/en-us/azure/api-management/api-management-role-based-access-control):
+* Familiarity with Azure API Management.
+* APIs are published via Azure API Management.
+* A user account with one of the following [roles in Azure APIM](https://learn.microsoft.com/en-us/azure/api-management/api-management-role-based-access-control):
 
     * **API Management Workspace Contributor** - for managing policy fragments within a workspace.
     * **API Management Service Contributor** - for global configuration across the entire APIM instance.
 * Access to the **Administrator** account in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
 * Native Node [version 0.18.0 or higher](../../updating-migrating/native-node/node-artifact-versions.md).
+* A valid **trusted** SSL/TLS certificate for the Wallarm Node domain (self-signed certificates are not supported).
 
 ## Deployment
 
@@ -75,7 +90,9 @@ Define the following [named values in Azure API Management](https://learn.micros
 | Named value | Description | Type | Required? |
 | ----------- | ----------- | ---- | --------- |
 | `WallarmNodeUrl` | Full domain name of your [Wallarm Node](#1-deploy-a-wallarm-node) including protocol (e.g., `https://wallarm-node-instance.com`). | Plain | Yes |
-| `WallarmIgnoreErrors` | Defines error-handling behavior in synchronous traffic analysis when the Node is unavailable (e.g., timeouts):<ul><li>`true` (default) - requests are forwarded to APIs</li><li>`false` - block such requests with status `403`</li></ul> | Plain | No |
+| `WallarmIgnoreErrors` | Defines error-handling behavior in synchronous traffic analysis when the Node is unavailable (e.g., timeouts):<ul><li>`true` (default) - requests are forwarded to APIs when the Node is not available</li><li>`false` - block requests with status code `403` when the Node is not available</li></ul>If not specified, the connector defaults to `true`, meaning requests are always forwarded to APIs when the Node is unavailable. | Plain | No |
+
+The example below shows how the named values look in the Azure Portal:
 
 ![Named values for Wallarm in Azure APIM](../../images/waf-installation/gateways/azure-apim/create-named-values.png)
 
@@ -99,61 +116,108 @@ The steps below use the Azure Portal UI, but you can also deploy policy fragment
 1. Contact sales@wallarm.com to get the policy fragments.
 1. Extract the policy archive.
 1. Navigate to Azure Portal → **API Management** service → **APIs** → **Policy fragments** → **Create**.
-1. Create a request policy fragment using either `wallarm-inline-request.xml` or `wallarm-out-of-band-request.xml`, depending on your chosen traffic analysis mode.
-   
-    Name the fragment consistently with the file.
+1. Create a request policy fragment using `wallarm-inline-request.xml` for synchronous mode or `wallarm-out-of-band-request.xml` for asynchronous mode.
+
+    You can name the fragment consistently with the file: `wallarm-inline-request` or `wallarm-out-of-band-request`.
+
+    Example of a request policy fragment in Azure Portal:
 
     ![Wallarm request policy fragment](../../images/waf-installation/gateways/azure-apim/request-policy-fragment.png)
-1. Create a response policy fragment using either `wallarm-inline-response.xml` or `wallarm-out-of-band-response.xml`.
+1. Create a response policy fragment using `wallarm-inline-response.xml` for synchronous mode or `wallarm-out-of-band-response.xml` for asynchronous mode.
    
-    Name the fragment consistently with the file.
+    You can name the fragment consistently with the file: `wallarm-inline-response` or `wallarm-out-of-band-response`.
+
+    Example of a response response fragment in Azure Portal:
 
     ![Wallarm response policy fragment](../../images/waf-installation/gateways/azure-apim/response-policy-fragment.png)
 
 ### 4. Apply Wallarm policy fragments to APIs
 
-Apply the created fragments to individual APIs or globally to all APIs using the following code:
+You can attach Wallarm fragments **globally** to all APIs or **individually** to specific APIs or operations.
+
+Insert fragments inside your existing policy to preserve the current flow.
+
+#### Globally (all APIs)
+
+1. Navigate to Azure Portal → **APIs** → **All APIs**.
+1. Under **Inbound processing** and **Outbound processing**, add the fragments, for example:
 
 === "Synchronous traffic analysis"
-    ```xml
+    ```xml hl_lines="2-4 8-10"
+    <policies>
+        <inbound />
+            <include-fragment fragment-id="wallarm-sync-request" />
+        </inbound>
+        <backend>
+            <forward-request />
+        </backend>
+        <outbound />
+            <include-fragment fragment-id="wallarm-sync-response" />
+        <on-error />
+    </policies>
+    ```
+=== "Asynchronous traffic analysis"
+    ```xml hl_lines="2-4 8-10"
+    <policies>
+        <inbound />
+            <include-fragment fragment-id="wallarm-async-request" />
+        </inbound>
+        <backend>
+            <forward-request />
+        </backend>
+        <outbound />
+            <include-fragment fragment-id="wallarm-async-response" />
+        <on-error />
+    </policies>
+    ```
+
+#### Per API or operation
+
+To apply the created fragments to individual APIs or operations:
+
+1. Navigate to Azure Portal → **APIs** → select API → **All operations** or specific operation.
+1. Under **Inbound processing** and **Outbound processing**, add the fragments **before `<base/>`** so inspection happens prior to routing, for example:
+
+=== "Synchronous traffic analysis"
+    ```xml hl_lines="2-6 10-13"
     <policies>
         <inbound>
             <include-fragment fragment-id="wallarm-sync-request" />
             <base />
         </inbound>
-
+        <backend>
+            <base />
+        </backend>
         <outbound>
             <include-fragment fragment-id="wallarm-sync-response" />
             <base />
         </outbound>
+        <on-error>
+            <base />
+        </on-error>
     </policies>
     ```
-
-    In [synchronous (inline)](../inline/overview.md) mode, the policy intercepts requests and sends them to the Wallarm Node for inspection. Based on the Node's [filtration mode](../../admin-en/configure-wallarm-mode.md), malicious requests may be blocked with 403.
 === "Asynchronous traffic analysis"
-    ```xml
+    ```xml hl_lines="2-6 10-13"
     <policies>
         <inbound>
             <include-fragment fragment-id="wallarm-async-request" />
             <base />
         </inbound>
-
+        <backend>
+            <base />
+        </backend>
         <outbound>
             <include-fragment fragment-id="wallarm-async-response" />
             <base />
         </outbound>
+        <on-error>
+            <base />
+        </on-error>
     </policies>
     ```
 
-    In [asynchronous (out-of-band)](../oob/overview.md) mode, traffic is mirrored to the Node without affecting the original flow. Malicious requests are logged in Wallarm Console but not blocked.
-
-To apply the policies:
-
-* Per API: go to **APIs** → select API → **All operations** → **Inbound processing** / **Outbound processing** → add the fragments.
-* Per operation: go to **APIs** → select API → select operation → **Inbound processing** / **Outbound processing** → add the fragments.
-* Globally: go to **APIs** → **All APIs** → **Inbound processing** / **Outbound processing** → add the fragments.
-
-Example of per-API application:
+Example of per-API application in Azure Portal:
 
 ![Wallarm policy fragment applied to individual API on Azure APIM](../../images/waf-installation/gateways/azure-apim/policies-for-indiv-api.png)
 
@@ -171,7 +235,7 @@ Test the deployed policy fragments with both legitimate and malicious traffic.
 
     ![Azure APIM Trace legitimate request - view log on request forwarded to Wallarm Node](../../images/waf-installation/gateways/azure-apim/trace-legitimate-request-result.png)
 
-1. In Wallarm Console → **API Sessions**, verify that the legitimate request is displayed:
+1. In Wallarm Console → [**API Sessions**](../../api-sessions/overview.md), verify that the legitimate request is displayed:
 
     ![Wallarm Console: legitimate request in API Sessions](../../images/waf-installation/gateways/azure-apim/legitimate-request-in-sessions.png)
 
@@ -195,9 +259,7 @@ Test the deployed policy fragments with both legitimate and malicious traffic.
 
 ## Block page customization
 
-If the Node is deployed in synchronous mode with [blocking enabled](../../admin-en/configure-wallarm-mode.md), you can customize the block page returned for blocked malicious requests.
-
-To do this:
+If the Node is deployed in synchronous mode with [blocking enabled](../../admin-en/configure-wallarm-mode.md), you can customize the block page returned for blocked malicious requests:
 
 1. Navigate to Azure Portal → **API Management** → **APIs** → **Policy fragments**.
 1. Open the `wallarm-sync-request` fragment and edit the `<set-body>` section:
