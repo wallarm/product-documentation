@@ -119,7 +119,7 @@ There are many techniques that attackers can use to launch a DDoS attack, and th
 
 ### SQL injection
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
 
 **CWE code:** [CWE-89][cwe-89]
 
@@ -140,7 +140,7 @@ In addition to the protection measures performed by Wallarm, you may follow thes
 
 ### NoSQL injection
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
 
 **CWE code:** [CWE-943][cwe-943]
 
@@ -156,7 +156,7 @@ Vulnerability to this attack occurs due to insufficient filtering of user input.
 
 ### Remote code execution (RCE)
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, TRT, AASM, SBT.
+**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
 
 **CWE codes:** [CWE-78][cwe-78], [CWE-94][cwe-94] and others
 
@@ -207,7 +207,7 @@ An attacker can change the message output and change the user behavior. SSI Inje
 
 ### Server‑side template injection (SSTI)
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
 
 **CWE codes:** [CWE-94][cwe-94], [CWE-159][cwe-159]
 
@@ -227,7 +227,7 @@ This vulnerability arises from the incorrect validation and parsing of user inpu
 
 ### LDAP injection
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
 
 **CWE code:** [CWE-90][cwe-90]
 
@@ -269,7 +269,7 @@ Vulnerability to this attack occurs due to poor validation of the data inputted 
 
 ### Server‑side request forgery (SSRF)
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
 
 **CWE code:** [CWE-918][cwe-918]
 
@@ -286,7 +286,7 @@ A successful SSRF attack may allow an attacker to make requests on behalf of the
 
 ### Path traversal
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
 
 **CWE code:** [CWE-22][cwe-22]
 
@@ -307,7 +307,7 @@ In addition to the protection measures performed by Wallarm, you may follow thes
 
 ### Attack on XML external entity (XXE)
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
 
 **CWE code:** [CWE-611][cwe-611]
 
@@ -356,7 +356,7 @@ The `scanner` code is assigned to an HTTP request if this request is believed to
 
 ### Cross‑site scripting (XSS)
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
 
 **CWE code:** [CWE-79][cwe-79]
 
@@ -388,7 +388,7 @@ This class of vulnerabilities occurs due to the incorrect validation and parsing
 
 ### Open redirect
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
 
 **CWE code:** [CWE-601][cwe-601]
 
@@ -407,7 +407,7 @@ Vulnerability to this attack occurs due to incorrect filtering of URL inputs.
 
 ### CRLF injection
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
 
 **CWE code:** [CWE-93][cwe-93]
 
@@ -487,7 +487,7 @@ Wallarm detects and mitigates brute force attacks only if it has one of the foll
 
 ### Broken object level authorization (BOLA)
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
 
 **CWE code:** [CWE-639][cwe-639]
 
@@ -961,7 +961,7 @@ Description TBD (not presented in docs, but presented in UI)
 
 ### Authentication bypass
 
-**Vulnerability**
+**Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
 
 **CWE code:** [CWE-288][cwe-288]
 
@@ -1003,7 +1003,7 @@ Wallarm detects the credential stuffing attempts only if the filtering node has 
 
 ### Cross-site request forgery (CSRF)
 
-**Vulnerability**
+**Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
 
 **CWE code:** [CWE-352][cwe-352]
 
@@ -1053,7 +1053,7 @@ Note that file size upload restrictions are not the only [measure for preventing
 
 ### Information exposure
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
 
 **CWE codes:** [CWE-200][cwe-200] (see also: [CWE-209][cwe-209], [CWE-215][cwe-215], [CWE-538][cwe-538], [CWE-541][cwe-541], [CWE-548][cwe-548], [CWE-598][cwe-598])
 
@@ -1084,7 +1084,7 @@ Wallarm does not specifically classify `infoleak` attacks but detects and record
 
 ### Vulnerable component
 
-**Vulnerability**
+**Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
 
 **CWE codes:** [CWE-937][cwe-937], [CWE-1035][cwe-1035], [CWE-1104][cwe-1104]
 
@@ -1106,7 +1106,7 @@ This vulnerability is mapped with [A06:2021 – Vulnerable and Outdated Componen
 
 ### Weak JWT
 
-**Vulnerability**
+**Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
 
 **CWE code:** [CWE-1270][cwe-1270], [CWE-1294][cwe-1294]
 
