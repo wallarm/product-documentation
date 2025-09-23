@@ -145,28 +145,30 @@ Insert fragments inside your existing policy to preserve the current flow.
 === "Synchronous traffic analysis"
     ```xml hl_lines="2-4 8-10"
     <policies>
-        <inbound />
+        <inbound>
             <include-fragment fragment-id="wallarm-sync-request" />
         </inbound>
         <backend>
             <forward-request />
         </backend>
-        <outbound />
+        <outbound>
             <include-fragment fragment-id="wallarm-sync-response" />
+        </outbound>
         <on-error />
     </policies>
     ```
 === "Asynchronous traffic analysis"
     ```xml hl_lines="2-4 8-10"
     <policies>
-        <inbound />
+        <inbound>
             <include-fragment fragment-id="wallarm-async-request" />
         </inbound>
         <backend>
             <forward-request />
         </backend>
-        <outbound />
+        <outbound>
             <include-fragment fragment-id="wallarm-async-response" />
+        </outbound>
         <on-error />
     </policies>
     ```
