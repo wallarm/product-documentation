@@ -9,7 +9,7 @@ The [**Security Edge**](overview.md) platform provides a managed service for dep
 ![!](../../images/waf-installation/security-edge/connectors/traffic-flow.png)
 
 !!! info "Supported platforms"
-    Currently, Edge connectors are available only for MuleSoft Mule Gateway, CloudFront, Cloudflare, Fastly, IBM DataPower.
+    Currently, Edge connectors are available only for MuleSoft Mule Gateway, MuleSoft Flex Gateway, Akamai, CloudFront, Cloudflare, Fastly, and IBM DataPower.
 
 ## Requirements
 
@@ -17,6 +17,8 @@ The [**Security Edge**](overview.md) platform provides a managed service for dep
 * API running on one of the following API management platforms:
 
     * MuleSoft Mule Gateway
+    * MuleSoft Flex Gateway
+    * Akamai
     * CloudFront
     * Cloudflare
     * Fastly
