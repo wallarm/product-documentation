@@ -100,13 +100,12 @@ This article lists [vulnerability](about-wallarm/detecting-vulnerabilities.md) t
 Search for "Vulnerability by" text to go through all vulnerabilities, and for method name, like "TRT", to understand what can be found by each method.
 
 !!! info "Method abbreviations"
-    Passive - built-in node function, no configuration required, "passive" as does not send anything itself
+    [Passive](about-wallarm/detecting-vulnerabilities.md#detection-methods) - built-in node function, no configuration required, "passive" as does not send anything itself
     TRT - [Treat Replay Testing](../vulnerability-detection/threat-replay-testing/overview.md)
     SBT - [Schema-Based Testing](../vulnerability-detection/schema-based-testing/overview.md)
     AASM - [API Attack Surface Management](../api-attack-surface/overview.md)
-    APID - [API Discovery](../api-discovery/overview.md)
 
-Read [here](about-wallarm/detecting-vulnerabilities.md#combining-methods) why and how you can combine different methods for vulnerability detection.
+    Read [here](about-wallarm/detecting-vulnerabilities.md#combining-methods) why and how you can combine different methods for vulnerability detection.
 
 ## DDoS attacks
 

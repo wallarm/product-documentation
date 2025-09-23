@@ -22,7 +22,6 @@ To detect vulnerabilities in the application, Wallarm uses the following methods
 * **Threat Replay Testing (TRT)**: lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. This module finds possible vulnerabilities by probing application endpoints using real attack data from the traffic. By default this method is disabled.
 * **Schema-Based Testing (SBT)**: actively scans target applications for vulnerabilities, basing test requests on provided application's OpenAPI specification or Postman collection.
 * **API Attack Surface Management (AASM)**: discovers external hosts with their APIs, for each of them identifies missing WAF/WAAP solutions and vulnerabilities.
-* **API Discovery insights (APID)**: the vulnerability was found by [API Discovery](../api-discovery/overview.md) module due to PII transfer in query parameters of GET requests.
 
 See details on each method in the sections below along with the information of why and how to [combine](#combining-methods) these methods.
 
@@ -69,10 +68,6 @@ For detected hosts, Wallarm will automatically [search for vulnerabilities](../a
 
 From May 7, 2025, AASM [replaced the old Scanner](../api-attack-surface/api-surface.md#replacement-of-old-scanner) as a more sophisticated and comfortable tool for host and API discovery.
 
-### API Discovery insights
-
-When endpoints identified by the [API Discovery](../api-discovery/overview.md) module transfer Personally Identifiable Information (PII) in query parameters of GET requests (see [CWE-598](https://cwe.mitre.org/data/definitions/598.html)), Wallarm recognizes these endpoints as having the [information exposure](../attacks-vulns-list.md#information-exposure) vulnerability.
-
 ### Combining methods
 
 As Wallarm provides many different [methods](#detection-methods) of detecting vulnerabilities, the questions arise about which of them to choose and how to combine them. Consider the information below to answer this.
@@ -89,7 +84,7 @@ Passive detection, TRT and APID require node. SBT and AASM - does not. Some [vul
 Questions:
 * [If I already have a node and automatically have passive detection, why do I need to set up TRT additionally?](#q_1)
 * [If I want to do without a node, what should I choose - AASM or SBT?](#q_2)
-* [Why do I need no-node solutions if I already have a node with passive detection (and possibly TRT and APID)?](#q_3)
+* [Why do I need no-node solutions if I already have a node with passive detection (and possibly TRT)?](#q_3)
 * [Why do I need AASM if I already have a node with passive detection and APID, which has already found all my hosts?](#q_4)
 [Why do I need APID if AASM has already found all my hosts and their problems?](#q_5)
 
@@ -97,13 +92,17 @@ Questions:
 
 Passive detection is a great bonus of filtering node: nothing needs to be configured, requests themselves pass through the node and Wallarm analyzes them for attacks and try to extract additional benefit (identify vulnerabilities). It also plays an important role in detecting [incidents](../user-guides/events/check-incident.md): if Wallarm finds an attack and this attack is successful (determined by the response), then this means that there is a vulnerability in the application, plus the attacker successfully exploited it means this is an incident.
 
-But here comes a limitation: vulnerability will only be detected if the request was not blocked (by a node) - thus we do not know if vulnerability exists without the Wallarm node protection.
+But here comes a limitation - vulnerability will only be detected if the:
+
+* traffic to the target application is analyzed by the node
+* request was not blocked by a node (monitoring mode)
+* vulnerability was successfully exploited by an attacker (e.g. attacker exploited path traversal vulnerability and successfully read a system file)
 
 TRT takes attacks from the Cloud, strips them of their malicious payload, and attempts to exploit them on a test server. If successful, a vulnerability is created. Differences from passive detection:
 
 * Passive detection doesn't send anything itself; it only analyzes existing requests.
 TRT sends requests itself (active checking).
-* For a single attack, passive detection checks only one request/response pair. TRT will create multiple request modifications for a single attack to increase the chance of successful exploitation. Even if the original request was unsuccessful, TRT can modify it to successfully exploit the vulnerability (for example, the attacker failed, didn't tweak it properly, but we can).
+* For a single attack, passive detection checks only one request/response pair. TRT will create multiple request modifications for a single attack to increase the chance of successful exploitation. Even if the original request was unsuccessful, TRT can modify it to successfully exploit the vulnerability (for example, the attacker failed, didn't tweak it properly, but Wallarm could).
 * TRT works even if the original request was blocked.
 * Passive detection allows you to detect vulnerabilities even on your internal network (on servers that are not accessible from the internet). TRT scans from the cloud and can only check on servers accessible from the internet.
 
@@ -113,7 +112,7 @@ If the goal is to regularly inventory external resources (hosts, APIs, WAAP) and
 
 SBT is the answer if the goal is to thoroughly analyze an API (custom, in-house developed) and find vulnerabilities. Wallarm is prepared to scan it for quite a while and you are ready to provide all the necessary input to increase the likelihood of detection (credentials, OAS specifications, or a Postman collection).
 
-<a name="q_3"></a>**Why do I need no-node solutions if I already have a node with passive detection (and possibly TRT and APID)?**
+<a name="q_3"></a>**Why do I need no-node solutions if I already have a node with passive detection (and possibly TRT)?**
 
 * AASM will allow you to find a vulnerability on an external resource that has been forgotten and on which there is no node.
 * SBT will scan one application API but in great detail and which, for example, is only available on the internal network.
