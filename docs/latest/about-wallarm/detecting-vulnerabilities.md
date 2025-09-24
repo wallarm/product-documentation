@@ -86,7 +86,7 @@ Questions:
 * [If I want to do without a node, what should I choose - AASM or SBT?](#q_2)
 * [Why do I need no-node solutions if I already have a node with passive detection (and possibly TRT)?](#q_3)
 * [Why do I need AASM if I already have a node with passive detection and APID, which has already found all my hosts?](#q_4)
-[Why do I need APID if AASM has already found all my hosts and their problems?](#q_5)
+* [Why do I need APID if AASM has already found all my hosts and their problems?](#q_5)
 
 <a name="q_1"></a>**If I already have a node and automatically have passive detection, why do I need to set up TRT additionally?**
 
