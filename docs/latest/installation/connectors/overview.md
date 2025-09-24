@@ -26,9 +26,9 @@ Wallarm offers connectors for the following platforms:
 | Connector | Supported traffic flow mode | Connector hosting |
 | --- | ---- | ---- |
 | [MuleSoft Mule Gateway](mulesoft.md) | In-line | Security Edge, self-hosted |
-| [MuleSoft Flex Gateway](mulesoft-flex.md) | In-line, out-of-band | Self-hosted |
+| [MuleSoft Flex Gateway](mulesoft-flex.md) | In-line, out-of-band | Security Edge, self-hosted |
 | [Apigee](apigee.md) | In-line, out-of-band |Self-hosted |
-| [Akamai](akamai-edgeworkers.md) | In-line, out-of-band |Self-hosted |
+| [Akamai](akamai-edgeworkers.md) | In-line, out-of-band |Security Edge, self-hosted |
 | [Azion Edge](azion-edge.md) | In-line |Self-hosted |
 | [Amazon CloudFront](aws-lambda.md) | In-line, out-of-band | Security Edge, self-hosted |
 | [Cloudflare](cloudflare.md) | In-line, out-of-band | Security Edge, self-hosted |
