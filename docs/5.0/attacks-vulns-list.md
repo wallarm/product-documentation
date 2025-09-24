@@ -67,7 +67,7 @@
 [ssi-wiki]:     https://en.wikipedia.org/wiki/Server_Side_Includes
 [link-owasp-csrf-cheatsheet]:               https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
 
-This article lists and describes attacks and vulnerabilities that Wallarm can detect including those presented in the [OWASP Top 10](https://owasp.org/www-project-top-ten/) and [OWASP API Top 10](https://owasp.org/www-project-api-security/) security risk lists. Most of the vulnerabilities and attacks on the list are accompanied by one or more codes from the list of software weakness types, also known as the [Common Weakness Enumeration][link-cwe] or CWE.
+This article lists and describes attacks and [vulnerabilities](about-wallarm/detecting-vulnerabilities.md) that Wallarm can detect including those presented in the [OWASP Top 10](https://owasp.org/www-project-top-ten/) and [OWASP API Top 10](https://owasp.org/www-project-api-security/) security risk lists. Most of the vulnerabilities and attacks on the list are accompanied by one or more codes from the list of software weakness types, also known as the [Common Weakness Enumeration][link-cwe] or CWE.
 
 !!! info "No configuration required"
     If in the attack/vulnerability description no specific configuration is mentioned, this means Wallarm detects this attack/vulnerability by default **without any configuration** from you side and handles it in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md).
@@ -95,6 +95,20 @@ Technically, all attacks that can be detected by Wallarm are divided into two ty
     <iframe width="1280" height="720" src="https://www.youtube.com/embed/27CBsTQUE-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div> -->
 
+## Vulnerability types
+
+This article lists [vulnerability](about-wallarm/detecting-vulnerabilities.md) types detected by Wallarm - in case it has corresponding attack, they are described together. Note that Wallarm provides different [methods](about-wallarm/detecting-vulnerabilities.md#detection-methods) for vulnerability detection, they are listed in each vulnerability description.
+
+Search for "Vulnerability by" text to go through all vulnerabilities, and for method name, like "TRT", to understand what can be found by each method.
+
+!!! info "Method abbreviations"
+    [Passive](about-wallarm/detecting-vulnerabilities.md#detection-methods) - built-in node function, no configuration required, "passive" as does not send anything itself
+    TRT - [Treat Replay Testing](vulnerability-detection/threat-replay-testing/overview.md)
+    SBT - [Schema-Based Testing](vulnerability-detection/schema-based-testing/overview.md)
+    AASM - [API Attack Surface Management](api-attack-surface/overview.md)
+
+Read [here](about-wallarm/detecting-vulnerabilities.md#combining-methods) why and how you can combine different methods for vulnerability detection.
+
 ## DDoS attacks
 
 A DDoS (Distributed Denial of Service) attack is a type of cyber attack in which an attacker seeks to make a website or API unavailable by overwhelming it with traffic from multiple sources.
@@ -103,11 +117,17 @@ There are many techniques that attackers can use to launch a DDoS attack, and th
 
 [Read our guide on protecting resources against DDoS](admin-en/configuration-guides/protecting-against-ddos.md)
 
+### Denial of service (DoS)
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `dos`
+
 ## Server-side attacks
 
 ### SQL injection
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
 
 **CWE code:** [CWE-89][cwe-89]
 
@@ -128,7 +148,7 @@ In addition to the protection measures performed by Wallarm, you may follow thes
 
 ### NoSQL injection
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
 
 **CWE code:** [CWE-943][cwe-943]
 
@@ -144,7 +164,7 @@ Vulnerability to this attack occurs due to insufficient filtering of user input.
 
 ### Remote code execution (RCE)
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
 
 **CWE codes:** [CWE-78][cwe-78], [CWE-94][cwe-94] and others
 
@@ -195,7 +215,7 @@ An attacker can change the message output and change the user behavior. SSI Inje
 
 ### Server‑side template injection (SSTI)
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
 
 **CWE codes:** [CWE-94][cwe-94], [CWE-159][cwe-159]
 
@@ -215,7 +235,7 @@ This vulnerability arises from the incorrect validation and parsing of user inpu
 
 ### LDAP injection
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-90][cwe-90]
 
@@ -257,7 +277,7 @@ Vulnerability to this attack occurs due to poor validation of the data inputted 
 
 ### Server‑side request forgery (SSRF)
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
 
 **CWE code:** [CWE-918][cwe-918]
 
@@ -274,7 +294,7 @@ A successful SSRF attack may allow an attacker to make requests on behalf of the
 
 ### Path traversal
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](#vulnerability-types) passive, SBT, TRT.
 
 **CWE code:** [CWE-22][cwe-22]
 
@@ -295,7 +315,7 @@ In addition to the protection measures performed by Wallarm, you may follow thes
 
 ### Attack on XML external entity (XXE)
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
 
 **CWE code:** [CWE-611][cwe-611]
 
@@ -344,7 +364,7 @@ The `scanner` code is assigned to an HTTP request if this request is believed to
 
 ### Cross‑site scripting (XSS)
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
 
 **CWE code:** [CWE-79][cwe-79]
 
@@ -376,11 +396,11 @@ This class of vulnerabilities occurs due to the incorrect validation and parsing
 
 ### Open redirect
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
 
 **CWE code:** [CWE-601][cwe-601]
 
-**Wallarm code:** `redir`
+**Wallarm code:** `redir`, for AASM vulnerability - `redirect`
 
 **Description:**
 
@@ -395,7 +415,7 @@ Vulnerability to this attack occurs due to incorrect filtering of URL inputs.
 
 ### CRLF injection
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
 
 **CWE code:** [CWE-93][cwe-93]
 
@@ -494,7 +514,7 @@ Wallarm detects the credential stuffing attempts only if the filtering node has 
 
 ### Broken object level authorization (BOLA)
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-639][cwe-639]
 
@@ -527,7 +547,7 @@ Wallarm automatically discovers vulnerabilities of this type. To detect and bloc
 
 ### Mass assignment
 
-**Attack**
+**Attack / Vulnerability** [by](#vulnerability-types) AASM.
 
 **Wallarm code:** `mass_assignment`
 
@@ -535,7 +555,7 @@ Wallarm automatically discovers vulnerabilities of this type. To detect and bloc
 
 During a mass assignment attack, attackers try to bind HTTP request parameters into program code variables or objects. If an API is vulnerable and allows binding, attackers may change sensitive object properties that are not intended to be exposed, which could lead to privilege escalation, bypassing security mechanisms, and more.
 
-APIs vulnerable to Mass Assignment attacks allow converting client input to internal variables or object properties without proper filtering. This vulnerability is included in the [OWASP API Security Top 10 2023 (API3:2023 Broken Object Property Level Authorization)](https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/) list of most serious API security risks.
+APIs vulnerable to mass assignment attacks allow converting client input to internal variables or object properties without proper filtering. This vulnerability is included in the [OWASP API Security Top 10 2023 (API3:2023 Broken Object Property Level Authorization)](https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/) list of most serious API security risks.
 
 **In addition to Wallarm protection:**
 
@@ -581,7 +601,7 @@ If the metrics point to bot attack signs, the module [denylists or graylists](ap
 
 ### Account takeover
 
-**Attack**
+**Attack / Vulnerability** [by](#vulnerability-types) AASM.
 
 **Wallarm code:** `account_takeover` (`api_abuse` before 4.10.6)
 
@@ -798,6 +818,8 @@ Requests marked as attacks because they does not include the parameter or its va
 
 ### Missing authentication
 
+**Attack / Vulnerability** [by](#vulnerability-types) AASM.
+
 **Wallarm code:** `missing_auth`
 
 **Description:**
@@ -897,18 +919,39 @@ Virtual patching is blocking specific or all requests to some endpoint that is p
 
 * Analyze the vulnerability mitigated by the patch and remove it so that the patch is not needed any more.
 
-<!--### API leak
+## API leak
 
-**Wallarm code:** `apileak`
+**Vulnerability** [by](#vulnerability-types) AASM.
 
-Description TBD (not presented in docs, but presented in UI)
--->
+**Wallarm code:** `api_leak`
+
+**Description:**
+
+Public exposure of API credentials. See details [here](api-attack-surface/security-issues.md#api-leaks).
+
+## Business logic
+
+**Vulnerability** [by](#vulnerability-types) SBT.
+
+**Description:**
+
+Complex business logic and access control vulnerabilities are defined by the structure of applications themselves.
+
+**Required configuration:**
+
+Wallarm detects the complex business logic and access control vulnerabilities only with enabled [Schema-Based Testing (SBT)](vulnerability-detection/schema-based-testing/overview.md) where the [Postman-based testing](vulnerability-detection/schema-based-testing/setup.md#postman-collection-based-test-policies) is configured.
 
 ## Other
 
+### Arbitrary file delete
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `file_delete`
+
 ### Authentication bypass
 
-**Vulnerability**
+**Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-288][cwe-288]
 
@@ -926,9 +969,57 @@ A successful authentication bypass attack potentially leads to disclosing users'
 * Eliminate any alternative authentication methods that may allow attackers to access an API while bypassing the required authentication procedure via pre‑defined mechanisms.
 * Apply the recommendations from the [OWASP Authentication Cheat Sheet][link-owasp-auth-cheatsheet].
 
+### Broken access control
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `broken_access`
+
+### Broken function level authorization (BFLA)
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `bfla`
+
+**Description:**
+
+Broken function level authorization (BFLA) is a security vulnerability, ranked fifth on the OWASP API Security Top 10 (2023), where an application or API fails to properly enforce permission checks for its functions. This allows an attacker to access and execute functions or features that they are not authorized to use.
+
+### Buffer overflow
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `buffer_overflow`
+
+### Command injection
+
+**Vulnerability** [by](#vulnerability-types) SBT.
+
+### Credential stuffing
+
+**Attack**
+
+**Wallarm code:** `credential_stuffing`
+
+**Description:**
+
+A cyber attack where hackers use lists of compromised user credentials to gain unauthorized access to user accounts on multiple resources. This attack is hazardous because many people reuse the same username and password across different services or use popular weak passwords. A successful credential stuffing attack requires fewer attempts, so attackers can send requests much less frequently, which makes standard measures like brute force protection ineffective. 
+
+**Required configuration:**
+
+Wallarm detects the credential stuffing attempts only if the filtering node has version 4.10 or above and the [Credential Stuffing Detection](about-wallarm/credential-stuffing.md) functionality is enabled and properly configured.
+
+**In addition to Wallarm protection:**
+
+* Get familiar with the [OWASP credential stuffing description](https://owasp.org/www-community/attacks/Credential_stuffing), including the "Credential Stuffing Prevention Cheat Sheet".
+* Force users to use strong passwords.
+* Recommend users not to use the same passwords for different resources.
+* Enable two-factor authentication.
+* Use additional CAPTCHA solutions.
+
 ### Cross-site request forgery (CSRF)
 
-**Vulnerability**
+**Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-352][cwe-352]
 
@@ -954,9 +1045,25 @@ CSRF is solved by browsers, other protection methods are less useful but still c
 *   Set the `SameSite` cookie attribute.
 *   Apply the recommendations from the [OWASP CSRF Prevention Cheat Sheet][link-owasp-csrf-cheatsheet].
 
+### Environment misconfiguration
+
+**Vulnerability** [by](#vulnerability-types) SBT.
+
+### File read
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `file_read`
+
+### HTTP request smuggling
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `request_smuggling`
+
 ### Information exposure
 
-**Vulnerability/Attack**
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
 
 **CWE codes:** [CWE-200][cwe-200] (see also: [CWE-209][cwe-209], [CWE-215][cwe-215], [CWE-538][cwe-538], [CWE-541][cwe-541], [CWE-548][cwe-548], [CWE-598][cwe-598])
 
@@ -973,11 +1080,6 @@ Some types of sensitive information:
 * System status and environment, such as the operating system and installed packages
 * Source code or internal state
 
-Wallarm detects information exposure in two ways:
-
-* Server response analysis: Wallarm employs [techniques](about-wallarm/detecting-vulnerabilities.md#detection-methods) such as passive detection, vulnerability scanning, and threat replay testing to analyze server responses. These methods are aimed at identifying vulnerabilities by checking if application responses inadvertently expose sensitive information.
-* API Discovery insights: When endpoints identified by the [API Discovery](api-discovery/overview.md) module transfer Personally Identifiable Information (PII) in query parameters of GET requests, Wallarm recognizes these as vulnerable.
-
 Wallarm does not specifically classify `infoleak` attacks but detects and records the corresponding security incidents as they happen. However, incidents are infrequent. Wallarm's detection mechanisms alert you promptly if such exposure begins, allowing for quick vulnerability remediation. Additionally, using Wallarm's filtering node in [blocking mode](admin-en/configure-wallarm-mode.md#available-filtration-modes) helps prevent exposures by blocking any attack attempts, significantly reducing the likelihood of data leaks.
 
 **In addition to Wallarm protection:**
@@ -985,13 +1087,91 @@ Wallarm does not specifically classify `infoleak` attacks but detects and record
 * Prohibit web applications from having the ability to display any sensitive information.
 * Preferably use the POST HTTP method instead of GET for transmitting sensitive data, such as in registration and login forms.
 
+### Insecure deserialization
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `deserialize`
+
+### Input validation
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `input_validation`
+
+### Insecure data storage
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `insecure_storage`
+
+### Local File Inclusion (LFI) 
+
+**Vulnerability** [by](#vulnerability-types) AASM, SBT.
+
+**Wallarm code:** `lfi`
+
+### Management interface
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `admin`
+
+### Memory corruption
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `memory_corruption`
+
+### Misconfiguration
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `misconfig`
+
+### Privilege escalation
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `privesc`
+
+### Race condition
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `race`
+
+### Remote file inclusion
+
+**Vulnerability** [by](#vulnerability-types) AASM, SBT.
+
+**Wallarm code:** `rfi`
+
+### Sensitive API exposure
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `sensitive_api`
+
+### Subdomain takeover
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `sub_takeover`
+
+### User enumeration
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `user_enum`
+
 ### Vulnerable component
 
-**Vulnerability**
+**Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE codes:** [CWE-937][cwe-937], [CWE-1035][cwe-1035], [CWE-1104][cwe-1104]
 
-**Wallarm code:** `vuln_component`
+**Wallarm code:** `vuln_component`, for AASM vulnerability: `vuln_version`
 
 **Description:**
 
@@ -1009,7 +1189,7 @@ This vulnerability is mapped with [A06:2021 – Vulnerable and Outdated Componen
 
 ### Weak authentication
 
-**Vulnerability**
+**Vulnerability** [by](#vulnerability-types) passive.
 
 **CWE code:** [CWE-1270][cwe-1270], [CWE-1294][cwe-1294]
 
@@ -1036,3 +1216,15 @@ Once a weak JWT is detected, Wallarm records the corresponding [vulnerability](u
 
 * Apply the recommendations from the [OWASP JSON Web Token Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html)
 * [Check if your JWT implementation is vulnerable for well-known secrets](https://lab.wallarm.com/340-weak-jwt-secrets-you-should-check-in-your-code/)
+
+### Weak credentials
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `weak_creds`
+
+### Weak cryptography
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `weak_crypto`
