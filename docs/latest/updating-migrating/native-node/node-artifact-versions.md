@@ -14,6 +14,14 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * Added support for the [Azure API Management connector](../../installation/connectors/azure-api-management.md)
 * Added support for the [Apigee API Management connector](../../installation/connectors/apigee.md)
+* Updated Go version to 1.25
+* `http_inspector.workers: auto` now respects Kubernetes `cgroup` limits
+* Optimized mesh balancing logic for scale-up and scale-down events
+* Bug fixes:
+
+    * Fixed issue where the `go-node` process did not terminate correctly when stopped too early
+    * Fixed issue where the `go-node` process ignored failures of metrics/health-check/mesh listeners
+    * Fixed issue where `http_inspector` workers silently ignored ACL errors, addressing the most common source of these errors
 
 ### 0.17.1 (2025-08-15)
 
@@ -106,6 +114,14 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 * Added support for the [Azure API Management connector](../../installation/connectors/azure-api-management.md)
 * Added support for the [Apigee API Management connector](../../installation/connectors/apigee.md)
+* Updated Go version to 1.25
+* `http_inspector.workers: auto` now respects Kubernetes `cgroup` limits
+* Optimized mesh balancing logic for scale-up and scale-down events
+* Bug fixes:
+
+    * Fixed issue where the `go-node` process did not terminate correctly when stopped too early
+    * Fixed issue where the `go-node` process ignored failures of metrics/health-check/mesh listeners
+    * Fixed issue where `http_inspector` workers silently ignored ACL errors, addressing the most common source of these errors
 
 ### 0.17.1 (2025-08-15)
 
@@ -195,6 +211,14 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 * Added support for the [Azure API Management connector](../../installation/connectors/azure-api-management.md)
 * Added support for the [Apigee API Management connector](../../installation/connectors/apigee.md)
+* Updated Go version to 1.25
+* `http_inspector.workers: auto` now respects Kubernetes `cgroup` limits
+* Optimized mesh balancing logic for scale-up and scale-down events
+* Bug fixes:
+
+    * Fixed issue where the `go-node` process did not terminate correctly when stopped too early
+    * Fixed issue where the `go-node` process ignored failures of metrics/health-check/mesh listeners
+    * Fixed issue where `http_inspector` workers silently ignored ACL errors, addressing the most common source of these errors
 
 ### 0.17.1 (2025-08-15)
 
