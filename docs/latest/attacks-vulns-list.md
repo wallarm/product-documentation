@@ -125,7 +125,7 @@ There are many techniques that attackers can use to launch a DDoS attack, and th
 
 ### SQL injection
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, TRT.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
 
 **CWE code:** [CWE-89][cwe-89]
 
@@ -146,7 +146,7 @@ In addition to the protection measures performed by Wallarm, you may follow thes
 
 ### NoSQL injection
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
 
 **CWE code:** [CWE-943][cwe-943]
 
@@ -162,7 +162,7 @@ Vulnerability to this attack occurs due to insufficient filtering of user input.
 
 ### Remote code execution (RCE)
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, TRT.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
 
 **CWE codes:** [CWE-78][cwe-78], [CWE-94][cwe-94] and others
 
@@ -213,7 +213,7 @@ An attacker can change the message output and change the user behavior. SSI Inje
 
 ### Server‑side template injection (SSTI)
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, TRT.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
 
 **CWE codes:** [CWE-94][cwe-94], [CWE-159][cwe-159]
 
@@ -275,7 +275,7 @@ Vulnerability to this attack occurs due to poor validation of the data inputted 
 
 ### Server‑side request forgery (SSRF)
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
 
 **CWE code:** [CWE-918][cwe-918]
 
@@ -292,7 +292,7 @@ A successful SSRF attack may allow an attacker to make requests on behalf of the
 
 ### Path traversal
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, TRT.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, SBT, TRT.
 
 **CWE code:** [CWE-22][cwe-22]
 
@@ -313,7 +313,7 @@ In addition to the protection measures performed by Wallarm, you may follow thes
 
 ### Attack on XML external entity (XXE)
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, TRT.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
 
 **CWE code:** [CWE-611][cwe-611]
 
@@ -362,7 +362,7 @@ The `scanner` code is assigned to an HTTP request if this request is believed to
 
 ### Cross‑site scripting (XSS)
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, TRT.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
 
 **CWE code:** [CWE-79][cwe-79]
 
@@ -394,7 +394,7 @@ This class of vulnerabilities occurs due to the incorrect validation and parsing
 
 ### Open redirect
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
 
 **CWE code:** [CWE-601][cwe-601]
 
@@ -413,7 +413,7 @@ Vulnerability to this attack occurs due to incorrect filtering of URL inputs.
 
 ### CRLF injection
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
 
 **CWE code:** [CWE-93][cwe-93]
 
@@ -968,6 +968,18 @@ Virtual patching is blocking specific or all requests to some endpoint that is p
 
 Public exposure of API credentials. See details [here](../latest/api-attack-surface/security-issues.md#api-leaks).
 
+## Business logic
+
+**Vulnerability** [by](#vulnerability-types) SBT.
+
+**Description:**
+
+Complex business logic and access control vulnerabilities are defined by the structure of applications themselves.
+
+**Required configuration:**
+
+Wallarm detects the complex business logic and access control vulnerabilities only with enabled [Schema-Based Testing (SBT)](vulnerability-detection/schema-based-testing/overview.md) where the [Postman-based testing](vulnerability-detection/schema-based-testing/setup.md#postman-collection-based) is configured.
+
 ## Other
 
 ### Arbitrary file delete
@@ -1018,17 +1030,9 @@ Broken function level authorization (BFLA) is a security vulnerability, ranked f
 
 **Wallarm code:** `buffer_overflow`
 
-### Carriage return and line feed injection (CRLFi)
+### Command injection
 
-**Vulnerability** [by](#vulnerability-types) AASM.
-
-**Wallarm code:** `crlfi`
-
-**Description:**
-
-CRLF injection is a vulnerability that allows an attacker to inject carriage return (CR) and line feed (LF) characters into a web application. These characters, represented by \r\n, are used in many internet protocols, including HTTP, to signify the end of a line.
-
-An attacker exploits this vulnerability by tricking an application into including these control characters in an HTTP response. If the application doesn't properly neutralize or sanitize user input before including it in a response header, the injected \r\n sequence will be interpreted as a line break. This can cause the server to prematurely end an HTTP header or even split the response into two separate responses.
+**Vulnerability** [by](#vulnerability-types) SBT.
 
 ### Credential stuffing
 
@@ -1080,6 +1084,10 @@ CSRF is solved by browsers, other protection methods are less useful but still c
 *   Set the `SameSite` cookie attribute.
 *   Apply the recommendations from the [OWASP CSRF Prevention Cheat Sheet][link-owasp-csrf-cheatsheet].
 
+### Environment misconfiguration
+
+**Vulnerability** [by](#vulnerability-types) SBT.
+
 ### File read
 
 **Vulnerability** [by](#vulnerability-types) AASM.
@@ -1116,7 +1124,7 @@ Note that file size upload restrictions are not the only [measure for preventing
 
 ### Information exposure
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
 
 **CWE codes:** [CWE-200][cwe-200] (see also: [CWE-209][cwe-209], [CWE-215][cwe-215], [CWE-538][cwe-538], [CWE-541][cwe-541], [CWE-548][cwe-548], [CWE-598][cwe-598])
 
@@ -1165,7 +1173,7 @@ Wallarm does not specifically classify `infoleak` attacks but detects and record
 
 ### Local File Inclusion (LFI) 
 
-**Vulnerability** [by](#vulnerability-types) AASM.
+**Vulnerability** [by](#vulnerability-types) AASM, SBT.
 
 **Wallarm code:** `lfi`
 
@@ -1201,7 +1209,7 @@ Wallarm does not specifically classify `infoleak` attacks but detects and record
 
 ### Remote file inclusion
 
-**Vulnerability** [by](#vulnerability-types) AASM.
+**Vulnerability** [by](#vulnerability-types) AASM, SBT.
 
 **Wallarm code:** `rfi`
 
