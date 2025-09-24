@@ -95,15 +95,15 @@ Technically, all attacks that can be detected by Wallarm are divided into two ty
 
 ## Vulnerability types
 
-This article lists [vulnerability](about-wallarm/detecting-vulnerabilities.md) types detected by Wallarm - in case it has corresponding attack, they are described together. Note that Wallarm provides different [methods](#vulnerability-types) for vulnerability detection, they are listed in each vulnerability description.
+This article lists [vulnerability](about-wallarm/detecting-vulnerabilities.md) types detected by Wallarm - in case it has corresponding attack, they are described together. Note that Wallarm provides different [methods](about-wallarm/detecting-vulnerabilities.md#detection-methods) for vulnerability detection, they are listed in each vulnerability description.
 
 Search for "Vulnerability by" text to go through all vulnerabilities, and for method name, like "TRT", to understand what can be found by each method.
 
 !!! info "Method abbreviations"
-    [Passive](#vulnerability-types) - built-in node function, no configuration required, "passive" as does not send anything itself
-    TRT - [Treat Replay Testing](../vulnerability-detection/threat-replay-testing/overview.md)
-    SBT - [Schema-Based Testing](../vulnerability-detection/schema-based-testing/overview.md)
-    AASM - [API Attack Surface Management](../api-attack-surface/overview.md)
+    [Passive](about-wallarm/detecting-vulnerabilities.md#detection-methods) - built-in node function, no configuration required, "passive" as does not send anything itself
+    TRT - [Treat Replay Testing](vulnerability-detection/threat-replay-testing/overview.md)
+    SBT - [Schema-Based Testing](vulnerability-detection/schema-based-testing/overview.md)
+    AASM - [API Attack Surface Management](api-attack-surface/overview.md)
 
 Read [here](about-wallarm/detecting-vulnerabilities.md#combining-methods) why and how you can combine different methods for vulnerability detection.
 
@@ -125,7 +125,7 @@ There are many techniques that attackers can use to launch a DDoS attack, and th
 
 ### SQL injection
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, TRT.
 
 **CWE code:** [CWE-89][cwe-89]
 
@@ -162,7 +162,7 @@ Vulnerability to this attack occurs due to insufficient filtering of user input.
 
 ### Remote code execution (RCE)
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, TRT.
 
 **CWE codes:** [CWE-78][cwe-78], [CWE-94][cwe-94] and others
 
@@ -213,7 +213,7 @@ An attacker can change the message output and change the user behavior. SSI Inje
 
 ### Server‑side template injection (SSTI)
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, TRT.
 
 **CWE codes:** [CWE-94][cwe-94], [CWE-159][cwe-159]
 
@@ -292,7 +292,7 @@ A successful SSRF attack may allow an attacker to make requests on behalf of the
 
 ### Path traversal
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, TRT.
 
 **CWE code:** [CWE-22][cwe-22]
 
@@ -313,7 +313,7 @@ In addition to the protection measures performed by Wallarm, you may follow thes
 
 ### Attack on XML external entity (XXE)
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, TRT.
 
 **CWE code:** [CWE-611][cwe-611]
 
@@ -362,7 +362,7 @@ The `scanner` code is assigned to an HTTP request if this request is believed to
 
 ### Cross‑site scripting (XSS)
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, TRT.
 
 **CWE code:** [CWE-79][cwe-79]
 
