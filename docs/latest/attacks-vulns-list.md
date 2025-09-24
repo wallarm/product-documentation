@@ -95,17 +95,17 @@ Technically, all attacks that can be detected by Wallarm are divided into two ty
 
 ## Vulnerability types
 
-This article lists [vulnerability](about-wallarm/detecting-vulnerabilities.md) types detected by Wallarm - in case it has corresponding attack, they are described together. Note that Wallarm provides different [methods](about-wallarm/detecting-vulnerabilities.md#detection-methods) for vulnerability detection, they are listed in each vulnerability description.
+This article lists [vulnerability](about-wallarm/detecting-vulnerabilities.md) types detected by Wallarm - in case it has corresponding attack, they are described together. Note that Wallarm provides different [methods](#vulnerability-types) for vulnerability detection, they are listed in each vulnerability description.
 
 Search for "Vulnerability by" text to go through all vulnerabilities, and for method name, like "TRT", to understand what can be found by each method.
 
 !!! info "Method abbreviations"
-    [Passive](about-wallarm/detecting-vulnerabilities.md#detection-methods) - built-in node function, no configuration required, "passive" as does not send anything itself
+    [Passive](#vulnerability-types) - built-in node function, no configuration required, "passive" as does not send anything itself
     TRT - [Treat Replay Testing](../vulnerability-detection/threat-replay-testing/overview.md)
     SBT - [Schema-Based Testing](../vulnerability-detection/schema-based-testing/overview.md)
     AASM - [API Attack Surface Management](../api-attack-surface/overview.md)
 
-    Read [here](about-wallarm/detecting-vulnerabilities.md#combining-methods) why and how you can combine different methods for vulnerability detection.
+Read [here](about-wallarm/detecting-vulnerabilities.md#combining-methods) why and how you can combine different methods for vulnerability detection.
 
 ## DDoS attacks
 
@@ -115,11 +115,17 @@ There are many techniques that attackers can use to launch a DDoS attack, and th
 
 [Read our guide on protecting resources against DDoS](admin-en/configuration-guides/protecting-against-ddos.md)
 
+### Denial of service (DoS)
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `dos`
+
 ## Server-side attacks
 
 ### SQL injection
 
-**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-89][cwe-89]
 
@@ -140,7 +146,7 @@ In addition to the protection measures performed by Wallarm, you may follow thes
 
 ### NoSQL injection
 
-**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-943][cwe-943]
 
@@ -156,7 +162,7 @@ Vulnerability to this attack occurs due to insufficient filtering of user input.
 
 ### Remote code execution (RCE)
 
-**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE codes:** [CWE-78][cwe-78], [CWE-94][cwe-94] and others
 
@@ -207,7 +213,7 @@ An attacker can change the message output and change the user behavior. SSI Inje
 
 ### Server‑side template injection (SSTI)
 
-**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE codes:** [CWE-94][cwe-94], [CWE-159][cwe-159]
 
@@ -227,7 +233,7 @@ This vulnerability arises from the incorrect validation and parsing of user inpu
 
 ### LDAP injection
 
-**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-90][cwe-90]
 
@@ -269,7 +275,7 @@ Vulnerability to this attack occurs due to poor validation of the data inputted 
 
 ### Server‑side request forgery (SSRF)
 
-**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-918][cwe-918]
 
@@ -286,7 +292,7 @@ A successful SSRF attack may allow an attacker to make requests on behalf of the
 
 ### Path traversal
 
-**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
+**Attack / Vulnerability** [by](#vulnerability-types) passive.
 
 **CWE code:** [CWE-22][cwe-22]
 
@@ -307,7 +313,7 @@ In addition to the protection measures performed by Wallarm, you may follow thes
 
 ### Attack on XML external entity (XXE)
 
-**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-611][cwe-611]
 
@@ -356,7 +362,7 @@ The `scanner` code is assigned to an HTTP request if this request is believed to
 
 ### Cross‑site scripting (XSS)
 
-**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-79][cwe-79]
 
@@ -388,11 +394,11 @@ This class of vulnerabilities occurs due to the incorrect validation and parsing
 
 ### Open redirect
 
-**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-601][cwe-601]
 
-**Wallarm code:** `redir`
+**Wallarm code:** `redir`, for AASM vulnerability - `redirect`
 
 **Description:**
 
@@ -407,7 +413,7 @@ Vulnerability to this attack occurs due to incorrect filtering of URL inputs.
 
 ### CRLF injection
 
-**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
+**Attack / Vulnerability** [by](#vulnerability-types) passive.
 
 **CWE code:** [CWE-93][cwe-93]
 
@@ -487,7 +493,7 @@ Wallarm detects and mitigates brute force attacks only if it has one of the foll
 
 ### Broken object level authorization (BOLA)
 
-**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-639][cwe-639]
 
@@ -553,7 +559,7 @@ Wallarm detects and mitigates forced browsing only if it has [forced browsing pr
 
 ### Mass assignment
 
-**Attack**
+**Attack / Vulnerability** [by](#vulnerability-types) AASM.
 
 **Wallarm code:** `mass_assignment`
 
@@ -561,7 +567,7 @@ Wallarm detects and mitigates forced browsing only if it has [forced browsing pr
 
 During a mass assignment attack, attackers try to bind HTTP request parameters into program code variables or objects. If an API is vulnerable and allows binding, attackers may change sensitive object properties that are not intended to be exposed, which could lead to privilege escalation, bypassing security mechanisms, and more.
 
-APIs vulnerable to Mass Assignment attacks allow converting client input to internal variables or object properties without proper filtering. This vulnerability is included in the [OWASP API Security Top 10 2023 (API3:2023 Broken Object Property Level Authorization)](https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/) list of most serious API security risks.
+APIs vulnerable to mass assignment attacks allow converting client input to internal variables or object properties without proper filtering. This vulnerability is included in the [OWASP API Security Top 10 2023 (API3:2023 Broken Object Property Level Authorization)](https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/) list of most serious API security risks.
 
 **In addition to Wallarm protection:**
 
@@ -607,7 +613,7 @@ If the metrics point to bot attack signs, the module [denylists or graylists](ap
 
 ### Account takeover
 
-**Attack**
+**Attack / Vulnerability** [by](#vulnerability-types) AASM.
 
 **Wallarm code:** `account_takeover` (`api_abuse` before 4.10.6)
 
@@ -851,6 +857,8 @@ Requests marked as attacks because they does not include the parameter or its va
 
 ### Missing authentication
 
+**Attack / Vulnerability** [by](#vulnerability-types) AASM.
+
 **Wallarm code:** `missing_auth`
 
 **Description:**
@@ -950,18 +958,27 @@ Virtual patching is blocking specific or all requests to some endpoint that is p
 
 * Analyze the vulnerability mitigated by the patch and remove it so that the patch is not needed any more.
 
-<!--### API leak
+## API leak
 
-**Wallarm code:** `apileak`
+**Vulnerability** [by](#vulnerability-types) AASM.
 
-Description TBD (not presented in docs, but presented in UI)
--->
+**Wallarm code:** `api_leak`
+
+**Description:**
+
+Public exposure of API credentials. See details [here](../latest/api-attack-surface/security-issues.md#api-leaks).
 
 ## Other
 
+### Arbitrary file delete
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `file_delete`
+
 ### Authentication bypass
 
-**Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
+**Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-288][cwe-288]
 
@@ -978,6 +995,40 @@ A successful authentication bypass attack potentially leads to disclosing users'
 * Improve and strengthen existing authentication mechanisms.
 * Eliminate any alternative authentication methods that may allow attackers to access an API while bypassing the required authentication procedure via pre‑defined mechanisms.
 * Apply the recommendations from the [OWASP Authentication Cheat Sheet][link-owasp-auth-cheatsheet].
+
+### Broken access control
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `broken_access`
+
+### Broken function level authorization (BFLA)
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `bfla`
+
+**Description:**
+
+Broken function level authorization (BFLA) is a security vulnerability, ranked fifth on the OWASP API Security Top 10 (2023), where an application or API fails to properly enforce permission checks for its functions. This allows an attacker to access and execute functions or features that they are not authorized to use.
+
+### Buffer overflow
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `buffer_overflow`
+
+### Carriage return and line feed injection (CRLFi)
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `crlfi`
+
+**Description:**
+
+CRLF injection is a vulnerability that allows an attacker to inject carriage return (CR) and line feed (LF) characters into a web application. These characters, represented by \r\n, are used in many internet protocols, including HTTP, to signify the end of a line.
+
+An attacker exploits this vulnerability by tricking an application into including these control characters in an HTTP response. If the application doesn't properly neutralize or sanitize user input before including it in a response header, the injected \r\n sequence will be interpreted as a line break. This can cause the server to prematurely end an HTTP header or even split the response into two separate responses.
 
 ### Credential stuffing
 
@@ -1003,7 +1054,7 @@ Wallarm detects the credential stuffing attempts only if the filtering node has 
 
 ### Cross-site request forgery (CSRF)
 
-**Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
+**Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-352][cwe-352]
 
@@ -1029,11 +1080,17 @@ CSRF is solved by browsers, other protection methods are less useful but still c
 *   Set the `SameSite` cookie attribute.
 *   Apply the recommendations from the [OWASP CSRF Prevention Cheat Sheet][link-owasp-csrf-cheatsheet].
 
+### File read
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `file_read`
+
 ### File upload violation
 
-**Attack**
+**Attack / Vulnerability** [by](#vulnerability-types) AASM.
 
-**Wallarm code:** `file_upload_violation`
+**Wallarm code:** `file_upload_violation`, for vulnerability - `file_upload`
 
 **Description:**
 
@@ -1051,9 +1108,15 @@ Note that file size upload restrictions are not the only [measure for preventing
 * Configure web server (like Nginx or Apache) to reject large files
 * Setup file size check within your application's code
 
+### HTTP request smuggling
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `request_smuggling`
+
 ### Information exposure
 
-**Attack / Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
+**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE codes:** [CWE-200][cwe-200] (see also: [CWE-209][cwe-209], [CWE-215][cwe-215], [CWE-538][cwe-538], [CWE-541][cwe-541], [CWE-548][cwe-548], [CWE-598][cwe-598])
 
@@ -1082,13 +1145,91 @@ Wallarm does not specifically classify `infoleak` attacks but detects and record
 * Prohibit web applications from having the ability to display any sensitive information.
 * Preferably use the POST HTTP method instead of GET for transmitting sensitive data, such as in registration and login forms.
 
+### Insecure deserialization
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `deserialize`
+
+### Input validation
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `input_validation`
+
+### Insecure data storage
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `insecure_storage`
+
+### Local File Inclusion (LFI) 
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `lfi`
+
+### Management interface
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `admin`
+
+### Memory corruption
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `memory_corruption`
+
+### Misconfiguration
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `misconfig`
+
+### Privilege escalation
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `privesc`
+
+### Race condition
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `race`
+
+### Remote file inclusion
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `rfi`
+
+### Sensitive API exposure
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `sensitive_api`
+
+### Subdomain takeover
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `sub_takeover`
+
+### User enumeration
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `user_enum`
+
 ### Vulnerable component
 
-**Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
+**Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE codes:** [CWE-937][cwe-937], [CWE-1035][cwe-1035], [CWE-1104][cwe-1104]
 
-**Wallarm code:** `vuln_component`
+**Wallarm code:** `vuln_component`, for AASM vulnerability: `vuln_version`
 
 **Description:**
 
@@ -1104,9 +1245,21 @@ This vulnerability is mapped with [A06:2021 – Vulnerable and Outdated Componen
 * Only obtain components from official sources over secure links. Prefer signed packages to reduce the chance of including a modified, malicious component.
 * Monitor for libraries and components that are unmaintained or do not create security patches for older versions. If patching is not possible, consider deploying a virtual patch to monitor, detect, or protect against the discovered issue.
 
+### Weak credentials
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `weak_creds`
+
+### Weak cryptography
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `weak_crypto`
+
 ### Weak JWT
 
-**Vulnerability** [by](about-wallarm/detecting-vulnerabilities.md#detection-methods) passive.
+**Vulnerability** [by](#vulnerability-types) passive.
 
 **CWE code:** [CWE-1270][cwe-1270], [CWE-1294][cwe-1294]
 
