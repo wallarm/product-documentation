@@ -1,1 +1,1 @@
---8<-- "latest/about-wallarm/detecting-vulnerabilities.md"
+--8<-- "5.0/about-wallarm/detecting-vulnerabilities.md"

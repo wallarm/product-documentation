@@ -13,7 +13,7 @@
 [al-csrf]:                ../../attacks-vulns-list.md#cross-site-request-forgery-csrf
 [al-vuln-component]:      ../../attacks-vulns-list.md#vulnerable-component
 [ssti-injection]:         ../../attacks-vulns-list.md#serverside-template-injection-ssti
-[al-weak-jwt]:            ../../attacks-vulns-list.md#weak-jwt
+[al-weak-jwt]:            ../../attacks-vulns-list.md#weak-authentication
 [al-bola]:                ../../attacks-vulns-list.md#broken-object-level-authorization-bola
 [al-anomaly]:             ../../fast/vuln-list.md#anomaly
 

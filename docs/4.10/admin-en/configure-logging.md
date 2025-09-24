@@ -20,7 +20,7 @@ Log files are located within the `/opt/wallarm/var/log/wallarm` directory. Here 
 *   `sync-ip-lists-source-out.log` (named as `sync-mmdb-out.log` in the previous node versions): the log of syncing the filtering node with IP addresses registered in countries, regions and data centers from [IP lists](../user-guides/ip-lists/overview.md).
 *   `appstructure-out.log` (only in the Docker containers): the log of the [API Discovery](../api-discovery/overview.md) module activity.
 *   `registernode_loop-out.log` (only in the Docker containers): the log of activity of the wrapper script running the `register-node` script while it is succeeded.
-*   `weak-jwt-detect-out.log`: the log of the [JWT vulnerability](../attacks-vulns-list.md#weak-jwt) detection.
+*   `weak-jwt-detect-out.log`: the log of the [JWT vulnerability](../attacks-vulns-list.md#weak-authentication) detection.
 *   `detect-cred-stuffing-out.log`: the log of the [credential stuffing detection](../about-wallarm/credential-stuffing.md).
 * `api-firewall-out.log`: the log of the [API specification enforcement](../api-specification-enforcement/overview.md).
 

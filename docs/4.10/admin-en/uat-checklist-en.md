@@ -99,7 +99,7 @@ To check:
       curl <RECOURSE_URL> -H 'jwt: eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJjbGllbmRfaWQiOiIxIn0.' -H 'HOST: <TEST_HOST_NAME>'
       ```
 
-      Note that if you already have a [weak JWT](../attacks-vulns-list.md#weak-jwt) vulnerability detected for the host (in any status, even closed), you need to specify a different `TEST_HOST_NAME` to see the new vulnerability registered.
+      Note that if you already have a [weak JWT](../attacks-vulns-list.md#weak-authentication) vulnerability detected for the host (in any status, even closed), you need to specify a different `TEST_HOST_NAME` to see the new vulnerability registered.
 
 1. Open Wallarm Console → **Events** → **Vulnerabilities** to check whether a weak JWT vulnerability was listed.
 
