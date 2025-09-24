@@ -30,7 +30,7 @@ Additionally, the solution enables response mirror parsing, providing Wallarm fe
     * Executing all commands as a superuser (e.g. `root`).
     * Allowed outgoing connections to `https://meganode.wallarm.com` to download the Wallarm installer
     * Allowed outgoing connections to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud
-    * Allowed outgoing connections to the IP addresses below for downloading updates to attack detection rules and [API specifications](../../../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../../../user-guides/ip-lists/overview.md) countries, regions, or data centers
+    * Allowed outgoing connections to the IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and [API specifications](../../../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../../../user-guides/ip-lists/overview.md) countries, regions, or data centers
 
         --8<-- "../include/wallarm-cloud-ips.md"
 * Traffic and response mirroring must be configured with both source and target set up, and the prepared instance chosen as a mirror target. Specific environment requirements must be met, such as allowing specific protocols for traffic mirroring configurations.
