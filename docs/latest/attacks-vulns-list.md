@@ -1253,19 +1253,7 @@ This vulnerability is mapped with [A06:2021 – Vulnerable and Outdated Componen
 * Only obtain components from official sources over secure links. Prefer signed packages to reduce the chance of including a modified, malicious component.
 * Monitor for libraries and components that are unmaintained or do not create security patches for older versions. If patching is not possible, consider deploying a virtual patch to monitor, detect, or protect against the discovered issue.
 
-### Weak credentials
-
-**Vulnerability** [by](#vulnerability-types) AASM.
-
-**Wallarm code:** `weak_creds`
-
-### Weak cryptography
-
-**Vulnerability** [by](#vulnerability-types) AASM.
-
-**Wallarm code:** `weak_crypto`
-
-### Weak JWT
+### Weak authentication
 
 **Vulnerability** [by](#vulnerability-types) passive.
 
@@ -1274,6 +1262,10 @@ This vulnerability is mapped with [A06:2021 – Vulnerable and Outdated Componen
 **Wallarm code:** `weak_auth`
 
 **Description:**
+
+A weak authentication vulnerability is a flaw in an application's or system's security that makes it easy for an attacker to bypass the authentication process and gain unauthorized access. These vulnerabilities are often the result of poor implementation, lax policies, or weak user practices. A successful attack can lead to the theft of sensitive data, identity theft, or a complete system compromise.
+
+**Weak JWT subtype description**
 
 [JSON Web Token (JWT)](https://jwt.io/) is a popular authentication standard used to exchange data between resources like APIs securely.
 
@@ -1290,3 +1282,15 @@ Once a weak JWT is detected, Wallarm records the corresponding [vulnerability](u
 
 * Apply the recommendations from the [OWASP JSON Web Token Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html)
 * [Check if your JWT implementation is vulnerable for well-known secrets](https://lab.wallarm.com/340-weak-jwt-secrets-you-should-check-in-your-code/)
+
+### Weak credentials
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `weak_creds`
+
+### Weak cryptography
+
+**Vulnerability** [by](#vulnerability-types) AASM.
+
+**Wallarm code:** `weak_crypto`
