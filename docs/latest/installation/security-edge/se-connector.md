@@ -9,7 +9,7 @@ The [**Security Edge**](overview.md) platform provides a managed service for dep
 ![!](../../images/waf-installation/security-edge/connectors/traffic-flow.png)
 
 !!! info "Supported platforms"
-    Currently, Edge connectors are available only for MuleSoft Mule Gateway, MuleSoft Flex Gateway, Akamai, CloudFront, Cloudflare, Fastly, and IBM DataPower.
+    Currently, Edge connectors are available for MuleSoft Mule Gateway, MuleSoft Flex Gateway, Apigee, Akamai, CloudFront, Cloudflare, Fastly, IBM DataPower and Azure API Management.
 
 ## Requirements
 
@@ -18,11 +18,13 @@ The [**Security Edge**](overview.md) platform provides a managed service for dep
 
     * MuleSoft Mule Gateway
     * MuleSoft Flex Gateway
+    * Apigee
     * Akamai
     * CloudFront
     * Cloudflare
     * Fastly
     * IBM DataPower
+    * Azure API Management
 
 ## Running Security Edge Connectors
 
@@ -80,11 +82,13 @@ After deploying the Edge Node, you will need to inject Wallarm code into your pl
 
     * [MuleSoft Mule Gateway](../connectors/mulesoft.md#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange)
     * [MuleSoft Flex Gateway](../connectors/mulesoft-flex.md#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange)
+    * [Apigee](../connectors/apigee.md#2-obtain-the-connector-code-bundle)
     * [Akamai](../connectors/akamai-edgeworkers.md#2-obtain-the-wallarm-code-bundle-and-create-edgeworkers)    
     * [CloudFront](../connectors/aws-lambda.md#2-obtain-and-deploy-the-wallarm-lambdaedge-functions)
     * [Cloudflare](../connectors/cloudflare.md#2-obtain-and-deploy-the-wallarm-worker-code)
     * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly)
     * [IBM DataPower](../connectors/ibm-api-connect.md#2-obtain-and-apply-the-wallarm-policies-to-apis-in-ibm-api-connect)
+    * [Azure API Management](../connectors/azure-api-management.md#2-create-named-values-in-azure)
 
 ## Telemetry portal
 

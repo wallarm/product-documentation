@@ -40,11 +40,13 @@ Edge Nodes start in **monitoring** [mode](../../admin-en/configure-wallarm-mode.
 
         * [MuleSoft Mule Gateway](../connectors/mulesoft.md#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange)
         * [MuleSoft Flex Gateway](../connectors/mulesoft-flex.md#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange)
+        * [Apigee](../connectors/apigee.md#2-obtain-the-connector-code-bundle)
         * [Akamai](../connectors/akamai-edgeworkers.md#2-obtain-the-wallarm-code-bundle-and-create-edgeworkers) 
         * [CloudFront](../connectors/aws-lambda.md#2-obtain-and-deploy-the-wallarm-lambdaedge-functions)
         * [Cloudflare](../connectors/cloudflare.md#2-obtain-and-deploy-the-wallarm-worker-code)
         * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly)
         * [IBM DataPower](../connectors/ibm-api-connect.md#2-obtain-and-apply-the-wallarm-policies-to-apis-in-ibm-api-connect)
+        * [Azure API Management](../connectors/azure-api-management.md#2-create-named-values-in-azure)
 
     ![](../../images/waf-installation/security-edge/inline/quick-setup-wizard-connector.png)
 
