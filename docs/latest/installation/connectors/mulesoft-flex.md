@@ -55,13 +55,16 @@ To proceed with the deployment, ensure that you meet the following requirements:
 
 The Wallarm node is a core component of the Wallarm platform that you need to deploy. It inspects incoming traffic, detects malicious activities, and can be configured to mitigate threats.
 
-For the Flex Gateway connector, you can deploy the node only in your own infrastructure. 
+You can deploy it either hosted by Wallarm or in your own infrastructure, depending on the level of control you require.
 
-Choose an artifact for a self-hosted node deployment and follow the attached instructions:
+=== "Edge node"
+    To deploy a Wallarm-hosted node for the connector, follow the [instructions](../security-edge/se-connector.md).
+=== "Self-hosted node"
+    Choose an artifact for a self-hosted node deployment and follow the attached instructions:
 
-* [All-in-one installer](../native-node/all-in-one.md) for Linux infrastructures on bare metal or VMs
-* [Docker image](../native-node/docker-image.md) for environments that use containerized deployments
-* [Helm chart](../native-node/helm-chart.md) for infrastructures utilizing Kubernetes
+    * [All-in-one installer](../native-node/all-in-one.md) for Linux infrastructures on bare metal or VMs
+    * [Docker image](../native-node/docker-image.md) for environments that use containerized deployments
+    * [Helm chart](../native-node/helm-chart.md) for infrastructures utilizing Kubernetes
 
 !!! info "Required Node version"
     Please note that the MuleSoft Flex Gateway connector is supported only by the Native Node [version 0.16.0+](../../updating-migrating/native-node/node-artifact-versions.md).
