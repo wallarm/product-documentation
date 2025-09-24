@@ -23,9 +23,9 @@ You will deploy 2 policy fragments: one for requests (inbound) and one for respo
 
 **3. Apply Wallarm policy fragments to APIs**
 
-You can attach Wallarm fragments **globally** to all APIs or **individually** to specific APIs or operations. Insert fragments inside your existing policy to preserve the current flow.
+You can attach Wallarm fragments globally to all APIs or individually to specific APIs or operations. Insert fragments inside your existing policy to preserve the current flow.
 
-To apply Wallarm policies globally (all APIs):
+To apply Wallarm policies **globally (all APIs)**:
 
 1. Navigate to Azure Portal → **APIs** → **All APIs**.
 1. Under **Inbound processing** and **Outbound processing**, add the fragments, for example, for the synchronous traffic analysis:
@@ -45,7 +45,7 @@ To apply Wallarm policies globally (all APIs):
 </policies>
 ```
 
-To apply Wallarm policies per API or operation:
+To apply Wallarm policies **per API or operation**:
 
 1. Navigate to Azure Portal → **APIs** → select API → **All operations** or specific operation.
 1. Under **Inbound processing** and **Outbound processing**, add the fragments **before `<base/>`** so inspection happens prior to routing, for example, for the synchronous traffic analysis:
