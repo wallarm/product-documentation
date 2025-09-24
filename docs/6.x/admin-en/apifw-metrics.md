@@ -2,26 +2,19 @@
 [AIO]: ../installation/nginx/all-in-one.md
 [inline]:  ../installation/nginx-native-node-internals.md#in-line
 [docker]: ../admin-en/installation-docker-en.md
-[IC]: ../admin-en/installation-kubernetes-en.md
-[sidecar]: ../installation/kubernetes/sidecar-proxy/deployment.md
 [nginx-node-metrics]:  ../admin-en/nginx-node-metrics.md
 [api-spec-enforcement]: ../api-specification-enforcement/overview.md
 
 
-# Monitoring API Firewall metrics
+# API Firewall Metrics on the NGINX Node
 
-!!! info "Supported Node version and deployment options"
-    API Firewall metrics are available for the following deployment options: [all-in-one installer][AIO], [Docker image][docker], [NGINX Ingress Controller][IC], and [Sidecar][sidecar].
+This article describes the API Firewall metrics of the NGINX Node. The API Firewall provides the core functionality for [API Specification Enforcement][api-spec-enforcement], which detects discrepancies between your API specification and actual REST API requests.
 
-API Firewall is a service that [API Specification Enforcement][api-spec-enforcement] relies on for its operation.
-
-API Firewall is a high-performance proxy that validates API requests and responses using OpenAPI and GraphQL schemas. It protects REST and GraphQL endpoints in cloud-native environments by enforcing a positive security model — allowing only calls that match the API specification and blocking everything else.
-
-API Firewall metrics are a type of metrics available for [monitoring the NGINX node][nginx-node-metrics]. They provide information about HTTP request performance, request counts, and service errors.
+The metrics include data on HTTP request performance, request counts, and service errors. They help you monitor and troubleshoot the [NGINX Node][nginx-node-metrics].
 
 Unlike [general metrics][nginx-node-metrics], API Firewall metrics are not enabled by default.
 
-## To enable API Firewall metrics
+## Enabling API Firewall metrics
 
 1. You enable metrics differently depending on your deployment type:
 
