@@ -966,7 +966,7 @@ Virtual patching is blocking specific or all requests to some endpoint that is p
 
 **Description:**
 
-Public exposure of API credentials. See details [here](../latest/api-attack-surface/security-issues.md#api-leaks).
+Public exposure of API credentials. See details [here](api-attack-surface/security-issues.md#api-leaks).
 
 ## Business logic
 
@@ -1141,11 +1141,6 @@ Some types of sensitive information:
 * System status and environment, such as the operating system and installed packages
 * Source code or internal state
 
-Wallarm detects information exposure in two ways:
-
-* Server response analysis: Wallarm employs [techniques](about-wallarm/detecting-vulnerabilities.md#vulnerability-detection-methods) such as passive detection, vulnerability scanning, and threat replay testing to analyze server responses. These methods are aimed at identifying vulnerabilities by checking if application responses inadvertently expose sensitive information.
-* API Discovery insights: When endpoints identified by the [API Discovery](api-discovery/overview.md) module transfer Personally Identifiable Information (PII) in query parameters of GET requests, Wallarm recognizes these as vulnerable.
-
 Wallarm does not specifically classify `infoleak` attacks but detects and records the corresponding security incidents as they happen. However, incidents are infrequent. Wallarm's detection mechanisms alert you promptly if such exposure begins, allowing for quick vulnerability remediation. Additionally, using Wallarm's filtering node in [blocking mode](admin-en/configure-wallarm-mode.md#available-filtration-modes) helps prevent exposures by blocking any attack attempts, significantly reducing the likelihood of data leaks.
 
 **In addition to Wallarm protection:**
@@ -1265,7 +1260,7 @@ This vulnerability is mapped with [A06:2021 – Vulnerable and Outdated Componen
 
 A weak authentication vulnerability is a flaw in an application's or system's security that makes it easy for an attacker to bypass the authentication process and gain unauthorized access. These vulnerabilities are often the result of poor implementation, lax policies, or weak user practices. A successful attack can lead to the theft of sensitive data, identity theft, or a complete system compromise.
 
-**Weak JWT subtype description**
+**Weak JWT subtype description:**
 
 [JSON Web Token (JWT)](https://jwt.io/) is a popular authentication standard used to exchange data between resources like APIs securely.
 

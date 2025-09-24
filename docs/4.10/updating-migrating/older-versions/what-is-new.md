@@ -120,7 +120,7 @@ Wallarm detects new attack types:
 
 [JSON Web Token (JWT)](https://jwt.io/) is a popular authentication standard used to exchange data between resources like APIs securely. JWT compromisation is a common aim of attackers as breaking authentication mechanisms provides them full access to web applications and APIs. The weaker JWTs, the higher chance for it to be compromised.
 
-Starting from version 4.4, you can enable Wallarm to [detect the following JWT weaknesses](../../attacks-vulns-list.md#weak-jwt):
+Starting from version 4.4, you can enable Wallarm to [detect the following JWT weaknesses](../../attacks-vulns-list.md#weak-authentication):
 
 * Unencrypted JWTs
 * JWTs signed using compromised secret keys

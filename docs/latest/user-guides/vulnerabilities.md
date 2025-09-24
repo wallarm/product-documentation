@@ -43,7 +43,7 @@ Wallarm provides each vulnerability with the details that helps to assess the le
 * [Type of the vulnerability](../attacks-vulns-list.md) that also corresponds to the type of attacks exploiting the vulnerability
 * Domain and path at which the vulnerability exists
 * Parameter that can be used to pass a malicious payload exploiting the vulnerability
-* Method by which the vulnerability was [detected](../about-wallarm/detecting-vulnerabilities.md#vulnerability-detection-methods)
+* Method by which the vulnerability was [detected](../about-wallarm/detecting-vulnerabilities.md#detection-methods)
 * The target component that may be impacted if a vulnerability is exploited, can be **Server**, **Client**, **Database**
 * Date and time when the vulnerability was detected
 * Last [verification date](#verifying-vulnerabilities) of the vulnerability
