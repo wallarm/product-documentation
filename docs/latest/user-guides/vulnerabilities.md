@@ -1,12 +1,12 @@
 # Managing Security Issues
 
-Vulnerabilities are security flaws in an infrastructure that may be exploited by attackers to perform unauthorized malicious actions with your system. In Wallarm Console, you can analyze and manage security flaws that have been detected by Wallarm in your system in the **Security Issues** section.
+Vulnerabilities are security flaws in an infrastructure that may be exploited by attackers to perform unauthorized malicious actions with your system. In Wallarm Console, you can analyze and manage security flaws that have been detected by Wallarm in your system in the **Events** →  **Security Issues** section.
 
 Wallarm employs [various techniques](../about-wallarm/detecting-vulnerabilities.md#detection-methods) to discover security weaknesses.
 
 ## Exploring security issues
 
-To explore the security issues found for your external hosts, in Wallarm Console, go to the **Security Issues** section.
+To explore the security issues found for your external hosts, in Wallarm Console, go to the **Events** → **Security Issues** section.
 
 ![Security Issues](../images/api-attack-surface/security-issues.png)
 
