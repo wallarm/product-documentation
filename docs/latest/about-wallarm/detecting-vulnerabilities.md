@@ -6,17 +6,13 @@ Due to negligence or inadequate information when building or implementing an app
 
 A security issue (vulnerability) is an error made due to negligence or inadequate information when building or implementing an application. A vulnerability can be exploited by an attacker to cross privilege boundaries (i.e. perform unauthorized actions) within an application.
 
-## What vulnerabilities are detected?
+## What security issues are detected?
 
 See [here](../attacks-vulns-list.md#vulnerability-types).
 
 ## Detection methods
 
-When scanning the application for active vulnerabilities, Wallarm sends requests with attack signs to the protected application address and analyzes application responses. If the response matches one or more pre‑defined vulnerability signs, Wallarm records active vulnerability.
-
-For example: if the response to the request sent to read the `/etc/passwd` contents returns the `/etc/passwd` contents, protected application is vulnerable to the Path Traversal attacks. Wallarm will record the vulnerability with an appropriate type.
-
-To detect vulnerabilities in the application, Wallarm uses the following methods:
+To detect vulnerabilities in the applications, Wallarm uses the following methods:
 
 * **Passive detection**: identifies vulnerabilities by analyzing real traffic, including both requests and responses. This can happen during a security incident, where a real flaw is exploited, or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation.
 * **Threat Replay Testing (TRT)**: lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. This module finds possible vulnerabilities by probing application endpoints using real attack data from the traffic. By default this method is disabled.
