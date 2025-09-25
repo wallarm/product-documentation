@@ -2,66 +2,97 @@
 
 ## Attacks are not displayed
 
-If you suspect that attacks from the traffic are not uploaded to the Wallarm Cloud and, as a result, do not appear in the Wallarm Console UI, use this article to debug the issue.
-
-To debug the problem, sequentially perform the following steps:
-
-1. Generate some malicious traffic to perform further debugging.
-1. Check the filtering node operation mode.
-1. Capture logs and share them with the Wallarm support team.
-
-**Generate some malicious traffic**
-
-To perform further debugging of the Wallarm modules:
-
-1. Send the following malicious traffic:
-
-    ```bash
-    for i in `seq 100`; do curl "http://<FILTERING_NODE_IP>/?wallarm_test_xxxx=union+select+$i"; sleep 1; done
-    ```
-
-    Replace `<FILTERING_NODE_IP>` with a filtering node IP you want to check. If required, add the `Host:` header to the command.
-1. Wait up to 2 minutes for the attacks to appear in Wallarm Console → **Attacks**. If all 100 requests appear, the filtering node operates OK.
-1. Connect to the server with the installed filtering node and get [node metrics](../admin-en/configure-statistics-service.md):
-
-    ```bash
-    curl http://127.0.0.8/wallarm-status
-    ```
-
-    Further, we will refer to the `wallarm-status` output.
-
-**Check the filtering node operation mode**
-
-Check the filtering node operation mode as follows:
+If attacks are not displayed the Cloud and the [`gauge-export_drops_flag`](../admin-en/monitoring/available-metrics.md) metric gets the `1` value, this means the uploading of attacks from the node to the Cloud has stopped. Follow the steps to check and and fix this:
 
 1. Make sure that the filtering node [mode](../admin-en/configure-wallarm-mode.md) is different from `off`. The node does not process incoming traffic in the `off` mode.
 
     The `off` mode is a common reason for the `wallarm-status` metrics not to increase.
+
 1. If the node is NGINX-based, restart NGINX to be sure that settings have been applied:
 
     --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
-1. Generate malicious traffic once again to be sure that attacks are still not uploaded to the Cloud.
 
-**Capture logs and share them with the Wallarm support team**
+1. Check whether the script for uploading data to the analytical cluster has been run:
 
-If the steps above do not help to resolve the issue, please capture the node logs and share them with the Wallarm support team as follows:
-
-1. Connect to the server with the installed Wallarm node.
-1. Get the `wallarm-status` output as follows:
-
-    ```bash
-    curl http://127.0.0.8/wallarm-status
+    ```
+    ps aux | grep wcli
     ```
 
-    Copy an output.
-1. Run the Wallarm diagnostic script:
+1. If the process is not running, start the `supervisord` service.
+1. Make sure in the `/opt/wallarm/etc/supervisord.conf` or `/opt/wallarm/etc/supervisord.conf.postanalytics` the `wcli` script is configured properly (mode is should be NOT specified - by default it is `all` or should be `-mode post_analytic`).
+1. Check logs:
 
-    ```bash
-    /opt/wallarm/collect-info.sh
+    ```
+    grep reqexp /opt/wallarm/var/log/wallarm/wcli-out.log
     ```
 
-    Get the generated file with logs.
-1. Send all collected data to the [Wallarm support team](mailto:support@wallarm.com) for further investigation.
+1. Check whether the `wallarm` and `tarantool` services are running:
+
+    ```
+    ps aux | grep wallarm-tarantool
+    ```
+
+1. If it is not, run it:
+
+    ```
+    systemctl start wallarm
+    ```
+
+1. If this did not help, check `IP:port` on which `tarantool` is running in the `/opt/wallarm/env.list` file, section #tarantool, `HOST` and `PORT` parameters. Set:
+
+    1. `HOST=127.0.0.1`
+    1. `PORT=3313`
+
+    If the postanalytics module is installed at a separate server, check and configure the same data in `/opt/wallarm/etc/wallarm/node.yaml`.
+
+1. Restart the wallarm service:
+
+    ```
+    systemctl restart wallarm
+    ```
+
+1. If this did not help, check request timeouts in `wcli-out.log`:
+
+    ```
+    grep reqexp /opt/wallarm/var/log/wallarm/wcli-out.log
+    ```
+
+1. If request timeout errors are presented, check the availability of Wallarm's API, grant access to it, it it is not granted yet.
+
+1. If some other errors are presented in `wcli-out.log`, contact the Wallarm support team.
+
+## Some attacks are not displayed
+
+If some attacks are not displayed the Cloud and the [`gauge-export_drops_flag`](../admin-en/monitoring/available-metrics.md) metric gets the `1` value, this means that requests with attacks have been deleted from the postanalytics module but not sent to the Cloud. Usually this happens due to the insufficient memory allocated form the postanalytics module. Follow the steps to check and and fix this:
+
+1. Check logs:
+
+    ```
+    grep reqexp /opt/wallarm/var/log/wallarm/wcli-out.log
+    ```
+
+1. If there are errors in the log, act as described [here](#attacks-are-not-displayed).
+1. If this did not help, check the [`timeframe_size`](../admin-en/monitoring/available-metrics.md) metric value:
+
+    ```
+    /opt/wallarm/usr/bin/collectdctl -s /opt/wallarm/var/run/wallarm-collectd-unixsock getval "$(/opt/wallarm/usr/bin/collectdctl -s /opt/wallarm/var/run/wallarm-collectd-unixsock listval | awk -F "/" '{ print $1 }' | head -n1)"/wallarm-tarantool/gauge-timeframe_size
+    ```
+
+    If the value is < 300, in `/opt/wallarm/env.list`, increase the value of `SLAB_ALLOC_ARENA` and then restart the `wallarm` service.
+
+1. If this did not help, check the [`export_delay`](../admin-en/monitoring/available-metrics.md) metric value:
+
+    ```
+    /opt/wallarm/usr/bin/collectdctl -s /opt/wallarm/var/run/wallarm-collectd-unixsock getval "$(/opt/wallarm/usr/bin/collectdctl -s /opt/wallarm/var/run/wallarm-collectd-unixsock listval | awk -F "/" '{ print $1 }' | head -n1)"/wallarm-tarantool/gauge-export_delay
+    ```
+
+    If the value is > 10, then check the stability of connection to Wallarm API.
+
+1. Restart `wallarm` and `wcli`:
+
+    ```
+    systemctl restart wallarm
+    ```
 
 ## Filtering node RPS and APS values are not exported to Cloud
 
