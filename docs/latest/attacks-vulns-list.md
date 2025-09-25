@@ -95,7 +95,7 @@ Technically, all attacks that can be detected by Wallarm are divided into two ty
 
 ## Vulnerability types
 
-This article lists [vulnerability](about-wallarm/detecting-vulnerabilities.md) types detected by Wallarm - in case it has corresponding attack, they are described together. Note that Wallarm provides different [methods](about-wallarm/detecting-vulnerabilities.md#detection-methods) for vulnerability detection, they are listed in each vulnerability description.
+This article lists [vulnerability](about-wallarm/detecting-vulnerabilities.md) (security issue) types detected by Wallarm - in case it has corresponding attack, they are described together. Note that Wallarm provides different [methods](about-wallarm/detecting-vulnerabilities.md#detection-methods) for vulnerability detection, they are listed in each vulnerability description.
 
 Search for "Vulnerability by" text to go through all vulnerabilities, and for method name, like "TRT", to understand what can be found by each method.
 

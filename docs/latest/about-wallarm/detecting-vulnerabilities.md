@@ -6,7 +6,7 @@ Due to negligence or inadequate information when building or implementing an app
 
 A security issue (vulnerability) is an error made due to negligence or inadequate information when building or implementing an application. A vulnerability can be exploited by an attacker to cross privilege boundaries (i.e. perform unauthorized actions) within an application.
 
-## What vulnerabilities are detected?
+## What security issues are detected?
 
 See [here](../attacks-vulns-list.md#vulnerability-types).
 
