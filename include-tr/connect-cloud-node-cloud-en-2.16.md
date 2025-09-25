@@ -8,87 +8,87 @@
 [anchor-token]:                      #connecting-using-the-filtering-node-token
 [anchor-credentials]:                      #connecting-using-your-email-and-password
 
-Filtreleme düğümü, Wallarm Cloud ile etkileşime girer. Düğümü Cloud'a bağlamanın iki yolu vardır:
-* [Filtreleme düğümü tokenı kullanarak][anchor-token]
-* [Wallarm hesabınızın e-posta adresi ve şifresi ile][anchor-credentials]
+Filtreleme düğümü Wallarm Cloud ile etkileşime girer. Düğümü Cloud’a bağlamanın iki yolu vardır:
+* [Filtreleme düğümü belirteci kullanma][anchor-token]
+* [Wallarm hesabınıza ait e‑posta ve şifreyi kullanma][anchor-credentials]
 
 !!! info "Gerekli erişim hakları"
-    Wallarm hesabınızın **Administrator** veya **Deploy** rolüne sahip olduğundan ve iki faktörlü kimlik doğrulamanın devre dışı bırakıldığından emin olun; böylece bir filtreleme düğümünü Cloud'a bağlayabilirsiniz.
+    Wallarm hesabınızda **Administrator** veya **Deploy** rolünün etkin olduğundan ve iki faktörlü kimlik doğrulamanın devre dışı olduğundan emin olun; bu sayede bir filtreleme düğümünü Cloud’a bağlayabilirsiniz.
 
-    Söz konusu parametreleri Wallarm Console'da kullanıcı hesabı listesine giderek kontrol edebilirsiniz.
+    Yukarıda bahsedilen parametreleri Wallarm Console içindeki kullanıcı hesap listesine giderek kontrol edebilirsiniz.
     
-    * Eğer <https://my.wallarm.com/> kullanıyorsanız, kullanıcı ayarlarınızı kontrol etmek için [aşağıdaki linke][link-wl-console-users-eu] gidin.
-    * Eğer <https://us1.my.wallarm.com/> kullanıyorsanız, kullanıcı ayarlarınızı kontrol etmek için [aşağıdaki linke][link-wl-console-users-us] gidin.
-    ![Wallarm console'da kullanıcı listesi][img-wl-console-users]
+    * <https://my.wallarm.com/> kullanıyorsanız, kullanıcı ayarlarınızı kontrol etmek için [aşağıdaki bağlantıya][link-wl-console-users-eu] gidin.
+    * <https://us1.my.wallarm.com/> kullanıyorsanız, kullanıcı ayarlarınızı kontrol etmek için [aşağıdaki bağlantıya][link-wl-console-users-us] gidin.
+    ![Wallarm Console'da kullanıcı listesi][img-wl-console-users]
 
-#### Filtreleme düğüm tokenı kullanarak bağlantı kurma
+#### Filtreleme düğümü belirteci kullanarak bağlanma
 
-Token kullanarak düğümü Cloud'a bağlamak için aşağıdaki adımları uygulayın:
+Düğümü belirteç kullanarak Cloud’a bağlamak için aşağıdaki adımları uygulayın:
 
-1. Wallarm Console'daki **Nodes** bölümünde yeni bir düğüm oluşturun.
-    1. **Create new node** butonuna tıklayın.
+1. Wallarm Console’un **Nodes** bölümünde yeni bir düğüm oluşturun.
+    1. **Create new node** düğmesine tıklayın.
     2. **Wallarm node** oluşturun.
-2. Düğüm tokenını kopyalayın.
+2. Düğüm belirtecini kopyalayın.
 3. Sanal makinede `addcloudnode` betiğini çalıştırın:
     
     !!! info
-        Hangi betiği çalıştıracağınızı kullandığınız Cloud'a bağlı olarak seçmeniz gerekir.
+        Hangi Cloud’u kullandığınıza bağlı olarak çalıştırılacak betiği seçmeniz gerekir.
         
-        * Eğer <https://us1.my.wallarm.com/> kullanıyorsanız, aşağıdaki **US Cloud** sekmesinden betiği çalıştırın.
-        * Eğer <https://my.wallarm.com/> kullanıyorsanız, aşağıdaki **EU Cloud** sekmesinden betiği çalıştırın.
+        * <https://us1.my.wallarm.com/> kullanıyorsanız, aşağıdaki **ABD Cloud** sekmesindeki betiği çalıştırın.
+        * <https://my.wallarm.com/> kullanıyorsanız, aşağıdaki **AB Cloud** sekmesindeki betiği çalıştırın.
     
-    === "US Cloud"
+    === "ABD Cloud"
         ``` bash
         sudo /usr/share/wallarm-common/addcloudnode -H us1.api.wallarm.com
         ```
-    === "EU Cloud"
+    === "AB Cloud"
         ``` bash
         sudo /usr/share/wallarm-common/addcloudnode
         ```
         
-4. Panonuzdaki filtreleme düğümü tokenını yapıştırın. 
+4. Panonuzdan filtreleme düğümü belirtecini yapıştırın. 
 
-Artık düğümünüz, varsayılan senkronizasyon konfigürasyonuna göre her 2‑4 dakikada bir Cloud ile senkronize olacaktır.
+Düğümünüz, varsayılan eşitleme yapılandırmasına göre artık her 2‑4 dakikada bir Cloud ile eşitlenecektir.
 
-!!! info "Filtreleme düğümü ve Cloud senkronizasyon konfigürasyonu"
-    `addcloudnode` betiğini çalıştırdıktan sonra, filtreleme düğümü ve Cloud senkronizasyon ayarlarını içeren `/etc/wallarm/syncnode` dosyası oluşturulacaktır. Filtreleme düğümü ve Cloud senkronizasyon ayarlarını `/etc/wallarm/syncnode` dosyası aracılığıyla değiştirebilirsiniz.
+!!! info "Filtreleme düğümü ve Cloud eşitleme yapılandırması"
+    `addcloudnode` betiğini çalıştırdıktan sonra, filtreleme düğümü ile Cloud eşitleme ayarlarını içeren `/etc/wallarm/syncnode` dosyası oluşturulacaktır. Filtreleme düğümü ve Cloud eşitleme ayarları `/etc/wallarm/syncnode` dosyası üzerinden değiştirilebilir.
     
-    [Filtreleme düğümü ve Wallarm Cloud senkronizasyon konfigürasyonu hakkında daha fazla bilgi →](configure-cloud-node-synchronization-en.md#cloud-node-and-wallarm-cloud-synchronization)
+    [Filtreleme düğümü ve Wallarm Cloud eşitleme yapılandırması hakkında daha fazla bilgi →](configure-cloud-node-synchronization-en.md#cloud-node-and-wallarm-cloud-synchronization)
 
-#### E-posta ve şifre kullanarak bağlantı kurma
+#### E‑posta adresiniz ve şifrenizi kullanarak bağlanma
 
-Hesap bilgilerinizle Wallarm Cloud'a düğüm bağlamak için aşağıdaki adımları uygulayın:
+Düğümü Wallarm Cloud’a hesap bilgilerinizi kullanarak bağlamak için aşağıdaki adımları izleyin:
 
-1. Sanal makinede `addnode` betiğini çalıştırın:
+1.  Sanal makinede `addnode` betiğini çalıştırın:
     
     !!! info
-        Hangi betiği çalıştıracağınızı kullandığınız Cloud'a bağlı olarak seçmeniz gerekir.
+        Hangi Cloud’u kullandığınıza bağlı olarak çalıştırılacak betiği seçmeniz gerekir.
         
-        * Eğer <https://us1.my.wallarm.com/> kullanıyorsanız, aşağıdaki **US Cloud** sekmesinden betiği çalıştırın.
-        * Eğer <https://my.wallarm.com/> kullanıyorsanız, aşağıdaki **EU Cloud** sekmesinden betiği çalıştırın.
+        * <https://us1.my.wallarm.com/> kullanıyorsanız, aşağıdaki **ABD Cloud** sekmesindeki betiği çalıştırın.
+        * <https://my.wallarm.com/> kullanıyorsanız, aşağıdaki **AB Cloud** sekmesindeki betiği çalıştırın.
     
-    === "US Cloud"
+    === "ABD Cloud"
         ```bash
         sudo /usr/share/wallarm-common/addnode -H us1.api.wallarm.com
         ```
-    === "EU Cloud"
+    === "AB Cloud"
         ```bash
         sudo /usr/share/wallarm-common/addnode
         ```
     
-2. İstendiğinde Wallarm hesabınızın e-posta adresini ve şifresini girin.
+2.  İstendiğinde Wallarm hesabınızın e‑posta adresini ve şifresini girin.
 
 !!! info "API erişimi"
-    Filtreleme düğümünüz için API seçimi, kullandığınız Cloud'a bağlıdır. Lütfen ilgili API'yi seçin:
+    Filtreleme düğümünüz için API seçimi, kullandığınız Cloud’a bağlıdır. Lütfen API’yi buna göre seçin:
     
-    * Eğer <https://my.wallarm.com/> kullanıyorsanız, düğümünüz `https://api.wallarm.com:444` erişimine ihtiyaç duyar.
-    * Eğer <https://us1.my.wallarm.com/> kullanıyorsanız, düğümünüz `https://us1.api.wallarm.com:444` erişimine ihtiyaç duyar.
+    * <https://my.wallarm.com/> kullanıyorsanız, düğümünüzün `https://api.wallarm.com:444` adresine erişmesi gerekir.
+    * <https://us1.my.wallarm.com/> kullanıyorsanız, düğümünüzün `https://us1.api.wallarm.com:444` adresine erişmesi gerekir.
     
     Erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun.
 
-Artık düğümünüz, varsayılan senkronizasyon konfigürasyonuna göre her 2‑4 dakikada bir Cloud ile senkronize olacaktır.
+Düğümünüz, varsayılan eşitleme yapılandırmasına göre artık her 2‑4 dakikada bir Cloud ile eşitlenecektir.
 
-!!! info "Filtreleme düğümü ve Cloud senkronizasyon konfigürasyonu"
-    `addnode` betiğini çalıştırdıktan sonra, filtreleme düğümü ve Cloud senkronizasyon ayarlarını ve Wallarm düğümünün doğru çalışması için gerekli diğer ayarları içeren `/etc/wallarm/node.yaml` dosyası oluşturulacaktır. Filtreleme düğümü ve Cloud senkronizasyon ayarlarını `/etc/wallarm/node.yaml` dosyası ve sistem ortam değişkenleri aracılığıyla değiştirebilirsiniz.
+!!! info "Filtreleme düğümü ve Cloud eşitleme yapılandırması"
+    `addnode` betiğini çalıştırdıktan sonra, filtreleme düğümü ile Cloud eşitleme ayarlarını ve doğru bir Wallarm düğümü çalışması için gereken diğer ayarları içeren `/etc/wallarm/node.yaml` dosyası oluşturulacaktır. Filtreleme düğümü ve Cloud eşitleme ayarları `/etc/wallarm/node.yaml` dosyası ve sistem ortam değişkenleri üzerinden değiştirilebilir.
     
-    [Filtreleme düğümü ve Wallarm Cloud senkronizasyon konfigürasyonu hakkında daha fazla bilgi →](configure-cloud-node-synchronization-en.md#regular-node-and-wallarm-cloud-synchronization)
+    [Filtreleme düğümü ve Wallarm Cloud eşitleme yapılandırması hakkında daha fazla bilgi →](configure-cloud-node-synchronization-en.md#regular-node-and-wallarm-cloud-synchronization)

@@ -1,2 +1,2 @@
-!!! info "Upgrading Wallarm dependencies"
-    `sudo apt dist-upgrade` komutu hem Wallarm paketlerini hem de filtering node bağımlılıklarını günceller. Bu, yeni filtering node sürümünün doğru çalışmasını sağlayan önerilen güncelleme seçeneğidir.
+!!! info "Wallarm bağımlılıklarının yükseltilmesi"
+    `sudo apt dist-upgrade` komutu hem Wallarm paketlerini hem de filtreleme düğümü bağımlılıklarını yükseltir. Daha yeni filtreleme düğümü sürümünün doğru çalışmasını sağlayan önerilen yükseltme seçeneğidir.

@@ -4,86 +4,86 @@
 [link-api-abuse-prevention]:    ../api-abuse-prevention/overview.md
 [img-api-sessions-api-abuse]:   ../images/api-sessions/api-sessions-api-abuse.png
 
-# API Sessions'ların Keşfi <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Sessions'ı Keşfetme <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm'un [API Sessions](overview.md), uygulamalarınızla ilişkili kullanıcı oturumlarını belirledikten sonra, bunları Wallarm Console'un **API Sessions** bölümünde inceleyebilirsiniz. Bu makaleden keşfedilen verileri nasıl gözden geçireceğinizi öğrenin.
+Wallarm'ın [API Sessions](overview.md) özelliği uygulamalarınızla ilgili kullanıcı oturumlarını belirler belirlemez, bunları Wallarm Console içindeki **API Sessions** bölümünde inceleyebilirsiniz. Bu makaleden keşfedilen verilerde nasıl gezineceğinizi öğrenin.
 
-## Tehdit Aktörünün Faaliyetlerinin Tam Bağlamı
+## Tehdit aktörü faaliyetlerinin tam bağlamı
 
 --8<-- "../include/request-full-context.md"
 
-## Belirli Zaman Aralığındaki Faaliyetler
+## Belirli bir zaman aralığındaki faaliyetler
 
-Belirtilen zaman aralığında neler olduğunu araştırabilirsiniz. Bunun için tarih/saat filtresini ayarlayın. Yalnızca belirtilen zamanda gerçekleşen isteklere sahip oturumlar görüntülenecektir - her oturum içinde yalnızca bu zaman aralığındaki istekler gösterilecektir.
+Belirttiğiniz zaman aralığında neler olduğunu araştırabilirsiniz. Bunu yapmak için tarih/saat filtresini ayarlayın. Yalnızca belirtilen zamanda gerçekleşen istekleri içeren oturumlar görüntülenecek — her oturum içinde de yalnızca bu zaman aralığındaki istekler gösterilecektir.
 
-![!API Sessions - activities within specific time](../images/api-sessions/api-sessions-timeframe.png)
+![!API Sessions - belirli zaman aralığındaki faaliyetler](../images/api-sessions/api-sessions-timeframe.png)
 
-İpucu: kendi tarayıcınızda **[oturumunuza bağlantıyı](#sharing-session-information)** kullanın ve **sonra** yalnızca seçilen oturumdaki, seçilen zaman dilimindeki istekleri görmek için zaman aralığını ayarlayın.
+İpucu: Kendi tarayıcınızda [oturumunuza bağlantıyı](#sharing-session-information) kullanın ve **ardından** yalnızca seçili oturumdan, seçili zamana ait istekleri görmek için zaman aralığını ayarlayın.
 
-## Oturum İçindeki Belirli Faaliyetler
+## Oturum içindeki belirli faaliyetler
 
-Oturum, farklı türde (POST, GET, vb.) çok sayıda istek, farklı yanıt kodları, farklı IP adreslerinden gelen yasal ve kötü niyetli, çeşitli saldırı türleri içeren istekler barındırabilir.
+Oturum; farklı türlerde (POST, GET vb.) birçok istek, farklı yanıt kodları, farklı IP’ler ve farklı saldırı türlerine sahip meşru ve kötü amaçlı istekler içerebilir.
 
-Oturum detaylarında, isteklerin farklı kriterlere göre dağılımını gösteren kapsamlı istatistikleri görebilirsiniz. Sadece belirli istekleri görmek için oturum içi filtreleri (bir veya birkaç) uygulayabilirsiniz.
+Oturum ayrıntılarında, isteklerin farklı ölçütlere göre dağılımını gösteren kapsamlı istatistikleri görebilirsiniz. Yalnızca belirli istekleri görmek için oturum içi filtreler (bir veya birkaç) uygulayabilirsiniz.
 
-![!API Sessions - filters inside session](../images/api-sessions/api-sessions-inline-filters.png)
+![!API Sessions - oturum içindeki filtreler](../images/api-sessions/api-sessions-inline-filters.png)
 
-Oturum içi filtrelerin, **API Sessions** bölümündeki genel filtrelerle iletişim kurduğunu unutmayın: 
+Oturum içi filtrelerin **API Sessions** bölümünün genel filtreleriyle etkileşimde bulunduğunu unutmayın:
 
-* Genel filtreler uygulandıktan sonra açılan herhangi bir oturum bu filtreleri paylaşacaktır (oturum içerisinde, bunu iptal etmek için **Tüm istekleri göster** seçeneğine tıklayabilirsiniz).
-* Mevcut oturumunuzda genel filtreleri uygulamak için **Filtreleri Uygula** düğmesini kullanın.
+* Genel filtreler uygulandıktan sonra açılan herhangi bir oturum bu filtreleri devralır (oturum içinde bunu iptal etmek için **Show all requests**’e tıklayabilirsiniz).
+* Mevcut oturumunuz içinde genel filtreleri uygulamak için **Apply filters** düğmesini kullanın.
 
-## Etkilenen Uç Noktaların İncelenmesi
+## Etkilenen uç noktaları inceleme
 
-Oturum istek detaylarındaki **API Discovery insights** özelliğini kullanarak etkilenen uç noktaları inceleyin. Uç noktanın risk altında olup olmadığını, bu riskin uç noktanın [rogue](../api-discovery/rogue-api.md) (özellikle, gölge veya zombi API'leri) olarak tanımlanmasından mı kaynaklandığını ve ne ölçüde ve hangi önlemlerle korunduğunu hemen öğrenebilirsiniz.
+Etkilenen uç noktaları incelemek için oturum istek ayrıntılarındaki **API Discovery insights**’ı kullanın. Uç noktanın risk altında olup olmadığına, bu riskin uç noktanın [rogue](../api-discovery/rogue-api.md) (özellikle, shadow veya zombie API’ler) olması nedeniyle ortaya çıkıp çıkmadığına ve ne ölçüde ve hangi önlemlerle korunduğuna dair bilgileri anında edinebilirsiniz.
 
-![!API Sessions - APID endpoint insights](../images/api-sessions/api-sessions-apid-insight.png)
+![!API Sessions - APID uç nokta içgörüleri](../images/api-sessions/api-sessions-apid-insight.png)
 
-[**API Discovery**](../api-discovery/overview.md) bölümündeki uç nokta bilgilerine geçmek için **API Discovery'da Keşfet** seçeneğine tıklayın.
+[**API Discovery**](../api-discovery/overview.md) bölümündeki uç nokta bilgisine geçmek için **Explore in API Discovery**’e tıklayın.
 
-## Performans Sorunlarının Belirlenmesi
+## Performans sorunlarını tanımlama
 
-Oturum istek detaylarındaki **Time,ms** ve **Size,bytes** sütunlarını kullanarak sunulan verileri beklenen ortalama değerlerle karşılaştırın. Belirgin şekilde aşılmış değerler, olası performans sorunları ve darboğazlara işaret eder; ayrıca kullanıcı deneyimini optimize etme olasılığını gösterir.
+Oturum istek ayrıntılarında sunulan verileri beklenen ortalama değerlerle karşılaştırmak için **Time,ms** ve **Size,bytes** sütunlarını kullanın. Bekleneni önemli ölçüde aşan değerler olası performans sorunları ve darboğazlara ve kullanıcı deneyimini iyileştirme fırsatlarına işaret eder.
 
-## Hassas İş Akışları
+## Hassas iş akışları
 
-[API Discovery](../api-discovery/overview.md) bölümünde, [hassas iş akışı](../api-discovery/sbf.md) özelliği (NGINX Node 5.2.11 veya native Node 0.10.1 veya daha üstü gerektirir), otomatik ve manuel olarak kimlik doğrulama, hesap yönetimi, faturalandırma ve benzeri kritik işlevler için önemli olan uç noktaların belirlenmesini sağlar.
+[API Discovery](../api-discovery/overview.md) içinde, [hassas iş akışı](../api-discovery/sbf.md) özelliği (NGINX Node 5.2.11 veya native Node 0.10.1 ya da üstü gerektirir), kimlik doğrulama, hesap yönetimi, faturalandırma ve benzeri kritik işlevler gibi belirli iş akışları ve işlevler için kritik olan uç noktaların otomatik ve manuel olarak belirlenmesini sağlar.
 
-Eğer oturumlardaki istekler, API Discovery'de belirli hassas iş akışları için önemli olarak etiketlenen uç noktaları etkiliyorsa, bu oturumlar da otomatik olarak bu iş akışını etkileyen oturumlar olarak etiketlenir.
+Oturumların istekleri, API Discovery’de bazı hassas iş akışları için önemli olarak etiketlenmiş uç noktaları etkiliyorsa, bu oturumlar da otomatik olarak ilgili iş akışını etkiliyor olarak etiketlenir.
 
-Oturumlar hassas iş akışı etiketleri ile ilişkilendirildikten sonra, belirli bir iş akışına göre filtrelenmeleri mümkün olur; bu da analiz için en önemli oturumların seçilmesini kolaylaştırır.
+Oturumlara hassas iş akışı etiketleri atandığında, bunları belirli bir iş akışına göre filtrelemek mümkün olur; bu da analiz edilmesi en önemli oturumları seçmeyi kolaylaştırır.
 
-![!API Sessions - sensitive business flows](../images/api-sessions/api-sessions-sbf-no-select.png)
+![!API Sessions - hassas iş akışları](../images/api-sessions/api-sessions-sbf-no-select.png)
 
-Wallarm, iş akışlarını listeler ve toplam oturum istekleri içindeki ilgili isteklerin sayısını ve yüzdesini gösterir.
+Wallarm, iş akışlarını listeler ve oturumdaki toplam istek sayısından o akışla ilgili isteklerin sayısını ve yüzdesini görüntüler.
 
 Oturumlar aşağıdaki hassas iş akışlarından biriyle ilişkilendirilebilir:
 
 --8<-- "../include/default-sbf.md"
 
-Belirli iş akışlarını etkileyen tüm oturumları hızlıca analiz etmek için **Business flow** filtresini kullanın.
+Belirli akışları etkileyen tüm oturumları hızlıca analiz etmek için **Business flow** filtresini kullanın.
 
-## Kullanıcılar ve Roller Bazında Oturumlar
+## Kullanıcılar ve roller bazında oturumlar
 
-Eğer API Sessions'ı, kullanıcılar ve roller hakkında bilgi almak üzere [ayarlandıysanız](setup.md#users-and-roles), oturumları kullanıcılar ve rollere göre filtreleyebilirsiniz.
+API Sessions’ı kullanıcılar ve rollerine ilişkin bilgileri elde edecek şekilde [yapılandırdıysanız](setup.md#users-and-roles), oturumları kullanıcılar ve rollere göre filtreleyebilirsiniz.
 
-![!API Sessions - user and user role display](../images/api-sessions/api-sessions-user-role-display.png)
+![!API Sessions - kullanıcı ve kullanıcı rolü gösterimi](../images/api-sessions/api-sessions-user-role-display.png)
 
-## API Kötüye Kullanımı Tespitinin Doğruluğunu Doğrulama
+## API kötüye kullanım tespiti doğruluğunu doğrulama
 
 --8<-- "../include/bot-attack-full-context.md"
 
-## Saldırı Tespitinin Ayarlanması
+## Saldırı tespitini ayarlama
 
-Oturumun kötü niyetli isteği üzerinden doğrudan Wallarm'un saldırı tespitiyle ilgili davranışlarını ayarlayabilirsiniz:
+Wallarm’ın saldırı tespitine ilişkin davranışını doğrudan oturumun kötü amaçlı isteğinden ayarlayabilirsiniz:
 
-* Saldırı, [yanlış pozitif](../about-wallarm/protecting-against-attacks.md#false-positives) olarak işaretlenebilir - bu durumda filtreleme düğümü, gelecekte bu tür istekleri saldırı olarak tanımayacaktır.
-* [Kural](../user-guides/rules/rules.md) oluşturulabilir - aktif hale geldiğinde, kural isteklerin analizinde ve sonraki işleminde Wallarm'un varsayılan davranışını değiştirecektir.
+* Saldırı [yanlış pozitif](../about-wallarm/protecting-against-attacks.md#false-positives) olarak işaretlenebilir — filtreleme düğümü gelecekte bu tür istekleri saldırı olarak tanımaz.
+* Bir [kural](../user-guides/rules/rules.md) oluşturulabilir — etkinleştirildiğinde, kural isteklerin analizinde ve sonraki işlemlerinde varsayılan Wallarm davranışını değiştirir.
 
-![!API Sessions - request details - available actions](../images/api-sessions/api-sessions-request-details-actions.png)
+![!API Sessions - istek ayrıntıları - kullanılabilir eylemler](../images/api-sessions/api-sessions-request-details-actions.png)
 
-## Oturum Bilgilerinin Paylaşılması
+## Oturum bilgilerini paylaşma
 
-Oturumda şüpheli bir davranış fark ettiyseniz ve elde ettiğiniz bilgileri meslektaşlarınızla paylaşmak ya da oturumu daha fazla analiz için saklamak istiyorsanız, oturum detaylarındaki **Bağlantıyı Kopyala** veya **CSV İndir** seçeneklerini kullanın.
+Oturumda şüpheli davranış bulduysanız ve içgörüleri meslektaşlarınızla paylaşmak ve oturumu daha sonra analiz etmek üzere saklamak istiyorsanız, oturum ayrıntılarında **Copy link** veya **Download CSV** öğesini kullanın.
 
-![!API Sessions - sharing session information](../images/api-sessions/api-sessions-share.png)
+![!API Sessions - oturum bilgilerini paylaşma](../images/api-sessions/api-sessions-share.png)

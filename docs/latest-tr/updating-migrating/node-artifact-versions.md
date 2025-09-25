@@ -1,348 +1,360 @@
-# NGINX Node Artifact Sürümleri ve Değişiklik Günlüğü
+# NGINX Node Sürümleri ve Değişiklik Günlüğü
 
-Bu belge, yükseltmeleri takip etmenize ve planlamanıza yardımcı olmak için çeşitli form faktörlerdeki [NGINX Wallarm Node](../installation/nginx-native-node-internals.md#nginx-node) 5.x'in mevcut [sürümlerini](versioning-policy.md) listeler.
+Bu belge, [NGINX Wallarm Node](../installation/nginx-native-node-internals.md#nginx-node) 6.x’in çeşitli biçimlerde mevcut [sürümlerini](versioning-policy.md) listeler; sürümleri takip etmenize ve yükseltmeleri planlamanıza yardımcı olur.
 
-## All-in-one Yükleyici
+## Hepsi-bir-arada yükleyici
 
-4.10 sürümünden itibaren, Wallarm node'larının kurulumu ve yükseltmesi **sadece** tüm [all-in-one yükleyici](../installation/nginx/all-in-one.md) ile gerçekleştirilmektedir. Bireysel Linux paketleri ile manuel yükseltme artık desteklenmemektedir.
+Sürüm 4.10’dan itibaren Wallarm node’larının kurulumu ve yükseltilmesi **yalnızca** [hepsi-bir-arada yükleyici](../installation/nginx/all-in-one.md) ile gerçekleştirilir. Tekil Linux paketleriyle manuel yükseltme artık desteklenmemektedir.
 
-All-in-one yükleyici güncellemelerinin geçmişi, hem x86_64 hem de ARM64 (beta) sürümleri için geçerlidir.
+Hepsi-bir-arada yükleyici güncellemelerinin geçmişi, x86_64 ve ARM64 (beta) sürümleri için eşzamanlı olarak geçerlidir.
 
 [DEB/RPM paketlerinden nasıl geçilir](nginx-modules.md)
 
-[Önceki all-in-one yükleyici sürümünden nasıl geçilir](all-in-one.md)
+[Önceki hepsi-bir-arada yükleyici sürümünden nasıl geçilir](all-in-one.md)
 
-### 5.3.0 (2024-01-29)
+<!-- ### 6.5.0
+new loggin variable wallarm_block_reason
+new attack types in logging variables and search bars?
+-->
 
-* Kullanıcı aktivitelerinin tam bağlamını sağlamak ve daha hassas [oturum gruplaması](../api-sessions/setup.md#session-grouping) için [API Sessions](../api-sessions/overview.md) içindeki yanıt parametrelerine destek eklendi (ayrıntılı [değişiklik açıklamasına](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions) bakınız)
-* Tam teşekküllü bir [GraphQL parser](../user-guides/rules/request-processing.md#gql) eklendi (ayrıntılı [değişiklik açıklamasına](../updating-migrating/what-is-new.md#full-fledged-graphql-parser) bakınız) ve şunları sağlamaktadır:
-  
-    * GraphQL'e özgü istek noktalarında giriş doğrulama saldırılarının tespitinin iyileştirilmesi
-    * Belirli GraphQL noktaları için saldırı tespiti ince ayarı (örneğin, belirli noktalarda belirli saldırı türlerinin tespitinin devre dışı bırakılması)
-    * API oturumlarındaki GraphQL isteklerinin belirli kısımlarının analiz edilmesi
+### 6.5.1 (2025-09-09)
 
-* Serileştirilmiş isteklerdeki geçersiz zaman değerinin düzeltilmesi ile [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) saldırılarının doğru şekilde gösterilmesi sağlandı
+* [API Specification Enforcement](../api-specification-enforcement/overview.md) içinde içerik türü doğrulaması gevşetildi: resim MIME türlerine (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) sahip istekler artık reddedilmiyor
+* Go sürümü 1.24’e yükseltildi
+* Kısıtlama sona erdikten sonra normal duruma (`0`) dönmeyen `wallarm_wstore_throttle_mode` Prometheus metriğinin davranışı düzeltildi
 
-### 5.2.11 (2024-12-25)
+### 6.4.1 (2025-08-07)
 
-* NGINX Mainline v1.27.2 ve 1.27.3 desteği eklendi
-* NGINX Plus R33 desteği eklendi
-* [API Discovery](../api-discovery/sbf.md) ve [API Sessions](../api-sessions/exploring.md#sensitive-business-flows) için hassas iş akışları desteği eklendi
-* [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) ve [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) güvenlik açıkları giderildi
-* Bazı isteklerin başarısız işlenmesine bağlı olarak API Sessions, Credential Stuffing ve API Abuse Prevention gibi alanları etkileyebilecek sorun düzeltildi
+* API Specification Enforcement servis çalışması (yerleşik API Firewall servisine dayalı) için Prometheus metrik desteği eklendi:
 
-### 5.2.1 (2024-12-07)
+    * `/opt/wallarm/env.list` içinde `APIFW_METRICS_ENABLED=true` ile etkinleştirin
+    * Varsayılan uç nokta: `:9010/metrics`
+    * Ana makine ve uç nokta adı `APIFW_METRICS_HOST` ve `APIFW_METRICS_ENDPOINT_NAME` değişkenleri ile yapılandırılabilir
 
-* [Extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node) için yeni `$wallarm_attack_point_list` ve `$wallarm_attack_stamp_list` değişkenleri eklendi
+### 6.4.0 (2025-07-31)
 
-    Bu değişkenler, kötü amaçlı yük içeren istek noktalarını ve saldırı işareti ID'lerini kaydederek, Node davranışının gelişmiş hata ayıklamasına olanak sağlar.
+* Cloud’a stuffed credentials dışa aktarımı düzeltildi
+* GraphQL ayrıştırıcı iyileştirildi
+* Hata düzeltmeleri ve dahili iyileştirmeler
+
+### 6.3.1 (2025-07-23)
+
+* Bellek sızıntısı düzeltildi
+
+### 6.3.0 (2025-07-08)
+
+* [Dosya yükleme kısıtlama politikası](../api-protection/file-upload-restriction.md) desteği eklendi
+* [API Abuse Prevention](../api-abuse-prevention/overview.md) tarafından [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) hafifletme desteği eklendi
+* Kurallarda, URI, ad alanı ve etiket adını birleştiren [**xml_tag**](../user-guides/rules/request-processing.md#xml) değerlerinde kullanılan ayraç `:` yerine `|` olarak değiştirildi
+* Dahili iyileştirmeler
+<!-- * [Node part only, no public announcement yet] Added support for SOAP-XML API Discovery
+* [Node part only, no public announcement yet] Added support file upload restriction policy -->
+
+### 6.2.1 (2025-06-23)
+
+* Küçük dahili dosya yapısı değişikliği
+
+### 6.2.0 (2025-06-20)
+
+* gRPC trafiği için akış işleme optimize edildi
+* gRPC ve WebSocket trafiğinde sırasıyla tek bir mesaj yükünün ve tüm akış gövdesinin azami boyutunu kontrol etmek için [`wallarm_max_request_stream_message_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_stream_message_size) ve [`wallarm_max_request_stream_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_stream_size) NGINX yönergeleri eklendi
+* İşlenen gRPC/WebSocket akış ve mesaj sayısını raporlamak için [`/wallarm-status` servisi](../admin-en/configure-statistics-service.md) çıktısına `streams` ve `messages` parametreleri eklendi
+* Node tarafından analiz edilen HTTP istek gövdesinin azami boyutunu kontrol etmek için [`wallarm_max_request_body_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_body_size) NGINX yönergesi eklendi
+* NGINX-Wallarm modülü ile postanalytics modülü ayrı kurulduğunda aralarında [SSL/TLS ve mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module) desteği eklendi
+* wstore port bağlama düzeltildi: artık `0.0.0.0` yerine `127.0.0.1`’e bağlanıyor
 * Küçük hata düzeltmeleri
 
-### 5.1.1 (2024-11-08)
+### 6.1.0 (2025-05-09)
 
-* `wallarm-status` servis işletimindeki bazı hatalar giderildi
+* [**enumeration**](../api-protection/enumeration-attack-protection.md) azaltma kontrolleri için destek eklendi
+* [**DoS koruması**](../api-protection/dos-protection.md) azaltma kontrolü için destek eklendi
+* Hata düzeltmesi: Allowlist’e alınmış kaynaklardan gelen saldırılar artık **Attacks** bölümünde gösterilmiyor
+* Daha kolay tanımlama için wstore günlükleri artık `"component": "wstore"` içeriyor
 
-### 5.1.0 (2024-11-06)
+### 6.0.3 (2025-05-07)
 
-* [API Sessions](../api-sessions/overview.md) desteği eklendi
-* İstek işleme süresinin sınırlandırılmasında [iyileştirme](what-is-new.md#new-in-limiting-request-processing-time) yapıldı
-* Node kaydı sırasında bellek kullanımı azaltıldı
+* Amazon Linux 2 desteği eklendi
+* Özel NGINX ile kurulum sorunları düzeltildi
 
-### 5.0.3 (2024-10-10)
+### 6.0.2 (2025-04-29)
 
-* API Discovery'de [hassas veri tespiti özelleştirme](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection) desteği eklendi
-* [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton) içindeki yinelenen yanıt başlıklarında oluşan bellek sızıntısı giderildi
-* [IP lists](../user-guides/ip-lists/overview.md) içerisinde yer almayan fakat [bilinen kaynağa](../user-guides/ip-lists/overview.md#select-object) sahip IP adresleriyle ilgili bellek sızıntısı giderildi
+* NGINX stable 1.28.0 desteği eklendi
+* NGINX mainline 1.27.5 desteği eklendi
 
-### 5.0.2 (2024-09-18)
+### 6.0.1 (2025-04-22)
 
-* WAAP + API Security aboneliği etkin olmadığı durumlarda kurulum başarısızlık sorunu giderildi
-* Saldırı dışa aktarma gecikmeleri düzeltildi
+* [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115) güvenlik açıkları düzeltildi
 
-### 5.0.1 (2024-08-21)
+### 6.0.0 (2025-04-03)
 
-* İlk 5.0 sürümü yayımlandı, [değişiklik günlüğüne](what-is-new.md) bakınız
-* NGINX v1.26.2 stable desteği eklendi
+* İlk 6.0 sürümü, [değişiklik günlüğüne bakın](what-is-new.md)
 
-## Helm chart for Wallarm NGINX Ingress controller
+## Wallarm NGINX Ingress controller için Helm chart’ı
 
-[Yükseltme nasıl yapılır](ingress-controller.md)
+[Nasıl yükseltilir](ingress-controller.md)
 
-### 5.3.0 (2024-01-29)
+### 6.5.1 (2025-09-09)
 
-* Kullanıcı aktivitelerinin tam bağlamını sağlamak ve daha hassas [oturum gruplaması](../api-sessions/setup.md#session-grouping) için [API Sessions](../api-sessions/overview.md) içindeki yanıt parametrelerine destek eklendi (ayrıntılı [değişiklik açıklamasına](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions) bakınız)
-* Tam teşekküllü bir [GraphQL parser](../user-guides/rules/request-processing.md#gql) eklendi (ayrıntılı [değişiklik açıklamasına](../updating-migrating/what-is-new.md#full-fledged-graphql-parser) bakınız) ve şunları sağlamaktadır:
-  
-    * GraphQL'e özgü istek noktalarında giriş doğrulama saldırılarının tespitinde iyileştirme
-    * Belirli GraphQL noktaları için saldırı tespitinde ince ayar yapma (örneğin, belirli noktalarda belirli saldırı türlerinin tespitini devre dışı bırakma)
-    * API oturumlarındaki GraphQL isteklerinin belirli bölümlerinin analiz edilmesi
+* API Specification Enforcement servis çalışması (yerleşik API Firewall servisine dayalı) için Prometheus metrik desteği eklendi
 
-* Serileştirilmiş isteklerdeki geçersiz zaman değerinin düzeltilmesi ile [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) saldırılarının doğru şekilde gösterilmesi sağlandı
+    Metrikler varsayılan olarak devre dışıdır ve yeni [`controller.wallarm.apiFirewall.metrics.*`](../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewallmetrics) değerleri aracılığıyla etkinleştirilebilir.
+* [API Specification Enforcement](../api-specification-enforcement/overview.md) içinde içerik türü doğrulaması gevşetildi: resim MIME türlerine (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) sahip istekler artık reddedilmiyor
+* Go sürümü 1.24’e yükseltildi
+* Kısıtlama sona erdikten sonra normal duruma (`0`) dönmeyen `wallarm_wstore_throttle_mode` Prometheus metriğinin davranışı düzeltildi
+* Community Ingress NGINX Controller sürümü 1.11.8’e yükseltildi; upstream Helm chart sürümü 4.11.8 ve Alpine sürümü 3.22.0 ile hizalandı
+* Upstream yükseltme sayesinde [CVE-2025-5399](https://nvd.nist.gov/vuln/detail/CVE-2025-5399) ve [CVE-2025-22872](https://nvd.nist.gov/vuln/detail/CVE-2025-22872) güvenlik açıkları giderildi
 
-### 5.2.12 (2025-01-08)
+### 6.4.0 (2025-07-31)
 
-* [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) kontrolör güvenlik açığı giderildi
+* Cloud’a stuffed credentials dışa aktarımı düzeltildi
+* GraphQL ayrıştırıcı iyileştirildi
+* Hata düzeltmeleri ve dahili iyileştirmeler
 
-### 5.2.11 (2024-12-27)
+### 6.3.1 (2025-07-23)
 
-* [API Discovery](../api-discovery/sbf.md) ve [API Sessions](../api-sessions/exploring.md#sensitive-business-flows) için hassas iş akışları desteği eklendi
-* [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) ve [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) güvenlik açıkları giderildi
-* Bazı isteklerin başarısız işlenmesine bağlı olarak API Sessions, Credential Stuffing ve API Abuse Prevention gibi alanları etkileyebilecek sorun düzeltildi
+* Bellek sızıntısı düzeltildi
 
-### 5.2.2 (2024-12-11)
+### 6.3.0 (2025-07-08)
 
-* [GHSA-c5pj-mqfh-rvc3](https://scout.docker.com/vulnerabilities/id/GHSA-c5pj-mqfh-rvc3) güvenlik açığı için düzeltme yeniden uygulandı
+* [Dosya yükleme kısıtlama politikası](../api-protection/file-upload-restriction.md) desteği eklendi
+* [API Abuse Prevention](../api-abuse-prevention/overview.md) tarafından [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) hafifletme desteği eklendi
+* Tehlikeli `server-snippet` ve `configuration-snippet` annotasyonlarını engelleyen CEL kuralını açıp kapatmak için [`validation.forbidDangerousAnnotations`](../admin-en/configure-kubernetes-en.md#validationforbiddangerousannotations) chart değeri eklendi
 
-### 5.2.1 (2024-12-07)
+    Varsayılan olarak `false` - tehlikeli annotasyonlar engellenmez.
 
-* Community Ingress NGINX Controller sürümü 1.11.3'e yükseltildi, upstream Helm chart sürümü 4.11.3 ile uyumlu hale getirildi
-* Community Ingress NGINX Controller yükseltmesiyle getirilen kırıcı değişiklikler:
-  
-    * Opentracing ve Zipkin modüllerinin desteği sonlandırıldı, artık yalnızca Opentelemetry destekleniyor
-    * `PodSecurityPolicy` desteği kaldırıldı
-* Uyumluluk Kubernetes 1.30 sürümüne kadar genişletildi
-* NGINX 1.25.5'e güncellendi
+    Node 6.2.0’daki davranış - değişmedi ( `validation.enableCel` `true` iken anotasyonlar varsayılan olarak engellenir).
+* Gelen **wstore** bağlantıları için adres ve portu özelleştirmek üzere [`controller.wallarm.postanalytics.serviceAddress`](../admin-en/configure-kubernetes-en.md#controllerwallarmpostanalyticsserviceaddress) parametresi desteği eklendi
+* Kurallarda, URI, ad alanı ve etiket adını birleştiren [**xml_tag**](../user-guides/rules/request-processing.md#xml) değerlerinde kullanılan ayraç `:` yerine `|` olarak değiştirildi
+* Dahili iyileştirmeler
+
+### 6.2.0 (2025-06-20)
+
+* gRPC trafiği için akış işleme optimize edildi
+* gRPC ve WebSocket trafiğinde sırasıyla tek bir mesaj yükünün ve tüm akış gövdesinin azami boyutunu kontrol etmek için [`wallarm_max_request_stream_message_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_stream_message_size) ve [`wallarm_max_request_stream_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_stream_size) NGINX yönergeleri eklendi
+* İşlenen gRPC/WebSocket akış ve mesaj sayısını raporlamak için [`/wallarm-status` servisi](../admin-en/configure-statistics-service.md) çıktısına `streams` ve `messages` parametreleri eklendi
+* Node tarafından analiz edilen HTTP istek gövdesinin azami boyutunu kontrol etmek için [`wallarm_max_request_body_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_body_size) NGINX yönergesi eklendi
+* Filtering Node ile postanalytics modülü arasında [SSL/TLS ve mTLS](../admin-en/configure-kubernetes-en.md#controllerwallarmpostanalyticstls) desteği eklendi
+* `values.yaml` içindeki birleşik `controller.wallarm.wcli` bileşeni, kapsayıcılar üzerinde ayrıntılı kontrol sağlamak için 2 ayrı [yapılandırılabilir birime](../admin-en/configure-kubernetes-en.md) bölündü: `wcliController` ve `wcliPostanalytics`
 * Küçük hata düzeltmeleri
 
-### 5.1.1 (2024-11-14)
+### 6.1.0 (2025-05-09)
 
-* [GHSA-c5pj-mqfh-rvc3](https://scout.docker.com/vulnerabilities/id/GHSA-c5pj-mqfh-rvc3) güvenlik açığı giderildi
-* `wallarm-status` servis işletimindeki bazı hatalar düzeltildi
+* Hata düzeltmesi: Allowlist’e alınmış kaynaklardan gelen saldırılar artık **Attacks** bölümünde gösterilmiyor
+* Daha kolay tanımlama için wstore günlükleri artık `"component": "wstore"` içeriyor
 
-### 5.1.0 (2024-11-06)
+### 6.0.2 (2025-04-25)
 
-* [API Sessions](../api-sessions/overview.md) desteği eklendi
-* İstek işleme süresinin sınırlandırılmasında [iyileştirme](what-is-new.md#new-in-limiting-request-processing-time) yapıldı
-* Node kaydı sırasında bellek kullanımı azaltıldı
-* API Specification Enforcement için yeni ayarlar eklendi:
+* Ingress kaynaklarının Validating Admission Policies üzerinden doğrulanmasını etkinleştirmek için [`validation.enableCel`](../admin-en/configure-kubernetes-en.md#validationenablecel) parametresi eklendi
 
-    * `readBufferSize`
-    * `writeBufferSize`
-    * `maxRequestBodySize`
-    * `disableKeepalive`
-    * `maxConnectionsPerIp`
-    * `maxRequestsPerConnection`
+### 6.0.1 (2025-04-22)
 
-    Açıklamalar ve varsayılan değerler [burada](../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewall) belirtilmiştir.
+* [CVE-2025-22871](https://nvd.nist.gov/vuln/detail/CVE-2025-22871) güvenlik açığı düzeltildi
 
-### 5.0.3 (2024-10-10)
+### 6.0.0 (2025-04-03)
 
-* API Discovery'de [hassas veri tespiti özelleştirme](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection) desteği eklendi
-* [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton) içindeki yinelenen yanıt başlıklarındaki bellek sızıntısı giderildi
-* [IP lists](../user-guides/ip-lists/overview.md) içerisinde yer almayan fakat [bilinen kaynağa](../user-guides/ip-lists/overview.md#select-object) sahip IP adresleriyle ilgili bellek sızıntısı giderildi
+* İlk 6.0 sürümü, [değişiklik günlüğüne bakın](what-is-new.md)
 
-### 5.0.2 (2024-09-18)
+## Sidecar için Helm chart’ı
 
-* WAAP + API Security aboneliği aktif olmadığında kurulum başarısızlık sorunu giderildi
-* Saldırı dışa aktarma gecikmeleri düzeltildi
+[Nasıl yükseltilir](sidecar-proxy.md)
 
-### 5.0.1 (2024-08-21)
+### 6.5.1 (2025-09-09)
 
-* İlk 5.0 sürümü yayınlandı, [değişiklik günlüğüne](what-is-new.md) bakınız
+* API Specification Enforcement servis çalışması (yerleşik API Firewall servisine dayalı) için Prometheus metrik desteği eklendi
 
-## Helm chart for Sidecar
+    Metrikler varsayılan olarak devre dışıdır ve yeni [`config.wallarm.apiFirewall.metrics.*`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md) değerleri aracılığıyla etkinleştirilebilir.
+* [API Specification Enforcement](../api-specification-enforcement/overview.md) içinde içerik türü doğrulaması gevşetildi: resim MIME türlerine (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) sahip istekler artık reddedilmiyor
+* Go sürümü 1.24’e yükseltildi
+* Kısıtlama sona erdikten sonra normal duruma (`0`) dönmeyen `wallarm_wstore_throttle_mode` Prometheus metriğinin davranışı düzeltildi
 
-[Yükseltme nasıl yapılır](sidecar-proxy.md)
+### 6.4.0 (2025-07-31)
 
-### 5.3.0 (2024-01-29)
+* Cloud’a stuffed credentials dışa aktarımı düzeltildi
+* GraphQL ayrıştırıcı iyileştirildi
+* Hata düzeltmeleri ve dahili iyileştirmeler
 
-* Kullanıcı aktivitelerinin tam bağlamını sağlamak ve daha hassas [oturum gruplaması](../api-sessions/setup.md#session-grouping) için [API Sessions](../api-sessions/overview.md) içindeki yanıt parametrelerine destek eklendi (ayrıntılı [değişiklik açıklamasına](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions) bakınız)
-* Tam teşekküllü bir [GraphQL parser](../user-guides/rules/request-processing.md#gql) eklendi (ayrıntılı [değişiklik açıklamasına](../updating-migrating/what-is-new.md#full-fledged-graphql-parser) bakınız) ve şunları sağlamaktadır:
-  
-    * GraphQL'e özgü istek noktalarında giriş doğrulama saldırılarının tespitinin iyileştirilmesi
-    * Belirli GraphQL noktaları için saldırı tespitinde ince ayar yapma (örneğin, belirli noktalarda belirli saldırı türlerinin tespitinin devre dışı bırakılması)
-    * API oturumlarındaki GraphQL isteklerinin belirli bölümlerinin analiz edilmesi
+### 6.3.1 (2025-07-23)
 
-* Serileştirilmiş isteklerdeki geçersiz zaman değerinin düzeltilmesi ile [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) saldırılarının doğru şekilde gösterilmesi sağlandı
-* API Specification Enforcement için yeni ayarlar eklendi:
+* Bellek sızıntısı düzeltildi
 
-    * `readBufferSize`
-    * `writeBufferSize`
-    * `maxRequestBodySize`
-    * `disableKeepalive`
-    * `maxConnectionsPerIp`
-    * `maxRequestsPerConnection`
+### 6.3.0 (2025-07-08)
 
-    Açıklamalar ve varsayılan değerler [burada](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwallarmapifirewall) belirtilmiştir.
-* NGINX'de genişletilmiş loglamayı etkinleştirmek için [`config.nginx.logs.extended`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#confignginxlogsextended) ve [`config.nginx.logs.format`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#confignginxlogsformat) Helm chart değerleri eklendi
+* [Dosya yükleme kısıtlama politikası](../api-protection/file-upload-restriction.md) desteği eklendi
+* [API Abuse Prevention](../api-abuse-prevention/overview.md) tarafından [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) hafifletme desteği eklendi
+* Gelen **wstore** bağlantıları için adres ve portu özelleştirmek üzere [`postanalytics.wstore.config.serviceAddress`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#postanalyticswstoreconfigserviceaddress) parametresi desteği eklendi
+* Kurallarda, URI, ad alanı ve etiket adını birleştiren [**xml_tag**](../user-guides/rules/request-processing.md#xml) değerlerinde kullanılan ayraç `:` yerine `|` olarak değiştirildi
+* Dahili iyileştirmeler
 
-### 5.2.11 (2024-12-27)
+### 6.2.0 (2025-06-20)
 
-* [API Discovery](../api-discovery/sbf.md) ve [API Sessions](../api-sessions/exploring.md#sensitive-business-flows) için hassas iş akışları desteği eklendi
-* [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) ve [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) güvenlik açıkları giderildi
-* Bazı isteklerin başarısız işlenmesine bağlı olarak API Sessions, Credential Stuffing ve API Abuse Prevention gibi alanları etkileyebilecek sorun düzeltildi
-
-### 5.2.1 (2024-12-09)
-
-* [Extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node) için yeni `$wallarm_attack_point_list` ve `$wallarm_attack_stamp_list` değişkenleri eklendi
-
-    Bu değişkenler, kötü amaçlı yük içeren istek noktalarını ve saldırı işareti ID'lerini kaydederek, Node davranışının gelişmiş hata ayıklamasına olanak sağlar.
+* gRPC trafiği için akış işleme optimize edildi
+* Filtering Node ile postanalytics modülü arasında [SSL/TLS ve mTLS](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#postanalyticswstoretls) desteği eklendi
+* Alpine sürümü 3.22’ye yükseltildi
+* NGINX 1.28.0 sürümüne yükseltildi
 * Küçük hata düzeltmeleri
 
-### 5.1.0 (2024-11-06)
+### 6.1.0 (2025-05-09)
 
-* [API Sessions](../api-sessions/overview.md) desteği eklendi
-* İstek işleme süresinin sınırlandırılmasında [iyileştirme](what-is-new.md#new-in-limiting-request-processing-time) yapıldı
-* Node kaydı sırasında bellek kullanımı azaltıldı
+* Hata düzeltmesi: Allowlist’e alınmış kaynaklardan gelen saldırılar artık **Attacks** bölümünde gösterilmiyor
+* Daha kolay tanımlama için wstore günlükleri artık `"component": "wstore"` içeriyor
 
-### 5.0.3 (2024-10-10)
+### 6.0.1 (2025-04-22)
 
-* API Discovery'de [hassas veri tespiti özelleştirme](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection) desteği eklendi
-* [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton) içindeki yinelenen yanıt başlıklarındaki bellek sızıntısı giderildi
-* [IP lists](../user-guides/ip-lists/overview.md) içerisinde yer almayan fakat [bilinen kaynağa](../user-guides/ip-lists/overview.md#select-object) sahip IP adresleriyle ilgili bellek sızıntısı giderildi
+* [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115) güvenlik açıkları düzeltildi
 
-### 5.0.2 (2024-09-19)
+### 6.0.0 (2025-04-03)
 
-* WAAP + API Security aboneliği aktif olmadığında kurulum başarısızlık sorunu giderildi
-* Saldırı dışa aktarma gecikmeleri düzeltildi
+* İlk 6.0 sürümü, [değişiklik günlüğüne bakın](what-is-new.md)
 
-### 5.0.1 (2024-08-21)
+## NGINX tabanlı Docker imajı
 
-* İlk 5.0 sürümü yayınlandı, [değişiklik günlüğüne](what-is-new.md) bakınız
+[Nasıl yükseltilir](docker-container.md)
 
-<!-- ## Helm chart for Wallarm eBPF‑based solution
+### 6.5.1 (2025-09-09)
 
-### 0.10.22 (2024-03-01)
+* [API Specification Enforcement](../api-specification-enforcement/overview.md) içinde içerik türü doğrulaması gevşetildi: resim MIME türlerine (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) sahip istekler artık reddedilmiyor
+* Go sürümü 1.24’e yükseltildi
+* Kısıtlama sona erdikten sonra normal duruma (`0`) dönmeyen `wallarm_wstore_throttle_mode` Prometheus metriğinin davranışı düzeltildi
 
-* [İlk sürüm](../installation/oob/ebpf/deployment.md) -->
+### 6.4.1 (2025-08-07)
 
-## NGINX Tabanlı Docker İmajı
+* API Specification Enforcement servis çalışması (yerleşik API Firewall servisine dayalı) için Prometheus metrik desteği eklendi:
 
-[Yükseltme nasıl yapılır](docker-container.md)
+    * `APIFW_METRICS_ENABLED=true` ortam değişkeni ile etkinleştirin
+    * Varsayılan uç nokta: `:9010/metrics`
+    * Kapsayıcınızda metrikler portunu dışa açın (örn. varsayılan durum için `-p 9010:9010` kullanın)
+    * Ana makine ve uç nokta adı `APIFW_METRICS_HOST` ve `APIFW_METRICS_ENDPOINT_NAME` değişkenleri ile yapılandırılabilir
 
-### 5.3.0 (2024-01-29)
+### 6.4.0 (2025-07-31)
 
-* Kullanıcı aktivitelerinin tam bağlamını sağlamak ve daha hassas [oturum gruplaması](../api-sessions/setup.md#session-grouping) için [API Sessions](../api-sessions/overview.md) içindeki yanıt parametrelerine destek eklendi (ayrıntılı [değişiklik açıklamasına](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions) bakınız)
-* Tam teşekküllü bir [GraphQL parser](../user-guides/rules/request-processing.md#gql) eklendi (ayrıntılı [değişiklik açıklamasına](../updating-migrating/what-is-new.md#full-fledged-graphql-parser) bakınız) ve şunları sağlamaktadır:
-  
-    * GraphQL'e özgü istek noktalarında giriş doğrulama saldırılarının tespitindeki iyileştirme
-    * Belirli GraphQL noktaları için saldırı tespitinde ince ayar yapma (örneğin, belirli noktalarda belirli saldırı türlerinin tespitinin devre dışı bırakılması)
-    * API oturumlarındaki GraphQL isteklerinin belirli bölümlerinin analiz edilmesi
+* Cloud’a stuffed credentials dışa aktarımı düzeltildi
+* GraphQL ayrıştırıcı iyileştirildi
+* Hata düzeltmeleri ve dahili iyileştirmeler
 
-* Serileştirilmiş isteklerdeki geçersiz zaman değerinin düzeltilmesi ile [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) saldırılarının doğru şekilde gösterilmesi sağlandı
+### 6.3.1 (2025-07-23)
 
-### 5.2.11 (2024-12-25)
+* Bellek sızıntısı düzeltildi
 
-* [API Discovery](../api-discovery/sbf.md) ve [API Sessions](../api-sessions/exploring.md#sensitive-business-flows) için hassas iş akışları desteği eklendi
-* [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) ve [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) güvenlik açıkları giderildi
-* Bazı isteklerin başarısız işlenmesine bağlı olarak API Sessions, Credential Stuffing ve API Abuse Prevention gibi alanları etkileyebilecek sorun düzeltildi
+### 6.3.0 (2025-07-08)
 
-### 5.2.1 (2024-12-07)
+* [Dosya yükleme kısıtlama politikası](../api-protection/file-upload-restriction.md) desteği eklendi
+* [API Abuse Prevention](../api-abuse-prevention/overview.md) tarafından [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) hafifletme desteği eklendi
+* Kurallarda, URI, ad alanı ve etiket adını birleştiren [**xml_tag**](../user-guides/rules/request-processing.md#xml) değerlerinde kullanılan ayraç `:` yerine `|` olarak değiştirildi
+* Dahili iyileştirmeler
 
-* [Extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node) için yeni `$wallarm_attack_point_list` ve `$wallarm_attack_stamp_list` değişkenleri eklendi
+### 6.2.0 (2025-06-20)
 
-    Bu değişkenler, kötü amaçlı yük içeren parametreleri ve saldırı işareti ID'lerini kaydederek Node davranışının gelişmiş hata ayıklamasına olanak sağlar.
-* İmaj kaynağı ve Dockerfile, [GitHub](https://github.com/wallarm/docker-wallarm-node)'dan dahili GitLab deposuna taşındı
+* gRPC trafiği için akış işleme optimize edildi
+* İşlenen gRPC/WebSocket akış ve mesaj sayısını raporlamak için [`/wallarm-status` servisi](../admin-en/configure-statistics-service.md) çıktısına `streams` ve `messages` parametreleri eklendi
+* NGINX-Wallarm modülü ile postanalytics modülü ayrı kurulduğunda aralarında [SSL/TLS ve mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module) desteği eklendi
+* wstore port bağlama düzeltildi: artık `0.0.0.0` yerine `127.0.0.1`’e bağlanıyor
+* Alpine sürümü 3.22’ye yükseltildi
+* NGINX 1.28.0 sürümüne yükseltildi
+* Küçük hata düzeltmeleri
 
-### 5.1.0-1 (2024-11-06)
+### 6.1.0 (2025-05-09)
 
-* [API Sessions](../api-sessions/overview.md) desteği eklendi
-* İstek işleme süresinin sınırlandırılmasında [iyileştirme](what-is-new.md#new-in-limiting-request-processing-time) yapıldı
-* Node kaydı sırasında bellek kullanımı azaltıldı
+* Hata düzeltmesi: Allowlist’e alınmış kaynaklardan gelen saldırılar artık **Attacks** bölümünde gösterilmiyor
+* Daha kolay tanımlama için wstore günlükleri artık `"component": "wstore"` içeriyor
 
-### 5.0.3-1 (2024-10-10)
+### 6.0.1 (2025-04-22)
 
-* API Discovery'de [hassas veri tespiti özelleştirme](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection) desteği eklendi
-* [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton) içindeki yinelenen yanıt başlıklarında oluşan bellek sızıntısı giderildi
-* [IP lists](../user-guides/ip-lists/overview.md) içerisinde yer almayan fakat [bilinen kaynağa](../user-guides/ip-lists/overview.md#select-object) sahip IP adresleriyle ilgili bellek sızıntısı giderildi
+* [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115) güvenlik açıkları düzeltildi
 
-### 5.0.2-1 (2024-09-18)
+### 6.0.0 (2025-04-03)
 
-* WAAP + API Security aboneliği etkin olmadığında kurulum başarısızlık sorunu giderildi
-* Saldırı dışa aktarma gecikmeleri düzeltildi
-
-### 5.0.1-1 (2024-08-21)
-
-* İlk 5.0 sürümü yayımlandı, [değişiklik günlüğüne](what-is-new.md) bakınız
-* NGINX v1.26.2 stable desteği eklendi
-
-<!-- ## Envoy Tabanlı Docker İmajı
-
-!!! info "4.10'a yükseltme bekleniyor"
-    Bu artifact, Wallarm node 4.10'a henüz güncellenmedi; yükseltme bekleniyor. 4.10 özellikleri, bu artifact ile dağıtılan node'larda desteklenmiyor.
-
-[Yükseltme nasıl yapılır](docker-container.md)
-
-### 4.8.0-1 (2023-10-19)
-
-* İlk 4.8 sürümü, [değişiklik günlüğüne](what-is-new.md) bakınız -->
+* İlk 6.0 sürümü, [değişiklik günlüğüne bakın](what-is-new.md)
 
 ## Amazon Machine Image (AMI)
 
-[Yükseltme nasıl yapılır](cloud-image.md)
+[Nasıl yükseltilir](cloud-image.md)
 
-### 5.3.0 (2024-01-30)
+### 6.5.1 (2025-09-09)
 
-* Kullanıcı aktivitelerinin tam bağlamını sağlamak ve daha hassas [oturum gruplaması](../api-sessions/setup.md#session-grouping) için [API Sessions](../api-sessions/overview.md) içindeki yanıt parametrelerine destek eklendi (ayrıntılı [değişiklik açıklamasına](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions) bakınız)
-* Tam teşekküllü bir [GraphQL parser](../user-guides/rules/request-processing.md#gql) eklendi (ayrıntılı [değişiklik açıklamasına](../updating-migrating/what-is-new.md#full-fledged-graphql-parser) bakınız) ve şunları sağlamaktadır:
-  
-    * GraphQL'e özgü istek noktalarında giriş doğrulama saldırılarının tespitinin iyileştirilmesi
-    * Belirli GraphQL noktaları için saldırı tespitinde ince ayar yapma (örneğin, belirli noktalarda belirli saldırı türlerinin tespitinin devre dışı bırakılması)
-    * API oturumlarındaki GraphQL isteklerinin belirli bölümlerinin analiz edilmesi
+* [API Specification Enforcement](../api-specification-enforcement/overview.md) içinde içerik türü doğrulaması gevşetildi: resim MIME türlerine (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) sahip istekler artık reddedilmiyor
+* Go sürümü 1.24’e yükseltildi
+* Kısıtlama sona erdikten sonra normal duruma (`0`) dönmeyen `wallarm_wstore_throttle_mode` Prometheus metriğinin davranışı düzeltildi 
 
-* Serileştirilmiş isteklerdeki geçersiz zaman değerinin düzeltilmesi ile [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) saldırılarının doğru şekilde gösterilmesi sağlandı
+### 6.4.0 (2025-07-31)
 
-### 5.2.11 (2024-12-28)
+* Cloud’a stuffed credentials dışa aktarımı düzeltildi
+* GraphQL ayrıştırıcı iyileştirildi
+* Hata düzeltmeleri ve dahili iyileştirmeler
 
-* [API Discovery](../api-discovery/sbf.md) ve [API Sessions](../api-sessions/exploring.md#sensitive-business-flows) için hassas iş akışları desteği eklendi
-* [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) ve [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) güvenlik açıkları giderildi
-* Bazı isteklerin başarısız işlenmesine bağlı olarak API Sessions, Credential Stuffing ve API Abuse Prevention gibi alanları etkileyebilecek sorun düzeltildi
+### 6.3.1 (2025-07-23)
 
-### 5.2.1 (2024-12-07)
+* Bellek sızıntısı düzeltildi
 
-* [Extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node) için yeni `$wallarm_attack_point_list` ve `$wallarm_attack_stamp_list` değişkenleri eklendi
+### 6.3.0 (2025-07-08)
 
-    Bu değişkenler, kötü amaçlı yük içeren parametreleri ve saldırı işareti ID'lerini kaydederek Node davranışının gelişmiş hata ayıklamasına olanak sağlar.
+* [Dosya yükleme kısıtlama politikası](../api-protection/file-upload-restriction.md) desteği eklendi
+* [API Abuse Prevention](../api-abuse-prevention/overview.md) tarafından [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) hafifletme desteği eklendi
+* Kurallarda, URI, ad alanı ve etiket adını birleştiren [**xml_tag**](../user-guides/rules/request-processing.md#xml) değerlerinde kullanılan ayraç `:` yerine `|` olarak değiştirildi
+* Dahili iyileştirmeler
+
+### 6.2.0 (2025-06-20)
+
+* gRPC trafiği için akış işleme optimize edildi
+* İşlenen gRPC/WebSocket akış ve mesaj sayısını raporlamak için [`/wallarm-status` servisi](../admin-en/configure-statistics-service.md) çıktısına `streams` ve `messages` parametreleri eklendi
+* NGINX-Wallarm modülü ile postanalytics modülü ayrı kurulduğunda aralarında [SSL/TLS ve mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module) desteği eklendi
+* wstore port bağlama düzeltildi: artık `0.0.0.0` yerine `127.0.0.1`’e bağlanıyor
 * Küçük hata düzeltmeleri
 
-### 5.1.0-1 (2024-11-06)
+### 6.1.0 (2025-05-09)
 
-* [API Sessions](../api-sessions/overview.md) desteği eklendi
-* İstek işleme süresinin sınırlandırılmasında [iyileştirme](what-is-new.md#new-in-limiting-request-processing-time) yapıldı
-* Node kaydı sırasında bellek kullanımı azaltıldı
+* Hata düzeltmesi: Allowlist’e alınmış kaynaklardan gelen saldırılar artık **Attacks** bölümünde gösterilmiyor
+* Daha kolay tanımlama için wstore günlükleri artık `"component": "wstore"` içeriyor
 
-### 5.0.3-1 (2024-10-10)
+### 6.0.1 (2025-04-22)
 
-* API Discovery'de [hassas veri tespiti özelleştirme](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection) desteği eklendi
-* [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton) içindeki yinelenen yanıt başlıklarındaki bellek sızıntısı giderildi
-* [IP lists](../user-guides/ip-lists/overview.md) içerisinde yer almayan fakat [bilinen kaynağa](../user-guides/ip-lists/overview.md#select-object) sahip IP adresleriyle ilgili bellek sızıntısı giderildi
+* [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115) güvenlik açıkları düzeltildi
 
-### 5.0.2-1 (2024-09-19)
+### 6.0.0 (2025-04-03)
 
-* WAAP + API Security aboneliği aktif olmadığında kurulum başarısızlık sorunu giderildi
-* Saldırı dışa aktarma gecikmeleri düzeltildi
+* İlk 6.0 sürümü, [değişiklik günlüğüne bakın](what-is-new.md)
 
-### 5.0.1-1 (2024-08-21)
+## Google Cloud Platform İmajı
 
-* İlk 5.0 sürümü yayınlandı, [değişiklik günlüğüne](what-is-new.md) bakınız
+[Nasıl yükseltilir](cloud-image.md)
 
-## Google Cloud Platform Image
+### wallarm-node-6-5-1-20250908-174655 (2025-09-09)
 
-[Yükseltme nasıl yapılır](cloud-image.md)
+* [API Specification Enforcement](../api-specification-enforcement/overview.md) içinde içerik türü doğrulaması gevşetildi: resim MIME türlerine (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) sahip istekler artık reddedilmiyor
+* Go sürümü 1.24’e yükseltildi
+* Kısıtlama sona erdikten sonra normal duruma (`0`) dönmeyen `wallarm_wstore_throttle_mode` Prometheus metriğinin davranışı düzeltildi
 
-### wallarm-node-5-3-20250129-150255 (2025-01-30)
+### wallarm-node-6-4-0-20250730-083353 (2025-07-31)
 
-* Kullanıcı aktivitelerinin tam bağlamını sağlamak ve daha hassas [oturum gruplaması](../api-sessions/setup.md#session-grouping) için [API Sessions](../api-sessions/overview.md) içindeki yanıt parametrelerine destek eklendi (ayrıntılı [değişiklik açıklamasına](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions) bakınız)
-* Tam teşekküllü bir [GraphQL parser](../user-guides/rules/request-processing.md#gql) eklendi (ayrıntılı [değişiklik açıklamasına](../updating-migrating/what-is-new.md#full-fledged-graphql-parser) bakınız) ve şunları sağlamaktadır:
-  
-    * GraphQL'e özgü istek noktalarında giriş doğrulama saldırılarının tespitinin iyileştirilmesi
-    * Belirli GraphQL noktaları için saldırı tespitinde ince ayar yapma (örneğin, belirli noktalarda belirli saldırı türlerinin tespitinin devre dışı bırakılması)
-    * API oturumlarındaki GraphQL isteklerinin belirli bölümlerinin analiz edilmesi
+* Cloud’a stuffed credentials dışa aktarımı düzeltildi
+* GraphQL ayrıştırıcı iyileştirildi
+* Hata düzeltmeleri ve dahili iyileştirmeler
 
-* Serileştirilmiş isteklerdeki geçersiz zaman değerinin düzeltilmesi ile [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) saldırılarının doğru şekilde gösterilmesi sağlandı
+### wallarm-node-6-3-1-20250721-082413 (2025-07-23)
 
-### wallarm-node-5-2-20241227-095327 (2024-12-27)
+* Bellek sızıntısı düzeltildi
 
-* [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) ve [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) güvenlik açıkları giderildi
-* Bazı isteklerin başarısız işlenmesine bağlı olarak API Sessions, Credential Stuffing ve API Abuse Prevention gibi alanları etkileyebilecek sorun düzeltildi
+### wallarm-node-6-3-0-20250708-175541 (2025-07-08)
 
-### wallarm-node-5-2-20241209-114655 (2024-12-07)
+* Kurallarda, URI, ad alanı ve etiket adını birleştiren [**xml_tag**](../user-guides/rules/request-processing.md#xml) değerlerinde kullanılan ayraç `:` yerine `|` olarak değiştirildi
+* Dahili iyileştirmeler
 
-* [Extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node) için yeni `$wallarm_attack_point_list` ve `$wallarm_attack_stamp_list` değişkenleri eklendi
+### wallarm-node-6-2-0-20250618-150224 (2025-06-20)
 
-    Bu değişkenler, kötü amaçlı yük içeren parametreleri ve saldırı işareti ID'lerini kaydederek Node davranışının gelişmiş hata ayıklamasına olanak sağlar.
+* gRPC trafiği için akış işleme optimize edildi
+* İşlenen gRPC/WebSocket akış ve mesaj sayısını raporlamak için [`/wallarm-status` servisi](../admin-en/configure-statistics-service.md) çıktısına `streams` ve `messages` parametreleri eklendi
+* NGINX-Wallarm modülü ile postanalytics modülü ayrı kurulduğunda aralarında [SSL/TLS ve mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module) desteği eklendi
+* wstore port bağlama düzeltildi: artık `127.0.0.1`’e bağlanıyor, `0.0.0.0` değil
 * Küçük hata düzeltmeleri
 
-### wallarm-node-5-1-20241108-120238 (2024-11-08)
+### wallarm-node-6-1-0-20250508-144827 (2025-05-09)
 
-* İlk 5.x sürümü yayımlandı, [değişiklik günlüğüne](what-is-new.md) bakınız
+* Hata düzeltmesi: Allowlist’e alınmış kaynaklardan gelen saldırılar artık **Attacks** bölümünde gösterilmiyor
+* Daha kolay tanımlama için wstore günlükleri artık `"component": "wstore"` içeriyor
+
+### wallarm-node-6-0-1-20250422-104749 (2025-04-22)
+
+* [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115) güvenlik açıkları düzeltildi
+
+### wallarm-node-6-0-0-20250403-102125 (2025-04-03)
+
+* İlk 6.0 sürümü, [değişiklik günlüğüne bakın](what-is-new.md)

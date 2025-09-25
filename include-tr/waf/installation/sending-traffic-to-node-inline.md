@@ -1,1 +1,1 @@
-Update hedeflerinizi, trafiği Wallarm instance'ına yönlendirecek şekilde güncelleyin. Ayrıntılar için, lütfen load balancer'ınızın belgelerine bakınız.
+Yük dengeleyicinizin hedeflerini Wallarm örneğine trafik gönderecek şekilde güncelleyin. Ayrıntılar için yük dengeleyicinizin belgelerine başvurun.

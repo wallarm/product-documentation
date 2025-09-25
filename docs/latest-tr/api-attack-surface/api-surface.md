@@ -1,55 +1,60 @@
+[link-aasm-security-issue-risk-level]:  security-issues.md#issue-risk-level
+[link-integrations-intro]:              ../user-guides/settings/integrations/integrations-intro.md
+[link-integrations-email]:              ../user-guides/settings/integrations/email.md#setting-up-integration
+
 # API Attack Surface Discovery <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
-Wallarm'ın [API Attack Surface Management](overview.md) bileşeninin **API Attack Surface Discovery** (**AASD**) özelliği, seçtiğiniz alan adlarınızı tarayarak tüm dış ana bilgisayarlarını ve API'larını keşfeder, bunların Web ve API tabanlı saldırılara karşı korumalarını değerlendirir ve eksik WAF/WAAP çözümlerini belirler. Wallarm'da abone olarak çalışır - herhangi bir şey dağıtmanıza gerek yoktur. Bu makale, bileşenin genel görünümünü sunar.
+Wallarm'ın [API Attack Surface Management](overview.md) çözümünün bir bileşeni olan **API Attack Surface Discovery** (**AASD**), seçtiğiniz alan adlarını tarayarak tüm harici host'larını ve bunların API'lerini keşfeder, Web ve API tabanlı saldırılara karşı korumalarını değerlendirir ve eksik WAF/WAAP çözümlerini belirler. Wallarm içinde abone olarak çalışır - herhangi bir şey dağıtmanız gerekmez. Bu makale bileşene genel bir bakış sunar.
 
 ![API Attack Surface Discovery](../images/api-attack-surface/aasm-api-surface.png)
 
-## Ele Alınan Sorunlar
+## Ele alınan konular
 
-Kuruluşunuzun dış API'larının tam listesini bilmek, potansiyel güvenlik risklerini azaltmanın ilk adımıdır, çünkü izlenmeyen veya belgelenmemiş API'lar kötü niyetli saldırılar için potansiyel giriş noktası olabilir.
+### Sağlanan yetenekler
 
-Wallarm'ın **API Attack Surface Discovery** bileşeni, aşağıdakileri sağlayarak bu sorunların çözülmesine yardımcı olur:
+Kuruluşunuzun harici API'lerinin tam listesini bilmek, izlenmeyen veya belgelenmemiş API'lerin kötü amaçlı saldırılar için potansiyel giriş noktaları haline gelebileceği güvenlik risklerini azaltmanın ilk adımıdır.
 
-* Seçtiğiniz alan adları için dış ana bilgisayarların otomatik algılanması.
-* Bulunan ana bilgisayarların açık portlarının otomatik algılanması.
-* Bulunan ana bilgisayarların API'larının otomatik algılanması.
+Wallarm'ın **API Attack Surface Discovery** bileşeni aşağıdakileri sağlayarak bu sorunları çözmeye yardımcı olur:
 
-    Aşağıdaki **API types** (protokoller) algılanabilir: JSON-API, GraphQL, XML-RPC, JSON-RPC, OData, gRPC, WebSocket, SOAP, WebDav, HTML WEB.
+* [Seçili alan adlarınız](setup.md) için harici host'ların otomatik tespiti.
+* Bulunan host'ların açık portlarının otomatik tespiti.
+* Bulunan host'ların API'lerinin otomatik tespiti.
 
-    HTML WEB — tarayıcılarla insanlar tarafından erişim için tasarlanmış bir HTML Web sayfasıdır. Bu, statik bir HTML Web sayfası veya uygulamanın tek bir HTML sayfası olabilir; bu durumda, uygulamanın bazı API'larına erişim sağlanabilir.
+    Tespit edilebilecek **API türleri** (protokoller): JSON-API, GraphQL, XML-RPC, JSON-RPC, OData, gRPC, WebSocket, SOAP, WebDav, HTML WEB.
 
-* Bulunan ana bilgisayarlar için otomatik [security posture](#security-posture) değerlendirmesi.
-* Tüm API yüzeyinin genel WAAP puanı.
-* Güvenlik sağlayıcısı, veri merkezi ve konuma göre varlık özetleri.
+    HTML WEB — tarayıcılarla insan erişimine yönelik tasarlanmış bir HTML Web sayfası. Statik bir HTML Web sayfası olabilir ya da API'lere erişebilen bir uygulamanın tek bir HTML sayfası olabilir.
 
-    Bir ana bilgisayarın birden fazla IP adresi olabileceğinden, veri merkezleri ve coğrafi konum bazında varlık istatistikleri IP adresi bazında değerlendirilir, ana bilgisayar bazında değil. CDN'lerin kullanımı nedeniyle, varlıkların konumu temsil edici olmayabilir.
+* Bulunan host'lar için otomatik [security posture](#security-posture) değerlendirmesi.
+* Tüm API yüzeyinin genel WAAP skoru.
+* Güvenlik satıcısı, veri merkezi ve konuma göre varlık özetleri.
 
-* Bulunan ana bilgisayarlar için güvenlik sorunlarının otomatik algılanması.
+    Bir host'un birden fazla IP adresi olabileceğinden, varlık istatistikleri veri merkezleri ve coğrafi konum bazında host bazında değil IP adresi bazında değerlendirilir. CDN'lerin kullanımı nedeniyle varlıkların konumu temsil niteliği taşımayabilir.
 
-Tüm bunları Wallarm'da bileşene abone olarak elde edersiniz - herhangi bir şey dağıtmanıza gerek yoktur ve analiz edilen verilere hemen erişirsiniz.
+* Bulunan host'lar için güvenlik sorunlarının otomatik tespiti.
 
-## Ana Bilgisayarları Aramak İçin Alan Adları
+Tüm bunlara Wallarm içinde bileşene abone olarak sahip olursunuz - herhangi bir dağıtım yapmanız gerekmez ve analiz edilmiş verilere anında erişirsiniz.
 
-Ana bilgisayarları aramak istediğiniz **root domains** listesini aşağıdaki şekilde tanımlayabilirsiniz:
+### Eski Scanner'ın değiştirilmesi
 
-1. **API Attack Surface** veya **Security Issues** bölümünde, **Configure**'a tıklayın.
-2. **Scope** sekmesinde, alan adlarınızı ekleyin.
+API Attach Surface Discovery (AASD) yetenekleri, eski Wallarm Scanner'ın tüm işlevselliğini kapsadığından ve - [Security Issues](security-issues.md) ile birlikte - çok daha fazlasını sunduğundan, 7 Mayıs 2025 itibarıyla Scanner devre dışı bırakılmıştır.
 
-    Wallarm, ana bilgisayarları ve onların [security issues](security-issues.md) aramaya başlayacaktır. Arama ilerlemesi ve sonuçları **Status** sekmesinde görüntülenecektir.
+![Old Scanner](../images/user-guides/scanner/check-scope.png)
 
-![AASM - configuring scope](../images/api-attack-surface/aasm-scope.png)
+Eski Scanner'ın devre dışı bırakılması şunları içerir:
 
-Alan adlarının her 3 günde bir otomatik olarak yeniden tarandığını unutmayın - yeni ana bilgisayarlar otomatik olarak eklenecektir, daha önce listelenip yeniden taramada bulunamayanlar ise listede kalacaktır.
+* Eski Scanner'ı kullanan tüm müşterilere AASD erişimi sağlanması
+* Eski Scanner'daki tüm konfigürasyonun Wallarm destek tarafından AASD'ye taşınması
+* AASD tarafından host ve API'lerin otomatik olarak yeniden keşfedilmesi ve bunlara ilişkin genişletilmiş verilerin sunulması
+* Host ve API'ler için otomatik güvenlik sorunu tespiti
+* 7 Mayıs 2025'ten önce eski Scanner tarafından bulunan zafiyetler, [data retention policy](../about-wallarm/data-retention-policy.md) uyarınca Vulnerabilities bölümünde gösterilmeye devam eder
 
-Herhangi bir alan adı için taramayı **Configure** → **Status** bölümünden manuel olarak yeniden başlatabilir, duraklatabilir veya devam ettirebilirsiniz.
+## Bulunan host'lara ilişkin veriler
 
-## Bulunan Ana Bilgisayarlara Dair Veriler
+Alan adlarınız için host'lar bulunduğunda, Wallarm Console içinde **API Attack Surface** bölümüne gidin. Listeden host'a tıklayarak şunları görün: 
 
-Alan adlarınız için ana bilgisayarlar bulunduğunda, Wallarm Console'da **API Attack Surface** bölümüne gidin. Listeden bir ana bilgisayara tıklayarak şunları görebilirsiniz:
-
-* Ana bilgisayarın bulunan açık portları
-* Ana bilgisayarın bulunan API'ları
-* Ana bilgisayarın [değerlendirilmiş](#security-posture) WAAP puanına dair ayrıntılar
+* Host için bulunan açık portlar
+* Host için bulunan API'ler
+* Host'un [değerlendirilen](#security-posture) WAAP skoruna ilişkin ayrıntılar
 
 <div>
   <script async src="https://js.storylane.io/js/v2/storylane.js"></script>
@@ -58,27 +63,47 @@ Alan adlarınız için ana bilgisayarlar bulunduğunda, Wallarm Console'da **API
   </div>
 </div>
 
-## Güvenlik Durumu
+## Security posture
 
-Wallarm, dış ağ çevrenizin güvenlik durumunu otomatik olarak değerlendirir ve durumunu 0 (en kötü) ile 100 (en iyi) koruma arasında **Total score** olarak yansıtır.
+Wallarm, harici ağ çevrenizin security posture durumunu otomatik olarak değerlendirir ve durumunu 0 (en kötü) ile 100 (en iyi) koruma arasında **Total score** olarak yansıtır.
 
-![API surface - protection score](../images/api-attack-surface/aasm-api-surface-protection-score.png)
+![API yüzeyi - koruma skoru](../images/api-attack-surface/aasm-api-surface-protection-score.png)
 
-Genel puan, aşağıdakileri içeren karmaşık bir tescilli formül kullanılarak hesaplanır:
+Toplam skor, aşağıdakileri içeren karmaşık, tescilli bir formülle hesaplanır:
 
-* **WAAP coverage score**: Dış web ve API servislerinin WAF/WAAP çözümleriyle kapsanma oranını yansıtır. Puan, WAF/WAAP güvenliğiyle korunan HTTP/HTTPS portlarının payı olarak hesaplanır.
-* **Average WAAP score**: Dış ana bilgisayarların web ve API saldırılarına karşı direncini temsil eder. Puan, AASM'in engelleme modunda etkin WAAP çözümleri tespit ettiği ve WAAP puanının hatasız değerlendirildiği tüm ana bilgisayarlar arasında ortalama puan olarak hesaplanır.
+* **WAAP kapsam skoru**, harici web ve API servislerinin WAF/WAAP çözümleriyle kapsanmasını yansıtır. Skor, WAF/WAAP güvenliğiyle korunan HTTP/HTTPS portlarının payı olarak hesaplanır.
+* **Ortalama WAAP skoru**, harici host'ların web ve API saldırılarına karşı dayanıklılığını temsil eder. Skor, AASM'nin engelleme modunda aktif WAAP çözümleri belirlediği ve WAAP skorunun hatasız değerlendirildiği tüm host'lar arasında ortalama skor olarak hesaplanır.
 
-    Belirli bir uç noktanın WAAP puanı, Wallarm tarafından yapılan testin sonucudur; şu şekilde hesaplanır:
+    Belirli bir uç noktanın WAAP skoru, Wallarm tarafından test edilmesinin sonucudur ve şu şekilde hesaplanır:
 
     ```
     ((AppSec + FalsePositive) / 2 + APISec) / 2
     ```
 
-    * `AppSec` - SQL enjeksiyonu, XSS ve komut enjeksiyonu gibi web saldırılarına karşı direnç.
-    * `APISec` - GraphQL, SOAP ve gRPC protokollerini hedef alanlar da dahil olmak üzere API saldırılarına karşı direnç.
-    * `FalsePositive` - meşru istekleri hatalı şekilde tehdit olarak algılamadan doğru bir şekilde izin verme yeteneği.
+    * `AppSec` - SQL injection, XSS ve komut enjeksiyonu gibi web saldırılarına karşı dayanıklılık.
+    * `APISec` - GraphQL, SOAP ve gRPC protokollerini hedefleyenler dahil API saldırılarına karşı dayanıklılık.
+    * `FalsePositive` - meşru istekleri yanlışlıkla tehdit olarak algılamadan doğru şekilde izin verme yeteneği.
 
-    Her ana bilgisayar için, PDF formatında ayrıntılı bir WAAP puan değerlendirme raporu indirebilirsiniz.
+    Her host için, ayrıntılı WAAP skoru değerlendirme raporunu PDF formatında indirebilirsiniz.
 
-* **Additional metrics**: TLS kapsama, güvenlik sorunlarının varlığı ve algılanan güvenlik sorunları gibi ek metrikler.
+* **Ek metrikler** olarak TLS kapsamı, güvenlik sorunlarının varlığı ve tespit edilen güvenlik sorunları.
+
+## API saldırı yüzeyi raporları
+
+Alan adlarınız için keşfedilen harici host'lar ve onların API'leri hakkında ayrıntılı bir DOCX raporu alabilirsiniz. Bu rapor ayrıca bu API'ler için tespit edilen [güvenlik sorunları](security-issues.md) ile ilgili seçeceğiniz bilgileri de içerecektir.
+
+Bunun yanı sıra, API yüzeyiniz hakkında tablo görünümünde (CSV) bilgi alabilirsiniz; şu şekilde düzenlenmiş:
+
+* Host'lar (her host için bir satır)
+* Portlar (her port için bir satır)
+* API'ler (her API için bir satır)
+
+![API yüzeyi - raporlar](../images/api-attack-surface/aasm-reports.png)
+
+Bir diğer seçenek de, makine tarafından okunabilir formatta API yüzeyi hakkında bilgiler içeren JSON rapordur.
+
+Güvenlik sorunları hakkında [ayrı bir rapor](security-issues.md#security-issue-reports) da alabilirsiniz.
+
+## Bildirimler
+
+--8<-- "../include/api-attack-surface/aasm-notifications.md"

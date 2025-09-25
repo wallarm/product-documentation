@@ -3,45 +3,46 @@
 
 # Wallarm Functions ile Azion Edge Firewall
 
-[Azion Edge Functions](https://www.azion.com/en/products/edge-functions/) ağ kenarında özel kod çalıştırılmasına olanak tanır ve böylece müşteriye özel kuralların istekleri işlemesi sağlanır. Wallarm özel kodunun dahil edilmesiyle, gelen trafik analiz ve filtreleme için Wallarm node'una proxy yapılabilir. Bu yapılandırma, [Azion Edge Firewall](https://www.azion.com/en/products/edge-firewall/) tarafından sağlanan güvenlik önlemlerini artırır. Bu kılavuz, Azion Edge üzerinde çalışan servisleri korumak için Wallarm node'u ile Azion Edge entegrasyonunun nasıl gerçekleştirileceğini anlatmaktadır.
+[Azion Edge Functions](https://www.azion.com/en/products/edge-functions/), özel kodu ağın kenarında çalıştırmayı mümkün kılarak istekleri işlemek için özel kuralların uygulanmasını sağlar. Wallarm özel kodu entegre edilerek gelen trafik analiz ve filtreleme için Wallarm node üzerinden proxy’lenebilir. Bu kurulum, zaten [Azion Edge Firewall](https://www.azion.com/en/products/edge-firewall/) tarafından sağlanan güvenlik önlemlerini güçlendirir. Bu kılavuz, Azion Edge üzerinde çalışan hizmetleri korumak için Wallarm node’unu Azion Edge ile nasıl entegre edeceğinize ilişkin talimatlar sağlar.
 
-Çözüm, Wallarm node'unun harici olarak dağıtılmasını ve belirli platforma özel özel kod veya politikaların enjekte edilmesini içerir. Bu şekilde, trafik potansiyel tehditlere karşı analiz ve korunma amacıyla harici Wallarm node'una yönlendirilebilir. Wallarm'ın konektörleri olarak adlandırılan bu yapı, Azion Edge, Akamai Edge, MuleSoft, Apigee ve AWS Lambda gibi platformlar ile harici Wallarm node'u arasındaki temel bağlantıyı oluşturur. Bu yaklaşım, sorunsuz entegrasyonu, güvenli trafik analizini, risk azaltımını ve genel platform güvenliğini sağlar.
+Çözüm, Wallarm node’unun harici olarak dağıtılmasını ve belirli platforma özel kod veya politikaların enjekte edilmesini içerir. Bu sayede trafik, potansiyel tehditlere karşı analiz ve koruma için harici Wallarm node’una yönlendirilebilir. Wallarm’ın bağlayıcıları (connectors) olarak adlandırılan bu bileşenler, Azion Edge, Akamai Edge, MuleSoft, Apigee ve AWS Lambda gibi platformlar ile harici Wallarm node’u arasında temel bağlantıyı sağlar. Bu yaklaşım kesintisiz entegrasyon, güvenli trafik analizi, risk azaltma ve genel platform güvenliği sağlar.
 
-## Kullanım Senaryoları
+## Kullanım senaryoları
 
-Desteklenen tüm [Wallarm dağıtım seçenekleri](../supported-deployment-options.md) arasında, bu çözüm aşağıdaki kullanım senaryoları için önerilmektedir:
+Bu çözüm aşağıdaki kullanım senaryoları için önerilir:
 
-* Azion Edge üzerinde çalışan API'leri veya trafiği korumak.
-* Kapsamlı saldırı gözlemi, raporlama ve kötü niyetli isteklerin anında engellenmesini sunan bir güvenlik çözümüne ihtiyaç duymak.
+* Azion Edge üzerinde çalışan API’lerin veya trafiğin güvenliğini sağlamak.
+* Kapsamlı saldırı gözlemi, raporlama ve kötü amaçlı isteklerin anında engellenmesini sunan bir güvenlik çözümüne ihtiyaç duyulması.
 
 ## Sınırlamalar
 
-Bu çözümün yalnızca gelen isteklerle çalışması nedeniyle bazı sınırlamaları bulunmaktadır:
+Çözümün yalnızca gelen isteklerle çalışması nedeniyle bazı sınırlamaları vardır:
 
-* [Pasif tespit](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) yöntemi kullanılarak yapılan zafiyet keşfi düzgün çalışmaz. Çözüm, test ettiği zafiyetler için tipik olan kötü niyetli isteklere verilen sunucu yanıtlarına dayanarak bir API'nin savunmasız olup olmadığını belirler.
-* [Wallarm API Discovery](../../api-discovery/overview.md), çözüm yanıt analizine dayandığından trafiğinize göre API envanterini keşfedemez.
-* Yanıt kodu analizini gerektirdiğinden [zorunlu taramaya karşı koruma](../../admin-en/configuration-guides/protecting-against-bruteforce.md) mevcut değildir.
+* [Pasif tespit](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) yöntemiyle zafiyet keşfi düzgün çalışmaz. Çözüm, test ettiği zafiyetlere tipik kötü amaçlı isteklere verilen sunucu yanıtlarına dayanarak bir API’nin savunmasız olup olmadığını belirler.
+* [Wallarm API Discovery](../../api-discovery/overview.md), çözüm yanıt analizine dayandığı için trafiğinize göre API envanterini keşfedemez.
+* Yanıt kodu analizine ihtiyaç duyduğundan [zorla gezinmeye karşı koruma](../../admin-en/configuration-guides/protecting-against-bruteforce.md) mevcut değildir.
 
 ## Gereksinimler
 
-Dağıtıma devam edebilmek için aşağıdaki gereksinimlerin karşılandığından emin olun:
+Dağıtıma devam etmek için aşağıdaki gereksinimleri karşıladığınızdan emin olun:
 
-* Azion Edge teknolojilerinin anlaşılması
-* Azion Edge üzerinde çalışan API'ler veya trafik.
+* Azion Edge teknolojilerine hakimiyet
+* Azion Edge üzerinde çalışan API’ler veya trafik.
 
 ## Dağıtım
 
-Wallarm ile Azion Edge üzerindeki API'leri güvence altına almak için aşağıdaki adımları takip edin:
+Azion Edge üzerindeki API’leri Wallarm ile güvenceye almak için şu adımları izleyin:
 
-1. Mevcut dağıtım seçeneklerinden biriyle bir Wallarm node'u dağıtın.
+1. Kullanılabilir dağıtım seçeneklerinden birini kullanarak bir Wallarm node dağıtın.
 1. Edge Functions için Wallarm kodunu edinin ve Azion üzerinde çalıştırın.
 
-### 1. Bir Wallarm node'u dağıtın
+<a id="1-deploy-a-wallarm-node"></a>
+### 1. Bir Wallarm node dağıtın
 
-Azion Edge üzerinde Wallarm kullanırken, trafik akışı [in-line](../inline/overview.md) şeklindedir.
+Azion Edge üzerinde Wallarm kullanırken, trafik akışı [in-line](../inline/overview.md) olur.
 
-1. In-line dağıtım için mevcut [desteklenen Wallarm node dağıtım çözümleri veya artefaktlarından](../supported-deployment-options.md#in-line) birini seçin ve sağlanan dağıtım talimatlarını izleyin.
-1. Dağıtılan node'u aşağıdaki şablonu kullanarak yapılandırın:
+1. Hat içi dağıtım için [desteklenen Wallarm node dağıtım çözümlerinden veya yapıtlarından](../supported-deployment-options.md#in-line) birini seçin ve sağlanan dağıtım talimatlarını izleyin.
+1. Dağıtılan node’u aşağıdaki şablona göre yapılandırın:
 
     ```
     server {
@@ -63,7 +64,7 @@ Azion Edge üzerinde Wallarm kullanırken, trafik akışı [in-line](../inline/o
 
         server_name yourdomain-for-wallarm-node.tld;
 
-        ### SSL configuration here
+        ### SSL yapılandırması burada
 
         access_log off;
         wallarm_mode off;
@@ -94,43 +95,43 @@ Azion Edge üzerinde Wallarm kullanırken, trafik akışı [in-line](../inline/o
 
     Lütfen aşağıdaki yapılandırmalara dikkat edin:
 
-    * HTTPS trafiği için TLS/SSL sertifikaları: Wallarm node'unun güvenli HTTPS trafiğini işleyebilmesi için TLS/SSL sertifikalarını uygun şekilde yapılandırın. Belirli yapılandırma, seçilen dağıtım yöntemine bağlı olacaktır. Örneğin, NGINX kullanıyorsanız, rehberlik için [bu makaleye](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/) bakabilirsiniz.
-    * [Wallarm işletim modu](../../admin-en/configure-wallarm-mode.md) yapılandırması.
-1. Dağıtım tamamlandıktan sonra, ileride gelen istek yönlendirmesi için node örneği IP adresini not alın.
+    * HTTPS trafiği için TLS/SSL sertifikaları: Wallarm node’unun güvenli HTTPS trafiğini işleyebilmesi için TLS/SSL sertifikalarını uygun şekilde yapılandırın. Belirli yapılandırma seçilen dağıtım yöntemine bağlı olacaktır. Örneğin NGINX kullanıyorsanız, yol gösterici olması için [ilgili makalesine](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/) bakabilirsiniz.
+    * [Wallarm çalışma modu](../../admin-en/configure-wallarm-mode.md) yapılandırması.
+1. Dağıtım tamamlandığında, gelen istek yönlendirme adresini daha sonra ayarlamak için node örneğinin IP’sini not edin.
 
-### 2. Edge Functions için Wallarm kodunu edinin ve Azion'da çalıştırın
+### 2. Edge Functions için Wallarm kodunu edinin ve Azion üzerinde çalıştırın
 
-Azion Edge Functions için Wallarm kodunu edinmek ve çalıştırmak için aşağıdaki adımları izleyin:
+Azion Edge Functions için Wallarm kodunu edinmek ve çalıştırmak için şu adımları izleyin:
 
 1. Wallarm kodunu edinmek için [support@wallarm.com](mailto:support@wallarm.com) ile iletişime geçin.
-1. Azion Edge üzerinde, **Billing & Subscriptions** bölümüne gidin ve **Application Acceleration** ile **Edge Functions** aboneliğini aktive edin.
+1. Azion Edge üzerinde, **Billing & Subscriptions** bölümüne gidin ve **Application Acceleration** ile **Edge Functions** aboneliğini etkinleştirin.
 1. Yeni bir **Edge Application** oluşturun ve kaydedin.
-1. Oluşturulan uygulamayı açın → **Main Settings** bölümüne gidin ve **Application Acceleration** ile **Edge Functions**'ı etkinleştirin.
-1. **Domains** bölümüne gidin ve **Add Domain** seçeneğine tıklayın.
-1. **Edge Functions** bölümüne gidin, **Add Function** seçeneğine tıklayın ve `Edge Firewall` türünü seçin.
-1. Wallarm kaynak kodunu yapıştırın ve `wallarm.node.tld` kısmını [önceden dağıtılan Wallarm node'unun](#1-deploy-a-wallarm-node) adresi ile değiştirin.
-1. **Edge Firewall** bölümüne gidin → **Add Rule Set** → **Name** alanına bir isim verin → **Domains**'i seçin ve **Edge Functions**'ı açın.
-1. **Functions** sekmesine geçin, **Add Function** seçeneğine tıklayın ve daha önce oluşturulan fonksiyonu seçin.
-1. **Rules Engine** sekmesine geçin → **New Rule** seçeneğine tıklayın ve Wallarm tarafından trafiğin filtrelenmesi için kriterleri belirleyin:
+1. Oluşturulan uygulamayı açın → **Main Settings** ve **Application Acceleration** ile **Edge Functions**’ı etkinleştirin.
+1. **Domains** bölümüne gidin ve **Add Domain**’a tıklayın.
+1. **Edge Functions**’a gidin, **Add Function**’a tıklayın ve `Edge Firewall` türünü seçin.
+1. Wallarm kaynak kodunu yapıştırın ve `wallarm.node.tld` alanını [önceden dağıtılmış Wallarm node’unun](#1-deploy-a-wallarm-node) adresiyle değiştirin.
+1. **Edge Firewall** → **Add Rule Set** → **Name** yazın → **Domains** seçin ve **Edge Functions**’ı açın.
+1. **Functions** sekmesine geçin, **Add Function**’a tıklayın ve daha önce oluşturulan fonksiyonu seçin.
+1. **Rules Engine** sekmesine geçin → **New Rule** ve trafiğin Wallarm tarafından filtrelenmesi için kriterleri ayarlayın:
 
-    * Tüm isteği analiz etmek ve filtrelemek için, `If Request URI starts with /` seçeneğini belirleyin.
-    * **Behaviors** bölümünde, `Then Run Function` seçeneğini seçin ve daha önce oluşturulan fonksiyonu seçin.
+    * Tüm istekleri analiz etmek ve filtrelemek için `If Request URI starts with /` seçin.
+    * **Behaviors** içinde `Then Run Function` seçin ve daha önce oluşturulan fonksiyonu seçin.
 
 ## Test
 
-Dağıtılan politikanın işlevselliğini test etmek için aşağıdaki adımları izleyin:
+Dağıtılan politikanın işlevselliğini test etmek için şu adımları izleyin:
 
-1. API'nize, test [Path Traversal][ptrav-attack-docs] saldırısı içeren isteği gönderin:
+1. API’nize test [Path Traversal][ptrav-attack-docs] saldırısı içeren isteği gönderin:
 
     ```
     curl http://<YOUR_APP_IP_OR_DOMAIN>/etc/passwd
     ```
-1. Wallarm Console'u açın → [US Cloud](https://us1.my.wallarm.com/attacks) veya [EU Cloud](https://my.wallarm.com/attacks) üzerindeki **Attacks** bölümünü kontrol edin ve saldırının listede görüntülendiğinden emin olun.
+1. Wallarm Console → **Attacks** bölümünü [US Cloud](https://us1.my.wallarm.com/attacks) veya [EU Cloud](https://my.wallarm.com/attacks) üzerinde açın ve saldırının listede görüntülendiğinden emin olun.
     
-    ![Attacks in the interface][attacks-in-ui-image]
+    ![Arayüzde Attacks][attacks-in-ui-image]
 
-    Eğer Wallarm node modu block (engelleme) olarak ayarlanmışsa, istek de engellenecektir.
+    Wallarm node modu engelleme olarak ayarlanmışsa, istek de engellenecektir.
 
 ## Yardıma mı ihtiyacınız var?
 
-Açıklanan Wallarm ve Azion Edge entegrasyonu sırasında herhangi bir sorunla karşılaşırsanız veya yardıma ihtiyaç duyarsanız, [Wallarm support](mailto:support@wallarm.com) ekibiyle iletişime geçebilirsiniz. Uygulama süreci sırasında karşılaşabileceğiniz sorunların giderilmesi için rehberlik sağlamaya hazırdırlar.
+Azion Edge ile birlikte Wallarm’ın bu şekilde dağıtımı sırasında herhangi bir sorunla karşılaşırsanız veya yardıma ihtiyaç duyarsanız, [Wallarm desteği](mailto:support@wallarm.com) ekibiyle iletişime geçebilirsiniz. Uygulama sırasında karşılaşabileceğiniz sorunları çözmenize yardımcı olmak için rehberlik sağlarlar.

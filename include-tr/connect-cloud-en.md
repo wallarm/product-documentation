@@ -7,43 +7,43 @@
 
 
 !!! info "API Erişimi"
-    Filtering node'unuz için kullanılacak API seçimi, kullandığınız Cloud'a bağlıdır. Lütfen API'yi buna göre seçin:
+    Filtreleme düğümünüz için API seçimi, kullandığınız Cloud’a bağlıdır. Lütfen buna uygun API’yi seçin:
     
-    * Eğer <https://my.wallarm.com/> kullanıyorsanız, node'unuzun `https://api.wallarm.com:444` adresine erişimi gerekir.
-    * Eğer <https://us1.my.wallarm.com/> kullanıyorsanız, node'unuzun `https://us1.api.wallarm.com:444` adresine erişimi gerekir.
+    * <https://my.wallarm.com/> kullanıyorsanız, düğümünüzün `https://api.wallarm.com:444` adresine erişmesi gerekir.
+    * <https://us1.my.wallarm.com/> kullanıyorsanız, düğümünüzün `https://us1.api.wallarm.com:444` adresine erişmesi gerekir.
     
-    Erişimin bir firewall tarafından engellenmediğinden emin olun.
+    Erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun.
 
-Filtering node, Wallarm Cloud ile etkileşime geçer. 
+Filtreleme düğümü Wallarm Cloud ile etkileşime girer. 
 
-Cloud hesabınızın gereksinimlerini kullanarak node'u Cloud'a bağlamak için aşağıdaki adımları izleyin:
+Düğümü Cloud’a, bulut hesabı bilgilerinizi kullanarak bağlamak için aşağıdaki adımları izleyin:
 
-1.  Wallarm hesabınızın **Administrator** veya **Deploy** rolüne sahip olduğundan ve iki faktörlü doğrulamanın devre dışı bırakıldığından emin olun, böylece Filtering node'u Cloud'a bağlayabilirsiniz. 
+1.  Wallarm hesabınızda **Administrator** veya **Deploy** rolünün etkin olduğundan ve iki faktörlü kimlik doğrulamanın devre dışı olduğundan emin olun; böylece bir filtreleme düğümünü Cloud’a bağlayabilirsiniz. 
      
-    Yukarıda belirtilen parametreleri Wallarm Console'daki kullanıcı hesap listesine giderek kontrol edebilirsiniz.
+    Bu parametreleri, Wallarm Console içindeki kullanıcı hesapları listesine giderek kontrol edebilirsiniz.
     
-    * Eğer <https://my.wallarm.com/> kullanıyorsanız, kullanıcı ayarlarınızı kontrol etmek için [aşağıdaki linke][link-wl-console-users-eu] gidin.
-    * Eğer <https://us1.my.wallarm.com/> kullanıyorsanız, kullanıcı ayarlarınızı kontrol etmek için [aşağıdaki linke][link-wl-console-users-us] gidin.
+    * <https://my.wallarm.com/> kullanıyorsanız, kullanıcı ayarlarınızı kontrol etmek için [aşağıdaki bağlantıya][link-wl-console-users-eu] gidin.
+    * <https://us1.my.wallarm.com/> kullanıyorsanız, kullanıcı ayarlarınızı kontrol etmek için [aşağıdaki bağlantıya][link-wl-console-users-us] gidin.
 
-    ![Wallarm console'da kullanıcı listesi][img-wl-console-users]
+    ![Wallarm Console’da kullanıcı listesi][img-wl-console-users]
 
-2.  Filtering node'u kurduğunuz makinede `addnode` script'ini çalıştırın:
+2.  Filtreleme düğümünü kurduğunuz makinede `addnode` betiğini çalıştırın:
     
     !!! info
-        Çalıştırılacak script'i, kullandığınız Cloud'a bağlı olarak seçmeniz gerekmektedir.
+        Kullandığınız Cloud’a bağlı olarak çalıştırılacak betiği seçmeniz gerekir.
     
-        * Eğer <https://us1.my.wallarm.com/> kullanıyorsanız, aşağıdaki **US Cloud** sekmesinden script'i çalıştırın.
-        * Eğer <https://my.wallarm.com/> kullanıyorsanız, aşağıdaki **EU Cloud** sekmesinden script'i çalıştırın.
+        * <https://us1.my.wallarm.com/> kullanıyorsanız, aşağıdaki **ABD Cloud** sekmesindeki betiği çalıştırın.
+        * <https://my.wallarm.com/> kullanıyorsanız, aşağıdaki **AB Cloud** sekmesindeki betiği çalıştırın.
     
-    === "US Cloud"
+    === "ABD Cloud"
         ``` bash
         sudo /usr/share/wallarm-common/addnode -H us1.api.wallarm.com
         ```
-    === "EU Cloud"
+    === "AB Cloud"
         ``` bash
         sudo /usr/share/wallarm-common/addnode
         ```
     
-    Oluşturulan node'un adını belirtmek için `-n <node name>` seçeneğini kullanın. Ayrıca, node adı Wallarm Console → **Nodes** üzerinden değiştirilebilir.
+    Oluşturulan düğümün adını belirtmek için `-n <node name>` seçeneğini kullanın. Ayrıca, düğüm adı Wallarm Console → **Nodes** içinde değiştirilebilir.
 
-3.  İstendiğinde Wallarm hesabınızın e-posta adresini ve şifresini girin.
+3.  İstendiğinde Wallarm hesabınızın e-postasını ve parolasını girin.

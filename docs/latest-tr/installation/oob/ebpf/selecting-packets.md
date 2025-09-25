@@ -1,41 +1,44 @@
-# Aynalama Kaynaklarını Seçme
+# Yansıtma için Kaynakların Seçilmesi
 
-[Wallarm eBPF solution](deployment.md) bir trafik aynası üzerinde çalışır ve trafik aynalama kapsamı üzerinde kontrol sağlar. Kubernetes namespace'leri, pod'ları ve konteynerleri kullanarak paket aynalama üretmenize olanak tanır. Bu rehber, seçim sürecinin nasıl yönetileceğini açıklar.
+[Wallarm eBPF çözümü](deployment.md) trafik yansısı üzerinde çalışır ve trafik yansısının kapsamı üzerinde kontrol sağlar. Kubernetes namespace, pod ve container bazında paket yansısı oluşturmanıza olanak tanır. Bu kılavuz, seçim sürecini nasıl yöneteceğinizi açıklar.
 
-Paketlerin aynalanması için kullanılabilecek birkaç yöntem mevcuttur:
+!!! warning "4.10 sürümü ile sınırlıdır"
+    Wallarm eBPF tabanlı çözüm şu anda yalnızca [Wallarm Node 4.10](/4.10/installation/oob/ebpf/deployment/) içinde sunulan özellikleri desteklemektedir.
 
-* Bir namespace'e ait tüm pod'ların trafiğini aynalamak için namespace'e `wallarm-mirror` etiketi uygulayın.
-* Belirli bir pod'un trafiğini aynalamak için o pod'a `mirror.wallarm.com/enabled` açıklamasını uygulayın.
-* Wallarm Helm chart'ının `values.yaml` dosyasındaki `config.agent.mirror.filters` ayarını yapılandırın. Bu yapılandırma, namespace, pod, konteyner veya node seviyelerinde aynalamayı etkinleştirmenizi sağlar.
+Paketleri yansıtma için seçmek amacıyla kullanılabilecek birkaç yöntem vardır:
 
-## Etiket Kullanarak Bir Namespace için Aynalama
+* Belirli bir namespace içindeki pod'ların tüm trafiğini yansıtmak için ilgili namespace'e `wallarm-mirror` etiketini uygulayın.
+* Belirli bir pod'un trafiğini yansıtmak için `mirror.wallarm.com/enabled` açıklamasını (annotation) uygulayın.
+* Wallarm Helm chart'ının `values.yaml` dosyasındaki `config.agent.mirror.filters` ayarını yapılandırın. Bu yapılandırma ile yansıtmayı namespace, pod, container veya node seviyelerinde etkinleştirebilirsiniz.
 
-Namespace seviyesinde aynalamayı kontrol etmek için, istenen Kubernetes namespace'ine `wallarm-mirror` etiketini uygulayın ve değerini `enabled` veya `disabled` olarak ayarlayın, örneğin:
+## Etiket kullanarak bir namespace için yansıtma
+
+Yansıtmayı namespace seviyesinde kontrol etmek için, hedef Kubernetes namespace'ine `wallarm-mirror` etiketini uygulayın ve değerini `enabled` veya `disabled` olarak ayarlayın, örn.:
 
 ```
 kubectl label ns <NAMESPACE> wallarm-mirror=enabled
 ```
 
-## Açıklama Kullanarak Bir Pod için Aynalama
+## Açıklama kullanarak bir pod için yansıtma
 
-Pod seviyesinde aynalamayı kontrol etmek için, `mirror.wallarm.com/enabled` açıklamasını kullanın ve değerini `true` veya `false` olarak ayarlayın, örneğin:
+Yansıtmayı pod seviyesinde kontrol etmek için `mirror.wallarm.com/enabled` açıklamasını kullanın ve değerini `true` veya `false` olarak ayarlayın, örn.:
 
 ```bash
 kubectl patch deployment <DEPLOYMENT_NAME> -n <NAMESPACE> -p '{"spec": {"template":{"metadata":{"annotations":{"mirror.wallarm.com/enabled":"true"}}}} }'
 ```
 
-## `values.yaml` Kullanarak Bir Namespace, Pod, Konteyner veya Node için Aynalama
+## `values.yaml` kullanarak bir namespace, pod, container veya node için yansıtma
 
-`values.yaml` dosyasındaki `config.agent.mirror.filters` bloğu, trafik aynalama seviyeleri üzerinde ince ayar yapmanızı sağlar. Bu yaklaşım, aşağıdaki varlıklar için aynalamayı kontrol etmenize olanak tanır:
+`values.yaml` dosyasındaki `config.agent.mirror.filters` bloğu, trafik yansıtma seviyeleri üzerinde ince ayar yapmanıza olanak sağlar. Bu yaklaşım aşağıdaki varlıklar için yansıtmayı kontrol etmenizi sağlar:
 
-* Namespace - `filters.namespace` parametresi kullanılarak
-* Pod - Pod'un etiketlerini kullanarak `filters.pod_labels` veya pod'un açıklamalarını kullanarak `filters.pod_annotations`
-* Node - `filters.node_name` parametresi kullanılarak
-* Konteyner - `filters.container_name` parametresi kullanılarak
+* Namespace - `filters.namespace` parametresi ile
+* Pod - pod etiketleriyle `filters.pod_labels` veya pod açıklamalarıyla `filters.pod_annotations` parametresi ile
+* Node - `filters.node_name` parametresi ile
+* Container - `filters.container_name` parametresi ile
 
-### Bir Namespace Seçme
+### Bir namespace seçme
 
-Belirli bir namespace için trafik aynalamayı etkinleştirmek amacıyla, `filters.namespace` parametresinde adını belirtin. Örneğin, `my-namespace` Kubernetes namespace'i için trafik aynalamayı etkinleştirmek:
+Belirli bir namespace için trafik yansıtmayı etkinleştirmek için adını `filters.namespace` parametresinde belirtin. Örneğin, `my-namespace` Kubernetes namespace'i için trafik yansıtmayı etkinleştirmek üzere:
 
 ```yaml
 config:
@@ -45,14 +48,14 @@ config:
         - namespace: 'my-namespace'
 ```
 
-### Bir Pod Seçme
+### Bir pod seçme
 
-Bir pod'u, pod'un etiketleri ve açıklamalarıyla seçebilirsiniz. İşte nasıl:
+Trafik yansıtma için bir pod'u, pod'un etiketleri ve açıklamalarıyla seçebilirsiniz. Şöyle yapabilirsiniz:
 
-=== "Etiket ile Pod Seçme"
-    Belirli bir etikete sahip pod için trafik aynalamayı etkinleştirmek amacıyla, `pod_labels` parametresini kullanın.
+=== "Pod'u etikete göre seçme"
+    Belirli bir etikete sahip pod için trafik yansıtmayı etkinleştirmek üzere `pod_labels` parametresini kullanın.
     
-    Örneğin, `environment: production` etiketine sahip bir pod için trafik aynalamayı etkinleştirmek:
+    Örneğin, `environment: production` etiketine sahip bir pod için trafik yansıtmayı etkinleştirmek üzere:
 
     ```yaml
     config:
@@ -63,7 +66,7 @@ Bir pod'u, pod'un etiketleri ve açıklamalarıyla seçebilirsiniz. İşte nası
                 environment: 'production'
     ```
 
-    Birden fazla etiket pod'u tanımlamak için gerekiyorsa, birkaç etiket belirtebilirsiniz. Örneğin, aşağıdaki yapılandırma, `environment: production AND (team: backend OR team: ops)` etiketlerine sahip pod'ların trafiğinin Wallarm eBPF tarafından aynalanıp analiz edilmesini sağlar:
+    Pod'u tanımlamak için birden fazla etiket gerekiyorsa, birkaç etiket belirtebilirsiniz. Örneğin, aşağıdaki yapılandırma, `environment: production AND (team: backend OR team: ops)` etiketlerine sahip pod'ların trafiğini Wallarm eBPF'in yansıtıp analiz etmesini sağlar:
 
     ```yaml
     config:
@@ -74,10 +77,10 @@ Bir pod'u, pod'un etiketleri ve açıklamalarıyla seçebilirsiniz. İşte nası
                 environment: 'production'
                 team: 'backend,ops'
     ```
-=== "Açıklama ile Pod Seçme"
-    Belirli bir açıklamaya sahip pod için trafik aynalamayı etkinleştirmek amacıyla, `pod_annotations` parametresini kullanın.
+=== "Pod'u açıklamaya göre seçme"
+    Belirli bir açıklamaya sahip pod için trafik yansıtmayı etkinleştirmek üzere `pod_annotations` parametresini kullanın.
     
-    Örneğin, `app.kubernetes.io/name: myapp` açıklamasına sahip bir pod için trafik aynalamayı etkinleştirmek:
+    Örneğin, `app.kubernetes.io/name: myapp` açıklamasına sahip bir pod için trafik yansıtmayı etkinleştirmek üzere:
 
     ```yaml
     config:
@@ -88,7 +91,7 @@ Bir pod'u, pod'un etiketleri ve açıklamalarıyla seçebilirsiniz. İşte nası
                 app.kubernetes.io/name: 'myapp'
     ```
 
-    Pod'u tanımlamak için birden fazla açıklama gerekiyorsa, birkaç açıklama belirtebilirsiniz. Örneğin, aşağıdaki yapılandırma, şu açıklamalara sahip pod'ların trafiğinin Wallarm eBPF tarafından aynalanıp analiz edilmesini sağlar:
+    Pod'u tanımlamak için birden fazla açıklama gerekiyorsa, birkaç açıklama belirtebilirsiniz. Örneğin, aşağıdaki yapılandırma, şu açıklamalara sahip pod'ların trafiğini Wallarm eBPF'in yansıtıp analiz etmesini sağlar:
     
     ```
     app.kubernetes.io/name: myapp AND (app.kubernetes.io/instance: myapp-instance-main OR
@@ -105,9 +108,9 @@ Bir pod'u, pod'un etiketleri ve açıklamalarıyla seçebilirsiniz. İşte nası
                 app.kubernetes.io/instance: 'myapp-instance-main,myapp-instance-reserve'
     ```
 
-### Bir Node Seçme
+### Bir node seçme
 
-Belirli bir Kubernetes node'u için trafik aynalamayı etkinleştirmek amacıyla, `filters.node_name` parametresinde node adını belirtin. Örneğin, `my-node` Kubernetes node'u için trafik aynalamayı etkinleştirmek:
+Belirli bir Kubernetes node'u için trafik yansıtmayı etkinleştirmek üzere, node adını `filters.node_name` parametresinde belirtin. Örneğin, `my-node` Kubernetes node'u için trafik yansıtmayı etkinleştirmek üzere:
 
 ```yaml
 config:
@@ -117,9 +120,9 @@ config:
         - node_name: 'my-node'
 ```
 
-### Bir Konteyner Seçme
+### Bir container seçme
 
-Belirli bir Kubernetes konteyneri için trafik aynalamayı etkinleştirmek amacıyla, `filters.container_name` parametresinde konteyner adını belirtin. Örneğin, `my-container` Kubernetes konteyneri için trafik aynalamayı etkinleştirmek:
+Belirli bir Kubernetes container'ı için trafik yansıtmayı etkinleştirmek üzere, container adını `filters.container_name` parametresinde belirtin. Örneğin, `my-container` Kubernetes container'ı için trafik yansıtmayı etkinleştirmek üzere:
 
 ```yaml
 config:
@@ -129,29 +132,29 @@ config:
         - container_name: 'my-container'
 ```
 
-### Değişikliklerin Uygulanması
+### Değişiklikleri uygulama
 
-`values.yaml` dosyasını değiştirdiyseniz ve dağıtılmış chart'ınızı yükseltmek istiyorsanız, aşağıdaki komutu kullanın:
+`values.yaml` dosyasını değiştirir ve dağıtılmış chart'ınızı yükseltmek (upgrade) isterseniz, aşağıdaki komutu kullanın:
 
 ```
 helm upgrade <RELEASE_NAME> wallarm/wallarm-oob -n wallarm-ebpf -f <PATH_TO_VALUES>
 ```
 
-## Etiketler, Açıklamalar ve Filtreler Arasındaki Öncelikler
+## Etiketler, açıklamalar ve filtreler arasındaki öncelikler
 
-Birden fazla seçim yöntemi kullanıldığında ve üst seviyede aynalama etkinleştirildiğinde, daha alt yapılandırma seviyesi öncelik kazanır.
+Birden çok seçim yöntemi kullanıldığında ve yansıtma üst düzeyde etkinleştirildiğinde, daha düşük yapılandırma seviyesi önceliklidir.
 
-Eğer üst seviyede aynalama devre dışı bırakılırsa, alt ayarlar tamamen uygulanmaz, çünkü üst seviye trafik aynalamayı devre dışı bırakırken önceliklidir.
+Yansıtma üst düzeyde devre dışı bırakılırsa, üst düzeyin trafik yansıtmayı devre dışı bırakmada önceliği olduğundan, alt düzey ayarlar hiç uygulanmaz.
 
-Aynı nesne farklı yollarla aynalama için seçilmişse (örneğin, Wallarm pod'unun açıklaması ile `values.yaml` filtre bloğu kullanılarak), Wallarm pod'unun açıklaması öncelik kazanır.
+Aynı nesne farklı yollarla yansıtma için seçilirse (örn., Wallarm pod'unun açıklaması ve `values.yaml` içindeki filtreler bloğu kullanılarak), öncelik Wallarm pod'unun açıklamasındadır.
 
 ## Örnekler
 
-Etiketler, açıklamalar ve filtreler, trafik aynalama ile analizi seviyesinin ayarlanmasında yüksek esneklik sağlar. Ancak, birbiriyle örtüşebilirler. İşte birlikte nasıl çalıştıklarını anlamanıza yardımcı olacak bazı yapılandırma örnekleri.
+Etiketler, açıklamalar ve filtreler, trafik yansıtma ve analiz seviyesini ayarlamada yüksek derecede esneklik sağlar. Ancak birbirleriyle çakışabilirler. Birlikte nasıl çalıştıklarını anlamanıza yardımcı olacak bazı yapılandırma örnekleri aşağıdadır.
 
-### `values.yaml` Dosyasında Çok Seviyeli Yapılandırma
+### `values.yaml` içinde çok seviyeli yapılandırma
 
-Aşağıdaki `values.yaml` yapılandırmasını göz önünde bulundurun:
+Şu `values.yaml` yapılandırmasını göz önünde bulundurun:
 
 ```yaml
 config:
@@ -167,19 +170,19 @@ config:
             app.kubernetes.io/name: 'myapp'
 ```
 
-Belirlenen filtreler şu şekilde uygulanır:
+Ayarlanan filtreler şu şekilde uygulanır:
 
 ```
 namespace: default OR (namespace: my-namespace AND environment: production AND (team: backend
 OR team: ops) AND app.kubernetes.io/name: myapp)
 ```
 
-### Namespace Etiketleri, Pod Açıklamaları ve `values.yaml` Filtrelerinin Birleştirilmesi
+### Namespace etiketlerini, pod açıklamalarını ve `values.yaml` filtrelerini karıştırma
 
 | Yapılandırma | Sonuç |
 | ------------- | ------ |
-| <ul><li>`values.yaml` → `config.agent.mirror.allNamespaces` değeri `true` olarak ayarlanmışsa ve</li><li>Namespace etiketi `wallarm-mirror=disabled` ise</li></ul> | Namespace aynalanmaz |
-| <ul><li>Namespace etiketi `wallarm-mirror=enabled` ise ve</li><li>Pod açıklaması `mirror.wallarm.com/enabled=false` ise</li></ul> | Pod aynalanmaz |
-| <ul><li>Namespace etiketi `wallarm-mirror=disabled` ise ve</li><li>Pod açıklaması `mirror.wallarm.com/enabled=true`, veya trafik aynalamak için başka bir alt seviye ayarı seçilmişse</li></ul> | Pod aynalanmaz |
-| <ul><li>Namespace etiketi `wallarm-mirror=disabled` ise ve</li><li>Aynı namespace `values.yaml` → `config.agent.mirror.filters` içinde seçilmişse</li></ul> | Namespace aynalanmaz |
-| <ul><li>Pod açıklaması `mirror.wallarm.com/enabled=false` ise ve</li><li>Aynı pod `values.yaml` → `config.agent.mirror.filters` içinde seçilmişse</li></ul> | Pod aynalanmaz |
+| <ul><li>`values.yaml` → `config.agent.mirror.allNamespaces` içindeki değer `true` olarak ayarlanır ve</li><li>Namespace etiketi `wallarm-mirror=disabled`</li></ul> | Namespace yansıtılmaz |
+| <ul><li>Namespace etiketi `wallarm-mirror=enabled` ve</li><li>Pod açıklaması `mirror.wallarm.com/enabled=false`</li></ul> | Pod yansıtılmaz |
+| <ul><li>Namespace etiketi `wallarm-mirror=disabled` ve</li><li>Pod açıklaması `mirror.wallarm.com/enabled=true` ya da trafik yansıtma için başka herhangi bir alt düzey ayar seçilmiştir</li></ul> | Pod yansıtılmaz |
+| <ul><li>Namespace etiketi `wallarm-mirror=disabled` ve</li><li>Aynı namespace `values.yaml` → `config.agent.mirror.filters` içinde seçilmiştir</li></ul> | Namespace yansıtılmaz
+| <ul><li>Pod açıklaması `mirror.wallarm.com/enabled=false` ve</li><li>Aynı pod `values.yaml` → `config.agent.mirror.filters` içinde seçilmiştir</li></ul> | Pod yansıtılmaz

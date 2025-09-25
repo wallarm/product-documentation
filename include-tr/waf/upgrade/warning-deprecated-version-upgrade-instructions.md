@@ -1,4 +1,4 @@
-!!! warning "Wallarm nodes 3.6 ve altı desteklenmiyor"
-    Wallarm nodes 3.6 ve altını yükseltmeniz önerilir çünkü bu sürümler [desteklenmiyor, ömrünü tamamlamış durumda](../versioning-policy.md#version-list).
+!!! warning "Wallarm düğümleri 3.6 ve altı desteklenmiyor"
+    3.6 ve altı Wallarm düğümlerini yükseltmeniz önerilir; bu sürümler [desteklenmiyor, kullanım ömürlerinin sonuna gelmiştir](../versioning-policy.md#version-list).
 
-    Son sürümlerdeki Wallarm node'larında düğüm yapılandırması ve trafik filtreleme önemli ölçüde basitleştirildi. Modülleri yükseltmeden önce, lütfen [değişiklik listesine](what-is-new.md) ve [genel tavsiyelere](../general-recommendations.md) dikkatlice göz atın. Lütfen son Wallarm node'unun bazı ayarlarının, 3.6 ve altı sürümlerle **uyumsuz** olduğunu unutmayın.
+    Wallarm düğümünün en yeni sürümlerinde düğüm yapılandırması ve trafik filtreleme önemli ölçüde basitleştirilmiştir. Modülleri yükseltmeden önce lütfen [değişiklik listesi](what-is-new.md) ve [genel öneriler](../general-recommendations.md) belgelerini dikkatlice inceleyin. Lütfen en yeni düğümün bazı ayarlarının 3.6 ve altı düğümlerle **uyumsuz** olduğunu unutmayın.

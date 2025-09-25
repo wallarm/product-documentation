@@ -1,8 +1,8 @@
-Uygulamanızın example.com alan adında erişilebilir olduğunu ve kullanıcı kimlik doğrulaması için 32 haneli hex sembolü formatında X-AUTHENTICATION başlığını kullandığını, yanlış formatlı tokenleri reddetmek istediğinizi varsayalım.
+Diyelim ki `example.com` alan adından erişilebilen uygulamanız, kullanıcı kimlik doğrulaması için 32 hex sembol formatında `X-AUTHENTICATION` başlığını kullanıyor ve hatalı formatlı belirteçleri reddetmek istiyorsunuz.
 
-Bunu yapmak için, **Create regexp-based attack indicator** kuralını ayarlayın ve ekran görüntüsünde gösterildiği gibi **Virtual patch** olarak ayarlayın, bunlar dahil:
+Bunu yapmak için, ekran görüntüsünde gösterildiği gibi **Create regexp-based attack indicator** kuralını ayarlayın ve **Virtual patch** olarak belirleyin; buna şunlar dahildir:
 
-* Düzenli ifade: `^(.{0,31}|.{33,}|[^0-9a-fA-F]+)$`
-* İstek kısmı: `header` - `X-AUTHENTICATION`
+* Regular expression: `^(.{0,31}|.{33,}|[^0-9a-fA-F]+)$`
+* Request part: `header` - `X-AUTHENTICATION`
 
-![Regex rule first example][img-regex-example1]
+![Regex kuralı ilk örnek][img-regex-example1]

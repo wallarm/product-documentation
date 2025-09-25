@@ -1,55 +1,55 @@
-# Uç Nokta Risk Skoru <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Uç Nokta Risk Puanı <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-[API Discovery](overview.md) otomatik olarak API envanterinizdeki her uç nokta için bir **risk skoru** hesaplar. Risk skoru, hangi uç noktaların saldırı hedefi olmasının en muhtemel olduğunu anlamanıza ve bu nedenle güvenlik çabalarınıza odaklanmanız gereken noktaları belirlemenize olanak tanır.
+[API Discovery](overview.md), API envanterinizdeki her uç nokta için otomatik olarak bir **risk puanı** hesaplar. Risk puanı, hangi uç noktaların saldırı hedefi olma olasılığının daha yüksek olduğunu anlamanıza ve güvenlik çalışmalarınızı bu uç noktalara odaklamanıza yardımcı olur.
 
-## Risk Skoru Faktörleri
+## Risk puanı faktörleri
 
-Risk skoru, nihai risk skoru hesaplanırken her birinin kendi ağırlığına sahip çeşitli faktörlerden oluşur. Varsayılan olarak, tüm faktörlerden en yüksek ağırlık uç nokta risk skoru olarak kullanılır.
+Risk puanı, her biri nihai risk puanı hesaplanırken kendi ağırlığına sahip çeşitli faktörlerden oluşur. Varsayılan olarak, tüm faktörler arasından en yüksek ağırlık uç nokta risk puanı olarak kullanılır.
 
-| Factor | Description | Default weight |
+| Faktör | Açıklama | Varsayılan ağırlık |
 | --- | --- | --- |
-| Aktif Güvenlik Açıkları | [Active vulnerabilities](../about-wallarm/detecting-vulnerabilities.md) yetkisiz veri erişimine veya bozulmasına neden olabilir. | 9 |
-| Muhtemelen BOLA'ya Karşı Savunmasız | Kullanıcı kimlikleri gibi [değişken yol parçalarının](exploring.md#variability) varlığı, örneğin `/api/articles/author/{parameter_X}`. Saldırganlar nesne kimliklerini manipüle edebilir ve yetersiz istek doğrulaması durumunda nesnenin hassas verilerini okuyabilir veya değiştirebilir ([BOLA attacks](../admin-en/configuration-guides/protecting-against-bola.md)). | 6 |
-| Hassas Verilere Sahip Parametreler | API'lere doğrudan saldırmak yerine, saldırganlar [hassas verileri](overview.md#sensitive-data-detection) çalabilir ve kaynaklarınıza sorunsuz bir şekilde erişmek için kullanabilir. | 8 |
-| Sorgu ve Gövde Parametreleri Sayısı | Çok sayıda parametre, saldırı yönlerinin sayısını artırır. | 6 |
-| XML / JSON Nesnelerini Kabul Eder | İsteklerde gönderilen XML veya JSON nesneleri, saldırganlar tarafından sunucuya kötü amaçlı XML harici varlıkları ve enjeksiyonları aktarmak için kullanılabilir. | 6 |
-| Sunucuya Dosya Yüklemeye İzin Verir | Uç noktalar, kötü amaçlı kod içeren dosyaların sunucuya yüklendiği [Remote Code Execution (RCE)](../attacks-vulns-list.md#remote-code-execution-rce) saldırıları tarafından sıklıkla hedef alınır. Bu uç noktaları güvence altına almak için, [OWASP Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html) tarafından önerildiği gibi, yüklenen dosya uzantıları ve içerikleri doğru şekilde doğrulanmalıdır. | 6 |
+| Aktif güvenlik açıkları | [Aktif güvenlik açıkları](../about-wallarm/detecting-vulnerabilities.md), yetkisiz veri erişimi veya bozulmasına neden olabilir. | 9 |
+| Potansiyel olarak BOLA'ya karşı savunmasız | [Değişken yol parçalarının](exploring.md#variability) varlığı, ör. kullanıcı kimlikleri, `/api/articles/author/{parameter_X}` gibi. Saldırganlar, nesne kimliklerini manipüle ederek ve yetersiz istek kimlik doğrulaması durumunda, nesnenin hassas verilerini okuyabilir veya değiştirebilirler ([BOLA saldırıları](../admin-en/configuration-guides/protecting-against-bola.md)). | 6 |
+| Hassas veriler içeren parametreler | Saldırganlar, API'lere doğrudan saldırmak yerine [hassas verileri](overview.md#sensitive-data-detection) çalabilir ve bunları kullanarak kaynaklarınıza kolayca ulaşabilir. | 8 |
+| Sorgu ve gövde parametrelerinin sayısı | Çok sayıda parametre, saldırı yönlerinin sayısını artırır. | 6 |
+| XML / JSON nesnelerini kabul eder | İsteklerde iletilen XML veya JSON nesneleri, saldırganlar tarafından kötü amaçlı XML harici varlıklarını ve enjeksiyonları sunucuya aktarmak için kullanılabilir. | 6 |
+| Sunucuya dosya yüklemeye izin verir | Uç noktalar sıklıkla [Remote Code Execution (RCE)](../attacks-vulns-list.md#remote-code-execution-rce) saldırılarının hedefidir; bu saldırılarda kötü amaçlı kod içeren dosyalar sunucuya yüklenir. Bu uç noktaları güvence altına almak için, yüklenen dosyaların uzantıları ve içerikleri [OWASP Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html) tarafından önerildiği şekilde doğru şekilde doğrulanmalıdır. | 6 |
 
-Risk skoru tahminini, faktörlerin önemine ilişkin anlayışınıza göre uyarlamak için risk skoru hesaplamasında her bir faktörün ağırlığını ve hesaplama yöntemini [konfigüre edebilirsiniz](#customizing-risk-score-calculation).
+Faktörlerin önemine ilişkin anlayışınıza göre risk puanı tahminini uyarlamak için, risk puanı hesaplamasında her bir faktörün ağırlığını ve hesaplama yöntemini [yapılandırabilirsiniz](#customizing-risk-score-calculation).
 
-## Risk Skoru Düzeyleri
+## Risk puanı düzeyleri
 
-Risk skoru `1` (en düşük) ile `10` (en yüksek) arasında olabilir:
+Risk puanı `1` (en düşük) ile `10` (en yüksek) arasında olabilir:
 
-| Value | Risk level | Color |
+| Değer | Risk düzeyi | Renk |
 | --------- | ----------- | --------- |
-| 1 to 3 | Düşük | Gray |
-| 4 to 7 | Orta | Orange |
-| 8 to 10 | Yüksek | Red |
+| 1 ila 3 | Düşük | Gri |
+| 4 ila 7 | Orta | Turuncu |
+| 8 ila 10 | Yüksek | Kırmızı |
 
-* `1`, bu uç nokta için hiç risk faktörü olmadığı anlamına gelir.
-* Kullanılmayan uç noktalar için risk skoru görüntülenmez (`N/A`).
-* **Risk** sütununda risk skoruna göre sıralayın.
-* **Risk score** filtresini kullanarak `High`, `Medium` veya `Low` filtreleyin.
+* `1`, bu uç nokta için risk faktörü olmadığı anlamına gelir.
+* Kullanılmayan uç noktalar için risk puanı görüntülenmez (`N/A`).
+* Risk puanına göre **Risk** sütununda sıralayın.
+* `High`, `Medium` veya `Low` için **Risk score** filtresini kullanın.
 
-Uç noktanın risk skoruna neyin sebep olduğunu ve riski nasıl azaltacağınızı anlamak için uç nokta detaylarına gidin:
+Bir uç noktanın risk puanına neyin neden olduğunu ve riski nasıl azaltabileceğinizi anlamak için uç nokta ayrıntılarına gidin:
 
-![API Discovery - Risk score](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
+![API Discovery - Risk puanı](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 
-Ayrıca, **Dashboards** → **API Discovery** bölümünde [US](https://us1.my.wallarm.com/dashboard-api-discovery) veya [EU](https://my.wallarm.com/dashboard-api-discovery) Cloud'da API'lerin risk skoru düzeylerine göre özet bilgileri de alabilirsiniz.
+Ayrıca API'lerin risk puanı düzeylerine göre özetini [US](https://us1.my.wallarm.com/dashboard-api-discovery) veya [EU](https://my.wallarm.com/dashboard-api-discovery) Cloud içinde **Dashboards** → **API Discovery** bölümünde alabilirsiniz.
 
-## Risk Skoru Hesaplamasını Özelleştirme
+## Risk puanı hesaplamasını özelleştirme
 
-Risk skoru hesaplamasında her bir faktörün ağırlığını ve hesaplama yöntemini yapılandırabilirsiniz.
+Risk puanı hesaplamasında her bir faktörün ağırlığını ve hesaplama yöntemini yapılandırabilirsiniz.
 
-Risk skorunun hesaplanış şeklini değiştirmek için: 
+Risk puanının nasıl hesaplandığını değiştirmek için: 
 
-1. **API Discovery** bölümünde **Configure API Discovery** butonuna tıklayın.
-2. **Risk scoring** sekmesine geçin.
-3. Hesaplama yöntemini seçin: en yüksek veya ortalama ağırlık.
-4. Gerekirse, risk skorunu etkilemesini istemediğiniz faktörleri devre dışı bırakın.
-5. Kalanlar için ağırlıkları ayarlayın.
+1. **API Discovery** bölümünde **Configure API Discovery** düğmesine tıklayın.
+1. **Risk scoring** sekmesine geçin.
+1. Hesaplama yöntemini seçin: highest veya average weight.
+1. Gerekirse, risk puanını etkilemesini istemediğiniz faktörleri devre dışı bırakın.
+1. Kalanlar için ağırlıkları ayarlayın.
 
-    ![API Discovery - Risk score setup](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score-setup.png)
+    ![API Discovery - Risk puanı ayarı](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score-setup.png)
 
-6. Değişiklikleri kaydedin. Wallarm, yeni ayarlara göre uç noktalarınızın risk skorunu birkaç dakika içinde yeniden hesaplayacaktır.
+1. Değişiklikleri kaydedin. Wallarm, birkaç dakika içinde yeni ayarlara uygun olarak uç noktalarınız için risk puanını yeniden hesaplayacaktır.

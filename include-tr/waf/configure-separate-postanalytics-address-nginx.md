@@ -1,4 +1,4 @@
-Add postanalytics sunucu adreslerini `/etc/nginx/conf.d/wallarm.conf` dosyasına ekleyin:
+`/etc/nginx/conf.d/wallarm.conf` dosyasına postanalytics sunucu adreslerini ekleyin:
 
 ```bash
 upstream wallarm_tarantool {
@@ -8,11 +8,11 @@ upstream wallarm_tarantool {
     keepalive 2;
     }
 
-    # omitted
+    # atlandı
 
 wallarm_tarantool_upstream wallarm_tarantool;
 ```
 
-* Aşırı bağlantı oluşturulmasını önlemek için upstream Tarantool sunucularının her biri için `max_conns` değeri belirtilmelidir.
-* `keepalive` değeri, Tarantool sunucularının sayısından daha düşük olmamalıdır.
-* Varsayılan olarak yorum halindeki `# wallarm_tarantool_upstream wallarm_tarantool;` dizesindeki `#` karakteri kaldırılmalıdır.
+- `max_conns` değeri, aşırı bağlantı oluşturulmasını önlemek için her bir upstream Tarantool sunucusu için belirtilmelidir.
+- `keepalive` değeri, Tarantool sunucularının sayısından düşük olmamalıdır.
+- Varsayılan olarak `# wallarm_tarantool_upstream wallarm_tarantool;` satırı yorumlanmış durumdadır — lütfen `#` karakterini silin.

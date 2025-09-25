@@ -2,24 +2,24 @@
 
 [img-general-settings]:         ../../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png
 
-# Genel Ayarlar
+# General Settings
 
-**Ayarlar** bölümünün **Genel** sekmesinde şunları yapabilirsiniz:
+**Settings** bölümünün **General** sekmesinde şunları yapabilirsiniz:
 
-* Wallarm filtreleme modunu değiştirme
-* Otomatik çıkış zaman aşım sürelerini yönetme
+* Wallarm filtreleme modunu değiştirmek
+* Otomatik oturum kapatma zaman aşımlarını yönetmek
 
-![Genel sekme](../../images/user-guides/settings/general-tab.png)
+![General sekmesi](../../images/user-guides/settings/general-tab.png)
 
 ## Filtreleme modu
 
-Her Wallarm düğümü, HTTP istek düzeyinde saldırıları tespit edip engelleyebilir. Bu [filtreleme modu][link-config-parameters], yerel ya da genel ayarlara göre belirlenir:
+Her Wallarm düğümü HTTP isteği düzeyinde saldırıları tespit edip engelleyebilir. Bu [filtreleme modu][link-config-parameters] yerel veya genel ayarlarla tanımlanır:
 
-* **Yerel ayarlar (varsayılan)**: Bu mod, bir filtre düğümü yapılandırma dosyasındaki ayarları kullanır.
-* **Güvenli engelleme**: [gri listelenmiş IP'lerden](../ip-lists/overview.md) kaynaklanan tüm kötü amaçlı istekler engellenir.
-* **İzleme**: Tüm istekler işlenir, ancak saldırı tespit edilse bile hiçbir istek engellenmez.
-* **Engelleme**: Saldırı tespit edilen tüm istekler engellenir.
+* **Local settings (default)**: bu mod, ayarları filtre düğümü yapılandırma dosyasından kullanır.
+* **Safe blocking**: [gri listeye alınmış IP'lerden](../ip-lists/overview.md) gelen tüm kötü amaçlı istekler engellenir.
+* **Monitoring**: tüm istekler işlenir, ancak bir saldırı tespit edilse bile hiçbiri engellenmez.
+* **Blocking**: bir saldırının tespit edildiği tüm istekler engellenir.
 
-## Çıkış yönetimi
+## Oturum kapatma yönetimi
 
-[Yöneticiler](users.md#user-roles), şirket hesabı için çıkış zaman aşım sürelerini ayarlayabilir. Ayarlar, tüm hesap kullanıcılarının üzerinde etkili olur. Boşta kalma ve mutlak zaman aşımı ayarlanabilir.
+[Yöneticiler](users.md#user-roles) şirket hesabı için oturum kapatma zaman aşımlarını yapılandırabilir. Ayarlar, hesapta bulunan tüm kullanıcıları etkiler. Boşta kalma ve mutlak zaman aşımları ayarlanabilir.

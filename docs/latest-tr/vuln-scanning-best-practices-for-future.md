@@ -1,12 +1,14 @@
-Vulnerability Detection and Mitigation Best Practices
+Güvenlik Açıklarının Tespiti ve Mitigasyonu için En İyi Uygulamalar
 
-## Threat Replay Testing için En İyi Uygulamaları Uygulayın <a href="../subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
+## Threat Replay Testing için en iyi uygulamaları izleyin <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
 
-Wallarm'ın [güvenlik açıklarını tespit etme](../about-wallarm/detecting-vulnerabilities.md) yöntemlerinden biri **Threat Replay Testing**'dir.
+Wallarm'ın [güvenlik açıklarını tespit etmek](../about-wallarm/detecting-vulnerabilities.md) için kullandığı yöntemlerden biri **Threat Replay Testing**'dir.
 
-**Threat Replay Testing**, saldırganları sızma test uzmanlarına dönüştürerek, uygulamalarınız/APİ'lerinizdeki güvenlik açıklarını araştırırken onların aktivitelerinden potansiyel güvenlik sorunlarını ortaya çıkarmanızı sağlar. Bu modül, trafik içindeki gerçek saldırı verilerini kullanarak uygulama uç noktalarını test eder ve olası güvenlik açıklarını bulur. Varsayılan olarak bu yöntem devre dışıdır.
+**Threat Replay Testing**, saldırganları penetrasyon test uzmanlarına dönüştürmenize ve uygulamalarınızdaki/API'lerinizdeki güvenlik açıklarını yoklarken yaptıkları faaliyetlerden olası güvenlik sorunlarını keşfetmenize olanak tanır. Bu modül, trafikten alınan gerçek saldırı verilerini kullanarak uygulama uç noktalarını yoklayıp olası güvenlik açıklarını bulur. Varsayılan olarak bu yöntem devre dışıdır.
 
-[**Threat Replay Testing** modülü yapılandırması için en iyi uygulamaları öğrenin →](../vulnerability-detection/threat-replay-testing/setup.md)
+[**Threat Replay Testing** modülünün yapılandırmasına yönelik en iyi uygulamaları öğrenin →](../vulnerability-detection/threat-replay-testing/setup.md)
+
+
 
 API Envanteri
 

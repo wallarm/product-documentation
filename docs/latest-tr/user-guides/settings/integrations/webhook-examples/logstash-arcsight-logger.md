@@ -1,84 +1,83 @@
-```markdown
-# Micro Focus ArcSight Logger Logstash üzerinden
+# Logstash aracılığıyla Micro Focus ArcSight Logger
 
-Bu talimatlar, Wallarm ile Logstash veri toplayıcısının ArcSight Logger sistemine olay iletmek üzere örnek entegrasyonunu size sunmaktadır.
+Bu talimatlar, olayları ArcSight Logger sistemine iletmek için Wallarm'ın Logstash veri toplayıcıyla örnek entegrasyonunu sunar.
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-scheme.png)
+![Webhook akışı](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-scheme.png)
 
-!!! info "ArcSight ESM Enterprise sürümü ile entegrasyon"
-    Logstash'den ArcSight ESM Enterprise sürümüne günlük iletimini yapılandırmak için, ArcSight tarafında Syslog Connector'ün yapılandırılması ve ardından Logstash'den bu connector portuna günlüklerin iletilmesi önerilir. Bağlayıcıların daha ayrıntılı tanımını almak için lütfen [official ArcSight SmartConnector documentation](https://community.microfocus.com/t5/ArcSight-Connectors/ct-p/ConnectorsDocs) adresinden **SmartConnector User Guide**'ı indirin.
+!!! info "ArcSight ESM'in Enterprise sürümüyle entegrasyon"
+    Logstash'ten ArcSight ESM'in Enterprise sürümüne günlük iletimini yapılandırmak için, ArcSight tarafında Syslog Connector yapılandırılması ve ardından günlüklerin Logstash'ten konektör portuna iletilmesi önerilir. Konektörlerin daha ayrıntılı açıklaması için, lütfen [resmi ArcSight SmartConnector dokümantasyonundan](https://community.microfocus.com/t5/ArcSight-Connectors/ct-p/ConnectorsDocs) **SmartConnector User Guide** belgesini indirin.
 
 ## Kullanılan kaynaklar
 
-* CentOS 7.8 üzerinde kurulu WEB URL `https://192.168.1.73:443` ile [ArcSight Logger 7.1](#arcsight-logger-configuration)
-* Debian 11.x (bullseye) üzerinde kurulu ve `https://logstash.example.domain.com` adresinde erişilebilir [Logstash 7.7.0](#logstash-configuration)
-* [EU cloud](https://my.wallarm.com)'daki Wallarm Console'a yönetici erişimi ile [Logstash entegrasyonunu yapılandırmak](#configuration-of-logstash-integration)
+* CentOS 7.8 üzerine kurulu, WEB URL'si `https://192.168.1.73:443` olan [ArcSight Logger 7.1](#arcsight-logger-configuration)
+* Debian 11.x (bullseye) üzerine kurulu ve `https://logstash.example.domain.com` adresinden erişilebilir [Logstash 7.7.0](#logstash-configuration)
+* [EU cloud](https://my.wallarm.com) içindeki Wallarm Console'a [Logstash entegrasyonunu yapılandırmak](#configuration-of-logstash-integration) için yönetici erişimi
 
 --8<-- "../include/cloud-ip-by-request.md"
 
-ArcSight Logger ve Logstash servislerine ait bağlantılar örnek olarak alındığından, bu bağlantılar yanıt vermemektedir.
+ArcSight Logger ve Logstash servislerine ait bağlantılar örnek amaçlı verildiğinden yanıt vermezler.
 
 ### ArcSight Logger yapılandırması
 
-ArcSight Logger, `Wallarm Logstash logs` adlı günlük alıcısını aşağıdaki şekilde yapılandırmıştır:
+ArcSight Logger'da `Wallarm Logstash logs` adlı günlük alıcısı aşağıdaki şekilde yapılandırılmıştır:
 
-* Günlükler UDP üzerinden alınmaktadır (`Type = UDP Receiver`)
-* Dinleme portu `514`
-* Olaylar syslog ayrıştırıcısı ile ayrıştırılmaktadır
+* Günlükler UDP üzerinden alınır (`Type = UDP Receiver`)
+* Dinleme portu `514`'tür
+* Olaylar syslog ayrıştırıcısıyla ayrıştırılır
 * Diğer varsayılan ayarlar
 
-![Configuration of receiver in ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-setup.png)
+![ArcSight Logger'da alıcının yapılandırılması](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-setup.png)
 
-Alıcının yapılandırması hakkında daha ayrıntılı bilgi için, lütfen [official ArcSight Logger documentation](https://community.microfocus.com/t5/Logger-Documentation/ct-p/LoggerDoc) adresinden uygun sürüme ait **Logger Installation Guide**'ı indirin.
+Alıcı yapılandırmasına ilişkin daha ayrıntılı açıklama için, uygun sürümün **Logger Installation Guide** belgesini [resmi ArcSight Logger dokümantasyonundan](https://community.microfocus.com/t5/Logger-Documentation/ct-p/LoggerDoc) indirin.
 
 ### Logstash yapılandırması
 
-Wallarm, günlükleri webhooks aracılığıyla Logstash ara veri toplayıcısına gönderdiğinden, Logstash yapılandırması aşağıdaki gereksinimleri karşılamalıdır:
+Wallarm günlükleri webhooks aracılığıyla Logstash ara veri toplayıcısına gönderdiğinden, Logstash yapılandırması aşağıdaki gereksinimleri karşılamalıdır:
 
 * POST veya PUT isteklerini kabul etmelidir
 * HTTPS isteklerini kabul etmelidir
-* Genel bir URL'ye sahip olmalıdır
-* Günlükleri ArcSight Logger'a iletmelidir; bu örnekte günlüklerin iletimi için `syslog` eklentisi kullanılmaktadır
+* Genel erişilebilir bir URL'ye sahip olmalıdır
+* Günlükleri ArcSight Logger'a iletmelidir; bu örnekte iletim için `syslog` eklentisi kullanılır
 
-Logstash, `logstash-sample.conf` dosyasında aşağıdaki şekilde yapılandırılmıştır:
+Logstash, `logstash-sample.conf` dosyasında yapılandırılmıştır:
 
-* Gelen webhook işleme `input` bölümünde yapılandırılmıştır:
-    * Trafik port 5044'e gönderilir
-    * Logstash, yalnızca HTTPS bağlantılarını kabul edecek şekilde yapılandırılmıştır
-    * Genel olarak güvenilen CA tarafından imzalanmış Logstash TLS sertifikası `/etc/server.crt` dosyasında bulunmaktadır
-    * TLS sertifikası için özel anahtar `/etc/server.key` dosyasında bulunmaktadır
+* Gelen webhook işlemesi `input` bölümünde yapılandırılmıştır:
+    * Trafik 5044 portuna yönlendirilir
+    * Logstash yalnızca HTTPS bağlantılarını kabul edecek şekilde yapılandırılmıştır
+    * Genel olarak güvenilen bir CA tarafından imzalanmış Logstash TLS sertifikası `/etc/server.crt` dosyasında bulunur
+    * TLS sertifikasına ait özel anahtar `/etc/server.key` dosyasında bulunur
 * Günlüklerin ArcSight Logger'a iletilmesi ve günlük çıktısı `output` bölümünde yapılandırılmıştır:
-    * Tüm olay günlükleri, Logstash'ten `https://192.168.1.73:514` IP adresindeki ArcSight Logger'a iletilir
-    * Günlükler, [Syslog](https://en.wikipedia.org/wiki/Syslog) standardına uygun olarak JSON formatında Logstash'ten ArcSight Logger'a iletilir
-    * ArcSight Logger ile bağlantı UDP üzerinden kurulmaktadır
-    * Logstash günlükleri ayrıca komut satırında (15. kod satırı) yazdırılmaktadır. Bu ayar, olayların Logstash aracılığıyla kaydedildiğini doğrulamak amacıyla kullanılmaktadır
+    * Tüm olay günlükleri Logstash'ten ArcSight Logger'a `https://192.168.1.73:514` IP adresine iletilir
+    * Günlükler Logstash'ten ArcSight Logger'a [Syslog](https://en.wikipedia.org/wiki/Syslog) standardına göre JSON formatında iletilir
+    * ArcSight Logger ile bağlantı UDP üzerinden kurulur
+    * Logstash günlükleri ayrıca komut satırına yazdırılır (kodun 15. satırı). Bu ayar, olayların Logstash üzerinden günlüğe kaydedildiğini doğrulamak için kullanılır
 
 ```bash linenums="1"
 input {
-  http { # input plugin for HTTP and HTTPS traffic
-    port => 5044 # port for incoming requests
-    ssl => true # HTTPS traffic processing
-    ssl_certificate => "/etc/server.crt" # Logstash TLS certificate
-    ssl_key => "/etc/server.key" # private key for TLS certificate
+  http { # HTTP ve HTTPS trafiği için input eklentisi
+    port => 5044 # gelen istekler için port
+    ssl => true # HTTPS trafiğinin işlenmesi
+    ssl_certificate => "/etc/server.crt" # Logstash TLS sertifikası
+    ssl_key => "/etc/server.key" # TLS sertifikası için özel anahtar
   }
 }
 output {
-  syslog { # output plugin to forward logs from Logstash via Syslog
-    host => "192.168.1.73" # IP address to forward logs to
-    port => "514" # port to forward logs to
-    protocol => "udp" # connection protocol
-    codec => json # format of forwarded logs
+  syslog { # Logstash'ten Syslog üzerinden günlük iletimi için output eklentisi
+    host => "192.168.1.73" # günlüklerin iletileceği IP adresi
+    port => "514" # günlüklerin iletileceği port
+    protocol => "udp" # bağlantı protokolü
+    codec => json # iletilen günlüklerin biçimi
   }
-  stdout {} # output plugin to print Logstash logs on the command line
+  stdout {} # Logstash günlüklerini komut satırına yazdırmak için output eklentisi
 }
 ```
 
-Yapılandırma dosyalarının daha ayrıntılı açıklaması [official Logstash documentation](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html) adresinde bulunmaktadır.
+Yapılandırma dosyalarının daha ayrıntılı açıklaması [resmi Logstash dokümantasyonunda](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html) mevcuttur.
 
-!!! info "Logstash yapılandırmasını test etme"
-    Logstash günlüklerinin oluşturulduğunu ve ArcSight Logger'a iletildiğini doğrulamak için, Logstash'e POST isteği gönderilebilir.
+!!! info "Logstash yapılandırmasının test edilmesi"
+    Logstash günlüklerinin oluşturulduğunu ve ArcSight Logger'a iletildiğini kontrol etmek için Logstash'e bir POST isteği gönderilebilir.
 
     **İstek örneği:**
     ```curl
@@ -86,28 +85,27 @@ Yapılandırma dosyalarının daha ayrıntılı açıklaması [official Logstash
     ```
 
     **Logstash günlükleri:**
-    ![Logstash logs](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-curl-log.png)
+    ![Logstash günlükleri](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-curl-log.png)
 
-    **ArcSight Logger'daki Olay:**
-    ![ArcSight Logger event](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-curl-log.png)
+    **ArcSight Logger'daki olay:**
+    ![ArcSight Logger olayı](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-curl-log.png)
 
-### Logstash entegrasyonu yapılandırması
+### Logstash entegrasyonunun yapılandırılması
 
 --8<-- "../include/integrations/webhook-examples/create-logstash-webhook.md"
 
-![Webhook integration with Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+![Logstash ile Webhook entegrasyonu](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
-[Logstash entegrasyonu yapılandırması hakkında daha fazla detay](../logstash.md)
+[Logstash entegrasyonunun yapılandırılması hakkında daha fazla bilgi](../logstash.md)
 
 ## Örnek test
 
 --8<-- "../include/integrations/webhook-examples/send-test-webhook.md"
 
-Logstash, olayı aşağıdaki şekilde kaydedecektir:
+Logstash olayı aşağıdaki şekilde günlüğe kaydedecektir:
 
-![Log about new user in ArcSight Logger from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-user-log.png)
+![Logstash'ten ArcSight Logger'a yeni kullanıcıya ilişkin günlük](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-user-log.png)
 
-ArcSight Logger olaylarında aşağıdaki giriş görüntülenecektir:
+ArcSight Logger olaylarında aşağıdaki kayıt görüntülenecektir:
 
-![New user card in ArcSight Logger from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-user.png)
-```
+![Logstash'ten ArcSight Logger'a yeni kullanıcı kartı](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-user.png)

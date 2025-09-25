@@ -1,48 +1,48 @@
 # Telegram
 
-[Telegram](https://telegram.org/) bulut tabanlı anlık mesajlaşma platformu ve sosyal medya uygulamasıdır. Wallarm'u, Telegram'a planlı raporlar ve anlık bildirimler gönderecek şekilde yapılandırabilirsiniz.
+[Telegram](https://telegram.org/), bulut tabanlı bir anlık mesajlaşma platformu ve sosyal medya uygulamasıdır. Wallarm’ı zamanlanmış raporları ve anlık bildirimleri Telegram’a gönderecek şekilde ayarlayabilirsiniz.
 
-Planlı raporlar günlük, haftalık veya aylık olarak gönderilebilir. Raporlar, seçilen dönem boyunca sisteminizde tespit edilen güvenlik açıkları, saldırılar ve olaylar hakkında ayrıntılı bilgiler içerir. Bildirimler ise tetiklenen olayların kısa detaylarını sunar.
+Zamanlanmış raporlar günlük, haftalık veya aylık olarak gönderilebilir. Raporlar, seçilen dönem boyunca sisteminizde tespit edilen güvenlik açıkları, saldırılar ve olaylar hakkında ayrıntılı bilgiler içerir. Bildirimler, tetiklenen olaylara ilişkin kısa ayrıntılar içerir.
 
-## Entegrasyonu yapılandırma
+## Entegrasyonu ayarlama
 
-1. **Entegrasyonlar** bölümünü açın.
-1. **Telegram** bloğuna tıklayın veya **Entegrasyon ekle** düğmesine basıp **Telegram** seçeneğini seçin.
-1. Wallarm bildirimlerini alacak Telegram grubuna [@WallarmUSBot](https://t.me/WallarmUSBot) (Wallarm US Cloud kullanıyorsanız) veya [@WallarmBot](https://t.me/WallarmBot) (Wallarm EU Cloud kullanıyorsanız) ekleyin ve kimlik doğrulama bağlantısını takip edin.
-1. Wallarm UI'ya yönlendirildikten sonra botu kimlik doğrulayın.
+1. **Integrations** bölümünü açın.
+1. **Telegram** bloğuna tıklayın veya **Add integration** düğmesine tıklayıp **Telegram**’ı seçin.
+1. Wallarm bildirimlerini alacak Telegram grubuna [@WallarmUSBot](https://t.me/WallarmUSBot) (Wallarm US Cloud kullanıyorsanız) veya [@WallarmBot](https://t.me/WallarmBot) (Wallarm EU Cloud kullanıyorsanız) ekleyin ve kimlik doğrulama bağlantısını izleyin.
+1. Wallarm UI’a yönlendirildikten sonra botu doğrulayın.
 1. Bir entegrasyon adı girin.
-1. Güvenlik raporlarının gönderilme sıklığını belirleyin. Sıklık seçilmezse raporlar gönderilmeyecektir.
-1. Bildirimleri tetiklemek için olay türlerini seçin.
+1. Güvenlik raporlarının gönderim sıklığını seçin. Sıklık seçilmezse raporlar gönderilmez.
+1. Bildirimleri tetikleyecek olay türlerini seçin.
 
     ![Telegram entegrasyonu](../../../images/user-guides/settings/integrations/add-telegram-integration.png)
 
-    Kullanılabilir olaylara ilişkin detaylar:
+    Kullanılabilir olaylarla ilgili ayrıntılar:
 
     --8<-- "../include/integrations/events-for-integrations.md"
 
-    Telegram entegrasyonu, ancak bu entegrasyonun önceden oluşturulmuş olması halinde test edilebilir.
+    Telegram ile entegrasyon, yalnızca bu entegrasyon zaten oluşturulmuşsa test edilebilir.
 
-1. **Entegrasyon ekle**'ye tıklayın.
-1. Oluşturulan entegrasyon kartını tekrar açın.
-1. Konfigürasyon doğruluğunu, Wallarm Cloud'un erişilebilirliğini ve bildirim formatını kontrol etmek için **Entegrasyonu test et** düğmesine tıklayın.
+1. **Add integration**’a tıklayın.
+1. Oluşturulan entegrasyon kartını yeniden açın.
+1. Yapılandırmanın doğruluğunu, Wallarm Cloud kullanılabilirliğini ve bildirim biçimini kontrol etmek için **Test integration**’a tıklayın.
 
-    Bu, `[Test message]` öneki ile test bildirimlerini gönderecektir:
+    Bu işlem, önek “[Test message]” ile test bildirimleri gönderecektir:
 
     ```
     [Test message] [Test partner] Ağ çevresi değişti
 
-    Bildirim tipi: new_scope_object_ips
+    Bildirim türü: new_scope_object_ips
 
     Ağ çevresinde yeni IP adresleri keşfedildi:
     8.8.8.8
 
     Müşteri: TestCompany
-    Cloud: EU
+    Bulut: EU
     ```
 
-[@WallarmUSBot](https://t.me/WallarmUSBot) veya [@WallarmBot](https://t.me/WallarmBot) ile sohbeti doğrudan başlatabilirsiniz. Bot raporlar ve bildirimler de gönderecektir.
+[@WallarmUSBot](https://t.me/WallarmUSBot) veya [@WallarmBot](https://t.me/WallarmBot) ile doğrudan sohbet de başlatabilirsiniz. Bot, raporları ve bildirimleri de gönderir.
 
-## Ek uyarıları yapılandırma
+## Ek uyarıları ayarlama
 
 --8<-- "../include/integrations/integrations-trigger-setup-limited.md"
 
@@ -50,6 +50,6 @@ Planlı raporlar günlük, haftalık veya aylık olarak gönderilebilir. Raporla
 
 --8<-- "../include/integrations/integrations-disable-delete.md"
 
-## Sistem kullanılamazlığı ve yanlış entegrasyon parametreleri
+## Sistem kullanılamıyorluğu ve hatalı entegrasyon parametreleri
 
 --8<-- "../include/integrations/integration-not-working.md"

@@ -1,32 +1,32 @@
-Main configuration files of NGINX and Wallarm filtering node are located in the directories:
+NGINX ve Wallarm filtreleme düğümünün ana yapılandırma dosyaları şu dizinlerde bulunur:
 
-* `/etc/nginx/conf.d/default.conf` with NGINX settings
-* `/etc/nginx/conf.d/wallarm.conf` with global filtering node settings
+* `/etc/nginx/conf.d/default.conf` — NGINX ayarları
+* `/etc/nginx/conf.d/wallarm.conf` — global filtreleme düğümü ayarları
 
-    Dosya, tüm alan adlarına uygulanan ayarlar için kullanılır. Farklı alan gruplarına farklı ayarlar uygulamak için, `default.conf` dosyasını kullanın veya her alan grubu için yeni yapılandırma dosyaları oluşturun (örneğin, `example.com.conf` ve `test.com.conf`). NGINX yapılandırma dosyaları hakkında daha detaylı bilgiyi [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html) adresinde bulabilirsiniz.
-* `/etc/nginx/conf.d/wallarm-status.conf` with Wallarm node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
-* `/etc/default/wallarm-tarantool` or `/etc/sysconfig/wallarm-tarantool` with the Tarantool database settings
+    Bu dosya, tüm etki alanlarına uygulanan ayarlar için kullanılır. Farklı etki alanı gruplarına farklı ayarlar uygulamak için `default.conf` dosyasını kullanın veya her etki alanı grubu için yeni yapılandırma dosyaları oluşturun (örneğin, `example.com.conf` ve `test.com.conf`). NGINX yapılandırma dosyaları hakkında daha ayrıntılı bilgi [resmi NGINX dokümantasyonunda](https://nginx.org/en/docs/beginners_guide.html) mevcuttur.
+* `/etc/nginx/conf.d/wallarm-status.conf` — Wallarm düğümünün izleme ayarları. Ayrıntılı açıklama şu [bağlantıda][wallarm-status-instr] mevcuttur
+* `/etc/default/wallarm-tarantool` veya `/etc/sysconfig/wallarm-tarantool` — Tarantool veritabanı ayarları
 
-#### Request filtration mode
+#### İstek filtreleme modu
 
-Varsayılan olarak, filtreleme düğümü `off` durumundadır ve gelen istekleri analiz etmez. İstek analizi etkinleştirmek için lütfen şu adımları izleyin:
+Varsayılan olarak, filtreleme düğümü `off` durumundadır ve gelen istekleri analiz etmez. İstek analizini etkinleştirmek için lütfen şu adımları izleyin:
 
 1. `/etc/nginx/conf.d/default.conf` dosyasını açın:
 
     ```bash
     sudo vim /etc/nginx/conf.d/default.conf
     ```
-2. `https`, `server` veya `location` bloğuna `wallarm_mode monitoring;` satırını ekleyin:
+2. `wallarm_mode monitoring;` satırını `https`, `server` veya `location` bloğuna ekleyin:
 
-??? note "Example of the file `/etc/nginx/conf.d/default.conf`"
+??? note "Dosya `/etc/nginx/conf.d/default.conf` örneği"
 
     ```bash
     server {
-        # port for which requests are filtered
+        # isteklerin filtrelendiği bağlantı noktası
         listen       80;
-        # domain for which requests are filtered
+        # isteklerin filtrelendiği alan adı
         server_name  localhost;
-        # Filtering node mode
+        # Filtreleme düğümü modu
         wallarm_mode monitoring;
 
         location / {
@@ -41,16 +41,16 @@ Varsayılan olarak, filtreleme düğümü `off` durumundadır ve gelen istekleri
     }
     ```
 
-`monitoring` modunda çalışırken, filtreleme düğümü isteklerde saldırı belirtileri arar ancak tespit edilen saldırıları engellemez. Filtreleme düğümünü devreye aldıktan sonraki birkaç gün boyunca trafiğin `monitoring` modunda akışını sürdürmenizi ve ancak sonrasında `block` modunu etkinleştirmenizi öneririz. [Learn recommendations on the filtering node operation mode setup →][waf-mode-recommendations]
+`monitoring` modunda çalışırken, filtreleme düğümü isteklerde saldırı belirtilerini arar ancak tespit edilen saldırıları engellemez. Filtreleme düğümünü devreye aldıktan sonra trafiğin birkaç gün boyunca `monitoring` modunda düğüm üzerinden akmasını ve ancak bundan sonra `block` modunu etkinleştirmenizi öneririz. [Filtreleme düğümünün çalışma modu yapılandırmasına ilişkin önerileri öğrenin →][waf-mode-recommendations]
 
-#### Memory
+#### Bellek
 
-!!! info "Postanalytics module on the separate server"
-    Eğer postanalytics modülünü ayrı bir sunucuya kurduysanız, modül zaten yapılandırıldığı için bu adımı atlayın.
+!!! info "Ayrı sunucuda Postanalytics modülü"
+    Postanalytics modülünü ayrı bir sunucuya kurduysanız, modül zaten yapılandırıldığı için bu adımı atlayın.
 
-Wallarm düğümü, bellek içi depolama olarak Tarantool'u kullanır. Gerekli kaynak miktarı hakkında daha fazla bilgiyi [here][memory-instr] adresinde öğrenebilirsiniz. Test ortamları için üretim ortamlarına kıyasla daha düşük kaynak tahsis edebileceğinizi unutmayın.
+Wallarm düğümü, bellek içi depolama Tarantool'u kullanır. Gerekli kaynak miktarı hakkında daha fazla bilgiyi [buradan][memory-instr] edinebilirsiniz. Test ortamları için üretim ortamlarına kıyasla daha az kaynak ayırabileceğinizi unutmayın.
 
-Tarantool için bellek tahsis etmek:
+Tarantool için bellek ayırmak üzere:
 
 1. Tarantool yapılandırma dosyasını düzenleme modunda açın:
 
@@ -62,30 +62,30 @@ Tarantool için bellek tahsis etmek:
         ``` bash
         sudo vim /etc/default/wallarm-tarantool
         ```
-    === "CentOS or Amazon Linux 2.0.2021x and lower"
+    === "CentOS veya Amazon Linux 2.0.2021x ve altı"
         ``` bash
         sudo vim /etc/sysconfig/wallarm-tarantool
         ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    === "AlmaLinux, Rocky Linux veya Oracle Linux 8.x"
         ``` bash
         sudo vim /etc/sysconfig/wallarm-tarantool
         ```
-2. `SLAB_ALLOC_ARENA` yönergesinde GB cinsinden bellek boyutunu belirtin. Değer bir tam sayı veya ondalıklı sayı olabilir (ondalık ayırıcı olarak nokta `.` kullanılır).
+2. Bellek boyutunu GB cinsinden `SLAB_ALLOC_ARENA` yönergesinde belirtin. Değer bir tamsayı veya kayan nokta olabilir (ondalık ayırıcı olarak nokta `.` kullanılır).
 
-    Tarantool için bellek tahsisi ile ilgili detaylı öneriler bu [instructions][memory-instr] bağlantısında açıklanmıştır.
+    Tarantool için bellek ayırmaya ilişkin ayrıntılı öneriler bu [talimatlarda][memory-instr] açıklanmıştır. 
 3. Değişiklikleri uygulamak için Tarantool'u yeniden başlatın:
 
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```
 
-#### Address of the separate postanalytics server
+#### Ayrı postanalytics sunucusunun adresi
 
-!!! info "NGINX-Wallarm and postanalytics on the same server"
-    Eğer NGINX-Wallarm ve postanalytics modülleri aynı sunucuda kuruluysa, bu adımı atlayın.
+!!! info "NGINX-Wallarm ve postanalytics aynı sunucuda"
+    NGINX-Wallarm ve postanalytics modülleri aynı sunucuya kuruluysa, bu adımı atlayın.
 
 --8<-- "../include/waf/configure-separate-postanalytics-address-nginx.md"
 
-#### Other configurations
+#### Diğer yapılandırmalar
 
-Diğer NGINX ve Wallarm düğümü yapılandırmalarını güncellemek için NGINX dokümantasyonunu ve [available Wallarm node directives][waf-directives-instr] listesini kullanın.
+Diğer NGINX ve Wallarm düğümü yapılandırmalarını güncellemek için NGINX dokümantasyonunu ve [kullanılabilir Wallarm düğümü yönergeleri][waf-directives-instr] listesini kullanın.

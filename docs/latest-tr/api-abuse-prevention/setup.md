@@ -1,67 +1,68 @@
-# API Abuse Prevention Setup <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Prevention Kurulumu <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Bu makale, kötü niyetli botları tespit edip etkisiz hale getirmek ve meşru aktivitelerin engellenmesini önlemek amacıyla [API Abuse Prevention](../api-abuse-prevention/overview.md) modülünün nasıl etkinleştirileceğini ve yapılandırılacağını açıklamaktadır.
+Bu makale, kötü niyetli botları tespit edip azaltmak ve meşru faaliyetlerin engellenmesini önlemek için [API Abuse Prevention](../api-abuse-prevention/overview.md) modülünün nasıl etkinleştirileceğini ve yapılandırılacağını açıklar.
 
 ## Etkinleştirme
 
-API Abuse Prevention modülü, **Advanced API Security** [subscription plan](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) kapsamında sunulmaktadır. Varsayılan olarak devre dışıdır.
+API Abuse Prevention modülü, **Advanced API Security** [abonelik planında](../about-wallarm/subscription-plans.md#core-subscription-plans) mevcuttur. Varsayılan olarak devre dışıdır.
 
 API Abuse Prevention'ı etkinleştirmek için:
 
-1. Wallarm node'unuzun 4.2 veya daha sonraki bir sürümde olduğundan emin olun.
-2. Wallarm Console → **API Abuse Prevention** bölümünde, en az bir [API Abuse profile](#creating-profiles) oluşturun veya etkinleştirin.
+1. Wallarm node'unuzun 4.2 veya daha yeni olduğundan emin olun.
+1. Wallarm Console → **API Abuse Prevention** içinde, en az bir [API Abuse profili](#creating-profiles) oluşturun veya etkinleştirin.
 
-## Profillerin Oluşturulması
+<a name="creating-profiles"></a>
+## Profiller oluşturma
 
-API abuse profilleri, Wallarm'ın **API Abuse Prevention** modülünün kötü niyetli botları tespit etme ve etkisiz hale getirme yöntemini yapılandırmak için kullanılır. Farklı uygulamalar için farklı profiller oluşturabilirsiniz. Her uygulamanın yalnızca bir ilişkili profili olabilir.
+API kötüye kullanım profilleri, Wallarm'ın **API Abuse Prevention** özelliğinin kötü niyetli botları nasıl tespit edip etkisizleştireceğini yapılandırmak için kullanılır. Farklı uygulamalar için farklı profiller oluşturabilirsiniz. Her uygulamanın yalnızca bir ilişkilendirilmiş profili olabilir.
 
-Bir profil, hangi bot türlerinden korunulacağını, her bot türü için hangi hassasiyetin uygulanacağını ve bu botların faaliyetlerine verilecek tepkinin ne olacağını tanımlar.
+Bir profil, hangi bot türlerine karşı korunulacağını, her bot türünün hangi duyarlılıkla tespit edileceğini ve bu botun etkinliklerine verilecek tepkiyi tanımlar.
 
-Bir API abuse profili oluşturmak için:
+Bir API kötüye kullanım profili oluşturmak için:
 
 1. **API Abuse Prevention** bölümünde, **Profiles** sekmesine geçin.
-2. **Create profile** seçeneğine tıklayın.
-3. Korunacak [automated threats](../api-abuse-prevention/overview.md#automated-threats-blocked-by-api-abuse-prevention) öğesini seçin, **Reaction** ayarını belirleyin:
+1. **Create profile**'ı tıklayın.
+1. Korunmak istediğiniz [otomatik tehditleri](../api-abuse-prevention/overview.md#automated-threats-blocked-by-api-abuse-prevention) seçin, **Reaction** değerini belirleyin:
     
-    * **Disabled** - Wallarm bu bot türünden korumayacaktır. 
-    * **Register attack** - Tespit edilen kötü niyetli bot aktiviteleri Wallarm Console'daki [**Attacks**](../user-guides/events/check-attack.md) bölümünde görüntülenecek, istekler engellenmeyecektir.
+    * **Disabled** - Wallarm bu bot türüne karşı koruma sağlamaz.
+    * **Register attack** - tespit edilen kötü niyetli bot etkinlikleri Wallarm Console'un [**Attacks**](../user-guides/events/check-attack.md) bölümünde görüntülenir, istekler engellenmez.
 
-        Bu tür olay ayrıntılarından, **Add source IP to denylist** düğmesiyle botu hızlıca engelleyebilirsiniz. IP, denylist'e süresiz eklenir; ancak **IP Lists** bölümünde bu IP'yi silebilir veya listede kalma süresini değiştirebilirsiniz.
+        Bu tür olay ayrıntılarından, **Add source IP to denylist** düğmesiyle botu hızlıca engelleyebilirsiniz. IP kalıcı olarak denylist'e eklenir, ancak **IP Lists** bölümünde silebilir veya listede kalma süresini değiştirebilirsiniz.
 
-    * **Denylist IP** veya **Graylist IP** - Botun IP'si, seçilen süre boyunca ilgili listeye eklenir ve istekler engellenir. Denylist ile graylist arasındaki farkı [buradan](../user-guides/ip-lists/overview.md) öğrenebilirsiniz.
+    * **Denylist IP** veya **Graylist IP** - botun IP'si seçilen süre için ilgili listeye eklenir ve istekler engellenir. Denylist ile graylist arasındaki farka dair daha fazlasını [burada](../user-guides/ip-lists/overview.md) öğrenin.
 
-4. Gerekirse her bot türü için tespit **Sensitivity** ayarını değiştirin:
+1. Gerekirse her bot türü için tespit **Sensitivity** ayarını değiştirin:
     
-    * **Paranoid** - Yüksek hassasiyet, daha AZ botun uygulamalarınıza erişmesine neden olur ancak yanlış pozitifler yüzünden bazı meşru istekler engellenebilir.
-    * **Normal** (varsayılan, önerilen) - Birçok yanlış pozitifi önleyen ve kötü niyetli bot isteklerinin API'lara ulaşmasını engelleyen optimal kuralları kullanır.
-    * **Safe mode** - Düşük hassasiyet, daha FAZLA botun uygulamalarınıza erişmesine izin verir, ancak meşru istekler reddedilmez.
+    * **Paranoid** - daha yüksek duyarlılık, uygulamalarınıza DAHA AZ botun erişeceği anlamına gelir, ancak yanlış pozitifler nedeniyle bazı meşru istekler engellenebilir.
+    * **Normal** (varsayılan, önerilir) - pek çok yanlış pozitifi önlemek ve çoğu kötü niyetli bot isteğinin API'lere ulaşmasını engellemek için en uygun kuralları kullanır.
+    * **Safe mode** - daha düşük duyarlılık, uygulamalarınıza DAHA FAZLA botun erişeceği anlamına gelir, ancak bu durumda herhangi bir meşru istek düşürülmez.
 
-        ![API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
+        ![API Abuse prevention profili](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
 
-5. Uygulama(ları) seçin.
-6. **Analyze behavior by** parametresini ayarlayın:
+1. Uygulama(ları) seçin.
+1. **Analyze behavior by** parametresini ayarlayın:
 
-    * **Applications** - Uygulamadaki tüm alanlara yapılan istekleri birlikte analiz eder.
-    * **Domains** - Uygulamadaki her bir alan adına yapılan istekleri ayrı ayrı analiz eder.
+    * **Applications** - uygulamanın tüm alan adlarına gelen istekleri birlikte analiz eder.
+    * **Domains** - uygulamanın her bir alan adına gelen istekleri ayrı ayrı analiz eder.
 
-<a name="per-profile-traffic"></a>Oluşturulduktan sonra, profiller seçtiğiniz uygulamaları, belirlenen bot türlerinin kötü niyetli botlarından korur. Koruma ve veri analizi, profilin uygulama trafiğinin varlığına ve miktarına bağlıdır. Profil başına duruma dikkat edin:
+<a name="per-profile-traffic"></a>Oluşturulduktan sonra, profiller seçilen türdeki kötü niyetli botlara karşı seçtiğiniz uygulamaları korur. Koruma ve veri analizi, profilin uygulama trafiğinin varlığına ve miktarına bağlıdır. Profil başına duruma dikkat edin:
 
-![API abuse prevention - profiles](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-profiles-per-profile-status.png)
+![API Abuse prevention - profiller](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-profiles-per-profile-status.png)
 
-## Profillerin Devre Dışı Bırakılması ve Silinmesi
+## Profilleri devre dışı bırakma ve silme
 
-Devre dışı bırakılmış profiller, trafik analizi sırasında **API Abuse Prevention** modülünün kullanmadığı ancak profil listesinde gösterilmeye devam edilen profillerdir. İstediğiniz anda devre dışı bırakılmış profilleri yeniden etkinleştirebilirsiniz. Etkin profiller olmadığında, modül kötü niyetli botları engellemez.
+Devre dışı profiller, trafik analizi sırasında **API Abuse Prevention** modülünün kullanmadığı ancak profil listesinde gösterilmeye devam edenlerdir. Devre dışı profilleri dilediğiniz an yeniden etkinleştirebilirsiniz. Etkin profil yoksa, modül kötü niyetli botları engellemez.
 
-Silinmiş profiller, geri yüklenemeyen ve **API Abuse Prevention** modülünün trafik analizi sırasında kullanmadığı profillerdir.
+Silinmiş profiller geri yüklenemez ve **API Abuse Prevention** modülü tarafından trafik analizi sırasında kullanılmaz.
 
-**Disable** ve **Delete** seçeneklerini profil menüsünde bulabilirsiniz.
+Profil menüsünde Disable ve Delete seçeneklerini bulabilirsiniz.
 
 ## İstisnalar
 
-Meşru botları işaretleyerek ve belirli hedef URL'ler ile istek türleri için bot korumasını devre dışı bırakarak, [istisnalar oluşturabilirsiniz](exceptions.md).
+[İstisnalar yaparak](exceptions.md) API Abuse Prevention'ı ince ayarlarla özelleştirebilirsiniz: meşru botları işaretlemek ve belirli hedef URL'ler ile istek türleri için bot korumasını devre dışı bırakmak.
 
-## Oturum Mekanizmasını İyileştirme
+## Oturum mekanizmasını iyileştirme
 
 API Abuse Prevention, bot davranışını analiz ederken [API Sessions](../api-sessions/overview.md) mekanizmasını kullanır.
 
-API Abuse Prevention işlevselliğinin daha hassas çalışması için, istekleri oturumlara birleştirirken kimliği doğrulanmamış trafiğin daha iyi tanımlanması amacıyla [JA3 fingerprinting](../admin-en/enabling-ja3.md) etkinleştirilmesi önerilir.
+API Abuse Prevention işlevselliğini daha hassas hale getirmek için, istekleri oturumlara birleştirirken kimliği doğrulanmamış trafiğin daha iyi tanımlanması amacıyla [JA3 fingerprinting](../admin-en/enabling-ja3.md) özelliğini etkinleştirmeniz önerilir.

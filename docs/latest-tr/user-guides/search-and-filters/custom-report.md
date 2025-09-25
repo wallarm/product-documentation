@@ -3,39 +3,39 @@
 
 # Rapor Oluşturma
 
-Olayları filtreleyebilir ve ardından sonuçları PDF veya CSV raporu olarak dışa aktarabilirsiniz. Wallarm, oluşturulan raporu belirtilen adrese e-posta ile gönderir.
+Olayları filtreleyebilir ve sonuçları PDF veya CSV raporu olarak dışa aktarabilirsiniz. Wallarm, oluşturulan raporu belirtilen adrese e‑postayla gönderir.
 
-PDF, veri analizi ve sunum için uygun, görsel olarak zengin bir rapordur. Bu rapor şunları içerir:
+PDF, görsel olarak zengin bir rapordur; veri analizi ve sunum için uygundur. Bu rapor şunları içerir:
 
-* Saldırılar, zafiyetler ve olaylar için özetler
-* Olayların ayrıntılı bilgileri
+* attacks, vulnerabilities ve incidents için özetler
+* Olaylara ilişkin ayrıntılı bilgiler
 
-CSV, filtreye uyan her olayla ilgili ayrıntıları içerir ve teknik amaçlar için uygundur. Bunu, kontrol panoları oluşturmak, benzersiz saldırgan IP'lerini elde etmek, saldırıya uğramış API sunucuları/uygulamaları listesi oluşturmak vb. işlemler için kullanabilirsiniz.
+CSV, filtreyle eşleşen her bir olayın ayrıntılarını içerir ve teknik amaçlar için uygundur. Bunu panolar oluşturmak, benzersiz saldırgan IP’lerini elde etmek, saldırıya uğrayan API ana makineleri/uygulamalarının bir listesini üretmek vb. için kullanabilirsiniz.
 
-CSV raporu, her olay türü için (saldırı, olay, zafiyet) ayrı bir CSV dosyası olmak üzere birkaç CSV dosyası içerebilir. Her CSV dosyası, en fazla 10.000 olayı içerir; olaylar, en çok vuruş alanlardan başlayarak sıralanır.
+CSV raporu, birden fazla CSV dosyası içerebilir; her bir olay türü için bir tane - attack, incident, vulnerability. Her CSV en fazla 10,000 olayı içerir ve en çok Hits olan olaylara göre sıralanır.
 
 ## Oluşturma
 
-Wallarm Console'da, raporlar **Attacks**, **Incidents** veya **Vulnerabilities** bölümünden oluşturulabilir. Hangi bölümü kullanırsanız kullanın, rapor saldırılar, olaylar ve zafiyetler dahil olmak üzere tüm olay türlerini içerir. Rapor içeriği mevcut filtrelere bağlıdır. Saldırılar için uygulanan filtreler, otomatik olarak olaylar için de uygulanır ve tersine. Zafiyetler için rapor her zaman geçerli aktif zafiyetlerin listesini içerir.
+Wallarm Console’da, raporlar **Attacks**, **Incidents** veya **Vulnerabilities** bölümünden oluşturulabilir. Hangi bölümü kullanırsanız kullanın, rapor tüm olay türlerini içerir - attacks, incidents ve vulnerabilities. Rapor içeriği mevcut filtrelere bağlıdır. attacks için uygulanan filtreler otomatik olarak incidents için de uygulanır ve bunun tersi de geçerlidir. vulnerabilities için rapor, her zaman o anda aktif vulnerabilities listesini içerir.
 
 Rapor oluşturmak için:
 
-1. Wallarm Console'da, **Attacks**, **Incidents** veya **Vulnerabilities** bölümüne gidin.
-1. Olayları [filtreleyin][link-using-search].
-1. **Report** (veya **Vulnerabilities** için **PDF/CSV**) seçeneğine tıklayın ve PDF veya CSV'yi seçin.
-1. **Send to** e-postasını ayarlayın.
+1. Wallarm Console’da **Attacks**, **Incidents** veya **Vulnerabilities** bölümüne gidin.
+1. Olayları [Filtreleyin][link-using-search].
+1. **Report**’a (veya **Vulnerabilities** için **PDF/CSV**’ye) tıklayın ve PDF veya CSV’yi seçin.
+1. **Send to** e-posta adresini ayarlayın.
 
-    ![Report creation window][img-custom-report]
-1. **Export**'a tıklayın. Wallarm, raporu oluşturup e-posta ile gönderecektir.
+    ![Rapor oluşturma penceresi][img-custom-report]
+1. **Export**’a tıklayın. Wallarm raporu oluşturacak ve e‑postayla gönderecektir.
 
 ## Önceki raporları indirme
 
-Zafiyetler için oluşturulanlar da dahil olmak üzere son 3 PDF raporu, oluşturulma tarihinden itibaren 6 ay boyunca saklanır.
+Son 3 PDF rapor, [vulnerabilities için oluşturulanlar](../vulnerabilities.md#downloading-vulnerability-report) dahil, oluşturulma tarihinden itibaren 6 ay boyunca saklanır.
 
-Gerektiğinde, bunları dışa aktarma penceresinden indirebilirsiniz.
+Gerekirse, bunları Export penceresinden indirin.
 
-## E-posta yoluyla düzenli rapor alma
+## E-posta ile düzenli raporlar alma
 
-E-posta yoluyla düzenli olarak (günlük, haftalık veya aylık) PDF raporu alabilirsiniz. Bu rapor, ilgili döneme ait saldırılar, olaylar ve aktif zafiyetler hakkında veriler içerir.
+PDF raporunu e‑posta ile düzenli olarak - günlük, haftalık veya aylık - alabilirsiniz. Bu rapor, ilgili dönem için attacks, incidents verilerini ve aktif vulnerabilities’i içerir.
 
-Böyle bir rapor alıp almayacağınızı ve ne sıklıkla alacağınızı, [email report](../../user-guides/settings/integrations/email.md) entegrasyonunu yapılandırarak belirleyin.
+Bu tür bir raporu alıp almayacağınızı ve ne sıklıkta alacağınızı [e-posta raporu](../../user-guides/settings/integrations/email.md) entegrasyonunu yapılandırarak belirleyin.

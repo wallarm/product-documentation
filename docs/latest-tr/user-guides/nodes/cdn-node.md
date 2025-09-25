@@ -1,7 +1,7 @@
 [cdn-node-operation-scheme]:        ../../images/waf-installation/quickstart/cdn-node-scheme.png
 [data-to-wallarm-cloud-docs]:       ../rules/sensitive-data-rule.md
 [operation-modes-docs]:             ../../admin-en/configure-wallarm-mode.md
-[operation-mode-rule-docs]:         ../../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console
+[operation-mode-rule-docs]:         ../../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode
 [wallarm-cloud-docs]:               ../../about-wallarm/overview.md#cloud
 [cdn-node-creation-modal]:          ../../images/waf-installation/quickstart/cdn-node-creation-modal.png
 [cname-required-modal]:             ../../images/waf-installation/quickstart/cname-required-modal.png
@@ -20,71 +20,71 @@
 
 # CDN filtreleme düğümleri
 
-Wallarm Console UI'nin **Nodes** bölümü, [**Wallarm node**](nodes.md) ve **CDN node** tipindeki düğümleri yönetmenizi sağlar. Bu makale CDN düğümleri hakkındadır.
+Wallarm Console UI'nin **Nodes** bölümü, [**Wallarm node**](nodes.md) ve **CDN düğümü** türlerindeki düğümleri yönetmenizi sağlar. Bu makale CDN düğümleri hakkındadır.
 
-!!! info "Free tier altındaki CDN düğümleri"
-    [Free tier planı](../../about-wallarm/subscription-plans.md#free-tier) kapsamında CDN node tipinin dağıtımı desteklenmez.
+!!! info "Ücretsiz katmanda CDN düğümleri"
+    [Security Edge Free Tier](../../about-wallarm/subscription-plans.md#security-edge-free-tier) abonelik planında CDN düğümü türünün dağıtımı desteklenmez.
 
 --8<-- "../include/waf/installation/cdn-node/how-cdn-node-works.md"
 
-## Düğüm Oluşturma
+## Bir düğüm oluşturma
 
-CDN düğümünü oluşturmak için lütfen [talimatları](../../installation/cdn-node.md) izleyin.
+CDN düğümünü oluşturmak için lütfen [yönergeleri](../../installation/cdn-node.md) izleyin.
 
-## Bir Düğümün Ayrıntılarını Görüntüleme
+## Bir düğümün ayrıntılarını görüntüleme
 
-Yüklü düğümün ayrıntıları, her düğümün tablosunda ve kartında görüntülenir. Kartı açmak için ilgili tablo kaydına tıklayın.
+Yüklü düğümün ayrıntıları her düğümün tablosunda ve kartında görüntülenir. Kartı açmak için ilgili tablo kaydına tıklayın.
 
-Aşağıdaki düğüm özellikleri ve ölçümleri mevcuttur:
+Aşağıdaki düğüm özellikleri ve metrikleri mevcuttur:
 
-* Korunan alan adının adına göre oluşturulan düğüm adı
+* Korumalı alan adının adına göre oluşturulan düğüm adı
 * Düğüm IP adresi
-* Korunan alan adıyla ilişkili orijin adresi
-* Benzersiz düğüm tanımlayıcısı (UUID)
+* Korumalı alan adıyla ilişkili origin adresi
+* Benzersiz düğüm tanımlayıcı (UUID)
 * Düğüm durumu
-* SSL/TLS sertifikası: Wallarm tarafından oluşturulan Let's Encrypt veya özel sertifika
-* Filtreleme düğümü ile Wallarm Cloud arasındaki son senkronizasyon zamanı
+* SSL/TLS sertifikası: Wallarm tarafından oluşturulan Let's Encrypt veya özel olanı
+* Filtreleme düğümünün Wallarm Cloud ile son eşitlenme zamanı
 * Filtreleme düğümünün oluşturulma tarihi
-* Düğüm tarafından mevcut ay içinde işlenen istek sayısı
+* Düğüm tarafından içinde bulunulan ayda işlenen istek sayısı
 * Kullanılan custom_ruleset ve proton.db sürümleri
 * Yüklü Wallarm paketlerinin sürümleri
-* Mevcut bileşen güncellemelerinin göstergesi
+* Mevcut bileşen güncellemelerine ilişkin gösterge
 
 ![CDN düğüm kartı](../../images/user-guides/nodes/view-cdn-node-comp-vers.png)
 
-## Korunan Kaynağın Orijin Adresini Güncelleme
+## Korumalı kaynağın origin adresini güncelleme {#updating-the-origin-address-of-the-protected-resourse}
 
-Barındırma sağlayıcınız, korunan kaynakla ilişkili orijin IP adresini veya alan adını dinamik olarak güncelliyorsa, lütfen CDN düğüm yapılandırmasında belirtilen orijin adresini güncel tutun. Aksi halde, CDN düğümü istekleri yanlış orijin adresine yönlendirmeye çalışacağından istekler korunan kaynağa ulaşamaz.
+Barındırma sağlayıcınız korunan kaynakla ilişkili origin IP adresini veya alan adını dinamik olarak güncelliyorsa, lütfen CDN düğümü yapılandırmasında belirtilen origin adresini güncel tutun. Aksi halde, CDN düğümü istekleri hatalı bir origin adresine proxy'lemeye çalışacağından, istekler korunan kaynağa ulaşmayacaktır.
 
-Orijin adresini güncellemek için **Edit origin address** seçeneğini kullanın.
+Origin adresini güncellemek için **Edit origin address** seçeneğini kullanın.
 
-## Özel SSL/TLS Sertifikasını Yükleme
+## Özel SSL/TLS sertifikası yükleme
 
-Wallarm, CDN düğüm alan adında HTTPS'yi etkinleştiren [Let's Encrypt](https://letsencrypt.org/) sertifikasını otomatik olarak sağlar. Sertifikalar ihtiyaç duyulduğunda otomatik olarak oluşturulur ve yenilenir.
+Wallarm, CDN düğümü alanında HTTPS'i etkinleştiren [Let's Encrypt](https://letsencrypt.org/) sertifikasını otomatik olarak verir. Sertifikalar ihtiyaç halinde otomatik olarak oluşturulur ve yenilenir.
 
-Eğer korunan alan adı için zaten bir sertifikanız varsa ve bunu Let's Encrypt sertifikası yerine tercih ediyorsanız, **Update SSL/TLS certificate** seçeneğini kullanarak kendi sertifikanızı yükleyebilirsiniz.
+Korumalı alan için zaten bir sertifikanız varsa ve Let's Encrypt sertifikası yerine bunu tercih ediyorsanız, **Update SSL/TLS certificate** seçeneğini kullanarak kendi sertifikanızı yükleyebilirsiniz.
 
-## Varnish Cache Kullanımı
+## Varnish Cache kullanma {#using-varnish-cache}
 
-[Varnish Cache](https://varnish-cache.org/intro/index.html#intro) HTTP hızlandırıcısı ile bir CDN düğümü kullanmak, kullanıcılara (örneğin, sunucu yanıtlarınıza) içerik dağıtımını hızlandırır. Ancak, içeriğinizi değiştirirseniz, CDN'deki önbelleğe alınmış kopya gecikmeli olarak güncellenebilir; bu durum [sorunlara](#why-is-there-a-delay-in-the-update-of-the-content-protected-by-the-cdn-node) yol açabilir ve Varnish Cache'in devre dışı bırakılmasına neden olabilir.
+[Varnish Cache](https://varnish-cache.org/intro/index.html#intro) HTTP hızlandırıcısı ile CDN düğümünün kullanılması, kullanıcılara içerik teslimini (ör. sunucu yanıtlarınızı) hızlandırır. Ancak içeriğinizi değiştirdiğinizde, CDN üzerindeki önbelleğe alınmış kopya gecikmeli güncellenebilir; bu da [sorunlara](#why-is-there-a-delay-in-the-update-of-the-content-protected-by-the-cdn-node) yol açabilir ve Varnish Cache'i devre dışı bırakmak için bir neden olabilir.
 
-İçerik güncelleme hızındaki sorunları önlemek için, Varnish Cache varsayılan olarak devre dışıdır. Varnish Cache'i manuel olarak etkinleştirebilir veya devre dışı bırakabilirsiniz. Bunun için **Nodes** → CDN node menüsü → **Enable Varnish Cache** veya **Disable Varnish Cache** seçeneğine gidin.
+İçerik güncelleme hızına ilişkin sorunları önlemek için Varnish Cache varsayılan olarak devre dışıdır. Varnish Cache'i manuel olarak etkinleştirebilir/devre dışı bırakabilirsiniz. Bunu yapmak için **Nodes** → CDN düğümü menüsü → **Enable Varnish Cache** veya **Disable Varnish Cache** yolunu izleyin.
 
-## Düğümü Silme
+## Bir düğümü silme
 
-Filtreleme düğümü silindiğinde, alan adınıza gelen isteklerin filtrelenmesi durdurulur. Filtreleme düğümünün silinmesi geri alınamaz. Wallarm düğümü, düğüm listesinden kalıcı olarak silinecektir.
+Filtreleme düğümü silindiğinde, alan adınıza gelen isteklerin filtrasyonu durdurulacaktır. Filtreleme düğümünün silinmesi geri alınamaz. Wallarm düğümü, düğümler listesinden kalıcı olarak silinecektir.
 
-1. Korunan alan adının DNS kayıtlarından Wallarm CNAME kaydını silin.
+1. Korumalı alanın DNS kayıtlarından Wallarm CNAME kaydını silin.
 
-    !!! warning "Zararlı istek azaltması durdurulacak"
-        CNAME kaydı kaldırılıp değişiklikler İnternet'te yürürlüğe girdiğinde, Wallarm CDN düğümü istek proxy işlemini durdurur ve yasal ile zararlı trafik doğrudan korunan kaynağa gider.
+    !!! warning "Kötü amaçlı isteklerin azaltılması durdurulacaktır"
+        CNAME kaydı kaldırıldıktan ve değişiklikler İnternet'te etkili olduktan sonra, Wallarm CDN düğümü istek proxy'lemeyi durduracak ve meşru ve kötü amaçlı trafik doğrudan korunan kaynağa gidecektir.
 
-        Bu durum, silinen DNS kaydı yürürlüğe girerken, yeni düğüm sürümü için oluşturulan CNAME kaydının henüz geçerli olmaması riskini doğurur.
-1. Değişikliklerin yayılmasını bekleyin. Gerçek CNAME kayıt durumu Wallarm Console → **Nodes** → **CDN** → **Delete node** bölümünde görüntülenir.
-1. Düğüm listesinden CDN düğümünü silin.
+        Bu durum, silinen DNS kaydı etkili olmuşken yeni düğüm sürümü için oluşturulan CNAME kaydı henüz etkili olmamışsa, korunan sunucudaki güvenlik açıklarının istismar edilmesi riskiyle sonuçlanır.
+1. Değişikliklerin yayılmasını bekleyin. Gerçek CNAME kaydı durumu Wallarm Console → **Nodes** → **CDN** → **Delete node** içinde görüntülenir.
+1. CDN düğümünü düğüm listesinden silin.
 
-![Düğümü Silme](../../images/user-guides/nodes/delete-cdn-node.png)
+![Düğümün silinmesi](../../images/user-guides/nodes/delete-cdn-node.png)
 
-## CDN Düğümü Sorun Giderme
+## CDN düğümü sorun giderme
 
 --8<-- "../include/waf/installation/cdn-node/cdn-node-troubleshooting.md"

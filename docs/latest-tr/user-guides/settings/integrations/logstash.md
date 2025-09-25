@@ -1,12 +1,12 @@
 # Logstash
 
-[Logstash](https://www.elastic.co/logstash), Elastic tarafından geliştirilen açık kaynaklı bir veri işleme ve log yönetimi aracıdır. Wallarm'ı, tespit edilen olay bildirimlerini Logstash'e gönderecek şekilde yapılandırabilirsiniz.
+[Logstash](https://www.elastic.co/logstash), Elastic tarafından geliştirilen açık kaynaklı bir veri işleme ve log yönetimi aracıdır. Wallarm’ı tespit edilen olayların bildirilerini Logstash’e gönderecek şekilde yapılandırabilirsiniz.
 
-## Bildirim Formatı
+## Bildirim formatı
 
-Wallarm, bildirimleri **webhook** aracılığıyla JSON formatında Logstash'e gönderir. JSON nesnelerinin kümesi, Wallarm'ın bildirim yaptığı olaya bağlıdır.
+Wallarm, Logstash’e JSON formatında **webhook**’lar üzerinden bildirim gönderir. JSON nesnelerinin kümesi, Wallarm’ın bildirdiği olaya bağlıdır.
 
-Yeni tespit edilen hit bildirimine bir örnek:
+Tespit edilen yeni hit bildirimi örneği:
 
 ```json
 [
@@ -63,9 +63,9 @@ Yeni tespit edilen hit bildirimine bir örnek:
 
 Logstash yapılandırması aşağıdaki gereksinimleri karşılamalıdır:
 
-* POST veya PUT isteklerini kabul etmek
-* HTTPS isteklerini kabul etmek
-* Genel bir URL’ye sahip olmak
+* POST veya PUT isteklerini kabul etmelidir
+* HTTPS isteklerini kabul etmelidir
+* Herkese açık bir URL’ye sahip olmalıdır
 
 Logstash yapılandırma örneği:
 
@@ -73,36 +73,36 @@ Logstash yapılandırma örneği:
 input {
   http { # HTTP ve HTTPS trafiği için input eklentisi
     port => 5044 # gelen istekler için port
-    ssl => true # HTTPS trafiğinin işlenmesi
+    ssl => true # HTTPS trafiği işleme
     ssl_certificate => "/etc/server.crt" # Logstash TLS sertifikası
     ssl_key => "/etc/server.key" # TLS sertifikası için özel anahtar
   }
 }
 output {
-  stdout {} # komut satırında Logstash loglarını yazdırmak için output eklentisi
+  stdout {} # Logstash loglarını komut satırında yazdırmak için output eklentisi
   ...
 }
 ```
 
-Daha fazla detayı [resmi Logstash dokümantasyonunda](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html) bulabilirsiniz.
+Daha fazla ayrıntıyı [resmi Logstash dokümantasyonunda](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html) bulabilirsiniz.
 
-## Entegrasyonu Ayarlama
+## Entegrasyonun ayarlanması
 
-1. Wallarm Console → **Integrations** → **Logstash** bölümüne giderek Logstash entegrasyon ayarlarına devam edin.
+1. Wallarm Console → **Integrations** → **Logstash** içinde Logstash entegrasyon kurulumuna ilerleyin.
 1. Entegrasyon adını girin.
-1. Hedef Logstash URL'sini (Webhook URL) belirtin.
-1. Gerekirse, gelişmiş ayarları yapılandırın:
+1. Hedef Logstash URL’sini belirtin (Webhook URL).
+1. Gerekirse gelişmiş ayarları yapılandırın:
 
     --8<-- "../include/integrations/webhook-advanced-settings.md"
-1. Bildirimleri tetikleyecek olay tiplerini seçin.
+1. Bildirimleri tetikleyecek olay türlerini seçin.
 
-    ![Logstash integration](../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+    ![Logstash entegrasyonu](../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
-    Kullanılabilir olaylar hakkında detaylar:
+    Kullanılabilir olaylara ilişkin ayrıntılar:
 
     --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-1. Yapılandırmanın doğruluğunu, Wallarm Cloud'un kullanılabilirliğini ve bildirim formatını kontrol etmek için **Test integration** butonuna tıklayın.
+1. Yapılandırmanın doğruluğunu, Wallarm Cloud erişilebilirliğini ve bildirim formatını doğrulamak için **Test integration**’a tıklayın.
 
     Test Logstash logu:
 
@@ -151,43 +151,43 @@ Daha fazla detayı [resmi Logstash dokümantasyonunda](https://www.elastic.co/gu
     ]
     ```
 
-1. **Add integration** butonuna tıklayın.
+1. **Add integration**’a tıklayın.
 
 --8<-- "../include/cloud-ip-by-request.md"
 
-## Ek Uyarıları Ayarlama
+## Ek uyarıların ayarlanması
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
 
-## Araca Ara Toplayıcı Olarak Logstash Kullanma
+## Ara veri toplayıcı olarak Logstash kullanımı
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
 Örneğin:
 
-![Webhook flow](../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
+![Webhook akışı](../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
 
 Bu şemayı kullanarak Wallarm olaylarını loglamak için:
 
-1. Gelen webhook'ları okuyup logları bir sonraki sisteme iletecek şekilde veri toplayıcıyı yapılandırın. Wallarm, olayları webhook'lar aracılığıyla veri toplayıcılara gönderir.
-1. Veri toplayıcıdan logları alıp okuyacak şekilde bir SIEM sistemini yapılandırın.
-1. Wallarm'ı, logları veri toplayıcıya gönderecek şekilde yapılandırın.
+1. Gelen webhook’ları okumak ve logları bir sonraki sisteme iletmek üzere veri toplayıcıyı yapılandırın. Wallarm, olayları veri toplayıcılara webhook’lar aracılığıyla gönderir.
+1. Bir SIEM sistemini, logları veri toplayıcıdan alıp okumak üzere yapılandırın.
+1. Wallarm’ı logları veri toplayıcıya gönderecek şekilde yapılandırın.
 
-    Wallarm, logları webhook'lar aracılığıyla herhangi bir veri toplayıcıya gönderebilir.
+    Wallarm, webhook’lar aracılığıyla logları herhangi bir veri toplayıcıya gönderebilir.
 
-    Wallarm'ı Fluentd veya Logstash ile entegre etmek için, Wallarm Console UI'da ilgili entegrasyon kartlarını kullanabilirsiniz.
+    Wallarm’ı Fluentd veya Logstash ile entegre etmek için Wallarm Console UI içindeki ilgili integration cards kullanılabilir.
 
-    Wallarm'ı diğer veri toplayıcıları ile entegre etmek için, Wallarm Console UI'da bulunan [webhook integration card](webhook.md) kullanılabilir.
+    Wallarm’ı diğer veri toplayıcılarla entegre etmek için Wallarm Console UI içindeki [webhook integration card](webhook.md) kullanılabilir.
 
-Popüler veri toplayıcılara logları SIEM sistemlerine iletmek için entegrasyonun nasıl yapılandırılacağına dair bazı örnekleri açıkladık:
+Logları SIEM sistemlerine ileten popüler veri toplayıcılarla entegrasyonun nasıl yapılandırılacağına dair bazı örnekleri anlattık:
 
 * [Wallarm → Logstash → IBM QRadar](webhook-examples/logstash-qradar.md)
 * [Wallarm → Logstash → Splunk Enterprise](webhook-examples/logstash-splunk.md)
 * [Wallarm → Logstash → Micro Focus ArcSight Logger](webhook-examples/logstash-arcsight-logger.md)
 * [Wallarm → Logstash → Datadog](webhook-examples/fluentd-logstash-datadog.md)
 
-    Wallarm ayrıca [Datadog API aracılığıyla Datadog ile yerel entegrasyonu](datadog.md) desteklemektedir. Yerel entegrasyon için ara veri toplayıcının kullanılmasına gerek yoktur.
+    Wallarm ayrıca [Datadog API aracılığıyla Datadog ile yerel entegrasyonu](datadog.md) destekler. Yerel entegrasyon, ara bir veri toplayıcı kullanımını gerektirmez.
 
-## Bir Entegrasyonun Devre Dışı Bırakılması ve Silinmesi
+## Bir entegrasyonu devre dışı bırakma ve silme
 
 --8<-- "../include/integrations/integrations-disable-delete.md"

@@ -1,4 +1,4 @@
-```yaml
+```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -21,6 +21,6 @@ spec:
             memory: "128Mi"
             cpu: "500m"
         ports:
-        # Uygulama konteynerinin gelen istekleri kabul ettiği port
+        # Uygulama konteynerinin gelen istekleri kabul ettiği bağlantı noktası
         - containerPort: 8080 
 ```

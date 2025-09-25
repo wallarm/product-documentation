@@ -1,15 +1,15 @@
-The Wallarm filtreleme düğümü, Wallarm Cloud ile etkileşim kurar. Düğümü Cloud'a bağlamanız gerekir.
+Wallarm filtreleme düğümü, Wallarm Cloud ile etkileşime geçer. Düğümü Cloud'a bağlamanız gerekir.
 
-Düğümü Cloud'a bağlarken, düğüm adını ayarlayabilir, bu isim Wallarm Console UI'de görüntülenecek ve düğümü uygun **node group** içine yerleştirebilirsiniz (UI'de düğümlerin mantıksal olarak organize edilmesi için kullanılır).
+Düğümü Cloud'a bağlarken, Wallarm Console UI'da görüntüleneceği düğüm adını belirleyebilir ve düğümü uygun **düğüm grubuna** (UI'da düğümleri mantıksal olarak düzenlemek için kullanılır) koyabilirsiniz.
 
-![Grouped nodes][img-grouped-nodes]
+![Gruplandırılmış düğümler][img-grouped-nodes]
 
-Düğümü Cloud'a bağlamak için, [uygun tipteki][wallarm-token-types] bir Wallarm token'ı kullanın:
+Düğümü Cloud'a bağlamak için, [uygun türde][wallarm-token-types] bir Wallarm token'ı kullanın:
 
-=== "API token"
+=== "API belirteci"
 
-    1. Wallarm Console → **Settings** → **API tokens** sayfasını açın ([US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens)).
-    1. `Deploy` kaynak rolüne sahip bir API token'ı bulun veya oluşturun.
+    1. Wallarm Console → **Settings** → **API tokens** bölümünü [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens) içinde açın.
+    1. `Node deployment/Deployment` kullanım türüne sahip API token'ını bulun veya oluşturun.
     1. Bu token'ı kopyalayın.
     1. Filtreleme düğümünü kurduğunuz makinede `register-node` betiğini çalıştırın:
 
@@ -22,15 +22,15 @@ Düğümü Cloud'a bağlamak için, [uygun tipteki][wallarm-token-types] bir Wal
             sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>'
             ```
         
-        * `<TOKEN>`, `Deploy` rolüne sahip API token'ın kopyalanmış değeridir.
-        * `--labels 'group=<GROUP>'` parametresi, düğümünüzü `<GROUP>` node group'una ekler (var olan; yoksa oluşturulur). Filtreleme ve postanalytics modüllerini [ayrı ayrı][install-postanalytics-instr] kuruyorsanız, bunları aynı gruba koymanız tavsiye edilir.
+        * `<TOKEN>`, `Deploy` rolüne sahip API token'ının kopyalanmış değeridir.
+        * `--labels 'group=<GROUP>'` parametresi, düğümünüzü `<GROUP>` düğüm grubuna yerleştirir (mevcut ise kullanılır, değilse oluşturulur). Filtreleme ve postanalytics modüllerini [ayrı ayrı][install-postanalytics-instr] kuruyorsanız, bunları aynı gruba koymanız önerilir.
 
-=== "Node token"
+=== "Düğüm belirteci"
 
-    1. Wallarm Console → **Nodes** sayfasını açın ([US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes)).
-    1. Aşağıdakilerden birini yapın: 
+    1. Wallarm Console → **Nodes** bölümünü [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) içinde açın.
+    1. Şunlardan birini yapın: 
         * **Wallarm node** türünde bir düğüm oluşturun ve oluşturulan token'ı kopyalayın.
-        * Mevcut node group'u kullanın - düğümün menüsünden → **Copy token** ile token'ı kopyalayın.
+        * Mevcut düğüm grubunu kullanın - düğümün menüsünden → **Copy token** ile token'ı kopyalayın.
     1. Filtreleme düğümünü kurduğunuz makinede `register-node` betiğini çalıştırın:
 
         === "US Cloud"
@@ -42,6 +42,6 @@ Düğümü Cloud'a bağlamak için, [uygun tipteki][wallarm-token-types] bir Wal
             sudo /usr/share/wallarm-common/register-node -t <TOKEN>
             ```
 
-    * `<TOKEN>`, kopyaladığınız node token'ının değeridir. Filtreleme ve postanalytics modüllerini [ayrı ayrı][install-postanalytics-instr] kuruyorsanız, aynı node token'ını kullanarak bunları aynı gruba koymanız tavsiye edilir.
+    * `<TOKEN>`, düğüm token'ının kopyalanmış değeridir. Filtreleme ve postanalytics modüllerini [ayrı ayrı][install-postanalytics-instr] kuruyorsanız, aynı düğüm token'ını kullanarak bunları aynı gruba koymanız önerilir.
 
-* Düğüm örneğiniz için özel bir ad belirlemek amacıyla `-n <HOST_NAME>` parametresini ekleyebilirsiniz. Nihai örnek adı: `HOST_NAME_NodeUUID`.
+* Düğüm örneğiniz için özel bir ad ayarlamak üzere `-n <HOST_NAME>` parametresini ekleyebilirsiniz. Son örnek adı şu şekilde olacaktır: `HOST_NAME_NodeUUID`.

@@ -1,65 +1,65 @@
 [node-token-types]:                      ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [nginx-ing-create-node-img]:             ../images/user-guides/nodes/create-wallarm-node-name-specified.png
 
-# Aynı Kubernetes kümesinde Wallarm ve ek Ingress Denetleyicilerinin Zincirleme Yapılandırılması
+# Aynı Kubernetes kümesinde Wallarm ve ek Ingress denetleyicilerinin zincirlenmesi
 
-Bu talimatlar, K8s kümenize Wallarm Ingress denetleyicisini dağıtmanız ve mevcut ortamınızda çalışan diğer Denetleyicilerle zincirlemeniz için gerekli adımları sağlamaktadır.
+Bu talimatlar, Wallarm Ingress denetleyicisini K8s kümenize dağıtma ve onu ortamınızda halihazırda çalışan diğer denetleyicilerle zincirleme adımlarını sağlar.
 
-## Çözümün Ele Aldığı Sorun
+## Çözümün ele aldığı sorun
 
-Wallarm, [Community Ingress NGINX Controller üzerine inşa edilmiş Ingress Controller](installation-kubernetes-en.md) dahil olmak üzere çeşitli form faktörlerinde düğüm yazılımını sunmaktadır.
+Wallarm, düğüm yazılımını farklı biçimlerde sunar; bunlardan biri de [Community Ingress NGINX Controller üzerine inşa edilmiş Ingress Controller](installation-kubernetes-en.md).
 
-Zaten bir Ingress denetleyicisi kullanıyorsanız, mevcut Ingress denetleyicisini Wallarm denetleyicisiyle değiştirmek zor olabilir (örneğin, AWS ALB Ingress Controller kullanılıyorsa). Bu durumda, [Wallarm Sidecar çözümünü](../installation/kubernetes/sidecar-proxy/deployment.md) inceleyebilirsiniz; ancak bu da altyapınıza uymuyorsa, birden fazla Ingress denetleyicisini zincirleme yapılandırmak mümkündür.
+Zaten bir Ingress denetleyicisi kullanıyorsanız, mevcut Ingress denetleyicisini Wallarm denetleyicisiyle değiştirmek zor olabilir (ör. AWS ALB Ingress Controller kullanılıyorsa). Bu durumda, [Wallarm Sidecar çözümünü](../installation/kubernetes/sidecar-proxy/deployment.md) değerlendirebilirsiniz; ancak bu da altyapınıza uymuyorsa birden fazla Ingress denetleyicisini zincirlemek mümkündür.
 
-Ingress denetleyici zincirlemesi, son kullanıcı isteklerini kümeye ulaştırmak için mevcut bir denetleyiciden yararlanmanızı, gerekli uygulama korumasını sağlamak için ek bir Wallarm Ingress denetleyicisi dağıtmanızı mümkün kılar.
+Ingress denetleyicilerinin zincirlenmesi, son kullanıcı isteklerini kümeye ulaştırmak için mevcut bir denetleyiciyi kullanmanıza ve gerekli uygulama korumasını sağlamak için ek bir Wallarm Ingress denetleyicisi dağıtmanıza olanak tanır.
 
 ## Gereksinimler
 
-* Kubernetes platformu sürümü 1.24-1.30
+* Kubernetes platformu sürüm 1.26-1.30
 * [Helm](https://helm.sh/) paket yöneticisi
-* Wallarm Console’da **Administrator** rolüne sahip ve iki faktörlü doğrulamanın devre dışı bırakıldığı bir hesaba erişim ( [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) )
-* US Wallarm Cloud ile çalışmak için `https://us1.api.wallarm.com` veya EU Wallarm Cloud ile çalışmak için `https://api.wallarm.com` erişimi
-* Wallarm Helm grafiklerini eklemek için `https://charts.wallarm.com` erişimi. Erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun.
-* Wallarm’ın Docker Hub’daki `https://hub.docker.com/r/wallarm` deposuna erişim. Erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun.
-* Saldırı tespit kuralları ve [API spesifikasyonlarını](../api-specification-enforcement/overview.md) indirmek ile [izin verilen, reddedilen veya gri listeye alınan](../user-guides/ip-lists/overview.md) ülkeler, bölgeler veya veri merkezleri için hassas IP'leri almak amacıyla aşağıdaki IP adreslerine erişim
+* [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) için Wallarm Console’da **Administrator** rolüne sahip hesaba erişim
+* US Wallarm Cloud ile çalışmak için `https://us1.api.wallarm.com` veya EU Wallarm Cloud ile çalışmak için `https://api.wallarm.com` adresine erişim
+* Wallarm Helm chart’larını eklemek için `https://charts.wallarm.com` adresine erişim. Erişimin güvenlik duvarı tarafından engellenmediğinden emin olun
+* Docker Hub üzerindeki Wallarm depolarına `https://hub.docker.com/r/wallarm` erişim. Erişimin güvenlik duvarı tarafından engellenmediğinden emin olun
+* Saldırı tespit kuralları ve [API spesifikasyonları](../api-specification-enforcement/overview.md) güncellemelerini indirmek ve [izin listesine, yasak listesine veya gri listeye alınmış](../user-guides/ip-lists/overview.md) ülkeleriniz, bölgeleriniz veya veri merkezleriniz için kesin IP’leri almak amacıyla aşağıdaki IP adreslerine erişim
 
     --8<-- "../include/wallarm-cloud-ips.md"
-* Ingress denetleyicisi çalışan dağıtılmış bir Kubernetes kümesi
+* Bir Ingress denetleyicisi çalıştıran dağıtılmış Kubernetes kümesi
 
-## Wallarm Ingress Denetleyicisinin Dağıtılması ve Ek Bir Ingress Denetleyicisi ile Zincirleme Yapılandırılması
+## Wallarm Ingress denetleyicisini dağıtma ve onu ek bir Ingress denetleyicisiyle zincirleme
 
 Wallarm Ingress denetleyicisini dağıtmak ve ek denetleyicilerle zincirlemek için:
 
-1. Mevcut Ingress denetleyicisinden farklı bir Ingress sınıfı değeri kullanarak resmi Wallarm denetleyici Helm grafiğini dağıtın.
-1. Aşağıdaki özelliklere sahip Wallarm’a özgü Ingress nesnesini oluşturun:
+1. Resmi Wallarm denetleyici Helm chart’ını, mevcut Ingress denetleyicisinden farklı bir Ingress sınıfı değeri kullanarak dağıtın.
+1. Şunlarla birlikte Wallarm’a özel Ingress nesnesi oluşturun:
 
-    * Wallarm Ingress Helm grafiğinin `values.yaml` dosyasında belirtilen ile aynı `ingressClass`.
-    * Mevcut Ingress denetleyicisi ile aynı şekilde yapılandırılmış Ingress denetleyici istek yönlendirme kuralları.
+    * Wallarm Ingress Helm chart’ının `values.yaml` dosyasında belirtilen `ingressClass` ile aynı değer.
+    * Mevcut Ingress denetleyicisindekiyle aynı şekilde yapılandırılmış Ingress denetleyici istek yönlendirme kuralları.
 
-    !!! info "Wallarm Ingress denetleyicisi küme dışında erişime açılmayacaktır"
-        Lütfen, Wallarm Ingress denetleyicisinin hizmeti için `ClusterIP` kullandığını ve bunun da demek olduğunun farkında olun; yani küme dışında erişime açılmayacaktır.
-1. Gelen istekleri uygulama servisleri yerine yeni Wallarm Ingress denetleyicisine yönlendirmek için mevcut Ingress denetleyicisini yeniden yapılandırın.
+    !!! info "Wallarm Ingress denetleyicisi küme dışına açılmayacaktır"
+        Lütfen unutmayın, Wallarm Ingress denetleyicisi servisinde `ClusterIP` kullanır; bu da küme dışına açılmayacağı anlamına gelir.
+1. Mevcut Ingress denetleyicisini, gelen istekleri uygulama servisleri yerine yeni Wallarm Ingress denetleyicisine iletecek şekilde yeniden yapılandırın.
 1. Wallarm Ingress denetleyicisinin çalışmasını test edin.
 
-### Adım 1: Wallarm Ingress Denetleyicisini Dağıtın
+### Adım 1: Wallarm Ingress denetleyicisini dağıtın
 
-1. [Uygun türdeki][node-token-types] bir filtreleme düğüm token’ı oluşturun:
+1. [Uygun türde][node-token-types] bir filtreleme düğümü belirteci oluşturun:
 
     === "API token (Helm chart 4.6.8 ve üzeri)"
-        1. Wallarm Console → **Settings** → **API tokens** bölümünü [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens) üzerinde açın.
-        1. `Deploy` kaynak rolüne sahip API token'ı bulun veya oluşturun.
-        1. Bu token’ı kopyalayın.
+        1. Wallarm Console → **Settings** → **API tokens** öğesini [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens) üzerinde açın.
+        1. Kullanım türü `Node deployment/Deployment` olan bir API token’ını bulun veya oluşturun.
+        1. Bu token'ı kopyalayın.
     === "Node token"
-        1. Wallarm Console → **Nodes** bölümünü [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) üzerinde açın.
-        1. **Wallarm node** türünde bir filtreleme düğümü oluşturun ve üretilen token’ı kopyalayın.
+        1. Wallarm Console → **Nodes** öğesini [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) üzerinde açın.
+        1. **Wallarm node** türünde bir filtreleme düğümü oluşturun ve üretilen token'ı kopyalayın.
             
-            ![Creation of a Wallarm node][nginx-ing-create-node-img]
-1. [Wallarm Helm charts repository](https://charts.wallarm.com/) ekleyin:
+            ![Bir Wallarm düğümünün oluşturulması][nginx-ing-create-node-img]
+1. [Wallarm Helm chart’ları deposunu](https://charts.wallarm.com/) ekleyin:
     ```
     helm repo add wallarm https://charts.wallarm.com
     helm repo update
     ```
-1. Aşağıdaki Wallarm yapılandırması ile `values.yaml` dosyasını oluşturun:
+1. Aşağıdaki Wallarm yapılandırmasıyla `values.yaml` dosyasını oluşturun:
 
     === "US Cloud"
         ```bash
@@ -97,37 +97,37 @@ Wallarm Ingress denetleyicisini dağıtmak ve ek denetleyicilerle zincirlemek i�
         nameOverride: wallarm-ingress
         ```    
     
-    * `<NODE_TOKEN>` Wallarm düğüm token’ıdır.
-    * API token kullanıldığında, `nodeGroup` parametresinde bir düğüm grubu adı belirtin. Düğümünüz bu gruba atanacak, Wallarm Console’un **Nodes** bölümünde gösterilecektir. Varsayılan grup adı `defaultIngressGroup`’dir.
+    * `<NODE_TOKEN>`, Wallarm düğüm belirtecidir.
+    * API token kullanırken, `nodeGroup` parametresinde bir düğüm grup adı belirtin. Düğümünüz bu gruba atanır ve Wallarm Console’un **Nodes** bölümünde görüntülenir. Varsayılan grup adı `defaultIngressGroup` değeridir.
 
-    Daha fazla yapılandırma seçeneğini öğrenmek için lütfen [linki](configure-kubernetes-en.md) kullanın.
-1. Wallarm Ingress Helm grafiğini kurun:
+    Daha fazla yapılandırma seçeneği için lütfen şu [bağlantıyı](configure-kubernetes-en.md) kullanın.
+1. Wallarm Ingress Helm chart’ını yükleyin:
     ``` bash
-    helm install --version 5.3.0 internal-ingress wallarm/wallarm-ingress -n wallarm-ingress -f values.yaml --create-namespace
+    helm install --version 6.5.1 internal-ingress wallarm/wallarm-ingress -n wallarm-ingress -f values.yaml --create-namespace
     ```
 
-    * `internal-ingress` Helm sürümü adıdır.
-    * `values.yaml` önceki adımda oluşturulan Helm değerleri içeren YAML dosyasıdır.
-    * `wallarm-ingress` Helm grafiğinin yükleneceği ad alanıdır (oluşturulacaktır).
-1. Wallarm ingress denetleyicisinin çalışır durumda olduğunu doğrulayın: 
+    * `internal-ingress`, Helm sürümünün adıdır
+    * `values.yaml`, önceki adımda oluşturulan Helm değerlerini içeren YAML dosyasıdır
+    * `wallarm-ingress`, Helm chart’ın yükleneceği ad alandır (oluşturulacaktır)
+1. Wallarm Ingress denetleyicisinin çalışır durumda olduğunu doğrulayın: 
 
     ```bash
     kubectl get pods -n wallarm-ingress
     ```
 
-    Her bir pod durumu **STATUS: Running** veya **READY: N/N** olmalıdır. Örneğin:
+    Wallarm pod durumu **STATUS: Running** ve **READY: N/N** olmalıdır:
 
     ```
-    NAME                                                             READY   STATUS    RESTARTS   AGE
-    internal-ingress-wallarm-ingress-controller-6d659bd79b-952gl      3/3     Running   0          8m7s
-    internal-ingress-wallarm-ingress-controller-wallarm-tarant64m44   4/4     Running   0          8m7s
+    NAME                                                                  READY   STATUS    RESTARTS   AGE
+    ingress-controller-wallarm-ingress-controller-6d659bd79b-952gl        3/3     Running   0          8m7s
+    ingress-controller-wallarm-ingress-controller-wallarm-wstore-7ddmgbfm 3/3     Running   0          8m7s
     ```
 
-### Adım 2: Wallarm’a Özgü `ingressClassName` ile Ingress Nesnesi Oluşturma
+### Adım 2: Wallarm’a özel `ingressClassName` ile Ingress nesnesi oluşturun
 
-Önceki adımda `values.yaml` dosyasında yapılandırılan ile aynı `ingressClass` adıyla Ingress nesnesini oluşturun.
+Önceki adımda `values.yaml` içinde yapılandırdığınızla aynı `ingressClass` adına sahip Ingress nesnesini oluşturun.
 
-Ingress nesnesi uygulamanızın dağıtıldığı aynı ad alanında yer almalıdır, örneğin:
+Ingress nesnesi, uygulamanızın dağıtıldığı ad alanıyla aynı ad alanında olmalıdır; örneğin:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -153,23 +153,23 @@ spec:
               number: 80
 ```
 
-### Adım 3: Mevcut Ingress Denetleyicisini Wallarm’e Yönlendirecek Şekilde Yeniden Yapılandırma
+### Adım 3: Mevcut Ingress denetleyicisini istekleri Wallarm’a iletecek şekilde yeniden yapılandırın
 
-Gelen istekleri uygulama servisleri yerine yeni Wallarm Ingress denetleyicisine yönlendirmek için mevcut Ingress denetleyicisini yeniden yapılandırın:
+Mevcut Ingress denetleyicisini, gelen istekleri uygulama servisleri yerine yeni Wallarm Ingress denetleyicisine iletecek şekilde aşağıdaki gibi yeniden yapılandırın:
 
-* İsim alanı `nginx` olan bir Ingress nesnesi oluşturun. Lütfen bunun varsayılan değer olduğunu ve değer sizin ortamınıza göre farklıysa kendi değerinizi kullanabileceğinizi unutmayın. 
-* Ingress nesnesi, Wallarm Ingress Grafiğinin kurulu olduğu aynı ad alanında yer almalıdır; örneğimizde bu `wallarm-ingress`’tir.
-* `spec.rules[0].http.paths[0].backend.service.name` değeri, Helm sürüm adı ile `.Values.nameOverride` bileşiminden oluşan Wallarm Ingress denetleyici servisi adı olmalıdır.
+* `ingressClass` adı `nginx` olacak şekilde Ingress nesnesi oluşturun. Bu değerin varsayılan olduğunu lütfen unutmayın; farklıysa kendi değerinizle değiştirebilirsiniz. 
+* Ingress nesnesi, Wallarm Ingress Chart ile aynı ad alanında olmalıdır; bu örnekte `wallarm-ingress`.
+* `spec.rules[0].http.paths[0].backend.service.name` değerinin, Helm sürüm adı ve `.Values.nameOverride` birleşiminden oluşan Wallarm Ingress denetleyici servisinin adı olması gerekir.
 
-    İsmi almak için aşağıdaki komutu kullanabilirsiniz:
+    Adı almak için aşağıdaki komutu kullanabilirsiniz:
    
     ```bash
     kubectl get svc -l "app.kubernetes.io/component=controller" -n wallarm-ingress -o=jsonpath='{.items[0].metadata.name}'
     ```
 
-    Örneğimizde isim `internal-ingress-wallarm-ingress-controller`’dir.
+    Bizim örneğimizde ad `internal-ingress-wallarm-ingress-controller` şeklindedir.
 
-Aşağıdaki yapılandırma örneği:
+Ortaya çıkan yapılandırma örneği:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -192,15 +192,15 @@ spec:
                   number: 80
 ```
 
-### Adım 4: Wallarm Ingress Denetleyicisinin Çalışmasını Test Etme
+### Adım 4: Wallarm Ingress denetleyicisinin çalışmasını test edin
 
-Mevcut dış Ingress denetleyicisinin Yük Dengeleyici (Load Balancer) genel IP adresini alın, örneğin, bunun `ingress-nginx` ad alanında dağıtıldığını varsayalım:
+Mevcut harici Ingress denetleyicisinin Load Balancer genel IP’sini alın; örneğin `ingress-nginx` ad alanına dağıtıldığını varsayalım:
 
 ```bash
 LB_IP=$(kubectl get svc -l "app.kubernetes.io/component=controller" -n ingress-nginx -o=jsonpath='{.items[0].status.loadBalancer.ingress[0].ip}')
 ```
 
-Mevcut Ingress denetleyici adresine test isteği gönderin ve sistemin beklendiği gibi çalıştığını doğrulayın:
+Mevcut Ingress denetleyicisi adresine bir test isteği gönderin ve sistemin beklendiği gibi çalıştığını doğrulayın:
 
 ```bash
 curl -H "Host: www.example.com" ${LB_IP}/etc/passwd

@@ -1,42 +1,39 @@
-# Wallarm Docker Görüntü İmzalarını Doğrulama
+# Wallarm Docker İmaj İmzalarını Doğrulama
 
-Wallarm, Docker görüntüleri için [public key](https://repo.wallarm.com/cosign.pub)'ı imzalar ve paylaşır; bu sayede, görüntülerin doğruluğunu teyit edebilir, tehlikeye uğramış görüntüler ve tedarik zinciri saldırıları gibi riskleri azaltabilirsiniz. Bu makale, Wallarm Docker görüntü imzalarını doğrulama konusunda talimatlar sunar.
+Wallarm, Docker imajları için [genel anahtarı](https://repo.wallarm.com/cosign.pub) imzalar ve paylaşır; bu sayede imajların özgünlüğünü doğrulayabilir ve ele geçirilmiş imajlar ile tedarik zinciri saldırıları gibi riskleri azaltabilirsiniz. Bu makale, Wallarm Docker imaj imzalarının doğrulanmasına yönelik talimatları sağlar.
 
-## İmzalanan Görüntülerin Listesi
+## İmzalanan imajların listesi
 
-Wallarm, aşağıdaki Docker görüntülerini imzalar:
+Wallarm aşağıdaki Docker imajlarını imzalar:
 
-* [wallarm/node](https://hub.docker.com/r/wallarm/node) 4.8.0-1 ve üzeri: Tüm Wallarm modüllerini içeren, Wallarm dağıtımı için bağımsız bir artefakt olarak hizmet veren [NGINX-based Docker image](../admin-en/installation-docker-en.md)
-* [NGINX-based Ingress Controller dağıtımı](../admin-en/installation-kubernetes-en.md) için Helm şablonunda kullanılan tüm Docker görüntüleri:
+* [wallarm/node](https://hub.docker.com/r/wallarm/node) 4.8.0-1 ve üzeri: tüm Wallarm modüllerini içeren, Wallarm dağıtımı için bağımsız bir artefakt görevi gören [NGINX tabanlı Docker imajı](../admin-en/installation-docker-en.md)
+* [NGINX-based Ingress Controller deployment](../admin-en/installation-kubernetes-en.md) için Helm chart tarafından kullanılan tüm Docker imajları:
 
     * [wallarm/ingress-controller](https://hub.docker.com/r/wallarm/ingress-controller)
     * [wallarm/node-helpers](https://hub.docker.com/r/wallarm/node-helpers)
-* [Sidecar dağıtımı](../installation/kubernetes/sidecar-proxy/deployment.md) için Helm şablonunda kullanılan tüm Docker görüntüleri:
+* [Sidecar deployment](../installation/kubernetes/sidecar-proxy/deployment.md) için Helm chart tarafından kullanılan tüm Docker imajları:
 
     * [wallarm/sidecar](https://hub.docker.com/r/wallarm/sidecar)
     * [wallarm/sidecar-controller](https://hub.docker.com/r/wallarm/sidecar-controller)
-    * [wallarm/ingress-collectd](https://hub.docker.com/r/wallarm/ingress-collectd)
-    * [wallarm/ingress-tarantool](https://hub.docker.com/r/wallarm/ingress-tarantool)
-    * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
-    * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
-* [wallarm/node-native-aio](https://hub.docker.com/r/wallarm/node-native-aio): Wallarm konektörleri için [self-hosted Native Node dağıtımı](../installation/native-node/docker-image.md) Docker görüntüsü
+    * [wallarm/node-helpers](https://hub.docker.com/r/wallarm/node-helpers)
+* [wallarm/node-native-aio](https://hub.docker.com/r/wallarm/node-native-aio): Wallarm bağlayıcıları için [self-hosted Native Node dağıtımı için Docker imajı](../installation/native-node/docker-image.md)
 
 ## Gereksinimler
 
-Wallarm Docker görüntülerinin orijinalliğini sağlamak için, imzalama ve doğrulama işlemleri [Cosign](https://docs.sigstore.dev/cosign/overview/) kullanılarak gerçekleştirilir.
+Wallarm Docker imajlarının özgünlüğünü sağlamak için, hem imzalama hem de doğrulama amacıyla [Cosign](https://docs.sigstore.dev/cosign/overview/) kullanılır. 
 
-Docker görüntü imza doğrulamasına geçmeden önce, yerel makinada veya CI/CD hattınızda Cosign komut satırı aracını [kurduğunuzdan](https://docs.sigstore.dev/cosign/installation/) emin olun.
+Docker imaj imzası doğrulamasına geçmeden önce, Cosign komut satırı aracını yerel makinenize veya CI/CD hattınıza [kurduğunuzdan](https://docs.sigstore.dev/cosign/installation/) emin olun.
 
-## Docker Görüntü İmza Doğrulamasını Çalıştırma
+## Docker imajı imza doğrulamasını çalıştırma
 
-Bir Docker görüntü imzasını doğrulamak için, `WALLARM_DOCKER_IMAGE` değerini ilgili görüntü etiketiyle değiştirerek aşağıdaki komutları çalıştırın:
+Bir Docker imajı imzasını doğrulamak için, aşağıdaki komutları çalıştırın ve `WALLARM_DOCKER_IMAGE` değerini ilgili imaj etiketiyle değiştirin:
 
 ```bash
 export WALLARM_DOCKER_IMAGE="wallarm/ingress-controller:4.6.2-1"
 cosign verify --key https://repo.wallarm.com/cosign.pub $WALLARM_DOCKER_IMAGE
 ```
 
-[Output](https://docs.sigstore.dev/cosign/verify/), görüntü özetini (`docker-manifest-digest`) içeren `docker-manifest-digest` nesnesini sağlamalıdır, örneğin:
+[Çıktı](https://docs.sigstore.dev/cosign/verify/) örneğin imaj özetiyle `docker-manifest-digest` nesnesini sağlamalıdır:
 
 ```bash
 [{"critical":{"identity":{"docker-reference":"index.docker.io/<WALLARM_DOCKER_IMAGE>"},
@@ -45,14 +42,14 @@ cosign verify --key https://repo.wallarm.com/cosign.pub $WALLARM_DOCKER_IMAGE
 "integratedTime":<VALUE>,"logIndex":<VALUE>,"logID":"<VALUE>"}}}}]
 ```
 
-## İmza Doğrulaması için Kubernetes Politikası Motorunun Kullanılması
+## İmza doğrulaması için Kubernetes policy motorunu kullanma
 
-Kyverno veya Open Policy Agent (OPA) gibi motorlar, Kubernetes kümeniz içinde Docker görüntü imza doğrulaması yapmanıza olanak tanır. Doğrulama kuralları içeren bir politika oluşturarak, Kyverno tanımlanan kriterlere, örneğin depo veya etiketlere dayalı olarak, görüntü imza doğrulamasını başlatır. Doğrulama, Kubernetes kaynaklarının dağıtımı sırasında gerçekleştirilir.
+Kyverno veya Open Policy Agent (OPA) gibi motorlar, Kubernetes kümeniz içinde Docker imajı imza doğrulamasına olanak tanır. Doğrulamaya yönelik kuralları olan bir policy hazırlayarak, Kyverno depo veya etiketler dahil tanımlanan ölçütlere göre imaj imza doğrulamasını başlatır. Doğrulama, Kubernetes kaynağı dağıtımı sırasında gerçekleşir.
 
-Aşağıda, Wallarm Docker görüntü imza doğrulaması için Kyverno politikasının nasıl kullanılacağına dair bir örnek verilmiştir:
+Wallarm Docker imajı imza doğrulaması için Kyverno policy kullanımına bir örnek:
 
-1. Kümenize [Kyverno'yu kurun](https://kyverno.io/docs/installation/methods/) ve tüm pod'ların çalışır durumda olduğundan emin olun.
-1. Aşağıdaki Kyverno YAML politikasını oluşturun:
+1. Kümenize [Kyverno’yu yükleyin](https://kyverno.io/docs/installation/methods/) ve tüm pod’ların çalışır durumda olduğundan emin olun.
+1. Aşağıdaki Kyverno YAML policy’sini oluşturun:
 
     ```yaml
     apiVersion: kyverno.io/v1
@@ -80,19 +77,19 @@ Aşağıda, Wallarm Docker görüntü imza doğrulaması için Kyverno politikas
                     - keys:
                         kms: https://repo.wallarm.com/cosign.pub
     ```
-1. Politikayı uygulayın:
+1. Policy’yi uygulayın:
 
     ```
     kubectl apply -f <PATH_TO_POLICY_FILE>
     ```
-1. İhtiyacınıza bağlı olarak Wallarm [NGINX Ingress controller](../admin-en/installation-kubernetes-en.md) veya [Sidecar Controller](../installation/kubernetes/sidecar-proxy/deployment.md) dağıtımını gerçekleştirin. Dağıtım sırasında Kyverno politikası, görüntünün imzasını kontrol etmek üzere uygulanacaktır.
-1. Doğrulama sonuçlarını analiz etmek için aşağıdaki komutu çalıştırın:
+1. Gereksinimlerinize bağlı olarak Wallarm [NGINX Ingress controller](../admin-en/installation-kubernetes-en.md) veya [Sidecar Controller](../installation/kubernetes/sidecar-proxy/deployment.md)’ı dağıtın. Kyverno policy’si, imajın imzasını kontrol etmek için dağıtım sırasında uygulanacaktır.
+1. Doğrulama sonuçlarını analiz etmek için şunu çalıştırın:
 
     ```
     kubectl describe ClusterPolicy verify-wallarm-images
     ```
 
-Aşağıdaki gibi, imza doğrulama durumunu özetleyen bilgiler alacaksınız:
+İmza doğrulama durumunu özetleyen bir çıktı alacaksınız:
 
 ```
 Events:
@@ -104,4 +101,4 @@ Events:
   Normal  PolicyApplied  35s                kyverno-admission  Pod wallarm-sidecar/wallarm-sidecar-wallarm-sidecar-postanalytics-554789546f-9cc8j: pass
 ```
 
-Sağlanan `verify-wallarm-images` politikasında `failurePolicy: Fail` parametresi bulunmaktadır. Bu, imza doğrulaması başarılı olmazsa, tüm şablon dağıtımının başarısız olacağı anlamına gelir.
+Sağlanan `verify-wallarm-images` policy’sinde `failurePolicy: Fail` parametresi bulunur. Bu, imza kimlik doğrulaması başarılı olmazsa tüm chart dağıtımının başarısız olacağı anlamına gelir.

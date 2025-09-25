@@ -1,95 +1,95 @@
 # Tetikleyicilerle Çalışma
 
-Tetikleyiciler, Wallarm’un çeşitli olaylara verdiği yanıtı yapılandırmak için kullanılan araçlardır. Tetikleyiciler, sistemin tepki verebileceği önemli sayıda olayı çeşitli olası tepkilerle birleştirir. Bu konstruktor benzeri süreç, şirketinizin benzersiz güvenlik ihtiyaçlarına uygun karmaşık davranışların yapılandırılmasına olanak tanır.
+Tetikleyiciler, Wallarm'ın farklı olaylara vereceği yanıtı ayarlamak için kullanılan araçlardır. Tetikleyiciler, sistemin tepki verebileceği çok sayıda olayı, uygulanabilecek çeşitli tepkilerle birleştirir. Bu yapılandırıcıya benzer süreç, şirketinizin benzersiz güvenlik ihtiyaçlarına uyan karmaşık davranışları yapılandırmanıza olanak tanır.
 
-Tetikleyiciler, **Tetikleyiciler** bölümünde [US](https://us1.my.wallarm.com/triggers) veya [EU](https://my.wallarm.com/triggers) Cloud’da yapılandırılır.
+Tetikleyiciler, **Triggers** bölümünde [US](https://us1.my.wallarm.com/triggers) veya [EU](https://my.wallarm.com/triggers) Cloud içinde yapılandırılır.
 
 ![Tetikleyicileri yapılandırma bölümü](../../images/user-guides/triggers/triggers-section.png)
 
-## Nasıl Çalışır
+## Nasıl çalışır
 
 Her tetikleyici, yapılandırabileceğiniz aşağıdaki bileşenlerden oluşur:
 
-* **Koşul**: Wallarm’un tepki vermesi gereken olay. Örneğin: belirli sayıda saldırı alması, denylisted IP adresi veya hesaba eklenen yeni kullanıcı.
-* [**Filtreler**](#understanding-filters): koşulun detayları. Örneğin: koşul "Günde 10.000'den fazla saldırı" ise, **Tür** filtresini "SQLi" ve **Yanıt durumu**nu "200" olarak ayarlayın; bu, tetikleyicinin "Günde 10.000'den fazla SQLi saldırısı olup 200 yanıtı döndüyse harekete geç" anlamına gelir.
-* **Tepki**: Belirtilen koşul ve filtreler karşılandığında gerçekleştirilecek eylem. Örneğin: Slack veya başka bir sistem olarak yapılandırılan [integration](../settings/integrations/integrations-intro.md)’a bildirim gönderme, IP adresini engelleme veya istekleri brute‑force saldırısı olarak işaretleme.
+* **Condition**: Wallarm'ın tepki vermesi gereken olay. Örneğin: belirli sayıda saldırı alınması, denylist'e alınmış IP adresi ve hesaba yeni kullanıcı eklenmesi.
+* [**Filters**](#understanding-filters): koşulun ayrıntıları. Örneğin: koşul "Günde 10.000'den fazla saldırı" ise, **Type** filtresini "SQLi" ve **Response status** değerini "200" olarak ayarlayın; bu tetikleyici için anlamı "Günde 10.000'den fazla 200 yanıtı alan SQLi saldırısı varsa harekete geç" olur.
+* **Reaction**: belirtilen koşul ve filtreler karşılandığında gerçekleştirilmesi gereken eylem. Örneğin: Slack'e veya [entegrasyon](../settings/integrations/integrations-intro.md) olarak yapılandırılmış başka bir sisteme bildirim göndermek, IP adresini engellemek veya istekleri brute‑force saldırısı olarak işaretlemek.
 
-## Tetikleyicilerle Neler Yapabilirsiniz
+## Tetikleyicilerle neler yapabilirsiniz
 
-Tetikleyicileri kullanarak:
+Tetikleyicileri kullanarak şunları yapabilirsiniz:
 
-* Uygulamalarınız ve API'leriniz için aşağıdaki koruma önlemlerini sağlayabilirsiniz:
+* Uygulamalarınız ve API'leriniz için aşağıdaki koruma önlemlerini sağlayın:
 
-    * [Protection from multi-attack perpetrators](../../admin-en/configuration-guides/protecting-with-thresholds.md)
-    * [Brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
-    * [Forced browsing protection](../../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
-    * [BOLA protection](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
+    * [Çoklu saldırı faillerine karşı koruma](../../admin-en/configuration-guides/protecting-with-thresholds.md)
+    * [Brute force koruması](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
+    * [Forced browsing koruması](../../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
+    * [BOLA koruması](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
 
-* Farklı [integrations](../../user-guides/settings/integrations/integrations-intro.md) için genişletilmiş uyarılar ayarlayabilirsiniz.
-* Saldırılar ve olayların temsilini [vuruşları gruplayarak](../../user-guides/events/grouping-sampling.md#grouping-of-hits) optimize edebilirsiniz.
+* Farklı [entegrasyonlar](../../user-guides/settings/integrations/integrations-intro.md) için gelişmiş uyarılar ayarlayın.
+* [hit](../../user-guides/events/grouping-sampling.md#grouping-of-hits) gruplandırma ile saldırı ve olayların gösterimini optimize edin.
 
-## Filtreleri Anlama
+## Filtreleri anlama
 
-Filtreler, [koşul](#how-it-works) detaylandırması için kullanılır. Örneğin, brute-force saldırıları, SQL enjeksiyonları gibi belirli saldırı türlerine yönelik tepkiler ayarlayabilirsiniz. Wallarm Console arayüzünde bir veya daha fazla filtre ekleyebilir ve bunlara değer atayabilirsiniz.
+Filtreler, [koşulu](#how-it-works) detaylandırmak için kullanılır. Örneğin, brute-force, SQL injection ve diğerleri gibi belirli türdeki saldırılara yönelik tepkiler ayarlayabilirsiniz. Wallarm Console arayüzünde bir veya daha fazla filtre ekleyebilir ve bunlar için değerler belirleyebilirsiniz.
 
-![Kullanılabilir filtreler](../../images/user-guides/triggers/trigger-filters.png)
+![Mevcut filtreler](../../images/user-guides/triggers/trigger-filters.png)
 
 Aşağıdaki filtreler mevcuttur:
 
-* **URI** (sadece **Brute force**, **Forced browsing** ve **BOLA** koşulları için): İsteğin gönderildiği tam URI. URI, [URI constructor](../../user-guides/rules/rules.md#uri-constructor) veya [advanced edit form](../../user-guides/rules/rules.md#advanced-edit-form) aracılığıyla yapılandırılabilir.
-* **Type**: İstekte tespit edilen [saldırı türü](../../attacks-vulns-list.md) veya isteğin yöneltildiği güvenlik açığı türü.
-* **Application**: İsteği alan [uygulama](../settings/applications.md).
-* **IP**: İsteğin gönderildiği IP adresi.
+* **URI** (yalnızca **Brute force**, **Forced browsing** ve **BOLA** koşulları için): isteğin gönderildiği tam URI. URI, [URI constructor](../../user-guides/rules/rules.md#uri-constructor) veya [advanced edit form](../../user-guides/rules/rules.md#advanced-edit-form) aracılığıyla yapılandırılabilir.
+* **Type**, istekte tespit edilen bir saldırının [türü](../../attacks-vulns-list.md) veya isteğin yöneldiği bir güvenlik açığı türüdür.
+* **Application**, isteği alan [uygulama](../settings/applications.md)dır.
+* **IP**, isteğin gönderildiği IP adresidir.
 
-    Filtre yalnızca tek IP'leri kabul eder; alt ağlara, konumlara ve kaynak türlerine izin vermez.
-* **Domain**: İsteği alan domain.
-* **Response status**: İsteğe döndürülen yanıt kodu.
-* **Target**: Saldırının yöneltildiği veya olayın tespit edildiği uygulama mimarisinin bölümü. Aşağıdaki değerleri alabilir: `Server`, `Client`, `Database`.
-* **User's role**: Eklenen kullanıcının [rolü](../../user-guides/settings/users.md#user-roles). Aşağıdaki değerleri alabilir: `Deploy`, `Analyst`, `Administrator`, `Read only`, `API developer` ve eğer [multitenancy](../../installation/multi-tenant/overview.md) özelliği etkinse - `Global Administrator`, `Global Analyst`, `Global Read Only`.
+    Bu filtre yalnızca tekil IP'leri kabul eder; alt ağlar, konumlar ve kaynak türlerine izin verilmez.
+* **Domain**, isteği alan domaindir.
+* **Response status**, isteğe döndürülen yanıt kodudur.
+* **Target**, saldırının yöneltildiği veya olayın tespit edildiği uygulama mimarisi parçasıdır. Şu değerleri alabilir: `Server`, `Client`, `Database`.
+* **User's role**, eklenen kullanıcının [rolüdür](../../user-guides/settings/users.md#user-roles). Şu değerleri alabilir: `Deploy`, `Analyst`, `Administrator`, `Read only`, `API developer` ve [multitenancy](../../installation/multi-tenant/overview.md) özelliği etkinse `Global Administrator`, `Global Analyst`, `Global Read Only`.
 
-## Varsayılan Tetikleyiciler
+## Varsayılan tetikleyiciler
 
-Yeni şirket hesapları aşağıdaki varsayılan (önceden yapılandırılmış) tetikleyicilerle birlikte gelir:
+Yeni şirket hesapları aşağıdaki varsayılan (önceden yapılandırılmış) tetikleyicilerle gelir:
 
-* Aynı IP'den gelen vuruşları tek bir saldırıda grupla
+* Aynı IP'den gelen hit'leri tek bir saldırıda grupla
 
-    Bu tetikleyici, olay listesinde aynı IP adresinden gelen tüm [vuruşları](../../glossary-en.md#hit) tek bir saldırı altında gruplar. Bu, olay listesini optimize eder ve saldırı analizinin daha hızlı yapılmasını sağlar.
+    Tetikleyici, aynı IP adresinden gönderilen tüm [hit](../../glossary-en.md#hit)'leri olay listesinde tek bir saldırı halinde gruplar. Bu, olay listesini optimize eder ve daha hızlı saldırı analizini sağlar.
 
-    Bu tetikleyici, 15 dakika içinde tek bir IP adresinden 50'den fazla vuruş geldiğinde devreye girer. Eşik aşıldıktan sonra gelen vuruşlar saldırıda gruplanır.
+    Bu tetikleyici, tek bir IP adresi 15 dakika içinde 50'den fazla hit ürettiğinde tetiklenir. Yalnızca eşik aşıldıktan sonra gönderilen hit'ler saldırı içine gruplandırılır.
 
-    Vuruşlar farklı saldırı türlerine, zararlı yük içeriklerine ve URL'lere sahip olabilir. Bu saldırı parametreleri, olay listesinde `[multiple]` etiketi ile işaretlenecektir.
+    Hit'ler farklı saldırı türlerine, kötü amaçlı payload'lara ve URL'lere sahip olabilir. Bu saldırı parametreleri olay listesinde `[multiple]` etiketiyle işaretlenecektir.
 
-    Gruplanan vuruşların farklı parametre değerlerine sahip olması nedeniyle, [Yanlış pozitif olarak işaretle](../events/check-attack.md#false-positives) butonu tüm saldırı için kullanılamaz; ancak belirli vuruşlar yanlış pozitif olarak işaretlenebilir. [Saldırının aktif doğrulaması](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing) de kullanılamaz.
+    Gruplandırılan hit'lerin farklı parametre değerleri nedeniyle, tüm saldırı için [Mark as false positive](../events/check-attack.md#false-positives) düğmesi kullanılamaz, ancak belirli hit'leri yanlış pozitif olarak işaretleyebilirsiniz. [Saldırının aktif doğrulanması](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing) da kullanılamayacaktır.
     
-    Brute force, Forced browsing, Resource overlimit, Data bomb veya Virtual patch saldırı türündeki vuruşlar bu tetikleyici kapsamında değerlendirilmez.
-* 1 saat içinde 3'ten fazla farklı [malicious payloads](../../glossary-en.md#malicious-payload) üretilmesi durumunda IP'yi 1 saatliğine graylist'e al
+    Brute force, Forced browsing, Resource overlimit, Data bomb veya Virtual patch saldırı türlerine sahip hit'ler bu tetikleyicide dikkate alınmaz.
+* 1 saat içinde 3'ten fazla farklı [kötü amaçlı payload](../../glossary-en.md#malicious-payload) üretirse IP'yi 1 saatliğine Graylist'e al
 
-    [Graylist](../ip-lists/overview.md), düğüm tarafından şu şekilde işlenen şüpheli IP adresleri listesidir: Graylist’e alınan bir IP zararlı istekler üretirse, düğüm bu istekleri engellerken meşru isteklerin geçmesine izin verir. Graylist’in aksine, [denylist](../ip-lists/overview.md) uygulamalarınıza ulaşmasına izin verilmeyen IP adreslerini işaretler – denylist’e alınan kaynakların oluşturduğu meşru trafik bile engellenir. IP graylisting, [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives) oranını azaltmaya yönelik seçeneklerden biridir.
+    [Graylist](../ip-lists/overview.md), node tarafından şu şekilde işlenen şüpheli IP adreslerinin bir listesidir: Graylist'teki IP kötü amaçlı istekler üretirse, node bunları engeller; meşru istekler ise izin alır. Graylist'in aksine, [denylist](../ip-lists/overview.md) uygulamalarınıza hiç ulaşmasına izin verilmeyen IP adreslerini işaret eder - node denylist'teki kaynakların ürettiği meşru trafiği bile engeller. IP Graylist'e alma, [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives) azaltmayı amaçlayan seçeneklerden biridir.
 
-    Bu tetikleyici, düğümün hangi filtreleme modunda olursa olsun devreye girer, bu nedenle düğüm modu fark etmeksizin IP'ler graylist’e eklenir.
+    Tetikleyici, node'un herhangi bir filtreleme modunda tetiklenir; böylece node modu ne olursa olsun IP'leri Graylist'e alır.
 
-    Ancak, düğüm graylist’i yalnızca **güvenli engelleme** modunda analiz eder. Graylist’e alınan IP'lerden gelen zararlı istekleri engellemek için, düğümün [modunu](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) önce öğrenip daha sonra güvenli engelleme moduna geçirin.
+    Ancak node, Graylist'i yalnızca **safe blocking** modunda analiz eder. Graylist'teki IP'lerden gelen kötü amaçlı istekleri engellemek için, önce özelliklerini öğrenerek node [modunu](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) safe blocking olarak değiştirin.
 
-    Brute force, Forced browsing, Resource overlimit, Data bomb veya Virtual patch saldırı türündeki vuruşlar bu tetikleyici kapsamında değerlendirilmez.
+    Brute force, Forced browsing, Resource overlimit, Data bomb veya Virtual patch saldırı türlerine sahip hit'ler bu tetikleyicide dikkate alınmaz.
 
-Varsayılan tetikleyicileri geçici olarak devre dışı bırakabilirsiniz. Aynı zamanda, varsayılan tetikleyicinin sağladığı davranışı değiştirmek için aynı türde özel tetikleyiciler oluşturabilirsiniz. Herhangi bir özel tetikleyici oluşturduğunuzda, varsayılan tetikleyici silinir; tüm özel tetikleyicilerinizi sildiğinizde, varsayılan yeniden etkinleştirilir.
+Herhangi bir varsayılan tetikleyiciyi geçici olarak devre dışı bırakabilirsiniz. Varsayılan tetikleyicinin sağladığı davranışı da değiştirebilirsiniz - bunun için aynı türden özel tetikleyiciler oluşturun. Herhangi bir özel tetikleyici oluşturmak varsayılanı siler; tüm özel tetikleyicilerinizi silerseniz varsayılan geri yüklenir.
 
-## Tetikleyici İşleme Öncelikleri
+## Tetikleyici işleme öncelikleri
 
-Aynı koşula sahip (örneğin, **Brute force**, **Forced browsing**, **BOLA**) birden fazla tetikleyici olduğunda ve bazıları URI hiyerarşi seviyesine sahipse, daha düşük hiyerarşi seviyesindeki URI filtresine sahip olan tetikleyiciye yalnızca o istekler dahil edilir.
+Aynı koşullara (örneğin, **Brute force**, **Forced browsing**, **BOLA**) sahip birden fazla tetikleyici olduğunda ve bunlardan bazıları URI'da daha düşük iç içelik düzeyiyle filtrelenmişse, daha düşük iç içelik düzeyi URI'sine yönelik istekler yalnızca daha düşük iç içelik düzeyi URI filtresine sahip tetikleyicide sayılır.
 
-URI filtresi olmayan tetikleyiciler daha yüksek hiyerarşi seviyesi olarak kabul edilir.
+URI filtresi olmayan tetikleyiciler daha yüksek iç içelik düzeyi olarak kabul edilir.
 
 **Örnek:**
 
-* İlk tetikleyici, belirli bir koşula sahip olup URI filtresine sahip değildir (herhangi bir uygulama veya bölümüne yapılan istekler bu tetikleyici tarafından sayılır).
-* Aynı koşula sahip ikinci tetikleyicide, `example.com/api` URI filtresi vardır.
+* Aynı koşula sahip ilk tetikleyici, URI'ya göre filtre içermez (herhangi bir uygulamaya veya onun herhangi bir bölümüne yönelik istekler bu tetikleyici tarafından sayılır).
+* Aynı koşula sahip ikinci tetikleyici, `example.com/api` URI'sına göre filtreye sahiptir.
 
-`example.com/api`'ye yapılan istekler, yalnızca `example.com/api` filtresine sahip ikinci tetikleyici tarafından sayılır.
+`example.com/api` adresine yönelik istekler yalnızca `example.com/api` filtresine sahip ikinci tetikleyici tarafından sayılır.
 
-## Tetikleyicileri Devre Dışı Bırakma ve Silme
+## Tetikleyicileri devre dışı bırakma ve silme
 
-* Bildirim ve olay tepkilerini geçici olarak durdurmak için, tetikleyiciyi devre dışı bırakabilirsiniz. Devre dışı bırakılan bir tetikleyici, **Tüm** ve **Devre Dışı** tetikleyiciler listesinde görüntülenecektir. Bildirim ve olay tepkilerinin yeniden gönderilmesi için **Enable** seçeneği kullanılır.
-* Bildirim ve olay tepkilerini kalıcı olarak durdurmak için, tetikleyiciyi silebilirsiniz. Tetikleyici silindikten sonra geri dönüşü yoktur. Tetikleyici, tetikleyici listesinden kalıcı olarak kaldırılır.
+* Bildirim ve tepkileri olaylara göndermeyi geçici olarak durdurmak için tetikleyiciyi devre dışı bırakabilirsiniz. Devre dışı bir tetikleyici, **All** ve **Disabled** tetikleyici listelerinde görüntülenir. Olaylara bildirim ve tepkileri yeniden göndermek için **Enable** seçeneği kullanılır.
+* Bildirim ve tepkileri olaylara kalıcı olarak durdurmak için tetikleyiciyi silebilirsiniz. Bir tetikleyiciyi silme işlemi geri alınamaz. Tetikleyici, tetikleyici listesinden kalıcı olarak kaldırılır.
 
-Tetikleyiciyi devre dışı bırakmak veya silmek için, lütfen tetikleyici menüsünden uygun seçeneği seçin ve gerektiyse işlemi onaylayın.
+Tetikleyiciyi devre dışı bırakmak veya silmek için, lütfen tetikleyici menüsünden uygun seçeneği seçin ve gerekirse işlemi onaylayın.

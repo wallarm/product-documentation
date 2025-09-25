@@ -1,120 +1,138 @@
-# Filtreleme Düğümü Otomatik Ölçeklendirme Ayarlama
+[link-doc-ami-creation]:        create-image.md
+[link-doc-lb-guide]:            load-balancing-guide.md
+[link-doc-as-faq]:              https://aws.amazon.com/autoscaling/faqs/
+[img-create-lt-wizard]:         ../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/create-launch-template.png
+[img-create-asg-wizard]:        ../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/create-asg-with-template.png
+[img-asg-wizard-1]:             ../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/asg-wizard-1.png
+[img-asg-increase-policy]:      ../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/group-size-increase.png
+[img-asg-decrease-policy]:      ../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/group-size-decrease.png
+[img-alarm-example]:            ../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/alarm-example.png
+[img-check-asg-in-cloud]:       ../../../images/cloud-node-status.png
 
-!!! info "Gerekli Yetkiler"
-    Otomatik ölçeklendirmeyi ayarlamadan önce, Amazon AWS hesabınızın aşağıdaki yetkilerden birine sahip olduğundan emin olun:
+[anchor-lt]:    #1-creating-a-launch-template
+[anchor-asg]:   #2-creating-an-auto-scaling-group
+
+#   Filtreleme düğümü otomatik ölçeklendirmesini yapılandırma
+
+!!! info "Gerekli yetkiler"
+    Otomatik ölçeklendirmeyi yapılandırmadan önce, Amazon AWS hesabınıza aşağıdaki yetkilerden birinin verildiğinden emin olun:
     
     *   `AutoScalingFullAccess`
     *   `AutoScalingConsoleFullAccess`
 
-Filtreleme düğümü otomatik ölçeklendirmesini ayarlamak için aşağıdaki adımları izleyin:
-1.  [Başlatma Şablonu Oluşturma][anchor-lt]
-2.  [Otomatik Ölçeklendirme Grubu Oluşturma][anchor-asg]
+Filtreleme düğümü otomatik ölçeklendirmesini kurmak için aşağıdaki adımları izleyin:
+1.  [Bir Launch Template oluşturma][anchor-lt]
+2.  [Bir Auto Scaling Group oluşturma][anchor-asg]
 
-## 1. Başlatma Şablonu Oluşturma
+##  1.  Bir Launch Template oluşturma
 
-Bir Başlatma Şablonu, bir Amazon Machine Image (AMI) dağıtımı sırasında kullanılacak örnek tipini tanımlar ve bazı genel sanal makine parametrelerini ayarlar.
+Bir Launch Template, bir Amazon Machine Image (AMI) dağıtımı sırasında kullanılacak instance türünü tanımlar ve bazı genel sanal makine parametrelerini ayarlar.
 
-Bir Başlatma Şablonu oluşturmak için aşağıdaki adımları izleyin:
+Aşağıdaki adımları uygulayarak bir Launch Template oluşturun:
 
-1.  Amazon EC2 kontrol panelindeki **Launch Templates** sekmesine gidin ve **Create launch template** butonuna tıklayın.
+1.  Amazon EC2 panosunda **Launch Templates** sekmesine gidin ve **Create launch template** düğmesine tıklayın.
 
-2.  **Launch template name** alanına şablon adını girin.
+2.  Şablon adını **Launch template name** alanına girin.
 
-3.  [Önceden oluşturulmuş][link-doc-ami-creation] Amazon Machine Image’i seçin. Bunu yapmak için **Search for AMI** bağlantısına tıklayın ve **My AMIs** kataloğundan gerekli resmi seçin.
+3.  [önceden oluşturduğunuz][link-doc-ami-creation] Amazon Machine Image'ı seçin. Bunu yapmak için **Search for AMI** bağlantısına tıklayın ve **My AMIs** kataloğundan gerekli imajı seçin.
 
-4.  **Instance type** listesinden, filtreleme düğümü sanal makinesini başlatmak için kullanılacak örnek tipini seçin.
+4.  Filtreleme düğümü sanal makinesini başlatmak için kullanılacak instance türünü **Instance type** listesinden seçin.
 
-    !!! warning "Uygun Örnek Tipini Seçin"
-        Filtreleme düğümünü ilk yapılandırdığınızda kullandığınız veya daha güçlü bir örnek tipini seçin.
+    !!! warning "Doğru instance türünü seçin"
+        Filtreleme düğümünü ilk yapılandırırken kullandığınız instance türüyle aynı ya da daha güçlü bir tür seçin.
         
-        Daha az güçlü bir örnek tipi, filtreleme düğümü çalışmasında sorunlara yol açabilir. 
+        Daha az güçlü bir instance türü kullanmak, filtreleme düğümünün çalışmasında sorunlara yol açabilir. 
 
-5.  **Key pair name** listesinden, filtreleme düğümüne erişim için [önceden oluşturulmuş][link-ssh-keys-guide] SSH anahtar çifti adını seçin.
+5.  Filtreleme düğümüne erişmek için önceden oluşturduğunuz SSH anahtar çifti adını **Key pair name** listesinden seçin.
 
-6.  **Security Groups** listesinden [önceden oluşturulmuş][link-security-group-guide] Güvenlik Grubunu seçin.
+6.  Önceden oluşturduğunuz Security Group'u **Security Groups** listesinden seçin.
 
-7.  **Create launch template** butonuna tıklayın.
+7.  **Create launch template** düğmesine tıklayın.
 
-    ![Creating a Launch Template][img-create-lt-wizard]
+    ![Bir Launch Template oluşturma][img-create-lt-wizard]
     
 Şablon oluşturma işlemi tamamlanana kadar bekleyin.
 
-Başlatma Şablonunu oluşturduktan sonra, Otomatik Ölçeklendirme Grubu oluşturma işlemine devam edebilirsiniz.
+Launch Template'i oluşturduktan sonra, bir Auto Scaling Group oluşturma işlemine geçebilirsiniz.
 
-## 2. Otomatik Ölçeklendirme Grubu Oluşturma
+##  2.  Bir Auto Scaling Group oluşturma
 
-!!! info "Otomatik Ölçeklendirme Yöntemi Seçimi"
-    Bu bölüm, EC2 Otomatik Ölçeklendirme yöntemi kullanılarak bir Otomatik Ölçeklendirme Grubunun oluşturulma sürecini açıklamaktadır. 
+!!! info "Otomatik ölçeklendirme yöntemi seçimi"
+    Bu bölüm, EC2 Auto Scaling yöntemi kullanılarak bir Auto Scaling Group oluşturma sürecini açıklar. 
 
-    AWS Otomatik Ölçeklendirme yöntemini de kullanabilirsiniz. 
+    AWS Auto Scaling yöntemini de kullanabilirsiniz. 
 
-    Amazon’un otomatik ölçeklendirme yöntemleri ile ilgili detaylı SSS’ye bakmak için bu [bağlantıya][link-doc-as-faq] gidin.
+    Amazon’un otomatik ölçeklendirme yöntemlerine ilişkin ayrıntılı SSS için bu [bağlantıya][link-doc-as-faq] gidin.
 
-Bir Otomatik Ölçeklendirme Grubu oluşturmak için aşağıdaki adımları izleyin:
+Bir Auto Scaling Group oluşturmak için aşağıdaki adımları izleyin:
 
-1.  Amazon EC2 kontrol panelindeki **Auto Scaling Groups** sekmesine gidin ve **Create Auto Scaling Group** butonuna tıklayın.
+1.  Amazon EC2 panosunda **Auto Scaling Groups** sekmesine gidin ve **Create Auto Scaling Group** düğmesine tıklayın.
 
-2.  **Launch Template** seçeneğini seçin, ardından listeden [önceden oluşturulmuş][anchor-lt] Başlatma Şablonunu seçin ve **Next Step** butonuna tıklayın. 
+2.  **Launch Template** seçeneğini belirleyin, ardından listeden [önceden oluşturduğunuz][anchor-lt] Launch Template'i seçin ve **Next Step** düğmesine tıklayın. 
 
-    ![Creating an Auto Scaling Group][img-create-asg-wizard]
+    ![Bir Auto Scaling Group oluşturma][img-create-asg-wizard]
     
-3.  İstediğiniz Otomatik Ölçeklendirme Grubu adını **Group name** alanına girin.
+3.  İstediğiniz Auto Scaling Group adını **Group name** alanına girin.
 
-4.  **Launch Template Version** listesinden Başlatma Şablonunun **Latest** sürümünü seçin.
+4.  **Launch Template Version** listesinden Launch Template'in **Latest** sürümünü seçin.
 
-5.  **Fleet Composition** seçeneklerinden birini seçerek Otomatik Ölçeklendirme Grubu için gerekli örnek tipini belirleyin.
+5.  **Fleet Composition** seçeneklerinden birini seçerek Auto Scaling Group için gerekli instance türünü belirleyin.
 
-    Eğer bu kılavuzu izleyerek bir Başlatma Şablonu oluşturduysanız ve sanal makineleri başlatmak için bir örnek tipi belirtildiyse, **Adhere to the launch template** seçeneğini kullanabilirsiniz.
+    Bu kılavuzu Launch Template oluştururken izlediyseniz ve sanal makinelerin başlatılacağı instance türünü belirlediyseniz, **Adhere to the launch template** seçeneğini kullanabilirsiniz.
     
-    !!! info "Uygun Örnek Tipini Seçin"
-        İlk yapılandırmada kullandığınız veya daha güçlü bir örnek tipini seçin. Daha az güçlü bir örnek tipi, filtreleme düğümü çalışmasında sorunlara neden olabilir.
-
-6.  **Group size** alanına başlangıç Otomatik Ölçeklendirme Grubu boyutunu (örneğin, iki örnek) girin.
-
-7.  **Network** açılır listesinden doğru VPC’yi seçin.
-
-8.  **Subnets** açılır listesinden doğru alt ağları seçin.
-
-    !!! warning "Filtreleme Düğümüne İnternet Bağlantısı Sağlayın"
-        Filtreleme düğümünün düzgün çalışabilmesi için Wallarm API sunucusuna erişim gereklidir. Wallarm API sunucu seçimi, kullandığınız Wallarm Cloud’a bağlıdır:
+    !!! info "Doğru instance türünü seçin"
+        Launch Template'inizde bir instance türü belirtilmemişse veya otomatik ölçeklendirme için birden çok farklı instance türü seçmek istiyorsanız **Combine purchase options and instances** seçeneğini de belirleyebilirsiniz.
         
-        * US Cloud kullanıyorsanız, düğümünüzün `https://us1.api.wallarm.com` adresine erişim izni olması gerekir.
-        * EU Cloud kullanıyorsanız, düğümünüzün `https://api.wallarm.com` adresine erişim izni olması gerekir.
+        Filtreleme düğümünü ilk yapılandırırken kullandığınız instance türüyle aynı ya da daha güçlü bir tür seçin. Daha az güçlü bir instance türü kullanmak, filtreleme düğümünün çalışmasında sorunlara yol açabilir.
 
-        Doğru VPC ve alt ağları seçtiğinizden ve filtreleme düğümünün Wallarm API sunucularına erişimini engellemeyecek şekilde [bir güvenlik grubu yapılandırdığınızdan][link-security-group-guide] emin olun.
+6.  Başlangıç Auto Scaling Group boyutunu **Group size** alanına girin (örn., iki instance).
 
-    ![General Auto Scaling Group settings][img-asg-wizard-1]
+7.  **Network** açılır listesinden doğru VPC'yi seçin.
+
+8.  **Subnets** açılır listesinden doğru alt ağları (subnet) seçin.
+
+    !!! warning "Filtreleme düğümüne internet bağlantısı sağlayın"
+        Filtreleme düğümünün düzgün çalışması için Wallarm API server'a erişmesi gerekir. Kullanmakta olduğunuz Wallarm Cloud'a bağlı olarak Wallarm API server seçimi değişir:
+        
+        * US Cloud kullanıyorsanız, düğümünüzün `https://us1.api.wallarm.com` adresine erişimi olmalıdır.
+        * EU Cloud kullanıyorsanız, düğümünüzün `https://api.wallarm.com` adresine erişimi olmalıdır.
+
+        Doğru VPC ve alt ağları seçtiğinizden ve filtreleme düğümünün Wallarm API server'lara erişimini engellemeyecek şekilde bir security group yapılandırdığınızdan emin olun.
+
+    ![Genel Auto Scaling Group ayarları][img-asg-wizard-1]
     
-9.  **Next: Configure scaling policies** butonuna tıklayarak **Configure scaling policies** sayfasına gidin.
+9.  **Next: Configure scaling policies** düğmesine tıklayarak **Configure scaling policies** sayfasına gidin.
 
-10. Otomatik ölçeklendirmeyi etkinleştirmek için **Use scaling policies to adjust the capacity of this group** seçeneğini işaretleyin.
+10. Otomatik ölçeklendirmeyi etkinleştirmek için **Use scaling policies to adjust the capacity of this group** seçeneğini belirleyin.
 
-11. Minimum ve maksimum Otomatik Ölçeklendirme Grubu boyutunu girin.
+11. Minimum ve maksimum Auto Scaling Group boyutunu girin.
 
-    !!! info "Otomatik Ölçeklendirme Grubu Boyutu"
-        Altıncı adımda belirtilen başlangıç grup boyutundan daha düşük bir minimum Otomatik Ölçeklendirme Grubu boyutu belirtebilirsiniz.
+    !!! info "Auto Scaling Group boyutu"
+        Altıncı adımda belirtilen başlangıç grup boyutundan minimum Auto Scaling Group boyutunun daha küçük olabileceğini unutmayın.
     
-12. **Scale the Auto Scaling group using step or simple scaling policies** seçeneğini işaretleyerek adım adım politika yapılandırma modunu etkinleştirin.
+12. **Scale the Auto Scaling group using step or simple scaling policies** seçeneğini belirleyerek adım adım politika yapılandırma modunu etkinleştirin.
 
-13. **Increase Group Size** parametre grubunu kullanarak grup boyutu artırma politikasını yapılandırın.
+13. **Increase Group Size** parametre grubunu kullanarak grup boyutunu artırma politikasını yapılandırın.
 
-    ![Auto Scaling Group size increase policy][img-asg-increase-policy]
+    ![Auto Scaling Group boyut artırma politikası][img-asg-increase-policy]
     
     1.  Gerekirse, **Name** parametresini kullanarak grup boyutu artırma politikası adını belirtin.
 
-    2.  **Execute policy when** içerisinden, grup boyutunun artırılmasını tetikleyecek olayı seçin. Daha önce hiçbir olay oluşturmadıysanız, bir olay oluşturmak için **Add Alarm** butonuna tıklayın.
+    2.  Grup boyutunun artırılmasını tetikleyecek olayı belirtmek için **Execute policy when** listesinden olayı seçin. Daha önce herhangi bir olay oluşturmadıysanız, bir olay oluşturmak için **Add Alarm** düğmesine tıklayın.
 
-    3.  Bir olay adı, izlenecek metrik ve olay gerçekleştiğinde bildirimin ayarlanması gibi seçenekleri belirleyebilirsiniz.
+    3.  Bir olay adı, izlenecek bir metrik ve olay oluşumlarına ilişkin bildirimler ayarlayabilirsiniz.
     
-        !!! info "Bildirimleri Yapılandırmak için Gerekli Roller"
-            Bildirim yapılandırması için Amazon AWS hesabınızın **AutoScalingNotificationAccessRole** rolüne sahip olması gerekir.
+        !!! info "Bildirimleri yapılandırmak için gereken roller"
+            Bildirim yapılandırması için Amazon AWS hesabınızda **AutoScalingNotificationAccessRole** bulunmalıdır.
         
         !!! info "Örnek"
-            Beş dakika içerisinde %60 ortalama işlemci yüküne ulaşıldığında **High CPU utilization** adlı bir olayın tetiklenmesini ayarlayabilirsiniz:
+            Beş dakika içinde ortalama işlemci yükü yüzde 60’a ulaştığında **High CPU utilization** adlı bir olayın tetiklenmesini ayarlayabilirsiniz:
             
-            ![An alarm example][img-alarm-example]
+            ![Bir alarm örneği][img-alarm-example]
         
-        !!! info "Amazon Bulutunun Mevcut Standart Metrikleri"
+        
+        
+        !!! info "Amazon bulutunun mevcut standart metrikleri"
             *   CPU Utilization (yüzde olarak)
             *   Disk Reads (bayt cinsinden)
             *   Disk Writes (bayt cinsinden)
@@ -123,26 +141,26 @@ Bir Otomatik Ölçeklendirme Grubu oluşturmak için aşağıdaki adımları izl
             *   Network In (bayt cinsinden) 
             *   Network Out (bayt cinsinden)
 
-    4.  Bir olay oluşturmak için **Create Alarm** butonuna tıklayın.
+    4.  Bir olay oluşturmak için **Create Alarm** düğmesine tıklayın.
     
-    5.  **High CPU Utilization** olayı tetiklendiğinde alınacak aksiyonu seçin. Örneğin, olay tetiklendiğinde **Add** aksiyonunu kullanarak bir örnek eklemek üzere bir otomatik ölçeklendirme politikası yapılandırabilirsiniz.
+    5.  **High CPU Utilization** olayı tetiklendiğinde gerçekleştirilecek işlemi seçin. Örneğin, olay tetiklendiğinde bir instance eklemek için **Add** eylemini kullanan bir otomatik ölçeklendirme politikası yapılandırabilirsiniz.
     
-    6.  Yeni bir örnek eklendikten sonra kaynak tüketiminde ani artışlar olursa, olay erken tetiklenebilir. Bunu önlemek için, **Instances need `X` seconds to warm up** parametresini kullanarak saniye cinsinden bir ısınma süresi ayarlayabilirsiniz. Bu süre zarfında hiçbir olay tetiklenmeyecektir.
+    6.  Yeni bir instance eklendikten sonra kaynak tüketiminde sıçramalar olursa olay erken tetiklenebilir. Bunu önlemek için **Instances need `X` seconds to warm up** parametresini kullanarak saniye cinsinden bir ısınma süresi (warm-up) belirleyebilirsiniz. Bu süre boyunca olay tetiklenmez.
     
-14. Benzer şekilde, **Decrease Group Size** parametre grubunu kullanarak grup boyutu azaltma politikasını yapılandırın.
+14. Benzer şekilde, grup boyutunu azaltma politikasını yapılandırmak için **Decrease Group Size** parametre grubunu kullanın.
 
-    ![Group size decrease policy][img-asg-decrease-policy]
+    ![Grup boyutu azaltma politikası][img-asg-decrease-policy]
     
-15. Gerekirse, Otomatik Ölçeklendirme Grubu için bildirimleri ve etiketleri yapılandırın veya **Review** butonuna tıklayarak değişiklikleri gözden geçirin.
+15. Gerekirse, Auto Scaling Group için bildirimleri ve etiketleri (tags) yapılandırın veya **Review** düğmesine tıklayarak değişikliklerin gözden geçirilmesine geçin.
 
-16. Tüm parametrelerin doğru belirtildiğinden emin olduktan sonra, **Create Auto Scaling group** butonuna tıklayarak Otomatik Ölçeklendirme Grubu oluşturma işlemini başlatın.
+16. Tüm parametrelerin doğru belirtildiğinden emin olun ve ardından **Create Auto Scaling group** düğmesine tıklayarak Auto Scaling Group oluşturma işlemini başlatın.
 
-Belirtilen sayıda örnek, Otomatik Ölçeklendirme Grubu başarıyla oluşturulduktan sonra otomatik olarak başlatılacaktır.
+Auto Scaling Group başarıyla oluşturulduktan sonra belirtilen sayıda instance otomatik olarak başlatılacaktır.
 
-Otomatik Ölçeklendirme Grubunun doğru oluşturulduğunu, gruptaki başlatılan örnek sayısını görüntüleyip bu veriyi Wallarm Cloud’a bağlı filtreleme düğümleri sayısıyla karşılaştırarak kontrol edebilirsiniz.
+Auto Scaling Group'un doğru oluşturulduğunu, grupta başlatılan instance sayısını görüntüleyip bu veriyi Wallarm Cloud'a bağlı filtreleme düğümü sayısıyla karşılaştırarak doğrulayabilirsiniz.
 
-Bunu Wallarm Console kullanarak yapabilirsiniz. Örneğin, iki filtreleme düğümüne sahip örnek eşzamanlı çalışıyorsa, Wallarm Console ilgili Wallarm düğümü için **Nodes** bölümünde bu sayıyı gösterecektir.
+Bunu Wallarm Console kullanarak yapabilirsiniz. Örneğin, aynı anda iki filtreleme düğümlü instance çalışıyorsa, Wallarm Console ilgili Wallarm düğümü için **Nodes** bölümünde bu sayıyı gösterecektir.
 
-![Checking the Auto Scaling Group status][img-check-asg-in-cloud]
+![Auto Scaling Group durumunu kontrol etme][img-check-asg-in-cloud]
 
-Artık bir yük dengeleyicinin [oluşturulması ve yapılandırılması][link-doc-lb-guide] işlemine geçebilirsiniz.
+Artık bir yük dengeleyicinin [oluşturma ve yapılandırma][link-doc-lb-guide] adımlarına geçebilirsiniz.

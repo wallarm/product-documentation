@@ -1,10 +1,6 @@
-Once the malicious request is detected by Wallarm and displayed in the [**Attacks**][link-attacks] or [**Incidents**][link-incidents] section as the part of some attack, you have an ability to know the full context of this request: to which user session it belongs and what the full sequence of requests in this session is. This allows investigating all activity of the threat actor to understand attack vectors and what resources can be compromised.
+Wallarm tarafından kötü amaçlı istek tespit edilip bir saldırının parçası olarak [**Attacks**][link-attacks] veya [**Incidents**][link-incidents] bölümünde görüntülendiğinde, bu isteğin tam bağlamını öğrenme olanağına sahipsiniz: hangi kullanıcı oturumuna ait olduğunu ve bu oturumdaki isteklerin tam sıralamasının ne olduğunu. Bu, saldırı vektörlerini ve hangi kaynakların tehlikeye girebileceğini anlamak için tehdit aktörünün tüm etkinliğini araştırmanıza olanak tanır.
 
-Wallarm tarafından kötü niyetli istek tespit edildikten ve [**Attacks**][link-attacks] veya [**Incidents**][link-incidents] bölümünde bir saldırının parçası olarak görüntülendikten sonra, bu isteğin hangi kullanıcı oturumuna ait olduğunu ve bu oturumdaki isteklerin tam sırasını öğrenme imkânına sahip olursunuz. Bu, saldırganın tüm etkinliğini araştırarak saldırı vektörlerini ve hangi kaynakların tehlikeye girebileceğini anlamanıza olanak tanır.
-
-To perform this analysis, in Wallarm Console → **Attacks** or **Incidents**, access the attack, and then specific request details. In request details, click **Explore in API Sessions**. Wallarm will open the [**API Session**][link-sessions] section filtered: the session, the initial request belongs to is displayed, only the initial request is displayed within this session.
-
-Bu analizi gerçekleştirmek için, Wallarm Console → **Attacks** veya **Incidents** bölümünde saldırıya erişin ve ardından belirli istek detaylarına girin. İstek detaylarında **Explore in API Sessions** seçeneğine tıklayın. Wallarm, filtrelenmiş olarak [**API Session**][link-sessions] bölümünü açacaktır: oturum ve ilk isteğe ait bilgiler görüntülenecek, bu oturum içinde yalnızca ilk istek gösterilecektir.
+Bu analizi gerçekleştirmek için, Wallarm Console → **Attacks** veya **Incidents** içinde saldırıya erişin ve ardından belirli istek ayrıntılarına gidin. İstek ayrıntılarında, **Explore in API Sessions**'ı tıklayın. Wallarm, filtre uygulanmış [**API Session**][link-sessions] bölümünü açacaktır: ilk isteğin ait olduğu oturum görüntülenir, bu oturumda yalnızca ilk istek gösterilir.
 
 <div>
   <script async src="https://js.storylane.io/js/v2/storylane.js"></script>
@@ -13,6 +9,4 @@ Bu analizi gerçekleştirmek için, Wallarm Console → **Attacks** veya **Incid
   </div>
 </div>
 
-Remove the filter by request ID to see all other requests in the session: now you have the full picture of what was going on within the session the malicious request belongs to.
-
-Oturumdaki diğer tüm istekleri görmek için istek ID'sine göre filtrelemeyi kaldırın: artık kötü niyetli isteğin ait olduğu oturumda neler olduğunu tam olarak görebileceksiniz.
+Oturumdaki diğer tüm istekleri görmek için request ID filtresini kaldırın: artık kötü amaçlı isteğin ait olduğu oturumda neler olup bittiğine dair tam bir resme sahipsiniz.

@@ -6,33 +6,33 @@
 [doc-install-postanalytics]:    ../../../installation-postanalytics-en.md
 
 
-# CentOS için Yerel JFrog Artifactory Deposundan Wallarm Paketlerini Yükleme
+#   CentOS için Yerel JFrog Artifactory Deposundan Wallarm Paketleri Nasıl Yüklenir
 
-Bir NGINX filtre düğümüne adanmış ana bilgisayarda [JFrog Artifactory deposundaki][doc-repo-mirroring] Wallarm paketlerini yüklemek için, bu ana bilgisayarda aşağıdaki adımları uygulayın:
-1.  JFrog Artifactory web arayüzüne, alan adı veya IP adresi üzerinden erişin (örn. `http://jfrog.example.local:8081/artifactory`).
+NGINX filtre düğümüne ayrılmış bir ana bilgisayar üzerinde [JFrog Artifactory deposu][doc-repo-mirroring]ndan Wallarm paketlerini yüklemek için, bu ana bilgisayarda aşağıdaki işlemleri gerçekleştirin:
+1.  JFrog Artifactory web UI'ına alan adı veya IP adresi üzerinden gidin (örn., `http://jfrog.example.local:8081/artifactory`).
 
-    Bir kullanıcı hesabı ile web arayüzüne giriş yapın.
+    Web UI'a bir kullanıcı hesabıyla giriş yapın.
     
-2.  *Artifacts* menü öğesine tıklayın ve Wallarm paketlerini içeren bir depoyu seçin.
+2.  *Artifacts* menü girdisine tıklayın ve Wallarm paketlerini içeren bir depo seçin.
 
 3.  *Set Me Up* bağlantısına tıklayın.
 
     ![Depo ile çalışma][img-working-with-repo]
     
-    Bir açılır pencere görünecektir. *Type Password* alanına kullanıcı hesabınızın şifresini yazın ve *Enter* tuşuna basın. Artık, bu penceredeki talimatlar kimlik bilgilerinizi içerecektir.
+    Bir açılır pencere görüntülenecektir. *Type Password* alanına kullanıcı hesabınızın parolasını yazın ve *Enter* tuşuna basın. Artık bu penceredeki talimatlar kimlik bilgilerinizi içerecektir.
     
-    ![Kimlik bilgilerini yazma][img-repo-creds]
+    ![Kimlik bilgilerinin girilmesi][img-repo-creds]
 
-4.  `yum` yapılandırma örneğine kadar aşağı kaydırın ve bu örneği panonuza kopyalamak için `Copy Snippet to Clipboard` düğmesine tıklayın.
+4.  `yum` yapılandırma örneğine kadar aşağı kaydırın ve bu örneği panoya kopyalamak için `Copy Snippet to Clipboard` düğmesine tıklayın.
 
     ![Yapılandırma örneği][img-repo-code-snippet]
     
-5.  Bir `yum` yapılandırma dosyası oluşturun (örn. `/etc/yum.repos.d/artifactory.repo`) ve panoya kopyaladığınız parçayı içine yapıştırın.
+5.  Bir `yum` yapılandırma dosyası oluşturun (örn., `/etc/yum.repos.d/artifactory.repo`) ve kopyaladığınız parçacığı içine yapıştırın.
 
     !!! warning "Önemli!"
-        `baseurl` parametresinden `<PATH_TO_REPODATA_FOLDER>` parçasını kaldırdığınızdan emin olun, böylece `baseurl` deponun köküne işaret eder.
+        `baseurl` parametresinden `<PATH_TO_REPODATA_FOLDER>` parçasını kaldırdığınızdan emin olun; böylece `baseurl` deponun kökünü işaret eder.
     
-    `wallarm-centos-upload-local` örnek deposu için `/etc/yum.repos.d/artifactory.repo` dosya örneği:
+    `wallarm-centos-upload-local` örnek deposu için `/etc/yum.repos.d/artifactory.repo` dosyasına örnek:
 
     ```bash
     [Artifactory]
@@ -40,15 +40,15 @@ Bir NGINX filtre düğümüne adanmış ana bilgisayarda [JFrog Artifactory depo
     baseurl=http://user:password@jfrog.example.local:8081/artifactory/wallarm-centos-upload-local/
     enabled=1
     gpgcheck=0
-    #Optional - if you have GPG signing keys installed, use the below flags to verify the repository metadata signature:
+    #Opsiyonel - GPG imzalama anahtarlarınız yüklüyse, depo meta verisi imzasını doğrulamak için aşağıdaki bayrakları kullanın:
     #gpgkey=http://user:password@jfrog.example.local:8081/artifactory/wallarm-centos-upload-local/<PATH_TO_REPODATA_FOLDER>/repomd.xml.key
     #repo_gpgcheck=1
     ```
     
-6.  Ana bilgisayarda `epel-release` paketini yükleyin:
+6.  Ana bilgisayara `epel-release` paketini yükleyin:
     
     ```
     sudo yum install -y epel-release
     ```
 
-Artık CentOS için herhangi bir kurulum talimatını uygulayabilirsiniz. Depo ekleme adımını atlamanız gerekecektir çünkü yerel bir depo yapılandırdınız.
+Artık CentOS için herhangi bir kurulum talimatını izleyebilirsiniz. Yerel bir depo kurduğunuz için, deponun eklendiği adımı atlamanız gerekecektir.

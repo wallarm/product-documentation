@@ -5,36 +5,39 @@
 
 # Hassas Verilerin Maskelenmesi
 
-İsteklerinizdeki hassas verilerin, altyapınız içinde güvenli kalması ve [Wallarm Cloud](../../about-wallarm/overview.md#how-wallarm-works) dahil olmak üzere üçüncü taraf bir servise iletilmemesi çok önemlidir. Bu hedef, [shared responsibility model](../../about-wallarm/shared-responsibility.md) kullanılarak gerçekleştirilir: Wallarm, kendi tarafından kötü niyetli istekler hakkındaki veriler hariç hiçbir veri iletmez; bu da hassas verilerin sızdırılmasını son derece düşük bir olasılığa indirger - sizden beklenen ise hassas verilerin maskelenmesi olup, bu da korunan bilgi alanlarının güvenlik çevreniz dışına asla çıkmayacağının ek bir güvencesini sağlar.
+[hibrit](../../about-wallarm/shared-responsibility.md#overview) Wallarm kurulumlarında, Wallarm filtreleme düğümlerini kendi altyapınızda siz yönetirken ve Wallarm, Wallarm Cloud bileşenini yönetirken, isteklerinizdeki hassas verilerin altyapınız içinde güvende kalması ve [Wallarm Cloud](../../about-wallarm/overview.md#how-wallarm-works) dahil herhangi bir üçüncü taraf servise iletilmemesi kritik öneme sahiptir. Bu hedef [paylaşılan sorumluluk modeli](../../about-wallarm/shared-responsibility.md) kullanılarak gerçekleştirilir: Wallarm kendi tarafında, hassas verilerin açığa çıkma ihtimalini son derece düşüren, yalnızca kötü amaçlı isteklere ilişkin verileri iletir; sizin tarafınızda ise hassas verilerin maskelenmesi beklenir; bu da korunan bilgi alanlarının güvenlik çevrenizi asla terk etmeyeceğini ek olarak garanti eder.
 
-Wallarm, veri maskeleme yapılandırması için **Mask sensitive data** [kuralını](../rules/rules.md) sunar. Wallarm düğümü, Wallarm Cloud'a aşağıdaki verileri gönderir:
+!!! info "Diğer dağıtım biçimleri"
+    **on-premise** [kurulumlarda](../../about-wallarm/shared-responsibility.md#overview) veriler güvenlik çevrenizi asla terk etmezken, **security edge** biçiminde tüm veriler bu güvenlik çevresi dışındadır; yine de Wallarm Console kullanıcılarının hassas verilere erişimini kısıtlamak için maskeleme kurallarını kullanabilirsiniz.
+
+Wallarm, veri maskelemeyi yapılandırmak için **Mask sensitive data** [kuralını](../rules/rules.md) sağlar. Wallarm düğümü Wallarm Cloud’a aşağıdaki verileri gönderir:
 
 * Saldırı içeren serileştirilmiş istekler
 * Wallarm sistem sayaçları
-* Sistem istatistikleri: CPU yükü, RAM kullanımı, vb.
-* Wallarm sistem istatistikleri: işlenen NGINX isteklerinin sayısı, Tarantool istatistikleri, vb.
-* Wallarm'ın uygulama yapısını doğru tespit edebilmesi için gereken trafik doğasına ilişkin bilgiler
+* Sistem istatistikleri: CPU yükü, RAM kullanımı vb.
+* Wallarm sistem istatistikleri: işlenen NGINX isteklerinin sayısı, wstore istatistikleri vb.
+* Uygulama yapısını doğru şekilde tespit etmek için Wallarm’ın ihtiyaç duyduğu trafik doğasına ilişkin bilgiler
 
-**Mask sensitive data** kuralı, istek post-analytics modülüne ve Wallarm Cloud'a gönderilmeden önce belirtilen istek noktasının orijinal değerini keser. Bu yöntem, hassas verilerin güvenilir ortamın dışına sızmasını engeller.
+**Mask sensitive data** kuralı, isteği postanalytics modülüne ve Wallarm Cloud’a göndermeden önce belirtilen istek noktasının özgün değerini keser. Bu yöntem, hassas verilerin güvenilen ortamın dışına sızamayacağını garanti eder.
 
-Bu işlem, saldırıların görüntülenmesini, aktif saldırı (tehdit) doğrulamasını ve kaba kuvvet saldırılarının tespit edilmesini etkileyebilir.
+Bu, saldırıların görüntülenmesini ve kaba kuvvet (brute force) saldırılarının tespitini etkileyebilir.
 
-## Kural Oluşturma ve Uygulama
+## Kural oluşturma ve uygulama
 
 Veri maskesini ayarlamak ve uygulamak için:
 
 --8<-- "../include/rule-creation-initial-step.md"
-1. **Change requests/responses** → **Mask sensitive data** seçeneğini tıklayın.
-1. **If request is** kısmında, kuralın uygulanacağı kapsamı [describe](rules.md#configuring) edin.
-1. **In this part of request** bölümünde, orijinal değerinin kesilmesi gereken [request points](request-processing.md) belirtin.
-1. [Kuralın derlenip filtreleme düğümüne yüklenmesini tamamlamasını](rules.md#ruleset-lifecycle) bekleyin.
+1. **Change requests/responses** → **Mask sensitive data** öğesini seçin.
+1. **If request is** bölümünde, kuralın uygulanacağı kapsamı [açıklayın](rules.md#configuring).
+1. **In this part of request** bölümünde, özgün değeri kesilecek [istek noktalarını](request-processing.md) belirtin.
+1. [Kuralın derlenmesinin ve filtreleme düğümüne yüklenmesinin tamamlanmasını](rules.md#ruleset-lifecycle) bekleyin.
 
-## Örnek: Bir çerez değerinin maskelenmesi
+## Örnek: bir çerez değerinin maskelenmesi
 
-Diyelim ki, `example.com` alan adına erişilebilen uygulamanız, kullanıcı doğrulaması için `PHPSESSID` çerezini kullanıyor ve Wallarm kullanan çalışanların bu bilgilere erişimini engellemek istiyorsunuz.
+Diyelim ki `example.com` alan adından erişilebilen uygulamanız, kullanıcı kimlik doğrulaması için `PHPSESSID` çerezini kullanıyor ve Wallarm kullanan çalışanların bu bilgiye erişimini engellemek istiyorsunuz.
 
-Bunu yapmak için, ekrandaki görüntüde gösterildiği gibi **Mask sensitive data** kuralını ayarlayın.
+Bunu yapmak için, **Mask sensitive data** kuralını ekran görüntüsünde gösterildiği gibi ayarlayın.
 
 --8<-- "../include/waf/features/rules/request-part-reference.md"
 
-![Marking sensitive data][img-masking]
+![Hassas verilerin işaretlenmesi][img-masking]

@@ -1,35 +1,35 @@
-# Terimler Sözlüğü
+# Sözlük
 
-Sözlük, platformu daha iyi anlamanız için temel Wallarm varlıklarını kapsamaktadır.
+Sözlük, platformu daha iyi anlamanıza yardımcı olmak için temel Wallarm varlıklarını kapsar.
 
 ## Hit
 
-Hit, seri hale getirilmiş kötü amaçlı bir istek (orijinal kötü amaçlı istek ve filtreleme düğümü tarafından eklenen meta veriler) anlamına gelir, örneğin:
+Hit, seri hale getirilmiş kötü amaçlı bir istektir (orijinal kötü amaçlı istek ve filtreleme düğümü tarafından eklenen meta veriler), örneğin:
 
 ![Hit örneği](images/user-guides/events/analyze-attack-raw.png)
 
-[Hit parametreleri hakkında detaylar](user-guides/events/check-attack.md#attack-analysis_1)
+[Hit parametrelerinin ayrıntıları](user-guides/events/check-attack.md#attack-analysis_1)
 
-## Saldırı
+## Saldırı {#attack}
 
-Saldırı, tek bir hit veya birden fazla hit'in [gruplandırılmış](user-guides/events/grouping-sampling.md#grouping-of-hits) halidir.
+Bir saldırı, [gruplandırılmış](user-guides/events/grouping-sampling.md#grouping-of-hits) tek bir hit veya birden fazla hit'tir.
 
 Tek bir hit içeren bir saldırı örneği:
 
-![Bir hit ile saldırı](images/glossary/attack-with-one-hit-example.png)
+![Tek hit içeren saldırı](images/glossary/attack-with-one-hit-example.png)
 
-Birden fazla hit içeren bir saldırı örneği:
+Birden çok hit içeren bir saldırı örneği:
 
-![Birçok hit ile saldırı](images/glossary/attack-with-several-hits-example.png)
+![Birkaç hit içeren saldırı](images/glossary/attack-with-several-hits-example.png)
 
-Saldırıları anlama ve analiz etme hakkında [detaylara](user-guides/events/check-attack.md) bakınız.
+Saldırıların nasıl anlaşılacağı ve analiz edileceğine dair [ayrıntılara bakın](user-guides/events/check-attack.md).
 
-## Kötü Amaçlı Yük
+## Kötü Amaçlı Yük (Payload)
 
-Orijinal bir isteğin, aşağıdaki öğeleri içeren kısmıdır:
+Orijinal isteğin aşağıdaki unsurları içeren bir bölümüdür:
 
-* Bir istekte tespit edilen saldırı işaretleri. Bir istekte aynı saldırı türünü karakterize eden birden fazla saldırı işareti tespit edilirse, yalnızca ilk işaret yük olarak kaydedilir.
-* Saldırı işareti bağlamı. Bağlam, tespit edilen saldırı işaretlerinden önce gelen ve sonrasında gelen sembollerin kümesidir. Yük uzunluğu sınırlı olduğundan, bir saldırı işareti tüm yük uzunluğunda ise bağlam atlanabilir.
+* Bir istekte tespit edilen saldırı göstergeleri. Aynı saldırı türünü karakterize eden birden fazla saldırı göstergesi bir istekte tespit edilirse, yüke yalnızca ilk gösterge kaydedilir.
+* Saldırı göstergesinin bağlamı. Bağlam, tespit edilen saldırı göstergelerinin öncesinde ve sonrasında yer alan semboller kümesidir. Yük uzunluğu sınırlı olduğundan, saldırı göstergesi tam yük uzunluğundaysa bağlam atlanabilir.
 
 Örneğin:
 
@@ -44,13 +44,13 @@ Orijinal bir isteğin, aşağıdaki öğeleri içeren kısmıdır:
     ;wget+http://s
     ```
 
-    Bu yükte, `;wget+` [RCE](attacks-vulns-list.md#remote-code-execution-rce) saldırı işaretidir ve yükün diğer kısmı saldırı işareti bağlamını oluşturmaktadır.
+    Bu yükte, `;wget+` bir [RCE](attacks-vulns-list.md#remote-code-execution-rce) saldırı göstergesidir ve yükün diğer kısmı saldırı göstergesinin bağlamıdır.
 
-Saldırı işaretleri, [davranışsal saldırıları](about-wallarm/protecting-against-attacks.md#behavioral-attacks) tespit etmekte kullanılmadığından, davranışsal saldırılar kapsamında gönderilen isteklerin yükleri boştur.
+Saldırı göstergeleri [davranışsal saldırıları](attacks-vulns-list.md#attack-types) tespit etmek için kullanılmadığından, davranışsal saldırıların bir parçası olarak gönderilen isteklerin yükleri boştur.
 
-## Güvenlik Açığı
+## Zafiyet
 
-Güvenlik açığı, bir web uygulaması oluşturulurken veya uygulanırken ihmal veya yetersiz bilgi nedeniyle yapılan bir hatadır ve bilgi güvenliği risklerine yol açabilir.
+Bir API oluşturulurken veya uygulanırken ihmal ya da yetersiz bilgi nedeniyle yapılan ve bilgi güvenliği riski doğurabilen bir hatadır.
 
 Bilgi güvenliği riskleri şunlardır:
 
@@ -58,44 +58,42 @@ Bilgi güvenliği riskleri şunlardır:
 * Hizmet reddi.
 * Veri bozulması ve diğerleri.
 
-İnternet trafiği, güvenlik açıklarını tespit etmek için kullanılabilir; Wallarm'ın diğer işlevleri arasında bu da yer almaktadır.
+Zafiyetleri tespit etmek için İnternet trafiği kullanılabilir; Wallarm diğer işlevlerinin yanı sıra bunu yapar.
 
 ## Güvenlik Olayı
 
-Güvenlik olayı, bir güvenlik açığının sömürülmesidir. Bir olay, doğrulanmış bir güvenlik açığına yönelik bir [saldırı](#attack)'dır.
+Güvenlik olayı, bir zafiyetin istismar edilmesinin gerçekleşmesidir. Bir olay, doğrulanmış bir zafiyeti hedef alan bir [saldırı](#attack)dır.
 
-Bir olay, tıpkı bir saldırı gibi, sisteminiz dışındaki bir varlıktır ve dış İnternet'in bir özelliğini yansıtır, sistemin kendisini değil. Mevcut güvenlik açıklarına yönelik saldırılar azınlıkta olsa da, bilgi güvenliği açısından son derece önemlidir. Wallarm, mevcut güvenlik açıklarına yönelik saldırıları otomatik olarak tespit eder ve bunları ayrı bir nesne olarak görüntüler – olay.
+Bir olay, tıpkı bir saldırı gibi, sisteminizin dışındaki bir varlıktır ve sistemin değil, dış İnternet'in bir özelliğidir. Mevcut zafiyetleri hedefleyen saldırılar azınlıkta olsa da, bilgi güvenliği açısından son derece önemlidir. Wallarm, mevcut zafiyetleri hedefleyen saldırıları otomatik olarak tespit eder ve bunları ayrı bir nesne – güvenlik olayı – olarak gösterir.
 
-## Dairesel Kuyruk
+Ayrıca bkz.: [Olay Analizi](user-guides/events/check-incident.md)
 
-Dairesel kuyruk, sanki birbirine bağlıymış gibi tek, sabit boyutlu bir arabellek kullanan bir veri yapısıdır.
-[See Wikipedia](https://en.wikipedia.org/wiki/Circular_buffer).
+## Dairesel Arabellek
+Dairesel arabellek, tek bir, sabit boyutlu arabelleği sanki uç uca bağlanmış gibi kullanan bir veri yapısıdır.
+[Bkz. Vikipedi](https://en.wikipedia.org/wiki/Circular_buffer).
 
-## Özel Kurallar Seti (önceki terim LOM)
+## Özel kural seti (önceki terim LOM)
 
-Özel kurallar seti, Wallarm Cloud'dan Wallarm düğümleri tarafından indirilen derlenmiş güvenlik kuralları bütünüdür.
+Özel kural seti, Wallarm düğümleri tarafından Wallarm Cloud'dan indirilen derlenmiş güvenlik kuralları kümesidir.
 
-Özel kurallar, trafik işleme için bireysel kurallar oluşturmanızı sağlar, örneğin:
+Özel kurallar, trafik işleme için bireysel kurallar ayarlamanızı sağlar, örneğin:
 
-* Wallarm Cloud'a yüklemeden önce hassas verileri maskeleme
-* Düzenli ifadeye dayalı saldırı göstergeleri oluşturma
-* Aktif bir güvenlik açığından yararlanan istekleri engelleyen sanal yama uygulama
-* Belirli isteklerde saldırı tespitini devre dışı bırakma vb.
+* Wallarm Cloud'a yüklemeden önce hassas verileri maskele
+* regexp tabanlı saldırı göstergeleri oluştur
+* Etkin bir zafiyeti istismar eden istekleri engelleyen sanal yamayı uygula
+* Belirli isteklerde saldırı tespitini devre dışı bırak, vb.
 
-Özel kurallar seti varsayılan olarak boş değildir; Cloud'da kayıtlı tüm müşteriler için oluşturulan kuralları içerir, örneğin [**Ayarlar → Genel** sekmesindeki](admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console) filtreleme modu kuralı.
+Özel kural seti varsayılan olarak boş değildir; örneğin [**Settings → General** tab] içindeki değerle filtreleme modu kuralı gibi, Bulutta kayıtlı tüm müşteriler için oluşturulan kuralları içerir (admin-en/configure-wallarm-mode.md#general-filtration-mode).
 
-[Özel kurallar seti hakkında daha fazla detay](user-guides/rules/rules.md)
+[Özel kural setleri hakkında daha fazla bilgi](user-guides/rules/rules.md)
 
 ## Geçersiz İstek
+Filtre düğümü tarafından kontrol edilmiş ve LOM kurallarıyla eşleşmeyen bir istek.
 
-Filtreleme düğümü tarafından kontrol edilen ve LOM kurallarıyla eşleşmeyen istek.
+## Ters Proxy
+Ters proxy, bir istemci adına bir sunucudan kaynakları alan ve bu kaynakları sanki Web sunucusunun kendisinden geliyormuş gibi istemciye iade eden bir proxy sunucu türüdür.
+[Bkz. Vikipedi](https://en.wikipedia.org/wiki/Reverse_proxy).
 
-## Reverse Proxy
-
-Reverse Proxy, bir istemci adına bir sunucudan kaynakları alıp, bu kaynakları Web sunucusundan geliyormuş gibi istemciye dönen bir proxy sunucusu türüdür.
-[See Wikipedia](https://en.wikipedia.org/wiki/Reverse_proxy).
-
-## Certificate Authority
-
-Certificate Authority, dijital sertifikalar düzenleyen bir varlıktır.
-[See Wikipedia](https://en.wikipedia.org/wiki/Certificate_authority).
+## Sertifika Otoritesi
+Sertifika otoritesi, dijital sertifikalar veren bir kuruluştur.
+[Bkz. Vikipedi](https://en.wikipedia.org/wiki/Certificate_authority).
