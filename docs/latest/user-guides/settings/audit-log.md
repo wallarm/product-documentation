@@ -1,33 +1,40 @@
-# User activity log
+# Activity Log
 
-On the **Settings** → **Activity log** tab of Wallarm Console, you can check the history of user actions in the Wallarm system. The logs include information about creating, updating and deleting the following objects:
-
-* Domains from the network perimeter
-* Services (ports) from the network perimeter
-* Domains and associated IP addresses from the network perimeter
-* [Two‑factor authentication](account.md#enabling-two-factor-authentication)
-* [API tokens](api-tokens.md)
-* [Users](users.md)
-* Traffic processing [rules](../rules/rules.md)
-* [Custom ruleset backups](../rules/rules.md#backup-and-restore)
-* [Wallarm nodes](../nodes/nodes.md)
-* [Triggers](../triggers/triggers.md)
-* [Integrations](integrations/integrations-intro.md)
-* [Blocked IP address](../ip-lists/overview.md)
-* [Hit sampling](../events/grouping-sampling.md#sampling-of-hits)
-
-The logs also include information on the following actions and objects:
-
-* [Vulnerability marked as the false positive](../vulnerabilities.md#vulnerability-lifecycle)
-* [Rechecked attack](../../vulnerability-detection/threat-replay-testing/overview.md)
+In the **Settings** → **Activity Log** section of Wallarm Console, you can check the history of activities in the Wallarm system. 
 
 ![Activity log](../../images/user-guides/settings/audit-log.png)
 
-**To filter the activity log records**, you can use the following parameters:
+## Analyzing log
 
-* Case sensitive data on the user performed the action
+You can filter Activity Log to see only activities:
 
-      If the action was performed by the Wallarm technical support team, the username is `Technical support`. This value cannot be used to sort the activity log records.
-* Action type
-* Name of the object on which the action was performed
-* Date when the action was performed
+* For the specified dates
+* By specific actor (search by name, email, filter by ID)
+* For specific object types
+* With specific **Action**: `Create`, `Update`, `Delete`
+* With specific **Source** - authentication used for the action: `UI`, `Node`, `API token`
+
+Click the eye icon in the **Changes** column to see the details on action, like what was the previous and new value of something:
+
+![Activity log - details of activity](../../images/user-guides/settings/audit-log-details.png)
+
+## Object types
+
+The Log include information about creating, updating and deleting of the following types of objects:
+
+* [Client](../../installation/multi-tenant/overview.md)
+* [Partner](../../installation/multi-tenant/overview.md)
+* [User](users.md)
+* [Login](users.md)
+* [Subscription](../../about-wallarm/subscription-plans.md)
+* [Application](applications.md)
+* [Group](../../admin-en/configuration-guides/sso/setup.md#tenant-dependent-permissions)
+* [Invitation](../../user-guides/settings/users.md#inviting-users)
+* [Integration](../../user-guides/settings/integrations/integrations-intro.md)
+* [API token](../../user-guides/settings/api-tokens.md)
+* [Node token](../../user-guides/settings/api-tokens.md#api-tokens-vs-node-tokens)
+* [Node](../nodes/nodes.md)
+
+## Export to CSV
+
+You can export currently displayed data (taking into account filters) to CSV with the **Export CSV** button on the top.
