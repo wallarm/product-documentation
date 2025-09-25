@@ -12,7 +12,7 @@ This is the most common setup, recommended when you serve requests from multiple
 
 ![!](../../../images/waf-installation/security-edge/inline/multi-region-edge-nodes.png)
 
-Available regions depend on your [Wallarm Cloud](../../../about-wallarm/overview.md#cloud) (US → US regions, EU → EU regions).
+Available regions depend on your [Wallarm Cloud](../../../about-wallarm/overview.md#cloud) (US → US regions, EU → EU regions and UAE North).
 
 ## Multi-cloud deployment
 
@@ -87,6 +87,11 @@ If mTLS cannot be used, allow incoming traffic from the Wallarm IP addresses of 
         ```
         20.203.240.193
         20.203.240.192
+        ```
+    === "UAE North"
+        ```
+        20.74.249.13
+        20.74.249.12
         ```
 
 ## CNAME records
