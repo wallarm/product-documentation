@@ -1,4 +1,4 @@
-# Wallarmプラットフォーム設定
+# Wallarmプラットフォームの設定
 
 <!-- ## Protecting applications against OWASP Top 10
 
@@ -21,7 +21,7 @@
 
 * [Documentation for Wallarm Console sections](../user-guides/user-intro.md) -->
 
-デモ動画をご覧いただき、Wallarm Console上で利用可能な一般的なWallarmの設定（[ユーザー管理](../user-guides/settings/users.md)、ノード[フィルトレーションモード](../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console)設定、[サブスクリプションプラン](../about-wallarm/subscription-plans.md)管理、[アプリケーション設定](../user-guides/settings/applications.md)、および[アクティビティログ](../user-guides/settings/audit-log.md)）をご確認いただけます。
+Wallarm Consoleで利用可能な[ユーザー管理](../user-guides/settings/users.md)、ノードの[フィルタリングモード](../admin-en/configure-wallarm-mode.md#general-filtration-mode)の設定、[サブスクリプションプラン](../about-wallarm/subscription-plans.md)の管理、[アプリケーション設定](../user-guides/settings/applications.md)、[アクティビティログ](../user-guides/settings/audit-log.md)などのWallarmの基本設定を紹介するデモ動画をご覧ください。
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/8kPa1EsQFaQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

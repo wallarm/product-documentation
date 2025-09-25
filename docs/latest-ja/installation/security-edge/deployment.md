@@ -1,59 +1,64 @@
-# セキュリティエッジインライン <a href="../../../about-wallarm/subscription-plans/#security-edge"><img src="../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inline <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../images/security-edge-tag.svg" style="border: none;"></a>
 
-**Security Edge** プラットフォームは、Wallarmがホストする環境内の地理的に分散したロケーションにWallarmノードを展開するためのマネージドサービスを提供します。その主要な展開オプションの一つである**inline**展開では、オンサイトでのインストールを必要とせず、API全体に対してリアルタイムで堅牢な保護を実現します。
+Security Edgeプラットフォームは、Wallarmがホストする環境内の地理的に分散したロケーションにWallarmノードをデプロイするためのマネージドサービスを提供します。主要なデプロイメントオプションの1つであるinlineデプロイメントは、オンサイトのインストールを一切必要とせず、API全体をリアルタイムかつ堅牢に保護します。
 
-これは、DNS設定のCNAMEレコードを変更してホストからWallarmのエッジノードへトラフィックをリダイレクトできる場合、API保護に最適なソリューションです。
+これは、DNS設定のCNAMEレコードを変更してホストからWallarmのEdgeノードへトラフィックをリダイレクトできる場合に、APIを保護する理想的なソリューションです。
 
 ![!](../../images/waf-installation/security-edge/inline/traffic-flow.png)
 
-## 動作の仕組み
+## 仕組み
 
-Security Edgeサービスは、安全なクラウド環境を提供し、WallarmノードをWallarmが展開、ホスト、管理します：
+Security Edgeサービスは、WallarmノードがWallarmによってデプロイ、ホスト、管理される安全なクラウド環境を提供します:
 
-* ターンキー展開：Wallarmが世界各地に分散したロケーションにノードを自動展開するため、最小限のセットアップで済みます。
-* オートスケーリング：ノードはトラフィック負荷に応じて水平方向に自動スケールし、手動設定は不要です。
-* コスト削減：Wallarmが管理するノードにより運用負荷が軽減され、迅速な展開とスケーラビリティが実現します。
-* シームレスな統合：シンプルな設定でAPI全体を中断することなく保護できます。
+* ターンキー型デプロイメント：最小限のセットアップで、Wallarmが地理的に分散したロケーションへ自動的にノードをデプロイします。
+* オートスケーリング：変動するトラフィック負荷に対応するためにノードが自動的に水平スケールし、手動の設定は不要です。
+* コスト削減：Wallarm管理のノードにより運用負荷を低減し、迅速なデプロイとスケーラビリティを実現します。
+* シームレスな統合：シンプルな設定で、サービスを停止させることなくAPI全体を保護できます。
 
 ## 制限事項
 
-* 現在、エッジinlineノードは直接的なインターネット向け展開のみをサポートします。CDNやDDoS保護プロバイダー（例: Cloudflare, Akamai）など、トラフィックをルーティングするサードパーティサービスの背後では動作しません。
-* 対応するドメインは、3レベル以上のみです（例: `domain.com`ではなく`www.domain.com`を使用してください）。
-* 64文字未満のドメインのみがサポートされます。
-* HTTPSトラフィックのみがサポートされ、HTTPは許可されません。
-* エッジノードの展開を開始するには、証明書のCNAMEレコードを追加する必要があります。
-* 証明書のCNAMEが14日以内に追加されない場合、ノードの展開が失敗します。
+* 第3レベル以上のドメインのみ対応します（例: domain.comではなくwww.domain.comを使用します）。
+* 64文字未満のドメインのみ対応します。
+* HTTPSトラフィックのみ対応します。HTTPは許可されません。
+* [カスタムブロックページとブロックコード](../../admin-en/configuration-guides/configure-block-page-and-code.md)の構成にはまだ対応していません。
 
-## エッジインラインの設定
+## Edge Inlineの設定
 
-エッジインラインを実行するには、Wallarm Consoleの **Security Edge** → **Edge inline** → **Configure** に移動してください。複数のオリジンを設定してトラフィックを転送し、複数のホストを保護できます。
+Edge inlineを実行するには、Wallarm Console → Security Edge → Edge inline → Configureに移動します。このセクションが利用できない場合は、必要なサブスクリプションへのアクセスについてsales@wallarm.comへお問い合わせください。
 
-このセクションが利用できない場合、お使いのアカウントに適切なサブスクリプションがない可能性があります。sales@wallarm.comまでお問い合わせください。
+転送先となる複数のオリジンと、保護する複数のホストを設定できます。デモをご覧ください:
 
-エッジノードの展開設定はいつでも更新可能です。既存のCNAMEレコードは変更せずにノードが再展開されます。
+<div>
+        <script src="https://js.storylane.io/js/v1/storylane.js"></script>
+        <div class="sl-embed" style="position:relative;padding-bottom:calc(51.72% + 27px);width:100%;height:0;transform:scale(1)">
+          <iframe class="sl-demo" src="https://wallarm.storylane.io/demo/d0rwdofmftda" name="sl-embed" allow="fullscreen" style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
+        </div>
+      </div>
 
-### 1. 一般設定
+Edgeノードのデプロイ設定はいつでも更新できます。既存のCNAMEレコードは変更せずに、ノードは再デプロイされます。
 
-一般設定では、エッジノードを展開するリージョンと、フィルタリングされたトラフィックを転送するオリジンを指定します。
+### 1. General settings
 
-#### リージョン
+General settingsでは、Edgeノードをデプロイするリージョンと、フィルタ済みトラフィックの転送先オリジンを指定します。
 
-エッジノードを展開するリージョンを1つ以上選択してください。APIやアプリケーションがホストされている場所に近いリージョンの選択を推奨します。
+#### Regions
 
-複数のリージョンで展開することで、地理的な冗長性が向上し、高い可用性が確保されます。
+Edgeノードをデプロイするリージョンを1つ以上選択します。APIやアプリケーションのホスト場所に近いリージョンを選択することを推奨します。
 
-#### オリジンサーバー
+複数のリージョンにデプロイすると、ジオ冗長性が向上し、高可用性を確保できます。
 
-エッジノードがフィルタリングされたトラフィックを転送する対象となるオリジンを指定してください。各オリジンには、サーバーのIPアドレス、ドメイン名、またはFQDNを、オプションでポート番号（デフォルトは443）とともに指定します。
+#### Origin servers
 
-1つのオリジンに複数のサーバーがある場合、それらすべてを指定できます。リクエストは以下の方法で分散されます：
+Edgeノードがフィルタ済みトラフィックを転送するオリジンを指定します。各オリジンには、サーバーのIPアドレスまたはFQDNと、任意のポート（デフォルト: 443）を指定します。
 
-* ラウンドロビンアルゴリズムが使用されます。最初のリクエストは最初のサーバーに送信され、2つ目は次のサーバーに送信されるというように、最後のサーバーの後は再び最初のサーバーに戻ります。
-* IPベースのセッション永続化により、同一IPからのトラフィックは常に同じサーバーにルーティングされます。
+オリジンが複数のサーバーを持つ場合は、すべて指定できます。リクエストは次のように分散されます:
 
-!!! info "Wallarm IPレンジからのトラフィックをオリジンで許可する"
-    選択したリージョンで使用されるIPレンジからの受信トラフィックを、オリジンで許可してください：
-    
+* ラウンドロビンアルゴリズムを使用します。最初のリクエストは最初のサーバーに、2番目は次のサーバーに送られ、最後のサーバーの後は最初のサーバーに戻ります。
+* IPベースのセッション永続性により、同一IPからのトラフィックは常に同じサーバーへルーティングされます。
+
+!!! info "オリジンでWallarmのIPレンジからのトラフィックを許可する"
+    選択したリージョンで使用されるIPレンジからの着信トラフィックを、オリジンで許可する必要があります:
+
     === "us-east-1"
         ```
         18.215.213.205
@@ -84,113 +89,149 @@ Security Edgeサービスは、安全なクラウド環境を提供し、Wallarm
 
 ![!](../../images/waf-installation/security-edge/inline/general-settings-section.png)
 
-後にトラフィックの分析とフィルタリングのためにホストを追加する際、各ホストまたはlocationに指定されたオリジンを割り当てます。
+後で、トラフィックの分析とフィルタリング対象のホストを追加する際に、各ホストまたはロケーションを所定のオリジンに割り当てます。
 
-### 2. 証明書
+### 2. Certificates
 
-オリジンへ安全にトラフィックを誘導するため、Wallarmはドメインの証明書を取得する必要があります。これらの証明書は、**Certificates**セクションで指定したDNSゾーンに基づいて発行されます。
+Certificatesセクションでは、ドメイン向けの証明書を取得できます:
 
-設定が完了すると、各DNSゾーンに対してWallarmがCNAMEを提供します。このCNAMEレコードをDNS設定に追加することで、ドメイン所有権を確認し、証明書発行プロセスを完了します。
+* Edge Inlineノードをインターネットに直接面するソリューションとしてデプロイする場合、オリジンサーバーへトラフィックを安全にルーティングするために証明書が必要です。証明書は、このセクションで指定したDNSゾーンに基づいて発行されます。
+
+    構成が完了すると、Wallarmは各DNSゾーンに対するCNAMEを提供します。ドメイン所有権の確認と証明書発行プロセスの完了のため、このCNAMEレコードをDNS設定に追加します。
+* オリジンサーバーがトラフィックをプロキシするサードパーティサービス（例: CDN、CloudflareやAkamaiのようなDDoS保護プロバイダー）の背後にある場合、証明書の発行は不要です。この場合、Skip certificate issuanceオプションを選択します。
 
 ![!](../../images/waf-installation/security-edge/inline/certificates.png)
 
-### 3. ホスト
+複数のDNSゾーンを指定でき、ゾーンごとに異なる証明書発行方式を選択できます。
 
-**Hosts**セクションでは：
+### 3. Hosts
 
-1. Wallarmノードへ分析のためにトラフィックを誘導するドメインとポート、または任意のサブドメインを指定します。各ホストエントリは、**Certificates**で以前に定義されたDNSゾーンと一致する必要があります。
+Hostsセクションでは:
+
+1. Wallarmノードで分析するためにトラフィックを向けるドメイン、ポート、サブドメインを指定します。各ホストエントリは、事前にCertificatesで定義したDNSゾーンに一致している必要があります。
 
     ??? info "許可されるポート"
-        HTTPポートからエッジノードへトラフィックを誘導することはできません。以下のポートがサポートされます：
-        
+        HTTPポートからEdgeノードへトラフィックを向けることは許可されていません。次のポートをサポートします:
+
         443, 444, 1443, 1760, 2001, 2087, 2096, 4333, 4334, 4430, 4440, 4443 4466, 4993, 5000, 5001, 5454, 7003, 7443, 7741, 8010, 8012, 8070, 8071, 8072, 8075, 8076, 8077, 8078, 8081, 8082, 8084, 8085, 8086, 8088, 8090, 8092, 8093, 8094, 8095, 8096, 8097, 8098, 8099, 8104, 8181, 8243, 8282, 8383, 8443, 8444, 8448, 8585, 8723, 8787, 8801, 8866, 9052, 9090, 9093, 9111, 9193, 9440, 9443, 9797, 44300, 44301, 44302, 44395, 44443, 52233, 55180, 55553, and 60000
 
-1. （任意）ホストのトラフィックを[Wallarm application](../../user-guides/settings/applications.md)に関連付け、Wallarmプラットフォーム上の異なるAPIインスタンスやサービスを分類および管理します。
-1. 各ホストに対して[Wallarm mode](../../admin-en/configure-wallarm-mode.md)を設定します。
-1. 各ホストからフィルタリングされたトラフィックを転送するオリジンを選択します。
+1. （任意）ホストのトラフィックを[Wallarmアプリケーション](../../user-guides/settings/applications.md)に関連付け、Wallarmプラットフォーム上で異なるAPIインスタンスやサービスを分類・管理します。
+1. 各ホストの[Wallarm mode](../../admin-en/configure-wallarm-mode.md)を設定します。
+1. （任意）サーバーの[NGINXディレクティブ](https://nginx.org/en/docs/http/ngx_http_proxy_module.html)を指定します。デフォルトでは、これらのディレクティブはNGINXドキュメントに記載された標準値を使用します。
+1. 各ホストについて、ルートロケーション（`/`）の設定を定義します:
+
+    * （他のロケーション固有の設定が定義されていない場合に）Wallarmノードがフィルタ済みトラフィックを転送するオリジン。ロケーションで定義したパスは自動的にオリジンに付加されます。
+    * （任意）Wallarmアプリケーション。
+    * フィルタリングモード。
 
 ![!](../../images/waf-installation/security-edge/inline/hosts.png)
 
-ホスト内の特定の**locations**について、さらにカスタマイズ可能です：
+ホスト内の特定のロケーションについて、さらに次をカスタマイズできます:
 
-* オリジン。このlocationで定義されたパスは自動的にオリジンに追加されます。
-* Wallarm application。
-* フィルトレーションモード。
-* 一部の[NGINX directives](https://nginx.org/en/docs/http/ngx_http_proxy_module.html)も設定可能です。デフォルトでは、これらのディレクティブはNGINXの標準値（NGINXのドキュメントに記載）を使用します。
+* オリジン。ロケーションで定義したパスは自動的にオリジンに付加されます。
+* Wallarmアプリケーション。
+* フィルタリングモード。
+* 一部の[NGINXディレクティブ](https://nginx.org/en/docs/http/ngx_http_proxy_module.html)。デフォルトでは、これらのディレクティブはNGINXドキュメントに記載された標準値を使用します。
 
-各locationはホストレベルの設定を継承しますが、個別にカスタマイズ可能です。明示的に設定されていないlocationは、ホストレベルで指定された一般設定に従います。
+各ロケーションは、明示的に上書きしない限り、ホストおよびルートロケーションの設定を継承します。
 
-以下の例では、各パスごとに特定の要件に合わせた設定をカスタマイズしています。`/auth`はブロッキングモードを有効にすることでセキュリティを優先し、`/data`は`client_max_body_size`を5MBに増加させることで大容量アップロードを可能にしています。
+以下の例では、要件に合わせてパスごとに設定をカスタマイズしています。`/auth`はブロッキングモードを有効にしてセキュリティを優先し、`/data`は`client_max_body_size`を5MBに増やすことで大きなアップロードを許可します。
 
 ![!](../../images/waf-installation/security-edge/inline/locations.png)
 
-### 4. （任意）管理者設定
+### 4. (Optional) Admin settings
 
-**Admin settings**セクションでは、展開するエッジノードのバージョンを選択できます。明示的に選択しない場合、利用可能な最新バージョンが自動的に展開されます。
+Admin settingsセクションでは、ノードのバージョンを選択し、アップグレードに関する設定を指定します:
 
-バージョンの変更履歴については[記事](../../updating-migrating/node-artifact-versions.md#all-in-one-installer)を参照してください。エッジノードのバージョンは`<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>`の形式に従い、リンク先の記事のバージョンと同じです。エッジノードのバージョンに含まれるビルド番号は小規模な変更を示します。
+* デプロイするEdgeノードのバージョンを選択します。デフォルトでは最新の利用可能なバージョンがデプロイされます。
+
+    バージョンの変更履歴は[記事](../../updating-migrating/node-artifact-versions.md#all-in-one-installer)を参照してください。Edgeノードのバージョンは`<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>`の形式で、リンク先の記事の同一バージョンに対応します。Edgeノードのバージョンに含まれるビルド番号は軽微な変更を示します。
+* 必要に応じて[Auto update](#upgrading-the-edge-inline)を有効にします。
 
 ![!](../../images/waf-installation/security-edge/inline/admin-settings.png)
 
 ### 5. 証明書CNAMEの設定
 
-設定が完了したら、各DNSゾーンに対してWallarm Consoleで提供されたCNAMEレコードをDNSプロバイダーの設定に追加してください。これらのレコードは、Wallarmがドメインの所有権を確認し証明書を発行するために必要です。
+CertificatesセクションでDNSゾーンを指定した場合、Wallarm Consoleに表示されるCNAMEレコードを各DNSゾーンについてDNSプロバイダーの設定に追加します。これらのレコードは、Wallarmがドメイン所有権を確認し証明書を発行するために必要です。
+
+!!! warning "証明書CNAMEを削除しないでください"
+    証明書用のCNAMEレコードはDNS設定に残しておく必要があります。今後のデプロイ設定の更新や証明書の更新に必要です。
+
+![](../../images/waf-installation/security-edge/inline/host-cnames.png)
 
 ![](../../images/waf-installation/security-edge/inline/cert-cname.png)
 
-例として、DNSゾーンに`myservice.com`が指定されている場合、CNAMEは以下の通りです：
+例として、DNSゾーンに`myservice.com`を指定した場合、cert CNAMEは次のとおりです:
 
 ```
 _acme-challenge.myservice.com CNAME _acme-challenge.<WALLARM_CLOUD>-<CLIENT_ID>-<DEPLOYMENT_ID>.acme.aws.wallarm-cloud.com
 ```
 
-DNSの変更が反映されるまでに最大24時間かかる場合があります。CNAMEレコードの確認が完了すると、Wallarmはエッジノードの展開を開始します。
+DNSの変更が反映されるまで最大24時間かかる場合があります。CNAMEレコードが検証されると、WallarmはEdgeノードのデプロイを開始します。
 
-### 6. トラフィックルーティング用CNAMEの設定
+### 6. Edgeノードへのトラフィックルーティング
 
-証明書CNAMEの確認が完了すると（約10分）、各ホストの**Hosts**タブに**Traffic CNAME**が表示されます。これをコピーしてDNS設定を更新し、トラフィックをWallarmにルーティングしてください。
+Edgeノードへトラフィックをルーティングするには、DNSゾーンにWallarmが提供するFQDNを指すCNAMEレコードを指定する必要があります。このレコードはTraffic CNAMEとして返されます。
 
-DNSの変更が反映されるまでに最大24時間かかる場合があります。反映されると、Wallarmはすべてのトラフィックをオリジンにプロキシし、不正なリクエストを軽減します。
+証明書CNAMEが検証されると、各ホストに対してTraffic CNAMEが利用可能になります。証明書を発行しない場合は、構成完了直後にCNAMEが利用可能です。
 
-## テレメトリポータル
+![](../../images/waf-installation/security-edge/inline/traffic-cname.png)
 
-セキュリティエッジインラインのテレメトリポータルは、Wallarmによって処理されたトラフィックのメトリクスに関するリアルタイムの洞察を提供するGrafanaダッシュボードを備えています。
+DNSの変更が反映されるまで最大24時間かかる場合があります。伝播後、Wallarmはすべてのトラフィックをプロキシします。
 
-ダッシュボードには、総処理リクエスト数、RPS、検出およびブロックされた攻撃、展開されたエッジノードの数、リソース消費、5xxレスポンスの数などの主要なメトリクスが表示されます。
+## Telemetry portal
+
+Security Edge Inline向けのTelemetry portalは、Wallarmが処理したトラフィックに関するメトリクスをリアルタイムに可視化するGrafanaダッシュボードを提供します。
+
+ダッシュボードには、総処理リクエスト数、RPS、検出・ブロックした攻撃、デプロイ済みEdgeノード数、リソース消費、5xx応答の数などの主要な指標が表示されます。
 
 ![!](../../images/waf-installation/security-edge/inline/telemetry-portal.png)
 
-**Run telemetry portal**は、ノードが**Active**状態に達すると実行されます。開始から約5分後にSecurity Edgeセクションの直接リンクを介してアクセス可能になります。
+ノードがActiveステータスに達したら、**Run telemetry portal**を実行します。開始から約5分後に、Security Edgeセクションからのダイレクトリンク経由でアクセスできるようになります。
 
 ![!](../../images/waf-installation/security-edge/inline/run-telemetry-portal.png)
 
-## エッジインラインのアップグレード
+Grafanaのホームページからダッシュボードへ移動するには、Dashboards → Wallarm → Portal Inline Overviewに進みます。
 
-最新の変更を適用してエッジノードをアップグレードするには、**Configure** → **Admin settings** に移動し、リストからバージョンを選択してください。最適なパフォーマンスとセキュリティを得るため、最新バージョンの使用を推奨します。
+## Upgrading the Edge Inline
 
-バージョンの変更履歴については[記事](../../updating-migrating/node-artifact-versions.md#all-in-one-installer)を参照してください。エッジノードのバージョンは`<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>`の形式に従い、リンク先の記事のバージョンと同じです。エッジノードのバージョンに含まれるビルド番号は小規模な変更を示します。
+Admin settingsでAuto updateを有効にすると、新しいマイナーまたはパッチバージョンがリリースされ次第（選択したオプションに応じて）、Edgeノードが自動的にアップグレードされます。初期設定はすべて保持されます。Auto updateはデフォルトでオフです。
 
-## エッジインラインの削除
+Edgeノードを手動でアップグレードするには、Configure → Admin settingsに移動し、一覧からバージョンを選択します。最適なパフォーマンスとセキュリティのため、最新バージョンの使用を推奨します。
 
-エッジ展開を削除するには、**Configure** → **Admin settings** → **Delete** をクリックしてください。
+新しいメジャーバージョンへのアップグレードは手動でのみ実行できます。
 
-ノードを削除して再作成する場合、既存の展開設定を調整すると、ノードは更新された設定で再展開されます。
+バージョンの変更履歴は[記事](../../updating-migrating/node-artifact-versions.md#all-in-one-installer)を参照してください。Edgeノードのバージョンは`<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>`の形式で、リンク先の記事の同一バージョンに対応します。Edgeノードのバージョンに含まれるビルド番号は軽微な変更を示します。
+
+## Edge Inlineの削除
+
+Edgeデプロイを削除するには、Configure → Admin settings → Delete inlineをクリックします。
+
+ノードを削除して再作成する予定がある場合は、既存のデプロイの設定を調整すると、更新された構成でノードが再デプロイされます。
+
+サブスクリプションが期限切れになると、Edgeノードは14日後に自動的に削除されます。
 
 ## ステータス
 
-エッジノードセクションでは、オリジン、ホスト、リージョンの展開および設定状態のリアルタイムなステータスを提供します：
+Edge nodeセクションでは、オリジン、ホスト、リージョンのデプロイおよび構成状態のリアルタイムステータスを提供します:
 
-=== "ホスト"
+=== "Hosts"
     ![!](../../images/waf-installation/security-edge/inline/host-statuses.png)
-=== "オリジン"
+=== "Origins"
     ![!](../../images/waf-installation/security-edge/inline/origin-statuses.png)
-=== "リージョン"
+=== "Regions"
     ![!](../../images/waf-installation/security-edge/inline/region-statuses.png)
+=== "Nodes"
+    **Nodes**タブでは、各Edgeノードの技術的な詳細を提供します。このビューは主にトラブルシューティング支援のためにWallarm Support teamが使用します。ノード数はトラフィック需要に依存し、Wallarmのオートスケーリングによって自動管理されます。
 
-* **Pending cert CNAME**：証明書発行のためにDNSに証明書CNAMEレコードが追加されるのを待機中です。
-* **Pending traffic CNAME**：展開は完了しましたが、トラフィックをエッジノードにルーティングするためのTraffic CNAMEレコードの追加を待っています。
-* **Deploying**：エッジノードは現在セットアップ中で、まもなく利用可能になります。
-* **Active**：エッジノードは完全に稼働しており、設定に基づいてトラフィックをフィルタリングしています。
-* **Cert CNAME error**：DNS内で証明書CNAMEの確認に問題がありました。CNAMEが正しく設定されているか確認してください。
-* **Deployment failed**：証明書CNAMEが14日以内に追加されなかったなどの理由でエッジノードの展開に失敗しました。設定を確認し再展開するか、[Wallarm Support team](https://support.wallarm.com)にお問い合わせください。
-* **Degraded**：エッジノードはリージョンで稼働していますが、機能が限定されるか、軽微な問題が発生している可能性があります。お手数ですが、[Wallarm Support team](https://support.wallarm.com)にお問い合わせください。
+    ![!](../../images/waf-installation/security-edge/inline/nodes-tab.png)
+
+* **Pending cert CNAME**：証明書発行のためのCNAMEレコードが（該当する場合）DNSに追加されるのを待機しています。
+* **Pending traffic CNAME**：デプロイメントが完了し、トラフィックをEdgeノードへルーティングするためのTraffic CNAMEまたはプロキシターゲットレコードの追加を待機しています。
+* **Deploying**：Edgeノードのセットアップ中で、間もなく利用可能になります。
+* **Active**：Edgeノードは完全に稼働しており、設定どおりにトラフィックをフィルタリングしています。
+* **Cert CNAME error**：DNSで証明書CNAMEの検証に問題が発生しました。CNAMEが正しく構成されているか確認してください（該当する場合）。
+* **Deployment failed**：Edgeノードのデプロイに失敗しました（例: 証明書CNAMEが14日以内に追加されなかった）。設定を確認して再デプロイを試すか、支援が必要な場合は[Wallarm Support team](https://support.wallarm.com)にお問い合わせください。
+* **Degraded**：Edgeノードはそのリージョンで稼働していますが、機能が制限されている、または軽微な問題が発生している可能性があります。支援が必要な場合は[Wallarm Support team](https://support.wallarm.com)にお問い合わせください。
+
+RPSおよびホスト・オリジンごとのリクエスト数は[バージョン](../../updating-migrating/node-artifact-versions.md#all-in-one-installer)5.3.0以降で返されます。

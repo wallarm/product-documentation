@@ -1,21 +1,16 @@
-To implement the security testing, add the corresponding separate step to your workflow following these instructions:
-セキュリティテストを実装するには、以下の手順に従い、ワークフローに対応する独立したステップを追加してください：
+セキュリティテストを実施するには、次の手順に従ってワークフローに対応する個別のステップを追加します:
 
-1. If the test application is not running, add the command to run the application.
-　テストアプリケーションが実行されていない場合は、アプリケーションを起動するコマンドを追加してください。
+1. テストアプリケーションが実行されていない場合は、アプリケーションを実行するコマンドを追加します。
+2. アプリケーションを実行するコマンドの__後に__、`CI_MODE=testing`モードおよびその他の必須[変数](../ci-mode-testing.md#environment-variables-in-testing-mode)を指定してFASTのDockerコンテナを起動するコマンドを追加します。
 
-2. Add the command running FAST Docker container in the `CI_MODE=testing` mode with other required [variables](../ci-mode-testing.md#environment-variables-in-testing-mode) __after__ the command running the application.
-　アプリケーション起動コマンドの__後__に、他の必要な[変数](../ci-mode-testing.md#environment-variables-in-testing-mode)と共に`CI_MODE=testing`モードでFAST Dockerコンテナを起動するコマンドを追加してください。
+    !!! info "記録済みベースラインリクエストセットの使用"
+        別のパイプラインでベースラインリクエストのセットが記録されている場合は、[TEST_RECORD_ID][fast-ci-mode-test]変数にレコードIDを指定します。そうでない場合は、最後に記録されたセットが使用されます。
 
-    !!! info "Using the recorded set of baseline requests"
-        他のパイプラインでベースラインリクエストセットが記録されている場合は、[TEST_RECORD_ID][fast-ci-mode-test]変数にレコードIDを指定してください。そうでない場合は、最後に記録されたセットが使用されます。
-
-    Example of the command:
-    コマンドの例：
+    コマンド例:
 
     ```
     docker run --name fast -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE=testing -e WALLARM_API_HOST=us1.api.wallarm.com -p 8080:8080 -e TEST_RUN_URI=http://app-test:3000 --network my-network --rm wallarm/fast
     ```
 
-!!! warning "Docker Network"
-    セキュリティテストを実行する前に、FASTノードとテストアプリケーションが同じネットワーク上で実行されていることを確認してください。
+!!! warning "Dockerネットワーク"
+    セキュリティテストの前に、FASTノードとテストアプリケーションが同じネットワーク上で実行されていることを確認してください。

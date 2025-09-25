@@ -1,49 +1,49 @@
-# Email Report
+# Emailレポート
 
-スケジュール[PDFレポート](../../../user-guides/search-and-filters/custom-report.md)と即時通知の配信に使用する追加のメールアドレスを設定できます。primary emailへの送信はデフォルトで設定されています。
+スケジュールされた[PDFレポート](../../../user-guides/search-and-filters/custom-report.md)および即時通知の配信に使用する追加のメールアドレスを設定できます。プライマリのメールアドレスへの送信は既定で設定されています。
 
-スケジュールPDFレポートは、日次、週次、または月次で送信できます。PDFレポートには、選択期間内にシステムで検出された脆弱性、攻撃、インシデントに関する詳細情報が含まれます。通知には、トリガーされたイベントの簡単な詳細が含まれます。
+スケジュールされたPDFレポートは日次、週次、または月次で送信できます。PDFレポートには、選択した期間にシステムで検出された脆弱性、攻撃、インシデントに関する詳細情報が含まれます。通知には、トリガーされたイベントの簡潔な概要が含まれます。
 
-## 設定の統合
+## インテグレーションの設定
 
-1. **Integrations** セクションを開きます。
-1. **Email report** ブロックをクリックするか、**Add integration** ボタンをクリックして **Email report** を選択します。
-1. 統合名を入力します。
-1. コンマを区切り文字としてメールアドレスを入力します。
-1. セキュリティレポートの送信頻度を選択します。頻度が選択されていない場合、レポートは送信されません。
-1. 通知をトリガーするイベントの種類を選択します。
+1. **Integrations**セクションを開きます。
+1. **Email report**ブロックをクリックするか、**Add integration**ボタンをクリックして**Email report**を選択します。 
+1. インテグレーション名を入力します。
+1. カンマ区切りでメールアドレスを入力します。
+1. セキュリティレポートの送信頻度を選択します。頻度を選択しない場合、レポートは送信されません。
+1. 通知をトリガーするイベントタイプを選択します。
 
-    ![Email report integration](../../../images/user-guides/settings/integrations/add-email-report-integration.png)
+    ![Email reportインテグレーション](../../../images/user-guides/settings/integrations/add-email-report-integration.png)
 
     利用可能なイベントの詳細：
 
     --8<-- "../include/integrations/events-for-integrations-mail.md"
 
-    !!! info "無効にできない通知"
-        Wallarmはユーザーメールにも、無効にできないいくつかの通知を送信します：
+    !!! info "無効化できない通知"
+        Wallarmは、無効化できない一部の通知をユーザーのメールアドレスにも送信します：
 
-        * [Subscription](../../../about-wallarm/subscription-plans.md)通知
-        * [API token expiration](../../../user-guides/settings/api-tokens.md#token-expiration)通知
-        * [Hit sampling](../../../user-guides/events/grouping-sampling.md#sampling-of-hits)通知
+        * [サブスクリプション](../../../about-wallarm/subscription-plans.md)の通知
+        * [APIトークンの有効期限切れ](../../../user-guides/settings/api-tokens.md#token-expiration)の通知
+        * [Hit sampling](../../../user-guides/events/grouping-sampling.md#sampling-of-hits)の通知
 
-1. **Test integration** をクリックして、設定の正確性、Wallarm Cloudの利用可能性、ならびに通知フォーマットを確認します。
+1. **Test integration**をクリックして、設定の正しさ、Wallarm Cloudの到達性、通知形式を確認します。
 
-    これにより、プレフィックス`[Test message]`が付いたテスト通知が送信されます：
+    これにより、先頭に[Test message]が付いたテスト通知が送信されます：
 
-    ![Test email message](../../../images/user-guides/settings/integrations/test-email-scope-changed.png)
+    ![テストメールメッセージ](../../../images/user-guides/settings/integrations/test-email-scope-changed.png)
 
-1. **Add integration** をクリックします。
+1. **Add integration**をクリックします。
 
 ## 追加アラートの設定
 
-* 時間間隔（日、時間など）ごとの[攻撃](../../../glossary-en.md#attack)、[hit](../../../glossary-en.md#hit)またはインシデントの数が設定値を超える
-* [APIの変更](../../../api-discovery/track-changes.md)が発生した
-* 会社アカウントに新しいユーザーが追加された
+* 時間間隔（1日、1時間など）あたりの[攻撃](../../../glossary-en.md#attack)、[ヒット](../../../glossary-en.md#hit)またはインシデントの件数が設定した数を超えた場合
+* [APIの変更](../../../api-discovery/track-changes.md)が発生した場合
+* 会社アカウントに新しいユーザーが追加された場合
 
-## 統合の無効化および削除
+## インテグレーションの無効化と削除
 
 --8<-- "../include/integrations/integrations-disable-delete.md"
 
-## システムの利用不可状態および不適切な統合パラメータ
+## システムの利用不可およびインテグレーションパラメータの誤り
 
 --8<-- "../include/integrations/integration-not-working.md"

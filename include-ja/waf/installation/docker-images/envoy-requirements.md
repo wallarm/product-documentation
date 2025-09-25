@@ -1,7 +1,7 @@
-* ホストシステムに[Docker](https://docs.docker.com/engine/install/)がインストールされていること  
-* Dockerイメージをダウンロードするために `https://hub.docker.com/r/wallarm/envoy` にアクセスできること。ファイアウォールによりアクセスがブロックされていないことをご確認ください  
-* [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarm Consoleで**Administrator**ロールを有するアカウントにアクセスできること  
-* US Wallarm Cloudを使用する場合は`https://us1.api.wallarm.com`に、EU Wallarm Cloudを使用する場合は`https://api.wallarm.com`にアクセスできること。ファイアウォールによりアクセスがブロックされていないことをご確認ください  
-* 攻撃検出ルールの更新をダウンロードするため、および[許可リストに登録済み、ブロックリストに登録済み、またはグレイリストに登録済み][ip-lists-docs]の国、地域、データセンターの正確なIPを取得するため、以下のIPアドレスにアクセスできること
+* ホストシステムに[Docker](https://docs.docker.com/engine/install/)がインストールされている必要があります。
+* Dockerイメージをダウンロードするために`https://hub.docker.com/r/wallarm/envoy`にアクセスできる必要があります。アクセスがファイアウォールによってブロックされていないことを確認します。
+* Wallarm Consoleの[US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)で**Administrator**ロールを持つアカウントへのアクセスが必要です。
+* US Wallarm Cloudを使用している場合は`https://us1.api.wallarm.com`に、EU Wallarm Cloudを使用している場合は`https://api.wallarm.com`にアクセスできる必要があります。アクセスがファイアウォールによってブロックされていないことを確認します。
+* 攻撃検知ルールの更新をダウンロードし、[許可リスト、拒否リスト、またはグレーリスト][ip-lists-docs]に登録されている国、地域、またはデータセンターの正確なIPアドレスを取得するために、以下のIPアドレスにアクセスできる必要があります。
 
     --8<-- "../include/wallarm-cloud-ips.md"

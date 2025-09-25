@@ -1,4 +1,3 @@
-```markdown
 [ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
 [node-token-types]:                 ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
@@ -9,38 +8,38 @@
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md#available-filtration-modes
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
 
-# Heroku上でWallarmを実行
+# Heroku上でWallarmを実行する
 
-Wallarmは[Heroku](https://www.heroku.com/)クラウドプラットフォーム上にデプロイされたWebアプリケーションやAPIを保護します。本ガイドでは、WallarmノードをHeroku上で実行してリアルタイムにトラフィックを解析する手順を説明します。
+Wallarmは[Heroku](https://www.heroku.com/)クラウドプラットフォームにデプロイされたWebアプリケーションとAPIを保護できます。本ガイドでは、トラフィックをリアルタイムに解析するためにHeroku上でWallarmノードを実行する手順を説明します。
 
-現時点では、WallarmからHeroku向けの公式Dockerイメージは存在しません。本ガイドでは、[オールインワンインストーラー][aio-docs]を使用して自身でDockerイメージを作成し実行する方法を解説します。
+現時点では、Wallarmから提供するHeroku向けの公式Dockerイメージはありません。そのため、本ガイドでは[all-in-oneインストーラー][aio-docs]を使用して独自のイメージを作成・実行する方法を説明します。
 
-## 必要条件
+## 要件
 
 * ホストシステムに[Docker](https://docs.docker.com/engine/install/)がインストールされていること
-* Heroku用のWallarm DockerイメージをプッシュするためのDockerアカウント
+* Heroku用Wallarm DockerイメージをプッシュするためのDockerアカウント
 * ホストシステムに[Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)がインストールされていること
-* HerokuのWebダイノ上で実行されるアプリケーションまたはAPI
+* Herokuのweb dyno上で動作するアプリケーションまたはAPI
 * [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarm Consoleへの管理者アクセス
-* オールインワンWallarmインストーラーをダウンロードするための`https://meganode.wallarm.com`へのアクセス
-* US Wallarm Cloudを利用する場合は`https://us1.api.wallarm.com`、EU Wallarm Cloudを利用する場合は`https://api.wallarm.com`へのアクセス
-* 以下のIPアドレスへのアクセス（攻撃検知ルールの更新および[API仕様書][api-spec-enforcement-docs]の取得、また[allowlisted, denylisted, graylisted][ip-lists-docs]の国、地域、またはデータセンターの正確なIPを取得するため）
+* Wallarmのall-in-oneインストーラーをダウンロードするための`https://meganode.wallarm.com`へのアクセス
+* USのWallarm Cloudを利用するための`https://us1.api.wallarm.com`またはEUのWallarm Cloudを利用するための`https://api.wallarm.com`へのアクセス
+* 攻撃検出ルールや[API仕様][api-spec-enforcement-docs]の更新をダウンロードし、さらに[許可リスト、拒否リスト、グレーリスト][ip-lists-docs]の国、地域、またはデータセンターの正確なIPを取得するために、以下のIPアドレスへのアクセス
 
     --8<-- "../include/wallarm-cloud-ips.md"
 
-## Step 1: Wallarm Docker設定の準備
+## ステップ1: WallarmのDocker設定を準備する
 
-Heroku上にWallarmのDockerイメージをデプロイするため、まずイメージビルドプロセス用の必要な設定ファイルを作成します。以下の手順に従ってください。
+HerokuにWallarmのDockerイメージをデプロイするには、まずイメージのビルドプロセスに必要な設定ファイルを作成します。以下の手順に従ってください。
 
-1. ローカルシステム上にWallarmのDocker設定専用のディレクトリを作成し、そのディレクトリに移動します。
-1. NGINXと[Wallarmの設定][waf-directives-instr]を含む`nginx.conf`ファイルを作成します。Dockerイメージは[NGINX互換のオールインワンインストーラー][aio-docs]をベースにしているため、NGINXが適切に構成されていることを確認してください。
+1. ローカルシステムにWallarmのDocker設定用ディレクトリを作成し、そのディレクトリに移動します。
+1. NGINXと[Wallarmの設定][waf-directives-instr]を含む`nginx.conf`ファイルを作成します。Dockerイメージは[NGINX互換のall-in-oneインストーラー][aio-docs]を基にするため、NGINXが適切に設定されていることを確認してください。
 
-    以下は、Wallarmノードをmonitoringモードで実行する基本設定のテンプレートです。
+    以下は、Wallarmノードをmonitoringモードで動作させる基本構成のテンプレートです。
 
     ```
     daemon off;
     worker_processes auto;
-    load_module /opt/wallarm/modules/bullseye-1180/ngx_http_wallarm_module.so;
+    load_module /usr/lib/nginx/modules/ngx_http_wallarm_module.so;
     pid /tmp/nginx.pid;
     include /etc/nginx/modules-enabled/*.conf;
 
@@ -54,7 +53,7 @@ Heroku上にWallarmのDockerイメージをデプロイするため、まずイ�
       gzip on;
       gzip_comp_level 2;
       gzip_min_length 512;
-      gzip_proxied any; # Heroku router sends Via header
+      gzip_proxied any; # HerokuルーターはViaヘッダーを送信します
 
       proxy_temp_path /tmp/proxy_temp;
       client_body_temp_path /tmp/client_temp;
@@ -78,16 +77,16 @@ Heroku上にWallarmのDockerイメージをデプロイするため、まずイ�
       access_log /var/log/nginx/access.log;
       error_log /var/log/nginx/error.log;
 
-      # Main Heroku app
+      # メインのHerokuアプリ
       server {
         listen $PORT default_server;
         server_name _;
         wallarm_mode monitoring;
-        
+
         location / {
           proxy_pass http://unix:/tmp/nginx.socket;
 
-          # Heroku apps are always behind a load balancer, which is why we trust all IPs
+          # Herokuアプリは常にロードバランサーの背後にあるため、すべてのIPを信頼します
           set_real_ip_from 0.0.0.0/0;
           real_ip_header X-Forwarded-For;
           real_ip_recursive off;
@@ -103,7 +102,7 @@ Heroku上にWallarmのDockerイメージをデプロイするため、まずイ�
         }
       }
 
-      # Wallarm status helper (localhost-only)
+      # Wallarmステータスのヘルパー（localhostのみ）
       server {
         listen 127.0.0.8:$PORT;
         server_name localhost;
@@ -118,7 +117,7 @@ Heroku上にWallarmのDockerイメージをデプロイするため、まずイ�
       }
     }
     ```
-1. Wallarm Dockerイメージ用の指示が記載された`entrypoint.sh`ファイルを作成します。
+1. WallarmのDockerイメージ用の指示を含む以下の`entrypoint.sh`ファイルを作成します。
 
     ```
     #!/bin/bash
@@ -136,7 +135,7 @@ Heroku上にWallarmのDockerイメージをデプロイするため、まずイ�
 
     log "Script execution started."
 
-    # Ensure necessary directories exist for supervisord.
+    # 必要なディレクトリが存在することを確認します
     log "Ensuring necessary directories exist for supervisord."
     mkdir -p /opt/wallarm/var/log/wallarm
     mkdir -p /opt/wallarm/run/supervisor
@@ -145,7 +144,7 @@ Heroku上にWallarmのDockerイメージをデプロイするため、まずイ�
         log "WALLARM_API_TOKEN is set, checking configuration."
         if [[ $DYNO == web.* ]]; then
             log "Heroku dyno type [$DYNO] is 'web', proceeding with Wallarm configuration."
-            # Propagate env vars
+            # 環境変数を引き継ぎます
             log "Propagating environment variables from /opt/wallarm/env.list."
             set -a
             source /opt/wallarm/env.list
@@ -155,15 +154,15 @@ Heroku上にWallarmのDockerイメージをデプロイするため、まずイ�
             fi
             set +a
 
-            # Register Wallarm node in the Cloud.
+            # CloudにWallarmノードを登録します
             log "Registering Wallarm node in the cloud."
             /opt/wallarm/register-node
 
-            # Configure PORT in nginx config.
+            # nginxの設定でPORTを構成します
             log "Replacing \$PORT in Nginx configuration with value $PORT."
             sed -i "s/\$PORT/${PORT}/g" /etc/nginx/nginx.conf
 
-            # Verify that PORT was replaced successfully.
+            # PORTが正しく置換されたことを確認します
             log "Checking if the PORT in Nginx configuration was successfully replaced."
             if cat /etc/nginx/nginx.conf | grep -q "listen ${PORT}"; then
                     log "Successfully replaced PORT in Nginx configuration with value $PORT."
@@ -172,20 +171,14 @@ Heroku上にWallarmのDockerイメージをデプロイするため、まずイ�
                     exit 1
             fi
 
-            # Export $PORT as $NGINX_PORT (required for the `export-metrics` script).
+            # $PORTを$NGINX_PORTとしてエクスポートします（`export-metrics`スクリプトに必要）
             log "Exporting PORT as NGINX_PORT for Wallarm metrics."
             export NGINX_PORT="$PORT"
-            export -n TT_MEMTX_MEMORY
 
-            if [ ! -z "$NGINX_PORT" ]; then
-                    sed -i -r "s#http://127.0.0.8/wallarm-status#http://127.0.0.8:$NGINX_PORT/wallarm-status#" \
-                    /opt/wallarm/etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf
-            fi
-
-            # Start all Wallarm services and NGINX under supervisord.
+            # supervisordの下でWallarmサービスとNGINXをすべて起動します
             log "Starting all Wallarm services and NGINX under supervisord."
             /opt/wallarm/usr/bin/python3.10 /opt/wallarm/usr/bin/supervisord -c /opt/wallarm/etc/supervisord.conf --loglevel=debug
-            # Check if supervisord started successfully.
+            # supervisordが正常に起動したか確認します
             log "Checking if supervisord process is running."
             if pgrep -f "supervisord" > /dev/null; then
                 log "supervisord process started successfully."
@@ -194,7 +187,7 @@ Heroku上にWallarmのDockerイメージをデプロイするため、まずイ�
                 exit 1
             fi
 
-            # Check the status of services managed by supervisord.
+            # supervisordで管理されるサービスの状態を確認します
             log "Checking the status of all services managed by supervisord every 10s during 3 minutes."
             timeout=0
 
@@ -223,18 +216,18 @@ Heroku上にWallarmのDockerイメージをデプロイするため、まずイ�
         log "WALLARM_API_TOKEN is not set, executing CMD."
     fi
 
-    # Execute the CMD command.
+    # CMDコマンドを実行します
     log "Executing command: $@"
     exec "$@"
     log "Script execution finished."
     ```
 
-1. 次のコマンドを実行して、`entrypoint.sh`ファイルのパーミッションを`-rwxr-xr-x`に設定します。
+1. 次のコマンドを実行して`entrypoint.sh`の権限を`-rwxr-xr-x`に設定します。
 
     ```
     chmod 755 entrypoint.sh
     ```
-1. Wallarmがリクエストをブロックした際に表示する、見やすいエラーページを表示する`403.html`ファイルを作成します。以下の内容をコピーしてください。
+1. Wallarmがブロックするリクエストに対して、整ったページを表示する`403.html`ファイルを作成します。次をコピーできます。
 
     ```html
     <!doctype html> <html> <head> <meta charset=utf-8> <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name=viewport> <title>Forbidden</title> <link rel="shortcut icon" type="image/x-icon" href="https://www.herokucdn.com/favicon.ico"> <style>html, body {
@@ -346,45 +339,51 @@ Heroku上にWallarmのDockerイメージをデプロイするため、まずイ�
     ```dockerfile
     FROM ubuntu:22.04
 
-    ARG VERSION="5.0.2"
+    ARG VERSION="6.4.1"
 
     ENV PORT=3000
     ENV WALLARM_LABELS="group=heroku"
     ENV WALLARM_API_TOKEN=
     ENV WALLARM_API_HOST="us1.api.wallarm.com"
-    ENV TT_MEMTX_MEMORY=268435456
 
     RUN apt-get -qqy update && apt-get -qqy install nginx curl && apt-get clean
 
-    # Download and unpack the Wallarm all-in-one installer
+    # Wallarmのall-in-oneインストーラーをダウンロードして展開します
     RUN curl -o /install.sh "https://meganode.wallarm.com/$(echo "$VERSION" | cut -d '.' -f 1-2)/wallarm-$VERSION.x86_64-glibc.sh" \
             && chmod +x /install.sh \
             && /install.sh --noexec --target /opt/wallarm \
-            && rm -f /install.sh
+            && rm -f /install.sh \
+            && cd /opt/wallarm \
+            && chmod +x pick-module.sh \
+            && SELECTED_MODULE="$(./pick-module.sh)" \
+            && echo "Selected module => $SELECTED_MODULE" \
+            # wlrm-moduleをNGINXのモジュールディレクトリにコピーします
+            && cp "$SELECTED_MODULE" /usr/lib/nginx/modules/ngx_http_wallarm_module.so \
+            && mkdir -p /usr/local/lib \
+            && mv /opt/wallarm/modules/libwallarm.so* -t "/usr/local/lib/" \
+            && rm -rf /opt/wallarm/modules
 
-    # Set Tarantool's $PORT variable explicitly as it conflicts with Heroku's $PORT
-    RUN sed -i '/^\[program:tarantool\]$/a environment=PORT=3313' /opt/wallarm/etc/supervisord.conf
-    
-    # Run supervisord in background. Our foreground process is the Heroku app itself
+    # supervisordをバックグラウンドで実行します。フォアグラウンドのプロセスはHerokuアプリ本体です
     RUN sed -i '/nodaemon=true/d' /opt/wallarm/etc/supervisord.conf
-    
-    # Add NGINX to supervisord
+
+    # supervisordにNGINXを追加します
     RUN printf "\n\n[program:nginx]\ncommand=/usr/sbin/nginx\nautorestart=true\nstartretries=4294967295\n" | tee -a /opt/wallarm/etc/supervisord.conf
 
-    # Heroku runs everything under an unprivileged user (dyno:dyno), so we need to grant it access to Wallarm directories
+    # Herokuは権限のないユーザー（dyno:dyno）で実行するため、Wallarmディレクトリへのアクセス権を付与する必要があります
     RUN find /opt/wallarm -type d -exec chmod 777 {} \;
 
-    # Copy NGINX configuration
+    # NGINX設定をコピーします
     COPY nginx.conf /etc/nginx/nginx.conf
     
-    # Herokuesque 403 error page
+    # Heroku風の403エラーページ
     COPY 403.html /usr/share/nginx/html/403.html
 
-    # Add entrypoint.sh
+    # entrypoint.shを追加します
     COPY entrypoint.sh /entrypoint.sh
 
-    # Let entrypoint modify the config under dyno:dyno and redirect NGINX logs to console
-    RUN chmod 666 /etc/nginx/nginx.conf \
+    # entrypointにdyno:dynoの下で設定を変更させ、NGINXログをコンソールへリダイレクトします
+    RUN chmod +x /entrypoint.sh \
+            && chmod 666 /etc/nginx/nginx.conf \
             && chmod 777 /etc/nginx/ \
             && ln -sf /dev/stdout /var/log/nginx/access.log \
             && ln -sf /dev/stderr /var/log/nginx/error.log
@@ -392,30 +391,30 @@ Heroku上にWallarmのDockerイメージをデプロイするため、まずイ�
     ENTRYPOINT ["/entrypoint.sh"]
     ```
 
-## Step 2: Heroku用のWallarm Dockerイメージをビルド
+## ステップ2: Heroku用のWallarm Dockerイメージをビルドする
 
-前に作成したディレクトリ内で、以下のコマンドを実行してください。
+先ほど作成したディレクトリ内で次のコマンドを実行します。
 
 ```
-docker build -t wallarm-heroku:5.0.2 .
+docker build -t wallarm-heroku:6.4.1 .
 docker login
-docker tag wallarm-heroku:5.0.2 <DOCKERHUB_USERNAME>/wallarm-heroku:5.0.2
-docker push <DOCKERHUB_USERNAME>/wallarm-heroku:5.0.2
+docker tag wallarm-heroku:6.4.1 <DOCKERHUB_USERNAME>/wallarm-heroku:6.4.1
+docker push <DOCKERHUB_USERNAME>/wallarm-heroku:6.4.1
 ```
 
-## Step 3: Heroku上でビルド済みDockerイメージを実行
+## ステップ3: ビルドしたDockerイメージをHerokuで実行する
 
-イメージをHerokuにデプロイするには、以下の手順に従ってください。
+イメージをHerokuにデプロイするには:
 
-1. 次の操作を行うため、アプリケーションディレクトリのルートに移動します。
-1. アプリケーションのランタイムに固有な必要な依存関係をインストールする`Dockerfile`を作成します。Node.jsアプリケーションの場合、以下のテンプレートを使用してください。
+1. 以降の操作を行うため、アプリケーションディレクトリのルートに移動します。
+1. アプリのランタイムに固有の必要な依存関係のインストールを含む`Dockerfile`を作成します。Node.jsアプリケーションの場合は、次のテンプレートを使用します。
 
     ```dockerfile
-    FROM <DOCKERHUB_USERNAME>/wallarm-heroku:5.0.2
+    FROM <DOCKERHUB_USERNAME>/wallarm-heroku:6.4.1
 
     ENV NODE_MAJOR=20
 
-    # Install NodeJS v20 from NodeSource
+    # NodeSourceからNodeJS v20をインストールします
     RUN apt-get update \
         && apt-get install -qqy ca-certificates curl gnupg \
         && mkdir -p /etc/apt/keyrings \
@@ -428,54 +427,55 @@ docker push <DOCKERHUB_USERNAME>/wallarm-heroku:5.0.2
     ADD . /opt/webapp
     WORKDIR /opt/webapp
     
-    # Install dependencies and build the app
+    # 依存関係をインストールしてアプリをビルドします
     RUN npm install --omit=dev 
     ENV npm_config_prefix /opt/webapp
 
-    # Note that in private spaces the `run` section of heroku.yml is ignored
-    # See: https://devcenter.heroku.com/articles/build-docker-images-heroku-yml#known-issues-and-limitations
+    # private spacesではheroku.ymlの`run`セクションは無視されることに注意してください
+    # 参照: https://devcenter.heroku.com/articles/build-docker-images-heroku-yml#known-issues-and-limitations
     CMD ["npm", "run", "start"]
     ```
-1. 以下の内容で`heroku.yml`構成ファイルを作成します。
+1. 次の内容で`heroku.yml`構成ファイルを作成します。
 
     ```yaml
     build:
       docker:
         web: Dockerfile
     ```
-1. アプリケーションが`$PORT`ではなく`/tmp/nginx.socket`でリッスンするように調整してください。なぜなら、NGINXが`$PORT`を使用しているためです。例えば、以下のような設定になります。
+
+1. NGINXが`$PORT`を使用するため、アプリケーションが`$PORT`ではなく`/tmp/nginx.socket`で待ち受けるように調整します。例えば、設定は次のようになります。
 
     ```js hl_lines="4-5"
-// app.js
-const app = require('express')()
+    // app.js
+    const app = require('express')()
 
-let port = process.env.PORT || 3000 // If Wallarm is not configured, listen on $PORT
-if(process.env.WALLARM_API_TOKEN) port = '/tmp/nginx.socket' // Wallarm is configured
+    let port = process.env.PORT || 3000 // Wallarmが未設定の場合は$PORTで待ち受けます
+    if(process.env.WALLARM_API_TOKEN) port = '/tmp/nginx.socket' // Wallarmが設定されています
 
-app.listen(port, (err) => {
-    if (err) throw err
-    console.log(`> App is listening on ${port}`)
-})
+    app.listen(port, (err) => {
+        if (err) throw err
+        console.log(`> App is listening on ${port}`)
+    })
 
-app.get('/', (req, res) => {
-    res.send('This app is protected by Wallarm')
-})
+    app.get('/', (req, res) => {
+        res.send('This app is protected by Wallarm')
+    })
     ```
-1. WallarmノードインスタンスをWallarm Cloudにリンクするために、[適切なタイプ][node-token-types]のフィルタリングノードトークンを生成してください。
+1. Wallarm CloudにWallarmノードインスタンスをリンクするため、[適切な種類][node-token-types]のフィルタリングノードトークンを生成します。
 
-    === "API token"
-        1. Wallarm Console → **Settings** → **API tokens** へ移動し、[US Cloud](https://us1.my.wallarm.com/settings/api-tokens)または[EU Cloud](https://my.wallarm.com/settings/api-tokens)から操作します。
-        1. `Deploy`ソースロールのAPIトークンを見つけるか作成します。
+    === "APIトークン"
+        1. Wallarm Console → **Settings** → **API tokens**を[US Cloud](https://us1.my.wallarm.com/settings/api-tokens)または[EU Cloud](https://my.wallarm.com/settings/api-tokens)で開きます。
+        1. 使用タイプが`Node deployment/Deployment`のAPI tokenを探すか作成します。
         1. このトークンをコピーします。
-        1. Wallarmノードを追加するノードグループ名を、次の環境変数で指定してください。
+        1. 次の環境変数で、Wallarmノードを追加するノードグループ名を指定します。
 
         ```
         heroku config:set WALLARM_LABELS=group=<NODE_GROUP_NAME>
         ```
-    === "Node token"
-        1. Wallarm Console → **Nodes** に移動し、[US Cloud](https://us1.my.wallarm.com/nodes)または[EU Cloud](https://my.wallarm.com/nodes)から操作します。
+    === "ノードトークン"
+        1. [US Cloud](https://us1.my.wallarm.com/nodes)または[EU Cloud](https://my.wallarm.com/nodes)でWallarm Console → **Nodes**を開きます。
         1. **Wallarm node**タイプのフィルタリングノードを作成し、生成されたトークンをコピーします。
-1. ノードをCloudに接続するためのパラメータを、関連する環境変数で設定します。
+1. ノードをCloudに接続するためのパラメータを、該当する変数に設定します。
 
     === "US Cloud"
         ```
@@ -486,7 +486,7 @@ app.get('/', (req, res) => {
         heroku config:set WALLARM_API_HOST=api.wallarm.com
         heroku config:set WALLARM_API_TOKEN=<NODE_TOKEN>
         ```
-1. アプリケーションをプッシュして再起動をトリガーし、Wallarmノードをデプロイしてください。
+1. アプリケーションをプッシュして再起動をトリガーし、Wallarmノードをデプロイします。
 
     ```
     git add Dockerfile heroku.yml app.js
@@ -495,25 +495,24 @@ app.get('/', (req, res) => {
     git push heroku <BRANCH_NAME>
     ```
 
-## Step 4: デプロイのテスト
+## ステップ4: デプロイをテストする
 
-デプロイが正常に機能することを確認するため、[Path Traversal][ptrav-attack-docs]脆弱性を利用したテスト攻撃を実行してください。
+デプロイが機能していることを確認するため、[Path Traversal][ptrav-attack-docs]のエクスプロイトを用いてテスト攻撃を実行します。
 
 ```
 curl http://<HEROKU_APP_DOMAIN>/etc/passwd
 ```
 
-ノードはデフォルトで**monitoring**の[filtration mode][filtration-mode-docs]で動作するため、Wallarmノードは攻撃をブロックせずに記録します。攻撃が記録されたかを確認するには、Wallarm Console → **Attacks**に進んでください。
+ノードはデフォルトで[フィルタリングモード][filtration-mode-docs]のうちmonitoringで動作するため、Wallarmノードは攻撃をブロックせず記録します。攻撃が記録されたことを確認するには、Wallarm Console → **Attacks**に進みます。
 
-![Attacks in the interface][attacks-in-ui-image]
+![インターフェースのAttacks][attacks-in-ui-image]
 
-## Debug
+## デバッグ
 
-WallarmベースのDockerイメージに問題が発生した場合、Herokuのログを確認してエラーメッセージを特定してください。
+WallarmのベースDockerイメージで問題が発生した場合は、エラーメッセージがないかHerokuのログを確認します。
 
 ```
 heroku logs --tail
 ```
 
-デプロイ中に支援が必要な場合は、[Wallarm support team](mailto:support@wallarm.com)までお問い合わせください。
-```
+デプロイ中に支援が必要な場合は、[Wallarmサポートチーム](mailto:support@wallarm.com)にお問い合わせください。

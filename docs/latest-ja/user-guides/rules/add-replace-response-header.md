@@ -1,37 +1,39 @@
 [api-discovery-enable-link]:        ../../api-discovery/setup.md#enable
 
-# サーバーレスポンスヘッダーの変更
+# サーバーのレスポンスヘッダーの変更
 
-**Change server response headers** [rule](../../user-guides/rules/rules.md)はサーバーレスポンスヘッダーの追加、削除および値の変更を可能にします。
+**Change server response headers**の[ルール](../../user-guides/rules/rules.md)は、サーバーのレスポンスヘッダーの追加、削除、および値の変更が可能です。
 
-このルールタイプは通常、アプリケーションセキュリティの追加レイヤを構成するために使用されます。例えば：
+このルールタイプは、アプリケーションのセキュリティを強化する追加レイヤーを構成する目的で、主に次の用途に使用します:
 
-* あるページに対してクライアントが読み込むことを許可されたリソースを制御する[`Content-Security-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)レスポンスヘッダーを追加します。これにより[XSS](../../attacks-vulns-list.md#crosssite-scripting-xss)攻撃から保護されます。
+* 特定のページでクライアントが読み込むことを許可されるリソースを制御するレスポンスヘッダー[`Content-Security-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)を追加します。これは[XSS](../../attacks-vulns-list.md#crosssite-scripting-xss)攻撃からの防御に役立ちます。
 
-    サーバーが既定でこのヘッダーを返さない場合は、**Change server response headers**ルールを使用して追加することを推奨します。MDN Web Docsでは、[可能なヘッダー値](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy#directives)や[ヘッダー使用例](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#examples_common_use_cases)の説明が記載されています。
+    サーバーがこのヘッダーをデフォルトで返さない場合は、ルール**Change server response headers**を使用して追加することを推奨します。MDN Web Docsには、[取り得るヘッダー値](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy#directives)や[ヘッダーの使用例](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#examples_common_use_cases)が記載されています。
 
-    同様に、このルールを利用して[`X-XSS-Protection`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection)、[`X-Frame-Options`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options)、[`X-Content-Type-Options`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options)のレスポンスヘッダーを追加できます。
+    同様に、このルールを使用して、レスポンスヘッダー[`X-XSS-Protection`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection)、[`X-Frame-Options`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options)、[`X-Content-Type-Options`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options)を追加できます。
+* インストール済みモジュールのバージョン情報を含むNGINXのヘッダー`Server`やその他のヘッダーを変更します。この種のデータは、攻撃者がインストールされているモジュールのバージョンに存在する脆弱性を特定し、その結果として脆弱性を悪用する目的で利用される可能性があります。
 
-* NGINXのヘッダー`Server`またはインストール済みモジュールバージョンに関するデータを含むその他のヘッダーを変更します。これらのデータは、攻撃者によってインストール済みモジュールの脆弱性を発見され、結果として発見された脆弱性を悪用される可能性があります。
+    NGINXのヘッダー`Server`は、Wallarm node 2.16以降で変更できます。
 
-    NGINXのヘッダー`Server`はWallarm node 2.16以降で変更可能です。
-
-**Change server response headers**ルールは、その他のビジネスおよび技術的な課題に対処するためにも利用できます。
+ルール**Change server response headers**は、その他のビジネス上および技術上の課題への対応にも使用できます。
 
 ## ルールの作成と適用
 
-ルールを作成して適用するには：
+ルールを作成して適用するには、次の手順を実行します。
+
 
 --8<-- "../include/rule-creation-initial-step.md"
-1. **If request is**で、ルールを適用するスコープを[describe](rules.md#configuring)します。
-1. **Then**で、「Change server response headers」を選択し、以下を設定します：
-    * 追加するかその値を置換するヘッダーの名前。
-    * 指定されたヘッダーの新しい値。
-    * 既存のレスポンスヘッダーを削除するには、**Replace**タブ上でその値を空欄のままにします。
-1. [rule compilation to complete](rules.md#ruleset-lifecycle)するのを待ちます。
+1. **If request is**で、ルールを適用する対象範囲を[指定します](rules.md#configuring)。
+1. **Then**で、**Change server response headers**を選択し、次を設定します:
 
-## 例：セキュリティポリシーヘッダーとその値の追加
+    * 追加するヘッダー名、または値を置き換える対象のヘッダー名。
+    * 指定したヘッダーの新しい値（複数可）。
+    * 既存のレスポンスヘッダーを削除するには、**Replace**タブで値を空にします。
 
-サイトのオリジンからのみ`https://example.com/*`の全コンテンツを読み込ませるため、以下のように**Change server response headers**ルールを使用して[`Content-Security-Policy: default-src 'self'`](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#example_1)レスポンスヘッダーを追加できます。
+1. [ルールのコンパイルの完了](rules.md#ruleset-lifecycle)を待ちます。
 
-![「Change server response headers」ルールの例](../../images/user-guides/rules/add-replace-response-header.png)
+## 例: セキュリティポリシーヘッダーとその値の追加
+
+https://example.com/* のすべてのコンテンツがサイトのオリジンからのみ配信されるようにするには、ルール**Change server response headers**を使用して、次のようにレスポンスヘッダー[`Content-Security-Policy: default-src 'self'`](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#example_1)を追加できます:
+
+![ルール「Change server response headers」の例](../../images/user-guides/rules/add-replace-response-header.png)

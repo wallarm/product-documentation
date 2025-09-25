@@ -1,6 +1,6 @@
-## 1. NGINX stableと依存関係のインストール
+## 1. NGINXのstableおよび依存関係をインストール
 
-NGINXリポジトリからNGINX `stable`をインストールするためのオプションは、以下の通りです:
+NGINXリポジトリからNGINXの`stable`をインストールするオプションは次のとおりです:
 
 * ビルド済みパッケージからのインストール
 
@@ -14,12 +14,12 @@ NGINXリポジトリからNGINX `stable`をインストールするためのオ�
         sudo apt -y install nginx
         ```
     === "Ubuntu"
-        1. NGINX stableに必要な依存関係をインストールします:
+        1. NGINXのstableに必要な依存関係をインストールします:
 
             ```bash
             sudo apt -y install curl gnupg2 ca-certificates lsb-release
             ```
-        1. NGINX stableをインストールします:
+        1. NGINXのstableをインストールします:
 
             ```bash
             echo "deb http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
@@ -27,9 +27,9 @@ NGINXリポジトリからNGINX `stable`をインストールするためのオ�
             sudo apt update
             sudo apt -y install nginx
             ```
-    === "CentOS or Amazon Linux 2.0.2021x and lower"
+    === "CentOSまたはAmazon Linux 2.0.2021x以下"
 
-        1. CentOS 7.xにEPELリポジトリが追加されている場合、ファイル`/etc/yum.repos.d/epel.repo`に`exclude=nginx*`を追加することで、このリポジトリからNGINX stableのインストールを無効にしてください.
+        1. CentOS 7.xにEPELリポジトリが追加されている場合は、ファイル`/etc/yum.repos.d/epel.repo`に`exclude=nginx*`を追加して、このリポジトリからのNGINXのstableのインストールを無効化してください。
 
             変更後のファイル`/etc/yum.repos.d/epel.repo`の例:
 
@@ -63,7 +63,7 @@ NGINXリポジトリからNGINX `stable`をインストールするためのオ�
             gpgcheck=1
             ```
         
-        2. 公式リポジトリからNGINX stableをインストールします:
+        2. 公式リポジトリからNGINXのstableをインストールします:
 
             ```bash
             echo -e '\n[nginx-stable] \nname=nginx stable repo \nbaseurl=http://nginx.org/packages/centos/$releasever/$basearch/ \ngpgcheck=1 \nenabled=1 \ngpgkey=https://nginx.org/keys/nginx_signing.key \nmodule_hotfixes=true' | sudo tee /etc/yum.repos.d/nginx.repo
@@ -75,16 +75,16 @@ NGINXリポジトリからNGINX `stable`をインストールするためのオ�
         sudo yum install -y nginx
         ```
 
-* [NGINXリポジトリ](https://hg.nginx.org/pkg-oss/branches)の`stable`ブランチからソースコードをコンパイルし、同じオプションでインストールします:
+* [NGINXリポジトリ](https://hg.nginx.org/pkg-oss/branches)の`stable`ブランチからソースコードをコンパイルし、同じオプションでインストール
 
-    !!! info "AlmaLinux、Rocky LinuxまたはOracle Linux 8.x向けNGINX"
-        AlmaLinux、Rocky LinuxまたはOracle Linux 8.xにNGINXをインストールする唯一のオプションです.
+    !!! info "AlmaLinux、Rocky LinuxまたはOracle Linux 8.x向けのNGINX"
+        これはAlmaLinux、Rocky LinuxまたはOracle Linux 8.xにNGINXをインストールする唯一の方法です。
 
-NGINXのインストールに関する詳細な情報は、[公式NGINXドキュメント](https://www.nginx.com/resources/admin-guide/installing-nginx-open-source/)でご確認いただけます.
+NGINXのインストールに関する詳細は[公式NGINXドキュメント](https://www.nginx.com/resources/admin-guide/installing-nginx-open-source/)を参照してください。
 
-## 2. Wallarmリポジトリの追加
+## 2. Wallarmリポジトリを追加
 
-Wallarm nodeはWallarmリポジトリからインストールおよび更新されます。リポジトリを追加するには、プラットフォームに合わせたコマンドを使用してください:
+WallarmノードはWallarmリポジトリからインストールおよび更新されます。リポジトリを追加するには、ご利用のプラットフォーム向けの次のコマンドを使用してください:
 
 === "Debian 11.x (bullseye)"
     ```bash
@@ -117,12 +117,12 @@ Wallarm nodeはWallarmリポジトリからインストールおよび更新さ�
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.8/x86_64/wallarm-node-repo-4.8-0.el7.noarch.rpm
     ```
-=== "Amazon Linux 2.0.2021x and lower"
+=== "Amazon Linux 2.0.2021x以下"
     ```bash
     sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.8/x86_64/wallarm-node-repo-4.8-0.el7.noarch.rpm
     ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+=== "AlmaLinux、Rocky LinuxまたはOracle Linux 8.x"
     ```bash
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.8/x86_64/wallarm-node-repo-4.8-0.el8.noarch.rpm
@@ -133,9 +133,9 @@ Wallarm nodeはWallarmリポジトリからインストールおよび更新さ�
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.8/x86_64/wallarm-node-repo-4.8-0.el8.noarch.rpm
     ```
 
-## 3. Wallarmパッケージのインストール
+## 3. Wallarmパッケージをインストール
 
-以下のパッケージが必要です:
+次のパッケージが必要です:
 
 * NGINX-Wallarmモジュール用の`nginx-module-wallarm`
 * [postanalytics][install-postanalytics-docs]モジュール、Tarantoolデータベース、および追加のNGINX-Wallarmパッケージ用の`wallarm-node`
@@ -148,11 +148,11 @@ Wallarm nodeはWallarmリポジトリからインストールおよび更新さ�
     ```bash
     sudo apt -y install --no-install-recommends wallarm-node nginx-module-wallarm
     ```
-=== "CentOS or Amazon Linux 2.0.2021x and lower"
+=== "CentOSまたはAmazon Linux 2.0.2021x以下"
     ```bash
     sudo yum install -y wallarm-node nginx-module-wallarm
     ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+=== "AlmaLinux、Rocky LinuxまたはOracle Linux 8.x"
     ```bash
     sudo yum install -y wallarm-node nginx-module-wallarm
     ```
@@ -161,15 +161,15 @@ Wallarm nodeはWallarmリポジトリからインストールおよび更新さ�
     sudo yum install -y wallarm-node nginx-module-wallarm
     ```
 
-## 4. Wallarmモジュールの接続
+## 4. Wallarmモジュールを接続
 
 1. ファイル`/etc/nginx/nginx.conf`を開きます:
 
     ```bash
     sudo vim /etc/nginx/nginx.conf
     ```
-2. ファイルに`include /etc/nginx/conf.d/*;`が追加されていることを確認してください。存在しない場合は、追加してください.
-3. `worker_processes`ディレクティブの直後に、以下のディレクティブを追加してください:
+2. ファイルに`include /etc/nginx/conf.d/*;`行が追加されていることを確認してください。該当行がない場合は追加してください。
+3. `worker_processes`ディレクティブの直後に次のディレクティブを追加してください:
 
     ```bash
     load_module modules/ngx_http_wallarm_module.so;

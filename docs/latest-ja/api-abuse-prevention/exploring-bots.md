@@ -3,46 +3,47 @@
 [link-api-abuse-prevention]:    ../api-abuse-prevention/overview.md
 [img-api-sessions-api-abuse]:   ../images/api-sessions/api-sessions-api-abuse.png
 
-# ボット活動の解析 <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# ボット活動の調査 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-API Abuse Prevention はMLアルゴリズムに基づいて悪意のあるボット活動を識別します。このような攻撃は、単一のブロックされたリクエストだけでは解析できません。したがって、Wallarmプラットフォームがボット活動を様々な角度から調査するための幅広いツールを提供することが不可欠です。
+[API Abuse Prevention](../api-abuse-prevention/overview.md)は機械学習(ML)アルゴリズムに基づいて悪意のあるボット活動を特定します。この種の攻撃は、単一のブロックされたリクエストだけでは分析できません。そのため、Wallarmプラットフォームが多角的にボット活動を調査できる幅広いツールを提供していることが重要です。
 
-## API不正利用ダッシュボード
+## APIの悪用ダッシュボード
 
-API Abuse Prevention は直感的に、直近30日間のボット活動データを **API Abuse Prevention** セクション → **Statistics** タブで視覚化します。タイムライン図を使用すれば、ボット活動の急増を容易に特定できます。さらに、**Top Attackers** と **Top Targets** ウィジェットにより、最も活発なボットや最も攻撃されたAPIおよびアプリケーションを判断できます。ダッシュボード上の要素を1クリックするだけで、**Attacks** タブに詳細調査へ進むことが可能です。
+API Abuse Preventionは、過去30日間のボットアクティビティに関するデータを**API Abuse Prevention**セクション→**Statistics**タブで見やすく可視化します。タイムラインのダイアグラムを使用すると、ボット活動のスパイクを簡単に特定できます。さらに、**Top Attackers**と**Top Targets**ウィジェットにより、最も活発なボットや最も攻撃を受けているAPIやアプリケーションを把握できます。ダッシュボード要素を1回クリックするだけで、**Attacks**タブにドリルダウンしてこれらのボット活動を調査できます。
 
-また、下部の **Behavioral patterns** ではボットの挙動を分析できます。各検知器の詳細情報や、ボットの挙動判定においてどのように連携したかを確認できます。このウィジェットと右上の[deny- or graylisted](setup.md#creating-profiles) IPのカウンターは、**IP Lists** [history](../user-guides/ip-lists/overview.md#ip-list-history) へリンクしており、ボットのIPがブロックリストに登録された日時や期間を確認できます。
+画面下部の**Behavioral patterns**でもボットの行動を分析できます。各ディテクターの詳細およびボット行動の判定におけるそれらの組み合わせ方を確認できます。このウィジェットと右上の[denylistedまたはgraylisted](setup.md#creating-profiles)のIPのカウンターは、**IP Lists**の[履歴](../user-guides/ip-lists/overview.md#ip-list-history)へリンクしており、ボットのIPがいつ、どの期間ブロッキングリストに入れられたかを確認できます。
 
-![API不正利用防止の統計](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
+![API Abuse Preventionの統計](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
 
-ボット活動が検出されなかった場合、**Legitimate traffic** 状態が表示されます:
+ボット活動が検出されなかった場合は、**Legitimate traffic**状態が表示されます:
 
-![API不正利用防止の統計 - ボット検出なし](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics-nobots.png)
+![API Abuse Preventionの統計 - ボット未検出](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics-nobots.png)
 
-ボット検出はトラフィックに依存しているため、十分な量のトラフィックがない場合、API Abuse Prevention は **Insufficient data to build statistics** というメッセージで通知します。各プロファイルのトラフィックは **Profiles** タブで[確認](setup.md#per-profile-traffic)できます。
+なお、ボット検出はトラフィックに依存します。十分な量のトラフィックがない場合、API Abuse Preventionは**Insufficient data to build statistics**というメッセージで通知します。**Profiles**タブでプロファイルごとのトラフィックを[確認](setup.md#per-profile-traffic)できます。
 
-## Attacks
+## 攻撃
 
-Wallarm Console の **Attacks** セクションで、ボットによって実行された攻撃を調査できます。`api_abuse`、`account_takeover`、`scraping`、`security_crawlers` の検索キーを使用するか、**Type** フィルターから適切なオプションを選択してください。
+Wallarm Console→**Attacks**セクションで、ボットによって実行された攻撃を調査できます。`api_abuse`、`account_takeover`、`scraping`、`security_crawlers`の検索キーを使用するか、**Type**フィルターから該当するオプションを選択します。
 
-![API不正利用イベント](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
+![API Abuseのイベント](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
 
-API Abuse Prevention によりボットIPがdenylistに登録された場合でも、デフォルトではWallarmはそのIPから発信されたブロックされたリクエストの統計を[表示](../user-guides/ip-lists/overview.md#requests-from-denylisted-ips)します。
+なお、API Abuse PreventionによってボットのIPがdenylistに入れられている場合でも、デフォルトでWallarmはそのIPからのブロックされたリクエストに関する統計を収集して[表示](../user-guides/ip-lists/overview.md#requests-from-denylisted-ips)します。
 
-**Detector値**
+**ディテクターの値**
 
-トリガーされた[detectors](overview.md#how-api-abuse-prevention-works)と、それらの値が示す通常の挙動からの逸脱度にご留意ください。上記の図では、例えば通常が `< 10` であるところに**Query abuse**が `326`、通常が `> 1` であるところに**Request interval**が `0.05` と表示されております。
+発火した[ディテクター](overview.md#how-api-abuse-prevention-works)の一覧と、それぞれの異常が通常の振る舞いからどの程度乖離しているかを示す値にご注意ください。たとえば上の図では、通常は`< 10`であるところ`326`となっている**Query abuse**、通常は`> 1`であるところ`0.05`となっている**Request interval**などがあります。
 
-**Heatmaps**
+**ヒートマップ**
 
-ボット情報は3種類のヒートマップで視覚化されます。すべてのヒートマップにおいて、バブルが大きいほど赤に近く、右上隅に位置するほど、そのIPをボットと判断すべき理由が多いことを示しています。
+ボット情報は3つのヒートマップで可視化されます。いずれのヒートマップでも、バブルが大きいほど、赤色に近いほど、右上に位置するほど、そのIPをボットと見なす理由が多いことを意味します。
 
-ヒートマップ上では、現在のボット（**this bot**）と過去24時間以内に同じアプリケーションを攻撃した他のボットとも比較できます。ボット数が多い場合は、最も疑わしい30件のみが表示されます。
+ヒートマップ上では、現在のボット(**this bot**)と、過去24時間に同じアプリケーションを攻撃した他のボットを比較することもできます。該当するボットが多すぎる場合は、最も疑わしい30件のみが表示されます。
 
 ヒートマップ:
-* **Performance** は、現在およびその他の検出されたボットのパフォーマンスを、リクエストの非一意性、スケジュールされたリクエスト、RPS、リクエスト間隔などとともに視覚化します。
-* **Behavior** は、現在およびその他の検出されたボットの疑わしい行動スコアを、疑わしさの度合い、重要または敏感なエンドポイントへのリクエスト数、RPS、ボット検知器の検出数などとともに視覚化します。
-* **HTTP errors** は、ボット活動によって引き起こされたAPIエラーを、対象エンドポイント数、不安全なリクエスト数、RPS、受信エラー応答コード数とともに視覚化します.
+
+* **Performance** 現在のボットおよび他の検出済みボットのパフォーマンスを可視化します。リクエストの非一意性、スケジュールされたリクエスト、RPS、リクエスト間隔などを含みます。
+* **Behavior** 現在のボットおよび他の検出済みボットの不審行動スコアを可視化します。不審行動の度合い、重要または機微なエンドポイントへのリクエスト数、RPS、彼らをボットと判定したディテクターの数などを含みます。
+* **HTTP errors** ボット活動に起因するAPIエラーを可視化します。対象としている異なるエンドポイントの数、行っている安全でないリクエストの数、RPS、受信したエラーレスポンスコードの数などを含みます.
 
 <!--Each heatmap includes detailed description of its bubble size, color and position meaning (use **Show more**). You can zoom in heatmap by drawing rectangular around required area.
 
@@ -60,6 +61,6 @@ The **API Abuse Prevention** module compiles client traffic into URL patterns. T
 | HEALTHCHECK | Content related to the health check endpoints. | - |
 | VARY | The segment is marked as VARY if it is impossible to attribute it to other categories. A variable part of the URL path. | - | -->
 
-## API Sessionsを使用したAPI不正利用検出の精度検証
+## API SessionsによるAPIの悪用検知精度の検証
 
 --8<-- "../include/bot-attack-full-context.md"

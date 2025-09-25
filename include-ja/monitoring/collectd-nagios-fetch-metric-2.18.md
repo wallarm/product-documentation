@@ -1,8 +1,8 @@
 === "Linux"
     ```bash
-    /usr/bin/collectd-nagios -s /var/run/collectd-unixsock -n <ホスト名を除くメトリック名> -H <ユーティリティが実行されているフィルターノードを含むホストのFQDN>
+    /usr/bin/collectd-nagios -s /var/run/collectd-unixsock -n <metric name without host name> -H <FQDN of the host with the filter node on which the utility is running>
     ```
 === "Docker"
     ```bash
-    docker exec <コンテナ名> /usr/bin/collectd-nagios -s /var/run/collectd-unixsock -n <ホスト名を除くメトリック名> -H <コンテナID>
+    docker exec <container name> /usr/bin/collectd-nagios -s /var/run/collectd-unixsock -n <metric name without host name> -H <container ID>
     ```

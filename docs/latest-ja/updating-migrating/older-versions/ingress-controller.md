@@ -7,68 +7,68 @@
 [ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
 
-# 統合Wallarmモジュール付きのEOL NGINX Ingress Controllerのアップグレード
+# Wallarmモジュールを統合したEOLのNGINX Ingress controllerのアップグレード
 
-これらの手順は、展開済みのサポート終了となったWallarm Ingress Controller（バージョン3.6以下）をWallarm node 5.0搭載の新バージョンへアップグレードするための手順を説明します。
+本書では、サポート終了（EOL）のWallarm Ingress Controller（バージョン3.6以下）を、Wallarmノード6.xを搭載した新バージョンへアップグレードする手順を説明します。
 
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
-!!! warning "アップグレード後のCommunity Ingress NGINX Controller"
-    nodeをバージョン3.4以下からアップグレードする場合、Wallarm Ingress Controllerの基盤となるCommunity Ingress NGINX Controllerのバージョンが0.26.2から1.11.3にアップグレードされたことにご留意ください。
+!!! warning "アップグレードされるCommunity Ingress NGINX Controllerのバージョン"
+    ノードを3.4以下からアップグレードする場合、Wallarm Ingress controllerのベースとなるCommunity Ingress NGINX Controllerのバージョンが0.26.2から1.11.5に更新されている点にご注意ください。
     
-    Community Ingress NGINX Controller 1.11.3の動作が大幅に変更されているため、Wallarm Ingress Controllerアップグレード時にその構成をこれらの変更に合わせて調整する必要があります。
+    Community Ingress NGINX Controller 1.11.5では動作が大きく変更されているため、Wallarm Ingress controllerのアップグレード時に、これらの変更に合わせて構成を調整する必要があります。
 
-    これらの手順には、変更が必要になりそうなCommunity Ingress NGINX Controllerの設定項目の一覧が含まれています。とはいえ、[Community Ingress NGINX Controllerリリースノート](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md)を基に、構成移行の個別計画を策定してください。
+    本書には、変更が必要となる可能性が高いCommunity Ingress NGINX Controllerの設定の一覧が含まれます。ただし、[Community Ingress NGINX Controllerのリリースノート](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md)に基づき、構成移行の個別計画を必ず策定してください。 
 
 ## 要件
 
 --8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
 
-## ステップ 1: Wallarmテクニカルサポートへ、フィルタリングnodeモジュールのアップグレードを実施する旨を通知する（node 2.18以下の場合のみ）
+## 手順1: フィルタリングノードモジュールをアップグレードすることをWallarmテクニカルサポートに通知します（ノード2.18以下のアップグレード時のみ）
 
-node 2.18以下からアップグレードする場合、[Wallarmテクニカルサポート](mailto:support@wallarm.com)へ、フィルタリングnodeモジュールを5.0まで更新していることを通知し、Wallarmアカウントに対して新しいIPリストロジックを有効にするよう依頼してください。
+ノード2.18以下からアップグレードする場合、[Wallarmテクニカルサポート](mailto:support@wallarm.com)にフィルタリングノードモジュールを6.xまで更新する旨を連絡し、Wallarmアカウントに対して新しいIPリストロジックの有効化を依頼してください。
 
-新しいIPリストロジックが有効化されると、Wallarm Consoleを開き、セクション[**IP lists**](../../user-guides/ip-lists/overview.md)が利用可能になっていることを確認してください。
+新しいIPリストロジックが有効化されたら、Wallarm Consoleを開き、[**IP lists**](../../user-guides/ip-lists/overview.md)セクションが利用可能であることを確認してください。
 
-## ステップ 2: Threat Replay Testingモジュールを無効化する（node 2.16以下の場合のみ）
+## 手順2: Threat Replay Testingモジュールを無効化します（ノード2.16以下のアップグレード時のみ）
 
-Wallarm node 2.16以下からアップグレードする場合、Wallarm Console → **Vulnerabilities** → **Configure**で[Threat Replay Testing](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing)モジュールを無効化してください。
+Wallarmノード2.16以下からアップグレードする場合、Wallarm Console → **Vulnerabilities** → **Configure**で[Threat Replay Testing](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing)モジュールを無効化してください。
 
-アップグレードプロセス中にモジュールが動作すると[誤検知](../../about-wallarm/protecting-against-attacks.md#false-positives)が発生する可能性があるため、モジュールを無効化することでこのリスクを最小限に抑えます。
+アップグレード中のモジュール動作により[誤検知](../../about-wallarm/protecting-against-attacks.md#false-positives)が発生する可能性があります。モジュールを無効化することで、このリスクを最小限に抑えられます。
 
-## ステップ 3: APIポートの更新
+## 手順3: APIポートを更新する
 
 --8<-- "../include/waf/upgrade/api-port-443.md"
 
-## ステップ 4: Wallarm Helmチャートリポジトリの更新
+## 手順4: Wallarm Helmチャートリポジトリを更新する
 
-=== "Helmリポジトリを使用している場合"
+=== "Helmリポジトリを使用する場合"
     ```bash
     helm repo update wallarm
     ```
-=== "クローン済みGitHubリポジトリを使用している場合"
-    下記のコマンドを使用して、すべてのチャートバージョンを含む[Wallarm Helm repository](https://charts.wallarm.com/)を追加してください。今後のWallarm Ingress Controllerの操作にはHelmリポジトリをご利用ください。
+=== "クローンしたGitHubリポジトリを使用する場合"
+    すべてのチャートバージョンを含む[Wallarm Helmリポジトリ](https://charts.wallarm.com/)を以下のコマンドで追加してください。以降のWallarm Ingress controllerの操作には、Helmリポジトリを使用してください。
 
     ```bash
     helm repo add wallarm https://charts.wallarm.com
     helm repo update wallarm
     ```
 
-## ステップ 5: `values.yaml`構成の更新
+## 手順5: `values.yaml`設定を更新する
 
-Wallarm Ingress Controller 5.0へ移行するため、`values.yaml`ファイルに指定された以下の構成を更新してください。
+Wallarm Ingress controller 6.xへ移行するには、`values.yaml`ファイルで指定している以下の構成を更新します。
 
 * Community Ingress NGINX Controllerの標準構成
-* Wallarmモジュール構成
+* Wallarmモジュールの構成
 
 ### Community Ingress NGINX Controllerの標準構成
 
-1. [Community Ingress NGINX Controllerのリリースノート](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md)（バージョン0.27.0以上）を確認し、`values.yaml`ファイル内で変更すべき設定を定義します。
-2. `values.yaml`ファイル内で定義された設定を更新します。
+1. [Community Ingress NGINX Controllerのリリースノート](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md)（0.27.0以上）を確認し、`values.yaml`で変更が必要な設定を特定します。
+2. 特定した設定を`values.yaml`で更新します。
 
-以下の設定変更が必要と考えられます:
+変更が必要となる可能性がある設定は次のとおりです。
 
-* リクエストがWallarm Ingress Controllerに送信される前にロードバランサを通過している場合、[エンドユーザーのパブリックIPアドレスの適切な報告](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
+* リクエストがロードバランサを経由してWallarm Ingress controllerに送信される場合の、[エンドユーザ公開IPアドレスの正確な報告](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)。
 
     ```diff
     controller:
@@ -77,7 +77,7 @@ Wallarm Ingress Controller 5.0へ移行するため、`values.yaml`ファイル�
     +    enable-real-ip: "true"
     +    forwarded-for-header: "X-Forwarded-For"
     ```
-* [IngressClassesの構成](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/)。新しいIngress Controllerでは使用するKubernetes APIのバージョンがアップグレードされ、IngressClassesは`.controller.ingressClass`、`.controller.ingressClassResource`、および`.controller.watchIngressWithoutClass`パラメータを介して構成する必要があります。
+* [IngressClassの構成](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/)。新しいIngress controllerでは使用するKubernetes APIのバージョンが更新されており、`.controller.ingressClass`、`.controller.ingressClassResource`、`.controller.watchIngressWithoutClass`パラメータでIngressClassを構成する必要があります。
 
     ```diff
     controller:
@@ -87,7 +87,7 @@ Wallarm Ingress Controller 5.0へ移行するため、`values.yaml`ファイル�
     +    default: true
     +  watchIngressWithoutClass: true
     ```
-* [ConfigMap（`.controller.config`）パラメータセット](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/)例:
+* [ConfigMap（`.controller.config`）のパラメータセット](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/)。例:
 
     ```diff
     controller:
@@ -100,7 +100,7 @@ Wallarm Ingress Controller 5.0へ移行するため、`values.yaml`ファイル�
         proxy_request_buffering on;
         wallarm_enable_libdetection on;
     ```
-* 「admission webhook」による[Ingress構文の検証](https://kubernetes.github.io/ingress-nginx/how-it-works/#avoiding-outage-from-wrong-configuration)がデフォルトで有効化されます。
+* ["admission webhook"によるIngress構文の検証](https://kubernetes.github.io/ingress-nginx/how-it-works/#avoiding-outage-from-wrong-configuration)がデフォルトで有効になりました。
 
     ```diff
     controller:
@@ -108,9 +108,9 @@ Wallarm Ingress Controller 5.0へ移行するため、`values.yaml`ファイル�
     +    enabled: true
     ```
 
-    !!! warning "Ingress構文検証の無効化について"
-        Ingressオブジェクトの動作が不安定になる場合を除き、Ingress構文検証は無効化しないことを推奨します。
-* [ラベル](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)の形式。もし`values.yaml`ファイルがPodアフィニティルールを設定している場合、これらのルール内のラベル形式を変更してください。例:
+    !!! warning "Ingress構文検証の無効化"
+        Ingressオブジェクトの動作を不安定にする場合に限り、Ingress構文検証を無効化することを推奨します。 
+* [ラベル](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)形式。`values.yaml`でPodアフィニティルールを設定している場合、以下のようにラベル形式を変更してください。
 
     ```diff
     controller:
@@ -140,11 +140,11 @@ Wallarm Ingress Controller 5.0へ移行するため、`values.yaml`ファイル�
             weight: 100
     ```
 
-### Wallarmモジュール構成
+### Wallarmモジュールの構成
 
-`values.yaml`ファイルに設定されたWallarmモジュール構成を以下のように変更してください:
+`values.yaml`で設定しているWallarmモジュールの構成を次のとおり変更します。
 
-* バージョン2.18以下からアップグレードする場合、IPリスト構成を[移行](../migrate-ip-lists-to-node-3.md)してください。`values.yaml`から削除が必要なパラメータは以下の通りです:
+* バージョン2.18以下からアップグレードする場合、IPリスト構成を[移行](../migrate-ip-lists-to-node-3.md)してください。`values.yaml`から削除される可能性があるパラメータは次のとおりです。
 
     ```diff
     controller:
@@ -155,65 +155,67 @@ Wallarm Ingress Controller 5.0へ移行するため、`values.yaml`ファイル�
         resources: {}
     ```
 
-    Wallarm node 3.xでIPリストのコアロジックが大幅に変更されたため、IPリスト構成を適切に調整する必要があります。
-* **Deploy**ロール用の[APIトークンを生成](../../user-guides/settings/api-tokens.md)し、その値を`controller.wallarm.token`パラメータに渡してください。
-* 以下に記載された設定の期待される動作が、[`off`および`monitoring`フィルトレーションモード](what-is-new.md#filtration-modes)の変更されたロジックに対応していることを確認してください:
+    Wallarmノード3.xではIPリストの中核ロジックが大幅に変更されているため、IPリスト構成をそれに合わせて調整する必要があります。
+* [Tarantoolからwstoreへの移行](what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics)に伴い、Helmの値名が`controller.wallarm.tarantool` → `controller.wallarm.postanalytics`に変更されました。ポストアナリティクス用メモリを明示的に[割り当て](../../admin-en/configuration-guides/allocate-resources-for-node.md)ている場合は、`values.yaml`にこの変更を適用してください。
+* [**Node deployment/Deployment**用途のAPIトークンを生成](../../user-guides/settings/api-tokens.md)し、その値を`controller.wallarm.token`パラメータに設定してください。
+* 以下の設定で期待する挙動が、[`off`および`monitoring`フィルタリングモードの変更後のロジック](what-is-new.md#filtration-modes)と一致していることを確認してください。
       
-      * [Directive `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [Wallarm Consoleで構成された一般フィルトレーションルール](../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console)
-      * [Wallarm Consoleで構成されたエンドポイント対象フィルトレーションルール](../../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console)
+      * [ディレクティブ`wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
+      * [Wallarm Consoleで構成する全体フィルタリングルール](../../admin-en/configure-wallarm-mode.md#general-filtration-mode)
+      * [Wallarm Consoleで構成するエンドポイント単位のフィルタリングルール](../../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode)
 
-      期待される動作と変更後のフィルトレーションモードロジックが一致しない場合は、[Ingress annotations](../../admin-en/configure-kubernetes-en.md#ingress-annotations)や[その他の設定](../../admin-en/configure-wallarm-mode.md)を変更後の内容に合わせて調整してください。
-* 明示的に設定された[モニタリングサービス構成](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)を削除してください。新しいWallarm Ingress Controllerバージョンでは、モニタリングサービスはデフォルトで有効化され、追加の構成は不要です。
+      期待する挙動が変更後のフィルタリングモードロジックと一致しない場合は、[Ingressアノテーション](../../admin-en/configure-kubernetes-en.md#ingress-annotations)や[その他の設定](../../admin-en/configure-wallarm-mode.md)を変更点に合わせて調整してください。
+* 明示的な[監視サービスの構成](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)は不要です。新しいWallarm Ingress controllerでは監視サービスがデフォルトで有効化され、追加設定は不要です。
 
     ```diff
     controller:
     wallarm:
       enabled: true
-      tarantool:
+    -  tarantool:
+    +  wstore:
         resources: {}
     -  metrics:
     -    enabled: true
     -    service:
     -      annotations: {}
     ```
-* ConfigMap経由で設定された`&/usr/share/nginx/html/wallarm_blocked.html`ページがブロックされたリクエストに返される場合、[構成を調整](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)して変更内容に合わせてください。
+* ConfigMapで設定したページ`&/usr/share/nginx/html/wallarm_blocked.html`がブロック時のレスポンスとして返される場合、提供された変更に合わせて[設定を調整](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)してください。
 
-    新しいnodeバージョンでは、Wallarmサンプルブロッキングページはロゴがなく、デフォルトで指定されたサポートメールもない更新されたUIになっています。
-* もし[`wallarm_process_time_limit`][nginx-process-time-limit-docs]および[`wallarm_process_time_limit_block`][nginx-process-time-limit-block-docs] NGINXディレクティブを使用して`overlimit_res`攻撃検出をカスタマイズしている場合は、これらの設定をルールへ[移行](#step-6-transfer-the-overlimit_res-attack-detection-configuration-from-directives-to-the-rule)し、`values.yaml`ファイルから削除してください。
+    新しいノードバージョンでは、Wallarmのサンプルブロッキングページは[新しいブロッキングページ](what-is-new.md#new-blocking-page)に示すとおり、デフォルトでロゴとサポートメールが表示されない更新UIになりました。
+* [`wallarm_process_time_limit`][nginx-process-time-limit-docs]および[`wallarm_process_time_limit_block`][nginx-process-time-limit-block-docs]というNGINXディレクティブで`overlimit_res`攻撃検出をカスタマイズしている場合は、この設定を[ルールへ移行](#step-6-transfer-the-overlimit_res-attack-detection-configuration-from-directives-to-the-rule)し、`values.yaml`から削除してください。
 
-## ステップ 6: directivesからルールへの`overlimit_res`攻撃検出構成の移行
+## 手順6: `overlimit_res`攻撃検出の設定をディレクティブからルールへ移行する
 
 --8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-ingress-controller.md"
 
-## ステップ 7: 今後のK8sマニフェスト変更内容を確認する
+## 手順7: 反映されるK8sマニフェストの変更をすべて確認する
 
-予期せぬIngress Controllerの動作変更を避けるために、[Helm Diff Plugin](https://github.com/databus23/helm-diff)を使用して、展開済みIngress Controllerバージョンと新バージョンのK8sマニフェスト間の違いを確認してください。
+Ingress controllerの挙動が予期せず変化しないよう、[Helm Diff Plugin](https://github.com/databus23/helm-diff)を使用して、反映予定のK8sマニフェスト差分を確認してください。このプラグインは、現在デプロイ中のIngress controllerバージョンと新バージョンのK8sマニフェストの差分を出力します。
 
-プラグインのインストールおよび実行手順は以下の通りです:
+プラグインのインストールと実行:
 
-1. プラグインのインストール:
+1. プラグインをインストールします。
 
     ```bash
     helm plugin install https://github.com/databus23/helm-diff
     ```
-2. プラグインの実行:
+2. プラグインを実行します。
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 5.3.0 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.4.0 -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`: Ingress ControllerチャートのHelmリリース名
-    * `<NAMESPACE>`: Ingress Controllerが展開されているnamespace
-    * `<PATH_TO_VALUES>`: [Ingress Controller 5.0設定](#step-5-update-the-valuesyaml-configuration)を定義している`values.yaml`ファイルへのパス
-3. 変更が実行中のサービスの安定性に影響を与えないことを確認し、stdoutからのエラー内容を十分に検証してください。
+    * `<RELEASE_NAME>`: Ingress controllerチャートのHelmリリース名
+    * `<NAMESPACE>`: Ingress controllerをデプロイしているNamespace
+    * `<PATH_TO_VALUES>`: [Ingress controller 6.xの設定](#step-5-update-the-valuesyaml-configuration)を定義する`values.yaml`ファイルのパス
+3. 変更が稼働中サービスの安定性に影響しないことを確認し、stdoutに出力されたエラーを慎重に確認してください。
 
-    stdoutが空の場合、`values.yaml`ファイルが有効であることを確認してください。
+    stdoutが空の場合は、`values.yaml`が正しいことを確認してください。
 
-以下の構成変更にご留意ください:
+以下の構成の変更に注意してください。
 
-* DeploymentやStatefulSetのselectorなどのイミュータブルフィールド
-* Podラベル。変更によりNetworkPolicyの動作が停止する可能性があります。例:
+* 変更不可能なフィールド（例: DeploymentやStatefulSetのセレクタ）。
+* Podラベル。以下のような変更により、NetworkPolicyの動作が停止する可能性があります。
 
     ```diff
     apiVersion: networking.k8s.io/v1
@@ -235,7 +237,7 @@ Wallarm Ingress Controller 5.0へ移行するため、`values.yaml`ファイル�
     +         app.kubernetes.io/name: "waf-ingress"
     -         component: waf-ingress
     ```
-* 新しいラベルを適用したPrometheusの構成例。例:
+* Prometheusの新しいラベルでの構成。例:
 
     ```diff
      - job_name: 'kubernetes-ingress'
@@ -262,7 +264,7 @@ Wallarm Ingress Controller 5.0へ移行するため、`values.yaml`ファイル�
          - source_labels: [__meta_kubernetes_pod_container_port_number]
            action: keep
            regex: "10254|18080"
-           # リプレイス処理
+           # 置換
          - action: replace
            target_label: __metrics_path__
            regex: /metrics
@@ -280,77 +282,79 @@ Wallarm Ingress Controller 5.0へ移行するため、`values.yaml`ファイル�
            target_label: instance
            replacement: "$1"
     ```
-* その他すべての変更内容についても検証してください。
+* その他の変更も分析してください。
 
-## ステップ 8: Ingress Controllerのアップグレード
+## 手順8: Ingress controllerをアップグレードする
 
-アップグレード方法は3通り用意されています。環境にロードバランサが展開されているかどうかに応じて、以下のアップグレード手法から選択してください:
+Wallarm Ingress controllerのアップグレード方法は3通りあります。環境にロードバランサがあるかどうかに応じて、以下から選択してください。
 
-* 一時的なIngress Controllerの展開
-* 通常のIngress Controllerリリースの再作成
-* ロードバランサに影響を与えないIngress Controllerリリースの再作成
+* 一時的なIngress controllerのデプロイ
+* Ingress controllerリリースの通常の再作成
+* ロードバランサに影響を与えないIngress controllerリリースの再作成
 
-!!! warning "staging environmentまたはminikubeを使用している場合"
-    Wallarm Ingress Controllerがstaging environmentに展開されている場合、まずこちらでアップグレードを実施することを推奨します。すべてのサービスが正常に動作していることを確認後、本番環境でアップグレード手順を進めてください。
+!!! warning "ステージング環境またはminikubeの利用"
+    Wallarm Ingress controllerがステージング環境にデプロイされている場合は、まずステージングをアップグレードすることを推奨します。ステージング環境で全サービスが正しく動作することを確認できたら、本番環境のアップグレードに進んでください。
 
-    minikube等の他のサービスを用いて、更新された構成で[Wallarm Ingress Controller 5.0をデプロイ](../../admin-en/installation-kubernetes-en.md)することも推奨されます。すべてのサービスが期待通りに動作していることを確認した後、本番環境でIngress Controllerのアップグレードを実施してください。
+    そうでなければ、先にminikubeや他のサービスを用いて、更新済み構成で[Wallarm Ingress controller 6.xをデプロイ](../../admin-en/installation-kubernetes-en.md)することを推奨します。すべてのサービスが期待どおり動作することを確認してから、本番環境のIngress controllerをアップグレードしてください。
 
-    この手法は本番環境でのサービスのダウンタイムを回避するのに役立ちます。
+    このアプローチにより、本番環境のダウンタイムを回避しやすくなります。
 
-### 方法 1: 一時的なIngress Controllerの展開
+### 方法1: 一時的なIngress controllerのデプロイ
 
-この方法を使用すると、環境内にIngress Controller 5.0を追加のエンティティとして展開し、徐々にトラフィックを切り替えていくことが可能です。これにより、一時的なサービス停止を回避し、安全な移行が実現できます。
+この方法では、環境にIngress Controller 6.xを追加でデプロイし、トラフィックを段階的に切り替えられます。サービスの一時的な停止も避けられ、安全に移行できます。
 
-1. 以前のバージョンの`values.yaml`ファイルからIngressClassの構成を、Ingress Controller 5.0用の`values.yaml`ファイルへコピーしてください。
+1. 旧バージョンの`values.yaml`からIngressClassの構成を、Ingress controller 6.x用の`values.yaml`にコピーします。
 
-    この構成により、Ingress ControllerはIngressオブジェクトを認識しますが、そのトラフィックを処理しません。
-2. Ingress Controller 5.0を展開します:
+    この構成により、Ingress controllerはIngressオブジェクトを認識しますが、そのトラフィックは処理しません。
+2. Ingress controller 6.xをデプロイします。
 
     ```bash
-    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 5.3.0 -f <PATH_TO_VALUES>
+    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.4.0 -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`: Ingress ControllerチャートのHelmリリース名
-    * `<NAMESPACE>`: Ingress Controllerを展開するnamespace
-    * `<PATH_TO_VALUES>`: [Ingress Controller 5.0設定](#step-5-update-the-valuesyaml-configuration)を定義している`values.yaml`ファイルへのパス
-3. すべてのサービスが正常に動作していることを確認してください。
-4. 新しいIngress Controllerへ徐々にトラフィックを切り替えてください。
+    * `<RELEASE_NAME>`: Ingress controllerチャートのHelmリリース名
+    * `<NAMESPACE>`: Ingress controllerをデプロイするNamespace
+    * `<PATH_TO_VALUES>`: [Ingress controller 6.xの設定](#step-5-update-the-valuesyaml-configuration)を定義する`values.yaml`ファイルのパス
+3. すべてのサービスが正しく動作することを確認します。
+4. 新しいIngress controllerへ段階的に負荷を切り替えます。
 
-### 方法 2: 通常のIngress Controllerリリースの再作成
+### 方法2: Ingress controllerリリースの通常の再作成
 
-**ロードバランサとIngress Controllerが同一Helmチャートで記述されていない場合**は、単にHelmリリースを再作成できます。この処理には数分かかり、その間Ingress Controllerは利用できなくなります。
+**ロードバランサとIngress controllerが同一のHelmチャートで定義されていない場合**は、Helmリリースを再作成するだけで構いません。数分かかり、その間Ingress controllerは利用できません。
 
-!!! warning "Helmチャートでロードバランサの構成も設定されている場合"
-    もしHelmチャートでIngress Controllerと合わせてロードバランサの構成が設定されている場合、リリースの再作成は長時間にわたるロードバランサのダウンタイムを引き起こす可能性があります（クラウドプロバイダーによります）。一定のIPアドレスが割り当てられていない場合、アップグレード後にロードバランサのIPアドレスが変更される可能性があります。
+!!! warning "Helmチャートでロードバランサの構成も設定している場合"
+    HelmチャートでロードバランサとIngress controllerを併せて構成している場合、リリースの再作成によりロードバランサが長時間ダウンする可能性があります（クラウドプロバイダに依存）。固定アドレスを割り当てていない場合、アップグレード後にロードバランサのIPアドレスが変更される可能性もあります。
 
-    この手法を使用する場合は、あらゆるリスクを十分に検証してください。
+    この方法を選択する場合は、想定される全リスクを分析してください。
 
-Ingress Controllerリリースを再作成するには:
+Ingress controllerリリースを再作成するには:
 
 === "Helm CLI"
-    1. 以前のリリースを削除します:
+    1. 旧リリースを削除します。
 
         ```bash
         helm delete <RELEASE_NAME> -n <NAMESPACE>
         ```
 
-        * `<RELEASE_NAME>`: Ingress ControllerチャートのHelmリリース名
+        * `<RELEASE_NAME>`: Ingress controllerチャートのHelmリリース名
 
-        * `<NAMESPACE>`: Ingress Controllerが展開されているnamespace
+        * `<NAMESPACE>`: Ingress controllerをデプロイしているNamespace
 
-        コマンド実行時に`--wait`オプションは使用しないでください。アップグレード時間が延びる可能性があります。
+        実行時に`--wait`オプションは使用しないでください。アップグレード時間が延びる可能性があります。
 
-    2. Ingress Controller 5.0で新たにリリースを作成します:
+    2. Ingress controller 6.xで新しいリリースを作成します。
 
         ```bash
-        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 5.3.0 -f <PATH_TO_VALUES>
+        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.4.0 -f <PATH_TO_VALUES>
         ```
 
-        * `<RELEASE_NAME>`: Ingress ControllerチャートのHelmリリース名
-        * `<NAMESPACE>`: Ingress Controllerを展開するnamespace
-        * `<PATH_TO_VALUES>`: [Ingress Controller 5.0設定](#step-5-update-the-valuesyaml-configuration)を定義している`values.yaml`ファイルへのパス
+        * `<RELEASE_NAME>`: Ingress controllerチャートのHelmリリース名
+
+        * `<NAMESPACE>`: Ingress controllerをデプロイするNamespace
+
+        * `<PATH_TO_VALUES>`: [Ingress controller 6.xの設定](#step-5-update-the-valuesyaml-configuration)を定義する`values.yaml`ファイルのパス
 === "Terraform CLI"
-    1. アップグレード時間の短縮のため、Terraform構成で`wait = false`オプションを設定します:
+    1. アップグレード時間を短縮するため、Terraform構成で`wait = false`オプションを設定します。
         
         ```diff
         resource "helm_release" "release" {
@@ -362,105 +366,107 @@ Ingress Controllerリリースを再作成するには:
         }
         ```
     
-    2. 以前のリリースを削除します:
+    2. 旧リリースを削除します。
 
         ```bash
         terraform taint helm_release.release
         ```
     
-    3. Ingress Controller 5.0で新たにリリースを作成します:
+    3. Ingress controller 6.xで新しいリリースを作成します。
 
         ```bash
         terraform apply -target=helm_release.release
         ```
 
-### 方法 3: ロードバランサに影響を与えないIngress Controllerリリースの再作成
+### 方法3: ロードバランサに影響を与えないIngress controllerリリースの再作成
 
-クラウドプロバイダーが設定したロードバランサを使用している場合、この方法でアップグレードすることを推奨します。ロードバランサには影響せず、リリースの再作成には数分かかり、その間Ingress Controllerは利用できなくなります。
+クラウドプロバイダが構成したロードバランサを使用している場合は、ロードバランサに影響を与えないこの方法でIngress controllerをアップグレードすることを推奨します。
 
-1. 削除対象のオブジェクト（ロードバランサを除く）を取得します:
+リリースの再作成には数分かかり、その間Ingress controllerは利用できません。
+
+1. （ロードバランサを除く）削除対象のオブジェクトを取得します。
 
     ```bash
     helm get manifest <RELEASE_NAME> -n <NAMESPACE> | yq -r '. | select(.spec.type != "LoadBalancer") | .kind + "/" + .metadata.name' | tr 'A-Z' 'a-z' > objects-to-remove.txt
     ```
 
-    ユーティリティ`yq`のインストールについては[こちらの手順](https://pypi.org/project/yq/)を参照してください。
+    ユーティリティ`yq`のインストールは、[こちらの手順](https://pypi.org/project/yq/)を参照してください。
 
-    削除対象のオブジェクトは`objects-to-remove.txt`ファイルに出力されます。
-2. リストされたオブジェクトを削除し、リリースを再作成します:
+    削除対象オブジェクトは`objects-to-remove.txt`ファイルに出力されます。
+2. 列挙したオブジェクトを削除し、リリースを再作成します。
 
     ```bash
     cat objects-to-remove.txt | xargs kubectl delete --wait=false -n <NAMESPACE>    && \
-    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 5.3.0 -f `<PATH_TO_VALUES>`
+    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.4.0 -f `<PATH_TO_VALUES>`
     ```
 
-    サービスのダウンタイムを短縮するため、コマンドを個別に実行しないことを推奨します。
-3. すべてのオブジェクトが作成されていることを確認します:
+    サービスのダウンタイムを短縮するため、コマンドは別々に実行しないことを推奨します。
+3. すべてのオブジェクトが作成されたことを確認します。
 
     ```bash
     helm get manifest <RELEASE_NAME> -n <NAMESPACE> | kubectl create -f -
     ```
 
-    出力に「すべてのオブジェクトは既に存在します」と表示されるはずです。
+    すべてのオブジェクトが既に存在する旨の出力が表示されるはずです。
 
-コマンド内で使用されるパラメータは以下の通りです:
+上記のコマンドで使用するパラメータは次のとおりです。
 
-* `<RELEASE_NAME>`: Ingress ControllerチャートのHelmリリース名
-* `<NAMESPACE>`: Ingress Controllerが展開されているnamespace
-* `<PATH_TO_VALUES>`: [Ingress Controller 5.0設定](#step-5-update-the-valuesyaml-configuration)を定義している`values.yaml`ファイルへのパス
+* `<RELEASE_NAME>`: Ingress controllerチャートのHelmリリース名
+* `<NAMESPACE>`: Ingress controllerをデプロイしているNamespace
+* `<PATH_TO_VALUES>`: [Ingress controller 6.xの設定](#step-5-update-the-valuesyaml-configuration)を定義する`values.yaml`ファイルのパス
 
-## ステップ 9: アップグレードしたIngress Controllerのテスト
+## 手順9: アップグレード済みIngress controllerをテストする
 
-1. Helmチャートのバージョンが更新されているか確認してください:
+1. Helmチャートのバージョンが更新されたことを確認します。
 
     ```bash
     helm ls
     ```
 
-    チャートバージョンは`wallarm-ingress-5.3.0`である必要があります。
-2. `<INGRESS_CONTROLLER_NAME>`にWallarm Ingress Controllerの名前を指定して、Podリストを取得してください:
+    チャートバージョンは`wallarm-ingress-6.4.0`である必要があります。
+1. WallarmのPodを取得します。
     
     ``` bash
-    kubectl get pods -l release=<INGRESS_CONTROLLER_NAME>
+    kubectl get pods -n <NAMESPACE> -l app.kubernetes.io/name=wallarm-ingress
     ```
 
-    各Podのステータスは**STATUS: Running**または**READY: N/N**である必要があります。例:
+    Podのステータスは**STATUS: Running**で、**READY: N/N**である必要があります。
 
     ```
-    NAME                                                              READY     STATUS    RESTARTS   AGE
-    ingress-controller-nginx-ingress-controller-675c68d46d-cfck8      3/3       Running   0          5m
-    ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
+    NAME                                                                  READY   STATUS    RESTARTS   AGE
+    ingress-controller-wallarm-ingress-controller-6d659bd79b-952gl        3/3     Running   0          8m7s
+    ingress-controller-wallarm-ingress-controller-wallarm-wstore-7ddmgbfm 3/3     Running   0          8m7s
     ```
 
-3. テスト用の[Path Traversal](../../attacks-vulns-list.md#path-traversal)攻撃をWallarm Ingress Controllerのアドレスに対して送信してください:
+3. テスト用の[Path Traversal](../../attacks-vulns-list.md#path-traversal)攻撃をWallarm Ingress controllerのアドレスに送信します。
 
     ```bash
     curl http://<INGRESS_CONTROLLER_IP>/etc/passwd
     ```
 
-    フィルタリングnodeが`block`モードで動作している場合、リクエストに対して`403 Forbidden`コードが返され、攻撃がWallarm Console → **Attacks**に表示されます。
+    フィルタリングノードが`block`モードで動作している場合、レスポンスとして`403 Forbidden`コードが返り、攻撃はWallarm Console → **Attacks**に表示されます。
 
-## ステップ 10: リリースされた変更内容に応じてIngress annotationsを調整する
+## 手順10: リリースされた変更に合わせてIngressアノテーションを調整する
 
-以下のIngress annotationsをIngress Controller 5.0でリリースされた変更に合わせて調整してください:
+Ingress controller 6.xでリリースされた変更に合わせ、以下のIngressアノテーションを調整してください。
 
-1. バージョン2.18以下からアップグレードする場合、IPリスト構成を[移行](../migrate-ip-lists-to-node-3.md)してください。Wallarm node 3.xではIPリストのコアロジックが大幅に変更されたため、適用済みの場合はIngress annotationsを変更してIPリスト構成を適切に調整する必要があります。
-1. 以下に記載の設定の期待動作が、[`off`および`monitoring`フィルトレーションモード](what-is-new.md#filtration-modes)の変更後のロジックと一致していることを確認してください:
+1. バージョン2.18以下からアップグレードする場合、IPリスト構成を[移行](../migrate-ip-lists-to-node-3.md)してください。Wallarmノード3.xではIPリストの中核ロジックが大幅に変更されているため、（適用している場合は）Ingressアノテーションの変更により、IPリスト構成を適切に調整する必要があります。
+1. 以下の設定で期待する挙動が、[`off`および`monitoring`フィルタリングモードの変更後のロジック](what-is-new.md#filtration-modes)と一致していることを確認してください。
       
-      * [Directive `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [Wallarm Consoleで構成された一般フィルトレーションルール](../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console)
-      * [Wallarm Consoleで構成されたエンドポイント対象フィルトレーションルール](../../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console)
+      * [ディレクティブ`wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
+      * [Wallarm Consoleで構成する全体フィルタリングルール](../../admin-en/configure-wallarm-mode.md#general-filtration-mode)
+      * [Wallarm Consoleで構成するエンドポイント単位のフィルタリングルール](../../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode)
 
-      期待動作と一致しない場合は、[Ingress annotations](../../admin-en/configure-kubernetes-en.md#ingress-annotations)をリリースされた変更に合わせて調整してください。
-1. Ingressに`nginx.ingress.kubernetes.io/wallarm-instance`がアノテートされている場合、このアノテーションの名前を`nginx.ingress.kubernetes.io/wallarm-application`に変更してください。
+      期待する挙動が変更後のフィルタリングモードロジックと一致しない場合は、[Ingressアノテーション](../../admin-en/configure-kubernetes-en.md#ingress-annotations)を変更点に合わせて調整してください。
+1. Ingressに`nginx.ingress.kubernetes.io/wallarm-instance`アノテーションを付与している場合は、このアノテーション名を`nginx.ingress.kubernetes.io/wallarm-application`に変更してください。
 
-    アノテーションの名前のみが変更され、ロジックは同じです。旧名称のアノテーションはまもなく廃止されるため、早めに名称を変更することを推奨します。
-1. Ingress annotationsで設定された`&/usr/share/nginx/html/wallarm_blocked.html`ページがブロックされたリクエストに返される場合、[構成を調整](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)してリリース内容に合わせてください。
+    変更されたのはアノテーション名のみで、ロジックは同じです。旧名のアノテーションはまもなく非推奨となるため、事前に名称を変更することを推奨します。
+1. Ingressアノテーションで設定したページ`&/usr/share/nginx/html/wallarm_blocked.html`がブロック時のレスポンスとして返される場合、提供された変更に合わせて[設定を調整](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)してください。
 
-    新しいnodeバージョンでは、Wallarmブロッキングページはロゴがなく、デフォルトで指定されたサポートメールもない更新されたUIになっています。
+    新しいノードバージョンでは、Wallarmのブロッキングページは[新しいブロッキングページ](what-is-new.md#new-blocking-page)に示すとおり、デフォルトでロゴとサポートメールが表示されない更新UIになりました。
 
-## ステップ 11: Threat Replay Testingモジュールを再有効化する（node 2.16以下の場合のみ）
+## 手順11: Threat Replay Testingモジュールを再有効化します（ノード2.16以下のアップグレード時のみ）
 
-[Threat Replay Testingモジュールの設定についての推奨事項](../../vulnerability-detection/threat-replay-testing/setup.md)を確認し、必要に応じて再度有効化してください。
+[Threat Replay Testingモジュールのセットアップに関する推奨事項](../../vulnerability-detection/threat-replay-testing/setup.md)を確認し、必要に応じて再有効化してください。
 
-しばらくして、モジュールの動作に誤検知が発生しないことを確認してください。もし誤検知が発生した場合は、[Wallarmテクニカルサポート](mailto:support@wallarm.com)までご連絡ください。
+しばらくしてから、モジュールの動作が誤検知を引き起こしていないことを確認してください。誤検知が発生する場合は、[Wallarmテクニカルサポート](mailto:support@wallarm.com)までご連絡ください。

@@ -1,91 +1,91 @@
-# Datadog経由のFluentd/Logstash
+# Fluentd/Logstash経由のDatadog連携
 
-WallarmはFluentdまたはLogstash中継データ収集システムを介して、検出イベントの通知をDatadogに送信するように設定できます。
+FluentdまたはLogstashの中間データコレクターを介して、検出されたイベントの通知をDatadogへ送信するようにWallarmを設定できます。
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![Wallarmからデータ収集システム経由でDatadogへ通知を送信](../../../../images/user-guides/settings/integrations/wallarm-log-collector-datadog.png)
+![データコレクター経由でWallarmからDatadogへ通知を送信](../../../../images/user-guides/settings/integrations/wallarm-log-collector-datadog.png)
 
-!!! info "Datadogとのネイティブ統合"
-    Wallarmは[Datadog APIを利用したDatadogとのネイティブ統合](../datadog.md)もサポートします。ネイティブ統合では、中継データ収集システムの使用は不要です。
+!!! info "Datadogとのネイティブ連携"
+    Wallarmは[Datadog APIを介したDatadogのネイティブ連携](../datadog.md)にも対応しています。ネイティブ連携では中間データコレクターを使用する必要はありません。
 
-## 使用リソース
+## 使用するリソース
 
-* パブリックURLで利用可能なFluentdまたはLogstashサービス
-* パブリックURLで利用可能なDatadogサービス
-* Wallarm Console（[EUクラウド](https://my.wallarm.com)）への管理者アクセスで、[Fluentd／Logstash統合の設定](#setting-up-integration-with-fluentd-or-logstash)が可能
+* 公開URLで到達可能なFluentdまたはLogstashサービスが必要です
+* 公開URLで到達可能なDatadogサービスが必要です
+* Wallarm Console（[EU cloud](https://my.wallarm.com)）への管理者アクセス権（[Fluentd/Logstash連携を構成](#setting-up-integration-with-fluentd-or-logstash)するために必要）が必要です
 
 --8<-- "../include/cloud-ip-by-request.md"
 
 ## 要件
 
-Wallarmはwebhookを介して中継データ収集システムへログを送信するため、FluentdまたはLogstashの構成は以下の要件を満たす必要があります:
+WallarmはWebhook経由で中間データコレクターにログを送信します。そのため、FluentdまたはLogstashの設定は次の要件を満たす必要があります。
 
-* POSTまたはPUTリクエストを受け入れる
-* HTTPSリクエストを受信する
-* パブリックURLを持つ
-* `datadog_logs` Logstashプラグインまたは`fluent-plugin-datadog` Fluentdプラグインを介してログをDatadogに転送する
+* POSTまたはPUTリクエストを受け付ける必要があります
+* HTTPSリクエストを受け付ける必要があります
+* 公開URLを持っている必要があります
+* `datadog_logs` Logstashプラグインまたは`fluent-plugin-datadog` Fluentdプラグインを介してDatadogへログを転送する必要があります
 
 === "Logstashの設定例"
-    1. Datadogにログを転送するために[Install the `datadog_logs` plugin](https://github.com/DataDog/logstash-output-datadog_logs#how-to-install-it)を実施します。
-    1. Logstashを設定して、受信リクエストを読み取り、ログをDatadogに転送するように構成します。
+    1. Datadogへログを転送するために、[`datadog_logs`プラグインをインストール](https://github.com/DataDog/logstash-output-datadog_logs#how-to-install-it)します。
+    1. Logstashが受信リクエストを読み取り、Datadogへログを転送するように構成します。
 
-    例: `logstash-sample.conf`構成ファイルの設定例:
+    設定ファイル`logstash-sample.conf`の例:
 
     ```bash linenums="1"
     input {
-      http { # HTTPおよびHTTPSトラフィックの入力プラグイン
-        port => 5044 # 受信リクエスト用のポート
+      http { # HTTPおよびHTTPSトラフィック用のinputプラグイン
+        port => 5044 # 受信リクエストのポート
         ssl => true # HTTPSトラフィックの処理
-        ssl_certificate => "/etc/server.crt" # Logstash用TLS証明書
-        ssl_key => "/etc/server.key" # TLS証明書用秘密鍵
+        ssl_certificate => "/etc/server.crt" # LogstashのTLS証明書
+        ssl_key => "/etc/server.key" # TLS証明書の秘密鍵
       }
     }
     filter {
       mutate {
         add_field => {
-            "ddsource" => "wallarm" # Wallarmログの追加フィルタリングのためにDatadogログレコードにソースフィールドを追加するmutateフィルタ
+            "ddsource" => "wallarm" # Wallarmログを後続でフィルタリングできるよう、Datadogのログレコードにsourceフィールドを追加するmutateフィルター
         }
       }
     }
     output {
-      stdout {} # Logstashログをコマンドラインに出力する出力プラグイン
-      datadog_logs { # LogstashログをDatadogに転送する出力プラグイン
-          api_key => "XXXX" # Datadogで組織向けに生成されたAPIキー
-          host => "http-intake.logs.datadoghq.eu" # Datadogのエンドポイント（登録地域に依存）
+      stdout {} # コマンドラインにLogstashのログを表示するoutputプラグイン
+      datadog_logs { # LogstashのログをDatadogへ転送するoutputプラグイン
+          api_key => "XXXX" # Datadogの組織で生成したAPIキー
+          host => "http-intake.logs.datadoghq.eu" # Datadogのエンドポイント（登録リージョンに依存）
       }
     }
     ```
 
-    * [Logstash構成ファイルの構造に関するドキュメント](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html)
+    * [Logstashの設定ファイル構造に関するドキュメント](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html)
     * [`datadog_logs`プラグインに関するドキュメント](https://docs.datadoghq.com/integrations/logstash/)
 === "Fluentdの設定例"
-    1. Datadogにログを転送するために[Install the `fluent-plugin-datadog` plugin](https://github.com/DataDog/fluent-plugin-datadog#pre-requirements)を実施します。
-    1. Fluentdを設定して、受信リクエストを読み取り、ログをDatadogに転送するように構成します。
+    1. Datadogへログを転送するために、[`fluent-plugin-datadog`プラグインをインストール](https://github.com/DataDog/fluent-plugin-datadog#pre-requirements)します。
+    1. Fluentdが受信リクエストを読み取り、Datadogへログを転送するように構成します。
 
-    例: `td-agent.conf`構成ファイルの設定例:
+    設定ファイル`td-agent.conf`の例:
 
     ```bash linenums="1"
     <source>
-      @type http # HTTPおよびHTTPSトラフィックの入力プラグイン
-      port 9880 # 受信リクエスト用のポート
-      <transport tls> # 接続処理の設定
+      @type http # HTTPおよびHTTPSトラフィック用のinputプラグイン
+      port 9880 # 受信リクエストのポート
+      <transport tls> # 接続処理のための設定
         cert_path /etc/ssl/certs/fluentd.crt
         private_key_path /etc/ssl/private/fluentd.key
       </transport>
     </source>
     <match datadog.**>
-      @type datadog # FluentdからDatadogにログを転送する出力プラグイン
+      @type datadog # FluentdからDatadogへログを転送するoutputプラグイン
       @id awesome_agent
-      api_key XXXX # Datadogで組織向けに生成されたAPIキー
-      host 'http-intake.logs.datadoghq.eu' # Datadogのエンドポイント（登録地域に依存）
+      api_key XXXX # Datadogの組織で生成したAPIキー
+      host 'http-intake.logs.datadoghq.eu' # Datadogのエンドポイント（登録リージョンに依存）
     
-      # オプション
+      # 任意
       include_tag_key true
       tag_key 'tag'
     
-      # オプションのタグ
-      dd_source 'wallarm' # Wallarmログの追加フィルタリングのためにDatadogログレコードにソースフィールドを追加
+      # 任意のタグ
+      dd_source 'wallarm' # Wallarmログを後続でフィルタリングできるよう、Datadogのログレコードにsourceフィールドを追加
       dd_tags 'integration:fluentd'
     
       <buffer>
@@ -98,54 +98,54 @@ Wallarmはwebhookを介して中継データ収集システムへログを送信
     </match>
     ```
 
-    * [Fluentd構成ファイルの構造に関するドキュメント](https://docs.fluentd.org/configuration/config-file)
+    * [Fluentdの設定ファイル構造に関するドキュメント](https://docs.fluentd.org/configuration/config-file)
     * [`fluent-plugin-datadog`プラグインに関するドキュメント](https://docs.datadoghq.com/integrations/fluentd)
 
-## FluentdまたはLogstashとの統合の設定
+## FluentdまたはLogstashとの連携の設定
 
-1. Wallarm Consoleの**Integrations** → **Fluentd**/**Logstash**に進み、Datadog統合設定に移ります。
-1. 統合名を入力します。
+1. Wallarm Console → **Integrations** → **Fluentd**/**Logstash**でDatadog連携の設定に進みます。
+1. 連携名を入力します。
 1. 対象のFluentdまたはLogstashのURL（Webhook URL）を指定します。
-1. 必要に応じて、詳細設定を構成します:
+1. 必要に応じて、高度な設定を構成します:
 
     --8<-- "../include/integrations/webhook-advanced-settings.md"
-1. 指定されたURLへ通知送信をトリガーするイベントタイプを選択します。イベントが選択されていない場合、通知は送信されません。
-1. [統合のテスト](#testing-integration)を行い、設定が正しいことを確認します。
+1. 指定したURLへの通知送信をトリガーするイベントタイプを選択します。イベントを選択しない場合、通知は送信されません。
+1. [連携をテスト](#testing-integration)して、設定が正しいことを確認します。
 1. **Add integration**をクリックします。
 
-Fluentd統合の例:
+Fluentd連携の例:
 
-![Fluentdとの統合を追加](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+![Fluentdとの連携の追加](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
-## 統合のテスト
+## 連携のテスト
 
 --8<-- "../include/integrations/test-integration-advanced-data.md"
 
-FluentdまたはLogstash中継データ収集システム内のテストログ:
+FluentdまたはLogstashの中間データコレクターにおけるテストログ:
 
 ```json
 [
     {
-        summary:"[テストメッセージ] [テストパートナー(US)] 新たな脆弱性を検出しました",
-        description:"通知タイプ: vuln
+        summary:"[Test message] [Test partner(US)] New vulnerability detected",
+        description:"Notification type: vuln
 
-                    システムで新たな脆弱性が検出されました。
+                    New vulnerability was detected in your system.
 
                     ID: 
-                    タイトル: テスト
-                    ドメイン: example.com
-                    パス: 
-                    メソッド: 
-                    検出者: 
-                    パラメータ: 
-                    タイプ: Info
-                    脅威: Medium
+                    Title: Test
+                    Domain: example.com
+                    Path: 
+                    Method: 
+                    Discovered by: 
+                    Parameter: 
+                    Type: Info
+                    Threat: Medium
 
-                    詳細: https://us1.my.wallarm.com/object/555
+                    More details: https://us1.my.wallarm.com/object/555
 
 
-                    クライアント: TestCompany
-                    クラウド: US
+                    Client: TestCompany
+                    Cloud: US
                     ",
         details:{
             client_name:"TestCompany",
@@ -158,7 +158,7 @@ FluentdまたはLogstash中継データ収集システム内のテストログ:
                 method:null,
                 parameter:null,
                 path:null,
-                title:"テスト",
+                title:"Test",
                 discovered_by:null,
                 threat:"Medium",
                 type:"Info"
@@ -168,6 +168,8 @@ FluentdまたはLogstash中継データ収集システム内のテストログ:
 ]
 ```
 
-![テストDatadogログ](../../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
+Datadogのテストログ:
 
-他のレコードの中からWallarmログを見つけるには、Datadog Logsサービス内で`source:wallarm_cloud`検索タグを使用します。
+![Datadogのテストログ](../../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
+
+他のレコードの中からWallarmのログを見つけるには、DatadogのLogsサービスで`source:wallarm_cloud`検索タグを使用できます。

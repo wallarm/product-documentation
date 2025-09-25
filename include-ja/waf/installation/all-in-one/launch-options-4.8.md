@@ -1,90 +1,90 @@
-オールインワンスクリプトをダウンロード後、以下のコマンドでヘルプを表示できます:
+オールインワンスクリプトをダウンロードしたら、次のコマンドでヘルプを確認できます:
 
 ```
 sudo sh ./wallarm-4.8.10.x86_64-glibc.sh -- -h
 ```
 
-以下のような出力が返されます:
+次のように表示されます:
 
 ```
 ...
-Usage: setup.sh [オプション]... [引数]... [filtering/postanalytics]
+Usage: setup.sh [options]... [arguments]... [filtering/postanalytics]
 
 OPTION                      DESCRIPTION
--b, --batch                 バッチモード、非対話式インストールです。
-    --install-only          バッチモードにおいてオールインワンインストーラーの第一段階を開始します。ファイルやバイナリを含む必要な設定をコピーし、Cloud登録や有効化を省略してNGINXのノードインストール用設定を行います。--batchが必要です。
-    --skip-ngx-config       バッチモードの--install-only段階で自動的に行われるNGINX設定変更を回避します。後で手動調整を希望するユーザーに適しており、--install-onlyと併用するとNGINX設定を変更せず必要な設定のみをコピーすることを保証します。--batchが必要です。
-    --register-only         バッチモードにおいてオールインワンインストーラーの第二段階を開始し、Cloudにノード登録してサービスを起動することでセットアップを完了します。--batchが必要です。
--t, --token TOKEN           バッチモードで必要なノードトークンです。
--c, --cloud CLOUD           Wallarm Cloud。US/EUのいずれかで、デフォルトはEUです。バッチモードでのみ使用します。
--H, --host HOST             Wallarm APIアドレス。例: api.wallarm.comまたはus1.api.wallarm.com。バッチモードでのみ使用します。
--P, --port PORT             Wallarm APIポート。例: 443。
-    --no-ssl                Wallarm APIアクセス時にSSLを無効にします。
-    --no-verify             SSL証明書の検証を無効にします。
--f, --force                 同じ名前のノードが存在する場合、新規インスタンスを作成します。
+-b, --batch                 Batch mode, non-interactive installation.
+    --install-only          Initiates the first stage of the all-in-one installer in batch mode. Copies essential configurations, including files and binaries, and sets up NGINX for node installation, bypassing Cloud registration and activation. Requires --batch.
+    --skip-ngx-config       Avoids automatic NGINX configuration changes that occur during the --install-only stage in batch mode, suitable for users who prefer manual adjustments later. When used with --install-only, it ensures only essential configurations are copied without altering NGINX settings. Requires --batch.
+    --register-only         Initiates the second stage of the all-in-one installer in batch mode, completing the setup by registering the node in the Cloud and starting its service. Requires --batch.
+-t, --token TOKEN           Node token, required in a batch mode.
+-c, --cloud CLOUD           Wallarm Cloud, one of US/EU, default is EU, only used in a batch mode.
+-H, --host HOST             Wallarm API address, for example, api.wallarm.com or us1.api.wallarm.com, only used in a batch mode.
+-P, --port PORT             Wallarm API pot, for example, 443.
+    --no-ssl                Disable SSL for Wallarm API access.
+    --no-verify             Disable SSL certificates verification.
+-f, --force                 If there is a node with the same name, create a new instance.
 -h, --help
     --version
 ```
 
 ### バッチモード
 
-`--batch`オプションは**バッチ（非対話式）**モードを起動します。このモードでは、スクリプトは必要な設定オプションを`--token`および`--cloud`フラグ、必要に応じ`WALLARM_LABELS`環境変数を通じて受け取ります。このモードでは、デフォルトモードのように1ステップずつユーザーに入力を促すことなく、明示的なコマンドでのやり取りを行う必要があります。
+`--batch`オプションは非対話のバッチモードを有効にします。このモードでは、必要に応じて環境変数`WALLARM_LABELS`とともに`--token`および`--cloud`フラグで設定値を指定する必要があります。デフォルトモードのように段階的に入力を求めるプロンプトは表示されず、明示的なコマンド指定が必要です。
 
-以下は、スクリプトをバッチモードでノードインストールするためのコマンド例です。なお、スクリプトは既に[ダウンロード済み][download-aio-step]であるものとします。
+以下は、スクリプトをバッチモードで実行してノードをインストールするコマンド例です。スクリプトがすでに[ダウンロード済み][download-aio-step]であることを前提とします。
 
 === "USクラウド"
     ```bash
-    # x86_64版を使用している場合:
+    # x86_64版を使用する場合:
     sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.10.x86_64-glibc.sh -- --batch -t <TOKEN> -c US
 
-    # ARM64版を使用している場合:
+    # ARM64版を使用する場合:
     sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.10.aarch64-glibc.sh -- --batch -t <TOKEN> -c US
     ```
 === "EUクラウド"
     ```bash
-    # x86_64版を使用している場合:
+    # x86_64版を使用する場合:
     sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.10.x86_64-glibc.sh -- --batch -t <TOKEN>
 
-    # ARM64版を使用している場合:
+    # ARM64版を使用する場合:
     sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.10.aarch64-glibc.sh -- --batch -t <TOKEN>
     ```
 
-### ノードインストールステージの個別実行
+### ノードインストール各段階の個別実行
 
-クラウドインフラ向けにオールインワンインストーラーを使用して独自のマシンイメージを作成する際、この記事に記載の標準インストールプロセスでは不十分な場合があります。その際、マシンイメージの作成および展開要件に合わせて、オールインワンインストーラーの特定のステージを個別に実行する必要があります。
+クラウドインフラストラクチャ向けにオールインワンインストーラーを用いて独自のマシンイメージを準備する場合、本記事で説明する標準のインストール手順だけでは十分でないことがあります。この場合、マシンイメージの作成とデプロイの要件に合わせて、オールインワンインストーラーの特定の段階を個別に実行する必要があります:
 
-1. マシンイメージの構築: この段階では、フィルタリングノードのバイナリ、ライブラリ、および設定ファイルをダウンロードし、それに基づいてマシンイメージを作成する必要があります。`--install-only`フラグを利用すると、スクリプトは必要なファイルをコピーし、ノード動作用のNGINX設定を変更します。手動調整を希望する場合は、`--skip-ngx-config`フラグを使用してNGINXファイルの修正を回避することも可能です。
-2. cloud-initを使用したクラウドインスタンスの初期化: インスタンス初期化時、ブートストラップフェーズ（Cloud登録およびサービス起動）はcloud-initスクリプトを使用して実行できます。この段階は、ビルド段階でコピーされた`/opt/wallarm/setup.sh`スクリプトに`--register-only`フラグを適用することで、ビルドフェーズとは独立して実行できます。
+1. マシンイメージの構築: この段階では、フィルタリングノードのバイナリ、ライブラリ、設定ファイルをダウンロードし、それらに基づいてマシンイメージを作成します。`--install-only`フラグを使用すると、スクリプトは必要なファイルをコピーし、ノードの動作に向けてNGINXの設定を行います。手動で調整したい場合は、`--skip-ngx-config`フラグを使用してNGINXファイルの変更をスキップできます。
+1. cloud-initによるCloudインスタンスの初期化: インスタンス初期化時に、ブートストラップフェーズ（Cloudへの登録とサービス開始）をcloud-initスクリプトで実行できます。この段階は、ビルド段階でコピーされた`/opt/wallarm/setup.sh`スクリプトに`--register-only`フラグを付けることで、ビルド段階とは独立して実行できます。
 
-この機能は、バッチモードにおけるオールインワンインストーラーのバージョン4.8.8以降でサポートされています。以下のコマンドにより、記載された手順を順次実行できます:
+この機能は、バッチモードのオールインワンインストーラーのバージョン4.8.8以降でサポートしています。以下のコマンドで、上記の各ステップを順に実行できます:
 
 === "USクラウド"
     ```bash
-    # x86_64版を使用している場合:
+    # x86_64版を使用する場合:
     curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.10.x86_64-glibc.sh
     sudo sh wallarm-4.8.10.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
 
-    # ARM64版を使用している場合:
+    # ARM64版を使用する場合:
     curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.10.aarch64-glibc.sh
     sudo sh wallarm-4.8.10.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
     ```
 === "EUクラウド"
-    ```bash
-    # x86_64版を使用している場合:
+    ```
+    # x86_64版を使用する場合:
     curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.10.x86_64-glibc.sh
     sudo sh wallarm-4.8.10.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
 
-    # ARM64版を使用している場合:
+    # ARM64版を使用する場合:
     curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.10.aarch64-glibc.sh
     sudo sh wallarm-4.8.10.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
     ```
 
-最後にインストールを完了するには、[Wallarmによるトラフィック解析を有効にする][enable-traffic-analysis-step]および[NGINXの再起動][restart-nginx-step]が必要です。
+最後に、インストールを完了するには、[Wallarmによるトラフィック解析を有効化する][enable-traffic-analysis-step]および[NGINXを再起動する][restart-nginx-step]必要があります。
 
-### フィルタリングおよびpostanalyticsノードの個別インストール
+### フィルタリングノードとpostanalyticsノードの個別インストール
 
-filtering/postanalyticsスイッチにより、postanalyticsモジュールを[個別に][separate-postanalytics-installation-aio]インストールするオプションが提供されます。このスイッチが指定されていない場合、フィルタリングおよびpostanalyticsの両コンポーネントはデフォルトで同時にインストールされます。
+filtering/postanalyticsスイッチを使用すると、postanalyticsモジュールを[個別にインストール][separate-postanalytics-installation-aio]できます。このスイッチを指定しない場合は、デフォルトでフィルタリングとpostanalyticsの両コンポーネントが一緒にインストールされます。

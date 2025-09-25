@@ -1,5 +1,5 @@
 [link-doc-asg-guide]:               autoscaling-group-guide.md  
-[link-docs-check-operation]:        ../../installation-check-operation-en.md
+[link-docs-check-operation]:        ../../../admin-en/uat-checklist-en.md#node-registers-attacks
 
 [link-aws-lb-comparison]:           https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html?icmpid=docs_elbv2_console#elb-features   
 
@@ -10,85 +10,94 @@
 [anchor-create]:        #1-creating-a-load-balancer
 [anchor-configure]:     #2-setting-up-an-auto-scaling-group-for-using-the-created-balancer
 
-# AWS上のロードバランサ作成
+#   AWSでLoad Balancerを作成する
 
-次に、[設定済み][link-doc-asg-guide]のフィルタリングノードAuto Scaling Groupが用意されましたら、複数のフィルタリングノード間で着信HTTPおよびHTTPS接続を分散するロードバランサを作成し、設定する必要があります。
+[設定済み][link-doc-asg-guide]のフィルタリングノードAuto Scaling Groupが用意できたら、受信するHTTPおよびHTTPS接続をそのAuto Scaling Group内の複数のフィルタリングノードに分散するLoad Balancerを作成・構成する必要があります。
 
-ロードバランサ作成プロセスは、次の手順を含みます:
-1.  [ロードバランサの作成][anchor-create]
-2.  [作成済みのロードバランサを使用するAuto Scaling Groupの設定][anchor-configure]
+Load Balancerの作成手順は次のとおりです:
+1.  [Load Balancerの作成][anchor-create]
+2.  [作成したバランサーを使用するためのAuto Scaling Groupの設定][anchor-configure]
 
-## 1. ロードバランサの作成
+##  1.  Load Balancerの作成
 
-Amazonクラウドでは、以下のタイプのロードバランサを設定できます:
+Amazonクラウドでは、以下の種類のLoad Balancerを構成できます:
 *   Classic Load Balancer
 *   Network Load Balancer
 *   Application Load Balancer
 
-!!! info "ロードバランサの違い"
-    ロードバランサ間の違いの詳細情報を確認するには、この[リンク][link-aws-lb-comparison]に進んでください.
+!!! info "Load Balancerの違い"
+    Load Balancer間の違いの詳細は、この[リンク][link-aws-lb-comparison]を参照してください。
 
-本書では、OSI/ISOネットワークモデルのトランスポート層でトラフィックを分散するNetwork Load Balancerの設定および使用法について説明します.
+本書では、OSI/ISOネットワークモデルのトランスポート層でトラフィックを分散するNetwork Load Balancerの構成と使用方法を示します。
 
-以下の操作を完了してロードバランサを作成します: 
-1.  Amazon EC2ダッシュボードの**Load Balancers**タブに移動し、**Create Load Balancer**ボタンをクリックします.
-2.  対応する**Create**ボタンをクリックして、Network Load Balancerを作成します.
-3.  基本的なロードバランサパラメータを設定します:
+次の操作を実行してLoad Balancerを作成します: 
+1.  Amazon EC2ダッシュボードの**Load Balancers**タブに移動し、**Create Load Balancer**ボタンをクリックします。
 
-    ![General Load Balancer parameters configuration][img-lb-basics]
+2.  該当する**Create**ボタンをクリックしてNetwork Load Balancerを作成します。
+
+3.  Load Balancerの基本パラメータを構成します:
+
+    ![Load Balancerの基本パラメータの設定][img-lb-basics]
     
-    1.  ロードバランサの名前（**Name**パラメータ）.
-    2.  ロードバランサのタイプ（**Scheme**パラメータ）. インターネット上でロードバランサを利用可能にするため、**internet-facing**タイプを選択します.
-    3.  **Listeners**パラメータ群を使用して、ロードバランサがリッスンするポートを指定します.
-    4.  ロードバランサが動作する必要があるVPCおよびAvailability Zonesを指定します.
+    1.  バランサーの名前（**Name**パラメータ）。
+    
+    2.  バランサーのタイプ（**Scheme**パラメータ）。バランサーをインターネットで利用可能にするには、タイプに**internet-facing**を選択します。 
+    
+    3.  **Listeners**パラメータグループを使用して、バランサーが待ち受けるポートを指定します。
+    
+    4.  バランサーを動作させるVPCとAvailability Zonesを指定します。
         
-        !!! info "Auto Scaling Groupの可用性を確認します"
-            ロードバランサが正しく動作するように、[以前に作成された][link-doc-asg-guide]Auto Scaling Groupを含むVPCおよびAvailability Zonesが選択されていることを確認してください.
+        !!! info "Auto Scaling Groupの可用性を確認"
+            Load Balancerが正しく動作するよう、[以前に作成した][link-doc-asg-guide]Auto Scaling Groupを含むVPCとAvailability Zonesを選択していることを確認してください。
         
-4.  **Next: Configure Security Settings**ボタンをクリックして、次のステップに進みます.
+4.  **Next: Configure Security Settings**ボタンをクリックして次のステップに進みます。
 
-    必要に応じてセキュリティパラメータを設定します.
+    必要に応じてセキュリティパラメータを構成します。
     
-5.  **Next: Configure Routing**ボタンをクリックして、次のステップに進みます. 
+5.  **Next: Configure Routing**ボタンをクリックして次のステップに進みます。 
 
-    Auto Scaling Group内のフィルタリングノードへの着信要求のルーティングを設定します.
+    Auto Scaling Group内のフィルタリングノードへの受信リクエストのルーティングを構成します。
 
-    ![Configuring the incoming connections routing][img-lb-routing]
+    ![受信接続のルーティングの設定][img-lb-routing]
     
-    1.  新しいターゲットグループを作成し、**Name**フィールドにその名前を指定します. ロードバランサは、指定されたターゲットグループ（例：`demo-target`）に配置されたインスタンスに着信要求をルーティングします.
+    1.  新しいターゲットグループを作成し、その名前を**Name**フィールドに指定します。Load Balancerは、指定したターゲットグループに属するインスタンスに受信リクエストをルーティングします（例：`demo-target`）。
         
-    2.  要求ルーティングに使用されるプロトコルとポートを設定します. 
-       
-        TCPプロトコルおよびフィルタリングノード用に80と443（HTTPSトラフィックがある場合）のポートを指定します.
+    2.  リクエストのルーティングに使用するプロトコルとポートを設定します。 
+    
+        フィルタリングノード用に、プロトコルはTCP、ポートは80および443（HTTPSトラフィックがある場合）を指定します。
         
-    3.  必要に応じて、**Health Checks**パラメータ群を使用して可用性チェックを設定します.
+    3.  必要に応じて、**Health Checks**パラメータグループを使用して可用性チェックを構成します。
     
-6.  **Next: Register Targets**ボタンをクリックして、次のステップに進みます. 
+6.  **Next: Register Targets**ボタンをクリックして次のステップに進みます。 
 
-    このステップでは操作は不要です. 
+    このステップでは操作は不要です。 
     
-7.  **Next: Review**ボタンをクリックして、次のステップに切り替えます.
+7.  **Next: Review**ボタンをクリックして次のステップに進みます。
     
-    すべてのパラメータが正しく指定されていることを確認し、**Create**ボタンをクリックしてロードバランサ作成プロセスを開始します.
+    すべてのパラメータが正しく指定されていることを確認し、**Create**ボタンをクリックしてLoad Balancerの作成を開始します。
 
-!!! info "ロードバランサの初期化完了を待ちます"
-    ロードバランサ作成後、トラフィック受信の準備が整うまで時間がかかります.
+!!! info "Load Balancerの初期化完了まで待機"
+    Load Balancerが作成された後、トラフィックを受け入れられる状態になるまでに一定の時間が必要です。
 
-## 2. 作成したロードバランサを使用するAuto Scaling Groupの設定
+##  2.  作成したバランサーを使用するためのAuto Scaling Groupの設定
 
-作成したロードバランサを使用するようにAuto Scaling Groupを設定します. これにより、ロードバランサはグループ内で起動されるフィルタリングノードインスタンスにトラフィックをルーティングできるようになります.
+以前に作成したLoad Balancerを使用するようにAuto Scaling Groupを構成します。これにより、グループで起動されたフィルタリングノードインスタンスに対して、バランサーがトラフィックをルーティングできるようになります。
 
-これを実現するため、以下の操作を完了します:
-1.  Amazon EC2ダッシュボードの**Auto Scaling Groups**タブに移動し、[以前に作成された][link-doc-asg-guide]Auto Scaling Groupを選択します.
-2.  **Actions**ドロップダウンメニューで*Edit*を選択して、グループ構成編集ダイアログを開きます.
-3.  **Target groups**ドロップダウンリストでロードバランサを設定する際、[作成済み][anchor-create]の**demo-target**ターゲットグループを選択します.
-4.  **Save**ボタンをクリックして変更を適用します.
+次の操作を実行します:
+1.  Amazon EC2ダッシュボードの**Auto Scaling Groups**タブに移動し、[以前に作成した][link-doc-asg-guide]Auto Scaling Groupを選択します。
 
-これで、動的にスケールするWallarmフィルタリングノードのセットがアプリケーションへの着信トラフィックを処理します.
+2.  **Actions**ドロップダウンメニューで*Edit*を選択し、グループ設定の編集ダイアログを開きます。 
 
-配置されたフィルタリングノードの動作を確認するため、以下の手順を実行します:
+3.  Load Balancerの設定時に[作成][anchor-create]したターゲットグループ**demo-target**を、**Target groups**ドロップダウンリストで選択します。
 
-1.  ブラウザを使用して、ロードバランサのIPアドレスまたはドメイン名を参照し、アプリケーションがロードバランサおよびWallarmフィルタリングノードを通じてアクセス可能であることを確認します.
-2.  [テスト攻撃を実行する][link-docs-check-operation]ことで、Wallarmサービスがアプリケーションを保護していることを確認します.
+4.  **Save**ボタンをクリックして変更を適用します。
 
-![Checking filtering node operation][img-checking-operation]
+これで、動的にスケールするWallarmフィルタリングノードのセットが、アプリケーションへの受信トラフィックを処理します。
+
+デプロイしたフィルタリングノードの動作を確認するには、次の手順を実行します。
+
+1.  ブラウザでLoad BalancerおよびWallarmフィルタリングノードを介してアプリケーションにアクセスできることを、バランサーのIPアドレスまたはドメイン名にアクセスして確認します。
+
+2.  [テスト攻撃を実行][link-docs-check-operation]して、Wallarmサービスがアプリケーションを保護していることを確認します。
+
+![フィルタリングノードの動作確認][img-checking-operation]

@@ -1,76 +1,78 @@
 # IPによるフィルタリング
 
-Wallarm Consoleの**IPリスト**セクションでは、IPアドレス、地理的位置、データセンターまたはソースタイプによる許可リスト、拒否リスト、グレイリストでお客様のアプリケーションへのアクセスを制御できます。
+Wallarm Consoleの**IP lists**セクションでは、IPアドレス、地理的位置、データセンター、またはソース種別をAllowlist、Denylist、Graylistに登録することでアプリケーションへのアクセスを制御できます。
 
-* **Allowlist（許可リスト）** は、Wallarm保護をバイパスし、チェックなしでお客様のアプリケーションへアクセス可能な信頼できるソースのリストです。
-* **Denylist（拒否リスト）** は、お客様のアプリケーションへアクセスできないソースのリストであり、それらからのすべてのリクエストがブロックされます。
-* **Graylist（グレイリスト）** は、疑わしいソースのリストであり、ノードが**Safe blocking** [filtration mode](../../admin-en/configure-wallarm-mode.md) の場合に、以下のように処理されます：グレイリストに含まれるIPが悪意のあるリクエストを発生させた場合、ノードはそれらをブロックし、正当なリクエストは許可します。
+* **Allowlist**は信頼できるソースの一覧で、Wallarmの保護をバイパスしてチェックなしにアプリケーションへアクセスします。
+* **Denylist**はアプリケーションにアクセスできないソースの一覧であり、これらからのすべてのリクエストはブロックされます。
+* **Graylist**は疑わしいソースの一覧で、ノードが**safe blocking**[フィルタリングモード](../../admin-en/configure-wallarm-mode.md)の場合にのみ次のように処理されます: Graylistに登録されたIPから悪意のあるリクエストが発生した場合はそれらをブロックし、正当なリクエストは許可します。他のIPからのリクエストは、悪意のあるものが検出されて**Attacks**に`Monitoring`ステータスで表示されても、ブロックはされません。
 
-    グレイリストに含まれるIPから発生する悪意のあるリクエストは、以下の攻撃の兆候を含むものです：
+    Graylistに登録されたIPからの悪意のあるリクエストとは、次の攻撃の兆候を含むものです:
 
-    * [入力検証攻撃](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks)
-    * [vpatch型攻撃](../rules/vpatch-rule.md)
-    * [正規表現に基づいて検出された攻撃](../rules/regex-rule.md)
+    * [入力バリデーション攻撃](../../attacks-vulns-list.md#attack-types)
+    * [vpatchタイプの攻撃](../rules/vpatch-rule.md)
+    * [正規表現に基づいて検出される攻撃](../rules/regex-rule.md)
 
 ![すべてのIPリスト](../../images/user-guides/ip-lists/ip-lists-home-apps.png)
 
-## Allowlist、Denylist、Graylistの連携方法
+## Allowlist、Denylist、Graylistの連携動作
 
-フィルタリングノードは、選択された運用 [mode](../../admin-en/configure-wallarm-mode.md) に基づき、IPリストを解析する際に異なるアプローチを採用します。あるモードでは、allowlist、denylist、graylistの3種類のIPリストすべてを評価しますが、他のモードでは特定のIPリストのみを対象とします。
+フィルタリングノードは、選択された動作[mode](../../admin-en/configure-wallarm-mode.md)に基づいてIPリストを解析する方法が異なります。あるモードではAllowlist、Denylist、Graylistの3種類すべてを評価しますが、別のモードでは特定のリストのみを対象とします。
 
-以下の画像は、各運用モードにおけるIPリストの優先順位および組み合わせを視覚的に表現し、それぞれの場合に考慮されるリストを強調しています：
+以下の図は、各動作モードにおけるIPリストの優先順位と組み合わせを視覚的に示し、各ケースでどのリストが考慮されるかを強調しています:
 
 ![IPリストの優先順位](../../images/user-guides/ip-lists/ip-lists-priorities.png)
 
-これは以下を意味します：
+つまり、次のとおりです:
 
-* どのモードでも、対象のIPが先のリストに存在する場合、後続のリストは考慮されません。
-* Graylistは`Safe blocking`モードの場合にのみ考慮されます。
+* どのモードでも、IPがより上位のリストで見つかった場合、その次のリストは考慮されません。
+* Graylistは`Safe blocking`モードでのみ考慮されます。
 
 !!! warning "例外"
-    もし[`wallarm_acl_access_phase off`](../../admin-en/configure-parameters-en.md#wallarm_acl_access_phase)の場合、Wallarmノードは`Monitoring`モードにおいて拒否リストに含まれるIPからのリクエストをブロックしません。
+    [`wallarm_acl_access_phase off`](../../admin-en/configure-parameters-en.md#wallarm_acl_access_phase)の場合、`Monitoring`モードではDenylistに登録されたIPからのリクエストはWallarmノードによってブロックされません。
 
 ## IPリストの設定
 
-手順：
+手順:
 
-1. 目的に応じて使用するリストを決定します。
-1. オブジェクトの種類を選択します [どのオブジェクトを追加するか](#select-object)：IP、サブネット、場所、ソースタイプ。
-1. オブジェクトがリストに保持される期間を[選択](#select-time-to-stay-in-list)します（通常は無期限ではありません）。
-1. 対象の[applications](../../user-guides/settings/applications.md)によって制限します（すべてのリクエストではなく、特定のアプリケーションを対象とする場合のみ）。
+1. 目的に応じて使用するリストを決めます。
+1. 追加する[オブジェクト](#select-object)を選択します: IP、サブネット、ロケーション、ソース種別。
+1. オブジェクトをリストに保持する[期間](#select-time-to-stay-in-list)を選択します（通常は永続ではありません）。
+1. 対象[アプリケーションで制限](#limit-by-target-application)します（すべてのリクエストではなく、特定アプリケーション宛てだけに適用します）。
 
 ### オブジェクトの選択
 
-**Add object** を使用して、以下の項目をいずれかのIPリストに追加します：
+IP listsのいずれにも次の項目を追加するには、**Add object**を使用します:
 
-* **IPまたはサブネット** - IPv6アドレスの場合、サポートされる最大サブネットマスクは`/32`、IPv4アドレスの場合は`/12`です。
-* **Location**（国または地域） - この国または地域に登録されているすべてのIPアドレスを追加します。
-* **Source type** - このソースタイプに属するすべてのIPアドレスを追加します。利用可能なタイプは：
-    * 検索エンジン
-    * データセンター（AWS、GCP、Oracleなど）
-    * 匿名ソース（Tor、Proxy、VPN）
+* **IPまたはサブネット** - サポートされる最大サブネットマスクはIPv6アドレスで`/32`、IPv4アドレスで`/12`です。
+
+* **ロケーション**（国または地域） - 指定した国または地域に登録されているすべてのIPアドレスを追加します。
+* **ソース種別** - この種別に属するすべてのIPアドレスを追加します。利用可能な種別は次のとおりです:
+
+    * Search Engines
+    * Datacenters（AWS、GCP、Oracleなど）
+    * Anonymous sources（Tor、Proxy、VPN）
     * [Malicious IPs](#malicious-ip-feeds)
 
 ![IPリストにオブジェクトを追加](../../images/user-guides/ip-lists/add-ip-to-list.png)
 
-!!! info "IPリストの自動入力"
-    オブジェクトを手動で追加する以外に、[自動追加](#automatic-listing)を使用することも可能であり、そちらが推奨です。
+!!! info "IP listsの自動投入"
+    手動での追加に加えて、[自動投入](#automatic-listing)も使用できます。こちらの方が推奨です。
 
 ### リストに保持する期間の選択
 
-オブジェクトをリストに追加する際、保持期間を指定します。最短時間は5分、デフォルトは1時間、最大は無期限です。指定された期間が経過すると、オブジェクトは自動的にリストから削除されます。
+オブジェクトをリストに追加する際に、保持期間を指定します。最小は5分、デフォルトは1時間、最大は無期限です。期限が切れると、オブジェクトは自動的にリストから削除されます。
 
-指定された期間は、後からいつでも変更可能です。これを行うには、オブジェクトのメニューで**Change time period**をクリックし、調整します。
+指定した期間は後からいつでも変更できます。行うには、該当オブジェクトのメニューで**Change time period**をクリックして調整します。
 
-この期間設定と手動でのオブジェクトの追加および削除により、IPリストの状態は時間とともに変化します。すべてのリストの過去の状態を[表示](#ip-list-history)できます。
+期間設定や手動での追加/削除により、時間の経過とともにIPリストの内容は変化します。すべてのリストの[過去の状態](#ip-list-history)を表示できます。
 
 ### 対象アプリケーションによる制限
 
-オブジェクトをリストに追加する際、デフォルトではそのIPアドレスからのすべてのリクエストが処理されます。しかし、対象の[applications](../../user-guides/settings/applications.md)によって制限することが可能で、1つまたは複数のアプリケーションを選択することで、そのアプリケーションへのリクエストのみが処理されます。
+オブジェクトをリストに追加すると、デフォルトでは当該IPからのすべてのリクエストが処理対象になります。ただし、対象[アプリケーション](../../user-guides/settings/applications.md)で制限できます。1つまたは複数のアプリケーションを選択すると、そのアプリケーション宛ての当該IPからのリクエストのみが処理されます。
 
 ## 悪意のあるIPフィード
 
-IPリストに**Malicious IPs**[source type](#select-object)を追加する場合、公共の情報源に記載され、専門家の分析により確認された、悪意のある活動で知られるすべてのIPアドレスが含まれることに注意してください。これらのデータは、以下のリソースから組み合わせて取得しています：
+「**Malicious IPs**」[ソース種別](#select-object)をいずれかのIPリストに追加する場合、公開情報で悪意のある活動が広く知られ、かつ専門家の分析で検証されたすべてのIPアドレスが含まれる点にご注意ください。これらのデータは、次の複数のリソースを組み合わせて取得しています:
 
 * [Collective Intelligence Network Security](http://cinsscore.com/list/ci-badguys.txt)
 * [Proofpoint Emerging Threats Rules](https://rules.emergingthreats.net/blockrules/compromised-ips.txt)
@@ -82,74 +84,75 @@ IPリストに**Malicious IPs**[source type](#select-object)を追加する場�
 
 ## IPリストの履歴
 
-IPリストは現在の状態だけでなく、過去の状態も保持しており、内容が異なる場合があります。特定の日付を選択してIPリストの内容を確認すると、システムは追加された正確な日時および方法（手動または自動）を含む詳細な**履歴**を返します。レポートには、変更を担当した人物および各追加の理由に関するデータも提供され、監査や報告のための履歴管理に役立ちます。
+IPリストには現在の状態だけでなく、[過去の時点](#select-time-to-stay-in-list)の状態もあり、それらは異なります。特定の日付を選択してIPリストの内容を確認すると、手動か自動かを含む追加の正確なタイミングと方法を詳述した**History**が返されます。レポートには、変更の責任者や各追加の理由に関するデータも含まれます。これらの知見は、コンプライアンスやレポーティングのための監査証跡の維持に役立ちます。
 
 ![IPリストの履歴](../../images/user-guides/ip-lists/ip-list-history.png)
 
-**Now**タブに切り替えることで、現在のIPリストの状態、すなわちリストに現在含まれているオブジェクトを確認できます。
+現在のIPリストの状態に戻るには、**Now**タブに切り替えると、現在リストに含まれているオブジェクトを確認できます。
 
-## 自動リスト追加
+## 自動登録
 
-疑わしいトラフィックを発生させた場合、WallarmがIPアドレスを自動でdenylistもしくはgraylistに追加するよう有効にできます。これは以下の場合に実施が可能です：
+不審なトラフィックを発生させたIPアドレスを、Wallarmが自動的にDenylistやGraylistへ登録するよう有効化できます。次の用途で実施できます:
 
-* [API abuse prevention](../../api-abuse-prevention/overview.md)
-* [Brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
-* [Forced browsing protection](../../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
-* [BOLA protection](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
-* [Multi-attack protection](../../admin-en/configuration-guides/protecting-with-thresholds.md)
+* [API乱用防止](../../api-abuse-prevention/overview.md)
+* [ブルートフォース防御](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
+* [強制ブラウジング対策](../../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
+* [BOLA対策](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
+* [マルチ攻撃対策](../../admin-en/configuration-guides/protecting-with-thresholds.md)
 
-もし自動追加されたIPアドレスを手動で削除した場合でも、新たな悪意のある活動が検出されると自動的に再追加されますが、以下の条件があります：
+自動登録されたIPを手動で削除した場合でも、新たな悪意のある活動が検出されると自動的に再登録されます。ただし次の条件があります:
 
-* **Not before** 前回の期間の半分経過後
+* 前回の期間の半分が経過するまでは再登録されません
 
-    例えば、BOLA攻撃によりIPアドレスが自動で4時間denylistされ、denylistから削除した場合、そのIPは次の2時間以内に（攻撃が発生しても）再追加されません。
+    例: あるIPアドレスがBOLA攻撃により自動的に4時間のDenylist入りとなり、それをDenylistから手動で削除した場合、たとえ攻撃が発生しても、次の2時間内には再登録されません。
 
-* **API Abuse Prevention** の場合は、即時です
+* **API Abuse Prevention**の場合 - 直ちに再登録されます
 
-## 拒否リストに含まれるIPからのリクエスト
+## Denylist登録IPからのリクエスト
 
-IPがdenylistに含まれていても、そのIPからの後続リクエストに関する情報を取得することは有益です。これにより、IPの挙動の正確な分析が可能となります。Wallarmは、拒否リストに含まれるソースIPからのブロックされたリクエストに関する統計情報を収集および表示します。
+IPがDenylistに登録されていても、その後のリクエストに関する情報があることは有用です。これにより、当該IPの振る舞いを精緻に分析できます。Wallarmは、Denylist登録の送信元IPからのブロックされたリクエストに関する統計を収集・表示します。
 
-!!! info "機能の利用可能性"
-    この機能は、NGINXベースのノードにおいて、バージョン4.8以降で利用可能です。[wallarm_acl_export_enable](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable)ディレクティブで制御できます.
+!!! info "機能の提供状況"
+    この機能はノードバージョン4.8以降のNGINXベースのノードで利用可能です。設定は[wallarm_acl_export_enable](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable)ディレクティブで制御できます。
 
-この情報は以下に利用可能です：
+この情報は、次の場合に利用できます:
 
-* 手動でdenylistされたIP
-* 自動でdenylistされたIP：
-    * [API abuse prevention](../../api-abuse-prevention/overview.md)
-    * [Brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
-    * [Forced browsing protection](../../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
-    * [BOLA protection](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
-    * [Multi-attack protection](../../admin-en/configuration-guides/protecting-with-thresholds.md)
+* 手動でDenylistに登録したIP
+* 次により自動でDenylistに登録されたIP:
 
-ここで挙げた行動による攻撃は、一定の統計情報が蓄積された後でのみ検出可能であり、その必要な量は各トリガーの閾値によって異なります。そのため、denylistに追加する前の段階では、Wallarmはこの情報を収集しますが、リクエストはすべて通過し、`Monitoring`ステータスの攻撃として表示されます。
+    * [API乱用防止](../../api-abuse-prevention/overview.md)
+    * [ブルートフォース防御](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
+    * [強制ブラウジング対策](../../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
+    * [BOLA対策](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
+    * [マルチ攻撃対策](../../admin-en/configuration-guides/protecting-with-thresholds.md)
 
-トリガーの閾値を超えると、WallarmはIPをdenylistに追加し、以降のリクエストをブロックします。そのIPからのリクエストは攻撃リストに`Blocked`として表示されます。これは手動でdenylistされたIPにも適用されます。
+これらの挙動ベースの攻撃は、所定の統計が蓄積された後にのみ検出されます。必要量は対応するトリガーのしきい値に依存します。そのため、第1段階としてDenylist登録前はWallarmがこの情報を収集しますが、すべてのリクエストは通過し、攻撃として`Monitoring`ステータスで表示されます。
 
-![拒否リストに含まれるIPに関連するイベント - 送信データが有効](../../images/user-guides/events/events-denylisted-export-enabled.png)
+トリガーのしきい値を超えると、WallarmはIPをDenylistに追加し、以降のリクエストをブロックします。攻撃リストには、このIPからの`Blocked`リクエストが表示されます。これは手動でDenylistに登録したIPにも適用されます。
 
-denylistに含まれるIPからのリクエストを検索するには、以下の検索タグを使用してください： [API abuse related](../../attacks-vulns-list.md#api-abuse)、自動追加の場合は`brute`、`dirbust`、`bola`、`multiple_payloads`、手動の場合は`blocked_source`。
+![Denylist登録IPに関連するイベント - 送信有効時](../../images/user-guides/events/events-denylisted-export-enabled.png)
 
-なお、検索/フィルターでは、各攻撃タイプについて`Monitoring`ステータスのみならず、送信情報が有効な場合には`Blocked`ステータスの攻撃も表示されます。手動でdenylistされたIPについては、`Monitoring`ステータスの攻撃は存在しません。
+Denylist登録IPからのリクエストを見つけるには、[検索/フィルターのタグ](../../user-guides/search-and-filters/use-search.md#search-by-attack-type)を使用します。[API乱用関連](../../attacks-vulns-list.md#api-abuse)、`brute`、`dirbust`、`bola`、`multiple_payloads`は自動登録、`blocked_source`は手動登録です。
 
-`Blocked`ステータスの攻撃の中では、タグを使用してdenylistの理由―BOLA設定、API Abuse Prevention、トリガーまたはdenylistに記録された原因―に切り替えます。
+検索/フィルターには、各攻撃タイプについて、`Monitoring`ステータスの攻撃と（送信が有効な場合は）`Blocked`ステータスの攻撃の両方が表示される点にご注意ください。手動でDenylistに登録したIPについては、`Monitoring`ステータスの攻撃は存在しません。
 
-## 拒否リストに含まれるIPの通知を受け取る
+`Blocked`ステータスの攻撃の中では、タグを用いてDenylist登録の理由（BOLAの設定、API Abuse Prevention、トリガー、またはDenylistの該当レコード）へと遷移できます。
 
-日常的に使用するメッセンジャーまたはSIEMシステムを通じて、新たにdenylistされたIPについて通知を受けることができます。通知を有効にするには、**Triggers**セクションで**Denylisted IP**条件を設定した1つまたは複数のトリガーを構成してください。例：
+## Denylist登録IPの通知を受け取る
 
-![denylist IP用のトリガー例](../../images/user-guides/triggers/trigger-example4.png)
+新たにDenylistに登録されたIPについて、日常使用しているメッセンジャーやSIEMで通知を受け取れます。通知を有効にするには、**Triggers**セクションで**Denylisted IP**条件を用いたトリガーを1つ以上設定します。例:
 
-**トリガーのテスト方法：**
+![Denylist登録IP用トリガーの例](../../images/user-guides/triggers/trigger-example4.png)
 
-1. Wallarm Console → **Integrations** に移動し、[US](https://us1.my.wallarm.com/integrations/) または [EU](https://my.wallarm.com/integrations/) クラウドで[integration with Slack](../../user-guides/settings/integrations/slack.md)を構成します。
-1. **Triggers** 内で、上記のようにトリガーを作成します。
-1. Wallarm Consoleの**IP Lists** → **Denylist**に移動し、理由「It is a malicious bot」を指定して`1.1.1.1`のIPを追加します。
-1. Slackチャンネル内のメッセージを確認します。例：
+**トリガーをテストするには:**
+
+1. Wallarm Console→**Integrations**（[US](https://us1.my.wallarm.com/integrations/)または[EU](https://my.wallarm.com/integrations/)クラウド）に移動し、[Slackとの連携](../../user-guides/settings/integrations/slack.md)を設定します。
+1. **Triggers**で、上記のとおりトリガーを作成します。
+1. **IP Lists**→**Denylist**に移動し、理由を"It is a malicious bot"として`1.1.1.1`のIPを追加します。
+1. Slackチャンネルに次のようなメッセージが届くことを確認します:
     ```
     [wallarm] New IP address has been denylisted
-
+    
     Notification type: ip_blocked
 
     IP address 1.1.1.1 has been denylisted until 2024-01-19 15:02:16 +0300 
@@ -163,13 +166,13 @@ denylistに含まれるIPからのリクエストを検索するには、以下�
     Cloud: EU
     ```
 
-## ロードバランサーおよびCDN背後で稼働するノードのIPリスト対応設定
+## 負荷分散装置やCDN配下のノードでIPリストを利用するための設定
 
-WallarmノードがロードバランサーまたはCDNの背後に配置されている場合、エンドユーザーのIPアドレスを正しく報告するようにWallarmノードの設定を行ってください：
+WallarmノードがロードバランサーやCDNの背後にある場合、エンドユーザーのIPアドレスを正しく報告できるようWallarmノードを必ず設定してください:
 
-* [NGINXベースのWallarmノードの設定方法](../../admin-en/using-proxy-or-balancer-en.md)（AWS/GCPの画像およびDockerノードコンテナを含む）
-* [Wallarm Kubernetes Ingress controllerとして展開されたフィルタリングノードの設定方法](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
+* [NGINXベースのWallarmノード向け手順](../../admin-en/using-proxy-or-balancer-en.md)（AWS/GCPイメージおよびDockerノードコンテナを含む）
+* [Wallarm Kubernetes Ingress controllerとしてデプロイしたフィルタリングノード向け手順](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
 
 ## APIによるリスト管理
 
-Wallarm APIを直接呼び出すことで、任意のIPリストの内容の取得、オブジェクトの追加、および削除が可能です。[詳細なAPI request examples](../../api/request-examples.md#api-calls-to-get-populate-and-delete-ip-list-objects)をご参照ください。
+任意のIPリストの内容取得、オブジェクトの追加、オブジェクトの削除を、[Wallarm APIを直接呼び出す](../../api/request-examples.md#api-calls-to-get-populate-and-delete-ip-list-objects)ことで実行できます。

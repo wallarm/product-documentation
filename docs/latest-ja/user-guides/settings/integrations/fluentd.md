@@ -1,12 +1,12 @@
 # Fluentd
 
-[Fluentd](https://www.fluentd.org/)は、柔軟かつ軽量なデータ集約および転送機構を備えたオープンソースのデータ収集ソフトウェアです。Wallarmを適切な統合設定をWallarm Consoleで作成することで、検出されたイベントの通知をFluentdに送信するよう設定できます。
+[Fluentd](https://www.fluentd.org/)は、汎用で軽量なデータ集約および転送メカニズムとして機能するオープンソースのデータ収集ソフトウェアです。Wallarm Consoleで適切な連携を作成することで、検出イベントの通知をFluentdに送信するようにWallarmを設定できます。
 
-## 通知フォーマット
+## 通知の形式
 
-WallarmはJSON形式の**webhooks**を通じてFluentdに通知を送信します。送信されるJSONオブジェクトのセットは、Wallarmが通知するイベントによって異なります。
+Wallarmは**webhooks**を介してJSON形式の通知をFluentdに送信します。含まれるJSONオブジェクトは、Wallarmが通知するイベントによって異なります。
 
-新しいヒットが検出された通知の例:
+新しいヒット検出の通知例：
 
 ```json
 [
@@ -61,19 +61,19 @@ WallarmはJSON形式の**webhooks**を通じてFluentdに通知を送信しま�
 
 ## 要件
 
-Fluentdの設定は次の要件を満たす必要があります:
+Fluentdの構成は次の要件を満たす必要があります。
 
-* POSTまたはPUTリクエストを受け付ける
-* HTTPSリクエストを受け付ける
-* パブリックURLを持つ
+* POSTまたはPUTリクエストを受け付けます
+* HTTPSリクエストを受け付けます
+* パブリックにアクセス可能なURLがあります
 
-Fluentdの設定例:
+Fluentd構成例：
 
 ```bash linenums="1"
 <source>
-  @type http # HTTPおよびHTTPSトラフィック用のインプットプラグイン
+  @type http # HTTP/HTTPSトラフィック用のinputプラグイン
   port 9880 # 受信リクエスト用のポート
-  <transport tls> # 接続ハンドリング用の設定
+  <transport tls> # 接続処理の設定
     cert_path /etc/ssl/certs/fluentd.crt
     private_key_path /etc/ssl/private/fluentd.key
   </transport>
@@ -81,33 +81,33 @@ Fluentdの設定例:
 <match **>
   @type copy
   <store>
-     @type stdout # コマンドラインにFluentdログを出力するためのアウトプットプラグイン
-     output_type json # コマンドラインに出力されるログのフォーマット
+     @type stdout # Fluentdのログをコマンドラインに出力する出力プラグイン
+     output_type json # コマンドラインに出力されるログの形式
   </store>
 </match>
 ```
 
-詳細は[公式Fluentdドキュメント](https://docs.datadoghq.com/integrations/fluentd)をご参照ください。
+詳細は[公式Fluentdドキュメント](https://docs.datadoghq.com/integrations/fluentd)を参照してください。
 
-## 統合の設定
+## 連携の設定
 
-1. Wallarm Console→Integrations→FluentdでFluentd統合の設定に進みます。
-1. 統合名を入力します。
-1. ターゲットのFluentd URL（Webhook URL）を指定します。
-1. 必要に応じて、詳細設定を構成します:
+1. Wallarm Console→**Integrations**→**Fluentd**でFluentd連携の設定に進みます。
+1. 連携名を入力します。
+1. 送信先FluentdのURL（Webhook URL）を指定します。
+1. 必要に応じて、詳細設定を構成します：
 
     --8<-- "../include/integrations/webhook-advanced-settings.md"
-1. 通知をトリガーするイベントタイプを選択します。
+1. 通知をトリガーするイベント種別を選択します。
 
-    ![Fluentd integration](../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+    ![Fluentd連携](../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
-    利用可能なイベントの詳細:
+    利用可能なイベントの詳細：
 
     --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-1. Test integrationをクリックして、設定内容の正しさ、Wallarm Cloudの稼働状況、通知フォーマットを確認します。
+1. **Test integration**をクリックして、構成が正しいこと、Wallarm Cloudの可用性、および通知の形式を確認します。
 
-    テスト用Fluentdログ:
+    テスト用Fluentdログ：
 
     ```json
     [
@@ -154,7 +154,7 @@ Fluentdの設定例:
     ]
     ```
 
-1. Add integrationをクリックします。
+1. **Add integration**をクリックします。
 
 --8<-- "../include/cloud-ip-by-request.md"
 
@@ -162,39 +162,39 @@ Fluentdの設定例:
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
 
-## 中間データ収集ツールとしてFluentdを利用する
+## 中間データコレクターとしてFluentdを使用する
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-例:
+例：
 
-![Webhook flow](../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
+![Webhookのフロー](../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
 
-このスキームを使用してWallarmイベントをログするには:
+この方式でWallarmのイベントを記録するには：
 
-1. 受信したwebhookを読み取り、ログを次のシステムに転送するようデータ収集ツールを設定します。Wallarmはwebhookを通じてデータ収集ツールにイベントを送信します。
-1. SIEMシステムを設定して、データ収集ツールからログを取得し読み取ります。
-1. Wallarmがデータ収集ツールにログを送信するように設定します。
+1. データコレクターが受信webhookを読み取り、次のシステムにログを転送するように構成します。Wallarmはwebhookでデータコレクターにイベントを送信します。
+1. SIEMシステムがデータコレクターからログを取得して読み取れるように構成します。
+1. Wallarmがデータコレクターにログを送信するように構成します。
 
-Wallarmはwebhookを通じて任意のデータ収集ツールにログを送信できます。
+    Wallarmはwebhook経由で任意のデータコレクターにログを送信できます。
 
-WallarmをFluentdまたはLogstashと統合するには、Wallarm Console UIにある対応する統合カードを利用できます。
+    WallarmをFluentdまたはLogstashと連携するには、Wallarm Console UIの対応するintegration cardsを使用できます。
 
-Wallarmを他のデータ収集ツールと統合するには、Wallarm Console UIにある[webhook統合カード](webhook.md)を利用できます。
+    その他のデータコレクターと連携するには、Wallarm Console UIの[webhook integration card](webhook.md)を使用できます。
 
-ログをSIEMシステムに転送する人気のデータ収集ツールとの統合設定例をいくつか紹介します:
+SIEMシステムにログを転送する一般的なデータコレクターとの連携設定例をいくつか紹介します：
 
 * [Wallarm → Fluentd → IBM QRadar](webhook-examples/fluentd-qradar.md)
 * [Wallarm → Fluentd → Splunk Enterprise](webhook-examples/fluentd-splunk.md)
 * [Wallarm → Fluentd → Micro Focus ArcSight Logger](webhook-examples/fluentd-arcsight-logger.md)
 * [Wallarm → Fluentd → Datadog](webhook-examples/fluentd-logstash-datadog.md)
 
-Wallarmは[Datadog API経由のDatadogとのネイティブ統合](datadog.md)もサポートします。ネイティブ統合では中間のデータ収集ツールを使用する必要がありません。
+    Wallarmは[Datadog API経由のDatadogとのネイティブ連携](datadog.md)にも対応しています。ネイティブ連携では中間データコレクターは不要です。
 
-## 統合の無効化および削除
+## 連携の無効化と削除
 
 --8<-- "../include/integrations/integrations-disable-delete.md"
 
-## システムの利用不可および統合パラメータの不正
+## システムの利用不可および連携パラメータの誤り
 
 --8<-- "../include/integrations/integration-not-working.md"

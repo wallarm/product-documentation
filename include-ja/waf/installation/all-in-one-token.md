@@ -1,14 +1,14 @@
-ノードをインストールするには、[appropriate type][wallarm-token-types]のWallarmトークンが必要です。トークンの準備は以下の手順に従ってください。
+ノードをインストールするには、[適切なタイプ][wallarm-token-types]のWallarmトークンが必要です。トークンを準備するには:
 
 === "APIトークン"
 
-    1. Wallarm Console → **Settings** → **API tokens**を[US Cloud](https://us1.my.wallarm.com/settings/api-tokens)または[EU Cloud](https://my.wallarm.com/settings/api-tokens)で開きます。
-    1. `Deploy` source roleのAPI tokenを見つけるか、新規作成します。
+    1. [US Cloud](https://us1.my.wallarm.com/settings/api-tokens)または[EU Cloud](https://my.wallarm.com/settings/api-tokens)でWallarm Console → **Settings** → **API tokens**を開きます。
+    1. 使用タイプが`Node deployment/Deployment`のAPIトークンを見つけるか作成します。
     1. このトークンをコピーします。
 
 === "ノードトークン"
 
-    1. Wallarm Console → **Nodes**を[US Cloud](https://us1.my.wallarm.com/nodes)または[EU Cloud](https://my.wallarm.com/nodes)で開きます。
-    1. 次のいずれかの操作を行います: 
+    1. [US Cloud](https://us1.my.wallarm.com/nodes)または[EU Cloud](https://my.wallarm.com/nodes)でWallarm Console → **Nodes**を開きます。
+    1. 次のいずれかを実行します: 
         * **Wallarm node**タイプのノードを作成し、生成されたトークンをコピーします。
-        * 既存のノードグループを使用する場合は、ノードのメニュー→**Copy token**を使用してトークンをコピーします。
+        * 既存のノードグループを使用します - ノードのメニュー → **Copy token**からトークンをコピーします。

@@ -5,34 +5,35 @@
 [link-wl-console-users-us]:        https://us1.my.wallarm.com/settings/users
 [link-wl-console-users-eu]:        https://my.wallarm.com/settings/users
 
+
 !!! info "APIアクセス"
-    フィルタリングノード用のAPIは、ご利用中のCloudによって異なります。対応するAPIを選択してください:
+    ご利用のWallarm Cloudに応じてフィルタリングノードが使用するAPIが異なります。該当するAPIを選択してください:
     
-    * <https://my.wallarm.com/>を使用している場合、ノードは`https://api.wallarm.com:444`へのアクセスを必要とします。
-    * <https://us1.my.wallarm.com/>を使用している場合、ノードは`https://us1.api.wallarm.com:444`へのアクセスを必要とします。
+    * <https://my.wallarm.com/>を使用している場合、フィルタリングノードは`https://api.wallarm.com:444`へのアクセスが必要です。
+    * <https://us1.my.wallarm.com/>を使用している場合、フィルタリングノードは`https://us1.api.wallarm.com:444`へのアクセスが必要です。
     
-    ファイアウォールによりアクセスが遮断されていないことを確認してください。
+    ファイアウォールによってアクセスがブロックされていないことを確認してください。
 
-フィルタリングノードはWallarm Cloudと連携します。
+フィルタリングノードはWallarm Cloudと通信します。
 
-クラウドアカウントの認証情報を使用してノードをクラウarm Cloudに接続するには、以下の手順に従ってください:
+Wallarm Cloudアカウントの資格情報を使用してノードをWallarm Cloudに接続するには、次の手順に従ってください:
 
-1.  Wallarmアカウントに**Administrator**または**Deploy**ロールが有効であり、二段階認証が無効になっていることを確認してください。これにより、フィルタリングノードをCloudに接続できるようになります。
+1.  WallarmアカウントでAdministratorまたはDeployロールが有効になっており、two-factor authenticationが無効になっていることを確認してください。これにより、フィルタリングノードをWallarm Cloudに接続できます。 
      
-    上記のパラメータは、Wallarm Consoleのユーザーアカウント一覧から確認することができます。
+    Wallarm Consoleのユーザーアカウント一覧に移動して、上記の条件を確認できます。
     
-    * <https://my.wallarm.com/>を使用している場合は、ユーザー設定を確認するため、[次のリンク][link-wl-console-users-eu]に移動してください。
-    * <https://us1.my.wallarm.com/>を使用している場合は、ユーザー設定を確認するため、[次のリンク][link-wl-console-users-us]に移動してください。
+    * <https://my.wallarm.com/>を使用している場合は、ユーザー設定を確認するために[次のリンク][link-wl-console-users-eu]に進んでください。
+    * <https://us1.my.wallarm.com/>を使用している場合は、ユーザー設定を確認するために[次のリンク][link-wl-console-users-us]に進んでください。
 
     ![Wallarm Consoleのユーザー一覧][img-wl-console-users]
 
-2.  フィルタリングノードをインストールするマシン上で`addnode`スクリプトを実行してください:
+2.  フィルタリングノードをインストールするマシンで`addnode`スクリプトを実行してください:
     
     !!! info
-        使用しているCloudに応じて実行するスクリプトを選択する必要があります。
+        ご利用のWallarm Cloudに応じて実行するスクリプトを選択する必要があります。
     
-        * <https://us1.my.wallarm.com/>を使用している場合、下記の**USクラウド**タブからスクリプトを実行してください。
-        * <https://my.wallarm.com/>を使用している場合、下記の**EUクラウド**タブからスクリプトを実行してください。
+        * <https://us1.my.wallarm.com/>を使用している場合は、下の**USクラウド**タブのスクリプトを実行してください。
+        * <https://my.wallarm.com/>を使用している場合は、下の**EUクラウド**タブのスクリプトを実行してください。
     
     === "USクラウド"
         ``` bash
@@ -43,6 +44,6 @@
         sudo /usr/share/wallarm-common/addnode
         ```
     
-    作成したノードの名前を指定するには、`-n <node name>`オプションを使用してください。また、ノード名はWallarm Console→**Nodes**で変更することができます。
+    作成されるノード名を指定するには、`-n <node name>`オプションを使用します。また、ノード名はWallarm Console → **Nodes**で変更できます。
 
 3.  プロンプトが表示されたら、Wallarmアカウントのメールアドレスとパスワードを入力してください。

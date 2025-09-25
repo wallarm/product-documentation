@@ -1,19 +1,19 @@
-Wallarm CDNノードは保護対象サーバーに対してリバースプロキシとして動作します。受信トラフィックを解析し、不正なリクエストを軽減し、正当なリクエストを保護対象サーバーに転送します。
+Wallarm CDNノードは保護対象サーバーへのリバースプロキシとして動作します。受信トラフィックを解析し、悪意のあるリクエストを軽減し、正当なリクエストを保護対象サーバーへ転送します。
 
-![CDN node operation scheme][cdn-node-operation-scheme]
+![CDNノードの動作図][cdn-node-operation-scheme]
 
-!!! warning "CDNノードで保護できるもの"
-    CDNノードを使用すると、サードレベル（または4レベル、5レベルなど）以下のドメインを保護できます。例えば、`ple.example.com`用のCDNノードを作成できますが、`example.com`用には作成できません。
+!!! warning "CDNノードで保護できる対象"
+    CDNノードでは、第3レベル（4階層目、5階層目などを含む）のドメインを保護できます。例えば、`ple.example.com`向けのCDNノードは作成できますが、`example.com`向けには作成できません。
 
-Wallarm CDNノードのその他の特徴は以下の通りです:
+Wallarm CDNノードのその他の特徴は次のとおりです。
 
-* サードパーティのクラウドプロバイダー（Section.io）にホストされているため、CDNノードを展開するためにお客様のインフラからリソースを割り当てる必要はありません。
+* サードパーティのクラウドプロバイダー（Section.io）でホストされるため、CDNノードをデプロイするためにお使いのインフラストラクチャからリソースは必要ありません。
 
     !!! info "サードパーティのクラウドプロバイダーへのリクエストデータのアップロード"
-        処理されたリクエストの一部のデータがLumenサービスにアップロードされます。
-* 一部のリクエストデータをWallarm Cloudにアップロードします。[アップロードされるデータとセンシティブデータの削除についての詳細はこちら][data-to-wallarm-cloud-docs]
-* [動作][operation-modes-docs]は[IPグレイリストの内容][graylist-populating-docs]を利用し疑わしいトラフィックを識別しブロックする**セーフブロッキング**モードで動作します。
+        処理済みリクエストに関する一部のデータはLumenサービスにアップロードされます。
+* 一部のリクエストデータをWallarm Cloudにアップロードします。[アップロードされるデータと機微なデータのマスキングの詳細][data-to-wallarm-cloud-docs]
+* **safe blocking**モードで[動作します][operation-modes-docs]。疑わしいトラフィックを特定してブロックするために[IP graylistの内容][graylist-populating-docs]に基づきます。
 
-    モードを変更するには、対応する[ルール][operation-mode-rule-docs]を使用します。
-* CDNノードはWallarm Console UIを使用して完全に構成されます。他の方法で変更する必要がある設定は、保護対象リソースのDNSレコードにWallarm CNAMEレコードを追加することのみです。
-* お客様はノード用の[アプリケーション構成][link-app-conf]を[Wallarmサポートチーム](mailto:support@wallarm.com)に依頼できます。
+    モードを変更するには、該当する[ルール][operation-mode-rule-docs]を使用します。
+* CDNノードはWallarm Console UIから完全に構成します。唯一、別途の操作が必要なのは、保護対象リソースのDNSレコードにWallarmのCNAMEレコードを追加する設定です。
+* ノードの[アプリケーション構成][link-app-conf]の実施は、[Wallarmサポートチーム](mailto:support@wallarm.com)に依頼できます。

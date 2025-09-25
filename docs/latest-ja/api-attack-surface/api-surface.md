@@ -1,51 +1,56 @@
-# API攻撃面の検出 <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
+[link-aasm-security-issue-risk-level]:  security-issues.md#issue-risk-level
+[link-integrations-intro]:              ../user-guides/settings/integrations/integrations-intro.md
+[link-integrations-email]:              ../user-guides/settings/integrations/email.md#setting-up-integration
 
-Wallarmの[API Attack Surface Management](overview.md)のコンポーネントである**API攻撃面の検出**（**AASD**）は、選択したドメインをスキャンしてそのすべての外部ホストおよびAPIを検出し、WebおよびAPIベースの攻撃に対する保護状況を評価し、WAF/WAAPソリューションの不足を特定します。Wallarmにサブスクライブするだけで動作するため、何もデプロイする必要はありません。本記事はそのコンポーネントの概要を説明します。
+# API Attack Surface Discovery <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
-![API攻撃面の検出](../images/api-attack-surface/aasm-api-surface.png)
+Wallarmの[API Attack Surface Management](overview.md)の**API Attack Surface Discovery**（**AASD**）コンポーネントは、選択したドメインをスキャンして外部ホストとそのAPIをすべて発見し、WebおよびAPIベースの攻撃に対する保護状況を評価し、不足しているWAF/WAAPソリューションを特定します。Wallarmでサブスクライブするだけで利用でき、デプロイは不要です。本記事ではこのコンポーネントの概要を説明します。
 
-## 対応する問題
+![API Attack Surface Discovery](../images/api-attack-surface/aasm-api-surface.png)
 
-組織の外部APIのリストを完全に把握することは、監視されていないまたは文書化されていないAPIが悪意のある攻撃の侵入口となる可能性があるため、潜在的なセキュリティリスクを軽減するための第一歩です。
+## 対応する課題
 
-**API攻撃面の検出**のWallarmコンポーネントは、以下の提供内容によりこれらの問題の解決を支援します：
+### 提供機能
 
-* 選択したドメインに対する外部ホストの自動検出。
-* 検出されたホストの開放ポートの自動検出。
-* 検出されたホストのAPIの自動検出。  
+監視されていない、またはドキュメント化されていないAPIは悪意ある攻撃の侵入経路になり得るため、組織の外部APIの全リストを把握することが潜在的なセキュリティリスクを軽減する第一歩です。
 
-    以下の**APIタイプ**（プロトコル）が検出できます：JSON-API、GraphQL、XML-RPC、JSON-RPC、OData、gRPC、WebSocket、SOAP、WebDav、HTML WEB。  
+**API Attack Surface Discovery**コンポーネントは、次の機能を提供することでこれらの課題の解決を支援します。
 
-    HTML WEB―ブラウザを使用した人間のアクセスのために設計されたHTMLウェブページです。静的なHTMLウェブページである場合もあれば、アプリケーションの単一のHTMLページで、そのアプリケーションが別のAPIにアクセスする場合もあります。
+* [選択したドメイン](setup.md)の外部ホストの自動検出。
+* 検出された各ホストの開放ポートの自動検出。
+* 検出された各ホストのAPIの自動検出。
 
-* 検出されたホストの[セキュリティ体制](#security-posture)評価の自動化。
-* API攻撃面全体のWAAPスコアの算出。
-* セキュリティベンダー、データセンター、ロケーションごとの資産概要。  
+    検出可能な**APIタイプ**（プロトコル）は、JSON-API, GraphQL, XML-RPC, JSON-RPC, OData, gRPC, WebSocket, SOAP, WebDav, HTML WEBです。
 
-    1つのホストが複数のIPアドレスを持つ場合、データセンターおよび地理的ロケーションごとの資産統計はホスト単位ではなくIPアドレス単位で評価されます。CDNの使用により、資産の位置が代表的でない場合があります。
+    HTML WEB — ブラウザでの人による閲覧を想定したHTMLのWebページです。静的なHTMLのWebページの場合もあれば、アプリケーションの単一HTMLページであり、そのページからAPIにアクセスする場合もあります。
 
-* 検出されたホストのセキュリティ問題の自動検出。
+* 検出されたホストの[security posture](#security-posture)の自動評価。
+* APIサーフェス全体の総合WAAPスコア。
+* セキュリティベンダー、データセンター、ロケーション別のアセット集計。
 
-これらはすべて、Wallarmへのサブスクリプションによって得られ、何もデプロイする必要はなく、即座に解析データを入手できます。
+    1つのホストに複数のIPアドレスが割り当てられている場合があるため、データセンターおよび地理的ロケーション別のアセット統計はホスト単位ではなくIPアドレス単位で評価します。CDNを使用している場合、アセットのロケーションは実態を正確に反映しないことがあります。
 
-## ホストを検索するドメイン
+* 検出されたホストのセキュリティ課題の自動検出。
 
-ホストを検索する**ルートドメイン**のリストを以下の方法で定義可能です：
+これらはすべてWallarmで当該コンポーネントをサブスクライブするだけで利用でき、デプロイは一切不要で、分析済みデータをすぐに確認できます。
 
-1. **API Attack Surface**または**Security Issues**セクションで、Configureをクリックします。
-2. **Scope**タブで、ドメインを追加します。  
+### 旧Scannerの置き換え
 
-　Wallarmはホストとその[security issues](security-issues.md)の検索を開始し、検索の進捗と結果が**Status**タブに表示されます。
+API Attack Surface Discovery（AASD）の機能は旧来のWallarm Scannerの全機能を網羅しており、[Security Issues](security-issues.md)と組み合わせることでさらに多くの価値を提供するため、2025年5月7日以降、Scannerは無効化されます。
 
-![AASM - スコープの設定](../images/api-attack-surface/aasm-scope.png)
+![旧Scanner](../images/user-guides/scanner/check-scope.png)
 
-ドメインは3日ごとに自動再スキャンされるため、新しいホストは自動的に追加され、以前リストにあったが再スキャンで発見されなかったホストはリストに残ります。
+旧Scannerの無効化には次が含まれます:
 
-任意のドメインについて、**Configure**→**Status**から手動でスキャンの再開、一時停止、継続が可能です。
+* 旧Scannerを使用していたすべてのお客様にAASDへのアクセスを提供します
+* 旧Scannerのすべての設定をAASDへ移行します（Wallarmサポートが実施します）
+* AASDによるホストとAPIの自動再検出と、それらに関する拡張データの提示
+* ホストおよびAPIに対するセキュリティ課題の自動検出
+* 2025年5月7日以前に旧Scannerが検出した脆弱性は、[data retention policy](../about-wallarm/data-retention-policy.md)に従い、引き続きVulnerabilitiesセクションに表示されます
 
 ## 検出されたホストのデータ
 
-ドメインに対してホストが検出された後、Wallarm Consoleで**API Attack Surface**セクションに移動します。リスト内のホストをクリックすると、以下が表示されます： 
+ドメインのホストが検出されると、Wallarm ConsoleでAPI Attack Surfaceセクションに移動します。リストのホストをクリックすると、次を確認できます: 
 
 * ホストで検出された開放ポート
 * ホストで検出されたAPI
@@ -58,27 +63,47 @@ Wallarmの[API Attack Surface Management](overview.md)のコンポーネント�
   </div>
 </div>
 
-## セキュリティ体制
+## Security posture
 
-Wallarmは外部ネットワーク境界のセキュリティ体制を自動的に評価し、その状態を0（最低）から100（最高）の**合計スコア**として反映します。
+Wallarmは外部ネットワーク境界のセキュリティ態勢を自動評価し、その状態を0（最低）から100（最高）の保護レベルで表す**Total score**として表示します。
 
-![API攻撃面 - 保護スコア](../images/api-attack-surface/aasm-api-surface-protection-score.png)
+![APIサーフェス - 保護スコア](../images/api-attack-surface/aasm-api-surface-protection-score.png)
 
-合計スコアは、次の要素を組み込んだ複雑な独自の計算式を用いて算出されます：
+Total scoreは、以下を組み合わせた複合的な独自アルゴリズムにより算出します。
 
-* **WAAPカバレッジスコア**は、外部のWebおよびAPIサービスがWAF/WAAPソリューションによって保護されている割合を反映します。このスコアは、WAF/WAAPセキュリティで保護されたHTTP/HTTPSポートの割合として算出されます。
-* **平均WAAPスコア**は、外部ホストのWebおよびAPI攻撃に対する耐性を表します。このスコアは、AASMがブロッキングモードで動作するアクティブなWAAPソリューションを識別し、エラーなくWAAPスコアが評価されたすべてのホストの平均値として算出されます。
+* **WAAP coverage score**は、WAF/WAAPソリューションによる外部WebおよびAPIサービスのカバレッジを表します。WAF/WAAPで保護されているHTTP/HTTPSポートの割合として算出します。
+* **Average WAAP score**は、外部ホストのWebおよびAPI攻撃に対する耐性を表します。AASMがブロッキングモードの有効なWAAPソリューションを特定し、かつエラーなくWAAPスコアを評価できたすべてのホストの平均として算出します。
 
-　特定のエンドポイントのWAAPスコアはWallarmによるテストの結果であり、以下の式で算出されます：
+    特定エンドポイントのWAAPスコアはWallarmによるテスト結果であり、次の式で算出します:
 
-```
-((AppSec + FalsePositive) / 2 + APISec) / 2
-```
+    ```
+    ((AppSec + FalsePositive) / 2 + APISec) / 2
+    ```
 
-* `AppSec` - SQLインジェクション、XSS、コマンドインジェクションなどのWeb攻撃に対する耐性。
-* `APISec` - GraphQL、SOAP、gRPCプロトコルを標的とするAPI攻撃に対する耐性。
-* `FalsePositive` - 正当なリクエストを誤って脅威と判定せずに正確に許可する能力。
+    * `AppSec` - SQLインジェクション、XSS、コマンドインジェクションなどのWeb攻撃に対する耐性。
+    * `APISec` - GraphQL、SOAP、gRPCなどのプロトコルを対象としたAPI攻撃に対する耐性。
+    * `FalsePositive` - 正当なリクエストを脅威と誤判定せずに正確に許可できる能力。
 
-各ホストについて、詳細なWAAPスコア評価レポート（PDF形式）をダウンロード可能です。
+    各ホストについて、詳細なWAAPスコア評価レポートをPDF形式でダウンロードできます。
 
-* **追加の指標**として、TLSカバレッジ、セキュリティ問題の有無、および検出されたセキュリティ問題が含まれます。
+* **追加メトリクス**（TLSカバレッジ、セキュリティ課題の有無、検出されたセキュリティ課題など）。
+
+## API Attack Surfaceレポート
+
+選択したドメインで検出された外部ホストとそのAPIに関する詳細なDOCXレポートを取得できます。このレポートには、これらのAPIで検出された[セキュリティ課題](security-issues.md)について、任意に選択した情報も含められます。
+
+加えて、APIサーフェスの情報を表形式（CSV）で取得でき、次の単位で整理されています:
+
+* ホスト（1ホストにつき1行）
+* ポート（1ポートにつき1行）
+* API（1 APIにつき1行）
+
+![APIサーフェス - レポート](../images/api-attack-surface/aasm-reports.png)
+
+もう1つの選択肢として、機械可読形式のJSONレポートでAPIサーフェス情報を取得できます。
+
+セキュリティ課題については、[個別のレポート](security-issues.md#security-issue-reports)も取得できます。
+
+## 通知
+
+--8<-- "../include/api-attack-surface/aasm-notifications.md"

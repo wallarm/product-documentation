@@ -1,4 +1,3 @@
-```markdown
 [link-using-search]:    ../search-and-filters/use-search.md
 [img-current-attacks]:  ../../images/glossary/attack-with-one-hit-example.png
 [img-incidents-tab]:    ../../images/user-guides/events/incident-vuln.png
@@ -17,85 +16,83 @@
 [img-current-attack]:       ../../images/user-guides/events/analyze-current-attack.png
 [glossary-attack-vector]:   ../../glossary-en.md#malicious-payload
 
-# ヒットのグループ化とサンプリング
+# ヒットのグルーピングとサンプリング
 
-[check-attack.md](check-attack.md)で攻撃を分析する際、悪意のあるリクエストがどのように提示されるかを理解することが重要です。Wallarmは攻撃リストを簡素化するために、ヒットのグループ化およびサンプリング技術を使用します。本記事ではこれらの技術について説明します。
+[攻撃を分析する](check-attack.md)際には、不正リクエストがどのように提示されるかを理解することが重要です。Wallarmは攻撃一覧を簡潔にするためにヒットのグルーピングとサンプリング手法を使用します。本記事ではこれらの手法について説明します。
 
-## ヒットのグループ化
+## ヒットのグルーピング
 
-Wallarmは、二つのグループ化手法を利用して、[ヒット](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components)を一つの攻撃にまとめます：
+Wallarmは、[ヒット](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components)を1つの攻撃にまとめるために次の2つのグルーピング方法を使用します:
 
-* 基本グループ化
-* 送信元IPによるヒットのグループ化
+* 基本グルーピング
+* 送信元IPによるヒットのグルーピング
 
-これらの手法は相互に排他的ではありません。もしヒットが両方の手法の特徴を有する場合、全て一つの攻撃にグループ化されます。
+これらの方法は相互排他的ではありません。ヒットが両方の条件を満たす場合は、すべて同一の攻撃にグルーピングされます。
 
-### 基本グループ化
+### 基本グルーピング
 
-攻撃タイプ、悪意のあるペイロードを持つパラメータ、およびヒットが送信されたアドレスが同一である場合、ヒットはグループ化されます。同一攻撃タイプ内で、ヒットは同一または異なるIPアドレスから発生し、悪意のあるペイロードの値が異なる場合もあります。
+攻撃タイプ、悪意のあるペイロードを含むパラメータ、送信先アドレスが同一であればヒットはグルーピングされます。ヒットは同一または異なるIPアドレスから送られていてもよく、同一の攻撃タイプ内であっても悪意のあるペイロードの値が異なる場合があります。
 
-このヒットグループ化手法は基本であり、全てのヒットに適用され、無効化や変更はできません。
+このヒットのグルーピング方法は基本であり、すべてのヒットに適用され、無効化や変更はできません。
 
-### 送信元IPによるヒットのグループ化
+### 送信元IPによるヒットのグルーピング
 
-送信元IPアドレスが同一である場合、ヒットはグループ化されます。グループ化されたヒットが異なる攻撃タイプ、悪意のあるペイロードおよびURLを有する場合、攻撃パラメータは攻撃リスト内で`[multiple]`タグが付与されます。
+送信元IPアドレスが同一であればヒットはグルーピングされます。グルーピングされたヒットに異なる攻撃タイプ、悪意のあるペイロード、URLが含まれる場合、攻撃一覧では攻撃パラメータに`[multiple]`タグが付与されます。
 
-このヒットグループ化手法は、Brute force、Forced browsing、BOLA(IDOR)、Resource overlimit、Data bombおよびVirtual patch攻撃タイプのヒット以外の全てに対して機能します。
+このヒットのグルーピング方法は、Brute force、Forced browsing、BOLA (IDOR)、Resource overlimit、Data bomb、Virtual patchの各攻撃タイプを除くすべてのヒットに適用されます。
 
-もしこの方法でヒットがグループ化されると、攻撃に対して[**Mark as false positive**](check-attack.md#false-positives)ボタンおよび[active verification](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing)オプションが利用できなくなります。
+ヒットがこの方法でグルーピングされている場合、その攻撃に対しては[**Mark as false positive**](check-attack.md#false-positives)ボタンおよび[active verification](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing)オプションは利用できません。
 
-送信元IPによるグループ化は、Wallarm Consoleの→**Triggers**にある、15分以内に単一IPアドレスから50件以上のヒットが発生した場合に起動するデフォルトトリガー**Hits from the same IP**により、デフォルトで有効になっています。
+送信元IPによるグルーピングは、Wallarm Console→**Triggers**でデフォルトで有効になっており、15分間に単一のIPアドレスから50件を超えるHitsが発生したときに作動する**Hits from the same IP**というデフォルトトリガーで実現します.
 
-![Example of a trigger for hit grouping](../../images/user-guides/triggers/trigger-example-group-hits.png)
+![ヒットのグルーピング用トリガーの例](../../images/user-guides/triggers/trigger-example-group-hits.png)
 
-送信元IPによるグループ化はユーザーのニーズに合わせて調整可能です。**Hits from the same IP**タイプのカスタムトリガーを作成することで実施します。カスタムトリガーを作成するとデフォルトのトリガーは削除され、全てのカスタムトリガーを削除するとデフォルトが復元されます。また、デフォルトトリガーを一時的に無効化することでグループ化を一時停止することもできます。
+送信元IPによるグルーピングは要件に合わせて調整できます。**Hits from the same IP**タイプのカスタムトリガーを作成してください。任意のカスタムトリガーを作成するとデフォルトトリガーは削除され、すべてのカスタムトリガーを削除するとデフォルトが復元されます。デフォルトトリガーを一時的に無効化してグルーピングを一時停止することもできます。
 
 ## ヒットのサンプリング
 
-攻撃の詳細を生成する際、Wallarmは解析をより快適にするために、ユニークな[ヒット](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components)のみを表示し、同一（同等かつ同一）のヒットはWallarm Cloudへのアップロードが省略され、表示されません。このプロセスはヒットの**サンプリング**と呼ばれます。
+攻撃の詳細を生成する際、Wallarmは分析しやすいように、ユニークな[ヒット](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components)のみを表示し、ユニークでない（同等または同一の）ヒットはWallarm Cloudへのアップロードから除外して表示しません。この処理をヒットのサンプリングと呼びます。
 
-ヒットのサンプリングは攻撃検出の品質に影響せず、検出の遅延を回避するのに役立ちます。Wallarmノードはヒットのサンプリングが有効であっても、攻撃検出および[blocking](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)を継続します。
+ヒットのサンプリングは攻撃検知の品質には影響せず、処理の低下を避けるのに役立ちます。ヒットのサンプリングが有効な場合でも、Wallarmノードは攻撃の検知および[ブロック](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)を継続します。
 
-**Hits sampling is enabled**通知は、サンプリングが現在稼働していることを示します。この通知をクリックするか、検索フィールドに[`sampled`](../search-and-filters/use-search.md#search-for-sampled-hits)を追加することで、サンプリングが適用された攻撃のみを確認できます。攻撃の詳細には、検出されたが表示されなかった類似のヒットの数が示されます：
+**Hits sampling is enabled**という通知が表示されていると、現在サンプリングが動作していることを示します。この通知をクリックするか、検索フィールドに[`sampled`](../search-and-filters/use-search.md#search-for-sampled-hits)を追加すると、サンプリングが適用された攻撃のみを表示できます。攻撃の詳細では、検出されたものの表示されなかった類似ヒットの数が確認できます:
 
-![Dropped hits](../../images/user-guides/events/bruteforce-dropped-hits.png)
+![ドロップされたヒット](../../images/user-guides/events/bruteforce-dropped-hits.png)
 
-!!! info "攻撃リストに表示されないヒットについて"
-    アップロードされなかったヒットはWallarm Cloudに送信されないため、特定のヒットまたは攻撃全体がリストに存在しない場合があります。
+!!! info "攻撃一覧でのドロップ済みヒットの表示"
+    ドロップされたヒットはWallarm Cloudにアップロードされないため、攻撃一覧に一部のヒットや攻撃全体が表示されない場合があります。
 
-省略されたリクエストもWallarmノードによって処理されるリクエストであるため、ノード詳細UIのRPS値は各省略リクエストごとに増加します。[Threat Prevention dashboard](../dashboards/threat-prevention.md)のリクエストおよびヒット数にも、省略されたヒットの数が含まれます。
+ドロップされたリクエストもWallarmノードで処理されたリクエストであるため、ノード詳細UIのRPS値はドロップされるたびに増加します。[Threat Preventionダッシュボード](../dashboards/threat-prevention.md)上のリクエスト数およびヒット数にも、ドロップされたヒットの数が含まれます。
 
-**ヒットのサンプリングが有効の場合**
+**ヒットのサンプリングが有効な場合**
 
-* [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks)の場合、ヒットのサンプリングはデフォルトで無効です。トラフィック内の攻撃割合が高い場合、ヒットのサンプリングは2段階で実施されます：**extreme**と**regular**です。
-* [behavioral attacks](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)、[Data bomb](../../attacks-vulns-list.md#data-bomb)および[Resource overlimiting](../../attacks-vulns-list.md#resource-overlimit)の場合、**regular**サンプリングアルゴリズムがデフォルトで有効です。**Extreme**サンプリングはトラフィック内の攻撃割合が高い場合にのみ開始されます。
-* denylisted IPからのイベントの場合、サンプリングはノード側で設定され、最初の10件の同一リクエストのみがCloudにアップロードされ、残りのヒットにはサンプリングアルゴリズムが適用されます。
+* [入力検証タイプの攻撃](../../attacks-vulns-list.md#attack-types)では、ヒットのサンプリングは既定で無効です。トラフィックに占める攻撃の割合が高い場合、サンプリングは**extreme**と**regular**の2段階で順に実行されます。
+* [振る舞いタイプの攻撃](../../attacks-vulns-list.md#attack-types)、[Data bomb](../../attacks-vulns-list.md#data-bomb)および[Resource overlimiting](../../attacks-vulns-list.md#resource-overlimit)の攻撃では、既定で**regular**サンプリングアルゴリズムが有効です。**Extreme**サンプリングは、トラフィックに占める攻撃の割合が高い場合にのみ開始されます。
+* denylistされたIPからのイベントについては、サンプリングはノード側で設定されます。同一のリクエストは最初の10件のみをCloudにアップロードし、残りのヒットにはサンプリングアルゴリズムを適用します。
 
-トラフィック内の攻撃割合が低下すると、サンプリングは自動的に無効化されます。
+トラフィックに占める攻撃の割合が低下すると、サンプリングは自動的に無効になります。
 
 ### Extremeサンプリング
 
-Extremeサンプリングアルゴリズムの基本的な考え方は以下の通りです：
+Extremeサンプリングアルゴリズムの基本ロジックは次のとおりです:
 
-* もしヒットが[input validation](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks)タイプの場合、アルゴリズムはユニークな[悪意のあるペイロード](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components)を持つヒットのみをCloudにアップロードします。同一ペイロードの複数のヒットが1時間以内に検出された場合、最初の1件のみがCloudにアップロードされ、その他は省略されます。
-* もしヒットが[behavioral](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)、[Data bomb](../../attacks-vulns-list.md#data-bomb)または[Resource overlimiting](../../attacks-vulns-list.md#resource-overlimit)タイプの場合、アルゴリズムは1時間以内に検出された最初の10％のみをCloudにアップロードします。
+* ヒットが[入力検証](../../attacks-vulns-list.md#attack-types)タイプの場合、アルゴリズムはユニークな[悪意のあるペイロード](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components)のみをCloudにアップロードします。1時間内に同一ペイロードのヒットが複数検出された場合は、そのうち最初の1件のみをCloudにアップロードし、残りはドロップします。
+* ヒットが[振る舞い](../../attacks-vulns-list.md#attack-types)、[Data bomb](../../attacks-vulns-list.md#data-bomb)、[Resource overlimiting](../../attacks-vulns-list.md#resource-overlimit)タイプの場合、アルゴリズムは1時間内に検出されたヒットのうち最初の10%のみをCloudにアップロードします。
 
 ### Regularサンプリング
 
-Regularアルゴリズムは、[behavioral](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)、[Data bomb](../../attacks-vulns-list.md#data-bomb)または[Resource overlimiting](../../attacks-vulns-list.md#resource-overlimit)タイプ以外のヒットに対して、Extreme段階の後に保存されたヒットのみを処理します。これらのタイプのヒットについてExtremeサンプリングが無効の場合、Regularアルゴリズムは元のヒットセットを処理します。
+Regularアルゴリズムは、[振る舞い](../../attacks-vulns-list.md#attack-types)、[Data bomb](../../attacks-vulns-list.md#data-bomb)、[Resource overlimiting](../../attacks-vulns-list.md#resource-overlimit)タイプのヒットを除き、Extreme段階で保存されたヒットのみを処理します。これらのタイプでExtremeサンプリングが無効な場合は、Regularアルゴリズムが元のヒット集合を処理します。
 
-Regularサンプリングアルゴリズムの基本的な考え方は以下の通りです：
+Regularサンプリングアルゴリズムの基本ロジックは次のとおりです:
 
-1. 各時間ごとに、最初の5件の同一ヒットがWallarm Cloudのサンプルに保存されます。残りのヒットはサンプルに保存されませんが、その件数が別のパラメータに記録されます。
+1. 各1時間ごとに最初の5件の同一ヒットをWallarm Cloudのサンプルとして保存します。残りのヒットはサンプルには保存されませんが、その件数は別パラメータに記録されます。
 
-   ヒットが同一と見なされる条件は、以下の全てのパラメータが同一の値を持つ場合です：
+    以下のパラメータがすべて同じ値であれば、そのヒットは同一と見なします:
 
     * 攻撃タイプ
-    * 悪意のあるペイロードを持つパラメータ
-    * ターゲットアドレス
+    * 悪意のあるペイロードを含むパラメータ
+    * 宛先アドレス
     * リクエストメソッド
     * レスポンスコード
-    * 発信元IPアドレス
-
-2. ヒットサンプルは、イベントリスト内で[攻撃](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components)にグループ化されます。
-```
+    * 送信元IPアドレス
+2. ヒットのサンプルは、イベント一覧で[攻撃](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components)にグルーピングされます。

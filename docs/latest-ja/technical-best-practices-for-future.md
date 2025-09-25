@@ -1,32 +1,30 @@
-# Wallarmソリューションの展開および保守に関するベストプラクティス
+# Wallarmソリューションのデプロイおよび運用保守に関するベストプラクティス
 
-本記事ではWallarmソリューションの展開および保守に関するベストプラクティスを示します。
+本記事では、Wallarmソリューションのデプロイおよび運用保守に関するベストプラクティスを示します。
 
-## 本番環境だけでなくテスト環境やステージング環境にもフィルタリングノードを展開する - 技術的ベストプラクティス
+## フィルタリングノードは本番環境だけでなくテストやステージングにもデプロイします - 技術的ベストプラクティス
 
-ほとんどのWallarmサービス契約では、顧客が展開するWallarmノードの数に制限がないため、開発、テスト、ステージングなどすべての環境にフィルタリングノードを展開しない理由はありません。
+多くのWallarmサービス契約では、お客様がデプロイできるWallarmノードの数に制限はありません。そのため、開発・テスト・ステージングなど、あらゆる環境にフィルタリングノードをデプロイしない理由はありません。
 
-ソフトウェア開発やサービス運用のすべての段階でフィルタリングノードを展開および使用することにより、全体のデータフローを適切にテストし、重要な本番環境における予期せぬ事態のリスクを最小限に抑える可能性が高まります。
+ソフトウェア開発やサービス運用の全段階でフィルタリングノードをデプロイして使用することで、データフロー全体を適切にテストでき、重要な本番環境での予期しない事態のリスクを最小化できます。
 
-## エンドユーザーIPアドレスの正しい報告を設定する - 技術的ベストプラクティス、さらにこのリンクはすべての展開手順書に記載される必要があります
+## エンドユーザーのIPアドレスを正確に報告するよう設定します - 技術的ベストプラクティス、かつこの項目へのリンクはすべてのデプロイ手順に含めます
 
-ロードバランサーやCDNの背後に配置されたWallarmフィルタリングノードの場合、フィルタリングノードがエンドユーザーIPアドレスを正しく報告するように設定することを確認してください（そうしないと[IP list functionality](user-guides/ip-lists/overview.md)、[Threat Replay Testing](detecting-vulnerabilities.md#threat-replay-testing)やその他の機能が動作しなくなります）:
+ロードバランサーやCDNの背後にあるWallarmフィルタリングノードについては、エンドユーザーのIPアドレスを正確に報告するようノードを必ず設定してください（そうしないと、[IPリスト機能](user-guides/ip-lists/overview.md)、[Threat Replay Testing](detecting-vulnerabilities.md#threat-replay-testing)など一部の機能が動作しません）:
 
-* [NGINXベースのWallarmノードの手順](../admin-en/using-proxy-or-balancer-en.md)（AWS/GCPイメージおよびDockerノードコンテナを含む）
-* [Wallarm Kubernetes Ingress controllerとして展開されたフィルタリングノードの手順](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
+* [NGINXベースのWallarmノード向け手順](../admin-en/using-proxy-or-balancer-en.md)（AWS / GCPイメージおよびDockerノードコンテナを含みます）
+* [Wallarm Kubernetes Ingress controllerとしてデプロイされたフィルタリングノード向け手順](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
 
-## フィルタリングノードの適切な監視の有効化 - モニタリング手順書および技術的ベストプラクティスの両方に含める
+## フィルタリングノードの適切な監視を有効化します - 監視手順にも技術的ベストプラクティスにも反映します
 
-Wallarmフィルタリングノードの適切な監視を有効化することを強く推奨します。
+Wallarmフィルタリングノードの適切な監視を有効化することを強く推奨します。フィルタリングノードの監視の設定方法は、デプロイ方式によって異なります:
 
-フィルタリングノードの監視設定方法は、その展開オプションに依存します:
+* [Wallarm Kubernetes Ingress controllerとしてデプロイされたフィルタリングノード向け手順](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)
+* [NGINXベースのDockerイメージ向け手順](../admin-en/installation-docker-en.md#monitoring-configuration)
 
-* [Wallarm Kubernetes Ingress controllerとして展開されたフィルタリングノードの手順](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)
-* [NGINXベースのDockerイメージの手順](../admin-en/installation-docker-en.md#monitoring-configuration)
+## 適切な冗長化と自動フェイルオーバー機能を実装します
 
-## 適切な冗長性と自動フェイルオーバー機能の実装
+本番環境の他の重要なコンポーネントと同様に、Wallarmノードは適切な冗長化および自動フェイルオーバーのレベルを考慮して設計・デプロイ・運用してください。重要なエンドユーザーリクエストを処理する**アクティブなWallarmフィルタリングノードを少なくとも2台**用意する必要があります。以下の記事に関連情報があります:
 
-本番環境のその他の重要なコンポーネントと同様に、Wallarmノードは適切な冗長性と自動フェイルオーバーを備えて設計、展開、運用すべきです。重要なエンドユーザーリクエストを処理するために、**少なくとも2つのアクティブなWallarmフィルタリングノード**を用意する必要があります。以下の記事には関連情報が記載されています:
-
-* [NGINXベースのWallarmノードの手順](../admin-en/configure-backup-en.md)（AWS/GCPイメージ、Dockerノードコンテナ、Kubernetesサイドカーを含む）
-* [Wallarm Kubernetes Ingress controllerとして展開されたフィルタリングノードの手順](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md)
+* [NGINXベースのWallarmノード向け手順](../admin-en/configure-backup-en.md)（AWS / GCPイメージ、Dockerノードコンテナ、Kubernetesサイドカーを含みます）
+* [Wallarm Kubernetes Ingress controllerとしてデプロイされたフィルタリングノード向け手順](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md)

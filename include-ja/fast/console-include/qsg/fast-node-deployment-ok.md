@@ -8,8 +8,8 @@
            | _/ _ \\__ \ | |
            |_/_/ \_\___/ |_|
 
-[info] Wallarm Cloudにノードが接続されました
-[info] 高速スキャナー用のカスタム拡張機能0個を読み込みました
-[info] 高速スキャナー用のデフォルト拡張機能51個を読み込みました
-[info] TestRunによるチェックを待っています...
+[info] Node connected to Wallarm Cloud
+[info] Loaded 0 custom extensions for fast scanner
+[info] Loaded 51 default extensions for fast scanner
+[info] Waiting for TestRun to check...
 ```

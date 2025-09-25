@@ -1,4 +1,4 @@
-Among all supported [Wallarm deployment options][platform]の中で、Dockerイメージを使用したAlibaba Cloud ECS上でのWallarm展開は、これらの**ユースケース**で推奨します:
+サポートされている[Wallarmのデプロイオプション][platform]の中でも、Alibaba Cloud ECSでDockerイメージを使用するWallarmのデプロイは、次の**ユースケース**で推奨されます。
 
-* アプリケーションがマイクロサービスアーキテクチャを採用しており、既にコンテナ化されAlibaba Cloud ECS上で稼働している場合。
-* 各コンテナに対して細かな制御が必要な場合、Dockerイメージは優れています。従来のVMベースの展開で通常可能なよりも高いレベルのリソース隔離を提供します。
+* アプリケーションがマイクロサービスアーキテクチャを採用しており、すでにコンテナ化され、Alibaba Cloud ECS上で稼働している場合です。
+* 各コンテナをきめ細かく制御する必要がある場合、Dockerイメージが最適です。従来のVMベースのデプロイで一般的に可能なレベルよりも高いリソース分離を提供します。

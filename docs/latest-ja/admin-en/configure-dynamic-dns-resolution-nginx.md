@@ -1,8 +1,8 @@
-# NGINXにおける動的DNS解決の設定
+# NGINXでの動的DNS解決の設定
 
-NGINXの設定ファイルの`proxy_pass`ディレクティブでドメイン名が指定されると、NGINXは起動後にホストのIPアドレスを一度のみ解決します。DNSサーバがホストのIPアドレスを変更した場合、NGINXは再読み込みまたは再起動されるまで古いIPアドレスを使用し続けます。その間、NGINXは誤ったIPアドレスにリクエストを送信します。
+NGINXの設定ファイルの`proxy_pass`ディレクティブにドメイン名を指定した場合、NGINXは起動後にホストのIPアドレスを1回だけ解決します。DNSサーバーがホストのIPアドレスを変更しても、NGINXをリロードまたは再起動するまで古いIPアドレスを引き続き使用します。それまでの間、NGINXは誤ったIPアドレスにリクエストを送信します。
 
-例えば：
+例:
 
 ```bash
 location / {
@@ -11,14 +11,14 @@ location / {
     }
 ```
 
-動的DNS解決を実現するには、`proxy_pass`ディレクティブに変数を設定します。この場合、NGINXは変数計算時に[`resolver`](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver)ディレクティブで設定されたDNSアドレスを使用します。
+動的DNS解決を行うには、`proxy_pass`ディレクティブを変数として設定できます。この場合、NGINXは変数を評価する際に[`resolver`](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver)ディレクティブで設定されたDNSサーバーアドレスを使用します。
 
-!!! warning "動的DNS解決がトラフィック処理に及ぼす影響"
-    * `proxy_pass`ディレクティブに変数を用い、`resolver`ディレクティブが設定されたNGINXの設定では、リクエスト処理に動的DNS解決の追加ステップが発生するため、処理速度が低下します。
-    * NGINXはTTLが切れるとドメイン名を再解決します。`resolver`ディレクティブに`valid`パラメータを付与することで、TTLを無視し、指定した頻度で名前を再解決するよう設定できます。
-    * DNSサーバがダウンしている場合、NGINXはトラフィックを処理しません。
+!!! warning "動的DNS解決がトラフィック処理に与える影響"
+    * `resolver`ディレクティブと`proxy_pass`ディレクティブ内の変数を含むNGINXの設定では、リクエスト処理中に動的DNS解決の追加のステップが入るため、処理が遅くなります。
+    * NGINXはTTL(Time To Live)の有効期限が切れたときにドメイン名を再解決します。`resolver`ディレクティブに`valid`パラメータを指定すると、TTLを無視して、代わりに指定した頻度でドメイン名を再解決するようNGINXに指示できます。
+    * DNSサーバーがダウンしている場合、NGINXはトラフィックを処理しません。
 
-例えば：
+例:
 
 ```bash
 location / {
@@ -29,5 +29,5 @@ location / {
     }
 ```
 
-!!! info "NGINX Plusにおける動的DNS解決"
-    NGINX Plusは、既定でドメイン名の動的解決をサポートします。
+!!! info "NGINX Plusでの動的DNS解決"
+    NGINX Plusはドメイン名の動的解決をデフォルトでサポートします。

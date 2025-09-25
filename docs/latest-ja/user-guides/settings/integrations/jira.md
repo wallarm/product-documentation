@@ -1,41 +1,41 @@
 # Atlassian Jira
 
-[Jira](https://www.atlassian.com/software/jira) はAtlassianによって開発された広く利用されているプロジェクト管理および課題追跡ソフトウェアです．脆弱性が検出された際に，すべてまたは選択されたリスクレベル（高，中，低）の場合にのみ，Jiraで課題を作成するようにWallarmを設定できます．
+[Jira](https://www.atlassian.com/software/jira)はAtlassianが開発した広く利用されているプロジェクト管理および課題追跡ソフトウェアです。[脆弱性](../../../glossary-en.md#vulnerability)が検出された際に、すべてのリスクレベル、または選択したリスクレベル（高・中・低）のみを対象に、WallarmがJiraに課題を作成するように設定できます。
 
-## 統合の設定
+## インテグレーションの設定
 
-Jira UI:
+Jira UIで：
 
-1. APIトークンを[こちら](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/#Create-an-API-token)の説明に従って生成してください．
-1. 生成されたAPIトークンをコピーしてください．
+1. [こちら](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/#Create-an-API-token)に記載の手順に従ってAPI tokenを生成します。
+1. 生成したAPI tokenをコピーします。
 
-Wallarm UI:
+Wallarm UIで：
 
-1. Wallarm Console → **Integrations** → **Jira**を開いてください．
-1. 統合名を入力してください．
-1. Jiraホストを入力してください（例:`https://company-x.atlassian.net/`）．
-1. Jira認証に必要なJiraユーザーのメールアドレスを入力してください．また，作成される課題のレポーターを識別するために使用されます．
-1. 生成されたAPIトークンを貼り付けてください．メールアドレスとトークンは，指定されたJiraホストにおけるWallarmの認証に使用されます．認証に成功すると，此Jiraユーザーが利用可能なスペースが一覧表示されます．
-1. 課題を作成するJiraスペースを選択してください．選択後，其スペースでサポートされる課題タイプの一覧が表示されます．
-1. 作成される課題が属するJiraの課題タイプを選択してください．
-1. 通知をトリガーするイベントタイプを選択してください．すべての脆弱性または特定のリスクレベルのみを選択できます．
+1. Wallarm Console → Integrations → Jiraを開きます。
+1. integration nameを入力します。
+1. Jira hostを入力します（例：`https://company-x.atlassian.net/`）。
+1. Jiraの認証に必要で、作成される課題のReporterの識別にも使用されるJira user emailを入力します。
+1. 生成したAPI tokenを貼り付けます。emailとtokenは、指定したJira hostでWallarmを認証するために検証されます。成功すると、このJiraユーザーで利用可能なspaceが一覧表示されます。
+1. 課題を作成するJiraのspaceを選択します。選択すると、そのspaceでサポートされているissue typesの一覧が表示されます。
+1. 作成される課題が属するJiraのissue typeを選択します。
+1. 通知をトリガーするevent typesを選択します。すべての脆弱性、または特定のリスクレベルのみを選択できます。
 
-    ![Jira統合](../../../images/user-guides/settings/integrations/add-jira-integration.png)
+    ![Jiraインテグレーション](../../../images/user-guides/settings/integrations/add-jira-integration.png)
 
-1. 構成の正確性，Wallarm Cloudの利用可能性および通知フォーマットを確認するために，**Test integration**をクリックしてください．
+1. 構成が正しいか、Wallarm Cloudの到達性、通知のフォーマットを確認するために**Test integration**をクリックします。
 
-    Jira課題作成のテスト:
+    Jira課題作成のテスト：
 
     ![Jira課題作成のテスト](../../../images/user-guides/settings/integrations/test-jira-issue-creation.png)
 
-1. **Add integration**をクリックしてください．
+1. **Add integration**をクリックします。
 
 --8<-- "../include/cloud-ip-by-request.md"
 
-## 統合の無効化と削除
+## インテグレーションの無効化と削除
 
 --8<-- "../include/integrations/integrations-disable-delete.md"
 
-## システムの利用不可および誤った統合パラメータ
+## システムの利用不可と不正なインテグレーションパラメータ
 
 --8<-- "../include/integrations/integration-not-working.md"

@@ -5,78 +5,83 @@
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
+[helm-chart-native-node]:           ../native-node/helm-chart.md
+[custom-blocking-page]:             ../../admin-en/configuration-guides/configure-block-page-and-code.md
+[rate-limiting]:                    ../../user-guides/rules/rate-limiting.md
+[multi-tenancy]:                    ../multi-tenant/overview.md
 
-# MuleSoft用Wallarmコネクタ
+# MuleSoft Mule Gateway向けWallarmコネクタ
 
-[MuleSoft](https://www.mulesoft.com/)は、サービス間のシームレスな接続とデータ統合を可能にする統合プラットフォームであり、APIゲートウェイがクライアントアプリケーションのAPIアクセスのエントリポイントとして機能します。Wallarmは、MuleSoft上で稼働するAPIの保護のためのコネクタとして機能します。
+本ガイドでは、Wallarmコネクタを使用して[Mule Gateway](https://docs.mulesoft.com/mule-gateway/mule-gateway-capabilities-mule4)で管理されるMule APIを保護する方法について説明します。
 
-MuleSoft用のコネクタとしてWallarmを使用するには、**Wallarmノードを外部にデプロイ**し、**Wallarmが提供するポリシーをMuleSoftに適用**してトラフィックをWallarmノードに転送し、解析する必要があります。
+Mule GatewayのコネクタとしてWallarmを使用するには、Wallarmノードを外部にデプロイし、MuleSoftでWallarm提供のポリシーを適用して、トラフィックを解析のためにWallarmノードへルーティングする必要があります。
 
-MuleSoft用Wallarmコネクタは[in-line](../inline/overview.md)トラフィック解析のみをサポートします:
+Mule Gateway向けWallarmコネクタは、[インライン](../inline/overview.md)でのトラフィック解析のみをサポートします。
 
-![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-mule-gateway-inline.png)
+![Wallarmポリシーを適用したMuleSoft](../../images/waf-installation/gateways/mulesoft/traffic-flow-mule-gateway-inline.png)
 
 ## ユースケース
 
-サポートされている全[Wallarmデプロイメントオプション](../supported-deployment-options.md)の中で、このソリューションは、単一のポリシーでMuleSoft Anypointプラットフォーム上にデプロイされたAPIの保護に推奨されます。
+本ソリューションは、Mule Gatewayで管理されるMule APIを保護するための推奨方法です。
 
 ## 制限事項
 
-* Wallarmルールによる[レート制限](../../user-guides/rules/rate-limiting.md)はサポートされていません。
-* [マルチテナンシー](../multi-tenant/overview.md)はまだサポートされていません。
+--8<-- "../include/waf/installation/connectors/native-node-limitations.md"
 
 ## 要件
 
-デプロイを進めるため、下記の要件を満たしていることをご確認ください:
+デプロイを進める前に、以下の要件を満たしていることを確認してください。
 
-* MuleSoftプラットフォームの理解。
+* MuleSoftプラットフォームについての理解があること。
+* Anypoint PlatformのEnterpriseサブスクリプション（カスタムポリシーのデプロイおよび外部トラフィックのルーティングに必須）。
 * ホストシステムに[Docker](https://docs.docker.com/engine/install/)がインストールされ、稼働していること。
-* [Maven(`mvn`)](https://maven.apache.org/install.html)がインストールされていること。
-* MuleSoft Exchangeのコントリビューターとしての権限が付与され、組織のMuleSoft Anypoint Platformアカウントにアーティファクトをアップロードできること。
-* MuleSoft Exchangeの認証情報（ユーザ名とパスワード）が`<MAVEN_DIRECTORY>/conf/settings.xml`ファイルに指定されていること。
-* アプリケーションとAPIがMuleSoft上で連携し、稼働していること。
-* [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarm Consoleで**Administrator**ロールのアカウントにアクセスできること。
+* [Maven (`mvn`)](https://maven.apache.org/install.html)がインストールされていること。
+* MuleSoftのユーザーが、MuleSoft Anypoint Platformアカウントにアーティファクトをアップロードできる権限を持っていること。
+* [`<MAVEN_DIRECTORY>/conf/settings.xml`]ファイルに[ MuleSoft Exchangeの認証情報（ユーザー名とパスワード）](https://docs.mulesoft.com/mule-gateway/policies-custom-upload-to-exchange#deploying-a-policy-created-using-the-maven-archetype)が設定されていること。
+* アプリケーションとAPIが関連付けられ、Mule Gateway上で稼働していること。
+* [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarm Consoleで**Administrator**ロールを持つアカウントへのアクセス権があること。
 
 ## デプロイ
 
-### 1. Wallarmノードのデプロイ
+### 1. Wallarmノードをデプロイする
 
-WallarmノードはWallarmプラットフォームの中核コンポーネントであり、着信トラフィックを検査し、不正な活動を検知し、脅威を軽減するように構成できます。
+WallarmノードはWallarmプラットフォームの中核コンポーネントで、デプロイが必要です。受信トラフィックを検査し、悪意あるアクティビティを検出し、脅威の緩和を行うように構成できます。
 
-必要なコントロールのレベルに応じて、Wallarmにホスティングされたノードまたは自己管理のインフラストラクチャにデプロイすることが可能です。
+必要とする管理レベルに応じて、Wallarmがホストするノードとして、またはお客様のインフラストラクチャ内にセルフホストしてデプロイできます。
 
 === "Edge node"
-    コネクタ用のWallarmホスティングノードをデプロイするには、[指示](../se-connector.md)に従ってください。
-=== "Self-hosted node"
-    自己管理ノードデプロイメント用のアーティファクトを選択し、添付の手順に従ってください:
+    コネクタ向けのWallarmホスト型ノードをデプロイするには、[手順](../security-edge/se-connector.md)に従ってください。
+=== "セルフホストノード"
+    セルフホスト型ノードのデプロイに使用するアーティファクトを選び、以下の手順に従ってください：
 
-    * ベアメタルまたはVM上のLinuxインフラ向け[All-in-one installer](../native-node/all-in-one.md)
-    * コンテナ化デプロイを使用する環境向け[Docker image](../native-node/docker-image.md)
-    * Kubernetesを利用するインフラ向け[Helm chart](../native-node/helm-chart.md)
+    * ベアメタルまたはVM上のLinuxインフラ向けの[All-in-one installer](../native-node/all-in-one.md)
+    * コンテナ化されたデプロイを使用する環境向けの[Docker image](../native-node/docker-image.md)
+    * AWSインフラ向けの[AWS AMI](../native-node/aws-ami.md)
+    * Kubernetesを利用するインフラ向けの[Helm chart](../native-node/helm-chart.md)
 
-### 2. WallarmポリシーのMuleSoft Exchangeへの取得とアップロード
+### 2. Wallarmポリシーを取得してMuleSoft Exchangeにアップロードする
 
-以下の手順に従い、Wallarmポリシーを取得し、MuleSoft Exchangeにアップロードしてください:
+MuleSoft ExchangeにWallarmポリシーを取得・アップロードするには、次の手順に従ってください。
 
-1. Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle**に進み、プラットフォームに適したコードバンドルをダウンロードしてください。
+1. Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle**に進み、プラットフォーム用のコードバンドルをダウンロードします。
 
-    自己管理ノードを使用している場合は、sales@wallarm.comに連絡しコードバンドルを入手してください。
-2. ポリシーアーカイブを展開してください。
-3. `pom.xml`ファイル内で、以下の内容を指定してください:
+    セルフホスト型ノードを使用している場合は、コードバンドル入手のためsales@wallarm.comまでご連絡ください。
+1. ポリシーのアーカイブを展開します。
+1. `pom.xml`ファイル内で以下を設定します。
 
-    === "Global instance"
-        1. MuleSoft Anypoint Platformにアクセスし、**Access Management** → **Business Groups** → 組織を選択し、そのIDをコピーしてください。
-        1. `pom.xml`ファイルの`groupId`パラメーターにコピーしたグループIDを指定してください:
+    === "グローバルインスタンス"
+        1. MuleSoft Anypoint Platform → **Access Management** → **Business Groups** → 組織を選択 → そのIDをコピーします。
+        1. `pom.xml`ファイルの`groupId`パラメータにコピーしたグループIDを指定します。
 
         ```xml hl_lines="2"
         <?xml version="1.0" encoding="UTF-8"?>
             <groupId>BUSINESS_GROUP_ID</groupId>
             <artifactId>wallarm</artifactId>
         ```
-    === "Regional instance"
-        1. MuleSoft Anypoint Platformにアクセスし、**Access Management** → **Business Groups** → 組織を選択し、そのIDをコピーしてください。
-        1. `pom.xml`ファイルの`groupId`パラメーターにコピーしたグループIDを指定してください。
-        1. 特定地域でホスティングされているMuleSoftインスタンスの場合、`pom.xml`ファイルを更新し、対応する地域のURLを使用してください。例えば、MuleSoftの欧州インスタンスの場合:
+    === "リージョナルインスタンス"
+        1. MuleSoft Anypoint Platform → **Access Management** → **Business Groups** → 組織を選択 → そのIDをコピーします。
+        1. `pom.xml`ファイルの`groupId`パラメータにコピーしたグループIDを指定します。
+        1. 特定のリージョンでホストされるMuleSoftインスタンスの場合、対応するリージョンのURLを使用するように`pom.xml`を更新します。例として、欧州リージョンのMuleSoftインスタンスの場合：
 
         ```xml hl_lines="2 7 14 24"
         <?xml version="1.0" encoding="UTF-8"?>
@@ -107,10 +112,10 @@ WallarmノードはWallarmプラットフォームの中核コンポーネント
                 </repository>
             </repositories>
         ```
-4. `conf`ディレクトリを作成し、その中に次の内容の`settings.xml`ファイルを作成してください:
+1. `conf`ディレクトリを作成し、その中に次の内容の`settings.xml`ファイルを作成します。
 
-    === "Username and password"
-        `username`と`password`を実際の認証情報に置き換えてください:
+    === "ユーザー名とパスワード"
+        `username`と`password`を実際の認証情報に置き換えます。
 
         ```xml
         <?xml version="1.0" encoding="UTF-8"?>
@@ -123,11 +128,16 @@ WallarmノードはWallarmプラットフォームの中核コンポーネント
                 <username>myusername</username>
                 <password>mypassword</password>
             </server>
+            <server>
+                <id>mulesoft-releases-ee</id>
+                <username>myusername</username>
+                <password>mypassword</password>
+            </server>
         </servers>
         </settings>
         ```
-    === "Token (if MFA is enabled)"
-        `password`パラメーターに[トークンを生成し指定](https://docs.mulesoft.com/access-management/saml-bearer-token)してください:
+    === "トークン（MFAが有効な場合）"
+        [`password`パラメータにトークンを生成して指定](https://docs.mulesoft.com/access-management/saml-bearer-token)します。
 
         ```xml
         <?xml version="1.0" encoding="UTF-8"?>
@@ -137,87 +147,79 @@ WallarmノードはWallarmプラットフォームの中核コンポーネント
         <servers>
             <server>
                 <id>anypoint-exchange-v3</id>
-            <username>~~~Token~~~</username>
+                <username>~~~Token~~~</username>
+                <password>01234567-89ab-cdef-0123-456789abcdef</password>
+            </server>
+            <server>
+                <id>mulesoft-releases-ee</id>
+                <username>~~~Token~~~</username>
                 <password>01234567-89ab-cdef-0123-456789abcdef</password>
             </server>
         </servers>
         </settings>
         ```
-5. 次のコマンドを使用して、ポリシーをMuleSoftにデプロイしてください:
+1. 次のコマンドでポリシーをMuleSoftにデプロイします。
 
     ```
     mvn clean deploy -s conf/settings.xml
     ```
 
-カスタムポリシーがMuleSoft Anypoint Platform Exchangeに利用可能になりました。
+これで、カスタムポリシーがMuleSoft Anypoint PlatformのExchangeで利用可能になりました。
 
-![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
+![Wallarmポリシーを適用したMuleSoft](../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
 
-### 3. WallarmポリシーをAPIに適用
+### 3. WallarmポリシーをAPIに適用する
 
-Wallarmポリシーは、すべてのAPIまたは個別のAPIに適用できます。
+Wallarmポリシーは個別のAPI、またはすべてのAPIに適用できます。
 
-#### 個別のAPIにポリシーを適用
+1. 個別のAPIに適用するには、Anypoint Platform → **API Manager** → 対象APIを選択 → **Policies** → **Add policy**に進みます。
+1. すべてのAPIに適用するには、Anypoint Platform → **API Manager** → **Automated Policies** → **Add automated policy**に進みます。
+1. ExchangeからWallarmポリシーを選択します。
+1. `http://`または`https://`を含むWallarmノードのURLを指定します。
+1. 必要に応じて他のパラメータを調整します。
+1. ポリシーを適用します。
 
-個別のAPIにWallarmポリシーを適用して保護するには、以下の手順に従ってください:
-
-1. Anypoint Platformで**API Manager**に移動し、対象のAPIを選択してください。
-2. **Policies** → **Add policy**に移動し、Wallarmポリシーを選択してください。
-3. [Wallarmノードインスタンス](#1-deploy-a-wallarm-node)のアドレスを`http://`または`https://`を含めて指定してください。
-4. 必要に応じて、他のパラメーターを変更してください。
-5. ポリシーを適用してください。
-
-![Wallarm policy](../../images/waf-installation/gateways/mulesoft/policy-setup.png)
-
-#### すべてのAPIにポリシーを適用
-
-[MuleSoftのAutomated policyオプション](https://docs.mulesoft.com/mule-gateway/policies-automated-overview)を使用してすべてのAPIにWallarmポリシーを適用するには、以下の手順に従ってください:
-
-1. Anypoint Platformの**API Manager** → **Automated Policies**に移動してください。
-2. **Add automated policy**をクリックし、ExchangeからWallarmポリシーを選択してください。
-3. [Wallarmノードインスタンス](#1-deploy-a-wallarm-node)のアドレスを`http://`または`https://`を含めて指定してください。
-4. 必要に応じて、他のパラメーターを変更してください。
-5. ポリシーを適用してください。
+![Wallarmポリシー](../../images/waf-installation/gateways/mulesoft/policy-setup.png)
 
 ## テスト
 
-デプロイされたポリシーの機能をテストするには、以下の手順に従ってください:
+デプロイ済みポリシーの動作をテストするには、次の手順に従ってください。
 
-1. テスト用の[Path Traversal][ptrav-attack-docs]攻撃を含むリクエストをAPIに送信してください:
+1. テスト用の[パストラバーサル][ptrav-attack-docs]攻撃を含むリクエストをAPIに送信します。
 
     ```
-    curl http://<YOUR_APP_DOMAIN>/etc/passwd
+    curl http://<GATEWAY_URL>/etc/passwd
     ```
-2. Wallarm Consoleの[US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)の**Attacks**セクションを開き、攻撃がリストに表示されていることを確認してください。
+1. [US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)のWallarm Console → **Attacks**セクションを開き、攻撃が一覧に表示されていることを確認します。
     
-    ![Attacks in the interface][attacks-in-ui-image]
+    ![インターフェースのAttacks][attacks-in-ui-image]
 
-    もしWallarmノードモードが[blocking](../../admin-en/configure-wallarm-mode.md)に設定され、トラフィック解析がin-lineの場合、リクエストはブロックされます。
+    Wallarmノードのモードが[blocking](../../admin-en/configure-wallarm-mode.md)に設定され、トラフィックがインラインで流れている場合、リクエストはブロックされます。
 
 ## トラブルシューティング
 
-ソリューションが期待通りに機能しない場合は、MuleSoft Anypoint Platformの**Runtime Manager** → 対象アプリケーション → **Logs**からAPIのログを参照してください。
+期待どおりに動作しない場合は、MuleSoft Anypoint Platform → **Runtime Manager** → 対象アプリケーション → **Logs**にアクセスし、APIのログを確認してください。
 
-また、**API Manager**で対象APIに移動し、**Policies**タブに表示される適用ポリシーを確認することで、APIにポリシーが適用されているかどうかを検証できます。Automated policiesの場合、**See covered APIs**オプションを使用して、カバーされているAPIと除外理由を確認してください。
+また、**API Manager**で対象APIを開き、**Policies**タブに適用済みのポリシーを確認することで、ポリシーがAPIに適用されているかを検証できます。自動ポリシーの場合、**See covered APIs**オプションを使って適用対象のAPIと除外理由を確認できます。
 
 ## ポリシーのアップグレード
 
-デプロイされたWallarmポリシーを[新しいバージョン](code-bundle-inventory.md#mulesoft)へアップグレードするには:
+デプロイ済みのWallarmポリシーを[新しいバージョン](code-bundle-inventory.md#mulesoft-mule-gateway)にアップグレードするには、次のとおりです。
 
-1. [ステップ2](#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange)で説明されているように、更新されたWallarmポリシーをダウンロードし、MuleSoft Exchangeにアップロードしてください。
-2. 新バージョンがExchangeに表示されたら、**API Manager** → 対象API → **Policies** → Wallarmポリシー → **Edit configuration** → **Advanced options**に移動し、ドロップダウンから新しいポリシーバージョンを選択してください。
-3. 新バージョンで追加のパラメーターが導入された場合、必要な値を入力してください。
+1. 更新されたWallarmポリシーをダウンロードし、[手順2](#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange)に従ってMuleSoft Exchangeにアップロードします。
+1. 新しいバージョンがExchangeに表示されたら、**API Manager** → 対象API → **Policies** → Wallarmポリシー → **Edit configuration** → **Advanced options**に進み、ドロップダウンから新しいポリシーバージョンを選択します。
+1. 新しいバージョンで追加のパラメータが導入されている場合は、必要な値を入力します。
 
-    例えば、2.xから3.xにアップグレードする場合:
+    例: 2.xから3.xにアップグレードする場合
 
-    * **CLIENT HOST EXPRESSION**：特に変更が必要ない限り、デフォルト値`#[attributes.headers['x-forwarded-host']]`を使用してください。
-    * **CLIENT IP EXPRESSION**：特に変更が必要ない限り、デフォルト値`#[attributes.headers['x-forwarded-for']]`を使用してください。
-4. 変更を保存してください。
+    * **CLIENT HOST EXPRESSION**: 特別な変更が不要な限り、デフォルト値`#[attributes.headers['x-forwarded-host']]`を使用します。
+    * **CLIENT IP EXPRESSION**: 特別な変更が不要な限り、デフォルト値`#[attributes.headers['x-forwarded-for']]`を使用します。
+1. 変更を保存します。
 
-もしWallarmポリシーがautomated policyとして適用されている場合、直接のアップグレードが不可能なことがあります。その場合は、現行ポリシーを削除し、新バージョンを手動で再適用してください。
+Wallarmポリシーが自動ポリシーとして適用されている場合、直接のアップグレードができないことがあります。その場合は、現在のポリシーを削除し、新しいバージョンを手動で再適用してください。
 
-ポリシーのアップグレードには、特にメジャーバージョンアップの場合、Wallarmノードのアップグレードが必要となることがあります。リリース更新やアップグレード手順については[Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md)を参照してください。将来的なアップグレードの簡便さと非推奨の回避のため、定期的なノードの更新を推奨します。
+ポリシーのアップグレードでは、特にメジャーバージョン更新時に、Wallarmノードのアップグレードが必要になることがあります。セルフホスト型Nodeのリリースノートおよびアップグレード手順は[Native Nodeの変更履歴](../../updating-migrating/native-node/node-artifact-versions.md)を、Wallarmホスト型ノードの場合は[Edgeコネクタのアップグレード手順](../security-edge/se-connector.md#upgrading-the-edge-node)を参照してください。将来のアップグレードを容易にし、非推奨化を避けるためにも、ノードは定期的に更新することを推奨します。
 
 ## ポリシーのアンインストール
 
-Wallarmポリシーをアンインストールするには、automated policyリストまたは個別APIに適用されているポリシー一覧の**Remove policy**オプションを使用してください。
+Wallarmポリシーをアンインストールするには、自動ポリシー一覧または個別APIに適用されたポリシー一覧で**Remove policy**オプションを使用します。

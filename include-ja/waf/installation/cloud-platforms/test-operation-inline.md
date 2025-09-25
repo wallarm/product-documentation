@@ -1,9 +1,11 @@
-1. テスト用の[Path Traversal][ptrav-attack-docs]攻撃をロードバランサーまたはWallarmノードのマシンのいずれかのアドレスに送信します:
+1. ロードバランサーまたはWallarmノードが稼働するマシンのアドレスに対して、テスト用の[パストラバーサル][ptrav-attack-docs]攻撃を送信します:
 
     ```
     curl http://<ADDRESS>/etc/passwd
     ```
-2. Wallarm Consoleを開き、[US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)の**Attacks**セクションに移動し、攻撃がリストに表示されることを確認します。
-    ![インターフェースに表示された攻撃][attacks-in-ui-image]
+2. [US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)でWallarm Console → **Attacks**セクションを開き、攻撃が一覧に表示されていることを確認します。
+    ![インターフェースのAttacks][attacks-in-ui-image]
 
-Wallarmはモニタリングモードで動作しますので、Wallarmノードは攻撃をブロックせずに登録します。
+    Wallarmはモニタリングモードで動作しているため、Wallarmノードは攻撃をブロックせず、記録します。
+
+1. 必要に応じて、ノードの他の動作面も[テスト][link-wallarm-health-check]します。
