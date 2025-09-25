@@ -978,7 +978,7 @@ Complex business logic and access control vulnerabilities are defined by the str
 
 **Required configuration:**
 
-Wallarm detects the complex business logic and access control vulnerabilities only with enabled [Schema-Based Testing (SBT)](vulnerability-detection/schema-based-testing/overview.md) where the [Postman-based testing](vulnerability-detection/schema-based-testing/setup.md#postman-collection-based) is configured.
+Wallarm detects the complex business logic and access control vulnerabilities only with enabled [Schema-Based Testing (SBT)](vulnerability-detection/schema-based-testing/overview.md) where the [Postman-based testing](vulnerability-detection/schema-based-testing/setup.md#postman-collection-based-test-policies) is configured.
 
 ## Other
 
