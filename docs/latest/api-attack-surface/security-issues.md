@@ -59,4 +59,6 @@ Along with all the other security issues (found by any [method](../about-wallarm
 
 ![Security Issues](../images/api-attack-surface/security-issues.png)
 
-You can recognize issues found by AASM by the `AASM` in the **Discovered by** field. Detailed information on how to work with security issue: understand issue statuses, lifecycle and transitions, risk levels, getting details on each issue and mitigation measures, getting notifications and reports - is provided [here](../user-guides/vulnerabilities.md).
+You can recognize issues found by AASM by the `AASM` in the **Discovered by** field. You can filter issues to see only the ones found by AASM with the **Discovered by** filter.
+
+Detailed information on how to work with security issue: understand issue statuses, lifecycle and transitions, risk levels, getting details on each issue and mitigation measures, getting notifications and reports - is provided [here](../user-guides/vulnerabilities.md).
