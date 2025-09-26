@@ -44,11 +44,11 @@ This solution is recommended for securing APIs managed by the Azure APIM service
 * [Multitenancy][multi-tenancy] is not supported.
 
     All protected APIs are managed under a single Wallarm account; separating protection across multiple accounts for different infrastructures or environments is not yet supported.
-* Attacks in query parameters are registered **3 times**. 
+* Attacks in query parameters and URI are registered **3 times**. 
 
-    This is because the Azure Application Gateway adds the `X-ORIGINAL-URL` and `X-WAWS-UNENCODED-URL` headers, which fully reflect the original URI including the attack pattern. Therefore, a single malicious query parameter will result in 3 detections:
+    This is because the Azure Application Gateway adds the `X-ORIGINAL-URL` and `X-WAWS-UNENCODED-URL` headers, which fully reflect the original URI including the attack pattern. As a result, a single malicious parameter or URI path generates three detections:
     
-    * In the query parameter itself
+    * In the query parameter or URI path itself
     * In the `X-ORIGINAL-URL` header
     * In the `X-WAWS-UNENCODED-URL` header
 
