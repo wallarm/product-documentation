@@ -90,7 +90,7 @@ The total score is calculated using a complex proprietary formula that incorpora
 
 ## API attack surface reports
 
-You can get a detailed DOCX report on external hosts and their APIs discovered for your domains. This report will also include information of your choice on the [security issues](security-issues.md) detected for these APIs.
+You can download locally or immediately send to the emails of your choice a detailed DOCX report on external hosts and their APIs discovered for your domains. This report will also include information of your choice on the [security issues](security-issues.md) detected for these APIs.
 
 Besides, you can get information about your API surface in a table view (CSV), organized by:
 
