@@ -37,6 +37,21 @@ Mitigation controls require
 
 If you have all of this and still, in Wallarm Console, do not see the **Security controls** → **Mitigation Controls** section, contact the [Wallarm support team](https://support.wallarm.com/) to enable them.
 
+## Creating and applying mitigation control
+
+To create and apply a new mitigation control:
+
+1. Proceed to Wallarm Console → **Mitigation Controls**.
+1. Click **Add control**.
+1. In the **Add control** dialog, select the type of control you want to create.
+
+    ![Creating mitigation control](../images/user-guides/mitigation-controls/mc-create.png)
+
+1. [Configure](#configuration) your control.
+1. Click **Add**. The created control is displayed in the list. It immediately goes into action and performs in accordance with the selected **Mitigation mode**.
+
+    You can temporarily turn off the control right after creation or at any moment later using the **On/Off** switcher.
+
 ## Configuration
 
 Perform configuring in the **Security controls** → **Mitigation Controls** section of Wallarm Console. You can also access some mitigation control settings from other places in the system, for example, from API Sessions.
