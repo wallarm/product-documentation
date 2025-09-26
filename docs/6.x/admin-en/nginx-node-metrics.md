@@ -2,7 +2,6 @@
 [nginx-node-6.4.1]: ../updating-migrating/node-artifact-versions.md#641-2025-08-07
 [nginx-node-changelog]: ../updating-migrating/node-artifact-versions.md
 [AIO]: ../installation/nginx/all-in-one.md
-[inline]:  ../installation/nginx-native-node-internals.md#in-line
 [docker]: ../admin-en/installation-docker-en.md
 [IC]: ../admin-en/installation-kubernetes-en.md
 [sidecar]: ../installation/kubernetes/sidecar-proxy/deployment.md
@@ -10,13 +9,4 @@
 [apifw-metrics]: ../admin-en/apifw-metrics.md
 [api-spec-enforcement]: ../api-specification-enforcement/overview.md
 
-# Monitoring the NGINX Node Metrics
-
-The [NGINX Node][nginx-node-landing] exposes metrics in the [Prometheus](https://prometheus.io/docs/instrumenting/exposition_formats/) format, which you can use to monitor its performance, traffic, and detected attacks. This topic provides an overview of these metrics. For detailed information on each metric type, refer to its dedicated topic.
-
-There are two types of metrics available:
-
-* [General metrics][wstore-metrics], which include Wallarm-specific **wstore** metrics and general system metrics (e.g., Go runtime, memory usage, process stats, etc.) available at the `http://localhost:9001/metrics` endpoint by default. 
-* [API Firewall metrics][apifw-metrics], available at `http://<host>:9010/metrics` unless a custom host or path is configured.
-
-    API Firewall is a service that [API Specification Enforcement][api-spec-enforcement] relies on for its operation.
+--8<-- "latest/admin-en/nginx-node-metrics.md"
