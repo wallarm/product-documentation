@@ -207,3 +207,7 @@ When enumeration attacks are detected or blocked in accordance with the [mitigat
 ![Enumeration attack (brute force) in API Sessions](../images/user-guides/mitigation-controls/mc-found-attack-in-api-sessions.png)
 
 You can find sessions with corresponding attack types using the **Attack** filter; also, if necessary, filter inside session details to see only requests related to the enumeration attack.
+
+Note that enumeration mitigation controls described in this article base their traffic analysis and corresponding actions entirely on [API sessions](../../api-sessions/overview.md) which significantly improve their work: if previously you had several nodes and, for example, a brute force [rule](../user-guides/rules/rules.md), your network load balancer could separate attack requests into different nodes and for each node the brute force counter worked separately. This could lead to missing some brute force attacks. The improved approach of mitigation control in this example is that it relies on session, no matter which node the traffic went through.
+
+Because of that, the attacks found by these mitigation controls are displayed exclusively in the **API Sessions** section (and not displayed in the [**Attacks**](../user-guides/events/check-attack.md) section).
