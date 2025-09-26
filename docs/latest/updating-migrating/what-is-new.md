@@ -180,6 +180,23 @@ The session can be blocked automatically by:
 
 You can also block/unblock any session manually at any moment.
 
+## Security Issues: all vulnerabilities in one unified view
+
+As for now, Wallarm offers multiple [methods](../about-wallarm/detecting-vulnerabilities.md#detection-methods) of detecting vulnerabilities (security issues) which vary at scope, usage scenarios, required elements (with or without node) and a set of vulnerabilities they are able to find.
+
+Previously vulnerabilities found by different methods were displayed in different sections of Wallarm Console - now the view is unified and you can see all of them in one place - the **Security Issues** section.
+
+![Security Issues](../images/api-attack-surface/security-issues.png)
+
+Here you can:
+
+* Easily view and [manage](../user-guides/vulnerabilities.md) the list of found vulnerabilities distinguished by the risk level
+* Access detailed information on each security issue (vulnerability): description, mitigation measures, links to relates CWEs, history of status changes and comments from your team members
+* Close and re-open vulnerabilities
+* Get reports
+
+The old **Vulnerabilities** section is not displayed anymore.
+
 ## Which Wallarm nodes are recommended to be upgraded?
 
 * Client and multi-tenant Wallarm NGINX Nodes of version 4.10 and 5.x to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support-policy).
