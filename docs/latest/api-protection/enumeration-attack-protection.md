@@ -95,6 +95,26 @@ To review forced browsing default controls, in Wallarm Console → **Security Co
 
 Editing allows you to customize a default control based on the specific needs of the application, traffic patterns, or business context. For example, you can adjust thresholds or **Scope**.
 
+## Creating and applying mitigation control
+
+To create and apply a new mitigation control:
+
+1. Proceed to Wallarm Console → **Mitigation Controls**.
+1. Click **Add control**.
+1. In the **Add control** dialog, select the type of enumeration control you want to create:
+
+  * **Brute force protection**
+  * **BOLA protection**
+  * **Forced browsing protection**
+  * Generic **Enumeration attack protection**
+
+    ![Creating mitigation control](../images/user-guides/mitigation-controls/mc-create.png)
+
+1. [Configure](#configuration) your control.
+1. Click **Add**. The created control is displayed in the list. It immediately goes into action and performs in accordance with the selected **Mitigation mode**.
+
+    You can temporarily turn off the control right after creation or at any moment later using the **On/Off** switcher.
+
 ## Configuration
 
 Configure enumeration protection fulfilling the following steps:
