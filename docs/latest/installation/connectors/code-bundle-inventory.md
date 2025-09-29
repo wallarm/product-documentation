@@ -74,6 +74,10 @@ The current version can be found in `Cargo.toml` → `[package]` → `version` p
 | ------------------- | ------------------- |
 | 1.x.x               | 0.16.0 and higher   |
 
+### 1.1.1 (2025-09-29)
+
+* Extended MuleSoft logging with additional debug-level details
+
 ### 1.1.0 (2025-08-19)
 
 * Upgraded Flex PDK to 1.4.0
