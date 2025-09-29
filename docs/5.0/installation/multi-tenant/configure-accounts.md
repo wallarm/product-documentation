@@ -18,8 +18,6 @@ To configure tenant accounts:
 
     ![Registration form](../../images/signup-en.png)
 
-    !!! info "Corporate email"
-        Please sign up using a corporate email address.
 2. Open your email inbox and activate the account using the link from the received message.
 3. Send a request for activating the multitenancy feature for your account to the [Wallarm technical support](mailto:support@wallarm.com). Send the following data with the request:
     * Name of the Wallarm Cloud being used (US Cloud or EU Cloud)
