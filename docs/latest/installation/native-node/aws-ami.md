@@ -69,7 +69,7 @@ Recommended configuration:
 
     * `https://meganode.wallarm.com` to download the Wallarm installer
     * `https://us1.api.wallarm.com` or `https://api.wallarm.com` for US/EU Wallarm Cloud
-    * IP addresses below for downloading updates to attack detection rules and [API specifications][api-spec-enforcement-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][ip-list-docs] countries, regions, or data centers
+    * IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and [API specifications][api-spec-enforcement-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][ip-list-docs] countries, regions, or data centers
 
         --8<-- "../include/wallarm-cloud-ips.md"
 * SSH key pair for accessing the instance

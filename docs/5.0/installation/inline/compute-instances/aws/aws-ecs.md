@@ -48,7 +48,7 @@ For guidance on estimating AWS infrastructure costs for this deployment, see the
 * AWS account and user with the **admin** permissions
 * AWS CLI 1 or AWS CLI 2 properly [installed](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
-* Access to the IP addresses below for downloading updates to attack detection rules and [API specifications][api-policy-enf-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][graylist-docs] countries, regions, or data centers
+* Access to the IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and [API specifications][api-policy-enf-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][graylist-docs] countries, regions, or data centers
 
     --8<-- "../include/wallarm-cloud-ips.md"
 

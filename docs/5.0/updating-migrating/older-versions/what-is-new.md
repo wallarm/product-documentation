@@ -221,7 +221,7 @@ Wallarm node finds the JWT anywhere in the request, [decodes](../../user-guides/
 
 ## System requirements for the filtering node installation
 
-* Wallarm node instances now require access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../../user-guides/ip-lists/overview.md) countries, regions, or data centers.
+* Wallarm node instances now require access to the IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and [API specifications](../../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../../user-guides/ip-lists/overview.md) countries, regions, or data centers.
 
     --8<-- "../include/wallarm-cloud-ips.md"
 * The filtering node now uploads data to the Cloud using `us1.api.wallarm.com:443` (US Cloud) and `api.wallarm.com:443` (EU Cloud) instead of `us1.api.wallarm.com:444` and `api.wallarm.com:444`.
