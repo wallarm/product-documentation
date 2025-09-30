@@ -37,7 +37,7 @@ new attack types in logging variables and search bars?
 
     The default value is `"tcp4"`.
 * Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
-* Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
+* Introduced a new Prometheus metric [`wallarm_wcli_job_export_period`](../admin-en/wcli-metrics.md#wallarm_wcli_job_export_period) to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
 * Introduced a new `$wallarm_mode` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
 
     This variable returns the final filtration mode applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization.
