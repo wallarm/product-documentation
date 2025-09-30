@@ -7,6 +7,12 @@
 [gcp]: ../installation/packages/gcp-machine-image.md
 [IC]: ../admin-en/installation-kubernetes-en.md
 [sidecar]: ../installation/kubernetes/sidecar-proxy/deployment.md
+[sidecar-helm-chart]: ../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
+[sidecar-deployment]: ../installation/kubernetes/sidecar-proxy/deployment.md
+[sidecar-upgrade]: ../updating-migrating/sidecar-proxy.md
+[ic-helm-chart]: ../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewallmetrics
+[ic-deployment]: ../admin-en/installation-kubernetes-en.md
+
 
 # API Firewall Metrics of the NGINX Node
 
@@ -14,11 +20,11 @@ This article describes the API Firewall metrics of the NGINX Node. The API Firew
 
 The metrics include data on HTTP request performance, request counts, and service errors. They help you monitor and troubleshoot the [NGINX Node][nginx-node-metrics].
 
-API Firewall metrics are not enabled by default. You need to enable them differently depending on your deployment type.
-
 ## Enabling API Firewall metrics
 
-**For [Docker image][docker], [NGINX Ingress Controller][IC], and [Sidecar][sidecar]:**
+API Firewall metrics are not enabled by default. You need to enable them differently depending on your deployment type.
+
+**For [Docker image][docker]:**
 
 1. Set the `APIFW_METRICS_ENABLED` environment variable to `true` when deploying the NGINX Node. 
 
@@ -29,6 +35,54 @@ API Firewall metrics are not enabled by default. You need to enable them differe
     * `APIFW_METRICS_ENDPOINT_NAME` - the path at which the metrics endpoint is exposed.
     * `APIFW_METRICS_HOST` - the IP address and/or port for the metrics endpoint. When specifying a port, prefix it with a colon (:).
     Expose the metrics port in your container or deployment configuration (e.g., for the default state, use `-p 9010:9010`).
+
+**For [NGINX Ingress Controller][IC]:**
+
+1. Add the [`controller.wallarm.apiFirewall.metrics*`][ic-helm-chart] values to the Helm Chart during NGINX Ingress Controller [deployment][ic-deployment] or upgrade.
+
+    ```
+    controller:
+    wallarm:
+        apiFirewall:
+        metrics:
+            enabled: true
+            port: 9010
+            endpointPath: /metrics
+            host: ":9010"
+            service:
+            servicePort: 9010
+    ```
+
+    Once enabled, metrics are available at `http://<host>:9010/metrics` unless custom host or path are used (see step 2 below).
+
+2. (Optional) You can change the default API Firewall metrics endpoint using the values described above.
+
+**For [Sidecar][sidecar]:**
+
+1. Add the [`config.wallarm.apiFirewall.metrics.*`][sidecar-helm-chart] values to the Helm Chart during Sidecar [deployment][sidecar-deployment] or [upgrade][sidecar-upgrade]. 
+
+    ```
+    config:
+    wallarm:
+    # Other configuration values...
+        apiFirewall:
+        mode: "on"
+        readBufferSize: 8192
+        writeBufferSize: 8192
+        maxRequestBodySize: 4194304
+        disableKeepalive: false
+        maxConnectionsPerIp: 0
+        maxRequestsPerConnection: 0
+        metrics:
+            enabled: true
+            endpointName: "metrics"
+            host: ":9010"
+        fallback: "on"
+    ```
+
+    Once enabled, metrics are available at `http://<host>:9010/metrics` unless custom host or path are used (see step 2 below).
+
+2. (Optional) You can change the default API Firewall metrics endpoint using the values described above.
 
 **For [All-in-one installer][AIO] and cloud images ([AWS AMI][aws-ami], [GCP Machine Image][gcp]):**
 

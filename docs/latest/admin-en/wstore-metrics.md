@@ -17,7 +17,7 @@
 
 This article describes the Postanalytics module and the general system metrics of the NGINX Node to help monitor and troubleshoot the NGINX Node.
 
-* The [Postanalytics module][postanalytics-module] uses **wstore** for local traffic processing. Its metrics are prefixed with **wallarm_wstore_** and reflect the performance of the Postanalytics module. 
+* The [Postanalytics module][postanalytics-module] uses **wstore** for local traffic processing. Its metrics are prefixed with `wallarm_wstore_*` and reflect the performance of the Postanalytics module. 
 
     The available metric groups are listed [below](#connections-and-traffic-metrics). The exact list of metrics may vary depending on the NGINX Node version. Changes are reflected in the [NGINX Node changelog][nginx-node-changelog].
 
@@ -38,7 +38,7 @@ This endpoint is accessible only from the server itself.
 You can change the default metrics host and port (`http://localhost:9001/metrics`) in the following ways:
 
 * Change `metrics.listenAddress` in the `/opt/wallarm/wstore/wstore.yaml` file.
-* Provide the `WALLARM_WSTORE__METRICS__LISTEN_ADDRESS` environment variable when deploying the NGINX Node (e.g. from a Docker image or NGINX Ingress Controller).
+* Provide the `WALLARM_WSTORE__METRICS__LISTEN_ADDRESS` environment variable when deploying the NGINX Node (e.g. from a Docker image).
 
     !!! info "Environment variable precedence"
         Environment variables take precedence over the values set in `/opt/wallarm/wstore/wstore.yaml.` For example, if the `metrics.listenAddress` in the YAML file is set to `0.0.0.0:9005`, but the `WALLARM_WSTORE__METRICS__LISTEN_ADDRESS` environment variable is set to `127.0.0.1:9005`, the metrics will be available only at `http://127.0.0.1:9005/metrics`.
@@ -375,11 +375,13 @@ wallarm_wstore_kvstore_drops_total 0
 
 ## General system metrics
 
-We can divide general system metrics into two groups:
+We can divide general system metrics into 2 groups:
 
-* Prometheus Go metrics, prefixed with **go_** and **process_**
-  Most Prometheus Go metrics are documented [here](https://demo.akvorado.net/api/v0/inlet/metrics). If a metric is missing there, refer to the [official Go metrics documentation](https://pkg.go.dev/runtime/metrics).
-* Prometheus metrics, prefixed with **metrics_push**, related to its [push gateway](https://github.com/prometheus/pushgateway).
+* Prometheus Go metrics, prefixed with `go_*` and `process_*`
+
+  Most Prometheus Go metrics are documented [here](https://demo.promlabs.com/metrics). If a metric is missing there, refer to the [official Go metrics documentation](https://pkg.go.dev/runtime/metrics).
+
+* Prometheus metrics, prefixed with `metrics_push_*`, related to its [push gateway](https://github.com/prometheus/pushgateway).
 
 ### Example of general system metrics
 
