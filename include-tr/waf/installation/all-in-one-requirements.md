@@ -1,5 +1,5 @@
-* [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) için Wallarm Console üzerinde **Administrator** rolüne sahip hesaba erişim.
-* Desteklenen İşletim Sistemleri:
+* US Cloud ([US Cloud](https://us1.my.wallarm.com/)) veya EU Cloud ([EU Cloud](https://my.wallarm.com/)) için Wallarm Console'da **Administrator** rolüne sahip hesaba erişim.
+* Desteklenen işletim sistemleri:
 
     * Debian 10, 11 ve 12.x
     * Ubuntu LTS 18.04, 20.04, 22.04
@@ -10,11 +10,11 @@
     * Oracle Linux 9.x
     * Redox
     * SuSe Linux
-    * Diğerleri (liste sürekli genişlemektedir, işletim sisteminizin listede olup olmadığını kontrol etmek için [Wallarm support team](mailto:support@wallarm.com) ile iletişime geçin)
+    * Diğerleri (liste sürekli genişlemektedir; işletim sisteminizin listede olup olmadığını kontrol etmek için [Wallarm destek ekibi](mailto:support@wallarm.com) ile iletişime geçin)
 
-* Tüm bir Wallarm kurulum dosyasını indirmek için `https://meganode.wallarm.com` adresine erişim. Erişimin güvenlik duvarı tarafından engellenmediğinden emin olun.
-* US Wallarm Cloud ile çalışma için `https://us1.api.wallarm.com` veya EU Wallarm Cloud ile çalışma için `https://api.wallarm.com` adresine erişim. Eğer erişim yalnızca proxy sunucu üzerinden yapılandırılabiliyorsa, [instructions][configure-proxy-balancer-instr] bağlantısını kullanın.
-* Saldırı tespit kurallarına yönelik güncellemeleri indirmek ve [izin verilen, engellenen veya gri listeye alınan][ip-lists-docs] ülkeler, bölgeler veya veri merkezleri için doğru IP'leri almak amacıyla aşağıdaki IP adreslerine erişim
+* Hepsi bir arada Wallarm yükleyicisini indirmek için `https://meganode.wallarm.com` adresine erişim. Bu erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun.
+* US Wallarm Cloud ile çalışmak için `https://us1.api.wallarm.com` adresine veya EU Wallarm Cloud ile çalışmak için `https://api.wallarm.com` adresine erişim. Erişim yalnızca proxy sunucusu üzerinden yapılandırılabiliyorsa, [talimatları][configure-proxy-balancer-instr] kullanın.
+* Saldırı tespit kurallarına yönelik güncellemeleri indirmek ve ayrıca [allowlisted, denylisted, or graylisted][ip-lists-docs] ülkeleriniz, bölgeleriniz veya veri merkezleriniz için kesin IP'leri almak amacıyla aşağıdaki IP adreslerine erişim
 
     --8<-- "../include/wallarm-cloud-ips.md"
-* Tüm komutları süper kullanıcı (örneğin `root`) olarak çalıştırın.
+* Tüm komutları ayrıcalıklı kullanıcı olarak çalıştırma (ör. `root`).

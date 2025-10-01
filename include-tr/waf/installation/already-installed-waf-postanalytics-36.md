@@ -1,9 +1,9 @@
-!!! info "If you deploy several Wallarm nodes"  
-    Ortamınıza dağıtılan tüm Wallarm node'lar **aynı sürümde** olmalıdır. Ayrı sunuculara kurulmuş postanalytics modülleri de **aynı sürümde** olmalıdır.  
+!!! info "Birden fazla Wallarm düğümü dağıtıyorsanız"
+    Ortamınıza dağıtılan tüm Wallarm düğümleri **aynı sürümde** olmalıdır. Ayrı sunuculara kurulu postanalytics modülleri de **aynı sürümde** olmalıdır.
 
-    Ek node kurulmadan önce, lütfen sürümünün zaten dağıtılmış modüllerin sürümüyle eşleştiğinden emin olun. Eğer dağıtılmış modül sürümü [kullanımdan kaldırıldı ya da yakında kaldırılacak (`4.0` veya daha düşük)][versioning-policy] ise, tüm modülleri en son sürüme yükseltin.  
+    Ek düğümü kurmadan önce, sürümünün halihazırda dağıtılmış modüllerin sürümüyle eşleştiğinden emin olun. Dağıtılmış modül sürümü [kullanım dışı bırakılmışsa veya yakında bırakılacaksa (`4.0` veya altı)][versioning-policy], tüm modülleri en son sürüme yükseltin.
 
-    Aynı sunucuya kurulmuş filtering node ve postanalytics'in yüklü sürümünü kontrol etmek için:  
+    Aynı sunucuya kurulu filtreleme düğümü ve postanalytics'in yüklü sürümünü kontrol etmek için:
 
     === "Debian"
         ```bash
@@ -13,41 +13,41 @@
         ```bash
         apt list wallarm-node
         ```
-    === "CentOS or Amazon Linux 2.0.2021x and lower"
+    === "CentOS veya Amazon Linux 2.0.2021x ve daha düşük"
         ```bash
         yum list wallarm-node
         ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    === "AlmaLinux, Rocky Linux veya Oracle Linux 8.x"
         ```bash
         yum list wallarm-node
         ```
 
-    Farklı sunuculara kurulmuş filtering node ve postanalytics sürümlerini kontrol etmek için:  
+    Farklı sunuculara kurulu filtreleme düğümü ve postanalytics sürümlerini kontrol etmek için:
 
     === "Debian"
         ```bash
-        # Wallarm filtering node'unun kurulu olduğu sunucudan çalıştırın
+        # Wallarm filtreleme düğümünün kurulu olduğu sunucudan çalıştırın
         apt list wallarm-node-nginx
         # postanalytics'in kurulu olduğu sunucudan çalıştırın
         apt list wallarm-node-tarantool
         ```
     === "Ubuntu"
         ```bash
-        # Wallarm filtering node'unun kurulu olduğu sunucudan çalıştırın
+        # Wallarm filtreleme düğümünün kurulu olduğu sunucudan çalıştırın
         apt list wallarm-node-nginx
         # postanalytics'in kurulu olduğu sunucudan çalıştırın
         apt list wallarm-node-tarantool
         ```
-    === "CentOS or Amazon Linux 2.0.2021x and lower"
+    === "CentOS veya Amazon Linux 2.0.2021x ve daha düşük"
         ```bash
-        # Wallarm filtering node'unun kurulu olduğu sunucudan çalıştırın
+        # Wallarm filtreleme düğümünün kurulu olduğu sunucudan çalıştırın
         yum list wallarm-node-nginx
         # postanalytics'in kurulu olduğu sunucudan çalıştırın
         yum list wallarm-node-tarantool
         ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    === "AlmaLinux, Rocky Linux veya Oracle Linux 8.x"
         ```bash
-        # Wallarm filtering node'unun kurulu olduğu sunucudan çalıştırın
+        # Wallarm filtreleme düğümünün kurulu olduğu sunucudan çalıştırın
         yum list wallarm-node-nginx
         # postanalytics'in kurulu olduğu sunucudan çalıştırın
         yum list wallarm-node-tarantool

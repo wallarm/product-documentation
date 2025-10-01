@@ -5,54 +5,56 @@
 [request-processing]:       ../../user-guides/rules/request-processing.md
 [api-discovery-enable-link]:        ../../api-discovery/setup.md#enable
 
-# Sanal Yamalama
+# Sanal Yama
 
-Uygulamanızın kodundaki kritik [güvenlik açığını](../../user-guides/vulnerabilities.md) düzeltemediğiniz veya gerekli güncellemeleri hızlıca yükleyemediğiniz durumlarda, bu güvenlik açıklarından yararlanmayı mümkün kılabilecek uç noktalara yapılan tüm veya belirli istekleri engellemek amacıyla sanal yama oluşturabilirsiniz. Sanal yama, [allowlisted](../ip-lists/overview.md) IP'lerden gelenler hariç, izleme ve güvenli engelleme [modlarında](../../admin-en/configure-wallarm-mode.md) bile isteklere müdahale edecektir.
+Uygulamanızın kodundaki kritik bir [güvenlik açığını](../../user-guides/vulnerabilities.md) hızla gidermek veya gerekli güncellemeleri kurmak mümkün olmadığında, bu güvenlik açıklarının istismar edilmesine olanak tanıyabilecek uç noktalara yönelik tüm veya belirli istekleri engellemek için bir sanal yama oluşturabilirsiniz. Sanal yama, [allowlisted](../ip-lists/overview.md) IP’lerden gelenler hariç, monitoring and safe blocking [modlarında](../../admin-en/configure-wallarm-mode.md) bile istekleri engeller.
 
-Wallarm, sanal yama oluşturmak için aşağıdaki [kuralları](../../user-guides/rules/rules.md) sunar:
+Wallarm, sanal yama oluşturmak için aşağıdaki [kuralları](../../user-guides/rules/rules.md) sağlar:
 
-* **Sanal yama oluştur** kuralı - SQLi, SSTi, RCE vb. gibi bilinen [saldırı](../../attacks-vulns-list.md) işaretlerini içeren istekleri engellemek amaçlı sanal yama oluşturmanıza olanak tanır. Ayrıca, herhangi bir saldırı işareti olmaksızın belirli istekleri engellemek için **Herhangi bir istek** seçeneğini de kullanabilirsiniz.
-* **Virtual patch** seçeneğiyle **RegExp tabanlı saldırı göstergesi oluştur** kuralı - Kendi saldırı işaretlerinizi veya engelleme nedeninizi (bkz. [örnek](#blocking-all-requests-with-incorrect-x-authentication-header)) tanımlayan düzenli ifadeler kullanarak istekleri engelleyen sanal yama oluşturmanıza olanak tanır. Düzenli ifadeye dayalı kural ile çalışma detayları [burada](../../user-guides/rules/regex-rule.md) açıklanmaktadır.
+* **Create a virtual patch** kuralı - seçilen kısmında [bilinen](../../attacks-vulns-list.md) saldırı göstergelerinden (SQLi, SSTi, RCE vb.) birini içeren istekleri engelleyen bir sanal yama oluşturmanıza olanak tanır. Ayrıca, herhangi bir saldırı göstergesi olmadan belirli istekleri engellemek için **Any request** seçeneğini belirleyebilirsiniz.
+* **Virtual patch** seçeneği işaretli **Create regexp-based attack indicator** kuralı - düzenli ifadelerle tanımladığınız kendi saldırı göstergelerinizi veya kendi engelleme nedeninizi (bkz. [örnek](#blocking-all-requests-with-incorrect-x-authentication-header)) içeren istekleri engelleyen bir sanal yama oluşturmanıza olanak tanır. Düzenli ifadeye dayalı kuralla çalışma ayrıntıları [burada](../../user-guides/rules/regex-rule.md) açıklanmaktadır.
 
-## Kural Oluşturma ve Uygulama
+## Kuralın oluşturulması ve uygulanması
 
 --8<-- "../include/rule-creation-initial-step.md"
-1. **Mitigation controls** bölümünü seçin →
-    * **Sanal yama** veya
-    * **Özel saldırı tespitçisi** ( **Virtual patch** seçeneğiyle - bkz. [ayrıntılar](../../user-guides/rules/regex-rule.md))
-1. **If request is** bölümünde, kuralı uygulamak istediğiniz kapsamı [describe](rules.md#configuring) edin.
-1. Ortak **Sanal yama oluştur** kuralı için, tüm istekleri mi yoksa sadece belirli saldırı işaretleri bulunan istekleri mi engelleyeceğinizi ayarlayın (**Herhangi bir istek** veya **Seçilmiş**).
-1. **In this part of request** bölümünde, kuralı uygulamak istediğiniz istek noktalarını belirtin. Wallarm, seçilen istek parametrelerine sahip istekleri sınırlandıracaktır.
+1. **Mitigation controls** öğesini seçin →
 
-    Mevcut tüm noktalar [burada](request-processing.md) açıklanmıştır; özel kullanım durumunuza uygun olanları seçebilirsiniz.
+    * **Virtual patch** veya
+    * **Custom attack detector** (**Virtual patch** seçeneği ile - [ayrıntılar](../../user-guides/rules/regex-rule.md))
 
-1. [Kuralın derlenmesi ve filtreleme düğümüne yüklenmesi](rules.md#ruleset-lifecycle) tamamlanana kadar bekleyin.
+1. **If request is** alanında, kuralın uygulanacağı kapsamı [tanımlayın](rules.md#configuring).
+1. Genel **Create a virtual patch** kuralı için, tüm isteklerin mi yoksa yalnızca belirli saldırı göstergeleri içerenlerin mi engelleneceğini ayarlayın (**Any request** vs. **Selected**).
+1. **In this part of request** bölümünde, kuralı uygulamak istediğiniz istek noktalarını belirtin. Wallarm, seçilen istek parametreleri için aynı değerlere sahip istekleri kısıtlayacaktır.
 
-## Kural Örnekleri
+    Kullanılabilir tüm noktalar [burada](request-processing.md) açıklanmıştır; özel kullanım durumunuza uyanları seçebilirsiniz.
 
-### Seçilen Uç Nokta İçin Belirli İstekleri Engelleme
+1. [Kuralın derlenip filtreleme düğümüne yüklenmesinin tamamlanmasını](rules.md#ruleset-lifecycle) bekleyin.
 
-Örneğin, uygulamanızın `example.com/purchase` uç noktasında bulunan online satın alma bölümünün, `refresh` sorgu dizesi parametresini işlerken çöktüğünü varsayalım. Hata giderilene kadar, çökme oluşturan istekleri engellemeniz gerekir.
+## Kural örnekleri
 
-Bunu yapmak için, ekran görüntüsünde gösterildiği gibi **Sanal yama oluştur** kuralını ayarlayın:
+### Seçili uç nokta için belirli isteklerin engellenmesi
 
-![Virtual patch for any request type][img-vpatch-example2]
+Diyelim ki uygulamanızın `example.com/purchase` uç noktasından erişilen çevrimiçi satın alma bölümü, `refresh` sorgu dizesi parametresi işlendiğinde çöküyor. Hata düzeltilene kadar, çöküşe yol açan istekleri engellemeniz gerekiyor.
 
-### Keşfedilmiş Ancak Henüz Düzeltilemeyen Güvenlik Açığı İçin İstismar Girişimlerini Engelleme
+Bunu yapmak için, ekran görüntüsünde gösterildiği gibi **Create a virtual patch** kuralını ayarlayın:
 
-Örneğin, uygulamanızın `example.com` alan adında yer alan bölümünde henüz düzeltilmemiş, ancak keşfedilmiş bir güvenlik açığı olduğunu varsayalım: Uygulamanın `id` parametresi SQL enjeksiyon saldırılarına açıktır. Bu arada, Wallarm filtreleme düğümü izleme modunda olsa da, güvenlik açığı istismar girişimlerini hemen engellemeniz gerekmektedir.
+![Herhangi bir istek türü için sanal yama][img-vpatch-example2]
 
-Bunu yapmak için, ekran görüntüsünde gösterildiği gibi **Sanal yama oluştur** kuralını ayarlayın:
+### Keşfedilmiş ancak henüz düzeltilmemiş güvenlik açığının istismar girişimlerinin engellenmesi
 
-![Virtual patch for a certain request type][img-vpatch-example1]
+Diyelim ki `example.com` alan adından erişilen uygulamanızda keşfedilmiş ancak henüz giderilmemiş bir güvenlik açığı var: uygulamanın `id` parametresi SQL injection saldırılarına karşı zafiyet içeriyor. Bu sırada Wallarm filtreleme düğümü monitoring mode olarak ayarlanmış olsa da, güvenlik açığının istismar girişimlerini derhal engellemeniz gerekiyor.
 
-### Yanlış `X-AUTHENTICATION` Başlığına Sahip Tüm İstekleri Engelleme
+Bunu yapmak için, ekran görüntüsünde gösterildiği gibi **Create a virtual patch** kuralını ayarlayın:
+
+![Belirli bir istek türü için sanal yama][img-vpatch-example1]
+
+### Hatalı `X-AUTHENTICATION` başlığına sahip tüm isteklerin engellenmesi {#blocking-all-requests-with-incorrect-x-authentication-header}
 
 --8<-- "../include/waf/features/rules/rule-vpatch-regex.md"
 
-## Sanal Yamalar İçin API Çağrıları
+## Sanal yamalar için API çağrıları
 
-Sanal yamalar oluşturmak için doğrudan Wallarm API'sini çağırabilirsiniz. Aşağıdaki örneklere göz atın:
+Sanal yamalar oluşturmak için Wallarm API’sini doğrudan çağırabilirsiniz. Örnekleri inceleyin:
 
-* [Tüm `/my/api/*` adresine gönderilen istekleri engellemek üzere sanal yama oluşturun](../../api/request-examples.md#create-the-virtual-patch-to-block-all-requests-sent-to-myapi)
-* [Belirli bir uygulama örnek kimliği için `/my/api/*` adresine gönderilen tüm istekleri engellemek üzere sanal yama oluşturun](../../api/request-examples.md#create-the-virtual-patch-for-a-specific-application-instance-id-to-block-all-requests-sent-to-myapi)
+* [`/my/api/*` adresine gönderilen tüm istekleri engelleyecek sanal yamayı oluşturun](../../api/request-examples.md#create-the-virtual-patch-to-block-all-requests-sent-to-myapi)
+* [Belirli bir application instance ID için, `/my/api/*` adresine gönderilen tüm istekleri engelleyecek sanal yamayı oluşturun](../../api/request-examples.md#create-the-virtual-patch-for-a-specific-application-instance-id-to-block-all-requests-sent-to-myapi)

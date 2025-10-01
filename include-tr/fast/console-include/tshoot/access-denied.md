@@ -1,4 +1,4 @@
-```
-Yükleniyor...
-[hata] Yeni örnek oluşturulamıyor - erişim reddedildi
-```
+    ```
+    Yükleniyor...
+    [hata] Yeni örnek oluşturulamıyor - erişim reddedildi
+    ```

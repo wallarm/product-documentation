@@ -1,0 +1,1 @@
+--8<-- "latest-tr/installation/native-node/aws-ami.md"

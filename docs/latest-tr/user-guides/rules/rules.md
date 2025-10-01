@@ -1,216 +1,232 @@
-```markdown
 [link-regex]:                   https://github.com/yandex/pire
 [link-request-processing]:      request-processing.md
 [img-add-rule]:                 ../../images/user-guides/rules/section-rules-add-rule.png
+[link-attack-detection-tools]:  ../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection
+[link-sub-plans]:               ../../about-wallarm/subscription-plans.md#core-subscription-plans
+[link-filtration-mode]:         ../../admin-en/configure-wallarm-mode.md
+[link-nodes]:                   ../../about-wallarm/overview.md#how-wallarm-works
+[link-sessions]:                ../../api-sessions/overview.md
+[link-brute-force-protection]:  ../../admin-en/configuration-guides/protecting-against-bruteforce.md
+[link-cloud-node-synchronization]: ../../admin-en/configure-cloud-node-synchronization-en.md
+[img-rules-create-backup]:      ../../images/user-guides/rules/rules-create-backup.png
 
-# Kurallar
+# Rules
 
-Kurallar, isteklerin analiz edilmesi ve daha sonraki işlenmesi sırasında Wallarm'un [varsayılan](../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection) davranışını ince ayar yapmak için kullanılır. Böylece, kuralları kullanarak sistemin kötü amaçlı istekleri nasıl tespit ettiğini ve bu tür kötü amaçlı istekler tespit edildiğinde nasıl davrandığını değiştirebilirsiniz.
+Kurallar, isteklerin analiz edilmesi ve sonrasında işlenmesi sırasında Wallarm’ın [varsayılan](../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection) davranışını ince ayar yapmak için kullanılır. Böylece kuralları kullanarak sistemin kötü amaçlı istekleri nasıl tespit ettiğini ve bu tür kötü amaçlı istekler tespit edildiğinde nasıl davrandığını değiştirebilirsiniz.
 
-Kurallar, [US](https://us1.my.wallarm.com/rules) veya [EU](https://my.wallarm.com/rules) Cloud'daki **Kurallar** bölümünde yapılandırılır.
+Kurallar, [US](https://us1.my.wallarm.com/rules) veya [EU](https://my.wallarm.com/rules) Cloud içindeki **Rules** bölümünde yapılandırılır.
 
 ![Rules section](../../images/user-guides/rules/section-rules.png)
 
-!!! warning "Kural uygulama gecikmesi"
-    Kurallarda yaptığınız değişikliklerin etkili olması hemen gerçekleşmez, çünkü kuralların [derlenmesi](#ruleset-lifecycle) ve filtreleme düğümlerine yüklenmesi biraz zaman alır.
+!!! warning "Kuralın uygulanmasında gecikme"
+    Kurallarda değişiklik yaptığınızda, bu değişiklikler hemen etkili olmaz; kuralların [derlenmesi](#ruleset-lifecycle) ve filtreleme düğümlerine yüklenmesi zaman alır.
 
-## Kurallarla Ne Yapabilirsiniz
+## Kurallarla neler yapabilirsiniz
 
-Kuralları kullanarak, Wallarm'un uygulama ve API'ler üzerindeki saldırıları hafifletme şeklini kontrol edebilir, saldırı tespitini ince ayar yapabilir ve istek/yanıtları değiştirebilirsiniz:
+Kuralları kullanarak Wallarm’ın uygulamalarınıza ve API’lerinize yönelik saldırıları nasıl azalttığını kontrol edebilir, saldırı tespitini ince ayar yapabilir ve istek/yanıtları değiştirebilirsiniz:
 
-* Hafifletme kontrolleri:
+* Azaltma kontrolleri:
 
-    * [Gelişmiş oran sınırlama](../../user-guides/rules/rate-limiting.md)
-    * [GraphQL API koruması](../../api-protection/graphql-rule.md)
+    * [Gelişmiş hız sınırlama](../../user-guides/rules/rate-limiting.md)
     * [Sanal yamalar](../../user-guides/rules/vpatch-rule.md)
-    * [Özel saldırı dedektörleri](../../user-guides/rules/regex-rule.md)
+    * [Özel saldırı algılayıcıları](../../user-guides/rules/regex-rule.md)
+    * [Dosya yükleme kısıtlamaları](../../api-protection/file-upload-restriction.md#rule-based-protection)
 
-* Saldırı tespitini ince ayar yapmak:
+* Saldırı tespitinin ince ayarı:
 
-    * Belirli alan adları/uc noktalar için [filtreleme modunu geçersiz kılma](../../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console)
-    * [Belirli saldırıları görmezden gelme](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types)
-    * Belirli alan adları/uc noktalar veya istek bölümleri için [özel saldırı dedektörlerini devre dışı bırakma](../../user-guides/rules/regex-rule.md#partial-disabling)
-    * [İkili veri işleme yapılandırması](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data)
-    * [Ayrıştırıcıları yapılandırarak](../../user-guides/rules/request-processing.md#managing-parsers) istek işlemesini ince ayar yapma
-    * Belirli alan adları/uc noktalar ve istekler için [API Kötüye Kullanım Önlemini devre dışı bırakma](../../api-abuse-prevention/exceptions.md#exceptions-for-target-urls-and-specific-requests)
-    * [İstek işleme süresini sınırlayarak](../../user-guides/rules/configure-overlimit-res-detection.md) düğüm işleyişini ince ayar yapma
+    * Belirli alan adları/uç noktalar için [filtreleme modunu geçersiz kılın](../../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode)
+    * [Belirli saldırıları yok sayın](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types)
+    * Belirli alan adları/uç noktalar veya istek bölümleri için [özel saldırı algılayıcılarını devre dışı bırakın](../../user-guides/rules/regex-rule.md#partial-disabling)
+    * [İkili veri işleme](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data) yapılandırın
+    * [Ayrıştırıcıları yapılandırarak](../../user-guides/rules/request-processing.md#managing-parsers) istek işlemeyi ince ayar yapın
+    * Belirli alan adları/uç noktalar ve istekler için [API Abuse Prevention’ı devre dışı bırakın](../../api-abuse-prevention/exceptions.md#exceptions-for-target-urls-and-specific-requests)
+    * [İstek işleme süresini sınırlandırarak](../../user-guides/rules/configure-overlimit-res-detection.md) düğüm işleyişini ince ayar yapın
 
-* İstek/yanıtları değiştirme:
 
-    * [Hassas verileri maskeleme](../../user-guides/rules/sensitive-data-rule.md)
-    * Uygulama güvenliğinin ek katmanını, [yanıt başlıklarını değiştirerek](../../user-guides/rules/add-replace-response-header.md) yapılandırma
+* İstek/yanıtları değiştirin:
 
-## Kural Dalları
+    * [Hassas verileri maskeleyin](../../user-guides/rules/sensitive-data-rule.md)
+    * [Yanıt başlıklarını değiştirerek](../../user-guides/rules/add-replace-response-header.md) uygulama güvenliğinin ek bir katmanını yapılandırın
 
-Kurallar, uç noktaların URI'ları ve diğer koşullar tarafından otomatik olarak iç içe dallara gruplanır. Bu, kuralların kalıtım yoluyla aktarıldığı ağaç benzeri bir yapı oluşturur. İlkeler:
+<a id="rule-branches"></a>
+## Rule branches
+
+Kurallar, uç nokta URI’leri ve diğer koşullara göre otomatik olarak iç içe geçmiş dallar halinde gruplanır. Bu, kuralların aşağıya doğru devralındığı ağaç benzeri bir yapı oluşturur. İlkeler:
 
 * Tüm dallar [varsayılan](#default-rules) kuralları devralır.
-* Bir dal içinde, alt uç noktalar ana uç noktadan kuralları devralır.
-* Özel belirtilmiş olanlar, devralınanların önceliğine sahiptir.
-* Doğrudan belirtilenler, [regex](rules.md#condition-type-regex) üzerinde önceliklidir.
-* Büyük/küçük harf duyarlı [eşitlik](rules.md#condition-type-equal), [büyük/küçük harfe duyarsız](rules.md#condition-type-iequal-aa) olandan önceliklidir.
+* Bir dalda, alt uç noktalar üstten kuralları devralır.
+* Ayrık olan, devralınan üzerinde önceliklidir.
+* Doğrudan belirtilen, [regex](rules.md#condition-type-regex) üzerinde önceliklidir.
+* [Büyük/küçük harf duyarlı](rules.md#condition-type-equal), [duyarsız](rules.md#condition-type-iequal-aa) üzerinde önceliklidir.
 
-![Rules tab overview](../../images/user-guides/rules/rules-overview.png)
+![Kurallar sekmesine genel bakış](../../images/user-guides/rules/rules-overview.png)
 
-### Varsayılan kurallar
+<a id="default-rules"></a>
+### Default rules
 
-Belirli bir eyleme sahip ancak herhangi bir uç noktayla bağlantılı olmayan kurallar oluşturabilirsiniz – bunlar **varsayılan kurallar** olarak adlandırılır. Bu tür kurallar, tüm uç noktalar için uygulanır.
+Belirli bir uç noktayla bağlantılı olmayan, ancak eylemi belirtilmiş kurallar oluşturabilirsiniz - bunlara **default rules** denir. Bu tür kurallar tüm uç noktalara uygulanır.
 
-* Varsayılan kural oluşturmak için, [yapılandırma](#configuring) bölümündeki standart prosedürü izleyin ancak URI alanını boş bırakın. Uç noktayla bağlantısı olmayan yeni kural oluşturulacaktır.
-* Oluşturulan varsayılan kuralları görüntülemek için **Default rules** düğmesine tıklayın.
+* Varsayılan kural oluşturmak için, [standart prosedürü](#configuring) izleyin ancak URI’yi boş bırakın. Herhangi bir uç noktaya bağlı olmayan yeni kural oluşturulacaktır.
+* Oluşturulan varsayılan kuralların listesini görüntülemek için **Default rules** düğmesine tıklayın.
 * Varsayılan kurallar tüm dallar tarafından devralınır.
 
 !!! info "Trafik filtreleme modu varsayılan kuralı"
-    Wallarm, tüm istemciler için otomatik olarak `Set filtration mode` varsayılan kuralını oluşturur ve bu kuralın değerini [genel filtreleme modu](../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console) ayarına göre belirler.
+    Wallarm, tüm müşteriler için `Set filtration mode` varsayılan kuralını otomatik olarak oluşturur ve değerini [genel filtreleme modu](../../admin-en/configure-wallarm-mode.md#general-filtration-mode) ayarına göre belirler.
 
-### Dal Kurallarını Görüntüleme
+### Dal kurallarını görüntüleme
 
-Kural dallarıyla nasıl çalışılacağına dair bazı detaylar:
+Kural dallarıyla çalışmaya ilişkin bazı detaylar:
 
 * Uç noktayı genişletmek için mavi daireye tıklayın.
-* Özel kurallara sahip olmayan uç noktalar gri renkle gösterilir ve tıklanamazlar.
+* Ayrık kuralları olmayan uç noktalar gri renklidir ve tıklanamaz.
     
-    ![Branch of endpoints](../../images/user-guides/rules/rules-branch.png)
+    ![Uç noktaların dalı](../../images/user-guides/rules/rules-branch.png)
 
-* Uç nokta için kuralları görüntülemek amacıyla üzerine tıklayın. İlk olarak, bu uç nokta için belirtilen özel kurallar görüntülenecektir.
-* Belirli bir uç noktanın kural listesini görüntülerken, devralınan kuralları görüntülemek için **Distinct and inherited rules** düğmesine tıklayın. Devralınan kurallar, özel kurallarla birlikte gösterilir; ancak özel olanlara kıyasla gri renkle gösterilir.
+* Uç noktanın kurallarını görüntülemek için üzerine tıklayın. İlk olarak, bu uç nokta için ayrık kurallar görüntülenecektir.
+* Belirli bir uç noktanın kural listesini görüntülerken, devralınanları görüntülemek için **Distinct and inherited rules** üzerine tıklayın. Devralınan kurallar, ayrık olanlarla birlikte görüntülenir; ayrıklara kıyasla gri renkte olurlar.
 
-    ![Distinct and inherited rules for endpoint](../../images/user-guides/rules/rules-distinct-and-inherited.png)
+    ![Uç nokta için ayrık ve devralınan kurallar](../../images/user-guides/rules/rules-distinct-and-inherited.png)
 
-## Yapılandırma
+<a id="configuring"></a>
+## Configuring
 
-Yeni bir kural eklemek için, [US](https://us1.my.wallarm.com/rules) veya [EU](https://my.wallarm.com/rules) Cloud'daki **Kurallar** bölümüne gidin. Kurallar, mevcut [dallara](#rule-branches) eklenebileceği gibi, hiç bir dal yoksa sıfırdan oluşturulup yeni dal oluşturulabilir.
+Yeni bir kural eklemek için [US](https://us1.my.wallarm.com/rules) veya [EU](https://my.wallarm.com/rules) Cloud içindeki **Rules** bölümüne gidin. Kurallar, mevcut [dallara](#rule-branches) eklenebileceği gibi sıfırdan da eklenebilir; bu durumda henüz yoksa yeni bir dal oluşturulur.
 
-![Adding a new rule][img-add-rule]
+![Yeni kural ekleme][img-add-rule]
 
-Bir kuralın yalnızca belirli koşullar sağlandığında (örneğin hedef uç nokta, yöntem, bazı parametrelerin veya değerlerin varlığı vb.) isteğe uygulandığına dikkat edin. Ayrıca, genellikle yalnızca bazı istek bölümlerine uygulanır. İstek yapısının kurallarla nasıl etkileşimde bulunduğunu daha iyi anlamak için, filtreleme düğümünün nasıl [istekleri analiz ettiğini][link-request-processing] öğrenmeniz tavsiye edilir.
+Bir kuralın bir isteğe yalnızca bazı koşullar karşılandığında (hedef uç nokta, yöntem, bazı parametrelerin veya değerlerin varlığı vb.) uygulandığını unutmayın. Ayrıca, genellikle yalnızca bazı istek bölümlerine uygulanır. İstek yapısının kurallarla etkileşimini daha iyi anlamak için filtreleme düğümünün [istekleri nasıl analiz ettiğini][link-request-processing] öğrenmeniz önerilir.
 
 Kural koşulları şu yollarla tanımlanabilir:
 
-* [URI constructor](#uri-constructor) – istek yöntemini ve uç noktasını tek bir dizede belirterek kural koşullarını yapılandırmanıza olanak tanır.
-* [Advanced edit form](#advanced-edit-form) – URI constructor'ı genişleterek, hem yöntem/uç noktayı hem de uygulama, başlıklar, sorgu dizisi parametreleri ve diğer ek kural koşullarını yapılandırmanıza olanak tanır.
+* [URI constructor](#uri-constructor) - kural koşullarının yalnızca tek bir satırda istek yöntemi ve uç nokta belirlenerek yapılandırılmasına olanak tanır.
+* [Advanced edit form](#advanced-edit-form) - URI constructor’ı genişleterek yalnızca yöntem/uç noktayı değil, uygulama, başlıklar, sorgu dizesi parametreleri ve diğerleri gibi ek kural koşullarını yapılandırmaya olanak tanır.
 
+<a id="uri-constructor"></a>
 ### URI constructor
 
-URI constructor, istek yöntemini ve uç noktasını tek bir dizede belirterek kural koşullarını yapılandırmanıza olanak tanır.
+URI constructor, kural koşullarının yalnızca tek bir satırda istek yöntemi ve uç nokta belirlenerek yapılandırılmasını sağlar.
 
-#### Genel Kullanım
+#### Genel kullanım
 
-URI constructor şunları sağlar:
+URI constructor aşağıdakileri sunar:
 
-* İstek yöntemi seçici. Yöntem seçilmediğinde, kural herhangi bir yöntemle gelen isteklere uygulanır.
-* Şu değer formatlarını kabul eden, istek uç noktası için alan:
+* İstek yöntemi için seçici. Yöntem seçilmezse, kural herhangi bir yöntemle yapılan isteklere uygulanır.
+* Aşağıdaki değer biçimlerini kabul eden istek uç noktası alanı:
 
-    | Format | Örnek |
+    | Biçim | Örnek |
     | ------ | ------ |
-    | Aşağıdaki bileşenleri içeren tam URI:<ul><li>Şema (değer göz ardı edilir, gelişmiş formu kullanarak şemayı açıkça belirtebilirsiniz)</li><li>Alan adı veya bir IP adresi</li><li>Port</li><li>Yol</li><li>Sorgu dizisi parametreleri</ul> | `https://example.com:3000/api/user.php?q=action&w=delete`<br><ul><li>`[header, 'HOST']` - `example.com:3000`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `php`</li><li>`[query, 'q']` - `action`</li><li>`[query, 'w']` - `delete`</li></ul> |
-    | Bazı bileşenlerin çıkarıldığı URI | `example.com/api/user`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li></ul><br>`http://example.com/api/clients/user/?q=action&w=delete`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `clients`</li><li>`[path, 2]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[query, 'q']` - `action`</li><li>`[query, 'w']` - `delete`</li></ul><br>`/api/user`<br><ul><li>`[header, 'HOST']` - herhangi bir değer</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li></ul> |
-    | Bileşenin herhangi boş olmayan değeri anlamına gelen `*` ile URI | `example.com/*/create/*.*`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - herhangi boş olmayan bir değer (gelişmiş düzenleme formunda gizli)</li><li>`[path, 1]` - `create`</li><li>`[path, 2]` - `∅`</li><li>`[action_name]` - herhangi boş olmayan bir değer (gelişmiş düzenleme formunda gizli)</li><li>`[action_ext]` - herhangi boş olmayan bir değer (gelişmiş düzenleme formunda gizli)</li>`example.com/api/create/user.php` ile eşleşir<br>ve `example.com/create/user.php` ile `example.com/api/create` ile eşleşmez.</ul> |
-    | Bileşenin yokluğunu da içerecek şekilde herhangi sayıda bileşen anlamına gelen `**` ile URI | `example.com/**/user`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li>Değer, `example.com/api/create/user` ve `example.com/api/user` ile eşleşir.<br>Değer, `example.com/user`, `example.com/api/user/index.php` ve `example.com/api/user/?w=delete` ile eşleşmez.</ul><br>`example.com/api/**/*.*`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[action_name]` - herhangi boş olmayan bir değer (gelişmiş düzenleme formunda gizli)</li><li>`[action_ext]` - herhangi boş olmayan bir değer (gelişmiş düzenleme formunda gizli)</li>Değer, `example.com/api/create/user.php` ve `example.com/api/user/create/index.php` ile eşleşir<br>ve `example.com/api`, `example.com/api/user` ile `example.com/api/create/user.php?w=delete` ile eşleşmez.</ul> |
-    | Belirli bileşen değerleriyle eşleşmek için [düzenli ifade](#condition-type-regex) içeren URI (regexp `{{}}` ile sarılmalıdır) | `example.com/user/{{[0-9]}}`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `user`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `[0-9]`</li><li>`[action_ext]` - `∅`</li>Değer, `example.com/user/3445` ile eşleşir<br>ve `example.com/user/3445/888` ile `example.com/user/3445/index.php` ile eşleşmez.</ul> |
+    | Aşağıdaki bileşenleri içeren tam URI:<ul><li>Şema (değer yok sayılır, şemayı açıkça advanced form kullanarak belirtebilirsiniz)</li><li>Alan adı veya IP adresi</li><li>Port</li><li>Yol</li><li>Sorgu dizesi parametreleri</ul> | `https://example.com:3000/api/user.php?q=action&w=delete`<br><ul><li>`[header, 'HOST']` - `example.com:3000`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `php`</li><li>`[query, 'q']` - `action`</li><li>`[query, 'w']` - `delete`</li></ul>|
+    | Bazı bileşenleri atlanmış URI | `example.com/api/user`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li></ul><br>`http://example.com/api/clients/user/?q=action&w=delete`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `clients`</li><li>`[path, 2]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[query, 'q']` - `action`</li><li>`[query, 'w']` - `delete`</li></ul><br>`/api/user`<br><ul><li>``[header, 'HOST']` - herhangi bir değer</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li></ul>|
+    | Bileşenin herhangi bir boş‑olmayan değerini ifade eden `*` içeren URI | `example.com/*/create/*.*`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - herhangi bir boş‑olmayan değer (advanced edit form’da gizlenir)</li><li>`[path, 1]` - `create`</li><li>`[path, 2]` - `∅`</li><li>`[action_name]` - herhangi bir boş‑olmayan değer (advanced edit form’da gizlenir)</li><li>`[action_ext]` - herhangi bir boş‑olmayan değer (advanced edit form’da gizlenir)</li>Değer, `example.com/api/create/user.php` ile eşleşir<br>ve `example.com/create/user.php` ile `example.com/api/create` ile eşleşmez.</ul>|
+    | Bileşen sayısının yokluğu dahil herhangi bir sayıda bileşeni ifade eden `**` içeren URI | `example.com/**/user`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li>Değer, `example.com/api/create/user` ve `example.com/api/user` ile eşleşir.<br>Değer, `example.com/user`, `example.com/api/user/index.php` ve `example.com/api/user/?w=delete` ile eşleşmez.</ul><br>`example.com/api/**/*.*`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[action_name]` - herhangi bir boş‑olmayan değer (advanced edit form’da gizlenir)</li><li>`[action_ext]` - herhangi bir boş‑olmayan değer (advanced edit form’da gizlenir)</li>Değer, `example.com/api/create/user.php` ve `example.com/api/user/create/index.php` ile eşleşir<br>ve `example.com/api`, `example.com/api/user` ve `example.com/api/create/user.php?w=delete` ile eşleşmez.</ul> |
+    | Belirli bileşen değerlerini eşleştirmek için [düzenli ifade](#condition-type-regex) içeren URI (regexp `{{}}` içine alınmalıdır) | `example.com/user/{{[0-9]}}`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `user`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `[0-9]`</li><li>`[action_ext]` - `∅`</li>Değer, `example.com/user/3445` ile eşleşir<br>ve `example.com/user/3445/888` ve `example.com/user/3445/index.php` ile eşleşmez.</ul> |
 
-URI constructor'a belirtilen dize, otomatik olarak [koşullar](#conditions) dizisine ayrılır:
+URI constructor’da belirtilen dize, otomatik olarak bir [koşullar](#conditions) kümesine ayrıştırılır:
 
 * `method`
-* `header`. URI constructor yalnızca `HOST` başlığını belirtmeye izin verir.
+* `header`. URI constructor yalnızca `HOST` başlığının belirtilmesine izin verir.
 * `path`, `action_name`, `action_ext`. Kural oluşturmayı onaylamadan önce, bu istek bölümlerinin değerlerinin aşağıdaki yollardan biriyle ayrıştırıldığından emin olun:
-    * Belirli bir `path` numarasının açıkça belirtilmiş değeri + `action_name` + `action_ext` (isteğe bağlı)
-    * `action_name` + `action_ext` açıkça belirtilmiş değeri (isteğe bağlı)
-    * `action_name` ve `action_ext` olmadan belirli bir `path` numarasının açıkça belirtilmiş değeri
+    * Belirli bir `path` numarasının açık değeri + `action_name` + `action_ext` (isteğe bağlı)
+    * `action_name` + `action_ext`’in (isteğe bağlı) açık değeri
+    * `action_name` ve `action_ext` olmadan belirli bir `path` numarasının açık değeri
 * `query`
 
-URI constructor'da belirtilen değeri, yalnızca [gelişmiş düzenleme formunda](#advanced-edit-form) bulunan diğer koşullarla tamamlayabilirsiniz.
+URI constructor’da belirtilen değer, yalnızca [advanced edit form](#advanced-edit-form) içinde mevcut olan diğer koşullarla tamamlanabilir.
 
-#### Joker Karakterlerin Kullanımı
+#### Joker karakterleri kullanma
 
-Wallarm'da URI constructor ile çalışırken joker karakterleri kullanabilir misiniz? Cevap hem evet hem hayırdır. “Hayır”, joker karakterleri [klasik anlamda](https://en.wikipedia.org/wiki/Wildcard_character) kullanamayacağınız anlamına gelir; “evet” ise aynı sonuca şu şekilde ulaşabileceğiniz anlamına gelir:
+Wallarm’da URI constructor ile çalışırken joker karakterleri kullanabilir misiniz? Hem hayır hem evet. “Hayır”, onları [klasik](https://en.wikipedia.org/wiki/Wildcard_character) şekilde kullanamayacağınız anlamına gelir; “evet” ise şu şekilde davranarak aynı sonuca ulaşabileceğiniz anlamına gelir:
 
-* URI'nizin ayrıştırılmış bileşenleri içerisinde, joker karakterler yerine düzenli ifadeler kullanın.
-* Bir veya birden fazla bileşeni yer değiştirmek için URI alanına `*` veya `**` sembolünü yerleştirin (örneklere [yukarıdaki](#uri-constructor) bölümden bakın).
+* URI’nizin ayrıştırılmış bileşenleri içinde joker karakterler yerine düzenli ifadeler kullanın.
+* Bir veya herhangi bir sayıda bileşenin yerine geçmesi için URI alanının kendisine `*` veya `**` sembolünü yerleştirin (örnekler için [yukarıdaki](#uri-constructor) bölüme bakın).
 
-**Bazı ayrıntılar**
+**Bazı detaylar**
 
-Düzenli ifadenin sözdizimi klasik joker karakterlerden farklıdır, ancak aynı sonuçlar elde edilebilir. Örneğin, şu maskeyi elde etmek istiyorsunuz:
+Düzenli ifadenin sözdizimi klasik joker karakterlerden farklıdır, ancak aynı sonuçlara ulaşılabilir. Örneğin, şu maskeye karşılık gelmesini istiyorsunuz:
 
 * `something-1.example.com/user/create.com` ve
 * `anything.something-2.example.com/user/create.com`
 
-...ki klasik joker karakterlerde bunu şu şekilde yazmaya çalışırdınız:
+...ki klasik jokerlerde şöyle bir şey yazarak elde etmeye çalışırsınız:
 
 * `*.example.com/user/create.com`
 
-Ama Wallarm'da, `something-1.example.com/user/create.com` şu şekilde ayrıştırılacaktır:
+Ancak Wallarm’da `something-1.example.com/user/create.com` ifadeniz şu şekilde bileşenlere ayrıştırılacaktır:
 
-![Example of parsing URI into components](../../images/user-guides/rules/something-parsed.png)
+![URI’nin bileşenlere ayrıştırılması örneği](../../images/user-guides/rules/something-parsed.png)
 
-...burada `something-1.example.com`, `header`-`HOST` koşuludur. Joker karakterlerin koşul içerisinde kullanılamayacağını belirttik, bu yüzden yerine düzenli ifade kullanmamız gerekir: koşul tipini REGEX olarak ayarlayın ve ardından Wallarm'a [özel sözdizimini](#condition-type-regex) kullanın:
+...burada `something-1.example.com` bir `header`-`HOST` koşuludur. Joker karakterin koşul içinde kullanılamayacağını belirtmiştik, bu yüzden bunun yerine düzenli ifade kullanmamız gerekiyor: koşul türünü REGEX olarak ayarlayın ve ardından Wallarm’a [özgü sözdizimini](#condition-type-regex) kullanın:
 
-1. `*` karakterini "sıfır veya daha fazla sembol" anlamında kullanmayın.
-2. Gerçek nokta olarak yorumlanmasını istediğimiz tüm `.` karakterlerini köşeli paranteze alın:
+1. “Herhangi bir sayıda sembol” anlamında `*` kullanmayın.
+1. “Gerçek nokta” olarak yorumlanmasını istediğimiz tüm `.` karakterlerini köşeli parantez içine alın:
 
     `something-1[.]example[.]com`
 
-3. Köşeli parantez kullanılmadan `.` karakterini "herhangi bir sembol" yerine ve ardından `*` karakterini, önceki ifadenin "0 veya daha fazla tekrarı" olarak kullanın; böylece `.*` elde edin:
+1. “Herhangi bir sembol” yerine `.`’yı parantezsiz kullanın ve ardından “öncekilerin 0 veya daha fazla tekrarı” anlamına gelen nicelik belirteci olarak `*` koyun; yani `.*` ve:
 
     `.*[.]example[.]com`
 
-4. Oluşturduğunuz ifadenin, bileşenimizin burada sona ermesi gerektiğini belirtmek için ifadenin sonuna `$` ekleyin:
-
+1. Oluşturduğumuz ifadenin bileşenimizin sonunda olması gerektiğini belirtmek için sona `$` ekleyin:
+    
     `.*[.]example[.]com$`
 
-    !!! info "Daha Basit Yöntem"
-        `.*` kısmını atlayabilir ve sadece `[.]example[.]com$` bırakabilirsiniz. Her iki durumda da Wallarm, `[.]example[.]com$` öncesinde herhangi bir karakterin herhangi bir sayıda görünebileceğini varsayar.
+    !!! info "Daha basit yol"
+        `.*` ifadesini atlayabilir ve yalnızca `[.]example[.]com$` bırakabilirsiniz. Her iki durumda da Wallarm, `[.]example[.]com$` ifadesinden önce herhangi bir karakterin herhangi bir sayıda görünebileceğini varsayacaktır.
 
-    ![Using regular expression in header component](../../images/user-guides/rules/wildcard-regex.png)
+    ![Header bileşeninde düzenli ifade kullanımı](../../images/user-guides/rules/wildcard-regex.png)
 
-### Gelişmiş Düzenleme Formu
+<a id="advanced-edit-form"></a>
+### Advanced edit form
 
-Gelişmiş düzenleme formu, [URI constructor](#uri-constructor) (yöntem ve URI) olanaklarını genişleterek, bunların yanı sıra uygulama, başlıklar, sorgu dizisi parametreleri ve diğer ek kural koşullarını yapılandırmanıza izin verir.
+Advanced edit form, (yöntem ve URI) [URI constructor](#uri-constructor) olasılıklarını genişleterek hem bunları hem de uygulama, başlıklar, sorgu dizesi parametreleri ve diğerleri gibi ek kural koşullarını yapılandırmayı sağlar.
 
+<a id="conditions"></a>
 #### Koşullar
 
-Koşullar, hangi değerlerin hangi istek bölümlerinde bulunması gerektiğini belirtir. Tüm koşullar sağlandığında kural uygulanır. Koşullar, kuralın **If request is** bölümünde listelenir.
+Koşullar, hangi istek parçalarında hangi değerlerin sunulması gerektiğini belirtir. Kural, tüm koşulları karşılandığında uygulanır. Koşullar, kuralın **If request is** bölümünde listelenir.
 
-Şu anda desteklenen koşullar şunlardır:
+Şu koşullar şu anda desteklenmektedir:
 
 * **application**: uygulama kimliği.
 * **proto**: HTTP protokol sürümü (1.0, 1.1, 2.0, ...).
 * **scheme**: http veya https.
-* **uri**: alan adı olmadan istek URL'sinin bir bölümü (örneğin, `/blogs/123/index.php?q=aaa` isteği için `http://example.com/blogs/123/index.php?q=aaa`).
-* **path**, **action_name**, **action_ext**; hiyerarşik URI bileşen dizisi olarak:
-    * **path**: `/` sembolü ile ayrılmış URI bölümlerinden oluşan bir dizi (son URI bölümü diziye dahil edilmez). Eğer URI'de sadece bir bölüm varsa, dizi boş olacaktır.
-    * **action_name**: URI'de `/` sembolünden sonraki ve ilk nokta (`.`) öncesindeki son bölüm. Bu URI bölümü, değeri boş olsa bile her zaman istekte bulunur.
-    * **action_ext**: URI'de son nokta (`.`) sonrasındaki bölüm. İstekte bulunmayabilir.
-* **query**: sorgu dizisi parametreleri.
+* **uri**: alan adı olmadan istek URL’sinin bir parçası (örneğin, `http://example.com/blogs/123/index.php?q=aaa` isteği için `/blogs/123/index.php?q=aaa`).
+* **path**, **action_name**, **action_ext**, hiyerarşik URI bileşeni dizisidir; burada: 
+
+    * **path**: `/` sembolüyle ayrılmış URI parçalarını içeren bir dizi (URI’nin son parçası diziye dahil edilmez). URI’de yalnızca bir parça varsa, dizi boş olacaktır.
+    * **action_name**: `/` sembolünden sonra ve ilk nokta (`.`) öncesindeki URI’nin son parçası. Bu URI parçası, değeri boş bir dize olsa bile isteklerde her zaman bulunur.
+    * **action_ext**: Son noktadan (`.`) sonraki URI kısmı. İsteklerde bulunmayabilir.
+* **query**: sorgu dizesi parametreleri.
 * **header**: istek başlıkları. Bir başlık adı girdiğinizde, en yaygın değerler açılır listede görüntülenir. Örneğin: `HOST`, `USER-AGENT`, `COOKIE`, `X-FORWARDED-FOR`, `AUTHORIZATION`, `REFERER`, `CONTENT-TYPE`.
 
-    !!! info "FQDN'ler ve IP adresleri için `HOST` başlık kurallarını yönetme"
-        Eğer `HOST` başlığı bir FQDN olarak ayarlanmışsa, ilişkili IP adresine yönelik istekler kuraldan etkilenmez. Bu tür isteklere kuralı uygulamak için, kural koşullarında `HOST` başlık değerini belirli IP olarak ayarlayın veya hem FQDN hem de IP için ayrı bir kural oluşturun.
+    !!! info "`HOST` başlığı için FQDN ve IP adreslerine yönelik kuralları yönetme"
+        `HOST` başlığı bir FQDN’e ayarlanmışsa, ilişkili IP adresini hedefleyen istekler kuraldan etkilenmez. Kuralın bu tür isteklere uygulanması için, kural koşullarında `HOST` başlığı değerini ilgili IP olarak ayarlayın veya hem FQDN hem de IP için ayrı kurallar oluşturun.
 
-        `HOST` başlığı değiştiren bir yük dengeleyicinin ardından konumlandırıldığında, Wallarm düğümü kuralları orijinal değer yerine güncellenmiş değere göre uygular. Örneğin, dengeleyici `HOST`'u bir IP'den alana çevirirse, düğüm o alan için kurallara uyar.
+        `HOST` başlığını değiştiren bir yük dengeleyicisinin arkasında konumlandığında, Wallarm düğümü kuralları orijinal değere değil, güncellenmiş değere göre uygular. Örneğin, dengeleyici `HOST`’u bir IP’den bir alan adına çevirirse, düğüm o alan adına ait kuralları uygular.
 
-* **method**: istek yöntemleri. Değer açıkça belirtilmediyse, kural herhangi bir yöntemle gelen isteklere uygulanır.
+* **method**: istek yöntemleri. Değer açıkça belirtilmemişse, kural herhangi bir yöntemle yapılan isteklere uygulanır.
 
-#### Koşul Türü: EQUAL (`=`)
+#### Koşul türü: EQUAL (`=`)
 
-Değer, karşılaştırma argümanıyla tam olarak eşleşmelidir. Örneğin, yalnızca `example`, değeri `example` ile eşleşir.
+Değer, karşılaştırma bağımsız değişkeniyle tam olarak eşleşmelidir. Örneğin, yalnızca `example` değeri `example` ile eşleşir.
 
 !!! info "HOST başlık değeri için EQUAL koşul türü"
-    Kurallarla daha fazla isteği kapsamak için, HOST başlığı için EQUAL koşul türünü kısıtladık. EQUAL türü yerine, parametre değerlerine herhangi bir biçimde izin veren IEQUAL türünü kullanmanızı öneririz.
+    Daha fazla isteği kurallarla kapsamak için HOST başlığı için EQUAL koşul türünü kısıtladık. EQUAL türü yerine, parametre değerlerini herhangi bir büyük/küçük harf düzeninde kabul eden IEQUAL türünü kullanmanızı öneririz.
     
-    Daha önce EQUAL türünü kullandıysanız, otomatik olarak IEQUAL türüyle değiştirilecektir.
+    EQUAL türünü daha önce kullandıysanız, otomatik olarak IEQUAL türü ile değiştirilecektir.
 
-#### Koşul Türü: IEQUAL (`Aa`)
+#### Koşul türü: IEQUAL (`Aa`)
 
-Değer, karşılaştırma argümanıyla herhangi bir biçimde eşleşmelidir. Örneğin: `example`, `ExAmple`, `exampLe` değerleri, `example` ile eşleşir.
+Değer, karşılaştırma bağımsız değişkeniyle herhangi bir büyük/küçük harf düzeninde eşleşmelidir. Örneğin: `example`, `ExAmple`, `exampLe` değerleri `example` ile eşleşir.
 
-#### Koşul Türü: REGEX (`.*`)
+<a id="condition-type-regex"></a>
+#### Koşul türü: REGEX (`.*`)
 
-Değer, düzenli ifadeyle eşleşmelidir.
+Değer, düzenli ifadeyle eşleşmelidir. 
 
-**Düzenli İfade Sözdizimi**
+**Düzenli ifade sözdizimi**
 
-İstekleri düzenli ifadelerle eşleştirmek için PIRE kütüphanesi kullanılır. İfadelerin sözdizimi büyük ölçüde standarttır ancak aşağıda ve [PIRE repository][link-regex]'nin README dosyasında açıklandığı gibi bazı özelliklere sahiptir.
+Düzenli ifadelerle istekleri eşleştirmek için PIRE kütüphanesi kullanılır. Çoğunlukla ifadelerin sözdizimi standarttır ancak aşağıda ve [PIRE deposunun][link-regex] README dosyasında açıklandığı gibi bazı özellikler vardır.
 
 ??? info "Düzenli ifade sözdizimini göster"
     Olduğu gibi kullanılabilecek karakterler:
@@ -219,141 +235,141 @@ Değer, düzenli ifadeyle eşleşmelidir.
     * Büyük Latin harfleri: `A B C D E F G H I J K L M N O P Q R S T U V W X Y Z`
     * Rakamlar: `0 1 3 4 5 6 7 8 9`
     * Özel karakterler: <code>! " # % ' , - / : ; < = > @ ] _ ` }</code>
-    * Boşluklar
+    * Boşluk karakterleri
 
-    Kaçış karakteri `\` yerine köşeli paranteze alınması gereken karakterler:
+    `\` ile kaçırmak yerine köşeli parantez `[]` içine alınması gereken karakterler:
 
     * `. $ ^ { [ ( | ) * + ? \ & ~`
 
-    ISO‑8859'a göre ASCII'ye dönüştürülmesi gereken karakterler:
+    ISO‑8859’a göre ASCII’ye dönüştürülmesi gereken karakterler:
 
-    * UTF‑8 karakterleri (örneğin, `ʃ` karakteri ASCII'ye dönüştürüldüğünde `Ê` olur)
+    * UTF‑8 karakterleri (örneğin, `ʃ` karakterinin ASCII karşılığı `Ê`’dür)
 
     Karakter grupları:
 
-    * `.`; yeni satır dışındaki herhangi bir karakter için
-    * `()`; düzenli ifadeleri gruplamak, `()` içerisindeki sembolleri aramak veya öncelik sırası belirlemek için
-    * `[]`; `[]` içinde bulunan tek bir karakter için (büyük/küçük harf duyarlı); grup şu durumlar için kullanılabilir:
-        * büyük/küçük harf duyarlılığını göz ardı etmek (örneğin, `[cC]`)
-        * `[a-z]`; küçük Latin harflerinden birini eşleştirmek için
-        * `[A-Z]`; büyük Latin harflerinden birini eşleştirmek için
-        * `[0-9]`; rakamlardan birini eşleştirmek için
-        * `[a-zA-Z0-9[.]]`; küçük veya büyük Latin harflerinden, rakamlardan veya noktadan birini eşleştirmek için
+    * Yeni satır dışında herhangi bir karakter için `.`
+    * Düzenli ifadeleri gruplamak, `()` içindeki sembolleri aramak veya öncelik sırası belirlemek için `()`
+    * `[]` içindeki bir tek karakter (büyük/küçük harfe duyarlı); grup, belirli durumlar için kullanılabilir:
+        * büyük/küçük harfi yok saymak için (örneğin, `[cC]`)
+        * küçük Latin harflerinden birini eşleştirmek için `[a-z]`
+        * büyük Latin harflerinden birini eşleştirmek için `[A-Z]`
+        * rakamlardan birini eşleştirmek için `[0-9]`
+        * küçük veya büyük Latin harflerinden, veya rakamlardan, veya noktadan birini eşleştirmek için `[a-zA-Z09[.]]`
 
-    Mantıksal karakterler:
+    Mantık karakterleri:
 
-    * `~`; NOT anlamına gelir. Tersine çevrilmiş ifade ve karakter `()` içine alınmalıdır, örneğin: `(~(a))`
-    * `|`; OR anlamına gelir
-    * `&`; AND anlamına gelir
+    * `~`, NOT’a eşittir. Ters çevrilmiş ifade ve karakter `()` içine alınmalıdır,<br>örneğin: `(~(a))`
+    * `|`, OR’a eşittir
+    * `&`, AND’e eşittir
 
     Dize sınırlarını belirtmek için karakterler:
 
-    * `^`; dizenin başlangıcı için
-    * `$`; dizenin sonu için
+    * Dizinin başlangıcı için `^`
+    * Dizinin sonu için `$`
 
-    Kuantifikatörler:
+    Nicelik belirteçleri:
 
-    * `*`; önceki düzenli ifadenin 0 veya daha fazla tekrarı için
-    * `+`; önceki düzenli ifadenin 1 veya daha fazla tekrarı için
-    * `?`; önceki düzenli ifadenin 0 veya 1 tekrarı için
-    * `{m}`; önceki düzenli ifadenin `m` tekrarı için
-    * `{m,n}`; önceki düzenli ifadenin `m`'den `n`'ye kadar tekrarı için; `n` atlandığında üst sınır sonsuz olarak belirlenir
+    * Önceki düzenli ifadenin 0 veya daha fazla tekrarı için `*`
+    * Önceki düzenli ifadenin 1 veya daha fazla tekrarı için `+`
+    * Önceki düzenli ifadenin 0 veya 1 tekrarı için `?`
+    * Önceki düzenli ifadenin `m` tekrarına karşılık `{m}`
+    * Önceki düzenli ifadenin `m` ile `n` arası tekrarına karşılık `{m,n}`; `n`’in atlanması, üst sınırın sonsuz olduğunu belirtir
 
-    Özel durumlarla çalışan karakter kombinasyonları:
+    Özgül davranışla çalışan karakter kombinasyonları:
 
-    * `^.*$`; boş değerlerin eşleşmediği `^.+$` ile aynıdır.
-    * `^.?$`, `^.{0,}$`, `^.{0,n}$`; ifadeleri `^.+$` ile eşdeğerdir.
+    * `^.*$`, `^.+$`’a eşittir (boş değerler `^.*$` ile eşleşmez)
+    * `^.?$`, `^.{0,}$`, `^.{0,n}$`, `^.+$`’a eşittir
 
-    Şu anda desteklenmeyen:
+    Geçici olarak desteklenmeyenler:
 
-    * `\W` (alfabetik olmayanlar), `\w` (alfabetik), `\D` (rakam olmayanlar), `\d` (rakamlar), `\S` (boşluk olmayanlar), `\s` (boşluklar) gibi karakter sınıfları
+    * Alfabetik olmayanlar için `\W`, alfabetikler için `\w`, rakam olmayanlar için `\D`, ondalıklar için `\d`, boşluk olmayanlar için `\S`, boşluklar için `\s` gibi karakter sınıfları
 
-    Desteklenmeyen sözdizimleri:
+    Desteklenmeyen sözdizimi:
 
-    * Üç basamaklı sekizlik kodlar: `\NNN`, `\oNNN`, `\ONNN`
-    * `\cN`; kontrol karakterlerini `\c` ile geçirmek (örneğin, `\cC` CTRL+C için)
-    * `\A`; dizenin başlangıcı için
-    * `\z`; dizenin sonu için
-    * `\b`; dizenin sonundaki boşluk karakterinden önce veya sonra
-    * `??`, `*?`, `+?`; tembel kuantifikatörler
-    * Koşullu ifadeler
+    * Üç basamaklı sekizlik kodlar `\NNN`, `\oNNN`, `\ONNN`
+    * `\c` ile denetim karakterleri geçirme `\cN` (örneğin, CTRL+C için `\cC`)
+    * Dizinin başlangıcı için `\A`
+    * Dizinin sonu için `\z`
+    * Dizinin sonunda boşluk karakterinden önce veya sonra `\b`
+    * Tembel nicelik belirteçleri `??`, `*?`, `+?`
+    * Koşullular
 
-**Düzenli İfadeleri Test Etme**
+**Düzenli ifadeleri test etme**
 
-Düzenli ifadeyi test etmek için Wallarm **cpire** aracını kullanın. Linux tabanlı işletim sisteminizde [Wallarm all-in-one installer](../../installation/nginx/all-in-one.md) aracılığıyla kurun veya [Wallarm NGINX tabanlı Docker imajı](../../admin-en/installation-docker-en.md) üzerinden şu şekilde çalıştırın:
+Bir düzenli ifadeyi test etmek için Wallarm **cpire** yardımcı programını kullanın. Linux tabanlı işletim sisteminize [Wallarm hepsi-bir-arada yükleyici](../../installation/nginx/all-in-one.md) ile kurun veya [Wallarm NGINX tabanlı Docker imajından](../../admin-en/installation-docker-en.md) aşağıdaki gibi çalıştırın:
 
-=== "All-in-one installer"
-    1. Wallarm all-in-one installer henüz indirilmediyse indirin:
+=== "Hepsi-bir-arada yükleyici"
+    1. Wallarm hepsi-bir-arada yükleyicisini henüz indirmediyseniz indirin:
 
         ```
-        curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.0.x86_64-glibc.sh
+        curl -O https://meganode.wallarm.com/6.5/wallarm-6.5.1.x86_64-glibc.sh
         ```
-    2. Wallarm modülleri henüz kurulmamışsa kurulum yapın:
+    1. Wallarm modüllerini henüz kurmadıysanız kurun:
         
         ```
-        sudo sh wallarm-5.3.0.x86_64-glibc.sh -- --batch --token <API_TOKEN>
+        sudo sh wallarm-6.5.1.x86_64-glibc.sh -- --batch --token <API_TOKEN>
         ```
-    3. **cpire** aracını çalıştırın:
+    1. **cpire** yardımcı programını çalıştırın:
         
         ```bash
         /opt/wallarm/usr/bin/cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
         ```
-    4. Düzenli ifadeyle eşleşip eşleşmediğini kontrol etmek için değeri girin.
-=== "NGINX-based Docker image"
-    1. Wallarm Docker imajından **cpire** aracını çalıştırın:
+    1. Düzenli ifadeyle eşleşip eşleşmediğini kontrol etmek istediğiniz değeri girin.
+=== "NGINX tabanlı Docker imajı"
+    1. **cpire** yardımcı programını Wallarm Docker imajından çalıştırın:
     
         ```
-        docker run --rm -it wallarm/node:5.3.0 /opt/wallarm/usr/bin/cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
+        docker run --rm -it wallarm/node:6.5.1 /opt/wallarm/usr/bin/cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
         ```
-    2. Düzenli ifadeyle eşleşip eşleşmediğini kontrol etmek için değeri girin.
+    1. Düzenli ifadeyle eşleşip eşleşmediğini kontrol etmek istediğiniz değeri girin.
 
-Araç sonuç döndürecektir:
+Yardımcı program şu sonucu döndürür:
 
-* `0`; değerin düzenli ifadeyle eşleşmesi durumunda
-* `FAIL`; değerin düzenli ifadeyle eşleşmemesi durumunda
+* Değer düzenli ifadeyle eşleşirse `0`
+* Değer düzenli ifadeyle eşleşmezse `FAIL`
 * Düzenli ifade geçersizse hata mesajı
 
-!!! warning " `\` karakterinin işlenmesine ilişkin özel durumlar"
-    Eğer ifade `\` içeriyorsa, lütfen bunu `[]` ve `\` ile kaçırın (örneğin, `[\\]`).
+!!! warning "`\` karakterinin ele alınmasına ilişkin özellikler"
+    İfade `\` içeriyorsa, lütfen `[]` ve `\` ile kaçırın (örneğin, `[\\]`).
 
 **Wallarm Console üzerinden eklenen düzenli ifade örnekleri**
 
-* `<code>/.git</code>` içeren herhangi bir dizeyle eşleşmek için
+* <code>/.git</code> içeren herhangi bir dizeyle eşleşmek için
 
     ```
     /[.]git
     ```
-* `<code>.example.com</code>` içeren herhangi bir dizeyle eşleşmek için
+* <code>.example.com</code> içeren herhangi bir dizeyle eşleşmek için
 
     ```
     [.]example[.]com
     ```
-* `*` herhangi bir sembolün herhangi bir sayıda tekrarı olabileceği varsayımıyla, `<code>/.example.*.com</code>` ile biten herhangi bir dizeyle eşleşmek için
+* `*`’in herhangi bir sembolün herhangi bir sayıda tekrarı olabildiği <code>/.example.*.com</code> ile biten herhangi bir dizeyle eşleşmek için
 
     ```
     /[.]example[.].*[.]com$
     ```
-* 1.2.3.4 ve 5.6.7.8 dışındaki tüm IP adresleriyle eşleşmek için
+* 1.2.3.4 ve 5.6.7.8 hariç tüm IP adresleriyle eşleşmek için
 
     ```
     ^(~((1[.]2[.]3[.]4)|(5[.]6[.]7[.]8)))$
     ```
-* `<code>.example.com.php</code>` ile biten herhangi bir dizeyle eşleşmek için
+* <code>/.example.com.php</code> ile biten herhangi bir dizeyle eşleşmek için
 
     ```
     /[.]example[.]com[.]php$
     ```
-* Küçük ve büyük harflerle, örneğin: `<code>sqLmAp</code>`, `<code>SqLMap</code>` gibi, `<code>sqlmap</code>` içeren herhangi bir dizeyle eşleşmek için
+* Küçük ve büyük harflerle <code>sqLmAp</code>, <code>SqLMap</code> vb. varyasyonlarıyla <code>sqlmap</code> içeren herhangi bir dizeyle eşleşmek için
 
     ```
     [sS][qQ][lL][mM][aA][pP]
     ```
-* Bir veya birden fazla değeri içeren herhangi bir dizeyle eşleşmek için: `<code>admin\.exe</code>`, `<code>admin\.bat</code>`, `<code>admin\.sh</code>`, `<code>cmd\.exe</code>`, `<code>cmd\.bat</code>`, `<code>cmd\.sh</code>`
+* <code>admin\\.exe</code>, <code>admin\\.bat</code>, <code>admin\\.sh</code>, <code>cmd\\.exe</code>, <code>cmd\\.bat</code>, <code>cmd\\.sh</code> değerlerinden bir veya birkaçını içeren herhangi bir dizeyle eşleşmek için
 
     ```
     (admin|cmd)[\\].(exe|bat|sh)
     ```
-* Bir veya birden fazla değeri içeren herhangi bir dizeyle eşleşmek için: `<code>onmouse</code>` (küçük ve büyük harflerle), `<code>onload</code>` (küçük ve büyük harflerle), `<code>win\.ini</code>`, `<code>prompt</code>`
+* Küçük/büyük harf varyasyonlarıyla <code>onmouse</code>, küçük/büyük harf varyasyonlarıyla <code>onload</code>, <code>win\\.ini</code>, <code>prompt</code> değerlerinden bir veya birkaçını içeren herhangi bir dizeyle eşleşmek için
 
     ```
     [oO][nN][mM][oO][uU][sS][eE]|[oO][nN][lL][oO][aA][dD]|win[\\].ini|prompt
@@ -363,61 +379,25 @@ Araç sonuç döndürecektir:
     ```
     ^(Mozilla(~(.*1aa875F49III.*)))$
     ```
-* Aşağıdaki değerlerden biriyle eşleşen herhangi bir dizeyle: `python-requests/`, `PostmanRuntime/`, `okhttp/3.14.0`, `node-fetch/1.0`
+* Şu değerlerden biriyle başlayan herhangi bir dizeyle eşleşmek için: `python-requests/`, `PostmanRuntime/`, `okhttp/3.14.0`, `node-fetch/1.0`
 
     ```
     ^(python-requests/|PostmanRuntime/|okhttp/3.14.0|node-fetch/1.0)
     ```
 
-#### Koşul Türü: ABSENT (`∅`)
+#### Koşul türü: ABSENT (`∅`)
 
-İstek, belirtilen bölümü içermemelidir. Bu durumda, karşılaştırma argümanı kullanılmaz.
+İstek, belirtilen parçayı içermemelidir. Bu durumda karşılaştırma bağımsız değişkeni kullanılmaz.
 
-## Kurallar Seti Yaşam Döngüsü
+<a id="ruleset-lifecycle"></a>
+## Kurallar kümesi yaşam döngüsü
 
-Oluşturulan tüm kurallar, özel bir kurallar seti oluşturur. Wallarm düğümü, gelen isteklerin analizinde bu özel kurallar setine güvenir.
+Oluşturulan tüm kurallar ve [azaltma kontrolleri](../../about-wallarm/mitigation-controls-overview.md) özel bir kural kümesi oluşturur. Wallarm düğümü, gelen istekleri analiz ederken özel kural kümesine dayanır.
 
-Özel kurallardaki değişiklikler anında geçerli olmaz. Değişiklikler, özel kurallar seti **derlenip** filtreleme düğümüne **yüklenmesi** tamamlandıktan sonra istek analiz sürecine uygulanır.
+Kurallardaki ve azaltma kontrollerindeki değişiklikler anında etkili OLMAZ. Değişiklikler, özel kural kümesinin **oluşturulması** ve **filtreleme düğümüne yüklenmesi** tamamlandıktan sonra istek analizi sürecine uygulanır.
 
-### Özel Kurallar Seti Oluşturma
+--8<-- "../include/custom-ruleset.md"
 
-Wallarm Console → **Kurallar** bölümünde yeni bir kural eklemek, mevcut kuralları silmek veya değiştirmek, özel kurallar seti oluşturma sürecini başlatır. Oluşturma sürecinde, kurallar optimize edilir ve filtreleme düğümü için uygun formata derlenir. Özel kurallar seti oluşturma süreci, kural sayısının az olduğu durumlarda birkaç saniyeden, karmaşık kural ağaçlarında ise bir saate kadar sürebilir.
+## Kuralları almak için API çağrıları
 
-### Filtreleme Düğümüne Yükleme
-
-Özel kurallar seti oluşturması, filtreleme düğümü ile Wallarm Cloud senkronizasyonu sırasında filtreleme düğümüne yüklenir. Varsayılan olarak, filtreleme düğümü ile Wallarm Cloud senkronizasyonu her 2‑4 dakikada bir başlatılır. [Filtreleme düğümü ve Wallarm Cloud senkronizasyon yapılandırması hakkında daha fazla detay →](../../admin-en/configure-cloud-node-synchronization-en.md)
-
-Özel kurallar setinin filtreleme düğümüne yüklenme durumu, `/opt/wallarm/var/log/wallarm/wcli-out.log` dosyasına kaydedilir.
-
-Aynı Wallarm hesabına bağlı tüm Wallarm düğümleri, trafik filtrelemesi için aynı varsayılan ve özel kural setini alır. Uygun uygulama kimlikleri veya başlıklar, sorgu dizisi parametreleri gibi benzersiz HTTP istek parametrelerini kullanarak farklı uygulamalar için farklı kurallar uygulayabilirsiniz.
-
-### Yedekleme ve Geri Yükleme
-
-Yanlış yapılandırılmış veya silinmiş kurallardan yanlışlıkla zarar görmenizi önlemek için mevcut özel kurallar setinizi yedekleyebilirsiniz.
-
-Aşağıdaki kural yedekleme seçenekleri mevcuttur: 
-
-* Her [özel kurallar seti oluşturmasından](#custom-ruleset-building) sonra otomatik yedek oluşturma. Otomatik yedek sayısı 7 ile sınırlıdır: kuralları birden fazla kez değiştirdiğiniz her gün için yalnızca son yedek saklanır.
-* Herhangi bir zamanda manuel yedek oluşturma. Manuel yedek sayısı varsayılan olarak 5 ile sınırlıdır. Daha fazlasına ihtiyacınız varsa, [Wallarm technical support](mailto:support@wallarm.com) ekibiyle iletişime geçin.
-
-Yapabilecekleriniz:
-
-* Mevcut yedeklere erişim: **Kurallar** bölümünde **Backups** düğmesine tıklayın.
-* Manuel olarak yeni yedek oluşturma: **Backups** penceresinde **Create backup** düğmesine tıklayın.
-* Manuel yedek için isim ve açıklama belirleyin; istediğiniz zaman düzenleyin.
-
-    !!! info "Otomatik yedekler için isimlendirme"
-        Otomatik yedekler sistem tarafından adlandırılır ve yeniden adlandırılamaz.
-
-* Mevcut yedekten yükleme: Gerekli yedek için **Load** düğmesine tıklayın. Yedekten yükleme yapıldığında, mevcut kural yapılandırmanız silinir ve yedekteki yapılandırma ile değiştirilir.
-* Yedeği silin.
-
-    ![Rules - Creating backup](../../images/user-guides/rules/rules-create-backup.png)
-
-!!! warning "Kural değişiklik sınırlamaları"
-    Yedek oluşturma veya yedekten yükleme tamamlanana kadar kurallar oluşturamaz veya değiştiremezsiniz.
-
-## Kuralları Almak için API Çağrıları
-
-Özel kuralları almak için, [Wallarm API'sine doğrudan çağrı yapabilirsiniz](../../api/request-examples.md#get-all-configured-rules).
-```
+Özel kuralları almak için [Wallarm API’sini doğrudan çağırabilirsiniz](../../api/request-examples.md#get-all-configured-rules).

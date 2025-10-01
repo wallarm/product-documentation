@@ -1,46 +1,44 @@
-```markdown
 [access-wallarm-api-docs]: ../../api/overview.md#your-own-client
 [application-docs]:        ../settings/applications.md
 
-## IP Liste Nesnelerini Getirmek, Doldurmak ve Silmek için API Çağrıları
+## IP listesi nesnelerini alma, doldurma ve silme için API çağrıları
 
-IP liste nesnelerini getirmek, doldurmak ve silmek için Wallarm Console UI'nın yanı sıra [Wallarm API'yi doğrudan çağırabilirsiniz](../../api/overview.md). Aşağıda ilgili API çağrılarına ait bazı örnekler bulunmaktadır.
+IP listesi nesnelerini almak, doldurmak ve silmek için Wallarm Console UI kullanmanın yanı sıra, [Wallarm API'yi doğrudan çağırabilirsiniz](../../api/overview.md). Aşağıda ilgili API çağrılarına bazı örnekler yer almaktadır.
 
-### API İstek Parametreleri
+### API istek parametreleri
 
-IP listelerini okumak ve değiştirmek için API isteklerine geçilecek parametreler:
+IP listelerini okumak ve değiştirmek için API isteklerinde iletilecek parametreler:
 
 --8<-- "../include/api-request-examples/ip-list-request-params.md"
 
-### `.csv` Dosyasından Girdileri Listeye Ekleyin
+### Listeye `.csv` dosyasındaki girdileri ekleme
 
-`.csv` dosyasından IP'leri veya alt ağları listeye eklemek için aşağıdaki bash betiğini kullanın:
+`.csv` dosyasındaki IP'leri veya alt ağları listeye eklemek için aşağıdaki bash betiğini kullanın:
 
 --8<-- "../include/api-request-examples/add-ips-to-lists-from-file.md"
 
-### Tek Bir IP veya Alt Ağı Listeye Ekleyin
+### Listeye tek bir IP veya alt ağ ekleme
 
 --8<-- "../include/api-request-examples/add-some-ips-to-lists.md"
 
-### Birden Fazla Ülkeyi Listeye Ekleyin
+### Listeye birden fazla ülke ekleme
 
 --8<-- "../include/api-request-examples/add-some-countries-to-lists.md"
 
-### Birden Fazla Proxy Servisini Listeye Ekleyin
+### Listeye birden fazla proxy hizmeti ekleme
 
 --8<-- "../include/api-request-examples/add-some-proxies-to-lists.md"
 
-### IP Listeden Bir Nesneyi Silin
+### IP listesinden bir nesne silme
 
-Nesneler, IP listelerinden ID'leri kullanılarak silinir.
+Nesneler IP listelerinden kimlikleri (ID’leri) ile silinir.
 
-Bir nesne ID'si almak için, IP liste içeriğini sorgulayın ve yanıt içerisinden gerekli nesnenin `objects.id` değerini kopyalayın:
+Bir nesnenin ID’sini almak için IP listesi içeriğini isteyin ve yanıttan gerekli nesnenin `objects.id` değerini kopyalayın:
 
 --8<-- "../include/api-request-examples/get-ip-list-contents.md"
 
-Nesne ID'sine sahip olduktan sonra, liste üzerinden silmek için aşağıdaki isteği gönderin:
+Nesnenin ID’si elinizdeyken, onu listeden silmek için aşağıdaki isteği gönderin:
 
 --8<-- "../include/api-request-examples/delete-object-from-ip-list.md"
 
-Silme isteğinde ID'leri bir dizi olarak geçirerek bir seferde birden fazla nesneyi silebilirsiniz.
-```
+Silme isteğinde ID’lerini bir dizi olarak geçirerek birden fazla nesneyi aynı anda silebilirsiniz.

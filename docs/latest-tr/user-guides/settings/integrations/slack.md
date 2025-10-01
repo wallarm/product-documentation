@@ -1,119 +1,118 @@
 # Slack
 
-[Slack](https://slack.com/) yaygın olarak kullanılan bulut tabanlı ekip işbirliği ve mesajlaşma platformudur. Kurumlar içerisinde ekiplerin mesaj alışverişi yapabilmesi, dosya paylaşabilmesi ve diğer araçlar ile hizmetler entegrasyonu gerçekleştirebilmesi için merkezi bir alan sağlayarak iletişimi ve işbirliğini kolaylaştırmak üzere tasarlanmıştır. Wallarm'ı, Slack kanal(lar)ınıza bildirim gönderecek şekilde yapılandırabilirsiniz. Farklı Slack kanallarına veya hesaplarına bildirim göndermek istiyorsanız, birden fazla Slack entegrasyonu oluşturun.
+[Slack](https://slack.com/), bulut tabanlı, ekip iş birliği ve mesajlaşma için yaygın olarak kullanılan bir platformdur. Kuruluşlar içinde iletişim ve iş birliğini kolaylaştırmak için, ekiplerin mesaj alışverişinde bulunabileceği, dosya paylaşabileceği ve diğer araçlar ve hizmetlerle entegre olabileceği merkezi bir alan sağlar. Wallarm’ı Slack kanal(lar)ınıza bildirim gönderecek şekilde ayarlayabilirsiniz. Birden fazla farklı Slack kanalına veya hesabına bildirim göndermek isterseniz, birden fazla Slack entegrasyonu oluşturun.
 
-## Entegrasyonun Ayarlanması
+## Entegrasyonun yapılandırılması
 
-1. **Entegrasyonlar** bölümünü açın.
-1. **Slack** bloğuna tıklayın veya **Entegrasyon ekle** butonuna tıklayın ve **Slack** seçeneğini belirleyin.
+1. **Integrations** bölümünü açın.
+1. **Slack** bloğuna tıklayın veya **Add integration** düğmesine tıklayıp **Slack**’i seçin.
 1. Bir entegrasyon adı girin.
-1. [Slack'deki Webhook ayarlarını](https://my.slack.com/services/incoming-webhook/) açın ve mesajların gönderileceği kanalı seçerek yeni bir Webhook ekleyin.
-1. Verilen Webhook URL'sini kopyalayın ve değeri Wallarm UI'deki **Webhook URL** alanına yapıştırın.
-1. Bildirimleri tetiklemek için olay türlerini seçin.
+1. [Slack'te Webhook ayarları](https://my.slack.com/services/incoming-webhook/) sayfasını açın ve mesajların gönderileceği kanalı seçerek yeni bir Webhook ekleyin.
+1. Sağlanan Webhook URL’sini kopyalayın ve değeri Wallarm UI içindeki **Webhook URL** alanına yapıştırın.
+1. Bildirimleri tetikleyecek olay türlerini seçin.
 
-    ![Slack integration](../../../images/user-guides/settings/integrations/add-slack-integration.png)
+    ![Slack entegrasyonu](../../../images/user-guides/settings/integrations/add-slack-integration.png)
 
-    Mevcut olaylar hakkında ayrıntılar:
+    Kullanılabilir olaylar hakkında ayrıntılar:
       
     --8<-- "../include/integrations/events-for-integrations.md"
 
-1. Yapılandırmanın doğruluğunu, Wallarm Cloud'un kullanılabilirliğini ve bildirim formatını kontrol etmek için **Entegrasyonu Test Et** butonuna tıklayın.
+1. Yapılandırmanın doğruluğunu, Wallarm Cloud erişilebilirliğini ve bildirim formatını kontrol etmek için **Test integration**’a tıklayın.
 
-    Bu, önek `[Test message]` ile test bildirimleri gönderecektir:
+    Bu, başında `[Test message]` ön eki bulunan test bildirimlerini gönderecektir:
 
     ```
-    [Test message] [Test partner] Network perimeter has changed
+    [Test message] [Test partner] Ağ çevresi değişti
 
-    Notification type: new_scope_object_ips
+    Bildirim türü: new_scope_object_ips
 
-    New IP addresses were discovered in the network perimeter:
+    Ağ çevresinde yeni IP adresleri keşfedildi:
     8.8.8.8
 
-    Client: TestCompany
+    Müşteri: TestCompany
     Cloud: EU
     ```
 
-1. **Entegrasyonu Ekle** butonuna tıklayın.
+1. **Add integration**’a tıklayın.
 
-## Ekstra Uyarıların Ayarlanması
+## Ek uyarıların yapılandırılması
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
 
-### Örnek: Bir dakikada 2 veya daha fazla SQLi [hits](../../../glossary-en.md#hit) tespit edilirse Slack bildirimi
+### Örnek: Bir dakika içinde 2 veya daha fazla SQLi hits tespit edilirse Slack bildirimi
 
-Eğer 2 veya daha fazla SQLi [hits](../../../glossary-en.md#hit) korumalı kaynağa gönderilirse, bu olay hakkında bildirim Slack kanalına gönderilecektir.
+Korumalı kaynağa 2 veya daha fazla SQLi [hits](../../../glossary-en.md#hit) gönderilirse, bu olayla ilgili bir bildirim Slack kanalına gönderilecektir.
 
-![Example of a trigger sending the notification to Slack](../../../images/user-guides/triggers/trigger-example1.png)
+![Slack'e bildirim gönderen tetikleyici örneği](../../../images/user-guides/triggers/trigger-example1.png)
 
 **Tetikleyiciyi test etmek için:**
 
-Korumalı kaynağa aşağıdaki istekleri gönderin:
+Aşağıdaki istekleri korunan kaynağa gönderin:
 
 ```bash
 curl 'http://localhost/?id=1%27%20UNION%20SELECT%20username,%20password%20FROM%20users--<script>prompt(1)</script>'
 curl 'http://localhost/?id=1%27%20select%20version();'
 ```
-
-Slack kanalını açın ve **wallarm** kullanıcısından gelen aşağıdaki bildirimin alındığını kontrol edin:
+Slack kanalını açın ve **wallarm** kullanıcısından aşağıdaki bildirimin geldiğini kontrol edin:
 
 ```
-[Wallarm] Trigger: The number of detected hits exceeded the threshold
+[Wallarm] Trigger: Algılanan hits sayısı eşiği aştı
 
-Notification type: attacks_exceeded
+Bildirim türü: attacks_exceeded
 
-The number of detected hits exceeded 1 in 1 minute.
-This notification was triggered by the "Notification about SQLi hits" trigger.
+Algılanan hits sayısı 1 dakikada 1'i aştı.
+Bu bildirim, "Notification about SQLi hits" tetikleyicisi tarafından tetiklendi.
 
-Additional trigger’s clauses:
-Attack type: SQLi.
+Ek tetikleyici koşulları:
+Saldırı türü: SQLi.
 
-View events:
+Olayları görüntüle:
 https://my.wallarm.com/attacks?q=attacks&time_from=XXXXXXXXXX&time_to=XXXXXXXXXX
 
-Client: TestCompany
+Müşteri: TestCompany
 Cloud: EU
 ```
 
-* `Notification about SQLi hits` tetikleyici adıdır  
-* `TestCompany`, Wallarm Console'daki şirket hesabınızın adıdır  
-* `EU`, şirket hesabınızın kayıtlı olduğu Wallarm Cloud'dur
+* `Notification about SQLi hits`, tetikleyicinin adıdır
+* `TestCompany`, Wallarm Console içindeki şirket hesabınızın adıdır
+* `EU`, şirket hesabınızın kayıtlı olduğu Wallarm Cloud’tur
 
-### Örnek: Hesaba yeni kullanıcı eklenirse Slack ve e-posta bildirimi
+### Örnek: Hesaba yeni kullanıcı eklendiğinde Slack ve e‑posta bildirimi
 
-Wallarm Console'daki şirket hesabına **Administrator** veya **Analyst** rolüne sahip yeni bir kullanıcı eklendiğinde, bu olay hakkında bildirim entegrasyonda belirtilen e-posta adresine ve Slack kanalına gönderilecektir.
+Wallarm Console içindeki şirket hesabına **Administrator** veya **Analyst** rolüne sahip yeni bir kullanıcı eklendiğinde, bu olayla ilgili bildirim entegrasyonda belirtilen e‑posta adresine ve Slack kanalına gönderilecektir.
 
-![Example of a trigger sending the notification to Slack and by email](../../../images/user-guides/triggers/trigger-example2.png)
+![Slack'e ve e-posta ile bildirim gönderen tetikleyici örneği](../../../images/user-guides/triggers/trigger-example2.png)
 
 **Tetikleyiciyi test etmek için:**
 
-1. Wallarm Console → **Ayarlar** → **Kullanıcılar** bölümünü açın ve yeni bir kullanıcı ekleyin. Örneğin:
+1. Wallarm Console → **Settings** → **Users** bölümünü açın ve yeni bir kullanıcı ekleyin. Örneğin:
 
-    ![Added user](../../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)
-2. E-posta gelen kutunuzu açın ve aşağıdaki mesajın alındığını kontrol edin:
+    ![Eklenen kullanıcı](../../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)
+2. E‑posta Gelen Kutunuzu açın ve aşağıdaki mesajın geldiğini kontrol edin:
 
-    ![Email about new user added](../../../images/user-guides/triggers/test-new-user-email-message.png)
-3. Slack kanalını açın ve **wallarm** kullanıcısından gelen aşağıdaki bildirimin alındığını kontrol edin:
+    ![Yeni kullanıcı eklendiğine dair e-posta](../../../images/user-guides/triggers/test-new-user-email-message.png)
+3. Slack kanalını açın ve **wallarm** kullanıcısından aşağıdaki bildirimin geldiğini kontrol edin:
 
     ```
-    [Wallarm] Trigger: New user was added to the company account
+    [Wallarm] Trigger: Şirket hesabına yeni kullanıcı eklendi
     
-    Notification type: create_user
+    Bildirim türü: create_user
     
-    Yeni kullanıcı John Smith <johnsmith@example.com>, rolü Analyst olarak, John Doe <johndoe@example.com> tarafından şirket hesabına eklendi.
-    This notification was triggered by the "Added user" trigger.
+    Analyst rolüne sahip yeni kullanıcı John Smith <johnsmith@example.com>, John Doe <johndoe@example.com> tarafından şirket hesabına eklendi.
+    Bu bildirim, "Added user" tetikleyicisi tarafından tetiklendi.
 
-    Client: TestCompany
+    Müşteri: TestCompany
     Cloud: EU
     ```
 
-    * `John Smith` ve `johnsmith@example.com` eklenen kullanıcı hakkında bilgilerdir  
-    * `Analyst`, eklenen kullanıcının rolüdür  
-    * `John Doe` ve `johndoe@example.com`, yeni kullanıcı ekleyen kullanıcıya ait bilgilerdir  
-    * `Added user` tetikleyici adıdır  
-    * `TestCompany`, Wallarm Console'daki şirket hesabınızın adıdır  
-    * `EU`, şirket hesabınızın kayıtlı olduğu Wallarm Cloud'dur
+    * `John Smith` ve `johnsmith@example.com`, eklenen kullanıcıya ilişkin bilgilerdir
+    * `Analyst`, eklenen kullanıcının rolüdür
+    * `John Doe` ve `johndoe@example.com`, yeni kullanıcıyı ekleyen kullanıcıya ilişkin bilgilerdir
+    * `Added user`, tetikleyicinin adıdır
+    * `TestCompany`, Wallarm Console içindeki şirket hesabınızın adıdır
+    * `EU`, şirket hesabınızın kayıtlı olduğu Wallarm Cloud’tur
 
-## Bir entegrasyonun devre dışı bırakılması ve silinmesi
+## Bir entegrasyonu devre dışı bırakma ve silme
 
 --8<-- "../include/integrations/integrations-disable-delete.md"
 

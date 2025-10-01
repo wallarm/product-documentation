@@ -1,12 +1,10 @@
-```markdown
+# Docker NGINX‑tabanlı İmajı Çalıştırma
 
-# Docker NGINX‑tabanlı Görüntüyü Çalıştırma
+Wallarm NGINX tabanlı filtreleme düğümü bir [Docker imajı](https://hub.docker.com/r/wallarm/node) kullanılarak dağıtılabilir. Bu düğüm hem x86_64 hem de ARM64 mimarilerini destekler ve kurulum sırasında otomatik olarak belirlenir. Bu makale, [inline trafik filtreleme][inline-docs] için düğümün Docker imajından nasıl çalıştırılacağını açıklar.
 
-Wallarm NGINX‑tabanlı filtreleme düğümü, [Docker image](https://hub.docker.com/r/wallarm/node) kullanılarak dağıtılabilir. Bu düğüm, kurulum sırasında otomatik olarak tanımlanan hem x86_64 hem de ARM64 mimarilerini destekler. Bu makale, Docker görüntüsünden düğümün nasıl çalıştırılacağı konusunda yol gösterir.
+Docker imajı Alpine Linux’a ve Alpine’in sağladığı NGINX sürümüne dayanır. Şu anda en güncel imaj, NGINX stable 1.28.0 içeren Alpine Linux 3.22 sürümünü kullanır.
 
-Docker görüntüsü, Alpine Linux üzerine kuruludur ve Alpine tarafından sağlanan NGINX sürümünü içerir. Şu anda, en son görüntü Alpine Linux sürüm 3.20 kullanır; bu sürümde NGINX stable 1.26.2 yer alır.
-
-## Kullanım Durumları
+## Kullanım senaryoları
 
 --8<-- "../include/waf/installation/docker-images/nginx-based-use-cases.md"
 
@@ -14,11 +12,11 @@ Docker görüntüsü, Alpine Linux üzerine kuruludur ve Alpine tarafından sağ
 
 --8<-- "../include/waf/installation/requirements-docker-nginx-latest.md"
 
-## Konteyneri Çalıştırma Seçenekleri
+## Konteyneri çalıştırma seçenekleri
 
 --8<-- "../include/waf/installation/docker-running-options.md"
 
-## Ortam Değişkenlerini Geçirerek Konteyneri Çalıştırma
+## Ortam değişkenlerini geçirerek konteyneri çalıştırma
 
 Konteyneri çalıştırmak için:
 
@@ -28,31 +26,31 @@ Konteyneri çalıştırmak için:
 
     === "US Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:5.3.0
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:6.5.1
         ```
     === "EU Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -p 80:80 wallarm/node:5.3.0
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -p 80:80 wallarm/node:6.5.1
         ```
 
-Konteynerin içine `-e` seçeneğiyle aşağıdaki temel filtreleme düğümü ayarlarını geçirebilirsiniz:
+Aşağıdaki temel filtreleme düğümü ayarlarını `-e` seçeneği ile konteynere iletebilirsiniz:
 
 --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
 
 Komut şunları yapar:
 
-* Minimal NGINX yapılandırması bulunan `default` dosyasını oluşturur ve filtreleme düğümü yapılandırmasını konteynerdeki `/etc/nginx/sites-enabled` dizinine aktarır.
-* Wallarm Cloud'a erişim için filtreleme düğümü kimlik bilgilerini içeren dosyaları konteynerdeki `/opt/wallarm/etc/wallarm` dizininde oluşturur:
-    * Filtreleme düğümü UUID'si ve gizli anahtarı içeren `node.yaml`
+* `/etc/nginx/http.d` konteyner dizininde minimal NGINX yapılandırmasına sahip `default.conf` dosyasını oluşturur ve filtreleme düğümü yapılandırmasını iletir.
+* Wallarm Cloud’a erişim için filtreleme düğümü kimlik bilgilerini içeren dosyaları `/opt/wallarm/etc/wallarm` konteyner dizininde oluşturur:
+    * Filtreleme düğümü UUID’si ve gizli anahtarıyla `node.yaml`
     * Wallarm özel anahtarını içeren `private.key`
 * `http://NGINX_BACKEND:80` kaynağını korur.
 
-## Yapılandırma Dosyasını Bağlayarak Konteyneri Çalıştırma
+## Yapılandırma dosyasını bağlayarak konteyneri çalıştırma
 
-Hazırlanan yapılandırma dosyasını Docker konteynerine `-v` seçeneği ile bağlayabilirsiniz. Dosya aşağıdaki ayarları içermelidir:
+Hazırlanmış yapılandırma dosyasını `-v` seçeneğiyle Docker konteynerine bağlayabilirsiniz. Dosya aşağıdaki ayarları içermelidir:
 
-* [Filtering node directives][nginx-directives-docs]
-* [NGINX settings](https://nginx.org/en/docs/beginners_guide.html)
+* [Filtreleme düğümü yönergeleri][nginx-directives-docs]
+* [NGINX ayarları](https://nginx.org/en/docs/beginners_guide.html)
 
 Konteyneri çalıştırmak için:
 
@@ -62,20 +60,20 @@ Konteyneri çalıştırmak için:
 
     === "US Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:5.3.0
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/http.d/default.conf -p 80:80 wallarm/node:6.5.1
         ```
     === "EU Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:5.3.0
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v /configs/default:/etc/nginx/http.d/default.conf -p 80:80 wallarm/node:6.5.1
         ```
 
-    * `-e` seçeneği, konteynere aşağıdaki gerekli ortam değişkenlerini geçirir:
+    * `-e` seçeneği, aşağıdaki zorunlu ortam değişkenlerini konteynere iletir:
 
         --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
     
-    * `-v` seçeneği, yapılandırma dosyası `default`'ın bulunduğu dizini konteynerdeki `/etc/nginx/sites-enabled` dizinine bağlar.
+    * `-v` seçeneği, `default.conf` yapılandırma dosyasını içeren dizini `/etc/nginx/http.d` konteyner dizinine bağlar.
 
-        ??? info "Örnek `/etc/nginx/sites-enabled` minimal içeriğini görün"
+        ??? info "Örnek `/etc/nginx/http.d/default.conf` minimal içeriği için bakın"
             ```bash
             server {
                     listen 80 default_server;
@@ -104,14 +102,14 @@ Konteyneri çalıştırmak için:
         ??? info "Diğer yapılandırma dosyalarını bağlama"
             NGINX tarafından kullanılan konteyner dizinleri:
 
-            * `/etc/nginx/nginx.conf` - Bu, ana NGINX yapılandırma dosyasıdır. Bu dosyayı bağlamaya karar verirseniz, Wallarm’ın doğru çalışması için ek adımlar gereklidir:
+            * `/etc/nginx/nginx.conf` - Bu, ana NGINX yapılandırma dosyasıdır. Bu dosyayı bağlamaya karar verirseniz, Wallarm’ın düzgün çalışması için ek adımlar gereklidir:
 
-                1. `nginx.conf` dosyasının en üst seviyesine aşağıdaki ayarı ekleyin:
+                1. `nginx.conf` dosyasında, en üst düzeye aşağıdaki ayarı ekleyin:
 
                     ```
-                    include /etc/nginx/modules-enabled/*.conf;
+                    include /etc/nginx/modules/*.conf;
                     ```
-                1. `nginx.conf` dosyasında, `http` bloğu içerisinde [API Specification Enforcement][api-policy-enf-docs] yapılandırma dosyasına işaret eden `wallarm_srv_include /etc/nginx/wallarm-apifw-loc.conf;` yönergesini ekleyin.
+                1. `nginx.conf` içinde, `http` bloğuna `wallarm_srv_include /etc/nginx/wallarm-apifw-loc.conf;` yönergesini ekleyin. Bu, [API Spesifikasyonu Zorlaması][api-policy-enf-docs] için yapılandırma dosyasının yolunu belirtir.
                 1. `wallarm-apifw-loc.conf` dosyasını belirtilen yola bağlayın. İçeriği şu şekilde olmalıdır:
 
                     ```
@@ -120,7 +118,7 @@ Konteyneri çalıştırmak için:
                             proxy_pass http://127.0.0.1:8088$1;
                             error_page 404 431         = @wallarm-apifw-fallback;
                             error_page 500 502 503 504 = @wallarm-apifw-fallback;
-                            allow 127.0.0.0/8;
+                            allow 127.0.0.8/8;
                             deny all;
                     }
 
@@ -129,11 +127,10 @@ Konteyneri çalıştırmak için:
                             return 500 "API FW fallback";
                     }
                     ```
-                1. `/etc/nginx/conf.d/wallarm-status.conf` dosyasını aşağıdaki içerikle bağlayın. Verilen yapılandırmadaki her hangi bir satırın değiştirilmemesi, düğüm metriklerinin Wallarm Cloud’a başarılı bir şekilde yüklenmesi için çok önemlidir:
+                1. Aşağıdaki içerikle `/etc/nginx/conf.d/wallarm-status.conf` dosyasını bağlayın. Sağlanan yapılandırmadaki herhangi bir satırı değiştirmemek kritik önemdedir; aksi halde düğüm metriklerinin Wallarm Cloud’a başarılı şekilde yüklenmesini engelleyebilir.
 
                     ```
                     server {
-                      # Port, NGINX_PORT değişkeni değeriyle eşleşmelidir
                       listen 127.0.0.8:80;
 
                       server_name localhost;
@@ -151,11 +148,11 @@ Konteyneri çalıştırmak için:
                       }
                     }
                     ```
-                1. NGINX yapılandırma dosyanız içerisinde, `/wallarm-status` uç noktası için aşağıdaki yapılandırmayı ayarlayın:
+                1. NGINX yapılandırma dosyanız içinde, `/wallarm-status` uç noktası için aşağıdaki yapılandırmayı oluşturun:
 
                     ```
                     location /wallarm-status {
-                        # İzin verilen adresler WALLARM_STATUS_ALLOW değişkeni değeriyle eşleşmelidir
+                        # İzin verilen adresler, WALLARM_STATUS_ALLOW değişkeninin değeriyle eşleşmelidir
                         allow xxx.xxx.x.xxx;
                         allow yyy.yyy.y.yyy;
                         deny all;
@@ -163,34 +160,33 @@ Konteyneri çalıştırmak için:
                         wallarm_mode off;
                     }
                     ```
-            * `/etc/nginx/conf.d` — ortak ayarlar
-            * `/etc/nginx/sites-enabled` — sanal sunucu ayarları
+            * `/etc/nginx/conf.d` — genel ayarlar
+            * `/etc/nginx/http.d` — sanal ana bilgisayar ayarları
             * `/opt/wallarm/usr/share/nginx/html` — statik dosyalar
 
-            Gerekirse, listelenen konteyner dizinlerine herhangi bir dosya bağlayabilirsiniz. Filtreleme düğümü yönergeleri, `/etc/nginx/sites-enabled/default` dosyasında tanımlanmalıdır.
+            Gerekirse, listelenen konteyner dizinlerine herhangi bir dosyayı bağlayabilirsiniz. Filtreleme düğümü yönergeleri `/etc/nginx/http.d/default.conf` dosyasında tanımlanmalıdır.
 
 Komut şunları yapar:
 
-* `default` dosyasını konteynerdeki `/etc/nginx/sites-enabled` dizinine bağlar.
-* Wallarm Cloud’a erişmek için filtreleme düğümü kimlik bilgilerini içeren dosyaları konteynerdeki `/opt/wallarm/etc/wallarm` dizininde oluşturur:
-    * Filtreleme düğümü UUID'si ve gizli anahtarı içeren `node.yaml`
+* `default.conf` dosyasını `/etc/nginx/http.d` konteyner dizinine bağlar.
+* Wallarm Cloud’a erişim için filtreleme düğümü kimlik bilgilerini içeren dosyaları `/opt/wallarm/etc/wallarm` konteyner dizininde oluşturur:
+    * Filtreleme düğümü UUID’si ve gizli anahtarıyla `node.yaml`
     * Wallarm özel anahtarını içeren `private.key`
 * `http://example.com` kaynağını korur.
 
-## Günlük Kaydı Yapılandırması
+## Günlükleme yapılandırması
 
-Günlük kaydı varsayılan olarak etkindir. Günlük dizinleri şunlardır:
+Günlükleme varsayılan olarak etkindir. Günlük dizinleri şunlardır:
 
 * `/var/log/nginx` — NGINX günlükleri
-* `/opt/wallarm/var/log/wallarm` — [Wallarm node günlükleri][logging-instr]
+* `/opt/wallarm/var/log/wallarm` — [Wallarm düğüm günlükleri][logging-instr]
 
-## Wallarm Düğüm İşleyişinin Test Edilmesi
+## Wallarm düğümünün çalışmasını test etme
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-## Kullanım Durumlarının Yapılandırılması
+## Kullanım senaryolarını yapılandırma
 
-Docker konteynerine bağlanan yapılandırma dosyası, [mevcut yönerge][nginx-directives-docs] içerisindeki filtreleme düğümü yapılandırmasını tanımlamalıdır. Aşağıda, yaygın olarak kullanılan bazı filtreleme düğümü yapılandırma seçenekleri bulunmaktadır:
+Docker konteynerine bağlanan yapılandırma dosyası, filtreleme düğümü yapılandırmasını [mevcut yönergelerde][nginx-directives-docs] tanımlamalıdır. Aşağıda yaygın olarak kullanılan bazı filtreleme düğümü yapılandırma seçenekleri verilmiştir:
 
 --8<-- "../include/waf/installation/common-customization-options-docker-4.4.md"
-```

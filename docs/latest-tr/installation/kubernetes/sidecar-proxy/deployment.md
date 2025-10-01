@@ -1,46 +1,46 @@
-# Wallarm Sidecar Dağıtımı
+# Wallarm Sidecar'ı Dağıtma
 
-Kubernetes kümesinde bir Pod olarak dağıtılan bir uygulamayı korumak için, uygulamanın önünde yan konteyner kontrolörü olarak çalışan NGINX tabanlı Wallarm node'unu kullanabilirsiniz. Wallarm sidecar kontrolörü, uygulama Pod'una gelen trafiği, yalnızca meşru isteklerin geçmesine izin vererek ve kötü niyetli olanları azaltarak filtreleyecektir.
+Kubernetes kümesinde Pod olarak dağıtılmış bir uygulamayı güvenceye almak için, uygulamanın önünde sidecar denetleyicisi olarak NGINX tabanlı Wallarm düğümünü çalıştırabilirsiniz. Wallarm sidecar denetleyicisi, uygulama Pod'una gelen trafiği filtreleyerek yalnızca meşru istekleri kabul eder ve kötü niyetli olanları sınırlar.
 
-**Wallarm Sidecar çözümünün temel özellikleri:**
+Wallarm Sidecar çözümünün ana özellikleri:
 
-* Ayrık mikroservislerin ve bunların kopyalarının ve parçalarının korumasını, uygulamalara benzer dağıtım formatı sunarak basitleştirir
-* Herhangi bir Ingress kontrolörüyle tamamen uyumlu
-* Genellikle servis mesh yaklaşımında yaygın olarak görülen yüksek yükler altında stabil çalışır
-* Uygulamalarınızı korumak için minimum hizmet yapılandırması gerektirir; yalnızca uygulama pod'una koruma eklemek için bazı ek açıklamalar (annotations) ve etiketler (labels) ekleyin
-* Wallarm konteyner dağıtımının iki modunu destekler: orta yükler için tüm Wallarm servislerinin tek bir konteynerde çalıştığı mod ve yüksek yükler için Wallarm servislerinin birkaç konteynere bölündüğü mod
-* Çoğu belleği tüketen Wallarm sidecar çözümü için yerel veri analitiği backend'i olan postanalytics modülü için özel bir varlık sağlar
+* Uygulamalara benzer bir dağıtım formatı sağlayarak ayrık mikro hizmetlerin ve bunların replikalarının ve shard'larının korunmasını basitleştirir
+* Herhangi bir Ingress controller ile tamamen uyumludur
+* Genellikle service mesh yaklaşımı için yaygın olan yüksek yükler altında kararlı çalışır
+* Uygulamalarınızı güvenceye almak için minimum hizmet yapılandırması gerektirir; korumak istediğiniz uygulama pod'una yalnızca bazı açıklamalar (annotations) ve etiketler ekleyin
+* Wallarm konteyner dağıtımının iki modunu destekler: Wallarm servislerinin tek konteynerde çalıştığı orta yükler ve Wallarm servislerinin birkaç konteynere bölündüğü yüksek yükler için
+* Wallarm sidecar çözümü için yerel veri analitiği arka ucu olan ve belleğin çoğunu tüketen postanalytics modülü için özel bir varlık sağlar
 
-## Kullanım Senaryoları
+## Kullanım senaryoları
 
-Desteklenen tüm [Wallarm dağıtım seçenekleri][deployment-platform-docs] arasında, aşağıdaki **kullanım senaryoları** için bu çözüm önerilmektedir:
+Desteklenen tüm [Wallarm dağıtım seçenekleri][deployment-platform-docs] arasında, bu çözüm aşağıdaki kullanım senaryoları için önerilir:
 
-* Mevcut Ingress kontrolörüne (örneğin AWS ALB Ingress Controller) sahip altyapıya dağıtılacak bir güvenlik çözümü arıyorsanız ve bu durum [Wallarm NGINX tabanlı][nginx-ing-controller-docs] veya [Wallarm Kong temelli Ingress kontrolörü][kong-ing-controller-docs] dağıtımına engel oluyorsa
-* Her mikroservisin (iç API'ler dahil) güvenlik çözümü tarafından korunmasını gerektiren sıfır güven (zero-trust) ortamı
+* Mevcut Ingress controller'lı (ör. AWS ALB Ingress Controller) altyapıya dağıtılacak bir güvenlik çözümü arıyorsunuz ve bu durum [Wallarm NGINX tabanlı Ingress Controller][nginx-ing-controller-docs] veya [Kong Ingress controller için Wallarm bağlayıcı][kong-ing-controller-docs] dağıtımını engelliyor
+* Her mikro hizmetin (dahili API'ler dahil) güvenlik çözümüyle korunmasını gerektiren sıfır güven (zero-trust) ortamı
 
-## Trafik Akışı
+## Trafik akışı
 
 Wallarm Sidecar ile trafik akışı:
 
-![Traffic flow with Wallarm Sidecar][traffic-flow-with-wallarm-sidecar-img]
+![Wallarm Sidecar ile trafik akışı][traffic-flow-with-wallarm-sidecar-img]
 
-## Çözüm Mimarisi
+## Çözüm mimarisi
 
-Wallarm Sidecar çözümü, aşağıdaki Dağıtım (Deployment) nesneleriyle düzenlenmiştir:
+Wallarm Sidecar çözümü aşağıdaki Deployment nesneleriyle düzenlenir:
 
-* **Sidecar kontrolörü** (`wallarm-sidecar-controller`), Helm chart değerlerine ve pod açıklamalarına (annotations) dayanarak Pod içine Wallarm sidecar kaynaklarını enjekte eden ve node bileşenlerini Wallarm Cloud ile bağlayan [mutable admission webhook](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#admission-webhooks)'dur.
+* Sidecar controller (`wallarm-sidecar-controller`), Pod'a Wallarm sidecar kaynaklarını enjekte eden, onu Helm chart değerleri ve pod açıklamalarına göre yapılandıran ve düğüm bileşenlerini Wallarm Cloud'a bağlayan [mutating admission webhook'tur](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#admission-webhooks).
 
-    Kubernetes'te `wallarm-sidecar: enabled` etiketiyle yeni bir pod başladığında, kontrolör otomatik olarak pod içine gelen trafiği filtreleyen ek konteyneri enjekte eder.
-* **Postanalytics modülü** (`wallarm-sidecar-postanalytics`), Wallarm sidecar çözümünün yerel veri analitiği backend'idir. Modül, bellek içi depolama olan Tarantool ve bazı yardımcı konteynerlerden (örneğin collectd, saldırı ihbar servisleri) oluşan bir set kullanır.
+    Kubernetes'te `wallarm-sidecar: enabled` etiketi bulunan yeni bir pod başlatıldığında, denetleyici gelen trafiği filtreleyen ek konteyneri otomatik olarak pod'a enjekte eder.
+* Postanalytics modülü (`wallarm-sidecar-postanalytics`), Wallarm sidecar çözümü için yerel veri analitiği arka ucudur. Modül, bellek içi depolama wstore'u ve saldırı dışa aktarma servisleri gibi bazı yardımcı konteynerleri kullanır.
 
-![Wallarm deployment objects][sidecar-deployment-objects-img]
+![Wallarm dağıtım nesneleri][sidecar-deployment-objects-img]
 
 Wallarm Sidecar'ın yaşam döngüsünde 2 standart aşama vardır:
 
-1. **Başlangıç** aşamasında, kontrolör Helm chart değerlerine ve pod açıklamalarına göre Pod içine Wallarm sidecar kaynaklarını enjekte eder ve node bileşenlerini Wallarm Cloud ile bağlar.
-2. **Çalışma** aşamasında, çözüm postanalytics modülünü içeren istekleri analiz edip proxy'ler/yönlendirir.
+1. Başlangıç aşamasında, denetleyici Wallarm sidecar kaynaklarını Pod'a enjekte eder, onu Helm chart değerleri ve pod açıklamalarına göre yapılandırır ve düğüm bileşenlerini Wallarm Cloud'a bağlar.
+1. Çalışma zamanında, çözüm postanalytics modülünü kullanarak istekleri analiz eder ve proxy'ler/iletir.
 
-Çözüm, Alpine Linux tabanlı Docker imajlarını ve Alpine tarafından sağlanan NGINX sürümünü kullanır. Şu anda, en güncel imajlar Alpine Linux 3.20 sürümünü kullanmakta ve bu sürüm NGINX stable 1.26.1 içermektedir.
+Çözüm, Alpine Linux ve Alpine'in sağladığı NGINX sürümüne dayalı Docker imajlarını kullanır. Şu anda en yeni imajlar, NGINX kararlı sürüm 1.28.0'ı içeren Alpine Linux sürüm 3.22'yi kullanmaktadır.
 
 ## Gereksinimler
 
@@ -50,35 +50,35 @@ Wallarm Sidecar'ın yaşam döngüsünde 2 standart aşama vardır:
 
 Wallarm Sidecar çözümünü dağıtmak için:
 
-1. Bir filtreleme node token'ı oluşturun.
-2. Wallarm Helm chart'ını dağıtın.
-3. Wallarm Sidecar'ı uygulama Pod'una ekleyin.
-4. Wallarm Sidecar operasyonunu test edin.
+1. Bir filtreleme düğümü belirteci (token) oluşturun.
+1. Wallarm Helm chart'ını dağıtın.
+1. Wallarm Sidecar'ı uygulama Pod'una ekleyin.
+1. Wallarm Sidecar çalışmasını test edin.
 
-### Adım 1: Filtreleme Node Token'ı Oluşturun
+### Adım 1: Bir filtreleme düğümü belirteci oluşturun
 
-Wallarm Cloud ile bağlantı kuracak yan konteyner pod'larını bağlamak için [uygun tipte bir token][node-token-types] oluşturun:
+Sidecar pod'larını Wallarm Cloud'a bağlamak için [uygun türde][node-token-types] bir filtreleme düğümü belirteci oluşturun:
 
 === "API token"
-    1. Wallarm Console → **Settings** → **API tokens** bölümünü [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens)'da açın.
-    1. `Deploy` kaynak rolüne sahip bir API token bulun ya da oluşturun.
+    1. Wallarm Console → **Settings** → **API tokens** bölümünü [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens) içinde açın.
+    1. Kullanım türü `Node deployment/Deployment` olan bir API token'ı bulun veya oluşturun.
     1. Bu token'ı kopyalayın.
 === "Node token"
-    1. Wallarm Console → **Nodes** bölümünü [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes)'da açın.
-    1. **Wallarm node** tipi ile bir filtreleme node'u oluşturun ve oluşturulan token'ı kopyalayın.
+    1. Wallarm Console → **Nodes** bölümünü [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) içinde açın.
+    1. **Wallarm node** türünde bir filtreleme düğümü oluşturun ve üretilen token'ı kopyalayın.
         
-      ![Creation of a Wallarm node][create-wallarm-node-img]
+      ![Bir Wallarm düğümünün oluşturulması][create-wallarm-node-img]
 
-### Adım 2: Wallarm Helm Chart'ını Dağıtın
+### Adım 2: Wallarm Helm chart'ını dağıtın
 
 1. [Wallarm chart deposunu](https://charts.wallarm.com/) ekleyin:
     ```
     helm repo add wallarm https://charts.wallarm.com
     helm repo update wallarm
     ```
-1. [Wallarm Sidecar yapılandırması](customization.md) ile `values.yaml` dosyasını oluşturun. Minimum yapılandırmaya sahip dosya örneği aşağıdadır.
+1. [Wallarm Sidecar yapılandırmasını](customization.md) içeren `values.yaml` dosyasını oluşturun. Minimum yapılandırmaya sahip dosya örneği aşağıdadır.
 
-    API token kullanırken, `nodeGroup` parametresinde bir node grubu adı belirtin. Yan konteyner pod'ları için oluşturulan node'lar, Wallarm Console'daki **Nodes** bölümünde gösterilen bu gruba atanacaktır. Varsayılan grup adı `defaultSidecarGroup`'dur. Gerekirse, korudukları uygulama pod'ları için filtreleme node grup adlarını, [`sidecar.wallarm.io/wallarm-node-group`](pod-annotations.md#wallarm-node-group) açıklamasını kullanarak daha sonradan belirleyebilirsiniz.
+    API token kullanırken, `nodeGroup` parametresinde bir düğüm grup adı belirtin. Sidecar pod'ları için oluşturulan düğümleriniz, Wallarm Console'un **Nodes** bölümünde gösterilen bu gruba atanacaktır. Varsayılan grup adı `defaultSidecarGroup`'tur. Gerekirse, daha sonra korudukları uygulamaların pod'ları için [`sidecar.wallarm.io/wallarm-node-group`](pod-annotations.md#wallarm-node-group) açıklamasını kullanarak filtreleme düğümü grup adlarını pod bazında ayrı ayrı ayarlayabilirsiniz.
 
     === "US Cloud"
         ```yaml
@@ -98,20 +98,20 @@ Wallarm Cloud ile bağlantı kuracak yan konteyner pod'larını bağlamak için 
               # nodeGroup: "defaultSidecarGroup"
         ```    
     
-    `<NODE_TOKEN>`, Kubernetes'te çalıştırılacak Wallarm node'unun token'ıdır.
+    `<NODE_TOKEN>`, Kubernetes'te çalışacak Wallarm düğümünün token'ıdır.
 
     --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.md"
 1. Wallarm Helm chart'ını dağıtın:
 
     ``` bash
-    helm install --version 5.3.0 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar --create-namespace -f <PATH_TO_VALUES>
+    helm install --version 6.5.1 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar --create-namespace -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`, Wallarm Sidecar chart'ının Helm sürümü için verilen isimdir.
-    * `wallarm-sidecar`, Helm release'i Wallarm Sidecar chart ile dağıtmak için oluşturulan yeni isim alanıdır; çözümü ayrı bir isim alanında dağıtmanız önerilir.
-    * `<PATH_TO_VALUES>`, `values.yaml` dosyasının yoludur.
+    * `<RELEASE_NAME>`, Wallarm Sidecar chart'ının Helm sürüm adı
+    * `wallarm-sidecar`, Wallarm Sidecar chart'ının Helm sürümünün dağıtılacağı yeni ad alanı; ayrı bir ad alanına dağıtılması önerilir
+    * `<PATH_TO_VALUES>`, `values.yaml` dosyasının yolu
 
-### Adım 3: Wallarm Sidecar'ı Uygulama Pod'una Ekleyin
+### Adım 3: Wallarm Sidecar'ı uygulama Pod'una ekleyin
 
 Wallarm'ın uygulama trafiğini filtrelemesi için, ilgili uygulama Pod'una `wallarm-sidecar: enabled` etiketini ekleyin:
 
@@ -144,57 +144,57 @@ spec:
               containerPort: 80
 ```
 
-* Eğer `wallarm-sidecar` uygulama Pod etiketinin değeri `disabled` olarak ayarlanmış veya açıkça belirtilmemişse, Wallarm Sidecar konteyneri pod içine enjekte edilmez ve bu nedenle Wallarm trafiği filtrelemez.
-* Eğer `wallarm-sidecar` uygulama Pod etiketinin değeri `enabled` olarak ayarlanmışsa, Wallarm Sidecar konteyneri pod içine enjekte edilir ve böylece Wallarm gelen trafiği filtreler.
+* `wallarm-sidecar` uygulama Pod etiketi `disabled` olarak ayarlanmışsa veya açıkça belirtilmemişse, Wallarm Sidecar konteyneri bir pod'a enjekte edilmez ve dolayısıyla Wallarm trafiği filtrelemez.
+* `wallarm-sidecar` uygulama Pod etiketi `enabled` olarak ayarlanmışsa, Wallarm Sidecar konteyneri bir pod'a enjekte edilir ve dolayısıyla Wallarm gelen trafiği filtreler.
 
-### Adım 4: Wallarm Sidecar Operasyonunu Test Edin
+### Adım 4: Wallarm Sidecar çalışmasını test edin
 
 Wallarm Sidecar'ın doğru çalıştığını test etmek için:
 
-1. Wallarm kontrol düzlemi detaylarını alarak başarılı bir şekilde başladığını kontrol edin:
+1. Başarıyla başlatıldığını kontrol etmek üzere Wallarm kontrol düzlemi ayrıntılarını alın:
 
     ```bash
     kubectl get pods -n wallarm-sidecar -l app.kubernetes.io/name=wallarm-sidecar
     ```
 
-    Her pod, örneğin **READY: N/N** ve **STATUS: Running** bilgilerini göstermelidir:
+    Her pod aşağıdakileri göstermelidir: **READY: N/N** ve **STATUS: Running**, ör.:
 
     ```
-    NAME                                              READY   STATUS    RESTARTS   AGE
+    NAME                                             READY   STATUS    RESTARTS   AGE
     wallarm-sidecar-controller-54cf88b989-gp2vg      1/1     Running   0          91m
-    wallarm-sidecar-postanalytics-86d9d4b6cd-hpd5k   4/4     Running   0          91m
+    wallarm-sidecar-postanalytics-86d9d4b6cd-hpd5k   3/3     Running   0          91m
     ```
-1. Wallarm sidecar konteynerinin başarılı bir şekilde enjekte edildiğini kontrol etmek amacıyla uygulama pod detaylarını alın:
+1. Wallarm sidecar konteynerinin başarıyla enjekte edildiğini kontrol etmek için uygulama pod ayrıntılarını alın:
 
     ```bash
     kubectl get pods -n <APPLICATION_NAMESPACE> --selector app=<APP_LABEL_VALUE>
     ```
 
-    Çıktıda, başarılı yan konteyner enjekte edilmesini gösteren **READY: 2/2** ve Wallarm Cloud ile başarılı bağlantıyı gösteren **STATUS: Running** görünmelidir:
+    Çıktı, başarılı sidecar konteyner enjeksiyonunu gösteren **READY: 2/2** ve Wallarm Cloud'a başarılı bağlantıyı gösteren **STATUS: Running** içermelidir:
 
     ```
     NAME                     READY   STATUS    RESTARTS   AGE
     myapp-5c48c97b66-lzkwf   2/2     Running   0          3h4m
     ```
-1. Wallarm'ın trafik filtrelemesi için etkin olduğu uygulama küme adresine, [Path Traversal][ptrav-attack-docs] saldırısını test olarak gönderin:
+1. Wallarm'ın trafiği filtrelemek üzere etkin olduğu uygulama kümesi adresine test amaçlı bir [Path Traversal][ptrav-attack-docs] saldırısı gönderin:
 
     ```bash
     curl http://<APPLICATION_CLUSTER_IP>/etc/passwd
     ```
 
-    Wallarm proxy, varsayılan olarak **monitoring** [filtration mode][filtration-mode-docs] modunda çalıştığı için, Wallarm node saldırıyı engellemeyecek ancak saldırıyı kaydedecektir.
+    Wallarm proxy varsayılan olarak **monitoring** [filtreleme modunda][filtration-mode-docs] çalıştığından, Wallarm düğümü saldırıyı engellemeyecek ancak kaydedecektir.
 
-    Saldırının kaydedildiğini doğrulamak için, Wallarm Console → **Attacks** bölümüne gidin:
+    Saldırının kaydedildiğini kontrol etmek için Wallarm Console → **Attacks** bölümüne gidin:
 
-    ![Attacks in the interface][attacks-in-ui-image]
+    ![Arayüzde Attacks][attacks-in-ui-image]
 
-## ARM64 Dağıtımı
+## ARM64 dağıtımı
 
-Sidecar proxy'nin Helm chart sürümü 4.10.2 ile ARM64 işlemci uyumluluğu tanıtılmıştır. Başlangıçta x86 mimarileri için ayarlanmış olan bu yapılandırmanın ARM64 node'larında dağıtılması, Helm chart parametrelerinin değiştirilmesini gerektirir.
+Sidecar proxy'nin Helm chart sürümü 4.10.2 ile ARM64 işlemci uyumluluğu sunulmuştur. Başlangıçta x86 mimarileri için ayarlanmış olan dağıtım, ARM64 düğümlerinde Helm chart parametrelerinin değiştirilmesini gerektirir.
 
-ARM64 ayarlarında, Kubernetes node'ları genellikle `arm64` etiketi taşır. Kubernetes scheduler'ın Wallarm iş yükünü uygun node tipine yerleştirmesine yardımcı olmak için, Wallarm Helm chart yapılandırmasında bu etikete `nodeSelector`, `tolerations` veya affinity kuralları ile referans verin.
+ARM64 ayarlarında, Kubernetes düğümleri genellikle `arm64` etiketi taşır. Kubernetes zamanlayıcısının Wallarm iş yükünü uygun düğüm türüne atamasına yardımcı olmak için bu etikete Wallarm Helm chart yapılandırmasında `nodeSelector`, `tolerations` veya affinity kuralları kullanılarak referans verin.
 
-Aşağıda, ilgili node'lar için `kubernetes.io/arch: arm64` etiketini kullanan Google Kubernetes Engine (GKE) için Wallarm Helm chart örneği verilmiştir. Bu şablon, diğer bulut kurulumlarıyla uyumluluk için ARM64 etiketleme kurallarına uygun şekilde modifiye edilebilir.
+Aşağıda, ilgili düğümler için `kubernetes.io/arch: arm64` etiketini kullanan Google Kubernetes Engine (GKE) için Wallarm Helm chart örneği bulunmaktadır. Bu şablon, kendi ARM64 etiketleme kurallarına saygı göstererek diğer bulut yapılandırmalarıyla uyum için değiştirilebilir.
 
 === "nodeSelector"
     ```yaml
@@ -202,7 +202,7 @@ Aşağıda, ilgili node'lar için `kubernetes.io/arch: arm64` etiketini kullanan
       wallarm:
         api:
           token: "<NODE_TOKEN>"
-          # If using an API token, uncomment the following line and specify your node group name
+          # API token kullanıyorsanız, aşağıdaki satırın yorum işaretini kaldırın ve düğüm grup adınızı belirtin
           # nodeGroup: "defaultSidecarGroup"
       postanalytics:
         nodeSelector:
@@ -217,7 +217,7 @@ Aşağıda, ilgili node'lar için `kubernetes.io/arch: arm64` etiketini kullanan
       wallarm:
         api:
           token: "<NODE_TOKEN>"
-          # If using an API token, uncomment the following line and specify your node group name
+          # API token kullanıyorsanız, aşağıdaki satırın yorum işaretini kaldırın ve düğüm grup adınızı belirtin
           # nodeGroup: "defaultSidecarGroup"
       postanalytics:
         tolerations:
@@ -235,14 +235,14 @@ Aşağıda, ilgili node'lar için `kubernetes.io/arch: arm64` etiketini kullanan
 
 ## OpenShift'te Security Context Constraints (SCC)
 
-Sidecar çözümü OpenShift platformuna kurulurken, platformun güvenlik gereksinimlerini karşılamak üzere özel bir Security Context Constraint (SCC) tanımlamak gereklidir. Varsayılan kısıtlamalar Wallarm çözümü için yetersiz kalabilir ve hatalara neden olabilir.
+Sidecar çözümünü OpenShift üzerinde dağıtırken, platformun güvenlik gereksinimlerine uygun özel bir Security Context Constraint (SCC) tanımlamak gerekir. Varsayılan kısıtlamalar Wallarm çözümü için yetersiz olabilir ve hatalara yol açabilir.
 
-Aşağıda, OpenShift için özel olarak uyarlanmış Wallarm Sidecar çözümü için önerilen SCC yer almaktadır. Bu yapılandırma, iptables kullanılmadığı durumda ayrıcalıksız (non-privileged) modda çözümü çalıştırmak üzere tasarlanmıştır.
+Aşağıda, OpenShift'e uyarlanmış Wallarm Sidecar çözümü için önerilen özel SCC bulunmaktadır. Bu yapılandırma, [iptables](customization.md#capturing-incoming-traffic-port-forwarding) kullanılmadan ayrıcalıksız modda çözümü çalıştırmak için tasarlanmıştır.
 
-!!! warning "SCC'yi çözümü dağıtmadan önce uygulayın"
-    SCC'nin, Wallarm Sidecar çözümü dağıtılmadan önce uygulandığından emin olun.
+!!! warning "Sidecar'ı dağıtmadan önce SCC'yi uygulayın"
+    SCC'nin Wallarm Sidecar çözümünü dağıtmadan önce uygulanmış olduğundan emin olun.
 
-1. `wallarm-scc.yaml` dosyasında özel SCC'yi aşağıdaki gibi tanımlayın:
+1. Özel SCC'yi aşağıdaki gibi `wallarm-scc.yaml` dosyasında tanımlayın:
 
     ```yaml
     allowHostDirVolumePlugin: false
@@ -269,8 +269,9 @@ Aşağıda, OpenShift için özel olarak uyarlanmış Wallarm Sidecar çözümü
     requiredDropCapabilities:
     - ALL
     runAsUser:
-      type: MustRunAs
-      uid: 101
+      type: MustRunAsRange
+      uidRangeMin: 101
+      uidRangeMax: 65532
     seLinuxContext:
       type: MustRunAs
     seccompProfiles:
@@ -288,25 +289,44 @@ Aşağıda, OpenShift için özel olarak uyarlanmış Wallarm Sidecar çözümü
     ```
     kubectl apply -f wallarm-scc.yaml
     ```
-1. Wallarm Sidecar çözümünün bu SCC politikasını kullanmasına izin verin:
+1. Sidecar'ın dağıtılacağı bir Kubernetes ad alanı oluşturun, ör.:
+
+    ```bash
+    kubectl create namespace wallarm-sidecar
+    ```
+1. Wallarm Sidecar iş yüklerinin SCC politikasını kullanmasına izin verin:
+
+    ```bash    
+    oc adm policy add-scc-to-user wallarm-sidecar-deployment \
+      -z <RELEASE_NAME>-wallarm-sidecar-postanalytics -n wallarm-sidecar
     
-    ```
-    oc adm policy add-scc-to-user wallarm-sidecar-deployment system:serviceaccount:<WALLARM_SIDECAR_NAMESPACE>:<POSTANALYTICS_POD_SERVICE_ACCOUNT_NAME>
+    oc adm policy add-scc-to-user wallarm-sidecar-deployment \
+      -z <RELEASE_NAME>-wallarm-sidecar-admission -n wallarm-sidecar
     ```
 
-    * `<WALLARM_SIDECAR_NAMESPACE>`, Wallarm Sidecar çözümünün dağıtılacağı isim alanıdır.
-    * `<POSTANALYTICS_POD_SERVICE_ACCOUNT_NAME>`, otomatik olarak oluşturulur ve genellikle `<RELEASE_NAME>-wallarm-sidecar-postanalytics` formatını takip eder; burada `<RELEASE_NAME>`, `helm install` sırasında atayacağınız Helm release ismindir.
+    * `<RELEASE_NAME>`: `helm install` sırasında kullanacağınız Helm sürüm adı.
 
-    Örneğin, isim alanı `wallarm-sidecar` ve Helm release ismi `wlrm-sidecar` ise, komut şu şekilde olacaktır:
+        !!! warning "`wallarm-sidecar` sürüm adında geçiyorsa"
+            Sürüm adı `wallarm-sidecar` içeriyorsa, bunu servis hesabı adlarından çıkarın.
+            
+            Hesap adları `wallarm-sidecar-postanalytics` ve `wallarm-sidecar-admission` olacaktır.
     
-    ```
-    oc adm policy add-scc-to-user wallarm-sidecar-deployment system:serviceaccount:wallarm-sidecar:wlrm-sidecar-wallarm-sidecar-postanalytics
-    ```
-1. [Dağıtım bölümüne](#deployment) devam edin; Sidecar çözümünü dağıtırken daha önce belirtilen aynı isim alanını ve Helm release ismini kullandığınızdan emin olun.
-1. Ayrıcalıklı iptables konteynerine olan ihtiyacı ortadan kaldırmak için [iptables kullanımını devre dışı bırakın](customization.md#capturing-incoming-traffic-port-forwarding).
+    * `-n wallarm-sidecar`: Sidecar'ın dağıtılacağı ad alanı (yukarıda oluşturuldu).
 
-    === "values.yaml üzerinden iptables'in devre dışı bırakılması"
-        1. `values.yaml` dosyasında `config.injectionStrategy.iptablesEnable` değerini `false` olarak ayarlayın.
+    Örneğin, ad alanı `wallarm-sidecar` ve Helm sürüm adı `wlrm-sidecar` ise:
+    
+    ```bash    
+    oc adm policy add-scc-to-user wallarm-sidecar-deployment \
+      -z wlrm-sidecar-wallarm-sidecar-postanalytics -n wallarm-sidecar
+    
+    oc adm policy add-scc-to-user wallarm-sidecar-deployment \
+      -z wlrm-sidecar-wallarm-sidecar-admission -n wallarm-sidecar
+    ```
+1. Yukarıda belirtilen ad alanını ve Helm sürüm adını kullanarak [Wallarm Sidecar'ı dağıtın](#deployment).
+1. Ayrıcalıklı iptables konteyneri çalıştırmaktan kaçınmak için iptables kullanımını [devre dışı bırakın](customization.md#capturing-incoming-traffic-port-forwarding). Bu, `values.yaml` içinde global olarak veya anotasyonlar aracılığıyla pod bazında yapılabilir.
+
+    === "iptables'ı `values.yaml` üzerinden devre dışı bırakma"
+        1. `values.yaml` içinde `config.injectionStrategy.iptablesEnable` değerini `false` olarak ayarlayın.
 
             ```yaml
             config:
@@ -316,7 +336,7 @@ Aşağıda, OpenShift için özel olarak uyarlanmış Wallarm Sidecar çözümü
                 api:
                   ...
             ```
-        1. Service manifest'inizde `spec.ports.targetPort` ayarını `proxy` portuna yönlendirin. İptables tabanlı trafik yakalama devre dışı bırakılırsa, Wallarm sidecar konteyneri `proxy` isimli bir port yayınlayacaktır.
+        1. Uygulamanızın Service manifest'inde `spec.ports.targetPort` değerini `proxy` olarak ayarlayın. iptables devre dışıyken, Sidecar bu portu açığa çıkarır.
 
             ```yaml hl_lines="9"
             apiVersion: v1
@@ -333,9 +353,11 @@ Aşağıda, OpenShift için özel olarak uyarlanmış Wallarm Sidecar çözümü
               selector:
                 app: myapp
             ```
-    === "Pod açıklaması (annotation) üzerinden iptables'in devre dışı bırakılması"
-        1. Her pod için iptables'i devre dışı bırakmak üzere, ilgili Pod'un `sidecar.wallarm.io/sidecar-injection-iptables-enable` açıklamasını `"false"` olarak ayarlayın.
-        1. Service manifest'inizde `spec.ports.targetPort` ayarını `proxy` portuna yönlendirin. İptables tabanlı trafik yakalama devre dışı bırakılırsa, Wallarm sidecar konteyneri `proxy` isimli bir port yayınlayacaktır.
+
+            Uygulamayı bir OpenShift Route üzerinden yayımlarken, `spec.ports.targetPort` değerini `26001` olarak ayarlayın.
+    === "Pod anotasyonu ile iptables'ı devre dışı bırakma"
+        1. Pod'un açıklamasında `sidecar.wallarm.io/sidecar-injection-iptables-enable` anahtarını `"false"` olarak ayarlayarak iptables'ı pod bazında devre dışı bırakın.
+        1. Uygulamanızın Service manifest'inde `spec.ports.targetPort` değerini `proxy` olarak ayarlayın. iptables devre dışıyken, Sidecar bu portu açığa çıkarır.
 
         ```yaml hl_lines="16-17 34"
         apiVersion: apps/v1
@@ -377,32 +399,40 @@ Aşağıda, OpenShift için özel olarak uyarlanmış Wallarm Sidecar çözümü
           selector:
             app: myapp
         ```
-1. Önceki adımda uygulanan postanalytics pod'una SCC'nin doğru uygulanıp uygulanmadığını doğrulamak için aşağıdaki komutları çalıştırın:
 
+        Uygulamayı bir OpenShift Route üzerinden yayımlarken, `spec.ports.targetPort` değerini `26001` olarak ayarlayın.
+1. Güncellenmiş yapılandırma ile uygulamayı dağıtın:
+
+    ```bash
+    kubectl -n <APP_NAMESPACE> apply -f <MANIFEST_FILE>
     ```
+1. Doğru SCC'nin Wallarm pod'larına uygulandığını doğrulayın:
+
+    ```bash
     WALLARM_SIDECAR_NAMESPACE="wallarm-sidecar"
     POD=$(kubectl -n ${WALLARM_SIDECAR_NAMESPACE} get pods -o name -l "app.kubernetes.io/component=postanalytics" | cut -d '/' -f 2)
     kubectl -n ${WALLARM_SIDECAR_NAMESPACE}  get pod ${POD} -o jsonpath='{.metadata.annotations.openshift\.io\/scc}{"\n"}'
     ```
 
-    Beklenen çıktı `wallarm-sidecar-deployment` olmalıdır.
-1. Başlangıçtaki `wallarm-sidecar-deployment` politikasındaki izinlerle, özellikle `runAsUser` bloğunda UID 101'in izin verilmesiyle, uygulama pod'unuzun SCC'sini güncelleyin. Bu, dağıtım sırasında enjekte edilen Wallarm sidecar konteyneri UID 101 altında çalıştığı için kritik öneme sahiptir.
+    Beklenen çıktı `wallarm-sidecar-deployment`'tır.
+1. Enjekte edilen Sidecar konteyneri bu UID aralığında çalıştığından, uygulama pod'unuza `wallarm-sidecar-deployment` ile aynı SCC'yi verin; gerekli UID aralığına izin verdiğinden emin olun.
 
-    Aşağıdaki komutu kullanarak, daha önce oluşturduğunuz `wallarm-sidecar-deployment` politikasını uygulayın. Genellikle, uygulamanızın ve Wallarm'ın gereksinimlerine göre özel olarak uyarlanmış bir politika geliştirirsiniz.
+    `wallarm-sidecar-deployment` politikasını atamak için aşağıdaki komutu kullanın:
 
+    ```bash
+    APP_NAMESPACE=<APP_NAMESPACE>
+    POD_NAME=<POD_NAME>
+    APP_POD_SERVICE_ACCOUNT_NAME=$(oc get pod $POD_NAME -n $APP_NAMESPACE -o jsonpath='{.spec.serviceAccountName}')
+    oc adm policy add-scc-to-user wallarm-sidecar-deployment \
+      system:serviceaccount:$APP_NAMESPACE:$APP_POD_SERVICE_ACCOUNT_NAME
     ```
-    oc adm policy add-scc-to-user wallarm-sidecar-deployment system:<APP_NAMESPACE>:<APP_POD_SERVICE_ACCOUNT_NAME>
-    ```
-1. Güncellenmiş SCC ile uygulamayı dağıtın, örneğin:
 
-    ```
-    kubectl -n <APP_NAMESPACE> apply -f <MANIFEST_FILE>
-    ```
+    Prod ortamında, uygulamanızın ve Wallarm'ın ihtiyaçlarına uygun özel bir SCC oluşturun.
 
 ## Özelleştirme
 
-Wallarm pod'ları, [varsayılan `values.yaml`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml) ve dağıtımın 2. adımında belirttiğiniz özel yapılandırmaya göre enjekte edilmiştir.
+Wallarm pod'ları, [varsayılan `values.yaml`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml) ve 2. dağıtım adımında belirttiğiniz özel yapılandırmaya göre enjekte edilmiştir.
 
-Wallarm çözümünden en iyi verimi almak için, Wallarm proxy davranışını küresel ve pod bazında daha da özelleştirebilirsiniz.
+Wallarm proxy davranışını hem global hem de pod bazında daha da özelleştirerek, şirketiniz için Wallarm çözümünden en iyi şekilde yararlanabilirsiniz.
 
-Bunun için [Wallarm proxy çözüm özelleştirme kılavuzuna](customization.md) geçiş yapın.
+Sadece [Wallarm proxy çözümü özelleştirme kılavuzuna](customization.md) ilerleyin.

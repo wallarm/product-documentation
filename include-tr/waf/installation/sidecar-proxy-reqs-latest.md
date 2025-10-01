@@ -1,10 +1,10 @@
-* Kubernetes platform sürüm 1.19-1.29
+* Kubernetes platformu sürümü 1.19-1.29
 * [Helm v3](https://helm.sh/) paket yöneticisi
-* Kubernetes kümesinde bir Pod olarak dağıtılan uygulama
-* US Wallarm Cloud ile çalışmak için `https://us1.api.wallarm.com` erişimi veya EU Wallarm Cloud ile çalışmak için `https://api.wallarm.com` erişimi
-* Wallarm Helm chart'larını eklemek için `https://charts.wallarm.com` erişimi
-* Docker Hub'daki Wallarm depolarına `https://hub.docker.com/r/wallarm` erişimi
-* Aşağıdaki IP adreslerine, saldırı tespit kurallarının güncellemelerini indirmek, [API specifications][api-spec-enforcement-docs] almak ve [allowlisted, denylisted, or graylisted][ip-lists-docs] ülkeler, bölgeler veya veri merkezleri için doğru IP'leri temin etmek üzere erişim
+* Bir Kubernetes kümesinde Pod olarak dağıtılmış bir uygulama
+* US Wallarm Cloud ile çalışmak için `https://us1.api.wallarm.com` adresine veya EU Wallarm Cloud ile çalışmak için `https://api.wallarm.com` adresine erişim
+* Wallarm Helm chart'larını eklemek için `https://charts.wallarm.com` adresine erişim
+* Docker Hub üzerindeki Wallarm depolarına `https://hub.docker.com/r/wallarm` erişim
+* Saldırı tespiti kuralları ve [API spesifikasyonları][api-spec-enforcement-docs] güncellemelerini indirmek ve ayrıca [allowlisted, denylisted, or graylisted][ip-lists-docs] ülkeleriniz, bölgeleriniz veya veri merkezleriniz için kesin IP'leri almak amacıyla aşağıdaki IP adreslerine erişim
 
     --8<-- "../include/wallarm-cloud-ips.md"
-* Wallarm Console'da **Administrator** rolüne sahip hesaba [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) üzerinden erişim
+* Wallarm Console'da [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) için **Administrator** rolüne sahip hesaba erişim

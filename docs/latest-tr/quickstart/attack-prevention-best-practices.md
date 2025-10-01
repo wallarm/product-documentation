@@ -1,103 +1,103 @@
 # Wallarm ile Saldırı Önleme için En İyi Uygulamalar
 
-Bu makale, saldırı önleme için iki korumacının bir arada görev yapması gibi benzersiz bir platform olan Wallarm'ı nasıl kullanacağınızı gösterecek. Wallarm, diğer araçların (WAAP olarak bilinir) web sitelerini korumasının ötesinde, sisteminizin API'lerini de özel olarak korur, böylece çevrimiçi alanınızdaki tüm teknik bileşenlerin güvende olmasını sağlar.
+Bu makale, iki bekçiyi bir arada sunan benzersiz bir platform olan Wallarm’ı saldırı önleme amacıyla nasıl kullanacağınızı gösterecektir. Wallarm, diğer araçlar gibi web sitelerini korumakla (WAAP) kalmaz, aynı zamanda sisteminizin API’lerini de özel olarak güvenceye alarak çevrimiçi alanınızın tüm teknik bileşenlerini korur.
 
-Çevrimiçi ortamda karşılaştığımız pek çok tehdit nedeniyle, güçlü bir savunma kalkanına sahip olmak hayati önem taşır. Wallarm, SQL enjeksiyonu, cross-site scripting, uzaktan kod yürütme ve Path Traversal gibi yaygın tehditleri tek başına durdurabilir. Ancak, DoS saldırısı, hesap ele geçirme veya API istismarı gibi bazı sinsi tehlikeler ve özel durumlar için birkaç ayarlama gerekebilir. Bu adımlarda size rehberlik edeceğiz ve en iyi korumayı sağlamanız için destek olacağız. İster deneyimli bir güvenlik uzmanı olun, ister siber güvenlik yolculuğunuza yeni başlamış olun, bu makale, güvenlik stratejinizi güçlendirmek için değerli bilgiler sunacaktır.
+Çevrimiçi ortamda bu kadar çok tehdit varken güçlü bir kalkan şarttır. Wallarm, SQL injection, cross-site scripting, remote code execution ve Path Traversal gibi yaygın tehditleri kendi başına durdurabilir. Ancak, DoS saldırısı, hesap ele geçirme, API kötüye kullanımı gibi bazı kurnaz tehlikeler ve özel kullanım senaryoları için birkaç ayar gerekebilir. Bu adımlarda size rehberlik ederek en iyi korumayı almanızı sağlayacağız. İster deneyimli bir güvenlik uzmanı olun ister siber güvenlik yolculuğunuza yeni çıkıyor olun, bu makale güvenlik stratejinizi güçlendirmek için değerli içgörüler sunacaktır.
 
-## Birden Fazla Uygulama ve Tenant Yönetimi
+## Birden çok uygulamayı ve kiracıyı yönetin
 
-Kuruluşunuz birden fazla uygulama veya ayrı tenant (kullanıcı grubu) kullanıyorsa, Wallarm platformunu kolay yönetim için oldukça faydalı bulacaksınız. Her uygulama için [uygulamaya özel](../user-guides/settings/applications.md) olayları ve istatistikleri ayrı ayrı görüntülemenize ve her uygulama için belirli tetikleyiciler veya kurallar yapılandırmanıza olanak tanır. İhtiyaç duyarsanız, ayrı erişim kontrolleri ile [her tenant için izole bir ortam](../installation/multi-tenant/overview.md) oluşturabilirsiniz.
+Kuruluşunuz birden fazla uygulama veya ayrı kiracılar (tenant) kullanıyorsa, kolay yönetim için Wallarm platformunu faydalı bulacaksınız. Platform, [her bir uygulama için](../user-guides/settings/applications.md) olayları ve istatistikleri ayrı ayrı görmenizi ve uygulama başına özel trigger veya kural yapılandırmanızı sağlar. Gerekirse, ayrı erişim kontrolleriyle [her bir kiracı için](../installation/multi-tenant/overview.md) izole bir ortam oluşturabilirsiniz. 
 
-## Güven Bölgesi Oluşturun
+## Güven bölgesi oluşturun
 
-Yeni güvenlik önlemleri getirirken, kritik iş uygulamalarının kesintisiz çalışması en yüksek öncelik olmalıdır. Güvenilir kaynakların Wallarm platformu tarafından gereksiz yere işlenmemesini sağlamak için, onları [IP allowlist](../user-guides/ip-lists/overview.md) listesine dahil etme seçeneğine sahipsiniz.
+Yeni güvenlik önlemleri uygularken kritik iş uygulamalarının kesintisiz çalışması öncelikli olmalıdır. Güvenilen kaynakların Wallarm platformu tarafından gereksiz yere işlenmemesini sağlamak için bu kaynakları [IP allowlist](../user-guides/ip-lists/overview.md)’e atayabilirsiniz.
 
-Allowlist'e dahil edilen kaynaklardan gelen trafik varsayılan olarak analiz edilmez veya kaydedilmez. Bu, atlanan isteklerden gelen verilerin incelenmeye uygun olmayacağı anlamına gelir. Bu nedenle, kullanımı dikkatli bir şekilde uygulanmalıdır.
+Allowlist’te yer alan kaynaklardan gelen trafik varsayılan olarak analiz edilmez veya günlüğe kaydedilmez. Bu, bypass edilen isteklere ilişkin verilerin incelemeye açık olmayacağı anlamına gelir. Bu nedenle dikkatli kullanılmalıdır.
 
-Kısıtlamasız trafiğin gerekli olduğu veya manuel denetim gerçekleştirmek istediğiniz URL'ler için, [Wallarm node'unu izleme moduna ayarlamayı](../admin-en/configure-wallarm-mode.md) düşünebilirsiniz. Bu, bu URL'lere yönelik kötü niyetli etkinlikleri yakalar ve kaydeder. Daha sonra, Wallarm Console UI aracılığıyla bu olayları gözden geçirebilir, anormallikleri izleyebilir ve gerekirse belirli IP'leri engelleme gibi manuel işlemler gerçekleştirebilirsiniz.
+Sınırsız trafiğe ihtiyaç duyan veya manuel gözetim yapmak istediğiniz URL’ler için [Wallarm node’unu monitoring mode’a](../admin-en/configure-wallarm-mode.md) almayı düşünün. Bu, bu URL’leri hedef alan kötü amaçlı etkinlikleri yakalar ve kaydeder. Sonrasında bu olayları Wallarm Console UI üzerinden inceleyebilir, anormallikleri izleyebilir ve gerekirse belirli IP’leri engellemek gibi manuel işlemler uygulayabilirsiniz.
 
-## Trafik Filtreleme Modları ve İşleme İstisnalarını Kontrol Edin
+## Trafik filtreleme modlarını ve işleme istisnalarını kontrol edin
 
-[Filtreleme modlarını](../admin-en/configure-wallarm-mode.md) yönetmek ve uygulamalarınıza uygun işleme özelleştirmeleri yapmak için esnek seçeneklerimizi kullanarak güvenlik önlemlerini kademeli olarak uygulayın. Örneğin, belirli node'lar, uygulamalar veya bir uygulamanın belirli bölümleri için izleme modu etkinleştirilebilir.
+[Filtration modes](../admin-en/configure-wallarm-mode.md) yönetimi ve uygulamalarınıza uyacak şekilde özelleştirilebilir işlem seçeneklerimizi kullanarak güvenlik önlemlerini kademeli olarak uygulayın. Örneğin, belirli node’lar, uygulamalar veya bir uygulamanın belirli bölümleri için monitoring mode’u etkinleştirin.
 
-Gerekirse, belirli istek öğelerine yönelik [istisna dedektörleri](../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types) uygulanabilir.
+Gerektiğinde, belirli istek öğelerine uyarlanmış [tespit mekanizmalarını hariç tutun](../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types).
 
-## Denylist Oluşturun
+## Denylist’i ayarlayın
 
-VPN'ler, proxy sunucuları veya Tor ağları gibi şüpheli bölgelerden veya kaynaklardan gelen trafiği engelleyerek, uygulamalarınızı güvenilmeyen kaynaklardan korumak için bir [denylist](../user-guides/ip-lists/overview.md) oluşturabilirsiniz.
+Uygulamalarınızı güvensiz kaynaklardan korumak için bunları [denylist](../user-guides/ip-lists/overview.md)’e ekleyerek VPN’ler, Proxy sunucuları veya Tor ağları gibi şüpheli bölgelerden ya da kaynaklardan gelen trafiği engelleyebilirsiniz.
 
-## Çoklu Saldırı Yapan Saldırganları Engelleyin
+## Çoklu saldırı faillerini engelleyin
 
-Wallarm, engelleme modunda olduğunda kötü amaçlı yük içeren tüm istekleri otomatik olarak engeller ve yalnızca meşru isteklerin geçişine izin verir. Kısa sürede bir IP adresinden birden fazla kötü niyetli etkinlik tespit edilirse (çoğunlukla çoklu saldırı yapan saldırganlar olarak adlandırılır), [saldırganın tamamen engellenmesini](../admin-en/configuration-guides/protecting-with-thresholds.md) düşünebilirsiniz.
+Wallarm blocking mode’dayken, kötü amaçlı payload içeren tüm istekleri otomatik olarak engeller ve yalnızca meşru isteklerin geçmesine izin verir. Kısa bir süre içinde tek bir IP adresinden birden fazla kötü niyetli etkinlik (genellikle çoklu saldırı failleri) tespit edilirse, [saldırganı tamamen engellemeyi](../admin-en/configuration-guides/protecting-with-thresholds.md) düşünün.
 
-## Brute-Force Saldırılara Karşı Koruma Etkinleştirin
+## Brute-force azaltımını etkinleştirin
 
-Tek bir IP adresinden yetkilendirme sayfalarına veya şifre sıfırlama formlarına yapılan erişim denemelerinin sayısını sınırlayarak brute-force saldırılarını azaltın. Bunu, [belirli bir tetikleyici](../admin-en/configuration-guides/protecting-against-bruteforce.md) yapılandırarak gerçekleştirebilirsiniz.
+Tek bir IP adresinden yetkilendirme sayfalarına veya parola sıfırlama formlarına yönelik erişim denemelerinin sayısını sınırlayarak brute-force saldırılarını azaltın. Bunu, [belirli bir trigger](../admin-en/configuration-guides/protecting-against-bruteforce.md) yapılandırarak yapabilirsiniz.
 
-## Zorunlu Tarama (Forced Browsing) Saldırılarına Karşı Koruma Etkinleştirin
+## Forced browsing azaltımını etkinleştirin
 
-Zorunlu tarama, saldırganın uygulama hakkında bilgi içeren dizinler ve dosyalar gibi gizli kaynakları bulup kullanmaya çalıştığı bir saldırı türüdür. Bu gizli dosyalar, saldırganlara diğer saldırı türlerini gerçekleştirmede kullanabilecekleri bilgiler sağlayabilir. Bu tür kötü niyetli etkinlikleri, [belirli bir tetikleyici](../admin-en/configuration-guides/protecting-against-bruteforce.md) kullanarak belirli kaynaklara başarısız erişim denemeleri için limitler belirleyerek önleyebilirsiniz.
+Forced browsing, bir saldırganın dizinler ve uygulama hakkında bilgi içeren dosyalar gibi gizli kaynakları bulmaya ve kullanmaya çalıştığı bir saldırıdır. Bu gizli dosyalar, saldırganların diğer saldırı türlerini gerçekleştirmekte kullanabilecekleri bilgiler sağlayabilir. Bu tür kötü niyetli etkinlikleri, belirli kaynaklara başarısız erişim denemeleri için sınırlar tanımlayarak [belirli bir trigger](../admin-en/configuration-guides/protecting-against-bruteforce.md) ile önleyebilirsiniz.
 
-## Oran Sınırlamaları Belirleyin
+## Oran limitleri (rate limit) belirleyin
 
-API'ların ne kadar sıklıkla kullanılabileceğine dair uygun bir sınır belirlenmediğinde, DoS ve brute-force saldırıları veya API'nin aşırı kullanımı gibi sistemin aşırı yüklenmesine neden olabilecek saldırılarla karşı karşıya kalabilirsiniz. [**Set rate limit** kuralını](../user-guides/rules/rate-limiting.md) kullanarak, belirli bir kapsamda yapılabilecek maksimum bağlantı sayısını belirleyip, gelen isteklerin dengeli olarak dağıtılmasını sağlayabilirsiniz.
+API’lerin ne sıklıkla kullanılabileceğine ilişkin uygun bir sınır olmadan, DoS ve brute-force saldırıları veya API aşırı kullanımı gibi sistemi aşırı yükleyen saldırılara maruz kalabilirler. [**Advanced rate limiting** kuralını](../user-guides/rules/rate-limiting.md) kullanarak belirli bir kapsama yapılabilecek maksimum bağlantı sayısını belirleyebilir ve gelen isteklerin eşit dağılımını sağlayabilirsiniz.
 
-## BOLA Korumasını Aktifleştirin
+## BOLA korumasını etkinleştirin
 
-Broken Object Level Authorization (BOLA) açığı, saldırganın bir API isteği üzerinden bir nesneyi tanımlayıcısı aracılığıyla erişip, yetkilendirme mekanizmasını atlayarak verilerini okumasına veya değiştirmesine olanak tanır. BOLA saldırılarını önlemek için, ya savunmasız uç noktaları manuel olarak belirleyip bu noktalara yapılacak bağlantılar için limitler tanımlayabilir ya da Wallarm'ı, savunmasız uç noktaları otomatik olarak tespit edip koruyacak şekilde devreye alabilirsiniz. [Daha fazla bilgi edinin](../admin-en/configuration-guides/protecting-against-bola.md)
+Broken Object Level Authorization (BOLA) güvenlik açığı, bir saldırganın bir nesneye API isteğiyle tanımlayıcısı üzerinden erişmesine ve yetkilendirme mekanizmasını atlayarak verilerini okumasına veya değiştirmesine olanak tanır. BOLA saldırılarını önlemek için, savunmasız uç noktaları manuel olarak belirtip bunlara bağlantı sınırları koyabilir veya Wallarm’ın savunmasız uç noktaları otomatik olarak tanımlayıp korumasını etkinleştirebilirsiniz. [Daha fazlasını öğrenin](../admin-en/configuration-guides/protecting-against-bola.md)
 
-## API İstismarı Önleme Uygulaması Kullanın
+## API Abuse Prevention kullanın
 
-Hesap ele geçirme, veri kazıma, güvenlik tarayıcıları ve API'larınıza yönelik diğer otomatik kötü niyetli eylemleri gerçekleştiren botları durdurmak ve engellemek için [API abuse profilleri oluşturun](../api-abuse-prevention/setup.md).
+[API abuse profillerini ayarlayın](../api-abuse-prevention/setup.md) ve hesap ele geçirme, scraping, security crawlers ve API’lerinizi hedef alan diğer otomatik kötü amaçlı eylemler gibi API kötüye kullanımlarını gerçekleştiren botları durdurup engelleyin.
 
-## Credential Stuffing Algılamayı Etkinleştirin
+## Credential stuffing tespitini etkinleştirin
 
-Uygulamalarınıza erişim sağlamak için ele geçirilmiş veya zayıf kimlik bilgilerini kullanma girişimlerini gerçek zamanlı olarak görmek ve uygulamalarınıza erişim sağlayan tüm tehlikeli veya zayıf kimlik bilgilerini içeren indirilebilir bir listeye sahip olmak için [credential stuffing algılamayı](../about-wallarm/credential-stuffing.md) etkinleştirin.
+[Credential stuffing tespitini](../about-wallarm/credential-stuffing.md) etkinleştirerek, uygulamalarınıza erişmek için ele geçirilmiş veya zayıf kimlik bilgilerinin kullanılmasına yönelik girişimler hakkında gerçek zamanlı bilgiye ve uygulamalarınıza erişim sağlayan tüm ele geçirilmiş veya zayıf kimlik bilgilerinin indirilebilir bir listesine sahip olun.
 
-Hırsızlık veya zayıf şifrelere sahip hesapların bilinmesi, bu hesapların verilerini güvence altına almak için hesap sahipleriyle iletişime geçmek, erişimi geçici olarak askıya almak gibi önlemleri başlatmanıza olanak tanır.
+Çalınmış veya zayıf parolalara sahip hesaplara ilişkin bilgi, hesap sahipleriyle iletişime geçmek, hesaplara erişimi geçici olarak askıya almak vb. gibi bu hesapların verilerini güvenceye alma önlemlerini başlatmanızı sağlar.
 
-## Özel Saldırı Algılama Kuralları Oluşturun
+## Özel saldırı tespit kuralları oluşturun
 
-Bazı senaryolarda, [bir saldırı algılama imzasını manuel olarak eklemek veya sanal bir yama oluşturmak](../user-guides/rules/regex-rule.md) faydalı olabilir. Wallarm, saldırı algılamada düzenli ifadelerden bağımsız olarak çalışsa da, kullanıcıların düzenli ifadelere dayalı ek imzalar eklemesine izin verir.
+Bazı senaryolarda, manuel olarak bir [saldırı tespit imzası eklemek veya sanal yama oluşturmak](../user-guides/rules/regex-rule.md) faydalı olabilir. Wallarm, saldırı tespiti için normal ifadelere dayanmasa da, kullanıcıların normal ifadelere dayalı ek imzalar eklemesine izin verir.
 
-## Hassas Verileri Maskeleyin
+## Hassas verileri maskeleyin
 
-Wallarm node'u, saldırı bilgilerini Wallarm Cloud'a gönderir. Yetkilendirme bilgileri (çerezler, tokenlar, şifreler), kişisel veriler ve ödeme kimlik bilgileri gibi belirli veriler, işlendiği sunucu ortamında kalmalıdır. Hassas verilerin, Wallarm Cloud'a gönderilmeden önce özgün değerlerinden kesilmesini sağlamak için [veri maskeleme kuralı oluşturun](../user-guides/rules/sensitive-data-rule.md) ve böylece hassas verilerin güvenilir ortamınızda kalmasını sağlayın.
+Wallarm node’u saldırı bilgilerini Wallarm Cloud’a gönderir. Yetkilendirme (çerezler, belirteçler, parolalar), kişisel veriler ve ödeme bilgileri gibi bazı veriler, işlendiği sunucuda kalmalıdır. Bu özel istek noktalarının orijinal değerini Wallarm Cloud’a gönderilmeden önce kesmek için [bir veri maskeleme kuralı oluşturun](../user-guides/rules/sensitive-data-rule.md); böylece hassas veriler güvenilir ortamınızda kalır.
 
-## Kullanıcı Oturumlarını Analiz Edin
+## Kullanıcı oturumlarını analiz edin
 
-Sadece **Attacks** veya **Incidents** bölümünde sunulan saldırılarla ilgilenerek, saldırının parçası olduğu request mantıksal sırasını tam olarak görmeniz mümkün olmaz.
+Yalnızca **Attacks** veya **Incidents** bölümünde sunulan saldırılarla ilgilenirken, saldırının parçası olduğu isteklerin mantıksal sıralaması gibi tam bağlamlarını göremezsiniz. 
 
-Wallarm'ın [**API Sessions**](../api-sessions/overview.md), uygulamalarınıza yönelik saldırıların genel desenlerini ortaya çıkarmanıza ve alınan güvenlik önlemlerinin hangi iş mantığını etkileyeceğini anlamanıza yardımcı olacak bağlamı sunar.
+Wallarm’ın [**API Sessions**](../api-sessions/overview.md) özelliği, uygulamalarınızın nasıl saldırıya uğradığına dair daha genel kalıpları ortaya çıkarmak ve alınan güvenlik önlemlerinin hangi iş mantığını etkileyeceğini anlamak için bu bağlamı sağlar.
 
-Kullanıcı oturumlarını analiz ederek, tehdit aktörlerinin davranış mantığını belirleyebilir, saldırı ve kötü niyetli bot algılaması doğruluğunu teyit edebilir, risk altındaki gölge, zombie ve diğer uç noktaları takip edebilir, performans sorunlarını belirleyebilir ve daha fazlasını yapabilirsiniz.
+Kullanıcı oturumlarını analiz ederek tehdit aktörünün davranış mantığını belirleyin, saldırı ve kötü amaçlı bot tespit doğruluğunu doğrulayın, risk altındaki shadow, zombie ve diğer uç noktaları takip edin, performans sorunlarını belirleyin ve daha fazlasını yapın.
 
-## Kesintisiz SIEM/SOAR Entegrasyonu & Kritik Olaylar için Anlık Uyarılar
+## Sorunsuz SIEM/SOAR entegrasyonu ve kritik olaylar için anlık uyarılar
 
-Wallarm, Sumo Logic, Splunk gibi çeşitli SIEM/SOAR sistemleri ile kesintisiz entegrasyon sunar ([integrations](../user-guides/settings/integrations/integrations-intro.md)) ve tüm saldırı bilgilerini merkezi yönetim için SOC merkezinize zahmetsizce aktarmanıza olanak tanır.
+Wallarm, Sumo Logic, Splunk ve diğerleri gibi [çeşitli SIEM/SOAR sistemleri](../user-guides/settings/integrations/integrations-intro.md) ile sorunsuz entegrasyon sunarak tüm saldırı bilgilerini merkezi yönetim için SOC merkezinize zahmetsizce aktarmanızı sağlar.
 
-Wallarm entegrasyonları, [triggers](../user-guides/triggers/triggers.md) işleviyle birlikte, belirli saldırılar, denylist'teki IP'ler ve genel saldırı hacmi üzerinde raporlar ve gerçek zamanlı bildirimler oluşturmanız için güçlü bir araç sunar.
+Wallarm entegrasyonları, [triggers](../user-guides/triggers/triggers.md) işlevselliği ile birlikte belirli saldırılar, denylisted IPs ve genel devam eden saldırı hacmi hakkında raporlar ve gerçek zamanlı bildirimler ayarlamanız için size harika bir araç sağlar.
 
-## Katmanlı Savunma Stratejisi
+## Katmanlı savunma stratejisi
 
-Uygulamalarınız için sağlam ve güvenilir güvenlik önlemleri oluştururken, katmanlı bir savunma stratejisi benimsemek hayati önem taşır. Bu, tamamlayıcı koruyucu önlemlerden oluşan ve birlikte dayanıklı bir derinlemesine savunma güvenlik duruşu oluşturan önlemler bütününü uygulamayı içerir. Wallarm güvenlik platformunun sunduğu önlemlerin yanı sıra, aşağıdaki uygulamaları da öneririz:
+Uygulamalarınız için sağlam ve güvenilir güvenlik önlemleri oluştururken katmanlı bir savunma stratejisi benimsemek çok önemlidir. Bu, birlikte dayanıklı bir derinlemesine savunma duruşu oluşturan tamamlayıcı koruyucu önlemler paketini uygulamayı içerir. Wallarm güvenlik platformunun sunduğu önlemlerin yanı sıra aşağıdaki uygulamaları öneririz:
 
-* Bulut hizmet sağlayıcınızın sunduğu L3 DDoS korumasını kullanın. L3 DDoS koruması, ağ düzeyinde çalışır ve dağıtık hizmet reddi (DDoS) saldırılarını hafifletmeye yardımcı olur. Çoğu bulut hizmet sağlayıcısı, hizmetlerinin bir parçası olarak L3 koruması sunar.
-* Web sunucularınız veya API geçitleriniz için güvenli yapılandırma tavsiyelerine uyun. Örneğin, [NGINX](https://www.cyberciti.biz/tips/linux-unix-bsd-nginx-webserver-security.html) veya [Kong](https://konghq.com/learning-center/api-gateway/secure-api-gateway) kullanıyorsanız, güvenli yapılandırma yönergelerine uymanız önemlidir.
+* Bulut hizmet sağlayıcınızdan L3 DDoS koruması kullanın. L3 DDoS koruması, ağ seviyesinde çalışır ve dağıtık hizmet engelleme saldırılarını azaltmaya yardımcı olur. Çoğu bulut hizmet sağlayıcısı hizmetlerinin bir parçası olarak L3 koruması sunar.
+* Web sunucularınız veya API ağ geçitleriniz için güvenli yapılandırma önerilerini izleyin. Örneğin, [NGINX](https://www.cyberciti.biz/tips/linux-unix-bsd-nginx-webserver-security.html) veya [Kong](https://konghq.com/learning-center/api-gateway/secure-api-gateway) kullanıyorsanız güvenli yapılandırma yönergelerine uyduğunuzdan emin olun.
 
-Bu ek uygulamaları, [Wallarm L7 DDoS koruma önlemleri](../admin-en/configuration-guides/protecting-against-ddos.md#l7-ddos-protection-with-wallarm) ile birlikte uygulayarak, uygulamalarınızın genel güvenliğini önemli ölçüde artırabilirsiniz.
+Bu ek uygulamaları [Wallarm L7 DDoS koruma önlemleri](../admin-en/configuration-guides/protecting-against-ddos.md#l7-ddos-protection-with-wallarm) ile birlikte dahil ederek uygulamalarınızın genel güvenliğini önemli ölçüde artırabilirsiniz.
 
-## OWASP API En Önemli Tehditlerinin Kapsamını Kontrol Edin ve Artırın
+## OWASP API en önemli tehditlerinin kapsamını kontrol edin ve geliştirin
 
-OWASP API Security Top 10, API'larda güvenlik risklerinin değerlendirilmesi için altın standarttır. API'nızın bu API tehditlerine karşı güvenlik duruşunu ölçmenize yardımcı olmak için, Wallarm, 2023 sürümündeki en önemli tehditlerin hafifletilmesine yönelik net görünürlük ve metrikler sağlayan [dashboard](../user-guides/dashboards/owasp-api-top-ten.md) sunmaktadır.
+OWASP API Security Top 10, API’lerde güvenlik riskini değerlendirmek için altın standarttır. Wallarm, API’nizin bu API tehditlerine karşı güvenlik duruşunu ölçmenize yardımcı olmak için, 2023 sürümünün en önemli tehditlerinin azaltılmasına yönelik net görünürlük ve metrikler sağlayan bir [dashboard](../user-guides/dashboards/owasp-api-top-ten.md) sunar.
 
-Bu panolar, genel güvenlik durumunu değerlendirmenize ve uygun güvenlik kontrolleri kurarak tespit edilen güvenlik problemlerine proaktif bir yaklaşım getirmenize yardımcı olur.
+Bu dashboard’lar, genel güvenlik durumunu değerlendirmenize ve uygun güvenlik kontrollerini ayarlayarak keşfedilen güvenlik sorunlarını proaktif olarak ele almanıza yardımcı olur.
 
-## JA3 Parmak İzi Algılamayı Etkinleştirin
+## JA3 fingerprinting’i etkinleştirin
 
-Aşağıdaki işlevselliğin daha hassas olması için:
+Aşağıdaki işlevleri daha hassas hale getirmek için:
 
 * [API Sessions](../api-sessions/overview.md)
-* [API Abuse Prevention](../api-abuse-prevention/overview.md) API Sessions mekanizması kullanılarak
+* API Sessions mekanizmasını kullanan [API Abuse Prevention](../api-abuse-prevention/overview.md)
 
-Doğrulanmamış trafiğin daha iyi tanımlanabilmesi adına [JA3 parmak izi algılamayı](../admin-en/enabling-ja3.md#overview) etkinleştirmeniz önerilir.
+Kimliği doğrulanmamış trafiğin daha iyi tanımlanması için [JA3 fingerprinting](../admin-en/enabling-ja3.md#overview) etkinleştirmeniz önerilir.

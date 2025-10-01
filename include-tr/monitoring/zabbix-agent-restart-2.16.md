@@ -2,7 +2,7 @@
     ```bash
     sudo service zabbix-agent restart
     ```
-=== "Diğer Desteklenen Dağıtımlar"
+=== "Desteklenen diğer dağıtımlar"
     ```bash
     sudo systemctl restart zabbix-agent
     ```

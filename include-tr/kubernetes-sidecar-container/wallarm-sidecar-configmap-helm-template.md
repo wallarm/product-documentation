@@ -1,4 +1,3 @@
-```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -20,4 +19,3 @@ data:
                   include proxy_params;
           }
       }
-```

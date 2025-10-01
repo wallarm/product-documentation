@@ -1,5 +1,5 @@
-!!! warning "İmzaların doğrulanamadığı hatası"
-    Eklenen GPG anahtarlarının süresi dolduysa, aşağıdaki hata döndürülecektir:
+!!! warning ""İmzalar doğrulanamadı" hatası"
+    Eklenen GPG anahtarlarının süresi dolduysa, aşağıdaki hata döndürülür:
 
     ```
     W: GPG error: https://repo.wallarm.com/ubuntu/wallarm-node focal/4.2/ Release:The following
@@ -9,7 +9,7 @@
     N: See apt-secure(8) manpage for repository creation and user configuration details.
     ```
 
-    Sorunu düzeltmek için, lütfen Wallarm paketleri için yeni GPG anahtarlarını içe aktarın ve ardından aşağıdaki komutları kullanarak paketleri yükseltin:
+    Sorunu düzeltmek için, Wallarm paketleri için yeni GPG anahtarlarını içe aktarın ve ardından aşağıdaki komutları kullanarak paketleri yükseltin:
 
     ```
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -

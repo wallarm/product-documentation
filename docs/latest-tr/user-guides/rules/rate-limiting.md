@@ -1,133 +1,138 @@
 [api-discovery-enable-link]:        ../../api-discovery/setup.md#enable
 
-# Rate Limiting
+# Hız Sınırlama
 
-[unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) durumu, [OWASP API Top 10 2023](../../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) en ciddi API güvenlik riskleri listesinde yer almaktadır. Rate limiting eksikliği, bu riskin ana sebeplerinden biridir. Uygun rate limiting önlemleri olmadan, API'ler hizmet reddi (DoS) saldırıları, brute force ve API aşırı kullanımı gibi saldırılara karşı savunmasızdır. Bu makale, Wallarm'un rate limit düzenleme kuralı ile API'nizi ve kullanıcılarınızı nasıl koruyacağınızı açıklamaktadır.
+[Unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md), en ciddi API güvenlik risklerinin listelendiği [OWASP API Top 10 2023](../../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) listesinde yer almaktadır. Hız sınırlamanın olmaması, bu riskin başlıca nedenlerinden biridir. Uygun hız sınırlama önlemleri olmadan, API’ler hizmet engelleme (DoS), kaba kuvvet (brute force) ve API’nin aşırı kullanımına yönelik saldırılara karşı savunmasızdır. Bu makale, Wallarm’ın hız sınırlama düzenleme kuralı ile API’nizi ve kullanıcılarınızı nasıl koruyacağınızı açıklar.
 
-Wallarm, API'nize aşırı trafiği önlemek için **Set rate limit** [kuralını](../../user-guides/rules/rules.md) sunar. Bu kural, belirli bir kapsam için yapılabilecek maksimum bağlantı sayısını belirtmenize olanak tanır, ayrıca gelen isteklerin eşit şekilde dağıtılmasını sağlar. Tanımlanan limiti aşan bir istek, Wallarm tarafından reddedilir ve kuralda seçtiğiniz kod ile yanıtlanır.
+Wallarm, API’nize aşırı trafiği önlemeye yardımcı olmak için **Advanced rate limiting** [kuralını](../../user-guides/rules/rules.md) sağlar. Bu kural, belirli bir kapsama yapılabilecek maksimum bağlantı sayısını belirtmenizi ve gelen isteklerin eşit şekilde dağıtılmasını sağlar. Bir istek tanımlanan limiti aşarsa, Wallarm isteği reddeder ve kuralda seçtiğiniz kodu döndürür.
 
-Wallarm, çerezler veya JSON alanları gibi çeşitli istek parametrelerini inceler; bu sayede, yalnızca kaynak IP adresine değil, aynı zamanda oturum tanımlayıcıları, kullanıcı adları veya e-posta adreslerine bağlı olarak bağlantıları sınırlayabilirsiniz. Bu ek ayrıntı seviyesi, herhangi bir orijinal veri temelinde platformun genel güvenliğini artırmanıza olanak tanır.
+Wallarm, çerezler veya JSON alanları gibi çeşitli istek parametrelerini inceler; bu sayede bağlantıları yalnızca kaynak IP adresine göre değil, aynı zamanda oturum tanımlayıcıları, kullanıcı adları veya e-posta adreslerine göre de sınırlayabilirsiniz. Bu ek ayrıntı düzeyi, herhangi bir kaynak verisine dayanarak platformun genel güvenliğini artırmanızı sağlar.
 
-Bu makalede açıklanan rate limiting, Wallarm tarafından sağlanan yük kontrol yöntemlerinden biridir - alternatif olarak, [brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md) uygulayabilirsiniz. Gelen trafiği yavaşlatmak için rate limiting, saldırganı tamamen engellemek için ise brute-force protection kullanın.
+Bu makalede açıklanan hız sınırlamanın Wallarm tarafından sağlanan yük kontrolü yöntemlerinden sadece biri olduğunu unutmayın - alternatif olarak [brute force korumasını](../../admin-en/configuration-guides/protecting-against-bruteforce.md) uygulayabilirsiniz. Gelen trafiği yavaşlatmak için hız sınırlamayı, saldırganı tamamen engellemek için ise brute force korumasını kullanın.
 
-## Kuralların Oluşturulması ve Uygulanması
+## Kuralı oluşturma ve uygulama
 
-Rate limit belirlemek ve uygulamak için:
+Hız limitini ayarlamak ve uygulamak için:
 
 --8<-- "../include/rule-creation-initial-step.md"
-1. **Mitigation controls** → **Advanced rate limiting** seçeneğini seçin.
-1. **If request is** alanında, kuralın uygulanacağı kapsamı [describe](rules.md#configuring) edin.
-1. Kapsamınıza yapılacak bağlantılar için istenen bir limit belirleyin:
+1. **Mitigation controls** → **Advanced rate limiting** seçin.
+1. **If request is** içinde, kuralın uygulanacağı kapsamı [tanımlayın](rules.md#configuring).
+1. Kapsamınıza yapılacak bağlantılar için istenen limiti belirleyin:
 
-    * Saniyede veya dakikada yapılacak isteklerin maksimum sayısı.
-    * **Burst** - belirli RPS/RPM aşıldığında, tamponlanacak aşırı isteklerin maksimum sayısının, oran normale döndüğünde işlenmesi. Varsayılan değer `0`.
+    * Saniye başına veya dakika başına istekler için maksimum sayı.
+    * **Burst** - belirtilen RPS/RPM aşıldığında arabelleğe alınacak aşırı isteklerin maksimum sayısı ve oran normale döndüğünde işlenecek olanlar. Varsayılan olarak `0`.
 
-        Değer `0`'dan farklı ise, tamponlanan aşırı isteklerin çalıştırılması sırasında tanımlı RPS/RPM'nin korunup korunmayacağını kontrol edebilirsiniz.
+        Değer `0`’dan farklıysa, arabelleğe alınmış aşırı isteklerin yürütülmesi sırasında tanımlanan RPS/RPM’in korunup korunmayacağını kontrol edebilirsiniz.
         
-        **No delay** tüm tamponlanmış aşırı isteklerin, rate limit gecikmesi olmaksızın eşzamanlı olarak işlenmesini, **Delay** ise belirtilen sayıda aşırı isteğin eşzamanlı işlenmesini, diğerlerinin ise RPS/RPM'de belirlenen gecikme ile işlenmesini ifade eder.
+        **No delay**, tüm arabelleğe alınmış aşırı isteklerin, hız limiti gecikmesi olmaksızın eşzamanlı olarak işlenmesini ifade eder. **Delay**, belirtilen sayıda aşırı isteğin eşzamanlı işlenmesini, diğerlerinin ise RPS/RPM’de ayarlanan gecikme ile işlenmesini ifade eder.
     
     * **Response code** - reddedilen isteklere yanıt olarak döndürülecek kod. Varsayılan `503`.
 
-        Aşağıda, 5 r/s limiti, burst değeri 12 ve delay değeri 8 olan rate limiting davranışı örneği verilmiştir.
+        Aşağıda limitin 5 r/s, burst 12 ve delay 8 olduğu hız sınırlama davranışı örneği yer almaktadır.
         
-        ![How rate limiting works](../../images/user-guides/rules/rate-limit-schema.png)
+        ![Hız sınırlamanın çalışma şekli](../../images/user-guides/rules/rate-limit-schema.png)
 
-        İlk 8 istek (delay değeri), Wallarm düğümü tarafından gecikme olmaksızın aktarılır. Sonraki 4 istek (burst - delay) tanımlı 5 r/s oranının aşılmaması için geciktirilir. Bir sonraki 3 istek, toplam burst boyutu aşıldığı için reddedilir. Sonraki istekler gecikmeli olarak işlenir.
+        İlk 8 istek (Delay değerinin) Wallarm düğümü tarafından gecikme olmadan iletilir. Sonraki 4 istek (burst - delay), tanımlı 5 r/s oranı aşılmayacak şekilde geciktirilir. Sonraki 3 istek, toplam burst boyutu aşıldığı için reddedilir. Takip eden istekler geciktirilir.
 
-1. **In this part of request** bölümünde, limit belirlemek istediğiniz istek noktalarını belirtin. Wallarm, seçilen istek parametreleri için aynı değerlere sahip istekleri sınırlayacaktır.
+1. **In this part of request** içinde, limit uygulamak istediğiniz istek noktalarını belirtin. Wallarm, seçilen istek parametreleri için aynı değerlere sahip istekleri kısıtlayacaktır.
 
-    Tüm mevcut noktalar [burada](request-processing.md) açıklanmıştır; örneğin, belirli kullanım senaryonuza uygun olanları seçebilirsiniz:
+    Tüm mevcut noktalar [burada](request-processing.md) açıklanmıştır, belirli kullanım senaryonuza uyanları seçebilirsiniz, örn.:
     
-    * `remote_addr` orijin IP'si üzerinden bağlantıları sınırlamak için
-    * `json` → `json_doc` → `hash` → `api_key` JSON gövde parametresi `api_key` kullanılarak bağlantıları sınırlamak için
+    * `remote_addr` ile bağlantıları kaynak IP’ye göre sınırlamak
+    * `api_key` JSON gövde parametresine göre bağlantıları sınırlamak için `json` → `json_doc` → `hash` → `api_key`
 
-    !!! info "Değer uzunluğu kısıtlamaları"
-        Limit ölçümü yapılan parametre değerlerinin izin verilen maksimum uzunluğu 8000 semboldür.
-1. [Kural derleme ve filtreleme düğümüne yükleme işleminin tamamlanmasını](rules.md#ruleset-lifecycle) bekleyin.
+    !!! info "Değer uzunluğuna ilişkin kısıtlamalar"
+        Limitleri ölçtüğünüz parametre değerlerinin izin verilen azami uzunluğu 8000 karakterdir.
+1. [Kuralın derlenmesinin ve filtreleme düğümüne yüklenmesinin tamamlanmasını](rules.md#ruleset-lifecycle) bekleyin.
 
-## Kural Örnekleri
+## Kural örnekleri
 
 <!-- ### Limiting IP connections to prevent DoS attacks on API endpoint
 
-Diyelim ki kullanıcı listesini sayfa başına 200 kullanıcı ile döndüren bir UI bölümünüz var. Sayfayı getirmek için, UI şu URL'ye bir istek gönderir: `https://example-domain.com/api/users?page=1&size=200`.
+Suppose you have a section in the UI that returns a list of users, with a limit of 200 users per page. To fetch the page, the UI sends a request to the server using the following URL: `https://example-domain.com/api/users?page=1&size=200`.
 
-Bununla birlikte, bir saldırgan `size` parametresini aşırı büyük bir değere (ör. 200.000) çevirerek veritabanını aşırı yükleyip performans sorunlarına yol açabilir. Bu, API'nin yanıt vermez hale gelmesi ve herhangi bir istemciden gelen ek istekleri işleyememesi durumuna yol açan DoS (Hizmet Reddi) saldırısı olarak bilinir.
+However, an attacker could exploit this by changing the `size` parameter to an excessively large number (e.g. 200,000), which could overload the database and cause performance issues. This is known as a DoS (Denial of Service) attack, where the API becomes unresponsive and unable to handle further requests from any clients.
 
-Uç noktaya yapılan bağlantıları sınırlamak böyle saldırıları önlemeye yardımcı olur. Uç noktaya IP başına dakikada 1000 bağlantı limiti getirilebilir. Bu, ortalama olarak her dakika 5 kez talep edilen 200 kullanıcının varsayıldığı durumlar için geçerlidir. Kural, bu limitin dakikada uç noktaya erişmeye çalışan her IP için geçerli olduğunu belirtir. `remote_address` [noktası](request-processing.md) istekte bulunanın IP adresini tanımlamak için kullanılır.
+Limiting connections to the endpoint helps to prevent such attacks. You can limit the number of connections to the endpoint to 1000 per minute. This assumes that, on average, 200 users are requested 5 times per minute. The rule specifies that this limit applies to each IP trying to access the endpoint within minute. The `remote_address` [point](request-processing.md) is used to identify the IP address of the requester.
 
 ![Example](../../images/user-guides/rules/rate-limit-for-200-users.png)
 -->
-### Limiting connections by IP to ensure high API availability
+### API yüksek erişilebilirliğini sağlamak için IP’ye göre bağlantıları sınırlama
 
-Diyelim ki, bir sağlık şirketinin REST API'si, doktorların `https://example-host.com` ana bilgisayarındaki `/patients` uç noktasına POST isteği aracılığıyla hasta bilgisi göndermesine olanak tanıyor. Bu uç noktanın erişilebilirliği kritik önem taşıdığından, aşırı isteklerle boğulmaması gerekmektedir.
+Bir sağlık şirketinin, doktorların `https://example-host.com` ana makinesinin `/patients` uç noktasına POST isteği ile hasta bilgilerini göndermesine izin veren bir REST API’si olduğunu varsayalım. Bu uç noktanın erişilebilirliği kritik önemdedir, dolayısıyla çok sayıda istekle boğulmamalıdır.
 
-Belirli bir süre zarfında `/patients` uç noktasına IP bazında bağlantıları sınırlamak bunu önleyebilir. Bu, uç noktanın tüm doktorlara stabil ve erişilebilir olmasını sağlarken, DoS saldırılarını önleyerek hasta bilgilerinin güvenliğini korur.
+Özellikle `/patients` uç noktası için belirli bir zaman dilimi içinde IP’ye göre bağlantıları sınırlamak bunu önleyebilir. Bu, uç noktanın tüm doktorlar için stabilitesini ve erişilebilirliğini sağlar, ayrıca DoS saldırılarını engelleyerek hasta bilgilerinin güvenliğini korur.
 
-Örneğin, her IP adresi için dakikada 5 POST isteğine izin verecek şekilde bir limit belirlenebilir:
+Örneğin, her IP adresi için dakikada 5 POST isteği olarak aşağıdaki gibi bir limit belirlenebilir:
 
-![Example](../../images/user-guides/rules/rate-limit-by-ip-for-patients.png)
+![Örnek](../../images/user-guides/rules/rate-limit-by-ip-for-patients.png)
 
-### Limiting connections by sessions to prevent brute force attacks on auth parameters
+### Kimlik doğrulama parametrelerine yönelik kaba kuvvet (brute force) saldırılarını önlemek için oturuma göre bağlantıları sınırlama
 
-Kullanıcı oturumlarına rate limiting uygulayarak, korunan kaynaklara yetkisiz erişim sağlamak amacıyla gerçek JWT'ler veya diğer kimlik doğrulama parametrelerini bulmaya yönelik brute force girişimlerini engelleyebilirsiniz. Örneğin, eğer bir oturum için dakikada yalnızca 10 isteğe izin verecek şekilde rate limit belirlenmişse, geçerli bir JWT keşfetmeye çalışan bir saldırgan, farklı token değerleriyle birçok istek göndererek hızla rate limit'e takılacak ve limit süresi dolana kadar istekleri reddedilecektir.
+Kullanıcı oturumlarına hız sınırlama uygulayarak, korunan kaynaklara yetkisiz erişim sağlamak için gerçek JWT’leri veya diğer kimlik doğrulama parametrelerini bulmaya yönelik brute force girişimlerini kısıtlayabilirsiniz. Örneğin, hız limiti bir oturum altında dakikada yalnızca 10 isteğe izin verecek şekilde ayarlanırsa, farklı jeton değerleriyle çoklu istekler yaparak geçerli bir JWT bulmaya çalışan bir saldırgan hız limitine hızla takılır ve hız limiti süresi dolana kadar istekleri reddedilir.
 
-Diyelim ki uygulamanız, her kullanıcı oturumuna benzersiz bir ID atıyor ve bunu `X-SESSION-ID` başlığında yansıtıyor. `https://example.com/api/login` URL'sindeki API uç noktası, `Authorization` başlığında Bearer JWT içeren POST isteklerini kabul ediyor. Bu senaryo için, oturum bazında bağlantıları sınırlayan kural aşağıdaki gibi görünecektir:
+Uygulamanızın her kullanıcı oturumuna benzersiz bir kimlik atadığını ve bunu `X-SESSION-ID` başlığında yansıttığını varsayalım. `https://example.com/api/login` URL’sindeki API uç noktası, `Authorization` başlığında Bearer JWT içeren POST isteklerini kabul eder. Bu senaryoda, oturuma göre bağlantıları sınırlayan kural aşağıdaki gibi görünecektir:
 
-![Example](../../images/user-guides/rules/rate-limit-for-jwt.png)
+![Örnek](../../images/user-guides/rules/rate-limit-for-jwt.png)
 
-`Authorization` değeri için kullanılan [regexp](rules.md#condition-type-regex) ``^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$`` şeklindedir.
+`Authorization` değeri için kullanılan [düzenli ifade](rules.md#condition-type-regex) ``^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$` şeklindedir.
 
-Eğer kullanıcı oturumlarını yönetmek için JWT (JSON Web Tokens) kullanıyorsanız, JWT'yi [decrypt](request-processing.md#jwt) ederek yükünden oturum ID'sini çıkarmak için kuralı ayarlayabilirsiniz:
+Kullanıcı oturumlarını yönetmek için JWT (JSON Web Tokens) kullanıyorsanız, oturum kimliğini yükünden çıkarmak için JWT’nin [şifresini çözmek](request-processing.md#jwt) üzere kuralı aşağıdaki gibi ayarlayabilirsiniz:
 
-![Example](../../images/user-guides/rules/rate-limit-for-session-in-jwt.png)
+![Örnek](../../images/user-guides/rules/rate-limit-for-session-in-jwt.png)
 
 <!-- ### User-Agent based rate limiting to prevent attacks on API endpoints
 
-Eski bir uygulama sürümüne sahip olduğunuz ve bu sürümde bilinen güvenlik açıkları bulunduğu için saldırganların, savunmasız uygulama sürümü üzerinden `https://example-domain.com/login` API uç noktasında brute force saldırısı gerçekleştirebildiğini varsayalım. Genellikle, `User-Agent` başlığı tarayıcı/uygulama sürümlerini iletmek için kullanılır. Eski uygulama sürümü üzerinden gelecek brute force saldırılarını önlemek için `User-Agent` bazlı rate limiting uygulayabilirsiniz.
+Let's say you have an old version of your application has some known security vulnerabilities allowing attackers to brute force API endpoint `https://example-domain.com/login` using the vulnerable application version. Usually, the `User-Agent` header is used to pass browser/application versions. To prevent the brute force attack via the old application version, you can implement `User-Agent` based rate limiting.
 
-Örneğin, her `User-Agent` için dakikada 10 istek limiti koyabilirsiniz. Eğer belirli bir `User-Agent` eşit olarak dakikada 10'dan fazla istek gönderiyorsa, o `User-Agent`'ten gelen istekler yeni bir dönem başına kadar reddedilir.
+For example, you can set a limit of 10 requests per minute for each `User-Agent`. If a specific `User-Agent` is making more than 10 requests evenly distributed per minute, further requests from that `User-Agent` are rejected till a new period start.
 
 ![Example](../../images/user-guides/rules/rate-limit-by-user-agent.png)
 
 ### Endpoint-based rate limiting to prevent DoS attacks
 
-Rate limiting, belirli bir zaman dilimi içerisinde belirli bir uç noktaya yapılabilecek istek sayısının sınırlandırılmasını da içerebilir; örneğin dakikada 60 istek gibi. Bir istemci bu limiti aşarsa, sonraki istekler reddedilir.
+Rate limiting can also involve setting a threshold for the number of requests that can be made to a particular endpoint within a specified time frame, such as 60 requests per minute. If a client exceeds this limit, further requests are rejected.
 
-Bu, DoS saldırılarının önlenmesine, uygulamanın meşru kullanıcılara karşı erişilebilir olmasına, sunucudaki yükün azaltılmasına, genel uygulama performansının iyileştirilmesine ve diğer kötüye kullanım durumlarının engellenmesine yardımcı olur.
+It helps to prevent DoS attacks and ensure that the application remains available to legitimate users. It can also help to reduce the load on the server, improve overall application performance, and prevent other forms of abuse or misuse of the application.
 
-Bu özel durumda, rate limiting kuralı URI bazında bağlantılara uygulanır; bu, Wallarm'un otomatik olarak tek bir uç noktaya yönelik tekrarlanan istekleri tanımlamasını sağlar. İşte `https://example.com` ana bilgisayarındaki tüm uç noktalar için bu kuralın nasıl çalışacağına dair bir örnek:
+In this specific case, the rate limiting rule is applied to connections by URI, meaning that Wallarm automatically identifies repeated requests targeting a single endpoint. Here's an example of how this rule would work for all endpoints of the `https://example.com` host:
 
-* Limit: Dakikada 60 istek (saniyede 1 istek)
-* Burst: Ani trafik artışları durumunda dakikada 20 isteğe kadar izin verir
-* No delay: Rate limit gecikmesi olmaksızın 20 aşırı isteğin eşzamanlı olarak işlenmesi
-* Response code: Limit ve burst'i aşan istekler 503 kodu ile reddedilir
-* Wallarm, URI [noktası](request-processing.md) ile tek bir uç noktaya yönelik tekrarlanan istekleri tanımlar
+* Limit: 60 requests per minute (1 request per second)
+* Burst: allow up to 20 requests per minute (which could be useful if there is a sudden spike in traffic)
+* No delay: process 20 excessive requests simultaneously, without the rate limit delay between requests
+* Response code: reject requests exceeding the limit and the burst with the 503 code
+* Wallarm identifies repeated requests targeted at a single endpoint by the `uri` [point](request-processing.md)
 
-    !!! info "Sorgu parametreleri URI'ya dahil edilmez"
-        Bu kural, belirtilen etki alanının herhangi bir yolu hedef alan, sorgu parametresi içermeyen istekleri sınırlar.
+    !!! info "Query parameters are not included into URI"
+        This rule limits requests targeted at any path of the specified domain which does not contain any query parameters.
 
 ![Example](../../images/user-guides/rules/rate-limit-by-uri.png) -->
 
-### Limiting connections by customer IDs to prevent server overwhelm
+### Sunucunun aşırı yüklenmesini önlemek için müşteri kimliklerine göre bağlantıları sınırlama
 
-Diyelim ki, online alışveriş platformu için müşteri sipariş verilerine erişim sağlayan bir web servisi bulunmaktadır. Müşteri ID'sine göre rate limiting, müşterilerin kısa süre içerisinde çok fazla sipariş vermelerini önleyerek envanter yönetimi ve sipariş karşılama süreçlerine aşırı yük binmesini engelleyebilir.
+Bir web servisinin, bir e-ticaret platformu için müşteri sipariş verilerine erişim sağladığını düşünelim. Müşteri kimliğine göre hız sınırlaması, müşterilerin kısa sürede çok fazla sipariş vermesini önlemeye yardımcı olabilir; bu da stok yönetimi ve sipariş karşılama üzerinde baskı oluşturabilir.
 
-Örneğin, `https://example-domain.com/orders` uç noktasına her müşteri için dakikada 10 POST isteği limitini getiren kural aşağıdaki gibi görünebilir. Bu örnekte, müşteri ID'sinin `data.customer_id` JSON gövde nesnesinde [geçirildiği](request-processing.md#json_doc) varsayılmaktadır.
+Örneğin, her müşteri için `https://example-domain.com/orders` adresine dakikada 10 POST isteği ile sınırlayan kural aşağıdaki gibi görünebilir. Bu örnekte, müşteri kimliğinin `data.customer_id` JSON gövde nesnesinde [iletildiği](request-processing.md#json_doc) varsayılmaktadır.
 
-![Example](../../images/user-guides/rules/rate-limit-by-customer-id.png)
+![Örnek](../../images/user-guides/rules/rate-limit-by-customer-id.png)
 
-## Sınırlamalar ve Özellikler
+## Sınırlamalar ve özellikler
 
-Rate limit işlevselliğinin aşağıdaki sınırlamaları ve özellikleri bulunmaktadır:
+Hız sınırlama işlevinin aşağıdaki sınırlamaları ve özellikleri vardır:
 
-* Rate limiting kuralı, [Wallarm deployment forms](../../installation/supported-deployment-options.md) **dışındaki** tüm dağıtım formları tarafından desteklenir:
+* Hız sınırlama kuralı, aşağıdakiler **hariç** olmak üzere tüm [Security Edge](../../installation/security-edge/overview.md) ve [kendi barındırılan](../../installation/supported-deployment-options.md) dağıtım biçimleri tarafından desteklenir:
 
-    * Envoy tabanlı Docker imajı
     * OOB Wallarm dağıtımı
-    * MuleSoft, Amazon CloudFront, Cloudflare, Broadcom Layer7 API Gateway, Fastly konektörleri
-* Limit ölçümü yapılan parametre değerlerinin izin verilen maksimum uzunluğu 8000 semboldür.
-* Birden fazla Wallarm düğümünüz varsa ve her düğümde gelen trafik rate limit kuralına uyuyorsa, her düğüm bağımsız olarak sınırlama yapar.
-* Gelen isteklere birden fazla rate limit kuralı uygulanıyorsa, en düşük rate limit'e sahip kural istekleri sınırlamak için kullanılır.
-* Gelen istekte **In this part of request** kural bölümünde belirtilen nokta yoksa, bu kural o istek için sınırlama olarak uygulanmaz.
-* Web sunucunuz, bağlantıları sınırlayacak şekilde (örneğin, [`ngx_http_limit_req_module`](http://nginx.org/en/docs/http/ngx_http_limit_req_module.html) NGINX modülü kullanarak) yapılandırılmışsa ve siz de Wallarm kuralını uyguluyorsanız, web sunucusu yapılandırılmış kurallara göre istekleri reddeder ama Wallarm yapmaz.
-* Wallarm, rate limit'i aşan istekleri kaydetmez; sadece kuralda seçilen kodu döndürerek reddeder. İstisna olarak, [attack signs](../../about-wallarm/protecting-against-attacks.md) bulunan istekler, rate limiting kuralı tarafından reddedilmiş olsalar bile Wallarm tarafından kaydedilir.
+    * MuleSoft, Amazon CloudFront, Cloudflare, Broadcom Layer7 API Gateway, Fastly bağlayıcıları
+* Limitleri ölçtüğünüz parametre değerlerinin izin verilen azami uzunluğu 8000 karakterdir.
+* Birden fazla Wallarm düğümünüz varsa ve her düğüme gelen trafik hız sınırlama kuralını sağlıyorsa, bunlar birbirinden bağımsız olarak sınırlandırılır.
+* Gelen isteklere birden fazla hız sınırlama kuralı uygulanıyorsa, istekleri sınırlamak için en düşük hız limitine sahip kural kullanılır.
+* Gelen bir istek, kuralın **In this part of request** bölümünde belirtilen noktayı içermiyorsa, bu kural o istek için bir sınırlama olarak uygulanmaz.
+* Web sunucunuz bağlantıları sınırlayacak şekilde yapılandırılmışsa (ör. [`ngx_http_limit_req_module`](http://nginx.org/en/docs/http/ngx_http_limit_req_module.html) NGINX modülünü kullanarak) ve ayrıca Wallarm kuralını da uygularsanız, web sunucusu yapılandırılmış kurallara göre istekleri reddeder ancak Wallarm reddetmez.
+* Wallarm, hız limitini aşan istekleri kaydetmez; yalnızca kuralda seçilen kodu döndürerek bunları reddeder. İstisna, [saldırı işaretleri](../../about-wallarm/protecting-against-attacks.md) taşıyan isteklere yöneliktir - bunlar, hız sınırlama kuralı tarafından reddedilmiş olsalar bile Wallarm tarafından kaydedilir.
+
+## Rate abuse protection ile farkı
+
+Kaynak kullanımını kısıtlamak ve çok sayıda istek kullanılarak gerçekleştirilen saldırıları önlemek için, burada açıklanan hız sınırlamanın yanı sıra Wallarm [rate abuse protection](../../api-protection/dos-protection.md) sağlar.
+
+Hız sınırlama, oran çok yüksek olduğunda bazı istekleri geciktirir (arabelleğe alır) ve arabellek dolduğunda kalanları reddeder; oran normale döndüğünde arabelleğe alınan istekler teslim edilir, IP veya oturuma göre bir engelleme uygulanmaz; **oysa** rate abuse protection saldırganları bir süreliğine IP’lerine veya oturumlarına göre engeller.

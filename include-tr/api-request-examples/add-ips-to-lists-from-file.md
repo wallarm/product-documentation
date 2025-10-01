@@ -1,4 +1,4 @@
-=== "US Cloud"
+=== "ABD Bulutu"
     ```bash
     #!/bin/bash
 
@@ -6,7 +6,7 @@
     SECRET="<YOUR_SECRET_KEY>"
     CLIENT="<YOUR_CLIENT_ID>"
     LIST="<TYPE_OF_IP_LIST>"
-    PATH_TO_CSV_FILE="<PATH_TO_CSV_FILE>" # IP'ler veya alt ağlar içeren CSV dosyasının yolu
+    PATH_TO_CSV_FILE="<PATH_TO_CSV_FILE>" # IP'ler veya alt ağları içeren CSV dosyasının yolu
     APPLICATIONS="<APP_IDS_THROUGH_COMMA>"
     REMOVE_DATE="TIMESTAMP_REMOVE_DATE"
     REASON='<REASON>'
@@ -46,7 +46,7 @@
 
     done
     ```
-=== "EU Cloud"
+=== "AB Bulutu"
     ```bash
     #!/bin/bash
 
@@ -54,7 +54,7 @@
     SECRET="<YOUR_SECRET_KEY>"
     CLIENT="<YOUR_CLIENT_ID>"
     LIST="<TYPE_OF_IP_LIST>"
-    PATH_TO_CSV_FILE="<PATH_TO_CSV_FILE>" # IP'ler veya alt ağlar içeren CSV dosyasının yolu
+    PATH_TO_CSV_FILE="<PATH_TO_CSV_FILE>" # IP'ler veya alt ağları içeren CSV dosyasının yolu
     APPLICATIONS="<APP_IDS_THROUGH_COMMA>"
     REMOVE_DATE="TIMESTAMP_REMOVE_DATE"
     REASON='<REASON>'

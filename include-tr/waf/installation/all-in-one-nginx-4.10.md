@@ -1,9 +1,9 @@
-En son NGINX sürümünü yükleyin:
+Aşağıdakilerin en son NGINX sürümünü kurun:
 
-* **NGINX `stable`** - NGINX [dokümantasyonunda](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/) nasıl kurulacağını görün.
-* **NGINX Mainline** (desteklenen en son sürüm v1.25.5'tir) - NGINX [dokümantasyonunda](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/) nasıl kurulacağını görün.
-* **NGINX Plus** (desteklenen en son sürüm NGINX Plus R32'dir) - NGINX [dokümantasyonunda](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/) nasıl kurulacağını görün.
-* **Distribution-Provided NGINX** - yüklemek için, aşağıdaki komutları kullanın:
+* **NGINX `stable`** - kurulum yönergeleri için NGINX [dokümantasyonu](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/).
+* **NGINX Mainline** (en son desteklenen sürüm v1.25.5'tir) - kurulum yönergeleri için NGINX [dokümantasyonu](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/).
+* **NGINX Plus** (en son desteklenen sürüm NGINX Plus R32'dir) - kurulum yönergeleri için NGINX [dokümantasyonu](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
+* **Dağıtım tarafından sağlanan NGINX** - kurmak için aşağıdaki komutları kullanın:
 
     === "Debian"
         ```bash
@@ -20,7 +20,7 @@ En son NGINX sürümünü yükleyin:
         sudo yum -y update 
         sudo yum install -y nginx
         ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    === "AlmaLinux, Rocky Linux veya Oracle Linux 8.x"
         ```bash
         sudo yum -y update 
         sudo yum install -y nginx

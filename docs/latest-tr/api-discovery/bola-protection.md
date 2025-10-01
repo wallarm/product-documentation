@@ -1,15 +1,15 @@
-# BOLA Saldırılarına Karşı Otomatik Koruma <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# BOLA Saldırılarına Karşı Otomatik Koruma <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-[Broken Object Level Authorization (BOLA)](../attacks-vulns-list.md#broken-object-level-authorization-bola) gibi davranışsal saldırılar, aynı adı taşıyan açığı istismar eder. Bu açık, bir saldırganın bir API isteği aracılığıyla nesnenin tanımlayıcısını kullanarak erişim sağlamasına ve yetkilendirme mekanizmasını atlayarak verileri okuma veya değiştirme imkânı verir.
+[Kırık Nesne Düzeyi Yetkilendirme (BOLA)](../attacks-vulns-list.md#broken-object-level-authorization-bola) gibi davranışsal saldırılar, aynı adlı zafiyetten yararlanır. Bu zafiyet, bir saldırganın bir API isteği aracılığıyla bir nesneye tanımlayıcısıyla erişmesine ve yetkilendirme mekanizmasını atlayarak verilerini okumasına veya değiştirmesine olanak tanır.
 
-BOLA saldırılarının potansiyel hedefleri, değişkenliğe sahip uç noktalardır. Wallarm, [API Discovery](overview.md) modülü tarafından keşfedilen bu uç noktaları otomatik olarak tespit edip koruyabilir.
+BOLA saldırılarının potansiyel hedefleri, değişkenliğe sahip uç noktalardır. Wallarm, [API Discovery](overview.md) modülünün keşfettiği uç noktalar arasında bu tür uç noktaları otomatik olarak bulup koruyabilir.
 
-Otomatik BOLA korumasını etkinleştirmek için, Wallarm Console → [**BOLA protection**](../admin-en/configuration-guides/protecting-against-bola.md) yolunu izleyin ve anahtarı etkin duruma getirin:
+Otomatik BOLA korumasını etkinleştirmek için, Wallarm Console → [**BOLA protection**](../admin-en/configuration-guides/protecting-against-bola.md) bölümüne gidin ve anahtarı etkin duruma getirin:
 
-![BOLA trigger](../images/user-guides/bola-protection/trigger-enabled-state.png)
+![BOLA tetikleyicisi](../images/user-guides/bola-protection/trigger-enabled-state.png)
 
-Korunan her API uç noktası, API envanterinde ilgili simgeyle vurgulanır, örneğin:
+Her korunan API uç noktası, API envanterinde ilgili simgeyle vurgulanacaktır, örn.:
 
-![BOLA trigger](../images/about-wallarm-waf/api-discovery/endpoints-protected-against-bola.png)
+![BOLA tetikleyicisi](../images/about-wallarm-waf/api-discovery/endpoints-protected-against-bola.png)
 
-API uç noktalarını, BOLA otomatik koruma durumuna göre filtreleyebilirsiniz. İlgili parametre **Others** filtresi altında mevcuttur.
+API uç noktalarını BOLA otomatik koruma durumuna göre filtreleyebilirsiniz. İlgili parametre **Others** filtresi altında mevcuttur.

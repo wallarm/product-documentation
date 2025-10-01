@@ -1,8 +1,8 @@
-Depending on the deployment approach being used, perform the following settings:
+Kullanılan dağıtım yaklaşımına bağlı olarak aşağıdaki ayarları yapın:
 
-=== "In-line"
-    Yük dengeleyicinizin hedeflerini, trafiği Wallarm instance'ına yönlendirecek şekilde güncelleyin. Ayrıntılar için lütfen yük dengeleyicinizin dokümantasyonuna bakın.
-=== "Out-of-Band"
-    Web veya proxy sunucunuzu (ör. NGINX, Envoy) gelen trafiği Wallarm node'una yansıtacak şekilde yapılandırın. Yapılandırma detayları için, web veya proxy sunucu dokümantasyonunuza başvurmanızı öneririz.
+=== "Satır içi"
+    Yük dengeleyicinizin hedeflerini güncelleyerek trafiği Wallarm örneğine yönlendirin. Ayrıntılar için yük dengeleyicinizin belgelerine bakın.
+=== "Bant dışı"
+    Web veya proxy sunucunuzu (örn. NGINX, Envoy) gelen trafiği Wallarm düğümüne yansıtacak şekilde yapılandırın. Yapılandırma ayrıntıları için web veya proxy sunucunuzun belgelerine başvurmanızı öneririz.
 
-    Inside the [link][web-server-mirroring-examples], you will find the example configuration for the most popular of web and proxy servers (NGINX, Traefik, Envoy).
+    Şuradaki [bağlantı][web-server-mirroring-examples] içinde, en popüler web ve proxy sunucuları (NGINX, Traefik, Envoy) için örnek yapılandırmaları bulabilirsiniz.

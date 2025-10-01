@@ -1,32 +1,32 @@
 # Sumo Logic
 
-[Sumo Logic](https://www.sumologic.com/) kurumlara BT operasyonları, güvenlik ve uygulama performansı hakkında gerçek zamanlı içgörüler sağlayan bulut yerel, makine verisi analitiği platformudur. Wallarm'u Sumo Logic'e mesaj gönderecek şekilde yapılandırabilirsiniz.
+[Sumo Logic](https://www.sumologic.com/), kuruluşlara BT operasyonları, güvenlik ve uygulama performansı hakkında gerçek zamanlı içgörüler sağlayan bulut-yerel bir makine verisi analitiği platformudur.  Wallarm'ı Sumo Logic'e mesajlar gönderecek şekilde yapılandırabilirsiniz.
 
-## Entegrasyonu Ayarlama
+## Entegrasyonu yapılandırma
 
-Sumo Logic kullanıcı arayüzünde:
+Sumo Logic UI'de:
 
-1. Aşağıdaki [talimatları](https://help.sumologic.com/03Send-Data/Hosted-Collectors/Configure-a-Hosted-Collector) izleyerek bir Hosted Collector yapılandırın.
-2. Aşağıdaki [talimatları](https://help.sumologic.com/03Send-Data/Sources/02Sources-for-Hosted-Collectors/HTTP-Source) izleyerek bir HTTP Logs & Metrics Source yapılandırın.
+1. [Talimatları](https://help.sumologic.com/03Send-Data/Hosted-Collectors/Configure-a-Hosted-Collector) izleyerek bir Hosted Collector yapılandırın.
+2. [Talimatları](https://help.sumologic.com/03Send-Data/Sources/02Sources-for-Hosted-Collectors/HTTP-Source) izleyerek bir HTTP Logs & Metrics Source yapılandırın.
 3. Sağlanan **HTTP Source Address (URL)** değerini kopyalayın.
 
-Wallarm kullanıcı arayüzünde:
+Wallarm UI'de:
 
 1. **Integrations** bölümünü açın.
-1. **Sumo Logic** bloğuna tıklayın veya **Add integration** düğmesine tıklayarak **Sumo Logic**'i seçin.
+1. **Sumo Logic** bloğuna tıklayın veya **Add integration** düğmesine tıklayıp **Sumo Logic**'i seçin.
 1. Bir entegrasyon adı girin.
-1. Kopyaladığınız **HTTP Source Address (URL)** değerini **HTTP Source Address (URL)** alanına yapıştırın.
-1. Bildirimleri tetiklemek için olay türlerini seçin.
+1. Kopyalanan HTTP Source Address (URL) değerini **HTTP Source Address (URL)** alanına yapıştırın.
+1. Bildirimleri tetikleyecek olay türlerini seçin.
 
-    ![Sumo Logic integration](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
+    ![Sumo Logic entegrasyonu](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
 
-    Mevcut olaylar hakkında detaylar:
+    Kullanılabilir olaylara ilişkin ayrıntılar:
 
     --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-1. Yapılandırmanın doğruluğunu, Wallarm Cloud'un kullanılabilirliğini ve bildirim formatını kontrol etmek için **Test integration** düğmesine tıklayın.
+1. Yapılandırmanın doğruluğunu, Wallarm Cloud erişilebilirliğini ve bildirim biçimini kontrol etmek için **Test integration**'a tıklayın.
 
-    Sumo Logic bildirimini test edin:
+    Sumo Logic test bildirimi:
 
     ```json
     {
@@ -71,18 +71,18 @@ Wallarm kullanıcı arayüzünde:
     }
     ```
 
-1. **Add integration** düğmesine tıklayın.
+1. **Add integration**'a tıklayın.
 
 --8<-- "../include/cloud-ip-by-request.md"
 
-## Ek Uyarıların Ayarlanması
+## Ek uyarıları yapılandırma
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
 
-## Bir Entegrasyonun Devre Dışı Bırakılması ve Silinmesi
+## Bir entegrasyonu devre dışı bırakma ve silme
 
 --8<-- "../include/integrations/integrations-disable-delete.md"
 
-## Sistem Kullanılamazlığı ve Hatalı Entegrasyon Parametreleri
+## Sistem kullanılamaması ve hatalı entegrasyon parametreleri
 
 --8<-- "../include/integrations/integration-not-working.md"

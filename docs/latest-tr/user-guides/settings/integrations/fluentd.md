@@ -1,12 +1,12 @@
 # Fluentd
 
-[Fluentd](https://www.fluentd.org/) açık kaynaklı, çok yönlü ve hafif veri toplayıcı (aggregator) ve taşıma aracı olarak hizmet veren bir veri toplama yazılım aracıdır. Wallarm'ı, Wallarm Console'da uygun bir entegrasyon oluşturarak tespit edilen olayların bildirimlerini Fluentd'ye gönderecek şekilde yapılandırabilirsiniz.
+[Fluentd](https://www.fluentd.org/), çok yönlü ve hafif bir veri toplayıcı ve taşıma mekanizması olarak hizmet veren açık kaynaklı bir veri toplama yazılım aracıdır. Wallarm Console içinde uygun bir entegrasyon oluşturarak Wallarm’ın tespit edilen olay bildirimlerini Fluentd’ye göndermesini yapılandırabilirsiniz.
 
-## Bildirim Formatı
+## Bildirim formatı
 
-Wallarm, bildirimleri JSON formatında **webhooks** aracılığıyla Fluentd'ye gönderir. JSON nesnelerinin seti, Wallarm'ın bildirdiği olaya bağlı olarak değişir.
+Wallarm, Fluentd’ye JSON formatında **webhook**’lar üzerinden bildirimler gönderir. JSON nesnelerinin kümesi, Wallarm’ın bildirdiği olaya bağlıdır.
 
-Yeni bir hit tespit bildirimine örnek:
+Yeni hit tespiti bildirimine örnek:
 
 ```json
 [
@@ -65,15 +65,15 @@ Fluentd yapılandırması aşağıdaki gereksinimleri karşılamalıdır:
 
 * POST veya PUT isteklerini kabul etmelidir
 * HTTPS isteklerini kabul etmelidir
-* Genel (public) URL'ye sahip olmalıdır
+* Genel erişilebilir bir URL’ye sahip olmalıdır
 
 Fluentd yapılandırma örneği:
 
 ```bash linenums="1"
 <source>
-  @type http # HTTP ve HTTPS trafiği için giriş eklentisi
-  port 9880 # gelen istekler için port
-  <transport tls> # bağlantı yönetimi için yapılandırma
+  @type http # HTTP ve HTTPS trafiği için input eklentisi
+  port 9880 # Gelen istekler için port
+  <transport tls> # Bağlantıların işlenmesine yönelik yapılandırma
     cert_path /etc/ssl/certs/fluentd.crt
     private_key_path /etc/ssl/private/fluentd.key
   </transport>
@@ -81,33 +81,33 @@ Fluentd yapılandırma örneği:
 <match **>
   @type copy
   <store>
-     @type stdout # komut satırında Fluentd günlüklerini yazdırmak için çıkış eklentisi
-     output_type json # komut satırında yazdırılan günlüklerin formatı
+     @type stdout # Fluentd günlüklerini komut satırında yazdıran output eklentisi
+     output_type json # Komut satırında yazdırılan günlüklerin biçimi
   </store>
 </match>
 ```
 
-Daha fazla detayı [official Fluentd documentation](https://docs.datadoghq.com/integrations/fluentd) adresinde bulabilirsiniz.
+Daha fazla ayrıntıyı [resmi Fluentd belgelerinde](https://docs.datadoghq.com/integrations/fluentd) bulabilirsiniz.
 
-## Entegrasyon Kurulumu
+## Entegrasyonu yapılandırma
 
-1. Wallarm Console → **Integrations** → **Fluentd** bölümünden Fluentd entegrasyon kurulumuna geçin.
+1. Wallarm Console → Integrations → Fluentd içinde Fluentd entegrasyonu kurulumuna gidin.
 1. Entegrasyon adını girin.
-1. Hedef Fluentd URL'sini (Webhook URL) belirtin.
-1. Gerekirse, gelişmiş ayarları yapılandırın:
+1. Hedef Fluentd URL’sini belirtin (Webhook URL).
+1. Gerektiğinde gelişmiş ayarları yapılandırın:
 
     --8<-- "../include/integrations/webhook-advanced-settings.md"
-1. Bildirimleri tetiklemek için olay türlerini seçin.
+1. Bildirimleri tetikleyecek olay türlerini seçin.
 
     ![Fluentd entegrasyonu](../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
-    Mevcut olaylarla ilgili detaylar:
+    Kullanılabilir olayların ayrıntıları:
 
     --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-1. Yapılandırmanın doğruluğunu, Wallarm Cloud'un kullanılabilirliğini ve bildirim formatını kontrol etmek için **Test integration** seçeneğine tıklayın.
+1. Yapılandırmanın doğruluğunu, Wallarm Cloud erişilebilirliğini ve bildirim formatını kontrol etmek için **Test integration**’a tıklayın.
 
-    Test Fluentd günlük örneği:
+    Test Fluentd günlüğü:
 
     ```json
     [
@@ -154,47 +154,47 @@ Daha fazla detayı [official Fluentd documentation](https://docs.datadoghq.com/i
     ]
     ```
 
-1. **Add integration** seçeneğine tıklayın.
+1. **Add integration**’a tıklayın.
 
 --8<-- "../include/cloud-ip-by-request.md"
 
-## Ek Uyarıların Ayarlanması
+## Ek uyarıları yapılandırma
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
 
-## Fluentd'yi Orta Düzey Veri Toplayıcı Olarak Kullanma
+## Fluentd’yi ara veri toplayıcı olarak kullanma
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
 Örneğin:
 
-![Webhook akış şeması](../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
+![Webhook akışı](../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
 
 Bu şemayı kullanarak Wallarm olaylarını kaydetmek için:
 
-1. Gelen webhooks'u okuyup günlükleri bir sonraki sisteme iletecek şekilde veri toplayıcıyı yapılandırın. Wallarm, olayları webhooks aracılığıyla veri toplayıcılara gönderir.
-1. Veri toplayıcıdan günlükleri alıp okuyacak şekilde bir SIEM sistemini yapılandırın.
-1. Wallarm'ı, günlükleri veri toplayıcıya gönderecek şekilde yapılandırın.
+1. Gelen webhook’ları okuyup günlükleri bir sonraki sisteme iletecek şekilde veri toplayıcıyı yapılandırın. Wallarm, olayları veri toplayıcılara webhook’lar üzerinden gönderir.
+1. SIEM sistemini, veri toplayıcıdan günlükleri alıp okumak üzere yapılandırın.
+1. Wallarm’ı günlükleri veri toplayıcıya gönderecek şekilde yapılandırın.
 
-    Wallarm, webhooks aracılığıyla herhangi bir veri toplayıcıya günlük gönderebilir.
+    Wallarm, webhook’lar aracılığıyla herhangi bir veri toplayıcıya günlük gönderebilir.
 
-    Wallarm'ı Fluentd veya Logstash ile entegre etmek için, Wallarm Console UI'de ilgili entegrasyon kartlarını kullanabilirsiniz.
+    Wallarm’ı Fluentd veya Logstash ile entegre etmek için Wallarm Console UI içindeki ilgili integration cards kullanabilirsiniz.
 
-    Wallarm'ı diğer veri toplayıcılarıyla entegre etmek için Wallarm Console UI'de bulunan [webhook integration card](webhook.md) kartını kullanabilirsiniz.
+    Wallarm’ı diğer veri toplayıcılarla entegre etmek için Wallarm Console UI içinde [webhook integration card](webhook.md) kullanabilirsiniz.
 
-Popüler veri toplayıcılara günlük ileten SIEM sistemleri ile entegrasyon nasıl yapılandırılır örneklerini aşağıda açıkladık:
+Günlükleri SIEM sistemlerine ileten popüler veri toplayıcılarla entegrasyonun nasıl yapılandırılacağına ilişkin bazı örnekleri açıkladık:
 
 * [Wallarm → Fluentd → IBM QRadar](webhook-examples/fluentd-qradar.md)
 * [Wallarm → Fluentd → Splunk Enterprise](webhook-examples/fluentd-splunk.md)
 * [Wallarm → Fluentd → Micro Focus ArcSight Logger](webhook-examples/fluentd-arcsight-logger.md)
 * [Wallarm → Fluentd → Datadog](webhook-examples/fluentd-logstash-datadog.md)
 
-    Wallarm ayrıca [Datadog API üzerinden Datadog ile yerel entegrasyonu](datadog.md) desteklemektedir. Yerel entegrasyon, ara veri toplayıcı kullanılmasını gerektirmez.
+    Wallarm ayrıca [Datadog API üzerinden Datadog ile yerel entegrasyonu](datadog.md) destekler. Yerel entegrasyon, ara veri toplayıcı kullanımını gerektirmez.
 
-## Entegrasyonu Devre Dışı Bırakma ve Silme
+## Bir entegrasyonu devre dışı bırakma ve silme
 
 --8<-- "../include/integrations/integrations-disable-delete.md"
 
-## Sistem Kullanılamazlığı ve Yanlış Entegrasyon Parametreleri
+## Sistemin kullanılamaması ve hatalı entegrasyon parametreleri
 
 --8<-- "../include/integrations/integration-not-working.md"

@@ -1,23 +1,22 @@
-# Tehdit Önleme Kontrol Paneli
+# Threat Prevention Panosu
 
-Belirli bir zaman dilimindeki kötü amaçlı trafik özelliklerini **Threat Prevention** kontrol paneli üzerinden gözden geçirin. Saldırı türleri, kaynaklar, protokoller, kimlik doğrulama yöntemleri vb. açısından kötü amaçlı trafik hacmini ve dağılımını net bir şekilde görün.
+Kötü amaçlı trafik özelliklerini belirli bir zaman dilimi için **Threat Prevention** panosuyla inceleyin. Kötü amaçlı trafik hacmine ve saldırı türlerine, kaynaklara, protokollere, kimlik doğrulama yöntemlerine vb. göre dağılımına dair net bir görünüm edinin.
 
-Kontrol paneli, tehdit kalıplarını tanımlamada yardımcı olur. Saldırganların sistemi nasıl istismar etmeye çalıştıklarını net bir şekilde görmek, tehditlerin daha hızlı tespit edilmesini ve daha bilinçli yanıtların verilmesini sağlar. Bu durum, genel güvenlik durumu iyileştirmesine katkıda bulunur ve proaktif önlemlerin alınmasına yardımcı olur.
+Pano, tehdit kalıplarını belirlemeye yardımcı olur. Saldırganların sistemi nasıl sömürmeye çalıştıklarına dair net bir görünüm, tehditlerin daha hızlı tespit edilmesini ve daha bilinçli karşılıklar verilmesini sağlar. Bu, genel güvenlik duruşunun iyileştirilmesine katkıda bulunur ve proaktif önlemler alınmasına yardımcı olur.
 
-Farklı saldırı türleri (örn. DDoS, SQL injection, brute force) ve protokoller (örn. HTTP, HTTPS, FTP) farklı savunma stratejileri gerektirebileceğinden, saldırı yöntemleri ve trafiğinin dağılımını bilmek, güvenlik ekiplerinin belirli karşı önlemleri (örn. rate-limiting, firewall rules, WAAP configurations vb.) uygulayarak ilave olayların önüne geçmesine olanak tanır.
+Farklı saldırı türleri (örn. DDoS, SQL injection, brute force) ve protokoller (örn. HTTP, HTTPS, FTP) farklı savunma stratejileri gerektirebileceğinden, saldırı yöntemlerinin ve trafiğin dağılımını bilerek güvenlik ekipleri, daha fazla olayı önleyen belirli karşı önlemleri (örn. rate-limiting, güvenlik duvarı kuralları, WAAP yapılandırmaları, vb.) uygulayabilirler.
 
-Bilgiler aşağıdaki widget'lar ile sunulmaktadır:
+Bilgiler aşağıdaki widget’larda sunulur:
 
-* İstek karşılaşma hızı
+* İsteklerle karşılaşma hızı
 * Normal ve kötü amaçlı trafik
-* Belirli bir dönemin özeti
+* Bir dönem özeti
 * Saldırı kaynakları
 * Saldırı hedefleri
 * Saldırı türleri
 * CVE'ler
 * API protokollerine yönelik saldırılar
 * Saldırılarda kimlik doğrulama
-* Güvenlik açıkları tarayıcısı
 
 <div>
   <script src="https://js.storylane.io/js/v1/storylane.js"></script>
@@ -26,8 +25,8 @@ Bilgiler aşağıdaki widget'lar ile sunulmaktadır:
   </div>
 </div>
 
-Dikkate alınız:
+Aşağıdakileri göz önünde bulundurun:
 
-* [Hit](../../glossary-en.md#hit) kötü amaçlı bir istek ile node tarafından eklenen meta veridir.
-* Bazı lokasyonlar için [traffic filtration mode](../../admin-en/configure-wallarm-mode.md) sadece `monitoring` olarak ayarlanabileceğinden, engellenen hit sayısı tespit edilenlerden az olabilir.
-* Saldırı türü açıklamalarını [buradan](../../attacks-vulns-list.md) okuyabilirsiniz.
+* [Hit](../../glossary-en.md#hit), node tarafından eklenen meta verilerle birlikte kötü amaçlı bir istektir
+* Engellenen hits sayısı, bazı konumlar için [trafik filtreleme modu](../../admin-en/configure-wallarm-mode.md) yalnızca `monitoring` olabileceğinden, tespit edilenlerden daha az olabilir
+* Saldırı türlerinin açıklamalarını [buradan](../../attacks-vulns-list.md) okuyabilirsiniz

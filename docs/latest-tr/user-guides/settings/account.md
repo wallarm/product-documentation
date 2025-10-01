@@ -11,46 +11,46 @@ Profil verilerinizi ve ayarlarınızı görmek için **Settings** → **Profile*
 Profilinizde, hesap bilgilerinizi kontrol edebilirsiniz:
 
 * E-posta
-* Atanmış [rol](users.md#user-roles) - **Admin**, **Analyst** veya **Read only**
+* Atanan [rol](users.md#user-roles) - **Admin**, **Analyst** veya **Read only**
 * İsim ve telefon
-* Wallarm sisteminde kullanılacak tercih edilen tarih ve saat formatı
-* Güvenlik: son şifre değişikliği ve iki faktörlü kimlik doğrulama durumu. SSO kimlik doğrulaması kullanıyorsanız bazı öğeler mevcut olmayabilir.
-* Giriş geçmişi
+* Wallarm sisteminde kullanılacak tercih edilen tarih ve saat biçimi
+* Güvenlik: parolanızdaki son değişiklik ve iki faktörlü kimlik doğrulama durumu. SSO kimlik doğrulaması kullanıyorsanız bazı öğeler kullanılamayabilir.
+* Oturum açma geçmişi
 
 Wallarm hesabınızdan çıkış yapmak için *Sign out* düğmesine tıklayabilirsiniz.
 
-![Profile overview][img-profile]
+![Profil genel görünümü][img-profile]
 
-Gerekirse, aynı sayfada hesap bilgilerinizi düzenleyebilirsiniz.
+Gerekirse, hesap bilgilerini aynı sayfada düzenleyebilirsiniz.
 
-## Şifrenizi Değiştirme
+## Parolanızı Değiştirme
 
-!!! info "SSO kullanıyorsanız mevcut değil"
-    SSO kimlik doğrulaması kullanıyorsanız, e-posta/şifre ile kimlik doğrulaması mevcut değildir; şifrenizi kullanamaz veya değiştiremezsiniz. Şifre değiştirme bölümü mevcut olmayacaktır.
+!!! info "SSO kullanılıyorsa mevcut değil"
+    SSO kimlik doğrulaması kullanıyorsanız, e-posta/parola ile kimlik doğrulama mevcut değildir ve parolanızı kullanamaz veya değiştiremezsiniz. Parola değiştirme bölümü kullanılabilir olmayacaktır.
 
 1. *Change* düğmesine tıklayın.
-1. Açılan formda mevcut şifrenizi, yeni şifrenizi ve yeni şifre teyidinizi girin.
-1. *Change password* düğmesine tıklayın.
+1. Açılan formda mevcut parolanızı, yeni parolanızı ve yeni parolanızın doğrulamasını girin.
+1. *Change password* düğmesine tıklayın
 
 ## İki Faktörlü Kimlik Doğrulamayı Etkinleştirme
 
-İki faktörlü kimlik doğrulamayı etkinleştirmek için Google Authenticator (veya TOTP'yi destekleyen benzer uygulamaları) kullanabilirsiniz.
+İki faktörlü kimlik doğrulamayı etkinleştirmek için Google Authenticator’ı (veya TOTP destekleyen benzer uygulamaları) kullanabilirsiniz.
 
-!!! info "SSO kullanıyorsanız mevcut değil"
-    SSO kimlik doğrulaması kullanıyorsanız, iki faktörlü kimlik doğrulama etkinleştirilemez. **Two-factor authentication** bölümü mevcut olmayacaktır.
+!!! info "SSO kullanılıyorsa mevcut değil"
+    SSO kimlik doğrulaması kullanıyorsanız, iki faktörlü kimlik doğrulama etkinleştirilemez. **Two-factor authentication** bölümü kullanılabilir olmayacaktır.
 
-1. *Google Authenticator* uygulamasını ([Android][link-2fa-android-app], [iOS][link-2fa-ios-app]) veya uyumlu herhangi bir uygulamayı yükleyin.
-1. İki Faktörlü Kimlik Doğrulama ayarında *Enable* seçeneğine tıklayın.
-1. Görüntülenen QR kodunu tarayın (veya *manual entry* bağlantısına tıklayarak manuel giriş seçeneğini kullanın).
+1. Google Authenticator uygulamasını ([Android][link-2fa-android-app], [iOS][link-2fa-ios-app]) veya uyumlu herhangi birini yükleyin.
+1. **Two-Factor Authentication** ayarında **Enable**’a tıklayın.
+1. Görünen QR kodunu tarayın (veya **manual entry** bağlantısına tıklayın ve manual entry seçeneğini kullanın).
 1. Uygulamanız tarafından oluşturulan 6 haneli doğrulama kodunu girin.
-1. Şifrenizi girin.
-1. *Confirm* düğmesine tıklayın.
+1. Parolanızı girin.
+1. **Confirm**’e tıklayın.
 
-Her oturum açtığınızda, şifre isteminin ardından size ikinci faktör kodu sorulacaktır. Bu kodu Google Authenticator uygulamanızdan edinin.
+Oturum açtığınız her seferinde, parola istemini geçtikten sonra ikinci faktör kodunuz istenecektir. Bu kodu Google Authenticator uygulamanızdan alın. 
 
-İki faktörlü kimlik doğrulamayı kapatmak isterseniz, şifre gereklidir.
+İki faktörlü kimlik doğrulamayı kapatmak istiyorsanız parola gereklidir. Yöneticiniz şirketiniz için [2FA enforcement mode](users.md#enforcing-for-all-users) etkinleştirdiyse bunu kapatamazsınız.
 
-![Two-factor authentication page overview][img-2fa-page]
+![Two-factor authentication sayfasının genel görünümü][img-2fa-page]
 
 !!! info "Uyumluluk"
-    Zaman Tabanlı Tek Kullanımlık Şifre Algoritması (RFC6238) destekleyen herhangi bir uygulama veya cihazı tek kullanımlık kodlar oluşturmak için kullanabilirsiniz.
+    Zaman Tabanlı Tek Kullanımlık Parola Algoritmasını (RFC6238) destekleyen herhangi bir uygulama veya cihazı tek kullanımlık kodlar üretmek için kullanabilirsiniz.

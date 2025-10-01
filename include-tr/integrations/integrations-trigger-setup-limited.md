@@ -1,34 +1,18 @@
-Besides the notifications you have already set up through the integration card, Wallarm triggers allow you to select additional events for notifications:
+Entegrasyon kartı üzerinden zaten yapılandırdığınız bildirimlere ek olarak, Wallarm tetikleyicileri bildirimler için ek olaylar seçmenize olanak tanır:
 
-Entegrasyon kartı aracılığıyla zaten ayarladığınız bildirimlerin yanı sıra, Wallarm tetikleyicileri ek bildirim olaylarını seçmenizi sağlar:
+* Belirli bir zaman aralığında (gün, saat vb.) [saldırılar](../../../glossary-en.md#attack), [hits](../../../glossary-en.md#hit) veya olay sayısının belirlenen sayıyı aşması
 
-* Number of [attacks](../../../glossary-en.md#attack), [hits](../../../glossary-en.md#hit) or incidents per time interval (day, hour, etc.) exceeds the set number  
-  Belirli bir zaman aralığı (gün, saat vb.) içinde [saldırı](../../../glossary-en.md#attack), [hit](../../../glossary-en.md#hit) veya olay sayısının belirlenen sınırı aşması
+    !!! info "Sayılmayanlar"
+        * Saldırılar için: 
+            * [Özel düzenli ifadelere](../../../user-guides/rules/regex-rule.md) dayanan deneysel saldırılar.
+        * Hits için:
+            * [Özel düzenli ifadelere](../../../user-guides/rules/regex-rule.md) dayanan deneysel hits.
+            * [Örneklem](../../events/grouping-sampling.md#sampling-of-hits) içinde kaydedilmeyen Hits.
 
-    !!! info "What is not counted"  
-        Ne sayılmaz
+* [API'de değişiklikler](../../../api-discovery/track-changes.md) gerçekleşti
+* Yeni [izinsiz API](../../../api-discovery/rogue-api.md) (shadow, orphan, zombie) tespit edildi
+* Şirket hesabına yeni kullanıcı eklendi
 
-        * For attacks:  
-            Saldırılar için:  
-            * The experimental attacks based on the [custom regular expressions](../../../user-guides/rules/regex-rule.md).  
-              [Özel düzenli ifadeler](../../../user-guides/rules/regex-rule.md) temelinde gerçekleştirilen deneysel saldırılar.
-        * For hits:  
-            Hitler için:  
-            * The experimental hits based on the [custom regular expressions](../../../user-guides/rules/regex-rule.md).  
-              [Özel düzenli ifadeler](../../../user-guides/rules/regex-rule.md) temelinde gerçekleştirilen deneysel hitler.  
-            * Hits not saved in the [sample](../../events/grouping-sampling.md#sampling-of-hits).  
-              [Sample](../../events/grouping-sampling.md#sampling-of-hits) içinde saklanmayan hitler.
+Koşulu ayrıntılandırmak için bir veya daha fazla filtre ekleyebilirsiniz. Koşul ve filtreler ayarlandıktan sonra, seçilen uyarının hangi entegrasyon üzerinden gönderileceğini seçin. Aynı anda birden fazla entegrasyon seçebilirsiniz.
 
-* [Changes in API](../../../api-discovery/track-changes.md) took place  
-  [API’deki değişiklikler](../../../api-discovery/track-changes.md) gerçekleşti
-
-* New [rogue API](../../../api-discovery/rogue-api.md) (shadow, orphan, zombie) was detected  
-  Yeni [rogue API](../../../api-discovery/rogue-api.md) (shadow, orphan, zombie) tespit edildi
-
-* New user was added to the company account  
-  Şirket hesabına yeni bir kullanıcı eklendi
-
-For condition detailing, you can add one or more filters. As soon, as condition and filters are set, select the integration through which the selected alert should be sent. You can select several integrations simultaneously.  
-Koşul detaylandırması için bir veya daha fazla filtre ekleyebilirsiniz. Koşul ve filtreler belirlendikten sonra, seçilen uyarının gönderileceği entegrasyonu seçin. Aynı anda birkaç entegrasyon seçebilirsiniz.
-
-![Choosing an integration](../../../images/user-guides/triggers/select-integration.png)
+![Bir entegrasyon seçme](../../../images/user-guides/triggers/select-integration.png)

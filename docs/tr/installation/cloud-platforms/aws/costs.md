@@ -1,0 +1,1 @@
+--8<-- "latest-tr/installation/cloud-platforms/aws/costs.md"

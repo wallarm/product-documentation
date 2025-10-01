@@ -1,17 +1,17 @@
-# API Discovery Genel Bakış <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discovery Genel Bakış <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm platformunun **API Discovery** modülü, gerçek API kullanımı temelinde uygulamanızın REST API envanterini oluşturur. Modül, gerçek trafik isteklerini sürekli analiz eder ve analiz sonuçlarına göre API envanterini oluşturur.
+Wallarm platformunun **API Discovery** modülü, gerçek API kullanımına dayanarak uygulamanızın REST API envanterini oluşturur. Modül, gerçek trafik isteklerini sürekli olarak analiz eder ve analiz sonuçlarına göre API envanterini oluşturur.
 
-Oluşturulan API envanteri aşağıdaki unsurları içerir:
+Oluşturulan API envanteri aşağıdaki öğeleri içerir:
 
 * API uç noktaları
 * İstek yöntemleri (GET, POST ve diğerleri)
-* İstek ve yanıtların zorunlu ve opsiyonel GET, POST ve header parametreleri, bunlar dahil:
-    * [Gönderilen her parametredeki verinin tip/formatı](./exploring.md#format-and-data-type)
+* İstek ve yanıtlardaki gerekli ve isteğe bağlı GET, POST ve başlık parametreleri; şunları içerecek şekilde:
+    * Her parametrede gönderilen verinin [Tür/biçimi](./exploring.md#format-and-data-type)    
     * Parametre bilgisinin en son güncellendiği tarih ve saat
 
-!!! info "Yanıt parametrelerinin mevcudiyeti"
-    Yanıt parametreleri yalnızca 4.10.1 veya daha yüksek sürümündeki node kullanıldığında mevcuttur.
+!!! info "Yanıt parametrelerinin kullanılabilirliği"
+    Yanıt parametreleri yalnızca 4.10.1 veya daha yüksek sürümlü düğüm kullanıldığında mevcuttur.
 
 <div>
     <script src="https://js.storylane.io/js/v1/storylane.js"></script>
@@ -20,96 +20,97 @@ Oluşturulan API envanteri aşağıdaki unsurları içerir:
     </div>
 </div>
 
-## API Discovery ile Ele Alınan Sorunlar
+## API Discovery’nin ele aldığı sorunlar
 
-**Gerçek ve eksiksiz bir API envanteri oluşturmak** API Discovery modülünün ele aldığı ana sorundur.
+**Gerçek ve eksiksiz bir API envanteri oluşturmak**, API Discovery modülünün ele aldığı başlıca sorundur.
 
-API envanterini güncel tutmak zor bir iştir. Farklı API'leri kullanan birden fazla ekip bulunmakta ve API dokümantasyonu oluşturulurken farklı araç ve süreçlerin kullanılması yaygın bir durumdur. Sonuç olarak, şirketler hangi API'lere sahip olduklarını, hangi verileri açığa çıkardıklarını anlamakta ve güncel API dokümantasyonuna sahip olmakta zorlanırlar.
+API envanterini güncel tutmak zor bir görevdir. Farklı API’leri kullanan birden fazla ekip vardır ve API dokümantasyonunun üretilmesi için farklı araçların ve süreçlerin kullanılması yaygındır. Sonuç olarak, şirketler hangi API’lere sahip olduklarını, hangi verileri açığa çıkardıklarını anlamakta ve API dokümantasyonunu güncel tutmakta zorlanırlar.
 
-API Discovery modülü, gerçek trafiği veri kaynağı olarak kullandığından, isteği gerçekten işleyen tüm uç noktaları API envanterine dahil ederek güncel ve eksiksiz API dokümantasyonu elde etmeye yardımcı olur.
+API Discovery modülü veri kaynağı olarak gerçek trafiği kullandığından, isteklere gerçekten yanıt veren tüm uç noktaları API envanterine dahil ederek güncel ve eksiksiz API dokümantasyonuna ulaşmanıza yardımcı olur.
 
-**Wallarm tarafından keşfedilen API envanteriniz sayesinde şunları yapabilirsiniz:**
+**Wallarm, API envanterinizi keşfettikten sonra şunları yapabilirsiniz**:
 
-* [Dış ve iç](exploring.md#external-vs-internal) API listesi dahil olmak üzere tüm API portföyünüze tam görünürlük kazanabilirsiniz.
-* API'lere giren ve çıkan [verileri](exploring.md#endpoint-details) görebilirsiniz.
-* Açık güvenlik açıklarına sahip uç noktaların listesini alabilirsiniz.
-* Belirli herhangi bir API uç noktası için son 7 günde gerçekleşen tehditlerin listesini alabilirsiniz.
-* Yalnızca saldırıya uğramış API'leri filtreleyip, istek sayısına göre sıralayabilirsiniz.
-* [Hassas veriler](#sensitive-data-detection) tüketen ve taşıyan API'leri filtreleyebilirsiniz.
-* API envanter yapınızın ve sorunların görselleştirilmiş özetini kullanışlı bir [dashboard](dashboard.md) üzerinden görebilirsiniz.
-* Hangi uç noktaların [en olası](risk-score.md) saldırı hedefi olduğunu anlayabilirsiniz.
-* [Gölge, yetim ve zombi API'leri](rogue-api.md) bulabilirsiniz.
-* Seçilen zaman dilimi içerisinde API'de gerçekleşen [değişiklikleri takip edebilirsiniz](track-changes.md).
-* API uç noktalarını [BOLA otomatik koruma durumuna](bola-protection.md) göre filtreleyebilirsiniz.
-* Geliştiricilerinize, oluşturulan API envanterine bakma ve indirme konusunda [erişim](../user-guides/settings/users.md#user-roles) sağlayabilirsiniz.
+* [Harici ve dahili](exploring.md#external-vs-internal) API’lerin listesi de dahil olmak üzere tüm API varlıklarınıza tam görünürlük elde edin.
+* API’lere giren ve çıkan [verileri](exploring.md#endpoint-details) görün.
+* Açık (düzeltimek bekleyen) güvenlik açıklarına sahip uç noktaların listesini alın.
+* İstenilen herhangi bir API uç noktası için son 7 gün içinde gerçekleşen tehditlerin bir listesini alın.
+* Yalnızca saldırıya uğramış API’leri filtreleyin, hit sayısına göre sıralayın.
+* [Hassas verileri](#sensitive-data-detection) tüketen ve taşıyan API’leri filtreleyin.
+* API envanterinizin yapısı ve sorunlarına ilişkin görselleştirilmiş özeti kullanışlı bir [gösterge panelinde](dashboard.md) görüntüleyin.
+* Hangi uç noktaların bir saldırı hedefi olma [olasılığının en yüksek](risk-score.md) olduğunu anlayın.
+* [Gölge, yetim ve zombi API’leri](rogue-api.md) bulun.
+* Seçilen zaman aralığında API’de meydana gelen [değişiklikleri izleyin](track-changes.md).
+* API uç noktalarını [BOLA otomatik koruma durumu](bola-protection.md) ile filtreleyin.
+* Geliştiricilerinize oluşturulan API envanterini inceleme ve indirme için [erişim](../user-guides/settings/users.md#user-roles) sağlayın.
 
-## API Discovery Nasıl Çalışır?
+## API Discovery nasıl çalışır?
 
-API Discovery, istek istatistiklerine dayanır ve gerçek API kullanımı temelinde güncel API özelliklerini oluşturmak için sofistike algoritmalar kullanır.
+API Discovery, istek istatistiklerine dayanır ve gerçek API kullanımına göre güncel API spesifikasyonları üretmek için gelişmiş algoritmalar kullanır.
 
-### Trafik İşleme
+### Trafik işleme
 
-API Discovery, analizi yerel ve Cloud ortamında gerçekleştirmek için hibrit bir yaklaşım kullanır. Bu yaklaşım, istek verilerinin ve hassas verilerin yerel olarak tutulduğu, istatistik analizleri için Cloud gücünün kullanıldığı bir [öncelikli gizlilik sürecini](#security-of-data-uploaded-to-the-wallarm-cloud) mümkün kılar:
+API Discovery, analizleri yerelde ve Bulut’ta gerçekleştirmek için hibrit bir yaklaşım kullanır. Bu yaklaşım, istek verileri ve hassas veriler yerelde tutulurken istatistik analizleri için Bulut’un gücünden yararlanılan [gizlilik-öncelikli bir süreci](#security-of-data-uploaded-to-the-wallarm-cloud) mümkün kılar:
 
-1. API Discovery, meşru trafiği yerel olarak analiz eder. Wallarm, istek yapılan uç noktaları ve hangi parametrelerin gönderilip alındığını inceler.
-1. Bu verilere göre, istatistikler oluşturulur ve Cloud'a gönderilir.
-1. Wallarm Cloud, alınan istatistikleri toplar ve bunlardan bir [API tanımı](exploring.md) oluşturur.
+1. API Discovery, meşru trafiği yerelde analiz eder. Wallarm, isteklerin gönderildiği uç noktaları ve hangi parametrelerin iletilip geri döndürüldüğünü inceler.
+1. Bu verilere göre istatistikler oluşturulur ve Bulut’a gönderilir.
+1. Wallarm Cloud, alınan istatistikleri birleştirir ve bunlara dayanarak bir [API açıklaması](exploring.md) oluşturur.
 
     !!! info "Gürültü tespiti"
-        Nadir veya tek seferlik istekler [gürültü olarak belirlenir](#noise-detection) ve API envanterine dahil edilmez.
+        Seyrek veya tekil istekler [gürültü olarak kabul edilir](#noise-detection) ve API envanterine dahil edilmez.
 
-### Gürültü Tespiti
+### Gürültü tespiti
 
-API Discovery modülü, gürültü tespitini iki ana trafik parametresine dayandırır:
+API Discovery modülü, gürültüyü iki ana trafik parametresine göre tespit eder:
 
-* Uç nokta stabilitesi - Uç noktaya yapılan ilk isteğin anından itibaren 5 dakika içinde en az 5 istek kaydedilmelidir.
-* Parametre stabilitesi - Uç noktaya yapılan isteklerde parametrenin görülme oranı yüzde 1'den fazla olmalıdır.
+* Uç nokta stabilitesi - uç noktaya gelen ilk istekten itibaren 5 dakika içinde en az 5 istek kaydedilmelidir.
+* Parametre stabilitesi - uç noktaya gelen isteklerde parametrenin görülme oranı %1’den fazla olmalıdır.
 
-API envanteri, bu limitleri aşan uç noktaları ve parametreleri gösterecektir. Tam API envanterinin oluşturulması için gereken süre, trafik çeşitliliğine ve yoğunluğuna bağlıdır. 
+API envanteri, bu eşikleri aşan uç noktaları ve parametreleri gösterecektir. Tam API envanterinin oluşturulması için gereken süre, trafik çeşitliliği ve yoğunluğuna bağlıdır. 
 
 Ayrıca, API Discovery diğer kriterlere dayanarak istekleri filtreler:
 
 * Yalnızca sunucunun 2xx aralığında yanıt verdiği istekler işlenir.
-* REST API tasarım prensiplerine uymayan istekler işlenmez.
+* REST API tasarım ilkelerine uymayan istekler işlenmez.
     
-    Bu, yanıtların `Content-Type` başlığı kontrol edilerek yapılır: Eğer başlık `application/json` içermiyorsa (örneğin, `Content-Type: application/json;charset=utf-8`), istek non-REST API olarak kabul edilir ve analiz edilmez.
+    Bu, yanıtların `Content-Type` başlığı kontrol edilerek yapılır: eğer `application/json` içermiyorsa (ör. `Content-Type: application/json;charset=utf-8`), istek REST API değil kabul edilir ve analiz edilmez.
     
-    Eğer başlık mevcut değilse, API Discovery isteği analiz eder.
+    Başlık yoksa, API Discovery isteği analiz eder.
 
-* `Accept` gibi standart alanlar göz ardı edilir.
+* `Accept` ve benzerleri gibi standart alanlar ayıklanır.
+* `localhost` veya loopback adreslerini hedefleyen istekler işlenmez.
 
-### Hassas Veri Tespiti
+### Hassas veri tespiti
 
-API Discovery, API'leriniz tarafından tüketilen ve taşınan hassas verileri [tespit edip vurgular](sensitive-data.md):
+API Discovery, API’lerinizin tükettiği ve taşıdığı hassas verileri [tespit eder ve vurgular](sensitive-data.md):
 
 * IP ve MAC adresleri gibi teknik veriler
-* Gizli anahtarlar ve şifreler gibi giriş bilgileri
+* Gizli anahtarlar ve parolalar gibi oturum açma bilgileri
 * Banka kartı numaraları gibi finansal veriler
-* Tıbbi lisans numarası gibi medikal veriler
-* Tam isim, pasaport numarası veya SSN gibi kişisel tanımlanabilir bilgiler (PII)
+* Tıbbi lisans numarası gibi tıbbi veriler
+* Ad soyad, pasaport numarası veya SSN gibi kişisel olarak tanımlanabilir bilgiler (PII)
 
-API Discovery, tespit sürecini yapılandırma ve kendi hassas veri desenlerinizi ekleme imkanı sağlar (NGINX Node 5.0.3 veya Native Node 0.7.0 veya daha yüksek sürüm gerektirir).
+API Discovery, tespit sürecini yapılandırma ve kendi hassas veri kalıplarınızı ekleme olanağı sağlar (NGINX Node 5.0.3 veya Native Node 0.7.0 ya da üstü gereklidir).
 
-### Hassas İş Akışları
+### Hassas iş akışları
 
-[Hassas iş akışı](sbf.md) yeteneği sayesinde API Discovery, kimlik doğrulama, hesap yönetimi, faturalandırma ve benzeri kritik işlevler gibi belirli iş akışları için hayati öneme sahip uç noktaları otomatik olarak tespit edebilir.
+[sensitive business flow](sbf.md) özelliği ile API Discovery, kimlik doğrulama, hesap yönetimi, faturalandırma ve benzeri kritik işlevler gibi belirli iş akışları ve işlevleri için kritik olan uç noktaları otomatik olarak belirleyebilir.
 
-Otomatik tanımlamanın yanı sıra, atanmış hassas iş akışı etiketlerini manuel olarak ayarlayabilir ve tercih ettiğiniz uç noktalar için etiketleri manuel olarak belirleyebilirsiniz.
+Otomatik belirlemenin yanı sıra, atanan hassas iş akışı etiketlerini manuel olarak ayarlayabilir ve seçtiğiniz uç noktalar için etiketleri manuel olarak belirleyebilirsiniz.
 
-Uç noktalar hassas iş akışı etiketleriyle atandıktan sonra, tüm keşfedilen uç noktaları belirli bir iş akışına göre filtrelemek mümkün hale gelir; bu da en kritik iş yeteneklerini korumayı kolaylaştırır.
+Uç noktalara hassas iş akışı etiketleri atandığında, keşfedilen tüm uç noktaları belirli bir iş akışına göre filtrelemek mümkün olur; bu da en kritik iş yeteneklerini korumayı kolaylaştırır.
 
-![API Discovery - Filtering by sensitive business flows](../images/about-wallarm-waf/api-discovery/api-discovery-sbf-filter.png)
+![API Discovery - Hassas iş akışlarına göre filtreleme](../images/about-wallarm-waf/api-discovery/api-discovery-sbf-filter.png)
 
-### Wallarm Cloud'a Yüklenen Verilerin Güvenliği
+### Wallarm Cloud’a yüklenen verilerin güvenliği
 
-API Discovery, trafiğin çoğunu yerel olarak analiz eder. Modül, Wallarm Cloud'a yalnızca keşfedilen uç noktaları, parametre adlarını ve çeşitli istatistiksel verileri (varış zamanı, sayı vb.) gönderir. Tüm veriler güvenli bir kanal üzerinden iletilir: İstatistikler Wallarm Cloud'a yüklenmeden önce, API Discovery modülü, istek parametrelerinin değerlerini [SHA-256](https://en.wikipedia.org/wiki/SHA-2) algoritması kullanarak hash'ler.
+API Discovery trafiğin büyük kısmını yerelde analiz eder. Modül, Wallarm Cloud’a yalnızca keşfedilen uç noktaları, parametre adlarını ve çeşitli istatistiksel verileri (geliş zamanı, sayıları vb.) gönderir. Tüm veriler güvenli bir kanaldan iletilir: istatistikler Wallarm Cloud’a yüklenmeden önce, API Discovery modülü istek parametrelerinin değerlerini [SHA-256](https://en.wikipedia.org/wiki/SHA-2) algoritmasıyla özetler.
 
-Cloud tarafında, hash'lenmiş veriler istatistiksel analiz için kullanılır (örneğin, aynı parametrelere sahip isteklerin sayısını ölçerken).
+Bulut tarafında, özetlenmiş veriler istatistiksel analiz için kullanılır (örneğin, aynı parametrelere sahip isteklerin nicelenmesinde).
 
-Diğer veriler (uç nokta değerleri, istek yöntemleri ve parametre adları) Wallarm Cloud'a yüklenmeden önce hash'lenmez, çünkü hash'ler orijinal hallerine geri döndürülemez; bu da API envanterinin oluşturulmasını imkansız hale getirirdi.
+Diğer veriler (uç nokta değerleri, istek yöntemleri ve parametre adları), API envanterinin oluşturulmasını imkansız hale getireceği için Wallarm Cloud’a yüklenmeden önce özetlenmez; zira özetler orijinal haline geri döndürülemez.
 
 !!! warning "Önemli"
-    Wallarm, parametrelerde belirtilen değerleri Cloud'a göndermez. Yalnızca uç nokta, parametre adları ve bunlara ilişkin istatistikler gönderilir.
+    Wallarm, parametrelerde belirtilen değerleri Cloud’a göndermez. Yalnızca uç nokta, parametre adları ve bunlara ilişkin istatistikler gönderilir.
 
 ## API Discovery demo videosu
 
@@ -119,14 +120,14 @@ API Discovery demo videosunu izleyin:
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/0bRHVtpWkJ8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-## Playground'da API Discovery'yı Deneyin
+## Playground’da API Discovery’yi denemek
 
-Modülü, kaydolmadan ve node'u ortamınıza dağıtmadan denemek için [Wallarm Playground'da API Discovery'yı](https://playground.wallarm.com/api-discovery/?utm_source=wallarm_docs_apid) keşfedin.
+Modülü kaydolmadan ve düğümü ortamınıza dağıtmadan önce bile denemek için, [Wallarm Playground’da API Discovery’yi](https://playground.wallarm.com/api-discovery/?utm_source=wallarm_docs_apid) keşfedin.
 
-Playground'da, gerçek verilerle doluymuş gibi API Discovery görünümüne erişebilir, modülün nasıl çalıştığını öğrenip deneyebilir ve salt okunur modda kullanımına dair faydalı örnekler edinebilirsiniz.
+Playground’da, sanki gerçek verilerle doldurulmuş gibi API Discovery görünümüne erişebilir; böylece modülün nasıl çalıştığını öğrenip deneyebilir ve salt okunur modda kullanımına dair bazı faydalı örnekler edinebilirsiniz.
 
-![API Discovery – Sample Data](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
+![API Discovery – Örnek Veriler](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
 
-## API Discovery'yı Etkinleştirme ve Yapılandırma
+## API Discovery’yi etkinleştirme ve yapılandırma
 
-API Discovery'yı kullanmaya başlamak için, [API Discovery Setup](setup.md) sayfasında açıklandığı gibi etkinleştirin ve yapılandırın.
+API Discovery’yi kullanmaya başlamak için, [API Discovery Kurulumu](setup.md)’nda açıklandığı şekilde etkinleştirip yapılandırın.

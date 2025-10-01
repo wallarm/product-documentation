@@ -17,66 +17,66 @@
 [al-bola]:                ../../attacks-vulns-list.md#broken-object-level-authorization-bola
 [al-anomaly]:             ../../fast/vuln-list.md#anomaly
 
-# Güvenlik Açığı Arama ve Filtreler
+# Zafiyet Arama ve Filtreler
 
-**Güvenlik Açıkları** bölümünde, Wallarm tespit edilen güvenlik açıkları arasında arama yapmayı kolaylaştıran yöntemler sunar.
+**Vulnerabilities** bölümünde, Wallarm tespit edilen zafiyetler arasında arama için kullanışlı yöntemler sağlar.
 
-Kullanabileceğiniz seçenekler:
+Şunları kullanabilirsiniz:
 
-* **Filtreler**: filtreleme kriterlerini seçmek için
-* **Arama alanı**: insan diline benzer öznitelikler ve değiştiriciler kullanarak arama sorguları girmek için
+* Filtreleme ölçütlerini seçmek için **Filters**
+* Doğal dile benzer öznitelik ve değiştiricilerle arama sorguları girmek için **Search field**
 
-Filtrelerde ayarlanan değerler otomatik olarak arama alanında çoğaltılır; arama alanına girilen değerler de filtrelere yansıtılır.
+Filters içinde ayarlanan değerler Search field içinde otomatik olarak çoğaltılır; tersi de geçerlidir.
 
 ## Filtreler
 
-Kullanılabilir filtreler, Wallarm Console’da **Filtre** butonu ile genişletilebilen ve daraltılabilen filtre panelinde sunulur.
+Mevcut filtreler, Wallarm Console içinde, **Filter** düğmesi kullanılarak genişletilip daraltılan filtreler panelinde sunulur.
 
-![UI'daki güvenlik açığı filtreleri](../../images/user-guides/search-and-filters/filters-vuln.png)
+![UI'de zafiyet filtreleri](../../images/user-guides/search-and-filters/filters-vuln.png)
 
-Farklı filtreler için değerler seçildiğinde, sonuçlar bu koşulların tamamını karşılar. Aynı filtre için farklı değerler belirtildiğinde ise sonuçlar bu koşullardan herhangi birini karşılar.
+Farklı filtrelerin değerleri seçildiğinde, sonuçlar bu koşulların tümünü karşılar. Aynı filtre için farklı değerler belirtildiğinde, sonuçlar bu koşullardan herhangi birini karşılar.
 
-## Arama Alanı
+## Search field
 
-Arama alanı, insan diline benzer öznitelikler ve değiştiriciler içeren sorguları kabul eder; bu da sorgu göndermeyi sezgisel hale getirir. Örneğin:
+Search field, doğal dile benzer öznitelik ve değiştiriciler içeren sorguları kabul eder; bu da sorgu göndermeyi sezgisel hale getirir. Örneğin:
 
-* `rce high`: yüksek risk seviyesine sahip tüm [RCE](../../attacks-vulns-list.md#remote-code-execution-rce) güvenlik açıklarını aramak için
-* `ptrav medium`: orta risk seviyesine sahip tüm [path traversal](../../attacks-vulns-list.md#path-traversal) güvenlik açıklarını aramak için
+* `rce high`: yüksek risk seviyesine sahip tüm [RCE](../../attacks-vulns-list.md#remote-code-execution-rce) zafiyetlerini aramak için
+* `ptrav medium`: yüksek risk seviyesine sahip tüm [yol geçişi](../../attacks-vulns-list.md#path-traversal) zafiyetlerini aramak için
 
-Farklı parametreler için değerler belirtildiğinde, sonuçlar bu koşulların tamamını karşılar. Aynı parametre için farklı değerler belirtildiğinde, sonuçlar bu koşullardan herhangi birini karşılar.
+Farklı parametrelerin değerleri belirtildiğinde, sonuçlar bu koşulların tümünü karşılar. Aynı parametre için farklı değerler belirtildiğinde, sonuçlar bu koşullardan herhangi birini karşılar.
 
-!!! info "Öznitelik Değerini DEĞİL Olarak Ayarlama"
-    Öznitelik değerini olumsuzlamak için, öznitelik ya da değiştirici adının önüne `!` ekleyin. Örneğin: `rce !low` ifadesi, düşük risk seviyesine sahip RCE güvenlik açıkları dışındaki tüm RCE güvenlik açıklarını gösterir.
+!!! info "Öznitelik değerini NOT'a ayarlama"
+    Bir öznitelik değerini olumsuzlamak için, lütfen öznitelik veya değiştirici adından önce `!` kullanın. Örneğin: düşük risk seviyesine sahip olanlar hariç tüm RCE zafiyetlerini göstermek için `rce !low`.
 
-Aşağıda, arama sorgularında kullanılabilecek öznitelik ve değiştirici listesini bulabilirsiniz.
+Aşağıda arama sorgularında kullanılabilecek öznitelik ve değiştiricilerin listesi yer almaktadır.
 
-### Güvenlik Açığı Türüne Göre Arama
+### Zafiyet türüne göre arama
 
-Arama dizesinde belirtilebilecek öznitelikler:
+Arama satırında belirtin:
 
 <!-- * `anomaly`: to search for [anomaly][al-anomaly] vulnerabilities detected by [FAST](../../fast/README.md). -->
-* `sqli`: [SQL injection][al-sqli] güvenlik açıklarını aramak için.
-* `xss`: [cross site scripting][al-xss] güvenlik açıklarını aramak için.
-* `rce`: [uzaktan komut çalıştırma][al-rce] güvenlik açıklarını aramak için.
-* `ptrav`: [path traversal][al-path-traversal] güvenlik açıklarını aramak için.
-* `crlf`: [CRLF injection][al-crlf] güvenlik açıklarını aramak için.
-* `nosqli`: [NoSQL injection][al-nosqli] güvenlik açıklarını aramak için.
-* `xxe`: [XML external entity][al-xxe] güvenlik açıklarını aramak için.
-* `ldapi`: [LDAP injection][al-ldapi] güvenlik açıklarını aramak için.
-* `ssti`: [server‑side template injections][ssti-injection] güvenlik açıklarını aramak için.
-* `infoleak`: [information disclosure][al-infoleak] tipindeki güvenlik açıklarını aramak için.
-* `vuln_component`: uygulamalarınızın güncelliğini yitiren veya güvenliği etkileyen hatalar içeren [bileşenleri][al-vuln-comp] ile ilgili güvenlik açıklarını aramak için.
-* `redir`: [open redirect][al-open-redirect] güvenlik açıklarını aramak için.
-* `idor`: [broken object level authorization (BOLA)][al-bola] güvenlik açıklarını aramak için.
-* `ssrf`: [server‑side request forgery (SSRF)][al-ssrf] güvenlik açıklarını aramak için.
-* `csrf`: [cross-site request forgery (CSRF)][al-csrf] güvenlik açıklarını aramak için.
-* `weak_auth`: [weak JWT][al-weak-jwt] güvenlik açıklarını aramak için.
+* `sqli`: [SQL enjeksiyonu][al-sqli] zafiyetlerini aramak için.
+* `xss`: [siteler arası betik çalıştırma][al-xss] zafiyetlerini aramak için.
+* `rce`: [OS komut çalıştırma][al-rce] zafiyetlerini aramak için.
+* `ptrav`: [yol geçişi][al-path-traversal] zafiyetlerini aramak için.
+* `crlf`: [CRLF enjeksiyonu][al-crlf] zafiyetlerini aramak için.
+* `nosqli`: [NoSQL enjeksiyonu][al-nosqli] zafiyetlerini aramak için.
+* `xxe`: [XML dış varlık][al-xxe] zafiyetlerini aramak için.
+* `ldapi`: [LDAP enjeksiyonu][al-ldapi] zafiyetlerini aramak için.
+* `ssti`: [sunucu tarafı şablon enjeksiyonları][ssti-injection] için.
+* `infoleak`: [bilgi ifşası][al-infoleak] türündeki zafiyetleri aramak için.
+* `vuln_component`: uygulamalarınızın [bileşenleri][al-vuln-comp] ile ilişkili, güncel olmayan veya güvenliği etkileyen hatalar içeren zafiyetleri aramak için.
+* `redir`: [açık yönlendirme][al-open-redirect] zafiyetlerini aramak için.
+* `idor`: [bozuk nesne düzeyi yetkilendirme (BOLA)][al-bola] zafiyetlerini aramak için.
+* `ssrf`: [sunucu tarafı istek sahteciliği (SSRF)][al-ssrf] zafiyetlerini aramak için.
+* `csrf`: [siteler arası istek sahteciliği (CSRF)][al-csrf] zafiyetlerini aramak için.
+* `weak_auth`: [zayıf JWT][al-weak-jwt] zafiyetlerini aramak için.
 
-Bir güvenlik açığı adı, büyük veya küçük harflerle belirtilebilir: `SQLI`, `sqli` ve `SQLi` eşit derecede doğrudur.
+Bir zafiyet adı hem büyük hem de küçük harflerle belirtilebilir: `SQLI`, `sqli` ve `SQLi` eşit derecede doğrudur.
 
-### Risk Seviyesine Göre Arama
+### Risk seviyesine göre arama
 
-Arama dizesinde risk seviyesini belirtin:
+Arama satırında risk seviyesini belirtin:
 
 * `low`: düşük risk seviyesi.
 * `medium`: orta risk seviyesi.

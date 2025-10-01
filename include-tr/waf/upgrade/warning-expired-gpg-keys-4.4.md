@@ -1,5 +1,5 @@
-!!! warning "Hata \"signatures couldn't be verified\""
-    Eğer eklenen GPG anahtarları süresi dolmuşsa, aşağıdaki hata dönecektir:
+!!! warning "Hata "signatures couldn't be verified""
+    Eklenen GPG anahtarlarının süresi dolduysa, aşağıdaki hata döndürülür:
 
     ```
     W: GPG error: https://repo.wallarm.com/ubuntu/wallarm-node focal/4.4/ Release:The following

@@ -1,46 +1,46 @@
 # ServiceNow
 
-[ServiceNow](https://www.servicenow.com/) kurumsal işletmeler için çeşitli IT servis yönetimi (ITSM) ve iş süreci otomasyonu çözümleri sunan bulut tabanlı bir platformdur. Wallarm'ı, ServiceNow'da sorun biletleri oluşturacak şekilde yapılandırabilirsiniz.
+[ServiceNow](https://www.servicenow.com/), işletmeler için bir dizi BT hizmet yönetimi (ITSM) ve iş süreçleri otomasyonu çözümü sağlayan bulut tabanlı bir platformdur. Wallarm’ı, ServiceNow içinde sorun kayıtları oluşturacak şekilde yapılandırabilirsiniz.
 
 ## Gereksinimler
 
-ServiceNow, şirketlerin kurumsal işlemler için dijital iş akışlarını yönetmelerine yardımcı olan bir platformdur. Şirketiniz, bu uygulamaları Wallarm ile entegre etmek için sahip olunan bir ServiceNow [örneğe ve bu örnek içinde oluşturulmuş iş akışı uygulamalarına](https://www.servicenow.com/lpdem/demonow-cloud-platform-app-dev.html) ihtiyaç duymaktadır.
+ServiceNow, şirketlerin kurumsal operasyonlar için dijital iş akışlarını yönetmesine yardımcı olan bir platformdur. Bu uygulamaları Wallarm ile entegre edebilmek için şirketinizin size ait bir ServiceNow [örneği ve içinde geliştirilen iş akışı uygulamalarına](https://www.servicenow.com/lpdem/demonow-cloud-platform-app-dev.html) sahip olması gerekir.
 
-## Entegrasyonun Kurulması
+## Entegrasyonun yapılandırılması
 
-ServiceNow kullanıcı arayüzünde:
+ServiceNow UI:
 
 1. [ServiceNow örneğinizin](https://docs.servicenow.com/bundle/tokyo-application-development/page/build/team-development/concept/c_InstanceHierarchies.html) adını alın.
-1. Örneğe erişmek için kullanıcı adı ve şifre edinin.
-1. OAuth kimlik doğrulamayı etkinleştirin ve [burada](https://docs.servicenow.com/bundle/tokyo-application-development/page/integrate/inbound-rest/task/t_EnableOAuthWithREST.html) anlatıldığı gibi istemci ID ve gizli anahtarını alın.
+1. Örneğe erişmek için kullanıcı adı ve parolayı edinin.
+1. OAuth kimlik doğrulamayı etkinleştirin ve [burada](https://docs.servicenow.com/bundle/tokyo-application-development/page/integrate/inbound-rest/task/t_EnableOAuthWithREST.html) açıklandığı gibi client ID ve secret alın.
 
-Wallarm kullanıcı arayüzünde:
+Wallarm UI:
 
-1. Wallarm Console'u açın → **Integrations** → **ServiceNow**.
+1. Wallarm Console → **Integrations** → **ServiceNow** bölümünü açın.
 1. Bir entegrasyon adı girin.
 1. ServiceNow örneğinin adını girin.
-1. Belirtilen örneğe erişmek için kullanıcı adı ve şifre girin.
-1. OAuth kimlik doğrulama verilerini girin: istemci ID ve gizli anahtar.
-1. Bildirimleri tetiklemek için olay türlerini seçin.
+1. Belirtilen örneğe erişmek için kullanıcı adı ve parolayı girin.
+1. OAuth kimlik doğrulama verilerini girin: client ID ve secret.
+1. Bildirimleri tetikleyecek olay türlerini seçin.
 
-    ![ServiceNow integration](../../../images/user-guides/settings/integrations/add-servicenow-integration.png)
+    ![ServiceNow entegrasyonu](../../../images/user-guides/settings/integrations/add-servicenow-integration.png)
 
-    Mevcut olaylar hakkında detaylar:
+    Kullanılabilir olaylara ilişkin ayrıntılar:
       
     --8<-- "../include/integrations/events-for-integrations.md"
 
-1. Yapılandırma doğruluğunu, Wallarm Cloud'un uygunluğunu ve bildirim formatını kontrol etmek için **Test integration** düğmesine tıklayın.
+1. Yapılandırmanın doğruluğunu, Wallarm Cloud erişilebilirliğini ve bildirim formatını kontrol etmek için **Test integration**’a tıklayın.
 
-    Bu, `[Test message]` önekiyle test bildirimlerini gönderecektir.
+    Bu işlem, başında “[Test message]” öneki olan test bildirimlerini gönderecektir.
 
-1. **Add integration** düğmesine tıklayın.
+1. **Add integration**’a tıklayın.
 
 --8<-- "../include/cloud-ip-by-request.md"
 
-## Entegrasyonun Devre Dışı Bırakılması ve Silinmesi
+## Bir entegrasyonu devre dışı bırakma ve silme
 
 --8<-- "../include/integrations/integrations-disable-delete.md"
 
-## Sistem Kullanılabilir Olmaması ve Hatalı Entegrasyon Parametreleri
+## Sistem kullanılamaması ve yanlış entegrasyon parametreleri
 
 --8<-- "../include/integrations/integration-not-working.md"

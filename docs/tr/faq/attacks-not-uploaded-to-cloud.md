@@ -1,1 +1,0 @@
---8<-- "latest-tr/faq/attacks-not-uploaded-to-cloud.md"

@@ -1,11 +1,11 @@
-# Sidecar Helm Chart'ın Wallarm'a Özgü Değerleri
+# Sidecar Helm Chart’ının Wallarm’a Özgü Değerleri
 
-Bu belge, [Wallarm Sidecar deployment](deployment.md) veya [upgrade][sidecar-upgrade-docs] sırasında değiştirebileceğiniz Wallarm'a özgü Helm chart değerlerini açıklamaktadır. Wallarm'a özgü ve diğer chart değerleri, Sidecar Helm chart'ın global yapılandırması içindir.
+Bu belge, [Wallarm Sidecar dağıtımı](deployment.md) veya [yükseltme][sidecar-upgrade-docs] sırasında değiştirebileceğiniz Wallarm’a özgü Helm chart değerlerini açıklar. Wallarm’a özgü ve diğer chart değerleri, Sidecar Helm chart’ının küresel yapılandırması içindir.
 
 !!! info "Küresel ve pod bazlı ayarların öncelikleri"
-    Pod bazlı anotasyonlar, Helm chart değerleri üzerinde [öncelik taşır](customization.md#configuration-area).
+    Pod bazlı annotation’lar [Helm chart değerlerine göre önceliklidir](customization.md#configuration-area).
 
-Değiştirmeniz gerekebilecek Wallarm'a özgü [varsayılan `values.yaml`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml) kısmı aşağıdaki gibidir:
+Değiştirmeniz gerekebilecek [varsayılan `values.yaml`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml) dosyasının Wallarm’a özgü kısmı aşağıdaki gibidir:
 
 ```yaml
 config:
@@ -29,6 +29,10 @@ config:
       disableKeepalive: false
       maxConnectionsPerIp: 0
       maxRequestsPerConnection: 0
+      metrics:
+        enabled: false
+        endpointName: "metrics"
+        host: ":9010"
     fallback: "on"
     mode: monitoring
     modeAllowOverride: "on"
@@ -44,13 +48,27 @@ config:
     logs:
       extended: false
       format: text
+
 postanalytics:
   external:
     enabled: false
     host: ""
     port: 3313
+  wstore:
+    config:
+      arena: "2.0"
+      serviceAddress: "[::]:3313"
+    ### TLS yapılandırma ayarları (isteğe bağlı)
+    tls:
+      enabled: false
+    #  certFile: "/root/test-tls-certs/server.crt"
+    #  keyFile: "/root/test-tls-certs/server.key"
+    #  caCertFile: "/root/test-tls-certs/ca.crt"
+    #  mutualTLS:
+    #    enabled: false
+    #    clientCACertFile: "/root/test-tls-certs/ca.crt"
   ...
-# Optional part for custom admission webhook certificate provisioning
+# Özel admission webhook sertifika sağlama için isteğe bağlı bölüm
 # controller:
 #  admissionWebhook:
 #    certManager:
@@ -64,57 +82,59 @@ postanalytics:
 
 ## config.wallarm.api.token
 
-Bir filtreleme düğümü token değeridir. Wallarm API'ye erişim sağlamak için gereklidir.
+Bir filtreleme düğümü belirteci değeri. Wallarm API’sine erişim için gereklidir.
 
-Token, şu [türlerden](node-token-types) biri olabilir:
+Belirteç aşağıdaki [türlerden][node-token-types] biri olabilir:
 
-* **API token (recommended)** - UI organizasyonu için düğüm gruplarını dinamik olarak ekleyip/çıkarmanız ya da ek güvenlik için token yaşam döngüsünü kontrol etmeniz gerektiğinde idealdir. API token oluşturmak için:
+* **API token (önerilir)** - UI organizasyonu için düğüm gruplarını dinamik olarak ekleyip/çıkarmanız gerektiğinde veya ek güvenlik için belirteç yaşam döngüsünü kontrol etmek istediğinizde idealdir. API belirteci oluşturmak için:
 
-    1. Wallarm Console → **Settings** → **API tokens** bölümüne gidin; [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens) üzerinden.
-    1. **Deploy** source rolü ile bir API token oluşturun.
-    1. Düğüm dağıtımı sırasında, oluşturulan token'ı kullanın ve `config.wallarm.api.nodeGroup` parametresi ile grup adını belirtin. Farklı API token'lar kullanarak birden fazla düğümü aynı gruba ekleyebilirsiniz.
-* **Node token** - Kullanılacak düğüm gruplarını önceden biliyorsanız uygundur.
-
-    Node token oluşturmak için:
+    API belirteci oluşturmak için:
     
-    1. Wallarm Console → **Nodes** bölümüne gidin; [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) üzerinden.
-    1. Bir düğüm oluşturun ve düğüm grubuna isim verin.
-    1. Düğüm dağıtımı sırasında, o gruptaki her düğüm için grubun token'ını kullanın.
+    1. Wallarm Console → **Settings** → **API tokens** bölümüne [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens) üzerinde gidin.
+    1. **Node deployment/Deployment** kullanım türüyle bir API belirteci oluşturun.
+    1. Düğüm dağıtımı sırasında oluşturulan belirteci kullanın ve `config.wallarm.api.nodeGroup` parametresi ile grup adını belirtin. Farklı API belirteçleri kullanarak bir gruba birden fazla düğüm ekleyebilirsiniz.
+* **Düğüm belirteci** - Hangi düğüm gruplarının kullanılacağını zaten biliyorsanız uygundur.
 
-Parametre, [`config.wallarm.api.existingSecret.enabled: true`](#configwallarmapiexistingsecret) olarak ayarlanmışsa göz ardı edilir.
+    Düğüm belirteci oluşturmak için:
+    
+    1. Wallarm Console → **Nodes** bölümüne [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) üzerinde gidin.
+    1. Bir düğüm oluşturun ve düğüm grubuna bir ad verin.
+    1. Düğüm dağıtımı sırasında, bu gruba dahil etmek istediğiniz her düğüm için grubun belirtecini kullanın.
+
+[`config.wallarm.api.existingSecret.enabled: true`](#configwallarmapiexistingsecret) ise bu parametre yok sayılır.
 
 ## config.wallarm.api.host
 
-Wallarm API uç noktası. Aşağıdakilerden biri olabilir:
+Wallarm API uç noktası. Şunlardan biri olabilir:
 
-* [US Cloud][us-cloud-docs] için `us1.api.wallarm.com`
-* [EU Cloud][eu-cloud-docs] için `api.wallarm.com` (varsayılan)
+* [US cloud][us-cloud-docs] için `us1.api.wallarm.com`
+* [EU cloud][eu-cloud-docs] için `api.wallarm.com` (varsayılan)
 
 ## config.wallarm.api.nodeGroup
 
-Bu, yeni dağıtılan düğümleri eklemek istediğiniz filtreleme düğümleri grubunun adını belirtir. Bu şekilde düğüm gruplama, yalnızca **Deploy** rolüne sahip bir API token kullanarak Cloud'a düğüm oluşturup bağladığınızda kullanılabilir (değeri `config.wallarm.api.token` parametresine aktarılır).
+Yeni dağıtılan düğümleri eklemek istediğiniz filtreleme düğümleri grubunun adını belirtir. Bu şekilde düğüm gruplama yalnızca, **Node deployment/Deployment** kullanım türüne sahip bir API belirteci kullanarak düğümleri oluşturup Cloud’a bağladığınızda kullanılabilir (değeri `config.wallarm.api.token` parametresinde iletilir).
 
 **Varsayılan değer**: `defaultSidecarGroup`
 
-[**Pod's annotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-node-group`.
+[**Pod anotasyonu**](pod-annotations.md): `sidecar.wallarm.io/wallarm-node-group`.
 
 ## config.wallarm.api.existingSecret
 
-Helm chart sürüm 4.4.4'ten itibaren, Kubernetes secret'larındaki bir Wallarm düğüm token değerini çekmek için bu yapılandırma bloğunu kullanabilirsiniz. Ayrı bir gizli yönetim sistemi olan ortamlarda (örneğin, bir external secrets operatörü kullanıyorsanız) faydalıdır.
+Helm chart sürümü 4.4.4’ten itibaren, Wallarm düğüm belirteci değerini Kubernetes secret’larından çekmek için bu yapılandırma bloğunu kullanabilirsiniz. Ayrı bir secret yönetiminin olduğu ortamlar için faydalıdır (ör. harici bir secrets operator kullanıyorsanız).
 
-Düğüm token'ını K8s secret içine kaydedip Helm chart'a çekmek için:
+Düğüm belirtecini K8s secret’larında saklamak ve Helm chart’a çekmek için:
 
-1. Wallarm düğüm token'ı içeren bir Kubernetes secret'ı oluşturun:
+1. Wallarm düğüm belirteci ile bir Kubernetes secret oluşturun:
 
     ```bash
     kubectl -n wallarm-sidecar create secret generic wallarm-api-token --from-literal=token=<WALLARM_NODE_TOKEN>
     ```
 
-    * Varsayılan dağıtım talimatlarını değiştirmeden izlediyseniz, `wallarm-sidecar` Helm release'i için oluşturulan Kubernetes ad alanıdır. Farklı bir ad alanı kullanıyorsanız adı değiştirin.
+    * Dağıtım talimatlarını değişiklik yapmadan takip ettiyseniz, `wallarm-sidecar`, Wallarm Sidecar controller’ı ile Helm sürümü için oluşturulan Kubernetes namespace’idir. Farklı bir namespace kullanıyorsanız adı değiştirin.
     * `wallarm-api-token` Kubernetes secret adıdır.
-    * `<WALLARM_NODE_TOKEN>`, Wallarm Console UI'dan kopyalanan düğüm token değeridir.
+    * `<WALLARM_NODE_TOKEN>`, Wallarm Console UI’dan kopyalanan Wallarm düğüm belirteci değeridir.
 
-    External secret operatörü kullanıyorsanız, secret oluşturmak için [uygun belgelere](https://external-secrets.io) bakın.
+    Harici bir secrets operator kullanıyorsanız, bir secret oluşturmak için [uygun dokümantasyonu izleyin](https://external-secrets.io).
 1. `values.yaml` içinde aşağıdaki yapılandırmayı ayarlayın:
 
     ```yaml
@@ -128,11 +148,11 @@ Düğüm token'ını K8s secret içine kaydedip Helm chart'a çekmek için:
             secretName: wallarm-api-token
     ```
 
-**Varsayılan değer**: `existingSecret.enabled: false` — bu, Helm chart'ın Wallarm düğüm token'ını `config.wallarm.api.token` üzerinden alacağını gösterir.
+**Varsayılan değer**: Helm chart’ın Wallarm düğüm belirtecini `config.wallarm.api.token` üzerinden almasını sağlayan `existingSecret.enabled: false`.
 
 ## config.wallarm.apiFirewall
 
-[API Specification Enforcement][api-spec-enforcement-docs] yapılandırmasını kontrol eder; sürüm 4.10'dan itibaren kullanılabilir. Varsayılan olarak etkinleştirilmiştir ve aşağıdaki gibi yapılandırılmıştır. Bu özelliği kullanıyorsanız, bu değerleri değiştirmemeniz önerilir.
+Sürüm 4.10’dan itibaren kullanılabilen [API Specification Enforcement][api-spec-enforcement-docs] yapılandırmasını kontrol eder. Varsayılan olarak etkindir ve aşağıda gösterildiği gibi yapılandırılmıştır. Bu özelliği kullanıyorsanız, bu değerleri değiştirmemeniz önerilir.
 
 ```yaml
 config:
@@ -147,167 +167,226 @@ config:
       maxRequestsPerConnection: 0
 ```
 
-[sidecar-5.3.0-changelog] itibaren, aşağıdakiler sunulmaktadır (örnekteki varsayılan değerlere bakınız):
+Düğüm 5.3.0’dan beri, aşağıdakiler sunulmaktadır (varsayılan değerler yukarıdaki örnekte gösterilmiştir):
 
-| Ayar                        | Açıklama |
-| --------------------------- | ----------- |
-| `readBufferSize` | İstek okuma için bağlantı başına tampon boyutu. Bu aynı zamanda maksimum header boyutunu sınırlar. İstemcileriniz multi-KB RequestURI ve/veya multi-KB header (örneğin, büyük çerezler) gönderiyorsa bu tamponu artırın. |
-| `writeBufferSize` | Yanıt yazma için bağlantı başına tampon boyutu. |
-| `maxRequestBodySize` | Maksimum istek gövde boyutu. Sunucu, bu limiti aşan gövdeli istekleri reddeder. |
-| `disableKeepalive` | Keep-alive bağlantılarını devre dışı bırakır. Bu seçenek `true` olarak ayarlanırsa, sunucu istemciye ilk yanıtı gönderdikten sonra gelen tüm bağlantıları kapatır. |
-| `maxConnectionsPerIp` | IP başına izin verilen eş zamanlı maksimum istemci bağlantısı sayısı. `0` = `sınırsız`. |
-| `maxRequestsPerConnection` | Bağlantı başına sunulan maksimum istek sayısı. Son isteğin ardından sunucu bağlantıyı kapatır. Son yanıta `Connection: close` header'ı eklenir. `0` = `sınırsız`. |
+| Ayar | Açıklama |
+| ------- | ----------- |
+| `readBufferSize` | İstek okumak için bağlantı başına tampon boyutu. Bu aynı zamanda maksimum header boyutunu sınırlar. İstemcileriniz çok KB’lık RequestURI ve/veya çok KB’lık header’lar (örneğin BÜYÜK çerezler) gönderiyorsa bu tamponu artırın. |
+| `writeBufferSize` | Yanıt yazmak için bağlantı başına tampon boyutu. |
+| `maxRequestBodySize` | Maksimum istek gövdesi boyutu. Bu sınırı aşan gövdeye sahip istekler sunucu tarafından reddedilir. |
+| `disableKeepalive` | Keep-alive bağlantılarını devre dışı bırakır. Bu seçenek `true` ise sunucu, müşteriye ilk yanıtı gönderdikten sonra gelen tüm bağlantıları kapatır. |
+| `maxConnectionsPerIp` | IP başına izin verilen eşzamanlı istemci bağlantılarının maksimum sayısı. `0` = `sınırsız`. |
+| `maxRequestsPerConnection` | Bağlantı başına hizmet verilecek maksimum istek sayısı. Sunucu son istekten sonra bağlantıyı kapatır. Son yanıta `Connection: close` header’ı eklenir. `0` = `sınırsız`. |
+
+## config.wallarm.apiFirewall.metrics
+
+Sürüm 6.5.1’den itibaren, [API Specification Enforcement][api-spec-enforcement-docs] modülü Prometheus uyumlu metrikleri sunabilir.
+
+Etkinleştirildiğinde, metrikler varsayılan olarak `http://<host>:9010/metrics` adresinde mevcuttur.
+
+| Ayar | Açıklama |
+| ------- | ----------- |
+| `enabled` | API Specification Enforcement modülü için Prometheus metriklerini etkinleştirir.<br>Varsayılan: `false` (devre dışı). |
+| `endpointName` | API Specification Enforcement metrik uç noktasının HTTP yolunu tanımlar.<br>Varsayılan: `metrics`. |
+| `host` | API Specification Enforcement’ın metrikleri sunduğu host ve port’u tanımlar.<br>Varsayılan: `:9010` (tüm arayüzler, 9010 portu). |
+
+```yaml
+config:
+  wallarm:
+    apiFirewall:
+      metrics:
+        enabled: false
+        endpointName: "metrics"
+        host: ":9010"
+```
 
 ## config.wallarm.fallback
 
-Varsayılan olarak `on` değerine ayarlandığında, NGINX servislerinin acil durum moduna geçebilme yeteneği bulunur. Proton.db veya özel kural seti, Wallarm Cloud'dan indirilemediğinde, bu ayar Wallarm modülünü devre dışı bırakır ve NGINX'in çalışmaya devam etmesini sağlar.
+Değeri `on` (varsayılan) olduğunda, NGINX servisleri acil durum moduna geçme kabiliyetine sahiptir. Wallarm Cloud kullanılamadığı için proton.db veya özel kural seti indirilemiyorsa, bu ayar Wallarm modülünü devre dışı bırakır ve NGINX’in çalışmaya devam etmesini sağlar.
 
-[**Pod's annotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-fallback`.
+[**Pod anotasyonu**](pod-annotations.md): `sidecar.wallarm.io/wallarm-fallback`.
 
 ## config.wallarm.mode
 
-Küresel [trafik filtreleme modu][configure-wallarm-mode-docs]. Olası değerler:
+Küresel [trafik filtrleme modu][configure-wallarm-mode-docs]. Olası değerler:
 
 * `monitoring` (varsayılan)
 * `safe_blocking`
 * `block`
 * `off`
 
-[**Pod's annotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-mode`.
+[**Pod anotasyonu**](pod-annotations.md): `sidecar.wallarm.io/wallarm-mode`.
 
 ## config.wallarm.modeAllowOverride
 
-Cloud'daki ayarlar aracılığıyla `wallarm_mode` değerlerinin değiştirilmesine izin verilip verilmediğini yönetir [filtration-mode-priorities-docs]. Olası değerler:
+[`wallarm_mode` değerlerini Cloud’daki ayarlar üzerinden geçersiz kılma yeteneğini][filtration-mode-priorities-docs] yönetir. Olası değerler:
 
 * `on` (varsayılan)
 * `off`
 * `strict`
 
-[**Pod's annotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-mode-allow-override`.
+[**Pod anotasyonu**](pod-annotations.md): `sidecar.wallarm.io/wallarm-mode-allow-override`.
 
 ## config.wallarm.enableLibDetection
 
-SQL enjeksiyon saldırılarını [libdetection][libdetection-docs] kütüphanesi ile ek olarak doğrulayıp doğrulamayacağını belirler. Olası değerler:
+[libdetection][libdetection-docs] kütüphanesini kullanarak SQL Injection saldırılarını ayrıca doğrulayıp doğrulamayacağını belirler. Olası değerler:
 
 * `on` (varsayılan)
 * `off`
 
-[**Pod's annotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-enable-libdetection`.
+[**Pod anotasyonu**](pod-annotations.md): `sidecar.wallarm.io/wallarm-enable-libdetection`.
 
 ## config.wallarm.parseResponse
 
-Uygulama yanıtlarını saldırılar açısından analiz edip etmeyeceğini belirler. Olası değerler:
+Uygulama yanıtlarının saldırılar için analiz edilip edilmeyeceğini belirler. Olası değerler:
 
 * `on` (varsayılan)
 * `off`
 
-Yanıt analizi, [passive detection][passive-detection-docs] ve [active threat verification][active-threat-verification-docs] sırasında zafiyet tespiti için gereklidir.
+Yanıt analizi, [pasif tespit][passive-detection-docs] ve [tehdit yeniden yürütme testleri][active-threat-verification-docs] sırasında güvenlik açığı tespiti için gereklidir.
 
-[**Pod's annotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-parse-response`.
+[**Pod anotasyonu**](pod-annotations.md): `sidecar.wallarm.io/wallarm-parse-response`.
 
 ## config.wallarm.aclExportEnable
 
-Node'dan Cloud'a, [denylisted][denylist-docs] IP'lerden gelen isteklerle ilgili istatistiklerin gönderilmesini `on` ile etkin, `off` ile devre dışı bırakır.
+Düğümden Cloud’a [denylist’teki][denylist-docs] IP’lerden gelen isteklerle ilgili istatistiklerin gönderilmesini `on` etkinleştirir / `off` devre dışı bırakır.
 
-* `config.wallarm.aclExportEnable: "on"` (varsayılan) ile denylisted IP'lerden gelen isteklerin istatistikleri, **Attacks** bölümünde [görüntülenecektir][denylist-view-events-docs].
-* `config.wallarm.aclExportEnable: "off"` ile denylisted IP'lerden gelen isteklerin istatistikleri görüntülenmeyecektir.
+* `config.wallarm.aclExportEnable: "on"` (varsayılan) ile denylist’teki IP’lerden gelen isteklerle ilgili istatistikler **Attacks** bölümünde [görüntülenecektir][denylist-view-events-docs].
+* `config.wallarm.aclExportEnable: "off"` ile denylist’teki IP’lerden gelen isteklerle ilgili istatistikler görüntülenmeyecektir.
 
-[**Pod's annotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-acl-export-enable`.
+[**Pod anotasyonu**](pod-annotations.md): `sidecar.wallarm.io/wallarm-acl-export-enable`.
 
 ## config.wallarm.parseWebsocket
 
-Wallarm tam WebSocket desteğine sahiptir. Varsayılan olarak, WebSocket mesajları saldırılar için analiz edilmez. Özelliği zorunlu kılmak için, API Security [subscription plan][subscriptions-docs]'ını etkinleştirin ve bu ayarı kullanın.
+Wallarm, WebSocket’leri tam olarak destekler. Varsayılan olarak, WebSocket mesajları saldırılar için analiz edilmez. Özelliği zorlamak için, API Security [subscription plan]’ını[subscriptions-docs] etkinleştirin ve bu ayarı kullanın.
 
 Olası değerler:
 
 * `on`
 * `off` (varsayılan)
 
-[**Pod's annotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-parse-websocket`.
+[**Pod anotasyonu**](pod-annotations.md): `sidecar.wallarm.io/wallarm-parse-websocket`.
 
 ## config.wallarm.unpackResponse
 
-Uygulama yanıtında dönen sıkıştırılmış verilerin dekomprese edilip edilmeyeceğini belirler:
+Uygulama yanıtında döndürülen sıkıştırılmış verilerin açılıp açılmayacağı:
 
 * `on` (varsayılan)
 * `off`
 
-[**Pod's annotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-unpack-response`.
+[**Pod anotasyonu**](pod-annotations.md): `sidecar.wallarm.io/wallarm-unpack-response`.
 
 ## config.nginx.workerConnections
 
-Bir NGINX worker süreci tarafından açılabilecek eş zamanlı [bağlantı sayısı](http://nginx.org/en/docs/ngx_core_module.html#worker_connections)'nın maksimum değeri.
+Bir NGINX worker süreci tarafından açılabilecek [eşzamanlı bağlantıların maksimum sayısı](http://nginx.org/en/docs/ngx_core_module.html#worker_connections).
 
 **Varsayılan değer**: `4096`.
 
-[**Pod's annotation**](pod-annotations.md): `sidecar.wallarm.io/nginx-worker-connections`.
+[**Pod anotasyonu**](pod-annotations.md): `sidecar.wallarm.io/nginx-worker-connections`.
 
 ## config.nginx.workerProcesses
 
 [NGINX worker süreç sayısı](http://nginx.org/en/docs/ngx_core_module.html#worker_processes).
 
-**Varsayılan değer**: `auto`, yani worker sayısı CPU çekirdek sayısına göre ayarlanır.
+**Varsayılan değer**: `auto`, yani worker sayısı CPU çekirdek sayısına eşittir.
 
-[**Pod's annotation**](pod-annotations.md): `sidecar.wallarm.io/nginx-worker-processes`.
+[**Pod anotasyonu**](pod-annotations.md): `sidecar.wallarm.io/nginx-worker-processes`.
 
 ## config.nginx.logs.extended
 
-NGINX'de genişletilmiş loglamayı etkinleştirir. Genişletilmiş loglar; istek süresi, upstream yanıt süresi, istek boyutu, bağlantı detayları vb. bilgileri içerir.
+NGINX’te genişletilmiş loglamayı etkinleştirir. Genişletilmiş loglar istek süresi, upstream yanıt süresi, istek uzunluğu, bağlantı detayları vb. içerir.
 
-5.3.0 sürümünden itibaren desteklenmektedir.
+5.3.0 sürümünden itibaren desteklenir.
 
 **Varsayılan değer**: `false`.
 
 ## config.nginx.logs.format
 
-`config.nginx.logs.extended` `true` olarak ayarlandığında genişletilmiş logların formatını belirtir. `text` ve `json` formatlarını destekler.
+`config.nginx.logs.extended` `true` olduğunda genişletilmiş logların formatını belirtir. `text` ve `json` formatlarını destekler.
 
-5.3.0 sürümünden itibaren desteklenmektedir.
+5.3.0 sürümünden itibaren desteklenir.
 
 **Varsayılan değer**: `text`.
 
 ## postanalytics.external.enabled
 
-Wallarm postanalytics (Tarantool) modülünün, Sidecar çözümü dağıtılırken kurulan yerine, ayrı bir host üzerine kurulup kurulmayacağını belirler.
+Harici bir host üzerine kurulu Wallarm postanalytics (wstore) modülünü mü yoksa Sidecar çözümü dağıtımı sırasında kurulanı mı kullanacağınızı belirler.
 
-Bu özellik, Helm sürüm 4.6.4'ten itibaren desteklenmektedir.
+Bu özellik Helm sürümü 4.6.4’ten itibaren desteklenir.
 
 Olası değerler:
 
-* `false` (varsayılan): Sidecar çözümü tarafından dağıtılan postanalytics modülü kullanılır.
-* `true`: Etkinleştirilirse, lütfen `postanalytics.external.host` ve `postanalytics.external.port` değerlerinde postanalytics modülünün harici adresini sağlayın.
+* `false` (varsayılan): Sidecar çözümü tarafından dağıtılan postanalytics modülünü kullan.
+* `true`: Etkinleştirilirse, lütfen `postanalytics.external.host` ve `postanalytics.external.port` değerlerinde postanalytics modülünün harici adresini belirtin.
 
-`true` olarak ayarlandığında, Sidecar çözümü postanalytics modülünü çalıştırmaz, ancak belirtilen `postanalytics.external.host` ve `postanalytics.external.port` üzerinden erişim bekler.
+  `true` olarak ayarlanırsa, Sidecar çözümü postanalytics modülünü çalıştırmaz, ancak ona belirtilen `postanalytics.external.host` ve `postanalytics.external.port` üzerinden ulaşılmasını bekler.
 
 ## postanalytics.external.host
 
-Ayrı olarak kurulan postanalytics modülünün alan adı veya IP adresi. `postanalytics.external.enabled` değeri `true` olarak ayarlanırsa bu alan gereklidir.
+Ayrı olarak kurulu postanalytics modülünün alan adı veya IP adresi. `postanalytics.external.enabled` `true` ise bu alan gereklidir.
 
-Bu özellik, Helm sürüm 4.6.4'ten itibaren desteklenmektedir.
+Bu özellik Helm sürümü 4.6.4’ten itibaren desteklenir.
 
-Örnek değerler: `tarantool.domain.external` veya `10.10.0.100`.
+Örnek değerler: `wstore.domain.external` veya `10.10.0.100`.
 
-Belirtilen host, Sidecar Helm chart'ının dağıtıldığı Kubernetes kümesinden erişilebilir olmalıdır.
+Belirtilen host, Sidecar Helm chart’ının dağıtıldığı Kubernetes kümesinden erişilebilir olmalıdır.
 
 ## postanalytics.external.port
 
-Wallarm postanalytics modülünün çalıştığı TCP portudur. Varsayılan olarak, Sidecar çözümü modülü bu port üzerinden dağıttığından port 3313 kullanılır.
+Wallarm postanalytics modülünün çalıştığı TCP portu. Varsayılan olarak 3313 portunu kullanır, çünkü Sidecar çözümü modülü bu portta dağıtır.
 
-Eğer `postanalytics.external.enabled` değeri `true` olarak ayarlanırsa, modülün çalıştığı portu belirtin.
+`postanalytics.external.enabled` `true` ise, modülün belirtilen harici host üzerinde çalıştığı portu belirtin.
+
+## postanalytics.wstore.config.serviceAddress
+
+**wstore**’un gelen bağlantıları kabul ettiği adres ve portu belirtir.
+
+Sürüm 6.3.0’dan itibaren desteklenir.
+
+**Varsayılan değer**: `[::]:3313` - tüm IPv4 ve IPv6 arayüzlerinde 3313 portunu dinler. Bu, 6.3.0 öncesi sürümlerdeki varsayılan davranışla da aynıdır.
+
+## postanalytics.wstore.tls
+
+Postanalytics modülüne güvenli bağlantı sağlamak için TLS ve karşılıklı TLS (mTLS) ayarlarını yapılandırır (isteğe bağlı):
+
+```yaml
+config:
+  wstore:
+    tls:
+      enabled: false
+    #   certFile: "/root/test-tls-certs/server.crt"
+    #   keyFile: "/root/test-tls-certs/server.key"
+    #   caCertFile: "/root/test-tls-certs/ca.crt"
+    #   mutualTLS:
+    #     enabled: false
+    #     clientCACertFile: "/root/test-tls-certs/ca.crt"
+
+```
+
+Sürüm 6.2.0’dan itibaren desteklenir.
+
+| Parametre | Açıklama | Gerekli mi? |
+| --------- | ----------- | --------- |
+| `enabled` | Postanalytics modülüne bağlantı için SSL/TLS’i etkinleştirir veya devre dışı bırakır. Varsayılan olarak `false` (devre dışı). | Evet |
+| `certFile` | Filtreleme Düğümü’nün postanalytics modülüne SSL/TLS bağlantısı kurarken kendini doğrulamak için kullandığı istemci sertifikasının yolunu belirtir. | `mutualTLS.enabled` `true` ise Evet |
+| `keyFile` | `certFile` ile sağlanan istemci sertifikasına karşılık gelen özel anahtarın yolunu belirtir. | `mutualTLS.enabled` `true` ise Evet |
+| `caCertFile` | Postanalytics modülü tarafından sunulan TLS sertifikasını doğrulamak için kullanılan güvenilir Sertifika Yetkilisi (CA) sertifikasının yolunu belirtir. | Özel bir CA kullanılıyorsa Evet |
+| `mutualTLS.enabled` | Hem Filtreleme Düğümü’nün hem de postanalytics modülünün birbirlerinin kimliğini sertifikalarla doğruladığı karşılıklı TLS’i (mTLS) etkinleştirir. Varsayılan olarak `false` (devre dışı). | Hayır |
+| `mutualTLS.clientCACertFile` | Filtreleme Düğümü tarafından sunulan TLS sertifikasını doğrulamak için kullanılan güvenilir CA sertifikasının yolunu belirtir. | Özel bir CA kullanılıyorsa Evet |
 
 ## controller.admissionWebhook.certManager.enabled
 
-Admission webhook sertifikasını varsayılan [`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen) yerine oluşturmak için [`cert-manager`](https://cert-manager.io/) kullanılacağını belirler. Sürüm 4.10.7'den itibaren desteklenir.
+Varsayılan [`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen) yerine admission webhook sertifikasını üretmek için [`cert-manager`](https://cert-manager.io/) kullanılıp kullanılmayacağını belirler. Sürüm 4.10.7’den itibaren desteklenir.
 
 **Varsayılan değer**: `false`.
 
 ## controller.admissionWebhook.secret.enabled
 
-Admission webhook için sertifikaların manuel olarak yüklenip yüklenmeyeceğini, varsayılan [`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen) yerine belirler. Sürüm 4.10.7'den itibaren desteklenir.
+Varsayılan [`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen) yerine admission webhook için sertifikaların manuel olarak yüklenip yüklenmeyeceğini belirler. Sürüm 4.10.7’den itibaren desteklenir.
 
 **Varsayılan değer**: `false`.
 
-`true` olarak ayarlanırsa, base64 ile kodlanmış CA sertifikası, sunucu sertifikası ve özel anahtar belirtilmelidir, örneğin:
+`true` olarak ayarlanırsa, base64 ile kodlanmış CA sertifikasını, sunucu sertifikasını ve özel anahtarı belirtin, örneğin:
 
 ```yaml
 controller:

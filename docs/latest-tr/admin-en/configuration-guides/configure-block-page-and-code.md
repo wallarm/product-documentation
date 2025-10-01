@@ -1,123 +1,125 @@
-# NGINX ile Engelleme Sayfası ve Hata Kodunun Yapılandırılması
+# Engelleme sayfası ve hata kodunun yapılandırılması (NGINX)
 
-Bu talimatlar, engellenen isteklere yanıt olarak dönen engelleme sayfasının ve hata kodunun nasıl özelleştirileceğini açıklar. Yapılandırma yalnızca kendi kendine barındırılan NGINX Düğümleri için geçerlidir.
+Bu talimatlar, engellenen isteklere verilen yanıtta döndürülen engelleme sayfasını ve hata kodunu özelleştirme yöntemini açıklar. Yapılandırma yalnızca self-hosted NGINX Node'ları için geçerlidir.
 
-Özel engelleme sayfası, aşağıdaki nedenlerden dolayı engellenen isteklere yanıt olarak döner:
+Özel engelleme sayfası, aşağıdaki nedenlerle engellenen isteklere yanıt olarak döndürülür:
 
-* İstekte, şu tiplerdeki kötü amaçlı yükler bulunuyorsa: [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../../user-guides/rules/vpatch-rule.md) veya [düzenli ifadeler kullanılarak tespit edilen saldırılar](../../user-guides/rules/regex-rule.md).
-* Yukarıdaki listeden gelen kötü amaçlı yük içeren istek, [graylisted IP address](../../user-guides/ip-lists/overview.md)’den kaynaklanıyor ve düğüm, istekleri safe blocking [mode](../configure-wallarm-mode.md) ile filtreliyor.
-* İstek, [denylisted IP address](../../user-guides/ip-lists/overview.md)’den kaynaklanıyorsa.
+* İstek aşağıdaki türlerde kötü amaçlı payload içerir: [girdi doğrulama saldırıları](../../attacks-vulns-list.md#attack-types), [vpatch saldırıları](../../user-guides/rules/vpatch-rule.md) veya [düzenli ifadelere dayalı tespit edilen saldırılar](../../user-guides/rules/regex-rule.md).
+* Yukarıdaki listeden kötü amaçlı payload içeren istek [graylisted IP address](../../user-guides/ip-lists/overview.md) üzerinden gelmiştir ve node, istekleri güvenli engelleme [mode](../configure-wallarm-mode.md) ayarında filtrelemektedir.
+* İstek [denylisted IP address](../../user-guides/ip-lists/overview.md) üzerinden gelmiştir.
 
-## Yapılandırma Sınırlamaları
+## Yapılandırma kısıtlamaları
 
-Engelleme sayfası ve hata kodunun yapılandırılması, NGINX tabanlı Wallarm düğüm dağıtımlarında desteklenir ancak Native Node, Envoy- ve CDN tabanlı Wallarm düğüm dağıtımlarında desteklenmez. Envoy- ve CDN tabanlı Wallarm düğümleri, engellenen isteğe yanıt olarak her zaman `403` kodunu döner.
+Engelleme sayfası ve hata kodunun yapılandırılması self-hosted NGINX tabanlı Wallarm node dağıtımlarında desteklenir, ancak Native Node’da desteklenmez.
 
-## Yapılandırma Yöntemleri
+## Yapılandırma yöntemleri
 
-Varsayılan olarak, istemciye yanıt olarak 403 hata kodu ve varsayılan NGINX engelleme sayfası döner. Aşağıdaki NGINX yönergelerini kullanarak varsayılan ayarları değiştirebilirsiniz:
+Varsayılan olarak, 403 yanıt kodu ve varsayılan NGINX engelleme sayfası istemciye döndürülür. Varsayılan ayarları aşağıdaki NGINX yönergelerini kullanarak değiştirebilirsiniz:
 
 * `wallarm_block_page`
 * `wallarm_block_page_add_dynamic_path`
 
-### NGINX Yönergesi `wallarm_block_page`
+### NGINX yönergesi `wallarm_block_page`
 
-`wallarm_block_page` NGINX yönergesinde aşağıdaki parametreleri geçirerek engelleme sayfası ve hata kodunu yapılandırabilirsiniz:
+Engelleme sayfasını ve hata kodunu, `wallarm_block_page` NGINX yönergesine aşağıdaki parametreleri geçirerek yapılandırabilirsiniz:
 
-* Engelleme sayfasının HTM veya HTML dosyasının yolu. Yolu, özel bir engelleme sayfasına ya da Wallarm tarafından sunulan [sample blocking page](#customizing-sample-blocking-page) örnek engelleme sayfasına yönlendirebilirsiniz.
-* Engellenen isteğe yanıt olarak dönecek mesaj metni.
+* Engelleme sayfasının HTM veya HTML dosyasının yolu. Yolu, özel bir engelleme sayfasına veya Wallarm tarafından sağlanan [örnek engelleme sayfasına](#customizing-sample-blocking-page) belirtebilirsiniz.
+* Engellenen bir isteğe yanıt olarak döndürülecek mesajın metni.
 * İstemci yönlendirmesi için URL.
 * `response_code`: yanıt kodu.
-* `type`: Belirtilen yapılandırmanın dönmesi gereken, engellenen isteğin tipi. Parametre, listeden virgülle ayrılmış bir veya birkaç değeri kabul eder:
+* `type`: belirtilen yapılandırmanın hangi engellenen istek türü için döndürülmesi gerektiği. Parametre aşağıdaki listeden bir veya birden fazla (virgülle ayrılmış) değer alır:
 
-    * `attack` (varsayılan): filtreleme modundaki engelleme veya safe blocking [mode](../configure-wallarm-mode.md) sırasında filtreleme düğümü tarafından engellenen istekler için.
-    * `acl_ip`: Tek bir nesne veya alt ağ olarak [denylist’e](../../user-guides/ip-lists/overview.md) eklenen IP adreslerinden kaynaklanan istekler için.
-    * `acl_source`: [denylisted](../../user-guides/ip-lists/overview.md) ülke, bölge veya veri merkezlerinde kayıtlı IP adreslerinden kaynaklanan istekler için.
+    * Varsayılan `attack`: istekleri engelleme veya güvenli engelleme [mode](../configure-wallarm-mode.md) ayarında filtrelerken filtering node tarafından engellenen istekler için.
+    * `acl_ip`: [denylist](../../user-guides/ip-lists/overview.md)'e tek bir nesne veya alt ağ olarak eklenmiş IP adreslerinden gelen istekler için.
+    * `acl_source`: [denylisted](../../user-guides/ip-lists/overview.md) ülke, bölge veya veri merkezlerinde kayıtlı IP adreslerinden gelen istekler için.
 
-`wallarm_block_page` yönergesi, aşağıdaki formatlarda belirtilen parametreleri kabul eder:
+`wallarm_block_page` yönergesi listelenen parametreleri aşağıdaki formatlarda kabul eder:
 
-* Engelleme sayfasının HTM veya HTML dosyasının yolu, hata kodu (isteğe bağlı) ve engellenen istek tipi (isteğe bağlı)
+* HTM veya HTML dosyasının yolu, hata kodu (opsiyonel) ve engellenen istek türü (opsiyonel)
 
     ```bash
     wallarm_block_page &/<PATH_TO_FILE/HTML_HTM_FILE_NAME> response_code=<CUSTOM_CODE> type=<BLOCKED_REQUEST_TYPE>;
     ```
     
-    Wallarm, düzenlemeniz için başlangıç noktası olarak kullanabileceğiniz örnek engelleme sayfasını sağlar. Sayfa, aşağıdaki yolda bulunmaktadır:
+    Wallarm, [özelleştirmeniz](#customizing-sample-blocking-page) için başlangıç noktası olarak kullanabileceğiniz örnek bir engelleme sayfası sağlar. Sayfa aşağıdaki yollardan birinde bulunur:
     
-    === "All-in-one installer, AMI or GCP image, NGINX-based Docker image"
+    === "Tümleşik yükleyici, AMI veya GCP imajı, NGINX tabanlı Docker imajı"
         ```
         &/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html
         ```
-    === "Other deployment options"
+    === "Diğer dağıtım seçenekleri"
         ```
         &/usr/share/nginx/html/wallarm_blocked.html
         ```
 
-    Engelleme sayfasında [NGINX değişkenlerini](https://nginx.org/en/docs/varindex.html) kullanabilirsiniz. Bunun için, engelleme sayfası koduna `${variable_name}` formatında değişken adını ekleyin, örneğin, engellenen isteğin geldiği IP adresini göstermek için `${remote_addr}`.
+    Engelleme sayfasında [NGINX değişkenlerini](https://nginx.org/en/docs/varindex.html) kullanabilirsiniz. Bunun için değişken adını engelleme sayfası koduna `${variable_name}` formatında ekleyin, örn. engellenen isteğin geldiği IP adresini göstermek için `${remote_addr}`.
 
-    !!! warning "Debian ve CentOS kullanıcıları için Önemli Bilgi"
-        CentOS/Debian depolarından yüklenen 1.11’den düşük bir NGINX sürümü kullanıyorsanız, dinamik engelleme sayfasının doğru görüntülenebilmesi için sayfa kodundan `request_id` değişkenini kaldırmalısınız:
+    !!! warning "Debian ve CentOS kullanıcıları için önemli bilgi"
+        CentOS/Debian depolarından kurulmuş 1.11’in altındaki bir NGINX sürümü kullanıyorsanız, dinamik engelleme sayfasını doğru görüntülemek için sayfa kodundan `request_id` değişkenini kaldırmalısınız:
         ```
         UUID ${request_id}
         ```
 
-        Bu, hem `wallarm_blocked.html` hem de özel engelleme sayfası için geçerlidir.
+        Bu, hem `wallarm_blocked.html` için hem de özel engelleme sayfası için geçerlidir.
 
-    [Örnek yapılandırma →](#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code)
-* İstemci yönlendirmesi için URL ve engellenen istek tipi (isteğe bağlı)
+    [Yapılandırma örneği →](#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code)
+* İstemci yönlendirmesi için URL ve engellenen istek türü (opsiyonel)
 
     ``` bash
     wallarm_block_page /<REDIRECT_URL> type=<BLOCKED_REQUEST_TYPE>;
     ```
 
-    [Örnek yapılandırma →](#url-for-the-client-redirection)
-* İsimlendirilmiş NGINX `location` ve engellenen istek tipi (isteğe bağlı)
+    [Yapılandırma örneği →](#url-for-the-client-redirection)
+* İsimlendirilmiş NGINX `location` ve engellenen istek türü (opsiyonel)
 
     ``` bash
     wallarm_block_page @<NAMED_LOCATION> type=<BLOCKED_REQUEST_TYPE>;
     ```
 
-    [Örnek yapılandırma →](#named-nginx-location)
-* HTM veya HTML dosyasının yolunu, hata kodunu (isteğe bağlı) ve engellenen istek tipini (isteğe bağlı) belirten değişkenin ismi
+    [Yapılandırma örneği →](#named-nginx-location)
+* HTM veya HTML dosyasının yolunu ayarlayan değişken adı, hata kodu (opsiyonel) ve engellenen istek türü (opsiyonel)
 
     ``` bash
     wallarm_block_page &<VARIABLE_NAME> response_code=<CUSTOM_CODE> type=<BLOCKED_REQUEST_TYPE>;
     ```
 
-    !!! warning "NGINX değişkenlerini içeren kod ile engelleme sayfasını başlatma"
-        Bu yöntemi kullanarak, kodunda [NGINX değişkenlerini](https://nginx.org/en/docs/varindex.html) barındıran engelleme sayfasını belirliyorsanız, lütfen bu sayfayı [`wallarm_block_page_add_dynamic_path`](#nginx-directive-wallarm_block_page_add_dynamic_path) yönergesi vasıtasıyla başlatın.
+    !!! warning "Kodu NGINX değişkenleri içeren engelleme sayfasını başlatma"
+        Bu yöntemi, kodunda [NGINX değişkenleri](https://nginx.org/en/docs/varindex.html) bulunan engelleme sayfasını ayarlamak için kullanıyorsanız, lütfen bu sayfayı [`wallarm_block_page_add_dynamic_path`](#nginx-directive-wallarm_block_page_add_dynamic_path) yönergesi aracılığıyla başlatın.
 
-    [Örnek yapılandırma →](#variable-and-error-code)
+    [Yapılandırma örneği →](#variable-and-error-code)
 
-`wallarm_block_page` yönergesi, NGINX yapılandırma dosyasının `http`, `server`, `location` blokları içinde ayarlanabilir.
+`wallarm_block_page` yönergesi NGINX yapılandırma dosyasının `http`, `server`, `location` bloklarının içinde ayarlanabilir.
 
-### NGINX Yönergesi `wallarm_block_page_add_dynamic_path`
+<a name="nginx-directive-wallarm_block_page_add_dynamic_path"></a>
+### NGINX yönergesi `wallarm_block_page_add_dynamic_path`
 
-`wallarm_block_page_add_dynamic_path` yönergesi, kodunda NGINX değişkenleri bulunan ve yolu bir değişken kullanılarak ayarlanan engelleme sayfasını başlatmak için kullanılır. Aksi halde, bu yönerge kullanılmaz.
+`wallarm_block_page_add_dynamic_path` yönergesi, kodunda NGINX değişkenleri bulunan ve bu engelleme sayfasının yolunun da bir değişken kullanılarak ayarlandığı engelleme sayfasını başlatmak için kullanılır. Aksi halde, yönerge kullanılmaz.
 
 Yönerge, NGINX yapılandırma dosyasının `http` bloğu içinde ayarlanabilir.
 
-## Örnek Engelleme Sayfasının Özelleştirilmesi
+<a name="customizing-sample-blocking-page"></a>
+## Örnek engelleme sayfasını özelleştirme
 
-Wallarm tarafından sağlanan örnek engelleme sayfası aşağıdaki gibi görünür:
+Wallarm tarafından sağlanan örnek engelleme sayfası aşağıdaki gibidir:
 
-![Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+![Wallarm engelleme sayfası](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
-Örnek sayfayı, aşağıdaki yollarla geliştirilerek özelleştirme noktası olarak kullanabilirsiniz:
+Özelleştirmenize başlangıç noktası olarak örnek sayfayı kullanabilir ve aşağıdakilerle geliştirebilirsiniz:
 
-* Şirket logonuzu eklemek – varsayılan olarak, sayfada herhangi bir logo sunulmaz.
-* Şirket destek e-postanızı eklemek – varsayılan olarak, herhangi bir e-posta bağlantısı kullanılmaz ve `contact us` ifadesi bağlantısız basit bir metindir.
-* Diğer HTML öğelerini değiştirmek veya kendi öğelerinizi eklemek.
+* Şirket logonuzu ekleme – varsayılan olarak sayfada logo yoktur.
+* Şirket destek e-postanızı ekleme – varsayılan olarak e-posta bağlantıları kullanılmaz ve `contact us` ifadesi herhangi bir bağlantı olmadan düz metindir.
+* Diğer HTML öğelerini değiştirme veya kendi öğelerinizi ekleme.
 
 !!! info "Özel engelleme sayfası varyantları"
-    Wallarm tarafından sağlanan örnek sayfayı değiştirmek yerine sıfırdan özel bir sayfa oluşturabilirsiniz.
+    Wallarm tarafından sağlanan örnek sayfayı değiştirmek yerine, sıfırdan özel bir sayfa oluşturabilirsiniz.
 
-### Genel İşlem
+### Genel prosedür
 
-Örnek sayfayı doğrudan değiştirirseniz, Wallarm bileşenlerinin güncellenmesi durumunda yaptığınız değişiklikler kaybolabilir. Bu nedenle, örnek sayfayı kopyalayıp yeni bir isim vermeniz ve değişiklikleri yalnızca kopya üzerinde yapmanız önerilir. Kurulum tipinize bağlı olarak aşağıdaki bölümlerde belirtilen adımları izleyin.
+Örnek sayfanın kendisini değiştirirseniz, Wallarm bileşenlerini güncellediğinizde değişiklikleriniz kaybolabilir. Bu nedenle, örnek sayfayı kopyalayıp yeni bir ad vererek ardından değiştirmeniz önerilir. Aşağıdaki bölümlerde açıklandığı gibi kurulum türünüze göre hareket edin.
 
-**<a name="copy"></a>Kopyalama için Örnek Sayfa**
+**<a name="copy"></a>Kopyalama için örnek sayfa**
 
-Filtreleme düğümünüzün kurulu olduğu ortamda bulunan `/usr/share/nginx/html/wallarm_blocked.html` (`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`) dosyasının bir kopyasını alabilirsiniz. Alternatif olarak, aşağıdaki kodu kopyalayıp yeni dosyanız olarak kaydedebilirsiniz:
+Filtreleme node’unuzun kurulu olduğu ortamda bulunan `/usr/share/nginx/html/wallarm_blocked.html` (`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`) dosyasının bir kopyasını oluşturabilirsiniz. Alternatif olarak, aşağıdaki kodu kopyalayıp yeni dosyanız olarak kaydedin:
 
 ??? info "Örnek sayfa kodunu göster"
 
@@ -238,7 +240,7 @@ Filtreleme düğümünüzün kurulu olduğu ortamda bulunan `/usr/share/nginx/ht
             }
         </style>
         <script>
-            // Place your support email here
+            // Destek e-postanızı buraya yazın
             const SUPPORT_EMAIL = "";
         </script>
     </head>
@@ -247,10 +249,10 @@ Filtreleme düğümünüzün kurulu olduğu ortamda bulunan `/usr/share/nginx/ht
         <div class="content">
             <div id="logo" class="logo">
                 <!--
-                    Place you logo here.
-                    You can use an external image:
+                    Logonuzu buraya yerleştirin.
+                    Harici bir görsel kullanabilirsiniz:
                     <img src="https://example.com/logo.png" width="160" alt="Company Name" />
-                    Or put your logo source code (like svg) right here:
+                    Veya logo kaynak kodunuzu (ör. svg) doğrudan buraya koyun:
                     <svg width="160" height="80"> ... </svg>
                 -->
             </div>
@@ -296,7 +298,7 @@ Filtreleme düğümünüzün kurulu olduğu ortamda bulunan `/usr/share/nginx/ht
             <div></div>
         </div>
         <script>
-            // Warning: ES5 code only
+            // Uyarı: Sadece ES5 kodu
 
             function writeText(str) {
                 const range = document.createRange();
@@ -333,51 +335,51 @@ Filtreleme düğümünüzün kurulu olduğu ortamda bulunan `/usr/share/nginx/ht
     </body>
     ```
 
-**Ortak Dosya Sistemi**
+**Ortak dosya sistemi**
 
-NGINX, okunabilirlik iznine sahip olmak şartıyla, `/usr/share/nginx/html/wallarm_blocked.html` (`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`) dosyasını dilediğiniz yere (aynı klasör de dahil) yeni bir isimle kopyalayabilirsiniz.
+`/usr/share/nginx/html/wallarm_blocked.html` (`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`) dosyasının bir kopyasını yeni bir adla dilediğiniz bir yere (NGINX’in okuma izni olmalı) — aynı klasör dahil — oluşturabilirsiniz.
 
-**Docker Konteyner**
+**Docker container**
 
-Örnek engelleme sayfasını değiştirmek veya sıfırdan kendi özel sayfanızı sunmak için Docker’ın [bind mount](https://docs.docker.com/storage/bind-mounts/) işlevselliğini kullanabilirsiniz. Kullanıldığında, sayfanız ve ana makinedeki NGINX yapılandırma dosyanız konteynere kopyalanır ve orijinal dosyalar ile referanslanır, böylece ana makinede dosyalarda yaptığınız değişiklikler kopyalara senkronize olur.
+Örnek engelleme sayfasını değiştirmek veya sıfırdan kendi özel sayfanızı sağlamak için Docker’ın [bind mount](https://docs.docker.com/storage/bind-mounts/) işlevini kullanabilirsiniz. Bunu kullandığınızda, ana makinenizdeki sayfa ve NGINX yapılandırma dosyası container’a kopyalanır ve sonrasında orijinalleriyle referanslanır; böylece ana makinedeki dosyaları değiştirirseniz kopyaları senkronize edilir ve tersi de geçerlidir.
 
-Dolayısıyla, örnek engelleme sayfasını değiştirmek veya kendi sayfanızı sunmak için şunları yapın:
+Bu nedenle, örnek engelleme sayfasını değiştirmek veya kendi sayfanızı sağlamak için aşağıdakileri yapın:
 
-1. İlk çalıştırmadan önce, [kopyalayın](#copy) ve değiştirdiğiniz `wallarm_blocked_renamed.html` dosyasını hazırlayın.
-2. Engelleme sayfanızın yolunu içeren NGINX yapılandırma dosyasını hazırlayın. Bakınız [yapılandırma örneği](#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code).
-3. Hazırlanan engelleme sayfası ve yapılandırma dosyasını [mounting](../installation-docker-en.md#run-the-container-mounting-the-configuration-file) ile konteynere çalıştırın.
-4. Çalışan bir konteynerde daha sonra engelleme sayfasını güncellemeniz gerekirse, ana makinede referans verilen `wallarm_blocked_renamed.html` dosyasını değiştirin ve ardından konteynerdeki NGINX’i yeniden başlatın.
+1. İlk çalıştırmadan önce, değiştirilmiş `wallarm_blocked_renamed.html` dosyanızı [hazırlayın](#copy).
+1. Engelleme sayfanızın yolunu içeren NGINX yapılandırma dosyasını hazırlayın. [Yapılandırma örneğine](#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code) bakın.
+1. Container’ı hazırladığınız engelleme sayfasını ve yapılandırma dosyasını [mount ederek](../installation-docker-en.md#run-the-container-mounting-the-configuration-file) çalıştırın.
+1. Çalışan bir container’da engelleme sayfanızı daha sonra güncellemeniz gerekirse, ana makinede referans verilen `wallarm_blocked_renamed.html` dosyasını değiştirin ve ardından container içindeki NGINX’i yeniden başlatın.
 
-**Ingress Denetleyicisi**
+**Ingress controller**
 
-Örnek engelleme sayfasını değiştirmek veya kendi sayfanızı sunmak için şunları yapın:
+Örnek engelleme sayfasını değiştirmek veya kendi sayfanızı sağlamak için aşağıdakileri yapın:
 
-1. [Kopyalayın](#copy) ve değiştirdiğiniz `wallarm_blocked_renamed.html` dosyasını hazırlayın.
-2. Dosyadan ConfigMap oluşturun: [Create ConfigMap from the file](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files) `wallarm_blocked_renamed.html`.
-3. Oluşturulan ConfigMap’i Wallarm Ingress denetleyicisinin bulunduğu pod’a mount edin. Bunun için, lütfen ilgili Wallarm Ingress denetleyicisine dair Deployment nesnesini [talimatlar](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap) doğrultusunda güncelleyin.
+1. Değiştirilmiş `wallarm_blocked_renamed.html` dosyanızı [hazırlayın](#copy).
+1. `wallarm_blocked_renamed.html` dosyasından [ConfigMap oluşturun](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files).
+1. Oluşturulan ConfigMap’i Wallarm Ingress controller’ın bulunduğu pod’a mount edin. Bunun için, Wallarm Ingress controller’a karşılık gelen Deployment nesnesini [talimatları](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap) izleyerek güncelleyin.
 
-    !!! info "Mount Edilen ConfigMap için Dizin"
-        ConfigMap ile mount edilen dizindeki mevcut dosyalar silinecektir.
-4. Ingress açıklaması sağlayarak pod’u özel sayfanızı kullanması için yönlendirin:
+    !!! info "Mount edilen ConfigMap için dizin"
+        ConfigMap’i mount etmek için kullanılan dizindeki mevcut dosyalar silinecektir.
+1. Ingress annotation sağlayarak pod’u özel sayfanızı kullanacak şekilde yönlendirin:
 
     ```bash
     kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page="<PAGE_ADDRESS>"
     ```
 
-Detaylı [örneğe bakınız](#ingress-annotations).
+Ayrıntılı [örneğe](#ingress-annotations) bakın.
 
-### Sık Yapılan Değişiklikler
+### Sık yapılan değişiklikler
 
-Şirket logonuzu eklemek için, `wallarm_blocked_renamed.html` dosyasında aşağıdaki kısmı değiştirip yorum satırından çıkartın:
+Şirket logonuzu eklemek için, `wallarm_blocked_renamed.html` dosyasında aşağıdakini değiştirip yorum satırından çıkarın:
 
 ```html
 <div class="content">
     <div id="logo" class="logo">
         <!--
-            Place you logo here.
-            You can use an external image:
+            Logonuzu buraya yerleştirin.
+            Harici bir görsel kullanabilirsiniz:
             <img src="https://example.com/logo.png" width="160" alt="Company Name" />
-            Or put your logo source code (like svg) right here:
+            Veya logo kaynak kodunuzu (ör. svg) doğrudan buraya koyun:
             <svg width="160" height="80"> ... </svg>
         -->
     </div>
@@ -387,46 +389,86 @@ Detaylı [örneğe bakınız](#ingress-annotations).
 
 ```html
 <script>
-    // Place your support email here
+    // Destek e-postanızı buraya yazın
     const SUPPORT_EMAIL = "support@company.com";
 </script>
 ```
 
-Bir değerde `$` içeren özel bir değişken başlatılırken, bu simgeyi, değişken isminden önce `{wallarm_dollar}` ekleyerek kaçırın, örneğin: `${wallarm_dollar}{variable_name}`. `wallarm_dollar` değişkeni `&` değerini döner.
+Değerinde `$` içeren özel bir değişkeni başlatıyorsanız, bu sembolü değişken adından önce `{wallarm_dollar}` ekleyerek kaçışlayın, örn.: `${wallarm_dollar}{variable_name}`. `wallarm_dollar` değişkeni `&` döndürür.
 
-## Yapılandırma Örnekleri
+## Yapılandırma örnekleri
 
-Aşağıda, `wallarm_block_page` ve `wallarm_block_page_add_dynamic_path` yönergeleri aracılığıyla engelleme sayfası ve hata kodunun nasıl yapılandırılacağına dair örnekler yer almaktadır.
+Aşağıda, `wallarm_block_page` ve `wallarm_block_page_add_dynamic_path` yönergeleri aracılığıyla engelleme sayfası ve hata kodu yapılandırmasına ilişkin örnekler bulunmaktadır.
 
-`wallarm_block_page` yönergesinin `type` parametresi her örnekte açıkça belirtilmiştir. `type` parametresini kaldırırsanız, yapılandırılan engelleme sayfası, mesaj vb. yalnızca filtreleme düğümü tarafından engellendiğinde (blocking veya safe blocking [mode](../configure-wallarm-mode.md) durumunda) yanıt olarak dönecektir.
+`wallarm_block_page` yönergesinin `type` parametresi her örnekte açıkça belirtilmiştir. `type` parametresini kaldırırsanız, yapılandırılan engelleme sayfası, mesaj vb. yalnızca filtering node tarafından engelleme veya güvenli engelleme [mode](../configure-wallarm-mode.md) ayarında engellenen isteğe yanıtta döndürülür.
 
-### Engelleme Sayfası ve Hata Koduyla İlgili HTM veya HTML Dosyasına Yol
+<a name="path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code"></a>
+### Engelleme sayfasının bulunduğu HTM veya HTML dosyasının yolu ve hata kodu
 
-Bu örnek aşağıdaki yanıt ayarlarını göstermektedir:
+Bu örnek aşağıdaki yanıt ayarlarını gösterir:
 
-* [Özelleştirilmiş](#customizing-sample-blocking-page) örnek Wallarm engelleme sayfası `/opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html` ve isteğin, filtreleme düğümü tarafından engellenmesi durumunda dönen 445 hata kodu.
-* Tek bir denylisted IP adresinden kaynaklanan isteklerde dönen özel engelleme sayfası `/usr/share/nginx/html/block.html` ve 445 hata kodu.
+* [Değiştirilmiş](#customizing-sample-blocking-page) örnek Wallarm engelleme sayfası `/opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html` ve hata kodu 445; istek filtering node tarafından engelleme veya güvenli engelleme modunda engellenirse döndürülür.
+* Özel engelleme sayfası `/usr/share/nginx/html/block.html` ve hata kodu 445; istek denylist’e alınmış herhangi bir IP adresinden gelmişse döndürülür.
 
-#### NGINX Yapılandırma Dosyası
+#### NGINX yapılandırma dosyası
 
 ```bash
 wallarm_block_page &/opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html response_code=445 type=attack;
 wallarm_block_page &/usr/share/nginx/html/block.html response_code=445 type=acl_ip,acl_source;
 ```
 
-Ayarların Docker konteynerine uygulanabilmesi için, uygun ayarları içeren NGINX yapılandırma dosyasının, `wallarm_blocked_renamed.html` ve `block.html` dosyaları ile birlikte konteynere mount edilmesi gerekir. [Konteyneri yapılandırma dosyası mount edilerek çalıştırmak →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
+Ayarları Docker container’a uygulamak için, uygun ayarlara sahip NGINX yapılandırma dosyası `wallarm_blocked_renamed.html` ve `block.html` dosyalarıyla birlikte container’a mount edilmelidir. [Yapılandırma dosyasını mount ederek container’ı çalıştırma →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
 
-#### Ingress Açıklamaları
+<a name="ingress-annotations"></a>
+#### Ingress annotations
 
-Ingilizce orijinal metindeki gibi:
+Ingress annotation’ı eklemeden önce:
+
+1. Engellenen saldırılar için `wallarm_blocked_renamed.html` ve denylist’teki IP’lerden engellenen istekler için `wallarm_blocked_renamed-2.html` dosyalarınızı [hazırlayın](#copy).
+1. Dosyalardan [ConfigMap oluşturun](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files):
+
+    ```
+    kubectl -n <CONTROLLER_NAMESPACE> create configmap customized-pages --from-file=wallarm_blocked_renamed.html --from-file=wallarm_blocked_renamed-2.html
+    ```
+
+1. Oluşturulan ConfigMap’i Wallarm Ingress controller’ın bulunduğu pod’a [mount etmek]((https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap)) için aşağıdakileri yapın:
+
+    * Ingress chart’ı dağıtmak için kullandığınız values.yaml’ı güncelleyin:
+
+        ```
+        controller:
+            wallarm:
+            <...>
+            # -- Denetleyici ana container'ına ek volumeMount'lar.
+            extraVolumeMounts:
+            - name: custom-block-pages
+              mountPath: /usr/share/nginx/blockpages
+            # -- Denetleyici pod'una ek volume'lar.
+            extraVolumes:
+            - name: custom-block-pages
+              configMap:
+              name: customized-pages
+            <...>
+        ```
+
+    * Değişiklikleri controller sürümünüze uygulayın:
+
+        ```
+        helm -n <CONTROLLER_NAMESPACE> upgrade <CHART-RELEASE-NAME> wallarm/wallarm-ingress --reuse-values -f values.yaml
+        ```
+        
+        !!! info "Mount edilen ConfigMap için dizin"
+            ConfigMap’i mount etmek için kullanılan dizindeki mevcut dosyalar silinebileceğinden, ConfigMap aracılığıyla mount edilen dosyalar için yeni bir dizin oluşturmanız önerilir.
+
+Ingress annotations:
 
 ```bash
 kubectl -n <INGRESS_NAMESPACE> annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-block-page="&/usr/share/nginx/blockpages/wallarm_blocked_renamed.html response_code=445 type=attack;&/usr/share/nginx/blockpages/wallarm_blocked_renamed-2.html response_code=445 type=acl_ip,acl_source"
 ```
 
-#### Pod Açıklamaları (Sidecar Controller kullanılıyorsa)
+#### Pod annotations (Sidecar controller kullanılıyorsa)
 
-Engelleme sayfası, `sidecar.wallarm.io/wallarm-block-page` [annotation](../../installation/kubernetes/sidecar-proxy/pod-annotations.md) kullanılarak pod bazında yapılandırılabilir, örneğin:
+Engelleme sayfası, `sidecar.wallarm.io/wallarm-block-page` [annotation](../../installation/kubernetes/sidecar-proxy/pod-annotations.md) kullanılarak pod bazında yapılandırılabilir, örn.:
 
 ```yaml hl_lines="18"
 apiVersion: apps/v1
@@ -456,29 +498,31 @@ spec:
               containerPort: 80
 ```
 
-### İstemci Yönlendirmesi için URL
+<a name="url-for-the-client-redirection"></a>
+### İstemci yönlendirmesi için URL
 
-Bu örnek, filtreleme düğümünün [denylisted](../../user-guides/ip-lists/overview.md) ülkeler, bölgeler veya veri merkezlerinden kaynaklanan istekleri engellediğinde, istemciyi `host/err445` sayfasına yönlendirmek için ayarları gösterir.
+Bu örnek, istek denylist’teki ülke, bölge veya veri merkezlerinden gelmişse filtering node’un istemciyi `host/err445` sayfasına yönlendirmesi için ayarları gösterir.
 
-#### NGINX Yapılandırma Dosyası
+#### NGINX yapılandırma dosyası
 
 ```bash
 wallarm_block_page /err445 type=acl_source;
 ```
 
-Ayarların Docker konteynerine uygulanabilmesi için, uygun ayarları içeren NGINX yapılandırma dosyasının konteynere mount edilmesi gerekir. [Konteyneri yapılandırma dosyası mount edilerek çalıştırmak →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
+Ayarları Docker container’a uygulamak için, uygun ayarlara sahip NGINX yapılandırma dosyası container’a mount edilmelidir. [Yapılandırma dosyasını mount ederek container’ı çalıştırma →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
 
-#### Ingress Açıklamaları
+#### Ingress annotations
 
 ```bash
 kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page="/err445 type=acl_source"
 ```
 
+<a name="named-nginx-location"></a>
 ### İsimlendirilmiş NGINX `location`
 
-Bu örnek, engellenme veya safe blocking [mode](../configure-wallarm-mode.md), tekil IP/alt ağ veya ülkeler, bölgeler veya veri merkezlerinden kaynaklı olsun fark etmeksizin, istemciye `The page is blocked` mesajını ve 445 hata kodunu dönecek ayarları gösterir.
+Bu örnek, engelleme nedeni ne olursa olsun (engelleme veya güvenli engelleme modu, kaynağın tek IP / alt ağ / ülke veya bölge / veri merkezi olarak denylist’e alınması), istemciye `The page is blocked` mesajı ve 445 hata kodu döndürülmesi için ayarları gösterir.
 
-#### NGINX Yapılandırma Dosyası
+#### NGINX yapılandırma dosyası
 
 ```bash
 wallarm_block_page @block type=attack,acl_ip,acl_source;
@@ -487,21 +531,22 @@ location @block {
 }
 ```
 
-Ayarların Docker konteynerine uygulanabilmesi için, uygun ayarları içeren NGINX yapılandırma dosyasının konteynere mount edilmesi gerekir. [Konteyneri yapılandırma dosyası mount edilerek çalıştırmak →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
+Ayarları Docker container’a uygulamak için, uygun ayarlara sahip NGINX yapılandırma dosyası container’a mount edilmelidir. [Yapılandırma dosyasını mount ederek container’ı çalıştırma →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
 
-#### Ingress Açıklamaları
+#### Ingress annotations
 
 ```bash
 kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/server-snippet="location @block {return 445 'The page is blocked';}"
 kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page="@block type=attack,acl_ip,acl_source"
 ```
 
-### Değişken ve Hata Kodu
+<a name="variable-and-error-code"></a>
+### Değişken ve hata kodu
 
-Bu yapılandırma, isteğin tek bir IP veya alt ağ şeklinde denylisted kaynaklardan gelmesi durumunda istemciye döndürülür. Wallarm düğümü, 445 hata kodunu döner ve blok edilen sayfayı, `User-Agent` başlık değerine bağlı içeriğe göre döner:
+Bu yapılandırma, istek tek bir IP veya alt ağ olarak denylist’e alınmış bir kaynaktan gelmişse istemciye döndürülür. Wallarm node’u 445 kodunu ve içeriği `User-Agent` başlık değerine bağlı olan engelleme sayfasını döndürür:
 
-* Varsayılan olarak, [özelleştirilmiş](#customizing-sample-blocking-page) örnek Wallarm engelleme sayfası `/opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html` döner. Engelleme sayfası kodunda NGINX değişkenleri kullanıldığı için, bu sayfa `wallarm_block_page_add_dynamic_path` yönergesi ile başlatılmalıdır.
-* Firefox kullanıcıları için — `/usr/share/nginx/html/block_page_firefox.html` (Wallarm Ingress denetleyicisi kullanılırsa, özel engelleme sayfası dosyaları için ayrı bir dizin oluşturulması önerilir, örn. `/usr/custom-block-pages/block_page_firefox.html`):
+* Varsayılan olarak, [değiştirilmiş](#customizing-sample-blocking-page) örnek Wallarm engelleme sayfası `/opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html` döndürülür. NGINX değişkenleri engelleme sayfası kodunda kullanıldığından, bu sayfa `wallarm_block_page_add_dynamic_path` yönergesi aracılığıyla başlatılmalıdır.
+* Firefox kullanıcıları için — `/usr/share/nginx/html/block_page_firefox.html` (Wallarm Ingress controller’ı dağıtıyorsanız, özel engelleme sayfası dosyaları için ayrı bir dizin oluşturmanız önerilir, örn. `/usr/custom-block-pages/block_page_firefox.html`):
 
     ```bash
     You are blocked!
@@ -511,16 +556,16 @@ Bu yapılandırma, isteğin tek bir IP veya alt ağ şeklinde denylisted kaynakl
     UUID ${request_id}
     ```
 
-    Engelleme sayfası kodunda NGINX değişkenleri kullanıldığı için, bu sayfa `wallarm_block_page_add_dynamic_path` yönergesi ile başlatılmalıdır.
-* Chrome kullanıcıları için — `/usr/share/nginx/html/block_page_chrome.html` (Wallarm Ingress denetleyicisi kullanılırsa, özel engelleme sayfası dosyaları için ayrı bir dizin oluşturulması önerilir, örn. `/usr/custom-block-pages/block_page_chrome.html`):
+    NGINX değişkenleri engelleme sayfası kodunda kullanıldığından, bu sayfa `wallarm_block_page_add_dynamic_path` yönergesi aracılığıyla başlatılmalıdır.
+* Chrome kullanıcıları için — `/usr/share/nginx/html/block_page_chrome.html` (Wallarm Ingress controller’ı dağıtıyorsanız, özel engelleme sayfası dosyaları için ayrı bir dizin oluşturmanız önerilir, örn. `/usr/custom-block-pages/block_page_chrome.html`):
 
     ```bash
     You are blocked!
     ```
 
-    Engelleme sayfası kodunda NGINX değişkenleri kullanılmadığından, bu sayfa başlatılmamalıdır.
+    NGINX değişkenleri engelleme sayfası kodunda KULLANILMADIĞINDAN, bu sayfa BAŞLATILMAMALIDIR.
 
-#### NGINX Yapılandırma Dosyası
+#### NGINX yapılandırma dosyası
 
 ```bash
 wallarm_block_page_add_dynamic_path /usr/share/nginx/html/block_page_firefox.html /opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html;
@@ -534,21 +579,21 @@ map $http_user_agent $block_page {
 wallarm_block_page $block_page response_code=445 type=acl_ip;
 ```
 
-Ayarların Docker konteynerine uygulanabilmesi için, uygun ayarları içeren NGINX yapılandırma dosyasının, `wallarm_blocked_renamed.html`, `block_page_firefox.html` ve `block_page_chrome.html` dosyaları ile birlikte konteynere mount edilmesi gerekir. [Konteyneri yapılandırma dosyası mount edilerek çalıştırmak →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
+Ayarları Docker container’a uygulamak için, uygun ayarlara sahip NGINX yapılandırma dosyası `wallarm_blocked_renamed.html`, `block_page_firefox.html` ve `block_page_chrome.html` dosyalarıyla birlikte container’a mount edilmelidir. [Yapılandırma dosyasını mount ederek container’ı çalıştırma →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
 
-#### Ingress Denetleyicisi
+#### Ingress controller
 
-1. Yayınlanan Helm chart’ına [`helm upgrade`](https://helm.sh/docs/helm/helm_upgrade/) komutu kullanılarak `controller.config.http-snippet` parametresini aktarın:
+1. Dağıtılan Helm chart’a [`helm upgrade`](https://helm.sh/docs/helm/helm_upgrade/) komutunu kullanarak `controller.config.http-snippet` parametresini geçin:
 
     ```bash
     helm upgrade --reuse-values --set controller.config.http-snippet='wallarm_block_page_add_dynamic_path /usr/custom-block-pages/block_page_firefox.html /opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html; map $http_user_agent $block_page { "~Firefox" &/usr/custom-block-pages/block_page_firefox.html; "~Chrome" &/usr/custom-block-pages/block_page_chrome.html; default &/opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html;}' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
-2. `wallarm_blocked_renamed.html`, `block_page_firefox.html` ve `block_page_chrome.html` dosyalarından ConfigMap oluşturun: [Create ConfigMap from the files](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files).
-3. Oluşturulan ConfigMap’i Wallarm Ingress denetleyicisinin bulunduğu pod’a mount edin. Bunun için, lütfen ilgili Wallarm Ingress denetleyicisine ait Deployment nesnesini [talimatlar](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap) doğrultusunda güncelleyin.
+2. `wallarm_blocked_renamed.html`, `block_page_firefox.html` ve `block_page_chrome.html` dosyalarından [ConfigMap oluşturun](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files).
+3. Oluşturulan ConfigMap’i Wallarm Ingress controller’ın bulunduğu pod’a mount edin. Bunun için, Wallarm Ingress controller’a karşılık gelen Deployment nesnesini [talimatları](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap) izleyerek güncelleyin.
 
-    !!! info "Mount Edilen ConfigMap için Dizin"
-        ConfigMap ile mount edilen dizindeki mevcut dosyalar silinebilir, bu yüzden ConfigMap ile mount edilen dosyalar için yeni bir dizin oluşturulması önerilir.
-4. Aşağıdaki açıklamayı Ingress’e ekleyin:
+    !!! info "Mount edilen ConfigMap için dizin"
+        ConfigMap’i mount etmek için kullanılan dizindeki mevcut dosyalar silinebileceğinden, ConfigMap aracılığıyla mount edilen dosyalar için yeni bir dizin oluşturmanız önerilir.
+4. Aşağıdaki annotation’ı Ingress’e ekleyin:
 
     ```bash
     kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page='$block_page response_code=445 type=acl_ip'

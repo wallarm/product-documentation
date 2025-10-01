@@ -1,9 +1,9 @@
-!!! info "If you deploy several Wallarm nodes"
-    Ortamınıza dağıtılan tüm Wallarm node'ları **aynı sürümlerde** olmalıdır. Ayrı sunuculara kurulu postanalytics modülleri de **aynı sürümlerde** olmalıdır.
+!!! info "Birden fazla Wallarm düğümü dağıtırsanız"
+    Ortamınıza dağıtılan tüm Wallarm düğümleri **aynı sürümlerde** olmalıdır. Ayrı sunuculara kurulan postanalytics modülleri de **aynı sürümlerde** olmalıdır.
 
-    Ek node kurulmadan önce, lütfen sürümünün zaten dağıtılmış modüllerin sürümüyle uyumlu olduğundan emin olun. Eğer dağıtılmış modül sürümü [deprecated or will be deprecated soon (`4.0` or lower)][versioning-policy] ise, tüm modülleri en son sürüme yükseltin.
+    Ek düğümü kurmadan önce, sürümünün halihazırda dağıtılmış modüllerin sürümüyle eşleştiğinden emin olun. Dağıtılan modül sürümü [kullanımdan kaldırılmışsa veya yakında kaldırılacaksa (`4.0` veya daha düşük)][versioning-policy], tüm modülleri en son sürüme yükseltin.
 
-    Kurulu sürümü kontrol etmek için, konteyner içinde aşağıdaki komutu çalıştırın:
+    Yüklü sürümü kontrol etmek için, konteyner içinde aşağıdaki komutu çalıştırın:
 
     ```bash
     apt list wallarm-node

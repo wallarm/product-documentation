@@ -1,51 +1,31 @@
-[link-ssh-keys]:            https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html#create-a-key-pair
-[link-sg]:                  https://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html#create-a-base-security-group
-[link-launch-instance]:     https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html#ec2-launch-instance
+# AWS AMI ile NGINX Düğümünün Dağıtımı
 
-[anchor1]:      #2-create-a-security-group
-[anchor2]:      #1-create-a-pair-of-ssh-keys-in-aws
+Bu makale, Wallarm [NGINX düğümünün][nginx-native-node] AWS üzerinde [inline][inline-docs] olarak [resmi Amazon Machine Image (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD) kullanılarak dağıtılması için talimatlar sağlar.
 
-[img-create-sg]:                ../../../../images/installation-ami/common/create_sg.png
-[versioning-policy]:            ../../../../updating-migrating/versioning-policy.md#version-list
-[img-wl-console-users]:         ../../../../images/check-user-no-2fa.png
-[img-create-wallarm-node]:      ../../../../images/user-guides/nodes/create-cloud-node.png
-[deployment-platform-docs]:     ../../../../installation/supported-deployment-options.md
-[node-token]:                       ../../../../quickstart/getting-started.md#deploy-the-wallarm-filtering-node
-[api-token]:                        ../../../../user-guides/settings/api-tokens.md
-[wallarm-token-types]:              ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[platform]:                         ../../../../installation/supported-deployment-options.md
-[ptrav-attack-docs]:                ../../../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../../../images/admin-guides/test-attacks-quickstart.png
-[wallarm-nginx-directives]:         ../../../../admin-en/configure-parameters-en.md
-[autoscaling-docs]:                 ../../../../admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
-[real-ip-docs]:                     ../../../../admin-en/using-proxy-or-balancer-en.md
-[allocate-memory-docs]:             ../../../../admin-en/configuration-guides/allocate-resources-for-node.md
-[limiting-request-processing]:      ../../../../user-guides/rules/configure-overlimit-res-detection.md
-[logs-docs]:                        ../../../../admin-en/configure-logging.md
-[wallarm-mode]:                     ../../../../admin-en/configure-wallarm-mode.md
-[wallarm-api-via-proxy]:            ../../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-[img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
-[cloud-init-spec]:                  ../../../cloud-platforms/cloud-init.md
-[wallarm_force_directive]:          ../../../../admin-en/configure-parameters-en.md#wallarm_force
-[ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
-[api-spec-enforcement-docs]:        ../../../../api-specification-enforcement/overview.md
-[link-wallarm-health-check]:        ../../../../admin-en/uat-checklist-en.md
+İmaj, Debian ve Debian'ın sağladığı NGINX sürümü temel alınarak hazırlanmıştır. Şu anda en güncel imaj Debian 12 kullanır ve NGINX'in kararlı 1.22.1 sürümünü içerir.
 
-# Amazon Machine Image'den Wallarm Dağıtma
+AWS üzerinde AMI'den Wallarm düğümünün dağıtılması genellikle yaklaşık 10 dakika sürer.
 
-Bu makale, Wallarm'u AWS üzerinde satır içi (in-line) resmi Amazon Machine Image (AMI) kullanarak dağıtmak için yönergeler sunmaktadır.
+![!][aws-ami-traffic-flow]
 
-## Kullanım Durumları
+!!! info "Güvenlik notu"
+    Bu çözüm, AWS güvenlik en iyi uygulamalarını takip edecek şekilde tasarlanmıştır. Dağıtım için AWS root hesabını kullanmaktan kaçınmanızı öneririz. Bunun yerine, yalnızca gerekli izinlere sahip IAM kullanıcılarını veya rolleri kullanın.
+
+    Dağıtım süreci, Wallarm bileşenlerini sağlamak ve işletmek için gereken asgari erişimi veren asgari ayrıcalık ilkesini esas alır.
+
+Bu dağıtım için AWS altyapı maliyetlerini tahmin etmeye yönelik rehberlik için [AWS'de Wallarm'ın Dağıtımı için Maliyet Rehberi][aws-costs] sayfasına bakın.
+
+## Kullanım senaryoları
 
 --8<-- "../include/waf/installation/cloud-platforms/ami-use-cases.md"
 
 --8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami-latest.md"
 
-## 6. Örneği Wallarm Cloud'a Bağlama
+### 4. Instance'ı Wallarm Cloud'a bağlayın
 
-Bulut örneğinin düğümü, [cloud-init.py][cloud-init-spec] betiği aracılığıyla Cloud'a bağlanır. Bu betik, sağlanan bir token kullanarak düğümü Wallarm Cloud'a kaydeder, küresel olarak izleme [moduna][wallarm-mode] ayarlar ve düğümü, `--proxy-pass` bayrağı temelinde yasal trafiği iletecek şekilde yapılandırır. NGINX'in yeniden başlatılması, kurulumu tamamlar.
+Instance'ın düğümü, [cloud-init.py][cloud-init-spec] betiği aracılığıyla Wallarm Cloud'a bağlanır. Bu betik, sağlanan bir token kullanarak düğümü Wallarm Cloud'a kaydeder, genel olarak Monitoring [mode]'a ayarlar ve `--proxy-pass` bayrağına göre düğümün meşru trafiği iletmesini yapılandırır.
 
-Cloud imajından oluşturulan örnekte `cloud-init.py` betiğini aşağıdaki şekilde çalıştırın:
+Bulut imajından oluşturulan instance üzerinde `cloud-init.py` betiğini şu şekilde çalıştırın:
 
 === "US Cloud"
     ``` bash
@@ -56,19 +36,36 @@ Cloud imajından oluşturulan örnekte `cloud-init.py` betiğini aşağıdaki ş
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring --proxy-pass <PROXY_ADDRESS>
     ```
 
-* `WALLARM_LABELS='group=<GROUP>'` ifadesi, mevcutsa var olan ya da mevcut değilse oluşturulacak bir düğüm grubu adı belirler. Bu, yalnızca bir API token kullanıldığında uygulanır.
-* `<TOKEN>`, kopyalanan token değeridir.
-* `<PROXY_ADDRESS>`, Wallarm düğümünün yasal trafiği iletmek üzere proxy yapacağı adrestir. Bu, mimarinize bağlı olarak bir uygulama örneğinin IP'si, yük dengeleyici veya DNS adı gibi bir değer olabilir.
+* `WALLARM_LABELS='group=<GROUP>'` bir düğüm grup adını ayarlar (mevcutsa kullanılır, mevcut değilse oluşturulur). Yalnızca bir API token'ı kullanıyorsanız uygulanır.
+* `<TOKEN>` kopyalanan token değeridir.
+* `<PROXY_ADDRESS>`, Wallarm düğümünün meşru trafiği proxy'lediği adrestir. Mimarinize bağlı olarak bir uygulama instance'ının IP'si, bir yük dengeleyici veya bir DNS adı olabilir; belirtilmiş `http` veya `https` protokolü ile, örn. `http://example.com` veya `https://192.0.2.1`. [Proxy adres biçimi hakkında daha fazla bilgi edinin](https://nginx.org/en/docs/http/ngx_http_proxy_module.html?&_ga=2.23729850.1231698478.1756133814-1504295816.1756133814#proxy_pass).
 
-## 7. Wallarm Örneğine Trafik Gönderimini Yapılandırma
+### 5. Trafiğin Wallarm instance'ına gönderilmesini yapılandırın
 
 --8<-- "../include/waf/installation/sending-traffic-to-node-inline.md"
 
-## 8. Wallarm'un Çalışmasını Test Etme
+### 6. Wallarm'ın çalışmasını test edin
 
 --8<-- "../include/waf/installation/cloud-platforms/test-operation-inline.md"
 
-## 9. Dağıtılan Çözümü İnce Ayar Yapma
+## Düğüm çalışmasını günlükler ve metriklerle doğrulama
+
+Düğümün trafiği algıladığını doğrulamak için metrikleri ve günlükleri aşağıdaki gibi kontrol edebilirsiniz:
+
+* Düğümün sunduğu Prometheus metriklerini kontrol edin:
+
+    ```
+    curl http://127.0.0.1:9001/metrics
+    ```
+
+* Gelen istekleri ve hataları incelemek için NGINX günlüklerini gözden geçirin:
+
+    * Erişim günlükleri: `/var/log/nginx/access.log`
+    * Hata günlükleri: `/var/log/nginx/error.log`
+
+* Wallarm Cloud'a gönderilen veriler, tespit edilen saldırılar ve daha fazlası gibi ayrıntıları içeren [Wallarm'a özgü günlükleri][wallarm-logs] gözden geçirin. Bu günlükler `/opt/wallarm/var/log/wallarm` dizininde bulunur.
+
+## Dağıtılan çözüme ince ayar yapın
 
 --8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
 

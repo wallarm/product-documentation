@@ -1,80 +1,95 @@
 # Brute Force Koruması
 
-Brute force saldırısı, Wallarm'ın varsayılan yapılandırmasında tespit edilmeyen saldırı türlerinden biridir; bu kıluzda açıklandığı şekilde tespiti uygun şekilde yapılandırılmalıdır.
+Kaba kuvvet (brute force) saldırısı, Wallarm tarafından kutudan çıktığı gibi tespit edilmeyen saldırı türlerinden biridir; bu kılavuzda açıklandığı şekilde tespitinin uygun şekilde yapılandırılması gerekir.
 
-[Düzenli brute force saldırıları](../../attacks-vulns-list.md#brute-force-attack) şifre brute forcing, oturum tanımlayıcı brute forcing ve credential stuffing saldırılarını içerir. Bu saldırılar, belirli bir URI'ye sınırlı bir zaman aralığı içerisinde farklı zorlanmış parametre değerleri ile gönderilen çok sayıda istekle karakterize edilir.
+[Düzenli (yaygın) brute force saldırıları](../../attacks-vulns-list.md#brute-force-attack), parola brute forcing, oturum tanımlayıcısı brute forcing ve kimlik bilgisi doldurma (credential stuffing) içerir. Bu saldırılar, sınırlı bir zaman dilimi içinde tipik bir URI’ye farklı zorlanmış parametre değerleriyle gönderilen çok sayıda istekle karakterize edilir.
 
-Şunu unutmayın:
+## Yapılandırma yöntemi
 
-* Bu makalede açıklanan brute force koruması, Wallarm tarafından sağlanan yük kontrol yöntemlerinden biridir. Alternatif olarak, [rate limiting](../../user-guides/rules/rate-limiting.md) uygulayabilirsiniz. Gelen trafiği yavaşlatmak için rate limiting'i, saldırganı tamamen engellemek için ise brute force korumasını kullanın.
-* Brute force korumasının yanı sıra, benzer şekilde [forced browsing](protecting-against-forcedbrowsing.md) korumasını da yapılandırabilirsiniz.
+Abonelik planınıza bağlı olarak, brute force koruması için aşağıdaki yapılandırma yöntemlerinden biri kullanılabilir:
 
-## Yapılandırma
+* Mitigation controls ([Advanced API Security](../../about-wallarm/subscription-plans.md#core-subscription-plans) aboneliği)
+* Triggers ([Cloud Native WAAP](../../about-wallarm/subscription-plans.md#core-subscription-plans) aboneliği)
 
-Brute force korumasının nasıl yapılandırılacağını öğrenmek için aşağıdaki örneğe göz atın.
+## Azaltma kontrollerine dayalı koruma <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-Diyelim ki, kötü niyetli aktörlerin `rent-car` uygulamanıza doğrulama uç noktaları aracılığıyla yetkili erişim elde etmek için çeşitli şifreleri denemelerini engellemek istiyorsunuz (brute force saldırısı). Bu korumayı sağlamak için, doğrulama uç noktalarınızda zaman aralığı başına istek sayısını sınırlayabilir ve bu limiti aşan IP'leri engelleyecek şekilde ayarlayabilirsiniz:
+Wallarm'ın Advanced API Security [aboneliği](../../about-wallarm/subscription-plans.md#core-subscription-plans), brute force saldırılarına karşı koruma dahil olmak üzere gelişmiş [enumeration attack protection](../../api-protection/enumeration-attack-protection.md) sağlar.
 
-1. Wallarm Console'u açın → **Triggers** ve tetikleyici oluşturma penceresini açın.
+## Tetikleyiciye dayalı koruma
+
+Bu bölümde açıklanan brute force koruması, Wallarm tarafından sağlanan temel yük kontrolü yollarından biridir. Alternatif olarak [hız sınırlandırma](../../user-guides/rules/rate-limiting.md) uygulayabilirsiniz. Gelen trafiği yavaşlatmak için hız sınırlandırmayı, saldırganı tamamen engellemek için brute force korumasını kullanın.
+
+Temel brute force korumasına ek olarak, benzer şekilde [zorla gezinme](protecting-against-forcedbrowsing.md) için de temel koruma yapılandırabilirsiniz.
+
+### Yapılandırma
+
+Brute force korumasını tetikleyicilerle nasıl yapılandıracağınızı öğrenmek için aşağıdaki örneği inceleyin.
+
+Diyelim ki kötü niyetli aktörlerin `rent-car` uygulamanızın kimlik doğrulama uç noktaları üzerinden yetkili erişim elde etmek için çeşitli parolaları denemesini (brute force saldırısı) engellemek istiyorsunuz. Bu korumayı sağlamak için kimlik doğrulama uç noktalarınız için zaman aralığı başına istek sayısını sınırlayabilir ve bu sınırı aşan IP’leri engelleyecek şekilde ayarlayabilirsiniz:
+
+1. Wallarm Console → **Triggers**’ı açın ve tetikleyici oluşturma penceresini açın.
 1. **Brute force** koşulunu seçin.
-1. Aynı IP'den 30 saniyede 30 istek eşiğini ayarlayın.
+1. 30 saniyede aynı IP’den 30 istek eşiğini ayarlayın.
 
-    Bu değerlerin örnek değerler olduğunu unutmayın - kendi trafiğiniz için tetikleyici yapılandırırken, meşru kullanım istatistiklerini göz önünde bulundurarak bir eşik tanımlamalısınız.
+    Bunların örnek değerler olduğunu unutmayın - tetikleyiciyi kendi trafiğiniz için yapılandırırken, eşiği meşru kullanım istatistiklerinizi dikkate alarak tanımlamalısınız.
+    
+    !!! info "İzin verilen eşik zaman aralıkları"
+        Eşik zaman aralığını ayarlarken, seçilen birime bağlı olarak değer 30 saniyenin veya 10 dakikanın katı olmalıdır.
 
-1. **Application** filtresini `rent-car` olarak ayarlayın (uygulamanın Wallarm'da [kayıtlı](../../user-guides/settings/applications.md) olması gerekir).
-1. **URI** filtresini ekran görüntüsünde gösterildiği gibi ayarlayın, şunları içerecek şekilde:
+1. **Application** filtresini `rent-car` olarak ayarlayın (uygulama Wallarm’da [kayıtlı](../../user-guides/settings/applications.md) olmalıdır).
+1. **URI** filtresini ekrandaki ekran görüntüsünde gösterildiği gibi aşağıdakileri içerecek şekilde ayarlayın:
 
-    * Yol içinde `**` [joker karakter](../../user-guides/rules/rules.md#using-wildcards) kullanımı, "herhangi sayıda bileşen" anlamına gelir.
-    * İstek kısmında `.*login*` [düzenli ifade](../../user-guides/rules/rules.md#condition-type-regex) kullanımı, "uç nokta `login` içerir" demektir.
+    * Yolda “herhangi bir sayıda bileşen” anlamına gelen `**` [joker karakter (wildcard)](../../user-guides/rules/rules.md#using-wildcards)
+    * İstek kısmında “uç noktada `login` içerir” anlamına gelen `.*login*` [düzenli ifade](../../user-guides/rules/rules.md#condition-type-regex)
 
-        Birleştirildiğinde, örneğin şunları kapsar:
+        Birlikte, örneğin şunları kapsar:
         `https://rent-car-example.com/users/login`
         `https://rentappc-example.com/usrs/us/p-login/sq`
-        (tüm tetikleyicinin çalışması için, alan adlarının seçilen uygulamaya [bağlanmış](../../user-guides/settings/applications.md#automatic-application-identification) olması gerektiğini unutmayın)
+        (tüm tetikleyicinin çalışması için alan adlarının seçili uygulamaya [bağlı](../../user-guides/settings/applications.md#automatic-application-identification) olması gerektiğini unutmayın)
 
-        ![Brute force tetikleyici örneği](../../images/user-guides/triggers/trigger-example6-4.8.png)
+        ![Kaba kuvvet tetikleyici örneği](../../images/user-guides/triggers/trigger-example6-4.8.png)
     
-    * Bu örnekte ihtiyacımız olan deseni yapılandırmanın dışında, belirli URI'leri girebilir veya herhangi bir uç noktada çalışması için hiçbir URI belirtmeden tetikleyici ayarlayabilirsiniz.
-    * İç içe URI'ler kullanıyorsanız, [tetikleyici işleme önceliklerini](../../user-guides/triggers/triggers.md#trigger-processing-priorities) göz önünde bulundurun.
+    * Bu örnekte ihtiyacımız olan deseni yapılandırmanın yanı sıra, belirli URI’ler girebilir veya herhangi bir URI belirtmeyerek tetikleyicinin herhangi bir uç noktada çalışmasını sağlayabilirsiniz.
+    * İç içe URI’ler kullanıyorsanız, [tetikleyici işleme önceliklerini](../../user-guides/triggers/triggers.md#trigger-processing-priorities) dikkate alın.
 
-1. Bu durumda **IP** filtresini kullanmayın, ancak yalnızca belirli IP'lerden gelen isteklere tepki vermek için kullanabileceğinizi unutmayın.
-1. **Denylist IP address** - `Block for 1 hour` tetikleyici tepkisini seçin. Eşiğin aşılmasının ardından, Wallarm, kaynak IP'yi [denylist](../../user-guides/ip-lists/overview.md) listesine ekleyecek ve bundan sonraki tüm istekleri engelleyecektir.
+1. Bu durumda **IP** filtresini kullanmayın, ancak yalnızca belirli IP’lerden gelen isteklere tepki verecek tetikleyiciler ayarlamak için bunu kullanabileceğinizi bilin.
+1. **Denylist IP address** - `Block for 1 hour` tetikleyici tepkisini seçin. Eşik aşıldıktan sonra Wallarm kaynak IP’yi [denylist](../../user-guides/ip-lists/overview.md)’e ekleyecek ve ondan gelen tüm sonraki istekleri engelleyecektir.
 
-    Not: Bot IP'si brute force koruması tarafından denylist'e yerleştirilse bile, varsayılan olarak Wallarm, buradan kaynaklanan engellenen isteklerle ilgili istatistikleri toplar ve [gösterir](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips).
+    Brute force koruması tarafından bot IP’si denylist’e yerleştirilmiş olsa bile, varsayılan olarak Wallarm ondan gelen engellenen isteklere ilişkin istatistikleri toplar ve [görüntüler](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips).
 
-1. **Mark as brute force** tetikleyici tepkisini seçin. Eşiğin aşılmasının ardından alınan istekler brute force saldırısı olarak işaretlenecek ve Wallarm Console'un **Attacks** bölümünde görüntülenecektir. Bazı durumlarda, bu tepkiyi yalnızca saldırı hakkında bilgi almak için kullanabilirsiniz, ancak hiçbir şeyi engellemek için değil.
-1. Tetikleyiciyi kaydedin ve [Cloud and node synchronization completion](../configure-cloud-node-synchronization-en.md) işleminin tamamlanmasını bekleyin (genellikle 2-4 dakika sürer).
+1. **Mark as brute force** tetikleyici tepkisini seçin. Eşik aşıldıktan sonra alınan istekler brute force saldırısı olarak işaretlenecek ve Wallarm Console’un **Attacks** bölümünde görüntülenecektir. Bazı durumlarda, bu tepkiyi tek başına kullanarak saldırı hakkında bilgi edinebilir, ancak hiçbir şeyi engellemezsiniz.
+1. Tetikleyiciyi kaydedin ve [Bulut ve düğüm senkronizasyonunun tamamlanmasını](../configure-cloud-node-synchronization-en.md) bekleyin (genellikle 2-4 dakika sürer).
 
-Brute force koruması için birkaç tetikleyici yapılandırabilirsiniz.
+Brute force koruması için birden fazla tetikleyici yapılandırabilirsiniz.
 
-## Test Etme
+### Test
 
-!!! info "Ortamınızda Test Etme"
-    Ortamınızda **Brute force** tetikleyiciyi test etmek için, aşağıdaki tetikleyicide ve isteklerde, alan adını herhangi bir genel alan adı (ör. `example.com`) ile değiştirin. Kendi [uygulamanızı](../../user-guides/settings/applications.md) ayarlayın ve alan adını ona bağlayın.
+!!! info "Ortamınızda test etme"
+    **Brute force** tetikleyicisini ortamınızda test etmek için, aşağıdaki tetikleyicide ve isteklerde alan adını herhangi bir genel alan adıyla (ör. `example.com`) değiştirin. Kendi [uygulamanızı](../../user-guides/settings/applications.md) ayarlayın ve alan adını ona bağlayın.
 
-[Yapılandırma](#configuring) bölümünde anlatılan tetikleyiciyi test etmek için:
+[**Yapılandırma**](#configuring) bölümünde açıklanan tetikleyiciyi test etmek için:
 
-1. `rent-car-example.com` alan adının, Wallarm'a kayıtlı `rent-car` uygulamasının bir parçası olarak [tanımlandığından](../../user-guides/settings/applications.md#automatic-application-identification) emin olun.
-1. Bu alan adının korunan uç noktasına, yapılandırılan eşiği aşan sayıda istek gönderin. Örneğin, `rent-car-example.com/users/login` adresine 50 istek gönderin:
+1. `rent-car-example.com` alan adının, Wallarm’da kayıtlı `rent-car` uygulamasının bir parçası olarak [tanımlandığından](../../user-guides/settings/applications.md#automatic-application-identification) emin olun.
+1. Bu alan adının korunan uç noktasına, yapılandırılan eşiği aşan sayıda istek gönderin. Örneğin, `rent-car-example.com/users/login` adresine 50 istek:
 
     ```bash
     for (( i=0 ; $i<51 ; i++ )) ; do curl https://rent-car-example.com/users/login ; done
     ```
-1. Wallarm Console'u açın → **IP lists** → **Denylist** ve kaynak IP adresinin engellendiğini kontrol edin.
-1. **Attacks** bölümünü açın ve isteklerin liste içinde brute force saldırısı olarak görüntülendiğini kontrol edin.
+1. Wallarm Console → **IP lists** → **Denylist**’i açın ve kaynak IP adresinin engellendiğini kontrol edin.
+1. **Attacks** bölümünü açın ve isteklerin listede bir brute force saldırısı olarak görüntülendiğini kontrol edin.
 
     ![Arayüzde brute force saldırısı](../../images/user-guides/events/brute-force-attack.png)
 
-    Görüntülenen istek sayısı, tetikleyici eşiğinin aşılmasından sonra gönderilen istek sayısıyla eşleşir ([davranışsal saldırıları tespit etme hakkında detaylar](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)). Eğer bu sayı 5'ten fazlaysa, istek örneklemesi uygulanır ve istek detayları yalnızca ilk 5 istek için görüntülenir ([istek örneklemesi hakkında ayrıntılar](../../user-guides/events/grouping-sampling.md#sampling-of-hits)).
+    Görüntülenen istek sayısı, tetikleyici eşiği aşıldıktan sonra gönderilen istek sayısına karşılık gelir ([davranışsal saldırıların tespiti hakkında daha fazla bilgi](../../attacks-vulns-list.md#attack-types)). Bu sayı 5’ten büyükse, istek örneklemesi uygulanır ve istek ayrıntıları yalnızca ilk 5 hit için görüntülenir ([istek örneklemesi hakkında daha fazla bilgi](../../user-guides/events/grouping-sampling.md#sampling-of-hits)).
 
-    Brute force saldırılarını aramak için `brute` filtresini kullanabilirsiniz. Tüm filtrelerin açıklaması [arama kullanımı talimatlarında](../../user-guides/search-and-filters/use-search.md) verilmiştir.
+    Brute force saldırılarını aramak için `brute` filtresini kullanabilirsiniz. Tüm filtreler [arama kullanımına ilişkin talimatlarda](../../user-guides/search-and-filters/use-search.md) açıklanmıştır.
 
-## Gereksinimler ve Kısıtlamalar
+### Gereksinimler ve kısıtlamalar
 
 **Gereksinimler**
 
-Kaynakları brute force saldırılarından korumak için gerçek istemci IP adresleri gereklidir. Eğer filtreleme düğümü bir proxy sunucusu veya yük dengeleyici arkasında dağıtılmışsa, gerçek istemci IP adreslerinin görüntülenmesi için [yapılandırın](../using-proxy-or-balancer-en.md).
+Kaynakları brute force saldırılarına karşı korumak için gerçek istemci IP adresleri gereklidir. Filtreleme düğümü bir proxy sunucusunun veya yük dengeleyicinin arkasına konuşlandırıldıysa, gerçek istemci IP adreslerini görüntülemek için [yapılandırın](../using-proxy-or-balancer-en.md).
 
 **Kısıtlamalar**
 
-Brute force saldırı belirtileri aranırken, Wallarm düğümleri yalnızca diğer saldırı türlerine ait belirtiler içermeyen HTTP isteklerini analiz eder.
+Brute force saldırısı belirtilerini ararken, Wallarm düğümleri yalnızca diğer saldırı türlerinin belirtilerini içermeyen HTTP isteklerini analiz eder.

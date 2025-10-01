@@ -1,23 +1,26 @@
-NGINX-Wallarm modülünün bulunduğu makinede, NGINX [configuration file](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) içerisinde, postanalytics modül sunucu adresini belirtin:
+NGINX-Wallarm modülünün bulunduğu makinede, NGINX [yapılandırma dosyasında](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) (genellikle `/etc/nginx/nginx.conf` konumunda), postanalytics modülü sunucu adresini belirtin:
 
 ```
-upstream wallarm_tarantool {
-    server <ip1>:3313 max_fails=0 fail_timeout=0 max_conns=1;
-    server <ip2>:3313 max_fails=0 fail_timeout=0 max_conns=1;
-    
-    keepalive 2;
+http {
+    # atlandı
+    upstream wallarm_wstore {
+        server <ip1>:3313 max_fails=0 fail_timeout=0 max_conns=1;
+        server <ip2>:3313 max_fails=0 fail_timeout=0 max_conns=1;
+        
+        keepalive 2;
     }
 
-    # omitted
+    wallarm_wstore_upstream wallarm_wstore;
 
-wallarm_tarantool_upstream wallarm_tarantool;
+    # atlandı
+}
 ```
 
-* `max_conns` değeri, gereksiz bağlantı oluşumunu önlemek için her bir upstream Tarantool sunucusu için belirtilmelidir.
-* `keepalive` değeri, Tarantool sunucularının sayısından düşük olmamalıdır.
-* `# wallarm_tarantool_upstream wallarm_tarantool;` dizesi varsayılan olarak yorumlanmıştır - lütfen `#` karakterini silin.
+- Aşırı bağlantıların oluşturulmasını önlemek için her bir upstream wstore sunucusu için `max_conns` değeri belirtilmelidir.
+- `keepalive` değeri wstore sunucularının sayısından düşük olmamalıdır.
+- `# wallarm_wstore_upstream wallarm_wstore;` dizesi varsayılan olarak yorum satırı olarak işaretlidir - lütfen `#` işaretini silin.
 
-Yapılandırma dosyası değiştirildikten sonra, NGINX-Wallarm modül sunucusundaki NGINX/NGINX Plus'ı yeniden başlatın:
+Yapılandırma dosyası değiştirildikten sonra, NGINX-Wallarm modülünün bulunduğu sunucuda NGINX/NGINX Plus'ı yeniden başlatın:
 
 === "Debian"
     ```bash
@@ -31,7 +34,7 @@ Yapılandırma dosyası değiştirildikten sonra, NGINX-Wallarm modül sunucusun
     ```bash
     sudo systemctl restart nginx
     ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+=== "AlmaLinux, Rocky Linux veya Oracle Linux 8.x"
     ```bash
     sudo systemctl restart nginx
     ```

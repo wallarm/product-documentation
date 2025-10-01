@@ -1,28 +1,28 @@
-# Failover Yöntemini Yapılandırma
+# Bir Failover Yönteminin Yapılandırılması
 
-Bir filtre düğümünü [reverse proxy](../glossary-en.md#reverse-proxy) olarak dağıtmak, filtre düğümünün yüksek kullanılabilirliğe sahip olmasını gerektirir. Filtre düğümünün arızalanması, örneğin güç kesintisi nedeniyle, web uygulamasının çalışmasını kısıtlar. Wallarm'ın yüksek kullanılabilirliğini sağlamak için bu bölümde açıklanan failover yöntemlerinden birinin kullanılmasını öneririz.
+Bir filtre düğümünü bir [ters proxy](../glossary-en.md#reverse-proxy) olarak dağıtmak, filtre düğümünün yüksek erişilebilir olmasını gerektirir. Örneğin elektrik kesintisi nedeniyle filtre düğümünün arızalanması, API'nin çalışmasını kısıtlar. Wallarm'ın yüksek erişilebilirliğini sağlamak için, bu bölümde açıklanan failover yöntemlerinden birini kullanmanız önerilir.
 
-Bir failover yöntemi, ana filtre düğümü arızalandığında trafiğin otomatik olarak yönlendirileceği ek düğümler ekler.
+Bir failover yöntemi, ana filtre düğümü arızalanırsa trafiğin otomatik olarak yönlendirileceği ek düğümler ekler.
 
-## Data Center Failover
+## Veri Merkezi Failover'ı
 
-Web uygulaması ve filtre düğümleri bir veri merkezindeyse, veri merkezinin "Failover IP" hizmetini kullanın.
+API'niz ve filtre düğümleriniz bir veri merkezindeyse, veri merkezinin "Failover IP" hizmetini kullanın
 
-## VRRP or CARP
+## VRRP veya CARP 
 
-Her filtre düğümünde, düğümlerin kullanılabilirliğini izleyen ve düğümler devre dışı kaldığında trafiği yönlendirmeye başlayan bir `keepalived` veya `ucarp` daemon'ı başlatın. Bu, her düğümde bir failover‑IP başlatarak ve trafiği DNS dengelemesiyle dağıtarak, trafik yük dengeleme için de kullanılabilecek standart bir yüksek kullanılabilirlik yöntemidir.
+Her filtre düğümünde, düğümlerin erişilebilirliğini izleyen ve düğümler devre dışı kalırsa trafiği iletmeye başlayan bir `keepalived` veya `ucarp` daemon'u başlatın. Bu, her düğümde bir failover‑IP başlatarak ve trafiği DNS dengelemesiyle dağıtarak trafik yük dengeleme için de kullanılabilen standart bir yüksek erişilebilirlik yöntemidir.
 
-!!! info "Working with NGINX Plus"
-    Wallarm, özel bir VRRP wrapper ile [NGINX Plus](https://www.nginx.com/products/nginx/) üzerinde çalışacak şekilde yapılandırılabilir.
+!!! info "NGINX Plus ile çalışma"
+    Wallarm, özel bir VRRP sarmalayıcı ile [NGINX Plus](https://www.nginx.com/products/nginx/) üzerinde çalışacak şekilde yapılandırılabilir.
 
-    CentOS ve Debian dahil olmak üzere çoğu Linux dağıtımında, bu yapıyı yükleyebilecek özel paketler bulunmaktadır.
+    CentOS ve Debian dahil çoğu Linux dağıtımı, bu derlemeyi kurabilen özel paketlere sahiptir.
     
-    NGINX Plus ile Wallarm kurulumu, all-in-one installer kullanılarak gerçekleştirilir, ayrıntılı talimatlar için [buraya](../installation/nginx/all-in-one.md) bakınız.
+    NGINX Plus ile Wallarm kurulumu hepsi bir arada yükleyici kullanılarak gerçekleştirilir, ayrıntılı talimatlar için [buraya](../installation/nginx/all-in-one.md) bakın.
 
-## Hardware L3 or L4 Load Balancer
+## Donanım L3 veya L4 Yük Dengeleyici
 
-Katman 3 veya Katman 4 yük dengeleyici, iyi bir yüksek kullanılabilirlik çözümüdür.
+Katman 3 veya katman 4 bir yük dengeleyici, iyi bir yüksek erişilebilirlik çözümüdür.
 
-## DNS Load Balancing
+## DNS Yük Dengeleme
 
-DNS ayarlarında birkaç IP adresi belirtin. Bu yöntem yük dengeleme amacı taşısa da, yüksek kullanılabilirlik yöntemi olarak da faydalı olabilir.
+DNS ayarlarında birden fazla IP adresi belirtin. Bu yöntem esasen yük dengelemeyi hedeflese de, yüksek erişilebilirlik yöntemi olarak da faydalı bulabilirsiniz.

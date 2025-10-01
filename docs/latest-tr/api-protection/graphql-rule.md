@@ -1,94 +1,112 @@
 [api-discovery-enable-link]:        ../api-discovery/setup.md#enable
 
-# GraphQL API Koruması <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# GraphQL API Koruması <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm, temel [WAAP](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) abonelik planı kapsamında olsa bile GraphQL [üzerinde](../user-guides/rules/request-processing.md#gql) düzenli saldırıları (SQLi, RCE, [vb.](../attacks-vulns-list.md)) tespit eder. Bununla birlikte, protokolün bazı özellikleri aşırı bilgi ifşası ve DoS ile ilişkili [GraphQL'e özgü](../attacks-vulns-list.md#graphql-attacks) saldırıların uygulanmasına olanak tanır. Bu belge, GraphQL istekleri için bir dizi sınır (GraphQL politikası) belirleyerek API'larınızı bu saldırılardan korumak için Wallarm'ın nasıl kullanılacağını anlatır.
+Wallarm, temel [WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) abonelik planında bile GraphQL içindeki düzenli saldırıları (SQLi, RCE, [vb.](../attacks-vulns-list.md)) [varsayılan olarak](../user-guides/rules/request-processing.md#gql) tespit eder. Ancak, protokolün bazı yönleri, aşırı bilgi ifşası ve DoS ile ilgili [GraphQL’e özgü](../attacks-vulns-list.md#graphql-attacks) saldırıların uygulanmasına izin verir. Bu belge, **GraphQL policy** (GraphQL istekleri için bir dizi limit) belirleyerek API’lerinizi bu saldırılardan korumak için Wallarm’ın nasıl kullanılacağını açıklar.
 
-Extended protection (gelişmiş koruma) niteliğinde olan GraphQL API Koruması, gelişmiş [API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) abonelik planının bir parçasıdır. Plan satın alındığında, korumayı başlatmak için kuruluşunuzun GraphQL politikasını **Detect GraphQL attacks** [kuralında](../user-guides/rules/rules.md) (node 4.10.4 ve üzeri gerekir) ayarlayın.
+Genişletilmiş koruma kapsamında, GraphQL API Koruması gelişmiş [API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) abonelik planının bir parçasıdır. Plan satın alındığında, korumayı **GraphQL API protection** [mitigation control](../about-wallarm/mitigation-controls-overview.md) içinde kuruluşunuzun GraphQL policy’sini belirleyerek başlatın.
 
-## Supported GraphQL formats
+## Desteklenen GraphQL biçimleri
 
-GraphQL sorguları tipik olarak bir GraphQL sunucu uç noktasına HTTP POST istekleri olarak gönderilir. İstek, sunucuya gönderilen gövdenin medya tipini belirtmek için bir `CONTENT-TYPE` başlığı içerir. Wallarm, `CONTENT-TYPE` için:
+GraphQL sorguları tipik olarak bir GraphQL sunucu uç noktasına HTTP POST istekleri olarak gönderilir. İstek, gövdenin sunucuya hangi medya türünde gönderildiğini belirtmek için bir `CONTENT-TYPE` başlığı içerir. `CONTENT-TYPE` için Wallarm şunları destekler:
 
-* yaygın kullanılan seçenekler: `application/json` ve `application/graphql` 
-* ayrıca ortaya çıkabilen seçenekler: `text/plain` ve `multipart/form-data`
+* yaygın seçenekler: `application/json` ve `application/graphql`
+* ayrıca karşılaşılabilecek seçenekler: `text/plain` ve `multipart/form-data`
 
-GraphQL sorguları HTTP GET istekleri olarak da gönderilebilir. Bu durumda, sorgu URL'deki bir sorgu parametresi olarak dahil edilir. GET istekleri GraphQL sorguları için kullanılabilse de, özellikle daha karmaşık sorgular için POST isteklerine kıyasla daha az yaygındır. Bunun nedeni, GET isteklerinin genellikle idempotent operasyonlar (yani sonuçları farklılık göstermeden tekrarlanabilen işlemler) için kullanılması ve uzun sorgular için sorun yaratabilecek uzunluk kısıtlamalarına sahip olmalarıdır.
+GraphQL sorguları HTTP GET istekleri olarak da gönderilebilir. Bu durumda sorgu, URL’de bir sorgu parametresi olarak eklenir. GET istekleri GraphQL sorguları için kullanılabilse de özellikle daha karmaşık sorgular için POST isteklerinden daha az yaygındır. Bunun nedeni, GET isteklerinin tipik olarak idempotent (yani tekrarlansa da farklı sonuçlar üretmeyen) işlemler için kullanılması ve daha uzun sorgular için sorun yaratabilecek uzunluk sınırlamalarına sahip olmasıdır.
 
-Wallarm, GraphQL istekleri için hem POST hem de GET HTTP metodlarını destekler.
+Wallarm, GraphQL istekleri için hem POST hem de GET HTTP yöntemlerini destekler.
 
-## Kuralın Oluşturulması ve Uygulanması
+## Yapılandırma yöntemi
 
-GraphQL politikasını ayarlayıp uygulamak için:
+Abonelik planınıza bağlı olarak, GraphQL API koruması için aşağıdaki yapılandırma yöntemlerinden biri kullanılabilir:
 
---8<-- "../include/rule-creation-initial-step.md"
-1. **Mitigation controls** → **GraphQL API protection** seçeneğini seçin.
-1. **If request is** kısmında, kuralın uygulanacağı uç nokta URI'sini ve diğer koşulları [tanımlayın](../user-guides/rules/rules.md#rule-branches):
+* Mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) aboneliği)
+* Rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) aboneliği)
 
-    * GraphQL uç noktanızın URI'si (rota içinde, genellikle `/graphql` içerir)
-    * POST veya GET metodu - bkz. [Supported GraphQL formats](#supported-graphql-formats); kuralın hem POST hem de GET istekleri için aynı sınırlamaları uygulamasını istiyorsanız yöntem belirtilmemiş bırakılabilir
-    * `CONTENT-TYPE` başlık değerini ayarlayın - bkz. [Supported GraphQL formats](#supported-graphql-formats)
+## Mitigation control tabanlı koruma <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-        Not: Kuralın hangi koşul kombinasyonlarıyla uygulanacağını belirleyebilirsiniz, örneğin URI kullanılabilir ve diğer koşullar belirtilmeyebilir veya uç nokta belirtilmeden `CONTENT-TYPE` başlığı `application/graphql` olarak ayarlanabilir. Farklı koşullar içeren ve farklı sınırlar ve tepkiler belirleyen birkaç kural da oluşturabilirsiniz.
+!!! tip ""
+    [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.2.0 veya üstünü gerektirir ve şu anda [Native Node](../installation/nginx-native-node-internals.md#native-node) tarafından desteklenmemektedir.
+    
+### Varsayılan koruma
 
-1. Trafik metriklerinize uygun olarak GraphQL istekleri için eşik değerleri belirleyin (boş bırakılırsa/seçilmezse bu kriter için herhangi bir sınırlama uygulanmaz):
+Wallarm, [varsayılan](../about-wallarm/mitigation-controls-overview.md#default-controls) **GraphQL API protection** mitigation controls sağlar. Bunlar, GraphQL API anormalliklerini tespit etmek için genel bir yapılandırma içerir ve tüm trafik için `Monitoring` [mode](../about-wallarm/mitigation-controls-overview.md#mitigation-mode) içinde etkinleştirilmiştir.
 
-    * **Maximum total query size in kilobytes** - tüm bir GraphQL sorgusunun boyutu için üst sınır belirler. Aşırı büyük sorgular göndererek sunucu kaynaklarını tüketmeye yönelik Denial of Service (DoS) saldırılarını önlemek için çok önemlidir.
-    * **Maximum value size in kilobytes** - bir GraphQL sorgusu içindeki herhangi bir bireysel değerin (değişken veya sorgu parametresi fark etmez) maksimum boyutunu belirler. Bu sınır, değişkenler veya argümanlar için aşırı uzun string değerler göndererek sunucuyu yenmek isteyen saldırılara karşı yardımcı olur.
-    * **Maximum query depth** - bir GraphQL sorgusu için izin verilen maksimum derinliği belirler. Sorgu derinliğinin sınırlandırılması, kötü niyetle hazırlanmış, çok katmanlı sorgulardan kaynaklanan performans sorunları veya kaynak tükenmesi yaşanmasını engeller.
-    * **Maximum number of aliases** - tek bir GraphQL sorgusunda kullanılabilecek alias sayısını sınırlar. Alias sayısının sınırlandırılması, çok karmaşık sorgular oluşturmak amacıyla alias işlevselliğinden yararlanarak yapılan Resource Exhaustion ve DoS saldırılarını engeller.
-    * **Maximum batched queries** - tek bir istek içerisinde gönderilebilecek toplu sorgu sayısını sınırlar. Bu parametre, saldırganların hız sınırlandırma gibi güvenlik önlemlerini aşmak için birden fazla işlemi tek bir istekte birleştirdiği toplu saldırıları önlemek için esastır.
-    * **Block/register introspection queries** - etkinleştirildiğinde, sunucu GraphQL şemanızın yapısını açığa çıkarabilecek introspection isteklerini potansiyel saldırı olarak değerlendirecektir. Şemanın saldırganlara karşı korunması için introspection sorgularının devre dışı bırakılması veya izlenmesi kritik bir önlemdir.
-    * **Block/register debug requests** - bu seçeneği etkinleştirirseniz, debug modu parametresi içeren istekler potansiyel saldırı olarak değerlendirilecektir. Bu ayar, üretimde debug modunun yanlışlıkla etkin bırakılması durumlarını tespit etmek ve saldırganların hassas bilgileri açığa çıkarabilecek aşırı hata raporlama mesajlarına erişmesini engellemek için faydalıdır.
+Varsayılan GraphQL kontrolünü incelemek için Wallarm Console → **Security Controls** → **Mitigation Controls** bölümünde, **GraphQL API protection** kısmındaki `Default` etiketli kontrolleri kontrol edin.
 
-    Varsayılan olarak, bir politika POST istekleri için maksimum sorgu boyutunu 100 KB, değer boyutunu 10 KB, sorgu derinliği ve toplu sorgu limitlerini 10, alias sayısını 5 olarak ayarlar; ayrıca introspection ve debug sorgularını reddeder (varsayılan değerleri kendi yaygın meşru GraphQL sorgu istatistiklerinize göre değiştirebilirsiniz):
+Varsayılan kontrolleri çoğaltabilir, düzenleyebilir veya devre dışı bırakabilirsiniz. Düzenleme, uygulamanın özel ihtiyaçlarına, trafik kalıplarına veya iş bağlamına göre varsayılan bir kontrolü özelleştirmenize olanak tanır. Örneğin, **Scope** alanını daraltarak kontrolü GraphQL’e özgü uç noktalara sınırlayabilir veya eşik değerlerini ayarlayabilirsiniz.
+
+<!--You can **reset default control to its default configuration** at any time.-->
+
+--8<-- "../include/mc-subject-to-change.md"
+
+### Mitigation control oluşturma ve uygulama
+
+GraphQL mitigation control’ün GraphQL’e özgü uç noktalar için oluşturulması önerilir. Tüm sistem için **all traffic** mitigation control olarak oluşturulması önerilmez.
+
+!!! info "Mitigation controls hakkında genel bilgiler"
+    Devam etmeden önce: herhangi bir mitigation control için **Scope** ve **Mitigation mode** ayarlarının nasıl yapıldığını öğrenmek için [Mitigation Controls](../about-wallarm/mitigation-controls-overview.md#configuration) makalesini kullanın.
+
+GraphQL policy’yi ayarlamak ve uygulamak için:
+
+1. Wallarm Console → **Mitigation Controls** bölümüne gidin.
+1. **Add control** → **GraphQL API protection** öğesini kullanın.
+1. Mitigation control’ün uygulanacağı **Scope** alanını tanımlayın.
+1. Trafik metriklerinize uygun olarak GraphQL istekleri için eşik değerlerini belirleyin (boş/belirsiz bırakılırsa, bu kritere göre herhangi bir sınırlama uygulanmaz):
+
+    * **Maximum total query size in kilobytes** - tüm bir GraphQL sorgusunun boyutu için üst sınırı belirler. Bu, aşırı büyük sorgular göndererek sunucu kaynaklarını sömüren Hizmet Reddi (DoS) saldırılarını önlemek için kritik öneme sahiptir.
+    * **Maximum value size in kilobytes** - bir GraphQL sorgusu içindeki herhangi bir tekil değerin (değişken veya sorgu parametresi) maksimum boyutunu belirler. Bu limit, saldırganların değişkenler veya argümanlar için aşırı uzun string değerleri gönderdiği Excessive Value Length türü saldırılarla sunucuyu bunaltma girişimlerini azaltmaya yardımcı olur.
+    * **Maximum query depth** - bir GraphQL sorgusu için izin verilen maksimum derinliği belirler. Sorgu derinliğini sınırlayarak, kötü amaçlı hazırlanmış, derin iç içe sorgulardan kaynaklanan performans sorunları veya kaynak tükenmesi önlenebilir.
+    * **Maximum number of aliases** - tek bir GraphQL sorgusunda kullanılabilecek alias sayısına sınır koyar. Alias sayısını kısıtlamak, alias işlevselliğini kötüye kullanarak aşırı karmaşık sorgular oluşturan Kaynak Tüketimi ve DoS saldırılarını engeller.
+    * **Maximum batched queries** - tek bir istekte gönderilebilecek toplu sorguların sayısına üst sınır koyar. Bu parametre, birden fazla işlemi tek bir istekte birleştirerek hız sınırlama gibi güvenlik önlemlerini atlatmayı amaçlayan toplu sorgu (batching) saldırılarını engellemek için gereklidir.
+    * **Block/register introspection queries** - etkinleştirildiğinde, GraphQL şemanızın yapısını ortaya çıkarabilecek introspection istekleri potansiyel saldırılar olarak değerlendirilecektir. Introspection sorgularını devre dışı bırakmak veya izlemek, şemanın saldırganlara ifşa olmasını önlemek için kritik bir önlemdir.
+    * **Block/register debug requests** - bu seçenek etkinleştirildiğinde, debug modu parametresi içeren istekler potansiyel saldırılar olarak kabul edilir. Bu ayar, üretimde yanlışlıkla açık bırakılan debug modunu yakalamak ve arka uç hakkında hassas bilgileri ortaya çıkarabilecek aşırı hata mesajlarına saldırganların erişmesini engellemek için yararlıdır.
+
+    Varsayılan olarak, bir policy maksimum POST istek sorgu boyutunu 100 KB, değer boyutunu 10 KB, sorgu derinliği ve toplu sorgu limitlerini 10, alias sayısını 5 olarak belirler; ayrıca introspection ve debug sorgularını reddeder. Ekran görüntüsünde gösterildiği gibi (not: yaygın meşru GraphQL sorgularınızın istatistiklerini dikkate alarak varsayılan değerleri kendi değerlerinizle değiştirebilirsiniz):
         
-    ![GraphQL thresholds](../images/user-guides/rules/graphql-rule.png)
+    ![GraphQL eşik değerleri](../images/api-protection/mitigation-controls-graphql.png)
 
-<!-- temporary unavailable, bug: https://wallarm.atlassian.net/browse/PLUTO-6979?focusedCommentId=208654
-## Reaction to policy violation
+1. **Mitigation mode** bölümünde yapılacak işlemi ayarlayın.
+1. **Add**’e tıklayın.
 
-Politika ihlaline tepki, kuralın hedef aldığı uç noktalar için uygulanan [filtration mode](../admin-en/configure-wallarm-mode.md) ile tanımlanır.
+<!--## Exploring GraphQL attacks
 
-Wallarm'ı bloklama modunda kullanıyor ve GraphQL kurallarını güvenle test etmek istiyorsanız, GraphQL yollarınız için **Set filtration mode** kuralını [özel olarak](../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console) oluşturarak `/graphql` yollarında monitoring mode'u etkinleştirebilirsiniz. Bu kuralın SQLi, XSS vb. tüm saldırılar için uygulanacağını unutmayın; bu yüzden uzun süre açık bırakılması önerilmez.
+You can explore GraphQL policy violations (GraphQL attacks) in Wallarm Console → **Attacks** section. Use the GraphQL specific [search keys](../user-guides/search-and-filters/use-search.md#graphql-tags) or corresponding filters:
 
-![GraphQL policy blocking action](../images/user-guides/rules/graphql-rule-2-action.png)
+![GraphQL attacks](../images/user-guides/rules/graphql-attacks.png)-->
 
-Unutmayın, [`wallarm_mode_allow_override` directive](../admin-en/configure-wallarm-mode.md#prioritization-of-methods) ile yol konfigürasyonunuz, Wallarm Console'da oluşturulan kuralları görmezden gelecek şekilde ayarlanmış olabilir. Böyle bir durumda, [bkz.](../admin-en/configure-wallarm-mode.md#configuration-methods) diğer yöntemleri keşfetmeli ve filtration mode'u değiştirmek için kullanmalısınız.-->
+### Mitigation control örnekleri
 
-## GraphQL saldırılarını Keşfetme
+<a name="setting-policy-for-your-graphql-endpoints-to-block-attacks"></a>
+#### GraphQL uç noktalarınız için saldırıları engelleyecek policy ayarlanması
 
-Wallarm Console → **Attacks** bölümünde GraphQL politika ihlallerini (GraphQL saldırıları) inceleyebilirsiniz. GraphQL'e özgü [arama anahtarlarını](../user-guides/search-and-filters/use-search.md#graphql-tags) veya ilgili filtreleri kullanın:
+Diyelim ki `example.com/graphql` altında bulunan uygulama GraphQL uç noktalarına gelen istekler için limitler belirleyerek onlara yönelik tüm potansiyel [GraphQL’e özgü](../attacks-vulns-list.md#graphql-attacks) saldırıları engellemek istiyorsunuz. `example.com` için filtration mode `monitoring`.
 
-![GraphQL attacks](../images/user-guides/rules/graphql-attacks.png)
+Bunu yapmak için:
 
-<!--## Rule examples
+1. **GraphQL API protection** mitigation control’ü ekran görüntüsünde gösterildiği gibi ayarlayın (not: bunlar örnek değerlerdir - gerçek hayattaki kurallar için yaygın meşru GraphQL sorgularınızın istatistiklerini dikkate alarak kendi değerlerinizi tanımlamalısınız):
 
-### Setting policy for your GraphQL endpoints to block attacks
+    ![Uç noktalarınız için GraphQL Policy](../images/api-protection/mitigation-controls-graphql-1.png)
 
-Let us say you want to set limits for the requests to your application GraphQL endpoints located under `example.com/graphql` to block all potential [GraphQL specific](../attacks-vulns-list.md#graphql-attacks) attacks to them. Filtration mode for `example.com` is `monitoring`.
+1. `example.com` için filtration mode `monitoring` durumunda ve GraphQL uç noktaları için `block` istiyorsanız, **Override filtration mode** rule’ünü ekran görüntüsünde gösterildiği gibi yapılandırın:
 
-To do so:
+    ![GraphQL policy engelleme işlemi](../images/user-guides/rules/graphql-rule-1-action.png)
 
-1. Set the **Detect GraphQL attacks** rule as displayed on the screenshot (note that these are the example values - for the real-life rules you should define your own values considering statistics of your common legitimate GraphQL queries):
+#### Belirli uç noktalar için policy'nin değiştirilmesi
 
-    ![GraphQL Policy for your endpoints](../images/user-guides/rules/graphql-rule-1.png)
+[Önceki](#setting-policy-for-your-graphql-endpoints-to-block-attacks) örneğe devam ederek, `example.com/graphql/v2` alt uç noktası için daha sıkı limitler belirlemek istediğinizi varsayalım. Limitler daha sıkı olduğundan, herhangi bir şeyi engellemeden önce `monitoring` modunda test edilmelidir.
 
-1. As filtration mode for `example.com` is `monitoring` and you want `block` for its GraphQL endpoints, configure the **Set filtration mode** rule as displayed on the screenshot:
+Bunu yapmak için:
 
-    ![GraphQL policy blocking action](../images/user-guides/rules/graphql-rule-1-action.png)
+1. **GraphQL API protection** mitigation control’ü ekran görüntüsünde gösterildiği gibi ayarlayın (not: bunlar örnek değerlerdir - gerçek hayattaki kurallar için yaygın meşru GraphQL sorgularınızın istatistiklerini dikkate alarak kendi değerlerinizi tanımlamalısınız):
 
-### Altering policy for specific endpoints
+    ![Alt uç nokta için daha sıkı GraphQL policy](../images/api-protection/mitigation-controls-graphql-2.png)
 
-Continuing the [previous](#setting-policy-for-your-graphql-endpoints-to-block-attacks) example, let us say you want to set stricter limits for `example.com/graphql/v2` child endpoint. As limits are stricter, before blocking anything, they should be tested in the `monitoring` mode.
+1. `example.com/graphql` için filtration mode `block` ve `example.com/graphql/v2` için `monitoring` istiyorsanız, **Override filtration mode** rule’ünü ekran görüntüsünde gösterildiği gibi yapılandırın:
 
-To do so:
+    ![GraphQL policy engelleme işlemi](../images/user-guides/rules/graphql-rule-2-action.png)
 
-1. Set the **Detect GraphQL attacks** rule as displayed on the screenshot (note that these are the example values - for the real-life rules you should define your own values considering statistics of your common legitimate GraphQL queries):
+## Rule tabanlı koruma
 
-    ![GraphQL stricter policy for child endpoint](/../images/user-guides/rules/graphql-rule-2.png)
-
-1. As filtration mode for `example.com/graphql` is `block` and you want `monitoring` for `example.com/graphql/v2`, configure the **Set filtration mode** rule as displayed on the screenshot:
-
-    ![GraphQL policy blocking action](../images/user-guides/rules/graphql-rule-2-action.png)
--->
+Wallarm Console → **Security Controls** → **Rules** içinde işlem yaptığınız dışında, **GraphQL API protection** mitigation control için açıklanan ayarların aynısını kullanın.

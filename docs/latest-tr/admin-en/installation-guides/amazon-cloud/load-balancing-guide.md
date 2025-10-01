@@ -1,5 +1,5 @@
 [link-doc-asg-guide]:               autoscaling-group-guide.md  
-[link-docs-check-operation]:        ../../installation-check-operation-en.md
+[link-docs-check-operation]:        ../../../admin-en/uat-checklist-en.md#node-registers-attacks
 
 [link-aws-lb-comparison]:           https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html?icmpid=docs_elbv2_console#elb-features   
 
@@ -12,92 +12,94 @@
 
 #   AWS üzerinde Yük Dengeleyici Oluşturma
 
-Artık [yapılandırılmış][link-doc-asg-guide] filtre düğümü Auto Scaling Group'una sahip olduğunuzda, gelen HTTP ve HTTPS bağlantılarını Auto Scaling Group'daki birden fazla filtre düğümü arasında dağıtacak bir Yük Dengeleyici oluşturmanız ve yapılandırmanız gerekir.
+Artık [yapılandırılmış][link-doc-asg-guide] bir filtreleme düğümü Auto Scaling Group’una sahip olduğunuza göre, Auto Scaling Group içindeki birden çok filtreleme düğümü arasında gelen HTTP ve HTTPS bağlantılarını dağıtan bir Yük Dengeleyici oluşturup yapılandırmanız gerekir.
 
 Yük Dengeleyici oluşturma süreci aşağıdaki adımları içerir:
-1.  [Bir Yük Dengeleyici Oluşturma][anchor-create]
-2.  [Oluşturulan Dengeleyiciyi Kullanmak İçin Auto Scaling Group Ayarlama][anchor-configure]
+1.  [Yük Dengeleyici Oluşturma][anchor-create]
+2.  [Oluşturulan Dengeleyiciyi Kullanmak Üzere Auto Scaling Group Yapılandırma][anchor-configure]
 
+<a id="1-creating-a-load-balancer"></a>
 ##  1.  Bir Yük Dengeleyici Oluşturma
 
-Amazon bulutunda aşağıdaki tipte Yük Dengeleyiciler yapılandırabilirsiniz:
+Amazon bulutunda aşağıdaki Yük Dengeleyici türlerini yapılandırabilirsiniz:
 *   Classic Load Balancer
 *   Network Load Balancer
 *   Application Load Balancer
 
-!!! info "Yük Dengeleyiciler Arasındaki Farklar"
-    Yük Dengeleyiciler arasındaki farklara ilişkin ayrıntılı bilgileri görmek için bu [link][link-aws-lb-comparison]'i inceleyin.
+!!! info "Yük Dengeleyiciler arasındaki farklar"
+    Yük Dengeleyiciler arasındaki farklara ilişkin ayrıntılı bilgi için bu [bağlantıya][link-aws-lb-comparison] gidin.
 
-Bu belge, OSI/ISO ağ modelinin taşıma katmanında trafiği dağıtan Network Load Balancer'ın yapılandırılmasını ve kullanımını göstermektedir.
+Bu belge, OSI/ISO ağ modelinin taşıma katmanında trafiği dağıtan Network Load Balancer’ın nasıl yapılandırılıp kullanılacağını göstermektedir.
 
-Bir Yük Dengeleyici oluşturmak için aşağıdaki işlemleri tamamlayın:
-1.  Amazon EC2 kontrol panelindeki **Load Balancers** sekmesine gidin ve **Create Load Balancer** butonuna tıklayın.
+Aşağıdaki adımları izleyerek bir Yük Dengeleyici oluşturun: 
+1.  Amazon EC2 panosunda **Load Balancers** sekmesine gidin ve **Create Load Balancer** düğmesine tıklayın.
 
-2.  İlgili **Create** butonuna tıklayarak bir Network Load Balancer oluşturun.
+2.  İlgili **Create** düğmesine tıklayarak bir Network Load Balancer oluşturun.
 
 3.  Temel Yük Dengeleyici parametrelerini yapılandırın:
 
     ![Genel Yük Dengeleyici parametrelerinin yapılandırılması][img-lb-basics]
     
-    1.  Dengeleyicinin adı ( **Name** parametresi).
+    1.  Dengeleyicinin adı (**Name** parametresi).
     
-    2.  Dengeleyici tipi ( **Scheme** parametresi). Dengeleyicinin internete açık olması için **internet-facing** tipini seçin.
+    2.  Dengeleyici türü (**Scheme** parametresi). Dengeleyicinin internette erişilebilir olması için **internet-facing** türünü seçin. 
     
-    3.  **Listeners** parametre grubu kullanılarak, dengeleyicinin dinleyeceği portları belirtin.
+    3.  **Listeners** parametre grubunu kullanarak dengeleyicinin dinleyeceği bağlantı noktalarını belirtin.
     
-    4.  Dengeleyicinin çalışacağı VPC ve Availability Zone'ları belirtin.
+    4.  Dengeleyicinin çalışacağı gerekli VPC ve Availability Zones değerlerini belirtin.
         
-        !!! info "Auto Scaling Group Erişilebilirliğini Kontrol Edin"
-            Dengeleyicinin düzgün çalışabilmesi için, [önceden oluşturduğunuz][link-doc-asg-guide] Auto Scaling Group'un bulunduğu VPC ve Availability Zone'ları seçtiğinizden emin olun.
+        !!! info "Auto Scaling Group uygunluğunu kontrol edin"
+            Yük dengeleyicinin düzgün çalışabilmesi için, [daha önce oluşturduğunuz][link-doc-asg-guide] Auto Scaling Group’u içeren VPC ve Availability Zones değerlerini seçtiğinizden emin olun.
         
-4.  **Next: Configure Security Settings** butonuna tıklayarak bir sonraki adıma geçin.
+4.  **Next: Configure Security Settings** düğmesine tıklayarak bir sonraki adıma geçin.
 
     Gerekirse güvenlik parametrelerini yapılandırın.
     
-5.  **Next: Configure Routing** butonuna tıklayarak bir sonraki adıma geçin.
+5.  **Next: Configure Routing** düğmesine tıklayarak sonraki adıma devam edin. 
 
-    Gelen isteklerin, Auto Scaling Group'daki filtre düğümlerine yönlendirilmesini yapılandırın.
+    Gelen isteklerin Auto Scaling Group içindeki filtreleme düğümlerine yönlendirilmesini yapılandırın.
 
-    ![Gelen bağlantıların yönlendirilmesini yapılandırma][img-lb-routing]
+    ![Gelen bağlantıların yönlendirilmesinin yapılandırılması][img-lb-routing]
     
-    1.  Yeni bir hedef grup oluşturun ve **Name** alanında adını belirtin. Yük Dengeleyici, gelen istekleri belirtilen hedef gruptaki instance'lara yönlendirecektir (örn. `demo-target`).
+    1.  Yeni bir hedef grubu oluşturun ve adını **Name** alanında belirtin. Yük Dengeleyici, gelen istekleri belirtilen hedef grupta yer alan örneklere yönlendirecektir (ör. `demo-target`).
         
-    2.  İsteklerin yönlendirilmesi için kullanılacak protokol ve portu yapılandırın.
+    2.  İstek yönlendirmede kullanılacak protokol ve bağlantı noktasını yapılandırın. 
     
-        Filtre düğümü için TCP protokolünü ve 80 ile (HTTPS trafiğiniz varsa) 443 portlarını belirtin.
+        Filtreleme düğümü için TCP protokolünü ve 80 ile 443 (HTTPS trafiğiniz varsa) bağlantı noktalarını belirtin.
         
-    3.  Gerekirse, **Health Checks** parametre grubunu kullanarak erişilebilirlik kontrollerini yapılandırın.
+    3.  Gerekirse **Health Checks** parametre grubunu kullanarak sağlık kontrollerini yapılandırın.
     
-6.  **Next: Register Targets** butonuna tıklayarak bir sonraki adıma geçin.
+6.  **Next: Register Targets** düğmesine tıklayarak bir sonraki adıma geçin. 
 
-    Bu adım için herhangi bir işlem yapmanız gerekmez.
+    Bu adımda herhangi bir işlem yapmanız gerekmez. 
     
-7.  **Next: Review** butonuna tıklayarak bir sonraki adıma geçin.
+7.  **Next: Review** düğmesine tıklayarak bir sonraki adıma geçin.
     
-    Tüm parametrelerin doğru şekilde belirtildiğinden emin olun ve **Create** butonuna tıklayarak Yük Dengeleyici oluşturma sürecini başlatın.
+    Tüm parametrelerin doğru belirtildiğinden emin olun ve **Create** düğmesine tıklayarak Yük Dengeleyici oluşturma işlemini başlatın.
 
-!!! info "Yük Dengeleyici Başlatılana Kadar Bekleyin"
-    Yük Dengeleyici oluşturulduktan sonra, trafiği almaya hazır hale gelmesi için bir süre beklenmelidir.
+!!! info "Yük Dengeleyici başlatılana kadar bekleyin"
+    Yük Dengeleyici oluşturulduktan sonra, trafiği almaya hazır hale gelmesi için bir süre geçmesi gerekir.
 
-##  2.  Oluşturulan Dengeleyiciyi Kullanmak İçin Auto Scaling Group Ayarlama
+<a id="2-setting-up-an-auto-scaling-group-for-using-the-created-balancer"></a>
+##  2.  Oluşturulan dengeleyiciyi kullanmak üzere bir Auto Scaling Group yapılandırma
 
-Oluşturduğunuz Yük Dengeleyici'yi kullanacak şekilde Auto Scaling Group'unuzu yapılandırın. Bu, dengeleyicinin grupta başlatılan filtre düğümü instance'larına trafik yönlendirmesini sağlayacaktır.
+Auto Scaling Group’unuzu, daha önce oluşturduğunuz Yük Dengeleyiciyi kullanacak şekilde yapılandırın. Bu, dengeleyicinin grupta başlatılan filtreleme düğümü örneklerine trafiği yönlendirmesine olanak tanır.
 
-Bunu yapmak için aşağıdaki işlemleri tamamlayın:
-1.  Amazon EC2 kontrol panelindeki **Auto Scaling Groups** sekmesine gidin ve daha önce oluşturduğunuz Auto Scaling Group'u ([link-doc-asg-guide]) seçin.
+Bunu yapmak için aşağıdaki adımları izleyin:
+1.  Amazon EC2 panosunda **Auto Scaling Groups** sekmesine gidin ve [daha önce oluşturduğunuz][link-doc-asg-guide] Auto Scaling Group’u seçin.
 
-2.  **Actions** açılır menüsünden *Edit* seçeneğini seçerek grup yapılandırma düzenleme penceresini açın.
+2.  **Actions** açılır menüsünden *Edit* öğesini seçerek grup yapılandırması düzenleme iletişim kutusunu açın. 
 
-3.  **Target groups** açılır listesinden, Yük Dengeleyici ayarlanırken oluşturulan **demo-target** hedef grubunu ([anchor-create]) seçin.
+3.  **Target groups** açılır listesinden, Yük Dengeleyiciyi kurarken [oluşturduğunuz][anchor-create] **demo-target** hedef grubunu seçin.
 
-4.  **Save** butonuna tıklayarak değişiklikleri uygulayın.
+4.  **Save** düğmesine tıklayarak değişiklikleri uygulayın.
 
-Artık dinamik olarak ölçeklenen Wallarm filtre düğümleri kümesi, uygulamanıza gelen trafiği işleyecektir.
+Artık dinamik olarak ölçeklenen Wallarm filtreleme düğümleri kümesi, uygulamanıza gelen trafiği işleyecektir.
 
-Dağıtılmış filtre düğümlerinin çalışmasını kontrol etmek için aşağıdaki adımları uygulayın:
+Dağıtılan filtreleme düğümlerinin çalışmasını kontrol etmek için aşağıdaki adımları uygulayın:
 
-1.  Uygulamanızın, tarayıcı aracılığıyla dengeleyici IP adresine veya alan adına erişilebildiğinden emin olun.
-    
-2.  Wallarm servislerinin uygulamanızı koruduğundan emin olmak için [bir test saldırısı gerçekleştirerek][link-docs-check-operation] kontrol edin.
+1.  Tarayıcıyı kullanarak dengeleyicinin IP adresine veya alan adına başvurarak uygulamanıza Load Balancer ve Wallarm filtreleme düğümleri üzerinden erişilebildiğinden emin olun.
 
-![Filtre düğümü operasyonunun kontrol edilmesi][img-checking-operation]
+2.  [Test saldırısı gerçekleştirerek][link-docs-check-operation] Wallarm servislerinin uygulamanızı koruduğundan emin olun.
+
+![Filtreleme düğümünün çalışmasının kontrol edilmesi][img-checking-operation]

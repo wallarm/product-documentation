@@ -1,0 +1,1 @@
+--8<-- "latest-tr/about-wallarm/mitigation-controls-overview.md"

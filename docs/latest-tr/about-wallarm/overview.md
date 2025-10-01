@@ -1,86 +1,96 @@
-# Wallarm Platform Genel Bakış
+[link-deployment-se]:           ../installation/security-edge/overview.md
+[link-deployment-hybrid]:       ../installation/supported-deployment-options.md
+[link-deployment-on-prem]:      ../installation/on-premise/overview.md
 
-Bugünün dijital dünyasında, uygulamalar, özellikle API'ler, giderek artan tehditlerle karşı karşıya. Geleneksel güvenlik, API zafiyetlerini gözden kaçırabilir veya dağıtım sorunlarına neden olabilir. Wallarm ile, bulut yerel ve kurum içi ortamlar için uygun olan, Web Uygulama ve API Koruması için tek bir platform elde edersiniz.
+# Wallarm Platform’a Genel Bakış
 
-Kuruluşlar, geliştirilmiş uygulama ve API güvenliği, kolay dağıtım ve sağladığı değeri nedeniyle Wallarm'i tercih eder. Wallarm, en iyi API keşfi, risk yönetimi, koruma ve test yeteneklerini, bulut yerel WAAP ve API güvenlik özellikleriyle birleştirir.
+Günümüzün dijital dünyasında, özellikle yapay zekânın yükselişiyle birlikte API’ler artan tehditlerle karşı karşıya. Geleneksel güvenlik, API zafiyetlerini gözden kaçırabilir veya devreye almak zor olabilir. Wallarm ile bulut-yerel ve şirket içi ortamlar genelinde API koruması ve envanter gözlemlenebilirliği için tek bir platform elde edersiniz.
 
-![Diagram](../images/about-wallarm-waf/overview/wallarm-features.png)
+Kuruluşlar, gelişmiş API güvenliği, kolay dağıtım ve sağladığı değer nedeniyle Wallarm’ı tercih ediyor. Wallarm; API keşfi, risk yönetimi, gerçek zamanlı koruma ve testleri gelişmiş API güvenlik yetenekleriyle birleştirir.
+
+![Diyagram](../images/about-wallarm-waf/overview/wallarm-features.png)
 
 ## Keşfet
 
-Korumak için bilmeniz gerekir. Wallarm, ortamınızdaki API'leri tanımlamak ve bunların güvenlik risklerini değerlendirmek için kapsamlı API keşif yetenekleri sunar. İşte Wallarm'in API keşfinin yaptığı işler:
+Korumak için önce bilmek gerekir. Wallarm, ortamınızdaki API’leri belirlemek ve güvenlik risklerini değerlendirmek için kapsamlı API keşfi yetenekleri sunar. Wallarm’ın API keşfi şunları yapar:
 
-* [API uç noktalarınızı ve parametrelerini algılar](../api-discovery/overview.md) ve sürekli trafik analizi ile API görünümünü güncel tutar.
-* [Gölge, yetimsiz ve zombi API'ler de dahil olmak üzere sahte uç noktaları tanımlar](../api-discovery/rogue-api.md).
-* Kişisel veri (PII) gibi hassas bilgilerin açığa çıkabileceği uç noktaları tespit eder.
-* [Her bir uç noktanın güvenlik risklerini, zafiyetleri ve risk puanını değerlendirir](../api-discovery/risk-score.md).
+* [API uç noktalarınızı ve bunların parametrelerini algılar](../api-discovery/overview.md) ve tutarlı trafik analiziyle API görünümünü sürekli günceller.
+* Gölge, yetim ve zombi API’ler dahil [sapkın uç noktaları tanımlar](../api-discovery/rogue-api.md).
+* Kişisel tanımlanabilir bilgi (PII) gibi hassas verileri açığa çıkarabilecek uç noktaları belirler.
+* [Her bir uç noktayı güvenlik riskleri ve zafiyetler açısından değerlendirir](../api-discovery/risk-score.md) ve bir risk skoru sağlar.
 
-![Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
+![API Discovery tarafından keşfedilen uç noktalar](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
 ## Koru
 
-Wallarm, keşfi gerçek bir korumaya dönüştürerek trafiğe yönelik uygulama ve API saldırılarını tespit edip engeller. Wallarm’in özel algılama teknikleri, [OWASP Top 10](https://owasp.org/www-project-top-ten/) ve [OWASP API Top 10](https://owasp.org/www-project-api-security/) zafiyetlerine karşı yapılan saldırıları da algılayarak son derece doğru sonuçlar verir. İşte Wallarm'in korumayı nasıl sağladığı:
+Wallarm, keşfi genişleterek trafikteki uygulama ve API saldırılarını tespit edip engelleyerek gerçek koruma sağlar. Wallarm’ın tescilli tespit teknikleri, [OWASP Top 10](https://owasp.org/www-project-top-ten/) ve [OWASP API Top 10](https://owasp.org/www-project-api-security/) zafiyetlerine yönelik saldırıların tespiti dâhil yüksek doğrulukta sonuçlar sunar. Wallarm korumayı şöyle sağlar:
 
-* Hem [inline](../installation/inline/overview.md) hem de [out-of-band](../installation/oob/overview.md) saldırıları tespit eder.
-* Web tabanlı saldırılardan kod enjeksiyonları, uzaktan kod çalıştırma, kaba kuvvet, BOLA ve daha fazlası gibi [çeşitli tehditlerle](../attacks-vulns-list.md) mücadele eder.
-* [API’ye özgü kötü niyetli bot istismarını](../api-abuse-prevention/overview.md) belirler.
-* Özelleştirilebilir [rate limiting](../user-guides/rules/rate-limiting.md) ile Katman 7 Denial of Service saldırılarına karşı önlem alır.
-* Dahili önlemleri desteklemek amacıyla, kullanıcıların kendi tehdit tanımlarını belirleyerek [özel savunmalar oluşturmasına](../user-guides/rules/regex-rule.md) olanak tanır.
-* Saldırıları, sisteminizin zafiyetleriyle eşleştirerek kritik olayları ön plana çıkarır.
-* [Credential stuffing girişimlerini](../about-wallarm/credential-stuffing.md) tespit eder.
+* Saldırıları hem [inline](../installation/inline/overview.md) hem de [out-of-band](../installation/oob/overview.md) olarak tespit eder.
+* Kod enjeksiyonları, uzaktan kod yürütme, kaba kuvvet, BOLA ve daha fazlası gibi web tabanlı olanlardan API’ye özgü olanlara kadar [çeşitli tehditlerle](../attacks-vulns-list.md) mücadele eder.
+* [API’ye özgü kötü amaçlı bot suistimalini](../api-abuse-prevention/overview.md) belirler.
+* Özelleştirilebilir [rate limiting](../user-guides/rules/rate-limiting.md) ile Katman 7 Hizmet Engelleme (DoS) saldırılarını bertaraf eder.
+* Yerleşik önlemleri tamamlayacak şekilde kendi tehdit tanımlarını belirleyerek [özel savunmalar](../user-guides/rules/regex-rule.md) oluşturmanıza olanak tanır.
+* Kritik olayları vurgulamak için saldırıları sisteminizdeki zafiyetlerle eşleştirir.
+* [Kimlik bilgisi doldurma (credential stuffing) girişimlerini](../about-wallarm/credential-stuffing.md) tespit eder.
 
-## Tepki Ver
+## Yanıtla
 
-Wallarm, kapsamlı veri, geniş entegrasyonlar ve engelleme mekanizmaları sunarak güvenlik tehditlerine etkili bir şekilde yanıt vermeniz için gerekli araçları sağlar. Öncelikle, tehdidin doğası ve şiddeti hakkında detaylı bilgi sunarak güvenlik analistlerinin değerlendirme yapmasını sağlar. Ardından, yanıtları kişiselleştirebilir, tehdide müdahale edebilir ve ilgili sistemlere uyarı gönderebilirsiniz. İşte Wallarm'in desteği:
+Wallarm, derinlemesine veriler, geniş entegrasyonlar ve engelleme mekanizmaları sunarak güvenlik tehditlerine etkin biçimde yanıt vermeniz için araçlar sağlar. Önce ayrıntılı bilgiler sunar, böylece güvenlik analistleri tehdidin doğasını ve ciddiyetini değerlendirir. Ardından yanıtları özelleştirip tehditlere karşı harekete geçebilir ve ilgili sistemlere uyarılar gönderebilirsiniz. Wallarm sizi şöyle destekler:
 
-* Her yönüyle saldırıyı detaylandıran [derin saldırı incelemesi](../user-guides/events/check-attack.md); bu incelemede başlıklar, kod çözümlenmiş istekler ve gövde detaylandırılır.
-* VPN'ler ve Tor ağları gibi şüpheli trafik kaynaklarını engellemek için [coğrafi konum tabanlı kontroller](../user-guides/ip-lists/overview.md) sunar.
-* API'lerinize kötü niyetli aktivitelerin ulaşmasını engelleyen [saldırı engelleme önlemleri](../admin-en/configure-wallarm-mode.md#available-filtration-modes) sağlar.
-* Slack, Sumo Logic, Splunk, Microsoft Sentinel ve daha fazlasını içeren en yaygın kullanılan güvenlik, operasyon ve geliştirme araçları ile [entegrasyonlar](../user-guides/settings/integrations/integrations-intro.md) sunar; böylece bilet, bildirim oluşturabilir ve tespit edilen tehditler hakkında veri iletebilirsiniz.
-* Wallarm'in zafiyet tespitine dayanarak acil durumlar için [sanal yamalar](../user-guides/rules/vpatch-rule.md) uygular.
+* Başlıklardan gövdeye bir saldırının her yönünü ayrıntılandıran, kodlanmış isteklerin açılmış hâlini de içeren [derin saldırı incelemesi](../user-guides/events/check-attack.md).
+* VPN’ler ve Tor ağları gibi şüpheli trafik kaynaklarını engellemek için [coğrafi konuma dayalı kontroller](../user-guides/ip-lists/overview.md).
+* Kötü amaçlı etkinliklerin API’lerinize ulaşmasını önleyen [saldırı engelleme önlemleri](../admin-en/configure-wallarm-mode.md#available-filtration-modes).
+* Tespit edilen güvenlik tehditleri hakkında biletler, bildirimler ve veriler oluşturmak için en yaygın güvenlik, operasyon ve geliştirme araçlarıyla [Integrations](../user-guides/settings/integrations/integrations-intro.md). Uyumlu platformlar arasında Slack, Sumo Logic, Splunk, Microsoft Sentinel ve daha fazlası bulunur.
+* Wallarm’ın zafiyet tespitiyle vurgulanan acil sorunlar için [Virtual patches](../user-guides/rules/vpatch-rule.md).
 
-![Events](../images/about-wallarm-waf/overview/events-with-attacks.png)
+![Olaylar](../images/about-wallarm-waf/overview/events-with-attacks.png)
 
 ## Test Et
 
-Dağıtılmış riski yönetmek ilk savunma hattı olsa da, ürün uygulamaları ve API'ler tarafından sergilenen riski azaltmanın en etkili yolu, olayları ortadan kaldırmaktır. Wallarm, uygulama ve API güvenliğinde devreyi kapatan ve zafiyet risklerini bulup ortadan kaldırmak için aşağıdaki test yeteneklerini sunar:
+Dağıtılmış riski yönetmek birinci savunma hattıdır, ancak ürün uygulamaları ve API’lerin sergilediği riski azaltmak, olay sayısını düşürmenin en etkili yoludur. Wallarm, aşağıdaki gibi zafiyet riskini bulup ortadan kaldırmaya yönelik bir test yetenekleri paketi sağlayarak uygulama ve API güvenliği döngüsünü kapatır:
 
-* Pasif trafik analizi yoluyla [zafiyetleri tespit eder](../user-guides/vulnerabilities.md).
-* Tespit edilen API'leri zayıf noktalar açısından inceler.
-* Gözlemlenen trafikten yola çıkarak [dinamik API güvenlik testleri oluşturur](../vulnerability-detection/threat-replay-testing/overview.md).
-* Açığa çıkmış API tokenlarını kontrol etmek için [kamu depolarını tarar](../api-attack-surface/security-issues.md).
+* [Pasif trafik analiziyle zafiyetleri belirler](../user-guides/vulnerabilities.md).
+* Belirlenen API’leri zayıf noktalar açısından inceler.
+* Gözlemlenen trafikten [dinamik olarak API güvenlik testleri oluşturur](../vulnerability-detection/threat-replay-testing/overview.md).
+* [Açığa çıkan API belirteçleri için herkese açık depoları kontrol eder](../api-attack-surface/security-issues.md).
 
-![Vulns](../images/about-wallarm-waf/overview/vulnerabilities.png)
+![Zafiyetler](../images/about-wallarm-waf/overview/vulnerabilities.png)
 
-## Wallarm Nasıl Çalışır
+## Wallarm nasıl çalışır
 
-Wallarm platformu esas olarak iki ana bileşen üzerine kuruludur: Wallarm filtering node ve Wallarm Cloud.
+Wallarm’ın platformu esas olarak iki ana bileşen üzerine kuruludur: Wallarm filtreleme düğümü ve Wallarm Cloud.
 
-![!Arch scheme1](../images/about-wallarm-waf/overview/filtering-node-cloud.png)
+![Mimari şema1](../images/about-wallarm-waf/overview/filtering-node-cloud.png)
 
-### Filtering Node
+### Filtreleme düğümü
 
-İnternet ile API'leriniz arasında konumlanan Wallarm filtering node:
+İnternet ile API’leriniz arasına konumlanan Wallarm filtreleme düğümü:
 
-* Şirketin tüm ağ trafiğini analiz eder ve kötü niyetli istekleri engeller.
-* Ağ trafiği metriklerini toplar ve bu metrikleri Wallarm Cloud'a yükler.
-* Wallarm Cloud'da tanımladığınız kaynaklara özgü güvenlik kurallarını indirir ve trafik analizi sırasında uygular.
-* İsteklerinizde yer alan hassas verileri tespit ederek, bunların altyapınız içinde güvenli kalmasını ve üçüncü taraf bir hizmet gibi Cloud'a iletilmemesini sağlar.
+* Şirketin tüm ağ trafiğini analiz eder ve kötü niyetli istekleri etkisizleştirir.
+* Ağ trafiği metriklerini toplar ve bu metrikleri Wallarm Cloud’a yükler.
+* Wallarm Cloud’da tanımladığınız kaynağa özel güvenlik kurallarını indirir ve bunları trafik analizi sırasında uygular.
+* İsteklerinizdeki hassas verileri tespit eder; bu verilerin altyapınız içinde güvende kalmasını sağlar ve üçüncü taraf bir hizmet olan Bulut’a iletilmemesini temin eder.
 
-Wallarm filtering node'u kendi ağınız içinde kurabilir veya [mevcut dağıtım seçenekleri](../installation/supported-deployment-options.md) aracılığıyla Wallarm Security Edge'i tercih edebilirsiniz.
+Wallarm filtreleme düğümünü [kendi ağınız içinde](../installation/supported-deployment-options.md) kurabilir veya [Wallarm Security Edge](../installation/security-edge/overview.md) seçeneğini tercih edebilirsiniz.
 
-### Cloud
+### Bulut
 
-Wallarm Cloud şu işlemleri gerçekleştirir:
+Wallarm Cloud şunları yapar:
 
-* Filtering node'un yüklediği metrikleri işler.
-* Özel kaynaklara özgü güvenlik kurallarını derler.
-* Şirketin dışa açık varlıklarını tarayarak zafiyetleri tespit eder.
-* Filtering node'dan alınan trafik metriklerine dayanarak API yapısını oluşturur.
-* Wallarm platformunu yönetmek ve tüm güvenlik içgörülerine kapsamlı bakış sağlamak amacıyla komuta merkezi işlevi gören Wallarm Console UI'yi barındırır.
+* Filtreleme düğümünün yüklediği metrikleri işler.
+* Özel, kaynağa özgü güvenlik kuralları derler.
+* Şirketin açıkta olan varlıklarını zafiyetleri tespit etmek üzere tarar.
+* Filtreleme düğümünden alınan trafik metriklerine dayanarak API yapısını oluşturur.
+* Wallarm Console UI barındırır; Wallarm platformunda gezinmek ve yapılandırmak için komuta merkeziniz olup tüm güvenlik içgörülerine kapsamlı bir bakış sağlar.
 
-Wallarm, veri depolama tercihlerinizi ve bölgesel hizmet gereksinimlerinizi göz önünde bulundurarak en uygun seçeneği sağlayan ABD ve Avrupa'da cloud örnekleri sunar.
+Wallarm, ABD ve Avrupa’da bulut örnekleri sunar; veri depolama tercihlerinizi ve bölgesel hizmet işletim gereksinimlerinizi göz önünde bulundurarak en uygun olanı seçmenize olanak tanır.
 
-[Proceed to signup on the US Wallarm Cloud](https://us1.my.wallarm.com/signup)
+[US Wallarm Cloud’da kaydolmaya devam edin](https://us1.my.wallarm.com/signup)
 
-[Proceed to signup on the EU Wallarm Cloud](https://my.wallarm.com/signup)
+[EU Wallarm Cloud’da kaydolmaya devam edin](https://my.wallarm.com/signup)
+
+## Wallarm nerede çalışır
+
+[açıklanan](#how-wallarm-works) Wallarm bileşenleri: filtreleme düğümü ve Bulut — üç biçimden birinde dağıtılabilir:
+
+--8<-- "../include/deployment-forms.md"
