@@ -1,1 +1,1 @@
---8<-- "latest/installation/on-premise/overview.md"
+--8<-- "latest-tr/installation/on-premise/overview.md"

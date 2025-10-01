@@ -53,6 +53,7 @@ nav:
       - Genel Bakış: api-sessions/overview.md
       - Kurulum: api-sessions/setup.md
       - Keşfetme: api-sessions/exploring.md
+      - Engelleme: api-sessions/blocking.md
     - Raporlar: user-guides/search-and-filters/custom-report.md
   - API Koruması:
     - Genel Bakış: about-wallarm/api-protection-overview.md
@@ -114,6 +115,7 @@ nav:
       - Kurallar: user-guides/rules/rules.md
       - Tetikleyiciler: user-guides/triggers/triggers.md
   - Güvenlik Testi:
+    - Genel Bakış: vulnerability-detection/security-testing-overview.md
     - Tehdit Yeniden Yürütme:
       - Genel Bakış: vulnerability-detection/threat-replay-testing/overview.md
       - Kurulum: vulnerability-detection/threat-replay-testing/setup.md
@@ -269,6 +271,7 @@ nav:
     - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
     - Fastly: installation/connectors/fastly.md
     - IBM API Connect: installation/connectors/ibm-api-connect.md
+    - Azure API Management: installation/connectors/azure-api-management.md
     - Kod Paketi Değişiklik Günlüğü: installation/connectors/code-bundle-inventory.md
   - Entegrasyonlar ve Uyarılar:
     - Genel Bakış: user-guides/settings/integrations/integrations-intro.md 

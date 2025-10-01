@@ -7,7 +7,7 @@ hide:
 
 # Wallarm API Security
 
-The Wallarm solution protects APIs, microservices and web applications from OWASP API Top 10 threats,<br>API abuse and other automated threats with no manual rule configuration and ultra‑low false positives.
+Wallarm delivers real-time protection for APIs and AI agents, stopping automated threats and abuse while also providing full security visibility with complete API inventory and risk detection.
 
 <div class="navigation">
 <div class="navigation-card">
@@ -16,7 +16,7 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
     <li><a href="./about-wallarm/overview/">Wallarm Overview</a></li>
     <li><a href="./quickstart/getting-started/">Getting Started</a></li>
     <li><a href="./about-wallarm/subscription-plans/">Subscription Plans</a></li>
-    <li><a href="./installation/supported-deployment-options/">Deployment Guides</a></li>
+    <li><a href="./installation/security-edge/free-tier/">Security Edge Free Tier</a></li>
     <li><a href="./quickstart/attack-prevention-best-practices/">Best Practices</a></li>
     <li><a href="./demo-videos/overview/">Video Guides</a></li>
     </ul></p>
@@ -25,11 +25,37 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 <div class="navigation-card">
     <h3 class="icon-homepage dashboard-title">Threat Management</h3>
     <p><ul>
+    <li><a href="./user-guides/events/overview/">Overview</a></li>
     <li><a href="./user-guides/dashboards/threat-prevention/">Dashboards</a></li>
     <li><a href="./user-guides/events/check-attack/">Attack Analysis</a></li>
     <li><a href="./user-guides/events/check-incident/">Incident Analysis</a></li>
+    <li><a href="./about-wallarm/detecting-vulnerabilities/">Vulnerability Analysis</a></li>
     <li><a href="./api-sessions/overview/">API Sessions</a></li>
     <li><a href="./user-guides/search-and-filters/custom-report/">Reports</a></li>
+    </ul></p>
+</div>
+
+<div class="navigation-card">
+    <h3 class="icon-homepage api-threat-prevent">API Protection</h3>
+    <p><ul>
+    <li><a href="./about-wallarm/api-protection-overview/">Overview</a></li>
+    <li><a href="./api-specification-enforcement/overview/">API Specification Enforcement</a></li>
+    <li><a href="./admin-en/configuration-guides/protecting-against-bola/">BOLA Protection</a></li>
+    <li><a href="./api-abuse-prevention/overview/">API Abuse Prevention</a></li>
+    <li><a href="./about-wallarm/credential-stuffing/">Credential Stuffing Detection</a></li>
+    <li><a href="./api-protection/graphql-rule/">GraphQL API Protection</a></li>
+    <li><a href="./api-protection/enumeration-attack-protection/">Enumeration Attack Protection</a></li>
+    <li><a href="./api-protection/dos-protection/">DoS Protection</a></li>
+    <li><a href="./about-wallarm/mitigation-controls-overview/">Mitigation Controls</a></li>
+    </ul></p>
+</div>
+
+<div class="navigation-card">
+    <h3 class="icon-homepage api-threat-prevent">Agentic AI</h3>
+    <p><ul>
+    <li><a href="./agentic-ai/agentic-ai-discovery/">AI Discovery</a></li>
+    <li><a href="./agentic-ai/agentic-ai-protection/">Agentic AI Protection (Early Access)</a></li>
+    <li><a href="./agentic-ai/demo/">Demonstration</a></li>
     </ul></p>
 </div>
 
@@ -46,30 +72,11 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage api-threat-prevent">API Protection</h3>
-    <p><ul>
-    <li><a href="./about-wallarm/api-protection-overview/">Overview</a></li>
-    <li><a href="./api-specification-enforcement/overview/">API Specification Enforcement</a></li>
-    <li><a href="./admin-en/configuration-guides/protecting-against-bola/">BOLA Protection</a></li>
-    <li><a href="./api-abuse-prevention/overview/">API Abuse Prevention</a></li>
-    <li><a href="./about-wallarm/credential-stuffing/">Credential Stuffing Detection</a></li>
-    <li><a href="./api-protection/graphql-rule/">GraphQL API Protection</a></li>
-    </ul></p>
-</div>
-
-<div class="navigation-card">
     <h3 class="icon-homepage vuln-title">API Attack Surface Management</h3>
     <p><ul>
     <li><a href="./api-attack-surface/overview/">Overview</a></li>
     <li><a href="./api-attack-surface/api-surface/">API Attack Surface Discovery</a></li>
     <li><a href="./api-attack-surface/security-issues/">Detecting Security Issues</a></li>
-    </ul></p>
-</div>
-
-<div class="navigation-card">
-    <h3 class="icon-homepage vuln-title">Assets & Vulnerabilities</h3>
-    <p><ul>
-    <li><a href="./about-wallarm/detecting-vulnerabilities/">Vulnerability Assessment</a></li>
     </ul></p>
 </div>
 
@@ -98,9 +105,10 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage api-security-testing">API Güvenlik Testi</h3>
+    <h3 class="icon-homepage api-security-testing">Security Testing</h3>
     <p><ul>
-    <li><a href="./vulnerability-detection/threat-replay-testing/overview/">Tehdit Tekrar Testi</a></li>
+    <li><a href="./vulnerability-detection/security-testing-overview/">Overview</a></li>
+    <li><a href="./vulnerability-detection/threat-replay-testing/overview/">Threat Replay Testing</a></li>
     <li><a href="./vulnerability-detection/schema-based-testing/overview/">Schema-Based Testing</a></li>
     </ul></p>
 </div>
@@ -108,14 +116,9 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 <div class="navigation-card">
     <h3 class="icon-homepage deployment-title">Deployment</h3>
     <p><ul>
-    <li><a href="./installation/supported-deployment-options/">All Deployment Options</a></li>
-    <li><a href="./installation/supported-deployment-options/#edge">Security Edge</a></li>
-    <li><a href="./installation/supported-deployment-options/#kubernetes">Kubernetes</a></li>
-    <li><a href="./installation/supported-deployment-options/#public-clouds">Public Clouds</a></li>
-    <li><a href="./installation/connectors/overview/">Connectors</a></li>
-    <li><a href="./installation/inline/overview/">In-Line</a></li>
-    <li><a href="./installation/oob/overview/">Out-of-Band</a></li>
-    <li><a href="./installation/nginx-native-node-internals/">All deployment artifacts</a></li>
+    <li><a href="./installation/security-edge/overview/">Security Edge</a></li>
+    <li><a href="./installation/supported-deployment-options/">Self-Hosted Deployment</a></li>
+    <li><a href="./installation/connectors/overview/">Connector Deployment</a></li>
     </ul></p>
 </div>
 
@@ -157,11 +160,22 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 <div class="navigation-card">
     <h3 class="icon-homepage references-title">References</h3>
     <p><ul>
-    <li><a href="./faq/ingress-installation/">FAQ</a></li>
     <li><a href="./news/">Changelog & News</a></li>
     <li><a href="./api/overview/">Wallarm API Reference</a></li>
     <li><a href="./admin-en/managing/terraform-provider/">Wallarm Terraform Provider</a></li>
     <li><a href="./integrations-devsecops/verify-docker-image-signature/">Verifying Docker Image Signatures</a></li>
+    </ul></p>
+</div>
+
+<div class="navigation-card">
+    <h3 class="icon-homepage references-title">Troubleshooting</h3>
+    <p><ul>
+    <li><a href="./troubleshooting/overview/">Overview</a></li>
+    <li><a href="./troubleshooting/detection-and-blocking/">Detection and Blocking</a></li>
+    <li><a href="./troubleshooting/performance/">Performance</a></li>
+    <li><a href="./faq/common-errors-after-installation/">End User Problems</a></li>
+    <li><a href="./faq/ingress-installation/">Wallarm Ingress Controller</a></li>
+    <li><a href="./faq/wallarm-cloud-down/">Wallarm Cloud is Down</a></li>
     </ul></p>
 </div>
 

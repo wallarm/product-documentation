@@ -1,1 +1,1 @@
---8<-- "latest/installation/connectors/mulesoft-flex.md"
+--8<-- "latest-tr/installation/connectors/mulesoft-flex.md"

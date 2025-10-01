@@ -1,1 +1,1 @@
---8<-- "latest/installation/connectors/ibm-api-connect.md"
+--8<-- "latest-tr/installation/connectors/ibm-api-connect.md"
