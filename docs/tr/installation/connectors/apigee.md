@@ -1,1 +1,1 @@
---8<-- "latest-tr/installation/connectors/apigee.md"
+--8<-- "latest/installation/connectors/apigee.md"
