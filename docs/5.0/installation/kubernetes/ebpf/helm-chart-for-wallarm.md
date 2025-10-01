@@ -8,7 +8,7 @@ search:
 This document provides information about Wallarm-specific Helm chart values that can be modified during the [deployment](deployment.md) or upgrade of the eBPF solution. These values control the global configuration of the Wallarm eBPF Helm chart.
 
 !!! warning "Limited to version 4.10"
-    The Wallarm eBPF-based solution currently supports only the features available in [Wallarm Node 4.10](/4.10/installation/oob/ebpf/deployment/).
+    The Wallarm eBPF-based solution currently supports only the features available in Wallarm Node 4.10.
 
 The Wallarm-specific part of the default `values.yaml` that you may need to change looks like the following:
 

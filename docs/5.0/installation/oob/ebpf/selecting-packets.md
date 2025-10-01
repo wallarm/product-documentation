@@ -3,7 +3,7 @@
 The [Wallarm eBPF solution](deployment.md) operates on a traffic mirror and provides control over the traffic mirror scope. It allows you to produce packet mirror by Kubernetes namespaces, pods, and containers. This guide explains how to manage the selection process.
 
 !!! warning "Limited to version 4.10"
-    The Wallarm eBPF-based solution currently supports only the features available in [Wallarm Node 4.10](/4.10/installation/oob/ebpf/deployment/).
+    The Wallarm eBPF-based solution currently supports only the features available in Wallarm Node 4.10.
 
 There are several methods available for selecting packets for mirroring:
 

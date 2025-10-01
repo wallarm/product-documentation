@@ -1,1 +1,0 @@
---8<-- "latest/installation/on-premise/overview.md"

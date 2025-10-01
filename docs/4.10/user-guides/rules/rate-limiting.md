@@ -1,1 +1,0 @@
---8<-- "5.0/user-guides/rules/rate-limiting.md"

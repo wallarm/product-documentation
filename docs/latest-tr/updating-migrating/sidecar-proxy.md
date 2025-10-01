@@ -41,7 +41,7 @@ Eklentiyi kurmak ve çalıştırmak için:
 
 ## 4.10.6 veya altı 4.10.x sürümünden yükseltme
 
-[4.10.7 sürümü](/4.10/updating-migrating/node-artifact-versions/#helm-chart-for-sidecar) kırılma değişikliklerini tanıttı ve çözümün yeniden kurulmasını gerektirdi. Admission webhook sertifikası oluşturma için varsayılan yöntem, [`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen) süreci ile değiştirildi. Yükseltme sırasında, sertifikalar otomatik olarak yeni `certgen` süreci kullanılarak oluşturulacaktır.
+4.10.7 sürümü kırılma değişikliklerini tanıttı ve çözümün yeniden kurulmasını gerektirdi. Admission webhook sertifikası oluşturma için varsayılan yöntem, [`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen) süreci ile değiştirildi. Yükseltme sırasında, sertifikalar otomatik olarak yeni `certgen` süreci kullanılarak oluşturulacaktır.
 
 Ek olarak, bu sürüm [`cert-manager` ile admission webhook sertifika sağlama veya sertifikaları manuel olarak belirtme](../installation/kubernetes/sidecar-proxy/customization.md#certificates-for-the-admission-webhook) imkanı sunar.
 
