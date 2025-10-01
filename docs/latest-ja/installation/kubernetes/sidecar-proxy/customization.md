@@ -1,119 +1,119 @@
 # Wallarm Sidecarのカスタマイズ
 
-このドキュメントでは、[Wallarm Kubernetes Sidecar solution](deployment.md)の安全かつ効果的なカスタマイズ方法を説明し、一般的なカスタマイズユースケースの例を示します。
+本記事では、[Wallarm Kubernetes Sidecarソリューション](deployment.md)を安全かつ効果的にカスタマイズする方法を、一般的なカスタマイズユースケースの例とともに説明します。
 
-## 設定領域
+## 設定範囲
 
-Wallarm Sidecarソリューションは標準のKubernetesコンポーネントに基づいているため、ソリューションの設定はKubernetesスタックの設定と大部分が似ています。Wallarm Sidecarソリューションは、グローバルに`values.yaml`で設定するか、各アプリケーションPod単位でannotationsを使用して設定できます。
+Wallarm Sidecarソリューションは標準のKubernetesコンポーネントに基づいているため、ソリューションの設定は概ねKubernetesスタックの設定に類似しています。Wallarm Sidecarソリューションは、`values.yaml`によるグローバル設定と、アプリケーションPod単位のアノテーションによる設定の両方が可能です。
 
 ### グローバル設定
 
-グローバル設定オプションは、Wallarmコントローラによって作成されるすべてのsidecarリソースに適用され、[default Helm chart values](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml)に設定されています。`helm install`や`helm upgrade`の際にカスタム`values.yaml`を提供することで上書きできます。
+グローバルな設定オプションは、Wallarmコントローラが作成するすべてのSidecarリソースに適用され、[既定のHelmチャートの値](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml)で定義されています。`helm install`または`helm upgrade`の実行時に、独自の`values.yaml`を指定することで上書きできます。
 
-利用可能なグローバル設定オプションは無制限に存在します。ソリューションのカスタマイズ時には、Podの構成が完全に変更される可能性があり、ソリューションが正しく動作しなくなる場合があるため、注意が必要です。グローバル設定を変更する場合は、HelmおよびKubernetesのドキュメントを参照することを推奨します。
+利用可能なグローバル設定オプションの数に制限はありません。結果のPodを完全に変更できてしまうため、カスタマイズの際には注意が必要で、設定を誤るとソリューションが適切に機能しなくなる可能性があります。グローバル設定を変更する際は、HelmおよびKubernetesのドキュメントを参照してください。
 
-[Wallarm固有のチャート値の一覧はこちら](helm-chart-for-wallarm.md)
+[Wallarm固有のチャート値の一覧はこちらです](helm-chart-for-wallarm.md)
 
 ### Pod単位の設定
 
-Pod単位の設定により、特定のアプリケーションの動作をカスタマイズできます。
+Pod単位の設定により、特定のアプリケーションに対するソリューションの挙動をカスタマイズできます。
 
-各アプリケーションPodの設定は、Podのannotationsを介して設定されます。annotationsはグローバル設定より優先されます。同じオプションがグローバルとannotationの両方で指定された場合、annotationの値が適用されます。
+アプリケーションPod単位の設定は、アプリケーションPodのアノテーションで行います。アノテーションはグローバル設定より優先されます。同じオプションがグローバル設定とアノテーションの両方で指定されている場合は、アノテーションの値が適用されます。
 
-サポートされるannotationセットは限定的ですが、`nginx-*-include`および`nginx-*-snippet`のannotationsにより、[任意のカスタムNGINX設定をソリューションで利用することが可能です](#using-custom-nginx-configuration)。
+サポートされるアノテーションの種類は限定されていますが、`nginx-*-include`および`nginx-*-snippet`アノテーションを使用すると、任意の[カスタムNGINX設定をソリューションで利用できます](#using-custom-nginx-configuration)。
 
-[サポートされるPod単位のannotationsの一覧はこちら](pod-annotations.md)
+[サポートされるPod単位のアノテーション一覧はこちらです](pod-annotations.md)
 
 ## 設定ユースケース
 
-前述の通り、ソリューションは多様な方法でカスタマイズでき、インフラストラクチャとセキュリティ要件に適合させることが可能です。最も一般的なカスタマイズオプションの実装を容易にするため、関連するベストプラクティスを考慮して説明します。
+前述のとおり、本ソリューションはインフラやセキュリティ要件に合わせて多様な方法でカスタマイズできます。ここでは、関連するベストプラクティスを踏まえつつ、一般的なカスタマイズ例を解説します。
 
-### コンテナのシングルおよび分割デプロイメント
+### コンテナの単一/分割デプロイメント
 
-Wallarmは、PodへのWallarmコンテナのデプロイメントに2つのオプションを提供します：
+Wallarmは、PodへのWallarmコンテナのデプロイ方式として次の2つを提供します。
 
-* シングルデプロイメント（デフォルト）
+* 単一デプロイメント（既定）
 * 分割デプロイメント
 
-![シングルおよび分割コンテナ][single-split-containers-img]
+![単一/分割コンテナ][single-split-containers-img]
 
-コンテナのデプロイメントオプションはグローバルおよびPod単位で設定できます：
+コンテナのデプロイ方式は、グローバル設定とPod単位の設定の両方で指定できます。
 
-* グローバルには、Helmチャートの値`config.injectionStrategy.schema`を`single`（デフォルト）または`split`に設定します。
-* Pod単位には、該当するアプリケーションPodのannotation`sidecar.wallarm.io/sidecar-injection-schema`に`"single"`または`"split"`を設定します。
+* グローバル: Helmチャート値`config.injectionStrategy.schema`を`single`（既定）または`split`に設定します。
+* Pod単位: 対象アプリケーションPodのアノテーション`sidecar.wallarm.io/sidecar-injection-schema`に`"single"`または`"split"`を設定します。
 
 !!! info "Postanalyticsモジュール"
-    ご注意ください。postanalyticsモジュールのコンテナは[別に実行されます](deployment.md#solution-architecture)ので、記述されたデプロイメントオプションは他のコンテナにのみ関連します。
+    Postanalyticsモジュールのコンテナは[別コンテナとして実行されます](deployment.md#solution-architecture)。ここで説明するデプロイ方式は他のコンテナにのみ関係します。
 
-#### シングルデプロイメント（デフォルト）
+#### 単一デプロイメント（既定）
 
-Wallarmコンテナのシングルデプロイメントでは、オプションのinitコンテナ（**iptables**付き）を除き、Pod内で1つのコンテナのみが実行されます。
+単一デプロイメントでは、任意の**iptables**を実行するinitコンテナを除き、Pod内で実行されるWallarmコンテナは1つだけです。
 
-その結果、次の2つのコンテナが実行されます：
+結果として、次の2つのコンテナが実行されます。
 
-* `sidecar-init-iptables`はiptablesを実行するinitコンテナです。デフォルトではこのコンテナは起動しますが、[無効化可能です](#capturing-incoming-traffic-port-forwarding)。
-* `sidecar-proxy`は、Wallarmモジュールおよび補助サービスを備えたNGINXプロキシを実行します。これらのプロセスはすべて[supervisord](http://supervisord.org/)により実行および管理されます。
+* `sidecar-init-iptables`はiptablesを実行するinitコンテナです。既定ではこのコンテナは起動しますが、[無効化](#capturing-incoming-traffic-port-forwarding)できます。
+* `sidecar-proxy`は、Wallarmモジュール付きのNGINXプロキシといくつかのヘルパーサービスを実行します。これらのプロセスはすべて[supervisord](http://supervisord.org/)によって実行・管理されます。
 
 #### 分割デプロイメント
 
-Wallarmコンテナの分割デプロイメントでは、2つのinitコンテナに加え、さらに2つのコンテナがPod内で実行されます。
+分割デプロイメントでは、2つのinitコンテナに加えて、さらに2つのコンテナがPod内で実行されます。
 
-このオプションでは、`sidecar-proxy`コンテナからすべての補助サービスを分離し、NGINXサービスのみをコンテナが起動するようにします。
+このオプションでは、すべてのヘルパーサービスを`sidecar-proxy`コンテナから分離し、そのコンテナではNGINXサービスのみを起動します。
 
-分割コンテナのデプロイメントにより、NGINXと補助サービスのリソース消費をより細かく制御できます。これは、Wallarmコンテナと補助コンテナ間でCPU/Memory/Storageの名前空間を分割する必要がある高負荷アプリケーションに推奨されるオプションです。
+分割デプロイメントにより、NGINXとヘルパーサービスが消費するリソースをより細かく制御できます。CPU/Memory/Storageなどのリソースや名前空間をWallarmコンテナとヘルパーコンテナで分離する必要がある高負荷アプリケーションに推奨されるオプションです。
 
-その結果、次の4つのコンテナが実行されます：
+結果として、次の4つのコンテナが実行されます。
 
-* `sidecar-init-iptables`はiptablesを実行するinitコンテナです。デフォルトではこのコンテナは起動しますが、[無効化可能です](#capturing-incoming-traffic-port-forwarding)。
-* `sidecar-init-helper`は、WallarmノードとWallarm Cloudを接続する補助サービスを実行するinitコンテナです。
-* `sidecar-proxy`はNGINXサービスを実行するコンテナです。
-* `sidecar-helper`はその他の補助サービスを実行するコンテナです。
+* `sidecar-init-iptables`はiptablesを実行するinitコンテナです。既定ではこのコンテナは起動しますが、[無効化](#capturing-incoming-traffic-port-forwarding)できます。
+* `sidecar-init-helper`は、WallarmノードをWallarm Cloudに接続する役割のヘルパーサービスを含むinitコンテナです。
+* `sidecar-proxy`はNGINXサービスを含むコンテナです。
+* `sidecar-helper`はいくつかのその他のヘルパーサービスを含むコンテナです。
 
 ### アプリケーションコンテナポートの自動検出
 
-保護されるアプリケーションポートは、複数の方法で設定可能です。受信トラフィックを適切に処理および転送するため、Wallarm Sidecarはアプリケーションコンテナが受け入れるTCPポートを認識する必要があります。
+保護対象のアプリケーションのポートはさまざまな方法で設定できます。受信トラフィックを適切に処理・転送するには、Wallarm sidecarがアプリケーションコンテナが受信要求を受け付けるTCPポートを把握している必要があります。
 
-デフォルトでは、Sidecarコントローラは以下の優先順位でポートを自動検出します：
+既定では、sidecarコントローラは次の優先順位でポートを自動検出します。
 
-1. Podのannotation`sidecar.wallarm.io/application-port`でポートが定義されている場合、Wallarmコントローラはこの値を使用します。
-1. アプリケーションコンテナの設定で`name: http`が定義されている場合、Wallarmコントローラはこの値を使用します。
-1. `name: http`設定でポートが定義されていない場合、最初に見つかったアプリケーションコンテナ設定のポート値を使用します。
-1. アプリケーションコンテナの設定にポートが定義されていない場合、Wallarm Helmチャートの`config.nginx.applicationPort`の値を使用します。
+1. `sidecar.wallarm.io/application-port`というPodのアノテーションでポートが定義されている場合、Wallarmコントローラはその値を使用します。
+1. アプリケーションコンテナの設定に`name: http`としてポートが定義されている場合、Wallarmコントローラはその値を使用します。
+1. `name: http`としてのポート定義がない場合、アプリケーションコンテナの設定で最初に見つかったポートの値を使用します。
+1. アプリケーションコンテナの設定にポート定義がない場合、WallarmコントローラはWallarm Helmチャートの`config.nginx.applicationPort`の値を使用します。
 
-アプリケーションコンテナポートの自動検出が期待通りに動作しない場合は、1番目または4番目のオプションを使用して明示的にポートを指定してください。
+アプリケーションコンテナポートの自動検出が期待どおりに動作しない場合は、1または4の方法で明示的にポートを指定してください。
 
-### 受信トラフィックのキャプチャ（ポートフォワーディング）
+### 受信トラフィックの捕捉（ポートフォワーディング）
 
-デフォルトでは、Wallarm Sidecarコントローラはトラフィックを以下のようにルーティングします：
+既定では、Wallarm sidecarコントローラは次のようにトラフィックをルーティングします。
 
-1. アタッチされたPodのIPとアプリケーションコンテナポートに到達する受信トラフィックをキャプチャします。
-1. このトラフィックを組み込みのiptables機能を使用してsidecarコンテナにリダイレクトします。
-1. Sidecarは不正なリクエストを緩和し、正当なトラフィックをアプリケーションコンテナに転送します。
+1. 接続されたPodのIPとアプリケーションコンテナのポートに到達する受信トラフィックを捕捉します。
+1. 組み込みのiptables機能を使用して、このトラフィックをsidecarコンテナへリダイレクトします。
+1. Sidecarが悪意のあるリクエストを軽減し、正当なトラフィックをアプリケーションコンテナへ転送します。
 
-受信トラフィックのキャプチャは、iptablesを実行するinitコンテナを使用して実装されており、これは自動ポートフォワーディングのベストプラクティスです。このコンテナはprivilegedモードで、`NET_ADMIN` capabilityを付与して実行されます。
+受信トラフィックの捕捉は、iptablesを実行するinitコンテナを用いて実装されています。これは自動ポートフォワーディングのベストプラクティスです。このコンテナは特権モードで、`NET_ADMIN`ケイパビリティを付与して実行します。
 
-![iptablesによるデフォルトのポートフォワーディング][port-forwarding-with-iptables-img]
+![iptablesを用いた既定のポートフォワーディング][port-forwarding-with-iptables-img]
 
-ただし、このアプローチはIstioのようなサービスメッシュと互換性がありません。Istioはすでにiptablesベースのトラフィックキャプチャを実装しているためです。この場合、iptablesを無効化することでポートフォワーディングは以下のように動作します：
+ただし、Istioのようなサービスメッシュとはこの方式は互換性がありません。Istioはすでにiptablesベースのトラフィック捕捉を実装しているためです。この場合はiptablesを無効化でき、ポートフォワーディングは次のように機能します。
 
 ![iptablesなしのポートフォワーディング][port-forwarding-without-iptables-img]
 
-!!! info "保護されていないアプリケーションコンテナ"
-    iptablesが無効になっている場合、公開されたアプリケーションコンテナはWallarmによる保護を受けません。その結果、攻撃者がIPアドレスとポートを把握している場合、不正な「east-west」トラフィックがアプリケーションコンテナに到達する可能性があります。
+!!! info "保護されないアプリケーションコンテナ"
+    iptablesを無効化すると、公開されているアプリケーションコンテナはWallarmで保護されなくなります。その結果、攻撃者にコンテナのIPアドレスとポートが知られている場合は、悪意のある「east-west」トラフィックがアプリケーションコンテナに到達する可能性があります。
 
-    East/westトラフィックとは、Kubernetesクラスター内部でサービス間などで流れるトラフィックを指します。
+    east/westトラフィックとは、Kubernetesクラスター内を流れるトラフィック（例: サービス間通信）です。
 
-デフォルトの動作を変更するには、以下の方法を使用します：
+既定の挙動は次のとおり変更できます。
 
-1. iptablesを以下のいずれかの方法で無効化します：
+1. 次のいずれかの方法でiptablesを無効化します。
 
-    * Helmチャートの値`config.injectionStrategy.iptablesEnable`を`"false"`に設定してグローバルに無効化する
-    * Podのannotation`sidecar.wallarm.io/sidecar-injection-iptables-enable`を`"false"`に設定してPod単位で無効化する
-2. Serviceマニフェストの`spec.ports.targetPort`の設定を`proxy`ポートに更新します。
+    * グローバル: Helmチャート値`config.injectionStrategy.iptablesEnable`を`"false"`に設定します。
+    * Pod単位: Podのアノテーション`sidecar.wallarm.io/sidecar-injection-iptables-enable`を`"false"`に設定します。
+2. Serviceのマニフェストで`spec.ports.targetPort`設定を`proxy`ポートを指すように更新します。
 
-    iptablesベースのトラフィックキャプチャが無効になっている場合、Wallarm Sidecarコンテナは`proxy`という名前のポートを公開します。Kubernetesサービスから`proxy`ポートに受信トラフィックを流すには、Serviceマニフェストの`spec.ports.targetPort`の設定をこのポートに向ける必要があります。
+    iptablesベースのトラフィック捕捉を無効化すると、Wallarm sidecarコンテナは`proxy`という名前のポートを公開します。Kubernetes Serviceからの受信トラフィックを`proxy`ポートへ流すために、Serviceのマニフェスト内の`spec.ports.targetPort`設定をこのポートを指すように指定する必要があります。
 
-```yaml
+```yaml hl_lines="16-17 34"
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -154,51 +154,51 @@ spec:
     app: myapp
 ```
 
-### SSL/TLS終端処理
+### SSL/TLS終端
 
-デフォルトでは、SidecarソリューションはHTTPトラフィックのみを受け入れ、プレーンHTTPトラフィックをアプリケーションPodに転送します。SSL/TLS終端処理は、Sidecarソリューションより前のインフラストラクチャコンポーネント（IngressやApplication Gatewayなど）により実施され、SidecarではプレーンHTTPを処理します。
+既定では、SidecarソリューションはHTTPトラフィックのみを受け付け、プレーンHTTPトラフィックをアプリケーションPodへ転送します。SSL/TLS終端は、sidecarソリューションの前段にあるインフラコンポーネント（IngressやApplication Gatewayなど）で行われ、sidecarソリューションがプレーンHTTPを処理できる前提になっています。
 
-しかし、既存のインフラストラクチャがSSL/TLS終端処理に対応していない場合、Wallarm SidecarレベルでSSL/TLS終端処理を有効化できます。この機能はHelmチャート4.6.1以降でサポートされています。
+ただし、既存インフラがSSL/TLS終端をサポートしていない場合があります。そのような場合は、Wallarm sidecar側でSSL/TLS終端を有効化できます。この機能はHelmチャート4.6.1からサポートされています。
 
-!!! warning "SidecarソリューションはSSL/TLSまたはプレーンHTTPトラフィック処理のいずれかしかサポートしていません"
-    Wallarm Sidecarソリューションは、SSL/TLSまたはプレーンHTTPトラフィック処理のいずれかしかサポートしていません。SSL/TLS終端処理を有効にすると、SidecarソリューションはプレーンHTTPトラフィックを処理せず、SSL/TLS終端処理が無効の場合はHTTPSトラフィックのみが処理されます。
+!!! warning "SidecarソリューションはSSLまたはプレーンHTTPのいずれかのみを処理します"
+    Wallarm Sidecarソリューションは、SSL/TLSまたはプレーンHTTPのいずれか一方のトラフィック処理をサポートします。SSL/TLS終端を有効化すると、sidecarソリューションはプレーンHTTPトラフィックを処理しなくなり、逆にSSL/TLS終端を無効化するとHTTPSトラフィックのみが処理されます。
 
-SSL/TLS終端処理を有効にする手順は以下の通りです：
+SSL/TLS終端を有効化するには:
 
-1. SidecarがSSL/TLS終端処理を行うサーバーに関連付けられたサーバー証明書（公開鍵）と秘密鍵を取得します。
-1. アプリケーションPodのnamespace内で、サーバー証明書と秘密鍵を含む[TLS secret](https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets)を作成します。
-1. `values.yaml`ファイルに、secretマウント用の`config.profiles`セクションを追加します。以下の例は複数の証明書マウント設定を示しています。
+1. SidecarがSSL/TLSを終端する対象サーバに対応するサーバ証明書（公開鍵）と秘密鍵を取得します。
+1. アプリケーションPodのNamespace内で、サーバ証明書と秘密鍵を含む[TLS Secret](https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets)を作成します。
+1. Secretをマウントするために、`values.yaml`に`config.profiles`セクションを追加します。以下の例は複数の証明書マウント構成を示しています。
 
-    コメントに基づいて必要に応じてコードをカスタマイズしてください。1つの証明書のみが必要な場合は、不要な証明書マウント設定を削除してください。
+    コメントに基づいてコードを調整し、要件に合わせてください。証明書が1つだけ必要な場合は、不要なマウント構成を削除してください。
 
     ```yaml
     config:
       wallarm:
         api:
           token: "<NODE_TOKEN>"
-          host: "us1.api.wallarm.com" # or empty string if using the EU Cloud
-        # Other Wallarm settings https://docs.wallarm.com/installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm/
+          host: "us1.api.wallarm.com" # EU Cloudを使用する場合は空文字にします
+        # その他のWallarm設定 https://docs.wallarm.com/installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm/
       profiles:
-        tls-profile: # Set any desired TLS profile name here
+        tls-profile: # 任意のTLSプロファイル名を設定します
           sidecar:
             volumeMounts:
-              - name: nginx-certs-example-com # Name of the volume containing example.com keys
-                mountPath: /etc/nginx/certs/example.com # Path to mount example.com keys in the container
+              - name: nginx-certs-example-com # example.comの鍵を含むボリューム名
+                mountPath: /etc/nginx/certs/example.com # コンテナ内でexample.comの鍵をマウントするパス
                 readOnly: true
-              - name: nginx-certs-example-io # Name of the volume containing example.io keys
-                mountPath: /etc/nginx/certs/example.io # Path to mount example.io keys in the container
+              - name: nginx-certs-example-io # example.ioの鍵を含むボリューム名
+                mountPath: /etc/nginx/certs/example.io # コンテナ内でexample.ioの鍵をマウントするパス
                 readOnly: true
             volumes:
-              - name: nginx-certs-example-com # Name of the volume containing example.com keys
+              - name: nginx-certs-example-com # example.comの鍵を含むボリューム名
                 secret:
-                  secretName: example-com-certs # Name of the secret created for the example.com backend, containing public and private keys
-              - name: nginx-certs-example-io # Name of the volume containing example.io keys
+                  secretName: example-com-certs # example.comバックエンド用に作成したSecret名（公開鍵と秘密鍵を含む）
+              - name: nginx-certs-example-io # example.ioの鍵を含むボリューム名
                 secret:
-                  secretName: example-io-certs # Name of the secret created for the example.io backend, containing public and private keys
+                  secretName: example-io-certs # example.ioバックエンド用に作成したSecret名（公開鍵と秘密鍵を含む）
           nginx:
-            # NGINX SSL module configuration specific to your TLS/SSL termination procedure.
-            # Refer to https://nginx.org/en/docs/http/ngx_http_ssl_module.html.
-            # This configuration is required for the Sidecar to perform traffic termination.
+            # TLS/SSL終端手順に合わせたNGINX SSLモジュールの設定です。
+            # https://nginx.org/en/docs/http/ngx_http_ssl_module.html を参照してください。
+            # Sidecarがトラフィックの終端を行うために必要な設定です。
             servers:
               - listen: "ssl http2"
                 include:
@@ -215,27 +215,27 @@ SSL/TLS終端処理を有効にする手順は以下の通りです：
                   - "ssl_certificate /etc/nginx/certs/example.io/tls.crt"
                   - "ssl_certificate_key /etc/nginx/certs/example.io/tls.key"
     ```
-1. 以下のコマンドを使用して、`values.yaml`の変更をSidecarソリューションに適用します：
+1. 次のコマンドで`values.yaml`の変更をSidecarソリューションに適用します。
 
     ```bash
     helm upgrade <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar -f values.yaml
     ```
-1. アプリケーションPodに[こちらの手順](pod-annotations.md#how-to-use-annotations)に従い、`sidecar.wallarm.io/profile: tls-profile`のannotationを適用します。
-1. 設定が適用された後、[こちら](deployment.md#step-4-test-the-wallarm-sidecar-operation)に記載の手順に従い、HTTPをHTTPSに置き換えてソリューションのテストを実施してください。
+1. アプリケーションPodに`sidecar.wallarm.io/profile: tls-profile`アノテーションを[適用](pod-annotations.md#how-to-use-annotations)します。
+1. 設定を適用後、[こちら](deployment.md#step-4-test-the-wallarm-sidecar-operation)の手順に従って、HTTPをHTTPSに置き換えて動作をテストできます。
 
-Sidecarソリューションは、TLS/SSLトラフィックを受け入れ、終端処理を行い、プレーンHTTPトラフィックをアプリケーションPodに転送します。
+SidecarソリューションはTLS/SSLトラフィックを受け付けて終端し、プレーンHTTPトラフィックをアプリケーションPodへ転送します。
 
 ### admission webhook用の証明書
 
-リリース4.10.7以降、admission webhook用の証明書を独自に発行および使用するオプションが提供されています。
+リリース4.10.7以降、admission webhook用の証明書を独自に発行して利用できるようになりました。
 
-デフォルトでは、ソリューションは[`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen)を使用してadmission webhookの証明書を自動生成します。
+既定では、ソリューションは[`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen)を使用してadmission webhook用の証明書を自動生成します。
 
-独自の証明書を使用する場合、次のオプションがあります：
+独自の証明書を使用するには、次のオプションがあります。
 
-* **cert-managerを使用する方法**：クラスター内で[`cert-manager`](https://cert-manager.io/)を使用しており、admission webhook証明書の生成にcert-managerを利用する場合は、`values.yaml`を以下のように更新してください。
+* cert-managerの使用: クラスターで[`cert-manager`](https://cert-manager.io/)を使用しており、admission webhookの証明書生成にもそれを用いたい場合は、`values.yaml`を次のように更新します。
 
-    これにより、自動的に`certgen`が無効化されます。
+    これにより`certgen`は自動的に無効化されます。
 
     ```yaml
     controller:
@@ -243,7 +243,7 @@ Sidecarソリューションは、TLS/SSLトラフィックを受け入れ、終
         certManager:
           enabled: true
     ```
-* **手動で証明書をアップロードする方法**：`values.yaml`に以下の設定を追加することで、証明書を手動でアップロードできます。これにより、自動的に`certgen`が無効化されます。
+* 手動アップロード: 次の設定を`values.yaml`に追加して証明書を手動でアップロードできます。これにより`certgen`は自動的に無効化されます。
 
     ```yaml
     controller:
@@ -255,21 +255,21 @@ Sidecarソリューションは、TLS/SSLトラフィックを受け入れ、終
           key: <base64-encoded-private-key>
     ```
 
-バージョン4.10.6以前からアップグレードする場合は、[こちらの特定のアップグレード手順](sidecar-upgrade-docs)に従ってください。この更新は破壊的変更を含むため、ソリューションの再インストールが必要です。
+バージョン4.10.6以前からアップグレードする場合は、[特定のアップグレード手順][sidecar-upgrade-docs]に従ってください。この更新には破壊的変更が含まれており、ソリューションの再インストールが必要です。
 
 ### 追加のNGINXモジュールの有効化
 
-Wallarm SidecarのDockerイメージには、以下の追加NGINXモジュールがデフォルトで無効化されています：
+Wallarm sidecarのDockerイメージには、以下の追加NGINXモジュールが含まれていますが、既定では無効です。
 
 * [ngx_http_brotli_filter_module.so](https://github.com/google/ngx_brotli)
 * [ngx_http_brotli_static_module.so](https://github.com/google/ngx_brotli)
 * [ngx_http_geoip2_module.so](https://github.com/leev/ngx_http_geoip2_module)
 
-追加のモジュールは、Pod単位でPodのannotation`sidecar.wallarm.io/nginx-extra-modules`を設定することで有効化できます。
+追加モジュールは、Podのアノテーション`sidecar.wallarm.io/nginx-extra-modules`を設定することで、Pod単位でのみ有効化できます。
 
-annotationの値は配列形式で指定します。追加モジュールを有効化した例は以下の通りです：
+アノテーション値の形式は配列です。以下は追加モジュールを有効化した例です。
 
-```yaml
+```yaml hl_lines="16-17"
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -298,23 +298,23 @@ spec:
 
 ### カスタムNGINX設定の使用
 
-一部のNGINX設定に対して専用の[Pod annotations](pod-annotations.md)が存在しない場合、Pod単位の**snippets**および**includes**を使用して設定を指定できます。
+特定のNGINX設定に対応する[Podアノテーション](pod-annotations.md)がない場合、Pod単位の「スニペット」と「インクルード」で設定できます。
 
-#### Snippet
+#### スニペット
 
-Snippetは、NGINX設定に1行の変更を加えるための便利な方法です。より複雑な変更が必要な場合は、[includes](#include)の使用を推奨します。
+スニペットは、NGINX設定に1行の変更を加えるのに便利な方法です。より複雑な変更には、[インクルード](#include)の使用を推奨します。
 
-Pod単位のannotationを使用してカスタム設定を指定するには、次のannotationsを使用してください：
+スニペットでカスタム設定を指定するには、以下のPod単位のアノテーションを使用します。
 
-| NGINX設定セクション | Annotation                                     | 
-|---------------------|------------------------------------------------|
-| http                | `sidecar.wallarm.io/nginx-http-snippet`         |
-| server              | `sidecar.wallarm.io/nginx-server-snippet`       |
-| location            | `sidecar.wallarm.io/nginx-location-snippet`     |
+| NGINX設定セクション | アノテーション                                  | 
+|----------------------|---------------------------------------------|
+| http                 | `sidecar.wallarm.io/nginx-http-snippet`     |
+| server               | `sidecar.wallarm.io/nginx-server-snippet`   |
+| location             | `sidecar.wallarm.io/nginx-location-snippet` |
 
-[`disable_acl`][disable-acl-directive-docs] NGINXディレクティブの値を変更するannotationの例は以下の通りです：
+[`disable_acl`][disable-acl-directive-docs]というNGINXディレクティブの値を変更するアノテーションの例です。
 
-```yaml
+```yaml hl_lines="18"
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -342,34 +342,34 @@ spec:
               containerPort: 80
 ```
 
-複数のディレクティブを指定する場合は、`;`記号を使用してください。例：
+複数のディレクティブを指定するには、`;`記号を使用します。例:
 
 ```yaml
 sidecar.wallarm.io/nginx-location-snippet: "disable_acl on;wallarm_timeslice 10"
 ```
 
-#### Include
+#### インクルード
 
-カスタムのNGINX設定ファイルをWallarm Sidecarコンテナにマウントするには、まずこのファイルから[ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files)または[Secret resource](https://kubernetes.io/docs/concepts/configuration/secret/#creating-a-secret)を作成し、コンテナで作成されたリソースを使用します。
+Wallarm sidecarコンテナに追加のNGINX設定ファイルをマウントするには、そのファイルから[ConfigMapを作成](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files)するか、[Secretリソース](https://kubernetes.io/docs/concepts/configuration/secret/#creating-a-secret)を作成し、コンテナ内でそのリソースを使用します。
 
-ConfigMapまたはSecretリソースを作成した後、[VolumeおよびVolumeMountsコンポーネント](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap)を使用してコンテナにマウントできます。次のPod単位のannotationsを使用してください：
+ConfigMapまたはSecretリソースを作成したら、以下のPod単位のアノテーションを使用して、[VolumeおよびVolumeMountsコンポーネント](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap)経由でコンテナにマウントできます。
 
-| 項目          | Annotation                                      | 値の型    |
-|---------------|-------------------------------------------------|-----------|
-| Volumes       | `sidecar.wallarm.io/proxy-extra-volumes`         | JSON      |
-| Volume mounts | `sidecar.wallarm.io/proxy-extra-volume-mounts`   | JSON      |
+| 項目          |  アノテーション                                    | 値の型  |
+|---------------|------------------------------------------------|-------------|
+| Volumes       | `sidecar.wallarm.io/proxy-extra-volumes`       | JSON |
+| Volume mounts | `sidecar.wallarm.io/proxy-extra-volume-mounts` | JSON |
 
-コンテナにリソースがマウントされた後、マウントされたファイルへのパスを対応するannotationに渡すことで、NGINXの設定追加用のコンテキストを指定します：
+リソースをコンテナにマウントしたら、対応するアノテーションでマウントしたファイルのパスを渡すことで、設定を追加するNGINXのコンテキストを指定します。
 
-| NGINX設定セクション | Annotation                                      | 値の型    |
-|---------------------|-------------------------------------------------|-----------|
-| http                | `sidecar.wallarm.io/nginx-http-include`         | Array     |
-| server              | `sidecar.wallarm.io/nginx-server-include`       | Array     |
-| location            | `sidecar.wallarm.io/nginx-location-include`     | Array     |
+| NGINX設定セクション | アノテーション                                  | 値の型 |
+|----------------------|---------------------------------------------|------------|
+| http                 | `sidecar.wallarm.io/nginx-http-include`     | Array  |
+| server               | `sidecar.wallarm.io/nginx-server-include`   | Array  |
+| location             | `sidecar.wallarm.io/nginx-location-include` | Array  |
 
-以下は、NGINX設定のhttpレベルにマウントされた設定ファイルを含める例です。この例では、事前に有効なNGINX設定ディレクティブを含む`nginx-http-include-cm` ConfigMapが作成されているものとします。
+以下は、マウントした設定ファイルをNGINX設定の`http`レベルでインクルードする例です。この例では、事前に`nginx-http-include-cm`というConfigMapが作成され、有効なNGINX設定ディレクティブを含んでいることを前提としています。
 
-```yaml
+```yaml hl_lines="16-19"
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -400,12 +400,12 @@ spec:
 
 ### Wallarm機能の設定
 
-記載の一般的なソリューション設定に加えて、[Wallarmによる攻撃防止のベストプラクティス](wallarm-attack-prevention-best-practices-docs)についても確認することを推奨します。
+上記の一般的なソリューション設定に加えて、[Wallarmによる攻撃防止のベストプラクティス][wallarm-attack-prevention-best-practices-docs]もぜひご確認ください。
 
-この設定は、[annotations](pod-annotations.md)およびWallarm Console UIを介して行います。
+この設定は、[アノテーション](pod-annotations.md)およびWallarm Console UIで行います。
 
-## その他のannotationsによる設定
+## アノテーションによるその他の設定
 
-記載の設定ユースケースに加えて、その他多数のannotationsを使用してアプリケーションPodのWallarm Sidecarソリューションを細かく調整できます。
+上記の設定ユースケースに加え、さまざまなアノテーションを用いて、アプリケーションPod向けのWallarm sidecarソリューションを細かく調整できます。
 
-[サポートされるPod単位のannotationsの一覧はこちら](pod-annotations.md)
+[サポートされるPod単位のアノテーション一覧はこちらです](pod-annotations.md)

@@ -1,1 +1,1 @@
---8<-- "latest/installation/on-premise/maintenance.md"
+--8<-- "latest-ja/installation/on-premise/maintenance.md"

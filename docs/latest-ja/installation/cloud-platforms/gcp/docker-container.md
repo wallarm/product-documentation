@@ -1,11 +1,11 @@
-# GCPへのWallarm Dockerイメージの展開
+# GCPへのWallarm Dockerイメージのデプロイ
 
-本クイックガイドは、[NGINXベースのWallarmノードのDockerイメージ](https://hub.docker.com/r/wallarm/node)を[Google Compute Engine (GCE)](https://cloud.google.com/compute)を使用してGoogle Cloud Platformにデプロイするための手順を説明します。
+このクイックガイドでは、[NGINXベースのWallarm nodeのDockerイメージ](https://hub.docker.com/r/wallarm/node)を[Google Compute Engine (GCE)コンポーネント](https://cloud.google.com/compute)を使用してGoogle Cloud Platformへデプロイする手順を説明します。
 
 !!! warning "手順の制限事項"
-    これらの手順は、ロードバランシングおよびノードの自動スケーリングの設定を対象としておりません。これらのコンポーネントを独自にセットアップする場合は、適切な[GCPドキュメント](https://cloud.google.com/compute/docs/load-balancing-and-autoscaling)をお読みになることを推奨します。
+    本手順では、ロードバランシングおよびノードのオートスケーリングの構成は対象外です。これらのコンポーネントを設定する場合は、該当する[GCPのドキュメント](https://cloud.google.com/compute/docs/load-balancing-and-autoscaling)を参照してください。
 
-## 使用例
+## ユースケース
 
 --8<-- "../include/waf/installation/cloud-platforms/google-gce-use-cases.md"
 
@@ -13,31 +13,31 @@
 
 * 有効なGCPアカウント
 * [GCPプロジェクトが作成済み](https://cloud.google.com/resource-manager/docs/creating-managing-projects)
-* [Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com?q=compute%20eng&id=a08439d8-80d6-43f1-af2e-6878251f018d)が有効になっている
-* [Google Cloud SDK (gcloud CLI)がインストールされ設定済み](https://cloud.google.com/sdk/docs/quickstart)
-* Wallarm Console上で[US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)の**Administrator**ロールが付与され、二要素認証が無効になっているアカウントへのアクセス
-* 攻撃検知ルールおよび[API仕様][api-policy-enf-docs]のアップデートのダウンロード、並びに[許可リスト、拒否リスト、またはグレイリスト][graylist-docs]に登録された国、地域、またはデータセンターに対する正確なIPを取得するために、以下のIPアドレスへのアクセス
+* [Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com?q=compute%20eng&id=a08439d8-80d6-43f1-af2e-6878251f018d)が有効化済み
+* [Google Cloud SDK (gcloud CLI)のインストールおよび設定が完了](https://cloud.google.com/sdk/docs/quickstart)
+* [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarm Consoleで**Administrator**ロールを持つアカウントへのアクセス権
+* 以下のIPアドレスへのアクセス。攻撃検知ルールおよび[API仕様][api-policy-enf-docs]の更新をダウンロードし、ならびにお使いの[許可リスト、拒否リスト、またはグレーリスト][graylist-docs]対象の国、地域、またはデータセンターの正確なIPを取得するため
 
     --8<-- "../include/wallarm-cloud-ips.md"
 
-## WallarmノードDockerコンテナの構成オプション
+## Wallarm nodeのDockerコンテナ構成のオプション
 
 --8<-- "../include/waf/installation/docker-running-options.md"
 
-## 環境変数で構成されたWallarmノードDockerコンテナの展開
+## 環境変数で構成されたWallarm nodeのDockerコンテナをデプロイする
 
-環境変数のみを使用して構成されたコンテナ化されたWallarmフィルタリングノードをデプロイするには、[GCP Consoleまたはgcloud CLI](https://cloud.google.com/compute/docs/containers/deploying-containers)を使用できます。本手順ではgcloud CLIを使用します。
+環境変数のみで構成されたコンテナ化されたWallarmフィルタリングノードをデプロイするには、[GCP Consoleまたはgcloud CLI](https://cloud.google.com/compute/docs/containers/deploying-containers)を使用できます。本手順ではgcloud CLIを使用します。
 
 --8<-- "../include/waf/installation/get-api-or-node-token.md"
 
-1. インスタンスをWallarm Cloudに接続するために使用するWallarmノードトークンを含むローカル環境変数を設定します:
+1. インスタンスをWallarm Cloudに接続するために使用するWallarm nodeトークンをローカル環境変数に設定します:
 
     ```bash
     export WALLARM_API_TOKEN='<WALLARM_API_TOKEN>'
     ```
-1. [`gcloud compute instances create-with-container`](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create-with-container)コマンドを使用して、Dockerコンテナが稼働するインスタンスを作成します:
+1. [`gcloud compute instances create-with-container`](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create-with-container)コマンドを使用して、Dockerコンテナを実行した状態でインスタンスを作成します:
 
-    === "Wallarm US Cloud向けコマンド"
+    === "Wallarm US Cloud向けのコマンド"
         ```bash
         gcloud compute instances create-with-container <INSTANCE_NAME> \
             --zone <DEPLOYMENT_ZONE> \
@@ -45,37 +45,37 @@
             --container-env WALLARM_API_TOKEN=${WALLARM_API_TOKEN} \
             --container-env NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> \
             --container-env WALLARM_API_HOST=us1.api.wallarm.com \
-            --container-image registry-1.docker.io/wallarm/node:5.3.0
+            --container-image registry-1.docker.io/wallarm/node:6.4.1
         ```
-    === "Wallarm EU Cloud向けコマンド"
+    === "Wallarm EU Cloud向けのコマンド"
         ```bash
         gcloud compute instances create-with-container <INSTANCE_NAME> \
             --zone <DEPLOYMENT_ZONE> \
             --tags http-server \
             --container-env WALLARM_API_TOKEN=${WALLARM_API_TOKEN} \
             --container-env NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> \
-            --container-image registry-1.docker.io/wallarm/node:5.3.0
+            --container-image registry-1.docker.io/wallarm/node:6.4.1
         ```
 
-    * `<INSTANCE_NAME>`：インスタンスの名称です。例：`wallarm-node`。
-    * `--zone`：インスタンスをホストする[ゾーン](https://cloud.google.com/compute/docs/regions-zones)です。
-    * `--tags`：インスタンスタグです。タグは他のリソースのインスタンス利用可否を設定するために使用されます。本ケースでは、ポート80を開放するタグ`http-server`がインスタンスに割り当てられます。
-    * `--container-image`：フィルタリングノードのDockerイメージのリンクです。
-    * `--container-env`：フィルタリングノードの構成情報を持つ環境変数です（利用可能な変数は以下の表に記載されています）。`WALLARM_API_TOKEN`の値を明示的に渡すことは推奨しませんのでご注意ください。
+    * `<INSTANCE_NAME>`: インスタンス名です。例: `wallarm-node`。
+    * `--zone`: インスタンスをホストする[ゾーン](https://cloud.google.com/compute/docs/regions-zones)です。
+    * `--tags`: インスタンスタグです。タグは、他のリソースからのインスタンスへの到達性を構成するために使用します。本例では、ポート80を開放する`http-server`タグをインスタンスに割り当てます。
+    * `--container-image`: フィルタリングノードのDockerイメージへのリンクです。
+    * `--container-env`: フィルタリングノードの構成に用いる環境変数です（利用可能な変数は下記の表に記載しています）。`WALLARM_API_TOKEN`の値を明示的に渡すことは推奨しません。
 
         --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
     
-    * `gcloud compute instances create-with-container`コマンドのすべてのパラメータについては、[GCPドキュメント](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create-with-container)に記載されています。
-1. [GCP Console→**Compute Engine**→VM instances](https://console.cloud.google.com/compute/instances)を開き、インスタンスがリストに表示されていることをご確認ください。
-1. [フィルタリングノードの動作テスト](#testing-the-filtering-node-operation)を行います。
+    * `gcloud compute instances create-with-container`コマンドのすべてのパラメータは[GCPのドキュメント](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create-with-container)に記載されています。
+1. [GCP Console → **Compute Engine** → VM instances](https://console.cloud.google.com/compute/instances)を開き、インスタンスが一覧に表示されていることを確認します。
+1. [フィルタリングノードの動作をテストします](#testing-the-filtering-node-operation)。
 
-## マウントされたファイルを使用して構成されたWallarmノードDockerコンテナの展開
+## マウントしたファイルで構成したWallarm nodeのDockerコンテナをデプロイする
 
-環境変数とマウントされたファイルを使用して構成されたコンテナ化されたWallarmフィルタリングノードを展開するには、インスタンスを作成し、このインスタンスのファイルシステム上にフィルタリングノードの構成ファイルを配置して、Dockerコンテナを実行する必要があります。これらの操作は[GCP Consoleまたはgcloud CLI](https://cloud.google.com/compute/docs/containers/deploying-containers)を使用して実行できます。本手順ではgcloud CLIを使用します。
+環境変数およびマウントしたファイルで構成されたコンテナ化Wallarmフィルタリングノードをデプロイするには、インスタンスを作成し、このインスタンスのファイルシステムにフィルタリングノードの構成ファイルを配置し、このインスタンスでDockerコンテナを実行します。これらの手順は[GCP Consoleまたはgcloud CLI](https://cloud.google.com/compute/docs/containers/deploying-containers)で実行できます。本手順ではgcloud CLIを使用します。
 
 --8<-- "../include/waf/installation/get-api-or-node-token.md"
 
-1. [`gcloud compute instances create`](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create)コマンドを使用して、Compute Engineレジストリから任意のオペレーティングシステムイメージに基づくインスタンスを作成します:
+1. [`gcloud compute instances create`](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create)コマンドを使用して、Compute Engineレジストリの任意のOSイメージを基にインスタンスを作成します:
 
     ```bash
     gcloud compute instances create <INSTANCE_NAME> \
@@ -84,38 +84,38 @@
         --tags http-server
     ```
 
-    * `<INSTANCE_NAME>`：インスタンスの名称です。
-    * `--image`：Compute Engineレジストリからのオペレーティングシステムイメージの名称です。作成されたインスタンスはこのイメージに基づいており、後でDockerコンテナの実行に使用されます。このパラメータが省略された場合、インスタンスはDebian 10イメージに基づきます。
-    * `--zone`：インスタンスをホストする[ゾーン](https://cloud.google.com/compute/docs/regions-zones)です。
-    * `--tags`：インスタンスタグです。タグは他のリソースのインスタンス利用可否を設定するために使用されます。本ケースでは、ポート80を開放するタグ`http-server`がインスタンスに割り当てられます。
-    * `gcloud compute instances create`コマンドのすべてのパラメータについては、[GCPドキュメント](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create)に記載されています。
-1. [GCP Console→**Compute Engine**→VM instances](https://console.cloud.google.com/compute/instances)を開き、インスタンスがリストに表示され、**RUNNING**状態であることをご確認ください。
-1. SSHを使用してインスタンスに接続します。詳細は[GCPの手順](https://cloud.google.com/compute/docs/instances/ssh)をご参照ください。
-1. 適切なオペレーティングシステム向けの[手順](https://docs.docker.com/engine/install/#server)に従って、インスタンスにDockerパッケージをインストールします。
-1. インスタンスをWallarm Cloudに接続するために使用するWallarmノードトークンを含むローカル環境変数を設定します:
+    * `<INSTANCE_NAME>`: インスタンス名です。
+    * `--image`: Compute EngineレジストリのOSイメージ名です。作成されるインスタンスはこのイメージを基にし、後でDockerコンテナの実行に使用します。このパラメータを省略すると、インスタンスはDebian 10イメージを基にします。
+    * `--zone`: インスタンスをホストする[ゾーン](https://cloud.google.com/compute/docs/regions-zones)です。
+    * `--tags`: インスタンスタグです。タグは、他のリソースからのインスタンスへの到達性を構成するために使用します。本例では、ポート80を開放する`http-server`タグをインスタンスに割り当てます。
+    * `gcloud compute instances create`コマンドのすべてのパラメータは[GCPのドキュメント](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create)に記載されています。
+1. [GCP Console → **Compute Engine** → VM instances](https://console.cloud.google.com/compute/instances)を開き、インスタンスが一覧に表示され、**RUNNING**ステータスであることを確認します。
+1. [GCPの手順](https://cloud.google.com/compute/docs/instances/ssh)に従ってSSHでインスタンスに接続します。
+1. 該当するOS向けの[手順](https://docs.docker.com/engine/install/#server)に従って、インスタンスにDockerパッケージをインストールします。
+1. インスタンスをWallarm Cloudに接続するために使用するWallarm nodeトークンをローカル環境変数に設定します:
 
     ```bash
     export WALLARM_API_TOKEN='<WALLARM_API_TOKEN>'
     ```
-1. インスタンス上で、フィルタリングノードの構成が含まれるファイル`default`を含むディレクトリ（例として、ディレクトリ名を`configs`とすることが可能です）を作成します。以下は最小限の設定が記載されたファイルの例です:
+1. インスタンス内で、フィルタリングノードの構成を含むファイル`default`を配置するディレクトリを作成します（例えば、ディレクトリ名は`configs`とできます）。最小設定のファイル例:
 
-    ```nginx
+    ```bash
     server {
         listen 80 default_server;
         listen [::]:80 default_server ipv6only=on;
-        #443番ポートでssl通信する場合
+        #listen 443 ssl;
 
         server_name localhost;
 
-        #ssl_certificateにはcert.pem
-        #ssl_certificate_keyにはcert.key
+        #ssl_certificate cert.pem;
+        #ssl_certificate_key cert.key;
 
         root /usr/share/nginx/html;
 
         index index.html index.htm;
 
         wallarm_mode monitoring;
-        #wallarm_applicationは1;
+        # wallarm_application 1;
 
         location / {
                 proxy_pass http://example.com;
@@ -124,47 +124,48 @@
     }
     ```
 
-    [構成ファイルに記載可能なフィルタリングノードのディレクティブ一覧 →][nginx-waf-directives]
-1. 環境変数とマウントされた構成ファイルを渡して、`docker run`コマンドを使用してWallarmノードDockerコンテナを実行します:
+    [構成ファイルで指定できるフィルタリングノードのディレクティブの一覧 →][nginx-waf-directives]
+1. 環境変数とマウントした構成ファイルを指定して、`docker run`コマンドでWallarm nodeのDockerコンテナを実行します:
 
-    === "Wallarm US Cloud向けコマンド"
+    === "Wallarm US Cloud向けのコマンド"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:5.3.0
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:6.4.1
         ```
-    === "Wallarm EU Cloud向けコマンド"
+    === "Wallarm EU Cloud向けのコマンド"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_LABELS='group=<GROUP>' -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:5.3.0
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_LABELS='group=<GROUP>' -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:6.4.1
         ```
 
-    * `<INSTANCE_PATH_TO_CONFIG>`：前の手順で作成した構成ファイルへのパスです。例：`configs`。
-    * `<DIRECTORY_FOR_MOUNTING>`：構成ファイルをマウントするコンテナ内のディレクトリです。構成ファイルはNGINXが使用する以下のコンテナディレクトリにマウント可能です:
-    
+    * `<INSTANCE_PATH_TO_CONFIG>`: 前の手順で作成した構成ファイルへのパスです。例: `configs`。
+    * `<DIRECTORY_FOR_MOUNTING>`: 構成ファイルをマウントするコンテナ内のディレクトリです。構成ファイルは、NGINXが使用する次のコンテナディレクトリにマウントできます:
+
         * `/etc/nginx/conf.d` — 共通設定
-        * `/etc/nginx/sites-enabled` — 仮想ホスト設定
+        * `/etc/nginx/http.d` — 仮想ホスト設定
         * `/var/www/html` — 静的ファイル
 
-        フィルタリングノードのディレクティブは`/etc/nginx/sites-enabled/default`ファイルに記述する必要があります。
+        フィルタリングノードのディレクティブは`/etc/nginx/http.d/default.conf`ファイルに記述する必要があります。
     
-    * `-p`：フィルタリングノードが待ち受けるポートです。この値はインスタンスのポートと同一である必要があります。
-    * `-e`：フィルタリングノードの構成情報を持つ環境変数です（利用可能な変数は以下の表に記載されています）。`WALLARM_API_TOKEN`の値を明示的に渡すことは推奨しませんのでご注意ください。
+    * `-p`: フィルタリングノードがリッスンするポートです。値はインスタンスのポートと同一にします。
+    * `-e`: フィルタリングノードの構成に用いる環境変数です（利用可能な変数は下記の表に記載しています）。`WALLARM_API_TOKEN`の値を明示的に渡すことは推奨しません。
 
         --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
-1. [フィルタリングノードの動作テスト](#testing-the-filtering-node-operation)を行います。
+1. [フィルタリングノードの動作をテストします](#testing-the-filtering-node-operation)。
 
 ## フィルタリングノードの動作テスト
 
-1. [GCP Console→**Compute Engine**→VM instances](https://console.cloud.google.com/compute/instances)を開き、**External IP**列からインスタンスのIPアドレスをコピーします。
+1. [GCP Console → **Compute Engine** → VM instances](https://console.cloud.google.com/compute/instances)を開き、**External IP**列からインスタンスのIPアドレスをコピーします。
 
     ![コンテナインスタンスの設定][copy-container-ip-gcp-img]
 
-    もしIPアドレスが空の場合は、インスタンスが**RUNNING**状態であることをご確認ください。
+    IPアドレスが空の場合は、インスタンスが**RUNNING**ステータスであることを確認してください。
 
-2. コピーしたアドレスに対して、テスト用の[Path Traversal][ptrav-attack-docs]攻撃を送信します:
+2. コピーしたアドレスにテスト用の[パストラバーサル][ptrav-attack-docs]攻撃リクエストを送信します:
 
     ```
     curl http://<COPIED_IP>/etc/passwd
     ```
-3. Wallarm Consoleの[US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)にて**Attacks**を開き、攻撃がリストに表示されていることをご確認ください.
-    ![UI上の攻撃][attacks-in-ui-image]
+3. [US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)のWallarm Console → **Attacks**を開き、攻撃が一覧に表示されていることを確認します。
+    ![UIのAttacks][attacks-in-ui-image]
+1. 任意で、ノードの他の動作面も[テスト][link-docs-check-operation]します。
 
-コンテナデプロイメント中に発生したエラーの詳細は、**View logs**インスタンスメニューに表示されます。インスタンスが利用できない場合は、必要なフィルタリングノードパラメーターが正しい値でコンテナに渡されているかをご確認ください.
+コンテナのデプロイ時に発生したエラーの詳細は、インスタンスの**View logs**メニューに表示されます。インスタンスにアクセスできない場合は、必要なフィルタリングノードのパラメータが正しい値でコンテナに渡されていることを確認してください。

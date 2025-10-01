@@ -1,21 +1,21 @@
-フィルタリングノードはWallarm Cloudと連携します。ノードをCloudに接続するには:
+フィルタリングノードはWallarm Cloudと連携します。ノードをWallarm Cloudに接続するには、次の手順を実行します：
 
-1. Wallarm Console → **Nodes** を[US Cloud](https://us1.my.wallarm.com/nodes)または[EU Cloud](https://my.wallarm.com/nodes)で開いて、**Wallarm node**タイプのノードを作成します。
+1. [USクラウド](https://us1.my.wallarm.com/nodes)または[EUクラウド](https://my.wallarm.com/nodes)のWallarm Console → Nodesを開き、**Wallarm node**タイプのノードを作成します。
 
-    ![Wallarm node creation][img-create-wallarm-node]
+    ![Wallarm nodeの作成][img-create-wallarm-node]
 1. 生成されたトークンをコピーします。
-1. フィルタリングノードをインストールするマシンで`register-node`スクリプトを実行します:
+1. フィルタリングノードをインストールするマシン上で`register-node`スクリプトを実行します：
     
-    === "US Cloud"
+    === "USクラウド"
         ``` bash
         sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> -H us1.api.wallarm.com
         ```
-    === "EU Cloud"
+    === "EUクラウド"
         ``` bash
         sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN>
         ```
     
-    `<NODE_TOKEN>`はコピーしたトークン値です。
+    `<NODE_TOKEN>`はコピーしたトークンの値です。
 
-    !!! info "1つのトークンを複数のインストールで使用"
-        選択した[platform][deployment-platform-docs]に関係なく、1つのトークンを複数のインストールで使用できます。これにより、Wallarm Console UIでノードインスタンスを論理的にグループ化できます。例: 複数のWallarmノードを開発環境にデプロイする場合、各ノードは特定の開発者が所有する個別のマシン上に配置されます。
+    !!! info "複数のインストールで1つのトークンを使用します"
+        選択した[プラットフォーム][deployment-platform-docs]に関係なく、1つのトークンを複数のインストールで使用できます。これにより、Wallarm Console UIでノードインスタンスを論理的にグループ化できます。例：開発環境に複数のWallarmノードをデプロイします。各ノードは、それぞれ特定の開発者が所有するマシン上にあります。

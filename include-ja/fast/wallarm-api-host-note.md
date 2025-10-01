@@ -1,7 +1,7 @@
-!!! 警告 "Wallarmクラウドの1つにFASTノードを接続する"
-    FASTノードは、[利用可能なWallarmクラウド](../cloud-list.md)のいずれかと相互作用します。デフォルトでは、FASTノードはアメリカのクラウドにあるWallarm APIサーバーと連携します。
+!!! warning "FASTノードをいずれかのWallarmクラウドに接続する"
+    FASTノードは[利用可能なWallarmクラウド](../cloud-list.md)のいずれかと連携します。デフォルトでは、FASTノードはアメリカのクラウドにあるWallarm APIサーバーを使用します。
     
-    別のクラウドのAPIサーバーを使用するようFASTノードに指示するには、必要なWallarm APIサーバーのアドレスを示す`WALLARM_API_HOST`環境変数をノードコンテナに渡します。
+    別のクラウドのAPIサーバーを使用するようFASTノードに指定するには、必要なWallarm APIサーバーのアドレスを示す環境変数`WALLARM_API_HOST`をノードコンテナに渡します。
 
     例（ヨーロッパのWallarmクラウドにあるAPIサーバーを使用するFASTノードの場合）:
 

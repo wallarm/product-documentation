@@ -1,0 +1,1 @@
+--8<-- "latest-ja/agentic-ai/demo.md"

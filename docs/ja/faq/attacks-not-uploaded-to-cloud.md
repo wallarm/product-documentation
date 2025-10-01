@@ -1,1 +1,0 @@
---8<-- "latest-ja/faq/attacks-not-uploaded-to-cloud.md"

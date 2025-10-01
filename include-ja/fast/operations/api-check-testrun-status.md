@@ -1,10 +1,11 @@
 | API呼び出し: | `GET /v1/test_run/test_run_id` |      |
 | ------------- | ------------------------------------------ | ---- |
-| 認証: | 必須 | トークンを使用 |
-| トークンを含むHTTPヘッダー: | `X-WallarmAPI-Token` | APIサーバへトークンの値を渡すために使用します |
-| パラメーター: | `test_run_id` **(必須)** | 状態を取得するテストランの識別子 |
+| 認可: | 必須です | トークンを使用します |
+| トークンを含むHTTPヘッダー: | `X-WallarmAPI-Token` | APIサーバーにトークンの値を渡すために使用します |
+| パラメータ: | `test_run_id` **（必須）** | 状態を取得するテスト実行の識別子です |
 
-**リクエスト例:**
+
+**リクエストの例:**
 ```
 curl --request GET \
   --url https://us1.api.wallarm.com/v1/test_run/tr_1234 \
@@ -12,7 +13,7 @@ curl --request GET \
   --header 'X-WallarmAPI-Token: token_Qwe12345'
 ```
 
-**レスポンス例:**
+**レスポンスの例:**
 ```
 {
   "status": 200,

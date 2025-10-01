@@ -1,5 +1,5 @@
-!!! 警告 "「signatures couldn't be verified」というエラー"
-    追加されたGPGキーが期限切れの場合、以下のエラーが返されます:
+!!! warning "エラー "signatures couldn't be verified""
+    追加したGPGキーの有効期限が切れている場合、以下のエラーが返されます：
 
     ```
     W: GPG error: https://repo.wallarm.com/ubuntu/wallarm-node focal/4.4/ Release:The following
@@ -9,7 +9,7 @@
     N: See apt-secure(8) manpage for repository creation and user configuration details.
     ```
 
-    問題を解決するには、Wallarmパッケージのための新しいGPGキーをインポートしてから、以下のコマンドを使用してパッケージをアップグレードしてください:
+    問題を解決するには、次のコマンドを使用してWallarmパッケージ用の新しいGPGキーをインポートし、その後パッケージをアップグレードしてください：
 
     ```
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -

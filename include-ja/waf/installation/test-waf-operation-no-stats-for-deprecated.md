@@ -1,7 +1,7 @@
-1. [SQLI][sqli-attack-docs]および[XSS][xss-attack-docs]攻撃を含むテストリクエストを保護されたリソースのアドレスへ送信します:
+1. テスト用の[SQLインジェクション][sqli-attack-docs]および[XSS][xss-attack-docs]攻撃を含むリクエストを保護されたリソースのアドレスに送信します：
 
     ```
     curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
-2. Wallarm Console → **Attacks**セクションを[US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)で開き、攻撃がリストに表示されていることを確認します。
-    ![インターフェース上の攻撃][attacks-in-ui-image]
+2. [US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)でWallarm Console → **Attacks**セクションを開き、攻撃が一覧に表示されていることを確認します。
+    ![インターフェースのAttacks][attacks-in-ui-image]

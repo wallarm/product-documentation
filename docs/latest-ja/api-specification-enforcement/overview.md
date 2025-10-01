@@ -1,47 +1,45 @@
-```markdown
 [waf-mode-instr]:   ../admin-en/configure-wallarm-mode.md
 
-# API仕様強制概要  <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Specification Enforcementの概要  <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-**API仕様強制**は、アップロードした仕様に基づいてAPIにセキュリティポリシーを適用するよう設計されています。その主な機能は、仕様書に記載されたエンドポイントの記述と実際にREST APIへ送信されたリクエストとの間に不整合があるかどうかを検出することです。不整合が確認された場合、システムは事前に定義されたアクションを実行して対処します。
+**API Specification Enforcement**は、アップロードした仕様に基づいてAPIにセキュリティポリシーを適用するために設計されています。その主な機能は、仕様内のエンドポイント記述とREST APIに対して行われる実際のリクエストとの不一致を検出することです。こうした不整合が特定された場合、システムは事前定義されたアクションを実行して対処できます。
 
-![API Specification Enforcement - diagram](../images/api-specification-enforcement/api-specification-enforcement-diagram.png)
+![API Specification Enforcement - 図](../images/api-specification-enforcement/api-specification-enforcement-diagram.png)
 
-## API仕様強制が対処する問題
+## API Specification Enforcementが解決する課題
 
-組織内では、API経由で公開された多数のアプリケーションや、大量の外部IP（自動化ツールを含む）からのアクセスが試みられる場合があります。特定の送信元、送信先や動作に対して個別に制限を設けることは、リソースを大量に消費する作業です。
+組織では、APIで公開された多数のアプリケーションを利用しており、それらにアクセスしようとする外部のIPアドレス（自動化ツールを含む）も多数存在する場合があります。特定の送信元、対象、または挙動に結び付けた制限を個別に作成する作業は、多くのリソースを消費します。
 
-API仕様強制は、ポジティブセキュリティモデルを活用することでセキュリティ対策の労力を軽減します。すなわち、仕様書によって許可される内容を定義し、限られた数のポリシーでその他すべての対応方法を定義します。
+API Specification Enforcementは、ポジティブセキュリティモデルを活用することでセキュリティ運用の負担を軽減します。仕様によって許可されるものを定義し、少数のポリシーによってそれ以外の扱い方を定義します。
 
-仕様書によりAPIインベントリが網羅的に記述されている場合、以下のことが可能です:
+**API仕様でAPIインベントリを網羅的に記述している場合、次のことができます**:
 
 * この仕様をWallarmにアップロードします。
-* 数クリックで、仕様に記載されていない、または矛盾するAPI要素へのリクエストに対してポリシーを設定できます。
+* いくつかのクリックで、仕様に存在しない、または仕様に矛盾するAPI要素へのリクエストに対するポリシーを設定します。
 
-これにより:
+その結果、次のことが実現します:
 
-* 特定の制限ルールの作成を回避できます。
-* これらのルールに対する必然的な更新を回避できます。
-* 直接的な制限ルールが設定されていない攻撃を見逃すことはありません。
+* 個別の制限ルールの作成を避けられます。
+* それらのルールに不可避な更新作業も回避できます。
+* 個別の制限ルールが未設定の攻撃も見逃しません。
 
 ## 動作の仕組み
 
-リクエストは様々な点で仕様に違反する可能性があります:
+リクエストはさまざまな観点で仕様に違反する可能性があります:
 
 --8<-- "../include/api-policies-enforcement/api-policies-violations.md"
 
-API仕様強制を使用すると、通常、CPU使用率が約20%増加します。
+API Specification Enforcementを使用すると、CPU使用量は通常、約20%増加します。
 
-リソース消費を抑制するために、API仕様強制には時間（50 ms）とリクエストサイズ（1024 KB）の制限があります。これらの制限を超えると、リクエストの処理を停止し、**Specification processing overlimit** [イベント](viewing-events.md#overlimit-events)が**Attacks**セクションに作成され、いずれかの制限が超過したことが通知されます。
+リソースの消費を抑えるため、API Specification Enforcementには時間(50 ms)とリクエストサイズ(1024 KB)の制限があります。これらの制限を超えた場合、処理を停止し、**Attacks**セクションに**Specification processing overlimit**[イベント](viewing-events.md#overlimit-events)を作成して、いずれかの制限を超過したことを通知します。
 
-!!! info "API仕様強制とその他の防御策"
-    API仕様強制がリクエストの処理を停止した場合でも、他のWallarm防御手続きによって処理されないことを意味するわけではありません。従って、攻撃である場合、Wallarmの設定に従って登録またはブロックされます。
+!!! info "API Specification Enforcementとその他の防御手段"
+    API Specification Enforcementがリクエストの処理を停止しても、他のWallarmの保護処理で処理されないという意味ではありません。したがって、それが攻撃であれば、Wallarmの設定に従って記録されるかブロックされます。
 
-これらの制限やWallarmの動作（オーバーリミットの監視からそのリクエストのブロックへの切り替え）を変更するには、[Wallarm Support](mailto:support@wallarm.com)にお問い合わせください。
+制限やWallarmの動作(制限超過の監視からそのようなリクエストのブロックへの変更)を変更するには、[Wallarmサポート](mailto:support@wallarm.com)にお問い合わせください。
 
-API仕様強制は、Wallarmノードが実施する通常の[攻撃検知](../about-wallarm/protecting-against-attacks.md)にその規制を追加するものであり、置き換えるものではありません。これにより、トラフィックは攻撃の兆候がないことと、仕様への適合性の両方がチェックされます。
+なお、API Specification EnforcementはWallarmノードが実施する通常の[攻撃の検出](../about-wallarm/protecting-against-attacks.md)に追加で適用されるものであり、それを置き換えるものではありません。したがって、トラフィックは攻撃の兆候の有無と仕様への適合の両方について検査されます。
 
 ## セットアップ
 
-API仕様強制でAPIを保護するには、仕様をアップロードし、[こちら](setup.md)に記載の通りポリシーを設定してください。
-```
+API Specification EnforcementでAPIの保護を開始するには、仕様をアップロードし、[こちら](setup.md)に従ってポリシーを設定します。

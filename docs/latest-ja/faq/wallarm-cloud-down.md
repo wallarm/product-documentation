@@ -1,84 +1,91 @@
-# Wallarm Cloudがダウンしています
+# Wallarm Cloudがダウンした場合
 
-Wallarm Cloudがダウン中の場合でも、Wallarmノードは一部制限はありますが攻撃軽減を継続します。詳細については、このトラブルシューティングガイドをご参照ください。
+Wallarm Cloudがダウンしている場合でも、Wallarmノードは一部の制限付きで攻撃の緩和を継続します。詳細は本トラブルシューティングガイドをご参照ください。
 
-## Wallarm Cloudがダウン中の場合のWallarmノードの動作はどのようになりますか？
+## Wallarm Cloudがダウンしている場合、Wallarmノードはどのように動作しますか？
 
-Wallarm Cloudは非常に安定しており、拡張性のあるサービスです。さらに、御社のアカウントデータはすべて[バックアップ](#how-does-wallarm-protect-its-cloud-data-from-loss)により保護されています。
+Wallarm Cloudは非常に安定かつスケーラブルなサービスです。加えて、お客様のアカウントデータは[バックアップ](#how-does-wallarm-protect-its-cloud-data-from-loss)によって保護されています。
 
-しかし、稀なケースですが、Wallarm Cloudが一時的に停止した場合（メンテナンスのための一時停止など）、一部制限はありますが、Wallarmノードは動作を継続します。
+しかし、まれにWallarm Cloudが一時的にダウンする場合（たとえばメンテナンスのための停止など）でも、Wallarmノードは一部の制限付きで動作を継続します。
 
-!!! info "Wallarm Cloud状態の確認"
-    Wallarm Cloudの状態を確認するには、[status.wallarm.com](https://status.wallarm.com/)をご覧ください。最新情報を受け取るには、通知の購読を行ってください。
+!!! info "Wallarm Cloudの稼働状況の確認"
+    Wallarm Cloudのステータスは[status.wallarm.com](https://status.wallarm.com/)で確認できます。最新情報を受け取るには更新通知を購読してください。
 
-継続して動作する機能:
+継続して動作するもの:
 
-* 最後にCloudとノード間で正常に[同期](../admin-en/configure-cloud-node-synchronization-en.md)された際にノードにアップロードされたルールを使用して、設定された[モード](../admin-en/configure-wallarm-mode.md#available-filtration-modes)でのトラフィック処理。ノードには、Cloudからスケジュールに従ってアップロードされ、ローカルに保存されている、以下の要素の最新バージョンが存在するため動作を継続できます:
+* Cloudとノード間の直近の正常な[同期](../admin-en/configure-cloud-node-synchronization-en.md)時にノードへアップロードされたルールを用い、設定済みの[モード](../admin-en/configure-wallarm-mode.md#available-filtration-modes)でのトラフィック処理。以下の要素の最新版はスケジュールに従ってCloudからノードへアップロードされ、ノード内にローカル保存されるため、ノードは処理を継続できます:
+
     * [カスタムルールセット](../user-guides/rules/rules.md#ruleset-lifecycle)
-    * [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton)
-* [IPリスト](../user-guides/ip-lists/overview.md)もノードにアップロードされ、保存されます。アップロードされたアドレスは、期限日時まで引き続き処理されます。
+    * [proton.db](../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors)
 
-    これらの日時は、Cloudが復旧し同期が行われるまで更新されず、Cloudの復旧／同期が行われるまで新規追加や削除はありません。
+* [IP lists](../user-guides/ip-lists/overview.md)もノードにアップロードされ、ノード内に保存されます。アップロード済みのアドレスは有効期限日時までは処理され続けます。
 
-    一部のIPアドレスのリストの期限切れは、これらのアドレスに関連する[ブルートフォース攻撃](../admin-en/configuration-guides/protecting-against-bruteforce.md)に対する保護の停止につながります。
+    これらの日時はCloudの復旧と同期が行われるまで更新されません。また、Cloudの復旧・同期までは新規/削除されたアドレスも反映されません。
 
-動作が停止する機能:
+    なお、リスト内の一部IPアドレスが期限切れになると、それらに関連する[ブルートフォース攻撃](../admin-en/configuration-guides/protecting-against-bruteforce.md)に対する保護は停止します。
 
-* ノードは検出された攻撃や脆弱性に関するデータを収集しますが、Cloudに送信することができません。ノードの[postanalytics module](../admin-en/installation-postanalytics-en.md)には、Cloudに送信する前に一時的にデータを保存するメモリ内ストレージ（Tarantool）が存在します。Cloudが復旧次第、バッファ内のデータが送信されます。
+* Cloudからノードへの直近の正常なアップロードでノードに取り込まれた仕様に基づく[API仕様の強制](../api-specification-enforcement/overview.md)。
 
-    !!! warning "ノードのメモリ内ストレージの制限"
-        バッファのサイズは[制限](../admin-en/configuration-guides/allocate-resources-for-node.md#tarantool)されており、制限を超えると古いデータが削除されます。そのため、Cloudがダウンしていた時間とその間に収集された情報量により、Cloud復旧後にWallarm Consoleで取得できるデータが一部になる場合があります。
+停止するもの:
 
-* ノードは処理されたトラフィックに関する[メトリクス](../admin-en/configure-statistics-service.md)を収集しますが、Cloudに送信できません。
-* [公開資産](../user-guides/scanner.md)や[一般的な脆弱性](../user-guides/vulnerabilities.md)のスキャンが停止します。
-* [トリガー](../user-guides/triggers/triggers.md)が停止し、その結果:
-    * [IPリスト](../user-guides/ip-lists/overview.md)の更新が停止します。
-    * [トリガーによる通知](../user-guides/triggers/triggers.md)が表示されなくなります。
-* [APIインベントリの検出](../api-discovery/overview.md)が動作しません。
-* [Threat Replay Testing](../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing)が停止します。
-* [ブルートフォース攻撃](../admin-en/configuration-guides/protecting-against-bruteforce.md)が検出されません。
-* 統合機能が停止し、以下を含みます:
-    * 即時およびメールでの[通知](../user-guides/settings/integrations/integrations-intro.md)が表示されなくなります。
-    * レポート作成が停止します。
-* Wallarm Consoleへのアクセスができません。
-* [Wallarm API](../api/overview.md)が応答しません。
+* [API Attack Surface Management (AASM)](../api-attack-surface/overview.md)。
+* [クレデンシャルスタッフィングの検出](../about-wallarm/credential-stuffing.md)。
+* [API乱用防止](../api-abuse-prevention/overview.md)。
+* ノードは検出した攻撃や脆弱性に関するデータを収集しますが、Cloudへ送信できません。なお、ノードの[postanalyticsモジュール](../admin-en/installation-postanalytics-en.md)にはインメモリストレージ（wstore）があり、収集データはCloudへ送信されるまで一時的にそこへ保存されます。Cloudが復旧すると、バッファリングされたデータは送信されます。
 
-なお、上記の完全な停止状態に加え、特定のサービスのみが一時的にアクセスできなくなり、その他は引き続き機能する場合もあります。このような場合、[status.wallarm.com](https://status.wallarm.com/)サービスに該当情報が提供されます。
+    !!! warning "ノードのインメモリストレージの制限"
+        バッファサイズには[制限](../admin-en/configuration-guides/allocate-resources-for-node.md#wstore)があり、超過すると古いデータから削除されます。したがって、Cloudのダウン時間の長さやその間に収集された情報量によっては、Cloud復旧後にWallarm Consoleで一部のデータしか確認できない場合があります。
+
+* ノードは処理済みトラフィックの[メトリクス](../admin-en/configure-statistics-service.md)を収集しますが、Cloudへ送信できません。
+* [API Sessions](../api-sessions/overview.md) — Cloudがダウンしていた間に発生した正当なリクエストに関する情報はすべて失われます。攻撃に関する情報は提示されます（復旧後にCloudへアップロードされます）。
+* [Triggers](../user-guides/triggers/triggers.md)は動作しなくなるため、次の影響があります:
+    * [IP lists](../user-guides/ip-lists/overview.md)の更新が止まります。
+    * [Trigger-based notifications](../user-guides/triggers/triggers.md)は表示されません。
+* [APIインベントリの検出](../api-discovery/overview.md)は動作しません。
+* [Threat Replay Testing](../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing)は停止します。
+* [ブルートフォース攻撃](../admin-en/configuration-guides/protecting-against-bruteforce.md)は検出されません。
+* Integrationsは停止し、以下が発生します:
+    * 即時およびメールの[通知](../user-guides/settings/integrations/integrations-intro.md)は表示されません。
+    * レポーティングは停止します。
+* Wallarm Consoleへアクセスできません。
+* [Wallarm API](../api/overview.md)は応答しません。
+
+なお、上記のような全体的なダウン状態だけでなく、一部のサービスのみが一時的に利用できず、他のサービスは動作し続ける場合もあります。その場合は、[status.wallarm.com](https://status.wallarm.com/)で該当する情報が提供されます。
 
 ## Cloud復旧後はどうなりますか？
 
-Cloud復旧後:
+Cloud復旧後は次のとおりです:
 
-* Wallarm Consoleへのアクセスが回復します。
-* ノードはバッファに蓄積された情報をCloudに送信します（上記の制限を考慮してください）。
-* トリガーは新しいデータに反応し、通知を送信しIPを更新します。
-* IPに変更があった場合、次回の同期時にノードへ送信されます。
-* [未完了のカスタムルールセット](#is-there-a-case-when-node-did-not-get-settings-saved-in-wallarm-console-before-wallarm-cloud-is-down)があった場合、再起動されます。
-* Cloudとフィルタリングノードは通常通りスケジュールに従って同期を行います。
+* Wallarm Consoleへのアクセスが復旧します。
+* ノードはバッファリングされた情報をCloudへ送信します（上記の制限事項にご留意ください）。
+* Triggersは新しいデータに反応し、通知の送信やIPの更新を行います。
+* IPに変更がある場合は、次回の同期時にノードへ送信されます。
+* [未完了のカスタムルールセット](#is-there-a-case-when-node-did-not-get-settings-saved-in-wallarm-console-before-wallarm-cloud-is-down)のビルドがあった場合は再開されます。
+* Cloudとフィルタリングノードは通常どおりスケジュールに従って同期します。
 
-## Wallarm Cloudがダウンする前に、Wallarm Consoleに設定が保存されなかったケースはありますか？
+## Wallarm Cloudがダウンする前にWallarm Consoleに保存した設定がノードへ反映されない場合はありますか？
 
-はい、その可能性はございます。例えば、[同期](../admin-en/configure-cloud-node-synchronization-en.md)間隔が3分であり、以下の状況を考えます:
+はい、可能性があります。例として、[同期](../admin-en/configure-cloud-node-synchronization-en.md)間隔が3分で、次の状況を考えます。
 
-1. カスタムルールセットの最後のビルドがCloudで21分前に完了し、20分前にノードへアップロードされました。
-2. 次の6回の同期では新たなデータがなかったため、Cloudからは何も取得されませんでした。
-3. その後、Cloud上でルールが変更され、新しいビルドが開始されました―ビルド完了までに4分必要でしたが、2分後にCloudがダウンしました。
-4. ノードは完了したビルドのみを取得するため、2分間の同期ではノードにアップロードされるデータはありません。
-5. さらに1分後、ノードは新たな同期要求を送信しますが、Cloudは応答しません。
-6. ノードは24分経過したカスタムルールセットに基づいてフィルタリングを継続し、Cloudがダウンしている間、この時間は増加していきます。
+1. 直近のカスタムルールセットのビルドは21分前にCloud上で完了し、20分前にノードへアップロードされました。
+2. その後の6回の同期では、Cloud側に新しいものがなかったため何も取得されませんでした。
+3. その後、Cloud上でルールが変更され新しいビルドが開始されました。ビルドの完了には4分必要でしたが、2分経過した時点でCloudがダウンしました。
+4. ノードは完了したビルドのみを取得するため、その2分間の同期ではノードにアップロードするものはありません。
+5. さらに1分後、ノードは新たな同期要求を送りますが、Cloudは応答しません。
+6. ノードは「24分前の」カスタムルールセットに基づいてフィルタリングを継続し、Cloudがダウンしている間はその経過時間が増加し続けます。
 
-## WallarmはCloudのデータ損失からどのように保護しますか？
+## WallarmはCloudのデータをどのように損失から保護しますか？
 
-Wallarm Cloudは、Wallarm Consoleでユーザーにより提供され、ノードからアップロードされた**すべてのデータ**を保存します。前述の通り、Wallarm Cloudが一時的にダウンするのは極めて稀なケースです。しかし、万が一そのような事態が発生した場合でも、保存されたデータに影響が及ぶ可能性は非常に低いです。つまり、復旧後すぐにすべてのデータを用いて業務を継続することができます。
+Wallarm Cloudは、Wallarm Consoleでユーザーが提供したすべてのデータおよびノードからアップロードされたデータを保存します。前述のとおり、Wallarm Cloudが一時的にダウンすることは極めてまれです。仮に発生した場合でも、保存済みデータに影響が及ぶ可能性は非常に低いです。つまり、復旧後はすべてのデータをそのまま使用してすぐに作業を再開できます。
 
-ハードドライブが破壊され、Wallarm Cloudの実際のデータが失われるという低い確率に対処するため、Wallarmは自動的にバックアップを作成し、必要に応じてそこから復元します:
+Wallarm Cloudの実データを保存しているハードドライブが破損するという低い可能性に備え、Wallarmは自動でバックアップを作成し、必要に応じてそこから復元します:
 
-* RPO: バックアップは24時間ごとに作成されます
-* RTO: システムは48時間以内に再び利用可能になります
-* 直近14件のバックアップが保存されます
+* RPO: 24時間ごとにバックアップを作成します
+* RTO: 48時間以内にシステムが再び利用可能になります
+* 直近14個のバックアップを保持します
 
-!!! info "RPO／RTO保護および可用性パラメーター"
-    * **RPO (recovery point objective)** はデータバックアップの頻度を決定するために使用され、データ損失が許される最大時間を定義します。
-    * **RTO (recovery time objective)** は災害発生後、業務を受け入れ可能なサービスレベルで復旧させるために必要な実時間を示します。
+!!! info "RPO/RTOの保護および可用性の指標"
+    * **RPO（recovery point objective）**は、データバックアップの頻度を決定するために用いられる指標です。データを喪失し得る最大の時間幅を定義します。
+    * **RTO（recovery time objective）**は、災害後に許容可能なサービスレベルで業務を復旧し、業務停止に伴う耐え難い影響を回避するために、ビジネスが確保すべき実時間の長さを指します。
 
-Wallarmのディザスタリカバリ( DR )プランおよび御社におけるその特性についての詳細は、[Wallarm support](mailto:support@wallarm.com)までご連絡ください。
+Wallarmのディザスタリカバリ（DR）計画および貴社向けの詳細については、[Wallarmサポートにお問い合わせください](mailto:support@wallarm.com)。

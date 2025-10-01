@@ -1,5 +1,5 @@
-* Wallarm Consoleにおける[US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)用アカウントへアクセスするため、**Administrator**ロールが付与され、二要素認証が無効になっている必要があります  
-* すべてのコマンドをスーパーユーザ（例:`root`）として実行します  
-* all‑in‑one Wallarmインストーラをダウンロードするため、`https://meganode.wallarm.com`にアクセスしてください。ファイアウォールによってアクセスがブロックされていないことを確認します  
-* US Wallarm Cloudを使用している場合は`https://us1.api.wallarm.com`に、EU Wallarm Cloudを使用している場合は`https://api.wallarm.com`にアクセスしてください。アクセスをプロキシサーバ経由のみで構成できる場合は、[instructions][configure-proxy-balancer-instr]を使用してください  
-* インストール済みのテキストエディタ、**vim**、**nano**、またはその他のエディタが必要です。本記事のコマンドでは**vim**を使用します
+* Wallarm Console（[US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)）で**Administrator**ロールを持つアカウントへのアクセス権が必要です。
+* すべてのコマンドをスーパーユーザー（例：`root`）として実行する必要があります。
+* オールインワンWallarmインストーラーをダウンロードするために`https://meganode.wallarm.com`へのアクセス権が必要です。ファイアウォールでアクセスがブロックされていないことを確認してください。
+* US Wallarm Cloudを使用している場合は`https://us1.api.wallarm.com`へのアクセス、EU Wallarm Cloudを使用している場合は`https://api.wallarm.com`へのアクセスが必要です。アクセスがプロキシサーバー経由でのみ設定できる場合は、[手順][configure-proxy-balancer-instr]を使用してください。
+* テキストエディター**vim**、**nano**、またはその他がインストールされている必要があります。この記事のコマンドでは**vim**を使用します。

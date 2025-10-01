@@ -2,12 +2,12 @@
 [changes-in-api-docs]:       ../../api-discovery/track-changes.md
 [bola-protection-for-endpoints-docs]:  ../../api-discovery/bola-protection.md
 
-# API Discoveryで検出されたエンドポイントに対する自動BOLA保護 <a href="../../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discoveryで検出されたエンドポイントの自動BOLA保護 <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-本記事は[API Discovery](../../api-discovery/overview.md)（APID）により検出されたエンドポイントに対する自動BOLA保護について説明します。
+この記事では、[API Discovery](../../api-discovery/overview.md)（APID）で検出されたエンドポイント向けの自動BOLA保護について説明します。
 
 !!! info "その他のBOLA保護手段"
-    あるいは、または併せて[トリガによるBOLA保護](protecting-against-bola-trigger.md)を設定できます。
+    代替として、または併用して、[トリガーによるBOLA保護](protecting-against-bola-trigger.md)を構成できます。
 
 --8<-- "../include/bola-intro.md"
 
@@ -18,24 +18,24 @@
 ## 設定
 
 !!! info "API Discoveryが必要"
-    自動BOLA保護は**[API Discovery](../../api-discovery/overview.md)**モジュールを使用している場合に利用できます。
+    自動BOLA保護は、**[API Discovery](../../api-discovery/overview.md)**モジュールを使用している場合に利用できます。
 
-自動保護を有効にするには、Wallarm Console → **BOLA protection** に移動し、スイッチを有効の状態に切り替えてください：
+自動保護を有効化するには、Wallarm Console → **BOLA protection**に移動し、スイッチを有効に切り替えます。
 
-![BOLAトリガ](../../images/user-guides/bola-protection/trigger-enabled-state.png)
+![BOLAトリガー](../../images/user-guides/bola-protection/trigger-enabled-state.png)
 
-次に、BOLA自動検出テンプレートを編集することにより、Wallarmのデフォルト動作を以下のように微調整できます。
+その後、次のようにBOLA自動検出テンプレートを編集して、Wallarmのデフォルト動作を微調整できます。
 
-* 同一IPからのリクエストがBOLA攻撃と判断される閾値を変更します。
-* 閾値を超えた際の反応を変更します：
+* 同一IPからのリクエストがBOLA攻撃として判定されるしきい値を変更します。
+* しきい値超過時のリアクションを変更します。
 
-    * **Denylist IP** - WallarmはBOLA攻撃のソースとなるIPを[denylist](../../user-guides/ip-lists/overview.md)に登録し、これらのIPからのすべての通信をブロックします。
-    * **Graylist IP** - WallarmはBOLA攻撃のソースとなるIPを[graylist](../../user-guides/ip-lists/overview.md)に登録し、これらのIPからの悪意あるリクエストのみを、フィルタリングノードが safe blocking [mode](../../admin-en/configure-wallarm-mode.md) の場合にブロックします。
+    * **Denylist IP** - WallarmはBOLA攻撃元のIPを[denylist](../../user-guides/ip-lists/overview.md)に追加し、これらのIPが生成する全トラフィックをブロックします。
+    * **Graylist IP** - WallarmはBOLA攻撃元のIPを[graylist](../../user-guides/ip-lists/overview.md)に追加し、フィルタリングノードがsafe blocking[モード](../../admin-en/configure-wallarm-mode.md)の場合に限り、これらのIPからの悪意のあるリクエストのみをブロックします。
 
-![BOLAトリガ](../../images/user-guides/bola-protection/trigger-template.png)
+![BOLAトリガー](../../images/user-guides/bola-protection/trigger-template.png)
 
 ## 無効化
 
-自動BOLA保護を無効にするには、**BOLA protection**セクションでスイッチを無効の状態に切り替えてください。
+自動BOLA保護を無効化するには、**BOLA protection**セクションでスイッチを無効に切り替えます。
 
-API Discoveryのサブスクリプションが期限切れになると、自動BOLA保護は自動的に無効化されます。
+API Discoveryのサブスクリプションが期限切れになると、自動BOLA保護は自動的に無効になります。

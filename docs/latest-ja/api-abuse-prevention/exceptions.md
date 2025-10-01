@@ -1,77 +1,79 @@
 [api-discovery-enable-link]:        ../api-discovery/setup.md#enable
 
-# API Abuse Prevention例外 <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Preventionの例外 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-本記事では、正当なボットを指定し、特定のターゲットURLおよびリクエスト種別に対してボット保護を無効化することで、[API Abuse Prevention](../api-abuse-prevention/overview.md)を微調整する方法について説明します。
+本記事では、正当なボットを識別してマークし、特定の対象URLやリクエストタイプに対するボット保護を無効化することで、[API Abuse Prevention](../api-abuse-prevention/overview.md)を細かく調整する方法を説明します。
 
-これらの機能は、基本的なAPI Abuse Prevention [プロファイルによる構成](setup.md#creating-profiles)を拡張します。
+これらの機能は、API Abuse Preventionの[profilesによる設定](setup.md#creating-profiles)を拡張します。
 
-## 正当な自動化の例外
+## 正当な自動化向けの例外
 
-API Abuse Preventionによるブロックを回避するために、正当なボットまたはクローラーに関連するIPアドレスを指定する場合は、**Exception list**を使用します。
+正当なボットやクローラーに関連付けられたIPをマークしてAPI Abuse Preventionによるブロックを避けるには、**Exception list**を使用します。
 
-例外リストにIPアドレスまたは範囲を追加し、対象アプリケーションを指定します。これにより、対象アプリケーションへのこれらのアドレスからのリクエストは悪意あるボットと判定されず、API Abuse Preventionによって[deny-](../user-guides/ip-lists/overview.md)または[graylist](../user-guides/ip-lists/overview.md)に追加されません。
+exception listにIPアドレスまたは範囲を追加し、対象アプリケーションを指定します。これにより、これらのアドレスから対象アプリケーションへのあらゆるリクエストは悪意のあるボットとしてマークされず、API Abuse Preventionによって[deny-](../user-guides/ip-lists/overview.md)または[graylist](../user-guides/ip-lists/overview.md)に追加されません。
 
-例外リストにIPアドレスを追加する方法は2通りあります：
+exception listにIPアドレスを追加する方法は2つあります。
 
-* **API Abuse Prevention**セクション→**Exception list**タブにある**Add exception**から追加します。ここでは、IPやサブネットに加えて、API Abuse Preventionで無視すべきロケーションやソースタイプも追加できます。
+* **API Abuse Prevention**セクションの**Exception list**タブで**Add exception**を使用します。ここでは、IPやサブネットに加えて、API Abuse Preventionが無視すべきロケーションやソースタイプも追加できます。
 
-    ![API Abuse Prevention - 例外リスト内から項目を追加](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-inside.png)
+    ![API Abuse Prevention - exception list内から項目を追加](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-inside.png)
 
-* **Attacks**セクションから：`api_abuse`、`account_takeover`、`scraping`および`security_crawlers`検索キーを利用するか、**Type**フィルタから適切なオプションを選択し、必要なイベントを展開して**Add to exception list**をクリックします。
+* **Attacks**セクションから：`api_abuse`、`account_takeover`、`scraping`、`security_crawlers`の検索キーを使用するか、**Type**フィルターで該当するオプションを選択し、目的のイベントを展開して**Add to exception list**をクリックします。
 
-    ![API Abuse Prevention - 例外リストに項目を追加（イベント内から）](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
+    ![API Abuse Prevention - イベントからexception listに追加](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
 
-IPアドレスが例外リストに追加されると、そのアドレスは自動的に[deny-](../user-guides/ip-lists/overview.md)または[graylist](../user-guides/ip-lists/overview.md)から削除されます。ただし、これはAPI Abuse Prevention自身により追加された場合（`Bot`理由が付与されている場合）に限ります。
+IPアドレスをexception listに追加すると、そのアドレスがAPI Abuse Prevention自身によって追加されている場合（理由が`Bot`の場合）に限り、[deny-](../user-guides/ip-lists/overview.md)または[graylist](../user-guides/ip-lists/overview.md)から自動的に削除されます。
 
-!!! info "IPによるその他の攻撃タイプのブロック"
-    例外リストに登録されたIPアドレスがブルートフォース攻撃や入力検証攻撃など他の[attack types](../attacks-vulns-list.md)を発生させた場合、Wallarmはそのリクエストをブロックします。
+!!! info "IPからの他の攻撃タイプのブロック"
+    exception list内のIPが総当たりや入力バリデーション攻撃などの他の[攻撃タイプ](../attacks-vulns-list.md)を発生させた場合、Wallarmはそのようなリクエストをブロックします。
 
-デフォルトでは、IPアドレスは永久に例外リストに追加されます。必要に応じて、例外リストから削除されるタイミングを設定することも可能です。また、いつでも即座に例外からIPアドレスを削除できます。
+デフォルトでは、IPはexception listに無期限で追加されます。これを変更して、そのアドレスをexception listから削除する時点を設定できます。また、いつでも直ちにアドレスをexception listから削除できます。
 
-**Exception list**タブでは履歴データが提供され、過去の特定の期間内にリストに表示された項目を確認できます。
+**Exception list**タブでは履歴データを提供します。過去の選択した期間にリストに存在していた項目を表示できます。
 
-## ターゲットURLおよび特定リクエストに対する例外
+## 対象URLおよび特定リクエスト向けの例外
 
-[exception list](#exceptions-for-legitimate-automation)による優良ボットIPの指定に加え、要求先URLや特定のリクエスト種別、例えば特定のヘッダーを含むリクエストに対してボット保護を無効にすることができます。
+[exception list](#exceptions-for-legitimate-automation)で良性ボットのIPをマークすることに加えて、リクエストの宛先となるURLや、特定のヘッダーを含むリクエストなど特定のリクエストタイプについて、ボット保護を無効化できます。
 
-これを実現するために、Wallarmは**Set API Abuse Prevention mode**ルールを提供します（ノードバージョン4.8以上に対応）。
+これを行うために、Wallarmは**Set API Abuse Prevention mode**ルールを提供します（ノードバージョン4.8以降でサポートされます）。
 
 **ルールの作成と適用**
 
-特定のURLまたはリクエスト種別に対してボット保護を無効にするには：
+特定のURLまたはリクエストタイプに対するボット保護を無効化するには、次のとおりです。
 
 --8<-- "../include/rule-creation-initial-step.md"
 
 1. **Fine-tuning attack detection** → **Override API abuse profiles**を選択します。 
-2. **If request is**で、ルールを適用するリクエストやURLを[describe](../user-guides/rules/rules.md#uri-constructor)してください。特定のブランチ、ヒットまたはエンドポイントに対してルールを開始した場合、それらがスコープを定義します。必要に応じて、条件を追加できます。
-3. 希望のモードを選択します:
-    * **Default** - 記述されたスコープ（特定のURLまたはリクエスト）に対して、一般的なAPI Abuse Prevention [profiles](setup.md#creating-profiles)で定義された通常のボット保護が適用されます。
-    * **Do not check for bot activity** - 記述されたURLやリクエスト種別に対しては、ボットの活動チェックが行われません。
-4. 必要に応じて、コメント欄にこのURL/リクエスト種別に対してルールを作成した理由を記載します。
+1. **If request is**で、このルールを適用するリクエストやURLを[記述します](../user-guides/rules/rules.md#uri-constructor)。特定のbranch、hit、またはendpointからルール作成を開始した場合は、それらがスコープを定義します。必要に応じて条件を追加できます。
+1. 希望するモードを選択します。
 
-なお、ルールを削除することなく、URLやリクエスト種別に対する例外を一時的に無効化することができます。その場合、**Default**モードを選択してください。後でいつでも**Do not check for bot activity**に戻すことが可能です。
+    * **Default** - 記述したスコープ（特定のURLまたはリクエスト）については、API Abuse Preventionの一般的な[profiles](setup.md#creating-profiles)で定義された通常の方法でボットからの保護が機能します。
+    * **Do not check for bot activity** - 記述したURLやリクエストタイプについて、ボット活動のチェックを実行しません。
 
-**ルールの例**
+1. 必要に応じて、コメントにこのURL/リクエストタイプ向けにルールを作成する理由を記載します。
 
-**リクエストヘッダーによる正当なボットの指定**
+ルールを削除せずに、そのURLやリクエストタイプの例外を一時的に無効化できます。その場合は**Default**モードを選択します。後からいつでも**Do not check for bot activity**に戻すことができます。
 
-例えば、アプリケーションが複数のIPからリクエストを送信するKlaviyoマーケティングオートメーションツールと統合されているとします。そのため、特定のURIに対する`Klaviyo/1.0`ユーザーエージェントからのGETリクエストにおいて自動化（ボット）活動のチェックを行わないように設定します。
+**ルール例**
 
-![特定のヘッダーを含むリクエストに対してボット活動をチェックしない](../images/user-guides/rules/api-abuse-url-request.png)
+**リクエストヘッダーによる正当なボットの識別**
 
-**テスト用エンドポイントに対するボット保護の無効化**
+あなたのアプリケーションが、複数のIPからリクエストを送信するマーケティングオートメーションツールKlaviyoと連携しているとします。そこで、特定のURIに対する`Klaviyo/1.0`ユーザーエージェントからのGETリクエストについては、自動化（ボット）活動のチェックを行わないように設定します。
 
-例えば、アプリケーションに属するエンドポイントがあり、アプリケーション全体はボット活動から保護されるべきですが、テスト用エンドポイントは例外とする必要があるとします。また、API在庫が[**API Discovery**](../api-discovery/overview.md)モジュールによって発見されています。 
+![特定のヘッダーを持つリクエストについてボット活動をチェックしない](../images/user-guides/rules/api-abuse-url-request.png)
 
-この場合、**API Discovery**のエンドポイント一覧からルールを作成する方が簡単です。該当エンドポイントを探し、そのページからルール作成を開始してください。
+**テスト用エンドポイントでのボット保護の無効化**
 
-![API Discoveryエンドポイント用Set API Abuse Prevention modeの作成](../images/user-guides/rules/api-abuse-url.png)
+アプリケーションに属するエンドポイントがあるとします。アプリケーションはボット活動から保護すべきですが、そのテスト用エンドポイントは例外にしたいとします。さらに、APIインベントリは[**API Discovery**](../api-discovery/overview.md)モジュールで発見済みです。 
 
-## プロファイルの無効化と削除
+この場合は、**API Discovery**のエンドポイント一覧からルールを作成する方が簡単です。そこに移動し、対象のエンドポイントを見つけて、そのページからルール作成を開始します。
 
-無効化されたプロファイルは、**API Abuse Prevention**モジュールがトラフィック分析中に使用しないものの、プロファイル一覧には表示されるものを指します。無効化されたプロファイルはいつでも再度有効化できます。有効なプロファイルが存在しない場合、モジュールは悪意のあるボットをブロックしません。
+![API Discoveryのエンドポイントに対するSet API Abuse Prevention modeの作成](../images/user-guides/rules/api-abuse-url.png)
 
-削除されたプロファイルは、復元不可能であり、**API Abuse Prevention**モジュールがトラフィック分析中に使用しないものです。
+## profilesの無効化と削除
 
-プロファイルメニュー内に**Disable**および**Delete**オプションが用意されています。
+無効化されたprofilesは、トラフィック解析中に**API Abuse Prevention**モジュールが使用しないものの、profiles一覧には表示されます。無効化されたprofilesはいつでも再有効化できます。有効なprofilesが1つもない場合、このモジュールは悪意のあるボットをブロックしません。
+
+削除されたprofilesは復元できず、**API Abuse Prevention**モジュールはトラフィック解析中に使用しません。
+
+profileメニューに**Disable**と**Delete**オプションがあります。

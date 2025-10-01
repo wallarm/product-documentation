@@ -1,14 +1,17 @@
-```markdown
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[helm-chart-native-node]:           ../native-node/helm-chart.md
+[custom-blocking-page]:             ../../admin-en/configuration-guides/configure-block-page-and-code.md
+[rate-limiting]:                    ../../user-guides/rules/rate-limiting.md
+[multi-tenancy]:                    ../multi-tenant/overview.md
 
 # Broadcom Layer7 API Gateways
 
-Broadcomの[Layer7 API Gateways](https://www.broadcom.com/products/software/api-management/layer7-api-gateways)は、組織のAPIトラフィックを制御および保護するための堅牢なソリューションを提供します。Wallarmは、Broadcom Layer7 API Gatewaysで管理されるAPIのセキュリティを強化するためのコネクタとして機能します。
+Broadcomの[Layer7 API Gateways](https://www.broadcom.com/products/software/api-management/layer7-api-gateways)は、組織のAPIトラフィックを制御・保護するための堅牢なソリューションを提供します。Wallarmはコネクタとして機能し、Broadcom Layer7 API Gatewaysで管理されるAPIのセキュリティを強化できます。
 
-WallarmをBroadcom Layer7 API Gatewayのコネクタとして使用するには、**Wallarm Nodeを外部でデプロイ**し、トラフィックをWallarm Nodeへ解析のためにルーティングするようゲートウェイにWallarmポリシーを**構成**する必要があります。
+Broadcom Layer7 API GatewayのコネクタとしてWallarmを使用するには、Wallarm Nodeを外部にデプロイし、ゲートウェイ上にWallarmポリシーを設定して、解析のためにトラフィックをWallarm Nodeへ転送する必要があります。
 
-Broadcomコネクタは、[インライン](../inline/overview.md)のトラフィックフローのみ対応します。
+Broadcomコネクタは[インライン](../inline/overview.md)のトラフィックフローのみをサポートします。
 
 <!-- The Wallarm policy for Layer7 API Gateways supports the [out-of-band](../oob/overview.md) mode. Diagram below shows the traffic flow for APIs on the Layer7 API Gateways with Wallarm policy applied.
 
@@ -16,89 +19,88 @@ Broadcomコネクタは、[インライン](../inline/overview.md)のトラフ�
 
 ## ユースケース
 
-すべての[Wallarmデプロイメントオプション](../supported-deployment-options.md)の中で、APIをLayer7 API Gatewaysで管理している場合にこのソリューションを推奨します。
+このソリューションは、APIをLayer7 API Gatewaysで管理している場合に推奨します。
 
 ## 制限事項
 
-* Wallarmルールによる[レート制限](../../user-guides/rules/rate-limiting.md)はサポートされていません。
-* [マルチテナンシー](../multi-tenant/overview.md)はまだサポートされていません。
+--8<-- "../include/waf/installation/connectors/native-node-limitations.md"
 
-## 必要条件
+## 要件
 
-デプロイを進めるため、以下の必要条件を満たしていることを確認してください:
+デプロイを進めるにあたり、以下の要件を満たしていることを確認します。
 
-* Broadcom Layer7 API Gateways製品に関する知識があること。
-* アプリケーションおよびAPIがBroadcom Layer7 API Gateways上で連携して稼働していること。
+* Broadcom Layer7 API Gateways製品について理解していること。
+* アプリケーションとAPIがBroadcom Layer7 API Gatewaysに連携し稼働していること。
 * Broadcom Policy Managerがインストールされ、Broadcom Gatewayに接続されていること。
 
-## デプロイメント
+## デプロイ
 
-### 1. Wallarm Nodeをデプロイ
+### <a name="1-deploy-a-wallarm-node"></a>1. Wallarm Nodeをデプロイします
 
-Wallarm NodeはWallarmプラットフォームの中核コンポーネントであり、デプロイが必要です。受信トラフィックを検査し、悪意のある活動を検出し、脅威を緩和するよう構成可能です。
+Wallarm NodeはWallarmプラットフォームの中核コンポーネントで、受信トラフィックを検査し、不正なアクティビティを検出し、脅威の軽減を行うように設定できます。
 
-以下のアーティファクトのいずれかを使用して、独自のインフラストラクチャ上の別サービスとしてデプロイしてください:
+以下のいずれかのアーティファクトを使用して、独自インフラ内に独立したサービスとしてデプロイします。
 
-* [All-in-one installer](../native-node/all-in-one.md) (Linux環境、ベアメタルまたはVM向け)
-* [Docker image](../native-node/docker-image.md) (コンテナ化されたデプロイメント環境向け)
-* [Helm chart](../native-node/helm-chart.md) (Kubernetesを利用するインフラストラクチャ向け)
+* Linuxインフラ（ベアメタルまたはVMs）向けの[All-in-oneインストーラー](../native-node/all-in-one.md)
+* コンテナ化デプロイを使用する環境向けの[Dockerイメージ](../native-node/docker-image.md)
+* AWSインフラ向けの[AWS AMI](../native-node/aws-ami.md)
+* Kubernetesを利用するインフラ向けの[Helmチャート](../native-node/helm-chart.md)
 
-### 2. NodeのSSL/TLS証明書をPolicy Managerに追加
+### 2. NodeのSSL/TLS証明書をPolicy Managerに追加します
 
-Broadcom GatewayがHTTPS経由でトラフィックをWallarm Nodeへルーティングできるよう、NodeのSSL/TLS証明書をPolicy Managerに追加してください:
+Broadcom GatewayがHTTPS経由でWallarm Nodeにトラフィックをルーティングできるように、NodeのSSL/TLS証明書をPolicy Managerに追加します。
 
-1. Broadcom Policy Managerを開き、**Tasks** → **Certificates, Keys and Secrets** → **Manage Certificates**を選択します。
-2. **Add** → **Retrieve via SSL**をクリックし、[Wallarm Nodeのアドレス](#1-deploy-a-wallarm-node)を指定します。
+1. Broadcom Policy Managerを開き、→ **Tasks** → **Certificates, Keys and Secrets** → **Manage Certificates**を選択します。
+1. **Add** → **Retrieve via SSL**をクリックし、[Wallarm Nodeのアドレス](#1-deploy-a-wallarm-node)を指定します。
 
-### 3. Wallarmポリシーの取得とデプロイ
+### 3. Wallarmポリシーを取得してデプロイします
 
-Broadcom GatewayをWallarm Node経由でトラフィックをルーティングするよう構成するには:
+Broadcom GatewayがトラフィックをWallarm Node経由でルーティングするように設定します。
 
-1. Wallarmポリシーのコードバンドルを取得するためにsales@wallarm.comにお問い合わせください。
-2. Broadcom Policy Managerを開き、対象のBroadcom Gatewayのメニューから**Create Policy**を選択し、2つのポリシーを追加します:
+1. sales@wallarm.comに連絡して、Wallarmポリシーのコードバンドルを入手します。
+1. Broadcom Policy Managerを開き、Broadcom Gatewayのメニューで**Create Policy**を選択し、次の2つのポリシーを追加します。
 
-    * **リクエスト転送ポリシー**: `Global Policy Fragment`タイプと`message-received`タグを指定します。
+    * **リクエスト転送ポリシー**: タイプに`Global Policy Fragment`、タグに`message-received`を設定します。
 
         ![](../../images/waf-installation/gateways/layer7/request-policy.png)
     
-    * **レスポンス転送ポリシー**: `Global Policy Fragment`タイプと`message-completed`タグを指定します。
+    * **レスポンス転送ポリシー**: タイプに`Global Policy Fragment`、タグに`message-completed`を設定します。
     
         ![](../../images/waf-installation/gateways/layer7/response-policy.png)
-3. <a name="import-new-broadcom-policies"></a>リクエスト転送ポリシーの場合（例: `forward-requests-to-wallarm`）:
+1. <a name="import-new-broadcom-policies"></a>リクエスト転送ポリシー（この例では`forward-requests-to-wallarm`）について:
 
     1. `wallarm-request-blocking.xml`ファイルをインポートします。
-    2. `wlrm-node-addr`パラメーターに[Wallarm Nodeインスタンス](#1-deploy-a-wallarm-node)のアドレスを指定します。
-    3. ポリシーを**Save and Active**してください。
+    1. `wlrm-node-addr`パラメータに[Wallarm Nodeインスタンス](#1-deploy-a-wallarm-node)のアドレスを指定します。
+    1. ポリシーを**Save and Active**します。
 
     ![](../../images/waf-installation/gateways/layer7/request-policy-assertion.png)
-4. レスポンス転送ポリシーの場合（例: `forward-responses-to-wallarm`）:
+1. レスポンス転送ポリシー（この例では`forward-responses-to-wallarm`）について:
 
     1. `wallarm-response.xml`ファイルをインポートします。
-    2. ポリシーを**Save and Active**してください。
+    1. ポリシーを**Save and Active**します。
 
 ## テスト
 
-デプロイされたポリシーの機能をテストするには、以下の手順に従ってください:
+デプロイしたポリシーの機能をテストするには、次の手順に従います。
 
-1. ゲートウェイのアドレスに対して、テストの[Path Traversal][ptrav-attack-docs]攻撃を含むリクエストを送信します:
+1. テスト用の[パストトラバーサル][ptrav-attack-docs]攻撃を含むリクエストをGatewayのアドレスに送信します。
 
     ```
     curl http://<YOUR_GATEWAY_ADDRESS>/etc/passwd
     ```
-2. Wallarm Consoleを開き、[US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)の**Attacks**セクションで、攻撃がリストに表示されていることを確認してください。
+1. Wallarm Console → **Attacks**セクションの[US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)を開き、攻撃がリストに表示されていることを確認します。
     
-    ![Attacks in the interface][attacks-in-ui-image]
+    ![インターフェースのAttacks][attacks-in-ui-image]
 
-    Wallarm Nodeのモードが[blocking](../../admin-en/configure-wallarm-mode.md)に設定されている場合、リクエストはブロックされます。
+    Wallarm Nodeのモードが[blocking](../../admin-en/configure-wallarm-mode.md)に設定されている場合、リクエストもブロックされます。
 
 ## Wallarmポリシーのアップグレード
 
-Broadcom上にデプロイされたWallarmポリシーを[新しいバージョン](code-bundle-inventory.md#broadcom-layer7-api-gateway)にアップグレードするには:
+Broadcom上にデプロイ済みのWallarmポリシーを[新しいバージョン](code-bundle-inventory.md#broadcom-layer7-api-gateway)にアップグレードするには:
 
-1. 更新されたコードバンドルを取得するためにsales@wallarm.comにお問い合わせください。
-2. [デプロイ手順](#import-new-broadcom-policies)に記載のとおり、Policy Manager内の既存のポリシーインスタンスに更新されたポリシーファイルをインポートしてください。
-3. 正しい値でポリシーパラメーターを構成してください。
-4. 更新されたポリシーを**Save and Activate**してください。
+1. sales@wallarm.comに連絡して、更新されたコードバンドルを入手します。
+1. [デプロイ手順](#import-new-broadcom-policies)に従って、更新済みポリシーファイルをPolicy Managerの既存のポリシーインスタンスにインポートします。
+1. ポリシーのパラメータを正しい値で設定します。
+1. 更新後のポリシーを**Save and Activate**します。
 
-ポリシーのアップグレードは、特に大きなバージョンアップの場合、Wallarm Nodeのアップグレードを必要とすることがあります。リリースアップデートとアップグレードの手順については、[Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md)を参照してください。将来のアップグレードの簡素化と非推奨の回避のため、定期的なNodeのアップデートを推奨します。
-```
+ポリシーのアップグレードでは、特にメジャーバージョンの更新時にWallarm Nodeのアップグレードが必要になる場合があります。リリース情報とアップグレード手順は、[Wallarm Native Nodeの変更履歴](../../updating-migrating/native-node/node-artifact-versions.md)を参照します。将来のアップグレードを容易にし非推奨を避けるため、Nodeを定期的に更新することを推奨します。

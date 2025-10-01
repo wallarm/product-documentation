@@ -1,4 +1,4 @@
-=== "US Cloud"
+=== "USクラウド"
     ```bash
     #!/bin/bash
 
@@ -6,7 +6,7 @@
     SECRET="<YOUR_SECRET_KEY>"
     CLIENT="<YOUR_CLIENT_ID>"
     LIST="<TYPE_OF_IP_LIST>"
-    PATH_TO_CSV_FILE="<PATH_TO_CSV_FILE>" # IPまたはサブネットを含むCSVファイルへのパス
+    PATH_TO_CSV_FILE="<PATH_TO_CSV_FILE>" # IPまたはサブネットを含むCSVファイルへのパスです
     APPLICATIONS="<APP_IDS_THROUGH_COMMA>"
     REMOVE_DATE="TIMESTAMP_REMOVE_DATE"
     REASON='<REASON>'
@@ -46,7 +46,7 @@
 
     done
     ```
-=== "EU Cloud"
+=== "EUクラウド"
     ```bash
     #!/bin/bash
 
@@ -54,7 +54,7 @@
     SECRET="<YOUR_SECRET_KEY>"
     CLIENT="<YOUR_CLIENT_ID>"
     LIST="<TYPE_OF_IP_LIST>"
-    PATH_TO_CSV_FILE="<PATH_TO_CSV_FILE>" # IPまたはサブネットを含むCSVファイルへのパス
+    PATH_TO_CSV_FILE="<PATH_TO_CSV_FILE>" # IPまたはサブネットを含むCSVファイルへのパスです
     APPLICATIONS="<APP_IDS_THROUGH_COMMA>"
     REMOVE_DATE="TIMESTAMP_REMOVE_DATE"
     REASON='<REASON>'
@@ -83,7 +83,7 @@
         "list": "'$LIST'",
         "rule_type": "ip_range",
         "subnet": "'$i'",
-        "expired_at": '$remove_date,
+        "expired_at": '$remove_date',
         "pools": [
             '$APPLICATIONS'
         ],

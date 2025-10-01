@@ -3,71 +3,77 @@
 
 # APIトークン
 
-Wallarm Console → **Settings** → **API tokens** において、[APIリクエスト認証](../../api/overview.md)および[フィルタリングノードのデプロイ](../../installation/supported-deployment-options.md)用のトークンを管理できます。
+Wallarm Console → **Settings** → **API tokens**では、[APIリクエストの認証](../../api/overview.md)や[フィルタリングノードのデプロイ](../../installation/supported-deployment-options.md)のためのトークンを管理できます。
 
-Wallarm APIトークンは柔軟な管理オプションを提供します。トークンの種類（パーソナルまたは共有など）を選択でき、有効期限を設定し、権限を指定できます。
+WallarmのAPIトークンは柔軟な管理オプションを提供します。トークンの種類（パーソナルまたは共有）の選択、有効期限の設定、権限の指定ができます。
 
-![Wallarm API token][img-api-tokens-edit]
+![Wallarm APIトークン][img-api-tokens-edit]
 
 ## パーソナルトークンと共有トークン
 
-パーソナルトークンと共有トークンのいずれかを生成できます:
+パーソナルまたは共有のAPIトークンを生成できます:
 
-* パーソナルトークンは、その権限に従って個人使用のために指定されています。[Administrators and Analysts](users.md#user-roles)のみがパーソナルトークンを作成および使用できます。
+* パーソナルトークンは、割り当てられた権限に従い個人による使用を目的としています。パーソナルトークンを作成・使用できるのは[Administrators and Analysts](users.md#user-roles)のみです。
 
-    パーソナルトークンの値は、その所有者のみがコピーして使用できます。ただし、管理者は企業アカウント内のユーザートークン一覧を閲覧できます。
-* 共有トークンは、複数のユーザーまたはシステムによる使用を目的としています。個々のパーソナルアカウントに関連付けられることなく、リソースまたは機能へのアクセスを共同で提供します。
+    パーソナルトークンの値は所有者のみがコピーして使用できます。ただし、Administratorsは会社アカウント内のユーザートークン一覧を閲覧できます。
+* 共有トークンは複数のユーザーやシステムでの利用を想定しています。個々のパーソナルアカウントに紐づけることなく、共同でリソースや機能にアクセスできます。
 
-    これらのトークンは、AdministratorsとGlobal Administratorsのみが生成でき、企業内の他の管理者のみが使用できます。
+    これらのトークンを生成できるのはAdministratorsとGlobal Administratorsのみで、使用できるのも会社内の他のAdministratorsのみです。
+
+## トークンの使用範囲
+
+選択した使用範囲によって、トークンをどのように、どこで使用できるかが制限されます:
+
+* Node deployment - [自己ホスト型Wallarm Nodeのデプロイ](../../installation/supported-deployment-options.md)またはアップグレード時にノードを認証するためのAPIトークンを生成する場合に使用します。
+* Wallarm API - このオプションを選ぶと、Wallarm APIへの認証付きリクエストにトークンを使用します。
+* Schema-Based Testing agent - [必須](../../vulnerability-detection/schema-based-testing/)で、[Schema-Based Testing](../../vulnerability-detection/schema-based-testing/setup.md#prerequisites-token)の動作に必要です。
 
 ## トークンの有効期限
 
-各トークンに有効期限を設定できます。設定後、指定された日付以降はトークンが無効になります。
+各トークンに有効期限を設定できます。設定すると、指定日を過ぎた時点でトークンは無効化されます。
 
-トークンの有効期限の3日前にメール通知が発行されます。有効期限が3日未満の短期間トークンの場合、通知は送信されません。
+有効期限日の3日前にメール通知を送信します。期限が3日未満の短期トークンには通知は送信されません。
 
-パーソナルトークンの場合は、通知メールが直接トークン所有者に送信され、共有トークンの場合は、すべての管理者が通知を受け取ります。
+パーソナルトークンの場合は所有者に直接、共有トークンの場合はすべてのAdministratorsに通知が送られます。
 
 ## トークンの権限
 
-各トークンについて、そのユーザー権限に関連付けられた範囲を超えない権限を設定できます。
+各トークンには、ユーザーロールに紐づく権限の範囲を超えない範囲で権限を設定できます。
 
-トークンの権限は、事前定義されたユーザー権限に基づいて割り当てるか、カスタマイズできます:
+トークン権限は、定義済みのユーザーロールに基づいて割り当てるか、カスタマイズできます:
 
-* Administrator、Analyst、API Developer、Read Onlyおよび対応するGlobal権限 - これらの権限のいずれかが割り当てられたトークンは、当社の[user role system](users.md#user-roles)に記載された権限を継承します。
-* Deploy - この権限を持つAPIトークンは、[Wallarmノードのデプロイ](../../installation/supported-deployment-options.md)に使用されます。
-* Custom permissions - 手動での権限選択に切り替えます。
-<!--
-    [OpenAPIセキュリティテスト](../../fast/openapi-security-testing.md)用のトークンを作成するには、対応する権限を持つカスタムロールが必要です。-->
+* Administrator、Analyst、API Developer、Read Onlyおよび同等のGlobalロール - これらのロールのいずれかを割り当てたトークンは、[ユーザーロール体系](users.md#user-roles)に記載の権限を継承します。
+* Deploy - このロールを持つAPIトークンは、[Wallarmノードをデプロイ](../../installation/supported-deployment-options.md)するために使用します。
+* Custom permissions - 手動で権限を選択するモードに切り替えます。
 
-パーソナルトークン所有者の権限が削減された場合、そのトークンの権限もそれに応じて調整されます。
+パーソナルトークンの所有者の権限が縮小された場合、その所有者のトークンの権限もそれに応じて調整されます。
 
-## トークンの無効化および再有効化
+## トークンの無効化と再有効化
 
-トークンを手動で無効化または有効化できます。一度無効化されると、トークンは直ちに機能を停止します。
+トークンは手動で無効化や有効化ができます。無効化すると、トークンは直ちに機能を停止します。
 
 無効化されたトークンは、無効化から1週間後に自動的に削除されます。
 
-以前に無効化されたトークンを再有効化するには、新しい有効期限を設定してください。
+以前に無効化したトークンを再有効化するには、新しい有効期限を設定してください。
 
-トークン所有者が[無効化](../../user-guides/settings/users.md#disabling-and-deleting-users)された場合、そのトークンも自動的に無効化されます。
+トークンの所有者が[無効化される](../../user-guides/settings/users.md#disabling-and-deleting-users)と、その所有者のトークンも自動的に無効化されます。
 
 ## 後方互換トークン
 
-以前はUUIDと秘密鍵がリクエスト認証に使用されていましたが、現在はトークンに置き換えられています。以前使用していたUUIDと秘密鍵は自動的に**後方互換**トークンに変換されます。このトークンを使用することで、UUIDと秘密鍵で認証されたリクエストは引き続き動作します。
+以前はリクエストの認証にUUIDとシークレットキーを使用していましたが、現在はトークンに置き換えられています。ご使用のUUIDとシークレットキーは自動的に**後方互換**トークンへと変換されます。このトークンを使用すると、UUIDとシークレットキーで認証されたリクエストは引き続き動作します。
 
-!!! warning "トークンの更新またはSSOを有効化"
-    後方互換トークンの値を更新するか、このトークン所有者に[SSO/strict SSO](../../admin-en/configuration-guides/sso/intro.md)を有効化すると、後方互換性が終了し、古いUUIDと秘密鍵で認証されたリクエストはすべて動作を停止します。
+!!! warning "トークンの更新またはSSOの有効化"
+    後方互換トークンの値を更新するか、このトークンの所有者に対して[SSO](../../admin-en/configuration-guides/sso/intro.md)を有効化すると、後方互換性は終了し、旧UUIDとシークレットキーで認証されたすべてのリクエストは動作しなくなります。
 
-また、リクエストの`X-WallarmApi-Token`ヘッダーパラメータに後方互換トークンの生成された値を渡すことで使用できます。
+後方互換トークンの生成された値は、リクエストのヘッダーパラメータ`X-WallarmApi-Token`として渡して使用することもできます。
 
-後方互換トークンはユーザー権限と同じ権限を持ち、これらの権限はトークンウィンドウに表示されず、変更することができません。権限を制御する場合は、後方互換トークンを削除し、新しいトークンを作成してください。
+後方互換トークンの権限はユーザーロールと同一で、これらの権限はトークンのウィンドウには表示されず、変更できません。権限を制御したい場合は、後方互換トークンを削除して新しいトークンを作成してください。
 
 ## APIトークンとノードトークン
 
-本記事で説明しているAPIトークンは、任意のクライアントからのWallarm Cloud API[リクエスト認証](../../api/overview.md)に、任意の権限セットで使用できます。
+本記事で説明したAPIトークンは、任意のクライアントから任意の権限セットでWallarm Cloud APIの[リクエスト認証](../../api/overview.md)に使用できます。
 
-Wallarm Cloud APIにアクセスするクライアントの一つとして、Wallarmフィルタリングノード自体があります。APIトークンに加え、ノードトークンを使用することで、フィルタリングノードにWallarm CloudのAPIへのアクセスを許可できます。[違いと推奨事項はこちら→](../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation)
+Wallarm Cloud APIにアクセスするクライアントの1つはWallarm filtering node自身です。Wallarm CloudのAPIへのアクセスをWallarm filtering nodeに付与するには、APIトークンに加えてノードトークンも使用できます。[違いとどちらを使うべきか→](../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation)
 
-!!! info "一部のデプロイオプションではAPIトークンはサポートされていません"
-    現在、APIトークンはおよび[Terraform module](../../installation/cloud-platforms/aws/terraform-module/overview.md)を使用したAWSデプロイメントでは使用できません。その代わりにノードトークンを使用してください。
+!!! info "一部のデプロイオプションではAPIトークンはサポートされません"
+    APIトークンは現在、[Terraform module](../../installation/cloud-platforms/aws/terraform-module/overview.md)に基づくAWSデプロイでは使用できません。代わりにノードトークンを使用してください。

@@ -1,97 +1,98 @@
-# Wallarmノードの新機能（EOLノードをアップグレードする際）
+# EOLノードをアップグレードする場合のWallarmノードの新機能
 
-このページでは、非推奨のバージョン（3.6以下）のノードをバージョン5.0にアップグレードする際に適用される変更点を記載しております。記載の変更点は、通常（client）ノードとマルチテナントWallarmノードの双方で適用されます。
+このページでは、旧バージョン（3.6以下）のノードを5.0にアップグレードした際に利用可能になる変更点を一覧で紹介します。記載の変更は、通常（クライアント）ノードとマルチテナントノードの両方に適用されます。
 
-!!! warning "Wallarmノード3.6以下は非推奨です"
-    Wallarmノード3.6以下は、[deprecated](../versioning-policy.md#version-list)であるため、アップグレードすることが推奨されています。
+!!! warning "Wallarmノード3.6およびそれ以前は非推奨です"
+    Wallarmノード3.6およびそれ以前は[非推奨](../versioning-policy.md#version-list)のため、アップグレードを推奨します。
 
-    ノードのバージョン5.xでは、ノード設定およびトラフィックのフィルトレーションが大幅に簡素化されています。ノード5.xの一部設定は、旧バージョンのノードと**互換性がありません**。モジュールをアップグレードする前に、変更点の一覧と[一般的な推奨事項](../general-recommendations.md)を十分に確認してください。
+    バージョン5.xのWallarmノードでは、ノード構成とトラフィックのフィルタリングが大幅に簡素化されています。5.xの一部の設定は旧バージョンのノードと**互換性がありません**。モジュールのアップグレード前に、変更点のリストと[一般的な推奨事項](../general-recommendations.md)を必ず確認してください。
 
-## オールインワンインストーラーおよびDEB/RPMパッケージの非推奨
+## All-in-oneインストーラーとDEB/RPMパッケージの非推奨化
 
-現在、さまざまな環境においてNGINXのダイナミックモジュールとしてWallarmノードをインストール・アップグレードする際、インストールプロセスを効率化・標準化するために設計された**オールインワンインストーラー**を使用します。このインストーラーは、利用中のOSおよびNGINXのバージョンを自動的に検出し、必要な依存関係をすべてインストールします。
+さまざまな環境でNGINXの動的モジュールとしてWallarmノードをインストール・アップグレードする際は、導入プロセスの効率化と標準化のために設計された**All-in-oneインストーラー**を使用します。このインストーラーは、OSとNGINXのバージョンを自動検出し、必要な依存関係をすべてインストールします。
 
-インストーラーは以下の処理を自動的に実行し、プロセスを簡素化します：
+インストーラーは以下を自動で実行し、作業を簡素化します:
 
-1. OSおよびNGINXのバージョンをチェックします。
-1. 検出されたOSおよびNGINXのバージョン向けにWallarmリポジトリを追加します。
-1. これらのリポジトリからWallarmパッケージをインストールします。
-1. インストールされたWallarmモジュールをNGINXに接続します。
-1. 提供されたトークンを使用して、フィルタリングノードをWallarm Cloudに接続します。
+1. OSとNGINXのバージョン確認
+1. 検出したOSとNGINXのバージョンに対応するWallarmリポジトリの追加
+1. それらのリポジトリからのWallarmパッケージのインストール
+1. インストールされたWallarmモジュールのNGINXへの接続
+1. 提供されたトークンを用いたWallarm Cloudへのフィルタリングノードの接続
 
-[オールインワンインストーラーを使用したノードのアップグレード方法の詳細 →](nginx-modules.md)
+[All-in-oneインストーラーでのノードアップグレードの詳細 →](nginx-modules.md)
 
-ノードインストール用のDEB/RPMパッケージは、現在「非推奨」の状態です。
+ノードインストール用のDEB/RPMパッケージは現在「非推奨」です。
 
-## 削除されたメトリクスによるブレイキングチェンジ
+## collectdの廃止
 
-Wallarmノードは、以下のcollectdメトリクスの収集を行いません：
+これまで全フィルタリングノードにインストールされていたcollectdサービスおよび関連プラグインは削除されました。メトリクスはWallarmの組み込みメカニズムで収集・送信され、外部ツールへの依存が低減されます。
 
-* `wallarm_nginx/gauge-requests` - 代わりに[`wallarm_nginx/gauge-abnormal`](../../admin-en/monitoring/available-metrics.md#number-of-requests)メトリクスをご利用ください
-* `wallarm_nginx/gauge-attacks`
-* `wallarm_nginx/gauge-blocked`
-* `wallarm_nginx/gauge-time_detect`
-* `wallarm_nginx/derive-requests`
-* `wallarm_nginx/derive-attacks`
-* `wallarm_nginx/derive-blocked`
-* `wallarm_nginx/derive-abnormal`
-* `wallarm_nginx/derive-requests_lost`
-* `wallarm_nginx/derive-tnt_errors`
-* `wallarm_nginx/derive-api_errors`
-* `wallarm_nginx/derive-segfaults`
-* `wallarm_nginx/derive-memfaults`
-* `wallarm_nginx/derive-softmemfaults`
-* `wallarm_nginx/derive-time_detect`
+PrometheusおよびJSON形式で同等のメトリクスを提供する、collectdの代替である[`/wallarm-status`エンドポイント](../../admin-en/configure-statistics-service.md)を使用してください。
+
+この変更の結果、設定ルールにも以下の変更があります:
+
+* `/opt/wallarm/etc/collectd/wallarm-collectd.conf.d/wallarm-tarantool.conf`のcollectd設定ファイルは使用されなくなりました。
+* 以前にcollectdのネットワークプラグインでメトリクスを転送していた場合、例えば:
+
+    ```
+    LoadPlugin network
+
+    <Plugin "network">
+        Server "<Server IPv4/v6 address or FQDN>" "<Server port>"
+    </Plugin>
+    ```
+
+    これからはPrometheusで`/wallarm-status`をスクレイプする方式に切り替えてください。
 
 ## API Sessions
 
-APIエコノミー向けに特化したユニークなセキュリティ機能、[API Sessions](../../api-sessions/overview.md)を導入しました。この機能により、APIにおける攻撃、不審な動作、ユーザーの挙動を把握でき、ユーザーがAPIやアプリケーションとどのようにやり取りしているかの透明性が向上します。
+API経済に特化したユニークなセキュリティ機能 — [API Sessions](../../api-sessions/overview.md)を導入しました。これにより、API全体での攻撃、異常、ユーザー行動の可視性が得られ、ユーザーがAPIやアプリケーションとどのようにやり取りしているかの透明性が向上します。
 
-![!API Sessions section - monitored sessions](../../images/api-sessions/api-sessions.png)
+![!API Sessionsセクション - 監視中のセッション](../../images/api-sessions/api-sessions.png)
 
-攻撃者は、正当なユーザーの挙動に混じるように脆弱なエンドポイントを悪用することがよくあります。セッションの全体像が分からないと、パターンや脅威の特定には複数のツールやシステムを用いる手間がかかります。組織では、APIレベルで十分な可視性が得られていませんでした。
+攻撃者は、正規ユーザーの行動に紛れて脆弱なエンドポイントを悪用することがよくあります。セッション全体のコンテキストがなければ、パターンや脅威の特定は、複数のツールやシステムをまたいだ時間のかかる作業になります。多くの組織はAPIレベルでの適切な可視性を持っていません。
 
-API Sessionsにより、セキュリティチームはユーザーセッション毎にグループ化されたすべての関連アクティビティを確認でき、攻撃の連鎖、不審な挙動、通常の動作について比類なき可視性が得られます。従来数時間または数日かかっていた調査を、Wallarm Console上で数分で実施できるようになります。
+API Sessionsにより、セキュリティチームはユーザーセッションごとに関連アクティビティをまとめて確認でき、攻撃シーケンス、ユーザーの異常、通常の行動をこれまでにない可視性で把握できます。これまで数時間から数日かかっていた調査は、Wallarm Consoleから数分で実行できるようになります。
 
-主な機能：
+主な特長:
 
-* 攻撃、不審な動作、ユーザー挙動の可視性：各セッション内で行われたリクエストをすべて確認・解析し、攻撃手法や不審なパターンを追跡できます。
-* 従来型および最新のセッションの両方に対応：アプリケーションがCookieベースまたはJWT/OAuthベースのセッションに依存している場合でも、Wallarm API Sessionsは完全な互換性と可視性を保証します。
-* 個々の攻撃とそれに紐づくセッション間をシームレスに遷移できます。
+* 攻撃、異常、ユーザー行動の可視化: セッション内のすべてのリクエストを表示・分析し、攻撃ベクターや不審なパターンを追跡します。
+* レガシーおよびモダンなセッションの両方をサポート: アプリケーションがCookieベースのセッションやJWT/OAuthに依存していても、Wallarm API Sessionsは完全な互換性と可視性を確保します。
+* 個々の攻撃とそれに紐づくセッション間をシームレスに行き来できます。
 
-API Sessionsにより、セキュリティチームは以下の対応が容易になります：
+API Sessionsにより、セキュリティチームは次のことを容易に行えます:
 
-* 脅威アクターの全活動を調査し、潜在的な攻撃経路や侵害された資源を把握する。
-* シャドウまたはゾンビAPIへのアクセス状況を特定し、未文書化や旧式のAPIからのリスクを軽減する。
-* セキュリティ調査中に同僚と重要な情報を共有する。
+* 脅威行為者の全活動を調査し、潜在的な攻撃経路や侵害されたリソースを把握します。
+* シャドーAPIやゾンビAPIへのアクセス方法を特定し、未文書や古いAPIによるリスクを軽減します。
+* セキュリティ調査時に同僚と主要な洞察を共有し、コラボレーションを促進します。
 
-[詳細はこちら](../../api-sessions/overview.md)
+[詳細を読む](../../api-sessions/overview.md)
 
-## API Sessionsにおけるレスポンスパラメータ
+## API Sessionsのレスポンスパラメータ
 
 !!! tip ""
-    現時点では[NGINX Node 5.3.0以上](../node-artifact-versions.md)が対応しており、[Native Node](../native-node/node-artifact-versions.md)では未対応です
+    [NGINX Node 5.3.0以上](../node-artifact-versions.md)および[Native Node 0.12.0以上](../native-node/node-artifact-versions.md)
 
-Wallarmの[API Sessions](../../api-sessions/overview.md)は、ユーザーの活動シーケンスの可視性を提供します。この機能により、各セッション内ではリクエストのみならずレスポンス情報も利用可能となります：
+Wallarmの[API Sessions](../../api-sessions/overview.md)は、ユーザーの一連のアクティビティを可視化します。今回の拡張により、各セッションでリクエストだけでなくレスポンス情報も利用可能になりました:
 
-* 各リクエストに対して、対応するレスポンスの任意のヘッダーやパラメータを表示するように設定でき、ユーザーの活動を完全に把握できます。
-* レスポンスパラメータをセッションのグループ化キーとして利用できるため（[例](../../api-sessions/setup.md#grouping-keys-example)参照）、リクエストのセッションごとのグループ化がより正確になります。
+* 任意のレスポンスヘッダーやパラメータを、対応するリクエスト内に表示するよう設定でき、ユーザーアクティビティの明確で完全な全体像を得られます。
+* レスポンスパラメータをセッションのグルーピングキーとして使用できます（[例](../../api-sessions/setup.md#grouping-keys-example)参照）。これにより、リクエストのセッショングルーピング精度が向上します。
 
-![!API Sessions - example of grouping keys in work](../../images/api-sessions/api-sessions-grouping-keys.png)
+![!API Sessions - グルーピングキーの動作例](../../images/api-sessions/api-sessions-grouping-keys.png)
 
-## レートリミット
+## レート制限
 
-適切なレートリミットがないと、攻撃者が大量のリクエストを送信してDoS攻撃やシステムの過負荷を引き起こし、正当なユーザーに影響を及ぼすという重大な問題が生じます。
+適切なレート制限がないことはAPIセキュリティにおける重大な課題でした。攻撃者は大量リクエストを発生させてサービス拒否（DoS）やシステム過負荷を引き起こし、正規ユーザーに悪影響を与えます。
 
-Wallarmのレートリミット機能により、セキュリティチームはサービスの負荷を効果的に管理し、誤検知を防止しながら、正当なユーザー向けにサービスの継続的な可用性とセキュリティを維持できます。この機能は、従来のIPベースのレートリミットに加え、JSONフィールド、base64エンコードデータ、Cookie、XMLフィールドなど、リクエストやセッションパラメータに基づくさまざまな接続制限を提供します。
+Wallarmのレート制限機能により、セキュリティチームはサービス負荷を効果的に管理し、誤検知を防ぎ、正規ユーザーに対してサービスの可用性と安全性を確保できます。この機能では、従来のIPベースのレート制限に加え、JSONフィールド、base64エンコードデータ、Cookie、XMLフィールドなど、リクエストやセッションのパラメータに基づく多様な接続制限を提供します。
 
-例えば、ユーザー毎のAPI接続を制限することで、1分間に数千件のリクエストが送信されるのを防ぎ、サーバーへの過負荷やサービスクラッシュのリスクを回避できます。レートリミットを実装することで、サーバーの過負荷から保護し、すべてのユーザーがフェアにAPIへアクセスできる状態を確保できます。
+例えば、ユーザーごとのAPI接続数を制限し、1ユーザーが1分間に何千ものリクエストを行うことを防げます。これはサーバーへの大きな負荷となり、サービス障害につながり得ます。レート制限を実装することで、サーバーの過負荷を防ぎ、全ユーザーに公平なAPIアクセスを保証します。
 
-Wallarm Console UIの→ **Rules** → **Set rate limit**から、使用ケースに応じたレートリミットのスコープ、レート、バースト、ディレイ、レスポンスコードを指定し、簡単にレートリミットを設定できます。
+レート制限はWallarm Console UI → **Rules** → **Advanced rate limiting**で、スコープ、レート、バースト、遅延、レスポンスコードをユースケースに合わせて指定するだけで簡単に設定できます。
 
-[レートリミット設定の手順 →](../../user-guides/rules/rate-limiting.md)
+[レート制限の設定ガイド →](../../user-guides/rules/rate-limiting.md)
 
-レートリミットルールは機能の設定に推奨される方法ですが、新たなNGINXディレクティブを用いてレートリミットを設定することも可能です：
+推奨はレート制限ルールの使用ですが、新しいNGINXディレクティブでも設定できます:
 
 * [`wallarm_rate_limit`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit)
 * [`wallarm_rate_limit_enabled`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit_enabled)
@@ -99,452 +100,567 @@ Wallarm Console UIの→ **Rules** → **Set rate limit**から、使用ケー�
 * [`wallarm_rate_limit_status_code`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit_status_code)
 * [`wallarm_rate_limit_shm_size`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit_shm_size)
 
-## クレデンシャルスタッフィング検出 <a href="../../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Credential stuffing detection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarmは、リアルタイムでクレデンシャルスタッフィング攻撃の検出と通知を行います。クレデンシャルスタッフィングは、盗まれたまたは弱いユーザー名／メールアドレスとパスワードの組み合わせをWebサイトのログインフォームに自動で送信し、不正にユーザーアカウントへアクセスする攻撃です。この機能により、クレデンシャルが侵害されたアカウントを特定し、アカウント所有者への通知や一時的なアカウントアクセスの停止などの対策を講じることができます。
+Wallarmはクレデンシャルスタッフィング試行のリアルタイム検出と通知を提供します。クレデンシャルスタッフィングとは、盗まれた/弱いユーザー名・メールアドレスとパスワードの組み合わせをWebサイトのログインフォームに自動投入し、不正にアカウントへアクセスする手口です。本機能により、漏えいした認証情報を持つアカウントを特定し、アカウント所有者への通知や一時的なアクセス停止などの対処が可能です。
 
-[クレデンシャルスタッフィング検出の設定方法を学ぶ](../../about-wallarm/credential-stuffing.md)
+[Credential Stuffing Detectionの設定方法](../../about-wallarm/credential-stuffing.md)
 
-![Attacks - credential stuffing](../../images/about-wallarm-waf/credential-stuffing/credential-stuffing-attacks.png)
+![Attacks - クレデンシャルスタッフィング](../../images/about-wallarm-waf/credential-stuffing/credential-stuffing-attacks.png)
 
-!!! info "クレデンシャルスタッフィング検出をサポートする一部のアーティファクト"
-    オールインワンインストーラー、NGINX Ingress Controller、NGINXベースのDockerイメージ、クラウドイメージ（AMI、GCP Image）など、一部のアーティファクトが、新たに導入されたクレデンシャルスタッフィング検出機能をサポートしています。
+!!! info "クレデンシャルスタッフィング検出をサポートする選択済みアーティファクト"
+    All-in-oneインストーラー、NGINX Ingress Controller、NGINXベースのDockerイメージ、クラウドイメージ（AMI、GCP Image）など、限定的なアーティファクトで新しいクレデンシャルスタッフィング検出機能がサポートされます。
 
-## GraphQL API保護 <a href="../../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## GraphQL API protection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarmは、GraphQLにおいて、既定でSQLiやRCEなどの通常の攻撃を検出します。しかし、プロトコルの特性上、過度な情報露出やDoSに関連する[GraphQL特有の](../../attacks-vulns-list.md#graphql-attacks)攻撃が実行される可能性もあります。
+WallarmはデフォルトでGraphQL内の一般的な攻撃（SQLi、RCE、[など](../../attacks-vulns-list.md)）を検出します。しかし、プロトコルの特性により、過度な情報露出やDoSに関連する[GraphQL特有](../../attacks-vulns-list.md#graphql-attacks)の攻撃が可能です。
 
-Wallarmは、これらの攻撃から保護するための対策を導入しました。保護は、組織のGraphQLポリシー（GraphQLリクエストの各種リミットの設定）の構成により実施されます。セットされたリミットを超えるリクエストがある場合、フィルタリングノードは、アクティブなフィルトレーションモードに従い、違反として記録するかブロックします。
+これらの攻撃への保護を導入しました。保護は、組織のGraphQLポリシー（GraphQLリクエストに対する制限のセット）を設定することで行います。設定された制限を超えるリクエストは、アクティブなフィルタリングモードに従ってフィルタリングノードが処理し、ポリシー違反として記録のみ、または記録してブロックします。
 
-この機能を使用開始するには、Wallarm Consoleで少なくとも1つの[**Detect GraphQL attacks**ルール](../../api-protection/graphql-rule.md#creating-and-applying-the-rule)を作成する必要があります。
+本機能の利用を開始するには、Wallarm Consoleで少なくとも1つの[**Detect GraphQL attacks**ルール](../../api-protection/graphql-rule.md#)を作成する必要があります。
 
-[GraphQL API保護の設定方法を学ぶ](../../api-protection/graphql-rule.md)
+[GraphQL API Protectionの設定方法](../../api-protection/graphql-rule.md)
 
-![GraphQL thresholds](../../images/user-guides/rules/graphql-rule.png)
+![GraphQLのしきい値](../../images/user-guides/rules/graphql-rule.png)
+
+## Mitigation Controls
+
+すべてのWallarm攻撃緩和設定を一元管理する管理センター — [**Mitigation Controls**](../../about-wallarm/mitigation-controls-overview.md)を導入しました。Mitigation Controlsにより、次のことが可能です:
+
+* すべてのWallarm緩和設定を1か所で表示・管理できます。
+* 統一的に管理できます（すべてのコントロールは類似の設定UIとオプションを備えます）。
+* 各コントロールの現在のモードを容易に把握できます: 有効か、監視のみか、ブロックもするか。
+* 各コントロールで捕捉された攻撃をすばやく俯瞰できます。
+
+![UI内のMitigation Controlsページ](../../images/user-guides/mitigation-controls/mc-main-page.png)
+
+## ファイルアップロード制限ポリシー
+
+Wallarmはアップロードファイルサイズを直接制限するためのツールを提供します。これは、[OWASP API Top 10 2023](../../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023)に含まれる最も重大なAPIセキュリティリスクの1つである[unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md)を防ぐための一連の対策の一部です。
+
+サブスクリプションプランにより、アップロード制限はミティゲーションコントロールまたはルールで適用されます。リクエスト全体または選択したポイントに対してファイルサイズの制限を設定できます。
+
+![File upload restriction MC - 例](../../images/api-protection/mitigation-controls-file-upload-1.png)
+
+### 列挙攻撃保護
+
+!!! tip ""
+    [NGINX Node 6.1.0以上](../node-artifact-versions.md)および[Native Node 0.14.1以上](../native-node/node-artifact-versions.md)
+
+[列挙攻撃](../../attacks-vulns-list.md#enumeration-attacks)に対する新たな保護レベルとして、以下の列挙ミティゲーションコントロールを提供します:
+
+* [Enumeration attack protection](../../api-protection/enumeration-attack-protection.md)
+* [BOLA enumeration protection](../../api-protection/enumeration-attack-protection.md)
+* [Forced browsing protection](../../api-protection/enumeration-attack-protection.md)
+* [Brute force protection](../../api-protection/enumeration-attack-protection.md)
+
+従来のトリガーと比較して、ミティゲーションコントロールは次を可能にします:
+
+* 列挙試行の監視対象パラメータを選択できます。
+* カウント対象とするリクエストを高度に絞り込めます。
+* [API Sessions](../../api-sessions/overview.md)と深く統合されます: 検出された攻撃は対応するセッション内に表示され、何が起きてなぜそのセッションの活動が攻撃としてマークされ、ブロックされたのか、完全なコンテキストを提供します。
+
+![BOLA保護ミティゲーションコントロール - 例](../../images/user-guides/mitigation-controls/mc-bola-example-01.png)
+
+### DoS保護
+
+!!! tip ""
+    [NGINX Node 6.1.0以上](../node-artifact-versions.md)および[Native Node 0.14.1以上](../native-node/node-artifact-versions.md)
+
+[unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md)は、[OWASP API Top 10 2023](../../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023)に含まれる重大なAPIセキュリティリスクです。これは（過負荷によるサービスの遅延・停止という）脅威自体であるだけでなく、列挙攻撃などさまざまな攻撃の土台にもなります。同時刻に許容しすぎるリクエストは、これらのリスクの主因の1つです。
+
+Wallarmは、APIへの過剰なトラフィックを防ぐための新しいミティゲーションコントロール[**DoS protection**](../../api-protection/dos-protection.md)を提供します。
+
+![DoS protection - JWTの例](../../images/api-protection/mitigation-controls-dos-protection-jwt.png)
+
+### 既定のコントロール
+
+有効化するとWallarmプラットフォームの検出能力を大幅に強化する[既定のミティゲーションコントロール](../../about-wallarm/mitigation-controls-overview.md#default-controls)を提供します。これらは一般的な攻撃パターンに対し堅牢な保護を提供するよう事前設定されています。現在の既定コントロールは以下のとおりです:
+
+* [GraphQL protection](../../api-protection/graphql-rule.md)
+* ユーザーID、オブジェクトID、ファイル名に対する[BOLA（Broken Object Level Authorization）列挙保護](../../api-protection/enumeration-attack-protection.md#bola)
+* パスワード、OTP、認証コードに対する[Brute force protection](../../api-protection/enumeration-attack-protection.md#brute-force)
+* [Forced browsing protection](../../api-protection/enumeration-attack-protection.md#forced-browsing)（404プロービング）
+* [Enumeration attack protection](../../api-protection/enumeration-attack-protection.md#generic-enumeration)（以下を含む）:
+    
+    * ユーザー/メールアドレス列挙
+    * SSRF（Server-Side Request Forgery）列挙
+    * ユーザーエージェントのローテーション
+
+## unrestricted resource consumptionからの保護
+
+!!! tip ""
+    [NGINX Node 6.3.0以上](../node-artifact-versions.md)、[Native Node](../../installation/nginx-native-node-internals.md#native-node)は現時点では非対応です。
+
+Wallarmの[API Abuse Prevention](../../api-abuse-prevention/overview.md)は、[unrestricted resource consumption](../../attacks-vulns-list.md#unrestricted-resource-consumption)（自動化クライアントが適切な制限なく過剰にAPIやアプリケーションのリソースを消費する濫用行為）を防止する機能を提供します。これには、非悪意の大量リクエスト送信、計算資源・メモリ・帯域の枯渇、正規ユーザー向けサービス品質の低下などが含まれます。
+
+![API Abuse prevention profile](../../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
+
+この種の自動化された脅威を検出するため、API Abuse Preventionは次の3つの新しい[検出器](../../api-abuse-prevention/overview.md#how-api-abuse-prevention-works)を提供します:
+
+* **Response time anomaly**: APIレスポンス遅延の異常パターンを特定し、自動化された濫用やバックエンドの悪用の兆候を検知します。
+* **Excessive request consumption**: 異常に大きいリクエストペイロードを送信するクライアントを特定し、バックエンド処理資源の濫用・誤用を示唆します。
+* **Excessive response consumption**: セッション全体でのレスポンスデータ総量に基づき、疑わしいセッションをフラグします。個々のリクエストに着目する検出器とは異なり、セッション全体でレスポンスサイズを集計して、スロードリップ型や分散型スクレイピング攻撃を特定します。
 
 ## API Specification Enforcement
 
-今回のアップデートでは、API Specification Enforcement機能を導入しました。これは、API仕様に準拠したリクエストのみを許可するため、着信トラフィックをフィルタリングします。クライアントとアプリケーションの間に位置するWallarmノードが、API仕様書上のエンドポイント記述と実際のAPIリクエストを比較します。未定義のエンドポイントリクエストや、不正なパラメータを含むリクエストは、設定に応じてブロックまたはモニタリングされます。
+このアップデートでは、API Specification Enforcement機能を導入しました。これは受信トラフィックをフィルタリングし、API仕様に準拠したリクエストのみを許可します。クライアントとアプリケーションの間に配置されたWallarmノードが、仕様のエンドポイント記述と実際のAPIリクエストを比較します。未定義のエンドポイントや未許可パラメータを含むリクエストなどの不一致は、設定に応じてブロックまたは監視されます。
 
-この機能により、潜在的な攻撃試行を防ぐとともに、APIの過負荷や悪用を回避し、パフォーマンスが最適化されます。
+これは潜在的な攻撃試行を阻止してセキュリティを強化するだけでなく、過負荷や不適切な利用を回避することでAPIのパフォーマンスを最適化します。
 
-さらに、いくつかのデプロイオプション向けに新たなパラメータが導入され、機能運用の技術的制御が可能となりました：
+また、一部のデプロイメントオプション向けに技術的な制御を可能にする新しいパラメータも追加しました:
 
-* オールインワンインストーラーの場合：NGINXディレクティブ[`wallarm_enable_apifw`](../../admin-en/configure-parameters-en.md#wallarm_enable_apifw)
-* NGINX Ingress Controllerの場合：値グループ[`controller.wallarm.apifirewall`](../../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewall)
-* NGINXベースのDockerイメージの場合：環境変数`WALLARM_APIFW_ENABLE`
+* All-in-oneインストーラー向け: [`wallarm_enable_apifw`](../../admin-en/configure-parameters-en.md#wallarm_enable_apifw) NGINXディレクティブ
+* NGINX Ingress Controller向け: [`controller.wallarm.apifirewall`](../../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewall)の値グループ
+* NGINXベースのDockerイメージ向け: 環境変数`WALLARM_APIFW_ENABLE`
 
-[API Specification Enforcementの設定方法を学ぶ](../../api-specification-enforcement/setup.md)
+[API Specification Enforcementの設定方法](../../api-specification-enforcement/setup.md)
 
-![Specification - use for applying security policies](../../images/api-specification-enforcement/api-specification-enforcement-events.png)
+![Specification - セキュリティポリシー適用に使用](../../images/api-specification-enforcement/api-specification-enforcement-events.png)
 
-## 新たな攻撃タイプの検出
+## 新しい攻撃タイプの検出
 
-Wallarmは、新たな攻撃タイプを検出します：
+Wallarmは新しい攻撃タイプを検出します:
 
-* [Broken Object Level Authorization](https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/)（BOLA）  
-  Insecure Direct Object References（またはIDOR）としても知られるこの脆弱性は、APIにおいて最も一般的な脆弱性の一つとなっています。アプリケーションにIDOR/BOLAの脆弱性が存在する場合、敏感な情報やデータが攻撃者に露出する可能性が非常に高くなります。攻撃者は、自身のリソースのIDを、他のユーザーに属するリソースのIDと置き換えるだけで、指定されたリソースにアクセスすることが可能となります。適切な認可チェックがなければ、攻撃者はそのリソースにアクセスできます。
+* [Broken Object Level Authorization](https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/)（BOLA、Insecure Direct Object ReferencesまたはIDORとも呼ばれます）は、最も一般的なAPIの脆弱性の1つになりました。アプリケーションにIDOR / BOLAの脆弱性がある場合、攻撃者に機密情報やデータを露出する可能性が高くなります。攻撃者は、自身のリソースIDをAPI呼び出し内で他ユーザーのリソースIDに置き換えるだけで済みます。適切な認可確認がないと、攻撃者はそのリソースにアクセスできます。したがって、オブジェクトIDを受け取り何らかの操作を行うすべてのAPIエンドポイントは攻撃対象になり得ます。
 
-    この脆弱性の悪用を防ぐために、Wallarmノードには[新しいトリガー](../../admin-en/configuration-guides/protecting-against-bola.md)が実装されており、指定されたエンドポイントへのリクエスト数がトリガーの閾値を超えた場合にBOLA攻撃イベントを作成し、エンドポイントを保護します。
+    この脆弱性の悪用を防ぐため、WallarmノードにはエンドポイントをBOLA攻撃から保護できる[新しいトリガー](../../admin-en/configuration-guides/protecting-against-bola.md)が追加されています。トリガーは特定エンドポイントへのリクエスト数を監視し、しきい値を超えた際にBOLA攻撃イベントを作成します。
 * [Mass Assignment](../../attacks-vulns-list.md#mass-assignment)
 
-    Mass Assignment攻撃では、攻撃者がHTTPリクエストパラメータをコード内の変数やオブジェクトにバインドしようと試みます。もしAPIが脆弱でバインドを許可している場合、攻撃者は意図せず公開される敏感なオブジェクトプロパティを変更し、権限昇格やセキュリティ機構の回避などを引き起こす可能性があります。
+    Mass Assignment攻撃では、攻撃者はHTTPリクエストパラメータをプログラムコードの変数やオブジェクトにバインドしようとします。APIが脆弱でバインドを許容している場合、公開を意図しないオブジェクトの機密プロパティを変更され、特権昇格やセキュリティ機構の回避などにつながる可能性があります。
 * [SSRF](../../attacks-vulns-list.md#serverside-request-forgery-ssrf)
 
-    SSRF攻撃が成功すると、攻撃者は対象のWebサーバーに代わってリクエストを送信できるようになり、Webアプリケーションで使用されているネットワークポートを明らかにしたり、内部ネットワークのスキャンを行ったり、認可を回避したりする可能性があります。
+    SSRF攻撃が成功すると、攻撃対象のWebサーバーになりすましてリクエストを発行でき、使用中のネットワークポートの露呈、内部ネットワークのスキャン、認可の回避につながる可能性があります。
 
-## API DiscoveryおよびAPI SessionsにおけるSensitive Business Flows
+## API DiscoveryとAPI Sessionsのセンシティブなビジネスフロー
 
 !!! tip ""
     [NGINX Node 5.3.0以上](../node-artifact-versions.md)および[Native Node 0.10.1以上](../native-node/node-artifact-versions.md)
 
-Sensitive Business Flow機能により、Wallarmの[API Discovery](../../api-discovery/overview.md)は、認証、アカウント管理、課金などの重要なビジネスフローに関わるエンドポイントを自動的に特定します。
+センシティブなビジネスフロー機能により、Wallarmの[API Discovery](../../api-discovery/overview.md)は、認証、アカウント管理、課金など特定のビジネスフローや機能にとって重要なエンドポイントを自動的に特定できます。
 
-これにより、重要なビジネスフローに関連するエンドポイントを定期的に監視・監査し、脆弱性や侵害の検出、さらに開発、保守、セキュリティ対策の優先順位決定が容易になります。
+これにより、センシティブなビジネスフローに関連するエンドポイントの、脆弱性や侵害に対する定期監視・監査、および開発・保守・セキュリティ対応の優先順位付けが可能になります。
 
-![API Discovery - Sensitive business flows](../../images/about-wallarm-waf/api-discovery/api-discovery-sbf.png)
+![API Discovery - センシティブなビジネスフロー](../../images/about-wallarm-waf/api-discovery/api-discovery-sbf.png)
 
-特定されたSensitive Business Flowは、Wallarmの[API Sessions](../../api-sessions/overview.md)に伝播されます。すなわち、もしセッション内のリクエストがAPI Discoveryで重要とタグ付けされたエンドポイントに影響を与える場合、そのセッションも自動的に[タグ付け](../../api-sessions/exploring.md#sensitive-business-flows)され、該当するビジネスフローに影響を与えたことが明示されます。
+特定されたセンシティブなビジネスフローはWallarmの[API Sessions](../../api-sessions/overview.md)にも反映されます。API Discoveryでセンシティブなビジネスフローに重要とタグ付けされたエンドポイントに影響するセッションのリクエストがある場合、そのセッションにも自動的にそのビジネスフロータグが[付与](../../api-sessions/exploring.md#sensitive-business-flows)されます。
 
-一度セッションにSensitive Business Flowタグが付与されると、特定のビジネスフローでフィルタリングすることが可能になり、最も解析すべきセッションを選択しやすくなります。
+セッションにセンシティブなビジネスフロータグが付与されると、特定のビジネスフローでフィルタリングできるようになり、分析対象として最も重要なセッションを絞り込みやすくなります。
 
-![!API Sessions - sensitive business flows](../../images/api-sessions/api-sessions-sbf-no-select.png)
+![!API Sessions - センシティブなビジネスフロー](../../images/api-sessions/api-sessions-sbf-no-select.png)
 
-## 高度なGraphQLパーサ
+## フル機能のGraphQLパーサー
 
 !!! tip ""
-    現時点では[NGINX Node 5.3.0以上](../node-artifact-versions.md)が対応しており、[Native Node](../native-node/node-artifact-versions.md)では未対応です
+    [NGINX Node 5.3.0以上](../node-artifact-versions.md)および[Native Node 0.12.0以上](../native-node/node-artifact-versions.md)
 
-完全な機能を備えた[GraphQLパーサ](../../user-guides/rules/request-processing.md#gql)は、GraphQLリクエスト内の入力検証攻撃（例：SQLインジェクション）の検出精度を大幅に向上させ、**より高い精度と最小限の誤検知**を実現します。
+フル機能の[GraphQLパーサー](../../user-guides/rules/request-processing.md#gql)は、GraphQLリクエスト内の入力検証攻撃（例: SQLインジェクション）の検出を大幅に向上させ、**精度向上と誤検知の最小化**を実現します。
 
-主な利点：
+主な利点:
 
-* **入力検証攻撃の検出精度向上**（例：SQLインジェクション）
-* **詳細なパラメータ解析**：GraphQLリクエストパラメータの値を抽出・表示し、API Sessionsにおいてセッションコンテキストパラメータとして利用できます。
+* 入力検証攻撃（例: SQLインジェクション）の**検出精度向上**
+* **詳細なパラメータの可視化**: GraphQLリクエストパラメータの値を抽出してAPI Sessionsに表示し、セッションのコンテキストパラメータとして活用できます。
 
-    ![!API Sessions configuration - GraphQL request parameter](../../images/api-sessions/api-sessions-graphql.png)
+    ![!API Sessions設定 - GraphQLリクエストパラメータ](../../images/api-sessions/api-sessions-graphql.png)
 
-* **正確な攻撃検索**：GraphQLリクエストの特定部分（引数、ディレクティブ、変数など）における攻撃を正確に特定できます。
-* **高度なルール適用**：GraphQLリクエストの特定部分に対して、細やかな保護ルールを適用可能です。これにより、攻撃タイプごとに特定部分の除外設定など、詳細なチューニングが実現できます。
+* **精緻な攻撃検索**: 引数、ディレクティブ、変数など、特定のGraphQLリクエスト要素における攻撃を正確に特定します。
+* **高度なルール適用**: GraphQLリクエストの特定部分に粒度の細かい保護ルールを適用できます。これにより、GraphQLリクエストの定義済み部分における特定攻撃タイプの除外など、きめ細かい調整が可能です。
 
-    ![Example of the rule applied to GraphQL request point"](../../images/user-guides/rules/rule-applied-to-graphql-point.png)
+    ![GraphQLリクエストポイントに適用されたルールの例"](../../images/user-guides/rules/rule-applied-to-graphql-point.png)
 
 ## JSON Web Tokenの強度チェック
 
-[JSON Web Token (JWT)](https://jwt.io/)は、API間で安全にデータを交換するためによく用いられる認証標準です。JWTが侵害されると、攻撃者が認証機構を突破してアプリケーションやAPIに対するフルアクセスが可能となるため、弱いJWTほど侵害されるリスクが高まります。
+[JSON Web Token（JWT）](https://jwt.io/)は、APIなどのリソース間でデータを安全に交換するための一般的な認証標準です。JWTの侵害は、認証機構を破られることでアプリケーションやAPIに完全アクセスされるため、攻撃者の主要な標的となります。JWTが弱いほど、侵害される可能性は高まります。
 
-現在、Wallarmは以下のJWTの弱点を検出します：[weak jwt](../../attacks-vulns-list.md#weak-jwt)
+現在、Wallarmは次のJWTの弱点を[検出](../../attacks-vulns-list.md#weak-jwt)します:
 
 * 暗号化されていないJWT
-* 侵害された秘密鍵で署名されたJWT
+* 秘密鍵が漏えいした状態で署名されたJWT
 
-## JWTに対する攻撃検知
+## JSON Web Tokenに対する攻撃の検査
 
-JSON Web Token (JWT)は、最も一般的な認証手法の一つです。このことから、JWTは、リクエスト内のどこにでも存在し、エンコードされたデータであるため、SQLインジェクションやRCEなどの検出が非常に困難な攻撃に利用されることが多いです。
+JSON Web Token（JWT）は最も一般的な認証方式の1つです。そのため、JWTは攻撃（例えばSQLiやRCE）の格好の手段にもなります。JWT内のデータはエンコードされ、リクエスト内のどこにでも存在し得るため、発見が非常に困難です。
 
-Wallarmノードはリクエスト内のどこにあってもJWTを検出し、[デコード](../../user-guides/rules/request-processing.md#jwt)して、適切な[filtration mode](../../admin-en/configure-wallarm-mode.md)に基づき攻撃試行をブロックします。
+Wallarmノードはリクエスト内のどこにあるJWTでも[検出してデコード](../../user-guides/rules/request-processing.md#jwt)し、適切な[フィルタリングモード](../../admin-en/configure-wallarm-mode.md)に従って、この認証方式を悪用する攻撃をブロックします。
 
 ## サポートされるインストールオプション
 
-* 最新バージョンのCommunity Ingress NGINX Controller（1.11.3）に基づくWallarm Ingress controller。
+* Community Ingress NGINX Controller 1.11.5に基づくWallarm Ingress controller。
 
     [最新のWallarm Ingress controllerへの移行手順 →](ingress-controller.md)
-* CentOS 8.xの[非推奨](https://www.centos.org/centos-linux-eol/)に代わり、AlmaLinux、Rocky Linux、Oracle Linux 8.xに対応を追加しました。
+* [非推奨](https://www.centos.org/centos-linux-eol/)となったCentOS 8.xの代替として、AlmaLinux、Rocky Linux、Oracle Linux 8.xをサポートしました。
 
-    代替OS向けのWallarmノードパッケージは、CentOS 8.xリポジトリに格納されます。
-* Debian 11 Bullseyeに対応を追加しました。
-* Ubuntu 22.04 LTS (jammy)に対応を追加しました。
-* CentOS 6.x（CloudLinux 6.x）への対応を廃止しました。
-* Debian 9.xへの対応を廃止しました。
-* Ubuntu 16.04 LTS (xenial)への対応を廃止しました。
-* [Wallarm EnvoyベースのDockerイメージ](../../admin-en/installation-guides/envoy/envoy-docker.md)で使用されるEnvoyのバージョンが[1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)に引き上げられました。
+    代替OS向けのWallarmノードパッケージはCentOS 8.xリポジトリに格納されます。 
+* Debian 11 Bullseyeをサポートしました
+* Ubuntu 22.04 LTS（jammy）をサポートしました
+* CentOS 6.x（CloudLinux 6.x）のサポートを終了しました
+* Debian 9.xのサポートを終了しました
+* Ubuntu 16.04 LTS（xenial）のサポートを終了しました
 
-[サポートされるインストールオプションの全リスト →](../../installation/supported-deployment-options.md)
+[サポートされるインストールオプションの全一覧 →](../../installation/supported-deployment-options.md)
 
 ## フィルタリングノードインストールのシステム要件
 
-* Wallarmノードインスタンスは、攻撃検知ルールや[API specifications](../../api-specification-enforcement/overview.md)のアップデートをダウンロードするため、また[allowlisted, denylisted, or graylisted](../../user-guides/ip-lists/overview.md)国、地域、データセンターの正確なIP取得のため、以下のIPアドレスへのアクセスが必要です。
+* Wallarmノードインスタンスは、攻撃検出ルールや[API仕様](../../api-specification-enforcement/overview.md)の更新をダウンロードし、[許可/拒否/グレーリスト](../../user-guides/ip-lists/overview.md)に登録された国、地域、データセンターの正確なIPを取得するため、以下のIPアドレスへのアクセスが必要になりました。
 
     --8<-- "../include/wallarm-cloud-ips.md"
-* フィルタリングノードは、`us1.api.wallarm.com:443`（US Cloud）および`api.wallarm.com:443`（EU Cloud）を用いてクラウドへのデータアップロードを行います。これにより、従来の`us1.api.wallarm.com:444`および`api.wallarm.com:444`から変更されています。
+* フィルタリングノードがクラウドにデータをアップロードする宛先は、`us1.api.wallarm.com:444`および`api.wallarm.com:444`から、`us1.api.wallarm.com:443`（US Cloud）と`api.wallarm.com:443`（EU Cloud）に変更されました。
 
-    サーバーでノードがデプロイされている環境で外部リソースへのアクセスが制限され、各リソースへの個別のアクセス許可が必要な場合、アップグレード後はフィルタリングノードとクラウド間の同期が停止します。アップグレードされたノードには、新しいポートを持つAPIエンドポイントへのアクセス許可が必要です。
+    ノードをデプロイしたサーバーが外部リソースへの接続を個別に許可している場合、アップグレード後にフィルタリングノードとクラウド間の同期が停止します。新しいポートのAPIエンドポイントへのアクセスを許可する必要があります。
 
-## Wallarm CloudにおけるAPIトークンによるノードの一元登録
+## APIトークンによるWallarm Cloudへのノード登録の統一
 
-新リリースのWallarmノードでは、従来のメールとパスワードによるWallarm Cloudへのノード登録が廃止され、新しいAPIトークンベースのノード登録方式に切り替えることが必須となりました。
+新しいWallarmノードのリリースでは、メール・パスワードによるクラウドへのノード登録は廃止されました。新しいAPIトークンベースのノード登録方式への移行が必須です。
 
-この新リリースにより、[サポートされるプラットフォーム](../../installation/supported-deployment-options.md)で、**APIトークン**を使用してWallarmノードをWallarm Cloudに登録でき、より安全かつ迅速な接続が実現されます：
+新リリースでは、[サポートされる任意のプラットフォーム](../../installation/supported-deployment-options.md)で**APIトークン**によるWallarm Cloudへのノード登録が可能になり、以下のとおりより安全かつ迅速にWallarm Cloudへ接続できます:
 
-* ノードのインストール専用の**Deploy**ロールを持つ専用ユーザーアカウントはもはや必要ありません。
-* ユーザーデータはWallarm Cloud上に安全に保管されます。
-* 2要素認証が有効なユーザーアカウントでも、ノードのWallarm Cloudへの登録が可能です。
-* 初期のトラフィック処理およびリクエストのポストアナリティクスモジュールが、別のサーバーにデプロイされている場合でも、1つのノードトークンで登録が可能です。
+* ノードのインストールだけが可能な**Deploy**ロールの専用ユーザーアカウントは不要です。
+* ユーザーデータはWallarm Cloudに安全に保存されます。
+* ユーザーアカウントで二要素認証を有効化していても、ノード登録を妨げません。
+* 別サーバーにデプロイした初期トラフィック処理モジュールとリクエストポストアナリティクスモジュールを、1つのノードトークンでクラウド登録できます。
 
-ノード登録方式の変更に伴い、ノードタイプにいくつかの更新が生じました：
+登録方式の変更に伴い、ノードタイプにも更新があります:
 
-* ノード登録時にサーバー上で実行するスクリプトは`register-node`と命名されています。従来、**cloud node**はトークンによる登録をサポートしていましたが、スクリプト名は`addcloudnode`でした。
+* サーバーで実行する登録スクリプト名は`register-node`です。以前、**cloud node**はトークンによる登録をサポートしていましたが、スクリプト名は`addcloudnode`でした。
 
-    Cloud nodeは新しいデプロイプロセスに移行する必要はありません。
-* `addnode`スクリプトにメールとパスワードを渡して登録していた**regular node**は非推奨です。
+    cloud nodeは新しいデプロイ手順への移行は不要です。
+* `addnode`スクリプトに渡す「メール・パスワード」での登録に対応していた**regular node**は非推奨です。
 
-現在のノード登録手順は以下の通りです：
+現在のノード登録手順は次のとおりです:
 
-1. Wallarm Consoleの→ **Settings** → **API tokens**に進みます。
-1. **Deploy**ロールの[トークンを生成](../../user-guides/settings/api-tokens.md)します。
-1. 該当パラメータにAPIトークンを渡して、必要なデプロイメントアーティファクトを実行します。
+1. Wallarm Console → **Settings** → **API tokens**に進みます。
+1. **Node deployment/Deployment**の使用タイプで[トークンを生成](../../user-guides/settings/api-tokens.md)します。
+1. 必要なノードのデプロイアーティファクトを、該当パラメータにAPIトークンを渡して実行します。
 
-!!! info "Regular nodeサポート"
-    Regular nodeタイプは非推奨であり、将来的に削除される予定です。
+!!! info "通常ノードのサポート"
+    regular nodeタイプは非推奨であり、将来のリリースで削除されます。
 
-## AWSへのWallarmデプロイ用Terraformモジュール
+## AWSでWallarmをデプロイするTerraformモジュール
 
-インフラストラクチャ as Code (IaC)環境から[AWs](https://aws.amazon.com/)へのWallarmのデプロイが、[Wallarm Terraform module](https://registry.terraform.io/modules/wallarm/wallarm/aws/)を使用して容易になりました。
+[Terraform](https://registry.terraform.io/modules/wallarm/wallarm/aws/)を用いたInfrastructure as Code（IaC）環境から、[AWS](https://aws.amazon.com/)へWallarmを容易にデプロイできるようになりました。
 
-Wallarm Terraform moduleは、セキュリティとフェイルオーバーの最適な業界標準を満たすスケーラブルなソリューションです。デプロイ時には、トラフィックフローの要件に応じて**proxy**または**mirror**のどちらかのデプロイオプションを選択できます。
+Wallarm Terraformモジュールは、セキュリティとフェイルオーバーの業界ベストプラクティスに準拠したスケーラブルなソリューションで、**プロキシ**としてWallarmをデプロイするために設計されています。
 
-基本的なデプロイ構成から、AWS VPC Traffic Mirroringなどの先進的なソリューションに対応した高度な例まで、両方のデプロイオプションの使用例もご用意しております。
+[WallarmのAWS向けTerraformモジュールのドキュメント](../../installation/cloud-platforms/aws/terraform-module/overview.md)
 
-[AWS向けWallarm Terraform moduleのドキュメント →](../../installation/cloud-platforms/aws/terraform-module/overview.md)
+## 拒否リストソースからのブロックリクエスト統計の収集
 
-## Denylistソースからのブロックリクエスト統計の収集
+WallarmのNGINXベースのフィルタリングノードは、ソースが拒否リストにあるためにブロックされたリクエストの統計を収集できるようになり、攻撃の強度評価能力が強化されました。これにはブロックされたリクエストの統計とそのサンプルへのアクセスが含まれ、見落としを最小化できます。Wallarm Console UIの**Attacks**セクションで確認できます。
 
-NGINXベースのWallarmフィルタリングノードは、denylistに該当する送信元からのリクエストがブロックされた統計情報を収集し、攻撃の強度評価を向上させます。これにより、ブロックされたリクエストの統計およびそのサンプルにアクセスでき、見落とされがちな活動を最小限に抑えることが可能です。これらのデータは、Wallarm Console UIの**Attacks**セクションから確認できます。
+自動IPブロッキング（例: ブルートフォーストリガーを設定）を使用している場合、初回にトリガーを発動させたリクエストと、その後にブロックされたリクエストのサンプルの両方を分析できます。ソースの手動拒否リスト登録によりブロックされたリクエストについても、新機能によりブロックソースのアクション可視性が向上します。
 
-自動IPブロッキング（例：ブルートフォーストリガーの設定）を使用している場合、初回のトリガーリクエストと、その後のブロックリクエストのサンプルの両方を解析できます。手動でdenylistに追加された送信元の場合も、新機能により送信元ごとのブロックアクションの可視性が向上します。
+**Attacks**セクションに新しい[検索タグとフィルター](../../user-guides/search-and-filters/use-search.md#search-by-attack-type)を導入し、新データへ容易にアクセスできます:
 
-新たに[検索タグおよびフィルター](../../user-guides/search-and-filters/use-search.md#search-by-attack-type)が**Attacks**セクションに追加され、これらの新規データへ容易にアクセスできます：
+* `blocked_source`検索で、IPアドレス、サブネット、国、VPNなどの手動拒否リスト登録によりブロックされたリクエストを特定できます。
+* `multiple_payloads`検索で、**Number of malicious payloads**トリガーによりブロックされたリクエストを特定できます。このトリガーは、複数のペイロードを含む悪意のあるリクエストを発するソースを拒否リストに追加する設計です。これはマルチアタック加害者の一般的特徴です。
+* さらに、`api_abuse`、`brute`、`dirbust`、`bola`検索タグは、それぞれの攻撃タイプに対応するWallarmトリガーによりソースが自動で拒否リストに追加されたリクエストも包含します。
 
-* `blocked_source`検索を利用して、IPアドレス、サブネット、国、VPNなどが手動でdenylistに追加されたリクエストを特定できます。
-* `multiple_payloads`検索を使用して、**Number of malicious payloads**トリガーによってブロックされたリクエストを特定できます。このトリガーは、複数の悪意あるペイロードを含む攻撃発信元をdenylistに追加するために設計されています。
-* さらに、`api_abuse`、`brute`、`dirbust`、`bola`の各検索タグには、該当する攻撃タイプ用のWallarmトリガーによって自動追加されたdenylist送信元のリクエストも含まれます。
+この変更に伴い、デフォルトで`on`（有効）に設定され、必要に応じて`off`（無効）にできる新しい設定パラメータも導入しました:
 
-この変更により、以下の新たな設定パラメータが導入され、デフォルトでは`on`に設定されていますが、必要に応じて`off`に切り替えることが可能です：
+* [`wallarm_acl_export_enable`](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable) NGINXディレクティブ
+* NGINX Ingress controllerチャート用の値[`controller.config.wallarm-acl-export-enable`](../../admin-en/configure-kubernetes-en.md#global-controller-settings)
+* Sidecar Controller向けHelmチャートの値[`config.wallarm.aclExportEnable`](../../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwallarmaclexportenable)と、Podアノテーション[`sidecar.wallarm.io/wallarm-acl-export-enable`](../../installation/kubernetes/sidecar-proxy/pod-annotations.md)
 
-* NGINXディレクティブ[`wallarm_acl_export_enable`](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable)
-* NGINX Ingress controllerチャートの値[`controller.config.wallarm-acl-export-enable`](../../admin-en/configure-kubernetes-en.md#global-controller-settings)
-* Sidecar Controllerソリューション用のチャート値[`config.wallarm.aclExportEnable`]およびPodのアノテーション[`sidecar.wallarm.io/wallarm-acl-export-enable`](../../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwallarmaclexportenable)
+## `cloud-init.py`スクリプト同梱のWallarm AWSイメージ
 
-## ready-to-useの`cloud-init.py`スクリプト付きで配布されるWallarm AWSイメージ
+Infrastructure as Code（IaC）アプローチに従う場合、[`cloud-init`](https://cloudinit.readthedocs.io/en/latest/index.html)スクリプトを使用してAWSへWallarmノードをデプロイする必要があるかもしれません。WallarmはAWSクラウドイメージに、すぐに使える`cloud-init.py`スクリプトを同梱しています。
 
-IaCアプローチに従う場合、AWSへのWallarmノードのデプロイに[`cloud-init`](https://cloudinit.readthedocs.io/en/latest/index.html)スクリプトが必要になることがあります。Wallarmは、AWSクラウドイメージにすぐに使用可能な`cloud-init.py`スクリプトを同梱しています。
+[Wallarmの`cloud-init`スクリプト仕様](../../installation/cloud-platforms/cloud-init.md)
 
-[Wallarm `cloud-init`スクリプトの仕様 →](../../installation/cloud-platforms/cloud-init.md)
+## マルチテナントノード構成の簡素化
 
-## 簡易化されたマルチテナントノードの設定
+[マルチテナントノード](../../installation/multi-tenant/overview.md)では、テナントとアプリケーションをそれぞれ専用のディレクティブで定義します:
 
-[マルチテナントノード](../../installation/multi-tenant/overview.md)では、テナントおよびアプリケーションがそれぞれ専用のディレクティブとして定義されるようになりました：
+* テナントの一意識別子を設定するために[`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) NGINXディレクティブを追加しました。
+* [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) NGINXディレクティブの挙動を変更しました。現在はアプリケーションIDの設定に**のみ**使用します。
 
-* テナントの固有識別子を設定するためのNGINXディレクティブ[`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid)およびEnvoyパラメータ[`partner_client_uuid`](../../admin-en/configuration-guides/envoy/fine-tuning.md#partner_client_id_param)が追加されました。
-* アプリケーションIDの設定にのみ使用されるよう、NGINXディレクティブ[`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application)およびEnvoyパラメータ[`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#application_param)の動作が変更されました。
+[マルチテナントノードのアップグレード手順](../multi-tenant.md)
 
-[マルチテナントノードのアップグレード手順 →](../multi-tenant.md)
+## フィルタリングモード
 
-## フィルトレーションモード
+* 新しい**safe blocking**フィルタリングモード。
 
-* 新たに**safe blocking**フィルトレーションモードが追加されました。
-
-    このモードでは、[false positive](../../about-wallarm/protecting-against-attacks.md#false-positives)の発生件数を大幅に削減し、[graylisted IP addresses](../../user-guides/ip-lists/overview.md)から送信された悪意あるリクエストのみをブロックします。
-* リクエスト送信元の解析は、`safe_blocking`および`block`モードの場合にのみ実施されます。
+    このモードは、[グレーリストIPアドレス](../../user-guides/ip-lists/overview.md)からの悪意あるリクエストのみをブロックすることで、[誤検知](../../about-wallarm/protecting-against-attacks.md#false-positives)の大幅な削減を可能にします。
+* リクエストソースの分析は、`safe_blocking`および`block`モードでのみ実行されます。
     
-    * `off`または`monitoring`モードで動作するWallarmノードは、[denylisted](../../user-guides/ip-lists/overview.md)IPからのリクエストを検出してもブロックしません。
-    * `monitoring`モードで動作するWallarmノードは、[allowlisted IP addresses](../../user-guides/ip-lists/overview.md)からの攻撃もすべてWallarm Cloudにアップロードします。
+    * `off`または`monitoring`モードで動作するWallarmノードが、[拒否リスト](../../user-guides/ip-lists/overview.md)のIPからのリクエストを検出しても、このリクエストはブロックしません。
+    * `monitoring`モードで動作するWallarmノードは、[許可リストIPアドレス](../../user-guides/ip-lists/overview.md)からのすべての攻撃をWallarm Cloudにアップロードします。
 
-[Wallarmノードのモードに関する詳細 →](../../admin-en/configure-wallarm-mode.md)
+[Wallarmノードのモードの詳細 →](../../admin-en/configure-wallarm-mode.md)
 
-## リクエスト送信元の制御
+## リクエストソース制御
 
-リクエスト送信元の制御用として、これまで使用されていたすべての`acl` NGINXディレクティブ、Envoyパラメータ、環境変数は非推奨となりました。IPアドレスのdenylistの手動設定はもはや必要ありません。
+以下のリクエストソース制御パラメータは非推奨です:
 
-新機能として以下が追加されました：
+* IPアドレス拒否リストの設定に使用されるすべての`acl` NGINXディレクティブと環境変数。IPの手動拒否リスト登録は不要になりました。
 
-* Wallarm ConsoleでのIPアドレスのallowlist、denylist、graylistの一元管理。
-* 新たな[filtration mode](../../admin-en/configure-wallarm-mode.md)である`safe_blocking`および[IP address graylists](../../user-guides/ip-lists/overview.md)のサポート。
+    [拒否リスト設定の移行詳細 →](../migrate-ip-lists-to-node-3.md)
 
-    **safe blocking**モードでは、[false positive](../../about-wallarm/protecting-against-attacks.md#false-positives)の発生件数を大幅に削減し、graylisted IPからの悪意あるリクエストのみをブロックします。
+リクエストソース制御には以下の新機能があります:
 
-    自動的なIPアドレスのgraylistingには、新たにリリースされた[**Number of malicious payloads**トリガー]（../../admin-en/configuration-guides/protecting-with-thresholds.md）が利用可能です。
-* Wallarm Vulnerability ScannerのIPアドレスの自動allowlist化。Scanner IPの手動allowlistは不要になりました。
-* 特定のアプリケーション向けに、送信元のallowlist、denylist、graylistを設定する機能。
-* リクエスト送信元解析を無効にするための新NGINXディレクティブおよびEnvoyパラメータ`disable_acl`が追加されました。
+* IPアドレスの許可リスト・拒否リスト・グレーリストを完全に管理するためのWallarm Consoleセクション
+* 新しい[フィルタリングモード](../../admin-en/configure-wallarm-mode.md)`safe_blocking`と[IPアドレスのグレーリスト](../../user-guides/ip-lists/overview.md)のサポート
+
+    **safe blocking**モードは、グレーリストIPアドレスからの悪意あるリクエストのみをブロックすることで、[誤検知](../../about-wallarm/protecting-against-attacks.md#false-positives)の大幅な削減を可能にします。
+
+    自動グレーリスト化には、新たに提供された[**Number of malicious payloads**トリガー](../../admin-en/configuration-guides/protecting-with-thresholds.md)を使用できます。
+* 企業リソースの脆弱性スキャンや追加のセキュリティテストに使用する[WallarmのスキャナーIP](../../admin-en/scanner-addresses.md)の自動許可リスト登録。これらのアドレスの手動許可は不要です。
+* サブネット、TorネットワークIP、VPN IP、特定の国・地域・データセンターに登録されたIPグループを許可・拒否・グレーリスト化可能
+* 特定のアプリケーションに対して、リクエストソースを許可・拒否・グレーリスト化可能
+* リクエストの発信元分析を無効化するための新しいNGINXディレクティブ`disable_acl`
 
     [`disable_acl` NGINXディレクティブの詳細 →](../../admin-en/configure-parameters-en.md#disable_acl)
 
-    [`disable_acl` Envoyパラメータの詳細 →](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)
+[許可リスト・拒否リスト・グレーリストへのIP追加の詳細 →](../../user-guides/ip-lists/overview.md)
 
-[allowlist、denylist、graylistへのIP追加に関する詳細 →](../../user-guides/ip-lists/overview.md)
+## APIインベントリ検出のための新モジュール
 
-## APIインベントリ検出用の新モジュール
-
-新たなWallarmノードには、アプリケーションAPIを自動的に識別する**API Discovery**モジュールが同梱されています。このモジュールはデフォルトで無効になっています。
+新しいWallarmノードには、アプリケーションAPIを自動識別するモジュール**API Discovery**が同梱されています。モジュールはデフォルトで無効です。
 
 [API Discoveryモジュールの詳細 →](../../api-discovery/overview.md)
 
-## libdetectionライブラリによる攻撃解析の強化
+## libdetectionライブラリによる攻撃分析の強化
 
-Wallarmによる攻撃解析は、追加の攻撃検証層を導入することで強化されました。すべてのWallarmノード（Envoyを含む）は、libdetectionライブラリをデフォルトで有効にして配布され、このライブラリは[SQLi](../../attacks-vulns-list.md#sql-injection)攻撃の二次的な文法ベース検証を実施し、SQLインジェクションにおける誤検知件数を削減します。
+Wallarmによる攻撃分析は、追加の攻撃検証レイヤーを導入して強化されました。すべてのフォームファクターのWallarmノードには、デフォルトでlibdetectionライブラリが有効になっています。このライブラリは、すべての[SQLi](../../attacks-vulns-list.md#sql-injection)攻撃に対して、完全な文法ベースの二次検証を実行し、SQLインジェクションにおける誤検知を削減します。
 
-!!! warning "メモリ使用量の増加"
-    **libdetection**ライブラリを有効にすると、NGINX/EnvoyおよびWallarmプロセスのメモリ使用量が約10%増加する可能性があります。
+!!! warning "メモリ消費量の増加"
+    **libdetection**ライブラリを有効にすると、NGINXおよびWallarmプロセスのメモリ消費量が約10%増加する可能性があります。
 
-[Wallarmによる攻撃検知の詳細 →](../../about-wallarm/protecting-against-attacks.md)
+[Wallarmの攻撃検出方法の詳細 →](../../about-wallarm/protecting-against-attacks.md)
 
-## `overlimit_res`攻撃検知微調整を有効にするルール
+## `overlimit_res`攻撃検出の微調整を可能にするルール
 
-新たに[ルールにより`overlimit_res`攻撃検知の微調整が可能](../../user-guides/rules/configure-overlimit-res-detection.md)となりました。
+[`overlimit_res`攻撃検出を微調整する新しいルール](../../user-guides/rules/configure-overlimit-res-detection.md)を導入しました。
 
-NGINXおよびEnvoyの設定ファイルを通じた`overlimit_res`攻撃検知の微調整は、非推奨の方法とされています：
+NGINX設定ファイルによる`overlimit_res`攻撃検出の微調整は非推奨の方法となります:
 
-* このルールにより、以前`wallarm_process_time_limit` NGINXディレクティブと`process_time_limit` Envoyパラメータで設定していた、単一のリクエスト処理時間制限を設定できます。
-* このルールは、設定ファイル内の`wallarm_process_time_limit_block` NGINXディレクティブおよび`process_time_limit_block` Envoyパラメータの設定に代わり、[node filtration mode](../../admin-en/configure-wallarm-mode.md)に従って`overlimit_res`攻撃をブロックまたは許可します。
+* このルールでは、以前の`wallarm_process_time_limit` NGINXディレクティブと同様に、単一のリクエスト処理時間の上限を設定できます。
+* このルールでは、`wallarm_process_time_limit_block` NGINXディレクティブの代わりに、[ノードのフィルタリングモード](../../admin-en/configure-wallarm-mode.md)に従って`overlimit_res`攻撃をブロックまたは許可できます。
 
-記載のディレクティブおよびパラメータは非推奨となっており、将来的に削除される予定です。これらのパラメータからルールへの設定移行を推奨します。設定ファイルに明示的に指定され、ルールが未作成の場合、ノードは設定ファイルに従ってリクエストを処理します。
+上記のディレクティブおよびパラメータは非推奨となり、将来のリリースで削除されます。それまでに、ディレクティブからルールへの`overlimit_res`攻撃検出の設定移行を推奨します。該当する[ノードのデプロイオプションごとの手順](../general-recommendations.md#update-process)を参照してください。
 
-## 最適化され、より安全なNGINXベースのDockerイメージ
+設定ファイルに上記のパラメータが明示的に指定されており、ルールがまだ作成されていない場合、ノードは設定ファイルの内容に従ってリクエストを処理します。
 
-[NGINXベースのWallarmフィルタリングノードのDockerイメージ](../../admin-en/installation-docker-en.md)は、セキュリティと最適化の向上のために刷新されました。主な更新内容は以下の通りです：
+## 最適化され、よりセキュアになったNGINXベースのDockerイメージ
 
-* Dockerイメージは、従来のDebianに代わりAlpine Linux上で構築され、より安全で軽量なアーティファクトを提供します。なお、従来含まれていた`auth-pam`および`subs-filter` NGINXモジュールは、Dockerイメージに含まれていません。
-* NGINXの最新安定版である1.26.2にアップグレードされ、従来の1.14.xから置き換えられました。1.14.xの多くの脆弱性はDebianチームによりパッチが当てられていましたが、1.26.2へのアップグレードにより、残る脆弱性が解消され、セキュリティが向上します。
+[WallarmのNGINXベースのフィルタリングノード用Dockerイメージ](../../admin-en/installation-docker-en.md)は、セキュリティと最適化のために刷新されました。主な更新点は次のとおりです:
 
-      NGINXのアップグレードとAlpine Linuxへの変更により、Alpine特有のパッチが実装されたNGINX 1.26.2でHTTP/2 Rapid Reset Vulnerability (CVE-2023-44487)が解消されます。
+* DockerイメージはDebianからAlpine Linuxベースに変更され、より安全で軽量なアーティファクトになりました。以前同梱されていた`auth-pam`および`subs-filter` NGINXモジュールはDockerイメージには含まれなくなりました。
+* NGINXの最新安定版1.28.0へ更新（以前は1.14.x）。1.14.xの多くの脆弱性はDebian（旧イメージはDebian 10.xベース）によりパッチ適用済みでしたが、1.28.0への更新で残存する脆弱性も解消し、セキュリティが向上します。
 
-* ARM64アーキテクチャのプロセッサへのサポートが追加され、インストール時に自動で識別されます。
-* Dockerコンテナ内では、従来の`root`ユーザーではなく非特権ユーザー`wallarm`が使用され、NGINXプロセスにも適用されます。
-* [`/wallarm-status`](../../admin-en/configure-statistics-service.md)エンドポイントが、JSONではなくPrometheus形式でメトリクスを出力するよう更新されました。この機能は、Dockerコンテナ外部からエンドポイントにアクセスする場合に適用されます。なお、この機能を利用するには、[`WALLARM_STATUS_ALLOW`](../../admin-en/installation-docker-en.md#wallarm-status-allow-env-var)環境変数を適切に設定する必要があります。
-* Dockerイメージは、[オールインワンインストーラー](../../installation/nginx/all-in-one.md)を使用して構築され、内部ディレクトリ構造が変更されました：
+      NGINXの更新とAlpine Linuxへの移行により、NGINX 1.28.0に実装されたAlpine固有のパッチによってHTTP/2 Rapid Reset脆弱性（CVE-2023-44487）が解消されます。
 
-      * ログファイルディレクトリ：`/var/log/wallarm` → `/opt/wallarm/var/log/wallarm`
-      * WallarmノードがCloudに接続するための認証情報ファイル群のディレクトリ：`/etc/wallarm` → `/opt/wallarm/etc/wallarm`
-* `/usr/share`ディレクトリのパスが`/opt/wallarm/usr/share`に変更されました。
+* ARM64アーキテクチャのプロセッサーをサポートし、インストール時に自動検出します。
+* Dockerコンテナ内のすべての操作は、以前の`root`ユーザーではなく、非rootユーザー`wallarm`で実行されるようになりました。これはNGINXプロセスにも適用されます。
+* [`/wallarm-status`](../../admin-en/configure-statistics-service.md)エンドポイントは、Dockerコンテナ外からアクセスする場合に、JSONではなくPrometheus形式でメトリクスをエクスポートするよう更新されました。この機能には、環境変数[`WALLARM_STATUS_ALLOW`](../../admin-en/installation-docker-en.md#wallarm-status-allow-env-var)の適切な設定が必要です。
+* Dockerイメージは[All-in-oneインストーラー](../../installation/nginx/all-in-one.md)でビルドされるようになり、内部ディレクトリ構造が変更されました:
+
+      * ログディレクトリ: `/var/log/wallarm` → `/opt/wallarm/var/log/wallarm`
+      * クラウド接続用の資格情報ファイル格納ディレクトリ: `/etc/wallarm` → `/opt/wallarm/etc/wallarm`
+* `/usr/share`ディレクトリのパス → `/opt/wallarm/usr/share`
       
-      これにより、[sample blocking page](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)の新パスが`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`となります。
+      これにより、[サンプルブロックページ](../../admin-en/configuration-guides/configure-block-page-and-code.md)の新しいパスは`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`になります。
 
-新機能は、新形式のNGINXベースDockerイメージでもサポートされています。
+新機能は新フォーマットのNGINXベースDockerイメージでもサポートされます。
 
-## 最適化されたクラウドイメージ
+## クラウドイメージの最適化
 
-[Amazon Machine Image (AMI)](../../installation/cloud-platforms/aws/ami.md)および[Google Cloud Machine Image](../../installation/cloud-platforms/gcp/machine-image.md)は最適化されました。主な内容は以下の通りです：
+[Amazon Machine Image（AMI）](../../installation/cloud-platforms/aws/ami.md)と[Google Cloud Machine Image](../../installation/cloud-platforms/gcp/machine-image.md)を最適化しました。主な更新点は次のとおりです:
 
-* クラウドイメージは、セキュリティ強化のため、非推奨となったDebian 10.x (buster)に代わり、最新の安定版であるDebian 12.x (bookworm)を使用します。
-* 従来の1.14.xから、NGINX 1.22.1にアップグレードされました。
-* ARM64アーキテクチャのプロセッサへのサポートが追加され、インストール時に自動で識別されます。
-* クラウドイメージは、[オールインワンインストーラー](../../installation/nginx/all-in-one.md)を使用して構築され、内部ディレクトリ構造が変更されました：
+* クラウドイメージは、セキュリティの向上のため、旧Debian 10.x（buster）から最新安定版Debian 12.x（bookworm）に変更しました。
+* NGINX 1.22.1へ更新（以前は1.14.x）。
+* ARM64アーキテクチャのプロセッサーをサポートし、インストール時に自動検出します。
+* クラウドイメージは[All-in-oneインストーラー](../../installation/nginx/all-in-one.md)でビルドされるようになり、内部ディレクトリ構造が変更されました:
 
-      * ノード登録スクリプト：`/usr/share/wallarm-common/register-node` → `/opt/wallarm/usr/share/wallarm-common/cloud-init.py`
-      * ログファイルディレクトリ：`/var/log/wallarm` → `/opt/wallarm/var/log/wallarm`
-      * WallarmノードがCloudに接続するための認証情報ファイル群のディレクトリ：`/etc/wallarm` → `/opt/wallarm/etc/wallarm`
-      * `/usr/share`ディレクトリのパス：`/opt/wallarm/usr/share`
+      * ノード登録スクリプト: `/usr/share/wallarm-common/register-node` → `/opt/wallarm/usr/share/wallarm-common/cloud-init.py`
+      * ログディレクトリ: `/var/log/wallarm` → `/opt/wallarm/var/log/wallarm`
+      * クラウド接続用の資格情報ファイル格納ディレクトリ: `/etc/wallarm` → `/opt/wallarm/etc/wallarm`
+      * `/usr/share`ディレクトリのパス → `/opt/wallarm/usr/share`
       
-          これにより、[sample blocking page](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)の新パスが`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`となります。
+          これにより、[サンプルブロックページ](../../admin-en/configuration-guides/configure-block-page-and-code.md)の新しいパスは`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`になります。
       
-      * グローバルなWallarmフィルタリングノード設定が記載された`/etc/nginx/conf.d/wallarm.conf`ファイルは削除されました。
+      * グローバルなWallarmフィルタリングノード設定を含む`/etc/nginx/conf.d/wallarm.conf`ファイルは削除されました。
 
-新機能は、新形式のクラウドイメージでもサポートされています。
+新機能は新フォーマットのクラウドイメージでもサポートされます。
 
-## 新しいブロッキングページ
+## 新しいブロックページ
 
-サンプルブロッキングページ`/usr/share/nginx/html/wallarm_blocked.html`が更新されました。新ノードバージョンでは、新たなレイアウトとなり、ロゴとサポート用メールアドレスのカスタマイズが可能です。
+サンプルブロックページ`/usr/share/nginx/html/wallarm_blocked.html`を更新しました。新しいノードバージョンではレイアウトが刷新され、ロゴとサポートメールのカスタマイズに対応しました。
     
-新レイアウトのブロッキングページは、デフォルトで以下のように表示されます：
+新しいレイアウトのブロックページは、デフォルトで以下のとおりです:
 
-![Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+![Wallarmブロックページ](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
-[ブロッキングページ設定の詳細 →](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)
+[ブロックページ設定の詳細 →](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)
 
-## 基本的なノードセットアップ用の新パラメータ
+## 基本的なノード設定の新パラメータ
 
-* Wallarm NGINX‑ベースのDockerコンテナに渡す新たな環境変数：
+* WallarmのNGINXベースDockerコンテナに渡す新しい環境変数:
 
-    * `WALLARM_APPLICATION`：Wallarm Cloudで使用する保護対象アプリケーションの識別子を設定します。
-    * `NGINX_PORT`：Dockerコンテナ内でNGINXが使用するポートを設定します。
+    * `WALLARM_APPLICATION`: Wallarm Cloudで使用する保護対象アプリケーションの識別子を設定します。
+    * `NGINX_PORT`: Dockerコンテナ内でNGINXが使用するポートを設定します。
 
-    [Wallarm NGINX‑ベースDockerコンテナのデプロイ手順 →](../../admin-en/installation-docker-en.md)
-* Wallarm Cloudとフィルタリングノード間の同期を設定するため、ファイル`node.yaml`の新パラメータ`api.local_host`および`api.local_port`が追加されました。これらのパラメータにより、Wallarm APIへリクエストを送信するためのローカルIPアドレスおよびポートを指定できます。
+    [WallarmのNGINXベースDockerコンテナのデプロイ手順 →](../../admin-en/installation-docker-en.md)
+* Wallarm Cloudとフィルタリングノードの同期設定用に、`node.yaml`ファイルへ新パラメータ`api.local_host`と`api.local_port`を追加しました。これらにより、Wallarm APIへのリクエスト送信に用いるネットワークインターフェイスのローカルIPアドレスとポートを指定できます。
 
-    [Wallarm Cloudとフィルタリングノード間の同期設定の全`node.yaml`パラメータ一覧 →](../../admin-en/configure-cloud-node-synchronization-en.md#access-parameters)
+    [Wallarm Cloudとフィルタリングノードの同期設定に関する`node.yaml`パラメータの全一覧 →](../../admin-en/configure-cloud-node-synchronization-en.md#access-parameters)
 
-## NGINXベースのWallarm DockerコンテナでIPv6接続を無効化する
+## NGINXベースのWallarm DockerコンテナでのIPv6接続の無効化
 
-NGINXベースのWallarm Dockerイメージは、新たな環境変数`DISABLE_IPV6`をサポートします。この環境変数を使用することで、NGINXがIPv6接続の処理を行わず、IPv4接続のみを処理するように設定できます。
+NGINXベースのWallarm Dockerイメージは、新しい環境変数`DISABLE_IPV6`をサポートします。この変数により、NGINXがIPv6接続を処理しないようにし、IPv4接続のみを処理させることができます。
 
 ## パラメータ、ファイル、メトリクスの名称変更
 
-* 以下のNGINXディレクティブおよびEnvoyパラメータの名称が変更されました：
+* 次のNGINXディレクティブの名称を変更しました:
 
-    * NGINX: `wallarm_instance` → [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application)
-    * NGINX: `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)
-    * NGINX: `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../../admin-en/configure-parameters-en.md#wallarm_protondb_path)
-    * NGINX: `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
-    * Envoy: `lom` → [`custom_ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
-    * Envoy: `instance` → [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)
-    * Envoy: `tsets`セクション → `rulesets`、およびこのセクション内の`tsN`エントリ → `rsN`
-    * Envoy: `ts_request_memory_limit` → [`general_ruleset_memory_limit`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
-    * Envoy: `ts` → [`ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#ruleset_param)
+    * `wallarm_instance` → [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application)
+    * `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)
+    * `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../../admin-en/configure-parameters-en.md#wallarm_protondb_path)
+    * `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
 
-    旧名称のパラメータも引き続きサポートされますが、将来的に非推奨となります。パラメータのロジックは変更されていません。
-* Ingressの[annotation](../../admin-en/configure-kubernetes-en.md#ingress-annotations) `nginx.ingress.kubernetes.io/wallarm-instance`は`nginx.ingress.kubernetes.io/wallarm-application`に名称変更されました。
+    旧名称のパラメータも引き続きサポートしますが、将来のリリースで非推奨になります。パラメータのロジックに変更はありません。
+* Ingressの[アノテーション](../../admin-en/configure-kubernetes-en.md#ingress-annotations)`nginx.ingress.kubernetes.io/wallarm-instance`を`nginx.ingress.kubernetes.io/wallarm-application`に変更しました。
 
-    旧名称のannotationも引き続きサポートされますが、将来的に非推奨となります。annotationのロジックに変更はありません。
-* カスタムルールセットをビルドしたファイル`/etc/wallarm/lom`は、`/etc/wallarm/custom_ruleset`に名称変更されました。新ノードバージョンのファイルシステムには、新名称のファイルのみが存在します。
+    旧名称のアノテーションも引き続きサポートしますが、将来のリリースで非推奨になります。アノテーションのロジックに変更はありません。
+* カスタムルールセットビルドのファイル`/etc/wallarm/lom`を`/etc/wallarm/custom_ruleset`に変更しました。新しいノードバージョンのファイルシステムには新名称のファイルのみが存在します。
 
-    NGINXディレクティブ[`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)およびEnvoyパラメータ[`custom_ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)のデフォルト値もそれに応じ変更されています。新デフォルト値は`/etc/wallarm/custom_ruleset`です。
-* 秘密鍵ファイル`/etc/wallarm/license.key`は`/etc/wallarm/private.key`に名称変更されました。新名称がデフォルトで使用されます。
-* collectdメトリクス`gauge-lom_id`は`gauge-custom_ruleset_id`に名称変更されました。
-
-    新ノードバージョンでは、collectdサービスが旧メトリクスと新メトリクスの両方を収集します。旧メトリクスの収集は将来的に停止されます。
-
-    [すべてのcollectdメトリクス →](../../admin-en/monitoring/available-metrics.md#nginx-metrics-and-nginx-wallarm-module-metrics)
-* Dockerコンテナ内の`/var/log/wallarm/addnode_loop.log` [ログファイル](../../admin-en/configure-logging.md)は、`/var/log/wallarm/registernode_loop.log`に名称変更されました。
+    NGINXディレクティブ[`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)のデフォルト値もこれに合わせて変更され、新しいデフォルト値は`/etc/wallarm/custom_ruleset`です。
+* 秘密鍵ファイル`/etc/wallarm/license.key`を`/etc/wallarm/private.key`に変更しました。新しい名称がデフォルトで使用されます。
 
 ## 統計サービスのパラメータ
 
-* Prometheusメトリクス`wallarm_custom_ruleset_id`は、`format`属性が追加され、カスタムルールセットの形式を示します。同時に、主要な値はカスタムルールセットビルドバージョンを表します。例：
+* Prometheusメトリクス`wallarm_custom_ruleset_id`に`format`属性を追加しました。この属性はカスタムルールセットのフォーマットを表します。主値は引き続きカスタムルールセットのビルドバージョンです。更新後の`wallarm_custom_ruleset_id`値の例:
 
     ```
     wallarm_custom_ruleset_id{format="51"} 386
     ```
-* Wallarm統計サービスは、[Wallarmレートリミット](#レートリミット)モジュールのデータとして新たに`rate_limit`パラメータを返します。新パラメータは、拒否されたリクエストおよび遅延リクエストに関する情報、ならびにモジュールの動作上の問題を示します。
-* denylisted IPからのリクエスト数は、新パラメータ`blocked_by_acl`および既存パラメータ`requests`、`blocked`にて表示されます。
-* 新たに`custom_ruleset_ver`パラメータが追加され、Wallarmノードで使用される[custom ruleset](../../glossary-en.md#custom-ruleset-the-former-term-is-lom)の形式を示します。
-* 以下のノード統計パラメータが名称変更されました：
+* Wallarm統計サービスは、新しい[Wallarmのレート制限](#レート制限)モジュールのデータとともに新パラメータ`rate_limit`を返します。新パラメータは、拒否されたリクエストや遅延されたリクエスト、ならびにモジュールの動作に関する問題を示します。
+* 拒否リストIPからのリクエスト数は、統計サービス出力の新パラメータ`blocked_by_acl`および既存の`requests`、`blocked`にも表示されます。
+* サービスは新パラメータ`custom_ruleset_ver`も返し、Wallarmノードが使用している[カスタムルールセット](../../glossary-en.md#custom-ruleset-the-former-term-is-lom)のフォーマットを示します。
+* 次のノード統計パラメータの名称を変更しました:
 
     * `lom_apply_time` → `custom_ruleset_apply_time`
     * `lom_id` → `custom_ruleset_id`
 
-    新ノードバージョンでは、`http://127.0.0.8/wallarm-status` エンドポイントは、旧パラメータと新パラメータの両方を一時的に返します。旧パラメータは将来的に削除されます。
+    新しいノードバージョンでは、一時的に`http://127.0.0.8/wallarm-status`エンドポイントが非推奨および新パラメータの両方を返します。非推奨パラメータは将来のリリースでサービス出力から削除されます。
 
 [統計サービスの詳細 →](../../admin-en/configure-statistics-service.md)
 
-## ノードログ形式の設定用新変数
+## ノードのログ形式を設定するための新変数
 
-以下の[ノードログ変数](../../admin-en/configure-logging.md#filter-node-variables)が変更されました：
+次の[ノードのロギング変数](../../admin-en/configure-logging.md#filter-node-variables)を変更しました:
 
-* `wallarm_request_time`は`wallarm_request_cpu_time`に名称変更されました。
+* `wallarm_request_time`を`wallarm_request_cpu_time`に変更
 
-    この変数は、リクエスト処理に要したCPU時間（秒）を意味します。
+    この変数は、リクエスト処理にCPUが費やした時間（秒）を意味します。
 
-    旧名称の変数は非推奨であり、将来的に削除されます。変数のロジックに変更はありません。
-* `wallarm_request_mono_time`が新たに追加されました。
+    旧名称の変数は非推奨であり、将来のリリースで削除されます。変数のロジックに変更はありません。
+* `wallarm_request_mono_time`を追加
 
-    この変数は、リクエスト処理に要したCPU時間に加え、キュー内での待機時間（秒）を意味します。
+    この変数は、リクエスト処理にCPUが費やした時間（秒）＋キュー待ちの時間を意味します。
 
-## Denylisted IPからのリクエストにおける攻撃探索の省略によるパフォーマンス向上
+## 拒否リストIPからのリクエストで攻撃探索を省略して性能を向上
 
-新たなディレクティブ[`wallarm_acl_access_phase`](../../admin-en/configure-parameters-en.md#wallarm_acl_access_phase)により、Denylisted IPからのリクエスト解析時に攻撃探索ステージを省略することで、Wallarmノードのパフォーマンスを向上させることが可能となりました。この設定は、多数のdenylisted IP（例：国全体）のトラフィックが存在し、マシンのCPU負荷が高くなる場合に有用です。
+新しいディレクティブ[`wallarm_acl_access_phase`](../../admin-en/configure-parameters-en.md#wallarm_acl_access_phase)により、[拒否リスト](../../user-guides/ip-lists/overview.md)IPからのリクエスト分析時に攻撃探索ステージを省略して、Wallarmノードの性能を向上できます。多数の拒否リストIP（例: 国全体）からの高トラフィックによりCPU負荷が高い環境で有用です。
 
-## ノードインスタンスの容易なグループ化
+## ノードインスタンスの簡単なグルーピング
 
-今後は、**Deploy**ロールの[API token](../../user-guides/settings/api-tokens.md)と`WALLARM_LABELS`変数の`group`ラベルを使用することで、ノードインスタンスを簡単にグループ化できます。
+`Node deployment/Deployment`使用タイプの[**APIトークン**](../../user-guides/settings/api-tokens.md)と、`group`ラベルを含む`WALLARM_LABELS`変数を併用することで、ノードインスタンスを簡単にグルーピングできるようになりました。
 
-例：
+例: 
 
 ```bash
-docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>' -p 80:80 wallarm/node:5.3.0
+docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>' -p 80:80 wallarm/node:6.4.1
 ```
-...は、ノードインスタンスを`<GROUP>`グループに配置します（既存の場合はそのグループに、存在しない場合は新たに作成されます）。
+…により、ノードインスタンスは`<GROUP>`インスタンスグループに配置されます（既存の場合はそこへ、存在しない場合は作成されます）。
 
-## 対応された脆弱性
+## 対応済みの脆弱性
 
-新リリースでは、[CVE-2020-36327](https://nvd.nist.gov/vuln/detail/CVE-2020-36327)、[CVE-2023-37920](https://nvd.nist.gov/vuln/detail/CVE-2023-37920)を含む、複数の高および重大な脆弱性が対策され、以前の脆弱なコンポーネントが置き換えられ、ソフトウェアのセキュリティ体制が強化されています。
+新リリースでは、Wallarmのデプロイアーティファクトに含まれていた重大・高リスクの複数の脆弱性に対応し、脆弱なコンポーネントを置き換えることでソフトウェアのセキュリティ体制を強化しました。
+
+対応済みの脆弱性には、[CVE-2020-36327](https://nvd.nist.gov/vuln/detail/CVE-2020-36327)、[CVE-2023-37920](https://nvd.nist.gov/vuln/detail/CVE-2023-37920)などが含まれます。
 
 ## HTTP/2ストリーム長制御ディレクティブ
 
-HTTP/2ストリームの最大長を制御するためのディレクティブ[`wallarm_http_v2_stream_max_len`](../../admin-en/configure-parameters-en.md#wallarm_http_v2_stream_max_len)が導入されました。これにより、長時間維持されるgRPC接続での過剰なメモリ消費を防止できます。
+HTTP/2ストリームの最大長を制御するディレクティブ[`wallarm_http_v2_stream_max_len`](../../admin-en/configure-parameters-en.md#wallarm_http_v2_stream_max_len)を導入しました。長寿命のgRPC接続での過剰なメモリ消費を防止するのに役立ちます。
 
-Dockerコンテナ内でこの変数を使用する場合、NGINX設定ファイルに指定し、そのファイルをコンテナ内にマウントしてください。
+この変数を[Dockerコンテナ](../../admin-en/installation-docker-en.md)で使用するには、NGINX設定ファイルに指定し、そのファイルをコンテナにマウントしてください。
 
 ## Account Takeover、Scraping、Security Crawlers用の個別検索タグ
 
-`account_takeover`、`scraping`、`security_crawlers`攻撃タイプ用の個別[検索タグ](../../user-guides/search-and-filters/use-search.md)が導入され、従来の一般的な`api_abuse`タグに比べ、特定性が向上しました。
+`account_takeover`、`scraping`、`security_crawlers`攻撃タイプ向けの個別の[検索タグ](../../user-guides/search-and-filters/use-search.md)を導入し、従来の一般的な`api_abuse`タグよりも特異性が向上しました。
 
-## コネクタとTCPトラフィックミラー用のNative Node
+## コネクタおよびTCPトラフィックミラー向けNative Node
 
-NGINXに依存しない新たなWallarmノードとして、Native Nodeを導入しました。NGINXが不要な環境や、プラットフォームに依存しないアプローチを求める環境向けに開発されています。
+NGINXに依存しない新しいWallarmノードのデプロイオプション、Native Nodeを紹介します。このソリューションは、NGINXが不要な環境や、プラットフォーム非依存のアプローチが望まれる環境向けに開発されました。 
 
-現時点では、以下のデプロイに特化しています：
+現在、以下のデプロイに対応しています:
 
-* MuleSoft、Cloudflare、CloudFront、Broadcom Layer7 API Gateway、Fastlyコネクタ（リクエストおよびレスポンス解析付き）
+* MuleSoft、Cloudflare、CloudFront、Broadcom Layer7 API Gateway、Fastlyコネクタ（リクエスト・レスポンスの両方を分析）
 * Kong API GatewayおよびIstio Ingressコネクタ
-* TCPトラフィックミラー解析
+* TCPトラフィックミラー分析
 
-[詳細はこちら](../../installation/nginx-native-node-internals.md#native-node)
+[詳細を読む](../../installation/nginx-native-node-internals.md#native-node)
+
+## ポストアナリティクスでTarantoolをwstoreに置換
+
+Wallarmノードは、ローカルのポストアナリティクス処理に、Tarantoolの代わりに**Wallarm開発のサービスwstore**を使用します。結果として以下の変更があります:
+
+* [All-in-oneインストーラー](../../installation/nginx/all-in-one.md)、[AWS](../../installation/cloud-platforms/aws/ami.md)/[GCP](../../installation/cloud-platforms/gcp/machine-image.md)イメージ:
+
+    * ポストアナリティクスモジュールを他のNGINXサービスと分離してデプロイする場合のサーバーアドレスを定義するNGINXディレクティブ`wallarm_tarantool_upstream`は、[`wallarm_wstore_upstream`](../../admin-en/configure-parameters-en.md#wallarm_wstore_upstream)に名称変更されました。
+
+        後方互換性は警告付きで維持されます:
+
+        ```
+        2025/03/04 20:43:04 [warn] 3719#3719: "wallarm_tarantool_upstream" directive is deprecated, use "wallarm_wstore_upstream" instead in /etc/nginx/nginx.conf:19
+        ```
+    * [ログファイル](../../admin-en/configure-logging.md)の名称変更: `/opt/wallarm/var/log/wallarm/tarantool-out.log` → `/opt/wallarm/var/log/wallarm/wstore-out.log`
+    * 新しいwstore設定ファイル`/opt/wallarm/wstore/wstore.yaml`が、`/etc/default/wallarm-tarantool`や`/etc/sysconfig/wallarm-tarantool`などの旧Tarantool設定ファイルを置き換えます。
+    * `/opt/wallarm/etc/wallarm/node.yaml`内の`tarantool`セクションは`wstore`になりました。後方互換性は警告付きで維持されます。
+* [Dockerイメージ](../../admin-en/installation-docker-en.md):
+
+    * 上記の変更はコンテナ内にも適用されています。
+    * 以前は環境変数`TARANTOOL_MEMORY_GB`でTarantoolのメモリを割り当てていましたが、同じ原則で新しい変数を使用します: `TARANTOOL_MEMORY_GB` → `SLAB_ALLOC_ARENA`
+    * Alpine Linuxの慣例に合わせてコンテナのディレクトリ構造を調整しました。具体的には:
+
+        * `/etc/nginx/modules-available`および`/etc/nginx/modules-enabled`の内容を`/etc/nginx/modules`に移動しました。
+        * `/etc/nginx/sites-available`および`/etc/nginx/sites-enabled`の内容を`/etc/nginx/http.d`に移動しました。
+    
+    * `/wallarm-status`サービスに許可されたIPアドレスを指定する既定の`allow`値は、127.0.0.8/8から127.0.0.0/8になりました。
+* [Kubernetes Ingress Controller](../../admin-en/installation-kubernetes-en.md):
+    
+    * Tarantoolは別Podではなくなり、wstoreはメインの`<CHART_NAME>-wallarm-ingress-controller-xxx` Pod内で動作します。
+    * Helmの値名を変更: `controller.wallarm.tarantool` → `controller.wallarm.postanalytics`
+* [Kubernetes Sidecar Controller](../../installation/kubernetes/sidecar-proxy/deployment.md):
+
+    * Helmの値名を変更: `postanalytics.tarantool.*` → [`postanalytics.wstore.*`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L625)
+    * Sidecarデプロイ用Helmチャートから以下のDockerイメージを削除しました:
+
+        * [wallarm/ingress-collectd](https://hub.docker.com/r/wallarm/ingress-collectd)
+        * [wallarm/ingress-tarantool](https://hub.docker.com/r/wallarm/ingress-tarantool)
+        * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
+        * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
+        
+        これらは現在、関連サービスを実行する[wallarm/node-helpers](https://hub.docker.com/r/wallarm/node-helpers)イメージに置き換えられています。
+
+以下の変更は、この後に記載するノードアップグレード手順に組み込まれています。
 
 ## アップグレード手順
 
-1. [モジュールアップグレードのための推奨事項](../general-recommendations.md)を確認してください。
-2. ご利用のWallarmノードデプロイオプションに合わせた手順に従い、インストール済みのモジュールをアップグレードしてください：
+1. [モジュールのアップグレードに関する推奨事項](../general-recommendations.md)を確認します。
+2. 使用中のWallarmノードのデプロイオプションに応じた手順に従って、インストール済みモジュールをアップグレードします:
 
-      * [NGINX、NGINX Plus向けモジュールのアップグレード](nginx-modules.md)（**オールインワンインストーラー**を使用）
+      * **All-in-oneインストーラー**による[NGINX、NGINX Plus向けモジュールのアップグレード](nginx-modules.md)
 
-        アップグレードプロセスの簡素化と効率化のため、すべてのノードバージョンのアップグレードは、Wallarmのオールインワンインストーラーを使用して実施されます。個別のLinuxパッケージによる手動アップグレードはサポートされなくなりました。
+        アップグレードプロセスの改善と簡素化のため、すべてのノードバージョンのアップグレードはWallarmのAll-in-oneインストーラーで実施します。個別のLinuxパッケージによる手動アップグレードはサポートしません。
 
-      * [NGINXまたはEnvoy向けモジュールを含むDockerコンテナのアップグレード](docker-container.md)
-      * [Wallarmモジュール統合済みのNGINX Ingress controllerのアップグレード](ingress-controller.md)
-      * [Cloud nodeイメージのアップグレード](cloud-image.md)
-      * [マルチテナントノードのアップグレード](multi-tenant.md)
-3. 旧Wallarmノードバージョンから最新バージョンへのallowlistおよびdenylist設定の[マイグレーション](../migrate-ip-lists-to-node-3.md)を実施してください。
+      * [NGINXモジュール入りDockerコンテナのアップグレード](docker-container.md)
+      * [Wallarmモジュール統合済みNGINX Ingress controllerのアップグレード](ingress-controller.md)
+      * [クラウドノードイメージ](cloud-image.md)
+      * [マルチテナントノード](multi-tenant.md)
+3. 以前のWallarmノードバージョンの許可リスト・拒否リスト設定を、最新バージョンへ[移行](../migrate-ip-lists-to-node-3.md)します。
 
 ----------
 
-[Wallarm製品およびコンポーネントのその他のアップデート →](https://changelog.wallarm.com/)
+[Wallarm製品およびコンポーネントのその他の更新情報 →](https://changelog.wallarm.com/)

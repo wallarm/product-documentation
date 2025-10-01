@@ -1,8 +1,8 @@
-最新のNGINXバージョンをインストールします:
+次のいずれかのNGINXの最新バージョンをインストールします:
 
-* **NGINX `stable`** - インストール方法はNGINX [ドキュメント](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/)をご参照ください。
-* **NGINX Mainline**（最新のサポートバージョンはv1.25.5です） - インストール方法はNGINX [ドキュメント](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/)をご参照ください。
-* **NGINX Plus**（最新のサポートバージョンはNGINX Plus R32です） - インストール方法はNGINX [ドキュメント](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/)をご参照ください。
+* **NGINX `stable`** - インストール方法はNGINXの[ドキュメント](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/)を参照してください。
+* **NGINX Mainline**（サポートされている最新バージョンはv1.25.5です）- インストール方法はNGINXの[ドキュメント](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/)を参照してください。
+* **NGINX Plus**（サポートされている最新バージョンはNGINX Plus R32です）- インストール方法はNGINXの[ドキュメント](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/)を参照してください。
 * **ディストリビューション提供のNGINX** - インストールするには、次のコマンドを使用します:
 
     === "Debian"
@@ -20,7 +20,7 @@
         sudo yum -y update 
         sudo yum install -y nginx
         ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    === "AlmaLinux、Rocky LinuxまたはOracle Linux 8.x"
         ```bash
         sudo yum -y update 
         sudo yum install -y nginx

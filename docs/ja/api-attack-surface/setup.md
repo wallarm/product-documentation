@@ -1,1 +1,1 @@
---8<-- "latest/api-attack-surface/setup.md"
+--8<-- "latest-ja/api-attack-surface/setup.md"

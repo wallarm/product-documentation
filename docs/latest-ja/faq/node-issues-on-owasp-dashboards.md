@@ -1,17 +1,42 @@
-# OWASPダッシュボードで警告されたWallarmノードの問題への対処
+# OWASP DashboardでアラートされたWallarm nodeの問題への対処
 
-Wallarmノードが更新されない場合やCloudとの同期に問題が発生したとき、インフラストラクチャのセキュリティに影響を及ぼす可能性のある問題を示すエラーメッセージが[OWASPダッシュボード](../user-guides/dashboards/owasp-api-top-ten.md)に表示されます。本記事では、これらの問題の対処方法について説明します。
+Wallarm nodeが更新されていない、またはCloudとの同期に問題がある場合、[OWASP dashboard](../user-guides/dashboards/owasp-api-top-ten.md)に、インフラのセキュリティに影響を及ぼす可能性のある問題を示すエラーメッセージが表示されます。本記事では、これらの問題への対処方法を説明します。
 
-古いノードは重要なセキュリティアップデートが欠如している可能性があり、悪意のあるトラフィックが防御を回避できる場合があります。同期の問題により、ノードの機能が妨げられ、Cloudから必要なセキュリティポリシーを受信できなくなります。これらの問題は主に**OWASP API7 (Security Misconfiguration)**の脅威に関連しており、アプリケーションスタックのいずれかの部分でセキュリティ対策が欠落するとシステムが脆弱になる可能性があります。これを防ぐために、ダッシュボードはノードの動作に関する問題を警告します。例：
+## Wallarm nodeが古くなっています
 
-![OWASP dash with node issues](../images/user-guides/dashboard/owasp-dashboard-node-issues.png)
+古いnodeには重要なセキュリティ更新が欠けている可能性があり、悪意のあるトラフィックに防御をすり抜けられる可能性があります。同期の問題が発生するとnodeの機能が損なわれ、Cloudから重要なセキュリティポリシーを受信できなくなります。これらの問題は主にOWASP API8（Security Misconfiguration）の脅威に関連しており、アプリケーションスタックのいずれかの部分でセキュリティソリューションが欠落していると、システムが脆弱になります。これを防ぐために、dashboardはnodeの動作に関する問題を通知します。例えば次のとおりです:
 
-安全な環境を維持するためには、Wallarmノードを定期的に更新し、同期の問題に対処することが重要です。以下にエラーメッセージの対処方法を示します：
+![nodeの問題を示すOWASP dashboard](../images/user-guides/dashboard/owasp-dashboard-node-issues.png)
 
-1. Wallarmノードのバージョンが[または寿命終了に近い場合](../updating-migrating/versioning-policy.md#version-list)は、最新バージョンにアップグレードすることを推奨します。
-1. Wallarm Cloudとの同期に問題がある場合は、[該当する設定](../admin-en/configure-cloud-node-synchronization-en.md)が正しいか確認してください。
+安全な環境を維持するためには、Wallarm nodeを定期的に更新し、同期の問題に対処することが重要です。Wallarm nodeのバージョンが[サポート終了に達している、または近づいている](../updating-migrating/versioning-policy.md#version-list)場合は、最新バージョンへのアップグレードを推奨します。
 
-同期やその他の問題の解決、またはその他のご要望がある場合は、[Wallarm support team](mailto:support@wallarm.com)にお問い合わせください。解析のため、以下の[ログ](../admin-en/configure-logging.md)を提供してください：
+## Wallarm nodeとCloudの同期に問題があります
 
-* `/opt/wallarm/var/log/wallarm/wcli-out.log` のログを確認し、`syncnode`スクリプトに関する問題がないか検証してください。
-* `/var/log/syslog` または `/var/log/messages` ディレクトリのログ（デプロイオプションに応じて）を確認し、同期問題に関する追加情報を提供してください。
+Wallarm Cloudとの同期で問題が発生している場合は、[該当の設定](../admin-en/configure-cloud-node-synchronization-en.md)が正しいことを確認してください。
+
+同期やその他の問題の解決に支援が必要な場合、または他のリクエストがある場合は、[Wallarm support team](mailto:support@wallarm.com)にお問い合わせください。分析のため、以下の[ログ](../admin-en/configure-logging.md)を提供してください:
+
+* `syncnode`スクリプトに問題がないか確認するための、`/opt/wallarm/var/log/wallarm/wcli-out.log`のログ
+* 同期の問題に関する追加の詳細を提供するための、（デプロイオプションに応じて）`/var/log/syslog`または`/var/log/messages`ディレクトリのログ
+
+## nodeのuuidおよび/またはsecretを検出できません
+
+作成直後または更新直後のnodeのログに、「Can't detect node uuid and/or secret, please add node to cloud first.」というメッセージが表示されることがあります。
+
+nodeの作成や更新時にはCloudに登録されます。このメッセージは、その登録が成功していない可能性を示しており、nodeとCloudの同期が行われません（[monitoring](../admin-en/configure-wallarm-mode.md)モードでの[基本](../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors)検出のみとなり、Cloudから[rules](../user-guides/rules/rules.md)、[mitigation controls](../about-wallarm/mitigation-controls-overview.md)、[lists](../user-guides/ip-lists/overview.md)は配信されず、monitoringの結果もCloudに送信されません）。
+
+**nodeが登録済み**
+
+最も手早く登録が成功したかを確認する方法は、Wallarm Console→[**Nodes**](../user-guides/nodes/nodes.md)セクションに当該nodeが存在するかを確認することです。以降の同期状況もここで確認できます。
+
+「登録されていないnode」の問題を一般的に解決するには、[Wallarm support team](https://support.wallarm.com/)にお問い合わせください。
+
+**心配する必要がない場合**
+
+場合によっては、nodeの登録処理が完了する前に、ログに「Can't detect node uuid and/or secret, please add node to cloud first」というメッセージが表示されることがあります:
+
+```
+YYYY-MM-DD HH:MM:SS* INFO syncnodeXXXXX: Triggers result: 1 success, 0 skipped, 0 errors
+```
+
+したがって、このメッセージより前に出力される登録エラーは無視して問題ありません。登録が完了すれば消えます。

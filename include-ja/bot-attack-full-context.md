@@ -1,5 +1,5 @@
-Wallarmの[API Abuse Prevention][link-api-abuse-prevention]によって悪意のあるボットの活動が検出され、[**Attacks**][link-attacks]セクションに表示されると、この攻撃のリクエストが属するユーザーセッションおよびそのセッション内のリクエストの全シーケンスという完全なコンテキストを把握することができます。これにより、対象のアクターのすべての活動を調査し、このアクターを悪意のあるボットとしてマークする決定が正しかったかどうかを検証できます。
+Wallarmの[API Abuse Prevention][link-api-abuse-prevention]が悪意あるボットの活動を検知し、[**Attacks**][link-attacks]セクションに表示されると、この攻撃に関するリクエストの完全なコンテキストを把握できるようになります。具体的には、どのユーザーセッションに属しているのか、このセッション内のリクエストの完全なシーケンスを確認できます。これにより、そのアクターの全活動を調査し、当該アクターを悪意あるボットと判定したことが正しかったかを検証できます。
 
-この分析を実施するには、Wallarm Console → **Attacks**にてボット攻撃の詳細にアクセスし、次に**Explore in API Sessions**をクリックします。Wallarmは[**API Session**][link-sessions]セクションをフィルタ済みで開き、これらのボット活動に関連するセッションを表示します。
+この分析を行うには、Wallarm Console → **Attacks**でボット攻撃の詳細を開き、**Explore in API Sessions**をクリックします。Wallarmはフィルター済みの[**API Session**][link-sessions]セクションを開き、このボット活動に関連するセッションが表示されます。
 
-![!API Sessions section - monitored sessions][img-api-sessions-api-abuse]
+![!API Sessionsセクション - 監視対象セッション][img-api-sessions-api-abuse]

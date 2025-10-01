@@ -1,40 +1,89 @@
-# クライアントデータに対する共有責任のセキュリティモデル
+[link-deployment-se]:           ../installation/security-edge/overview.md
+[link-deployment-hybrid]:       ../installation/supported-deployment-options.md
+[link-deployment-on-prem]:      ../installation/on-premise/overview.md
 
-Wallarmは共有責任のセキュリティモデルに依拠しています。このモデルでは、クライアントデータのセキュリティ（PIIやCardholder Dataを含む）に関して、全ての関係者（Wallarmとクライアント）が異なる責任範囲を有します。
+# お客様データの共有責任
 
-Wallarmはハイブリッドソリューション（ソフトウェアとSaaSの両方）であり、異なる責任範囲を有する2つの主要なコンポーネントがあります：
+Wallarmは共有責任のセキュリティモデルに基づいています。このモデルでは、関係者（Wallarmとそのお客様）が、お客様データ（個人を特定できる情報(PII)やカード会員データを含む）のセキュリティに関してそれぞれ異なる責任範囲を担います。
 
-* **Wallarm filtering node**ソフトウェアは、クライアントのインフラ内に展開され、クライアントが管理します。Wallarm nodeコンポーネントは、エンドユーザーリクエストのフィルタリング、安全なリクエストをクライアントのアプリケーションに送信し、不正なリクエストをブロックする役割を担います。Wallarm nodeはトラフィックをローカルで転送し、リクエストが不正かどうかを判断します。トラフィックはWallarm Cloudに分析のためミラーリングされません。
-* **Wallarm Cloud**は、Wallarmが管理するクラウドコンポーネントであり、フィルタリングノードから処理済みリクエストや検知された攻撃に関するメタ情報を受信するとともに、アプリケーション固有のフィルタリングルールを生成し、ノードがダウンロード可能な状態にします。Wallarm Consoleや公開APIにより、セキュリティレポートや個々のイベントの確認、トラフィックフィルタリングルールの管理、Wallarm Consoleユーザー、外部連携などが行えます。
+## 概要
 
-![Responsibilities scheme](../images/shared-responsibility.png)
+Wallarmには2つの主要コンポーネントがあります。Wallarm filtering nodeとWallarm Cloudです。概要は[こちら](../about-wallarm/overview.md#how-wallarm-works)をご覧ください。これらのコンポーネントは3つの形態のいずれかでデプロイでき、各形態でWallarmとお客様の責任分担が異なります。
 
-## Wallarmの責任
+--8<-- "../include/deployment-forms.md"
 
-Wallarmは以下の点について責任を負います：
+![責任分担の模式図](../images/shared-responsibility-variants.png)
 
-* Wallarm Cloud環境のセキュリティと可用性、Wallarm filtering nodeのコードおよび内部Wallarmシステムのセキュリティ
+## Security Edge
 
-    これには、サーバーレベルのパッチ適用、Wallarm Cloudサービス提供に必要なサービスの運用、脆弱性テスト、セキュリティイベントの記録と監視、インシデント管理、運用監視、24/7サポートなどが含まれますが、これに限定されません。Wallarmはまた、Wallarm Cloud環境のサーバーおよびパリメーターファイアウォールの構成（セキュリティグループ）の管理について責任を負います。
-* Wallarm filtering nodeコンポーネントの定期的な更新（ただし、これらの更新の適用はクライアントの責任です）。
-* リクエストされた場合、最新のWallarm SOC 2 Type II監査報告書のコピーを提供します。
+このデプロイメント形態では、Wallarm filtering nodeとWallarm CloudのいずれのコンポーネントもWallarmが管理するため、責任の大部分はWallarm側にあります。
 
-## クライアントの責任
+**Wallarmの責任**
 
-Wallarmクライアントは以下の点について責任を負います：
+* Wallarmクラウド環境のセキュリティと可用性、Wallarm filtering nodeコードおよびWallarm内部システムのセキュリティ。
 
-* Wallarmに関連する内部コンポーネント全体（Wallarm filtering nodeおよびWallarm Cloudを含む）に対する一般的なITシステムアクセスおよびシステム使用の妥当性に関して、健全かつ一貫した内部統制を実施します。
-* 解雇されたユーザーや、Wallarmのサービスに関連する重要な機能または活動にかかわっていたユーザーアカウントの削除を実施します。
-* Wallarm Cloudへ送信される可能性がある、クライアントのセキュリティパリメーター外に出るあらゆるセンシティブデータに対して、適切な[データマスキングルール](../user-guides/rules/sensitive-data-rule.md)を設定します。
-* Wallarmのサービスに関連するクライアント組織の取引が適切に認可され、取引が安全、タイムリーかつ完全であることを確保します。
-* Wallarmが行うサービスに直接関与する人材に関する変更を適時にWallarmに通知します。この人材は、Wallarmが提供するサービスに直接関連する、財務、技術または補助的な管理機能にかかわる可能性があります。
-* Wallarmがリリースする新しいソフトウェア更新に合わせて、フィルタリングノードを適時に更新します。
-* 必要に応じて、Wallarmが提供するサービスの継続を支援するための事業継続および災害復旧計画（BCDRP）を策定し、実施します。
+    これには、サーバーレベルのパッチ適用、Wallarmクラウドサービス提供に必要なサービスの運用、脆弱性テスト、セキュリティイベントのログ記録と監視、インシデント管理、運用監視、24時間365日のサポートなどが含まれますが、これらに限定されません。Wallarmはまた、Wallarmクラウド環境のサーバーおよび境界ファイアウォール構成（セキュリティグループ）の管理にも責任を負います。
 
-## センシティブデータのマスキング
+* [Edge Inline Node](../installation/security-edge/inline/upgrade-and-management.md#upgrading-the-edge-inline)または[Edge Connector Node](../installation/security-edge/se-connector.md#upgrading-the-edge-node)を[定期的](../updating-migrating/versioning-policy.md)にアップグレードします。
+* ご要望があれば、最新のWallarm SOC 2 Type II監査報告書のコピーを提供します。
+* Wallarmが提供するサービスの継続に資する事業継続および災害復旧計画(BCDRP)を策定し、必要に応じて実装します。
 
-他のサードパーティサービスと同様に、WallarmクライアントはWallarmに送信されるクライアントデータの内容を理解し、センシティブデータがWallarm Cloudに到達しないことを保証する必要があります。PCI DSS、GDPRその他の要件を有するWallarmクライアントには、特別なルールを用いてセンシティブデータをマスクすることが推奨されます。
+**お客様の責任**
 
-フィルタリングノードからWallarm Cloudへ送信されるデータで、センシティブな詳細を含む可能性があるのは、検知された不正リクエストに関する情報のみです。不正リクエストにセンシティブデータが含まれる可能性は非常に低いですが、推奨されるアプローチは、PIIやクレジットカード情報を含む可能性があるHTTPリクエストのフィールド（例：`token`、`password`、`api_key`、`email`、`cc_number`など）をマスクすることです。このアプローチを採用することで、指定された情報フィールドがクライアントのセキュリティパリメーター外に出ないことが保証されます。
+* Wallarmのサービスに関連する重要な職務や活動に以前関与していた退職済みユーザーのアカウント削除を実施します。
+* Wallarmが実施するサービスに直接関与する人員に変更がある場合は、速やかにWallarmへ通知します。これらの人員は、Wallarmが提供するサービスに直接関連する財務、技術、または補助的な管理機能に関与している場合があります。
 
-**Mask sensitive data**と呼ばれる特別なルールを適用することで、フィルタリングノードからWallarm Cloudへ攻撃情報を送信する際に省略すべきフィールド（リクエストURI、ヘッダーまたはボディ内）を指定できます。データマスキングの詳細については、[こちらのドキュメント](../user-guides/rules/sensitive-data-rule.md)をご覧になるか、[Wallarmサポートチーム](mailto:request@wallarm.com)までお問い合わせください。
+## ハイブリッド
+
+このデプロイメント形態では、Wallarmのお客様がWallarm filtering nodeをデプロイ・管理し、WallarmがWallarm Cloudコンポーネントを管理します。したがって、責任は同等に分担されます。
+
+**Wallarmの責任**
+
+* Wallarmクラウド環境のセキュリティと可用性、Wallarm filtering nodeコードおよびWallarm内部システムのセキュリティ。
+* Wallarm filtering nodeコンポーネントを[定期的](../updating-migrating/versioning-policy.md)に更新します。なお、これらのアップデートの適用はお客様の責任です。
+* ご要望があれば、最新のWallarm SOC 2 Type II監査報告書のコピーを提供します。
+
+**お客様の責任**
+
+Wallarmのお客様は次の点に責任を負います。
+
+* Wallarm filtering nodeおよびWallarm Cloudを含む、Wallarmに関連するすべての内部コンポーネントについて、一般的なITシステムのアクセスおよびシステム利用の適切性に関する健全で一貫した内部統制を実装します。
+
+* Wallarmのサービスに関連する重要な職務や活動に以前関与していた退職済みユーザーのアカウント削除を実施します。
+
+* お客様のセキュリティ境界外に出て、検出された悪意のあるリクエストの報告の一部としてWallarm Cloudに送信される可能性がある機微なデータに対して、適切な[データマスキングルール](../user-guides/rules/sensitive-data-rule.md)を設定します。
+
+* Wallarmのサービスに関連する取引が適切に承認され、取引が安全で、適時に処理され、完全であることを確保します。
+
+* Wallarmが実施するサービスに直接関与する人員に変更がある場合は、速やかにWallarmへ通知します。これらの人員は、Wallarmが提供するサービスに直接関連する財務、技術、または補助的な管理機能に関与している場合があります。
+
+* Wallarmがリリースした新しいソフトウェアアップデートをフィルタリングノードに速やかに適用します。
+
+* Wallarmが提供するサービスの継続に資する事業継続および災害復旧計画(BCDRP)を策定し、必要に応じて実装します。
+
+## オンプレミス
+
+このデプロイメント形態では、Wallarm filtering nodeとWallarm Cloudの両コンポーネントをお客様がホストおよび管理するため、責任の大部分（管理も含む）はお客様側にあります。
+
+**Wallarmの責任**
+
+* Wallarm filtering nodeおよびCloudのコードのセキュリティ。
+* Wallarm filtering nodeおよびCloudコンポーネントを定期的に更新します。なお、これらのアップデートの適用はお客様の責任です。
+
+**お客様の責任**
+
+* Wallarm filtering nodeおよびWallarm Cloudのデプロイに使用する環境のセキュリティと可用性を確保します。
+* Wallarmがリリースする新しいソフトウェアアップデートを、フィルタリングノードおよびWallarm Cloudに速やかに適用します。
+* Wallarm filtering nodeおよびWallarm Cloudを含む、Wallarmに関連するすべての内部コンポーネントについて、一般的なITシステムのアクセスおよびシステム利用の適切性に関する健全で一貫した内部統制を実装します。
+* Wallarmのサービスに関連する重要な職務や活動に以前関与していた退職済みユーザーのアカウント削除を実施します。
+* Wallarmのサービスに関連する取引が適切に承認され、取引が安全で、適時に処理され、完全であることを確保します。
+* Wallarmが提供するサービスの継続に資する事業継続および災害復旧計画(BCDRP)を策定し、必要に応じて実装します。
+
+## Wallarm Cloudにおけるお客様データの保存
+
+Wallarmのハイブリッドおよびクラウドのデプロイメントでは、フィルタリングノードから送信されたすべてのデータはWallarmが完全に管理するWallarm Cloudに保存されます。
+
+* リクエストおよび攻撃データはPostgreSQLデータベースに保存され、関連コンテンツはGoogle Cloud Storage（S3互換）に永続化され、パフォーマンス向上のためRedisにキャッシュされます。Google Cloud外部のサードパーティサービスは使用していません。
+* すべてのストレージは、Wallarmのセキュアなインフラストラクチャの一部としてGoogle Cloud Platform上でホストされています。
+* GCPはGDPRおよびその他の国際的なデータ保護基準に準拠しており、データのセキュリティとプライバシーを確保します。
+* Wallarmは複数の[リージョン](overview.md#cloud)（USとEU）でのデプロイに対応しており、希望する管轄区域内にデータを保持できます。

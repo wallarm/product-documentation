@@ -1,135 +1,138 @@
-```markdown
 [api-discovery-enable-link]:        ../../api-discovery/setup.md#enable
 
 # レート制限
 
-[unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md)は[OWASP API Top 10 2023](../../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023)における最も深刻なAPIセキュリティリスクの一つとして含まれています。レート制限が不十分であることが、このリスクの主な原因の一つです。適切なレート制限対策が講じられていない場合、APIはDoS（サービス拒否攻撃）、ブルートフォース攻撃、APIの過剰利用などの攻撃に脆弱になります。この記事では、Wallarmのレート制限規則ルールを使用して、APIおよびユーザーの安全を確保する方法について説明します。
+[無制限なリソース消費](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md)は、最も重大なAPIセキュリティリスクの一覧である[OWASP API Top 10 2023](../../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023)に含まれています。レート制限の欠如は、このリスクの主な原因の1つです。適切なレート制限がなければ、APIはサービス拒否(DoS)、ブルートフォース、APIの過剰利用といった攻撃に脆弱になります。本記事では、Wallarmのレート制限ルールによりAPIとユーザーを保護する方法を説明します。
 
-Wallarmは、APIへの過剰なトラフィックを防ぐために**Set rate limit**[ルール](../../user-guides/rules/rules.md)を提供します。このルールでは、特定のスコープに対して確立できる接続の最大数を指定するとともに、受信リクエストが均等に分散されることを保証します。定義された制限を超えるリクエストがあった場合、Wallarmはそのリクエストを拒否し、ルールで選択したコードを返します。
+WallarmはAPIへの過剰なトラフィックを防ぐために、Advanced rate limitingの[ルール](../../user-guides/rules/rules.md)を提供します。このルールでは、特定のスコープに対するリクエストの最大数を指定でき、着信リクエストが均等に分散されるようにも制御します。定義した上限を超えるリクエストはWallarmが拒否し、ルールで選択したコードを返します。
 
-Wallarmは、クッキーやJSONフィールドなどの各種リクエストパラメータを検査するため、接続を接続元IPアドレスだけでなく、セッション識別子、ユーザー名、電子メールアドレスなどに基づいて制限することが可能です。この追加の粒度により、任意の起源データに基づいてプラットフォーム全体のセキュリティを向上させることができます。
+WallarmはCookieやJSONフィールドなどさまざまなリクエストパラメータを評価するため、発信元IPアドレスだけでなく、セッション識別子、ユーザー名、メールアドレスに基づいても接続を制限できます。この追加の粒度により、あらゆる発信元データを基準としてプラットフォーム全体のセキュリティを強化できます。
 
-なお、この記事で説明するレート制限は、Wallarmが提供する負荷制御手法の一つです。あるいは、[ブルートフォース保護](../../admin-en/configuration-guides/protecting-against-bruteforce.md)を適用することもできます。着信トラフィックの減速にはレート制限を使用し、ブルートフォース保護は攻撃者を完全にブロックするために使用します。
+本記事で説明するレート制限は、Wallarmが提供する負荷制御の方法の1つです。代替として、[ブルートフォース対策](../../admin-en/configuration-guides/protecting-against-bruteforce.md)を適用できます。レート制限は受信トラフィックを減速させる目的で、ブルートフォース対策は攻撃者を完全にブロックする目的で使用します。
 
 ## ルールの作成と適用
 
-レート制限を設定して適用する手順は以下の通りです。
+レート制限を設定して適用するには:
 
 --8<-- "../include/rule-creation-initial-step.md"
-1. **Mitigation controls**→**Advanced rate limiting**を選択します。
-1. **If request is**で、ルールを適用するスコープを[rules.md#configuring](rules.md#configuring)を参照しながら記述します。
-1. 対象スコープへの接続に対して希望する制限値を設定します:
+1. Mitigation controls → Advanced rate limitingを選択します。
+1. If request isで、ルールを適用するスコープを[記述](rules.md#configuring)します。
+1. 対象スコープへの接続に対する希望の上限を設定します:
 
-    * 秒または分あたりのリクエストの最大数。
-    * **Burst** - 指定されたRPS/RPMを超えた場合にバッファリングされ、レートが正常に戻った際に処理される過剰リクエストの最大数。デフォルトは`0`です。
+    * 1秒または1分あたりのリクエストの最大数。
+    * **Burst** - 指定したRPS/RPMを超過した際にバッファリングされる過剰リクエストの最大数で、レートが通常に戻ったときに処理されます。`0`がデフォルトです。
 
-        値が`0`でない場合、バッファされた過剰リクエストの実行間で定義されたRPS/RPMを維持するかどうかを制御できます。
+        値が`0`以外の場合、バッファリングされた過剰リクエストの実行間でも、定義したRPS/RPMを維持するかどうかを制御できます。
         
-        **No delay**はレート制限の遅延なしで、バッファされた過剰リクエストすべてを同時に処理することを意味します。**Delay**は、指定された数の過剰リクエストを同時に処理し、その他のリクエストはRPS/RPMで設定された遅延で処理されることを意味します。
+        **No delay**は、レート制限による遅延を設けずに、バッファ済みの過剰リクエストをすべて同時に処理することを意味します。**Delay**は、指定数の過剰リクエストを同時に処理し、残りはRPS/RPMで設定された遅延で処理されることを意味します。
     
-    * **Response code** - 拒否されたリクエストに対して返すコード。デフォルトは`503`です。
+    * **Response code** - 拒否されたリクエストに対して返すコードです。デフォルトは`503`です。
 
-        以下は、5 r/sの制限、burstが12、delayが8の場合のレート制限の挙動の例です。
+        以下は、5 r/s、burst 12、delay 8の設定におけるレート制限の挙動例です。
         
-        ![レート制限の動作例](../../images/user-guides/rules/rate-limit-schema.png)
+        ![レート制限の動作](../../images/user-guides/rules/rate-limit-schema.png)
 
-        最初の8つのリクエスト（delayの値）はWallarmノードにより遅延なく転送されます。次の4つのリクエスト（burst - delay）は、定義された5 r/sのレートが超えないように遅延がかかります。次の3つのリクエストは、総burstサイズを超えたため拒否されます。以降のリクエストは遅延されます。
+        最初の8リクエスト（delayの値）はWallarmノードによって遅延なしで転送されます。次の4リクエスト（burst - delay）は、定義した5 r/sというレートを超えないように遅延されます。さらに次の3リクエストは、バースト総量を超過したため拒否されます。その後のリクエストは遅延されます。
 
-1. **In this part of request**で、制限を設定したいリクエストポイントを指定します。Wallarmは、選択されたリクエストパラメータが同一のリクエストに対して制限を適用します。
+1. In this part of requestで、制限を設定したいリクエストのポイントを指定します。選択したリクエストパラメータの値が同一のリクエストをWallarmが制限します。
 
-    利用可能なすべてのポイントは[こちら](request-processing.md)に記載されており、特定のユースケースに合わせて選択可能です。たとえば:
+    利用可能なポイントは[こちら](request-processing.md)に記載しています。ユースケースに合うものを選択してください。例:
     
-    * `remote_addr`を使用して接続元IPによる制限
-    * `json`→`json_doc`→`hash`→`api_key`を使用して、`api_key`JSON本文パラメータによる接続制限
+    * 発信元IPで接続を制限するには`remote_addr`
+    * JSON本文の`api_key`パラメータで接続を制限するには`json` → `json_doc` → `hash` → `api_key`
 
-    !!! info "値の長さに対する制限"
-        制限の測定に使用するパラメータ値の最大許容長は8000シンボルです。
-1. [ルールのコンパイルとフィルタリングノードへのアップロードの完了](rules.md#ruleset-lifecycle)を待ちます。
+    !!! info "値の長さに関する制限"
+        制限の基準とするパラメータ値の最大長は8000文字です。
+1. [ルールのコンパイルとフィルタリングノードへのアップロードが完了するまでお待ちください](rules.md#ruleset-lifecycle)。
 
-## ルールの例
+## ルール例
 
-<!-- ### APIエンドポイントへのDoS攻撃を防ぐためのIP接続数制限
+<!-- ### Limiting IP connections to prevent DoS attacks on API endpoint
 
-例えば、UIに1ページあたり200ユーザーのリストを返すセクションがあり、ページを取得するためにUIが`https://example-domain.com/api/users?page=1&size=200`というURLを使用してサーバーにリクエストを送信します。
+Suppose you have a section in the UI that returns a list of users, with a limit of 200 users per page. To fetch the page, the UI sends a request to the server using the following URL: `https://example-domain.com/api/users?page=1&size=200`.
 
-しかし、攻撃者は`size`パラメータを200,000のような非常に大きな数に変更することで、データベースに過度な負荷をかけ、パフォーマンスの問題を引き起こす可能性があります。これがDoS（サービス拒否攻撃）と呼ばれる攻撃で、APIが応答不能となり、他のクライアントからのリクエストを処理できなくなります。
+However, an attacker could exploit this by changing the `size` parameter to an excessively large number (e.g. 200,000), which could overload the database and cause performance issues. This is known as a DoS (Denial of Service) attack, where the API becomes unresponsive and unable to handle further requests from any clients.
 
-エンドポイントへの接続を制限することで、このような攻撃を防止できます。各IPがエンドポイントに1分間に1000回以上アクセスしないように制限します。これは、平均して200ユーザーが1分間に5回リクエストするという前提です。ルールでは、この制限が各IPに適用されることを指定しています。`remote_address`[point](request-processing.md)は、リクエスト元のIPアドレスを識別するために使用されます。
+Limiting connections to the endpoint helps to prevent such attacks. You can limit the number of connections to the endpoint to 1000 per minute. This assumes that, on average, 200 users are requested 5 times per minute. The rule specifies that this limit applies to each IP trying to access the endpoint within minute. The `remote_address` [point](request-processing.md) is used to identify the IP address of the requester.
 
-![例](../../images/user-guides/rules/rate-limit-for-200-users.png)
+![Example](../../images/user-guides/rules/rate-limit-for-200-users.png)
 -->
-### IPごとの接続数制限による高いAPI可用性の確保
+### APIの高可用性を確保するためのIP単位の接続制限
 
-たとえば、医療企業のREST APIで、医師が患者情報をPOSTリクエストで`https://example-host.com`ホストの`/patients`エンドポイントに送信できるとします。このエンドポイントのアクセス可能性は極めて重要であり、多数のリクエストで過剰負荷がかからないようにする必要があります。
+あるヘルスケア企業のREST APIが、医師に対し、`/patients`エンドポイントへPOSTリクエストで患者情報を送信できるようにしているとします（ホストは'https://example-host.com'）。このエンドポイントの可用性は極めて重要であり、多数のリクエストで過負荷にすべきではありません。
 
-`/patients`エンドポイントに対して、特定期間内のIPごとの接続数を制限することで、この問題を防止できます。これにより、すべての医師に対してエンドポイントの安定性と可用性が確保され、同時にDoS攻撃による患者情報のセキュリティリスクも軽減されます。
+この`/patients`エンドポイントに対し、一定期間内のIP単位で接続を制限するとこれを防げます。これにより、DoS攻撃を防止して患者情報のセキュリティを保護しつつ、すべての医師に対するエンドポイントの安定性と可用性を確保できます。
 
-たとえば、各IPアドレスに対して1分間に5件のPOSTリクエストに制限するように設定できます:
+例えば、各IPアドレスごとに1分あたり5件のPOSTリクエストに制限する設定は次のとおりです:
 
 ![例](../../images/user-guides/rules/rate-limit-by-ip-for-patients.png)
 
-### セッションごとの接続数制限による認証パラメータへのブルートフォース攻撃の防止
+### 認証パラメータへのブルートフォース攻撃を防ぐためのセッション単位の接続制限
 
-ユーザーセッションに対してレート制限を適用すると、不正アクセスを狙い、有効なJWTやその他の認証パラメータを見つけ出すブルートフォース攻撃を制限できます。たとえば、セッションごとに1分間に10件のリクエストのみを許可する場合、攻撃者が異なるトークン値を用いて有効なJWTを発見しようとすると、すぐにレート制限に達し、レート制限期間が終了するまでリクエストが拒否されます。
+ユーザーセッションにレート制限を適用することで、保護されたリソースへの不正アクセスを得る目的で有効なJWTや他の認証パラメータを見つけようとするブルートフォース試行を抑止できます。例えば、1セッションあたり1分間に10リクエストのみを許可するようレート制限を設定すると、異なるトークン値で多数のリクエストを送って有効なJWTを見つけようとする攻撃者は、すぐにレート上限に達し、期間がリセットされるまでリクエストが拒否されます。
 
-たとえば、アプリケーションが各ユーザーセッションに一意のIDを割り当て、`X-SESSION-ID`ヘッダーに反映している場合、URL`https://example.com/api/login`のAPIエンドポイントは、AuthorizationヘッダーにBearer JWTを含むPOSTリクエストを受け付けます。このシナリオにおいて、セッションごとの接続数を制限するルールは以下のように表示されます:
+アプリケーションが各ユーザーセッションに一意のIDを割り当て、`X-SESSION-ID`ヘッダーに反映しているとします。URL`https://example.com/api/login`のAPIエンドポイントは、`Authorization`ヘッダーにBearer JWTを含むPOSTリクエストを受け付けます。このシナリオにおけるセッション単位の接続制限ルールは次のようになります:
 
 ![例](../../images/user-guides/rules/rate-limit-for-jwt.png)
 
-`Authorization`値に使用される[regexp](rules.md#condition-type-regex)は``^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$`です。
+`Authorization`の値に使用する[正規表現](rules.md#condition-type-regex)は``^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$`です。
 
-JWT（JSON Web Tokens）を使用してユーザーセッションを管理する場合、ルールを調整してJWTを[decrypt](request-processing.md#jwt)し、そのペイロードからセッションIDを抽出することも可能です:
+ユーザーセッションの管理にJWT (JSON Web Tokens)を使用している場合は、次のようにルールを調整してJWTを[復号](request-processing.md#jwt)し、ペイロードからセッションIDを抽出できます:
 
 ![例](../../images/user-guides/rules/rate-limit-for-session-in-jwt.png)
 
-<!-- ### User-Agentに基づくレート制限によるAPIエンドポイントへの攻撃の防止
+<!-- ### User-Agent based rate limiting to prevent attacks on API endpoints
 
-たとえば、旧バージョンのアプリケーションに既知のセキュリティ脆弱性があり、攻撃者がその脆弱なバージョンを用いてAPIエンドポイント`https://example-domain.com/login`に対してブルートフォース攻撃を仕掛ける場合を考えます。通常、`User-Agent`ヘッダーはブラウザやアプリケーションのバージョン情報を渡すために使用されます。旧バージョンのアプリケーションからのブルートフォース攻撃を防止するために、`User-Agent`に基づくレート制限を実装できます。
+Let's say you have an old version of your application has some known security vulnerabilities allowing attackers to brute force API endpoint `https://example-domain.com/login` using the vulnerable application version. Usually, the `User-Agent` header is used to pass browser/application versions. To prevent the brute force attack via the old application version, you can implement `User-Agent` based rate limiting.
 
-たとえば、各`User-Agent`に対して1分間に10件のリクエストに制限します。特定の`User-Agent`が均等に1分間で10件を超えるリクエストを送信する場合、その`User-Agent`からの追加リクエストは、新しい期間が始まるまで拒否されます。
+For example, you can set a limit of 10 requests per minute for each `User-Agent`. If a specific `User-Agent` is making more than 10 requests evenly distributed per minute, further requests from that `User-Agent` are rejected till a new period start.
 
-![例](../../images/user-guides/rules/rate-limit-by-user-agent.png)
+![Example](../../images/user-guides/rules/rate-limit-by-user-agent.png)
 
-### エンドポイントごとのレート制限によるDoS攻撃の防止
+### Endpoint-based rate limiting to prevent DoS attacks
 
-レート制限は、特定のエンドポイントに対して、指定された時間枠内で許容されるリクエスト数に閾値を設定することも可能です。たとえば、1分間に60件のリクエストに制限し、クライアントがこの閾値を超えた場合、追加のリクエストが拒否されます。
+Rate limiting can also involve setting a threshold for the number of requests that can be made to a particular endpoint within a specified time frame, such as 60 requests per minute. If a client exceeds this limit, further requests are rejected.
 
-これにより、DoS攻撃を防止し、アプリケーションが正当なユーザーに対して常に利用可能な状態を維持できるようにします。また、サーバーの負荷軽減、全体的なパフォーマンスの向上、不正使用や濫用の防止にも役立ちます。
+It helps to prevent DoS attacks and ensure that the application remains available to legitimate users. It can also help to reduce the load on the server, improve overall application performance, and prevent other forms of abuse or misuse of the application.
 
-この場合、レート制限ルールはURIごとの接続に適用されます。つまり、Wallarmは自動的に単一エンドポイントをターゲットとする繰り返しのリクエストを識別します。たとえば、`https://example.com`ホストの全エンドポイントに対して、このルールを以下のように適用できます:
+In this specific case, the rate limiting rule is applied to connections by URI, meaning that Wallarm automatically identifies repeated requests targeting a single endpoint. Here's an example of how this rule would work for all endpoints of the `https://example.com` host:
 
-* 制限：1分間に60件のリクエスト（1秒あたり1件）
-* Burst：突発的なトラフィック急増時に最大20件を許容
-* No delay：レート制限遅延なしで20件の過剰リクエストを同時に処理
-* Response code：制限およびburstを超えたリクエストを503コードで拒否
-* Wallarmは、`uri`[point](request-processing.md)により単一エンドポイントをターゲットとする繰り返しのリクエストを識別します。
+* Limit: 60 requests per minute (1 request per second)
+* Burst: allow up to 20 requests per minute (which could be useful if there is a sudden spike in traffic)
+* No delay: process 20 excessive requests simultaneously, without the rate limit delay between requests
+* Response code: reject requests exceeding the limit and the burst with the 503 code
+* Wallarm identifies repeated requests targeted at a single endpoint by the `uri` [point](request-processing.md)
 
-    !!! info "クエリパラメータはURIに含まれません"
-        このルールは、指定されたドメインの任意のパスに対して、クエリパラメータが含まれない場合のみ適用されます。
+    !!! info "Query parameters are not included into URI"
+        This rule limits requests targeted at any path of the specified domain which does not contain any query parameters.
 
-![例](../../images/user-guides/rules/rate-limit-by-uri.png)
--->
-### 顧客IDごとの接続数制限によるサーバーの過負荷防止
+![Example](../../images/user-guides/rules/rate-limit-by-uri.png) -->
 
-たとえば、オンラインショッピングプラットフォーム向けに顧客注文データへのアクセスを提供するウェブサービスを考えます。顧客IDによるレート制限は、短時間に顧客が過剰な注文を行うことによって、在庫管理や注文処理に過負荷がかかることを防ぐために役立ちます。
+### サーバーの過負荷を防ぐための顧客ID単位の接続制限
 
-たとえば、`https://example-domain.com/orders`に対して、各顧客に1分間に10件のPOSTリクエストの制限を設定するルールは、顧客IDが`data.customer_id`のJSON本文オブジェクトとして[渡される](request-processing.md#json_doc)ことを前提とすると、以下のようになります:
+オンラインショッピングプラットフォームの顧客注文データにアクセスできるWebサービスを考えます。顧客IDごとのレート制限は、短時間に過剰な注文が行われて在庫管理や出荷処理に負荷がかかる事態を防ぐのに役立ちます。
+
+例えば、`https://example-domain.com/orders`へのPOSTリクエストを各顧客あたり1分に10件へ制限するルールは、次のようになります。この例では、顧客IDがJSON本文オブジェクト`data.customer_id`で[渡される](request-processing.md#json_doc)ものとします。
 
 ![例](../../images/user-guides/rules/rate-limit-by-customer-id.png)
 
-## 制限事項および特殊な点
+## 制限事項と特記事項
 
-レート制限機能には、以下の制限事項および特殊な点があります:
+レート制限機能には次の制限事項と特記事項があります:
 
-* レート制限ルールは、[Wallarmのすべてのデプロイメント形式](../../installation/supported-deployment-options.md)でサポートされます。ただし、以下は除外されます:
+* レート制限ルールは、すべての[Security Edge](../../installation/security-edge/overview.md)および[self-hosted](../../installation/supported-deployment-options.md)のデプロイメント形態でサポートされますが、以下は対象外です:
 
-    * EnvoyベースのDockerイメージ
     * OOB Wallarmデプロイメント
-    * MuleSoft、Amazon CloudFront、Cloudflare、Broadcom Layer7 API Gateway、Fastlyコネクタ
-* 制限の測定に使用するパラメータ値の最大許容長は8000シンボルです。
-* 複数のWallarmノードが存在し、各ノードで着信トラフィックがレート制限ルールに達した場合、各ノードは独立して制限されます。
-* 複数のレート制限ルールが着信リクエストに適用される場合、最も低いレート制限値を持つルールがリクエストを制限します。
-* **In this part of request**ルールセクションに指定されたポイントが着信リクエストに存在しない場合、そのリクエストについてはこのルールは適用されません。
-* ウェブサーバーが（たとえば[`ngx_http_limit_req_module`](http://nginx.org/en/docs/http/ngx_http_limit_req_module.html)NGINXモジュールを使用して）接続を制限するように構成され、かつWallarmルールも適用されている場合、ウェブサーバーは構成されたルールによりリクエストを拒否しますが、Wallarmは拒否しません。
-* Wallarmは、レート制限を超えたリクエストを保存せず、ルールで選択されたコードを返すことでのみ拒否します。ただし、[attack signs](../../about-wallarm/protecting-against-attacks.md)があるリクエストは例外で、拒否されてもWallarmにより記録されます。
-```
+    * MuleSoft、Amazon CloudFront、Cloudflare、Broadcom Layer7 API Gateway、Fastlyのコネクタ
+* 制限の基準とするパラメータ値の最大長は8000文字です。
+* 複数のWallarmノードがあり、各ノードに到着するトラフィックがレート制限ルールに該当する場合、それぞれ独立して制限されます。
+* 複数のレート制限ルールが着信リクエストに適用可能な場合、最も小さいレート上限のルールが適用されます。
+* 着信リクエストに、ルールのIn this part of requestセクションで指定したポイントが存在しない場合、そのリクエストには本ルールによる制限は適用されません。
+* Webサーバー側でも接続制限（例: [ngx_http_limit_req_module](http://nginx.org/en/docs/http/ngx_http_limit_req_module.html)というNGINXモジュールの使用）を構成しており、同時にWallarmのルールも適用している場合、Webサーバーは自側の設定に従ってリクエストを拒否しますが、Wallarmは拒否しません。
+* Wallarmはレート制限を超えたリクエストを保存しません。ルールで選択したコードを返して拒否するだけです。例外は[攻撃の兆候](../../about-wallarm/protecting-against-attacks.md)があるリクエストで、レート制限ルールにより拒否された場合でも、Wallarmによって記録されます。
+
+## rate abuse protectionとの違い
+
+大量のリクエストによるリソース消費の抑制と攻撃の防止には、本稿で説明したレート制限に加えて、Wallarmは[レート乱用対策](../../api-protection/dos-protection.md)も提供します。
+
+レート制限は、レートが高すぎる場合に一部のリクエストを遅延させ（バッファに格納し）、バッファが満杯になると残りを拒否します。レートが正常に戻ると、バッファ済みのリクエストが配信され、IPやセッション単位のブロックは行いません。一方、レート乱用対策は攻撃者をIPやセッションで一定時間ブロックします。

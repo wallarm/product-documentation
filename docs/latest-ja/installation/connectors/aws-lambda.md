@@ -1,4 +1,3 @@
-```markdown
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
@@ -6,112 +5,124 @@
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
+[helm-chart-native-node]:           ../native-node/helm-chart.md
+[custom-blocking-page]:             ../../admin-en/configuration-guides/configure-block-page-and-code.md
+[rate-limiting]:                    ../../user-guides/rules/rate-limiting.md
+[multi-tenancy]:                    ../multi-tenant/overview.md
 
-# Amazon CloudFront用Wallarmコネクタ
+# Amazon CloudFront向けWallarmコネクタ
 
-[CloudFront](https://aws.amazon.com/cloudfront/)はAmazon Web Servicesが運営するコンテンツデリバリーネットワークです。WallarmはCloudFront経由で配信されるトラフィックを保護・監視するためのコネクタとして機能します。
+[CloudFront](https://aws.amazon.com/cloudfront/)はAmazon Web Servicesが運用するコンテンツ配信ネットワークです。Wallarmはコネクタとして動作し、CloudFront経由で配信されるトラフィックを保護および監視できます。
 
-CloudFront用コネクタとしてWallarmを使用するには、**Wallarmノードを外部にデプロイ**し、**Wallarm提供のLambda@Edge関数を実行**してトラフィックを分析のためにWallarmノードにルーティングする必要があります。
+CloudFront向けコネクタとしてWallarmを使用するには、Wallarmノードを外部にデプロイし、Wallarm提供のLambda@Edge関数を実行して、分析のためにトラフィックをWallarmノードへルーティングする必要があります。
 
-CloudFrontコネクタは[インライン](../inline/overview.md)と[アウトオブバンド](../oob/overview.md)の両方のトラフィック分析をサポートします:
+CloudFrontコネクタは、[インライン](../inline/overview.md)および[アウトオブバンド](../oob/overview.md)の両方のトラフィック解析をサポートします:
 
-=== "インライントラフィックフロー"
+=== "インラインのトラフィックフロー"
 
-    Wallarmが悪意あるアクティビティをブロックするように設定されている場合:
+    Wallarmが悪意のあるアクティビティをブロックするように設定されている場合:
 
-    ![Cloudfront with Wallarm - in-line scheme](../../images/waf-installation/gateways/cloudfront/traffic-flow-inline.png)
-=== "アウトオブバンドトラフィックフロー"
-    ![Cloudfront with Wallarm - out-of-band scheme](../../images/waf-installation/gateways/cloudfront/traffic-flow-oob.png)
+    ![WallarmとCloudFront - インライン構成](../../images/waf-installation/gateways/cloudfront/traffic-flow-inline.png)
+=== "アウトオブバンドのトラフィックフロー"
+    ![WallarmとCloudFront - アウトオブバンド構成](../../images/waf-installation/gateways/cloudfront/traffic-flow-oob.png)
+
+!!! info "セキュリティに関する注意"
+    提示のソリューションは最小権限の原則に従って設計されています。関数はCloudFrontおよびWallarmノードで動作するのに必要最小限の権限のみをリクエストし、デフォルトで安全なデプロイを実現します。
 
 ## ユースケース
 
-サポートされている[Wallarmの展開オプション](../supported-deployment-options.md)の中で、Amazon CloudFront経由でトラフィックを配信する場合に、このソリューションが推奨されます.
+サポートされている[Wallarmのデプロイオプション](../supported-deployment-options.md)の中でも、Amazon CloudFront経由でトラフィックを配信する場合に本ソリューションの利用を推奨します。
 
 ## 制限事項
 
-* Lambda@Edge関数レベルの制限:
-    * Lambda@Edge関数はHTTPステータスコード4xxのビューワレスポンスではトリガーされません.
-    * Lambda@Edgeではオリジンレスポンスおよびビューワレスポンスイベントの両方でレスポンスボディへのアクセスが許可されておらず、レスポンスの内容に基づくアクションの実行が制限されます.
-    * ビューワリクエストではボディサイズが40KB、オリジンリクエストでは1MBに制限されます.
-    * Wallarmノードからの最大レスポンスタイムは、ビューワリクエストの場合は5秒、オリジンリクエストの場合は30秒です.
-    * Lambda@Edgeはプライベートネットワーク（VPC）をサポートしていません.
-    * 同時リクエストのデフォルト制限はリージョンあたり1,000ですが、数万まで増加可能です.
-    * Wallarm Lambda@Edge関数はオリジンレベルで動作するため、CDNキャッシュで処理されるリクエストは監視されません。その結果、該当するリクエストにおける攻撃が検出されない可能性があります.
+* Lambda@Edge関数レベルの制約:
 
-* 機能の制限:
-    * Lambda@Edgeのレスポンストリガー制限により、[パッシブ検知](../../about-wallarm/detecting-vulnerabilities.md#passive-detection)に基づく脆弱性検出およびAPI DiscoveryにおけるAPI[レスポンス構造](../../api-discovery/exploring.md#endpoint-details)は制限されます。Wallarm関数はレスポンスボディを受け取れず、依存することができないため、これらの機能は利用できません.
-    * Wallarmルールによる[レート制限](../../user-guides/rules/rate-limiting.md)はサポートされていません.
-    * [マルチテナンシー](../multi-tenant/overview.md)はまだサポートされていません.
+    * HTTPステータスコード4xxのviewer responseではLambda@Edge関数はトリガーされません。
+    * Lambda@Edgeはorigin responseおよびviewer responseイベントのいずれでもレスポンスボディへのアクセスを許可しないため、レスポンス内容に基づく処理は実行できません。
+    * ボディサイズはviewer requestで40KB、origin requestで1MBに制限されます。
+    * Wallarmノードからの最大応答時間はviewer requestで5秒、origin requestで30秒です。
+    * Lambda@Edgeはプライベートネットワーク(VPC)をサポートしません。
+    * 同時リクエストのデフォルト上限はリージョンあたり1,000ですが、数万まで引き上げることができます。
+    * WallarmのLambda@Edge関数はoriginレベルで動作するため、CDNキャッシュで処理されるリクエストは監視しません。そのため、そのようなリクエストに含まれる潜在的な攻撃は検出されません。
+* 機能上の制約:
+    * [Helmチャート][helm-chart-native-node]を使用して`LoadBalancer`タイプでWallarmサービスをデプロイする場合、ノードインスタンスのドメインには信頼されたSSL/TLS証明書が必要です。自己署名証明書はまだサポートしていません。
+    * [カスタムブロックページとブロックコード][custom-blocking-page]の設定はまだサポートしていません。
+    * [パッシブ検知](../../about-wallarm/detecting-vulnerabilities.md#passive-detection)に基づく脆弱性検知および[API DiscoveryにおけるAPIのレスポンス構造](../../api-discovery/exploring.md#endpoint-details)は、Lambda@Edgeのレスポンストリガー制限により制約されます。Wallarmの関数はレスポンスボディを受け取って依存することができないため、これらの機能は利用できません。
+    * Wallarmルールによる[レート制限](../../user-guides/rules/rate-limiting.md)はサポートしていません。
+    * [マルチテナンシー](../multi-tenant/overview.md)はまだサポートしていません。
 
-## 要件
+## 前提条件
 
-デプロイを進めるため、以下の要件を満たしていることを確認してください:
+デプロイを進める前に、以下の要件を満たしていることを確認してください。
 
-* AWSCloudFront及びLambdaテクノロジーの理解.
-* CloudFront CDNを経由して実行されるAPIまたはトラフィック.
+* AWS CloudFrontおよびLambdaの技術に関する理解があること。
+* CloudFront CDNを経由するAPIまたはトラフィックがあること。
 
 ## デプロイ
 
-### 1. Wallarmノードのデプロイ
+<a id="1-deploy-a-wallarm-node"></a>
+### 1. Wallarmノードをデプロイする
 
-Wallarmノードはデプロイが必要なWallarmプラットフォームの中核コンポーネントです。受信トラフィックを検査し、悪意ある活動を検出し、脅威の緩和を構成することができます.
+WallarmノードはWallarmプラットフォームの中核コンポーネントで、受信トラフィックを検査し、不正なアクティビティを検出し、脅威を緩和するように設定できます。
 
-必要な制御レベルに応じて、Wallarmがホストする場合または自社インフラでデプロイする場合のいずれかが選べます.
+必要な管理レベルに応じて、Wallarmがホストするノードとして、またはお客様のインフラストラクチャ内に自己ホストでデプロイできます。
 
 === "エッジノード"
-    コネクタ用のWallarmホスト型ノードをデプロイするには、[手順](../se-connector.md)に従ってください.
-=== "セルフホスト型ノード"
-    セルフホスト型ノードのデプロイ用アーティファクトを選択し、添付の指示に従ってください:
+    コネクタ用のWallarmホスト型ノードをデプロイするには、[手順](../security-edge/se-connector.md)に従ってください。
+=== "自己ホストノード"
+    自己ホストノードのデプロイに使用するアーティファクトを選択し、各手順に従ってください:
 
-    * ベアメタルまたはVM上のLinuxインフラ向け[オールインワンインストーラー](../native-node/all-in-one.md)
-    * コンテナ化されたデプロイを使用する環境向け[Dockerイメージ](../native-node/docker-image.md)
-    * Kubernetesを利用するインフラ向け[Helmチャート](../native-node/helm-chart.md)
+    * ベアメタルまたはVM上のLinuxインフラ向けの[All-in-oneインストーラー](../native-node/all-in-one.md)
+    * コンテナ化デプロイを使用する環境向けの[Dockerイメージ](../native-node/docker-image.md)
+    * AWSインフラ向けの[AWS AMI](../native-node/aws-ami.md)
+    * Kubernetesを利用するインフラ向けの[Helmチャート](../native-node/helm-chart.md)
 
-### 2. Wallarm Lambda@Edge関数の入手とデプロイ
+<a id="2-obtain-and-deploy-the-wallarm-lambdaedge-functions"></a>
+### 2. WallarmのLambda@Edge関数を取得してデプロイする
 
-CloudFront CDNとWallarmノードを接続するには、AWS上にWallarm Lambda@Edge関数をデプロイする必要があります.
+CloudFront CDNをWallarmノードに接続するには、AWS上にWallarmのLambda@Edge関数をデプロイする必要があります。
 
-Pythonベースの関数が2種類あり、1つはリクエストの転送と分析用、もう1つはレスポンスの転送と分析用です.
+Pythonベースの関数が2つあります: リクエストの転送と解析を行う関数と、レスポンスの転送と解析を行う関数です。
 
-=== "手動ダウンロードとデプロイ"
-    1. Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle**に進み、プラットフォーム用のコードバンドルをダウンロードしてください.
+=== "手動でのダウンロードとデプロイ"
+    1. Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle**に進み、プラットフォーム用のコードバンドルをダウンロードします。
 
-        セルフホスト型ノードを実行している場合は、sales@wallarm.comに連絡してコードバンドルを取得してください.
-    1. AWS Console → **Services** → **Lambda** → **Functions**に進んでください.
-    1. Lambda@Edge関数に[必要な](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-edge-how-it-works-tutorial.html#lambda-edge-how-it-works-tutorial-create-function) `us-east-1`（N.Virginia）リージョンを選択してください.
-    1. **Create function**を以下の設定で実行してください:
+        自己ホストノードを使用している場合は、コードバンドルの入手についてsales@wallarm.comにお問い合わせください。
+    1. AWS Console → **Services** → **Lambda** → **Functions**に進みます。
+    1. Lambda@Edge関数に[必要なリージョン](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-edge-how-it-works-tutorial.html#lambda-edge-how-it-works-tutorial-create-function)である`us-east-1`(N. Virginia)を選択します。
+    1. **Create function**で次の設定を行います:
 
-        * Runtime: Python 3.x.
-        * Execution role: **Create a new role from AWS policy templates** → **Basic Lambda@Edge permissions (for CloudFront trigger)**.
-        * その他の設定はデフォルトのままで構いません.
-    1. 関数が作成されたら、**Code**タブでWallarmのリクエスト処理コードを貼り付けてください.
-    1. コード内の以下のパラメータを更新してください:
+        * Runtime: Python 3.x。
+        * Execution role: **Create a new role from AWS policy templates** → **Basic Lambda@Edge permissions (for CloudFront trigger)**。
+        * その他の設定はデフォルトのままで問題ありません。
+    1. 関数が作成されたら、**Code**タブでWallarmのリクエスト処理コードを貼り付けます。
+    1. コード内の次のパラメータを更新します:
 
-        * `wlrm_node_addr`: ご利用の[Wallarmノードインスタンス](#1-deploy-a-wallarm-node)のアドレス.
-        * `wlrm_inline`: [アウトオブバンド](../oob/overview.md)モードを使用する場合は`False`に設定してください.
-        * 必要に応じて、その他のパラメータを修正してください.
-    1. **Actions** → **Deploy to Lambda@Edge**に進み、以下の設定を指定してください:
+        * `wlrm_node_addr`: お使いのWallarmノードのURL。
+        * `wlrm_inline`: [非同期(アウトオブバンド)](../oob/overview.md)モードを使用する場合は`False`に設定します。
+        * 必要に応じて他のパラメータも調整します。
+    1. **Actions** → **Deploy to Lambda@Edge**に進み、次を指定します:
 
-        * 新規CloudFrontトリガーを設定してください.
-        * Distribution: 保護対象のオリジンにトラフィックをルーティングするCDNを指定してください.
-        * Cache behavior: Lambda関数のキャッシュビヘイビア（通常は`*`）を指定してください.
+        * Configure new CloudFront trigger。
+        * Distribution: 保護したいオリジンへトラフィックをルーティングするCDNを選択します。
+        * Cache behavior: Lambda関数に適用するキャッシュビヘイビア。通常は`*`です。
         * CloudFront event: 
             
-            * **Origin request**: CloudFront CDNがバックエンドからデータをリクエストする場合にのみ関数が実行されます。CDNがキャッシュされたレスポンスを返す場合、関数は実行されません.
-            * **Viewer request**: CloudFront CDNへのすべてのリクエストに対して関数が実行されます.
-        * **Include body**にチェックを入れてください.
-        * **Confirm deploy to Lambda@Edge**にチェックを入れてください.
+            * **Origin request**: CloudFront CDNがバックエンドへデータを要求するときのみ関数を実行します。CDNがキャッシュレスポンスを返す場合は実行されません。
+            * **Viewer request**: CloudFront CDNへのすべてのリクエストに対して関数を実行します。
+        * **Include body**にチェックを入れます。
+        * **Confirm deploy to Lambda@Edge**にチェックを入れます。
 
-        ![Cloudfront function deployment](../../images/waf-installation/gateways/cloudfront/function-deploy.png)
-    1. Wallarm提供のレスポンス関数についても、レスポンスをトリガーとして選択し、同様の手順を繰り返してください.
+        ![CloudFront関数のデプロイ](../../images/waf-installation/gateways/cloudfront/function-deploy.png)
+    1. レスポンス用のWallarm提供関数についても同様の手順を繰り返し、トリガーとしてレスポンスを選択します。
 
-        レスポンスのトリガーがリクエストのトリガー（オリジンリクエストの場合はオリジンレスポンス、ビューワリクエストの場合はビューワレスポンス）と一致していることを確認してください.
-=== "AWS SARからの関数デプロイ"
-    AWS Serverless Application Repository (SAR)から直接両方の関数をデプロイすることができます。関数は[Lambda@Edge関数に必要な](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-edge-how-it-works-tutorial.html#lambda-edge-how-it-works-tutorial-create-function)`us-east-1`（N.Virginia）リージョンにデプロイされます.
+        レスポンストリガーがリクエストトリガーと一致していることを確認してください(Origin requestにはorigin response、Viewer requestにはviewer response)。
+=== "AWS SARから関数をデプロイする"
+    両方の関数はAWS Serverless Application Repository(SAR)から直接デプロイできます。関数は、Lambda@Edge関数に[必要なリージョン](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-edge-how-it-works-tutorial.html#lambda-edge-how-it-works-tutorial-create-function)である`us-east-1`(N. Virginia)にデプロイされます。
 
-    1. [Wallarm policies on AWS Serverless Application Repository](https://serverlessrepo.aws.amazon.com/applications/us-east-1/381492110259/wallarm-connector)にアクセスし、**Deploy**をクリックしてください.
-    1. デプロイ設定はデフォルトのままとしてください.
-    1. デプロイ完了後、作成されたIAMロールの**Trust relationships**に移動し、リクエスト用とレスポンス用の両ロールを以下のポリシーで更新してください:
+    1. [Wallarm policies on AWS Serverless Application Repository](https://serverlessrepo.aws.amazon.com/applications/us-east-1/381492110259/wallarm-connector) → **Deploy**に進みます。
+    1. デプロイ設定はデフォルトのままとします。
+    1. デプロイ完了後、作成されたIAMロール → **Trust relationships**に進み、以下のポリシーで両方のロール(リクエスト用とレスポンス用)を更新します:
 
         ```json
         {
@@ -131,64 +142,63 @@ Pythonベースの関数が2種類あり、1つはリクエストの転送と分
         }
         ```
 
-    1. AWS Console → **Services** → **Lambda** → **Functions**に進んでください.
-    1. `serverlessrepo-wallarm-connector-RequestHandler-xxx`関数を開いてください.
-    1. **Code**タブで以下のパラメータを更新してください:
+    1. AWS Console → **Services** → **Lambda** → **Functions**に進みます。
+    1. `serverlessrepo-wallarm-connector-RequestHandler-xxx`関数を開きます。
+    1. **Code**タブで次のパラメータを更新します:
 
-        * `wlrm_node_addr`: ご利用の[Wallarmノードインスタンス](#1-deploy-a-wallarm-node)のアドレス.
-        * `wlrm_inline`: [アウトオブバンド](../oob/overview.md)モードを使用する場合は`False`に設定してください.
-        * 必要に応じて、その他のパラメータを修正してください.
-    1. **Actions** → **Deploy to Lambda@Edge**に進み、以下の設定を指定してください:
+        * `wlrm_node_addr`: お使いの[Wallarmノードインスタンス](#1-deploy-a-wallarm-node)のアドレス。
+        * `wlrm_inline`: [アウトオブバンド](../oob/overview.md)モードを使用する場合は`False`に設定します。
+        * 必要に応じて他のパラメータも調整します。
+    1. **Actions** → **Deploy to Lambda@Edge**に進み、次を指定します:
 
-        * 新規CloudFrontトリガーを設定してください.
-        * Distribution: 保護対象のオリジンにトラフィックをルーティングするCDNを指定してください.
-        * Cache behavior: Lambda関数のキャッシュビヘイビア（通常は`*`）を指定してください.
+        * Configure new CloudFront trigger。
+        * Distribution: 保護したいオリジンへトラフィックをルーティングするCDNを選択します。
+        * Cache behavior: Lambda関数に適用するキャッシュビヘイビア。通常は`*`です。
         * CloudFront event: 
             
-            * **Origin request**: CloudFront CDNがバックエンドからデータをリクエストする場合にのみ関数が実行されます。CDNがキャッシュされたレスポンスを返す場合、関数は実行されません.
-            * **Viewer request**: CloudFront CDNへのすべてのリクエストに対して関数が実行されます.
-        * **Include body**にチェックを入れてください.
-        * **Confirm deploy to Lambda@Edge**にチェックを入れてください.
+            * **Origin request**: CloudFront CDNがバックエンドへデータを要求するときのみ関数を実行します。CDNがキャッシュレスポンスを返す場合は実行されません。
+            * **Viewer request**: CloudFront CDNへのすべてのリクエストに対して関数を実行します。
+        * **Include body**にチェックを入れます。
+        * **Confirm deploy to Lambda@Edge**にチェックを入れます。
 
-        ![Cloudfront function deployment](../../images/waf-installation/gateways/cloudfront/function-deploy.png)
-    1. AWS Console → **Services** → **Lambda** → **Functions**に戻ってください.
-    1. `serverlessrepo-wallarm-connector-ResponseHandler-xxx`関数を開いてください.
-    1. レスポンスをトリガーとして選択し、Wallarm提供のレスポンス関数についても同様の手順を繰り返してください.
+        ![CloudFront関数のデプロイ](../../images/waf-installation/gateways/cloudfront/function-deploy.png)
+    1. AWS Console → **Services** → **Lambda** → **Functions**に戻ります。
+    1. `serverlessrepo-wallarm-connector-ResponseHandler-xxx`関数を開きます。
+    1. レスポンスをトリガーに選択して、同様の手順を繰り返します。
 
-        レスポンスのトリガーがリクエストのトリガー（オリジンリクエストの場合はオリジンレスポンス、ビューワリクエストの場合はビューワレスポンス）と一致していることを確認してください.
+        レスポンストリガーがリクエストトリガーと一致していることを確認してください(Origin requestにはorigin response、Viewer requestにはviewer response)。
 
 ## テスト
 
-デプロイされた関数の機能をテストするには、以下の手順に従ってください:
+デプロイ済み関数の動作をテストするには、次の手順に従います:
 
-1. テスト用の[パストラバーサル][ptrav-attack-docs]攻撃を含むリクエストをCloudFront CDNに送信してください:
+1. CloudFront CDNにテスト用の[Path Traversal][ptrav-attack-docs]攻撃リクエストを送信します:
 
     ```
     curl http://<CLOUDFRONT_CDN>/etc/passwd
     ```
-1. Wallarm Consoleの[US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)の**Attacks**セクションを開き、攻撃がリストに表示されていることを確認してください.
+1. Wallarm Console → **Attacks**セクションを[US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)で開き、攻撃が一覧に表示されていることを確認します。
     
-    ![Attacks in the interface][attacks-in-ui-image]
+    ![インターフェースのAttacks][attacks-in-ui-image]
 
-    Wallarmノードモードが[blocking](../../admin-en/configure-wallarm-mode.md)に設定され、トラフィックがインラインで流れている場合、リクエストはブロックされます.
+    Wallarmノードのモードが[blocking](../../admin-en/configure-wallarm-mode.md)に設定され、トラフィックがインラインで流れている場合は、リクエストもブロックされます。
 
 ## Lambda@Edge関数のアップグレード
 
-デプロイされたLambda@Edge関数を[新しいバージョン](code-bundle-inventory.md#cloudfront)にアップグレードするには:
+デプロイ済みのLambda@Edge関数を[新しいバージョン](code-bundle-inventory.md#cloudfront)にアップグレードするには:
 
-=== "手動ダウンロードとデプロイ"
-    1. Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle**に進み、更新されたWallarm Lambda@Edge関数のコードバンドルをダウンロードしてください.
+=== "手動でのダウンロードとデプロイ"
+    1. Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle**に進み、更新版のWallarm Lambda@Edge関数をダウンロードします。
 
-        セルフホスト型ノードを実行している場合は、sales@wallarm.comに連絡して更新されたコードバンドルを取得してください.
-    1. デプロイ済みのLambda@Edge関数内のコードを、更新されたバンドルに置き換えてください.
+        自己ホストノードを使用している場合は、更新されたコードバンドルの入手についてsales@wallarm.comにお問い合わせください。
+    1. デプロイ済みのLambda@Edge関数のコードを、更新版のバンドルに置き換えます。
 
-        既存の`wlrm_node_addr`、`wlrm_inline`などのパラメータの値はそのまま保持してください.
+        `wlrm_node_addr`、`wlrm_inline`などの既存のパラメータ値は保持します。
 
-        既存の関数トリガーは変更せずにそのままにしてください.
-    1. 更新した関数を**Deploy**してください.
-=== "AWS SARからの関数デプロイ"
-    1. 新しいバージョンの関数を使用して、[2. Wallarm Lambda@Edge関数の入手とデプロイ](#2-obtain-and-deploy-the-wallarm-lambdaedge-functions)に記載された手順を繰り返してください.
-    1. 更新された関数をディストリビューションにリンクした後、競合を避けるためにCloudFrontトリガーから以前のバージョンの関数を削除してください.
+        既存の関数トリガーは変更しません。
+    1. **Deploy**を実行して更新済み関数を反映します。
+=== "AWS SARから関数をデプロイする"
+    1. 新しいバージョンの関数を用いて、[2番目の手順](#2-obtain-and-deploy-the-wallarm-lambdaedge-functions)で記載した手順を繰り返します。
+    1. 更新版の関数をディストリビューションに関連付けた後、競合を避けるためにCloudFrontのトリガーから以前のバージョンの関数を削除します。
 
-関数のアップグレードには、特にメジャーバージョンの更新の場合、Wallarmノードのアップグレードが必要となる場合があります。リリースの更新およびアップグレード手順については、[Wallarm Native Node変更履歴](../../updating-migrating/native-node/node-artifact-versions.md)を参照してください。非推奨を避け、将来のアップグレードを容易にするために、定期的なノード更新を推奨します.
-```
+関数のアップグレードでは、特にメジャーバージョンアップの場合、Wallarmノードのアップグレードが必要になることがあります。自己ホストノードのリリースノートおよびアップグレード手順については[Native Nodeの変更履歴](../../updating-migrating/native-node/node-artifact-versions.md)を、エッジコネクタのアップグレード手順については[Edge connectorのアップグレード手順](../security-edge/se-connector.md#upgrading-the-edge-node)を参照してください。非推奨を避け、将来のアップグレードを容易にするため、ノードの定期的な更新を推奨します。

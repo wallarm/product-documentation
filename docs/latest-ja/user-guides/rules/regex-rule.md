@@ -1,4 +1,3 @@
-```markdown
 [link-regex]:               https://github.com/yandex/pire
 [img-regex-example1]:       ../../images/user-guides/rules/regex-rule-1.png
 [img-regex-example2]:       ../../images/user-guides/rules/regex-rule-2.png
@@ -6,42 +5,42 @@
 [request-processing]:       ../../user-guides/rules/request-processing.md
 [api-discovery-enable-link]:        ../../api-discovery/setup.md#enable
 
-# カスタム攻撃検出器
+# カスタム攻撃ディテクタ
 
-Wallarmは正規表現で記述された独自の攻撃サインを定義するための**Create regexp-based attack indicator**[rule](../../user-guides/rules/rules.md)を提供します。
+Wallarmは、正規表現で表現される独自の攻撃兆候を定義するための**Create regexp-based attack indicator**[ルール](../../user-guides/rules/rules.md)を提供します。
 
 ## ルールの作成と適用
 
-独自の攻撃検出器を設定して適用するには:
+独自の攻撃ディテクタを設定して適用するには:
 
 --8<-- "../include/rule-creation-initial-step.md"
 1. **Mitigation controls** → **Custom attack detector**を選択します。
-1. 「If request is」で[describe](rules.md#configuring)攻撃検出ルールの適用範囲を記述します。
-1. 攻撃インジケータのパラメータを設定します:
+1. **If request is**で、ルールを適用する対象を[記述](rules.md#configuring)します。
+1. 攻撃インジケーターのパラメータを設定します:
 
-    * **Regular expression** - 正規表現(シグネチャ)。以下のパラメータの値がこの正規表現に一致する場合、そのリクエストは攻撃として検出されます。正規表現の構文や特性については、[ルール追加の手順](rules.md#condition-type-regex)に記載されています。
+    * **Regular expression** - 正規表現（シグネチャ）です。以下のパラメータの値がこの式に一致する場合、そのリクエストは攻撃として検知されます。正規表現の構文と注意点は[ルール追加の手順](rules.md#condition-type-regex)で説明しています。
 
-        !!! warning "ルールで指定された正規表現の変更"
+        !!! warning "ルールで指定した正規表現の変更"
             既存の**Create regexp-based attack indicator**タイプのルールで指定された正規表現を変更すると、以前の正規表現を使用している[**Disable regexp-based attack detection**](#partial-disabling)ルールが自動的に削除されます。
 
-            新しい正規表現による攻撃検出を無効にするには、新たに正規表現を指定した**Disable regexp-based attack detection**ルールを作成してください。
+            新しい正規表現による攻撃検知を無効化するには、新しい正規表現を指定した**Disable regexp-based attack detection**ルールを新規作成してください。
 
-    * **Experimental** - このフラグは、リクエストをブロックせずに正規表現のトリガーを安全に確認できるようにします。フィルターノードがブロッキングモードに設定されている場合でもリクエストはブロックされません。これらのリクエストは実験的な手法で検出された攻撃とみなされ、デフォルトではイベントリストから非表示になります。検索クエリ`experimental attacks`を使用してアクセスできます。
+    * **Experimental** - このフラグを有効にすると、リクエストをブロックせずに正規表現の発火を安全に確認できます。フィルタノードがblockingモードに設定されている場合でも、これらのリクエストはブロックされません。これらのリクエストは実験的手法で検知された攻撃として扱われ、既定ではイベント一覧から非表示になります。検索クエリ`experimental attacks`で表示できます。
 
-    * **Attack** - リクエスト内のパラメータ値が正規表現に一致した場合に検出される攻撃の種類です。
+    * **Attack** - リクエスト内のパラメータ値が正規表現に一致したときに検知する攻撃の種類です。
 
-1. 「In this part of request」で、攻撃サインの検索対象となる[request parts](request-processing.md)を指定します。
-1. [rule compilation and uploading to the filtering node to complete](rules.md#ruleset-lifecycle)するまでお待ちください。
+1. **In this part of request**で、攻撃兆候を検索したい[リクエストの各部](request-processing.md)を指定します。
+1. [ルールのコンパイルとフィルタリングノードへのアップロード完了](rules.md#ruleset-lifecycle)を待ちます。
 
 ## ルール例
 
-### 誤った`X-AUTHENTICATION`ヘッダーを含むすべてのリクエストをブロック
+### 不正な`X-AUTHENTICATION`ヘッダーを含むすべてのリクエストをブロックする
 
 --8<-- "../include/waf/features/rules/rule-vpatch-regex.md"
 
-### `class.module.classLoader.*`のボディパラメータを含むすべてのリクエストをブロック
+### ボディパラメータに`class.module.classLoader.*`を含むすべてのリクエストをブロックする
 
-Spring Core Framework(https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/overview.html)（Spring4Shell）の0-day脆弱性を悪用する方法の一つは、以下のボディパラメータに特定の悪意のあるペイロードを注入したPOSTリクエストを送信することです:
+[Spring Core Framework](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/overview.html)（Spring4Shell）にはゼロデイ脆弱性があり、次のボディパラメータに悪意あるペイロードを注入したPOSTリクエストを送ることで悪用される可能性があります:
 
 * `class.module.classLoader.resources.context.parent.pipeline.first.pattern`
 * `class.module.classLoader.resources.context.parent.pipeline.first.suffix`
@@ -49,64 +48,63 @@ Spring Core Framework(https://docs.spring.io/spring-framework/docs/3.2.x/spring-
 * `class.module.classLoader.resources.context.parent.pipeline.first.prefix`
 * `class.module.classLoader.resources.context.parent.pipeline.first.fileDateFormat`
 
-脆弱なSpring Core Frameworkを使用しており、かつWallarmノードの[mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)がブロッキング以外の場合、仮パッチを使用して脆弱性の悪用を防ぐことができます。以下のルールは、モニタリングやSafe modeでも上記のボディパラメータを含むすべてのリクエストをブロックします:
+脆弱なSpring Core Frameworkを使用していて、Wallarm nodeの[mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)がblocking以外の場合は、バーチャルパッチを使用して脆弱性の悪用を防止できます。次のルールは、monitoringおよびsafe blockingモードでも、上記のボディパラメータを含むすべてのリクエストをブロックします:
 
-![Virtual patch for specific post params](../../images/user-guides/rules/regexp-rule-post-params-spring.png)
+![特定のPOSTパラメータ向けのバーチャルパッチ](../../images/user-guides/rules/regexp-rule-post-params-spring.png)
 
-正規表現フィールドの値は次の通りです:
+正規表現フィールドの値は次のとおりです:
 
 ```bash
 (class[.]module[.]classLoader[.]resources[.]context[.]parent[.]pipeline[.]first[.])(pattern|suffix|directory|prefix|fileDateFormat)
 ```
 
-ブロッキング[mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)で動作しているWallarmノードは、これらの脆弱性悪用試行をデフォルトでブロックします。
+Wallarm nodeがblocking[mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)で動作している場合、このような脆弱性の悪用試行は既定でブロックされます。
 
-Spring Cloud FunctionコンポーネントにもCVE-2022-22963の脆弱性が存在します。このコンポーネントを使用しており、かつWallarmノードのmodeがブロッキングではない場合、下記[説明](#block-all-requests-with-class-cloud-function-routing-expression-header)に従って仮パッチを作成してください。
+Spring Cloud Functionコンポーネントにも既知の脆弱性（CVE-2022-22963）があります。このコンポーネントを使用していてWallarm nodeのmodeがblocking以外の場合は、[以下](#block-all-requests-with-class-cloud-function-routing-expression-header)のとおりバーチャルパッチを作成してください。
 
-### `CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION`ヘッダーを含むすべてのリクエストをブロック
+### `CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION`ヘッダーを含むすべてのリクエストをブロックする
 
-Spring Cloud FunctionコンポーネントにはCVE-2022-22963の脆弱性が存在し、`CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION`または`CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION`ヘッダーに悪意のあるペイロードを注入することで悪用される可能性があります。
+Spring Cloud Functionコンポーネントには既知の脆弱性（CVE-2022-22963）があり、`CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION`または`CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION`ヘッダーに悪意あるペイロードを注入することで悪用される可能性があります。
 
-このコンポーネントを使用しており、かつWallarmノードの[mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)がブロッキング以外の場合、仮パッチを使用して脆弱性の悪用を防ぐことができます。以下のルールは、`CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION`ヘッダーを含むすべてのリクエストをブロックします:
+このコンポーネントを使用していてWallarm nodeの[mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)がblocking以外の場合は、バーチャルパッチで悪用を防止できます。次のルールは、`CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION`ヘッダーを含むすべてのリクエストをブロックします:
 
-![Virtual patch for specific header](../../images/user-guides/rules/regexp-rule-header-spring.png)
+![特定のヘッダー向けのバーチャルパッチ](../../images/user-guides/rules/regexp-rule-header-spring.png)
 
-!!! info " `CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION` ヘッダーを持つリクエストのブロック"
-    このルールは`CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION`ヘッダーを持つリクエスト自体をブロックしませんが、NGINXはデフォルトでこのヘッダーを含むリクエストを無効として破棄します。
+!!! info "`CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION`ヘッダーを持つリクエストのブロックについて"
+    このルールは`CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION`ヘッダーを持つリクエストをブロックしませんが、NGINXは既定でこのヘッダーを持つリクエストを無効なものとして破棄します。
 
-ブロッキング[mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)で動作しているWallarmノードは、これらの脆弱性悪用試行をデフォルトでブロックします。
+Wallarm nodeがblocking[mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)で動作している場合、このような脆弱性の悪用試行は既定でブロックされます。
 
-また、[Spring Core Framework](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/overview.html)（Spring4Shell）にも0-day脆弱性が存在します。[reqexp-based virtual patch](#block-all-requests-with-classmoduleclassloader-body-parameters)を使用してその悪用試行をブロックする方法を学んでください。
+[Spring Core Framework](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/overview.html)（Spring4Shell）にもゼロデイ脆弱性があります。[正規表現ベースのバーチャルパッチ](#block-all-requests-with-classmoduleclassloader-body-parameters)でその悪用試行をブロックする方法をご確認ください。
 
 ## 部分的な無効化
 
-作成したルールを特定のブランチに対して部分的に無効化する場合は、以下のフィールドを使用して**Disable regexp-based attack detection**ルールを作成することで容易に実現できます。
+作成したルールを特定のブランチで部分的に無効化する必要がある場合は、次のフィールドで**Disable regexp-based attack detection**ルールを作成することで簡単に実現できます:
 
-- **Regular expression**: 以前に作成された、無視すべき正規表現。
+- **Regular expression**: 無視する必要がある既存の正規表現を選択します。
 
-    !!! warning "正規表現が変更された場合のルールの動作"
+    !!! warning "正規表現を変更した場合のルールの挙動"
         既存の[**Create regexp-based attack indicator**](#creating-and-applying-rule)タイプのルールで指定された正規表現を変更すると、以前の正規表現を使用している**Disable regexp-based attack detection**ルールが自動的に削除されます。
 
-        新しい正規表現による攻撃検出を無効化するには、新たに正規表現を指定した**Disable regexp-based attack detection**ルールを作成してください。
+        新しい正規表現による攻撃検知を無効化するには、新しい正規表現を指定した**Disable regexp-based attack detection**ルールを新規作成してください。
 
-- **in this part of request**: 例外設定が必要なパラメータを示します。
+- **in this part of request**: 例外を設定する必要があるパラメータを指定します。
 
-**例: 指定されたURLに対して誤った X-AUTHENTICATION ヘッダーを許可する**
+**例: 指定したURLに対して不正なX-Authenticationヘッダーを許可する**
 
-例えば、`example.com/test.php`にスクリプトがあり、そのトークンの形式を変更したいとします。
+`example.com/test.php`でスクリプトを運用していて、そのトークン形式を変更したいとします。
 
-該当ルールを作成するには:
+該当のルールを作成するには:
 
-1. **Rules**タブに移動します。
-2. `example.com/test.php`のブランチを見つけるか新規作成し、**Add rule**をクリックします。
-3. **Fine-tuning attack detection** → **Disable custom attack detector**を選択します。
-4. 無効にする正規表現を選択します。
-5. `Header X-AUTHENTICATION`を指定します。
-6. **Create**をクリックします。
+1. **Rules** tabに移動します。
+1. `example.com/test.php`のブランチを探すか作成し、**Add rule**をクリックします。
+1. **Fine-tuning attack detection** → **Disable custom attack detector**を選択します。
+1. 無効化したい正規表現を選択します。
+1. 項目を`Header X-AUTHENTICATION`に設定します。
+1. **Create**をクリックします。
 
-![Regex rule second example][img-regex-example2]
+![正規表現ルールの2番目の例][img-regex-example2]
 
-## ルール作成のAPI呼び出し
+## ルールを作成するAPI呼び出し
 
-正規表現ベースの攻撃検出指標を作成するには、[Wallarm APIを直接呼び出す](../../api/request-examples.md#create-a-rule-to-consider-the-requests-with-specific-value-of-the-x-forwarded-for-header-as-attacks)ことができます。
-```
+正規表現ベースの攻撃インジケーターを作成するには、[Wallarm APIを直接呼び出す](../../api/request-examples.md#create-a-rule-to-consider-the-requests-with-specific-value-of-the-x-forwarded-for-header-as-attacks)ことができます。

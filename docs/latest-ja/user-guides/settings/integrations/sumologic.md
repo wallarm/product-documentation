@@ -1,54 +1,54 @@
 # Sumo Logic
 
-[Sumo Logic](https://www.sumologic.com/) はクラウドネイティブなマシンデータ分析プラットフォームで、組織にIT運用、セキュリティ、アプリケーションパフォーマンスに関するリアルタイムの洞察を提供します。Wallarmを設定して、Sumo Logicにメッセージを送ることができます。
+[Sumo Logic](https://www.sumologic.com/)は、IT運用、セキュリティ、アプリケーションパフォーマンスに関するリアルタイムの洞察を組織に提供するクラウドネイティブなマシンデータ分析プラットフォームです。WallarmからSumo Logicへメッセージを送信するように設定できます。
 
-## 統合の設定
+## インテグレーションの設定
 
-Sumo Logic UIで:
+Sumo LogicのUIで：
 
-1. [手順](https://help.sumologic.com/03Send-Data/Hosted-Collectors/Configure-a-Hosted-Collector) に従ってHosted Collectorを構成します。
-2. [手順](https://help.sumologic.com/03Send-Data/Sources/02Sources-for-Hosted-Collectors/HTTP-Source) に従ってHTTP Logs & Metrics Sourceを構成します。
-3. 提供された **HTTP Source Address (URL)** をコピーします。
+1. [手順](https://help.sumologic.com/03Send-Data/Hosted-Collectors/Configure-a-Hosted-Collector)に従ってHosted Collectorを構成します。
+2. [手順](https://help.sumologic.com/03Send-Data/Sources/02Sources-for-Hosted-Collectors/HTTP-Source)に従ってHTTP Logs & Metrics Sourceを構成します。
+3. 表示された**HTTP Source Address (URL)**をコピーします。
 
-Wallarm UIで:
+WallarmのUIで：
 
-1. **Integrations** セクションを開きます。
-2. **Sumo Logic** ブロックをクリックするか、**Add integration** ボタンをクリックして **Sumo Logic** を選択します。
-3. 統合名を入力します。
-4. コピーしたHTTP Source Address (URL) の値を**HTTP Source Address (URL)** フィールドに貼り付けます。
-5. 通知をトリガーするイベントタイプを選択します。
+1. 「**Integrations**」セクションを開きます。
+1. 「**Sumo Logic**」ブロックをクリックするか、「**Add integration**」ボタンをクリックして**Sumo Logic**を選択します。
+1. インテグレーション名を入力します。
+1. コピーしたHTTP Source Address (URL)の値を**HTTP Source Address (URL)**フィールドに貼り付けます。
+1. 通知をトリガーするイベントタイプを選択します。
 
-    ![Sumo Logic integration](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
+    ![Sumo Logicインテグレーション](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
 
-    利用可能なイベントの詳細:
+    利用可能なイベントの詳細：
 
     --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-6. **Test integration** をクリックして、構成の正確性、Wallarm Cloudの利用可能性、通知フォーマットを確認します。
+1. 構成が正しいか、Wallarm Cloudの可用性、および通知形式を確認するには、**Test integration**をクリックします。
 
-    Sumologic通知のテスト:
+    Sumo Logic通知のテスト：
 
     ```json
     {
-        summary:"[テストメッセージ] [Test partner(US)] 新たな脆弱性が検出されました",
-        description:"通知タイプ: vuln
+        summary:"[Test message] [Test partner(US)] New vulnerability detected",
+        description:"Notification type: vuln
 
-                    システムで新たな脆弱性が検出されました。
+                    New vulnerability was detected in your system.
 
                     ID: 
-                    タイトル: テスト
-                    ドメイン: example.com
-                    パス: 
-                    メソッド: 
-                    検出者: 
-                    パラメータ: 
-                    タイプ: 情報
-                    脅威: 中
+                    Title: Test
+                    Domain: example.com
+                    Path: 
+                    Method: 
+                    Discovered by: 
+                    Parameter: 
+                    Type: Info
+                    Threat: Medium
 
-                    詳細: https://us1.my.wallarm.com/object/555
+                    More details: https://us1.my.wallarm.com/object/555
 
 
-                    クライアント: TestCompany
+                    Client: TestCompany
                     Cloud: US
                     ",
         details:{
@@ -62,27 +62,27 @@ Wallarm UIで:
                 method:null,
                 parameter:null,
                 path:null,
-                title:"テスト",
+                title:"Test",
                 discovered_by:null,
-                threat:"中",
-                type:"情報"
+                threat:"Medium",
+                type:"Info"
             }
         }
     }
     ```
 
-7. **Add integration** をクリックします。
+1. **Add integration**をクリックします。
 
 --8<-- "../include/cloud-ip-by-request.md"
 
-## 追加のアラートの設定
+## 追加アラートの設定
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
 
-## 統合の無効化と削除
+## インテグレーションの無効化と削除
 
 --8<-- "../include/integrations/integrations-disable-delete.md"
 
-## システムの利用不可および統合パラメータの不正
+## システムの利用不可とインテグレーションパラメータの誤り
 
 --8<-- "../include/integrations/integration-not-working.md"

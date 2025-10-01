@@ -1,0 +1,1 @@
+--8<-- "latest-ja/installation/cloud-platforms/aws/costs.md"

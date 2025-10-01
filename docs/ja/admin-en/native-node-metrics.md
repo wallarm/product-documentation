@@ -1,0 +1,1 @@
+--8<-- "latest-ja/admin-en/native-node-metrics.md"
