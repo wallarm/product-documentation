@@ -1,0 +1,1 @@
+--8<-- "latest-ja/installation/security-edge/inline/upgrade-and-management.md"

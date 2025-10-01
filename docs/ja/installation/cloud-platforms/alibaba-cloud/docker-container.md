@@ -18,5 +18,7 @@
 [api-discovery-docs]:               ../../../api-discovery/overview.md
 [sensitive-data-rule]:              ../../../user-guides/rules/sensitive-data-rule.md
 [apid-only-mode-details]:           ../../../installation/nginx/all-in-one.md#api-discovery-only-mode
+[what-is-new-wstore]:            ../../../updating-migrating/what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics
+[link-docs-check-operation]:        ../../../admin-en/uat-checklist-en.md
 
 --8<-- "latest-ja/installation/cloud-platforms/alibaba-cloud/docker-container.md"

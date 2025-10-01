@@ -247,7 +247,7 @@ Wallarmは新しい攻撃タイプを検出します:
 
 セッションにセンシティブなビジネスフロータグが付与されると、特定のビジネスフローでフィルタリングできるようになり、分析対象として最も重要なセッションを絞り込みやすくなります。
 
-![!API Sessions - センシティブなビジネスフロー](../../api-sessions/api-sessions-sbf-no-select.png)
+![!API Sessions - センシティブなビジネスフロー](../../images/api-sessions/api-sessions-sbf-no-select.png)
 
 ## フル機能のGraphQLパーサー
 

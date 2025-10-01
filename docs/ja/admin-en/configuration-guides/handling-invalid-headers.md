@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configuration-guides/handling-invalid-headers.md"
+--8<-- "latest-ja/admin-en/configuration-guides/handling-invalid-headers.md"

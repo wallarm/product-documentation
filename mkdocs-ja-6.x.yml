@@ -54,6 +54,7 @@ nav:
       - 概要: api-sessions/overview.md
       - セットアップ: api-sessions/setup.md
       - 探索: api-sessions/exploring.md
+      - ブロッキング: api-sessions/blocking.md
     - レポート: user-guides/search-and-filters/custom-report.md
   - API 保護:
     - 概要: about-wallarm/api-protection-overview.md
@@ -115,6 +116,7 @@ nav:
       - ルール: user-guides/rules/rules.md
       - トリガー: user-guides/triggers/triggers.md
   - セキュリティテスト:
+    - 概要: vulnerability-detection/security-testing-overview.md
     - 脅威リプレイ:
       - 概要: vulnerability-detection/threat-replay-testing/overview.md
       - セットアップ: vulnerability-detection/threat-replay-testing/setup.md
@@ -270,6 +272,7 @@ nav:
     - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
     - Fastly: installation/connectors/fastly.md
     - IBM API Connect: installation/connectors/ibm-api-connect.md
+    - Azure API Management: installation/connectors/azure-api-management.md
     - コードバンドルの変更履歴: installation/connectors/code-bundle-inventory.md
   - 連携とアラート:
     - 概要: user-guides/settings/integrations/integrations-intro.md 
