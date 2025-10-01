@@ -1,1 +1,0 @@
---8<-- "5.0/attacks-vulns-list.md"

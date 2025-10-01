@@ -41,7 +41,7 @@ helm repo update wallarm
 
 ## バージョン4.10.6または4.10.x以前からのアップグレード
 
-[リリース 4.10.7](/4.10/updating-migrating/node-artifact-versions/#helm-chart-for-sidecar)では互換性に破壊的な変更が導入されたため、ソリューションの再インストールが必要となります。admission webhook証明書の生成デフォルト方式は[`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen)プロセスに置き換えられました。アップグレード中に、新しい`certgen`プロセスにより証明書が自動生成されます。
+リリース 4.10.7では互換性に破壊的な変更が導入されたため、ソリューションの再インストールが必要となります。admission webhook証明書の生成デフォルト方式は[`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen)プロセスに置き換えられました。アップグレード中に、新しい`certgen`プロセスにより証明書が自動生成されます。
 
 さらに、本リリースでは[`cert-manager`を使用してadmission webhook証明書を提供するか、証明書を手動で指定する](../installation/kubernetes/sidecar-proxy/customization.md#certificates-for-the-admission-webhook)ことが可能です。
 

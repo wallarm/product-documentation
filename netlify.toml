@@ -5,7 +5,6 @@ pip3 install --no-cache-dir -r requirements.txt &&
 npm install pngquant &&
 INSIDERS=true mkdocs build -f mkdocs-6.x.yml &&
 INSIDERS=true mkdocs build -f mkdocs-5.0.yml &&
-INSIDERS=true mkdocs build -f mkdocs-4.10.yml &&
 INSIDERS=true mkdocs build -f mkdocs-deprecated.yml &&
 INSIDERS=true mkdocs build -f mkdocs-ja-4.8.yml &&
 INSIDERS=true mkdocs build -f mkdocs-tr-4.8.yml &&

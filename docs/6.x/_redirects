@@ -885,3 +885,27 @@
 /tr/vulnerability-detection/api-test-patrol/* /tr/vulnerability-detection/schema-based-testing/:splat
 /pt-br/vulnerability-detection/api-test-patrol/* /pt-br/vulnerability-detection/schema-based-testing/:splat
 /ar/vulnerability-detection/api-test-patrol/* /ar/vulnerability-detection/schema-based-testing/:splat
+
+/4.8/* /4.10
+
+/4.10/admin-en/* /4.10
+/4.10/installation/* /4.10
+/4.10/quickstart/* /4.10
+/4.10/updating-migrating/* /4.10
+/4.10/user-guides/* /4.10
+/4.10/about-wallarm/* /4.10
+/4.10/attacks-vulns-list/ /4.10
+/4.10/glossary-en/ /4.10
+/4.10/api/* /4.10
+/4.10/api-abuse-prevention/* /4.10
+/4.10/api-discovery/* /4.10
+/4.10/api-protection/* /4.10
+/4.10/api-specification-enforcement/* /4.10
+/4.10/demo-videos/* /4.10
+/4.10/faq/* /4.10
+/4.10/fast/* /4.10
+/4.10/integrations-devsecops/* /4.10
+/4.10/vulnerability-detection/* /4.10
+/4.10/api-sessions/ /4.10
+/4.10/news/ /4.10
+/4.10/api-attack-surface/ /4.10

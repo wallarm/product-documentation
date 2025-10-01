@@ -1,1 +1,0 @@
---8<-- "5.0/user-guides/dashboards/owasp-api-top-ten.md"

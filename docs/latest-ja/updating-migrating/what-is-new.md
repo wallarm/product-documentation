@@ -127,7 +127,7 @@ NGINXから独立して動作するWallarm Node向けの新たなデプロイメ
 
 テクノロジースタックの変更に伴い、NGINX Nodeアーティファクトのファイルシステムは以下のように変更されました：
 
-* ログファイルシステム：以前は、各専用スクリプトごとに複数のファイルにログが記録されていました。現在、ほぼすべてのサービスのログは単一の専用ファイル`wcli-out.log`に記録されます。過去のログファイルの一覧は[こちら](/4.10/admin-en/configure-logging/)、現在のログファイルは[こちら](../admin-en/configure-logging.md)で確認できます。
+* ログファイルシステム：以前は、各専用スクリプトごとに複数のファイルにログが記録されていました。現在、ほぼすべてのサービスのログは単一の専用ファイル`wcli-out.log`に記録されます。過去のログファイルの一覧はこちら、現在のログファイルは[こちら](../admin-en/configure-logging.md)で確認できます。
 * 診断スクリプトのパス変更：`/opt/wallarm/usr/share/wallarm-common/collect-info.sh`ファイルは`/opt/wallarm/collect-info.sh`に移動されました。
 
 ### さらなる機能の導入

@@ -1,1 +1,0 @@
---8<-- "latest/user-guides/settings/integrations/amazon-s3.md"

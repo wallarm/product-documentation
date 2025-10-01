@@ -128,7 +128,7 @@ Belirli ölçümler açısından, Wallarm postanalytics modülünde aşağıdaki
 
 Teknoloji yığını değişiklikleri ile birlikte, NGINX Node artifact'larının dosya sistemi aşağıdaki şekilde değiştirilmiştir:
 
-* Log dosya sistemi: Önceden, loglar her biri belirli bir betik için ayrı dosyalarda kaydediliyordu. Artık, neredeyse tüm servislerden gelen loglar, `wcli-out.log` adlı tek bir dosyada kaydedilmektedir. [Önceki log dosyaları](/4.10/admin-en/configure-logging/) ve [mevcut olan](../admin-en/configure-logging.md) listesini inceleyebilirsiniz.
+* Log dosya sistemi: Önceden, loglar her biri belirli bir betik için ayrı dosyalarda kaydediliyordu. Artık, neredeyse tüm servislerden gelen loglar, `wcli-out.log` adlı tek bir dosyada kaydedilmektedir.
 * Tanılama betiği yolu değişikliği: `/opt/wallarm/usr/share/wallarm-common/collect-info.sh` dosyası `/opt/wallarm/collect-info.sh` yoluna taşınmıştır.
 
 ### Ek Özellik Tanıtımları
