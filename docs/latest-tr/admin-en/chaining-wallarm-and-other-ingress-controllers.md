@@ -103,7 +103,7 @@ Wallarm Ingress denetleyicisini dağıtmak ve ek denetleyicilerle zincirlemek i�
     Daha fazla yapılandırma seçeneği için lütfen şu [bağlantıyı](configure-kubernetes-en.md) kullanın.
 1. Wallarm Ingress Helm chart’ını yükleyin:
     ``` bash
-    helm install --version 6.5.1 internal-ingress wallarm/wallarm-ingress -n wallarm-ingress -f values.yaml --create-namespace
+    helm install --version 6.6.0 internal-ingress wallarm/wallarm-ingress -n wallarm-ingress -f values.yaml --create-namespace
     ```
 
     * `internal-ingress`, Helm sürümünün adıdır
