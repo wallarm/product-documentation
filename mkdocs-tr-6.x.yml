@@ -296,6 +296,7 @@ nav:
       - Fluentd: user-guides/settings/integrations/fluentd.md
       - Logstash: user-guides/settings/integrations/logstash.md
       - Amazon S3: user-guides/settings/integrations/amazon-s3.md
+      - MinIO: user-guides/settings/integrations/minio.md
     - Veri Toplayıcılar Üzerinden Entegrasyonlar:
       - Fluentd ile IBM QRadar: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
       - Logstash ile IBM QRadar: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
