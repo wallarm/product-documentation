@@ -1,4 +1,4 @@
-# Configuring synchronization between Wallarm node and Cloud
+# Configuring Synchronization between Wallarm Node and Cloud
 
 The filtering node regularly synchronizes with the Wallarm Cloud to:
 
@@ -52,3 +52,11 @@ To change the interval between filtering node and Wallarm Cloud synchronizations
 ## Configuration example
 
 --8<-- "../include/node-cloud-sync-configuration-example-5.x.md"
+
+## Troubleshooting
+
+Troubles with synchronization between Wallarm Node and Cloud are visible from [Wallarm logs](../admin-en/configure-logging.md) and are also generally reported by [OWASP API 2023 Dashboard](../user-guides/dashboards/owasp-api-top-ten.md) in the **API8:2023 Security Misconfiguration** section.
+
+![OWASP dash with node issues](../images/user-guides/dashboard/owasp-dashboard-node-issues.png)
+
+See details on troubleshooting synchronization issues [here](../faq/node-issues-on-owasp-dashboards.md#wallarm-node-and-cloud-have-synchronization-issues).

@@ -1,6 +1,6 @@
 # Addressing Wallarm Node Issues Alerted by OWASP Dashboard
 
-When Wallarm nodes are not updated or face synchronization issues with the Cloud, error messages appear on the [OWASP dashboard](../user-guides/dashboards/owasp-api-top-ten.md) indicating problems that can impact infrastructure security. This article describes how to address these issues.
+When Wallarm nodes are not updated or face synchronization issues with the Cloud, error messages appear on the [OWASP dashboard](../user-guides/dashboards/owasp-api-top-ten.md) in the **API8:2023 Security Misconfiguration** section indicating problems that can impact infrastructure security. This article describes how to address these issues.
 
 ## Wallarm node is outdated
 
