@@ -9,7 +9,7 @@ When the Security Edge Inline Node blocks a malicious request, it can return a s
 
 The styled block page provides a user-friendly notice that the request was blocked:
 
-![Wallarm block page](../../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+![Wallarm block page](../../../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
 
 ## Enabling the custom block page
 
