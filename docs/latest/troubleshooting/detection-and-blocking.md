@@ -110,7 +110,7 @@ To resolve the issue of a legitimate request being blocked by Wallarm, follow th
 
     * Information provided by the Wallarm [blocking page](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) if it is configured (may include user’s IP address, request UUID and other pre-configured elements).
 
-        ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+        ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
 
         !!! warning "Blocking page usage"
             If you do not use the default or customized Wallarm blocking page, it is highly recommended to [configure](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) it to get the appropriate info from user. Remember that even a sample page collects and allows easy copying of meaningful information related to the blocked request. Additionally, you can customize or fully rebuild such page to return users the informative blocking message.

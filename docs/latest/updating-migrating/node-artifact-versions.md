@@ -17,6 +17,14 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.6.0 (TBD)
+
+* Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
+* Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
+* Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
+
+    ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
+
 ### 6.5.1 (2025-09-09)
 
 * Added support for [blocking attackers by API sessions](../api-sessions/blocking.md)
@@ -94,6 +102,14 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](ingress-controller.md)
 
+### 6.6.0 (TBD)
+
+* Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
+* Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
+* Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
+
+    ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
+
 ### 6.5.1 (2025-09-09)
 
 * Added support for [blocking attackers by API sessions](../api-sessions/blocking.md)
@@ -160,6 +176,14 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.6.0 (TBD)
+
+* Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
+* Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
+* Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
+
+    ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
+
 ### 6.5.1 (2025-09-09)
 
 * Added support for [blocking attackers by API sessions](../api-sessions/blocking.md)
@@ -212,6 +236,21 @@ new attack types in logging variables and search bars?
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.6.0 (TBD)
+
+* Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
+* Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
+* Fixed an issue where Docker container logs showed a false error about inability to connect to port 3313 when `upstream wallarm_wstore` was configured with `localhost` instead of `127.0.0.1`
+
+    False error example:
+
+    ```
+    2025/09/11 15:49:07 [error] 33#33: wallarm: [::1]:3313 connect() failed 21
+    ```
+* Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
+
+    ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
 
 ### 6.5.1 (2025-09-09)
 
@@ -273,6 +312,14 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
+### 6.6.0 (TBD)
+
+* Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
+* Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
+* Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
+
+    ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
+
 ### 6.5.1 (2025-09-09)
 
 * Added support for [blocking attackers by API sessions](../api-sessions/blocking.md)
@@ -321,6 +368,14 @@ new attack types in logging variables and search bars?
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### 6.6.0 (TBD)
+
+* Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
+* Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
+* Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
+
+    ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
 
 ### wallarm-node-6-5-1-20250908-174655 (2025-09-09)
 
