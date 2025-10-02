@@ -23,9 +23,6 @@ If you need assistance in resolving synchronization or other issues or any other
 
 The important files to be updated during Cloud-node synchronization, are [`custom_ruleset`](../user-guides/rules/rules.md#ruleset-lifecycle) and [`proton.db`](../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors). Search for them in your OS, they can be located in `/opt/wallarm/etc/wallarm` or another folder depending on the self-hosted node [installation method](../installation/supported-deployment-options.md).
 
-!!! info "Custom folder location"
-    Location of the folder with this files can be set to custom value with the [`wallarm_cache_path`](../admin-en/configure-parameters-en.md#wallarm_cache_path) NGINX directive.
-
 ```
 -rw-r--r--    1 wallarm  wallarm      93774 Aug 20 07:40 custom_ruleset
 -rw-r--r--    1 wallarm  wallarm        406 Jul 29 20:09 libproton.json

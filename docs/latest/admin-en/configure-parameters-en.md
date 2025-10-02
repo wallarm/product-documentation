@@ -180,8 +180,6 @@ A directory in which the backup catalog for the proton.db and custom ruleset fil
 !!! info
     This parameter is configured inside the http block only.
 
-    **Default value**: depends on the [installation method](../installation/supported-deployment-options.md).
-
 ### wallarm_custom_ruleset_path
 
 A path to the [custom ruleset](../user-guides/rules/rules.md) file that contains information on the protected application and the filtering node settings.
