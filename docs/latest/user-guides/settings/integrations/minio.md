@@ -40,7 +40,7 @@ To set up a MinIO S3-compatible bucket integration:
     * Access key
     * Secret key
 1. Make sure in the **Regular notifications** section, hits in the last 10 minutes are selected to be sent. If not chosen, data will not be sent to the bucket.
-1. Click **Test integration** to check configuration correctness, availability of the integrated system, and the notification format.
+1. Click **Test integration** to check configuration correctness, availability of the target system, and the notification format.
 
     Here is the example of the JSON file with the data on hits detected in the last 10 minutes:
 
