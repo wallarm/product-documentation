@@ -20,6 +20,7 @@ With Security Edge Inline, your API traffic is routed through Wallarm's globally
 * Real-time inspection and filtering: the inline Node analyzes incoming requests and blocks malicious ones before forwarding legitimate traffic to your origin servers.
 * Multi-cloud and multi-region: you can deploy inline Nodes across different cloud regions for high availability and geo-redundancy.
 * Automatic scaling and updates: Wallarm handles Node scaling, updates, and maintenance - no action required on your side.
+* Access control lists (ACLs): you can define which IP addresses can access specific hosts and locations of your API.
 
 ## Limitations
 
