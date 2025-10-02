@@ -46,7 +46,7 @@ Wallarm does not block requests with compromised credentials to avoid blocking l
 To enable Wallarm's **Credential Stuffing Detection**:
 
 1. Make sure your [subscription plan](../about-wallarm/subscription-plans.md#core-subscription-plans) includes **Credential Stuffing Detection**. To change the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com?subject=Change%20Wallarm%20subscription%20plan%20to%20include%20Credential%20Stuffing%20Detection&body=Hello%20Wallarm%20Sales%20Team%2C%0AI%27m%20writing%20to%20request%20the%20change%20of%20Wallarm%20subscription%20plan%20to%20the%20one%20that%20includes%20the%20Credential%20Stuffing%20Detection.%0AThank%20you%20for%20your%20time%20and%20assistance.).
-1. Ensure your Wallarm node is [version 4.10](../updating-migrating/what-is-new.md) or higher, deployed using one of the specified artifacts:
+1. Ensure your Wallarm node is version 4.10.3 or higher, deployed using one of the specified artifacts:
 
     * [All-in-one installer](../installation/nginx/all-in-one.md)
     * [Helm chart for NGINX-based Ingress controller](../admin-en/installation-kubernetes-en.md)
@@ -54,9 +54,7 @@ To enable Wallarm's **Credential Stuffing Detection**:
     * [Amazon Machine Image (AMI)](../installation/cloud-platforms/aws/ami.md)
     * [Google Cloud Machine Image](../installation/cloud-platforms/gcp/machine-image.md)
 1. Check that your user's [role](../user-guides/settings/users.md#user-roles) allows configuring **Credential Stuffing Detection**.
-1. In Wallarm Console → **Credential Stuffing**, enable the functionality (disabled by default).
-
-Once **Credential Stuffing Detection** is enabled, a [configuration](#configuring) is needed for it to start working.
+1. In Wallarm Console → **Credential Stuffing**, [add and turn on](#configuring) at least one rule to the **Authentication endpoints** list.
 
 ## Configuring
 
@@ -83,6 +81,8 @@ There are two ways of adding endpoints to the list:
     * By **Regular expression** - endpoint parameters with password and login will be searched using [regular expression](../user-guides/rules/rules.md#condition-type-regex).
     
         ![Credential Stuffing - Add authentication endpoint - Regular expression](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-add-endpoint-regexp.png)
+
+On adding the new rule, it is turned on automatically. Use **on/off** switcher to temporarily change the state of any added rule. Disabling or deleting all rules from the **Authentication endpoints** list stops credential stuffing detection.
 
 ## Viewing compromised credentials usage attempts
 
