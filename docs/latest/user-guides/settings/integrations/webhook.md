@@ -206,7 +206,7 @@ Notifications are sent in either JSON Array or New Line Delimited JSON (NDJSON) 
 
     --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format. Test notifications are always sent in the JSON Array format, even if New Line Delimited JSON (NDJSON) is chosen.
+1. Click **Test integration** to check configuration correctness, availability of the target system, and the notification format. Test notifications are always sent in the JSON Array format, even if New Line Delimited JSON (NDJSON) is chosen.
 1. Click **Add integration**.
 
 --8<-- "../include/cloud-ip-by-request.md"

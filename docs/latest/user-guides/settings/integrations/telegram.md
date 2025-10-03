@@ -24,7 +24,7 @@ Scheduled reports can be sent on a daily, weekly, or monthly basis. Reports incl
 
 1. Click **Add integration**.
 1. Re-open the created integration card.
-1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format.
+1. Click **Test integration** to check configuration correctness, availability of the target system, and the notification format.
 
     This will send the test notifications with the prefix `[Test message]`:
 

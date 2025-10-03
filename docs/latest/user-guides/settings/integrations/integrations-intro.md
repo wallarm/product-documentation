@@ -148,6 +148,11 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
             <h3>AWS S3</h3>
             <p>Set up Wallarm to send files with the information about detected hits to your Amazon S3 bucket</p>
         </a>
+        <a class="do-card" href="../minio/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/minio.svg" />
+            <h3>MinIO</h3>
+            <p>Set up Wallarm to export the data on detected malicious traffic to your MinIO S3-compatible bucket</p>
+        </a>
     </div>
     <div class="do-nested" data-for="fluentd">
         <div class="do-card">

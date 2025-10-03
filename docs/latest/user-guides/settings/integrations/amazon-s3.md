@@ -85,7 +85,7 @@ To set up an Amazon S3 integration:
 
 1. Select the format for Wallarm data: either a JSON Array or a New Line Delimited JSON (NDJSON).
 1. Make sure in the **Regular notifications** section, hits in the last 10 minutes are selected to be sent. If not chosen, data will not be sent to S3 bucket.
-1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format.
+1. Click **Test integration** to check configuration correctness, availability of the target system, and the notification format.
 
     For Amazon S3, integration test sends the JSON file with data into your bucket. Here is the example of the JSON file with the data on hits detected in the last 10 minutes:
 

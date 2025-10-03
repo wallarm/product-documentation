@@ -105,7 +105,7 @@ You will find more details in the [official Fluentd documentation](https://docs.
 
     --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format.
+1. Click **Test integration** to check configuration correctness, availability of the target system, and the notification format.
 
     The test Fluentd log:
 

@@ -22,7 +22,7 @@ In Wallarm UI:
 
     ![Jira integration](../../../images/user-guides/settings/integrations/add-jira-integration.png)
 
-1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format.
+1. Click **Test integration** to check configuration correctness, availability of the target system, and the notification format.
 
     Test Jira issue creation:
 
