@@ -22,11 +22,11 @@ new attack types in logging variables and search bars?
 * Added support for [blocking attackers by API sessions](../api-sessions/blocking.md)
 * Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 * Bumped Go version to 1.24
-* Fixed the behavior of the `wallarm_wstore_throttle_mode` Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
+* Fixed the behavior of the [`wallarm_wstore_throttle_mode`](../admin-en/wstore-metrics.md#wallarm_wstore_throttle_mode) Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
 
 ### 6.4.1 (2025-08-07)
 
-* Added Prometheus metrics support for API Specification Enforcement service operation (based on the built-in API Firewall service):
+* Added [Prometheus metrics support](../admin-en/apifw-metrics.md) for API Specification Enforcement service operation (based on the built-in API Firewall service):
 
     * Enable with `APIFW_METRICS_ENABLED=true` in `/opt/wallarm/env.list`
     * Default endpoint: `:9010/metrics`
@@ -62,7 +62,7 @@ new attack types in logging variables and search bars?
 * Added the `streams` and `messages` parameters to the [`/wallarm-status` service](../admin-en/configure-statistics-service.md) output to report the number of processed gRPC/WebSocket streams and messages
 * Introduced the [`wallarm_max_request_body_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_body_size) NGINX directive to control the maximum size of an HTTP request body analyzed by the Node
 * Added support for [SSL/TLS and mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module) between the NGINX-Wallarm module and the postanalytics module when they are installed separately
-* Fixed wstore ports binding: now bound to `127.0.0.1` instead of `0.0.0.0`
+* Fixed [wstore](../admin-en/wstore-metrics.md#metrics-endpoint) ports binding: now bound to `127.0.0.1` instead of `0.0.0.0`
 * Minor bug fixes
 
 ### 6.1.0 (2025-05-09)
@@ -97,12 +97,12 @@ new attack types in logging variables and search bars?
 ### 6.5.1 (2025-09-09)
 
 * Added support for [blocking attackers by API sessions](../api-sessions/blocking.md)
-* Added Prometheus metrics support for API Specification Enforcement service operation (based on the built-in API Firewall service)
+* Added [Prometheus metrics support](../admin-en/apifw-metrics.md) for API Specification Enforcement service operation (based on the built-in API Firewall service)
 
     Metrics are disabled by default and can be enabled through the new [`controller.wallarm.apiFirewall.metrics.*`](../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewallmetrics) values.
 * Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 * Bumped Go version to 1.24
-* Fixed the behavior of the `wallarm_wstore_throttle_mode` Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
+* Fixed the behavior of the [`wallarm_wstore_throttle_mode`](../admin-en/wstore-metrics.md#wallarm_wstore_throttle_mode) Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
 * Upgraded to Community Ingress NGINX Controller version 1.11.8, aligning with the upstream Helm chart version 4.11.8 and Alpine version 3.22.0
 * Fixed the [CVE-2025-5399](https://nvd.nist.gov/vuln/detail/CVE-2025-5399) and [CVE-2025-22872](https://nvd.nist.gov/vuln/detail/CVE-2025-22872) vulnerabilities due to the upstream upgrade
 
@@ -163,12 +163,12 @@ new attack types in logging variables and search bars?
 ### 6.5.1 (2025-09-09)
 
 * Added support for [blocking attackers by API sessions](../api-sessions/blocking.md)
-* Added Prometheus metrics support for API Specification Enforcement service operation (based on the built-in API Firewall service)
+* Added [Prometheus metrics support](../admin-en/apifw-metrics.md) for API Specification Enforcement service operation (based on the built-in API Firewall service)
 
     Metrics are disabled by default and can be enabled through the new [`config.wallarm.apiFirewall.metrics.*`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md) values.
 * Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 * Bumped Go version to 1.24
-* Fixed the behavior of the `wallarm_wstore_throttle_mode` Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
+* Fixed the behavior of the [`wallarm_wstore_throttle_mode`](../admin-en/wstore-metrics.md#wallarm_wstore_throttle_mode) Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
 
 ### 6.4.0 (2025-07-31)
 
@@ -218,11 +218,11 @@ new attack types in logging variables and search bars?
 * Added support for [blocking attackers by API sessions](../api-sessions/blocking.md)
 * Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 * Bumped Go version to 1.24
-* Fixed the behavior of the `wallarm_wstore_throttle_mode` Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
+* Fixed the behavior of the [`wallarm_wstore_throttle_mode`](../admin-en/wstore-metrics.md#wallarm_wstore_throttle_mode) Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
 
 ### 6.4.1 (2025-08-07)
 
-* Added Prometheus metrics support for API Specification Enforcement service operation (based on the built-in API Firewall service):
+* Added [Prometheus metrics support](../admin-en/apifw-metrics.md) for API Specification Enforcement service operation (based on the built-in API Firewall service):
 
     * Enable with the environment variable `APIFW_METRICS_ENABLED=true`
     * Default endpoint: `:9010/metrics`
@@ -251,7 +251,7 @@ new attack types in logging variables and search bars?
 * Optimized stream handling for gRPC traffic
 * Added the `streams` and `messages` parameters to the [`/wallarm-status` service](../admin-en/configure-statistics-service.md) output to report the number of processed gRPC/WebSocket streams and messages
 * Added support for [SSL/TLS and mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module) between the NGINX-Wallarm module and the postanalytics module when they are installed separately
-* Fixed wstore ports binding: now bound to `127.0.0.1` instead of `0.0.0.0`
+* Fixed [wstore](../admin-en/wstore-metrics.md#metrics-endpoint) ports binding: now bound to `127.0.0.1` instead of `0.0.0.0`
 * Bump Alpine version to 3.22
 * Upgrade NGINX to version 1.28.0
 * Minor bug fixes
@@ -278,7 +278,7 @@ new attack types in logging variables and search bars?
 * Added support for [blocking attackers by API sessions](../api-sessions/blocking.md)
 * Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 * Bumped Go version to 1.24
-* Fixed the behavior of the `wallarm_wstore_throttle_mode` Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended 
+* Fixed the behavior of the [`wallarm_wstore_throttle_mode`](../admin-en/wstore-metrics.md#wallarm_wstore_throttle_mode) Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended 
 
 ### 6.4.0 (2025-07-31)
 
@@ -302,7 +302,7 @@ new attack types in logging variables and search bars?
 * Optimized stream handling for gRPC traffic
 * Added the `streams` and `messages` parameters to the [`/wallarm-status` service](../admin-en/configure-statistics-service.md) output to report the number of processed gRPC/WebSocket streams and messages
 * Added support for [SSL/TLS and mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module) between the NGINX-Wallarm module and the postanalytics module when they are installed separately
-* Fixed wstore ports binding: now bound to `127.0.0.1` instead of `0.0.0.0`
+* Fixed [wstore](../admin-en/wstore-metrics.md#metrics-endpoint) ports binding: now bound to `127.0.0.1` instead of `0.0.0.0`
 * Minor bug fixes
 
 ### 6.1.0 (2025-05-09)
@@ -327,7 +327,7 @@ new attack types in logging variables and search bars?
 * Added support for [blocking attackers by API sessions](../api-sessions/blocking.md)
 * Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 * Bumped Go version to 1.24
-* Fixed the behavior of the `wallarm_wstore_throttle_mode` Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
+* Fixed the behavior of the [`wallarm_wstore_throttle_mode`](../admin-en/wstore-metrics.md#wallarm_wstore_throttle_mode) Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
 
 ### wallarm-node-6-4-0-20250730-083353 (2025-07-31)
 
@@ -349,7 +349,7 @@ new attack types in logging variables and search bars?
 * Optimized stream handling for gRPC traffic
 * Added the `streams` and `messages` parameters to the [`/wallarm-status` service](../admin-en/configure-statistics-service.md) output to report the number of processed gRPC/WebSocket streams and messages
 * Added support for [SSL/TLS and mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module) between the NGINX-Wallarm module and the postanalytics module when they are installed separately
-* Fixed wstore ports binding: now bound to `127.0.0.1` instead of `0.0.0.0`
+* Fixed [wstore](../admin-en/wstore-metrics.md#metrics-endpoint) ports binding: now bound to `127.0.0.1` instead of `0.0.0.0`
 * Minor bug fixes
 
 ### wallarm-node-6-1-0-20250508-144827 (2025-05-09)

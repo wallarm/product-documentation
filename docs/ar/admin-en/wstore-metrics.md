@@ -1,0 +1,1 @@
+--8<-- "latest-ar/admin-en/wstore-metrics.md"

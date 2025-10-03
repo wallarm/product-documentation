@@ -25,7 +25,7 @@ The DEB/RPM packages for the node installation have the "deprecated" status now.
 
 ## Removal of collectd
 
-The collectd service, previously installed on all filtering nodes, has been removed along with its related plugins. Metrics are now collected and sent using Wallarm's built-in mechanisms, reducing dependencies on external tools.
+The collectd service, previously installed on all filtering nodes, has been removed along with its related plugins. Metrics are now collected and sent using Wallarm's built-in mechanisms, reducing dependencies on external tools. [Learn more about NGINX node metrics][nginx-node-metrics].
 
 Use the [`/wallarm-status` endpoint](../../admin-en/configure-statistics-service.md), which replaces collectd by providing the same metrics in Prometheus and JSON formats.
 
