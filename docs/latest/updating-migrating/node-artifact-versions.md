@@ -115,6 +115,17 @@ new attack types in logging variables and search bars?
 * Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
 
     ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
+* Fixed the following vulnerabilities:
+
+    * [CVE-2025-9230](https://nvd.nist.gov/vuln/detail/CVE-2025-9230)
+    * [CVE-2025-9231](https://nvd.nist.gov/vuln/detail/CVE-2025-9231)
+    * [CVE-2025-9232](https://nvd.nist.gov/vuln/detail/CVE-2025-9232)
+    * [CVE-2025-50181](https://nvd.nist.gov/vuln/detail/CVE-2025-50181)
+    * [CVE-2025-50182](https://nvd.nist.gov/vuln/detail/CVE-2025-50182)
+    * [CVE-2024-47081](https://nvd.nist.gov/vuln/detail/CVE-2025-47081)
+    * [CVE-2025-9086](https://nvd.nist.gov/vuln/detail/CVE-2025-9086)
+    * [CVE-2025-10148](https://nvd.nist.gov/vuln/detail/CVE-2025-10148)
+    * [CVE-2025-22872](https://nvd.nist.gov/vuln/detail/CVE-2025-22872)
 
 ### 6.5.1 (2025-09-09)
 
@@ -192,6 +203,16 @@ new attack types in logging variables and search bars?
 * Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
 
     ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
+* Fixed the following vulnerabilities:
+
+    * [CVE-2025-9230](https://nvd.nist.gov/vuln/detail/CVE-2025-9230)
+    * [CVE-2025-9231](https://nvd.nist.gov/vuln/detail/CVE-2025-9231)
+    * [CVE-2025-9232](https://nvd.nist.gov/vuln/detail/CVE-2025-9232)
+    * [CVE-2025-50181](https://nvd.nist.gov/vuln/detail/CVE-2025-50181)
+    * [CVE-2025-50182](https://nvd.nist.gov/vuln/detail/CVE-2025-50182)
+    * [CVE-2024-47081](https://nvd.nist.gov/vuln/detail/CVE-2025-47081)
+    * [CVE-2025-9086](https://nvd.nist.gov/vuln/detail/CVE-2025-9086)
+    * [CVE-2025-10148](https://nvd.nist.gov/vuln/detail/CVE-2025-10148)
 
 ### 6.5.1 (2025-09-09)
 
