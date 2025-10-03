@@ -57,7 +57,8 @@ postanalytics:
   wstore:
     config:
       arena: "2.0"
-      serviceAddress: "[::]:3313"
+      serviceAddress: "0.0.0.0:3313"
+      serviceProtocol: "tcp4"
     ### TLS configuration settings (optional)
     tls:
       enabled: false
@@ -343,7 +344,24 @@ Specifies the address and port on which **wstore** accepts incoming connections.
 
 Supported from the release 6.3.0 onwards.
 
-**Default value**: `[::]:3313` - listens on port 3313 on all IPv4 and IPv6 interfaces. This was also the default behavior in versions prior to 6.3.0.
+**Default value**:
+
+* Node 6.6.0 and higher: `0.0.0.0:3313` - listens on port 3313 on all IPv4 interfaces.
+* Prior versions: `[::]:3313` - listened on port 3313 on all IPv4 and IPv6 interfaces.
+
+## postanalytics.wstore.config.serviceProtocol
+
+Specifies the protocol family that **wstore** uses for incoming connections.
+
+Supported from the release 6.6.0 onwards.
+
+Possible values:
+
+* `tcp` - dual-stack mode (listens on both IPv4 and IPv6)
+* `tcp4` - IPv4 only
+* `tcp6` - IPv6 only
+
+**Default value**: `"tcp4"`.
 
 ## postanalytics.wstore.tls
 
