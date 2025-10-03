@@ -21,6 +21,9 @@ new attack types in logging variables and search bars?
 
 * Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
 * Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
+* Introduced a new `$wallarm_mode` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    This variable returns the final filtration mode applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization.
 * Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
 
     ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
@@ -106,6 +109,9 @@ new attack types in logging variables and search bars?
 
 * Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
 * Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
+* Introduced a new `$wallarm_mode` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    This variable returns the final filtration mode applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization.
 * Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
 
     ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
@@ -180,6 +186,9 @@ new attack types in logging variables and search bars?
 
 * Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
 * Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
+* Introduced a new `$wallarm_mode` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    This variable returns the final filtration mode applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization.
 * Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
 
     ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
@@ -248,6 +257,9 @@ new attack types in logging variables and search bars?
     ```
     2025/09/11 15:49:07 [error] 33#33: wallarm: [::1]:3313 connect() failed 21
     ```
+* Introduced a new `$wallarm_mode` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    This variable returns the final filtration mode applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization.
 * Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
 
     ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
@@ -316,6 +328,9 @@ new attack types in logging variables and search bars?
 
 * Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
 * Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
+* Introduced a new `$wallarm_mode` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    This variable returns the final filtration mode applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization.
 * Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
 
     ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
@@ -373,6 +388,9 @@ new attack types in logging variables and search bars?
 
 * Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
 * Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
+* Introduced a new `$wallarm_mode` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    This variable returns the final filtration mode applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization.
 * Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
 
     ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
