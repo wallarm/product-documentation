@@ -17,7 +17,7 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
-### 6.6.0 (TBD)
+### 6.6.0 (2025-10-03)
 
 * Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
 * Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
@@ -105,7 +105,7 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](ingress-controller.md)
 
-### 6.6.0 (TBD)
+### 6.6.0 (2025-10-03)
 
 * Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
 * Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
@@ -193,7 +193,7 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
-### 6.6.0 (TBD)
+### 6.6.0 (2025-10-03)
 
 * Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
 * Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
@@ -267,7 +267,7 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](docker-container.md)
 
-### 6.6.0 (TBD)
+### 6.6.0 (2025-10-03)
 
 * Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
 * Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
@@ -345,7 +345,7 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
-### 6.6.0 (TBD)
+### 6.6.0 (2025-10-03)
 
 * Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
 * Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
@@ -405,7 +405,7 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
-### 6.6.0 (TBD)
+### 6.6.0 (2025-10-03)
 
 * Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
 * Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
