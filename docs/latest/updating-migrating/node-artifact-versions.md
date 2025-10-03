@@ -19,6 +19,9 @@ new attack types in logging variables and search bars?
 
 ### 6.6.0 (2025-10-03)
 
+* Changed the default **wstore** binding to IPv4 (`tcp4`), it now listens only on IPv4 instead of dual‑stack
+
+    If your configuration uses `localhost` for **wstore**, update it to `127.0.0.1`.
 * Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
 * Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
 * Introduced a new `$wallarm_mode` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
@@ -107,6 +110,13 @@ new attack types in logging variables and search bars?
 
 ### 6.6.0 (2025-10-03)
 
+* Changed the default **wstore** binding to IPv4 (`tcp4`), it now listens only on IPv4 instead of dual‑stack
+* Introduced protocol selection (tcp, tcp4, tcp6) in Ingress values ([`controller.wallarm.postanalytics.serviceProtocol`](../admin-en/configure-kubernetes-en.md#controllerwallarmpostanalyticsserviceprotocol))
+
+    The default value is `"tcp4"`.
+* Changed the default value of [`controller.wallarm.postanalytics.serviceAddress`](../admin-en/configure-kubernetes-en.md#controllerwallarmpostanalyticsserviceaddress) to `"0.0.0.0:3313"`
+    
+    This allows IPv4 traffic only. If you are using a custom value, make sure it matches the selected `controller.wallarm.postanalytics.serviceProtocol`.
 * Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
 * Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
 * Introduced a new `$wallarm_mode` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
@@ -195,6 +205,13 @@ new attack types in logging variables and search bars?
 
 ### 6.6.0 (2025-10-03)
 
+* Changed the default **wstore** binding to IPv4 (`tcp4`), it now listens only on IPv4 instead of dual‑stack
+* Introduced protocol selection (tcp, tcp4, tcp6) in Ingress values ([`postanalytics.wstore.config.serviceProtocol`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#postanalyticswstoreconfigserviceprotocol))
+
+    The default value is `"tcp4"`.
+* Changed the default value of [`postanalytics.wstore.config.serviceAddress`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#postanalyticswstoreconfigserviceaddress) to `"0.0.0.0:3313"`
+    
+    This allows IPv4 traffic only. If you are using a custom value, make sure it matches the selected `postanalytics.wstore.config.serviceProtocol`.
 * Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
 * Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
 * Introduced a new `$wallarm_mode` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
@@ -269,6 +286,9 @@ new attack types in logging variables and search bars?
 
 ### 6.6.0 (2025-10-03)
 
+* Changed the default **wstore** binding to IPv4 (`tcp4`), it now listens only on IPv4 instead of dual‑stack
+
+    If your configuration uses `localhost` for **wstore**, update it to `127.0.0.1`.
 * Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
 * Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
 * Fixed an issue where Docker container logs showed a false error about inability to connect to port 3313 when `upstream wallarm_wstore` was configured with `localhost` instead of `127.0.0.1`
@@ -356,8 +376,11 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
-### 6.6.0 (2025-10-03)
+<!-- ### 6.6.0 (2025-10-03)
 
+* Changed the default **wstore** binding to IPv4 (`tcp4`), it now listens only on IPv4 instead of dual‑stack
+
+    If your configuration uses `localhost` for **wstore**, update it to `127.0.0.1`.
 * Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
 * Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
 * Introduced a new `$wallarm_mode` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
@@ -365,7 +388,7 @@ new attack types in logging variables and search bars?
     This variable returns the final filtration mode applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization.
 * Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
 
-    ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
+    ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png) -->
 
 ### 6.5.1 (2025-09-09)
 
@@ -416,8 +439,11 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
-### 6.6.0 (2025-10-03)
+<!-- ### 6.6.0 (2025-10-03)
 
+* Changed the default **wstore** binding to IPv4 (`tcp4`), it now listens only on IPv4 instead of dual‑stack
+
+    If your configuration uses `localhost` for **wstore**, update it to `127.0.0.1`.
 * Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
 * Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
 * Introduced a new `$wallarm_mode` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
@@ -425,7 +451,7 @@ new attack types in logging variables and search bars?
     This variable returns the final filtration mode applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization.
 * Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
 
-    ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
+    ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png) -->
 
 ### wallarm-node-6-5-1-20250908-174655 (2025-09-09)
 
