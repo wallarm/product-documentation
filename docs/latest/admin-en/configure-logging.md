@@ -83,23 +83,3 @@ To do this, perform the following actions:
 
 !!! info "Detailed information"
     To see detailed information about configuring logging in NGINX, proceed to this [link][link-nginx-logging-docs].
-
-
-<!-- wallarm_attack_type_list - notes causing questions
-
-not released yet (do not know yet whether with the mitigation control release they will be available or not):
-ai_prompt_injection
-ai_prompt_retrieval
-session_anomaly - not sure if they really exist
-query_anomaly - not sure if they really exist
-enum
-
-
-once file upload restriction policy and unrestricted resource consumption are released and announced in 6.3:
-
-wallarm_attack_type_list - the following new values:
-<li>resource_consumption</li><li>file_upload_violation</li>
-
-wallarm_attack_type - the following new values:
-<li>0x10000000000000: resource_consumption: 4503599627370496</li><li>0x8000000000000: file_upload_violation: 2251799813685248</li>
--->
