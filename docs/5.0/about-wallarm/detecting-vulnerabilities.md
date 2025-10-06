@@ -31,7 +31,7 @@ Passive detection refers to identifying vulnerabilities by analyzing actual traf
 
 Passive vulnerability detection is enabled by default.
 
-### Threat Replay Testing <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
+### Threat Replay Testing (TRT) <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
 Wallarm's Threat Replay Testing turns attackers into your own penetration testers. It analyzes initial attack attempts, then explores other ways the same attack could be exploited. This exposes weak spots in your environment that even the original attackers did not find. [Read more](../vulnerability-detection/threat-replay-testing/overview.md)
 
@@ -41,7 +41,7 @@ The Threat Replay Testing capabilities:
 * **Safe & smart simulation**: Skips sensitive authentication details and removes harmful code in tests. Simulates attack techniques for max security, not risking actual harm.
 * **Safe non-production tests**: Enables you to [run vulnerability checks in a staging or development setup](../vulnerability-detection/threat-replay-testing/setup.md) using real production data, but without the risks like system overload or data exposure.
 
-### Schema-Based Testing
+### Schema-Based Testing (SBT)
 
 Wallarm's [Schema-Based Testing](../vulnerability-detection/schema-based-testing/overview.md) performs dynamic security testing of your applications and APIs to identify a wide range of vulnerabilities.
 
@@ -71,13 +71,6 @@ From May 7, 2025, AASM [replaced the old Scanner](../api-attack-surface/api-surf
 ### Combining methods
 
 As Wallarm provides many different [methods](#detection-methods) of detecting vulnerabilities, the questions arise about which of them to choose and how to combine them. Consider the information below to answer this.
-
-!!! info "Abbreviations"
-    Passive - built-in node function, no configuration required, "passive" as does not send anything itself (**node**)
-    TRT - [Treat Replay Testing](../vulnerability-detection/threat-replay-testing/overview.md) (**node**)
-    SBT - [Schema-Based Testing](../vulnerability-detection/schema-based-testing/overview.md)
-    AASM - [API Attack Surface Management](../api-attack-surface/overview.md)
-    APID - [API Discovery](../api-discovery/overview.md) (**node**)
 
 Passive detection, TRT and APID require node. SBT and AASM - does not. Some vulnerabilities are found only by some (not by all) of the listed methods.
 

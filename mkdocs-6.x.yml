@@ -36,7 +36,6 @@ nav:
     - Security Issues:
       - Detecting Issues: about-wallarm/detecting-vulnerabilities.md
       - Managing Issues: user-guides/vulnerabilities.md
-    # - Search and Filters: user-guides/search-and-filters/use-search-vuln.md
     - API Sessions: 
       - Overview: api-sessions/overview.md
       - Setup: api-sessions/setup.md

@@ -12,18 +12,6 @@ Wallarm's API Attack Surface Management (AASM) finds more than 40 different type
 
 Pay specific attention to the issues for which AASM is the only detection method.
 
-## Comparison with other detection methods
-
-To detect vulnerabilities in the applications, Wallarm uses the different methods, within which the AASM has its unique place and purpose.
-
-Briefly, if the goal is to regularly inventory external resources (hosts, APIs, WAAP) and search them for common misconfigurations, vulnerabilities, and CVEs to ensure that software is updated and free of known vulnerabilities, then AASM (scope - external resources) is the answer.
-
-AASM will allow you to find a vulnerability on an external resource that has been forgotten and on which there is no node.
-
-AASM **does not need Wallarm node** to function, and it works **actively**: while with node and its passive detection the vulnerability must be actually exploited to be detected and registered, which may take a long time, AASM sends requests itself and finds vulnerabilities much faster.
-
-See full comparison of methods [here](../about-wallarm/detecting-vulnerabilities.md#combining-methods).
-
 ## API leaks
 
 Among other types of security issues, Wallarm detects cases of public exposure of API credentials (API leaks). The leaked API keys can allow attackers to impersonate authorized users, access confidential financial data, and even manipulate transaction flows.
@@ -55,7 +43,7 @@ Note that this filter will list not only the virtual patch events caused by the 
 
 ## Managing found issues
 
-Along with all the other security issues (found by any [method](../about-wallarm/detecting-vulnerabilities.md#detection-methods)), the ones found by AASM are displayed in the Wallarm Console → **Events** → **Security Issues** section.
+Along with all the other security issues (found by any [method](../about-wallarm/detecting-vulnerabilities.md#detection-methods)), the ones found by AASM are displayed in the Wallarm Console → **Security Issues** section.
 
 ![Security Issues](../images/api-attack-surface/security-issues.png)
 
