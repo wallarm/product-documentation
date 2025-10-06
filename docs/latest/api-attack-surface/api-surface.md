@@ -1,4 +1,4 @@
-[link-aasm-security-issue-risk-level]:  security-issues.md#issue-risk-level
+[link-aasm-security-issue-risk-level]:  ../user-guides/vulnerabilities.md#issue-risk-level
 [link-integrations-intro]:              ../user-guides/settings/integrations/integrations-intro.md
 [link-integrations-email]:              ../user-guides/settings/integrations/email.md#setting-up-integration
 
@@ -102,7 +102,7 @@ Besides, you can get information about your API surface in a table view (CSV), o
 
 One more option - JSON report with information about API surface in a machine readable format.
 
-You can also get a [separate report](security-issues.md#security-issue-reports) on the security issues.
+You can also get a [separate report](../user-guides/vulnerabilities.md#security-issue-reports) on the security issues.
 
 ## Notifications
 

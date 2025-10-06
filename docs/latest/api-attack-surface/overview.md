@@ -51,7 +51,7 @@ API Attack Surface Management detects:
 * Outdated software versions and corresponding CVEs
 * ~2k most popular web and API-related CVEs
 
-See full list with the descriptions [here](security-issues.md#list-of-detected-issues).
+See full list with the descriptions [here](../attacks-vulns-list.md#vulnerability-types).
 
 ## Enabling and setup
 

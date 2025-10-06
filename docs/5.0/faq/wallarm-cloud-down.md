@@ -42,7 +42,7 @@ What stops working:
     * [IP lists](../user-guides/ip-lists/overview.md) stop being updated.
     * [Trigger-based notifications](../user-guides/triggers/triggers.md) will not popup.
 * [Discovering API inventory](../api-discovery/overview.md) will not work.
-* [Threat Replay Testing](../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing) will stop.
+* [Threat Replay Testing](../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing-trt) will stop.
 * [Brute force attacks](../admin-en/configuration-guides/protecting-against-bruteforce.md) will not be detected.
 * Integrations will stop, including that:
     * Instant and email [notifications](../user-guides/settings/integrations/integrations-intro.md) will not popup.

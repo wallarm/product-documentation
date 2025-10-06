@@ -42,7 +42,7 @@ Once a security issue is detected, it obtains the **Open** status meaning some m
 
 It is useful to provide comment on each status change, giving others the full view of what is the reason of change. Author and time of change are tracked automatically.
 
-Security issues can be closed by Wallarm automatically after next [automatic](setup.md#auto-rescan) or [manual](setup.md#manual-rescan) rescan in the following cases:
+Security issues can be closed by Wallarm automatically after next automatic or manual rescan in the following cases:
 
 * Port not found during last scan
 * Network service has changed
@@ -89,8 +89,6 @@ You can re-evaluate and manually adjust the risk level at any moment.
 You can get report on all or filtered security issues in CSV or JSON format using the **Download report** button.
 
 ![Security issues details - Lifecycle controls](../images/api-attack-surface/security-issues-report.png)
-
-Information of you choice about security issues is also included into the [detailed DOCX report](api-surface.md#api-attack-surface-reports) on your API attack surface.
 
 ## Notifications
 

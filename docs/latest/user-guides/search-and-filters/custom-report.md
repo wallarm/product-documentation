@@ -30,7 +30,7 @@ To generate a report:
 
 ## Downloading previous reports
 
-The last 3 PDF reports including those [generated for vulnerabilities](../vulnerabilities.md#downloading-vulnerability-report) are saved for 6 months from the date of generation.
+The last 3 PDF reports including those [generated for vulnerabilities](../vulnerabilities.md#security-issue-reports) are saved for 6 months from the date of generation.
 
 If necessary, download them from the export window.
 
