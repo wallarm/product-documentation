@@ -51,7 +51,7 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage api-threat-prevent">Agentic AI</h3>
+    <h3 class="icon-homepage agent-ai-title">Agentic AI</h3>
     <p><ul>
     <li><a href="./agentic-ai/agentic-ai-discovery/">AI Discovery</a></li>
     <li><a href="./agentic-ai/agentic-ai-protection/">Agentic AI Protection (Early Access)</a></li>
@@ -80,16 +80,25 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
     </ul></p>
 </div>
 
-<!-- <div class="navigation-card">
-    <h3 class="icon-homepage api-security-testing">API Security Testing</h3>
+<div class="navigation-card">
+    <h3 class="icon-homepage se-title">Security Edge</h3>
     <p><ul>
-    <li><a href="./fast/openapi-security-testing/">OpenAPI Security Testing</a></li>
-    <li><a href="./fast/">Framework for API Security Testing</a></li>
-    <li><a href="./fast/operations/test-policy/fuzzer-intro/">API Fuzzing</a></li>
-    <li><a href="./fast/dsl/intro/">DSL for Custom Detects</a></li>
-    <li><a href="./fast/poc/integration-overview/">Integration into CI/CD</a></li>
+    <li><a href="./installation/security-edge/overview/">Overview</a></li>
+    <li><a href="./installation/security-edge/free-tier/">Free Tier</a></li>
+    <li><a href="./installation/security-edge/inline/deployment/">Security Edge Inline Deployment</a></li>
+    <li><a href="./installation/security-edge/se-connector/">Security Edge Connector Deployment</a></li>
     </ul></p>
-</div> -->
+</div>
+
+<div class="navigation-card">
+    <h3 class="icon-homepage deployment-title">All deployment options</h3>
+    <p><ul>
+    <li><a href="./installation/security-edge/overview/">Security Edge</a></li>
+    <li><a href="./installation/supported-deployment-options/">Self-Hosted Deployment</a></li>
+    <li><a href="./installation/on-premise/overview/">On-Premise</a></li>
+    <li><a href="./installation/connectors/overview/">Connector Deployment</a></li>
+    </ul></p>
+</div>
 
 <div class="navigation-card">
     <h3 class="icon-homepage waap-title">Cloud-Native WAAP</h3>
@@ -110,15 +119,6 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
     <li><a href="./vulnerability-detection/security-testing-overview/">Overview</a></li>
     <li><a href="./vulnerability-detection/threat-replay-testing/overview/">Threat Replay Testing</a></li>
     <li><a href="./vulnerability-detection/schema-based-testing/overview/">Schema-Based Testing</a></li>
-    </ul></p>
-</div>
-
-<div class="navigation-card">
-    <h3 class="icon-homepage deployment-title">Deployment</h3>
-    <p><ul>
-    <li><a href="./installation/security-edge/overview/">Security Edge</a></li>
-    <li><a href="./installation/supported-deployment-options/">Self-Hosted Deployment</a></li>
-    <li><a href="./installation/connectors/overview/">Connector Deployment</a></li>
     </ul></p>
 </div>
 
@@ -164,18 +164,7 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
     <li><a href="./api/overview/">Wallarm API Reference</a></li>
     <li><a href="./admin-en/managing/terraform-provider/">Wallarm Terraform Provider</a></li>
     <li><a href="./integrations-devsecops/verify-docker-image-signature/">Verifying Docker Image Signatures</a></li>
-    </ul></p>
-</div>
-
-<div class="navigation-card">
-    <h3 class="icon-homepage references-title">Troubleshooting</h3>
-    <p><ul>
-    <li><a href="./troubleshooting/overview/">Overview</a></li>
-    <li><a href="./troubleshooting/detection-and-blocking/">Detection and Blocking</a></li>
-    <li><a href="./troubleshooting/performance/">Performance</a></li>
-    <li><a href="./faq/common-errors-after-installation/">End User Problems</a></li>
-    <li><a href="./faq/ingress-installation/">Wallarm Ingress Controller</a></li>
-    <li><a href="./faq/wallarm-cloud-down/">Wallarm Cloud is Down</a></li>
+    <li><a href="./troubleshooting/overview/">Troubleshooting</a></li>
     </ul></p>
 </div>
 
