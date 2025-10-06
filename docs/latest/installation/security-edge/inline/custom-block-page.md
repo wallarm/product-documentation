@@ -37,20 +37,18 @@ To enable a custom block page, first upload it and then select it during or afte
 
     If you do not have a file, you can download the Wallarm block page as a starting point and then customize it.
 
-    To customize the block page, you can use the following NGINX variables. These will be automatically replaced with actual values when the block page is rendered:
+    To make the block page more informative, you can use the following NGINX variables. These will be automatically replaced with actual values when the block page is rendered:
 
     * `$request_id` - a unique identifier of the blocked HTTP request.
     * `$http_host` - the API hostname the client was trying to access.
     * `$remote_addr` - the IP address from which the HTTP request originated.
 
-    !!! info "NGINX variables"
-        At the moment, сustom block page do not support other NGINX variables beyound the ones listed above.
-
 1. The uploaded page appears in the list. You can preview it to confirm it renders correctly.
-1. To enable the custom page, go to the "Hosts" section. Under "Block page", select "Custom" and choose the name of the uploaded page.
+1. To enable the custom page, go to the **Hosts** section. Under "Block page", select "Custom" and choose the name of the uploaded page.
 
     ![Selected custom block page][custom-block-page-selection]
 
 ## Deleting a custom block page
 
-To delete a custom block page currently assigned to a host, first select a different block page for that host (e.g., standard or Wallarm). Once the custom block page is no longer in use, you can delete it in the **Block pages** section.
+1. To delete a custom block page currently assigned to a host, go to the **Hosts** section and select a different block page for that host (e.g., standard or Wallarm). 
+1. Once the custom block page is no longer in use, you can delete it in the **Block pages** section.
