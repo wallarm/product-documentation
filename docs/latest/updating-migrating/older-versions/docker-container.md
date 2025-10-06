@@ -41,7 +41,7 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
 ## Step 4: Download the updated filtering node image
 
 ``` bash
-docker pull wallarm/node:6.5.1
+docker pull wallarm/node:6.6.0
 ```
 
 ## Step 5: Switch to the token-based connection to the Wallarm Cloud

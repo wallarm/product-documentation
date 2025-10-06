@@ -9,6 +9,8 @@ You may need to obtain the SBOM for Wallarm Docker Images to assess and mitigate
 Below is the list of [signed](verify-docker-image-signature.md) Wallarm Docker images. You can generate SBOM for any tag of these images.
 
 * [wallarm/node](https://hub.docker.com/r/wallarm/node) 4.8.0-1 and above: [NGINX-based Docker image](../admin-en/installation-docker-en.md) that includes all Wallarm modules, serving as a standalone artifact for Wallarm deployment
+
+    Starting from version 6.6.0, SBOM is included by default.
 * All Docker images used by the Helm chart for [NGINX-based Ingress Controller deployment](../admin-en/installation-kubernetes-en.md):
 
     * [wallarm/ingress-controller](https://hub.docker.com/r/wallarm/ingress-controller)
@@ -20,13 +22,33 @@ Below is the list of [signed](verify-docker-image-signature.md) Wallarm Docker i
     * [wallarm/node-helpers](https://hub.docker.com/r/wallarm/node-helpers)
 * [wallarm/node-native-aio](https://hub.docker.com/r/wallarm/node-native-aio): the [Docker image for the self-hosted Native Node deployment](../installation/native-node/docker-image.md) for Wallarm connectors
 
-## Requirements
+## SBOM generation for `wallarm/node:6.6.0` and higher
 
-To generate an SBOM for Wallarm Docker images, you will need to use the [syft](https://github.com/anchore/syft) CLI utility.
+Starting from version 6.6.0, the [wallarm/node](https://hub.docker.com/r/wallarm/node) Docker image includes an SBOM by default.
 
-Before proceeding with SBOM generation, make sure to [install](https://github.com/anchore/syft#installation) **syft** on your local machine or within your CI/CD pipeline.
+You can inspect or export it directly:
 
-## SBOM generation procedure
+```
+docker sbom wallarm/node:6.6.0
+```
+
+Docker displays the SBOM in SPDX format.
+
+To save it to a file, use:
+
+```
+docker sbom wallarm/node:6.6.0 --output sbom.spdx
+```
+
+## SBOM generation with syft
+
+To generate an SBOM for Wallarm Docker images manually, you can use the [**syft**](https://github.com/anchore/syft) CLI utility.
+
+### Requirements
+
+Before generating an SBOM, [install **syft**](https://github.com/anchore/syft#installation) on your local machine or within your CI/CD pipeline.
+
+### SBOM generation procedure
 
 To generate an SBOM for a Docker image, use the following command, replacing the specified image tag with the desired one:
 
@@ -40,6 +62,8 @@ By default, **syft** returns the SBOM in text format. You can also generate it i
 syft wallarm/ingress-controller:4.6.2-1 --output spdx-json >> syft_json_sbom.spdx
 syft wallarm/ingress-controller:4.6.2-1 --output cyclonedx-json >> cyclonedx_json_sbom.cyclonedx
 ```
+
+## Verifying image authenticity and SBOM integrity
 
 After generating the SBOM, you can leverage it within your CI/CD pipeline for various actions, such as vulnerability scanning, license compliance checks, security audits, or generating reports.
 

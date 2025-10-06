@@ -46,6 +46,7 @@ You may use the following filter node variables when defining the NGINX logging 
 | `wallarm_attack_point_list` (NGINX node 5.2.1 or later) | String | Lists request points containing malicious payloads. If a point is sequentially processed by multiple [parsers](../user-guides/rules/request-processing.md), they are included in the value. Multiple points containing malicious payloads are concatenated using `|`.<br>Example: `[post][json][json_obj, 'data'][base64]` indicates a malicious payload detected in a base64‑encoded `data` body parameter in JSON.<br>Note that this log data may differ from the simplified, user‑friendly view presented in the Wallarm Console UI. |
 | `wallarm_attack_stamp_list` (NGINX node 5.2.1 or later) | String | Lists internal Wallarm IDs for each attack sign detected in a request. Multiple sign IDs are concatenated using `|`. If the same attack sign is detected at multiple parsing stages, the IDs may repeat. For example, a SQLi attack like `union+select+1` could return `7|7`, showing multiple detections.<br>Note that this log data may differ from the simplified, user‑friendly view presented in the Wallarm Console UI. |
 |`wallarm_block_reason` (NGINX node 6.4.0 or later)|String|Blocking reason (if applicable). Reasons are presented in text format: <ul><li>`not blocked` - the request was not blocked (e.g., it was sent from an [allowlisted IP][acl]).</li><li>`antibot` - the request was blocked by the [API Abuse Prevention module][antibot].</li><li>`attack mask=<MASK>` - an attack was detected. `MASK` is the attack type in bit string format (e.g.`mask=0000000000000020` indicates a ptrav attack). All attack types are listed in the `wallarm_attack_type` section above. </li><li>`overlimit` - a [resource overlimit][resource-overlimit] attack was detected in the mask.</li><li>`acl blacklist SRC TYPE` - the request was blocked [due to denylisted request sources][acl]. The variable parts can have the following values: <ul>`SRC`:<ul><li>`ip`</li><li>`country`</li><li>`proxy`</li><li>`datacenter`</li><li>`tor`</li></ul></li><li>`TYPE`: <ul><li>`blocked_source`</li><li>`brute`</li><li>`dirbust`</li><li>`bola`</li><li>`bot`</li><li>`api_abuse`</li><li>`vectors`</li><li>`account_takeover`</li><li>`security_crawlers`</li><li>`scraping`</li><li>`resource_consumption`</li><li>`session_anomaly`</li><li>`enum`</li><li>`rate_limit`</li><li>`query_anomaly`</li><li>`ai_prompt_injection`</li><li>`ai_prompt_retrieval`</li></ul></li></ul>|
+| `wallarm_mode` (NGINX node 6.6.0 or later) | string | Returns the final [filtration mode](configure-wallarm-mode.md) applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization. |
 
 ### Configuration Example
 
@@ -55,13 +56,13 @@ Let us assume that you need to specify the extended logging format named `wallar
 
 To do this, perform the following actions:
 
-1.  The lines below describe the desired logging format. Add them into the `http` block of the NGINX configuration file.
+1.  The lines below describe the desired logging format. Add them into the `http` block of the NGINX configuration file (usually, `/etc/nginx/nginx.conf`).
 
     ```
     log_format wallarm_combined '$remote_addr - $remote_user [$time_local] '
                                 '"$request" $request_id $status $body_bytes_sent '
                                 '"$http_referer" "$http_user_agent" '
-                                '$wallarm_request_cpu_time $wallarm_request_mono_time $wallarm_serialized_size $wallarm_is_input_valid $wallarm_attack_type $wallarm_attack_type_list $wallarm_attack_point_list $wallarm_attack_stamp_list';
+                                '$wallarm_request_cpu_time $wallarm_request_mono_time $wallarm_serialized_size $wallarm_is_input_valid $wallarm_attack_type $wallarm_attack_type_list $wallarm_attack_point_list $wallarm_attack_stamp_list $wallarm_mode';
     ```
 
 2.  Enable the extended logging format by adding the following directive into the same block as in the first step:
@@ -83,23 +84,3 @@ To do this, perform the following actions:
 
 !!! info "Detailed information"
     To see detailed information about configuring logging in NGINX, proceed to this [link][link-nginx-logging-docs].
-
-
-<!-- wallarm_attack_type_list - notes causing questions
-
-not released yet (do not know yet whether with the mitigation control release they will be available or not):
-ai_prompt_injection
-ai_prompt_retrieval
-session_anomaly - not sure if they really exist
-query_anomaly - not sure if they really exist
-enum
-
-
-once file upload restriction policy and unrestricted resource consumption are released and announced in 6.3:
-
-wallarm_attack_type_list - the following new values:
-<li>resource_consumption</li><li>file_upload_violation</li>
-
-wallarm_attack_type - the following new values:
-<li>0x10000000000000: resource_consumption: 4503599627370496</li><li>0x8000000000000: file_upload_violation: 2251799813685248</li>
--->

@@ -17,6 +17,23 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.6.0 (2025-10-03)
+
+* Changed the default **wstore** binding to IPv4 (`tcp4`), it now listens only on IPv4 instead of dual‑stack
+
+    If your configuration uses `localhost` for **wstore**, update it to `127.0.0.1`.
+* Introduced protocol selection (tcp, tcp4, tcp6) using the `WALLARM_WSTORE__SERVICE__PROTOCOL` environment variable, which can be set in `/opt/wallarm/env.list`
+
+    The default value is `"tcp4"`.
+* Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
+* Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
+* Introduced a new `$wallarm_mode` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    This variable returns the final filtration mode applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization.
+* Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
+
+    ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
+
 ### 6.5.1 (2025-09-09)
 
 * Added support for [blocking attackers by API sessions](../api-sessions/blocking.md)
@@ -94,6 +111,35 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](ingress-controller.md)
 
+### 6.6.0 (2025-10-03)
+
+* Changed the default **wstore** binding to IPv4 (`tcp4`), it now listens only on IPv4 instead of dual‑stack
+* Introduced protocol selection (tcp, tcp4, tcp6) in Ingress values ([`controller.wallarm.postanalytics.serviceProtocol`](../admin-en/configure-kubernetes-en.md#controllerwallarmpostanalyticsserviceprotocol))
+
+    The default value is `"tcp4"`.
+* Changed the default value of [`controller.wallarm.postanalytics.serviceAddress`](../admin-en/configure-kubernetes-en.md#controllerwallarmpostanalyticsserviceaddress) to `"0.0.0.0:3313"`
+    
+    This allows IPv4 traffic only. If you are using a custom value, make sure it matches the selected `controller.wallarm.postanalytics.serviceProtocol`.
+* Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
+* Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
+* Introduced a new `$wallarm_mode` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    This variable returns the final filtration mode applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization.
+* Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
+
+    ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
+* Fixed the following vulnerabilities:
+
+    * [CVE-2025-9230](https://nvd.nist.gov/vuln/detail/CVE-2025-9230)
+    * [CVE-2025-9231](https://nvd.nist.gov/vuln/detail/CVE-2025-9231)
+    * [CVE-2025-9232](https://nvd.nist.gov/vuln/detail/CVE-2025-9232)
+    * [CVE-2025-50181](https://nvd.nist.gov/vuln/detail/CVE-2025-50181)
+    * [CVE-2025-50182](https://nvd.nist.gov/vuln/detail/CVE-2025-50182)
+    * [CVE-2024-47081](https://nvd.nist.gov/vuln/detail/CVE-2025-47081)
+    * [CVE-2025-9086](https://nvd.nist.gov/vuln/detail/CVE-2025-9086)
+    * [CVE-2025-10148](https://nvd.nist.gov/vuln/detail/CVE-2025-10148)
+    * [CVE-2025-22872](https://nvd.nist.gov/vuln/detail/CVE-2025-22872)
+
 ### 6.5.1 (2025-09-09)
 
 * Added support for [blocking attackers by API sessions](../api-sessions/blocking.md)
@@ -160,6 +206,34 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.6.0 (2025-10-03)
+
+* Changed the default **wstore** binding to IPv4 (`tcp4`), it now listens only on IPv4 instead of dual‑stack
+* Introduced protocol selection (tcp, tcp4, tcp6) in Ingress values ([`postanalytics.wstore.config.serviceProtocol`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#postanalyticswstoreconfigserviceprotocol))
+
+    The default value is `"tcp4"`.
+* Changed the default value of [`postanalytics.wstore.config.serviceAddress`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#postanalyticswstoreconfigserviceaddress) to `"0.0.0.0:3313"`
+    
+    This allows IPv4 traffic only. If you are using a custom value, make sure it matches the selected `postanalytics.wstore.config.serviceProtocol`.
+* Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
+* Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
+* Introduced a new `$wallarm_mode` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    This variable returns the final filtration mode applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization.
+* Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
+
+    ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
+* Fixed the following vulnerabilities:
+
+    * [CVE-2025-9230](https://nvd.nist.gov/vuln/detail/CVE-2025-9230)
+    * [CVE-2025-9231](https://nvd.nist.gov/vuln/detail/CVE-2025-9231)
+    * [CVE-2025-9232](https://nvd.nist.gov/vuln/detail/CVE-2025-9232)
+    * [CVE-2025-50181](https://nvd.nist.gov/vuln/detail/CVE-2025-50181)
+    * [CVE-2025-50182](https://nvd.nist.gov/vuln/detail/CVE-2025-50182)
+    * [CVE-2024-47081](https://nvd.nist.gov/vuln/detail/CVE-2025-47081)
+    * [CVE-2025-9086](https://nvd.nist.gov/vuln/detail/CVE-2025-9086)
+    * [CVE-2025-10148](https://nvd.nist.gov/vuln/detail/CVE-2025-10148)
+
 ### 6.5.1 (2025-09-09)
 
 * Added support for [blocking attackers by API sessions](../api-sessions/blocking.md)
@@ -212,6 +286,46 @@ new attack types in logging variables and search bars?
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.6.0 (2025-10-03)
+
+* Changed the default **wstore** binding to IPv4 (`tcp4`), it now listens only on IPv4 instead of dual‑stack
+
+    If your configuration uses `localhost` for **wstore**, update it to `127.0.0.1`.
+* Introduced protocol selection (tcp, tcp4, tcp6) via the `WALLARM_WSTORE__SERVICE__PROTOCOL` environment variable
+
+    The default value is `"tcp4"`.
+* Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
+* Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
+* Fixed an issue where Docker container logs showed a false error about inability to connect to port 3313 when `upstream wallarm_wstore` was configured with `localhost` instead of `127.0.0.1`
+
+    False error example:
+
+    ```
+    2025/09/11 15:49:07 [error] 33#33: wallarm: [::1]:3313 connect() failed 21
+    ```
+* Introduced a new `$wallarm_mode` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    This variable returns the final filtration mode applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization.
+* Included an [SBOM](../integrations-devsecops/generate-sbom-for-docker-images.md) in the image by default, you can retrieve it using the following command:
+
+    ```
+    docker sbom wallarm/node:6.6.0
+    ```
+* Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
+
+    ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
+* Fixed the following vulnerabilities:
+
+    * [CVE-2025-9230](https://nvd.nist.gov/vuln/detail/CVE-2025-9230)
+    * [CVE-2025-9231](https://nvd.nist.gov/vuln/detail/CVE-2025-9231)
+    * [CVE-2025-9232](https://nvd.nist.gov/vuln/detail/CVE-2025-9232)
+    * [CVE-2025-50181](https://nvd.nist.gov/vuln/detail/CVE-2025-50181)
+    * [CVE-2025-50182](https://nvd.nist.gov/vuln/detail/CVE-2025-50182)
+    * [CVE-2024-47081](https://nvd.nist.gov/vuln/detail/CVE-2025-47081)
+    * [CVE-2025-59375](https://nvd.nist.gov/vuln/detail/CVE-2025-59375)
+    * [CVE-2025-8961](https://nvd.nist.gov/vuln/detail/CVE-2025-8961)
+    * [CVE-2025-9165](https://nvd.nist.gov/vuln/detail/CVE-2025-9165)
 
 ### 6.5.1 (2025-09-09)
 
@@ -273,6 +387,23 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
+### 6.6.0 (2025-10-03)
+
+* Changed the default **wstore** binding to IPv4 (`tcp4`), it now listens only on IPv4 instead of dual‑stack
+
+    If your configuration uses `localhost` for **wstore**, update it to `127.0.0.1`.
+* Introduced protocol selection (tcp, tcp4, tcp6) using the `WALLARM_WSTORE__SERVICE__PROTOCOL` environment variable, which can be set in `/opt/wallarm/env.list`
+
+    The default value is `"tcp4"`.
+* Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
+* Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
+* Introduced a new `$wallarm_mode` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    This variable returns the final filtration mode applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization.
+* Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
+
+    ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
+
 ### 6.5.1 (2025-09-09)
 
 * Added support for [blocking attackers by API sessions](../api-sessions/blocking.md)
@@ -321,6 +452,23 @@ new attack types in logging variables and search bars?
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-6-0-20251005-044509 (2025-10-03)
+
+* Changed the default **wstore** binding to IPv4 (`tcp4`), it now listens only on IPv4 instead of dual‑stack
+
+    If your configuration uses `localhost` for **wstore**, update it to `127.0.0.1`.
+* Introduced protocol selection (tcp, tcp4, tcp6) using the `WALLARM_WSTORE__SERVICE__PROTOCOL` environment variable, which can be set in `/opt/wallarm/env.list`
+
+    The default value is `"tcp4"`.
+* Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
+* Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
+* Introduced a new `$wallarm_mode` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    This variable returns the final filtration mode applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization.
+* Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
+
+    ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
 
 ### wallarm-node-6-5-1-20250908-174655 (2025-09-09)
 

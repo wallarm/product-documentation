@@ -68,7 +68,7 @@ When running [Wallarm Node in Docker](../installation-docker-en.md), mount a con
         ignore_invalid_headers off;
 
         upstream wallarm_wstore {
-            server localhost:3313 max_fails=0 fail_timeout=0 max_conns=1;
+            server 127.0.0.1:3313 max_fails=0 fail_timeout=0 max_conns=1;
             keepalive 1;
         }
         wallarm_wstore_upstream wallarm_wstore;
