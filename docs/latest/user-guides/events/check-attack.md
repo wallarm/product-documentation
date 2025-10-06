@@ -23,9 +23,12 @@
 
 This article describes how you can analyze attacks detected by the Wallarm node and take actions regarding them.
 
+!!! info "Attacks or API Sessions"
+    Note that while usually attacks are displayed both in **Attacks** and **API Sessions**, so far [some of the attacks](#attacks-displayed-exclusively-in-api-sessions) can be found only in **API Sessions**.
+
 ### Attack analysis
 
-All the [attacks](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) detected by the Wallarm platform are displayed in the **Attacks** section of the Wallarm Console. You can [filter](../../user-guides/search-and-filters/use-search.md) the list by attack date, type and other criteria, expand any attack and its included requests for detailed analysis.
+The [attacks](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) detected by the Wallarm platform are displayed in the **Attacks** or **API Sessions** section of the Wallarm Console. You can [filter](../../user-guides/search-and-filters/use-search.md) the list by attack date, type and other criteria, expand any attack and its included requests for detailed analysis.
 
 If a detected attack turns out to be a [false positive](#false-positives), you can immediately mark it as one to prevent alike false positives in future. Also, on the basis of the detected attacks, you can create rules and perform other Wallarm configurations to mitigate further alike threats.
 
@@ -51,6 +54,20 @@ Hit sampling does not affect the quality of attack detection and Wallarm node co
 ## Full context of threat actor activities
 
 --8<-- "../include/request-full-context.md"
+
+## Attacks displayed exclusively in API Sessions
+
+Some of Wallarm's [mitigation controls](../../about-wallarm/mitigation-controls-overview.md) base their traffic analysis and corresponding actions entirely on API sessions which significantly improve their work: if previously you had several nodes and, for example, a brute force [rule](../../user-guides/rules/rules.md), your network load balancer could separate attack requests into different nodes and for each node the brute force counter worked separately. This could lead to missing some brute force attacks. The improved approach of mitigation control in this example is that it relies on session, no matter which node the traffic went through.
+
+Because of that, the attacks found by such mitigation controls are displayed exclusively in [**API Sessions**](../../api-sessions/overview.md) (and not displayed in **Attacks**):
+
+* [Enumeration attack protection](../../api-protection/enumeration-attack-protection.md) (by mitigation control)
+* [Brute force protection](../../api-protection/enumeration-attack-protection.md) (by mitigation control)
+* [BOLA protection](../../api-protection/enumeration-attack-protection.md) (by mitigation control)
+* [Forced browsing protection](../../api-protection/enumeration-attack-protection.md) (by mitigation control)
+* [DoS protection](../../api-protection/dos-protection.md) (by mitigation control)
+
+Attacks of the same types found by old tools like [rules](../../user-guides/rules/rules.md), can be found both in **Attacks** and **API Sessions**
 
 ## False positives
 
