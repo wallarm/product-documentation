@@ -62,6 +62,7 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
 <div class="navigation-card">
     <h3 class="icon-homepage api-discovery-title">API Discovery</h3>
     <p><ul>
+    <li><a href="./api-discovery/overview/">Overview</a></li>
     <li><a href="./api-discovery/overview/">Exploring API Inventory</a></li>
     <li><a href="./api-discovery/track-changes/">Tracking Changes in API</a></li>
     <li><a href="./api-discovery/sensitive-data/">Sensitive Data Detection</a></li>
@@ -91,7 +92,7 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage deployment-title">All deployment options</h3>
+    <h3 class="icon-homepage deployment-title">All Deployment Options</h3>
     <p><ul>
     <li><a href="./installation/security-edge/overview/">Security Edge</a></li>
     <li><a href="./installation/supported-deployment-options/">Self-Hosted Deployment</a></li>
