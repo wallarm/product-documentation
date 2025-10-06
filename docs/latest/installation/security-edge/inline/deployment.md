@@ -157,6 +157,7 @@ Specify the public domains, ports and subdomains that will direct traffic to the
 
 1. (Optional) Associate the host's traffic with a [Wallarm application](../../../user-guides/settings/applications.md) to categorize and manage different API instances or services on the Wallarm platform.
 1. Set the [Wallarm mode](../../../admin-en/configure-wallarm-mode.md) for each host.
+1. Select the traffic type for each host (HTTP/1.1, HTTP/2, or gRPC).
 1. (Optionally) Customize [server NGINX directives](nginx-overrides.md#server-level-directives). Defaults follow standard NGINX values.
 1. For each host, define the configuration for the root location (`/`):
 
