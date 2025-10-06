@@ -607,6 +607,23 @@ The new releases address multiple high and critical severity vulnerabilities in 
 
 Among the vulnerabilities addressed are those identified by [CVE-2020-36327](https://nvd.nist.gov/vuln/detail/CVE-2020-36327), [CVE-2023-37920](https://nvd.nist.gov/vuln/detail/CVE-2023-37920), and several others.
 
+## Security Issues: all vulnerabilities in one unified view
+
+As for now, Wallarm offers multiple [methods](../../about-wallarm/detecting-vulnerabilities.md#detection-methods) of detecting vulnerabilities (security issues) which vary at scope, usage scenarios, required elements (with or without node) and a set of vulnerabilities they are able to find.
+
+Previously vulnerabilities found by different methods were displayed in different sections of Wallarm Console - now the view is unified and you can see all of them in one place - the **Security Issues** section.
+
+![Security Issues](../../images/api-attack-surface/security-issues.png)
+
+Here you can:
+
+* Easily view and [manage](../../user-guides/vulnerabilities.md) the list of found vulnerabilities distinguished by the risk level
+* Access detailed information on each security issue (vulnerability): description, mitigation measures, links to relates CWEs, history of status changes and comments from your team members
+* Close and re-open vulnerabilities
+* Get reports
+
+The old **Vulnerabilities** section is not displayed anymore.
+
 ## HTTP/2 stream length control directive
 
 The [`wallarm_http_v2_stream_max_len`](../../admin-en/configure-parameters-en.md#wallarm_http_v2_stream_max_len) directive to control the maximum length of HTTP/2 streams has been introduced. It helps in preventing excessive memory consumption in long-lived gRPC connections.

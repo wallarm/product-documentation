@@ -33,10 +33,9 @@ nav:
       - Incident Analysis: user-guides/events/check-incident.md
       - Search and Filters: user-guides/search-and-filters/use-search.md
       - Grouping and Sampling: user-guides/events/grouping-sampling.md
-    - Vulnerabilities:
-      - Detecting Vulnerabilities: about-wallarm/detecting-vulnerabilities.md
-      - Managing Vulnerabilities: user-guides/vulnerabilities.md
-      - Search and Filters: user-guides/search-and-filters/use-search-vuln.md
+    - Security Issues:
+      - Detecting Issues: about-wallarm/detecting-vulnerabilities.md
+      - Managing Issues: user-guides/vulnerabilities.md
     - API Sessions: 
       - Overview: api-sessions/overview.md
       - Setup: api-sessions/setup.md

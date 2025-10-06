@@ -1,4 +1,4 @@
-[link-aasm-security-issue-risk-level]:  security-issues.md#issue-risk-level
+[link-aasm-security-issue-risk-level]:  ../user-guides/vulnerabilities.md#issue-risk-level
 [link-integrations-intro]:              ../user-guides/settings/integrations/integrations-intro.md
 [link-integrations-email]:              ../user-guides/settings/integrations/email.md#setting-up-integration
 
