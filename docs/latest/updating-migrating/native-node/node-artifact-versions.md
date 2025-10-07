@@ -10,6 +10,18 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.19.0 (2025-10-07)
+
+* Added support for [blocking by session ID](../../api-sessions/blocking.md)
+* Added [multitenancy support](../../installation/multi-tenant/overview.md)
+* Added affinity support to the Native Node Helm chart
+* Set a default connection limit for the Native Node in the Helm chart
+* Bug fixes:
+
+    *Fixed the issue where the `go-node` process could segfault in production environments
+    *Fixed the issue where `tcp-capture-v2` mode caused panics due to URL parse errors
+    *Fixed the issue where processing affinity was not applied correctly in the Native Node Helm chart
+
 ### 0.18.0 (2025-09-17)
 
 * Added support for the [Azure API Management connector](../../installation/connectors/azure-api-management.md)
@@ -113,6 +125,18 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.19.0 (2025-10-07)
+
+* Added support for [blocking by session ID](../../api-sessions/blocking.md)
+* Added [multitenancy support](../../installation/multi-tenant/overview.md)
+* Added affinity support to the Native Node Helm chart
+* Set a default connection limit for the Native Node in the Helm chart
+* Bug fixes:
+
+    *Fixed the issue where the `go-node` process could segfault in production environments
+    *Fixed the issue where `tcp-capture-v2` mode caused panics due to URL parse errors
+    *Fixed the issue where processing affinity was not applied correctly in the Native Node Helm chart
+
 ### 0.18.0 (2025-09-17)
 
 * Added support for the [Azure API Management connector](../../installation/connectors/azure-api-management.md)
@@ -212,6 +236,18 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](docker-image.md)
+
+### 0.19.0 (2025-10-07)
+
+* Added support for [blocking by session ID](../../api-sessions/blocking.md)
+* Added [multitenancy support](../../installation/multi-tenant/overview.md)
+* Added affinity support to the Native Node Helm chart
+* Set a default connection limit for the Native Node in the Helm chart
+* Bug fixes:
+
+    *Fixed the issue where the `go-node` process could segfault in production environments
+    *Fixed the issue where `tcp-capture-v2` mode caused panics due to URL parse errors
+    *Fixed the issue where processing affinity was not applied correctly in the Native Node Helm chart
 
 ### 0.18.0 (2025-09-17)
 
