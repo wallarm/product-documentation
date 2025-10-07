@@ -36,7 +36,7 @@ In Wallarm UI:
       
     --8<-- "../include/integrations/events-for-integrations.md"
 
-1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format.
+1. Click **Test integration** to check configuration correctness, availability of the target system, and the notification format.
 
     This will send the test notifications with the prefix `[Test message]`:
 

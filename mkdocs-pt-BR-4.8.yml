@@ -298,6 +298,7 @@ nav:
       - Fluentd: user-guides/settings/integrations/fluentd.md
       - Logstash: user-guides/settings/integrations/logstash.md
       - Amazon S3: user-guides/settings/integrations/amazon-s3.md
+      - MinIO: user-guides/settings/integrations/minio.md
     - Integrações Universais:
       - Webhook: user-guides/settings/integrations/webhook.md
     - Integrações via coletores de dados:

@@ -284,6 +284,7 @@ nav:
       - Fluentd: user-guides/settings/integrations/fluentd.md
       - Logstash: user-guides/settings/integrations/logstash.md
       - Amazon S3: user-guides/settings/integrations/amazon-s3.md
+      - MinIO: user-guides/settings/integrations/minio.md
     - Integrations via Data Collectors:
       - IBM QRadar via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
       - IBM QRadar via Logstash: user-guides/settings/integrations/webhook-examples/logstash-qradar.md

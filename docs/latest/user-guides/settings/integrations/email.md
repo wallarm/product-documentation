@@ -26,7 +26,7 @@ Scheduled PDF reports can be sent on a daily, weekly, or monthly basis. PDF repo
         * [API token expiration](../../../user-guides/settings/api-tokens.md#token-expiration) notifications
         * [Hit sampling](../../../user-guides/events/grouping-sampling.md#sampling-of-hits) notifications
 
-1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format.
+1. Click **Test integration** to check configuration correctness, availability of the target system, and the notification format.
 
     This will send the test notifications with the prefix `[Test message]`:
 
