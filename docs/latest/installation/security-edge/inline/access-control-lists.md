@@ -4,6 +4,10 @@ An access control list (ACL) is a set of rules that defines which IP addresses c
 
 The Wallarm Node checks each incoming request against the ACL rules. If a request matches a deny rule, it gets blocked. This prevents unauthorized activity and potential attacks.
 
+## Requirements
+
+Access Control Lists (ACL) are supported starting from Edge Node version 6.6.0.
+
 ## Creating an ACL
 
 ACLs provide targeted control by applying rules to specific hosts and locations of your API. You first create an ACL with the required rules and then assign it to the hosts or locations you want to protect.
