@@ -6,7 +6,7 @@ The Wallarm Node checks each incoming request against the ACL rules. If a reques
 
 ## Requirements
 
-Access Control Lists (ACL) are supported starting from Edge Node version 6.6.0.
+Access control lists (ACL) are supported starting from Edge Node version 6.6.0.
 
 ## Creating an ACL
 
@@ -42,22 +42,31 @@ The newly created ACL is used in 0 hosts and locations. To secure hosts or locat
 You can assign an ACL either during or after Edge Node deployment.
 
 1. Go to Wallarm Console → **Security Edge** → **Inline** → **Configure** → **Hosts**.
-2. Under "Access control list (ACL)", select the desired ACL.
+1. Under "Access control list (ACL)", select the desired ACL.
 
 ![Select ACL](../../../images/configuration-guides/select-acl.png)
 
-## How ACLs interact with IP lists
+## ACL and IP list evaluation order
 
-When both ACLs and [IP lists](../../../user-guides/ip-lists/overview.md) are configured, each request goes through two layers of filtering:
+An IP must pass both the ACL and [IP list](../../../user-guides/ip-lists/overview.md) evaluations to access protected endpoints. ACLs are always processed first and take precedence over IP list decisions.
 
-1. ACL — first layer
-2. IP list (allowlist/denylist/graylist) — second layer
+When both ACLs and IP lists (allowlist, denylist, graylist) are configured, each incoming request is evaluated in two sequential stages:
 
-An IP must pass both filters to access your API locations. If an IP is denied by the ACL, it will be blocked — even if it's on the allowlist. If an IP is allowed by the ACL, it can still be blocked by the denylist.
+**Stage 1: ACL evaluation**
 
-Example scenarios:
+The ACL determines whether the request is allowed to proceed. 
+    
+If the ACL denies the request, evaluation stops — the request is blocked regardless of IP list entries. 
 
-* Allowed by ACL + Allowed by IP list → Access granted
-* Blocked by ACL + Allowed by IP list → Access denied
-* Allowed by ACL + Blocked by IP list → Access denied
-* Blocked by ACL + Blocked by IP list → Access denied
+**Stage 2: IP list evaluation**
+
+If the request passes the ACL, the IP list is applied. 
+    
+The denylist still takes precedence and will block the request even if it passed ACL evaluation.
+
+ACL evaluation| IP list evaluation| Final result
+--- | ---- | ----
+Allow | Allow | Request allowed
+Deny | Allow | Request blocked
+Allow | Deny | Request blocked
+
