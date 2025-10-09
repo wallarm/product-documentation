@@ -157,13 +157,14 @@ Specify the public domains, ports and subdomains that will direct traffic to the
 
 1. (Optional) Associate the host's traffic with a [Wallarm application](../../../user-guides/settings/applications.md) to categorize and manage different API instances or services on the Wallarm platform.
 1. Set the [Wallarm mode](../../../admin-en/configure-wallarm-mode.md) for each host.
-1. Select the traffic type for each host (HTTP/1.1, HTTP/2, or gRPC).
+1. (Optionally) Select the traffic type for each host (HTTP/1.1 or HTTP/2).
 1. (Optionally) Customize [server NGINX directives](nginx-overrides.md#server-level-directives). Defaults follow standard NGINX values.
 1. For each host, define the configuration for the root location (`/`):
 
     * [Origin](#2-origins) where the Wallarm Node will forward the filtered traffic (if no other location-specific settings are defined). The location's path is automatically appended to the origin.
     * (Optionally) Wallarm application.
     * Filtration mode.
+    * Traffic type (select gRPC if the location uses gRPC traffic).
 
 ![!](../../../images/waf-installation/security-edge/inline/hosts.png)
 
@@ -172,6 +173,7 @@ For specific **locations** within hosts, you can further customize:
 * Origin. The path defined in the location will automatically append to the origin.
 * Wallarm application.
 * Filtration mode.
+* Traffic type (select gRPC if the location uses gRPC traffic).
 * [Location NGINX directives](nginx-overrides.md#location-level-directives). Defaults follow standard NGINX values.
 
 Each location inherits settings from the host and root location, unless specifically overridden.
