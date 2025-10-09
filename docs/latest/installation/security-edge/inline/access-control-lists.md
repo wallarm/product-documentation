@@ -43,3 +43,19 @@ You can assign an ACL either during or after Edge Node deployment.
 
 1. Go to Wallarm Console → **Security Edge** → **Inline** → **Configure** → **Hosts**.
 2. Under "Access control list (ACL)", select the desired ACL.
+
+## How ACLs interact with IP lists
+
+When both ACLs and IP lists are configured, each request goes through two layers of filtering:
+
+1. ACL — first layer
+2. IP list (allowlist/denylist/graylist) — second layer
+
+An IP must pass both filters to access your API locations. If an IP is denied by the ACL, it will be blocked — even if it's on the allowlist. If an IP is allowed by the ACL, it can still be blocked by the denylist.
+
+Example scenarios:
+
+* Allowed by ACL + Allowed by IP list → Access granted
+* Blocked by ACL + Allowed by IP list → Access denied
+* Allowed by ACL + Blocked by IP list → Access denied
+* Blocked by ACL + Blocked by IP list → Access denied
