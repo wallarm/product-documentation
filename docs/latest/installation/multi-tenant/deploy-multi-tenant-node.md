@@ -66,6 +66,8 @@ Multi-tenant node:
 
 ## Procedure for a multi-tenant node deployment
 
+### Step 1. Creating a multi-tenant node token and deploying a filtering node
+
 1. In Wallarm Console → **Nodes**, click **Create node** and select **Wallarm node**.
 
     !!! info "Switching an existing Wallarm node to the multi-tenant mode"
@@ -78,6 +80,11 @@ Multi-tenant node:
 1. Set node name and click **Create**.
 1. Copy the filtering node token.
 1. Depending on a filtering node deployment form, perform steps from the [appropriate instructions](../../installation/supported-deployment-options.md).
+
+The next steps differ depending on your filtering node type: NGINX Node or Native Node.
+
+### (NGINX Node) Step 2. Splitting traffic between tenants
+
 1. Split traffic between tenants using their unique identifiers.
 
     === "NGINX and NGINX Plus"
@@ -156,7 +163,100 @@ Multi-tenant node:
     * `tenant1.com/login` is the application `21`
     * `tenant1.com/users` is the application `22`
 
-## Configuring a multi-tenant node
+### (Native Node) Step 2. Splitting traffic between tenants
+
+Open the tenant's `wallarm-node-conf.yaml` file and split traffic specifying the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive.
+
+If necessary, specify IDs of tenant's applications using the [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) directive.
+
+See the examples of the `wallarm-node-conf.yaml` file below, showing a filtering node processing traffic for two clients:
+
+=== "connector-server"
+    ```
+    version: 4
+
+    mode: connector-server
+
+    connector:
+    # Other configuration values...
+    route_config:
+        wallarm_mode: "monitoring"
+        wallarm_application: "-1"
+        wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
+        target: "example.com"
+        routes:
+          - host: "example.com"
+            route: "^~/api/v1"
+            wallarm_mode: ""
+            wallarm_application: "1"
+            wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
+            target: "example.com"
+
+          - host: "example.com"
+            route: "^~/api/v2"
+            wallarm_mode: ""
+            wallarm_application: "2"
+            wallarm_partner_client_uuid: "22222222-2222-2222-2222-222222222222"
+            target: "example.com"
+    ```
+        
+=== "tcp-capture"
+    ```
+    version: 4
+
+    mode: tcp-capture
+
+    tcp_stream:
+    # Other configuration values...
+        wallarm_mode: "monitoring"
+        wallarm_application: "-1"
+        wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
+        target: "example.com"
+        routes:
+          - host: "example.com"
+            route: "^~/api/v1"
+            wallarm_mode: ""
+            wallarm_application: "1"
+            wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
+            target: "example.com"
+
+          - host: "example.com"
+            route: "^~/api/v2"
+            wallarm_mode: ""
+            wallarm_application: "2"
+            wallarm_partner_client_uuid: "22222222-2222-2222-2222-222222222222"
+            target: "example.com"
+    ```
+
+=== "envoy-external-filer"
+
+    ```
+    version: 4
+
+    mode: envoy-external-filter
+    # Other configuration values...
+    route_config:
+        wallarm_mode: "monitoring"
+        wallarm_application: "-1"
+        wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
+        target: "example.com"
+        routes:
+          - host: "example.com"
+            route: "^~/api/v1"
+            wallarm_mode: ""
+            wallarm_application: "1"
+            wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
+            target: "example.com"
+
+          - host: "example.com"
+            route: "^~/api/v2"
+            wallarm_mode: ""
+            wallarm_application: "2"
+            wallarm_partner_client_uuid: "22222222-2222-2222-2222-222222222222"
+            target: "example.com"
+    ```
+
+### Step 3. Configuring a multi-tenant node
 
 To customize the filtering node settings, use the [available directives](../../admin-en/configure-parameters-en.md).
 
