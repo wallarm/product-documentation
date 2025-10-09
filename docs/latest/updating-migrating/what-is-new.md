@@ -180,6 +180,13 @@ The session can be blocked automatically by:
 
 You can also block/unblock any session manually at any moment.
 
+## OAS 3.1 support
+
+!!! tip ""
+    Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) TBD or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
+
+For [API Specification Enforcement](../api-specification-enforcement/overview.md) and API Discovery's [Rogue API Detection](../api-discovery/rogue-api.md), you can now upload OpenAPI specifications of **version 3.1**.
+
 ## Which Wallarm nodes are recommended to be upgraded?
 
 * Client and multi-tenant Wallarm NGINX Nodes of version 4.10 and 5.x to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support-policy).
