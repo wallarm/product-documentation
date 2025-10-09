@@ -624,6 +624,13 @@ Here you can:
 
 The old **Vulnerabilities** section is not displayed anymore.
 
+## OAS 3.1 support
+
+!!! tip ""
+    Requires [NGINX Node](../../installation/nginx-native-node-internals.md#nginx-node) TBD or higher and not supported by [Native Node](../../installation/nginx-native-node-internals.md#native-node) so far.
+
+For [API Specification Enforcement](../../api-specification-enforcement/overview.md) and API Discovery's [Rogue API Detection](../../api-discovery/rogue-api.md), you can now upload OpenAPI specifications of **version 3.1**.
+
 ## HTTP/2 stream length control directive
 
 The [`wallarm_http_v2_stream_max_len`](../../admin-en/configure-parameters-en.md#wallarm_http_v2_stream_max_len) directive to control the maximum length of HTTP/2 streams has been introduced. It helps in preventing excessive memory consumption in long-lived gRPC connections.
