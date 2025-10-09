@@ -111,6 +111,12 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](ingress-controller.md)
 
+### 6.6.1 (2025-10-08)
+
+* Fixed the postanalytics (wstore) liveness probe to align with the `serviceProtocol` setting
+
+    When `serviceProtocol` is set to `tcp4`, the probe now explicitly uses IPv4, preventing restarts for dual-stack/IPv6 clusters.
+
 ### 6.6.0 (2025-10-03)
 
 * Changed the default **wstore** binding to IPv4 (`tcp4`), it now listens only on IPv4 instead of dual‑stack
