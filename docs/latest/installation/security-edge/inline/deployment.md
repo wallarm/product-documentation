@@ -6,6 +6,7 @@ To deploy the Wallarm [Security Edge for inline traffic analysis](overview.md), 
 
 * [Security Edge subscription](../../../about-wallarm/subscription-plans.md) (free or paid)
 * Ability to edit DNS records for your domains to verify ownership and route traffic to Wallarm
+* Selecting gRPC traffic for locations is supported starting from Edge Node version 6.6.0
 
 ## Configuration flow
 
