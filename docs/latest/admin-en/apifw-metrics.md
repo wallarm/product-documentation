@@ -40,7 +40,7 @@ API Firewall metrics are not enabled by default. You need to enable them differe
 
 1. Add the [`controller.wallarm.apiFirewall.metrics*`][ic-helm-chart] values to the Helm Chart during NGINX Ingress Controller [deployment][ic-deployment] or upgrade.
 
-    ```
+    ```yaml hl_lines="3-10"
     controller:
     wallarm:
         apiFirewall:
@@ -61,7 +61,7 @@ API Firewall metrics are not enabled by default. You need to enable them differe
 
 1. Add the [`config.wallarm.apiFirewall.metrics.*`][sidecar-helm-chart] values to the Helm Chart during Sidecar [deployment][sidecar-deployment] or [upgrade][sidecar-upgrade]. 
 
-    ```
+    ```hl_lines="12-15"
     config:
     wallarm:
     # Other configuration values...
