@@ -388,3 +388,4 @@ nav:
       - Wallarm Ingress Controller: faq/ingress-installation.md
       - Wallarm Cloud is Down: faq/wallarm-cloud-down.md
       - OWASP Dashboard Alerts: faq/node-issues-on-owasp-dashboards.md
+      - NGINX Error Log Alerts: troubleshooting/wallarm-issues-in-nginx-error-log.md
