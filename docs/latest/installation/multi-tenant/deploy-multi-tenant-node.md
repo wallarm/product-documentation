@@ -3,6 +3,10 @@
 [proxy-balancer-instr]:             ../../admin-en/using-proxy-or-balancer-en.md
 [process-time-limit-instr]:         ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
+[uuid-dir-native]:                  ../../installation/native-node/all-in-one-conf.md#route_configwallarm_partner_client_uuid
+[application-dir-native]:           ../../installation/native-node/all-in-one-conf.md#route_configwallarm_application
+[native-node-helm]:                 ../../installation/native-node/helm-chart.md
+
 
 # Deploying and Configuring Multi-tenant Node
 
@@ -50,8 +54,8 @@ Multi-tenant node:
     * Istio connector
 * Can be installed on the **technical tenant** or **tenant** level. If you want to provide a tenant with access to Wallarm Console, the filtering node must be installed at the corresponding tenant level.
 * Can be configured according to the same instructions as a regular filtering node.
-* The directive [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) is used to split traffic by the tenants.
-* The directive [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) is used to split settings by the applications.
+* The `wallarm_partner_client_uuid` directive is used to split traffic by the tenants.
+* The `wallarm_application` directive is used to split settings by the applications.
 
 ## Deployment requirements
 
@@ -66,6 +70,8 @@ Multi-tenant node:
 
 ## Procedure for a multi-tenant node deployment
 
+### Step 1. Creating a multi-tenant node token and deploying a filtering node
+
 1. In Wallarm Console → **Nodes**, click **Create node** and select **Wallarm node**.
 
     !!! info "Switching an existing Wallarm node to the multi-tenant mode"
@@ -78,6 +84,11 @@ Multi-tenant node:
 1. Set node name and click **Create**.
 1. Copy the filtering node token.
 1. Depending on a filtering node deployment form, perform steps from the [appropriate instructions](../../installation/supported-deployment-options.md).
+
+The next steps differ depending on your filtering node type: NGINX Node or Native Node.
+
+### (NGINX Node) Step 2. Splitting traffic between tenants
+
 1. Split traffic between tenants using their unique identifiers.
 
     === "NGINX and NGINX Plus"
@@ -156,7 +167,118 @@ Multi-tenant node:
     * `tenant1.com/login` is the application `21`
     * `tenant1.com/users` is the application `22`
 
-## Configuring a multi-tenant node
+### (Native Node) Step 2. Splitting traffic between tenants
+
+Open the tenant's `wallarm-node-conf.yaml` file and split traffic specifying the [`wallarm_partner_client_uuid`][uuid-dir-native] directive.
+
+If necessary, specify IDs of tenant's applications using the [`wallarm_application`][application-dir-native] directive.
+
+See the examples of the `wallarm-node-conf.yaml` file below, showing a filtering node processing traffic for two clients:
+
+=== "connector-server"
+    ```yaml hl_lines="6-7 13-14 19-20"
+    version: 4
+    mode: "connector-server"
+    # Other configuration values...
+    route_config:
+      wallarm_mode: "monitoring"
+      wallarm_application: "-1"
+      wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
+      target: "example.com"
+      routes:
+        - host: "example.com"
+          route: "^~/api/v1"
+          wallarm_mode: "monitoring"
+          wallarm_application: "1"
+          wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
+          target: "example.com"
+        - host: "example.com"
+          route: "^~/api/v2"
+          wallarm_mode: "monitoring"
+          wallarm_application: "2"
+          wallarm_partner_client_uuid: "22222222-2222-2222-2222-222222222222"
+          target: "example.com"    
+    ```
+
+    The example of the `wallarm-node-conf.yaml` for [deploying the Native Node with Helm Chart][native-node-helm]:
+
+    ```yaml hl_lines="5-6 10-11 14-15"
+    config:
+      connector:
+        route_config:
+          wallarm_mode: monitoring
+          wallarm_application: -1
+          wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
+          routes:
+            - host: example.com
+              route: /api/v1
+              wallarm_application: 1
+              wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
+            - host: api.example.com
+              route: /api/v2
+              wallarm_application: 2
+              wallarm_partner_client_uuid: "22222222-2222-2222-2222-222222222222"
+    ```
+
+
+=== "tcp-capture"
+    ```yaml hl_lines="10-11 17-18 23-24"
+    version: 4
+    mode: "tcp-capture-v2"
+    tcp_stream:
+      from_interface:
+        enabled: true
+        interface: "lo"
+    # Other configuration values...
+    route_config:
+      wallarm_mode: "monitoring"
+      wallarm_application: "-1"
+      wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
+      target: "example.com"
+      routes:
+        - host: "example.com"
+          route: "^~/api/v1"
+          wallarm_mode: "monitoring"
+          wallarm_application: "1"
+          wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
+          target: "example.com"
+        - host: "example.com"
+          route: "^~/api/v2"
+          wallarm_mode: "monitoring"
+          wallarm_application: "2"
+          wallarm_partner_client_uuid: "22222222-2222-2222-2222-222222222222"
+          target: "example.com"        
+    ```
+
+=== "envoy-external-filer"
+    ```yaml hl_lines="9-10 16-17 22-23"
+    version: 4
+    mode: "envoy-external-filter"
+    envoy_external_filter:
+      tls_cert: "/tls/cert.pem"
+      tls_key: "/tls/key.pem"
+    # Other configuration values...
+    route_config:
+      wallarm_mode: "monitoring"
+      wallarm_application: "-1"
+      wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
+      target: "example.com"
+      routes:
+        - host: "example.com"
+          route: "^~/api/v1"
+          wallarm_mode: "monitoring"
+          wallarm_application: "1"
+          wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
+          target: "example.com"
+        - host: "example.com"
+          route: "^~/api/v2"
+          wallarm_mode: "monitoring"
+          wallarm_application: "2"
+          wallarm_partner_client_uuid: "22222222-2222-2222-2222-222222222222"
+          target: "example.com"  
+    ```
+
+### Step 3. Configuring a multi-tenant node
 
 To customize the filtering node settings, use the [available directives](../../admin-en/configure-parameters-en.md).
 
