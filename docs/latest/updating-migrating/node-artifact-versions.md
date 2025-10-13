@@ -61,7 +61,7 @@ new attack types in logging variables and search bars?
 
 ### 6.3.0 (2025-07-08)
 
-* Added support for [file upload restriction policy](../api-protection/file-upload-restriction.md)
+* Added support for [file upload restriction policy](../api-protection/file-upload-restriction.md) via mitigation controls
 * Added support for [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) mitigation by [API Abuse Prevention](../api-abuse-prevention/overview.md)
 * In rules, the separator used in [**xml_tag**](../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
 * Internal improvements
@@ -74,6 +74,7 @@ new attack types in logging variables and search bars?
 
 ### 6.2.0 (2025-06-20)
 
+* Added support for [mitigation control-based](../api-protection/graphql-rule.md#mitigation-control-based-protection) **GraphQL API Protection**
 * Optimized stream handling for gRPC traffic
 * Introduced the [`wallarm_max_request_stream_message_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_stream_message_size) and [`wallarm_max_request_stream_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_stream_size) NGINX directives to control the maximum size of a single message payload and an entire stream body, respectively, in gRPC and WebSocket traffic
 * Added the `streams` and `messages` parameters to the [`/wallarm-status` service](../admin-en/configure-statistics-service.md) output to report the number of processed gRPC/WebSocket streams and messages
@@ -170,7 +171,7 @@ new attack types in logging variables and search bars?
 
 ### 6.3.0 (2025-07-08)
 
-* Added support for [file upload restriction policy](../api-protection/file-upload-restriction.md)
+* Added support for [file upload restriction policy](../api-protection/file-upload-restriction.md) via mitigation controls
 * Added support for [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) mitigation by [API Abuse Prevention](../api-abuse-prevention/overview.md)
 * Added the [`validation.forbidDangerousAnnotations`](../admin-en/configure-kubernetes-en.md#validationforbiddangerousannotations) chart value to toggle the CEL rule that blocks the dangerous `server-snippet` and `configuration-snippet` annotations
 
@@ -183,6 +184,8 @@ new attack types in logging variables and search bars?
 
 ### 6.2.0 (2025-06-20)
 
+* Added support for [mitigation control-based](../api-protection/graphql-rule.md#mitigation-control-based-protection) **GraphQL API Protection**
+* Optimized stream handling for gRPC traffic
 * Optimized stream handling for gRPC traffic
 * Introduced the [`wallarm_max_request_stream_message_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_stream_message_size) and [`wallarm_max_request_stream_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_stream_size) NGINX directives to control the maximum size of a single message payload and an entire stream body, respectively, in gRPC and WebSocket traffic
 * Added the `streams` and `messages` parameters to the [`/wallarm-status` service](../admin-en/configure-statistics-service.md) output to report the number of processed gRPC/WebSocket streams and messages
@@ -262,7 +265,7 @@ new attack types in logging variables and search bars?
 
 ### 6.3.0 (2025-07-08)
 
-* Added support for [file upload restriction policy](../api-protection/file-upload-restriction.md)
+* Added support for [file upload restriction policy](../api-protection/file-upload-restriction.md) via mitigation controls
 * Added support for [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) mitigation by [API Abuse Prevention](../api-abuse-prevention/overview.md)
 * Added support for the [`postanalytics.wstore.config.serviceAddress`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#postanalyticswstoreconfigserviceaddress) parameter to customize the address and port for incoming **wstore** connections
 * In rules, the separator used in [**xml_tag**](../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
@@ -270,6 +273,8 @@ new attack types in logging variables and search bars?
 
 ### 6.2.0 (2025-06-20)
 
+* Added support for [mitigation control-based](../api-protection/graphql-rule.md#mitigation-control-based-protection) **GraphQL API Protection**
+* Optimized stream handling for gRPC traffic
 * Optimized stream handling for gRPC traffic
 * Added support for [SSL/TLS and mTLS](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#postanalyticswstoretls) between the Filtering Node and the postanalytics module
 * Bump Alpine version to 3.22
@@ -361,13 +366,15 @@ new attack types in logging variables and search bars?
 
 ### 6.3.0 (2025-07-08)
 
-* Added support for [file upload restriction policy](../api-protection/file-upload-restriction.md)
+* Added support for [file upload restriction policy](../api-protection/file-upload-restriction.md) via mitigation controls
 * Added support for [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) mitigation by [API Abuse Prevention](../api-abuse-prevention/overview.md)
 * In rules, the separator used in [**xml_tag**](../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
 * Internal improvements
 
 ### 6.2.0 (2025-06-20)
 
+* Added support for [mitigation control-based](../api-protection/graphql-rule.md#mitigation-control-based-protection) **GraphQL API Protection**
+* Optimized stream handling for gRPC traffic
 * Optimized stream handling for gRPC traffic
 * Added the `streams` and `messages` parameters to the [`/wallarm-status` service](../admin-en/configure-statistics-service.md) output to report the number of processed gRPC/WebSocket streams and messages
 * Added support for [SSL/TLS and mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module) between the NGINX-Wallarm module and the postanalytics module when they are installed separately
@@ -429,13 +436,15 @@ new attack types in logging variables and search bars?
 
 ### 6.3.0 (2025-07-08)
 
-* Added support for [file upload restriction policy](../api-protection/file-upload-restriction.md)
+* Added support for [file upload restriction policy](../api-protection/file-upload-restriction.md) via mitigation controls
 * Added support for [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) mitigation by [API Abuse Prevention](../api-abuse-prevention/overview.md)
 * In rules, the separator used in [**xml_tag**](../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
 * Internal improvements
 
 ### 6.2.0 (2025-06-20)
 
+* Added support for [mitigation control-based](../api-protection/graphql-rule.md#mitigation-control-based-protection) **GraphQL API Protection**
+* Optimized stream handling for gRPC traffic
 * Optimized stream handling for gRPC traffic
 * Added the `streams` and `messages` parameters to the [`/wallarm-status` service](../admin-en/configure-statistics-service.md) output to report the number of processed gRPC/WebSocket streams and messages
 * Added support for [SSL/TLS and mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module) between the NGINX-Wallarm module and the postanalytics module when they are installed separately

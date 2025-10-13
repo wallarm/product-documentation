@@ -20,7 +20,7 @@ Depending on your subscription plan, one of the following configuration methods 
 As a part of [Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription, Wallarm provides the **File upload restriction policy** [mitigation control](../about-wallarm/mitigation-controls-overview.md).
 
 !!! tip ""
-    Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.0 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
+    Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.0 or higher or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.16.0 or higher.
 
 Using this mitigation control, you can set a limit on the size of a specific parameter (more precise settings), or for simplicity, you can set it entirely on the request.
 
