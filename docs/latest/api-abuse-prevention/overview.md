@@ -10,7 +10,7 @@ The **API Abuse Prevention** module detects the following bot types by default:
 * [Account takeover](../attacks-vulns-list.md#account-takeover)
 * [Security crawlers](../attacks-vulns-list.md#security-crawlers)
 * [Scraping](../attacks-vulns-list.md#scraping)
-* [Unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) (requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.0 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far)
+* [Unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) (requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.0 or higher or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.16.0 or higher)
 
 During the [API abuse profile setup](../api-abuse-prevention/setup.md#creating-profiles), you can configure the **API Abuse Prevention** module to protect from all types of bots or limit protection only for specific threats.
 
@@ -38,8 +38,19 @@ The following detectors may be involved:
 * **Credential stuffing** analyzing requests for being a part of the [account takeover](../attacks-vulns-list.md#account-takeover) attacks that involve repeated login attempts with different credentials while maintaining stable request attributes ([credential stuffing](../attacks-vulns-list.md#credential-stuffing)).
 * **Low-frequency credential stuffing** analyzing requests for being a part of the [account takeover](../attacks-vulns-list.md#account-takeover) attacks that are characterized by isolated or minimal authentication attempts ([credential stuffing](../attacks-vulns-list.md#credential-stuffing)) without subsequent API interaction: attackers purposefully restrict login attempts per session or client to evade detection.
 * **Response time anomaly** identifying abnormal patterns in the latency of API responses that may signal automated abuse or backend exploitation attempts (marked as [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) attack, being variant of it).
+
+    !!! tip ""
+        Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.0 or  [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.16.0 or higher.
+    
 * **Excessive request consumption** identifying clients that send abnormally large request payloads to the API, potentially indicating abuse or misuse of backend processing resources (marked as [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) attack, being variant of it).
+
+    !!! tip ""
+        Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.0 or  [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.16.0 or higher.
+
 * **Excessive response consumption** flagging suspicious sessions based on the total volume of response data transferred over their lifetime. Unlike detectors focused on individual requests, this detector aggregates response sizes across [an entire session](../api-sessions/overview.md) to identify slow-drip or distributed scraping attacks (marked as [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) attack, being variant of it).
+
+    !!! tip ""
+        Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.0 or  [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.16.0 or higher.
 
 !!! info "Confidence"
     As a result of detectors' work, every [detected](../api-abuse-prevention/exploring-bots.md) bot obtain **confidence percentage**: how sure we are that this is a bot. In each bot type, detectors have different relative importance / number of votes. Thus, the confidence percentage is the votes gained out of all possible votes in this bot type (provided by detectors that worked).

@@ -724,7 +724,7 @@ Absence of proper limits may be presented in:
 **Required configuration:**
 
 !!! tip ""
-    Requires [NGINX Node](installation/nginx-native-node-internals.md#nginx-node) 6.3.0 or higher and not supported by [Native Node](installation/nginx-native-node-internals.md#native-node) so far.
+    Requires [NGINX Node](installation/nginx-native-node-internals.md#nginx-node) 6.3.0 or  [Native Node](installation/nginx-native-node-internals.md#native-node) 0.16.0 or higher.
 
 Wallarm detects and mitigates the unrestricted resource consumption attacks only if it has the [API Abuse Prevention](api-abuse-prevention/overview.md) module enabled and properly configured.
 

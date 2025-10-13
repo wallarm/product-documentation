@@ -116,6 +116,13 @@ Wallarm provides the new [**DoS protection**](../api-protection/dos-protection.m
 
 ![DoS protection - JWT example](../images/api-protection/mitigation-controls-dos-protection-jwt.png)
 
+### GraphQL API Protection
+
+!!! tip ""
+    [NGINX Node 6.2.0 and higher](node-artifact-versions.md) and [Native Node 0.15.1 and higher](native-node/node-artifact-versions.md)
+
+[GraphQL API Protection](../api-protection/graphql-rule.md) can now be configured with the dedicated mitigation control (previously, only rules were accessible).
+
 ### Default controls
 
 Wallarm provides a set of [default mitigation controls](../about-wallarm/mitigation-controls-overview.md#default-controls) that, when enabled, significantly enhance the detection capabilities of the Wallarm platform. These controls are pre-configured to offer robust protection against a variety of common attack patterns. The current default mitigation controls include:
@@ -136,12 +143,15 @@ Wallarm now provides tools for direct restricting the size of uploaded files. Th
 
 Depending on your subscription plan, upload restrictions are applied via mitigation control or rule. You can set file size restrictions for the full request or its selected point.
 
+!!! tip ""
+    Mitigation-control based protection requires [NGINX Node 6.3.0 and higher](node-artifact-versions.md) or [Native Node 0.16.0 and higher](native-node/node-artifact-versions.md)
+
 ![File upload restriction MC - example](../images/api-protection/mitigation-controls-file-upload-1.png)
 
 ## Protection from unrestricted resource consumption
 
 !!! tip ""
-    [NGINX Node 6.3.0 and higher](node-artifact-versions.md) and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
+    [NGINX Node 6.3.0 and higher](node-artifact-versions.md) and [Native Node 0.16.0 and higher](../installation/nginx-native-node-internals.md#native-node).
 
 Wallarm's [API Abuse Prevention](../api-abuse-prevention/overview.md) introduces the possibility to prevent the [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) - abusive behavior where an automated client consumes excessive API or application resources without proper limits. This may include sending high volumes of non-malicious requests, exhausting compute, memory, or bandwidth, and causing service degradation for legitimate users.
 

@@ -27,7 +27,7 @@ Depending on your subscription plan, one of the following configuration methods 
 ## Mitigation control-based protection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 !!! tip ""
-    Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.2.0 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
+    Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.2.0 or higher or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.15.1 or higher.
     
 ### Default protection
 

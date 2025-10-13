@@ -58,6 +58,8 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.16.0 (2025-07-23)
 
+* Added support for [file upload restriction policy](../../api-protection/file-upload-restriction.md) via mitigation controls
+* Added support for [unrestricted resource consumption](../../attacks-vulns-list.md#unrestricted-resource-consumption) mitigation by [API Abuse Prevention](../../api-abuse-prevention/overview.md)
 * Added support for the [MuleSoft Flex Gateway connector](../../installation/connectors/mulesoft-flex.md)
 * Introduced the [`input_filters`](../../installation/native-node/all-in-one-conf.md#input_filters) configuration section, allowing to define which requests should be inspected or bypassed by the Node
 * Fixed memory leak
@@ -67,6 +69,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.15.1 (2025-07-08)
 
+* Added support for [mitigation control-based](../../api-protection/graphql-rule.md#mitigation-control-based-protection) **GraphQL API Protection**
 * Introduced the [`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers) configuration to configure trusted networks and extract real client IP and host headers
 
     This replaces `http_inspector.real_ip_header` used in earlier versions in the `tcp-capture` mode.
@@ -168,6 +171,8 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ### 0.16.0 (2025-07-23)
 
+* Added support for [file upload restriction policy](../../api-protection/file-upload-restriction.md) via mitigation controls
+* Added support for [unrestricted resource consumption](../../attacks-vulns-list.md#unrestricted-resource-consumption) mitigation by [API Abuse Prevention](../../api-abuse-prevention/overview.md)
 * Added support for the [MuleSoft Flex Gateway connector](../../installation/connectors/mulesoft-flex.md)
 * Fixed memory leak
 * In rules, the separator used in [**xml_tag**](../../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
@@ -176,6 +181,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ### 0.15.1 (2025-07-08)
 
+* Added support for [mitigation control-based](../../api-protection/graphql-rule.md#mitigation-control-based-protection) **GraphQL API Protection**
 * Added support for the [`config.aggregation.serviceAddress`](../../installation/native-node/helm-chart-conf.md#configaggregationserviceaddress) parameter to customize the address and port for incoming **wstore** connections
 * Minor internal file structure change
 * Fixed the [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874) vulnerability
@@ -255,6 +261,8 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 ### 0.16.0 (2025-07-23)
 
+* Added support for [file upload restriction policy](../../api-protection/file-upload-restriction.md) via mitigation controls
+* Added support for [unrestricted resource consumption](../../attacks-vulns-list.md#unrestricted-resource-consumption) mitigation by [API Abuse Prevention](../../api-abuse-prevention/overview.md)
 * Added support for the [MuleSoft Flex Gateway connector](../../installation/connectors/mulesoft-flex.md)
 * Introduced the [`input_filters`](../../installation/native-node/all-in-one-conf.md#input_filters) configuration section, allowing to define which requests should be inspected or bypassed by the Node
 * Fixed memory leak
@@ -264,6 +272,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 ### 0.15.1 (2025-07-08)
 
+* Added support for [mitigation control-based](../../api-protection/graphql-rule.md#mitigation-control-based-protection) **GraphQL API Protection**
 * Introduced the [`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers) configuration to configure trusted networks and extract real client IP and host headers
 
     This replaces `http_inspector.real_ip_header` used in earlier versions in the `tcp-capture` mode.
