@@ -133,6 +133,8 @@ The following functionalities are currently not supported by the on-premises Wal
 
     While the feature is unavailable in the on-premise version, customers can still create an account in Wallarm's cloud-based service and activate the AASM product following the above instructions.
 * Integration with [Telegram](../../user-guides/settings/integrations/telegram.md) (if you need the integration, please contact our [Sales Team](mailto:sales@wallarm.com))
+* [Agentiс AI Discovery](../../agentic-ai/agentic-ai-discovery.md) and [Agentic AI Protection](../../agentic-ai/agentic-ai-protection.md)
+* [Schema-Based Testing](../../vulnerability-detection/schema-based-testing/overview.md)
 
 ## Data retention and automatic removal
 
