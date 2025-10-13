@@ -37,6 +37,7 @@ new attack types in logging variables and search bars?
 ### 6.5.1 (2025-09-09)
 
 * Added support for [blocking attackers by API sessions](../api-sessions/blocking.md)
+* Added support for NGINX Plus R35
 * Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 * Bumped Go version to 1.24
 * Fixed the behavior of the [`wallarm_wstore_throttle_mode`](../admin-en/wstore-metrics.md#wallarm_wstore_throttle_mode) Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
@@ -51,6 +52,7 @@ new attack types in logging variables and search bars?
 
 ### 6.4.0 (2025-07-31)
 
+* Added support for NGINX Plus R34
 * Fixed the stuffed credentials export to the Cloud
 * Improved GraphQL parser
 * Bug fixes and internal improvements
