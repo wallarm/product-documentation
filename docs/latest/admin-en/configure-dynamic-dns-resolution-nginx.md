@@ -1,4 +1,4 @@
-# Configuring dynamic DNS resolution in NGINX
+# Configuring Dynamic DNS Resolution in NGINX
 
 If the domain name is passed in the `proxy_pass` directive of the NGINX configuration file, then NGINX resolves the IP address of the host only once after the start. If the DNS server changes the IP address of the host, then NGINX will be still using the old IP address until NGINX will be reloaded or restarted. Before that, NGINX will send requests to the wrong IP address.
 

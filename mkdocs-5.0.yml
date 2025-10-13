@@ -335,7 +335,6 @@ nav:
             - Working with the Filter Node in Zabbix: admin-en/monitoring/working-with-zabbix.md
     - Wallarm Node and Cloud Synchronization: admin-en/configure-cloud-node-synchronization-en.md
     - Access to Wallarm API via Proxy: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-    - Dynamic DNS Resolution in NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
     - Enabling JA3 fingerprinting: admin-en/enabling-ja3.md
     - Self-Hosted Node Upgrade:
       - What is New in Wallarm Node 5.x and 0.x: updating-migrating/what-is-new.md
@@ -389,3 +388,4 @@ nav:
       - Wallarm Cloud is Down: faq/wallarm-cloud-down.md
       - OWASP Dashboard Alerts: faq/node-issues-on-owasp-dashboards.md
       - NGINX Error Log Alerts: troubleshooting/wallarm-issues-in-nginx-error-log.md
+      - Dynamic DNS Resolution in NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
