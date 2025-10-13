@@ -37,7 +37,7 @@ In session details, you can see a comprehensive statistics providing information
 
 ![!API Sessions - filters inside session](../images/api-sessions/api-sessions-inline-filters.png)
 
-Note that is-session filters communicate with general filters of the **API Sessions** section: 
+Note that in-session filters communicate with general filters of the **API Sessions** section: 
 
 * Any session opened after general filters applied will share these filters (inside the session, you can click **Show all requests** to cancel that).
 * Use the **Apply filters** button to apply general filters within your current session.
