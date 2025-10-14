@@ -88,7 +88,7 @@ Once you configured parameters to be used for user and his/her role identificati
 
 [Mitigation controls](../about-wallarm/mitigation-controls-overview.md) are capable of adding more parameters to session context, for example, the **BOLA protection** mitigation control may want to use the `object_id` parameter as [tracked for enumeration](../api-protection/enumeration-attack-protection.md#enumerated-parameters) or as [filter for scope](../api-protection/enumeration-attack-protection.md#scope-filters); if such parameter is not added in **API Sessions** → **Session context parameters**, it can be added directly in mitigation control configuration: in API Session, it will be added hidden, meaning you will see these parameters in session details if they are presented in requests, but you will not see them in **Session context parameters** configuration.
 
-Hiddenly added parameters do not take anything from 20 parameter quota. Parameters are hidden to avoid their deletion as such deletion can lead to ceasing protection provided by mitigation control.
+Hidden parameters do not take anything from 20 parameter quota. Parameters are hidden to avoid their deletion as such deletion can lead to ceasing protection provided by mitigation control.
 
 ## Session grouping
 
