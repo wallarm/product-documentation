@@ -1,12 +1,26 @@
 # Getting Started with the Wallarm Platform
 
-Wallarm delivers all-in-one API security, identifying and protecting your APIs from vulnerabilities and malicious activities. To help you begin using the platform, we offer a demo, immediate API discovery, and Free Tier protection upon registration, a Playground for exploration prior to signing up, and access to expert support for a seamless experience.
+Wallarm delivers all-in-one API security, identifying and protecting your APIs from vulnerabilities and malicious activities. To help you begin using the platform, we offer an access to expert support for a seamless experience, plus: 
 
-## Self-signup, demo, immediate API discovery, and Security Edge Free Tier
+Upon signing up:
+
+* A demo
+* Immediate external API discovery
+* Free Tier protection 
+
+For exploration prior to signing up:
+
+* Playground
+
+## Self-signup and Security Edge Free Tier
 
 When signing up with Wallarm, you will create an account in the Wallarm Console, which serves as the central hub for navigating and configuring the Wallarm platform. The Console UI is hosted on the [Wallarm Cloud](../about-wallarm/overview.md#cloud).
 
 Every new account is automatically enrolled in the [Security Edge Free Tier](../about-wallarm/subscription-plans.md#security-edge-free-tier), which gives you **500 thousand requests per month** for free.
+
+### Self-signup
+
+To register in Wallarm by yourself:
 
 1. Choose your Wallarm Cloud:
 
@@ -19,17 +33,24 @@ Every new account is automatically enrolled in the [Security Edge Free Tier](../
 1. Follow the signup link and input requested data about yourself and your company.
 1. Select whether you want to immediately start **discovering your external APIs and security issues** (nothing needs to be deployed, see details [below](#know-your-api-with-zero-deployment)).
 
-    Visit the Wallarm Console's [**API Attack Surface**](../api-attack-surface/overview.md) section later to see how Wallarm detects APIs and their security issues. For demo purposes, the `wallarm.com` domain is added to the API Attack Surface configuration. You will see its data. Fill free to add and see your own domains.
+    Visit the Wallarm Console's [**API Attack Surface**](../api-attack-surface/overview.md) section later to see how Wallarm detects APIs and their security issues. This activates the Core (freemium) version, and scanning of the used email's domain starts immediately.
 
-    Scanning your domains will start immediately and will continue for free while you negotiating Wallarm's sales team.
+    You can continue using the Core version for as long as you need, provided that Enterprise features are not necessary for your use. See differences of different versions [here](https://www.wallarm.com/product/aasm-pricing).
 
 1. From the suggested list, select one or many goals you want to focus on with Wallarm.
 1. From the suggested list, select one or many security tools you are already using.
 1. Finish registration.
 
-    **Welcome to Wallarm** wizard is displayed. It is equipped with the ready-to-use demo Wallarm filtering node which allows you to see within 5 minutes how Wallarm protects APIs.
+### Welcome wizard
 
-    ![Self-signup - Welcome Wizard](../images/waf-installation/quickstart/welcome-wizard.png)
+On finishing the registration, the **Welcome to Wallarm** wizard is displayed. It is equipped with the ready-to-use demo Wallarm filtering node which allows you to see within 5 minutes how Wallarm protects APIs.
+
+!!! info "Demo node"
+    Demo node does not perform any real traffic analysis and protection.
+
+You can **Skip** the wizard - this will switch you to Security Edge [**setup wizard**](../installation/security-edge/free-tier.md#quick-setup-wizard).
+
+![Self-signup - Welcome Wizard](../images/waf-installation/quickstart/welcome-wizard.png)
 
 1. Choose demo traffic destination - Wallarm demo API or your own API.
 1. Click for Wallarm to run pre-generated traffic through the demo Node.
@@ -38,8 +59,8 @@ Every new account is automatically enrolled in the [Security Edge Free Tier](../
 1. Switch to [blocking mode](../admin-en/configure-wallarm-mode.md) and re-run malicious traffic to see how requests were blocked.
 1. Finish the demo and select one of the available options to continue with Wallarm:
 
-    * [Switch DNS to Security Edge inline](../installation/security-edge/free-tier.md) to start you traffic analysis for free within [Security Edge Free Tier](../about-wallarm/subscription-plans.md#security-edge-free-tier) subscription.
-    * [Configure Security Edge connector](../installation/security-edge/free-tier.md) to start you traffic analysis for free within [Security Edge Free Tier](../about-wallarm/subscription-plans.md#security-edge-free-tier) subscription.
+    * [Switch DNS to Security Edge inline](../installation/security-edge/free-tier.md) to start you traffic analysis for free within [Security Edge Free Tier](../about-wallarm/subscription-plans.md#security-edge-free-tier) subscription. This will switch Wallarm to Security Edge [**setup wizard**](../installation/security-edge/free-tier.md#quick-setup-wizard).
+    * [Configure Security Edge connector](../installation/security-edge/free-tier.md) to start you traffic analysis for free within [Security Edge Free Tier](../about-wallarm/subscription-plans.md#security-edge-free-tier) subscription. This will switch Wallarm to Security Edge [**setup wizard**](../installation/security-edge/free-tier.md#quick-setup-wizard).
     * Deploy [hybrid node locally](../installation/supported-deployment-options.md) for full control over your traffic and data.
 
 ## Know your API with zero deployment
@@ -58,9 +79,9 @@ To start, do one of the following:
 
 * Activate the feature immediately during [self-signup](#self-signup-and-security-edge-free-tier) in the **Welcome to Wallarm** wizard.
     
-    When using this option, for demo purposes, the `wallarm.com` domain is added to the [**API Attack Surface**](../api-attack-surface/overview.md) configuration. You will see its data in **API Attack Surface** in Wallarm Console. Fill free to add and see your own domains.
+    Using this option activates the Core (freemium) version, and scanning of the used email's domain starts immediately.
 
-    Scanning your domains will start immediately and will continue for free while you negotiating Wallarm's sales team.
+    You can continue using the Core version for as long as you need, provided that Enterprise features are not necessary for your use. See differences of different versions [here](https://www.wallarm.com/product/aasm-pricing).
     
 * Get pricing information and activate AASM on the Wallarm's official site [here](https://www.wallarm.com/product/aasm).
 * Contact [sales@wallarm.com](mailto:sales@wallarm.com)
