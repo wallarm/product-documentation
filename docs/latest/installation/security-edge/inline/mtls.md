@@ -29,6 +29,7 @@ You can upload multiple certificates and assign different ones to different orig
     
     * **Private key**: PEM format, must correspond to the client certificate.
     * **CA bundle**: PEM format, must include the issuing certificate authority for the client certificate.
+    * **Signature algorithm**: RSA, ED25519, ECDSA with the secp256r1, secp384r1, and secp521r1 curves.
 1. In Wallarm Console → **Security Edge** → **Configure**, under **General settings**, upload the certificate, private key, and CA bundle.
 1. In the **Origins** section, enable **Require mTLS from Edge Node** for the relevant origin and select the appropriate certificate.
 
