@@ -52,7 +52,6 @@ new attack types in logging variables and search bars?
 
 ### 6.4.0 (2025-07-31)
 
-* Added support for NGINX Plus R34
 * Fixed the stuffed credentials export to the Cloud
 * Improved GraphQL parser
 * Bug fixes and internal improvements
@@ -109,6 +108,7 @@ new attack types in logging variables and search bars?
 ### 6.0.0 (2025-04-03)
 
 * Initial release 6.0, [see changelog](what-is-new.md)
+* Added support for NGINX Plus R34
 
 ## Helm chart for Wallarm NGINX Ingress controller
 
