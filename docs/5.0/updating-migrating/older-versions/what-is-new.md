@@ -535,7 +535,7 @@ Currently, it is tailored for the following deployments:
 
       * [Upgrading modules for NGINX, NGINX Plus](nginx-modules.md) with **all-in-one installer**
 
-        To improve and simplify the upgrade process, upgrading of all node versions is performed using Wallarm's all-in-one installer. Manual upgrade with individual Linux packages is not supported any more.
+        To improve and simplify the upgrade process, upgrading of all node versions is performed using Wallarm's all-in-one installer. Manual upgrade with individual Linux packages is not supported anymore.
 
       * [Upgrading the Docker container with the NGINX modules](docker-container.md)
       * [Upgrading NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)

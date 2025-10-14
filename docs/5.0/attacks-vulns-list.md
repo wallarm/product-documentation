@@ -917,7 +917,7 @@ Virtual patching is blocking specific or all requests to some endpoint that is p
 
 **In addition to Wallarm protection:**
 
-* Analyze the vulnerability mitigated by the patch and remove it so that the patch is not needed any more.
+* Analyze the vulnerability mitigated by the patch and remove it so that the patch is not needed anymore.
 
 ## API leak
 

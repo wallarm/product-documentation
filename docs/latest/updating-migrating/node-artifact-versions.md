@@ -4,7 +4,7 @@ This document lists available  [versions](versioning-policy.md) of the [NGINX Wa
 
 ## All-in-one installer
 
-Since version 4.10, installation and upgrading of Wallarm nodes is performed **only** with all [all-in-one installer](../installation/nginx/all-in-one.md). Manual upgrade with individual Linux packages is not supported any more.
+Since version 4.10, installation and upgrading of Wallarm nodes is performed **only** with all [all-in-one installer](../installation/nginx/all-in-one.md). Manual upgrade with individual Linux packages is not supported anymore.
 
 History of all-in-one installer updates simultaneously applies to it's x86_64 and ARM64 (beta) versions.
 
