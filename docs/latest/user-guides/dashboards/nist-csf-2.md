@@ -39,5 +39,5 @@ To identify anomalies, indicators of compromise, and other potential adverse eve
 Wallarm's arsenal equips you to aptly respond to identified security threats:
 
 * [Active blocking](../../admin-en/configure-wallarm-mode.md) to prevent malicious activities from reaching your APIs.
-* API risk management: Wallarm enables streamlined management of detected vulnerabilities by enabling you to swiftly [update vulnerability statuses](../vulnerabilities.md#vulnerability-lifecycle) for better security oversight.
+* API risk management: Wallarm enables streamlined management of detected vulnerabilities by enabling you to swiftly [update vulnerability statuses](../vulnerabilities.md#issue-lifecycle) for better security oversight.
 * [Integrations and alerts](../settings/integrations/integrations-intro.md) allowing you to craft and route security alerts to your SIEM, SOAR, and other systems.

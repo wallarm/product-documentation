@@ -1,81 +1,100 @@
-# Managing Vulnerabilities
+[link-aasm-security-issue-risk-level]:  #issue-risk-level
+[link-integrations-intro]:              ../user-guides/settings/integrations/integrations-intro.md
 
-Vulnerabilities are security flaws in an infrastructure that may be exploited by attackers to perform unauthorized malicious actions with your system. In Wallarm Console, you can analyze and manage security flaws that have been detected by Wallarm in your system:
+# Managing Security Issues
 
+Vulnerabilities are security flaws in an infrastructure that may be exploited by attackers to perform unauthorized malicious actions with your system. In Wallarm Console, you can analyze and manage security flaws that have been detected by Wallarm in your system in the **Events** →  **Security Issues** section.
 
-* In the **Vulnerabilities** section
-* In the **AASM** → **Security Issues** section
+Wallarm employs [various techniques](../about-wallarm/detecting-vulnerabilities.md#detection-methods) to discover security weaknesses.
 
-Wallarm employs various techniques to [discover](../about-wallarm/detecting-vulnerabilities.md) security weaknesses, which include:
+## Exploring security issues
 
-* **Passive detection**: the vulnerability was found by analyzing real traffic, including both requests and responses. This can happen during a security incident, where a real flaw is exploited, or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation.
-* **Threat Replay Testing**: the vulnerability was found during the [attack replay security tests](../vulnerability-detection/threat-replay-testing/overview.md) launched by Wallarm.
-* **API Attack Surface Management (AASM)**: [discovers](../api-attack-surface/overview.md) external hosts with their APIs, then, for each of them, identifies missing WAF/WAAP solutions, and finds vulnerabilities.
-* **API Discovery insights**: the vulnerability was found by [API Discovery](../api-discovery/overview.md) module due to PII transfer in query parameters of GET requests.
+To explore the security issues found for your external hosts, in Wallarm Console, go to the **Security Issues** section.
 
-Wallarm stores the history of all detected vulnerabilities in the **Vulnerabilities** section:
+![Security Issues](../images/api-attack-surface/security-issues.png)
 
-![Vulnerabilities tab](../images/user-guides/vulnerabilities/check-vuln.png)
+Here, the detailed information on found issues is presented, including:
 
-## Vulnerability lifecycle
+* Full filterable list of issues with brief and [detailed description](#issue-details-and-lifecycle) of each
+* Top vulnerable hosts list
+* Distribution of security issues by type
+* [Risk level](#issue-risk-level) evaluation and distribution of security issues by these levels
+* Monthly historical information on detected and resolved issues for the last 6 month
 
-The lifecycle of a vulnerability involves the assessment, remediation, and verification stages. At each stage, Wallarm equips you with the necessary data to thoroughly address the issue and fortify your system. Additionally, Wallarm Console provides you with the ability to monitor and manage the vulnerability status with ease by utilizing the **Active** and **Closed** statuses.
+## Issue details and lifecycle
 
-* **Active** status indicates that the vulnerability exists in the infrastructure.
-* **Closed** status is used when the vulnerability has been resolved on the application side or determined to be a false positive.
+Wallarm provides detailed information on each detected security issues to allow clear understanding of what is happening and what can be done. 
 
-    A [false positive](../about-wallarm/detecting-vulnerabilities.md#false-positives) occurs when a legitimate entity is mistakenly identified as a vulnerability. If you come across a vulnerability that you believe is a false positive, you can report it using the appropriate option in the vulnerability menu. This will help to improve the accuracy of Wallarm's vulnerability detection. Wallarm reclassifies the vulnerability as a false positive, changes its status to **Closed** and does not subject it to further [rechecking](#verifying-vulnerabilities).
+### Issue details
 
-When managing vulnerabilities, you can switch vulnerability statuses manually. Additionally, Wallarm regularly [rechecks](#verifying-vulnerabilities) vulnerabilities and changes the status of vulnerabilities automatically depending on the results.
+Click the issue in the list to open its details, such as:
 
-![Vulnerability lifecycle](../images/user-guides/vulnerabilities/vulnerability-lifecycle.png)
+* Basic info (type, host and url, first and last seen time)
+* Detailed **Description**
+* Measures for **Mitigation**
+* Information on linked CVEs ranked by risk as **Additional information**
 
-Changes in the vulnerability lifecycle are reflected in the vulnerability change history.
+![Security issues details - Details](../images/api-attack-surface/security-issue-details.png)
 
-## Assessing and remediating vulnerabilities
+### Issue lifecycle
 
-Wallarm provides each vulnerability with the details that helps to assess the level of risk and take steps to address security issues:
+Once a security issue is detected, it obtains the **Open** status meaning some measures are required to mitigate it. In the issue details, you can close it (means it was resolved) or mark as false.
 
-* The unique identifier of the vulnerability in the Wallarm system
-* Risk level indicating danger of consequences of the vulnerability exploitation
+It is useful to provide comment on each status change, giving others the full view of what is the reason of change. Author and time of change are tracked automatically.
 
-    Wallarm automatically indicates the vulnerability risk using the Common Vulnerability Scoring System (CVSS) framework, likelihood of a vulnerability being exploited, its potential impact on the system, etc. You can change the risk level to your own value based on your unique system requirements and security priorities.
-* [Type of the vulnerability](../attacks-vulns-list.md) that also corresponds to the type of attacks exploiting the vulnerability
-* Domain and path at which the vulnerability exists
-* Parameter that can be used to pass a malicious payload exploiting the vulnerability
-* Method by which the vulnerability was [detected](../about-wallarm/detecting-vulnerabilities.md#detection-methods)
-* The target component that may be impacted if a vulnerability is exploited, can be **Server**, **Client**, **Database**
-* Date and time when the vulnerability was detected
-* Last [verification date](#verifying-vulnerabilities) of the vulnerability
-* Detailed vulnerability description, exploitation example and recommended remediation steps
-* Related incidents
-* History of vulnerability status changes
+Security issues can be closed by Wallarm automatically after next automatic or manual rescan in the following cases:
 
-You can filter vulnerabilities by using the [search string](search-and-filters/use-search.md) and pre-defined filters.
+* Port not found during last scan
+* Network service has changed
+* New version of the product detected
+* Vulnerable version no longer present
+* Vulnerability not detected during last scan
 
-![Vulnerability detailed information](../images/user-guides/vulnerabilities/vuln-info.png)
+Issues can be re-opened automatically after next rescan or manually. Note that issues marked as false are never re-opened automatically.
 
-All vulnerabilities should be fixed on the application side because they make your system more vulnerable to malicious actions. If a vulnerability cannot be fixed, using the [virtual patch](rules/vpatch-rule.md) rule can help block related attacks and eliminate the risk of an incident.
+![Security issues - lifecycle diagram](../images/api-attack-surface/security-issue-lifecycle.png)
 
-## Verifying vulnerabilities <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
+### Changing risk level
 
-Wallarm regularly rechecks both active and closed vulnerabilities. This involves repeat testing of an infrastructure for a security issue that was discovered earlier. If rechecking result indicates that the vulnerability no longer exists, Wallarm changes its status to **Closed**. This may also occur if the server is temporarily unavailable. Conversely, if the rechecking of a closed vulnerability indicates that it still exists in the application, Wallarm changes its status back to **Active**.
+If you re-evaluate the [risk level](#issue-risk-level) of the issue, go to its details and select new risk level from the list.
 
-Active vulnerabilities and vulnerabilities fixed less than a month ago are rechecked once a day. Vulnerabilities that were fixed more than a month ago are rechecked once a week.
+### Adding comments
 
-Depending on the initial vulnerability detection method, the testing is performed by either **API Attack Surface Management (AASM)** or the **Threat Replay Testing** module.
+While it is always useful to provide comment on status change (closing, re-opening), you can add any comments to the issue at any moment without changing anything else. To do so, use the **Add comment** button: your comment will become the part of **Status history**.
 
-It is not possible to recheck vulnerabilities that were detected passively.
+### Status history
 
-If you need to recheck a vulnerability manually, you can trigger the rechecking process using the appropriate option in the vulnerability menu:
+For you to be on track, the full history of changes and comments is displayed in the **Status history** section of the security issue.
 
-![A vulnerability that can be rechecked](../images/user-guides/vulnerabilities/recheck-vuln.png)
+![Security issues - lifecycle diagram](../images/api-attack-surface/aasm-sec-issue-history.png)
 
-## Downloading vulnerability report
+## Issue risk level
 
-You can export the vulnerability data into a PDF or CSV report using the corresponding button in the UI. Wallarm will email the report to the specified address.
+Each discovered security issue is automatically assessed by how much risk it poses as described in the table.
 
-PDF is good for presenting visually rich reports with vulnerability and incident summaries, while CSV is better suited for technical purposes, providing detailed information on each vulnerability. CSV can be used to create dashboards, produce a list of the most vulnerable API hosts/applications, and more.
+| Risk | Description | Examples |
+| ----- | ----- | ----- |
+|  **Critical** | The vulnerability's presence may lead to a system compromise, allowing an attacker to remotely execute code or cause a denial of service (DoS) or service degradation. Immediate reaction is required. | <ul><li>Remote code execution</li><li>Indicator of compromise (e.g., publicly accessible web shell)</li></ul> |
+|  **High** | The presence of the vulnerability may lead to partial system compromise, such as database access or limited access to the filesystem. In specific circumstances (e.g., if special requirements are met or if chained with other vulnerabilities), the vulnerability may lead to system compromise (e.g., remote code execution). | <ul><li>Path traversal</li><li>XML external entity (XXE) injection</li><li>Vulnerable software version with CVEs of critical and high risk<sup>*</sup></li></ul> |
+|  **Medium** | The vulnerability may lead to bypassing security controls, limited exposure or access, but without full compromise. It can allow access to sensitive data or configurations and potentially be leveraged in a more complex attack chain. | <ul><li>Cross-site scripting</li><li>GraphQL misconfigurations</li><li>Exposure of configuration files</li><li>API leak of long-lived credentials (passwords, API keys)</li><li>Vulnerable software version with CVEs of high risk<sup>*</sup></li></ul> |
+|  **Low** | The vulnerability has minimal impact and does not directly lead to significant damage or exploitation as requirements/conditions are too complex. However, it can be combined with other vulnerabilities to escalate an attack. | <ul><li>TLS/SSL misconfigurations</li><li>API leak of short-lived authentication tokens (e.g., JWT tokens)</li></ul> |
+|  **Info** | The issue does not pose an immediate security risk but should still be reviewed for potential manual validation. It often involves exposure of non-critical data or violation of best practices. | <ul><li>Exposure of OpenAPI schema</li><li>Leakage of personally identifiable information (PII), such as emails or usernames</li></ul> |
+
+<small><sup>*</sup> If the software version contains multiple CVEs, including critical ones, the overall risk level is assessed as high. The risk level is reduced by one level because the presence of a vulnerable version does not explicitly indicate the existence of the vulnerability. For example, the vulnerability may occur only in a specific, non-default configuration or require certain conditions to be met.</small>
+
+You can re-evaluate and manually adjust the risk level at any moment.
+
+## Security issue reports
+
+You can get report on all or filtered security issues in CSV or JSON format using the **Download report** button.
+
+![Security issues details - Lifecycle controls](../images/api-attack-surface/security-issues-report.png)
+
+## Notifications
+
+--8<-- "../include/api-attack-surface/aasm-notifications.md"
+
+<!--Commented out as we do not have info on what exactly from Security Issues scope can be extracted via IP calls - this is a separate task.
 
 ## API call to get vulnerabilities
 
@@ -83,4 +102,4 @@ To get vulnerability details, you can [call the Wallarm API directly](../api/ove
 
 To get the first 50 vulnerabilities in the status **Active** within the last 24 hours, use the following request replacing `TIMESTAMP` with the date 24 hours ago converted to the [Unix Timestamp](https://www.unixtimestamp.com/) format:
 
---8<-- "../include/api-request-examples/get-vulnerabilities.md"
+--8<-- "../include/api-request-examples/get-vulnerabilities.md"-->

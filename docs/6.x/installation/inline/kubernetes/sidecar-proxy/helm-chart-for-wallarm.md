@@ -11,7 +11,7 @@ search:
 [libdetection-docs]:                  ../../../../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors
 [passive-detection-docs]:             ../../../../about-wallarm/detecting-vulnerabilities.md#passive-detection
 [subscriptions-docs]:                 ../../../../about-wallarm/subscription-plans.md#core-subscription-plans
-[active-threat-verification-docs]:    ../../../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing
+[active-threat-verification-docs]:    ../../../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing-trt
 [node-token-types]:                   ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [denylist-docs]:                      ../../../../user-guides/ip-lists/overview.md
 [denylist-view-events-docs]:          ../../../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips
