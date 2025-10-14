@@ -1,3 +1,5 @@
+[wcli-metrics]:             (../../../admin-en/wcli-metrics.md)
+
 # Wallarm-Specific Values of the Sidecar Helm Chart
 
 This document describes Wallarm-specific Helm chart values you can change during [Wallarm Sidecar deployment](deployment.md) or [upgrade][sidecar-upgrade-docs]. The Wallarm-specific and other chart values are for global configuration of the Sidecar Helm chart.
@@ -48,7 +50,43 @@ config:
     logs:
       extended: false
       format: text
-
+  wcli:
+    logLevel: warn
+    commands:
+      apispec:
+        logLevel: INFO
+      blkexp:
+        logLevel: INFO
+      botexp:
+        logLevel: WARN
+      cntexp:
+        logLevel: ERROR
+      cntsync:
+        logLevel: INFO
+      credstuff:
+        logLevel: INFO
+      envexp:
+        logLevel: INFO
+      ipfeed:
+        logLevel: INFO
+      iplist:
+        logLevel: INFO
+      jwtexp:
+        logLevel: INFO
+      metricsexp:
+        logLevel: INFO
+      mrksync:
+        logLevel: INFO
+      register:
+        logLevel: INFO
+      reqexp:
+        logLevel: INFO
+      syncnode:
+        logLevel: INFO
+    metrics:
+      enabled: true
+      listenAddress: ":9003"
+      endpoint: "/metrics"
 postanalytics:
   external:
     enabled: false
@@ -378,8 +416,30 @@ config:
     #   mutualTLS:
     #     enabled: false
     #     clientCACertFile: "/root/test-tls-certs/ca.crt"
-
 ```
+
+## config.wcli.metrics.enabled
+
+Enables or disables the [**wcli** Controller metrics][wcli-metrics] endpoint. When set to `true`, the **wcli** Controller exposes the metrics.
+
+**Default value**: `true`
+
+## config.wcli.metrics.listenAddress
+
+Sets the IP address and/or port to which the [wcli Controller metrics][wcli-metrics] server binds.
+
+Examples:
+
+* `:9003` — binds to all interfaces on port 9011
+* `127.0.0.1:9003` — binds to localhost only
+
+**Default value**: `:9003`
+
+## config.wcli.metrics.endpoint
+
+Defines the HTTP path of [**wcli** Controller][wcli-metrics] endpoint.
+
+**Default value**: `/metrics`
 
 Supported from the release 6.2.0 onwards.
 

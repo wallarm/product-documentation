@@ -39,5 +39,6 @@ search:
 [wstore-metrics]:                    ../../../../admin-en/wstore-metrics.md
 [wstore-metrics-mount]:             ../../../../admin-en/wstore-metrics.md
 [link-wallarm-health-check]:        ../../../../admin-en/uat-checklist-en.md
+[wcli-metrics]:                     ../../../../admin-en/wcli-metrics.md
 
 --8<-- "latest/admin-en/installation-docker-en.md"

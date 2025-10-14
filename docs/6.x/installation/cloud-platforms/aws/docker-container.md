@@ -21,5 +21,6 @@
 [aws-costs]:                        costs.md
 [wstore-metrics]:                    ../../../admin-en/wstore-metrics.md
 [wstore-metrics-mount]:             ../../../admin-en/wstore-metrics.md
+[wcli-metrics]:                     ../../../admin-en/wcli-metrics.md
 
 --8<-- "latest/installation/cloud-platforms/aws/docker-container.md"
