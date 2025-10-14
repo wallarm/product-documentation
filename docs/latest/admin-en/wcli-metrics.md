@@ -17,7 +17,7 @@
 
 This article describes the metrics of the **wcli** Controller of the NGINX Node to help monitor and troubleshoot the NGINX Node.
 
-* The **wcli** Controller uses **wcli** for local traffic processing. 
+* The **wcli** metrics provide data from the service that runs most Wallarm functional components, including brute-force detection, attack export to the Cloud, and Node-Cloud synchronization status.
 
     The available metric groups are listed [below](#general-wcli-system-health-metrics).
 
@@ -25,7 +25,7 @@ This article describes the metrics of the **wcli** Controller of the NGINX Node 
     
     The exact list of metrics may vary depending on the NGINX Node version. Changes are reflected in the [NGINX Node changelog][nginx-node-changelog].
 
-* The [general system metrics](#general-system-metrics) of the NGINX Node cover network activity, request processing, queue states, storage efficiency, and internal engine health.
+* The [service runtime metrics](#service-runtime-metrics) of the NGINX Node cover network activity, request processing, queue states, storage efficiency, and internal engine health.
 
 ## Metrics endpoint
 
@@ -34,8 +34,8 @@ The availability and default state of the **wcli** metrics endpoint depend on yo
 Deployment type | Metric endpoint| Enabled by default
 --- | ---- | ----
 [Docker image][docker], [all-in-one installer][AIO], and cloud images | `http://localhost:9003/metrics` | Yes
-[NGINX Ingress Controller][IC] | `http://<host>:9011/metrics` | No
-[Sidecar][sidecar] | `http://localhost:9003/metrics` | No
+[NGINX Ingress Controller][IC] | `http://<host>:9012/metrics` | No
+[Sidecar][sidecar] | `http://localhost:9003/metrics` | Yes
 
 You can change the default metrics host and endpoint. The way to do so differs depending on your deployment type:
 
@@ -49,22 +49,21 @@ To disable the **wcli** metrics, specify an empty value in `WALLARM_WCLI__METRIC
 
 Edit the [`controller.wallarm.wcliController.metrics*`][ic-helm-chart] values in the Helm Chart during NGINX Ingress Controller [deployment][ic-deployment] or upgrade.
 
-```
+```yaml hl_lines="6"
 controller:
-    wallarm:
-        wcliController:
-            metrics:
-                # -- Enable metrics collection
-                enabled: true
-                # -- Port for metrics endpoint
-                port: 9011
-                # -- Port name for metrics endpoint
-                portName: wcli-ctrl-mtrc
-                # -- Path at which the metrics endpoint is exposed (optional, defaults to /metrics if not specified)
-                endpointPath: ""
-                # -- IP address and/or port for the metrics endpoint (e.g., ":9011" or "127.0.0.1:9011")
-                # -- Note: Metrics are enabled by default in WCLI. To disable, set enabled: false which will pass an empty value
-                host: ":9011"
+  wallarm:
+    wcliPostanalytics::
+      metrics:
+        # -- Enable metrics collection
+        enabled: true
+        # -- Port for metrics endpoint
+        port: 9012
+        # -- Port name for metrics endpoint
+        portName: wcli-post-mtrc
+        # -- Path at which the metrics endpoint is exposed (optional, defaults to /metrics if not specified)
+        endpointPath: ""
+        # -- IP address and/or port for the metrics endpoint (e.g., ":9012" or "127.0.0.1:9012")
+        host: ":9012"
 ```
 
 **For [Sidecar][sidecar]:**
@@ -73,21 +72,20 @@ Edit the [`config.wallarm.wcli.metrics.*`][sidecar-helm-chart] values in the Hel
 
 ```
 config:
-    wallarm:
-    # Other configuration values...
-    wcli:
-        metrics:
-        ### Enable/disable wcli metrics endpoint
-        ###
-        enabled: true
-        ### IP address and port for the wcli metrics endpoint
-        ### Default: "localhost:9003"
-        ###
-        listenAddress: "localhost:9003"
-        ### The path at which the wcli metrics endpoint is exposed
-        ### Default: "/metrics"
-        ###
-        endpoint: "/metrics"
+  # Other configuration values...
+  wcli:
+    metrics:
+      ### Enable/disable wcli metrics endpoint
+      ###
+      enabled: true
+      ### IP address and port for the wcli metrics endpoint
+      ### Default: ":9003"
+      ###
+      listenAddress: ":9003"
+      ### The path at which the wcli metrics endpoint is exposed
+      ### Default: "/metrics"
+      ###
+      endpoint: "/metrics"
 ```
 
 ## General wcli system health metrics
@@ -267,7 +265,7 @@ go_feature_extractor_tarantool_queue_total{partner_client_uuid="b938ac84-1ac3-11
 
 ```
 
-## WCLI-layer metrics for bot feature extraction (botexp)
+## wcli-layer metrics for bot feature extraction (botexp)
 
 ---
 ### `wallarm_wcli_botexp_tnt_requests`
@@ -747,9 +745,9 @@ api_discovery_client_flushed_points_count{result="failed"} 0
 api_discovery_client_flushed_points_count{result="success"} 0
 ```
 
-## General system metrics
+## Service runtime metrics
 
-We can divide general system metrics into 2 groups:
+We can divide service runtime metrics into 2 groups:
 
 * Prometheus Go metrics, prefixed with `go_*` and `process_*`
 
@@ -757,9 +755,7 @@ We can divide general system metrics into 2 groups:
 
 * Prometheus metrics, prefixed with `metrics_push_*`, related to its [push gateway](https://github.com/prometheus/pushgateway).
 
-### Example of general system metrics
-
-See the example of general system metrics below.
+See the example of service runtime metrics below.
 
 ```
 go_sched_latencies_seconds_bucket{le="0"} 0

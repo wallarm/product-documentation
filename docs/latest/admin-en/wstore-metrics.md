@@ -10,19 +10,19 @@
 [aws-ami]: ../installation/packages/aws-ami.md
 [gcp]: ../installation/packages/gcp-machine-image.md
 
-# Postanalytics and General System Metrics of the NGINX Node
+# Postanalytics and Service Runtime Metrics of the NGINX Node
 
-This article describes the Postanalytics module and the general system metrics of the NGINX Node to help monitor and troubleshoot the NGINX Node.
+This article describes the Postanalytics module and the service runtime metrics of the NGINX Node to help monitor and troubleshoot the NGINX Node.
 
 * The [Postanalytics module][postanalytics-module] uses **wstore** for local traffic processing. Its metrics are prefixed with `wallarm_wstore_*` and reflect the performance of the Postanalytics module. 
 
     The available metric groups are listed [below](#connections-and-traffic-metrics). The exact list of metrics may vary depending on the NGINX Node version. Changes are reflected in the [NGINX Node changelog][nginx-node-changelog].
 
-* The [general system metrics](#general-system-metrics) of the NGINX Node cover network activity, request processing, queue states, storage efficiency, and internal engine health.
+* The [service runtime metrics](#service-runtime-metrics) of the NGINX Node cover network activity, request processing, queue states, storage efficiency, and internal engine health.
 
 ## Limitations
 
-Postanalytics and general system metrics are not yet available for [NGINX Ingress Controller][IC] and [Sidecar][sidecar].
+Postanalytics and service runtime metrics are not yet available for [NGINX Ingress Controller][IC] and [Sidecar][sidecar].
 
 ## Metrics endpoint
 
@@ -374,9 +374,9 @@ The number of requests lost due to failed cleanups from the wstore internal key-
 wallarm_wstore_kvstore_drops_total 0
 ```
 
-## General system metrics
+## Service runtime metrics
 
-We can divide general system metrics into 2 groups:
+We can divide service runtime metrics into 2 groups:
 
 * Prometheus Go metrics, prefixed with `go_*` and `process_*`
 
@@ -384,7 +384,7 @@ We can divide general system metrics into 2 groups:
 
 * Prometheus metrics, prefixed with `metrics_push_*`, related to its [push gateway](https://github.com/prometheus/pushgateway).
 
-See the example of general system metrics below.
+See the example of service runtime metrics below.
 
 ```
 go_sched_latencies_seconds_bucket{le="0"} 0
