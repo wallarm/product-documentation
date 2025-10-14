@@ -17,7 +17,7 @@
 
 This article describes the metrics of the **wcli** Controller of the NGINX Node to help monitor and troubleshoot the NGINX Node.
 
-* The **wcli** Controller uses **wcli** for local traffic processing. 
+* The **wcli** metrics provide data from the service that runs most Wallarm functional components, including brute-force detection, attack export to the Cloud, and Node-Cloud synchronization status.
 
     The available metric groups are listed [below](#general-wcli-system-health-metrics).
 
@@ -51,20 +51,20 @@ Edit the [`controller.wallarm.wcliController.metrics*`][ic-helm-chart] values in
 
 ```
 controller:
-    wallarm:
-        wcliController:
-            metrics:
-                # -- Enable metrics collection
-                enabled: true
-                # -- Port for metrics endpoint
-                port: 9011
-                # -- Port name for metrics endpoint
-                portName: wcli-ctrl-mtrc
-                # -- Path at which the metrics endpoint is exposed (optional, defaults to /metrics if not specified)
-                endpointPath: ""
-                # -- IP address and/or port for the metrics endpoint (e.g., ":9011" or "127.0.0.1:9011")
-                # -- Note: Metrics are enabled by default in WCLI. To disable, set enabled: false which will pass an empty value
-                host: ":9011"
+  wallarm:
+    wcliController:
+      metrics:
+        # -- Enable metrics collection
+        enabled: true
+        # -- Port for metrics endpoint
+        port: 9011
+        # -- Port name for metrics endpoint
+        portName: wcli-ctrl-mtrc
+        # -- Path at which the metrics endpoint is exposed (optional, defaults to /metrics if not specified)
+        endpointPath: ""
+        # -- IP address and/or port for the metrics endpoint (e.g., ":9011" or "127.0.0.1:9011")
+        # -- Note: Metrics are enabled by default in WCLI. To disable, set enabled: false which will pass an empty value
+        host: ":9011"
 ```
 
 **For [Sidecar][sidecar]:**
@@ -73,21 +73,21 @@ Edit the [`config.wallarm.wcli.metrics.*`][sidecar-helm-chart] values in the Hel
 
 ```
 config:
-    wallarm:
+  wallarm:
     # Other configuration values...
     wcli:
-        metrics:
-        ### Enable/disable wcli metrics endpoint
-        ###
-        enabled: true
-        ### IP address and port for the wcli metrics endpoint
-        ### Default: "localhost:9003"
-        ###
-        listenAddress: "localhost:9003"
-        ### The path at which the wcli metrics endpoint is exposed
-        ### Default: "/metrics"
-        ###
-        endpoint: "/metrics"
+      metrics:
+      ### Enable/disable wcli metrics endpoint
+      ###
+      enabled: true
+      ### IP address and port for the wcli metrics endpoint
+      ### Default: "localhost:9003"
+      ###
+      listenAddress: "localhost:9003"
+      ### The path at which the wcli metrics endpoint is exposed
+      ### Default: "/metrics"
+      ###
+      endpoint: "/metrics"
 ```
 
 ## General wcli system health metrics
@@ -267,7 +267,7 @@ go_feature_extractor_tarantool_queue_total{partner_client_uuid="b938ac84-1ac3-11
 
 ```
 
-## WCLI-layer metrics for bot feature extraction (botexp)
+## wcli-layer metrics for bot feature extraction (botexp)
 
 ---
 ### `wallarm_wcli_botexp_tnt_requests`
