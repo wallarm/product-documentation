@@ -54,6 +54,8 @@ To activate the subscription plan, contact [sales@wallarm.com](mailto:sales@wall
 
 ## API Attack Surface
 
+Variants: **Core (Free)**, **Enterprise (Paid)** - see comparison [here](https://www.wallarm.com/product/aasm-pricing).
+
 !!! info "Relations to other plans"
 
     This subscription plan:
