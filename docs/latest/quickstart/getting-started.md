@@ -2,7 +2,7 @@
 
 Wallarm delivers all-in-one API security, identifying and protecting your APIs from vulnerabilities and malicious activities. Whether you are evaluating Wallarm or ready to secure production environments, you can choose the most convenient way to begin.
 
-## Way to get started with Wallarm
+## Ways to get started with Wallarm
 
 Depending on your goals, you can start with one of the following options:
 
@@ -44,22 +44,20 @@ After registration, the **Welcome to Wallarm** wizard is launched automatically.
 
 ![Self-signup - Welcome Wizard](../images/waf-installation/quickstart/welcome-wizard.png)
 
-You can **Skip** the wizard - this will switch you to Security Edge [**setup wizard**](../installation/security-edge/free-tier.md#quick-setup-wizard).
-
 In the wizard, you can:
 
 1. Choose the destination for demo traffic — the Wallarm demo API or your own API.
-1. Send sample legitimate traffic through the Demo Node to observe how it appears in [API Sessions].
+1. Send sample legitimate traffic through the Demo Node to observe how it appears in [API Sessions](../api-sessions/overview.md).
 1. Simulate attacks and see them detected in real time.
-1. Switch to [blocking mode] to watch malicious requests being blocked.
+1. Switch to [blocking mode](../admin-en/configure-wallarm-mode.md) to watch malicious requests being blocked.
 
 Once the Welcome Wizard is completed, you can continue with one of the following options:
 
-* [Switch DNS to Security Edge inline](../installation/security-edge/free-tier.md) to start you traffic analysis for free within [Security Edge Free Tier](../about-wallarm/subscription-plans.md#security-edge-free-tier) subscription. This will switch Wallarm to Security Edge [**setup wizard**](../installation/security-edge/free-tier.md#quick-setup-wizard).
-* [Configure Security Edge connector](../installation/security-edge/free-tier.md) to start you traffic analysis for free within [Security Edge Free Tier](../about-wallarm/subscription-plans.md#security-edge-free-tier) subscription. This will switch Wallarm to Security Edge [**setup wizard**](../installation/security-edge/free-tier.md#quick-setup-wizard).
+* [Switch DNS to Security Edge inline](../installation/security-edge/free-tier.md) to start you traffic analysis for free within Security Edge Free Tier subscription. This will switch Wallarm to Security Edge **setup wizard**.
+* [Configure Security Edge connector](../installation/security-edge/free-tier.md) to start you traffic analysis for free within Security Edge Free Tier subscription. This will switch Wallarm to Security Edge **setup wizard**.
 * Deploy [hybrid node locally](../installation/supported-deployment-options.md) for full control over your traffic and data.
 
-!!! info "Demo node"
+!!! info "Demo Node"
     The Demo Node does not process real traffic and is not shown in your Wallarm Console. It is managed by Wallarm and provided only for demo testing.
 
 ## AASM Freemium: know your API with zero deployment
