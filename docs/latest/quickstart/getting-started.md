@@ -34,7 +34,7 @@ To register with Wallarm yourself:
     | **Wallarm API Endpoint** | `https://us1.api.wallarm.com/` | `https://api.wallarm.com/` |
     
 1. Follow the signup link and input requested data about yourself and your company.
-1. Select whether you want to immediately start **discovering your external APIs and security issues** (nothing needs to be deployed, see details [below](#know-your-api-with-zero-deployment)).
+1. Select whether you want to immediately start **discovering your external APIs and security issues** (nothing needs to be deployed, see details [below](#aasm-freemium-know-your-api-with-zero-deployment)).
 
     Visit the Wallarm Console's [**API Attack Surface**](../api-attack-surface/overview.md) section later to see how Wallarm detects APIs and their security issues. This activates the Core (freemium) version, and scanning of the used email's domain starts immediately.
 
@@ -71,7 +71,7 @@ Subscribe to Wallarm's [API Attack Surface Management (AASM)](../api-attack-surf
 To start, do one of the following:
 
 * [Activate AASM on the Wallarm's official site](https://www.wallarm.com/product/aasm?utm_source=wallarm_docs&utm_campaign=getting_started_guide).
-* Activate the feature immediately during [self-signup](#self-signup-and-security-edge-free-tier).    
+* Activate the feature immediately during [self-signup](#security-edge-free-tier).    
 * Contact [sales@wallarm.com](mailto:sales@wallarm.com)
 
 ## Learn Wallarm in Playground
@@ -82,7 +82,7 @@ In Playground, you can access the Wallarm Console view like it is filled with re
 
 ![Playground](../images/playground.png)
 
-To try the Wallarm solution capabilities on your traffic, [create a Security Edge Free tier account](#self-signup-and-security-edge-free-tier).
+To try the Wallarm solution capabilities on your traffic, [create a Security Edge Free tier account](#security-edge-free-tier).
 
 ## Guided trial
 

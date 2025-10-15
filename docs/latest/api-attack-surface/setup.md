@@ -12,7 +12,7 @@ To use AASM, the Wallarm's [API Attack Surface](../about-wallarm/subscription-pl
 
 * If you do not have Wallarm account yet, do one of the following:
 
-    * [Sing up](../quickstart/getting-started.md#self-signup-and-security-edge-free-tier) to Wallarm and select to activate AASM during account creation.
+    * [Sing up](../quickstart/getting-started.md#security-edge-free-tier) to Wallarm and select to activate AASM during account creation.
     * Get pricing information and activate AASM on the Wallarm's official site [here](https://www.wallarm.com/product/aasm).
 
     Both of this activates the Core (freemium) version, and scanning of the used email's domain starts immediately. After activation, you can [add additional domains](setup.md) to the scope.
