@@ -411,11 +411,19 @@ Supported from the release 0.15.1 onwards.
 
 ### config.aggregation.serviceProtocol
 
-Specifies the protocol (tcp, tcp4, or tcp6) for the **wstore** service.
+Specifies the protocol family that **wstore** uses for incoming connections.
+
+Possible values:
+
+tcp - dual-stack mode (listens on both IPv4 and IPv6)
+
+tcp4 - IPv4 only
+
+tcp6 - IPv6 only
 
 Supported from the release 0.19.0 onwards.
 
-**Default value**: `"tcp4"` – uses the TCP protocol over IPv4 for incoming connections.
+**Default value**: `"tcp4"`.
 
 ### processing.service.type
 
