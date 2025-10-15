@@ -12,15 +12,21 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.19.0 (2025-10-07)
 
-* Added support for [blocking by session ID](../../api-sessions/blocking.md)
+* Added support for [blocking attackers by session ID](../../api-sessions/blocking.md)
 * Added [multitenancy support](../../installation/multi-tenant/overview.md)
-* Added affinity support to the Native Node Helm chart
-* Set a default connection limit for the Native Node in the Helm chart
+* Changed the default **wstore** binding to IPv4 (`tcp4`), it now listens only on IPv4 instead of dual‑stack
+
+    If your configuration uses `localhost` for **wstore**, update it to `127.0.0.1`.
+* Introduced protocol selection (tcp, tcp4, tcp6) using the `WALLARM_WSTORE__SERVICE__PROTOCOL` environment variable, which can be set in `/opt/wallarm/env.list`
+
+    The default value is `"tcp4"`.
+* Relaxed content-type validation in [API Specification Enforcement](../../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
+* Bumped Go version to 1.24
 * Bug fixes:
 
-    *Fixed the issue where the `go-node` process could segfault in production environments
-    *Fixed the issue where `tcp-capture-v2` mode caused panics due to URL parse errors
-    *Fixed the issue where processing affinity was not applied correctly in the Native Node Helm chart
+    * Fixed an issue where the `go-node` process could segfault in production environments
+    * Fixed an issue where response context parameters configured in [API Sessions](../../api-sessions/setup.md) were not uploaded to the Wallarm Cloud
+    * Fixed an issue where the [`remote_addr`](../../user-guides/rules/request-processing.md#ip-address-of-a-request-origin) point for the Native Node did not use the string format, unlike the NGINX Node.
 
 ### 0.18.0 (2025-09-17)
 
@@ -127,15 +133,21 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ### 0.19.0 (2025-10-07)
 
-* Added support for [blocking by session ID](../../api-sessions/blocking.md)
+* Added support for [blocking attackers by session ID](../../api-sessions/blocking.md)
 * Added [multitenancy support](../../installation/multi-tenant/overview.md)
-* Added affinity support to the Native Node Helm chart
-* Set a default connection limit for the Native Node in the Helm chart
+* Changed the default **wstore** binding to IPv4 (`tcp4`), it now listens only on IPv4 instead of dual‑stack
+* Introduced protocol selection (tcp, tcp4, tcp6) in Ingress values ([`config.aggregation.serviceProtocol`](../../installation/native-node/helm-chart-conf.md#configaggregationserviceprotocol))
+
+    The default value is `"tcp4"`.
+* Relaxed content-type validation in [API Specification Enforcement](../../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
+* Bumped Go version to 1.24
 * Bug fixes:
 
-    *Fixed the issue where the `go-node` process could segfault in production environments
-    *Fixed the issue where `tcp-capture-v2` mode caused panics due to URL parse errors
-    *Fixed the issue where processing affinity was not applied correctly in the Native Node Helm chart
+    * Fixed the issue where the `go-node` process could segfault in production environments
+    * Fixed an issue where response context parameters configured in [API Sessions](../../api-sessions/setup.md) were not uploaded to the Wallarm Cloud
+    * Fixed an issue where the [`remote_addr`](../../user-guides/rules/request-processing.md#ip-address-of-a-request-origin) point for the Native Node did not use the string format, unlike the NGINX Node.
+    * Fixed the issue where processing affinity was not applied correctly in the Native Node Helm chart
+    * Fixed the issue where `config.connector.per_connection_limits` in the Native Node Helm chart did not have a default value. A default value of `max_duration: 1m` is now set.
 
 ### 0.18.0 (2025-09-17)
 
@@ -239,15 +251,22 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 ### 0.19.0 (2025-10-07)
 
-* Added support for [blocking by session ID](../../api-sessions/blocking.md)
+* Added support for [blocking attackers by session ID](../../api-sessions/blocking.md)
 * Added [multitenancy support](../../installation/multi-tenant/overview.md)
-* Added affinity support to the Native Node Helm chart
-* Set a default connection limit for the Native Node in the Helm chart
+* Changed the default **wstore** binding to IPv4 (`tcp4`), it now listens only on IPv4 instead of dual‑stack
+
+    If your configuration uses `localhost` for **wstore**, update it to `127.0.0.1`.
+* Introduced protocol selection (tcp, tcp4, tcp6) via the [`WALLARM_WSTORE__SERVICE__PROTOCOL`](../../installation/native-node/docker-image.md#4-run-the-docker-container) environment variable
+
+    The default value is `"tcp4"`.
+* Relaxed content-type validation in [API Specification Enforcement](../../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
+* Bumped Go version to 1.24
+
 * Bug fixes:
 
-    *Fixed the issue where the `go-node` process could segfault in production environments
-    *Fixed the issue where `tcp-capture-v2` mode caused panics due to URL parse errors
-    *Fixed the issue where processing affinity was not applied correctly in the Native Node Helm chart
+    * Fixed the issue where the `go-node` process could segfault in production environments
+    * Fixed an issue where response context parameters configured in [API Sessions](../../api-sessions/setup.md) were not uploaded to the Wallarm Cloud    
+    * Fixed an issue where the [`remote_addr`](../../user-guides/rules/request-processing.md#ip-address-of-a-request-origin) point for the Native Node did not use the string format, unlike the NGINX Node.
 
 ### 0.18.0 (2025-09-17)
 

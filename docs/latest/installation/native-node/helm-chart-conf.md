@@ -83,6 +83,7 @@ config:
 
   aggregation:
     serviceAddress: "[::]:3313"
+    serviceProtocol: "tcp4"
 
 processing:
   service:
@@ -407,6 +408,14 @@ Specifies the address and port on which **wstore** accepts incoming connections.
 Supported from the release 0.15.1 onwards.
 
 **Default value**: `[::]:3313` - listens on port 3313 on all IPv4 and IPv6 interfaces. This was also the default behavior in versions prior to 0.15.1.
+
+### config.aggregation.serviceProtocol
+
+Specifies the protocol (tcp, tcp4, or tcp6) for the **wstore** service.
+
+Supported from the release 0.19.0 onwards.
+
+**Default value**: `"tcp4"` – uses the TCP protocol over IPv4 for incoming connections.
 
 ### processing.service.type
 
