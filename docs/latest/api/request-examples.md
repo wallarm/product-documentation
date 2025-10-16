@@ -12,7 +12,7 @@ To make API calls to Wallarm's endpoints, you need to know your client ID (also 
 === "EU Cloud"
     ```bash
     
-    curl -X POST "https://eu1.api.wallarm.com/v1/user" \
+    curl -X POST "https://api.wallarm.com/v1/user" \
       -H "X-WallarmAPI-Token: YOUR_API_TOKEN" \
       -H "Content-Type: application/json" \
       -d "{}"
