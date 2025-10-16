@@ -17,6 +17,17 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.6.1 (2025-10-16)
+
+* Introduced support for OpenAPI 3.1 in the [API Specification Enforcement](../api-specification-enforcement/overview.md) feature — you can now upload specifications in version 3.1 format to compare traffic against them, identify mismatches, and mitigate related security risks
+* Fixed the following vulnerabilities:
+    
+    * [CVE-2025-49796](https://nvd.nist.gov/vuln/detail/cve-2025-49796)
+    * [CVE-2025-49794](https://nvd.nist.gov/vuln/detail/cve-2025-49794)
+    * [CVE-2025-6021](https://nvd.nist.gov/vuln/detail/cve-2025-6021)
+    * [CVE-2025-49795](https://nvd.nist.gov/vuln/detail/cve-2025-49795)
+    * [CVE-2025-6170](https://nvd.nist.gov/vuln/detail/cve-2025-6170)
+
 ### 6.6.0 (2025-10-03)
 
 * Changed the default **wstore** binding to IPv4 (`tcp4`), it now listens only on IPv4 instead of dual‑stack
@@ -113,6 +124,17 @@ new attack types in logging variables and search bars?
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.6.2 (2025-10-16)
+
+* Introduced support for OpenAPI 3.1 in the [API Specification Enforcement](../api-specification-enforcement/overview.md) feature — you can now upload specifications in version 3.1 format to compare traffic against them, identify mismatches, and mitigate related security risks
+* Fixed the following vulnerabilities:
+    
+    * [CVE-2025-49796](https://nvd.nist.gov/vuln/detail/cve-2025-49796)
+    * [CVE-2025-49794](https://nvd.nist.gov/vuln/detail/cve-2025-49794)
+    * [CVE-2025-6021](https://nvd.nist.gov/vuln/detail/cve-2025-6021)
+    * [CVE-2025-49795](https://nvd.nist.gov/vuln/detail/cve-2025-49795)
+    * [CVE-2025-6170](https://nvd.nist.gov/vuln/detail/cve-2025-6170)
 
 ### 6.6.1 (2025-10-08)
 
@@ -217,6 +239,17 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.6.1 (2025-10-16)
+
+* Introduced support for OpenAPI 3.1 in the [API Specification Enforcement](../api-specification-enforcement/overview.md) feature — you can now upload specifications in version 3.1 format to compare traffic against them, identify mismatches, and mitigate related security risks
+* Fixed the following vulnerabilities:
+    
+    * [CVE-2025-49796](https://nvd.nist.gov/vuln/detail/cve-2025-49796)
+    * [CVE-2025-49794](https://nvd.nist.gov/vuln/detail/cve-2025-49794)
+    * [CVE-2025-6021](https://nvd.nist.gov/vuln/detail/cve-2025-6021)
+    * [CVE-2025-49795](https://nvd.nist.gov/vuln/detail/cve-2025-49795)
+    * [CVE-2025-6170](https://nvd.nist.gov/vuln/detail/cve-2025-6170)
+
 ### 6.6.0 (2025-10-03)
 
 * Changed the default **wstore** binding to IPv4 (`tcp4`), it now listens only on IPv4 instead of dual‑stack
@@ -300,6 +333,17 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](docker-container.md)
 
+### 6.6.1 (2025-10-16)
+
+* Introduced support for OpenAPI 3.1 in the [API Specification Enforcement](../api-specification-enforcement/overview.md) feature — you can now upload specifications in version 3.1 format to compare traffic against them, identify mismatches, and mitigate related security risks
+* Fixed the following vulnerabilities:
+    
+    * [CVE-2025-49796](https://nvd.nist.gov/vuln/detail/cve-2025-49796)
+    * [CVE-2025-49794](https://nvd.nist.gov/vuln/detail/cve-2025-49794)
+    * [CVE-2025-6021](https://nvd.nist.gov/vuln/detail/cve-2025-6021)
+    * [CVE-2025-49795](https://nvd.nist.gov/vuln/detail/cve-2025-49795)
+    * [CVE-2025-6170](https://nvd.nist.gov/vuln/detail/cve-2025-6170)
+
 ### 6.6.0 (2025-10-03)
 
 * Changed the default **wstore** binding to IPv4 (`tcp4`), it now listens only on IPv4 instead of dual‑stack
@@ -323,7 +367,7 @@ new attack types in logging variables and search bars?
 * Included an [SBOM](../integrations-devsecops/generate-sbom-for-docker-images.md) in the image by default, you can retrieve it using the following command:
 
     ```
-    docker sbom wallarm/node:6.6.0
+    docker sbom wallarm/node:6.6.1
     ```
 * Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
 
@@ -402,6 +446,17 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
+### 6.6.1 (2025-10-16)
+
+* Introduced support for OpenAPI 3.1 in the [API Specification Enforcement](../api-specification-enforcement/overview.md) feature — you can now upload specifications in version 3.1 format to compare traffic against them, identify mismatches, and mitigate related security risks
+* Fixed the following vulnerabilities:
+    
+    * [CVE-2025-49796](https://nvd.nist.gov/vuln/detail/cve-2025-49796)
+    * [CVE-2025-49794](https://nvd.nist.gov/vuln/detail/cve-2025-49794)
+    * [CVE-2025-6021](https://nvd.nist.gov/vuln/detail/cve-2025-6021)
+    * [CVE-2025-49795](https://nvd.nist.gov/vuln/detail/cve-2025-49795)
+    * [CVE-2025-6170](https://nvd.nist.gov/vuln/detail/cve-2025-6170)
+
 ### 6.6.0 (2025-10-03)
 
 * Changed the default **wstore** binding to IPv4 (`tcp4`), it now listens only on IPv4 instead of dual‑stack
@@ -469,6 +524,17 @@ new attack types in logging variables and search bars?
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-6-1-20251015-165327 (2025-10-16)
+
+* Introduced support for OpenAPI 3.1 in the [API Specification Enforcement](../api-specification-enforcement/overview.md) feature — you can now upload specifications in version 3.1 format to compare traffic against them, identify mismatches, and mitigate related security risks
+* Fixed the following vulnerabilities:
+    
+    * [CVE-2025-49796](https://nvd.nist.gov/vuln/detail/cve-2025-49796)
+    * [CVE-2025-49794](https://nvd.nist.gov/vuln/detail/cve-2025-49794)
+    * [CVE-2025-6021](https://nvd.nist.gov/vuln/detail/cve-2025-6021)
+    * [CVE-2025-49795](https://nvd.nist.gov/vuln/detail/cve-2025-49795)
+    * [CVE-2025-6170](https://nvd.nist.gov/vuln/detail/cve-2025-6170)
 
 ### wallarm-node-6-6-0-20251005-044509 (2025-10-03)
 
