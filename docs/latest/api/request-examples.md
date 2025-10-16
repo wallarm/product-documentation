@@ -3,7 +3,46 @@
 
 # Wallarm API request examples
 
-The following are some examples of Wallarm API use. You can also generate code examples via the API Reference UI for the [US cloud](https://apiconsole.us1.wallarm.com/) or [EU cloud](https://apiconsole.eu1.wallarm.com/). Experienced users can also use the browser’s Developer console (“Network” tab) to quickly learn which API endpoints and requests are used by the UI of your Wallarm account to fetch data from the public API. To find information about how to open the Developer console, you can use the official browser documentation ([Safari](https://support.apple.com/guide/safari/use-the-developer-tools-in-the-develop-menu-sfri20948/mac), [Chrome](https://developers.google.com/web/tools/chrome-devtools/), [Firefox](https://developer.mozilla.org/en-US/docs/Tools), [Vivaldi](https://help.vivaldi.com/article/developer-tools/)).
+The following are some examples of Wallarm API use. You can also generate code examples via the API Reference UI for the [US cloud](https://apiconsole.us1.wallarm.com/) or [EU cloud](https://apiconsole.eu1.wallarm.com/). Experienced users can also use the browser’s Developer console (“Network” tab) to quickly learn which API endpoints and requests are used by the UI of your Wallarm account to fetch data from the public API.
+
+## Getting Your Client ID for Wallarm API Calls
+
+To make API calls to Wallarm's endpoints, you need to know your client ID (also called clientid). This is a unique identifier for your Wallarm account/tenant that must be included in most API requests. You can obtain your client ID by calling the `/v1/user` endpoint with your API token. Here's an example:
+
+=== "EU Cloud"
+    ```bash
+    
+    curl -X POST "https://api.wallarm.com/v1/user" \
+      -H "X-WallarmAPI-Token: YOUR_API_TOKEN" \
+      -H "Content-Type: application/json" \
+      -d "{}"
+    ```
+
+=== "US Cloud"
+    ```bash
+    
+    curl -X POST "https://us1.api.wallarm.com/v1/user" \
+      -H "X-WallarmAPI-Token: YOUR_API_TOKEN" \
+      -H "Content-Type: application/json" \
+      -d "{}"
+    ```
+
+This returns your user information including the client_id field. For instance, the response might look like:
+
+```
+{
+  "status": 200,
+  "body": {
+    "id": 6874940,
+    "client_id": 5,
+    "client_name": "My Company",
+    "enabled": true,
+    ...
+  }
+}
+```
+
+Once you have the client ID (in this example, 5), you can use it to fetch discovered APIs with endpoints like `/v4/clients/{client_id}/rules/endpoints`. The client ID is essential because Wallarm's API is multi-tenant, and this identifier tells the system which account's data you want to access.
 
 ## Get the first 50 attacks detected in the last 24 hours
 
