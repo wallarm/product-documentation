@@ -627,9 +627,9 @@ The old **Vulnerabilities** section is not displayed anymore.
 ## OAS 3.1 support
 
 !!! tip ""
-    [NGINX Node](../../installation/nginx-native-node-internals.md#nginx-node) 6.6.1 or higher and [Native Node](../../installation/nginx-native-node-internals.md#native-node) 0.19.0 or higher.
+    [NGINX Node](../../installation/nginx-native-node-internals.md#nginx-node) 6.6.1 or higher and not supported by [Native Node](../../installation/nginx-native-node-internals.md#native-node) so far.
 
-For [API Specification Enforcement](../../api-specification-enforcement/overview.md) and API Discovery's [Rogue API Detection](../../api-discovery/rogue-api.md), you can now upload OpenAPI specifications of **version 3.1**.
+For [API Specification Enforcement](../../api-specification-enforcement/overview.md), you can now upload OpenAPI specifications of **version 3.1**.
 
 ## HTTP/2 stream length control directive
 
