@@ -19,5 +19,7 @@
 [apid-only-mode-details]:           ../../../installation/nginx/all-in-one.md#api-discovery-only-mode
 [what-is-new-wstore]:            ../../../updating-migrating/what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics
 [aws-costs]:                        costs.md
+[wstore-metrics]:                    ../../../admin-en/wstore-metrics.md
+[wstore-metrics-mount]:             ../../../admin-en/wstore-metrics.md
 
 --8<-- "latest/installation/cloud-platforms/aws/docker-container.md"

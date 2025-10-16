@@ -42,9 +42,9 @@ API Firewall metrics are not enabled by default. You need to enable them differe
 
     ```yaml hl_lines="3-10"
     controller:
-    wallarm:
+      wallarm:
         apiFirewall:
-        metrics:
+          metrics:
             enabled: true
             port: 9010
             endpointPath: /metrics
@@ -61,23 +61,23 @@ API Firewall metrics are not enabled by default. You need to enable them differe
 
 1. Add the [`config.wallarm.apiFirewall.metrics.*`][sidecar-helm-chart] values to the Helm Chart during Sidecar [deployment][sidecar-deployment] or [upgrade][sidecar-upgrade]. 
 
-    ```hl_lines="12-15"
+    ```yaml hl_lines="12-15"
     config:
-    wallarm:
-    # Other configuration values...
+      wallarm:
+        # Other configuration values...
         apiFirewall:
-        mode: "on"
-        readBufferSize: 8192
-        writeBufferSize: 8192
-        maxRequestBodySize: 4194304
-        disableKeepalive: false
-        maxConnectionsPerIp: 0
-        maxRequestsPerConnection: 0
-        metrics:
+          mode: "on"
+          readBufferSize: 8192
+          writeBufferSize: 8192
+          maxRequestBodySize: 4194304
+          disableKeepalive: false
+          maxConnectionsPerIp: 0
+          maxRequestsPerConnection: 0
+          metrics:
             enabled: true
             endpointName: "metrics"
             host: ":9010"
-        fallback: "on"
+            fallback: "on"
     ```
 
     Once enabled, metrics are available at `http://<host>:9010/metrics` unless custom host or path are used (see step 2 below).

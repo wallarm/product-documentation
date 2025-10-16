@@ -22,7 +22,7 @@ This article describes the Postanalytics module and the general system metrics o
 
 ## Limitations
 
-The metrics are available for the following deployment options: [all-in-one installer][AIO], [Docker image][docker], cloud images ([AWS AMI][aws-ami] and [GCP Machine Image][gcp]). [NGINX Ingress Controller][IC] and [Sidecar][sidecar] do not support general metrics yet.
+Postanalytics and general system metrics are not yet available for [NGINX Ingress Controller][IC] and [Sidecar][sidecar].
 
 ## Metrics endpoint
 
