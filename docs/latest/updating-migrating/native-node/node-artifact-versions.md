@@ -139,9 +139,9 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 * Introduced the protocol selection (tcp, tcp4, tcp6) configuration parameter: [`config.aggregation.serviceProtocol`](../../installation/native-node/helm-chart-conf.md#configaggregationserviceprotocol) 
 
     The default value is `"tcp4"`.
-* Changed the default value of [config.aggregation.serviceAddress](../../installation/native-node/helm-chart-conf.md#configaggregationserviceaddress) to "0.0.0.0:3313"
+* Changed the default value of [config.aggregation.serviceAddress](../../installation/native-node/helm-chart-conf.md#configaggregationserviceaddress) to `0.0.0.0:3313`
 
-    This allows IPv4 traffic only. If you are using a custom value, make sure it matches the selected config.aggregation.serviceProtocol.    
+    This allows IPv4 traffic only. If you are using a custom value, make sure it matches the selected `config.aggregation.serviceProtocol`.    
 * Relaxed content-type validation in [API Specification Enforcement](../../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 * Bumped Go version to 1.24
 * Set the default value for `config.connector.per_connection_limits.max_duration` to 1m (1 minute)
@@ -264,7 +264,6 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
     The default value is `"tcp4"`.
 * Relaxed content-type validation in [API Specification Enforcement](../../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 * Bumped Go version to 1.24
-
 * Bug fixes:
 
     * Fixed an issue where the `go-node` process could segfault in production environments
