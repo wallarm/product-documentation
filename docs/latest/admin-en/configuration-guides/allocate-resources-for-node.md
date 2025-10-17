@@ -15,11 +15,11 @@ On average, one CPU core can handle about 500 RPS. When running in production mo
 
 --8<-- "../include/allocate-resources-for-waf-node/wstore-memory.md"
 
-### Allocating Resources in Kubernetes Ingress Controller
+### Allocating resources in Kubernetes Ingress Controller
 
 --8<-- "../include/allocate-resources-for-waf-node/wstore-memory-ingress-controller.md"
 
-### Allocating Resources if Using All-in-One Installer
+### Allocating resources if using All-in-One installer
 
 The sizing of wstore memory is controlled using the `SLAB_ALLOC_ARENA` attribute in the `/opt/wallarm/env.list` configuration file. To allocate memory:
 
@@ -39,7 +39,21 @@ The sizing of wstore memory is controlled using the `SLAB_ALLOC_ARENA` attribute
     sudo systemctl restart wallarm.service
     ```
 
-### Allocating Resources if Using the Amazon Machine Image
+### Allocating resources if using NGINX-based Docker image
+
+The sizing of wstore memory is controlled using the `SLAB_ALLOC_ARENA` [environment variable](../../admin-en/installation-docker-en.md) which is passed either in Docker run command or in mounted configuration file.
+
+Example:
+
+```
+docker run -d -e WALLARM_API_TOKEN='XXXX' -e WALLARM_LABELS='group=<GROUP NAME>' -e NGINX_BACKEND='example.com' -e SLAB_ALLOC_ARENA=3.0 -p 80:80 wallarm/node:6.6.0
+```
+
+Note that when passing `SLAB_ALLOC_ARENA` in Docker `run` command with the `-e` like in the example above, the variable is not recorded in any configuration file within the container, but it is still used when `wstore` starts.
+
+Used value can be checked in `wcli-out.log` filtering node log by searching for the `Setting up memory params` line.
+
+### Allocating resources if using Amazon Machine Image
 
 * The Wallarm node automatically distributes allocated resources between wstore and NGINX.
 * When launching a Wallarm node instance from the [Wallarm NGINX Node AMI](https://aws.amazon.com/marketplace/pp/prodview-5rl4dgi4wvbfe), we recommend using the `t3.medium` instance type for testing and `m4.xlarge` for production.
