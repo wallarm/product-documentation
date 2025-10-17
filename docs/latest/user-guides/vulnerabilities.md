@@ -9,7 +9,7 @@ Wallarm employs [various techniques](../about-wallarm/detecting-vulnerabilities.
 
 ## Exploring security issues
 
-To explore the security issues found for your external hosts, in Wallarm Console, go to the **Security Issues** section.
+To explore and manage the found security issues, in Wallarm Console, go to the **Security Issues** section.
 
 ![Security Issues](../images/api-attack-surface/security-issues.png)
 

@@ -47,14 +47,21 @@ Wallarm gives you the tools to effectively respond to security threats, offering
 
 ## Test
 
-Managing deployed risk is the first line of defense, but reducing the risk exhibited by product applications and APIs is the most effective way to reduce incidents. Wallarm closes the loop on application and API security by providing a suite of testing capabilities to find and eliminate vulnerability risk as follows:
+Managing deployed risk is the first line of defense, but reducing the risk exhibited by product applications and APIs is the most effective way to reduce incidents. Wallarm closes the loop on application and API security by providing a [suite of testing capabilities](../about-wallarm/detecting-vulnerabilities.md#detection-methods) to find and eliminate applications' and APIs' **security issues (vulnerabilities)**:
 
-* [Identifies vulnerabilities](../user-guides/vulnerabilities.md) through passive traffic analysis.
-* Examines identified APIs for weak points.
-* [Dynamically creates API security tests](../vulnerability-detection/threat-replay-testing/overview.md) from observed traffic.
-* [Checks public repositories for exposed API tokens](../api-attack-surface/security-issues.md).
+* With the installed [Wallarm filtering node](#filtering-node):
 
-![Vulns](../images/about-wallarm-waf/overview/vulnerabilities.png)
+    * Your security issues are found **by default without any further configuration**, just by working Wallarm filtering node based on its analysis of the actual traffic, including both requests and responses. As no special test requests are sent, this is called [passive detection](../about-wallarm/detecting-vulnerabilities.md#passive-detection).
+    * For a single attack, passive detection checks only one request/response pair. By configuring [Threat Replay Testing (TRT)](../vulnerability-detection/threat-replay-testing/overview.md), use this data from the traffic as a start point to create multiple attack modifications to try all of them on a test server.
+
+* Even **without node** (agentless solutions):
+
+    * Discover your external hosts, their APIs and security issues and further manage the discovered vulnerability mitigation with [API Attack Surface Management (AASM)](../api-attack-surface/overview.md).
+    * Use [Schema-Based Testing (SBT)](../vulnerability-detection/schema-based-testing/overview.md) Wallarm's dynamic application security testing (DAST) solution that enables "shift-left" security - proactively identifies a wide range of vulnerabilities early in the development process. SBT starts as Docker container and is tailored to your specification.
+
+Explore and manage all found security issues, regardless of the detection method, in one unified management center in Wallarm Console - the [**Security Issues**](../user-guides/vulnerabilities.md) section.
+
+![Security Issues](../images/api-attack-surface/security-issues.png)
 
 ## How Wallarm works
 
