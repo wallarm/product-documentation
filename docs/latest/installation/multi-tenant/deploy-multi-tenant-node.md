@@ -87,7 +87,7 @@ Multi-tenant node:
 
 The next steps differ depending on your filtering node type: NGINX Node or Native Node.
 
-### (NGINX Node) Step 2. Splitting traffic between tenants
+### Step 2. (NGINX Node) Splitting traffic between tenants
 
 1. Split traffic between tenants using their unique identifiers.
 
@@ -167,116 +167,103 @@ The next steps differ depending on your filtering node type: NGINX Node or Nativ
     * `tenant1.com/login` is the application `21`
     * `tenant1.com/users` is the application `22`
 
-### (Native Node) Step 2. Splitting traffic between tenants
+### Step 2. (Native Node) Splitting traffic between tenants
 
-Open the tenant's `wallarm-node-conf.yaml` file and split traffic specifying the [`wallarm_partner_client_uuid`][uuid-dir-native] directive.
+1. Open the tenant's configuration file (`values.yaml` for the Native Node with Helm chart or `wallarm-node-conf.yaml` for all other deployment options) and split traffic specifying the [`wallarm_partner_client_uuid`][uuid-dir-native] directive.
 
-If necessary, specify IDs of tenant's applications using the [`wallarm_application`][application-dir-native] directive.
+    If necessary, specify IDs of tenant's applications using the [`wallarm_application`][application-dir-native] directive.
 
-See the examples of the `wallarm-node-conf.yaml` file below, showing a filtering node processing traffic for two clients:
+    See the examples of the configuration file below, showing a filtering node processing traffic for two clients:
 
-=== "connector-server"
-    ```yaml hl_lines="6-7 13-14 19-20"
-    version: 4
-    mode: "connector-server"
-    # Other configuration values...
-    route_config:
-      wallarm_mode: "monitoring"
-      wallarm_application: "-1"
-      wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
-      target: "example.com"
-      routes:
-        - host: "example.com"
-          route: "^~/api/v1"
-          wallarm_mode: "monitoring"
-          wallarm_application: "1"
-          wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
-          target: "example.com"
-        - host: "example.com"
-          route: "^~/api/v2"
-          wallarm_mode: "monitoring"
-          wallarm_application: "2"
-          wallarm_partner_client_uuid: "22222222-2222-2222-2222-222222222222"
-          target: "example.com"    
-    ```
-
-    The example of the `wallarm-node-conf.yaml` for [deploying the Native Node with Helm Chart][native-node-helm]:
-
-    ```yaml hl_lines="5-6 10-11 14-15"
-    config:
-      connector:
+    === "connector-server"
+        ```yaml hl_lines="6-7 10-11 13-14"
+        version: 4
+        mode: connector-server
+        # Other configuration values...
         route_config:
           wallarm_mode: monitoring
+          wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
           wallarm_application: -1
-          wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
           routes:
-            - host: example.com
-              route: /api/v1
+            - route: /login
+              wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
               wallarm_application: 1
-              wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
-            - host: api.example.com
-              route: /api/v2
+            - route: /users
+              wallarm_partner_client_uuid: 22222222-2222-2222-2222-222222222222
               wallarm_application: 2
-              wallarm_partner_client_uuid: "22222222-2222-2222-2222-222222222222"
-    ```
+        ```    
 
+    === "connector-server with Helm chart"
+        ```yaml hl_lines="6-7 10-11 13-14"
+        config:
+          connector:
+            # Other configuration values...
+            route_config:
+              wallarm_mode: monitoring
+              wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+              wallarm_application: -1
+              routes:
+                - route: /login
+                  wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+                  wallarm_application: 1
+                - route: /users
+                  wallarm_partner_client_uuid: 22222222-2222-2222-2222-222222222222
+                  wallarm_application: 2
+        ```
 
-=== "tcp-capture"
-    ```yaml hl_lines="10-11 17-18 23-24"
-    version: 4
-    mode: "tcp-capture-v2"
-    tcp_stream:
-      from_interface:
-        enabled: true
-        interface: "lo"
-    # Other configuration values...
-    route_config:
-      wallarm_mode: "monitoring"
-      wallarm_application: "-1"
-      wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
-      target: "example.com"
-      routes:
-        - host: "example.com"
-          route: "^~/api/v1"
-          wallarm_mode: "monitoring"
-          wallarm_application: "1"
-          wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
-          target: "example.com"
-        - host: "example.com"
-          route: "^~/api/v2"
-          wallarm_mode: "monitoring"
-          wallarm_application: "2"
-          wallarm_partner_client_uuid: "22222222-2222-2222-2222-222222222222"
-          target: "example.com"        
-    ```
+    === "tcp-capture"
+        ```yaml hl_lines="6-7 10-11 13-14"
+        version: 4
+        mode: tcp-capture-v2
+        # Other configuration values...
+        route_config:
+          wallarm_mode: monitoring
+          wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+          wallarm_application: -1
+          routes:
+            - route: /login
+              wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+              wallarm_application: 1
+            - route: /users
+              wallarm_partner_client_uuid: 22222222-2222-2222-2222-222222222222
+              wallarm_application: 2       
+        ```
 
-=== "envoy-external-filer"
-    ```yaml hl_lines="9-10 16-17 22-23"
-    version: 4
-    mode: "envoy-external-filter"
-    envoy_external_filter:
-      tls_cert: "/tls/cert.pem"
-      tls_key: "/tls/key.pem"
-    # Other configuration values...
-    route_config:
-      wallarm_mode: "monitoring"
-      wallarm_application: "-1"
-      wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
-      target: "example.com"
-      routes:
-        - host: "example.com"
-          route: "^~/api/v1"
-          wallarm_mode: "monitoring"
-          wallarm_application: "1"
-          wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
-          target: "example.com"
-        - host: "example.com"
-          route: "^~/api/v2"
-          wallarm_mode: "monitoring"
-          wallarm_application: "2"
-          wallarm_partner_client_uuid: "22222222-2222-2222-2222-222222222222"
-          target: "example.com"  
-    ```
+    === "envoy-external-filer"
+        ```yaml hl_lines="9-10 13-14 16-17"
+        version: 4
+        mode: envoy-external-filter
+        envoy_external_filter:
+          tls_cert: /tls/cert.pem
+          tls_key: /tls/key.pem
+        # Other configuration values...
+        route_config:
+          wallarm_mode: monitoring
+          wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+          wallarm_application: -1
+          routes:
+          - route: /login
+            wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+            wallarm_application: 1
+          - route: /users
+            wallarm_partner_client_uuid: 22222222-2222-2222-2222-222222222222
+            wallarm_application: 2  
+        ```
+
+1. Run the following command to apply the changes made to the configuration file:
+
+    === "connector-server, tcp-capture, envoy-external-filer"
+        ```sudo systemctl restart wallarm
+        ```
+
+    === "Native Node with Helm Chart"
+        ``` bash
+        helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-node-native -f <PATH_TO_VALUES>
+        ```
+
+        * `<RELEASE_NAME>`: the name of the existing Helm release
+        * `<NAMESPACE>`: the namespace with the Helm release
+        * `<PATH_TO_VALUES>`: the path to the [`values.yaml` file](../../installation/native-node/helm-chart-conf.md) defining the deployed solution configuration
 
 ### Step 3. Configuring a multi-tenant node
 
