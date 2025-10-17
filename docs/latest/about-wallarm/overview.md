@@ -51,15 +51,13 @@ Managing deployed risk is the first line of defense, but reducing the risk exhib
 
 * With the installed [Wallarm filtering node](#filtering-node):
 
-    * Your security issues are found **by default without any further configuration**, just by working Wallarm filtering node based on its analysis of the actual traffic, including both requests and responses. As no special test requests are sent, this is called [**passive detection**](../about-wallarm/detecting-vulnerabilities.md#passive-detection).
-    * For a single attack, passive detection checks only one request/response pair. Use this data from the traffic as a start point to create multiple request modifications and try them on a test server by enabling and configuring [**Threat Replay Testing (TRT)**](../vulnerability-detection/threat-replay-testing/overview.md).
+    * Your security issues are found **by default without any further configuration**, just by working Wallarm filtering node based on its analysis of the actual traffic, including both requests and responses. As no special test requests are sent, this is called [passive detection](../about-wallarm/detecting-vulnerabilities.md#passive-detection).
+    * For a single attack, passive detection checks only one request/response pair. By configuring [Threat Replay Testing (TRT)](../vulnerability-detection/threat-replay-testing/overview.md), use this data from the traffic as a start point to create multiple attack modifications to try all of them on a test server.
 
 * Even **without node** (agentless solutions):
 
-    * Discover your external hosts, their APIs and security issues and further manage the discovered vulnerability mitigation with [**API Attack Surface Management (AASM)**](../api-attack-surface/overview.md).
-    * Use [**Schema-Based Testing (SBT)**](../vulnerability-detection/schema-based-testing/overview.md) Wallarm's dynamic application security testing (DAST) solution that enables "shift-left" security - proactively identifies a wide range of vulnerabilities early in the development process. SBT starts as Docker container and is tailored to your specification.
-
-    See details on [availability of each method](../about-wallarm/detecting-vulnerabilities.md#detection-methods) and [reasons to combine](../about-wallarm/detecting-vulnerabilities.md#combining-methods) them.
+    * Discover your external hosts, their APIs and security issues and further manage the discovered vulnerability mitigation with [API Attack Surface Management (AASM)](../api-attack-surface/overview.md).
+    * Use [Schema-Based Testing (SBT)](../vulnerability-detection/schema-based-testing/overview.md) Wallarm's dynamic application security testing (DAST) solution that enables "shift-left" security - proactively identifies a wide range of vulnerabilities early in the development process. SBT starts as Docker container and is tailored to your specification.
 
 Explore and manage all found security issues, regardless of the detection method, in one unified management center in Wallarm Console - the [**Security Issues**](../user-guides/vulnerabilities.md) section.
 
