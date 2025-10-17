@@ -12,9 +12,6 @@
 
 # Postanalytics and General System Metrics of the NGINX Node
 
-!!! info "Supported Node version and deployment options"
-    The metrics are available for the following deployment options: [all-in-one installer][AIO], [Docker image][docker], cloud images ([AWS AMI][aws-ami] and [GCP Machine Image][gcp]). [NGINX Ingress Controller][IC] and [Sidecar][sidecar] do not support general metrics yet.
-
 This article describes the Postanalytics module and the general system metrics of the NGINX Node to help monitor and troubleshoot the NGINX Node.
 
 * The [Postanalytics module][postanalytics-module] uses **wstore** for local traffic processing. Its metrics are prefixed with `wallarm_wstore_*` and reflect the performance of the Postanalytics module. 
@@ -22,6 +19,10 @@ This article describes the Postanalytics module and the general system metrics o
     The available metric groups are listed [below](#connections-and-traffic-metrics). The exact list of metrics may vary depending on the NGINX Node version. Changes are reflected in the [NGINX Node changelog][nginx-node-changelog].
 
 * The [general system metrics](#general-system-metrics) of the NGINX Node cover network activity, request processing, queue states, storage efficiency, and internal engine health.
+
+## Limitations
+
+Postanalytics and general system metrics are not yet available for [NGINX Ingress Controller][IC] and [Sidecar][sidecar].
 
 ## Metrics endpoint
 
@@ -379,11 +380,9 @@ We can divide general system metrics into 2 groups:
 
 * Prometheus Go metrics, prefixed with `go_*` and `process_*`
 
-  Most Prometheus Go metrics are documented [here](https://demo.promlabs.com/metrics). If a metric is missing there, refer to the [official Go metrics documentation](https://pkg.go.dev/runtime/metrics).
+    Most Prometheus Go metrics are documented [here](https://demo.promlabs.com/metrics). If a metric is missing there, refer to the [official Go metrics documentation](https://pkg.go.dev/runtime/metrics).
 
 * Prometheus metrics, prefixed with `metrics_push_*`, related to its [push gateway](https://github.com/prometheus/pushgateway).
-
-### Example of general system metrics
 
 See the example of general system metrics below.
 

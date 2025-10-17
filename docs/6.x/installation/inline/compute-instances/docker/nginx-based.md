@@ -36,5 +36,7 @@ search:
 [apid-only-mode-details]:           ../../../../installation/nginx/all-in-one.md#api-discovery-only-mode
 [inline-docs]:                      ../../../inline/overview.md
 [what-is-new-wstore]:            ../../../../updating-migrating/what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics
+[wstore-metrics]:                    ../../../../admin-en/wstore-metrics.md
+[wstore-metrics-mount]:             ../../../../admin-en/wstore-metrics.md
 
 --8<-- "latest/admin-en/installation-docker-en.md"
