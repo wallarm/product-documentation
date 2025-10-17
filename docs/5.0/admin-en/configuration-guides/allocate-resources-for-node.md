@@ -38,6 +38,7 @@ The sizing of Tarantool memory is controlled using the `SLAB_ALLOC_ARENA` attrib
     ```
     sudo systemctl restart wallarm.service
     ```
+
 ### Allocating resources if using NGINX-based Docker image
 
 The sizing of wstore memory is controlled using the `TARANTOOL_MEMORY_GB` [environment variable](../../admin-en/installation-docker-en.md) which is passed either in Docker run command or in mounted configuration file.
