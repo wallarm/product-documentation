@@ -656,28 +656,30 @@ Unique identifier of the tenant for the [multi-tenant](../../installation/multi-
     
 Configuration example:
 
-```
-routes:
-  - host: "example.com"
-    route: "^~/api/v1"
-    wallarm_mode: "monitoring"
-    wallarm_application: "1"
-    wallarm_partner_client_uuid: "11111111-1111-1111-1111-111111111111"
-  - host: "example.com"
-    route: "^~/api/v2"
-    wallarm_mode: "monitoring"
-    wallarm_application: "2"
-    wallarm_partner_client_uuid: "22222222-2222-2222-2222-222222222222"
+```yaml
+version: 4
+mode: connector-server
+route_config:
+  wallarm_mode: monitoring
+  wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+  wallarm_application: -1
+  routes:
+    - route: /login
+      wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+      wallarm_application: 1
+    - route: /users
+      wallarm_partner_client_uuid: 22222222-2222-2222-2222-222222222222
+      wallarm_application: 2"
 ```
 
 In the configuration above:
 
 * Tenant stands for partner's client. The partner has 2 clients.
-* The traffic targeting `example.com` and `example.com/api/v1` will be associated with the client `11111111-1111-1111-1111-111111111111`.
-* The traffic targeting `example.com/api/v2` will be associated with the client `22222222-2222-2222-2222-222222222222`.
+* The traffic targeting `example.com/login` will be associated with the client `11111111-1111-1111-1111-111111111111`.
+* The traffic targeting `example.com/users` will be associated with the client `22222222-2222-2222-2222-222222222222`.
 * The clients have applications, specified via the [`wallarm_application`](#route_configwallarm_application) directive:
-    * `example.com/api/v1` – `wallarm_application 1`
-    * `example.com/api/v2` – `wallarm_application 2`
+    * `example.com/login` – `wallarm_application 1`
+    * `example.com/users` – `wallarm_application 2`
 
     The traffic targeting these 2 paths will be associated with the corresponding application, the remaining will be the generic traffic of the first client.
 
