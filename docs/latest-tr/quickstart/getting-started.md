@@ -4,7 +4,7 @@ Wallarm, uçtan uca API güvenliği sunar; API’lerinizi zafiyetler ve kötü a
 
 ## Playground’da Wallarm’ı Öğrenin
 
-Kayıt olmadan ve ortamınıza herhangi bir bileşen dağıtmadan Wallarm’ı keşfetmek için [Wallarm Playground](https://playground.wallarm.com/?utm_source=wallarm_docs_quickstart) kullanın.
+Kayıt olmadan ve ortamınıza herhangi bir bileşen dağıtmadan Wallarm’ı keşfetmek için [Wallarm Playground](https://tour.playground.wallarm.com/?utm_source=wallarm_docs_quickstart) kullanın.
 
 Playground’da, sanki gerçek verilerle doldurulmuş gibi Wallarm Console görünümüne erişebilirsiniz. Wallarm Console, işlenen trafik verilerini gösteren ve platformun ince ayarına olanak tanıyan temel Wallarm platform bileşenidir. Bu nedenle Playground ile ürünün nasıl çalıştığını öğrenebilir ve deneyebilir, yalnızca-okunur modda kullanımına dair faydalı örnekler elde edebilirsiniz.
 

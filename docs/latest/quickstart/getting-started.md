@@ -76,7 +76,7 @@ To start, do one of the following:
 
 ## Learn Wallarm in Playground
 
-To explore Wallarm even before signing up and deploying any components to your environment, use [Wallarm Playground](https://playground.wallarm.com/?utm_source=wallarm_docs_quickstart).
+To explore Wallarm even before signing up and deploying any components to your environment, use [Wallarm Playground](https://tour.playground.wallarm.com/?utm_source=wallarm_docs_quickstart).
 
 In Playground, you can access the Wallarm Console view like it is filled with real data. Wallarm Console is the major Wallarm platform component that displays data on processed traffic and allows the platform fine-tuning. So, with Playground you can learn and try out how the product works, and get some useful examples of its usage in the read-only mode.
 

@@ -122,7 +122,7 @@ API Discovery demo videosunu izleyin:
 
 ## Playground’da API Discovery’yi denemek
 
-Modülü kaydolmadan ve düğümü ortamınıza dağıtmadan önce bile denemek için, [Wallarm Playground’da API Discovery’yi](https://playground.wallarm.com/api-discovery/?utm_source=wallarm_docs_apid) keşfedin.
+Modülü kaydolmadan ve düğümü ortamınıza dağıtmadan önce bile denemek için, [Wallarm Playground’da API Discovery’yi](https://tour.playground.wallarm.com/api-discovery/?utm_source=wallarm_docs_apid) keşfedin.
 
 Playground’da, sanki gerçek verilerle doldurulmuş gibi API Discovery görünümüne erişebilir; böylece modülün nasıl çalıştığını öğrenip deneyebilir ve salt okunur modda kullanımına dair bazı faydalı örnekler edinebilirsiniz.
 
