@@ -73,10 +73,15 @@ The Wallarm node operation mode. It can be:
     route_config:
       wallarm_application: 10
       wallarm_mode: monitoring
+      # wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+      # wallarm_application: "-1"
       routes:
         - route: /example/api/v1
           wallarm_mode: off
+          # wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+          # wallarm_application: 1
         - route: /example/extra_api
+          # wallarm_partner_client_uuid: 22222222-2222-2222-2222-222222222222
           wallarm_application: 2
         - route: /example/testing
           wallarm_mode: off

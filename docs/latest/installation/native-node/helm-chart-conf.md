@@ -42,14 +42,19 @@ config:
     allowed_hosts: []
 
     route_config: {}
-      # wallarm_application: -1
       # wallarm_mode: monitoring
+      # wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+      # wallarm_application: "-1"
       # routes:
         # - route: "/api/v1"
+        #   wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
         #   wallarm_application: 1
         # - route: "/extra_api"
+        #   wallarm_partner_client_uuid: 22222222-2222-2222-2222-222222222222
         #   wallarm_application: 2
         # - route: "/testing"
+        #   wallarm_partner_client_uuid: 33333333-3333-3333-3333-333333333333
+        #   wallarm_application: 2
         #   wallarm_mode: monitoring
         # - host: "example.com"
         #   route: /api

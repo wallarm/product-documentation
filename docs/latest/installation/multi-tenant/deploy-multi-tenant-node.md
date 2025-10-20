@@ -6,7 +6,11 @@
 [uuid-dir-native]:                  ../../installation/native-node/all-in-one-conf.md#route_configwallarm_partner_client_uuid
 [application-dir-native]:           ../../installation/native-node/all-in-one-conf.md#route_configwallarm_application
 [native-node-helm]:                 ../../installation/native-node/helm-chart.md
-
+[aio]:                              ../../installation/native-node/all-in-one-conf.md#route_configwallarm_application
+[aws-ami]:                          ../../installation/native-node/all-in-one.md
+[docker]:                           ../../installation/native-node/docker-image.md
+[docker-new]:                       ../../installation/native-node/docker-image.md#4-run-the-docker-container
+[docker-existing]:                  ../../installation/native-node/all-in-one-conf.md
 
 # Deploying and Configuring Multi-tenant Node
 
@@ -43,15 +47,10 @@ Choose the multi-tenant node deployment option based on your infrastructure and 
 
 Multi-tenant node:
 
-* Can be installed on the same [platforms](../../installation/supported-deployment-options.md) and according to the same instructions as a regular filtering node, **except for**:
+* Can be installed on the same [platforms](../../installation/supported-deployment-options.md) and using the same instructions as a regular filtering node, except for [Security Edge connectors](../../installation/connectors/overview.md#supported-platforms). 
 
-    * MuleSoft Mule and Flex Gateway connectors
-    * Amazon CloudFront connector
-    * Cloudflare connector
-    * Broadcom Layer7 API Gateway connector
-    * Fastly connector
-    * Kong API Gateway connector
-    * Istio connector
+    Unlike Security Edge connectors, [self-hosted nodes deployed with connectors](../../installation/connectors/overview.md#supported-platforms) do support multitenancy.
+        
 * Can be installed on the **technical tenant** or **tenant** level. If you want to provide a tenant with access to Wallarm Console, the filtering node must be installed at the corresponding tenant level.
 * Can be configured according to the same instructions as a regular filtering node.
 * The `wallarm_partner_client_uuid` directive is used to split traffic by the tenants.
@@ -169,7 +168,7 @@ The next steps differ depending on your filtering node type: NGINX Node or Nativ
 
 ### Step 2. (Native Node) Splitting traffic between tenants
 
-1. Open the tenant's configuration file (`values.yaml` for the Native Node with Helm chart or `wallarm-node-conf.yaml` for all other deployment options) and split traffic specifying the [`wallarm_partner_client_uuid`][uuid-dir-native] directive.
+1. Open the tenant's configuration file (`values.yaml` for the Helm chart or `/opt/wallarm/etc/wallarm/go-node.yaml` for all other deployment options) and split traffic specifying the [`wallarm_partner_client_uuid`][uuid-dir-native] directive.
 
     If necessary, specify IDs of tenant's applications using the [`wallarm_application`][application-dir-native] directive.
 
@@ -252,11 +251,12 @@ The next steps differ depending on your filtering node type: NGINX Node or Nativ
 
 1. Run the following command to apply the changes made to the configuration file:
 
-    === "connector-server, tcp-capture, envoy-external-filer"
-        ```sudo systemctl restart wallarm
+    === "[All-in-one installer][aio], [AWS AMI][aws-ami], [Docker image][docker]"
+        ```
+        sudo systemctl restart wallarm
         ```
 
-    === "Native Node with Helm Chart"
+    === "[Helm chart][native-node-helm]"
         ``` bash
         helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-node-native -f <PATH_TO_VALUES>
         ```
