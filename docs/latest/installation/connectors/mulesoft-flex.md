@@ -128,6 +128,7 @@ In the Wallarm policy settings for Flex Gateway, you can specify the following p
 | --------- | ----------- | --------- |
 | `wallarm_node` | Sets the address of your [Wallarm Node instance](#1-deploy-a-wallarm-node). | Yes |
 | `real_ip_header` | Specifies which header to use to determine the original client IP address when behind a proxy or load balancer. Default: `X-Forwarded-For`. | Yes |
+| `real_host_header` | Specifies which HTTP header to use as the original request host when behind a proxy or load balancer. Default: `Host`. | Yes |
 | `wallarm_mode` | Determines traffic handling mode: `sync` processes traffic through the Wallarm Node directly, while `async` analyzes a [copy](../oob/overview.md) of the traffic without affecting the original flow. Default: `sync`. | Yes |
 | `fallback_action` | Defines request handling behavior when the Wallarm node is down. Can be: `pass` (all requests are allowed through) or `block` (all requests are blocked with the 403 code). Default: `pass`. | Yes |
 | `parse_responses` | Controls whether to analyze response bodies or not. It enables response schema discovery and enhanced attack and vulnerability detection capabilities. Default: `true`. | Yes |

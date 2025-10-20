@@ -74,6 +74,12 @@ The current version can be found in `Cargo.toml` → `[package]` → `version` p
 | ------------------- | ------------------- |
 | 1.x.x               | 0.16.0 and higher   |
 
+### 1.2.0 (2025-10-20)
+
+* Added the `real_host_header` parameter to [Wallarm policy settings for Flex Gateway](mulesoft-flex.md#configuration-options) — it defines which HTTP header is used to determine the original request host when traffic passes through a proxy or load balancer
+    
+    Default: `Host`.
+
 ### 1.1.1 (2025-09-29)
 
 * Extended MuleSoft logging with additional debug-level details
