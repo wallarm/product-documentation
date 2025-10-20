@@ -5,6 +5,3 @@
 * [Rate limiting][rate-limiting] by Wallarm rules is not supported.
     
     Rate limiting cannot be enforced on the Wallarm side for this connector. If you need rate limiting, use the features built into your API gateway or cloud platform.
-* [Multitenancy][multi-tenancy] is not supported.
-
-    All protected APIs are managed under a single Wallarm account; separating protection across multiple accounts for different infrastructures or environments is not yet supported.
