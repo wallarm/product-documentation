@@ -49,6 +49,7 @@ Among all supported [Wallarm deployment options](../supported-deployment-options
     * [Custom blocking page and blocking code][custom-blocking-page] configurations are not yet supported.
     * Vulnerability detection based on [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) and API [response structure in API Discovery](../../api-discovery/exploring.md#endpoint-details) are limited due to Lambda@Edge response trigger restrictions. Since Wallarm functions cannot receive response bodies and rely on them, these features are unavailable.
     * [Rate limiting](../../user-guides/rules/rate-limiting.md) by the Wallarm rule is not supported.
+    * [Multitenancy][multi-tenancy] is not supported on Security Edge hosting, but it is supported for self-hosted nodes deployed with the connector.
 
 ## Requirements
 

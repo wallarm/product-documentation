@@ -41,6 +41,7 @@ This solution is recommended for securing APIs managed by the Azure APIM service
 * [Rate limiting][rate-limiting] by Wallarm rules is not supported.
     
     Rate limiting cannot be enforced on the Wallarm side for this connector. If rate limiting is required, use [Azure APIM's built-in policies](https://learn.microsoft.com/en-us/azure/api-management/rate-limit-policy).
+* [Multitenancy][multi-tenancy] is not supported on Security Edge hosting, but it is supported for self-hosted nodes deployed with the connector.
 * Attacks in query parameters and URI are registered **3 times**. 
 
     This is because the Azure Application Gateway adds the `X-ORIGINAL-URL` and `X-WAWS-UNENCODED-URL` headers, which fully reflect the original URI including the attack pattern. As a result, a single malicious parameter or URI path generates three detections:

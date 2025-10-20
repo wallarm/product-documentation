@@ -41,6 +41,7 @@ This solution is recommended for securing APIs managed by the Apigee APIM servic
 * [Rate limiting][rate-limiting] by Wallarm rules is not supported.
     
     Rate limiting cannot be enforced on the Wallarm side for this connector. If rate limiting is required, use [Apigee policies](https://cloud.google.com/apigee/docs/api-platform/develop/rate-limiting).
+* [Multitenancy][multi-tenancy] is not supported on Security Edge hosting, but it is supported for self-hosted nodes deployed with the connector.
 
 ## Requirements
 
