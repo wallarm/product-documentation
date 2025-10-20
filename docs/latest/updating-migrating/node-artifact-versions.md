@@ -63,6 +63,10 @@ new attack types in logging variables and search bars?
 
 ### 6.4.0 (2025-07-31)
 
+* Introduced a new `wallarm_block_reason` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    This variable adds to the log an information on reason of request blocking (detected attack, part of bot activity, Denylist etc.)
+
 * Fixed the stuffed credentials export to the Cloud
 * Improved GraphQL parser
 * Bug fixes and internal improvements
@@ -153,7 +157,7 @@ new attack types in logging variables and search bars?
     This allows IPv4 traffic only. If you are using a custom value, make sure it matches the selected `controller.wallarm.postanalytics.serviceProtocol`.
 * Fixed an issue where response context parameters configured in API Sessions were not uploaded to the Wallarm Cloud
 * Introduced a new Prometheus metric `wallarm_wcli_job_export_lag` to track the average export delay for each wcli job (e.g., `reqexp`, `blkexp`, `botexp`)
-* Introduced a new `$wallarm_mode` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+* Introduced a new `wallarm_mode` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
 
     This variable returns the final filtration mode applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization.
 * Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
@@ -184,6 +188,10 @@ new attack types in logging variables and search bars?
 * Fixed the [CVE-2025-5399](https://nvd.nist.gov/vuln/detail/CVE-2025-5399) and [CVE-2025-22872](https://nvd.nist.gov/vuln/detail/CVE-2025-22872) vulnerabilities due to the upstream upgrade
 
 ### 6.4.0 (2025-07-31)
+
+* Introduced a new `wallarm_block_reason` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    This variable adds to the log an information on reason of request blocking (detected attack, part of bot activity, Denylist etc.)
 
 * Fixed the stuffed credentials export to the Cloud
 * Improved GraphQL parser
@@ -289,6 +297,10 @@ new attack types in logging variables and search bars?
 * Fixed the behavior of the [`wallarm_wstore_throttle_mode`](../admin-en/wstore-metrics.md#wallarm_wstore_throttle_mode) Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
 
 ### 6.4.0 (2025-07-31)
+
+* Introduced a new `wallarm_block_reason` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    This variable adds to the log an information on reason of request blocking (detected attack, part of bot activity, Denylist etc.)
 
 * Fixed the stuffed credentials export to the Cloud
 * Improved GraphQL parser
@@ -402,6 +414,10 @@ new attack types in logging variables and search bars?
 
 ### 6.4.0 (2025-07-31)
 
+* Introduced a new `wallarm_block_reason` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    This variable adds to the log an information on reason of request blocking (detected attack, part of bot activity, Denylist etc.)
+
 * Fixed the stuffed credentials export to the Cloud
 * Improved GraphQL parser
 * Bug fixes and internal improvements
@@ -483,6 +499,10 @@ new attack types in logging variables and search bars?
 
 ### 6.4.0 (2025-07-31)
 
+* Introduced a new `wallarm_block_reason` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    This variable adds to the log an information on reason of request blocking (detected attack, part of bot activity, Denylist etc.)
+    
 * Fixed the stuffed credentials export to the Cloud
 * Improved GraphQL parser
 * Bug fixes and internal improvements
