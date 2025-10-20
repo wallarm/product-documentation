@@ -662,14 +662,14 @@ mode: connector-server
 route_config:
   wallarm_mode: monitoring
   wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
-  wallarm_application: -1
+  wallarm_application: "-1"
   routes:
     - route: /login
       wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
       wallarm_application: 1
     - route: /users
       wallarm_partner_client_uuid: 22222222-2222-2222-2222-222222222222
-      wallarm_application: 2"
+      wallarm_application: 2
 ```
 
 In the configuration above:

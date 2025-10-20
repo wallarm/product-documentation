@@ -263,7 +263,7 @@ config:
       host: example.com
       wallarm_mode: monitoring
       wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
-      wallarm_application: -1
+      wallarm_application: "-1"
       routes:
         - host: example.com
           route: /login
