@@ -5,12 +5,8 @@
 [dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
 [uuid-dir-native]:                  ../../installation/native-node/all-in-one-conf.md#route_configwallarm_partner_client_uuid
 [application-dir-native]:           ../../installation/native-node/all-in-one-conf.md#route_configwallarm_application
-[native-node-helm]:                 ../../installation/native-node/helm-chart.md
-[aio]:                              ../../installation/native-node/all-in-one-conf.md#route_configwallarm_application
-[aws-ami]:                          ../../installation/native-node/all-in-one.md
-[docker]:                           ../../installation/native-node/docker-image.md
-[docker-new]:                       ../../installation/native-node/docker-image.md#4-run-the-docker-container
-[docker-existing]:                  ../../installation/native-node/all-in-one-conf.md
+[native-node-helm]:                 ../../installation/native-node/helm-chart.md#3-prepare-the-configuration-file
+[native-deployment]:                ../../installation/native-node/all-in-one-conf.md
 
 # Deploying and Configuring Multi-tenant Node
 
@@ -168,7 +164,7 @@ The next steps differ depending on your filtering node type: NGINX Node or Nativ
 
 ### Step 2. (Native Node) Splitting traffic between tenants
 
-1. Open the tenant's configuration file (`values.yaml` for the Helm chart or `/opt/wallarm/etc/wallarm/go-node.yaml` for all other deployment options) and split traffic specifying the [`wallarm_partner_client_uuid`][uuid-dir-native] directive.
+1. Open the tenant's configuration file (`values.yaml` for the [Helm chart][native-node-helm] or `/opt/wallarm/etc/wallarm/go-node.yaml` for [all other deployment options][native-deployment]) and split traffic specifying the [`wallarm_partner_client_uuid`][uuid-dir-native] directive.
 
     If necessary, specify IDs of tenant's applications using the [`wallarm_application`][application-dir-native] directive.
 
@@ -251,12 +247,12 @@ The next steps differ depending on your filtering node type: NGINX Node or Nativ
 
 1. Run the following command to apply the changes made to the configuration file:
 
-    === "[All-in-one installer][aio], [AWS AMI][aws-ami], [Docker image][docker]"
+    === "All-in-one installer, AWS AMI, Docker image"
         ```
         sudo systemctl restart wallarm
         ```
 
-    === "[Helm chart][native-node-helm]"
+    === "Helm chart"
         ``` bash
         helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-node-native -f <PATH_TO_VALUES>
         ```
