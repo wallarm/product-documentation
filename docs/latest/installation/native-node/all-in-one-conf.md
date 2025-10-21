@@ -651,6 +651,8 @@ Unique identifier of the tenant for the [multi-tenant](../../installation/multi-
 * `11111111-1111-1111-1111-111111111111`
 * `123e4567-e89b-12d3-a456-426614174000`
 
+Supported in Native Node 0.19.0 and later.
+
 !!! info
     This parameter can be set inside the `route_config` and `routes` blocks.
 
@@ -658,7 +660,7 @@ Unique identifier of the tenant for the [multi-tenant](../../installation/multi-
     
     * [Get the UUID of the tenant during tenant creation →](../../installation/multi-tenant/configure-accounts.md#via-the-wallarm-api)
     * [Get the list of UUIDs of existing tenants →](../../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants)
-    
+
 Configuration example:
 
 ```yaml
