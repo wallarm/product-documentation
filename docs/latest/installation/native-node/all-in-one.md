@@ -43,7 +43,6 @@ The machine intended for running the Native Node with the all-in-one installer m
 * When using the all-in-one installer in `connector-server` or `envoy_external_filter` mode, a **trusted** SSL/TLS certificate is required for the machine's domain. Self-signed certificates are not yet supported.
 * [Custom blocking page and blocking code](../../admin-en/configuration-guides/configure-block-page-and-code.md) configurations are not yet supported.
 * [Rate limiting](../../user-guides/rules/rate-limiting.md) by the Wallarm rule is not supported.
-* [Multitenancy](../multi-tenant/overview.md) is not supported yet.
 
 ## Installation
 

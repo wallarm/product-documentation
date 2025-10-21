@@ -43,7 +43,6 @@ The Docker image for the Native Node is ideal if you are already using container
 * Self-signed SSL certificates are not supported for securing the load balancer.
 * [Custom blocking page and blocking code](../../admin-en/configuration-guides/configure-block-page-and-code.md) configurations are not yet supported.
 * [Rate limiting](../../user-guides/rules/rate-limiting.md) by the Wallarm rule is not supported.
-* [Multitenancy](../multi-tenant/overview.md) is not supported yet.
 
 ## Deployment
 

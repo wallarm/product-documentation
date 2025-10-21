@@ -73,10 +73,15 @@ The Wallarm node operation mode. It can be:
     route_config:
       wallarm_application: 10
       wallarm_mode: monitoring
+      # wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+      # wallarm_application: "-1"
       routes:
         - route: /example/api/v1
           wallarm_mode: off
+          # wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+          # wallarm_application: 1
         - route: /example/extra_api
+          # wallarm_partner_client_uuid: 22222222-2222-2222-2222-222222222222
           wallarm_application: 2
         - route: /example/testing
           wallarm_mode: off
@@ -638,6 +643,50 @@ Configuration section where you specify settings for specific routes.
 [Wallarm application ID](../../user-guides/settings/applications.md). This value can be overridden for specific routes.
 
 Default: `-1`.
+
+### route_config.wallarm_partner_client_uuid
+
+Unique identifier of the tenant for the [multi-tenant](../../installation/multi-tenant/deploy-multi-tenant-node.md) Wallarm node. The value should be a string in the [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) format, for example:
+
+* `11111111-1111-1111-1111-111111111111`
+* `123e4567-e89b-12d3-a456-426614174000`
+
+!!! info
+    This parameter can be set inside the `route_config` and `routes` blocks.
+
+    Know how to:
+    
+    * [Get the UUID of the tenant during tenant creation →](../../installation/multi-tenant/configure-accounts.md#via-the-wallarm-api)
+    * [Get the list of UUIDs of existing tenants →](../../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants)
+    
+Configuration example:
+
+```yaml
+version: 4
+mode: connector-server
+route_config:
+  wallarm_mode: monitoring
+  wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+  wallarm_application: "-1"
+  routes:
+    - route: /login
+      wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+      wallarm_application: 1
+    - route: /users
+      wallarm_partner_client_uuid: 22222222-2222-2222-2222-222222222222
+      wallarm_application: 2
+```
+
+In the configuration above:
+
+* Tenant stands for partner's client. The partner has 2 clients.
+* The traffic targeting `example.com/login` will be associated with the client `11111111-1111-1111-1111-111111111111`.
+* The traffic targeting `example.com/users` will be associated with the client `22222222-2222-2222-2222-222222222222`.
+* The clients have applications, specified via the [`wallarm_application`](#route_configwallarm_application) directive:
+    * `example.com/login` – `wallarm_application 1`
+    * `example.com/users` – `wallarm_application 2`
+
+    The traffic targeting these 2 paths will be associated with the corresponding application, the remaining will be the generic traffic of the first client.
 
 ### route_config.wallarm_mode
 

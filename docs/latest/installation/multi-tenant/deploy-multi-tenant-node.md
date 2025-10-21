@@ -3,6 +3,10 @@
 [proxy-balancer-instr]:             ../../admin-en/using-proxy-or-balancer-en.md
 [process-time-limit-instr]:         ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
+[uuid-dir-native]:                  ../../installation/native-node/all-in-one-conf.md#route_configwallarm_partner_client_uuid
+[application-dir-native]:           ../../installation/native-node/all-in-one-conf.md#route_configwallarm_application
+[native-node-helm]:                 ../../installation/native-node/helm-chart.md#3-prepare-the-configuration-file
+[native-deployment]:                ../../installation/native-node/all-in-one-conf.md
 
 # Deploying and Configuring Multi-tenant Node
 
@@ -39,19 +43,14 @@ Choose the multi-tenant node deployment option based on your infrastructure and 
 
 Multi-tenant node:
 
-* Can be installed on the same [platforms](../../installation/supported-deployment-options.md) and according to the same instructions as a regular filtering node, **except for**:
+* Can be installed on the same [platforms](../../installation/supported-deployment-options.md) and using the same instructions as a regular filtering node, except for [Security Edge connectors](../../installation/connectors/overview.md#supported-platforms). 
 
-    * MuleSoft Mule and Flex Gateway connectors
-    * Amazon CloudFront connector
-    * Cloudflare connector
-    * Broadcom Layer7 API Gateway connector
-    * Fastly connector
-    * Kong API Gateway connector
-    * Istio connector
+    Unlike Security Edge connectors, [self-hosted nodes deployed with connectors](../../installation/connectors/overview.md#supported-platforms) do support multitenancy.
+        
 * Can be installed on the **technical tenant** or **tenant** level. If you want to provide a tenant with access to Wallarm Console, the filtering node must be installed at the corresponding tenant level.
 * Can be configured according to the same instructions as a regular filtering node.
-* The directive [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) is used to split traffic by the tenants.
-* The directive [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) is used to split settings by the applications.
+* The `wallarm_partner_client_uuid` directive is used to split traffic by the tenants.
+* The `wallarm_application` directive is used to split settings by the applications.
 
 ## Deployment requirements
 
@@ -66,6 +65,8 @@ Multi-tenant node:
 
 ## Procedure for a multi-tenant node deployment
 
+### Step 1. Creating a multi-tenant node token and deploying a filtering node
+
 1. In Wallarm Console → **Nodes**, click **Create node** and select **Wallarm node**.
 
     !!! info "Switching an existing Wallarm node to the multi-tenant mode"
@@ -78,6 +79,11 @@ Multi-tenant node:
 1. Set node name and click **Create**.
 1. Copy the filtering node token.
 1. Depending on a filtering node deployment form, perform steps from the [appropriate instructions](../../installation/supported-deployment-options.md).
+
+The next steps differ depending on your filtering node type: NGINX Node or Native Node.
+
+### Step 2. (NGINX Node) Splitting traffic between tenants
+
 1. Split traffic between tenants using their unique identifiers.
 
     === "NGINX and NGINX Plus"
@@ -156,7 +162,106 @@ Multi-tenant node:
     * `tenant1.com/login` is the application `21`
     * `tenant1.com/users` is the application `22`
 
-## Configuring a multi-tenant node
+### Step 2. (Native Node) Splitting traffic between tenants
+
+1. Open the tenant's configuration file (`values.yaml` for the [Helm chart][native-node-helm] or `/opt/wallarm/etc/wallarm/go-node.yaml` for [all other deployment options][native-deployment]) and split traffic specifying the [`wallarm_partner_client_uuid`][uuid-dir-native] directive.
+
+    If necessary, specify IDs of tenant's applications using the [`wallarm_application`][application-dir-native] directive.
+
+    See the examples of the configuration file below, showing a filtering node processing traffic for two clients:
+
+    === "connector-server"
+        ```yaml hl_lines="6-7 10-11 13-14"
+        version: 4
+        mode: connector-server
+        # Other configuration values...
+        route_config:
+          wallarm_mode: monitoring
+          wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+          wallarm_application: "-1"
+          routes:
+            - route: /login
+              wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+              wallarm_application: 1
+            - route: /users
+              wallarm_partner_client_uuid: 22222222-2222-2222-2222-222222222222
+              wallarm_application: 2
+        ```    
+
+    === "connector-server with Helm chart"
+        ```yaml hl_lines="6-7 10-11 13-14"
+        config:
+          connector:
+            # Other configuration values...
+            route_config:
+              wallarm_mode: monitoring
+              wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+              wallarm_application: "-1"
+              routes:
+                - route: /login
+                  wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+                  wallarm_application: 1
+                - route: /users
+                  wallarm_partner_client_uuid: 22222222-2222-2222-2222-222222222222
+                  wallarm_application: 2
+        ```
+
+    === "tcp-capture"
+        ```yaml hl_lines="6-7 10-11 13-14"
+        version: 4
+        mode: tcp-capture-v2
+        # Other configuration values...
+        route_config:
+          wallarm_mode: monitoring
+          wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+          wallarm_application: "-1"
+          routes:
+            - route: /login
+              wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+              wallarm_application: 1
+            - route: /users
+              wallarm_partner_client_uuid: 22222222-2222-2222-2222-222222222222
+              wallarm_application: 2       
+        ```
+
+    === "envoy-external-filer"
+        ```yaml hl_lines="9-10 13-14 16-17"
+        version: 4
+        mode: envoy-external-filter
+        envoy_external_filter:
+          tls_cert: /tls/cert.pem
+          tls_key: /tls/key.pem
+        # Other configuration values...
+        route_config:
+          wallarm_mode: monitoring
+          wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+          wallarm_application: "-1"
+          routes:
+          - route: /login
+            wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
+            wallarm_application: 1
+          - route: /users
+            wallarm_partner_client_uuid: 22222222-2222-2222-2222-222222222222
+            wallarm_application: 2  
+        ```
+
+1. Run the following command to apply the changes made to the configuration file:
+
+    === "All-in-one installer, AWS AMI, Docker image"
+        ```
+        sudo systemctl restart wallarm
+        ```
+
+    === "Helm chart"
+        ``` bash
+        helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-node-native -f <PATH_TO_VALUES>
+        ```
+
+        * `<RELEASE_NAME>`: the name of the existing Helm release
+        * `<NAMESPACE>`: the namespace with the Helm release
+        * `<PATH_TO_VALUES>`: the path to the [`values.yaml` file](../../installation/native-node/helm-chart-conf.md) defining the deployed solution configuration
+
+### Step 3. Configuring a multi-tenant node
 
 To customize the filtering node settings, use the [available directives](../../admin-en/configure-parameters-en.md).
 
