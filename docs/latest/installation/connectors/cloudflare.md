@@ -34,7 +34,7 @@ This solution is recommended in case when you provide access to your application
 
 * When deploying the Wallarm service with the `LoadBalancer` type using the [Helm chart][helm-chart-native-node], a **trusted** SSL/TLS certificate is required for the Node instance domain. Self-signed certificates are not yet supported.
 * [Rate limiting][rate-limiting] by the Wallarm rule is not supported.
-* [Multitenancy][multi-tenancy] is not supported yet.
+* [Multitenancy][multi-tenancy] is not supported on Security Edge hosting, but it is supported for self-hosted nodes deployed with the connector.
 
 ## Requirements
 

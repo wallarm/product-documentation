@@ -16,7 +16,6 @@ This solution is recommended for securing APIs managed by the Kong Ingress Contr
 
 This setup allows fine-tuning Wallarm only via the Wallarm Console UI. Some Wallarm features that require file-based configuration are not supported in this implementation, such as:
 
-* [Multitenancy feature][multitenancy-overview]
 * [Application configuration][applications-docs]
 * [Custom blocking page and code setup][custom-blocking-page-docs]
 
