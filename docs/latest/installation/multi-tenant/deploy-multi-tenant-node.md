@@ -247,7 +247,7 @@ The next steps differ depending on your filtering node type: NGINX Node or Nativ
 
 1. Run the following command to apply the changes made to the configuration file:
 
-    === "All-in-one installer, AWS AMI, Docker image"
+    === "All-in-one installer, Docker image"
         ```
         sudo systemctl restart wallarm
         ```
