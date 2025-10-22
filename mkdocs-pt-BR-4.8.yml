@@ -40,7 +40,6 @@ nav:
     - Prevenção de Ameaças: user-guides/dashboards/threat-prevention.md
     - Descoberta de API: user-guides/dashboards/api-discovery.md
     - OWASP API Top 10: user-guides/dashboards/owasp-api-top-ten.md
-    - NIST CSF 2.0: user-guides/dashboards/nist-csf-2.md
     - Eventos:
       - Pesquisa de Eventos e Filtros: user-guides/search-and-filters/use-search.md
       - Verificando Eventos: user-guides/events/check-attack.md

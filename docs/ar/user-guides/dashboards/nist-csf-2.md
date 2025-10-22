@@ -1,1 +1,0 @@
---8<-- "latest-ar/user-guides/dashboards/nist-csf-2.md"

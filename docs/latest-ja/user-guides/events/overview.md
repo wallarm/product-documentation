@@ -23,7 +23,6 @@ Threat Management's dashboards provide visualized summaries for your security pe
 
 * Get clear vision of the malicious traffic volume and its distribution by attack types, sources, protocols, authentication methods, etc. with the [**Threat Prevention**](../../user-guides/dashboards/threat-prevention.md) dashboard.
 * Review data about your API collected by the Wallarm's API Discovery with the [**API Discovery**](../../user-guides/dashboards/api-discovery.md) dashboard.
-* Get view of how Wallarm's services align with the NIST cybersecurity framework via the [**NIST Cyber Security Framework 2.0**](../../user-guides/dashboards/nist-csf-2.md) dashboard.
 * Check covering the OWASP API Security Top 10 2023 and proactively implement security controls on the [**OWASP API Security Top 10 - 2023**](../../user-guides/dashboards/owasp-api-top-ten.md) dashboard.
 
 ## Attacks

@@ -25,7 +25,6 @@ Threat Management'ın dashboards'ı güvenlik sınırınız ve duruşunuz için 
 
 * Kötü amaçlı trafik hacmini ve bunun saldırı türlerine, kaynaklara, protokollere, kimlik doğrulama yöntemlerine vb. göre dağılımını [**Threat Prevention**](../../user-guides/dashboards/threat-prevention.md) dashboard'ı ile net biçimde görün.
 * Wallarm'ın API Discovery özelliği tarafından toplanan API verilerinizi [**API Discovery**](../../user-guides/dashboards/api-discovery.md) dashboard'ı ile gözden geçirin.
-* Wallarm servislerinin NIST siber güvenlik çerçevesi ile nasıl hizalandığını [**NIST Cyber Security Framework 2.0**](../../user-guides/dashboards/nist-csf-2.md) dashboard'ı üzerinden görün.
 * [**OWASP API Security Top 10 - 2023**](../../user-guides/dashboards/owasp-api-top-ten.md) dashboard'ında OWASP API Security Top 10 2023 kapsamınızı kontrol edin ve güvenlik kontrollerini proaktif olarak uygulayın.
 
 ## Attacks
