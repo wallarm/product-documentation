@@ -68,7 +68,6 @@ nav:
     - Overview: user-guides/events/overview.md
     - منع التهديد: user-guides/dashboards/threat-prevention.md
     - اكتشاف API: user-guides/dashboards/api-discovery.md
-    - NIST CSF 2.0: user-guides/dashboards/nist-csf-2.md
     - OWASP API Top 10: user-guides/dashboards/owasp-api-top-ten.md
     - الأحداث:
       - البحث والمرشحات: user-guides/search-and-filters/use-search.md

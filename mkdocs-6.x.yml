@@ -26,7 +26,6 @@ nav:
     - Dashboards:
       - Threat Prevention: user-guides/dashboards/threat-prevention.md
       - API Discovery: user-guides/dashboards/api-discovery.md
-      - NIST CSF 2.0: user-guides/dashboards/nist-csf-2.md
       - OWASP API 2023: user-guides/dashboards/owasp-api-top-ten.md
     - Attacks & Incidents:
       - Attack Analysis: user-guides/events/check-attack.md

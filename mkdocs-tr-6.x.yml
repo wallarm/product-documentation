@@ -38,7 +38,6 @@ nav:
     - Panolar:
       - Tehdit Önleme: user-guides/dashboards/threat-prevention.md
       - API Keşfi: user-guides/dashboards/api-discovery.md
-      - NIST CSF 2.0: user-guides/dashboards/nist-csf-2.md
       - OWASP API 2023: user-guides/dashboards/owasp-api-top-ten.md
     - Saldırılar ve Olaylar:
       - Saldırı Analizi: user-guides/events/check-attack.md

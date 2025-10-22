@@ -39,7 +39,6 @@ nav:
     - ダッシュボード:
       - 脅威の防止: user-guides/dashboards/threat-prevention.md
       - API ディスカバリ: user-guides/dashboards/api-discovery.md
-      - NIST CSF 2.0: user-guides/dashboards/nist-csf-2.md
       - OWASP API 2023: user-guides/dashboards/owasp-api-top-ten.md
     - 攻撃とインシデント:
       - 攻撃の分析: user-guides/events/check-attack.md
