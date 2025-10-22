@@ -169,6 +169,8 @@ Specify the public domains, ports and subdomains that will direct traffic to the
 
 ![!](../../../images/waf-installation/security-edge/inline/hosts.png)
 
+1. (Optionally) For each host, select the [block page](custom-block-page.md) to show when a malicious request is blocked. By default, the standard NGINX 403 Forbidden page is selected. You can also choose the Wallarm-branded block page or a custom one.
+
 For specific **locations** within hosts, you can further customize:
 
 * Origin. The path defined in the location will automatically append to the origin.
