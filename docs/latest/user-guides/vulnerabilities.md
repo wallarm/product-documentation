@@ -1,5 +1,6 @@
 [link-aasm-security-issue-risk-level]:  #issue-risk-level
 [link-integrations-intro]:              ../user-guides/settings/integrations/integrations-intro.md
+[link-integrations-email]:              ../user-guides/settings/integrations/email.md
 
 # Managing Security Issues
 
