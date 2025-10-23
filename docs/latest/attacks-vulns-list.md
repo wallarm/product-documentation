@@ -1124,7 +1124,7 @@ Note that file size upload restrictions are not the only [measure for preventing
 
 ### Information exposure
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
+**Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
 
 **CWE codes:** [CWE-200][cwe-200] (see also: [CWE-209][cwe-209], [CWE-215][cwe-215], [CWE-538][cwe-538], [CWE-541][cwe-541], [CWE-548][cwe-548], [CWE-598][cwe-598])
 
@@ -1141,7 +1141,7 @@ Some types of sensitive information:
 * System status and environment, such as the operating system and installed packages
 * Source code or internal state
 
-Wallarm does not specifically classify `infoleak` attacks but detects and records the corresponding security incidents as they happen. However, incidents are infrequent. Wallarm's detection mechanisms alert you promptly if such exposure begins, allowing for quick vulnerability remediation. Additionally, using Wallarm's filtering node in [blocking mode](admin-en/configure-wallarm-mode.md#available-filtration-modes) helps prevent exposures by blocking any attack attempts, significantly reducing the likelihood of data leaks.
+Wallarm's detection mechanisms alert you promptly if such exposure begins, allowing for quick vulnerability remediation. Additionally, using Wallarm's filtering node in [blocking mode](admin-en/configure-wallarm-mode.md#available-filtration-modes) helps prevent exposures by blocking any attack attempts, significantly reducing the likelihood of data leaks.
 
 **In addition to Wallarm protection:**
 
