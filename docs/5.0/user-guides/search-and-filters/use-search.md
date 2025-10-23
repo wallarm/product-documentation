@@ -12,7 +12,6 @@
 [al-forced-browsing]:     ../../attacks-vulns-list.md#forced-browsing
 [al-ldapi]:               ../../attacks-vulns-list.md#ldap-injection
 [al-port-scanner]:        ../../attacks-vulns-list.md#resource-scanning
-[al-infoleak]:            ../../attacks-vulns-list.md#information-exposure
 [al-vuln-component]:      ../../attacks-vulns-list.md#vulnerable-component
 [al-overlimit]:           ../../attacks-vulns-list.md#resource-overlimit
 [email-injection]:        ../../attacks-vulns-list.md#email-injection
@@ -89,7 +88,6 @@ Specify in the search string:
 * `dirbust`: to search for [forced browsing][al-forced-browsing] attacks and blocked requests from IPs [denylisted](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) because of the attacks of this type.
 * `ldapi`: to search for [LDAP injection][al-ldapi] attacks.
 * `scanner`: to search for [port scanner][al-port-scanner] attacks.
-* `infoleak`: to search for attacks of [information disclosure][al-infoleak].
 * `mail_injection`: to search for [Email Injections][email-injection].
 * `ssi`: to search for [SSI Injections][ssi-injection].
 * `overlimit_res`: to search for attacks of the [resource overlimiting][overlimit-res] type.
