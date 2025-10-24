@@ -2,6 +2,11 @@
 
 [API Sessions](overview.md) include the built-in rules for the session identification and requires only enabled Wallarm [node](../about-wallarm/overview.md#how-wallarm-works) to start working. Optionally, you can fine-tune API Sessions under your needs as described in this article.
 
+## Requirements
+
+* API Sessions require [NGINX Wallarm node](../installation/nginx-native-node-internals.md#nginx-node) 5.1.0 or [native Wallarm node](../installation/nginx-native-node-internals.md#native-node) 0.8.0.
+* Response parsing - NGINX Wallarm node 5.3.0 or native node 0.12.0.
+
 ## Session context
 
 Context in API sessions is information that enriches request data by grouping them into logical sessions and adding response data and metadata to provide deeper insights into session activity. Configuring context allows you to specify which aspects or additional data should be tracked and associated with each session.
