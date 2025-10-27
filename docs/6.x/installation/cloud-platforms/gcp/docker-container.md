@@ -20,5 +20,6 @@
 [what-is-new-wstore]:            ../../../updating-migrating/what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics
 [wstore-metrics]:                    ../../../admin-en/wstore-metrics.md
 [wstore-metrics-mount]:             ../../../admin-en/wstore-metrics.md
+[link-docs-check-operation]:        ../../../admin-en/uat-checklist-en.md
 
 --8<-- "latest/installation/cloud-platforms/gcp/docker-container.md"
