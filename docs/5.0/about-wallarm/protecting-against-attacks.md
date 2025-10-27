@@ -177,6 +177,15 @@ To do so, set the **Allow binary data** rule as displayed on the screenshot:
 
 --8<-- "../include/waf/features/rules/request-part-reference.md"
 
+## Handling long polling requests
+
+[Long polling](https://www.pubnub.com/guides/long-polling/) is an HTTP-based technique for simulating real-time communication where a client sends a request to a server, and the server holds the connection open until new data is available, at which point it sends the data and closes the connection.
+
+As a lot of Wallarm customers have applications that heavily rely on this technique, it is important to note that Wallarm successfully protects your applications that use long polling:
+
+* If initial or any subsequent request within long polling contains a malicious payload, it will be immediately blocked (in blocking [mode](../admin-en/configure-wallarm-mode.md)) or detected (in monitoring mode).
+* It does not matter that the application/API response is not returned immediately.
+
 ## Monitoring and blocking attacks
 
 **Input validation attacks**
