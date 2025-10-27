@@ -17,5 +17,5 @@ Environment variable | Description| Required
 `APIFW_METRICS_ENDPOINT_NAME` (6.4.1 and higher) | Defines the HTTP path of the API Specification Enforcement metrics endpoint<br>By default: `metrics`. | No
 `WALLARM_WSTORE__METRICS__LISTEN_ADDRESS` | Defines the host and port on which [Postanalytics and general system metrics][wstore-metrics] are exposed.<br>By default: `http://localhost:9001/metrics`. | No 
 `WALLARM_WSTORE__SERVICE__PROTOCOL` (6.6.0 and higher) | Specifies the protocol family that **wstore** uses for incoming connections. Possible values:<ul><li>`"tcp"` - dual-stack mode (listens on both IPv4 and IPv6)</li><li>`"tcp4"` - IPv4 only</li><li>`"tcp6"` - IPv6 only</li></ul>By default: `"tcp4"`. | No
-`WALLARM_WCLI__METRICS__LISTEN_ADDRESS` | Defines the host and port on which the [**wcli** Controller][wcli-metrics] are exposed.<br>By default: `http://localhost:9003/metrics`. | No 
-`WALLARM_WCLI__METRICS__ENDPOINT` | Defines the HTTP path of [**wcli** Controller][wcli-metrics] endpoint<br>By default: `metrics`. | No 
+`WALLARM_WCLI__METRICS__LISTEN_ADDRESS` | Defines the host and port on which the [**wcli** Controller metrics][wcli-metrics] are exposed.<br>By default: `http://localhost:9003/metrics`. | No 
+`WALLARM_WCLI__METRICS__ENDPOINT` | Defines the HTTP path for the [**wcli** Controller metrics][wcli-metrics] endpoint.<br>By default: `metrics`. | No 

@@ -49,6 +49,7 @@ new attack types in logging variables and search bars?
 
 * Added support for [blocking attackers by API sessions](../api-sessions/blocking.md)
 * Added support for NGINX Plus R35
+* Exposed [**wcli** Controller metrics endpoint](../admin-en/wcli-metrics.md) for external monitoring
 * Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 * Bumped Go version to 1.24
 * Fixed the behavior of the [`wallarm_wstore_throttle_mode`](../admin-en/wstore-metrics.md#wallarm_wstore_throttle_mode) Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
@@ -181,6 +182,7 @@ new attack types in logging variables and search bars?
 * Added [Prometheus metrics support](../admin-en/apifw-metrics.md) for API Specification Enforcement service operation (based on the built-in API Firewall service)
 
     Metrics are disabled by default and can be enabled through the new [`controller.wallarm.apiFirewall.metrics.*`](../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewallmetrics) values.
+* Exposed [**wcli** Controller metrics endpoint](../admin-en/wcli-metrics.md) for external monitoring
 * Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 * Bumped Go version to 1.24
 * Fixed the behavior of the [`wallarm_wstore_throttle_mode`](../admin-en/wstore-metrics.md#wallarm_wstore_throttle_mode) Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
@@ -292,6 +294,7 @@ new attack types in logging variables and search bars?
 * Added [Prometheus metrics support](../admin-en/apifw-metrics.md) for API Specification Enforcement service operation (based on the built-in API Firewall service)
 
     Metrics are disabled by default and can be enabled through the new [`config.wallarm.apiFirewall.metrics.*`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md) values.
+* Exposed [**wcli** Controller metrics endpoint](../admin-en/wcli-metrics.md) for external monitoring
 * Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 * Bumped Go version to 1.24
 * Fixed the behavior of the [`wallarm_wstore_throttle_mode`](../admin-en/wstore-metrics.md#wallarm_wstore_throttle_mode) Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
@@ -399,6 +402,7 @@ new attack types in logging variables and search bars?
 ### 6.5.1 (2025-09-09)
 
 * Added support for [blocking attackers by API sessions](../api-sessions/blocking.md)
+* Exposed [**wcli** Controller metrics endpoint](../admin-en/wcli-metrics.md) for external monitoring
 * Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 * Bumped Go version to 1.24
 * Fixed the behavior of the [`wallarm_wstore_throttle_mode`](../admin-en/wstore-metrics.md#wallarm_wstore_throttle_mode) Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended
@@ -493,6 +497,7 @@ new attack types in logging variables and search bars?
 ### 6.5.1 (2025-09-09)
 
 * Added support for [blocking attackers by API sessions](../api-sessions/blocking.md)
+* Exposed [**wcli** Controller metrics endpoint](../admin-en/wcli-metrics.md) for external monitoring
 * Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 * Bumped Go version to 1.24
 * Fixed the behavior of the [`wallarm_wstore_throttle_mode`](../admin-en/wstore-metrics.md#wallarm_wstore_throttle_mode) Prometheus metric, which previously did not return to the normal state (`0`) after throttling ended 

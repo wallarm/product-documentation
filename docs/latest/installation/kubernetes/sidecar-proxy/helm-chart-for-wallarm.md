@@ -1,5 +1,3 @@
-[wcli-metrics]:             (../../../admin-en/wcli-metrics.md)
-
 # Wallarm-Specific Values of the Sidecar Helm Chart
 
 This document describes Wallarm-specific Helm chart values you can change during [Wallarm Sidecar deployment](deployment.md) or [upgrade][sidecar-upgrade-docs]. The Wallarm-specific and other chart values are for global configuration of the Sidecar Helm chart.
@@ -51,38 +49,6 @@ config:
       extended: false
       format: text
   wcli:
-    logLevel: warn
-    commands:
-      apispec:
-        logLevel: INFO
-      blkexp:
-        logLevel: INFO
-      botexp:
-        logLevel: WARN
-      cntexp:
-        logLevel: ERROR
-      cntsync:
-        logLevel: INFO
-      credstuff:
-        logLevel: INFO
-      envexp:
-        logLevel: INFO
-      ipfeed:
-        logLevel: INFO
-      iplist:
-        logLevel: INFO
-      jwtexp:
-        logLevel: INFO
-      metricsexp:
-        logLevel: INFO
-      mrksync:
-        logLevel: INFO
-      register:
-        logLevel: INFO
-      reqexp:
-        logLevel: INFO
-      syncnode:
-        logLevel: INFO
     metrics:
       enabled: true
       listenAddress: ":9003"
@@ -418,29 +384,6 @@ config:
     #     clientCACertFile: "/root/test-tls-certs/ca.crt"
 ```
 
-## config.wcli.metrics.enabled
-
-Enables or disables the [**wcli** Controller metrics][wcli-metrics] endpoint. When set to `true`, the **wcli** Controller exposes the metrics.
-
-**Default value**: `true`
-
-## config.wcli.metrics.listenAddress
-
-Sets the IP address and/or port to which the [wcli Controller metrics][wcli-metrics] server binds.
-
-Examples:
-
-* `:9003` — binds to all interfaces on port 9011
-* `127.0.0.1:9003` — binds to localhost only
-
-**Default value**: `:9003`
-
-## config.wcli.metrics.endpoint
-
-Defines the HTTP path of [**wcli** Controller][wcli-metrics] endpoint.
-
-**Default value**: `/metrics`
-
 Supported from the release 6.2.0 onwards.
 
 | Parameter | Description | Required? |
@@ -475,3 +418,26 @@ controller:
       crt: <base64-encoded-certificate>
       key: <base64-encoded-private-key>
 ```
+
+## config.wcli.metrics.enabled
+
+Enables or disables the [**wcli** Controller metrics][wcli-metrics] endpoint. When set to `true`, the **wcli** Controller exposes the metrics. Supported starting with release 6.5.1.
+
+**Default value**: `true`
+
+## config.wcli.metrics.listenAddress
+
+Sets the IP address and/or port to which the [wcli Controller metrics][wcli-metrics] server binds. Supported starting with release 6.5.1.
+
+Examples:
+
+* `:9003` — binds to all interfaces on port 9003
+* `127.0.0.1:9003` — binds to `localhost` only (port 9003)
+
+**Default value**: `:9003`
+
+## config.wcli.metrics.endpoint
+
+Defines the HTTP path for the [**wcli** Controller metrics][wcli-metrics] endpoint. Supported starting with release 6.5.1.
+
+**Default value**: `/metrics`

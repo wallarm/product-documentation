@@ -16,8 +16,8 @@ The [NGINX Node][nginx-node-landing] exposes metrics in the [Prometheus](https:/
 
 There are 3 types of metrics available:
 
-* [General metrics][wstore-metrics], which include Postanalytics module **wstore** metrics and service runtime metrics (e.g., Go runtime, memory usage, process statistics, etc.) available at the `http://localhost:9001/metrics` endpoint by default.
-* [**wcli** Controller metrics][wcli-metrics], which provide data from the service that runs most Wallarm functional components (e.g., brute-force detection or attack export to the Cloud), and service runtime metrics (e.g., Go runtime, memory usage, process statistics, etc.)
-* [API Firewall metrics][apifw-metrics], available at `http://<host>:9010/metrics` endpoint by default.
+* [Postanalytics metrics][wstore-metrics] — include Postanalytics module **wstore** metrics, available by default at the `http://localhost:9001/metrics` endpoint.
+* [**wcli** Controller metrics][wcli-metrics] — provide data from the service that runs most Wallarm functional components (e.g., brute-force detection or attack export to the Cloud).
+* [API Firewall metrics][apifw-metrics] — available by default at `http://<host>:9010/metrics` endpoint.
 
     The API Firewall service underlies the [API Specification Enforcement][api-spec-enforcement] feature.

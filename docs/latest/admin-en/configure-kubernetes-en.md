@@ -369,38 +369,40 @@ This switch [toggles](configuration-guides/wallarm-ingress-controller/best-pract
 
 ### controller.wallarm.wcliPostanalytics.metrics.enabled
 
-Enables or disables the [**wcli** Controller metrics][wcli-metrics] endpoint. When set to `true`, the **wcli** Controller exposes the metrics.
+Enables or disables the [**wcli** Controller metrics][wcli-metrics] endpoint. When set to `true`, the **wcli** Controller exposes the metrics. Supported starting with release 6.5.1.
 
 **Default value**: `false`
 
 ### controller.wallarm.wcliPostanalytics.metrics.port
 
-Defines the port on which [**wcli** Controller metrics][wcli-metrics] are exposed.
+Defines the port on which [**wcli** Controller metrics][wcli-metrics] are exposed. Supported starting with release 6.5.1.
 
 **Default value**: `9012`
 
 ### controller.wallarm.wcliPostanalytics.metrics.portName
 
-Defines the name of the port on which [**wcli** Controller metrics][wcli-metrics] are exposed.
+Defines the name of the port on which [**wcli** Controller metrics][wcli-metrics] are exposed. Supported starting with release 6.5.1.
 
 **Default value**: `wcli-post-mtrc`
 
 ### controller.wallarm.wcliPostanalytics.metrics.endpointPath
 
-Defines the HTTP path of [**wcli** Controller][wcli-metrics] endpoint.
+Defines the HTTP path for the [**wcli** Controller metrics][wcli-metrics] endpoint.
 
 If not set, the default path `/metrics` is used.
+
+Supported starting with release 6.5.1.
 
 **Default value**: not specified (defaults to `/metrics`)
 
 ### controller.wallarm.wcliPostanalytics.metrics.host
 
-Sets the IP address and/or port to which the [wcli Controller metrics][wcli-metrics] server binds.
+Sets the IP address and/or port to which the [wcli Controller metrics][wcli-metrics] server binds. Supported starting with release 6.5.1.
 
 Examples:
 
-* `:9012` — binds to all interfaces on port 9011
-* `127.0.0.1:9012` — binds to localhost only
+* `:9012` — binds to all interfaces on port 9012
+* `127.0.0.1:9012` — binds to `localhost` only (port 9012)
 
 **Default value**: `:9012`
 

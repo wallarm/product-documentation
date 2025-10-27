@@ -11,21 +11,24 @@
 [ic-deployment]: ../admin-en/installation-kubernetes-en.md
 [nginx-node-changelog]: ../updating-migrating/node-artifact-versions.md
 [nginx-node-6.6.0]: ../updating-migrating/node-artifact-versions.md#660-2025-10-03
+[api-abuse-prevention]: ../api-abuse-prevention/overview.md
+[cred-stuffing]: ../about-wallarm/credential-stuffing.md
+[jwt-tokens]: ../updating-migrating/older-versions/what-is-new.md#checking-json-web-token-strength
+[api-discovery]: ../api-discovery/overview.md
 
-
-# wcli Metrics of the NGINX Node
+# wcli Controller Metrics of the NGINX Node
 
 This article describes the metrics of the **wcli** Controller of the NGINX Node to help monitor and troubleshoot the NGINX Node.
 
 * The **wcli** metrics provide data from the service that runs most Wallarm functional components, including brute-force detection, attack export to the Cloud, and Node-Cloud synchronization status.
 
-    The available metric groups are listed [below](#general-wcli-system-health-metrics).
+    The available metric groups are listed [below](#general-wcli-controller-system-metrics).
 
-    Each metric group has its own prefix that reflects the service it represents (e.g., `wallarm_wcli_credstuff_*` includes metrics related to credential stuffing, while `wallarm_api_discovery_*` covers API Discovery metrics, etc.)
+    Each metric group has its own prefix that reflects the service it represents (e.g., `wallarm_wcli_credstuff_*` includes metrics related to [Credential Stuffing Detection][cred-stuffing], while `wallarm_api_discovery_*` covers [API Discovery][api-discovery] metrics, etc.)
     
     The exact list of metrics may vary depending on the NGINX Node version. Changes are reflected in the [NGINX Node changelog][nginx-node-changelog].
 
-* The [service runtime metrics](#service-runtime-metrics) of the NGINX Node cover network activity, request processing, queue states, storage efficiency, and internal engine health.
+* The **wcli** [service runtime metrics](#service-runtime-metrics) of the NGINX Node cover network activity, request processing, queue states, storage efficiency, and internal engine health.
 
 ## Metrics endpoint
 
@@ -33,9 +36,8 @@ The availability and default state of the **wcli** metrics endpoint depend on yo
 
 Deployment type | Metric endpoint| Enabled by default
 --- | ---- | ----
-[Docker image][docker], [all-in-one installer][AIO], and cloud images | `http://localhost:9003/metrics` | Yes
+[Docker image][docker], [all-in-one installer][AIO], cloud images, and [Sidecar][sidecar] | `http://localhost:9003/metrics` | Yes
 [NGINX Ingress Controller][IC] | `http://<host>:9012/metrics` | No
-[Sidecar][sidecar] | `http://localhost:9003/metrics` | Yes
 
 You can change the default metrics host and endpoint. The way to do so differs depending on your deployment type:
 
@@ -70,7 +72,7 @@ controller:
 
 Edit the [`config.wallarm.wcli.metrics.*`][sidecar-helm-chart] values in the Helm Chart during Sidecar [deployment][sidecar-deployment] or [upgrade][sidecar-upgrade]. 
 
-```
+```yaml hl_lines="7"
 config:
   # Other configuration values...
   wcli:
@@ -88,7 +90,9 @@ config:
       endpoint: "/metrics"
 ```
 
-## General wcli system health metrics
+## General wcli Controller system metrics
+
+General system health metrics for the **wcli** Controller. Tracks job errors, export timing, Wallarm Cloud connectivity, and subscription status. Useful for monitoring overall system operation and performance.
 
 ---
 ### `wallarm_wcli_job_error`
@@ -96,8 +100,11 @@ config:
 Reports errors occurred in the **wcli** service. The `component` label specifies the job that encountered the error, and the `code` label specifies the error type.
 
 **Type:** Counter
+
 **Labels**:
+
 * `component` – name of the job (`blkexp`, `botexp`, `credstuff`, `datasync`, etc.)
+
 * `code` – numeric code describing the error:    
     * `0`	- Technical value, should not occur
     * `1`	- Unknown – default error
@@ -106,12 +113,14 @@ Reports errors occurred in the **wcli** service. The `component` label specifies
     * `4`	- Bad argument – invalid user input
     * `5`	- Canceled – usually by kill signal
     * `6`	- Init – configuration/network startup issues
-    * `7`	- API – cloud API errors
-    * `8`	- Database – errors in tarantool/wcli storage
+    * `7`	- API – Wallarm API errors
+    * `8`	- Database – errors in request storage
     * `9`	- SQL – SQLite-related issues (e.g. ACL read failure)
 
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_job_error{component="apispec",code="1"} 0
 wallarm_wcli_job_error{component="blkexp",code="1"} 0
@@ -127,10 +136,15 @@ wallarm_wcli_job_error{component="botexp",code="1"} 0
 Reports the interval (in seconds) between the time a request was received by the system and when it was exported by a specific **wcli** job. This metric helps monitor export delays per job.
 
 **Type:** Gauge
+
 **Labels**:
+
 * `component` – name of the job (`blkexp`, `botexp`, `credstuff`, `jwtexp`, etc.)
+
 **Unit:** Seconds
+
 **Example:**
+
 ```
 wallarm_wcli_job_export_period{component="blkexp"} 15619.140777577
 wallarm_wcli_job_export_period{component="botexp"} 15570.112460529
@@ -149,9 +163,13 @@ Shows whether the Wallarm cloud is responsive.
     Available only if `WALLARM_WCLI_CLOUD_PROBE_METRICS` environment variable is set to `1`.
 
 **Type:** Gauge
+
 **Labels:** None
+
 **Unit:** Boolean (`0` or `1`)
+
 **Example:**
+
 ```
 wallarm_wcli_cloud_connectivity 1
 ```
@@ -165,23 +183,34 @@ Shows whether the Wallarm subscription is currently active.
     Available only if `WALLARM_WCLI_CLOUD_PROBE_METRICS` environment variable is set to `1`.
 
 **Type:** Gauge
+
 **Labels:** None
+
 **Unit:** Boolean (0 or 1)
+
 **Example:**
+
 ```
 wallarm_wcli_subscription_active 1
 ```
 
-## Bot feature extraction (botexp) core metrics
+## Bot feature extraction (botexp) metrics
+
+Metrics from the bot feature extraction `botexp` job used by the [API Abuse Prevention module][api-abuse-prevention] to analyze and detect automated traffic (bots).
+
 ---
 ### `go_feature_extractor_processing_duration_seconds`
 
 Average time the `botexp` job spent processing requests.
 
 **Type:** Histogram
+
 **Labels:** None
+
 **Unit:** Seconds
+
 **Example:**
+
 ```
 go_feature_extractor_processing_duration_seconds_bucket{le="0.1"} 15
 ```
@@ -189,16 +218,23 @@ go_feature_extractor_processing_duration_seconds_bucket{le="0.1"} 15
 ---
 ### `go_feature_extractor_fetching_duration_seconds`
 
-Average time the `botexp` job spent fetching requests from the request storage (**tarantool**/**wstore**), broken down into [histogram buckets](https://prometheus.io/docs/concepts/metric_types/#histogram).
+Average time the `botexp` job spent fetching requests from the request storage, broken down into [histogram buckets](https://prometheus.io/docs/concepts/metric_types/#histogram).
 It is also labeled by the result of the send operation (`success` or `error`) and the corresponding partner/client UUID.
 
 **Type:** Histogram
+
 **Labels:**
+
 * `partner_client_uuid` - unique identifier for the Wallarm partner/client instance
+
 * `result` — result of the operation (`success` or `error`)
+
 * `vmrange` — bucket range
+
 **Unit:** Seconds
+
 **Example:**
+
 ```
 go_feature_extractor_fetching_duration_seconds_bucket{partner_client_uuid="b938ac84-1ac3-11ec-9f1c-4201ac1ff113",result="success",vmrange="1.000e-04...1.136e-04"} 369
 ```
@@ -206,12 +242,16 @@ go_feature_extractor_fetching_duration_seconds_bucket{partner_client_uuid="b938a
 ---
 ### go_feature_extractor_fetching_request_total`
 
-The total number of requests the `botexp` job fetched from request storage (**tarantool**/**wstore**).
+The total number of requests the `botexp` job fetched from the request storage.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 go_feature_extractor_fetching_request_total 104
 ```
@@ -222,11 +262,17 @@ go_feature_extractor_fetching_request_total 104
 Average time the `botexp` job spent sending batches of bot requests to the Wallarm Cloud, broken down into [histogram buckets](https://prometheus.io/docs/concepts/metric_types/#histogram) and labeled by the result of the send operation: `success` or `error`.
 
 **Type:** Histogram
+
 **Labels:**:
+
 * `result` — result of the operation (`success` or `error`)
+
 * `vmrange` — bucket range
+
 **Unit:** Seconds
+
 **Example:**
+
 ```
 go_feature_extractor_sending_duration_seconds_bucket{result="error",vmrange="7.743e-02...8.799e-02"} 1
 go_feature_extractor_sending_duration_seconds_bucket{result="success",vmrange="2.783e-01...3.162e-01"} 29
@@ -238,9 +284,13 @@ go_feature_extractor_sending_duration_seconds_bucket{result="success",vmrange="2
 The total number of bot requests the `botexp` job sent to the Wallarm Cloud, labeled by the result of the operation (`success` or `error`).
 
 **Type:** Counter
+
 **Labels:** `result` — result of the operation (`success` or `error`)
+
 **Unit:** Count
+
 **Example:**
+
 ```
 go_feature_extractor_sending_request_total{result="error"} 1
 go_feature_extractor_sending_request_total{result="success"} 505
@@ -249,14 +299,20 @@ go_feature_extractor_sending_request_total{result="success"} 505
 ---
 ### `go_feature_extractor_tarantool_queue_total`
 
-The total number of interactions between the `botexp` job and the request storage (**tarantool**/**wstore**), labeled by the operation type (e.g., `ack`, `put`, `take`) and the corresponding partner/client UUID.
+The total number of interactions between the `botexp` job and the request storage, labeled by the operation type (e.g., `ack`, `put`, `take`) and the corresponding partner/client UUID.
 
 **Type:** Counter
+
 **Labels:** 
+
 * `type` – interaction type (e.g. ack, put. take)
+
 * `partner_client_uuid` - unique identifier for the Wallarm partner/client instance
+
 **Unit:** Count
+
 **Example:**
+
 ```
 go_feature_extractor_tarantool_queue_total{partner_client_uuid="b938ac84-1ac3-11ec-9f1c-4201ac1ff113",type="ack"} 505
 go_feature_extractor_tarantool_queue_total{partner_client_uuid="b938ac84-1ac3-11ec-9f1c-4201ac1ff113",type="put"} 505
@@ -267,15 +323,21 @@ go_feature_extractor_tarantool_queue_total{partner_client_uuid="b938ac84-1ac3-11
 
 ## wcli-layer metrics for bot feature extraction (botexp)
 
+Metrics for the `botexp` job (used by the [API Abuse Prevention module][api-abuse-prevention]) at the **wcli** layer. Tracks interactions with the request storage (fetched, skipped, acknowledged, or failed requests) and exports to the Wallarm Cloud (successful and failed). Useful for monitoring `botexp` job activity, reliability, and data flow.
+
 ---
 ### `wallarm_wcli_botexp_tnt_requests`
 
-The total number of GET requests the `botexp` job sent to the request storage (**tarantool**/**wstore**).
+The total number of GET requests the `botexp` job sent to the request storage.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_botexp_tnt_requests 505
 ```
@@ -283,12 +345,16 @@ wallarm_wcli_botexp_tnt_requests 505
 ---
 ### `wallarm_wcli_botexp_tnt_req_errors`
 
-The total number of requests with errors came from the request storage (**tarantool**/**wstore**) and received by the `botexp` job.
+The total number of requests with errors came from the request storage and received by the `botexp` job.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_botexp_tnt_req_errors 0
 ```
@@ -296,12 +362,16 @@ wallarm_wcli_botexp_tnt_req_errors 0
 ---
 ### `wallarm_wcli_botexp_tnt_req_skip`
 
-The total number of skipped requests from the request storage (**tarantool**/**wstore**) by the `botexp` job. Usually skipped due to specific settings.
+The total number of skipped requests from the request storage by the `botexp` job. Usually skipped due to specific settings.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_botexp_tnt_req_skip 0
 ```
@@ -309,12 +379,16 @@ wallarm_wcli_botexp_tnt_req_skip 0
 ---
 ### `wallarm_wcli_botexp_tnt_acks`
 
-The total number of acknowledgment request operations with the request storage (**tarantool**/**wstore**) by the `botexp` job.
+The total number of acknowledgment request operations with the request storage by the `botexp` job.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_botexp_tnt_acks 505
 ```
@@ -322,12 +396,16 @@ wallarm_wcli_botexp_tnt_acks 505
 ---
 ### `wallarm_wcli_botexp_tnt_acks_failed`
 
-The total number of failed acknowledgment request operations with the request storage (**tarantool**/**wstore**) by the `botexp` job.
+The total number of failed acknowledgment request operations with the request storage by the `botexp` job.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_botexp_tnt_acks_failed 0
 ```
@@ -338,9 +416,13 @@ wallarm_wcli_botexp_tnt_acks_failed 0
 The total number of exported requests to the Wallarm Cloud by the `botexp` job.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_botexp_api_sent 505
 ```
@@ -351,36 +433,51 @@ wallarm_wcli_botexp_api_sent 505
 The total number of failed export attempts to the Wallarm Cloud by the `botexp` job.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_botexp_api_failed 0
 ```
 
-## Block exporter metrics (blkexp)
+## Blocked request exporter metrics (blkexp)
+
+Metrics for the `blkexp job`, which tracks the export and processing of blocked requests. Includes counts, processing rates, and export status to the Wallarm Cloud.
 
 ---
 ### `wallarm_wcli_blkexp_tnt_gets`
 
-The total number of GET requests the `blkexp` job sent to the request storage (**tarantool**/**wstore**).
+The total number of GET requests the `blkexp` job sent to the request storage.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_blkexp_tnt_gets 0
 ```
+
 ---
 ### `wallarm_wcli_blkexp_tnt_acks`
 
-The total number of acknowledgment requests the `blkexp` job sent to the request storage (**tarantool**/**wstore**).
+The total number of acknowledgment requests the `blkexp` job sent to the request storage.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_blkexp_tnt_acks 0
 ```
@@ -388,12 +485,16 @@ wallarm_wcli_blkexp_tnt_acks 0
 ---
 ### `wallarm_wcli_blkexp_tnt_acks_failed`
 
-The total number of failed acknowledgment requests the `blkexp` job sent to the request storage (**tarantool**/**wstore**).
+The total number of failed acknowledgment requests the `blkexp` job sent to the request storage.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_blkexp_tnt_acks_failed 0
 ```
@@ -404,9 +505,13 @@ wallarm_wcli_blkexp_tnt_acks_failed 0
 The total number of exported requests the `blkexp` job sent to the Wallarm Cloud.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_blkexp_api_send 0
 ```
@@ -417,36 +522,51 @@ wallarm_wcli_blkexp_api_send 0
 The total number of failed export attempts the `blkexp` job sent to the Wallarm Cloud.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_blkexp_api_sent_failed 0
 ```
 
-## Credential stuffing metrics (credstuff)
+## Credential Stuffing Detection metrics (credstuff)
+
+Metrics for the [Credential Stuffing Detection module][cred-stuffing]. Monitors event detection rate, matched credentials, and request processing statistics.
 
 ---
 ### `wallarm_wcli_credstuff_tnt_requests`
 
-The total number of requests the `credstuff` job fetched from the request storage (**tarantool**/**wstore**).
+The total number of requests the `credstuff` job fetched from the request storage.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_credstuff_tnt_requests 0
 ```
+
 ---
 ### `wallarm_wcli_credstuff_tnt_acks`
 
-The total number of acknowledgment operations with the request storage (**tarantool**/**wstore**) by the `credstuff` job.
+The total number of acknowledgment operations with the request storage by the `credstuff` job.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_credstuff_tnt_acks 0
 ```
@@ -454,12 +574,16 @@ wallarm_wcli_credstuff_tnt_acks 0
 ---
 ### `wallarm_wcli_credstuff_tnt_acks_failed`
 
-The total number of failed acknowledgment operations with the request storage (**tarantool**/**wstore**) by the `credstuff` job.
+The total number of failed acknowledgment operations with the request storage by the `credstuff` job.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_credstuff_tnt_acks_failed 0
 ```
@@ -470,9 +594,13 @@ wallarm_wcli_credstuff_tnt_acks_failed 0
 The total number of requests the `credstuff` job successfully processed.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_credstuff_requests_processed 0
 ```
@@ -483,36 +611,51 @@ wallarm_wcli_credstuff_requests_processed 0
 The total number of requests the `credstuff` job failed to process.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_credstuff_requests_failed 0
 ```
 
 ## JWT token exporter metrics (jwtexp)
 
+Metrics from the  JWT token exporter, which extracts and analyzes [JSON Web Tokens][jwt-tokens] for authentication and abuse detection.
+
 ---
 ### `wallarm_wcli_jwtexp_tnt_requests`
 
-The total number of requests fetched from the request storage (**tarantool**/**wstore**) by the `jwtexp` job.
+The total number of requests fetched from the request storage by the `jwtexp` job.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_jwtexp_tnt_requests 0
 ```
+
 ---
 ### `wallarm_wcli_jwtexp_tnt_acks`
 
-The total number of acknowledgment operations with the request storage (**tarantool**/**wstore**) by the `jwtexp` job.
+The total number of acknowledgment operations with the request storage by the `jwtexp` job.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_jwtexp_tnt_acks 0
 ```
@@ -520,12 +663,16 @@ wallarm_wcli_jwtexp_tnt_acks 0
 ---
 ### `wallarm_wcli_jwtexp_tnt_acks_failed`
 
-The total number of failed acknowledgment operations with the request storage (**tarantool**/**wstore**) by the `jwtexp` job.
+The total number of failed acknowledgment operations with the request storage by the `jwtexp` job.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_jwtexp_tnt_acks_failed 0
 ```
@@ -536,9 +683,13 @@ wallarm_wcli_jwtexp_tnt_acks_failed 0
 The total number of exported requests to the Wallarm Cloud by the `jwtexp` job.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_jwtexp_api_requests_sent 0
 ```
@@ -549,23 +700,34 @@ wallarm_wcli_jwtexp_api_requests_sent 0
 The total number of failed request export attempts to the Wallarm Cloud by the `jwtexp` job.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_jwtexp_api_requests_failed 0
 ```
 
 ## Request exporter metrics (reqexp)
+
+Metrics for the request exporter, responsible for sending analyzed HTTP request data from the Postanalytics module to the Wallarm Cloud.
+
 ---
 ### `wallarm_wcli_reqexp_tnt_requests`
 
-The total number of requests the `reqexp` job fetched from the request storage (**tarantool**/**wstore**).
+The total number of requests the `reqexp` job fetched from the request storage.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_reqexp_tnt_requests 156
 ```
@@ -573,12 +735,16 @@ wallarm_wcli_reqexp_tnt_requests 156
 ---
 ### `wallarm_wcli_reqexp_tnt_acks`
 
-The total number of acknowledgment operations with the request storage (**tarantool**/**wstore**) by the `reqexp` job.
+The total number of acknowledgment operations with the request storage by the `reqexp` job.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_reqexp_tnt_acks 156
 ```
@@ -586,12 +752,16 @@ wallarm_wcli_reqexp_tnt_acks 156
 ---
 ### `wallarm_wcli_reqexp_tnt_acks_failed`
 
-The total number of failed acknowledgment operations with the request storage (**tarantool**/**wstore**) by the `reqexp` job.
+The total number of failed acknowledgment operations with the request storage by the `reqexp` job.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_reqexp_tnt_acks_failed 0
 ```
@@ -602,9 +772,13 @@ wallarm_wcli_reqexp_tnt_acks_failed 0
 The total number of exported requests to the Wallarm Cloud by the `reqexp` job.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_reqexp_api_requests_sent 156
 ```
@@ -615,24 +789,34 @@ wallarm_wcli_reqexp_api_requests_sent 156
 The total number of failed request export attempts to the Wallarm Cloud by the `reqexp` job.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_reqexp_api_requests_failed 0
 ```
 
 ## Counter exporter metrics (cntexp)
 
+Metrics from the counter exporter, tracking aggregated counters and summary statistics used for analytics and reporting.
+
 ---
 ### `wallarm_wcli_cntexp_tnt_counters`
 
-The total number of counters read from the request storage (**tarantool**/**wstore**) for the `cntexp` job.
+The total number of counters read from the request storage for the `cntexp` job.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_cntexp_tnt_counters 869
 ```
@@ -643,9 +827,13 @@ wallarm_wcli_cntexp_tnt_counters 869
 The total number of exported counters to the Wallarm Cloud by the `cntexp` job.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_cntexp_api_counters_sent 869
 ```
@@ -656,14 +844,20 @@ wallarm_wcli_cntexp_api_counters_sent 869
 The total number of failed counter export attempts to the Wallarm Cloud by the `cntexp` job.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_wcli_cntexp_api_counters_failed 0
 ```
 
 ## API Discovery metrics (api_discovery)
+
+Metrics for the [API Discovery module][api-discovery], which analyzes incoming API requests to identify and catalog API endpoints. Tracks batch processing, memory usage, request filtering, and data flush operations to monitor system activity, performance, and reliability.
 
 ---
 ### `wallarm_api_discovery_datastore_batch_size`
@@ -671,9 +865,13 @@ wallarm_wcli_cntexp_api_counters_failed 0
 The current size of the batch being processed by the API Discovery datastore. Reflects the amount of memory allocated for the batch before flushing.
 
 **Type:** Gauge
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 wallarm_api_discovery_datastore_batch_size 0
 ```
@@ -684,9 +882,13 @@ wallarm_api_discovery_datastore_batch_size 0
 Duration histogram of batch operations API Discovery processed.
 
 **Type:** Histogram
+
 **Labels:** None
+
 **Unit:** Seconds
+
 **Example:**
+
 ```
 api_discovery_client_batch_processing_bucket{le="0.1"} 100
 ```
@@ -697,9 +899,13 @@ api_discovery_client_batch_processing_bucket{le="0.1"} 100
 The total number of batches API Discovery processed.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 api_discovery_client_batch_count 0
 ```
@@ -710,9 +916,13 @@ api_discovery_client_batch_count 0
 The number of requests API Discovery processed or filtered. The `result` label specifies the result.
 
 **Type:** Counter
+
 **Labels:** `result` – `processed` or `filtered`
+
 **Unit:** Count
+
 **Example:**
+
 ```
 api_discovery_client_request_count{result="filtered"} 0
 api_discovery_client_request_count{result="processed"} 0
@@ -724,9 +934,13 @@ api_discovery_client_request_count{result="processed"} 0
 The total number of flush operations API Discovery performed.
 
 **Type:** Counter
+
 **Labels:** None
+
 **Unit:** Count
+
 **Example:**
+
 ```
 api_discovery_client_flushed_count 0
 ```
@@ -737,9 +951,13 @@ api_discovery_client_flushed_count 0
 The number of data points API Discovery successfully flushed to the destination or failed to flush. The `result` label shows the result.
 
 **Type:** Counter
+
 **Labels:** `result` - result of the operation (`success` or `failed`)
+
 **Unit:** Count
+
 **Example:**
+
 ```
 api_discovery_client_flushed_points_count{result="failed"} 0
 api_discovery_client_flushed_points_count{result="success"} 0
@@ -751,7 +969,7 @@ We can divide service runtime metrics into 2 groups:
 
 * Prometheus Go metrics, prefixed with `go_*` and `process_*`
 
-  Most Prometheus Go metrics are documented [here](https://demo.promlabs.com/metrics). If a metric is missing there, refer to the [official Go metrics documentation](https://pkg.go.dev/runtime/metrics).
+    Most Prometheus Go metrics are documented [here](https://demo.promlabs.com/metrics). If a metric is missing there, refer to the [official Go metrics documentation](https://pkg.go.dev/runtime/metrics).
 
 * Prometheus metrics, prefixed with `metrics_push_*`, related to its [push gateway](https://github.com/prometheus/pushgateway).
 
