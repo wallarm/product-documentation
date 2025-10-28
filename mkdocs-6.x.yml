@@ -316,7 +316,6 @@ nav:
         - High Availability Considerations: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
         - Ingress Controller Monitoring: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
     - Wallarm Health Check: admin-en/uat-checklist-en.md
-    - Proper Reporting of End‑User IP: admin-en/using-proxy-or-balancer-en.md
     - Resource Allocation: admin-en/configuration-guides/allocate-resources-for-node.md
     - Limiting Request Processing Time: user-guides/rules/configure-overlimit-res-detection.md
     - Splitting Data and Settings by Applications: user-guides/settings/applications.md
@@ -384,6 +383,7 @@ nav:
       - Overview: troubleshooting/overview.md
       - Detection and Blocking: troubleshooting/detection-and-blocking.md
       - Performance: troubleshooting/performance.md
+      - Real Client IP Address: admin-en/using-proxy-or-balancer-en.md
       - End User Problems: faq/common-errors-after-installation.md
       - Wallarm Ingress Controller: faq/ingress-installation.md
       - Wallarm Cloud is Down: faq/wallarm-cloud-down.md
