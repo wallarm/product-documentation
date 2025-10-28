@@ -124,6 +124,7 @@ nav:
       - mTLS: installation/security-edge/inline/mtls.md
       - Host Redirection: installation/security-edge/inline/host-redirection.md
       - Custom Block Page: installation/security-edge/inline/custom-block-page.md
+      - Access Control Lists: installation/security-edge/inline/access-control-lists.md     
       - NGINX Overrides: installation/security-edge/inline/nginx-overrides.md
       - Managing Deployment: installation/security-edge/inline/upgrade-and-management.md
       - Telemetry Portal: installation/security-edge/inline/telemetry-portal.md
