@@ -1,4 +1,4 @@
-# Identifying an original client IP address if using an HTTP proxy or a load balancer (NGINX)
+# Real Client IP Address Troubleshooting
 
 These instructions describe the NGINX configuration required to identify an originating IP address of a client connecting to your servers through an HTTP proxy or load balancer. This is relevant for the self-hosted NGINX-based nodes.
 
