@@ -62,6 +62,22 @@ More detailed information about access of different user roles to the Wallarm en
 | **API tokens**           | Manage personal and shared tokens | Manage personal tokens | - | - |
 | **Activity log**    | View                                 | -                        | View                         | - |
 
+## Custom permissions
+
+While standard role-based access control (RBAC) provides a helpful, high-level structure, in Wallarm, for the selected user, you can define custom, individual permission set where every position and action is manually and individually configured. This moves control from broad buckets to precise, fine-grained settings.
+
+To define custom permissions
+
+1. Select **Edit user settings** from the user's menu.
+1. In the role field, select **Custom permissions**, set and save.
+
+![User - custom permissions](../../images/user-guides/settings/user-custom-permissions.png)
+
+Note that:
+
+* When a new user is created and **Custom permissions** are selected, they are all by default denied, you need to specify explicitly what to allow.
+* If new features appear in the list (new releases), they will be initially all denied, you need to allow them manually.
+
 ## Inviting users
 
 You can add a user to your account in two ways, both involving the creation and sharing of an invitation link. You can either have Wallarm automatically send the invitation link to the user's specified email or share the link directly with the user.
@@ -98,7 +114,7 @@ For this to work, you need to configure integration between Wallarm and your SAM
 
 ## Changing user settings
 
-Once a user appears in the user list, you can edit their settings using the **Edit user settings** option from the corresponding user menu. This allows you to change their assigned user role, first name, and last name.
+Once a user appears in the user list, you can edit their settings using the **Edit user settings** option from the corresponding user menu. This allows you to change their assigned [user role](#user-roles) or [custom permissions](#custom-permissions), first name, and last name.
 
 ## Managing 2FA
 
