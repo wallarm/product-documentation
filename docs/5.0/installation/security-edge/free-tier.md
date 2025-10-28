@@ -74,6 +74,7 @@ Some features are not available in the Free Tier, regardless of whether the quic
 * Telemetry portal of Security Edge
 * Deployment in Microsoft Azure
 * Multi-cloud and multi-region Security Edge Inline deployment
+* Multiple Security Edge Connectors — only one connector can be deployed, with a single endpoint provided for traffic redirection
 
 ## Next steps
 
