@@ -221,6 +221,27 @@ In such cases, standard rules need to be adjusted to accommodate protected API s
 
 Identifying and handling false positives is a part of Wallarm fine‑tuning to protect your APIs. We recommend to deploy the first Wallarm node in the monitoring [mode](#monitoring-and-blocking-attacks) and analyze detected attacks. If some attacks are mistakenly recognized as attacks, mark them as false positives and switch the filtering node to blocking mode.
 
+**What happens when you mark an attack or incident as a false positive?**
+
+When pressing a **False** button, Wallarm creates a hidden rule that turns off the detection for the similar attack, that has:
+
+* The same target host
+* The same endpoint (path)
+* The same attacked parameter (point)
+* The similar payload (**stamp**)
+
+About **stamps**: in Wallarm's terminology, "[stamp](../about-wallarm/waap-overview.md#protection-measures)" is a specific variation of attack (specific state of different attributes defining the attack). For each [attack type](../attacks-vulns-list.md), there is a sufficient number of stamps. This makes pressing the **False** button safely, since only literally 1 of about 30 checks for a specific attack type is disabled exclusively.
+
+Moreover, as mentioned above, this check is disabled only for particular endpoint/parameter, and not for others. Result: if you click **False** for `example.com/books` → `title` parameter, SQLi attack of stamp `A(1)-B(1)-C(2)`:
+
+* Further requests to `example.com/books`, having `A(1)-B(1)-C(2)` in the `title` parameter, will not be considered to be an SQLi attack.
+* Further requests to `example.com/books`, having `A(3)-B(1)` (or any other SQLi stamp) in the `title` parameter will still be considered an SQLi attack.
+* Further requests to any other parameter of `example.com/books` are not affected.
+* Further requests to any other endpoint are not affected.
+
+!!! info "It is about payload, not IPs"
+    Marking some attack as false positive does not disable the attack detection for the particular source IP, target URL, JSON-key or XML-tag.
+
 ## Attacks in Wallarm UI
 
 Wallarm provides you with the comprehensive user interface displaying all detected attacks and details on them. You can use attack dashboards for quick visualization and set you custom notifications.
