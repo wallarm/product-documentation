@@ -8,9 +8,7 @@ With the Security Edge Free Tier, you gain access to the Wallarm platform as [Ad
 
 To start using the Security Edge Free Tier, **sign up for Wallarm in either the [US](https://us1.my.wallarm.com/signup/?utm_source=wallarm_docs&utm_campaign=se_free_tier_guide) or [EU Cloud](https://my.wallarm.com/signup/?utm_source=wallarm_docs&utm_campaign=se_free_tier_guide)**.
 
-After signing up, you will be automatically redirected to the [Welcome Wizard](../../quickstart/getting-started.md#welcome-wizard) for demo traffic testing.
-
-Once completed, you can choose to continue with Security Edge deployment for production traffic or navigate to the **Security Edge** section in the Console.
+After signing up, you will be automatically redirected to the [Welcome Wizard](../../quickstart/getting-started.md#welcome-wizard) to test demo traffic. Once you complete it, you will proceed to the **Security Edge Quick Setup wizard.**
 
 ## Quick setup wizard
 
