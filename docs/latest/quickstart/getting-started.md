@@ -53,9 +53,9 @@ In the wizard, you can:
 
 Once the Welcome Wizard is completed, you can continue with one of the following options:
 
-* [Switch DNS to Security Edge inline](../installation/security-edge/free-tier.md) to start you traffic analysis for free within Security Edge Free Tier subscription. This will switch Wallarm to Security Edge **setup wizard**.
-* [Configure Security Edge connector](../installation/security-edge/free-tier.md) to start you traffic analysis for free within Security Edge Free Tier subscription. This will switch Wallarm to Security Edge **setup wizard**.
-* Deploy [hybrid node locally](../installation/supported-deployment-options.md) for full control over your traffic and data.
+* **Switch DNS to Security Edge inline** to start you traffic analysis for free within Security Edge Free Tier subscription. This will switch Wallarm to [Security Edge quick setup wizard](../installation/security-edge/free-tier.md#quick-setup-wizard).
+* **Configure Security Edge connector** to start you traffic analysis for free within Security Edge Free Tier subscription. This will switch Wallarm to [Security Edge quick setup wizard](../installation/security-edge/free-tier.md#quick-setup-wizard).
+* [**Deploy hybrid node locally**](../installation/supported-deployment-options.md) for full control over your traffic and data.
 
 !!! info "Demo Node"
     The Demo Node does not process real traffic and is not shown in your Wallarm Console. It is managed by Wallarm and provided only for demo testing.
