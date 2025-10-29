@@ -221,7 +221,7 @@ When pressing a **False** button, Wallarm creates a hidden rule that turns off t
 * The same attacked parameter (point)
 * The similar payload (**stamp**)
 
-About **stamps**: in Wallarm's terminology, “stamp” is a specific variation of attack (specific state of different attributes defining the attack). For each [attack type](../attacks-vulns-list.md), there is a sufficient number of stamps. This makes pressing the **False** button safely, since only literally 1 of about 30 checks for a specific attack type is disabled exclusively.
+About **stamps**: in Wallarm's terminology, "[stamp](../about-wallarm/waap-overview.md#protection-measures)" is a specific variation of attack (specific state of different attributes defining the attack). For each [attack type](../attacks-vulns-list.md), there is a sufficient number of stamps. This makes pressing the **False** button safely, since only literally 1 of about 30 checks for a specific attack type is disabled exclusively.
 
 Moreover, as mentioned above, this check is disabled only for particular endpoint/parameter, and not for others. Result: if you click **False** for `example.com/books` → `title` parameter, SQLi attack of stamp `A(1)-B(1)-C(2)`:
 
