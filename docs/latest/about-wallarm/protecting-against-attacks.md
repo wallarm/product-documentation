@@ -214,7 +214,24 @@ Identifying and handling false positives is a part of Wallarm fine‑tuning to p
 
 **What happens when you mark an attack or incident as a false positive?**
 
-When the **False** button has been hit, an internal rule is created. This rule doesn’t disable the attack detection for the particular source IP, target URL, JSON-key, XML-tag, etc., however, it applies the rule not to check for certain type of the attack, called in Wallarm's terminology “stamp”, that could contain a great deal of variations of different attributes defining the attack. Nonetheless, there is a sufficient number of stamps for each attack type, which allows you to press the **False** button safely, since only literally 1 of about 30 checks for a specific attack type is disabled exclusively.
+When pressing a **False** button, Wallarm creates a hidden rule that turns off the detection for the similar attack, that has:
+
+* The same target host
+* The same endpoint (path)
+* The same attacked parameter (point)
+* The similar payload (**stamp**)
+
+About **stamps**: in Wallarm's terminology, “stamp” is a specific variation of attack (specific state of different attributes defining the attack). For each [attack type](../attacks-vulns-list.md), there is a sufficient number of stamps. This makes pressing the **False** button safely, since only literally 1 of about 30 checks for a specific attack type is disabled exclusively.
+
+Moreover, as mentioned above, this check is disabled only for particular endpoint/parameter, and not for others. Result: if you click **False** for `example.com/books` → `title` parameter, SQLi attack of stamp `A(1)-B(1)-C(2)`:
+
+* Further requests to `example.com/books`, having `A(1)-B(1)-C(2)` in the `title` parameter, will not be considered to be an SQLi attack.
+* Further requests to `example.com/books`, having `A(3)-B(1)` (or any other SQLi stamp) in the `title` parameter will still be considered an SQLi attack.
+* Further requests to any other parameter of `example.com/books` are not affected.
+* Further requests to any other endpoint are not affected.
+
+!!! info "It is about payload, not IPs"
+    Marking some attack as false positive does not disable the attack detection for the particular source IP, target URL, JSON-key or XML-tag.
 
 ## Attacks in Wallarm UI
 
