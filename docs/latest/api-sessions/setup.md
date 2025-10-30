@@ -4,7 +4,7 @@
 
 ## Requirements
 
-* API Sessions require [NGINX Wallarm node](../installation/nginx-native-node-internals.md#nginx-node) 5.1.0 or [native Wallarm node](../installation/nginx-native-node-internals.md#native-node) 0.8.0.
+* API Sessions require [NGINX Wallarm node](../installation/nginx-native-node-internals.md#nginx-node) 5.1.0 or [Native Wallarm Node](../installation/nginx-native-node-internals.md#native-node) 0.8.0.
 * Response parsing - NGINX Wallarm node 5.3.0 or native node 0.12.0.
 
 ## Session context

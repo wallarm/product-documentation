@@ -1,6 +1,6 @@
 # API Sessions Overview <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm's **API Sessions** provide visibility into user sessions within your traffic to give you full context of what is happening. For each session, Wallarm gathers detailed request and related response data, enabling a structured view of session activity. This article gives an overview of API Sessions: issues addressed by it, its purpose and main possibilities.
+Wallarm API Sessions provide deep visibility into user actions within your APIs. Instead of analyzing individual requests in isolation, this feature groups them into logical sessions that represent actual user journeys. This article gives an overview of API Sessions: issues addressed by it, its purpose and main possibilities.
 
 ![!API Sessions section - monitored sessions](../images/api-sessions/api-sessions.png)
 
