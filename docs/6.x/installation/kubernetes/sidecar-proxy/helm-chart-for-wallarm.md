@@ -11,5 +11,6 @@
 [denylist-docs]:                      ../../../user-guides/ip-lists/overview.md
 [denylist-view-events-docs]:          ../../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips
 [api-spec-enforcement-docs]:          ../../../api-specification-enforcement/overview.md
+[wcli-metrics]:                       ../../../admin-en/wcli-metrics.md
 
 --8<-- "latest/installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md"
