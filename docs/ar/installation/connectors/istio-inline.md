@@ -7,4 +7,4 @@
 [ui-filtration-mode]:              ../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console
 [self-hosted-connector-node-helm-conf]: ../native-node/helm-chart-conf.md
 
---8<-- "latest/installation/connectors/istio-inline.md"
+--8<-- "latest/installation/connectors/istio.md"
