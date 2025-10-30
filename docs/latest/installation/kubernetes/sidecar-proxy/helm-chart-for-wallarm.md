@@ -313,6 +313,29 @@ Supported starting from the 5.3.0 release.
 
 **Default value**: `text`.
 
+## config.wcli.metrics.enabled
+
+Enables or disables the [**wcli** Controller metrics][wcli-metrics] endpoint. When set to `true`, the **wcli** Controller exposes the metrics. Supported starting with release 6.5.1.
+
+**Default value**: `true`
+
+## config.wcli.metrics.listenAddress
+
+Sets the IP address and/or port to which the [wcli Controller metrics][wcli-metrics] server binds. Supported starting with release 6.5.1.
+
+Examples:
+
+* `:9003` — binds to all interfaces on port 9003
+* `127.0.0.1:9003` — binds to `localhost` only (port 9003)
+
+**Default value**: `:9003`
+
+## config.wcli.metrics.endpoint
+
+Defines the HTTP path for the [**wcli** Controller metrics][wcli-metrics] endpoint. Supported starting with release 6.5.1.
+
+**Default value**: `/metrics`
+
 ## postanalytics.external.enabled
 
 Determines whether to use the Wallarm postanalytics (wstore) module installed on an external host or the one installed during the Sidecar solution deployment.
@@ -418,26 +441,3 @@ controller:
       crt: <base64-encoded-certificate>
       key: <base64-encoded-private-key>
 ```
-
-## config.wcli.metrics.enabled
-
-Enables or disables the [**wcli** Controller metrics][wcli-metrics] endpoint. When set to `true`, the **wcli** Controller exposes the metrics. Supported starting with release 6.5.1.
-
-**Default value**: `true`
-
-## config.wcli.metrics.listenAddress
-
-Sets the IP address and/or port to which the [wcli Controller metrics][wcli-metrics] server binds. Supported starting with release 6.5.1.
-
-Examples:
-
-* `:9003` — binds to all interfaces on port 9003
-* `127.0.0.1:9003` — binds to `localhost` only (port 9003)
-
-**Default value**: `:9003`
-
-## config.wcli.metrics.endpoint
-
-Defines the HTTP path for the [**wcli** Controller metrics][wcli-metrics] endpoint. Supported starting with release 6.5.1.
-
-**Default value**: `/metrics`

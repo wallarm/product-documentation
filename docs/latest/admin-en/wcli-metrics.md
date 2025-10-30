@@ -4,10 +4,10 @@
 [gcp]: ../installation/packages/gcp-machine-image.md
 [IC]: ../admin-en/installation-kubernetes-en.md
 [sidecar]: ../installation/kubernetes/sidecar-proxy/deployment.md
-[sidecar-helm-chart]: ../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
+[sidecar-helm-chart]: ../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwallarmwclimetricsenabled
 [sidecar-deployment]: ../installation/kubernetes/sidecar-proxy/deployment.md
 [sidecar-upgrade]: ../updating-migrating/sidecar-proxy.md
-[ic-helm-chart]: ../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewallmetrics
+[ic-helm-chart]: ../admin-en/configure-kubernetes-en.md#controllerwallarmwclipostanalyticsmetricsenabled
 [ic-deployment]: ../admin-en/installation-kubernetes-en.md
 [nginx-node-changelog]: ../updating-migrating/node-artifact-versions.md
 [nginx-node-6.6.0]: ../updating-migrating/node-artifact-versions.md#660-2025-10-03
@@ -32,14 +32,14 @@ This article describes the metrics of the **wcli** Controller of the NGINX Node 
 
 ## Metrics endpoint
 
-The availability and default state of the **wcli** metrics endpoint depend on your deployment type:
+The **wcli** metrics are available by default for all deployment types. However, the metrics endpoint differs:
 
-Deployment type | Metric endpoint| Enabled by default
---- | ---- | ----
-[Docker image][docker], [all-in-one installer][AIO], cloud images, and [Sidecar][sidecar] | `http://localhost:9003/metrics` | Yes
-[NGINX Ingress Controller][IC] | `http://<host>:9012/metrics` | No
+Deployment type | Metric endpoint
+--- | ---- 
+[Docker image][docker], [all-in-one installer][AIO], and cloud images | `http://localhost:9003/metrics` 
+[NGINX Ingress Controller][IC] and [Sidecar][sidecar] | `http://<host>:9003/metrics`
 
-You can change the default metrics host and endpoint. The way to do so differs depending on your deployment type:
+You can change the default metrics host and endpoint. See the instructions for your specific deployment type below.
 
 **For [Docker image][docker], [all-in-one installer][AIO], and cloud images ([AWS AMI][aws-ami], [GCP Machine Image][gcp]):**
 
@@ -49,30 +49,30 @@ To disable the **wcli** metrics, specify an empty value in `WALLARM_WCLI__METRIC
 
 **For [NGINX Ingress Controller][IC]:**
 
-Edit the [`controller.wallarm.wcliController.metrics*`][ic-helm-chart] values in the Helm Chart during NGINX Ingress Controller [deployment][ic-deployment] or upgrade.
+Edit the [`controller.wallarm.wcliPostanalytics.metrics*`][ic-helm-chart] values in the Helm Chart during NGINX Ingress Controller [deployment][ic-deployment] or upgrade.
 
-```yaml hl_lines="6"
+```yaml hl_lines="8 12 14"
 controller:
   wallarm:
-    wcliPostanalytics::
+    wcliPostanalytics:
       metrics:
         # -- Enable metrics collection
         enabled: true
         # -- Port for metrics endpoint
-        port: 9012
+        port: 9003
         # -- Port name for metrics endpoint
         portName: wcli-post-mtrc
         # -- Path at which the metrics endpoint is exposed (optional, defaults to /metrics if not specified)
         endpointPath: ""
-        # -- IP address and/or port for the metrics endpoint (e.g., ":9012" or "127.0.0.1:9012")
-        host: ":9012"
+        # -- IP address and/or port for the metrics endpoint (e.g., ":9003" or "127.0.0.1:9003")
+        host: ":9003"
 ```
 
 **For [Sidecar][sidecar]:**
 
 Edit the [`config.wallarm.wcli.metrics.*`][sidecar-helm-chart] values in the Helm Chart during Sidecar [deployment][sidecar-deployment] or [upgrade][sidecar-upgrade]. 
 
-```yaml hl_lines="7"
+```yaml hl_lines="11 15"
 config:
   # Other configuration values...
   wcli:
