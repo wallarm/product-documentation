@@ -1,14 +1,12 @@
 # API Sessions Overview <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm's **API Sessions** provide visibility into user sessions within your traffic. For each session, Wallarm gathers detailed request and related response data, enabling a structured view of session activity. This article gives an overview of API Sessions: issues addressed by it, its purpose and main possibilities.
-
-API Sessions require [NGINX Wallarm node](../installation/nginx-native-node-internals.md#nginx-node) 5.1.0 or [native Wallarm node](../installation/nginx-native-node-internals.md#native-node) 0.8.0. Response parsing - NGINX Wallarm node 5.3.0 or native node 0.12.0.
+Wallarm API Sessions provide deep visibility into user actions within your APIs. Instead of analyzing individual requests in isolation, this feature groups them into logical sessions that represent actual user journeys. This article gives an overview of API Sessions: issues addressed by it, its purpose and main possibilities.
 
 ![!API Sessions section - monitored sessions](../images/api-sessions/api-sessions.png)
 
 ## Addressed issues
 
-The primary challenge the API Sessions address is the lack of full context when viewing only individual attacks detected by Wallarm. By capturing the logical sequence of requests and responses within each session, API Sessions provide insights into broader attack patterns and helps identify the areas of business logic impacted by security measures.
+The primary challenge the API Sessions address is the lack of full context when viewing only individual attacks. By capturing the logical sequence of requests and responses within each session, API Sessions provide insights into broader attack patterns and helps identify the areas of business logic impacted by security measures.
 
 **As there are API sessions precisely identified by Wallarm, they**:
 

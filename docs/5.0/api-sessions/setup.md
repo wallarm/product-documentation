@@ -2,6 +2,11 @@
 
 [API Sessions](overview.md) include the built-in rules for the session identification and requires only enabled Wallarm [node](../about-wallarm/overview.md#how-wallarm-works) to start working. Optionally, you can fine-tune API Sessions under your needs as described in this article.
 
+## Requirements
+
+* API Sessions require [NGINX Wallarm node](../installation/nginx-native-node-internals.md#nginx-node) 5.1.0 or [Native Wallarm Node](../installation/nginx-native-node-internals.md#native-node) 0.8.0.
+* Response parsing - NGINX Wallarm node 5.3.0 or native node 0.12.0.
+
 ## Session context
 
 Context in API sessions is information that enriches request data by grouping them into logical sessions and adding response data and metadata to provide deeper insights into session activity. Configuring context allows you to specify which aspects or additional data should be tracked and associated with each session.
@@ -87,6 +92,9 @@ Once you configured parameters to be used for user and his/her role identificati
 
 Wallarm groups requests of your applications' traffic into user sessions based on the **equal values** of the selected headers/parameters of the requests and/or responses. In configuration, these are parameters marked to be grouping keys. See how grouping keys work in the [example](#grouping-keys-example).
 
+!!! info "Multi-part sessions"
+    For effective analysis, [long sessions](exploring.md#multi-day-sessions) are separated in one-day parts. Also, no parts older than 7 days are stored and displayed.
+
 By default, sessions are identified with the **built-in set** of such parameters (not displayed in Wallarm Console). Its logic is to try most common identification parameters, such as `PHPSESSID` or `SESSION-ID` headers, and if they do not work - form session based on the combination of `request source IP and user-agent` (or at least IP if user-agent is not presented).
 
 You can add your own identification parameters based on your applications' logic. To do so, go to Wallarm Console → **API Sessions** → **Session context parameters**, add your request or response parameter and select **Group sessions by this key** for it.
@@ -120,6 +128,10 @@ Requests:
 * curl `example.com -d '{in: 'ccc'}' '{token: 'aaa'}'` with response without token → session "A" (**grouping key #3 worked**)
 
 The same parameter value `aaa` groups these requests into one session.
+
+## Enabling JA3 fingerprinting
+
+It is recommended to enable [JA3 fingerprinting](../admin-en/enabling-ja3.md#overview) for better identification of the unauthenticated traffic.
 
 ## Data protection
 
