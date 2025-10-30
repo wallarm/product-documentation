@@ -180,6 +180,17 @@ A directory in which the backup catalog for the proton.db and custom ruleset fil
 !!! info
     This parameter is configured inside the http block only.
 
+### wallarm_fingerprint
+
+The directive enables support for JA4 fingerprints in the [Security Edge node](../installation/security-edge/inline/overview.md).
+
+This feature helps detect threats and malicious requests, even when traffic is encrypted with TLS.
+
+!!! info
+    The directive can be set inside the `http` or `server` blocks of the NGINX configuration fil (but not inside the `location` block).
+
+    The default value is `off`.
+
 ### wallarm_custom_ruleset_path
 
 A path to the [custom ruleset](../user-guides/rules/rules.md) file that contains information on the protected application and the filtering node settings.
