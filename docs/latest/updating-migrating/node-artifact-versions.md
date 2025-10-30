@@ -17,6 +17,17 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.7.0 (2025-10-31)
+
+* Introduced support for JA4 fingerprints in the [Security Edge node](../installation/security-edge/overview.md).
+
+    This feature helps detect threats and malicious requests, even when traffic is encrypted with TLS.
+    The feature is disabled by default. To enable it, add the following NGINX directive inside the `http` or `server` block:
+    
+    ```
+    wallarm_fingerprint on;
+    ```
+
 ### 6.6.1 (2025-10-16)
 
 * Introduced support for OpenAPI 3.1 in the [API Specification Enforcement](../api-specification-enforcement/overview.md) feature — you can now upload specifications in version 3.1 format to compare traffic against them, identify mismatches, and mitigate related security risks
@@ -129,6 +140,23 @@ new attack types in logging variables and search bars?
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.7.0 (2025-10-31)
+
+* Introduced support for JA4 fingerprints in the [Security Edge node](../installation/security-edge/overview.md).
+
+    This feature helps detect threats and malicious requests, even when traffic is encrypted with TLS.
+    The feature is disabled by default. To enable it, add the following NGINX directive inside the `http` or `server` block:
+    
+    ```
+    wallarm_fingerprint on;
+    ```
+
+* Updated default values for **wcli** Postanalytics:
+
+    * [`controller.wallarm.wcliPostanalytics.metrics.enabled : true`](../admin-en/configure-kubernetes-en.md#controllerwallarmwclipostanalyticsmetricsenabled)
+    * [`controller.wallarm.wcliPostanalytics.metrics.port : 9003`](../admin-en/configure-kubernetes-en.md#controllerwallarmwclipostanalyticsmetricsport)
+    * [`controller.wallarm.wcliPostanalytics.metrics.host : ":9003"`](../admin-en/configure-kubernetes-en.md#controllerwallarmwclipostanalyticsmetrichost)
 
 ### 6.6.2 (2025-10-16)
 
@@ -249,6 +277,17 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.7.0 (2025-10-31)
+
+* Introduced support for JA4 fingerprints in the [Security Edge node](../installation/security-edge/overview.md).
+
+    This feature helps detect threats and malicious requests, even when traffic is encrypted with TLS.
+    The feature is disabled by default. To enable it, add the following NGINX directive inside the `http` or `server` block:
+    
+    ```
+    wallarm_fingerprint on;
+    ```
+
 ### 6.6.1 (2025-10-16)
 
 * Introduced support for OpenAPI 3.1 in the [API Specification Enforcement](../api-specification-enforcement/overview.md) feature — you can now upload specifications in version 3.1 format to compare traffic against them, identify mismatches, and mitigate related security risks
@@ -347,6 +386,17 @@ new attack types in logging variables and search bars?
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.7.0 (2025-10-31)
+
+* Introduced support for JA4 fingerprints in the [Security Edge node](../installation/security-edge/overview.md).
+
+    This feature helps detect threats and malicious requests, even when traffic is encrypted with TLS.
+    The feature is disabled by default. To enable it, add the following NGINX directive inside the `http` or `server` block:
+    
+    ```
+    wallarm_fingerprint on;
+    ```
 
 ### 6.6.1 (2025-10-16)
 
@@ -465,6 +515,17 @@ new attack types in logging variables and search bars?
 ## Amazon Machine Image (AMI)
 
 [How to upgrade](cloud-image.md)
+
+### 6.7.0 (2025-10-31)
+
+* Introduced support for JA4 fingerprints in the [Security Edge node](../installation/security-edge/overview.md).
+
+    This feature helps detect threats and malicious requests, even when traffic is encrypted with TLS.
+    The feature is disabled by default. To enable it, add the following NGINX directive inside the `http` or `server` block:
+    
+    ```
+    wallarm_fingerprint on;
+    ```
 
 ### 6.6.1 (2025-10-16)
 
