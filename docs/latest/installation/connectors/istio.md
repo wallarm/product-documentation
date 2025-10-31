@@ -64,6 +64,10 @@ Add the Wallarm filter to your Istio IngressGateway using the External Processin
 
 You can either create a new EnvoyFilter in the `istio-system` namespace (**recommended**) or modify your existing one.
 
+If you already have a gateway EnvoyFilter, merge the `HTTP_FILTER` and `CLUSTER` patches into it.
+
+#### If your Wallarm Node is publicly reachable
+
 === "Synchronous (inline) analysis"
     ```yaml hl_lines="25-26 28 45-46 55"
     apiVersion: networking.istio.io/v1alpha3
@@ -202,7 +206,171 @@ Apply the configuration:
 kubectl apply -f <ENVOYFILTER_FILE_NAME>.yaml
 ```
 
-If you already have a gateway EnvoyFilter, merge the `HTTP_FILTER` and `CLUSTER` patches into it.
+#### If your Wallarm Node is internal (`ClusterIP`)
+
+=== "Synchronous (inline) analysis"
+    ```yaml hl_lines="30 35-36 56-57 66"
+    apiVersion: v1
+    items:
+    - apiVersion: networking.istio.io/v1alpha3
+      kind: EnvoyFilter
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/last-applied-configuration: |
+            {"apiVersion":"networking.istio.io/v1alpha3","kind":"EnvoyFilter","metadata":{"annotations":{},"name":"wallarm-filter","namespace":"istio-system"},"spec":{"configPatches":[{"applyTo":"HTTP_FILTER","match":{"context":"GATEWAY","listener":{"filterChain":{"filter":{"name":"envoy.filters.network.http_connection_manager"}}}},"patch":{"operation":"INSERT_BEFORE","value":{"name":"envoy.filters.http.ext_proc","typed_config":{"@type":"type.googleapis.com/envoy.extensions.filters.http.ext_proc.v3.ExternalProcessor","failure_mode_allow":false,"grpc_service":{"envoy_grpc":{"cluster_name":"wallarm_cluster"}},"processing_mode":{"request_body_mode":"STREAMED","response_body_mode":"STREAMED"},"request_attributes":["request.id","request.time","source.address"]}}}},{"applyTo":"CLUSTER","match":{"context":"GATEWAY"},"patch":{"operation":"ADD","value":{"connect_timeout":"30s","load_assignment":{"cluster_name":"wallarm_cluster","endpoints":[{"lb_endpoints":[{"endpoint":{"address":{"socket_address":{"address":"native-processing.wallarm.svc.cluster.local","port_value":5080}}}}]}]},"name":"wallarm_cluster","type":"STRICT_DNS"}}}]}}
+        creationTimestamp: "2025-06-04T01:41:30Z"
+        generation: 5
+        name: wallarm-filter
+        namespace: istio-system
+        resourceVersion: "49980160"
+        uid: db2ec99d-2a65-4694-8773-0be30f3060f2
+      spec:
+        configPatches:
+        - applyTo: HTTP_FILTER
+          match:
+            context: GATEWAY
+            listener:
+              filterChain:
+                filter:
+                  name: envoy.filters.network.http_connection_manager
+          patch:
+            operation: INSERT_BEFORE
+            value:
+              name: envoy.filters.http.ext_proc
+              typed_config:
+                '@type': type.googleapis.com/envoy.extensions.filters.http.ext_proc.v3.ExternalProcessor
+                failure_mode_allow: <TRUE/FALSE>
+                grpc_service:
+                  envoy_grpc:
+                    cluster_name: wallarm_cluster
+                processing_mode:
+                  request_body_mode: STREAMED
+                  response_body_mode: STREAMED
+                request_attributes:
+                - request.id
+                - request.time
+                - source.address
+        - applyTo: CLUSTER
+          match:
+            context: GATEWAY
+          patch:
+            operation: ADD
+            value:
+              connect_timeout: 30s
+              http2_protocol_options: {}
+              load_assignment:
+                cluster_name: wallarm_cluster
+                endpoints:
+                - lb_endpoints:
+                  - endpoint:
+                      address:
+                        socket_address:
+                          address: <HOST.DOMAIN.COM>
+                          port_value: 5080
+              name: wallarm_cluster
+              transport_socket:
+                name: envoy.transport_sockets.tls
+                typed_config:
+                  '@type': type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext
+                  common_tls_context:
+                    validation_context:
+                      match_subject_alt_names:
+                      - exact: <HOST.DOMAIN.COM>
+                      trusted_ca:
+                        filename: /etc/ssl/certs/ca-certificates.crt
+              type: STRICT_DNS
+    ```
+=== "Asynchronous (out-of-band) analysis"
+    ```yaml hl_lines="30 36-37 57-58 67"
+    apiVersion: v1
+    items:
+    - apiVersion: networking.istio.io/v1alpha3
+      kind: EnvoyFilter
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/last-applied-configuration: |
+            {"apiVersion":"networking.istio.io/v1alpha3","kind":"EnvoyFilter","metadata":{"annotations":{},"name":"wallarm-filter","namespace":"istio-system"},"spec":{"configPatches":[{"applyTo":"HTTP_FILTER","match":{"context":"GATEWAY","listener":{"filterChain":{"filter":{"name":"envoy.filters.network.http_connection_manager"}}}},"patch":{"operation":"INSERT_BEFORE","value":{"name":"envoy.filters.http.ext_proc","typed_config":{"@type":"type.googleapis.com/envoy.extensions.filters.http.ext_proc.v3.ExternalProcessor","failure_mode_allow":false,"grpc_service":{"envoy_grpc":{"cluster_name":"wallarm_cluster"}},"processing_mode":{"request_body_mode":"STREAMED","response_body_mode":"STREAMED"},"request_attributes":["request.id","request.time","source.address"]}}}},{"applyTo":"CLUSTER","match":{"context":"GATEWAY"},"patch":{"operation":"ADD","value":{"connect_timeout":"30s","load_assignment":{"cluster_name":"wallarm_cluster","endpoints":[{"lb_endpoints":[{"endpoint":{"address":{"socket_address":{"address":"native-processing.wallarm.svc.cluster.local","port_value":5080}}}}]}]},"name":"wallarm_cluster","type":"STRICT_DNS"}}}]}}
+        creationTimestamp: "2025-06-04T01:41:30Z"
+        generation: 5
+        name: wallarm-filter
+        namespace: istio-system
+        resourceVersion: "49980160"
+        uid: db2ec99d-2a65-4694-8773-0be30f3060f2
+      spec:
+        configPatches:
+        - applyTo: HTTP_FILTER
+          match:
+            context: GATEWAY
+            listener:
+              filterChain:
+                filter:
+                  name: envoy.filters.network.http_connection_manager
+          patch:
+            operation: INSERT_BEFORE
+            value:
+              name: envoy.filters.http.ext_proc
+              typed_config:
+                '@type': type.googleapis.com/envoy.extensions.filters.http.ext_proc.v3.ExternalProcessor
+                failure_mode_allow: <TRUE/FALSE>
+                observability_mode: true
+                grpc_service:
+                  envoy_grpc:
+                    cluster_name: wallarm_cluster
+                processing_mode:
+                  request_body_mode: STREAMED
+                  response_body_mode: STREAMED
+                request_attributes:
+                - request.id
+                - request.time
+                - source.address
+        - applyTo: CLUSTER
+          match:
+            context: GATEWAY
+          patch:
+            operation: ADD
+            value:
+              connect_timeout: 30s
+              http2_protocol_options: {}
+              load_assignment:
+                cluster_name: wallarm_cluster
+                endpoints:
+                - lb_endpoints:
+                  - endpoint:
+                      address:
+                        socket_address:
+                          address: <HOST.DOMAIN.COM>
+                          port_value: 5080
+              name: wallarm_cluster
+              transport_socket:
+                name: envoy.transport_sockets.tls
+                typed_config:
+                  '@type': type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext
+                  common_tls_context:
+                    validation_context:
+                      match_subject_alt_names:
+                      - exact: <HOST.DOMAIN.COM>
+                      trusted_ca:
+                        filename: /etc/ssl/certs/ca-certificates.crt
+              type: STRICT_DNS
+    ```
+
+* `failure_mode_allow` — defines the behavior if the Wallarm Node is unreachable:
+
+    * `true`: fail-open (traffic continues without analysis)
+    * `false`: fail-closed (traffic rejected with `500`)
+* `request_body_mode: STREAMED` — may cause Envoy to use chunked transfer encoding for the backend. Ensure that your backend supports chunked decoding; otherwise, requests may fail.
+    
+    Use `BUFFERED` or `BUFFERED_PARTIAL`, or ensure backend compatibility with chunked encoding if needed
+* `<HOST.DOMAIN.COM>` — the fully qualified domain name (FQDN) of your Wallarm Node, without protocol or trailing slash.
+    
+    This must be the same domain for which the SSL/TLS certificate was issued and which resolves internally to the Node’s service (e.g., through a CoreDNS rewrite).
+* `port_value: 5080` — change if the Wallarm Node listens on another port
+
+Apply the configuration:
+
+```
+kubectl apply -f <ENVOYFILTER_FILE_NAME>.yaml
+```
 
 ### 3. Optional: AWS kOps proxy protocol support
 
@@ -543,6 +711,10 @@ This method uses `ExtProcPerRoute` configuration and is based on the `route.name
                 disabled: true
     ```
 
+## If your Wallarm Node runs as `ClusterIP` (in-cluster)
+
+[If you deployed the Wallarm Node as a `ClusterIP` service] inside your Kubernetes cluster, use the following 
+
 ## Manual setup (standalone Envoy)
 
 If you are running Envoy outside Istio, insert the filter and cluster directly in your `envoy.yaml`:
@@ -608,9 +780,3 @@ To upgrade the filter:
     ```
 
 Filter upgrades may require a Wallarm node upgrade, especially for major version updates. See the [Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for the self-hosted Node release notes. Regular node updates are recommended to avoid deprecation and simplify future upgrades.
-
-
-<!-- 
-Certificate file: 644 (rw-r--r--)
-
-Key file 644 also -->
