@@ -131,8 +131,18 @@ helm repo update wallarm
               service:
                 type: LoadBalancer
             ```
+=== "ClusterIP (connector-server)"
+    When deploying Wallarm as a connector for [Kong API Gateway connector](../connectors/kong-api-gateway.md), you deploy the Native Node for this connector with the `ClusterIP` type for internal traffic, without exposing a public IP.
+
+    Create the `values.yaml` configuration file with the following minimal configuration:
+
+    ```yaml
+    processing:
+      service:
+        type: ClusterIP
+    ```
 === "LoadBalancer (envoy-external-filter)"
-    Deploying the native Wallarm node as a LoadBalancer with a public IP allows you to route traffic from MuleSoft, Cloudflare, Amazon CloudFront, Broadcom Layer7 API Gateway, Fastly to this IP for security analysis and filtration.
+    Deploying the native Wallarm node as a LoadBalancer with a public IP allows you to route traffic from Istio Ingress to this IP for security analysis and filtration.
 
     1. Register a domain for the load balancer.
     1. Obtain a **trusted** SSL/TLS certificate.
@@ -193,16 +203,94 @@ helm repo update wallarm
               service:
                 type: LoadBalancer
             ```
-=== "ClusterIP"
-    When deploying Wallarm as a connector for Kong API Gateway or Istio you deploy the Native Node for this connector with the ClusterIP type for internal traffic, without exposing a public IP.
+    
+    !!! info "Certificate access"
+        Both the certificate and private key files must have the following permissions to be correctly used by the Wallarm Node:
 
-    Create the `values.yaml` configuration file with the following minimal configuration:
+        ```
+        644 (rw-r--r--)
+        ```
 
-    ```yaml
-    processing:
-      service:
-        type: ClusterIP
-    ```
+        To set these permissions, run:
+
+        ```bash
+        sudo chmod 644 /path/to/cert.pem /path/to/key.pem
+        ```
+=== "ClusterIP (envoy-external-filter)"
+    When deploying Wallarm as an [Istio connector service inside your Kubernetes cluster](../connectors/istio.md), the Native Node runs as an internal component (`ClusterIP` service type) without exposing a public IP.
+
+    1. Define a DNS name that resolves to the Wallarm Node service inside your cluster.
+    1. Obtain a **trusted** SSL/TLS certificate for that domain.
+    1. Create the `values.yaml` configuration file with the following minimal configuration. Choose the tab for your preferred method of applying the certificate:
+    
+        === "cert-manager"
+            If you use [`cert-manager`](https://cert-manager.io/) in your cluster, you can generate the SSL/TLS certificate with it.
+
+            ```yaml
+            config:
+              connector:
+                mode: envoy-external-filter
+                certificate:
+                  enabled: true
+                  certManager:
+                    enabled: true
+                    issuerRef:
+                      # The name of the cert-manager Issuer or ClusterIssuer
+                      name: letsencrypt-prod
+                      # If it is Issuer (namespace-scoped) or ClusterIssuer (cluster-wide)
+                      kind: ClusterIssuer
+            processing:
+              service:
+                type: ClusterIP
+            ```
+        === "existingSecret"
+            You can pull SSL/TLS certificate from an existing Kubernetes secrets in the same namespace.
+
+            ```yaml
+            config:
+              connector:
+                mode: envoy-external-filter
+                certificate:
+                  enabled: true
+                  existingSecret:
+                    enabled: true
+                    # The name of the Kubernetes secret containing the certificate and private key
+                    name: my-secret-name
+            processing:
+              service:
+                type: ClusterIP
+            ```
+        === "customSecret"
+            The `customSecret` configuration allows you to define a certificate directly as base64-encoded values.
+
+            ```yaml
+            config:
+              connector:
+                mode: envoy-external-filter
+                certificate:
+                  enabled: true
+                  customSecret:
+                    enabled: true
+                    ca: LS0...  # Base64-encoded CA
+                    crt: LS0... # Base64-encoded certificate
+                    key: LS0... # Base64-encoded private key
+            processing:
+              service:
+                type: ClusterIP
+            ```
+    
+    !!! info "Certificate access"
+        Both the certificate and private key files must have the following permissions to be correctly used by the Wallarm Node:
+
+        ```
+        644 (rw-r--r--)
+        ```
+
+        To set these permissions, run:
+
+        ```bash
+        sudo chmod 644 /path/to/cert.pem /path/to/key.pem
+        ```
 
 [All configuration parameters](helm-chart-conf.md)
 
@@ -217,20 +305,58 @@ helm repo update wallarm
     helm upgrade --install --version 0.19.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com
     ```
 
-### 5. Get the Wallarm load balancer
+### 5. Configure DNS access to the Wallarm Node
 
-If deploying with the `LoadBalancer` type:
+=== "If deploying with the `LoadBalancer` type"
+    1. Get the external IP for the Wallarm load balancer:
 
-1. Get the external IP for the Wallarm load balancer:
+        ```
+        kubectl get svc -n wallarm-node
+        ```
 
+        Find the external IP for the `native-processing` service.
+    1. Create an A record in your DNS provider, pointing your domain to the external IP.
+
+        After the DNS propagates, you can access the service via the domain name.
+
+=== "If deploying with the `ClusterIP` type"
+    The Wallarm Node does not have a public IP, so it must be accessible internally through a DNS rewrite.
+
+    Create a CoreDNS rewrite rule to map your public domain (used in the certificate) to the Node's internal service address:
+
+    ```bash
+    # This assumes you installed the Native Node in the default namespace: wallarm
+    # Replace <DOMAIN_NAME> with the domain name used in your certificate
+    # Example: wallarm-node.corp.com -> native-processing.wallarm.svc.cluster.local
+
+    kubectl patch configmap coredns -n kube-system --patch='
+    data:
+      Corefile: |
+        .:53 {
+            errors
+            health {
+              lameduck 5s
+            }
+            ready
+            kubernetes cluster.local in-addr.arpa ip6.arpa {
+              pods insecure
+              fallthrough in-addr.arpa ip6.arpa
+              ttl 30
+            }
+            rewrite name <DOMAIN_NAME> native-processing.wallarm.svc.cluster.local
+            prometheus :9153
+            forward . /etc/resolv.conf {
+              max_concurrent 1000
+            }
+            cache 30
+            loop
+            reload
+            loadbalance
+        }
+    '
     ```
-    kubectl get svc -n wallarm-node
-    ```
 
-    Find the external IP for the `native-processing` service.
-1. Create an A record in your DNS provider, pointing your domain to the external IP.
-
-    After the DNS propagates, you can access the service via the domain name.
+    This configuration ensures that all in-cluster requests to `<DOMAIN_NAME>` resolve to the Wallarm Node's internal `ClusterIP` service while keeping traffic entirely within the cluster.
 
 ### 6. Apply Wallarm code to an API management service
 
