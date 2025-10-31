@@ -990,7 +990,7 @@ Wallarm detects the complex business logic and access control vulnerabilities on
 
 ### Authentication bypass
 
-**Vulnerability** [by](#vulnerability-types) passive, AASM.
+**Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
 
 **CWE code:** [CWE-288][cwe-288]
 
