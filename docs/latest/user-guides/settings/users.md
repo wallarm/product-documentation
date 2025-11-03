@@ -77,6 +77,7 @@ Note that:
 
 * When a new user is created and **Custom permissions** are selected, they are all by default denied, you need to specify explicitly what to allow.
 * If new features appear in the list (new releases), they will be initially all denied, you need to allow them manually.
+* If **View** permission is not selected, user will not see the corresponding interface element and will not be able to use other permissions even if they are allowed.
 
 ## Inviting users
 
