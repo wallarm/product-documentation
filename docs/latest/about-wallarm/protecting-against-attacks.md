@@ -1,6 +1,16 @@
-[rule-creation-options]:    ../user-guides/events/check-attack.md#attack-analysis_1
-[request-processing]:       ../user-guides/rules/request-processing.md
+[rule-creation-options]:            ../user-guides/events/check-attack.md#attack-analysis_1
+[request-processing]:               ../user-guides/rules/request-processing.md
 [api-discovery-enable-link]:        ../api-discovery/setup.md#enable
+[ip-lists-link]:                    ../user-guides/ip-lists/overview.md
+[ip-sessions-link]:                 ../api-sessions/blocking.md#blocking-sessions
+[parsing-requests-link]:            ../user-guides/rules/request-processing.md  
+[basic-detectors-link]:             #basic-set-of-detectors
+[custom-rules-link]:                #custom-rules
+[mc-link]:                          #mitigation-controls      
+[specific module settings-link]:    #specific-module-settings
+[filtration-mode-link]:             ../admin-en/configure-wallarm-mode.md
+[attack-handling-process-img]:      ../images/about-wallarm-waf/overview/attack-handling-diagram.png
+[applications-link]:                ../user-guides/settings/applications.md         
 
 # Attack Detection Procedure
 
@@ -64,17 +74,7 @@ Protected resource API can be designed on the basis of the following technologie
 
 ## Attack handling process
 
-To detect and handle attacks, Wallarm uses the following process:
-
-1. Checks [IP lists](../user-guides/ip-lists/overview.md) and [Session lists](../api-sessions/blocking.md#blocking-sessions) to understand whether to process the request at all. Denylist blocks the request and allowlist allows it - both without further analysis.
-1. Determines the request format and [parse](../user-guides/rules/request-processing.md) every request part to apply [basic detectors](#basic-set-of-detectors).
-1. Determines the endpoint the request is addressed to apply [custom rules](#custom-rules)/[mitigation controls](#mitigation-controls) and [specific module settings](#specific-module-settings) and understand the [filtration mode](../admin-en/configure-wallarm-mode.md).
-1. Makes a decision whether the request is a part of attack or not based on basic detectors, custom rules and specific module settings.
-1. Handles request in accordance with decision and filtration mode.
-
-![Attack handling process - diagram](../images/about-wallarm-waf/overview/attack-handling-diagram.png)
-
-Note that rules, mitigation controls, settings and filtration mode can be inherited from the parent endpoint or [application](../user-guides/settings/applications.md). More specific has priority.
+--8<-- "../include/waf/attack-handling-process.md"
 
 ## Tools for attack detection
 
@@ -221,7 +221,7 @@ In such cases, standard rules need to be adjusted to accommodate protected API s
 
 Identifying and handling false positives is a part of Wallarm fine‑tuning to protect your APIs. We recommend to deploy the first Wallarm node in the monitoring [mode](#monitoring-and-blocking-attacks) and analyze detected attacks. If some attacks are mistakenly recognized as attacks, mark them as false positives and switch the filtering node to blocking mode.
 
-**What happens when you mark an attack or incident as a false positive?**
+<a name="false-positive-safe"></a>**What happens when you mark an attack or incident as a false positive?**
 
 When pressing a **False** button, Wallarm creates a hidden rule that turns off the detection for the similar attack, that has:
 

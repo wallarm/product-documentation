@@ -1,0 +1,13 @@
+sudo curl -O https://meganode.wallarm.com/native/aio-native-0.8.3.x86_64.sh
+sudo chmod +x aio-native-0.8.3.x86_64.sh
+
+token
+tJjDHFv2uRKJwDzRaSV3EJ/vHofnVjby/W+3zfd8km+/GIlWEHdIjoF3JeB0C6AC
+
+# EU Cloud
+sudo env WALLARM_LABELS='group=MB Nodes' ./aio-native-0.8.3.x86_64.sh -- --batch --token tJjDHFv2uRKJwDzRaSV3EJ/vHofnVjby/W+3zfd8km+/GIlWEHdIjoF3JeB0C6AC --mode=connector-server --go-node-config=wallarm-node-conf.yaml --host api.wallarm.com
+
+curl localhost:9000/metrics
+curl localhost/etc/passwd
+
+curl http://127.0.0.8/wallarm-status
