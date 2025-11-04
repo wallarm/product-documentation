@@ -19,19 +19,21 @@ new attack types in logging variables and search bars?
 
 ### 6.7.0 (2025-11-04)
 
-* Introduced support for JA4 fingerprints in the [Security Edge node](../installation/security-edge/inline/overview.md)
+* Introduced JA4 fingerprinting in the [NGINX node](../installation/nginx-native-node-internals.md#nginx-node)
 
-    This feature helps detect threats and malicious requests, even when traffic is encrypted with TLS.
-    The feature is disabled by default. To enable it, ensure that the NGINX Node accepts only SSL/TLS connections, and add the following [NGINX directive](../admin-en/configure-parameters-en.md#wallarm_fingerprint) inside the `http` or `server` block:
+    JA4 fingerprints help detect threats and malicious clients based on TLS handshake characteristics. The NGINX Node must terminate TLS connections (or be inline with the handshake process) for fingerprinting to function.
+
+    The feature is disabled by default. To enable it, add the following [NGINX directive](../admin-en/configure-parameters-en.md#wallarm_fingerprint) inside the `http` or `server` block:
     
     ```
     wallarm_fingerprint on;
     ```
     
-    When the feature is enabled, you can use the `wallarm_fingerprint_ja4_raw` and `wallarm_fingerprint_ja4` variables to [configure extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
-
-* Improved logging during **wcli** initialization. Extended error logs now include more detailed context and metadata (e.g., component type, supported versions, and error source), making it easier to troubleshoot issues that occur during the init stage
-* Fixed the issue where the Security Edge node raised an error when a JWT token was sent in the `Authorization: Bearer` header
+* Introduced the `wallarm_fingerprint_ja4_raw` and `wallarm_fingerprint_ja4` variables to [configure extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node) when JA4 fingerprinting is enabled
+* Improved Node initialization logs — added detailed information about component type, supported versions, error source, API endpoint, and Node UUID to simplify troubleshooting during the initialization stage
+* Fixed the [CVE-2025-58188](https://www.cve.org/CVERecord?id=CVE-2025-58188) vulnerability
+* Fixed the issue where the Node raised an error when a JWT token was sent in the `Authorization: Bearer` header
+* Fixed invalid type error when editing automatically created rules for attacks detected in gRPC responses
 
 ### 6.6.1 (2025-10-16)
 
@@ -148,25 +150,28 @@ new attack types in logging variables and search bars?
 
 ### 6.7.0 (2025-11-04)
 
-* Introduced support for JA4 fingerprints in the [Security Edge node](../installation/security-edge/inline/overview.md)
+* Introduced JA4 fingerprinting in the [NGINX node](../installation/nginx-native-node-internals.md#nginx-node)
 
-    This feature helps detect threats and malicious requests, even when traffic is encrypted with TLS.
-    The feature is disabled by default. To enable it, ensure that the NGINX Node accepts only SSL/TLS connections, and add the following [NGINX directive](../admin-en/configure-parameters-en.md#wallarm_fingerprint) inside the `http` or `server` block:
+    JA4 fingerprints help detect threats and malicious clients based on TLS handshake characteristics. The NGINX Node must terminate TLS connections (or be inline with the handshake process) for fingerprinting to function.
+
+    The feature is disabled by default. To enable it, add the following [NGINX directive](../admin-en/configure-parameters-en.md#wallarm_fingerprint) inside the `http` or `server` block:
     
     ```
     wallarm_fingerprint on;
     ```
-
-    When the feature is enabled, you can use the `wallarm_fingerprint_ja4_raw` and `wallarm_fingerprint_ja4` variables to [configure extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
-
-* Improved logging during **wcli** initialization. Extended error logs now include more detailed context and metadata (e.g., component type, supported versions, and error source), making it easier to troubleshoot issues that occur during the init stage
-* Updated default values for **wcli** Postanalytics:
+    
+* Introduced the `wallarm_fingerprint_ja4_raw` and `wallarm_fingerprint_ja4` variables to [configure extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node) when JA4 fingerprinting is enabled
+* Improved Node initialization logs — added detailed information about component type, supported versions, error source, API endpoint, and Node UUID to simplify troubleshooting during the initialization stage
+* Updated default values for **wcli** Controller metrics:
 
     * [`controller.wallarm.wcliPostanalytics.metrics.enabled : true`](../admin-en/configure-kubernetes-en.md#controllerwallarmwclipostanalyticsmetricsenabled)
     * [`controller.wallarm.wcliPostanalytics.metrics.port : 9003`](../admin-en/configure-kubernetes-en.md#controllerwallarmwclipostanalyticsmetricsport)
     * [`controller.wallarm.wcliPostanalytics.metrics.host : ":9003"`](../admin-en/configure-kubernetes-en.md#controllerwallarmwclipostanalyticsmetrichost)
 
-* Fixed the issue where the Security Edge node raised an error when a JWT token was sent in the `Authorization: Bearer` header
+* Switched to native HTTP readiness and liveness probes for the **wstore** component
+* Fixed the [CVE-2025-58188](https://www.cve.org/CVERecord?id=CVE-2025-58188) vulnerability
+* Fixed the issue where the Node raised an error when a JWT token was sent in the `Authorization: Bearer` header
+* Fixed invalid type error when editing automatically created rules for attacks detected in gRPC responses
 
 ### 6.6.2 (2025-10-16)
 
@@ -289,19 +294,21 @@ new attack types in logging variables and search bars?
 
 ### 6.7.0 (2025-11-04)
 
-* Introduced support for JA4 fingerprints in the [Security Edge node](../installation/security-edge/inline/overview.md)
+* Introduced JA4 fingerprinting in the [NGINX node](../installation/nginx-native-node-internals.md#nginx-node)
 
-    This feature helps detect threats and malicious requests, even when traffic is encrypted with TLS.
-    The feature is disabled by default. To enable it, ensure that the NGINX Node accepts only SSL/TLS connections, and add the following [NGINX directive](../admin-en/configure-parameters-en.md#wallarm_fingerprint) inside the `http` or `server` block:
+    JA4 fingerprints help detect threats and malicious clients based on TLS handshake characteristics. The NGINX Node must terminate TLS connections (or be inline with the handshake process) for fingerprinting to function.
+
+    The feature is disabled by default. To enable it, add the following [NGINX directive](../admin-en/configure-parameters-en.md#wallarm_fingerprint) inside the `http` or `server` block:
     
     ```
     wallarm_fingerprint on;
     ```
     
-    When the feature is enabled, you can use the `wallarm_fingerprint_ja4_raw` and `wallarm_fingerprint_ja4` variables to [configure extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
-
-* Improved logging during **wcli** initialization. Extended error logs now include more detailed context and metadata (e.g., component type, supported versions, and error source), making it easier to troubleshoot issues that occur during the init stage
-* Fixed the issue where the Security Edge node raised an error when a JWT token was sent in the `Authorization: Bearer` header
+* Introduced the `wallarm_fingerprint_ja4_raw` and `wallarm_fingerprint_ja4` variables to [configure extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node) when JA4 fingerprinting is enabled
+* Improved Node initialization logs — added detailed information about component type, supported versions, error source, API endpoint, and Node UUID to simplify troubleshooting during the initialization stage
+* Fixed the [CVE-2025-58188](https://www.cve.org/CVERecord?id=CVE-2025-58188) vulnerability
+* Fixed the issue where the Node raised an error when a JWT token was sent in the `Authorization: Bearer` header
+* Fixed invalid type error when editing automatically created rules for attacks detected in gRPC responses
 
 ### 6.6.1 (2025-10-16)
 
@@ -404,19 +411,21 @@ new attack types in logging variables and search bars?
 
 ### 6.7.0 (2025-11-04)
 
-* Introduced support for JA4 fingerprints in the [Security Edge node](../installation/security-edge/inline/overview.md)
+* Introduced JA4 fingerprinting in the [NGINX node](../installation/nginx-native-node-internals.md#nginx-node)
 
-    This feature helps detect threats and malicious requests, even when traffic is encrypted with TLS.
-    The feature is disabled by default. To enable it, ensure that the NGINX Node accepts only SSL/TLS connections, and add the following [NGINX directive](../admin-en/configure-parameters-en.md#wallarm_fingerprint) inside the `http` or `server` block:
+    JA4 fingerprints help detect threats and malicious clients based on TLS handshake characteristics. The NGINX Node must terminate TLS connections (or be inline with the handshake process) for fingerprinting to function.
+
+    The feature is disabled by default. To enable it, add the following [NGINX directive](../admin-en/configure-parameters-en.md#wallarm_fingerprint) inside the `http` or `server` block:
     
     ```
     wallarm_fingerprint on;
     ```
-
-    When the feature is enabled, you can use the `wallarm_fingerprint_ja4_raw` and `wallarm_fingerprint_ja4` variables to [configure extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
-
-* Improved logging during **wcli** initialization. Extended error logs now include more detailed context and metadata (e.g., component type, supported versions, and error source), making it easier to troubleshoot issues that occur during the init stage
-* Fixed the issue where the Security Edge node raised an error when a JWT token was sent in the `Authorization: Bearer` header
+    
+* Introduced the `wallarm_fingerprint_ja4_raw` and `wallarm_fingerprint_ja4` variables to [configure extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node) when JA4 fingerprinting is enabled
+* Improved Node initialization logs — added detailed information about component type, supported versions, error source, API endpoint, and Node UUID to simplify troubleshooting during the initialization stage
+* Fixed the [CVE-2025-58188](https://www.cve.org/CVERecord?id=CVE-2025-58188) vulnerability
+* Fixed the issue where the Node raised an error when a JWT token was sent in the `Authorization: Bearer` header
+* Fixed invalid type error when editing automatically created rules for attacks detected in gRPC responses
 
 ### 6.6.1 (2025-10-16)
 
@@ -538,19 +547,21 @@ new attack types in logging variables and search bars?
 
 ### 6.7.0 (2025-11-04)
 
-* Introduced support for JA4 fingerprints in the [Security Edge node](../installation/security-edge/inline/overview.md)
+* Introduced JA4 fingerprinting in the [NGINX node](../installation/nginx-native-node-internals.md#nginx-node)
 
-    This feature helps detect threats and malicious requests, even when traffic is encrypted with TLS.
-    The feature is disabled by default. To enable it, ensure that the NGINX Node accepts only SSL/TLS connections, and add the following [NGINX directive](../admin-en/configure-parameters-en.md#wallarm_fingerprint) inside the `http` or `server` block:
+    JA4 fingerprints help detect threats and malicious clients based on TLS handshake characteristics. The NGINX Node must terminate TLS connections (or be inline with the handshake process) for fingerprinting to function.
+
+    The feature is disabled by default. To enable it, add the following [NGINX directive](../admin-en/configure-parameters-en.md#wallarm_fingerprint) inside the `http` or `server` block:
     
     ```
     wallarm_fingerprint on;
     ```
-
-    When the feature is enabled, you can use the `wallarm_fingerprint_ja4_raw` and `wallarm_fingerprint_ja4` variables to [configure extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
-
-* Improved logging during **wcli** initialization. Extended error logs now include more detailed context and metadata (e.g., component type, supported versions, and error source), making it easier to troubleshoot issues that occur during the init stage
-* Fixed the issue where the Security Edge node raised an error when a JWT token was sent in the `Authorization: Bearer` header
+    
+* Introduced the `wallarm_fingerprint_ja4_raw` and `wallarm_fingerprint_ja4` variables to [configure extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node) when JA4 fingerprinting is enabled
+* Improved Node initialization logs — added detailed information about component type, supported versions, error source, API endpoint, and Node UUID to simplify troubleshooting during the initialization stage
+* Fixed the [CVE-2025-58188](https://www.cve.org/CVERecord?id=CVE-2025-58188) vulnerability
+* Fixed the issue where the Node raised an error when a JWT token was sent in the `Authorization: Bearer` header
+* Fixed invalid type error when editing automatically created rules for attacks detected in gRPC responses
 
 ### 6.6.1 (2025-10-16)
 

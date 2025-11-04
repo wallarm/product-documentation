@@ -182,15 +182,15 @@ A directory in which the backup catalog for the proton.db and custom ruleset fil
 
 ### wallarm_fingerprint
 
-The directive enables support for JA4 fingerprints in the [Security Edge node](../installation/security-edge/inline/overview.md).
+The directive enables [JA4 fingerprinting](https://foxio.io/ja4) in the [NGINX node](../updating-migrating/node-artifact-versions.md) and is available starting from release 6.7.0.
 
-This feature helps detect threats and malicious requests, even when traffic is encrypted with TLS.
+It generates a JA4 TLS fingerprint for each incoming connection. The fingerprint summarizes the TLS ClientHello parameters and is added to the serialized request that the Node sends to the Wallarm Cloud.
 
 !!! info
-    The directive can be set inside the `http` or `server` blocks of the NGINX configuration fil (but not inside the `location` block).
+    The directive can be set inside the `http` or `server` blocks of the NGINX configuration file.
 
     The default value is `off`.
-
+    
 ### wallarm_custom_ruleset_path
 
 A path to the [custom ruleset](../user-guides/rules/rules.md) file that contains information on the protected application and the filtering node settings.
