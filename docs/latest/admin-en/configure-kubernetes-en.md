@@ -1,4 +1,5 @@
 [node-token-types]:         ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
+[wcli-metrics]:             ../admin-en/wcli-metrics.md
 
 # Fine‑tuning of NGINX-based Wallarm Ingress Controller
 
@@ -157,6 +158,18 @@ controller:
       extraEnvs:
         - name: EXTRA_ENV_VAR_NAME
           value: EXTRA_ENV_VAR_VALUE
+      ## Metrics configuration for WCLI Postanalytics
+      metrics:
+        # -- Enable metrics collection
+        enabled: true
+        # -- Port for metrics endpoint
+        port: 9003
+        # -- Port name for metrics endpoint
+        portName: wcli-post-mtrc
+        # -- Path at which the metrics endpoint is exposed (optional, defaults to /metrics if not specified)
+        endpointPath: ""
+        # -- IP address and/or port for the metrics endpoint (e.g., ":9003" or "127.0.0.1:9003")
+        host: ":9003"          
     apiFirewall:
       enabled: true
       config:
@@ -353,6 +366,45 @@ Supported from the release 6.2.0 onwards.
 This switch [toggles](configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md) information and metrics collection. If [Prometheus](https://github.com/helm/charts/tree/master/stable/prometheus) is installed in the Kubernetes cluster, no additional configuration is required.
 
 **Default value**: `false`
+
+### controller.wallarm.wcliPostanalytics.metrics.enabled
+
+Enables or disables the [**wcli** Controller metrics][wcli-metrics] endpoint. When set to `true`, the **wcli** Controller exposes the metrics. Supported starting with release 6.5.1.
+
+**Default value**: `true`
+
+### controller.wallarm.wcliPostanalytics.metrics.port
+
+Defines the port on which [**wcli** Controller metrics][wcli-metrics] are exposed. Supported starting with release 6.5.1.
+
+**Default value**: `9003`
+
+### controller.wallarm.wcliPostanalytics.metrics.portName
+
+Defines the name of the port on which [**wcli** Controller metrics][wcli-metrics] are exposed. Supported starting with release 6.5.1.
+
+**Default value**: `wcli-post-mtrc`
+
+### controller.wallarm.wcliPostanalytics.metrics.endpointPath
+
+Defines the HTTP path for the [**wcli** Controller metrics][wcli-metrics] endpoint.
+
+If not set, the default path `/metrics` is used.
+
+Supported starting with release 6.5.1.
+
+**Default value**: not specified (defaults to `/metrics`)
+
+### controller.wallarm.wcliPostanalytics.metrics.host
+
+Sets the IP address and/or port to which the [wcli Controller metrics][wcli-metrics] server binds. Supported starting with release 6.5.1.
+
+Examples:
+
+* `:9003` — binds to all interfaces on port 9003
+* `127.0.0.1:9003` — binds to `localhost` only (port 9003)
+
+**Default value**: `:9003`
 
 ### controller.wallarm.apiFirewall
 
