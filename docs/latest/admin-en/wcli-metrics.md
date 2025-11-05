@@ -4,7 +4,7 @@
 [gcp]: ../installation/packages/gcp-machine-image.md
 [IC]: ../admin-en/installation-kubernetes-en.md
 [sidecar]: ../installation/kubernetes/sidecar-proxy/deployment.md
-[sidecar-helm-chart]: ../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwallarmwclimetricsenabled
+[sidecar-helm-chart]: ../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwclimetricsenabled
 [sidecar-deployment]: ../installation/kubernetes/sidecar-proxy/deployment.md
 [sidecar-upgrade]: ../updating-migrating/sidecar-proxy.md
 [ic-helm-chart]: ../admin-en/configure-kubernetes-en.md#controllerwallarmwclipostanalyticsmetricsenabled
