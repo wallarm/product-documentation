@@ -18,18 +18,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
     * Default endpoint: `:9010/metrics`
     * Host and endpoint name configurable via variables `APIFW_METRICS_HOST` and `APIFW_METRICS_ENDPOINT_NAME`
 
-* Improved overload handling in `tcp-capture-v2`
-* Added support for the default mode in `go-node` for CRv7X
+* Added support for the [Amazon API Gateway Connector](../../installation/connectors/aws-api-gateway.md)
 * Replaced the API Firewall service with the internal `oas-validation-service`
 * Removed support for the deprecated `http_inspector.real_ip_header` configuration parameter
-* Added a safety check in `go-node` to prevent incorrect response time calculations when `responseStart` is not initialized
 * Fixed a race condition in out-of-band connectors, resolving the `FlowIsMissingRequest`, `FlowIsMissingResponse`, and occasional duplicate ID errors
 * Bug fixes:
 
     * Fixed an issue where the Aggregation/**wcli** container could enter a crash loop due to an out-of-memory (OOM) condition
-    * Fixed an issue where the Native Node installation script did not check whether the `wallarm` user already existed. The script now validates the user, group, and home directory to prevent setup conflicts
-    * Fixed an issue where the Native Node installation failed when `/tmp` was mounted with the `noexec` flag.
-    Manual workarounds (e.g., using the `--target` flag or setting the `TMPDIR` environment variable) are no longer necessary
 
 ### 0.19.0 (2025-10-07)
 
@@ -160,18 +155,12 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
     * Default endpoint: `:9010/metrics`
     * Host and endpoint name configurable via variables `APIFW_METRICS_HOST` and `APIFW_METRICS_ENDPOINT_NAME`
 
-* Improved overload handling in `tcp-capture-v2`
-* Added support for the default mode in `go-node` for CRv7X
+* Added support for the [Amazon API Gateway Connector](../../installation/connectors/aws-api-gateway.md)
 * Replaced the API Firewall service with the internal `oas-validation-service`
-* Removed support for the deprecated `http_inspector.real_ip_header` configuration parameter
-* Added a safety check in `go-node` to prevent incorrect response time calculations when `responseStart` is not initialized
 * Fixed a race condition in out-of-band connectors, resolving the `FlowIsMissingRequest`, `FlowIsMissingResponse`, and occasional duplicate ID errors
 * Bug fixes:
 
     * Fixed an issue where the Aggregation/**wcli** container could enter a crash loop due to an out-of-memory (OOM) condition
-    * Fixed an issue where the Native Node installation script did not check whether the `wallarm` user already existed. The script now validates the user, group, and home directory to prevent setup conflicts
-    * Fixed an issue where the Native Node installation failed when `/tmp` was mounted with the `noexec` flag.
-    Manual workarounds (e.g., using the `--target` flag or setting the `TMPDIR` environment variable) are no longer necessary
 
 ### 0.19.0 (2025-10-07)
 
@@ -302,18 +291,13 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
     * Default endpoint: `:9010/metrics`
     * Host and endpoint name configurable via variables `APIFW_METRICS_HOST` and `APIFW_METRICS_ENDPOINT_NAME`
 
-* Improved overload handling in `tcp-capture-v2`
-* Added support for the default mode in `go-node` for CRv7X
+* Added support for the [Amazon API Gateway Connector](../../installation/connectors/aws-api-gateway.md)
 * Replaced the API Firewall service with the internal `oas-validation-service`
 * Removed support for the deprecated `http_inspector.real_ip_header` configuration parameter
-* Added a safety check in `go-node` to prevent incorrect response time calculations when `responseStart` is not initialized
 * Fixed a race condition in out-of-band connectors, resolving the `FlowIsMissingRequest`, `FlowIsMissingResponse`, and occasional duplicate ID errors
 * Bug fixes:
 
     * Fixed an issue where the Aggregation/**wcli** container could enter a crash loop due to an out-of-memory (OOM) condition
-    * Fixed an issue where the Native Node installation script did not check whether the `wallarm` user already existed. The script now validates the user, group, and home directory to prevent setup conflicts
-    * Fixed an issue where the Native Node installation failed when `/tmp` was mounted with the `noexec` flag.
-    Manual workarounds (e.g., using the `--target` flag or setting the `TMPDIR` environment variable) are no longer necessary
 
 ### 0.19.0 (2025-10-07)
 
