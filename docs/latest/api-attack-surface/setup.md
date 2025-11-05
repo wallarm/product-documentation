@@ -81,6 +81,24 @@ To configure scanning options:
 
 ### Subdomain discovery
 
+AASM discovers subdomains using a combination of passive and active methods.
+
+Passive detection methods are approaches for discovering subdomains without direct communication with customer's infrastructure. This includes information gathering from:
+
+* TLS Certificate Transparency logs
+* Passive DNS databases
+* Search engines
+* Internet-scan data (e.g., Shodan, Censys, etc.)
+
+Active subdomain detection methods include:
+
+* Analysis of TLS certificates
+* Subdomain brute force (guessing most frequently used subdomain names)
+
+After discovering subdomains, AASM validates them for wildcards to ensure the accuracy of detected subdomains.
+
+**Subdomain discovery enabling/disabling**
+
 In some cases that could be optimal to disable subdomain discovery (to scan `example.com` but not to scan `app1.example.com`):
 
 * You are not the owner of the subdomain (it may be owned by a subsidiary company or branch company)
