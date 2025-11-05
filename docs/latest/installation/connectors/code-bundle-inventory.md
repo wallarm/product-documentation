@@ -103,6 +103,10 @@ The current version can be found in `Cargo.toml` → `[package]` → `version` p
 | ------------------- | ------------------- |
 | 1.x                 | 0.18.0 and higher   |
 
+### 1.0.1 (2205-11-05)
+
+* Enhanced the code bundle structure and flow naming
+
 ### 1.0.0 (2025-09-17)
 
 * [Initial release](apigee.md)
