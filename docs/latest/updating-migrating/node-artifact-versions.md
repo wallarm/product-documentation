@@ -17,11 +17,11 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
-### 6.7.0 (2025-11-04)
+### 6.7.0 (2025-11-05)
 
 * Introduced JA4 fingerprinting in the [NGINX node](../installation/nginx-native-node-internals.md#nginx-node)
 
-    JA4 fingerprints help detect threats and malicious clients based on TLS handshake characteristics. The NGINX Node must terminate TLS connections (or be inline with the handshake process) for fingerprinting to function.
+    JA4 fingerprints help detect threats and malicious clients based on TLS handshake characteristics. JA4 fingerprints are used as an additional factor when deciding to block a request.
 
     The feature is disabled by default. To enable it, add the following [NGINX directive](../admin-en/configure-parameters-en.md#wallarm_fingerprint) inside the `http` or `server` block:
     
@@ -148,11 +148,11 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](ingress-controller.md)
 
-### 6.7.0 (2025-11-04)
+### 6.7.0 (2025-11-05)
 
 * Introduced JA4 fingerprinting in the [NGINX node](../installation/nginx-native-node-internals.md#nginx-node)
 
-    JA4 fingerprints help detect threats and malicious clients based on TLS handshake characteristics. The NGINX Node must terminate TLS connections (or be inline with the handshake process) for fingerprinting to function.
+    JA4 fingerprints help detect threats and malicious clients based on TLS handshake characteristics. JA4 fingerprints are used as an additional factor when deciding to block a request.
 
     The feature is disabled by default. To enable it, add the following [NGINX directive](../admin-en/configure-parameters-en.md#wallarm_fingerprint) inside the `http` or `server` block:
     
@@ -292,11 +292,11 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
-### 6.7.0 (2025-11-04)
+### 6.7.0 (2025-11-05)
 
 * Introduced JA4 fingerprinting in the [NGINX node](../installation/nginx-native-node-internals.md#nginx-node)
 
-    JA4 fingerprints help detect threats and malicious clients based on TLS handshake characteristics. The NGINX Node must terminate TLS connections (or be inline with the handshake process) for fingerprinting to function.
+    JA4 fingerprints help detect threats and malicious clients based on TLS handshake characteristics. JA4 fingerprints are used as an additional factor when deciding to block a request.
 
     The feature is disabled by default. To enable it, add the following [NGINX directive](../admin-en/configure-parameters-en.md#wallarm_fingerprint) inside the `http` or `server` block:
     
@@ -409,11 +409,11 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](docker-container.md)
 
-### 6.7.0 (2025-11-04)
+### 6.7.0 (2025-11-05)
 
 * Introduced JA4 fingerprinting in the [NGINX node](../installation/nginx-native-node-internals.md#nginx-node)
 
-    JA4 fingerprints help detect threats and malicious clients based on TLS handshake characteristics. The NGINX Node must terminate TLS connections (or be inline with the handshake process) for fingerprinting to function.
+    JA4 fingerprints help detect threats and malicious clients based on TLS handshake characteristics. JA4 fingerprints are used as an additional factor when deciding to block a request.
 
     The feature is disabled by default. To enable it, add the following [NGINX directive](../admin-en/configure-parameters-en.md#wallarm_fingerprint) inside the `http` or `server` block:
     
@@ -545,11 +545,11 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
-### 6.7.0 (2025-11-04)
+### 6.7.0 (2025-11-05)
 
 * Introduced JA4 fingerprinting in the [NGINX node](../installation/nginx-native-node-internals.md#nginx-node)
 
-    JA4 fingerprints help detect threats and malicious clients based on TLS handshake characteristics. The NGINX Node must terminate TLS connections (or be inline with the handshake process) for fingerprinting to function.
+    JA4 fingerprints help detect threats and malicious clients based on TLS handshake characteristics. JA4 fingerprints are used as an additional factor when deciding to block a request.
 
     The feature is disabled by default. To enable it, add the following [NGINX directive](../admin-en/configure-parameters-en.md#wallarm_fingerprint) inside the `http` or `server` block:
     
