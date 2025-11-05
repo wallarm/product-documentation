@@ -42,9 +42,9 @@ Define the `WallarmConfig` [key value map (KVM)](https://cloud.google.com/apigee
 Each traffic analysis mode (synchronous or asynchronous) requires 2 shared flows: one for requests and one for responses.
 
 1. Download the provided code bundle for your platform.
-1. In Google Cloud Console → **Proxy development** → **Shared flows**, **Upload bundle** from `Wallarm-Inline-Request-Flow.zip` for synchronous mode or from `Wallarm-OOB-Request-Flow.zip` for asynchronous mode.
+1. In Google Cloud Console → **Proxy development** → **Shared flows**, **Upload bundle** from `Wallarm-Sync-Request-Flow.zip` for synchronous mode or from `Wallarm-Async-Request-Flow.zip` for asynchronous mode.
 1. **Deploy** the uploaded flow. 
-1. In the same section, upload the corresponding response flow archive (`Wallarm-Inline-Response-Flow.zip` or `Wallarm-OOB-Response-Flow.zip`).
+1. In the same section, upload the corresponding response flow archive (`Wallarm-Sync-Response-Flow.zip` or `Wallarm-Async-Response-Flow.zip`).
 1. **Deploy** the response shared flow.
 
 **3. Apply shared flows to your APIs**

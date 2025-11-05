@@ -88,15 +88,15 @@ Contact sales@wallarm.com to get the Apigee connector code bundle.
 
 The bundle contains:
 
-* `sharedflows/` - Wallarm shared flow bundles to deploy in Apigee:
+* Wallarm shared flow bundles to deploy in Apigee:
   
-    * `Wallarm-Inline-Request-Flow.zip` and `Wallarm-Inline-Response-Flow.zip` for [synchronous](../inline/overview.md) analysis
-    * `Wallarm-OOB-Request-Flow.zip` and `Wallarm-OOB-Response-Flow.zip` for [asynchronous](../oob/overview.md) analysis
+    * `Wallarm-Sync-Request-Flow.zip` and `Wallarm-Sync-Response-Flow.zip` for [synchronous](../inline/overview.md) analysis
+    * `Wallarm-Async-Request-Flow.zip` and `Wallarm-Async-Response-Flow.zip` for [asynchronous](../oob/overview.md) analysis
 
-* `proxies/` - sample, ready-to-use API proxies you can modify and reuse:
+* Sample, ready-to-use API proxies you can modify and reuse:
 
     * `wallarm-single-proxy-sync` - sample proxy with the Wallarm connector policies preconfigured for synchronous analysis
-    * `wallarm-single-proxy-async` - sample proxy with the Wallarm connector policies preconfigured for asynchronous analysis
+    * `wallarm-single-async-proxy` - sample proxy with the Wallarm connector policies preconfigured for asynchronous analysis
 
     While this guide walks you through deployment from scratch, these samples can serve as a shortcut or reference.
 
@@ -206,13 +206,13 @@ Define the `WallarmConfig` [key value map (KVM)](https://cloud.google.com/apigee
 
 Each traffic analysis mode (synchronous or asynchronous) requires 2 shared flows: one for requests and one for responses.
 
-1. In Google Cloud Console → **Proxy development** → **Shared flows**, **Upload bundle** from `Wallarm-Inline-Request-Flow.zip` for synchronous mode or from `Wallarm-OOB-Request-Flow.zip` for asynchronous mode.
+1. In Google Cloud Console → **Proxy development** → **Shared flows**, **Upload bundle** from `Wallarm-Sync-Request-Flow.zip` for synchronous mode or from `Wallarm-Async-Request-Flow.zip` for asynchronous mode.
 
     ![Upload Wallarm shared flow bundle in the Google Console UI](../../images/waf-installation/gateways/apigee/upload-flow-bundle.png)
 1. **Deploy** the uploaded flow. Verify that it shows a green "Ok" status for each target environment.  
 
     ![Deploy Wallarm shared flow bundle in the Google Console UI](../../images/waf-installation/gateways/apigee/deploy-flow-bundle.png)
-1. In the same section, upload the corresponding response flow archive (`Wallarm-Inline-Response-Flow.zip` or `Wallarm-OOB-Response-Flow.zip`).
+1. In the same section, upload the corresponding response flow archive (`Wallarm-Sync-Response-Flow.zip` or `Wallarm-Async-Response-Flow.zip`).
 1. **Deploy** the response shared flow.
 
 Alternatively, you can automate this step using the [Apigee API](https://cloud.google.com/apigee/docs/reference/apis/apigee/rest/v1/organizations.sharedflows/create).
@@ -354,7 +354,7 @@ If the Node is deployed in synchronous mode with [blocking enabled](../../admin-
 To upgrade the deployed Wallarm policies to a [newer version](code-bundle-inventory.md#apigee):
 
 1. [Download](#2-obtain-the-connector-code-bundle) the updated Apigee connector code bundle from Wallarm.
-1. Import the new versions of the shared flows (`Wallarm-Inline-*` or `Wallarm-OOB-*`) into Apigee, as described in [Step 4](#4-deploy-wallarm-shared-flows).
+1. Import the new versions of the shared flows (`Wallarm-Sync-*` or `Wallarm-Async-*`) into Apigee, as described in [Step 4](#4-deploy-wallarm-shared-flows).
 1. Deploy the updated shared flows to the required environments.
 1. Update your API proxies or environment flow hooks to reference the new flow revisions, as described in [Step 5](#5-apply-shared-flows-to-your-apis).
 1. [Test](#testing) both legitimate and malicious traffic to verify the upgrade.
