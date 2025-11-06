@@ -215,6 +215,10 @@ The current version can be found in the Wallarm policy file → `X-Wallarm-Conne
 | ------------------- | ------------------- |
 | 1.0.x               | 0.18.0 and higher   |
 
+### 1.0.1 (2025-11-06)
+
+* Enhanced the code bundle structure and file naming
+
 ### 1.0.0 (2025-09-17)
 
 * [Initial release](azure-api-management.md)

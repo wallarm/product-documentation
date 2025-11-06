@@ -14,12 +14,12 @@ You will deploy 2 policy fragments: one for requests (inbound) and one for respo
 
 1. Download the provided code bundle for your platform.
 1. Navigate to Azure Portal → **API Management** service → **APIs** → **Policy fragments** → **Create**.
-1. Create a request policy fragment using `wallarm-inline-request.xml` for synchronous mode or `wallarm-out-of-band-request.xml` for asynchronous mode.
+1. Create a request policy fragment using `wallarm-sync-request.xml` for synchronous mode or `wallarm-async-request.xml` for asynchronous mode.
 
-    You can name the fragment consistently with the file: `wallarm-inline-request` or `wallarm-out-of-band-request`.
-1. Create a response policy fragment using `wallarm-inline-response.xml` for synchronous mode or `wallarm-out-of-band-response.xml` for asynchronous mode.
+    You can name the fragment consistently with the file: `wallarm-sync-request` or `wallarm-async-request`.
+1. Create a response policy fragment using `wallarm-sync-response.xml` for synchronous mode or `wallarm-async-response.xml` for asynchronous mode.
    
-    You can name the fragment consistently with the file: `wallarm-inline-response` or `wallarm-out-of-band-response`.
+    You can name the fragment consistently with the file: `wallarm-sync-response` or `wallarm-async-response`.
 
 **3. Apply Wallarm policy fragments to APIs**
 

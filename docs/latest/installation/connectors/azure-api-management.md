@@ -103,12 +103,12 @@ The Azure API Management connector package includes 4 XML files:
 
 * Synchronous mode:
 
-    * `wallarm-inline-request.xml`
-    * `wallarm-inline-response.xml`
+    * `wallarm-sync-request.xml`
+    * `wallarm-sync-response.xml`
 * Asynchronous mode:
 
-    * `wallarm-out-of-band-request.xml`
-    * `wallarm-out-of-band-response.xml`
+    * `wallarm-async-request.xml`
+    * `wallarm-async-response.xml`
 
 Each mode requires 2 fragments: one for requests (inbound) and one for responses (outbound).
 
@@ -117,16 +117,16 @@ The steps below use the Azure Portal UI, but you can also deploy policy fragment
 1. Contact sales@wallarm.com to get the policy fragments.
 1. Extract the policy archive.
 1. Navigate to Azure Portal → **API Management** service → **APIs** → **Policy fragments** → **Create**.
-1. Create a request policy fragment using `wallarm-inline-request.xml` for synchronous mode or `wallarm-out-of-band-request.xml` for asynchronous mode.
+1. Create a request policy fragment using `wallarm-sync-request.xml` for synchronous mode or `wallarm-async-request.xml` for asynchronous mode.
 
-    You can name the fragment consistently with the file: `wallarm-inline-request` or `wallarm-out-of-band-request`.
+    You can name the fragment consistently with the file: `wallarm-sync-request` or `wallarm-async-request`.
 
     Example of a request policy fragment in Azure Portal:
 
     ![Wallarm request policy fragment](../../images/waf-installation/gateways/azure-apim/request-policy-fragment.png)
-1. Create a response policy fragment using `wallarm-inline-response.xml` for synchronous mode or `wallarm-out-of-band-response.xml` for asynchronous mode.
+1. Create a response policy fragment using `wallarm-sync-response.xml` for synchronous mode or `wallarm-async-response.xml` for asynchronous mode.
    
-    You can name the fragment consistently with the file: `wallarm-inline-response` or `wallarm-out-of-band-response`.
+    You can name the fragment consistently with the file: `wallarm-sync-response` or `wallarm-async-response`.
 
     Example of a response response fragment in Azure Portal:
 
