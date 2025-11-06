@@ -632,8 +632,6 @@ proxy_headers:
       - X-Real-IP
 ```
 
-For Node 0.14.1 and earlier operating in [`tcp-capture`](../oob/tcp-traffic-mirror/deployment.md) mode, use the parameter `http_inspector.real_ip_header`. In later versions, the `proxy_headers` section replaces it.
-
 ### route_config
 
 Configuration section where you specify settings for specific routes.

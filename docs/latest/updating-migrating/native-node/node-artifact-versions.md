@@ -21,10 +21,14 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 * Added support for the [Amazon API Gateway Connector](../../installation/connectors/aws-api-gateway.md)
 * Replaced the API Firewall service with the internal `oas-validation-service`
 * Removed support for the deprecated `http_inspector.real_ip_header` configuration parameter
+* Improved Node initialization logs — added detailed information about component type, supported versions, error source, API endpoint, and Node UUID to simplify troubleshooting during the initialization stage
+* Fixed the [CVE-2025-58188](https://www.cve.org/CVERecord?id=CVE-2025-58188) vulnerability
 * Fixed a race condition in out-of-band connectors, resolving the `FlowIsMissingRequest`, `FlowIsMissingResponse`, and occasional duplicate ID errors
 * Bug fixes:
 
     * Fixed an issue where the Aggregation/**wcli** container could enter a crash loop due to an out-of-memory (OOM) condition
+    * Fixed an issue where the Node raised an error when a JWT token was sent in the `Authorization: Bearer` header
+    * Fixed invalid type error when editing automatically created rules for attacks detected in gRPC responses
 
 ### 0.19.0 (2025-10-07)
 
@@ -156,11 +160,16 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
     * Host and endpoint name configurable via variables `APIFW_METRICS_HOST` and `APIFW_METRICS_ENDPOINT_NAME`
 
 * Added support for the [Amazon API Gateway Connector](../../installation/connectors/aws-api-gateway.md)
+* Improved Node initialization logs — added detailed information about component type, supported versions, error source, API endpoint, and Node UUID to simplify troubleshooting during the initialization stage
 * Replaced the API Firewall service with the internal `oas-validation-service`
+* Switched to native HTTP readiness and liveness probes for the **wstore** component
+* Fixed the [CVE-2025-58188](https://www.cve.org/CVERecord?id=CVE-2025-58188) vulnerability
 * Fixed a race condition in out-of-band connectors, resolving the `FlowIsMissingRequest`, `FlowIsMissingResponse`, and occasional duplicate ID errors
 * Bug fixes:
 
     * Fixed an issue where the Aggregation/**wcli** container could enter a crash loop due to an out-of-memory (OOM) condition
+    * Fixed the issue where the Node raised an error when a JWT token was sent in the `Authorization: Bearer` header
+    * Fixed invalid type error when editing automatically created rules for attacks detected in gRPC responses
 
 ### 0.19.0 (2025-10-07)
 
@@ -294,10 +303,14 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 * Added support for the [Amazon API Gateway Connector](../../installation/connectors/aws-api-gateway.md)
 * Replaced the API Firewall service with the internal `oas-validation-service`
 * Removed support for the deprecated `http_inspector.real_ip_header` configuration parameter
+* Improved Node initialization logs — added detailed information about component type, supported versions, error source, API endpoint, and Node UUID to simplify troubleshooting during the initialization stage
+* Fixed the [CVE-2025-58188](https://www.cve.org/CVERecord?id=CVE-2025-58188) vulnerability
 * Fixed a race condition in out-of-band connectors, resolving the `FlowIsMissingRequest`, `FlowIsMissingResponse`, and occasional duplicate ID errors
 * Bug fixes:
 
     * Fixed an issue where the Aggregation/**wcli** container could enter a crash loop due to an out-of-memory (OOM) condition
+    * Fixed an issue where the Node raised an error when a JWT token was sent in the `Authorization: Bearer` header
+    * Fixed invalid type error when editing automatically created rules for attacks detected in gRPC responses
 
 ### 0.19.0 (2025-10-07)
 
