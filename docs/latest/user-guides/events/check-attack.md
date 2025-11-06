@@ -81,6 +81,8 @@ The default view of the attack list presents only actual attacks (without false 
 
 ![False positive filter](../../images/user-guides/events/filter-for-falsepositive.png)
 
+See details on false positives [here](../../about-wallarm/protecting-against-attacks.md#false-positives).
+
 ## Responding to attacks
 
 Is is important to understand if your applications and APIs are properly protected from the attacks to have the possibility to adjust the protection measures if necessary. You can use information from the **Attacks** section to get this understanding and respond correspondingly.
