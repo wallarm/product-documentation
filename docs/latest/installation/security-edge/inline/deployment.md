@@ -178,6 +178,7 @@ For specific **locations** within hosts, you can further customize:
 * Filtration mode.
 * Traffic type (select gRPC if the location uses gRPC traffic).
 * [Access control list (ACL)](access-control-lists.md).
+* [Cache rules](cache-rules.md).
 * [Location NGINX directives](nginx-overrides.md#location-level-directives). Defaults follow standard NGINX values.
 
 Each location inherits settings from the host and root location, unless specifically overridden.

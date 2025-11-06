@@ -1,6 +1,6 @@
 # Cache Rules in Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
-Cache rules are settings that define how the Security Edge node stores and reuses responses from specific hosts and locations.
+Cache rules are settings that define how the Security Edge Inline node stores and reuses responses from specific hosts and locations.
 
 When cache rules are configured, the system stores and reuses responses to frequent requests instead of reprocessing them. This reduces load on your backend servers, lowers response times, and improves user experience — especially for endpoints that return the same data repeatedly (e.g., configuration files or static content).
 
@@ -42,7 +42,7 @@ The added rule appears in the list of cache rules and is automatically activated
 
 Clearing a cache rule removes all cached responses for this rule without deleting or deactivating it.
 
-It be useful in the following situations:
+It is useful in the following situations:
 
 * Backend data has changed, and users need to immediately receive fresh responses instead of outdated cached ones.
 * Host or location behavior has changed (e.g., a new API version or an updated response format).
