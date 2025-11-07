@@ -18,7 +18,7 @@ The [Wallarm Native Node](../nginx-native-node-internals.md), which operates ind
 * When deploying a Wallarm node as part of a connector solution for [MuleSoft Mule Gateway](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [IBM DataPower](../connectors/ibm-api-connect.md) on a self-hosted Linux OS machine.
 
     Use the installer in `connector-server` mode.
-* When you need a [gRPC-based external processing filter](../connectors/istio-inline.md) for APIs managed by Istio.
+* When you need a [gRPC-based external processing filter](../connectors/istio.md) for APIs managed by Istio.
     
     Use the installer in `envoy-external-filter` mode.
 
@@ -127,7 +127,7 @@ After deploying the node, the next step is to apply the Wallarm code to your API
     * [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md#2-add-the-nodes-ssltls-certificate-to-the-policy-manager)
     * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly)
     * [IBM DataPower](../connectors/ibm-api-connect.md#2-obtain-and-apply-the-wallarm-policies-to-apis-in-ibm-api-connect)
-    * [Envoy/Istio](../connectors/istio-inline.md)
+    * [Envoy/Istio](../connectors/istio.md)
 
 ## Verifying the node operation
 

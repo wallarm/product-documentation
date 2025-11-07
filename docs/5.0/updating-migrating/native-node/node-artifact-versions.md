@@ -80,7 +80,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
     ```
     
     Deployments using version 2 or version 3 will continue to work with Native Node 0.13.x and above if you do not explicitly specify the `postanalytics_exporter` configuration. However, this approach is deprecated, and updating to the new configuration format is recommended.
-* Added support for the [`envoy-external-filter` operation mode for Istio/Envoy external gRPC processing filter](../../installation/connectors/istio-inline.md)
+* Added support for the [`envoy-external-filter` operation mode for Istio/Envoy external gRPC processing filter](../../installation/connectors/istio.md)
 * Fixed the [CVE-2024-56171](https://nvd.nist.gov/vuln/detail/CVE-2024-56171), [CVE-2025-24928](https://nvd.nist.gov/vuln/detail/CVE-2025-24928), [CVE-2025-22869](https://nvd.nist.gov/vuln/detail/CVE-2025-22869), [CVE-2025-22868](https://nvd.nist.gov/vuln/detail/CVE-2025-22868) vulnerabilities
 * Fixed request counter when `wallarm_mode: off` (they are not counted)
 
@@ -267,7 +267,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ### 0.13.0 (2025-03-31)
 
-* Added support for the [`envoy-external-filter` operation mode for Istio/Envoy external gRPC processing filter](../../installation/connectors/istio-inline.md)
+* Added support for the [`envoy-external-filter` operation mode for Istio/Envoy external gRPC processing filter](../../installation/connectors/istio.md)
 * Fixed the [CVE-2024-56171](https://nvd.nist.gov/vuln/detail/CVE-2024-56171), [CVE-2025-24928](https://nvd.nist.gov/vuln/detail/CVE-2025-24928), [CVE-2025-22869](https://nvd.nist.gov/vuln/detail/CVE-2025-22869), [CVE-2025-22868](https://nvd.nist.gov/vuln/detail/CVE-2025-22868) vulnerabilities
 * Fixed request counter when `wallarm_mode: off` (they are not counted)
 
@@ -420,7 +420,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
     ```
     
     Deployments using version 2 or version 3 will continue to work with Native Node 0.13.x and above if you do not explicitly specify the `postanalytics_exporter` configuration. However, this approach is deprecated, and updating to the new configuration format is recommended.
-* Added support for the [`envoy-external-filter` operation mode for Istio/Envoy external gRPC processing filter](../../installation/connectors/istio-inline.md)
+* Added support for the [`envoy-external-filter` operation mode for Istio/Envoy external gRPC processing filter](../../installation/connectors/istio.md)
 * Fixed the [CVE-2024-56171](https://nvd.nist.gov/vuln/detail/CVE-2024-56171), [CVE-2025-24928](https://nvd.nist.gov/vuln/detail/CVE-2025-24928), [CVE-2025-22869](https://nvd.nist.gov/vuln/detail/CVE-2025-22869), [CVE-2025-22868](https://nvd.nist.gov/vuln/detail/CVE-2025-22868) vulnerabilities
 * Fixed request counter when `wallarm_mode: off` (they are not counted)
 
