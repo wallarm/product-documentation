@@ -19,7 +19,7 @@ The Wallarm node operation mode. It can be:
 
 * `connector-server` for [MuleSoft Mule Gateway](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [IBM DataPower](../connectors/ibm-api-connect.md) connectors.
 * `tcp-capture` for [TCP traffic mirror analysis](../oob/tcp-traffic-mirror/deployment.md).
-* `envoy-external-filter` for [gRPC-based external processing filter](../connectors/istio-inline.md) for APIs managed by Istio.
+* `envoy-external-filter` for [gRPC-based external processing filter](../connectors/istio.md) for APIs managed by Istio.
 
 === "connector-server"
     If you installed the Native Node for a Wallarm connector, the basic configuration looks as follows:

@@ -28,6 +28,9 @@ For guidance on estimating AWS infrastructure costs for this deployment, see the
     !!! info "Limitations of the `tcp-capture` mode"
         * The solution analyzes only unencrypted HTTP traffic over raw TCP, not encrypted HTTPS traffic.
         * The solution does not support parsing responses over HTTP keep-alive connections yet.
+* When you need a [gRPC-based external processing filter](../connectors/istio.md) for APIs managed by Istio.
+
+    Run the image in `envoy-external-filter` mode.
 
 ## Requirements
 
@@ -38,7 +41,7 @@ For guidance on estimating AWS infrastructure costs for this deployment, see the
     Wallarm supports both single availability zone (AZ) and multi availability zone deployments. In multi-AZ setups, Wallarm Nodes can be launched in separate availability zones and placed behind a Load Balancer for high availability.
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
 * Executing all commands on a Wallarm EC2 instance as a superuser (e.g. `root`)
-* When running the node in the `connector-server` mode, a **trusted** SSL/TLS certificate for the machine's domain should be issued and uploaded to the machine along with the private key
+* When running the node in the `connector-server` or `envoy-external-filter` mode, a **trusted** SSL/TLS certificate for the machine's domain should be issued and uploaded to the machine along with the private key
 * When running the node in the `tcp-capture` mode:
     
     * Traffic and response mirroring must be configured with both source and target set up, and the prepared instance chosen as a mirror target. Specific environment requirements must be met, such as allowing specific protocols for traffic mirroring configurations.
@@ -47,7 +50,7 @@ For guidance on estimating AWS infrastructure costs for this deployment, see the
 
 ## Limitations
 
-* When using the Node in `connector-server` mode, a **trusted** SSL/TLS certificate is required for the machine's domain. Self-signed certificates are not yet supported.
+* When using the Node in `connector-server` or `envoy-external-filter` mode, a **trusted** SSL/TLS certificate is required for the machine's domain. Self-signed certificates are not yet supported.
 * [Custom blocking page and blocking code](../../admin-en/configuration-guides/configure-block-page-and-code.md) configurations are not yet supported.
 * [Rate limiting](../../user-guides/rules/rate-limiting.md) by the Wallarm rule is not supported.
 * [Multitenancy](../multi-tenant/overview.md) is not supported yet.
@@ -94,7 +97,7 @@ To register the Node in the Wallarm Cloud, you need an API token:
 
 ### 4. Upload TLS certificates
 
-For the `connector-server` mode, issue a **trusted** TLS certificate and private key for the instance's domain. These files must be accessible inside the instance and referenced in the further configuration.
+For the `connector-server` and `envoy-external-filter` mode, issue a **trusted** TLS certificate and private key for the Node domain. These files must be accessible inside the instance and referenced in the further configuration.
 
 Upload the certificate and key files to the EC2 instance using `scp`, `rsync`, or another method, e.g.:
 
@@ -137,6 +140,19 @@ On the EC2 instance, create a file named `wallarm-node-conf.yaml` with one of th
     ```
     ip addr show
     ```
+=== "envoy-external-filter"
+    ```yaml
+    version: 4
+
+    mode: envoy-external-filter
+
+    envoy_external_filter:
+      address: ":5080"
+      tls_cert: "/path/to/cert.crt"
+      tls_key: "/path/to/cert.key"
+    ```
+
+    In the `envoy_external_filter.tls_cert` and `envoy_external_filter.tls_key`, you specify the paths to a **trusted** certificate and private key issued for the machine's domain.
 
 [All configuration parameters](all-in-one-conf.md)
 
@@ -159,6 +175,14 @@ On the EC2 instance, execute the installer:
 
     # EU Cloud
     sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=./wallarm-node-conf.yaml --host api.wallarm.com
+    ```
+=== "envoy-external-filter"
+    ```bash
+    # US Cloud
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=./wallarm-node-conf.yaml --host us1.api.wallarm.com
+
+    # EU Cloud
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=./wallarm-node-conf.yaml --host api.wallarm.com
     ```
 
 * The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -184,6 +208,8 @@ If needed, you can change the copied file after the installation is finished. To
         * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly) 
 === "tcp-capture"
     [Proceed to the deployment testing](../oob/tcp-traffic-mirror/deployment.md#step-5-test-the-solution).
+=== "envoy-external-filter"
+    After deploying the node, the next step is to [update Envoy settings to forward traffic to the node](../connectors/istio.md#2-configure-istio-envoy-to-forward-traffic-to-the-wallarm-node).
 
 ## Verifying the node operation
 

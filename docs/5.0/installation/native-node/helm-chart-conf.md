@@ -101,7 +101,7 @@ This specifies the name of the group of filtering nodes you want to add newly de
 The Wallarm node operation mode. It can be:
 
 * `connector-server` (default) for [MuleSoft Mule Gateway](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [IBM DataPower](../connectors/ibm-api-connect.md), [Kong API Gateway](../connectors/kong-api-gateway.md) or [Istio (out-of-band)](../connectors/istio.md)connectors.
-* `envoy-external-filter` for [gRPC-based external processing filter](../connectors/istio-inline.md) for APIs managed by Istio.
+* `envoy-external-filter` for [gRPC-based external processing filter](../connectors/istio.md) for APIs managed by Istio.
 
 ### config.connector.certificate.enabled (required)
 

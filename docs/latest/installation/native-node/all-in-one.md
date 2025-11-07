@@ -212,7 +212,7 @@ If needed, you can change the copied file after the installation is finished. To
 === "tcp-capture"
     [Proceed to the deployment testing](../oob/tcp-traffic-mirror/deployment.md#step-5-test-the-solution).
 === "envoy-external-filter"
-    After deploying the node, the next step is to [update Envoy settings to forward traffic to the node](../connectors/istio.md#2-configure-envoy-to-proxy-traffic-to-the-wallarm-node).
+    After deploying the node, the next step is to [update Envoy settings to forward traffic to the node](../connectors/istio.md#2-configure-istio-envoy-to-forward-traffic-to-the-wallarm-node).
 
 ## Verifying the node operation
 

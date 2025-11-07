@@ -96,14 +96,6 @@ Requires Native Node version 0.8.3 or higher.
 
 * Initial release
 
-## Istio
-
-[How to upgrade](istio.md#upgrading-the-wallarm-lua-plugin)
-
-### 1.0.0 (2024-09-13)
-
-* Initial release
-
 ## Broadcom Layer7 API Gateway
 
 [How to upgrade](layer7-api-gateway.md#upgrading-the-wallarm-policies)

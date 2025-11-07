@@ -869,6 +869,7 @@
 /ar/installation/on-premise/ /ar/installation/on-premise/overview/
 
 /installation/connectors/istio-inline/ /installation/connectors/istio/
+/5.x/installation/connectors/istio-inline/ /5.x/installation/connectors/istio/
 
 /installation/inline/security-edge-inline/ /installation/security-edge/inline/deployment/
 /installation/security-edge/deployment/ /installation/security-edge/inline/deployment/
