@@ -56,11 +56,11 @@ This data allows checking that values of the expected format are passed in each 
 
 ### Variability
 
-URLs can include diverse elements, such as ID of user, like:
+URLs can include diverse elements, such as ID of user. API Discovery supports finding such elements for UUID, INT and FLOAT path segment types:
 
-* `/api/articles/author/author-a-0001`
-* `/api/articles/author/author-a-1401`
-* `/api/articles/author/author-b-1401`
+* `/api/articles/author/2e943468-fd71-4cf2-8d6c-63bfcea2aefc`
+* `/api/articles/author/2e053468-fd72-4cf2-8d6c-63bfcea2aabc`
+* `/api/articles/author/2e163468-fd73-4cf2-8d6c-63bfcea2adef`
 
 The **API Discovery** module unifies such elements into the `{parameter_X}` format in the endpoint paths, so for the example above you will not have 3 endpoints, but instead there will be one:
 
