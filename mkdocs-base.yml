@@ -9,6 +9,7 @@ copyright: '<a href="https://www.wallarm.com/terms-of-service" target="_blank">T
 
 plugins:
   - search
+  - macros
   - minify:
       minify_html: true
       minify_js: true
@@ -66,6 +67,7 @@ theme:
     contact_sales: Contact Sales
 
 extra:
+  nginx_node_version: 6.7.0
   social:
     - icon: fontawesome/solid/globe
       link: https://www.wallarm.com

@@ -12,4 +12,4 @@
 [nginx-node-changelog]: ../updating-migrating/node-artifact-versions.md
 [nginx-node-6.6.0]: ../updating-migrating/node-artifact-versions.md#660-2025-10-03
 
---8<-- "latest/admin-en/wcli-metrics.md"
+{{ include_markdown("../latest/admin-en/wcli-metrics.md") }}

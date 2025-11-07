@@ -18,6 +18,16 @@
 
 # wcli Controller Metrics of the NGINX Node
 
+Current NGINX Node version: {{ nginx_node_version }}
+
+```
+Current NGINX Node version: {{ nginx_node_version }}
+```
+
+```yaml
+Current NGINX Node version: {{ nginx_node_version }}
+```
+
 This article describes the metrics of the **wcli** Controller of the NGINX Node to help monitor and troubleshoot the NGINX Node.
 
 * The **wcli** metrics provide data from the service that runs most Wallarm functional components, including brute-force detection, attack export to the Cloud, and Node-Cloud synchronization status.
