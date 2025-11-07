@@ -43,6 +43,7 @@ This connector is the optimal choice when you need protection for workloads mana
 Before deploying the connector, make sure that:
 
 * You have a Kubernetes cluster with Istio installed
+* Envoy v1.30.0+ is used
 * Applications are deployed and reachable through an Istio Gateway and VirtualService
 * Access to the **Administrator** account in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
 * A Wallarm Native Node v0.13.0+ is used
