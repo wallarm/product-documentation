@@ -19,7 +19,10 @@ To use Wallarm with Istio, you need to **deploy a Wallarm Node** (either externa
 
 The Wallarm connector for Instio ingress supports both [synchronous (in-line)](../inline/overview.md) and [asynchronous (out‑of‑band)](../oob/overview.md) traffic analysis:
 
-![Istio with asynchronous traffic flow to the Wallarm Node](../../images/waf-installation/gateways/istio/traffic-flow-inline.png)
+=== "Synchronous traffic flow"
+    ![Istio with synchronous traffic flow to the Wallarm Node](../../images/waf-installation/gateways/istio/traffic-flow-sync.png)
+=== "Asynchronous traffic flow"
+    ![Istio with asynchronous traffic flow to the Wallarm Node](../../images/waf-installation/gateways/istio/traffic-flow-async.png)
 
 ## Use cases
 
@@ -62,9 +65,9 @@ Choose an artifact for a self-hosted node deployment and follow the instructions
 
 Add the Wallarm filter to your Istio IngressGateway using the External Processing (`ext_proc`) filter.
 
-You can either create a new EnvoyFilter in the `istio-system` namespace (**recommended**) or modify your existing one.
+You can either create a new `EnvoyFilter` in the `istio-system` namespace (**recommended**) or modify your existing one.
 
-If you already have a gateway EnvoyFilter, merge the `HTTP_FILTER` and `CLUSTER` patches into it.
+If you already have a gateway `EnvoyFilter`, merge the `HTTP_FILTER` and `CLUSTER` patches into it.
 
 #### If your Wallarm Node is publicly reachable
 
@@ -190,15 +193,15 @@ If you already have a gateway EnvoyFilter, merge the `HTTP_FILTER` and `CLUSTER`
                         filename: /etc/ssl/certs/ca-certificates.crt
     ```
 
-* `request_body_mode: STREAMED` — may cause Envoy to use chunked transfer encoding for the backend. Ensure that your backend supports chunked decoding; otherwise, requests may fail.
+* `request_body_mode: STREAMED` and `response_body_mode: STREAMED` — may cause Envoy to use chunked transfer encoding for the backend. Ensure that your backend supports chunked decoding; otherwise, requests may fail.
     
-    Use `BUFFERED` or `BUFFERED_PARTIAL`, or ensure backend compatibility with chunked encoding if needed
+    Use `BUFFERED` or `BUFFERED_PARTIAL`, or ensure backend compatibility with chunked encoding if needed.
 * `failure_mode_allow` — defines the behavior if the Wallarm Node is unreachable:
 
     * `true`: fail-open (traffic continues without analysis)
     * `false`: fail-closed (traffic rejected with `500`)
-* `<WALLARM_NODE_FQDN>` — your Wallarm Node FQDN, without protocol or trailing slash
-* `port_value: 5080` — change if the Wallarm Node listens on another port
+* `<WALLARM_NODE_FQDN>` — your Wallarm Node FQDN, without protocol or trailing slash.
+* `port_value: 5080` — change if the Wallarm Node listens on another port.
 
 Apply the configuration:
 
@@ -358,13 +361,13 @@ kubectl apply -f <ENVOYFILTER_FILE_NAME>.yaml
 
     * `true`: fail-open (traffic continues without analysis)
     * `false`: fail-closed (traffic rejected with `500`)
-* `request_body_mode: STREAMED` — may cause Envoy to use chunked transfer encoding for the backend. Ensure that your backend supports chunked decoding; otherwise, requests may fail.
+* `request_body_mode: STREAMED` and `response_body_mode: STREAMED` — may cause Envoy to use chunked transfer encoding for the backend. Ensure that your backend supports chunked decoding; otherwise, requests may fail.
     
-    Use `BUFFERED` or `BUFFERED_PARTIAL`, or ensure backend compatibility with chunked encoding if needed
+    Use `BUFFERED` or `BUFFERED_PARTIAL`, or ensure backend compatibility with chunked encoding if needed.
 * `<HOST.DOMAIN.COM>` — the fully qualified domain name (FQDN) of your Wallarm Node, without protocol or trailing slash.
     
     This must be the same domain for which the SSL/TLS certificate was issued and which resolves internally to the Node’s service (e.g., through a CoreDNS rewrite).
-* `port_value: 5080` — change if the Wallarm Node listens on another port
+* `port_value: 5080` — change if the Wallarm Node listens on another port.
 
 Apply the configuration:
 
@@ -374,7 +377,7 @@ kubectl apply -f <ENVOYFILTER_FILE_NAME>.yaml
 
 ### 3. Optional: AWS kOps proxy protocol support
 
-For AWS kOps clusters, enable proper X-Forwarded-For propagation:
+For AWS kOps clusters, enable proper `X-Forwarded-For` propagation:
 
 ```
 kubectl patch svc istio-ingressgateway -n istio-system \
@@ -411,7 +414,7 @@ To test the functionality of the deployed filter, follow these steps:
 
 ## Advanced configuration options
 
-In addition to the basic EnvoyFilter examples described above (which apply Wallarm filtering to all Istio Ingress Gateway traffic), you can use the following alternative configurations to handle more specific use cases:
+In addition to the basic `EnvoyFilter` examples described above (which apply Wallarm filtering to all Istio Ingress Gateway traffic), you can use the following alternative configurations to handle more specific use cases:
 
 * Limit Wallarm inspection to selected domains or namespaces
 * Mirror intra-cluster traffic in addition to external ingress traffic
@@ -419,7 +422,7 @@ In addition to the basic EnvoyFilter examples described above (which apply Walla
 
 ### Filter only selected domains (external traffic only)
 
-If you prefer to manage a single EnvoyFilter in the `istio-system` namespace and prevent other namespaces from disabling inspection, use this configuration.
+If you prefer to manage a single `EnvoyFilter` in the `istio-system` namespace and prevent other namespaces from disabling inspection, use this configuration.
 
 It mirrors only specific domains defined by their SNI values:
 
@@ -484,7 +487,7 @@ spec:
             - endpoint:
                 address:
                   socket_address:
-                    address: <NATIVE_NODE_DOMAIN>
+                    address: <WALLARM_NODE_FQDN>
                     port_value: <PORT>
         name: wallarm_cluster
         transport_socket:
@@ -494,7 +497,7 @@ spec:
             common_tls_context:
               validation_context:
                 match_subject_alt_names:
-                - exact: <NATIVE_NODE_DOMAIN>
+                - exact: <WALLARM_NODE_FQDN>
                 trusted_ca:
                   filename: /etc/ssl/certs/ca-certificates.crt
         type: STRICT_DNS
@@ -502,7 +505,7 @@ spec:
 
 ### Filter selected domains (intra-cluster + external traffic)
 
-You can also deploy an EnvoyFilter inside each application namespace to inspect not only ingress but also service-to-service (sidecar) traffic.
+You can also deploy an `EnvoyFilter` inside each application namespace to inspect not only ingress but also service-to-service (sidecar) traffic.
 
 This setup supports Istio's internal mTLS and client-side mTLS:
 
@@ -556,7 +559,7 @@ spec:
             - endpoint:
                 address:
                   socket_address:
-                    address: <NATIVE_NODE_DOMAIN>
+                    address: <WALLARM_NODE_FQDN>
                     port_value: <PORT>
         name: wallarm_cluster
         transport_socket:
@@ -566,7 +569,7 @@ spec:
             common_tls_context:
               validation_context:
                 match_subject_alt_names:
-                - exact: <NATIVE_NODE_DOMAIN>
+                - exact: <WALLARM_NODE_FQDN>
                 trusted_ca:
                   filename: /etc/ssl/certs/ca-certificates.crt
         type: STRICT_DNS
@@ -602,7 +605,7 @@ This method uses `ExtProcPerRoute` configuration and is based on the `route.name
             port:
               number: 80
     ```
-1. Deploy a single EnvoyFilter in the `istio-system` namespace to mirror all ingress traffic and exclude selected routes based on their names.
+1. Deploy a single `EnvoyFilter` in the `istio-system` namespace to mirror all ingress traffic and exclude selected routes based on their names.
 
     In the following example, all traffic is mirrored except for `httpbin2` and `httpbin4`, which are explicitly excluded:
 
@@ -711,10 +714,6 @@ This method uses `ExtProcPerRoute` configuration and is based on the `route.name
                 disabled: true
     ```
 
-## If your Wallarm Node runs as `ClusterIP` (in-cluster)
-
-[If you deployed the Wallarm Node as a `ClusterIP` service] inside your Kubernetes cluster, use the following 
-
 ## Manual setup (standalone Envoy)
 
 If you are running Envoy outside Istio, insert the filter and cluster directly in your `envoy.yaml`:
@@ -767,7 +766,7 @@ If you are running Envoy outside Istio, insert the filter and cluster directly i
 
 To upgrade the filter:
 
-1. Re-apply your EnvoyFilter if schema changes are introduced:
+1. Re-apply your `EnvoyFilter` if schema changes are introduced:
 
     ```
     kubectl apply -f <UPDATED_ENVOYFILTER_FILE_NAME>.yaml
@@ -776,7 +775,7 @@ To upgrade the filter:
 1. Verify the new configuration:
 
     ```
-    istioctl pc listeners -n istio-system <ingress-pod> | grep ext_proc
+    istioctl pc listeners -n istio-system <INGRESS_POD> | grep ext_proc
     ```
 
 Filter upgrades may require a Wallarm node upgrade, especially for major version updates. See the [Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for the self-hosted Node release notes. Regular node updates are recommended to avoid deprecation and simplify future upgrades.
