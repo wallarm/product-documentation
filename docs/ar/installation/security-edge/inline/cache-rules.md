@@ -1,0 +1,1 @@
+--8<-- "latest-ar/installation/security-edge/inline/cache-rules.md"
