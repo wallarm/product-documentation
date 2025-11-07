@@ -20,7 +20,7 @@ Deploy the Native Node with Helm chart in the following cases:
 * When you deploy a Wallarm [connector](../nginx-native-node-internals.md#connectors_1) and require the node to be self-hosted. This is ideal if you are already using Kubernetes management platforms like OpenShift, Amazon EKS, Azure AKS, or Google GKE. The node is set up as a load balancer with a public IP for easy traffic routing.
 
     Use the Node in `connector-server` mode.
-* When you need an inline [gRPC-based external processing filter](../connectors/istio.md) for APIs managed by Istio. The node is set up as a load balancer with a public IP for easy traffic routing.
+* When you need a [gRPC-based external processing filter](../connectors/istio.md) for APIs managed by Istio. The node is set up either as a load balancer with a public IP or as a service inside your Kubernetes cluster.
     
     Use the Node in `envoy-external-filter` mode.
 * When you deploy a Wallarm connector for [Kong API Gateway](../connectors/kong-api-gateway.md). The node is deployed with the clusterIP type for internal traffic, without exposing a public IP.
@@ -41,12 +41,12 @@ The Kubernetes cluster for deploying the Native Node with the Helm chart must me
     * IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and [API specifications][api-spec-enforcement-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][ip-list-docs] countries, regions, or data centers
 
         --8<-- "../include/wallarm-cloud-ips.md"
-* If deploying with the `LoadBalancer` type, you need a domain and a trusted SSL/TLS certificate.
+* A domain and a trusted SSL/TLS certificate for the Native Node.
 * In addition to the above, you should have the **Administrator** role assigned in Wallarm Console.
 
 ## Limitations
 
-* When deploying the Wallarm service with the `LoadBalancer` type, a **trusted** SSL/TLS certificate is required for the Node instance domain. Self-signed certificates are not yet supported.
+* A **trusted** SSL/TLS certificate is required for the Node instance domain. Self-signed certificates are not yet supported.
 * [Custom blocking page and blocking code](../../admin-en/configuration-guides/configure-block-page-and-code.md) configurations are not yet supported.
 * [Rate limiting](../../user-guides/rules/rate-limiting.md) by the Wallarm rule is not supported.
 
@@ -217,7 +217,7 @@ helm repo update wallarm
         sudo chmod 644 /path/to/cert.pem /path/to/key.pem
         ```
 === "ClusterIP (envoy-external-filter)"
-    When deploying Wallarm as an [Istio connector service inside your Kubernetes cluster](../connectors/istio.md), the Native Node runs as an internal component (`ClusterIP` service type) without exposing a public IP.
+    When deploying Wallarm as an Istio connector service inside your Kubernetes cluster, the Native Node runs as an internal component (`ClusterIP` service type) without exposing a public IP.
 
     1. Define a DNS name that resolves to the Wallarm Node service inside your cluster.
     1. Obtain a **trusted** SSL/TLS certificate for that domain.
@@ -373,10 +373,10 @@ After deploying the node, the next step is to apply the Wallarm code to your API
     * [Amazon CloudFront](../connectors/aws-lambda.md#2-obtain-and-deploy-the-wallarm-lambdaedge-functions)
     * [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md#2-add-the-nodes-ssltls-certificate-to-the-policy-manager)
     * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly)
+    * [Envoy/Istio](../connectors/istio.md#2-configure-istio-envoy-to-forward-traffic-to-the-wallarm-node)
     * [IBM DataPower](../connectors/ibm-api-connect.md#2-obtain-and-apply-the-wallarm-policies-to-apis-in-ibm-api-connect)
     * [Azure API Management](../connectors/azure-api-management.md#2-create-named-values-in-azure)
     * [Kong API Gateway](../connectors/kong-api-gateway.md#2-obtain-and-deploy-the-wallarm-lua-plugin)
-    * [Istio](../connectors/istio.md)
 
 ## Upgrade
 

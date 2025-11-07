@@ -129,7 +129,7 @@ After deploying the node, the next step is to apply the Wallarm code to your API
     * [Amazon CloudFront](../connectors/aws-lambda.md#2-obtain-and-deploy-the-wallarm-lambdaedge-functions)
     * [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md#2-add-the-nodes-ssltls-certificate-to-the-policy-manager)
     * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly)
-    * [Envoy/Istio](../connectors/istio.md)
+    * [Envoy/Istio](../connectors/istio.md#2-configure-istio-envoy-to-forward-traffic-to-the-wallarm-node)
     * [IBM DataPower](../connectors/ibm-api-connect.md)
     * [Azure API Management](../connectors/azure-api-management.md)
 
