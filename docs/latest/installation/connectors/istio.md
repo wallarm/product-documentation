@@ -202,6 +202,9 @@ If you already have a gateway `EnvoyFilter`, merge the `HTTP_FILTER` and `CLUSTE
     * `false`: fail-closed (traffic rejected with `500`)
 * `<WALLARM_NODE_FQDN>` — your Wallarm Node FQDN, without protocol or trailing slash.
 * `port_value: 5080` — change if the Wallarm Node listens on another port.
+* The `connect_timeout` parameter defines how long Envoy waits to establish a connection with the Wallarm Node before considering it failed.
+    
+    The example value of `30s` works for most environments. However, under heavy load or network congestion, a long timeout may delay fail-open behavior and cause traffic to stall. In such cases, consider reducing the timeout — for example, to `10s` (the Istio default for TCP connections).
 
 Apply the configuration:
 
@@ -368,6 +371,9 @@ kubectl apply -f <ENVOYFILTER_FILE_NAME>.yaml
     
     This must be the same domain for which the SSL/TLS certificate was issued and which resolves internally to the Node’s service (e.g., through a CoreDNS rewrite).
 * `port_value: 5080` — change if the Wallarm Node listens on another port.
+* The `connect_timeout` parameter defines how long Envoy waits to establish a connection with the Wallarm Node before considering it failed.
+    
+    The example value of `30s` works for most environments. However, under heavy load or network congestion, a long timeout may delay fail-open behavior and cause traffic to stall. In such cases, consider reducing the timeout — for example, to `10s` (the Istio default for TCP connections).
 
 Apply the configuration:
 
