@@ -27,6 +27,10 @@ Wallarm is the only solution that unifies API discovery, risk management, real-t
 | [Credential Stuffing Detection](../about-wallarm/credential-stuffing.md) | No | Yes | No |
 | [API Specification Enforcement](../api-specification-enforcement/overview.md) | No | Yes | No |
 | [GraphQL security policies](../api-protection/graphql-rule.md) | No | Yes | No |
+| **API protocol support** | | | |
+| Legacy (SOAP, XML-RPC, WebDAV, WebForm) | Yes | Yes | No |
+| Mainstream (REST, GraphQL) | Yes | Yes | No |
+| Modern and streaming (gRPC, WebSocket) | Yes | Yes | No |
 | **Security posture** | | | |
 | [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) | No | Yes | No |
 | [Vulnerability assessment](../user-guides/vulnerabilities.md) | Yes | Yes | No |
@@ -112,6 +116,7 @@ The Security Edge Free Tier account allows:
 
     * [Vulnerability assessment](../user-guides/vulnerabilities.md)
     * [API Abuse Prevention](../api-abuse-prevention/overview.md)
+    * Limited to 3 users per company account
     * Telemetry portal of Security Edge
     * Multi-cloud Security Edge deployment
 

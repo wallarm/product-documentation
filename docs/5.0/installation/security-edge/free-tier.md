@@ -69,6 +69,7 @@ Some features are not available in the Free Tier, regardless of whether the quic
 
 * [Vulnerability assessment](../../user-guides/vulnerabilities.md)
 * [API Abuse Prevention](../../api-abuse-prevention/overview.md)
+* Limited to 3 users per company account
 * Telemetry portal of Security Edge
 * Deployment in Microsoft Azure
 * Multi-cloud and multi-region Security Edge Inline deployment
