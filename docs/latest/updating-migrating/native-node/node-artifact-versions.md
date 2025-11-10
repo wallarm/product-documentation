@@ -10,7 +10,14 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
-### 0.20.0 (2025-11-05)
+### 0.20.0 (2025-11-12)
+
+* Added Prometheus metrics support for the Postanalytics **wstore** component. The metrics are available by default at `http://localhost:9001` using the `tcp4` (IPv4-only) protocol.
+
+    You can change the default metrics host, port, and protocol by setting the following environment variables when deploying the Node:
+
+    * `WALLARM_WSTORE__METRICS__LISTEN_ADDRESS` — defines the host and port
+    * `WALLARM_WSTORE__METRICS__PROTOCOL` — defines the protocol
 
 * Added support for the [Amazon API Gateway Connector](../../installation/connectors/aws-api-gateway.md)
 * Removed support for the deprecated `http_inspector.real_ip_header` configuration parameter
@@ -22,6 +29,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
     * Fixed an issue where the Node raised an error when a JWT token was sent in the `Authorization: Bearer` header
     * Fixed invalid type error when editing automatically created rules for attacks detected in gRPC responses
     * Fixed a race condition in out-of-band connectors, resolving the `FlowIsMissingRequest`, `FlowIsMissingResponse`, and occasional duplicate ID errors
+    * Fixed the issue where the `verdict` field in `go-node` access logs was occasionally missing, incorrectly formatted, and not JSON-compatible
 
 ### 0.19.0 (2025-10-07)
 
@@ -144,7 +152,14 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
-### 0.20.0 (2025-11-05)
+### 0.20.0 (2025-11-12)
+
+* Added Prometheus metrics support for the Postanalytics **wstore** component. The metrics are available by default at `http://localhost:9001` using the `tcp4` (IPv4-only) protocol.
+
+    You can change the default metrics host, port, and protocol by setting the following in `values.yaml`:
+
+    * [`config.aggregation.metrics.listenAddress`](../../installation/native-node/helm-chart-conf.md#configaggregationmetricslistenaddress) — defines the host and port
+    * [`config.aggregation.metrics.protocol`](../../installation/native-node/helm-chart-conf.md#configaggregationmetricsprotocol) — defines the protocol
 
 * Added support for the [Amazon API Gateway Connector](../../installation/connectors/aws-api-gateway.md)
 * Improved Node initialization logs — added detailed information about component type, supported versions, error source, API endpoint, and Node UUID to simplify troubleshooting during the initialization stage
@@ -156,6 +171,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
     * Fixed the issue where the Node raised an error when a JWT token was sent in the `Authorization: Bearer` header
     * Fixed invalid type error when editing automatically created rules for attacks detected in gRPC responses
     * Fixed a race condition in out-of-band connectors, resolving the `FlowIsMissingRequest`, `FlowIsMissingResponse`, and occasional duplicate ID errors
+    * Fixed the issue where the `verdict` field in `go-node` access logs was occasionally missing, incorrectly formatted, and not JSON-compatible
 
 ### 0.19.0 (2025-10-07)
 
@@ -278,7 +294,14 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 [How to upgrade](docker-image.md)
 
-### 0.20.0 (2025-11-05)
+### 0.20.0 (2025-11-12)
+
+* Added Prometheus metrics support for the Postanalytics **wstore** component. The metrics are available by default at `http://localhost:9001` using the `tcp4` (IPv4-only) protocol.
+
+    You can change the default metrics host, port, and protocol by setting the following environment variables when deploying the Node:
+
+    * `WALLARM_WSTORE__METRICS__LISTEN_ADDRESS` — defines the host and port
+    * `WALLARM_WSTORE__METRICS__PROTOCOL` — defines the protocol
 
 * Added support for the [Amazon API Gateway Connector](../../installation/connectors/aws-api-gateway.md)
 * Removed support for the deprecated `http_inspector.real_ip_header` configuration parameter
@@ -290,6 +313,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
     * Fixed an issue where the Node raised an error when a JWT token was sent in the `Authorization: Bearer` header
     * Fixed invalid type error when editing automatically created rules for attacks detected in gRPC responses
     * Fixed a race condition in out-of-band connectors, resolving the `FlowIsMissingRequest`, `FlowIsMissingResponse`, and occasional duplicate ID errors
+    * Fixed the issue where the `verdict` field in `go-node` access logs was occasionally missing, incorrectly formatted, and not JSON-compatible
 
 ### 0.19.0 (2025-10-07)
 
