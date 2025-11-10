@@ -23,6 +23,7 @@ The Terraform configuration automatically deploys all AWS resources required for
 ### Wallarm Native Node in ECS
 
 Terraform deploys a [Wallarm Native Node][native-node] as an ECS service.  
+
 Key components include:
 
 * VPC integration – the Node runs in private subnets within a VPC that also contains public subnets for the [Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html) (ALB)
@@ -76,7 +77,7 @@ To proceed with the deployment, ensure that the following requirements are met:
 
 ### 1. Prepare a Wallarm token
 
-To install the node, you will need a token for registering the node in the Wallarm Cloud. To prepare a token:
+To install the Node, you will need a token for registering the Node in the Wallarm Cloud. To prepare a token:
 
 1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
 1. Find or create an API token with the `Node deployment/Deployment` usage type.
@@ -245,7 +246,9 @@ Go to the AWS Management Console and [create the following IAM policy](https://d
     terraform plan
     terraform apply
     ```
-1. Once your infrastructure is deployed, you will see the log groups artifacts created by Terraform (see the screenshot below). Copy the `api_gateway_log_group_arn` value. You will need it for the next step.
+1. Once your infrastructure is deployed, you will see the log groups artifacts created by Terraform (see the screenshot below). 
+
+    Copy the `api_gateway_log_group_arn` value. You will need it for the next step.
 
     ![Artifacts created by Terraform](../../images/waf-installation/gateways/amazon-api-gateway/terraform-deployment.png)
 
