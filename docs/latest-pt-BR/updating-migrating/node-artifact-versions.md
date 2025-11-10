@@ -4,7 +4,7 @@ Este documento lista as [versões de patch](versioning-policy.md#version-format)
 
 ## Instalador all-in-one
 
-O histórico de atualizações se aplica simultaneamente às versões x86_64 e ARM64 (beta) do [instalador all-in-one](../installation/nginx/all-in-one.md).
+O histórico de atualizações se aplica simultaneamente às versões x86_64 e ARM64 do [instalador all-in-one](../installation/nginx/all-in-one.md).
 
 [Como migrar de pacotes DEB/RPM](nginx-modules.md)
 

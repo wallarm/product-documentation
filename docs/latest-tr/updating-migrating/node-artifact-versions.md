@@ -6,7 +6,7 @@ Bu belge, [NGINX Wallarm Node](../installation/nginx-native-node-internals.md#ng
 
 Sürüm 4.10’dan itibaren Wallarm node’larının kurulumu ve yükseltilmesi **yalnızca** [hepsi-bir-arada yükleyici](../installation/nginx/all-in-one.md) ile gerçekleştirilir. Tekil Linux paketleriyle manuel yükseltme artık desteklenmemektedir.
 
-Hepsi-bir-arada yükleyici güncellemelerinin geçmişi, x86_64 ve ARM64 (beta) sürümleri için eşzamanlı olarak geçerlidir.
+Hepsi-bir-arada yükleyici güncellemelerinin geçmişi, x86_64 ve ARM64 sürümleri için eşzamanlı olarak geçerlidir.
 
 [DEB/RPM paketlerinden nasıl geçilir](nginx-modules.md)
 

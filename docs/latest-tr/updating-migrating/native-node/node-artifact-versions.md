@@ -6,7 +6,7 @@ Bu belge, çeşitli dağıtım biçimlerindeki [sürümleri](../versioning-polic
 
 Native Node için hepsi-bir-arada yükleyici, [TCP trafik aynası analizi](../../installation/oob/tcp-traffic-mirror/deployment.md) ve MuleSoft [Mule](../../installation/connectors/mulesoft.md) veya [Flex](../../installation/connectors/mulesoft-flex.md) Gateway, [Akamai](../../installation/connectors/akamai-edgeworkers.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Istio](../../installation/connectors/istio.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md) bağlayıcıları ile self-hosted node dağıtımı için kullanılır.
 
-Hepsi-bir-arada yükleyici güncellemelerinin geçmişi, x86_64 ve ARM64 (beta) sürümlerine eşzamanlı olarak uygulanır.
+Hepsi-bir-arada yükleyici güncellemelerinin geçmişi, x86_64 ve ARM64 sürümlerine eşzamanlı olarak uygulanır.
 
 [Nasıl yükseltilir](all-in-one.md)
 

@@ -1,7 +1,7 @@
 Wallarm suggests all-in-one installations for the following processors:
 
 * x86_64
-* ARM64 (beta)
+* ARM64
 
 To download all-in-one Wallarm installation script, execute the command:
 
@@ -9,7 +9,7 @@ To download all-in-one Wallarm installation script, execute the command:
     ```bash
     curl -O https://meganode.wallarm.com/6.7/wallarm-6.7.0.x86_64-glibc.sh
     ```
-=== "ARM64 version (beta)"
+=== "ARM64 version"
     ```bash
     curl -O https://meganode.wallarm.com/6.7/wallarm-6.7.0.aarch64-glibc.sh
     ```

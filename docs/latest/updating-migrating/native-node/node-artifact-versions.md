@@ -6,7 +6,7 @@ This document lists available [versions](../versioning-policy.md) of the [Native
 
 The all-in-one installer for the Native Node is used for [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
-History of all-in-one installer updates simultaneously applies to it's x86_64 and ARM64 (beta) versions.
+History of all-in-one installer updates simultaneously applies to it's x86_64 and ARM64 versions.
 
 [How to upgrade](all-in-one.md)
 

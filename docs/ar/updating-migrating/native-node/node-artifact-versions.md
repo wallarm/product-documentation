@@ -6,7 +6,7 @@ This document lists available versions of the [native Wallarm node](../../instal
 
 The all-in-one installer for the Native Node is used for [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) and self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), and [Cloudflare](../../installation/connectors/cloudflare.md) connectors.
 
-History of all-in-one installer updates simultaneously applies to it's x86_64 and ARM64 (beta) versions.
+History of all-in-one installer updates simultaneously applies to it's x86_64 and ARM64 versions.
 
 [How to upgrade](all-in-one.md)
 
