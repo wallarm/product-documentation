@@ -133,6 +133,12 @@ The current version can be found in `wallarm-main`/`wallarm-sp` → `bundle.json
 
 * Initial release
 
+## Amazon API Gateway
+
+### 1.0.0 (2025-11-11)
+
+* [Initial release](aws-api-gateway.md)
+
 ## Cloudflare
 
 [How to upgrade](cloudflare.md#upgrading-the-cloudflare-worker)
