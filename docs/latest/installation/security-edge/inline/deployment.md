@@ -126,6 +126,7 @@ To restrict your origins to trusted traffic only, allow Edge Node connections us
 
 You can specify multiple DNS zones, each with a different certificate issuance approach.
 
+<a name="caa-records-for-wallarm-se"></a>
 !!! info "CAA records"
     Some organizations use [CAA](https://letsencrypt.org/docs/caa/) DNS records to restrict which Certificate Authorities (CAs) are allowed to issue certificates for their domains.
 
