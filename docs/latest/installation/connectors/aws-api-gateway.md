@@ -306,7 +306,7 @@ See common issues and their corresponding troubleshooting solutions below:
 
 For troubleshooting, you can also review the following logs:
 
-* Native Node logs: `go-node.log`
+* Native Node logs: `/opt/wallarm/var/log/wallarm/go-node.log`
 * Lambda Logs: `/aws/lambda/wallarm-cw-resend-{random_name}`
 * API Gateway Logs: `/aws/apigateway/wallarm-api-discovery-{random_name}`
 * ECS service logs in CloudWatch
