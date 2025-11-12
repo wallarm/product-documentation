@@ -65,13 +65,7 @@ API Discovery uses a hybrid approach to conduct analysis locally and in the Clou
 
 ### Noise detection
 
-The API Discovery module bases noise detection on the **endpoint stability** - at least specific **number of requests** (default - 2) should be registered for the endpoint for it to be displayed by API Discovery AND and at least one of them must be outside the **timeframe** (default - 300s (5 minutes)).
-
-This settings aim to avoid showing API entries, that had no traffic or had a traffic for a short timeframe only - they are considered unstable. Even if the specific endpoint was requested huge amount of times, but just within a short timeframe, there’s no need to consider this one-time spike as stable API endpoint.
-
-![API Discovery - general settings - endpoint stability](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-stability.png)
-
-<!--on the two major traffic parameters:
+The API Discovery module bases noise detection on the two major traffic parameters:
 
 * **Endpoint stability** - at least specific **number of requests** should be registered for the endpoint for it to be displayed by API Discovery AND and at least one of them must be outside the **timeframe**.
 
