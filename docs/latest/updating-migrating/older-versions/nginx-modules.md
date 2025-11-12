@@ -258,15 +258,15 @@ Before full redirecting of the traffic to the new node, it is recommended to fir
         ```bash
         sudo apt remove wallarm-node nginx-module-wallarm
         ```
-    === "CentOS or Amazon Linux 2.0.2021x and lower"
+    === "CentOS"
         ```bash
         sudo yum remove wallarm-node nginx-module-wallarm
         ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    === "AlmaLinux, Rocky Linux or Oracle Linux"
         ```bash
         sudo yum remove wallarm-node nginx-module-wallarm
         ```
-    === "RHEL 8.x"
+    === "RHEL"
         ```bash
         sudo yum remove wallarm-node nginx-module-wallarm
         ```

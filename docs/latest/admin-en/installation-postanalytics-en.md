@@ -214,11 +214,11 @@ Once the configuration file changed, restart NGINX/NGINX Plus on the NGINX-Walla
     ```bash
     sudo systemctl restart nginx
     ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+=== "AlmaLinux, Rocky Linux or Oracle Linux"
     ```bash
     sudo systemctl restart nginx
     ```
-=== "RHEL 8.x"
+=== "RHEL"
     ```bash
     sudo systemctl restart nginx
     ```
@@ -326,11 +326,11 @@ To enable a secure SSL/TLS connection from the NGINX-Wallarm module to the posta
         ```bash
         sudo systemctl restart nginx
         ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    === "AlmaLinux, Rocky Linux or Oracle Linux"
         ```bash
         sudo systemctl restart nginx
         ```
-    === "RHEL 8.x"
+    === "RHEL"
         ```bash
         sudo systemctl restart nginx
         ```
@@ -374,11 +374,11 @@ To enable mutual authentication, where both the NGINX-Wallarm module and the pos
         ```bash
         sudo systemctl restart nginx
         ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    === "AlmaLinux, Rocky Linux or Oracle Linux"
         ```bash
         sudo systemctl restart nginx
         ```
-    === "RHEL 8.x"
+    === "RHEL"
         ```bash
         sudo systemctl restart nginx
         ```

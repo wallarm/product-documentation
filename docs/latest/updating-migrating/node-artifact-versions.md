@@ -19,6 +19,11 @@ new attack types in logging variables and search bars?
 
 ### 6.7.0 (2025-11-05)
 
+* Added support for Ubuntu 25.10 (Questing Quokka)
+* Added support for CentOS 10 Stream
+* Added support for Oracle Linux 10.x
+* Added support for NGINX mainline 1.29.2 and 1.29.3
+* Updated AlmaLinux 9 support to include the latest package updates
 * Introduced JA4 fingerprinting in the [NGINX node](../installation/nginx-native-node-internals.md#nginx-node)
 
     JA4 fingerprints help detect threats and malicious clients based on TLS handshake characteristics. JA4 fingerprints are used as an additional factor when deciding to block a request.
@@ -150,6 +155,7 @@ new attack types in logging variables and search bars?
 
 ### 6.7.0 (2025-11-05)
 
+* Updated Community Ingress NGINX Controller 1.11.8 support to align with the latest upstream updates
 * Introduced JA4 fingerprinting in the [NGINX node](../installation/nginx-native-node-internals.md#nginx-node)
 
     JA4 fingerprints help detect threats and malicious clients based on TLS handshake characteristics. JA4 fingerprints are used as an additional factor when deciding to block a request.

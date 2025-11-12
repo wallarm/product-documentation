@@ -34,11 +34,11 @@ Once the configuration file changed, restart NGINX/NGINX Plus on the NGINX-Walla
     ```bash
     sudo systemctl restart nginx
     ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+=== "AlmaLinux, Rocky Linux or Oracle Linux"
     ```bash
     sudo systemctl restart nginx
     ```
-=== "RHEL 8.x"
+=== "RHEL"
     ```bash
     sudo systemctl restart nginx
     ```

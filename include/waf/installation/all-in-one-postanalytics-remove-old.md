@@ -17,11 +17,11 @@
         ```bash
         sudo yum remove wallarm-node-tarantool
         ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    === "AlmaLinux, Rocky Linux or Oracle Linux"
         ```bash
         sudo yum remove wallarm-node-tarantool
         ```
-    === "RHEL 8.x"
+    === "RHEL"
         ```bash
         sudo yum remove wallarm-node-tarantool
         ```
