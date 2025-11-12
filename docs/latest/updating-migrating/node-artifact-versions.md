@@ -172,7 +172,7 @@ new attack types in logging variables and search bars?
 
     * [`controller.wallarm.wcliPostanalytics.metrics.enabled : true`](../admin-en/configure-kubernetes-en.md#controllerwallarmwclipostanalyticsmetricsenabled)
     * [`controller.wallarm.wcliPostanalytics.metrics.port : 9003`](../admin-en/configure-kubernetes-en.md#controllerwallarmwclipostanalyticsmetricsport)
-    * [`controller.wallarm.wcliPostanalytics.metrics.host : ":9003"`](../admin-en/configure-kubernetes-en.md#controllerwallarmwclipostanalyticsmetrichost)
+    * [`controller.wallarm.wcliPostanalytics.metrics.host : ":9003"`](../admin-en/configure-kubernetes-en.md#controllerwallarmwclipostanalyticsmetricshost)
 
 * Switched to native HTTP readiness and liveness probes for the **wstore** component
 * Fixed the [CVE-2025-58188](https://www.cve.org/CVERecord?id=CVE-2025-58188) vulnerability
