@@ -1,5 +1,11 @@
 # Shadow, Orphan, Zombie API <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
+!!! warning "Feature availability"
+    In the latest versions of API Discovery, this feature is under reconstruction and may be temporarily unavailable.
+
+!!! warning "Feature availability"
+    In the latest versions of API Discovery, this feature is under reconstruction and may be temporarily unavailable.
+
 The [API Discovery](overview.md) module automatically identifies shadow, orphan and zombie APIs by comparing your uploaded specification to the live traffic.
 
 |Rogue API type | What is it? |
