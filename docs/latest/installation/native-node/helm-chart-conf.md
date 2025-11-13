@@ -89,6 +89,9 @@ config:
   aggregation:
     serviceAddress: "0.0.0.0:3313"
     serviceProtocol: "tcp4"
+    metrics:
+      listenAddress: "127.0.0.1:9001"
+      protocol: "tcp4"
 
 processing:
   service:
@@ -474,6 +477,28 @@ Possible values:
 * `tcp` - dual-stack mode (listens on both IPv4 and IPv6)
 * `tcp4` - IPv4 only
 * `tcp6` - IPv6 only
+
+**Default value**: `"tcp4"`.
+
+### config.aggregation.metrics.listenAddress
+
+Specifies the host and port on which **wstore** exposes Prometheus metrics.
+
+Supported from the release 0.20.0 onwards.
+
+**Default value:** `"127.0.0.1:9001"`
+
+### config.aggregation.metrics.protocol
+
+Specifies the protocol family that **wstore** uses to expose the Prometheus metrics endpoint.
+
+Supported from the release 0.20.0 onwards.
+
+Possible values:
+
+* `"tcp"` - dual-stack mode (listens on both IPv4 and IPv6)
+* `"tcp4"` - IPv4 only
+* `"tcp6"` - IPv6 only
 
 **Default value**: `"tcp4"`.
 
