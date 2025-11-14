@@ -166,7 +166,7 @@ Specify the public domains, ports and subdomains that will direct traffic to the
     * [Origin](#2-origins) where the Wallarm Node will forward the filtered traffic (if no other location-specific settings are defined). The location's path is automatically appended to the origin.
     * (Optionally) Wallarm application.
     * Filtration mode.
-    * Traffic type (select gRPC if the location uses gRPC traffic).
+    * Traffic type (gRPC, GraphQL, WebSocket, or GraphQL (WebSocket)).
 
 ![!](../../../images/waf-installation/security-edge/inline/hosts.png)
 
@@ -177,7 +177,7 @@ For specific **locations** within hosts, you can further customize:
 * Origin. The path defined in the location will automatically append to the origin.
 * Wallarm application.
 * Filtration mode.
-* Traffic type (select gRPC if the location uses gRPC traffic).
+* Traffic type (gRPC, GraphQL, WebSocket, or GraphQL (WebSocket)).
 * [Access control list (ACL)](access-control-lists.md).
 * [Cache rules](cache-rules.md).
 * [Location NGINX directives](nginx-overrides.md#location-level-directives). Defaults follow standard NGINX values.
