@@ -9,5 +9,10 @@ Speed of request processing per minute in bytes * 15 * 2
 For example, if a filtering node is handling at peak 50 Mbps of end user requests, the required Tarantool database memory consumption can be estimated as the following:
 
 ```
-50 Mbps / 8 (bits in a byte) * 60 (seconds in a minute) * 15 * 2 = 11,250 MB (or ~ 11 GB)
+50 Mbps
+÷ 8 (bits in a byte)
+× 60 (seconds in a minute)
+× 15
+× 2
+= 11,250 MB (~11 GB)
 ```

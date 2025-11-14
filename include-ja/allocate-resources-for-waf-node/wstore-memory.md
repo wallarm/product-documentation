@@ -9,5 +9,10 @@ Speed of request processing per minute in bytes * 15 * 2
 例えば、フィルタリングノードがピーク時にエンドユーザーリクエストを50 Mbpsで処理している場合、必要なwstoreデータベースのメモリ消費量は次のように見積もることができます:
 
 ```
-50 Mbps / 8 (bits in a byte) * 60 (seconds in a minute) * 15 * 2 = 11,250 MB (or ~ 11 GB)
+50 Mbps
+÷ 8 (bits in a byte)
+× 60 (seconds in a minute)
+× 15
+× 2
+= 11,250 MB (~11 GB)
 ```
