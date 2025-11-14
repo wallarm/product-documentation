@@ -112,6 +112,32 @@ When subdomain discovery is enabled in your configuration (**Scan configuration*
 
     Note that global option has priority - when disabled, subdomains are not searched anywhere. When globally enabled, per-domain options allow making exceptions.
 
+### RPS limit
+
+To avoid overloading servers, you can set how many requests can API Attack Surface Management send per time when scanning your domains. The requests per second (RPS) limits can be set for:
+
+* **All domains combined**: at any moment during the scan, AASM will send no more than 100 requests per second across all resources.
+* **Each domain separately**: AASM will not exceed the RPS value for each domain (and its subdomains), for example, if set to 100 RPS:
+
+    * `domain-a.com` (and its subdomains) are scanned at up to 100 RPS
+    * `domain-b.com` (and its subdomains) are scanned at up to 100 RPS
+    * If `sub.domain-a.com` and `sub.domain-b.com` resolve to the same IP address, that IP could receive up to 200 RPS total
+
+* **Each IP address**: AASM will not exceed the RPS value for each IP address. Helps preventing overloading a host when multiple subdomains resolve to the same IP address, for example, if set to 100 RPS: 
+
+    * If sub.domain-a.com and sub.domain-b.com resoles to the same IP address, this IP will be scanned with a rate not exceeding 100 RPS.
+
+To set AASM's RPS limit:
+
+1. Open Wallarm Console → **API Attack Surface** → **Configure** → **Scan configuration**.
+1. Select **RPS limit**. Once selected, apply options are displayed.
+1. Select to what to apply the limit. Save the changes.
+
+![AASM - configuring RPS limits](../images/api-attack-surface/aasm-rps-limits.png)
+
+!!! info "Scan duration"
+    Enforcing a rate limit increases the overall scan duration.
+
 ## Auto rescan
 
 When auto rescan is enabled, previously added domains are automatically re-scanned once every 7 days - new hosts are added automatically, previously listed but not found during re-scan are staying in the list.
