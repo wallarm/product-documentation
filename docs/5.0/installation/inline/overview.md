@@ -28,8 +28,8 @@ When deploying Wallarm nodes on public clouds like AWS or GCP for production env
 When it comes to deploying Wallarm in-line, there are the following common models to consider:
 
 * Wallarm Security Edge
-* Selh-hosted node deployment on a compute instance
-* Selh-hosted node deployment on Kubernetes
+* Self-hosted node deployment on a compute instance
+* Self-hosted node deployment on Kubernetes
 
 You can choose the deployment model and method based on your infrastructure specifics. If you need assistance in choosing the right deployment model and method, please feel free to contact our [sales team](mailto:sales@wallarm.com) and provide them with additional information about your infrastructure for tailored guidance.
 
