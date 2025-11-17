@@ -254,7 +254,8 @@ nav:
     - Azion Edge: installation/connectors/azion-edge.md
     - CloudFront: installation/connectors/aws-lambda.md
     - Cloudflare: installation/connectors/cloudflare.md
-    - Kong API Gateway: installation/connectors/kong-api-gateway.md
+    - Standalone Kong API Gateway: installation/connectors/kong-api-gateway.md
+    - Kong Ingress Controller: installation/connectors/kong-ingress-controller.md
     - Istio: installation/connectors/istio.md
     - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
     - Fastly: installation/connectors/fastly.md
