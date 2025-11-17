@@ -17,6 +17,10 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.7.1 (2025-11-17)
+
+* Fixed `'error: no error'` when processing gRPC/WebSocket response attacks
+
 ### 6.7.0 (2025-11-05)
 
 * Added support for Ubuntu 25.10 (Questing Quokka)
@@ -153,6 +157,11 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](ingress-controller.md)
 
+### 6.7.1 (2025-11-17)
+
+* Fixed YAML indentation issue causing Helm deployment to fail when postanalytics was configured as a DaemonSet
+* Fixed `'error: no error'` when processing gRPC/WebSocket response attacks
+
 ### 6.7.0 (2025-11-05)
 
 * Updated Community Ingress NGINX Controller 1.11.8 support to align with the latest upstream updates
@@ -175,7 +184,11 @@ new attack types in logging variables and search bars?
     * [`controller.wallarm.wcliPostanalytics.metrics.host : ":9003"`](../admin-en/configure-kubernetes-en.md#controllerwallarmwclipostanalyticsmetricshost)
 
 * Switched to native HTTP readiness and liveness probes for the **wstore** component
-* Fixed the [CVE-2025-58188](https://www.cve.org/CVERecord?id=CVE-2025-58188) vulnerability
+* Fixed the following vulnerabilities:
+
+    * [CVE-2025-58187](https://nvd.nist.gov/vuln/detail/CVE-2025-58187)
+    * [CVE-2025-58188](https://www.cve.org/CVERecord?id=CVE-2025-58188)
+    * [CVE-2025-31498](https://nvd.nist.gov/vuln/detail/CVE-2025-31498)
 * Fixed the issue where the Node raised an error when a JWT token was sent in the `Authorization: Bearer` header
 * Fixed invalid type error when editing automatically created rules for attacks detected in gRPC responses
 
@@ -298,6 +311,10 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.7.1 (2025-11-17)
+
+* Fixed `'error: no error'` when processing gRPC/WebSocket response attacks
+
 ### 6.7.0 (2025-11-05)
 
 * Introduced JA4 fingerprinting in the [NGINX node](../installation/nginx-native-node-internals.md#nginx-node)
@@ -414,6 +431,10 @@ new attack types in logging variables and search bars?
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.7.1 (2025-11-17)
+
+* Fixed `'error: no error'` when processing gRPC/WebSocket response attacks
 
 ### 6.7.0 (2025-11-05)
 
@@ -551,6 +572,25 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
+### 6.7.1 (2025-11-17)
+
+* Introduced JA4 fingerprinting in the [NGINX node](../installation/nginx-native-node-internals.md#nginx-node)
+
+    JA4 fingerprints help detect threats and malicious clients based on TLS handshake characteristics. JA4 fingerprints are used as an additional factor when deciding to block a request.
+
+    The feature is disabled by default. To enable it, add the following [NGINX directive](../admin-en/configure-parameters-en.md#wallarm_fingerprint) inside the `http` or `server` block:
+    
+    ```
+    wallarm_fingerprint on;
+    ```
+    
+* Introduced the `wallarm_fingerprint_ja4_raw` and `wallarm_fingerprint_ja4` variables to [configure extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node) when JA4 fingerprinting is enabled
+* Improved Node initialization logs — added detailed information about component type, supported versions, error source, API endpoint, and Node UUID to simplify troubleshooting during the initialization stage
+* Fixed the [CVE-2025-58188](https://www.cve.org/CVERecord?id=CVE-2025-58188) vulnerability
+* Fixed the issue where the Node raised an error when a JWT token was sent in the `Authorization: Bearer` header
+* Fixed invalid type error when editing automatically created rules for attacks detected in gRPC responses
+* Fixed `'error: no error'` when processing gRPC/WebSocket response attacks
+
 ### 6.6.1 (2025-10-16)
 
 * Introduced support for OpenAPI 3.1 in the [API Specification Enforcement](../api-specification-enforcement/overview.md) feature — you can now upload specifications in version 3.1 format to compare traffic against them, identify mismatches, and mitigate related security risks
@@ -634,6 +674,25 @@ new attack types in logging variables and search bars?
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-7-1-20251114-111054 (2025-11-17)
+
+* Introduced JA4 fingerprinting in the [NGINX node](../installation/nginx-native-node-internals.md#nginx-node)
+
+    JA4 fingerprints help detect threats and malicious clients based on TLS handshake characteristics. JA4 fingerprints are used as an additional factor when deciding to block a request.
+
+    The feature is disabled by default. To enable it, add the following [NGINX directive](../admin-en/configure-parameters-en.md#wallarm_fingerprint) inside the `http` or `server` block:
+    
+    ```
+    wallarm_fingerprint on;
+    ```
+    
+* Introduced the `wallarm_fingerprint_ja4_raw` and `wallarm_fingerprint_ja4` variables to [configure extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node) when JA4 fingerprinting is enabled
+* Improved Node initialization logs — added detailed information about component type, supported versions, error source, API endpoint, and Node UUID to simplify troubleshooting during the initialization stage
+* Fixed the [CVE-2025-58188](https://www.cve.org/CVERecord?id=CVE-2025-58188) vulnerability
+* Fixed the issue where the Node raised an error when a JWT token was sent in the `Authorization: Bearer` header
+* Fixed invalid type error when editing automatically created rules for attacks detected in gRPC responses
+* Fixed `'error: no error'` when processing gRPC/WebSocket response attacks
 
 ### wallarm-node-6-6-1-20251015-165327 (2025-10-16)
 
