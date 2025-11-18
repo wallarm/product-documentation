@@ -256,9 +256,15 @@ The Native Node works with the following platforms with no limitations:
             <p>Deploy Wallarm to secure traffic running via Cloudflare</p>
         </a>
 
-        <a class="do-card" href="../../installation/connectors/kong-api-gateway/">
+        <a class="do-card" href="../../installation/connectors/standalone-kong-api-gateway/">
             <img class="non-zoomable" src="../../images/platform-icons/kong-new.svg" />
-            <h3>Kong API Gateway</h3>
+            <h3>Standalone Kong API Gateway</h3>
+            <p>Deploy Wallarm to secure APIs managed by standalone Kong API Gateway</p>
+        </a>
+
+        <a class="do-card" href="../../installation/connectors/kong-ingress-controller/">
+            <img class="non-zoomable" src="../../images/platform-icons/kong-new.svg" />
+            <h3>Kong Ingress Controller</h3>
             <p>Deploy Wallarm to secure APIs managed by Kong Ingress Controller</p>
         </a>
 

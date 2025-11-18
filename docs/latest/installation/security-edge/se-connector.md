@@ -86,6 +86,7 @@ After deploying the Edge Node, you will need to inject Wallarm code into your pl
     * [Akamai](../connectors/akamai-edgeworkers.md#2-obtain-the-wallarm-code-bundle-and-create-edgeworkers)    
     * [CloudFront](../connectors/aws-lambda.md#2-obtain-and-deploy-the-wallarm-lambdaedge-functions)
     * [Cloudflare](../connectors/cloudflare.md#2-obtain-and-deploy-the-wallarm-worker-code)
+    * [Standalone Kong API Gateway](../connectors/standalone-kong-api-gateway.md#2-prepare-the-wallarm-lua-plugin)
     * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly)
     * [IBM DataPower](../connectors/ibm-api-connect.md#2-obtain-and-apply-the-wallarm-policies-to-apis-in-ibm-api-connect)
     * [Azure API Management](../connectors/azure-api-management.md#2-create-named-values-in-azure)

@@ -777,19 +777,6 @@
 /pt-br/admin-en/monitoring/* /pt-br/admin-en/configure-statistics-service/
 /ja/admin-en/monitoring/* /ja/admin-en/configure-statistics-service/
 
-/5.x/installation/kubernetes/kong-ingress-controller/* /5.x/installation/connectors/kong-api-gateway/
-/5.x/installation/inline/kubernetes/kong-ingress-controller/* /5.x/installation/connectors/kong-api-gateway/
-/installation/kubernetes/kong-ingress-controller/* /installation/connectors/kong-api-gateway/
-/installation/inline/kubernetes/kong-ingress-controller/* /installation/connectors/kong-api-gateway/
-/ar/installation/kubernetes/kong-ingress-controller/* /ar/installation/connectors/kong-api-gateway/
-/ar/installation/inline/kubernetes/kong-ingress-controller/* /ar/installation/connectors/kong-api-gateway/
-/tr/installation/kubernetes/kong-ingress-controller/* /tr/installation/connectors/kong-api-gateway/
-/tr/installation/inline/kubernetes/kong-ingress-controller/* /tr/installation/connectors/kong-api-gateway/
-/ja/installation/kubernetes/kong-ingress-controller/* /ja/installation/connectors/kong-api-gateway/
-/ja/installation/inline/kubernetes/kong-ingress-controller/* /ja/installation/connectors/kong-api-gateway/
-/pt-br/installation/kubernetes/kong-ingress-controller/* /pt-br/installation/connectors/kong-api-gateway/
-/pt-br/installation/inline/kubernetes/kong-ingress-controller/* /pt-br/installation/connectors/kong-api-gateway/
-
 /admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/ /installation/multi-tenant/overview/
 /admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/ /installation/multi-tenant/overview/
 /5.x/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/ /5.x/installation/multi-tenant/overview/
@@ -910,3 +897,5 @@
 /4.10/api-sessions/ /4.10
 /4.10/news/ /4.10
 /4.10/api-attack-surface/ /4.10
+
+/installation/connectors/kong-api-gateway/ /installation/connectors/kong-ingress-controller/

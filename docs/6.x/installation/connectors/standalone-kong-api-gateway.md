@@ -6,4 +6,4 @@
 [available-filtration-modes]:       ../../admin-en/configure-wallarm-mode.md#available-filtration-modes
 [ui-filtration-mode]:              ../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console
 
---8<-- "latest/installation/connectors/kong-api-gateway.md"
+--8<-- "latest/installation/connectors/standalone-kong-api-gateway.md"

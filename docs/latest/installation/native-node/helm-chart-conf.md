@@ -486,7 +486,7 @@ Wallarm service type. Can be:
     This is suitable for [connectors](../nginx-native-node-internals.md#connectors_1).
 * `ClusterIP` for internal traffic, without exposing a public IP.
 
-    This is suitable for [Kong API Gateway](../connectors/kong-api-gateway.md) connectors.
+    This is suitable for [Kong Ingress Controller](../connectors/kong-ingress-controller.md) connectors.
 
 Default: `ClusterIP`.
 
