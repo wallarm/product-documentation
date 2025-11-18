@@ -149,9 +149,9 @@ The current version can be found in `wallarm-main`/`wallarm-sp` → `bundle.json
 
 * Initial release
 
-## Kong API Gateway
+## Kong Ingress Controller
 
-[How to upgrade](kong-api-gateway.md#upgrading-the-wallarm-lua-plugin)
+[How to upgrade](kong-ingress-controller.md#upgrading-the-wallarm-lua-plugin)
 
 ### 1.0.0 (2024-09-13)
 

@@ -1,31 +1,21 @@
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
-[custom-blocking-page-docs]:        ../../admin-en/configuration-guides/configure-block-page-and-code.md
-[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[multitenancy-overview]:            ../multi-tenant/overview.md
-[applications-docs]:                ../../user-guides/settings/applications.md
-[available-filtration-modes]:       ../../admin-en/configure-wallarm-mode.md#available-filtration-modes
-[ui-filtration-mode]:              ../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console
-
 # Wallarm Connector for Kong API Gateway
 
-To secure APIs managed by a standalone [Kong API Gateway](https://docs.konghq.com/gateway/latest/) running in Docker, Wallarm provides a connector implemented as a Lua plugin.
+To secure APIs managed by a standalone [Kong API Gateway](https://docs.konghq.com/gateway/latest/), Wallarm provides a connector implemented as a Lua plugin.
 
-By deploying Kong Gateway in Docker and integrating it with the Wallarm filtering node, all incoming requests are analyzed in real time, allowing Wallarm to detect and mitigate malicious traffic before it reaches your services.
+This document describes how to install and configure the Wallarm connector using a Docker-based setup. If your Kong environment is deployed in another way (e.g., as a system package or standalone binary), you may adapt the same steps accordingly.
 
-The Wallarm connector for Kong API Gateway supports only [synchronous (in-line)](../inline/overview.md) mode.
+The Wallarm connector for standalone Kong API Gateway supports both [synchronous (in-line)](../inline/overview.md) and [asynchronous (out‑of‑band)](../oob/overview.md) traffic analysis.
 
 ## Use cases
 
-This solution is recommended for securing APIs managed by a **standalone Kong API Gateway** running in Docker.
+This solution is recommended for securing APIs managed by a **standalone Kong API Gateway**.
 
 It is suitable for environments where Kong is not deployed through Kubernetes (i.e., no Kong Ingress Controller is used). For this case, you can use the connector for the [Kong Ingress Controller](kong-ingress-controller.md).
 
 ## Limitations
 
-This setup allows fine-tuning Wallarm only via the Wallarm Console UI. Some Wallarm features that require file-based configuration are not supported in this implementation, such as:
-
-* [Application configuration][applications-docs]
-* [Custom blocking page and code setup][custom-blocking-page-docs]
+* This setup allows fine-tuning Wallarm only via the Wallarm Console UI.
+* [Custom blocking page and code setup][custom-blocking-page-docs] is not supported in this implementation as it requires file-based configuration.
 
 ## Requirements
 
@@ -130,7 +120,15 @@ Once Kong is running with the Wallarm plugin included, enable it for one or more
       }
     }
     ```
-1. Replace the `<WALLARM_NODE_URL>` value with the HTTPS URL of your [Wallarm Node](#1-deploy-a-wallarm-native-node).
+
+    Available configuration parameters:
+
+    | Parameter | Description |
+    | --------- | ----------- |
+    | `config.blocking` | Set to `true` for [synchronous (in-line)](../inline/overview.md) mode or to `false` for [asynchronous (out‑of‑band)](../oob/overview.md) mode. | 
+    | `config.wallarm_node_address` | HTTPS URL of your [Wallarm Node](#1-deploy-a-wallarm-native-node). |
+    | `config.timeout_ms` | The maximum time (in milliseconds) the plugin waits for a response from the Wallarm Node. If the timeout is exceeded, the request is forwarded without Wallarm decision and the error is logged. |
+
 1. Attach the plugin to an existing service by its ID or name using [Kong Admin API](https://developer.konghq.com/api/gateway/admin-ee/):
 
     ```bash
@@ -163,7 +161,7 @@ To test the functionality of the deployed connector, follow these steps:
 1. Send the request with the test [Path Traversal][ptrav-attack-docs] attack to your API Gateway:
 
     ```
-    curl http://<KONG_API_GATEWAY>/etc/passwd
+    curl http://localhost:8000/etc/passwd
     ```
 1. Open Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks) and make sure the attack is displayed in the list.
     
@@ -298,4 +296,9 @@ The following example shows how to quickly start Kong API Gateway with the Walla
         -H "Content-Type: application/json" \
         -d "@enable-plugin.json"
     ```
-1. [Test the setup](#testing).
+1. Test the setup by sending a test [Path Traversal][ptrav-attack-docs] attack through Kong:
+
+    ```bash
+    curl -H "Host: test.com" \
+        http://localhost:8000/test/etc/passwd
+    ```

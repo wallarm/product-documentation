@@ -130,7 +130,7 @@ To test the functionality of the deployed connector, follow these steps:
 
 ## Upgrading the Wallarm Lua plugin
 
-To upgrade the deployed Wallarm Lua plugin to a [newer version](code-bundle-inventory.md#kong-api-gateway):
+To upgrade the deployed Wallarm Lua plugin to a [newer version](code-bundle-inventory.md#kong-ingress-controller):
 
 1. Contact support@wallarm.com to obtain the updated Wallarm Lua plugin code for your Kong Ingress Controller.
 1. Update the ConfigMap with the plugin code:
