@@ -126,6 +126,7 @@ After deploying the node, the next step is to apply the Wallarm code to your API
     * [Apigee](../connectors/apigee.md#2-obtain-the-connector-code-bundle)
     * [Akamai](../connectors/akamai-edgeworkers.md#2-obtain-the-wallarm-code-bundle-and-create-edgeworkers)
     * [Cloudflare](../connectors/cloudflare.md#2-obtain-and-deploy-the-wallarm-worker-code)
+    * [Standalone Kong API Gateway](../connectors/standalone-kong-api-gateway.md#2-prepare-the-wallarm-lua-plugin)
     * [Amazon CloudFront](../connectors/aws-lambda.md#2-obtain-and-deploy-the-wallarm-lambdaedge-functions)
     * [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md#2-add-the-nodes-ssltls-certificate-to-the-policy-manager)
     * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly)

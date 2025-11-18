@@ -23,7 +23,7 @@ Deploy the Native Node with Helm chart in the following cases:
 * When you need a [gRPC-based external processing filter](../connectors/istio.md) for APIs managed by Istio. The node is set up either as a load balancer with a public IP or as a service inside your Kubernetes cluster.
     
     Use the Node in `envoy-external-filter` mode.
-* When you deploy a Wallarm connector for [Kong API Gateway](../connectors/kong-api-gateway.md). The node is deployed with the clusterIP type for internal traffic, without exposing a public IP.
+* When you deploy a Wallarm connector for [Kong Ingress Controller](../connectors/kong-ingress-controller.md). The node is deployed with the clusterIP type for internal traffic, without exposing a public IP.
     
     Use the Node in `connector-server` mode.
 
@@ -132,7 +132,7 @@ helm repo update wallarm
                 type: LoadBalancer
             ```
 === "ClusterIP (connector-server)"
-    When deploying Wallarm as a connector for [Kong API Gateway connector](../connectors/kong-api-gateway.md), you deploy the Native Node for this connector with the `ClusterIP` type for internal traffic, without exposing a public IP.
+    When deploying Wallarm as a connector for [Kong Ingress Controller connector](../connectors/kong-ingress-controller.md), you deploy the Native Node for this connector with the `ClusterIP` type for internal traffic, without exposing a public IP.
 
     Create the `values.yaml` configuration file with the following minimal configuration:
 
@@ -376,7 +376,8 @@ After deploying the node, the next step is to apply the Wallarm code to your API
     * [Envoy/Istio](../connectors/istio.md#2-configure-istio-envoy-to-forward-traffic-to-the-wallarm-node)
     * [IBM DataPower](../connectors/ibm-api-connect.md#2-obtain-and-apply-the-wallarm-policies-to-apis-in-ibm-api-connect)
     * [Azure API Management](../connectors/azure-api-management.md#2-create-named-values-in-azure)
-    * [Kong API Gateway](../connectors/kong-api-gateway.md#2-obtain-and-deploy-the-wallarm-lua-plugin)
+    * [Standalone Kong API Gateway](../connectors/standalone-kong-api-gateway.md#2-prepare-the-wallarm-lua-plugin)
+    * [Kong Ingress Controller](../connectors/kong-ingress-controller.md#2-obtain-and-deploy-the-wallarm-lua-plugin)
 
 ## Upgrade
 
