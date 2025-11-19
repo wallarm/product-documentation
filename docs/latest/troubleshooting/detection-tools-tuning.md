@@ -16,8 +16,8 @@ Wallarm is a set of protection tools. If they work not as expected, you can alwa
 ## Generic approach
 
 1. **Understand** Wallarm's [attack handling process](#attack-handling-process): know the set of tools and how they interact when used simultaneously.
-1. **Find request** that Wallarm did something to (marked as attack or blocked).
-1. **Locate the tool** that performed the action.
+1. **Find the desired request** that Wallarm processed (e.g., marked as attack or blocked).
+1. **Identify the tool** that performed the action.
 1. **Tune** the tool.
 
 ## Attack handling process
@@ -55,6 +55,6 @@ Wallarm is a set of protection tools. If they work not as expected, you can alwa
 Note that:
 
 * Rules/mitigation controls of the same type obey [inheritance](#attack-handling-process). Sometimes you do not need to edit the main rule, just create its modification for some child branch. And vise versa - it makes sense to create more generic rules sometimes to cover more or all branches.
-* Use disabling instead of deleting - later you may wand to re-activate adjusted version.
-* Wallarm provides [default controls](../about-wallarm/mitigation-controls-overview.md#default-controls) (only monitoring) - do not forget to adjust them.
+* Disable rules instead of deleting them. You can adjust and re-activate them later if you want.
+* Wallarm provides [default controls](../about-wallarm/mitigation-controls-overview.md#default-controls) in monitoring mode. Make sure to adjust them.
 * [Filtration modes](../admin-en/configure-wallarm-mode.md) other than `off` affect only input validation attacks, but `off` turns off **everything** for the selected scope.
