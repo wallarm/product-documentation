@@ -159,7 +159,7 @@ You automatically receive notifications to your personal email (the one you use 
 
 The notifications are enabled by default. You can unsubscribe at any moment and configure any additional emails to get all or some of these notifications in Wallarm Console → **Configuration** → **Integrations** → **Email and messengers** → **Personal email** (you email) or **Email report** (extra emails) as described [here][link-integrations-email].
 
-Additionally, the notifications about security issues detected by [all methods](../about-wallarm/detecting-vulnerabilities.md#detection-methods), including AASM. This includes:
+Additionally, the notifications about security issues detected by [all methods](../about-wallarm/detecting-vulnerabilities.md#detection-methods), including AASM, can be received. This includes:
 
 * Email notifications
 * Instant notifications
