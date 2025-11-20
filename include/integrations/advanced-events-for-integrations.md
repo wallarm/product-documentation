@@ -9,7 +9,7 @@
     * [Application](../../../user-guides/settings/applications.md) changes (newly created, deleted, name change)
     * Errors during regular update of specifications used for [rogue API detection](../../../api-discovery/rogue-api.md#step-1-upload-specification) or [API specification enforcement](../../../api-specification-enforcement/setup.md#step-1-upload-specification)
 * [Rules](../../../user-guides/rules/rules.md) and [triggers](../../../user-guides/triggers/triggers.md) changed (creating, updating, or deleting the rule or trigger)
-* (Requires [AASM Enterprise](../../../api-attack-surface/setup.md#enabling)) [Security issues](../../../api-attack-surface/security-issues.md) detected, all or only for the selected risk level(s):
+* [Security issues](../../../user-guides/vulnerabilities.md) detected by [all methods](../../../about-wallarm/detecting-vulnerabilities.md#detection-methods), all or only for the selected risk levels:    
     * Critical risk
     * High risk
     * Medium risk
