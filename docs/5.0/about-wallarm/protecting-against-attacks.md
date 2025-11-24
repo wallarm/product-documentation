@@ -217,7 +217,7 @@ In such cases, standard rules need to be adjusted to accommodate protected API s
 
 Identifying and handling false positives is a part of Wallarm fine‑tuning to protect your APIs. We recommend to deploy the first Wallarm node in the monitoring [mode](#monitoring-and-blocking-attacks) and analyze detected attacks. If some attacks are mistakenly recognized as attacks, mark them as false positives and switch the filtering node to blocking mode.
 
-**What happens when you mark an attack or incident as a false positive?**
+<a name="false-positive-safe"></a>**What happens when you mark an attack or incident as a false positive?**
 
 When pressing a **False** button, Wallarm creates a hidden rule that turns off the detection for the similar attack, that has:
 

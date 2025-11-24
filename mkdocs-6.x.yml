@@ -386,6 +386,7 @@ nav:
   - Troubleshooting:
       - Overview: troubleshooting/overview.md
       - Detection and Blocking: troubleshooting/detection-and-blocking.md
+      - Detection Tools: troubleshooting/detection-tools-tuning.md
       - Performance: troubleshooting/performance.md
       - Real Client IP Address: admin-en/using-proxy-or-balancer-en.md
       - End User Problems: faq/common-errors-after-installation.md
@@ -394,4 +395,3 @@ nav:
       - OWASP Dashboard Alerts: faq/node-issues-on-owasp-dashboards.md
       - NGINX Error Log Alerts: troubleshooting/wallarm-issues-in-nginx-error-log.md
       - Dynamic DNS Resolution in NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
-

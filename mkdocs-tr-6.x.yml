@@ -393,6 +393,7 @@ nav:
   - Sorun Giderme:
       - Genel Bakış: troubleshooting/overview.md
       - Tespit ve Engelleme: troubleshooting/detection-and-blocking.md
+      - Detection Tools: troubleshooting/detection-tools-tuning.md
       - Performans: troubleshooting/performance.md
       - Son Kullanıcı Sorunları: faq/common-errors-after-installation.md
       - Wallarm Ingress Denetleyicisi: faq/ingress-installation.md
