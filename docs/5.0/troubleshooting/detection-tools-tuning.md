@@ -22,7 +22,17 @@ Wallarm is a set of protection tools. If they work not as expected, you can alwa
 
 ## Attack handling process
 
---8<-- "../include/waf/attack-handling-process.md"
+To detect and handle attacks, Wallarm uses the following process:
+
+1. Checks [IP lists](../user-guides/ip-lists/overview.md) to understand whether to process the request at all. Denylist blocks the request and allowlist allows it - both without further analysis.
+1. Determines the request format and [parse](../user-guides/rules/request-processing.md) every request part to apply [basic detectors][basic-detectors-link].
+1. Determines the endpoint the request is addressed to apply [custom rules][custom-rules-link] and [specific module settings][specific module settings-link] and understand the [filtration mode](../admin-en/configure-wallarm-mode.md).
+1. Makes a decision whether the request is a part of attack or not based on basic detectors, custom rules and specific module settings.
+1. Handles request in accordance with decision and filtration mode.
+
+![Attack handling process - diagram](../images/about-wallarm-waf/overview/attack-handling-diagram.png)
+
+Note that rules, settings and filtration mode can be inherited from the parent endpoint or [application](../user-guides/settings/applications.md). More specific has priority.
 
 ## Detailed approach
 
@@ -33,11 +43,6 @@ Wallarm is a set of protection tools. If they work not as expected, you can alwa
     * In **Denylist**, do not forget to play with dates if necessary: adding to Denylist is usually not forever, so source may have been blocked in past, not now.
     * If some specific violation was the reason of adding to Denylist, from Sessions you will be able to immediately go to control that caused the action using **Open mitigation control**.
     * You can manually edit the list, but remember automated tool is still in action and may edit the list again in future.
-
-1. Blocked as part of [blocked session](../api-sessions/blocking.md#blocking-sessions)? In Sessions, check **Status** (may be "Blocked" now). A session may also have been blocked for some time in past. Switch to **IP & Session Lists** → **Session lists** → **Denylist** and check **Reason** and **Added by**, if it was some automated tool, go to it and modify.
-
-    * Do not forget to play with dates if necessary: adding to Session Denylist is usually not forever, so a session may have been blocked in past, not now.
-    * You can manually remove session from the list, but remember automated tool is still in action and may block session again in future.
 
 1. [Input validation attack](../attacks-vulns-list.md#attack-types)? Normally found by [basic detectors](../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors).
 
@@ -63,5 +68,4 @@ Note that:
             ![Wildcards - correct/incorrect usage](../images/user-guides/rules/wildcards-correct-incorrect.png)
 
 * Disable rules instead of deleting them. You can adjust and re-activate them later if you want.
-* Wallarm provides [default controls](../about-wallarm/mitigation-controls-overview.md#default-controls) in monitoring mode. Make sure to adjust them.
 * [Filtration modes](../admin-en/configure-wallarm-mode.md) other than `off` affect only input validation attacks, but `off` turns off **everything** for the selected scope.
