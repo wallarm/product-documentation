@@ -60,6 +60,9 @@ Rules are automatically grouped into nested branches by endpoint URIs and other 
 
 ![Rules tab overview](../../images/user-guides/rules/rules-overview.png)
 
+!!! info "No inheritance for parameters/points of request"
+    Inheritance [does not work for rules](../rules/rules.md#rule-branches) with **In this part of request** part specified, for example, [rate limiting](rate-limiting.md), [virtual patches](vpatch-rule.md) and others. If in these rules, **In this part of request** is not used, the inheritance will work as usually.
+
 ### Default rules
 
 You can create rules with specified action but not linked to any endpoint - they are called **default rules**. Such rules are applied to all endpoints.
@@ -135,6 +138,8 @@ Can you use wildcards when working with URI constructor in Wallarm? No and yes. 
 
 * Within parsed components of your URI, instead of wildcards, use regular expressions.
 * Place `*` or `**` symbol into the URI field itself to replace one or any number of components (see examples in the section [above](#uri-constructor)).
+
+    ![Wildcards - correct/incorrect usage](../../images/user-guides/rules/wildcards-correct-incorrect.png)
 
 **Some details**
 

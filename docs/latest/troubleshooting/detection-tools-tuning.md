@@ -54,7 +54,14 @@ Wallarm is a set of protection tools. If they work not as expected, you can alwa
 
 Note that:
 
-* Rules/mitigation controls of the same type obey [inheritance](#attack-handling-process). Sometimes you do not need to edit the main rule, just create its modification for some child branch. And vise versa - it makes sense to create more generic rules sometimes to cover more or all branches.
+* Rules/mitigation controls of the same type obey [inheritance](#attack-handling-process). Sometimes you do not need to edit the main rule, just create its modification for some child branch. And vise versa - it makes sense to create more generic rules sometimes to cover more or all branches:
+
+    * Inheritance does not work for rules with **In this part of request** part specified.
+    * Besides inheritance, use [variability](../user-guides/rules/rules.md#using-wildcards) with wildcards or regular expressions, but remember your should use **wildcards** in URI field only.
+
+        ??? info "Show where to use wildcards"
+            ![Wildcards - correct/incorrect usage](../../images/user-guides/rules/wildcards-correct-incorrect.png)
+
 * Disable rules instead of deleting them. You can adjust and re-activate them later if you want.
 * Wallarm provides [default controls](../about-wallarm/mitigation-controls-overview.md#default-controls) in monitoring mode. Make sure to adjust them.
 * [Filtration modes](../admin-en/configure-wallarm-mode.md) other than `off` affect only input validation attacks, but `off` turns off **everything** for the selected scope.
