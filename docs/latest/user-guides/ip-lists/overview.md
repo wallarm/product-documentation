@@ -176,3 +176,7 @@ If Wallarm node is located behind a load balancer or CDN, please make sure to co
 ## Managing lists via API
 
 You can get any IP list content, populate it with objects and delete objects from it by [calling the Wallarm API](../../api/request-examples.md#api-calls-to-get-populate-and-delete-ip-list-objects) directly.
+
+## IP lists synchronization
+
+The IP lists are formed in a Cloud and then sent to a Node to become effective. This synchronization is process separate from [synching of other entities](../../admin-en/configure-cloud-node-synchronization-en.md) and performed **every minute** (not configurable).
