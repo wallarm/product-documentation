@@ -17,6 +17,7 @@ Cache rules are supported starting from Edge Node version 6.6.1.
 ## Cache processing details
 
 * Automatic cleanup of unused data: cached responses that have not been used for 30 minutes are automatically removed from memory.
+* Maximum cache size per location: by default, each location has a maximum cache size of 1 GiB. When this limit is reached, older cached responses are automatically removed to make room for new ones.
 * Serving stale responses during updates: when a cached response is being refreshed (e.g., after its TTL has expired), the system temporarily serves the previous (stale) cached version of the response. 
 
     This ensures that users continue to receive responses without delays while the cache is updated in the background. Once the new response is fetched, it replaces the old one in the cache automatically.
@@ -34,17 +35,6 @@ You can add cache rules during or after Edge Node deployment.
 1. Under **TTL (seconds)**, specify how long to store each cached response (e.g., `3600`).
 
     Use shorter TTLs for locations with frequently changing data and longer TTLs for static or rarely updated content.
-
-1. Under **Max size (MiB)**, specify the maximum size of cached data for the rule (e.g., `1024`).
-
-    When this limit is reached, older cached responses are automatically removed to make room for new ones.
-
-    !!! info "Max size limit"
-        By default, each location has a maximum cache size of 1024 MiB.
-
-1. Under **Avg item size (KiB)**, specify the estimated average size of a single cached response.
-
-    This value helps the system estimate memory usage. It does not limit actual item size or affect caching if responses are larger. If unsure, use 64 KiB as the default.
 
 1. Click **Add cache rule**.   
 
