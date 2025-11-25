@@ -74,6 +74,13 @@ The current version can be found in `Cargo.toml` → `[package]` → `version` p
 | ------------------- | ------------------- |
 | 1.x.x               | 0.16.0 and higher   |
 
+### 1.3.0 (2025-11-25)
+
+* Added the `verbose_logging` parameter to [Wallarm policy settings for Flex Gateway](mulesoft-flex.md#configuration-options) — it enables extended debug logging to the standard Flex Gateway logging output
+
+    Default: `false` (extended logging is disabled).
+* Fixed an issue where responses were sometimes not delivered to the Wallarm Node, resulting in a 400 error
+
 ### 1.2.0 (2025-10-20)
 
 * Added the `real_host_header` parameter to [Wallarm policy settings for Flex Gateway](mulesoft-flex.md#configuration-options) — it defines which HTTP header is used to determine the original request host when traffic passes through a proxy or load balancer
