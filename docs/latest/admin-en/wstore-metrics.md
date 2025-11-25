@@ -83,6 +83,10 @@ The number of active connections currently established with wstore.
 wallarm_wstore_current_connections 9
 ```
 
+**Troubleshooting recommendations:** 
+
+Watch for unusually high values (e.g., 1000+), as they may indicate hung or unclosed connections.
+
 ---
 ### `wallarm_wstore_requests_total`
 
@@ -124,6 +128,11 @@ The total number of iproto CALL/CALL_16 requests, broken down by the function na
 ```
 wallarm_wstore_iproto_calls_total{func="wallarm.blocked_stat.read",result="success"} 621473
 ```
+
+**Troubleshooting recommendations:** 
+
+Rising failed counts may indicate **wstore** errors. Check **wstore** logs and ensure sufficient memory allocation.
+
 
 ## Request throttling and load shedding
 ---
@@ -220,6 +229,10 @@ The number of requests dropped when a wstore queue reaches its maximum size and 
 wallarm_wstore_queue_drops{queue="appstructure"} 0
 ```
 
+**Troubleshooting recommendations:** 
+
+Watch for unusually high values, which vary by available RAM (e.g., ~50 for 1 GB of RAM and ~500,000 for 50 GB of RAM).
+
 ---
 ### `wallarm_wstore_queue_take_requests`
 
@@ -240,6 +253,10 @@ The number of requests returned from the queue by the `wallarm.requests_processi
 ```
 wallarm_wstore_queue_take_requests{queue="appstructure", result="success"} 313187
 ```
+
+**Troubleshooting recommendations:** 
+
+If failed values increase, check for internal processing or acknowledgment issues in **wstore** logs.
 
 ---
 ### `wallarm_wstore_queue_ack_drops`
@@ -335,6 +352,10 @@ Current time span in seconds between the oldest and newest requests stored in ws
 wallarm_wstore_request_storage_timeframe_size 308775
 ```
 
+**Troubleshooting recommendations:** 
+
+If value drops significantly, request retention is too short. Allocate more memory or disk for **wstore** to maintain longer history.
+
 ---
 ### `wallarm_wstore_request_storage_drops` 
 
@@ -369,6 +390,10 @@ The number of incoming requests rejected because they are too large to be stored
 wallarm_wstore_request_storage_rejects 0
 ```
 
+**Troubleshooting recommendations:** 
+
+Non-zero values indicate large requests are being rejected. Review request size limits and adjust configuration. 
+
 ---
 ### `wallarm_wstore_request_storage_misses`
 
@@ -385,6 +410,10 @@ The number of attempts to retrieve full request information for dropped or stale
 ```
 wallarm_wstore_request_storage_misses 0
 ```
+
+**Troubleshooting recommendations:** 
+
+If increasing, data for older requests is unavailable. Allocate more memory or disk for **wstore** to maintain longer history.
 
 ## Internal wstore engine metrics
 ---
