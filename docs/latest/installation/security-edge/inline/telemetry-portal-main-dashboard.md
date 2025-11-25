@@ -4,12 +4,12 @@ This article describes one of the two dashboards in the [Security Edge Inline](o
 
 The dashboard contains the following rows:
 
-* [Overview](#overview-row) (10 panels)
-* [RPS Detailed](#rps-detailed-row) (3 panels)
-* [Response Time](#response-time-row) (3 panels)
-* [Nginx Logs](#nginx-logs-row-21-panels) (21 panels)
-* [Wallarm metrics](#wallarm-metrics-row) (15 panels)
-* [Resource Overview](#resource-overview-row) (10 panels)
+* [Overview](#overview-row) 
+* [RPS Detailed](#rps-detailed-row) 
+* [Response Time](#response-time-row) 
+* [Nginx Logs](#nginx-logs-row) 
+* [Wallarm metrics](#wallarm-metrics-row) 
+* [Resource Overview](#resource-overview-row) 
 
 ## Overview row 
 
@@ -37,9 +37,9 @@ The RPS Detailed row shows detailed request traffic per URI, categorized by resp
 
 The RPS Detailed row features the following panels:
 
-* **Top 10 RPS per URI with code 2XX** – Shows URIs with the highest number of successful requests (HTTP 2XX). The panel includes a timeline graph and a table with the last and maximum RPS values.
-* **Top 10 RPS per URI with code non-2XX** – Shows URIs generating client or server errors (any HTTP code other than 2XX). The panel includes a timeline graph and a table with the last and maximum RPS values.
-* **wlrm_nginx_status 200|400-405|500-505** – Shows RPS per URI grouped by status code ranges (200 successful, 400–405 client errors, 500–505 server errors). The panel includes a timeline graph with numerical values for easier monitoring.
+* **Top 10 RPS per URI with code 2XX** – Shows URIs with the highest number of successful requests (HTTP 2XX).
+* **Top 10 RPS per URI with code non-2XX** – Shows URIs generating client or server errors (any HTTP code other than 2XX). 
+* **wlrm_nginx_status 200|400-405|500-505** – Shows RPS per URI grouped by status code ranges (200 successful, 400–405 client errors, 500–505 server errors).
 
 ## Response Time row 
 
@@ -49,9 +49,9 @@ The Response Time row shows request and upstream latency, helping monitor perfor
 
 The Response Time row features the following panels:
 
-* **P95 RT For Top 10 Requests** – Shows the 95th-percentile response time (P95 RT) for the top 10 URIs by request volume. The panel includes a table with Hostname, URI, and P95 RT values.
-* **P95 Request Time** – Shows the 95th-percentile overall request response time over time. The panel includes a timeline graph and Min/Max/Last statistics.
-* **P95 Upstream Response Time** – Shows the 95th-percentile upstream response time per host over time. The panel includes a timeline graph and Min/Max/Last statistics.
+* **P95 RT For Top 10 Requests** – Shows the 95th-percentile response time (P95 RT) for the top 10 URIs by request volume. 
+* **P95 Request Time** – Shows the 95th-percentile overall request response time over time.
+* **P95 Upstream Response Time** – Shows the 95th-percentile upstream response time per host over time. 
 
 ![!](../../../images/waf-installation/security-edge/inline/telemetry/response-time-row-2.png)
 
@@ -78,8 +78,9 @@ The NGINX Logs row features the following panels:
 * **NGINX Access 5XX Logs (max 1000)** – Shows recent logs of requests that returned 5XX errors.
 * **Access Logs (max 1000)** – Shows recent access logs, including timestamp, host, client IP, response code, method, and URI.
 
-!!! info "NGINX error and access logs"
-    To quickly view NGINX error and access logs, you can use the dedicated [Portal Inline NGINX Logs dashboard](../../../installation/security-edge/inline/telemetry-portal-logs-dashboard.md).
+Unlike the dedicated [**Portal Inline NGINX Logs** dashboard](../../../installation/security-edge/inline/telemetry-portal-logs-dashboard.md), which shows only NGINX error and access logs, the NGINX Logs row presents these logs alongside other key node and Wallarm metrics. This way you can monitor NGINX traffic in context, correlate errors with overall performance, and detect potential issues more efficiently.
+
+To quickly view NGINX error and access logs without additional metrics, use the dedicated [**Portal Inline NGINX Logs dashboard**](../../../installation/security-edge/inline/telemetry-portal-logs-dashboard.md).
 
 ## Wallarm Metrics row
 
