@@ -13,7 +13,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 0.20.0 (2025-11-25)
 
 * Introduced support for OpenAPI 3.1 in the [API Specification Enforcement](../../api-specification-enforcement/overview.md) feature — you can now upload specifications in version 3.1 format to compare traffic against them, identify mismatches, and mitigate related security risks
-* Added Prometheus metrics support for the Postanalytics **wstore** component. The metrics are available by default at `http://localhost:9001` using the `tcp4` (IPv4-only) protocol.
+* Added Prometheus metrics support for the Postanalytics **wstore** component. The metrics are available by default at `http://localhost:9001` using the `tcp4` (IPv4-only) protocol
 
     You can change the default metrics host, port, and protocol by setting the following environment variables when deploying the Node:
 
@@ -156,7 +156,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 ### 0.20.0 (2025-11-25)
 
 * Introduced support for OpenAPI 3.1 in the [API Specification Enforcement](../../api-specification-enforcement/overview.md) feature — you can now upload specifications in version 3.1 format to compare traffic against them, identify mismatches, and mitigate related security risks
-* Added Prometheus metrics support for the Postanalytics **wstore** component. The metrics are available by default at `http://localhost:9001` using the `tcp4` (IPv4-only) protocol.
+* Added Prometheus metrics support for the Postanalytics **wstore** component. The metrics are available by default at `http://localhost:9001` using the `tcp4` (IPv4-only) protocol
 
     You can change the default metrics host, port, and protocol by setting the following in `values.yaml`:
 
@@ -299,7 +299,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 ### 0.20.0 (2025-11-25)
 
 * Introduced support for OpenAPI 3.1 in the [API Specification Enforcement](../../api-specification-enforcement/overview.md) feature — you can now upload specifications in version 3.1 format to compare traffic against them, identify mismatches, and mitigate related security risks
-* Added Prometheus metrics support for the Postanalytics **wstore** component. The metrics are available by default at `http://localhost:9001` using the `tcp4` (IPv4-only) protocol.
+* Added Prometheus metrics support for the Postanalytics **wstore** component. The metrics are available by default at `http://localhost:9001` using the `tcp4` (IPv4-only) protocol
 
     You can change the default metrics host, port, and protocol by setting the following environment variables when deploying the Node:
 
