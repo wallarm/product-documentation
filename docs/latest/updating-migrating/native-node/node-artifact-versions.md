@@ -10,8 +10,9 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
-### 0.20.0 (2025-11-12)
+### 0.20.0 (2025-11-25)
 
+* Introduced support for OpenAPI 3.1 in the [API Specification Enforcement](../../api-specification-enforcement/overview.md) feature — you can now upload specifications in version 3.1 format to compare traffic against them, identify mismatches, and mitigate related security risks
 * Added Prometheus metrics support for the Postanalytics **wstore** component. The metrics are available by default at `http://localhost:9001` using the `tcp4` (IPv4-only) protocol.
 
     You can change the default metrics host, port, and protocol by setting the following environment variables when deploying the Node:
@@ -19,7 +20,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
     * `WALLARM_WSTORE__METRICS__LISTEN_ADDRESS` — defines the host and port
     * `WALLARM_WSTORE__METRICS__PROTOCOL` — defines the protocol
 
-* Added support for the [Amazon API Gateway Connector](../../installation/connectors/aws-api-gateway.md)
+* Added Prometheus metrics support for API Specification Enforcement service operation (based on the built-in API Firewall service). API Firewall metrics are included as part of the [`go-node` Prometheus metrics](../../admin-en/native-node-metrics.md)
 * Removed support for the deprecated `http_inspector.real_ip_header` configuration parameter
 * Improved Node initialization logs — added detailed information about component type, supported versions, error source, API endpoint, and Node UUID to simplify troubleshooting during the initialization stage
 * Fixed the [CVE-2025-58188](https://www.cve.org/CVERecord?id=CVE-2025-58188) vulnerability
@@ -152,8 +153,9 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
-### 0.20.0 (2025-11-12)
+### 0.20.0 (2025-11-25)
 
+* Introduced support for OpenAPI 3.1 in the [API Specification Enforcement](../../api-specification-enforcement/overview.md) feature — you can now upload specifications in version 3.1 format to compare traffic against them, identify mismatches, and mitigate related security risks
 * Added Prometheus metrics support for the Postanalytics **wstore** component. The metrics are available by default at `http://localhost:9001` using the `tcp4` (IPv4-only) protocol.
 
     You can change the default metrics host, port, and protocol by setting the following in `values.yaml`:
@@ -161,7 +163,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
     * [`config.aggregation.metrics.listenAddress`](../../installation/native-node/helm-chart-conf.md#configaggregationmetricslistenaddress) — defines the host and port
     * [`config.aggregation.metrics.protocol`](../../installation/native-node/helm-chart-conf.md#configaggregationmetricsprotocol) — defines the protocol
 
-* Added support for the [Amazon API Gateway Connector](../../installation/connectors/aws-api-gateway.md)
+* Added Prometheus metrics support for API Specification Enforcement service operation (based on the built-in API Firewall service). API Firewall metrics are included as part of the [`go-node` Prometheus metrics](../../admin-en/native-node-metrics.md)
 * Improved Node initialization logs — added detailed information about component type, supported versions, error source, API endpoint, and Node UUID to simplify troubleshooting during the initialization stage
 * Switched to native HTTP readiness and liveness probes for the **wstore** component
 * Fixed the [CVE-2025-58188](https://www.cve.org/CVERecord?id=CVE-2025-58188) vulnerability
@@ -294,8 +296,9 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 [How to upgrade](docker-image.md)
 
-### 0.20.0 (2025-11-12)
+### 0.20.0 (2025-11-25)
 
+* Introduced support for OpenAPI 3.1 in the [API Specification Enforcement](../../api-specification-enforcement/overview.md) feature — you can now upload specifications in version 3.1 format to compare traffic against them, identify mismatches, and mitigate related security risks
 * Added Prometheus metrics support for the Postanalytics **wstore** component. The metrics are available by default at `http://localhost:9001` using the `tcp4` (IPv4-only) protocol.
 
     You can change the default metrics host, port, and protocol by setting the following environment variables when deploying the Node:
@@ -303,7 +306,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
     * `WALLARM_WSTORE__METRICS__LISTEN_ADDRESS` — defines the host and port
     * `WALLARM_WSTORE__METRICS__PROTOCOL` — defines the protocol
 
-* Added support for the [Amazon API Gateway Connector](../../installation/connectors/aws-api-gateway.md)
+* Added Prometheus metrics support for API Specification Enforcement service operation (based on the built-in API Firewall service). API Firewall metrics are included as part of the [`go-node` Prometheus metrics](../../admin-en/native-node-metrics.md)
 * Removed support for the deprecated `http_inspector.real_ip_header` configuration parameter
 * Improved Node initialization logs — added detailed information about component type, supported versions, error source, API endpoint, and Node UUID to simplify troubleshooting during the initialization stage
 * Fixed the [CVE-2025-58188](https://www.cve.org/CVERecord?id=CVE-2025-58188) vulnerability
