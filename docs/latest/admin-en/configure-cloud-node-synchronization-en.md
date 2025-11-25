@@ -6,6 +6,7 @@ The filtering node regularly synchronizes with the Wallarm Cloud to:
 * Get updates of [proton.db](../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors)
 * Send data on detected attacks and vulnerabilities
 * Send metrics for processed traffic
+* Get updates for [IP lists](../user-guides/ip-lists/overview.md) (separate process)
 
 These instructions describe parameters and methods used to configure filtering node and Wallarm Cloud synchronization.
 
@@ -52,6 +53,10 @@ To change the interval between filtering node and Wallarm Cloud synchronizations
 ## Configuration example
 
 --8<-- "../include/node-cloud-sync-configuration-example-5.x.md"
+
+## IP lists synchronization
+
+The [IP lists](../user-guides/ip-lists/overview.md) are formed in a Cloud and then sent to a Node to become effective. This synchronization is process separate from synching of other entities described in this article and performed **every minute** (not configurable).
 
 ## Troubleshooting
 
