@@ -6,6 +6,12 @@
 
 This article describes how to enable and configure [API Attack Surface Management](overview.md) to discover your external hosts with their APIs, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities.
 
+## Prerequisites
+
+If besides Wallarm, you use additional facilities (software or hardware) to automatically filter and block traffic, it is recommended that you [configure an allowlist](../admin-en/scanner-addresses.md) that includes the IP addresses for API Attack Surface Management.
+
+This will allow Wallarm components, including API Attack Surface Management, to seamlessly scan your resources for vulnerabilities.
+
 ## Enabling
 
 To use AASM, the Wallarm's [API Attack Surface](../about-wallarm/subscription-plans.md#api-attack-surface) subscription plan should be active for your company. To activate, do one of the following:
@@ -156,12 +162,6 @@ To configure auto rescan:
 You can start scanning for any domain manually at **AASM** → **API Attack Surface** → **Configure** → **Domains and hosts** by clicking the **Scan now** button.
 
 If necessary, you can stop scan in progress, this will erase all the results.
-
-## Preventing from being blocked
-
-If besides Wallarm, you use additional facilities (software or hardware) to automatically filter and block traffic, it is recommended that you [configure an allowlist](../admin-en/scanner-addresses.md) that includes the IP addresses for API Attack Surface Management.
-
-This will allow Wallarm components, including API Attack Surface Management, to seamlessly scan your resources for vulnerabilities.
 
 ## Scanning status
 
