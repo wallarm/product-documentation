@@ -21,6 +21,14 @@ Among a wide range of API endpoint filters, you can choose the ones correspondin
 * Find the endpoints processing sensitive data to ensure they are properly secured.
 * Find the endpoints of a deprecated API version (e.g. by searching `/v1`) and make sure that they are not used by clients.
 
+## Labeling
+
+You can create labels (e.g., `P90`, `HighTraffic`, `Legacy`, etc.) and assign them to endpoints to manage them more effectively. Once labels are assigned, use the **Label** filter to quickly search and isolate endpoints based on these custom labels.
+
+![API Discovery - labels](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-labels.png)
+
+Note that several labels can be assigned to the same endpoint.
+
 ## REST endpoint details
 
 <a name="params"></a>By clicking the REST endpoint, you can find its details, including  transferred sensitive data, risk score and what contributes to it, headers and parameters of requests and responses:
