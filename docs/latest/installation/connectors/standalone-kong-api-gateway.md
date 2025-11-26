@@ -94,8 +94,9 @@ You can deploy it either hosted by Wallarm or in your own infrastructure, depend
       -e KONG_DATABASE=postgres \
       -e KONG_PG_HOST=db \
       -e KONG_PG_USER=kong \
-      -e KONG_PG_PASSWORD=kong \
+      -e KONG_PG_PASSWORD=kongpass \
       -e KONG_PLUGINS="bundled,wallarm-plugin" \
+      -e KONG_ADMIN_LISTEN=0.0.0.0:8001 \
       kong-with-wallarm
     ```
 
