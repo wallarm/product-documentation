@@ -17,7 +17,7 @@ This guide describes how to secure your APIs managed by Istio using the Wallarm 
 
 To use Wallarm with Istio, you need to **deploy a Wallarm Node** (either externally or within your cluster) and **apply a gRPC-based External Processing filter** (`ext_proc`) in Envoy to forward traffic to the Node for analysis.
 
-The Wallarm connector for Instio ingress supports both [synchronous (in-line)](../inline/overview.md) and [asynchronous (out‑of‑band)](../oob/overview.md) traffic analysis:
+The Wallarm connector for Istio ingress supports both [synchronous (in-line)](../inline/overview.md) and [asynchronous (out‑of‑band)](../oob/overview.md) traffic analysis:
 
 === "Synchronous traffic flow"
     ![Istio with synchronous traffic flow to the Wallarm Node](../../images/waf-installation/gateways/istio/traffic-flow-sync.png)
