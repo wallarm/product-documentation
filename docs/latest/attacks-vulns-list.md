@@ -82,11 +82,25 @@ Technically, all attacks that can be detected by Wallarm are divided into two ty
 
     Wallarm detects input validation attacks in any request part including binary files like SVG, JPEG, PNG, GIF, PDF, etc.
 
-    Wallarm **automatically detects** input validation attacks and related vulnerabilities and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
+    Wallarm **automatically detects** input validation attacks and related vulnerabilities and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). All such attacks are detected by built-in detectors (BID) of the node. Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
 
 * **Behavioral attacks** are characterized by specific request syntax **and/or** specific correlation of request number and time between requests ([brute force](#brute-force-attack), [forced browsing](#forced-browsing), [BOLA](#broken-object-level-authorization-bola), [API abuse](#suspicious-api-activity), [credential stuffing](#credential-stuffing) and others).
 
-    To detect behavioral attacks, it is required to conduct syntax analysis of requests and correlation analysis of request number and time between requests.
+    For behavioral attacks to be detected, corresponding tool should be properly configured.
+
+<a name="attack-det-methods"></a>[Handling](about-wallarm/protecting-against-attacks.md#attack-handling-process) of all attacks require [Wallarm filtering node](about-wallarm/overview.md#how-wallarm-works). However, as described above, methods of detection vary. Search for "Attack by" text to go through all attacks, and for method name, like "APIAP", to understand what can be found by each method.
+
+!!! info "Method names and abbreviations"
+    BID - **built-in detectors**, the major node function, [basic set of detectors](about-wallarm/protecting-against-attacks.md#basic-set-of-detectors), no configuration required
+    MCL - [mitigation controls](about-wallarm/mitigation-controls-overview.md)
+    RLS - [rules](user-guides/rules/rules.md) 
+    CRD - [Credential Stuffing Detection](about-wallarm/credential-stuffing.md)
+    ASE - [API Specification Enforcement](api-specification-enforcement/overview.md) security policies basing on your uploaded specifications
+    TRG - [triggers](user-guides/triggers/triggers.md)
+    APIAP - [API Abuse Prevention](api-abuse-prevention/overview.md) antibot solution
+    ACL - [IP lists](ip-lists/overview.md), specifically, Denylist
+
+    Note that in Wallarm, mitigation controls (MCL), rules (RLS) and credential stuffing monitoring configuration (CRD) are called altogether "**rules**".
 
 <!-- ??? info "Watch video about how Wallarm protects against OWASP Top 10"
     <div class="video-wrapper">
@@ -99,7 +113,7 @@ This article lists [vulnerability](about-wallarm/detecting-vulnerabilities.md) (
 
 Search for "Vulnerability by" text to go through all vulnerabilities, and for method name, like "TRT", to understand what can be found by each method.
 
-!!! info "Method abbreviations"
+!!! info "Method names and abbreviations"
     [Passive](about-wallarm/detecting-vulnerabilities.md#detection-methods) - built-in node function, no configuration required, "passive" as does not send anything itself
     TRT - [Treat Replay Testing](vulnerability-detection/threat-replay-testing/overview.md)
     SBT - [Schema-Based Testing](vulnerability-detection/schema-based-testing/overview.md)
@@ -108,6 +122,8 @@ Search for "Vulnerability by" text to go through all vulnerabilities, and for me
 Read [here](about-wallarm/detecting-vulnerabilities.md#combining-methods) why and how you can combine different methods for vulnerability detection.
 
 ## DDoS attacks
+
+**Attack** [by](#attack-det-methods) MCL, RLS, TRG, APIAP, ACL
 
 A DDoS (Distributed Denial of Service) attack is a type of cyber attack in which an attacker seeks to make a website or API unavailable by overwhelming it with traffic from multiple sources.
 
@@ -125,7 +141,7 @@ There are many techniques that attackers can use to launch a DDoS attack, and th
 
 ### SQL injection
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
+**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
 
 **CWE code:** [CWE-89][cwe-89]
 
@@ -146,7 +162,7 @@ In addition to the protection measures performed by Wallarm, you may follow thes
 
 ### NoSQL injection
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
+**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
 
 **CWE code:** [CWE-943][cwe-943]
 
@@ -162,7 +178,7 @@ Vulnerability to this attack occurs due to insufficient filtering of user input.
 
 ### Remote code execution (RCE)
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
+**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
 
 **CWE codes:** [CWE-78][cwe-78], [CWE-94][cwe-94] and others
 
@@ -186,7 +202,7 @@ This vulnerability occurs due to incorrect validation and parsing of user input.
 
 ### SSI injection
 
-**Attack**
+**Attack** [by](#attack-det-methods) BID
 
 **CWE code:** [CWE-96][cwe-96], [CWE-97][cwe-97]
 
@@ -213,7 +229,7 @@ An attacker can change the message output and change the user behavior. SSI Inje
 
 ### Server‑side template injection (SSTI)
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
+**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
 
 **CWE codes:** [CWE-94][cwe-94], [CWE-159][cwe-159]
 
@@ -233,7 +249,7 @@ This vulnerability arises from the incorrect validation and parsing of user inpu
 
 ### LDAP injection
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
+**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-90][cwe-90]
 
@@ -256,7 +272,7 @@ In addition to the protection measures performed by Wallarm, you may follow thes
 
 ### Email injection
 
-**Attack**
+**Attack** [by](#attack-det-methods) BID
 
 **CWE code:** [CWE-20][cwe-20], [CWE-150][cwe-150], [CWE-88][cwe-88]
 
@@ -275,7 +291,7 @@ Vulnerability to this attack occurs due to poor validation of the data inputted 
 
 ### Server‑side request forgery (SSRF)
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
+**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
 
 **CWE code:** [CWE-918][cwe-918]
 
@@ -292,7 +308,7 @@ A successful SSRF attack may allow an attacker to make requests on behalf of the
 
 ### Path traversal
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, SBT, TRT.
+**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, SBT, TRT.
 
 **CWE code:** [CWE-22][cwe-22]
 
@@ -313,7 +329,7 @@ In addition to the protection measures performed by Wallarm, you may follow thes
 
 ### Attack on XML external entity (XXE)
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
+**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
 
 **CWE code:** [CWE-611][cwe-611]
 
@@ -340,7 +356,7 @@ This vulnerability occurs due to a lack of restriction on the parsing of XML ext
 
 ### Resource scanning
 
-**Attack**
+**Attack** [by](#attack-det-methods) BID
 
 **CWE code:** none
 
@@ -362,7 +378,7 @@ The `scanner` code is assigned to an HTTP request if this request is believed to
 
 ### Cross‑site scripting (XSS)
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
+**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
 
 **CWE code:** [CWE-79][cwe-79]
 
@@ -394,7 +410,7 @@ This class of vulnerabilities occurs due to the incorrect validation and parsing
 
 ### Open redirect
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
+**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
 
 **CWE code:** [CWE-601][cwe-601]
 
@@ -413,7 +429,7 @@ Vulnerability to this attack occurs due to incorrect filtering of URL inputs.
 
 ### CRLF injection
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
+**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
 
 **CWE code:** [CWE-93][cwe-93]
 
@@ -439,7 +455,7 @@ An enumeration attack is a type of cyberattack where a malicious actor attempts 
 
 ### Generic enumeration attack
 
-**Attack**
+**Attack** [by](#attack-det-methods) MCL
 
 **Wallarm code:** `Enum`
 
@@ -462,7 +478,7 @@ Wallarm detects and mitigates generic enumeration attacks only if it has one or 
 
 ### Brute force attack
 
-**Attack**
+**Attack** [by](#attack-det-methods) MCL, RLS, TRG
 
 **CWE codes:** [CWE-307][cwe-307], [CWE-521][cwe-521], [CWE-799][cwe-799]
 
@@ -493,7 +509,7 @@ Wallarm detects and mitigates brute force attacks only if it has one of the foll
 
 ### Broken object level authorization (BOLA)
 
-**Attack / Vulnerability** [by](#vulnerability-types) passive, AASM.
+**Attack** [by](#attack-det-methods) MCL, TRG / **Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-639][cwe-639]
 
@@ -523,7 +539,7 @@ Wallarm automatically discovers vulnerabilities of this type but detects and mit
 
 ### Forced browsing
 
-**Attack**
+**Attack** [by](#attack-det-methods) MCL, TRG
 
 **CWE code:** [CWE-425][cwe-425]
 
@@ -559,7 +575,7 @@ Wallarm detects and mitigates forced browsing only if it has [forced browsing pr
 
 ### Mass assignment
 
-**Attack / Vulnerability** [by](#vulnerability-types) AASM.
+**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) AASM.
 
 **Wallarm code:** `mass_assignment`
 
@@ -579,7 +595,7 @@ APIs vulnerable to mass assignment attacks allow converting client input to inte
 
 ### Suspicious API activity
 
-**Attack**
+**Attack** [by](#attack-det-methods) APIAP
 
 **Wallarm code:** `api_abuse`
 
@@ -613,7 +629,7 @@ If the metrics point to bot attack signs, the module [denylists or graylists](ap
 
 ### Account takeover
 
-**Attack / Vulnerability** [by](#vulnerability-types) AASM.
+**Attack** [by](#attack-det-methods) APIAP / **Vulnerability** [by](#vulnerability-types) AASM.
 
 **Wallarm code:** `account_takeover` (`api_abuse` before 4.10.6)
 
@@ -646,7 +662,7 @@ API Abuse Prevention detects bots performing a [credential cracking](https://owa
 
 ### Security crawlers
 
-**Attack**
+**Attack** [by](#attack-det-methods) APIAP
 
 **Wallarm code:** `security_crawlers` (`api_abuse` before 4.10.6)
 
@@ -679,7 +695,7 @@ The **API Abuse Prevention** module uses the complex bot detection model to dete
 
 ### Scraping
 
-**Attack**
+**Attack** [by](#attack-det-methods) APIAP
 
 **Wallarm code:** `scraping` (`api_abuse` before 4.10.6)
 
@@ -707,7 +723,7 @@ The **API Abuse Prevention** module uses the complex bot detection model to dete
 
 ### Unrestricted resource consumption
 
-**Attack**
+**Attack** [by](#attack-det-methods) APIAP
 
 **Wallarm code:** `resource_consumption`
 
@@ -732,7 +748,7 @@ To make this bot attack type detection precise, [API Sessions](api-sessions/over
 
 ## GraphQL attacks
 
-**Attack**
+**Attack** [by](#attack-det-methods) MCL, RLS
 
 **Wallarm code:** `graphql_attacks`
 
@@ -757,6 +773,8 @@ Wallarm detects and mitigates GraphQL attacks only if it has one or more configu
 
 ### GraphQL query size
 
+**Attack** [by](#attack-det-methods) MCL, RLS
+
 **Wallarm code:** `gql_doc_size`: violation of maximum allowed total query size
 
 **Description:** 
@@ -764,6 +782,8 @@ Wallarm detects and mitigates GraphQL attacks only if it has one or more configu
 An attacker may attempt to perform a Denial of Service (DoS) for GraphQL endpoints or cause other issues by exploiting how the server handles excessively large inputs.
 
 ### GraphQL value size
+
+**Attack** [by](#attack-det-methods) MCL, RLS
 
 **Wallarm code:** `gql_value_size`: violation of maximum allowed value size
 
@@ -773,6 +793,8 @@ An attacker may send GraphQL request with an excessively long string value for a
 
 ### GraphQL query depth
 
+**Attack** [by](#attack-det-methods) MCL, RLS
+
 **Wallarm code:** `gql_depth`: violation of maximum allowed query depth
 
 **Description:** 
@@ -780,6 +802,8 @@ An attacker may send GraphQL request with an excessively long string value for a
 GraphQL queries can be nested, which allows requesting complex data structures in one go; however, this flexibility can be exploited to create a deeply nested query that could potentially overwhelm the server.
 
 ### GraphQL aliases
+
+**Attack** [by](#attack-det-methods) MCL, RLS
 
 **Wallarm code:** `gql_aliases`: violation of maximum allowed number of aliases
 
@@ -789,6 +813,8 @@ In GraphQL, aliases offer the capability to rename the result fields to prevent 
 
 ### GraphQL batching
 
+**Attack** [by](#attack-det-methods) MCL, RLS
+
 **Wallarm code:** `gql_docs_per_batch`: violation of maximum allowed number of batched queries
 
 **Description:** 
@@ -796,6 +822,8 @@ In GraphQL, aliases offer the capability to rename the result fields to prevent 
 In GraphQL, multiple queries (operations) can be batched together in a single HTTP-request; by combining multiple operations into a single request, an attacker organize batching attack and try to bypass security measures such as rate limiting.
 
 ### GraphQL introspection
+
+**Attack** [by](#attack-det-methods) MCL, RLS
 
 **Wallarm code:** `gql_introspection`: forbidden introspection query
 
@@ -805,6 +833,8 @@ An attacker may leverage the GraphQL introspection system to uncover details abo
 
 ### GraphQL debug
 
+**Attack** [by](#attack-det-methods) MCL, RLS
+
 **Wallarm code:** `gql_debug`: forbidden debug mode query
 
 **Description:**
@@ -813,7 +843,7 @@ In GraphQL, when debug mode is left turned on by developers, an attacker may gat
 
 ## API specification
 
-**Attack**
+**Attack** [by](#attack-det-methods) ASE
 
 **Wallarm code:** `api_specification` shows all specification-based violations. Specific violations are described in subsections.
 
@@ -825,6 +855,8 @@ Note that API Specification Enforcement has limits applied to comparing requests
 
 ### Undefined endpoint
 
+**Attack** [by](#attack-det-methods) ASE
+
 **Wallarm code:** `undefined_endpoint`
 
 **Description:**
@@ -832,6 +864,8 @@ Note that API Specification Enforcement has limits applied to comparing requests
 An attempt to request the endpoint not presented in your specification.
 
 ### Undefined parameter
+
+**Attack** [by](#attack-det-methods) ASE
 
 **Wallarm code:** `undefined_parameter`
 
@@ -841,6 +875,8 @@ Requests marked as attacks because they include parameters not presented for thi
 
 ### Invalid parameter
 
+**Attack** [by](#attack-det-methods) ASE
+
 **Wallarm code:** `invalid_parameter_value`
 
 **Description:**
@@ -849,6 +885,8 @@ Requests marked as attacks because some of their parameter's value in not in cor
 
 ### Missing parameter
 
+**Attack** [by](#attack-det-methods) ASE
+
 **Wallarm code:** `missing_parameter`
 
 **Description:**
@@ -856,6 +894,8 @@ Requests marked as attacks because some of their parameter's value in not in cor
 Requests marked as attacks because they does not include the parameter or its value that are marked as required in your specification
 
 ### Missing authentication
+
+**Attack** [by](#attack-det-methods) ASE
 
 **Attack / Vulnerability** [by](#vulnerability-types) AASM.
 
@@ -867,6 +907,8 @@ Requests marked as attacks because they do not contain the required information 
 
 ### Invalid request
 
+**Attack** [by](#attack-det-methods) ASE
+
 **Wallarm code:** `invalid_request`
 
 **Description:**
@@ -877,7 +919,7 @@ Requests marked as attacks because they contain an invalid JSON.
 
 ### Data bomb
 
-**Attack**
+**Attack** [by](#attack-det-methods) BID
 
 **CWE code:** [CWE-409][cwe-409], [CWE-776][cwe-776]
 
@@ -898,7 +940,7 @@ Wallarm marks a request as the Data bomb attack if it contains the Zip or XML bo
 
 ### Invalid XML
 
-**Attack**
+**Attack** [by](#attack-det-methods) BID
 
 **Wallarm code:** `invalid_xml`
 
@@ -908,7 +950,7 @@ A request is marked as an `invalid_xml` if its body contains an XML document and
 
 ### Processing overlimit
 
-**Attack**
+**Attack** [by](#attack-det-methods) BID
 
 **Wallarm code:** `processing_overlimit`
 
@@ -918,7 +960,7 @@ The **Specification processing overlimit** event is added to the attack list in 
 
 ### Resource overlimit
 
-**Attack**
+**Attack** [by](#attack-det-methods) BID
 
 **Wallarm code:** `overlimit_res`
 
@@ -932,7 +974,7 @@ Limiting the request processing time prevents the bypass attacks aimed at the Wa
 
 ## Blocked source
 
-**Attack**
+**Attack** [by](#attack-det-methods) ACL
 
 **Wallarm code:** `blocked_source`
 
@@ -942,7 +984,7 @@ Attacks from **manually** [denylisted](user-guides/ip-lists/overview.md) IPs.
 
 ## Virtual patch
 
-**Attack**
+**Attack** [by](#attack-det-methods) RLS
 
 **Wallarm code:** `vpatch`
 
@@ -1036,7 +1078,7 @@ Broken function level authorization (BFLA) is a security vulnerability, ranked f
 
 ### Credential stuffing
 
-**Attack**
+**Attack** [by](#attack-det-methods) CRD
 
 **Wallarm code:** `credential_stuffing`
 
@@ -1096,7 +1138,7 @@ CSRF is solved by browsers, other protection methods are less useful but still c
 
 ### File upload violation
 
-**Attack / Vulnerability** [by](#vulnerability-types) AASM.
+**Attack** [by](#attack-det-methods) MCL, RLS / **Vulnerability** [by](#vulnerability-types) AASM.
 
 **Wallarm code:** `file_upload_violation`, for vulnerability - `file_upload`
 

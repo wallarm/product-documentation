@@ -41,6 +41,7 @@ It is also necessary to prepare a response plan in order to identify the DDoS at
 
 Wallarm provides a wide range of protection measures across L7 DDoS threats:
 
+* DoS protection with [mitigation controls](../../api-protection/dos-protection.md)
 * [API Abuse Prevention](../../api-abuse-prevention/overview.md). Enable the API Abuse Prevention functionality to identify and stop various types of malicious bots.
 * [Brute force trigger](protecting-against-bruteforce.md) to prevent massive number of requests brute-forcing some parameter values, e.g. passwords.
 * [Forced browsing trigger](protecting-against-bruteforce.md) to prevent malicious attempts to detect a web application's hidden resources, namely directories and files.
