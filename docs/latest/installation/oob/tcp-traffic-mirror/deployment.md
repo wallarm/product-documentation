@@ -71,20 +71,22 @@ Create the `wallarm-node-conf.yaml` file on the instance. The solution requires 
 ```yaml
 version: 4
 
-mode: tcp-capture
+mode: tcp-capture-v2
 
-goreplay:
-  filter: 'enp7s0:'
-  extra_args:
-      - -input-raw-engine
-      - vxlan
+tcp_stream:
+  from_interface:
+    enabled: true
+    interface: "enp7s0"
 ```
 
 In the [article](../../native-node/all-in-one-conf.md), you will find the list of more supported configuration parameters.
 
 ### Setting the mode (required)
 
-It is required to specify the `tcp-capture` mode in the corresponding parameter to run the solution for the TCP traffic mirror analysis.
+It is required to specify the `tcp-capture-v2` mode in the corresponding parameter to run the solution for the TCP traffic mirror analysis.
+
+!!! info "tcp-capture-v2 replaces tcp-capture"
+    The `tcp-capture-v2` mode has replaced the previous `tcp-capture` implementation and is now the recommended method to deploy TCP traffic mirror analysis. The original `tcp-capture` mode is deprecated.
 
 ### Choosing a network interface for listening
 
@@ -96,57 +98,52 @@ To specify the network interface to capture traffic from:
     ip addr show
     ```
 
-1. Specify the network interface in the `filter` parameter.
+1. Specify the network interface in the `interface` parameter.
 
-    Note that the value should be the network interface and port separated by a colon (`:`). Examples of filters include `eth0:`, `eth0:80`, or `:80` (to intercept a specific port on all interfaces), e.g.:
+    The value must be the network interface name (e.g., `eth0`, `enp7s0`). To capture traffic on a specific port, specify a [BPF (Berkeley Packet Filter)](https://biot.com/capstats/bpf.html) expression in the `filter` parameter.
 
     ```yaml
     version: 4
 
-    mode: tcp-capture
+    mode: tcp-capture-v2
 
-    goreplay:
-      filter: 'eth0:'
+    tcp_stream:
+      from_interface:
+        enabled: true
+        interface: "eth0"
+        filter: "port 80"
     ```
 
 ### Capturing VLAN
 
-If mirrored traffic is wrapped in VLAN, provide additional arguments:
+If mirrored traffic is wrapped in VLAN, you can capture it by specifying `vlan` in the `filter` parameter using a [BPF (Berkeley Packet Filter)](https://biot.com/capstats/bpf.html) expression.
 
 ```yaml
 version: 4
 
-mode: tcp-capture
+mode: tcp-capture-v2
 
-goreplay:
-  filter: <your network interface and port, e.g. 'lo:' or 'enp7s0:'>
-  extra_args:
-    - -input-raw-vlan
-    - -input-raw-vlan-vid
-    # VID of your VLAN, e.g.:
-    # - 42
+tcp_stream:
+  from_interface:
+    enabled: true
+    interface: "eth0"
+    filter: "vlan"
 ```
 
 ### Capturing VXLAN
 
-If mirrored traffic is wrapped in VXLAN (common in AWS), provide additional arguments:
+If mirrored traffic is wrapped in VXLAN (common in AWS), you can capture it by specifying `vxlan` in the `filter` parameter using a [BPF (Berkeley Packet Filter)](https://biot.com/capstats/bpf.html) expression.
 
 ```yaml
 version: 4
 
-mode: tcp-capture
+mode: tcp-capture-v2
 
-goreplay:
-  filter: <your network interface and port, e.g. 'lo:' or 'enp7s0:'>
-  extra_args:
-    - -input-raw-engine
-    - vxlan
-    # Custom VXLAN UDP port, e.g.:
-    # - -input-raw-vxlan-port 
-    # - 4789
-    # Specific VNI (by default, all VNIs are captured), e.g.:
-    # - -input-raw-vxlan-vni
-    # - 1
+tcp_stream:
+  from_interface:
+    enabled: true
+    interface: "eth0"
+    filter: "vxlan"
 ```
 
 ### Identifying the original client IP and host headers
@@ -158,7 +155,7 @@ To ensure the Native Node correctly identifies the original client and target ho
 ```yaml
 version: 4
 
-mode: tcp-capture
+mode: tcp-capture-v2
 
 proxy_headers:
   # Rule 1: Internal company proxies
@@ -186,18 +183,18 @@ To install the Wallarm node for TCP traffic mirror analysis, run the following c
 === "x86_64 version"
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
     ```
 === "ARM64 version"
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
     ```
 
 * The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -248,7 +245,7 @@ For additional debugging, set the [`log.level`](../../native-node/all-in-one-con
         ```
         sudo ./aio-native-0.20.0.aarch64.sh -- --help
         ```
-* You can also run the installer in an **interactive** mode and choose the `tcp-capture` mode in the 1st step:
+* You can also run the installer in an **interactive** mode and choose the `tcp-capture-v2` mode in the 1st step:
 
     === "x86_64 version"
         ```

@@ -12,7 +12,11 @@ The [Wallarm Native Node](../nginx-native-node-internals.md), which operates ind
     Use the installer in `connector-server` mode.
 * When you need a security solution for [TCP traffic mirror analysis](../oob/tcp-traffic-mirror/deployment.md).
     
-    Use the installer in `tcp-capture` mode.
+    Use the installer in `tcp-capture-v2` mode.
+
+    !!! info "tcp-capture-v2 replaces tcp-capture"
+        The `tcp-capture-v2` mode has replaced the previous `tcp-capture` implementation and is now the recommended method to deploy [TCP traffic mirror analysis](../oob/tcp-traffic-mirror/deployment.md). The original `tcp-capture` mode is deprecated.
+
 * When you need a [gRPC-based external processing filter](../connectors/istio.md) for APIs managed by Istio.
     
     Use the installer in `envoy-external-filter` mode.
@@ -32,10 +36,10 @@ The machine intended for running the Native Node with the all-in-one installer m
 
         --8<-- "../include/wallarm-cloud-ips.md"
 * When running the node in the `connector-server` or `envoy_external_filter` mode, a **trusted** SSL/TLS certificate for the machine's domain should be issued and uploaded to the machine along with the private key.
-* When running the node in the `tcp-capture` mode:
+* When running the node in the `tcp-capture-v2` mode:
     
     * Traffic and response mirroring must be configured with both source and target set up, and the prepared instance chosen as a mirror target. Specific environment requirements must be met, such as allowing specific protocols for traffic mirroring configurations.
-    * Mirrored traffic is tagged with either VLAN (802.1q), VXLAN, or SPAN.
+    * `tcp-capture-v2` requires bidirectional TCP streams, with all packets from both directions captured in a single coherent flow. `tcp-capture-v2` does not support traffic mirrored as independent, one-way streams (e.g., by some FortiGate configurations), because such traffic cannot be reliably reconstructed and HTTP request/response pairs may not be matched. 
 * In addition to the above, you should have the **Administrator** role assigned in Wallarm Console.
 
 ## Limitations
@@ -86,20 +90,19 @@ Create the `wallarm-node-conf.yaml` file on the machine with the following minim
     ```
 
     In the `connector.tls_cert` and `connector.tls_key`, you specify the paths to a **trusted** certificate and private key issued for the machine's domain.
-=== "tcp-capture"
+=== "tcp-capture-v2"
     ```yaml
     version: 4
 
-    mode: tcp-capture
+    mode: tcp-capture-v2
 
-    goreplay:
-      filter: 'enp7s0:'
-      extra_args:
-        - -input-raw-engine
-        - vxlan
+    tcp_stream:
+      from_interface:
+        enabled: true
+        interface: "enp7s0"
     ```
 
-    In the `goreplay.filter` parameter, you specify the network interface to capture traffic from. To check network interfaces available on the host:
+    In the `tcp_stream.from_interface.interface` parameter, you specify the network interface to capture traffic from. To check network interfaces available on the host:
 
     ```
     ip addr show
@@ -142,25 +145,25 @@ Create the `wallarm-node-conf.yaml` file on the machine with the following minim
     # EU Cloud
     sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
     ```
-=== "tcp-capture"
+=== "tcp-capture-v2"
     For the x86_64 installer version:
         
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
     ```
     
     For the ARM64 installer version:
 
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
     ```
 === "envoy-external-filter"
     For the x86_64 installer version:
@@ -210,7 +213,7 @@ If needed, you can change the copied file after the installation is finished. To
         * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly)
         * [IBM DataPower](../connectors/ibm-api-connect.md#2-obtain-and-apply-the-wallarm-policies-to-apis-in-ibm-api-connect)
         * [Azure API Management](../connectors/azure-api-management.md#2-create-named-values-in-azure)
-=== "tcp-capture"
+=== "tcp-capture-v2"
     [Proceed to the deployment testing](../oob/tcp-traffic-mirror/deployment.md#step-5-test-the-solution).
 === "envoy-external-filter"
     After deploying the node, the next step is to [update Envoy settings to forward traffic to the node](../connectors/istio.md#2-configure-istio-envoy-to-forward-traffic-to-the-wallarm-node).
