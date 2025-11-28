@@ -163,3 +163,7 @@ All created mitigation controls and [rules](../user-guides/rules/rules.md) form 
 Changes of rules and mitigation controls do NOT take effect instantly. Changes are applied to the request analysis process only after the custom ruleset **building** and **uploading to the filtering node** are finished.
 
 --8<-- "../include/custom-ruleset.md"
+
+## Migrating between tenants
+
+If you have [multiple tenants](../installation/multi-tenant/overview.md), you can [migrate](../installation/multi-tenant/overview.md#migrating-rules) (copy) mitigation controls between them **along with other rules**.
