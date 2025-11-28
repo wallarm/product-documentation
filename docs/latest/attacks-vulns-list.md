@@ -88,7 +88,7 @@ Technically, all attacks that can be detected by Wallarm are divided into two ty
 
     For behavioral attacks to be detected, corresponding tool should be properly configured.
 
-<a name="attack-det-methods"></a>[Handling](about-wallarm/protecting-against-attacks.md#attack-handling-process) of all attacks require [Wallarm filtering node](about-wallarm/overview.md#how-wallarm-works). However, as described above, methods of detection vary. Search for "Attack by" text to go through all attacks, and for method name, like "APIAP", to understand what can be found by each method.
+<a name="attack-det-methods"></a>[Handling](about-wallarm/protecting-against-attacks.md#attack-handling-process) of all attacks require [Wallarm filtering node](about-wallarm/overview.md#how-wallarm-works). However, as described above, methods of detection vary.
 
 !!! info "Method names and abbreviations"
     BID - **built-in detectors**, the major node function, [basic set of detectors](about-wallarm/protecting-against-attacks.md#basic-set-of-detectors), no configuration required
@@ -98,9 +98,7 @@ Technically, all attacks that can be detected by Wallarm are divided into two ty
     ASE - [API Specification Enforcement](api-specification-enforcement/overview.md) security policies basing on your uploaded specifications
     TRG - [triggers](user-guides/triggers/triggers.md)
     APIAP - [API Abuse Prevention](api-abuse-prevention/overview.md) antibot solution
-    ACL - [IP lists](ip-lists/overview.md), specifically, Denylist
-
-    Note that in Wallarm, mitigation controls (MCL), rules (RLS) and credential stuffing monitoring configuration (CRD) are called altogether "**rules**".
+    ACL - [IP lists](user-guides/ip-lists/overview.md), specifically, Denylist
 
 <!-- ??? info "Watch video about how Wallarm protects against OWASP Top 10"
     <div class="video-wrapper">
@@ -110,8 +108,6 @@ Technically, all attacks that can be detected by Wallarm are divided into two ty
 ## Vulnerability types
 
 This article lists [vulnerability](about-wallarm/detecting-vulnerabilities.md) (security issue) types detected by Wallarm - in case it has corresponding attack, they are described together. Note that Wallarm provides different [methods](about-wallarm/detecting-vulnerabilities.md#detection-methods) for vulnerability detection, they are listed in each vulnerability description.
-
-Search for "Vulnerability by" text to go through all vulnerabilities, and for method name, like "TRT", to understand what can be found by each method.
 
 !!! info "Method names and abbreviations"
     [Passive](about-wallarm/detecting-vulnerabilities.md#detection-methods) - built-in node function, no configuration required, "passive" as does not send anything itself
