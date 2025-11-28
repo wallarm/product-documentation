@@ -398,3 +398,7 @@ Changes of of rules and mitigation controls do NOT take effect instantly. Change
 ## API calls to get rules
 
 To get custom rules, you can [call the Wallarm API directly](../../api/request-examples.md#get-all-configured-rules).
+
+## Migrating between tenants
+
+If you have [multiple tenants](../../installation/multi-tenant/overview.md), you can [migrate](../../installation/multi-tenant/overview.md#migrating-rules) (copy) rules between them **along with** mitigation controls and Credential Stuffing Detection settings.
