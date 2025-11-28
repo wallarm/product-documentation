@@ -92,7 +92,6 @@ Technically, all attacks that can be detected by Wallarm are divided into two ty
 
 !!! info "Method names and abbreviations"
     BID - **built-in detectors**, the major node function, [basic set of detectors](about-wallarm/protecting-against-attacks.md#basic-set-of-detectors), no configuration required
-    MCL - [mitigation controls](about-wallarm/mitigation-controls-overview.md)
     RLS - [rules](user-guides/rules/rules.md) 
     CRD - [Credential Stuffing Detection](about-wallarm/credential-stuffing.md)
     ASE - [API Specification Enforcement](api-specification-enforcement/overview.md) security policies basing on your uploaded specifications
@@ -119,7 +118,7 @@ Read [here](about-wallarm/detecting-vulnerabilities.md#combining-methods) why an
 
 ## DDoS attacks
 
-**Attack** [by](#attack-det-methods) MCL, RLS, TRG, APIAP, ACL
+**Attack** [by](#attack-det-methods) RLS, TRG, APIAP, ACL
 
 A DDoS (Distributed Denial of Service) attack is a type of cyber attack in which an attacker seeks to make a website or API unavailable by overwhelming it with traffic from multiple sources.
 
@@ -449,7 +448,7 @@ This vulnerability occurs due to the incorrect validation and parsing of user in
 
 ### Brute-force attack
 
-**Attack** [by](#attack-det-methods) MCL, RLS, TRG
+**Attack** [by](#attack-det-methods) RLS, TRG
 
 **CWE codes:** [CWE-307][cwe-307], [CWE-521][cwe-521], [CWE-799][cwe-799]
 
@@ -474,7 +473,7 @@ Wallarm detects and mitigates brute-force attacks only if it has one or more con
 
 ### Forced browsing
 
-**Attack** [by](#attack-det-methods) MCL, TRG
+**Attack** [by](#attack-det-methods) TRG
 
 **CWE code:** [CWE-425][cwe-425]
 
@@ -705,7 +704,7 @@ The **API Abuse Prevention** module uses the complex bot detection model to dete
 
 ## GraphQL attacks
 
-**Attack** [by](#attack-det-methods) MCL, RLS
+**Attack** [by](#attack-det-methods) RLS
 
 **Wallarm code:** `graphql_attacks`
 
@@ -728,7 +727,7 @@ Wallarm detects and mitigates GraphQL attacks only if it has one or more configu
 
 ### GraphQL query size
 
-**Attack** [by](#attack-det-methods) MCL, RLS
+**Attack** [by](#attack-det-methods) RLS
 
 **Wallarm code:** `gql_doc_size`: violation of maximum allowed total query size
 
@@ -738,7 +737,7 @@ An attacker may attempt to perform a Denial of Service (DoS) for GraphQL endpoin
 
 ### GraphQL value size
 
-**Attack** [by](#attack-det-methods) MCL, RLS
+**Attack** [by](#attack-det-methods) RLS
 
 **Wallarm code:** `gql_value_size`: violation of maximum allowed value size
 
@@ -748,7 +747,7 @@ An attacker may send GraphQL request with an excessively long string value for a
 
 ### GraphQL query depth
 
-**Attack** [by](#attack-det-methods) MCL, RLS
+**Attack** [by](#attack-det-methods) RLS
 
 **Wallarm code:** `gql_depth`: violation of maximum allowed query depth
 
@@ -758,7 +757,7 @@ GraphQL queries can be nested, which allows requesting complex data structures i
 
 ### GraphQL aliases
 
-**Attack** [by](#attack-det-methods) MCL, RLS
+**Attack** [by](#attack-det-methods) RLS
 
 **Wallarm code:** `gql_aliases`: violation of maximum allowed number of aliases
 
@@ -768,7 +767,7 @@ In GraphQL, aliases offer the capability to rename the result fields to prevent 
 
 ### GraphQL batching
 
-**Attack** [by](#attack-det-methods) MCL, RLS
+**Attack** [by](#attack-det-methods) RLS
 
 **Wallarm code:** `gql_docs_per_batch`: violation of maximum allowed number of batched queries
 
@@ -778,7 +777,7 @@ In GraphQL, multiple queries (operations) can be batched together in a single HT
 
 ### GraphQL introspection
 
-**Attack** [by](#attack-det-methods) MCL, RLS
+**Attack** [by](#attack-det-methods) RLS
 
 **Wallarm code:** `gql_introspection`: forbidden introspection query
 
@@ -788,7 +787,7 @@ An attacker may leverage the GraphQL introspection system to uncover details abo
 
 ### GraphQL debug
 
-**Attack** [by](#attack-det-methods) MCL, RLS
+**Attack** [by](#attack-det-methods) RLS
 
 **Wallarm code:** `gql_debug`: forbidden debug mode query
 
