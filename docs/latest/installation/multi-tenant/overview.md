@@ -61,6 +61,7 @@ Tenant accounts are created according to the following structure:
 
 * Switch between accounts in Wallarm Console.
 * Monitor tenants' [subscriptions and quotas](../../about-wallarm/subscription-plans.md).
+* [Migrate rules](#migrating-rules) between tenants (global **administrators**)
 
 ![!Tenant selector in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console.png)
 
@@ -74,3 +75,42 @@ The multitenancy feature is inactive by default. To enable and configure the fea
 1. Send the request to [sales@wallarm.com](mailto:sales@wallarm.com) to add the **Multi-tenant system** feature to your subscription plan.
 2. [Configure](configure-accounts.md) tenant accounts in Wallarm Console.
 3. [Deploy and configure](deploy-multi-tenant-node.md) the multi-tenant Wallarm node.
+
+## Migrating rules
+
+As [global administrator](../../user-guides/settings/users.md#user-roles), you can copy rules between tenants. This can be helpful in case you want to create/test all rules on the testing environment and only them put them on production environment.
+
+Consider the following:
+
+* Migrating includes [Mitigation Controls](../../about-wallarm/mitigation-controls-overview.md), [Rules](../../user-guides/rules/rules.md) and [Credential Stuffing Detection](../../about-wallarm/credential-stuffing.md) settings.
+* During migration, all these will be blocked from viewing and editing both on **source** and **target** tenant. Also, rules compilation and sending to node will not start (both tenants) during migration process.
+* The full set of rules is copied, not the separate or selected ones.
+* The rules in the target tenant will be completely replaced during migration.
+
+Due to all this, to provide data integrity, the **recommended approach** is:
+
+* You copy the current state of all rules from production to test.
+* On test, you modify, add and test.
+* During tests, you do not change anything in rules on production.
+* As soon as all is ok, you copy all rules from test to production.
+
+To migrate rules between tenants:
+
+1. In Wallarm Console, go to **source** tenant → any of the sections:
+
+    * **Mitigation Controls**
+    * **Rules**
+    * **Credential Stuffing**
+
+1. Click **Migrate rules**, select **target** tenant by name or ID.
+1. If necessary, configure mappings (for [applications](../../user-guides/settings/applications.md) and/or domains).
+
+    ![!Migrating rules between tenants](../../images/partner-waf-node/migrating-rules-between-tenants.png)
+
+1. Start rules migration. Lock page is displayed for all copied sections in **source** and **target**. Progress is displayed. On finish, notification about result is displayed.
+1. If mappings were used, check they worked as expected.
+
+In case of failure (connectivity problems or other errors during copying):
+
+* **Source** is unlocked.
+* **Target** remains locked, you make a decision: **rollback** (restore state that was before the beginning of the migration process and then unlock) or **retry migration**.
