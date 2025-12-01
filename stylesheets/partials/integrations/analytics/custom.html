@@ -1,0 +1,135 @@
+<script>
+  (function () {
+    var amplitudeInitialized = false;
+    var amplitudeLoading = false;
+    var API_KEY = "78e35700de65a613b46a06dafca5d5e7";
+  
+    function isAmplitudeAllowed() {
+      // If Material helpers are not available yet, assume Amplitude is allowed (fallback)
+      if (typeof __md_get !== "function") {
+        return true;
+      }
+  
+      var consent = __md_get("__consent");
+  
+      // If the user hasn’t made any choice yet — enable Amplitude by default
+      if (!consent) {
+        return true;
+      }
+  
+      // If a custom "amplitude" cookie is defined
+      if (Object.prototype.hasOwnProperty.call(consent, "amplitude")) {
+        return !!consent.amplitude;   // true = enabled, false = disabled
+      }
+  
+      // Fallback: if the built-in "analytics" flag exists, use it instead
+      if (Object.prototype.hasOwnProperty.call(consent, "analytics")) {
+        return !!consent.analytics;
+      }
+  
+      // If neither "amplitude" nor "analytics" flags exist, treat it as disabled
+      return false;
+    }
+  
+    function loadAmplitude(callback) {
+      // SDK already loaded
+      if (window.amplitude && window.amplitude.__sdkLoaded) {
+        callback();
+        return;
+      }
+  
+      if (amplitudeLoading) return;
+      amplitudeLoading = true;
+  
+      var script = document.createElement("script");
+      script.src = "https://cdn.amplitude.com/libs/analytics-browser-2.11.0-min.js.gz";
+      script.async = true;
+      script.onload = function () {
+        amplitudeLoading = false;
+        if (!window.amplitude) return;
+  
+        // Mark SDK as loaded
+        window.amplitude.__sdkLoaded = true;
+        callback();
+      };
+      document.head.appendChild(script);
+    }
+
+    function loadSessionReplay(callback) {
+      // If Session Replay is already available, just call the callback
+      if (window.sessionReplay && window.sessionReplay.plugin) {
+        callback();
+        return;
+      }
+
+      var script = document.createElement("script");
+      script.src = "https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.13.0-min.js.gz";
+      script.async = true;
+      script.onload = function () {
+        if (window.sessionReplay && window.sessionReplay.plugin) {
+          callback();
+        } else {
+          console.warn("Session Replay plugin was loaded but window.sessionReplay is not available");
+        }
+      };
+      document.head.appendChild(script);
+    }
+  
+    function startAmplitude() {
+      if (amplitudeInitialized) return;
+  
+      loadAmplitude(function () {
+        if (!window.amplitude || amplitudeInitialized) return;
+
+        // First, initialize Amplitude
+        window.amplitude.init(API_KEY, {
+          fetchRemoteConfig: true,
+          autocapture: true,
+          minIdLength: 3
+        });
+
+        // Then, load Session Replay and add the plugin
+        loadSessionReplay(function () {
+          try {
+            if (window.sessionReplay && window.sessionReplay.plugin) {
+              window.amplitude.add(window.sessionReplay.plugin({ sampleRate: 1 }));
+            }
+          } catch (e) {
+            if (console && console.warn) {
+              console.warn("Failed to add Session Replay plugin", e);
+            }
+          }
+        });
+  
+        amplitudeInitialized = true;
+      });
+    }
+  
+    function applyConsent() {
+      if (isAmplitudeAllowed()) {
+        startAmplitude();
+      } else {
+        // In case Amplitude has already been initialized, opt out explicitly
+        if (window.amplitude && window.amplitude.getInstance) {
+          try {
+            window.amplitude.getInstance().setOptOut(true);
+          } catch (e) {
+            if (console && console.warn) {
+              console.warn("Amplitude opt-out failed", e);
+            }
+          }
+        }
+      }
+    }
+  
+    // Wait until Material and its helpers are initialized
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", applyConsent);
+    } else {
+      applyConsent();
+    }
+  
+    // When cookie settings change, Material reloads the page,
+    // so checking consent on each new page load is sufficient.
+  })();
+</script>
