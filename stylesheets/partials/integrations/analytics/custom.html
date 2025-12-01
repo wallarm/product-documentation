@@ -42,7 +42,7 @@
       amplitudeLoading = true;
   
       var script = document.createElement("script");
-      script.src = "https://cdn.amplitude.com/libs/analytics-browser-2.11.0-min.js.gz";
+      script.src = "https://cdn.amplitude.com/libs/analytics-browser-2.31.3-min.js.gz";
       script.async = true;
       script.onload = function () {
         amplitudeLoading = false;
@@ -83,7 +83,6 @@
 
         // First, initialize Amplitude
         window.amplitude.init(API_KEY, {
-          fetchRemoteConfig: true,
           autocapture: true,
           minIdLength: 3
         });
