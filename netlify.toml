@@ -3,6 +3,7 @@ publish = "site"
 command = """
 pip3 install --no-cache-dir -r requirements.txt &&
 npm install pngquant &&
+rm -rf .cache &&
 INSIDERS=true mkdocs build -f mkdocs-6.x.yml &&
 INSIDERS=true mkdocs build -f mkdocs-5.0.yml &&
 INSIDERS=true mkdocs build -f mkdocs-deprecated.yml &&
