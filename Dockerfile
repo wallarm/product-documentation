@@ -1,4 +1,4 @@
-FROM python:3.8.0 as latest
+FROM python:3.14.0 as latest
 EXPOSE 8000
 
 WORKDIR /tmp
