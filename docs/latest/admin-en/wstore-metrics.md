@@ -48,7 +48,7 @@ You can change the default metrics host and port (`http://localhost:9001/metrics
 ---
 ### `wallarm_wstore_connections_total`
 
-The total number of network connections handled by wstore, broken down by connection type (i.e., protocol schema like TCP or TLS).
+The total number of network connections handled by **wstore**, broken down by connection type (i.e., protocol schema like TCP or TLS).
 
 **Type**: Counter
 
@@ -69,7 +69,7 @@ wallarm_wstore_connections_total{schema="TCP"} 219
 ---
 ### `wallarm_wstore_current_connections`
 
-The number of active connections currently established with wstore.
+The number of active connections currently established with **wstore**.
 
 **Type**: Gauge
 
@@ -82,6 +82,10 @@ The number of active connections currently established with wstore.
 ```
 wallarm_wstore_current_connections 9
 ```
+
+**Troubleshooting recommendations:** 
+
+Watch for unusually high values (e.g., 1000+), as they may indicate hung or unclosed connections.
 
 ---
 ### `wallarm_wstore_requests_total`
@@ -125,11 +129,16 @@ The total number of iproto CALL/CALL_16 requests, broken down by the function na
 wallarm_wstore_iproto_calls_total{func="wallarm.blocked_stat.read",result="success"} 621473
 ```
 
+**Troubleshooting recommendations:** 
+
+Rising failed counts may indicate **wstore** errors. Check **wstore** logs and ensure sufficient memory allocation.
+
+
 ## Request throttling and load shedding
 ---
 ### `wallarm_wstore_throttle_mode`
 
-Shows if wstore is currently throttling requests due to severely insufficient resources. When this metric is `1.0`, wstore is dropping some incoming requests because system resources are critically low.
+Shows if **wstore** is currently throttling requests due to severely insufficient resources. When this metric is `1.0`, **wstore** is dropping some incoming requests because system resources are critically low.
 
 **Type**: Gauge
 
@@ -171,7 +180,7 @@ The number of requests rejected due to queue throttling, broken down by queue.
 
 **Type**: Counter
 
-**Labels**: `queue` - name of the wstore queue
+**Labels**: `queue` - name of the **wstore** queue
 
 **Unit**: Count 
 
@@ -185,7 +194,7 @@ wallarm_wstore_queue_throttled{queue="appstructure"} 0
 ---
 ### `wallarm_wstore_queue_size`
 
-The current number of requests in each wstore queue. 
+The current number of requests in each **wstore** queue. 
 
 **Type**: Gauge
 
@@ -193,7 +202,7 @@ The current number of requests in each wstore queue.
 
 * `engine` - e.g., `ring`
 
-* `name` - name of the wstore queue
+* `name` - name of the **wstore** queue
 
 **Unit**: Count
 
@@ -206,11 +215,11 @@ wallarm_wstore_queue_size{engine="ring",name="api_discovery"} 0
 ---
 ### `wallarm_wstore_queue_drops`
 
-The number of requests dropped when a wstore queue reaches its maximum size and begins overwriting entries in the ring buffer, broken down by queue.
+The number of requests dropped when a **wstore** queue reaches its maximum size and begins overwriting entries in the ring buffer, broken down by queue.
 	
 **Type**: Counter
 
-**Labels**: `queue` - name of the wstore queue
+**Labels**: `queue` - name of the **wstore** queue
 
 **Unit**: Count 
 
@@ -219,6 +228,10 @@ The number of requests dropped when a wstore queue reaches its maximum size and 
 ```
 wallarm_wstore_queue_drops{queue="appstructure"} 0
 ```
+
+**Troubleshooting recommendations:** 
+
+Watch for unusually high values, which vary by available RAM (e.g., ~50 for 1 GB of RAM and ~500,000 for 50 GB of RAM).
 
 ---
 ### `wallarm_wstore_queue_take_requests`
@@ -229,7 +242,7 @@ The number of requests returned from the queue by the `wallarm.requests_processi
 
 **Labels**: 
 
-* `queue` - name of the wstore queue
+* `queue` - name of the **wstore** queue
 
 * `result` - result of the operation (`success` or `failed`)
 
@@ -241,14 +254,18 @@ The number of requests returned from the queue by the `wallarm.requests_processi
 wallarm_wstore_queue_take_requests{queue="appstructure", result="success"} 313187
 ```
 
+**Troubleshooting recommendations:** 
+
+If failed values increase, check for internal processing or acknowledgment issues in **wstore** logs.
+
 ---
 ### `wallarm_wstore_queue_ack_drops`
 
-The number of acknowledgement attempts for requests that have already been removed from the wstore queue.
+The number of acknowledgement attempts for requests that have already been removed from the **wstore** queue.
 
 **Type**: Counter
 
-**Labels**: `queue` - name of the wstore queue
+**Labels**: `queue` - name of the **wstore** queue
 
 **Unit**: Count 
 
@@ -267,7 +284,7 @@ The number of requests that were captured but not acknowledged, and were therefo
 
 **Labels**:
 
-* `queue` - name of the wstore queue
+* `queue` - name of the **wstore** queue
 
 * `result` - result of the operation (`success` or `failed`)
 
@@ -288,7 +305,7 @@ The total number of `put`, `ack`, and `take` actions per queue, maintained for b
 
 **Labels**: none
 
-* `queue` - name of the wstore queue
+* `queue` - name of the **wstore** queue
 
 * `action` - type of the queue operation (`put`, `take`, or `ack`)
 
@@ -321,7 +338,7 @@ wallarm_wstore_request_storage_total_size 2285568
 ---
 ### `wallarm_wstore_request_storage_timeframe_size`
 
-Current time span in seconds between the oldest and newest requests stored in wstore.
+Current time span in seconds between the oldest and newest requests stored in **wstore**.
 
 **Type**: Gauge
 
@@ -334,6 +351,10 @@ Current time span in seconds between the oldest and newest requests stored in ws
 ```
 wallarm_wstore_request_storage_timeframe_size 308775
 ```
+
+**Troubleshooting recommendations:** 
+
+If value drops significantly, request retention is too short. Allocate more memory or disk for **wstore** to maintain longer history.
 
 ---
 ### `wallarm_wstore_request_storage_drops` 
@@ -369,6 +390,10 @@ The number of incoming requests rejected because they are too large to be stored
 wallarm_wstore_request_storage_rejects 0
 ```
 
+**Troubleshooting recommendations:** 
+
+Non-zero values indicate large requests are being rejected. Review request size limits and adjust configuration. 
+
 ---
 ### `wallarm_wstore_request_storage_misses`
 
@@ -386,11 +411,15 @@ The number of attempts to retrieve full request information for dropped or stale
 wallarm_wstore_request_storage_misses 0
 ```
 
+**Troubleshooting recommendations:** 
+
+If increasing, data for older requests is unavailable. Allocate more memory or disk for **wstore** to maintain longer history.
+
 ## Internal wstore engine metrics
 ---
 ### `wallarm_wstore_kvstore_records_total` 
 
-The total number of records currently stored in the wstore key-value store. 
+The total number of records currently stored in the **wstore** key-value store. 
 
 **Type**: Counter
 
@@ -407,7 +436,7 @@ wallarm_wstore_kvstore_records_total 770
 ---
 ### `wallarm_wstore_kvstore_cleanups` 
 
-The number of old requests cleaned up from the wstore internal key-value store.
+The number of old requests cleaned up from the **wstore** internal key-value store.
 
 **Type**: Counter
 
@@ -424,7 +453,7 @@ wallarm_wstore_kvstore_cleanups 0
 ---
 ### `wallarm_wstore_kvstore_errors` 
 
-The number of errors in the wstore internal key-value store operations, labeled by action type (e.g., cleanup, insert, or drop). 
+The number of errors in the **wstore** internal key-value store operations, labeled by action type (e.g., cleanup, insert, or drop). 
 
 **Type**: Counter
 
@@ -449,7 +478,7 @@ wallarm_wstore_kvstore_errors{action="cleanup"} 0
 ---
 ### `wallarm_wstore_kvstore_oom_errors_total`
 
-The number of Out Of Memory (OOM) errors occurred during insertion into the wstore key-value store.
+The number of Out Of Memory (OOM) errors occurred during insertion into the **wstore** key-value store.
 
 **Type**: Counter
 
@@ -466,7 +495,7 @@ wallarm_wstore_kvstore_oom_errors_total 0
 ---
 ### `wallarm_wstore_kvstore_insertions_total` 
 
-The number of requests successfully stored by the wstore into its key-value store.
+The number of requests successfully stored by the **wstore** into its key-value store.
 
 **Type**: Counter
 
@@ -483,7 +512,7 @@ wallarm_wstore_kvstore_insertions_total 770
 ---
 ### `wallarm_wstore_kvstore_lost_insertions_total`
 
-The number of requests failed to be stored in the wstore key-value store after all retry attempts.
+The number of requests failed to be stored in the **wstore** key-value store after all retry attempts.
 
 **Type**: Counter
 
@@ -500,7 +529,7 @@ wallarm_wstore_kvstore_lost_insertions_total 0
 ---
 ### `wallarm_wstore_kvstore_drops_total` 
 
-The number of requests lost due to failed cleanups from the wstore internal key-value store.
+The number of requests lost due to failed cleanups from the **wstore** internal key-value store.
 
 **Type**: Counter
 
