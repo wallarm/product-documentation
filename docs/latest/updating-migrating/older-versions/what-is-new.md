@@ -681,7 +681,7 @@ Wallarm Node now uses **wstore, a Wallarm-developed service**, instead of Tarant
     * The default `allow` value, specifying permitted IP addresses for the `/wallarm-status` service, is now 127.0.0.0/8 instead of 127.0.0.8/8.
 * [Kubernetes Ingress Controller](../../admin-en/installation-kubernetes-en.md):
     
-    * Tarantool is no longer a separate pod, wstore runs within the main `<CHART_NAME>-wallarm-ingress-controller-xxx` pod.
+    * wstore runs as a separate dedicated pod (`ingress-controller-wallarm-wstore-<suffix>`), replacing the previous Tarantool postanalytics component.
     * Helm values renamed: `controller.wallarm.tarantool` → `controller.wallarm.postanalytics`.
 * [Kubernetes Sidecar Controller](../../installation/kubernetes/sidecar-proxy/deployment.md):
 
