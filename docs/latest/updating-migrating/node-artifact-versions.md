@@ -94,7 +94,9 @@ new attack types in logging variables and search bars?
 * Introduced a new `wallarm_block_reason` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
 
     This variable adds to the log an information on reason of request blocking (detected attack, part of bot activity, Denylist etc.)
+* Introduced the new [`wallarm_export_streams`](../admin-en/configure-parameters-en.md#wallarm_export_streams) Wallarm directive which controls whether the Node exports information about long-lived streaming connections to the internal postanalytics storage (wstore)
 
+    By default, `wallarm_export_streams` is set to `off`. When enabled, the Node sends stream and message data to wstore, allowing [API Discovery](../api-discovery/overview.md) to build the API inventory and display gRPC/WebSocket endpoints in the Wallarm Console UI.
 * Fixed the stuffed credentials export to the Cloud
 * Improved GraphQL parser
 * Bug fixes and internal improvements
@@ -256,7 +258,9 @@ new attack types in logging variables and search bars?
 * Introduced a new `wallarm_block_reason` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
 
     This variable adds to the log an information on reason of request blocking (detected attack, part of bot activity, Denylist etc.)
+* Introduced the new [`wallarm_export_streams`](../admin-en/configure-parameters-en.md#wallarm_export_streams) Wallarm directive which controls whether the Node exports information about long-lived streaming connections to the internal postanalytics storage (wstore)
 
+    By default, `wallarm_export_streams` is set to `off`. When enabled, the Node sends stream and message data to wstore, allowing [API Discovery](../api-discovery/overview.md) to build the API inventory and display gRPC/WebSocket endpoints in the Wallarm Console UI.
 * Fixed the stuffed credentials export to the Cloud
 * Improved GraphQL parser
 * Bug fixes and internal improvements
@@ -388,7 +392,9 @@ new attack types in logging variables and search bars?
 * Introduced a new `wallarm_block_reason` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
 
     This variable adds to the log an information on reason of request blocking (detected attack, part of bot activity, Denylist etc.)
+* Introduced the new [`wallarm_export_streams`](../admin-en/configure-parameters-en.md#wallarm_export_streams) Wallarm directive which controls whether the Node exports information about long-lived streaming connections to the internal postanalytics storage (wstore)
 
+    By default, `wallarm_export_streams` is set to `off`. When enabled, the Node sends stream and message data to wstore, allowing [API Discovery](../api-discovery/overview.md) to build the API inventory and display gRPC/WebSocket endpoints in the Wallarm Console UI.
 * Fixed the stuffed credentials export to the Cloud
 * Improved GraphQL parser
 * Bug fixes and internal improvements
@@ -527,7 +533,9 @@ new attack types in logging variables and search bars?
 * Introduced a new `wallarm_block_reason` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
 
     This variable adds to the log an information on reason of request blocking (detected attack, part of bot activity, Denylist etc.)
+* Introduced the new [`wallarm_export_streams`](../admin-en/configure-parameters-en.md#wallarm_export_streams) Wallarm directive which controls whether the Node exports information about long-lived streaming connections to the internal postanalytics storage (wstore)
 
+    By default, `wallarm_export_streams` is set to `off`. When enabled, the Node sends stream and message data to wstore, allowing [API Discovery](../api-discovery/overview.md) to build the API inventory and display gRPC/WebSocket endpoints in the Wallarm Console UI.
 * Fixed the stuffed credentials export to the Cloud
 * Improved GraphQL parser
 * Bug fixes and internal improvements
@@ -632,7 +640,9 @@ new attack types in logging variables and search bars?
 * Introduced a new `wallarm_block_reason` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
 
     This variable adds to the log an information on reason of request blocking (detected attack, part of bot activity, Denylist etc.)
-    
+* Introduced the new [`wallarm_export_streams`](../admin-en/configure-parameters-en.md#wallarm_export_streams) Wallarm directive which controls whether the Node exports information about long-lived streaming connections to the internal postanalytics storage (wstore)
+
+    By default, `wallarm_export_streams` is set to `off`. When enabled, the Node sends stream and message data to wstore, allowing [API Discovery](../api-discovery/overview.md) to build the API inventory and display gRPC/WebSocket endpoints in the Wallarm Console UI.
 * Fixed the stuffed credentials export to the Cloud
 * Improved GraphQL parser
 * Bug fixes and internal improvements
@@ -731,6 +741,9 @@ new attack types in logging variables and search bars?
 
 ### wallarm-node-6-4-0-20250730-083353 (2025-07-31)
 
+* Introduced the new [`wallarm_export_streams`](../admin-en/configure-parameters-en.md#wallarm_export_streams) Wallarm directive which controls whether the Node exports information about long-lived streaming connections to the internal postanalytics storage (wstore)
+
+    By default, `wallarm_export_streams` is set to `off`. When enabled, the Node sends stream and message data to wstore, allowing [API Discovery](../api-discovery/overview.md) to build the API inventory and display gRPC/WebSocket endpoints in the Wallarm Console UI.
 * Fixed the stuffed credentials export to the Cloud
 * Improved GraphQL parser
 * Bug fixes and internal improvements
