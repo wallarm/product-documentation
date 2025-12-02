@@ -129,7 +129,7 @@ wallarm_wcli_job_error{component="botexp",code="1"} 0
 
 **Troubleshooting recommendations:** 
 
-Non-zero values indicate issues. Check the component logs and investigate network connectivity, configuration errors, or database/Wallarm Cloud failures based on the error code.
+Non-zero values indicate issues. Check the component logs and investigate network connectivity, configuration errors, or Wallarm Cloud failures based on the error code.
 
 ---
 ### `wallarm_wcli_job_export_period`
@@ -208,7 +208,7 @@ wallarm_wcli_subscription_active 1
 
 **Troubleshooting recommendations:** 
 
-If `0`, verify the license status and Wallarm Cloud account subscription.
+If `0`, verify the Wallarm subscription status.
 
 ## Bot feature extraction (botexp) metrics
 
@@ -781,7 +781,7 @@ wallarm_wcli_jwtexp_api_requests_failed 0
 
 **Troubleshooting recommendations:** 
 
-A non-zero value indicates network or Wallarm Cloud endpoint failures.
+A non-zero value indicates network or Wallarm Cloud failures.
 
 ## Request exporter metrics (reqexp)
 
