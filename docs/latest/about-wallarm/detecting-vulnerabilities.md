@@ -46,7 +46,7 @@ Passive detection refers to identifying vulnerabilities by analyzing actual traf
 
 Passive vulnerability detection is enabled by default.
 
-### Threat Replay Testing (TRT) <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a> <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/security-testing-tag.svg" style="border: none;"></a>
+### Threat Replay Testing (TRT) <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a> <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/security-testing-tag.svg" style="border: none;"></a>
 
 Wallarm's [Threat Replay Testing](../vulnerability-detection/threat-replay-testing/overview.md) turns attackers into your own penetration testers. It analyzes initial attack attempts, then explores other ways the same attack could be exploited. This exposes weak spots in your environment that even the original attackers did not find.
 
