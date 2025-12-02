@@ -50,6 +50,7 @@ For guidance on estimating AWS infrastructure costs for this deployment, see the
 ## Limitations
 
 * When using the Node in `connector-server` or `envoy-external-filter` mode, a **trusted** SSL/TLS certificate is required for the machine's domain. Self-signed certificates are not yet supported.
+* The `tcp-capture-v2` mode does not support traffic mirrored as independent, one-way streams (e.g., by some FortiGate configurations), because such traffic cannot be reliably reconstructed and HTTP request/response pairs may not be matched. `tcp-capture-v2` requires bidirectional TCP streams, with all packets from both directions captured in a single coherent flow. 
 * [Custom blocking page and blocking code](../../admin-en/configuration-guides/configure-block-page-and-code.md) configurations are not yet supported.
 * [Rate limiting](../../user-guides/rules/rate-limiting.md) by the Wallarm rule is not supported.
 * [Multitenancy](../multi-tenant/overview.md) is not supported yet.

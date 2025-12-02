@@ -34,7 +34,6 @@ Additionally, the solution enables response mirror parsing, providing Wallarm fe
 
         --8<-- "../include/wallarm-cloud-ips.md"
 * Traffic and response mirroring must be configured with both source and target set up, and the prepared instance chosen as a mirror target. Specific environment requirements must be met, such as allowing specific protocols for traffic mirroring configurations.
-* Mirrored traffic is tagged with either VLAN (802.1q), VXLAN, or SPAN. 
 
 ## Step 1: Prepare Wallarm token
 
@@ -84,9 +83,6 @@ In the [article](../../native-node/all-in-one-conf.md), you will find the list o
 ### Setting the mode (required)
 
 It is required to specify the `tcp-capture-v2` mode in the corresponding parameter to run the solution for the TCP traffic mirror analysis.
-
-!!! info "tcp-capture-v2 replaces tcp-capture"
-    The `tcp-capture-v2` mode has replaced the previous `tcp-capture` implementation and is now the recommended method to deploy TCP traffic mirror analysis. The original `tcp-capture` mode is deprecated.
 
 ### Choosing a network interface for listening
 
@@ -299,4 +295,3 @@ For additional debugging, set the [`log.level`](../../native-node/all-in-one-con
     * [Rate limiting](../../../user-guides/rules/rate-limiting.md) is not supported as it is impossible to limit load on target servers.
     * [Filtering by IP addresses](../../../user-guides/ip-lists/overview.md) is not supported.
 * The solution analyzes only unencrypted HTTP traffic over raw TCP, not encrypted HTTPS traffic.
-* The solution does not support parsing responses over HTTP keep-alive connections yet.

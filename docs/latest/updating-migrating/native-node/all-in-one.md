@@ -87,14 +87,14 @@ For the configuration file, you can reuse the one used during the initial instal
     The `tcp-capture-v2` mode is used when you deployed the self-hosted node for [TCP traffic analysis](../../installation/oob/tcp-traffic-mirror/deployment.md).
 
     !!! info "If upgrading from Node version 0.12.1 or lower"
-        If upgrading from the Node version 0.12.0 or lower, ensure that the `version` value is updated in the initial configuration file (`wallarm-node-conf.yaml`, as per the default installation instructions) and that parameters previously set in the `middleware` section are moved to the `goreplay` section:
+        If upgrading from the Node version 0.12.0 or lower, ensure that the `version` value is updated in the initial configuration file (`wallarm-node-conf.yaml`, as per the default installation instructions) and that parameters previously set in the `middleware` section are moved to the `tcp_reassembler` section:
 
         ```diff
         -version: 2
         +version: 4
 
         -middleware:
-        +goreplay:
+        +tcp_reassembler:
           parse_responses: true
           response_timeout: 5s
           url_normalize: true

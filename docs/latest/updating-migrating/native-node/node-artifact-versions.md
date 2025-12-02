@@ -111,8 +111,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * Added support for [mitigation control-based](../../api-protection/graphql-rule.md#mitigation-control-based-protection) **GraphQL API Protection**
 * Introduced the [`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers) configuration to configure trusted networks and extract real client IP and host headers
-
-    This replaces `http_inspector.real_ip_header` used in earlier versions in the `tcp-capture` mode.
 * Added the [`metrics.namespace`](../../installation/native-node/all-in-one-conf.md#metricsnamespace) configuration option to customize the prefix of Prometheus metrics exposed by the `go-node` binary
 * Fixed the `--preserve` script flag behavior to correctly retain the existing `node.yaml` and `env.list` files during upgrade
 
@@ -133,11 +131,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
     This is controlled by the new [`connector.external_health_check`](../../installation/native-node/all-in-one-conf.md#connectorexternal_health_check) configuration section.
 * Fixed a recurring intermittent bug that could cause occasional corruption of request and response bodies
-* The following fixes and updates were made in `tcp-capture` mode:
-
-    * GoReplay is now built with Go 1.24
-    * Fixed: `go-node` process no longer hangs when the `goreplay` process crashes
-    * Fixed a crash caused by a slice out-of-bounds error during header parsing in GoReplay
 * Fixed incorrect display of Native Node versions in Wallarm Console → **Nodes**
 
 ### 0.14.0 (2025-04-16)
@@ -397,8 +390,6 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 * Added support for [mitigation control-based](../../api-protection/graphql-rule.md#mitigation-control-based-protection) **GraphQL API Protection**
 * Introduced the [`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers) configuration to configure trusted networks and extract real client IP and host headers
-
-    This replaces `http_inspector.real_ip_header` used in earlier versions in the `tcp-capture` mode.
 * Added the [`metrics.namespace`](../../installation/native-node/all-in-one-conf.md#metricsnamespace) configuration option to customize the prefix of Prometheus metrics exposed by the `go-node` binary
 * Added [`connector.per_connection_limits`](../../installation/native-node/all-in-one-conf.md#connectorper_connection_limits) to control `keep-alive` connection limits
 * Minor internal file structure change

@@ -49,12 +49,11 @@ log:
 
 The Wallarm node operation mode. It should be `tcp-capture-v2` for TCP traffic mirror analysis.
 
-!!! info "tcp-capture-v2 replaces tcp-capture"
-    The `tcp-capture-v2` mode has replaced the previous `tcp-capture` implementation and is now the recommended method to deploy TCP traffic mirror analysis. The original `tcp-capture` mode is deprecated.
-
-### tcp_stream.from_interface.enabled
+### tcp_stream.from_interface.enabled (required)
 
 Specifies if capturing traffic from a network interface is active.
+
+Default: `false`.
 
 ```yaml
 version: 4
@@ -67,10 +66,13 @@ tcp_stream:
     interface: "lo"
 ```
 
-### tcp_stream.from_interface.interface
+### tcp_stream.from_interface.interface (required)
 
 Specifies the network interface name to capture traffic from (e.g., `eth0`, `enp7s0`).
-If this field is not set or the default value `any` is used, traffic is captured from all available interfaces.
+
+Default: `any`.
+
+If `tcp_stream.from_interface.interface` is not set or the default value `any` is used, traffic is captured from all available interfaces.
 
 === "Interface"
     ```yaml
@@ -120,7 +122,9 @@ If this field is not set or the default value `any` is used, traffic is captured
 
 Specifies an optional [BPF (Berkeley Packet Filter)](https://biot.com/capstats/bpf.html) expression to control which packets and ports are captured.
 
-If this field is not set or left empty, all packets on the selected interface are captured.
+Default: `vlan and port 80`.
+
+If `tcp_stream.from_interface.filter` is not set or left empty, all packets on the selected interface are captured.
 
 === "All ports on interface"
     ```yaml
@@ -148,7 +152,9 @@ If this field is not set or left empty, all packets on the selected interface ar
 
 ### tcp_stream.from_interface.snap_len
 
-Specifies the number of bytes to capture from each packet (snaplen). By default, `65535` bytes are captured, which ensures the full packet is recorded.
+Specifies the number of bytes to capture from each packet (snaplen). 
+
+Default: `65535` bytes, which ensures the full packet is recorded.
 
 Lowering this value can reduce memory usage, but may truncate packet data, potentially impacting traffic analysis.
 
@@ -156,7 +162,9 @@ Lowering this value can reduce memory usage, but may truncate packet data, poten
 
 Enables promiscuous mode. When enabled, the interface captures all network traffic seen on the interface, including packets not addressed to it. When disabled, capture is restricted to packets addressed to the interface.
 
-If this setting is not specified in the configuration, promiscuous mode is enabled by default.
+Default: `true`.
+
+If `tcp_stream.from_interface.promiscuous` is not set, promiscuous mode is enabled by default.
 
 !!! info "Promiscuous mode limitation"
     Promiscuous mode does not work with [`tcp_stream.from_interface.interface`](#tcp_streamfrom_interfaceinterface) set to `any`.
