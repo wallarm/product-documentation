@@ -10,6 +10,8 @@ You can:
 * Resize and change chart positions by drag-and-drop.
 * Add a dashboard to favorites; this will display it in the Wallarm's dashboard menu on the left.
 
+    ![BI dashboards](../../images/user-guides/dashboard/bi-dashboards.png)
+
 To add a BI dashboard:
 
 1. Go to Wallarm Console → **BI Dashboards**.
@@ -28,10 +30,12 @@ Depending on the chart type, settings may vary. Available types:
 * Donut chart
 * Single metric
 
+![BI dashboards - chart types](../../images/user-guides/dashboard/bi-dashboards-chart-types.png)
+
 Generally, to set up a chart, you need to select metric and how it will be presented on the chart. Note that:
 
 * Chart title is required.
-* You can use filters (TBD)
+* You can use filters. Filters are chart-wide, so if you have several metrics in the chart, they will all be affected by the selected filters. Consider future interaction between chart and dashboard filters.
 
 ## Using and sharing
 
@@ -41,10 +45,10 @@ You can:
 * Access the dashboard by clicking its name in Wallarm Console → **BI Dashboards**.
 * Redefine dashboard filters:
 
-    * Default period is TBD
+    * Default period is **the last week**
     * All applications' data is displayed by default
-    * IP (TBD)
-    * Dashboard filters interact with chart filters in the TBD way
+    * Traffic from all IP is considered by default, change by including or excluding IPs or CIDR notations
+    * Consider dashboard filters interacting with chart filters.
 
 * To share the dashboard's live state, click **Share** on its page and send the copied link.
-* To share the dashboard's snapshot, apply filters, then click Download PDF.
+* To share the dashboard's snapshot, apply filters, then click **Download PDF**.
