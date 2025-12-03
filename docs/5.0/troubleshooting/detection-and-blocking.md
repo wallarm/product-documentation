@@ -155,7 +155,36 @@ If the [`tnt_errors`](../admin-en/configure-statistics-service.md) metric gets `
 
 ## Filtering node RPS and APS values are not exported to Cloud
 
-If filtering node information about RPS (requests per second) and APS (attacks per second) are not exported to Wallarm cloud, the possible reason is SELinux.
+If filtering node information about RPS (requests per second) and APS (attacks per second) are not exported to Wallarm Cloud, the possible reasons are: 
+
+* (often met) Altering the default configuration of Wallarm's statistics service
+* (due to autoconfiguration, rarely met) SELinux.
+
+**Broken statistics service**
+
+While it is strongly advised not to alter any of the existing lines of the default configuration of Wallarm's [statistics service](../admin-en/configure-statistics-service.md) (`wallarm_status`) as it may corrupt the process of metric data upload to the Wallarm Cloud, the following may occur:
+
+* Configuration file was not created or was deleted
+* Configuration file was changed (default lines)
+
+All these reasons will lead to RPS/APS (along with other metrics) are not obtained by the Cloud from the statistics service. The following errors will occur in [`wcli-out.log`](../admin-en/configure-logging.md):
+
+```
+ {"level" :"error", "component": "metricsexp", "error": "metricsexp: GetMetrics: unexpected HTTP response status code "time":"2025-10-30T11:25:262" "time":"2025-10-30T11:25:262", "message": "metrics export done with error'"}
+```
+
+And in NGINX logs:
+
+```
+wallarm | {"hostname": "wallarm", "host": "127.0.0.8", "request_uri":"/wallarm-status", "server_protocol": "HTTP/1.1", "status": "404", ...}
+```
+
+To solve the problem:
+
+* Restore the default configuration (example is [here](../admin-en/configure-statistics-service.md#default-configuration))
+* For your own monitoring purposes, use a separate server on address/port different from `wallarm_status`
+
+**SeLinux**
 
 [SELinux](https://www.redhat.com/en/topics/linux/what-is-selinux) is installed and enabled by default on RedHat‑based Linux distributions (e.g., CentOS or Amazon Linux 2.0.2021x and lower). SELinux can also be installed on other Linux distributions, such as Debian or Ubuntu.
 
