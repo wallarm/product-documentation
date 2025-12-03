@@ -6,7 +6,7 @@
 
 Every 10 minutes, Wallarm exports data on detected [hits](../../../about-wallarm/protecting-against-attacks.md#hit) to a MinIO S3-compatible bucket. A **hit** is a serialized malicious request that includes the original request and metadata added by the Wallarm node.
 
-Files are saved in JSON format using the naming convention `hitlogs-{timestamp}.json`.
+Files are saved in JSON or New Line Delimited JSON (NDJSON) format using the naming convention `hitlogs-{timestamp}.json` or `hitlogs-{timestamp}.jsonl` correspondingly.
 
 Data fields for each hit:
 
@@ -41,6 +41,7 @@ To set up a MinIO S3-compatible bucket integration:
 
     * Access key
     * Secret key
+1. Select the format for Wallarm data: either a JSON Array or a New Line Delimited JSON (NDJSON).
 1. Make sure in the **Regular notifications** section, hits in the last 10 minutes are selected to be sent. If not chosen, data will not be sent to the bucket.
 1. Click **Test integration** to check configuration correctness, availability of the target system, and the notification format.
 1. Click **Add integration**.
@@ -53,72 +54,78 @@ To review the data in your bucket, open the bucket in the MinIO Console and use 
 
 Below is an example JSON file with hits detected in the last 10 minutes:
 
-```json
-[
-{
-    "time":"1687241470",
-    "request_id":"d2a900a6efac7a7c893a00903205071a",
-    "ip":"127.0.0.1",
-    "datacenter":"unknown",
-    "tor":"none",
-    "remote_country":null,
-    "application_id":[
-        -1
-    ],
-    "domain":"localhost",
-    "method":"GET",
-    "uri":"/etc/passwd",
-    "protocol":"none",
-    "status_code":499,
-    "attack_type":"ptrav",
-    "block_status":"monitored",
-    "payload":[
-        "/etc/passwd"
-    ],
-    "point":[
-        "uri"
-    ],
-    "tags":{
-        "lom_id":7,
-        "libproton_version":"4.4.11",
-        "brute_counter":"c188cd2baa2cefb3f3688cb4008a649e",
-        "wallarm_mode":"monitoring",
-        "final_wallarm_mode":"monitoring"
+=== "JSON"
+    ```json
+    [
+    {
+        "time":"1687241470",
+        "request_id":"d2a900a6efac7a7c893a00903205071a",
+        "ip":"127.0.0.1",
+        "datacenter":"unknown",
+        "tor":"none",
+        "remote_country":null,
+        "application_id":[
+            -1
+        ],
+        "domain":"localhost",
+        "method":"GET",
+        "uri":"/etc/passwd",
+        "protocol":"none",
+        "status_code":499,
+        "attack_type":"ptrav",
+        "block_status":"monitored",
+        "payload":[
+            "/etc/passwd"
+        ],
+        "point":[
+            "uri"
+        ],
+        "tags":{
+            "lom_id":7,
+            "libproton_version":"4.4.11",
+            "brute_counter":"c188cd2baa2cefb3f3688cb4008a649e",
+            "wallarm_mode":"monitoring",
+            "final_wallarm_mode":"monitoring"
+        }
+    },
+    {
+        "time":"1687241475",
+        "request_id":"b457fccec9c66cdb07eab7228b34eca6",
+        "ip":"127.0.0.1",
+        "datacenter":"unknown",
+        "tor":"none",
+        "remote_country":null,
+        "application_id":[
+            -1
+        ],
+        "domain":"localhost",
+        "method":"GET",
+        "uri":"/etc/passwd",
+        "protocol":"none",
+        "status_code":499,
+        "attack_type":"ptrav",
+        "block_status":"monitored",
+        "payload":[
+            "/etc/passwd"
+        ],
+        "point":[
+            "uri"
+        ],
+        "tags":{
+            "lom_id":7,
+            "libproton_version":"4.4.11",
+            "brute_counter":"c188cd2baa2cefb3f3688cb4008a649e",
+            "wallarm_mode":"monitoring",
+            "final_wallarm_mode":"monitoring"
+        }
     }
-},
-{
-    "time":"1687241475",
-    "request_id":"b457fccec9c66cdb07eab7228b34eca6",
-    "ip":"127.0.0.1",
-    "datacenter":"unknown",
-    "tor":"none",
-    "remote_country":null,
-    "application_id":[
-        -1
-    ],
-    "domain":"localhost",
-    "method":"GET",
-    "uri":"/etc/passwd",
-    "protocol":"none",
-    "status_code":499,
-    "attack_type":"ptrav",
-    "block_status":"monitored",
-    "payload":[
-        "/etc/passwd"
-    ],
-    "point":[
-        "uri"
-    ],
-    "tags":{
-        "lom_id":7,
-        "libproton_version":"4.4.11",
-        "brute_counter":"c188cd2baa2cefb3f3688cb4008a649e",
-        "wallarm_mode":"monitoring",
-        "final_wallarm_mode":"monitoring"
-    }
-}
-]
-```
+    ]
+    ```
+=== "New Line Delimited JSON (NDJSON)"
+    ```json
+    {"time":"1687241470","request_id":"d2a900a6efac7a7c893a00903205071a","ip":"127.0.0.1","datacenter":"unknown","tor":"none","remote_country":null,"application_id":[-1],"domain":"localhost","method":"GET","uri":"/etc/passwd","protocol":"none","status_code":499,"attack_type":"ptrav","block_status":"monitored","payload":["/etc/passwd"],"point":["uri"],"tags":{"lom_id":7,"libproton_version":"4.4.11","brute_counter":"c188cd2baa2cefb3f3688cb4008a649e","wallarm_mode":"monitoring","final_wallarm_mode":"monitoring"}}
+    {"time":"1687241475","request_id":"b457fccec9c66cdb07eab7228b34eca6","ip":"127.0.0.1","datacenter":"unknown","tor":"none","remote_country":null,"application_id":[-1],"domain":"localhost","method":"GET","uri":"/etc/passwd","protocol":"none","status_code":499,"attack_type":"ptrav","block_status":"monitored","payload":["/etc/passwd"],"point":["uri"],"tags":{"lom_id":7,"libproton_version":"4.4.11","brute_counter":"c188cd2baa2cefb3f3688cb4008a649e","wallarm_mode":"monitoring","final_wallarm_mode":"monitoring"}}
+    ```
 
 --8<-- "../include/cloud-ip-by-request.md"
 
