@@ -2,15 +2,28 @@
 
 ## Attacks are not displayed
 
-If attacks are not displayed the Cloud and the [`gauge-export_drops_flag`](../admin-en/monitoring/available-metrics.md) metric gets the `1` value, this means the uploading of attacks from the node to the Cloud has stopped. Follow the steps to check and and fix this:
+If the following occurs:
+
+* You send a test attack and it is not displayed in **Attacks** in Wallarm Console
+* You notice attacks did not appear in **Attacks** in Wallarm Console for some time
+
+... this can be total or partial loss of attacks due to different reasons:
+
+* No connectivity between Node and Cloud → total loss
+* Filtering mode is `off` or Wallarm scripts/services are not running → total loss
+* Node (postanalytics module, tarantool-based) does not handle everything it receives (insufficient memory, etc.) → partial loss, `gauge-export_drops_flag` is `1`
+* Node (postanalytics module, tarantool-based) does not receive all requests from web server (e.g., NGINX) → partial loss, `tnt_errors` increases significantly
+* Node (postanalytics module, tarantool-based) handles what it received with errors → partial loss, `tnt_errors` increases significantly
+
+See details in child sections.
+
+### Total loss
+
+If attacks are not displayed the Cloud:
 
 1. Make sure that the filtering node [mode](../admin-en/configure-wallarm-mode.md) is different from `off`. The node does not process incoming traffic in the `off` mode.
 
     The `off` mode is a common reason for the `wallarm-status` metrics not to increase.
-
-1. If the node is NGINX-based, restart NGINX to be sure that settings have been applied:
-
-    --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
 1. Check whether the script for uploading data to the analytical cluster has been run:
 
@@ -61,7 +74,7 @@ If attacks are not displayed the Cloud and the [`gauge-export_drops_flag`](../ad
 
 1. If some other errors are presented in `wcli-out.log`, contact the Wallarm support team.
 
-## Some attacks are not displayed
+### Partial loss - `gauge-export_drops_flag` is `1`
 
 If some attacks are not displayed the Cloud and the [`gauge-export_drops_flag`](../admin-en/monitoring/available-metrics.md) metric gets the `1` value, this means that requests with attacks have been deleted from the postanalytics module but not sent to the Cloud. Usually this happens due to the insufficient memory allocated form the postanalytics module. Follow the steps to check and and fix this:
 
@@ -93,6 +106,52 @@ If some attacks are not displayed the Cloud and the [`gauge-export_drops_flag`](
     ```
     systemctl restart wallarm
     ```
+
+### Partial loss - `tnt_errors` increases
+
+If the [`tnt_errors`](../admin-en/configure-statistics-service.md) metric gets `+1` at each processed request, this means some problems in Wallarm's [postanalytics](../admin-en/installation-postanalytics-en.md) module functioning occur (caused by interaction with web server (e.g., NGINX) or postanalytics itself). Follow the steps to check and and fix this:
+
+1. Problem can be caused by web server. If the node is NGINX-based, try restarting NGINX to check whether the problems are gone:
+
+    --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
+
+1. Check if `wallarm-tarantool` service is running:
+
+    ```
+    systemctl status wallarm
+    ```
+1. If it is not running, run it:
+
+    ```
+    start wallarm
+    ```
+
+1. Additionally, check the tarantool process managed by `supervisord`:
+
+    ```
+    ps aux | grep wallarm-tarantool
+    ```
+
+1. Restart tarantool:
+
+    ```
+    systemctl restart wallarm
+    ```
+
+1. If this did not solve the problem, proceed to the next steps.
+1. Check `/opt/wallarm/var/log/wallarm/tarantool-out.log`, if there are errors like "Index 'primary' already exists" or "can't initialize storage", delete all files from `/opt/wallarm/var/lib/wallarm-tarantool` and restart Wallarm:
+
+    ```
+    systemctl restart wallarm
+    ```
+
+1. If this did not solve the problem, collect the debug information:
+
+    ```
+    sudo /opt/wallarm/collect-info.sh
+    ```
+
+1. Create ticket in Wallarm support system, providing the collected information.
 
 ## Filtering node RPS and APS values are not exported to Cloud
 
@@ -163,48 +222,6 @@ To resolve the issue of a legitimate request being blocked by Wallarm, follow th
     * Modifying [IP lists](../user-guides/ip-lists/overview.md)
 
 1. If the information initially provided by the user is incomplete or you are not sure about measures that can be safely applied, share the details with [Wallarm support](mailto:support@wallarm.com) for further assistance and investigation.
-
-## Errors in postanalytics module
-
-If the [`tnt_errors`](../admin-en/configure-statistics-service.md) metric gets `+1` at each processed request, this means some problems in Wallarm's [postanalytics](../admin-en/installation-postanalytics-en.md) module functioning occur. Follow the steps to check and and fix this:
-
-1. Check if `wallarm-tarantool` service is running:
-
-    ```
-    systemctl status wallarm
-    ```
-1. If it is not running, run it:
-
-    ```
-    start wallarm
-    ```
-
-1. Additionally, check the tarantool process managed by `supervisord`:
-
-    ```
-    ps aux | grep wallarm-tarantool
-    ```
-
-1. Restart tarantool:
-
-    ```
-    systemctl restart wallarm
-    ```
-
-1. If this did not solve the problem, proceed to the next steps.
-1. Check `/opt/wallarm/var/log/wallarm/tarantool-out.log`, if there are errors like "Index 'primary' already exists" or "can't initialize storage", delete all files from `/opt/wallarm/var/lib/wallarm-tarantool` and restart Wallarm:
-
-    ```
-    systemctl restart wallarm
-    ```
-
-1. If this did not solve the problem, collect the debug information:
-
-    ```
-    sudo /opt/wallarm/collect-info.sh
-    ```
-
-1. Create ticket in Wallarm support system, providing the collected information.
 
 ## Filtering node not processing requests
 
