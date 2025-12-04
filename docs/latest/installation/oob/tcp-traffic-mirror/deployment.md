@@ -126,22 +126,6 @@ tcp_stream:
     filter: "vlan"
 ```
 
-### Capturing VXLAN
-
-If mirrored traffic is wrapped in VXLAN (common in AWS), you can capture it by specifying `vxlan` in the `filter` parameter using a [BPF (Berkeley Packet Filter)](https://biot.com/capstats/bpf.html) expression.
-
-```yaml
-version: 4
-
-mode: tcp-capture-v2
-
-tcp_stream:
-  from_interface:
-    enabled: true
-    interface: "eth0"
-    filter: "vxlan"
-```
-
 ### Identifying the original client IP and host headers
 
 When traffic passes through proxies or load balancers, they often replace the original client IP address and `Host` header with their own values. To preserve the original information, such intermediaries typically add HTTP headers like `X-Forwarded-For`, `X-Real-IP`, or `X-Forwarded-Host`.
