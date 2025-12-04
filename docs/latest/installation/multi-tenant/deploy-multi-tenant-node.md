@@ -206,7 +206,7 @@ The next steps differ depending on your filtering node type: NGINX Node or Nativ
                   wallarm_application: 2
         ```
 
-    === "tcp-capture"
+    === "tcp-capture-v2"
         ```yaml hl_lines="6-7 10-11 13-14"
         version: 4
         mode: tcp-capture-v2
