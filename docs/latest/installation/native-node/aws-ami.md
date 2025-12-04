@@ -47,10 +47,13 @@ For guidance on estimating AWS infrastructure costs for this deployment, see the
     * Traffic and response mirroring must be configured with both source and target set up, and the prepared instance chosen as a mirror target. Specific environment requirements must be met, such as allowing specific protocols for traffic mirroring configurations.
     * Unencrypted HTTP traffic over raw TCP, not encrypted HTTPS traffic.
 
+* The `tcp-capture-v2` mode supports VLAN (802.1Q) mirrored traffic without requiring VLAN tags.
+
 ## Limitations
 
 * When using the Node in `connector-server` or `envoy-external-filter` mode, a **trusted** SSL/TLS certificate is required for the machine's domain. Self-signed certificates are not yet supported.
 * The `tcp-capture-v2` mode does not support traffic mirrored as independent, one-way streams (e.g., by some FortiGate configurations), because such traffic cannot be reliably reconstructed and HTTP request/response pairs may not be matched. `tcp-capture-v2` requires bidirectional TCP streams, with all packets from both directions captured in a single coherent flow. 
+* At the moment, the `tcp-capture-v2` mode does not support VXLAN or SPAN-mirrored traffic.
 * [Custom blocking page and blocking code](../../admin-en/configuration-guides/configure-block-page-and-code.md) configurations are not yet supported.
 * [Rate limiting](../../user-guides/rules/rate-limiting.md) by the Wallarm rule is not supported.
 * [Multitenancy](../multi-tenant/overview.md) is not supported yet.

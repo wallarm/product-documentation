@@ -14,7 +14,7 @@ Among all supported [out-of-band deployment options](../../supported-deployment-
 
 This solution operates in out-of-band (OOB) mode, capturing mirrored TCP traffic directly from the network interface, independent of web servers like NGINX. The captured traffic is then parsed, reassembled, and analyzed for threats.
 
-It functions as a mirror target, seamlessly switching between multiple traffic sources. The solution supports traffic tagged with VLAN (802.1q), VXLAN, or SPAN.
+It functions as a mirror target, seamlessly switching between multiple traffic sources. The solution supports VLAN (802.1Q) mirrored traffic without requiring VLAN tags.
 
 Additionally, the solution enables response mirror parsing, providing Wallarm features that rely on response data. These features include [vulnerability detection](../../../about-wallarm/detecting-vulnerabilities.md), [API discovery](../../../api-discovery/overview.md) and more.
 
@@ -295,3 +295,5 @@ For additional debugging, set the [`log.level`](../../native-node/all-in-one-con
     * [Rate limiting](../../../user-guides/rules/rate-limiting.md) is not supported as it is impossible to limit load on target servers.
     * [Filtering by IP addresses](../../../user-guides/ip-lists/overview.md) is not supported.
 * The solution analyzes only unencrypted HTTP traffic over raw TCP, not encrypted HTTPS traffic.
+* At the moment, the solution does not support VXLAN or SPAN-mirrored traffic.
+* The solution does not support traffic mirrored as independent, one-way streams (e.g., by some FortiGate configurations), because such traffic cannot be reliably reconstructed and HTTP request/response pairs may not be matched. `tcp-capture-v2` requires bidirectional TCP streams, with all packets from both directions captured in a single coherent flow. 

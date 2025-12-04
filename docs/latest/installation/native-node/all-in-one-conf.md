@@ -529,7 +529,7 @@ Default: `true`.
 If `tcp_stream.from_interface.promiscuous` is not set, promiscuous mode is enabled by default.
 
 !!! info "Promiscuous mode limitation"
-    Promiscuous mode does not work with [`tcp_stream.from_interface.interface`](#tcp_streamfrom_interfaceinterface) set to `any`.
+    Promiscuous mode does not work with [`tcp_stream.from_interface.interface`](#tcp_streamfrom_interfaceinterface-required) set to `any`.
 
 ## Envoy external filter-specific settings
 
