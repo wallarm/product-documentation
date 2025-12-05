@@ -249,6 +249,12 @@ The Native Node works with the following platforms with no limitations:
             <h3>CloudFront</h3>
             <p>Deploy Wallarm to secure traffic delivered through Amazon CloudFront</p>
         </a>
+
+        <a class="do-card" href="../../installation/connectors/aws-api-gateway">
+            <img class="non-zoomable" src="../../images/platform-icons/aws-api-gateway.svg" />
+            <h3>Amazon API Gateway</h3>
+            <p>Deploy Wallarm to build an API inventory from CloudWatch logs</p>
+        </a>        
         
         <a class="do-card" href="../../installation/connectors/cloudflare/">
             <img class="non-zoomable" src="../../images/platform-icons/cloudflare.png" />
