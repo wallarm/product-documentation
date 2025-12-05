@@ -175,22 +175,6 @@ To check:
 
 See details on other logs and log configuration [here](../admin-en/configure-logging.md).
 
-## Node registers vulnerabilities
-
-Wallarm detects [vulnerabilities](../glossary-en.md#vulnerability) in your application APIs.
-
-To check:
-
-1. Send a request to your resource:
-
-      ```
-      curl <RECOURSE_URL> -H 'jwt: eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJjbGllbmRfaWQiOiIxIn0.' -H 'HOST: <TEST_HOST_NAME>'
-      ```
-
-      Note that if you already have a [weak JWT](../attacks-vulns-list.md#weak-authentication) vulnerability detected for the host (in any status, even closed), you need to specify a different `TEST_HOST_NAME` to see the new vulnerability registered.
-
-1. Open Wallarm Console → **Events** → **Vulnerabilities** to check whether a weak JWT vulnerability was listed.
-
 ## IP lists work
 
 In Wallarm, you can control access to your application APIs by allowlisting, denylisting, and graylisting of IP addresses the requests come from. Learn core logic of IP lists [here](../user-guides/ip-lists/overview.md).

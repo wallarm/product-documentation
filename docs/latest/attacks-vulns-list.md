@@ -1298,23 +1298,9 @@ This vulnerability is mapped with [A06:2021 – Vulnerable and Outdated Componen
 
 A weak authentication vulnerability is a flaw in an application's or system's security that makes it easy for an attacker to bypass the authentication process and gain unauthorized access. These vulnerabilities are often the result of poor implementation, lax policies, or weak user practices. A successful attack can lead to the theft of sensitive data, identity theft, or a complete system compromise.
 
-**Weak JWT subtype description:**
-
-[JSON Web Token (JWT)](https://jwt.io/) is a popular authentication standard used to exchange data between resources like APIs securely.
-
-JWT compromisation is a common aim of attackers as breaking authentication mechanisms provides them full access to your applications and APIs. The weaker JWTs, the higher chance for it to be compromised.
-
-Wallarm considers JWTs to be weak if they are:
-
-* Unencrypted - there is no signing algorithm (the `alg` field is `none` or absent).
-* Signed using compromised secret keys.
-
-Once a weak JWT is detected, Wallarm records the corresponding [vulnerability](user-guides/vulnerabilities.md).
-
 **In addition to Wallarm protection:**
 
 * Apply the recommendations from the [OWASP JSON Web Token Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html)
-* [Check if your JWT implementation is vulnerable for well-known secrets](https://lab.wallarm.com/340-weak-jwt-secrets-you-should-check-in-your-code/)
 
 ### Weak credentials
 
