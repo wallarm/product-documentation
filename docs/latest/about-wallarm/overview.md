@@ -103,3 +103,5 @@ Wallarm offers cloud instances in both the US and Europe, enabling you to select
 The [described](#how-wallarm-works) Wallarm components: filtering node and Cloud - can be deployed in one of three forms:
 
 --8<-- "../include/deployment-forms.md"
+
+See details on [shared responsibility](shared-responsibility.md) for each deployment form.
