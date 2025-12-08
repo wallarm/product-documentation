@@ -91,10 +91,17 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
     === "API token"
         ```bash
         # If using the x86_64 version:
+<<<<<<< HEAD
         sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.7.3.x86_64-glibc.sh filtering
 
         # If using the ARM64 version:
         sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.7.3.aarch64-glibc.sh filtering
+=======
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.8.0.x86_64-glibc.sh filtering
+
+        # If using the ARM64 version:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.8.0.aarch64-glibc.sh filtering
+>>>>>>> aca6ec36e (DOCS-3667 Release 6.8.0)
         ```        
 
         The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -102,10 +109,17 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
     === "Node token"
         ```bash
         # If using the x86_64 version:
+<<<<<<< HEAD
         sudo sh wallarm-6.7.3.x86_64-glibc.sh filtering
 
         # If using the ARM64 version:
         sudo sh wallarm-6.7.3.aarch64-glibc.sh filtering
+=======
+        sudo sh wallarm-6.8.0.x86_64-glibc.sh filtering
+
+        # If using the ARM64 version:
+        sudo sh wallarm-6.8.0.aarch64-glibc.sh filtering
+>>>>>>> aca6ec36e (DOCS-3667 Release 6.8.0)
         ```
 
 ## Step 6: Transfer NGINX and postanalytics configuration from old node machine to new
