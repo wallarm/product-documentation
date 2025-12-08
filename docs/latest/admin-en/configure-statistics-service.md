@@ -34,14 +34,14 @@ wallarm_status [on|off] [format=json|prometheus];
 
 ### Default configuration
 
-By default, the filter node statistics service has the most secure configuration. The `/etc/nginx/conf.d/wallarm-status.conf` (`/etc/nginx/wallarm-status.conf` for all-in-one installer) configuration file looks like the following:
+By default, the filtering node statistics service has the most secure configuration. The `/etc/nginx/conf.d/wallarm-status.conf` (`/etc/nginx/wallarm-status.conf` for all-in-one installer) configuration file looks like the following:
 
 ```
 server {
   listen 127.0.0.8:80;
   server_name localhost;
 
-  allow 127.0.0.8/8;   # Access is only available for loopback addresses of the filter node server
+  allow 127.0.0.8/8;   # Access is only available for loopback addresses of the filtering node server
   # If running the NGINX-based Docker container:
   # allow 127.0.0.0/8;
   deny all;
@@ -165,7 +165,7 @@ To change an IP address and/or port of the statistics service, follow the instru
 
         --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
-If SELinux is installed on the filter node host, make sure that SELinux is either [configured or disabled][doc-selinux]. For simplicity, this document assumes that SELinux is disabled.
+If SELinux is installed on the filtering node host, make sure that SELinux is either [configured or disabled][doc-selinux]. For simplicity, this document assumes that SELinux is disabled.
 
 Be aware that the local `wallarm-status` output will reset following the application of the above settings.
 
@@ -205,7 +205,7 @@ To obtain statistics in the Prometheus format from node deployment options that 
 
 ##  Usage
 
-To obtain the filter node statistics, make a request from one of the allowed IP addresses (see above):
+To obtain the filtering node statistics, make a request from one of the allowed IP addresses (see above):
 
 === "Statistics in the JSON format"
     ```
@@ -222,8 +222,10 @@ To obtain the filter node statistics, make a request from one of the allowed IP 
         "attacks": 0,
         "blocked": 0,
         "blocked_by_acl": 0,
+        "blocked_by_antibot": 0,
         "acl_allow_list": 0,
-        "abnormal": 0,
+        "bytes_in": 0,
+        "bytes_out": 0,
         "tnt_errors": 0,
         "api_errors": 0,
         "requests_lost": 0,
@@ -335,12 +337,18 @@ To obtain the filter node statistics, make a request from one of the allowed IP 
     # HELP wallarm_blocked_by_acl blocked by acl requests count
     # TYPE wallarm_blocked_by_acl gauge
     wallarm_blocked_by_acl 0
+    # HELP wallarm_blocked_by_antibot blocked by Wallarm Antibot requests count
+    # TYPE wallarm_blocked_by_antibot gauge
+    wallarm_blocked_by_antibot 0
     # HELP wallarm_acl_allow_list requests passed by allow list
     # TYPE wallarm_acl_allow_list gauge
     wallarm_acl_allow_list 0
-    # HELP wallarm_abnormal abnormal requests count
-    # TYPE wallarm_abnormal gauge
-    wallarm_abnormal 2
+    # HELP wallarm_bytes_in total bytes received on listen servers
+    # TYPE wallarm_bytes_in gauge
+    wallarm_bytes_in 36157
+    # HELP wallarm_bytes_out total bytes sent from listen servers
+    # TYPE wallarm_bytes_out gauge
+    wallarm_bytes_out 123847
     # HELP wallarm_tnt_errors wstore write errors count
     # TYPE wallarm_tnt_errors gauge
     wallarm_tnt_errors 0
@@ -405,14 +413,16 @@ To obtain the filter node statistics, make a request from one of the allowed IP 
 
 The following response parameters are available (Prometheus metrics have the `wallarm_` prefix):
 
-*   `requests`: the number of requests that have been processed by the filter node.
+*   `requests`: the number of requests that have been processed by the filtering node.
 *   `streams` (available starting from the Wallarm release 6.2.0): the number of processed gRPC/WebSocket streams.
 *   `messages` (available starting from the Wallarm release 6.2.0): the number of processed gRPC/WebSocket messages.
 *   `attacks`: the number of recorded attacks.
 *   `blocked`: the number of blocked requests including those originated from [denylisted](../user-guides/ip-lists/overview.md) IPs.
 *   `blocked_by_acl`: the number of requests blocked due to [denylisted](../user-guides/ip-lists/overview.md) request sources.
-* `acl_allow_list`: the number of requests originating by [allowlisted](../user-guides/ip-lists/overview.md) request sources.
-*   `abnormal`: the number of requests the application deems abnormal.
+*   `blocked_by_antibot`: the number of requests blocked by the [API Abuse Prevention module](../api-abuse-prevention/overview.md).
+*   `acl_allow_list`: the number of requests originating by [allowlisted](../user-guides/ip-lists/overview.md) request sources.
+*   `bytes_in`: the total number of bytes received by the filtering node.
+*   `bytes_out`: the total number of bytes sent by the filtering node.
 *   `tnt_errors`: the number of requests not analyzed by a post-analytics module. For these requests, the reasons for blocking are recorded, but the requests themselves are not counted in statistics and behavior checks.
 *   `api_errors`: the number of requests that were not submitted to the API for further analysis. For these requests, blocking parameters were applied (i.e., malicious requests were blocked if the system was operating in blocking mode); however, data on these events is not visible in the UI. This parameter is only used when the Wallarm Node works with a local post-analytics module.
 *   `requests_lost`: the number of requests that were not analyzed in a post-analytics module and transferred to API. For these requests, blocking parameters were applied (i.e., malicious requests were blocked if the system was operating in blocking mode); however, data on these events is not visible in the UI. This parameter is only used when the Wallarm Node works with a local post-analytics module.
