@@ -144,6 +144,12 @@ To set AASM's RPS limit:
 !!! info "Scan duration"
     Enforcing a rate limit increases the overall scan duration.
 
+### Host retention policy
+
+To make sure AASM's data is always up-to-date, you can set AASM to automatically delete retired hosts after specified period of time and number of rescans. By default, this feature is disabled. If you enable it, set additionally what to do with the security issues detected for the hosts being deleted: keep them as is (default) or delete, mark as false or close.
+
+![AASM - host retention policy](../images/api-attack-surface/aasm-host-retention.png)
+
 ## Auto rescan
 
 When auto rescan is enabled, previously added domains are automatically re-scanned once every 7 days - new hosts are added automatically, previously listed but not found during re-scan are staying in the list.
