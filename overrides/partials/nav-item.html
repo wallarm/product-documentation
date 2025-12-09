@@ -1,0 +1,370 @@
+{% set icons = {
+  "quick start": ".icons/material/quick-start.svg",
+  "threat management": ".icons/material/dashboard.svg",
+  "integrations and alerts": ".icons/material/integrations-alerts.svg",
+  "api attack surface": ".icons/material/vulnerability.svg",
+  "assets & vulnerabilities": ".icons/material/vulnerability.svg",
+  "api discovery": ".icons/material/api.svg",
+  "api protection": ".icons/material/api-threat.svg",
+  "agentic ai": ".icons/material/ai-prompt-attack.svg",
+  "security testing": ".icons/material/api-security.svg",
+  "cloud-native waap": ".icons/material/api-threat.svg",
+  "user management": ".icons/material/users.svg",
+  "deployment": ".icons/material/deployment.svg",
+  "security edge": ".icons/material/security-edge-deployment.svg",
+  "connector deployment": ".icons/material/connector-deployment.svg",
+  "self-hosted deployment": ".icons/material/self-hosted-deployment.svg",
+  "operations": ".icons/material/deployment.svg",
+  "references": ".icons/material/references.svg",
+  "troubleshooting": ".icons/material/references.svg",
+
+  "クイックスタート": ".icons/material/quick-start.svg",
+  "脅威管理": ".icons/material/dashboard.svg",
+  "連携とアラート": ".icons/material/integrations-alerts.svg",
+  "api 攻撃面": ".icons/material/vulnerability.svg",
+  "api ディスカバリ": ".icons/material/api.svg",
+  "api 保護": ".icons/material/api-threat.svg",
+  "エージェント型 ai": ".icons/material/ai-prompt-attack.svg",
+  "セキュリティテスト": ".icons/material/api-security.svg",
+  "クラウドネイティブ waap": ".icons/material/api-threat.svg",
+  "ユーザー管理": ".icons/material/users.svg",
+  "security edge": ".icons/material/security-edge-deployment.svg",
+  "コネクタのデプロイ": ".icons/material/connector-deployment.svg",
+  "セルフホスト型デプロイ": ".icons/material/self-hosted-deployment.svg",
+  "運用": ".icons/material/deployment.svg",
+  "リファレンス": ".icons/material/references.svg",
+  "トラブルシューティング": ".icons/material/references.svg",
+
+  "hızlı başlangıç": ".icons/material/quick-start.svg",
+  "tehdit yönetimi": ".icons/material/dashboard.svg",
+  "entegrasyonlar ve uyarılar": ".icons/material/integrations-alerts.svg",
+  "api saldırı yüzeyi": ".icons/material/vulnerability.svg",
+  "api keşfi": ".icons/material/api.svg",
+  "api koruması": ".icons/material/api-threat.svg",
+  "etken yapay zeka": ".icons/material/ai-prompt-attack.svg",
+  "güvenlik testi": ".icons/material/api-security.svg",
+  "bulut-yerel waap": ".icons/material/api-threat.svg",
+  "kullanıcı yönetimi": ".icons/material/users.svg",
+  "security edge": ".icons/material/security-edge-deployment.svg",
+  "bağlayıcı dağıtımı": ".icons/material/connector-deployment.svg",
+  "kendi barındırımlı dağıtım": ".icons/material/self-hosted-deployment.svg",
+  "operasyonlar": ".icons/material/deployment.svg",
+  "referanslar": ".icons/material/references.svg",
+  "sorun giderme": ".icons/material/references.svg",
+
+  "início rápido": ".icons/material/quick-start.svg",
+  "painéis e relatórios": ".icons/material/dashboard.svg",
+  "integrações e alertas": ".icons/material/integrations-alerts.svg",
+  "gerenciamento de postura de api": ".icons/material/vulnerability.svg",
+  "descoberta de api": ".icons/material/api.svg",
+  "proteção de api": ".icons/material/api-threat.svg",
+  "teste de segurança de api": ".icons/material/api-security.svg",
+  "waap/waf": ".icons/material/api-threat.svg",
+  "gerenciamento de usuários": ".icons/material/users.svg",
+  "implantação": ".icons/material/deployment.svg",
+  "operações": ".icons/material/deployment.svg",
+  "referências": ".icons/material/references.svg",
+
+  "البدء السريع": ".icons/material/quick-start.svg",
+  "لوحات القيادة والتقارير": ".icons/material/dashboard.svg",
+  "اكتشاف api": ".icons/material/api.svg",
+  "حماية api": ".icons/material/api-threat.svg",
+  "سطح الهجوم api": ".icons/material/vulnerability.svg",
+  "اختبار الأمان api": ".icons/material/api-security.svg",
+  "التنصيب": ".icons/material/deployment.svg",
+  "التكاملات والتنبيهات": ".icons/material/integrations-alerts.svg",
+  "إدارة الأعضاء": ".icons/material/users.svg",
+  "العمليات": ".icons/material/deployment.svg",
+  "المراجع": ".icons/material/references.svg",
+  }
+%}
+
+<!-- Render navigation link status -->
+{% macro render_status(nav_item, type) %}
+  {% set class = "md-status md-status--" ~ type %}
+
+  <!-- Render icon with title (or tooltip), if given -->
+  {% if config.extra.status and config.extra.status[type] %}
+    <span
+      class="{{ class }}"
+      title="{{ config.extra.status[type] }}"
+    >
+    </span>
+
+  <!-- Render icon only -->
+  {% else %}
+    <span class="{{ class }}"></span>
+  {% endif %}
+{% endmacro %}
+
+<!-- Render navigation link title -->
+{% macro render_title(nav_item) %}
+
+  <!-- Typeset title -->
+  {% if nav_item.typeset %}
+    <span class="md-typeset">
+      {{ nav_item.typeset.title }}
+    </span>
+
+  <!-- Regular title -->
+  {% else %}
+    {{ nav_item.title }}
+  {% endif %}
+{% endmacro %}
+
+<!-- Render navigation link content -->
+{% macro render_content(nav_item, ref=None, show_icon=False) %}
+  {% set ref = ref or nav_item %}
+
+  <!-- Navigation link icon: only for top-level items -->
+  {% if show_icon and icons[nav_item.title | lower] %}
+    <span class="md-nav__icon--left">
+      {% include icons[nav_item.title | lower] %}
+    </span>
+  {% endif %}
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    {{ render_title(ref) }}
+
+    <!-- Navigation link subtitle -->
+    {% if nav_item.meta and nav_item.meta.subtitle %}
+      <br />
+      <small>{{ nav_item.meta.subtitle }}</small>
+    {% endif %}
+  </span>
+
+  <!-- Navigation link to encrypted content -->
+  {% if nav_item.meta and nav_item.encrypted %}
+    {{ render_status(nav_item, "encrypted") }}
+  {% endif %}
+
+  <!-- Navigation link status -->
+  {% if nav_item.meta and nav_item.meta.status %}
+    {{ render_status(nav_item, nav_item.meta.status) }}
+  {% endif %}
+{% endmacro %}
+
+<!-- Render navigation item (pruned) -->
+{% macro render_pruned(nav_item, ref=None, level=1) %}
+  {% set ref = ref or nav_item %}
+  {% set first = nav_item.children | first %}
+
+  <!-- Recurse, if the first item has further nested items -->
+  {% if first and first.children %}
+    {{ render_pruned(first, ref, level) }}
+
+  <!-- Navigation link -->
+  {% else %}
+    <a href="{{ first.url | url }}" class="md-nav__link">
+      {{ render_content(ref, show_icon=(level == 1)) }}
+
+      <!-- Only render toggle if there's at least one nested item -->
+      {% if nav_item.children | length > 0 %}
+        <span class="md-nav__icon md-icon"></span>
+      {% endif %}
+    </a>
+  {% endif %}
+{% endmacro %}
+
+<!-- Render navigation item -->
+{% macro render(nav_item, path, level, parent) %}
+
+  <!-- Determine classes -->
+  {% set class = "md-nav__item" %}
+  {% if nav_item.active %}
+    {% set class = class ~ " md-nav__item--active" %}
+  {% endif %}
+
+  <!-- Determine active page for paginated views -->
+  {% if nav_item.pages %}
+    {% if page in nav_item.pages %}
+      {% set nav_item = page %}
+    {% endif %}
+  {% endif %}
+
+  <!-- Navigation item with nested items -->
+  {% if nav_item.children %}
+
+    <!-- Determine all nested items that are index pages -->
+    {% set _ = namespace(index = none) %}
+    {% if "navigation.indexes" in features %}
+      {% for item in nav_item.children %}
+        {% if item.is_index and _.index is none %}
+          {% set _.index = item %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    {% set index = _.index %}
+
+    <!-- Navigation tabs -->
+    {% if "navigation.tabs" in features %}
+
+      <!-- Render 1st level active item as section -->
+      {% if level == 1 and nav_item.active %}
+        {% set class = class ~ " md-nav__item--section" %}
+        {% set is_section = true %}
+      {% endif %}
+
+      <!-- Navigation tabs + sections -->
+      {% if "navigation.sections" in features %}
+
+        <!-- Render 2nd level items with nested items as sections -->
+        {% if level == 2 and parent.active %}
+          {% set class = class ~ " md-nav__item--section" %}
+          {% set is_section = true %}
+        {% endif %}
+      {% endif %}
+
+    <!-- Navigation sections -->
+    {% elif "navigation.sections" in features %}
+
+      <!-- Render 1st level items with nested items as sections -->
+      {% if level == 1 %}
+        {% set class = class ~ " md-nav__item--section" %}
+        {% set is_section = true %}
+      {% endif %}
+    {% endif %}
+
+    <!-- Navigation pruning -->
+    {% if "navigation.prune" in features %}
+
+      <!-- Prune item if it is not a section and not active -->
+      {% if not is_section and not nav_item.active %}
+        {% set class = class ~ " md-nav__item--pruned" %}
+        {% set is_pruned = true %}
+      {% endif %}
+    {% endif %}
+
+    <!-- Nested navigation item -->
+    <li class="{{ class }} md-nav__item--nested">
+      {% if not is_pruned %}
+        {% set checked = "checked" if nav_item.active %}
+
+        <!-- Determine checked and indeterminate state -->
+        {% if "navigation.expand" in features and not checked %}
+          {% set indeterminate = "md-toggle--indeterminate" %}
+        {% endif %}
+
+        <!-- Active checkbox expands items contained within nested section -->
+        <input
+          class="md-nav__toggle md-toggle {{ indeterminate }}"
+          type="checkbox"
+          id="{{ path }}"
+          {{ checked }}
+        />
+
+        <!-- Toggle to expand nested items -->
+        {% if not index %}
+          {% set tabindex = "0" if not is_section %}
+          <label
+            class="md-nav__link"
+            for="{{ path }}"
+            id="{{ path }}_label"
+            tabindex="{{ tabindex }}"
+          >
+            {{ render_content(nav_item, show_icon=(level == 1)) }}
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+
+        <!-- Toggle to expand nested items with link to index page -->
+        {% else %}
+          {% set class = "md-nav__link--active" if index == page %}
+          <div class="md-nav__link md-nav__container">
+            <a
+              href="{{ index.url | url }}"
+              class="md-nav__link {{ class }}"
+            >
+              {{ render_content(index, nav_item, show_icon=(level == 1)) }}
+            </a>
+
+            <!-- Only render toggle if there's at least one more page -->
+            {% if nav_item.children | length > 1 %}
+              {% set tabindex = "0" if not is_section %}
+              <label
+                class="md-nav__link {{ class }}"
+                for="{{ path }}"
+                id="{{ path }}_label"
+                tabindex="{{ tabindex }}"
+              >
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        <!-- Nested navigation -->
+        <nav
+          class="md-nav"
+          data-md-level="{{ level }}"
+          aria-labelledby="{{ path }}_label"
+          aria-expanded="{{ nav_item.active | tojson }}"
+        >
+          <label class="md-nav__title" for="{{ path }}">
+            <span class="md-nav__icon md-icon"></span>
+            {{ render_title(nav_item) }}
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+
+            <!-- Nested navigation item -->
+            {% for item in nav_item.children %}
+              {% if not index or item != index %}
+                {{ render(item, path ~ "_" ~ loop.index, level + 1, nav_item) }}
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </nav>
+
+      <!-- Pruned navigation item -->
+      {% else %}
+        {{ render_pruned(nav_item, level=level) }}
+      {% endif %}
+    </li>
+
+  <!-- Currently active page -->
+  {% elif nav_item == page %}
+    <li class="{{ class }}">
+      {% set toc = page.toc %}
+
+      <!-- State toggle -->
+      <input
+        class="md-nav__toggle md-toggle"
+        type="checkbox"
+        id="__toc"
+      />
+
+      <!-- Hack: see partials/toc.html for more information -->
+      {% set first = toc | first %}
+      {% if first and first.level == 1 %}
+        {% set toc = first.children %}
+      {% endif %}
+
+      <!-- Navigation link to table of contents -->
+      {% if toc %}
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          {{ render_content(nav_item, show_icon=(level == 1)) }}
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      {% endif %}
+      <a
+        href="{{ nav_item.url | url }}"
+        class="md-nav__link md-nav__link--active"
+      >
+        {{ render_content(nav_item, show_icon=(level == 1)) }}
+      </a>
+
+      <!-- Table of contents -->
+      {% if toc %}
+        {% include "partials/toc.html" %}
+      {% endif %}
+    </li>
+
+  <!-- Navigation item -->
+  {% else %}
+    <li class="{{ class }}">
+      <a href="{{ nav_item.url | url }}" class="md-nav__link">
+        {{ render_content(nav_item, show_icon=(level == 1)) }}
+      </a>
+    </li>
+  {% endif %}
+{% endmacro %}

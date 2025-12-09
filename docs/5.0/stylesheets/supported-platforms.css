@@ -1,0 +1,221 @@
+/* Card styles */
+.do-section {
+    position: relative;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--color-black);
+    transition: height .3s ease;
+    overflow: hidden;
+}
+
+.md-typeset h2 {
+    margin: 32px 0 24px;
+}
+
+.md-typeset h2 span:not(:last-of-type) {
+    color: var(--color-grey-500);
+    cursor: pointer;
+}
+
+.md-typeset h2 span:not(:last-of-type):after {
+    content: " / ";
+}
+
+.do-card {
+    position: relative;
+    padding: 24px 32px;
+    border: 1px solid #dbe0e7;
+}
+
+.do-card[id] {
+    cursor: pointer;
+}
+
+a.do-card:is(:any-link, :hover, :active) {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.do-card :is(img, svg) {
+    display: inline-block;
+    max-width: 100%;
+    height: 72px;
+    margin-bottom: 16px;
+    border: none;
+}
+
+.do-card h3 {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 0 0 8px;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 24px;
+}
+
+div.do-card h3:after {
+    width: 24px;
+    height: 24px;
+    content: url('data:image/svg+xml;utf8,<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path stroke="%23959DAC" stroke-width="2" stroke-linecap="square" d="M10.5 8L14.5 12L10.5 16"></path></svg>');
+}
+
+div.do-card:hover h3:after {
+    content: url('data:image/svg+xml;utf8,<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path stroke="%23FC7303" stroke-width="2" stroke-linecap="square" d="M10.5 8L14.5 12L10.5 16"></path></svg>');
+}
+
+.do-nested div.do-card:not(:first-child):hover h3 {
+    color: #fc7303;
+    transition: .3s ease;
+}
+
+.do-card p {
+    margin: 0;
+}
+
+/* Main grid styles */
+.do-main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.do-main .do-card {
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+
+.do-main .do-card:is(a, [id]):hover {
+    border-color: #fc7303;
+}
+
+/* Nested grid styles */
+.do-nested {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid #dbe0e7;
+    border-radius: 8px;
+}
+
+.do-nested .do-card:nth-child(n + 2) {
+    padding: 20px 24px;
+}
+
+.do-nested .do-card:nth-child(-n + 3) {
+    border-width: 0 0 0 1px;
+}
+
+.do-nested .do-card:first-child {
+    border: 1px solid #fc7303;
+    border-radius: 8px 0px 0px 8px;
+}
+
+.do-nested .do-card:first-child h3:after {
+    display: none;
+}
+
+.do-nested .do-card:nth-child(n + 4) {
+    border-width: 1px 0 0 1px;
+}
+
+.do-nested .do-card:nth-child(2n):last-child {
+    grid-column-end: span 2;
+}
+
+.do-nested .do-card:nth-child(2):last-child,
+.do-nested .do-card:nth-child(3) {
+    border-top-right-radius: 8px;
+}
+
+.do-nested .do-card:last-child {
+    border-bottom-right-radius: 8px;
+}
+
+.do-nested a.do-card {
+    transition: background-color .3s ease;
+}
+
+.do-nested a.do-card:hover {
+    background-color: var(--color-primary-100);
+}
+
+/* Helpers */
+.do-section:not([data-ready]) .do-nested {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.do-hidden {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.do-main, .do-nested {
+    top: 0;
+    transition: .3s ease;
+    transition-property: visibility, opacity;
+}
+
+.do-back {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-image: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="16" fill="%23969DAB"/><path d="M14 10L8 16L14 22M8.5 16H24" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    cursor: pointer;
+}
+
+/* Mobile styles */
+@media (max-width: 680px) {
+    .md-typeset h2 {
+        margin: 24px 0 16px;
+    }
+
+    .do-main {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .do-card {
+        grid-row: auto !important;
+        grid-column: auto !important;
+        min-height: 90px;
+        padding: 16px 80px 16px 16px;
+    }
+
+    .do-card :is(img, svg) {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        height: 56px;
+        margin-bottom: 0;
+    }
+
+    .do-nested {
+        grid-template-columns: 1fr;
+    }
+
+    .do-nested .do-card:first-child {
+        padding-top: 64px;
+    }
+
+    .do-nested .do-card:nth-child(n + 2) {
+        padding: 16px;
+        border-width: 1px 0 0 0;
+        border-radius: 0;
+    }
+
+    .do-nested .do-card:last-child {
+        border-radius: 0 0 8px 8px;
+    }
+
+    .do-back {
+        top: 16px;
+        left: 16px;
+    }
+}

@@ -1,24 +1,189 @@
-INHERIT: mkdocs-base.yml
-
 site_name: Wallarmのドキュメント
 site_url: https://docs.wallarm.com/ja/
 site_description: Wallarmのソリューションは、OWASP APIトップ10の脅威、APIの不正使用、および他の自動化された脅威からAPI、マイクロサービス、およびWebアプリケーションを保護します。これは手動のルール設定が必要なく、偽陽性も非常に低いです。
 
 copyright: '<a href="https://www.wallarm.com/terms-of-service" target="_blank">サービス利用規約</a> | <a href="https://www.wallarm.com/privacy-policy" target="_blank">プライバシーポリシー</a> | <a href="https://www.wallarm.com/cookie-policy" target="_blank">クッキーポリシー</a> | <a href="#__consent">クッキー設定</a> | 2025 © Wallarm Inc.'
 
+plugins:
+  - search
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      js_files:
+          - extra.js
+          - feedback.js
+          - supported-platforms.js
+      css_files:
+          - extra_new.css
+          - supported-platforms.css
+  - meta-descriptions
+  - meta
+  - glightbox:
+      skip_classes:
+        - non-zoomable
+  - group:
+      enabled: !ENV INSIDERS
+      plugins:
+        - optimize
+dev_addr: '127.0.0.1:8000'
+
 theme:
+  name: material
+  custom_dir: overrides
   language: ja
-  language_lowercase: ja
-  language_name: Japanese
-  version: "6.x"
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: lucide/sun-moon
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+      toggle:
+        icon: lucide/sun
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: lucide/moon
+        name: Switch to system preference
+  features:
+    - navigation.top
+    - navigation.prune
+    - content.code.copy
+    - content.code.select
+    - content.action.edit
+    - search.suggest
+    - content.tabs.link
+  logo: images/wallarm-logo-light.svg
+  favicon: images/favicon.png
+  icon:
+    repo: fontawesome/brands/github-alt
+  font:
+    text: Sk Modernist
+    code: Roboto Mono
+
+extra:
+  versionNginx: "6.x"
   versionNative: "0.14.x+"
+  social:
+    - icon: fontawesome/solid/globe
+      link: https://www.wallarm.com
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/wallarm
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/wallarm
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/wallarm
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/channel/UCgD4zSzAJwf3tBlOgJo7Qkw
+  generator: false
+  consent:
+    cookies:
+      analytics:
+        name: Google Analytics
+        checked: true
+    title: Cookie consent
+    description: We use cookies to optimize our documentation and collect valuable feedback. Your consent helps us improve! Learn more in our <a href="https://www.wallarm.com/cookie-policy" target="_blank">Cookie policy</a>.
+    actions:
+      - accept
+      - reject
+      - manage
+  analytics:
+    provider: google
+    property: G-3Z9P1Z18D8
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: /images/happy-feedback.png
+          name: This page was helpful
+          data: 1
+          note: >-
+            Thanks for your feedback!
+        - icon: /images/disappointed-feedback.png
+          name: This page could be improved
+          data: 0
+          note: >- 
+            Thanks for your feedback!
+      negative:
+        ask_reason: How can we improve this article? (Optional)
+        unclear: Information is unclear or confusing
+        missing: Insufficient information
+        outdated: Outdated or incorrect information
+        input_placeholder: Share your experience in more detail
+        send_button: Send
+  footer:
+    need_help: Need help or have questions?
+    contact_support: Contact Support
+    contact_sales: Contact Sales
   playground_button_name: "プレイグラウンドを探機"
   try_button_name: "無料で試す"
+  language_lowercase: ja
+  language_name: Japanese
+
+extra_css:
+  - 'stylesheets/extra-zensical.css'
+  - 'stylesheets/supported-platforms.css'
+#   - 'stylesheets/extra_new.css'
+
+extra_javascript:
+  - 'javascripts/extra.js'
+  - 'javascripts/feedback.js'
+  - 'javascripts/supported-platforms.js'
+  - 'javascripts/nginx-native-internals.js'
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      linenums_style: table
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - toc:
+      permalink: true
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist
+  - pymdownx.snippets:
+      check_paths: true
+      base_path: docs
+      restrict_base_path: false
+  - nl2br
+  - tables
+  - sane_lists
+  - attr_list
+  # - prependnewline
+  - meta
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      options:
+        custom_icons:
+          - overrides/.icons
+
+edit_uri: ../product-documentation/edit/master/docs/latest/
+
+validation:
+  absolute_links: ignore
+  unrecognized_links: ignore
 
 docs_dir: docs/ja
 site_dir: site/ja
-watch:
-  - docs/latest-ja
 
 nav:
   - クイックスタート:

@@ -15,7 +15,7 @@ Manage the feature at the **Integrations** section of Wallarm Console, and the *
 
 Wallarm connects effortlessly with a number of existing tools and platforms. The number of integrations with one system is not limited.
 
-<link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
+<link rel="stylesheet" href="/stylesheets/supported-platforms.min.css?v=1" />
 
 ## Email and messengers
 
@@ -334,4 +334,4 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
     </div>
 </div>
 
-<script src="/supported-platforms.min.js?v=1"></script>
+<script src="/javascripts/supported-platforms.js"></script>

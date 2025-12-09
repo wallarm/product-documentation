@@ -43,4 +43,4 @@ Security Edge is available on the Free Tier plan with up to **500,000 requests p
 
 You can deploy Edge Nodes on the Free Tier plan via the [**Quick setup** wizard](free-tier.md).  
 
-<link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
+<link rel="stylesheet" href="/stylesheets/supported-platforms.min.css?v=1" />
