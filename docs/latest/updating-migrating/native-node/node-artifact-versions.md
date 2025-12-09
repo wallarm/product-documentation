@@ -12,6 +12,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.21.0 (2025-12-17)
 
+* Added support for the [Amazon API Gateway connector](../../installation/connectors/aws-api-gateway.md)
 * Added the `client_uuid` label to all `*_per_app*` and `*_per_host*` [Prometheus metrics](../../admin-en/native-node-metrics-gonode.md) for Nodes running in multi-tenant mode
 * Fixed the issue where the [`wallarm_status` service statistics](../../admin-en/configure-statistics-service.md) contained the outdated `abnormal` metric, which was incorrectly increasing with each request
 
@@ -156,6 +157,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ### 0.21.0 (2025-12-17)
 
+* Added support for the [Amazon API Gateway connector](../../installation/connectors/aws-api-gateway.md)
 * Added the `client_uuid` label to all `*_per_app*` and `*_per_host*` [Prometheus metrics](../../admin-en/native-node-metrics-gonode.md) for Nodes running in multi-tenant mode
 * Fixed the issue where the [`wallarm_status` service statistics](../../admin-en/configure-statistics-service.md) contained the outdated `abnormal` metric, which was incorrectly increasing with each request
 
@@ -313,6 +315,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 ### 0.21.0 (2025-12-17)
 
+* Added support for the [Amazon API Gateway connector](../../installation/connectors/aws-api-gateway.md)
 * Added the `client_uuid` label to all `*_per_app*` and `*_per_host*` [Prometheus metrics](../../admin-en/native-node-metrics-gonode.md) for Nodes running in multi-tenant mode
 * Fixed the issue where the [`wallarm_status` service statistics](../../admin-en/configure-statistics-service.md) contained the outdated `abnormal` metric, which was incorrectly increasing with each request
 
