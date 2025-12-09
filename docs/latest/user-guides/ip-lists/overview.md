@@ -53,6 +53,9 @@ Use **Add object** to add the following into any of IP lists:
     * Anonymous sources (Tor, Proxy, VPN)
     * [Malicious IPs](#malicious-ip-feeds)
 
+!!! info "Locations and source types"
+    Wallarm uses paid feeds from [IP2location](https://www.ip2location.com/) for detecting country/region and source type in which the IP addresses are registered.
+
 ![Add object to IP list](../../images/user-guides/ip-lists/add-ip-to-list.png)
 
 !!! info "Automatic population of IP lists"
