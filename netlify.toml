@@ -1,7 +1,7 @@
 [build]
 publish = "site"
 command = """
-pip3 install --no-cache-dir -r requirements.txt &&
+pip install --no-cache-dir -r requirements.txt &&
 zensical build -f mkdocs-6.x.yml &&
 zensical build -f mkdocs-5.0.yml &&
 zensical build -f mkdocs-deprecated.yml &&
