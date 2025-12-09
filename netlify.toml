@@ -1,14 +1,16 @@
 [build]
 publish = "site"
 command = """
+export PATH="/opt/buildhome/.local/share/mise/installs/python/3.14.0/bin:$PATH"
 pip3 install --no-cache-dir -r requirements.txt &&
-python -m zensical build -f mkdocs-6.x.yml &&
-python -m zensical build -f mkdocs-5.0.yml &&
-python -m zensical build -f mkdocs-deprecated.yml &&
-python -m zensical build -f mkdocs-ja-6.x.yml &&
-python -m zensical build -f mkdocs-tr-6.x.yml &&
-python -m zensical build -f mkdocs-pt-BR-4.8.yml &&
-python -m zensical build -f mkdocs-ar-4.10.yml
+zensical build -f mkdocs-6.x.yml &&
+zensical build -f mkdocs-6.x.yml &&
+zensical build -f mkdocs-5.0.yml &&
+zensical build -f mkdocs-deprecated.yml &&
+zensical build -f mkdocs-ja-6.x.yml &&
+zensical build -f mkdocs-tr-6.x.yml &&
+zensical build -f mkdocs-pt-BR-4.8.yml &&
+zensical build -f mkdocs-ar-4.10.yml
 """
 [[headers]]
   for = "/*"
