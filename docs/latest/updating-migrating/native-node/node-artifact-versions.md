@@ -10,6 +10,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.20.1 (2025-12-10)
+
+* Added support for the [Amazon API Gateway connector](../../installation/connectors/aws-api-gateway.md)
+
 ### 0.20.0 (2025-11-25)
 
 * Introduced support for OpenAPI 3.1 in the [API Specification Enforcement](../../api-specification-enforcement/overview.md) feature — you can now upload specifications in version 3.1 format to compare traffic against them, identify mismatches, and mitigate related security risks
@@ -145,6 +149,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 The Helm chart for the Native Node is used for self-hosted node deployments with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](helm-chart.md)
+
+### 0.20.1 (2025-12-10)
+
+* Added support for the [Amazon API Gateway connector](../../installation/connectors/aws-api-gateway.md)
 
 ### 0.20.0 (2025-11-25)
 
@@ -288,6 +296,10 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](docker-image.md)
+
+### 0.20.1 (2025-12-10)
+
+* Added support for the [Amazon API Gateway connector](../../installation/connectors/aws-api-gateway.md)
 
 ### 0.20.0 (2025-11-25)
 
