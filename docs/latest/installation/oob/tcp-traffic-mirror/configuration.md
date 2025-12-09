@@ -7,13 +7,20 @@ In the configuration file you create for deploying the Wallarm node for TCP Traf
 ```yaml
 version: 4
 
-mode: tcp-capture
+mode: tcp-capture-v2
 
-goreplay:
-  filter: <your network interface and port, e.g. 'lo:' or 'enp7s0:'>
-  extra_args:
-    - -input-raw-engine
-    - vxlan
+tcp_stream:
+  from_interface:
+    enabled: true
+    # Network interface to capture traffic from, e.g., "lo" or "enp7s0"
+    interface: "enp7s0" 
+    # Number of bytes to capture from each packet (Libpcap snaplen)
+    snap_len: 65535
+    # Enable capturing all packets on the interface, including those not addressed to it
+    # Does not work if interface is set to "any"
+    promiscuous: true
+    # BPF filter expression to select packets and/or ports (by default, absent or empty)
+    filter: "vlan and port 80"
 
 route_config:
   wallarm_application: 10
@@ -40,118 +47,127 @@ log:
 
 ### mode (required)
 
-The Wallarm node operation mode. It should be `tcp-capture` for TCP traffic mirror analysis.
+The Wallarm node operation mode. It should be `tcp-capture-v2` for TCP traffic mirror analysis.
 
-### goreplay.filter
+### tcp_stream.from_interface.enabled (required)
 
-Specifies a network interface to capture traffic from. If no value is specified, it captures traffic from all network interfaces on the instance.
+Specifies if capturing traffic from a network interface is active.
 
-The value should be the network interface and port separated by a colon (`:`), e.g.:
+Default: `false`.
 
-=== "Interface:Port"
+```yaml
+version: 4
+
+mode: tcp-capture-v2
+
+tcp_stream:
+  from_interface:
+    enabled: true
+    interface: "lo"
+```
+
+### tcp_stream.from_interface.interface (required)
+
+Specifies the network interface name to capture traffic from (e.g., `eth0`, `enp7s0`).
+
+Default: `any`.
+
+If `tcp_stream.from_interface.interface` is not set or the default value `any` is used, traffic is captured from all available interfaces.
+
+=== "Interface"
     ```yaml
     version: 4
 
-    goreplay:
-      filter: 'eth0:80'
-    ```
+    mode: tcp-capture-v2
 
-    To capture traffic from multiple interfaces and ports, use `goreplay.filter` along with `goreplay.extra_args`, e.g.:
+    tcp_stream:
+      from_interface:
+        enabled: true
+        interface: "eth0"
+    ```
+=== "Multiple interfaces"
+    To capture traffic from multiple interfaces, add multiple entries under `from_interface`:
 
     ```yaml
     version: 4
 
-    goreplay:
-      filter: 'eth0:80'
-      extra_args:
-        - "-input-raw"
-        - "eth0:8080"
-        - "-input-raw"
-        - "eth0:8081"
-        - "-input-raw"
-        - "eth1:80"
+    mode: tcp-capture-v2
+
+    tcp_stream:
+      from_interface:
+        - enabled: true
+          interface: "eth0"
+        - enabled: true
+          interface: "eth1"
+    ```
+=== "All interfaces"
+    ```yaml
+    version: 4
+
+    mode: tcp-capture-v2
+
+    tcp_stream:
+      from_interface:
+        enabled: true
+        interface: "any"
     ```
 
-    The `filter` sets GoReplay with the `-input-raw` argument, and `extra_args` allows for specifying additional `-input-raw` inputs.
+!!! info "Checking available interfaces"
+    To check network interfaces available on the host, run:
+    ```
+    ip addr show
+    ```  
+
+### tcp_stream.from_interface.filter
+
+Specifies an optional [BPF (Berkeley Packet Filter)](https://biot.com/capstats/bpf.html) expression to control which packets and ports are captured.
+
+Default: `vlan and port 80`.
+
+If `tcp_stream.from_interface.filter` is not set or left empty, all packets on the selected interface are captured.
+
 === "All ports on interface"
     ```yaml
     version: 4
 
-    goreplay:
-      filter: 'eth0:'
+    mode: tcp-capture-v2
+
+    tcp_stream:
+      from_interface:
+        enabled: true
+        interface: "eth0"
     ```
-=== "Specific port on all interfaces"
+=== "Specific packets and port on interface"
     ```yaml
     version: 4
 
-    goreplay:
-      filter: ':80'
-    ```
-=== "All interfaces and ports"
-    ```yaml
-    version: 4
+    mode: tcp-capture-v2
 
-    goreplay:
-      filter: ':'
+    tcp_stream:
+      from_interface:
+        enabled: true
+        interface: "eth0"
+        filter: "vlan and port 80"
     ```
 
-To check network interfaces available on the host, run:
+### tcp_stream.from_interface.snap_len
 
-```
-ip addr show
-```
+Specifies the number of bytes to capture from each packet (snaplen). 
 
-### goreplay.extra_args
+Default: `65535` bytes, which ensures the full packet is recorded.
 
-This parameter allows you to specify [extra arguments](https://github.com/buger/goreplay/blob/master/docs/Request-filtering.md) to be passed to GoReplay.
+Lowering this value can reduce memory usage, but may truncate packet data, potentially impacting traffic analysis.
 
-* Typically, you will use it to define the types of mirrored traffic requiring analysis, such as VLAN, VXLAN. For example:
+### tcp_stream.from_interface.promiscuous
 
-    === "VLAN-wrapped mirrored traffic"
-        ```yaml
-        version: 4
+Enables promiscuous mode. When enabled, the interface captures all network traffic seen on the interface, including packets not addressed to it. When disabled, capture is restricted to packets addressed to the interface.
 
-        goreplay:
-          extra_args:
-            - -input-raw-vlan
-            - -input-raw-vlan-vid
-            # VID of your VLAN, e.g.:
-            # - 42
-        ```
-    === "VXLAN-wrapped mirrored traffic (common in AWS)"
-        ```yaml
-        version: 4
+Default: `true`.
 
-        goreplay:
-          extra_args:
-            - -input-raw-engine
-            - vxlan
-            # Custom VXLAN UDP port, e.g.:
-            # - -input-raw-vxlan-port 
-            # - 4789
-            # Specific VNI (by default, all VNIs are captured), e.g.:
-            # - -input-raw-vxlan-vni
-            # - 1
-        ```
+If `tcp_stream.from_interface.promiscuous` is not set, promiscuous mode is enabled by default.
 
-    If the mirrored traffic is not wrapped in additional protocols like VLAN or VXLAN, you can omit the `extra_args` configuration. Unencapsulated traffic is parsed by default.
-* You can extend `filter` with `extra_args` to capture additional interfaces and ports:
-
-    ```yaml
-    version: 4
-
-    goreplay:
-      filter: 'eth0:80'
-      extra_args:
-        - "-input-raw"
-        - "eth0:8080"
-        - "-input-raw"
-        - "eth0:8081"
-        - "-input-raw"
-        - "eth1:80"
-    ```
-
-    The `filter` sets GoReplay with the `-input-raw` argument, and `extra_args` allows for specifying additional `-input-raw` inputs.
+!!! info "Promiscuous mode limitation"
+    Promiscuous mode does not work with [`tcp_stream.from_interface.interface`](#tcp_streamfrom_interfaceinterface) set to `any`.
 
 ### route_config
 
@@ -312,10 +328,7 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
 ```yaml
 version: 4
 
-goreplay:
-  path: /opt/wallarm/usr/bin/gor
-
-middleware:
+tcp_reassembler:
   parse_responses: true
   response_timeout: 5s
 
@@ -346,13 +359,7 @@ health_check:
   listen_address: :8080
 ```
 
-### goreplay.path
-
-The path to the GoReplay binary file. Typically, you do not need to modify this parameter.
-
-Default: `/opt/wallarm/usr/bin/gor`.
-
-### middleware.parse_responses
+### tcp_reassembler.parse_responses
 
 Controls whether to parse mirrored responses. This enables Wallarm features that rely on response data, such as [vulnerability detection](../../../about-wallarm/detecting-vulnerabilities.md) and [API discovery](../../../api-discovery/overview.md).
 
@@ -360,7 +367,7 @@ By default, `true`.
 
 Ensure response mirroring is configured in your environment to the target instance with the Wallarm node.
 
-### middleware.response_timeout
+### tcp_reassembler.response_timeout
 
 Specifies the maximum time to wait for a response. If a response is not received within this time, the Wallarm processes stop waiting the corresponding response.
 

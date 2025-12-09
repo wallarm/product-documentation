@@ -12,7 +12,7 @@ Filtration mode defines the filtering node behavior when processing incoming req
 
 The Wallarm filtering node can process incoming requests in the following modes (from the mildest to the strictest):
 
-* `off`
+* `off` - requests are not processed at all; requests to resources with this mode are not counted against [quota](../about-wallarm/subscription-plans.md).
 * `monitoring`
 * `safe_blocking` - blocks only where it is safe to block ([graylist](../user-guides/ip-lists/overview.md)).
 * `block`

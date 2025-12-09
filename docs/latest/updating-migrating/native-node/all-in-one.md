@@ -83,18 +83,18 @@ For the configuration file, you can reuse the one used during the initial instal
     # EU Cloud
     sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com --preserve false
     ```
-=== "tcp-capture"
-    The `tcp-capture` mode is used when you deployed the self-hosted node for [TCP traffic analysis](../../installation/oob/tcp-traffic-mirror/deployment.md).
+=== "tcp-capture-v2"
+    The `tcp-capture-v2` mode is used when you deployed the self-hosted node for [TCP traffic analysis](../../installation/oob/tcp-traffic-mirror/deployment.md).
 
     !!! info "If upgrading from Node version 0.12.1 or lower"
-        If upgrading from the Node version 0.12.0 or lower, ensure that the `version` value is updated in the initial configuration file (`wallarm-node-conf.yaml`, as per the default installation instructions) and that parameters previously set in the `middleware` section are moved to the `goreplay` section:
+        If upgrading from the Node version 0.12.0 or lower, ensure that the `version` value is updated in the initial configuration file (`wallarm-node-conf.yaml`, as per the default installation instructions) and that parameters previously set in the `middleware` section are moved to the `tcp_reassembler` section:
 
         ```diff
         -version: 2
         +version: 4
 
         -middleware:
-        +goreplay:
+        +tcp_reassembler:
           parse_responses: true
           response_timeout: 5s
           url_normalize: true
@@ -106,20 +106,20 @@ For the configuration file, you can reuse the one used during the initial instal
         
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com --preserve false
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com --preserve false
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com --preserve false
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com --preserve false
     ```
     
     The upgrade command for the ARM64 installer version:
 
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com --preserve false
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com --preserve false
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com --preserve false
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.20.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com --preserve false
     ```
 === "envoy-external-filter"
     The `envoy-external-filter` mode is used for [gRPC-based external processing filter](../../installation/connectors/istio.md) for APIs managed by Istio.

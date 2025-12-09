@@ -1,4 +1,4 @@
-FROM python:3.8.0
+FROM python:3.14.0
 
 WORKDIR /tmp
 
