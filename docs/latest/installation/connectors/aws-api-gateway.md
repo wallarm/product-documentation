@@ -3,10 +3,11 @@
 [api-traffic]:                 ../../api-discovery/overview.md#noise-detection
 [native-node]:                 ../../installation/nginx-native-node-internals.md#native-node
 [native-node-versions]:        ../../updating-migrating/native-node/node-artifact-versions.md
-[native-node-logs]:           ../../admin-en/configure-logging.md
+[native-node-logs]:            ../../admin-en/configure-logging.md
+[subscription]:                ../../about-wallarm/subscription-plans.md#core-subscription-plans
 
 
-# Wallarm Connector for Amazon API Gateway (API Discovery)
+# Wallarm Connector for Amazon API Gateway (API Discovery) <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 The Wallarm Connector for Amazon API Gateway automatically builds an [API inventory][api-inventory] from real traffic by relying on CloudWatch logs.
 
@@ -30,9 +31,12 @@ At the moment, this connector does not detect or monitor attacks. Its primary pu
 
 To proceed with the deployment, ensure that the following requirements are met:
 
-* API deployed in [Amazon API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html)
+* API managed by [Amazon API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html)
 * Understanding of [Amazon CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html), Amazon API Gateway, and [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) technologies
-* [Native Node version 0.20.0 or later][native-node-versions]
+* [Native Node version 0.20.1 or later][native-node-versions]
+* An [Advanced API Security subscription][subscription] that enables the API Discovery feature
+
+![Amazon API Gateway traffic schema](../../images/waf-installation/gateways/aws-api-discovery/traffic-schema.png)
 
 ## Deployment
 
@@ -49,7 +53,6 @@ You can deploy it either hosted by Wallarm or in your own infrastructure, depend
 
     * [All-in-one installer](../native-node/all-in-one.md) for Linux infrastructures on bare metal or VMs
     * [Docker image](../native-node/docker-image.md) for environments that use containerized deployments
-    * [AWS AMI](../native-node/aws-ami.md) for AWS infrastructures
     * [Helm chart](../native-node/helm-chart.md) for infrastructures utilizing Kubernetes
 
 ### 2. Create an IAM role with an IAM policy for Lambda
@@ -108,9 +111,12 @@ You have created a Lambda function. You now need to configure it to process Clou
 
 ### 4. Configure the Lambda function
 
+1. To configure the Lambda function, you need the Wallarm code bundle. Go to Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** and download the code bundle for your platform.
+
+    If you are running a self-hosted node, contact sales@wallarm.com to get the code bundle.
 1. Contact sales@wallarm.com to get the Lambda function configuration for the connector.
-1. Go to the **Code** tab of your Lambda function.
-1. Copy the content of the `cw-resend-lambda/lambda_function.py` file provided by the Wallarm team and paste it into the "Code source" section on the **Code** tab.
+1. Extract the code bundle archive, open the `cw-resend-lambda/lambda_function.py` file, and copy its contents.
+1. In your Lambda function, go to the **Code** tab and paste the copied code into the "Code source" section.
 1. Click **Deploy**.
 
     ![Lambda configuration](../../images/waf-installation/gateways/aws-api-discovery/lambda-config.png)
@@ -118,7 +124,7 @@ You have created a Lambda function. You now need to configure it to process Clou
 1. Go to the **Configuration** tab → **Environment variables** → **Edit**.
 1. Click **Add environment variable** and specify the following environment variables for Node communication:
 
-    * `X_NODE_URL` - Native Node DNS name or IP address, including a port if necessary (e.g., `node.example.com` or `192.0.2.1`).
+    * [`X_NODE_URL`](#1-deploy-a-wallarm-node) - Native Node DNS name or IP address, including a port if necessary (e.g., `node.example.com` or `192.0.2.1`).
 
         !!! info "Port requirement"        
             `X_NODE_URL` must include the port that the Native Node is listening on. For example, if the Native Node is deployed in `connector-server` mode with [`connector.address`](../native-node/all-in-one-conf.md#connectoraddress-required) set to `:5050`, `X_NODE_URL` must include the port `5050` (e.g., `192.0.2.1:5050`).
@@ -186,13 +192,10 @@ If you have any issues, refer to the ["Logs and troubleshooting" section](#logs-
 If API Discovery is not working:
 
 * Verify the environment variables in the Lambda function
-* [Check the Native Node connectivity](https://docs.wallarm.com/admin-en/uat-checklist-en/#node-registers-all-traffic)
+* [Check the Native Node connectivity](../../admin-en/uat-checklist-en.md#node-registers-all-traffic)
 
 For troubleshooting, you can also review the following logs:
 
 * Native Node logs: `/opt/wallarm/var/log/wallarm/go-node.log`
 * Lambda logs: `/aws/lambda/<your-lambda-function-name>` (e.g., `/aws/lambda/wallarm-api-discovery-connector`)
-
-    You should see entries like: `Successfully processed X log events`.
-
 * API Gateway logs: `/aws/apigateway/<your-api-gateway-name>`
