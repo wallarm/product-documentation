@@ -24,11 +24,29 @@ Here, the detailed information on found issues is presented, including:
 
 ## Issue details and lifecycle
 
-Wallarm provides detailed information on each detected security issues to allow clear understanding of what is happening and what can be done. 
+Wallarm provides detailed information on each detected security issues to allow clear understanding of what is happening and what can be done.
+
+### Grouped view
+
+By default, alike security issues are grouped (**Grouped view**), if they:
+
+* Have the same title (**Security issue** column)
+* Have the same risk level (**Risk** column)
+* Discovered by the same tool (**Discovered by** column)
+
+You can:
+
+* See the number of issues in the group (**Count** column)
+* See all statuses within the group
+* Click group to expand
+* Open each issue in a new window
+* Disable/re-enable grouped view with **Grouped view** switcher
+
+![Security issues - grouped view](../images/api-attack-surface/si-grouped-view.png)
 
 ### Issue details
 
-Click the issue in the list to open its details, such as:
+Open issue to see its details, such as:
 
 * Basic info (type, host and url, first and last seen time)
 * Detailed **Description**
