@@ -30,3 +30,8 @@ Install the latest NGINX version of:
         sudo yum -y update 
         sudo yum install -y nginx
         ```
+    === "Alpine Linux"
+        ```bash
+        doas -u root apk upgrade && doas -u root apk --no-cache --upgrade add sudo bash grep runuser
+        sudo apk add --no-cache nginx
+        ```        

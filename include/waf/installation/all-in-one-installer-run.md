@@ -7,6 +7,9 @@
 
         # If using the ARM64 version:
         sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.7.1.aarch64-glibc.sh
+
+        # If using the x86_64 version of Alpine Linux:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.7.1.x86_64-musl.sh
         ```        
 
         The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -18,6 +21,9 @@
 
         # If using the ARM64 version:
         sudo sh wallarm-6.7.1.aarch64-glibc.sh
+
+        # If using the x86_64 version of Alpine Linux:
+        sudo sh wallarm-6.7.1.x86_64-musl.sh
         ```
 
 1. Select [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
