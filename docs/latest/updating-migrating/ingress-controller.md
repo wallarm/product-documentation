@@ -14,9 +14,11 @@ These instructions describe the steps to upgrade deployed Wallarm NGINX-based In
 To upgrade the end‑of‑life node (3.6 or lower), please use the [different instructions](older-versions/ingress-controller.md).
 
 !!! warning
-    The Wallarm NGINX Ingress Controller is supported only until **March 2026** due to upstream retirement.
-    
-    For long-term use, please [plan to migrate to a new deployment artifact](../updating-migrating/nginx-ingress-retirement.md) once it becomes available.
+    The Wallarm NGINX Ingress Controller is supported only until March 2026 due to upstream retirement. You can continue using it until then, and it will remain fully functional during the support window.
+
+    Wallarm will provide alternative deployment options and migration guidance as they become available. [Details](../updating-migrating/nginx-ingress-retirement.md)
+
+    An [Envoy/Istio-based connector](../installation/connectors/istio.md) is also available today for environments already using Envoy.
 
 ## Requirements
 
