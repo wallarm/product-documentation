@@ -150,6 +150,8 @@ To make sure AASM's data is always up-to-date, you can set AASM to automatically
 
 ![AASM - host retention policy](../images/api-attack-surface/aasm-host-retention.png)
 
+Note that only security issues detected by AASM itself are affected by host retention - the security issues detected by [other methods](../about-wallarm/detecting-vulnerabilities.md#detection-methods) are not changed.
+
 ## Auto rescan
 
 When auto rescan is enabled, previously added domains are automatically re-scanned once every 7 days - new hosts are added automatically, previously listed but not found during re-scan are staying in the list.
