@@ -13,6 +13,11 @@ These instructions describe the steps to upgrade deployed Wallarm NGINX-based In
 
 To upgrade the end‑of‑life node (3.6 or lower), please use the [different instructions](older-versions/ingress-controller.md).
 
+!!! warning
+    The Wallarm NGINX Ingress Controller is supported only until **March 2026** due to upstream retirement.
+    
+    For long-term use, please [plan to migrate to a new deployment artifact](../updating-migrating/nginx-ingress-retirement.md) once it becomes available.
+
 ## Requirements
 
 --8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"

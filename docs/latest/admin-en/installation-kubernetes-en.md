@@ -4,6 +4,11 @@ These instructions provide you with the steps to deploy the Wallarm NGINX-based 
 
 The solution is built on the [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) with integrated Wallarm services. The latest version uses Community Ingress NGINX Controller 1.11.8 with NGINX stable 1.25.5, the upstream Helm chart 4.11.8, and Alpine Linux 3.22.0 as the base image.
 
+!!! warning
+    The Wallarm NGINX Ingress Controller is supported only until **March 2026** due to upstream retirement.
+    
+    For long-term use, please [plan to migrate to a new deployment artifact](../updating-migrating/nginx-ingress-retirement.md) once it becomes available.
+
 It has the following architecture:
 
 ![Solution architecture][nginx-ing-image]
