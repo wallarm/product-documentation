@@ -1,4 +1,4 @@
-[apifw]:           https://docs.wallarm.com/api-specification-enforcement/overview/
+[apifw]:           ../api-specification-enforcement/overview.md
 
 
 # Go Node Metrics of the Native Node 
@@ -35,6 +35,8 @@ The exact list of metrics may vary depending on the Native Node version. Changes
 ### `wallarm_gonode_apifw_*`
 
 Shows metrics from the API Firewall service, including HTTP request counters, request-processing latency histograms, and total service error statistics.
+
+The metrics are available [starting from version 0.20.0][native-node-changelog].
 
 !!! info "API Specification Enforcement"
     The API Firewall service underlies the [API Specification Enforcement][apifw] feature.

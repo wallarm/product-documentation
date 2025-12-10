@@ -1,6 +1,6 @@
 [native-node-changelog]: ../updating-migrating/native-node/node-artifact-versions.md
-[aio]:                  ../updating-migrating/native-node/all-in-one.md
-[docker]:               ../updating-migrating/native-node/docker-image.md
+[aio]:                  ../installation/native-node/all-in-one.md
+[docker]:               ../installation/native-node/docker-image.md
 [aws-ami]:              ../installation/native-node/aws-ami.md
 [helm-chart]:           ../installation/native-node/helm-chart.md
 [helm-listenAddress]:   ../installation/native-node/helm-chart-conf.md#configaggregationmetricslistenaddress
@@ -19,6 +19,10 @@ This article describes the Postanalytics module and the service runtime metrics 
 
 * The **wstore** [service runtime metrics](#service-runtime-metrics) cover network activity, request processing, queue states, storage efficiency, and internal engine health.
 
+## Requirements
+
+The Postanalytics module and the service runtime metrics of the Native Node are available [starting from version 0.20.0][native-node-changelog] for all deployment options except [Amazon Machine Image (AMI)][aws-ami].
+
 ## Metrics endpoint
 
 By default, the Native Node provides the metrics at the following endpoint using the `tcp4` (IPv4-only) protocol:
@@ -33,7 +37,7 @@ This endpoint is accessible only from the server itself.
 
 You can change the default metrics host and endpoint. Follow the instructions for your deployment type:
 
-**For [All-in-one installer][aio], [Docker image][docker], and [AWS AMI][aws-ami]:**
+**For [All-in-one installer][aio] and [Docker image][docker]:**
 
 Set the following environment variables when deploying the Native Node:
 
