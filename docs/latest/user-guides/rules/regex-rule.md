@@ -77,6 +77,17 @@ The Wallarm node operating in the blocking [mode](../../admin-en/configure-walla
 
 There is also the 0-day vulnerability in [Spring Core Framework](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/overview.html) (Spring4Shell). Learn how to block its exploitation attempts with the [reqexp-based virtual patch](#block-all-requests-with-classmoduleclassloader-body-parameters).
 
+### Block traffic coming from certain USER-AGENT
+
+Let's say you want to deny an `l9explore` automated vulnerability scanner (of any version) to scan your applications for vulnerabilities. As it's activity is marked by the corresponding `USER-AGENT` header, configure rule as displayed on the screenshot:
+
+![Virtual patch for USER-AGENT header](../../images/user-guides/rules/regex-rule-vpatch.png)
+
+In the rule:
+
+* Selecting **Virtual patch** as attack type leads to blocking
+* All requests containing `l9explore` in the `USER-AGENT` header will be blocked whether they are followed by anything (like version number - `l9explore/1.2.0`) or not (`l9explore`)
+
 ## Partial disabling
 
 If the created rule should be partially disabled for a particular branch, this can easily be done by creating the **Disable regexp-based attack detection** rule with the following fields:
