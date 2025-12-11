@@ -701,6 +701,10 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
+### wallarm-node-6-7-3-20251211-112314 (2025-12-11)
+
+* Fixed the issue where deny-listed IPs were not blocked when large or overlapping IP ranges were configured in ACLs in Security Edge-hosted environments
+
 ### wallarm-node-6-7-1-20251114-111054 (2025-11-17)
 
 * Introduced JA4 fingerprinting in the [NGINX node](../installation/nginx-native-node-internals.md#nginx-node)
