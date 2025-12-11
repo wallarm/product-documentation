@@ -7,6 +7,7 @@
     * CentOS 7, 8 Stream, 9 Stream, 10 Stream
     * Alma/Rocky Linux 9
     * AlmaLinux 10
+    * Alpine Linux 3.14-3.22
     * RHEL 8.x
     * RHEL 9.x
     * RHEL 10.x

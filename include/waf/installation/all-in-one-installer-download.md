@@ -13,3 +13,7 @@ To download all-in-one Wallarm installation script, execute the command:
     ```bash
     curl -O https://meganode.wallarm.com/6.7/wallarm-6.7.1.aarch64-glibc.sh
     ```
+=== "Alpine Linux x86_64 version"
+    ```bash
+    curl -O https://meganode.wallarm.com/6.7/wallarm-6.7.1.x86_64-musl.sh
+    ```    

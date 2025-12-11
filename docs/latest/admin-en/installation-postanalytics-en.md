@@ -36,7 +36,11 @@ To download all-in-one Wallarm installation script, execute the command:
 === "ARM64 version"
     ```bash
     curl -O https://meganode.wallarm.com/6.7/wallarm-6.7.1.aarch64-glibc.sh
-    ```
+    ```   
+=== "x86_64 version of Alpine Linux"
+    ```bash
+    curl -O https://meganode.wallarm.com/6.7/wallarm-6.7.1.x86_64-musl.sh
+    ```    
 
 ## Step 2: Prepare Wallarm token
 
@@ -66,6 +70,9 @@ To install postanalytics separately with all-in-one installer, use:
 
     # If using the ARM64 version:
     sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.7.1.aarch64-glibc.sh postanalytics
+
+    # If using the x86_64 version of Alpine Linux:
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.7.1.x86_64-musl.sh postanalytics
     ```        
 
     The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -77,6 +84,9 @@ To install postanalytics separately with all-in-one installer, use:
 
     # If using the ARM64 version:
     sudo sh wallarm-6.7.1.aarch64-glibc.sh postanalytics
+
+    # If using the x86_64 version of Alpine Linux:
+    sudo sh wallarm-6.7.1.x86_64-musl.sh postanalytics
     ```
 
 ## Step 4: Configure the postanalytics module
@@ -163,6 +173,9 @@ Once the postanalytics module is installed on the separate server:
 
         # If using the ARM64 version:
         sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.7.1.aarch64-glibc.sh filtering
+        
+        # If using the x86_64 version of Alpine Linux:  
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.7.1.x86_64-musl.sh filtering
         ```        
 
         The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -174,6 +187,9 @@ Once the postanalytics module is installed on the separate server:
 
         # If using the ARM64 version:
         sudo sh wallarm-6.7.1.aarch64-glibc.sh filtering
+
+        # If using the x86_64 version of Alpine Linux:
+        sudo sh wallarm-6.7.1.x86_64-musl.sh filtering
         ```
 
 ## Step 8: Connect the NGINX-Wallarm module to the postanalytics module
@@ -221,6 +237,10 @@ Once the configuration file changed, restart NGINX/NGINX Plus on the NGINX-Walla
 === "RHEL"
     ```bash
     sudo systemctl restart nginx
+    ```
+=== "Alpine Linux"
+    ```bash
+    sudo rc-service nginx restart
     ```
 
 ## Step 9: Check the NGINX‑Wallarm and separate postanalytics modules interaction
@@ -334,6 +354,10 @@ To enable a secure SSL/TLS connection from the NGINX-Wallarm module to the posta
         ```bash
         sudo systemctl restart nginx
         ```
+    === "Alpine Linux"
+        ```bash
+        sudo rc-service nginx restart
+        ```        
 1. [Check the integration](#step-9-check-the-nginxwallarm-and-separate-postanalytics-modules-interaction).
 
 ### Mutual TLS (mTLS)
@@ -382,7 +406,10 @@ To enable mutual authentication, where both the NGINX-Wallarm module and the pos
         ```bash
         sudo systemctl restart nginx
         ```
-
+    === "Alpine Linux"
+        ```bash
+        sudo rc-service nginx restart
+        ```
 1. On the postanalytics server, enable mTLS in `/opt/wallarm/wstore/wstore.yaml`:
 
     ```yaml

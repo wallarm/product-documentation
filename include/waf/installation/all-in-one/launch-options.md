@@ -39,6 +39,9 @@ Below are examples of commands to run the script in batch mode for node installa
 
     # If using the ARM64 version:
     sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.7.1.aarch64-glibc.sh -- --batch -t <TOKEN> -c US
+    
+    # If using the x86_64 version of Alpine Linux:
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.7.1.x86_64-musl.sh -- --batch -t <TOKEN> -c US
     ```
 === "EU Cloud"
     ```bash
@@ -47,6 +50,9 @@ Below are examples of commands to run the script in batch mode for node installa
 
     # If using the ARM64 version:
     sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.7.1.aarch64-glibc.sh -- --batch -t <TOKEN>
+
+    # If using the x86_64 version of Alpine Linux:
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.7.1.x86_64-musl.sh -- --batch -t <TOKEN>
     ```
 
 ### Separate execution of node installation stages
@@ -69,6 +75,11 @@ This functionality is supported starting from version 4.10.0 of the all-in-one i
     curl -O https://meganode.wallarm.com/6.7/wallarm-6.7.1.aarch64-glibc.sh
     sudo sh wallarm-6.7.1.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
+
+    # If using the x86_64 version of Alpine Linux:
+    curl -O https://meganode.wallarm.com/6.7/wallarm-6.7.1.x86_64-musl.sh
+    sudo sh wallarm-6.7.1.x86_64-musl.sh -- --batch --install-only
+    sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
     ```
 === "EU Cloud"
     ```
@@ -80,6 +91,11 @@ This functionality is supported starting from version 4.10.0 of the all-in-one i
     # If using the ARM64 version:
     curl -O https://meganode.wallarm.com/6.7/wallarm-6.7.1.aarch64-glibc.sh
     sudo sh wallarm-6.7.1.aarch64-glibc.sh -- --batch --install-only
+    sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
+
+    # If using the x86_64 version of Alpine Linux:
+    curl -O https://meganode.wallarm.com/6.7/wallarm-6.7.1.x86_64-musl.sh
+    sudo sh wallarm-6.7.1.x86_64-musl.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
     ```
 

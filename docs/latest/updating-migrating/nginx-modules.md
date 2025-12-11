@@ -95,6 +95,9 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
 
         # If using the ARM64 version:
         sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.7.1.aarch64-glibc.sh filtering
+        
+        # If using the x86_64 version of Alpine Linux:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.7.1.x86_64-musl.sh filtering        
         ```        
 
         The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -106,6 +109,9 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
 
         # If using the ARM64 version:
         sudo sh wallarm-6.7.1.aarch64-glibc.sh filtering
+
+        # If using the x86_64 version of Alpine Linux:
+        sudo sh wallarm-6.7.1.x86_64-musl.sh filtering
         ```
 
 ## Step 6: Transfer NGINX and postanalytics configuration from old node machine to new
