@@ -323,10 +323,6 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
-### 6.7.3 (2025-12-11)
-
-* Fixed the issue where deny-listed IPs were not blocked when large or overlapping IP ranges were configured in ACLs in Security Edge-hosted environments
-
 ### 6.7.1 (2025-11-17)
 
 * Fixed `'error: no error'` when processing gRPC/WebSocket response attacks
