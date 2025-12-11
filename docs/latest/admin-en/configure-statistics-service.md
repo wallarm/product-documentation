@@ -495,7 +495,12 @@ The following response parameters are available (Prometheus metrics have the `wa
     *   `mod_time`: Unix time of the last update of the proton.db file.
     *   `fname`: path to the proton.db file.
 * `startid`: randomly-generated unique ID of the filtering node.
-* `compatibility`: unique ID of the filtering node indicating the node's compatibility.
+* `compatibility`: numeric value indicating how well the Wallarm NGINX module is compatible with the running NGINX executable. This metric helps the support team diagnose compatibility issues. Values:
+    *   `0`: not compatible by any source.
+    *   `1`: this value is not used.
+    *   `2`: debug build.
+    *   `3`: exception list; valid in some cases when NGINX is built by the customer without standard patches.
+    *   `4`: compatible by hash; this is the valid production value.
 * `config_revision`: revision number of the currently applied configuration file, incremented whenever the configuration is updated.
 * `rate_limit`: information about the Wallarm [rate limiting](../user-guides/rules/rate-limiting.md) module:
     * `shm_zone_size`: total amount of shared memory that the Wallarm rate limiting module can consume in bytes (the value is based on the [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size) directive, default is `67108864`).
