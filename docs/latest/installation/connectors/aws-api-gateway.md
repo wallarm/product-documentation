@@ -7,7 +7,7 @@
 [subscription]:                ../../about-wallarm/subscription-plans.md#core-subscription-plans
 
 
-# Wallarm Connector for Amazon API Gateway (API Discovery) <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Wallarm Connector for Amazon API Gateway (API Discovery) <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 The Wallarm Connector for Amazon API Gateway automatically builds an [API inventory][api-inventory] from real traffic by relying on CloudWatch logs.
 
