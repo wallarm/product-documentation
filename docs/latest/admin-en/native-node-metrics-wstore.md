@@ -1,4 +1,4 @@
-[native-node-changelog]: ../updating-migrating/native-node/node-artifact-versions.md
+[native-node-changelog]: ../updating-migrating/native-node/node-artifact-versions.md#0200-2025-11-25
 [aio]:                  ../installation/native-node/all-in-one.md
 [docker]:               ../installation/native-node/docker-image.md
 [aws-ami]:              ../installation/native-node/aws-ami.md

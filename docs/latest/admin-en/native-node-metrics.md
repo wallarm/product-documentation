@@ -8,5 +8,5 @@ The [Native Node][nginx-node-landing] exposes metrics in the [Prometheus](https:
 
 There are 2 types of metrics available:
 
-* [Postanalytics metrics][wstore-metrics] — include Postanalytics module **wstore** metrics, available by default at the `http://localhost:9001/metrics` endpoint. The metrics are available [starting from version 0.20.0][native-node-changelog] for all deployment options except [Amazon Machine Image (AMI)][aws-ami].
-* [Go Node metrics][go-node-metrics] — provide information about the Node's internal operations (e.g., blocked/bypassed traffic, HTTP inspection, Go runtime statistics). These metrics are available by default at the `http://<NODE_IP>:9000/metrics` endpoint.
+* [Postanalytics metrics][wstore-metrics] — include Postanalytics module **wstore** metrics, available by default at the `http://localhost:9001/metrics` endpoint.
+* [Native Node runtime metrics][go-node-metrics] — provide information about the Node's internal operations (e.g., blocked/bypassed traffic, HTTP inspection, Go runtime statistics). These metrics are available by default at the `http://<NODE_IP>:9000/metrics` endpoint.

@@ -336,7 +336,7 @@ nav:
       - Native Node Metrics: 
         - Overview: admin-en/native-node-metrics.md
         - Postanalytics Metrics: admin-en/native-node-metrics-wstore.md
-        - Go Node Metrics: admin-en/native-node-metrics-gonode.md     
+        - Runtime Metrics: admin-en/native-node-metrics-gonode.md     
       - Using a Mirrored Wallarm Repository:
         - How to Mirror the Wallarm Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
         - Installing Wallarm Packages from the Local JFrog Artifactory Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md

@@ -156,7 +156,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
     * [`config.aggregation.metrics.listenAddress`](../../installation/native-node/helm-chart-conf.md#configaggregationmetricslistenaddress) — defines the host and port
     * [`config.aggregation.metrics.protocol`](../../installation/native-node/helm-chart-conf.md#configaggregationmetricsprotocol) — defines the protocol
 
-* Added [Prometheus metrics support](../../admin-en/native-node-metrics-gonode.md#wallarm_gonode_apifw_service_errors_total) for API Specification Enforcement service operation (based on the built-in API Firewall service). API Firewall metrics are included as part of the [`go-node` Prometheus metrics](../../admin-en/native-node-metrics.md)
+* Added [Prometheus metrics support](../../admin-en/native-node-metrics-gonode.md#wallarm_gonode_apifw_) for API Specification Enforcement service operation (based on the built-in API Firewall service). API Firewall metrics are included as part of the [`go-node` Prometheus metrics](../../admin-en/native-node-metrics.md)
 * Improved Node initialization logs — added detailed information about component type, supported versions, error source, API endpoint, and Node UUID to simplify troubleshooting during the initialization stage
 * Switched to native HTTP readiness and liveness probes for the **wstore** component
 * Fixed the [CVE-2025-58188](https://www.cve.org/CVERecord?id=CVE-2025-58188) vulnerability
@@ -299,7 +299,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
     * `WALLARM_WSTORE__METRICS__LISTEN_ADDRESS` — defines the host and port
     * `WALLARM_WSTORE__METRICS__PROTOCOL` — defines the protocol
 
-* Added [Prometheus metrics support](../../admin-en/native-node-metrics-gonode.md#wallarm_gonode_apifw_service_errors_total)for API Specification Enforcement service operation (based on the built-in API Firewall service). API Firewall metrics are included as part of the [`go-node` Prometheus metrics](../../admin-en/native-node-metrics.md)
+* Added [Prometheus metrics support](../../admin-en/native-node-metrics-gonode.md#wallarm_gonode_apifw_)for API Specification Enforcement service operation (based on the built-in API Firewall service). API Firewall metrics are included as part of the [`go-node` Prometheus metrics](../../admin-en/native-node-metrics.md)
 * Removed support for the deprecated `http_inspector.real_ip_header` configuration parameter
 * Improved Node initialization logs — added detailed information about component type, supported versions, error source, API endpoint, and Node UUID to simplify troubleshooting during the initialization stage
 * Fixed the [CVE-2025-58188](https://www.cve.org/CVERecord?id=CVE-2025-58188) vulnerability

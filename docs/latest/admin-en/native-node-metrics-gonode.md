@@ -1,9 +1,9 @@
 [apifw]:           ../api-specification-enforcement/overview.md
+[native-node-changelog]: ../updating-migrating/native-node/node-artifact-versions.md
 
+# Native Node Runtime Metrics
 
-# Go Node Metrics of the Native Node 
-
-This article describes the Go Node metrics of the Native Node to help monitor and troubleshoot the Native Node.
+This article describes the Native Node runtime metrics to help monitor and troubleshoot the Native Node.
 
 ## Accessing metrics
 
