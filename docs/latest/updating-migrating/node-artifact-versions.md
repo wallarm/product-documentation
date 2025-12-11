@@ -19,11 +19,10 @@ new attack types in logging variables and search bars?
 
 ### 6.8.0 (2025-12-08)
 
-* Improved SOAP/XML whitelisting logic to ignore namespaces when matching tag names. You can now whitelist elements by tag name alone
+<!-- * Improved SOAP/XML whitelisting logic to ignore namespaces when matching tag names. You can now whitelist elements by tag name alone -->
 * Bug fixes:
     * Fixed the issue where integers were not being masked when using the ["Mask sensitive data" rule](../user-guides/rules/sensitive-data-rule.md)
     * Fixed the issue where deny-listed IPs were not blocked when large or overlapping IP ranges were configured in ACLs in Security Edge-hosted environments
-    * Fixed the issue where some [Path traversal attacks](../attacks-vulns-list.md#path-traversal) (e.g., `/etc/passwd` and `/etc/shadow`) were not being detected in the Native Node 0.19.0. This affected multiple connectors, including the [Native Node with Kong](../installation/nginx-native-node-internals.md#connectors_1) and Security Edge connector with [Azure API Management](../installation/security-edge/se-connector.md)
     * Fixed the issue where responses containing infoleak stamps were being blocked. Wallarm no longer blocks such responses, as doing so caused false detections and prevented rules from being edited
     * Fixed the issue where the [`wallarm_status` service statistics](../admin-en/configure-statistics-service.md) contained the outdated [`abnormal` metric](../admin-en/configure-statistics-service.md#usage), which was incorrectly increasing with each request. The metric and other outdated fields have been removed
 
@@ -171,11 +170,10 @@ new attack types in logging variables and search bars?
 
 ### 6.8.0 (2025-12-08)
 
-* Improved SOAP/XML whitelisting logic to ignore namespaces when matching tag names. You can now whitelist elements by tag name alone
+<!-- * Improved SOAP/XML whitelisting logic to ignore namespaces when matching tag names. You can now whitelist elements by tag name alone -->
 * Bug fixes:
     * Fixed the issue where integers were not being masked when using the ["Mask sensitive data" rule](../user-guides/rules/sensitive-data-rule.md)
     * Fixed the issue where deny-listed IPs were not blocked when large or overlapping IP ranges were configured in ACLs in Security Edge-hosted environments
-    * Fixed the issue where some [Path traversal attacks](../attacks-vulns-list.md#path-traversal) (e.g., `/etc/passwd` and `/etc/shadow`) were not being detected in the Native Node 0.19.0. This affected multiple connectors, including the [Native Node with Kong](../installation/nginx-native-node-internals.md#connectors_1) and Security Edge connector with [Azure API Management](../installation/security-edge/se-connector.md)
     * Fixed the issue where responses containing infoleak stamps were being blocked. Wallarm no longer blocks such responses, as doing so caused false detections and prevented rules from being edited
     * Fixed the issue where the [`wallarm_status` service statistics](../admin-en/configure-statistics-service.md) contained the outdated [`abnormal` metric](../admin-en/configure-statistics-service.md#usage), which was incorrectly increasing with each request. The metric and other outdated fields have been removed
 
@@ -337,11 +335,10 @@ new attack types in logging variables and search bars?
 
 ### 6.8.0 (2025-12-08)
 
-* Improved SOAP/XML whitelisting logic to ignore namespaces when matching tag names. You can now whitelist elements by tag name alone
+<!-- * Improved SOAP/XML whitelisting logic to ignore namespaces when matching tag names. You can now whitelist elements by tag name alone -->
 * Bug fixes:
     * Fixed the issue where integers were not being masked when using the ["Mask sensitive data" rule](../user-guides/rules/sensitive-data-rule.md)
     * Fixed the issue where deny-listed IPs were not blocked when large or overlapping IP ranges were configured in ACLs in Security Edge-hosted environments
-    * Fixed the issue where some [Path traversal attacks](../attacks-vulns-list.md#path-traversal) (e.g., `/etc/passwd` and `/etc/shadow`) were not being detected in the Native Node 0.19.0. This affected multiple connectors, including the [Native Node with Kong](../installation/nginx-native-node-internals.md#connectors_1) and Security Edge connector with [Azure API Management](../installation/security-edge/se-connector.md)
     * Fixed the issue where responses containing infoleak stamps were being blocked. Wallarm no longer blocks such responses, as doing so caused false detections and prevented rules from being edited
     * Fixed the issue where the [`wallarm_status` service statistics](../admin-en/configure-statistics-service.md) contained the outdated [`abnormal` metric](../admin-en/configure-statistics-service.md#usage), which was incorrectly increasing with each request. The metric and other outdated fields have been removed
 
@@ -470,11 +467,10 @@ new attack types in logging variables and search bars?
 
 ### 6.8.0 (2025-12-08)
 
-* Improved SOAP/XML whitelisting logic to ignore namespaces when matching tag names. You can now whitelist elements by tag name alone
+<!-- * Improved SOAP/XML whitelisting logic to ignore namespaces when matching tag names. You can now whitelist elements by tag name alone -->
 * Bug fixes:
     * Fixed the issue where integers were not being masked when using the ["Mask sensitive data" rule](../user-guides/rules/sensitive-data-rule.md)
     * Fixed the issue where deny-listed IPs were not blocked when large or overlapping IP ranges were configured in ACLs in Security Edge-hosted environments
-    * Fixed the issue where some [Path traversal attacks](../attacks-vulns-list.md#path-traversal) (e.g., `/etc/passwd` and `/etc/shadow`) were not being detected in the Native Node 0.19.0. This affected multiple connectors, including the [Native Node with Kong](../installation/nginx-native-node-internals.md#connectors_1) and Security Edge connector with [Azure API Management](../installation/security-edge/se-connector.md)
     * Fixed the issue where responses containing infoleak stamps were being blocked. Wallarm no longer blocks such responses, as doing so caused false detections and prevented rules from being edited
     * Fixed the issue where the [`wallarm_status` service statistics](../admin-en/configure-statistics-service.md) contained the outdated [`abnormal` metric](../admin-en/configure-statistics-service.md#usage), which was incorrectly increasing with each request. The metric and other outdated fields have been removed
 
@@ -622,11 +618,10 @@ new attack types in logging variables and search bars?
 
 ### 6.8.0 (2025-12-08)
 
-* Improved SOAP/XML whitelisting logic to ignore namespaces when matching tag names. You can now whitelist elements by tag name alone
+<!-- * Improved SOAP/XML whitelisting logic to ignore namespaces when matching tag names. You can now whitelist elements by tag name alone -->
 * Bug fixes:
     * Fixed the issue where integers were not being masked when using the ["Mask sensitive data" rule](../user-guides/rules/sensitive-data-rule.md)
     * Fixed the issue where deny-listed IPs were not blocked when large or overlapping IP ranges were configured in ACLs in Security Edge-hosted environments
-    * Fixed the issue where some [Path traversal attacks](../attacks-vulns-list.md#path-traversal) (e.g., `/etc/passwd` and `/etc/shadow`) were not being detected in the Native Node 0.19.0. This affected multiple connectors, including the [Native Node with Kong](../installation/nginx-native-node-internals.md#connectors_1) and Security Edge connector with [Azure API Management](../installation/security-edge/se-connector.md)
     * Fixed the issue where responses containing infoleak stamps were being blocked. Wallarm no longer blocks such responses, as doing so caused false detections and prevented rules from being edited
     * Fixed the issue where the [`wallarm_status` service statistics](../admin-en/configure-statistics-service.md) contained the outdated [`abnormal` metric](../admin-en/configure-statistics-service.md#usage), which was incorrectly increasing with each request. The metric and other outdated fields have been removed
 
