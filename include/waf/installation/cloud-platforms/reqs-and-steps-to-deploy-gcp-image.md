@@ -42,7 +42,7 @@ To get the image name, you can also follow these steps:
 3. Copy the version value from the name of the latest available image and paste the copied value into the provided image name format. For example, the filtering node version 4.10 image will have the following name:
 
     ```bash
-    wallarm-node-195710/wallarm-node-6-7-1-20251114-111054
+    wallarm-node-195710/wallarm-node-6-7-3-20251114-111054
     ```
 
 ## 2. Configure the filtering node instance
