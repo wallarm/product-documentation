@@ -145,6 +145,14 @@ As conditions, you can use values or value patters of:
 !!! info "Performance note"
     As **Scope** settings are less demanding from the productivity perspective, it is always recommended to use them if it is enough for your goals, and only use **Scope filters** for the complex conditioning.
 
+**Example: scope filters usage logic**
+
+Let's say you want to provide protection from brute force for all your resources and wherever the requests origin from, but `1.1.1.1` origin IP should be excluded from this protection (it is your testing bot):
+
+1. Does **Scope** allow controlling origin IPs? No, it is about **target** of requests → expand and check **Scope filters**.
+1. In **Scope filters**, find the **IP** condition, select `!=` (not equal) operator and set value to `1.1.1.1`.
+1. The control will work for everything except `1.1.1.1` origin IP.
+
 ### Enumerated parameters
 
 In the **Enumerated parameters** section, you need to select parameters that will be monitored for enumeration. Select set of parameters to be monitored via exact or or [regex](#regular-expressions) match (only one approach can be used within single mitigation control).
