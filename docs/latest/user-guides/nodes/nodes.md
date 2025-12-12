@@ -1,6 +1,6 @@
 # Wallarm Nodes
 
-The **Nodes** section of the Wallarm Console allows you to manage [**self-hosted**](../../about-wallarm/overview.md#where-wallarm-works) nodes (Security Edge nodes are [managed](../../installation/security-edge/deployment.md) separately).
+The **Nodes** section of the Wallarm Console allows you to manage [**self-hosted**](../../about-wallarm/overview.md#where-wallarm-works) nodes (Security Edge nodes are [managed](../../installation/security-edge/inline/deployment.md) separately).
 
 Wallarm self-hosted nodes should be deployed to the customer's environment for Wallarm to mitigate the malicious traffic. Wallarm node operates as a proxy by mitigating malicious requests and forwarding legitimate requests to the protected resource.
 
