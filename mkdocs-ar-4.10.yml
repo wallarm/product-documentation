@@ -380,6 +380,7 @@ nav:
         - تحديث وحدة Postanalytics المثبتة من الحزم الفردية: updating-migrating/separate-postanalytics.md
         - تحديث العقدة التي تم تثبيتها عبر البرنامج المثبت all-in-one: updating-migrating/all-in-one.md
         - تحديث صورة Docker NGINX- أو Envoy-based: updating-migrating/docker-container.md
+        - إيقاف NGINX Ingress Controller وخطة الانتقال): updating-migrating/nginx-ingress-retirement.md
         - تحديث NGINX Ingress controller بوحدات Wallarm المتكاملة: updating-migrating/ingress-controller.md
         - تحديث Wallarm Sidecar proxy: updating-migrating/sidecar-proxy.md
         - تحديث صورة العقدة السحابية: updating-migrating/cloud-image.md

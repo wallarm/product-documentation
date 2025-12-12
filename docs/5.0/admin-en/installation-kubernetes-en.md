@@ -20,6 +20,13 @@ These instructions provide you with the steps to deploy the Wallarm NGINX-based 
 
 The solution is built on the [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) with integrated Wallarm services. The latest version uses Community Ingress NGINX Controller 1.11.5 with NGINX stable 1.25.5.
 
+!!! warning
+    The Kubernetes community will [retire the Community Ingress NGINX in March 2026](https://blog.nginx.org/blog/the-ingress-nginx-alternative-open-source-nginx-ingress-controller-for-the-long-term). The Wallarm NGINX Ingress Controller based on this project will be supported through the same date. You can continue using it until then, and it will remain fully functional during the support window.
+
+    Wallarm will provide alternative deployment options and migration guidance as they become available. [Details](../updating-migrating/nginx-ingress-retirement.md)
+
+    An [Envoy/Istio-based connector](../installation/connectors/istio.md) is also available today for environments already using Envoy.
+
 It has the following architecture:
 
 ![Solution architecture][nginx-ing-image]

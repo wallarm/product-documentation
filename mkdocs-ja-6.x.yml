@@ -356,6 +356,7 @@ nav:
         - DEB/RPM でインストールしたポストアナリティクスモジュールのアップグレード: updating-migrating/separate-postanalytics.md
         - オールインワンインストーラーで導入したノードのアップグレード: updating-migrating/all-in-one.md
         - Wallarm Docker NGINX ベースイメージのアップグレード: updating-migrating/docker-container.md
+        - NGINX Ingress コントローラーの廃止と移行: updating-migrating/nginx-ingress-retirement.md
         - Wallarm モジュール統合済み NGINX Ingress コントローラーのアップグレード: updating-migrating/ingress-controller.md
         - Wallarm サイドカープロキシのアップグレード: updating-migrating/sidecar-proxy.md
         - クラウドノードイメージのアップグレード: updating-migrating/cloud-image.md

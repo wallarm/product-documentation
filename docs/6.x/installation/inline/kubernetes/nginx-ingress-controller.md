@@ -18,5 +18,7 @@ search:
 [node-token-types]:                      ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [chaining-doc]:                          ../../../admin-en/chaining-wallarm-and-other-ingress-controllers.md
 [api-spec-enforcement-docs]:             ../../../api-specification-enforcement/overview.md
+[nginx-ingress-retirement-plan]:         ../../../updating-migrating/nginx-ingress-retirement.md
+[envoy-connector]:                       ../../../installation/connectors/istio.md
 
 --8<-- "latest/admin-en/installation-kubernetes-en.md"

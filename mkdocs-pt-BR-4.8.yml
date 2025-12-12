@@ -369,6 +369,7 @@ nav:
         - Atualizando o Módulo de Pós-Análises Instalado a partir de Pacotes Individuais: updating-migrating/separate-postanalytics.md
         - Atualizando o Nó Instalado através do Instalador All-in-One: updating-migrating/all-in-one.md
         - Atualizando a Imagem Docker Wallarm NGINX- ou Envoy-based: updating-migrating/docker-container.md
+        - Descontinuação e migração do NGINX Ingress Controller: updating-migrating/nginx-ingress-retirement.md
         - Atualizando o Controlador de Ingresso NGINX com Módulos Wallarm integrados: updating-migrating/ingress-controller.md
         - Atualizando o Proxy de Sidecar Wallarm: updating-migrating/sidecar-proxy.md
         - Atualizando a Imagem do Nó Cloud: updating-migrating/cloud-image.md

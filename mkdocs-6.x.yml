@@ -348,6 +348,7 @@ nav:
         - Upgrading Postanalytics Module Installed from DEB/RPM Packages: updating-migrating/separate-postanalytics.md
         - Upgrading Node Installed via All-in-One Installer: updating-migrating/all-in-one.md
         - Upgrading the Wallarm Docker NGINX-Based Image: updating-migrating/docker-container.md
+        - NGINX Ingress Controller retirement and migration: updating-migrating/nginx-ingress-retirement.md
         - Upgrading NGINX Ingress Controller with Integrated Wallarm Modules: updating-migrating/ingress-controller.md
         - Upgrading Wallarm Sidecar Proxy: updating-migrating/sidecar-proxy.md
         - Upgrading the Cloud Node Image: updating-migrating/cloud-image.md
