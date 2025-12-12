@@ -27,7 +27,10 @@ You can explore attacks performed by bots in Wallarm Console → **Attacks** sec
 
 ![API Abuse events](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
 
-Note that even if the bot IP is placed into the denylist by API Abuse Prevention, by default, Wallarm collects and [displays](../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) statistics regarding blocked requests originating from it.
+Note that:
+
+* Even if the bot IP is placed into the denylist by API Abuse Prevention, by default, Wallarm collects and [displays](../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) statistics regarding blocked requests originating from it.
+* The detailed information on the bot attack is stored for 31 days: while the attack itself may remain in the **Attacks** section for a longer time, after 31 days, if you expand it, no detector values or heatmaps will be presented - `Not enough data` message will be displayed instead.
 
 **Detector values**
 
