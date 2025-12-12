@@ -25,6 +25,7 @@ Before deploying the connector, make sure the following requirements are met:
 
     * Admin API enabled and accessible (typically on port `8001`)
     * Proxy interface exposed to accept client traffic (typically on port `8000`)
+* Kong API Gateway version 3.4-3.9
 * Docker and Docker Compose installed on the host
 * Access to `https://us1.api.wallarm.com` (US Wallarm Cloud) or to `https://api.wallarm.com` (EU Wallarm Cloud)
 * Access to the IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules, as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../../user-guides/ip-lists/overview.md) countries, regions, or data centers

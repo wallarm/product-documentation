@@ -24,6 +24,7 @@ This setup allows fine-tuning Wallarm only via the Wallarm Console UI. Some Wall
 To proceed with the deployment, ensure that you meet the following requirements:
 
 * Kong Ingress Controller deployed and managing your API traffic in Kubernetes cluster
+* Kong Ingress Controller version 3.4-3.9
 * [Helm v3](https://helm.sh/) package manager
 * Access to `https://us1.api.wallarm.com` (US Wallarm Cloud) or to `https://api.wallarm.com` (EU Wallarm Cloud)
 * Access to `https://charts.wallarm.com` to add the Wallarm Helm chart
