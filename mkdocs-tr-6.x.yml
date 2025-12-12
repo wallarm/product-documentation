@@ -355,6 +355,7 @@ nav:
         - DEB/RPM Paketlerinden Kurulu Postanalitik Modülü Yükseltme: updating-migrating/separate-postanalytics.md
         - Hepsi Bir Arada Yükleyici ile Kurulu Düğümü Yükseltme: updating-migrating/all-in-one.md
         - Wallarm Docker NGINX Tabanlı İmajını Yükseltme: updating-migrating/docker-container.md
+        - NGINX Ingress Denetleyicisi kullanımdan kaldırılması ve geçiş süreci: updating-migrating/nginx-ingress-retirement.md
         - Entegre Wallarm Modülleri ile NGINX Ingress Denetleyicisini Yükseltme: updating-migrating/ingress-controller.md
         - Wallarm Sidecar Proxy'yi Yükseltme: updating-migrating/sidecar-proxy.md
         - Bulut Düğüm İmajını Yükseltme: updating-migrating/cloud-image.md
