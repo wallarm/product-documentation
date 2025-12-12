@@ -186,7 +186,7 @@ The directive enables [JA4 fingerprinting](https://foxio.io/ja4) in the [NGINX n
 
 It generates a JA4 TLS fingerprint for each incoming connection. The fingerprint summarizes the TLS ClientHello parameters and is added to the serialized request that the Node sends to the Wallarm Cloud.
 
-JA4 fingerprints are used as an additional factor when deciding to block a request.
+JA4 fingerprints are used as an additional factor when deciding to block a request. They improve the detection of bots, scanners, and brute‑force attempts because TLS-based fingerprints are difficult to spoof even if attackers change IPs, `User-Agent` headers, or other request attributes.
 
 !!! info
     The directive can be set inside the `http` or `server` blocks of the NGINX configuration file.
