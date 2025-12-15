@@ -7,9 +7,78 @@
 * API Sessions require [NGINX Wallarm node](../installation/nginx-native-node-internals.md#nginx-node) 5.1.0 or [Native Wallarm Node](../installation/nginx-native-node-internals.md#native-node) 0.8.0.
 * Response parsing - NGINX Wallarm node 5.3.0 or native node 0.12.0.
 
+## Session grouping
+
+Wallarm groups requests of your applications' traffic into user sessions based on the **equal values** of the selected headers/parameters of the requests and/or responses. In configuration, these are parameters marked to be grouping keys. See how grouping keys work in the [example](#example-of-how-grouping-keys-work).    
+
+By default, sessions are identified with the **built-in set** of such parameters (not displayed in Wallarm Console). Its logic is to try most common identification parameters, such as `PHPSESSID` or `SESSION-ID` headers, and if they do not work - form session based on the combination of `request source IP and user-agent` (or at least IP if user-agent is not presented).
+
+You can add several grouping keys, they are tried in [specified order](#example-of-how-grouping-keys-work) - next is tried only if previous did not work. Drag to change the order. You own keys are always tried before the built-in ones.
+
+![!API Sessions - Configuration](../images/api-sessions/api-sessions-settings.png)
+
+Consider the following:
+
+* **Multi-part sessions**: For effective analysis, [long sessions](exploring.md#multi-day-sessions) are separated in one-day parts. Also, no parts older than 7 days are stored and displayed.
+* **Impact to bot detection by `API Abuse prevention`**: Wallarm's API Abuse Prevention uses sessions for the malicious bot detection. Adding your own session identification parameters based on your applications' logic makes both session detection and API Abuse Prevention's bot detection more precise. See [details](overview.md#api-sessions-and-api-abuse-prevention).
+* **Impact from `Mask sensitive data` rule**: For the parameter to work as a grouping key, it should not be affected by the the [Mask sensitive data](../user-guides/rules/sensitive-data-rule.md) rule
+
+### Adding grouping keys
+
+You can add your own identification parameters based on your applications' logic:
+
+* From **Recommendations** (requires [API Discovery](../api-discovery/overview.md))
+* Manually
+
+#### Adding keys from recommendations
+
+!!! tip ""
+    Requires [API Discovery](../api-discovery/overview.md)
+
+Based on your traffic, Wallarm suggests parameters you might want to use as session grouping keys:
+
+* The suggestions are LLM-based and rely on API Discovery data.
+* The suggestions are accompanied by explanatory text, from which you can understand why these particular parameters were suggested for identifying sessions of your different [applications](../user-guides/settings/applications.md).
+* The appearance of [new data](../api-discovery/track-changes.md) in API Discovery may result in the new suggestions, so it is recommended to re-check the **Suggestions** section periodically.
+* When accepted, suggestions are added without logic in their order - you should define that order yourself.
+
+To add grouping keys from recommendations:
+
+1. go to Wallarm Console → **API Sessions** → **Session context parameters**.
+1. Check the **Recommendations** section.
+1. Apply all or selected parameters. The parameters are added to the **Configured export parameters** parameters. Note that **Group sessions by this key** should remain selected for all of them.
+1. Drag and drop to define order (priority) - see [example](#example-of-how-grouping-keys-work).
+1. **Save** changes.
+
+![!API Sessions - Recommendations](../images/api-sessions/api-sessions-settings-recommendations.png)
+
+#### Adding keys manually
+
+To add session grouping keys manually, go to Wallarm Console → **API Sessions** → **Session context parameters**, add your request or response parameter and select **Group sessions by this key** for it.
+
+### Example of how grouping keys work
+
+Let us say you have a route login which returns a specific `<TOKEN>` in `response_body →` `json_doc → hash → token` parameter of the response. In the further requests, this `<TOKEN>` is used somewhere in `get → token` or `post → json_doc → hash → token`.
+
+You can configure 3 parameters to be used as grouping keys (for response body, get and post requests). They will be tried in the following order (next is tried only if previous did not work):
+
+1. `response_body → json_doc → hash → token`
+2. `get → token`
+3. `post → json_doc → hash → token`
+4. (built-in set, will be used if none of previous work)
+
+![!API Sessions - example of grouping keys in work](../images/api-sessions/api-sessions-grouping-keys.png)
+
+Requests:
+
+* curl `example.com -d '{in: 'bbb'}'` with response `'{token: aaa}'` → session "A" (**grouping key #1 worked**)
+* curl `example.com -d '{in: 'ccc'}' '{token: 'aaa'}'` with response without token → session "A" (**grouping key #3 worked**)
+
+The same parameter value `aaa` groups these requests into one session.
+
 ## Session context
 
-Context in API sessions is information that enriches request data by grouping them into logical sessions and adding response data and metadata to provide deeper insights into session activity. Configuring context allows you to specify which aspects or additional data should be tracked and associated with each session.
+Context in API sessions is information that enriches session information to provide deeper insights into activities within session. Configuring context allows you to specify which aspects or additional data should be tracked and associated with each session.
 
 Set session context by adding extra request and response parameters, associating sessions with sensitive business flows and highlighting parameters that can be used for user and user role identification.
 
@@ -94,75 +163,6 @@ Once you configured parameters to be used for user and his/her role identificati
 [Mitigation controls](../about-wallarm/mitigation-controls-overview.md) are capable of adding more parameters to session context, for example, the **BOLA protection** mitigation control may want to use the `object_id` parameter as [tracked for enumeration](../api-protection/enumeration-attack-protection.md#enumerated-parameters) or as [filter for scope](../api-protection/enumeration-attack-protection.md#scope-filters); if such parameter is not added in **API Sessions** → **Session context parameters**, it can be added directly in mitigation control configuration: in API Session, it will be added hidden, meaning you will see these parameters in session details if they are presented in requests, but you will not see them in **Session context parameters** configuration.
 
 Hidden parameters do not take anything from 20 parameter quota. Parameters are hidden to avoid their deletion as such deletion can lead to ceasing protection provided by mitigation control.
-
-## Session grouping
-
-Wallarm groups requests of your applications' traffic into user sessions based on the **equal values** of the selected headers/parameters of the requests and/or responses. In configuration, these are parameters marked to be grouping keys. See how grouping keys work in the [example](#example-of-how-grouping-keys-work).    
-
-By default, sessions are identified with the **built-in set** of such parameters (not displayed in Wallarm Console). Its logic is to try most common identification parameters, such as `PHPSESSID` or `SESSION-ID` headers, and if they do not work - form session based on the combination of `request source IP and user-agent` (or at least IP if user-agent is not presented).
-
-You can add several grouping keys, they are tried in [specified order](#example-of-how-grouping-keys-work) - next is tried only if previous did not work. Drag to change the order. You own keys are always tried before the built-in ones.
-
-![!API Sessions - Configuration](../images/api-sessions/api-sessions-settings.png)
-
-Consider the following:
-
-* **Multi-part sessions**: For effective analysis, [long sessions](exploring.md#multi-day-sessions) are separated in one-day parts. Also, no parts older than 7 days are stored and displayed.
-* **Impact to bot detection by `API Abuse prevention`**: Wallarm's API Abuse Prevention uses sessions for the malicious bot detection. Adding your own session identification parameters based on your applications' logic makes both session detection and API Abuse Prevention's bot detection more precise. See [details](overview.md#api-sessions-and-api-abuse-prevention).
-* **Impact from `Mask sensitive data` rule**: For the parameter to work as a grouping key, it should not be affected by the the [Mask sensitive data](../user-guides/rules/sensitive-data-rule.md) rule
-
-### Adding grouping keys
-
-You can add your own identification parameters based on your applications' logic:
-
-* From **Recommendations** (requires [API Discovery](../api-discovery/overview.md))
-* Manually
-
-#### Adding keys from recommendations
-
-!!! tip ""
-    Requires [API Discovery](../api-discovery/overview.md)
-
-Based on your traffic, Wallarm suggests parameters you might want to use as session grouping keys:
-
-* The suggestions are LLM-based and rely on API Discovery data.
-* The suggestions are accompanied by explanatory text, from which you can understand why these particular parameters were suggested for identifying sessions of your different [applications](../user-guides/settings/applications.md).
-* The appearance of [new data](../api-discovery/track-changes.md) in API Discovery may result in the new suggestions, so it is recommended to re-check the **Suggestions** section periodically.
-* When accepted, suggestions are added without logic in their order - you should define that order yourself.
-
-To add grouping keys from recommendations:
-
-1. go to Wallarm Console → **API Sessions** → **Session context parameters**.
-1. Check the **Recommendations** section.
-1. Apply all or selected parameters. The parameters are added to the **Configured export parameters** parameters. Note that **Group sessions by this key** should remain selected for all of them.
-1. Drag and drop to define order (priority) - see [example](#example-of-how-grouping-keys-work).
-1. **Save** changes.
-
-![!API Sessions - Recommendations](../images/api-sessions/api-sessions-settings-recommendations.png)
-
-#### Adding keys manually
-
-To add session grouping keys manually, go to Wallarm Console → **API Sessions** → **Session context parameters**, add your request or response parameter and select **Group sessions by this key** for it.
-
-### Example of how grouping keys work
-
-Let us say you have a route login which returns a specific `<TOKEN>` in `response_body →` `json_doc → hash → token` parameter of the response. In the further requests, this `<TOKEN>` is used somewhere in `get → token` or `post → json_doc → hash → token`.
-
-You can configure 3 parameters to be used as grouping keys (for response body, get and post requests). They will be tried in the following order (next is tried only if previous did not work):
-
-1. `response_body → json_doc → hash → token`
-2. `get → token`
-3. `post → json_doc → hash → token`
-4. (built-in set, will be used if none of previous work)
-
-![!API Sessions - example of grouping keys in work](../images/api-sessions/api-sessions-grouping-keys.png)
-
-Requests:
-
-* curl `example.com -d '{in: 'bbb'}'` with response `'{token: aaa}'` → session "A" (**grouping key #1 worked**)
-* curl `example.com -d '{in: 'ccc'}' '{token: 'aaa'}'` with response without token → session "A" (**grouping key #3 worked**)
-
-The same parameter value `aaa` groups these requests into one session.
 
 ## Enabling JA3 fingerprinting
 
