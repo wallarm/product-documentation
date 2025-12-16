@@ -33,7 +33,7 @@ To proceed with the deployment, ensure that the following requirements are met:
 
 * API managed by [Amazon API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html)
 * Understanding of [Amazon CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html), Amazon API Gateway, and [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) technologies
-* [Native Node version 0.20.1 or later][native-node-versions]
+* [Native Node version 0.21.0 or later][native-node-versions]
 * An [Advanced API Security subscription][subscription] that enables the API Discovery feature
 
 ![Amazon API Gateway traffic schema](../../images/waf-installation/gateways/aws-api-discovery/traffic-schema.png)
