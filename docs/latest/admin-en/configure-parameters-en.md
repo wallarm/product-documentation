@@ -189,10 +189,10 @@ It generates a JA4 TLS fingerprint for each incoming connection. The fingerprint
 JA4 fingerprints are used as an additional factor when deciding to block a request. They improve the detection of bots, scanners, and brute‑force attempts because TLS-based fingerprints are difficult to spoof even if attackers change IPs, `User-Agent` headers, or other request attributes.
 
 !!! info
-    The directive can be set inside the `http` or `server` blocks of the NGINX configuration file.
+    JA4 fingerprints are enabled by default in [Security Edge Inline](../installation/security-edge/inline/overview.md).
 
-    The default value is `off`.
-    
+    For [self-hosted deployments](../installation/nginx-native-node-internals.md#nginx-node), the directive can be set inside the `http` or `server` blocks of the NGINX configuration file (the default value is `off`).
+
 ### wallarm_custom_ruleset_path
 
 A path to the [custom ruleset](../user-guides/rules/rules.md) file that contains information on the protected application and the filtering node settings.

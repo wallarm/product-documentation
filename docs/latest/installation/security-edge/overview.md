@@ -14,10 +14,6 @@ Security Edge service provides a secure cloud environment where Wallarm Nodes ar
 * Reduced costs: lower operational overhead with Wallarm-managed Nodes, allowing faster deployment and scalability.
 * Seamless integration: simple configuration, allowing you to protect your API landscape without disruptions.
 * Global network of PoPs and latency-based DNS steering: traffic is routed through Wallarm's distributed Points of Presence, located close to your users.
-* Improved detection of bots, scanners, and brute‑force attempts with [JA4 fingerprinting](https://foxio.io/ja4): this feature uses TLS-based fingerprints that are difficult to spoof even if attackers change IPs, `User-Agent` headers, or other request attributes.
-
-    !!! info "Version requirement"
-        JA4 fingerprinting is available in Node version 6.7.4-1 and later.
 
 ## Available deployment options
 
