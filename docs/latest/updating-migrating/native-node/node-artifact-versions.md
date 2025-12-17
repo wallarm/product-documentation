@@ -10,6 +10,14 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.21.0 (2025-12-17)
+
+* Added the `client_uuid` label to all `*_per_app*` and `*_per_host*` [Prometheus metrics](../../admin-en/native-node-metrics-gonode.md) for Nodes running in multi-tenant mode
+* Fixed the issue where the [`wallarm_status` service statistics](../../admin-en/configure-statistics-service.md) contained the outdated `abnormal` metric, which was incorrectly increasing with each request
+
+    The metric and other outdated fields have been removed.
+* Fixed an issue where large or overlapping denylisted IP ranges were not being blocked in Security Edge-hosted environments
+
 ### 0.20.0 (2025-11-25)
 
 * Introduced support for OpenAPI 3.1 in the [API Specification Enforcement](../../api-specification-enforcement/overview.md) feature — you can now upload specifications in version 3.1 format to compare traffic against them, identify mismatches, and mitigate related security risks
@@ -145,6 +153,20 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 The Helm chart for the Native Node is used for self-hosted node deployments with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](helm-chart.md)
+
+### 0.21.0 (2025-12-17)
+
+* Added the `client_uuid` label to all `*_per_app*` and `*_per_host*` [Prometheus metrics](../../admin-en/native-node-metrics-gonode.md) for Nodes running in multi-tenant mode
+* Fixed the issue where the [`wallarm_status` service statistics](../../admin-en/configure-statistics-service.md) contained the outdated `abnormal` metric, which was incorrectly increasing with each request
+
+    The metric and other outdated fields have been removed.
+* Fixed an issue where large or overlapping denylisted IP ranges were not being blocked in Security Edge-hosted environments
+* Fixed the following vulnerabilities:
+    
+    * [CVE-2025-66418](https://nvd.nist.gov/vuln/detail/CVE-2025-66418)
+    * [CVE-2025-66471](https://nvd.nist.gov/vuln/detail/CVE-2025-66471)
+    * [CVE-2024-58251](https://nvd.nist.gov/vuln/detail/CVE-2024-58251)
+    * [CVE-2025-46394](https://nvd.nist.gov/vuln/detail/CVE-2025-46394)
 
 ### 0.20.0 (2025-11-25)
 
@@ -288,6 +310,20 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](docker-image.md)
+
+### 0.21.0 (2025-12-17)
+
+* Added the `client_uuid` label to all `*_per_app*` and `*_per_host*` [Prometheus metrics](../../admin-en/native-node-metrics-gonode.md) for Nodes running in multi-tenant mode
+* Fixed the issue where the [`wallarm_status` service statistics](../../admin-en/configure-statistics-service.md) contained the outdated `abnormal` metric, which was incorrectly increasing with each request
+
+    The metric and other outdated fields have been removed.
+* Fixed an issue where large or overlapping denylisted IP ranges were not being blocked in Security Edge-hosted environments
+* Fixed the following vulnerabilities:
+    
+    * [CVE-2025-66418](https://nvd.nist.gov/vuln/detail/CVE-2025-66418)
+    * [CVE-2025-66471](https://nvd.nist.gov/vuln/detail/CVE-2025-66471)
+    * [CVE-2024-58251](https://nvd.nist.gov/vuln/detail/CVE-2024-58251)
+    * [CVE-2025-46394](https://nvd.nist.gov/vuln/detail/CVE-2025-46394)
 
 ### 0.20.0 (2025-11-25)
 
