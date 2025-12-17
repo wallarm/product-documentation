@@ -983,6 +983,10 @@ All regular expressions must follow the [RE2 syntax](https://github.com/google/r
     It bypasses requests for static files (images, scripts, styles) and browser-initiated HTML page loads.
 
     ```yaml
+    version: 4
+
+    mode: connector-server
+
     input_filters:
       inspect:
       - path: "^/api/v[0-9]+/.*"
@@ -999,6 +1003,10 @@ All regular expressions must follow the [RE2 syntax](https://github.com/google/r
     Requests to the `/healthz` endpoint are always bypassed, even if they match the inspected host.
 
     ```yaml
+    version: 4
+
+    mode: connector-server
+
     input_filters:
       inspect:
       - headers:
