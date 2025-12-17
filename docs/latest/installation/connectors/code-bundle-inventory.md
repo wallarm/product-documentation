@@ -142,7 +142,7 @@ The current version can be found in `wallarm-main`/`wallarm-sp` → `bundle.json
 
 ## Amazon API Gateway
 
-### 1.0.0 (2025-12-10)
+### 1.0.0 (2025-12-17)
 
 * [Initial release](aws-api-gateway.md)
 
