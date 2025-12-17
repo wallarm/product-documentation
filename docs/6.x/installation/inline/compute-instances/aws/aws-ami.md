@@ -43,6 +43,6 @@ search:
 [wallarm-logs]:                     ../../../../admin-en/configure-logging.md
 [log-level]:                        ../../../../installation/native-node/all-in-one-conf.md#loglevel
 [link-wallarm-health-check]:        ../../../../admin-en/uat-checklist-en.md
-
+[ssl-certificates]:                 ../../../../admin-en/ssl-certificates.md
 
 --8<-- "latest/installation/inline/compute-instances/aws/aws-ami.md"

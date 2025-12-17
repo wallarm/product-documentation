@@ -343,6 +343,7 @@ nav:
         - Installing Wallarm Packages from the Local JFrog Artifactory Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md
     - Wallarm Node and Cloud Synchronization: admin-en/configure-cloud-node-synchronization-en.md
     - Access to Wallarm API via Proxy: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
+    - SSL/TLS Certificates: admin-en/ssl-certificates.md
     - Enabling JA3 fingerprinting: admin-en/enabling-ja3.md
     - Self-Hosted Node Upgrade:
       - What is New in Wallarm Node 6.x and 0.14.x: updating-migrating/what-is-new.md
