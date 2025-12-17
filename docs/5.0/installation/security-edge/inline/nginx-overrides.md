@@ -34,3 +34,6 @@ The following NGINX directives can be customized for each location:
 | `proxy_request_buffering` | Enable/disable buffering of request body. [More details](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering) | `on` |
 | `proxy_send_timeout` | Timeout for transmitting request to the origin. [More details](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_send_timeout) | `60s` |
 | `client_max_body_size` | Maximum request body size. [More details](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) | `1m` |
+| `grpc_buffer_size` | Buffer size for reading responses from the gRPC server. [More details](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_buffer_size) | `4k|8k` |
+| `grpc_read_timeout` | Timeout for reading a response from the gRPC server. [More details](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_read_timeout) | `60s` |
+| `grpc_send_timeout` | Timeout for sending a request to the gRPC server. [More details](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_send_timeout) | `60s` |
