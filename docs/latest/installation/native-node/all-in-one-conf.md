@@ -218,12 +218,16 @@ Ensure the port is not `80`, `8080`, `9000`, or `3313`, as these are used by oth
     ```yaml
     version: 4
 
+    mode: connector-server
+
     connector:
       address: '192.158.1.38:5050'
     ```
 === "Specific port on all IPs"
     ```yaml
     version: 4
+
+    mode: connector-server
 
     connector:
       address: ':5050'
@@ -296,6 +300,8 @@ For example:
 ```yaml
 version: 4
 
+mode: connector-server
+
 connector:
   allowed_hosts:
     - w.com
@@ -318,6 +324,8 @@ To configure the mesh in ECS:
 
 ```yaml
 version: 4
+
+mode: connector-server
 
 connector:
   mesh:
@@ -361,6 +369,8 @@ Supported in:
 ```yaml
 version: 4
 
+mode: connector-server
+
 connector:
   external_health_check:
     enabled: true
@@ -389,6 +399,8 @@ Supported in Native Node 0.13.4 and later 0.13.x versions, and in 0.15.1 and lat
 
 ```yaml
 version: 4
+
+mode: connector-server
 
 connector:
   per_connection_limits:
@@ -543,12 +555,16 @@ Ensure the port is not `80`, `8080`, `9000`, or `3313`, as these are used by oth
     ```yaml
     version: 4
 
+    mode: envoy-external-filter
+
     envoy_external_filter:
       address: '192.158.1.38:5080'
     ```
 === "Specific port on all IPs"
     ```yaml
     version: 4
+
+    mode: envoy-external-filter
 
     envoy_external_filter:
       address: ':5080'
@@ -591,6 +607,8 @@ Example:
 
 ```yaml
 version: 4
+
+mode: connector-server
 
 proxy_headers:
 
@@ -643,7 +661,9 @@ Configuration example:
 
 ```yaml
 version: 4
+
 mode: connector-server
+
 route_config:
   wallarm_mode: monitoring
   wallarm_partner_client_uuid: 11111111-1111-1111-1111-111111111111
@@ -684,6 +704,8 @@ Sets route-specific Wallarm configuration. Includes Wallarm mode and application
     ```yaml
     version: 4
 
+    mode: connector-server
+
     route_config:
       wallarm_application: 10
       wallarm_mode: monitoring
@@ -702,6 +724,8 @@ Sets route-specific Wallarm configuration. Includes Wallarm mode and application
 === "tcp-capture-v2"
     ```yaml
     version: 4
+
+    mode: tcp-capture-v2
 
     route_config:
       wallarm_application: 10
@@ -731,6 +755,8 @@ For example:
     ```yaml
     version: 4
 
+    mode: connector-server
+
     route_config:
       wallarm_application: 10
       routes:
@@ -739,6 +765,8 @@ For example:
 === "tcp-capture-v2"
     ```yaml
     version: 4
+
+    mode: tcp-capture-v2
 
     route_config:
       wallarm_application: 10
@@ -825,6 +853,8 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
     ```yaml
     version: 4
 
+    mode: connector-server
+
     input_filters:
       inspect:
       - path: "^/api/v[0-9]+/.*"
@@ -868,6 +898,8 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
 === "tcp-capture-v2"
     ```yaml
     version: 4
+
+    mode: tcp-capture-v2
 
     input_filters:
       inspect:
@@ -951,6 +983,10 @@ All regular expressions must follow the [RE2 syntax](https://github.com/google/r
     It bypasses requests for static files (images, scripts, styles) and browser-initiated HTML page loads.
 
     ```yaml
+    version: 4
+
+    mode: connector-server
+
     input_filters:
       inspect:
       - path: "^/api/v[0-9]+/.*"
@@ -967,6 +1003,10 @@ All regular expressions must follow the [RE2 syntax](https://github.com/google/r
     Requests to the `/healthz` endpoint are always bypassed, even if they match the inspected host.
 
     ```yaml
+    version: 4
+
+    mode: connector-server
+
     input_filters:
       inspect:
       - headers:

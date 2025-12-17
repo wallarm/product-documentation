@@ -184,6 +184,8 @@ Sets route-specific Wallarm configuration. Includes Wallarm mode and application
 ```yaml
 version: 4
 
+mode: tcp-capture-v2
+
 route_config:
   wallarm_application: 10
   routes:
@@ -235,6 +237,8 @@ For example:
 
 ```yaml
 version: 4
+
+mode: tcp-capture-v2
 
 route_config:
   wallarm_application: 10
@@ -327,6 +331,8 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
 
 ```yaml
 version: 4
+
+mode: tcp-capture-v2
 
 tcp_reassembler:
   parse_responses: true
