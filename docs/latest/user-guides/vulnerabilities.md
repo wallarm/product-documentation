@@ -4,9 +4,7 @@
 
 # Managing Security Issues
 
-Vulnerabilities are security flaws in an infrastructure that may be exploited by attackers to perform unauthorized malicious actions with your system. In Wallarm Console, you can analyze and manage security flaws that have been detected by Wallarm in your system in the **Events** →  **Security Issues** section.
-
-Wallarm employs [various techniques](../about-wallarm/detecting-vulnerabilities.md#detection-methods) to discover security weaknesses.
+Security issues (vulnerabilities) are security flaws in an infrastructure that may be exploited by attackers to perform unauthorized malicious actions with your system. Wallarm employs [various techniques](../about-wallarm/detecting-vulnerabilities.md#detection-methods) to discover security issues. This article describes how to analyze and manage security in Wallarm Console.
 
 ## Exploring security issues
 
@@ -89,6 +87,8 @@ For you to be on track, the full history of changes and comments is displayed in
 
 ## Issue risk level
 
+### Risk level
+
 Each discovered security issue is automatically assessed by how much risk it poses as described in the table.
 
 | Risk | Description | Examples |
@@ -102,6 +102,23 @@ Each discovered security issue is automatically assessed by how much risk it pos
 <small><sup>*</sup> If the software version contains multiple CVEs, including critical ones, the overall risk level is assessed as high. The risk level is reduced by one level because the presence of a vulnerable version does not explicitly indicate the existence of the vulnerability. For example, the vulnerability may occur only in a specific, non-default configuration or require certain conditions to be met.</small>
 
 You can re-evaluate and manually adjust the risk level at any moment.
+
+### Presence of incidents
+
+[Incidents](../user-guides/events/check-incident.md) are attacks that successfully exploited the security issue (vulnerability). These attacks were detected, but not blocked by Wallarm due to the current settings (`monitoring` [filtration mode](../latest/admin-en/configure-wallarm-mode.md) or others).
+
+Presence of incidents indicates jump from a theoretical risk to a live threat and requires prioritizing fixes of these security issues:
+
+* Once a vulnerability is successfully exploited, it often becomes public knowledge in the hacker community.
+* If one attacker succeeds, others will use the same method. An incident indicates that your system is now a confirmed target.
+* Incidents are the subject of investigation to find out data losses or other damages.
+
+Analyze incidents presence and impact:
+
+* Pay attention to the issues having `Incident` tag in the **Security issue** column.
+* Set the **Incident** filter to `Incident detected` to see all issues with incidents. Go to issue details, view the **Related incidents** section. From here, you can go to every incident details.
+
+![Incidents in Security Issues](../../images/user-guides/vulnerabilities/si-incidents.png)
 
 ## Security issue reports
 

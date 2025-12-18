@@ -10,9 +10,19 @@
 
 # Incident Analysis
 
-In Wallarm Console → **Incidents**, you can analyze detected [incidents](../../glossary-en.md#security-incident).
+Incidents are attacks that successfully exploited the [security issue](../../about-wallarm/detecting-vulnerabilities.md) (vulnerability) previously [detected](../../about-wallarm/detecting-vulnerabilities.md#detection-methods) by Wallarm. These attacks were detected, but not blocked by Wallarm due to the current settings (`monitoring` [filtration mode](../latest/admin-en/configure-wallarm-mode.md) or others). This article explains how to analyze incidents in Wallarm Console.
 
-## Checking incidents
+## Incident importance
+
+Presence of incidents indicates jump from a theoretical risk (vulnerability) to a live threat and requires prioritizing fixes of these security issues:
+
+* Once a vulnerability is successfully exploited, it often becomes public knowledge in the hacker community.
+* If one attacker succeeds, others will use the same method. An incident indicates that your system is now a confirmed target.
+* Incidents are the subject of investigation to find out data losses or other damages.
+
+## Checking incidents as list
+
+All the detected incidents for the selected period of time are displayed in the Wallarm Console → **Incidents**.
 
 ![Incidents tab][img-incidents-tab]
 
@@ -32,19 +42,26 @@ In Wallarm Console → **Incidents**, you can analyze detected [incidents](../..
      * Partially blocked: some hits of the attack were blocked and others were only registered.
      * Monitoring: all hits of the attack were registered but not blocked.
 * **Parameter**: The malicious request's parameters and tags of [parsers](../rules/request-processing.md) applied to the request
-* **Vulnerabilities**: The vulnerability, that the incident exploits. Clicking the vulnerability brings you to its detailed description and instructions on how to fix it.
+* **Security issues**: The security issue (vulnerability), that the incident exploits. Clicking the security issue brings you to its detailed description and instructions on how to fix it.
 
 To sort incidents by the time of the last request, you can use the **Sort by latest hit** switch.
 
 To find required data, please use the search field as described [here][use-search] or manually set required search filters.
+
+## Checking incidents via security issues
+
+You can analyze incidents from the perspective of existing [security issues](../../user-guides/vulnerabilities.md):
+
+* Go to the **Security Issues** section and pay attention to the issues having `Incident` tag in the **Security issue** column.
+* Set the **Incident** filter to `Incident detected` to see all issues with incidents. Go to issue details, view the **Related incidents** section. From here, you can go to every incident details.
+
+![Incidents in Security Issues](../../images/user-guides/vulnerabilities/si-incidents.png)
 
 ## Full context of threat actor activities
 
 --8<-- "../include/request-full-context.md"
 
 ## Responding to incidents
-
-The [incidents](../../glossary-en.md#security-incident) are the attacks targeted at a confirmed vulnerability.
 
 ![Incidents tab][img-incidents-tab]
 
@@ -54,11 +71,12 @@ Once incident appeared in the **Incidents** section:
 
      This allows seeing all activity and logic of the threat actor and understanding attack vectors and what resources can be compromised.
   
-1. Follow the link in the **Vulnerabilities** column to get detailed vulnerability information including instructions on how to fix this vulnerability and the list of related incidents. 
+1. Follow the link in the **Security issues** column to get detailed security issue (vulnerability) information including instructions on how to fix this vulnerability and the list of related incidents. 
 
-     ![Vulnerability detailed information](../../images/user-guides/vulnerabilities/vuln-info.png)
+     ![Security issue (vulnerability) detailed information](../../images/user-guides/vulnerabilities/vuln-info.png)
 
-     **Fix the vulnerability** and then mark it closed in Wallarm. For detailed information, refer to [Managing Vulnerabilities](../vulnerabilities.md) article.
+     **Fix the security issue (vulnerability)** and then mark it closed in Wallarm. For detailed information, refer to [Managing Security Issues](../vulnerabilities.md) article.
+
 1. Go back to the incident in the list, investigate what mechanism caused the system reaction (note the `Blocked`, `Partially blocked` and `Monitoring` [statuses](check-attack.md#attack-analysis) of the attacks), how the system will behave in future to alike requests and how to adjust (if necessary) this future behavior.
 
      For incidents, this investigation and adjusting is performed [in the same way](check-attack.md#responding-to-attacks) as for all other attacks.
