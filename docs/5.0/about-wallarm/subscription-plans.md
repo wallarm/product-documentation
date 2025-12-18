@@ -54,6 +54,8 @@ Wallarm is the only solution that unifies API discovery, risk management, real-t
 
 To activate the subscription plan, contact [sales@wallarm.com](mailto:sales@wallarm.com).
 
+When your subscription expires, you receive notifications in the Wallarm Console UI and by email. A 90-day grace period is provided to renew the subscription; after it ends, access to the Wallarm Console is disabled, and Nodes no longer receive updates or upload data to the Wallarm Cloud.
+
 ## API Attack Surface
 
 Variants: **Core (Free)**, **Enterprise (Paid)** - see comparison [here](https://www.wallarm.com/product/aasm-pricing).
