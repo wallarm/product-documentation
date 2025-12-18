@@ -16,7 +16,7 @@ The telemetry portal includes two dashboards:
 
     You can use this dashboard to view key metrics such as total processed requests, requests per second (RPS), detected and blocked attacks, number of deployed Edge Nodes, resource consumption, number of 5xx responses, etc.
 
-The dashboards use standard Grafana features like [sharing](https://grafana.com/docs/grafana/latest/visualizations/dashboards/share-dashboards-panels/), [filtering](https://grafana.com/docs/grafana/latest/visualizations/dashboards/search-dashboards/), [exporting](https://grafana.com/docs/grafana/latest/visualizations/dashboards/share-dashboards-panels/#export-a-dashboard-as-json), and [alert rules](https://grafana.com/docs/grafana/latest/alerting/fundamentals/alert-rules/).
+The dashboards use standard Grafana features like [sharing](https://grafana.com/docs/grafana/latest/visualizations/dashboards/share-dashboards-panels/), [filtering](https://grafana.com/docs/grafana/latest/visualizations/dashboards/search-dashboards/), and [exporting](https://grafana.com/docs/grafana/latest/visualizations/dashboards/share-dashboards-panels/#export-a-dashboard-as-json).
 
 !!! info "View-only permissions"
     These dashboards are presented in view-only mode. In this mode, you cannot rearrange panels or edit the layout. 
