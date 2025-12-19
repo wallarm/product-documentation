@@ -221,19 +221,15 @@ Ensure the port is not `80`, `8080`, `9000`, or `3313`, as these are used by oth
       address: ':5050'
     ```
 
-### connector.tls_cert (required)
+### connector.tls_cert (recommended)
 
 Path to the TLS/SSL certificate (usually a `.crt` or `.pem` file) issued for the domain where the node is running.
 
 The certificate must be provided by a trusted Certificate Authority (CA) to ensure secure communication.
 
-If the node is deployed using a Docker image, this parameter is not needed because SSL decryption should occur at the load balancer level, before the traffic reaches the containerized node.
-
-### connector.tls_key (required)
+### connector.tls_key (recommended)
 
 Path to the private key corresponding to the TLS/SSL certificate (typically a `.key` file).
-
-If the node is deployed using a Docker image, this parameter is not needed because SSL decryption should occur at the load balancer level, before the traffic reaches the containerized node.
 
 ### connector.blocking
 
@@ -574,13 +570,9 @@ Path to the TLS/SSL certificate (usually a `.crt` or `.pem` file) issued for the
 
 The certificate must be provided by a trusted Certificate Authority (CA) to ensure secure communication.
 
-If the node is deployed using a Docker image, this parameter is not needed because SSL decryption should occur at the load balancer level, before the traffic reaches the containerized node.
-
 ### envoy_external_filter.tls_key (required)
 
 Path to the private key corresponding to the TLS/SSL certificate (typically a `.key` file).
-
-If the node is deployed using a Docker image, this parameter is not needed because SSL decryption should occur at the load balancer level, before the traffic reaches the containerized node.
 
 ## Basic settings
 
