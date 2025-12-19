@@ -1,0 +1,1 @@
+--8<-- "latest-tr/installation/connectors/aws-api-gateway.md"
