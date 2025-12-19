@@ -117,7 +117,10 @@ nav:
       - Custom Block Page: installation/security-edge/inline/custom-block-page.md
       - NGINX Overrides: installation/security-edge/inline/nginx-overrides.md
       - Managing Deployment: installation/security-edge/inline/upgrade-and-management.md
-      - Telemetry Portal: installation/security-edge/inline/telemetry-portal.md
+      - Telemetry Portal: 
+        - Overview: installation/security-edge/inline/telemetry-portal.md
+        - Portal Inline NGINX Logs: installation/security-edge/inline/telemetry-portal-logs-dashboard.md
+        - Portal Inline Overview with Logs: installation/security-edge/inline/telemetry-portal-main-dashboard.md   
     - Connectors: installation/security-edge/se-connector.md
   - Self-Hosted Deployment:
     - Overview: installation/supported-deployment-options.md
