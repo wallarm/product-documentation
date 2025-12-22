@@ -1,0 +1,69 @@
+{# stylesheets/partials/integrations/analytics.html #}
+
+{% if config.extra.analytics %}
+  {% set provider = config.extra.analytics.provider %}
+{% endif %}
+
+{% if provider %}
+  {% include "partials/integrations/analytics/" ~ provider ~ ".html" %}
+
+  {% if config.extra.consent %}
+  <script>
+    (function () {
+      function getConsent() {
+        try {
+          if (typeof __md_get !== "function") return null;
+          return __md_get("__consent") || null;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      // Your policy:
+      // - Default: cookies are considered accepted (checked: true)
+      // - Only if user explicitly rejected analytics => disable analytics + hide feedback
+      function isRejected() {
+        var c = getConsent();
+        return c && c.analytics === false;
+      }
+
+      function hideFeedback() {
+        var f = document.forms && document.forms.feedback ? document.forms.feedback : null;
+        if (f) f.hidden = true;
+
+        var container = document.querySelector(".md-feedback");
+        if (container) container.style.display = "none";
+
+        var details = document.getElementById("feedbackInput");
+        if (details) details.style.display = "none";
+      }
+
+      function boot() {
+        if (isRejected()) {
+          hideFeedback();
+          return;
+        }
+
+        // Start analytics + feedback only when NOT rejected
+        if (typeof __md_analytics === "function") __md_analytics();
+        if (typeof __md_feedback === "function") __md_feedback();
+      }
+
+      // Initial load
+      boot();
+
+      // React to consent changes (Material stores consent in localStorage key "__consent")
+      window.addEventListener("storage", function (event) {
+        if (event.key !== "__consent") return;
+        boot();
+      });
+    })();
+  </script>
+  {% else %}
+  <script>
+    // No consent configured -> always run
+    if (typeof __md_analytics === "function") __md_analytics();
+    if (typeof __md_feedback === "function") __md_feedback();
+  </script>
+  {% endif %}
+{% endif %}
