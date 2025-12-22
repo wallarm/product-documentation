@@ -318,6 +318,6 @@ The Native Node works with the following platforms with no limitations:
     </div>
 </div>
 
-<link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
+<link rel="stylesheet" href="/stylesheets/supported-platforms.min.css?v=1" />
 
 <script src="/nginx-native-internals.js"></script>

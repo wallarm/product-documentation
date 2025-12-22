@@ -1,0 +1,106 @@
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav
+    class="md-header__inner md-grid"
+    aria-label="{{ lang.t('header') }}"
+  >
+
+    <!-- Link to home -->
+    <a
+      href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}"
+      title="{{ config.site_name | e }}"
+      class="md-header__button md-logo"
+      aria-label="{{ config.site_name }}"
+      data-md-component="logo"
+    >
+      {% include "partials/logo.html" %}
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      {% set icon = config.theme.icon.menu or "material/menu" %}
+      {% include ".icons/" ~ icon ~ ".svg" %}
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            {{ config.site_name }}
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            {% if page.meta and page.meta.title %}
+              {{ page.meta.title }}
+            {% else %}
+              {{ page.title }}
+            {% endif %}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    {% if config.theme.palette %}
+      {% if not config.theme.palette is mapping %}
+        {% include "partials/palette.html" %}
+      {% endif %}
+    {% endif %}
+
+    <!-- User preference: color palette -->
+    {% if not config.theme.palette is mapping %}
+      {% include "partials/javascripts/palette.html" %}
+    {% endif %}
+
+    <!-- Site language selector -->
+    {% if config.extra.alternate %}
+      {% include "partials/alternate.html" %}
+    {% endif %}
+
+    <!-- Button to open search modal -->
+    {% if "search" in config.plugins %}
+      {% set search = config.plugins["search"] | attr("config") %}
+
+      <!-- Check if search is actually enabled - see https://t.ly/DT_0V -->
+      {% if search.enabled %}
+        <label class="md-header__button md-icon" for="__search">
+          {% set icon = config.theme.icon.search or "material/magnify" %}
+          {% include ".icons/" ~ icon ~ ".svg" %}
+        </label>
+
+        <!-- Search interface -->
+        {% include "partials/search.html" %}
+      {% endif %}
+    {% endif %}
+
+      <div class="header-buttons">
+        <!-- Playground button -->
+          <a href="https://tour.playground.wallarm.com/?utm_source=wallarm_docs_button" class="button playground-button desktop-button">
+            {{ config.extra.playground_button_name }}
+          </a>
+    
+          <!-- Demo button -->
+          <a href="https://us1.my.wallarm.com/signup/?utm_source=wallarm_docs&utm_medium=button&utm_campaign=wallarm_docs_signup_head" class="button signup-button desktop-button">
+            {{ config.extra.try_button_name }}
+          </a>
+        </div>
+    
+        <div id="languagesDiv" class="languages">
+          <button type="button" id="languagesMain" class="languages-main" onClick="languageClicked(event)">
+              {{ config.extra.language_name }}
+            <svg class="languages-drop" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2.25" fill="none">
+              <path d="M8 10.5L12 14.5L16 10.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+            </button>
+            <div id="languagesList" style="display: none;" class="languages-list" tabindex="-1">
+              <a href="" onClick="goToLanguage(event, '{{ config.extra.language_lowercase }}', 'en')">English</a>
+              <a href="" onClick="goToLanguage(event, '{{ config.extra.language_lowercase }}', 'ja')">Japanese</a>
+              <a href="" onClick="goToLanguage(event, '{{ config.extra.language_lowercase }}', 'tr')">Turkish</a>
+              <a href="" onClick="goToLanguage(event, '{{ config.extra.language_lowercase }}', 'pt-br')">Portuguese (BR)</a>
+              <a href="" onClick="goToLanguage(event, '{{ config.extra.language_lowercase }}', 'ar')">Arabic</a>
+            </div>
+        </div>
+
+  </nav>
+</header>

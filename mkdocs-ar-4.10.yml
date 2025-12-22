@@ -1,13 +1,101 @@
-INHERIT: mkdocs-base.yml
-
 site_name: توثيق وولارم
 site_url: https://docs.wallarm.com/ar/
 site_description: حل وولارم بيحمي واجهات برمجة التطبيقات (APIs)، والمايكروسيرفيسيز، وتطبيقات الويب من تهديدات أوبتوب 10 الخاصة بـ OWASP لواجهات برمجة التطبيقات، وسوء استخدام الـAPI، وغيرها من التهديدات الآلية من غير ما يحتاج لضبط قواعد يدوي وكمان بنسبة أخطاء زائفة قليلة جدًا.
 
 copyright: '<a href="https://www.wallarm.com/terms-of-service" target="_blank">شروط الخدمة</a> | <a href="https://www.wallarm.com/privacy-policy" target="_blank">سياسة الخصوصية</a> | <a href="https://www.wallarm.com/cookie-policy" target="_blank">سياسة ملفات تعريف الارتباط</a> | <a href="#__consent" target="_blank">إعدادات ملفات تعريف الارتباط</a> | 2025 © Wallarm Inc.'
 
+plugins:
+  - search
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      js_files:
+          - extra.js
+          - feedback.js
+          - supported-platforms.js
+      css_files:
+          - extra_new.css
+          - supported-platforms.css
+  - meta-descriptions
+  - meta
+  - glightbox:
+      skip_classes:
+        - non-zoomable
+  - group:
+      enabled: !ENV INSIDERS
+      plugins:
+        - optimize
+dev_addr: '127.0.0.1:8000'
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: ar
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: lucide/sun-moon
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+      toggle:
+        icon: lucide/sun
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: lucide/moon
+        name: Switch to system preference
+  features:
+    - navigation.top
+    - navigation.prune
+    - content.code.copy
+    - content.code.select
+    - content.action.edit
+    - search.suggest
+    - content.tabs.link
+  logo: images/wallarm-logo-light.svg
+  favicon: images/favicon.png
+  icon:
+    repo: fontawesome/brands/github-alt
+  font:
+    text: Sk Modernist
+    code: Roboto Mono
+
 extra:
+  versionNginx: "4.10"
+  social:
+    - icon: fontawesome/solid/globe
+      link: https://www.wallarm.com
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/wallarm
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/wallarm
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/wallarm
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/channel/UCgD4zSzAJwf3tBlOgJo7Qkw
+  generator: false
+  consent:
+    cookies:
+      analytics:
+        name: Google Analytics
+        checked: true
+    title: موافقة ملفات تعريف الارتباط
+    description: نحن نستخدم ملفات تعريف الارتباط لتحسين وثائقنا وجمع التعليقات القيمة. موافقتك تساعدنا على التحسن! تعرف على المزيد في <a href="https://www.wallarm.com/cookie-policy" target="_blank">سياسة ملفات تعريف الارتباط</a>.
+    actions:
+      - accept
+      - reject
+      - manage
   analytics:
+    provider: google
+    property: G-3Z9P1Z18D8
     feedback:
       title: هل كانت هذه الصفحة مفيدة؟
       ratings:
@@ -28,27 +116,73 @@ extra:
         outdated: معلومات قديمة أو غير صحيحة
         input_placeholder: شارك تجربتك بمزيد من التفاصيل
         send_button: يرسل
-  consent:
-    title: موافقة ملفات تعريف الارتباط
-    description: نحن نستخدم ملفات تعريف الارتباط لتحسين وثائقنا وجمع التعليقات القيمة. موافقتك تساعدنا على التحسن! تعرف على المزيد في <a href="https://www.wallarm.com/cookie-policy" target="_blank">سياسة ملفات تعريف الارتباط</a>.
-
-theme:
-  language: ar
-  language_lowercase: ar
-  language_name: Arabic
-  version: "4.10"
-  playground_button_name: "استكشف الملعب"
-  try_button_name: "جرّب مجانًا"
   footer:
     need_help: هل تحتاج إلى مساعدة أو لديك أسئلة؟
     contact_support: اتصل بالدعم
     contact_sales: مبيعات الاتصال
+  playground_button_name: "استكشف الملعب"
+  try_button_name: "جرّب مجانًا"
+  language_lowercase: ar
+  language_name: Arabic
+
+extra_css:
+  - 'stylesheets/extra-zensical.css'
+  - 'stylesheets/supported-platforms.css'
+#   - 'stylesheets/extra_new.css'
+
+extra_javascript:
+  - 'javascripts/extra.js'
+  - 'javascripts/feedback.js'
+  - 'javascripts/supported-platforms.js'
+  - 'javascripts/nginx-native-internals.js'
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      linenums_style: table
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - toc:
+      permalink: true
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist
+  - pymdownx.snippets:
+      check_paths: true
+      base_path: docs
+      restrict_base_path: false
+  - nl2br
+  - tables
+  - sane_lists
+  - attr_list
+  # - prependnewline
+  - meta
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      options:
+        custom_icons:
+          - overrides/.icons
+
+edit_uri: ../product-documentation/edit/master/docs/latest/
+
+validation:
+  absolute_links: ignore
+  unrecognized_links: ignore
 
 docs_dir: docs/ar
 site_dir: site/ar
-
-watch:
-  - docs/latest-ar
 
 nav:
   - البدء السريع:

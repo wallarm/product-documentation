@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+
+{{ super() }}
+
+{% if page.url not in ["installation/connectors/mulesoft-for-wizard/", "installation/connectors/mulesoft-flex-for-wizard/", "installation/connectors/ibm-api-connect-for-wizard/", "installation/connectors/aws-lambda-for-wizard/", "installation/connectors/cloudflare-for-wizard/", "installation/connectors/fastly-for-wizard/", "installation/connectors/akamai-edgeworkers-for-wizard/", "installation/connectors/azure-api-management-for-wizard/", "installation/connectors/apigee-for-wizard/"] %}
+<script>
+  window.intercomSettings = {
+    api_base: "https://api-iam.intercom.io",
+    app_id: "yf5njyn0",
+  };
+</script>
+
+<!-- Hubspot banner -->
+
+<script type="text/javascript">
+  // Start of HubSpot Embed Code
+  (function () {
+      var a = document.createElement("script");
+      var b = document.getElementsByTagName("script")[0];
+      var timeout = 7000; 
+
+      a.src = "//js.hs-scripts.com/3989912.js"
+      a.async = true;
+      a.type = "text/javascript";
+      a.id = "hs-script-loader";
+      
+      setTimeout(function () {
+          b.parentNode.insertBefore(a, b);
+      }, timeout);
+  })();
+</script>
+
+{% endif %}
+
+<div id="hs-ads-pixel-3989912" data-response="OFF ANALYLITCS SCRIPT MODULE"></div>
+<div id="cookieBanner-3989912" data-response="OFF GDPR BANNER MODULE"></div>
+<div id="LeadFlows-3989912" data-response="OFF FORMS POPUP MODULE"></div>
+<div id="CollectedForms-3989912" data-response="OFF LISTENING NON HUBSPOT FORMS MODULE"></div>
+
+<!-- Posthog -->
+<script>
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init('phc_XXQ1ED9WSluEWKtZgb0dZNJyvsEfqiijIVnPdsJcgIv',{api_host:'https://app.posthog.com'})
+</script>
+
+<script>
+// We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/yf5njyn0'
+(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/yf5njyn0';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+</script>
+
+<script>
+  !function(t){if(window.ko)return;window.ko=[],["identify","track","removeListeners","open","on","off","qualify","ready"].forEach(function(t){ko[t]=function(){var n=[].slice.call(arguments);return n.unshift(t),ko.push(n),ko}});var n=document.createElement("script");n.async=!0,n.setAttribute("src","https://cdn.getkoala.com/v1/pk_dbc8e311cd69a55b233a070edc0e72aa8efd/sdk.js"),(document.body || document.head).appendChild(n)}();
+  </script>
+
+{% endblock %}
+
+{% block announce %}
+  {{ config.theme.demo_request_block }}
+{% endblock %}
+
+<!-- Custom front matter -->
+{% block extrahead %}
+
+{{ super() }}
+
+  <!-- Determine title -->
+  {% set title = config.site_name %}
+  {% if page and page.title and not page.is_homepage %}
+    {% set title = config.site_name ~ " - " ~ page.title | striptags %}
+  {% endif %}
+
+    <style>
+        .md-container {
+            visibility: hidden;
+        }
+    </style>
+
+  <!-- The image needs to have an absolute URL -->
+  {% set image = config.site_url ~ 'assets/images/banner.png' %}
+
+  <!-- Open graph meta tags -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{{ title }}" />
+  <meta property="og:url" content="{{ page.canonical_url }}" />
+  <meta property="og:image" content="{{ image }}" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  {% set current_page = page.url %}
+  <link rel="alternate" hreflang="x-default" href="https://docs.wallarm.com/{{ current_page }}">
+  <link rel="alternate" hreflang="en" href="https://docs.wallarm.com/{{ current_page }}">
+  <link rel="alternate" hreflang="ja" href="https://docs.wallarm.com/ja/{{ current_page }}">
+  <link rel="alternate" hreflang="tr" href="https://docs.wallarm.com/tr/{{ current_page }}">
+  <link rel="alternate" hreflang="pt-br" href="https://docs.wallarm.com/pt-br/{{ current_page }}">
+  <link rel="alternate" hreflang="ar" href="https://docs.wallarm.com/ar/{{ current_page }}">
+
+{% endblock %}
+
+{% block fonts %}
+
+{{ super() }}
+
+       <!-- Load fonts from Google -->
+       {% if config.theme.font != false %}
+         {% set font = config.theme.font %}
+         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+         <link rel="stylesheet" type="text/css"
+             href="https://fonts.googleapis.com/css?family={{
+               font.text | replace(' ', '+') + ':300,400,400i,700%7C' +
+               font.code | replace(' ', '+')
+             }}&display=fallback" />
+             <style>:root{--md-text-font:"{{ font.text }}";--md-code-font:"{{ font.code }}"}</style>
+             {% endif %}
+     {% endblock %}
