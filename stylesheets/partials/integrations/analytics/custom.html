@@ -1,134 +1,258 @@
-<script>
-  (function () {
-    var amplitudeInitialized = false;
-    var amplitudeLoading = false;
-    var API_KEY = "78e35700de65a613b46a06dafca5d5e7";
-  
-    function isAmplitudeAllowed() {
-      // If Material helpers are not available yet, assume Amplitude is allowed (fallback)
-      if (typeof __md_get !== "function") {
-        return true;
-      }
-  
-      var consent = __md_get("__consent");
-  
-      // If the user hasn’t made any choice yet — enable Amplitude by default
-      if (!consent) {
-        return true;
-      }
-  
-      // If a custom "amplitude" cookie is defined
-      if (Object.prototype.hasOwnProperty.call(consent, "amplitude")) {
-        return !!consent.amplitude;   // true = enabled, false = disabled
-      }
-  
-      // Fallback: if the built-in "analytics" flag exists, use it instead
-      if (Object.prototype.hasOwnProperty.call(consent, "analytics")) {
-        return !!consent.analytics;
-      }
-  
-      // If neither "amplitude" nor "analytics" flags exist, treat it as disabled
-      return false;
-    }
-  
-    function loadAmplitude(callback) {
-      // SDK already loaded
-      if (window.amplitude && window.amplitude.__sdkLoaded) {
-        callback();
-        return;
-      }
-  
-      if (amplitudeLoading) return;
-      amplitudeLoading = true;
-  
-      var script = document.createElement("script");
-      script.src = "https://cdn.amplitude.com/libs/analytics-browser-2.31.3-min.js.gz";
-      script.async = true;
-      script.onload = function () {
-        amplitudeLoading = false;
-        if (!window.amplitude) return;
-  
-        // Mark SDK as loaded
-        window.amplitude.__sdkLoaded = true;
-        callback();
-      };
-      document.head.appendChild(script);
+{# stylesheets/partials/integrations/analytics/custom.html #}
+
+<script id="__analytics">
+  function __md_isAmplitudeAllowed() {
+    // If Material helpers are not available yet, assume Amplitude is allowed (fallback)
+    if (typeof __md_get !== "function") {
+      return true;
     }
 
-    function loadSessionReplay(callback) {
-      // If Session Replay is already available, just call the callback
-      if (window.sessionReplay && window.sessionReplay.plugin) {
-        callback();
-        return;
-      }
+    var consent = __md_get("__consent");
 
-      var script = document.createElement("script");
-      script.src = "https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.13.0-min.js.gz";
-      script.async = true;
-      script.onload = function () {
-        if (window.sessionReplay && window.sessionReplay.plugin) {
-          callback();
-        } else {
-          console.warn("Session Replay plugin was loaded but window.sessionReplay is not available");
+    // Default: enabled
+    if (!consent) {
+      return true;
+    }
+
+    // Prefer custom "amplitude" cookie, if present
+    if (Object.prototype.hasOwnProperty.call(consent, "amplitude")) {
+      return !!consent.amplitude;
+    }
+
+    // Fallback: built-in "analytics" flag
+    if (Object.prototype.hasOwnProperty.call(consent, "analytics")) {
+      return !!consent.analytics;
+    }
+
+    // If nothing matches, treat as disabled
+    return false;
+  }
+
+  function __md_setFeedbackVisible(visible) {
+    var form = document.forms && document.forms.feedback ? document.forms.feedback : null;
+    if (form) form.hidden = !visible;
+
+    var container = document.querySelector(".md-feedback");
+    if (container) container.style.display = visible ? "" : "none";
+
+    var details = document.getElementById("feedbackInput");
+    if (!visible && details) details.style.display = "none";
+  }
+
+  function __md_analytics() {
+    // Gate: do not load Amplitude if consent disallows it
+    if (!__md_isAmplitudeAllowed()) {
+      // If SDK already exists, opt-out defensively
+      try {
+        if (window.amplitude && window.amplitude.getInstance) {
+          window.amplitude.getInstance().setOptOut(true);
         }
-      };
-      document.head.appendChild(script);
+      } catch (e) {}
+      return;
     }
-  
-    function startAmplitude() {
-      if (amplitudeInitialized) return;
-  
-      loadAmplitude(function () {
-        if (!window.amplitude || amplitudeInitialized) return;
 
-        // First, initialize Amplitude
-        window.amplitude.init(API_KEY, {
-          autocapture: true,
-          minIdLength: 3
-        });
+    // Avoid double init
+    if (window.__amplitude_loaded) return;
+    window.__amplitude_loaded = true;
 
-        // Then, load Session Replay and add the plugin
-        loadSessionReplay(function () {
-          try {
-            if (window.sessionReplay && window.sessionReplay.plugin) {
-              window.amplitude.add(window.sessionReplay.plugin({ sampleRate: 1 }));
-            }
-          } catch (e) {
-            if (console && console.warn) {
-              console.warn("Failed to add Session Replay plugin", e);
-            }
+    var API_KEY = "{{ config.extra.analytics.amplitude_api_key }}";
+
+    // Load Amplitude SDK (analytics-browser)
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://cdn.amplitude.com/libs/analytics-browser-2.31.3-min.js.gz";
+    s.onload = function () {
+      if (!window.amplitude) return;
+
+      // Init
+      window.amplitude.init(API_KEY, {
+        autocapture: true,
+        minIdLength: 3
+      });
+
+      // Optional: Session Replay
+      var r = document.createElement("script");
+      r.async = true;
+      r.src = "https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.13.0-min.js.gz";
+      r.onload = function () {
+        try {
+          if (window.sessionReplay && window.sessionReplay.plugin) {
+            window.amplitude.add(window.sessionReplay.plugin({ sampleRate: 1 }));
           }
-        });
-  
-        amplitudeInitialized = true;
+        } catch (e) {}
+      };
+      document.head.appendChild(r);
+    };
+    document.head.appendChild(s);
+  }
+
+  function __md_feedback() {
+    function onReady(fn) {
+      if (typeof document$ !== "undefined") {
+        document$.subscribe(fn);
+      } else {
+        document.addEventListener("DOMContentLoaded", fn);
+      }
+    }
+
+    function track(name, props) {
+      // Respect consent every time we track
+      if (!__md_isAmplitudeAllowed()) return;
+
+      try {
+        if (window.amplitude && typeof window.amplitude.track === "function") {
+          window.amplitude.track(name, props || {});
+        }
+      } catch (e) {}
+    }
+
+    function dropRequired(container) {
+      if (!container) return;
+      container.querySelectorAll("[required]").forEach(function (el) {
+        el.removeAttribute("required");
       });
     }
-  
-    function applyConsent() {
-      if (isAmplitudeAllowed()) {
-        startAmplitude();
-      } else {
-        // In case Amplitude has already been initialized, opt out explicitly
-        if (window.amplitude && window.amplitude.getInstance) {
-          try {
-            window.amplitude.getInstance().setOptOut(true);
-          } catch (e) {
-            if (console && console.warn) {
-              console.warn("Amplitude opt-out failed", e);
-            }
-          }
+
+    onReady(function () {
+      // Gate: show/hide feedback based on Amplitude consent
+      if (!__md_isAmplitudeAllowed()) {
+        __md_setFeedbackVisible(false);
+        return;
+      }
+      __md_setFeedbackVisible(true);
+
+      var feedback = document.forms && document.forms.feedback ? document.forms.feedback : null;
+      if (!feedback) return;
+
+      // Prevent reload from submit buttons
+      if (!feedback.dataset.submitPatched) {
+        feedback.dataset.submitPatched = "true";
+        feedback.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+        });
+      }
+
+      // Avoid double-binding on the same page instance
+      if (feedback.dataset.wired === "true") return;
+      feedback.dataset.wired = "true";
+
+      function disableVoting() {
+        if (feedback.firstElementChild) feedback.firstElementChild.disabled = true;
+      }
+
+      function showNote(value) {
+        var wrapper = feedback.querySelector(".md-feedback__note");
+        if (!wrapper) return;
+
+        wrapper.style.display = "block";
+
+        wrapper.querySelectorAll("[data-md-value]").forEach(function (el) {
+          el.hidden = true;
+          el.style.display = "none";
+        });
+
+        var note = wrapper.querySelector("[data-md-value='" + value + "']");
+        if (note) {
+          note.hidden = false;
+          note.style.display = "block";
         }
       }
-    }
-  
-    // Wait until Material and its helpers are initialized
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", applyConsent);
-    } else {
-      applyConsent();
-    }
-  
-    // When cookie settings change, Material reloads the page,
-    // so checking consent on each new page load is sufficient.
-  })();
+
+      var details = document.getElementById("feedbackInput");
+      dropRequired(details);
+
+      function wireNegativeDetails(container) {
+        if (!container || container.dataset.negativeWired === "true") return;
+        container.dataset.negativeWired = "true";
+
+        var submit = container.querySelector(".feedback-submit-button");
+        var radios = container.querySelectorAll('.feedback-input input[type="radio"]');
+        var textarea = container.querySelector(".feedback-input textarea");
+        var counter = container.querySelector(".character-count");
+        var max = 240;
+
+        if (!submit || !textarea) return;
+
+        function updateState() {
+          var radioChecked = Array.from(radios).some(function (r) { return r.checked; });
+          var textFilled = textarea.value.trim() !== "";
+          submit.disabled = !(radioChecked || textFilled);
+        }
+
+        textarea.addEventListener("input", function () {
+          if (textarea.value.length > max) textarea.value = textarea.value.slice(0, max);
+          if (counter) counter.textContent = textarea.value.length + "/" + max;
+          updateState();
+        });
+
+        radios.forEach(function (r) {
+          r.addEventListener("change", updateState);
+        });
+
+        submit.addEventListener("click", function (ev) {
+          ev.preventDefault();
+
+          container.style.display = "none";
+          dropRequired(container);
+
+          var selected = Array.from(radios).find(function (r) { return r.checked; });
+          var text = textarea.value.trim();
+
+          if (selected) {
+            track("DOCS_FEEDBACK_NEGATIVE_REASON", {
+              reason: selected.value,
+              page_path: document.location.pathname,
+              page_title: document.title
+            });
+          }
+
+          if (text) {
+            track("DOCS_FEEDBACK_NEGATIVE_TEXT", {
+              text: text,
+              page_path: document.location.pathname,
+              page_title: document.title
+            });
+          }
+        });
+
+        updateState();
+        if (counter) counter.textContent = textarea.value.length + "/" + max;
+      }
+
+      feedback.querySelectorAll('[type="submit"][data-md-value]').forEach(function (btn) {
+        btn.addEventListener("click", function (ev) {
+          ev.preventDefault();
+
+          // If consent changed mid-session, hide immediately
+          if (!__md_isAmplitudeAllowed()) {
+            __md_setFeedbackVisible(false);
+            return;
+          }
+
+          var value = this.getAttribute("data-md-value");
+
+          if (value === "1") {
+            track("DOCS_FEEDBACK_POSITIVE", {
+              page_path: document.location.pathname,
+              page_title: document.title
+            });
+          } else if (value === "0") {
+            track("DOCS_FEEDBACK_NEGATIVE", {
+              page_path: document.location.pathname,
+              page_title: document.title
+            });
+
+            if (details) {
+              details.style.display = "flex";
+              dropRequired(details);
+              wireNegativeDetails(details);
+            }
+          }
+
+          disableVoting();
+          showNote(value);
+        });
+      });
+    });
+  }
 </script>
