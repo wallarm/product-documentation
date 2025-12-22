@@ -15,7 +15,7 @@ plugins:
       minify_css: true
       js_files:
           - extra.js
-          - feedback.js
+          # - feedback.js
           - supported-platforms.js
       css_files:
           - extra_new.css
@@ -118,7 +118,7 @@ extra_css:
 
 extra_javascript:
   - 'extra.js'
-  - 'feedback.js'
+  # - 'feedback.js'
 
 markdown_extensions:
   - admonition
