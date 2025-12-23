@@ -34,14 +34,14 @@ wallarm_status [on|off] [format=json|prometheus];
 
 ### Default configuration
 
-By default, the filter node statistics service has the most secure configuration. The `/etc/nginx/conf.d/wallarm-status.conf` (`/etc/nginx/wallarm-status.conf` for all-in-one installer) configuration file looks like the following:
+By default, the filtering node statistics service has the most secure configuration. The `/etc/nginx/conf.d/wallarm-status.conf` (`/etc/nginx/wallarm-status.conf` for all-in-one installer) configuration file looks like the following:
 
 ```
 server {
   listen 127.0.0.8:80;
   server_name localhost;
 
-  allow 127.0.0.8/8;   # Access is only available for loopback addresses of the filter node server
+  allow 127.0.0.8/8;   # Access is only available for loopback addresses of the filtering node server
   # If running the NGINX-based Docker container:
   # allow 127.0.0.0/8;
   deny all;
@@ -165,7 +165,7 @@ To change an IP address and/or port of the statistics service, follow the instru
 
         --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
-If SELinux is installed on the filter node host, make sure that SELinux is either [configured or disabled][doc-selinux]. For simplicity, this document assumes that SELinux is disabled.
+If SELinux is installed on the filtering node host, make sure that SELinux is either [configured or disabled][doc-selinux]. For simplicity, this document assumes that SELinux is disabled.
 
 Be aware that the local `wallarm-status` output will reset following the application of the above settings.
 
@@ -205,7 +205,7 @@ To obtain statistics in the Prometheus format from node deployment options that 
 
 ##  Usage
 
-To obtain the filter node statistics, make a request from one of the allowed IP addresses (see above):
+To obtain the filtering node statistics, make a request from one of the allowed IP addresses (see above):
 
 === "Statistics in the JSON format"
     ```
@@ -222,8 +222,10 @@ To obtain the filter node statistics, make a request from one of the allowed IP 
         "attacks": 0,
         "blocked": 0,
         "blocked_by_acl": 0,
+        "blocked_by_antibot": 0,
         "acl_allow_list": 0,
-        "abnormal": 0,
+        "bytes_in": 0,
+        "bytes_out": 0,
         "tnt_errors": 0,
         "api_errors": 0,
         "requests_lost": 0,
@@ -264,18 +266,20 @@ To obtain the filter node statistics, make a request from one of the allowed IP 
             "fname": "/etc/wallarm/proton.db"
             }
         ],
-        "startid": 1459972331756458216,
-        "timestamp": 1664530105.868875,
+        "startid": 5846473569700248000,
+        "compatibility": 4,
+        "config_revision": 0,
         "rate_limit": {
             "shm_zone_size": 67108864,
-            "buckets_count": 4,
-            "entries": 1,
+            "buckets_count": 2,
+            "entries": 0,
             "delayed": 0,
-            "exceeded": 1,
+            "exceeded": 0,
             "expired": 0,
             "removed": 0,
             "no_free_nodes": 0
         },
+        "timestamp": 1765271459.974994,
         "split": {
             "clients": [
             {
@@ -319,7 +323,7 @@ To obtain the filter node statistics, make a request from one of the allowed IP 
     ```
     # HELP wallarm_requests requests count
     # TYPE wallarm_requests gauge
-    wallarm_requests 2
+    wallarm_requests 187
     # HELP wallarm_streams requests count
     # TYPE wallarm_streams gauge
     wallarm_streams 0
@@ -328,19 +332,25 @@ To obtain the filter node statistics, make a request from one of the allowed IP 
     wallarm_messages 0
     # HELP wallarm_attacks attack requests count
     # TYPE wallarm_attacks gauge
-    wallarm_attacks 0
+    wallarm_attacks 49
     # HELP wallarm_blocked blocked requests count
     # TYPE wallarm_blocked gauge
-    wallarm_blocked 0
+    wallarm_blocked 70
     # HELP wallarm_blocked_by_acl blocked by acl requests count
     # TYPE wallarm_blocked_by_acl gauge
-    wallarm_blocked_by_acl 0
+    wallarm_blocked_by_acl 33
+    # HELP wallarm_blocked_by_antibot blocked by Wallarm Antibot requests count
+    # TYPE wallarm_blocked_by_antibot gauge
+    wallarm_blocked_by_antibot 0
     # HELP wallarm_acl_allow_list requests passed by allow list
     # TYPE wallarm_acl_allow_list gauge
     wallarm_acl_allow_list 0
-    # HELP wallarm_abnormal abnormal requests count
-    # TYPE wallarm_abnormal gauge
-    wallarm_abnormal 2
+    # HELP wallarm_bytes_in total bytes received on listen servers
+    # TYPE wallarm_bytes_in gauge
+    wallarm_bytes_in 36157
+    # HELP wallarm_bytes_out total bytes sent from listen servers
+    # TYPE wallarm_bytes_out gauge
+    wallarm_bytes_out 123847
     # HELP wallarm_tnt_errors wstore write errors count
     # TYPE wallarm_tnt_errors gauge
     wallarm_tnt_errors 0
@@ -370,49 +380,82 @@ To obtain the filter node statistics, make a request from one of the allowed IP 
     wallarm_time_detect_seconds 0
     # HELP wallarm_db_id proton.db file id
     # TYPE wallarm_db_id gauge
-    wallarm_db_id 71
+    wallarm_db_id 267
     # HELP wallarm_lom_id LOM file id
     # TYPE wallarm_lom_id gauge
-    wallarm_lom_id 386
+    wallarm_lom_id 2006
     # HELP wallarm_custom_ruleset_id Custom Ruleset file id
     # TYPE wallarm_custom_ruleset_id gauge
-    wallarm_custom_ruleset_id{format="51"} 386
-    # HELP wallarm_custom_ruleset_ver custom ruleset file format version
+    wallarm_custom_ruleset_id{format="54"} 2006
+    # HELP wallarm_custom_ruleset_ver Custom Ruleset file format version
     # TYPE wallarm_custom_ruleset_ver gauge
-    wallarm_custom_ruleset_ver 51
+    wallarm_custom_ruleset_ver 54
     # HELP wallarm_db_apply_time proton.db file apply time id
     # TYPE wallarm_db_apply_time gauge
-    wallarm_db_apply_time 1674548649
+    wallarm_db_apply_time 1765269925
     # HELP wallarm_lom_apply_time LOM file apply time
     # TYPE wallarm_lom_apply_time gauge
-    wallarm_lom_apply_time 1674153198
+    wallarm_lom_apply_time 1765269925
     # HELP wallarm_custom_ruleset_apply_time Custom Ruleset file apply time
     # TYPE wallarm_custom_ruleset_apply_time gauge
-    wallarm_custom_ruleset_apply_time 1674153198
+    wallarm_custom_ruleset_apply_time 1765269925
     # HELP wallarm_proton_instances proton instances count
     # TYPE wallarm_proton_instances gauge
-    wallarm_proton_instances{status="success"} 5
+    wallarm_proton_instances{status="success"} 2
     wallarm_proton_instances{status="fallback"} 0
     wallarm_proton_instances{status="failed"} 0
     # HELP wallarm_stalled_worker_time_seconds time a worker stalled in libproton
     # TYPE wallarm_stalled_worker_time_seconds gauge
-    wallarm_stalled_worker_time_seconds{pid="3169104"} 25
-
     # HELP wallarm_startid unique start id
     # TYPE wallarm_startid gauge
-    wallarm_startid 3226376659815907920
+    wallarm_startid 5846473569700247064
+    # HELP wallarm_compatibility unique start id
+    # TYPE wallarm_compatibility gauge
+    wallarm_compatibility 4
+    # HELP wallarm_config_revision config file revision number
+    # TYPE wallarm_config_revision gauge
+    wallarm_config_revision 0
+    # HELP wallarm_rate_limit_shm_zone_size shared memory size
+    # TYPE wallarm_rate_limit_shm_zone_size gauge
+    wallarm_rate_limit_shm_zone_size 67108864
+    # HELP wallarm_rate_limit_buckets_count buckets created
+    # TYPE wallarm_rate_limit_buckets_count gauge
+    wallarm_rate_limit_buckets_count 2
+    # HELP wallarm_rate_limit_entries number of tracked keys
+    # TYPE wallarm_rate_limit_entries gauge
+    wallarm_rate_limit_entries 0
+    # HELP wallarm_rate_limit_delayed delayed requests
+    # TYPE wallarm_rate_limit_delayed gauge
+    wallarm_rate_limit_delayed 0
+    # HELP wallarm_rate_limit_exceeded exceeded and rejected requests
+    # TYPE wallarm_rate_limit_exceeded gauge
+    wallarm_rate_limit_exceeded 0
+    # HELP wallarm_rate_limit_expired expired keys 
+    # TYPE wallarm_rate_limit_expired gauge
+    wallarm_rate_limit_expired 0
+    # HELP wallarm_rate_limit_removed total amount of removed keys
+    # TYPE wallarm_rate_limit_removed gauge
+    wallarm_rate_limit_removed 0
+    # HELP wallarm_rate_limit_no_free_nodes allocation fails
+    # TYPE wallarm_rate_limit_no_free_nodes gauge
+    wallarm_rate_limit_no_free_nodes 0
+    # HELP wallarm_apifw_subrequest_timeouts apifw subrequest timeouts count
+    # TYPE wallarm_apifw_subrequest_timeouts gauge
+    wallarm_apifw_subrequest_timeouts 0
     ```
 
 The following response parameters are available (Prometheus metrics have the `wallarm_` prefix):
 
-*   `requests`: the number of requests that have been processed by the filter node.
+*   `requests`: the number of requests that have been processed by the filtering node.
 *   `streams` (available starting from the Wallarm release 6.2.0): the number of processed gRPC/WebSocket streams.
 *   `messages` (available starting from the Wallarm release 6.2.0): the number of processed gRPC/WebSocket messages.
 *   `attacks`: the number of recorded attacks.
 *   `blocked`: the number of blocked requests including those originated from [denylisted](../user-guides/ip-lists/overview.md) IPs.
 *   `blocked_by_acl`: the number of requests blocked due to [denylisted](../user-guides/ip-lists/overview.md) request sources.
-* `acl_allow_list`: the number of requests originating by [allowlisted](../user-guides/ip-lists/overview.md) request sources.
-*   `abnormal`: the number of requests the application deems abnormal.
+*   `blocked_by_antibot`: the number of requests blocked by the [API Abuse Prevention module](../api-abuse-prevention/overview.md).
+*   `acl_allow_list`: the number of requests originating by [allowlisted](../user-guides/ip-lists/overview.md) request sources.
+*   `bytes_in`: the total number of bytes received by the filtering node.
+*   `bytes_out`: the total number of bytes sent by the filtering node.
 *   `tnt_errors`: the number of requests not analyzed by a post-analytics module. For these requests, the reasons for blocking are recorded, but the requests themselves are not counted in statistics and behavior checks.
 *   `api_errors`: the number of requests that were not submitted to the API for further analysis. For these requests, blocking parameters were applied (i.e., malicious requests were blocked if the system was operating in blocking mode); however, data on these events is not visible in the UI. This parameter is only used when the Wallarm Node works with a local post-analytics module.
 *   `requests_lost`: the number of requests that were not analyzed in a post-analytics module and transferred to API. For these requests, blocking parameters were applied (i.e., malicious requests were blocked if the system was operating in blocking mode); however, data on these events is not visible in the UI. This parameter is only used when the Wallarm Node works with a local post-analytics module.
@@ -452,7 +495,13 @@ The following response parameters are available (Prometheus metrics have the `wa
     *   `mod_time`: Unix time of the last update of the proton.db file.
     *   `fname`: path to the proton.db file.
 * `startid`: randomly-generated unique ID of the filtering node.
-* `timestamp`: time when the last incoming request was processed by the node (in the [Unix Timestamp](https://www.unixtimestamp.com/) format).
+* `compatibility`: numeric value indicating how well the Wallarm NGINX module is compatible with the running NGINX executable. This metric helps the support team diagnose compatibility issues. Values:
+    *   `0`: not compatible by any source.
+    *   `1`: this value is not used.
+    *   `2`: debug build.
+    *   `3`: exception list; valid in some cases when NGINX is built by the customer without standard patches.
+    *   `4`: compatible by hash; this is the valid production value.
+* `config_revision`: revision number of the currently applied configuration file, incremented whenever the configuration is updated.
 * `rate_limit`: information about the Wallarm [rate limiting](../user-guides/rules/rate-limiting.md) module:
     * `shm_zone_size`: total amount of shared memory that the Wallarm rate limiting module can consume in bytes (the value is based on the [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size) directive, default is `67108864`).
     * `buckets_count`: the number of buckets (usually equal to NGINX workers count, 8 is a maximum).
@@ -462,7 +511,12 @@ The following response parameters are available (Prometheus metrics have the `wa
     * `expired`: the total number of keys that are removed from the bucket on a regular 60-second basis if the rate limit for those keys was not exceeded.
     * `removed`: the number of keys abruptly removed from the backet. If the value is higher that `expired`, increase the [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size) value.
     * `no_free_nodes`: the value different from `0` indicates that there is insufficient memory allocated for the rate limit module, the [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size) value increase is recommended.
+* `timestamp`: time when the last incoming request was processed by the node (in the [Unix Timestamp](https://www.unixtimestamp.com/) format).
 * `split.clients`: main statistics on each [tenant](../installation/multi-tenant/overview.md). If the multitenancy feature is not activated, the statistics is returned for the only tenant (your account) with the static value `"client_id":null`.
 * `split.clients.applications`: main statistics on each [application](../user-guides/settings/applications.md). Parameters that are not included into this section returns the statistics on all applications.
+* `apifw_subrequest_timeouts`: the number of subrequests in the API Firewall service that timed out during processing. 
+
+    !!! info "API Firewall subrequest timeouts"        
+        The API Firewall service underlies the [API Specification Enforcement](../api-specification-enforcement/overview.md) feature.
 
 The data of all counters is accumulated from the moment NGINX is started. If Wallarm has been installed in a ready-made infrastructure with NGINX, the NGINX server must be restarted to start statistics collection.

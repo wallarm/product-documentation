@@ -44,7 +44,7 @@ To install and run the plugin:
 2. Run the plugin:
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.7.3 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.8.0 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart.
@@ -65,7 +65,7 @@ To install and run the plugin:
 Upgrade the deployed NGINX Ingress controller:
 
 ``` bash
-helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.7.3 -f <PATH_TO_VALUES>
+helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.8.0 -f <PATH_TO_VALUES>
 ```
 
 * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
@@ -84,7 +84,7 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.7
 
     Where `<NAMESPACE>` is the namespace the Helm chart with the Ingress controller is deployed to.
 
-    The chart version should correspond to `wallarm-ingress-6.7.3`.
+    The chart version should correspond to `wallarm-ingress-6.8.0`.
 1. Get the Wallarm pod:
     
     ``` bash
