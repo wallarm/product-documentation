@@ -24,7 +24,7 @@ An example of an attack including many hits:
 
 See [details](user-guides/events/check-attack.md) on how to understand and analyze attacks.
 
-## Malicious Payload
+## Malicious payload
 
 A part of an original request containing the following elements:
 
@@ -48,7 +48,7 @@ For example:
 
 Since attack signs are not used to detect [behavioral attacks](attacks-vulns-list.md#attack-types), requests sent as a part of behavioral attacks have empty payloads.
 
-## Vulnerability
+## Security issue (vulnerability)
 
 A vulnerability is an error made due to negligence or inadequate information when building or implementing an API that can lead to an information security risk.
 
@@ -60,15 +60,21 @@ The information security risks are:
 
 The Internet traffic can be used to detect the vulnerabilities, which is what Wallarm does, among other functions.
 
-## Security Incident
+See:
 
-A security incident is an occurrence of vulnerability exploitation. An incident is an [attack](#attack) targeted at a confirmed vulnerability.
+* [Detecting Security Issues](about-wallarm/detecting-vulnerabilities.md)
+* [Managing Security Issues](user-guides/vulnerabilities.md)
+
+## Security incident
+
+A security incident is an occurrence of security issue (vulnerability) successful exploitation. An incident is an [attack](#attack) targeted at a confirmed vulnerability, detected but not blocked by Wallarm due to the current settings (`monitoring` [filtration mode](admin-en/configure-wallarm-mode.md) or others).
 
 An incident, just like an attack, is an entity external to your system and is a characteristic of the outside Internet, not the system itself. Despite the fact that the attacks targeted at existing vulnerabilities are a minority, they are of the utmost importance in terms of information security. Wallarm automatically detects the attacks targeted at existing vulnerabilities and displays them as a separate object - incident.
 
 See also: [Incident Analysis](user-guides/events/check-incident.md)
 
-## Circular Buffer
+## Circular buffer
+
 A circular buffer is a data structure that uses a single, fixed‑size buffer as if it were connected end‑to‑end.
 [See Wikipedia](https://en.wikipedia.org/wiki/Circular_buffer).
 
@@ -87,13 +93,16 @@ A custom ruleset is not empty by default, it contains the rules created for all 
 
 [More details on custom rulesets](user-guides/rules/rules.md)
 
-## Invalid Request
+## Invalid request
+
 A request that was checked by filter node and does not match LOM rules.
 
-## Reverse Proxy
+## Reverse proxy
+
 A reverse proxy is a type of proxy server that retrieves resources on behalf of a client from a server and returns the resources to the client as if they originated from the Web server itself.
 [See Wikipedia](https://en.wikipedia.org/wiki/Reverse_proxy).
 
-## Certificate Authority
+## Certificate authority
+
 A certificate authority is an entity that issues digital certificates.
 [See Wikipedia](https://en.wikipedia.org/wiki/Certificate_authority).

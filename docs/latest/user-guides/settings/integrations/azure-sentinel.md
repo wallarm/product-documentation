@@ -57,7 +57,7 @@ Overall, Wallarm can log in Sentinel the records of the following types:
 | New [application](../../../user-guides/settings/applications.md) | `create_application_CL` |
 | Deletion of an application | `delete_application_CL` |
 | Application name update | `update_application_CL` |
-| New [vulnerability](../../../glossary-en.md#vulnerability) of a high risk | `vuln_high_CL` |
+| New [vulnerability](../../../glossary-en.md#security-issue-vulnerability) of a high risk | `vuln_high_CL` |
 | New vulnerability of a medium risk | `vuln_medium_CL` |
 | New vulnerability of a low risk | `vuln_low_CL` |
 | New [rule](../../../user-guides/rules/rules.md) | `rule_create_CL` |

@@ -18,7 +18,7 @@ For example: if the response to the request sent to read the `/etc/passwd` conte
 
 To detect vulnerabilities in the applications and APIs, Wallarm uses the following methods:
 
-* [**Passive detection**](#passive-detection): identifies vulnerabilities by analyzing real traffic, including both requests and responses. This can happen during a security incident, where a real flaw is exploited, or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation.
+* [**Passive detection**](#passive-detection): works only for the scope with the `monitoring` [filtration mode](../admin-en/configure-wallarm-mode.md); identifies vulnerabilities and [incidents](../user-guides/events/check-incident.md) by analyzing real traffic, including both requests and responses. This can happen during a security incident, where a real flaw is exploited, or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation.
 
     !!! tip ""
         Available in both **Cloud Native WAAP** and **Advanced API Security** [subscriptions](../about-wallarm/subscription-plans.md), also in **Security Edge Free Tier**. Requires installed [**Wallarm node**](../about-wallarm/overview.md#how-wallarm-works).
@@ -42,7 +42,10 @@ See details on each method in the corresponding sections below along with the in
 
 ### Passive detection
 
-Passive detection refers to identifying vulnerabilities by analyzing actual traffic, including both requests and responses. Vulnerabilities may be uncovered during a security incident, where a malicious request successfully exploits a flaw, resulting in the detection of both an incident and a vulnerability. Or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation.
+!!! info "Filtration mode"
+    Passive detection works only for the scope with the `monitoring` [filtration mode](../admin-en/configure-wallarm-mode.md).
+
+Passive detection refers to identifying vulnerabilities by analyzing actual traffic, including both requests and responses. Vulnerabilities may be uncovered during a [security incident](../user-guides/events/check-incident.md), where a malicious request successfully exploits a flaw, resulting in the detection of both an incident and a vulnerability. Or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation.
 
 Passive vulnerability detection is enabled by default.
 
