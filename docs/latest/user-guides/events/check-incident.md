@@ -10,9 +10,23 @@
 
 # Incident Analysis
 
-Incidents are attacks that successfully exploited the [security issue](../../about-wallarm/detecting-vulnerabilities.md) (vulnerability) previously [detected](../../about-wallarm/detecting-vulnerabilities.md#detection-methods) by Wallarm. These attacks were detected, but not blocked by Wallarm due to the current settings (`monitoring` [filtration mode](../latest/admin-en/configure-wallarm-mode.md) or others). This article explains how to analyze incidents in Wallarm Console.
+Incidents are attacks that successfully exploited the [security issue](../../about-wallarm/detecting-vulnerabilities.md) (vulnerability) [passively detected](../../about-wallarm/detecting-vulnerabilities.md#detection-methods) by Wallarm. These attacks were detected, but not blocked by Wallarm due to the current settings (`monitoring` [filtration mode](../latest/admin-en/configure-wallarm-mode.md) or others). This article explains how to analyze incidents in Wallarm Console.
 
-## Incident importance
+## Detection
+
+Incidents are:
+
+* Registered together with security issues (vulnerabilities) found by [passive detection](../../about-wallarm/detecting-vulnerabilities.md#detection-methods) (enabled by default in every active filtering node):
+
+     If Wallarm finds an attack and this attack is successful (determined by the response), then this means that there is a vulnerability in the application, plus the attacker successfully exploited it means this is an incident.
+
+!!! info "Filtration mode"
+     As passive detection relies on both request and response, incidents are registered only for the scope with the `monitoring` [filtration mode](../../admin-en/configure-wallarm-mode.md).
+
+* If more incidents for the same security issue occur later, they are all linked to this issue.
+* Not registered for vulnerabilities found by [detection methods](../../about-wallarm/detecting-vulnerabilities.md#detection-methods), other than passive detection.
+
+## Importance
 
 Presence of incidents indicates jump from a theoretical risk (vulnerability) to a live threat and requires prioritizing fixes of these security issues:
 
