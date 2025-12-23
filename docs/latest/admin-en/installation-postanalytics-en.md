@@ -31,11 +31,11 @@ To download all-in-one Wallarm installation script, execute the command:
 
 === "x86_64 version"
     ```bash
-    curl -O https://meganode.wallarm.com/6.7/wallarm-6.8.0.x86_64-glibc.sh
+    curl -O https://meganode.wallarm.com/6.8/wallarm-6.8.0.x86_64-glibc.sh
     ```
 === "ARM64 version"
     ```bash
-    curl -O https://meganode.wallarm.com/6.7/wallarm-6.8.0.aarch64-glibc.sh
+    curl -O https://meganode.wallarm.com/6.8/wallarm-6.8.0.aarch64-glibc.sh
     ```
 
 ## Step 2: Prepare Wallarm token
