@@ -10,7 +10,7 @@
 
 # Incident Analysis
 
-Incidents are attacks that successfully exploited the [security issue](../../about-wallarm/detecting-vulnerabilities.md) (vulnerability) [passively detected](../../about-wallarm/detecting-vulnerabilities.md#detection-methods) by Wallarm. These attacks were detected, but not blocked by Wallarm due to the current settings (`monitoring` [filtration mode](../latest/admin-en/configure-wallarm-mode.md) or others). This article explains how to analyze incidents in Wallarm Console.
+Incidents are attacks that successfully exploited the [security issue](../../about-wallarm/detecting-vulnerabilities.md) (vulnerability) [passively detected](../../about-wallarm/detecting-vulnerabilities.md#detection-methods) by Wallarm. These attacks were detected, but not blocked by Wallarm due to the current settings (`monitoring` [filtration mode](../../admin-en/configure-wallarm-mode.md) or others). This article explains how to analyze incidents in Wallarm Console.
 
 ## Detection
 

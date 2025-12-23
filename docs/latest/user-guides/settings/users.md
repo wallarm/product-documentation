@@ -1,7 +1,7 @@
 [link-audit-log]:               audit-log.md
 
 [link-glossary-incident]:       ../../glossary-en.md#security-incident
-[link-glossary-vulnerability]:  ../../glossary-en.md#vulnerability
+[link-glossary-vulnerability]:  ../../glossary-en.md#security-issue-vulnerability
 
 [img-configure-user]:       ../../images/user-guides/settings/configure-user.png
 [img-disabled-users]:       ../../images/user-guides/settings/disabled-users.png

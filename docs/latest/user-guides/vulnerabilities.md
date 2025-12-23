@@ -105,7 +105,7 @@ You can re-evaluate and manually adjust the risk level at any moment.
 
 ### Presence of incidents
 
-[Incidents](../user-guides/events/check-incident.md) are attacks that successfully exploited the security issue (vulnerability). These attacks were detected, but not blocked by Wallarm due to the current settings (`monitoring` [filtration mode](../latest/admin-en/configure-wallarm-mode.md) or others).
+[Incidents](../user-guides/events/check-incident.md) are attacks that successfully exploited the security issue (vulnerability). These attacks were detected, but not blocked by Wallarm due to the current settings (`monitoring` [filtration mode](../admin-en/configure-wallarm-mode.md) or others).
 
 Presence of incidents indicates jump from a theoretical risk to a live threat and requires prioritizing fixes of these security issues:
 
@@ -118,7 +118,7 @@ Analyze incidents presence and impact:
 * Pay attention to the issues having `Incident` tag in the **Security issue** column.
 * Set the **Incident** filter to `Incident detected` to see all issues with incidents. Go to issue details, view the **Related incidents** section. From here, you can go to every incident details.
 
-![Incidents in Security Issues](../../images/user-guides/vulnerabilities/si-incidents.png)
+![Incidents in Security Issues](../images/user-guides/vulnerabilities/si-incidents.png)
 
 ## Security issue reports
 
