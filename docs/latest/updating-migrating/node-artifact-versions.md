@@ -20,6 +20,7 @@ new attack types in logging variables and search bars?
 ### 6.8.1 (2025-12-24)
 
 * Fixed an issue where malformed fuzzing traffic could cause an increased number of NGINX crashes, as observed in logs
+* Added API token masking in Node logs to prevent sensitive data exposure
 
 ### 6.8.0 (2025-12-23)
 
@@ -177,6 +178,7 @@ new attack types in logging variables and search bars?
 ### 6.8.1 (2025-12-24)
 
 * Fixed an issue where malformed fuzzing traffic could cause an increased number of NGINX crashes, as observed in logs
+* Added API token masking in Node logs to prevent sensitive data exposure
 
 ### 6.8.0 (2025-12-23)
 
@@ -348,6 +350,7 @@ new attack types in logging variables and search bars?
 ### 6.8.1 (2025-12-24)
 
 * Fixed an issue where malformed fuzzing traffic could cause an increased number of NGINX crashes, as observed in logs
+* Added API token masking in Node logs to prevent sensitive data exposure
 
 ### 6.8.0 (2025-12-23)
 
@@ -483,6 +486,7 @@ new attack types in logging variables and search bars?
 ### 6.8.1 (2025-12-24)
 
 * Fixed an issue where malformed fuzzing traffic could cause an increased number of NGINX crashes, as observed in logs
+* Added API token masking in Node logs to prevent sensitive data exposure
 
 ### 6.8.0 (2025-12-23)
 
@@ -640,6 +644,7 @@ new attack types in logging variables and search bars?
 ### 6.8.1 (2025-12-24)
 
 * Fixed an issue where malformed fuzzing traffic could cause an increased number of NGINX crashes, as observed in logs
+* Added API token masking in Node logs to prevent sensitive data exposure
 
 ### 6.8.0 (2025-12-23)
 
@@ -760,6 +765,7 @@ new attack types in logging variables and search bars?
 ### wallarm-node-6-8-1-20251224-110807 (2025-12-24)
 
 * Fixed an issue where malformed fuzzing traffic could cause an increased number of NGINX crashes, as observed in logs
+* Added API token masking in Node logs to prevent sensitive data exposure
 
 ### wallarm-node-6-8-0-20251219-144249 (2025-12-23)
 
