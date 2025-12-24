@@ -166,6 +166,15 @@ The current version can be found in `wallarm-main`/`wallarm-sp` → `bundle.json
 
 [How to upgrade](kong-ingress-controller.md#upgrading-the-wallarm-lua-plugin)
 
+| Policy version      | [Native Node version](../../updating-migrating/native-node/node-artifact-versions.md) |
+| ------------------- | ------------------- |
+| 1.0.x               | 0.8.2 and higher    |
+| 1.1.x               | 0.22.0 and higher   |
+
+### 1.1.0 (2024-12-23)
+
+* Added support for the `inspect_response` and `inspect_response_body` [parameters](kong-ingress-controller.md#configuration-options) to enable response and response body inspection
+
 ### 1.0.0 (2024-09-13)
 
 * Initial release

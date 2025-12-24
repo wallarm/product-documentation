@@ -17,6 +17,11 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.8.1 (2025-12-24)
+
+* Fixed an issue where malformed fuzzing traffic could cause an increased number of NGINX crashes, as observed in logs
+* Added API token masking in Node logs to prevent sensitive data exposure
+
 ### 6.8.0 (2025-12-23)
 
 * Bug fixes:
@@ -169,6 +174,11 @@ new attack types in logging variables and search bars?
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.8.1 (2025-12-24)
+
+* Fixed an issue where malformed fuzzing traffic could cause an increased number of NGINX crashes, as observed in logs
+* Added API token masking in Node logs to prevent sensitive data exposure
 
 ### 6.8.0 (2025-12-23)
 
@@ -337,6 +347,11 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.8.1 (2025-12-24)
+
+* Fixed an issue where malformed fuzzing traffic could cause an increased number of NGINX crashes, as observed in logs
+* Added API token masking in Node logs to prevent sensitive data exposure
+
 ### 6.8.0 (2025-12-23)
 
 * Bug fixes:
@@ -467,6 +482,11 @@ new attack types in logging variables and search bars?
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.8.1 (2025-12-24)
+
+* Fixed an issue where malformed fuzzing traffic could cause an increased number of NGINX crashes, as observed in logs
+* Added API token masking in Node logs to prevent sensitive data exposure
 
 ### 6.8.0 (2025-12-23)
 
@@ -621,6 +641,11 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
+### 6.8.1 (2025-12-24)
+
+* Fixed an issue where malformed fuzzing traffic could cause an increased number of NGINX crashes, as observed in logs
+* Added API token masking in Node logs to prevent sensitive data exposure
+
 ### 6.8.0 (2025-12-23)
 
 * Bug fixes:
@@ -737,7 +762,12 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
-### wallarm-node-6-8-1-20251222-214908 (2025-12-23)
+### wallarm-node-6-8-1-20251224-110807 (2025-12-24)
+
+* Fixed an issue where malformed fuzzing traffic could cause an increased number of NGINX crashes, as observed in logs
+* Added API token masking in Node logs to prevent sensitive data exposure
+
+### wallarm-node-6-8-0-20251219-144249 (2025-12-23)
 
 * Bug fixes:
     * Fixed the issue where integers were not being masked when using the ["Mask sensitive data" rule](../user-guides/rules/sensitive-data-rule.md)
