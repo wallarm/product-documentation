@@ -40,6 +40,7 @@ Wallarm is the only solution that unifies API discovery, risk management, real-t
 | [API Discovery](../api-discovery/overview.md) | No | Yes | No |
 | [Sensitive data detection](../api-discovery/overview.md#sensitive-data-detection) | No | Yes | No |
 | [Rogue API Detection (shadow, orphan zombie)](../api-discovery/rogue-api.md) | No | Yes | No |
+| [BI Dashboards](../user-guides/dashboards/bi-dashboards.md) | No | Yes | No |
 | **Security testing** | | | |
 | [Threat Replay Testing](../vulnerability-detection/threat-replay-testing/overview.md) | No | Yes | Yes, with API Security |
 | [Schema-Based Security Testing](../vulnerability-detection/schema-based-testing/overview.md) | No | No | Yes |
