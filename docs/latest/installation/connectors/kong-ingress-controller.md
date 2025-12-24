@@ -94,6 +94,16 @@ To deploy the Wallarm node as a separate service in your Kubernetes cluster, fol
     kubernetes.io/ingress.class: kong
     ```
 
+## Configuration options
+
+In the `wallarm-kong-lua.yaml` file, you can customize the following optional parameters in the `config` section:
+
+| Parameter | Description | Default |
+| --------- | ----------- | ------- |
+| `timeout_ms` | The maximum time (in milliseconds) the plugin waits for a response from the Wallarm Node. If the timeout is exceeded, the request is forwarded without Wallarm decision and the error is logged. | `1000` |
+| `inspect_response` (connector 1.1.0 and Node 0.22.0) | Enables inspection of application responses by the Wallarm Node. When enabled, the connector sends response metadata (such as HTTP status code and headers) to Wallarm and correlates the response with the corresponding request. This allows Wallarm to analyze response-side behavior and detect attacks that can only be identified after the backend response is generated. | `true` (enabled) |
+| `inspect_response_body` (connector 1.1.0 and Node 0.22.0) | Enables sending the response body to the Wallarm node for inspection. Requires `inspect_response` to be enabled. When enabled, Wallarm receives and analyzes the full response payload in addition to response metadata. This provides deeper analysis capabilities, such as detecting reflected attacks, sensitive data exposure, and application logic issues. When disabled, only response metadata is sent. | `true` (enabled) |
+
 ## Testing
 
 To test the functionality of the deployed connector, follow these steps:
