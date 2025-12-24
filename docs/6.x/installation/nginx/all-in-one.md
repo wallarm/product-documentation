@@ -41,5 +41,6 @@
 [vuln-detection-docs]:              ../../about-wallarm/detecting-vulnerabilities.md
 [masking-sensitive-data-rule]:      ../../user-guides/rules/sensitive-data-rule.md
 [link-wallarm-health-check]:        ../../admin-en/uat-checklist-en.md
+[ssl-certificates]:                 ../../admin-en/ssl-certificates.md
 
 --8<-- "latest/installation/inline/compute-instances/linux/all-in-one.md"
