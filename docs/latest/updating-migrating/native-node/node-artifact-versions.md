@@ -10,6 +10,14 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.22.0 (2025-12-23)
+
+* Fixed the issue where integers were not being masked when using the ["Mask sensitive data" rule](../../user-guides/rules/sensitive-data-rule.md)
+* Fixed the issue where responses containing infoleak stamps were being blocked
+
+    Wallarm no longer blocks such responses, as doing so caused false detections and prevented rules from being edited
+* Fixed connector server waiting for the response data that is known to never arrive
+
 ### 0.21.0 (2025-12-17)
 
 * Added support for the [Amazon API Gateway connector](../../installation/connectors/aws-api-gateway.md)
@@ -154,6 +162,14 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 The Helm chart for the Native Node is used for self-hosted node deployments with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](helm-chart.md)
+
+### 0.22.0 (2025-12-23)
+
+* Fixed the issue where integers were not being masked when using the ["Mask sensitive data" rule](../../user-guides/rules/sensitive-data-rule.md)
+* Fixed the issue where responses containing infoleak stamps were being blocked
+
+    Wallarm no longer blocks such responses, as doing so caused false detections and prevented rules from being edited
+* Fixed connector server waiting for the response data that is known to never arrive
 
 ### 0.21.0 (2025-12-17)
 
@@ -312,6 +328,14 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](docker-image.md)
+
+### 0.22.0 (2025-12-23)
+
+* Fixed the issue where integers were not being masked when using the ["Mask sensitive data" rule](../../user-guides/rules/sensitive-data-rule.md)
+* Fixed the issue where responses containing infoleak stamps were being blocked
+
+    Wallarm no longer blocks such responses, as doing so caused false detections and prevented rules from being edited
+* Fixed connector server waiting for the response data that is known to never arrive
 
 ### 0.21.0 (2025-12-17)
 
