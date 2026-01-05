@@ -5,7 +5,7 @@ site_description: Wallarm delivers real-time protection for APIs and AI agents, 
 repo_url: https://github.com/wallarm/product-documentation
 repo_name: GitHub
 
-copyright: '<a href="https://www.wallarm.com/terms-of-service" target="_blank">Terms of services</a> | <a href="https://www.wallarm.com/privacy-policy" target="_blank">Privacy policy</a> | <a href="https://www.wallarm.com/cookie-policy" target="_blank">Cookie policy</a> | <a href="#__consent">Cookie settings</a> | 2025 © Wallarm Inc.'
+copyright: '<a href="https://www.wallarm.com/terms-of-service" target="_blank">Terms of services</a> | <a href="https://www.wallarm.com/privacy-policy" target="_blank">Privacy policy</a> | <a href="https://www.wallarm.com/cookie-policy" target="_blank">Cookie policy</a> | <a href="#__consent">Cookie settings</a> | 2026 © Wallarm Inc.'
 
 plugins:
   - search

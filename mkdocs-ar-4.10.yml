@@ -4,7 +4,7 @@ site_name: توثيق وولارم
 site_url: https://docs.wallarm.com/ar/
 site_description: حل وولارم بيحمي واجهات برمجة التطبيقات (APIs)، والمايكروسيرفيسيز، وتطبيقات الويب من تهديدات أوبتوب 10 الخاصة بـ OWASP لواجهات برمجة التطبيقات، وسوء استخدام الـAPI، وغيرها من التهديدات الآلية من غير ما يحتاج لضبط قواعد يدوي وكمان بنسبة أخطاء زائفة قليلة جدًا.
 
-copyright: '<a href="https://www.wallarm.com/terms-of-service" target="_blank">شروط الخدمة</a> | <a href="https://www.wallarm.com/privacy-policy" target="_blank">سياسة الخصوصية</a> | <a href="https://www.wallarm.com/cookie-policy" target="_blank">سياسة ملفات تعريف الارتباط</a> | <a href="#__consent" target="_blank">إعدادات ملفات تعريف الارتباط</a> | 2025 © Wallarm Inc.'
+copyright: '<a href="https://www.wallarm.com/terms-of-service" target="_blank">شروط الخدمة</a> | <a href="https://www.wallarm.com/privacy-policy" target="_blank">سياسة الخصوصية</a> | <a href="https://www.wallarm.com/cookie-policy" target="_blank">سياسة ملفات تعريف الارتباط</a> | <a href="#__consent" target="_blank">إعدادات ملفات تعريف الارتباط</a> | 2026 © Wallarm Inc.'
 
 extra:
   analytics:
