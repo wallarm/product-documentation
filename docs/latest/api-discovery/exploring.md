@@ -132,6 +132,18 @@ Within each found session, only requests to your endpoint will be initially disp
 
 A structured view of session activity helps in understanding your endpoint place in malicious and legitimate activities, its relation to sensitive business flows and required protection measures.
 
+## CSV reports
+
+You can download the report on your API inventory in CSV format:
+
+1. Optionally, apply filters. Only data remaining after filter apply will go to report.
+1. Click **Download CSV**.
+
+    This will instantly generate a CSV file with list of your APIs, including all key attributes, including risk score, sensitive data types and more.
+
+    !!! info "No parameter information"
+        The report does not include the information on API endpoint parameters.
+
 <!--## Creating rules for API endpoints
 
 You can quickly create a new [custom rule](../user-guides/rules/rules.md) from any endpoint of API inventory: 
