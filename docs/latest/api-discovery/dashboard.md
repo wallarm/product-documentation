@@ -3,7 +3,7 @@
 [apid-track-changes]:           track-changes.md
 [apid-rogue]:                   rogue-api.md
 [check-attack]:                 ../user-guides/events/check-attack.md
-[img-api-discovery-widget]:     ../images/user-guides/dashboard/api-discovery-widget.png
+[img-api-discovery-dashboard]:  ../images/about-wallarm-waf/api-discovery-2.0/api-discovery-dashboard.png
 
 # API Discovery Dashboard <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 

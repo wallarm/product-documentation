@@ -3,7 +3,7 @@
 [img-regex-example1]:       ../../images/user-guides/rules/regex-rule-1.png
 [rule-creation-options]:    ../../user-guides/events/check-attack.md#attack-analysis_1
 [request-processing]:       ../../user-guides/rules/request-processing.md
-[api-discovery-enable-link]:        ../../api-discovery/setup.md#enable
+[api-discovery-enable-link]:        ../../api-discovery/setup.md
 
 # Virtual Patching
 
