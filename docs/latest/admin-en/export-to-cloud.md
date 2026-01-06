@@ -4,17 +4,32 @@ You can have full visibility and control on which data is exported from Wallarm 
 
 ## Overview
 
-The following data is sent from Wallarm node to Cloud:
+This is what data is sent from Wallarm node to Cloud and how you can control it:
+
+![Control over export to Cloud](../images/configuration-guides/control-export-to-cloud-diagram.png)
 
 | Where to | What for | What data | How to control |
 | ----- | ----- | ----- | ----- |
-| Statistics | To [see](../user-guides/dashboards/threat-prevention.md) numbers of you traffic - normal vs. malicious.| Number of requests, their sources and targets. No sensitive data ever. ||
+| **Statistics and metadata** | To see your traffic - normal and malicious.| Number of requests, their sources and targets. No sensitive data ever. | <ul><li>Limit IP addresses allowed to request statistics</li></ul>[Details...](#statistics-and-metadata) |
 | **Attacks, Incidents** | To analyze security event and apply measures. | Full HTTP data of malicious request. | <ul><li>Mask sensitive data</li><li>Limit data export rules<sup>f</sup></li><li>Limited data export exceptions<sup>f</sup></li><li>Sensitive data types<sup>f</sup></li></ul>[Details...](#attacks-incidents) |
 | **API Sessions** | To see full sequence of connected actions (session). | Request metadata + what you chose (context parameters). | <ul><li>Session context parameters (with hashing)</li></ul>[Details...](#api-sessions) |
-| API Discovery ||||
-| Security Issues ||||
+| **API Discovery** | To see your actual and complete API inventory. | Endpoint, parameter names and statistics on them. | No need, it is safe. <br> [Details...](#api-discovery) |
+| **Security Issues** | To see security flaws in your infrastructure. | Host name and endpoint address (URL) and parameter name with vulnerability. | No need, it is safe. <br> [Details...](#security-issues) |
 
 <small><sup>f</sup> This feature is currently under construction, arriving soon.</small>
+
+## Statistics and metadata
+
+**What the data from Wallarm node is sent for**: for you to see your traffic and Wallarm node activity on it:
+
+* On the [dashboards](../user-guides/dashboards/threat-prevention.md) (statistics for normal vs. malicious traffic)
+* Via the [statistics service](../admin-en/configure-statistics-service.md#usage) (statistics for traffic and node activity)
+* All user activities (requests) in API Sessions (metadata only)
+
+**What data is sent and how to control**
+
+* As statistics, the info on number of requests, attacks, blocked requests, per-application information etc. is sent. It is metadata and always safe. However, you can still [limit IP addresses allowed to request statistics](../admin-en/configure-statistics-service.md#limiting-ip-addresses-allowed-to-request-statistics).
+* Metadata of all user activities (requests) is sent to [API Sessions](../api-sessions/overview.md) by default. It is metadata (time, source IP, target endpoint, response code, etc.) and is always safe. What **actual** data is sent additionally, you [decide yourself](#api-sessions).
 
 ## Attacks, Incidents
 
@@ -62,3 +77,22 @@ To control:
 
 * [Session context parameters](../api-sessions/setup.md#session-context): add only **parameters you really need**. Note that some mitigation controls rely on session data and need some parameter values, such controls can [themselves](../api-sessions/setup.md#mitigation-controls) add extra parameters to session.
 * Use [hashing](../api-sessions/setup.md#data-protection) for the parameter values. Note that hashing will transform the actual value into unreadable - the presence of parameter and particular but unknown value will provide the limited information for the analysis.
+
+## API Discovery
+
+**What the data from Wallarm node is sent for**: for you to see your actual and complete API inventory.
+
+**What data is sent and how to control**
+
+* Metadata of requests, on which base [API Discovery](../api-discovery/overview.md) builds and automatically updates the list of your API hosts and endpoints endpoints, for each endpoint - list of its request and response parameters.
+* Wallarm does not send the values that are specified in the parameters to the Cloud. Only the endpoint, parameter names and statistics on them are sent.
+
+## Security issues
+
+**What the data from Wallarm node is sent for**: for you to see security flaws in your infrastructure that may be exploited by attackers.
+
+**What data is sent and how to control**
+
+* Only metadata goes to [Security Issues](../user-guides/vulnerabilities.md): host name and endpoint address (URL) and parameter name, for which vulnerability was detected with "first" and "last" seen time and source IP.
+* All the other information related to security issues are calculated and formed on the Cloud side: problem description and mitigation recommendations, status history etc.
+* Security issues can be detected by [different methods](../about-wallarm/detecting-vulnerabilities.md#detection-methods), some of them does not use Wallarm node at all, but approach to send only metadata is always kept intact.
