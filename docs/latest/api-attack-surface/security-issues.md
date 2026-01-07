@@ -50,3 +50,22 @@ Along with all the other security issues (found by any [method](../about-wallarm
 You can recognize issues found by AASM by the `AASM` in the **Discovered by** field. You can filter issues to see only the ones found by AASM with the **Discovered by** filter.
 
 Detailed information on how to work with security issue: understand issue statuses, lifecycle and transitions, risk levels, getting details on each issue and mitigation measures, getting notifications and reports - is provided [here](../user-guides/vulnerabilities.md).
+
+## Notifications
+
+### Email
+
+Information about security issues found specifically by AASM is sent to your personal email within **Weekly AASM statistics** report - information about hosts, APIs, and statistics for security issues discovered for your configured domains within last week.
+
+Additionally, information about security issues found by [any method](../about-wallarm/detecting-vulnerabilities.md#detection-methods) (including AASM) is sent to your email:
+
+* **Daily critical security issues (new only)** - all critical security issues opened for the day, sent once a day with a detailed description of each issue and instructions on how to mitigate it.
+* **Daily security issues (new only)** - statistics for security issues opened for the day, sent once a day with information on how many issues of every risk level were found and general action items for mitigation.
+
+The notifications are enabled by default. You can unsubscribe at any moment and configure any additional emails to get all or some of these notifications in Wallarm Console → **Configuration** → **Integrations** → **Email and messengers** → **Personal email** (you email) or **Email report** (extra emails) as described [here](../user-guides/settings/integrations/email.md).
+
+### Instant notification
+
+You can configure instant notification for the new and re-opened security issues in Wallarm Console → **Configuration** → **Integrations** → YOUR_INTEGRATION as described in [your integration](../user-guides/settings/integrations/integrations-intro.md) documentation.
+
+Note that this configuration affect notifications on issues found by [any method](../about-wallarm/detecting-vulnerabilities.md#detection-methods), not only found by AASM.
