@@ -9,7 +9,7 @@ You can have full visibility and control on which data is exported from Wallarm 
 
 This is what data is sent from Wallarm node to Cloud and how you can control it:
 
-![Control over export to Cloud](../images/configuration-guides/control-export-to-cloud-diagram.png)
+![Control over export to Cloud](../images/configuration-guides/control-export-to-cloud-diagram.png) <!--diagram source: https://www.figma.com/board/kG31Jsd7d4KdgGwF1UItUM/Digrams-for-Docs?node-id=1-471&t=Y819YzIYBbA8gfBa-4-->
 
 | Where to | What for | What data | How to control |
 | ----- | ----- | ----- | ----- |
