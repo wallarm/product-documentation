@@ -4,6 +4,9 @@ You can have full visibility and control on which data is exported from Wallarm 
 
 ## Overview
 
+!!! info "Shared responsibility"
+    Being aware of what data is sent from node to Cloud and proper usage of tools controlling the safe transfer is your part of [shared responsibility for data safety](../about-wallarm/shared-responsibility.md).
+
 This is what data is sent from Wallarm node to Cloud and how you can control it:
 
 ![Control over export to Cloud](../images/configuration-guides/control-export-to-cloud-diagram.png)

@@ -51,7 +51,7 @@ Wallarm clients are responsible for the following points:
 
 * Practicing removal of user accounts for any users who have been terminated and were previously involved in any material functions or activities associated with Wallarm’s services.
 
-* Configuring proper [data masking rules](../user-guides/rules/sensitive-data-rule.md) for any sensitive data which may leave the client’s security perimeter and is sent to the Wallarm Cloud as a part of reporting of detected malicious requests.
+* Configuring proper [data export process](../admin-en/export-to-cloud.md) for any sensitive data not to leave the client’s security perimeter, and, in the same time, all data required to detect malicious requests is sent to the Wallarm Cloud.
 
 * Ensuring that transactions for client organizations relating to Wallarm’s services are appropriately authorized, and transactions are secure, timely, and complete.
 
@@ -79,7 +79,13 @@ In this deployment form, both Wallarm filtering node and Wallarm Cloud component
 * Ensuring that transactions for client organizations relating to Wallarm’s services are appropriately authorized, and transactions are secure, timely, and complete.
 * Developing, and if necessary, implementing a business continuity and disaster recovery plan (BCDRP) that will aid in the continuation of services provided by Wallarm.
 
-## Client Data Storage in Wallarm Cloud
+## Visibility and control over data export
+
+Regardless of deployment form, Wallarm provides a full visibility into what data is transferred from node to Cloud and gives a set of comprehensive tools to fully control this export.
+
+See [Control over Export to Cloud](../admin-en/export-to-cloud.md) for details.
+
+## Client data storage in Cloud
 
 In Wallarm's hybrid and cloud deployments, any data sent from filtering nodes is stored in the Wallarm Cloud, fully managed by Wallarm:
 
