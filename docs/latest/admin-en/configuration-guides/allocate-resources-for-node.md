@@ -49,9 +49,11 @@ Example:
 docker run -d -e WALLARM_API_TOKEN='XXXX' -e WALLARM_LABELS='group=<GROUP NAME>' -e NGINX_BACKEND='example.com' -e SLAB_ALLOC_ARENA=3.0 -p 80:80 wallarm/node:6.6.0
 ```
 
-Note that when passing `SLAB_ALLOC_ARENA` in Docker `run` command with the `-e` like in the example above, the variable is not recorded in any configuration file within the container, but it is still used when `wstore` starts.
+Note that: 
 
-Used value can be checked in `wcli-out.log` filtering node log by searching for the `Setting up memory params` line.
+* When passing `SLAB_ALLOC_ARENA` in Docker `run` command with the `-e` like in the example above, the variable is not recorded in any configuration file within the container, but it is still used when `wstore` starts.
+* Used value can be checked in `wcli-out.log` filtering node log by searching for the `Setting up memory params` line.
+* While `SLAB_ALLOC_ARENA` reserves memory on **application level** (wstore), to increase the node stability, you can use the [`--memory-reservation`](https://docs.docker.com/engine/containers/resource_constraints/#limit-a-containers-access-to-memory) flag to reserve that memory on **container level** (Docker). Same can be done via Docker compose file.
 
 ### Allocating resources if using Amazon Machine Image
 
