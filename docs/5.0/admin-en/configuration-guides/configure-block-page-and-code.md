@@ -238,8 +238,11 @@ You can make a copy of the `/usr/share/nginx/html/wallarm_blocked.html` (`/opt/w
             }
         </style>
         <script>
-            // Place your support email here
+            // Optional: provide a support email address for the "Contact us" link.
+            // You can also define the email subject and body text.
             const SUPPORT_EMAIL = "";
+            var subject = "";
+            var body = "";
         </script>
     </head>
 
@@ -331,6 +334,7 @@ You can make a copy of the `/usr/share/nginx/html/wallarm_blocked.html` (`/opt/w
             else mailto.replaceWith(mailto.textContent);
         </script>
     </body>
+    </html>
     ```
 
 **Common file system**
@@ -383,16 +387,17 @@ To add your company logo, in the `wallarm_blocked_renamed.html` file, modify and
     </div>
 ```
 
-To add your company support email, in the `wallarm_blocked_renamed.html` file, modify the `SUPPORT_EMAIL` variable:
+To add your company support email and customize the "Contact us" email content, edit the `wallarm_blocked_renamed.html` file by updating the `SUPPORT_EMAIL`, `subject`, and `body` variables:
 
 ```html
 <script>
-    // Place your support email here
+    // Optional: provide a support email address for the "Contact us" link.
+    // You can also define the email subject and body text.
     const SUPPORT_EMAIL = "support@company.com";
+    var subject = "Blocked request assistance";
+    var body = "";
 </script>
 ```
-
-If initializing a custom variable containing `$` in a value, escape this symbol by adding `{wallarm_dollar}` before the variable name, e.g.: `${wallarm_dollar}{variable_name}`. The `wallarm_dollar` variable returns `&`.
 
 ## Configuration examples
 
