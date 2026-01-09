@@ -241,8 +241,8 @@ You can make a copy of the `/usr/share/nginx/html/wallarm_blocked.html` (`/opt/w
             // Optional: provide a support email address for the "Contact us" link.
             // You can also define the email subject and body text.
             const SUPPORT_EMAIL = "";
-            const SUBJECT = "";
-            const BODY = "";
+            var subject = "";
+            var body = "";
         </script>
     </head>
 
@@ -299,6 +299,7 @@ You can make a copy of the `/usr/share/nginx/html/wallarm_blocked.html` (`/opt/w
             <div></div>
         </div>
         <script>
+            // Warning: ES5 code only
 
             function writeText(str) {
                 const range = document.createRange();
@@ -329,7 +330,7 @@ You can make a copy of the `/usr/share/nginx/html/wallarm_blocked.html` (`/opt/w
             document.querySelector('#copy-btn').addEventListener('click', copy);
 
             const mailto = document.getElementById('mailto');
-            if (SUPPORT_EMAIL) mailto.href = `mailto:${wallarm_dollar}{SUPPORT_EMAIL}?subject=${wallarm_dollar}{SUBJECT}&body=${wallarm_dollar}{BODY}`;
+            if (SUPPORT_EMAIL) mailto.href = `mailto:${wallarm_dollar}{SUPPORT_EMAIL}`;
             else mailto.replaceWith(mailto.textContent);
         </script>
     </body>
@@ -386,23 +387,18 @@ To add your company logo, in the `wallarm_blocked_renamed.html` file, modify and
     </div>
 ```
 
-To add your company support email and customize the "Contact us" email content, edit the `wallarm_blocked_renamed.html` file by updating the `SUPPORT_EMAIL`, `SUBJECT`, and `BODY` constants:
+To add your company support email and customize the "Contact us" email content, edit the `wallarm_blocked_renamed.html` file by updating the `SUPPORT_EMAIL`, `subject`, and `body` variables:
 
 ```html
 <script>
     // Optional: provide a support email address for the "Contact us" link.
     // You can also define the email subject and body text.
     const SUPPORT_EMAIL = "support@company.com";
-    const SUBJECT = "";
-    const BODY = "";
+    var subject = "Blocked request assistance";
+    var body = "";
 </script>
 ```
 
-!!! info "Using custom variables"
-    To use custom user-defined constants and variables in the block page code, prefix them with `${wallarm_dollar}`.
-    For example, `${wallarm_dollar}{SUPPORT_EMAIL}` will be substituted with the `SUPPORT_EMAIL` constant defined in your code.
-    `${wallarm_dollar}` is necessary to distinguish custom variables from NGINX variables, which follow a different pattern (`${variable_name}`).
-    
 ## Configuration examples
 
 Below are examples of configuring the blocking page and error code via the directives `wallarm_block_page` and `wallarm_block_page_add_dynamic_path`.
