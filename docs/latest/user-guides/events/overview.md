@@ -19,13 +19,21 @@ All Threat Management components include advanced search and filtering capabilit
 
 ## Dashboards
 
-Threat Management's dashboards provide visualized summaries for your security perimeter and posture. All being interactive, they provide you with quick access to details and data in different parts of the system and configuration tools.
+**Built-in**
+
+Threat Management's built-in dashboards provide visualized summaries for your security perimeter and posture. All being interactive, they provide you with quick access to details and data in different parts of the system and configuration tools.
 
 ![Threat Management - dashboards](../../images/user-guides/events/tm-overview-dashboards.png)
 
 * Get clear vision of the malicious traffic volume and its distribution by attack types, sources, protocols, authentication methods, etc. with the [**Threat Prevention**](../../user-guides/dashboards/threat-prevention.md) dashboard.
 * Review data about your API collected by the Wallarm's API Discovery with the [**API Discovery**](../../user-guides/dashboards/api-discovery.md) dashboard.
 * Check covering the OWASP API Security Top 10 2023 and proactively implement security controls on the [**OWASP API Security Top 10 - 2023**](../../user-guides/dashboards/owasp-api-top-ten.md) dashboard.
+
+**Business Intelligence**
+
+In addition to built-in dashboards, you can collect, present, and share the security data, crucial for your business in your own [customizable dashboards](../dashboards/bi-dashboards.md).
+
+![BI dashboards - chart types](../../images/user-guides/dashboard/bi-dashboards-chart-types.png)
 
 ## Attacks
 
