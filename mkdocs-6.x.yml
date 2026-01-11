@@ -122,6 +122,7 @@ nav:
       - Deployment: installation/security-edge/inline/deployment.md
       - Multi‑Cloud and Multi‑Region: installation/security-edge/inline/multi-region.md
       - mTLS: installation/security-edge/inline/mtls.md
+      - Custom Keepalive Settings: installation/security-edge/inline/keepalive.md
       - Host Redirection: installation/security-edge/inline/host-redirection.md
       - Custom Block Page: installation/security-edge/inline/custom-block-page.md
       - Access Control Lists: installation/security-edge/inline/access-control-lists.md     
