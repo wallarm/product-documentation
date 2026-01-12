@@ -49,6 +49,21 @@ To view the current configuration and perform changes, in Wallarm Console, go to
 
 [See details here →](sensitive-data.md#customizing-sensitive-data-detection)
 
+## Notifications
+
+You can setup API Discovery notifications to be sent to your personal email (the one you use to log in) and to any additional emails:
+
+1. Access Wallarm Console → **Configuration** → **Integrations** → **Email and messengers**:
+
+    * → **Personal email**, to setup notifications to your email
+    * → **Email report**, to setup notifications to additional emails
+
+        Learn more about working with [email integrations](../user-guides/settings/integrations/email.md).
+
+1. In the **API Discovery notifications** section select notifications you want to get (hourly or daily notifications on [new and changed](track-changes.md#highlighting-changes-in-api) endpoints).
+
+    ![API Discovery - email notification settings](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-notifications.png)
+
 ## Debug
 
 To get and analyze the API Discovery logs, you can read the log file `/opt/wallarm/var/log/wallarm/appstructure-out.log` on the Linux machine where the node is running.
