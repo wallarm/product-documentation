@@ -76,7 +76,6 @@ To check:
             "blocked_by_acl": 0,
             "blocked_by_antibot": 0,
             "acl_allow_list": 0,
-            "abnormal": 11,
             "tnt_errors": 0,
             "api_errors": 0,
             "requests_lost": 0,
