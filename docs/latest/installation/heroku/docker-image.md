@@ -339,7 +339,7 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
     ```dockerfile
     FROM ubuntu:22.04
 
-    ARG VERSION="6.8.1"
+    ARG VERSION="6.9.0"
 
     ENV PORT=3000
     ENV WALLARM_LABELS="group=heroku"
@@ -396,10 +396,10 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
 Execute the following commands within the previously created directory:
 
 ```
-docker build -t wallarm-heroku:6.8.1 .
+docker build -t wallarm-heroku:6.9.0 .
 docker login
-docker tag wallarm-heroku:6.8.1 <DOCKERHUB_USERNAME>/wallarm-heroku:6.8.1
-docker push <DOCKERHUB_USERNAME>/wallarm-heroku:6.8.1
+docker tag wallarm-heroku:6.9.0 <DOCKERHUB_USERNAME>/wallarm-heroku:6.9.0
+docker push <DOCKERHUB_USERNAME>/wallarm-heroku:6.9.0
 ```
 
 ## Step 3: Run the built Docker image on Heroku
@@ -410,7 +410,7 @@ To deploy the image on Heroku:
 1. Construct a `Dockerfile` which will include the installation of necessary dependencies specific to your app's runtime. For a Node.js application, use the following template:
 
     ```dockerfile
-    FROM <DOCKERHUB_USERNAME>/wallarm-heroku:6.8.1
+    FROM <DOCKERHUB_USERNAME>/wallarm-heroku:6.9.0
 
     ENV NODE_MAJOR=20
 

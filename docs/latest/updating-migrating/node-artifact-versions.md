@@ -17,6 +17,10 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.9.0 (2026-01-13)
+
+* Improved memory usage monitoring and prevention of resource exhaustion in Security Edge
+
 ### 6.8.1 (2025-12-24)
 
 * Fixed an issue where malformed fuzzing traffic could cause NGINX crashes, as observed in logs
@@ -482,6 +486,10 @@ new attack types in logging variables and search bars?
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.9.0 (2026-01-13)
+
+* Fixed the [CVE-2026-21441](https://scout.docker.com/vulnerabilities/id/CVE-2026-21441) vulnerability
 
 ### 6.8.1 (2025-12-24)
 
