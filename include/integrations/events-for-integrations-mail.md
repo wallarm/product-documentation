@@ -7,3 +7,6 @@
     * Daily critical security issues (new only) found by [all methods](../../../about-wallarm/detecting-vulnerabilities.md#detection-methods)
     * Daily security issues (new only) found by [all methods](../../../about-wallarm/detecting-vulnerabilities.md#detection-methods)
     * Weekly [AASM](../../../api-attack-surface/overview.md) statistics including security issues [found for the discovered hosts](../../../api-attack-surface/security-issues.md) (available with API Attack Surface [subscription plan](../../../../about-wallarm/subscription-plans/#api-attack-surface) only)
+* [API Discovery](../../../api-discovery/overview.md) notifications:
+    * Daily endpoint changes
+    * Hourly endpoint changes

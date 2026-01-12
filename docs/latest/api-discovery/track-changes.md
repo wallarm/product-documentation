@@ -32,6 +32,15 @@ In the **Status** column for endpoints and parameters, API Discovery provides da
 
 Use **Changed since** filter to only see endpoints changed in specific time period, for example, today.
 
+## Notifications
+
+You can [setup](setup.md#notifications) API Discovery notifications to be sent to your personal email (the one you use to log in) and to any additional emails:
+
+* Daily endpoint changes
+* Hourly endpoint changes
+
+The notification will include both changed and new endpoints. By default, the notification is disabled.
+
 <!--## Getting notified
 
 To get immediate notifications about changes in API to your messenger, SIEM or log management system, configure [triggers](../user-guides/triggers/triggers.md) with the **Changes in API** condition.

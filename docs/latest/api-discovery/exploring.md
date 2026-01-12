@@ -144,6 +144,15 @@ You can download the report on your API inventory in CSV format:
     !!! info "No parameter information"
         The report does not include the information on API endpoint parameters.
 
+## Notifications
+
+You can [setup](setup.md#notifications) API Discovery notifications to be sent to your personal email (the one you use to log in) and to any additional emails:
+
+* Daily endpoint changes
+* Hourly endpoint changes
+
+The notification will include both [changed and new](track-changes.md) endpoints. By default, the notification is disabled.
+
 <!--## Creating rules for API endpoints
 
 You can quickly create a new [custom rule](../user-guides/rules/rules.md) from any endpoint of API inventory: 
