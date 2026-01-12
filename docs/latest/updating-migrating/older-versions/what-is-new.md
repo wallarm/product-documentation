@@ -642,7 +642,7 @@ Now you can easily group node instances using one [**API token**](../../user-gui
 For example: 
 
 ```bash
-docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>' -p 80:80 wallarm/node:6.7.0
+docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>' -p 80:80 wallarm/node:6.9.0
 ```
 ...will place node instance into the `<GROUP>` instance group (existing, or, if does not exist, it will be created).
 
@@ -726,7 +726,7 @@ Wallarm Node now uses **wstore, a Wallarm-developed service**, instead of Tarant
     * The default `allow` value, specifying permitted IP addresses for the `/wallarm-status` service, is now 127.0.0.0/8 instead of 127.0.0.8/8.
 * [Kubernetes Ingress Controller](../../admin-en/installation-kubernetes-en.md):
     
-    * Tarantool is no longer a separate pod, wstore runs within the main `<CHART_NAME>-wallarm-ingress-controller-xxx` pod.
+    * wstore runs as a separate dedicated pod (`ingress-controller-wallarm-wstore-<suffix>`), replacing the previous Tarantool postanalytics component.
     * Helm values renamed: `controller.wallarm.tarantool` → `controller.wallarm.postanalytics`.
 * [Kubernetes Sidecar Controller](../../installation/kubernetes/sidecar-proxy/deployment.md):
 
