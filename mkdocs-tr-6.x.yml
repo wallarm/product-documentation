@@ -77,7 +77,6 @@ nav:
   - Etken Yapay Zeka:
     - Yapay Zeka Keşfi: agentic-ai/agentic-ai-discovery.md
     - Etken Yapay Zeka Koruması: agentic-ai/agentic-ai-protection.md
-    - Demo: agentic-ai/demo.md
   - API Keşfi:
     - Genel Bakış: api-discovery/overview.md
     - Kurulum: api-discovery/setup.md

@@ -78,7 +78,6 @@ nav:
   - エージェント型 AI:
     - AI ディスカバリ: agentic-ai/agentic-ai-discovery.md
     - エージェント型 AI 保護: agentic-ai/agentic-ai-protection.md
-    - デモ: agentic-ai/demo.md
   - API ディスカバリ:
     - 概要: api-discovery/overview.md
     - セットアップ: api-discovery/setup.md

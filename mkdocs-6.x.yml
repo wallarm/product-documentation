@@ -64,7 +64,6 @@ nav:
   - Agentic AI:
     - AI Discovery: agentic-ai/agentic-ai-discovery.md
     - Agentic AI Protection: agentic-ai/agentic-ai-protection.md
-    - Demo: agentic-ai/demo.md
   - API Discovery:
     - Overview: api-discovery/overview.md
     - Setup: api-discovery/setup.md
