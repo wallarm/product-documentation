@@ -1,1 +1,0 @@
---8<-- "latest/agentic-ai/demo.md"

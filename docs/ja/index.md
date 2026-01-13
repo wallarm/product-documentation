@@ -55,7 +55,6 @@ WallarmはAPIとAIエージェントに対してリアルタイムの保護を�
     <p><ul>
     <li><a href="./agentic-ai/agentic-ai-discovery/">AIディスカバリー</a></li>
     <li><a href="./agentic-ai/agentic-ai-protection/">エージェントAI保護（早期アクセス）</a></li>
-    <li><a href="./agentic-ai/demo/">デモ</a></li>
     </ul></p>
 </div>
 

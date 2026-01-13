@@ -75,7 +75,17 @@ nav:
   - Agentic AI:
     - AI Discovery: agentic-ai/agentic-ai-discovery.md
     - Agentic AI Protection: agentic-ai/agentic-ai-protection.md
-    - Demo: agentic-ai/demo.md
+  - API Discovery:
+    - Overview: api-discovery/overview.md
+    - Setup: api-discovery/setup.md
+    - Exploring API Inventory: api-discovery/exploring.md
+    - Tracking Changes in API: api-discovery/track-changes.md
+    - Sensitive Data Detection: api-discovery/sensitive-data.md
+    - Sensitive Business Flows: api-discovery/sbf.md
+    - Endpoint Risk Score: api-discovery/risk-score.md
+    - Shadow, Orphan, Zombie API: api-discovery/rogue-api.md
+    - BOLA Autoprotection: api-discovery/bola-protection.md
+    - Dashboard: api-discovery/dashboard.md
   - API Attack Surface:
     - Overview: api-attack-surface/overview.md
     - Setup: api-attack-surface/setup.md

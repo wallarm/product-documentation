@@ -899,3 +899,5 @@
 /4.10/api-attack-surface/ /4.10
 
 /installation/connectors/kong-api-gateway/ /installation/connectors/kong-ingress-controller/
+
+/agentic-ai/demo/ /agentic-ai/agentic-ai-protection/#demo

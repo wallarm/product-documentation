@@ -55,7 +55,6 @@ Wallarm, API’ler ve yapay zekâ ajanları için gerçek zamanlı koruma sağla
     <p><ul>
     <li><a href="./agentic-ai/agentic-ai-discovery/">Yapay Zekâ Keşfi</a></li>
     <li><a href="./agentic-ai/agentic-ai-protection/">Agentik Yapay Zekâ Koruması (Erken Erişim)</a></li>
-    <li><a href="./agentic-ai/demo/">Demonstrasyon</a></li>
     </ul></p>
 </div>
 
