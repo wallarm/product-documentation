@@ -17,9 +17,10 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
-### 6.9.0 (2026-01-13)
+### 6.9.0 (2026-01-14)
 
-* Improved memory usage monitoring and prevention of resource exhaustion in Security Edge
+* Increased the frequency of session updates sent to the Wallarm Cloud. Sessions now appear in the UI faster, closer to real time
+* Improved memory usage monitoring and prevention of resource exhaustion
 
 ### 6.8.1 (2025-12-24)
 
@@ -178,6 +179,11 @@ new attack types in logging variables and search bars?
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.9.0 (2026-01-14)
+
+* Increased the frequency of session updates sent to the Wallarm Cloud. Sessions now appear in the UI faster, closer to real time
+* Improved memory usage monitoring and prevention of resource exhaustion
 
 ### 6.8.1 (2025-12-24)
 
@@ -351,6 +357,11 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.9.0 (2026-01-14)
+
+* Increased the frequency of session updates sent to the Wallarm Cloud. Sessions now appear in the UI faster, closer to real time
+* Improved memory usage monitoring and prevention of resource exhaustion
+
 ### 6.8.1 (2025-12-24)
 
 * Fixed an issue where malformed fuzzing traffic could cause NGINX crashes, as observed in logs
@@ -487,9 +498,10 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](docker-container.md)
 
-### 6.9.0 (2026-01-13)
+### 6.9.0 (2026-01-14)
 
-* Fixed the [CVE-2026-21441](https://scout.docker.com/vulnerabilities/id/CVE-2026-21441) vulnerability
+* Increased the frequency of session updates sent to the Wallarm Cloud. Sessions now appear in the UI faster, closer to real time
+* Improved memory usage monitoring and prevention of resource exhaustion
 
 ### 6.8.1 (2025-12-24)
 
@@ -649,6 +661,11 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
+### 6.9.0 (2026-01-14)
+
+* Increased the frequency of session updates sent to the Wallarm Cloud. Sessions now appear in the UI faster, closer to real time
+* Improved memory usage monitoring and prevention of resource exhaustion
+
 ### 6.8.1 (2025-12-24)
 
 * Fixed an issue where malformed fuzzing traffic could cause NGINX crashes, as observed in logs
@@ -769,6 +786,11 @@ new attack types in logging variables and search bars?
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-9-0-20260113-150813 (2026-01-14)
+
+* Increased the frequency of session updates sent to the Wallarm Cloud. Sessions now appear in the UI faster, closer to real time
+* Improved memory usage monitoring and prevention of resource exhaustion
 
 ### wallarm-node-6-8-1-20251224-110807 (2025-12-24)
 
