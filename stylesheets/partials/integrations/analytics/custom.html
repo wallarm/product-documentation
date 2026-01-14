@@ -1,11 +1,7 @@
 {# stylesheets/partials/integrations/analytics/custom.html #}
 
 <script id="__analytics">
-(function () {
   // Run analytics ONLY on docs.wallarm.com
-  if (window.location.hostname !== "docs.wallarm.com") {
-    return;
-  }
 
   function __md_isAmplitudeAllowed() {
     // If Material helpers are not available yet, assume Amplitude is allowed (fallback)
@@ -262,8 +258,4 @@
     });
   }
 
-  // Start analytics + feedback wiring
-  __md_analytics();
-  __md_feedback();
-})();
 </script>
