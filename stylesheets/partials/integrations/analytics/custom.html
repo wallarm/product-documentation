@@ -65,7 +65,7 @@
     // Load Amplitude SDK (analytics-browser)
     var s = document.createElement("script");
     s.async = true;
-    s.src = "https://cdn.amplitude.com/libs/analytics-browser-2.31.3-min.js.gz";
+    s.src = "https://cdn.amplitude.com/libs/analytics-browser-2.33.1-min.js.gz";
     s.onload = function () {
       if (!window.amplitude) return;
 
@@ -78,7 +78,7 @@
       // Optional: Session Replay
       var r = document.createElement("script");
       r.async = true;
-      r.src = "https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.13.0-min.js.gz";
+      r.src = "https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.25.7-min.js.gz";
       r.onload = function () {
         try {
           if (window.sessionReplay && window.sessionReplay.plugin) {
