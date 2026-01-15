@@ -2,15 +2,11 @@
 [link-deployment-hybrid]:       ../installation/supported-deployment-options.md
 [link-deployment-on-prem]:      ../installation/on-premise/overview.md
 
-# Wallarm Platform Overview
+# Wallarm Platform Overview - to update
 
 In today's digital world, APIs face growing threats, especially with the rise of AI. Traditional security can overlook API vulnerabilities or be difficult to deploy. With Wallarm, you get a single platform for API protection and inventory observability across cloud-native and on-prem environments.
 
 Enterprises prefer Wallarm for its enhanced API security, easy deployment, and value. It combines API discovery, risk management, real-time protection, and testing with advanced API security capabilities.
-
-![Diagram](../images/about-wallarm-waf/overview/wallarm-features.png)
-
-Wallarm's functional areas align with [NIST cybersecurity framework (CSF)](https://www.nist.gov/cyberframework), ensuring comprehensive protection for our customers.
 
 ## Discover
 

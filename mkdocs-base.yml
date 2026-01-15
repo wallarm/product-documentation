@@ -15,8 +15,9 @@ plugins:
       minify_css: true
       js_files:
           - extra.js
-          # - feedback.js
+          - feedback.js
           - supported-platforms.js
+          - inkeep-widget.js
       css_files:
           - extra_new.css
           - supported-platforms.css
@@ -44,8 +45,14 @@ theme:
   palette:
     scheme: wallarm-palette
   features:
+    - navigation.tabs   
     - navigation.top
-    - navigation.prune
+    - navigation.expand
+    - navigation.footer
+    - navigation.path
+    - navigation.top    
+#    - navigation.prune 
+
     - content.code.copy
     - content.code.select
     - content.action.edit
@@ -56,7 +63,7 @@ theme:
   icon:
     repo: fontawesome/brands/github-alt
   font:
-    text: Sk Modernist
+    text: Schibsted Grotesk
     code: Roboto Mono
   playground_button_name: "Product tour"
   try_button_name: "Use for free"
@@ -81,7 +88,7 @@ extra:
   consent:
     cookies:
       analytics:
-        name: Amplitude Analytics
+        name: Google Analytics
         checked: true
     title: Cookie consent
     description: We use cookies to optimize our documentation and collect valuable feedback. Your consent helps us improve! Learn more in our <a href="https://www.wallarm.com/cookie-policy" target="_blank">Cookie policy</a>.
@@ -90,8 +97,8 @@ extra:
       - reject
       - manage
   analytics:
-    provider: custom
-    amplitude_api_key: 78e35700de65a613b46a06dafca5d5e7
+    provider: google
+    property: G-3Z9P1Z18D8
     feedback:
       title: Was this page helpful?
       ratings:
@@ -118,7 +125,8 @@ extra_css:
 
 extra_javascript:
   - 'extra.js'
-  # - 'feedback.js'
+  - 'feedback.js'
+  - 'inkeep-widget.js'
 
 markdown_extensions:
   - admonition
