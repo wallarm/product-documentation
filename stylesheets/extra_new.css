@@ -234,6 +234,13 @@ a.md-tabs__link:hover {
   width: 100%;
 }
 
+/* Version selector at bottom of nav */
+.md-nav--primary .versions-bottom {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(149, 157, 172, 0.24);
+}
+
 .md-nav--primary .versions-main {
   display: flex;
   justify-content: space-between;
@@ -275,6 +282,13 @@ a.md-tabs__link:hover {
 .md-nav--primary > ul > .md-nav__item--expanded > label {
   font-weight: bold;
 }
+
+/* Make 2nd level menu items (subsections) bold - both nested and non-nested */
+.md-nav--primary .md-nav[data-md-level="1"] > .md-nav__list > .md-nav__item > .md-nav__link,
+.md-nav--primary .md-nav[data-md-level="1"] > .md-nav__list > .md-nav__item > a.md-nav__link {
+  font-weight: 550;
+}
+
 
 .md-nav--primary .md-nav__item--expanded > .md-nav__link .navigation-arrow,
 .md-nav--primary .md-nav__item--active > .md-nav__link .navigation-arrow {
@@ -322,8 +336,8 @@ a.md-tabs__link:hover {
 .md-nav__link {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0px;
+  justify-content: flex-start;
+  gap: 8px;
 }
 
 .md-nav__item .md-nav__link--active {
@@ -1435,3 +1449,15 @@ html .md-footer .md-social a:hover {
   color: black;
   background-color: #F7F8F9;
 }
+
+/* Smooth scrolling for TOC anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
