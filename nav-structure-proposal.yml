@@ -1,11 +1,6 @@
-INHERIT: mkdocs-base.yml
-
-theme:
-  version: "6.x"
-  versionNative: "0.14.x+"
-
-docs_dir: docs/6.x
-site_dir: site
+# Wallarm Documentation - Proposed Navigation Structure
+# This file contains the nav section for mkdocs.yml
+# Copy the 'nav:' section below into your mkdocs.yml configuration
 
 nav:
   # ============================================================================
@@ -19,6 +14,17 @@ nav:
       - How Wallarm Works: about-wallarm/protecting-against-attacks.md
       - Deployment Best Practices: about-wallarm/deployment-best-practices.md
       - Shared Responsibility Model: about-wallarm/shared-responsibility.md
+
+    - Plans & Pricing:
+      - Subscription Plans: about-wallarm/subscription-plans.md
+      - WAAP Overview: about-wallarm/waap-overview.md
+      - API Protection Overview: about-wallarm/api-protection-overview.md
+
+    - Resources:
+      - What's New: news.md
+      - Glossary: glossary-en.md
+      - Data Retention Policy: about-wallarm/data-retention-policy.md
+      - SLA: sla.md
 
     - Video Guides: demo-videos/index.md
 
@@ -51,7 +57,6 @@ nav:
   # SECTION 3: API PROTECTION
   # ============================================================================
   - API Protection:
-    - API Protection Overview: about-wallarm/api-protection-overview.md
     - Protection Overview: about-wallarm/protecting-against-attacks.md
     - Attack & Vulnerability Types: attacks-vulns-list.md
 
@@ -104,9 +109,9 @@ nav:
       - AI Protection Overview: agentic-ai/agentic-ai-protection.md
 
   # ============================================================================
-  # SECTION 4: API SECURITY TESTING
+  # SECTION 4: TESTING
   # ============================================================================
-  - API Security Testing:
+  - Testing:
     - Security Testing Overview: vulnerability-detection/security-testing-overview.md
     - Detecting Vulnerabilities: about-wallarm/detecting-vulnerabilities.md
 
@@ -281,12 +286,7 @@ nav:
   # SECTION 7: PLATFORM MANAGEMENT
   # ============================================================================
   - Platform Management:
-    - Overview: platform-management/overview.md
     - Console Overview: user-guides/user-intro.md
-
-    - Plans & Pricing:
-      - Subscription Plans: about-wallarm/subscription-plans.md
-      - WAAP Overview: about-wallarm/waap-overview.md
 
     - Users & Access:
       - User Management: user-guides/settings/users.md
@@ -340,10 +340,7 @@ nav:
   # REFERENCE (Optional additional section)
   # ============================================================================
   - Reference:
-    - Overview: reference/overview.md
-    - What's New: news.md
     - API Reference: api/overview.md
     - Attack Types: attacks-vulns-list.md
     - Glossary: glossary-en.md
-    - Data Retention Policy: about-wallarm/data-retention-policy.md
     - SLA: sla.md

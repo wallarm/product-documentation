@@ -161,10 +161,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// Collapse expanded menu items when a new item is expanded
-var navClassName = ".md-nav__toggle";
-var navigationElements = document.querySelectorAll(navClassName);
+// Custom accordion behavior disabled - using MkDocs Material's native behavior
+// If you want to re-enable custom accordion (collapse siblings when expanding):
+// Uncomment the code below
 
+/*
 function getAllNavigationElements(element, selector){
   if(element.parentElement && element.parentElement.parentElement && element.parentElement.parentElement.children){
     let allChildren = element.parentElement.parentElement.children;
@@ -179,29 +180,17 @@ function getAllNavigationElements(element, selector){
   }
 }
 
-function removeAllActiveClasses() {
-  const activeElements = document.querySelectorAll('.md-nav__item--active');
-  activeElements.forEach(el => el.classList.remove('md-nav__item--active'));
-}
-
-navigationElements.forEach(el => {
-  el.addEventListener('change', function(){
-    removeAllActiveClasses();
-    getAllNavigationElements(this, navClassName);
-    if (this.checked) {
-      this.parentElement.classList.add('md-nav__item--expanded');
+document.addEventListener('change', function(event) {
+  if (event.target.matches('.md-nav__toggle')) {
+    getAllNavigationElements(event.target, '.md-nav__toggle');
+    if (event.target.checked) {
+      event.target.parentElement.classList.add('md-nav__item--expanded');
     } else {
-      this.parentElement.classList.remove('md-nav__item--expanded');
+      event.target.parentElement.classList.remove('md-nav__item--expanded');
     }
-  }, false);
-})
-
-document.addEventListener('DOMContentLoaded', (event) => {
-  let activeElement = document.querySelector('.md-nav__item--active');
-  if (activeElement) {
-    activeElement.classList.add('md-nav__item--expanded');
   }
-});
+}, false);
+*/
 
 
 // Expand and collapse supported platform cards on click
