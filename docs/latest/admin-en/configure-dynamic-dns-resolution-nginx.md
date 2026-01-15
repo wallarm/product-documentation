@@ -1,4 +1,4 @@
-# Configuring Dynamic DNS Resolution in NGINX
+# Configuring Dynamic DNS Resolution in NGINX Open Source and NGINX Plus
 
 This article explains the difference between static and dynamic DNS resolution in NGINX and how to configure dynamic DNS resolution.
 
