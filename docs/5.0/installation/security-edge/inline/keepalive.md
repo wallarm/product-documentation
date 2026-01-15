@@ -1,4 +1,4 @@
-# Custom Keepalive Settings <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Custom Keepalive Settings for Edge Nodes <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 Keepalive settings control how upstream connections are reused to improve performance in Edge Inline deployments.
 
