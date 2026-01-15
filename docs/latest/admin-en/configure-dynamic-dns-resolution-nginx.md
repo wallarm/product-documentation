@@ -38,6 +38,12 @@ To configure dynamic DNS resolution:
     resolver address [parameters];
     ```
 
+1. Define the name and size of the shared memory zone using the [`zone`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) directive. This keeps configuration and runtime state between worker processes:
+
+    ```bash
+    zone name [size];
+    ```
+
 1. (Optional) Set the resolver timeout using the [`resolver_timeout`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#resolver_timeout) directive:
 
     ```bash
@@ -51,6 +57,7 @@ http {
     resolver 192.0.2.1 valid=30s;
     resolver_timeout 10s;
     upstream backend {
+        zone backend 64k;
         server backend1.example.com resolve;
         server backend2.example.com resolve;
     }
