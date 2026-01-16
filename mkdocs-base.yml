@@ -59,7 +59,7 @@ theme:
   icon:
     repo: fontawesome/brands/github-alt
   font:
-    text: Sk Modernist
+    text: Schibsted Grotesk
     code: Roboto Mono
   playground_button_name: "Product tour"
   try_button_name: "Use for free"
