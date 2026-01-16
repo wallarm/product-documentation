@@ -203,6 +203,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
 });
 
+// Fix mobile navigation: uncheck non-active sections on mobile
+// This prevents the "Troubleshooting" section from always showing
+document.addEventListener('DOMContentLoaded', () => {
+  const isMobile = window.matchMedia('(max-width: 76.1875em)').matches;
+
+  if (isMobile) {
+    // Uncheck all navigation toggles that have data-md-state="indeterminate"
+    // These are the ones expanded by navigation.expand feature, not the active path
+    const indeterminateToggles = document.querySelectorAll('.md-nav__toggle[data-md-state="indeterminate"]');
+    indeterminateToggles.forEach(toggle => {
+      toggle.checked = false;
+    });
+  }
+});
+
 
 // Expand and collapse supported platform cards on click
 

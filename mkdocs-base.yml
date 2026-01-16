@@ -44,6 +44,9 @@ theme:
   palette:
     scheme: wallarm-palette
   features:
+    - navigation.tabs
+    - navigation.expand 
+    - navigation.path       
     - navigation.top
     - navigation.prune
     - content.code.copy
