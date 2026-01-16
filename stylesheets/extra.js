@@ -179,14 +179,8 @@ function getAllNavigationElements(element, selector){
   }
 }
 
-function removeAllActiveClasses() {
-  const activeElements = document.querySelectorAll('.md-nav__item--active');
-  activeElements.forEach(el => el.classList.remove('md-nav__item--active'));
-}
-
 navigationElements.forEach(el => {
   el.addEventListener('change', function(){
-    removeAllActiveClasses();
     getAllNavigationElements(this, navClassName);
     if (this.checked) {
       this.parentElement.classList.add('md-nav__item--expanded');
