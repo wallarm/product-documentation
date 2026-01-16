@@ -16,6 +16,7 @@ Using mitigation controls, you can enable and configure:
 * [Forced browsing protection](../api-protection/enumeration-attack-protection.md)
 * [Brute force protection](../api-protection/enumeration-attack-protection.md)
 * [DoS protection](../api-protection/dos-protection.md)
+* [Business logic abuse detection](../api-protection/business-logic-abuse-detection.md)
 * [File upload restriction policy](../api-protection/file-upload-restriction.md)
 
 ## Mitigation control branches
