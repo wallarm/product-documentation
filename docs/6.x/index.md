@@ -34,8 +34,9 @@ Wallarm is a unified platform that provides real-time API and AI security by det
     <li><a href="./api-discovery/overview/">Overview</a></li>
     <li><a href="./api-discovery/setup/">Setup & Configuration</a></li>
     <li><a href="./api-discovery/exploring/">Exploring Your APIs</a></li>
-    <li><a href="./api-discovery/risk-score/">Risk Analysis</a></li>
-    <li><a href="./api-discovery/sensitive-data/">Data Protection</a></li>
+    <li><a href="./api-discovery/risk-score/">Risk Score</a></li>
+    <li><a href="./api-discovery/rogue-api/">Rogue APIs (Shadow/Zombie)</a></li>
+    <li><a href="./api-discovery/sensitive-data/">Sensitive Data Detection</a></li>
     </ul></p>
 </div>
 
@@ -44,9 +45,10 @@ Wallarm is a unified platform that provides real-time API and AI security by det
     <p><ul>
     <li><a href="./about-wallarm/api-protection-overview/">Overview</a></li>
     <li><a href="./about-wallarm/waap-overview/">Threat Protection (WAAP)</a></li>
+    <li><a href="./api-sessions/overview/">API Sessions</a></li>
     <li><a href="./api-abuse-prevention/overview/">Bot Protection</a></li>
-    <li><a href="./api-specification-enforcement/overview/">Spec Enforcement</a></li>
-    <li><a href="./api-sessions/overview/">Session Security</a></li>
+    <li><a href="./api-specification-enforcement/overview/">API Spec Enforcement</a></li>
+    <li><a href="./about-wallarm/credential-stuffing/">Credential Stuffing</a></li>
     <li><a href="./user-guides/rules/rules/">Rules & Policies</a></li>
     </ul></p>
 </div>
@@ -82,6 +84,7 @@ Wallarm is a unified platform that provides real-time API and AI security by det
     <li><a href="./installation/supported-deployment-options/">Deployment Overview</a></li>
     <li><a href="./installation/security-edge/overview/">Security Edge (Managed)</a></li>
     <li><a href="./admin-en/installation-kubernetes-en/">Kubernetes</a></li>
+    <li><a href="./installation/cloud-platforms/aws/docker-container/">Cloud Platforms</a></li>
     <li><a href="./installation/connectors/overview/">Connectors</a></li>
     <li><a href="./installation/native-node/all-in-one/">Self-Hosted Node</a></li>
     <li><a href="./installation/oob/overview/">Out-of-Band</a></li>
@@ -93,8 +96,10 @@ Wallarm is a unified platform that provides real-time API and AI security by det
     <p><ul>
     <li><a href="./user-guides/settings/integrations/integrations-intro/">Overview</a></li>
     <li><a href="./user-guides/settings/integrations/email/">Messaging & Alerts</a></li>
+    <li><a href="./user-guides/settings/integrations/pagerduty/">Incident Management</a></li>
     <li><a href="./user-guides/settings/integrations/splunk/">SIEM & Analytics</a></li>
     <li><a href="./user-guides/settings/integrations/fluentd/">Log Collectors</a></li>
+    <li><a href="./user-guides/settings/integrations/amazon-s3/">Cloud Storage</a></li>
     <li><a href="./user-guides/settings/integrations/webhook/">Webhooks</a></li>
     </ul></p>
 </div>
@@ -104,9 +109,10 @@ Wallarm is a unified platform that provides real-time API and AI security by det
     <p><ul>
     <li><a href="./user-guides/dashboards/threat-prevention/">Dashboards</a></li>
     <li><a href="./user-guides/events/overview/">Monitoring & Events</a></li>
-    <li><a href="./user-guides/settings/users/">Users & Access</a></li>
     <li><a href="./user-guides/triggers/triggers/">Triggers & Alerts</a></li>
-    <li><a href="./about-wallarm/subscription-plans/">Plans & Pricing</a></li>
+    <li><a href="./user-guides/search-and-filters/use-search/">Search & Reports</a></li>
+    <li><a href="./user-guides/settings/users/">Users & Access</a></li>
+    <li><a href="./troubleshooting/overview/">Troubleshooting</a></li>
     </ul></p>
 </div>
 
