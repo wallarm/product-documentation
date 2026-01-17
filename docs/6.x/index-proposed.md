@@ -172,7 +172,6 @@ Wallarm is a unified platform that provides real-time API and AI security by det
 /* 4-column navigation grid */
 .navigation-4col {
     grid-template-columns: repeat(4, 1fr) !important;
-    margin-bottom: 24px;
 }
 
 /* 3-column navigation grid */
