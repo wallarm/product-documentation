@@ -55,7 +55,7 @@
 }
 
 .homepage .md-grid {
-  max-width: 1400px;
+  max-width: 1280px;
 }
 
 .md-typeset ol:not([hidden]), .md-typeset ul:not([hidden]) {
@@ -195,7 +195,8 @@ a.md-header__button.md-logo:after {
 /* Main */
 
 .homepage .md-content__inner h1, .homepage .md-content__inner h1 + p {
-  text-align: center;
+  text-align: left;
+  max-width: 700px;
 }
 
 /* Sidebars */
