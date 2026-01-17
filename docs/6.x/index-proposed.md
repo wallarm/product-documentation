@@ -43,85 +43,16 @@ Wallarm is a unified platform that provides real-time API and AI security by det
     <h3 class="icon-homepage api-threat-prevent">API Protection</h3>
     <p><ul>
     <li><a href="./about-wallarm/api-protection-overview/">Overview</a></li>
-    <li><a href="./api-specification-enforcement/overview/">API Specification Enforcement</a></li>
-    <li><a href="./admin-en/configuration-guides/protecting-against-bola/">BOLA Protection</a></li>
-    <li><a href="./api-abuse-prevention/overview/">API Abuse Prevention</a></li>
-    <li><a href="./about-wallarm/credential-stuffing/">Credential Stuffing Detection</a></li>
-    <li><a href="./api-protection/graphql-rule/">GraphQL API Protection</a></li>
-    <li><a href="./api-protection/enumeration-attack-protection/">Enumeration Attack Protection</a></li>
-    <li><a href="./api-protection/dos-protection/">DoS Protection</a></li>
-    <li><a href="./api-protection/business-logic-abuse-detection/">Business Logic Abuse Detection</a></li>
-    <li><a href="./api-protection/custom-request-anomaly/">Custom Request Anomaly Detection</a></li>
-    <li><a href="./about-wallarm/mitigation-controls-overview/">Mitigation Controls</a></li>
+    <li><a href="./about-wallarm/waap-overview/">Threat Protection (WAAP)</a></li>
+    <li><a href="./api-abuse-prevention/overview/">Bot Protection</a></li>
+    <li><a href="./api-specification-enforcement/overview/">Spec Enforcement</a></li>
+    <li><a href="./api-sessions/overview/">Session Security</a></li>
+    <li><a href="./user-guides/rules/rules/">Rules & Policies</a></li>
     </ul></p>
 </div>
 
 <div class="navigation-card">
     <h3 class="icon-homepage api-security-testing">API Security Testing</h3>
-    <p><ul>
-    <li><a href="./agentic-ai/agentic-ai-discovery/">AI Discovery</a></li>
-    <li><a href="./agentic-ai/agentic-ai-protection/">Agentic AI Protection</a></li>
-    <li><a href="./agentic-ai/ai-payload-inspection/">AI Payload Inspection</a></li>
-    </ul></p>
-</div>
-
-<div class="navigation-card">
-    <h3 class="icon-homepage api-discovery-title">API Discovery</h3>
-    <p><ul>
-    <li><a href="./api-discovery/overview/">Overview</a></li>
-    <li><a href="./api-discovery/overview/">Exploring API Inventory</a></li>
-    <li><a href="./api-discovery/track-changes/">Tracking Changes in API</a></li>
-    <li><a href="./api-discovery/sensitive-data/">Sensitive Data Detection</a></li>
-    <li><a href="./api-discovery/sbf/">Sensitive Business Flows</a></li>
-    <li><a href="./api-discovery/risk-score/">Endpoint Risk Score</a></li>
-    <li><a href="./api-discovery/rogue-api/">Shadow, Orphan, Zombie API</a></li>
-    </ul></p>
-</div>
-
-<div class="navigation-card">
-    <h3 class="icon-homepage vuln-title">API Attack Surface Management</h3>
-    <p><ul>
-    <li><a href="./api-attack-surface/overview/">Overview</a></li>
-    <li><a href="./api-attack-surface/api-surface/">API Attack Surface Discovery</a></li>
-    <li><a href="./api-attack-surface/security-issues/">Detecting Security Issues</a></li>
-    </ul></p>
-</div>
-
-<div class="navigation-card">
-    <h3 class="icon-homepage se-title">Security Edge</h3>
-    <p><ul>
-    <li><a href="./installation/security-edge/overview/">Overview</a></li>
-    <li><a href="./installation/security-edge/free-tier/">Free Tier</a></li>
-    <li><a href="./installation/security-edge/inline/deployment/">Security Edge Inline Deployment</a></li>
-    <li><a href="./installation/security-edge/se-connector/">Security Edge Connector Deployment</a></li>
-    </ul></p>
-</div>
-
-<div class="navigation-card">
-    <h3 class="icon-homepage deployment-title">All Deployment Options</h3>
-    <p><ul>
-    <li><a href="./installation/security-edge/overview/">Security Edge</a></li>
-    <li><a href="./installation/supported-deployment-options/">Self-Hosted Deployment</a></li>
-    <li><a href="./installation/on-premise/overview/">On-Premise</a></li>
-    <li><a href="./installation/connectors/overview/">Connector Deployment</a></li>
-    </ul></p>
-</div>
-
-<div class="navigation-card">
-    <h3 class="icon-homepage waap-title">Cloud-Native WAAP</h3>
-    <p><ul>
-    <li><a href="./about-wallarm/waap-overview/">Overview</a></li>
-    <li><a href="./admin-en/configuration-guides/protecting-against-ddos/">DDoS Protection</a></li>
-    <li><a href="./admin-en/configuration-guides/protecting-against-bruteforce/">Brute Force Protection</a></li>
-    <li><a href="./admin-en/configuration-guides/protecting-against-forcedbrowsing/">Forced Browsing Protection</a></li>
-    <li><a href="./user-guides/rules/rate-limiting/">Rate Limiting</a></li>    
-    <li><a href="./user-guides/rules/vpatch-rule/">Virtual Patching</a></li>
-    <li><a href="./user-guides/rules/regex-rule/">Custom Attack Detectors</a></li>
-    </ul></p>
-</div>
-
-<div class="navigation-card">
-    <h3 class="icon-homepage api-security-testing">Security Testing</h3>
     <p><ul>
     <li><a href="./vulnerability-detection/security-testing-overview/">Overview</a></li>
     <li><a href="./vulnerability-detection/threat-replay-testing/overview/">Threat Replay Testing</a></li>
@@ -241,7 +172,6 @@ Wallarm is a unified platform that provides real-time API and AI security by det
 /* 4-column navigation grid */
 .navigation-4col {
     grid-template-columns: repeat(4, 1fr) !important;
-    margin-bottom: 24px;
 }
 
 /* 3-column navigation grid */
