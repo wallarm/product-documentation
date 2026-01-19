@@ -18,8 +18,9 @@ nav:
       - Quick Start: quickstart/getting-started.md
 
     - Video Guides:
+      - Platform Overview: demo-videos/platform-overview.md
       - API Discovery Overview: demo-videos/api-discovery.md
-      - Shadow and Orphan API: demo-videos/shadow-api.md      
+      - Shadow and Orphan API: demo-videos/shadow-api.md
       - Analyzing CVEs and Attacks: demo-videos/events-inspection.md
       - API Abuse Prevention: demo-videos/api-abuse-prevention.md
 
@@ -28,7 +29,6 @@ nav:
   # ============================================================================
   - API Discovery:
     - Overview: api-discovery/overview.md
-    - Setup & Configuration: api-discovery/setup.md
 
     - Exploring Your APIs:
       - API Inventory: api-discovery/exploring.md
@@ -43,6 +43,8 @@ nav:
     - Data Protection:
       - Sensitive Data Detection: api-discovery/sensitive-data.md
       - BOLA Auto-Protection: api-discovery/bola-protection.md
+
+    - Setup & Configuration: api-discovery/setup.md
 
   # ============================================================================
   # SECTION 3: API PROTECTION
