@@ -91,7 +91,7 @@ Wallarm Cloud servers must meet the following requirements:
 * Static IP addresses (private, public, or both)
 * For production deployment:
 
-    * Redundant disk storage (hardware or software RAID1/5/6)
+    * Redundant disk storage (hardware or software RAID 1, 5, or 6)
     * Redundant server power suppliers
     * Redundant network interfaces (interface bonding)
 * Proper [network connectivity](#network)
