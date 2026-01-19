@@ -19,7 +19,7 @@ location / {
 
 ## Dynamic DNS resolution
 
-With [dynamic DNS resolution](https://blog.nginx.org/blog/dynamic-dns-resolution-open-sourced-in-nginx), NGINX periodically re-resolves hostnames at runtime, so it detects IP changes automatically without needing a restart or reload.
+With dynamic DNS resolution, NGINX periodically re-resolves hostnames at runtime, so it detects IP changes automatically without needing a restart or reload.
 
 !!! info "Open-source NGINX availability"
     Dynamic DNS resolution is available in open-source NGINX since version 1.27.3.
