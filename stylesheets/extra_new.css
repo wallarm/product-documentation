@@ -254,8 +254,19 @@ a.md-tabs__link:hover {
 .md-nav--primary > ul > .md-nav__item > .md-nav__link {
   padding-left: 7px;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 17px;
   margin-bottom: 8px;
+}
+
+/* Hide expand/collapse arrow for top-level nav items */
+.md-nav--primary > ul > .md-nav__item > label > .md-nav__icon {
+  display: none;
+}
+
+/* Increase icon size for top-level nav items to match larger font */
+.md-nav--primary > ul > .md-nav__item > label .md-nav__icon--left {
+  width: 18px;
+  height: 18px;
 }
 
 .md-nav--primary .md-nav__link {
@@ -281,6 +292,19 @@ a.md-tabs__link:hover {
 
 .md-nav--primary > ul > .md-nav__item--expanded {
   /* Grey background removed */
+}
+
+/* Remove any white background from top-level nav items */
+.md-nav--primary > ul > .md-nav__item,
+.md-nav--primary > ul > .md-nav__item > label,
+.md-nav--primary > ul > .md-nav__item > .md-nav__link,
+.md-nav--primary > ul > .md-nav__item:first-child,
+.md-nav--primary > ul > .md-nav__item:first-child > label,
+.md-nav--primary > ul > .md-nav__item:first-child > .md-nav__link,
+.md-nav--primary > ul > .md-nav__item > .md-nav {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
 }
 
 .md-nav--primary > ul > .md-nav__item--expanded > label {
@@ -330,6 +354,17 @@ a.md-tabs__link:hover {
   width: 100%;
   height: auto;
   fill: none;
+}
+
+/* Make all left nav icons orange */
+.md-nav--primary .md-nav__icon--left path,
+.md-nav--primary .md-nav__icon--left line,
+.md-nav--primary .md-nav__icon--left circle,
+.md-nav--primary .md-nav__icon--left rect {
+  stroke: #FC7303 !important;
+}
+.md-nav--primary .md-nav__icon--left path[fill]:not([fill="none"]) {
+  fill: #FC7303 !important;
 }
 
 
@@ -1022,10 +1057,34 @@ button.md-clipboard.md-icon {
 /* Search bar */
 .md-search__inner {
   width: 340px;
+  position: relative;
 }
 
 .md-search__form {
   border-radius: 3px;
+}
+
+/* Hotkey indicator for search field */
+.md-search__inner::after {
+  content: "/";
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #6B7280;
+  background-color: white;
+  border: 1px solid #D1D5DB;
+  border-radius: 4px;
+  padding: 2px 8px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Hide hotkey indicator when search is active/focused */
+.md-search__inner:focus-within::after,
+[data-md-toggle="search"]:checked ~ .md-header .md-search__inner::after {
+  display: none;
 }
 
 .md-search__input {

@@ -16,7 +16,7 @@ Wallarm is a unified platform that provides real-time API and AI security by det
         <p><ul>
         <li><a href="./about-wallarm/overview/">Platform Overview</a></li>
         <li><a href="./quickstart/getting-started/">Quick Start</a></li>
-        <li><a href="./demo-videos/">Video Guides</a></li>
+        <li><a href="./demo-videos/api-discovery/">Video Guides</a></li>
         </ul></p>
     </div>
     <div class="homepage-actions">
@@ -44,11 +44,11 @@ Wallarm is a unified platform that provides real-time API and AI security by det
     <h3 class="icon-homepage api-threat-prevent">API Protection</h3>
     <p><ul>
     <li><a href="./about-wallarm/api-protection-overview/">Overview</a></li>
-    <li><a href="./about-wallarm/waap-overview/">Threat Protection (WAAP)</a></li>
     <li><a href="./api-sessions/overview/">API Sessions</a></li>
-    <li><a href="./api-abuse-prevention/overview/">Bot Protection</a></li>
     <li><a href="./api-specification-enforcement/overview/">API Spec Enforcement</a></li>
+    <li><a href="./api-abuse-prevention/overview/">Bot Management</a></li>
     <li><a href="./about-wallarm/credential-stuffing/">Credential Stuffing</a></li>
+    <li><a href="./about-wallarm/waap-overview/">Threat Protection (WAAP)</a></li>    
     <li><a href="./user-guides/rules/rules/">Rules & Policies</a></li>
     </ul></p>
 </div>
@@ -64,7 +64,7 @@ Wallarm is a unified platform that provides real-time API and AI security by det
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage ai-security-title">AI Security</h3>
+    <h3 class="icon-homepage agent-ai-title">AI Security</h3>
     <p><ul>
     <li><a href="./agentic-ai/overview/">Overview</a></li>
     <li><a href="./agentic-ai/agentic-ai-discovery/">AI Agent Discovery</a></li>
@@ -184,6 +184,7 @@ Wallarm is a unified platform that provides real-time API and AI security by det
 /* 3-column navigation grid */
 .navigation-3col {
     grid-template-columns: repeat(3, 1fr) !important;
+    margin-bottom: 48px;
 }
 
 @media screen and (max-width: 1100px) {
