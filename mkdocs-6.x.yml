@@ -27,6 +27,7 @@ nav:
       - Threat Prevention: user-guides/dashboards/threat-prevention.md
       - API Discovery: user-guides/dashboards/api-discovery.md
       - OWASP API 2023: user-guides/dashboards/owasp-api-top-ten.md
+      - Business Intelligence: user-guides/dashboards/bi-dashboards.md
     - Attacks & Incidents:
       - Attack Analysis: user-guides/events/check-attack.md
       - Incident Analysis: user-guides/events/check-incident.md
