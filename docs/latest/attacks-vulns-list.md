@@ -74,7 +74,7 @@ This article lists and describes attacks and [vulnerabilities](about-wallarm/det
 
 ## Attack types
 
-Technically, all attacks that can be detected by Wallarm are divided into two types:
+Technically, all attacks that can be detected by Wallarm are divided into three types:
 
 * **Input validation attacks** are characterized by specific symbol combinations sent in the requests ([SQL injection](#sql-injection), [cross‑site scripting](#crosssite-scripting-xss), [remote code execution](#remote-code-execution-rce), [path traversal](#path-traversal) and others).
 
@@ -87,6 +87,13 @@ Technically, all attacks that can be detected by Wallarm are divided into two ty
 * **Behavioral attacks** are characterized by specific request syntax **and/or** specific correlation of request number and time between requests ([brute force](#brute-force-attack), [forced browsing](#forced-browsing), [BOLA](#broken-object-level-authorization-bola), [API abuse](#suspicious-api-activity), [business logic abuse](#business-logic-abuse), [credential stuffing](#credential-stuffing) and others).
 
     For behavioral attacks to be detected, corresponding tool should be properly configured.
+
+* **Agency-based attacks** are characterized by attempt to exploit an AI agent’s logic to leak system secrets, override safety guardrails, or trigger unauthorized or harmful actions in the related systems. Main attack vectors:
+
+    * **Direct interaction (simple chain)**: `Client <-> AI Agent (LLM Chatbot)` The user tries to manipulate the chatbot's internal logic or retrieve its system prompt directly through the chat interface.
+    * **Integrated exploitation (full-scale chain)**: `Client <-> AI Agent <-> MCP <-> Related System(s)` The user tricks the agent into using its Model Context Protocol (MCP) or other integrations to execute commands (like processing a refund or deleting data) in downstream databases or applications.
+
+    Examples: [System prompt retrieval](#system-prompt-retrieval), [prompt injection](#prompt-injection), [custom AI payload inspection](#custom-ai-payload-inspection).
 
 <a name="attack-det-methods"></a>[Handling](about-wallarm/protecting-against-attacks.md#attack-handling-process) of all attacks require [Wallarm filtering node](about-wallarm/overview.md#how-wallarm-works). However, as described above, methods of detection vary.
 
@@ -771,7 +778,83 @@ Note that in Wallarm, you can also configure **Schema-Based Testing** to detect 
 * **Threat modeling for "abuse cases"**: during design, don't just write "user stories"; write also "abuser stories."
 * **Enforce canonical sequences**: assign a unique "flow ID" or "nonce" to multi-step processes. For a sequence like Checkout → Payment → Success, the Success endpoint should only process the request if it receives a cryptographically signed token proving the Payment step was completed successfully.
 * **Transaction integrity and atomic operations**: ensure that related actions happen all at once or not at all. For instance, deducting a coupon and creating a discount must be one atomic database transaction so an attacker cannot interrupt the flow to keep the coupon after getting the discount.
-* **Strict input validation be**yond syntax: validate the semantics of data. For example, if a user submits a "quantity" of `-1` to get a refund added to their cart total, the backend must reject it, even if `-1` is technically a valid integer.
+* **Strict input validation beyond syntax**: validate the semantics of data. For example, if a user submits a "quantity" of `-1` to get a refund added to their cart total, the backend must reject it, even if `-1` is technically a valid integer.
+
+## Agency-based attacks
+
+### System prompt retrieval
+
+**Attack** [by](#attack-det-methods) MCL
+
+**LLM Code**: [LLM07](https://genai.owasp.org/llmrisk/llm072025-system-prompt-leakage/) from [2025 Top 10 for LLMs and Gen AI](https://genai.owasp.org/llm-top-10/)
+
+**Wallarm code:** `ai_prompt_retrieval`
+
+**Description:**
+
+Attempts to extract or reconstruct the AI's underlying prompt, system instructions, or configuration.
+
+**Required configuration:**
+
+Wallarm detects and mitigates **AI systepm prompt retrieval** only if it has one or more configured [AI payload inspection](agentic-ai/ai-payload-inspection.md) mitigation controls with the **System prompt retrieval** option selected.
+
+**In addition to Wallarm protection:**
+
+* **Separate sensitive data from system prompts**: avoid embedding any sensitive information (e.g. API keys, auth keys, database names, user roles, permission structure of the application) directly in the system prompts. Instead, externalize such information to the systems that the model does not directly access.
+* **Avoid reliance on system prompts for strict behavior control**: since LLMs are susceptible to other attacks like prompt injections which can alter the system prompt, it is recommended to avoid using system prompts to control the model behavior where possible. Instead, rely on systems outside of the LLM to ensure this behavior. For example, detecting and preventing harmful content should be done in external systems.
+* **Implement guardrails**: implement a system of guardrails outside of the LLM itself. While training particular behavior into a model can be effective, such as training it not to reveal its system prompt, it is not a guarantee that the model will always adhere to this. An independent system that can inspect the output to determine if the model is in compliance with expectations is preferable to system prompt instructions.
+* **Other measures** listed in [LLM07](https://genai.owasp.org/llmrisk/llm072025-system-prompt-leakage/) documentation.
+
+### Prompt injection
+
+**Attack** [by](#attack-det-methods) MCL
+
+**LLM Code**: [LLM01](https://genai.owasp.org/llmrisk/llm01-prompt-injection/) from [2025 Top 10 for LLMs and Gen AI](https://genai.owasp.org/llm-top-10/)
+
+**Wallarm code:** `ai_prompt_injection`
+
+**Description:**
+
+Attempts to extract or reconstruct the AI's underlying prompt, system instructions, or configuration.
+
+**Required configuration:**
+
+Wallarm detects and mitigates **AI prompt injection** only if it has one or more configured [AI payload inspection](agentic-ai/ai-payload-inspection.md) mitigation controls with the **Prompt injection** option selected.
+
+**In addition to Wallarm protection:**
+
+* **Constrain model behavior**: provide specific instructions about the model’s role, capabilities, and limitations within the system prompt. Enforce strict context adherence, limit responses to specific tasks or topics, and instruct the model to ignore attempts to modify core instructions.
+* **Implement input and output filtering**: define sensitive categories and construct rules for identifying and handling such content. Apply semantic filters and use string-checking to scan for non-allowed content. Evaluate responses using the RAG Triad: Assess context relevance, groundedness, and question/answer relevance to identify potentially malicious outputs.
+* **Enforce privilege control and least privilege access**: provide the application with its own API tokens for extensible functionality, and handle these functions in code rather than providing them to the model. Restrict the model’s access privileges to the minimum necessary for its intended operations.
+* **Other measures** listed in [LLM01](https://genai.owasp.org/llmrisk/llm01-prompt-injection/) documentation.
+
+### Custom AI payload inspection
+
+**Attack** [by](#attack-det-methods) MCL
+
+**LLM Code**: multiple codes from [2025 Top 10 for LLMs and Gen AI](https://genai.owasp.org/llm-top-10/)
+
+**Wallarm code:** `query_anomaly`
+
+**Description:**
+
+Multiple malicious anomalies in request to AI or its response, such as:
+
+* Payment bypass or manipulation
+* Unauthorized access
+* PII (personally identifiable information) harvesting
+* Content misuse
+* Any of these and others listed in [2025 Top 10 for LLMs and Gen AI](https://genai.owasp.org/llm-top-10/)
+* Any others not listed above
+
+**Required configuration:**
+
+Wallarm detects and mitigates **Custom malicious AI payload** only if it has one or more configured [AI payload inspection](agentic-ai/ai-payload-inspection.md) mitigation controls with the **Custom AI payload inspection** option selected.
+
+**In addition to Wallarm protection:**
+
+* Apply measures described in the corresponding section of [2025 Top 10 for LLMs and Gen AI](https://genai.owasp.org/llm-top-10/)
+* Apply other logically applicable measures depending on particular case
 
 ## GraphQL attacks
 
