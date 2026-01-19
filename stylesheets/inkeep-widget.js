@@ -17,8 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
   inkeepScript.defer = true;
   document.head.appendChild(inkeepScript);
 
-  // Configuration object
-  const config = {
+  // Base configuration
+  const baseConfig = {
     baseSettings: {
       apiKey: INKEEP_API_KEY,
       organizationId: INKEEP_ORG_ID,
@@ -49,6 +49,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   inkeepScript.addEventListener("load", () => {
     // Initialize the Chat Button (floating button)
-    Inkeep.ChatButton(config);
+    Inkeep.ChatButton(baseConfig);
+
+    // Initialize Modal for custom trigger (Ask AI button)
+    const modalWidget = Inkeep.ModalChat({
+      ...baseConfig,
+      modalSettings: {
+        isOpen: false,
+        onOpenChange: (isOpen) => {
+          modalWidget.update({ modalSettings: { isOpen } });
+        }
+      }
+    });
+
+    // Expose function to open the modal
+    window.openInkeepChat = function() {
+      modalWidget.update({ modalSettings: { isOpen: true } });
+    };
   });
 });

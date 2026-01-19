@@ -1,0 +1,1 @@
+--8<-- "latest/demo-videos/platform-overview.md"
