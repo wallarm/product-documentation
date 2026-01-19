@@ -25,6 +25,38 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+// Detect platform for search hotkey indicator
+(function() {
+  var platform = navigator.platform.toLowerCase();
+  if (platform.indexOf('win') !== -1) {
+    document.documentElement.classList.add('platform-windows');
+  } else if (platform.indexOf('linux') !== -1) {
+    document.documentElement.classList.add('platform-linux');
+  } else if (platform.indexOf('mac') !== -1) {
+    document.documentElement.classList.add('platform-mac');
+  }
+})();
+
+// Ctrl+K / Cmd+K keyboard shortcut for search (works across all keyboard layouts)
+document.addEventListener('keydown', function(e) {
+  // Check for Ctrl+K (Windows/Linux) or Cmd+K (Mac)
+  if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+    e.preventDefault();
+    var searchToggle = document.getElementById('__search');
+    if (searchToggle) {
+      searchToggle.checked = true;
+      // Focus the search input
+      setTimeout(function() {
+        var searchInput = document.querySelector('.md-search__input');
+        if (searchInput) {
+          searchInput.focus();
+          searchInput.select();
+        }
+      }, 100);
+    }
+  }
+});
+
 function injectScript(src, cb) {
   let script = document.createElement('script');
 
