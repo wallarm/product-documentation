@@ -1,0 +1,1 @@
+--8<-- "latest/installation/multi-tenant/configure-accounts.md"
