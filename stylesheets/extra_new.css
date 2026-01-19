@@ -1066,19 +1066,25 @@ button.md-clipboard.md-icon {
 
 /* Hotkey indicator for search field */
 .md-search__inner::after {
-  content: "/";
+  content: "⌘K";
   position: absolute;
   right: 10px;
   top: 10px;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
   color: #6B7280;
   background-color: white;
   border: 1px solid #D1D5DB;
   border-radius: 4px;
-  padding: 2px 8px;
+  padding: 2px 6px;
   pointer-events: none;
   z-index: 2;
+}
+
+/* Show Ctrl+K on non-Mac platforms */
+.platform-windows .md-search__inner::after,
+.platform-linux .md-search__inner::after {
+  content: "Ctrl K";
 }
 
 /* Hide hotkey indicator when search is active/focused */
