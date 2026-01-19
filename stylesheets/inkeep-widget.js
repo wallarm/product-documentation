@@ -38,11 +38,11 @@ document.addEventListener("DOMContentLoaded", () => {
     aiChatSettings: {
       chatSubjectName: 'Wallarm',
       botAvatarSrcUrl: BOT_AVATAR_URL,
-      quickQuestions: [
-        'How to setup API Discovery?',
-        'How to customize sensitive data detection?',
-        'How does the Vulnerability Scanner work?',
-        'How to enable JA3 fingerprinting?'
+      exampleQuestions: [
+        'I want to discover all my APIs and AI agents',
+        'I need to protect my APIs from attacks',
+        'I want to test my APIs for vulnerabilities',
+        'How do I deploy Wallarm protection?'
       ]
     }
   };
