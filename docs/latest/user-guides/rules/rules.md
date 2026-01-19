@@ -300,7 +300,7 @@ To test a regular expression, use the Wallarm **cpire** utility. Install it via 
     1. Download the Wallarm all-in-one installer if it is not downloaded yet:
 
         ```
-        curl -O https://meganode.wallarm.com/6.8/wallarm-6.9.0.x86_64-glibc.sh
+        curl -O https://meganode.wallarm.com/6.9/wallarm-6.9.0.x86_64-glibc.sh
         ```
     1. Install the Wallarm modules if they are not installed yet:
         
