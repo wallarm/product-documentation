@@ -10,6 +10,7 @@
   "api discovery": ".icons/material/api.svg",
   "api protection": ".icons/material/api-threat.svg",
   "agentic ai": ".icons/material/ai-prompt-attack.svg",
+  "ai security": ".icons/material/ai-prompt-attack.svg",
   "api security testing": ".icons/material/api-security.svg",
   "security testing": ".icons/material/api-security.svg",
   "cloud-native waap": ".icons/material/api-threat.svg",
@@ -105,12 +106,12 @@
     <!-- Render item with nested items -->
     <li class="{{ class }} md-nav__item--nested">
       <!-- Active checkbox expands items contained within nested section -->
+      <!-- Expand levels 1-2 by default, collapse level 3+ unless active -->
       {% set checked = "checked" if nav_item.active %}
-      {% if "navigation.expand" in features and not checked %}
+      {% if level <= 2 %}
         <input
           class="md-nav__toggle md-toggle"
           data-md-toggle="{{ path }}"
-          data-md-state="indeterminate"
           type="checkbox"
           id="{{ path }}"
           checked
