@@ -1151,7 +1151,7 @@ a.md-search-result__link:hover {
 }
 
 .navigation-card {
-  padding: 24px;
+  padding: 22px;
   border: 1px solid #DAE1EB;
   border-radius: 8px;
 }
@@ -1162,6 +1162,13 @@ a.md-search-result__link:hover {
   color: hsla(0, 0%, 0%, 1);
   margin-top: 0px;
   margin-bottom: 5px;
+}
+
+.navigation-card .card-description {
+  font-size: 14px;
+  color: #6B7280;
+  margin: 8px 0 12px 0;
+  line-height: 1.5;
 }
 
 .navigation-card p {
