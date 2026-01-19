@@ -1,3 +1,15 @@
+---
+search:
+  exclude: true
+hide:
+  - navigation
+  - toc
+  - feedback
+---
+
+<meta name="robots" content="noindex, noarchive, nofollow">
+
+
 # MuleSoft Flex for wizard
 
 The Wallarm Edge node can be connected to your MuleSoft Flex Gateway in either [synchronous](../inline/overview.md) and [asynchronous](../oob/overview.md) mode - without blocking any requests.

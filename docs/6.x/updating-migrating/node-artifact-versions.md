@@ -1,3 +1,5 @@
+[apifw-metrics]: ../admin-en/apifw-metrics.md
+
 # NGINX Node Artifact Versions and Changelog
 
 This document lists available  [versions](versioning-policy.md) of the [NGINX Wallarm Node](../installation/nginx-native-node-internals.md#nginx-node) 6.x in various form factors, helping you track releases and plan upgrades.

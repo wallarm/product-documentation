@@ -1,3 +1,15 @@
+---
+search:
+  exclude: true
+hide:
+  - navigation
+  - toc
+  - feedback
+---
+
+<meta name="robots" content="noindex, noarchive, nofollow">
+
+
 # Cloudfront for wizard
 
 You can connect the Wallarm Edge node to Amazon CloudFront to inspect traffic in either [synchronous](../inline/overview.md) or [asynchronous](../oob/overview.md) mode - without blocking any requests.

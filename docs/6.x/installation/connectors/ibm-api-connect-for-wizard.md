@@ -1,3 +1,15 @@
+---
+search:
+  exclude: true
+hide:
+  - navigation
+  - toc
+  - feedback
+---
+
+<meta name="robots" content="noindex, noarchive, nofollow">
+
+
 # IBM API Connect for wizard
 
 The Wallarm Edge node can be connected to your IBM DataPower in [synchronous](../inline/overview.md) mode to inspect traffic before it reaches the managed APIs - without blocking any requests.

@@ -1,3 +1,11 @@
+[sidecar-docs]: deployment.md
+[sidecar-arch-docs]: deployment.md#solution-architecture
+[sidecar-conf-area]: customization.md#configuration-area
+[wstore-memory-recommendations]: ../../../admin-en/configuration-guides/allocate-resources-for-node.md#wstore
+[single-split-deployment]: customization.md#single-and-split-deployment-of-containers
+[what-is-new-wstore]:      ../../../updating-migrating/what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics
+
+
 # Scaling and High Availability of Wallarm Sidecar
 
 This guide focuses on the nuances of scaling, High Availability (HA), and the correct allocation of resources for the [Wallarm Sidecar solution][sidecar-docs]. By configuring these effectively, you can enhance the reliability and performance of Wallarm Sidecar, ensuring minimal downtime and efficient request processing.

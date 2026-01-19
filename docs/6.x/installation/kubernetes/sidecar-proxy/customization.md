@@ -1,3 +1,12 @@
+[single-split-containers-img]:            ../../../images/waf-installation/kubernetes/sidecar-controller/single-split-deployment.png
+[port-forwarding-with-iptables-img]:      ../../../images/waf-installation/kubernetes/sidecar-controller/port-forwarding-with-iptables.png
+[port-forwarding-without-iptables-img]:   ../../../images/waf-installation/kubernetes/sidecar-controller/port-forwarding-without-iptables.png
+[allocate-resources-for-node-docs]:       ../../../admin-en/configuration-guides/allocate-resources-for-node.md
+[disable-acl-directive-docs]:             ../../../admin-en/configure-parameters-en.md#disable_acl
+[wallarm-attack-prevention-best-practices-docs]: ../../../quickstart/attack-prevention-best-practices.md
+[sidecar-upgrade-docs]:                   ../../../updating-migrating/sidecar-proxy.md
+
+
 # Customizing Wallarm Sidecar
 
 This article instructs you on safe and effective customization of the [Wallarm Kubernetes Sidecar solution](deployment.md) providing examples for some common customization use cases.

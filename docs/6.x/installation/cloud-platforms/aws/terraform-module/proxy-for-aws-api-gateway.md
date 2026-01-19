@@ -1,3 +1,5 @@
+[wallarm-proxy-for-aws-api-gateway-img]: ../../../../images/waf-installation/aws/terraform/wallarm-as-proxy-for-aws-api-gateway.png
+
 # Deploying Wallarm as Proxy for Amazon API Gateway
 
 This example demonstrates how to protect [Amazon API Gateway](https://aws.amazon.com/api-gateway/) with Wallarm deployed as an inline proxy to AWS Virtual Private Cloud (VPC) using the [Terraform module](https://registry.terraform.io/modules/wallarm/wallarm/aws/).

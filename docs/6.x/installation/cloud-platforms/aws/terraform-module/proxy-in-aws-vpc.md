@@ -1,3 +1,5 @@
+[wallarm-proxy-terraform-img]: ../../../../images/waf-installation/aws/terraform/wallarm-as-proxy.png
+
 # Deploying Wallarm as Proxy in AWS VPC
 
 This example demonstrates how to deploy Wallarm as an inline proxy to an existing AWS Virtual Private Cloud (VPC) using the [Terraform module](https://registry.terraform.io/modules/wallarm/wallarm/aws/).

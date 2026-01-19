@@ -1,3 +1,12 @@
+[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[custom-blocking-page-docs]:        ../../admin-en/configuration-guides/configure-block-page-and-code.md
+[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
+[multitenancy-overview]:            ../multi-tenant/overview.md
+[applications-docs]:                ../../user-guides/settings/applications.md
+[available-filtration-modes]:       ../../admin-en/configure-wallarm-mode.md#available-filtration-modes
+[ui-filtration-mode]:              ../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console
+
+
 # Wallarm Connector for Kong API Gateway
 
 To secure APIs managed by a standalone [Kong API Gateway](https://docs.konghq.com/gateway/latest/), Wallarm provides a connector implemented as a Lua plugin.

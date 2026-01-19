@@ -1,3 +1,5 @@
+[nginx-node-metrics]:  ../../admin-en/nginx-node-metrics.md
+
 # What is new in Wallarm node (if upgrading an EOL node)
 
 This page lists the changes available when upgrading the node of the deprecated version (3.6 and lower) up to version 5.0. Listed changes are available for both the regular (client) and multi-tenant Wallarm nodes. 

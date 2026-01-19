@@ -1,3 +1,15 @@
+---
+search:
+  exclude: true
+hide:
+  - navigation
+  - toc
+  - feedback
+---
+
+<meta name="robots" content="noindex, noarchive, nofollow">
+
+
 # MuleSoft Mule for wizard
 
 The Wallarm Edge node can be connected to your Mule Gateway in [synchronous](../inline/overview.md) mode to inspect traffic before it reaches Mule APIs - without blocking any requests.

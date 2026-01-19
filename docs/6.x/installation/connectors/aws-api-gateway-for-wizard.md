@@ -1,3 +1,14 @@
+---
+search:
+  exclude: true
+hide:
+  - navigation
+  - toc
+  - feedback
+---
+
+<meta name="robots" content="noindex, noarchive, nofollow">
+
 [api-discovery]:                ../../api-discovery/overview.md
 [api-inventory]:                ../../api-discovery/exploring.md
 [api-traffic]:                 ../../api-discovery/overview.md#noise-detection

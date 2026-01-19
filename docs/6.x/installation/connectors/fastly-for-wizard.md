@@ -1,3 +1,15 @@
+---
+search:
+  exclude: true
+hide:
+  - navigation
+  - toc
+  - feedback
+---
+
+<meta name="robots" content="noindex, noarchive, nofollow">
+
+
 # Fastly for wizard
 
 The Wallarm Edge node can be connected to Fastly running your APIs in either [synchronous](../inline/overview.md) or [asynchronous](../oob/overview.md) mode - without blocking any requests.
