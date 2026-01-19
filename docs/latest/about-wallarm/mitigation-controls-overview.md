@@ -18,6 +18,7 @@ Using mitigation controls, you can enable and configure:
 * [DoS protection](../api-protection/dos-protection.md)
 * [Business logic abuse detection](../api-protection/business-logic-abuse-detection.md)
 * [AI payload inspection](../agentic-ai/ai-payload-inspection.md)
+* [Custom request anomaly detection](../api-protection/custom-request-anomaly.md)
 * [File upload restriction policy](../api-protection/file-upload-restriction.md)
 
 ## Mitigation control branches

@@ -60,6 +60,7 @@ nav:
     - Enumeration Attack Protection: api-protection/enumeration-attack-protection.md
     - DoS Protection: api-protection/dos-protection.md
     - Business Logic Abuse: api-protection/business-logic-abuse-detection.md
+    - Custom Request Anomaly: api-protection/custom-request-anomaly.md
     - File Upload Restriction: api-protection/file-upload-restriction.md
     - Mitigation Controls: about-wallarm/mitigation-controls-overview.md
   - Agentic AI:

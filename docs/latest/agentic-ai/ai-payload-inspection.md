@@ -34,6 +34,8 @@ If decision is that yes, this is one of the listed anomalies, the corresponding 
 
 ## Creating and applying mitigation control
 
+### AI payload case
+
 To create and apply a new mitigation control:
 
 1. Proceed to Wallarm Console → **Mitigation Controls**.
@@ -46,6 +48,10 @@ To create and apply a new mitigation control:
 1. Click **Add**. The created control is displayed in the list. It immediately goes into action and performs in accordance with the selected **Mitigation mode**.
 
     You can temporarily turn off the control right after creation or at any moment later using the **On/Off** switcher.
+
+### Alternative case
+
+This mitigation control can also be used for [Custom Request Anomaly](../api-protection/custom-request-anomaly.md) detection.
 
 ## Configuration
 
@@ -121,7 +127,7 @@ Here, you select which LLM provider will perform the analysis. Available provide
 
 ### Mitigation mode
 
-Here you decide what to do when business logic abuse is detected: like in many other mitigation controls, you can set to just monitor or block - source IP or session.
+Here you decide what to do when malicious logic is detected in the prompt: like in many other mitigation controls, you can set to just monitor or block - source IP or session.
 
 In monitoring mode - the corresponding attacks will [show up](#viewing-detected-attacks) in **API Sessions**. You also have the Add IP to [graylist](../user-guides/ip-lists/overview.md) option.
 

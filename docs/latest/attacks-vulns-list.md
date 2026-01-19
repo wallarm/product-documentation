@@ -847,6 +847,9 @@ Multiple malicious anomalies in request to AI or its response, such as:
 * Any of these and others listed in [2025 Top 10 for LLMs and Gen AI](https://genai.owasp.org/llm-top-10/)
 * Any others not listed above
 
+!!! info "Alternative usage"
+    This attack type also marks found [custom request anomalies](api-protection/custom-request-anomaly.md) not related to Agentic AI.
+
 **Required configuration:**
 
 Wallarm detects and mitigates **Custom malicious AI payload** only if it has one or more configured [AI payload inspection](agentic-ai/ai-payload-inspection.md) mitigation controls with the **Custom AI payload inspection** option selected.
