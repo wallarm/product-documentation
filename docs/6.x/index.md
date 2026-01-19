@@ -21,7 +21,6 @@ Wallarm is a unified platform that provides real-time API and AI security by det
     </div>
     <div class="homepage-actions">
         <a href="#__search" class="homepage-btn homepage-btn-search">Search</a>
-        <button type="button" class="homepage-btn homepage-btn-ai" onclick="if(window.openInkeepChat) window.openInkeepChat();">Ask AI</button>
     </div>
 </div>
 
@@ -220,21 +219,6 @@ Wallarm is a unified platform that provides real-time API and AI security by det
 .homepage-btn-search:hover {
     background-color: #4B5563;
     color: white;
-    text-decoration: none;
-}
-
-.homepage-btn-ai {
-    background-color: white;
-    color: #374151;
-    border: 1px solid #D1D5DB;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: inherit;
-}
-
-.homepage-btn-ai:hover {
-    background-color: #F9FAFB;
-    color: #374151;
     text-decoration: none;
 }
 
