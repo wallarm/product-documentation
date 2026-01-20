@@ -12,7 +12,7 @@ Wallarm is a unified platform that provides real-time API and AI security by det
 <!-- Row 1: Introduction + Search/AI Actions -->
 <div class="navigation navigation-2col">
     <div class="navigation-card homepage-intro">
-        <h3 class="icon-homepage quick-start-title">Introduction</h3>
+        <h3 class="icon-homepage quick-start-title"><a href="./about-wallarm/overview/">Introduction <span class="card-arrow">→</span></a></h3>
         <p class="card-description">Get started with the Wallarm platform and learn the fundamentals.</p>
         <p><ul>
         <li><a href="./about-wallarm/overview/">Platform Overview</a></li>
@@ -37,10 +37,9 @@ Wallarm is a unified platform that provides real-time API and AI security by det
 <div class="navigation navigation-4col">
 
 <div class="navigation-card">
-    <h3 class="icon-homepage api-discovery-title">API Discovery</h3>
+    <h3 class="icon-homepage api-discovery-title"><a href="./api-discovery/overview/">API Discovery <span class="card-arrow">→</span></a></h3>
     <p class="card-description">Catalog your APIs/MCPs/agents, assosiated risks and sensisitve data flows.</p>
     <p><ul>
-    <li><a href="./api-discovery/overview/">Overview</a></li>
     <li><a href="./api-discovery/exploring/">Exploring Your APIs</a></li>
     <li><a href="./api-discovery/risk-score/">Risk Score</a></li>
     <li><a href="./api-discovery/rogue-api/">Rogue APIs (Shadow/Zombie)</a></li>
@@ -50,10 +49,9 @@ Wallarm is a unified platform that provides real-time API and AI security by det
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage api-threat-prevent">API Protection</h3>
+    <h3 class="icon-homepage api-threat-prevent"><a href="./about-wallarm/api-protection-overview/">API Protection <span class="card-arrow">→</span></a></h3>
     <p class="card-description">Block attacks, bots, and abuse in real-time with intelligent threat detection.</p>
     <p><ul>
-    <li><a href="./about-wallarm/api-protection-overview/">Overview</a></li>
     <li><a href="./api-sessions/overview/">API Sessions</a></li>
     <li><a href="./api-specification-enforcement/overview/">API Spec Enforcement</a></li>
     <li><a href="./api-abuse-prevention/overview/">Bot Management</a></li>
@@ -64,10 +62,9 @@ Wallarm is a unified platform that provides real-time API and AI security by det
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage api-security-testing">API Security Testing</h3>
+    <h3 class="icon-homepage api-security-testing"><a href="./vulnerability-detection/security-testing-overview/">API Security Testing <span class="card-arrow">→</span></a></h3>
     <p class="card-description">Find vulnerabilities before attackers do with automated security testing.</p>
     <p><ul>
-    <li><a href="./vulnerability-detection/security-testing-overview/">Overview</a></li>
     <li><a href="./vulnerability-detection/threat-replay-testing/overview/">Threat Replay Testing</a></li>
     <li><a href="./vulnerability-detection/schema-based-testing/overview/">Schema-Based Testing</a></li>
     <li><a href="./api-attack-surface/overview/">Attack Surface (AASM)</a></li>
@@ -75,10 +72,9 @@ Wallarm is a unified platform that provides real-time API and AI security by det
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage agent-ai-title">AI Security</h3>
+    <h3 class="icon-homepage agent-ai-title"><a href="./agentic-ai/overview/">AI Security <span class="card-arrow">→</span></a></h3>
     <p class="card-description">Discover and protect AI workloads from prompt injection and other threats.</p>
     <p><ul>
-    <li><a href="./agentic-ai/overview/">Overview</a></li>
     <li><a href="./agentic-ai/agentic-ai-discovery/">AI Agent Discovery</a></li>
     <li><a href="./agentic-ai/agentic-ai-protection/">AI Agent Protection</a></li>
     <li><a href="./agentic-ai/demo/">Demo</a></li>
@@ -91,10 +87,9 @@ Wallarm is a unified platform that provides real-time API and AI security by det
 <div class="navigation navigation-3col">
 
 <div class="navigation-card">
-    <h3 class="icon-homepage deployment-title">Deployment</h3>
+    <h3 class="icon-homepage deployment-title"><a href="./installation/supported-deployment-options/">Deployment <span class="card-arrow">→</span></a></h3>
     <p class="card-description">Deploy Wallarm using managed, self-hosted, or connector-based options.</p>
     <p><ul>
-    <li><a href="./installation/supported-deployment-options/">Deployment Overview</a></li>
     <li><a href="./installation/security-edge/overview/">Security Edge (Managed)</a></li>
     <li><a href="./admin-en/installation-kubernetes-en/">Kubernetes</a></li>
     <li><a href="./installation/cloud-platforms/aws/docker-container/">Cloud Platforms</a></li>
@@ -105,10 +100,9 @@ Wallarm is a unified platform that provides real-time API and AI security by det
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage integration-title">Integrations</h3>
+    <h3 class="icon-homepage integration-title"><a href="./user-guides/settings/integrations/integrations-intro/">Integrations <span class="card-arrow">→</span></a></h3>
     <p class="card-description">Connect Wallarm with your existing security tools, SIEMs, and alerting systems.</p>
     <p><ul>
-    <li><a href="./user-guides/settings/integrations/integrations-intro/">Overview</a></li>
     <li><a href="./user-guides/settings/integrations/email/">Messaging & Alerts</a></li>
     <li><a href="./user-guides/settings/integrations/pagerduty/">Incident Management</a></li>
     <li><a href="./user-guides/settings/integrations/splunk/">SIEM & Analytics</a></li>
@@ -119,10 +113,9 @@ Wallarm is a unified platform that provides real-time API and AI security by det
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage user-management-title">Platform Management</h3>
+    <h3 class="icon-homepage user-management-title"><a href="./user-guides/dashboards/threat-prevention/">Platform Management <span class="card-arrow">→</span></a></h3>
     <p class="card-description">Monitor threats, configure alerts, and manage users and access controls.</p>
     <p><ul>
-    <li><a href="./user-guides/dashboards/threat-prevention/">Dashboards</a></li>
     <li><a href="./user-guides/events/overview/">Monitoring & Events</a></li>
     <li><a href="./user-guides/triggers/triggers/">Triggers & Alerts</a></li>
     <li><a href="./user-guides/search-and-filters/use-search/">Search & Reports</a></li>
@@ -168,6 +161,39 @@ Wallarm is a unified platform that provides real-time API and AI security by det
     flex-direction: row;
     gap: 8px;
     align-self: center;
+}
+
+/* Card title arrow */
+.card-arrow {
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.navigation-card:hover .card-arrow {
+    opacity: 1;
+    transform: translateX(3px);
+}
+
+/* Make entire card clickable via stretched link */
+.navigation-card {
+    position: relative;
+}
+
+.navigation-card h3 a::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+}
+
+/* Keep embedded links clickable above the stretched link */
+.navigation-card ul a {
+    position: relative;
+    z-index: 1;
 }
 
 /* 2-column navigation grid for Introduction */
