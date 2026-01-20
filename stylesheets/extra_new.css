@@ -215,16 +215,9 @@ a.md-header__button.md-logo:after {
 .md-tabs__link {
   opacity: 100;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
-.md-tabs__link--active, .md-tabs__link:hover {
-  color: #FC7303;
-}
-
-.md-tabs__link--active {
-  font-weight: bold;
-}
 
 a.md-tabs__link:hover {
   transition: color 0.3s ease;
@@ -1537,4 +1530,14 @@ html {
   }
 }
 
+/* Active tab highlight in top navigation */
+.md-tabs__item--active .md-tabs__link {
+  border-bottom: 1px solid #000;
+}
+
+/* Hover effect for top navigation tabs */
+.md-tabs__link:hover {
+  color: inherit !important;
+  border-bottom: 1px solid #000;
+}
 
