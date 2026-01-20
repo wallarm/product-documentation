@@ -6,7 +6,7 @@ In Wallarm, you have the ability to build and customize your own dashboards. Thi
 
 BI dashboards require:
 
-* The [Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription plan
+* The [Advanced API Security](../../about-wallarm/subscription-plans.md#core-subscription-plans) subscription plan
 * Properly configured [API Sessions](../../api-sessions/overview.md) (data source for all dashboards)
 
 ## Adding dashboards
