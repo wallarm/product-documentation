@@ -21,6 +21,7 @@ new attack types in logging variables and search bars?
 
 * Increased the frequency of session updates sent to the Wallarm Cloud. Sessions now appear in the UI faster, closer to real time
 * Improved memory usage monitoring and prevention of resource exhaustion
+* Added support for NGINX stable 1.28.1
 * Fixed the [CVE-2026-21441](https://scout.docker.com/vulnerabilities/id/CVE-2026-21441) vulnerability
 
 ### 6.8.1 (2025-12-24)
