@@ -1541,9 +1541,3 @@ html {
   border-bottom: 1px solid #000;
 }
 
-/* Solid background for sticky nav section labels */
-.md-nav__item--nested > .md-nav__link {
-  background: white;
-  z-index: 1;
-}
-
