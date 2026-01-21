@@ -160,6 +160,38 @@ div[data-md-component="announce"] {
   font-size: 16px;
 }
 
+/* Header Ask AI button */
+.header-ask-ai-btn {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  margin-left: 8px;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.header-ask-ai-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.header-ask-ai-btn svg {
+  flex-shrink: 0;
+}
+
+.header-ask-ai-btn span {
+  flex-shrink: 0;
+}
+
 .back-wallarmcom {
   display: block;
   position: absolute;
