@@ -17,7 +17,9 @@ See [possible Wallarm configuration](#detection-prompt-and-context-window-for-an
 
 ## Availability
 
-This functionality is available in **Free Tier** subscription. If you utilize other [subscriptions](../about-wallarm/subscription-plans.md), contact [Wallarm Support team](https://support.wallarm.com) to get it.
+* This functionality is available in **Free Tier** subscription.
+* If you utilize other [subscriptions](../about-wallarm/subscription-plans.md), contact [Wallarm Support team](https://support.wallarm.com) to get it.
+* Requires [NGINX node](../installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or higher or [Native node](../installation/nginx-native-node-internals.md#native-node) 0.14.1 or higher.
 
 ## How detection works
 
@@ -32,6 +34,9 @@ The business logic abuse is not detected by default and requires configuration. 
 If decision is that yes, this is an attempt to abuse business logic, the corresponding requests in **API Sessions** are [marked](#viewing-detected-attacks) as part of the [**Custom logic abuse** attack](../attacks-vulns-list.md#custom-logic-abuse) and processed due to the selected mitigation mode.
 
 ## Creating and applying mitigation control
+
+!!! tip ""
+    Requires [NGINX node](../installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or higher or [Native node](../installation/nginx-native-node-internals.md#native-node) 0.14.1 or higher.
 
 To create and apply a new mitigation control:
 

@@ -20,7 +20,9 @@ See [possible Wallarm configuration](#prompt-attack-types) for these cases.
 
 ## Availability
 
-This functionality is available in **Free Tier** subscription. If you utilize other [subscriptions](../about-wallarm/subscription-plans.md), contact [Wallarm Support team](https://support.wallarm.com) to get it.
+* This functionality is available in **Free Tier** subscription.
+* If you utilize other [subscriptions](../about-wallarm/subscription-plans.md), contact [Wallarm Support team](https://support.wallarm.com) to get it.
+* Requires [NGINX node](../installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or higher or [Native node](../installation/nginx-native-node-internals.md#native-node) 0.14.1 or higher.
 
 ## How detection works
 
@@ -33,6 +35,9 @@ The AI payload inspection is not performed by default and requires configuration
 If decision is that yes, this is one of the listed anomalies, the corresponding requests in **API Sessions** are [marked](#viewing-detected-attacks) as part of the [corresponding attack](#viewing-detected-attacks) and processed due to the selected mitigation mode.
 
 ## Creating and applying mitigation control
+
+!!! tip ""
+    Requires [NGINX node](../installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or higher or [Native node](../installation/nginx-native-node-internals.md#native-node) 0.14.1 or higher.
 
 ### AI payload case
 

@@ -767,7 +767,7 @@ Detecting **business logic abuse** is often more difficult than detecting tradit
 
 **Required configuration:**
 
-Wallarm detects and mitigates **Custom logic abuse** only if it has one or more configured [AI Business logic abuse detection](api-protection/business-logic-abuse-detection.md) mitigation controls.
+Wallarm detects and mitigates **Custom logic abuse** only if it has one or more configured [AI Business logic abuse detection](api-protection/business-logic-abuse-detection.md) mitigation controls (requires [NGINX node](installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or [Native node](installation/nginx-native-node-internals.md#native-node) 0.14.1).
 
 Note that in Wallarm, you can also configure **Schema-Based Testing** to detect [business logic vulnerabilities](#business-logic) at the early stages of application development.
 
@@ -796,7 +796,7 @@ Attempts to extract or reconstruct the AI's underlying prompt, system instructio
 
 **Required configuration:**
 
-Wallarm detects and mitigates **AI systepm prompt retrieval** only if it has one or more configured [AI payload inspection](agentic-ai/ai-payload-inspection.md) mitigation controls with the **System prompt retrieval** option selected.
+Wallarm detects and mitigates **AI systepm prompt retrieval** only if it has one or more configured [AI payload inspection](agentic-ai/ai-payload-inspection.md) mitigation controls with the **System prompt retrieval** option selected (requires [NGINX node](installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or [Native node](installation/nginx-native-node-internals.md#native-node) 0.14.1).
 
 **In addition to Wallarm protection:**
 
@@ -819,7 +819,7 @@ Attempts to extract or reconstruct the AI's underlying prompt, system instructio
 
 **Required configuration:**
 
-Wallarm detects and mitigates **AI prompt injection** only if it has one or more configured [AI payload inspection](agentic-ai/ai-payload-inspection.md) mitigation controls with the **Prompt injection** option selected.
+Wallarm detects and mitigates **AI prompt injection** only if it has one or more configured [AI payload inspection](agentic-ai/ai-payload-inspection.md) mitigation controls with the **Prompt injection** option selected (requires [NGINX node](installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or [Native node](installation/nginx-native-node-internals.md#native-node) 0.14.1).
 
 **In addition to Wallarm protection:**
 
@@ -852,7 +852,7 @@ Multiple malicious anomalies in request to AI or its response, such as:
 
 **Required configuration:**
 
-Wallarm detects and mitigates **Custom malicious AI payload** only if it has one or more configured [AI payload inspection](agentic-ai/ai-payload-inspection.md) mitigation controls with the **Custom AI payload inspection** option selected.
+Wallarm detects and mitigates **Custom malicious AI payload** only if it has one or more configured [AI payload inspection](agentic-ai/ai-payload-inspection.md) mitigation controls with the **Custom AI payload inspection** option selected (requires [NGINX node](installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or [Native node](installation/nginx-native-node-internals.md#native-node) 0.14.1).
 
 **In addition to Wallarm protection:**
 
