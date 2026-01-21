@@ -148,6 +148,23 @@ You can associate sessions with sensitive business flows. To do so, in Wallarm C
 ![!API Sessions - sensitive business flows](../images/api-sessions/api-sessions-sbf-select.png)
 -->
 
+### Simplified selection
+
+In API Sessions, selecting parameters is simplified compared to how they are selected in [Rules](../user-guides/rules/rules.md):
+
+* You always start with selecting `Request` or `Response`
+* Instead of the `post` tag to mark body, you directly select `Body`
+* Instead of `hush` tag for values (as opposite to arrays), you select `Property`
+* API Sessions provide "live" request preview to the right structure you specified
+
+For example, what in Rules would be:
+
+![!Rules - parameter selection as opposed to API Sessions](../images/api-sessions/rules-parameters-example-request.png)
+
+...in API Sessions will be:
+
+![!API Sessions - context parameters - example - request](../images/api-sessions/api-sessions-context-parameters-example-request.png)
+
 ### Users and roles
 
 You can highlight session parameters, that should be used for naming the session user and its role. To do so, in Wallarm Console → **API Sessions** → **Session context parameters**, add your parameter, then from **Type**, select `User` or `Role`.
