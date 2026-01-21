@@ -53,6 +53,7 @@ nav:
   # ============================================================================
   - API Protection:
     - API Protection Overview: about-wallarm/api-protection-overview.md
+    - Best Practices: quickstart/attack-prevention-best-practices.md
 
     - API Session Security:
       - API Sessions Overview: api-sessions/overview.md
@@ -262,9 +263,7 @@ nav:
 
     - Out-of-Band (Traffic Mirror):
       - Overview: installation/oob/overview.md
-      - TCP Mirror:
-        - Deployment: installation/oob/tcp-traffic-mirror/deployment.md
-        - Configuration: installation/oob/tcp-traffic-mirror/configuration.md
+      - TCP Mirror Analysis: installation/oob/tcp-traffic-mirror/deployment.md
 
     - On-Premise:
       - Overview: installation/on-premise/overview.md
@@ -426,11 +425,14 @@ nav:
 
     - Troubleshooting:
       - Overview: troubleshooting/overview.md
-      - Common Issues: troubleshooting/common-issues.md
       - Detection and Blocking: troubleshooting/detection-and-blocking.md
-      - Detection Tools Tuning: troubleshooting/detection-tools-tuning.md
-      - Performance Issues: troubleshooting/performance.md
+      - Detection Tools: troubleshooting/detection-tools-tuning.md
+      - Performance: troubleshooting/performance.md
       - Real Client IP: admin-en/using-proxy-or-balancer-en.md
+      - End User Problems: faq/common-errors-after-installation.md
+      - Wallarm Ingress Controller: faq/ingress-installation.md
+      - Wallarm Cloud is Down: faq/wallarm-cloud-down.md
+      - OWASP Dashboard Alerts: faq/node-issues-on-owasp-dashboards.md
       - NGINX Error Log: troubleshooting/wallarm-issues-in-nginx-error-log.md
       - Dynamic DNS in NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
 
@@ -464,9 +466,3 @@ nav:
     - Data Retention Policy: about-wallarm/data-retention-policy.md
     - Shared Responsibility Model: about-wallarm/shared-responsibility.md
     - SLA: sla.md
-
-    - FAQ:
-      - Post-Installation Errors: faq/common-errors-after-installation.md
-      - Ingress Installation: faq/ingress-installation.md
-      - Wallarm Cloud Down: faq/wallarm-cloud-down.md
-      - OWASP Dashboard Alerts: faq/node-issues-on-owasp-dashboards.md
