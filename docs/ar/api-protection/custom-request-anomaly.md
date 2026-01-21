@@ -1,0 +1,1 @@
+--8<-- "latest-ar/api-protection/custom-request-anomaly.md"
