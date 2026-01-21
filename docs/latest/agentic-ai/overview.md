@@ -47,7 +47,6 @@ Wallarm addresses AI security through two complementary capabilities:
 
 * Explore the [AI Discovery](agentic-ai-discovery.md) documentation to identify AI endpoints in your API inventory
 * Learn about [AI Protection](agentic-ai-protection.md) capabilities and threat detection
-* Try the interactive [demo](demo.md) to see AI protection in action
 
 ## Learn More
 
