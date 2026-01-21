@@ -156,13 +156,15 @@ Everything you need to discover your APIs, MCPs, and AI agents, protect them fro
 </script>
 
 <style>
-/* Hide search in header on homepage, show when activated */
-.md-search {
-    display: none;
+/* Hide search and Ask AI button in header on homepage */
+.md-search,
+.md-header .header-ask-ai-btn {
+    display: none !important;
 }
 
+/* Show search when activated */
 [data-md-toggle="search"]:checked ~ .md-header .md-search {
-    display: block;
+    display: block !important;
 }
 
 /* Homepage actions (Search + Ask AI buttons) */
