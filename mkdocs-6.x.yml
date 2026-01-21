@@ -20,9 +20,11 @@ nav:
     - Video Guides:
       - Platform Overview: demo-videos/platform-overview.md
       - API Discovery Overview: demo-videos/api-discovery.md
+      - API Leaks Overview: demo-videos/api-leaks.md
       - Shadow and Orphan API: demo-videos/shadow-api.md
       - Analyzing CVEs and Attacks: demo-videos/events-inspection.md
       - API Abuse Prevention: demo-videos/api-abuse-prevention.md
+      - Platform Settings: demo-videos/overview.md      
 
   # ============================================================================
   # SECTION 2: API DISCOVERY
@@ -82,6 +84,7 @@ nav:
 
     - Threat Protection (WAAP):
       - WAAP Overview: about-wallarm/waap-overview.md
+      - Best Practices: quickstart/attack-prevention-best-practices.md
       - Threat Protection Overview: about-wallarm/protecting-against-attacks.md        
       - Brute Force Protection: admin-en/configuration-guides/protecting-against-bruteforce.md
       - Forced Browsing Protection: admin-en/configuration-guides/protecting-against-forcedbrowsing.md
@@ -190,6 +193,8 @@ nav:
         - Terraform Module: installation/cloud-platforms/aws/terraform-module/overview.md
         - Terraform for VPC: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
         - Terraform for API Gateway: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
+        - Terraform for VPC (Legacy): installation/inline/compute-instances/aws/terraform-module-for-aws-vpc.md
+        - Terraform for API Gateway (Legacy): installation/inline/compute-instances/aws/terraform-module-for-aws-api-gateway.md
         - AWS WAF Integration: installation/cloud-platforms/aws/aws-waf-integration.md
         - Autoscaling Overview: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
         - Create AMI Image: admin-en/installation-guides/amazon-cloud/create-image.md
@@ -235,6 +240,10 @@ nav:
 
     - Self-Hosted Node:
       - Overview: installation/nginx-native-node-internals.md
+      - Inline Deployment:
+        - Overview: installation/inline/overview.md
+        - Linux All-in-One: installation/inline/compute-instances/linux/all-in-one.md
+        - Docker NGINX-Based: installation/inline/compute-instances/docker/nginx-based.md
       - Native Node:
         - All-in-One Installer: installation/native-node/all-in-one.md
         - Docker Image: installation/native-node/docker-image.md
