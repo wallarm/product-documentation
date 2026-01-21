@@ -39,7 +39,7 @@ Everything you need to discover your APIs, MCPs, and AI agents, protect them fro
 
 <div class="navigation-card">
     <h3 class="icon-homepage api-discovery-title"><a href="./api-discovery/overview/">API Discovery <span class="card-arrow">→</span></a></h3>
-    <p class="card-description">Catalog your APIs/MCPs/agents, assosiated risks and sensisitve data flows.</p>
+    <p class="card-description">Catalog all your APIs/MCPs/agents, their risks and sensisitve data flows.</p>
     <p><ul>
     <li><a href="./api-discovery/exploring/">Exploring Your APIs</a></li>
     <li><a href="./api-discovery/risk-score/">Risk Score</a></li>
@@ -74,7 +74,7 @@ Everything you need to discover your APIs, MCPs, and AI agents, protect them fro
 
 <div class="navigation-card">
     <h3 class="icon-homepage agent-ai-title"><a href="./agentic-ai/overview/">AI Security <span class="card-arrow">→</span></a></h3>
-    <p class="card-description">Discover and protect AI workloads from prompt injection and other threats.</p>
+    <p class="card-description">Discover and protect AI agents and MCPs.</p>
     <p><ul>
     <li><a href="./agentic-ai/agentic-ai-discovery/">AI Agent Discovery</a></li>
     <li><a href="./agentic-ai/agentic-ai-protection/">AI Agent Protection</a></li>
@@ -114,7 +114,7 @@ Everything you need to discover your APIs, MCPs, and AI agents, protect them fro
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage user-management-title"><a href="./user-guides/dashboards/threat-prevention/">Platform Management <span class="card-arrow">→</span></a></h3>
+    <h3 class="icon-homepage user-management-title"><a href="./platform-management/overview/">Platform Management <span class="card-arrow">→</span></a></h3>
     <p class="card-description">Monitor threats, configure alerts, and manage users and access controls.</p>
     <p><ul>
     <li><a href="./user-guides/events/overview/">Monitoring & Events</a></li>
