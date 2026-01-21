@@ -78,7 +78,7 @@ Everything you need to discover your APIs, MCPs, and AI agents, protect them fro
     <p><ul>
     <li><a href="./agentic-ai/agentic-ai-discovery/">AI Agent Discovery</a></li>
     <li><a href="./agentic-ai/agentic-ai-protection/">AI Agent Protection</a></li>
-    <li><a href="./agentic-ai/demo/">Demo</a></li>
+    <li><a href="./agentic-ai/ai-payload-inspection/">AI Payload Inspection</a></li>
     </ul></p>
 </div>
 
