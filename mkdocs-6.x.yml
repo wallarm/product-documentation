@@ -52,17 +52,6 @@ nav:
   - API Protection:
     - API Protection Overview: about-wallarm/api-protection-overview.md
 
-    - Threat Protection (WAAP):
-      - WAAP Overview: about-wallarm/waap-overview.md
-      - Threat Protection Overview: about-wallarm/protecting-against-attacks.md        
-      - Brute Force Protection: admin-en/configuration-guides/protecting-against-bruteforce.md
-      - Forced Browsing Protection: admin-en/configuration-guides/protecting-against-forcedbrowsing.md
-      - Multi-Attack Thresholds: admin-en/configuration-guides/protecting-with-thresholds.md
-      - DoS Protection: api-protection/dos-protection.md
-      - DDoS Protection: admin-en/configuration-guides/protecting-against-ddos.md      
-      - IP Filtering: user-guides/ip-lists/overview.md
-      - Filtration Mode: admin-en/configure-wallarm-mode.md
-
     - API Session Security:
       - API Sessions Overview: api-sessions/overview.md
       - Setup: api-sessions/setup.md
@@ -75,8 +64,10 @@ nav:
       - Enumeration Attack Protection: api-protection/enumeration-attack-protection.md
       - GraphQL Protection: api-protection/graphql-rule.md
       - File Upload Restriction: api-protection/file-upload-restriction.md
+      - Business Logic Abuse: api-protection/business-logic-abuse-detection.md
+      - Custom Request Anomaly: api-protection/custom-request-anomaly.md
 
-    - Bot Protection:
+    - Bot Management:
       - API Abuse Prevention Overview: api-abuse-prevention/overview.md
       - Setup: api-abuse-prevention/setup.md
       - Exploring Detected Bots: api-abuse-prevention/exploring-bots.md
@@ -86,62 +77,39 @@ nav:
       - Overview: api-specification-enforcement/overview.md
       - Setup: api-specification-enforcement/setup.md
       - Viewing Events: api-specification-enforcement/viewing-events.md
-    - Automatic BOLA Protection: admin-en/configuration-guides/protecting-against-bola.md
-    - API Abuse Prevention:
-      - Overview: api-abuse-prevention/overview.md
-      - Setup: api-abuse-prevention/setup.md
-      - Exceptions: api-abuse-prevention/exceptions.md
-      - Exploring Bot Activity: api-abuse-prevention/exploring-bots.md
-    - Credential Stuffing Detection: about-wallarm/credential-stuffing.md
-    - GraphQL API Protection: api-protection/graphql-rule.md
-    - Enumeration Attack Protection: api-protection/enumeration-attack-protection.md
-    - DoS Protection: api-protection/dos-protection.md
-    - Business Logic Abuse: api-protection/business-logic-abuse-detection.md
-    - Custom Request Anomaly: api-protection/custom-request-anomaly.md
-    - File Upload Restriction: api-protection/file-upload-restriction.md
-    - Mitigation Controls: about-wallarm/mitigation-controls-overview.md
-  - Agentic AI:
-    - AI Discovery: agentic-ai/agentic-ai-discovery.md
-    - Agentic AI Protection: agentic-ai/agentic-ai-protection.md
-    - AI Payload Inspection: agentic-ai/ai-payload-inspection.md
-  - API Discovery:
-    - Overview: api-discovery/overview.md
-    - Setup: api-discovery/setup.md
-    - Exploring API Inventory: api-discovery/exploring.md
-    - Tracking Changes in API: api-discovery/track-changes.md
-    - Sensitive Data Detection: api-discovery/sensitive-data.md
-    - Sensitive Business Flows: api-discovery/sbf.md
-    - Endpoint Risk Score: api-discovery/risk-score.md
-    - Shadow, Orphan, Zombie API: api-discovery/rogue-api.md
-    - BOLA Autoprotection: api-discovery/bola-protection.md
-    - Dashboard: api-discovery/dashboard.md
-  - API Attack Surface:
-    - Overview: api-attack-surface/overview.md
-    - Setup: api-attack-surface/setup.md
-    - API Attack Surface Discovery: api-attack-surface/api-surface.md
-    - AASM's Security Issues: api-attack-surface/security-issues.md
-  - Cloud-Native WAAP:
-    - Overview: about-wallarm/waap-overview.md
-    - DDoS Protection: admin-en/configuration-guides/protecting-against-ddos.md
-    - Brute Force Protection: admin-en/configuration-guides/protecting-against-bruteforce.md
-    - Forced Browsing Protection: admin-en/configuration-guides/protecting-against-forcedbrowsing.md
-    - Rate Limiting: user-guides/rules/rate-limiting.md
-    - Multi-Attack Protection: admin-en/configuration-guides/protecting-with-thresholds.md
-    - Manual BOLA Protection: admin-en/configuration-guides/protecting-against-bola-trigger.md
-    - Filtering by IP: user-guides/ip-lists/overview.md
-    - Virtual Patching: user-guides/rules/vpatch-rule.md
-    - Custom Attack Detectors: user-guides/rules/regex-rule.md
-    - Masking Sensitive Data: user-guides/rules/sensitive-data-rule.md
-    - Changing Response Headers: user-guides/rules/add-replace-response-header.md
-    - Filtration Mode: admin-en/configure-wallarm-mode.md
-    - Detection Procedure:
-      - Overview: about-wallarm/protecting-against-attacks.md
-      - Parsing Requests: user-guides/rules/request-processing.md
-      - Rules: user-guides/rules/rules.md
-      - Triggers: user-guides/triggers/triggers.md
-  - Security Testing:
-    - Overview: vulnerability-detection/security-testing-overview.md
-    - Threat Replay:
+
+    - Credential Protection:
+      - Credential Stuffing Detection: about-wallarm/credential-stuffing.md
+      - Mitigation Controls Overview: about-wallarm/mitigation-controls-overview.md
+
+    - Threat Protection (WAAP):
+      - WAAP Overview: about-wallarm/waap-overview.md
+      - Threat Protection Overview: about-wallarm/protecting-against-attacks.md        
+      - Brute Force Protection: admin-en/configuration-guides/protecting-against-bruteforce.md
+      - Forced Browsing Protection: admin-en/configuration-guides/protecting-against-forcedbrowsing.md
+      - Multi-Attack Thresholds: admin-en/configuration-guides/protecting-with-thresholds.md
+      - DoS Protection: api-protection/dos-protection.md
+      - DDoS Protection: admin-en/configuration-guides/protecting-against-ddos.md      
+      - IP Filtering: user-guides/ip-lists/overview.md
+      - Filtration Mode: admin-en/configure-wallarm-mode.md
+
+    - Rules & Policies:
+      - Rules Overview: user-guides/rules/rules.md
+      - Rate Limiting: user-guides/rules/rate-limiting.md
+      - Virtual Patching: user-guides/rules/vpatch-rule.md
+      - Custom Regex Rules: user-guides/rules/regex-rule.md
+      - Sensitive Data Masking: user-guides/rules/sensitive-data-rule.md
+      - Request Processing: user-guides/rules/request-processing.md
+      - Response Headers: user-guides/rules/add-replace-response-header.md
+      - Overlimit Detection: user-guides/rules/configure-overlimit-res-detection.md
+
+  # ============================================================================
+  # SECTION 4: API SECURITY TESTING
+  # ============================================================================
+  - API Security Testing:
+    - Security Testing Overview: vulnerability-detection/security-testing-overview.md
+
+    - Threat Replay Testing:
       - Overview: vulnerability-detection/threat-replay-testing/overview.md
       - Setup: vulnerability-detection/threat-replay-testing/setup.md
       - Exploring Results: vulnerability-detection/threat-replay-testing/exploring.md
@@ -157,6 +125,8 @@ nav:
       - API Surface Discovery: api-attack-surface/api-surface.md
       - Security Issues: api-attack-surface/security-issues.md
 
+    - Detecting Vulnerabilities: about-wallarm/detecting-vulnerabilities.md      
+
   # ============================================================================
   # SECTION 5: AI SECURITY
   # ============================================================================
@@ -168,7 +138,7 @@ nav:
 
     - AI Protection:
       - AI Agent Protection: agentic-ai/agentic-ai-protection.md
-      - Demo: agentic-ai/demo.md
+      - AI Payload Inspection: agentic-ai/ai-payload-inspection.md
 
   # ============================================================================
   # SECTION 6: DEPLOYMENT
