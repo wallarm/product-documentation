@@ -52,14 +52,15 @@ nav:
   # SECTION 3: API PROTECTION
   # ============================================================================
   - API Protection:
-    - API Protection Overview: about-wallarm/api-protection-overview.md
+    - Overview: about-wallarm/api-protection-overview.md
     - Best Practices: quickstart/attack-prevention-best-practices.md
 
     - API Session Security:
-      - API Sessions Overview: api-sessions/overview.md
+      - Overview: api-sessions/overview.md
       - Setup: api-sessions/setup.md
       - Exploring Sessions: api-sessions/exploring.md
       - Session Blocking: api-sessions/blocking.md
+      - Business Logic Abuse: api-protection/business-logic-abuse-detection.md
 
     - API-Specific Protection:
       - BOLA Protection (Manual): admin-en/configuration-guides/protecting-against-bola-trigger.md
@@ -67,14 +68,15 @@ nav:
       - Enumeration Attack Protection: api-protection/enumeration-attack-protection.md
       - GraphQL Protection: api-protection/graphql-rule.md
       - File Upload Restriction: api-protection/file-upload-restriction.md
+      - Custom Request Anomaly: api-protection/custom-request-anomaly.md
 
     - Bot Management:
-      - API Abuse Prevention Overview: api-abuse-prevention/overview.md
+      - Overview: api-abuse-prevention/overview.md
       - Setup: api-abuse-prevention/setup.md
       - Exploring Detected Bots: api-abuse-prevention/exploring-bots.md
       - Exceptions: api-abuse-prevention/exceptions.md
 
-    - API Specs Enforcement:
+    - API Spec Enforcement:
       - Overview: api-specification-enforcement/overview.md
       - Setup: api-specification-enforcement/setup.md
       - Viewing Events: api-specification-enforcement/viewing-events.md
@@ -84,7 +86,6 @@ nav:
     
     - Threat Protection (WAAP):
       - WAAP Overview: about-wallarm/waap-overview.md
-      - Best Practices: quickstart/attack-prevention-best-practices.md
       - Threat Protection Overview: about-wallarm/protecting-against-attacks.md        
       - Brute Force Protection: admin-en/configuration-guides/protecting-against-bruteforce.md
       - Forced Browsing Protection: admin-en/configuration-guides/protecting-against-forcedbrowsing.md
@@ -98,7 +99,7 @@ nav:
       - Overview: about-wallarm/mitigation-controls-overview.md
 
     - Rules & Policies:
-      - Rules Overview: user-guides/rules/rules.md
+      - Overview: user-guides/rules/rules.md
       - Rate Limiting: user-guides/rules/rate-limiting.md
       - Virtual Patching: user-guides/rules/vpatch-rule.md
       - Custom Regex Rules: user-guides/rules/regex-rule.md
@@ -142,7 +143,7 @@ nav:
 
     - AI Protection:
       - AI Agent Protection: agentic-ai/agentic-ai-protection.md
-      - Demo: agentic-ai/demo.md
+      - AI Payload Inspection: agentic-ai/ai-payload-inspection.md
 
   # ============================================================================
   # SECTION 6: DEPLOYMENT
@@ -369,7 +370,7 @@ nav:
       - OWASP API Top 10 Dashboard: user-guides/dashboards/owasp-api-top-ten.md
 
     - Monitoring & Events:
-      - Events Overview: user-guides/events/overview.md
+      - Event Overview: user-guides/events/overview.md
       - Analyzing Attacks: user-guides/events/check-attack.md
       - Analyzing Incidents: user-guides/events/check-incident.md
       - Grouping & Sampling: user-guides/events/grouping-sampling.md
