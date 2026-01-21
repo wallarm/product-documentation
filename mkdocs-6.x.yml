@@ -318,6 +318,7 @@ nav:
     # - Autoscaling: ...
     - Wallarm Node Overview: user-guides/nodes/nodes.md
     - Configuration Options for NGINX‑Based Node: admin-en/configure-parameters-en.md
+    - Control over Export to Cloud: admin-en/export-to-cloud.md
     - Fine‑tuning of Ingress Controller:
       - Configuration Parameters: admin-en/configure-kubernetes-en.md
       - Best Practices:
