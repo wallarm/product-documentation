@@ -1,0 +1,1 @@
+--8<-- "latest/graphql-discovery/overview.md"

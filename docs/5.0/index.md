@@ -47,6 +47,7 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
     <li><a href="./api-discovery/sbf/">Sensitive Business Flows</a></li>
     <li><a href="./api-discovery/risk-score/">Endpoint Risk Score</a></li>
     <li><a href="./api-discovery/rogue-api/">Shadow, Orphan, Zombie API</a></li>
+    <li><a href="./graphql-discovery/overview/">GraphQL API Inventory</a></li>
     </ul></p>
 </div>
 
