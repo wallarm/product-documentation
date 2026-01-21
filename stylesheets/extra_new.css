@@ -751,12 +751,11 @@ img {
   text-align: center;
   font-weight: 500;
   display: inline-block;
-  font-size: 14px;
-  padding: 0 17px;
+  font-size: 13px;
+  padding: 6px 12px;
   margin: 0.3rem 0.5em;
-  border-radius: 3px;
+  border-radius: 4px;
   text-decoration: none;
-  line-height: 1.8rem;
   transition: all 0.3s ease;
 }
 
