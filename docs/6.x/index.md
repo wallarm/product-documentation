@@ -46,6 +46,8 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
     <li><a href="./api-protection/graphql-rule/">GraphQL API Protection</a></li>
     <li><a href="./api-protection/enumeration-attack-protection/">Enumeration Attack Protection</a></li>
     <li><a href="./api-protection/dos-protection/">DoS Protection</a></li>
+    <li><a href="./api-protection/business-logic-abuse-detection/">Business Logic Abuse Detection</a></li>
+    <li><a href="./api-protection/custom-request-anomaly/">Custom Request Anomaly Detection</a></li>
     <li><a href="./about-wallarm/mitigation-controls-overview/">Mitigation Controls</a></li>
     </ul></p>
 </div>
@@ -55,6 +57,7 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
     <p><ul>
     <li><a href="./agentic-ai/agentic-ai-discovery/">AI Discovery</a></li>
     <li><a href="./agentic-ai/agentic-ai-protection/">Agentic AI Protection</a></li>
+    <li><a href="./agentic-ai/ai-payload-inspection/">AI Payload Inspection</a></li>
     </ul></p>
 </div>
 

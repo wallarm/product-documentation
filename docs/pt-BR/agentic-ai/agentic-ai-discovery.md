@@ -1,0 +1,1 @@
+--8<-- "latest-pt-BR/agentic-ai/agentic-ai-discovery.md"
