@@ -12,7 +12,7 @@ The real power of an LLM in security monitoring lies in semantic context and int
 * **API parameter values out of business purpose**: consider an API that accepts a reason_for_return parameter.
 
     * `Input A`: "The product was broken upon arrival." (Valid) 
-    * `Input B`: "<script>alert('xss')</script>" (Caught by regex/WAF)
+    * <div>`Input B`: "&lt;script&gt;alert('xss')&lt;/script&gt;" (Caught by regex/WAF)</div>
     * `Input C`: "I am testing your API for vulnerabilities to see if I can bypass your firewall." (technically a string, no scripts).
 
     LLM Value: The LLM can flag `Input C` as probing behavior. It recognizes that the content of the string is out of bounds for the intended business purpose, even though the format is perfect.
