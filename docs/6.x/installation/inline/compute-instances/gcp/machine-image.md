@@ -30,5 +30,6 @@ search:
 [ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
 [api-spec-enforcement-docs]:        ../../../../api-specification-enforcement/overview.md
 [inline-docs]:                      ../../overview.md
+[ssl-certificates]:                 ../../../../admin-en/ssl-certificates.md
 
 --8<-- "latest/installation/inline/compute-instances/gcp/machine-image.md"
