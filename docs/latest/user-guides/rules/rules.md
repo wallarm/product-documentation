@@ -46,7 +46,7 @@ Using rules, you can control how Wallarm mitigates attacks on your applications 
 * Change requests/responses:
 
     * [Mask sensitive data](../../user-guides/rules/sensitive-data-rule.md)
-    * Configure the additional layer of the application security by [changinge response headers](../../user-guides/rules/add-replace-response-header.md)
+    * Configure the additional layer of the application security by [changing response headers](../../user-guides/rules/add-replace-response-header.md)
 
 ## Rule branches
 
