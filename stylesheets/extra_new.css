@@ -304,10 +304,17 @@ a.md-tabs__link:hover {
   font-weight: bold;
 }
 
-/* Make 2nd level menu items (subsections) bold - both nested and non-nested */
+/* Level 2 menu items */
 .md-nav--primary .md-nav[data-md-level="1"] > .md-nav__list > .md-nav__item > .md-nav__link,
 .md-nav--primary .md-nav[data-md-level="1"] > .md-nav__list > .md-nav__item > a.md-nav__link {
-  font-weight: 550;
+  font-weight: 600;
+}
+
+/* Level 3+ menu items */
+.md-nav--primary .md-nav[data-md-level="2"] .md-nav__link,
+.md-nav--primary .md-nav[data-md-level="3"] .md-nav__link,
+.md-nav--primary .md-nav[data-md-level="4"] .md-nav__link {
+  font-weight: 400;
 }
 
 
