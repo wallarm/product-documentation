@@ -81,8 +81,7 @@ nav:
 
     - Credential Protection:
       - Credential Stuffing Detection: about-wallarm/credential-stuffing.md
-      - Mitigation Controls Overview: about-wallarm/mitigation-controls-overview.md
-
+    
     - Threat Protection (WAAP):
       - WAAP Overview: about-wallarm/waap-overview.md
       - Best Practices: quickstart/attack-prevention-best-practices.md
@@ -94,6 +93,9 @@ nav:
       - DDoS Protection: admin-en/configuration-guides/protecting-against-ddos.md      
       - IP Filtering: user-guides/ip-lists/overview.md
       - Filtration Mode: admin-en/configure-wallarm-mode.md
+
+    - Mitigation Controls:
+      - Overview: about-wallarm/mitigation-controls-overview.md
 
     - Rules & Policies:
       - Rules Overview: user-guides/rules/rules.md
