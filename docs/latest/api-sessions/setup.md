@@ -58,13 +58,13 @@ To add session grouping keys manually, go to Wallarm Console → **API Sessions*
 
 ### Example of how grouping keys work
 
-Let us say you have a route login which returns a specific `<TOKEN>` in `response_body →` `json_doc → hash → token` parameter of the response. In the further requests, this `<TOKEN>` is used somewhere in `get → token` or `post → json_doc → hash → token`.
+Let us say you have a route login which returns a specific `<TOKEN>` in `RESPONSE →` `BODY JSON → PROPERTY → token` parameter of the response. In the further requests, this `<TOKEN>` is used somewhere in `REQUEST → QUERY → token` or `REQUEST →` `BODY → JSON → PROPERTY → token`.
 
 You can configure 3 parameters to be used as grouping keys (for response body, get and post requests). They will be tried in the following order (next is tried only if previous did not work):
 
-1. `response_body → json_doc → hash → token`
-2. `get → token`
-3. `post → json_doc → hash → token`
+1. `RESPONSE → BODY → JSON → PROPERTY → token`
+2. `REQUEST → QUERY → token`
+3. `REQUEST → BODY → JSON → PROPERTY → token`
 4. (built-in set, will be used if none of previous work)
 
 ![!API Sessions - example of grouping keys in work](../images/api-sessions/api-sessions-grouping-keys.png)
