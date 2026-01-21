@@ -7,10 +7,22 @@ hide:
 
 # Wallarm Documentation
 
-Wallarm is a unified platform that provides real-time API and AI security by detecting and blocking threats, automating API/agents inventory, and managing API risks across cloud-native and on-premises environments.
+Everything you need to discover your APIs, MCPs, and AI agents, protect them from threats, and test for vulnerabilities.
 
-<!-- Row 1: Introduction + Search/AI Actions -->
-<div class="navigation navigation-2col">
+<div class="homepage-actions">
+    <button type="button" class="homepage-btn homepage-btn-search" onclick="document.getElementById('__search').checked = true; setTimeout(function() { document.querySelector('.md-search__input').focus(); }, 100);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+        <span>Search...</span>
+        <span class="homepage-btn-shortcut"></span>
+    </button>
+    <button type="button" class="homepage-btn homepage-btn-ai" onclick="if(window.openInkeepChat) window.openInkeepChat();">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path></svg>
+        <span>Ask AI</span>
+    </button>
+</div>
+
+<!-- Row 1: Introduction -->
+<div class="navigation navigation-1col">
     <div class="navigation-card homepage-intro">
         <h3 class="icon-homepage quick-start-title"><a href="./about-wallarm/overview/">Introduction <span class="card-arrow">→</span></a></h3>
         <p class="card-description">Get started with the Wallarm platform and learn the fundamentals.</p>
@@ -19,17 +31,6 @@ Wallarm is a unified platform that provides real-time API and AI security by det
         <li><a href="./quickstart/getting-started/">Quick Start</a></li>
         <li><a href="./demo-videos/platform-overview/">Video Guides</a></li>
         </ul></p>
-    </div>
-    <div class="homepage-actions">
-        <button type="button" class="homepage-btn homepage-btn-search" onclick="document.getElementById('__search').checked = true; setTimeout(function() { document.querySelector('.md-search__input').focus(); }, 100);">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
-            <span>Search...</span>
-            <span class="homepage-btn-shortcut"></span>
-        </button>
-        <button type="button" class="homepage-btn homepage-btn-ai" onclick="if(window.openInkeepChat) window.openInkeepChat();">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path></svg>
-            <span>Ask AI</span>
-        </button>
     </div>
 </div>
 
@@ -161,6 +162,12 @@ Wallarm is a unified platform that provides real-time API and AI security by det
     flex-direction: row;
     gap: 8px;
     align-self: center;
+    margin-bottom: 24px;
+}
+
+/* Single column navigation row */
+.navigation-1col {
+    margin-bottom: 24px;
 }
 
 /* Card title arrow */
@@ -224,7 +231,7 @@ Wallarm is a unified platform that provides real-time API and AI security by det
 .homepage-btn-search {
     background-color: #F9FAFB;
     color: #6B7280;
-    flex: 0 1 70%;
+    flex: 0 1 42%;
     justify-content: flex-start;
     transition: all 0.2s ease;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
