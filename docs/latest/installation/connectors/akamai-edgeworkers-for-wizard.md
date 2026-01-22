@@ -104,4 +104,12 @@ In the origin property, create another new blank rule:
   .md-consent {
     display: none;
   }
+
+  .md-tabs {
+    display: none;
+  }
+
+  [id^="inkeep-widget-"] {
+    display: none
+  }
 </style>
