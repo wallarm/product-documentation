@@ -1,23 +1,28 @@
 <!-- Wrap everything into a macro to reduce file roundtrips (see #2213) -->
 {% set icons = {
+  "introduction": ".icons/material/quick-start.svg",
   "quick start": ".icons/material/quick-start.svg",
   "threat management": ".icons/material/dashboard.svg",
+  "integrations": ".icons/material/integrations-alerts.svg",
   "integrations and alerts": ".icons/material/integrations-alerts.svg",
   "api attack surface": ".icons/material/vulnerability.svg",
   "assets & vulnerabilities": ".icons/material/vulnerability.svg",
   "api discovery": ".icons/material/api.svg",
   "api protection": ".icons/material/api-threat.svg",
   "agentic ai": ".icons/material/ai-prompt-attack.svg",
+  "ai security": ".icons/material/ai-prompt-attack.svg",
+  "api security testing": ".icons/material/api-security.svg",
   "security testing": ".icons/material/api-security.svg",
   "cloud-native waap": ".icons/material/api-threat.svg",
+  "platform management": ".icons/material/users.svg",
   "user management": ".icons/material/users.svg",
   "deployment": ".icons/material/deployment.svg",
   "security edge": ".icons/material/security-edge-deployment.svg",
   "connector deployment": ".icons/material/connector-deployment.svg",
   "self-hosted deployment": ".icons/material/self-hosted-deployment.svg",
   "operations": ".icons/material/deployment.svg",
+  "reference": ".icons/material/references.svg",
   "references": ".icons/material/references.svg",
-  "troubleshooting": ".icons/material/references.svg",
 
   "クイックスタート": ".icons/material/quick-start.svg",
   "脅威管理": ".icons/material/dashboard.svg",
@@ -101,11 +106,10 @@
     <li class="{{ class }} md-nav__item--nested">
       <!-- Active checkbox expands items contained within nested section -->
       {% set checked = "checked" if nav_item.active %}
-      {% if "navigation.expand" in features and not checked %}
+      {% if level <= 2 %}
         <input
           class="md-nav__toggle md-toggle"
           data-md-toggle="{{ path }}"
-          data-md-state="indeterminate"
           type="checkbox"
           id="{{ path }}"
           checked

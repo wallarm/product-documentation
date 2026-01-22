@@ -25,6 +25,38 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+// Detect platform for search hotkey indicator
+(function() {
+  var platform = navigator.platform.toLowerCase();
+  if (platform.indexOf('win') !== -1) {
+    document.documentElement.classList.add('platform-windows');
+  } else if (platform.indexOf('linux') !== -1) {
+    document.documentElement.classList.add('platform-linux');
+  } else if (platform.indexOf('mac') !== -1) {
+    document.documentElement.classList.add('platform-mac');
+  }
+})();
+
+// Ctrl+K / Cmd+K keyboard shortcut for search (works across all keyboard layouts)
+document.addEventListener('keydown', function(e) {
+  // Check for Ctrl+K (Windows/Linux) or Cmd+K (Mac)
+  if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+    e.preventDefault();
+    var searchToggle = document.getElementById('__search');
+    if (searchToggle) {
+      searchToggle.checked = true;
+      // Focus the search input
+      setTimeout(function() {
+        var searchInput = document.querySelector('.md-search__input');
+        if (searchInput) {
+          searchInput.focus();
+          searchInput.select();
+        }
+      }, 100);
+    }
+  }
+});
+
 function injectScript(src, cb) {
   let script = document.createElement('script');
 
@@ -125,6 +157,62 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
 });
 
+// Mobile nav fix:
+// Our custom nav template expands L1/L2 by default (inputs are checked),
+// which can leave the Material mobile drawer "drilled down" into a random subtree
+// (often the last expanded one, e.g. "FAQ"). When opening the drawer on mobile,
+// reset the nav toggles to the active page's path.
+function resetMobileDrawerNavigationToActivePath() {
+  // Match Material's breakpoint where the drawer is used
+  if (!window.matchMedia || !window.matchMedia("(max-width: 76.1875em)").matches) return;
+
+  const sidebar = document.querySelector('.md-sidebar--primary');
+  if (!sidebar) return;
+
+  const navRoot =
+    sidebar.querySelector('[data-md-component="navigation"]') ||
+    sidebar.querySelector('.md-nav--primary');
+  if (!navRoot) return;
+
+  const allToggles = Array.from(navRoot.querySelectorAll('input.md-nav__toggle[data-md-toggle^="nav-"]'));
+  if (!allToggles.length) return;
+
+  // Find the active page link in the nav
+  const activeLink = navRoot.querySelector('a.md-nav__link--active');
+  if (!activeLink) {
+    // Home or edge case: show root level (no drill-down)
+    allToggles.forEach(t => (t.checked = false));
+    return;
+  }
+
+  // Collect toggles on the active path (ancestors of the active link)
+  const keep = new Set();
+  let node = activeLink;
+  while (node) {
+    const nested = node.closest && node.closest('.md-nav__item--nested');
+    if (!nested) break;
+
+    // The toggle is an immediate child of the nested <li> in our template
+    const toggle = Array.from(nested.children).find(
+      el => el && el.matches && el.matches('input.md-nav__toggle')
+    );
+    if (toggle) keep.add(toggle);
+
+    node = nested.parentElement;
+  }
+
+  allToggles.forEach(t => (t.checked = keep.has(t)));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const drawerToggle = document.getElementById('__drawer');
+  if (!drawerToggle) return;
+
+  drawerToggle.addEventListener('change', () => {
+    if (drawerToggle.checked) resetMobileDrawerNavigationToActivePath();
+  });
+});
+
 // Open the Help block
 
 function helpClicked (event) {
@@ -161,10 +249,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// Collapse expanded menu items when a new item is expanded
-var navClassName = ".md-nav__toggle";
-var navigationElements = document.querySelectorAll(navClassName);
+// Custom accordion behavior disabled - using MkDocs Material's native behavior
+// If you want to re-enable custom accordion (collapse siblings when expanding):
+// Uncomment the code below
 
+/*
 function getAllNavigationElements(element, selector){
   if(element.parentElement && element.parentElement.parentElement && element.parentElement.parentElement.children){
     let allChildren = element.parentElement.parentElement.children;
@@ -179,29 +268,17 @@ function getAllNavigationElements(element, selector){
   }
 }
 
-function removeAllActiveClasses() {
-  const activeElements = document.querySelectorAll('.md-nav__item--active');
-  activeElements.forEach(el => el.classList.remove('md-nav__item--active'));
-}
-
-navigationElements.forEach(el => {
-  el.addEventListener('change', function(){
-    removeAllActiveClasses();
-    getAllNavigationElements(this, navClassName);
-    if (this.checked) {
-      this.parentElement.classList.add('md-nav__item--expanded');
+document.addEventListener('change', function(event) {
+  if (event.target.matches('.md-nav__toggle')) {
+    getAllNavigationElements(event.target, '.md-nav__toggle');
+    if (event.target.checked) {
+      event.target.parentElement.classList.add('md-nav__item--expanded');
     } else {
-      this.parentElement.classList.remove('md-nav__item--expanded');
+      event.target.parentElement.classList.remove('md-nav__item--expanded');
     }
-  }, false);
-})
-
-document.addEventListener('DOMContentLoaded', (event) => {
-  let activeElement = document.querySelector('.md-nav__item--active');
-  if (activeElement) {
-    activeElement.classList.add('md-nav__item--expanded');
   }
-});
+}, false);
+*/
 
 
 // Expand and collapse supported platform cards on click

@@ -55,7 +55,7 @@
 }
 
 .homepage .md-grid {
-  max-width: 860px;
+  max-width: 1280px;
 }
 
 .md-typeset ol:not([hidden]), .md-typeset ul:not([hidden]) {
@@ -160,6 +160,39 @@ div[data-md-component="announce"] {
   font-size: 16px;
 }
 
+/* Header Ask AI button */
+.header-ask-ai-btn {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  line-height: 1.8rem;
+  padding: 0 12px;
+  margin-left: 8px;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.header-ask-ai-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.header-ask-ai-btn svg {
+  flex-shrink: 0;
+}
+
+.header-ask-ai-btn span {
+  flex-shrink: 0;
+}
+
 .back-wallarmcom {
   display: block;
   position: absolute;
@@ -195,7 +228,8 @@ a.md-header__button.md-logo:after {
 /* Main */
 
 .homepage .md-content__inner h1, .homepage .md-content__inner h1 + p {
-  text-align: center;
+  text-align: left;
+  max-width: 700px;
 }
 
 /* Sidebars */
@@ -214,15 +248,9 @@ a.md-header__button.md-logo:after {
 .md-tabs__link {
   opacity: 100;
   font-size: 16px;
+  font-weight: 500;
 }
 
-.md-tabs__link--active, .md-tabs__link:hover {
-  color: #FC7303;
-}
-
-.md-tabs__link--active {
-  font-weight: bold;
-}
 
 a.md-tabs__link:hover {
   transition: color 0.3s ease;
@@ -234,6 +262,13 @@ a.md-tabs__link:hover {
   width: 100%;
 }
 
+/* Version selector at bottom of nav */
+.md-nav--primary .versions-bottom {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(149, 157, 172, 0.24);
+}
+
 .md-nav--primary .versions-main {
   display: flex;
   justify-content: space-between;
@@ -241,8 +276,23 @@ a.md-tabs__link:hover {
   padding-right: 6px;
 }
 
-.md-nav--primary > ul > .md-nav__item > label {
+.md-nav--primary > ul > .md-nav__item > label,
+.md-nav--primary > ul > .md-nav__item > .md-nav__link {
   padding-left: 7px;
+  font-weight: 600;
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+/* Hide expand/collapse arrow for top-level nav items */
+.md-nav--primary > ul > .md-nav__item > label > .md-nav__icon {
+  display: none;
+}
+
+/* Increase icon size for top-level nav items to match larger font */
+.md-nav--primary > ul > .md-nav__item > label .md-nav__icon--left {
+  width: 18px;
+  height: 18px;
 }
 
 .md-nav--primary .md-nav__link {
@@ -267,14 +317,42 @@ a.md-tabs__link:hover {
 }
 
 .md-nav--primary > ul > .md-nav__item--expanded {
-  background-color: #ECEFF4;
-  border-radius: 8px;
-  border: 1px solid rgba(149, 157, 172, 0.24);
+  /* Grey background removed */
+}
+
+/* Remove any white background from top-level nav items */
+.md-nav--primary > ul > .md-nav__item,
+.md-nav--primary > ul > .md-nav__item > label,
+.md-nav--primary > ul > .md-nav__item > .md-nav__link,
+.md-nav--primary > ul > .md-nav__item:first-child,
+.md-nav--primary > ul > .md-nav__item:first-child > label,
+.md-nav--primary > ul > .md-nav__item > .md-nav {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.md-nav--primary > .md-nav__list > .md-nav__item--active.md-nav__item--nested > label.md-nav__link {
+  background-color: #F6F7F9 !important;
 }
 
 .md-nav--primary > ul > .md-nav__item--expanded > label {
   font-weight: bold;
 }
+
+/* Level 2 menu items */
+.md-nav--primary .md-nav[data-md-level="1"] > .md-nav__list > .md-nav__item > .md-nav__link,
+.md-nav--primary .md-nav[data-md-level="1"] > .md-nav__list > .md-nav__item > a.md-nav__link {
+  font-weight: 600;
+}
+
+/* Level 3+ menu items */
+.md-nav--primary .md-nav[data-md-level="2"] .md-nav__link,
+.md-nav--primary .md-nav[data-md-level="3"] .md-nav__link,
+.md-nav--primary .md-nav[data-md-level="4"] .md-nav__link {
+  font-weight: 400;
+}
+
 
 .md-nav--primary .md-nav__item--expanded > .md-nav__link .navigation-arrow,
 .md-nav--primary .md-nav__item--active > .md-nav__link .navigation-arrow {
@@ -314,6 +392,17 @@ a.md-tabs__link:hover {
   fill: none;
 }
 
+/* Make all left nav icons orange */
+.md-nav--primary .md-nav__icon--left path,
+.md-nav--primary .md-nav__icon--left line,
+.md-nav--primary .md-nav__icon--left circle,
+.md-nav--primary .md-nav__icon--left rect {
+  stroke: #FC7303 !important;
+}
+.md-nav--primary .md-nav__icon--left path[fill]:not([fill="none"]) {
+  fill: #FC7303 !important;
+}
+
 
 .md-nav--primary .md-nav__item:last-child {
   padding-bottom: 0;
@@ -322,8 +411,8 @@ a.md-tabs__link:hover {
 .md-nav__link {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0px;
+  justify-content: flex-start;
+  gap: 8px;
 }
 
 .md-nav__item .md-nav__link--active {
@@ -383,9 +472,13 @@ a.md-tabs__link:hover {
     box-shadow: none;
   }
   .md-nav--primary .md-nav__title {
-    background-color: transparent;
+    /* On mobile the nav title acts like a sticky header for drill-down menus.
+       Transparent background makes underlying items (e.g., "Introduction") show
+       through and look "stuck"/overlapped. */
+    background-color: var(--md-default-bg-color);
     padding: 0;
     height: 48px;
+    z-index: 2;
   }
   .md-nav--primary .md-nav__title-text {
     margin-left: 45px;
@@ -665,13 +758,15 @@ img {
   color: white;
   text-align: center;
   font-weight: 500;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 14px;
-  padding: 0 17px;
-  margin: 0.3rem 0.5em;
-  border-radius: 3px;
-  text-decoration: none;
   line-height: 1.8rem;
+  padding: 0 12px;
+  margin: 0 0.5em;
+  border-radius: 4px;
+  text-decoration: none;
   transition: all 0.3s ease;
 }
 
@@ -702,10 +797,30 @@ img {
     height: 157px;
     grid-template-rows: 65px 40px 50px;
     grid-template-areas:
-      "toggle logo title back search"
-      "buttons buttons buttons buttons buttons"
-      "lang lang lang lang lang";
-    grid-template-columns: 44px 138px auto 60px 0;
+      "toggle logo title back askai search"
+      "buttons buttons buttons buttons buttons buttons"
+      "lang lang lang lang lang lang";
+    grid-template-columns: 44px 138px auto 60px 44px 44px;
+  }
+  .header-ask-ai-btn {
+    grid-area: askai;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    margin: 0;
+    border: none;
+    background: transparent;
+  }
+  .header-ask-ai-btn span {
+    display: none;
+  }
+  .header-ask-ai-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+  label[for="__search"] {
+    grid-area: search;
   }
   .md-header {
     z-index: 10;
@@ -1010,6 +1125,35 @@ button.md-clipboard.md-icon {
   border-radius: 3px;
 }
 
+/* Hotkey indicator for search field */
+.md-search__inner::after {
+  content: "⌘K";
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #6B7280;
+  background-color: white;
+  border: 1px solid #D1D5DB;
+  border-radius: 4px;
+  padding: 2px 6px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Show Ctrl+K on non-Mac platforms */
+.platform-windows .md-search__inner::after,
+.platform-linux .md-search__inner::after {
+  content: "Ctrl K";
+}
+
+/* Hide hotkey indicator when search is active/focused */
+.md-search__inner:focus-within::after,
+[data-md-toggle="search"]:checked ~ .md-header .md-search__inner::after {
+  display: none;
+}
+
 .md-search__input {
   color: #000000;
   border-radius: .1rem;
@@ -1068,7 +1212,7 @@ a.md-search-result__link:hover {
 }
 
 .navigation-card {
-  padding: 24px;
+  padding: 22px;
   border: 1px solid #DAE1EB;
   border-radius: 8px;
 }
@@ -1079,6 +1223,13 @@ a.md-search-result__link:hover {
   color: hsla(0, 0%, 0%, 1);
   margin-top: 0px;
   margin-bottom: 5px;
+}
+
+.navigation-card .card-description {
+  font-size: 14px;
+  color: #6B7280;
+  margin: 8px 0 12px 0;
+  line-height: 1.5;
 }
 
 .navigation-card p {
@@ -1434,4 +1585,32 @@ html .md-footer .md-social a:hover {
   border: 1px solid #DBE0E7;
   color: black;
   background-color: #F7F8F9;
+}
+
+/* Smooth scrolling for TOC anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Active tab highlight in top navigation */
+.md-tabs__item--active .md-tabs__link {
+  border-bottom: 1px solid #000;
+}
+
+/* Hover effect for top navigation tabs */
+.md-tabs__link:hover {
+  color: inherit !important;
+  border-bottom: 1px solid #000;
+}
+
+@media (max-width: 345px) {
+  .md-header__inner.md-grid {
+    grid-template-columns: unset;
+  }
 }
