@@ -1119,7 +1119,6 @@ button.md-clipboard.md-icon {
 /* Search bar */
 .md-search__inner {
   width: 340px;
-  position: relative;
 }
 
 .md-search__form {
@@ -1610,3 +1609,8 @@ html {
   border-bottom: 1px solid #000;
 }
 
+@media (max-width: 345px) {
+  .md-header__inner.md-grid {
+    grid-template-columns: unset;
+  }
+}
