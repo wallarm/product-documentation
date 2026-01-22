@@ -595,6 +595,11 @@ Everything you need to discover your APIs, MCPs, and AI agents, protect them fro
   box-shadow: inset 0px -1px 0px rgba(229, 229, 229, 0.5);
 }
 
+#homepage-search-mount .md-search-result__link:focus code,
+#homepage-search-mount .md-search-result__link:hover code {
+    background-color: unset !important;
+}
+
 #homepage-search-mount .md-search-result__link:focus,
 #homepage-search-mount .md-search-result__link:hover {
   background-color: #F7F7F8;
@@ -605,6 +610,22 @@ Everything you need to discover your APIs, MCPs, and AI agents, protect them fro
 #homepage-search-mount .md-search-result__more > summary:hover > div {
   background-color: #F7F7F8;
   box-shadow: inset 0px -1px 0px rgba(229, 229, 229, 0.5);
+}
+
+#homepage-search-mount .md-search-result__more > summary {
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    background-color: var(--md-default-bg-color) !important;
+}
+
+#homepage-search-mount .md-search-result__more {
+    border: unset;
+}
+
+#homepage-search-mount .md-search-result__more > summary:before {
+    display: none !important;
 }
 
 /* Highlighted matches */
