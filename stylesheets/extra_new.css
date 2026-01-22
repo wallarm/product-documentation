@@ -332,7 +332,7 @@ a.md-tabs__link:hover {
   box-shadow: none !important;
 }
 
-.md-nav--primary > ul > .md-nav__item--active > .md-nav__link {
+.md-nav--primary > .md-nav__list > .md-nav__item--active.md-nav__item--nested > label.md-nav__link {
   background-color: #F6F7F9 !important;
 }
 
