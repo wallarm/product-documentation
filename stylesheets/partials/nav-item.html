@@ -106,7 +106,6 @@
     <!-- Render item with nested items -->
     <li class="{{ class }} md-nav__item--nested">
       <!-- Active checkbox expands items contained within nested section -->
-      <!-- Expand levels 1-2 by default, collapse level 3+ unless active -->
       {% set checked = "checked" if nav_item.active %}
       {% if level <= 2 %}
         <input

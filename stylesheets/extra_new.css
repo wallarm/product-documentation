@@ -468,9 +468,13 @@ a.md-tabs__link:hover {
     box-shadow: none;
   }
   .md-nav--primary .md-nav__title {
-    background-color: transparent;
+    /* On mobile the nav title acts like a sticky header for drill-down menus.
+       Transparent background makes underlying items (e.g., "Introduction") show
+       through and look "stuck"/overlapped. */
+    background-color: var(--md-default-bg-color);
     padding: 0;
     height: 48px;
+    z-index: 2;
   }
   .md-nav--primary .md-nav__title-text {
     margin-left: 45px;
