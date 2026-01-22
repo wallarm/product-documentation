@@ -2,9 +2,13 @@
 
 Keepalive settings control how upstream connections are reused to improve performance in Edge Inline deployments.
 
+## Requirements
+
+Keepalive settings are supported starting from Edge Node version 6.7.4-1.
+
 ## How it works
 
-These settings define the behavior of idle connections between the NGINX proxy and upstream servers. By reusing TCP connections, they reduce connection overhead and improve response times for repeated requests.
+These settings define the behavior of idle connections between the Edge Inline Node and the protected origin servers. By reusing TCP connections, they reduce connection overhead and improve response times for repeated requests.
 
 The Edge Inline deployment uses the following [keepalive settings](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive):
 
