@@ -157,6 +157,62 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
 });
 
+// Mobile nav fix:
+// Our custom nav template expands L1/L2 by default (inputs are checked),
+// which can leave the Material mobile drawer "drilled down" into a random subtree
+// (often the last expanded one, e.g. "FAQ"). When opening the drawer on mobile,
+// reset the nav toggles to the active page's path.
+function resetMobileDrawerNavigationToActivePath() {
+  // Match Material's breakpoint where the drawer is used
+  if (!window.matchMedia || !window.matchMedia("(max-width: 76.1875em)").matches) return;
+
+  const sidebar = document.querySelector('.md-sidebar--primary');
+  if (!sidebar) return;
+
+  const navRoot =
+    sidebar.querySelector('[data-md-component="navigation"]') ||
+    sidebar.querySelector('.md-nav--primary');
+  if (!navRoot) return;
+
+  const allToggles = Array.from(navRoot.querySelectorAll('input.md-nav__toggle[data-md-toggle^="nav-"]'));
+  if (!allToggles.length) return;
+
+  // Find the active page link in the nav
+  const activeLink = navRoot.querySelector('a.md-nav__link--active');
+  if (!activeLink) {
+    // Home or edge case: show root level (no drill-down)
+    allToggles.forEach(t => (t.checked = false));
+    return;
+  }
+
+  // Collect toggles on the active path (ancestors of the active link)
+  const keep = new Set();
+  let node = activeLink;
+  while (node) {
+    const nested = node.closest && node.closest('.md-nav__item--nested');
+    if (!nested) break;
+
+    // The toggle is an immediate child of the nested <li> in our template
+    const toggle = Array.from(nested.children).find(
+      el => el && el.matches && el.matches('input.md-nav__toggle')
+    );
+    if (toggle) keep.add(toggle);
+
+    node = nested.parentElement;
+  }
+
+  allToggles.forEach(t => (t.checked = keep.has(t)));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const drawerToggle = document.getElementById('__drawer');
+  if (!drawerToggle) return;
+
+  drawerToggle.addEventListener('change', () => {
+    if (drawerToggle.checked) resetMobileDrawerNavigationToActivePath();
+  });
+});
+
 // Open the Help block
 
 function helpClicked (event) {
