@@ -326,11 +326,14 @@ a.md-tabs__link:hover {
 .md-nav--primary > ul > .md-nav__item > .md-nav__link,
 .md-nav--primary > ul > .md-nav__item:first-child,
 .md-nav--primary > ul > .md-nav__item:first-child > label,
-.md-nav--primary > ul > .md-nav__item:first-child > .md-nav__link,
 .md-nav--primary > ul > .md-nav__item > .md-nav {
   background: transparent !important;
   background-color: transparent !important;
   box-shadow: none !important;
+}
+
+.md-nav--primary > ul > .md-nav__item--active > .md-nav__link {
+  background-color: #F6F7F9 !important;
 }
 
 .md-nav--primary > ul > .md-nav__item--expanded > label {
