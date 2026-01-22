@@ -166,14 +166,14 @@ div[data-md-component="announce"] {
   flex-direction: row;
   align-items: center;
   gap: 6px;
-  height: 30px;
+  line-height: 1.8rem;
   padding: 0 12px;
   margin-left: 8px;
   background-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 4px;
   color: #fff;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -758,8 +758,8 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
-  height: 30px;
+  font-size: 14px;
+  line-height: 1.8rem;
   padding: 0 12px;
   margin: 0 0.5em;
   border-radius: 4px;
@@ -801,7 +801,7 @@ img {
   }
   .header-ask-ai-btn {
     grid-area: askai;
-    display: flex;
+    display: flex !important;
     justify-content: center;
     align-items: center;
     padding: 8px;
