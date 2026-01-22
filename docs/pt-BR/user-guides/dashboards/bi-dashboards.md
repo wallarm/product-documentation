@@ -1,0 +1,1 @@
+--8<-- "latest-pt-BR/user-guides/dashboards/bi-dashboards.md"
