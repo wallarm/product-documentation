@@ -168,9 +168,26 @@ Specify the public domains, ports and subdomains that will direct traffic to the
     * Filtration mode.
     * Traffic type (gRPC, GraphQL, WebSocket, or GraphQL (WebSocket)).
 
+1. (Optionally) For each host, select the [block page](custom-block-page.md) to show when a malicious request is blocked. By default, the standard NGINX 403 Forbidden page is selected. You can also choose the Wallarm-branded block page or a custom one.
+
 ![!](../../../images/waf-installation/security-edge/inline/hosts.png)
 
-1. (Optionally) For each host, select the [block page](custom-block-page.md) to show when a malicious request is blocked. By default, the standard NGINX 403 Forbidden page is selected. You can also choose the Wallarm-branded block page or a custom one.
+In addition to standard prefix paths (`/path`), you can define locations using the following NGINX regular expression patterns:
+
+* `= /path` - exact match
+* `^~ /path` - priority prefix match
+* `~ pattern` - case-sensitive regular expression
+* `~* pattern` - case-insensitive regular expression
+
+Examples:
+
+* `~ ^/api/v[0-9]+/users$`
+* `~* \.(jpg|png|gif)$`
+* `= /health`
+* `^~ /static/`
+
+!!! info "Prohibited characters in locations"
+    To prevent NGINX configuration injection, location values must not contain `{`, `}`, `;`, `#`, or newline characters.
 
 For specific **locations** within hosts, you can further customize:
 
@@ -226,7 +243,7 @@ If your protected host is an apex domain (e.g., `example.com`), a CNAME cannot b
 
 ![](../../../images/waf-installation/security-edge/inline/a-records.png)
 
-Traffic routing in this case is managed by your DNS provider. By default, most DNS providers use [round-robin](https://en.wikipedia.org/wiki/Round-robin_DNS) logic, but some may support latency-based routing as well.f
+Traffic routing in this case is managed by your DNS provider. By default, most DNS providers use [round-robin](https://en.wikipedia.org/wiki/Round-robin_DNS) logic, but some may support latency-based routing as well.
 
 ## More configuation options
 

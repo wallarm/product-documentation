@@ -216,7 +216,7 @@ If your protected host is an apex domain (e.g., `example.com`), a CNAME cannot b
 
 ![](../../../images/waf-installation/security-edge/inline/a-records.png)
 
-Traffic routing in this case is managed by your DNS provider. By default, most DNS providers use [round-robin](https://en.wikipedia.org/wiki/Round-robin_DNS) logic, but some may support latency-based routing as well.f
+Traffic routing in this case is managed by your DNS provider. By default, most DNS providers use [round-robin](https://en.wikipedia.org/wiki/Round-robin_DNS) logic, but some may support latency-based routing as well.
 
 ## More configuation options
 
