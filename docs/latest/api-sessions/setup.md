@@ -184,6 +184,17 @@ For example, what in Rules would be:
 
 ![!API Sessions - context parameters - example - request](../images/api-sessions/api-sessions-context-parameters-example-request.png)
 
+### Simplest selection
+
+While adding context parameters manually is truly [simple](#simplified-selection), there is even more efficient and simple way to add context parameters - adding them from API Discovery:
+
+1. Act [the same way](#adding-from-api-discovery) as for adding grouping key.
+1. Remove **Group session by this key** option. Now it is not a grouping key - just another parameter to be displayed within API Sessions - context parameter.
+1. Remove **Export as hashed** option to see values.
+1. Save changes.
+
+In this scenario, you do not to think or care about specifying path to your parameter - Wallarm will do that path for you automatically. This is also a good way to learn how to form these paths - try adding some parameters and check automatically created paths.
+
 ### Users and roles
 
 You can highlight session parameters, that should be used for naming the session user and its role. To do so, in Wallarm Console → **API Sessions** → **Session context parameters**, add your parameter, then from **Type**, select `User` or `Role`.

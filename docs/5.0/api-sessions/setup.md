@@ -73,6 +73,8 @@ Wallarm's [API Discovery](../api-discovery/overview.md) automatically finds your
 
 To add session grouping keys manually, go to Wallarm Console → **API Sessions** → **Session context parameters**, add your request or response parameter and select **Group sessions by this key** for it.
 
+See also: [simplified selection](#simplified-selection).
+
 ### Example of how grouping keys work
 
 Let us say you have a route login which returns a specific `<TOKEN>` in `RESPONSE →` `BODY JSON → PROPERTY → token` parameter of the response. In the further requests, this `<TOKEN>` is used somewhere in `REQUEST → QUERY → token` or `REQUEST →` `BODY → JSON → PROPERTY → token`.
@@ -180,6 +182,17 @@ For example, what in Rules would be:
 ...in API Sessions will be:
 
 ![!API Sessions - context parameters - example - request](../images/api-sessions/api-sessions-context-parameters-example-request.png)
+
+### Simplest selection
+
+While adding context parameters manually is truly [simple](#simplified-selection), there is even more efficient and simple way to add context parameters - adding them from API Discovery:
+
+1. Act [the same way](#adding-from-api-discovery) as for adding grouping key.
+1. Remove **Group session by this key** option. Now it is not a grouping key - just another parameter to be displayed within API Sessions - context parameter.
+1. Remove **Export as hashed** option to see values.
+1. Save changes.
+
+In this scenario, you do not to think or care about specifying path to your parameter - Wallarm will do that path for you automatically. This is also a good way to learn how to form these paths - try adding some parameters and check automatically created paths.
 
 ### Users and roles
 
