@@ -368,6 +368,7 @@ nav:
       - Threat Prevention Dashboard: user-guides/dashboards/threat-prevention.md
       - API Discovery Dashboard: user-guides/dashboards/api-discovery.md
       - OWASP API Top 10 Dashboard: user-guides/dashboards/owasp-api-top-ten.md
+      - Business Intelligence: user-guides/dashboards/bi-dashboards.md
 
     - Monitoring & Events:
       - Event Overview: user-guides/events/overview.md
