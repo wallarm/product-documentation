@@ -127,6 +127,10 @@ wallarm_wcli_job_error{component="blkexp",code="1"} 0
 wallarm_wcli_job_error{component="botexp",code="1"} 0
 ```
 
+**Troubleshooting recommendations:** 
+
+Non-zero values indicate issues. Check the component logs and investigate network connectivity, configuration errors, or Wallarm Cloud failures based on the error code.
+
 ---
 ### `wallarm_wcli_job_export_period`
 
@@ -154,6 +158,10 @@ wallarm_wcli_job_export_period{component="jwtexp"} 15619.140830117
 wallarm_wcli_job_export_period{component="reqexp"} 15608.084553393
 ```
 
+**Troubleshooting recommendations:** 
+
+High values indicate an export delay. Verify network throughput to Wallarm Cloud and check **wcli** logs for queue issues or Wallarm Cloud bottlenecks.
+
 ---
 ### `wallarm_wcli_cloud_connectivity`
 
@@ -173,6 +181,10 @@ Shows whether the Wallarm cloud is responsive.
 ```
 wallarm_wcli_cloud_connectivity 1
 ```
+
+**Troubleshooting recommendations:** 
+
+If `0`, the controller cannot reach Wallarm Cloud. Check Internet connectivity, firewall rules, and Cloud endpoint configuration.
 
 ---
 ### `wallarm_wcli_subscription_active`
@@ -194,6 +206,10 @@ Shows whether the Wallarm subscription is currently active.
 wallarm_wcli_subscription_active 1
 ```
 
+**Troubleshooting recommendations:** 
+
+If `0`, verify the Wallarm subscription status.
+
 ## Bot feature extraction (botexp) metrics
 
 Metrics from the bot feature extraction `botexp` job used by the [API Abuse Prevention module][api-abuse-prevention] to analyze and detect automated traffic (bots).
@@ -214,6 +230,10 @@ Average time the `botexp` job spent processing requests.
 ```
 go_feature_extractor_processing_duration_seconds_bucket{le="0.1"} 15
 ```
+
+**Troubleshooting recommendations:** 
+
+If values rise, the `botexp` job may be overloaded. Check CPU usage and optimize fetch or export frequency.
 
 ---
 ### `go_feature_extractor_fetching_duration_seconds`
@@ -239,6 +259,10 @@ It is also labeled by the result of the send operation (`success` or `error`) an
 go_feature_extractor_fetching_duration_seconds_bucket{partner_client_uuid="b938ac84-1ac3-11ec-9f1c-4201ac1ff113",result="success",vmrange="1.000e-04...1.136e-04"} 369
 ```
 
+**Troubleshooting recommendations:** 
+
+Increased error values or high durations suggest slow storage or network latency. Verify **wcli** availability.
+
 ---
 ### go_feature_extractor_fetching_request_total`
 
@@ -255,6 +279,10 @@ The total number of requests the `botexp` job fetched from the request storage.
 ```
 go_feature_extractor_fetching_request_total 104
 ```
+
+**Troubleshooting recommendations:** 
+
+If stagnant or zero during active traffic, check **wcli** connectivity and `botexp` configuration.
 
 ---
 ### `go_feature_extractor_sending_duration_seconds_bucket`
@@ -278,6 +306,10 @@ go_feature_extractor_sending_duration_seconds_bucket{result="error",vmrange="7.7
 go_feature_extractor_sending_duration_seconds_bucket{result="success",vmrange="2.783e-01...3.162e-01"} 29
 ```
 
+**Troubleshooting recommendations:** 
+
+Rising `error` values indicate export issues. Check network latency and Wallarm Cloud account credentials.
+
 ---
 ### `go_feature_extractor_sending_request_total`
 
@@ -295,6 +327,10 @@ The total number of bot requests the `botexp` job sent to the Wallarm Cloud, lab
 go_feature_extractor_sending_request_total{result="error"} 1
 go_feature_extractor_sending_request_total{result="success"} 505
 ```
+
+**Troubleshooting recommendations:** 
+
+Non-zero error values indicate export failures. Inspect **wcli** logs and verify the Wallarm Cloud availability.
 
 ---
 ### `go_feature_extractor_tarantool_queue_total`
@@ -320,6 +356,10 @@ go_feature_extractor_tarantool_queue_total{partner_client_uuid="b938ac84-1ac3-11
 go_feature_extractor_tarantool_queue_total{partner_client_uuid="b938ac84-1ac3-11ec-9f1c-4201ac1ff113",type="throttled"} 0
 
 ```
+
+**Troubleshooting recommendations:** 
+
+If throttled values increase, **wcli** is overloaded. Allocate more resources or reduce the fetch frequency.
 
 ## wcli-layer metrics for bot feature extraction (botexp)
 
@@ -427,6 +467,10 @@ The total number of exported requests to the Wallarm Cloud by the `botexp` job.
 wallarm_wcli_botexp_api_sent 505
 ```
 
+**Troubleshooting recommendations:** 
+
+If stagnant despite incoming traffic, check Wallarm Cloud endpoint availability and export queue status.
+
 ---
 ### `wallarm_wcli_botexp_api_failed`
 
@@ -443,6 +487,10 @@ The total number of failed export attempts to the Wallarm Cloud by the `botexp` 
 ```
 wallarm_wcli_botexp_api_failed 0
 ```
+
+**Troubleshooting recommendations:** 
+
+Any non-zero count signals Wallarm Cloud or network issues. Inspect retry logic and connectivity.
 
 ## Blocked request exporter metrics (blkexp)
 
@@ -516,6 +564,10 @@ The total number of exported requests the `blkexp` job sent to the Wallarm Cloud
 wallarm_wcli_blkexp_api_send 0
 ```
 
+**Troubleshooting recommendations:** 
+
+If stalled, verify Wallarm Cloud account credentials and network bandwidth.
+
 ---
 ### `wallarm_wcli_blkexp_api_sent_failed`
 
@@ -532,6 +584,10 @@ The total number of failed export attempts the `blkexp` job sent to the Wallarm 
 ```
 wallarm_wcli_blkexp_api_sent_failed 0
 ```
+
+**Troubleshooting recommendations:** 
+
+A non-zero value indicates Wallarm Cloud connectivity or rate-limit issues.
 
 ## Credential Stuffing Detection metrics (credstuff)
 
@@ -605,6 +661,10 @@ The total number of requests the `credstuff` job successfully processed.
 wallarm_wcli_credstuff_requests_processed 0
 ```
 
+**Troubleshooting recommendations:** 
+
+If the value remains `0`, check the input feeds and job initialization.
+
 ---
 ### `wallarm_wcli_credstuff_requests_failed`
 
@@ -621,6 +681,10 @@ The total number of requests the `credstuff` job failed to process.
 ```
 wallarm_wcli_credstuff_requests_failed 0
 ```
+
+**Troubleshooting recommendations:** 
+
+A rising count indicates credential-matching or logic errors. Check logs for details.
 
 ## JWT token exporter metrics (jwtexp)
 
@@ -694,6 +758,10 @@ The total number of exported requests to the Wallarm Cloud by the `jwtexp` job.
 wallarm_wcli_jwtexp_api_requests_sent 0
 ```
 
+**Troubleshooting recommendations:** 
+
+If the value is zero or stagnant, the export is stalled. Check Wallarm Cloud availability.
+
 ---
 ### `wallarm_wcli_jwtexp_api_requests_failed`
 
@@ -710,6 +778,10 @@ The total number of failed request export attempts to the Wallarm Cloud by the `
 ```
 wallarm_wcli_jwtexp_api_requests_failed 0
 ```
+
+**Troubleshooting recommendations:** 
+
+A non-zero value indicates network or Wallarm Cloud failures.
 
 ## Request exporter metrics (reqexp)
 
@@ -783,6 +855,10 @@ The total number of exported requests to the Wallarm Cloud by the `reqexp` job.
 wallarm_wcli_reqexp_api_requests_sent 156
 ```
 
+**Troubleshooting recommendations:** 
+
+If the value stops increasing, exports are stuck. Verify Wallarm Cloud connectivity.
+
 ---
 ### `wallarm_wcli_reqexp_api_requests_failed`
 
@@ -799,6 +875,10 @@ The total number of failed request export attempts to the Wallarm Cloud by the `
 ```
 wallarm_wcli_reqexp_api_requests_failed 0
 ```
+
+**Troubleshooting recommendations:** 
+
+A non-zero value indicates Wallarm Cloud errors or network failures.
 
 ## Counter exporter metrics (cntexp)
 
@@ -838,6 +918,10 @@ The total number of exported counters to the Wallarm Cloud by the `cntexp` job.
 wallarm_wcli_cntexp_api_counters_sent 869
 ```
 
+**Troubleshooting recommendations:** 
+
+If it lags behind read counts, check the Wallarm Cloud export pipeline and retry queue.
+
 ---
 ### `wallarm_wcli_cntexp_api_counters_failed`
 
@@ -854,6 +938,10 @@ The total number of failed counter export attempts to the Wallarm Cloud by the `
 ```
 wallarm_wcli_cntexp_api_counters_failed 0
 ```
+
+**Troubleshooting recommendations:** 
+
+A non-zero value indicates Wallarm Cloud connectivity or authorization issues.
 
 ## API Discovery metrics (api_discovery)
 
