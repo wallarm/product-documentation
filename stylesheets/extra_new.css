@@ -233,7 +233,13 @@ a.md-header__button.md-logo:after {
 
 .homepage .md-content__inner h1 + p {
   text-align: left;
-  max-width: calc(50% - 8px);
+}
+
+/* Match intro tile width on desktop (when grid is 2 columns) */
+@media screen and (min-width: 601px) {
+  .homepage .md-content__inner h1 + p {
+    max-width: calc(50% - 8px);
+  }
 }
 
 /* Sidebars */
