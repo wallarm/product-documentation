@@ -393,8 +393,9 @@ Everything you need to discover your APIs, MCPs, and AI agents, protect them fro
   width: 100%;
 }
 
-/* Old behavior: search has ~42% width, not full */
+/* Search expands to fill available width */
 #homepage-search-mount {
+  flex: 1;
   min-width: 280px;
   overflow: visible;
 }
@@ -423,7 +424,7 @@ Everything you need to discover your APIs, MCPs, and AI agents, protect them fro
   border-radius: 8px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.05);
   background: #F9FAFB;
-  width: 34.4rem;
+  width: 100%;
   display: flex;
   align-items: center;
 
@@ -455,7 +456,7 @@ Everything you need to discover your APIs, MCPs, and AI agents, protect them fro
   padding: 0 16px 0 44px;
   font-size: 15px;
   background: transparent !important;
-  width: 34.4rem;
+  width: 100%;
 
   /* Reserve space on the right so UI/clear doesn't cover the badge */
   padding-right: 64px;
