@@ -390,7 +390,8 @@ Everything you need to discover your APIs, MCPs, and AI agents, protect them fro
   /* key: do NOT center */
   align-self: flex-start;
   justify-content: flex-start;
-  width: 100%;
+  /* Match intro tile width (50% of grid minus half gap) */
+  width: calc(50% - 8px);
 }
 
 /* Search expands to fill available width */

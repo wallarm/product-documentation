@@ -233,6 +233,7 @@ a.md-header__button.md-logo:after {
 
 .homepage .md-content__inner h1 + p {
   text-align: left;
+  max-width: calc(50% - 8px);
 }
 
 /* Sidebars */
