@@ -227,9 +227,13 @@ a.md-header__button.md-logo:after {
 
 /* Main */
 
-.homepage .md-content__inner h1, .homepage .md-content__inner h1 + p {
+.homepage .md-content__inner h1 {
   text-align: left;
-  max-width: 700px;
+}
+
+.homepage .md-content__inner h1 + p {
+  text-align: left;
+  max-width: calc(50% - 8px);
 }
 
 /* Sidebars */
