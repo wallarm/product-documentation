@@ -90,6 +90,9 @@ extra:
       analytics:
         name: Amplitude Analytics
         checked: true
+      google_analytics:
+        name: Google Analytics
+        checked: true
     title: Cookie consent
     description: We use cookies to optimize our documentation and collect valuable feedback. Your consent helps us improve! Learn more in our <a href="https://www.wallarm.com/cookie-policy" target="_blank">Cookie policy</a>.
     actions:
@@ -99,6 +102,7 @@ extra:
   analytics:
     provider: custom
     amplitude_api_key: 78e35700de65a613b46a06dafca5d5e7
+    google_analytics_id: G-3Z9P1Z18D8
     feedback:
       title: Was this page helpful?
       ratings:

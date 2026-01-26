@@ -30,6 +30,28 @@
     return false;
   }
 
+  function __md_isGoogleAnalyticsAllowed() {
+    if (typeof __md_get !== "function") {
+      return true;
+    }
+
+    var consent = __md_get("__consent");
+
+    if (!consent) {
+      return true;
+    }
+
+    if (Object.prototype.hasOwnProperty.call(consent, "google_analytics")) {
+      return !!consent.google_analytics;
+    }
+
+    if (Object.prototype.hasOwnProperty.call(consent, "analytics")) {
+      return !!consent.analytics;
+    }
+
+    return false;
+  }
+
   function __md_setFeedbackVisible(visible) {
     var form = document.forms && document.forms.feedback ? document.forms.feedback : null;
     if (form) form.hidden = !visible;
@@ -43,9 +65,9 @@
 
   function __md_analytics() {
     // Only run on production host
-    if (window.location.hostname !== "docs.wallarm.com") {
-      return;
-    }
+    // if (window.location.hostname !== "docs.wallarm.com") {
+    //   return;
+    // }
 
     // Gate: do not load Amplitude if consent disallows it
     if (!__md_isAmplitudeAllowed()) {
@@ -93,6 +115,40 @@
     document.head.appendChild(s);
   }
 
+  function __md_google_analytics() {
+    var GA_ID = "{{ config.extra.analytics.google_analytics_id }}";
+    if (!GA_ID) return;
+
+    if (!__md_isGoogleAnalyticsAllowed()) {
+      window["ga-disable-" + GA_ID] = true;
+      return;
+    }
+
+    if (window.__ga_loaded) return;
+    window.__ga_loaded = true;
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", GA_ID, { anonymize_ip: true });
+
+    var g = document.createElement("script");
+    g.async = true;
+    g.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA_ID);
+    document.head.appendChild(g);
+  }
+
+  function __md_ga_track(name, params) {
+    var GA_ID = "{{ config.extra.analytics.google_analytics_id }}";
+    if (!GA_ID) return;
+    // if (window.location.hostname !== "docs.wallarm.com") return;
+    if (!__md_isGoogleAnalyticsAllowed()) return;
+    if (window["ga-disable-" + GA_ID]) return;
+    if (typeof gtag !== "function") return;
+
+    gtag("event", name, params || {});
+  }
+
   function __md_feedback() {
     function onReady(fn) {
       if (typeof document$ !== "undefined") {
@@ -103,7 +159,7 @@
     }
 
     function track(name, props) {
-      if (window.location.hostname !== "docs.wallarm.com") return;
+      // if (window.location.hostname !== "docs.wallarm.com") return;
       // Respect consent every time we track
       if (!__md_isAmplitudeAllowed()) return;
 
@@ -178,6 +234,7 @@
         var textarea = container.querySelector(".feedback-input textarea");
         var counter = container.querySelector(".character-count");
         var max = 240;
+        var lastReason = null;
 
         if (!submit || !textarea) return;
 
@@ -194,7 +251,24 @@
         });
 
         radios.forEach(function (r) {
-          r.addEventListener("change", updateState);
+          r.addEventListener("change", function () {
+            updateState();
+
+            if (!r.checked) return;
+            if (lastReason === r.value) return;
+            lastReason = r.value;
+
+            track("DOCS_FEEDBACK_NEGATIVE_REASON", {
+              reason: r.value,
+              page_path: document.location.pathname,
+              page_title: document.title
+            });
+            __md_ga_track("negative_feedback_reason_selected", {
+              negative_feedback_reason: r.value,
+              page_path: document.location.pathname,
+              page_title: document.title
+            });
+          });
         });
 
         submit.addEventListener("click", function (ev) {
@@ -206,17 +280,14 @@
           var selected = Array.from(radios).find(function (r) { return r.checked; });
           var text = textarea.value.trim();
 
-          if (selected) {
-            track("DOCS_FEEDBACK_NEGATIVE_REASON", {
-              reason: selected.value,
-              page_path: document.location.pathname,
-              page_title: document.title
-            });
-          }
-
           if (text) {
             track("DOCS_FEEDBACK_NEGATIVE_TEXT", {
               text: text,
+              page_path: document.location.pathname,
+              page_title: document.title
+            });
+            __md_ga_track("negative_feedback_text_submitted", {
+              negative_feedback_text: text,
               page_path: document.location.pathname,
               page_title: document.title
             });
@@ -244,8 +315,16 @@
               page_path: document.location.pathname,
               page_title: document.title
             });
+            __md_ga_track("positive_feedback_submitted", {
+              page_path: document.location.pathname,
+              page_title: document.title
+            });
           } else if (value === "0") {
             track("DOCS_FEEDBACK_NEGATIVE", {
+              page_path: document.location.pathname,
+              page_title: document.title
+            });
+            __md_ga_track("negative_feedback_submitted", {
               page_path: document.location.pathname,
               page_title: document.title
             });
@@ -263,5 +342,7 @@
       });
     });
   }
+
+  __md_google_analytics();
 
 </script>
