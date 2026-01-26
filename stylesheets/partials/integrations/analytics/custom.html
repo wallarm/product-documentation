@@ -42,6 +42,11 @@
   }
 
   function __md_analytics() {
+    // Only run on production host
+    if (window.location.hostname !== "docs.wallarm.com") {
+      return;
+    }
+
     // Gate: do not load Amplitude if consent disallows it
     if (!__md_isAmplitudeAllowed()) {
       // If SDK already exists, opt-out defensively
@@ -98,6 +103,7 @@
     }
 
     function track(name, props) {
+      if (window.location.hostname !== "docs.wallarm.com") return;
       // Respect consent every time we track
       if (!__md_isAmplitudeAllowed()) return;
 
