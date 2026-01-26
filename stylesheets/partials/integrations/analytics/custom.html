@@ -343,6 +343,83 @@
     });
   }
 
+  function __md_search_tracking() {
+    var state = {
+      lastQuery: "",
+      lastSentAt: 0
+    };
+
+    function onReady(fn) {
+      if (typeof document$ !== "undefined") {
+        document$.subscribe(fn);
+      } else {
+        document.addEventListener("DOMContentLoaded", fn);
+      }
+    }
+
+    function track(name, props) {
+      if (window.location.hostname !== "docs.wallarm.com") return;
+      if (!__md_isAmplitudeAllowed()) return;
+      try {
+        if (window.amplitude && typeof window.amplitude.track === "function") {
+          window.amplitude.track(name, props || {});
+        }
+      } catch (e) {}
+    }
+
+    function normalize(value) {
+      return (value || "").trim();
+    }
+
+    function shouldSend(query) {
+      if (!query) return false;
+      if (query.length < 2) return false;
+      if (query === state.lastQuery && Date.now() - state.lastSentAt < 5000) return false;
+      return true;
+    }
+
+    function send(query, reason) {
+      state.lastQuery = query;
+      state.lastSentAt = Date.now();
+      track("DOCS_SEARCH_QUERY", {
+        query: query,
+        query_length: query.length,
+        reason: reason,
+        page_path: document.location.pathname,
+        page_title: document.title
+      });
+    }
+
+    function wireInput(input) {
+      if (!input || input.dataset.searchTracked === "true") return;
+      input.dataset.searchTracked = "true";
+
+      input.addEventListener("change", function () {
+        var query = normalize(input.value);
+        if (shouldSend(query)) send(query, "change");
+      });
+
+      input.addEventListener("keydown", function (ev) {
+        if (ev.key !== "Enter") return;
+        var query = normalize(input.value);
+        if (shouldSend(query)) send(query, "enter");
+      });
+
+      input.addEventListener("blur", function () {
+        var query = normalize(input.value);
+        if (shouldSend(query)) send(query, "blur");
+      });
+    }
+
+    onReady(function () {
+      if (window.location.hostname !== "docs.wallarm.com") return;
+      var inputs = document.querySelectorAll(
+        'input[data-md-component="search-query"], .md-search__input'
+      );
+      inputs.forEach(wireInput);
+    });
+  }
+
   function __md_scroll_depth() {
     var thresholds = [25, 50, 75, 90, 100];
     var state = {
