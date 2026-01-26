@@ -1501,6 +1501,11 @@ html .md-footer .md-social a:hover {
   line-height: 1.8rem;
 }
 
+[dir="rtl"] .languages-list {
+  right: auto;
+  left: 0;
+}
+
 .languages-main:focus {
   outline:0;
 }
