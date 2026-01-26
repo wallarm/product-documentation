@@ -47,6 +47,7 @@
         // Start analytics + feedback only when NOT rejected
         if (typeof __md_analytics === "function") __md_analytics();
         if (typeof __md_feedback === "function") __md_feedback();
+        if (typeof __md_scroll_depth === "function") __md_scroll_depth();
       }
 
       // Initial load
@@ -64,6 +65,7 @@
     // No consent configured -> always run
     if (typeof __md_analytics === "function") __md_analytics();
     if (typeof __md_feedback === "function") __md_feedback();
+    if (typeof __md_scroll_depth === "function") __md_scroll_depth();
   </script>
   {% endif %}
 {% endif %}

@@ -343,6 +343,90 @@
     });
   }
 
+  function __md_scroll_depth() {
+    var thresholds = [25, 50, 75, 90, 100];
+    var state = {
+      sent: {},
+      ticking: false,
+      lastPath: null,
+      wired: false
+    };
+
+    function onReady(fn) {
+      if (typeof document$ !== "undefined") {
+        document$.subscribe(fn);
+      } else {
+        document.addEventListener("DOMContentLoaded", fn);
+      }
+    }
+
+    function track(name, props) {
+      if (window.location.hostname !== "docs.wallarm.com") return;
+      if (!__md_isAmplitudeAllowed()) return;
+      try {
+        if (window.amplitude && typeof window.amplitude.track === "function") {
+          window.amplitude.track(name, props || {});
+        }
+      } catch (e) {}
+    }
+
+    function getScrollPercent() {
+      var doc = document.documentElement;
+      var body = document.body;
+      var scrollTop = window.pageYOffset || doc.scrollTop || body.scrollTop || 0;
+      var scrollHeight = Math.max(body.scrollHeight, doc.scrollHeight);
+      var clientHeight = doc.clientHeight || window.innerHeight || 0;
+      var scrollable = scrollHeight - clientHeight;
+      if (scrollable <= 0) return 100;
+      var percent = Math.round((scrollTop / scrollable) * 100);
+      return Math.max(0, Math.min(100, percent));
+    }
+
+    function check() {
+      state.ticking = false;
+      var percent = getScrollPercent();
+      thresholds.forEach(function (t) {
+        if (percent >= t && !state.sent[t]) {
+          state.sent[t] = true;
+          track("DOCS_SCROLL_DEPTH", {
+            percent: t,
+            page_path: document.location.pathname,
+            page_title: document.title
+          });
+        }
+      });
+    }
+
+    function schedule() {
+      if (state.ticking) return;
+      state.ticking = true;
+      window.requestAnimationFrame(check);
+    }
+
+    function initPage() {
+      state.sent = {};
+      state.lastPath = document.location.pathname;
+      schedule();
+    }
+
+    onReady(function () {
+      if (window.location.hostname !== "docs.wallarm.com") return;
+      if (!state.wired) {
+        state.wired = true;
+        window.addEventListener("scroll", function () {
+          if (state.lastPath !== document.location.pathname) initPage();
+          schedule();
+        }, { passive: true });
+        window.addEventListener("resize", function () {
+          if (state.lastPath !== document.location.pathname) initPage();
+          schedule();
+        });
+      }
+
+      initPage();
+    });
+  }
+
   __md_google_analytics();
 
 </script>
