@@ -442,6 +442,14 @@ if (window.location.hostname === "docs.wallarm.com") {
 
 var rootLanguage = 'en';
 
+function getCurrentLanguage() {
+  const button = document.getElementById('languagesMain');
+  if (button && button.dataset && button.dataset.currentLanguage) {
+    return button.dataset.currentLanguage;
+  }
+  return rootLanguage;
+}
+
 function languageClicked (event) {
   if (document.getElementById('languagesList').style.display === 'none') {
     document.getElementById('languagesList').style.display = 'block'
@@ -453,8 +461,9 @@ function languageClicked (event) {
 }
 
 // Open the docs for selected language and change value in the selector
-function goToLanguage (event, currentLanguage, language) {
+function goToLanguage (event, language) {
   event.preventDefault()
+  const currentLanguage = getCurrentLanguage();
 
   if (currentLanguage === language) {
     window.location.reload(false);

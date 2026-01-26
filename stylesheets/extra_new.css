@@ -868,7 +868,7 @@ img {
   .languages .languages-list, .languages .languages-main {
     width: 100%;
   }
-  .languages .languages-drop {
+  .languages {
     margin: 0;
   }
   .md-header__button.md-logo {
@@ -1456,21 +1456,25 @@ html .md-footer .md-social a:hover {
 .languages {
   position: relative;
   display: inline-block;
-  line-height: 1.8rem;
 }
 
 .languages-main {
   height: 36px;
   border-style: solid;
-  background-color: #FFFF;
-  border-color: rgba(149, 157, 172, 0.24);
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.3);
   border-radius: 4px;
   border-width: 1px;
   font-size: 14px;
   cursor: pointer;
-  min-width: 131px;
-  transition: all 0.3s ease;
-  color: hsla(0, 0%, 0%, 1);
+  min-width: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 8px;
+  color: #FFFFFF;
+  transition: all 0.2s ease;
 }
 
 .languages-list {
@@ -1479,9 +1483,11 @@ html .md-footer .md-social a:hover {
   box-shadow: 0px 1px 8px rgba(149, 157, 172, 0.4);
   border-radius: 4px;
   position: absolute;
+  right: 0;
   padding: 8px 0px;
   min-width: 131px;
   z-index: 1;
+  line-height: 1.8rem;
 }
 
 .languages-main:focus {
@@ -1504,14 +1510,19 @@ html .md-footer .md-social a:hover {
   background-color: #F7F7F8;
 }
 
-.languages-main-active .languages-drop {
-  transform: rotate(-180deg);
+.languages-main:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
-.languages-drop {
-  transition: transform 0.24s cubic-bezier(0.24,0.1,0.24,1);
-  vertical-align: middle;
-  margin-left: 8px;
+.languages-main-active {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+
+.languages-icon {
+  display: inline-block;
 }
 
 
