@@ -162,7 +162,7 @@ div[data-md-component="announce"] {
 
 /* Header Ask AI button */
 .header-ask-ai-btn {
-  display: inline-flex;
+  display: inline-flex !important;
   flex-direction: row;
   align-items: center;
   gap: 6px;
@@ -994,6 +994,17 @@ img {
 @media screen and (min-width: 76.25em) {
   [dir=ltr] .md-nav--primary .md-nav__item>.md-nav__link {
     margin-right: 0px;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .md-header__inner.md-search {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .header-ask-ai-btn, .header-buttons, .languages {
+    flex: 0 0 auto;
   }
 }
 
