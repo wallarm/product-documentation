@@ -65,9 +65,9 @@
 
   function __md_analytics() {
     // Only run on production host
-    // if (window.location.hostname !== "docs.wallarm.com") {
-    //   return;
-    // }
+    if (window.location.hostname !== "docs.wallarm.com") {
+      return;
+    }
 
     // Gate: do not load Amplitude if consent disallows it
     if (!__md_isAmplitudeAllowed()) {
@@ -141,7 +141,7 @@
   function __md_ga_track(name, params) {
     var GA_ID = "{{ config.extra.analytics.google_analytics_id }}";
     if (!GA_ID) return;
-    // if (window.location.hostname !== "docs.wallarm.com") return;
+    if (window.location.hostname !== "docs.wallarm.com") return;
     if (!__md_isGoogleAnalyticsAllowed()) return;
     if (window["ga-disable-" + GA_ID]) return;
     if (typeof gtag !== "function") return;
@@ -159,7 +159,7 @@
     }
 
     function track(name, props) {
-      // if (window.location.hostname !== "docs.wallarm.com") return;
+      if (window.location.hostname !== "docs.wallarm.com") return;
       // Respect consent every time we track
       if (!__md_isAmplitudeAllowed()) return;
 
