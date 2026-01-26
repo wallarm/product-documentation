@@ -798,12 +798,11 @@ img {
 @media screen and (max-width: 959px) {
   .md-header__inner.md-grid {
     display: grid;
-    height: 157px;
-    grid-template-rows: 65px 40px 50px;
+    height: 107px;
+    grid-template-rows: 65px 40px;
     grid-template-areas:
       "toggle logo title back askai search"
-      "buttons buttons buttons buttons buttons buttons"
-      "lang lang lang lang lang lang";
+      "buttons buttons buttons buttons buttons lang";
     grid-template-columns: 44px 138px auto 60px 44px 44px;
   }
   .header-ask-ai-btn {
@@ -864,6 +863,7 @@ img {
   .languages {
     position: relative;
     grid-area: lang;
+    padding-left: 6px;
   }
   .languages .languages-list, .languages .languages-main {
     width: 100%;

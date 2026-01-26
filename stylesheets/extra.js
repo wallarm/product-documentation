@@ -460,6 +460,19 @@ function languageClicked (event) {
   }
 }
 
+document.addEventListener('click', (event) => {
+  const languagesDiv = document.getElementById('languagesDiv');
+  const languagesList = document.getElementById('languagesList');
+  const languagesMain = document.getElementById('languagesMain');
+
+  if (!languagesDiv || !languagesList || !languagesMain) return;
+  if (languagesDiv.contains(event.target)) return;
+  if (languagesList.style.display !== 'block') return;
+
+  languagesList.style.display = 'none';
+  languagesMain.classList.remove("languages-main-active");
+});
+
 // Open the docs for selected language and change value in the selector
 function goToLanguage (event, language) {
   event.preventDefault()
