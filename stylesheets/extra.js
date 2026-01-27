@@ -442,6 +442,34 @@ if (window.location.hostname === "docs.wallarm.com") {
 
 var rootLanguage = 'en';
 
+const supportedLanguages = new Set(['ar', 'ja', 'tr', 'pt-br']);
+const versionSegments = new Set([
+  '5.x',
+  '4.10',
+  '3.6',
+  '2.18'
+]);
+
+function getCurrentLanguage() {
+  const button = document.getElementById('languagesMain');
+  if (button && button.dataset && button.dataset.currentLanguage) {
+    return button.dataset.currentLanguage;
+  }
+  return rootLanguage;
+}
+
+function stripVersionFromPath(pathname) {
+  let cleaned = pathname;
+
+  versionSegments.forEach((seg) => {
+    const matcher = new RegExp(`/${seg}(/|$)`);
+    cleaned = cleaned.replace(matcher, '/');
+  });
+
+  cleaned = cleaned.replace(/\/{2,}/g, '/');
+  return cleaned;
+}
+
 function languageClicked (event) {
   if (document.getElementById('languagesList').style.display === 'none') {
     document.getElementById('languagesList').style.display = 'block'
@@ -452,29 +480,64 @@ function languageClicked (event) {
   }
 }
 
+document.addEventListener('click', (event) => {
+  const languagesDiv = document.getElementById('languagesDiv');
+  const languagesList = document.getElementById('languagesList');
+  const languagesMain = document.getElementById('languagesMain');
+
+  if (!languagesDiv || !languagesList || !languagesMain) return;
+  if (languagesDiv.contains(event.target)) return;
+  if (languagesList.style.display !== 'block') return;
+
+  languagesList.style.display = 'none';
+  languagesMain.classList.remove("languages-main-active");
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const { pathname } = window.location;
+  const hadTrailingSlash = pathname.endsWith('/');
+  const segments = pathname.split('/').filter(Boolean);
+
+  if (segments.length < 2) return;
+  if (!supportedLanguages.has(segments[0])) return;
+  if (!versionSegments.has(segments[1])) return;
+
+  const newSegments = [segments[0], ...segments.slice(2)];
+  let newPath = '/' + newSegments.join('/');
+  if (hadTrailingSlash && newPath !== '/') {
+    newPath += '/';
+  }
+
+  if (newPath !== pathname) {
+    window.location.replace(newPath);
+  }
+});
+
 // Open the docs for selected language and change value in the selector
-function goToLanguage (event, currentLanguage, language) {
+function goToLanguage (event, language) {
   event.preventDefault()
+  const currentLanguage = getCurrentLanguage();
 
   if (currentLanguage === language) {
     window.location.reload(false);
   }
   else {
-    let tmp = window.location.pathname.split('/');
+    const cleanedPath = stripVersionFromPath(window.location.pathname);
+    let tmp = cleanedPath.split('/');
     window.top.location.href = tmp.join('/');
     if (language === rootLanguage) {
-      window.top.location.href = window.location.pathname.replace('/'+currentLanguage+'/','/');
+      window.top.location.href = cleanedPath.replace('/'+currentLanguage+'/','/');
     } else {
       if (currentLanguage === rootLanguage) {
         if (tmp[1].startsWith('docs')) {
-          window.top.location.href = window.location.pathname.replace('/'+'docs'+'/','/'+'docs'+'/'+language+'/');
+          window.top.location.href = cleanedPath.replace('/'+'docs'+'/','/'+'docs'+'/'+language+'/');
         }
         else {
-          window.top.location.href = window.location.pathname.replace('/','/'+language+'/');
+          window.top.location.href = cleanedPath.replace('/','/'+language+'/');
         }
       }
       else {
-          window.top.location.href = window.location.pathname.replace('/'+currentLanguage+'/','/'+language+'/')
+          window.top.location.href = cleanedPath.replace('/'+currentLanguage+'/','/'+language+'/')
       }
     }
   }

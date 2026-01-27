@@ -30,6 +30,28 @@
     return false;
   }
 
+  function __md_isGoogleAnalyticsAllowed() {
+    if (typeof __md_get !== "function") {
+      return true;
+    }
+
+    var consent = __md_get("__consent");
+
+    if (!consent) {
+      return true;
+    }
+
+    if (Object.prototype.hasOwnProperty.call(consent, "google_analytics")) {
+      return !!consent.google_analytics;
+    }
+
+    if (Object.prototype.hasOwnProperty.call(consent, "analytics")) {
+      return !!consent.analytics;
+    }
+
+    return false;
+  }
+
   function __md_setFeedbackVisible(visible) {
     var form = document.forms && document.forms.feedback ? document.forms.feedback : null;
     if (form) form.hidden = !visible;
@@ -42,6 +64,11 @@
   }
 
   function __md_analytics() {
+    // Only run on production host
+    if (window.location.hostname !== "docs.wallarm.com") {
+      return;
+    }
+
     // Gate: do not load Amplitude if consent disallows it
     if (!__md_isAmplitudeAllowed()) {
       // If SDK already exists, opt-out defensively
@@ -88,6 +115,40 @@
     document.head.appendChild(s);
   }
 
+  function __md_google_analytics() {
+    var GA_ID = "{{ config.extra.analytics.google_analytics_id }}";
+    if (!GA_ID) return;
+
+    if (!__md_isGoogleAnalyticsAllowed()) {
+      window["ga-disable-" + GA_ID] = true;
+      return;
+    }
+
+    if (window.__ga_loaded) return;
+    window.__ga_loaded = true;
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", GA_ID, { anonymize_ip: true });
+
+    var g = document.createElement("script");
+    g.async = true;
+    g.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA_ID);
+    document.head.appendChild(g);
+  }
+
+  function __md_ga_track(name, params) {
+    var GA_ID = "{{ config.extra.analytics.google_analytics_id }}";
+    if (!GA_ID) return;
+    if (window.location.hostname !== "docs.wallarm.com") return;
+    if (!__md_isGoogleAnalyticsAllowed()) return;
+    if (window["ga-disable-" + GA_ID]) return;
+    if (typeof gtag !== "function") return;
+
+    gtag("event", name, params || {});
+  }
+
   function __md_feedback() {
     function onReady(fn) {
       if (typeof document$ !== "undefined") {
@@ -98,6 +159,7 @@
     }
 
     function track(name, props) {
+      if (window.location.hostname !== "docs.wallarm.com") return;
       // Respect consent every time we track
       if (!__md_isAmplitudeAllowed()) return;
 
@@ -172,6 +234,7 @@
         var textarea = container.querySelector(".feedback-input textarea");
         var counter = container.querySelector(".character-count");
         var max = 240;
+        var lastReason = null;
 
         if (!submit || !textarea) return;
 
@@ -188,7 +251,24 @@
         });
 
         radios.forEach(function (r) {
-          r.addEventListener("change", updateState);
+          r.addEventListener("change", function () {
+            updateState();
+
+            if (!r.checked) return;
+            if (lastReason === r.value) return;
+            lastReason = r.value;
+
+            track("DOCS_FEEDBACK_NEGATIVE_REASON", {
+              reason: r.value,
+              page_path: document.location.pathname,
+              page_title: document.title
+            });
+            __md_ga_track("negative_feedback_reason_selected", {
+              negative_feedback_reason: r.value,
+              page_path: document.location.pathname,
+              page_title: document.title
+            });
+          });
         });
 
         submit.addEventListener("click", function (ev) {
@@ -200,17 +280,14 @@
           var selected = Array.from(radios).find(function (r) { return r.checked; });
           var text = textarea.value.trim();
 
-          if (selected) {
-            track("DOCS_FEEDBACK_NEGATIVE_REASON", {
-              reason: selected.value,
-              page_path: document.location.pathname,
-              page_title: document.title
-            });
-          }
-
           if (text) {
             track("DOCS_FEEDBACK_NEGATIVE_TEXT", {
               text: text,
+              page_path: document.location.pathname,
+              page_title: document.title
+            });
+            __md_ga_track("negative_feedback_text_submitted", {
+              negative_feedback_text: text,
               page_path: document.location.pathname,
               page_title: document.title
             });
@@ -238,8 +315,16 @@
               page_path: document.location.pathname,
               page_title: document.title
             });
+            __md_ga_track("positive_feedback_submitted", {
+              page_path: document.location.pathname,
+              page_title: document.title
+            });
           } else if (value === "0") {
             track("DOCS_FEEDBACK_NEGATIVE", {
+              page_path: document.location.pathname,
+              page_title: document.title
+            });
+            __md_ga_track("negative_feedback_submitted", {
               page_path: document.location.pathname,
               page_title: document.title
             });
@@ -257,5 +342,223 @@
       });
     });
   }
+
+  function __md_search_tracking() {
+    var state = {
+      lastQuery: "",
+      lastSentAt: 0
+    };
+
+    function onReady(fn) {
+      if (typeof document$ !== "undefined") {
+        document$.subscribe(fn);
+      } else {
+        document.addEventListener("DOMContentLoaded", fn);
+      }
+    }
+
+    function track(name, props) {
+      if (window.location.hostname !== "docs.wallarm.com") return;
+      if (!__md_isAmplitudeAllowed()) return;
+      try {
+        if (window.amplitude && typeof window.amplitude.track === "function") {
+          window.amplitude.track(name, props || {});
+        }
+      } catch (e) {}
+    }
+
+    function normalize(value) {
+      return (value || "").trim();
+    }
+
+    function shouldSend(query) {
+      if (!query) return false;
+      if (query.length < 2) return false;
+      if (query === state.lastQuery && Date.now() - state.lastSentAt < 5000) return false;
+      return true;
+    }
+
+    function send(query, reason) {
+      state.lastQuery = query;
+      state.lastSentAt = Date.now();
+      track("DOCS_SEARCH_QUERY", {
+        query: query,
+        query_length: query.length,
+        reason: reason,
+        page_path: document.location.pathname,
+        page_title: document.title
+      });
+    }
+
+    function wireInput(input) {
+      if (!input || input.dataset.searchTracked === "true") return;
+      input.dataset.searchTracked = "true";
+
+      input.addEventListener("change", function () {
+        var query = normalize(input.value);
+        if (shouldSend(query)) send(query, "change");
+      });
+
+      input.addEventListener("keydown", function (ev) {
+        if (ev.key !== "Enter") return;
+        var query = normalize(input.value);
+        if (shouldSend(query)) send(query, "enter");
+      });
+
+      input.addEventListener("blur", function () {
+        var query = normalize(input.value);
+        if (shouldSend(query)) send(query, "blur");
+      });
+    }
+
+    onReady(function () {
+      if (window.location.hostname !== "docs.wallarm.com") return;
+      var inputs = document.querySelectorAll(
+        'input[data-md-component="search-query"], .md-search__input'
+      );
+      inputs.forEach(wireInput);
+    });
+  }
+
+  function __md_mailto_tracking() {
+    function onReady(fn) {
+      if (typeof document$ !== "undefined") {
+        document$.subscribe(fn);
+      } else {
+        document.addEventListener("DOMContentLoaded", fn);
+      }
+    }
+
+    function track(name, props) {
+      if (window.location.hostname !== "docs.wallarm.com") return;
+      if (!__md_isAmplitudeAllowed()) return;
+      try {
+        if (window.amplitude && typeof window.amplitude.track === "function") {
+          window.amplitude.track(name, props || {});
+        }
+      } catch (e) {}
+    }
+
+    function normalize(value) {
+      return (value || "").trim();
+    }
+
+    function parseEmail(href) {
+      if (!href) return "";
+      var value = href.replace(/^mailto:/i, "");
+      var parts = value.split("?");
+      return normalize(parts[0]);
+    }
+
+    onReady(function () {
+      if (window.location.hostname !== "docs.wallarm.com") return;
+      if (window.__md_mailto_wired) return;
+      window.__md_mailto_wired = true;
+
+      document.addEventListener("click", function (ev) {
+        var target = ev.target;
+        if (!target || !target.closest) return;
+        var link = target.closest('a[href^="mailto:"]');
+        if (!link) return;
+
+        var href = normalize(link.getAttribute("href"));
+        if (!href) return;
+
+        track("DOCS_MAILTO_CLICKED", {
+          mailto: href,
+          email: parseEmail(href),
+          link_text: normalize(link.textContent),
+          page_path: document.location.pathname,
+          page_title: document.title
+        });
+      });
+    });
+  }
+
+  function __md_scroll_depth() {
+    var thresholds = [25, 50, 75, 90, 100];
+    var state = {
+      sent: {},
+      ticking: false,
+      lastPath: null,
+      wired: false
+    };
+
+    function onReady(fn) {
+      if (typeof document$ !== "undefined") {
+        document$.subscribe(fn);
+      } else {
+        document.addEventListener("DOMContentLoaded", fn);
+      }
+    }
+
+    function track(name, props) {
+      if (window.location.hostname !== "docs.wallarm.com") return;
+      if (!__md_isAmplitudeAllowed()) return;
+      try {
+        if (window.amplitude && typeof window.amplitude.track === "function") {
+          window.amplitude.track(name, props || {});
+        }
+      } catch (e) {}
+    }
+
+    function getScrollPercent() {
+      var doc = document.documentElement;
+      var body = document.body;
+      var scrollTop = window.pageYOffset || doc.scrollTop || body.scrollTop || 0;
+      var scrollHeight = Math.max(body.scrollHeight, doc.scrollHeight);
+      var clientHeight = doc.clientHeight || window.innerHeight || 0;
+      var scrollable = scrollHeight - clientHeight;
+      if (scrollable <= 0) return 100;
+      var percent = Math.round((scrollTop / scrollable) * 100);
+      return Math.max(0, Math.min(100, percent));
+    }
+
+    function check() {
+      state.ticking = false;
+      var percent = getScrollPercent();
+      thresholds.forEach(function (t) {
+        if (percent >= t && !state.sent[t]) {
+          state.sent[t] = true;
+          track("DOCS_SCROLL_DEPTH", {
+            percent: t,
+            page_path: document.location.pathname,
+            page_title: document.title
+          });
+        }
+      });
+    }
+
+    function schedule() {
+      if (state.ticking) return;
+      state.ticking = true;
+      window.requestAnimationFrame(check);
+    }
+
+    function initPage() {
+      state.sent = {};
+      state.lastPath = document.location.pathname;
+      schedule();
+    }
+
+    onReady(function () {
+      if (window.location.hostname !== "docs.wallarm.com") return;
+      if (!state.wired) {
+        state.wired = true;
+        window.addEventListener("scroll", function () {
+          if (state.lastPath !== document.location.pathname) initPage();
+          schedule();
+        }, { passive: true });
+        window.addEventListener("resize", function () {
+          if (state.lastPath !== document.location.pathname) initPage();
+          schedule();
+        });
+      }
+
+      initPage();
+    });
+  }
+
+  __md_google_analytics();
 
 </script>
