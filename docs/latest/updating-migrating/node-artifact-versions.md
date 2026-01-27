@@ -19,7 +19,7 @@ new attack types in logging variables and search bars?
 
 ### 6.10.0 (2026-01-27)
 
-* The API Firewall service now correctly handles OpenAPI v3 specifications that contain non-string (for example, integer) YAML keys by normalizing them before validation. This improves compatibility and prevents schema parsing failures
+* The API Firewall service now correctly handles OpenAPI v3 specifications that contain non-string (for example, integer) YAML keys. This improves compatibility and prevents schema parsing failures
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 
 ### 6.9.0 (2026-01-15)
@@ -190,7 +190,7 @@ new attack types in logging variables and search bars?
 
 ### 6.10.0 (2026-01-27)
 
-* The API Firewall service now correctly handles OpenAPI v3 specifications that contain non-string (for example, integer) YAML keys by normalizing them before validation. This improves compatibility and prevents schema parsing failures
+* The API Firewall service now correctly handles OpenAPI v3 specifications that contain non-string (for example, integer) YAML keys. This improves compatibility and prevents schema parsing failures
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 
 ### 6.9.0 (2026-01-15)
@@ -373,7 +373,7 @@ new attack types in logging variables and search bars?
 
 ### 6.10.0 (2026-01-27)
 
-* The API Firewall service now correctly handles OpenAPI v3 specifications that contain non-string (for example, integer) YAML keys by normalizing them before validation. This improves compatibility and prevents schema parsing failures
+* The API Firewall service now correctly handles OpenAPI v3 specifications that contain non-string (for example, integer) YAML keys. This improves compatibility and prevents schema parsing failures
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 
 ### 6.9.0 (2026-01-15)
@@ -520,7 +520,7 @@ new attack types in logging variables and search bars?
 
 ### 6.10.0 (2026-01-27)
 
-* The API Firewall service now correctly handles OpenAPI v3 specifications that contain non-string (for example, integer) YAML keys by normalizing them before validation. This improves compatibility and prevents schema parsing failures
+* The API Firewall service now correctly handles OpenAPI v3 specifications that contain non-string (for example, integer) YAML keys. This improves compatibility and prevents schema parsing failures
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 
 ### 6.9.0 (2026-01-15)
@@ -689,7 +689,7 @@ new attack types in logging variables and search bars?
 
 ### 6.10.0 (2026-01-27)
 
-* The API Firewall service now correctly handles OpenAPI v3 specifications that contain non-string (for example, integer) YAML keys by normalizing them before validation. This improves compatibility and prevents schema parsing failures
+* The API Firewall service now correctly handles OpenAPI v3 specifications that contain non-string (for example, integer) YAML keys. This improves compatibility and prevents schema parsing failures
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 
 ### 6.9.0 (2026-01-15)
@@ -822,7 +822,7 @@ new attack types in logging variables and search bars?
 
 ### wallarm-node-6-10-0-20260113-150813 (2026-01-27)
 
-* The API Firewall service now correctly handles OpenAPI v3 specifications that contain non-string (for example, integer) YAML keys by normalizing them before validation. This improves compatibility and prevents schema parsing failures
+* The API Firewall service now correctly handles OpenAPI v3 specifications that contain non-string (for example, integer) YAML keys. This improves compatibility and prevents schema parsing failures
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 
 ### wallarm-node-6-9-0-20260113-150813 (2026-01-15)
