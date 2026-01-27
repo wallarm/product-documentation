@@ -103,6 +103,22 @@ This link leads them to the Wallarm signup page to create their account by choos
 
 After signup, they will be added to your user list and will receive a confirmation email.
 
+### Password policy
+
+By default, Wallarm's user password must contain:
+
+* 8 characters
+* 1 number (0-9)
+* 1 lowercase letter (a-z)
+* 1 uppercase letter (A-Z)
+* No rotation required
+
+You can contact the [Wallarm support team](https://support.wallarm.com/) to modify this policy:
+
+* Make it stricter
+* Add rotation (like, request password change every `x` days)
+* Etc.
+
 ## Automatic creation with SSO
 
 You can manage Wallarm Console users and their permissions directly from your SAML SSO solution. In this case, in your SAML SSO solution, you have groups mapped to Wallarm roles - when you create new users inside these groups, they are automatically created in Wallarm and get: 

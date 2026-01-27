@@ -8,10 +8,6 @@ In today's digital world, APIs face growing threats, especially with the rise of
 
 Enterprises prefer Wallarm for its enhanced API security, easy deployment, and value. It combines API discovery, risk management, real-time protection, and testing with advanced API security capabilities.
 
-![Diagram](../images/about-wallarm-waf/overview/wallarm-features.png)
-
-Wallarm's functional areas align with [NIST cybersecurity framework (CSF)](https://www.nist.gov/cyberframework), ensuring comprehensive protection for our customers.
-
 ## Discover
 
 You need to know it to protect it. Wallarm offers comprehensive API discovery capabilities to identify APIs in your environment and evaluate their security risks. Here is what Wallarm's API discovery does:

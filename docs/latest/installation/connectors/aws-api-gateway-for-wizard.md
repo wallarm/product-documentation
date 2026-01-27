@@ -143,4 +143,12 @@ Wallarm builds the API inventory only after receiving a [sufficient number of re
   .md-consent {
     display: none;
   }
+
+  .md-tabs {
+    display: none;
+  }
+
+  [id^="inkeep-widget-"] {
+    display: none
+  }
 </style>

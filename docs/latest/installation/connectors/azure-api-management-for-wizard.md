@@ -103,4 +103,12 @@ To apply Wallarm policies **per API or operation**:
   .md-consent {
     display: none;
   }
+
+  .md-tabs {
+    display: none;
+  }
+
+  [id^="inkeep-widget-"] {
+    display: none
+  }
 </style>
