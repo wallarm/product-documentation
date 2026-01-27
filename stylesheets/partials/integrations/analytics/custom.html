@@ -420,6 +420,61 @@
     });
   }
 
+  function __md_mailto_tracking() {
+    function onReady(fn) {
+      if (typeof document$ !== "undefined") {
+        document$.subscribe(fn);
+      } else {
+        document.addEventListener("DOMContentLoaded", fn);
+      }
+    }
+
+    function track(name, props) {
+      if (window.location.hostname !== "docs.wallarm.com") return;
+      if (!__md_isAmplitudeAllowed()) return;
+      try {
+        if (window.amplitude && typeof window.amplitude.track === "function") {
+          window.amplitude.track(name, props || {});
+        }
+      } catch (e) {}
+    }
+
+    function normalize(value) {
+      return (value || "").trim();
+    }
+
+    function parseEmail(href) {
+      if (!href) return "";
+      var value = href.replace(/^mailto:/i, "");
+      var parts = value.split("?");
+      return normalize(parts[0]);
+    }
+
+    onReady(function () {
+      if (window.location.hostname !== "docs.wallarm.com") return;
+      if (window.__md_mailto_wired) return;
+      window.__md_mailto_wired = true;
+
+      document.addEventListener("click", function (ev) {
+        var target = ev.target;
+        if (!target || !target.closest) return;
+        var link = target.closest('a[href^="mailto:"]');
+        if (!link) return;
+
+        var href = normalize(link.getAttribute("href"));
+        if (!href) return;
+
+        track("DOCS_MAILTO_CLICKED", {
+          mailto: href,
+          email: parseEmail(href),
+          link_text: normalize(link.textContent),
+          page_path: document.location.pathname,
+          page_title: document.title
+        });
+      });
+    });
+  }
+
   function __md_scroll_depth() {
     var thresholds = [25, 50, 75, 90, 100];
     var state = {
