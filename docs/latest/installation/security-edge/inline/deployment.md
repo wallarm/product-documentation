@@ -172,22 +172,7 @@ Specify the public domains, ports and subdomains that will direct traffic to the
 
 ![!](../../../images/waf-installation/security-edge/inline/hosts.png)
 
-In addition to standard prefix paths (`/path`), you can define locations using the following NGINX regular expression patterns:
-
-* `= /path` - exact match
-* `^~ /path` - priority prefix match
-* `~ pattern` - case-sensitive regular expression
-* `~* pattern` - case-insensitive regular expression
-
-Examples:
-
-* `~ ^/api/v[0-9]+/users$`
-* `~* \.(jpg|png|gif)$`
-* `= /health`
-* `^~ /static/`
-
-!!! info "Prohibited characters in locations"
-    To prevent NGINX configuration injection, location values must not contain `{`, `}`, `;`, `#`, or newline characters.
+## 5. Locations
 
 For specific **locations** within hosts, you can further customize:
 
@@ -205,7 +190,24 @@ The below example configuration customizes settings per path to meet specific ne
 
 ![!](../../../images/waf-installation/security-edge/inline/locations.png)
 
-## 5. Certificate CNAME configuration
+In addition to standard prefix paths (`/path`), you can define locations using the following NGINX regular expression patterns:
+
+* `= /path` - exact match
+* `^~ /path` - priority prefix match
+* `~ pattern` - case-sensitive regular expression
+* `~* pattern` - case-insensitive regular expression
+
+Examples:
+
+* `~ ^/api/v[0-9]+/users$`
+* `~* \.(jpg|png|gif)$`
+* `= /health`
+* `^~ /static/`
+
+!!! info "Prohibited characters in locations"
+    To prevent NGINX configuration injection, location values must not contain `{`, `}`, `;`, `#`, or newline characters.
+
+## 6. Certificate CNAME configuration
 
 For domain verification, add the CNAME records provided in the Wallarm Console to your DNS provider's settings for each DNS zone. These records are required for Wallarm to verify domain ownership and issue certificates.
 
@@ -218,7 +220,7 @@ For domain verification, add the CNAME records provided in the Wallarm Console t
 
 DNS changes can take up to 24 hours to propagate. Wallarm starts the Edge Node deployment once the CNAME records are verified (if needed).
 
-## 6. Routing traffic to the Edge Node
+## 7. Routing traffic to the Edge Node
 
 To send client requests through the Edge Node, update your DNS records based on the type of domain you protect.
 
