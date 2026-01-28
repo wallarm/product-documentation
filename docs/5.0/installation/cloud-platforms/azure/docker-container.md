@@ -83,7 +83,7 @@ In these instructions, the container is deployed using the Azure CLI.
             --name wallarm-node \
             --dns-name-label wallarm \
             --ports 80 \
-            --image registry-1.docker.io/wallarm/node:5.3.16 \
+            --image registry-1.docker.io/wallarm/node:5.3.17 \
             --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} NGINX_BACKEND='example.com' WALLARM_API_HOST='us1.api.wallarm.com' WALLARM_LABELS='group=<GROUP>'
          ```
     === "Command for the Wallarm EU Cloud"
@@ -93,7 +93,7 @@ In these instructions, the container is deployed using the Azure CLI.
             --name wallarm-node \
             --dns-name-label wallarm \
             --ports 80 \
-            --image registry-1.docker.io/wallarm/node:5.3.16 \
+            --image registry-1.docker.io/wallarm/node:5.3.17 \
             --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} NGINX_BACKEND='example.com' WALLARM_LABELS='group=<GROUP>'
          ```
         
@@ -171,7 +171,7 @@ To deploy the container with environment variables and mounted configuration fil
             --name wallarm-node \
             --dns-name-label wallarm \
             --ports 80 \
-            --image registry-1.docker.io/wallarm/node:5.3.16 \
+            --image registry-1.docker.io/wallarm/node:5.3.17 \
             --gitrepo-url <URL_OF_GITREPO> \
             --gitrepo-mount-path /etc/nginx/sites-enabled \
             --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} WALLARM_API_HOST='us1.api.wallarm.com' WALLARM_LABELS='group=<GROUP>'
@@ -183,7 +183,7 @@ To deploy the container with environment variables and mounted configuration fil
             --name wallarm-node \
             --dns-name-label wallarm \
             --ports 80 \
-            --image registry-1.docker.io/wallarm/node:5.3.16 \
+            --image registry-1.docker.io/wallarm/node:5.3.17 \
             --gitrepo-url <URL_OF_GITREPO> \
             --gitrepo-mount-path /etc/nginx/sites-enabled \
             --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} WALLARM_LABELS='group=<GROUP>'
