@@ -21,7 +21,7 @@ Among a wide range of API endpoint filters, you can choose the ones correspondin
 * Find the endpoints processing sensitive data to ensure they are properly secured.
 * Find the endpoints of a deprecated API version (e.g. by searching `/v1`) and make sure that they are not used by clients.
 
-## Labeling
+### Labeling
 
 You can create labels (e.g., `P90`, `HighTraffic`, `Legacy`, etc.) and assign them to endpoints to manage them more effectively. Once labels are assigned, use the **Label** filter to quickly search and isolate endpoints based on these custom labels.
 
@@ -29,7 +29,7 @@ You can create labels (e.g., `P90`, `HighTraffic`, `Legacy`, etc.) and assign th
 
 Note that several labels can be assigned to the same endpoint.
 
-### REST endpoint details
+## REST endpoint details
 
 <a name="params"></a>By clicking the REST endpoint, you can find its details, including  transferred sensitive data, risk score and what contributes to it, headers and parameters of requests and responses:
 
@@ -51,7 +51,7 @@ Each request/response parameter information includes:
 * [Type/format](#data_format_rest) of data sent in this parameter
 * Date and time when parameter value was last transferred by requests
 
-### REST format and data type
+**REST format and data type**
 
 In REST endpoint details, in the **Type** column for parameters of request and responses, Wallarm indicates the data format identified through traffic analysis or, if not specific, a general data type.
 
