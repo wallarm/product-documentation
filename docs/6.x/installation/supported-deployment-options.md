@@ -1,17 +1,33 @@
-# Self-Hosted Deployment Options
+# Wallarm Node Deployment Options
 
-In a self-hosted deployment, you are responsible for installing and operating the **[Wallarm Node](../about-wallarm/overview.md#filtering-node) within your infrastructure** - on Kubernetes clusters, virtual machines, or cloud environments. This gives you full control over configuration, networking, and scaling.
+Wallarm supports multiple deployment models so you can protect APIs and applications in the environment you already run — from Kubernetes and cloud VMs to API gateways and edge platforms.
 
-Wallarm supports many deployment options enabling you to seamlessly integrate the platform with your environment. Learn the options and choose the most appropriate one from this document.
-
-!!! info "Deployment alternatives"
-    Want a managed option instead? Explore [Security Edge](security-edge/overview.md).
-
-    Need to route traffic from external services? Visit [Connector Deployment](connectors/overview.md).
+Use this page to quickly choose the right option based on **who hosts the node**, **where your traffic lives**, and whether you need **inline** protection or **out-of-band** analysis.
 
 <link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
 
-## Kubernetes
+## Security Edge
+
+<div class="do-section">
+    <div class="do-main">
+
+        <a class="do-card" href="../inline/overview/">
+            <img class="non-zoomable" src="../../../images/platform-icons/se-inline.svg" />
+            <h3>Security Edge Inline</h3>
+            <p>Real-time traffic is redirected through the Edge Node, filtered, and forwarded to your origin</p>
+        </a>
+
+        <a class="do-card" href="../se-connector/">
+            <img class="non-zoomable" src="../../../images/platform-icons/se-connectors.svg" />
+            <h3>Security Edge Connector</h3>
+            <p>Connect the Edge Node to your API platform for asynchronous analysis or real-time blocking</p>
+        </a>
+    </div>
+</div>
+
+## Self-hosted inline
+
+### Kubernetes
 
 <div class="do-section">
     <div class="do-main">
@@ -35,7 +51,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
     </div>
 </div>
 
-## Public clouds
+### Cloud platforms
 
 <div class="do-section">
     <div class="do-main">
@@ -156,175 +172,31 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
     </div>
 </div>
 
-## In-line
+### Linux VM
 
 <div class="do-section">
     <div class="do-main">
-
-        <div id="inline-compute-instances" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/compute-instance.svg" />
-            <h3>Compute instances</h3>
-            <p>Select an artifact or a solution for running Wallarm in-line on a compute instance</p>
-        </div>
-
-        <div id="inline-kubernetes" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/kubernetes.svg" />
-            <h3>Kubernetes</h3>
-            <p>Select a solution for running Wallarm in-line on Kubernetes</p>
-        </div>
-    </div>
-
-    <div class="do-nested" data-for="inline-compute-instances">
-        <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/compute-instance.svg" />
-            <h3>Compute instances</h3>
-            <p>Select an artifact or a solution for running Wallarm in-line on a compute instance</p>
-        </div>
-
-        <a class="do-card" href="../../installation/inline/compute-instances/linux/all-in-one/">
+        <a class="do-card" href="../../admin-en/installation-kubernetes-en/">
             <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
             <h3>All-in-one installer</h3>
             <p>Let Wallarm detect your OS and NGINX version to install the appropriate modules</p>
         </a>
+    </div>
+</div>
 
-        <div id="inline-public-clouds-aws" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
-            <h3>Amazon Web Services</h3>
-            <p>Artifacts for Wallarm deployment on AWS</p>
-        </div>
+### Docker
 
-        <div id="inline-public-clouds-gcp" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/gcp.svg" />
-            <h3>Google Cloud</h3>
-            <p>Artifacts for Wallarm deployment on GCP</p>
-        </div>
-
-        <div id="inline-public-clouds-azure" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/azure-cloud.svg" />
-            <h3>Microsoft Azure</h3>
-            <p>Artifacts for Wallarm deployment on Microsoft Azure</p>
-        </div>
-
-        <div id="inline-public-clouds-alibaba" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/alibaba-cloud.svg" />
-            <h3>Alibaba Cloud</h3>
-            <p>Artifacts for Wallarm deployment on Alibaba Cloud</p>
-        </div>
-
-        <a class="do-card" href="../../installation/inline/compute-instances/docker/nginx-based/">
+<div class="do-section">
+    <div class="do-main">
+        <a class="do-card" href="../../admin-en/installation-kubernetes-en/">
             <img class="non-zoomable" src="../../images/platform-icons/docker.svg" />
             <h3>Docker image (NGINX)</h3>
             <p>Use the NGINX-based Docker image for Wallarm deployment</p>
         </a>
-
-    </div>
-
-    <div class="do-nested" data-for="inline-public-clouds-aws">
-        <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
-            <h3>Amazon Web Services</h3>
-            <p>Artifacts for Wallarm deployment on AWS</p>
-        </div>
-
-        <a class="do-card" href="../../installation/inline/compute-instances/aws/aws-ami/">
-            <h3>AMI</h3>
-            <p>Use the official Amazon Machine Image to deploy Wallarm</p>
-        </a>
-
-        <a class="do-card" href="../../installation/inline/compute-instances/aws/aws-ecs/">
-            <h3>ECS</h3>
-            <p>Use the Docker image to deploy Wallarm with Elastic Container Service</p>
-        </a>
-
-        <div id="inline-public-clouds-aws-terraform" class="do-card">
-            <h3>Terraform module</h3>
-            <p>Use the Terraform module for in-line Wallarm deployment</p>
-        </div>
-    </div>
-
-    <div class="do-nested" data-for="inline-public-clouds-aws-terraform">
-        <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/terraform.svg" />
-            <h3>Terraform module</h3>
-            <p>Use the Terraform module for in-line Wallarm deployment on AWS</p>
-        </div>
-
-        <a class="do-card" href="../../installation/inline/compute-instances/aws/terraform-module-for-aws-vpc/">
-            <h3>Proxy in AWS VPC</h3>
-            <p>Wallarm as proxy in AWS Virtual Private Cloud</p>
-        </a>
-
-        <a class="do-card" href="../../installation/inline/compute-instances/aws/terraform-module-for-aws-api-gateway/">
-            <h3>Proxy for Amazon API Gateway</h3>
-            <p>Wallarm as proxy for Amazon API Gateway protection</p>
-        </a>
-
-    </div>
-
-    <div class="do-nested" data-for="inline-public-clouds-gcp">
-        <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/gcp.svg" />
-            <h3>Google Cloud</h3>
-            <p>Artifacts for Wallarm deployment on GCP</p>
-        </div>
-
-        <a class="do-card" href="../../installation/inline/compute-instances/gcp/machine-image/">
-            <h3>Machine Image</h3>
-            <p>Use the official Google Cloud Machine Image to deploy Wallarm</p>
-        </a>
-
-        <a class="do-card" href="../../installation/inline/compute-instances/gcp/gce/">
-            <h3>GCE</h3>
-            <p>Use the Docker image to deploy Wallarm with Google Compute Engine</p>
-        </a>
-    </div>
-
-    <div class="do-nested" data-for="inline-public-clouds-azure">
-        <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/azure-cloud.svg" />
-            <h3>Microsoft Azure</h3>
-            <p>Artifacts for Wallarm deployment on Microsoft Azure</p>
-        </div>
-
-        <a class="do-card" href="../../installation/inline/compute-instances/azure/docker-image/">
-            <h3>Azure Container Instances</h3>
-            <p>Use the Docker image to deploy Wallarm with Azure Container Instances</p>
-        </a>
-    </div>
-
-    <div class="do-nested" data-for="inline-public-clouds-alibaba">
-        <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/alibaba-cloud.svg" />
-            <h3>Alibaba Cloud</h3>
-            <p>Artifacts for Wallarm deployment on Alibaba Cloud</p>
-        </div>
-
-        <a class="do-card" href="../../installation/inline/compute-instances/alibaba/docker-image/">
-            <h3>ECS</h3>
-            <p>Use the Docker image to deploy Wallarm with Elastic Compute Service</p>
-        </a>
-    </div>
-
-    <div class="do-nested" data-for="inline-kubernetes">
-        <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/kubernetes.svg" />
-            <h3>Kubernetes</h3>
-            <p>Select a solution for running Wallarm in-line on Kubernetes</p>
-        </div>
-
-        <a class="do-card" href="../../installation/inline/kubernetes/nginx-ingress-controller/">
-            <h3>NGINX Ingress Controller</h3>
-            <p>Deploy the NGINX Ingress Controller with integrated Wallarm services</p>
-        </a>
-
-        <a class="do-card" href="../../installation/inline/kubernetes/sidecar-proxy/deployment/">
-            <h3>Sidecar Controller</h3>
-            <p>Deploy Wallarm Sidecar controller for pod security</p>
-        </a>
     </div>
 </div>
 
-## Out-of-band
+## Self-Hosted out-of-band
 
 <div class="do-section">
     <div class="do-main">
@@ -449,7 +321,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 </div>
 
-## On-premise
+## Enterprise & Advanced
 
 <div class="do-section">
     <div class="do-main">
@@ -459,13 +331,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>On-premise</h3>
             <p>Host both Wallarm Nodes and the Wallarm Cloud within your environment</p>
         </a>
-    </div>
-</div>
-
-## Custom deployment
-
-<div class="do-section">
-    <div class="do-main">
+        
         <a class="do-card" href="../../installation/custom/request-custom-deployment/">
             <img class="non-zoomable" src="../../images/platform-icons/custom-deployment.svg" />
             <h3>Custom Deployment</h3>
