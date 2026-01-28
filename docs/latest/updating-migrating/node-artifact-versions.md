@@ -17,9 +17,9 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
-### 6.10.0 (2026-01-27)
+### 6.10.0 (2026-01-28)
 
-* The API Firewall service now correctly handles OpenAPI v3 specifications that contain non-string (for example, integer) YAML keys. This improves compatibility and prevents schema parsing failures
+* Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 
 ### 6.9.0 (2026-01-15)
@@ -187,9 +187,9 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](ingress-controller.md)
 
-### 6.10.0 (2026-01-27)
+### 6.10.0 (2026-01-28)
 
-* The API Firewall service now correctly handles OpenAPI v3 specifications that contain non-string (for example, integer) YAML keys. This improves compatibility and prevents schema parsing failures
+* Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 
 ### 6.9.0 (2026-01-15)
@@ -370,9 +370,9 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
-### 6.10.0 (2026-01-27)
+### 6.10.0 (2026-01-28)
 
-* The API Firewall service now correctly handles OpenAPI v3 specifications that contain non-string (for example, integer) YAML keys. This improves compatibility and prevents schema parsing failures
+* Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 
 ### 6.9.0 (2026-01-15)
@@ -517,9 +517,9 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](docker-container.md)
 
-### 6.10.0 (2026-01-27)
+### 6.10.0 (2026-01-28)
 
-* The API Firewall service now correctly handles OpenAPI v3 specifications that contain non-string (for example, integer) YAML keys. This improves compatibility and prevents schema parsing failures
+* Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 
 ### 6.9.0 (2026-01-15)
@@ -686,9 +686,9 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
-### 6.10.0 (2026-01-27)
+### 6.10.0 (2026-01-28)
 
-* The API Firewall service now correctly handles OpenAPI v3 specifications that contain non-string (for example, integer) YAML keys. This improves compatibility and prevents schema parsing failures
+* Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 
 ### 6.9.0 (2026-01-15)
@@ -818,9 +818,9 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
-### wallarm-node-6-10-0-20260113-150813 (2026-01-27)
+### wallarm-node-6-10-0-20260113-150813 (2026-01-28)
 
-* The API Firewall service now correctly handles OpenAPI v3 specifications that contain non-string (for example, integer) YAML keys. This improves compatibility and prevents schema parsing failures
+* Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 
 ### wallarm-node-6-9-0-20260113-150813 (2026-01-15)
