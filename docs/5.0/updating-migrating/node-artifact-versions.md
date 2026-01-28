@@ -546,7 +546,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 
-### wallarm-node-5-3-17-20250821-111038 (2025-06-04)
+### wallarm-node-5-3-15-20250605-140709 (2025-06-04)
 
 * Fixed the [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) vulnerability
 
