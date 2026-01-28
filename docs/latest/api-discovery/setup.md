@@ -49,6 +49,27 @@ To view the current configuration and perform changes, in Wallarm Console, go to
 
 [See details here →](sensitive-data.md#customizing-sensitive-data-detection)
 
+### Custom manual variability
+
+In addition to [automatic variability](exploring.md#path-variability) (unifying path segments such as UUIDs or numeric IDs into `{parameter_X}`), you can define **custom manual variability**—your own **path patterns** so that API Discovery treats certain URL segments as **variable** and merges them into **one endpoint** in the inventory.
+
+* **What it does**: You define path patterns; API Discovery treats matching URL segments as variable and merges them into a single endpoint.
+* **When to use it**: When your APIs use path elements that are **not auto-detected**—for example, custom string IDs or non-standard formats.
+* **Why**: The catalog stays **concise** and reflects the **real structure** of your API.
+
+How to configure:
+
+* Merge similar endpoints into pattern by going to **API Discovery** → your endpoint details, mouse over the path segment and click to **Merge similar endpoints**.
+* Once merged, in endpoint details, mouse over the merged segment and click to **Review similar endpoints**, then, in review window, you can see all endpoints matching pattern and, if necessary, undo combining by clicking **Split to individual endpoints**.
+
+    ![API Discovery - manual variability review](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-manual-variability-review.png)
+
+* **Disabling vs. splitting**: while splitting fully deletes the variability pattern, disabling is temporal and you can re-activate pattern later. In the list of all patterns, deselect your pattern checkbox to disable it.
+* Full list of your custom patterns is always available in **API Discovery** → **Configure** → **Variability**.
+
+    !!! info "Applying changes"
+        Both merge and disable or split take time—changes are reflected in the list within **5 minutes**.
+
 ## Notifications
 
 You can setup API Discovery notifications to be sent to your personal email (the one you use to log in) and to any additional emails:
