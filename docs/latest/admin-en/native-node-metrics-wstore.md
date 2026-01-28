@@ -480,129 +480,31 @@ wallarm_wstore_request_storage_rejects 0
 
 ## Internal wstore engine metrics
 ---
-### `wallarm_wstore_kvstore_records_total` 
 
-The total number of records currently stored in the **wstore** key-value store. 
+!!! info "Internal diagnostics (Support only)"
+    The `wallarm_wstore_kvstore_*` metrics reflect the activity of the **wstore** internal key-value store.
+    
+    They are mainly for Wallarm internal diagnostics. You typically do not need to interpret them. If the Node seems to misbehave, contact [Wallarm Support](https://support.wallarm.com) and share the relevant metrics.
 
-**Type**: Counter
+| Metric | Type | Labels | Unit |
+| ------ | ---- | ------ | ---- |
+| `wallarm_wstore_kvstore_records_total` | Counter | None | Count |
+| `wallarm_wstore_kvstore_cleanups` | Counter | None | Count |
+| `wallarm_wstore_kvstore_errors` | Counter | `cleanup`, `drop`, `get_size`, `insert` | Count |
+| `wallarm_wstore_kvstore_oom_errors_total` | Counter | None | Count |
+| `wallarm_wstore_kvstore_insertions_total` | Counter | None | Count |
+| `wallarm_wstore_kvstore_lost_insertions_total` | Counter | None | Count |
+| `wallarm_wstore_kvstore_drops_total` | Counter | None | Count |
 
-**Labels**: None
-
-**Unit**: Count
-
-**Example**:
+Example:
 
 ```
 wallarm_wstore_kvstore_records_total 770
-```
-
----
-### `wallarm_wstore_kvstore_cleanups` 
-
-The number of old requests cleaned up from the **wstore** internal key-value store.
-
-**Type**: Counter
-
-**Labels**: None
-
-**Unit**: Count 
-
-**Example**:
-
-```
 wallarm_wstore_kvstore_cleanups 0
-```
-
----
-### `wallarm_wstore_kvstore_errors` 
-
-The number of errors in the **wstore** internal key-value store operations, labeled by action type (e.g., cleanup, insert, or drop). 
-
-**Type**: Counter
-
-**Labels**: 
-
-* `cleanup` 
-
-* `drop`
-
-* `get_size` 
-
-* `insert`
-
-**Unit**: Count 
-
-**Example**:
-
-```
 wallarm_wstore_kvstore_errors{action="cleanup"} 0
-```
-
----
-### `wallarm_wstore_kvstore_oom_errors_total`
-
-The number of Out Of Memory (OOM) errors occurred during insertion into the **wstore** key-value store.
-
-**Type**: Counter
-
-**Labels**: None
-
-**Unit**: Count 
-
-**Example**:
-
-```
 wallarm_wstore_kvstore_oom_errors_total 0
-```
-
----
-### `wallarm_wstore_kvstore_insertions_total` 
-
-The number of requests successfully stored by **wstore** into its key-value store.
-
-**Type**: Counter
-
-**Labels**: None
-
-**Unit**: Count 
-
-**Example**:
-
-```
 wallarm_wstore_kvstore_insertions_total 770
-```
-
----
-### `wallarm_wstore_kvstore_lost_insertions_total`
-
-The number of requests failed to be stored in the **wstore** key-value store after all retry attempts.
-
-**Type**: Counter
-
-**Labels**: None
-
-**Unit**: Count 
-
-**Example**:
-
-```
 wallarm_wstore_kvstore_lost_insertions_total 0
-```
-
----
-### `wallarm_wstore_kvstore_drops_total` 
-
-The number of requests lost due to failed cleanups from the **wstore** internal key-value store.
-
-**Type**: Counter
-
-**Labels**: None
-
-**Unit**: Count
-
-**Example**:
-
-```
 wallarm_wstore_kvstore_drops_total 0
 ```
 
