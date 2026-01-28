@@ -9,7 +9,7 @@ When host redirection is enabled, the Edge Node automatically redirects client r
 The redirected request is then processed according to the configuration - including origin, filtration mode, and other settings - of the target host.
 
 !!! info "TLS requirement"
-    The DNS zone of the redirecting host must have [certificate issuance enabled](deployment.md#5-certificate-cname-configuration).
+    The DNS zone of the redirecting host must have [certificate issuance enabled](deployment.md#6-certificate-cname-configuration).
 
 ![!](../../../images/waf-installation/security-edge/inline/host-redirection.png)
 

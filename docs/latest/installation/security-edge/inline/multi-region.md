@@ -96,7 +96,7 @@ If mTLS cannot be used, allow incoming traffic from the Wallarm IP addresses of 
 
 ## CNAME records
 
-If your protected host is a third-level (or higher-level) domain (e.g., `api.example.com`), you need to [specify the CNAME record pointing to the Wallarm‑proided FQDN in your DNS zone](deployment.md#6-routing-traffic-to-the-edge-node). This record is returned as the **Traffic CNAME**.
+If your protected host is a third-level (or higher-level) domain (e.g., `api.example.com`), you need to [specify the CNAME record pointing to the Wallarm‑proided FQDN in your DNS zone](deployment.md#7-routing-traffic-to-the-edge-node). This record is returned as the **Traffic CNAME**.
 
 * Single cloud deployment: use the **Traffic CNAME for the selected cloud provider**.
 * Multi-cloud deployment: use the **Traffic CNAME (Global)** to automatically distribute traffic across all selected regions and providers.
