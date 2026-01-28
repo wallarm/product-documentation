@@ -62,34 +62,6 @@ This data allows checking that values of the expected format are passed in each 
 * The `String` values ​​are passed to the field with `IP`
 * The `Double` values are passed to the field where there should be a value no more than `Int32`
 
-## Variability
-
-### Path variability
-
-Without unifying variable path segments, the same logical endpoint would appear many times in your inventory—once per distinct value (e.g., one entry per user ID). That would inflate the catalog, make it hard to see your real API surface, and complicate risk analysis and change tracking. API Discovery normalizes these varying segments so you get one endpoint per unique path pattern and can manage and secure your APIs effectively.
-
-These varying segments are diverse elements in URLs, such as user IDs. API Discovery **automatically** detects them for UUID, INTEGER, FLOAT and HEX path segment types. In some specific cases, automatic variability can work on a wider scope of parameter types.
-
-* `/api/users/profile/a1b2c3d4-e5f6-7890-1234-567890abcdef12`
-* `/api/users/profile/f0e9d8c7-b6a5-4321-fedc-ba9876543210`
-* `/api/users/profile/1a2b3c4d-5e6f-7080-9102-34567890fedc`
-
-The module unifies such elements into the `{parameter_X}` format in the endpoint path. For the example above you therefore get one endpoint instead of three:
-
-* `/api/articles/author/{parameter_1}`
-
-Click the endpoint to expand its parameters and see which type (UUID, INTEGER, FLOAT or HEX) was automatically detected for each unified parameter.
-
-In endpoint path string, click the `{parameter_1}` unified path element to review its info. Note that automatically detected variability cannot be disabled or modified.
-
-![API Discovery - variability in path](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-variability-in-path.png)
-
-Besides automatic one, API Discovery provides [custom manual variability](setup.md#custom-manual-variability).
-
-### Host variability
-
-Besides path variability, API Discovery provides automatic **host variability** as well.
-
 ## GraphQL operation details
 
 By clicking the GraphQL operation, you can find its details, including transferred sensitive data, risk score and what contributes to it, schema, parameters and headers of requests and responses:
@@ -151,6 +123,34 @@ The number of requests related to the endpoint is displayed in the **Requests** 
 Within each found session, only requests to your endpoint will be initially displayed - in session, remove filter by endpoint to see all requests for context.
 
 A structured view of session activity helps in understanding your endpoint place in malicious and legitimate activities, its relation to sensitive business flows and required protection measures.
+
+## Variability
+
+### Path variability
+
+Without unifying variable path segments, the same logical endpoint would appear many times in your inventory—once per distinct value (e.g., one entry per user ID). That would inflate the catalog, make it hard to see your real API surface, and complicate risk analysis and change tracking. API Discovery normalizes these varying segments so you get one endpoint per unique path pattern and can manage and secure your APIs effectively.
+
+These varying segments are diverse elements in URLs, such as user IDs. API Discovery **automatically** detects them for UUID, INTEGER, FLOAT and HEX path segment types. In some specific cases, automatic variability can work on a wider scope of parameter types.
+
+* `/api/users/profile/a1b2c3d4-e5f6-7890-1234-567890abcdef12`
+* `/api/users/profile/f0e9d8c7-b6a5-4321-fedc-ba9876543210`
+* `/api/users/profile/1a2b3c4d-5e6f-7080-9102-34567890fedc`
+
+The module unifies such elements into the `{parameter_X}` format in the endpoint path. For the example above you therefore get one endpoint instead of three:
+
+* `/api/articles/author/{parameter_1}`
+
+Click the endpoint to expand its parameters and see which type (UUID, INTEGER, FLOAT or HEX) was automatically detected for each unified parameter.
+
+In endpoint path string, click the `{parameter_1}` unified path element to review its info. Note that automatically detected variability cannot be disabled or modified.
+
+![API Discovery - variability in path](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-variability-in-path.png)
+
+Besides automatic one, API Discovery provides [custom manual variability](setup.md#custom-manual-variability).
+
+### Host variability
+
+Besides path variability, API Discovery provides automatic **host variability** as well.
 
 ## CSV reports
 
