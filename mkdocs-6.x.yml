@@ -463,10 +463,6 @@ nav:
       - Health Check: admin-en/uat-checklist-en.md
       - Scanner IP Addresses: admin-en/scanner-addresses.md
 
-    - Repository Mirroring:
-      - Mirror Wallarm Repo (CentOS): admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
-      - Use Mirrored Repo: admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md
-
     - Data Retention Policy: about-wallarm/data-retention-policy.md
     - Shared Responsibility Model: about-wallarm/shared-responsibility.md
     - SLA: sla.md

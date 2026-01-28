@@ -359,9 +359,6 @@ nav:
       - تكوين طريقة الفشل: admin-en/configure-backup-en.md
       - سجلات العقدة الفلترة: admin-en/configure-logging.md
       - تكوين الخدمة الإحصائية: admin-en/configure-statistics-service.md
-      - استخدام مستودع Wallarm المرتد: 
-        - كيفية الاستعادة الانعكاسية لمستودع Wallarm لـ CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
-        - تثبيت حزم Wallarm من مستودع JFrog Artifactory المحلي لـ CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md
     - مزامنة سحابة Wallarm و Node: admin-en/configure-cloud-node-synchronization-en.md
     - البيئات المفصولة للعملاء:
       - كيف تعمل العقدة الفلترة في البيئات المفصولة: admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md

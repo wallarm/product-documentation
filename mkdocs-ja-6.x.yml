@@ -340,9 +340,6 @@ nav:
       - フィルタリングノードのログ: admin-en/configure-logging.md
       - 統計サービス: admin-en/configure-statistics-service.md
       - ネイティブノードのメトリクス: admin-en/native-node-metrics.md
-      - ミラーリングした Wallarm リポジトリの使用:
-        - CentOS 向け Wallarm リポジトリのミラー方法: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
-        - ローカル JFrog Artifactory リポジトリからの Wallarm パッケージ（CentOS）のインストール: admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md
     - Wallarm ノードとクラウドの同期: admin-en/configure-cloud-node-synchronization-en.md
     - プロキシ経由での Wallarm API へのアクセス: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
     - NGINX の動的 DNS 解決: admin-en/configure-dynamic-dns-resolution-nginx.md
