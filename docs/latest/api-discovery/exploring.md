@@ -21,7 +21,7 @@ Among a wide range of API endpoint filters, you can choose the ones correspondin
 * Find the endpoints processing sensitive data to ensure they are properly secured.
 * Find the endpoints of a deprecated API version (e.g. by searching `/v1`) and make sure that they are not used by clients.
 
-## Labeling
+### Labeling
 
 You can create labels (e.g., `P90`, `HighTraffic`, `Legacy`, etc.) and assign them to endpoints to manage them more effectively. Once labels are assigned, use the **Label** filter to quickly search and isolate endpoints based on these custom labels.
 
@@ -29,7 +29,7 @@ You can create labels (e.g., `P90`, `HighTraffic`, `Legacy`, etc.) and assign th
 
 Note that several labels can be assigned to the same endpoint.
 
-### REST endpoint details
+## REST endpoint details
 
 <a name="params"></a>By clicking the REST endpoint, you can find its details, including  transferred sensitive data, risk score and what contributes to it, headers and parameters of requests and responses:
 
@@ -51,7 +51,7 @@ Each request/response parameter information includes:
 * [Type/format](#data_format_rest) of data sent in this parameter
 * Date and time when parameter value was last transferred by requests
 
-### REST format and data type
+**REST format and data type**
 
 In REST endpoint details, in the **Type** column for parameters of request and responses, Wallarm indicates the data format identified through traffic analysis or, if not specific, a general data type.
 
@@ -61,22 +61,6 @@ This data allows checking that values of the expected format are passed in each 
 
 * The `String` values ​​are passed to the field with `IP`
 * The `Double` values are passed to the field where there should be a value no more than `Int32`
-
-### Variability
-
-URLs can include diverse elements, such as ID of user. API Discovery supports finding such elements for UUID, INTEGER, FLOAT and HEX path segment types:
-
-* `/api/users/profile/a1b2c3d4-e5f6-7890-1234-567890abcdef12`
-* `/api/users/profile/f0e9d8c7-b6a5-4321-fedc-ba9876543210`
-* `/api/users/profile/1a2b3c4d-5e6f-7080-9102-34567890fedc`
-
-The **API Discovery** module unifies such elements into the `{parameter_X}` format in the endpoint paths, so for the example above you will not have 3 endpoints, but instead there will be one:
-
-* `/api/articles/author/{parameter_1}`
-
-Click the endpoint to expand its parameters and view which type was automatically detected for the diverse parameter.
-
-<!--![API Discovery - variability in path](../images/TBD)-->
 
 ## GraphQL operation details
 
@@ -139,6 +123,20 @@ The number of requests related to the endpoint is displayed in the **Requests** 
 Within each found session, only requests to your endpoint will be initially displayed - in session, remove filter by endpoint to see all requests for context.
 
 A structured view of session activity helps in understanding your endpoint place in malicious and legitimate activities, its relation to sensitive business flows and required protection measures.
+
+## Variability
+
+URLs can include diverse elements, such as ID of user. API Discovery supports finding such elements for UUID, INTEGER, FLOAT and HEX path segment types:
+
+* `/api/users/profile/a1b2c3d4-e5f6-7890-1234-567890abcdef12`
+* `/api/users/profile/f0e9d8c7-b6a5-4321-fedc-ba9876543210`
+* `/api/users/profile/1a2b3c4d-5e6f-7080-9102-34567890fedc`
+
+The **API Discovery** module unifies such elements into the `{parameter_X}` format in the endpoint paths, so for the example above you will not have 3 endpoints, but instead there will be one:
+
+* `/api/articles/author/{parameter_1}`
+
+Click the endpoint to expand its parameters and view which type was automatically detected for the diverse parameter.
 
 ## CSV reports
 
