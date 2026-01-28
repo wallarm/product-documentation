@@ -348,9 +348,6 @@ nav:
       - Configurando um Método de Failover: admin-en/configure-backup-en.md
       - Logs do Nó de Filtragem: admin-en/configure-logging.md
       - Configuração do Serviço de Estatísticas: admin-en/configure-statistics-service.md
-      - Usando um Repositório Espelhado do Wallarm:
-        - Como Espelhar o Repositório Wallarm para CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
-        - Instalando Pacotes Wallarm do Repositório JFrog Artifactory Local para CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md
     - Sincronização de Nó Wallarm e Cloud: admin-en/configure-cloud-node-synchronization-en.md
     - Ambientes do Cliente Separados:
       - Como o Nó de Filtragem Funciona em Ambientes Separados: admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md

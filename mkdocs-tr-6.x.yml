@@ -339,9 +339,6 @@ nav:
       - Filtreleme Düğümü Günlükleri: admin-en/configure-logging.md
       - İstatistik Hizmeti: admin-en/configure-statistics-service.md
       - Yerel Düğüm Metrikleri: admin-en/native-node-metrics.md
-      - Aynalanmış Wallarm Deposunu Kullanma:
-        - CentOS için Wallarm Deposunu Nasıl Yansıtılır: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
-        - CentOS için Yerel JFrog Artifactory Deposundan Wallarm Paketlerini Yükleme: admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md
     - Wallarm Düğümü ve Bulut Eşzamanlaması: admin-en/configure-cloud-node-synchronization-en.md
     - Proxy Üzerinden Wallarm API Erişimi: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
     - NGINX'te Dinamik DNS Çözümlemesi: admin-en/configure-dynamic-dns-resolution-nginx.md

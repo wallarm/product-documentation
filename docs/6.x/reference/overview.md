@@ -20,10 +20,6 @@ This section provides reference materials, technical specifications, and resourc
     * [Health Check](../admin-en/uat-checklist-en.md) - System health verification
     * [Scanner IP Addresses](../admin-en/scanner-addresses.md) - Wallarm scanner IP list
 
-* **Repository Mirroring**
-    * [Mirror Wallarm Repo (CentOS)](../admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md) - Set up repository mirroring
-    * [Use Mirrored Repo](../admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md) - Configure mirrored repository usage
-
 * **[Data Retention Policy](../about-wallarm/data-retention-policy.md)** - Information about how long Wallarm retains your data.
 
 * **[Shared Responsibility Model](../about-wallarm/shared-responsibility.md)** - Security responsibilities shared between Wallarm and customers.
