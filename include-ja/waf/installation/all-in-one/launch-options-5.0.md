@@ -1,7 +1,7 @@
 オールインワンインストーラーをダウンロードしたら、次のコマンドでヘルプを表示できます:
 
 ```
-sudo sh ./wallarm-5.3.16.x86_64-glibc.sh -- -h
+sudo sh ./wallarm-5.3.19.x86_64-glibc.sh -- -h
 ```
 
 次のように表示されます:
@@ -35,18 +35,18 @@ OPTION                      DESCRIPTION
 === "US Cloud"
     ```bash
     # x86_64版を使用する場合:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.16.x86_64-glibc.sh -- --batch -t <TOKEN> -c US
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.19.x86_64-glibc.sh -- --batch -t <TOKEN> -c US
 
     # ARM64版を使用する場合:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.16.aarch64-glibc.sh -- --batch -t <TOKEN> -c US
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.19.aarch64-glibc.sh -- --batch -t <TOKEN> -c US
     ```
 === "EU Cloud"
     ```bash
     # x86_64版を使用する場合:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.16.x86_64-glibc.sh -- --batch -t <TOKEN>
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.19.x86_64-glibc.sh -- --batch -t <TOKEN>
 
     # ARM64版を使用する場合:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.16.aarch64-glibc.sh -- --batch -t <TOKEN>
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.19.aarch64-glibc.sh -- --batch -t <TOKEN>
     ```
 
 ### ノードインストール各段階の個別実行
@@ -61,25 +61,25 @@ OPTION                      DESCRIPTION
 === "US Cloud"
     ```bash
     # x86_64版を使用する場合:
-    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.16.x86_64-glibc.sh
-    sudo sh wallarm-5.3.16.x86_64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.19.x86_64-glibc.sh
+    sudo sh wallarm-5.3.19.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
 
     # ARM64版を使用する場合:
-    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.16.aarch64-glibc.sh
-    sudo sh wallarm-5.3.16.aarch64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.19.aarch64-glibc.sh
+    sudo sh wallarm-5.3.19.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
     ```
 === "EU Cloud"
     ```
     # x86_64版を使用する場合:
-    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.16.x86_64-glibc.sh
-    sudo sh wallarm-5.3.16.x86_64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.19.x86_64-glibc.sh
+    sudo sh wallarm-5.3.19.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
 
     # ARM64版を使用する場合:
-    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.16.aarch64-glibc.sh
-    sudo sh wallarm-5.3.16.aarch64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.19.aarch64-glibc.sh
+    sudo sh wallarm-5.3.19.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
     ```
 
