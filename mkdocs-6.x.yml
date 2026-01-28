@@ -172,7 +172,12 @@ nav:
       - Security Edge Connector: installation/security-edge/se-connector.md
 
     - Kubernetes:
-      - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
+      - NGINX Ingress Controller:
+        - Deployment: admin-en/installation-kubernetes-en.md
+        - Configuration Options: admin-en/configure-kubernetes-en.md
+        - High Availability: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
+        - Monitoring: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
+        - Real Client IP: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
       - Sidecar Proxy:
         - Deployment: installation/kubernetes/sidecar-proxy/deployment.md
         - Helm Chart: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
@@ -183,45 +188,39 @@ nav:
         - Deployment: installation/oob/ebpf/deployment.md
         - Helm Chart: installation/oob/ebpf/helm-chart-for-wallarm.md
         - Selecting Packets: installation/oob/ebpf/selecting-packets.md
-      - Ingress Best Practices:
-        - High Availability: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
-        - Monitoring: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
-        - Real Client IP: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
       - Chaining Ingress Controllers: admin-en/chaining-wallarm-and-other-ingress-controllers.md
 
     - Cloud Platforms:
       - AWS:
         - AMI: installation/inline/compute-instances/aws/aws-ami.md
+        - Autoscaling:
+          - Overview: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
+          - Create AMI Image: admin-en/installation-guides/amazon-cloud/create-image.md
+          - Autoscaling Group Setup: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
+          - Load Balancing: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
         - Docker on ECS: installation/cloud-platforms/aws/docker-container.md
-        - ECS Deployment: installation/inline/compute-instances/aws/aws-ecs.md
-        - Terraform Module: installation/cloud-platforms/aws/terraform-module/overview.md
-        - Terraform for VPC: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
-        - Terraform for API Gateway: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
-        - Terraform for VPC (Legacy): installation/inline/compute-instances/aws/terraform-module-for-aws-vpc.md
-        - Terraform for API Gateway (Legacy): installation/inline/compute-instances/aws/terraform-module-for-aws-api-gateway.md
+        - Terraform Module:
+          - Overview: installation/cloud-platforms/aws/terraform-module/overview.md
+          - Terraform for VPC: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
+          - Terraform for API Gateway: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
         - AWS WAF Integration: installation/cloud-platforms/aws/aws-waf-integration.md
-        - Autoscaling Overview: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
-        - Create AMI Image: admin-en/installation-guides/amazon-cloud/create-image.md
-        - Autoscaling Group Setup: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
-        - Load Balancing: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
         - Cost Estimation: installation/cloud-platforms/aws/costs.md
       - GCP:
         - Machine Image: installation/inline/compute-instances/gcp/machine-image.md
+        - Autoscaling:
+          - Overview: admin-en/installation-guides/google-cloud/autoscaling-overview.md
+          - Create GCP Image: admin-en/installation-guides/google-cloud/create-image.md
+          - Instance Template: admin-en/installation-guides/google-cloud/creating-instance-template.md
+          - Autoscaling Group: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
+          - Load Balancing: admin-en/installation-guides/google-cloud/load-balancing-guide.md
         - Docker on GCE: installation/cloud-platforms/gcp/docker-container.md
-        - GCE Deployment: installation/inline/compute-instances/gcp/gce.md
-        - Autoscaling Overview: admin-en/installation-guides/google-cloud/autoscaling-overview.md
-        - Create GCP Image: admin-en/installation-guides/google-cloud/create-image.md
-        - Instance Template: admin-en/installation-guides/google-cloud/creating-instance-template.md
-        - Autoscaling Group: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
-        - Load Balancing: admin-en/installation-guides/google-cloud/load-balancing-guide.md
       - Azure:
         - Container Instances: installation/cloud-platforms/azure/docker-container.md
-        - Docker Image: installation/inline/compute-instances/azure/docker-image.md
       - Alibaba Cloud:
         - Docker on ECS: installation/cloud-platforms/alibaba-cloud/docker-container.md
-        - Docker Image: installation/inline/compute-instances/alibaba/docker-image.md
       - Heroku: installation/heroku/docker-image.md
       - Private Cloud: installation/cloud-platforms/private-cloud.md
+      - Cloud-Init Script: installation/cloud-platforms/cloud-init.md
 
     - Connectors:
       - Overview: installation/connectors/overview.md
@@ -262,7 +261,6 @@ nav:
         - GCP Machine Image: installation/packages/gcp-machine-image.md
       - Postanalytics Module: admin-en/installation-postanalytics-en.md
       - Custom NGINX Version: installation/custom/custom-nginx-version.md
-      - Cloud-Init Script: installation/cloud-platforms/cloud-init.md
 
     - Out-of-Band (Traffic Mirror):
       - Overview: installation/oob/overview.md
@@ -409,7 +407,6 @@ nav:
       - Proxy Configuration: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
       - Block Page Configuration: admin-en/configuration-guides/configure-block-page-and-code.md
       - NGINX Node Configuration: admin-en/configure-parameters-en.md
-      - Kubernetes Configuration: admin-en/configure-kubernetes-en.md
       - Handling Invalid Headers: admin-en/configuration-guides/handling-invalid-headers.md
       - JA3 Fingerprinting: admin-en/enabling-ja3.md
 
