@@ -114,10 +114,6 @@ To restrict your origins to trusted traffic only, allow Edge Node connections us
 
 ![!](../../../images/waf-installation/security-edge/inline/general-settings-section.png)
 
-**Using custom keepalive settings**
-
-(Optional) To use [custom keepalive settings](../inline/keepalive.md), select the corresponding option. 
-
 ## 3. Certificates
 
 * If the Edge Inline Node is deployed as a direct, Internet-facing solution, Wallarm requires certificates to securely route traffic to your origin servers. Certificates are issued based on the DNS zones specified in this section.
