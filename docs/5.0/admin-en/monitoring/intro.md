@@ -23,7 +23,7 @@
 [doc-collectd-nagios]:      fetching-metrics.md#exporting-metrics-using-the-collectd-nagios-utility
 [doc-collectd-notices]:     fetching-metrics.md#sending-notifications-from-collectd
 
-[doc-selinux]:  ../configure-selinux.md
+[doc-selinux]:              ../../troubleshooting/detection-and-blocking.md#filtering-node-rps-and-aps-values-are-not-exported-to-cloud
 
 # Monitoring Filtering Node
 
