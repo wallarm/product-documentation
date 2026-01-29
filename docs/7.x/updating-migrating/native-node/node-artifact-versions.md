@@ -1,0 +1,1 @@
+--8<-- "latest/updating-migrating/native-node/node-artifact-versions.md"

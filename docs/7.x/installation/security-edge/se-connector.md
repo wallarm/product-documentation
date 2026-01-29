@@ -1,0 +1,1 @@
+--8<-- "latest/installation/security-edge/se-connector.md"

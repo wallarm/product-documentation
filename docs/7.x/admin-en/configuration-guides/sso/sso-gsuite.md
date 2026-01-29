@@ -1,0 +1,1 @@
+--8<-- "latest/admin-en/configuration-guides/sso/sso-gsuite.md"

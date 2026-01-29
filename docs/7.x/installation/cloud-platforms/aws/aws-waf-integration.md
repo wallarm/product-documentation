@@ -1,0 +1,1 @@
+--8<-- "latest/installation/cloud-platforms/aws/aws-waf-integration.md"
