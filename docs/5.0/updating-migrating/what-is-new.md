@@ -39,7 +39,7 @@ With API Sessions, security teams can now easily:
 Wallarm's [API Sessions](../api-sessions/overview.md) provide visibility into sequences of user activities. With this addition not only request but also response information is available within each session:
 
 * You can configure any headers and parameters of responses to be displayed within their corresponding requests providing a clear and full picture of user activities.
-* You can use response parameters as grouping keys for sessions (see [example](../api-sessions/setup.md#grouping-keys-example)), which makes grouping of requests into sessions more precise.
+* You can use response parameters as grouping keys for sessions (see [example](../api-sessions/setup.md#example-of-how-grouping-keys-work)), which makes grouping of requests into sessions more precise.
 
 ![!API Sessions - example of grouping keys in work](../images/api-sessions/api-sessions-grouping-keys.png)
 
