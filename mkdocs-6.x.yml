@@ -271,6 +271,67 @@ nav:
       - NGINX and Native Node Overview: installation/nginx-native-node-internals.md
       - Connector Overview: installation/connectors/overview.md
 
+  - Maintenance:
+    - Nodes & Infrastructure:
+      - Node Overview: user-guides/nodes/nodes.md
+      - Resource Allocation: admin-en/configuration-guides/allocate-resources-for-node.md
+      - Cloud Synchronization: admin-en/configure-cloud-node-synchronization-en.md
+      - Proxy Configuration: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
+      - Block Page Configuration: admin-en/configuration-guides/configure-block-page-and-code.md
+      - NGINX Node Configuration: admin-en/configure-parameters-en.md
+      - Handling Invalid Headers: admin-en/configuration-guides/handling-invalid-headers.md
+      - JA3 Fingerprinting: admin-en/enabling-ja3.md
+
+    - Monitoring & Metrics:
+      - NGINX Node Metrics:
+        - Overview: admin-en/nginx-node-metrics.md
+        - Postanalytics Metrics: admin-en/wstore-metrics.md
+        - wcli Controller Metrics: admin-en/wcli-metrics.md
+        - API Firewall Metrics: admin-en/apifw-metrics.md
+      - Native Node Metrics:
+        - Overview: admin-en/native-node-metrics.md
+        - Postanalytics Metrics: admin-en/native-node-metrics-wstore.md
+        - Runtime Metrics: admin-en/native-node-metrics-gonode.md
+      - Statistics Service: admin-en/configure-statistics-service.md
+      - Node Logging: admin-en/configure-logging.md
+      - Failover Configuration: admin-en/configure-backup-en.md
+
+    - Operations Reference:
+      - Terraform Provider: admin-en/managing/terraform-provider.md
+      - Learning Request Volume: admin-en/operation/learn-incoming-request-number.md
+      - Health Check: admin-en/uat-checklist-en.md
+      - Scanner IP Addresses: admin-en/scanner-addresses.md
+    - Upgrades & Migration:
+      - Versioning Policy: updating-migrating/versioning-policy.md
+      - What's New: updating-migrating/what-is-new.md
+      - General Recommendations: updating-migrating/general-recommendations.md
+      - Node Artifact Versions: updating-migrating/node-artifact-versions.md
+      - Code Bundle Changelog: installation/connectors/code-bundle-inventory.md
+      - NGINX Node Upgrades:
+        - DEB/RPM Packages: updating-migrating/nginx-modules.md
+        - Postanalytics Module: updating-migrating/separate-postanalytics.md
+        - All-in-One Installer: updating-migrating/all-in-one.md
+        - Docker Image: updating-migrating/docker-container.md
+        - Ingress Controller: updating-migrating/ingress-controller.md
+        - Ingress Controller Retirement: updating-migrating/nginx-ingress-retirement.md
+        - Sidecar Proxy: updating-migrating/sidecar-proxy.md
+        - Cloud Image: updating-migrating/cloud-image.md
+        - Multi-Tenant Node: updating-migrating/multi-tenant.md
+      - Native Node Upgrades:
+        - All-in-One: updating-migrating/native-node/all-in-one.md
+        - Helm Chart: updating-migrating/native-node/helm-chart.md
+        - Docker Image: updating-migrating/native-node/docker-image.md
+        - Artifact Versions: updating-migrating/native-node/node-artifact-versions.md
+      - EOL Node Upgrades (3.6 and lower):
+        - What's New: updating-migrating/older-versions/what-is-new.md
+        - NGINX Modules: updating-migrating/older-versions/nginx-modules.md
+        - Postanalytics: updating-migrating/older-versions/separate-postanalytics.md
+        - Docker Image: updating-migrating/older-versions/docker-container.md
+        - Ingress Controller: updating-migrating/older-versions/ingress-controller.md
+        - Cloud Image: updating-migrating/older-versions/cloud-image.md
+        - Multi-Tenant: updating-migrating/older-versions/multi-tenant.md
+        - Migrate IP Lists: updating-migrating/migrate-ip-lists-to-node-3.md
+
   # ============================================================================
   # SECTION 7: INTEGRATIONS
   # ============================================================================
@@ -361,66 +422,6 @@ nav:
         - Okta: admin-en/configuration-guides/sso/sso-okta.md
         - Troubleshooting: admin-en/configuration-guides/sso/troubleshooting.md
       - LDAP Integration: admin-en/configuration-guides/ldap/ldap.md
-
-    - Nodes & Infrastructure:
-      - Node Overview: user-guides/nodes/nodes.md
-      - Resource Allocation: admin-en/configuration-guides/allocate-resources-for-node.md
-      - Cloud Synchronization: admin-en/configure-cloud-node-synchronization-en.md
-      - Proxy Configuration: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-      - Block Page Configuration: admin-en/configuration-guides/configure-block-page-and-code.md
-      - NGINX Node Configuration: admin-en/configure-parameters-en.md
-      - Handling Invalid Headers: admin-en/configuration-guides/handling-invalid-headers.md
-      - JA3 Fingerprinting: admin-en/enabling-ja3.md
-
-    - Monitoring & Metrics:
-      - NGINX Node Metrics:
-        - Overview: admin-en/nginx-node-metrics.md
-        - Postanalytics Metrics: admin-en/wstore-metrics.md
-        - wcli Controller Metrics: admin-en/wcli-metrics.md
-        - API Firewall Metrics: admin-en/apifw-metrics.md
-      - Native Node Metrics:
-        - Overview: admin-en/native-node-metrics.md
-        - Postanalytics Metrics: admin-en/native-node-metrics-wstore.md
-        - Runtime Metrics: admin-en/native-node-metrics-gonode.md
-      - Statistics Service: admin-en/configure-statistics-service.md
-      - Node Logging: admin-en/configure-logging.md
-      - Failover Configuration: admin-en/configure-backup-en.md
-
-    - Operations Reference:
-      - Terraform Provider: admin-en/managing/terraform-provider.md
-      - Learning Request Volume: admin-en/operation/learn-incoming-request-number.md
-      - Health Check: admin-en/uat-checklist-en.md
-      - Scanner IP Addresses: admin-en/scanner-addresses.md
-    - Upgrades & Migration:
-      - Versioning Policy: updating-migrating/versioning-policy.md
-      - What's New: updating-migrating/what-is-new.md
-      - General Recommendations: updating-migrating/general-recommendations.md
-      - Node Artifact Versions: updating-migrating/node-artifact-versions.md
-      - Code Bundle Changelog: installation/connectors/code-bundle-inventory.md
-      - NGINX Node Upgrades:
-        - DEB/RPM Packages: updating-migrating/nginx-modules.md
-        - Postanalytics Module: updating-migrating/separate-postanalytics.md
-        - All-in-One Installer: updating-migrating/all-in-one.md
-        - Docker Image: updating-migrating/docker-container.md
-        - Ingress Controller: updating-migrating/ingress-controller.md
-        - Ingress Controller Retirement: updating-migrating/nginx-ingress-retirement.md
-        - Sidecar Proxy: updating-migrating/sidecar-proxy.md
-        - Cloud Image: updating-migrating/cloud-image.md
-        - Multi-Tenant Node: updating-migrating/multi-tenant.md
-      - Native Node Upgrades:
-        - All-in-One: updating-migrating/native-node/all-in-one.md
-        - Helm Chart: updating-migrating/native-node/helm-chart.md
-        - Docker Image: updating-migrating/native-node/docker-image.md
-        - Artifact Versions: updating-migrating/native-node/node-artifact-versions.md
-      - EOL Node Upgrades (3.6 and lower):
-        - What's New: updating-migrating/older-versions/what-is-new.md
-        - NGINX Modules: updating-migrating/older-versions/nginx-modules.md
-        - Postanalytics: updating-migrating/older-versions/separate-postanalytics.md
-        - Docker Image: updating-migrating/older-versions/docker-container.md
-        - Ingress Controller: updating-migrating/older-versions/ingress-controller.md
-        - Cloud Image: updating-migrating/older-versions/cloud-image.md
-        - Multi-Tenant: updating-migrating/older-versions/multi-tenant.md
-        - Migrate IP Lists: updating-migrating/migrate-ip-lists-to-node-3.md
 
     - Troubleshooting:
       - Overview: troubleshooting/overview.md
