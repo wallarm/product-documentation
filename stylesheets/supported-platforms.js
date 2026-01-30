@@ -35,10 +35,24 @@ function recalculateSectionTitleState($section) {
 }
 
 /**
+ * Find the section heading (h2 with id) that precedes a .do-section (there may be paragraphs between them)
+ */
+function getSectionTitleId($section) {
+    let el = $section.previousElementSibling;
+    while (el) {
+        if (el.tagName === 'H2' && el.id) return el.id;
+        el = el.previousElementSibling;
+    }
+    return null;
+}
+
+/**
  * Draw a title by its ID
  */
 function drawTitle(id) {
+    if (!id) return;
     const $title = document.getElementById(id);
+    if (!$title) return;
     const $headerlink = $title.querySelector('.headerlink');
     const parts = state[id] || [id];
 
@@ -72,7 +86,7 @@ function navigateToGrid(cardID) {
     $section.style.height = getComputedStyle($next).height;
 
     recalculateSectionTitleState($section);
-    drawTitle($section.previousElementSibling.id);
+    drawTitle(getSectionTitleId($section));
 }
 
 /**
@@ -127,7 +141,7 @@ document.querySelectorAll('.do-nested .do-card:first-child').forEach($card => {
 document.querySelectorAll('.do-section').forEach($section => {
     const $main = $section.querySelector('.do-main');
     $main.dataset.current = 'true';
-    $main.dataset.for = $section.previousElementSibling.id;
+    $main.dataset.for = getSectionTitleId($section) || '';
 
     $section.querySelectorAll('.do-nested').forEach($nested => {
         // `1 / span N` is a hack to make the first card take the whole first column

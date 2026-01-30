@@ -199,11 +199,6 @@ nav:
       - AWS:
         - AMI for NGINX Node: installation/inline/compute-instances/aws/aws-ami.md
         - AMI for Native Node: installation/native-node/aws-ami.md
-        - Autoscaling:
-          - Overview: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
-          - Create AMI Image: admin-en/installation-guides/amazon-cloud/create-image.md
-          - Autoscaling Group Setup: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
-          - Load Balancing: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
         - Docker on ECS: installation/cloud-platforms/aws/docker-container.md
         - Terraform Module:
           - Overview: installation/cloud-platforms/aws/terraform-module/overview.md
@@ -211,15 +206,20 @@ nav:
           - Terraform for API Gateway: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
         - AWS WAF Integration: installation/cloud-platforms/aws/aws-waf-integration.md
         - Cost Estimation: installation/cloud-platforms/aws/costs.md
+        - Autoscaling:
+          - Overview: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
+          - Create AMI Image: admin-en/installation-guides/amazon-cloud/create-image.md
+          - Autoscaling Group Setup: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
+          - Load Balancing: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
       - GCP:
         - Machine Image for NGINX Node: installation/inline/compute-instances/gcp/machine-image.md
+        - Docker on GCE: installation/cloud-platforms/gcp/docker-container.md
         - Autoscaling:
           - Overview: admin-en/installation-guides/google-cloud/autoscaling-overview.md
           - Create GCP Image: admin-en/installation-guides/google-cloud/create-image.md
           - Instance Template: admin-en/installation-guides/google-cloud/creating-instance-template.md
           - Autoscaling Group: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
           - Load Balancing: admin-en/installation-guides/google-cloud/load-balancing-guide.md
-        - Docker on GCE: installation/cloud-platforms/gcp/docker-container.md
       - Azure:
         - Container Instances: installation/cloud-platforms/azure/docker-container.md
       - Alibaba Cloud:
@@ -233,86 +233,43 @@ nav:
       - Kong API Gateway: installation/connectors/standalone-kong-api-gateway.md
     - CDN:
       - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
-      - AWS Lambda: installation/connectors/aws-lambda.md
+      - CloudFront: installation/connectors/aws-lambda.md
       - Azion Edge: installation/connectors/azion-edge.md
       - Cloudflare: installation/connectors/cloudflare.md
       - Fastly: installation/connectors/fastly.md
     - API Management Platform:
       - Mulesoft:
-        - Flex API Gateway: installation/connectors/mulesoft-flex.md
-        - Mule API Gateway: installation/connectors/mulesoft.md
+        - Flex Gateway: installation/connectors/mulesoft-flex.md
+        - Mule Gateway: installation/connectors/mulesoft.md
       - Azure API Management: installation/connectors/azure-api-management.md
       - Apigee: installation/connectors/apigee.md
       - IBM API Connect: installation/connectors/ibm-api-connect.md
     - Packages & Containers:
       - Linux OS:
         - All-in-one installer for NGINX Node: installation/nginx/all-in-one.md
-        - All-in-one installer for Native Node:
-          - Installation: installation/native-node/all-in-one.md
-          - Configuration: installation/native-node/all-in-one-conf.md
+        - All-in-one installer for Native Node: installation/native-node/all-in-one.md
       - Docker:
         - Image for NGINX Node: admin-en/installation-docker-en.md
-        - Image for Native Node:
-          - Installation: installation/native-node/docker-image.md
-          - Configuration: installation/native-node/all-in-one-conf.md
+        - Image for Native Node: installation/native-node/docker-image.md
       - TCP Traffic Mirror: installation/oob/tcp-traffic-mirror/deployment.md
+      - Native Node Configuration: installation/native-node/all-in-one-conf.md
     - On-Premise:
       - Overview: installation/on-premise/overview.md
       - Deployment: installation/on-premise/deployment.md
       - Maintenance: installation/on-premise/maintenance.md
-    - Multi-Tenant:
-      - Overview: installation/multi-tenant/overview.md
-      - Configure Accounts: installation/multi-tenant/configure-accounts.md
-      - Deploy Multi-Tenant Node: installation/multi-tenant/deploy-multi-tenant-node.md
-    - Custom Deployment:
+    - Special Setups:
+      - Multi-Tenant Node:
+        - Overview: installation/multi-tenant/overview.md
+        - Configure Accounts: installation/multi-tenant/configure-accounts.md
+        - Deploy Multi-Tenant Node: installation/multi-tenant/deploy-multi-tenant-node.md
+      - Separate Postanalytics Module: admin-en/installation-postanalytics-en.md
+      - Custom NGINX Version: installation/custom/custom-nginx-version.md
       - Request Custom Deployment Option: installation/custom/request-custom-deployment.md
-
-
-# 9. NGINX VS native overview \- to general overview  
-# Native node in proxy mode??? Is it ready already???  
-
-
-
-#       - Overview: installation/inline/overview.md
-#       - Connectors Overview: installation/connectors/overview.md
-#       - Code Bundle Changelog: installation/connectors/code-bundle-inventory.md
-#       - Overview: installation/oob/overview.md
-
-#       - Additional Options:
-#         - Custom NGINX Version: installation/custom/custom-nginx-version.md
-#         - Separate Postanalytics Module: admin-en/installation-postanalytics-en.md
-
-
-  - Maintenance:
-    - Upgrades & Migration:
-      - Versioning Policy: updating-migrating/versioning-policy.md
-      - What's New: updating-migrating/what-is-new.md
-      - General Recommendations: updating-migrating/general-recommendations.md
-      - Node Artifact Versions: updating-migrating/node-artifact-versions.md
-      - NGINX Node Upgrades:
-        - DEB/RPM Packages: updating-migrating/nginx-modules.md
-        - Postanalytics Module: updating-migrating/separate-postanalytics.md
-        - All-in-One Installer: updating-migrating/all-in-one.md
-        - Docker Image: updating-migrating/docker-container.md
-        - Ingress Controller: updating-migrating/ingress-controller.md
-        - Ingress Controller Retirement: updating-migrating/nginx-ingress-retirement.md
-        - Sidecar Proxy: updating-migrating/sidecar-proxy.md
-        - Cloud Image: updating-migrating/cloud-image.md
-        - Multi-Tenant Node: updating-migrating/multi-tenant.md
-      - Native Node Upgrades:
-        - All-in-One: updating-migrating/native-node/all-in-one.md
-        - Helm Chart: updating-migrating/native-node/helm-chart.md
-        - Docker Image: updating-migrating/native-node/docker-image.md
-        - Artifact Versions: updating-migrating/native-node/node-artifact-versions.md
-      - EOL Node Upgrades (3.6 and lower):
-        - What's New: updating-migrating/older-versions/what-is-new.md
-        - NGINX Modules: updating-migrating/older-versions/nginx-modules.md
-        - Postanalytics: updating-migrating/older-versions/separate-postanalytics.md
-        - Docker Image: updating-migrating/older-versions/docker-container.md
-        - Ingress Controller: updating-migrating/older-versions/ingress-controller.md
-        - Cloud Image: updating-migrating/older-versions/cloud-image.md
-        - Multi-Tenant: updating-migrating/older-versions/multi-tenant.md
-        - Migrate IP Lists: updating-migrating/migrate-ip-lists-to-node-3.md
+    - Related Documentation:
+      - Inline Traffic Flow: installation/inline/overview.md
+      - Out-of-band Traffic Flow: installation/oob/overview.md
+      - NGINX and Native Node Overview: installation/nginx-native-node-internals.md
+      - Connector Overview: installation/connectors/overview.md
 
   # ============================================================================
   # SECTION 7: INTEGRATIONS
@@ -429,6 +386,42 @@ nav:
       - Node Logging: admin-en/configure-logging.md
       - Failover Configuration: admin-en/configure-backup-en.md
 
+    - Operations Reference:
+      - Terraform Provider: admin-en/managing/terraform-provider.md
+      - Learning Request Volume: admin-en/operation/learn-incoming-request-number.md
+      - Health Check: admin-en/uat-checklist-en.md
+      - Scanner IP Addresses: admin-en/scanner-addresses.md
+    - Upgrades & Migration:
+      - Versioning Policy: updating-migrating/versioning-policy.md
+      - What's New: updating-migrating/what-is-new.md
+      - General Recommendations: updating-migrating/general-recommendations.md
+      - Node Artifact Versions: updating-migrating/node-artifact-versions.md
+      - Code Bundle Changelog: installation/connectors/code-bundle-inventory.md
+      - NGINX Node Upgrades:
+        - DEB/RPM Packages: updating-migrating/nginx-modules.md
+        - Postanalytics Module: updating-migrating/separate-postanalytics.md
+        - All-in-One Installer: updating-migrating/all-in-one.md
+        - Docker Image: updating-migrating/docker-container.md
+        - Ingress Controller: updating-migrating/ingress-controller.md
+        - Ingress Controller Retirement: updating-migrating/nginx-ingress-retirement.md
+        - Sidecar Proxy: updating-migrating/sidecar-proxy.md
+        - Cloud Image: updating-migrating/cloud-image.md
+        - Multi-Tenant Node: updating-migrating/multi-tenant.md
+      - Native Node Upgrades:
+        - All-in-One: updating-migrating/native-node/all-in-one.md
+        - Helm Chart: updating-migrating/native-node/helm-chart.md
+        - Docker Image: updating-migrating/native-node/docker-image.md
+        - Artifact Versions: updating-migrating/native-node/node-artifact-versions.md
+      - EOL Node Upgrades (3.6 and lower):
+        - What's New: updating-migrating/older-versions/what-is-new.md
+        - NGINX Modules: updating-migrating/older-versions/nginx-modules.md
+        - Postanalytics: updating-migrating/older-versions/separate-postanalytics.md
+        - Docker Image: updating-migrating/older-versions/docker-container.md
+        - Ingress Controller: updating-migrating/older-versions/ingress-controller.md
+        - Cloud Image: updating-migrating/older-versions/cloud-image.md
+        - Multi-Tenant: updating-migrating/older-versions/multi-tenant.md
+        - Migrate IP Lists: updating-migrating/migrate-ip-lists-to-node-3.md
+
     - Troubleshooting:
       - Overview: troubleshooting/overview.md
       - Detection and Blocking: troubleshooting/detection-and-blocking.md
@@ -458,13 +451,6 @@ nav:
 
     - Attack Types: attacks-vulns-list.md
     - Glossary: glossary-en.md
-
-    - Operations Reference:
-      - Terraform Provider: admin-en/managing/terraform-provider.md
-      - Learning Request Volume: admin-en/operation/learn-incoming-request-number.md
-      - Health Check: admin-en/uat-checklist-en.md
-      - Scanner IP Addresses: admin-en/scanner-addresses.md
-
     - Data Retention Policy: about-wallarm/data-retention-policy.md
     - Shared Responsibility Model: about-wallarm/shared-responsibility.md
     - SLA: sla.md
