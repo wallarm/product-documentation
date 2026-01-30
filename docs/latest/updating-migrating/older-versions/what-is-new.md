@@ -46,9 +46,11 @@ As a result of this change, also the following changed in the configuration rule
 
 ## API Sessions
 
-We introduce a unique security feature tailored for the API economy - [API Sessions](../../api-sessions/overview.md). This addition gives you visibility into attacks, anomalies, and user behavior across your APIs, providing transparency into how users interact with your APIs and applications.
+We introduce a unique security feature tailored for the API economy - [API Session Security](../../api-sessions/overview.md) (API Sessions). This addition gives you visibility into attacks, anomalies, and user behavior across your APIs, providing transparency into how users interact with your APIs and applications.
 
-![!API Sessions section - monitored sessions](../../images/api-sessions/api-sessions.png)
+**API Session Security** is an important part of **API Protection**. It provides the session-level context that makes protection decisions smarter: you see the full sequence of user requests and responses, not just isolated events. That context improves [API Abuse Prevention](../../api-abuse-prevention/overview.md) bot detection, supports [session-based blocking](../../api-sessions/blocking.md#blocking-sessions) when blocking by IP is insufficient, and helps you tune rules and mitigation controls with full visibility into affected user journeys.
+
+![!API Session Security - monitored sessions](../../images/api-sessions/api-sessions.png)
 
 Attackers often exploit vulnerable endpoints by blending their actions with legitimate user behavior. Without the full context of how those sessions unfold, identifying patterns or threats becomes a time-consuming process involving multiple tools and systems. Organizations  do not have an appropriate visibility at the API level. 
 

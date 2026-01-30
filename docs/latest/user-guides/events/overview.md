@@ -9,7 +9,7 @@ Threat Management provides full picture of what is happening:
 * Do you want visualized interactive summary for attacks, endpoints, protection tools in action? Use [dashboards](#dashboards).
 * Do you want to see occurring attacks, taken measures, and tools that provided these measures? Work with [attacks](#attacks), easily [adjust](check-attack.md#responding-to-attacks) the tools.
 * Work in the same way with [incidents](#incidents).
-* Is individual attack not giving you full understanding of what is happening? Switch to the [session](#sessions) your attack is part of and see all user's previous and subsequent activities.
+* From any attack or incident, jump to its place in [API Sessions](../../api-sessions/overview.md) to analyze the full context of the client's session.
 * Is session around some endpoints? Switch to full endpoint information that Wallarm automatically discovered (requires [API Discovery](../../api-discovery/overview.md)). Quickly create rules for your endpoint here.
 * Do you want informative documents on attacks, incidents or vulnerabilities? Generate PDF or CSV [reports](#reports) with the filtered data of you choice.
 
@@ -43,6 +43,7 @@ Wallarm continuously analyzes application traffic, detects and mitigates attacks
 
 With **Attacks** section you can:
 
+* From any individual attack, jump to its place in [API Sessions](../../api-sessions/overview.md) to analyze the full context of the client's session—all requests and responses before and after the attack.
 * See current attacks and Wallarm's taken measures and limit what you see to:
 
     * Attacks of specific types
@@ -59,16 +60,11 @@ With **Attacks** section you can:
 
 The incidents are the attacks targeted at a confirmed vulnerability. The [**Incidents**](check-incident.md) section connects all common attack data with the vulnerability it tries to exploit and thus you can:
 
+* From any individual incident, jump to its place in [API Sessions](../../api-sessions/overview.md) to analyze the full context of the user's session.
 * Have all info and tools available in **Attacks**
 * Get related vulnerability data and full info of its 
 
 ![Threat Management - Incidents](../../images/user-guides/events/incident-vuln.png)
-
-## Sessions
-
-The primary challenge the [**API Sessions**](../../api-sessions/overview.md) address is the lack of full context when viewing only individual attacks detected by Wallarm. By capturing the logical sequence of requests and responses within each session, API Sessions provide insights into broader attack patterns and helps identify the areas of business logic impacted by security measures.
-
-![!API Sessions section - monitored sessions](../../images/api-sessions/api-sessions.png)
 
 ## Reports
 
