@@ -4,6 +4,7 @@ Wallarm's API Protection is an advanced set of API and AI protection capabilitie
 
 API Protection includes:
 
+* [API Session Security](#api-session-security) provides visibility into user actions across your APIs by grouping requests into logical sessions (user journeys). It gives context for attack analysis, improves [API Abuse Prevention](#api-abuse-prevention) bot detection, and supports session-based blocking.
 * [API Specification Enforcement](#api-specification-enforcement) is designed to apply security policies to your APIs basing on your uploaded specifications. It detects discrepancies between the endpoint descriptions in your specification and the actual requests made to your REST APIs and take predefined actions if discrepancies are found.
 * [Automatic BOLA Protection](#automatic-bola-protection) provides automatic protection against BOLA attacks that were marked as #1 threat in OWASP API Top 10. Wallarm automatically discovers vulnerable endpoints and protects them against enumeration.
 * [API Abuse Prevention](#api-abuse-prevention) protects your applications and APIs against different types of automated threats. Based on behavioral analysis Wallarm can easily identify and block malicious bots such as  Scrappers, Security Crawlers, etc.  
@@ -13,6 +14,14 @@ API Protection includes:
 <!--Diagram for API Protection bundle of Wallarm products, being prepared by Iskandar-->
 
 While WAAP is available under the basic Cloud Native WAAP subscription, tools of the API Protection bundle are the part of the [Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription.
+
+## API Session Security
+
+**API Session Security** (API Sessions) gives you visibility into how users interact with your APIs by grouping requests into logical sessions that represent actual user journeys. Instead of analyzing individual attacks in isolation, you see the full sequence of requests and responses per session, which helps identify broader attack patterns, tune protection without losing context, and block malicious sessions when needed. Session context also makes [API Abuse Prevention](#api-abuse-prevention) bot detection more precise.
+
+![API Session Security - monitored sessions](../images/api-sessions/api-sessions.png)
+
+[Proceed to detailed description and configuration →](../api-sessions/overview.md)
 
 ## API Specification Enforcement
 

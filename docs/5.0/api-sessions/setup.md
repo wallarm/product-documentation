@@ -1,6 +1,6 @@
 # API Sessions Setup <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-[API Sessions](overview.md) include the built-in rules for the session identification and requires only enabled Wallarm [node](../about-wallarm/overview.md#how-wallarm-works) to start working. Optionally, you can fine-tune API Sessions under your needs as described in this article.
+[API Sessions](overview.md) are part of **API Protection** (API Session Security). They include the built-in rules for session identification and require only an enabled Wallarm [node](../about-wallarm/overview.md#how-wallarm-works) to start working. Optionally, you can fine-tune API Sessions to your needs as described in this article.
 
 ## Requirements
 
@@ -223,4 +223,4 @@ API Sessions analyze all traffic that Wallarm node is enabled to secure to organ
 
 ## Storage period
 
-The **API Sessions** section stores and displays sessions for the last week. The older sessions are deleted to provide an optimal performance and resource consumption.
+The **API Session Security** (API Sessions) section stores and displays sessions for the last week. The older sessions are deleted to provide an optimal performance and resource consumption.

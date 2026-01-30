@@ -45,9 +45,11 @@ The Wallarm node does not collect the following collectd metrics anymore:
 
 ## API Sessions
 
-We introduce a unique security feature tailored for the API economy - [API Sessions](../../api-sessions/overview.md). This addition gives you visibility into attacks, anomalies, and user behavior across your APIs, providing transparency into how users interact with your APIs and applications.
+We introduce a unique security feature tailored for the API economy - [API Session Security](../../api-sessions/overview.md) (API Sessions). This addition gives you visibility into attacks, anomalies, and user behavior across your APIs, providing transparency into how users interact with your APIs and applications.
 
-![!API Sessions section - monitored sessions](../../images/api-sessions/api-sessions.png)
+**API Session Security** is an important part of **API Protection**. It provides the session-level context that makes protection decisions smarter: you see the full sequence of user requests and responses, not just isolated events. That context improves [API Abuse Prevention](../../api-abuse-prevention/overview.md) bot detection and helps you tune rules and mitigation controls with full visibility into affected user journeys.
+
+![!API Session Security - monitored sessions](../../images/api-sessions/api-sessions.png)
 
 Attackers often exploit vulnerable endpoints by blending their actions with legitimate user behavior. Without the full context of how those sessions unfold, identifying patterns or threats becomes a time-consuming process involving multiple tools and systems. Organizations  do not have an appropriate visibility at the API level. 
 
@@ -65,14 +67,14 @@ With API Sessions, security teams can now easily:
 * Identify how shadow or zombie APIs are being accessed, mitigating risks from undocumented or outdated APIs.
 * Share key insights with colleagues to foster collaboration during security investigations.
 
-[Read more](../../api-sessions/overview.md)
+[Read more about API Session Security](../../api-sessions/overview.md)
 
 ## Response parameters in API Sessions
 
 !!! tip ""
     [NGINX Node 5.3.0 and higher](../node-artifact-versions.md) and [Native Node 0.12.0 and higher](../native-node/node-artifact-versions.md)
 
-Wallarm's [API Sessions](../../api-sessions/overview.md) provide visibility into sequences of user activities. With this addition not only request but also response information is available within each session:
+Wallarm's [API Session Security](../../api-sessions/overview.md) (API Sessions) provides visibility into sequences of user activities. With this addition not only request but also response information is available within each session:
 
 * You can configure any headers and parameters of responses to be displayed within their corresponding requests providing a clear and full picture of user activities.
 * You can use response parameters as grouping keys for sessions (see [example](../../api-sessions/setup.md#example-of-how-grouping-keys-work)), which makes grouping of requests into sessions more precise.
@@ -163,7 +165,7 @@ This allows regular monitoring and audit of endpoints related to sensitive busin
 
 ![API Discovery - Sensitive business flows](../../images/about-wallarm-waf/api-discovery/api-discovery-sbf.png)
 
-Identified sensitive business flows are propagated to Wallarm's [API Sessions](../../api-sessions/overview.md): if session's requests affect the endpoints that in API Discovery were tagged as important for some sensitive business flows, such session will be automatically [tagged](../../api-sessions/exploring.md#sensitive-business-flows) as affecting this business flow as well.
+Identified sensitive business flows are propagated to Wallarm's [API Session Security](../../api-sessions/overview.md) (API Sessions): if session's requests affect the endpoints that in API Discovery were tagged as important for some sensitive business flows, such session will be automatically [tagged](../../api-sessions/exploring.md#sensitive-business-flows) as affecting this business flow as well.
 
 Once sessions are assigned with the sensitive business flow tags, it becomes possible to filter them by a specific business flow which makes it easier to select the sessions that are most important to analyze.
 
