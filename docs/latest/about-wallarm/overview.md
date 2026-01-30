@@ -25,6 +25,7 @@ Wallarm extends discovery to deliver real protection by detecting and blocking a
 
 * Detects attacks both [inline](../installation/inline/overview.md) and [out-of-band](../installation/oob/overview.md).
 * Combats [various threats](../attacks-vulns-list.md), from web-based to API-specific ones, like code injections, remote code execution, brute force, BOLA, and more.
+* [API Session Security](../api-sessions/overview.md) (API Sessions) groups requests into user sessions so you see the full sequence of user activity—improving [bot detection](../api-abuse-prevention/overview.md) and enabling [session-based blocking](../api-sessions/blocking.md) when IP-based blocking is insufficient.
 * Identifies [API specific malicious bot abuse](../api-abuse-prevention/overview.md).
 * Counters Layer 7 Denial of Service attacks with customizable [rate limiting](../user-guides/rules/rate-limiting.md).
 * Allows users to create [custom defenses](../user-guides/rules/regex-rule.md) by setting their own threat definitions, complementing the built-in measures.
@@ -36,6 +37,7 @@ Wallarm extends discovery to deliver real protection by detecting and blocking a
 Wallarm gives you the tools to effectively respond to security threats, offering in-depth data, broad integrations, and blocking mechanisms. It first presents detailed information, helping security analysts gauge the threat's nature and severity. You can then tailor responses, act on threats, and send alerts to relevant systems. Here is how Wallarm backs you up:
 
 * [Deep attack inspection](../user-guides/events/check-attack.md), which includes unpacked encoded requests, detailing every aspect of an attack, from headers to the body.
+* [API Session Security](../api-sessions/overview.md) (API Sessions) to jump from any attack or incident to its session and analyze the full context of the user's requests and responses.
 * [Geolocation-based controls](../user-guides/ip-lists/overview.md) to block suspicious traffic sources like VPNs and Tor networks.
 * [Attack blocking measures](../admin-en/configure-wallarm-mode.md#available-filtration-modes) to prevent malicious activities from reaching your APIs.
 * [Integrations](../user-guides/settings/integrations/integrations-intro.md) with the most widely used security, operational, and development tools to create tickets, notifications, and deliver data on detected security threats. Compatible platforms include Slack, Sumo Logic, Splunk, Microsoft Sentinel, and more.
