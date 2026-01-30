@@ -33,7 +33,6 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
     <li><a href="./user-guides/events/check-attack/">Attack Analysis</a></li>
     <li><a href="./user-guides/events/check-incident/">Incident Analysis</a></li>
     <li><a href="./about-wallarm/detecting-vulnerabilities/">Vulnerability Analysis</a></li>
-    <li><a href="./api-sessions/overview/">API Sessions</a></li>
     <li><a href="./user-guides/search-and-filters/custom-report/">Reports</a></li>
     </ul></p>
 </div>
@@ -54,6 +53,7 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
     <h3 class="icon-homepage api-threat-prevent">API Protection</h3>
     <p><ul>
     <li><a href="./about-wallarm/api-protection-overview/">Overview</a></li>
+    <li><a href="./api-sessions/overview/">API Session Security</a></li>
     <li><a href="./api-specification-enforcement/overview/">API Specification Enforcement</a></li>
     <li><a href="./admin-en/configuration-guides/protecting-against-bola/">BOLA Protection</a></li>
     <li><a href="./api-abuse-prevention/overview/">API Abuse Prevention</a></li>

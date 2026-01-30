@@ -36,10 +36,6 @@ nav:
     - Security Issues:
       - Detecting Issues: about-wallarm/detecting-vulnerabilities.md
       - Managing Issues: user-guides/vulnerabilities.md
-    - API Sessions: 
-      - Overview: api-sessions/overview.md
-      - Setup: api-sessions/setup.md
-      - Exploring: api-sessions/exploring.md
     - Reports: user-guides/search-and-filters/custom-report.md
   - API Discovery:
     - Overview: api-discovery/overview.md
@@ -56,6 +52,10 @@ nav:
     - Overview: about-wallarm/api-protection-overview.md
     # - OWASP Top 10: ...
     # - OWASP API Top 10: ...
+    - API Session Security:
+      - Overview: api-sessions/overview.md
+      - Setup: api-sessions/setup.md
+      - Exploring: api-sessions/exploring.md
     - Specification Enforcement:
       - Overview: api-specification-enforcement/overview.md
       - Setup: api-specification-enforcement/setup.md
