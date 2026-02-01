@@ -7,7 +7,8 @@
     Wallarm supports both single availability zone (AZ) and multi availability zone deployments. In multi-AZ setups, Wallarm Nodes can be launched in separate availability zones and placed behind a Load Balancer for high availability.
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
 * Executing all commands on a Wallarm instance as a superuser (e.g. `root`)
- 
+* No system user named `wallarm` exists 
+
 ## Installation
 
 ### 1. Launch a Wallarm Node instance
