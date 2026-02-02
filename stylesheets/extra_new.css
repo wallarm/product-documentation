@@ -278,6 +278,7 @@ a.md-tabs__link:hover {
   justify-content: space-between;
   width: 100%;
   padding-right: 6px;
+  align-items: center;
 }
 
 .md-nav--primary > ul > .md-nav__item > label,
@@ -936,6 +937,7 @@ img {
   padding: 8px 0px;
   min-width: 137.422px;
   z-index: 1;
+  margin-bottom: 2px;
 }
 
 .divider {
@@ -1035,18 +1037,21 @@ img {
   .md-nav--primary .md-nav__item {
     padding: 0;
   }
-  .versions  {
+  .versions {
     position: relative;
     margin-left: 16px;
     margin-right: 16px;
     margin-bottom: 0px;
     font-size: 16px;
     line-height: inherit;
+    overflow: visible;
   }
   .versions-main {
     width: 100%;
     text-align: left;
     margin-top: 0.625em;
+    min-height: 44px;
+    cursor: pointer;
   }
   .versions-drop {
     float: right;
@@ -1054,6 +1059,11 @@ img {
   }
   .md-nav--primary .versions-list {
     width: calc(100% - 34px);
+    z-index: 100;
+    /* Selector at bottom of nav: open list upward */
+    top: auto;
+    bottom: 100%;
+    margin-bottom: 2px;
   }
 }
 

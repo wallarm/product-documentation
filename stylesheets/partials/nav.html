@@ -33,14 +33,14 @@
   <!-- Version selector (moved to bottom) -->
   <div id="versionsDiv" class="versions versions-bottom" style="display: none;">
     {% if config.theme.versionNative %}
-      <button type="button" id="versionsMain" class="versions-main" onClick="versionClicked(event)">
+      <button type="button" id="versionsMain" class="versions-main" aria-expanded="false" aria-haspopup="true" aria-controls="versionsList">
         Version {{ config.theme.version }} and {{ config.theme.versionNative }}
       <svg class="versions-drop" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2.25" fill="none">
         <path d="M8 10.5L12 14.5L16 10.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
       </button>
     {% else %}
-      <button type="button" id="versionsMain" class="versions-main" onClick="versionClicked(event)">
+      <button type="button" id="versionsMain" class="versions-main" aria-expanded="false" aria-haspopup="true" aria-controls="versionsList">
         Version {{ config.theme.version }}
       <svg class="versions-drop" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2.25" fill="none">
         <path d="M8 10.5L12 14.5L16 10.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
