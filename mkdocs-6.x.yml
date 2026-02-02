@@ -234,6 +234,7 @@ nav:
       - Fastly: installation/connectors/fastly.md
       - IBM API Connect: installation/connectors/ibm-api-connect.md
       - Istio: installation/connectors/istio.md
+      - Gloo Gateway: installation/connectors/gloo.md
       - Kong Ingress Controller: installation/connectors/kong-ingress-controller.md
       - Kong API Gateway: installation/connectors/standalone-kong-api-gateway.md
       - Layer7 API Gateway: installation/connectors/layer7-api-gateway.md
