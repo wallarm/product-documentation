@@ -1,0 +1,1 @@
+--8<-- "latest/platform-management/overview.md"
