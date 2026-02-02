@@ -88,7 +88,7 @@ Technically, all attacks that can be detected by Wallarm are divided into three 
 
     For behavioral attacks to be detected, corresponding tool should be properly configured.
 
-* **Agency-based attacks** are characterized by attempt to exploit an AI agent’s logic to leak system secrets, override safety guardrails, or trigger unauthorized or harmful actions in the related systems. Main attack vectors:
+* **AI-agent attacks** are characterized by attempt to exploit an AI agent’s logic to leak system secrets, override safety guardrails, or trigger unauthorized or harmful actions in the related systems. Main attack vectors:
 
     * **Direct interaction (simple chain)**: `Client <-> AI Agent (LLM Chatbot)` The user tries to manipulate the chatbot's internal logic or retrieve its system prompt directly through the chat interface.
     * **Integrated exploitation (full-scale chain)**: `Client <-> AI Agent <-> MCP <-> Related System(s)` The user tricks the agent into using its Model Context Protocol (MCP) or other integrations to execute commands (like processing a refund or deleting data) in downstream databases or applications.
@@ -780,7 +780,7 @@ Note that in Wallarm, you can also configure **Schema-Based Testing** to detect 
 * **Transaction integrity and atomic operations**: ensure that related actions happen all at once or not at all. For instance, deducting a coupon and creating a discount must be one atomic database transaction so an attacker cannot interrupt the flow to keep the coupon after getting the discount.
 * **Strict input validation beyond syntax**: validate the semantics of data. For example, if a user submits a "quantity" of `-1` to get a refund added to their cart total, the backend must reject it, even if `-1` is technically a valid integer.
 
-## Agency-based attacks
+## AI-agent attacks
 
 ### System prompt retrieval
 
