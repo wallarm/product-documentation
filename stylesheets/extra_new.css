@@ -1138,6 +1138,7 @@ button.md-clipboard.md-icon {
 
 .md-search__form {
   border-radius: 3px;
+  width: 100%
 }
 
 /* Hotkey indicator for search field */
