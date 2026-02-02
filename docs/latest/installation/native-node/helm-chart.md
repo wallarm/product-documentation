@@ -375,6 +375,7 @@ After deploying the node, the next step is to apply the Wallarm code to your API
     * [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md#2-add-the-nodes-ssltls-certificate-to-the-policy-manager)
     * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly)
     * [Envoy/Istio](../connectors/istio.md#2-configure-istio-envoy-to-forward-traffic-to-the-wallarm-node)
+    * [Gloo Gateway ](../connectors/gloo.md)
     * [IBM DataPower](../connectors/ibm-api-connect.md#2-obtain-and-apply-the-wallarm-policies-to-apis-in-ibm-api-connect)
     * [Azure API Management](../connectors/azure-api-management.md#2-create-named-values-in-azure)
     * [Standalone Kong API Gateway](../connectors/standalone-kong-api-gateway.md#2-prepare-the-wallarm-lua-plugin)

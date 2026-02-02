@@ -193,6 +193,12 @@ The current version can be found in `wallarm-main`/`wallarm-sp` → `bundle.json
 
 * Initial release -->
 
+## Gloo Gateway
+
+### 1.0.0 (2026-02-03)
+
+* [Initial release](gloo.md)
+
 ## Broadcom Layer7 API Gateway
 
 [How to upgrade](layer7-api-gateway.md#upgrading-the-wallarm-policies)
