@@ -7,6 +7,7 @@
 
     --8<-- "../include/wallarm-cloud-ips.md"
 * Executing all commands on a Wallarm instance as a superuser (e.g. `root`)
+* No system user named `wallarm` exists
 
 ## 1. Launch a filtering node instance
 

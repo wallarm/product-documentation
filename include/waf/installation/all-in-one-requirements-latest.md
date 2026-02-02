@@ -23,3 +23,4 @@
 
     --8<-- "../include/wallarm-cloud-ips.md"
 * Executing all commands as a superuser (e.g. `root`).
+* No system user named `wallarm` exists.

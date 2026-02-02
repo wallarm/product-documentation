@@ -46,6 +46,7 @@ new attack types in logging variables and search bars?
 
 ### 6.7.0 (2025-11-05)
 
+* Node installation now requires that no system user named `wallarm` exists
 * Added support for Ubuntu 25.10 (Questing Quokka)
 * Added support for CentOS 10 Stream
 * Added support for Oracle Linux 10.x
@@ -690,6 +691,7 @@ new attack types in logging variables and search bars?
 
 ### 6.7.1 (2025-11-17)
 
+* Node installation now requires that no system user named `wallarm` exists
 * Introduced JA4 fingerprinting in the [NGINX node](../installation/nginx-native-node-internals.md#nginx-node)
 
     JA4 fingerprints help detect threats and malicious clients based on TLS handshake characteristics. JA4 fingerprints are used as an additional factor when deciding to block a request.
@@ -817,6 +819,7 @@ new attack types in logging variables and search bars?
 
 ### wallarm-node-6-7-1-20251114-111054 (2025-11-17)
 
+* Node installation now requires that no system user named `wallarm` exists
 * Introduced JA4 fingerprinting in the [NGINX node](../installation/nginx-native-node-internals.md#nginx-node)
 
     JA4 fingerprints help detect threats and malicious clients based on TLS handshake characteristics. JA4 fingerprints are used as an additional factor when deciding to block a request.
