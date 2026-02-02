@@ -73,24 +73,28 @@ injectScript('https://lftracker.leadfeeder.com/lftracker_v1_kn9Eq4Rwz5KaRlvP.js'
 
 var rootVersion = '6.x';
 
-let pathsLang = window.location.pathname.split('/');
-
-if (pathsLang[1] === 'tr' || pathsLang[1] === 'pt-br' || pathsLang[1] === 'ja' || pathsLang[1] === 'ar') {
-  document.getElementById('versionsDiv').style.display = 'none';
-}
-else {
-  document.getElementById('versionsDiv').style.display = 'inline-block';
-}
-
 // Show the list of available Wallarm versions
 
+var lastVersionToggleAt = 0;
 function versionClicked (event) {
-  if (document.getElementById('versionsList').style.display === 'none') {
-    document.getElementById('versionsList').style.display = 'block'
-    document.getElementById('versionsMain').classList.add("versions-main-active")
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation(); /* prevent drawer from closing on mobile */
+  }
+  var now = Date.now();
+  if (now - lastVersionToggleAt < 400) return; /* avoid double toggle (touchend + click) */
+  lastVersionToggleAt = now;
+  var list = document.getElementById('versionsList');
+  var main = document.getElementById('versionsMain');
+  if (!list || !main) return;
+  if (list.style.display === 'none' || !list.style.display) {
+    list.style.display = 'block';
+    main.classList.add('versions-main-active');
+    main.setAttribute('aria-expanded', 'true');
   } else {
-    document.getElementById('versionsList').style.display = 'none'
-    document.getElementById('versionsMain').classList.remove("versions-main-active")
+    list.style.display = 'none';
+    main.classList.remove('versions-main-active');
+    main.setAttribute('aria-expanded', 'false');
   }
 }
 
@@ -119,6 +123,48 @@ function goToVersion (event, currentVersion, version) {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
+  /* Show/hide version selector by language */
+  var pathsLang = window.location.pathname.split('/');
+  var versionsDiv = document.getElementById('versionsDiv');
+  if (versionsDiv) {
+    if (pathsLang[1] === 'tr' || pathsLang[1] === 'pt-br' || pathsLang[1] === 'ja' || pathsLang[1] === 'ar') {
+      versionsDiv.style.display = 'none';
+    } else {
+      versionsDiv.style.display = 'inline-block';
+    }
+  }
+
+  /* Version selector: delegation + touch so it works on mobile; list opens upward on small screens */
+  function onVersionButtonClick(e) {
+    if (!e.target.closest || !e.target.closest('#versionsMain')) return;
+    e.preventDefault();
+    e.stopPropagation();
+    versionClicked(e);
+  }
+  document.addEventListener('click', onVersionButtonClick, true);
+  document.addEventListener('touchend', function(e) {
+    if (!e.target.closest || !e.target.closest('#versionsMain')) return;
+    e.preventDefault();
+    e.stopPropagation();
+    versionClicked(e);
+  }, { passive: false, capture: true });
+
+  /* Close version list when clicking outside */
+  function closeVersionsIfOutside(e) {
+    var list = document.getElementById('versionsList');
+    var div = document.getElementById('versionsDiv');
+    if (!list || !div || list.style.display !== 'block') return;
+    if (e.target.closest && e.target.closest('#versionsDiv')) return;
+    list.style.display = 'none';
+    var main = document.getElementById('versionsMain');
+    if (main) {
+      main.classList.remove('versions-main-active');
+      main.setAttribute('aria-expanded', 'false');
+    }
+  }
+  document.addEventListener('click', closeVersionsIfOutside, true);
+  document.addEventListener('touchend', closeVersionsIfOutside, true);
+
   const addButtons = document.querySelectorAll('.md-header__button[for="__search"]');
 
   addButtons.forEach(button => {
