@@ -46,7 +46,13 @@
 {% endblock %}
 
 {% block announce %}
-  {{ config.theme.demo_request_block }}
+  {% if config.theme.version == "4.10" %}
+    You are viewing docs for an unsupported Node version.
+    <a href="{{ config.site_url }}" style="color:inherit; text-decoration: underline;">View latest documentation</a>
+  {% elif config.theme.version %}
+    You are viewing docs for NGINX Node <strong>{{ config.theme.version }}</strong> and Native Node <strong>{{ config.theme.versionNative }}</strong>.
+    <a href="{{ config.site_url }}" style="color:inherit; text-decoration: underline;">View latest documentation</a>
+  {% endif %}
 {% endblock %}
 
 <!-- Custom front matter -->
