@@ -1270,6 +1270,16 @@ a.md-search-result__link:hover {
   transition-timing-function: cubic-bezier(0.25, 0, 0, 0.25);
 }
 
+.homepage .md-typeset .navigation-card:has(a:hover) .card-arrow {
+  opacity: 1;
+  transform: translateX(3px);
+}
+
+.homepage .md-typeset .navigation-card:has(ul li a:hover) h3 a {
+  color: #FC7303;
+  text-decoration: underline;
+}
+
 a.navigation-card {
   text-decoration: none;
 }
