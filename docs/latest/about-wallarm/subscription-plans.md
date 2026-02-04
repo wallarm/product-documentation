@@ -6,7 +6,7 @@ Wallarm is the only solution that unifies API discovery, risk management, real-t
 
 **Cloud Native WAAP** - WAAP (Web Application & API Protection) subscription provides web applications and APIs with protection against common threats such as SQLi, XSS, brute force, etc. It supports all API protocols but does not cover some specific API threats.
 
-**WAAP + Advanced API Security**. This bundle enhances general WAAP capabilities with comprehensive API Security tools to cover all OWASP API Top-10 threats.
+**WAAP + Advanced API Security** <a name="waap-and-advanced-api-security"></a>. This bundle enhances general WAAP capabilities with comprehensive API Security tools to cover all OWASP API Top-10 threats.
 
 **Security Testing**. This bundle helps you proactively uncover security vulnerabilities in your applications and APIs before attackers do.
 
