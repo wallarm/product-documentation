@@ -373,7 +373,7 @@ nav:
       - Analyzing Attacks: user-guides/events/check-attack.md
       - Analyzing Incidents: user-guides/events/check-incident.md
       - Grouping & Sampling: user-guides/events/grouping-sampling.md
-      - Vulnerabilities: user-guides/vulnerabilities.md
+      - Security Issues: user-guides/vulnerabilities.md
 
     - Triggers & Alerts:
       - Trigger Configuration: user-guides/triggers/triggers.md

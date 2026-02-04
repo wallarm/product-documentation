@@ -143,7 +143,28 @@ AASM only finds hosts on the perimeter, while APID is everywhere a node is locat
 
 False positives in vulnerability scanning may occur due to the protected application specificities. Similar responses to similar requests may indicate an active vulnerability in one protected application and be expected behavior of another protected application.
 
-If a false positive for a vulnerability is detected, you can add an appropriate mark to the vulnerability in Wallarm Console. A vulnerability marked as a false positive will be closed and will not be rechecked.
+You can mark security issues as false positives in two ways:
+
+* **Manually**: In the issue details in Wallarm Console, add an appropriate mark to the vulnerability. A vulnerability marked as a false positive will be closed and will not be rechecked.
+* **Automatically**: Create [**False Positive rules**](../user-guides/vulnerabilities.md) in **Security Issues** → **Configuration** to automatically mark matching issues as false positives or prevent them from being created based on user-defined conditions.
+
+**Creating False Positive rules**
+
+* Create a rule from scratch via **Security Issues** → **Configuration**
+* Create a rule using **Ignore similar issues** from a specific security issue page (all rule fields are pre-filled from the selected issue)
+
+**Common scenarios**
+
+* Automatically mark as false all future vulnerabilities for a specific parameter or endpoint
+* Do not create vulnerabilities for a specific host (e.g. honeypot, demo host)
+* Do not show vulnerabilities of a specific type at all
+
+**Additional notes**
+
+* If a vulnerability is automatically marked as false by a rule, the status change is logged in the issue's **Status history**
+* False Positive rules work for all [detection methods](#detection-methods): AASM, Threat Replay Testing, Passive detection, Schema-Based Testing
+* All rules are displayed in **Security Issues** → **Configuration**
+* False Positive rules act as a pre-creation filter—they are evaluated before security issues are created
 
 If the detected vulnerability exists in the protected application but cannot be fixed, we recommend setting up the [**Create a virtual patch**](../user-guides/rules/vpatch-rule.md) rule. This rule will allow blocking attacks exploiting the detected type of vulnerability and will eliminate the risk of an incident.
 
