@@ -46,13 +46,31 @@
 {% endblock %}
 
 {% block announce %}
-  {{ config.theme.demo_request_block }}
+  {% if not config.theme.get("is_latest") and config.theme.get("language", "en") == "en" %}
+    {% if config.theme.version == "4.10" %}
+      You are viewing docs for an unsupported Node version.
+      <a href="{{ config.site_url }}" style="color:inherit; text-decoration: underline;">View latest documentation</a>
+    {% elif config.theme.version %}
+      You are viewing NGINX Node <strong>{{ config.theme.version }}</strong> and Native Node <strong>{{ config.theme.versionNative }}</strong> docs.
+      <a href="{{ config.site_url }}" style="color:inherit; text-decoration: underline;">View latest docs</a>
+    {% endif %}
+  {% endif %}
 {% endblock %}
 
 <!-- Custom front matter -->
 {% block extrahead %}
 
 {{ super() }}
+
+  {% if config.theme.get("is_latest") or config.theme.get("language", "en") != "en" %}
+  <style>div[data-md-component="announce"] { display: none !important; }</style>
+  {% elif config.theme.version == "4.10" or config.theme.version %}
+  <style>:root, body { --md-announce-height: 2.4rem; }</style>
+  {% endif %}
+
+  {% if page and page.is_homepage %}
+  <style>@media (min-width:960px){.md-header .md-search{opacity:0;pointer-events:none}}</style>
+  {% endif %}
 
   <!-- Determine title -->
   {% set title = config.site_name %}

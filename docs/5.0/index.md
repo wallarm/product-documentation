@@ -160,7 +160,9 @@ Everything you need to discover your APIs, MCPs, and AI agents, protect them fro
 
   function isHomepage() {
     var p = window.location.pathname.replace(/\/+$/, "");
-    return p === "" || p.endsWith("/index.html") || p.endsWith("/index");
+    if (p === "" || p.endsWith("/index.html") || p.endsWith("/index")) return true;
+    // Single path segment = locale or version root (e.g. /ar, /ja, /5.x)
+    return /^\/[^/]+$/.test(p);
   }
 
   function getSearchEl() {

@@ -117,21 +117,23 @@ nav.md-header__inner.md-grid {
   content: none;
 }
 
-/* Announce bar */
+/* Announce bar — sticky above header on scroll */
 
 div[data-md-component="announce"] {
-  z-index: 10;
+  position: sticky;
+  top: 0;
+  z-index: 60;
 }
 
 .md-banner {
   background-color: #1C2752;
   text-align: center;
-  display: none;
 }
 
-/* Header */
+/* Header offset so it doesn't overlap the sticky announce bar (only when announce is shown; theme sets --md-announce-height) */
 
 .md-header {
+  top: var(--md-announce-height, 0);
   background-color: #121B28;
   color: #fff;
 }
@@ -228,12 +230,18 @@ a.md-header__button.md-logo:after {
 /* Main */
 
 .homepage .md-content__inner h1 {
-  text-align: left;
+  text-align: start;
 }
 
 .homepage .md-content__inner h1 + p {
-  text-align: left;
+  text-align: start;
   max-width: calc(50% - 8px);
+}
+
+@media screen and (max-width: 959px) {
+  .homepage .md-content__inner h1 + p {
+    max-width: 100%;
+  }
 }
 
 /* Sidebars */
@@ -1256,6 +1264,7 @@ a.md-search-result__link:hover {
   color: #6B7280;
   margin: 8px 0 12px 0;
   line-height: 1.5;
+  text-align: start;
 }
 
 .navigation-card p {
