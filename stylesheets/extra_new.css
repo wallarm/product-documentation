@@ -230,12 +230,18 @@ a.md-header__button.md-logo:after {
 /* Main */
 
 .homepage .md-content__inner h1 {
-  text-align: left;
+  text-align: start;
 }
 
 .homepage .md-content__inner h1 + p {
-  text-align: left;
+  text-align: start;
   max-width: calc(50% - 8px);
+}
+
+@media screen and (max-width: 959px) {
+  .homepage .md-content__inner h1 + p {
+    max-width: 100%;
+  }
 }
 
 /* Sidebars */
@@ -1258,6 +1264,7 @@ a.md-search-result__link:hover {
   color: #6B7280;
   margin: 8px 0 12px 0;
   line-height: 1.5;
+  text-align: start;
 }
 
 .navigation-card p {
