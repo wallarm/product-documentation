@@ -12,7 +12,7 @@
 [attack-handling-process-img]:      ../images/about-wallarm-waf/overview/attack-handling-diagram.png
 [applications-link]:                ../user-guides/settings/applications.md         
 
-# Attack Detection Procedure
+# How Wallarm Detects and Handles Attacks
 
 The Wallarm platform continuously analyzes API traffic and mitigates malicious requests in real-time. From this article, you will learn resource types Wallarm protects from attacks, methods of detecting attacks in traffic and how you can track and manage detected threats.
 
