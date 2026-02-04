@@ -10,6 +10,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.22.1 (2026-02-03)
+
+* Fixed an issue where real IP header overrides were not applied when the header value contained an IP address with a port
+
 ### 0.22.0 (2025-12-23)
 
 * Fixed the issue where integers were not being masked when using the ["Mask sensitive data" rule](../../user-guides/rules/sensitive-data-rule.md)
@@ -162,6 +166,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 The Helm chart for the Native Node is used for self-hosted node deployments with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](helm-chart.md)
+
+### 0.22.1 (2026-02-03)
+
+* Fixed an issue where real IP header overrides were not applied when the header value contained an IP address with a port
 
 ### 0.22.0 (2025-12-23)
 
@@ -329,6 +337,10 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](docker-image.md)
+
+### 0.22.1 (2026-02-03)
+
+* Fixed an issue where real IP header overrides were not applied when the header value contained an IP address with a port
 
 ### 0.22.0 (2025-12-23)
 
