@@ -2,7 +2,7 @@
 [request-processing]:       ../user-guides/rules/request-processing.md
 [api-discovery-enable-link]:        ../api-discovery/setup.md#enable
 
-# Attack Detection Procedure
+# How Wallarm Detects and Handles Attacks
 
 The Wallarm platform continuously analyzes API traffic and mitigates malicious requests in real-time. From this article, you will learn resource types Wallarm protects from attacks, methods of detecting attacks in traffic and how you can track and manage detected threats.
 
