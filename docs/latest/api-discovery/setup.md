@@ -54,21 +54,22 @@ To view the current configuration and perform changes, in Wallarm Console, go to
 In addition to [automatic variability](exploring.md#path-variability) (unifying path segments such as UUIDs or numeric IDs into `{parameter_X}`), you can define **custom manual variability**—your own **path patterns** so that API Discovery treats certain URL segments as **variable** and merges them into **one endpoint** in the inventory.
 
 * **What it does**: You define path patterns; API Discovery treats matching URL segments as variable and merges them into a single endpoint.
-* **When to use it**: When your APIs use path elements that are **not auto-detected**—for example, custom string IDs or non-standard formats.
+* **When to use it**: When your APIs contain path elements where it is not immediately obvious they should be treated as variable (e.g., language codes or region-specific values, like `/website/lang/en_US`, `/website/lang/de_DE`, `/website/lang/fr_FR`) and you want to explicitly control how these are grouped in your inventory. Where variable segments are "obvious" (e.g., UUIDs, numeric IDs), automatic variability will handle them without any manual intervention.
 * **Why**: The catalog stays **concise** and reflects the **real structure** of your API.
 
 How to configure:
 
-* Merge similar endpoints into pattern by going to **API Discovery** → your endpoint details, mouse over the path segment and click to **Merge similar endpoints**.
-* Once merged, in endpoint details, mouse over the merged segment and click to **Review similar endpoints**, then, in review window, you can see all endpoints matching pattern and, if necessary, undo combining by clicking **Split to individual endpoints**.
+* **To merge endpoints:** In **API Discovery**, go to the details of an endpoint with an unmerged (variable) path segment. Mouse over the segment and click **Merge similar endpoints** to create a pattern that unifies them.
+* **To review or split a merged pattern:** In the details of an endpoint with a merged segment, mouse over the merged segment and click **Review similar endpoints**. In the review window, you’ll see all endpoints currently grouped by this pattern; if needed, you can break the group apart by clicking **Split to individual endpoints**.
 
     ![API Discovery - manual variability review](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-manual-variability-review.png)
 
-* **Disabling vs. splitting**: while splitting fully deletes the variability pattern, disabling is temporal and you can re-activate pattern later. In the list of all patterns, deselect your pattern checkbox to disable it.
+* **Disabling vs. deletion**: Disabling a pattern (either by turning it off in the list or using **Split to individual endpoints**) only makes the pattern inactive—endpoints will be shown separately again, but the pattern itself remains available and can be re-enabled at any time. However, if you choose to **Delete** a pattern, it is permanently removed and cannot be restored or used again in the future.
+
 * Full list of your custom patterns is always available in **API Discovery** → **Configure** → **Variability**.
 
     !!! info "Applying changes"
-        Both merge and disable or split take time—changes are reflected in the list within **5 minutes**.
+        Both merge and split take time—changes are reflected in the list within **5 minutes**.
 
 ## Notifications
 

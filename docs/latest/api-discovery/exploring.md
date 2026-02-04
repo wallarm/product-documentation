@@ -138,7 +138,7 @@ These varying segments are diverse elements in URLs, such as user IDs. API Disco
 
 The module unifies such elements into the `{parameter_X}` format in the endpoint path. For the example above you therefore get one endpoint instead of three:
 
-* `/api/articles/author/{parameter_1}`
+* `/api/users/profile/{parameter_1}`
 
 Click the endpoint to expand its parameters and see which type (UUID, INTEGER, FLOAT or HEX) was automatically detected for each unified parameter.
 
