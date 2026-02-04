@@ -130,10 +130,10 @@ div[data-md-component="announce"] {
   text-align: center;
 }
 
-/* Header offset so it doesn't overlap the sticky announce bar */
+/* Header offset so it doesn't overlap the sticky announce bar (only when announce is shown; theme sets --md-announce-height) */
 
 .md-header {
-  top: var(--md-announce-height, 2.4rem);
+  top: var(--md-announce-height, 0);
   background-color: #121B28;
   color: #fff;
 }

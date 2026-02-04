@@ -51,8 +51,8 @@
       You are viewing docs for an unsupported Node version.
       <a href="{{ config.site_url }}" style="color:inherit; text-decoration: underline;">View latest documentation</a>
     {% elif config.theme.version %}
-      You are viewing docs for NGINX Node <strong>{{ config.theme.version }}</strong> and Native Node <strong>{{ config.theme.versionNative }}</strong>.
-      <a href="{{ config.site_url }}" style="color:inherit; text-decoration: underline;">View latest documentation</a>
+      You are viewing NGINX Node <strong>{{ config.theme.version }}</strong> and Native Node <strong>{{ config.theme.versionNative }}</strong> docs.
+      <a href="{{ config.site_url }}" style="color:inherit; text-decoration: underline;">View latest docs</a>
     {% endif %}
   {% endif %}
 {% endblock %}
@@ -61,6 +61,12 @@
 {% block extrahead %}
 
 {{ super() }}
+
+  {% if config.theme.get("is_latest") %}
+  <style>div[data-md-component="announce"] { display: none !important; }</style>
+  {% elif config.theme.version == "4.10" or config.theme.version %}
+  <style>:root, body { --md-announce-height: 2.4rem; }</style>
+  {% endif %}
 
   <!-- Determine title -->
   {% set title = config.site_name %}
