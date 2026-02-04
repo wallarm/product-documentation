@@ -3,6 +3,7 @@ INHERIT: mkdocs-base.yml
 theme:
   version: "6.x"
   versionNative: "0.14.x+"
+  is_latest: true
 
 docs_dir: docs/6.x
 site_dir: site
@@ -373,7 +374,7 @@ nav:
       - Analyzing Attacks: user-guides/events/check-attack.md
       - Analyzing Incidents: user-guides/events/check-incident.md
       - Grouping & Sampling: user-guides/events/grouping-sampling.md
-      - Vulnerabilities: user-guides/vulnerabilities.md
+      - Security Issues: user-guides/vulnerabilities.md
 
     - Triggers & Alerts:
       - Trigger Configuration: user-guides/triggers/triggers.md
