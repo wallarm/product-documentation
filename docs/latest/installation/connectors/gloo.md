@@ -4,6 +4,8 @@
 [ptrav-attack-docs]:          ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:        ../../images/admin-guides/test-attacks-quickstart.png
 [api-spec-enforcement-docs]:  ../../api-specification-enforcement/overview.md
+[custom-blocking-page]:       ../../admin-en/configuration-guides/configure-block-page-and-code.md
+[rate-limiting]:              ../../user-guides/rules/rate-limiting.md
 
 
 # Wallarm Filter for Gloo Gateway 
@@ -21,6 +23,12 @@ This connector is the optimal choice when you need protection for workloads mana
 ## Limitations
 
 * A **trusted** SSL/TLS certificate is required for the Wallarm Node domain. Self-signed certificates are not supported.
+* [Custom blocking page and blocking code][custom-blocking-page] configurations are not yet supported.
+    
+    All [blocked][filtration-modes-docs] malicious traffic is returned with status code `403` and the default block page.
+* [Rate limiting][rate-limiting] by Wallarm rules is not supported.
+    
+    Rate limiting cannot be enforced on the Wallarm side for this connector. If you need rate limiting, use the features built into your API gateway or cloud platform.
 
 ## Requirements
 
@@ -30,7 +38,7 @@ Before deploying the connector, make sure that the following requirements are me
 * A Gloo Gateway Enterprise license key (it will be later used with the `$GLOO_KEY` environment variable)
 * Kubernetes v1.30 or later
 * Envoy v1.30.0 or later
-* Helm v3.x
+* Helm v3.x or later
 * Applications deployed and reachable through Gloo Gateway and [VirtualService](https://docs.solo.io/gloo-edge/latest/reference/api/github.com/solo-io/gloo/projects/gateway/api/v1/virtual_service.proto.sk/)
 * Wallarm Native Node v0.22.0 or later
 * Access to the **Administrator** account in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
@@ -46,11 +54,22 @@ Before deploying the connector, make sure that the following requirements are me
 
 ## Deployment
 
-### 1. Install Gloo Gateway 
+### 1. Deploy a Wallarm Node
 
-1. Prepare the Gloo Helm values file (`./test/manifests/gloo/values.yaml`). Key configuration parameters are explained in the comments below:
+The Wallarm node is a core component of the Wallarm platform that you need to deploy. It inspects incoming traffic, detects malicious activities, and can be configured to mitigate threats.
 
-    ```yaml
+Choose an artifact for a self-hosted node deployment and follow the instructions attached for the `envoy-external-filter` mode:
+
+* [All-in-one installer](../native-node/all-in-one.md) for Linux infrastructures on bare metal or VMs
+* [Docker image](../native-node/docker-image.md) for environments that use containerized deployments
+* [AWS AMI](../native-node/aws-ami.md) for AWS infrastructures
+* [Helm chart](../native-node/helm-chart.md) for infrastructures utilizing Kubernetes
+
+### 2. Configure Gloo Gateway to forward traffic to the Wallarm Node
+
+1. Prepare the Gloo Helm values file (`./test/manifests/gloo/values.yaml`). Key configuration parameters are highlighted and explained in the comments:
+
+    ```yaml hl_lines="33-34 39-40 42-43"
     gloo:
       gloo:
         disableLeaderElection: true
@@ -104,11 +123,10 @@ Before deploying the connector, make sure that the following requirements are me
     helm repo update glooe
     ```
 
-1. Install Gloo Gateway with the `ext_proc` configuration:
+1. Upgrade the existing Gloo Gateway release with the `ext_proc` configuration:
 
     ```
-    helm -n gloo-system install gloo glooe/gloo-ee \
-      --create-namespace \
+    helm -n gloo-system upgrade gloo glooe/gloo-ee \
       -f ./test/manifests/gloo/values.yaml \
       --set license_key=$GLOO_KEY
     ```
@@ -117,90 +135,57 @@ Before deploying the connector, make sure that the following requirements are me
     !!! info "Wait for Gloo to be ready"        
         The Gloo Gateway takes some time to start. Before proceeding, wait about 90 seconds for all Gloo components to become ready. 
 
-### 2. Create TLS certificates for secure gRPC connection
+### 3. Create a TLS secret for the gRPC connection
 
-1. Create a self-signed certificate:
+Create a Kubernetes TLS secret from your existing certificate and key (see [Requirements](#requirements)):
 
-    ```
-    mkdir -p test/selfsigned-pair
-    openssl req -x509 -nodes -days 365 \
-      -newkey rsa:2048 \
-      -keyout test/selfsigned-pair/tls.key \
-      -out test/selfsigned-pair/tls.crt \
-      -subj "/CN=wallarm-node/O=wallarm"
-    ```
-
-1. Create a Kubernetes TLS secret from the certificate:
-
-    ```
-    kubectl -n gloo-system create secret tls tlskeys \
-      --key test/selfsigned-pair/tls.key \
-      --cert test/selfsigned-pair/tls.crt
-    ```
-
-### 3. Install the Wallarm Native Node
-
-1. Add the Wallarm Helm repository:
-
-    ```
-    helm repo add wallarm https://charts.wallarm.com
-    helm repo update wallarm
-    ```
-
-1. Create the namespace and TLS secret:
-
-    ```
-    kubectl create ns gonode
-    kubectl -n gonode create secret generic tlskeys --from-file=test/selfsigned-pair
-    ```
-
-1. Install the Native Node with the required environment variables. Optionally, use [advanced root configuration options](#advanced-route-configuration-options):
-
-    ```
-    helm -n gonode upgrade --install gonode wallarm/wallarm-node-native \
-      --version 0.22.0 \
-      --set config.api.token="${WALLARM_API_TOKEN}" \
-      --set config.api.host="${WALLARM_API_HOST}" \
-      --set config.api.nodeGroup="${NODE_GROUP_NAME}" \
-      --set config.connector.mode=envoy-external-filter \
-      --set config.connector.certificate.enabled=true \
-      --set config.connector.certificate.existingSecret.enabled=true \
-      --set config.connector.certificate.existingSecret.name=tlskeys \
-      --set config.connector.route_config.wallarm_mode=${WALLARM_MODE} \
-      --set config.connector.route_config.wallarm_application=-1 \
-      --set processing.service.clusterIP=None \
-      --set fullnameOverride=wallarm-node-native
-    ```
-
-    Environment variable | Description
-    --- | ---- 
-    `WALLARM_API_TOKEN` | Wallarm node or API token. 
-    `WALLARM_API_HOST` | Wallarm API server:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul>
-    `WALLARM_MODE` | Node mode:<ul><li>`block` to block malicious requests</li><li>`safe_blocking` to block only those malicious requests originated from [graylisted IP addresses][ip-list-docs]</li><li>`monitoring` to analyze but not block requests</li><li>`off` to disable traffic analyzing and processing</li></ul> <br>[Detailed description of filtration modes →][filtration-modes-docs]
-    `NODE_GROUP_NAME` | <p>Works only if `WALLARM_API_TOKEN` is set to [API token][api-token] with the `Deploy` role. Sets the `group` label for node instance grouping, for example:</p> <p>`set config.api.nodeGroup="GROUP"`</p> <p>...will place node instance into the `GROUP` instance group (existing, or, if does not exist, it will be created).</p>
+```
+kubectl -n gloo-system create secret tls tlskeys \
+  --key /path/to/tls.key \
+  --cert /path/to/tls.crt
+```
 
 ### 4. Create an upstream for the Wallarm Node
 
-1. Prepare the Wallarm upstream file (`./test/manifests/gloo/upstream.yaml`). Key configuration parameters are explained in the comments below:
+1. Prepare the Wallarm upstream file (`./test/manifests/gloo/upstream.yaml`) based on your deployment model. Key configuration parameters are highlighted and explained in the comments:
 
-    ```yaml
-    apiVersion: gloo.solo.io/v1
-    kind: Upstream
-    metadata:
-      name: native-processing
-      namespace: gloo-system
-    spec:
-      discoveryMetadata: {}
-      useHttp2: true # Must be true for gRPC communication
-      kube:
-        serviceName: native-processing # Native Node processing service name
-        serviceNamespace: gonode # Namespace where the Node is deployed
-        servicePort: 5000 # gRPC port (5000 for Gloo integration)
-      sslConfig:
-        secretRef: # Reference to the TLS secret for secure gRPC
-          name: tlskeys
+    === "If your Wallarm Node is internal (ClusterIP)"
+        ```yaml hl_lines="8 10-12 14"
+        apiVersion: gloo.solo.io/v1
+        kind: Upstream
+        metadata:
+          name: native-processing
           namespace: gloo-system
-    ```
+        spec:
+          discoveryMetadata: {}
+          useHttp2: true # Must be true for gRPC communication
+          kube:
+            serviceName: native-processing # Native Node processing service name
+            serviceNamespace: gonode # Namespace where the Node is deployed
+            servicePort: 5000 # gRPC port (5000 for Gloo integration)
+          sslConfig:
+            secretRef: # Reference to the TLS secret for secure gRPC
+              name: tlskeys
+              namespace: gloo-system
+        ```
+    === "If your Wallarm Node is publicly reachable"
+        ```yaml hl_lines="7 10-11 13"
+        apiVersion: gloo.solo.io/v1
+        kind: Upstream
+        metadata:
+          name: native-processing
+          namespace: gloo-system
+        spec:
+          useHttp2: true # Must be true for gRPC communication
+          static:
+            hosts:
+            - addr: <WALLARM_NODE_FQDN>
+              port: 5000 # gRPC port (5000 for Gloo integration)
+          sslConfig:
+            secretRef: # Reference to the TLS secret for secure gRPC
+              name: tlskeys
+              namespace: gloo-system          
+        ```
 
 1. Apply the upstream:
 
@@ -256,20 +241,3 @@ To test the functionality of the deployed filter, follow these steps:
     ![Attacks in the interface][attacks-in-ui-image]
 
     If the Wallarm node mode is set to [blocking][filtration-modes-docs] and the traffic flows in-line, the request will also be blocked.
-
-## Advanced route configuration options
-
-You can install the Native Node to use different modes for specific routes or dynamically assign application IDs, e.g.:
-
-```
-# Set global mode for all traffic
---set config.connector.route_config.wallarm_mode=block
-
-# Set monitoring mode for a specific path
---set config.connector.route_config.routes[0].route="/wallarm-mode/monitoring"
---set config.connector.route_config.routes[0].wallarm_mode=monitoring
-
-# Assign application ID dynamically from a request header
---set config.connector.route_config.routes[1].route="/wallarm-application"
---set 'config.connector.route_config.routes[1].wallarm_application=$http.header.custom-id'
-```
