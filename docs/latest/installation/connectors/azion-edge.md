@@ -40,7 +40,7 @@ To secure APIs on Azion Edge with Wallarm, follow these steps:
 
 When utilizing Wallarm on Azion Edge, the traffic flow is [in-line](../inline/overview.md).
 
-1. Choose one of the [supported Wallarm node deployment solutions or artifacts](../supported-deployment-options.md#in-line) for in-line deployment and follow the provided deployment instructions.
+1. Choose one of the [supported Wallarm node deployment solutions or artifacts](../supported-deployment-options.md) for in-line deployment and follow the provided deployment instructions.
 1. Configure the deployed node using the following template:
 
     ```

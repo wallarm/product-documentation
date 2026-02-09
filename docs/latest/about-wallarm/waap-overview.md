@@ -10,7 +10,9 @@ Traffic is handled by two components: Wallarm filtering nodes and Wallarm Cloud.
 
 ![!Arch scheme1](../images/about-wallarm-waf/overview/filtering-node-cloud.png)
 
-Wallarm supports various deployment options, including [public cloud](../installation/supported-deployment-options.md), on-premises, full SaaS deployment, and integrating with Kubernetes, Gateway APIs, [Security Edges](../installation/security-edge/overview.md), etc. Wallarm filtering nodes can be deployed either [in-line](../installation/inline/overview.md) or [out-of-band](../installation/oob/overview.md), depending on your needs and infrastructure. Flexible security policy configuration options allow you to quickly switch between monitoring and blocking [modes](../admin-en/configure-wallarm-mode.md), eliminating fear of blocking legitimate traffic.
+Wallarm supports [various deployment options](../installation/supported-deployment-options.md), including public cloud, on-premises, full SaaS deployment, and integrating with Kubernetes, Gateway APIs, Security Edges, etc.
+
+Wallarm filtering nodes can be deployed either [in-line](../installation/inline/overview.md) or [out-of-band](../installation/oob/overview.md), depending on your needs and infrastructure. Flexible security policy configuration options allow you to quickly switch between monitoring and blocking [modes](../admin-en/configure-wallarm-mode.md), eliminating fear of blocking legitimate traffic.
 
 ## Protection measures
 

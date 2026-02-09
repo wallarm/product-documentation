@@ -26,7 +26,7 @@ These settings ensure NGINX preserves all headers, including those with `.` and 
 
 ### All-in-one installer, AWS AMI and GCP machine image
 
-When you install Wallarm Node from the [all-in-one installer](../../installation/nginx/all-in-one.md), [AWS AMI](../../installation/packages/aws-ami.md) or [GCP machine image](../../installation/packages/gcp-machine-image.md):
+When you install Wallarm Node from the [all-in-one installer](../../installation/nginx/all-in-one.md), [AWS AMI](../../installation/cloud-platforms/aws/ami.md) or [GCP machine image](../../installation/cloud-platforms/gcp/machine-image.md):
 
 1. Edit `/etc/nginx/nginx.conf`.
 1. Inside the `http {}` block, add:

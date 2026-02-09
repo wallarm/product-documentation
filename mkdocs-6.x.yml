@@ -152,7 +152,7 @@ nav:
   #            → Host & Runtime → On-Premise → Artifacts → Upgrades
   # ============================================================================
   - Deployment:
-    - Overview: installation/supported-deployment-options.md
+    - All Deployment Options: installation/supported-deployment-options.md
     - Security Edge:
       - Overview: installation/security-edge/overview.md
       - Free Tier: installation/security-edge/free-tier.md
@@ -197,7 +197,7 @@ nav:
         - Selecting Packets: installation/oob/ebpf/selecting-packets.md
     - Cloud Platforms:
       - AWS:
-        - AMI for NGINX Node: installation/inline/compute-instances/aws/aws-ami.md
+        - AMI for NGINX Node: installation/cloud-platforms/aws/ami.md
         - AMI for Native Node: installation/native-node/aws-ami.md
         - Docker on ECS: installation/cloud-platforms/aws/docker-container.md
         - Terraform Module:
@@ -212,7 +212,7 @@ nav:
           - Autoscaling Group Setup: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
           - Load Balancing: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
       - GCP:
-        - Machine Image for NGINX Node: installation/inline/compute-instances/gcp/machine-image.md
+        - Machine Image for NGINX Node: installation/cloud-platforms/gcp/machine-image.md
         - Docker on GCE: installation/cloud-platforms/gcp/docker-container.md
         - Autoscaling:
           - Overview: admin-en/installation-guides/google-cloud/autoscaling-overview.md

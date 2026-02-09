@@ -22,7 +22,7 @@ Both [inline](../../installation/inline/overview.md) and [out-of-band](../../ins
 
 ## Filtering Node in on-premises deployment
 
-All [standard self-hosted deployment options for Filtering Nodes](../supported-deployment-options.md) are supported in the on-premise setup. You can follow the regular deployment instructions.
+All [standard deployment options for Filtering Nodes](../supported-deployment-options.md) are supported in the on-premise setup. You can follow the regular deployment instructions.
 
 Filtering Nodes must be deployed on separate instances from Wallarm Cloud.
 

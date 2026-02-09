@@ -118,7 +118,7 @@ Choose a cloud option if you run in a public or private cloud and want ready-to-
             <p>Artifacts for Wallarm deployment on AWS</p>
         </div>
 
-        <a class="do-card" href="../inline/compute-instances/aws/aws-ami/">
+        <a class="do-card" href="../cloud-platforms/aws/ami/">
             <h3>AMI for NGINX Node</h3>
             <p>Use the official Amazon Machine Image for NGINX Node (in-line)</p>
         </a>
@@ -169,7 +169,7 @@ Choose a cloud option if you run in a public or private cloud and want ready-to-
             <p>Artifacts for Wallarm deployment on GCP</p>
         </div>
 
-        <a class="do-card" href="../inline/compute-instances/gcp/machine-image/">
+        <a class="do-card" href="../cloud-platforms/gcp/machine-image/">
             <h3>Machine Image for NGINX Node</h3>
             <p>Use the official Google Cloud Machine Image for NGINX Node</p>
         </a>

@@ -34,9 +34,6 @@ Security Edge service provides a secure cloud environment where Wallarm Nodes ar
     </div>
 </div>
 
-!!! info "Deployment alternatives"
-    Looking for more control or traditional hosting options? Visit [Self-Hosted Node Deployment](../supported-deployment-options.md) and [Self-Hosted Node Deployment for Connectors](../connectors/overview.md).
-
 ## Free Tier
 
 Security Edge is available on the Free Tier plan with up to **500,000 requests per month - free of charge**.

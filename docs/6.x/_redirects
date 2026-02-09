@@ -901,3 +901,25 @@
 /installation/connectors/kong-api-gateway/ /installation/connectors/kong-ingress-controller/
 
 /agentic-ai/demo/ /agentic-ai/agentic-ai-protection/#demo
+
+/installation/inline/compute-instances/alibaba/docker-image/ /installation/cloud-platforms/alibaba-cloud/docker-container/
+/installation/inline/compute-instances/aws/aws-ami/ /installation/cloud-platforms/aws/ami/
+/installation/inline/compute-instances/aws/aws-ecs/ /installation/cloud-platforms/aws/docker-container/
+/installation/inline/compute-instances/aws/terraform-module-for-aws-api-gateway/ /installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway/
+/installation/inline/compute-instances/aws/terraform-module-for-aws-vpc/ /installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc/
+/installation/inline/compute-instances/azure/docker-image/ /installation/cloud-platforms/azure/docker-container/
+/installation/inline/compute-instances/docker/nginx-based/ /admin-en/installation-docker-en/
+/installation/inline/compute-instances/gcp/gce/ /installation/cloud-platforms/gcp/docker-container/
+/installation/inline/compute-instances/gcp/machine-image/ /installation/cloud-platforms/gcp/machine-image/
+/installation/inline/compute-instances/linux/all-in-one/ /installation/nginx/all-in-one/
+/installation/inline/kubernetes/nginx-ingress-controller/ /admin-en/installation-kubernetes-en/
+/installation/inline/kubernetes/sidecar-proxy/customization/ /installation/kubernetes/sidecar-proxy/customization/
+/installation/inline/kubernetes/sidecar-proxy/deployment/ /installation/kubernetes/sidecar-proxy/deployment/
+/installation/inline/kubernetes/sidecar-proxy/helm-chart-for-wallarm/ /installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm/
+/installation/inline/kubernetes/sidecar-proxy/pod-annotations/ /installation/kubernetes/sidecar-proxy/pod-annotations/
+/installation/inline/kubernetes/sidecar-proxy/scaling/ /installation/kubernetes/sidecar-proxy/scaling/
+/installation/kubernetes/ebpf/deployment/ /installation/oob/ebpf/deployment/
+/installation/kubernetes/ebpf/helm-chart-for-wallarm/ /installation/oob/ebpf/helm-chart-for-wallarm/
+/installation/kubernetes/ebpf/selecting-packets/ /installation/oob/ebpf/selecting-packets/
+/installation/packages/aws-ami/ /installation/cloud-platforms/aws/ami/
+/installation/packages/gcp-machine-image/ /installation/cloud-platforms/gcp/machine-image/
