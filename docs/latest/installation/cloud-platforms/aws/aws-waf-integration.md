@@ -32,7 +32,7 @@ In AWS, Wallarm supports deployment on EKS, ECS (including Fargate), or EC2 via 
 
 Wallarm nodes scale automatically using AWS Auto Scaling or Kubernetes auto-scalers, ensuring that as your services grow, the security layer scales with them.
 
-[All Wallarm deployment options for AWS](../../../installation/supported-deployment-options.md#cloud-platforms)
+[All Wallarm deployment options for AWS](../../../installation/supported-deployment-options.md#public-clouds)
 
 ### API and microservice protection capabilities
 

@@ -40,7 +40,7 @@ To secure APIs on the Apigee platform with, follow these steps:
 
 When using the Wallarm proxy on Apigee, the traffic flow operates [in-line](../inline/overview.md). Therefore, choose one of the supported Wallarm node deployment artifacts for in-line deployment on Google Cloud Platform:
 
-* [GCP Machine Image](../packages/gcp-machine-image.md)
+* [GCP Machine Image](../cloud-platforms/gcp/machine-image.md)
 * [Google Compute Engine (GCE)](../cloud-platforms/gcp/docker-container.md)
 
 Configure the deployed node using the following template:

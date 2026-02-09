@@ -12,9 +12,9 @@ The following [artifacts](../updating-migrating/node-artifact-versions.md) are a
 
 * [All-in-one installer](nginx/all-in-one.md)
 * [Docker image](../admin-en/installation-docker-en.md)
-* [AWS AMI](packages/aws-ami.md)
-* [GCP Machine Image](packages/gcp-machine-image.md)
-* Helm chart for [NGINX Ingress Controller](../admin-en/installation-kubernetes-en.md), [Sidecar Controller](kubernetes/sidecar-proxy/deployment.md), [eBPF](kubernetes/ebpf/deployment.md) deployments
+* [AWS AMI](cloud-platforms/aws/ami.md)
+* [GCP Machine Image](cloud-platforms/gcp/machine-image.md)
+* Helm chart for [NGINX Ingress Controller](../admin-en/installation-kubernetes-en.md), [Sidecar Controller](kubernetes/sidecar-proxy/deployment.md), [eBPF](oob/ebpf/deployment.md) deployments
 
 Find your **use case below** and deploy the NGINX Node in the appropriate form-factor.
 

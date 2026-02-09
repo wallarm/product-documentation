@@ -13,7 +13,7 @@ sestatus
 
 ## Automatic configuration
 
-If the SELinux mechanism is enabled on a host with a filtering node, during node installation or upgrade, the [all-in-one installer](../installation/inline/compute-instances/linux/all-in-one.md) performs its automatic configuration for the node not to interfere with it.
+If the SELinux mechanism is enabled on a host with a filtering node, during node installation or upgrade, the [all-in-one installer](../installation/nginx/all-in-one.md) performs its automatic configuration for the node not to interfere with it.
 
 This means, in most cases there will be no problems caused by SELinux.
 

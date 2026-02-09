@@ -54,32 +54,32 @@ Wallarm offers the following artifacts and solutions for running Wallarm on comp
 
 **Amazon Web Services (AWS)**
 
-* [AMI](compute-instances/aws/aws-ami.md)
-* [ECS](compute-instances/aws/aws-ecs.md)
+* [AMI](../cloud-platforms/aws/ami.md)
+* [ECS](../cloud-platforms/aws/docker-container.md)
 * Terraform module:
-    * [Proxy in AWS VPC](compute-instances/aws/terraform-module-for-aws-vpc.md)
-    * [Proxy for Amazon API Gateway](compute-instances/aws/terraform-module-for-aws-api-gateway.md)
+    * [Proxy in AWS VPC](../cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md)
+    * [Proxy for Amazon API Gateway](../cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md)
 
 **Google Cloud Platform (GCP)**
 
-* [Machine image](compute-instances/gcp/machine-image.md)
-* [GCE](compute-instances/gcp/gce.md)
+* [Machine image](../cloud-platforms/gcp/machine-image.md)
+* [GCE](../cloud-platforms/gcp/docker-container.md)
 
 **Microsoft Azure**
 
-* [Azure Container Instances](compute-instances/azure/docker-image.md)
+* [Azure Container Instances](../cloud-platforms/azure/docker-container.md)
 
 **Alibaba Cloud**
 
-* [ECS](compute-instances/alibaba/docker-image.md)
+* [ECS](../cloud-platforms/alibaba-cloud/docker-container.md)
 
 **Docker images**
 
-* [NGINX-based](compute-instances/docker/nginx-based.md)
+* [NGINX-based](../../admin-en/installation-docker-en.md)
 
 **Linux packages**
 
-* [All-in-one installer](compute-instances/linux/all-in-one.md)
+* [All-in-one installer](../nginx/all-in-one.md)
 
 ### Running Wallarm on Kubernetes
 
