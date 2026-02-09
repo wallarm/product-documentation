@@ -148,7 +148,7 @@ nav:
       - Wallarm ve Ingress Denetleyicilerini Zincirleme: admin-en/chaining-wallarm-and-other-ingress-controllers.md
     - Bulut platformları:
       - AWS:
-        - AMI: installation/inline/compute-instances/aws/aws-ami.md
+        - AMI: installation/cloud-platforms/aws/ami.md
         - Otomatik ölçeklendirme:
           - Genel Bakış: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
           - Amazon Makine İmajı Oluşturma: admin-en/installation-guides/amazon-cloud/create-image.md
@@ -162,7 +162,7 @@ nav:
         - AWS WAF Entegrasyonu: installation/cloud-platforms/aws/aws-waf-integration.md
         - AWS'de NGINX Düğümü Maliyeti: installation/cloud-platforms/aws/costs.md
       - GCP:
-        - Makine İmajı: installation/inline/compute-instances/gcp/machine-image.md
+        - Makine İmajı: installation/cloud-platforms/gcp/machine-image.md
         - Otomatik ölçeklendirme:
           - Genel Bakış: admin-en/installation-guides/google-cloud/autoscaling-overview.md
           - Wallarm Filtreleme Düğümü ile İmaj Oluşturma: admin-en/installation-guides/google-cloud/create-image.md
@@ -196,8 +196,8 @@ nav:
       - NGINX ve Yerel Genel Bakış: installation/nginx-native-node-internals.md
       - Satır içi dağıtım:
         - Genel Bakış: installation/inline/overview.md
-        - Hepsi Bir Arada Yükleyici: installation/inline/compute-instances/linux/all-in-one.md
-        - NGINX Tabanlı Docker İmajı: installation/inline/compute-instances/docker/nginx-based.md
+        - Hepsi Bir Arada Yükleyici: installation/nginx/all-in-one.md
+        - NGINX Tabanlı Docker İmajı: admin-en/installation-docker-en.md
       - Yerel düğüm:
         - Yükleme: installation/native-node/all-in-one.md
         - Dağıtım: installation/native-node/docker-image.md
@@ -205,11 +205,6 @@ nav:
         - Yapılandırma: installation/native-node/helm-chart-conf.md
         - Dağıtım: installation/native-node/aws-ami.md
         - Yapılandırma: installation/native-node/all-in-one-conf.md
-      - NGINX düğümü:
-        - Hepsi Bir Arada Yükleyici: installation/nginx/all-in-one.md
-        - NGINX Tabanlı Docker İmajı: admin-en/installation-docker-en.md
-        - AWS AMI: installation/packages/aws-ami.md
-        - GCP Makine İmajı: installation/packages/gcp-machine-image.md
       - Ayrı Postanalitik Modül Kurulumu: admin-en/installation-postanalytics-en.md
       - Özel NGINX Paketleri: installation/custom/custom-nginx-version.md
     - Bant dışı (trafik aynası):
@@ -225,35 +220,82 @@ nav:
       - Çok Kiracılı Düğümü Dağıtma ve Yapılandırma: installation/multi-tenant/deploy-multi-tenant-node.md
     - Özel dağıtım:
       - Özel Dağıtım Talep Et: installation/custom/request-custom-deployment.md
-    - Yükseltmeler ve geçiş:
-      - Düğüm Sürümleme Politikası: updating-migrating/versioning-policy.md
-      - Wallarm Düğümü 6.x ve 0.14.x'teki Yenilikler: updating-migrating/what-is-new.md
-      - Güvenli bir düğüm yükseltme süreci için öneriler: updating-migrating/general-recommendations.md
-      - Artefakt Sürümleri ve Değişiklik Günlüğü: updating-migrating/node-artifact-versions.md
-      - NGINX Node Upgrades:
-        - DEB/RPM Paketlerini Yükseltme: updating-migrating/nginx-modules.md
-        - DEB/RPM Paketlerinden Kurulu Postanalitik Modülü Yükseltme: updating-migrating/separate-postanalytics.md
-        - Hepsi Bir Arada Yükleyici ile Kurulu Düğümü Yükseltme: updating-migrating/all-in-one.md
-        - Wallarm Docker NGINX Tabanlı İmajını Yükseltme: updating-migrating/docker-container.md
-        - Entegre Wallarm Modülleri ile NGINX Ingress Denetleyicisini Yükseltme: updating-migrating/ingress-controller.md
-        - NGINX Ingress Denetleyicisi kullanımdan kaldırılması ve geçiş süreci: updating-migrating/nginx-ingress-retirement.md
-        - Wallarm Sidecar Proxy'yi Yükseltme: updating-migrating/sidecar-proxy.md
-        - Bulut Düğüm İmajını Yükseltme: updating-migrating/cloud-image.md
-        - Çok Kiracılı Düğümü Yükseltme: updating-migrating/multi-tenant.md
-      - Native Node Upgrades:
+  - Bakım:
+    - Genel Bakış: maintenance/overview.md
+
+    - Düğümler ve Altyapı:
+      - Düğüm Genel Bakışı: user-guides/nodes/nodes.md
+      - Kaynak Tahsisi: admin-en/configuration-guides/allocate-resources-for-node.md
+      - Bulut Senkronizasyonu: admin-en/configure-cloud-node-synchronization-en.md
+      - Proxy Yapılandırması: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
+      - Engelleme Sayfası Yapılandırması: admin-en/configuration-guides/configure-block-page-and-code.md
+      - Geçersiz Başlıkların İşlenmesi: admin-en/configuration-guides/handling-invalid-headers.md
+      - JA3 Parmak İzi: admin-en/enabling-ja3.md
+      - Terraform Sağlayıcı: admin-en/managing/terraform-provider.md
+
+    - İzleme ve Metrikler:
+      - NGINX Düğüm Metrikleri:
+        - Genel Bakış: admin-en/nginx-node-metrics.md
+        - Postanalitik Metrikleri: admin-en/wstore-metrics.md
+        - wcli Kontrolör Metrikleri: admin-en/wcli-metrics.md
+        - API Güvenlik Duvarı Metrikleri: admin-en/apifw-metrics.md
+      - Yerel Düğüm Metrikleri:
+        - Genel Bakış: admin-en/native-node-metrics.md
+        - Postanalitik Metrikleri: admin-en/native-node-metrics-wstore.md
+        - Çalışma Zamanı Metrikleri: admin-en/native-node-metrics-gonode.md
+      - İstatistik Hizmeti: admin-en/configure-statistics-service.md
+      - Düğüm Günlüğü: admin-en/configure-logging.md
+      - Yük Devretme Yapılandırması: admin-en/configure-backup-en.md
+      - Sağlık Kontrolü: admin-en/uat-checklist-en.md
+
+    - Yükseltmeler ve Geçiş:
+      - Sürümleme Politikası: updating-migrating/versioning-policy.md
+      - Genel Öneriler: updating-migrating/general-recommendations.md
+      - Yenilikler: updating-migrating/what-is-new.md
+      - NGINX Düğüm Değişiklik Günlüğü: updating-migrating/node-artifact-versions.md
+      - Yerel Düğüm Değişiklik Günlüğü: updating-migrating/native-node/node-artifact-versions.md
+      - NGINX Düğüm Yükseltme Talimatları:
+        - DEB/RPM Paketleri: updating-migrating/nginx-modules.md
+        - Postanalitik Modülü: updating-migrating/separate-postanalytics.md
+        - Hepsi Bir Arada Yükleyici: updating-migrating/all-in-one.md
+        - Docker İmajı: updating-migrating/docker-container.md
+        - Ingress Denetleyicisi: updating-migrating/ingress-controller.md
+        - Ingress Denetleyicisi Kullanımdan Kaldırma: updating-migrating/nginx-ingress-retirement.md
+        - Sidecar Proxy: updating-migrating/sidecar-proxy.md
+        - Bulut İmajı: updating-migrating/cloud-image.md
+        - Çok Kiracılı Düğüm: updating-migrating/multi-tenant.md
+      - Yerel Düğüm Yükseltme Talimatları:
         - Hepsi Bir Arada Yükleyici: updating-migrating/native-node/all-in-one.md
-        - Helm chart: updating-migrating/native-node/helm-chart.md
-        - Docker imajı: updating-migrating/native-node/docker-image.md
-        - Artefakt Sürümleri ve Değişiklik Günlüğü: updating-migrating/native-node/node-artifact-versions.md
-      - EOL Node Upgrades (3.6 and lower):
-        - Wallarm düğümündeki yenilikler (EOL düğüm yükseltiliyorsa): updating-migrating/older-versions/what-is-new.md
-        - EOL Wallarm NGINX Modüllerini Yükseltme: updating-migrating/older-versions/nginx-modules.md
-        - EOL Postanalitik Modülü Yükseltme: updating-migrating/older-versions/separate-postanalytics.md
-        - EOL Docker NGINX Tabanlı İmajı Yükseltme: updating-migrating/older-versions/docker-container.md
-        - Entegre Wallarm Modülleri ile EOL NGINX Ingress Denetleyicisini Yükseltme: updating-migrating/older-versions/ingress-controller.md
-        - EOL Bulut Düğüm İmajını Yükseltme: updating-migrating/older-versions/cloud-image.md
-        - EOL Çok Kiracılı Düğümü Yükseltme: updating-migrating/older-versions/multi-tenant.md
-        - EOL Wallarm Düğümünden İzin Listelerini ve Engelleme Listelerini Taşıma: updating-migrating/migrate-ip-lists-to-node-3.md
+        - Helm Chart: updating-migrating/native-node/helm-chart.md
+        - Docker İmajı: updating-migrating/native-node/docker-image.md
+      - Bağlayıcının Kod Paketi Sürüm Notları: installation/connectors/code-bundle-inventory.md
+      - EOL Düğüm Yükseltmeleri (3.6 ve altı):
+        - Yenilikler: updating-migrating/older-versions/what-is-new.md
+        - NGINX Modülleri: updating-migrating/older-versions/nginx-modules.md
+        - Postanalitik: updating-migrating/older-versions/separate-postanalytics.md
+        - Docker İmajı: updating-migrating/older-versions/docker-container.md
+        - Ingress Denetleyicisi: updating-migrating/older-versions/ingress-controller.md
+        - Bulut İmajı: updating-migrating/older-versions/cloud-image.md
+        - Çok Kiracılı: updating-migrating/older-versions/multi-tenant.md
+        - IP Listelerini Geçir: updating-migrating/migrate-ip-lists-to-node-3.md
+
+    - İşlemler:
+      - İstek Hacmini Öğrenme: admin-en/operation/learn-incoming-request-number.md
+      - Tarayıcı IP Adresleri: admin-en/scanner-addresses.md
+
+    - Sorun Giderme:
+      - Genel Bakış: troubleshooting/overview.md
+      - Tespit ve Engelleme: troubleshooting/detection-and-blocking.md
+      - Tespit Araçları: troubleshooting/detection-tools-tuning.md
+      - Performans: troubleshooting/performance.md
+      - Gerçek İstemci IP: admin-en/using-proxy-or-balancer-en.md
+      - Son Kullanıcı Sorunları: faq/common-errors-after-installation.md
+      - Wallarm Ingress Denetleyicisi: faq/ingress-installation.md
+      - Wallarm Bulut Çökme: faq/wallarm-cloud-down.md
+      - OWASP Pano Uyarıları: faq/node-issues-on-owasp-dashboards.md
+      - NGINX Hata Günlüğü: troubleshooting/wallarm-issues-in-nginx-error-log.md
+      - NGINX'te Dinamik DNS: admin-en/configure-dynamic-dns-resolution-nginx.md
+
   - Entegrasyonlar:
     - Genel Bakış: user-guides/settings/integrations/integrations-intro.md
     - Mesajlaşma ve uyarılar:
@@ -321,32 +363,6 @@ nav:
         - Okta Örneği: admin-en/configuration-guides/sso/sso-okta.md
         - Sorun Giderme: admin-en/configuration-guides/sso/troubleshooting.md
       - LDAP Kullanımı: admin-en/configuration-guides/ldap/ldap.md
-    - Düğümler ve altyapı:
-      - Wallarm Düğümüne Genel Bakış: user-guides/nodes/nodes.md
-      - Kaynak Tahsisi: admin-en/configuration-guides/allocate-resources-for-node.md
-      - Wallarm Düğümü ve Bulut Eşzamanlaması: admin-en/configure-cloud-node-synchronization-en.md
-      - Proxy Üzerinden Wallarm API Erişimi: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-      - Engelleme Sayfası ve Hata Kodu: admin-en/configuration-guides/configure-block-page-and-code.md
-      - NGINX Tabanlı Düğüm için Yapılandırma Seçenekleri: admin-en/configure-parameters-en.md
-      - NGINX Tarafından Geçersiz Sayılan Başlıkların İşlenmesi: admin-en/configuration-guides/handling-invalid-headers.md
-      - JA3 Parmak İzini Etkinleştirme: admin-en/enabling-ja3.md
-    - Monitoring & Metrics:
-      - Native Node Metrics:
-        - Yerel Düğüm Metrikleri: admin-en/native-node-metrics.md
-      - İstatistik Hizmeti: admin-en/configure-statistics-service.md
-      - Filtreleme Düğümü Günlükleri: admin-en/configure-logging.md
-      - Failover Yöntemini Yapılandırma: admin-en/configure-backup-en.md
-    - Sorun giderme:
-      - Genel Bakış: troubleshooting/overview.md
-      - Tespit ve Engelleme: troubleshooting/detection-and-blocking.md
-      - Tespit araçları: troubleshooting/detection-tools-tuning.md
-      - Performans: troubleshooting/performance.md
-      - Son Kullanıcı IP'sinin Doğru Raporlanması: admin-en/using-proxy-or-balancer-en.md
-      - Son Kullanıcı Sorunları: faq/common-errors-after-installation.md
-      - Wallarm Ingress Denetleyicisi: faq/ingress-installation.md
-      - Wallarm Cloud Çöktü: faq/wallarm-cloud-down.md
-      - OWASP Pano Uyarıları: faq/node-issues-on-owasp-dashboards.md
-      - NGINX'te Dinamik DNS Çözümlemesi: admin-en/configure-dynamic-dns-resolution-nginx.md
     - Planlar ve fiyatlandırma:
       - Abonelik Planları: about-wallarm/subscription-plans.md
   - Reference:

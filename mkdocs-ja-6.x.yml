@@ -149,7 +149,7 @@ nav:
       - Wallarm と Ingress コントローラーのチェーン構成: admin-en/chaining-wallarm-and-other-ingress-controllers.md
     - クラウドプラットフォーム:
       - AWS:
-        - AMI: installation/inline/compute-instances/aws/aws-ami.md
+        - AMI: installation/cloud-platforms/aws/ami.md
         - オートスケーリング:
           - 概要: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
           - Amazon マシンイメージの作成: admin-en/installation-guides/amazon-cloud/create-image.md
@@ -163,7 +163,7 @@ nav:
         - AWS WAF 連携: installation/cloud-platforms/aws/aws-waf-integration.md
         - AWS における NGINX ノードのコスト: installation/cloud-platforms/aws/costs.md
       - GCP:
-        - マシンイメージ: installation/inline/compute-instances/gcp/machine-image.md
+        - マシンイメージ: installation/cloud-platforms/gcp/machine-image.md
         - オートスケーリング:
           - 概要: admin-en/installation-guides/google-cloud/autoscaling-overview.md
           - Wallarm フィルタリングノード入りイメージの作成: admin-en/installation-guides/google-cloud/create-image.md
@@ -197,8 +197,8 @@ nav:
       - NGINX とネイティブの概要: installation/nginx-native-node-internals.md
       - インラインデプロイ:
         - 概要: installation/inline/overview.md
-        - オールインワンインストーラー: installation/inline/compute-instances/linux/all-in-one.md
-        - NGINX ベースの Docker イメージ: installation/inline/compute-instances/docker/nginx-based.md
+        - オールインワンインストーラー: installation/nginx/all-in-one.md
+        - NGINX ベースの Docker イメージ: admin-en/installation-docker-en.md
       - ネイティブノード:
         - インストール: installation/native-node/all-in-one.md
         - デプロイ: installation/native-node/docker-image.md
@@ -206,11 +206,6 @@ nav:
         - 構成: installation/native-node/helm-chart-conf.md
         - デプロイ: installation/native-node/aws-ami.md
         - 構成: installation/native-node/all-in-one-conf.md
-      - NGINX ノード:
-        - オールインワンインストーラー: installation/nginx/all-in-one.md
-        - NGINX ベースの Docker イメージ: admin-en/installation-docker-en.md
-        - AWS AMI: installation/packages/aws-ami.md
-        - GCP マシンイメージ: installation/packages/gcp-machine-image.md
       - ポストアナリティクスモジュールの個別インストール: admin-en/installation-postanalytics-en.md
       - カスタム NGINX パッケージ: installation/custom/custom-nginx-version.md
     - アウトオブバンド（トラフィックミラー）:
@@ -226,35 +221,82 @@ nav:
       - マルチテナントノードのデプロイと構成: installation/multi-tenant/deploy-multi-tenant-node.md
     - カスタムデプロイ:
       - カスタムデプロイの依頼: installation/custom/request-custom-deployment.md
+  - メンテナンス:
+    - 概要: maintenance/overview.md
+
+    - ノードとインフラストラクチャ:
+      - ノード概要: user-guides/nodes/nodes.md
+      - リソース割り当て: admin-en/configuration-guides/allocate-resources-for-node.md
+      - クラウド同期: admin-en/configure-cloud-node-synchronization-en.md
+      - プロキシ設定: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
+      - ブロックページ設定: admin-en/configuration-guides/configure-block-page-and-code.md
+      - 無効なヘッダーの処理: admin-en/configuration-guides/handling-invalid-headers.md
+      - JA3 フィンガープリンティング: admin-en/enabling-ja3.md
+      - Terraform プロバイダー: admin-en/managing/terraform-provider.md
+
+    - 監視とメトリクス:
+      - NGINX ノードメトリクス:
+        - 概要: admin-en/nginx-node-metrics.md
+        - ポストアナリティクスメトリクス: admin-en/wstore-metrics.md
+        - wcli コントローラーメトリクス: admin-en/wcli-metrics.md
+        - API ファイアウォールメトリクス: admin-en/apifw-metrics.md
+      - ネイティブノードメトリクス:
+        - 概要: admin-en/native-node-metrics.md
+        - ポストアナリティクスメトリクス: admin-en/native-node-metrics-wstore.md
+        - ランタイムメトリクス: admin-en/native-node-metrics-gonode.md
+      - 統計サービス: admin-en/configure-statistics-service.md
+      - ノードログ記録: admin-en/configure-logging.md
+      - フェイルオーバー設定: admin-en/configure-backup-en.md
+      - ヘルスチェック: admin-en/uat-checklist-en.md
+
     - アップグレードと移行:
-      - ノードのバージョニングポリシー: updating-migrating/versioning-policy.md
-      - Wallarm ノード 6.x および 0.14.x の新機能: updating-migrating/what-is-new.md
-      - 安全なノードアップグレードの推奨事項: updating-migrating/general-recommendations.md
-      - アーティファクトのバージョンと変更履歴: updating-migrating/node-artifact-versions.md
-      - NGINX Node Upgrades:
-        - DEB/RPM パッケージのアップグレード: updating-migrating/nginx-modules.md
-        - DEB/RPM でインストールしたポストアナリティクスモジュールのアップグレード: updating-migrating/separate-postanalytics.md
-        - オールインワンインストーラーで導入したノードのアップグレード: updating-migrating/all-in-one.md
-        - Wallarm Docker NGINX ベースイメージのアップグレード: updating-migrating/docker-container.md
-        - Wallarm モジュール統合済み NGINX Ingress コントローラーのアップグレード: updating-migrating/ingress-controller.md
-        - NGINX Ingress コントローラーの廃止と移行: updating-migrating/nginx-ingress-retirement.md
-        - Wallarm サイドカープロキシのアップグレード: updating-migrating/sidecar-proxy.md
-        - クラウドノードイメージのアップグレード: updating-migrating/cloud-image.md
-        - マルチテナントノードのアップグレード: updating-migrating/multi-tenant.md
-      - Native Node Upgrades:
+      - バージョニングポリシー: updating-migrating/versioning-policy.md
+      - 一般的な推奨事項: updating-migrating/general-recommendations.md
+      - 新機能: updating-migrating/what-is-new.md
+      - NGINX ノード変更履歴: updating-migrating/node-artifact-versions.md
+      - ネイティブノード変更履歴: updating-migrating/native-node/node-artifact-versions.md
+      - NGINX ノードアップグレード手順:
+        - DEB/RPM パッケージ: updating-migrating/nginx-modules.md
+        - ポストアナリティクスモジュール: updating-migrating/separate-postanalytics.md
+        - オールインワンインストーラー: updating-migrating/all-in-one.md
+        - Docker イメージ: updating-migrating/docker-container.md
+        - Ingress コントローラー: updating-migrating/ingress-controller.md
+        - Ingress コントローラーの廃止: updating-migrating/nginx-ingress-retirement.md
+        - サイドカープロキシ: updating-migrating/sidecar-proxy.md
+        - クラウドイメージ: updating-migrating/cloud-image.md
+        - マルチテナントノード: updating-migrating/multi-tenant.md
+      - ネイティブノードアップグレード手順:
         - オールインワンインストーラー: updating-migrating/native-node/all-in-one.md
         - Helm チャート: updating-migrating/native-node/helm-chart.md
         - Docker イメージ: updating-migrating/native-node/docker-image.md
-        - アーティファクトのバージョンと変更履歴: updating-migrating/native-node/node-artifact-versions.md
-      - EOL Node Upgrades (3.6 and lower):
-        - Wallarm ノードの新機能（EOL ノードをアップグレードする場合）: updating-migrating/older-versions/what-is-new.md
-        - EOL の Wallarm NGINX モジュールのアップグレード: updating-migrating/older-versions/nginx-modules.md
-        - EOL のポストアナリティクスモジュールのアップグレード: updating-migrating/older-versions/separate-postanalytics.md
-        - EOL の Docker NGINX ベースイメージのアップグレード: updating-migrating/older-versions/docker-container.md
-        - EOL の NGINX Ingress コントローラー（Wallarm モジュール統合）のアップグレード: updating-migrating/older-versions/ingress-controller.md
-        - EOL のクラウドノードイメージのアップグレード: updating-migrating/older-versions/cloud-image.md
-        - EOL のマルチテナントノードのアップグレード: updating-migrating/older-versions/multi-tenant.md
-        - EOL の Wallarm ノードからの許可/拒否リストの移行: updating-migrating/migrate-ip-lists-to-node-3.md
+      - コネクタのコードバンドルリリースノート: installation/connectors/code-bundle-inventory.md
+      - EOL ノードアップグレード（3.6 以下）:
+        - 新機能: updating-migrating/older-versions/what-is-new.md
+        - NGINX モジュール: updating-migrating/older-versions/nginx-modules.md
+        - ポストアナリティクス: updating-migrating/older-versions/separate-postanalytics.md
+        - Docker イメージ: updating-migrating/older-versions/docker-container.md
+        - Ingress コントローラー: updating-migrating/older-versions/ingress-controller.md
+        - クラウドイメージ: updating-migrating/older-versions/cloud-image.md
+        - マルチテナント: updating-migrating/older-versions/multi-tenant.md
+        - IP リストの移行: updating-migrating/migrate-ip-lists-to-node-3.md
+
+    - 運用:
+      - リクエストボリュームの学習: admin-en/operation/learn-incoming-request-number.md
+      - スキャナー IP アドレス: admin-en/scanner-addresses.md
+
+    - トラブルシューティング:
+      - 概要: troubleshooting/overview.md
+      - 検出とブロッキング: troubleshooting/detection-and-blocking.md
+      - 検出ツール: troubleshooting/detection-tools-tuning.md
+      - パフォーマンス: troubleshooting/performance.md
+      - 実際のクライアント IP: admin-en/using-proxy-or-balancer-en.md
+      - エンドユーザーの問題: faq/common-errors-after-installation.md
+      - Wallarm Ingress コントローラー: faq/ingress-installation.md
+      - Wallarm クラウドダウン: faq/wallarm-cloud-down.md
+      - OWASP ダッシュボードアラート: faq/node-issues-on-owasp-dashboards.md
+      - NGINX エラーログ: troubleshooting/wallarm-issues-in-nginx-error-log.md
+      - NGINX での動的 DNS: admin-en/configure-dynamic-dns-resolution-nginx.md
+
   - 連携:
     - 概要: user-guides/settings/integrations/integrations-intro.md
     - メッセージとアラート:
@@ -322,32 +364,6 @@ nav:
         - Okta の例: admin-en/configuration-guides/sso/sso-okta.md
         - トラブルシューティング: admin-en/configuration-guides/sso/troubleshooting.md
       - LDAP の利用: admin-en/configuration-guides/ldap/ldap.md
-    - ノードとインフラ:
-      - Wallarm ノード概要: user-guides/nodes/nodes.md
-      - リソース割り当て: admin-en/configuration-guides/allocate-resources-for-node.md
-      - Wallarm ノードとクラウドの同期: admin-en/configure-cloud-node-synchronization-en.md
-      - プロキシ経由での Wallarm API へのアクセス: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-      - ブロックページとエラーコード: admin-en/configuration-guides/configure-block-page-and-code.md
-      - NGINX ベースノードの設定オプション: admin-en/configure-parameters-en.md
-      - NGINX が無効とみなすヘッダーの処理: admin-en/configuration-guides/handling-invalid-headers.md
-      - JA3 フィンガープリンティングを有効化: admin-en/enabling-ja3.md
-    - 監視とメトリクス:
-      - Native Node Metrics:
-        - ネイティブノードのメトリクス: admin-en/native-node-metrics.md
-      - 統計サービス: admin-en/configure-statistics-service.md
-      - フィルタリングノードのログ: admin-en/configure-logging.md
-      - フェイルオーバー方式の設定: admin-en/configure-backup-en.md
-    - トラブルシューティング:
-      - 概要: troubleshooting/overview.md
-      - 検知とブロック: troubleshooting/detection-and-blocking.md
-      - 検出ツール: troubleshooting/detection-tools-tuning.md
-      - パフォーマンス: troubleshooting/performance.md
-      - エンドユーザー IP の適切な報告: admin-en/using-proxy-or-balancer-en.md
-      - エンドユーザーの問題: faq/common-errors-after-installation.md
-      - Wallarm Ingress コントローラー: faq/ingress-installation.md
-      - Wallarm クラウド障害: faq/wallarm-cloud-down.md
-      - OWASP ダッシュボードのアラート: faq/node-issues-on-owasp-dashboards.md
-      - NGINX の動的 DNS 解決: admin-en/configure-dynamic-dns-resolution-nginx.md
     - プランと料金:
       - サブスクリプションプラン: about-wallarm/subscription-plans.md
   - リファレンス:
