@@ -351,7 +351,6 @@ nav:
     - プランと料金:
       - サブスクリプションプラン: about-wallarm/subscription-plans.md
   - リファレンス:
-    - 変更履歴とニュース: news.md
     - API リファレンス:
       - 概要: api/overview.md
       - API リクエスト例: api/request-examples.md

@@ -350,7 +350,6 @@ nav:
     - Planlar ve fiyatlandırma:
       - Abonelik Planları: about-wallarm/subscription-plans.md
   - Reference:
-    - Değişiklik Günlüğü ve Haberler: news.md
     - API referansı:
       - Genel Bakış: api/overview.md
       - API İstek Örnekleri: api/request-examples.md

@@ -292,7 +292,6 @@ nav:
     - Planos e preços:
       - Visão Geral: about-wallarm/subscription-plans.md
   - Referências:
-    - Changelog & Notícias: news.md
     - Referência da API:
       - Visão Geral: api/overview.md
       - Exemplos de Solicitação da API: api/request-examples.md

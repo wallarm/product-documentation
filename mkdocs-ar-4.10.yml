@@ -323,7 +323,6 @@ nav:
     - الخطط والأسعار:
       - خطط الاشتراك: about-wallarm/subscription-plans.md
   - المراجع:
-    - السجل الزمني & الأخبار: news.md
     - مرجع API:
       - نظرة عامة: api/overview.md
       - أمثلة طلب واجهة برمجة التطبيقات: api/request-examples.md
