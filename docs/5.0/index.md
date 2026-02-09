@@ -107,7 +107,7 @@ Everything you need to discover your APIs, MCPs, and AI agents, protect them fro
   </div>
 
   <div class="navigation-card">
-    <h3 class="icon-homepage user-management-title"><a href="./platform-management/overview/">Platform Management <span class="card-arrow">→</span></a></h3>
+    <h3 class="icon-homepage platform-management-title"><a href="./platform-management/overview/">Platform Management <span class="card-arrow">→</span></a></h3>
     <p class="card-description">Monitor threats, configure alerts, and manage access and infrastructure.</p>
     <p><ul>
       <li><a href="./user-guides/events/overview/">Monitoring & Events</a></li>

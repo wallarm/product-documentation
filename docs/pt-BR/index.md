@@ -113,7 +113,7 @@ Tudo o que você precisa para descobrir suas APIs, MCPs e agentes de IA, proteg�
   </div>
 
   <div class="navigation-card">
-    <h3 class="icon-homepage user-management-title"><a href="./user-guides/events/overview/">Gerenciamento da plataforma <span class="card-arrow">→</span></a></h3>
+    <h3 class="icon-homepage platform-management-title"><a href="./user-guides/events/overview/">Gerenciamento da plataforma <span class="card-arrow">→</span></a></h3>
     <p class="card-description">Monitore ameaças, configure alertas e gerencie acesso e infraestrutura.</p>
     <p><ul>
       <li><a href="./user-guides/events/overview/">Monitoramento e eventos</a></li>

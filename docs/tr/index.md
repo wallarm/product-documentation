@@ -114,7 +114,7 @@ API'lerinizi, MCP'lerinizi ve yapay zeka ajanlarınızı keşfetmek, tehditlerde
   </div>
 
   <div class="navigation-card">
-    <h3 class="icon-homepage user-management-title"><a href="./user-guides/events/overview/">Platform Yönetimi <span class="card-arrow">→</span></a></h3>
+    <h3 class="icon-homepage platform-management-title"><a href="./user-guides/events/overview/">Platform Yönetimi <span class="card-arrow">→</span></a></h3>
     <p class="card-description">Tehditleri izleyin, uyarıları yapılandırın, erişimi ve altyapıyı yönetin.</p>
     <p><ul>
       <li><a href="./user-guides/events/overview/">İzleme ve Olaylar</a></li>

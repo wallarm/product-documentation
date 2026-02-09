@@ -114,7 +114,7 @@ API、MCP、AI エージェントを発見し、脅威から保護し、脆弱�
   </div>
 
   <div class="navigation-card">
-    <h3 class="icon-homepage user-management-title"><a href="./user-guides/events/overview/">プラットフォーム管理 <span class="card-arrow">→</span></a></h3>
+    <h3 class="icon-homepage platform-management-title"><a href="./user-guides/events/overview/">プラットフォーム管理 <span class="card-arrow">→</span></a></h3>
     <p class="card-description">脅威の監視、アラート設定、アクセスとインフラの管理。</p>
     <p><ul>
       <li><a href="./user-guides/events/overview/">監視とイベント</a></li>

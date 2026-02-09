@@ -113,7 +113,7 @@ hide:
   </div>
 
   <div class="navigation-card">
-    <h3 class="icon-homepage user-management-title"><a href="./user-guides/events/overview/">إدارة المنصة <span class="card-arrow">→</span></a></h3>
+    <h3 class="icon-homepage platform-management-title"><a href="./user-guides/events/overview/">إدارة المنصة <span class="card-arrow">→</span></a></h3>
     <p class="card-description">مراقبة التهديدات وتكوين التنبيهات وإدارة الوصول والبنية التحتية.</p>
     <p><ul>
       <li><a href="./user-guides/events/overview/">المراقبة والأحداث</a></li>
