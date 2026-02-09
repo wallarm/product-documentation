@@ -173,6 +173,7 @@ nav:
           - Logs Dashboard: installation/security-edge/inline/telemetry-portal-logs-dashboard.md
       - Connectors: installation/security-edge/se-connector.md
     - Kubernetes:
+      - Istio: installation/connectors/istio.md
       - NGINX Ingress Controller:
         - Deployment: admin-en/installation-kubernetes-en.md
         - Configuration Options: admin-en/configure-kubernetes-en.md
@@ -180,21 +181,20 @@ nav:
         - Monitoring: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
         - Real Client IP: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
         - Chaining Ingress Controllers: admin-en/chaining-wallarm-and-other-ingress-controllers.md
+      - Kong Ingress Controller: installation/connectors/kong-ingress-controller.md
+      - Helm Chart for Native Node:
+        - Deployment: installation/native-node/helm-chart.md
+        - Configuration: installation/native-node/helm-chart-conf.md
       - Sidecar Proxy:
         - Deployment: installation/kubernetes/sidecar-proxy/deployment.md
         - Helm Chart: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
         - Customization: installation/kubernetes/sidecar-proxy/customization.md
         - Pod Annotations: installation/kubernetes/sidecar-proxy/pod-annotations.md
         - Scaling: installation/kubernetes/sidecar-proxy/scaling.md
-      - eBPF (out-of-band):
+      - eBPF (Out-of-Band):
         - Deployment: installation/oob/ebpf/deployment.md
         - Helm Chart: installation/oob/ebpf/helm-chart-for-wallarm.md
         - Selecting Packets: installation/oob/ebpf/selecting-packets.md
-      - Kong Ingress Controller: installation/connectors/kong-ingress-controller.md
-      - Istio: installation/connectors/istio.md
-      - Helm Chart for Native Node:
-        - Deployment: installation/native-node/helm-chart.md
-        - Configuration: installation/native-node/helm-chart-conf.md
     - Cloud Platforms:
       - AWS:
         - AMI for NGINX Node: installation/inline/compute-instances/aws/aws-ami.md

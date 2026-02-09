@@ -1,6 +1,6 @@
 # Wallarm Node Deployment Options
 
-Wallarm supports multiple deployment models — from Security Edge and Kubernetes to cloud VMs and API gateways. Choose by **who hosts the Node**, **where your traffic lives**, and whether you need **inline** or **out-of-band** protection.
+Wallarm supports multiple deployment models — from Security Edge and Kubernetes to cloud VMs and API gateways. Choose by **who hosts the [Node](../about-wallarm/overview.md#filtering-node)**, **where your traffic lives**, and whether you need **inline** or **out-of-band** protection.
 
 <link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
 
@@ -30,10 +30,28 @@ Choose a Kubernetes option if your APIs run in-cluster and you want in-cluster p
 
 <div class="do-section">
     <div class="do-main">
+        <a class="do-card" href="../connectors/istio/">
+            <img class="non-zoomable" src="../../images/platform-icons/istio.svg" />
+            <h3>Istio</h3>
+            <p>gRPC-based external processing filter for Istio-managed APIs</p>
+        </a>
+
         <a class="do-card" href="../../admin-en/installation-kubernetes-en/">
             <img class="non-zoomable" src="../../images/platform-icons/ingress.svg" />
             <h3>NGINX Ingress Controller</h3>
             <p>Deploy the NGINX Ingress Controller with integrated Wallarm services</p>
+        </a>
+
+        <a class="do-card" href="../connectors/kong-ingress-controller/">
+            <img class="non-zoomable" src="../../images/platform-icons/kong-new.svg" />
+            <h3>Kong Ingress Controller</h3>
+            <p>Deploy Wallarm to secure APIs managed by Kong Ingress Controller</p>
+        </a>
+
+        <a class="do-card" href="../native-node/helm-chart/">
+            <img class="non-zoomable" src="../../images/platform-icons/helm.svg" />
+            <h3>Helm Chart for Native Node</h3>
+            <p>Run the Native Node in Kubernetes (for connectors and Istio filter)</p>
         </a>
 
         <a class="do-card" href="../kubernetes/sidecar-proxy/deployment/">
@@ -46,24 +64,6 @@ Choose a Kubernetes option if your APIs run in-cluster and you want in-cluster p
             <img class="non-zoomable" src="../../images/platform-icons/ebpf.svg" />
             <h3>eBPF (out-of-band)</h3>
             <p>Out-of-band deployment on Kubernetes using the eBPF technology</p>
-        </a>
-
-        <a class="do-card" href="../connectors/kong-ingress-controller/">
-            <img class="non-zoomable" src="../../images/platform-icons/kong-new.svg" />
-            <h3>Kong Ingress Controller</h3>
-            <p>Deploy Wallarm to secure APIs managed by Kong Ingress Controller</p>
-        </a>
-
-        <a class="do-card" href="../connectors/istio/">
-            <img class="non-zoomable" src="../../images/platform-icons/istio.svg" />
-            <h3>Istio</h3>
-            <p>gRPC-based external processing filter for Istio-managed APIs</p>
-        </a>
-
-        <a class="do-card" href="../native-node/helm-chart/">
-            <img class="non-zoomable" src="../../images/platform-icons/helm.svg" />
-            <h3>Helm Chart for Native Node</h3>
-            <p>Run the Native Node in Kubernetes (for connectors and Istio filter)</p>
         </a>
     </div>
 </div>
@@ -321,6 +321,20 @@ Choose an API management connector if you expose APIs through one of these platf
     </div>
 </div>
 
+## TCP traffic mirror
+
+Deploy the Wallarm Node for TCP traffic mirror analysis when you need out-of-band analysis of network-layer mirrored traffic. Wallarm analyzes TCP streams for attack observation without affecting production flow.
+
+<div class="do-section">
+    <div class="do-main">
+        <a class="do-card" href="../oob/tcp-traffic-mirror/deployment/">
+            <img class="non-zoomable" src="../../images/platform-icons/tcp-mirror-analysis.svg" />
+            <h3>TCP Traffic Mirror</h3>
+            <p>Out-of-band deployment for TCP traffic mirror analysis</p>
+        </a>
+    </div>
+</div>
+
 ## Packages & Containers
 
 Choose packages or containers if you run on VMs or bare metal and prefer them over managed options.
@@ -338,12 +352,6 @@ Choose packages or containers if you run on VMs or bare metal and prefer them ov
             <h3>Docker</h3>
             <p>Use the NGINX-based or Native Node Docker image for Wallarm deployment</p>
         </div>
-
-        <a class="do-card" href="../oob/tcp-traffic-mirror/deployment/">
-            <img class="non-zoomable" src="../../images/platform-icons/tcp-mirror-analysis.svg" />
-            <h3>TCP Traffic Mirror</h3>
-            <p>Out-of-band deployment for TCP traffic mirror analysis</p>
-        </a>
     </div>
 
     <div class="do-nested" data-for="packages-linux">
@@ -428,8 +436,8 @@ Deployment options that don’t follow the platform matrix: known scenarios (mul
 
 ## Related documentation
 
-* [Inline traffic flows](inline/overview.md)
-* [Out-of-band traffic flows](oob/overview.md)
+* [Inline traffic flow](inline/overview.md)
+* [Out-of-band traffic flow](oob/overview.md)
 * [NGINX and Native Node overview](nginx-native-node-internals.md)
 * [Connector overview](connectors/overview.md)
 
