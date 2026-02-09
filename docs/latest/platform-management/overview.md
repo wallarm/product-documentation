@@ -21,5 +21,3 @@ This section covers the administration and management of the Wallarm platform, i
 * **[Search & Reports](../user-guides/search-and-filters/use-search.md)** - Search events and generate custom reports.
 
 * **[Account Settings](../user-guides/settings/account.md)** - Manage your account, applications, subscriptions, and audit logs.
-
-* **[Troubleshooting](../troubleshooting/overview.md)** - Solutions for common issues and problems.

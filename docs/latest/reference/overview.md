@@ -12,6 +12,12 @@ This section provides reference materials, technical specifications, and resourc
 
 * **[Glossary](../glossary-en.md)** - Definitions of key terms and concepts used throughout the documentation.
 
+* **Operations Reference**
+    * [Terraform Provider](../admin-en/managing/terraform-provider.md) - Infrastructure as code management
+    * [Learning Request Volume](../admin-en/operation/learn-incoming-request-number.md) - Monitor incoming request statistics
+    * [Health Check](../admin-en/uat-checklist-en.md) - System health verification
+    * [Scanner IP Addresses](../admin-en/scanner-addresses.md) - Wallarm scanner IP list
+
 * **[Data Retention Policy](../about-wallarm/data-retention-policy.md)** - Information about how long Wallarm retains your data.
 
 * **[Shared Responsibility Model](../about-wallarm/shared-responsibility.md)** - Security responsibilities shared between Wallarm and customers.

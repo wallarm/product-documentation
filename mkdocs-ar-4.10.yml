@@ -146,7 +146,7 @@ nav:
       - قيادة Wallarm وأجهزة التوجيه Ingress: admin-en/chaining-wallarm-and-other-ingress-controllers.md
     - منصات السحابة:
       - AWS:
-        - AMI: installation/inline/compute-instances/aws/aws-ami.md
+        - AMI: installation/cloud-platforms/aws/ami.md
         - التوسع التلقائي:
           - نظرة عامة: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
           - إنشاء صورة آلية Amazon: admin-en/installation-guides/amazon-cloud/create-image.md
@@ -158,7 +158,7 @@ nav:
           - الوكيل في VPC AWS: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
           - الوكيل لـ Amazon API Gateway: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
       - GCP:
-        - صورة الجهاز: installation/inline/compute-instances/gcp/machine-image.md
+        - صورة الجهاز: installation/cloud-platforms/gcp/machine-image.md
         - التوسع التلقائي:
           - نظرة عامة: admin-en/installation-guides/google-cloud/autoscaling-overview.md
           - إنشاء صورة مع عقدة الفصل: admin-en/installation-guides/google-cloud/create-image.md
@@ -189,13 +189,8 @@ nav:
     - العقدة المستضافة ذاتيًا:
       - النشر المضمن:
         - نظرة عامة: installation/inline/overview.md
-        - المثبت الشامل: installation/inline/compute-instances/linux/all-in-one.md
-        - نظام NGINX: installation/inline/compute-instances/docker/nginx-based.md
-      - عقدة NGINX:
-        - All‑in‑One Installer: installation/nginx/all-in-one.md
+        - المثبت الشامل: installation/nginx/all-in-one.md
         - نظام NGINX: admin-en/installation-docker-en.md
-        - AWS AMI: installation/packages/aws-ami.md
-        - GCP Machine Image: installation/packages/gcp-machine-image.md
       - التنصيب المتابع لوحدة Postanayltics: admin-en/installation-postanalytics-en.md
       - حزم NGINX المخصصة: installation/custom/custom-nginx-version.md
     - خارج النطاق (مرآة المرور):
@@ -211,30 +206,82 @@ nav:
       - تنصيب وتكوين عقدة Multi-tenant: installation/multi-tenant/deploy-multi-tenant-node.md
     - النشر المخصص:
       - خيارات التنصيب المخصص: installation/custom/request-custom-deployment.md
+  - الصيانة:
+    - نظرة عامة: maintenance/overview.md
+
+    - العُقد والبنية التحتية:
+      - نظرة عامة على العُقدة: user-guides/nodes/nodes.md
+      - تخصيص الموارد: admin-en/configuration-guides/allocate-resources-for-node.md
+      - المزامنة السحابية: admin-en/configure-cloud-node-synchronization-en.md
+      - تكوين الوكيل: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
+      - تكوين صفحة الحظر: admin-en/configuration-guides/configure-block-page-and-code.md
+      - معالجة الرؤوس غير الصالحة: admin-en/configuration-guides/handling-invalid-headers.md
+      - بصمة JA3: admin-en/enabling-ja3.md
+      - مزود Terraform: admin-en/managing/terraform-provider.md
+
+    - المراقبة والمقاييس:
+      - مقاييس عُقدة NGINX:
+        - نظرة عامة: admin-en/monitoring/intro.md
+        - كيفية جلب المقاييس: admin-en/monitoring/fetching-metrics.md
+        - المقاييس المتاحة: admin-en/monitoring/available-metrics.md
+        - أمثلة على تصدير المقاييس والعمل معها:
+          - Grafana:
+            - تصدير المقاييس إلى InfluxDB عبر الإضافة الشبكية `collectd`: admin-en/monitoring/network-plugin-influxdb.md
+            - تصدير المقاييس إلى Graphite عبر إضافة الكتابة `collectd`: admin-en/monitoring/write-plugin-graphite.md
+            - العمل مع مقاييس عُقدة التصفية في Grafana: admin-en/monitoring/working-with-grafana.md
+          - Nagios:
+            - تصدير المقاييس إلى Nagios عبر الأداة `collectd-nagios`: admin-en/monitoring/collectd-nagios.md
+            - العمل مع مقاييس عُقدة التصفية في Nagios: admin-en/monitoring/working-with-nagios.md
+          - Zabbix:
+            - تصدير المقاييس إلى Zabbix عبر الأداة `collectd-nagios`: admin-en/monitoring/collectd-zabbix.md
+            - العمل مع عُقدة التصفية في Zabbix: admin-en/monitoring/working-with-zabbix.md
+      - خدمة الإحصائيات: admin-en/configure-statistics-service.md
+      - سجل العُقدة: admin-en/configure-logging.md
+      - تكوين الفشل الاحتياطي: admin-en/configure-backup-en.md
+      - فحص الصحة: admin-en/uat-checklist-en.md
+
     - الترقيات والترحيل:
-      - سياسة الإصدارات للعقدة: updating-migrating/versioning-policy.md
-      - ما الجديد في عقدة Wallarm 4.10: updating-migrating/what-is-new.md
-      - التوصيات لعملية ترقية العقدة الآمنة: updating-migrating/general-recommendations.md
-      - الجرد من الإصدارات للعقدة: updating-migrating/node-artifact-versions.md
-      - ترقيات عقدة NGINX:
-        - تحديث وحدات Wallarm NGINX المثبتة من الحزم الفردية: updating-migrating/nginx-modules.md
-        - تحديث وحدة Postanalytics المثبتة من الحزم الفردية: updating-migrating/separate-postanalytics.md
-        - تحديث العقدة التي تم تثبيتها عبر البرنامج المثبت all-in-one: updating-migrating/all-in-one.md
-        - تحديث صورة Docker NGINX- أو Envoy-based: updating-migrating/docker-container.md
-        - تحديث NGINX Ingress controller بوحدات Wallarm المتكاملة: updating-migrating/ingress-controller.md
-        - إيقاف NGINX Ingress Controller وخطة الانتقال): updating-migrating/nginx-ingress-retirement.md
-        - تحديث Wallarm Sidecar proxy: updating-migrating/sidecar-proxy.md
-        - تحديث صورة العقدة السحابية: updating-migrating/cloud-image.md
-        - تحديث عقد Multi-tenant: updating-migrating/multi-tenant.md
-      - ترقيات العقدة EOL (3.6 وأقل):
-        - ما الجديد في عقدة Wallarm (إذا كان جاري تحديث عقدة EOL): updating-migrating/older-versions/what-is-new.md
-        - تحديث وحدات NGINX WC Wallarm EOL: updating-migrating/older-versions/nginx-modules.md
-        - تحديث وحدة Postanalytics EOL: updating-migrating/older-versions/separate-postanalytics.md
-        - تحديث صورة دوكر NGINX- أو Envoy-based EOL: updating-migrating/older-versions/docker-container.md
-        - ترقية نهاية عمر واجهة تحكم NGINX Ingress المتكاملة مع وحدات Wallarm: updating-migrating/older-versions/ingress-controller.md
-        - تحديث صورة العقدة السحابية EOL: updating-migrating/older-versions/cloud-image.md
-        - ترقية عقدة العميل متعددة التواجد EOL: updating-migrating/older-versions/multi-tenant.md
-        - نقل القائمة البيضاء والقائمة السوداء من Wallarm node EOL: updating-migrating/migrate-ip-lists-to-node-3.md
+      - سياسة الإصدارات: updating-migrating/versioning-policy.md
+      - التوصيات العامة: updating-migrating/general-recommendations.md
+      - ما الجديد: updating-migrating/what-is-new.md
+      - سجل تغييرات عُقدة NGINX: updating-migrating/node-artifact-versions.md
+      - تعليمات ترقية عُقدة NGINX:
+        - حزم DEB/RPM: updating-migrating/nginx-modules.md
+        - وحدة Postanalytics: updating-migrating/separate-postanalytics.md
+        - المثبت الشامل: updating-migrating/all-in-one.md
+        - صورة Docker: updating-migrating/docker-container.md
+        - وحدة تحكم Ingress: updating-migrating/ingress-controller.md
+        - إيقاف وحدة تحكم Ingress: updating-migrating/nginx-ingress-retirement.md
+        - وكيل Sidecar: updating-migrating/sidecar-proxy.md
+        - صورة السحابة: updating-migrating/cloud-image.md
+        - عُقدة متعددة المستأجرين: updating-migrating/multi-tenant.md
+      - ترقيات عُقدة EOL (3.6 وأقل):
+        - ما الجديد: updating-migrating/older-versions/what-is-new.md
+        - وحدات NGINX: updating-migrating/older-versions/nginx-modules.md
+        - Postanalytics: updating-migrating/older-versions/separate-postanalytics.md
+        - صورة Docker: updating-migrating/older-versions/docker-container.md
+        - وحدة تحكم Ingress: updating-migrating/older-versions/ingress-controller.md
+        - صورة السحابة: updating-migrating/older-versions/cloud-image.md
+        - متعدد المستأجرين: updating-migrating/older-versions/multi-tenant.md
+        - ترحيل قوائم IP: updating-migrating/migrate-ip-lists-to-node-3.md
+
+    - العمليات:
+      - تعلّم حجم الطلبات: admin-en/operation/learn-incoming-request-number.md
+      - عناوين IP للماسح: admin-en/scanner-addresses.md
+
+    - استكشاف الأخطاء وإصلاحها:
+      - نظرة عامة: troubleshooting/overview.md
+      - الكشف والحظر: troubleshooting/detection-and-blocking.md
+      - ضبط أدوات الكشف: troubleshooting/detection-tools-tuning.md
+      - الأداء: troubleshooting/performance.md
+      - IP العميل الحقيقي: admin-en/using-proxy-or-balancer-en.md
+      - مشاكل المستخدم النهائي: faq/common-errors-after-installation.md
+      - وحدة تحكم Wallarm Ingress: faq/ingress-installation.md
+      - Wallarm Cloud معطل: faq/wallarm-cloud-down.md
+      - تنبيهات لوحة OWASP: faq/node-issues-on-owasp-dashboards.md
+      - سجل أخطاء NGINX: troubleshooting/wallarm-issues-in-nginx-error-log.md
+      - DNS الديناميكي في NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
+
   - التكاملات:
     - نظرة عامة: user-guides/settings/integrations/integrations-intro.md
     - المراسلة والتنبيهات:
@@ -301,29 +348,9 @@ nav:
         - مثال Okta: admin-en/configuration-guides/sso/sso-okta.md
         - استكشاف الأخطاء: admin-en/configuration-guides/sso/troubleshooting.md
       - باستخدام LDAP: admin-en/configuration-guides/ldap/ldap.md
-    - العقد والبنية التحتية:
-      - عقد Wallarm: user-guides/nodes/nodes.md
-      - تخصيص الموارد: admin-en/configuration-guides/allocate-resources-for-node.md
-      - مزامنة سحابة Wallarm و Node: admin-en/configure-cloud-node-synchronization-en.md
-      - الوصول إلى واجهة برمجة التطبيقات Wallarm عبر الوكيل: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-      - الصفحة المحظورة ورمز الخطأ: admin-en/configuration-guides/configure-block-page-and-code.md
-      - خيارات التكوين للعقدة المبنية على NGINX: admin-en/configure-parameters-en.md
-      - تمكين بصمات الأصابع JA3: admin-en/enabling-ja3.md
-    - المراقبة والمقاييس:
-      - تكوين الخدمة الإحصائية: admin-en/configure-statistics-service.md
-      - سجلات العقدة الفلترة: admin-en/configure-logging.md
-      - تكوين طريقة الفشل: admin-en/configure-backup-en.md
-    - استكشاف الأخطاء:
-      - التقرير الصحيح لإيبي للمستخدم النهائي: admin-en/using-proxy-or-balancer-en.md
-      - الأخطاء بعد تثبيت عقدة Wallarm: faq/common-errors-after-installation.md
-      - تثبيت Wallarm Ingress controller: faq/ingress-installation.md
-      - Wallarm Cloud معطل: faq/wallarm-cloud-down.md
-      - مشكلات العقدة المنبثقة من لوحات القيادة OWASP: faq/node-issues-on-owasp-dashboards.md
-      - تحليل DNS ديناميكي في NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
     - الخطط والأسعار:
       - خطط الاشتراك: about-wallarm/subscription-plans.md
   - المراجع:
-    - السجل الزمني & الأخبار: news.md
     - مرجع API:
       - نظرة عامة: api/overview.md
       - أمثلة طلب واجهة برمجة التطبيقات: api/request-examples.md

@@ -106,7 +106,7 @@ Check SELinux presence and status by executing the following command:
 sestatus
 ```
 
-If the SELinux mechanism is enabled on a host with a filtering node, during node installation or upgrade, the [all-in-one installer](../installation/inline/compute-instances/linux/all-in-one.md) performs its automatic configuration for the node not to interfere with it.
+If the SELinux mechanism is enabled on a host with a filtering node, during node installation or upgrade, the [all-in-one installer](../installation/nginx/all-in-one.md) performs its automatic configuration for the node not to interfere with it.
 
 If after automatic configuration you still experience the problems that can be caused by SeLinux, do the following:
 

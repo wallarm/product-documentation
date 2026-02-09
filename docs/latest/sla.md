@@ -38,7 +38,7 @@ The availability and speed of Wallarm's services and [sharing of responsibility]
 
 * Client's network infrastructure, configuration and connectivity
 * Selected Wallarm [deployment form](about-wallarm/overview.md#where-wallarm-works)
-* Selected Wallarm deployment option: [Security Edge](installation/security-edge/overview.md), [self-hosted](installation/supported-deployment-options.md) or [Connector](installation/connectors/overview.md)
+* Selected [Wallarm deployment option](installation/supported-deployment-options.md)
 * Enabled Wallarm [components and functions](about-wallarm/overview.md)
 * Traffic volume, characteristics, and intensity
 

@@ -7,8 +7,8 @@
 [nginx-node-metrics]:  ../admin-en/nginx-node-metrics.md
 [wstore-metrics]: ../admin-en/wstore-metrics.md
 [postanalytics-module]: ../admin-en/installation-postanalytics-en.md
-[aws-ami]: ../installation/packages/aws-ami.md
-[gcp]: ../installation/packages/gcp-machine-image.md
+[aws-ami]: ../installation/cloud-platforms/aws/ami.md
+[gcp]: ../installation/cloud-platforms/gcp/machine-image.md
 
 # Postanalytics Metrics of the NGINX Node
 

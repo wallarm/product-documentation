@@ -115,7 +115,7 @@ nav:
       - Encadeamento de Wallarm e Controladores de Ingress: admin-en/chaining-wallarm-and-other-ingress-controllers.md
     - Plataformas em nuvem:
       - AWS:
-        - AMI: installation/inline/compute-instances/aws/aws-ami.md
+        - AMI: installation/cloud-platforms/aws/ami.md
         - Dimensionamento automático:
           - Visão Geral: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
           - Criando uma Imagem da Máquina Amazon: admin-en/installation-guides/amazon-cloud/create-image.md
@@ -127,7 +127,7 @@ nav:
           - Proxy no AWS VPC: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
           - Proxy para Amazon API Gateway: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
       - GCP:
-        - Imagem de Máquina: installation/inline/compute-instances/gcp/machine-image.md
+        - Imagem de Máquina: installation/cloud-platforms/gcp/machine-image.md
         - Dimensionamento automático:
           - Visão Geral: admin-en/installation-guides/google-cloud/autoscaling-overview.md
           - Criando uma Imagem com o Nó de Filtragem Wallarm: admin-en/installation-guides/google-cloud/create-image.md
@@ -158,13 +158,8 @@ nav:
     - Nó auto-hospedado:
       - Implantação em linha:
         - Visão Geral: installation/inline/overview.md
-        - All-in-One Installer: installation/inline/compute-instances/linux/all-in-one.md
-        - Baseado em NGINX: installation/inline/compute-instances/docker/nginx-based.md
-      - Nó NGINX:
-        - All‑in‑One Installer: installation/nginx/all-in-one.md
+        - All-in-One Installer: installation/nginx/all-in-one.md
         - Baseado em NGINX: admin-en/installation-docker-en.md
-        - AWS AMI: installation/packages/aws-ami.md
-        - GCP Machine Image: installation/packages/gcp-machine-image.md
       - Instalando Separadamente o Módulo de Pós‑Análises: admin-en/installation-postanalytics-en.md
       - Pacotes NGINX Personalizados: installation/custom/custom-nginx-version.md
     - Fora da banda (espelho de tráfego):
@@ -180,30 +175,82 @@ nav:
       - Implantando e Configurando o Nó Multi‑Tenant: installation/multi-tenant/deploy-multi-tenant-node.md
     - Implantação personalizada:
       - Opções de Implantação Personalizadas: installation/custom/request-custom-deployment.md
-    - Atualizações e migração:
-      - Política de Versionamento do Nó: updating-migrating/versioning-policy.md
-      - O Que Há de Novo no Nó Wallarm 4.8: updating-migrating/what-is-new.md
-      - Recomendações para Um Processo Seguro de Atualização do Nó: updating-migrating/general-recommendations.md
-      - Inventario das Versões do Artifato do Nó: updating-migrating/node-artifact-versions.md
-      - Atualizações do nó NGINX:
-        - Atualizando os Módulos NGINX Wallarm Instalados a partir de Pacotes Individuais: updating-migrating/nginx-modules.md
-        - Atualizando o Módulo de Pós-Análises Instalado a partir de Pacotes Individuais: updating-migrating/separate-postanalytics.md
-        - Atualizando o Nó Instalado através do Instalador All-in-One: updating-migrating/all-in-one.md
-        - Atualizando a Imagem Docker Wallarm NGINX- ou Envoy-based: updating-migrating/docker-container.md
-        - Atualizando o Controlador de Ingresso NGINX com Módulos Wallarm integrados: updating-migrating/ingress-controller.md
-        - Descontinuação e migração do NGINX Ingress Controller: updating-migrating/nginx-ingress-retirement.md
-        - Atualizando o Proxy de Sidecar Wallarm: updating-migrating/sidecar-proxy.md
-        - Atualizando a Imagem do Nó Cloud: updating-migrating/cloud-image.md
-        - Atualizando o nó multi‑tenant: updating-migrating/multi-tenant.md
-      - Atualizações do nó EOL (3.6 e inferior):
-        - O que há de novo no nó Wallarm (se atualizando um nó EOL): updating-migrating/older-versions/what-is-new.md
-        - Atualizando os Módulos NGINX Wallarm EOL: updating-migrating/older-versions/nginx-modules.md
-        - Atualizando o Módulo Postanalytics EOL: updating-migrating/older-versions/separate-postanalytics.md
-        - Atualizando uma Imagem Docker NGINX- ou Envoy-based EOL: updating-migrating/older-versions/docker-container.md
-        - Atualizando o Controlador de Ingresso NGINX com Módulos Wallarm Integrados EOL: updating-migrating/older-versions/ingress-controller.md
-        - Atualizando uma Imagem de Nó Cloud EOL: updating-migrating/older-versions/cloud-image.md
-        - Atualizando o nó multi‑tenant EOL: updating-migrating/older-versions/multi-tenant.md
-        - Migrando os permitidos e negados do nó Wallarm EOL: updating-migrating/migrate-ip-lists-to-node-3.md
+  - Manutenção:
+    - Visão Geral: maintenance/overview.md
+
+    - Nós e Infraestrutura:
+      - Visão Geral do Nó: user-guides/nodes/nodes.md
+      - Alocação de Recursos: admin-en/configuration-guides/allocate-resources-for-node.md
+      - Sincronização de Nuvem: admin-en/configure-cloud-node-synchronization-en.md
+      - Configuração de Proxy: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
+      - Configuração da Página de Bloqueio: admin-en/configuration-guides/configure-block-page-and-code.md
+      - Manipulação de Cabeçalhos Inválidos: admin-en/configuration-guides/handling-invalid-headers.md
+      - Impressão Digital JA3: admin-en/enabling-ja3.md
+      - Provedor Terraform: admin-en/managing/terraform-provider.md
+
+    - Monitoramento e Métricas:
+      - Métricas de Nó NGINX:
+        - Visão Geral: admin-en/monitoring/intro.md
+        - Como Buscar Métricas: admin-en/monitoring/fetching-metrics.md
+        - Métricas Disponíveis: admin-en/monitoring/available-metrics.md
+        - Exemplos de Exportação e Trabalho com Métricas:
+          - Grafana:
+            - Exportando Métricas para InfluxDB via Plugin de Rede `collectd`: admin-en/monitoring/network-plugin-influxdb.md
+            - Exportando Métricas para Graphite via Plugin de Escrita `collectd`: admin-en/monitoring/write-plugin-graphite.md
+            - Trabalhando com Métricas do Nó de Filtro no Grafana: admin-en/monitoring/working-with-grafana.md
+          - Nagios:
+            - Exportando Métricas para Nagios via Utilitário `collectd-nagios`: admin-en/monitoring/collectd-nagios.md
+            - Trabalhando com Métricas do Nó de Filtro no Nagios: admin-en/monitoring/working-with-nagios.md
+          - Zabbix:
+            - Exportando Métricas para Zabbix via Utilitário `collectd-nagios`: admin-en/monitoring/collectd-zabbix.md
+            - Trabalhando com o Nó de Filtro no Zabbix: admin-en/monitoring/working-with-zabbix.md
+      - Serviço de Estatísticas: admin-en/configure-statistics-service.md
+      - Registro de Nó: admin-en/configure-logging.md
+      - Configuração de Failover: admin-en/configure-backup-en.md
+      - Verificação de Saúde: admin-en/uat-checklist-en.md
+
+    - Atualizações e Migração:
+      - Política de Versionamento: updating-migrating/versioning-policy.md
+      - Recomendações Gerais: updating-migrating/general-recommendations.md
+      - Novidades: updating-migrating/what-is-new.md
+      - Changelog do Nó NGINX: updating-migrating/node-artifact-versions.md
+      - Instruções de Atualização do Nó NGINX:
+        - Pacotes DEB/RPM: updating-migrating/nginx-modules.md
+        - Módulo Postanalytics: updating-migrating/separate-postanalytics.md
+        - Instalador All-in-One: updating-migrating/all-in-one.md
+        - Imagem Docker: updating-migrating/docker-container.md
+        - Controlador Ingress: updating-migrating/ingress-controller.md
+        - Descontinuação do Controlador Ingress: updating-migrating/nginx-ingress-retirement.md
+        - Proxy Sidecar: updating-migrating/sidecar-proxy.md
+        - Imagem de Nuvem: updating-migrating/cloud-image.md
+        - Nó Multi-Inquilino: updating-migrating/multi-tenant.md
+      - Atualizações do Nó EOL (3.6 e inferior):
+        - Novidades: updating-migrating/older-versions/what-is-new.md
+        - Módulos NGINX: updating-migrating/older-versions/nginx-modules.md
+        - Postanalytics: updating-migrating/older-versions/separate-postanalytics.md
+        - Imagem Docker: updating-migrating/older-versions/docker-container.md
+        - Controlador Ingress: updating-migrating/older-versions/ingress-controller.md
+        - Imagem de Nuvem: updating-migrating/older-versions/cloud-image.md
+        - Multi-Inquilino: updating-migrating/older-versions/multi-tenant.md
+        - Migrar Listas de IP: updating-migrating/migrate-ip-lists-to-node-3.md
+
+    - Operações:
+      - Aprendendo Volume de Solicitações: admin-en/operation/learn-incoming-request-number.md
+      - Endereços IP do Scanner: admin-en/scanner-addresses.md
+
+    - Solução de Problemas:
+      - Visão Geral: troubleshooting/overview.md
+      - Detecção e Bloqueio: troubleshooting/detection-and-blocking.md
+      - Ferramentas de Detecção: troubleshooting/detection-tools-tuning.md
+      - Desempenho: troubleshooting/performance.md
+      - IP Real do Cliente: admin-en/using-proxy-or-balancer-en.md
+      - Problemas do Usuário Final: faq/common-errors-after-installation.md
+      - Controlador Wallarm Ingress: faq/ingress-installation.md
+      - Nuvem Wallarm Inativa: faq/wallarm-cloud-down.md
+      - Alertas do Painel OWASP: faq/node-issues-on-owasp-dashboards.md
+      - Log de Erros NGINX: troubleshooting/wallarm-issues-in-nginx-error-log.md
+      - DNS Dinâmico no NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
+
   - Integrações:
     - Visão Geral: user-guides/settings/integrations/integrations-intro.md
     - Mensagens e alertas:
@@ -270,29 +317,9 @@ nav:
         - Okta Example: admin-en/configuration-guides/sso/sso-okta.md
         - Solução de problemas: admin-en/configuration-guides/sso/troubleshooting.md
       - Usando LDAP: admin-en/configuration-guides/ldap/ldap.md
-    - Nós e infraestrutura:
-      - Nós Wallarm: user-guides/nodes/nodes.md
-      - Alocação de Recursos: admin-en/configuration-guides/allocate-resources-for-node.md
-      - Sincronização de Nó Wallarm e Cloud: admin-en/configure-cloud-node-synchronization-en.md
-      - Acesso para API Wallarm através de Proxy: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-      - Página de Bloqueio e Código de Erro: admin-en/configuration-guides/configure-block-page-and-code.md
-      - Opções de Configuração para Nó Baseado em NGINX: admin-en/configure-parameters-en.md
-      - Habilitando impressão digital JA3: admin-en/enabling-ja3.md
-    - Monitoramento e métricas:
-      - Configuração do Serviço de Estatísticas: admin-en/configure-statistics-service.md
-      - Logs do Nó de Filtragem: admin-en/configure-logging.md
-      - Configurando um Método de Failover: admin-en/configure-backup-en.md
-    - Solução de problemas:
-      - Relato Adequado do IP do Usuário Final: admin-en/using-proxy-or-balancer-en.md
-      - Erros após a instalação do nó Wallarm: faq/common-errors-after-installation.md
-      - Instalando o Controlador de Ingress Wallarm: faq/ingress-installation.md
-      - Cloud Wallarm está inacessível: faq/wallarm-cloud-down.md
-      - Abordando problemas de nó Wallarm alertados por painéis OWASP: faq/node-issues-on-owasp-dashboards.md
-      - Resolução Dinâmica de DNS em NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
     - Planos e preços:
       - Visão Geral: about-wallarm/subscription-plans.md
   - Referências:
-    - Changelog & Notícias: news.md
     - Referência da API:
       - Visão Geral: api/overview.md
       - Exemplos de Solicitação da API: api/request-examples.md

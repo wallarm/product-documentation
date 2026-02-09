@@ -1,7 +1,7 @@
 [AIO]: ../installation/nginx/all-in-one.md
 [docker]: ../admin-en/installation-docker-en.md
-[aws-ami]: ../installation/packages/aws-ami.md
-[gcp]: ../installation/packages/gcp-machine-image.md
+[aws-ami]: ../installation/cloud-platforms/aws/ami.md
+[gcp]: ../installation/cloud-platforms/gcp/machine-image.md
 [IC]: ../admin-en/installation-kubernetes-en.md
 [sidecar]: ../installation/kubernetes/sidecar-proxy/deployment.md
 [sidecar-helm-chart]: ../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md

@@ -42,8 +42,3 @@ Wallarm offers connectors for the following platforms:
 | [Azure API Management](azure-api-management.md) | In-line, out-of-band | Security Edge, self-hosted |
 
 If you couldn't find the connector you are looking for, please feel free to contact our [Sales team](mailto:sales@wallarm.com) to discuss your requirements and explore potential solutions.
-
-!!! info "Deployment alternatives"
-    Want a managed Inline option instead? Explore [Security Edge](../security-edge/overview.md).
-
-    For traditional self-managed deployments (VMs, Kubernetes, cloud environments), see [Self-Hosted Node Deployment](../supported-deployment-options.md).

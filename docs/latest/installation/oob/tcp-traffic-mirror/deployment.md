@@ -4,7 +4,7 @@ Wallarm provides an artifact for deploying its filtering node, specifically desi
 
 ## Use cases
 
-Among all supported [out-of-band deployment options](../../supported-deployment-options.md#out-of-band), this solution is recommended for the following scenarios:
+Among all supported [deployment options](../../supported-deployment-options.md), this solution is recommended for the following scenarios:
 
 * You prefer to capture TCP traffic mirrored at the network layer and require a security solution to analyze this specific traffic.
 * NGINX-based deployment artifacts are unavailable, too slow, or consume too many resources. In this case, implementing HTTP traffic mirror analysis can be resource-intensive. The TCP traffic mirror analysis runs independently from web servers, avoiding these issues.

@@ -21,7 +21,9 @@ If you need assistance in resolving synchronization or other issues or any other
 
 ### custom_ruleset and proton.db
 
-The important files to be updated during Cloud-node synchronization, are [`custom_ruleset`](../user-guides/rules/rules.md#ruleset-lifecycle) and [`proton.db`](../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors). Search for them in your OS, they can be located in `/opt/wallarm/etc/wallarm` or another folder depending on the self-hosted node [installation method](../installation/supported-deployment-options.md).
+The important files to be updated during Cloud-node synchronization, are [`custom_ruleset`](../user-guides/rules/rules.md#ruleset-lifecycle) and [`proton.db`](../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors).
+
+Search for them in your OS, they can be located in `/opt/wallarm/etc/wallarm` or another folder depending on the [node installation method](../installation/supported-deployment-options.md).
 
 ```
 -rw-r--r--    1 wallarm  wallarm      93774 Aug 20 07:40 custom_ruleset
