@@ -1,4 +1,4 @@
-[api-discovery-enable-link]:        ../api-discovery/setup.md#enable
+[api-discovery-enable-link]:        ../api-discovery/setup.md
 [link-wallarm-mode-override]:       ../admin-en/configure-parameters-en.md#wallarm_mode_allow_override
 [rule-creation-options]:            ../user-guides/events/check-attack.md#attack-analysis_1
 [acl-access-phase]:                 ../admin-en/configure-parameters-en.md#wallarm_acl_access_phase 

@@ -15,7 +15,7 @@ plugins:
       minify_css: true
       js_files:
           - extra.js
-          - feedback.js
+          # - feedback.js
           - supported-platforms.js
           - inkeep-widget.js
       css_files:
@@ -129,7 +129,7 @@ extra_css:
 
 extra_javascript:
   - 'extra.js'
-  - 'feedback.js'
+  # - 'feedback.js'
   - 'inkeep-widget.js'
 
 markdown_extensions:

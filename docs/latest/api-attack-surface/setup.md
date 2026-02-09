@@ -191,7 +191,7 @@ Navigate back from configuration dialog to the main **API Attack Surface** scree
 
 You automatically receive notifications to your personal email (the one you use to log in) about discovered hosts and security issues in a **Weekly AASM statistics** - information about hosts, APIs, and statistics for security issues discovered for your configured domains within last week.
 
-The notifications are enabled by default. You can unsubscribe at any moment and configure any additional emails to get all or some of these notifications in Wallarm Console → **Configuration** → **Integrations** → **Email and messengers** → **Personal email** (you email) or **Email report** (extra emails) as described [here][link-integrations-email].
+The notifications are enabled by default. You can unsubscribe at any moment and configure any additional emails to get all or some of these notifications in Wallarm Console → **Configuration** → **Integrations** → **Email and messengers** → **Personal email** (your email) or **Email report** (extra emails) as described [here][link-integrations-email].
 
 Additionally, the notifications about security issues detected by [all methods](../about-wallarm/detecting-vulnerabilities.md#detection-methods), including AASM, can be received. This includes:
 

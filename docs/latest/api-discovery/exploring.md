@@ -1,4 +1,4 @@
-# Exploring API Inventory <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Exploring API Inventory <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 As soon as the [API Discovery](overview.md) module has built the catalog of your endpoints (your API inventory), you can explore it in the **API Discovery** section of Wallarm Console. Learn from this article how to go through the discovered data.
 
@@ -6,119 +6,174 @@ As soon as the [API Discovery](overview.md) module has built the catalog of your
 
 Explore your discovered API inventory using the **API Discovery** section in the [US](https://us1.my.wallarm.com/api-discovery) or [EU](https://my.wallarm.com/api-discovery) Cloud.
 
-![Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
+![API Discovery - built API inventory](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-built-inventory.png)
 
-Each time you open the **API Discovery** section, you see all discovered endpoints and their [changes](track-changes.md) for the last week. With **Changes since** filter, you can change `Last week` to any other period.
-
-By default, endpoints are sorted by host/endpoint names (and grouped by hosts). If you sort by **Hits** or **Risk**, grouping goes away - to get back to the default, click hosts/endpoint column again.
-
-### External vs. internal
-
-The endpoints accessible from the external network are the main attack directions. Thus, it is important to see what is available from the outside and pay attention to these endpoints in the first place.
-
-Wallarm automatically splits discovered APIs to external and internal. The host with all its endpoints is considered to be internal if it is located on:
-
-* A private IP or local IP address
-* A generic top-level domain (for example: localhost, dashboard, etc.)
-
-In the remaining cases the hosts are considered to be external.
-
-By default, a list with all API hosts (external and internal) is displayed. In the built API inventory, you can view your internal and external APIs separately. To do this, click **External** or **Internal**.
+By default, endpoints and operations are sorted by host/endpoint or operation name. Also, **Group by host** is on. With grouping by host disabled, you can sort endpoints by risk.
 
 ### Filtering
 
 Among a wide range of API endpoint filters, you can choose the ones corresponding to your analysis purpose, e.g.:
 
-* Only attacked endpoints that you can sort by the number of hits.
-* Find the most vulnerable endpoints characterized by processing sensitive data and active vulnerabilities of the high [risk level](risk-score.md). Exploiting vulnerabilities of a high risk level allows attackers to perform many malicious actions with the system including stealing sensitive data that the endpoint processes/stores.
-* Find [rogue endpoints](rogue-api.md): shadow, orphan and zombie.
+* Find the endpoints characterized with the highest [risk level](risk-score.md) to analyze and mitigate the risks.
+* Find endpoints related to specific [application](../user-guides/settings/applications.md).
 * Find the endpoints that have been changed or newly discovered in the last week and that process PII data. This kind of request can help you to stay up to date with critical [changes in your APIs](track-changes.md).
-* Find the endpoints being used to upload data to your server by the PUT or POST calls. Since such endpoints are a frequent attack target, they should be well secured. Using this kind of request you can check that endpoints are known to the team and are well secured from attacks.
-* Find the endpoints processing customers' bank card data. With this request, you can check that sensitive data is processed only by secured endpoints.
+* Find the endpoints being used to upload data to your server by the PUT or POST calls (REST) or mutations (GraphQL) (**API protocols** filter with methods for REST and operation types for Graph QL). Since such endpoints are a frequent attack target, they should be well secured. Using this kind of request you can check that endpoints are known to the team and are well secured from attacks.
+* Find the endpoints processing sensitive data to ensure they are properly secured.
 * Find the endpoints of a deprecated API version (e.g. by searching `/v1`) and make sure that they are not used by clients.
 
-All filtered data can be exported in the OpenAPI v3 for additional analysis.
+### Labeling
 
-## Endpoint details
+You can create labels (e.g., `P90`, `HighTraffic`, `Legacy`, etc.) and assign them to endpoints to manage them more effectively. Once labels are assigned, use the **Label** filter to quickly search and isolate endpoints based on these custom labels.
 
-<a name="params"></a>By clicking the endpoint, you can also find the endpoint details, including request statistics, headers and parameters of requests and responses with the relevant data types:
+![API Discovery - labels](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-labels.png)
 
-![Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params-4.10.png)
+Note that several labels can be assigned to the same endpoint.
+
+## REST endpoint details
+
+<a name="params"></a>By clicking the REST endpoint, you can find its details, including  transferred sensitive data, risk score and what contributes to it, headers and parameters of requests and responses:
+
+![API Discovery - REST endpoint details](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-REST.png)
 
 Each request/response parameter information includes:
 
 * Parameter name and the part of request/response this parameter belongs to
+* Path: the hierarchical location of a parameter within a REST query structure (not displayed, if all parameters are stored in the same root location)
 * Information about parameter changes (new, unused)
 * Presence and type of sensitive data transmitted by this parameter, including:
 
-    * Technical data like IP and MAC addresses
+    * Personally identifiable information (PII) like full name, passport number or SSN
     * Login credentials like secret keys and passwords
     * Financial data like bank card numbers
     * Medical data like medical license number
-    * Personally identifiable information (PII) like full name, passport number or SSN
+    * Technical data like IP and MAC addresses
 
-* [Type/format](#format-and-data-type) of data sent in this parameter
-* Date and time when parameter information was last updated
+* [Type/format](#data_format_rest) of data sent in this parameter
+* Date and time when parameter value was last transferred by requests
 
-!!! info "Availability of response parameters"
-    Response parameters are only available when using node 4.10.1 or higher.
+<a name="data_format_rest"></a>**REST format and data type**
 
-### Format and data type
+In REST endpoint details, in the **Type** column for parameters of request and responses, Wallarm indicates the data format identified through traffic analysis or, if not specific, a general data type.
 
-In the **Type** column, Wallarm indicates the data format identified through traffic analysis or, if not specific, a general data type.
-
-Wallarm attempts to detect various data formats such as `Int32`, `Int64`, `Float`, `Double`, `Datetime`, `IPv4`/`IPv6`, among others. If a value does not conform to any recognized data format, Wallarm classifies it under a general data type, such as `Integer`, `Number`, `String`, or `Boolean`.
+For REST endpoints, Wallarm attempts to detect various data formats such as `Int32`, `Int64`, `Float`, `Double`, `Datetime`, `IPv4`/`IPv6`, among others. If a value does not conform to any recognized data format, Wallarm classifies it under a general data type, such as `Integer`, `Number`, `String`, or `Boolean`.
 
 This data allows checking that values of the expected format are passed in each parameter. Inconsistencies can be the result of an attack or a scan of your API, for example:
 
 * The `String` values ​​are passed to the field with `IP`
 * The `Double` values are passed to the field where there should be a value no more than `Int32`
 
-### Variability
+## GraphQL operation details
 
-URLs can include diverse elements, such as ID of user, like:
+By clicking the GraphQL operation, you can find its details, including transferred sensitive data, risk score and what contributes to it, schema, parameters and headers of requests and responses:
 
-* `/api/articles/author/author-a-0001`
-* `/api/articles/author/author-a-1401`
-* `/api/articles/author/author-b-1401`
+![API Discovery - GraphQL operation details](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-GQL.png)
 
-The **API Discovery** module unifies such elements into the `{parameter_X}` format in the endpoint paths, so for the example above you will not have 3 endpoints, but instead there will be one:
+Each request/response parameter information includes:
 
-* `/api/articles/author/{parameter_1}`
+* Parameter name and the part of request/response this parameter belongs to
+* Path: the hierarchical location of a parameter within a GraphQL query structure (not displayed, if all parameters are stored in the same root location)
+* Information about parameter changes (new, unused)
+* Presence and type of sensitive data transmitted by this parameter, including:
+* Date and time when parameter value was last transferred by requests
 
-Click the endpoint to expand its parameters and view which type was automatically detected for the diverse parameter.
+<a name="data_format_graphql"></a>**Format and data type**
 
-![API Discovery - Variability in path](../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path-4.10.png)
+In GraphQL operation details, in the **Type** column for parameters and headers, Wallarm indicates the data format identified through traffic analysis.
 
-Note that the algorithm analyzes the new traffic. If at some moment you see addresses, that should be unified but this did not happen yet, give it a time. As soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount of matching addresses.
+For GraphQL operations, data formats are detected in accordance with the [scalar types](https://graphql.org/learn/schema/#scalar-types) specification:
+
+* `Int`: A signed 32‐bit integer.
+* `Float`: A signed double-precision floating-point value.
+* `String`: A UTF‐8 character sequence.
+* `Boolean`: true or false.
+
+## SOAP operation details
+
+By clicking the SOAP operation, you can find its details, including transferred sensitive data, risk score and what contributes to it, XML body parameters, HTTPS and XML headers of requests and responses:
+
+![API Discovery - SOAP operation details](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-SOAP.png)
+
+Each request/response XML parameter information includes:
+
+* Parameter name (**Key**)
+* Path: the hierarchical location of a parameter within an XML structure (not displayed, if all parameters are stored in the same root location)
+* Parameter type
+* Namespaces for path elements (from more general to more specific)
+* Presence and type of sensitive data transmitted by this parameter
+* Information about parameter changes (new, unused)
+* Date and time when parameter value was last transferred by requests
+
+<a name="data_format_soap"></a>**Format and data type**
+
+In SOAP operation details, in the **Type** column for parameters and headers, Wallarm indicates the data format identified through traffic analysis.
+
+For SOAP operations, it is a limited set from the [built-in primitive XML data types](https://www.w3.org/TR/xmlschema-2/#built-in-primitive-datatypes):
+
+* soapTypeString   = `String`
+* soapTypeBoolean  = `Boolean`
+* soapTypeFloat    = `Float`
+* soapTypeDecimal  = `Decimal`
+* soapTypeDuration = `Duration`
+* soapTypeURI      = `URI`
 
 ## Endpoint activities
 
-### Attacks
-
-Number of attacks on API endpoints for the last 7 days are displayed in the **Hits** column. You can request displaying only attacked endpoints by selecting in filters: **Others** → **Attacked endpoints**.
-
-To see attacks to some endpoint, click number in the **Hits** column:
-
-![API endpoint - open events](../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
-
-The **Attacks** section will be displayed with the [filter applied](../user-guides/search-and-filters/use-search.md):
-
-```
-attacks last 7 days endpoint_id:<YOUR_ENDPOINT_ID>
-```
-
-You can also copy some endpoint URL to the clipboard and use it to search for the events. To do this, in this endpoint menu select **Copy URL**.
-
-### All activities
-
-The number of all requests related to the endpoint is displayed in the **Requests** column. Click this number to open the [**API Sessions**](../api-sessions/overview.md) section with the list of user sessions for the last week with these requests.
+The number of requests related to the endpoint is displayed in the **Requests** column. Click this number to open the [**API Sessions**](../api-sessions/overview.md) section with the list of user sessions for the last week with these requests.
 
 Within each found session, only requests to your endpoint will be initially displayed - in session, remove filter by endpoint to see all requests for context.
 
 A structured view of session activity helps in understanding your endpoint place in malicious and legitimate activities, its relation to sensitive business flows and required protection measures.
 
-## Creating rules for API endpoints
+## Variability
+
+### Path variability
+
+Without unifying variable path segments, the same logical endpoint would appear many times in your inventory—once per distinct value (e.g., one entry per user ID). That would inflate the catalog, make it hard to see your real API surface, and complicate risk analysis and change tracking. API Discovery normalizes these varying segments so you get one endpoint per unique path pattern and can manage and secure your APIs effectively.
+
+These varying segments are diverse elements in URLs, such as user IDs. API Discovery **automatically** detects them for UUID, INTEGER, FLOAT and HEX path segment types. In some specific cases, automatic variability can work on a wider scope of parameter types.
+
+* `/api/users/profile/a1b2c3d4-e5f6-7890-1234-567890abcdef12`
+* `/api/users/profile/f0e9d8c7-b6a5-4321-fedc-ba9876543210`
+* `/api/users/profile/1a2b3c4d-5e6f-7080-9102-34567890fedc`
+
+The module unifies such elements into the `{parameter_X}` format in the endpoint path. For the example above you therefore get one endpoint instead of three:
+
+* `/api/users/profile/{parameter_1}`
+
+Click the endpoint to expand its parameters and see which type (UUID, INTEGER, FLOAT or HEX) was automatically detected for each unified parameter.
+
+In endpoint path string, click the `{parameter_1}` unified path element to review its info. Note that automatically detected variability cannot be disabled or modified.
+
+![API Discovery - variability in path](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-variability-in-path.png)
+
+Besides automatic one, API Discovery provides [custom manual variability](setup.md#custom-manual-variability).
+
+### Host variability
+
+Besides path variability, API Discovery provides automatic **host variability** as well.
+
+## CSV reports
+
+You can download the report on your API inventory in CSV format:
+
+1. Optionally, apply filters. Only data remaining after filter apply will go to report.
+1. Click **Download CSV**.
+
+    This will instantly generate a CSV file with list of your APIs, including all key attributes, including risk score, sensitive data types and more.
+
+    !!! info "No parameter information"
+        The report does not include the information on API endpoint parameters.
+
+## Notifications
+
+You can [setup](setup.md#notifications) API Discovery notifications to be sent to your personal email (the one you use to log in) and to any additional emails:
+
+* Daily endpoint changes
+* Hourly endpoint changes
+
+The notification will include both [changed and new](track-changes.md) endpoints. By default, the notification is disabled.
+
+<!--## Creating rules for API endpoints
 
 You can quickly create a new [custom rule](../user-guides/rules/rules.md) from any endpoint of API inventory: 
 
@@ -141,3 +196,4 @@ To export, in Wallarm Console → **API Discovery**, use the **OAS/CSV** option.
 
 !!! warning "API host information in downloaded Swagger file"
     If a discovered API inventory contains several API hosts, endpoints from all API hosts will be included in the downloaded file. Currently, the API host information is not included in the file.
+-->
