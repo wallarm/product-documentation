@@ -91,12 +91,12 @@ Everything you need to discover your APIs, MCPs, and AI agents, protect them fro
     <h3 class="icon-homepage deployment-title"><a href="./installation/supported-deployment-options/">Deployment <span class="card-arrow">→</span></a></h3>
     <p class="card-description">Deploy Wallarm using managed, self-hosted, or connector-based options.</p>
     <p><ul>
+      <li><a href="./installation/supported-deployment-options/">All deployment options</a></li>
       <li><a href="./installation/security-edge/overview/">Security Edge (Managed)</a></li>
-      <li><a href="./admin-en/installation-kubernetes-en/">Kubernetes</a></li>
-      <li><a href="./installation/cloud-platforms/aws/docker-container/">Cloud Platforms</a></li>
-      <li><a href="./installation/connectors/overview/">Connectors</a></li>
-      <li><a href="./installation/native-node/all-in-one/">Self-Hosted Node</a></li>
-      <li><a href="./installation/oob/overview/">Out-of-Band</a></li>
+      <li><a href="./installation/supported-deployment-options/#kubernetes">Kubernetes</a></li>
+      <li><a href="./installation/supported-deployment-options/#cloud-platforms">Cloud Platforms</a></li>
+      <li><a href="./installation/supported-deployment-options/#api-gateways">API Gateways</a></li>
+      <li><a href="./installation/supported-deployment-options/#cdn">CDN</a></li>
     </ul></p>
   </div>
 
