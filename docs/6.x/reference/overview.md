@@ -4,8 +4,6 @@ This section provides reference materials, technical specifications, and resourc
 
 ## What's Included
 
-* **[What's New](../news.md)** - Latest updates, releases, and changelog for the Wallarm platform.
-
 * **API Reference**
     * [Overview](../api/overview.md) - Introduction to the Wallarm API
     * [Request Examples](../api/request-examples.md) - Common API usage examples
