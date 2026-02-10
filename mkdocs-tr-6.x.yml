@@ -241,8 +241,6 @@ nav:
         - API Güvenlik Duvarı Metrikleri: admin-en/apifw-metrics.md
       - Yerel Düğüm Metrikleri:
         - Genel Bakış: admin-en/native-node-metrics.md
-        - Postanalitik Metrikleri: admin-en/native-node-metrics-wstore.md
-        - Çalışma Zamanı Metrikleri: admin-en/native-node-metrics-gonode.md
       - İstatistik Hizmeti: admin-en/configure-statistics-service.md
       - Düğüm Günlüğü: admin-en/configure-logging.md
       - Yük Devretme Yapılandırması: admin-en/configure-backup-en.md

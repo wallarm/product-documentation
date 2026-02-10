@@ -242,8 +242,6 @@ nav:
         - API ファイアウォールメトリクス: admin-en/apifw-metrics.md
       - ネイティブノードメトリクス:
         - 概要: admin-en/native-node-metrics.md
-        - ポストアナリティクスメトリクス: admin-en/native-node-metrics-wstore.md
-        - ランタイムメトリクス: admin-en/native-node-metrics-gonode.md
       - 統計サービス: admin-en/configure-statistics-service.md
       - ノードログ記録: admin-en/configure-logging.md
       - フェイルオーバー設定: admin-en/configure-backup-en.md
