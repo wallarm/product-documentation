@@ -372,6 +372,14 @@ Tudo o que vocÃª precisa para descobrir suas APIs, MCPs e agentes de IA, protegÃ
 /* Tablet and smaller */
 @media screen and (max-width: 959px) {
   .homepage-actions { display: none !important; }
+
+  .homepage .md-content__inner h1+p, .admonition {
+    max-width: unset !important;
+  }
+}
+
+.homepage .md-content__inner h1+p {
+  max-width: unset !important;
 }
 
 /* Desktop-only homepage search styling */
