@@ -16,21 +16,15 @@ Bu bölüm, Wallarm dağıtımınızın bakımı, izlenmesi ve yükseltilmesi ko
 
 * **İzleme ve Metrikler**
     * **NGINX Düğüm Metrikleri**
-        * [Genel Bakış](../admin-en/monitoring/intro.md) - Metrik toplama sistemine giriş
-        * [Metrikleri Alma Yöntemleri](../admin-en/monitoring/fetching-metrics.md) - Düğüm metriklerini alma yöntemleri
-        * [Mevcut Metrikler](../admin-en/monitoring/available-metrics.md) - Mevcut metriklerin tam listesi
-        * **Metrikleri Harici Sistemlere Aktarma**
-            * **Grafana**
-                * [collectd aracılığıyla InfluxDB'ye aktarma](../admin-en/monitoring/network-plugin-influxdb.md) - collectd ağ eklentisini kullanma
-                * [collectd aracılığıyla Graphite'a aktarma](../admin-en/monitoring/write-plugin-graphite.md) - collectd yazma eklentisini kullanma
-                * [Grafana'da Metriklerle Çalışma](../admin-en/monitoring/working-with-grafana.md) - Düğüm metriklerini görselleştirme
-            * **Nagios**
-                * [collectd-nagios aracılığıyla aktarma](../admin-en/monitoring/collectd-nagios.md) - collectd-nagios yardımcı programını kullanma
-                * [Nagios'ta Metriklerle Çalışma](../admin-en/monitoring/working-with-nagios.md) - Düğüm metriklerini izleme
-            * **Zabbix**
-                * [collectd-nagios aracılığıyla aktarma](../admin-en/monitoring/collectd-zabbix.md) - collectd-nagios yardımcı programını kullanma
-                * [Zabbix'te Metriklerle Çalışma](../admin-en/monitoring/working-with-zabbix.md) - Düğüm metriklerini izleme
-    * [İstatistik Servisi](../admin-en/configure-statistics-service.md) - İstatistik toplamayı yapılandırma
+        * [Genel Bakış](../admin-en/nginx-node-metrics.md) - NGINX düğümü metrik toplama sistemine giriş
+        * [Postanalitik Metrikleri](../admin-en/wstore-metrics.md) - Postanalitik modülü metrikleri
+        * [wcli Kontrolör Metrikleri](../admin-en/wcli-metrics.md) - wcli kontrolör metrikleri
+        * [API Güvenlik Duvarı Metrikleri](../admin-en/apifw-metrics.md) - API güvenlik duvarı metrikleri
+    * **Yerel Düğüm Metrikleri**
+        * [Genel Bakış](../admin-en/native-node-metrics.md) - Yerel düğüm metrik toplama sistemine giriş
+        * [Postanalitik Metrikleri](../admin-en/native-node-metrics-wstore.md) - Postanalitik modülü metrikleri
+        * [Çalışma Zamanı Metrikleri](../admin-en/native-node-metrics-gonode.md) - Çalışma zamanı metrikleri
+    * [İstatistik Hizmeti](../admin-en/configure-statistics-service.md) - İstatistik toplamayı yapılandırma
     * [Düğüm Günlükleme](../admin-en/configure-logging.md) - Günlük seviyelerini ve çıktıyı yapılandırma
     * [Yük Devretme Yapılandırması](../admin-en/configure-backup-en.md) - Yük devretme mekanizmalarını kurma
     * [Sağlık Kontrolü](../admin-en/uat-checklist-en.md) - Düğüm sağlığını ve işlevselliğini doğrulama

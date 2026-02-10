@@ -14,26 +14,26 @@ Esta seção fornece orientações abrangentes sobre manutenção, monitoramento
     * [Impressão digital JA3](../admin-en/enabling-ja3.md) - Habilitar impressão digital TLS para segurança aprimorada
     * [Provedor Terraform](../admin-en/managing/terraform-provider.md) - Gerenciar infraestrutura Wallarm como código
 
-* **Monitoramento e métricas**
-    * **Métricas de nó NGINX**
-        * [Visão geral](../admin-en/monitoring/intro.md) - Introdução ao sistema de coleta de métricas
-        * [Como buscar métricas](../admin-en/monitoring/fetching-metrics.md) - Métodos para recuperar métricas de nó
-        * [Métricas disponíveis](../admin-en/monitoring/available-metrics.md) - Lista completa de métricas disponíveis
-        * **Exportando métricas para sistemas externos**
+* **Monitoramento e Métricas**
+    * **Métricas de Nó NGINX**
+        * [Visão Geral](../admin-en/monitoring/intro.md) - Introdução ao sistema de coleta de métricas
+        * [Como Buscar Métricas](../admin-en/monitoring/fetching-metrics.md) - Métodos para recuperar métricas de nó
+        * [Métricas Disponíveis](../admin-en/monitoring/available-metrics.md) - Lista completa de métricas disponíveis
+        * **Exemplos de Exportação e Trabalho com Métricas**
             * **Grafana**
-                * [Exportar para InfluxDB via collectd](../admin-en/monitoring/network-plugin-influxdb.md) - Usando plugin de rede collectd
-                * [Exportar para Graphite via collectd](../admin-en/monitoring/write-plugin-graphite.md) - Usando plugin de escrita collectd
-                * [Trabalhando com métricas no Grafana](../admin-en/monitoring/working-with-grafana.md) - Visualizar métricas de nó
+                * [Exportando Métricas para InfluxDB via Plugin de Rede collectd](../admin-en/monitoring/network-plugin-influxdb.md) - Usando plugin de rede collectd
+                * [Exportando Métricas para Graphite via Plugin de Escrita collectd](../admin-en/monitoring/write-plugin-graphite.md) - Usando plugin de escrita collectd
+                * [Trabalhando com Métricas do Nó de Filtro no Grafana](../admin-en/monitoring/working-with-grafana.md) - Visualizar métricas de nó
             * **Nagios**
-                * [Exportar via collectd-nagios](../admin-en/monitoring/collectd-nagios.md) - Usando utilitário collectd-nagios
-                * [Trabalhando com métricas no Nagios](../admin-en/monitoring/working-with-nagios.md) - Monitorar métricas de nó
+                * [Exportando Métricas para Nagios via Utilitário collectd-nagios](../admin-en/monitoring/collectd-nagios.md) - Usando utilitário collectd-nagios
+                * [Trabalhando com Métricas do Nó de Filtro no Nagios](../admin-en/monitoring/working-with-nagios.md) - Monitorar métricas de nó
             * **Zabbix**
-                * [Exportar via collectd-nagios](../admin-en/monitoring/collectd-zabbix.md) - Usando utilitário collectd-nagios
-                * [Trabalhando com métricas no Zabbix](../admin-en/monitoring/working-with-zabbix.md) - Monitorar métricas de nó
-    * [Serviço de estatísticas](../admin-en/configure-statistics-service.md) - Configurar coleta de estatísticas
-    * [Registro de nó](../admin-en/configure-logging.md) - Configurar níveis de log e saída
-    * [Configuração de failover](../admin-en/configure-backup-en.md) - Configurar mecanismos de failover
-    * [Verificação de integridade](../admin-en/uat-checklist-en.md) - Verificar integridade e funcionalidade do nó
+                * [Exportando Métricas para Zabbix via Utilitário collectd-nagios](../admin-en/monitoring/collectd-zabbix.md) - Usando utilitário collectd-nagios
+                * [Trabalhando com o Nó de Filtro no Zabbix](../admin-en/monitoring/working-with-zabbix.md) - Monitorar métricas de nó
+    * [Serviço de Estatísticas](../admin-en/configure-statistics-service.md) - Configurar coleta de estatísticas
+    * [Registro de Nó](../admin-en/configure-logging.md) - Configurar níveis de log e saída
+    * [Configuração de Failover](../admin-en/configure-backup-en.md) - Configurar mecanismos de failover
+    * [Verificação de Saúde](../admin-en/uat-checklist-en.md) - Verificar integridade e funcionalidade do nó
 
 * **Atualizações e migração**
     * [Política de versionamento](../updating-migrating/versioning-policy.md) - Entender o versionamento e ciclo de vida de suporte do Wallarm

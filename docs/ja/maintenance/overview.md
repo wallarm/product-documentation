@@ -16,22 +16,16 @@
 
 * **監視とメトリクス**
     * **NGINXノードメトリクス**
-        * [概要](../admin-en/monitoring/intro.md) - メトリクス収集システムの紹介
-        * [メトリクスの取得方法](../admin-en/monitoring/fetching-metrics.md) - ノードメトリクスの取得方法
-        * [利用可能なメトリクス](../admin-en/monitoring/available-metrics.md) - 利用可能なメトリクスの完全なリスト
-        * **外部システムへのメトリクスエクスポート**
-            * **Grafana**
-                * [collectd経由でInfluxDBへエクスポート](../admin-en/monitoring/network-plugin-influxdb.md) - collectdネットワークプラグインの使用
-                * [collectd経由でGraphiteへエクスポート](../admin-en/monitoring/write-plugin-graphite.md) - collectd writeプラグインの使用
-                * [Grafanaでメトリクスを操作](../admin-en/monitoring/working-with-grafana.md) - ノードメトリクスの可視化
-            * **Nagios**
-                * [collectd-nagios経由でエクスポート](../admin-en/monitoring/collectd-nagios.md) - collectd-nagiosユーティリティの使用
-                * [Nagiosでメトリクスを操作](../admin-en/monitoring/working-with-nagios.md) - ノードメトリクスの監視
-            * **Zabbix**
-                * [collectd-nagios経由でエクスポート](../admin-en/monitoring/collectd-zabbix.md) - collectd-nagiosユーティリティの使用
-                * [Zabbixでメトリクスを操作](../admin-en/monitoring/working-with-zabbix.md) - ノードメトリクスの監視
+        * [概要](../admin-en/nginx-node-metrics.md) - NGINXノードのメトリクス収集システムの紹介
+        * [ポストアナリティクスメトリクス](../admin-en/wstore-metrics.md) - ポストアナリティクスモジュールのメトリクス
+        * [wcliコントローラーメトリクス](../admin-en/wcli-metrics.md) - wcliコントローラーのメトリクス
+        * [APIファイアウォールメトリクス](../admin-en/apifw-metrics.md) - APIファイアウォールのメトリクス
+    * **ネイティブノードメトリクス**
+        * [概要](../admin-en/native-node-metrics.md) - ネイティブノードのメトリクス収集システムの紹介
+        * [ポストアナリティクスメトリクス](../admin-en/native-node-metrics-wstore.md) - ポストアナリティクスモジュールのメトリクス
+        * [ランタイムメトリクス](../admin-en/native-node-metrics-gonode.md) - ランタイムのメトリクス
     * [統計サービス](../admin-en/configure-statistics-service.md) - 統計収集の設定
-    * [ノードログ](../admin-en/configure-logging.md) - ログレベルと出力の設定
+    * [ノードログ記録](../admin-en/configure-logging.md) - ログレベルと出力の設定
     * [フェイルオーバー設定](../admin-en/configure-backup-en.md) - フェイルオーバーメカニズムの設定
     * [ヘルスチェック](../admin-en/uat-checklist-en.md) - ノードの健全性と機能の確認
 

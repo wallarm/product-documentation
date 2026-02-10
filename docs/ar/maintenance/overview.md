@@ -15,23 +15,23 @@
     * [موفر Terraform](../admin-en/managing/terraform-provider.md) - إدارة البنية التحتية لـ Wallarm كرمز
 
 * **المراقبة والمقاييس**
-    * **مقاييس عقدة NGINX**
+    * **مقاييس عُقدة NGINX**
         * [نظرة عامة](../admin-en/monitoring/intro.md) - مقدمة لنظام جمع المقاييس
         * [كيفية جلب المقاييس](../admin-en/monitoring/fetching-metrics.md) - طرق استرداد مقاييس العقدة
         * [المقاييس المتاحة](../admin-en/monitoring/available-metrics.md) - قائمة كاملة بالمقاييس المتاحة
-        * **تصدير المقاييس إلى الأنظمة الخارجية**
+        * **أمثلة على تصدير المقاييس والعمل معها**
             * **Grafana**
-                * [التصدير إلى InfluxDB عبر collectd](../admin-en/monitoring/network-plugin-influxdb.md) - استخدام المكون الإضافي للشبكة collectd
-                * [التصدير إلى Graphite عبر collectd](../admin-en/monitoring/write-plugin-graphite.md) - استخدام المكون الإضافي للكتابة collectd
-                * [العمل مع المقاييس في Grafana](../admin-en/monitoring/working-with-grafana.md) - تصور مقاييس العقدة
+                * [تصدير المقاييس إلى InfluxDB عبر الإضافة الشبكية collectd](../admin-en/monitoring/network-plugin-influxdb.md) - استخدام إضافة الشبكة collectd
+                * [تصدير المقاييس إلى Graphite عبر إضافة الكتابة collectd](../admin-en/monitoring/write-plugin-graphite.md) - استخدام إضافة الكتابة collectd
+                * [العمل مع مقاييس عُقدة التصفية في Grafana](../admin-en/monitoring/working-with-grafana.md) - تصور مقاييس العقدة
             * **Nagios**
-                * [التصدير عبر collectd-nagios](../admin-en/monitoring/collectd-nagios.md) - استخدام أداة collectd-nagios
-                * [العمل مع المقاييس في Nagios](../admin-en/monitoring/working-with-nagios.md) - مراقبة مقاييس العقدة
+                * [تصدير المقاييس إلى Nagios عبر الأداة collectd-nagios](../admin-en/monitoring/collectd-nagios.md) - استخدام أداة collectd-nagios
+                * [العمل مع مقاييس عُقدة التصفية في Nagios](../admin-en/monitoring/working-with-nagios.md) - مراقبة مقاييس العقدة
             * **Zabbix**
-                * [التصدير عبر collectd-nagios](../admin-en/monitoring/collectd-zabbix.md) - استخدام أداة collectd-nagios
-                * [العمل مع المقاييس في Zabbix](../admin-en/monitoring/working-with-zabbix.md) - مراقبة مقاييس العقدة
+                * [تصدير المقاييس إلى Zabbix عبر الأداة collectd-nagios](../admin-en/monitoring/collectd-zabbix.md) - استخدام أداة collectd-nagios
+                * [العمل مع عُقدة التصفية في Zabbix](../admin-en/monitoring/working-with-zabbix.md) - مراقبة مقاييس العقدة
     * [خدمة الإحصائيات](../admin-en/configure-statistics-service.md) - تكوين جمع الإحصائيات
-    * [تسجيل العقدة](../admin-en/configure-logging.md) - تكوين مستويات السجل والإخراج
+    * [سجل العُقدة](../admin-en/configure-logging.md) - تكوين مستويات السجل والإخراج
     * [تكوين الفشل الاحتياطي](../admin-en/configure-backup-en.md) - إعداد آليات الفشل الاحتياطي
     * [فحص الصحة](../admin-en/uat-checklist-en.md) - التحقق من صحة العقدة ووظائفها
 
