@@ -145,6 +145,7 @@ nav:
     - AI Protection:
       - AI Agent Protection: agentic-ai/agentic-ai-protection.md
       - AI Payload Inspection: agentic-ai/ai-payload-inspection.md
+      - Rogue MCP Inspection: agentic-ai/rogue-mcp-inspection.md
 
   # ============================================================================
   # SECTION 6: DEPLOYMENT
