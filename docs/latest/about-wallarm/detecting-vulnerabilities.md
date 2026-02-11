@@ -33,7 +33,7 @@ To detect vulnerabilities in the applications and APIs, Wallarm uses the followi
     !!! tip ""
         Available in the **Security Testing** [subscription](../about-wallarm/subscription-plans.md). **Does not require** installed [Wallarm node](../about-wallarm/overview.md#how-wallarm-works).
 
-* [**API Security Testing via Postman**](#api-security-testing-via-postman): safe, passive security testing of Postman collections and OpenAPI specs from within [Postman Agent Mode](https://learning.postman.com/docs/agent-mode/get-started)—detects authentication gaps, data leaks, over-permissive endpoints, schema issues, and basic BOLA/BOPLA; results in the Agent chat and in Wallarm Cloud.
+* [**API Security Testing via Postman**](#api-security-testing-via-postman): safe, passive security testing of Postman collections from within [Postman Agent Mode](https://learning.postman.com/docs/agent-mode/get-started)—detects authentication gaps, data leaks, over-permissive endpoints, schema issues, and basic BOLA/BOPLA; results in the Agent chat and in Wallarm Cloud.
 
     !!! tip ""
         Available in the **Rogue MCP** [subscription](../about-wallarm/subscription-plans.md#rogue-mcp). **Does not require** installed [Wallarm node](../about-wallarm/overview.md#how-wallarm-works).
@@ -77,7 +77,7 @@ Schema-Based Testing capabilities:
 
 ### API Security Testing via Postman <a href="subscription-plans.md#rogue-mcp"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm's [API Security Testing via Postman](../vulnerability-detection/api-security-testing-via-postman/overview.md) runs safe, passive security tests on your Postman collections and OpenAPI specs from inside Postman. You ask in natural language (e.g., "test my collection for security issues") and get results in a few minutes—auth gaps, data leaks, over-permissive endpoints, schema violations, sensitive data exposure, and basic BOLA/BOPLA indicators—with explanations and remediation guidance. Results appear in the Postman AI Agent chat and in Wallarm Cloud (Security Testing → Rogue MCP → Test runs; Security Issues).
+Wallarm's [API Security Testing via Postman](../vulnerability-detection/api-security-testing-via-postman/overview.md) runs safe, passive security tests on your Postman collections from inside Postman. You ask in natural language (e.g., "test my collection for security issues") and get results in a few minutes—auth gaps, data leaks, over-permissive endpoints, schema violations, sensitive data exposure, and basic BOLA/BOPLA indicators—with explanations and remediation guidance. Results appear in the Postman AI Agent chat and in Wallarm Cloud (Security Testing → Rogue MCP → Test runs; Security Issues).
 
 API Security Testing via Postman capabilities:
 
