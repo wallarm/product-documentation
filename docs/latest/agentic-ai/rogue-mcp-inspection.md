@@ -15,6 +15,17 @@ You can access Rogue MCP Inspection via **Wallarm Rogue MCP** Wallarm's MCP serv
 
 This feature is free.
 
+<div>
+  <script async src="https://js.storylane.io/js/v2/storylane.js"></script>
+  <div class="sl-embed" style="position:relative;padding-bottom:calc(60.70% + 25px);width:100%;height:0;transform:scale(1)">
+    <iframe loading="lazy" class="sl-demo" src="https://wallarm.storylane.io/demo/uw9kwraim34e?embed=inline" name="sl-embed" allow="fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
+  </div>
+</div>
+
+### Requirements
+
+* [Postman Desktop Agent](https://learning.postman.com/docs/getting-started/basics/about-postman-agent/#postman-desktop-agent) locally installed and running on your computer and connected to Postman - needed to run MCP inspection on your computer right from the Postman interface.
+
 ### 1. Add  Wallarm's MCP server
 
 1. In Postman, access its AI Agent.
@@ -42,7 +53,7 @@ This feature is free.
         ```
 
     !!! info "WALLARM_API_TOKEN"
-        `WALLARM_API_TOKEN` is not required for the Rogue MCP Inspection but is needed for using the additional functions of Wallarm's MCP server.
+        `WALLARM_API_TOKEN` is not required for the Rogue MCP Inspection but is needed for using the [other tools](#other-tools) of Wallarm's MCP server.
 
 ### 2. Ask to inspect for rogue MCP
 
@@ -51,3 +62,7 @@ With Wallarm's MCP server in place, tell Postman's AI Agent to check for rogue M
 ### 3. Learn the result
 
 Postman's AI Agent will give you an answer with the test results and suggested mitigation measures in case if any security issues were found.
+
+## Other tools
+
+Besides Rogue MCP Inspection, **Wallarm Rogue MCP** Wallarm's MCP server provides other tools for security testing, such as TBD.
