@@ -65,4 +65,4 @@ Postman's AI Agent will give you an answer with the test results and suggested m
 
 ## Other tools
 
-Besides Rogue MCP Inspection, **Wallarm Rogue MCP** Wallarm's MCP server provides other tools for security testing, such as TBD.
+Besides Rogue MCP Inspection, **Wallarm Rogue MCP** Wallarm's MCP server provides other tools for security testing, such as [API Security Testing via Postman](../vulnerability-detection/api-security-testing-via-postman/overview.md)—safe, passive testing of Postman collections and OpenAPI specs for auth gaps, data leaks, and design-level issues.
