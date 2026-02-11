@@ -139,13 +139,31 @@ AASM only finds hosts on the perimeter, while APID is everywhere a node is locat
 
 ## False positives
 
-**False positive** occurs when attack signs are detected in the legitimate request or when legitimate entity is qualified as a vulnerability. [More details on false positives in attack detection →](protecting-against-attacks.md#false-positives)
+False positives in vulnerability scanning may occur due to unique attributes or behaviors of each protected application. For example, similar responses to similar requests might signal an active vulnerability in one application, while for another, this may be completely expected and safe behavior.
 
-False positives in vulnerability scanning may occur due to the protected application specificities. Similar responses to similar requests may indicate an active vulnerability in one protected application and be expected behavior of another protected application.
+**When useful**
 
-If a false positive for a vulnerability is detected, you can add an appropriate mark to the vulnerability in Wallarm Console. A vulnerability marked as a false positive will be closed and will not be rechecked.
+Marking issues as false positives is useful because it allows you to:
 
-If the detected vulnerability exists in the protected application but cannot be fixed, we recommend setting up the [**Create a virtual patch**](../user-guides/rules/vpatch-rule.md) rule. This rule will allow blocking attacks exploiting the detected type of vulnerability and will eliminate the risk of an incident.
+* Tailor security findings to your specific environment.
+* Reduce alert noise and avoid distractions from irrelevant findings.
+* Focus on vulnerabilities that truly require attention.
+* Prevent unnecessary effort spent on known safe cases.
+* Ensure security teams can efficiently prioritize and address real threats.
+
+**Two ways of creating**
+
+You can mark security issues as false positives in two ways:
+
+* **Manually**: In the issue details in Wallarm Console, add an appropriate mark to the vulnerability. A vulnerability marked as a false positive will be closed and will not be rechecked.
+* **Automatically**: Create [**false positive rules**](../user-guides/vulnerabilities.md#false-positive-rules) in **Security Issues** → **Configure** → **False positive rules** to automatically mark matching issues as false positives or prevent them from being created based on user-defined conditions.
+
+**Common scenarios for automatic rules**
+
+* Automatically mark as false all future vulnerabilities for a specific parameter or endpoint
+* Do not create vulnerabilities for a specific host (e.g. honeypot, demo host)
+* Do not show vulnerabilities of a specific type at all
+
 
 ## Managing discovered security issues
 
