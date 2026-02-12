@@ -897,6 +897,12 @@
 /4.10/api-sessions/ /4.10
 /4.10/news/ /4.10
 /4.10/api-attack-surface/ /4.10
+/4.10/maintenance/ /4.10
+/4.10/agentic-ai/ /4.10
+/4.10/api-attack-surface/ /4.10
+/4.10/api-sessions/ /4.10
+/4.10/platform-management/ /4.10
+/4.10/reference/ /4.10
 
 /installation/connectors/kong-api-gateway/ /installation/connectors/kong-ingress-controller/
 
