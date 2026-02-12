@@ -4,7 +4,6 @@ command = """
 pip3 install --no-cache-dir -r requirements.txt &&
 npm install pngquant &&
 INSIDERS=true mkdocs build -f mkdocs-6.x.yml &&
-INSIDERS=true mkdocs build -f mkdocs-7.x.yml &&
 INSIDERS=true mkdocs build -f mkdocs-5.0.yml &&
 INSIDERS=true mkdocs build -f mkdocs-deprecated.yml &&
 INSIDERS=true mkdocs build -f mkdocs-ja-6.x.yml &&
