@@ -13,6 +13,7 @@ COPY . .
 
 FROM latest as all
 RUN mkdocs build -f mkdocs-6.x.yml
+RUN mkdocs build -f mkdocs-7.x.yml
 RUN mkdocs build -f mkdocs-5.0.yml
 RUN mkdocs build -f mkdocs-deprecated.yml
 RUN mkdocs build -f mkdocs-ja-6.x.yml
