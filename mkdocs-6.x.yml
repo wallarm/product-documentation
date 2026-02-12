@@ -182,6 +182,7 @@ nav:
       - Istio: installation/connectors/istio.md
       - NGINX Ingress Controller:
         - Deployment: admin-en/installation-kubernetes-en.md
+        - Deployment (NEW): admin-en/installation-kubernetes-en-new.md
         - Configuration Options: admin-en/configure-kubernetes-en.md
         - Configuration Options (NEW): admin-en/configure-kubernetes-en-new.md
         - Migration (NEW): admin-en/migration-new.md
