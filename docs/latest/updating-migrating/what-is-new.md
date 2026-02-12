@@ -1,245 +1,404 @@
-# What is New in Wallarm Node 6.x and 0.14.x
+# What is New in Wallarm Ingress Controller 7.x
 
-This changelog covers updates for NGINX Node 6.x and Native Node 0.14.x+. If upgrading from an older version, refer to [this](../updating-migrating/older-versions/what-is-new.md) document.
+Wallarm Node 7.x introduces a new deployment artifact for Kubernetes environments — the **Wallarm Ingress Controller based on F5 NGINX Ingress Controller** (internally referred to as **ingress-nextgen**).
 
-For the detailed changelog on minor versions of the Wallarm Node, refer to the [NGINX Node artifact inventory](node-artifact-versions.md) or [Native Node artifact inventory](native-node/node-artifact-versions.md).
+This release replaces the previous controller based on the Community Ingress NGINX project, [which has been retired](https://blog.nginx.org/blog/the-ingress-nginx-alternative-open-source-nginx-ingress-controller-for-the-long-term) by the Kubernetes community. For details on the retirement timeline, support windows, and alternative deployment options, see [Migration Plan for Wallarm NGINX Ingress Controller Customers](nginx-ingress-retirement.md).
 
-This release introduces key architectural improvements aimed at enhancing performance and maintainability of the Wallarm Node. These updates also lay the groundwork for upcoming features.
+This page focuses on what changes technically in 7.x and what to prepare for when migrating from 6.x.
 
-## Replacing Tarantool with wstore for postanalytics
+Throughout this document, the two controllers are referred to as:
 
-Wallarm Node now uses **wstore, a Wallarm-developed service**, instead of Tarantool for local postanalytics processing.
+* **Community-based (6.x)** — the Wallarm Ingress Controller built on the [Community Ingress NGINX](https://github.com/kubernetes/ingress-nginx) project (retired)
+* **F5-based (7.x)** — the Wallarm Ingress Controller built on the [F5 NGINX Ingress Controller](https://github.com/nginx/kubernetes-ingress) (ingress-nextgen)
 
-As a result, the following changes have been introduced to NGINX Node:
+## What stays the same
 
-* [All-in-one installer](../installation/nginx/all-in-one.md), [AWS](../installation/cloud-platforms/aws/ami.md)/[GCP](../installation/cloud-platforms/gcp/machine-image.md) images:
+The high-level architecture remains unchanged:
 
-    * The NGINX directive `wallarm_tarantool_upstream`, which defines the postanalytics module server address when deployed separately from other NGINX services, has been renamed to [`wallarm_wstore_upstream`](../admin-en/configure-parameters-en.md#wallarm_wstore_upstream).
+* Wallarm continues to run as an integrated part of the NGINX Ingress Controller
+* Your overall traffic flow, Wallarm Cloud connectivity, and security processing model remain consistent
+* Wallarm-specific detection and protection features work the same way
 
-        Backward compatibility preserved with a deprecation warning:
+Only the underlying Ingress Controller implementation changes — from Community Ingress NGINX to F5 NGINX Ingress Controller.
 
-        ```
-        2025/03/04 20:43:04 [warn] 3719#3719: "wallarm_tarantool_upstream" directive is deprecated, use "wallarm_wstore_upstream" instead in /etc/nginx/nginx.conf:19
-        ```
-    
-    * [Log file](../admin-en/configure-logging.md) renamed: `/opt/wallarm/var/log/wallarm/tarantool-out.log` → `/opt/wallarm/var/log/wallarm/wstore-out.log`.
-    * The new wstore configuration file `/opt/wallarm/wstore/wstore.yaml` replaces obsolete Tarantool configuration files such as `/etc/default/wallarm-tarantool` or `/etc/sysconfig/wallarm-tarantool`.
-    * The `tarantool` section in `/opt/wallarm/etc/wallarm/node.yaml` is now `wstore`. Backward compatibility preserved with a deprecation warning.
-* [Docker image](../admin-en/installation-docker-en.md):
+## What changes
 
-    * All the above changes are applied within the container.
-    * Previously, memory for Tarantool was allocated via the `TARANTOOL_MEMORY_GB` environment variable. Now, memory allocation follows the same principle but uses a new variable: `TARANTOOL_MEMORY_GB` → `SLAB_ALLOC_ARENA`.
-    * Adjusted the container's directory structure to align with Alpine Linux conventions. Specifically:
+There are important changes between the two controllers and in how Wallarm is integrated in each of them. The sections below cover every area you should review before migrating.
 
-        * Content from `/etc/nginx/modules-available` and `/etc/nginx/modules-enabled` has been moved to `/etc/nginx/modules`.
-        * Content from `/etc/nginx/sites-available` and `/etc/nginx/sites-enabled` has been moved to `/etc/nginx/http.d`.
-    
-    * The default `allow` value, specifying permitted IP addresses for the `/wallarm-status` service, is now 127.0.0.0/8 instead of 127.0.0.8/8.
-* [Kubernetes Ingress Controller](../admin-en/installation-kubernetes-en.md):
-    
-    * wstore runs as a separate dedicated pod (`ingress-controller-wallarm-wstore-<suffix>`), replacing the previous Tarantool postanalytics component.
-    * Helm values renamed: `controller.wallarm.tarantool` → `controller.wallarm.postanalytics`.
-* [Kubernetes Sidecar Controller](../installation/kubernetes/sidecar-proxy/deployment.md):
+!!! info "Upstream migration guide"
+    Since the F5-based controller is a different upstream project, many changes are not Wallarm-specific. Before migrating, we recommend also reviewing the official [F5 migration guide](https://docs.nginx.com/nginx-ingress-controller/install/migrate-ingress-nginx/) for a complete picture of differences.
 
-    * Helm values renamed: `postanalytics.tarantool.*` → [`postanalytics.wstore.*`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L625).
-    * The following Docker images have been removed from the Helm chart for Sidecar deployment:
+### Underlying controller
 
-        * [wallarm/ingress-collectd](https://hub.docker.com/r/wallarm/ingress-collectd)
-        * [wallarm/ingress-tarantool](https://hub.docker.com/r/wallarm/ingress-tarantool)
-        * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
-        * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
-        
-        These images have been replaced by the [wallarm/node-helpers](https://hub.docker.com/r/wallarm/node-helpers) image, which now runs the relevant services.
+| | Community-based (6.x) | F5-based (7.x) |
+| --- | --- | --- |
+| **Base project** | [Community Ingress NGINX](https://github.com/kubernetes/ingress-nginx) (retired) | [F5 NGINX Ingress Controller](https://github.com/nginx/kubernetes-ingress) |
+| **Upstream version** | 1.11.8 | 5.3.3 |
+| **NGINX version** | NGINX stable 1.25.x | NGINX stable 1.29.x |
+| **Base image** | Alpine Linux 3.22 | Alpine Linux 3.22 |
+| **Architecture support** | amd64, arm64 | amd64, arm64 |
+| **Kubernetes versions** | 1.26–1.30 | 1.27–1.35 |
 
-The described changes are incorporated into the Node upgrade instructions provided below.
+!!! warning "NGINX Plus is not supported"
+    The Wallarm Ingress Controller uses the **open-source** edition of the F5 NGINX Ingress Controller. NGINX Plus is not included and is not supported.
 
-## Removal of collectd
+### Helm chart and `values.yaml` structure
 
-The collectd service, previously installed on all filtering nodes, has been removed along with its related plugins. Metrics are now collected and sent using Wallarm's built-in mechanisms, reducing dependencies on external tools.
+The Helm chart name remains the same (`wallarm/wallarm-ingress`), but starting from version 7.x the `values.yaml` structure has been reworked.
 
-Use the [`/wallarm-status` endpoint](../admin-en/configure-statistics-service.md), which replaces collectd by providing the same metrics in Prometheus and JSON formats.
+While the same settings exist, they have been reorganized into different sections. You will need to craft a new `values.yaml` for the 7.x release.
 
-As a result of this change, also the following changed in the configuration rules:
+You can compare the full default values:
 
-* The `/opt/wallarm/etc/collectd/wallarm-collectd.conf.d/wallarm-tarantool.conf` collectd configuration file is no longer used.
-* If you previously used collectd to forward metrics via a network plugin, such as:
+* [Community-based `values.yaml` (6.x)](https://github.com/wallarm/ingress/blob/main/charts/ingress-nginx/values.yaml)
+* [F5-based `values.yaml` (7.x)](https://github.com/wallarm/ingress-nextgen/blob/main/charts/nginx-ingress/values.yaml)
 
+#### Key structural changes
+
+In the Community-based (6.x) chart, most Wallarm configuration lived under `controller.wallarm.*`. In the F5-based (7.x) chart, settings are split across several top-level sections:
+
+| Section | Purpose |
+| --- | --- |
+| `config.wallarm.*` | Wallarm Cloud connectivity and feature flags. |
+| `config.images.*` | Container image repositories and tags. |
+| `controller.*` | Kubernetes workload settings (replicas, affinity, resources, etc.) |
+| `controller.config.entries` | NGINX configuration (replaces `controller.config` ConfigMap). |
+| `postanalytics.*` | Postanalytics (wstore) workload — now a top-level section. |
+| `prometheus.*` | Predefined Prometheus scrape annotations (default port 9113). |
+| `prometheusExtended.*` | Extended VTS metrics (experimental). |
+
+#### Wallarm parameter mapping
+
+The table below maps the most commonly customized Wallarm parameters between the Community-based and F5-based charts:
+
+| Community-based (6.x) | F5-based (7.x) |
+| --- | --- |
+| `controller.wallarm.enabled` | `config.wallarm.enabled` |
+| `controller.wallarm.apiHost` | `config.wallarm.api.host` |
+| `controller.wallarm.apiPort` | `config.wallarm.api.port` |
+| `controller.wallarm.apiSSL` | `config.wallarm.api.ssl` |
+| `controller.wallarm.token` | `config.wallarm.api.token` |
+| `controller.wallarm.nodeGroup` | `config.wallarm.api.nodeGroup` |
+| `controller.wallarm.existingSecret.*` | `config.wallarm.api.existingSecret.*` |
+| `controller.wallarm.fallback` | `config.wallarm.fallback` |
+| `controller.wallarm.postanalytics.*` | `postanalytics.*` (top-level) |
+| `controller.wallarm.metrics.*` | Unchanged |
+| `controller.wallarm.wcliPostanalytics.metrics.*` | `postanalytics.wcli.metrics.*` |
+| `controller.wallarm.apiFirewall.*` | `config.apiFirewall.*` |
+| `controller.wallarm.apiFirewall.metrics.*` | Unchanged |
+| `controller.wallarm.<container>.extraEnvs` | `controller.wallarm.<component>.extraEnvs` or `postanalytics.<component>.extraEnvs` |
+| `controller.image` | `config.images` |
+| `controller.wallarm.helpers` | `config.images.helper` |
+| `controller.config` (NGINX ConfigMap) | `controller.config.entries` |
+| `controller.configAnnotations` | `controller.config.annotations` |
+| `validation.enableCel` | Unchanged |
+| `validation.forbidDangerousAnnotations` | Unchanged |
+
+#### Removed parameters
+
+The following Community-based (6.x) parameters are no longer available:
+
+| Removed parameter | Description |
+| --- | --- |
+| `controller.proxySetHeaders` | Use `controller.config.entries` or NGINX snippets instead. |
+| `controller.addHeaders` | Use `controller.config.entries` or NGINX snippets instead. |
+| `controller.admissionWebhooks.*` | Not applicable to the F5-based controller. |
+
+### Annotation namespace
+
+All annotations move from:
+
+```
+nginx.ingress.kubernetes.io/*
+```
+
+to:
+
+```
+nginx.org/*
+```
+
+This applies to both general NGINX annotations and Wallarm-specific annotations, e.g.:
+
+=== "Community-based (6.x)"
+    ```yaml
+    metadata:
+      annotations:
+        nginx.ingress.kubernetes.io/wallarm-mode: "monitoring"
+        nginx.ingress.kubernetes.io/wallarm-application: "42"
+        nginx.ingress.kubernetes.io/rewrite-target: "/$2"
     ```
-    LoadPlugin network
-
-    <Plugin "network">
-        Server "<Server IPv4/v6 address or FQDN>" "<Server port>"
-    </Plugin>
+=== "F5-based (7.x)"
+    ```yaml
+    metadata:
+      annotations:
+        nginx.org/wallarm-mode: "monitoring"
+        nginx.org/wallarm-application: "42"
+        nginx.org/rewrites: "serviceName=myservice rewrite=/$2"
     ```
 
-    you should now switch to scraping `/wallarm-status` via Prometheus.
+The set of supported **Wallarm-specific annotations** has not changed — only the prefix is different. For the full list of Wallarm annotations and their accepted values, see [Wallarm Ingress Controller annotations].
 
-## Mitigation Controls
+For the full mapping of general **NGINX annotations** between the two controllers, refer to the [F5 migration guide](https://docs.nginx.com/nginx-ingress-controller/install/migrate-ingress-nginx/#advanced-configuration-with-annotations).
 
-We introduce a unified management center for all Wallarm attack mitigation settings - [**Mitigation Controls**](../about-wallarm/mitigation-controls-overview.md). With mitigation controls you can:
+### Removed features
 
-* View and manage all Wallarm mitigation settings in one place.
-* Manage all in a unified way (all controls have similar configuration UI and options).
-* Easily overview the current mode of each control: is it active? is it just monitoring or also blocking?
-* Get quick overview of attacks caught by each control.
+The following features available in the Community-based controller are **not available** in the F5-based controller:
 
-![Mitigation Controls page in UI](../images/user-guides/mitigation-controls/mc-main-page.png)
+* Brotli compression (NGINX module)
+* ModSecurity (NGINX module)
+* Cookie-based sticky sessions (controller feature)
 
-### Enumeration attack protection
+### NGINX configuration
 
-!!! tip ""
-    [NGINX Node 6.1.0 and higher](node-artifact-versions.md) and [Native Node 0.14.1 and higher](native-node/node-artifact-versions.md)
+Default NGINX configuration values may differ between the two controllers. If you previously relied on fine-tuned settings (timeouts, gzip, SSL parameters, worker settings), review how they should be provided in the F5-based chart via:
 
-New level of protection from [enumeration attacks](../attacks-vulns-list.md#enumeration-attacks) comes with enumeration mitigation controls:
+* [Changes in the global configuration with ConfigMaps](https://docs.nginx.com/nginx-ingress-controller/install/migrate-ingress-nginx/#global-configuration-with-configmaps)
+* [`controller.config.entries`](https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/configmap-resource/) (replaces ConfigMap-based `controller.config`)
+* [Configuration snippets](https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/advanced-configuration-with-snippets/)
 
-* [Enumeration attack protection](../api-protection/enumeration-attack-protection.md)
-* [BOLA enumeration protection](../api-protection/enumeration-attack-protection.md)
-* [Forced browsing protection](../api-protection/enumeration-attack-protection.md)
-* [Brute force protection](../api-protection/enumeration-attack-protection.md)
+### Ingress resource validation
 
-Comparing to triggers that were used for this protection before, mitigation controls:
+The F5-based controller introduces [restrictions on Ingress resources](https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/basic-configuration/#restrictions). Configurations that were previously accepted may now be rejected or silently skipped.
 
-* Allow selecting which parameters will be monitored for enumeration attempts.
-* Allow advanced sophisticated filtering of which exact requests will be counted.
-* Provide deep integration with [API Sessions](../api-sessions/overview.md): the detected attacks are displayed within a corresponding session, providing you with full context of what was happening and why the session activities were marked as attack and blocked.
+Before switching production traffic, all Ingress manifests should be reviewed and validated against the F5-based controller.
 
-![BOLA protection mitigation control - example](../images/user-guides/mitigation-controls/mc-bola-example-01.png)
+!!! info "Mergeable Ingress pattern"
+    In some scenarios, you may need to use the [Mergeable Ingress](https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/cross-namespace-configuration/) pattern, where:
 
-### DoS protection
+    * A **master** Ingress defines the host
+    * Multiple **minion** Ingress resources define routes under that host
 
-!!! tip ""
-    [NGINX Node 6.1.0 and higher](node-artifact-versions.md) and [Native Node 0.14.1 and higher](native-node/node-artifact-versions.md)
+    This pattern is useful when multiple teams manage routes for the same hostname.
 
-The [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) is included in the [OWASP API Top 10 2023](../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks. Being a threat by itself (service slow-down or complete down by overload), this also serves as foundation to different attack types, for example, enumeration attacks. Allowing too many requests per time is one of the main causes of these risks.
+### Wallarm Policy Custom Resource Definition (CRD)
 
-Wallarm provides the new [**DoS protection**](../api-protection/dos-protection.md) mitigation control to help prevent excessive traffic to your API.
+The F5-based controller supports [Custom Resource Definitions](https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/) as an alternative to standard Ingress resources for advanced routing (canary deployments, traffic splitting, header-based routing).
 
-![DoS protection - JWT example](../images/api-protection/mitigation-controls-dos-protection-jwt.png)
+When using CRDs, Wallarm settings are configured via the **Policy** resource instead of annotations. Wallarm patches the upstream Policy CRD to add an optional `spec.wallarm` block — an alternative to Wallarm annotations that provides the same set of settings through a dedicated resource. The Policy is then referenced from `VirtualServer` or `VirtualServerRoute` routes.
 
-### GraphQL API Protection
+!!! info "Wallarm-provided CRDs"
+    If you plan to use the Wallarm Policy CRD (`spec.wallarm`), apply the **Wallarm-provided CRDs** instead of the upstream F5 CRDs. The Wallarm-provided CRDs include the patched Policy schema with the `wallarm` block.
 
-!!! tip ""
-    [NGINX Node 6.2.0 and higher](node-artifact-versions.md) and [Native Node 0.15.1 and higher](native-node/node-artifact-versions.md)
+**Policy fields:**
 
-[GraphQL API Protection](../api-protection/graphql-rule.md) can now be configured with the dedicated mitigation control (previously, only rules were accessible).
+| Field | Description | Values | Default |
+| --- | --- | --- | --- |
+| `mode` | Wallarm filtration mode. | `off`, `monitoring`, `safe_blocking`, `block` | — |
+| `modeAllowOverride` | Whether Wallarm Cloud settings can override the local mode. | `on`, `off`, `strict` | `on` |
+| `fallback` | Behavior when proton.db or custom ruleset cannot be loaded. | `on`, `off` | `on` |
+| `application` | Application ID used to separate traffic in Wallarm Cloud. | Positive integer | — |
+| `blockPage` | Custom block page (file path, named location, URL, or variable). | String | — |
+| `parseResponse` | Analyze responses from the application. | `on`, `off` | `on` |
+| `unpackResponse` | Decompress responses before analysis. | `on`, `off` | `on` |
+| `parseWebsocket` | Analyze WebSocket messages. | `on`, `off` | `off` |
+| `parserDisable` | Parsers to disable. | List: `cookie`, `zlib`, `htmljs`, `json`, `multipart`, `base64`, `percent`, `urlenc`, `xml`, `jwt` | — |
+| `partnerClientUUID` | Partner client UUID for multi-tenant setups. | UUID | — |
 
-### Default controls
+**Example — two policies with different modes referenced by routes:**
 
-Wallarm provides a set of [default mitigation controls](../about-wallarm/mitigation-controls-overview.md#default-controls) that, when enabled, significantly enhance the detection capabilities of the Wallarm platform. These controls are pre-configured to offer robust protection against a variety of common attack patterns. The current default mitigation controls include:
+```yaml
+apiVersion: k8s.nginx.org/v1
+kind: Policy
+metadata:
+  name: wallarm-block
+spec:
+  wallarm:
+    mode: block
+    application: 42
+    fallback: "on"
+---
+apiVersion: k8s.nginx.org/v1
+kind: Policy
+metadata:
+  name: wallarm-monitoring
+spec:
+  wallarm:
+    mode: monitoring
+---
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: my-app
+spec:
+  host: my-app.example.com
+  upstreams:
+    - name: backend
+      service: backend-svc
+      port: 80
+  routes:
+    - path: /api
+      policies:
+        - name: wallarm-block
+      action:
+        pass: backend
+    - path: /internal
+      policies:
+        - name: wallarm-monitoring
+      action:
+        pass: backend
+```
 
-* [GraphQL protection](../api-protection/graphql-rule.md)
-* [BOLA (Broken Object Level Authorization) enumeration protection](../api-protection/enumeration-attack-protection.md#bola) for user IDs, object IDs, and filenames
-* [Brute force protection](../api-protection/enumeration-attack-protection.md#brute-force) for passwords, OTPs, and authentication codes
-* [Forced browsing protection](../api-protection/enumeration-attack-protection.md#forced-browsing) (404 probing)
-* [Enumeration attack protection](../api-protection/enumeration-attack-protection.md#generic-enumeration), including:
-    
-    * User/email enumeration
-    * SSRF (Server-Side Request Forgery) enumeration
-    * User-agent rotation
+In this example, `/api` traffic is processed in `block` mode while `/internal` traffic is in `monitoring` mode — each route references a different Wallarm Policy.
 
-## File upload restriction policy
+### Observability
 
-Wallarm now provides tools for direct restricting the size of uploaded files. This comes as a part of set of measures aimed to prevent the [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) included in the [OWASP API Top 10 2023](../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks.
+**Prometheus metrics**
 
-Depending on your subscription plan, upload restrictions are applied via mitigation control or rule. You can set file size restrictions for the full request or its selected point.
+Basic Prometheus metrics are available out of the box via the `prometheus.*` section of the Helm chart (default port 9113). For details, see [F5 NGINX Ingress Controller Prometheus metrics](https://docs.nginx.com/nginx-ingress-controller/logging-and-monitoring/prometheus/).
 
-!!! tip ""
-    Mitigation-control based protection requires [NGINX Node 6.3.0 and higher](node-artifact-versions.md) or [Native Node 0.16.0 and higher](native-node/node-artifact-versions.md)
+For richer metrics, the `prometheusExtended.*` section provides VTS (Virtual Host Traffic Status) metrics.
 
-![File upload restriction MC - example](../images/api-protection/mitigation-controls-file-upload-1.png)
+!!! warning "Experimental feature"
+    Extended Prometheus metrics via `prometheusExtended.*` are experimental. Enable them in a non-production environment first before rolling out to production.
 
-## Protection from unrestricted resource consumption
+**Log format**
 
-!!! tip ""
-    [NGINX Node 6.3.0 and higher](node-artifact-versions.md) and [Native Node 0.16.0 and higher](../installation/nginx-native-node-internals.md#native-node).
+The NGINX access log format has changed slightly. If you have log parsing pipelines (ELK, Splunk, Datadog, etc.), review the new format. See [F5 NGINX Ingress Controller logging](https://docs.nginx.com/nginx-ingress-controller/logging-and-monitoring/logging/).
 
-Wallarm's [API Abuse Prevention](../api-abuse-prevention/overview.md) introduces the possibility to prevent the [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) - abusive behavior where an automated client consumes excessive API or application resources without proper limits. This may include sending high volumes of non-malicious requests, exhausting compute, memory, or bandwidth, and causing service degradation for legitimate users.
+### Deploying from your own registries
 
-![API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
+The image configuration has moved from `controller.image` and `controller.wallarm.helpers` to `config.images`:
 
-To detect this type of automated threats, API Abuse Prevention provides a set of three new [detectors](../api-abuse-prevention/overview.md#how-api-abuse-prevention-works):
+=== "Community-based (6.x)"
+    ```yaml
+    controller:
+      image:
+        registry: <YOUR_REGISTRY>
+        image: wallarm/ingress-controller
+        tag: "6.10.0"
+      wallarm:
+        helpers:
+          image: <YOUR_REGISTRY>/wallarm/node-helpers
+          tag: "6.10.0"
+    ```
+=== "F5-based (7.x)"
+    ```yaml
+    config:
+      images:
+        controller:
+          repository: "<YOUR_REGISTRY>/wallarm/ingress-controller"
+          tag: "7.0.0"
+          pullPolicy: IfNotPresent
+        helper:
+          repository: "<YOUR_REGISTRY>/wallarm/node-helpers"
+          tag: "7.0.0"
+          pullPolicy: IfNotPresent
+    ```
 
-* **Response time anomaly** identifying abnormal patterns in the latency of API responses that may signal automated abuse or backend exploitation attempts.
-* **Excessive request consumption** identifying clients that send abnormally large request payloads to the API, potentially indicating abuse or misuse of backend processing resources.
-* **Excessive response consumption** flagging suspicious sessions based on the total volume of response data transferred over their lifetime. Unlike detectors focused on individual requests, this detector aggregates response sizes across an entire session to identify slow-drip or distributed scraping attacks.
+### ARM64 deployment
 
-## Blocking by session
+ARM64 support is available in the F5-based (7.x) controller. The approach for scheduling pods on ARM64 nodes remains the same — use `nodeSelector`, `tolerations`, or affinity rules in the Helm chart. The key differences from 6.x are:
 
-!!! tip ""
-    [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.5.1 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far
+* The `admissionWebhooks` section no longer exists and does not need to be configured.
+* Postanalytics scheduling is configured at the top level (`postanalytics.*`) instead of `controller.wallarm.postanalytics.*`.
 
-Wallarm now provides a new protection action - [blocking by session](../api-sessions/blocking.md#blocking-sessions). It allows for more intelligent security decisions based on the state of the current interaction with the application, rather than just its network origins ([source IP addresses](../user-guides/ip-lists/overview.md)).
+=== "Community-based (6.x)"
+    ```yaml
+    controller:
+      nodeSelector:
+        kubernetes.io/arch: arm64
+      admissionWebhooks:
+        nodeSelector:
+          kubernetes.io/arch: arm64
+        patch:
+          nodeSelector:
+            kubernetes.io/arch: arm64
+      wallarm:
+        postanalytics:
+          nodeSelector:
+            kubernetes.io/arch: arm64
+        enabled: true
+        token: "<NODE_TOKEN>"
+        apiHost: "us1.api.wallarm.com"
+    ```
+=== "F5-based (7.x)"
+    ```yaml
+    controller:
+      nodeSelector:
+        kubernetes.io/arch: arm64
+    postanalytics:
+      nodeSelector:
+        kubernetes.io/arch: arm64
+    config:
+      wallarm:
+        enabled: true
+        api:
+          token: "<NODE_TOKEN>"
+          host: "us1.api.wallarm.com"
+    ```
 
-Blocking by session is required for the cases of:
+### OpenShift
 
-* Dynamic source IP addresses
-* Attackers switching IP addresses via proxy servers, VPNs or other means
-* Bot attacks, utilizing a number of machines with diverse IP addresses
-* Invalidating the specific stolen session (directly stops the hijack)
-* Necessity of immediate revocation of current access for actively logged in session
+Deploying on OpenShift follows the same general approach as before: define a custom Security Context Constraint (SCC) and apply it before deploying the controller.
 
-The session can be blocked automatically by: 
+The key difference is that the `admissionWebhooks`-related SCC (`wallarm-ingress-admission`) is no longer needed — you can omit it from your SCC configuration.
 
-* [Mitigation control](../about-wallarm/mitigation-controls-overview.md)
+## Installation
 
-    ![!Mitigation control - blocking by session](../images/api-sessions/api-sessions-blocking-mc.png)
+Minimal steps:
 
-* Wallarm's [API Abuse Prevention](../api-abuse-prevention/overview.md)
+=== "US Cloud"
+    ```yaml
+    config:
+      wallarm:
+        enabled: true
+        api:
+          token: "<NODE_TOKEN>"
+          host: "us1.api.wallarm.com"
+          # nodeGroup: defaultIngressGroup
+    ```
+=== "EU Cloud"
+    ```yaml
+    config:
+      wallarm:
+        enabled: true
+        api:
+          token: "<NODE_TOKEN>"
+          # nodeGroup: defaultIngressGroup
+    ```
 
-    ![!API Abuse Prevention profile - blocking by session](../images/api-sessions/api-sessions-blocking-api-abuse.png)
+```bash
+helm install --version 7.0.0 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
+```
 
-You can also block/unblock any session manually at any moment.
+For the full installation guide, see [Deploying Wallarm Ingress Controller](../admin-en/installation-kubernetes-en.md).
 
-## Security Issues: all vulnerabilities in one unified view
+## Traffic migration planning
 
-As for now, Wallarm offers multiple [methods](../about-wallarm/detecting-vulnerabilities.md#detection-methods) of detecting vulnerabilities (security issues) which vary at scope, usage scenarios, required elements (with or without node) and a set of vulnerabilities they are able to find.
+Migration to the F5-based controller requires planning how traffic will be switched from the Community-based controller.
 
-Previously vulnerabilities found by different methods were displayed in different sections of Wallarm Console - now the view is unified and you can see all of them in one place - the **Security Issues** section.
+**Running both controllers in parallel** is supported and recommended for production environments. This allows you to:
 
-![Security Issues](../images/api-attack-surface/security-issues.png)
+1. Deploy the F5-based (7.x) controller alongside the existing Community-based (6.x) controller
+2. Validate that Ingress resources work correctly with the F5-based controller
+3. Gradually shift traffic using one of the following strategies:
 
-Here you can:
+    * **DNS switch** — update DNS records to point to the F5-based controller's load balancer
+    * **Load balancer traffic split** — use weighted routing at the load balancer level
+    * **IngressClass selector swap** — update Ingress resources to reference the new IngressClass
+    * **Direct replacement** — remove the Community-based controller and deploy the F5-based one (suitable for non-production environments)
 
-* Easily view and [manage](../user-guides/vulnerabilities.md) the list of found vulnerabilities distinguished by the risk level
-* Access detailed information on each security issue (vulnerability): description, mitigation measures, links to relates CWEs, history of status changes and comments from your team members
-* Close and re-open vulnerabilities
-* Get reports
+4. Decommission the Community-based (6.x) controller after validation
 
-The old **Vulnerabilities** section is not displayed anymore.
+[Full migration guide]
 
-## OAS 3.1 support
+## Migration checklist
 
-!!! tip ""
-    [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.6.1 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
+When migrating from the Community-based (6.x) to the F5-based (7.x) controller:
 
-For [API Specification Enforcement](../api-specification-enforcement/overview.md), you can now upload OpenAPI specifications of **version 3.1**.
+- [ ] **Helm configuration**: Create a new `values.yaml` based on the F5-based chart structure. Map all customized parameters using the [mapping table](#wallarm-parameter-mapping) above. Remove any references to `admissionWebhooks`.
+- [ ] **Annotations**: Rewrite all Ingress annotations from `nginx.ingress.kubernetes.io/*` to `nginx.org/*`. Replace removed deprecated annotations (`wallarm-instance` → `wallarm-application`, `wallarm-acl-block-page` → `wallarm-block-page`).
+- [ ] **Ingress resources**: Validate all Ingress manifests against the F5-based controller. Check for any that may be [silently ignored or rejected](#ingress-resource-validation).
+- [ ] **Removed features**: Verify that your setup does not rely on Brotli, ModSecurity, or cookie-based sticky sessions. Find alternative approaches if needed.
+- [ ] **NGINX configuration**: Review any custom NGINX tuning (`controller.config` → [`controller.config.entries`](#nginx-configuration)). Review [configuration snippets](https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/advanced-configuration-with-snippets/) syntax.
+- [ ] **CRDs** (if applicable): If using VirtualServer/VirtualServerRoute with Wallarm Policy, apply the [Wallarm-provided CRDs](#wallarm-policy-custom-resource-definition-crd) instead of upstream F5 CRDs.
+- [ ] **Custom registries** (if applicable): Update image paths from `controller.image` / `controller.wallarm.helpers` to [`config.images`](#deploying-from-your-own-registries).
+- [ ] **ARM64** (if applicable): Update scheduling configuration — remove `admissionWebhooks` selectors, move postanalytics to [`postanalytics.nodeSelector`](#arm64-deployment).
+- [ ] **OpenShift** (if applicable): Remove the `wallarm-ingress-admission` SCC from your configuration.
+- [ ] **Observability**: Update log parsing pipelines for the [new log format](#observability). Configure Prometheus scraping via the `prometheus.*` section.
+- [ ] **Traffic migration**: Choose and test your [traffic migration strategy](#traffic-migration-planning). Run both controllers in parallel before the cutover.
 
-## Which Wallarm nodes are recommended to be upgraded?
+The migration requires planning but does not require changing your application workloads.
 
-* Client and multi-tenant Wallarm NGINX Nodes of version 4.10 and 5.x to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support-policy).
-* Client and multi-tenant Wallarm nodes of the [unsupported](versioning-policy.md#version-list) versions (4.8 and lower).
-
-    If upgrading from the version 3.6 or lower, learn all changes from the [separate list](older-versions/what-is-new.md).
-
-## Upgrade process
-
-1. Review [recommendations for the module upgrade](general-recommendations.md).
-2. Upgrade installed modules following the instructions for your Wallarm node deployment option:
-
-    * NGINX Node:
-        * [DEB/RPM packages](nginx-modules.md)
-        * [All-in-one installer](all-in-one.md)
-        * [Docker container with the modules for NGINX](docker-container.md)
-        * [NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
-        * [Sidecar controller](sidecar-proxy.md)
-        * [Cloud node image](cloud-image.md)
-        * [Multi-tenant node](multi-tenant.md)
-    
-    * Native Node:
-        * [All-in-one installer](native-node/all-in-one.md)
-        * [Helm chart](native-node/helm-chart.md)
-        * [Docker image](native-node/docker-image.md)
-
-----------
-
-[Other updates in Wallarm products and components →](https://changelog.wallarm.com/)
+[Full migration guide]
