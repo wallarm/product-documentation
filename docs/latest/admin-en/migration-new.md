@@ -33,12 +33,12 @@ It provides long-term stability and vendor-backed support, including:
 
 Beyond the upstream project retirement, the new controller also provides:
 
-* Architecture and performance: cleaner codebase, better component separation, and improved performance
-* Extended functionality: advanced routing with Custom Resources (CRDs), enhanced API protection, flexible configuration, and optional NGINX Plus support
-* Operations: improved monitoring and metrics, more efficient resource usage, and easier troubleshooting
+* Architecture and performance: cleaner codebase and better component separation
+* Extended functionality: advanced routing with Custom Resources (CRDs) and flexible configuration
+* Operations: optional extended metrics
 
-!!! info "NGINX Plus features"
-    The Wallarm Ingress Controller is based on the free, open-source F5 NGINX Ingress Controller. NGINX Plus features are not included. To use NGINX Plus functionality, purchase a license directly from F5/NGINX.
+!!! info "NGINX Plus is not supported"
+    The Wallarm Ingress Controller uses the **open-source** edition of the F5 NGINX Ingress Controller. NGINX Plus is not included and is not supported.
 
 ## Choosing your migration strategy
 
@@ -857,65 +857,65 @@ This part of the migration covers steps that vary depending on the migration str
 1. Allocate or reserve a static public IP, depending on your cloud provider:
 
     === "AWS (NLB + Elastic IP)"
-    ```
-    EIP_ALLOC=$(aws ec2 allocate-address --domain vpc --query 'AllocationId' --output text)
-    EIP=$(aws ec2 describe-addresses --allocation-ids $EIP_ALLOC --query 'Addresses[0].PublicIp' --output text)
-    echo "Reserved EIP: $EIP (Allocation: $EIP_ALLOC)"
-    ```
+        ```
+        EIP_ALLOC=$(aws ec2 allocate-address --domain vpc --query 'AllocationId' --output text)
+        EIP=$(aws ec2 describe-addresses --allocation-ids $EIP_ALLOC --query 'Addresses[0].PublicIp' --output text)
+        echo "Reserved EIP: $EIP (Allocation: $EIP_ALLOC)"
+        ```
     === "GCP"
-    ```
-    gcloud compute addresses create wallarm-ingress-ip \
-      --region <your-region>
+        ```
+        gcloud compute addresses create wallarm-ingress-ip \
+          --region <your-region>
 
-    STATIC_IP=$(gcloud compute addresses describe wallarm-ingress-ip \
-      --region <your-region> --format="value(address)")
-    echo "Reserved IP: $STATIC_IP"
-    ```
+        STATIC_IP=$(gcloud compute addresses describe wallarm-ingress-ip \
+          --region <your-region> --format="value(address)")
+        echo "Reserved IP: $STATIC_IP"
+        ```
     === "Azure"
-    ```
-    az network public-ip create \
-      --resource-group <resource-group> \
-      --name wallarm-ingress-ip \
-      --sku Standard \
-      --allocation-method Static
+        ```
+        az network public-ip create \
+          --resource-group <resource-group> \
+          --name wallarm-ingress-ip \
+          --sku Standard \
+          --allocation-method Static
 
-    STATIC_IP=$(az network public-ip show \
-      --resource-group <resource-group> \
-      --name wallarm-ingress-ip \
-      --query ipAddress \
-      --output tsv)
-    echo "Reserved IP: $STATIC_IP"
-    ```
+        STATIC_IP=$(az network public-ip show \
+          --resource-group <resource-group> \
+          --name wallarm-ingress-ip \
+          --query ipAddress \
+          --output tsv)
+        echo "Reserved IP: $STATIC_IP"
+        ```
 
 1. Deploy the new controller with the reserved IP:
 
     === "AWS (NLB + Elastic IP)"
-    ```
-    # In your values.yaml:
-    controller:
-      service:
-        annotations:
-          service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
-          service.beta.kubernetes.io/aws-load-balancer-eip-allocations: "<EIP_ALLOC>"
-    ```
+        ```
+        # In your values.yaml:
+        controller:
+          service:
+            annotations:
+              service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+              service.beta.kubernetes.io/aws-load-balancer-eip-allocations: "<EIP_ALLOC>"
+        ```
     === "GCP"
-    ```
-    # In your values.yaml:
-    controller:
-      service:
-        loadBalancerIP: "<STATIC_IP>"
-        annotations:
-          cloud.google.com/load-balancer-type: "External"    
-    ```
+        ```
+        # In your values.yaml:
+        controller:
+          service:
+            loadBalancerIP: "<STATIC_IP>"
+            annotations:
+              cloud.google.com/load-balancer-type: "External"    
+        ```
     === "Azure"
-    ```
-    # In your values.yaml:
-    controller:
-      service:
-        loadBalancerIP: "<STATIC_IP>"
-        annotations:
-          service.beta.kubernetes.io/azure-load-balancer-resource-group: "<resource-group>"    
-    ```
+        ```
+        # In your values.yaml:
+        controller:
+          service:
+            loadBalancerIP: "<STATIC_IP>"
+            annotations:
+              service.beta.kubernetes.io/azure-load-balancer-resource-group: "<resource-group>"    
+        ```
 
 1. Back up the current configuration:
 
