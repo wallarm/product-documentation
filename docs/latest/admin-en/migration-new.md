@@ -3,8 +3,11 @@
 [whats-new]:                ../updating-migrating/what-is-new.md
 [new-IC-installation]:      ../admin-en/installation-kubernetes-en-new.md
 [new-IC-configuration]:     ../admin-en/configure-kubernetes-en-new.md
+[IC-retirement]:            ../updating-migrating/nginx-ingress-retirement.md
+[old-IC-maintenance]:        ../updating-migrating/nginx-ingress-retirement.md#wallarms-nginx-based-ingress-controller-support-timeline
 
-# Migrating to the Wallarm Ingress Controller (F5 NGINX)
+
+# Migrating From the Community-Based to F5-Based Wallarm Ingress Controller
 
 This topic explains why and how to migrate from the Wallarm Ingress Controller based on the [Community Ingress NGINX][old-ic] to the new controller based on [F5 NGINX Ingress Controller][new-ic].
 
@@ -12,9 +15,9 @@ This topic explains why and how to migrate from the Wallarm Ingress Controller b
 
 Previously, Wallarm provided an Ingress Controller based on the [Community Ingress NGINX][old-ic].
 
-In November 2025, the Kubernetes community announced the retirement of this project due to growing maintenance challenges and unresolved technical issues.
+In November 2025, the Kubernetes community announced the [retirement][IC-retirement] of this project due to growing maintenance challenges and unresolved technical issues.
 
-Wallarm will fully support this controller (including new feature releases) until **March 2026**. After that date, the controller will remain functional but will no longer receive updates, bug fixes, or security patches.
+Wallarm will fully support this controller (including new feature releases) until **March 2026**. After that date, the controller will [remain functional][old-IC-maintenance] but will no longer receive updates, bug fixes, or security patches.
 
 **Continuing to use it after March 2026 may expose your environment to unresolved defects and security vulnerabilities.**
 
@@ -22,20 +25,11 @@ To ensure ongoing support and security, we strongly recommend migrating to a sup
 
 ## About the new Ingress Controller
 
-The new Wallarm Ingress Controller is based on the [F5 NGINX Ingress Controller][new-ic] and is the recommended replacement for the Community Ingress NGINX–based deployment.
+The new Wallarm Ingress Controller is based on the [F5 NGINX Ingress Controller][new-ic] and is the recommended replacement for the [Community NGINX-based deployment][old-ic].
 
-It provides long-term stability and vendor-backed support, including:
+It provides long-term stability, vendor-backed support, regular updates and security patches, and advanced traffic management.
 
-* Official support and maintenance by NGINX (F5)
-* Regular updates and security patches
-* Guaranteed long-term maintenance
-* Advanced traffic management and routing capabilities
-
-Beyond the upstream project retirement, the new controller also provides:
-
-* Architecture and performance: cleaner codebase and better component separation
-* Extended functionality: advanced routing with Custom Resources (CRDs) and flexible configuration
-* Operations: optional extended metrics
+For a detailed overview of the changes and new features, [see the What's New guide][whats-new].
 
 !!! info "NGINX Plus is not supported"
     The Wallarm Ingress Controller uses the **open-source** edition of the F5 NGINX Ingress Controller. NGINX Plus is not included and is not supported.
@@ -46,124 +40,15 @@ You can migrate to the new Wallarm Ingress Controller using one of four strategi
 
 Review the summary table below to determine which approach best fits your environment. Detailed descriptions of each strategy follow.
 
-| Strategy | Downtime | IP Changes | Complexity | Best For |
-|----------|----------|-------------|------------|----------|
-| Controlled LB | None | No | High | Environments with an external load balancer |
-| DNS Switch | None (DNS propagation applies) | Yes | Low | Environments where IP changes are acceptable |
-| Selector Swap | None | No | Medium | Production environments with strict IP requirements |
-| Direct Replacement | 5-15 minutes | Yes | Low | Development and staging environments |
+| Strategy | Downtime | IP changes | Complexity | Best for | Est. time |
+|----------|----------|-------------|------------|----------|----------|
+| Load balancer | None | No | High | Environments with an external load balancer | 4–8 hours (includes staged rollout and monitoring) |
+| DNS switch | None (DNS propagation applies) | Yes | Low | Environments where IP changes are acceptable | 3–4 hours plus DNS propagation time (depends on your TTL setting) |
+| Selector swap | None | No | Medium | Production environments with strict IP requirements | 4–6 hours |
+| Direct replacement | 5-15 minutes | Yes | Low | Development and staging environments | 2–3 hours (including the downtime window) |
 
 !!! info "Recommendation"
-    If unsure, use Selector Swap for production environments and Direct Replacement for development or staging.
-
-### Strategy A - Load Balancer (traffic splitting)
-
-This method uses an external load balancer (F5, HAProxy, cloud ALB, etc.) to gradually shift traffic from the old controller to the new one.
-
-**Best for:**
-
-Environments with an external load balancer that supports weighted routing or traffic splitting.
-
-**Advantages:**
-
-* Zero downtime
-* Gradual, controlled traffic shift
-* Rollback at any percentage
-* External load balancer IP remains unchanged
-
-**Prerequisites:**
-
-* Access to external load balancer configuration
-* Load balancer supports weighted routing or traffic splitting
-* Ability to monitor both old and new Ingress Controllers
-
-**Estimated time:** 4–8 hours (includes staged rollout and monitoring)
-
-### Strategy B - DNS Switch
-
-This method deploys the new controller with a new load balancer IP and updates DNS to point to it.
-
-**Best for:**
-
-Environments where changing the external IP address is acceptable and DNS is under your control.
-
-**Advantages:**
-
-* Clear separation between old and new deployments
-* Simple DNS-based rollback
-* No advanced load balancer configuration required
-
-**Considerations:**
-
-* Load balancer IP changes
-* DNS propagation delay (typically 5–60 minutes, depending on TTL)
-* Clients must not use hardcoded IP addresses
-* Downstream firewalls or allowlists may require updates
-
-**Prerequisites:**
-
-* Access to DNS management (Route53, Cloudflare, etc.)
-* Knowledge of the current DNS TTL settings (you can check it with `dig your-domain.com | grep TTL`)
-* No clients with hardcoded IP addresses
-* An inventory of systems that whitelist the current IP address
-
-**Estimated time:** 3–4 hours plus DNS propagation time (depends on your TTL setting)
-
-### Strategy C - Selector Swap
-
-This method preserves the existing load balancer IP by switching the Kubernetes service selector from the old controller pods to the new ones.
-
-**Best for:**
-
-Production environments where maintaining the same IP address is critical fe.g., due to firewall allowlists or partner integrations).
-
-**Advantages:**
-
-* Zero downtime
-* Unchanged load balancer IP
-* Immediate rollback capability
-* No DNS updates required
-* No client whitelist required
-
-**Requirements:**
-
-* Both controllers must be deployed in the same namespace
-* Careful management of pod labels
-* Ability to disable load balancer service creation in new controller Helm chart
-
-**Estimated time:** 4–6 hours
-**Recommended timing:** Perform during a low-traffic window (e.g., Saturday morning)
-
-### Strategy D - Direct Replacement
-
-This method removes the old controller and deploys the new one in its place.
-
-**Best for:**
-
-Development, staging, or non-critical environments where brief downtime is acceptable.
-
-**Advantages:**
-
-* Simplest implementation
-* Fastest migration
-* No need to run both controllers in parallel
-* Clean cutover
-
-**Considerations:**
-
-* Short service interruption (typically 5–15 minutes)
-* All traffic switches at once
-* Higher operational risk compared to gradual strategies
-
-**Prerequisites:**
-
-* Approved maintenance window
-* Stakeholders informed of expected downtime
-* Documented rollback plan
-* Backup of current configuration
-
-**Estimated time:** 2–3 hours (including the downtime window)
-**Expected downtime:** 5–15 minutes (during controller replacement)
+    If unsure, use [selector swap](#strategy-c---selector-swap) for production environments and [direct replacement](#strategy-d---direct-replacement) for development or staging.
 
 ## Migration - part 1 (strategy independent)
 
@@ -171,63 +56,33 @@ This part of the migration includes steps that are **common to all strategies**.
 
 ### Prerequisites
 
-Before starting the migration, ensure that you have the necessary tools, access, and permissions. This will help avoid interruptions and simplify the migration process.
+Before starting the migration, ensure the following components meet the minimum version requirements:
 
-1. Required tools
+* Kubernetes CLI (kubectl) – v1.25+
+* Helm – v3.10+
+* cURL – 7.x+ (usually pre-installed on Linux/macOS)
+* Basic shell utilities – grep, sed, awk
 
-  !!! info "Manual migration"
-      These tools are required if you are migrating manually. CI/CD pipelines or automation tools (ArgoCD, Flux, Terraform) may already provide these capabilities.
+!!! info "Manual migration"
+    These tools are required if you are migrating manually. CI/CD pipelines or automation tools (ArgoCD, Flux, Terraform) may already provide these capabilities. For CI/CD environments:
 
-  Verify the following on your local machine or jump host:
+      * Ensure your runner/agent has kubectl and helm installed.
+      * Verify kubeconfig access to the target cluster.
+      * Consider using dedicated migration pipelines for better control and auditability.
 
-    ```bash
-    # Kubernetes CLI
-    kubectl version --client
-    # Should show: Client Version v1.25+ or higher
+Additionally, you need these **access and permissions**:
 
-    # Helm package manager
-    helm version
-    # Should show: v3.10+ or higher
-
-    # HTTP client
-    curl --version
-    # Should show: curl 7.x or higher
-
-    # Basic shell utilities
-    which grep sed awk
-    # Should return valid paths (e.g., /usr/bin/grep)
-    ```
-
-    **If any tool is missing:**
-
-    * [kubectl installation guide](https://kubernetes.io/docs/tasks/tools/)
-    * [Helm installation guide](https://helm.sh/docs/intro/install/)
-    * curl is usually pre-installed on Linux and macOS
-
-    **For CI/CD environments:**
-
-    * Ensure your runner/agent has kubectl and helm installed.
-    * Verify kubeconfig access to the target cluster.
-    * Consider using dedicated migration pipelines for better control and auditability.
-
-1. Required Access & Permissions
-
-    You must have sufficient access to the cluster, services, and infrastructure:
-
-    * **Kubernetes cluster access** – Can run `kubectl get nodes` successfully.
-    * **Namespace administration** – Can create, modify, and delete resources in target namespaces.
-    * **Helm repository access** – Can run `helm repo add` and `helm install`.
-    * **Wallarm API token** – Get it from the Wallarm Console (Settings → API tokens).
-    * **DNS management access** (required for strategies [B](#strategy-b---dns-switch) and [D](#strategy-d---direct-replacement)) – Ability to create/update A/CNAME records.
-    * **Load balancer access** (required for [strategy A](#strategy-a---controlled-load-balancer-traffic-splitting)) – Access to your external load balancer configuration.
-    * **Monitoring/metrics access** – Ability to view logs and metrics.
-
+* **Namespace administration** – Can create, modify, and delete resources in target namespaces.
+* **Wallarm API token** – Get it from the Wallarm Console (Settings → API tokens).
+* **DNS management access** (required for strategies [B](#strategy-b---dns-switch) and [D](#strategy-d---direct-replacement)) – Ability to create/update A/CNAME records.
+* **Load balancer access** (required for [strategy A](#strategy-a---load-balancer-traffic-splitting) – Access to your external load balancer configuration.
+* **Monitoring/metrics access** – Ability to view logs and metrics.
 
 ### Step 0. Collect current Ingress deployment details and validate environment
 
 Before starting the migration, gather the following information from your existing Ingress Controller deployment and complete basic environment validations. 
 
-1. Gather deployment information and save it - you will need need it throughout the migration:
+1. Gather deployment information and save it - you will need it throughout the migration:
 
     ```bash
     # 1. Identify the namespace of the current Ingress Controller
@@ -284,7 +139,7 @@ Before starting the migration, gather the following information from your existi
 
     * Test Wallarm Console access. 
     
-    To do so, log in to https://my.wallarm.com (or your regional console)
+        To do so, log in to https://my.wallarm.com (or your regional console)
       
     * Reduce DNS TTL (critical for strategies [B](#strategy-b---dns-switch) and [D](#strategy-d---direct-replacement)) - Lower TTL 24-48 hours before migration:
 
@@ -295,22 +150,22 @@ Before starting the migration, gather the following information from your existi
 
       # Recommended: Set TTL to 300 seconds (5 minutes) before migration
       # This allows faster DNS propagation during the migration
-      # Update in your DNS provider (Route53, CloudFlare, etc.)
+      # Update in your DNS provider (Route53, Cloudflare, etc.)
 
       # After migration is stable (48h+), you can increase TTL back to normal (3600 or higher)
       ```
 
-    * Identify a maintenance window:
+1. Identify a maintenance window:
 
-        * Production: Prefer low-traffic period (e.g., weekends or off-hours)
-        * Development and staging environments: Flexible, anytime is acceptable
+    * Production: Prefer low-traffic period (e.g., weekends or off-hours)
+    * Development and staging environments: Flexible, anytime is acceptable
 
-    * Notify stakeholders about the following:
+1. Notify stakeholders about the following:
 
-        * Migration schedule
-        * Expected duration
-        * Potential risks
-        * Rollback plan
+    * Migration schedule
+    * Expected duration
+    * Potential risks
+    * Rollback plan
 
 ### Step 1: Review the new Ingress Controller documentation
 
@@ -372,7 +227,7 @@ Before starting the migration, gather the following information from your existi
 
     To do so, go to Wallarm Console → **Settings** → **Nodes** and check if the new Ingress Controller node appears. It should show up within 2–3 minutes of deployment.
 
-If all checks pass, you are ready to proceed to Step 2.
+If all checks pass, you are ready to proceed to Step 3.
 
 ### Step 3. Prepare your Ingress resources
 
@@ -380,33 +235,33 @@ Collect all Ingress resources that use the old Ingress Controller:
 
 * **Simple method (no jq required)**:
 
-```bash
-# List all Ingress resources across all namespaces
-kubectl get ingress --all-namespaces
+    ```bash
+    # List all Ingress resources across all namespaces
+    kubectl get ingress --all-namespaces
 
-# Export all Ingress resources to a backup file
-kubectl get ingress --all-namespaces -o yaml > old-ingresses-backup.yaml
-echo "✅ Backup saved to: old-ingresses-backup.yaml"
+    # Export all Ingress resources to a backup file
+    kubectl get ingress --all-namespaces -o yaml > old-ingresses-backup.yaml
+    echo "✅ Backup saved to: old-ingresses-backup.yaml"
 
-# Count the total number of Ingress resources
-kubectl get ingress --all-namespaces --no-headers | wc -l
-```
+    # Count the total number of Ingress resources
+    kubectl get ingress --all-namespaces --no-headers | wc -l
+    ```
 
 * **Advanced method (requires jq – a JSON processor)**:
 
-```bash
-# Filter only Ingress resources using the old controller
-# Breakdown:
-#   kubectl get ingress --all-namespaces -o json  → Get all Ingress as JSON
-#   jq '.items[]'                                  → Loop through each Ingress
-#   select(...)                                    → Filter by IngressClass
-kubectl get ingress --all-namespaces \
-  -o json | jq '.items[] | select(
-    .metadata.annotations["kubernetes.io/ingress.class"] == "nginx" or
-    .spec.ingressClassName == "nginx" or
-    (.metadata.annotations["kubernetes.io/ingress.class"] // "" | length == 0)
-  )' > old-ingresses.json
-```
+    ```bash
+    # Filter only Ingress resources using the old controller
+    # Breakdown:
+    #   kubectl get ingress --all-namespaces -o json  → Get all Ingress as JSON
+    #   jq '.items[]'                                  → Loop through each Ingress
+    #   select(...)                                    → Filter by IngressClass
+    kubectl get ingress --all-namespaces \
+      -o json | jq '.items[] | select(
+        .metadata.annotations["kubernetes.io/ingress.class"] == "nginx" or
+        .spec.ingressClassName == "nginx" or
+        (.metadata.annotations["kubernetes.io/ingress.class"] // "" | length == 0)
+      )' > old-ingresses.json
+    ```
 
 !!! info "Default Ingress Controller"
     Ingress resources without an explicit IngressClass may be using the default ingress controller. Verify which controller is set as default: `kubectl get ingressclass -o yaml`.
@@ -450,14 +305,14 @@ Update your Ingress resources to ensure compatibility with the new Ingress Contr
 
 1. Wallarm annotations
 
-  Wallarm-related Annotations remain unchanged and continue to function with the new controller:
+    Wallarm-related Annotations remain unchanged and continue to function with the new controller:
 
-   ```yaml
-   annotations:
-     nginx.org/wallarm-mode: "block"
-     nginx.org/wallarm-application: "1"
-     nginx.org/wallarm-parse-response: "on"
-   ```
+    ```yaml
+    annotations:
+      nginx.org/wallarm-mode: "block"
+      nginx.org/wallarm-application: "1"
+      nginx.org/wallarm-parse-response: "on"
+    ```
 
 ### Step 5. Test converted Ingress resources
 
@@ -494,7 +349,7 @@ Before migrating production traffic, verify your converted Ingress resources in 
 
 1. Test HTTP Connectivity.
 
-    Get the new loadd balancer IP:
+    Get the new load balancer IP:
 
     ```bash
     NEW_LB_IP=$(kubectl get svc -n wallarm-ingress-new wallarm-ingress-controller \
@@ -512,7 +367,7 @@ Before migrating production traffic, verify your converted Ingress resources in 
     curl -H "Host: test.example.com" https://$NEW_LB_IP/
     ```
 
-    Success indicators:
+    Expected outcome:
 
     * The HTTP response status is 200 OK.
     * Your application responds correctly, e.g.:
@@ -527,14 +382,14 @@ Before migrating production traffic, verify your converted Ingress resources in 
     curl -H "Host: test.example.com" "http://$NEW_LB_IP/?id=1' OR '1'='1"
     ```
 
-  Wait 2–3 minutes and verify in Wallarm Console → **Events** → **Attacks** that the request is detected/blocked.
+    Wait 2–3 minutes and verify in Wallarm Console → **Events** → **Attacks** that the request is detected/blocked.
 
 1. (Optional) Test using a local browser.
 
     If you want to test real domain names without changing DNS:
 
     ```bash
-    # Get new load Bbalancer IP
+    # Get the new load balancer IP
     NEW_LB_IP=$(kubectl get svc -n wallarm-ingress-new wallarm-ingress-controller \
       -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
     echo $NEW_LB_IP
@@ -557,13 +412,17 @@ Before migrating production traffic, verify your converted Ingress resources in 
 
 Congratulations! You have completed the strategy-independent portion of the migration. All common preparation, deployment, annotation conversion, and testing steps are now done.
 
-The next phase, Migration Part 2, involves strategy-specific steps for shifting traffic to the new Ingress Controller. The procedure will differ depending on whether you are using [Controlled LB](#strategy-a---load-balancer-traffic-splitting), [DNS Switch](#strategy-b---dns-switch), [Selector Swap](#strategy-c---selector-swap), or [Direct Replacement](#strategy-d---direct-replacement). 
+The next phase, Migration Part 2, involves strategy-specific steps for shifting traffic to the new Ingress Controller. The procedure will differ depending on whether you are using [load balancer](#strategy-a---load-balancer-traffic-splitting), [DNS switch](#strategy-b---dns-switch), [selector swap](#strategy-c---selector-swap), or [direct replacement](#strategy-d---direct-replacement). 
 
 ## Migration - part 2 (strategy dependent)
 
-This part of the migration covers steps that vary depending on the migration strategy you selected: [Controlled LB](#strategy-a---load-balancer-traffic-splitting), [DNS Switch](#strategy-b---dns-switch), [Selector Swap](#strategy-c---selector-swap), or [Direct Replacement](#strategy-d---direct-replacement).
+This part of the migration covers steps that vary depending on the migration strategy you selected: [load balancer](#strategy-a---load-balancer-traffic-splitting), [DNS switch](#strategy-b---dns-switch), [selector swap](#strategy-c---selector-swap), or [direct replacement](#strategy-d---direct-replacement). 
 
-### Strategy A - Load Balancer (traffic splitting)
+### Strategy A - load balancer (traffic splitting)
+
+This method uses an external load balancer (F5, HAProxy, cloud ALB, etc.) to gradually shift traffic from the old controller to the new one.
+
+**Migration steps:**
 
 1. Configure your external load balancer to split traffic:
 
@@ -601,7 +460,11 @@ This part of the migration covers steps that vary depending on the migration str
 
     Once 100% of traffic is routed to the new controller and all metrics are stable, you can safely remove the old controller.
 
-### Strategy B - DNS Switch
+### Strategy B - DNS switch
+
+This method deploys the new controller with a new load balancer IP and updates DNS to point to it.
+
+**Migration steps:**
 
 1. Get the new load balancer IP:
 
@@ -666,6 +529,13 @@ This part of the migration covers steps that vary depending on the migration str
 
 ### Strategy C - Selector Swap
 
+This method preserves the existing load balancer IP by switching the Kubernetes service selector from the old controller pods to the new ones.
+
+!!! info "Recommended timing"
+    Perform the migration during a low-traffic window (e.g., Saturday morning).
+
+**Migration steps:**
+
 1. Get the current load balancer IP:
 
     ```bash
@@ -728,7 +598,7 @@ This part of the migration covers steps that vary depending on the migration str
     killall kubectl  # Stop port-forward
     ```
 
-1. Update Ingress resources to use the new controller end ensure traffic is routed correctly after the selector swap:
+1. Update Ingress resources to use the new controller and ensure traffic is routed correctly after the selector swap:
 
     ```bash
     kubectl patch ingress <ingress-name> -n <namespace> \
@@ -753,7 +623,7 @@ This part of the migration covers steps that vary depending on the migration str
     # wallarm-new-abc123             app.kubernetes.io/name=nginx-ingress-new,app.kubernetes.io/instance=wallarm-new,...
     ```
 
-1. Update the`LoadBalancer` service to point to the new pods:
+1. Update the `LoadBalancer` service to point to the new pods:
 
     ```bash
     kubectl patch svc ingress-nginx-controller -n ingress-nginx -p '{
@@ -823,8 +693,8 @@ This part of the migration covers steps that vary depending on the migration str
     helm uninstall ingress-nginx -n ingress-nginx
     ```
 
-  !!! info "Recommended cleanup"
-      After the migration has been stable for 30+ days, schedule a maintenance window to properly clean up the setup (see the steps below). This ensures the service is owned and managed by the new Helm chart. It also simplifies future upgrades and prevents operational confusion.
+    !!! info "Recommended cleanup"
+        After the migration has been stable for 30+ days, schedule a maintenance window to properly clean up the setup (see the steps below). This ensures the service is owned and managed by the new Helm chart. It also simplifies future upgrades and prevents operational confusion.
 
 1. Create a new `LoadBalancer Service` managed by the new Helm chart:
 
@@ -849,7 +719,11 @@ This part of the migration covers steps that vary depending on the migration str
     kubectl get svc -n ingress-nginx
     ```
 
-### Strategy D - Direct Replacement    
+### Strategy D - direct replacement   
+
+This method removes the old controller and deploys the new one in its place.
+
+**Migration steps:**
 
 !!! info "Recommendation"
     For major cloud providers, we strongly recommend reserving the load balancer IP **before** migration to prevent IP changes. See steps 1 and 2 in the procedure below.
