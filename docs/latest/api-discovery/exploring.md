@@ -170,16 +170,36 @@ You can quickly create a new [custom rule](../user-guides/rules/rules.md) from a
 
 ## Exporting API inventory data
 
-The API Discovery UI provides you with an option to export the current filtered list of endpoints as the [OpenAPI v3](https://spec.openapis.org/oas/v3.0.0) specification or CSV file.
+You can export the discovered API inventory as [OpenAPI (OAS) 3.1](https://spec.openapis.org/oas/v3.1.0) (JSON) or as CSV.
 
-To export, in Wallarm Console → **API Discovery**, use the **OAS/CSV** option. Consider the following:
+### OpenAPI (OAS) export
 
-* For **OAS**, Wallarm returns the `swagger.json` with filtered endpoints. You can also use the **Download OAS** button in an individual endpoint menu
+Exporting to OAS lets you use the discovered API schema for protection, analysis, and integration with other tools:
 
-    By utilizing the downloaded specification with other applications like Postman, you can conduct endpoints' vulnerability and other tests. In addition, it allows for a closer examination of the endpoints' capabilities to uncover the processing of sensitive data and the presence of undocumented parameters.
+* **Upload to API specifications** in Wallarm to [enforce requests](../api-specification-enforcement/overview.md) or enable rogue API detection (when available for your API Discovery version).
+* **Open in [Swagger Editor](https://editor.swagger.io/)** to inspect and edit the inventory in OpenAPI format.
+* **Export to third-party platforms** for documentation, testing (e.g. Postman), or further analysis. The specification helps with vulnerability testing and reviewing endpoints for sensitive data and undocumented parameters.
 
-* For **CSV**, Wallarm returns filtered endpoints data in a simple text comma-separated format, making it easy to export it into other programs.
+To download the OAS file:
 
-!!! warning "API host information in downloaded Swagger file"
-    If a discovered API inventory contains several API hosts, endpoints from all API hosts will be included in the downloaded file. Currently, the API host information is not included in the file.
--->
+1. In Wallarm Console → **API Discovery**, select a **single host** for which you need the specification.
+2. Optionally, apply any additional filters to limit the endpoints included in the export.
+3. Click **Download report**.
+4. In the popup, choose **OpenAPI (OAS 3.1, JSON)** and click **Generate OAS**.
+
+    ![Export API Inventory - OpenAPI option](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-export-api-inventory.png)
+
+5. Wait until the file is generated, then download the JSON file.
+
+**Limitations:**
+
+* One host per specification (aligned with OpenAPI recommendations)
+* REST only
+* Maximum 1000 endpoints per host and 100,000 parameters in total per export
+* Not supported: `application/xml` and `application/x-www-form-urlencoded` content types
+* Not supported: nested lists or objects in headers, path, or query parameters
+* Not supported: `oneOf` directive
+
+### CSV export
+
+Use **Download report** → **CSV** to get the filtered endpoints in a comma-separated format for use in other programs.
