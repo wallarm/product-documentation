@@ -138,18 +138,6 @@ The **API Discovery** module unifies such elements into the `{parameter_X}` form
 
 Click the endpoint to expand its parameters and view which type was automatically detected for the diverse parameter.
 
-## CSV reports
-
-You can download the report on your API inventory in CSV format:
-
-1. Optionally, apply filters. Only data remaining after filter apply will go to report.
-1. Click **Download CSV**.
-
-    This will instantly generate a CSV file with list of your APIs, including all key attributes, including risk score, sensitive data types and more.
-
-    !!! info "No parameter information"
-        The report does not include the information on API endpoint parameters.
-
 ## Notifications
 
 You can [setup](setup.md#notifications) API Discovery notifications to be sent to your personal email (the one you use to log in) and to any additional emails:
@@ -166,7 +154,7 @@ You can quickly create a new [custom rule](../user-guides/rules/rules.md) from a
 1. In this endpoint menu select **Create rule**. The create rule window is displayed. The endpoint address is parsed into the window automatically.
 1. In the create rule window, specify rule information and then click **Create**.
 
-![Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
+![Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)-->
 
 ## Exporting API inventory data
 
@@ -189,7 +177,7 @@ To download the OAS file:
 
     ![Export API Inventory - OpenAPI option](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-export-api-inventory.png)
 
-5. Wait until the file is generated, then download the JSON file.
+5. Wait until the file is generated. When ready, the browser starts the download automatically and the JSON file is saved to your default download location.
 
 **Limitations:**
 
@@ -202,4 +190,7 @@ To download the OAS file:
 
 ### CSV export
 
-Use **Download report** → **CSV** to get the filtered endpoints in a comma-separated format for use in other programs.
+Use **Download report** → **CSV** to get the filtered endpoints in a comma-separated format. The CSV is generated immediately and includes key endpoint attributes such as risk score and sensitive data types.
+
+!!! info "No parameter information"
+    The CSV report does not include information on API endpoint parameters.
