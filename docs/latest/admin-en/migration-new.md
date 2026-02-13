@@ -1,5 +1,8 @@
-[old-ic]:         https://github.com/kubernetes/ingress-nginx
-[new-ic]:         https://github.com/nginx/kubernetes-ingress
+[old-ic]:                   https://github.com/kubernetes/ingress-nginx
+[new-ic]:                   https://github.com/nginx/kubernetes-ingress
+[whats-new]:                ../updating-migrating/what-is-new.md
+[new-IC-installation]:      ../admin-en/installation-kubernetes-en-new.md
+[new-IC-configuration]:     ../admin-en/configure-kubernetes-en-new.md
 
 # Migrating to the Wallarm Ingress Controller (F5 NGINX)
 
@@ -309,19 +312,28 @@ Before starting the migration, gather the following information from your existi
         * Potential risks
         * Rollback plan
 
-### Step 1: Prepare and deploy the new Ingress Controller
+### Step 1: Review the new Ingress Controller documentation
 
-1. Review installation parameters.
+1. [Read the comparison guide][whats-new] to understand the differences between the previous and new Ingress Controller implementations:
 
-    The new Ingress Controller supports all configuration parameters needed for production deployment. Review the detailed documentation to understand available options.
+    Pay special attention to:
+
+    * Annotation prefix changes (nginx.ingress.kubernetes.io/ → nginx.org/)
+    * Postanalytics architecture (always deployed as a separate component in the new version)
+    * New CRD capabilities: `VirtualServer`, `Policy`, `TransportServer`
+    * Service selector differences
+    * Load balancer IP preservation considerations
+
+1. Read the new [Ingress Controller deployment guide][new-IC-installation] and the [installation parameters][new-IC-configuration].
 
     Key configuration areas include:
 
     * Wallarm API credentials (`config.wallarm.api.host`, `config.wallarm.api.token`)
-    * Post-analytics deployment (now a mandatory separate deployment)
     * API Firewall configuration (optional)
     * Resource limits and scaling
     * Metrics and monitoring endpoints
+
+### Step 2: Deploy the new Controller
 
 1. Deploy the new controller.
 
@@ -362,7 +374,7 @@ Before starting the migration, gather the following information from your existi
 
 If all checks pass, you are ready to proceed to Step 2.
 
-### Step 2. Prepare your Ingress resources
+### Step 3. Prepare your Ingress resources
 
 Collect all Ingress resources that use the old Ingress Controller:
 
@@ -400,7 +412,7 @@ kubectl get ingress --all-namespaces \
     Ingress resources without an explicit IngressClass may be using the default ingress controller. Verify which controller is set as default: `kubectl get ingressclass -o yaml`.
 
 
-### Step 3. Convert annotations
+### Step 4. Convert annotations
 
 Update your Ingress resources to ensure compatibility with the new Ingress Controller.
 
@@ -447,7 +459,7 @@ Update your Ingress resources to ensure compatibility with the new Ingress Contr
      nginx.org/wallarm-parse-response: "on"
    ```
 
-### Step 4. Test converted Ingress resources
+### Step 5. Test converted Ingress resources
 
 Before migrating production traffic, verify your converted Ingress resources in a test namespace.
 
@@ -811,4 +823,165 @@ This part of the migration covers steps that vary depending on the migration str
     helm uninstall ingress-nginx -n ingress-nginx
     ```
 
+  !!! info "Recommended cleanup"
+      After the migration has been stable for 30+ days, schedule a maintenance window to properly clean up the setup (see the steps below). This ensures the service is owned and managed by the new Helm chart. It also simplifies future upgrades and prevents operational confusion.
+
+1. Create a new `LoadBalancer Service` managed by the new Helm chart:
+
+    ```
+    helm upgrade wallarm-ingress-new wallarm/wallarm-ingress \
+      -n ingress-nginx \
+      --set controller.service.create=true \
+      --set controller.service.loadBalancerIP="<YOUR_CURRENT_IP>" \
+      -f values.yaml
+    ```
+
+1. Wait for new load balancer to be assigned the same IP (cloud-provider dependent; typically takes 1–5 minutes).
+1. Delete the old service:
+
+    ```
+    kubectl delete svc ingress-nginx-controller -n ingress-nginx
+    ```
+
+1. Verify that the new service has the same IP:
+
+    ```
+    kubectl get svc -n ingress-nginx
+    ```
+
 ### Strategy D - Direct Replacement    
+
+!!! info "Recommendation"
+    For major cloud providers, we strongly recommend reserving the load balancer IP **before** migration to prevent IP changes. See steps 1 and 2 in the procedure below.
+
+1. Allocate or reserve a static public IP, depending on your cloud provider:
+
+    === "AWS (NLB + Elastic IP)"
+    ```
+    EIP_ALLOC=$(aws ec2 allocate-address --domain vpc --query 'AllocationId' --output text)
+    EIP=$(aws ec2 describe-addresses --allocation-ids $EIP_ALLOC --query 'Addresses[0].PublicIp' --output text)
+    echo "Reserved EIP: $EIP (Allocation: $EIP_ALLOC)"
+    ```
+    === "GCP"
+    ```
+    gcloud compute addresses create wallarm-ingress-ip \
+      --region <your-region>
+
+    STATIC_IP=$(gcloud compute addresses describe wallarm-ingress-ip \
+      --region <your-region> --format="value(address)")
+    echo "Reserved IP: $STATIC_IP"
+    ```
+    === "Azure"
+    ```
+    az network public-ip create \
+      --resource-group <resource-group> \
+      --name wallarm-ingress-ip \
+      --sku Standard \
+      --allocation-method Static
+
+    STATIC_IP=$(az network public-ip show \
+      --resource-group <resource-group> \
+      --name wallarm-ingress-ip \
+      --query ipAddress \
+      --output tsv)
+    echo "Reserved IP: $STATIC_IP"
+    ```
+
+1. Deploy the new controller with the reserved IP:
+
+    === "AWS (NLB + Elastic IP)"
+    ```
+    # In your values.yaml:
+    controller:
+      service:
+        annotations:
+          service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+          service.beta.kubernetes.io/aws-load-balancer-eip-allocations: "<EIP_ALLOC>"
+    ```
+    === "GCP"
+    ```
+    # In your values.yaml:
+    controller:
+      service:
+        loadBalancerIP: "<STATIC_IP>"
+        annotations:
+          cloud.google.com/load-balancer-type: "External"    
+    ```
+    === "Azure"
+    ```
+    # In your values.yaml:
+    controller:
+      service:
+        loadBalancerIP: "<STATIC_IP>"
+        annotations:
+          service.beta.kubernetes.io/azure-load-balancer-resource-group: "<resource-group>"    
+    ```
+
+1. Back up the current configuration:
+
+    ```bash
+    # Export all Ingress resources
+    kubectl get ingress --all-namespaces -o yaml > ingress-backup.yaml
+
+    # Export current controller Helm values
+    helm get values ingress-nginx -n ingress-nginx > old-values-backup.yaml
+    ```
+
+1. Prepare converted Ingress resources:
+
+    * Update all IngressClass annotations as described in [Step 4](#step-4-convert-annotations).
+    * Update annotation prefixes.
+    * Save the updated resources to `new-ingresses.yaml`.
+
+1. Schedule a maintenance window and notify users about the expected downtime.
+1. Delete the old controller:
+
+    ```bash
+    # Downtime begins here
+    helm uninstall ingress-nginx -n ingress-nginx
+
+    # Verify resources are removed
+    kubectl get pods -n ingress-nginx
+    ```
+
+1. Install the new controller immediately:
+
+    ```bash
+    helm install wallarm-ingress wallarm/wallarm-ingress \
+      -n wallarm-ingress \
+      --create-namespace \
+      -f new-values.yaml
+
+    # Wait for pods to become ready
+    kubectl wait --for=condition=ready pod \
+      -l app.kubernetes.io/name=nginx-ingress \
+      -n wallarm-ingress \
+      --timeout=300s
+    ```
+
+1. Apply the converted Ingress resources:
+
+    ```bash
+    kubectl apply -f new-ingresses.yaml
+    ```
+
+1. Verify that services are accessible:
+
+    ```bash
+    NEW_LB_IP=$(kubectl get svc -n wallarm-ingress wallarm-ingress-controller \
+      -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+
+    # Test each domain
+    curl -H "Host: app1.example.com" http://$NEW_LB_IP/
+    curl -H "Host: app2.example.com" http://$NEW_LB_IP/
+    ```
+
+1. Update DNS records to point to the new load balancer IP (if not pre-reserved).
+1. Test attack detection:
+
+    ```bash
+    # Test attack detection
+    curl -H "Host: app1.example.com" "http://$NEW_LB_IP/?id=1' OR '1'='1"
+    ```
+
+1. Verify in Wallarm Console that attacks are detected.
