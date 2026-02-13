@@ -157,6 +157,10 @@ Note that:
 * False positive rules work for all [detection methods](../about-wallarm/detecting-vulnerabilities.md#detection-methods): AASM, Threat Replay Testing, Passive detection, Schema-Based Testing
 * False positive rules act as a pre-creation filter—they are evaluated before security issues are created
 
+**Previously detected issues**
+
+When you create a new false positive rule, it does **not** retroactively mark previously detected security issues that match the rule as false—only **new** detections are affected. If an issue was detected before the rule was created, and you then add the rule and the same security issue is detected again later, the rule will be applied to that new detection.
+
 ### Example
 
 To suppress vulnerable software version findings for product endpoints:
