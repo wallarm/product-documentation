@@ -166,7 +166,7 @@ Exporting to OAS lets you use the discovered API schema for protection, analysis
 
 * **Upload to API specifications** in Wallarm to [enforce requests](../api-specification-enforcement/overview.md) or enable rogue API detection (when available for your API Discovery version).
 * **Open in [Swagger Editor](https://editor.swagger.io/)** to inspect and edit the inventory in OpenAPI format.
-* **Export to third-party platforms** for documentation, testing (e.g. Postman), or further analysis. The specification helps with vulnerability testing and reviewing endpoints for sensitive data and undocumented parameters.
+* **Use in Wallarm's [Schema-Based Testing](../vulnerability-detection/schema-based-testing/overview.md)** to run automated API security tests, or **export to third-party platforms** (e.g. [Postman](https://www.postman.com/)) for documentation, testing, or further analysis. The specification helps with vulnerability testing and reviewing endpoints for sensitive data and undocumented parameters.
 
 To download the OAS file:
 
