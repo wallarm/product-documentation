@@ -13,13 +13,14 @@
 [nginx-ing-image]:                        ../images/waf-installation/kubernetes/nginx-ingress-controller.png
 [nginx-ing-create-node-img]:              ../images/user-guides/nodes/create-wallarm-node-name-specified.png
 [attacks-in-ui-image]:                    ../images/admin-guides/test-attacks-quickstart.png
+[migration-doc]:                          ../admin-en/migration-new.md
 
 
 # Deploying F5 NGINX Ingress Controller with Integrated Wallarm Services
 
 These instructions provide you with the steps to deploy the Wallarm NGINX-based Ingress controller to your K8s cluster. The solution is deployed from the Wallarm Helm chart.
 
-The solution is based on the [F5 NGINX Ingress Controller][new-ic] with integrated Wallarm services. It uses the NGINX Ingress Controller image version 5.3.3. The Wallarm controller image is built on NGINX stable 1.29.x and uses Alpine Linux 3.22.0 as the base image.
+The solution is based on the [F5 NGINX Ingress Controller][new-ic] with integrated Wallarm services. It uses the NGINX Ingress Controller image version 5.3.3. The Wallarm controller image is built on NGINX stable 1.29.x and uses Alpine Linux 3.23 as the base image.
 
 ## Traffic flow
 
@@ -35,6 +36,10 @@ Among all supported [Wallarm deployment options][deployment-platform-docs], this
 * You are currently using F5 NGINX Ingress Controller and are in search of a security solution that offers both the standard controller functionality and enhanced security features. In this case, you can effortlessly switch to the Wallarm-NGINX Ingress Controller detailed in these instructions. Simply migrate your existing configuration to a new deployment to complete the replacement.
 
     For simultaneous use of both the existing Ingress controller and the Wallarm controller, refer to the [Ingress Controller chaining guide][chaining-doc] for configuration details.
+
+* You are currently using the Community Ingress NGINX controller (with or without Wallarm) and want to ensure continued support and integrated security capabilities. Since the upstream Community Ingress NGINX project has been retired, we recommend migrating to the F5-based Wallarm Ingress Controller.
+
+    See the [migration guide][migration-doc] for detailed instructions.
 
 ## Requirements
 
@@ -63,16 +68,12 @@ The deployment procedure assumes you already have an application deployed with a
 
 ### Step 1: Generate a filtering node token
 
-Generate a filtering node token of the [appropriate type][node-token-types]:
+Generate a [Node API token][node-token-types]:
 
-=== "API token"
-    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-    1. Find or create API token with the `Node deployment/Deployment` usage type.
-    1. Copy this token.
-=== "Node token"
-    1. Open Wallarm Console → **Nodes** in either the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
-    1. Create a filtering node with the **Wallarm node** type and copy the generated token.
-        
+1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+1. Find or create API token with the `Node deployment/Deployment` usage type.
+1. Copy this token.
+
 ![Creation of a Wallarm node][nginx-ing-create-node-img]
 
 ### Step 2: Install the Wallarm Ingress Controller
@@ -115,7 +116,7 @@ Generate a filtering node token of the [appropriate type][node-token-types]:
               # nodeGroup: defaultIngressGroup
         ```
 
-    `<NODE_TOKEN>` is the token of the Wallarm node to be run in Kubernetes.
+    `<NODE_TOKEN>` is the API token generated for Wallarm Node deployment.
    
     You can also store the Wallarm node token in [Kubernetes secrets][IC-existingsecret] and pull it to the Helm chart.
 
@@ -169,7 +170,7 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.o
 
 ## ARM64 deployment
 
-With the NGINX Ingress controller's Helm chart version 4.8.2, ARM64 processor compatibility is introduced. Initially set for x86 architectures, deploying on ARM64 nodes involves modifying the Helm chart parameters.
+The F5 NGINX Ingress Controller supports ARM64 processors. Originally designed for x86 architectures, deploying on ARM64 nodes requires updating the Helm chart parameters.
 
 In ARM64 settings, Kubernetes nodes often carry an `arm64` label. To assist the Kubernetes scheduler in allocating the Wallarm workload to the appropriate node type, reference this label using `nodeSelector`, `tolerations`, or affinity rules in the Wallarm Helm chart configuration.
 
@@ -328,6 +329,7 @@ Below is the recommended custom SCC for the Wallarm NGINX Ingress Controller.
 
 The expected output is `wallarm-ingress-controller`.
 
+<!-- 
 ## Configuration
 
 After installing and verifying the Wallarm Ingress Controller, you can apply advanced configurations, such as:
@@ -338,3 +340,4 @@ After installing and verifying the Wallarm Ingress Controller, you can apply adv
 * [Ingress Controller monitoring][best-practices-for-ingress-monitoring]
 
 For a full list of advanced configuration parameters and step-by-step instructions, see the [configuration guide][IC-config-options].
+-->
