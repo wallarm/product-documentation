@@ -7,18 +7,22 @@
 [deployment]:               https://docs.nginx.com/nginx-ingress-controller/install/manifests/#using-a-deployment 
 [daemonset]:                https://docs.nginx.com/nginx-ingress-controller/install/manifests/#using-a-daemonset
 [api-firewall]:             ../api-specification-enforcement/overview.md  
+[new-annotations]:          ../updating-migrating/what-is-new.md#annotation-namespace
 
 
-# Fine-tuning the Wallarm Ingress Controller (F5 NGINX)
+# Fine-Tuning the Wallarm Ingress Controller (F5 NGINX IC-Based)
 
 This page describes the **Helm chart configuration options** for the Wallarm Ingress Controller based on [F5 NGINX Ingress Controller](https://github.com/nginx/kubernetes-ingress).
 
 !!! info "Official documentation for F5 NGINX Ingress Controller"
     The fine‑tuning of the Wallarm Ingress Controller is similar to that of the F5 NGINX Ingress Controller described in the [official documentation](https://docs.nginx.com/nginx-ingress-controller/). When working with Wallarm, all options for setting up the original F5 NGINX Ingress Controller are available.
 
-### Additional Settings for Helm Chart
+## Wallarm-specific configuration in values.yaml
 
 The settings are defined in the `values.yaml` file. By default, the file looks as follows:
+
+<details>
+<summary>Show YAML configuration</summary>
 
 ```yaml
 # Wallarm WAF configuration
@@ -49,17 +53,6 @@ config:
         # secretKey: "token"
     ## Enable fallback mode when Wallarm proton.db or LOM cannot be downloaded
     fallback: "on"
-
-  ### Image settings
-  images:
-    controller:
-      repository: "docker.io/wallarm/ingress-controller"
-      tag: "7.0.0-rc0"
-      pullPolicy: IfNotPresent
-    helper:
-      repository: "docker.io/wallarm/node-helpers"
-      tag: "6.10.0"
-      pullPolicy: IfNotPresent
 
   ## Wallarm CLI postanalytics configuration (runs in postanalytics pod)
   wcliPostanalytics:
@@ -165,9 +158,6 @@ controller:
   ## Annotations for deployments and daemonsets
   annotations: {}
 
-  ## Timeout in milliseconds which the Ingress Controller will wait for a successful NGINX reload after a change or at the initial start.
-  nginxReloadTimeout: 60000
-
   # Wallarm containers inside of controller pod
   wallarm:
     ## Wallarm metrics endpoint configuration
@@ -242,74 +232,6 @@ controller:
           # loadBalancerIP: ""
           loadBalancerSourceRanges: []
           servicePort: 9004
-          type: ClusterIP
-          # externalTrafficPolicy: ""
-          # nodePort: ""
-        serviceMonitor:
-          enabled: false
-          additionalLabels: {}
-          annotations: {}
-          namespace: ""
-          namespaceSelector: {}
-          scrapeInterval: 30s
-          # honorLabels: true
-          targetLabels: []
-          relabelings: []
-          metricRelabelings: []
-      ## Additional environment variables
-      extraEnvs: []
-
-    ## API Firewall configuration
-    apiFirewall:
-      ## Resource requests and limits
-      resources: {}
-      ## Security context for the API Firewall container
-      securityContext: {}
-      ## Liveness probe configuration
-      livenessProbeEnabled: false
-      livenessProbe:
-        httpGet:
-          path: "/v1/liveness"
-          port: 18082
-          scheme: HTTP
-        failureThreshold: 3
-        initialDelaySeconds: 10
-        periodSeconds: 10
-        successThreshold: 1
-        timeoutSeconds: 1
-      readinessProbeEnabled: false
-      readinessProbe:
-        httpGet:
-          path: "/v1/readiness"
-          port: 18082
-          scheme: HTTP
-        failureThreshold: 3
-        initialDelaySeconds: 10
-        periodSeconds: 10
-        successThreshold: 1
-        timeoutSeconds: 1
-      ## Metrics configuration
-      metrics:
-        ## Enable metrics collection
-        enabled: false
-        ## Port for metrics endpoint
-        port: 9010
-        ## Port name for metrics endpoint
-        portName: apifw-metrics
-        ## Path at which the metrics endpoint is exposed
-        endpointPath: "/metrics"
-        ## IP address and/or port for the metrics endpoint
-        host: ":9010"
-        service:
-          annotations: {}
-          # prometheus.io/scrape: "true"
-          # prometheus.io/port: "9010"
-          labels: {}
-          # clusterIP: ""
-          externalIPs: []
-          # loadBalancerIP: ""
-          loadBalancerSourceRanges: []
-          servicePort: 9010
           type: ClusterIP
           # externalTrafficPolicy: ""
           # nodePort: ""
@@ -849,14 +771,6 @@ controller:
   ## Enable dynamic reloading of certificates
   enableSSLDynamicReload: true
 
-  ## Configure telemetry reporting options
-  telemetryReporting:
-    ## Enable telemetry reporting
-    enable: false
-
-
-
-
 # Postanalytics (wstore) component detailed configuration
 postanalytics:
   ## Deployment kind: Deployment or DaemonSet
@@ -884,8 +798,6 @@ postanalytics:
     # requests:
     #   cpu: 100m
     #   memory: 128Mi
-  ## Security context for wstore container
-  securityContext: {}
   ## Liveness probe configuration
   livenessProbe:
     failureThreshold: 3
@@ -1041,12 +953,6 @@ postanalytics:
     ## Additional environment variables
     extraEnvs: []
 
-
-
-rbac:
-  ## Configures RBAC.
-  create: true
-
   clusterrole:
     ## Create ClusterRole
     create: true
@@ -1120,6 +1026,7 @@ prometheusExtended:
     relabelings: []
     metricRelabelings: []
 ```
+</details>
 
 To change the settings, we recommend using the option `--set` of `helm install` (if installing the Ingress controller) or `helm upgrade` (if updating the installed Ingress controller parameters). For example:
 
@@ -1240,44 +1147,6 @@ To store the node token in Kubernetes Secrets and pull it to the Helm chart:
 Controls [fallback behavior][fallback] when Wallarm data (for example, [`proton.db][proton-db] or a [custom rule set][lom]) cannot be downloaded.
 
 **Default value**: `"on"`
-
-## Image parameters (config.images.*)
-
-### config.images.controller.repository
-
-The container image repository from which the Wallarm Ingress Controller image is pulled.
-
-**Default value**: `"docker.io/wallarm/ingress-controller"`
-
-### config.images.controller.tag
-
-The specific tag of the Wallarm Ingress Controller image to use. This determines the version of the controller deployed.
-
-**Default value**: `"7.0.0-rc0"`
-
-### config.images.controller.pullPolicy
-
-The [image pull policy](https://kubernetes.io/docs/concepts/containers/images/#imagepullpolicy-defaulting) for the Wallarm Ingress Controller container. Specifies when Kubernetes pulls the image.
-
-**Default value**: `IfNotPresent` (the image is pulled only if it is not already present on the Node).
-
-### config.images.helper.repository
-
-The container image repository for the Wallarm helper image.
-
-**Default value**: `"docker.io/wallarm/node-helpers"`
-
-### config.images.helper.tag
-
-The specific tag of the Wallarm helper image to use. This determines the version of the helper components deployed.
-
-**Default value**: `"6.10.0"`
-
-### config.images.helper.pullPolicy
-
-The [image pull policy](https://kubernetes.io/docs/concepts/containers/images/#imagepullpolicy-defaulting) for the Wallarm helper container. Specifies when Kubernetes pulls the image.
-
-**Default value**: `IfNotPresent` (the image is pulled only if it is not already present on the Node).
 
 ## Wallarm wcli parameters
 
@@ -1765,26 +1634,35 @@ When enabled, it allows using snippet-style annotations such as `nginx.org/serve
 !!! info "Security note"
     Snippet support can widen the attack surface in multi-tenant clusters. Keep it disabled unless you fully trust who can create/update Ingress resources.
 
-## Ingress annotations
+## Supported Wallarm Ingress annotations
 
-These annotations are used for setting up parameters for processing individual instances of Ingress.
+In this section, you can see the Wallarm-specific Ingress annotations supported by the Wallarm Ingress Controller based on the [F5 NGINX Ingress Controller](https://github.com/nginx/kubernetes-ingress).
 
-[Besides the standard NGINX Ingress Controller annotations](https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/advanced-configuration-with-annotations/), the following additional annotations are supported:
+Besides the Wallarm-specific annotations described below, [standard NGINX Ingress Controller annotations](https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/advanced-configuration-with-annotations/) are also supported.
 
-* [nginx.org/wallarm-mode](configure-parameters-en.md#wallarm_mode)
-* [nginx.org/wallarm-mode-allow-override](configure-parameters-en.md#wallarm_mode_allow_override)
-* [nginx.org/wallarm-fallback](configure-parameters-en.md#wallarm_fallback)
-* [nginx.org/wallarm-application](configure-parameters-en.md#wallarm_application)
-* [nginx.org/wallarm-block-page](configure-parameters-en.md#wallarm_block_page)
-* [nginx.org/wallarm-parse-response](configure-parameters-en.md#wallarm_parse_response)
-* [nginx.org/wallarm-parse-websocket](configure-parameters-en.md#wallarm_parse_websocket)
-* [nginx.org/wallarm-unpack-response](configure-parameters-en.md#wallarm_unpack_response)
-* [nginx.org/wallarm-parser-disable](configure-parameters-en.md#wallarm_parser_disable)
-* [nginx.org/wallarm-partner-client-uuid](configure-parameters-en.md#wallarm_partner_client_uuid)
+!!! info "Annotation prefix"
+    In the F5-based controller, annotations use the `nginx.org/*` prefix instead of `nginx.ingress.kubernetes.io/*`. This applies to both general NGINX annotations and Wallarm-specific annotations. [See more details][new-annotations].
+
+| Annotation | Description | 
+| --- | --- | 
+| `nginx.org/wallarm-mode` | [Traffic filtration mode](../admin-en/configure-wallarm-mode.md): `monitoring` (default), `safe_blocking`, `block` or `off`. | 
+| `nginx.org/wallarm-mode-allow-override` | Manages the [ability to override the `wallarm_mode values` via settings in the Cloud](../admin-en/configure-wallarm-mode.md#prioritization-of-methods): `on` (default), `off` or `strict`. | 
+| `nginx.org/wallarm-fallback` | [Wallarm fallback mode](../admin-en/configure-parameters-en.md#wallarm_fallback) : `on` (default) or `off`. | 
+| `nginx.org/wallarm-application` | [Wallarm application ID](../user-guides/settings/applications.md). |
+| `nginx.org/wallarm-block-page` | [Blocking page and error code](../admin-en/configuration-guides/configure-block-page-and-code.md) to return to blocked requests. |
+| `nginx.org/wallarm-unpack-response` | Whether to decompress compressed data returned in the application response: `on` (default) or `off`. |
+| `nginx.org/wallarm-parse-response` | Whether to analyze the application responses for attacks: `on` (default) or `off`. Response analysis is required for vulnerability detection during [passive detection](../about-wallarm/detecting-vulnerabilities.md#passive-detection) and [threat replay testing](../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing-trt). |
+| `nginx.org/wallarm-parse-websocket` | Wallarm has full WebSockets support. By default, the WebSockets' messages are not analyzed for attacks. To force the feature, activate the API Security [subscription plan](../about-wallarm/subscription-plans.md#core-subscription-plans) and use this annotation: `on` or `off` (default). |
+| `nginx.org/wallarm-parser-disable` | Allows to disable [parsers](../user-guides/rules/request-processing.md). The directive values correspond to the name of the parser to be disabled, e.g. `json`. Multiple parsers can be specified, dividing by semicolon, e.g. `json;base64`. |
+| `nginx.org/wallarm-partner-client-uuid` | Partner client [UUID](../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants) for multi-tenant setups. | 
+
+
 
 ### Applying annotation to the Ingress resource
 
-To apply the settings to your Ingress, please use the following command:
+These annotations are applied to Kubernetes `Ingress` resources processed by the controller.
+
+To set or update an annotation, use:
 
 ```
 kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> <ANNOTATION_NAME>=<VALUE>
@@ -1811,7 +1689,7 @@ For example, to return the default Wallarm blocking page and the error code 445 
 kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.org/wallarm-block-page="&/usr/share/nginx/html/wallarm_blocked.html response_code=445 type=attack,acl_ip,acl_source"
 ```
 
-[More details on the blocking page and error code configuration methods →](configuration-guides/configure-block-page-and-code.md)
+[More details on the blocking page and error code configuration methods →](../admin-en/configuration-guides/configure-block-page-and-code.md)
 
 #### Managing libdetection mode
 
@@ -1833,3 +1711,73 @@ You can control the [**libdetection**](../admin-en/configure-parameters-en.md#wa
 
 !!! info "Libdetection values"
     Available values of `wallarm_enable_libdetection` are `on`/`off`.
+
+## Wallarm policy custom resource fefinition (CRD)
+
+The F5-based controller supports [Custom Resource Definitions](https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/) as an alternative to standard Ingress resources for advanced routing (canary deployments, traffic splitting, header-based routing).
+
+When using CRDs, Wallarm settings are configured via the **Policy** resource instead of annotations. Wallarm patches the upstream Policy CRD to add an optional `spec.wallarm` block — an alternative to Wallarm annotations that provides the same set of settings through a dedicated resource. The Policy is then referenced from `VirtualServer` or `VirtualServerRoute` routes.
+
+!!! info "Wallarm-provided CRDs"
+    If you plan to use the Wallarm Policy CRD (`spec.wallarm`), apply the **Wallarm-provided CRDs** instead of the upstream F5 CRDs. The Wallarm-provided CRDs include the patched Policy schema with the `wallarm` block.
+
+**Policy fields:**
+
+| Field | Description | Values | Default |
+| --- | --- | --- | --- |
+| `mode` | Wallarm filtration mode. | `off`, `monitoring`, `safe_blocking`, `block` | — |
+| `modeAllowOverride` | Whether Wallarm Cloud settings can override the local mode. | `on`, `off`, `strict` | `on` |
+| `fallback` | Behavior when proton.db or custom ruleset cannot be loaded. | `on`, `off` | `on` |
+| `application` | Application ID used to separate traffic in Wallarm Cloud. | Positive integer | — |
+| `blockPage` | Custom block page (file path, named location, URL, or variable). | String | — |
+| `parseResponse` | Analyze responses from the application. | `on`, `off` | `on` |
+| `unpackResponse` | Decompress responses before analysis. | `on`, `off` | `on` |
+| `parseWebsocket` | Analyze WebSocket messages. | `on`, `off` | `off` |
+| `parserDisable` | Parsers to disable. | List: `cookie`, `zlib`, `htmljs`, `json`, `multipart`, `base64`, `percent`, `urlenc`, `xml`, `jwt` | — |
+| `partnerClientUUID` | Partner client UUID for multi-tenant setups. | UUID | — |
+
+**Example — two policies with different modes referenced by routes:**
+
+```yaml
+apiVersion: k8s.nginx.org/v1
+kind: Policy
+metadata:
+  name: wallarm-block
+spec:
+  wallarm:
+    mode: block
+    application: 42
+    fallback: "on"
+---
+apiVersion: k8s.nginx.org/v1
+kind: Policy
+metadata:
+  name: wallarm-monitoring
+spec:
+  wallarm:
+    mode: monitoring
+---
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: my-app
+spec:
+  host: my-app.example.com
+  upstreams:
+    - name: backend
+      service: backend-svc
+      port: 80
+  routes:
+    - path: /api
+      policies:
+        - name: wallarm-block
+      action:
+        pass: backend
+    - path: /internal
+      policies:
+        - name: wallarm-monitoring
+      action:
+        pass: backend
+```
+
+In this example, `/api` traffic is processed in `block` mode while `/internal` traffic is in `monitoring` mode — each route references a different Wallarm Policy.
