@@ -1,13 +1,13 @@
 [new-ic]:                                 https://github.com/nginx/kubernetes-ingress
-[IC-config-options]:                      ../admin-en/configure-kubernetes-en-new.md
-[IC-existingsecret]:                      ../admin-en/configure-kubernetes-en-new.md#configwallarmapiexistingsecretenabled
+[IC-config-options]:                      ../admin-en/configure-kubernetes-en.md
+[IC-existingsecret]:                      ../admin-en/configure-kubernetes-en.md#configwallarmapiexistingsecretenabled
 [applications]:                           ../user-guides/settings/applications.md
 [ptrav-attack]:                           ../attacks-vulns-list.md#path-traversal
 [best-practices-for-public-ip]:           ../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
 [ip-lists-docs]:                          ../user-guides/ip-lists/overview.md
 [best-practices-for-high-availability]:   ../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
 [best-practices-for-ingress-monitoring]:  ../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
-[deployment-platform-docs]:               ../../6.x/installation/supported-deployment-options.md
+[deployment-platform-docs]:               ../installation/supported-deployment-options.md
 [chaining-doc]:                           ../admin-en/chaining-wallarm-and-other-ingress-controllers.md
 [node-token-types]:                       ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [nginx-ing-image]:                        ../images/waf-installation/kubernetes/nginx-ingress-controller.png

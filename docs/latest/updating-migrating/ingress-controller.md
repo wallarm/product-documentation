@@ -1,8 +1,8 @@
 [old-ic]:                   https://github.com/kubernetes/ingress-nginx
 [new-ic]:                   https://github.com/nginx/kubernetes-ingress
 [whats-new]:                ../updating-migrating/what-is-new.md
-[new-IC-installation]:      ../admin-en/installation-kubernetes-en-new.md
-[new-IC-configuration]:     ../admin-en/configure-kubernetes-en-new.md
+[new-IC-installation]:      ../admin-en/installation-kubernetes-en.md
+[new-IC-configuration]:     ../admin-en/configure-kubernetes-en.md
 [IC-retirement]:            ../updating-migrating/nginx-ingress-retirement.md
 [old-IC-maintenance]:        ../updating-migrating/nginx-ingress-retirement.md#wallarms-nginx-based-ingress-controller-support-timeline
 
