@@ -1233,7 +1233,7 @@ You can control the [**libdetection**](../admin-en/configure-parameters-en.md#wa
 !!! info "Libdetection values"
     Available values of `wallarm_enable_libdetection` are `on`/`off`.
 
-## Wallarm policy custom resource fefinition (CRD)
+## Wallarm policy custom resource definition (CRD)
 
 The F5-based controller supports [Custom Resource Definitions](https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/) as an alternative to standard Ingress resources for advanced routing (canary deployments, traffic splitting, header-based routing).
 
