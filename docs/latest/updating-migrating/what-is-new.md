@@ -137,7 +137,7 @@ This applies to both general NGINX annotations and Wallarm-specific annotations,
         nginx.org/rewrites: "serviceName=myservice rewrite=/$2"
     ```
 
-The set of supported **Wallarm-specific annotations** has not changed — only the prefix is different. For the full list of Wallarm annotations and their accepted values, see [Wallarm Ingress Controller annotations].
+The set of supported **Wallarm-specific annotations** has not changed — only the prefix is different. For the full list of Wallarm annotations and their accepted values, see [Wallarm Ingress Controller annotations](../admin-en/configure-kubernetes-en.md#supported-wallarm-ingress-annotations).
 
 For the full mapping of general **NGINX annotations** between the two controllers, refer to the [F5 migration guide](https://docs.nginx.com/nginx-ingress-controller/install/migrate-ingress-nginx/#advanced-configuration-with-annotations).
 
@@ -381,7 +381,7 @@ Migration to the F5-based controller requires planning how traffic will be switc
 
 4. Decommission the Community-based (6.x) controller after validation
 
-[Full migration guide]
+[Full migration guide](ingress-controller.md)
 
 ## Migration checklist
 
@@ -401,4 +401,4 @@ When migrating from the Community-based (6.x) to the F5-based (7.x) controller:
 
 The migration requires planning but does not require changing your application workloads.
 
-[Full migration guide]
+[Full migration guide](ingress-controller.md)
