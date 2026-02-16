@@ -75,7 +75,7 @@ Schema-Based Testing capabilities:
 * Detection of vulnerabilities in the application or API itself, as well as security misconfigurations in the underlying infrastructure or environment.
 * Lightweight execution via Docker container.
 
-### API Security Testing via Postman <a href="subscription-plans.md#rogue-mcp"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+### API Security Testing via Postman <a href="subscription-plans.md#rogue-mcp"><img src="../../images/rogue-mcp-tag.png" style="border: none; height: 24px; width: auto;"></a>
 
 Wallarm's [API Security Testing via Postman](../vulnerability-detection/api-security-testing-via-postman/overview.md) runs safe, passive security tests on your Postman collections from inside Postman. You ask in natural language (e.g., "test my collection for security issues") and get results in a few minutes—auth gaps, data leaks, over-permissive endpoints, schema violations, sensitive data exposure, and basic BOLA/BOPLA indicators—with explanations and remediation guidance. Results appear in the Postman AI Agent chat and in Wallarm Cloud (Security Testing → Rogue MCP → Test runs; Security Issues).
 

@@ -4,10 +4,10 @@ Wallarm allows you to audit every installed local MCP server to expose supply-ch
 
 ## Access via Postman
 
-You can access Rogue MCP Inspection via **Wallarm Rogue MCP** Wallarm's MCP server, which is easily accessible via Postman. Scenario:
+You can access Rogue MCP Inspection via **Wallarm Rogue MCP** (Wallarm's MCP server), which is easily accessible via Postman. Scenario:
 
-1. In Postman, you add **Wallarm Rogue MCP** MCP server to your Workspace.
-1. With Postman's AI Agent, you just ask to inspect you local machine for the rogue MCP.
+1. In Postman, you add the **Wallarm Rogue MCP** server to your Workspace.
+1. With Postman's AI Agent, you just ask to inspect your local machine for the rogue MCP.
 1. Agent spends 2 minutes learning your PC and responds with the report covering:
 
     * This is what can be misused by MCPs on your computer
@@ -26,7 +26,7 @@ This feature is free.
 
 * [Postman Desktop Agent](https://learning.postman.com/docs/getting-started/basics/about-postman-agent/#postman-desktop-agent) locally installed and running on your computer and connected to Postman - needed to run MCP inspection on your computer right from the Postman interface.
 
-### 1. Add  Wallarm's MCP server
+### 1. Add Wallarm's MCP server
 
 1. In Postman, access its AI Agent.
 1. In AI Agent panel, click **Configure** ("gear"), and select **Configure MCP servers**.
@@ -65,4 +65,4 @@ Postman's AI Agent will give you an answer with the test results and suggested m
 
 ## Other tools
 
-Besides Rogue MCP Inspection, **Wallarm Rogue MCP** Wallarm's MCP server provides other tools for security testing, such as [API Security Testing via Postman](../vulnerability-detection/api-security-testing-via-postman/overview.md)—safe, passive testing of Postman collections for auth gaps, data leaks, and design-level issues.
+Besides Rogue MCP Inspection, **Wallarm Rogue MCP** provides other tools for security testing, such as [API Security Testing via Postman](../vulnerability-detection/api-security-testing-via-postman/overview.md)—safe, passive testing of Postman collections for auth gaps, data leaks, and design-level issues.
