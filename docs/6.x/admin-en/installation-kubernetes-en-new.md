@@ -1,1 +1,0 @@
---8<-- "latest/admin-en/installation-kubernetes-en-new.md"
