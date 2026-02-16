@@ -249,6 +249,8 @@ nav:
       - Azure API Management: installation/connectors/azure-api-management.md
       - Apigee: installation/connectors/apigee.md
       - IBM API Connect: installation/connectors/ibm-api-connect.md
+    - TCP Traffic Mirror:
+      - Deployment: installation/oob/tcp-traffic-mirror/deployment.md
     - Packages & Containers:
       - Linux OS:
         - All-in-one installer for NGINX Node: installation/nginx/all-in-one.md
@@ -256,7 +258,6 @@ nav:
       - Docker:
         - Image for NGINX Node: admin-en/installation-docker-en.md
         - Image for Native Node: installation/native-node/docker-image.md
-      - TCP Traffic Mirror: installation/oob/tcp-traffic-mirror/deployment.md
       - NGINX Node Configuration: admin-en/configure-parameters-en.md
       - Native Node Configuration: installation/native-node/all-in-one-conf.md
     - On-Premise:
