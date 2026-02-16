@@ -1,4 +1,4 @@
-# What is New in Wallarm Ingress Controller 7.x
+# What is New in Wallarm Ingress Controller 7.x
 
 Wallarm Node 7.x introduces a new deployment artifact for Kubernetes environments — the **Wallarm Ingress Controller based on F5 NGINX Ingress Controller** (internally referred to as **ingress-nextgen**).
 

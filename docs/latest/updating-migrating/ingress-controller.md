@@ -7,7 +7,7 @@
 [old-IC-maintenance]:        ../updating-migrating/nginx-ingress-retirement.md#wallarms-nginx-based-ingress-controller-support-timeline
 
 
-# Migrating From the Community-Based to F5-Based Wallarm Ingress Controller
+# Migrating From the Community‑Based to F5‑Based Wallarm Ingress Controller
 
 This topic explains why and how to migrate from the Wallarm Ingress Controller based on the [Community Ingress NGINX][old-ic] to the new controller based on [F5 NGINX Ingress Controller][new-ic].
 
