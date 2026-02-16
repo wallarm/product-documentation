@@ -6,11 +6,12 @@
 [api-spec-enforcement-docs]:  ../../api-specification-enforcement/overview.md
 [custom-blocking-page]:       ../../admin-en/configuration-guides/configure-block-page-and-code.md
 [rate-limiting]:              ../../user-guides/rules/rate-limiting.md
+[envoy-port]:                 ../../installation/native-node/all-in-one-conf.md#envoy_external_filteraddress-required
 
 
 # Wallarm Filter for Gloo Gateway 
 
-This guide describes how to secure your APIs managed by [Gloo Gateway (Gloo Edge API)](https://docs.solo.io/gloo-edge/main/) using the Wallarm Connector based on [Envoy's ext_proc filter](https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/http/ext_proc/v3/ext_proc.proto).
+This guide describes how to secure your APIs managed by [Gloo Gateway (Gloo Edge API)](https://docs.solo.io/gloo-edge/main/) using the Wallarm Connector based on [Envoy's `ext_proc` filter](https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/http/ext_proc/v3/ext_proc.proto).
 
 To use Wallarm with Gloo, you need to **deploy a Wallarm Node** within your cluster and configure Gloo's `ext_proc` integration to send traffic to the Node over gRPC for analysis.
 
@@ -60,46 +61,31 @@ Before deploying the connector, make sure that the following requirements are me
 
 The Wallarm node is a core component of the Wallarm platform that you need to deploy. It inspects incoming traffic, detects malicious activities, and can be configured to mitigate threats.
 
-Choose an artifact for a self-hosted node deployment and follow the instructions attached for the `envoy-external-filter` mode:
+Choose an artifact for a self-hosted node deployment and follow the instructions for the `envoy-external-filter` mode:
 
-* [All-in-one installer](../native-node/all-in-one.md) for Linux infrastructures on bare metal or VMs
-* [Docker image](../native-node/docker-image.md) for environments that use containerized deployments
-* [AWS AMI](../native-node/aws-ami.md) for AWS infrastructures
-* [Helm chart](../native-node/helm-chart.md) for infrastructures utilizing Kubernetes
+* [All-in-one installer](../native-node/all-in-one.md) for Linux on bare metal or VMs
+* [Docker image](../native-node/docker-image.md) for containerized deployments
+* [Helm chart](../native-node/helm-chart.md) for Kubernetes (recommended when using Gloo)
+
+**Important deployment notes:**
+
+* **(Recommended setup)** Deploy the Node in the same Kubernetes cluster where Gloo runs (e.g. via the [Helm chart](../native-node/helm-chart.md):
+    * Use a **service name** and **namespace** that match the Upstream in [step 4](#4-create-an-upstream-for-the-wallarm-node) (e.g. service name `wallarm-node`, namespace `wallarm`).
+    * Make sure the gRPC port is set to 5000. 
+    * The Gloo `ext_proc` configuration [(step 2)](#2-configure-gloo-gateway-to-forward-traffic-to-the-wallarm-node) and the Upstream [(step 4)](#4-create-an-upstream-for-the-wallarm-node) will reference this Kubernetes Service.
+* If the Node is deployed **outside the cluster** (e.g. [Docker image](../native-node/docker-image.md) on a host or [all-in-one installer](../native-node/all-in-one.md) on a VM):
+    * There will be no Kubernetes Service.
+    * You must create create a **static** Gloo Upstream pointing to the Node's address and port (see [Gloo static upstreams](https://docs.solo.io/gloo-edge/latest/guides/traffic_management/destination_types/static_upstream/)).
+    * Ensure the Node is reachable from the cluster.
+    * Configure the Node to listen on the same port (e.g. `5000`) in [`envoy_external_filter.address`][envoy-port] in the Node config.
 
 ### 2. Configure Gloo Gateway to forward traffic to the Wallarm Node
 
-1. Prepare the Gloo Helm values file (`./test/manifests/gloo/values.yaml`). Key configuration parameters are highlighted and explained in the comments:
+You already have Gloo Gateway installed and a Helm values file from [installation](https://docs.solo.io/gloo-edge/main/installation/gateway/kubernetes/). Add the following **Wallarm-specific** block to your existing values (under the `global` key). If `global.extensions` does not exist yet, add it; then add the `extProc` section:
 
-    ```yaml hl_lines="33-34 39-40 42-43"
-    gloo:
-      gloo:
-        disableLeaderElection: true
-      discovery:
-        enabled: true
+1. Update your existing Gloo Helm values file with the `ext_proc` configuration. Add or merge the following under `global`:
 
-    gatewayProxies:
-      gatewayProxy:
-        enabled: true
-        gatewaySettings:
-          gatewayApi: false
-
-    rateLimit:
-      enabled: false
-
-    observability:
-      enabled: false
-
-    prometheus:
-      enabled: false
-
-    grafana:
-      defaultInstallationEnabled: false
-
-    gloo-fed:
-      enabled: false
-
-    # Mirror traffic to the Wallarm Node using Envoy ext_proc
+    ```yaml hl_lines="5-6 11-12 14-15"
     global:
       extensions:
         extProc:
@@ -110,26 +96,19 @@ Choose an artifact for a self-hosted node deployment and follow the instructions
             stage: AuthZStage
           grpcService:
             extProcServerRef:
-              name: native-processing # Name of the upstream pointing to the Wallarm Node
-              namespace: gloo-system # Namespace where the upstream is created
+              name: wallarm-node # Name of the Upstream pointing to the Wallarm Node (step 4)
+              namespace: gloo-system # Namespace where the Upstream is created
           processingMode:
-            requestBodyMode: STREAMED # How the request body is handled (use STREAMED for full analysis)
-            responseBodyMode: STREAMED # How the response body is handled (use STREAMED for full analysis)
+            requestBodyMode: STREAMED # Use STREAMED for full request body analysis
+            responseBodyMode: STREAMED # Use STREAMED for full response body analysis
           requestAttributes: [request.id, request.time, source.address]
     ```
 
-1. Add the Helm repository
-
-    ```
-    helm repo add glooe https://storage.googleapis.com/gloo-ee-helm
-    helm repo update glooe
-    ```
-
-1. Upgrade the existing Gloo Gateway release with the `ext_proc` configuration:
+1. Upgrade the Gloo Gateway release so the new configuration is applied:
 
     ```
     helm -n gloo-system upgrade gloo glooe/gloo-ee \
-      -f ./test/manifests/gloo/values.yaml \
+      -f <path-to-your-values-file> \
       --set license_key="<GLOO_KEY>"
     ```
     where `GLOO_KEY` is your Gloo Gateway Enterprise license key.
@@ -149,20 +128,22 @@ kubectl -n gloo-system create secret tls tlskeys \
 
 ### 4. Create an upstream for the Wallarm Node
 
-1. Prepare the Wallarm upstream file (`./test/manifests/gloo/upstream.yaml`). Key configuration parameters are highlighted and explained in the comments:
+The following example is for a Node deployed **in the cluster** (e.g. via the Helm chart). If the Node runs outside the cluster, use a [static Upstream](https://docs.solo.io/gloo-edge/latest/guides/traffic_management/destination_types/static_upstream/) to the Node's address and port instead.
+
+1. Prepare the Wallarm Upstream manifest (e.g. `upstream.yaml`). Key configuration parameters are highlighted and explained in the comments:
 
     ```yaml hl_lines="8 10-12 14"
     apiVersion: gloo.solo.io/v1
     kind: Upstream
     metadata:
-      name: native-processing
+      name: wallarm-node
       namespace: gloo-system
     spec:
       discoveryMetadata: {}
       useHttp2: true # Must be true for gRPC communication
       kube:
-        serviceName: native-processing # Native Node processing service name
-        serviceNamespace: gonode # Namespace where the Node is deployed
+        serviceName: wallarm-node # Wallarm Node processing service name
+        serviceNamespace: wallarm # Namespace where the Wallarm Node is deployed
         servicePort: 5000 # gRPC port (5000 for Gloo integration)
       sslConfig:
         secretRef: # Reference to the TLS secret for secure gRPC
@@ -173,12 +154,12 @@ kubectl -n gloo-system create secret tls tlskeys \
 1. Apply the upstream:
 
     ```
-    kubectl -n gloo-system apply -f ./test/manifests/gloo/upstream.yaml
+    kubectl -n gloo-system apply -f <path-to-your-upstream.yaml>
     ```
 
 ### 5. Create a VirtualService for traffic routing
 
-1. Prepare the [VirtualService](https://docs.solo.io/gloo-edge/latest/reference/api/github.com/solo-io/gloo/projects/gateway/api/v1/virtual_service.proto.sk/) file (`./test/manifests/workload-gloo/vs.yaml`):
+1. Prepare the [VirtualService](https://docs.solo.io/gloo-edge/latest/reference/api/github.com/solo-io/gloo/projects/gateway/api/v1/virtual_service.proto.sk/) manifest (e.g. `vs.yaml`):
 
     ```yaml
     apiVersion: gateway.solo.io/v1
@@ -202,7 +183,7 @@ kubectl -n gloo-system create secret tls tlskeys \
 1. Apply the VirtualService:
 
     ```
-    kubectl -n gloo-system apply -f ./test/manifests/workload-gloo/vs.yaml
+    kubectl -n gloo-system apply -f <path-to-your-virtualservice.yaml>
     ```
 
     !!! info "Gloo service discovery"        
