@@ -150,6 +150,7 @@ nav:
         - Custom Block Page: installation/security-edge/inline/custom-block-page.md
         - Host Redirection: installation/security-edge/inline/host-redirection.md
         - mTLS Configuration: installation/security-edge/inline/mtls.md
+        - Custom Keepalive Settings: installation/security-edge/inline/keepalive.md
         - Multi-Region: installation/security-edge/inline/multi-region.md
         - NGINX Overrides: installation/security-edge/inline/nginx-overrides.md
         - Upgrade & Management: installation/security-edge/inline/upgrade-and-management.md
