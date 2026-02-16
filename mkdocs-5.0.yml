@@ -115,6 +115,11 @@ nav:
       - Setup: vulnerability-detection/schema-based-testing/setup.md
       - Exploring Results: vulnerability-detection/schema-based-testing/explore.md
 
+    - API Security Testing via Postman:
+      - Overview: vulnerability-detection/api-security-testing-via-postman/overview.md
+      - Setup: vulnerability-detection/api-security-testing-via-postman/setup.md
+      - Exploring Results: vulnerability-detection/api-security-testing-via-postman/exploring.md
+
     - API Attack Surface (AASM):
       - Overview: api-attack-surface/overview.md
       - Setup: api-attack-surface/setup.md
@@ -122,6 +127,12 @@ nav:
       - Security Issues: api-attack-surface/security-issues.md
 
     - Detecting Vulnerabilities: about-wallarm/detecting-vulnerabilities.md      
+
+  # ============================================================================
+  # SECTION 5: AI PROTECTION
+  # ============================================================================
+  - AI Protection:
+    - Rogue MCP Inspection: agentic-ai/rogue-mcp-inspection.md
 
   # ============================================================================
   # SECTION 6: DEPLOYMENT
