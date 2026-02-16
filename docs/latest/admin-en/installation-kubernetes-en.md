@@ -59,16 +59,6 @@ Among all supported [Wallarm deployment options][deployment-platform-docs], this
 
 ## Deployment
 
-1. [Prerequisites](#prerequisites).
-1. [Generate](#step-1-generate-a-filtering-node-token) a filtering node token.
-1. [Install](#step-2-install-the-wallarm-ingress-controller) the Wallarm Ingress Controller.
-1. [Enable](#step-3-enable-traffic-analysis-for-your-ingress) traffic analysis for your Ingress.
-1. [Test](#step-4-test-the-wallarm-ingress-controller-operation) the Wallarm Ingress Controller operation.
-
-### Prerequisites
-
-The deployment procedure assumes you already have an application deployed with an Ingress resource. If no Ingress exists for your application, create one before [Step 3](#step-3-enable-traffic-analysis-for-your-ingress).
-
 ### Step 1: Generate a filtering node token
 
 Generate a [Node API token][node-token-types]:

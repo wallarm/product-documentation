@@ -310,7 +310,7 @@ nav:
       - General Recommendations: updating-migrating/general-recommendations.md
       - What's New: updating-migrating/what-is-new.md
       - NGINX Node Changelog: updating-migrating/node-artifact-versions.md
-      - Native Node Changelog: updating-migrating/native-node/node-artifact-versions.md
+      # - Native Node Changelog: updating-migrating/native-node/node-artifact-versions.md
       - NGINX Node Upgrade Instructions:
         - DEB/RPM Packages: updating-migrating/nginx-modules.md
         - Postanalytics Module: updating-migrating/separate-postanalytics.md
