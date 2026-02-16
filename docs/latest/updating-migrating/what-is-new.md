@@ -91,8 +91,6 @@ The table below maps the most commonly customized Wallarm parameters between the
 | `controller.wallarm.helpers` | `config.images.helper` |
 | `controller.config` (NGINX ConfigMap) | `controller.config.entries` |
 | `controller.configAnnotations` | `controller.config.annotations` |
-| `validation.enableCel` | Unchanged |
-| `validation.forbidDangerousAnnotations` | Unchanged |
 
 #### Removed parameters
 
@@ -103,6 +101,8 @@ The following Community-based (6.x) parameters are no longer available:
 | `controller.proxySetHeaders` | Use `controller.config.entries` or NGINX snippets instead. |
 | `controller.addHeaders` | Use `controller.config.entries` or NGINX snippets instead. |
 | `controller.admissionWebhooks.*` | Not applicable to the F5-based controller. |
+| `validation.enableCel` | Not applicable to the F5-based controller. The F5-based controller is not affected by the CVE-2025-1974 vulnerability for which this setting has been initially introduced. |
+| `validation.forbidDangerousAnnotations` | Not applicable to the F5-based controller. The F5-based controller is not affected by the CVE-2025-1974 vulnerability for which this setting has been initially introduced. |
 
 ### Annotation namespace
 
