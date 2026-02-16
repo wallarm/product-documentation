@@ -179,7 +179,7 @@ Before starting the migration, gather the following information from your existi
     * Service selector differences
     * Load balancer IP preservation considerations
 
-1. Read the new [Ingress Controller deployment guide][new-IC-installation] and the [installation parameters][new-IC-configuration].
+1. Read the new [Ingress Controller deployment guide][new-IC-installation] and the [configuration parameters][new-IC-configuration].
 
     Key configuration areas include:
 
@@ -199,7 +199,7 @@ Before starting the migration, gather the following information from your existi
     helm repo add wallarm https://charts.wallarm.com/
     helm repo update
 
-    ## TODO: Replace with the actual release name when available 
+    # Deploy the new Ingress Controller
     helm install wallarm-ingress-new wallarm/wallarm-ingress \
       -n wallarm-ingress-new \
       --create-namespace \
@@ -227,8 +227,6 @@ Before starting the migration, gather the following information from your existi
 
     To do so, go to Wallarm Console → **Settings** → **Nodes** and check if the new Ingress Controller node appears. It should show up within 2–3 minutes of deployment.
 
-If all checks pass, you are ready to proceed to Step 3.
-
 ### Step 3. Prepare your Ingress resources
 
 Collect all Ingress resources that use the old Ingress Controller:
@@ -239,9 +237,9 @@ Collect all Ingress resources that use the old Ingress Controller:
     # List all Ingress resources across all namespaces
     kubectl get ingress --all-namespaces
 
-    # Export all Ingress resources to a backup file
+    # Export all Ingress resources to a backup file (for reference and rollback purposes)
     kubectl get ingress --all-namespaces -o yaml > old-ingresses-backup.yaml
-    echo "✅ Backup saved to: old-ingresses-backup.yaml"
+    echo "Backup saved to: old-ingresses-backup.yaml"
 
     # Count the total number of Ingress resources
     kubectl get ingress --all-namespaces --no-headers | wc -l
@@ -355,6 +353,11 @@ Before migrating production traffic, verify your converted Ingress resources in 
     NEW_LB_IP=$(kubectl get svc -n wallarm-ingress-new wallarm-ingress-controller \
       -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 
+    if [ -z "$NEW_LB_IP" ]; then
+      echo "ERROR: LoadBalancer IP not assigned yet. Wait and retry."
+      exit 1
+    fi
+
     echo "New LoadBalancer IP: $NEW_LB_IP"
     ```
 
@@ -404,8 +407,13 @@ Before migrating production traffic, verify your converted Ingress resources in 
     # Your browser will use the new controller instead of the old one
 
     # IMPORTANT: Remove this entry after testing!
-    sudo sed -i '' '/your-actual-domain.com/d' /etc/hosts  # macOS
-    sudo sed -i '/your-actual-domain.com/d' /etc/hosts     # Linux
+    # Cross-platform method:
+    sudo grep -v 'your-actual-domain.com' /etc/hosts | sudo tee /etc/hosts.tmp > /dev/null
+    sudo mv /etc/hosts.tmp /etc/hosts
+
+    # Or use platform-specific sed:
+    # macOS: sudo sed -i '' '/your-actual-domain.com/d' /etc/hosts
+    # Linux: sudo sed -i '/your-actual-domain.com/d' /etc/hosts
     ```
 
     This allows you to test the new controller locally using real domain names before performing the DNS switch.
@@ -471,6 +479,12 @@ This method deploys the new controller with a new load balancer IP and updates D
     ```bash
     NEW_LB_IP=$(kubectl get svc -n wallarm-ingress-new wallarm-ingress-controller \
       -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+
+    if [ -z "$NEW_LB_IP" ]; then
+      echo "ERROR: LoadBalancer IP not assigned yet. Wait and retry."
+      exit 1
+    fi
+
     echo "New LoadBalancer IP: $NEW_LB_IP"
     ```
 
@@ -493,24 +507,24 @@ This method deploys the new controller with a new load balancer IP and updates D
     curl -H "Host: your-domain.com" "http://$NEW_LB_IP/test?id=1' OR '1'='1"
     ```
 
-1. Verify in Wallarm Console that attacks are detected.
+1. Verify in Wallarm Console → **Events** → **Attacks** that the attack was detected successfully.
 1. Update DNS records to point to the new IP:
 
     ```bash
     # Example using AWS Route53:
     aws route53 change-resource-record-sets \
       --hosted-zone-id <zone-id> \
-      --change-batch '{
-        "Changes": [{
-          "Action": "UPSERT",
-          "ResourceRecordSet": {
-            "Name": "your-domain.com",
-            "Type": "A",
-            "TTL": 300,
-            "ResourceRecords": [{"Value": "'$NEW_LB_IP'"}]
+      --change-batch "{
+        \"Changes\": [{
+          \"Action\": \"UPSERT\",
+          \"ResourceRecordSet\": {
+            \"Name\": \"your-domain.com\",
+            \"Type\": \"A\",
+            \"TTL\": 300,
+            \"ResourceRecords\": [{\"Value\": \"$NEW_LB_IP\"}]
           }
         }]
-      }'
+      }"
     ```
 
 1. Monitor DNS propagation and traffic:
@@ -541,6 +555,12 @@ This method preserves the existing load balancer IP by switching the Kubernetes 
     ```bash
     OLD_LB_IP=$(kubectl get svc -n ingress-nginx ingress-nginx-controller \
       -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+
+    if [ -z "$OLD_LB_IP" ]; then
+      echo "ERROR: Could not retrieve current LoadBalancer IP"
+      exit 1
+    fi
+
     echo "Current LoadBalancer IP (must preserve): $OLD_LB_IP"
     ```
 
@@ -561,7 +581,7 @@ This method preserves the existing load balancer IP by switching the Kubernetes 
     config:
       wallarm:
         api:
-          host: "api.wallarm.com"  # or api.wallarm.eu
+          host: "api.wallarm.com"  # or us1.api.wallarm.com
           token: "YOUR_TOKEN"
     ```
 
@@ -594,8 +614,13 @@ This method preserves the existing load balancer IP by switching the Kubernetes 
       -o jsonpath='{.items[0].metadata.name}')
 
     kubectl port-forward -n ingress-nginx $NEW_POD 8080:80 &
+    PF_PID=$!
+
+    sleep 2  # Wait for port-forward to establish
     curl -H "Host: your-domain.com" http://localhost:8080/
-    killall kubectl  # Stop port-forward
+
+    # Stop port-forward
+    kill $PF_PID
     ```
 
 1. Update Ingress resources to use the new controller and ensure traffic is routed correctly after the selector swap:
@@ -661,9 +686,10 @@ This method preserves the existing load balancer IP by switching the Kubernetes 
     echo "LoadBalancer IP after switch: $NEW_LB_IP"
 
     if [ "$OLD_LB_IP" == "$NEW_LB_IP" ]; then
-      echo "✅ IP preserved successfully!"
+      echo "SUCCESS: IP address preserved - $NEW_LB_IP"
     else
-      echo "❌ IP changed - ROLLBACK IMMEDIATELY"
+      echo "CRITICAL: IP address changed from $OLD_LB_IP to $NEW_LB_IP - INITIATE ROLLBACK IMMEDIATELY"
+      exit 1
     fi
     ```
 
@@ -673,7 +699,11 @@ This method preserves the existing load balancer IP by switching the Kubernetes 
     # Watch logs on the new controller
     kubectl logs -n ingress-nginx -l app.kubernetes.io/instance=wallarm-new -f
 
-    # Check metrics
+    # Check metrics (find the correct deployment name first)
+    DEPLOYMENT_NAME=$(kubectl get deployment -n ingress-nginx \
+      -l app.kubernetes.io/instance=wallarm-new \
+      -o jsonpath='{.items[0].metadata.name}')
+
     kubectl exec -n ingress-nginx \
       deployment/wallarm-ingress-new-controller \
       -c wallarm-wcli -- wcli metric
@@ -698,24 +728,41 @@ This method preserves the existing load balancer IP by switching the Kubernetes 
 
 1. Create a new `LoadBalancer Service` managed by the new Helm chart:
 
-    ```
+    Replace `<YOUR_CURRENT_IP>` with the IP address from step 1 (`$OLD_LB_IP`).
+
+    ```bash
     helm upgrade wallarm-ingress-new wallarm/wallarm-ingress \
       -n ingress-nginx \
       --set controller.service.create=true \
-      --set controller.service.loadBalancerIP="<YOUR_CURRENT_IP>" \
+      --set controller.service.loadBalancerIP="$OLD_LB_IP" \
       -f values.yaml
     ```
 
-1. Wait for new load balancer to be assigned the same IP (cloud-provider dependent; typically takes 1–5 minutes).
-1. Delete the old service:
+1. Wait for the new load balancer to be assigned the same IP (cloud provider dependent; typically takes 1–5 minutes).
 
-    ```
-    kubectl delete svc ingress-nginx-controller -n ingress-nginx
+    ```bash
+    # Monitor the service status
+    kubectl get svc -n ingress-nginx -w
     ```
 
-1. Verify that the new service has the same IP:
+1. Verify the new service has the same IP, then delete the old service:
 
+    ```bash
+    # Verify new service has the correct IP
+    NEW_SERVICE_IP=$(kubectl get svc -n ingress-nginx wallarm-ingress-new-controller \
+      -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+
+    if [ "$NEW_SERVICE_IP" == "$OLD_LB_IP" ]; then
+      echo "SUCCESS: New service has correct IP - safe to delete old service"
+      kubectl delete svc ingress-nginx-controller -n ingress-nginx
+    else
+      echo "WARNING: IP mismatch. Review before deleting old service."
+    fi
     ```
+
+1. Verify the configuration:
+
+    ```bash
     kubectl get svc -n ingress-nginx
     ```
 
@@ -764,7 +811,7 @@ This method removes the old controller and deploys the new one in its place.
 1. Deploy the new controller with the reserved IP:
 
     === "AWS (NLB + Elastic IP)"
-        ```
+        ```yaml
         # In your values.yaml:
         controller:
           service:
@@ -773,7 +820,7 @@ This method removes the old controller and deploys the new one in its place.
               service.beta.kubernetes.io/aws-load-balancer-eip-allocations: "<EIP_ALLOC>"
         ```
     === "GCP"
-        ```
+        ```yaml
         # In your values.yaml:
         controller:
           service:
@@ -782,7 +829,7 @@ This method removes the old controller and deploys the new one in its place.
               cloud.google.com/load-balancer-type: "External"    
         ```
     === "Azure"
-        ```
+        ```yaml
         # In your values.yaml:
         controller:
           service:
@@ -844,6 +891,13 @@ This method removes the old controller and deploys the new one in its place.
     ```bash
     NEW_LB_IP=$(kubectl get svc -n wallarm-ingress wallarm-ingress-controller \
       -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+
+    if [ -z "$NEW_LB_IP" ]; then
+      echo "ERROR: LoadBalancer IP not assigned yet. Wait and retry."
+      exit 1
+    fi
+
+    echo "New LoadBalancer IP: $NEW_LB_IP"
 
     # Test each domain
     curl -H "Host: app1.example.com" http://$NEW_LB_IP/
