@@ -120,6 +120,67 @@ Analyze incidents presence and impact:
 
 ![Incidents in Security Issues](../images/user-guides/vulnerabilities/si-incidents.png)
 
+## False positive rules
+
+Define global rules to automatically mark findings as false positives or skip their creation across all detection methods: passive detection, AASM, Threat Replay, and Schema-Based Testing. For an overview of false positives and manual marking, see [False positives](../about-wallarm/detecting-vulnerabilities.md#false-positives) in Detecting Security Issues.
+
+To manage rules, go to **Security Issues** → **Configure** → **False positive rules**. Use the search field to find rules by title.
+
+### Creating a rule
+
+You can create a false positive rule in two ways:
+
+* **From scratch**: Click **Add false positive rule** and configure all rule parameters in the drawer
+* **From a security issue**: Open the issue details and use **Ignore similar issues**—the rule fields will be pre-filled from the selected issue
+
+### Rule configuration
+
+The rule allows you: 
+
+* To specify, for security issues found for the selected hosts, endpoints, or parameters (**Scope**), whether to mark some or all of them (**Security issues**) as false positives or completely suppress their creation (**Action**). 
+* You can also select whether this applies to issues found by any detection method or only by specific ones (**Source**). 
+* When you want only specific issues to be treated this way, you can specify which by type(s) or by title matching a regex pattern (**Security issues**).
+
+| Section | Description |
+| ----- | ----- |
+| **Title** | Set a custom title for the rule to identify it in the rules list. |
+| **Source** | Decide whether to apply the rule to security issues found by any method or only by specific ones. If left blank, the rule is applied to security issues found by any method. |
+| **Scope** | Define which hosts, endpoints, and parameters this rule should be applied to. Only findings from there will be affected by the rule. If left blank, the rule is applied to all hosts, endpoints, and parameters. Use **Hostname**, **Endpoint**, and **Parameter** fields to enter regex patterns for each. |
+| **Security issues** | Specify to what findings for Scope the rule's Action should be applied. Use **SI with specific title(s)** tab to enter regex pattern for security issue titles, or **SI of specific type(s)** tab to select security issue types. |
+| **Action** | Choose **Mark as false positive** to label and keep the issue visible, or **Auto-delete** to completely suppress its creation. |
+
+Click **Add** to save the rule.
+
+Note that:
+
+* If a vulnerability is automatically marked as false by a rule, the status change is logged in the issue's **Status history**
+* False positive rules work for all [detection methods](../about-wallarm/detecting-vulnerabilities.md#detection-methods): AASM, Threat Replay Testing, Passive detection, Schema-Based Testing
+* False positive rules act as a pre-creation filter—they are evaluated before security issues are created
+
+**Previously detected issues**
+
+When you create a new false positive rule, it does **not** retroactively mark previously detected security issues that match the rule as false—only **new** detections are affected. If an issue was detected before the rule was created, and you then add the rule and the same security issue is detected again later, the rule will be applied to that new detection.
+
+### Example
+
+To suppress vulnerable software version findings for product endpoints:
+
+| Section | Parameter | Value |
+| ----- | ----- | ----- |
+| **Title** | — | Do not detect vulnerable software versions for /products/ |
+| **Source** | — | AASM, TRT |
+| **Scope** | **Hostname** | `example.com` |
+| **Scope** | **Endpoint** | `^\/products\/prod-\d+$` |
+| **Security issues** | **SI with specific title(s)** | `^Vulnerable version of [\w\s]+: \d+\.\d+\.\d+$` |
+| **Action** | — | Auto-delete |
+
+![False positive rule - example configuration](../images/user-guides/vulnerabilities/si-false-positive-rule-example.png)
+
+As a result:
+
+* When AASM or TRT find something for `example.com/products/prod-01` or `example.com/products/prod-02` with a title starting with "Vulnerable version of…" (e.g. "Vulnerable version of WordPress: 4.6.26"), these findings will be auto-deleted and will not appear in the **Security Issues** section.
+* If the same issues are found by passive detection, the rule will not apply and the issues will be created.
+
 ## Security issue reports
 
 You can get report on all or filtered security issues in CSV or JSON format using the **Download report** button.

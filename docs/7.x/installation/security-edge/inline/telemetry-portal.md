@@ -1,0 +1,1 @@
+--8<-- "latest/installation/security-edge/inline/telemetry-portal.md"
