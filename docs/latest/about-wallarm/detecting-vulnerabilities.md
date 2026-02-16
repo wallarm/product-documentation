@@ -33,6 +33,11 @@ To detect vulnerabilities in the applications and APIs, Wallarm uses the followi
     !!! tip ""
         Available in the **Security Testing** [subscription](../about-wallarm/subscription-plans.md). **Does not require** installed [Wallarm node](../about-wallarm/overview.md#how-wallarm-works).
 
+* [**API Security Testing via Postman**](#api-security-testing-via-postman): safe, passive security testing of Postman collections from within [Postman Agent Mode](https://learning.postman.com/docs/agent-mode/get-started)—detects authentication gaps, data leaks, over-permissive endpoints, schema issues, and basic BOLA/BOPLA; results in the Agent chat and in Wallarm Cloud.
+
+    !!! tip ""
+        Available in the **Rogue MCP** [subscription](../about-wallarm/subscription-plans.md#rogue-mcp). **Does not require** installed [Wallarm node](../about-wallarm/overview.md#how-wallarm-works).
+
 * [**API Attack Surface Management (AASM)**](#api-attack-surface-management-aasm): discovers external hosts with their APIs, for each of them identifies missing WAF/WAAP solutions and vulnerabilities.
 
     !!! tip ""
@@ -70,6 +75,16 @@ Schema-Based Testing capabilities:
 * Detection of vulnerabilities in the application or API itself, as well as security misconfigurations in the underlying infrastructure or environment.
 * Lightweight execution via Docker container.
 
+### API Security Testing via Postman <a href="subscription-plans.md#rogue-mcp"><img src="../../images/rogue-mcp-tag.png" style="border: none; height: 24px; width: auto;"></a>
+
+Wallarm's [API Security Testing via Postman](../vulnerability-detection/api-security-testing-via-postman/overview.md) runs safe, passive security tests on your Postman collections from inside Postman. You ask in natural language (e.g., "test my collection for security issues") and get results in a few minutes—auth gaps, data leaks, over-permissive endpoints, schema violations, sensitive data exposure, and basic BOLA/BOPLA indicators—with explanations and remediation guidance. Results appear in the Postman AI Agent chat and in Wallarm Cloud (Security Testing → Rogue MCP → Test runs; Security Issues).
+
+API Security Testing via Postman capabilities:
+
+* Passive, design-level analysis; no attack payloads, no traffic replay, no production risk.
+* Conversational workflow in Postman Agent Mode via the Wallarm Rogue MCP server.
+* LLM-assisted findings tailored for developers.
+
 ### API Attack Surface Management (AASM) <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
 Wallarm's [API Attack Surface Management](../api-attack-surface/overview.md) (AASM) is an agentless (do not require [Wallarm node](../about-wallarm/overview.md#how-wallarm-works) installation) detection solution tailored to the API ecosystem, designed to discover external hosts with their APIs, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities. AASM:
@@ -87,7 +102,7 @@ From May 7, 2025, AASM [replaced the old Scanner](../api-attack-surface/api-surf
 
 As Wallarm provides many different [methods](#detection-methods) of detecting vulnerabilities, the questions arise about which of them to choose and how to combine them. Consider the information below to answer this.
 
-Passive detection and TRT require the [Wallarm node](../about-wallarm/overview.md#how-wallarm-works). SBT and AASM - does not. Some [vulnerabilities](../attacks-vulns-list.md#vulnerability-types) are found only by some (not by all) of the listed methods.
+Passive detection and TRT require the [Wallarm node](../about-wallarm/overview.md#how-wallarm-works). SBT, [API Security Testing via Postman](../vulnerability-detection/api-security-testing-via-postman/overview.md), and AASM do not. Some [vulnerabilities](../attacks-vulns-list.md#vulnerability-types) are found only by some (not by all) of the listed methods.
 
 Also, it is important to understand why we may need AASM if we already have passive detection for vulnerabilities and API Discovery (APID) for discovering hosts.
 

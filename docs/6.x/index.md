@@ -68,6 +68,7 @@ Everything you need to discover your APIs, MCPs, and AI agents, protect them fro
     <p><ul>
       <li><a href="./vulnerability-detection/threat-replay-testing/overview/">Threat Replay Testing</a></li>
       <li><a href="./vulnerability-detection/schema-based-testing/overview/">Schema-Based Testing</a></li>
+      <li><a href="./vulnerability-detection/api-security-testing-via-postman/overview/">API Security Testing via Postman</a></li>
       <li><a href="./api-attack-surface/overview/">Attack Surface (AASM)</a></li>
     </ul></p>
   </div>
@@ -79,6 +80,7 @@ Everything you need to discover your APIs, MCPs, and AI agents, protect them fro
       <li><a href="./agentic-ai/agentic-ai-discovery/">AI Agent Discovery</a></li>
       <li><a href="./agentic-ai/agentic-ai-protection/">AI Agent Protection</a></li>
       <li><a href="./agentic-ai/ai-payload-inspection/">AI Payload Inspection</a></li>
+      <li><a href="./agentic-ai/rogue-mcp-inspection/">Rogue MCP Inspection</a></li>
     </ul></p>
   </div>
 
