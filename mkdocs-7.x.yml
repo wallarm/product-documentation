@@ -179,6 +179,7 @@ nav:
       - Connectors: installation/security-edge/se-connector.md
     - Kubernetes:
       - Istio: installation/connectors/istio.md
+      - Gloo Gateway: installation/connectors/gloo.md
       - NGINX Ingress Controller:
         - Deployment: admin-en/installation-kubernetes-en.md
         - Configuration Options: admin-en/configure-kubernetes-en.md
