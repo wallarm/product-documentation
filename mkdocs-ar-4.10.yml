@@ -348,4 +348,5 @@ nav:
       - عناوين الماسح Wallarm: admin-en/scanner-addresses.md
     - سياسة الاحتفاظ بالبيانات: about-wallarm/data-retention-policy.md
     - النموذج المشترك للمسئولية لبيانات العملاء: about-wallarm/shared-responsibility.md
+    - Comparing Wallarm to Other Solutions: reference/comparing-wallarm-to-other-solutions.md
     - Wallarm's SLA: sla.md

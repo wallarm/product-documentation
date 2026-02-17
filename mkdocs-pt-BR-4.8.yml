@@ -317,4 +317,5 @@ nav:
       - Endereços do Scanner: admin-en/scanner-addresses.md
     - Política de Retenção de Dados: about-wallarm/data-retention-policy.md
     - Modelo de Responsabilidade Compartilhada para Dados do Cliente: about-wallarm/shared-responsibility.md
+    - Comparing Wallarm to Other Solutions: reference/comparing-wallarm-to-other-solutions.md
     - Wallarm's SLA: sla.md

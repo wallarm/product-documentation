@@ -376,4 +376,5 @@ nav:
       - Zafiyet Taraması IP'leri: admin-en/scanner-addresses.md
     - Veri Saklama Politikası: about-wallarm/data-retention-policy.md
     - Müşteri Verileri için Paylaşılan Sorumluluk Modeli: about-wallarm/shared-responsibility.md
+    - Comparing Wallarm to Other Solutions: reference/comparing-wallarm-to-other-solutions.md
     - Wallarm'ın SLA'si: sla.md
