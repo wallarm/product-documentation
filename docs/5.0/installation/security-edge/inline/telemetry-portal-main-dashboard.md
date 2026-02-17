@@ -7,9 +7,11 @@ The dashboard contains the following rows:
 * [Overview](#overview-row) 
 * [RPS Detailed](#rps-detailed-row) 
 * [Response Time](#response-time-row) 
-* [Nginx Logs](#nginx-logs-row) 
-* [Wallarm metrics](#wallarm-metrics-row) 
+* [Stats from Logs](#stats-from-logs-row) 
+* [Node Logs](#node-logs-row) 
+* [Wallarm Metrics](#wallarm-metrics-row) 
 * [Resource Overview](#resource-overview-row) 
+* [Nginx Cache Status](#nginx-cache-status-row) 
 
 ## Overview row 
 
@@ -26,7 +28,7 @@ The Overview row features the following panels:
 * **Nginx** – Shows requests per second (RPS) handled by NGINX.
 * **Upstream status** – Shows the health of upstream services (for example, up or degraded) and their RPS.
 * **Nodes** – Shows node-specific metrics over time for the selected cluster.
-* **wlrm_nginx_status 5xx** – Shows the number of NGINX 5xx responses, which may indicate upstream or configuration issues.
+* **5xx per minute** – Shows the number of NGINX 5xx responses, which may indicate upstream or configuration issues.
 * **Wallarm (requests, attacks, blocked, rejected, buffered)** – Shows traffic filtered by Wallarm over time, with a summary table for each category.
 
 ## RPS Detailed Row
@@ -45,23 +47,22 @@ The RPS Detailed row features the following panels:
 
 The Response Time row shows request and upstream latency, helping monitor performance and detect potential bottlenecks.
 
-![!](../../../images/waf-installation/security-edge/inline/telemetry/response-time-row-1.png)
+![!](../../../images/waf-installation/security-edge/inline/telemetry/response-time-row.png)
 
 The Response Time row features the following panels:
 
-* **P95 RT For Top 10 Requests** – Shows the 95th-percentile response time (P95 RT) for the top 10 URIs by request volume. 
-* **P95 Request Time** – Shows the 95th-percentile overall request response time over time.
-* **P95 Upstream Response Time** – Shows the 95th-percentile upstream response time per host over time. 
+* **Upstrem Response time last minute** – Shows the 95th-percentile response time (P95 RT) for the top 10 URIs by request volume in the last minute.
+* **Request Time last minute** – Shows the 95th-percentile overall request response time for the last minute.
+* **Top 10 slowest Request Time** - Shows the slowest requests by total processing time.
+* **Top 10 slowest Upstream Response Time** - Shows the slowest by total processing time.
 
-![!](../../../images/waf-installation/security-edge/inline/telemetry/response-time-row-2.png)
+## Stats from Logs row
 
-## NGINX Logs row
+The Stats from Logs row shows aggregated NGINX log data. It helps monitor traffic patterns, detect anomalies, and investigate potential performance or security issues.
 
-The NGINX Logs row shows detailed NGINX traffic, responses, and errors. It helps monitor traffic patterns, detect anomalies, and troubleshoot performance or security issues.
+![!](../../../images/waf-installation/security-edge/inline/telemetry/stats-from-logs-row.png)
 
-![!](../../../images/waf-installation/security-edge/inline/telemetry/nginx-logs-row.png)
-
-The NGINX Logs row features the following panels:
+The Stats from Logs row features the following panels:
 
 * **Count Log** – Shows the total number of recorded log entries.
 * **Emerg**, **Alert**, **Crit**, **Error**, **Warn** – Shows the number of log entries by severity, from emergency-level events to warnings.
@@ -73,12 +74,21 @@ The NGINX Logs row features the following panels:
 * **Remote addr (top 10)** – Shows the top client IP addresses sending requests.
 * **Methods (top 10)** – Shows the most used HTTP methods (GET, POST, PUT, etc.).
 * **URI (top 10)** – Shows the most accessed URIs.
+
+## Node Logs row
+
+The Node Logs row shows NGINX error and access logs from the Node, helping you investigate failures, slow requests, and abnormal traffic.
+
+![!](../../../images/waf-installation/security-edge/inline/telemetry/node-logs-row.png)
+
+The Node Logs row features the following panels:
+
 * **NGINX Error Logs (max 1000)** – Shows the most recent NGINX error logs.
 * **NGINX Access Slow Logs (max 1000)** – Shows recent slow request logs.
 * **NGINX Access 5XX Logs (max 1000)** – Shows recent logs of requests that returned 5XX errors.
 * **Access Logs (max 1000)** – Shows recent access logs, including timestamp, host, client IP, response code, method, and URI.
 
-Unlike the dedicated [**Portal Inline NGINX Logs** dashboard](../../../installation/security-edge/inline/telemetry-portal-logs-dashboard.md), which shows only NGINX error and access logs, the NGINX Logs row presents these logs alongside other key node and Wallarm metrics. This way you can monitor NGINX traffic in context, correlate errors with overall performance, and detect potential issues more efficiently.
+Unlike the dedicated [**Portal Inline NGINX Logs** dashboard](../../../installation/security-edge/inline/telemetry-portal-logs-dashboard.md), which shows only NGINX error and access logs, the Node Logs row presents these logs alongside other key node and Wallarm metrics. This way you can monitor NGINX traffic in context, correlate errors with overall performance, and detect potential issues more efficiently.
 
 To quickly view NGINX error and access logs without additional metrics, use the dedicated [**Portal Inline NGINX Logs dashboard**](../../../installation/security-edge/inline/telemetry-portal-logs-dashboard.md).
 
@@ -130,3 +140,17 @@ The Resource Overview row features the following panels:
 * **OOM Events by pod** – Shows out-of-memory events per pod. No data generally indicates no memory-related failures.
 * **Nb of containers by state** – Shows container states (`Ready`, `Running`, `Waiting`, `Restarts Total`, `Terminated`) in a timeline graph and table values.
 * **Container Image Used** – Shows container images deployed in a graph and table, with minimum, maximum, and last values.
+
+## Nginx Cache Status row
+
+The Nginx Cache Status row shows NGINX cache efficiency and behavior across hosts and request paths. It helps assess cache effectiveness, identify cache bypasses or misses, and troubleshoot cache-related performance issues.
+
+![!](../../../images/waf-installation/security-edge/inline/telemetry/nginx-cache-status-row.png)
+
+The Nginx Cache Status row features the following panels:
+
+* **Cache Hit Ratio** - Shows overall cache effectiveness as a single gauge.
+* **Cache Status Distribution** - Shows the distribution of cache statuses, including `HIT`, `MISS`, `BYPASS`, `EXPIRED`, `STALE`, and `DISABLED`.
+* **Requests by Cache Status** - Shows cache status trends over time.
+* **Cache Hit Ratio by Host** - Shows cache hit ratios per host, helping identify hosts with low cache efficiency.
+* **Cache Performance by Host & URI Pattern** - Shows cache performance for specific hosts and endpoints.
