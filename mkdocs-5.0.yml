@@ -221,6 +221,8 @@ nav:
       - MuleSoft: installation/connectors/mulesoft.md
       - IBM API Connect: installation/connectors/ibm-api-connect.md
       - Apigee: installation/connectors/apigee.md
+    - TCP Traffic Mirror:
+      - Deployment: installation/oob/tcp-traffic-mirror/deployment.md
     - Packages & Containers:
       - Linux OS:
         - All-in-one installer for NGINX Node: installation/nginx/all-in-one.md
@@ -232,7 +234,6 @@ nav:
         - Helm Chart: installation/native-node/helm-chart.md
         - Helm Chart Configuration: installation/native-node/helm-chart-conf.md
         - Configuration Reference: installation/native-node/all-in-one-conf.md
-      - TCP Traffic Mirror: installation/oob/tcp-traffic-mirror/deployment.md
       - NGINX Node Configuration: admin-en/configure-parameters-en.md
       - Separate Postanalytics Module: admin-en/installation-postanalytics-en.md
     - On-Premise:
