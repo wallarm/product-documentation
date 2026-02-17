@@ -8,6 +8,8 @@ This section provides reference materials, technical specifications, and resourc
     * [Overview](../api/overview.md) - Introduction to the Wallarm API
     * [Request Examples](../api/request-examples.md) - Common API usage examples
 
+* **[Comparing Wallarm to Other Solutions](comparing-wallarm-to-other-solutions.md)** - Gather data and use Wallarm's dashboards and exports to compare Wallarm with other solutions and to build reports.
+
 * **[Attack Types](../attacks-vulns-list.md)** - Comprehensive list of attack and vulnerability types detected by Wallarm.
 
 * **[Glossary](../glossary-en.md)** - Definitions of key terms and concepts used throughout the documentation.
