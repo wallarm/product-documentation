@@ -377,4 +377,5 @@ nav:
       - 脆弱性スキャン用 IP: admin-en/scanner-addresses.md
     - データ保持ポリシー: about-wallarm/data-retention-policy.md
     - クライアントデータの責任共有モデル: about-wallarm/shared-responsibility.md
+    - Comparing Wallarm to Other Solutions: reference/comparing-wallarm-to-other-solutions.md
     - Wallarm の SLA: sla.md

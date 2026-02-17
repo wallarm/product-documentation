@@ -462,4 +462,5 @@ nav:
     - Glossary: glossary-en.md
     - Data Retention Policy: about-wallarm/data-retention-policy.md
     - Shared Responsibility Model: about-wallarm/shared-responsibility.md
+    - Comparing Wallarm to Other Solutions: reference/comparing-wallarm-to-other-solutions.md
     - SLA: sla.md
