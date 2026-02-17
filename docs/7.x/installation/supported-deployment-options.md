@@ -1,6 +1,6 @@
 # Wallarm Node Deployment Options
 
-Wallarm supports multiple deployment models — from Security Edge and Kubernetes to cloud VMs and API gateways. Choose by **who hosts the [Node](../about-wallarm/overview.md#filtering-node)**, **where your traffic lives**, and whether you need **inline** or **out-of-band** protection.
+Wallarm supports multiple deployment models — from Security Edge and Kubernetes to cloud VMs and API gateways. Choose by **who hosts the [Node](../about-wallarm/overview.md#filtering-node)**, **the infrastructure** that handles your traffic, and whether you need **inline** or **out-of-band** protection.
 
 <link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
 
