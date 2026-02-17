@@ -38,6 +38,7 @@ Wallarm is the only solution that unifies API discovery, risk management, real-t
 | [API Discovery](../api-discovery/overview.md) | No | Yes | No |
 | [Sensitive data detection](../api-discovery/overview.md#sensitive-data-detection) | No | Yes | No |
 | [Rogue API Detection (shadow, orphan zombie)](../api-discovery/rogue-api.md) | No | Yes | No |
+| [BI Dashboards](../user-guides/dashboards/bi-dashboards.md) | No | Yes | No |
 | **Security testing** | | | |
 | [Threat Replay Testing](../vulnerability-detection/threat-replay-testing/overview.md) | No | Yes | Yes, with API Security |
 | [Schema-Based Security Testing](../vulnerability-detection/schema-based-testing/overview.md) | No | No | Yes |
@@ -53,6 +54,8 @@ Wallarm is the only solution that unifies API discovery, risk management, real-t
 | Support | Standard/<br>Advanced/<br>Platinum | Standard/<br>Advanced/<br>Platinum | Standard/<br>Advanced/<br>Platinum |
 
 To activate the subscription plan, contact [sales@wallarm.com](mailto:sales@wallarm.com).
+
+When your subscription expires, you receive notifications in the Wallarm Console UI and by email. A 90-day grace period is provided to renew the subscription; after it ends, access to the Wallarm Console is disabled, and Nodes no longer receive updates or upload data to the Wallarm Cloud.
 
 ## API Attack Surface
 
@@ -80,6 +83,22 @@ To activate the subscription plan, do one of the following:
     When activating, scanning of the used email's domain starts immediately while you negotiate sales team. After activation, you can add additional domains to the scope.
 
 * If you already have Wallarm account, contact [sales@wallarm.com](mailto:sales@wallarm.com).
+
+## Rogue MCP {#rogue-mcp}
+
+!!! info "Relations to other plans"
+
+    This subscription plan:
+
+    * Can be added to any [core subscription plan](#core-subscription-plans)
+    * Can be used alone (no other plans or filtering node required)
+
+The **Rogue MCP** subscription plan provides access to the extended functions of Wallarm's MCP server, including [API Security Testing via Postman](../vulnerability-detection/api-security-testing-via-postman/overview.md).
+
+To activate this subscription:
+
+* **New users**: go to [roguemcp.wallarm.com](https://roguemcp.wallarm.com/) to create a Wallarm account and obtain the subscription.
+* **Existing users**: contact [Wallarm Support](https://support.wallarm.com) to get the subscription added to your account.
 
 ## Security Edge (Paid Plan)
 

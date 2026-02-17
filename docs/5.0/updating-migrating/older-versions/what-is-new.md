@@ -75,7 +75,7 @@ With API Sessions, security teams can now easily:
 Wallarm's [API Sessions](../../api-sessions/overview.md) provide visibility into sequences of user activities. With this addition not only request but also response information is available within each session:
 
 * You can configure any headers and parameters of responses to be displayed within their corresponding requests providing a clear and full picture of user activities.
-* You can use response parameters as grouping keys for sessions (see [example](../../api-sessions/setup.md#grouping-keys-example)), which makes grouping of requests into sessions more precise.
+* You can use response parameters as grouping keys for sessions (see [example](../../api-sessions/setup.md#example-of-how-grouping-keys-work)), which makes grouping of requests into sessions more precise.
 
 ![!API Sessions - example of grouping keys in work](../../images/api-sessions/api-sessions-grouping-keys.png)
 
@@ -496,7 +496,7 @@ Now you can easily group node instances using one [**API token**](../../user-gui
 For example: 
 
 ```bash
-docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>' -p 80:80 wallarm/node:5.3.16
+docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>' -p 80:80 wallarm/node:5.3.17
 ```
 ...will place node instance into the `<GROUP>` instance group (existing, or, if does not exist, it will be created).
 

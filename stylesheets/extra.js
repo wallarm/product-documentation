@@ -15,12 +15,44 @@ window.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
   let main = document.querySelector(".md-main");
-  let isHomepage = location.pathname === "/" || location.pathname === "/ja/" || location.pathname === "/4.4/" || location.pathname === "/4.2/" || location.pathname === "/4.6/" || location.pathname === "/4.8/" | location.pathname === "/4.10/" || location.pathname === "/5.x/" || location.pathname === "/tr/" || location.pathname === "/pt-br/" || location.pathname === "/ar/" || location.pathname === "/index.html";
+  let isHomepage = location.pathname === "/" || location.pathname === "/ja/" || location.pathname === "/4.4/" || location.pathname === "/4.2/" || location.pathname === "/4.6/" || location.pathname === "/4.8/" | location.pathname === "/4.10/" || location.pathname === "/5.x/" || location.pathname === "/7.x/" || location.pathname === "/tr/" || location.pathname === "/pt-br/" || location.pathname === "/ar/" || location.pathname === "/index.html";
   if (main) {
     if (isHomepage) {
       main.classList.add('homepage');
     } else {
       main.classList.remove('homepage');
+    }
+  }
+});
+
+// Detect platform for search hotkey indicator
+(function() {
+  var platform = navigator.platform.toLowerCase();
+  if (platform.indexOf('win') !== -1) {
+    document.documentElement.classList.add('platform-windows');
+  } else if (platform.indexOf('linux') !== -1) {
+    document.documentElement.classList.add('platform-linux');
+  } else if (platform.indexOf('mac') !== -1) {
+    document.documentElement.classList.add('platform-mac');
+  }
+})();
+
+// Ctrl+K / Cmd+K keyboard shortcut for search (works across all keyboard layouts)
+document.addEventListener('keydown', function(e) {
+  // Check for Ctrl+K (Windows/Linux) or Cmd+K (Mac)
+  if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+    e.preventDefault();
+    var searchToggle = document.getElementById('__search');
+    if (searchToggle) {
+      searchToggle.checked = true;
+      // Focus the search input
+      setTimeout(function() {
+        var searchInput = document.querySelector('.md-search__input');
+        if (searchInput) {
+          searchInput.focus();
+          searchInput.select();
+        }
+      }, 100);
     }
   }
 });
@@ -41,24 +73,28 @@ injectScript('https://lftracker.leadfeeder.com/lftracker_v1_kn9Eq4Rwz5KaRlvP.js'
 
 var rootVersion = '6.x';
 
-let pathsLang = window.location.pathname.split('/');
-
-if (pathsLang[1] === 'tr' || pathsLang[1] === 'pt-br' || pathsLang[1] === 'ja' || pathsLang[1] === 'ar') {
-  document.getElementById('versionsDiv').style.display = 'none';
-}
-else {
-  document.getElementById('versionsDiv').style.display = 'inline-block';
-}
-
 // Show the list of available Wallarm versions
 
+var lastVersionToggleAt = 0;
 function versionClicked (event) {
-  if (document.getElementById('versionsList').style.display === 'none') {
-    document.getElementById('versionsList').style.display = 'block'
-    document.getElementById('versionsMain').classList.add("versions-main-active")
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation(); /* prevent drawer from closing on mobile */
+  }
+  var now = Date.now();
+  if (now - lastVersionToggleAt < 400) return; /* avoid double toggle (touchend + click) */
+  lastVersionToggleAt = now;
+  var list = document.getElementById('versionsList');
+  var main = document.getElementById('versionsMain');
+  if (!list || !main) return;
+  if (list.style.display === 'none' || !list.style.display) {
+    list.style.display = 'block';
+    main.classList.add('versions-main-active');
+    main.setAttribute('aria-expanded', 'true');
   } else {
-    document.getElementById('versionsList').style.display = 'none'
-    document.getElementById('versionsMain').classList.remove("versions-main-active")
+    list.style.display = 'none';
+    main.classList.remove('versions-main-active');
+    main.setAttribute('aria-expanded', 'false');
   }
 }
 
@@ -87,6 +123,48 @@ function goToVersion (event, currentVersion, version) {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
+  /* Show/hide version selector by language */
+  var pathsLang = window.location.pathname.split('/');
+  var versionsDiv = document.getElementById('versionsDiv');
+  if (versionsDiv) {
+    if (pathsLang[1] === 'tr' || pathsLang[1] === 'pt-br' || pathsLang[1] === 'ja' || pathsLang[1] === 'ar') {
+      versionsDiv.style.display = 'none';
+    } else {
+      versionsDiv.style.display = 'inline-block';
+    }
+  }
+
+  /* Version selector: delegation + touch so it works on mobile; list opens upward on small screens */
+  function onVersionButtonClick(e) {
+    if (!e.target.closest || !e.target.closest('#versionsMain')) return;
+    e.preventDefault();
+    e.stopPropagation();
+    versionClicked(e);
+  }
+  document.addEventListener('click', onVersionButtonClick, true);
+  document.addEventListener('touchend', function(e) {
+    if (!e.target.closest || !e.target.closest('#versionsMain')) return;
+    e.preventDefault();
+    e.stopPropagation();
+    versionClicked(e);
+  }, { passive: false, capture: true });
+
+  /* Close version list when clicking outside */
+  function closeVersionsIfOutside(e) {
+    var list = document.getElementById('versionsList');
+    var div = document.getElementById('versionsDiv');
+    if (!list || !div || list.style.display !== 'block') return;
+    if (e.target.closest && e.target.closest('#versionsDiv')) return;
+    list.style.display = 'none';
+    var main = document.getElementById('versionsMain');
+    if (main) {
+      main.classList.remove('versions-main-active');
+      main.setAttribute('aria-expanded', 'false');
+    }
+  }
+  document.addEventListener('click', closeVersionsIfOutside, true);
+  document.addEventListener('touchend', closeVersionsIfOutside, true);
+
   const addButtons = document.querySelectorAll('.md-header__button[for="__search"]');
 
   addButtons.forEach(button => {
@@ -125,6 +203,62 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
 });
 
+// Mobile nav fix:
+// Our custom nav template expands L1/L2 by default (inputs are checked),
+// which can leave the Material mobile drawer "drilled down" into a random subtree
+// (often the last expanded one, e.g. "FAQ"). When opening the drawer on mobile,
+// reset the nav toggles to the active page's path.
+function resetMobileDrawerNavigationToActivePath() {
+  // Match Material's breakpoint where the drawer is used
+  if (!window.matchMedia || !window.matchMedia("(max-width: 76.1875em)").matches) return;
+
+  const sidebar = document.querySelector('.md-sidebar--primary');
+  if (!sidebar) return;
+
+  const navRoot =
+    sidebar.querySelector('[data-md-component="navigation"]') ||
+    sidebar.querySelector('.md-nav--primary');
+  if (!navRoot) return;
+
+  const allToggles = Array.from(navRoot.querySelectorAll('input.md-nav__toggle[data-md-toggle^="nav-"]'));
+  if (!allToggles.length) return;
+
+  // Find the active page link in the nav
+  const activeLink = navRoot.querySelector('a.md-nav__link--active');
+  if (!activeLink) {
+    // Home or edge case: show root level (no drill-down)
+    allToggles.forEach(t => (t.checked = false));
+    return;
+  }
+
+  // Collect toggles on the active path (ancestors of the active link)
+  const keep = new Set();
+  let node = activeLink;
+  while (node) {
+    const nested = node.closest && node.closest('.md-nav__item--nested');
+    if (!nested) break;
+
+    // The toggle is an immediate child of the nested <li> in our template
+    const toggle = Array.from(nested.children).find(
+      el => el && el.matches && el.matches('input.md-nav__toggle')
+    );
+    if (toggle) keep.add(toggle);
+
+    node = nested.parentElement;
+  }
+
+  allToggles.forEach(t => (t.checked = keep.has(t)));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const drawerToggle = document.getElementById('__drawer');
+  if (!drawerToggle) return;
+
+  drawerToggle.addEventListener('change', () => {
+    if (drawerToggle.checked) resetMobileDrawerNavigationToActivePath();
+  });
+});
+
 // Open the Help block
 
 function helpClicked (event) {
@@ -161,10 +295,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// Collapse expanded menu items when a new item is expanded
-var navClassName = ".md-nav__toggle";
-var navigationElements = document.querySelectorAll(navClassName);
+// Custom accordion behavior disabled - using MkDocs Material's native behavior
+// If you want to re-enable custom accordion (collapse siblings when expanding):
+// Uncomment the code below
 
+/*
 function getAllNavigationElements(element, selector){
   if(element.parentElement && element.parentElement.parentElement && element.parentElement.parentElement.children){
     let allChildren = element.parentElement.parentElement.children;
@@ -179,29 +314,17 @@ function getAllNavigationElements(element, selector){
   }
 }
 
-function removeAllActiveClasses() {
-  const activeElements = document.querySelectorAll('.md-nav__item--active');
-  activeElements.forEach(el => el.classList.remove('md-nav__item--active'));
-}
-
-navigationElements.forEach(el => {
-  el.addEventListener('change', function(){
-    removeAllActiveClasses();
-    getAllNavigationElements(this, navClassName);
-    if (this.checked) {
-      this.parentElement.classList.add('md-nav__item--expanded');
+document.addEventListener('change', function(event) {
+  if (event.target.matches('.md-nav__toggle')) {
+    getAllNavigationElements(event.target, '.md-nav__toggle');
+    if (event.target.checked) {
+      event.target.parentElement.classList.add('md-nav__item--expanded');
     } else {
-      this.parentElement.classList.remove('md-nav__item--expanded');
+      event.target.parentElement.classList.remove('md-nav__item--expanded');
     }
-  }, false);
-})
-
-document.addEventListener('DOMContentLoaded', (event) => {
-  let activeElement = document.querySelector('.md-nav__item--active');
-  if (activeElement) {
-    activeElement.classList.add('md-nav__item--expanded');
   }
-});
+}, false);
+*/
 
 
 // Expand and collapse supported platform cards on click
@@ -365,6 +488,35 @@ if (window.location.hostname === "docs.wallarm.com") {
 
 var rootLanguage = 'en';
 
+const supportedLanguages = new Set(['ar', 'ja', 'tr', 'pt-br']);
+const versionSegments = new Set([
+  '7.x',
+  '5.x',
+  '4.10',
+  '3.6',
+  '2.18'
+]);
+
+function getCurrentLanguage() {
+  const button = document.getElementById('languagesMain');
+  if (button && button.dataset && button.dataset.currentLanguage) {
+    return button.dataset.currentLanguage;
+  }
+  return rootLanguage;
+}
+
+function stripVersionFromPath(pathname) {
+  let cleaned = pathname;
+
+  versionSegments.forEach((seg) => {
+    const matcher = new RegExp(`/${seg}(/|$)`);
+    cleaned = cleaned.replace(matcher, '/');
+  });
+
+  cleaned = cleaned.replace(/\/{2,}/g, '/');
+  return cleaned;
+}
+
 function languageClicked (event) {
   if (document.getElementById('languagesList').style.display === 'none') {
     document.getElementById('languagesList').style.display = 'block'
@@ -375,29 +527,64 @@ function languageClicked (event) {
   }
 }
 
+document.addEventListener('click', (event) => {
+  const languagesDiv = document.getElementById('languagesDiv');
+  const languagesList = document.getElementById('languagesList');
+  const languagesMain = document.getElementById('languagesMain');
+
+  if (!languagesDiv || !languagesList || !languagesMain) return;
+  if (languagesDiv.contains(event.target)) return;
+  if (languagesList.style.display !== 'block') return;
+
+  languagesList.style.display = 'none';
+  languagesMain.classList.remove("languages-main-active");
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const { pathname } = window.location;
+  const hadTrailingSlash = pathname.endsWith('/');
+  const segments = pathname.split('/').filter(Boolean);
+
+  if (segments.length < 2) return;
+  if (!supportedLanguages.has(segments[0])) return;
+  if (!versionSegments.has(segments[1])) return;
+
+  const newSegments = [segments[0], ...segments.slice(2)];
+  let newPath = '/' + newSegments.join('/');
+  if (hadTrailingSlash && newPath !== '/') {
+    newPath += '/';
+  }
+
+  if (newPath !== pathname) {
+    window.location.replace(newPath);
+  }
+});
+
 // Open the docs for selected language and change value in the selector
-function goToLanguage (event, currentLanguage, language) {
+function goToLanguage (event, language) {
   event.preventDefault()
+  const currentLanguage = getCurrentLanguage();
 
   if (currentLanguage === language) {
     window.location.reload(false);
   }
   else {
-    let tmp = window.location.pathname.split('/');
+    const cleanedPath = stripVersionFromPath(window.location.pathname);
+    let tmp = cleanedPath.split('/');
     window.top.location.href = tmp.join('/');
     if (language === rootLanguage) {
-      window.top.location.href = window.location.pathname.replace('/'+currentLanguage+'/','/');
+      window.top.location.href = cleanedPath.replace('/'+currentLanguage+'/','/');
     } else {
       if (currentLanguage === rootLanguage) {
         if (tmp[1].startsWith('docs')) {
-          window.top.location.href = window.location.pathname.replace('/'+'docs'+'/','/'+'docs'+'/'+language+'/');
+          window.top.location.href = cleanedPath.replace('/'+'docs'+'/','/'+'docs'+'/'+language+'/');
         }
         else {
-          window.top.location.href = window.location.pathname.replace('/','/'+language+'/');
+          window.top.location.href = cleanedPath.replace('/','/'+language+'/');
         }
       }
       else {
-          window.top.location.href = window.location.pathname.replace('/'+currentLanguage+'/','/'+language+'/')
+          window.top.location.href = cleanedPath.replace('/'+currentLanguage+'/','/'+language+'/')
       }
     }
   }

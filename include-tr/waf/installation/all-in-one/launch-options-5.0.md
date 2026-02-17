@@ -1,7 +1,7 @@
 Hepsi bir arada betiği indirdikten sonra, şu komutla yardımını görebilirsiniz:
 
 ```
-sudo sh ./wallarm-5.3.16.x86_64-glibc.sh -- -h
+sudo sh ./wallarm-5.3.19.x86_64-glibc.sh -- -h
 ```
 
 Şunu döndürür:
@@ -35,18 +35,18 @@ Aşağıda, betiği düğüm kurulumu için toplu modda çalıştırmaya yöneli
 === "US Cloud"
     ```bash
     # x86_64 sürümü kullanılıyorsa:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.16.x86_64-glibc.sh -- --batch -t <TOKEN> -c US
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.19.x86_64-glibc.sh -- --batch -t <TOKEN> -c US
 
     # ARM64 sürümü kullanılıyorsa:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.16.aarch64-glibc.sh -- --batch -t <TOKEN> -c US
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.19.aarch64-glibc.sh -- --batch -t <TOKEN> -c US
     ```
 === "EU Cloud"
     ```bash
     # x86_64 sürümü kullanılıyorsa:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.16.x86_64-glibc.sh -- --batch -t <TOKEN>
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.19.x86_64-glibc.sh -- --batch -t <TOKEN>
 
     # ARM64 sürümü kullanılıyorsa:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.16.aarch64-glibc.sh -- --batch -t <TOKEN>
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.19.aarch64-glibc.sh -- --batch -t <TOKEN>
     ```
 
 ### Düğüm kurulum aşamalarının ayrı ayrı yürütülmesi
@@ -61,25 +61,25 @@ Bu işlevsellik, hepsi bir arada kurucunun 4.10.0 sürümünden itibaren toplu m
 === "US Cloud"
     ```bash
     # x86_64 sürümü kullanılıyorsa:
-    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.16.x86_64-glibc.sh
-    sudo sh wallarm-5.3.16.x86_64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.19.x86_64-glibc.sh
+    sudo sh wallarm-5.3.19.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
 
     # ARM64 sürümü kullanılıyorsa:
-    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.16.aarch64-glibc.sh
-    sudo sh wallarm-5.3.16.aarch64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.19.aarch64-glibc.sh
+    sudo sh wallarm-5.3.19.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
     ```
 === "EU Cloud"
     ```
     # x86_64 sürümü kullanılıyorsa:
-    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.16.x86_64-glibc.sh
-    sudo sh wallarm-5.3.16.x86_64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.19.x86_64-glibc.sh
+    sudo sh wallarm-5.3.19.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
 
     # ARM64 sürümü kullanılıyorsa:
-    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.16.aarch64-glibc.sh
-    sudo sh wallarm-5.3.16.aarch64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.19.aarch64-glibc.sh
+    sudo sh wallarm-5.3.19.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
     ```
 

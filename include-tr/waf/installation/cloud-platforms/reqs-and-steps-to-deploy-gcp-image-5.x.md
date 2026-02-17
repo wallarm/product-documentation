@@ -28,7 +28,7 @@ Terraform gibi bir araç kullanarak Wallarm GCP imajı ile filtreleme düğümü
 * Filtreleme düğümü sürümü 5.x olan örneği başlatmak için lütfen aşağıdaki imaj adını kullanın:
 
     ```bash
-    wallarm-node-195710/wallarm-node-5-3-15-20250605-140709
+    wallarm-node-195710/wallarm-node-5-3-17-20250821-111038
     ```
 
 İmaj adını almak için şu adımları da izleyebilirsiniz:
@@ -42,7 +42,7 @@ Terraform gibi bir araç kullanarak Wallarm GCP imajı ile filtreleme düğümü
 3. En son mevcut imajın adından sürüm değerini kopyalayın ve kopyaladığınız değeri sağlanan imaj adı formatına yapıştırın. Örneğin, filtreleme düğümü sürümü 4.10 imajının adı şu şekilde olacaktır:
 
     ```bash
-    wallarm-node-195710/wallarm-node-5-3-15-20250605-140709
+    wallarm-node-195710/wallarm-node-5-3-17-20250821-111038
     ```
 
 ## 2. Filtreleme düğümü örneğini yapılandırın

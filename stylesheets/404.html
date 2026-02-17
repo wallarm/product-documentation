@@ -10,6 +10,14 @@
   .not-found-page {
     text-align: center;
   }
+  .not-found-page h1,
+  .not-found-page p {
+    text-align: inherit;
+    max-width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+  }
   .not-found-page h1 {
     margin-top: 24px;
     margin-bottom: 0px;
@@ -20,11 +28,13 @@
   .not-found-page svg {
     padding-top: 64px;
   }
-  .md-sidebar.md-sidebar--primary {
-    display: none;
-  }
   .md-sidebar.md-sidebar--secondary {
     display: none;
+  }
+  @media screen and (min-width: 76.25em) {
+    .md-sidebar.md-sidebar--primary {
+      display: none;
+    }
   }
 </style>
 

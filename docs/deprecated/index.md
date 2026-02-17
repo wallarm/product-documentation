@@ -5,9 +5,9 @@ hide:
 - feedback
 ---
 
-# Wallarm API Security
+# Wallarm Documentation
 
-Wallarm delivers real-time protection for APIs and AI agents, stopping automated threats and abuse while also providing full security visibility with complete API inventory and risk detection.
+Everything you need to discover your APIs, MCPs, and AI agents, protect them from threats, and test for vulnerabilities.
 
 !!! warning "Unsupported version"
     Wallarm node 4.10 and lower is not supported. Please learn [what is new in the later versions](/updating-migrating/what-is-new/) and plan the upgrade procedure.

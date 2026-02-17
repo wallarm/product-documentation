@@ -41,18 +41,19 @@ The sizing of Tarantool memory is controlled using the `SLAB_ALLOC_ARENA` attrib
 
 ### Allocating resources if using NGINX-based Docker image
 
-The sizing of wstore memory is controlled using the `TARANTOOL_MEMORY_GB` [environment variable](../../admin-en/installation-docker-en.md) which is passed either in Docker run command or in mounted configuration file.
+The sizing of tarantool memory is controlled using the `TARANTOOL_MEMORY_GB` [environment variable](../../admin-en/installation-docker-en.md) which is passed either in Docker run command or in mounted configuration file.
 
 Example:
 
 ```
-docker run -d -e WALLARM_API_TOKEN='XXXX' -e WALLARM_LABELS='group=<GROUP NAME>' -e NGINX_BACKEND='example.com' -e SLAB_ALLOC_ARENA=3.0 -p 80:80 wallarm/node:5.6.0
+docker run -d -e WALLARM_API_TOKEN='XXXX' -e WALLARM_LABELS='group=<GROUP NAME>' -e NGINX_BACKEND='example.com' -e TARANTOOL_MEMORY_GB=3.0 -p 80:80 wallarm/node:5.6.0
 ```
 
-Note that when passing `TARANTOOL_MEMORY_GB` in Docker `run` command with the `-e` like in the example above, the variable is not recorded in any configuration file within the container, but it is still used when `wstore` starts.
+Note that:
 
-Used value can be checked in `tarantool-out.log` filtering node log by searching for the `Setting up memory params` line.
-
+* When passing `TARANTOOL_MEMORY_GB` in Docker `run` command with the `-e` like in the example above, the variable is not recorded in any configuration file within the container, but it is still used when `tarantool` starts.
+* Used value can be checked in `tarantool-out.log` filtering node log by searching for the `Setting up memory params` line.
+* While `TARANTOOL_MEMORY_GB` reserves memory on **application level** (tarantool), to increase the node stability, you can use the [`--memory-reservation`](https://docs.docker.com/engine/containers/resource_constraints/#limit-a-containers-access-to-memory) flag to reserve that memory on **container level** (Docker). Same can be done via Docker compose file.
 
 ### Allocating Resources in Other Deployment Options
 

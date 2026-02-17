@@ -10,7 +10,7 @@
 [waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
 [ip-lists-docs]:                     ../user-guides/ip-lists/overview.md
 [link-wallarm-health-check]:        ../admin-en/uat-checklist-en.md
-[link-cloud-connect-guide]:         ../installation/inline/compute-instances/aws/aws-ami.md#4-connect-the-instance-to-the-wallarm-cloud
+[link-cloud-connect-guide]:         ../installation/cloud-platforms/aws/ami.md#4-connect-the-instance-to-the-wallarm-cloud
 
 
 # Upgrading the cloud node image

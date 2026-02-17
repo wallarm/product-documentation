@@ -76,7 +76,6 @@ To check:
             "blocked_by_acl": 0,
             "blocked_by_antibot": 0,
             "acl_allow_list": 0,
-            "abnormal": 11,
             "tnt_errors": 0,
             "api_errors": 0,
             "requests_lost": 0,
@@ -174,22 +173,6 @@ To check:
 1. Check data in `wcli-out.log`: logs of most Wallarm services, including brute force detection, attack export to the Cloud, and the status of node synchronization with the Cloud, etc.
 
 See details on other logs and log configuration [here](../admin-en/configure-logging.md).
-
-## Node registers vulnerabilities
-
-Wallarm detects [vulnerabilities](../glossary-en.md#vulnerability) in your application APIs.
-
-To check:
-
-1. Send a request to your resource:
-
-      ```
-      curl <RECOURSE_URL> -H 'jwt: eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJjbGllbmRfaWQiOiIxIn0.' -H 'HOST: <TEST_HOST_NAME>'
-      ```
-
-      Note that if you already have a [weak JWT](../attacks-vulns-list.md#weak-authentication) vulnerability detected for the host (in any status, even closed), you need to specify a different `TEST_HOST_NAME` to see the new vulnerability registered.
-
-1. Open Wallarm Console → **Events** → **Vulnerabilities** to check whether a weak JWT vulnerability was listed.
 
 ## IP lists work
 

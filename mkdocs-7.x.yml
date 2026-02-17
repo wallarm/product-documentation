@@ -1,0 +1,464 @@
+INHERIT: mkdocs-base.yml
+
+theme:
+  version: "7.x"
+  versionNative: "0.24.x+"
+
+docs_dir: docs/7.x
+site_dir: site/7.x
+
+nav:
+  # ============================================================================
+  # SECTION 1: INTRODUCTION
+  # ============================================================================
+  - Introduction:
+    
+    - Getting Started:
+      - Platform Overview: about-wallarm/overview.md
+      - Quick Start: quickstart/getting-started.md
+
+    - Video Guides:
+      - Platform Overview: demo-videos/platform-overview.md
+      - API Discovery Overview: demo-videos/api-discovery.md
+      - API Leaks Overview: demo-videos/api-leaks.md
+      - Shadow and Orphan API: demo-videos/shadow-api.md
+      - Analyzing CVEs and Attacks: demo-videos/events-inspection.md
+      - API Abuse Prevention: demo-videos/api-abuse-prevention.md
+      - Platform Settings: demo-videos/overview.md      
+
+  # ============================================================================
+  # SECTION 2: API DISCOVERY
+  # ============================================================================
+  - API Discovery:
+    - Overview: api-discovery/overview.md
+
+    - Exploring Your APIs:
+      - API Inventory: api-discovery/exploring.md
+      - Dashboard: api-discovery/dashboard.md
+      - Track API Changes: api-discovery/track-changes.md
+
+    - Risk Analysis:
+      - Risk Score: api-discovery/risk-score.md
+      - Rogue APIs (Shadow/Orphan/Zombie): api-discovery/rogue-api.md
+      - Sensitive Business Flows: api-discovery/sbf.md
+
+    - Data Protection:
+      - Sensitive Data Detection: api-discovery/sensitive-data.md
+      - BOLA Auto-Protection: api-discovery/bola-protection.md
+
+    - Setup & Configuration: api-discovery/setup.md
+
+  # ============================================================================
+  # SECTION 3: API PROTECTION
+  # ============================================================================
+  - API Protection:
+    - Overview: about-wallarm/api-protection-overview.md
+    - Best Practices: quickstart/attack-prevention-best-practices.md
+
+    - API Session Security:
+      - Overview: api-sessions/overview.md
+      - Setup: api-sessions/setup.md
+      - Exploring Sessions: api-sessions/exploring.md
+      - Session Blocking: api-sessions/blocking.md
+      - Business Logic Abuse: api-protection/business-logic-abuse-detection.md
+
+    - API-Specific Protection:
+      - BOLA Protection (Manual): admin-en/configuration-guides/protecting-against-bola-trigger.md
+      - BOLA Protection (Auto): admin-en/configuration-guides/protecting-against-bola.md
+      - Enumeration Attack Protection: api-protection/enumeration-attack-protection.md
+      - GraphQL Protection: api-protection/graphql-rule.md
+      - File Upload Restriction: api-protection/file-upload-restriction.md
+      - Custom Request Anomaly: api-protection/custom-request-anomaly.md
+
+    - Bot Management:
+      - Overview: api-abuse-prevention/overview.md
+      - Setup: api-abuse-prevention/setup.md
+      - Exploring Detected Bots: api-abuse-prevention/exploring-bots.md
+      - Exceptions: api-abuse-prevention/exceptions.md
+
+    - API Spec Enforcement:
+      - Overview: api-specification-enforcement/overview.md
+      - Setup: api-specification-enforcement/setup.md
+      - Viewing Events: api-specification-enforcement/viewing-events.md
+
+    - Credential Protection:
+      - Credential Stuffing Detection: about-wallarm/credential-stuffing.md
+    
+    - Threat Protection (WAAP):
+      - WAAP Overview: about-wallarm/waap-overview.md
+      - Attack Detection & Handling: about-wallarm/protecting-against-attacks.md        
+      - Brute Force Protection: admin-en/configuration-guides/protecting-against-bruteforce.md
+      - Forced Browsing Protection: admin-en/configuration-guides/protecting-against-forcedbrowsing.md
+      - Multi-Attack Thresholds: admin-en/configuration-guides/protecting-with-thresholds.md
+      - DoS Protection: api-protection/dos-protection.md
+      - DDoS Protection: admin-en/configuration-guides/protecting-against-ddos.md      
+      - IP Filtering: user-guides/ip-lists/overview.md
+      - Filtration Mode: admin-en/configure-wallarm-mode.md
+
+    - Mitigation Controls:
+      - Overview: about-wallarm/mitigation-controls-overview.md
+
+    - Rules & Policies:
+      - Overview: user-guides/rules/rules.md
+      - Rate Limiting: user-guides/rules/rate-limiting.md
+      - Virtual Patching: user-guides/rules/vpatch-rule.md
+      - Custom Regex Rules: user-guides/rules/regex-rule.md
+      - Sensitive Data Masking: user-guides/rules/sensitive-data-rule.md
+      - Request Processing: user-guides/rules/request-processing.md
+      - Response Headers: user-guides/rules/add-replace-response-header.md
+      - Overlimit Detection: user-guides/rules/configure-overlimit-res-detection.md
+
+  # ============================================================================
+  # SECTION 4: API SECURITY TESTING
+  # ============================================================================
+  - API Security Testing:
+    - Security Testing Overview: vulnerability-detection/security-testing-overview.md
+
+    - Threat Replay Testing:
+      - Overview: vulnerability-detection/threat-replay-testing/overview.md
+      - Setup: vulnerability-detection/threat-replay-testing/setup.md
+      - Exploring Results: vulnerability-detection/threat-replay-testing/exploring.md
+
+    - Schema-Based Testing:
+      - Overview: vulnerability-detection/schema-based-testing/overview.md
+      - Setup: vulnerability-detection/schema-based-testing/setup.md
+      - Exploring Results: vulnerability-detection/schema-based-testing/explore.md
+
+    - API Security Testing via Postman:
+      - Overview: vulnerability-detection/api-security-testing-via-postman/overview.md
+      - Setup: vulnerability-detection/api-security-testing-via-postman/setup.md
+      - Exploring Results: vulnerability-detection/api-security-testing-via-postman/exploring.md
+
+    - API Attack Surface (AASM):
+      - Overview: api-attack-surface/overview.md
+      - Setup: api-attack-surface/setup.md
+      - API Surface Discovery: api-attack-surface/api-surface.md
+      - Security Issues: api-attack-surface/security-issues.md
+
+    - Detecting Vulnerabilities: about-wallarm/detecting-vulnerabilities.md      
+
+  # ============================================================================
+  # SECTION 5: AI SECURITY
+  # ============================================================================
+  - AI Security:
+    - Overview: agentic-ai/overview.md
+
+    - AI Discovery:
+      - AI Agent Discovery: agentic-ai/agentic-ai-discovery.md
+
+    - AI Protection:
+      - AI Agent Protection: agentic-ai/agentic-ai-protection.md
+      - AI Payload Inspection: agentic-ai/ai-payload-inspection.md
+      - Rogue MCP Inspection: agentic-ai/rogue-mcp-inspection.md
+
+  # ============================================================================
+  # SECTION 6: DEPLOYMENT
+  # Structure: Security Edge → Kubernetes → Cloud → API Gateways → CDN → APIM
+  #            → Host & Runtime → On-Premise → Artifacts → Upgrades
+  # ============================================================================
+  - Deployment:
+    - All Deployment Options: installation/supported-deployment-options.md
+    - Security Edge:
+      - Overview: installation/security-edge/overview.md
+      - Free Tier: installation/security-edge/free-tier.md
+      - Inline:
+        - Overview: installation/security-edge/inline/overview.md
+        - Deployment Guide: installation/security-edge/inline/deployment.md
+        - Access Control Lists: installation/security-edge/inline/access-control-lists.md
+        - Cache Rules: installation/security-edge/inline/cache-rules.md
+        - Custom Block Page: installation/security-edge/inline/custom-block-page.md
+        - Host Redirection: installation/security-edge/inline/host-redirection.md
+        - mTLS Configuration: installation/security-edge/inline/mtls.md
+        - Multi-Region: installation/security-edge/inline/multi-region.md
+        - NGINX Overrides: installation/security-edge/inline/nginx-overrides.md
+        - Upgrade & Management: installation/security-edge/inline/upgrade-and-management.md
+        - Telemetry Portal:
+          - Overview: installation/security-edge/inline/telemetry-portal.md
+          - Main Dashboard: installation/security-edge/inline/telemetry-portal-main-dashboard.md
+          - Logs Dashboard: installation/security-edge/inline/telemetry-portal-logs-dashboard.md
+      - Connectors: installation/security-edge/se-connector.md
+    - Kubernetes:
+      - Istio: installation/connectors/istio.md
+      - NGINX Ingress Controller:
+        - Deployment: admin-en/installation-kubernetes-en.md
+        - Configuration Options: admin-en/configure-kubernetes-en.md
+        - High Availability: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
+        - Monitoring: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
+        - Real Client IP: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
+        - Chaining Ingress Controllers: admin-en/chaining-wallarm-and-other-ingress-controllers.md
+      - Kong Ingress Controller: installation/connectors/kong-ingress-controller.md
+      - Helm Chart for Native Node:
+        - Deployment: installation/native-node/helm-chart.md
+        - Configuration: installation/native-node/helm-chart-conf.md
+      - Sidecar Proxy:
+        - Deployment: installation/kubernetes/sidecar-proxy/deployment.md
+        - Helm Chart: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
+        - Customization: installation/kubernetes/sidecar-proxy/customization.md
+        - Pod Annotations: installation/kubernetes/sidecar-proxy/pod-annotations.md
+        - Scaling: installation/kubernetes/sidecar-proxy/scaling.md
+      - eBPF (Out-of-Band):
+        - Deployment: installation/oob/ebpf/deployment.md
+        - Helm Chart: installation/oob/ebpf/helm-chart-for-wallarm.md
+        - Selecting Packets: installation/oob/ebpf/selecting-packets.md
+    - Cloud Platforms:
+      - AWS:
+        - AMI for NGINX Node: installation/cloud-platforms/aws/ami.md
+        - AMI for Native Node: installation/native-node/aws-ami.md
+        - Docker on ECS: installation/cloud-platforms/aws/docker-container.md
+        - Terraform Module:
+          - Overview: installation/cloud-platforms/aws/terraform-module/overview.md
+          - Terraform for VPC: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
+          - Terraform for API Gateway: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
+        - AWS WAF Integration: installation/cloud-platforms/aws/aws-waf-integration.md
+        - Cost Estimation: installation/cloud-platforms/aws/costs.md
+        - Autoscaling:
+          - Overview: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
+          - Create AMI Image: admin-en/installation-guides/amazon-cloud/create-image.md
+          - Autoscaling Group Setup: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
+          - Load Balancing: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
+      - GCP:
+        - Machine Image for NGINX Node: installation/cloud-platforms/gcp/machine-image.md
+        - Docker on GCE: installation/cloud-platforms/gcp/docker-container.md
+        - Autoscaling:
+          - Overview: admin-en/installation-guides/google-cloud/autoscaling-overview.md
+          - Create GCP Image: admin-en/installation-guides/google-cloud/create-image.md
+          - Instance Template: admin-en/installation-guides/google-cloud/creating-instance-template.md
+          - Autoscaling Group: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
+          - Load Balancing: admin-en/installation-guides/google-cloud/load-balancing-guide.md
+      - Azure:
+        - Container Instances: installation/cloud-platforms/azure/docker-container.md
+      - Alibaba Cloud:
+        - Docker on ECS: installation/cloud-platforms/alibaba-cloud/docker-container.md
+      - Heroku: installation/heroku/docker-image.md
+      - Private Cloud: installation/cloud-platforms/private-cloud.md
+      - Cloud-Init Script: installation/cloud-platforms/cloud-init.md
+    - API Gateways:
+      - AWS API Gateway: installation/connectors/aws-api-gateway.md
+      - Broadcom Layer7: installation/connectors/layer7-api-gateway.md
+      - Kong API Gateway: installation/connectors/standalone-kong-api-gateway.md
+    - CDN:
+      - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
+      - CloudFront: installation/connectors/aws-lambda.md
+      - Azion Edge: installation/connectors/azion-edge.md
+      - Cloudflare: installation/connectors/cloudflare.md
+      - Fastly: installation/connectors/fastly.md
+    - API Management Platform:
+      - Mulesoft:
+        - Flex Gateway: installation/connectors/mulesoft-flex.md
+        - Mule Gateway: installation/connectors/mulesoft.md
+      - Azure API Management: installation/connectors/azure-api-management.md
+      - Apigee: installation/connectors/apigee.md
+      - IBM API Connect: installation/connectors/ibm-api-connect.md
+    - Packages & Containers:
+      - Linux OS:
+        - All-in-one installer for NGINX Node: installation/nginx/all-in-one.md
+        - All-in-one installer for Native Node: installation/native-node/all-in-one.md
+      - Docker:
+        - Image for NGINX Node: admin-en/installation-docker-en.md
+        - Image for Native Node: installation/native-node/docker-image.md
+      - TCP Traffic Mirror: installation/oob/tcp-traffic-mirror/deployment.md
+      - NGINX Node Configuration: admin-en/configure-parameters-en.md
+      - Native Node Configuration: installation/native-node/all-in-one-conf.md
+    - On-Premise:
+      - Overview: installation/on-premise/overview.md
+      - Deployment: installation/on-premise/deployment.md
+      - Maintenance: installation/on-premise/maintenance.md
+    - Special Setups:
+      - Multi-Tenant Node:
+        - Overview: installation/multi-tenant/overview.md
+        - Configure Accounts: installation/multi-tenant/configure-accounts.md
+        - Deploy Multi-Tenant Node: installation/multi-tenant/deploy-multi-tenant-node.md
+      - Separate Postanalytics Module: admin-en/installation-postanalytics-en.md
+      - Custom NGINX Version: installation/custom/custom-nginx-version.md
+      - Request Custom Deployment Option: installation/custom/request-custom-deployment.md
+    - Related Documentation:
+      - Inline Traffic Flow: installation/inline/overview.md
+      - Out-of-band Traffic Flow: installation/oob/overview.md
+      - NGINX and Native Node Overview: installation/nginx-native-node-internals.md
+      - Connector Overview: installation/connectors/overview.md
+
+  - Maintenance:
+    - Overview: maintenance/overview.md
+
+    - Nodes & Infrastructure:
+      - Node Overview: user-guides/nodes/nodes.md
+      - Resource Allocation: admin-en/configuration-guides/allocate-resources-for-node.md
+      - Cloud Synchronization: admin-en/configure-cloud-node-synchronization-en.md
+      - Proxy Configuration: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
+      - Block Page Configuration: admin-en/configuration-guides/configure-block-page-and-code.md
+      - Handling Invalid Headers: admin-en/configuration-guides/handling-invalid-headers.md
+      - JA3 Fingerprinting: admin-en/enabling-ja3.md
+      - Terraform Provider: admin-en/managing/terraform-provider.md
+
+    - Monitoring & Metrics:
+      - NGINX Node Metrics:
+        - Overview: admin-en/nginx-node-metrics.md
+        - Postanalytics Metrics: admin-en/wstore-metrics.md
+        - wcli Controller Metrics: admin-en/wcli-metrics.md
+        - API Firewall Metrics: admin-en/apifw-metrics.md
+      - Native Node Metrics:
+        - Overview: admin-en/native-node-metrics.md
+        - Postanalytics Metrics: admin-en/native-node-metrics-wstore.md
+        - Runtime Metrics: admin-en/native-node-metrics-gonode.md
+      - Statistics Service: admin-en/configure-statistics-service.md
+      - Node Logging: admin-en/configure-logging.md
+      - Failover Configuration: admin-en/configure-backup-en.md
+      - Health Check: admin-en/uat-checklist-en.md
+
+    - Upgrades & Migration:
+      - Versioning Policy: updating-migrating/versioning-policy.md
+      - General Recommendations: updating-migrating/general-recommendations.md
+      - What's New: updating-migrating/what-is-new.md
+      - NGINX Node Changelog: updating-migrating/node-artifact-versions.md
+      # - Native Node Changelog: updating-migrating/native-node/node-artifact-versions.md
+      - NGINX Node Upgrade Instructions:
+        - DEB/RPM Packages: updating-migrating/nginx-modules.md
+        - Postanalytics Module: updating-migrating/separate-postanalytics.md
+        - All-in-One Installer: updating-migrating/all-in-one.md
+        - Docker Image: updating-migrating/docker-container.md
+        - Ingress Controller: updating-migrating/ingress-controller.md
+        - Ingress Controller Retirement: updating-migrating/nginx-ingress-retirement.md
+        - Sidecar Proxy: updating-migrating/sidecar-proxy.md
+        - Cloud Image: updating-migrating/cloud-image.md
+        - Multi-Tenant Node: updating-migrating/multi-tenant.md
+      - Native Node Upgrade Instructions:
+        - All-in-One Installer: updating-migrating/native-node/all-in-one.md
+        - Helm Chart: updating-migrating/native-node/helm-chart.md
+        - Docker Image: updating-migrating/native-node/docker-image.md
+      - Connector's Code Bundle Release Notes: installation/connectors/code-bundle-inventory.md
+      - EOL Node Upgrades (3.6 and lower):
+        - What's New: updating-migrating/older-versions/what-is-new.md
+        - NGINX Modules: updating-migrating/older-versions/nginx-modules.md
+        - Postanalytics: updating-migrating/older-versions/separate-postanalytics.md
+        - Docker Image: updating-migrating/older-versions/docker-container.md
+        - Ingress Controller: updating-migrating/older-versions/ingress-controller.md
+        - Cloud Image: updating-migrating/older-versions/cloud-image.md
+        - Multi-Tenant: updating-migrating/older-versions/multi-tenant.md
+        - Migrate IP Lists: updating-migrating/migrate-ip-lists-to-node-3.md
+
+    - Operations:
+      - Learning Request Volume: admin-en/operation/learn-incoming-request-number.md
+      - Scanner IP Addresses: admin-en/scanner-addresses.md
+
+    - Troubleshooting:
+      - Overview: troubleshooting/overview.md
+      - Detection and Blocking: troubleshooting/detection-and-blocking.md
+      - Detection Tools: troubleshooting/detection-tools-tuning.md
+      - Performance: troubleshooting/performance.md
+      - Real Client IP: admin-en/using-proxy-or-balancer-en.md
+      - End User Problems: faq/common-errors-after-installation.md
+      - Wallarm Ingress Controller: faq/ingress-installation.md
+      - Wallarm Cloud is Down: faq/wallarm-cloud-down.md
+      - OWASP Dashboard Alerts: faq/node-issues-on-owasp-dashboards.md
+      - NGINX Error Log: troubleshooting/wallarm-issues-in-nginx-error-log.md
+      - Dynamic DNS in NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
+
+  # ============================================================================
+  # SECTION 7: INTEGRATIONS
+  # ============================================================================
+  - Integrations:
+    - Integrations Overview: user-guides/settings/integrations/integrations-intro.md
+
+    - Messaging & Alerts:
+      - Email: user-guides/settings/integrations/email.md
+      - Slack: user-guides/settings/integrations/slack.md
+      - Microsoft Teams: user-guides/settings/integrations/microsoft-teams.md
+      - Telegram: user-guides/settings/integrations/telegram.md
+
+    - Incident Management:
+      - PagerDuty: user-guides/settings/integrations/pagerduty.md
+      - Opsgenie: user-guides/settings/integrations/opsgenie.md
+      - Jira: user-guides/settings/integrations/jira.md
+      - ServiceNow: user-guides/settings/integrations/servicenow.md
+      - InsightConnect: user-guides/settings/integrations/insightconnect.md
+
+    - SIEM & Analytics:
+      - Splunk: user-guides/settings/integrations/splunk.md
+      - Sumo Logic: user-guides/settings/integrations/sumologic.md
+      - Microsoft Sentinel: user-guides/settings/integrations/azure-sentinel.md
+      - Datadog: user-guides/settings/integrations/datadog.md
+
+    - Log Collectors:
+      - Fluentd: user-guides/settings/integrations/fluentd.md
+      - Logstash: user-guides/settings/integrations/logstash.md
+      - Integration Examples:
+        - IBM QRadar via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
+        - IBM QRadar via Logstash: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
+        - Splunk via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-splunk.md
+        - Splunk via Logstash: user-guides/settings/integrations/webhook-examples/logstash-splunk.md
+        - ArcSight via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-arcsight-logger.md
+        - ArcSight via Logstash: user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md
+        - Datadog via Fluentd/Logstash: user-guides/settings/integrations/webhook-examples/fluentd-logstash-datadog.md
+
+    - Cloud Storage:
+      - Amazon S3: user-guides/settings/integrations/amazon-s3.md
+      - MinIO: user-guides/settings/integrations/minio.md
+
+    - Webhooks:
+      - Webhook Configuration: user-guides/settings/integrations/webhook.md
+
+    - DevSecOps:
+      - Docker Image Security: integrations-devsecops/verify-docker-image-signature.md
+      - Generate SBOM: integrations-devsecops/generate-sbom-for-docker-images.md
+
+  # ============================================================================
+  # SECTION 8: PLATFORM MANAGEMENT
+  # ============================================================================
+  - Platform Management:
+    - Overview: platform-management/overview.md
+    - Dashboards:
+      - Threat Prevention Dashboard: user-guides/dashboards/threat-prevention.md
+      - API Discovery Dashboard: user-guides/dashboards/api-discovery.md
+      - OWASP API Top 10 Dashboard: user-guides/dashboards/owasp-api-top-ten.md
+      - Business Intelligence: user-guides/dashboards/bi-dashboards.md
+
+    - Monitoring & Events:
+      - Event Overview: user-guides/events/overview.md
+      - Analyzing Attacks: user-guides/events/check-attack.md
+      - Analyzing Incidents: user-guides/events/check-incident.md
+      - Grouping & Sampling: user-guides/events/grouping-sampling.md
+      - Security Issues: user-guides/vulnerabilities.md
+
+    - Triggers & Alerts:
+      - Trigger Configuration: user-guides/triggers/triggers.md
+
+    - Search & Reports:
+      - Search & Filters: user-guides/search-and-filters/use-search.md
+      - Custom Reports: user-guides/search-and-filters/custom-report.md
+
+    - Account Settings:
+      - Account: user-guides/settings/account.md
+#      - General Settings: user-guides/settings/general.md
+      - Applications: user-guides/settings/applications.md
+#      - Subscriptions: user-guides/settings/subscriptions.md
+      - Audit Log: user-guides/settings/audit-log.md
+
+    - Users & Access:
+      - User Management: user-guides/settings/users.md
+      - API Tokens: user-guides/settings/api-tokens.md
+      - SSO Configuration:
+        - SSO Overview: admin-en/configuration-guides/sso/intro.md
+        - SSO Setup: admin-en/configuration-guides/sso/setup.md
+        - Google Workspace: admin-en/configuration-guides/sso/sso-gsuite.md
+        - Okta: admin-en/configuration-guides/sso/sso-okta.md
+        - Troubleshooting: admin-en/configuration-guides/sso/troubleshooting.md
+      - LDAP Integration: admin-en/configuration-guides/ldap/ldap.md
+
+    - Plans & Pricing:
+      - Subscription Plans: about-wallarm/subscription-plans.md
+
+  # ============================================================================
+  # SECTION 9: REFERENCE
+  # ============================================================================
+  - Reference:
+    - Overview: reference/overview.md
+
+    - API Reference:
+      - Overview: api/overview.md
+      - Request Examples: api/request-examples.md
+
+    - Attack Types: attacks-vulns-list.md
+    - Glossary: glossary-en.md
+    - Data Retention Policy: about-wallarm/data-retention-policy.md
+    - Shared Responsibility Model: about-wallarm/shared-responsibility.md
+    - SLA: sla.md

@@ -10,17 +10,38 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.22.1 (2026-02-03)
+
+* Fixed an issue where real IP header overrides were not applied when the header value contained an IP address with a port
+
+### 0.22.0 (2025-12-23)
+
+* Fixed the issue where integers were not being masked when using the ["Mask sensitive data" rule](../../user-guides/rules/sensitive-data-rule.md)
+* Fixed the issue where responses containing infoleak stamps were being blocked
+
+    Wallarm no longer blocks such responses, as doing so caused false detections and prevented rules from being edited
+* Fixed connector server waiting for the response data that is known to never arrive
+
+### 0.21.0 (2025-12-17)
+
+* Added support for the [Amazon API Gateway connector](../../installation/connectors/aws-api-gateway.md)
+* Added the `client_uuid` label to all `*_per_app*` and `*_per_host*` [Prometheus metrics](../../admin-en/native-node-metrics-gonode.md) for Nodes running in multi-tenant mode
+* Fixed the issue where the [`wallarm_status` service statistics](../../admin-en/configure-statistics-service.md) contained the outdated `abnormal` metric, which was incorrectly increasing with each request
+
+    The metric and other outdated fields have been removed.
+* Fixed an issue where large or overlapping denylisted IP ranges were not being blocked in Security Edge-hosted environments
+
 ### 0.20.0 (2025-11-25)
 
 * Introduced support for OpenAPI 3.1 in the [API Specification Enforcement](../../api-specification-enforcement/overview.md) feature — you can now upload specifications in version 3.1 format to compare traffic against them, identify mismatches, and mitigate related security risks
-* Added Prometheus metrics support for the Postanalytics **wstore** component. The metrics are available by default at `http://localhost:9001` using the `tcp4` (IPv4-only) protocol
+* Added [Prometheus metrics support](../../admin-en/native-node-metrics-wstore.md) for the Postanalytics **wstore** component. The metrics are available by default at `http://localhost:9001/metrics` using the `tcp4` (IPv4-only) protocol
 
     You can change the default metrics host, port, and protocol by setting the following environment variables when deploying the Node:
 
     * `WALLARM_WSTORE__METRICS__LISTEN_ADDRESS` — defines the host and port
     * `WALLARM_WSTORE__METRICS__PROTOCOL` — defines the protocol
 
-* Added Prometheus metrics support for API Specification Enforcement service operation (based on the built-in API Firewall service). API Firewall metrics are included as part of the [`go-node` Prometheus metrics](../../admin-en/native-node-metrics.md)
+* Added [Prometheus metrics support](../../admin-en/native-node-metrics-gonode.md#wallarm_gonode_apifw_) for API Specification Enforcement service operation (based on the built-in API Firewall service). API Firewall metrics are included as part of the [`go-node` Prometheus metrics](../../admin-en/native-node-metrics.md)
 * Removed support for the deprecated `http_inspector.real_ip_header` configuration parameter
 * Improved Node initialization logs — added detailed information about component type, supported versions, error source, API endpoint, and Node UUID to simplify troubleshooting during the initialization stage
 * Fixed the [CVE-2025-58188](https://www.cve.org/CVERecord?id=CVE-2025-58188) vulnerability
@@ -111,8 +132,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * Added support for [mitigation control-based](../../api-protection/graphql-rule.md#mitigation-control-based-protection) **GraphQL API Protection**
 * Introduced the [`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers) configuration to configure trusted networks and extract real client IP and host headers
-
-    This replaces `http_inspector.real_ip_header` used in earlier versions in the `tcp-capture` mode.
 * Added the [`metrics.namespace`](../../installation/native-node/all-in-one-conf.md#metricsnamespace) configuration option to customize the prefix of Prometheus metrics exposed by the `go-node` binary
 * Fixed the `--preserve` script flag behavior to correctly retain the existing `node.yaml` and `env.list` files during upgrade
 
@@ -133,11 +152,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
     This is controlled by the new [`connector.external_health_check`](../../installation/native-node/all-in-one-conf.md#connectorexternal_health_check) configuration section.
 * Fixed a recurring intermittent bug that could cause occasional corruption of request and response bodies
-* The following fixes and updates were made in `tcp-capture` mode:
-
-    * GoReplay is now built with Go 1.24
-    * Fixed: `go-node` process no longer hangs when the `goreplay` process crashes
-    * Fixed a crash caused by a slice out-of-bounds error during header parsing in GoReplay
 * Fixed incorrect display of Native Node versions in Wallarm Console → **Nodes**
 
 ### 0.14.0 (2025-04-16)
@@ -153,17 +167,45 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.22.1 (2026-02-03)
+
+* Fixed an issue where real IP header overrides were not applied when the header value contained an IP address with a port
+
+### 0.22.0 (2025-12-23)
+
+* Added support for Kong Ingress Controller connector 1.1.0 with new `inspect_response` and `inspect_response_body` [configuration parameters](../../installation/connectors/kong-ingress-controller.md#configuration-options)
+* Fixed the issue where integers were not being masked when using the ["Mask sensitive data" rule](../../user-guides/rules/sensitive-data-rule.md)
+* Fixed the issue where responses containing infoleak stamps were being blocked
+
+    Wallarm no longer blocks such responses, as doing so caused false detections and prevented rules from being edited
+* Fixed connector server waiting for the response data that is known to never arrive
+
+### 0.21.0 (2025-12-17)
+
+* Added support for the [Amazon API Gateway connector](../../installation/connectors/aws-api-gateway.md)
+* Added the `client_uuid` label to all `*_per_app*` and `*_per_host*` [Prometheus metrics](../../admin-en/native-node-metrics-gonode.md) for Nodes running in multi-tenant mode
+* Fixed the issue where the [`wallarm_status` service statistics](../../admin-en/configure-statistics-service.md) contained the outdated `abnormal` metric, which was incorrectly increasing with each request
+
+    The metric and other outdated fields have been removed.
+* Fixed an issue where large or overlapping denylisted IP ranges were not being blocked in Security Edge-hosted environments
+* Fixed the following vulnerabilities:
+    
+    * [CVE-2025-66418](https://nvd.nist.gov/vuln/detail/CVE-2025-66418)
+    * [CVE-2025-66471](https://nvd.nist.gov/vuln/detail/CVE-2025-66471)
+    * [CVE-2024-58251](https://nvd.nist.gov/vuln/detail/CVE-2024-58251)
+    * [CVE-2025-46394](https://nvd.nist.gov/vuln/detail/CVE-2025-46394)
+
 ### 0.20.0 (2025-11-25)
 
 * Introduced support for OpenAPI 3.1 in the [API Specification Enforcement](../../api-specification-enforcement/overview.md) feature — you can now upload specifications in version 3.1 format to compare traffic against them, identify mismatches, and mitigate related security risks
-* Added Prometheus metrics support for the Postanalytics **wstore** component. The metrics are available by default at `http://localhost:9001` using the `tcp4` (IPv4-only) protocol
+* Added [Prometheus metrics support](../../admin-en/native-node-metrics-wstore.md) for the Postanalytics **wstore** component. The metrics are available by default at `http://localhost:9001/metrics` using the `tcp4` (IPv4-only) protocol
 
     You can change the default metrics host, port, and protocol by setting the following in `values.yaml`:
 
     * [`config.aggregation.metrics.listenAddress`](../../installation/native-node/helm-chart-conf.md#configaggregationmetricslistenaddress) — defines the host and port
     * [`config.aggregation.metrics.protocol`](../../installation/native-node/helm-chart-conf.md#configaggregationmetricsprotocol) — defines the protocol
 
-* Added Prometheus metrics support for API Specification Enforcement service operation (based on the built-in API Firewall service). API Firewall metrics are included as part of the [`go-node` Prometheus metrics](../../admin-en/native-node-metrics.md)
+* Added [Prometheus metrics support](../../admin-en/native-node-metrics-gonode.md#wallarm_gonode_apifw_) for API Specification Enforcement service operation (based on the built-in API Firewall service). API Firewall metrics are included as part of the [`go-node` Prometheus metrics](../../admin-en/native-node-metrics.md)
 * Improved Node initialization logs — added detailed information about component type, supported versions, error source, API endpoint, and Node UUID to simplify troubleshooting during the initialization stage
 * Switched to native HTTP readiness and liveness probes for the **wstore** component
 * Fixed the [CVE-2025-58188](https://www.cve.org/CVERecord?id=CVE-2025-58188) vulnerability
@@ -296,17 +338,44 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 [How to upgrade](docker-image.md)
 
+### 0.22.1 (2026-02-03)
+
+* Fixed an issue where real IP header overrides were not applied when the header value contained an IP address with a port
+
+### 0.22.0 (2025-12-23)
+
+* Fixed the issue where integers were not being masked when using the ["Mask sensitive data" rule](../../user-guides/rules/sensitive-data-rule.md)
+* Fixed the issue where responses containing infoleak stamps were being blocked
+
+    Wallarm no longer blocks such responses, as doing so caused false detections and prevented rules from being edited
+* Fixed connector server waiting for the response data that is known to never arrive
+
+### 0.21.0 (2025-12-17)
+
+* Added support for the [Amazon API Gateway connector](../../installation/connectors/aws-api-gateway.md)
+* Added the `client_uuid` label to all `*_per_app*` and `*_per_host*` [Prometheus metrics](../../admin-en/native-node-metrics-gonode.md) for Nodes running in multi-tenant mode
+* Fixed the issue where the [`wallarm_status` service statistics](../../admin-en/configure-statistics-service.md) contained the outdated `abnormal` metric, which was incorrectly increasing with each request
+
+    The metric and other outdated fields have been removed.
+* Fixed an issue where large or overlapping denylisted IP ranges were not being blocked in Security Edge-hosted environments
+* Fixed the following vulnerabilities:
+    
+    * [CVE-2025-66418](https://nvd.nist.gov/vuln/detail/CVE-2025-66418)
+    * [CVE-2025-66471](https://nvd.nist.gov/vuln/detail/CVE-2025-66471)
+    * [CVE-2024-58251](https://nvd.nist.gov/vuln/detail/CVE-2024-58251)
+    * [CVE-2025-46394](https://nvd.nist.gov/vuln/detail/CVE-2025-46394)
+
 ### 0.20.0 (2025-11-25)
 
 * Introduced support for OpenAPI 3.1 in the [API Specification Enforcement](../../api-specification-enforcement/overview.md) feature — you can now upload specifications in version 3.1 format to compare traffic against them, identify mismatches, and mitigate related security risks
-* Added Prometheus metrics support for the Postanalytics **wstore** component. The metrics are available by default at `http://localhost:9001` using the `tcp4` (IPv4-only) protocol
+* Added [Prometheus metrics support](../../admin-en/native-node-metrics-wstore.md) for the Postanalytics **wstore** component. The metrics are available by default at `http://localhost:9001/metrics` using the `tcp4` (IPv4-only) protocol
 
     You can change the default metrics host, port, and protocol by setting the following environment variables when deploying the Node:
 
     * `WALLARM_WSTORE__METRICS__LISTEN_ADDRESS` — defines the host and port
     * `WALLARM_WSTORE__METRICS__PROTOCOL` — defines the protocol
 
-* Added Prometheus metrics support for API Specification Enforcement service operation (based on the built-in API Firewall service). API Firewall metrics are included as part of the [`go-node` Prometheus metrics](../../admin-en/native-node-metrics.md)
+* Added [Prometheus metrics support](../../admin-en/native-node-metrics-gonode.md#wallarm_gonode_apifw_)for API Specification Enforcement service operation (based on the built-in API Firewall service). API Firewall metrics are included as part of the [`go-node` Prometheus metrics](../../admin-en/native-node-metrics.md)
 * Removed support for the deprecated `http_inspector.real_ip_header` configuration parameter
 * Improved Node initialization logs — added detailed information about component type, supported versions, error source, API endpoint, and Node UUID to simplify troubleshooting during the initialization stage
 * Fixed the [CVE-2025-58188](https://www.cve.org/CVERecord?id=CVE-2025-58188) vulnerability
@@ -397,8 +466,6 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 * Added support for [mitigation control-based](../../api-protection/graphql-rule.md#mitigation-control-based-protection) **GraphQL API Protection**
 * Introduced the [`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers) configuration to configure trusted networks and extract real client IP and host headers
-
-    This replaces `http_inspector.real_ip_header` used in earlier versions in the `tcp-capture` mode.
 * Added the [`metrics.namespace`](../../installation/native-node/all-in-one-conf.md#metricsnamespace) configuration option to customize the prefix of Prometheus metrics exposed by the `go-node` binary
 * Added [`connector.per_connection_limits`](../../installation/native-node/all-in-one-conf.md#connectorper_connection_limits) to control `keep-alive` connection limits
 * Minor internal file structure change

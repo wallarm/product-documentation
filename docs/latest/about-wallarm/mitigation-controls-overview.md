@@ -16,6 +16,9 @@ Using mitigation controls, you can enable and configure:
 * [Forced browsing protection](../api-protection/enumeration-attack-protection.md)
 * [Brute force protection](../api-protection/enumeration-attack-protection.md)
 * [DoS protection](../api-protection/dos-protection.md)
+* [Business logic abuse detection](../api-protection/business-logic-abuse-detection.md)
+* [AI payload inspection](../agentic-ai/ai-payload-inspection.md)
+* [Custom request anomaly detection](../api-protection/custom-request-anomaly.md)
 * [File upload restriction policy](../api-protection/file-upload-restriction.md)
 
 ## Mitigation control branches
@@ -163,3 +166,7 @@ All created mitigation controls and [rules](../user-guides/rules/rules.md) form 
 Changes of rules and mitigation controls do NOT take effect instantly. Changes are applied to the request analysis process only after the custom ruleset **building** and **uploading to the filtering node** are finished.
 
 --8<-- "../include/custom-ruleset.md"
+
+## Migrating between tenants
+
+If you have [multiple tenants](../installation/multi-tenant/overview.md), you can [migrate](../installation/multi-tenant/overview.md#migrating-rules) (copy) mitigation controls between them **along with other rules**.

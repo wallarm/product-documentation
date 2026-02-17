@@ -4,7 +4,7 @@ site_name: توثيق وولارم
 site_url: https://docs.wallarm.com/ar/
 site_description: حل وولارم بيحمي واجهات برمجة التطبيقات (APIs)، والمايكروسيرفيسيز، وتطبيقات الويب من تهديدات أوبتوب 10 الخاصة بـ OWASP لواجهات برمجة التطبيقات، وسوء استخدام الـAPI، وغيرها من التهديدات الآلية من غير ما يحتاج لضبط قواعد يدوي وكمان بنسبة أخطاء زائفة قليلة جدًا.
 
-copyright: '<a href="https://www.wallarm.com/terms-of-service" target="_blank">شروط الخدمة</a> | <a href="https://www.wallarm.com/privacy-policy" target="_blank">سياسة الخصوصية</a> | <a href="https://www.wallarm.com/cookie-policy" target="_blank">سياسة ملفات تعريف الارتباط</a> | <a href="#__consent" target="_blank">إعدادات ملفات تعريف الارتباط</a> | 2025 © Wallarm Inc.'
+copyright: '<a href="https://www.wallarm.com/terms-of-service" target="_blank">شروط الخدمة</a> | <a href="https://www.wallarm.com/privacy-policy" target="_blank">سياسة الخصوصية</a> | <a href="https://www.wallarm.com/cookie-policy" target="_blank">سياسة ملفات تعريف الارتباط</a> | <a href="#__consent" target="_blank">إعدادات ملفات تعريف الارتباط</a> | 2026 © Wallarm Inc.'
 
 extra:
   analytics:
@@ -51,375 +51,301 @@ watch:
   - docs/latest-ar
 
 nav:
-  - البدء السريع:
-    - نظرة عامة على Wallarm: about-wallarm/overview.md
-    - البدء: quickstart/getting-started.md
-    - خطط الاشتراك: about-wallarm/subscription-plans.md
-    - دلائل التنصيب: /ar/installation/supported-deployment-options/
-    - أفضل الممارسات: quickstart/attack-prevention-best-practices.md
+  - مقدمة:
+    - البدء السريع:
+      - نظرة عامة على Wallarm: about-wallarm/overview.md
+      - البدء: quickstart/getting-started.md
     - دلائل الفيديو:
-      - إعدادات منصة Wallarm: demo-videos/overview.md
-      - تحليل الضعف والهجمات ذات الصلة: demo-videos/events-inspection.md
       - نظرة عامة على اكتشاف API: demo-videos/api-discovery.md
-      - واجهة برمجة التطبيقات الظل واليتيمة: demo-videos/shadow-api.md
-      - نظرة عامة على منع سوء استخدام API: demo-videos/api-abuse-prevention.md
       - نظرة عامة على تسربات API: demo-videos/api-leaks.md
-  - Threat Management::
-    - Overview: user-guides/events/overview.md
-    - منع التهديد: user-guides/dashboards/threat-prevention.md
-    - اكتشاف API: user-guides/dashboards/api-discovery.md
-    - OWASP API Top 10: user-guides/dashboards/owasp-api-top-ten.md
-    - الأحداث:
-      - البحث والمرشحات: user-guides/search-and-filters/use-search.md
-      - التحقق من الهجمات: user-guides/events/check-attack.md
-      - التحقق من الحوادث: user-guides/events/check-incident.md
-      - تحليل الأحداث: user-guides/events/analyze-attack.md
-      - التحقق من سلبيات الهجمات: user-guides/events/false-attack.md
-      - التحقق من صحة الهجمات: user-guides/events/verify-attack.md
-    - التقارير: user-guides/search-and-filters/custom-report.md
-    - سجل النشاط: user-guides/settings/audit-log.md
+      - واجهة برمجة التطبيقات الظل واليتيمة: demo-videos/shadow-api.md
+      - تحليل الضعف والهجمات ذات الصلة: demo-videos/events-inspection.md
+      - نظرة عامة على منع سوء استخدام API: demo-videos/api-abuse-prevention.md
+      - إعدادات منصة Wallarm: demo-videos/overview.md
   - اكتشاف API:
     - نظرة عامة: api-discovery/overview.md
+    - استكشاف واجهات API:
+      - استكشاف جرد API: api-discovery/exploring.md
+      - لوحة التحكم: api-discovery/dashboard.md
+      - تتبع التغييرات في API: api-discovery/track-changes.md
+    - تحليل المخاطر:
+      - درجة المخاطر لنقاط النهاية: api-discovery/risk-score.md
+      - واجهة برمجة التطبيقات الظلية، اليتيمة، والزومبي: api-discovery/rogue-api.md
+    - حماية البيانات:
+      - حماية BOLA التلقائية: api-discovery/bola-protection.md
     - التنصيب: api-discovery/setup.md
-    - استكشاف جرد API: api-discovery/exploring.md
-    - تتبع التغييرات في API: api-discovery/track-changes.md
-    - درجة المخاطر لنقاط النهاية: api-discovery/risk-score.md
-    - واجهة برمجة التطبيقات الظلية، اليتيمة، والزومبي: api-discovery/rogue-api.md
-    - حماية BOLA التلقائية: api-discovery/bola-protection.md
-    - لوحة التحكم: api-discovery/dashboard.md
   - حماية API:
     - نظرة عامة: about-wallarm/api-protection-overview.md
-    # - نظرة عامة: ...
-    # - OWASP Top 10: ...
-    # - OWASP API Top 10: ...
-    - تفعيل السياسات API:
+    - أفضل الممارسات: quickstart/attack-prevention-best-practices.md
+    - حماية محددة لـ API:
+      - حماية BOLA يدوية: admin-en/configuration-guides/protecting-against-bola-trigger.md
+      - حماية BOLA(APID): admin-en/configuration-guides/protecting-against-bola.md
+      - حماية API لـ GraphQL: api-protection/graphql-rule.md
+    - إدارة البوتات:
+      - نظرة عامة: api-abuse-prevention/overview.md
+      - إدارة الملف الشخصي لمنع سوء استخدام API: api-abuse-prevention/setup.md
+      - استكشاف البوتات المكتشفة: api-abuse-prevention/exploring-bots.md
+      - استثناءات: api-abuse-prevention/exceptions.md
+    - تطبيق مواصفات API:
       - نظرة عامة: api-specification-enforcement/overview.md
       - إعداد: api-specification-enforcement/setup.md
       - عرض الأحداث: api-specification-enforcement/viewing-events.md
-    - منع الاعتداء على API:
-      - نظرة عامة: api-abuse-prevention/overview.md
-      - إدارة الملف الشخصي لمنع سوء استخدام API: api-abuse-prevention/setup.md
-      - استثناءات: api-abuse-prevention/exceptions.md
-      - استكشاف البوتات المكتشفة: api-abuse-prevention/exploring-bots.md
-    - حماية BOLA(APID): admin-en/configuration-guides/protecting-against-bola.md
-    - اكتشاف تزوير البيانات: about-wallarm/credential-stuffing.md
-    - حماية API لـ GraphQL: api-protection/graphql-rule.md
-  - سطح هجوم API:
-    - ملخص: api-attack-surface/overview.md
-    - اكتشاف سطح API: api-attack-surface/api-surface.md
-    - اكتشاف تسربات API: api-attack-surface/security-issues.md
-  - الأصول والثغرات:
-    - تقييم الضعف:
-      - الكشف عن الضعف: about-wallarm/detecting-vulnerabilities.md
-      - إدارة الضعف: user-guides/vulnerabilities.md
-      - البحث والمرشحات: user-guides/search-and-filters/use-search-vuln.md
-  - WAAP السحابي الأصلي:
-    - نظرة عامة: about-wallarm/waap-overview.md
-    - حماية DDoS: admin-en/configuration-guides/protecting-against-ddos.md
-    - حماية Brute Force: admin-en/configuration-guides/protecting-against-bruteforce.md
-    - حماية Forced Browsing: admin-en/configuration-guides/protecting-against-forcedbrowsing.md
-    - الحد من المعدل: user-guides/rules/rate-limiting.md
-    - حماية Multi-Attack: admin-en/configuration-guides/protecting-with-thresholds.md
-    - حماية BOLA يدوية: admin-en/configuration-guides/protecting-against-bola-trigger.md
-    - تصفية بحسب IP: user-guides/ip-lists/overview.md
-    - التصحيح الافتراضي: user-guides/rules/vpatch-rule.md
-    - المكتشفات المحددة من قبل المستخدم: user-guides/rules/regex-rule.md
-    - تجنب البيانات الحساسة: user-guides/rules/sensitive-data-rule.md
-    - تغيير رؤوس الرد: user-guides/rules/add-replace-response-header.md
-    - وضع الترشيح: admin-en/configure-wallarm-mode.md
-    - إجراءات الكشف:
+    - حماية البيانات الاعتمادية:
+      - اكتشاف تزوير البيانات: about-wallarm/credential-stuffing.md
+    - حماية من التهديدات (WAAP):
+      - نظرة عامة: about-wallarm/waap-overview.md
       - نظرة عامة: about-wallarm/protecting-against-attacks.md
-      - تحليل الطلبات: user-guides/rules/request-processing.md
+      - حماية Brute Force: admin-en/configuration-guides/protecting-against-bruteforce.md
+      - حماية Forced Browsing: admin-en/configuration-guides/protecting-against-forcedbrowsing.md
+      - حماية Multi-Attack: admin-en/configuration-guides/protecting-with-thresholds.md
+      - حماية DDoS: admin-en/configuration-guides/protecting-against-ddos.md
+      - تصفية بحسب IP: user-guides/ip-lists/overview.md
+      - وضع الترشيح: admin-en/configure-wallarm-mode.md
+    - القواعد والسياسات:
       - القواعد: user-guides/rules/rules.md
-      - المحفزات: user-guides/triggers/triggers.md
-# - نظرة عامة: ...
-  - اختبار أمان واجهة برمجة التطبيقات:
+      - الحد من المعدل: user-guides/rules/rate-limiting.md
+      - التصحيح الافتراضي: user-guides/rules/vpatch-rule.md
+      - المكتشفات المحددة من قبل المستخدم: user-guides/rules/regex-rule.md
+      - تجنب البيانات الحساسة: user-guides/rules/sensitive-data-rule.md
+      - تحليل الطلبات: user-guides/rules/request-processing.md
+      - تغيير رؤوس الرد: user-guides/rules/add-replace-response-header.md
+      - الحد من وقت معالجة الطلب: user-guides/rules/configure-overlimit-res-detection.md
+  - اختبار أمان API:
     - اختبار إعادة تشغيل التهديدات:
       - ملخص: vulnerability-detection/threat-replay-testing/overview.md
       - يثبت: vulnerability-detection/threat-replay-testing/setup.md
       - نتائج الاختبار: vulnerability-detection/threat-replay-testing/exploring.md
-    - Schema-Based:
-      - Overview: vulnerability-detection/schema-based-testing/overview.md
-      - Setup: vulnerability-detection/schema-based-testing/setup.md
+    - الاختبار القائم على المخطط:
+      - نظرة عامة: vulnerability-detection/schema-based-testing/overview.md
+      - إعداد: vulnerability-detection/schema-based-testing/setup.md
       - Test Run Results: vulnerability-detection/schema-based-testing/explore.md
-    # - OWASP Top 10: ...
-    # - هجمات معروفة / CVEs: ...
-    # - المحفزات: ...
-  - التنصيب:
+    - سطح هجوم API (AASM):
+      - ملخص: api-attack-surface/overview.md
+      - اكتشاف سطح API: api-attack-surface/api-surface.md
+      - اكتشاف تسربات API: api-attack-surface/security-issues.md
+    - الكشف عن الضعف: about-wallarm/detecting-vulnerabilities.md
+  - النشر:
     - خيارات التوزيع: installation/supported-deployment-options.md
-    - خارج النطاق:
-      - نظرة عامة: installation/oob/overview.md
-      - eBPF:
+    - Kubernetes:
+      - وحدة تحكم NGINX Ingress:
+        - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
+        - معلمات التكوين: admin-en/configure-kubernetes-en.md
+        - الاعتبارات عالية التوفر: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
+        - مراقبة مراقبة الدخول: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
+        - التقرير الصحيح لإيبي للمستخدم النهائي: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
+      - وكيل Sidecar:
+        - نصب: installation/kubernetes/sidecar-proxy/deployment.md
+        - قيم Helm Chart: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
+        - تخصيص: installation/kubernetes/sidecar-proxy/customization.md
+        - توصيفات Pod: installation/kubernetes/sidecar-proxy/pod-annotations.md
+        - التحجيم والتوفر العالي: installation/kubernetes/sidecar-proxy/scaling.md
+      - eBPF (خارج النطاق):
         - نصب: installation/oob/ebpf/deployment.md
         - قيم Helm Chart: installation/oob/ebpf/helm-chart-for-wallarm.md
         - تحديد الحزم للتطابق: installation/oob/ebpf/selecting-packets.md
-      - تحليل مرآة حركة المرور TCP:
-        - نشر: installation/oob/tcp-traffic-mirror/deployment.md
-        - تكوين: installation/oob/tcp-traffic-mirror/configuration.md
-      - المرآة بواسطة NGINX, Envoy ومماثلة:
-        - نظرة عامة: installation/oob/web-server-mirroring/overview.md
-        - الغيوم العامة:
-          - AWS AMI: installation/oob/web-server-mirroring/aws-ami.md
-          - GCP:
-            - صورة الجهاز: installation/oob/web-server-mirroring/gcp-machine-image.md
-        - Docker: installation/oob/web-server-mirroring/docker-image.md
-        - Linux:
-          - All-in-One Installer: installation/oob/web-server-mirroring/linux/all-in-one.md
-          - الحزم الفردية لـ NGINX Stable: installation/oob/web-server-mirroring/linux/nginx-stable.md
-          - الحزم الفردية لـ NGINX Plus: installation/oob/web-server-mirroring/linux/nginx-plus.md
-          - حزم منفردة لـ NGINX المقدم من التوزيعة: installation/oob/web-server-mirroring/linux/nginx-distro.md
-    - الغيوم العامة:
-      - Amazon Web Services:
-        - AMI: installation/cloud-platforms/aws/ami.md
-        - ECS: installation/cloud-platforms/aws/docker-container.md
-        - وحدة Terraform:
-          - الوكيل في VPC AWS: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
-          - الوكيل لـ Amazon API Gateway: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
-      - Google Cloud:
-        - صورة الجهاز: installation/cloud-platforms/gcp/machine-image.md
-        - GCE: installation/cloud-platforms/gcp/docker-container.md
-      - Microsoft Azure:
-        - Azure Container Instances: installation/cloud-platforms/azure/docker-container.md
-      - Alibaba Cloud:
-        - ECS: installation/cloud-platforms/alibaba-cloud/docker-container.md
-    - Edge:
-      - Section.io: installation/cdn-node.md
-      - جدار حماية Wallarm:
-        - مضمن: installation/security-edge/deployment.md
-        - الموصلات: installation/se-connector.md
-    - Kubernetes:
-      - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
-      - Sidecar:
-        - نصب: installation/kubernetes/sidecar-proxy/deployment.md
-        - تخصيص: installation/kubernetes/sidecar-proxy/customization.md
-        - التحجيم والتوفر العالي: installation/kubernetes/sidecar-proxy/scaling.md
-        - قيم Helm Chart: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
-        - توصيفات Pod: installation/kubernetes/sidecar-proxy/pod-annotations.md
-      - eBPF:
-        - نصب: installation/kubernetes/ebpf/deployment.md
-        - قيم Helm Chart: installation/kubernetes/ebpf/helm-chart-for-wallarm.md
-        - تحديد الحزم للتطابق: installation/kubernetes/ebpf/selecting-packets.md
-    - في الموقع:
-      - نظرة عامة: installation/inline/overview.md
-      - حالات الحوسبة:
-        - Amazon Web Services:
-          - AMI: installation/inline/compute-instances/aws/aws-ami.md
-          - ECS: installation/inline/compute-instances/aws/aws-ecs.md
-          - وحدة Terraform:
-            - الوكيل في AWS VPC: installation/inline/compute-instances/aws/terraform-module-for-aws-vpc.md
-            - الوكيل لـ Amazon API Gateway: installation/inline/compute-instances/aws/terraform-module-for-aws-api-gateway.md
-        - Google Cloud:
-          - صورة الجهاز: installation/inline/compute-instances/gcp/machine-image.md
-          - GCE: installation/inline/compute-instances/gcp/gce.md
-        - Microsoft Azure:
-          - Azure Container Instances: installation/inline/compute-instances/azure/docker-image.md
-        - Alibaba Cloud:
-          - ECS: installation/inline/compute-instances/alibaba/docker-image.md
-        - Docker images:
-          - نظام NGINX: installation/inline/compute-instances/docker/nginx-based.md
-          - Envoy-based: installation/inline/compute-instances/docker/envoy-based.md
-        - حزم اللينكس:
-          - All-in-One Installer: installation/inline/compute-instances/linux/all-in-one.md
-          - حزم منفردة لـ NGINX Stable: installation/inline/compute-instances/linux/individual-packages-nginx-stable.md
-          - حزم منفردة لـ NGINX Plus: installation/inline/compute-instances/linux/individual-packages-nginx-plus.md
-          - حزم منفردة لـ NGINX المقدم من التوزيعة: installation/inline/compute-instances/linux/individual-packages-nginx-distro.md
-      - كوبرنيتيس:
-        - NGINX Ingress Controller: installation/inline/kubernetes/nginx-ingress-controller.md
-        - Sidecar Controller:
-          - نصب: installation/inline/kubernetes/sidecar-proxy/deployment.md
-          - تخصيص: installation/inline/kubernetes/sidecar-proxy/customization.md
-          - التحجيم والتوفر العالي: installation/inline/kubernetes/sidecar-proxy/scaling.md
-          - قيم Helm Chart: installation/inline/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
-          - توجيهات البود: installation/inline/kubernetes/sidecar-proxy/pod-annotations.md
-    - بوابات API:
-      - MuleSoft Mule Gateway: installation/connectors/mulesoft.md
-      - MuleSoft Flex Gateway: installation/connectors/mulesoft-flex.md
-      - Apigee: installation/api-gateways/apigee.md
-      - Layer7 API Gateways: installation/api-gateways/layer7-api-gateway.md
-    - الوصلات:
-      - نظرة عامة: installation/connectors/overview.md
-      - MuleSoft Mule Gateway: installation/connectors/mulesoft.md
-      - MuleSoft Flex Gateway: installation/connectors/mulesoft-flex.md
-      - Apigee: installation/connectors/apigee.md
-      - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
-      - Azion Edge: installation/connectors/azion-edge.md
-      - AWS Lambda: installation/connectors/aws-lambda.md
-      - Cloudflare: installation/connectors/cloudflare.md
-      - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
-      - Fastly: installation/connectors/fastly.md
-      - IBM API Connect: installation/connectors/ibm-api-connect.md
-      - سجل تغييرات حزمة الكود: installation/connectors/code-bundle-inventory.md
-    - الحزم:
-      - Docker Images:
-        - نظام NGINX: admin-en/installation-docker-en.md
-        - Envoy-based: admin-en/installation-guides/envoy/envoy-docker.md
-      - حزم اللينكس:
-        - All‑in‑One Installer: installation/nginx/all-in-one.md
-        - حزم الفردية لـ NGINX stable: installation/nginx/dynamic-module.md
-        - حزم منفردة لـ NGINX Plus: installation/nginx-plus.md
-        - حزم منفردة لـ Distribution-Provided NGINX: installation/nginx/dynamic-module-from-distr.md
-      - Cloud Images:
-        - AWS AMI: installation/packages/aws-ami.md
-        - GCP Machine Image: installation/packages/gcp-machine-image.md
-      - وحدة Terraform لـ AWS: installation/cloud-platforms/aws/terraform-module/overview.md
-    - التنصيب المخصص:
-      - On-Premise:
-        - Overview: installation/on-premise/overview.md
-        - Deployment: installation/on-premise/deployment.md
-        - Maintenance: installation/on-premise/maintenance.md
-      - حزم NGINX المخصصة: installation/custom/custom-nginx-version.md
-      - Heroku: installation/heroku/docker-image.md
-      - خيارات التنصيب المخصص: installation/custom/request-custom-deployment.md
-    - خيارات إضافية:
       - قيادة Wallarm وأجهزة التوجيه Ingress: admin-en/chaining-wallarm-and-other-ingress-controllers.md
-      - Auto Scaling:
-        - Amazon Web Services:
+    - منصات السحابة:
+      - AWS:
+        - AMI: installation/cloud-platforms/aws/ami.md
+        - التوسع التلقائي:
           - نظرة عامة: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
           - إنشاء صورة آلية Amazon: admin-en/installation-guides/amazon-cloud/create-image.md
           - إعداد التوزيع التلقائي للتحميل للعقدة الفلترة: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
           - إعداد توازن الطلبات الواردة: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
-        - Google Cloud Platform:
+        - ECS: installation/cloud-platforms/aws/docker-container.md
+        - وحدة Terraform:
+          - وحدة Terraform لـ AWS: installation/cloud-platforms/aws/terraform-module/overview.md
+          - الوكيل في VPC AWS: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
+          - الوكيل لـ Amazon API Gateway: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
+      - GCP:
+        - صورة الجهاز: installation/cloud-platforms/gcp/machine-image.md
+        - التوسع التلقائي:
           - نظرة عامة: admin-en/installation-guides/google-cloud/autoscaling-overview.md
           - إنشاء صورة مع عقدة الفصل: admin-en/installation-guides/google-cloud/create-image.md
           - إنشاء نموذج لعملية التصفية: admin-en/installation-guides/google-cloud/creating-instance-template.md
           - إنشاء مجموعة متوفرة تلقائيًا مع التوزيع التلقائي للحمل ممكن: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
           - تحديد توازن الطلبات الواردة: admin-en/installation-guides/google-cloud/load-balancing-guide.md
-      - تحديدات Wallarm cloud-init: installation/cloud-platforms/cloud-init.md
-      - التنصيب المتابع لوحدة Postanayltics: admin-en/installation-postanalytics-en.md
-      - عقدة Multi‑Tenant:
-        - نظرة عامة Multi-tenancy: installation/multi-tenant/overview.md
-        - إنشاء حسابات Tenant في واجهة يوزر  Wallarm: installation/multi-tenant/configure-accounts.md
-        - تنصيب وتكوين عقدة Multi-tenant: installation/multi-tenant/deploy-multi-tenant-node.md
+        - GCE: installation/cloud-platforms/gcp/docker-container.md
+      - Azure:
+        - Azure Container Instances: installation/cloud-platforms/azure/docker-container.md
+      - Alibaba Cloud:
+        - ECS: installation/cloud-platforms/alibaba-cloud/docker-container.md
+      - Heroku: installation/heroku/docker-image.md
       - Wallarm Deployment في الغيوم الخاصة: installation/cloud-platforms/private-cloud.md
-  - التكاملات والتنبيهات:
-    - نظرة عامة: user-guides/settings/integrations/integrations-intro.md 
-    - البريد الإلكتروني وMessengers:
+      - تحديدات Wallarm cloud-init: installation/cloud-platforms/cloud-init.md
+    - الموصلات:
+      - نظرة عامة: installation/connectors/overview.md
+      - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
+      - Apigee: installation/connectors/apigee.md
+      - AWS Lambda: installation/connectors/aws-lambda.md
+      - Azion Edge: installation/connectors/azion-edge.md
+      - Cloudflare: installation/connectors/cloudflare.md
+      - Fastly: installation/connectors/fastly.md
+      - IBM API Connect: installation/connectors/ibm-api-connect.md
+      - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
+      - MuleSoft Mule Gateway: installation/connectors/mulesoft.md
+      - MuleSoft Flex Gateway: installation/connectors/mulesoft-flex.md
+      - سجل تغييرات حزمة الكود: installation/connectors/code-bundle-inventory.md
+    - العقدة المستضافة ذاتيًا:
+      - النشر المضمن:
+        - نظرة عامة: installation/inline/overview.md
+        - المثبت الشامل: installation/nginx/all-in-one.md
+        - نظام NGINX: admin-en/installation-docker-en.md
+      - التنصيب المتابع لوحدة Postanayltics: admin-en/installation-postanalytics-en.md
+      - حزم NGINX المخصصة: installation/custom/custom-nginx-version.md
+    - خارج النطاق (مرآة المرور):
+      - نظرة عامة: installation/oob/overview.md
+      - نشر: installation/oob/tcp-traffic-mirror/deployment.md
+    - في الموقع:
+      - نظرة عامة: installation/on-premise/overview.md
+      - النشر: installation/on-premise/deployment.md
+      - الصيانة: installation/on-premise/maintenance.md
+    - متعدد المستأجرين:
+      - نظرة عامة Multi-tenancy: installation/multi-tenant/overview.md
+      - إنشاء حسابات Tenant في واجهة يوزر  Wallarm: installation/multi-tenant/configure-accounts.md
+      - تنصيب وتكوين عقدة Multi-tenant: installation/multi-tenant/deploy-multi-tenant-node.md
+    - النشر المخصص:
+      - خيارات التنصيب المخصص: installation/custom/request-custom-deployment.md
+  - الصيانة:
+    - نظرة عامة: maintenance/overview.md
+
+    - العُقد والبنية التحتية:
+      - نظرة عامة على العُقدة: user-guides/nodes/nodes.md
+      - تخصيص الموارد: admin-en/configuration-guides/allocate-resources-for-node.md
+      - المزامنة السحابية: admin-en/configure-cloud-node-synchronization-en.md
+      - تكوين الوكيل: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
+      - تكوين صفحة الحظر: admin-en/configuration-guides/configure-block-page-and-code.md
+      - معالجة الرؤوس غير الصالحة: admin-en/configuration-guides/handling-invalid-headers.md
+      - بصمة JA3: admin-en/enabling-ja3.md
+      - مزود Terraform: admin-en/managing/terraform-provider.md
+
+    - المراقبة والمقاييس:
+      - خدمة الإحصائيات: admin-en/configure-statistics-service.md
+      - سجل العُقدة: admin-en/configure-logging.md
+      - تكوين الفشل الاحتياطي: admin-en/configure-backup-en.md
+      - فحص الصحة: admin-en/uat-checklist-en.md
+
+    - الترقيات والترحيل:
+      - سياسة الإصدارات: updating-migrating/versioning-policy.md
+      - التوصيات العامة: updating-migrating/general-recommendations.md
+      - ما الجديد: updating-migrating/what-is-new.md
+      - سجل تغييرات عُقدة NGINX: updating-migrating/node-artifact-versions.md
+      - تعليمات ترقية عُقدة NGINX:
+        - حزم DEB/RPM: updating-migrating/nginx-modules.md
+        - وحدة Postanalytics: updating-migrating/separate-postanalytics.md
+        - المثبت الشامل: updating-migrating/all-in-one.md
+        - صورة Docker: updating-migrating/docker-container.md
+        - وحدة تحكم Ingress: updating-migrating/ingress-controller.md
+        - إيقاف وحدة تحكم Ingress: updating-migrating/nginx-ingress-retirement.md
+        - وكيل Sidecar: updating-migrating/sidecar-proxy.md
+        - صورة السحابة: updating-migrating/cloud-image.md
+        - عُقدة متعددة المستأجرين: updating-migrating/multi-tenant.md
+      - ترقيات عُقدة EOL (3.6 وأقل):
+        - ما الجديد: updating-migrating/older-versions/what-is-new.md
+        - وحدات NGINX: updating-migrating/older-versions/nginx-modules.md
+        - Postanalytics: updating-migrating/older-versions/separate-postanalytics.md
+        - صورة Docker: updating-migrating/older-versions/docker-container.md
+        - وحدة تحكم Ingress: updating-migrating/older-versions/ingress-controller.md
+        - صورة السحابة: updating-migrating/older-versions/cloud-image.md
+        - متعدد المستأجرين: updating-migrating/older-versions/multi-tenant.md
+        - ترحيل قوائم IP: updating-migrating/migrate-ip-lists-to-node-3.md
+
+    - العمليات:
+      - تعلّم حجم الطلبات: admin-en/operation/learn-incoming-request-number.md
+      - عناوين IP للماسح: admin-en/scanner-addresses.md
+
+    - استكشاف الأخطاء وإصلاحها:
+      - نظرة عامة: troubleshooting/overview.md
+      - الكشف والحظر: troubleshooting/detection-and-blocking.md
+      - ضبط أدوات الكشف: troubleshooting/detection-tools-tuning.md
+      - الأداء: troubleshooting/performance.md
+      - IP العميل الحقيقي: admin-en/using-proxy-or-balancer-en.md
+      - مشاكل المستخدم النهائي: faq/common-errors-after-installation.md
+      - وحدة تحكم Wallarm Ingress: faq/ingress-installation.md
+      - Wallarm Cloud معطل: faq/wallarm-cloud-down.md
+      - تنبيهات لوحة OWASP: faq/node-issues-on-owasp-dashboards.md
+      - سجل أخطاء NGINX: troubleshooting/wallarm-issues-in-nginx-error-log.md
+      - DNS الديناميكي في NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
+
+  - التكاملات:
+    - نظرة عامة: user-guides/settings/integrations/integrations-intro.md
+    - المراسلة والتنبيهات:
       - البريد الإلكتروني: user-guides/settings/integrations/email.md
       - الركن: user-guides/settings/integrations/slack.md
-      - تيليجرام: user-guides/settings/integrations/telegram.md
       - Microsoft Teams: user-guides/settings/integrations/microsoft-teams.md
-    - حوادث وأنظمة إدارة المهمات:
-      - دليل العمليات: user-guides/settings/integrations/opsgenie.md
+      - تيليجرام: user-guides/settings/integrations/telegram.md
+    - إدارة الحوادث:
       - PagerDuty: user-guides/settings/integrations/pagerduty.md
+      - دليل العمليات: user-guides/settings/integrations/opsgenie.md
       - Jira: user-guides/settings/integrations/jira.md
       - ServiceNow: user-guides/settings/integrations/servicenow.md
-    - أنظمة SIEM و SOAR:
-      - Sumo Logic: user-guides/settings/integrations/sumologic.md
-      - Splunk: user-guides/settings/integrations/splunk.md
       - InsightConnect: user-guides/settings/integrations/insightconnect.md
+    - SIEM والتحليلات:
+      - Splunk: user-guides/settings/integrations/splunk.md
+      - Sumo Logic: user-guides/settings/integrations/sumologic.md
       - Microsoft Sentinel: user-guides/settings/integrations/azure-sentinel.md
-    - نظم إدارة السجلات:
       - Datadog: user-guides/settings/integrations/datadog.md
-    - مجمعي البيانات:
+    - جامعي السجلات:
       - Fluentd: user-guides/settings/integrations/fluentd.md
       - Logstash: user-guides/settings/integrations/logstash.md
+      - أمثلة التكامل:
+        - IBM QRadar via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
+        - IBM QRadar via Logstash: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
+        - Splunk Enterprise via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-splunk.md
+        - Splunk Enterprise via Logstash: user-guides/settings/integrations/webhook-examples/logstash-splunk.md
+        - Micro Focus ArcSight Logger via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-arcsight-logger.md
+        - Micro Focus ArcSight Logger via Logstash: user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md
+        - Datadog via Fluentd/Logstash: user-guides/settings/integrations/webhook-examples/fluentd-logstash-datadog.md
+    - التخزين السحابي:
       - Amazon S3: user-guides/settings/integrations/amazon-s3.md
       - MinIO: user-guides/settings/integrations/minio.md
-    - التكاملات عبر مجمعي البيانات:
-      - IBM QRadar via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
-      - IBM QRadar via Logstash: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
-      - Splunk Enterprise via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-splunk.md
-      - Splunk Enterprise via Logstash: user-guides/settings/integrations/webhook-examples/logstash-splunk.md
-      - Micro Focus ArcSight Logger via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-arcsight-logger.md
-      - Micro Focus ArcSight Logger via Logstash: user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md
-      - Datadog via Fluentd/Logstash: user-guides/settings/integrations/webhook-examples/fluentd-logstash-datadog.md
-    - التكاملات العامة:
+    - Webhooks:
       - Webhook: user-guides/settings/integrations/webhook.md
-  - إدارة الأعضاء:
-    - نظرة عامة: user-guides/settings/users.md
-    - ملف المستخدم: user-guides/settings/account.md
-    - الرموز المميزة لواجهة برمجة التطبيقات: user-guides/settings/api-tokens.md
-    - Using SSO:
-      - Overview: admin-en/configuration-guides/sso/intro.md
-      - Setup: admin-en/configuration-guides/sso/setup.md
-      - G Suite Example: admin-en/configuration-guides/sso/sso-gsuite.md
-      - Okta Example: admin-en/configuration-guides/sso/sso-okta.md
-      - Troubleshooting: admin-en/configuration-guides/sso/troubleshooting.md
-    - باستخدام LDAP: admin-en/configuration-guides/ldap/ldap.md
-  - العمليات:
-    # - Autoscaling: ...
-    - نظرة عامة:
-      - عقد Wallarm: user-guides/nodes/nodes.md
-      - عقد CDN: user-guides/nodes/cdn-node.md
-    - خيارات التكوين للعقدة المبنية على NGINX: admin-en/configure-parameters-en.md
-    - خيارات التكوين للعقدة المبنية على Envoy: admin-en/configuration-guides/envoy/fine-tuning.md
-    - التفصيل الثابت لادارة الدخول:
-      - معلمات التكوين: admin-en/configure-kubernetes-en.md
-      - أفضل الممارسات:
-        - التقرير الصحيح لإيبي للمستخدم النهائي: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
-        - الاعتبارات عالية التوفر: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
-        - مراقبة مراقبة الدخول: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
-    - التقرير الصحيح لإيبي للمستخدم النهائي: admin-en/using-proxy-or-balancer-en.md
-    - تخصيص الموارد: admin-en/configuration-guides/allocate-resources-for-node.md
-    - الحد من وقت معالجة الطلب: user-guides/rules/configure-overlimit-res-detection.md
-    - تقسيم حركة المرور والإعدادات حسب التطبيقات: user-guides/settings/applications.md
-    - الصفحة المحظورة ورمز الخطأ: admin-en/configuration-guides/configure-block-page-and-code.md
-    - Monitoring & Failover:
-      - التحقق من عملية العقدة: admin-en/installation-check-operation-en.md
-      - تكوين طريقة الفشل: admin-en/configure-backup-en.md
-      - سجلات العقدة الفلترة: admin-en/configure-logging.md
-      - تكوين الخدمة الإحصائية: admin-en/configure-statistics-service.md
-      - استخدام مستودع Wallarm المرتد: 
-        - كيفية الاستعادة الانعكاسية لمستودع Wallarm لـ CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
-        - تثبيت حزم Wallarm من مستودع JFrog Artifactory المحلي لـ CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md
-    - مزامنة سحابة Wallarm و Node: admin-en/configure-cloud-node-synchronization-en.md
-    - البيئات المفصولة للعملاء:
-      - كيف تعمل العقدة الفلترة في البيئات المفصولة: admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md
-      - التوصيات بشأن التكوين: admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments.md
-    - الوصول إلى واجهة برمجة التطبيقات Wallarm عبر الوكيل: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-    - الوصول إلى الملفات المطلوبة لعملية العقدة: admin-en/configure-access-to-files-needed-for-node.md
-    - تحليل DNS ديناميكي في NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
-    - تكوين SELinux: admin-en/configure-selinux.md
-    - تمكين بصمات الأصابع JA3: admin-en/enabling-ja3.md
-    - تسليم الاختبار والقبول على قائمة التحقق Wallarm: admin-en/uat-checklist-en.md
-    - ترقية العقدة:
-      - ما الجديد في عقدة Wallarm 4.10: updating-migrating/what-is-new.md
-      - التوصيات لعملية ترقية العقدة الآمنة: updating-migrating/general-recommendations.md
-      - تركيبات التحديث للعقدة الفلترة:
-        - تحديث وحدات Wallarm NGINX المثبتة من الحزم الفردية: updating-migrating/nginx-modules.md
-        - تحديث وحدة Postanalytics المثبتة من الحزم الفردية: updating-migrating/separate-postanalytics.md
-        - تحديث العقدة التي تم تثبيتها عبر البرنامج المثبت all-in-one: updating-migrating/all-in-one.md
-        - تحديث صورة Docker NGINX- أو Envoy-based: updating-migrating/docker-container.md
-        - تحديث NGINX Ingress controller بوحدات Wallarm المتكاملة: updating-migrating/ingress-controller.md
-        - تحديث Wallarm Sidecar proxy: updating-migrating/sidecar-proxy.md
-        - تحديث صورة العقدة السحابية: updating-migrating/cloud-image.md
-        - تحديث Wallarm CDN node: updating-migrating/cdn-node.md
-        - تحديث عقد Multi-tenant: updating-migrating/multi-tenant.md
-      - تحديث عقد Wallarm EOL (3.6 وأقل):
-        - ما الجديد في عقدة Wallarm (إذا كان جاري تحديث عقدة EOL): updating-migrating/older-versions/what-is-new.md
-        - تحديث وحدات NGINX WC Wallarm EOL: updating-migrating/older-versions/nginx-modules.md
-        - تحديث وحدة Postanalytics EOL: updating-migrating/older-versions/separate-postanalytics.md
-        - تحديث صورة دوكر NGINX- أو Envoy-based EOL: updating-migrating/older-versions/docker-container.md
-        - ترقية نهاية عمر واجهة تحكم NGINX Ingress المتكاملة مع وحدات Wallarm: updating-migrating/older-versions/ingress-controller.md
-        - تحديث صورة العقدة السحابية EOL: updating-migrating/older-versions/cloud-image.md
-        - ترقية عقدة العميل متعددة التواجد EOL: updating-migrating/older-versions/multi-tenant.md
-        - نقل القائمة البيضاء والقائمة السوداء من Wallarm node EOL: updating-migrating/migrate-ip-lists-to-node-3.md
-      - سياسة الإصدارات للعقدة: updating-migrating/versioning-policy.md
-      - الجرد من الإصدارات للعقدة: updating-migrating/node-artifact-versions.md
-      - عناوين الماسح Wallarm: admin-en/scanner-addresses.md
-  - المراجع:
-    - أسئلة متداولة:
-      - تثبيت Wallarm Ingress controller: faq/ingress-installation.md
-      - الأخطاء بعد تثبيت عقدة Wallarm: faq/common-errors-after-installation.md
-      - صفحة حالة الخدمة Wallarm: faq/wallarm-status-page.md
-      - Wallarm Cloud معطل: faq/wallarm-cloud-down.md
-      - استكشاف الأخطاء وإصلاحها Tarantool: faq/tarantool.md
-      - استكشاف الأخطاء وإصلاحها- باستخدام CPU عالي: faq/cpu.md
-      - الهجمات لم يتم تحميلها إلى Wallarm Cloud: faq/attacks-not-uploaded-to-cloud.md
-      - مشكلات العقدة المنبثقة من لوحات القيادة OWASP: faq/node-issues-on-owasp-dashboards.md
-      - الطلب الشرعي محظور: faq/wrong-blocking.md
-    - السجل الزمني & الأخبار: news.md
-    - مرجع الواجهة البرمجية لـ Wallarm:
-      - نظرة عامة: api/overview.md
-      - أمثلة طلب واجهة برمجة التطبيقات: api/request-examples.md
-    - Wallarm's SLA: sla.md
-    - مزود Wallarm لـ Terraform: admin-en/managing/terraform-provider.md
-    - معرفة طلبات التطبيق الشهرية: admin-en/operation/learn-incoming-request-number.md
-    - أمن صورة Docker:
+    - DevSecOps:
       - التحقق من توقيعات صور Docker: integrations-devsecops/verify-docker-image-signature.md
       - إنشاء SBOM لصور Docker Wallarm: integrations-devsecops/generate-sbom-for-docker-images.md
-    - سياسات إدارة البيانات:
-      - النموذج المشترك للمسئولية لبيانات العملاء: about-wallarm/shared-responsibility.md
-      - سياسة الاحتفاظ بالبيانات: about-wallarm/data-retention-policy.md
-    - المصطلحات: glossary-en.md
+  - إدارة المنصة:
+    - لوحات المعلومات:
+      - منع التهديد: user-guides/dashboards/threat-prevention.md
+      - اكتشاف API: user-guides/dashboards/api-discovery.md
+      - OWASP API Top 10: user-guides/dashboards/owasp-api-top-ten.md
+    - المراقبة والأحداث:
+      - نظرة عامة: user-guides/events/overview.md
+      - التحقق من الهجمات: user-guides/events/check-attack.md
+      - التحقق من الحوادث: user-guides/events/check-incident.md
+      - إدارة الضعف: user-guides/vulnerabilities.md
+    - المحفزات والتنبيهات:
+      - المحفزات: user-guides/triggers/triggers.md
+    - البحث والتقارير:
+      - البحث والمرشحات: user-guides/search-and-filters/use-search.md
+      - التقارير: user-guides/search-and-filters/custom-report.md
+    - إعدادات الحساب:
+      - ملف المستخدم: user-guides/settings/account.md
+      - تقسيم حركة المرور والإعدادات حسب التطبيقات: user-guides/settings/applications.md
+      - سجل النشاط: user-guides/settings/audit-log.md
+    - المستخدمون والوصول:
+      - نظرة عامة: user-guides/settings/users.md
+      - الرموز المميزة لواجهة برمجة التطبيقات: user-guides/settings/api-tokens.md
+      - تكوين SSO:
+        - نظرة عامة: admin-en/configuration-guides/sso/intro.md
+        - إعداد: admin-en/configuration-guides/sso/setup.md
+        - مثال G Suite: admin-en/configuration-guides/sso/sso-gsuite.md
+        - مثال Okta: admin-en/configuration-guides/sso/sso-okta.md
+        - استكشاف الأخطاء: admin-en/configuration-guides/sso/troubleshooting.md
+      - باستخدام LDAP: admin-en/configuration-guides/ldap/ldap.md
+    - الخطط والأسعار:
+      - خطط الاشتراك: about-wallarm/subscription-plans.md
+  - المراجع:
+    - مرجع API:
+      - نظرة عامة: api/overview.md
+      - أمثلة طلب واجهة برمجة التطبيقات: api/request-examples.md
     - نوع الهجمات / الضعف: attacks-vulns-list.md
+    - المصطلحات: glossary-en.md
+    - مرجع العمليات:
+      - مزود Wallarm لـ Terraform: admin-en/managing/terraform-provider.md
+      - معرفة طلبات التطبيق الشهرية: admin-en/operation/learn-incoming-request-number.md
+      - تسليم الاختبار والقبول على قائمة التحقق Wallarm: admin-en/uat-checklist-en.md
+      - عناوين الماسح Wallarm: admin-en/scanner-addresses.md
+    - سياسة الاحتفاظ بالبيانات: about-wallarm/data-retention-policy.md
+    - النموذج المشترك للمسئولية لبيانات العملاء: about-wallarm/shared-responsibility.md
+    - Wallarm's SLA: sla.md

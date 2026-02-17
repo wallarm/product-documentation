@@ -46,7 +46,7 @@ Using rules, you can control how Wallarm mitigates attacks on your applications 
 * Change requests/responses:
 
     * [Mask sensitive data](../../user-guides/rules/sensitive-data-rule.md)
-    * Configure the additional layer of the application security by [changinge response headers](../../user-guides/rules/add-replace-response-header.md)
+    * Configure the additional layer of the application security by [changing response headers](../../user-guides/rules/add-replace-response-header.md)
 
 ## Rule branches
 
@@ -300,12 +300,12 @@ To test a regular expression, use the Wallarm **cpire** utility. Install it via 
     1. Download the Wallarm all-in-one installer if it is not downloaded yet:
 
         ```
-        curl -O https://meganode.wallarm.com/6.7/wallarm-6.7.1.x86_64-glibc.sh
+        curl -O https://meganode.wallarm.com/6.10/wallarm-6.10.0.x86_64-glibc.sh
         ```
     1. Install the Wallarm modules if they are not installed yet:
         
         ```
-        sudo sh wallarm-6.7.1.x86_64-glibc.sh -- --batch --token <API_TOKEN>
+        sudo sh wallarm-6.10.0.x86_64-glibc.sh -- --batch --token <API_TOKEN>
         ```
     1. Run the **cpire** utility:
         
@@ -317,7 +317,7 @@ To test a regular expression, use the Wallarm **cpire** utility. Install it via 
     1. Run the **cpire** utility from the Wallarm Docker image:
     
         ```
-        docker run --rm -it wallarm/node:6.7.1 /opt/wallarm/usr/bin/cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
+        docker run --rm -it wallarm/node:6.10.0 /opt/wallarm/usr/bin/cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
         ```
     1. Enter the value to check whether it matches with the regular expression.
 
@@ -398,3 +398,7 @@ Changes of of rules and mitigation controls do NOT take effect instantly. Change
 ## API calls to get rules
 
 To get custom rules, you can [call the Wallarm API directly](../../api/request-examples.md#get-all-configured-rules).
+
+## Migrating between tenants
+
+If you have [multiple tenants](../../installation/multi-tenant/overview.md), you can [migrate](../../installation/multi-tenant/overview.md#migrating-rules) (copy) rules between them **along with** mitigation controls and Credential Stuffing Detection settings.

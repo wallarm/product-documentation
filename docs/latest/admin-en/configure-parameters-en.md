@@ -186,13 +186,13 @@ The directive enables [JA4 fingerprinting](https://foxio.io/ja4) in the [NGINX n
 
 It generates a JA4 TLS fingerprint for each incoming connection. The fingerprint summarizes the TLS ClientHello parameters and is added to the serialized request that the Node sends to the Wallarm Cloud.
 
-JA4 fingerprints are used as an additional factor when deciding to block a request.
+JA4 fingerprints are used as an additional factor when deciding to block a request. They improve the detection of bots, scanners, and brute‑force attempts because TLS-based fingerprints are difficult to spoof even if attackers change IPs, `User-Agent` headers, or other request attributes.
 
 !!! info
-    The directive can be set inside the `http` or `server` blocks of the NGINX configuration file.
+    JA4 fingerprints are enabled by default in [Security Edge Inline](../installation/security-edge/inline/overview.md).
 
-    The default value is `off`.
-    
+    For [self-hosted deployments](../installation/nginx-native-node-internals.md#nginx-node), the directive can be set inside the `http` or `server` blocks of the NGINX configuration file (the default value is `off`).
+
 ### wallarm_custom_ruleset_path
 
 A path to the [custom ruleset](../user-guides/rules/rules.md) file that contains information on the protected application and the filtering node settings.
@@ -217,7 +217,7 @@ The directive enables `on` / disables `off` [API Specification Enforcement](../a
 ### wallarm_enable_libdetection
 
 !!! info "Other deployment options"
-    This section describes how to set the option for NGINX [all-in-one installer](../installation/inline/compute-instances/linux/all-in-one.md) and [Docker](../admin-en/installation-docker-en.md) installations - for other deployment options see:
+    This section describes how to set the option for NGINX [all-in-one installer](../installation/nginx/all-in-one.md) and [Docker](../admin-en/installation-docker-en.md) installations - for other deployment options see:
 
     * [NGINX Ingress controller](../admin-en/configure-kubernetes-en.md#managing-libdetection-mode), 
     * [Sidecar](../installation/kubernetes/sidecar-proxy/pod-annotations.md#annotation-list) (`wallarm-enable-libdetection` pod annotation)

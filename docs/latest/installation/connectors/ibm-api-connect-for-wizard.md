@@ -116,4 +116,12 @@ apic products:publish \
   .md-consent {
     display: none;
   }
+
+  .md-tabs {
+    display: none;
+  }
+
+  [id^="inkeep-widget-"] {
+    display: none
+  }
 </style>

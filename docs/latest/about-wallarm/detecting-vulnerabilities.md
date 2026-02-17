@@ -18,7 +18,7 @@ For example: if the response to the request sent to read the `/etc/passwd` conte
 
 To detect vulnerabilities in the applications and APIs, Wallarm uses the following methods:
 
-* [**Passive detection**](#passive-detection): identifies vulnerabilities by analyzing real traffic, including both requests and responses. This can happen during a security incident, where a real flaw is exploited, or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation.
+* [**Passive detection**](#passive-detection): works only for the scope with the `monitoring` [filtration mode](../admin-en/configure-wallarm-mode.md); identifies vulnerabilities and [incidents](../user-guides/events/check-incident.md) by analyzing real traffic, including both requests and responses. This can happen during a security incident, where a real flaw is exploited, or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation.
 
     !!! tip ""
         Available in both **Cloud Native WAAP** and **Advanced API Security** [subscriptions](../about-wallarm/subscription-plans.md), also in **Security Edge Free Tier**. Requires installed [**Wallarm node**](../about-wallarm/overview.md#how-wallarm-works).
@@ -33,6 +33,11 @@ To detect vulnerabilities in the applications and APIs, Wallarm uses the followi
     !!! tip ""
         Available in the **Security Testing** [subscription](../about-wallarm/subscription-plans.md). **Does not require** installed [Wallarm node](../about-wallarm/overview.md#how-wallarm-works).
 
+* [**API Security Testing via Postman**](#api-security-testing-via-postman): safe, passive security testing of Postman collections from within [Postman Agent Mode](https://learning.postman.com/docs/agent-mode/get-started)—detects authentication gaps, data leaks, over-permissive endpoints, schema issues, and basic BOLA/BOPLA; results in the Agent chat and in Wallarm Cloud.
+
+    !!! tip ""
+        Available in the **Rogue MCP** [subscription](../about-wallarm/subscription-plans.md#rogue-mcp). **Does not require** installed [Wallarm node](../about-wallarm/overview.md#how-wallarm-works).
+
 * [**API Attack Surface Management (AASM)**](#api-attack-surface-management-aasm): discovers external hosts with their APIs, for each of them identifies missing WAF/WAAP solutions and vulnerabilities.
 
     !!! tip ""
@@ -42,7 +47,10 @@ See details on each method in the corresponding sections below along with the in
 
 ### Passive detection
 
-Passive detection refers to identifying vulnerabilities by analyzing actual traffic, including both requests and responses. Vulnerabilities may be uncovered during a security incident, where a malicious request successfully exploits a flaw, resulting in the detection of both an incident and a vulnerability. Or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation.
+!!! info "Filtration mode"
+    Passive detection works only for the scope with the `monitoring` [filtration mode](../admin-en/configure-wallarm-mode.md).
+
+Passive detection refers to identifying vulnerabilities by analyzing actual traffic, including both requests and responses. Vulnerabilities may be uncovered during a [security incident](../user-guides/events/check-incident.md), where a malicious request successfully exploits a flaw, resulting in the detection of both an incident and a vulnerability. Or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation.
 
 Passive vulnerability detection is enabled by default.
 
@@ -67,6 +75,16 @@ Schema-Based Testing capabilities:
 * Detection of vulnerabilities in the application or API itself, as well as security misconfigurations in the underlying infrastructure or environment.
 * Lightweight execution via Docker container.
 
+### API Security Testing via Postman <a href="subscription-plans.md#rogue-mcp"><img src="../../images/rogue-mcp-tag.png" style="border: none; height: 24px; width: auto;"></a>
+
+Wallarm's [API Security Testing via Postman](../vulnerability-detection/api-security-testing-via-postman/overview.md) runs safe, passive security tests on your Postman collections from inside Postman. You ask in natural language (e.g., "test my collection for security issues") and get results in a few minutes—auth gaps, data leaks, over-permissive endpoints, schema violations, sensitive data exposure, and basic BOLA/BOPLA indicators—with explanations and remediation guidance. Results appear in the Postman AI Agent chat and in Wallarm Cloud (Security Testing → Rogue MCP → Test runs; Security Issues).
+
+API Security Testing via Postman capabilities:
+
+* Passive, design-level analysis; no attack payloads, no traffic replay, no production risk.
+* Conversational workflow in Postman Agent Mode via the Wallarm Rogue MCP server.
+* LLM-assisted findings tailored for developers.
+
 ### API Attack Surface Management (AASM) <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
 Wallarm's [API Attack Surface Management](../api-attack-surface/overview.md) (AASM) is an agentless (do not require [Wallarm node](../about-wallarm/overview.md#how-wallarm-works) installation) detection solution tailored to the API ecosystem, designed to discover external hosts with their APIs, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities. AASM:
@@ -84,7 +102,7 @@ From May 7, 2025, AASM [replaced the old Scanner](../api-attack-surface/api-surf
 
 As Wallarm provides many different [methods](#detection-methods) of detecting vulnerabilities, the questions arise about which of them to choose and how to combine them. Consider the information below to answer this.
 
-Passive detection and TRT require the [Wallarm node](../about-wallarm/overview.md#how-wallarm-works). SBT and AASM - does not. Some [vulnerabilities](../attacks-vulns-list.md#vulnerability-types) are found only by some (not by all) of the listed methods.
+Passive detection and TRT require the [Wallarm node](../about-wallarm/overview.md#how-wallarm-works). SBT, [API Security Testing via Postman](../vulnerability-detection/api-security-testing-via-postman/overview.md), and AASM do not. Some [vulnerabilities](../attacks-vulns-list.md#vulnerability-types) are found only by some (not by all) of the listed methods.
 
 Also, it is important to understand why we may need AASM if we already have passive detection for vulnerabilities and API Discovery (APID) for discovering hosts.
 
@@ -136,13 +154,31 @@ AASM only finds hosts on the perimeter, while APID is everywhere a node is locat
 
 ## False positives
 
-**False positive** occurs when attack signs are detected in the legitimate request or when legitimate entity is qualified as a vulnerability. [More details on false positives in attack detection →](protecting-against-attacks.md#false-positives)
+False positives in vulnerability scanning may occur due to unique attributes or behaviors of each protected application. For example, similar responses to similar requests might signal an active vulnerability in one application, while for another, this may be completely expected and safe behavior.
 
-False positives in vulnerability scanning may occur due to the protected application specificities. Similar responses to similar requests may indicate an active vulnerability in one protected application and be expected behavior of another protected application.
+**When useful**
 
-If a false positive for a vulnerability is detected, you can add an appropriate mark to the vulnerability in Wallarm Console. A vulnerability marked as a false positive will be closed and will not be rechecked.
+Marking issues as false positives is useful because it allows you to:
 
-If the detected vulnerability exists in the protected application but cannot be fixed, we recommend setting up the [**Create a virtual patch**](../user-guides/rules/vpatch-rule.md) rule. This rule will allow blocking attacks exploiting the detected type of vulnerability and will eliminate the risk of an incident.
+* Tailor security findings to your specific environment.
+* Reduce alert noise and avoid distractions from irrelevant findings.
+* Focus on vulnerabilities that truly require attention.
+* Prevent unnecessary effort spent on known safe cases.
+* Ensure security teams can efficiently prioritize and address real threats.
+
+**Two ways of creating**
+
+You can mark security issues as false positives in two ways:
+
+* **Manually**: In the issue details in Wallarm Console, add an appropriate mark to the vulnerability. A vulnerability marked as a false positive will be closed and will not be rechecked.
+* **Automatically**: Create [**false positive rules**](../user-guides/vulnerabilities.md#false-positive-rules) in **Security Issues** → **Configure** → **False positive rules** to automatically mark matching issues as false positives or prevent them from being created based on user-defined conditions.
+
+**Common scenarios for automatic rules**
+
+* Automatically mark as false all future vulnerabilities for a specific parameter or endpoint
+* Do not create vulnerabilities for a specific host (e.g. honeypot, demo host)
+* Do not show vulnerabilities of a specific type at all
+
 
 ## Managing discovered security issues
 

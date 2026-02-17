@@ -12,9 +12,9 @@ The following [artifacts](../updating-migrating/node-artifact-versions.md) are a
 
 * [All-in-one installer](nginx/all-in-one.md)
 * [Docker image](../admin-en/installation-docker-en.md)
-* [AWS AMI](packages/aws-ami.md)
-* [GCP Machine Image](packages/gcp-machine-image.md)
-* Helm chart for [NGINX Ingress Controller](../admin-en/installation-kubernetes-en.md), [Sidecar Controller](kubernetes/sidecar-proxy/deployment.md), [eBPF](kubernetes/ebpf/deployment.md) deployments
+* [AWS AMI](cloud-platforms/aws/ami.md)
+* [GCP Machine Image](cloud-platforms/gcp/machine-image.md)
+* Helm chart for [NGINX Ingress Controller](../admin-en/installation-kubernetes-en.md), [Sidecar Controller](kubernetes/sidecar-proxy/deployment.md), [eBPF](oob/ebpf/deployment.md) deployments
 
 Find your **use case below** and deploy the NGINX Node in the appropriate form-factor.
 
@@ -37,7 +37,7 @@ Find an NGINX Node deployment solution for your Kubernetes environment:
             <p>Deploy Wallarm Sidecar controller for pod security</p>
         </a>
 
-        <a class="do-card" href="../../installation/kubernetes/ebpf/deployment/">
+        <a class="do-card" href="../../installation/oob/ebpf/deployment/">
             <img class="non-zoomable" src="../../images/platform-icons/ebpf.svg" />
             <h3>eBPF</h3>
             <p>Out-of-band deployment on Kubernetes using the eBPF technology</p>
@@ -249,6 +249,12 @@ The Native Node works with the following platforms with no limitations:
             <h3>CloudFront</h3>
             <p>Deploy Wallarm to secure traffic delivered through Amazon CloudFront</p>
         </a>
+
+        <a class="do-card" href="../../installation/connectors/aws-api-gateway">
+            <img class="non-zoomable" src="../../images/platform-icons/aws-api-gateway.svg" />
+            <h3>Amazon API Gateway</h3>
+            <p>Deploy Wallarm to build an API inventory from CloudWatch logs</p>
+        </a>        
         
         <a class="do-card" href="../../installation/connectors/cloudflare/">
             <img class="non-zoomable" src="../../images/platform-icons/cloudflare.png" />

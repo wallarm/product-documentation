@@ -1,6 +1,6 @@
 [link-docs-aws-autoscaling]:        autoscaling-group-guide.md
 [link-docs-aws-node-setup]:         ../../../installation/cloud-platforms/aws/ami.md
-[link-cloud-connect-guide]:         ../../../installation/inline/compute-instances/aws/aws-ami.md#4-connect-the-instance-to-the-wallarm-cloud
+[link-cloud-connect-guide]:         ../../../installation/cloud-platforms/aws/ami.md#4-connect-the-instance-to-the-wallarm-cloud
 [link-docs-check-operation]:        ../../../admin-en/uat-checklist-en.md#node-registers-attacks
 [img-launch-ami-wizard]:        ../../../images/installation-ami/auto-scaling/common/create-image/launch-ami-wizard.png 
 [img-config-ami-wizard]:        ../../../images/installation-ami/auto-scaling/common/create-image/config-ami-wizard.png  

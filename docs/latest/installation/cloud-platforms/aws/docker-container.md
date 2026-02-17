@@ -88,7 +88,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:6.7.1"
+                "image": "registry-1.docker.io/wallarm/node:6.10.0"
                 }
             ],
             "family": "wallarm-api-security-node"
@@ -126,7 +126,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:6.7.1"
+                "image": "registry-1.docker.io/wallarm/node:6.10.0"
                 }
             ],
             "family": "wallarm-api-security-node"
@@ -260,7 +260,7 @@ To deploy the container with environment variables and configuration file mounte
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:6.7.1"
+                "image": "registry-1.docker.io/wallarm/node:6.10.0"
                 }
             ],
             "volumes": [
@@ -309,7 +309,7 @@ To deploy the container with environment variables and configuration file mounte
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:6.7.1"
+                "image": "registry-1.docker.io/wallarm/node:6.10.0"
                 }
             ],
             "volumes": [

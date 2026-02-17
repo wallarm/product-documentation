@@ -8,10 +8,6 @@ In today's digital world, APIs face growing threats, especially with the rise of
 
 Enterprises prefer Wallarm for its enhanced API security, easy deployment, and value. It combines API discovery, risk management, real-time protection, and testing with advanced API security capabilities.
 
-![Diagram](../images/about-wallarm-waf/overview/wallarm-features.png)
-
-Wallarm's functional areas align with [NIST cybersecurity framework (CSF)](https://www.nist.gov/cyberframework), ensuring comprehensive protection for our customers.
-
 ## Discover
 
 You need to know it to protect it. Wallarm offers comprehensive API discovery capabilities to identify APIs in your environment and evaluate their security risks. Here is what Wallarm's API discovery does:
@@ -80,7 +76,7 @@ Positioned between the Internet and your APIs, the Wallarm filtering node:
 * Downloads resource-specific security rules you defined in the Wallarm Cloud and applies them during the traffic analysis.
 * Detects sensitive data in your requests, ensuring it remains secure within your infrastructure and is not transmitted to the Cloud as to a third-party service.
 
-You can set up the Wallarm filtering node within [your own network](../installation/supported-deployment-options.md) or opt for [Wallarm Security Edge](../installation/security-edge/overview.md).
+You can set up the Wallarm filtering node within [your own network or opt for Wallarm Security Edge](../installation/supported-deployment-options.md).
 
 ### Cloud
 
@@ -103,3 +99,5 @@ Wallarm offers cloud instances in both the US and Europe, enabling you to select
 The [described](#how-wallarm-works) Wallarm components: filtering node and Cloud - can be deployed in one of three forms:
 
 --8<-- "../include/deployment-forms.md"
+
+See details on [shared responsibility](shared-responsibility.md) for each deployment form.

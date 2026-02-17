@@ -6,7 +6,7 @@
 
       <!-- Link to home -->
       <a
-        href="https://docs.wallarm.com"
+        href="{{ config.site_url }}"
         class="md-header__button md-logo"
         aria-label="{{ config.site_name }}"
       >
@@ -50,6 +50,12 @@
       {% include "partials/search.html" %}
       {% endif %}
 
+      <!-- Ask AI button -->
+      <button type="button" class="md-header__button header-ask-ai-btn" onclick="if(window.openInkeepChat) window.openInkeepChat();">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path></svg>
+        <span>Ask AI</span>
+      </button>
+
       <div class="header-buttons">
       <!-- Playground button -->
         <a href="https://tour.playground.wallarm.com/?utm_source=wallarm_docs_button" class="button playground-button desktop-button">
@@ -63,18 +69,20 @@
       </div>
 
       <div id="languagesDiv" class="languages">
-        <button type="button" id="languagesMain" class="languages-main" onClick="languageClicked(event)">
-            {{ config.theme.language_name }}
-          <svg class="languages-drop" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2.25" fill="none">
-            <path d="M8 10.5L12 14.5L16 10.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+        <button type="button" id="languagesMain" class="languages-main" onClick="languageClicked(event)" aria-label="Select language" data-current-language="{{ config.theme.language_lowercase }}">
+          <svg class="languages-icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M3 12h18"></path>
+            <path d="M12 3a15 15 0 0 1 0 18"></path>
+            <path d="M12 3a15 15 0 0 0 0 18"></path>
           </svg>
           </button>
           <div id="languagesList" style="display: none;" class="languages-list" tabindex="-1">
-            <a href="" onClick="goToLanguage(event, '{{ config.theme.language_lowercase }}', 'en')">English</a>
-            <a href="" onClick="goToLanguage(event, '{{ config.theme.language_lowercase }}', 'ja')">Japanese</a>
-            <a href="" onClick="goToLanguage(event, '{{ config.theme.language_lowercase }}', 'tr')">Turkish</a>
-            <a href="" onClick="goToLanguage(event, '{{ config.theme.language_lowercase }}', 'pt-br')">Portuguese (BR)</a>
-            <a href="" onClick="goToLanguage(event, '{{ config.theme.language_lowercase }}', 'ar')">Arabic</a>
+            <a href="" onClick="goToLanguage(event, 'en')">English</a>
+            <a href="" onClick="goToLanguage(event, 'ja')">Japanese</a>
+            <a href="" onClick="goToLanguage(event, 'tr')">Turkish</a>
+            <a href="" onClick="goToLanguage(event, 'pt-br')">Portuguese (BR)</a>
+            <a href="" onClick="goToLanguage(event, 'ar')">Arabic</a>
           </div>
       </div>
     </nav>

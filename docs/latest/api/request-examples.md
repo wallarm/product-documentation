@@ -246,6 +246,12 @@ Parameters to be passed in the API requests to read and change IP lists:
 
 --8<-- "../include/api-request-examples/ip-list-request-params.md"
 
+### Getting content of IP lists
+
+To get the detailed information about the current state of IP lists:
+
+--8<-- "../include/api-request-examples/get-ip-lists.md"
+
 ### Add to the list the entries from the `.csv` file
 
 To add to the list the IPs or subnets from the `.csv` file, use the following bash script:

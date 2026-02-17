@@ -12,6 +12,18 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 5.3.19 (2026-01-23)
+
+* Added support for NGINX stable 1.28.1
+
+### 5.3.18 (2025-12-26)
+
+* Fixed an issue where malformed fuzzing traffic could cause NGINX crashes, as observed in logs
+
+### 5.3.17 (2025-08-20)
+
+* Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
+
 ### 5.3.16 (2025-06-23)
 
 * Fixed the [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874) vulnerability
@@ -117,6 +129,14 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 5.3.18 (2025-12-26)
+
+* Fixed an issue where malformed fuzzing traffic could cause NGINX crashes, as observed in logs
+
+### 5.3.17 (2025-08-20)
+
+* Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 
 ### 5.3.16 (2025-06-23)
 
@@ -243,6 +263,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](sidecar-proxy.md)
 
+### 5.3.17 (2025-08-20)
+
+* Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
+
 ### 5.3.16 (2025-06-23)
 
 * Fixed the [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874) vulnerability
@@ -350,6 +374,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 5.3.17 (2025-08-20)
+
+* Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 
 ### 5.3.16 (2025-06-23)
 
@@ -513,6 +541,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-5-3-17-20250821-111038 (2025-08-20)
+
+* Relaxed content-type validation in [API Specification Enforcement](../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 
 ### wallarm-node-5-3-15-20250605-140709 (2025-06-04)
 

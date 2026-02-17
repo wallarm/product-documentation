@@ -127,4 +127,12 @@ To attach the Wallarm shared flows only to **specific API proxies**, use the `Fl
   .md-consent {
     display: none;
   }
+
+  .md-tabs {
+    display: none;
+  }
+
+  [id^="inkeep-widget-"] {
+    display: none
+  }
 </style>

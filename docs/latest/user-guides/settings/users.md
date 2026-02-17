@@ -1,7 +1,7 @@
 [link-audit-log]:               audit-log.md
 
 [link-glossary-incident]:       ../../glossary-en.md#security-incident
-[link-glossary-vulnerability]:  ../../glossary-en.md#vulnerability
+[link-glossary-vulnerability]:  ../../glossary-en.md#security-issue-vulnerability
 
 [img-configure-user]:       ../../images/user-guides/settings/configure-user.png
 [img-disabled-users]:       ../../images/user-guides/settings/disabled-users.png
@@ -52,6 +52,7 @@ More detailed information about access of different user roles to the Wallarm en
 | **Triggers**        | View and manage                      | -                        | -                            | - |
 | **IP lists**       | View, manage, and export             | View, manage, and export | View and export              | - |
 | **Rules**           | View and manage                      | View and manage          | View                         | - |
+| **Mitigation Controls**           | View and manage                      | View          | View                         | - |
 | **Credential Stuffing Detection**           | View and manage                      | View and manage          | View                         | - |
 | **BOLA protection**           | View and manage                      | View          | - | - |
 | **Security Edge**    | View and manage                      | View                        | -                            | - |
@@ -102,6 +103,22 @@ Generate an invitation link by selecting your team member's email, their role, a
 This link leads them to the Wallarm signup page to create their account by choosing a password and entering their name.
 
 After signup, they will be added to your user list and will receive a confirmation email.
+
+### Password policy
+
+By default, Wallarm's user password must contain:
+
+* 8 characters
+* 1 number (0-9)
+* 1 lowercase letter (a-z)
+* 1 uppercase letter (A-Z)
+* No rotation required
+
+You can contact the [Wallarm support team](https://support.wallarm.com/) to modify this policy:
+
+* Make it stricter
+* Add rotation (like, request password change every `x` days)
+* Etc.
 
 ## Automatic creation with SSO
 

@@ -28,6 +28,12 @@ The current version can be found in the `pom.xml` file of the downloaded Wallarm
 | 3.0.x               | 0.8.3 and higher    |
 | 3.2.x               | 0.10.1 and higher   |
 
+### 3.2.1 (2026-01-15)
+
+* Improved default host detection logic to be more robust when request headers are missing
+
+    The default client host extraction expression now falls back from `X-Forwarded-Host` to the `Host` header and Mule server hostname (`server.host`).
+
 ### 3.2.0 (2025-01-31)
 
 Requires Native Node version 0.10.1 or higher.
@@ -140,6 +146,12 @@ The current version can be found in `wallarm-main`/`wallarm-sp` → `bundle.json
 
 * Initial release
 
+## Amazon API Gateway
+
+### 1.0.0 (2025-12-17)
+
+* [Initial release](aws-api-gateway.md)
+
 ## Cloudflare
 
 [How to upgrade](cloudflare.md#upgrading-the-cloudflare-worker)
@@ -159,6 +171,15 @@ The current version can be found in `wallarm-main`/`wallarm-sp` → `bundle.json
 ## Kong Ingress Controller
 
 [How to upgrade](kong-ingress-controller.md#upgrading-the-wallarm-lua-plugin)
+
+| Policy version      | [Native Node version](../../updating-migrating/native-node/node-artifact-versions.md) |
+| ------------------- | ------------------- |
+| 1.0.x               | 0.8.2 and higher    |
+| 1.1.x               | 0.22.0 and higher   |
+
+### 1.1.0 (2024-12-23)
+
+* Added support for the `inspect_response` and `inspect_response_body` [parameters](kong-ingress-controller.md#configuration-options) to enable response and response body inspection
 
 ### 1.0.0 (2024-09-13)
 

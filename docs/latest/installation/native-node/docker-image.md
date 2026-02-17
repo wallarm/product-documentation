@@ -8,6 +8,8 @@
 [api-token]:                             ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:             ../../api-specification-enforcement/overview.md
 [self-hosted-connector-node-helm-conf]:  ../connectors/self-hosted-node-conf/helm-chart.md
+[native-node-metrics-wstore]:            ../../admin-en/native-node-metrics-wstore.md
+
 
 # Deploying the Native Node from Docker Image
 
@@ -49,7 +51,7 @@ The Docker image for the Native Node is ideal if you are already using container
 ### 1. Pull the Docker image
 
 ```
-docker pull wallarm/node-native-aio:0.20.0
+docker pull wallarm/node-native-aio:0.22.1
 ```
 
 ### 2. Prepare the configuration file
@@ -93,11 +95,11 @@ To run the Docker image, use the following commands. Mount the `wallarm-node-con
 
 === "US Cloud"
     ```bash
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.20.0
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.22.1
     ```
 === "EU Cloud"
     ```bash
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='api.wallarm.com' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.20.0
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='api.wallarm.com' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.22.1
     ```
 
 Environment variable | Description| Required
@@ -107,8 +109,8 @@ Environment variable | Description| Required
 `WALLARM_API_HOST` | Wallarm API server:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul>By default: `api.wallarm.com`. | Yes
 `WALLARM_APID_ONLY` (0.12.1 and higher) | In this mode, attacks detected in your traffic are blocked locally by the node (if [enabled](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)) but not exported to Wallarm Cloud. Meanwhile, [API Discovery](../../api-discovery/overview.md) and some other features remain fully functional, detecting your API inventory and uploading it to the Cloud for visualization. This mode is for those who want to review their API inventory and identify sensitive data first, and plan controlled attack data export accordingly. However, disabling attack export is rare, as Wallarm securely processes attack data and provides [sensitive attack data masking](../../user-guides/rules/sensitive-data-rule.md) if needed. [More details](../../installation/native-node/all-in-one.md#apid-only-mode)<br>By default: `false`. | No
 `WALLARM_WSTORE__SERVICE__PROTOCOL` (0.19.0 and higher) | Specifies the protocol family that **wstore** uses for incoming connections. Possible values:<ul><li>`"tcp"` - dual-stack mode (listens on both IPv4 and IPv6)</li><li>`"tcp4"` - IPv4 only</li><li>`"tcp6"` - IPv6 only</li></ul>By default: `"tcp4"`. | No
-`WALLARM_WSTORE__METRICS__LISTEN_ADDRESS` (0.20.0 and higher) | Specifies the host and port on which **wstore** exposes Prometheus metrics.</li></ul>By default: `"127.0.0.1:9001"`. | No
-`WALLARM_WSTORE__METRICS__PROTOCOL` (0.20.0 and higher) | Specifies the protocol family that **wstore** uses to expose the Prometheus metrics endpoint. Possible values:<ul><li>`"tcp"` - dual-stack mode (listens on both IPv4 and IPv6)</li><li>`"tcp4"` - IPv4 only</li><li>`"tcp6"` - IPv6 only</li></ul>By default: `"tcp4"`. | No
+[`WALLARM_WSTORE__METRICS__LISTEN_ADDRESS`][native-node-metrics-wstore] (0.20.0 and higher) | Specifies the host and port on which **wstore** exposes Prometheus metrics.</li></ul>By default: `"127.0.0.1:9001"`. | No
+[`WALLARM_WSTORE__METRICS__PROTOCOL`][native-node-metrics-wstore] (0.20.0 and higher) | Specifies the protocol family that **wstore** uses to expose the Prometheus metrics endpoint. Possible values:<ul><li>`"tcp"` - dual-stack mode (listens on both IPv4 and IPv6)</li><li>`"tcp4"` - IPv4 only</li><li>`"tcp6"` - IPv6 only</li></ul>By default: `"tcp4"`. | No
 
 * The `-p` option maps host and container ports:
 
@@ -130,6 +132,7 @@ After deploying the node, the next step is to apply the Wallarm code to your API
     * [Cloudflare](../connectors/cloudflare.md#2-obtain-and-deploy-the-wallarm-worker-code)
     * [Standalone Kong API Gateway](../connectors/standalone-kong-api-gateway.md#2-prepare-the-wallarm-lua-plugin)
     * [Amazon CloudFront](../connectors/aws-lambda.md#2-obtain-and-deploy-the-wallarm-lambdaedge-functions)
+    * [Amazon API Gateway](../connectors/aws-api-gateway.md)
     * [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md#2-add-the-nodes-ssltls-certificate-to-the-policy-manager)
     * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly)
     * [Envoy/Istio](../connectors/istio.md#2-configure-istio-envoy-to-forward-traffic-to-the-wallarm-node)

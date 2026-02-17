@@ -84,4 +84,12 @@ Create the `wallarm_config` config defining Wallarm-specific settings:
   .md-consent {
     display: none;
   }
+
+  .md-tabs {
+    display: none;
+  }
+
+  [id^="inkeep-widget-"] {
+    display: none
+  }
 </style>

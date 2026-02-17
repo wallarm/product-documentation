@@ -159,3 +159,8 @@ In this example, if a new attempt to use compromised credentials is detected, a 
 ## Limitations
 
 Currently, the Credential Stuffing Detection module is not supported on Wallarm nodes deployed via [Terraform module for AWS](../installation/cloud-platforms/aws/terraform-module/overview.md).
+
+## Migrating between tenants
+
+If you have [multiple tenants](../installation/multi-tenant/overview.md), you can [migrate](../installation/multi-tenant/overview.md#migrating-rules) (copy) Credential Stuffing Detection settings between them **along with other rules**.
+

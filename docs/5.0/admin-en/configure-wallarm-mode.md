@@ -12,7 +12,7 @@ Filtration mode defines the filtering node behavior when processing incoming req
 
 The Wallarm filtering node can process incoming requests in the following modes (from the mildest to the strictest):
 
-* **Disabled** (`off`)
+* **Disabled** (`off`) - requests are not processed at all; requests to resources with this mode are not counted against [quota](../about-wallarm/subscription-plans.md).
 * **Monitoring** (`monitoring`)
 * **Safe blocking** (`safe_blocking`) - blocks only where it is safe to block ([graylist](../user-guides/ip-lists/overview.md)).
 * **Blocking** (`block`)
@@ -52,7 +52,7 @@ Note that described configuration is applicable only for [in-line](../installati
     When deploying the NGINX-based Wallarm nodes via docker containers, [pass](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) the `WALLARM_MODE` environment variable:
 
     ```
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_MODE='monitoring' -p 80:80 wallarm/node:5.3.16
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_MODE='monitoring' -p 80:80 wallarm/node:5.3.17
     ```
 
     Alternatively, [include](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file) the corresponding parameter in the configuration file and run the container mounting this file.

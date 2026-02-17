@@ -1,8 +1,8 @@
 # Filtering by IP
 
-In the **IP lists** section of Wallarm Console, you can control access to your applications by allowlisting, denylisting, and graylisting of IP addresses, geographical locations, data centers or source types.
+In the **IP & Session Lists** → **IP lists** section of Wallarm Console, you can control access to your applications by allowlisting, denylisting, and graylisting of IP addresses, geographical locations, data centers or source types.
 
-* **Allowlist** is a list of trusted sources that bypass Wallarm protection and access your applications without any checks.
+* **Allowlist** is a list of trusted sources that bypass Wallarm protection and access your applications without any checks. Requests from allowlisted IPs are not counted against [quota](../../about-wallarm/subscription-plans.md).
 * **Denylist** is a list of sources that cannot access your applications - all requests from them will be blocked.
 * **Graylist** is a list of suspicious sources processed by the node only in the **safe blocking** [filtration mode](../../admin-en/configure-wallarm-mode.md) as follows: if graylisted IP originates malicious requests, the node blocks them while allowing legitimate requests; the requests from other IPs are never blocked although malicious ones are detected and displayed in the **Attacks** with the `Monitoring` status.
 
@@ -52,6 +52,9 @@ Use **Add object** to add the following into any of IP lists:
     * Datacenters (AWS, GCP, Oracle, etc.)
     * Anonymous sources (Tor, Proxy, VPN)
     * [Malicious IPs](#malicious-ip-feeds)
+
+!!! info "Locations and source types"
+    Wallarm uses paid feeds from [IP2location](https://www.ip2location.com/) for detecting country/region and source type in which the IP addresses are registered.
 
 ![Add object to IP list](../../images/user-guides/ip-lists/add-ip-to-list.png)
 
@@ -148,7 +151,7 @@ You can get notifications about newly denylisted IPs via the messengers or SIEM 
 
 1. Go to Wallarm Console → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/) cloud, and configure [integration with Slack](../../user-guides/settings/integrations/slack.md).
 1. In **Triggers**, create trigger as shown above.
-1. Go to **IP Lists** → **Denylist** and add the `1.1.1.1` IP with the "It is a malicious bot" reason.
+1. Go to **IP & Session Lists** → **IP Lists** → **Denylist** and add the `1.1.1.1` IP with the "It is a malicious bot" reason.
 1. Check messages in your Slack channel like:
     ```
     [wallarm] New IP address has been denylisted

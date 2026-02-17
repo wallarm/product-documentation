@@ -1,5 +1,7 @@
 [us-cloud-docs]:                      ../../about-wallarm/overview.md#cloud
 [eu-cloud-docs]:                      ../../about-wallarm/overview.md#cloud
+[native-node-metrics-wstore]:         ../../admin-en/native-node-metrics-wstore.md
+
 
 # Configuring Native Node with the Helm Chart
 
@@ -482,7 +484,7 @@ Possible values:
 
 ### config.aggregation.metrics.listenAddress
 
-Specifies the host and port on which **wstore** exposes Prometheus metrics.
+Specifies the host and port on which **wstore** exposes [Prometheus metrics][native-node-metrics-wstore].
 
 Supported from the release 0.20.0 onwards.
 
@@ -490,7 +492,7 @@ Supported from the release 0.20.0 onwards.
 
 ### config.aggregation.metrics.protocol
 
-Specifies the protocol family that **wstore** uses to expose the Prometheus metrics endpoint.
+Specifies the protocol family that **wstore** uses to expose the [Prometheus metrics][native-node-metrics-wstore] endpoint.
 
 Supported from the release 0.20.0 onwards.
 
