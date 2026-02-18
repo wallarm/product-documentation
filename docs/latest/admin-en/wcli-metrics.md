@@ -49,7 +49,7 @@ To disable the **wcli** metrics, specify an empty value in `WALLARM_WCLI__METRIC
 
 **For [NGINX Ingress Controller][IC]:**
 
-Edit the [`controller.wallarm.wcliPostanalytics.metrics*`][ic-helm-chart] values in the Helm Chart during NGINX Ingress Controller [deployment][ic-deployment] or upgrade.
+Edit the `controller.wallarm.wcliPostanalytics.metrics*` values in the Helm Chart during NGINX Ingress Controller [deployment][ic-deployment] or upgrade.
 
 ```yaml hl_lines="8 12 14"
 controller:
@@ -131,7 +131,7 @@ wallarm_wcli_job_error{component="botexp",code="1"} 0
 ### `wallarm_wcli_job_export_period`
 
 !!! info "Metric availability"
-    This metric is available starting from [NGINX Node version 6.6.0][nginx-node-6.6.0].
+    This metric is available starting from NGINX Node version 6.6.0.
 
 Reports the interval (in seconds) between the time a request was received by the system and when it was exported by a specific **wcli** job. This metric helps monitor export delays per job.
 

@@ -171,7 +171,7 @@ Change the Wallarm module configuration set in the `values.yaml` file as follows
       * [General filtration rule configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#general-filtration-mode)
       * [Endpoint-targeted filtration rules configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode)
 
-      If the expected behavior does not correspond to the changed filtration mode logic, please adjust the [Ingress annotations](../../admin-en/configure-kubernetes-en.md#ingress-annotations) and [other settings](../../admin-en/configure-wallarm-mode.md) to released changes.
+      If the expected behavior does not correspond to the changed filtration mode logic, please adjust the [Ingress annotations](https://docs.wallarm.com/admin-en/configure-kubernetes-en/#ingress-annotations) and [other settings](../../admin-en/configure-wallarm-mode.md) to released changes.
 * Get rid of the explicit [monitoring service configuration](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md). In the new Wallarm Ingress controller version, the monitoring service is enabled by default and does not require any additional configuration.
 
     ```diff
@@ -464,7 +464,7 @@ Adjust the following Ingress annotations to the changes released in Ingress cont
       * [General filtration rule configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#general-filtration-mode)
       * [Endpoint-targeted filtration rules configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode)
 
-      If the expected behavior does not correspond to the changed filtration mode logic, please adjust the [Ingress annotations](../../admin-en/configure-kubernetes-en.md#ingress-annotations) to released changes.
+      If the expected behavior does not correspond to the changed filtration mode logic, please adjust the [Ingress annotations](https://docs.wallarm.com/admin-en/configure-kubernetes-en/#ingress-annotations) to released changes.
 1. If the Ingress is annotated with `nginx.ingress.kubernetes.io/wallarm-instance`, rename this annotation to `nginx.ingress.kubernetes.io/wallarm-application`.
 
     Only the annotation name has changed, its logic remains the same. The annotation with the former name will be deprecated soon, so you are recommended to rename it before.
