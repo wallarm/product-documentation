@@ -20,7 +20,7 @@ Deploy the Native Node with Helm chart in the following cases:
 * When you deploy a Wallarm [connector](../nginx-native-node-internals.md#connectors_1) and require the node to be self-hosted. This is ideal if you are already using Kubernetes management platforms like OpenShift, Amazon EKS, Azure AKS, or Google GKE. The node is set up as a load balancer with a public IP for easy traffic routing.
 
     Use the Node in `connector-server` mode.
-* When you need a [gRPC-based external processing filter](../connectors/istio.md) for APIs managed by Istio. The node is set up either as a load balancer with a public IP or as a service inside your Kubernetes cluster.
+* When you need a gRPC-based external processing filter for APIs managed by [Istio](../connectors/istio.md) or [Gloo Gateway](../connectors/gloo.md). The node is set up either as a load balancer with a public IP (Istio only) or as a service inside your Kubernetes cluster (supported by both Istio and Gloo Gateway).
     
     Use the Node in `envoy-external-filter` mode.
 * When you deploy a Wallarm connector for [Kong Ingress Controller](../connectors/kong-ingress-controller.md). The node is deployed with the clusterIP type for internal traffic, without exposing a public IP.
@@ -375,7 +375,7 @@ After deploying the node, the next step is to apply the Wallarm code to your API
     * [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md#2-add-the-nodes-ssltls-certificate-to-the-policy-manager)
     * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly)
     * [Envoy/Istio](../connectors/istio.md#2-configure-istio-envoy-to-forward-traffic-to-the-wallarm-node)
-    * [Gloo Gateway ](../connectors/gloo.md)
+    * [Gloo Gateway ](../connectors/gloo.md#2-configure-gloo-gateway-to-forward-traffic-to-the-wallarm-node)
     * [IBM DataPower](../connectors/ibm-api-connect.md#2-obtain-and-apply-the-wallarm-policies-to-apis-in-ibm-api-connect)
     * [Azure API Management](../connectors/azure-api-management.md#2-create-named-values-in-azure)
     * [Standalone Kong API Gateway](../connectors/standalone-kong-api-gateway.md#2-prepare-the-wallarm-lua-plugin)
