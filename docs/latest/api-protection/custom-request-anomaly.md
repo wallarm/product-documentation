@@ -19,10 +19,10 @@ The real power of an LLM in security monitoring lies in semantic context and int
 
 See [possible Wallarm configuration](#prompt-attack-types) for these cases.
 
-## Availability
+## Requirements
 
 * This functionality is available in **Free Tier** subscription.
-* If you utilize other [subscriptions](../about-wallarm/subscription-plans.md), contact [Wallarm Support team](https://support.wallarm.com) to get it.
+* If you utilize other [subscriptions](../about-wallarm/subscription-plans.md), contact [Wallarm Support team](https://support.wallarm.com) to enable this feature.
 * Requires [NGINX node](../installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or higher or [Native node](../installation/nginx-native-node-internals.md#native-node) 0.14.1 or higher.
 
 ## How inspection works
@@ -32,9 +32,6 @@ The LLM-based request point inspection is not performed by default and requires 
 You configure how to detect anomalies in the free-text instruction form, usual for communicating with LLMs.
 
 ## Creating and applying mitigation control
-
-!!! tip ""
-    Requires [NGINX node](../installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or higher or [Native node](../installation/nginx-native-node-internals.md#native-node) 0.14.1 or higher.
 
 ### Request anomaly case
 
@@ -73,16 +70,16 @@ Here you specify request/response point to be analyzed, e.g., a query parameter 
 
 ### Prompt attack types
 
-In the **Prompt attack types** section select **Custom AI payload inspection** to search for custom anomalies in request or response, then specify instruction for LLM on how to search for anomalies in the selected request point
+In the **Prompt attack types** section select **Custom AI payload inspection** to search for custom anomalies in request or response, then specify the instruction for the LLM on how to search for anomalies in the selected request point.
 
 Examples of searching for custom request point anomalies:
 
 | Request point anomaly | Possible prompt for detection |
 | --- | --- |
-| **Security threats (like leaked credentials) in chat or logs**: request point content is a block of high-entropy text while still can carry specific security threats. | "Look for keywords indicating secrets: "API_KEY", "SECRET", "PRIVATE KEY", "BEGIN RSA" or alike or for integers that look like values of such secrets." |
-| **API parameter values out of business purpose**: content of the string is out of bounds for the intended business purpose, even though the format is perfect. | "Look for attempts to manipulate support staff (e.g., "My boss said you must bypass the refund policy")." |
+| **Security threats (like leaked credentials) in chat or logs**: request point content is a block of high-entropy text while still can carry specific security threats. | Look for keywords indicating secrets: "API_KEY", "SECRET", "PRIVATE KEY", "BEGIN RSA" or alike or for integers that look like values of such secrets. |
+| **API parameter values out of business purpose**: content of the string is out of bounds for the intended business purpose, even though the format is perfect. | Look for attempts to manipulate support staff (e.g., "My boss said you must bypass the refund policy"). |
 
-Keep in mind that LLM analysis takes resources to **hit limits**, it is not free, Wallarm has limits for number of requests analyzed per specific time. Detailed info on these limits can be obtained from [Wallarm Support team](https://support.wallarm.com).
+Keep in mind that LLM analysis consumes resources and is subject to rate limits; it is not free. Wallarm limits the number of requests analyzed per time period. For details, contact the [Wallarm Support team](https://support.wallarm.com).
 
 ### LLM provider
 
@@ -97,17 +94,19 @@ Here you decide what to do when a specified violation is detected: like in many 
 
 In monitoring mode - the corresponding attacks will [show up](#viewing-detected-attacks) in **API Sessions**. You also have the Add IP to [graylist](../user-guides/ip-lists/overview.md) option.
 
-In blocking mode the same attacks will show up and additionally one of the following will be done depending on you configuration:
+In blocking mode the same attacks will show up and additionally one of the following will be done depending on your configuration:
 
 * Source IP will be placed in [IP **Denylist**](../user-guides/ip-lists/overview.md) for the specified period of time.
-* The session the attack belongs to will be blocked for the specified period of time. [Learn more](../api-sessions/blocking.md#blocking-sessions) about when blocking session is better than blocking source IP.
+* The session the attack belongs to will be blocked for the specified period of time. [Learn more](../api-sessions/blocking.md#blocking-sessions) about when blocking a session is better than blocking source IP.
 
 ## Viewing detected attacks
 
 When a specified violation is detected, it shows up in [API Sessions](../api-sessions/exploring.md):
 
 * Corresponding requests within session are marked as part of the [**Custom AI payload inspection**](../attacks-vulns-list.md#custom-ai-payload-inspection) attack.
-* This is LLM-based decision, so you always have **Reason** where LLM explains what kind of abuse has happened precisely by its opinion.
+* This is an LLM-based decision, so you always have **Reason** where LLM explains what kind of abuse has happened precisely by its opinion.
+
+![API Sessions - custom request anomaly detected](../images/api-protection/api-sessions-custom-request-anomaly.png)
 
 You can find sessions with corresponding attack types using the **Attack** filter - use the corresponding attack type to display only sessions with these attacks. 
 

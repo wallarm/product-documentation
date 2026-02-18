@@ -1,4 +1,4 @@
-# Agentiс AI Discovery
+# Agentic AI Discovery
 
 Wallarm's API Discovery [automatically identifies](../api-discovery/sbf.md#automatic-tagging) your APIs that are related to ML models, neural networks, chatbots or systems that in turn access some paid third-party AI services, such as OpenAI. You can also mark some endpoints as belonging to AI/LLM manually. In this article, automatic and manual AI discovery is described.
 
@@ -14,7 +14,7 @@ The automatic tagging discovers most of the **AI/LLM** endpoints. However, it is
 
 ## Tagging AI/LLM endpoints manually
 
-To adjust the results of [automatic tagging](#automatic-tagging-of-aillm), you can manually manually add or remove the **AI/LLM** tag to the required endpoints.
+To adjust the results of [automatic tagging](#automatic-tagging-of-aillm), you can manually add or remove the **AI/LLM** tag to the required endpoints.
 
 To do that, in Wallarm Console, go to API Discovery, then for your endpoint, in the **Business flow & sensitive data**, select `AI/LLM`.
 

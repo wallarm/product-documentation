@@ -4,7 +4,7 @@
 
 # Managing Security Issues
 
-Security issues (vulnerabilities) are security flaws in an infrastructure that may be exploited by attackers to perform unauthorized malicious actions with your system. Wallarm employs [various techniques](../about-wallarm/detecting-vulnerabilities.md#detection-methods) to discover security issues. This article describes how to analyze and manage security in Wallarm Console.
+Security issues (vulnerabilities) are security flaws in an infrastructure that may be exploited by attackers to perform unauthorized malicious actions with your system. Wallarm employs [various techniques](../about-wallarm/detecting-vulnerabilities.md#detection-methods) to discover security issues. This article describes how to analyze and manage security issues in Wallarm Console.
 
 ## Exploring security issues
 
