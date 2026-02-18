@@ -128,7 +128,7 @@ This specifies the name of the group of filtering nodes you want to add newly de
 The Wallarm node operation mode. It can be:
 
 * `connector-server` (default) for [connectors](../nginx-native-node-internals.md#connectors_1).
-* `envoy-external-filter` for [gRPC-based external processing filter](../connectors/istio.md) for APIs managed by Istio.
+* `envoy-external-filter` for gRPC-based external processing filter for APIs managed by [Istio](../connectors/istio.md) or [Gloo Gateway](../connectors/gloo.md).
 
 ### config.connector.certificate.enabled (required)
 
@@ -647,7 +647,7 @@ Controls whether the Node drops incoming requests when the processing load excee
 **Compatibility**
 
 * Native Node 0.16.1 and higher
-* For the [Envoy connector](../connectors/istio.md), behavior depends on the `failure_mode_allow` setting
+* For the Envoy connectors ([Istio](../connectors/istio.md) and [Gloo Gateway](../connectors/gloo.md)), behavior depends on the `failure_mode_allow` setting
 
     The `drop_on_overload` configuration is not applied.
 
