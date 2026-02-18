@@ -17,6 +17,9 @@ This guide describes how to secure your APIs managed by Istio using the Wallarm 
 
 To use Wallarm with Istio, you need to **deploy a Wallarm Node** (either externally or within your cluster) and **apply a gRPC-based External Processing filter** (`ext_proc`) in Envoy to forward traffic to the Node for analysis.
 
+!!! info "Sidecar support"
+    This guide uses the Ingress Gateway as the main example, but the same approach also works for Istio sidecars. In both cases, you use Envoy's External Processing (`ext_proc`) filter. To apply the same `EnvoyFilter` patterns to sidecar proxies, target the appropriate context (e.g., `SIDECAR_INBOUND` or `SIDECAR_OUTBOUND`) instead of `GATEWAY` when configuring the filter. [See the full Sidecar example](#sidecar-filter-selected-domains-intra-cluster-external-traffic).
+
 The Wallarm connector for Istio ingress supports both [synchronous (in-line)](../inline/overview.md) and [asynchronous (out‑of‑band)](../oob/overview.md) traffic analysis:
 
 === "Synchronous traffic flow"
@@ -69,6 +72,9 @@ Add the Wallarm filter to your Istio IngressGateway using the External Processin
 You can either create a new `EnvoyFilter` in the `istio-system` namespace (**recommended**) or modify your existing one.
 
 If you already have a gateway `EnvoyFilter`, merge the `HTTP_FILTER` and `CLUSTER` patches into it.
+
+!!! info "Sidecar usage"
+    The examples below target the **Istio Ingress Gateway** (`context: GATEWAY`). The same filter and cluster configuration can be applied to **Istio sidecars** by using an `EnvoyFilter` with `context: SIDECAR_INBOUND` (and optionally `SIDECAR_OUTBOUND`). This ensures that traffic to and from workloads in the mesh is also sent to the Wallarm Node for analysis.
 
 #### If your Wallarm Node is publicly reachable
 
@@ -133,7 +139,7 @@ If you already have a gateway `EnvoyFilter`, merge the `HTTP_FILTER` and `CLUSTE
                         filename: /etc/ssl/certs/ca-certificates.crt
     ```
 === "Asynchronous (out-of-band) analysis"
-    ```yaml hl_lines="25-26 28 45-46 56"
+    ```yaml hl_lines="25-26 28-29 45-46 56"
     apiVersion: networking.istio.io/v1alpha3
     kind: EnvoyFilter
     metadata:
@@ -162,7 +168,7 @@ If you already have a gateway `EnvoyFilter`, merge the `HTTP_FILTER` and `CLUSTE
                   response_body_mode: STREAMED
                 request_attributes: ["request.id", "request.time", "source.address"]
                 failure_mode_allow: <TRUE/FALSE>
-                observability_mode: true
+                observability_mode: true # Enables asynchronous (out-of-band) analysis
         - applyTo: CLUSTER
           match:
             context: GATEWAY
@@ -222,15 +228,8 @@ kubectl apply -f <ENVOYFILTER_FILE_NAME>.yaml
     - apiVersion: networking.istio.io/v1alpha3
       kind: EnvoyFilter
       metadata:
-        annotations:
-          kubectl.kubernetes.io/last-applied-configuration: |
-            {"apiVersion":"networking.istio.io/v1alpha3","kind":"EnvoyFilter","metadata":{"annotations":{},"name":"wallarm-filter","namespace":"istio-system"},"spec":{"configPatches":[{"applyTo":"HTTP_FILTER","match":{"context":"GATEWAY","listener":{"filterChain":{"filter":{"name":"envoy.filters.network.http_connection_manager"}}}},"patch":{"operation":"INSERT_BEFORE","value":{"name":"envoy.filters.http.ext_proc","typed_config":{"@type":"type.googleapis.com/envoy.extensions.filters.http.ext_proc.v3.ExternalProcessor","failure_mode_allow":false,"grpc_service":{"envoy_grpc":{"cluster_name":"wallarm_cluster"}},"processing_mode":{"request_body_mode":"STREAMED","response_body_mode":"STREAMED"},"request_attributes":["request.id","request.time","source.address"]}}}},{"applyTo":"CLUSTER","match":{"context":"GATEWAY"},"patch":{"operation":"ADD","value":{"connect_timeout":"30s","load_assignment":{"cluster_name":"wallarm_cluster","endpoints":[{"lb_endpoints":[{"endpoint":{"address":{"socket_address":{"address":"native-processing.wallarm.svc.cluster.local","port_value":5080}}}}]}]},"name":"wallarm_cluster","type":"STRICT_DNS"}}}]}}
-        creationTimestamp: "2025-06-04T01:41:30Z"
-        generation: 5
         name: wallarm-filter
         namespace: istio-system
-        resourceVersion: "49980160"
-        uid: db2ec99d-2a65-4694-8773-0be30f3060f2
       spec:
         configPatches:
         - applyTo: HTTP_FILTER
@@ -288,21 +287,14 @@ kubectl apply -f <ENVOYFILTER_FILE_NAME>.yaml
               type: STRICT_DNS
     ```
 === "Asynchronous (out-of-band) analysis"
-    ```yaml hl_lines="30 36-37 57-58 67"
+    ```yaml hl_lines="24 30 36-37 57-58 67"
     apiVersion: v1
     items:
     - apiVersion: networking.istio.io/v1alpha3
       kind: EnvoyFilter
       metadata:
-        annotations:
-          kubectl.kubernetes.io/last-applied-configuration: |
-            {"apiVersion":"networking.istio.io/v1alpha3","kind":"EnvoyFilter","metadata":{"annotations":{},"name":"wallarm-filter","namespace":"istio-system"},"spec":{"configPatches":[{"applyTo":"HTTP_FILTER","match":{"context":"GATEWAY","listener":{"filterChain":{"filter":{"name":"envoy.filters.network.http_connection_manager"}}}},"patch":{"operation":"INSERT_BEFORE","value":{"name":"envoy.filters.http.ext_proc","typed_config":{"@type":"type.googleapis.com/envoy.extensions.filters.http.ext_proc.v3.ExternalProcessor","failure_mode_allow":false,"grpc_service":{"envoy_grpc":{"cluster_name":"wallarm_cluster"}},"processing_mode":{"request_body_mode":"STREAMED","response_body_mode":"STREAMED"},"request_attributes":["request.id","request.time","source.address"]}}}},{"applyTo":"CLUSTER","match":{"context":"GATEWAY"},"patch":{"operation":"ADD","value":{"connect_timeout":"30s","load_assignment":{"cluster_name":"wallarm_cluster","endpoints":[{"lb_endpoints":[{"endpoint":{"address":{"socket_address":{"address":"native-processing.wallarm.svc.cluster.local","port_value":5080}}}}]}]},"name":"wallarm_cluster","type":"STRICT_DNS"}}}]}}
-        creationTimestamp: "2025-06-04T01:41:30Z"
-        generation: 5
         name: wallarm-filter
         namespace: istio-system
-        resourceVersion: "49980160"
-        uid: db2ec99d-2a65-4694-8773-0be30f3060f2
       spec:
         configPatches:
         - applyTo: HTTP_FILTER
@@ -319,7 +311,7 @@ kubectl apply -f <ENVOYFILTER_FILE_NAME>.yaml
               typed_config:
                 '@type': type.googleapis.com/envoy.extensions.filters.http.ext_proc.v3.ExternalProcessor
                 failure_mode_allow: <TRUE/FALSE>
-                observability_mode: true
+                observability_mode: true # Enables asynchronous (out-of-band) analysis
                 grpc_service:
                   envoy_grpc:
                     cluster_name: wallarm_cluster
@@ -426,6 +418,7 @@ In addition to the basic `EnvoyFilter` examples described above (which apply Wal
 * Limit Wallarm inspection to selected domains or namespaces
 * Mirror intra-cluster traffic in addition to external ingress traffic
 * Exclude certain routes or services from inspection
+* Apply Wallarm filtering at the [sidecar (per-pod) level](#sidecar-filter-selected-domains-intra-cluster-external-traffic) by using `context: SIDECAR_INBOUND`/`SIDECAR_OUTBOUND` in the `EnvoyFilter` match, instead of only at the Ingress Gateway.
 
 ### Filter only selected domains (external traffic only)
 
@@ -510,13 +503,13 @@ spec:
         type: STRICT_DNS
 ```
 
-### Filter selected domains (intra-cluster + external traffic)
+### Sidecar: filter selected domains (intra-cluster + external traffic)
 
 You can also deploy an `EnvoyFilter` inside each application namespace to inspect not only ingress but also service-to-service (sidecar) traffic.
 
 This setup supports Istio's internal mTLS and client-side mTLS:
 
-```yaml
+```yaml hl_lines="13 37"
 # NOTE THE spec.configPatches.applyTo.match.context ARE FOR SIDECAR NOT GATEWAY
 # IF YOU ALSO WANT TO INSPECT OUTBOUND REQUESTS THE APP MAKES, ADD ANOTHER
 # "- applyTo: HTTP_FILTER" WITH "context: SIDECAR_OUTBOUND"
