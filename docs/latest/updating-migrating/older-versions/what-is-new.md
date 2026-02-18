@@ -238,7 +238,7 @@ This strengthens security by preventing potential attack attempts and also optim
 Additionally, this update introduces new parameters for some deployment options, enabling technical control over the feature's operation:
 
 * For all-in-one installer: the [`wallarm_enable_apifw`](../../admin-en/configure-parameters-en.md#wallarm_enable_apifw) NGINX directive.
-* For NGINX Ingress Controller: the [`controller.wallarm.apifirewall`](https://docs.wallarm.com/6.x/admin-en/configure-kubernetes-en/#controllerwallarmapifirewall) values group.
+* For NGINX Ingress Controller: the [`controller.wallarm.apifirewall`](../../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewall) values group.
 * For NGINX-based Docker image: the environment variable `WALLARM_APIFW_ENABLE`.
 
 [Learn how to configure API Specification Enforcement](../../api-specification-enforcement/setup.md)
@@ -546,7 +546,8 @@ The NGINX-based Wallarm Docker image now supports the new environment variable `
     * `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
 
     Parameters with previous names are still supported but will be deprecated in future releases. The parameter logic has not changed.
-* The Ingress [annotation](https://docs.wallarm.com/6.x/admin-en/configure-kubernetes-en/#supported-wallarm-ingress-annotations) `nginx.ingress.kubernetes.io/wallarm-instance` has been renamed to `nginx.ingress.kubernetes.io/wallarm-application`.
+* The Ingress [annotation](../../admin-en/configure-kubernetes-en.md#ingress-annotations) `nginx.ingress.kubernetes.io/wallarm-instance` has been renamed to `nginx.ingress.kubernetes.io/wallarm-application`.
+
     The annotation with the previous name is still supported but will be deprecated in future releases. The annotation logic has not changed.
 * The file with the custom ruleset build `/etc/wallarm/lom` has been renamed to `/etc/wallarm/custom_ruleset`. In the file system of new node versions, there is only the file with the new name.
 

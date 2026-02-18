@@ -18,8 +18,7 @@
 [api-discovery-docs]:               ../../../api-discovery/overview.md
 [sensitive-data-rule]:              ../../../user-guides/rules/sensitive-data-rule.md
 [apid-only-mode-details]:           ../../../installation/nginx/all-in-one.md#api-discovery-only-mode
-[what-is-new-wstore]:               https://docs.wallarm.com/updating-migrating/what-is-new/#replacing-tarantool-with-wstore-for-postanalytics
-[link-docs-check-operation]:        ../../../admin-en/uat-checklist-en.md
+[what-is-new-wstore]:            ../../../updating-migrating/what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics[link-docs-check-operation]:        ../../../admin-en/uat-checklist-en.md
 [wstore-metrics]:                    ../../../admin-en/wstore-metrics.md
 [wstore-metrics-mount]:             ../../../admin-en/wstore-metrics.md
 [wcli-metrics]:                     ../../../admin-en/wcli-metrics.md

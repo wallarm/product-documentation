@@ -13,7 +13,7 @@ Log files are located within the `/opt/wallarm/var/log/wallarm` directory. Here 
 
 * `api-firewall-out.log`: the log of the [API specification enforcement](../api-specification-enforcement/overview.md).
 * `appstructure-out.log` (only in the Docker containers): the log of the [API Discovery](../api-discovery/overview.md) module activity.
-* `wstore-out.log` (`tarantool-out.log` in the [NGINX Node 5.x and earlier](https://docs.wallarm.com/updating-migrating/what-is-new/#replacing-tarantool-with-wstore-for-postanalytics): the log of the postanalytics module operations.
+* `wstore-out.log` (`tarantool-out.log` in the [NGINX Node 5.x and earlier](../updating-migrating/what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics)): the log of the postanalytics module operations.
 * `wcli-out.log`: logs of most Wallarm services, including brute force detection, attack export to the Cloud, and the status of node synchronization with the Cloud, etc.
 * `supervisord-out.log`: logs of the Supervisor's process management, including service startups, status changes, and warnings.
 * `go-node.log`: [Native Node](../installation/nginx-native-node-internals.md#native-node) logs.

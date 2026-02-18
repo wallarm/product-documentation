@@ -49,7 +49,7 @@ To disable the **wcli** metrics, specify an empty value in `WALLARM_WCLI__METRIC
 
 **For [NGINX Ingress Controller][IC]:**
 
-Edit the `controller.wallarm.wcliPostanalytics.metrics*` values in the Helm Chart during NGINX Ingress Controller [deployment][ic-deployment] or upgrade.
+Edit the [`controller.wallarm.wcliPostanalytics.metrics*`][ic-helm-chart] values in the Helm Chart during NGINX Ingress Controller [deployment][ic-deployment] or upgrade.
 
 ```yaml hl_lines="8 12 14"
 controller:
