@@ -44,7 +44,7 @@ Based on your traffic, Wallarm suggests parameters you might want to use as sess
 
 To add grouping keys from recommendations:
 
-1. go to Wallarm Console → **API Sessions** → **Session context parameters**.
+1. Go to Wallarm Console → **API Sessions** → **Session context parameters**.
 1. Check the **Recommendations** section.
 1. Apply all or selected parameters. The parameters are added to the **Configured export parameters** parameters. Note that **Group sessions by this key** should remain selected for all of them.
 1. Drag and drop to define order (priority) - see [example](#example-of-how-grouping-keys-work).
