@@ -131,7 +131,7 @@ wallarm_wcli_job_error{component="botexp",code="1"} 0
 ### `wallarm_wcli_job_export_period`
 
 !!! info "Metric availability"
-    This metric is available starting from [NGINX Node version 6.6.0][nginx-node-6.6.0].
+    This metric is available starting from NGINX Node version 6.6.0.
 
 Reports the interval (in seconds) between the time a request was received by the system and when it was exported by a specific **wcli** job. This metric helps monitor export delays per job.
 
