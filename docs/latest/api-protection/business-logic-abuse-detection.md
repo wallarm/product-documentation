@@ -15,10 +15,10 @@ Detecting **business logic abuse** is often more difficult than detecting tradit
 
 See [possible Wallarm configuration](#detection-prompt-and-context-window-for-analysis) for these cases.
 
-## Availability
+## Requirements
 
 * This functionality is available in **Free Tier** subscription.
-* If you utilize other [subscriptions](../about-wallarm/subscription-plans.md), contact [Wallarm Support team](https://support.wallarm.com) to get it.
+* If you utilize other [subscriptions](../about-wallarm/subscription-plans.md), contact [Wallarm Support team](https://support.wallarm.com) to enable this feature.
 * Requires [NGINX node](../installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or higher or [Native node](../installation/nginx-native-node-internals.md#native-node) 0.14.1 or higher.
 
 ## How detection works
@@ -34,9 +34,6 @@ The business logic abuse is not detected by default and requires configuration. 
 If decision is that yes, this is an attempt to abuse business logic, the corresponding requests in **API Sessions** are [marked](#viewing-detected-attacks) as part of the [**Custom logic abuse** attack](../attacks-vulns-list.md#custom-logic-abuse) and processed due to the selected mitigation mode.
 
 ## Creating and applying mitigation control
-
-!!! tip ""
-    Requires [NGINX node](../installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or higher or [Native node](../installation/nginx-native-node-internals.md#native-node) 0.14.1 or higher.
 
 To create and apply a new mitigation control:
 
@@ -71,18 +68,18 @@ In the **Detection prompt** field you write an instruction for the LLM to detect
 
 | Abuse case | Possible prompt |
 | --- | --- |
-| **Authorization bypass**: missing `order_validation` or `admin_approval` calls before the refund trigger. | "Detect if the request tries to trigger a refund without proper authorization" |
-| **Privilege escalation**: sudden shift in request headers or roles; accessing `/admin/` paths from a standard `/user/` session. | "Detect if the user is attempting to escalate privileges or access restricted functionality." |
-| **Coupon/discount exhaustion**: rapid application of multiple distinct codes; applying a code, removing an item, and checking out to keep the discount. | "Analyze the sequence for attempts to stack incompatible discounts or manipulate the cart state to bypass price minimums." |
-| **Inventory hoarding (denial of Inventory)**: adding high volumes of items to a cart and holding them without checkout; repeated 'Add to Cart' followed by long periods of inactivity. | "Identify if the user is systematically locking inventory without a clear intent to purchase, effectively blocking other users." |
-| **Account takeover via MFA bypass**: repeatedly calling the `verify` endpoint without having successfully triggered the `send-code` endpoint; jumping straight to session creation. | "Detect if the user is attempting to finalize authentication while skipping the prerequisite multi-factor challenge steps." |
-| **Scraping via sequential ID enumeration**: a user requesting `/api/v1/orders/1001`, then `1002`, then `1003` in rapid succession within a single session. | "Determine if the request sequence indicates an automated attempt to scrape data by incrementing resource identifiers." |
+| **Authorization bypass**: missing `order_validation` or `admin_approval` calls before the refund trigger. | Detect if the request tries to trigger a refund without proper authorization. |
+| **Privilege escalation**: sudden shift in request headers or roles; accessing `/admin/` paths from a standard `/user/` session. | Detect if the user is attempting to escalate privileges or access restricted functionality. |
+| **Coupon/discount exhaustion**: rapid application of multiple distinct codes; applying a code, removing an item, and checking out to keep the discount. | Analyze the sequence for attempts to stack incompatible discounts or manipulate the cart state to bypass price minimums. |
+| **Inventory hoarding (denial of Inventory)**: adding high volumes of items to a cart and holding them without checkout; repeated 'Add to Cart' followed by long periods of inactivity. | Identify if the user is systematically locking inventory without a clear intent to purchase, effectively blocking other users. |
+| **Account takeover via MFA bypass**: repeatedly calling the `verify` endpoint without having successfully triggered the `send-code` endpoint; jumping straight to session creation. | Detect if the user is attempting to finalize authentication while skipping the prerequisite multi-factor challenge steps. |
+| **Scraping via sequential ID enumeration**: a user requesting `/api/v1/orders/1001`, then `1002`, then `1003` in rapid succession within a single session. | Determine if the request sequence indicates an automated attempt to scrape data by incrementing resource identifiers. |
 
-While in the table above possible promts are provided in a brief form, it often useful to provide LLM with more precise instructions.
+While in the table above possible prompts are provided in a brief form, it is often useful to provide the LLM with more precise instructions.
 
 ??? info "Example of detailed prompt"
     ```
-    Identify deviations from a normal checkout process. A checkout process looks as like a following chain of API calls where calls are ordered from the earliest to the latest by their timestamps:
+    Identify deviations from a normal checkout process. A checkout process looks like the following chain of API calls where calls are ordered from the earliest to the latest by their timestamps:
     1. <any number of API calls to any endpoint>
     2. POST /api/v1/checkout, timestamp 4:10:11 PM
     3. <zero or more API calls to ANY API endpoints>
@@ -93,8 +90,8 @@ While in the table above possible promts are provided in a brief form, it often 
 
     Classification guidance:
     1. Carefully compare all the requests from the session with the expected sequence of API calls process. You MUST only consider a sequence of calls and attack when you are ABSOLUTELY sure that some requests ARE MISSING from a normal checkout sequence. If all requests are in place it is not an attack.
-    2. Only trigger attack if there is a MISSING API call. You MUST NOT trigger an attack if an additional call that what not specified in this instruction is present in a session, it is not an attack.
-    3.  You MUST use timestamps to deterimine order of calls. If a timestamp of call 1 is higher that a timestamp of call 2, than call 1 happened before call 2.
+    2. Only trigger attack if there is a MISSING API call. You MUST NOT trigger an attack if an additional call that was not specified in this instruction is present in a session, it is not an attack.
+    3.  You MUST use timestamps to determine order of calls. If a timestamp of call 1 is higher than a timestamp of call 2, then call 1 happened before call 2.
 
     Example of an attack sequence - you should consider it an attack:
     POST /login, timestamp 1:30:05 AM
@@ -120,7 +117,7 @@ How it works:
 
 * Your prompt is "Detect if the request tries to trigger a refund without proper authorization", and LLM is "Gemini".
 * Your context window is 5 minutes and 20 requests.
-* `Request A` arrives which Gemini decides may be related to refund.
+* `Request A` arrives; Gemini decides it may be related to a refund.
 * Case 1: before `Request A`, within 5 minutes, 32 requests occurred: `Request A` and 20 from this 32 will be analyzed by Gemini.
 * Case 2: before `Request A`, within 5 minutes, 5 requests occurred: `Request A` and these 5 will be analyzed, 15 more that could be taken are outside time limitation.
 
@@ -129,7 +126,7 @@ The aim of this setting is to provide enough context for the model to detect pat
 Keep in mind that bigger context window:
 
 * Potentially, makes analysis more precise
-* Takes resources to **hit limits**, and may be unnecessary redundant
+* Consumes resources and is subject to rate limits, and may be redundant
 
 About limits: LLM analysis is not free, Wallarm has limits for number of requests analyzed per specific time. Detailed info on these limits can be obtained from [Wallarm Support team](https://support.wallarm.com).
 
@@ -144,10 +141,10 @@ Here, you select which LLM provider will perform the analysis. Available provide
 
 Here you decide what to do when business logic abuse is detected: like in many other mitigation controls, you can set to just monitor or block - source IP or session.
 
-In monitoring mode - the **Custom logic abuse** attack will [show up](#viewing-detected-attacks) in **API Sessions**. In blocking mode the same attack will show up and additionally one of the following will be done depending on you configuration:
+In monitoring mode - the **Custom logic abuse** attack will [show up](#viewing-detected-attacks) in **API Sessions**. In blocking mode the same attack will show up and additionally one of the following will be done depending on your configuration:
 
 * Source IP will be placed in [IP **Denylist**](../user-guides/ip-lists/overview.md) for the specified period of time.
-* The session the attack belongs to will be blocked for the specified period of time. [Learn more](../api-sessions/blocking.md#blocking-sessions) about when blocking session is better than blocking source IP.
+* The session the attack belongs to will be blocked for the specified period of time. [Learn more](../api-sessions/blocking.md#blocking-sessions) about when blocking a session is better than blocking source IP.
 
 ## Viewing detected attacks
 
@@ -155,7 +152,7 @@ When business logic abuse is detected, it shows up in [API Sessions](../api-sess
 
 * Session having corresponding requests is marked as **AI Business logic abuse detection** subject with specified action (**Monitoring** or **Blocking**).
 * Corresponding requests within session are marked as part of the [**Custom logic abuse** attack](../attacks-vulns-list.md#custom-logic-abuse).
-* This is LLM-based decision, so you always have **Reason** where LLM explains what kind of abuse has happened precisely by its opinion.
+* This is an LLM-based decision, so you always have **Reason** where LLM explains what kind of abuse has happened precisely by its opinion.
 
 ![API Sessions - session with detected business logic abuse](../images/api-protection/api-sessions-business-logic-abuse.png)
 

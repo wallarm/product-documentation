@@ -37,7 +37,7 @@ See detailed description of Wallarm's Agentic AI Protection of the official site
 
 ## How protection works
 
-Wallarm's protection against attacks on AI Agents works in few simple steps:
+Wallarm's protection against attacks on AI Agents works in a few simple steps:
 
 1. You deploy Wallarm [filtering node](../about-wallarm/overview.md#how-wallarm-works) using the [appropriate deployment option](../installation/supported-deployment-options.md).
 1. Optionally, you enable [automatic discovery](agentic-ai-discovery.md) of AI/LLM endpoints in your API inventory by enabling and Wallarm's [API Discovery](../api-discovery/overview.md).
