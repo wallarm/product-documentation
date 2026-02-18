@@ -929,3 +929,5 @@
 /installation/kubernetes/ebpf/selecting-packets/ /installation/oob/ebpf/selecting-packets/
 /installation/packages/aws-ami/ /installation/cloud-platforms/aws/ami/
 /installation/packages/gcp-machine-image/ /installation/cloud-platforms/gcp/machine-image/
+
+/news/ https://changelog.wallarm.com/
