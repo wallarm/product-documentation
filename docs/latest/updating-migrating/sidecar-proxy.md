@@ -29,7 +29,7 @@ To install and run the plugin:
 2. Run the plugin:
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n wallarm-sidecar wallarm/wallarm-sidecar --version 6.10.0 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n wallarm-sidecar wallarm/wallarm-sidecar --version 6.10.1 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` is the name of the Wallarm Sidecar Helm release.
@@ -64,7 +64,7 @@ kubectl delete secret <RELEASE_NAME>-wallarm-sidecar-admission-tls -n wallarm-si
 ### Step 5: Deploy the new solution version
 
 ``` bash
-helm install --version 6.10.0 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar -f <PATH_TO_VALUES>
+helm install --version 6.10.1 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar -f <PATH_TO_VALUES>
 ```
 
 * `<RELEASE_NAME>` is the name for the Helm release. It is recommended to re-use the same name you used for the initial deployment of the solution.
@@ -91,7 +91,7 @@ kubectl rollout restart deployment <DEPLOYMENT_NAME> -n <NAMESPACE>
 Upgrade the deployed components of the Sidecar solution:
 
 ``` bash
-helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 6.10.0 -f <PATH_TO_VALUES>
+helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 6.10.1 -f <PATH_TO_VALUES>
 ```
 
 * `<RELEASE_NAME>`: the name of the Helm release with the deployed Sidecar chart
@@ -121,7 +121,7 @@ kubectl rollout restart deployment <DEPLOYMENT_NAME> -n <NAMESPACE>
 
     Where `wallarm-sidecar` is the namespace the Sidecar is deployed to. You can change this value if the namespace is different.
 
-    The chart version should correspond to `wallarm-sidecar-6.10.0`.
+    The chart version should correspond to `wallarm-sidecar-6.10.1`.
 1. Get the Wallarm control plane details to check it has been successfully started:
 
     ```bash
