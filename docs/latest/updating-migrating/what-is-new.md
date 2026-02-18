@@ -266,11 +266,11 @@ The image configuration has moved from `controller.image` and `controller.wallar
       image:
         registry: <YOUR_REGISTRY>
         image: wallarm/ingress-controller
-        tag: "6.10.0"
+        tag: "6.10.1"
       wallarm:
         helpers:
           image: <YOUR_REGISTRY>/wallarm/node-helpers
-          tag: "6.10.0"
+          tag: "6.10.1"
     ```
 === "F5-based (7.x)"
     ```yaml
