@@ -2,39 +2,47 @@
 [ssl-termination]:              ../installation/kubernetes/sidecar-proxy/customization.md#ssltls-termination
 [nginx-aio]:                    ../installation/inline/compute-instances/linux/all-in-one.md
 [nginx-docker]:                 ../admin-en/installation-docker-en.md
+[nginx-node]:                   ../installation/nginx-native-node-internals.md#nginx-node
+[native-node]:                  ../installation/nginx-native-node-internals.md#native-node
+[security-edge]:                ../installation/security-edge/overview.md
+[aws-ami]:                      ../installation/inline/compute-instances/aws/aws-ami.md
+[gcp]:                          ../installation/inline/compute-instances/gcp/machine-image.md
 
 
-# SSL/TLS Termination and Certificate Management
+# TLS Termination and Certificate Management (Self-Hosted Nodes)
 
-This article explains how and where SSL/TLS termination is performed in Wallarm nodes, including certificate requirements and management.
+This article describes how TLS termination and certificate management work in self-hosted Wallarm nodes (including NGINX and Native Nodes), and how HTTPS traffic is processed for analysis.
 
-## SSL/TLS termination
+Wallarm analyzes HTTP traffic only after TLS decryption. TLS termination can occur on an upstream component or on the Wallarm Node, which determines HTTPS traffic flow and whether certificates must be managed on the Wallarm side.
 
-SSL/TLS termination is the process of decrypting HTTPS traffic at a network component (e.g., a proxy or gateway). Wallarm requires decrypted HTTPS traffic to inspect HTTP data (URLs, headers, and request bodies), detect threats, and block malicious requests.
+## HTTPS traffic flow and TLS termination
 
-The configuration and location of SSL/TLS termination depend on your Wallarm [deployment type](../installation/nginx-native-node-internals.md).
+HTTPS traffic is encrypted and cannot be inspected in its encrypted form. To analyze requests, the traffic must be decrypted at the point of TLS termination.
 
-## SSL/TLS termination in the NGINX Node
+In Wallarm deployments, TLS termination can be performed either by an upstream component (e.g., a load balancer or Ingress Controller) or by a Wallarm Node.
 
-* [Sidecar][nginx-sidecar]
+* If TLS is terminated upstream, Wallarm receives already decrypted traffic and does not require certificates.
+* If a Wallarm NGINX Node terminates TLS, certificates must be issued, configured, and maintained on the Wallarm side.
 
-    By default, Wallarm Sidecar does not handle SSL/TLS termination. It expects an upstream component (e.g., Ingress or Application Gateway) to handle HTTPS, while Wallarm Sidecar receives decrypted HTTP traffic.
+## TLS termination in the NGINX Node
 
-    However, if your infrastructure cannot terminate SSL/TLS upstream, you can [enable SSL/TLS termination directly in Wallarm Sidecar][ssl-termination].
+The way TLS termination is handled in the NGINX Node depends on the deployment artifact (Sidecar, all-in-one installer, Docker image, or AWS/GCP cloud image). You can see each case described below.
 
-* [All-in-one installer][nginx-aio], [Docker image][nginx-docker], and cloud images:
+### Sidecar
 
-    The NGINX Node handles SSL/TLS termination. To configure it, you must issue an SSL/TLS certificate for the protected resource, upload the certificate and private key to the NGINX Node, and edit the [NGINX configuration](https://nginx.org/en/docs/http/configuring_https_servers.html).
+By default, [Wallarm Sidecar][nginx-sidecar] does not terminate TLS. It expects an upstream component (e.g., Ingress or Application Gateway) to handle HTTPS, while the Sidecar receives decrypted HTTP traffic.
 
-    To learn more about certificate management when SSL/TLS termination is handled by the NGINX Node, see the section below.
+In this case, the Wallarm Node doesn't need certificates because TLS is terminated upstream. However, if your infrastructure cannot terminate TLS upstream, you can [enable TLS termination directly in Wallarm Sidecar][ssl-termination].
 
-### Certificate issuance and management
+### [All-in-one installer][nginx-aio], [Docker image][nginx-docker], and [AWS][aws-ami]/[GCP][gcp] cloud images
 
-Wallarm does not issue, manage, or automatically renew certificates. All certificates must be provided and managed by clients.
+The NGINX Node handles TLS termination. To configure it, you must issue an TLS certificate for the protected resource, upload the certificate and private key to the NGINX Node, and edit the [NGINX configuration](https://nginx.org/en/docs/http/configuring_https_servers.html).
+
+Because the NGINX Node terminates TLS directly, certificate provisioning and lifecycle management are the clients' responsibility. Wallarm does not issue, manage, or automatically renew certificates.
 
 You need to:
 
-1. Issue a certificate from a trusted Certificate Authority (CA).
+1. Issue a certificate from a trusted Certificate Authority (CA) for a Wallarm Node instance.
 
     The certificate must meet the following requirements:
 
@@ -42,8 +50,8 @@ You need to:
     * Key types and sizes: Any key size supported by OpenSSL/NGINX, including 2048-bit, 4096-bit, and ECDSA keys.
     * Cipher suites: Defined and managed through standard NGINX/OpenSSL configuration.   
 
-1. Upload the certificate file and private key to the Wallarm node.
-1. Edit the [NGINX configuration](https://nginx.org/en/docs/http/configuring_https_servers.html):
+1. Upload the certificate file and private key to the host or container running the Wallarm NGINX Node.
+1. Edit the [NGINX configuration](https://nginx.org/en/docs/http/configuring_https_servers.html) of the Wallarm Node:
 
     * [`ssl_certificate`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate) - specifies the PEM-format certificate file, including the full certificate chain.
     * [`ssl_certificate_key`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate_key) - specifies the PEM-format private key file.
@@ -85,10 +93,8 @@ You need to:
 
 To automate these actions, you can use external tools, e.g., [Certbot](https://certbot.eff.org/), [HashiCorp Vault](https://developer.hashicorp.com/vault), [Kubernetes cert-manager](https://cert-manager.io/), [Ansible playbooks](https://docs.ansible.com/projects/ansible/devel/playbook_guide/playbooks_intro.html), or others.
 
-## SSL/TLS termination in the Native Node
+## TLS termination in the Native Node
 
-The Native Node **does not handle SSL/TLS termination** and never acts as an inline traffic endpoint. It always analyzes a copy of traffic, not the original client connection.
+The Native Node **does not handle TLS termination** and never acts as an inline traffic endpoint. It analyzes a copy of traffic, not the original client connection.
 
-HTTPS traffic must be decrypted before a copy is sent to the Native Node. SSL/TLS termination is performed by an upstream or adjacent component, e.g., a load balancer, reverse proxy, application delivery controller (ADC), ingress controller, a connector.
-
-The terminating component decrypts HTTPS traffic and sends a decrypted traffic copy to the Native Node for analysis. For configuration details, refer to the documentation of the chosen component.
+HTTPS traffic must be decrypted by an upstream or adjacent component (e.g., load balancer, reverse proxy, ADC, Ingress Controller, or connector), which then sends a decrypted copy to the Native Node for analysis. Refer to the component's documentation for configuration details.
