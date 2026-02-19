@@ -79,6 +79,8 @@ helm repo update wallarm
         === "cert-manager"
             If you use [`cert-manager`](https://cert-manager.io/) in your cluster, you can generate the SSL/TLS certificate with it.
 
+            Add the `route_config` section with your Wallarm Node FQDN so that cert-manager issues the certificate for your domain instead of the default service name (`native-processing`):
+
             ```yaml
             config:
               connector:
@@ -92,10 +94,17 @@ helm repo update wallarm
                       name: letsencrypt-prod
                       # If it is Issuer (namespace-scoped) or ClusterIssuer (cluster-wide)
                       kind: ClusterIssuer
+              route_config:
+                routes:
+                  - host: "<WALLARM_NODE_FQDN>"
             processing:
               service:
                 type: LoadBalancer
             ```
+
+            !!! note "DNS and certificate generation"
+                When you deploy the Wallarm service ([step 4](#4-deploy-the-wallarm-service)), `cert-manager` will try to issue the certificate immediately. This will fail until `<WALLARM_NODE_FQDN>` points to your load balancer IP. After deployment, get the external IP from the load balancer, add the DNS record ([step 5](#5-configure-dns-access-to-the-wallarm-node)), and `cert-manager` will retry and issue the certificate.
+
         === "existingSecret"
             You can pull SSL/TLS certificate from an existing Kubernetes secrets in the same namespace.
 
@@ -151,6 +160,8 @@ helm repo update wallarm
         === "cert-manager"
             If you use [`cert-manager`](https://cert-manager.io/) in your cluster, you can generate the SSL/TLS certificate with it.
 
+            Add the `route_config` section with your Wallarm Node FQDN so that cert-manager issues the certificate for your domain instead of the default service name (`native-processing`):
+
             ```yaml
             config:
               connector:
@@ -164,10 +175,17 @@ helm repo update wallarm
                       name: letsencrypt-prod
                       # If it is Issuer (namespace-scoped) or ClusterIssuer (cluster-wide)
                       kind: ClusterIssuer
+              route_config:
+                routes:
+                  - host: "<WALLARM_NODE_FQDN>"
             processing:
               service:
                 type: LoadBalancer
             ```
+
+            !!! note "DNS and certificate generation"
+                When you deploy the Wallarm service ([step 4](#4-deploy-the-wallarm-service)), `cert-manager` will try to issue the certificate immediately. This will fail until `<WALLARM_NODE_FQDN>` points to your load balancer IP. After deployment, get the external IP from the load balancer, add the DNS record ([step 5](#5-configure-dns-access-to-the-wallarm-node)), and `cert-manager` will retry and issue the certificate.
+
         === "existingSecret"
             You can pull SSL/TLS certificate from an existing Kubernetes secrets in the same namespace.
 
@@ -202,20 +220,7 @@ helm repo update wallarm
             processing:
               service:
                 type: LoadBalancer
-            ```
-    
-    !!! info "Certificate access"
-        Both the certificate and private key files must have the following permissions to be correctly used by the Wallarm Node:
-
-        ```
-        644 (rw-r--r--)
-        ```
-
-        To set these permissions, run:
-
-        ```bash
-        sudo chmod 644 /path/to/cert.pem /path/to/key.pem
-        ```
+            ```   
 === "ClusterIP (envoy-external-filter)"
     When deploying Wallarm as an Istio connector service inside your Kubernetes cluster, the Native Node runs as an internal component (`ClusterIP` service type) without exposing a public IP.
 
@@ -226,6 +231,8 @@ helm repo update wallarm
         === "cert-manager"
             If you use [`cert-manager`](https://cert-manager.io/) in your cluster, you can generate the SSL/TLS certificate with it.
 
+            Add the `route_config` section with your Wallarm Node FQDN so that cert-manager issues the certificate for your domain instead of the default service name (`native-processing`):
+
             ```yaml
             config:
               connector:
@@ -239,10 +246,17 @@ helm repo update wallarm
                       name: letsencrypt-prod
                       # If it is Issuer (namespace-scoped) or ClusterIssuer (cluster-wide)
                       kind: ClusterIssuer
+              route_config:
+                routes:
+                  - host: "<WALLARM_NODE_FQDN>"
             processing:
               service:
                 type: ClusterIP
             ```
+
+            !!! note "DNS and certificate generation"
+                When you deploy the Wallarm service ([step 4](#4-deploy-the-wallarm-service)), `cert-manager` will try to issue the certificate immediately. This will fail until `<WALLARM_NODE_FQDN>` resolves to the Wallarm Node (e.g., via the CoreDNS rewrite in [step 5](#5-configure-dns-access-to-the-wallarm-node)). After deployment, complete step 5 so that the FQDN resolves to the Node. `cert-manager` will then retry and issue the certificate.
+
         === "existingSecret"
             You can pull SSL/TLS certificate from an existing Kubernetes secrets in the same namespace.
 
@@ -279,30 +293,17 @@ helm repo update wallarm
                 type: ClusterIP
             ```
     
-    !!! info "Certificate access"
-        Both the certificate and private key files must have the following permissions to be correctly used by the Wallarm Node:
-
-        ```
-        644 (rw-r--r--)
-        ```
-
-        To set these permissions, run:
-
-        ```bash
-        sudo chmod 644 /path/to/cert.pem /path/to/key.pem
-        ```
-
 [All configuration parameters](helm-chart-conf.md)
 
 ### 4. Deploy the Wallarm service
 
 === "US Cloud"
     ```
-    helm upgrade --install --version 0.22.1 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com
+    helm upgrade --install --version 0.22.1 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace -f values.yaml --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com
     ```
 === "EU Cloud"
     ```
-    helm upgrade --install --version 0.22.1 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com
+    helm upgrade --install --version 0.22.1 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace -f values.yaml --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com
     ```
 
 ### 5. Configure DNS access to the Wallarm Node
