@@ -1,4 +1,4 @@
-# Rogue MCP Inspection
+# Rogue MCP Inspection <a href="../../about-wallarm/subscription-plans/#rogue-mcp"><img src="../../images/rogue-mcp-tag.svg" style="border: none;"></a>
 
 Wallarm allows you to audit every installed local MCP server to expose supply-chain risks, excessive privileges, and unrestricted system access to get clear visibility into what AI agents can actually do at your environment.
 
