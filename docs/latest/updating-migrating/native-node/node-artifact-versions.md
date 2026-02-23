@@ -10,6 +10,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.23.0 (2026-02-23)
+
+* Fixed an issue where infinite circular references were incorrectly detected during API specification processing
+* Fixed an issue where the installer script failed with the "Incorrect config content for tcp-capture-v2 mode" error when the YAML mode value was quoted
+
 ### 0.22.1 (2026-02-03)
 
 * Fixed an issue where real IP header overrides were not applied when the header value contained an IP address with a port
@@ -167,6 +172,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 The Helm chart for the Native Node is used for self-hosted node deployments with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](helm-chart.md)
+
+### 0.23.0 (2026-02-23)
+
+* Improved the Helm chart for high-availability deployments by adding pod disruption budgets and tuning resource settings
+* Fixed an issue where infinite circular references were incorrectly detected during API specification processing
+* Fixed an issue where the installer script failed with the "Incorrect config content for tcp-capture-v2 mode" error when the YAML mode value was quoted
 
 ### 0.22.1 (2026-02-03)
 
@@ -339,6 +350,11 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](docker-image.md)
+
+### 0.23.0 (2026-02-23)
+
+* Fixed an issue where infinite circular references were incorrectly detected during API specification processing
+* Fixed an issue where the installer script failed with the "Incorrect config content for tcp-capture-v2 mode" error when the YAML mode value was quoted
 
 ### 0.22.1 (2026-02-03)
 
