@@ -29,5 +29,6 @@
 [api-spec-enforcement-docs]:        ../../../api-specification-enforcement/overview.md
 [inline-docs]:                      ../../inline/overview.md
 [link-wallarm-health-check]:        ../../../admin-en/uat-checklist-en.md
+[ssl-certificates]:                 ../../../admin-en/ssl-certificates.md
 
 --8<-- "latest/installation/inline/compute-instances/gcp/machine-image.md"
