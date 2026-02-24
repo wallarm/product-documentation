@@ -10,10 +10,18 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
-### 0.23.0 (2026-02-23)
+### 0.23.0 (2026-02-24)
 
-* Fixed an issue where infinite circular references were incorrectly detected during API specification processing
-* Fixed an issue where the installer script failed with the "Incorrect config content for tcp-capture-v2 mode" error when the YAML mode value was quoted
+* Added support for circular references in OpenAPI specifications uploaded for [API Specification Enforcement](../../api-specification-enforcement/overview.md)
+* Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
+* Increased the frequency of session updates sent to the Wallarm Cloud. Sessions now appear in the UI faster, closer to real time
+* Improved memory usage monitoring and prevention of resource exhaustion
+* Added API token masking in Node logs to prevent sensitive data exposure
+* Fixed the [CVE-2026-21441](https://scout.docker.com/vulnerabilities/id/CVE-2026-21441) vulnerability
+* Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
+* Fixed an issue where malformed fuzzing traffic could cause NGINX crashes, as observed in logs
+* Fixed an issue where the installer script failed with the "Incorrect config content for tcp-capture-v2 mode" error when the [`mode`](../../installation/native-node/all-in-one-conf.md#mode-required) parameter value was quoted
+* Minor bug fixes and performance improvements
 
 ### 0.22.1 (2026-02-03)
 
@@ -173,11 +181,19 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
-### 0.23.0 (2026-02-23)
+### 0.23.0 (2026-02-24)
 
-* Improved the Helm chart for high-availability deployments by adding pod disruption budgets and tuning resource settings
-* Fixed an issue where infinite circular references were incorrectly detected during API specification processing
-* Fixed an issue where the installer script failed with the "Incorrect config content for tcp-capture-v2 mode" error when the YAML mode value was quoted
+* Improved the Helm chart for high-availability deployments by adding pod disruption budgets, tuning resource settings, and introducing the [`topologySpreadConstraints`](https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/) and [`startupProbe`](https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/#startup-probe) values
+* Added support for circular references in OpenAPI specifications uploaded for [API Specification Enforcement](../../api-specification-enforcement/overview.md)
+* Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
+* Increased the frequency of session updates sent to the Wallarm Cloud. Sessions now appear in the UI faster, closer to real time
+* Improved memory usage monitoring and prevention of resource exhaustion
+* Added API token masking in Node logs to prevent sensitive data exposure
+* Fixed the [CVE-2026-21441](https://scout.docker.com/vulnerabilities/id/CVE-2026-21441) vulnerability
+* Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
+* Fixed an issue where malformed fuzzing traffic could cause NGINX crashes, as observed in logs
+* Fixed an issue where the installer script failed with the "Incorrect config content for tcp-capture-v2 mode" error when the [`mode`](../../installation/native-node/all-in-one-conf.md#mode-required) parameter value was quoted
+* Minor bug fixes and performance improvements
 
 ### 0.22.1 (2026-02-03)
 
@@ -351,10 +367,18 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 [How to upgrade](docker-image.md)
 
-### 0.23.0 (2026-02-23)
+### 0.23.0 (2026-02-24)
 
-* Fixed an issue where infinite circular references were incorrectly detected during API specification processing
-* Fixed an issue where the installer script failed with the "Incorrect config content for tcp-capture-v2 mode" error when the YAML mode value was quoted
+* Added support for circular references in OpenAPI specifications uploaded for [API Specification Enforcement](../../api-specification-enforcement/overview.md)
+* Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
+* Increased the frequency of session updates sent to the Wallarm Cloud. Sessions now appear in the UI faster, closer to real time
+* Improved memory usage monitoring and prevention of resource exhaustion
+* Added API token masking in Node logs to prevent sensitive data exposure
+* Fixed the [CVE-2026-21441](https://scout.docker.com/vulnerabilities/id/CVE-2026-21441) vulnerability
+* Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
+* Fixed an issue where malformed fuzzing traffic could cause NGINX crashes, as observed in logs
+* Fixed an issue where the installer script failed with the "Incorrect config content for tcp-capture-v2 mode" error when the [`mode`](../../installation/native-node/all-in-one-conf.md#mode-required) parameter value was quoted
+* Minor bug fixes and performance improvements
 
 ### 0.22.1 (2026-02-03)
 
