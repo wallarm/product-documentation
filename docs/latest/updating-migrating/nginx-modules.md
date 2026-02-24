@@ -89,22 +89,30 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
 1. Upgrade filtering node:
 
     === "API token"
-        ```bash
-        # If using the x86_64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.1.x86_64-glibc.sh filtering
+        If using the x86_64 version:
 
-        # If using the ARM64 version:
+        ```bash
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.1.x86_64-glibc.sh filtering
+        ```
+
+        If using the ARM64 version:
+
+        ```bash
         sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.1.aarch64-glibc.sh filtering
         ```        
 
         The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
 
     === "Node token"
-        ```bash
-        # If using the x86_64 version:
-        sudo sh wallarm-6.10.1.x86_64-glibc.sh filtering
+        If using the x86_64 version:
 
-        # If using the ARM64 version:
+        ```bash
+        sudo sh wallarm-6.10.1.x86_64-glibc.sh filtering
+        ```
+
+        If using the ARM64 version:
+
+        ```bash
         sudo sh wallarm-6.10.1.aarch64-glibc.sh filtering
         ```
 

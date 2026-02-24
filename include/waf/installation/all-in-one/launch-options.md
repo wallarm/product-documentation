@@ -33,19 +33,27 @@ The `--batch` option triggers **batch (non-interactive)** mode, where the script
 Below are examples of commands to run the script in batch mode for node installation, assuming the script has already been [downloaded][download-aio-step]:
 
 === "US Cloud"
-    ```bash
-    # If using the x86_64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.1.x86_64-glibc.sh -- --batch -t <TOKEN> -c US
+    If using the x86_64 version:
 
-    # If using the ARM64 version:
+    ```bash
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.1.x86_64-glibc.sh -- --batch -t <TOKEN> -c US
+    ```
+
+    If using the ARM64 version:
+
+    ```bash
     sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.1.aarch64-glibc.sh -- --batch -t <TOKEN> -c US
     ```
 === "EU Cloud"
-    ```bash
-    # If using the x86_64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.1.x86_64-glibc.sh -- --batch -t <TOKEN>
+    If using the x86_64 version:
 
-    # If using the ARM64 version:
+    ```bash
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.1.x86_64-glibc.sh -- --batch -t <TOKEN>
+    ```
+
+    If using the ARM64 version:
+
+    ```bash
     sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.1.aarch64-glibc.sh -- --batch -t <TOKEN>
     ```
 
@@ -59,25 +67,33 @@ When preparing your own machine image using the all-in-one installer for cloud i
 This functionality is supported starting from version 4.10.0 of the all-in-one installer in batch mode. The commands below enable the sequential execution of the outlined steps:
 
 === "US Cloud"
+    If using the x86_64 version:
+
     ```bash
-    # If using the x86_64 version:
     curl -O https://meganode.wallarm.com/6.10/wallarm-6.10.1.x86_64-glibc.sh
     sudo sh wallarm-6.10.1.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
+    ```
 
-    # If using the ARM64 version:
+    If using the ARM64 version:
+
+    ```bash
     curl -O https://meganode.wallarm.com/6.10/wallarm-6.10.1.aarch64-glibc.sh
     sudo sh wallarm-6.10.1.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
     ```
 === "EU Cloud"
-    ```
-    # If using the x86_64 version:
+    If using the x86_64 version:
+
+    ```bash
     curl -O https://meganode.wallarm.com/6.10/wallarm-6.10.1.x86_64-glibc.sh
     sudo sh wallarm-6.10.1.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
+    ```
 
-    # If using the ARM64 version:
+    If using the ARM64 version:
+
+    ```bash
     curl -O https://meganode.wallarm.com/6.10/wallarm-6.10.1.aarch64-glibc.sh
     sudo sh wallarm-6.10.1.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
