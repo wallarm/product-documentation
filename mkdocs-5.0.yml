@@ -330,6 +330,7 @@ nav:
       - Real Client IP: admin-en/using-proxy-or-balancer-en.md
       - End User Problems: faq/common-errors-after-installation.md
       - Wallarm Ingress Controller: faq/ingress-installation.md
+      - Tarantool Troubleshooting: faq/tarantool.md
       - Wallarm Cloud is Down: faq/wallarm-cloud-down.md
       - OWASP Dashboard Alerts: faq/node-issues-on-owasp-dashboards.md
       - NGINX Error Log: troubleshooting/wallarm-issues-in-nginx-error-log.md

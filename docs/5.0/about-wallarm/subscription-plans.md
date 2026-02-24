@@ -138,6 +138,7 @@ The Security Edge Free Tier account allows:
     * Limited to 3 users per company account
     * Telemetry portal of Security Edge
     * Multi-cloud Security Edge deployment
+* Utilize the abilities of [Schema-Based Security Testing](../vulnerability-detection/schema-based-testing/overview.md)
 
 If a Free Tier account exceeds 100% of the monthly quota, your access to the Wallarm Console is disabled, along with all integrations. When reaching 200%, protection on your Wallarm nodes is disabled. These restrictions will be in effect until the first day of the next month.
 
