@@ -60,22 +60,30 @@ To install node, you will need a Wallarm token of the [appropriate type][wallarm
 To install postanalytics separately with all-in-one installer, use:
 
 === "API token"
-    ```bash
-    # If using the x86_64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.1.x86_64-glibc.sh postanalytics
+    If using the x86_64 version:
 
-    # If using the ARM64 version:
+    ```bash
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.1.x86_64-glibc.sh postanalytics
+    ```
+
+    If using the ARM64 version:
+
+    ```bash
     sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.1.aarch64-glibc.sh postanalytics
     ```        
 
     The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
 
 === "Node token"
-    ```bash
-    # If using the x86_64 version:
-    sudo sh wallarm-6.10.1.x86_64-glibc.sh postanalytics
+    If using the x86_64 version:
 
-    # If using the ARM64 version:
+    ```bash
+    sudo sh wallarm-6.10.1.x86_64-glibc.sh postanalytics
+    ```
+
+    If using the ARM64 version:
+
+    ```bash
     sudo sh wallarm-6.10.1.aarch64-glibc.sh postanalytics
     ```
 
@@ -157,22 +165,30 @@ Once the postanalytics module is installed on the separate server:
 1. When launching the installation script for the NGINX-Wallarm module on a separate server, include the `filtering` option, for example:
 
     === "API token"
-        ```bash
-        # If using the x86_64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.1.x86_64-glibc.sh filtering
+        If using the x86_64 version:
 
-        # If using the ARM64 version:
+        ```bash
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.1.x86_64-glibc.sh filtering
+        ```
+
+        If using the ARM64 version:
+
+        ```bash
         sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.1.aarch64-glibc.sh filtering
         ```        
 
         The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
 
     === "Node token"
-        ```bash
-        # If using the x86_64 version:
-        sudo sh wallarm-6.10.1.x86_64-glibc.sh filtering
+        If using the x86_64 version:
 
-        # If using the ARM64 version:
+        ```bash
+        sudo sh wallarm-6.10.1.x86_64-glibc.sh filtering
+        ```
+
+        If using the ARM64 version:
+
+        ```bash
         sudo sh wallarm-6.10.1.aarch64-glibc.sh filtering
         ```
 

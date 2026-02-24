@@ -1,22 +1,30 @@
 1. Run downloaded script:
 
     === "API token"
-        ```bash
-        # If using the x86_64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.1.x86_64-glibc.sh
+        If using the x86_64 version:
 
-        # If using the ARM64 version:
+        ```bash
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.1.x86_64-glibc.sh
+        ```
+
+        If using the ARM64 version:
+
+        ```bash
         sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.1.aarch64-glibc.sh
         ```        
 
         The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
 
     === "Node token"
-        ```bash
-        # If using the x86_64 version:
-        sudo sh wallarm-6.10.1.x86_64-glibc.sh
+        If using the x86_64 version:
 
-        # If using the ARM64 version:
+        ```bash
+        sudo sh wallarm-6.10.1.x86_64-glibc.sh
+        ```
+
+        If using the ARM64 version:
+
+        ```bash
         sudo sh wallarm-6.10.1.aarch64-glibc.sh
         ```
 
