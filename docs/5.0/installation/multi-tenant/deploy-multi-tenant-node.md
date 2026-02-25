@@ -56,7 +56,6 @@ Multi-tenant node:
 ## Deployment requirements
 
 * [Configured tenant accounts](configure-accounts.md)
-* Execution of further commands by the user with the **Global administrator** role added under the [technical tenant account](overview.md#tenant-accounts)
 * [Supported platform for the filtering node installation](../../installation/supported-deployment-options.md)
 
 ## Recommendations for a multi-tenant node deployment
@@ -65,6 +64,9 @@ Multi-tenant node:
 * Configure the filtering node via the tenant's NGINX configuration file.
 
 ## Procedure for a multi-tenant node deployment
+
+!!! important "Required permissions"
+    Execute further commands as a **Global administrator** in the [technical tenant account](overview.md#tenant-accounts).
 
 1. In Wallarm Console → **Nodes**, click **Create node** and select **Wallarm node**.
 
