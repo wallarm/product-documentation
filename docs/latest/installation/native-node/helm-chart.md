@@ -255,7 +255,7 @@ helm repo update wallarm
             !!! note "DNS and certificate generation"
                 When you deploy the Wallarm service ([step 4](#4-deploy-the-wallarm-service)), `cert-manager` will try to issue the certificate immediately. Make sure you explicitly set `config.connector.route_config.routes[].host` to `<WALLARM_NODE_FQDN>` in `values.yaml`. Otherwise, certificate generation may fail because the default host can resolve to the internal service name (`native-processing`).
                 
-                After deployment, complete step 5 so that the FQDN resolves to the Node. `cert-manager` will then retry and issue the certificate.
+                After deployment, complete [step 5](#5-configure-dns-access-to-the-wallarm-node) so that the FQDN resolves to the Node. `cert-manager` will then retry and issue the certificate.
 
         === "existingSecret"
             You can pull SSL/TLS certificate from an existing Kubernetes secrets in the same namespace.
