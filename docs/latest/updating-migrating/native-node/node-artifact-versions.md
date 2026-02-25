@@ -19,7 +19,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 * Added API token masking in Node logs to prevent sensitive data exposure
 * Fixed the [CVE-2026-21441](https://scout.docker.com/vulnerabilities/id/CVE-2026-21441) vulnerability
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
-* Fixed an issue where malformed fuzzing traffic could cause NGINX crashes, as observed in logs
 * Fixed an issue where the installer script failed with the "Incorrect config content for tcp-capture-v2 mode" error when the [`mode`](../../installation/native-node/all-in-one-conf.md#mode-required) parameter value was quoted
 * Minor bug fixes and performance improvements
 
@@ -191,8 +190,6 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 * Added API token masking in Node logs to prevent sensitive data exposure
 * Fixed the [CVE-2026-21441](https://scout.docker.com/vulnerabilities/id/CVE-2026-21441) vulnerability
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
-* Fixed an issue where malformed fuzzing traffic could cause NGINX crashes, as observed in logs
-* Fixed an issue where the installer script failed with the "Incorrect config content for tcp-capture-v2 mode" error when the [`mode`](../../installation/native-node/all-in-one-conf.md#mode-required) parameter value was quoted
 * Minor bug fixes and performance improvements
 
 ### 0.22.1 (2026-02-03)
@@ -376,8 +373,6 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 * Added API token masking in Node logs to prevent sensitive data exposure
 * Fixed the [CVE-2026-21441](https://scout.docker.com/vulnerabilities/id/CVE-2026-21441) vulnerability
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
-* Fixed an issue where malformed fuzzing traffic could cause NGINX crashes, as observed in logs
-* Fixed an issue where the installer script failed with the "Incorrect config content for tcp-capture-v2 mode" error when the [`mode`](../../installation/native-node/all-in-one-conf.md#mode-required) parameter value was quoted
 * Minor bug fixes and performance improvements
 
 ### 0.22.1 (2026-02-03)
