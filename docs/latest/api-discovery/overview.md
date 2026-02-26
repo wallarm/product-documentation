@@ -43,6 +43,7 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 * See what data ([REST](exploring.md#rest-endpoint-details), [GraphQL](exploring.md#graphql-operation-details), [SOAP](exploring.md#soap-operation-details)) is going into and out of the APIs.
 * Filter APIs that consume and carry [sensitive data](#sensitive-data-detection).
 * Understand which endpoints are [most likely](risk-score.md) to be an attack target.
+* Find endpoints that have [security issues](../api-attack-surface/security-issues.md) (vulnerabilities) and navigate from endpoint details to full descriptions and mitigation methods.
 * [Track changes](track-changes.md) in API that took place within the selected period of time.
 * Provide your developers with [access](../user-guides/settings/users.md#user-roles) to the built API inventory reviewing and downloading.
 <!--* Get a list of the threats that occurred over the past 7 days per any given API endpoint.-->
