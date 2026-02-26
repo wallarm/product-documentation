@@ -290,6 +290,7 @@ nav:
       - Block Page Configuration: admin-en/configuration-guides/configure-block-page-and-code.md
       - Handling Invalid Headers: admin-en/configuration-guides/handling-invalid-headers.md
       - JA3 Fingerprinting: admin-en/enabling-ja3.md
+      - SSL/TLS Certificates: admin-en/ssl-certificates.md
       - Terraform Provider: admin-en/managing/terraform-provider.md
 
     - Monitoring & Metrics:
