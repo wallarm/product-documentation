@@ -1,6 +1,6 @@
 [rule-creation-options]:            ../user-guides/events/check-attack.md#attack-analysis_1
 [request-processing]:               ../user-guides/rules/request-processing.md
-[api-discovery-enable-link]:        ../api-discovery/setup.md#enable
+[api-discovery-enable-link]:        ../api-discovery/setup.md#enabled-by-default
 [ip-lists-link]:                    ../user-guides/ip-lists/overview.md
 [ip-sessions-link]:                 ../api-sessions/blocking.md#blocking-sessions
 [parsing-requests-link]:            ../user-guides/rules/request-processing.md  
