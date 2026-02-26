@@ -1,0 +1,122 @@
+name: Docs Check (Glossary & Style Guide)
+
+# Two triggers:
+#   1. PR comment "/check-docs"  → manual run, posts results as PR comment
+#   2. merge_group               → automatic run when PR enters the merge queue
+
+on:
+  issue_comment:
+    types: [created]
+  merge_group:
+
+jobs:
+  check:
+    name: Check docs against Confluence rules
+
+    # For issue_comment: only run when the comment is on a PR and contains /check-docs
+    # For merge_group: always run
+    if: |
+      github.event_name == 'merge_group' ||
+      (github.event_name == 'issue_comment' &&
+       github.event.issue.pull_request != null &&
+       contains(github.event.comment.body, '/check-docs'))
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: write   # post PR comment
+      issues: write          # add reaction to the triggering comment
+
+    steps:
+      # ------------------------------------------------------------------ #
+      # Acknowledge the comment immediately so the team knows it's running
+      # ------------------------------------------------------------------ #
+      - name: React to comment (eyes = check in progress)
+        if: github.event_name == 'issue_comment'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api \
+            repos/${{ github.repository }}/issues/comments/${{ github.event.comment.id }}/reactions \
+            -f content='eyes'
+
+      # ------------------------------------------------------------------ #
+      # Checkout
+      # issue_comment: check out the PR head branch
+      # merge_group:   default checkout (merge group head SHA)
+      # ------------------------------------------------------------------ #
+      - name: Checkout — PR head (comment trigger)
+        if: github.event_name == 'issue_comment'
+        uses: actions/checkout@v4
+        with:
+          ref: refs/pull/${{ github.event.issue.number }}/head
+          fetch-depth: 0
+
+      - name: Checkout — merge group head
+        if: github.event_name == 'merge_group'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.merge_group.head_sha }}
+          fetch-depth: 0
+
+      # ------------------------------------------------------------------ #
+      # Python setup
+      # ------------------------------------------------------------------ #
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scripts/requirements-checker.txt
+
+      - name: Install checker dependencies
+        run: pip install -r scripts/requirements-checker.txt
+
+      # ------------------------------------------------------------------ #
+      # Build the file list — only files changed in this PR
+      # ------------------------------------------------------------------ #
+      - name: Build file list — comment trigger (PR diff)
+        if: github.event_name == 'issue_comment'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BASE=$(gh api repos/${{ github.repository }}/pulls/${{ github.event.issue.number }} \
+            --jq '.base.ref')
+          git fetch origin "$BASE"
+          git diff --name-only "origin/${BASE}...HEAD" \
+            -- 'docs/latest/**' 'include/**' \
+            | grep '\.md$' > /tmp/files.txt || true
+          echo "Files to check:"
+          cat /tmp/files.txt
+          echo "FILES_FROM=/tmp/files.txt"                      >> "$GITHUB_ENV"
+          echo "PR_NUMBER=${{ github.event.issue.number }}"     >> "$GITHUB_ENV"
+
+      - name: Build file list — merge queue (PR diff)
+        if: github.event_name == 'merge_group'
+        run: |
+          git diff --name-only \
+            "${{ github.event.merge_group.base_sha }}...${{ github.event.merge_group.head_sha }}" \
+            -- 'docs/latest/**' 'include/**' \
+            | grep '\.md$' > /tmp/files.txt || true
+          echo "Files to check:"
+          cat /tmp/files.txt
+          echo "FILES_FROM=/tmp/files.txt" >> "$GITHUB_ENV"
+
+      # ------------------------------------------------------------------ #
+      # Run the checker (Claude Haiku + Confluence)
+      # ------------------------------------------------------------------ #
+      - name: Run documentation check
+        env:
+          ANTHROPIC_API_KEY:              ${{ secrets.ANTHROPIC_API_KEY }}
+          CONFLUENCE_BASE_URL:            ${{ secrets.CONFLUENCE_BASE_URL }}
+          CONFLUENCE_EMAIL:               ${{ secrets.CONFLUENCE_EMAIL }}
+          CONFLUENCE_API_TOKEN:           ${{ secrets.CONFLUENCE_API_TOKEN }}
+          CONFLUENCE_GLOSSARY_PAGE_ID:    ${{ secrets.CONFLUENCE_GLOSSARY_PAGE_ID }}
+          CONFLUENCE_STYLE_GUIDE_PAGE_ID: ${{ secrets.CONFLUENCE_STYLE_GUIDE_PAGE_ID }}
+          GITHUB_TOKEN:                   ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY:              ${{ github.repository }}
+          GITHUB_EVENT_NAME:              ${{ github.event_name }}
+          PR_NUMBER:                      ${{ env.PR_NUMBER }}
+          FILES_FROM:                     ${{ env.FILES_FROM }}
+        run: python scripts/check_docs.py
