@@ -1,184 +1,109 @@
-# Shadow, Orphan, Zombie API <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Rogue API Detection (Shadow & Zombie API) <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-!!! warning "Feature availability"
-    In the latest versions of API Discovery, this feature is under reconstruction and may be temporarily unavailable.
+The [API Discovery](overview.md) module can detect **rogue APIs** by comparing live traffic against your uploaded OpenAPI specifications. This goes beyond inventory and provides security insights: you see which endpoints are undocumented or deprecated but still in use.
 
-The [API Discovery](overview.md) module automatically identifies shadow, orphan and zombie APIs by comparing your uploaded specification to the live traffic.
+**What this gives you:**
 
-|Rogue API type | What is it? |
+* **Shadow API detection** — Find undocumented endpoints (in traffic but not in any of your specs).
+* **Zombie API detection** — Find deprecated endpoints that still handle traffic (removed from spec but still in use).
+* **Cumulative baseline** — Traffic is compared against the **sum of all** uploaded specifications that you have enabled for rogue API detection for a given host or application. You do not need to choose a single spec.
+
+| Rogue API type | What is it? |
 |--|--|
-| [Shadow API](#shadow-api) | An undocumented API that exists within an organization's infrastructure without proper authorization or oversight.|
-| [Orphan API](#orphan-api) | A documented API that does not receive traffic. |
-| [Zombie API](#zombie-api) | Deprecated APIs that everyone assumes have been disabled but actually they are still in use. |
+| [Shadow API](#shadow-api) | An undocumented API that exists in your infrastructure without being described in your specifications. |
+| [Zombie API](#zombie-api) | A deprecated API that is no longer in your current specification but still receives traffic. |
+
+!!! note "Orphan API (out of scope for current release)"
+    *Orphan API* is a documented API that does not receive traffic. Orphan detection is not part of the current release and may be reintroduced in a later version.
 
 ![API Discovery - highlighting and filtering rogue API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
+
+## How it works
+
+* You upload one or more OpenAPI specifications and enable **Rogue API detection** for each, selecting the **applications** and **hosts** they apply to.
+* Wallarm builds a **cumulative baseline** from all such specs for each host/application: an endpoint is treated as **shadow** only if it is absent in **all** specs that are associated with that host or application.
+* Traffic is compared against this baseline. Endpoints that appear in traffic but not in the baseline are **shadow**; endpoints that were in a previous version of a spec but not in the current version and still appear in traffic are **zombie**.
+
+Because the OpenAPI **servers** section is often omitted, it is recommended to specify **hosts** and **applications** explicitly when enabling rogue API detection. That way it is clear which traffic is compared to which specifications. If you do not set them, the same endpoint could be treated as rogue or not depending on which specification is considered.
 
 ## Setup
 
-To start finding the rogue APIs, you need to upload specification, select it to be used for rogue API detection and set detection parameters.
-
-As both specification and API itself changes in time, consider the following:
-
-* Comparison starts after first setup
-* Comparison re-starts if any [changes in API](track-changes.md) are found
-* Comparison re-starts if you save new settings for it
-* Comparison re-starts if you pick new file (by name or full URI)
-* Comparison re-starts if file uploaded from URI has changes and the **Regularly update the specification** (every hour) option is selected
-
-    As URI can be unavailable or updated specification file may not correspond to the API specification syntax, there can be an error during automatic update. To get notifications on such errors, in your configured [**Integrations**](../user-guides/settings/integrations/integrations-intro.md), select the **System related** events—notifications about specification upload errors is included into this category.
-
-* You can re‑start comparison at any moment via specification menu → **Restart comparison**.
-
-Also, you can download the previously uploaded specification via **API Specifications** → specification details window → **Download specification**.
-
-### Step 1: Upload specification
-
-You can upload only specifications in the OpenAPI 3.0, 3.1 (JSON or YAML formats):
-
-1. In the **API Specifications** section in [US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/), click **Upload specification**.
+1. Go to **API Security** → **API Specifications** ([US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/)).
+2. Click **Upload specification** and upload an OpenAPI 3.0 or 3.1 file (JSON or YAML).
 
     !!! tip ""
-        OAS 3.1 requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.6.1 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
+        OAS 3.1 requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.6.1 or higher and is not yet supported by [Native Node](../installation/nginx-native-node-internals.md#native-node).
 
-1. Set specification upload parameters and start uploading.
-
-    ![Upload specification](../images/api-specification-enforcement/specificaton-upload.png)
-
-Specification file is checked for correspondence to the API specification syntax, and if not valid, is not uploaded. Note that you will not be able to start configuring rogue API detection, until the specification file is successfully uploaded.
-
-If you select to upload specification from URI and select the **Regularly update the specification** (every hour) option, there may be errors during regular update: URI can be unavailable or updated specification file may not correspond to the API specification syntax. To get notifications on such errors, in your configured [**Integrations**](../user-guides/settings/integrations/integrations-intro.md), select the **System related** events—notifications about specification upload errors is included into this category.
-
-### Step 2: Set rogue API detection parameters
-
-1. Click the **Rogue APIs detection** tab.
+3. Open the uploaded specification and go to the **Rogue APIs detection** tab.
 
     !!! info "API specification enforcement"
-        Besides rogue API detection, specifications may be used for [API specification enforcement](../api-specification-enforcement/overview.md).
+        Specifications can also be used for [API specification enforcement](../api-specification-enforcement/overview.md).
 
-1. Select **Use for rogue APIs detection**.
-1. Select **Applications** and **Hosts** - only endpoints related to the selected hosts will be searched for rogue APIs.
+4. Turn on **Rogue API detection**, then select the **Applications** and **Hosts** for which this spec should be used. Only endpoints for the selected hosts (and applications) will be checked for rogue APIs against this spec.
+5. Save. Allow about 5 minutes for comparison to run.
 
-    ![API Discovery - API Specifications - uploading API specification to find rogue APIs](../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
+![API Discovery - API Specifications - uploading API specification to find rogue APIs](../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
+
+You can upload multiple specifications. Each one with **Rogue API detection** enabled for a given host or application contributes to the **cumulative baseline** for that host/application. An endpoint is classified as shadow only if it is missing from every spec that applies to that host/application.
+
+### When comparison runs
+
+* Comparison starts after you complete the setup above.
+* It re-runs if you change and save rogue API detection settings, upload a new specification file, or use **Restart comparison** from the specification menu.
+* If the specification is loaded from a URI and **Regularly update the specification** (every hour) is enabled, comparison can also re-run when the file at the URI is updated. To get notified about specification upload or update errors, in [**Integrations**](../user-guides/settings/integrations/integrations-intro.md) enable **System related** events.
+
+You can download the current specification from **API Specifications** → open the spec → **Download specification**.
 
 ### Disabling
 
-Rogue API detection is based on uploaded specification or several specifications each having the **Use for rogue APIs detection** option selected. Consider that unchecking this option for some specification or deleting this specification will result in:
+Rogue API detection uses every uploaded specification that has **Use for rogue APIs detection** (Rogue API detection) enabled. If you disable this option for a specification or delete the specification:
 
-* Stopping of rogue API detection based on this specification and 
-* **Removing all data** about rogue API found based on this specification previously
+* Rogue API detection will no longer use that specification.
+* All previously detected rogue API data that depended on that specification will be removed.
 
-## Viewing found rogue APIs
+## Viewing rogue APIs
 
-As comparison is finished, the number of rogue (shadow, orphan and zombie) APIs will be displayed for each specification in the list of **API Specifications**.
+After comparison has run (about 5 minutes after setup or after a restart):
 
-![API Specifications section](../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
-
-Also rogue APIs will be displayed in the **API Discovery** section. Use the **Rogue APIs** filter to see only shadow, orphan and/or zombie APIs related to the selected comparisons and filter out the remaining endpoints.
+1. Go to **API Security** → **API Discovery** ([US](https://us1.my.wallarm.com/api-discovery) or [EU](https://my.wallarm.com/api-discovery)).
+2. Use the **Rogue APIs** filter to show only **Shadow** and/or **Zombie** endpoints.
 
 ![API Discovery - highlighting and filtering rogue API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
-In the details of such endpoints, in the **Specification conflicts** section, the specification(s) with the help of which shadow/zombie/orphan was detected will be indicated.
-
-Shadow APIs are also displayed among the riskiest endpoints at the [API Discovery Dashboard](dashboard.md).
+Rogue API counts are also shown in **API Specifications** for each spec. Full UI integration of rogue API status into risk factors and endpoint details is planned for a later release. Until then, use the **Rogue APIs** filter in API Discovery as the main way to view shadow and zombie endpoints.
 
 ## Specification versions and zombie APIs
 
-Unlike shadow and orphan APIs, [zombie APIs](#zombie-api) require comparison of different specification versions:
+[Zombie APIs](#zombie-api) are endpoints that were in a **previous** version of your specification (and are now removed or deprecated) but still appear in live traffic. To detect them, Wallarm needs at least two specification versions:
 
-* If during [setup](#setup) the **Regularly update the specification** option was selected, just put new version to the URL where you host your specification - it will be processed by an hourly schedule or immediately if you select **Restart comparison** from the specification menu.
-* If the **Regularly update the specification** option was not selected:
+* If you uploaded the spec from a URI and chose **Regularly update the specification**, publish a new version at that URI. It will be picked up on the next update or when you use **Restart comparison** from the specification menu.
+* If you upload from your machine, open the specification, choose a new file (with updated content or a different name), and save. That is treated as the next version.
 
-    * If uploading from URL and having a new content there, just click **Restart comparison**
-    * If uploading from the local machine, open the specification dialog, select new file and save changes. File must have a different name.
+Wallarm compares the current version with the previous one and marks endpoints that are in the old version, not in the new version, but still seen in traffic as zombie APIs.
 
-All listed will consider the new content to be a next version of the specification. The versions will be compared and zombie API will be displayed.
+## Coverage and using API Discovery–generated specs
 
-## Working with multiple specifications
+* **Coverage:** Rogue API detection runs only for the **hosts and applications** you selected when enabling the feature for each specification. For example: one host with 5 specs describing 50 endpoints, while API Discovery sees 100 endpoints on that host — the 50 endpoints not covered by any spec will be classified as **shadow**. Endpoints on hosts/applications that have no specs with rogue API detection enabled are not classified as shadow or zombie.
+* **Specs produced by API Discovery:** You can use specifications [downloaded from API Discovery](exploring.md) for rogue API detection, but use them with care. API Discovery does not process 100% of traffic, so such a spec may be incomplete (e.g. rarely used parameters or endpoints may be missing). A clear in-product flow for “use APID-generated spec for rogue detection” is planned for a later release; for now, manually maintained or externally authored specs are better for testing and production.
 
-In case you use several separate specifications to describe different aspects of your API, you can upload several or all of them to Wallarm.
+## Notifications
 
-In the **API Discovery** section, use the **Compare to...** filter to select specification comparisons - only for them the rogue APIs will be highlighted by the special marks in the **Issues** column.
-
-![API Discovery - highlighting and filtering rogue API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
-
-## Getting notified
-
-To get immediate notifications about newly discovered rogue APIs to your [SIEM, SOAR, log management system or messenger](../user-guides/settings/integrations/integrations-intro.md), in the **Triggers** section of Wallarm Console, configure one or more triggers with the **Rogue API detected** condition.
-
-You can get messages about newly discovered shadow, orphan or zombie APIs or about all of them. You can also narrow notifications by application or host that you want to monitor and by the specification used for their detection.
-
-**How notifications come**
-    
-* Each new found rogue API causes 1 notification message
-* If you already got notification about some rogue API, it is not be sent again, no matter how many times the comparison is run
-* If you update settings of the uploaded specification, notifications about all **orphan** APIs are re-sent (this does not apply to shadow or zombie APIs)
-
-**Trigger example: notification about newly discovered shadow endpoints in Slack**
-
-In this example, if API Discovery finds new endpoints that are not listed in the `Specification-01` (shadow APIs), the notification about this is sent to your configured Slack channel.
-
-![Rogue API detected trigger](../images/user-guides/triggers/trigger-example-rogue-api.png)
-
-**To test the trigger:**
-
-1. Go to Wallarm Console → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/) cloud, and configure [integration with Slack](../user-guides/settings/integrations/slack.md).
-1. In the **API Discovery** section, filter endpoints by API host of your choice, then download results as a specification and name it `Specification-01`.
-1. In the **API Specifications** section, upload `Specification-01` for comparison.
-1. In the **Triggers** section, create a trigger as shown above.
-1. Delete some endpoint from your local `Specification-01` file.
-1. In the **API Specifications**, re-upload your `Specification-01` for comparison.
-1. Check that your endpoint obtained the shadow API mark in the **Issues** column.
-1. Check messages in your Slack channel like:
-
-    ```
-    [wallarm] A new shadow endpoint has been discovered in your API
-
-    Notification type: api_comparison_result
-
-    The new GET example.com/users shadow endpoint has been discovered in your API.
-
-        Client: Client-01
-        Cloud: US
-
-        Details:
-
-          application: Application-01
-          api_host: example.com
-          endpoint_path: /users
-          http_method: GET
-          type_of_endpoint: shadow
-          link: https://my.wallarm.com/api-discovery?instance=1802&method=GET&q=example.com%2Fusers
-          specification_name: Specification-01
-    ```
+Trigger-based notifications for **Rogue API detected** in the **Triggers** section were built for the previous API Discovery. They are **not compatible** with the current (new) API Discovery. Support for notifications in the new API Discovery is planned; until then, use the **Rogue APIs** filter in API Discovery to review newly found shadow and zombie endpoints.
 
 ## Rogue API types and risks
 
 ### Shadow API
 
-**Shadow API** refers to an undocumented API that exists within an organization's infrastructure without proper authorization or oversight.
+**Shadow API** is an endpoint that exists in your live traffic but is **not described in any** of the specifications you use for rogue API detection for that host or application.
 
-The shadow APIs put businesses at risk, as attackers can exploit them to gain access to critical systems, steal valuable data, or disrupt operations, further compounded by the fact that APIs often act as gatekeepers to critical data and that a range of OWASP API vulnerabilities can be exploited to bypass API security.
-
-In terms of your uploaded API specifications, shadow API is an endpoint presented in actual traffic (detected by API Discovery) and not presented in your specification.
-
-As you find shadow APIs with Wallarm, you can update your specifications to include missing endpoints and further perform monitoring and security activities towards your API inventory in its full view.
-
-### Orphan API
-
-**Orphan API** refers to a documented API that does not receive traffic.
-
-The presence of orphan APIs can be a reason for a verification process which involves:
-
-* Inspecting the Wallarm traffic checking settings to understand whether the traffic is truly not being received, or if it is simply not visible to the Wallarm nodes because they were deployed in such a way that not all traffic passes through them (this may be incorrect traffic routing, or another Web Gateway is presented that was forgotten to put the node on, and so on).
-* Determining whether certain applications should not receive any traffic at these specific endpoints or it is some kind of misconfiguration.
-* Making decision on obsolete endpoints: used in previous application versions and not used in the current - should they be deleted from the specification to reduce security check effort.
+Shadow APIs increase risk because they are outside normal oversight and can be abused to access systems or data. In Wallarm, once you see shadow endpoints, you can update your specifications and run monitoring and security activities on a complete inventory.
 
 ### Zombie API
 
-**Zombie API** refers to deprecated APIs that everyone assumes have been disabled but actually they are still in use.
+**Zombie API** is an endpoint that was **removed or deprecated** in your current specification (i.e. you intended to retire it) but **still receives traffic**.
 
-Zombie API risks are similar to the rest of undocumented (shadow) API but may be worse as the reason for disabling is often the insecure designs that are easier to crack.
+Zombie APIs carry similar or greater risk than shadow APIs, often because they were deprecated due to insecure design. Finding them in Wallarm is a signal to verify that such endpoints are actually disabled or properly secured in your applications.
 
-In terms of your uploaded API specifications, zombie API is an endpoint presented in the previous version of your specification, not presented in the current version (that is, there was an intention of deletion of this endpoint) but still presented in actual traffic (detected by API Discovery).
+### Orphan API (not in current release)
 
-Finding zombie API with Wallarm may be the reason to re‑check API configuration of you applications to actually disable such endpoints.
+**Orphan API** is an endpoint that **is documented** in your specification but **does not receive traffic**. Orphan detection is out of scope for the current release and may be reintroduced in a future version.
