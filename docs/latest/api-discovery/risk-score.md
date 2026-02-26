@@ -8,7 +8,7 @@ The risk score is made up of various factors, each having its own weight when ca
 
 | Factor | Description | Default weight |
 | --- | --- | --- |
-| Active vulnerabilities | [Active vulnerabilities](../about-wallarm/detecting-vulnerabilities.md)  may result in unauthorized data access or corruption. | 9 |
+| Active vulnerabilities (security issues) | [Active vulnerabilities](../about-wallarm/detecting-vulnerabilities.md)  may result in unauthorized data access or corruption. | 9 |
 | Parameters with sensitive data | Rather than directly attacking APIs, attackers can steal [sensitive data](overview.md#sensitive-data-detection) and use it to seamlessly reach your resources. | 8 |
 | Number of query and body parameters | A large number of parameters increases the number of attack directions. | 6 |
 | Accepts XML / JSON objects<sup>*</sup> | XML or JSON objects passed in requests may be used by attackers to transfer malicious XML external entities and injections to the server. | 6 |
@@ -33,3 +33,5 @@ Risk score may be from `1` (lowest) to `10` (highest):
 To understand what caused the risk score for the endpoint and how to reduce the risk, go to the endpoint details:
 
 ![API Discovery - Risk score](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-risk-score-details.png)
+
+[Security issues](../api-attack-surface/security-issues.md) (vulnerabilities) are one of the most important factors contributing to an endpoint's risk score. In endpoint details, click the vulnerability name to open its full description in the **Security Issues** section. There you can learn mitigation methods and apply them.
