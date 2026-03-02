@@ -286,6 +286,7 @@ nav:
     - Nodes & Infrastructure:
       - Node Overview: user-guides/nodes/nodes.md
       - Resource Allocation: admin-en/configuration-guides/allocate-resources-for-node.md
+      - Control over Export to Cloud: admin-en/export-to-cloud.md
       - Cloud Synchronization: admin-en/configure-cloud-node-synchronization-en.md
       - Proxy Configuration: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
       - Block Page Configuration: admin-en/configuration-guides/configure-block-page-and-code.md
