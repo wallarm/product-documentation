@@ -47,9 +47,43 @@ Yalnızca ortam değişkenleriyle yapılandırılan konteynerleştirilmiş Walla
 
     !!! warning "Hassas veri deposuna erişim"
         Docker konteynerinin şifrelenmiş hassas verileri okuyabilmesi için AWS ayarlarının aşağıdaki gereksinimleri karşıladığından emin olun:
-        
+
         * Hassas veriler, Docker konteynerinin çalıştırıldığı bölgedeki depoda saklanır.
-        * **SecretsManagerReadWrite** IAM politikası, görev tanımındaki `executionRoleArn` parametresinde belirtilen kullanıcıya iliştirilmiştir. [IAM politikaları kurulumu hakkında daha fazla bilgi →](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html)
+        * Görev tanımındaki `executionRoleArn` parametresinde belirtilen ECS görev yürütme rolü, belirli bir gizli ARN’ye kapsamlı en az ayrıcalıklı okuma politikasına sahip olmalıdır. Gizli anahtarı şifrelemek için müşteri tarafından yönetilen bir KMS anahtarı kullanıyorsanız, bu anahtar için `kms:Decrypt` iznini de verin. [IAM politikaları kurulumu hakkında daha fazla bilgi →](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html)
+
+            Örnek IAM politikası:
+
+            ```json
+            {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Sid": "ReadSpecificSecret",
+                  "Effect": "Allow",
+                  "Action": [
+                    "secretsmanager:GetSecretValue",
+                    "secretsmanager:DescribeSecret"
+                  ],
+                  "Resource": "arn:aws:secretsmanager:<REGION>:<ACCOUNT>:secret:<SECRET_NAME>*"
+                },
+                {
+                  "Sid": "DecryptForSecret",
+                  "Effect": "Allow",
+                  "Action": [
+                    "kms:Decrypt"
+                  ],
+                  "Resource": "arn:aws:kms:<REGION>:<ACCOUNT>:key/<KMS_KEY_ID>",
+                  "Condition": {
+                    "StringEquals": {
+                      "kms:ViaService": "secretsmanager.<REGION>.amazonaws.com"
+                    }
+                  }
+                }
+              ]
+            }
+            ```
+
+            Secrets Manager için varsayılan AWS yönetilen anahtarını kullanıyorsanız, `DecryptForSecret` ifadesini atlayabilirsiniz.
 1. Aşağıdaki yerel JSON dosyasını [task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) ile oluşturun (task definition, Docker konteynerinin çalışma senaryosunu belirler):
 
     === "Wallarm US Cloud kullanıyorsanız"
@@ -217,9 +251,9 @@ AWS EFS'den bağlanmış yapılandırma dosyası ve ortam değişkenleri ile kon
 
     !!! warning "Hassas veri deposuna erişim"
         Docker konteynerinin şifrelenmiş hassas verileri okuyabilmesi için AWS ayarlarının aşağıdaki gereksinimleri karşıladığından emin olun:
-        
+
         * Hassas veriler, Docker konteynerinin çalıştırıldığı bölgedeki depoda saklanır.
-        * **SecretsManagerReadWrite** IAM politikası, görev tanımındaki `executionRoleArn` parametresinde belirtilen kullanıcıya iliştirilmiştir. [IAM politikaları kurulumu hakkında daha fazla bilgi →](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html)
+        * Görev tanımındaki `executionRoleArn` parametresinde belirtilen ECS görev yürütme rolü, belirli bir gizli ARN’ye kapsamlı en az ayrıcalıklı okuma politikasına sahip olmalıdır. Gizli anahtarı şifrelemek için müşteri tarafından yönetilen bir KMS anahtarı kullanıyorsanız, bu anahtar için `kms:Decrypt` iznini de verin. [Yukarıdaki politika örneğine](#ortam-degiskenleriyle-yapilandirilmis-wallarm-dugumu-docker-konteynerinin-dagitimi) ve [IAM politikaları belgelerine →](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html) bakın.
 1. Aşağıdaki yerel JSON dosyasını [task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) ile oluşturun (task definition, Docker konteynerinin çalışma senaryosunu belirler):
 
     === "Wallarm US Cloud kullanıyorsanız"
