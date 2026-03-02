@@ -39,7 +39,41 @@
         للسماح للحاوية Docker بقراءة البيانات الحساسة المشفرة، يرجى التأكد من أن إعدادات AWS تلبي الشروط التالية:
 
         * البيانات الحساسة مخزنة في المنطقة المستخدمة لتشغيل حاوية Docker.
-        * سياسة IAM **SecretsManagerReadWrite** مرتبطة بالمستخدم المحدد في البارامتر `executionRoleArn` لتعريف المهمة. [المزيد من التفاصيل عن إعداد سياسات IAM →](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html)
+        * يجب أن يكون لدور تنفيذ مهمة ECS المحدد في البارامتر `executionRoleArn` لتعريف المهمة سياسة قراءة بأقل امتيازات محددة النطاق لـ ARN السر المحدد. إذا كنت تستخدم مفتاح KMS مُدار من قبل العميل لتشفير السر، فامنح أيضًا إذن `kms:Decrypt` لهذا المفتاح. [المزيد من التفاصيل عن إعداد سياسات IAM →](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html)
+
+            مثال على سياسة IAM:
+
+            ```json
+            {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Sid": "ReadSpecificSecret",
+                  "Effect": "Allow",
+                  "Action": [
+                    "secretsmanager:GetSecretValue",
+                    "secretsmanager:DescribeSecret"
+                  ],
+                  "Resource": "arn:aws:secretsmanager:<REGION>:<ACCOUNT>:secret:<SECRET_NAME>*"
+                },
+                {
+                  "Sid": "DecryptForSecret",
+                  "Effect": "Allow",
+                  "Action": [
+                    "kms:Decrypt"
+                  ],
+                  "Resource": "arn:aws:kms:<REGION>:<ACCOUNT>:key/<KMS_KEY_ID>",
+                  "Condition": {
+                    "StringEquals": {
+                      "kms:ViaService": "secretsmanager.<REGION>.amazonaws.com"
+                    }
+                  }
+                }
+              ]
+            }
+            ```
+
+            إذا كنت تستخدم مفتاح AWS المُدار الافتراضي لـ Secrets Manager، يمكنك حذف عبارة `DecryptForSecret`.
 1. قم بإنشاء الملف الـ JSON المحلي التالي بـ[تعريف المهمة](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) (يحدد تعريف المهمة سيناريو تشغيل الحاوية Docker) :
 
     === "إذا كنت تستخدم سحابة Wallarm الأمريكية"
@@ -209,7 +243,7 @@
         للسماح للحاوية Docker بقراءة البيانات الحساسة المشفرة، يرجى التأكد من أن إعدادات AWS تلبي الشروط التالية:
 
         * البيانات الحساسة مخزنة في المنطقة المستخدمة لتشغيل حاوية Docker.
-        * سياسة IAM **SecretsManagerReadWrite** مرتبطة بالمستخدم المحدد في البارامتر `executionRoleArn` لتعريف المهمة. [المزيد من التفاصيل عن إعداد سياسات IAM →](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html)
+        * يجب أن يكون لدور تنفيذ مهمة ECS المحدد في البارامتر `executionRoleArn` لتعريف المهمة سياسة قراءة بأقل امتيازات محددة النطاق لـ ARN السر المحدد. إذا كنت تستخدم مفتاح KMS مُدار من قبل العميل لتشفير السر، فامنح أيضًا إذن `kms:Decrypt` لهذا المفتاح. راجع [مثال السياسة أعلاه](#نشر-حاوية-docker-للعقدة-wallarm-المكونة-عبر-المتغيرات-البيئية) و[وثائق سياسات IAM →](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html)
 1. قم بإنشاء الملف الـ JSON المحلي التالي بـ[تعريف المهمة](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) (يحدد تعريف المهمة سيناريو تشغيل الحاوية Docker) :
 
     === "إذا كنت تستخدم سحابة Wallarm الأمريكية"

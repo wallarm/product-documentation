@@ -69,9 +69,43 @@ To deploy the containerized Wallarm filtering node configured only through envir
 
     !!! warning "Access to the sensitive data storage"
         To allow the Docker container to read the encrypted sensitive data, please ensure the AWS settings meet the following requirements:
-        
+
         * Sensitive data is stored in the region used to run the Docker container.
-        * The IAM policy **SecretsManagerReadWrite** is attached to the user specified in the `executionRoleArn` parameter of the task definition. [More details on the IAM policies setup →](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html)
+        * The ECS task execution role specified in the `executionRoleArn` parameter of the task definition has a least-privilege read policy scoped to the specific secret ARN. If you use a customer-managed KMS key to encrypt the secret, also grant `kms:Decrypt` for that key. [More details on the IAM policies setup →](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html)
+
+            Example IAM policy:
+
+            ```json
+            {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Sid": "ReadSpecificSecret",
+                  "Effect": "Allow",
+                  "Action": [
+                    "secretsmanager:GetSecretValue",
+                    "secretsmanager:DescribeSecret"
+                  ],
+                  "Resource": "arn:aws:secretsmanager:<REGION>:<ACCOUNT>:secret:<SECRET_NAME>*"
+                },
+                {
+                  "Sid": "DecryptForSecret",
+                  "Effect": "Allow",
+                  "Action": [
+                    "kms:Decrypt"
+                  ],
+                  "Resource": "arn:aws:kms:<REGION>:<ACCOUNT>:key/<KMS_KEY_ID>",
+                  "Condition": {
+                    "StringEquals": {
+                      "kms:ViaService": "secretsmanager.<REGION>.amazonaws.com"
+                    }
+                  }
+                }
+              ]
+            }
+            ```
+
+            If you use the default AWS managed key for Secrets Manager, you can omit the `DecryptForSecret` statement.
 1. Create the following local JSON file with the [task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) (task definition sets the Docker container operating scenario):
 
     === "If you use the Wallarm US Cloud"
@@ -239,9 +273,9 @@ To deploy the container with environment variables and configuration file mounte
 
     !!! warning "Access to the sensitive data storage"
         To allow the Docker container to read the encrypted sensitive data, please ensure the AWS settings meet the following requirements:
-        
+
         * Sensitive data is stored in the region used to run the Docker container.
-        * The IAM policy **SecretsManagerReadWrite** is attached to the user specified in the `executionRoleArn` parameter of the task definition. [More details on the IAM policies setup →](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html)
+        * The ECS task execution role specified in the `executionRoleArn` parameter of the task definition has a least-privilege read policy scoped to the specific secret ARN. If you use a customer-managed KMS key to encrypt the secret, also grant `kms:Decrypt` for that key. See the [policy example above](#deploying-the-wallarm-node-docker-container-configured-through-environment-variables) and the [IAM policies documentation →](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html)
 1. Create the following local JSON file with the [task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) (task definition sets the Docker container operating scenario):
 
     === "If you use the Wallarm US Cloud"

@@ -37,9 +37,43 @@ Para implantar o nó de filtragem Wallarm contêinerizado configurado apenas por
 
     !!! aviso "Acesso ao armazenamento de dados sensíveis"
         Para permitir que o contêiner Docker leia os dados sensíveis criptografados, certifique-se de que as configurações da AWS atendem aos seguintes requisitos:
-        
+
         * Os dados sensíveis são armazenados na região usada para executar o contêiner Docker.
-        * A política IAM **SecretsManagerReadWrite** está anexada ao usuário especificado no parâmetro `executionRoleArn` da definição de tarefa. [Mais detalhes sobre a configuração das políticas IAM →](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html)
+        * A função de execução de tarefa ECS especificada no parâmetro `executionRoleArn` da definição de tarefa deve ter uma política de leitura com privilégios mínimos, limitada ao ARN específico do segredo. Se você usar uma chave KMS gerenciada pelo cliente para criptografar o segredo, conceda também a permissão `kms:Decrypt` para essa chave. [Mais detalhes sobre a configuração das políticas IAM →](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html)
+
+            Exemplo de política IAM:
+
+            ```json
+            {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Sid": "ReadSpecificSecret",
+                  "Effect": "Allow",
+                  "Action": [
+                    "secretsmanager:GetSecretValue",
+                    "secretsmanager:DescribeSecret"
+                  ],
+                  "Resource": "arn:aws:secretsmanager:<REGION>:<ACCOUNT>:secret:<SECRET_NAME>*"
+                },
+                {
+                  "Sid": "DecryptForSecret",
+                  "Effect": "Allow",
+                  "Action": [
+                    "kms:Decrypt"
+                  ],
+                  "Resource": "arn:aws:kms:<REGION>:<ACCOUNT>:key/<KMS_KEY_ID>",
+                  "Condition": {
+                    "StringEquals": {
+                      "kms:ViaService": "secretsmanager.<REGION>.amazonaws.com"
+                    }
+                  }
+                }
+              ]
+            }
+            ```
+
+            Se você usar a chave gerenciada padrão da AWS para o Secrets Manager, pode omitir a declaração `DecryptForSecret`.
 1. Crie o seguinte arquivo JSON local com a [definição de tarefa](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) (a definição de tarefa define o cenário operacional do contêiner Docker):
 
     === "Se você usa o Wallarm US Cloud"
@@ -199,9 +233,9 @@ Para implantar o contêiner com variáveis de ambiente e arquivo de configuraç�
 
     !!! aviso "Acesso ao armazenamento de dados sensíveis"
         Para permitir que o contêiner Docker leia os dados sensíveis criptografados, certifique-se de que as configurações da AWS atendem aos seguintes requisitos:
-        
+
         * Os dados sensíveis são armazenados na região usada para executar o contêiner Docker.
-        * A política IAM **SecretsManagerReadWrite** está anexada ao usuário especificado no parâmetro `executionRoleArn` da definição de tarefa. [Mais detalhes sobre a configuração das políticas IAM →](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html)
+        * A função de execução de tarefa ECS especificada no parâmetro `executionRoleArn` da definição de tarefa deve ter uma política de leitura com privilégios mínimos, limitada ao ARN específico do segredo. Se você usar uma chave KMS gerenciada pelo cliente para criptografar o segredo, conceda também a permissão `kms:Decrypt` para essa chave. Consulte o [exemplo de política acima](#implantando-o-conteiner-docker-do-no-wallarm-configurado-atraves-de-variaveis-de-ambiente) e a [documentação de políticas IAM →](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html)
 1. Crie o seguinte arquivo JSON local com a [definição de tarefa](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) (a definição de tarefa define o cenário operacional do contêiner Docker):
 
     === "Se você usa o Wallarm US Cloud"
