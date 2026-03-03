@@ -62,8 +62,13 @@ API Discovery uses a hybrid approach to conduct analysis locally and in the Clou
 
 The API Discovery module bases noise detection on the two major traffic parameters:
 
-* Endpoint stability - at least 5 requests must be recorded within 5 minutes from the moment of the first request to the endpoint.
-* Parameter stability - the occurrence of the parameter in requests to the endpoint must be more than 1 percent.
+* **Endpoint stability** - at least specific **number of requests** should be registered for the endpoint for it to be displayed by API Discovery AND and at least one of them must be outside the **timeframe**.
+
+    This settings aim to avoid showing API entries, that had no traffic or had a traffic for a short timeframe only - they are considered unstable. Even if the specific endpoint was requested huge amount of times, but just within a short timeframe, there’s no need to consider this one-time spike as stable API endpoint.
+
+    ![API Discovery - endpoint stability](../images/about-wallarm-waf/api-discovery/api-discovery-endpoint-stability.png)
+
+* **Parameter stability** - the occurrence of the parameter in requests to the endpoint must be more than 1 percent.
 
 The API inventory will display the endpoints and parameters that exceeded these limits. The time required to build the complete API inventory depends on the traffic diversity and intensity. 
 
@@ -77,6 +82,7 @@ Also, the API Discovery performs filtering of requests relying on the other crit
     If the header does not exist, API Discovery analyzes the request.
 
 * Standard fields such as `Accept` and alike are discarded.
+* Requests targeting `localhost` or loopback addresses are not processed.
 
 ### Sensitive data detection
 
@@ -89,6 +95,16 @@ API Discovery [detects and highlights](sensitive-data.md) sensitive data consume
 * Personally identifiable information (PII) like full name, passport number or SSN
 
 API Discovery provides the ability to configure the detection process and add your own sensitive data patterns (requires NGINX Node 5.0.3 or Native Node 0.7.0 or higher).
+
+### Sensitive business flows
+
+With the [sensitive business flow](sbf.md) capability, API Discovery can automatically identify endpoints that are critical to specific business flows and functions, such as authentication, account management, billing, and similar critical capabilities.
+
+In addition to automatic identification, you can manually adjust the assigned sensitive business flow tags and manually set tags for the endpoints of your choice.
+
+Once endpoints are assigned with the sensitive business flow tags, it becomes possible to filter all discovered endpoint by a specific business flow which makes it easier on protecting the most critical business capabilities.
+
+![API Discovery - Filtering by sensitive business flows](../images/about-wallarm-waf/api-discovery/api-discovery-sbf-filter.png)
 
 ### Security of data uploaded to the Wallarm Cloud
 
