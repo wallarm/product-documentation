@@ -52,7 +52,7 @@ To view the current configuration and perform changes, in Wallarm Console, go to
 
 ## Notifications
 
-You can setup API Discovery notifications to be sent to your personal email (the one you use to log in) and to any additional emails:
+You can set up API Discovery notifications to be sent to your personal email (the one you use to log in) and to any additional emails:
 
 1. Access Wallarm Console → **Configuration** → **Integrations** → **Email and messengers**:
 

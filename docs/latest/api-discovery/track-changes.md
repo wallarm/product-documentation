@@ -34,7 +34,7 @@ Use **Changed since** filter to only see endpoints changed in specific time peri
 
 ## Notifications
 
-You can [setup](setup.md#notifications) API Discovery notifications to be sent to your personal email (the one you use to log in) and to any additional emails:
+You can [set up](setup.md#notifications) API Discovery notifications to be sent to your personal email (the one you use to log in) and to any additional emails:
 
 * Daily endpoint changes
 * Hourly endpoint changes
