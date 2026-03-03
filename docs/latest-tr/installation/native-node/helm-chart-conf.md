@@ -443,8 +443,6 @@ processing:
   metrics:
     enabled: true
     port: 9090
-
-drop_on_overload: true
 ```
 
 ### config.connector.input_filters
@@ -543,22 +541,3 @@ Varsayılan: `true`.
 Prometheus metriklerinin sunulacağı adresi ve portu ayarlar. Bu metriklere erişmek için `/metrics` uç noktasını kullanın.
 
 Varsayılan: `:9000` (9000 portunda tüm ağ arayüzleri).
-
-### drop_on_overload
-
-İşleme yükü kapasiteyi aştığında Node'un gelen istekleri düşürüp düşürmeyeceğini kontrol eder.
-
-Uyumluluk
-
-* Native Node 0.16.1 ve üzeri
-* [Envoy konektörü](../connectors/istio.md) için, davranış `failure_mode_allow` ayarına bağlıdır
-
-    `drop_on_overload` yapılandırması uygulanmaz.
-
-Etkinleştirildiğinde (`true`), Node verileri gerçek zamanlı işleyemezse, fazla girdiyi düşürür ve `503 (Service Unavailable)` ile yanıt verir. Bu, Node'un işlenmemiş istekleri dahili kuyruklarda biriktirmesini engeller; aksi takdirde ciddi performans düşüşlerine veya bellek yetersizliği hatalarına yol açabilir.
-
-503 döndürmek, yukarı akış servislerinin, yük dengeleyicilerin veya istemcilerin aşırı yük koşullarını algılamasını ve gerekirse istekleri yeniden denemesini sağlar.
-
-Engelleme [modunda](../../admin-en/configure-wallarm-mode.md), bu tür istekler engellenmez.
-
-Varsayılan: `true`.

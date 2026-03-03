@@ -833,8 +833,6 @@ Ayarlanmazsa, [`log.log_file`](#loglog_file) ayarı kullanılır.
     health_check:
       enabled: true
       listen_address: :8080
-    
-    drop_on_overload: true
     ```
 === "tcp-capture"
     ```yaml
@@ -877,8 +875,6 @@ Ayarlanmazsa, [`log.log_file`](#loglog_file) ayarı kullanılır.
     health_check:
       enabled: true
       listen_address: :8080
-    
-    drop_on_overload: true
     ```
 
 ### input_filters
@@ -1059,23 +1055,3 @@ Varsayılan: `true`.
 `/live` ve `/ready` sağlık denetimi uç noktaları için adres ve portu ayarlar.
 
 Varsayılan: `:8080` (8080 portundaki tüm ağ arayüzleri).
-
-### drop_on_overload
-
-Düğümün, işleme yükü kapasitesini aştığında gelen istekleri düşürüp düşürmeyeceğini kontrol eder.
-
-**Uyumluluk**
-
-* Native Node 0.16.1 ve üzeri
-* Henüz AWS AMI'de desteklenmiyor
-* [Envoy bağlayıcısı](../connectors/istio.md) için davranış `failure_mode_allow` ayarına bağlıdır
-
-    `drop_on_overload` yapılandırması uygulanmaz.
-
-Etkinleştirildiğinde (`true`), Node verileri gerçek zamanlı olarak işleyemezse fazla girdiyi düşürür ve `503 (Service Unavailable)` ile yanıt verir. Bu, Node'un işlenmemiş istekleri dahili kuyruklarda biriktirmesini önleyerek, aksi halde ciddi performans düşüşlerine veya bellek yetersizliği hatalarına yol açabilecek durumları engeller.
-
-503 döndürmek, üst hizmetlerin, yük dengeleyicilerin veya istemcilerin aşırı yük koşullarını tespit etmesine ve gerekirse istekleri yeniden denemesine olanak tanır.
-
-Engelleme [modunda](../../admin-en/configure-wallarm-mode.md), bu tür istekler engellenmez.
-
-Varsayılan: `true`.

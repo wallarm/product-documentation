@@ -27,9 +27,6 @@ Hepsi-bir-arada yükleyici güncellemelerinin geçmişi, x86_64 ve ARM64 sürüm
 
 ### 0.16.1 (2025-08-01)
 
-* Yüksek yük altında fazla girdilerin düşürülmesini kontrol etmek için [`drop_on_overload`](../../installation/native-node/all-in-one-conf.md#drop_on_overload) parametresi tanıtıldı
-
-    Varsayılan olarak etkin (`true`).
 * Yeni [Prometheus metrikleri](../../admin-en/native-node-metrics.md) eklendi:
 
     * Genel Native Node örneği bilgilerini içeren `wallarm_gonode_application_info`, örn.:
@@ -113,9 +110,6 @@ Native Node için Helm chart, MuleSoft [Mule](../../installation/connectors/mule
 ### 0.16.1 (2025-08-01)
 
 * Node’un hangi istekleri incelemesi veya atlaması gerektiğinin tanımlanmasına olanak tanıyan [`input_filters`](../../installation/native-node/helm-chart-conf.md#configconnectorinput_filters) yapılandırma bölümü tanıtıldı
-* Yüksek yük altında fazla girdilerin düşürülmesini kontrol etmek için [`drop_on_overload`](../../installation/native-node/helm-chart-conf.md#drop_on_overload) parametresi tanıtıldı
-
-    Varsayılan olarak etkin (`true`).
 * Yeni [Prometheus metrikleri](../../admin-en/native-node-metrics.md) eklendi:
 
     * Genel Native Node örneği bilgilerini içeren `wallarm_gonode_application_info`, örn.:
@@ -134,7 +128,6 @@ Native Node için Helm chart, MuleSoft [Mule](../../installation/connectors/mule
 
     * Mesajlar için mesh dengeleme mantığı düzeltildi
     * Tüm bağlayıcı trafiğini mesh dengeleme olmadan Node üzerinde işlemek için `disable_mesh` parametresi eklendi (varsayılan `false` - mesh dengeleme etkindir)
-    * `drop_on_overload` parametresi desteği eklendi
 * Dahili `http_inspector` modülünde kararlılık iyileştirildi
 
 ### 0.16.0 (2025-07-23)
@@ -195,9 +188,6 @@ Native Node için Docker imajı, MuleSoft [Mule](../../installation/connectors/m
 
 ### 0.16.1 (2025-08-01)
 
-* Yüksek yük altında fazla girdilerin düşürülmesini kontrol etmek için [`drop_on_overload`](../../installation/native-node/all-in-one-conf.md#drop_on_overload) parametresi tanıtıldı
-
-    Varsayılan olarak etkin (`true`).
 * Yeni [Prometheus metrikleri](../../admin-en/native-node-metrics.md) eklendi:
 
     * Genel Native Node örneği bilgilerini içeren `wallarm_gonode_application_info`, örn.:

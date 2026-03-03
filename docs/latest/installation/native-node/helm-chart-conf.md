@@ -539,8 +539,6 @@ processing:
   metrics:
     enabled: true
     port: 9090
-
-drop_on_overload: true
 ```
 
 ### config.connector.input_filters
@@ -639,22 +637,3 @@ Default: `true`.
 Sets the address and port where Prometheus metrics will be exposed. To access these metrics, use the `/metrics` endpoint.
 
 Default: `:9000` (all network interfaces on the port 9000).
-
-### drop_on_overload
-
-Controls whether the Node drops incoming requests when the processing load exceeds its capacity.
-
-**Compatibility**
-
-* Native Node 0.16.1 and higher
-* For the Envoy connectors ([Istio](../connectors/istio.md) and [Gloo Gateway](../connectors/gloo.md)), behavior depends on the `failure_mode_allow` setting
-
-    The `drop_on_overload` configuration is not applied.
-
-When enabled (`true`), if the Node cannot process data in real time, it drops excess input and responds with `503 (Service Unavailable)`. This prevents the Node from accumulating unprocessed requests in internal queues, which could otherwise lead to severe performance degradation or out‑of‑memory errors.
-
-Returning 503 allows upstream services, load balancers, or clients to detect overload conditions and retry requests if needed.
-
-In blocking [mode](../../admin-en/configure-wallarm-mode.md), such requests are not blocked.
-
-Default: `true`.

@@ -114,9 +114,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.16.1 (2025-08-01)
 
-* Introduced the [`drop_on_overload`](../../installation/native-node/all-in-one-conf.md#drop_on_overload) parameter to control dropping excess input under high load
-
-    Enabled (`true`) by default.
 * Added new [Prometheus metrics](../../admin-en/native-node-metrics.md):
 
     * `wallarm_gonode_application_info` with the general Native Node instance information, e.g.:
@@ -296,9 +293,6 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 ### 0.16.1 (2025-08-01)
 
 * Introduced the [`input_filters`](../../installation/native-node/helm-chart-conf.md#configconnectorinput_filters) configuration section, allowing to define which requests should be inspected or bypassed by the Node
-* Introduced the [`drop_on_overload`](../../installation/native-node/helm-chart-conf.md#drop_on_overload) parameter to control dropping excess input under high load
-
-    Enabled (`true`) by default.
 * Added new [Prometheus metrics](../../admin-en/native-node-metrics.md):
 
     * `wallarm_gonode_application_info` with the general Native Node instance information, e.g.:
@@ -317,7 +311,6 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
     * Fixed mesh balancing logic for messages
     * Added the `disable_mesh` parameter to process all connector traffic on the Node without mesh balancing (`false` by default - mesh balancing is enabled)
-    * Added support for the `drop_on_overload` parameter
 * Improved stability in the internal `http_inspector` module
 
 ### 0.16.0 (2025-07-23)
@@ -473,9 +466,6 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 ### 0.16.1 (2025-08-01)
 
-* Introduced the [`drop_on_overload`](../../installation/native-node/all-in-one-conf.md#drop_on_overload) parameter to control dropping excess input under high load
-
-    Enabled (`true`) by default.
 * Added new [Prometheus metrics](../../admin-en/native-node-metrics.md):
 
     * `wallarm_gonode_application_info` with the general Native Node instance information, e.g.:
