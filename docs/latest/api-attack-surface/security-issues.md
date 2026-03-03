@@ -62,7 +62,7 @@ Additionally, information about security issues found by [any method](../about-w
 * **Daily critical security issues (new only)** - all critical security issues opened for the day, sent once a day with a detailed description of each issue and instructions on how to mitigate it.
 * **Daily security issues (new only)** - statistics for security issues opened for the day, sent once a day with information on how many issues of every risk level were found and general action items for mitigation.
 
-The notifications are enabled by default. You can unsubscribe at any moment and configure any additional emails to get all or some of these notifications in Wallarm Console → **Configuration** → **Integrations** → **Email and messengers** → **Personal email** (you email) or **Email report** (extra emails) as described [here](../user-guides/settings/integrations/email.md).
+The notifications are enabled by default. You can unsubscribe at any moment and configure any additional emails to get all or some of these notifications in Wallarm Console → **Configuration** → **Integrations** → **Email and messengers** → **Personal email** (your email) or **Email report** (extra emails) as described [here](../user-guides/settings/integrations/email.md).
 
 ### Instant notification
 
