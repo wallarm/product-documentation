@@ -27,7 +27,7 @@ If you select to upload specification from URI and select the **Regularly update
 
     !!! info "Rogue API detection"
         * Besides applying security policies, specifications may be used by [API Discovery](../api-discovery/overview.md) module for the [rogue API detection](../api-discovery/rogue-api.md). The tab is displayed if API Discovery is enabled.
-        * Before using the specification for applying security policies, it is recommended to use it for searching the rogue (shadow, zombie and orphan) APIs using API Discovery. This way you will be able to understand how much your specification differs from the actual requests of your clients - these differences will most probably cause blocking related requests after applying security policies.
+        * Before using the specification for applying security policies, it is recommended to use it for searching the rogue (shadow and zombie) APIs using API Discovery. This way you will be able to understand how much your specification differs from the actual requests of your clients - these differences will most probably cause blocking related requests after applying security policies.
 
 1. Select **Use for API specification enforcement**.
 1. Specify host or endpoint for which you want to activate policy violation actions.

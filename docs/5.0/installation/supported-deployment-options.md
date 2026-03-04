@@ -35,7 +35,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
     </div>
 </div>
 
-## Public clouds
+## Cloud platforms
 
 <div class="do-section">
     <div class="do-main">

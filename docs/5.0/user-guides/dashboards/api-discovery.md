@@ -3,4 +3,13 @@ search:
   exclude: true
 ---
 
---8<-- "latest/user-guides/dashboards/api-discovery.md"
+[apid-overview]:                ../../api-discovery/overview.md
+[apid-risk-score]:              ../../api-discovery/risk-score.md
+[apid-track-changes]:           ../../api-discovery/track-changes.md
+[apid-rogue]:                   ../../api-discovery/rogue-api.md
+[check-attack]:                 ../events/check-attack.md
+[img-api-discovery-widget]:     ../images/user-guides/dashboard/api-discovery-widget.png
+
+# API Discovery Dashboard <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+
+--8<-- "../include/api-discovery/dashboard-5.0.md"

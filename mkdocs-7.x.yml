@@ -39,7 +39,7 @@ nav:
 
     - Risk Analysis:
       - Risk Score: api-discovery/risk-score.md
-      - Rogue APIs (Shadow/Orphan/Zombie): api-discovery/rogue-api.md
+      - Rogue APIs (Shadow/Zombie): api-discovery/rogue-api.md
       - Sensitive Business Flows: api-discovery/sbf.md
 
     - Data Protection:

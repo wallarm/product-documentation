@@ -1,4 +1,4 @@
-# Blocking in API Sessions <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Blocking in API Sessions <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 As Wallarm's API Sessions aim to provide full visibility into sessions within your traffic, this visibility includes information about Wallarm intervention into session's traffic flow, particularly, request that were by different reasons defined as part of attack, marked as such and, if configured, blocked.
 
