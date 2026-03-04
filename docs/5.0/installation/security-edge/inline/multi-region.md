@@ -33,11 +33,22 @@ If mTLS cannot be used, allow incoming traffic from the Wallarm IP addresses of 
 
 * AWS
 
-    === "US East 1"
+    === "US East 1 (N. Virginia)"
         ```
         18.215.213.205
         44.214.56.120
         44.196.111.152
+        ```
+    === "US East 2 (Ohio)"
+        ```
+        3.148.62.175
+        18.224.237.190
+        3.20.55.107
+        3.135.4.73
+        3.142.190.180
+        3.15.129.1
+        18.116.243.148
+        18.116.233.194
         ```
     === "US West 1"
         ```
