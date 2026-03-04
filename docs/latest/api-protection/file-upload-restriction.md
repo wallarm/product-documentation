@@ -1,4 +1,4 @@
-[api-discovery-enable-link]:    ../api-discovery/setup.md#enabled-by-default
+[api-discovery-enable-link]:    ../api-discovery/setup.md
 
 # File Upload Restriction Policy
 
