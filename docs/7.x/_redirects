@@ -931,3 +931,6 @@
 /installation/packages/gcp-machine-image/ /installation/cloud-platforms/gcp/machine-image/
 
 /news/ https://changelog.wallarm.com/
+
+/admin-en/configuration-guides/protecting-against-bola/ /admin-en/configuration-guides/protecting-against-bola-trigger/
+/api-discovery/bola-protection/ /admin-en/configuration-guides/protecting-against-bola-trigger/

@@ -22,7 +22,7 @@ Wallarm is the only solution that unifies API discovery, risk management, real-t
 | [Brute force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md) | Yes | Yes | No |
 | [Forced browsing protection](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md) | Yes | Yes | No |
 | [Distributed rate limiting](../user-guides/rules/rate-limiting.md) | Yes | Yes | No |
-| [BOLA protection](../admin-en/configuration-guides/protecting-against-bola.md) | Manual triggers | Automated protection | No |
+| [BOLA protection](../admin-en/configuration-guides/protecting-against-bola-trigger.md) | Manual triggers | Mitigation control | No |
 | [API Abuse Prevention (bot management)](../api-abuse-prevention/overview.md) | No | Yes | No |
 | [Credential Stuffing Detection](../about-wallarm/credential-stuffing.md) | No | Yes | No |
 | [API Specification Enforcement](../api-specification-enforcement/overview.md) | No | Yes | No |

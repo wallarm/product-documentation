@@ -44,7 +44,7 @@ Without a proper limit on how often APIs can be used, they can be hit by attacks
 
 ## Activate BOLA protection
 
-The Broken Object Level Authorization (BOLA) vulnerability allows an attacker to access an object by its identifier via an API request and either read or modify its data bypassing an authorization mechanism. To prevent BOLA attacks, you can either manually specify vulnerable endpoints and set limits for connections to them, or turn on Wallarm to automatically identify and protect vulnerable endpoints. [Learn more](../admin-en/configuration-guides/protecting-against-bola.md)
+The Broken Object Level Authorization (BOLA) vulnerability allows an attacker to access an object by its identifier via an API request and either read or modify its data bypassing an authorization mechanism. To prevent BOLA attacks, you can specify vulnerable endpoints and set limits for connections to them. [Learn more](../admin-en/configuration-guides/protecting-against-bola-trigger.md)
 
 ## Employ API Abuse Prevention
 

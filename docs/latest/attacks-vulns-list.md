@@ -536,8 +536,7 @@ This vulnerability is also known as IDOR (Insecure Direct Object Reference).
 Wallarm automatically discovers vulnerabilities of this type but detects and mitigates BOLA attacks only if it has one of the following:
 
 * [Generiс protection from enumeration](#generic-enumeration-attack)
-* [BOLA protection](admin-en/configuration-guides/protecting-against-bola-trigger.md) configured with method available in your subscription plan
-* [Automatic BOLA protection](admin-en/configuration-guides/protecting-against-bola.md) by [API Discovery](api-discovery/overview.md) for endpoints discovered by this module
+* [BOLA protection](admin-en/configuration-guides/protecting-against-bola-trigger.md) configured with either the trigger or the mitigation control
 
 [Default controls](api-protection/enumeration-attack-protection.md#default-protection) are provided in a monitoring mode (for new clients) or disabled (enable if necessary).
 

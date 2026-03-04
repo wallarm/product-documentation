@@ -41,10 +41,7 @@ nav:
       - Risk Score: api-discovery/risk-score.md
       - Rogue APIs (Shadow/Zombie): api-discovery/rogue-api.md
       - Sensitive Business Flows: api-discovery/sbf.md
-
-    - Data Protection:
       - Sensitive Data Detection: api-discovery/sensitive-data.md
-      - BOLA Auto-Protection: api-discovery/bola-protection.md
 
     - Setup & Configuration: api-discovery/setup.md
 
@@ -63,8 +60,7 @@ nav:
       - Business Logic Abuse: api-protection/business-logic-abuse-detection.md
 
     - API-Specific Protection:
-      - BOLA Protection (Manual): admin-en/configuration-guides/protecting-against-bola-trigger.md
-      - BOLA Protection (Auto): admin-en/configuration-guides/protecting-against-bola.md
+      - BOLA Protection: admin-en/configuration-guides/protecting-against-bola-trigger.md
       - Enumeration Attack Protection: api-protection/enumeration-attack-protection.md
       - GraphQL Protection: api-protection/graphql-rule.md
       - File Upload Restriction: api-protection/file-upload-restriction.md
