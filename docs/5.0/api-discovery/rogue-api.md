@@ -1,11 +1,10 @@
-# Shadow, Orphan, Zombie API <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Shadow and Zombie API <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-The [API Discovery](overview.md) module automatically identifies shadow, orphan and zombie APIs by comparing your uploaded specification to the live traffic.
+The [API Discovery](overview.md) module automatically identifies shadow and zombie APIs by comparing your uploaded specification to the live traffic.
 
 |Rogue API type | What is it? |
 |--|--|
 | [Shadow API](#shadow-api) | An undocumented API that exists within an organization's infrastructure without proper authorization or oversight.|
-| [Orphan API](#orphan-api) | A documented API that does not receive traffic. |
 | [Zombie API](#zombie-api) | Deprecated APIs that everyone assumes have been disabled but actually they are still in use. |
 
 ![API Discovery - highlighting and filtering rogue API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
@@ -60,21 +59,21 @@ Rogue API detection is based on uploaded specification or several specifications
 
 ## Viewing found rogue APIs
 
-As comparison is finished, the number of rogue (shadow, orphan and zombie) APIs will be displayed for each specification in the list of **API Specifications**.
+As comparison is finished, the number of rogue (shadow and zombie) APIs will be displayed for each specification in the list of **API Specifications**.
 
 ![API Specifications section](../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
 
-Also rogue APIs will be displayed in the **API Discovery** section. Use the **Rogue APIs** filter to see only shadow, orphan and/or zombie APIs related to the selected comparisons and filter out the remaining endpoints.
+Also rogue APIs will be displayed in the **API Discovery** section. Use the **Rogue APIs** filter to see only shadow and/or zombie APIs related to the selected comparisons and filter out the remaining endpoints.
 
 ![API Discovery - highlighting and filtering rogue API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
-In the details of such endpoints, in the **Specification conflicts** section, the specification(s) with the help of which shadow/zombie/orphan was detected will be indicated.
+In the details of such endpoints, in the **Specification conflicts** section, the specification(s) with the help of which shadow/zombie was detected will be indicated.
 
 Shadow APIs are also displayed among the riskiest endpoints at the [API Discovery Dashboard](dashboard.md).
 
 ## Specification versions and zombie APIs
 
-Unlike shadow and orphan APIs, [zombie APIs](#zombie-api) require comparison of different specification versions:
+Unlike shadow APIs, [zombie APIs](#zombie-api) require comparison of different specification versions:
 
 * If during [setup](#setup) the **Regularly update the specification** option was selected, just put new version to the URL where you host your specification - it will be processed by an hourly schedule or immediately if you select **Restart comparison** from the specification menu.
 * If the **Regularly update the specification** option was not selected:
@@ -96,13 +95,12 @@ In the **API Discovery** section, use the **Compare to...** filter to select spe
 
 To get immediate notifications about newly discovered rogue APIs to your [SIEM, SOAR, log management system or messenger](../user-guides/settings/integrations/integrations-intro.md), in the **Triggers** section of Wallarm Console, configure one or more triggers with the **Rogue API detected** condition.
 
-You can get messages about newly discovered shadow, orphan or zombie APIs or about all of them. You can also narrow notifications by application or host that you want to monitor and by the specification used for their detection.
+You can get messages about newly discovered shadow or zombie APIs or about all of them. You can also narrow notifications by application or host that you want to monitor and by the specification used for their detection.
 
 **How notifications come**
     
 * Each new found rogue API causes 1 notification message
 * If you already got notification about some rogue API, it is not be sent again, no matter how many times the comparison is run
-* If you update settings of the uploaded specification, notifications about all **orphan** APIs are re-sent (this does not apply to shadow or zombie APIs)
 
 **Trigger example: notification about newly discovered shadow endpoints in Slack**
 
@@ -153,16 +151,6 @@ The shadow APIs put businesses at risk, as attackers can exploit them to gain ac
 In terms of your uploaded API specifications, shadow API is an endpoint presented in actual traffic (detected by API Discovery) and not presented in your specification.
 
 As you find shadow APIs with Wallarm, you can update your specifications to include missing endpoints and further perform monitoring and security activities towards your API inventory in its full view.
-
-### Orphan API
-
-**Orphan API** refers to a documented API that does not receive traffic.
-
-The presence of orphan APIs can be a reason for a verification process which involves:
-
-* Inspecting the Wallarm traffic checking settings to understand whether the traffic is truly not being received, or if it is simply not visible to the Wallarm nodes because they were deployed in such a way that not all traffic passes through them (this may be incorrect traffic routing, or another Web Gateway is presented that was forgotten to put the node on, and so on).
-* Determining whether certain applications should not receive any traffic at these specific endpoints or it is some kind of misconfiguration.
-* Making decision on obsolete endpoints: used in previous application versions and not used in the current - should they be deleted from the specification to reduce security check effort.
 
 ### Zombie API
 

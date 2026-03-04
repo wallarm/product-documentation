@@ -31,7 +31,7 @@ Among a wide range of API endpoint filters, you can choose the ones correspondin
 
 * Only attacked endpoints that you can sort by the number of hits.
 * Find the most vulnerable endpoints characterized by processing sensitive data and active vulnerabilities of the high [risk level](risk-score.md). Exploiting vulnerabilities of a high risk level allows attackers to perform many malicious actions with the system including stealing sensitive data that the endpoint processes/stores.
-* Find [rogue endpoints](rogue-api.md): shadow, orphan and zombie.
+* Find [rogue endpoints](rogue-api.md): shadow and zombie.
 * Find the endpoints that have been changed or newly discovered in the last week and that process PII data. This kind of request can help you to stay up to date with critical [changes in your APIs](track-changes.md).
 * Find the endpoints being used to upload data to your server by the PUT or POST calls. Since such endpoints are a frequent attack target, they should be well secured. Using this kind of request you can check that endpoints are known to the team and are well secured from attacks.
 * Find the endpoints processing customers' bank card data. With this request, you can check that sensitive data is processed only by secured endpoints.

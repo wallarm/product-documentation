@@ -38,7 +38,7 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 * Filter APIs that consume and carry [sensitive data](#sensitive-data-detection).
 * View visualized summary on your API inventory structure and problems on a handy [dashboard](dashboard.md).
 * Understand which endpoints are [most likely](risk-score.md) to be an attack target.
-* Find [shadow, orphan and zombie APIs](rogue-api.md).
+* Find [shadow and zombie APIs](rogue-api.md).
 * [Track changes](track-changes.md) in API that took place within the selected period of time.
 * Filter API endpoints by the [BOLA auto protection state](bola-protection.md).
 * Provide your developers with [access](../user-guides/settings/users.md#user-roles) to the built API inventory reviewing and downloading.

@@ -13,7 +13,7 @@ Enterprises prefer Wallarm for its enhanced API security, easy deployment, and v
 You need to know it to protect it. Wallarm offers comprehensive API discovery capabilities to identify APIs in your environment and evaluate their security risks. Here is what Wallarm's API discovery does:
 
 * [Detects your API endpoints and their parameters](../api-discovery/overview.md), and continually updates the API view through consistent traffic analysis.
-* [Identifies rogue endpoints](../api-discovery/rogue-api.md), including shadow, orphan, and zombie APIs.
+* [Identifies rogue endpoints](../api-discovery/rogue-api.md), including shadow and zombie APIs.
 * Spots endpoints that could expose sensitive data, like PII.
 * [Assesses each endpoint for security risks](../api-discovery/risk-score.md), vulnerabilities, and provides a risk score.
 
