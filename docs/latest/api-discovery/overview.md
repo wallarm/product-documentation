@@ -9,8 +9,8 @@ API Discovery is capable of finding and representing hosts and endpoints utilizi
 | Protocol | Core entity | Required [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) version | Required [Native Node](../installation/nginx-native-node-internals.md#native-node) version |
 | --- | --- | --- | --- |
 | **REST** | Endpoint | Any | Any |
-| **GraphQL** | Operation (query, mutation, subscription) | 6.1.0 | NA |
-| **SOAP** | Operation | 6.3.0 | NA |
+| **GraphQL** | Operation (query, mutation, subscription) | 6.1.0 | 0.15.1 |
+| **SOAP** | Operation | 6.3.0 | 0.17.1 |
 | **gRPC** | Operation | 6.4.0 | NA |
 
 ## Your API inventory
