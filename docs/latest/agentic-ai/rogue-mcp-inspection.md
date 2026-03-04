@@ -4,9 +4,9 @@ Wallarm allows you to audit every installed local MCP server to expose supply-ch
 
 ## Access via Postman
 
-You can access Rogue MCP Inspection via **Wallarm Rogue MCP** (Wallarm's MCP server), which is easily accessible via Postman. Scenario:
+You can access Rogue MCP Inspection via **Rogue Security Testing** (Wallarm's MCP server), which is easily accessible via Postman. Scenario:
 
-1. In Postman, you add the **Wallarm Rogue MCP** server to your Workspace.
+1. In Postman, you add the **Rogue Security Testing** server to your Workspace.
 1. With Postman's AI Agent, you just ask to inspect your local machine for the rogue MCP.
 1. Agent spends 2 minutes learning your PC and responds with the report covering:
 
@@ -32,13 +32,13 @@ This feature is free.
 1. In AI Agent panel, click **Configure** ("gear"), and select **Configure MCP servers**.
 1. In displayed **MCP Servers** tab, click **Add** ("plus") and do one of the following:
 
-    * Select **Wallarm Rogue MCP** from the list of the featured MCP servers
+    * Select **Rogue Security Testing** from the list of the featured MCP servers
     * Or just click Edit config and save the following to it:
 
         ```json
         {
             "mcpServers": {
-                "Wallarm Rogue MCP": {
+                "Rogue Security Testing": {
                     "command": "npx",
                     "args": [
                         "-y",
@@ -65,4 +65,4 @@ Postman's AI Agent will give you an answer with the test results and suggested m
 
 ## Other tools
 
-Besides Rogue MCP Inspection, **Wallarm Rogue MCP** provides other tools for security testing, such as [API Security Testing via Postman](../vulnerability-detection/api-security-testing-via-postman/overview.md)—safe, passive testing of Postman collections for auth gaps, data leaks, and design-level issues.
+Besides Rogue MCP Inspection, **Rogue Security Testing** provides other tools for security testing, such as [API Security Testing via Postman](../vulnerability-detection/api-security-testing-via-postman/overview.md)—safe, passive testing of Postman collections for auth gaps, data leaks, and design-level issues.

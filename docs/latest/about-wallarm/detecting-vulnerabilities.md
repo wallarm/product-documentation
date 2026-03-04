@@ -82,7 +82,7 @@ Wallarm's [API Security Testing via Postman](../vulnerability-detection/api-secu
 API Security Testing via Postman capabilities:
 
 * Passive, design-level analysis; no attack payloads, no traffic replay, no production risk.
-* Conversational workflow in Postman Agent Mode via the Wallarm Rogue MCP server.
+* Conversational workflow in Postman Agent Mode via the Rogue Security Testing server.
 * LLM-assisted findings tailored for developers.
 
 ### API Attack Surface Management (AASM) <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
