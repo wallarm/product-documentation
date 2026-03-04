@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/search-and-filters/use-search-vuln.md"
+--8<-- "5.0/user-guides/search-and-filters/use-search-vuln.md"
