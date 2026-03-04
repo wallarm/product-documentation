@@ -67,3 +67,7 @@ To protect resources from BOLA attacks, real clients' IP addresses are required.
 **Restrictions**
 
 When searching for BOLA attack signs, Wallarm nodes analyze only HTTP requests that do not contain signs of other attack types.
+
+## Automatic protection  <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+
+Alternatively or additionally to other BOLA protection measures, you can configure [Automatic BOLA protection for endpoints found by API Discovery](protecting-against-bola.md).

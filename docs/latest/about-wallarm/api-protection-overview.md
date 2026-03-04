@@ -5,7 +5,7 @@ Wallarm's API Protection is an advanced set of API and AI protection capabilitie
 API Protection includes:
 
 * [API Specification Enforcement](#api-specification-enforcement) is designed to apply security policies to your APIs basing on your uploaded specifications. It detects discrepancies between the endpoint descriptions in your specification and the actual requests made to your REST APIs and take predefined actions if discrepancies are found.
-* [Automatic BOLA Protection](#automatic-bola-protection) provides automatic protection against BOLA attacks that were marked as #1 threat in OWASP API Top 10. Wallarm automatically discovers vulnerable endpoints and protects them against enumeration.
+* [BOLA Protection](#bola-protection) helps protect APIs against BOLA attacks, one of the top risks in the OWASP API Top 10. Depending on your subscription plan, Wallarm provides configuration options to detect and mitigate enumeration attempts associated with BOLA exploitation.
 * [API Abuse Prevention](#api-abuse-prevention) protects your applications and APIs against different types of automated threats. Based on behavioral analysis Wallarm can easily identify and block malicious bots such as  Scrappers, Security Crawlers, etc.  
 * [Credential Stuffing Detection](#credential-stuffing-detection) provides one more layer of protection against Account Takeover attacks. Wallarm allows you to recognize even a single use of compromised credentials, which is important to identify low and slow Credential Stuffing attacks.
 * [GraphQL API Protection](#graphql-api-protection) protects your GraphQL APIs against specialized attacks that exploit protocol specific such as batching, nesting queries, introspection, etc. It can prevent Resource Exhaustion, Denial of Service (DoS), Excessive Information Exposure and other attacks.
@@ -22,15 +22,15 @@ The **API Specification Enforcement** is designed to apply security policies to 
 
 [Proceed to detailed description and configuration →](../api-specification-enforcement/overview.md)
 
-## Automatic BOLA Protection
+## BOLA Protection
 
-Use Wallarm's API Discovery module to discover endpoints vulnerable to broken object level authorization (BOLA) threat and automatically protect from attacks trying to exploit this vulnerability.
+Wallarm helps protect APIs from [Broken Object Level Authorization (BOLA)](../attacks-vulns-list.md#broken-object-level-authorization-bola) attacks - one of the most critical risks in the OWASP API Top 10. BOLA vulnerabilities can allow attackers to access objects by manipulating identifiers in API requests and bypassing authorization checks.
 
-![BOLA trigger](../images/user-guides/bola-protection/trigger-enabled-state.png)
+Depending on your subscription plan, protection from BOLA attacks can be configured using mitigation controls or triggers. This allows you to define how Wallarm should identify suspicious enumeration behavior and what actions to take in response.
 
-Automatic BOLA protection serves as a great extension or replacement to the [manually created](../admin-en/configuration-guides/protecting-against-bola-trigger.md) BOLA protection rules. You can configure automatic BOLA protection to make Wallarm's behavior match your organization security profile.
+![BOLA attack in the UI](../images/user-guides/events/bola-attack.png)
 
-[Proceed to detailed description and configuration →](../admin-en/configuration-guides/protecting-against-bola.md)
+[Proceed to detailed description and configuration →](../admin-en/configuration-guides/protecting-against-bola-trigger.md)
 
 ## API Abuse Prevention
 
