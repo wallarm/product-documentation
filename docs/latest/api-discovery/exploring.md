@@ -117,6 +117,34 @@ For SOAP operations, it is a limited set from the [built-in primitive XML data t
 * soapTypeDuration = `Duration`
 * soapTypeURI      = `URI`
 
+## gRPC operation details
+
+By clicking the gRPC operation, you can find its details, including transferred sensitive data, risk score and what contributes to it, parameters and headers of requests and responses:
+
+![API Discovery - gRPC operation details](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-GRPC.png)
+
+Each request/response parameter information includes:
+
+* Parameter data type and the part of request/response this parameter belongs to
+
+    !!! info "Parameter names"
+        Due to gRPC protocol peculiarities, it is impossible to discover parameter names. However, it is useful to understand the nesting depth, type and number of parameters for each operation.
+
+* Information about parameter changes (new, unused)
+* Presence and type of sensitive data transmitted by this parameter
+* Date and time when parameter value was last transferred by requests
+
+**Format and data type**
+
+In gRPC operation details, in the **Type** column for parameters and headers, Wallarm indicates the data format identified through traffic analysis.
+
+Wallarm discovers general gRPC services that use [protocol buffers](https://protobuf.dev/), on which gRPC relies when defining gRPC message data types:
+
+* `Int`: A signed 32‐bit integer.
+* `Float`: A signed double-precision floating-point value.
+* `String`: A UTF‐8 character sequence.
+* `Boolean`: true or false.
+
 ## Endpoint activities
 
 The number of requests related to the endpoint is displayed in the **Requests** column. Click this number to open the [**API Sessions**](../api-sessions/overview.md) section with the list of user sessions for the last week with these requests.

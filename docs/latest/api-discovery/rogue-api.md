@@ -31,7 +31,7 @@ Because the OpenAPI **servers** section is often omitted, it is recommended to s
 2. Click **Upload specification** and upload an OpenAPI 3.0 or 3.1 file (JSON or YAML).
 
     !!! tip ""
-        OAS 3.1 requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.6.1 or higher and is not yet supported by [Native Node](../installation/nginx-native-node-internals.md#native-node).
+        OAS 3.1 requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.6.1+ or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.20.0+.
 
 3. Open the uploaded specification and go to the **Rogue APIs detection** tab.
 
