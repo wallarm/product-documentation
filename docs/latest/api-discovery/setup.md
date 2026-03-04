@@ -7,6 +7,8 @@ This article describes how to enable and configure Wallarm's [API Discovery](ove
 * Advanced API Security [subscription plan](../about-wallarm/subscription-plans.md#core-subscription-plans)
 * For **GraphQL** - [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.1.0 or higher (not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far)
 * For **SOAP** - [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.0 or higher (not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far)
+* For **gRPC** - [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.4.0 or higher (not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far)
+
 API Discovery is included in [all forms of the Wallarm node installation](../installation/supported-deployment-options.md). During node deployment, it installs the API Discovery module but keeps it disabled by default.
 
 ## Enabled by default
