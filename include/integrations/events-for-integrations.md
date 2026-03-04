@@ -2,7 +2,7 @@
     * [User](../../../user-guides/settings/users.md) changes (newly created, deleted, role change)
     * [Integration](integrations-intro.md) changes (disabled, deleted)
     * [Application](../../../user-guides/settings/applications.md) changes (newly created, deleted, name change)
-    * Errors during regular update of specifications used for [rogue API detection](../../../api-discovery/rogue-api.md#step-1-upload-specification) or [API specification enforcement](../../../api-specification-enforcement/setup.md#step-1-upload-specification)
+    * Errors during regular update of specifications used for [rogue API detection](../../../api-discovery/rogue-api.md) or [API specification enforcement](../../../api-specification-enforcement/setup.md#step-1-upload-specification)
 * [Rules](../../../user-guides/rules/rules.md) and [triggers](../../../user-guides/triggers/triggers.md) changed (creating, updating, or deleting the rule or trigger)
 * [Security issues](../../../user-guides/vulnerabilities.md) detected by [all methods](../../../about-wallarm/detecting-vulnerabilities.md#detection-methods), all or only for the selected risk level(s):
     * Critical risk
