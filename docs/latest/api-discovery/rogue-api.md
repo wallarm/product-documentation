@@ -7,14 +7,12 @@ The [API Discovery](overview.md) module can detect **rogue APIs** by comparing l
 * **Shadow API detection** — Find undocumented endpoints (in traffic but not in any of your specs).
 * **Zombie API detection** — Find deprecated endpoints that still handle traffic (removed from spec but still in use).
 * **Cumulative baseline** — Traffic is compared against the **sum of all** uploaded specifications that you have enabled for rogue API detection for a given host or application. You do not need to choose a single spec.
+* **Configurable scope** — Applications and/or hosts, selected in each API specification [configuration](#setup), are considered as filters for the comparison: traffic within a selected scope only is compared with a specification.
 
 | Rogue API type | What is it? |
 |--|--|
 | [Shadow API](#shadow-api) | An undocumented API that exists in your infrastructure without being described in your specifications. |
 | [Zombie API](#zombie-api) | A deprecated API that is no longer in your current specification but still receives traffic. |
-
-!!! note "Orphan API (out of scope for current release)"
-    *Orphan API* is a documented API that does not receive traffic. Orphan detection is not part of the current release and may be reintroduced in a later version.
 
 ![API Discovery - highlighting and filtering rogue API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
@@ -23,6 +21,7 @@ The [API Discovery](overview.md) module can detect **rogue APIs** by comparing l
 * You upload one or more OpenAPI specifications and enable **Rogue API detection** for each, selecting the **applications** and **hosts** they apply to.
 * Wallarm builds a **cumulative baseline** from all such specs for each host/application: an endpoint is treated as **shadow** only if it is absent in **all** specs that are associated with that host or application.
 * Traffic is compared against this baseline. Endpoints that appear in traffic but not in the baseline are **shadow**; endpoints that were in a previous version of a spec but not in the current version and still appear in traffic are **zombie**.
+* Applications and/or hosts, selected in each API specification [configuration](#setup), are considered as filters for the comparison: traffic within a selected scope only is compared with a specification.
 
 Because the OpenAPI **servers** section is often omitted, it is recommended to specify **hosts** and **applications** explicitly when enabling rogue API detection. That way it is clear which traffic is compared to which specifications. If you do not set them, the same endpoint could be treated as rogue or not depending on which specification is considered.
 
@@ -103,7 +102,3 @@ Shadow APIs increase risk because they are outside normal oversight and can be a
 **Zombie API** is an endpoint that was **removed or deprecated** in your current specification (i.e. you intended to retire it) but **still receives traffic**.
 
 Zombie APIs carry similar or greater risk than shadow APIs, often because they were deprecated due to insecure design. Finding them in Wallarm is a signal to verify that such endpoints are actually disabled or properly secured in your applications.
-
-### Orphan API (not in current release)
-
-**Orphan API** is an endpoint that **is documented** in your specification but **does not receive traffic**. Orphan detection is out of scope for the current release and may be reintroduced in a future version.
