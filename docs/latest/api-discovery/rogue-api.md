@@ -48,8 +48,8 @@ You can upload multiple specifications. Each one with **Rogue API detection** en
 ### When comparison runs
 
 * Comparison starts after you complete the setup above.
-* It re-runs if you change and save rogue API detection settings, upload a new specification file, or use **Restart comparison** from the specification menu.
-* If the specification is loaded from a URI and **Regularly update the specification** (every hour) is enabled, comparison can also re-run when the file at the URI is updated. To get notified about specification upload or update errors, in [**Integrations**](../user-guides/settings/integrations/integrations-intro.md) enable **System related** events.
+* It re-runs if you change and save rogue API detection settings, upload a new specification file.
+* If the specification is loaded from a URI and **Regularly update the specification** (every hour) is enabled, comparison can also re-run when the file at the URI is updated.
 
 You can download the current specification from **API Specifications** → open the spec → **Download specification**.
 
@@ -75,7 +75,7 @@ Rogue API counts are also shown in **API Specifications** for each spec. Full UI
 
 [Zombie APIs](#zombie-api) are endpoints that were in a **previous** version of your specification (and are now removed or deprecated) but still appear in live traffic. To detect them, Wallarm needs at least two specification versions:
 
-* If you uploaded the spec from a URI and chose **Regularly update the specification**, publish a new version at that URI. It will be picked up on the next update or when you use **Restart comparison** from the specification menu.
+* If you uploaded the spec from a URI and chose **Regularly update the specification**, publish a new version at that URI. It will be picked up on the next update.
 * If you upload from your machine, open the specification, choose a new file (with updated content or a different name), and save. That is treated as the next version.
 
 Wallarm compares the current version with the previous one and marks endpoints that are in the old version, not in the new version, but still seen in traffic as zombie APIs.
