@@ -529,6 +529,25 @@ new attack types in logging variables and search bars?
 
 * Initial release 6.0, [see changelog](what-is-new.md)
 
+## Helm chart for eBPF-based solution
+
+<!-- [How to upgrade] -->
+
+### 0.23.0 (2026-02-28)
+
+* The solution is now generally available and intended for [API Discovery](../api-discovery/overview.md) — building your API inventory based on real traffic without impacting production
+* Switched the processing component from NGINX-based node (`wallarm/node-nginx`) to [Native Node](../installation/nginx-native-node-internals.md#native-node) (`wallarm/node-native-processing`), added `config.connector` section for its [configuration](../installation/oob/ebpf/helm-chart-for-wallarm.md#configconnector)
+* Enabled metrics by default for processing and agent components
+* Renamed and restructured Helm chart parameters:
+
+    | What changed | Old value | New value |
+    | --- | --- | --- |
+    | Aggregation in-memory storage parameter | `config.aggregation.tarantoolMemory` | `config.aggregation.wstoreMemory` |
+    | Process manager configuration section | `config.supervisord` | `config.wcli` |
+    | Responder section | `config.responder` | Removed |
+    | Processing pod containers | `node`, `responder`, `supervisord`, `collectd` | `nodeNative`, `wcli` |
+    | Aggregation pod containers | `supervisord`, `tarantool`, `appStructure`, `antiBot` | `wcli`, `wstore` |
+
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
