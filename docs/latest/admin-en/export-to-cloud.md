@@ -32,7 +32,7 @@ This is what data is sent from Wallarm node to Cloud and how you can control it:
 **What data is sent and how to control**
 
 * As statistics, the info on number of requests, attacks, blocked requests, per-application information etc. is sent. It is metadata and always safe. However, you can still [limit IP addresses allowed to request statistics](../admin-en/configure-statistics-service.md#limiting-ip-addresses-allowed-to-request-statistics).
-* Metadata of all user activities (requests) is sent to [API Sessions](../api-sessions/overview.md) by default. It is metadata (time, source IP, target endpoint, response code, etc.) and is always safe. What **actual** data is sent additionally, you [decide yourself](#api-sessions).
+* In [API Sessions](../api-sessions/overview.md), metadata of all user activities (requests) is sent to the Cloud by default. It is metadata (time, source IP, target endpoint, response code, etc.) and is always safe. What actual data is sent additionally, you decide yourself.
 
 ## Attacks, Incidents
 
@@ -52,7 +52,7 @@ To control:
 
 * [**Mask sensitive data**](../user-guides/rules/sensitive-data-rule.md): create rules of this type for your endpoints or applications to set which request point values should be cut before sending - values will never leave your security perimeter.
 * **Limit data export** (arriving soon): create rules of this type for your endpoints or applications to switch for them from full malicious request data to metadata only. When full export is disabled, the node sends only the request method, URI, IP address, HTTP status code, request time, and the `Host` header. The body, query parameters, and other headers are excluded from both requests and responses. "Keep headers" mode is available.
-* **Limited data export exceptions** (arriving soon): if you forbade export to **Attacks** and **Incidents** with one of more **Limit data export** rules (for all traffic or for specific endpoints), add parameters-exceptions here - they will be exported in spite of restrictions. <!--https://wallarm.atlassian.net/browse/DESIGN-1340 -->
+* **Limited data export exceptions**: if you forbade export to the Cloud with one of more **Limit data export** rules (for all traffic or for specific endpoints), add parameters-exceptions here - they will be exported in spite of restrictions.
 * **Sensitive data types** (arriving soon): Wallarm's API Discovery can by default detect different types of sensitive data transferred by endpoints/parameters. You can modify the default rules, add your own, and **enable automatic masking** (not available yet) for found sensitive data.
 * **Combining methods**: for **Attacks** and **Incidents**, Wallarm never transmits parameter values except the ones of malicious requests. Even this can be disabled by **Limit data export** rules for all traffic or specific endpoints. If these restrictions make needed data unavailable, explicitly specify **limited data export exceptions** - parameters that you allow to export in spite of restrictions. This gives you necessary data and you stay in control: even if new sensitive parameters appear with time, they will never be exported until you allow that.
 
@@ -96,6 +96,5 @@ To control:
 
 **What data is sent and how to control**
 
-* Only metadata goes to [Security Issues](../user-guides/vulnerabilities.md): host name and endpoint address (URL) and parameter name, for which vulnerability was detected with "first" and "last" seen time and source IP.
+* Security issues can be detected by [different methods](../about-wallarm/detecting-vulnerabilities.md#detection-methods). Most of them (such as AASM or any type of security testing) do not have an access to the traffic, so they don't export any data to the Cloud by design. Passive detection, on the other hand, sends entire request & response (including PII and other sensitive data) to the Cloud. Passive vulnerability detection can be disabled.
 * All the other information related to security issues are calculated and formed on the Cloud side: problem description and mitigation recommendations, status history etc.
-* Security issues can be detected by [different methods](../about-wallarm/detecting-vulnerabilities.md#detection-methods), some of them does not use Wallarm node at all, but approach to send only metadata is always kept intact.
