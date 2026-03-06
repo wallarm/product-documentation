@@ -1,6 +1,9 @@
 [deployment-platform-docs]:    ../../supported-deployment-options.md
 
-# Wallarm eBPF-Based Solution
+# Wallarm eBPF-Based Solution (Beta)
+
+!!! info "Beta"
+    The eBPF-based solution is currently in beta. Your feedback helps improve it — contact [sales@wallarm.com](mailto:sales@wallarm.com) with questions or suggestions.
 
 Wallarm offers an eBPF-based security solution that leverages the power of the Linux kernel and seamlessly integrates with Kubernetes environments. The solution requires no changes to your application code and provides fast time-to-value for [API Discovery](../../../api-discovery/overview.md) — **automatically building your API inventory based on real traffic**. This article explains how to use and deploy the solution using the Helm chart.
 

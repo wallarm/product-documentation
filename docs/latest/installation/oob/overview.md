@@ -20,14 +20,14 @@ The diagram below provides a visual representation of the general traffic flow i
 
 The OOB approach to the Wallarm deployment offers several advantages over other deployment methods, such as in-line deployments:
 
-* It does not introduce latency or other performance issues that can occur when the security solution operates in-line with the primary data path. 
+* It does not introduce latency or other performance issues that can occur when the security solution operates in-line with the primary data path.
 * It provides flexibility and ease of deployment, as the solution can be added or removed from the network without affecting the primary data path.
 
 ## Limitations
 
 Despite the OOB deployment approach safety, it has some limitations. The table below details the limitations associated with various deployment options:
 
-| Feature | [eBPF](ebpf/deployment.md) | [TCP mirror](tcp-traffic-mirror/deployment.md) |
+| Feature | [eBPF (beta)](ebpf/deployment.md) | [TCP mirror](tcp-traffic-mirror/deployment.md) |
 | --- | --- | --- |
 | Instant blocking of malicious requests | - | - |
 | Vulnerability discovery using the [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) | - | + |
@@ -40,5 +40,5 @@ Despite the OOB deployment approach safety, it has some limitations. The table b
 
 Wallarm offers the following Out-of-Band (OOB) deployment options:
 
-* [eBPF-based solution](ebpf/deployment.md)
+* [eBPF-based solution](ebpf/deployment.md) (beta)
 * The solution for [TCP traffic mirror analysis](tcp-traffic-mirror/deployment.md)

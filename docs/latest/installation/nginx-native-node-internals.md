@@ -14,7 +14,7 @@ The following [artifacts](../updating-migrating/node-artifact-versions.md) are a
 * [Docker image](../admin-en/installation-docker-en.md)
 * [AWS AMI](cloud-platforms/aws/ami.md)
 * [GCP Machine Image](cloud-platforms/gcp/machine-image.md)
-* Helm chart for [NGINX Ingress Controller](../admin-en/installation-kubernetes-en.md), [Sidecar Controller](kubernetes/sidecar-proxy/deployment.md), [eBPF](oob/ebpf/deployment.md) deployments
+* Helm chart for [NGINX Ingress Controller](../admin-en/installation-kubernetes-en.md), [Sidecar Controller](kubernetes/sidecar-proxy/deployment.md) deployments
 
 Find your **use case below** and deploy the NGINX Node in the appropriate form-factor.
 
@@ -37,11 +37,6 @@ Find an NGINX Node deployment solution for your Kubernetes environment:
             <p>Deploy Wallarm Sidecar controller for pod security</p>
         </a>
 
-        <a class="do-card" href="../../installation/oob/ebpf/deployment/">
-            <img class="non-zoomable" src="../../images/platform-icons/ebpf.svg" />
-            <h3>eBPF</h3>
-            <p>Out-of-band deployment on Kubernetes using the eBPF technology</p>
-        </a>
     </div>
 </div>
 
@@ -314,6 +309,12 @@ The Native Node works with the following platforms with no limitations:
             <img class="non-zoomable" src="../../images/platform-icons/tcp-mirror-analysis.svg" />
             <h3>TCP Traffic Mirror Analysis</h3>
             <p>Out-of-band deployment for TCP traffic mirror analysis</p>
+        </a>
+
+        <a class="do-card" href="../../installation/oob/ebpf/deployment/">
+            <img class="non-zoomable" src="../../images/platform-icons/ebpf.svg" />
+            <h3>eBPF (Beta)</h3>
+            <p>Out-of-band deployment on Kubernetes using the eBPF technology</p>
         </a>
     </div>
 </div>

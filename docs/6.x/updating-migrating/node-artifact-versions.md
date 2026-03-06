@@ -535,7 +535,7 @@ new attack types in logging variables and search bars?
 
 ### 0.23.0 (2026-02-28)
 
-* The solution is now generally available and intended for [API Discovery](../api-discovery/overview.md) — building your API inventory based on real traffic without impacting production
+* Updated the eBPF-based solution (beta) for [API Discovery](../api-discovery/overview.md) — building your API inventory based on real traffic without impacting production
 * Switched the processing component from NGINX-based node (`wallarm/node-nginx`) to [Native Node](../installation/nginx-native-node-internals.md#native-node) (`wallarm/node-native-processing`), added `config.connector` section for its [configuration](../installation/oob/ebpf/helm-chart-for-wallarm.md#configconnector)
 * Enabled metrics by default for processing and agent components
 * Renamed and restructured Helm chart parameters:
