@@ -140,7 +140,7 @@ Mozilla Firefox tarayıcısında proxy kurulumu için aşağıdakileri yapın:
     * **`localhost`** adresini HTTP proxy adresi, **`8080`** değerini HTTP proxy bağlantı noktası olarak.
     * **`localhost`** adresini SSL proxy adresi, **`8080`** değerini SSL proxy bağlantı noktası olarak.
         
-    Yaptığınız değişiklikleri uygulamak için **ОК** düğmesini seçin.
+    Yaptığınız değişiklikleri uygulamak için **OK** düğmesini seçin.
 
     ![Mozilla Firefox proxy ayarları][img-firefox-proxy-options]
     

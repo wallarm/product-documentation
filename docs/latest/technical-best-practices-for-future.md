@@ -3,20 +3,20 @@
 This article formulates best practices for deployment and maintenance of the Wallarm solution.
 
 
-## Deploy the filtering nodes not just in the production environment but also in testing and staging - технические бест практисы
+## Deploy the filtering nodes not just in the production environment but also in testing and staging
 
 The majority of Wallarm service contracts do not limit the number of Wallarm nodes deployed by the customer, so there is no reason to not deploy the filtering nodes across all your environments, including development, testing, staging, etc.
 
 By deploying and using the filtering nodes in all stages of your software development and/or service operation activities you have a better chance of properly testing the whole data flow and minimizing the risk of any unexpected situations in your critical production environment.
 
-## Configure proper reporting of end-user IP addresses - технические бест практисы,плюс ссылка на это должна быть в каждой инструкции по деплою
+## Configure proper reporting of end-user IP addresses
 
 For Wallarm filtering nodes located behind a load balancer or CDN please make sure to configure your filtering nodes to properly report end-user IP addresses (otherwise the [IP list functionality](user-guides/ip-lists/overview.md), [Threat Replay Testing](detecting-vulnerabilities.md#threat-replay-testing-trt), and some other features will not work):
 
 * [Instructions for NGINX-based Wallarm nodes](../admin-en/using-proxy-or-balancer-en.md) (including AWS / GCP images and Docker node container)
 * [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
 
-## Enable proper monitoring of the filtering nodes - перенести как в инструкцию по мониторингу,так и в технические бест практисы
+## Enable proper monitoring of the filtering nodes
 
 It is highly recommended to enable proper monitoring of Wallarm filtering nodes. The method for setting up the filtering node monitoring depends on its deployment option:
 

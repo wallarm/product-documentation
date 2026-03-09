@@ -140,7 +140,7 @@ To set up proxying in the Mozilla Firefox browser, do the following:
     * **`localhost`** as HTTP proxy address and **`8080`** as HTTP proxy port. 
     * **`localhost`** as SSL proxy address and **`8080`** as SSL proxy port.
         
-    Select the **ОК** button to apply the changes you have made.
+    Select the **OK** button to apply the changes you have made.
 
     ![Mozilla Firefox proxy settings][img-firefox-proxy-options]
     
