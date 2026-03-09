@@ -313,51 +313,6 @@ proton.db ve özel kural seti dosyalarının şifrelenmesi/şifresinin çözülm
 !!! warning "Direktif kullanımdan kaldırıldı"
     Wallarm düğümü 3.6’dan itibaren, lütfen bunun yerine [`wallarm_custom_ruleset_path`](#wallarm_custom_ruleset_path) direktifini kullanın. Sadece direktif adını değiştirin, mantığı değişmedi.
 
-### wallarm_max_request_body_size
-
-Genel kullanımdan gizlenmiştir
-
-Düğüm tarafından analiz edilecek bir HTTP istek gövdesinin maksimum boyutunu (bayt cinsinden) tanımlar. İstek gövdesi belirtilen sınırı aşarsa, aşan kısım atlanır ve tehditler açısından incelenmez.
-
-Direktif 6.2.0 sürümünden itibaren kullanılabilir.
-
-!!! info
-    Parametre http, server, location blokları içinde yapılandırılır.
-
-    **Varsayılan değer**: sınırsız.
-
-### wallarm_max_request_stream_message_size
-
-Düğüm tarafından analiz edilecek gRPC veya WebSocket akışı içindeki tek bir mesaj yükünün maksimum boyutunu (bayt cinsinden) tanımlar. Mesaj belirtilen sınırı aşarsa, aşan kısım atlanır ve tehditler açısından incelenmez.
-
-gRPC mesaj başlıkları boyut hesaplamasına dahil edilmez.
-
-Direktif 6.2.0 sürümünden itibaren kullanılabilir.
-
-!!! info
-    Parametre http, server, location blokları içinde yapılandırılır.
-
-    **Varsayılan değer**: 1Mb
-
-    * 5 MB’lık bir dosyayı tek bir gRPC mesajı olarak gönderirseniz, sadece ilk 1 MB analiz edilir.
-    * Dosya 1 MB veya daha küçük birden çok gRPC mesajına bölünürse, tüm parçalar analiz edilir.
-
-### wallarm_max_request_stream_size
-
-Düğüm tarafından analiz edilecek bir gRPC veya WebSocket istek akışı gövdesinin toplam maksimum boyutunu (bayt cinsinden) tanımlar. Akış gövdesi belirtilen sınırı aşarsa, aşan kısım atlanır ve tehditler açısından incelenmez.
-
-* HTTP başlıkları hesaplamaya DAHİL DEĞİLDİR
-* gRPC mesaj başlıkları (genellikle mesaj başına 5 bayt) dahildir
-
-Örneğin, her biri 1000 bayt olan 2 gRPC mesajı gönderirseniz, toplam akış boyutu `(1000 + 5) × 2 = 2010 bayt` olacaktır - burada 5 bayt, her gRPC mesaj başlığının uzunluğudur.
-
-Direktif 6.2.0 sürümünden itibaren kullanılabilir.
-
-!!! info
-    Parametre http, server, location blokları içinde yapılandırılır.
-
-    **Varsayılan değer**: sınırsız.
-
 ### wallarm_memlimit_debug
 
 Bu direktif, bellek limiti aşıldığında istek ayrıntılarını içeren `/tmp/proton_last_memlimit.req` dosyasının Wallarm NGINX modülü tarafından oluşturulup oluşturulmayacağını belirler. Bu, istek bellek limiti işleme ile ilgili sorunları hata ayıklamak için çok değerli olabilir.
