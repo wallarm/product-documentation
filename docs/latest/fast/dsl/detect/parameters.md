@@ -246,7 +246,7 @@ This parameter checks whether the necessary elements are present in the server's
     ```
     
     ??? info "Example"
-        The HTML markup of the response should contain the `а` tag.
+        The HTML markup of the response should contain the `a` tag.
             
         ```
             - response:
@@ -268,7 +268,7 @@ This parameter checks whether the necessary elements are present in the server's
     ```
     
     ??? info "Example"
-        The HTML markup of the response should contain one of the following tags: `а`, `img`, or `tr`.
+        The HTML markup of the response should contain one of the following tags: `a`, `img`, or `tr`.
             
         ```
             - response:

@@ -129,13 +129,13 @@ async function generateHTML(toc, parts) {
 }
 
 async function generatePDF(docsUrl, html, origin, parts) {
-    // Загружаем head + CSS с сайта, чтобы не терять стили
+    // Load head + CSS from the site to preserve styles
     await page.goto(docsUrl, { waitUntil: 'networkidle0' });
 
-    // Подключаем твой index.css
+    // Attach the custom index.css
     await page.addStyleTag(styles);
 
-    // Вставляем подготовленный HTML внутрь body
+    // Insert the prepared HTML into body
     await page.evaluate(innerHtml => {
         document.body.innerHTML = innerHtml;
     }, html);
