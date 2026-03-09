@@ -57,9 +57,7 @@ new attack types in logging variables and search bars?
 ### 6.2.0 (2025-06-20)
 
 * gRPC trafiği için akış işleme optimize edildi
-* gRPC ve WebSocket trafiğinde sırasıyla tek bir mesaj yükünün ve tüm akış gövdesinin azami boyutunu kontrol etmek için [`wallarm_max_request_stream_message_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_stream_message_size) ve [`wallarm_max_request_stream_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_stream_size) NGINX yönergeleri eklendi
 * İşlenen gRPC/WebSocket akış ve mesaj sayısını raporlamak için [`/wallarm-status` servisi](../admin-en/configure-statistics-service.md) çıktısına `streams` ve `messages` parametreleri eklendi
-* Node tarafından analiz edilen HTTP istek gövdesinin azami boyutunu kontrol etmek için [`wallarm_max_request_body_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_body_size) NGINX yönergesi eklendi
 * NGINX-Wallarm modülü ile postanalytics modülü ayrı kurulduğunda aralarında [SSL/TLS ve mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module) desteği eklendi
 * wstore port bağlama düzeltildi: artık `0.0.0.0` yerine `127.0.0.1`’e bağlanıyor
 * Küçük hata düzeltmeleri
@@ -130,9 +128,7 @@ new attack types in logging variables and search bars?
 ### 6.2.0 (2025-06-20)
 
 * gRPC trafiği için akış işleme optimize edildi
-* gRPC ve WebSocket trafiğinde sırasıyla tek bir mesaj yükünün ve tüm akış gövdesinin azami boyutunu kontrol etmek için [`wallarm_max_request_stream_message_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_stream_message_size) ve [`wallarm_max_request_stream_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_stream_size) NGINX yönergeleri eklendi
 * İşlenen gRPC/WebSocket akış ve mesaj sayısını raporlamak için [`/wallarm-status` servisi](../admin-en/configure-statistics-service.md) çıktısına `streams` ve `messages` parametreleri eklendi
-* Node tarafından analiz edilen HTTP istek gövdesinin azami boyutunu kontrol etmek için [`wallarm_max_request_body_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_body_size) NGINX yönergesi eklendi
 * Filtering Node ile postanalytics modülü arasında [SSL/TLS ve mTLS](../admin-en/configure-kubernetes-en.md#controllerwallarmpostanalyticstls) desteği eklendi
 * `values.yaml` içindeki birleşik `controller.wallarm.wcli` bileşeni, kapsayıcılar üzerinde ayrıntılı kontrol sağlamak için 2 ayrı [yapılandırılabilir birime](../admin-en/configure-kubernetes-en.md) bölündü: `wcliController` ve `wcliPostanalytics`
 * Küçük hata düzeltmeleri
