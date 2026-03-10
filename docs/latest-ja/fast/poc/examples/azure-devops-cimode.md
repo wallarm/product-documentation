@@ -12,7 +12,7 @@ CI MODEでのFASTのAzure DevOpsパイプラインへの統合は、`azure-pipel
 
 [FASTノードトークン](../../operations/create-node.md)を安全に使用するには、現在のパイプラインの設定を開き、トークン値を[Azure DevOps環境変数](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch#environment-variables)に渡します。
 
-![Azure DevOps環境変数の渡し](../../../images/fast/poc/common/examples/azure-devops-cimode/azure-env-var-example.png)
+![Azure DevOps環境変数の渡し](../../../../images/fast/poc/common/examples/azure-devops-cimode/azure-env-var-example.png)
 
 ## リクエスト記録手順の追加
 
@@ -93,7 +93,7 @@ CI MODEでのFASTのAzure DevOpsパイプラインへの統合は、`azure-pipel
 
 セキュリティテストの結果はAzure DevOpsのインターフェースに表示されます。
 
-![テストモードでFASTノードを実行した結果](../../../images/fast/poc/common/examples/azure-devops-cimode/azure-ci-example.png)
+![テストモードでFASTノードを実行した結果](../../../../images/fast/poc/common/examples/azure-devops-cimode/azure-ci-example.png)
 
 ## その他の例
 

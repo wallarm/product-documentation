@@ -36,4 +36,4 @@
 
 https://example.com/* のすべてのコンテンツがサイトのオリジンからのみ配信されるようにするには、ルール**Change server response headers**を使用して、次のようにレスポンスヘッダー[`Content-Security-Policy: default-src 'self'`](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#example_1)を追加できます:
 
-![ルール「Change server response headers」の例](../../images/user-guides/rules/add-replace-response-header.png)
+![ルール「Change server response headers」の例](../../../images/user-guides/rules/add-replace-response-header.png)

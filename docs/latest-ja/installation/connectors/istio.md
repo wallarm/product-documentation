@@ -1,4 +1,4 @@
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [custom-blocking-page-docs]:        ../../admin-en/configuration-guides/configure-block-page-and-code.md
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [multitenancy-overview]:            ../multi-tenant/overview.md
@@ -13,7 +13,7 @@ Wallarmは、Istioで管理されるAPIを[アウトオブバンド（OOB）](..
 
 この連携は、Envoyプロキシ内にデプロイされるLuaプラグインに依存し、トラフィックのミラーリングとWallarmノードとの通信を処理します。
 
-![Wallarmプラグインを使用したIstio](../../images/waf-installation/gateways/istio/traffic-flow-oob.png)
+![Wallarmプラグインを使用したIstio](../../../images/waf-installation/gateways/istio/traffic-flow-oob.png)
 
 ## ユースケース
 

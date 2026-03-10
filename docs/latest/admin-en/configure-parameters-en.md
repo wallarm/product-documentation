@@ -244,7 +244,7 @@ curl "http://localhost/?id=1' UNION SELECT"
 
     Default value is `on` for all [deployment options](../installation/supported-deployment-options.md).
 
-### wallarm_export_streams <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
+### wallarm_export_streams <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
 Controls whether the Node exports information about long-lived streaming connections — such as gRPC and WebSocket streams — to the internal postanalytics storage (wstore).
 
@@ -404,7 +404,7 @@ Possible values are `on` (response analysis is enabled) and `off` (response anal
 !!! warning "Improve performance"
     You are recommended to disable processing of static files through `location` to improve performance.
 
-### wallarm_parse_websocket <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg"></a>
+### wallarm_parse_websocket <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg"></a>
 
 Wallarm provides full WebSockets support under the API Security subscription plan. By default, the WebSockets' messages are not analyzed for attacks.
 

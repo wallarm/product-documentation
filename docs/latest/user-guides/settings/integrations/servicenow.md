@@ -23,7 +23,7 @@ In Wallarm UI:
 1. Enter OAuth authentication data: client ID and secret.
 1. Choose event types to trigger notifications.
 
-    ![ServiceNow integration](../../../images/user-guides/settings/integrations/add-servicenow-integration.png)
+    ![ServiceNow integration](../../../../images/user-guides/settings/integrations/add-servicenow-integration.png)
 
     Details on available events:
       

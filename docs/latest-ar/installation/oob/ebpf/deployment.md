@@ -8,7 +8,7 @@
 
 تدفق المرور مع حل Wallarm القائم على eBPF:
 
-![تدفق المرور في eBPF](../../../images/waf-installation/epbf/ebpf-traffic-flow.png)
+![تدفق المرور في eBPF](../../../../images/waf-installation/epbf/ebpf-traffic-flow.png)
 
 الحل eBPF مصمم لمراقبة المرور باستخدام البروتوكولات التالية:
 
@@ -27,7 +27,7 @@
 
 يوضح الرسم البياني التالي مكونات الحل:
 
-![مكونات eBPF](../../../images/waf-installation/epbf/ebpf-components.png)
+![مكونات eBPF](../../../../images/waf-installation/epbf/ebpf-components.png)
 
 وكيل eBPF يتم نشره كـ DaemonSet على كل عقدة عامل Kubernetes. لضمان الوظيفة الجيدة، يجب تشغيل وعاء الوكيل في وضع ممتاز مع القدرات الأساسية التالية: `SYS_PTRACE` و `SYS_ADMIN`.
 
@@ -81,7 +81,7 @@
     * https://my.wallarm.com/nodes بالنسبة لـ Cloud الأوروبية
 1. إعداد عقدة الترشيح مع نوع **Wallarm node** ونسخ الرمز المكون.
 
-    ![!انشاء عقدة Wallarm](../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+    ![!انشاء عقدة Wallarm](../../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
 
 ### الخطوة 2: نشر الخريطة Helm Wallarm
 
@@ -182,7 +182,7 @@ kubectl patch deployment <DEPLOYMENT_NAME> -n <NAMESPACE> -p '{"spec": {"templat
 
     للتحقق من أن الهجوم تم تسجيله، انتقل إلى Wallarm Console → **Events**:
 
-    ![!الهجمات في الواجهة](../../../images/waf-installation/epbf/ebpf-attack-in-ui.png)
+    ![!الهجمات في الواجهة](../../../../images/waf-installation/epbf/ebpf-attack-in-ui.png)
 
 ## القيود
 

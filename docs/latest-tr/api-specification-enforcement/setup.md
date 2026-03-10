@@ -1,6 +1,6 @@
 [waf-mode-instr]:   ../admin-en/configure-wallarm-mode.md
 
-# API Specification Enforcement Kurulumu <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Specification Enforcement Kurulumu <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Bu makale, [yüklediğiniz API spesifikasyonuna](overview.md) dayalı API korumanızı nasıl etkinleştireceğinizi ve yapılandıracağınızı açıklar.
 
@@ -9,7 +9,7 @@ Bu makale, [yüklediğiniz API spesifikasyonuna](overview.md) dayalı API koruma
 1. [US Cloud](https://us1.my.wallarm.com/api-specifications/) veya [EU Cloud](https://my.wallarm.com/api-specifications/) içindeki **API Specifications** bölümünde **Upload specification** öğesine tıklayın.
 1. Spesifikasyon yükleme parametrelerini belirleyin ve yüklemeyi başlatın.
 
-    ![Spesifikasyon yükleme](../images/api-specification-enforcement/specificaton-upload.png)
+    ![Spesifikasyon yükleme](../../images/api-specification-enforcement/specificaton-upload.png)
 
 Spesifikasyon dosyası, API spesifikasyonu sözdizimine uygunluk açısından kontrol edilir; geçerli değilse yüklenmez. Spesifikasyon dosyası başarıyla yüklenene kadar API specification enforcement yapılandırmasını başlatamayacağınızı unutmayın.
 
@@ -33,7 +33,7 @@ Spesifikasyonu bir URI’den yüklemeyi ve **Regularly update the specification*
 
 1. İstekler spesifikasyonunuzu ihlal ederse sistemin nasıl tepki vereceğini ayarlayın.
 
-    ![Spesifikasyon - güvenlik politikalarını uygulamak için kullanım](../images/api-specification-enforcement/specification-use-for-api-policies-enforcement.png)
+    ![Spesifikasyon - güvenlik politikalarını uygulamak için kullanım](../../images/api-specification-enforcement/specification-use-for-api-policies-enforcement.png)
 
     Olası ihlallerle ilgili ayrıntılar:
 

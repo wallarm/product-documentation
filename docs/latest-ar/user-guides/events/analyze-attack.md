@@ -1,8 +1,8 @@
 [link-check-attack]:        check-attack.md
 [link-false-attack]:        false-attack.md
-[img-analyze-attack]:       ../../images/user-guides/events/analyze-attack.png
-[img-analyze-attack-raw]:   ../../images/user-guides/events/analyze-attack-raw.png
-[img-current-attack]:       ../../images/user-guides/events/analyze-current-attack.png
+[img-analyze-attack]:       ../../../images/user-guides/events/analyze-attack.png
+[img-analyze-attack-raw]:   ../../../images/user-guides/events/analyze-attack-raw.png
+[img-current-attack]:       ../../../images/user-guides/events/analyze-current-attack.png
 [glossary-attack-vector]:   ../../glossary-en.md#malicious-payload
 
 # تحليل الأحداث
@@ -51,7 +51,7 @@
 
 * يتم عرض قسم **اكتشاف بواسطة القواعد المخصصة** إذا تم اكتشاف الهجوم بواسطة [قاعدة العميل الأساسية على التوالي](../../user-guides/rules/regex-rule.md). يحتوي القسم على الرابط إلى القاعدة المقابلة (يمكن أن يكون هناك أكثر من واحد) - انقر على الرابط للوصول إلى تفاصيل القاعدة وتعديلها إذا كان ذلك ضروريًا.
 
-    ![الهجوم المكتشف بواسطة القاعدة الأساسية للعميل - تعديل القاعدة](../../images/user-guides/search-and-filters/detected-by-custom-rule.png)
+    ![الهجوم المكتشف بواسطة القاعدة الأساسية للعميل - تعديل القاعدة](../../../images/user-guides/search-and-filters/detected-by-custom-rule.png)
 
     [تعرف على كيفية البحث عن هذه الهجمات →](../../user-guides/search-and-filters/use-search.md#search-by-regexp-based-customer-rule)
 
@@ -88,7 +88,7 @@
 
 بمجرد تمكين إرسال المعلومات حول الطلبات من أي بيهات القائمة السوداء، سترى الطلبات `Blocked` من هذه الأي بيهات في قائمة الحدث. تنطبق هذه الطريقة أيضًا على أي بيهات القائمة السوداء التي تم إدراجها يدويا.
 
-![أحداث ذات صلة بأي بيهات القائمة السوداء - تم تمكين إرسال البيانات](../../images/user-guides/events/events-denylisted-export-enabled.png)
+![أحداث ذات صلة بأي بيهات القائمة السوداء - تم تمكين إرسال البيانات](../../../images/user-guides/events/events-denylisted-export-enabled.png)
 
 لاحظ أن البحث/المرشحات سيعرضان كلا من أحداث `Monitoring` و - إذا تم تمكين إرسال المعلومات - أحداث `Blocked` لكل نوع من الهجمات. لا يوجد أبدًا حدث `Monitoring` لأي بيهات القائمة السوداء المضافة يدويا.
 
@@ -102,7 +102,7 @@
 
 التجميع ممكن بشكل افتراضي في Wallarm Console → **المحفزات** مع المحفز الافتراضي **الضربات من نفس الـ IP** الذي يتنشط عندما يتم إصدار أكثر من 50 ضربة من عنوان IP واحد خلال 15 دقيقة.
 
-![مثال على محفز لتجميع الضربات](../../images/user-guides/triggers/trigger-example-group-hits.png)
+![مثال على محفز لتجميع الضربات](../../../images/user-guides/triggers/trigger-example-group-hits.png)
 
 إذا كانت الضربات المجمعة لها أنواع هجمات مختلفة وحمولات خبيثة وعناوين URL، سيتم وضع علامة على بارامترات الهجوم بوسم `[multiple]` في قائمة الهجمات.
 
@@ -166,7 +166,7 @@
 
 تتم عرض الضربات المجمعة في قسم **الهجمات** أو **الحوادث** من وحدة تحكم Wallarm على النحو التالي:
 
-![الضربات المسقطة](../../images/user-guides/events/bruteforce-dropped-hits.png)
+![الضربات المسقطة](../../../images/user-guides/events/bruteforce-dropped-hits.png)
 
 لتصفية قائمة الأحداث بحيث تعرض الضربات المشتقة فقط، انقر على إشعار **تم تمكين أخذ عينة الضربات**. سيتم [إضافة](../search-and-filters/use-search.md#search-for-sampled-hits) السمة `sampled` إلى حقل البحث، وستعرض قائمة الأحداث فقط الضربات المشتقة.
 

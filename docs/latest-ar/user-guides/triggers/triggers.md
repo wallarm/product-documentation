@@ -4,7 +4,7 @@
 
 يتم تهيئة المحفزات في قسم **المحفزات** في السحاب الإلكتروني لـ[US](https://us1.my.wallarm.com/triggers) أو[EU](https://my.wallarm.com/triggers).
 
-![قسم تهيئة المحفزات](../../images/user-guides/triggers/triggers-section.png)
+![قسم تهيئة المحفزات](../../../images/user-guides/triggers/triggers-section.png)
 
 ## كيف تعمل
 
@@ -32,7 +32,7 @@
 
 تُستخدم الفلاتر لتفصيل [الشروط](#how-it-works). على سبيل المثال، يمكنك ضبط الاستجابات لهجمات من أنواع معينة، مثل الهجمات بالقوة الغاشمة، حقن SQL وغيرها. يمكنك إضافة فلتر واحد أو أكثر في واجهة استخدام Wallarm Console وضبط قيمها.
 
-![الفلاتر المتاحة](../../images/user-guides/triggers/trigger-filters.png)
+![الفلاتر المتاحة](../../../images/user-guides/triggers/trigger-filters.png)
 
 الفلاتر المتاحة هي:
 

@@ -1,6 +1,6 @@
-[img-nagios-service-status]:            ../../images/monitoring/nagios-service-status.png
-[img-nagios-service-details]:           ../../images/monitoring/nagios-service-details-1.png
-[img-nagios-service-perfdata-updated]:  ../../images/monitoring/nagios-service-details-2.png
+[img-nagios-service-status]:            ../../../images/monitoring/nagios-service-status.png
+[img-nagios-service-details]:           ../../../images/monitoring/nagios-service-details-1.png
+[img-nagios-service-perfdata-updated]:  ../../../images/monitoring/nagios-service-details-2.png
 
 [link-PNP4Nagios]:                      http://www.pnp4nagios.org/doku.php?id=pnp-0.4:start
 

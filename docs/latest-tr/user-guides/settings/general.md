@@ -1,6 +1,6 @@
 [link-config-parameters]:       ../../admin-en/configure-wallarm-mode.md
 
-[img-general-settings]:         ../../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png
+[img-general-settings]:         ../../../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png
 
 # General Settings
 
@@ -9,7 +9,7 @@
 * Wallarm filtreleme modunu değiştirmek
 * Otomatik oturum kapatma zaman aşımlarını yönetmek
 
-![General sekmesi](../../images/user-guides/settings/general-tab.png)
+![General sekmesi](../../../images/user-guides/settings/general-tab.png)
 
 ## Filtreleme modu
 

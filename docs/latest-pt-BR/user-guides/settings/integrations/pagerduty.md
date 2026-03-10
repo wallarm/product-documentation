@@ -30,7 +30,7 @@ No UI do Wallarm:
 1. Cole o valor da **Integration Key** no campo apropriado.
 1. Escolha os tipos de eventos para acionar notificações.
 
-    ![Integração PagerDuty](../../../images/user-guides/settings/integrations/add-pagerduty-integration.png)
+    ![Integração PagerDuty](../../../../images/user-guides/settings/integrations/add-pagerduty-integration.png)
 
     Detalhes sobre eventos disponíveis:
       
@@ -40,7 +40,7 @@ No UI do Wallarm:
 
     Isso enviará as notificações de teste com o prefixo `[Test message]`:
 
-    ![Notificação de teste do PagerDuty](../../../images/user-guides/settings/integrations/test-pagerduty-scope-changed.png)
+    ![Notificação de teste do PagerDuty](../../../../images/user-guides/settings/integrations/test-pagerduty-scope-changed.png)
 
 1. Clique em **Add integration**.
 

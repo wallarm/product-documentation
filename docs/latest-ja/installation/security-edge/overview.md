@@ -1,4 +1,4 @@
-# Security Edge <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 Security Edgeは、[Wallarm Node](../../about-wallarm/overview.md#filtering-node)をお客様自身でホストすることなくAPIとアプリケーションを保護できる、Wallarmのマネージドなデプロイオプションです。トラフィックを**Wallarmのグローバルに分散したEdgeインフラストラクチャ**にリダイレクトすると、そこでトラフィックがフィルタリングされ、安全にお客様のバックエンドへ転送されます。
 
@@ -21,13 +21,13 @@ Security Edgeサービスは、WallarmがWallarm Nodeをデプロイ・ホステ
     <div class="do-main">
 
         <a class="do-card" href="../inline/overview/">
-            <img class="non-zoomable" src="../../../images/platform-icons/se-inline.svg" />
+            <img class="non-zoomable" src="../../../../images/platform-icons/se-inline.svg" />
             <h3>Security Edge Inline</h3>
             <p>リアルタイムのトラフィックはEdge Nodeを経由するようにリダイレクトされ、フィルタリングされた後、オリジンへ転送されます</p>
         </a>
 
         <a class="do-card" href="../se-connector/">
-            <img class="non-zoomable" src="../../../images/platform-icons/se-connectors.svg" />
+            <img class="non-zoomable" src="../../../../images/platform-icons/se-connectors.svg" />
             <h3>Security Edge Connector</h3>
             <p>非同期解析やリアルタイムブロッキングのためにEdge NodeをAPIプラットフォームに接続します</p>
         </a>

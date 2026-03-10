@@ -1,4 +1,4 @@
-# Security Edge Inline NGINX Overrides <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inline NGINX Overrides <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 Security Edge Inline supports overriding NGINX directives at the host (server) and location levels. These overrides let you fine-tune performance and request handling for your application.
 

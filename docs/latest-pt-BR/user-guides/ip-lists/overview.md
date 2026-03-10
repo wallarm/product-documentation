@@ -6,7 +6,7 @@ Na seção **Listas de IP** do Console Wallarm, você pode controlar o acesso ao
 * **Lista de bloqueios** é uma lista de endereços IP que não têm permissão para acessar seus aplicativos. O nó de filtragem bloqueia todas as solicitações originadas a partir de endereços IP na lista de bloqueios.
 * **Lista cinza** é uma lista de endereços IP que têm permissão para acessar seus aplicativos apenas se as solicitações originadas por eles não contiverem sinais de ataque.
 
-![Todas as listas de IP](../../images/user-guides/ip-lists/ip-lists-home-apps.png)
+![Todas as listas de IP](../../../images/user-guides/ip-lists/ip-lists-home-apps.png)
 
 ## Algoritmo de processamento de listas de IP
 
@@ -14,7 +14,7 @@ O nó de filtragem emprega diferentes abordagens com base no [modo](../../admin-
 
 A imagem fornecida abaixo representa visualmente as prioridades e combinações de listas de IP em cada modo de operação, destacando quais listas são consideradas em cada caso:
 
-![Prioridades da lista de IP](../../images/user-guides/ip-lists/ip-lists-priorities.png)
+![Prioridades da lista de IP](../../../images/user-guides/ip-lists/ip-lists-priorities.png)
 
 ## Configuração de listas de IP
 

@@ -10,7 +10,7 @@ Security issues (vulnerabilities) are security flaws in an infrastructure that m
 
 To explore and manage the found security issues, in Wallarm Console, go to the **Security Issues** section.
 
-![Security Issues](../images/api-attack-surface/security-issues.png)
+![Security Issues](../../images/api-attack-surface/security-issues.png)
 
 Here, the detailed information on found issues is presented, including:
 
@@ -40,7 +40,7 @@ You can:
 * Open each issue in a new window
 * Disable/re-enable grouped view with **Grouped view** switcher
 
-![Security issues - grouped view](../images/api-attack-surface/si-grouped-view.png)
+![Security issues - grouped view](../../images/api-attack-surface/si-grouped-view.png)
 
 ### Issue details
 
@@ -51,7 +51,7 @@ Open issue to see its details, such as:
 * Measures for **Mitigation**
 * Information on linked CVEs ranked by risk as **Additional information**
 
-![Security issues details - Details](../images/api-attack-surface/security-issue-details.png)
+![Security issues details - Details](../../images/api-attack-surface/security-issue-details.png)
 
 ### Issue lifecycle
 
@@ -69,7 +69,7 @@ Security issues can be closed by Wallarm automatically after next automatic or m
 
 Issues can be re-opened automatically after next rescan or manually. Note that issues marked as false are never re-opened automatically.
 
-![Security issues - lifecycle diagram](../images/api-attack-surface/security-issue-lifecycle.png)
+![Security issues - lifecycle diagram](../../images/api-attack-surface/security-issue-lifecycle.png)
 
 ### Changing risk level
 
@@ -83,7 +83,7 @@ While it is always useful to provide comment on status change (closing, re-openi
 
 For you to be on track, the full history of changes and comments is displayed in the **Status history** section of the security issue.
 
-![Security issues - lifecycle diagram](../images/api-attack-surface/aasm-sec-issue-history.png)
+![Security issues - lifecycle diagram](../../images/api-attack-surface/aasm-sec-issue-history.png)
 
 ## Issue risk level
 
@@ -118,7 +118,7 @@ Analyze incidents presence and impact:
 * Pay attention to the issues having `Incident` tag in the **Security issue** column.
 * Set the **Incident** filter to `Incident detected` to see all issues with incidents. Go to issue details, view the **Related incidents** section. From here, you can go to every incident details.
 
-![Incidents in Security Issues](../images/user-guides/vulnerabilities/si-incidents.png)
+![Incidents in Security Issues](../../images/user-guides/vulnerabilities/si-incidents.png)
 
 ## False positive rules
 
@@ -174,7 +174,7 @@ To suppress vulnerable software version findings for product endpoints:
 | **Security issues** | **SI with specific title(s)** | `^Vulnerable version of [\w\s]+: \d+\.\d+\.\d+$` |
 | **Action** | — | Auto-delete |
 
-![False positive rule - example configuration](../images/user-guides/vulnerabilities/si-false-positive-rule-example.png)
+![False positive rule - example configuration](../../images/user-guides/vulnerabilities/si-false-positive-rule-example.png)
 
 As a result:
 
@@ -185,7 +185,7 @@ As a result:
 
 You can get report on all or filtered security issues in CSV or JSON format using the **Download report** button.
 
-![Security issues details - Lifecycle controls](../images/api-attack-surface/security-issues-report.png)
+![Security issues details - Lifecycle controls](../../images/api-attack-surface/security-issues-report.png)
 
 ## Notifications
 

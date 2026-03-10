@@ -1,11 +1,11 @@
-[cdn-node-operation-scheme]:        ../../images/waf-installation/quickstart/cdn-node-scheme.png
+[cdn-node-operation-scheme]:        ../../../images/waf-installation/quickstart/cdn-node-scheme.png
 [data-to-wallarm-cloud-docs]:       ../rules/sensitive-data-rule.md
 [operation-modes-docs]:             ../../admin-en/configure-wallarm-mode.md
 [operation-mode-rule-docs]:         ../../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode
 [wallarm-cloud-docs]:               ../../about-wallarm/overview.md#cloud
-[cdn-node-creation-modal]:          ../../images/waf-installation/quickstart/cdn-node-creation-modal.png
-[cname-required-modal]:             ../../images/waf-installation/quickstart/cname-required-modal.png
-[attacks-in-ui]:                    ../../images/admin-guides/test-attacks-quickstart.png
+[cdn-node-creation-modal]:          ../../../images/waf-installation/quickstart/cdn-node-creation-modal.png
+[cname-required-modal]:             ../../../images/waf-installation/quickstart/cname-required-modal.png
+[attacks-in-ui]:                    ../../../images/admin-guides/test-attacks-quickstart.png
 [user-roles-docs]:                  ../settings/users.md
 [update-origin-ip-docs]:            #updating-the-origin-address-of-the-protected-resourse
 [rules-docs]:                       ../rules/rules.md
@@ -50,7 +50,7 @@ Aşağıdaki düğüm özellikleri ve metrikleri mevcuttur:
 * Yüklü Wallarm paketlerinin sürümleri
 * Mevcut bileşen güncellemelerine ilişkin gösterge
 
-![CDN düğüm kartı](../../images/user-guides/nodes/view-cdn-node-comp-vers.png)
+![CDN düğüm kartı](../../../images/user-guides/nodes/view-cdn-node-comp-vers.png)
 
 ## Korumalı kaynağın origin adresini güncelleme {#updating-the-origin-address-of-the-protected-resourse}
 
@@ -83,7 +83,7 @@ Filtreleme düğümü silindiğinde, alan adınıza gelen isteklerin filtrasyonu
 1. Değişikliklerin yayılmasını bekleyin. Gerçek CNAME kaydı durumu Wallarm Console → **Nodes** → **CDN** → **Delete node** içinde görüntülenir.
 1. CDN düğümünü düğüm listesinden silin.
 
-![Düğümün silinmesi](../../images/user-guides/nodes/delete-cdn-node.png)
+![Düğümün silinmesi](../../../images/user-guides/nodes/delete-cdn-node.png)
 
 ## CDN düğümü sorun giderme
 

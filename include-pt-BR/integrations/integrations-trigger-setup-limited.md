@@ -6,4 +6,4 @@ Além das notificações que você já configurou por meio do cartão de integra
 
 Para detalhar a condição, você pode adicionar um ou mais filtros. Assim que a condição e os filtros estiverem definidos, selecione a integração pela qual o alerta selecionado deve ser enviado. Você pode selecionar várias integrações simultaneamente.
 
-![Escolhendo uma integração](../../../images/user-guides/triggers/select-integration.png)
+![Escolhendo uma integração](../../../../images/user-guides/triggers/select-integration.png)

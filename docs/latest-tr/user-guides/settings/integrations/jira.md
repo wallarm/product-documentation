@@ -20,13 +20,13 @@ Wallarm UI'da:
 1. Oluşturulan issue'ların ait olacağı Jira issue türünü seçin.
 1. Bildirimleri tetikleyecek olay türlerini seçin. Tüm zafiyetler veya yalnızca belirli risk düzey(ler)indekiler seçilebilir.
 
-    ![Jira entegrasyonu](../../../images/user-guides/settings/integrations/add-jira-integration.png)
+    ![Jira entegrasyonu](../../../../images/user-guides/settings/integrations/add-jira-integration.png)
 
 1. Yapılandırmanın doğruluğunu, Wallarm Cloud kullanılabilirliğini ve bildirim biçimini kontrol etmek için **Test integration**'ı tıklayın.
 
     Jira issue oluşturmayı test edin:
 
-    ![Jira issue oluşturmayı test etme](../../../images/user-guides/settings/integrations/test-jira-issue-creation.png)
+    ![Jira issue oluşturmayı test etme](../../../../images/user-guides/settings/integrations/test-jira-issue-creation.png)
 
 1. **Add integration**'a tıklayın.
 

@@ -1,7 +1,7 @@
 [ip-list-docs]:                          ../user-guides/ip-lists/overview.md
 [deployment-platform-docs]:              ../installation/supported-deployment-options.md
-[nginx-ing-image]:                       ../images/waf-installation/kubernetes/nginx-ingress-controller.png
-[nginx-ing-create-node-img]:             ../images/user-guides/nodes/create-wallarm-node-name-specified.png
+[nginx-ing-image]:                       ../../images/waf-installation/kubernetes/nginx-ingress-controller.png
+[nginx-ing-create-node-img]:             ../../images/user-guides/nodes/create-wallarm-node-name-specified.png
 [application-docs]:                      ../user-guides/settings/applications.md
 [ptrav-attack-docs]:                     ../attacks-vulns-list.md#path-traversal
 [ip-lists-docs]:                         ../user-guides/ip-lists/overview.md

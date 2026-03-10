@@ -33,13 +33,13 @@ In Wallarm UI:
 1. Select Jira issue type the created issues will belong to.
 1. Select event types to trigger notifications. All security issues (vulnerabilities) or only of the specific risk level(s) may be selected.
 
-    ![Jira integration](../../../images/user-guides/settings/integrations/add-jira-integration.png)
+    ![Jira integration](../../../../images/user-guides/settings/integrations/add-jira-integration.png)
 
 1. Click **Test integration** to check configuration correctness, availability of the target system, and the notification format.
 
     Test Jira issue creation:
 
-    ![Test Jira issue creation](../../../images/user-guides/settings/integrations/test-jira-issue-creation.png)
+    ![Test Jira issue creation](../../../../images/user-guides/settings/integrations/test-jira-issue-creation.png)
 
 1. Click **Add integration**.
 

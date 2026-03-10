@@ -2,11 +2,11 @@
 [link-integrations-intro]:              ../user-guides/settings/integrations/integrations-intro.md
 [link-integrations-email]:              ../user-guides/settings/integrations/email.md#setting-up-integration
 
-# API Attack Surface Discovery <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
+# API Attack Surface Discovery <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
 The **API Attack Surface Discovery** (**AASD**) component of the Wallarm's [API Attack Surface Management](overview.md) scans your selected domains to discover all their external hosts and their APIs, evaluate their protection against Web and API-based attacks, and identify missing WAF/WAAP solutions. It works simply by subscribing in Wallarm - you do not need to deploy anything. This article gives an overview of the component.
 
-![API Attack Surface Discovery](../images/api-attack-surface/aasm-api-surface.png)
+![API Attack Surface Discovery](../../images/api-attack-surface/aasm-api-surface.png)
 
 ## Addressed issues
 
@@ -38,7 +38,7 @@ You get all this simply by subscribing to the component in Wallarm - you do not 
 
 As API Attach Surface Discovery (AASD)'s capabilities cover all the functionality of the old Wallarm Scanner and - together with [Security Issues](security-issues.md) - suggest much more, from May 7, 2025, Scanner is disabled.
 
-![Old Scanner](../images/user-guides/scanner/check-scope.png)
+![Old Scanner](../../images/user-guides/scanner/check-scope.png)
 
 Disabling of old Scanner includes:
 
@@ -67,7 +67,7 @@ Once hosts are found for your domains, in Wallarm Console go to the **API Attack
 
 Wallarm automatically assesses your external network perimeter’s security posture and reflects its state as **Total score** from 0 (worse) to 100 (best) protection.
 
-![API surface - protection score](../images/api-attack-surface/aasm-api-surface-protection-score.png)
+![API surface - protection score](../../images/api-attack-surface/aasm-api-surface-protection-score.png)
 
 The total score is calculated using a complex proprietary formula that incorporates:
 
@@ -98,7 +98,7 @@ Besides, you can get information about your API surface in a table view (CSV), o
 * Ports (one row for one port)
 * APIs (one row for one API)
 
-![API surface - reports](../images/api-attack-surface/aasm-reports.png)
+![API surface - reports](../../images/api-attack-surface/aasm-reports.png)
 
 One more option - JSON report with information about API surface in a machine readable format.
 

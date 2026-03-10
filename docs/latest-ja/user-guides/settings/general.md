@@ -1,6 +1,6 @@
 [link-config-parameters]:       ../../admin-en/configure-wallarm-mode.md
 
-[img-general-settings]:         ../../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png
+[img-general-settings]:         ../../../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png
 
 # 一般設定
 
@@ -9,7 +9,7 @@
 * Wallarmのフィルタリングモードの切り替え
 * 自動ログアウトのタイムアウトの管理
 
-![General tab](../../images/user-guides/settings/general-tab.png)
+![General tab](../../../images/user-guides/settings/general-tab.png)
 
 ## フィルタリングモード
 

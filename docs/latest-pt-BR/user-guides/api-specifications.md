@@ -1,4 +1,4 @@
-# Fazendo upload de suas especificações de API <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Fazendo upload de suas especificações de API <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Na seção **Especificações da API** da Wallarm Console UI, você pode manter suas especificações de API que a Wallarm usa para descobrir as APIs irregulares (sombra, órfã e zumbi). Este artigo fornece informações sobre como usar esta seção.
 
@@ -21,7 +21,7 @@ Para executar a comparação:
    * De onde fazer o upload: sua máquina local ou URL. Para URLs, por meio dos campos de cabeçalho, você pode especificar um token para autenticação.
    * Se a comparação deve ser realizada uma vez após o upload da especificação ou a cada hora (a opção **Realizar comparação regular** é selecionada por padrão). A comparação por hora permite encontrar APIs irregulares adicionais à medida que o API Discovery descobre mais endpoints. A especificação carregada da URL é atualizada antes de cada comparação.
 
-    ![API Discovery - Especificações da API - fazendo upload da especificação da API para encontrar APIs irregulares](../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
+    ![API Discovery - Especificações da API - fazendo upload da especificação da API para encontrar APIs irregulares](../../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
 
     Saiba que você pode reiniciar a comparação a qualquer momento manualmente por meio do menu de especificação → **Reiniciar comparação**.
 
@@ -29,7 +29,7 @@ Para executar a comparação:
 
     Quando o upload for concluído, o número de APIs irregulares (sombra, órfã e zumbi) será exibido para cada especificação na lista de **Especificações da API**. As APIs irregulares também serão [exibidas](api-discovery.md#displaying-shadow-orphan-and-zombie-api) na seção **API Discovery**.
 
-    ![Seção Especificações da API](../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png) 
+    ![Seção Especificações da API](../../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png) 
 
 ## Baixar especificações previamente carregadas
 

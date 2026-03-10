@@ -43,7 +43,7 @@ No entanto, um invasor pode explorar isso alterando o parâmetro `size` para um 
 
 Limitar as conexões ao endpoint ajuda a prevenir esses ataques. Você pode limitar o número de conexões ao endpoint para 1000 por minuto. Isso assume que, em média, 200 usuários são solicitados 5 vezes por minuto. A regra especifica que esse limite se aplica a cada IP tentando acessar o endpoint dentro de um minuto. O [ponto](request-processing.md) `remote_address` é usado para identificar o endereço IP do solicitante.
 
-![Exemplo](../../images/user-guides/rules/rate-limit-for-200-users.png) -->
+![Exemplo](../../../images/user-guides/rules/rate-limit-for-200-users.png) -->
 
 ### Limitando conexões por IP para garantir alta disponibilidade da API
 
@@ -53,7 +53,7 @@ Limitar as conexões por IP dentro de um determinado período de tempo especific
 
 Por exemplo, o limite pode ser definido para 5 solicitações POST por minuto para cada endereço IP da seguinte forma:
 
-![Exemplo](../../images/user-guides/rules/rate-limit-by-ip-for-patients.png)
+![Exemplo](../../../images/user-guides/rules/rate-limit-by-ip-for-patients.png)
 
 ### Limitando conexões por sessões para prevenir ataques de força bruta nos parâmetros de autenticação
 
@@ -61,13 +61,13 @@ Ao aplicar a limitação de taxa às sessões do usuário, você pode restringir
 
 Suponha que seu aplicativo atribua a cada sessão de usuário um ID único e o reflita no cabeçalho `X-SESSION-ID`. O endpoint da API na URL `https://example.com/api/login` aceita solicitações POST que incluem um JWT do tipo Bearer no cabeçalho `Authorization`. Para esse cenário, a regra que limita as conexões por sessões parecerá assim:
 
-![Exemplo](../../images/user-guides/rules/rate-limit-for-jwt.png)
+![Exemplo](../../../images/user-guides/rules/rate-limit-for-jwt.png)
 
 A [regexp](rules.md#condition-type-regex) usada para o valor `Authorization` é ``^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$`.
 
 Se você usa JWT (JSON Web Tokens) para gerenciar as sessões do usuário, pode ajustar a regra para [descriptografar](request-processing.md#jwt) o JWT e extrair o ID da sessão de seu payload da seguinte maneira:
 
-![Exemplo](../../images/user-guides/rules/rate-limit-for-session-in-jwt.png)
+![Exemplo](../../../images/user-guides/rules/rate-limit-for-session-in-jwt.png)
 
 ### Limitação de taxa baseada em User-Agent para prevenir ataques nos endpoints da API
 
@@ -75,7 +75,7 @@ Vamos supor que você tenha uma versão antiga do seu aplicativo que tem algumas
 
 Por exemplo, você pode definir um limite de 10 solicitações por minuto para cada `User-Agent`. Se um `User-Agent` específico estiver fazendo mais de 10 solicitações distribuídas uniformemente por minuto, solicitações adicionais desse `User-Agent` são rejeitadas até que um novo período se inicie.
 
-![Exemplo](../../images/user-guides/rules/rate-limit-by-user-agent.png)
+![Exemplo](../../../images/user-guides/rules/rate-limit-by-user-agent.png)
 
 <!-- ### Limitação de taxa baseada em endpoint para prevenir ataques DoS
 
@@ -94,7 +94,7 @@ Nesse caso específico, a regra de limitação de taxa é aplicada às conexões
     !!! info "Parâmetros de consulta não estão incluídos na URI"
         Essa regra limita solicitações direcionadas a qualquer caminho do domínio especificado que não contém parâmetros de consulta.
 
-![Exemplo](../../images/user-guides/rules/rate-limit-by-uri.png) -->
+![Exemplo](../../../images/user-guides/rules/rate-limit-by-uri.png) -->
 
 ### Limitando conexões por IDs de cliente para prevenir sobrecarga do servidor
 
@@ -102,7 +102,7 @@ Vamos considerar um serviço da web que fornece acesso aos dados de pedidos de c
 
 Por exemplo, a regra que limita cada cliente por 10 solicitações POST por minuto para `https://example-domain.com/orders` pode parecer assim. Este exemplo considera que o ID do cliente é [passado](request-processing.md#json_doc) no objeto do corpo JSON `data.customer_id`.
 
-![Exemplo](../../images/user-guides/rules/rate-limit-by-customer-id.png)
+![Exemplo](../../../images/user-guides/rules/rate-limit-by-customer-id.png)
 
 ## Limitações e peculiaridades
 

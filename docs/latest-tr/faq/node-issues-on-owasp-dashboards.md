@@ -6,7 +6,7 @@ Wallarm düğümleri güncel değilse veya Cloud ile senkronizasyon sorunları y
 
 Güncel olmayan düğümler önemli güvenlik güncellemelerinden yoksun olabilir ve kötü amaçlı trafiğin savunmaları atlatmasına izin verebilir. Senkronizasyon sorunları, düğümlerin Cloud’dan hayati güvenlik politikalarını almasını engelleyerek düğümlerin işlevselliğini bozabilir. Bu sorunlar öncelikle, uygulama yığınının herhangi bir bölümünde güvenlik çözümünün eksikliği nedeniyle sistemin savunmasız hale gelebileceği **OWASP API8 (Security Misconfiguration)** tehdidiyle ilişkilidir. Bunu önlemek için, pano düğüm çalışmasına ilişkin sorunlar konusunda sizi uyarır, örn.:
 
-![Düğüm sorunları olan OWASP Dashboard](../images/user-guides/dashboard/owasp-dashboard-node-issues.png)
+![Düğüm sorunları olan OWASP Dashboard](../../images/user-guides/dashboard/owasp-dashboard-node-issues.png)
 
 Güvenli bir ortamı korumak için Wallarm düğümlerini düzenli olarak güncellemek ve senkronizasyon sorunlarını gidermek çok önemlidir. Wallarm düğüm sürümünüz [ömür sonuna geldiyse veya yaklaşıyorsa](../updating-migrating/versioning-policy.md#version-list), düğümünüzü en son sürüme yükseltmeniz önerilir.
 

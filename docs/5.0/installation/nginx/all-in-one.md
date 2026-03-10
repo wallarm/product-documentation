@@ -1,9 +1,9 @@
-[img-wl-console-users]:             ../../images/check-user-no-2fa.png
+[img-wl-console-users]:             ../../../images/check-user-no-2fa.png
 [wallarm-status-instr]:             ../../admin-en/configure-statistics-service.md
 [memory-instr]:                     ../../admin-en/configuration-guides/allocate-resources-for-node.md
 [waf-directives-instr]:             ../../admin-en/configure-parameters-en.md
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:           ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:           ../../../images/admin-guides/test-attacks-quickstart.png
 [waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
 [logging-instr]:                    ../../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../../admin-en/using-proxy-or-balancer-en.md
@@ -17,8 +17,8 @@
 [versioning-policy]:                ../../updating-migrating/versioning-policy.md#version-list
 [install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md
 [waf-installation-instr-latest]:     /installation/nginx/dynamic-module/
-[img-node-with-several-instances]:  ../../images/user-guides/nodes/wallarm-node-with-two-instances.png
-[img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
+[img-node-with-several-instances]:  ../../../images/user-guides/nodes/wallarm-node-with-two-instances.png
+[img-create-wallarm-node]:      ../../../images/user-guides/nodes/create-cloud-node.png
 [nginx-custom]:                 ../../faq/nginx-compatibility.md#is-wallarm-filtering-node-compatible-with-the-custom-build-of-nginx
 [node-token]:                       ../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../user-guides/settings/api-tokens.md
@@ -26,7 +26,7 @@
 [oob-docs]:                         ../oob/overview.md
 [oob-advantages-limitations]:       ../oob/overview.md#limitations
 [web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#configuration-examples-for-traffic-mirroring
-[img-grouped-nodes]:                ../../images/user-guides/nodes/grouped-nodes.png
+[img-grouped-nodes]:                ../../../images/user-guides/nodes/grouped-nodes.png
 [wallarm-token-types]:              ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [inline-docs]:                      ../inline/overview.md
 [upgrade-docs]:                     ../../updating-migrating/all-in-one.md

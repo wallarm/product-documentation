@@ -1,6 +1,6 @@
 [waf-mode-instr]:   ../admin-en/configure-wallarm-mode.md
 
-# API Specification Enforcement Setup <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Specification Enforcement Setup <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 This article describes how to enable and configure your API protection based on your [uploaded API specification](overview.md).
 
@@ -15,7 +15,7 @@ You can upload only specifications in the OpenAPI 3.0, 3.1 (JSON or YAML formats
 
 1. Set specification upload parameters and start uploading.
 
-    ![Upload specification](../images/api-specification-enforcement/specificaton-upload.png)
+    ![Upload specification](../../images/api-specification-enforcement/specificaton-upload.png)
 
 Specification file is checked for correspondence to the API specification syntax, and if not valid, is not uploaded. Note that you will not be able to start configuring API specification enforcement, until the specification file is successfully uploaded.
 
@@ -39,7 +39,7 @@ If you select to upload specification from URI and select the **Regularly update
 
 1. Set how the system should react if requests violate your specification.
 
-    ![Specification - use for applying security policies](../images/api-specification-enforcement/specification-use-for-api-policies-enforcement.png)
+    ![Specification - use for applying security policies](../../images/api-specification-enforcement/specification-use-for-api-policies-enforcement.png)
 
     Details on possible violations:
 

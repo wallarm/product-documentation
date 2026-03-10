@@ -31,7 +31,7 @@ Edge Node’lar monitoring [mode](../../admin-en/configure-wallarm-mode.md) ile 
 
         Traffic CNAME, certificate CNAME doğrulanınca sağlanır.
 
-    ![](../../images/waf-installation/security-edge/inline/quick-setup-wizard-inline.png)
+    ![](../../../images/waf-installation/security-edge/inline/quick-setup-wizard-inline.png)
 === "Security Edge Connector"
     1. Dağıtım için bir bölge seçin.
     1. Sağlanan Node URL’sini kopyalayın — Connector için giriş noktasıdır.
@@ -44,7 +44,7 @@ Edge Node’lar monitoring [mode](../../admin-en/configure-wallarm-mode.md) ile 
         * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly)
         * [IBM DataPower](../connectors/ibm-api-connect.md#2-obtain-and-apply-the-wallarm-policies-to-apis-in-ibm-api-connect)
 
-    ![](../../images/waf-installation/security-edge/inline/quick-setup-wizard-connector.png)
+    ![](../../../images/waf-installation/security-edge/inline/quick-setup-wizard-connector.png)
 
 Kurulumdan sonra, Edge Node’a otomatik olarak bir test saldırısı gönderilir. Saldırı tespit edildiğinde, Free Tier’ın tüm işlevleriyle Wallarm Console’a erişim kazanırsınız. Saldırı [**Attacks**](../../user-guides/events/check-attack.md) bölümünde görünecektir.
 

@@ -1,6 +1,6 @@
 [statistics-service-all-parameters]:        ../admin-en/configure-statistics-service.md
-[img-attacks-in-interface]:                 ../images/admin-guides/test-attacks-quickstart.png
-[tarantool-status]:                         ../images/tarantool-status.png
+[img-attacks-in-interface]:                 ../../images/admin-guides/test-attacks-quickstart.png
+[tarantool-status]:                         ../../images/tarantool-status.png
 [configure-proxy-balancer-instr]:           ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [sqli-attack-docs]:                         ../attacks-vulns-list.md#sql-injection
 [xss-attack-docs]:                          ../attacks-vulns-list.md#crosssite-scripting-xss

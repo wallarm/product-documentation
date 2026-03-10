@@ -92,7 +92,7 @@ You can pull the following into your reports:
 
 Use this section to document incidents, trends, and areas of [API abuse prevention](../api-abuse-prevention/overview.md) in your report.
 
-![API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics-detectors.png)
+![API abuse prevention statistics](../../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics-detectors.png)
 
 ### AASM (Advanced API Security Metrics)
 
@@ -103,4 +103,4 @@ Use this section to document incidents, trends, and areas of [API abuse preventi
 * Score totals for API security posture
 * Trends and analysis on detected vulnerabilities and protections
 
-![AASM](../images/api-attack-surface/aasm.png)
+![AASM](../../images/api-attack-surface/aasm.png)

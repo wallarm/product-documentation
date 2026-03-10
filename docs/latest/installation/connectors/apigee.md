@@ -1,7 +1,7 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
-[se-connector-setup-img]:           ../../images/waf-installation/se-connector-setup.png
+[se-connector-setup-img]:           ../../../images/waf-installation/se-connector-setup.png
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
@@ -23,11 +23,11 @@ The Wallarm connector for Apigee APIM supports the **synchronous** and **asynchr
 === "Synchronous traffic flow"
     In [synchronous (inline)](../inline/overview.md) mode, the policy intercepts requests and sends them to the Wallarm Node for inspection. Based on the Node's [filtration mode](../../admin-en/configure-wallarm-mode.md), malicious requests may be blocked with `403`, providing real-time threat mitigation.
 
-    ![Apigee APIM with Wallarm policy, synchronous traffic analysis](../../images/waf-installation/gateways/apigee/traffic-flow-apigee-inline.png)
+    ![Apigee APIM with Wallarm policy, synchronous traffic analysis](../../../images/waf-installation/gateways/apigee/traffic-flow-apigee-inline.png)
 === "Asynchronous traffic flow"
     In [asynchronous (out-of-band)](../oob/overview.md) mode, traffic is mirrored to the Node without affecting the original flow. Malicious requests are logged in Wallarm Console but not blocked.
 
-    ![Apigee APIM with Wallarm policy, asynchronous traffic analysis](../../images/waf-installation/gateways/apigee/traffic-flow-apigee-oob.png)
+    ![Apigee APIM with Wallarm policy, asynchronous traffic analysis](../../../images/waf-installation/gateways/apigee/traffic-flow-apigee-oob.png)
 
 ## Use cases
 
@@ -129,7 +129,7 @@ Define the `WallarmConfig` [key value map (KVM)](https://cloud.google.com/apigee
     === "Google Cloud Console"
         In Google Cloud Console → **Management** → **Environments** → your environment → **Key value maps**, **Create** the `WallarmConfig` KVM.
 
-        ![WallarmConfig KVM for Apigee](../../images/waf-installation/gateways/apigee/create-wallarm-kvm.png)
+        ![WallarmConfig KVM for Apigee](../../../images/waf-installation/gateways/apigee/create-wallarm-kvm.png)
 
         When using the Console, KVMs can only be created at the environment level.
 
@@ -175,10 +175,10 @@ Define the `WallarmConfig` [key value map (KVM)](https://cloud.google.com/apigee
             </KeyValueMapOperations>
             ```
 
-            ![Entries in WallarmConfig KVM for Apigee](../../images/waf-installation/gateways/apigee/wallarm-kvm-entries.png)
+            ![Entries in WallarmConfig KVM for Apigee](../../../images/waf-installation/gateways/apigee/wallarm-kvm-entries.png)
         1. Attach the policy to **Request PreFlow** and **Response PostFlow** of the proxy endpoint:
 
-            ![KeyValueMapOperations in PreFlow/PostFlow](../../images/waf-installation/gateways/apigee/set-kvm-entry-pre-post-policies.png)
+            ![KeyValueMapOperations in PreFlow/PostFlow](../../../images/waf-installation/gateways/apigee/set-kvm-entry-pre-post-policies.png)
 
             ??? "Relevant XML snippet for the proxy configuration"
                 ```xml
@@ -208,10 +208,10 @@ Each traffic analysis mode (synchronous or asynchronous) requires 2 shared flows
 
 1. In Google Cloud Console → **Proxy development** → **Shared flows**, **Upload bundle** from `Wallarm-Sync-Request-Flow.zip` for synchronous mode or from `Wallarm-Async-Request-Flow.zip` for asynchronous mode.
 
-    ![Upload Wallarm shared flow bundle in the Google Console UI](../../images/waf-installation/gateways/apigee/upload-flow-bundle.png)
+    ![Upload Wallarm shared flow bundle in the Google Console UI](../../../images/waf-installation/gateways/apigee/upload-flow-bundle.png)
 1. **Deploy** the uploaded flow. Verify that it shows a green "Ok" status for each target environment.  
 
-    ![Deploy Wallarm shared flow bundle in the Google Console UI](../../images/waf-installation/gateways/apigee/deploy-flow-bundle.png)
+    ![Deploy Wallarm shared flow bundle in the Google Console UI](../../../images/waf-installation/gateways/apigee/deploy-flow-bundle.png)
 1. In the same section, upload the corresponding response flow archive (`Wallarm-Sync-Response-Flow.zip` or `Wallarm-Async-Response-Flow.zip`).
 1. **Deploy** the response shared flow.
 
@@ -235,7 +235,7 @@ You can apply the Wallarm shared flows globally to all API proxies in an environ
             
             Responses from the target service are mirrored to the Wallarm Node for inspection.
 
-    ![Flow hooks for environment in Apigee](../../images/waf-installation/gateways/apigee/wallarm-flow-hooks.png)
+    ![Flow hooks for environment in Apigee](../../../images/waf-installation/gateways/apigee/wallarm-flow-hooks.png)
 
     If you already use pre-proxy or post-proxy flow hooks for other policies, you can include the Wallarm flows by referencing them through a [**FlowCallout** policy](#specific-api-proxy).
 
@@ -256,7 +256,7 @@ You can apply the Wallarm shared flows globally to all API proxies in an environ
         * Name and Display name: `FC-Wallarm-Node-Response`
         * Sharedflow: `Wallarm-Sync-Response-Flow` for synchronous mode or `Wallarm-Async-Response-Flow` for asynchronous mode
 
-        ![Flow callout for requests in Apigee](../../images/waf-installation/gateways/apigee/wallarm-flow-callout-policy.png)
+        ![Flow callout for requests in Apigee](../../../images/waf-installation/gateways/apigee/wallarm-flow-callout-policy.png)
 
         The `FC-Wallarm-Node-Request.xml` and `FC-Wallarm-Node-Response.xml` policy files are also included in the Wallarm Apigee connector bundle.
     1. Attach the policies to the proxy flows:
@@ -264,7 +264,7 @@ You can apply the Wallarm shared flows globally to all API proxies in an environ
         * **Request → PreFlow** → select `FC-Wallarm-Node-Request`
         * **Response → PostFlow** → select `FC-Wallarm-Node-Response`
 
-        ![Flow callout for requests in Apigee, attach as preflow](../../images/waf-installation/gateways/apigee/wallarm-preflow-callout-policy-request.png)
+        ![Flow callout for requests in Apigee, attach as preflow](../../../images/waf-installation/gateways/apigee/wallarm-preflow-callout-policy-request.png)
 
         ??? "Relevant XML snippet for PreFlow and PostFlow"
             ```xml
@@ -312,12 +312,12 @@ Test the deployed connector with both legitimate and malicious traffic.
 1. Send a legitimate request to the provided URL.
 1. Review the transactions in the debug session and confirm that the Wallarm flows are triggered:
 
-    ![Apigee APIM debug legitimate request](../../images/waf-installation/gateways/apigee/debug-legitimate-request.png)
+    ![Apigee APIM debug legitimate request](../../../images/waf-installation/gateways/apigee/debug-legitimate-request.png)
 
     If flows are applied at the environment level, the debug view may differ slightly, but `Wallarm-Sync-Request-Flow` and `Wallarm-Sync-Response-Flow` (or their `Async` counterparts) must still appear.
 1. In Wallarm Console → **API Sessions**, verify that the legitimate request is displayed:
 
-    ![Wallarm Console: legitimate request in API Sessions](../../images/waf-installation/gateways/apigee/legitimate-request-in-sessions.png)
+    ![Wallarm Console: legitimate request in API Sessions](../../../images/waf-installation/gateways/apigee/legitimate-request-in-sessions.png)
 
 ### Malicious traffic
 
@@ -332,10 +332,10 @@ Test the deployed connector with both legitimate and malicious traffic.
     * Asynchronous mode: request reaches the API and is logged in Wallarm Console.
 1. In Wallarm Console → **API Sessions**, verify that the malicious request is logged: 
 
-    ![Wallarm Console: malicious request in API Sessions](../../images/waf-installation/gateways/apigee/attack-in-sessions.png)
+    ![Wallarm Console: malicious request in API Sessions](../../../images/waf-installation/gateways/apigee/attack-in-sessions.png)
 1. In Wallarm Console → **Attacks**, confirm that the attack is listed:
 
-    ![SQLi attacks in the interface (Apigee APIM connector for Wallarm)](../../images/waf-installation/gateways/apigee/attack-in-attack-section.png)
+    ![SQLi attacks in the interface (Apigee APIM connector for Wallarm)](../../../images/waf-installation/gateways/apigee/attack-in-attack-section.png)
 
 ## Block page customization
 
@@ -347,7 +347,7 @@ If the Node is deployed in synchronous mode with [blocking enabled](../../admin-
     Update the content inside the `<FaultResponse><Set><Payload>` tag. Make sure the payload is wrapped in CDATA.
 1. **Save** and **deploy** a new flow revision.
 
-![Customizing Wallarm block page for Apigee APIM connector](../../images/waf-installation/gateways/apigee/customize-block-page.png)
+![Customizing Wallarm block page for Apigee APIM connector](../../../images/waf-installation/gateways/apigee/customize-block-page.png)
 
 ## Upgrading the policies
 

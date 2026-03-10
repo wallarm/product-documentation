@@ -1,12 +1,12 @@
-[se-connector-setup-img]:           ../../images/waf-installation/security-edge/connectors/setup-view.png
+[se-connector-setup-img]:           ../../../images/waf-installation/security-edge/connectors/setup-view.png
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
-[se-connector-hosts-locations-img]: ../../images/waf-installation/security-edge/connectors/hosts-locations.png
+[se-connector-hosts-locations-img]: ../../../images/waf-installation/security-edge/connectors/hosts-locations.png
 
-# Security Edge Connectors <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Connectors <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 The [**Security Edge**](overview.md) platform provides a managed service for deploying Wallarm Nodes across geographically distributed locations within a Wallarm-hosted environment. One of its key deployment options is the [**connector**](../connectors/overview.md) Node deployment, offering robust protection for your entire API landscape without the need for any onsite installation.
 
-![!](../../images/waf-installation/security-edge/connectors/traffic-flow.png)
+![!](../../../images/waf-installation/security-edge/connectors/traffic-flow.png)
 
 !!! info "Supported platforms"
     Currently, Edge connectors are available for MuleSoft Mule Gateway, MuleSoft Flex Gateway, Apigee, Akamai, CloudFront, Cloudflare, Fastly, IBM DataPower and Azure API Management.
@@ -61,13 +61,13 @@ One endpoint can handle multiple connections from different hosts.
         ![!][se-connector-hosts-locations-img]
 1. In the **Auto-update strategy** settings, you can select an [Edge Node version](../../updating-migrating/native-node/node-artifact-versions.md#all-in-one-installer) and enable [Auto update](#upgrading-the-edge-node) if needed. If no version is explicitly selected, the latest version is automatically deployed.
 
-    ![!](../../images/waf-installation/security-edge/connectors/autoupdate.png)
+    ![!](../../../images/waf-installation/security-edge/connectors/autoupdate.png)
 1. Once saved, it will take 3-5 minutes for Wallarm to deploy and configure the Node for the connector.
 
     The status will change from **Pending** to **Active** when deployment is complete.
 1. Copy the Node endpoint as you will need it later to route traffic from your platform.
 
-![!](../../images/waf-installation/security-edge/connectors/copy-endpoint.png)
+![!](../../../images/waf-installation/security-edge/connectors/copy-endpoint.png)
 
 You can change the Edge Node deployment settings at any time while the Node is in **Active** status. The Node will be re-deployed, starting from the **Pending** status to **Active**. The endpoint will not change, but it will be unavailable during the re-deployment process.
 
@@ -77,7 +77,7 @@ After deploying the Edge Node, you will need to inject Wallarm code into your pl
 
 1. Download a code bundle for your platform from the Wallarm Console UI.
 
-    ![!](../../images/waf-installation/security-edge/connectors/download-code-bundle.png)
+    ![!](../../../images/waf-installation/security-edge/connectors/download-code-bundle.png)
 1. Apply the bundle on your API management platform following the instructions:
 
     * [MuleSoft Mule Gateway](../connectors/mulesoft.md#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange)
@@ -98,11 +98,11 @@ The telemetry portal for Security Edge Connectors provides a Grafana dashboard w
 
 The dashboard displays key metrics such as total processed requests, RPS, detected and blocked attacks, deployed Edge Node number, resource consumption, number of 5xx responses, etc.
 
-![!](../../images/waf-installation/security-edge/connectors/telemetry-portal.png)
+![!](../../../images/waf-installation/security-edge/connectors/telemetry-portal.png)
 
 **Run telemetry portal** once the Node reaches the **Active** status. It becomes accessible via a direct link from the Security Edge section ~5 minutes after initiation.
 
-![!](../../images/waf-installation/security-edge/connectors/run-telemetry-portal.png)
+![!](../../../images/waf-installation/security-edge/connectors/run-telemetry-portal.png)
 
 From the Grafana home page, to reach the dashboard, navigate to **Dashboards** → **Wallarm** → **Portal Connector Overview**. For multiple Nodes, switch the **Tenant ID** corresponding to the connector endpoint to view each dashboard.
 

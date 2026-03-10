@@ -44,7 +44,7 @@ As contas de tenant são caracterizadas pelo seguinte:
 
 As contas de tenant são criadas de acordo com a seguinte estrutura:
 
-![!Estrutura de conta de locatário](../../images/partner-waf-node/accounts-scheme.png)
+![!Estrutura de conta de locatário](../../../images/partner-waf-node/accounts-scheme.png)
 
 * A **conta global** é usada apenas para agrupar contas de tenant por um parceiro ou cliente.
 * A **conta de tenant técnico** é usada para adicionar [usuários globais](../../user-guides/settings/users.md#user-roles) fornecendo-lhes acesso às contas de tenant. Usuários globais são normalmente funcionários de empresas parceiras da Wallarm ou clientes Wallarm usando multitenancy para ambientes isolados.
@@ -58,7 +58,7 @@ As contas de tenant são criadas de acordo com a seguinte estrutura:
 * Alternar entre contas no Console Wallarm.
 * Monitorar [assinaturas e quotas](../../about-wallarm/subscription-plans.md) dos inquilinos.
 
-![!Seletor de locatário no Console Wallarm](../../images/partner-waf-node/clients-selector-in-console.png)
+![!Seletor de locatário no Console Wallarm](../../../images/partner-waf-node/clients-selector-in-console.png)
 
 * `Locatário técnico` é uma conta de locatário técnico
 * `Locatário 1` e `Locatário 2` são contas de locatários

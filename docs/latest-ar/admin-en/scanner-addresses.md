@@ -1,7 +1,7 @@
 [file-ips-list-us]: ../downloads/scanner-ip-addresses-us.txt
 [file-ips-list-eu]: ../downloads/scanner-ip-addresses-eu.txt
 
-# عناوين فاحص Wallarm <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# عناوين فاحص Wallarm <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 يوفر هذا المستند قوائم عناوين IP الخاصة ب[فاحص Wallarm](../user-guides/scanner.md) للسحب السحابية في الولايات المتحدة وأوروبا.
 

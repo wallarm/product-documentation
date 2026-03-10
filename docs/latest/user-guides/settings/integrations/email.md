@@ -13,7 +13,7 @@ Scheduled PDF reports can be sent on a daily, weekly, or monthly basis. PDF repo
 1. Choose the frequency of sending security reports. If the frequency is not chosen, then reports will not be sent.
 1. Choose event types to trigger notifications.
 
-    ![Email report integration](../../../images/user-guides/settings/integrations/add-email-report-integration.png)
+    ![Email report integration](../../../../images/user-guides/settings/integrations/add-email-report-integration.png)
 
     Details on available events:
 
@@ -30,7 +30,7 @@ Scheduled PDF reports can be sent on a daily, weekly, or monthly basis. PDF repo
 
     This will send the test notifications with the prefix `[Test message]`:
 
-    ![Test email message](../../../images/user-guides/settings/integrations/test-email-scope-changed.png)
+    ![Test email message](../../../../images/user-guides/settings/integrations/test-email-scope-changed.png)
 
 1. Click **Add integration**.
 

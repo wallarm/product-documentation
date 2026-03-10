@@ -69,7 +69,7 @@ Para configurar uma integração com o Amazon S3:
         1. Complete a criação da função e copie o ARN da função.
         1. No UI do Console Wallarm, no diálogo de criação da sua integração, na guia **Role ARN**, cole o ARN da sua função.
 
-            ![Amazon S3 integration](../../../images/user-guides/settings/integrations/add-amazon-s3-integration.png)
+            ![Amazon S3 integration](../../../../images/user-guides/settings/integrations/add-amazon-s3-integration.png)
 
     === "Secret access key"
 

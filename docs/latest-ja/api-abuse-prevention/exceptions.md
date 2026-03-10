@@ -1,6 +1,6 @@
 [api-discovery-enable-link]:        ../api-discovery/setup.md#enable
 
-# API Abuse Preventionの例外 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Preventionの例外 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 本記事では、正当なボットを識別してマークし、特定の対象URLやリクエストタイプに対するボット保護を無効化することで、[API Abuse Prevention](../api-abuse-prevention/overview.md)を細かく調整する方法を説明します。
 
@@ -16,11 +16,11 @@ exception listにIPアドレスを追加する方法は2つあります。
 
 * **API Abuse Prevention**セクションの**Exception list**タブで**Add exception**を使用します。ここでは、IPやサブネットに加えて、API Abuse Preventionが無視すべきロケーションやソースタイプも追加できます。
 
-    ![API Abuse Prevention - exception list内から項目を追加](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-inside.png)
+    ![API Abuse Prevention - exception list内から項目を追加](../../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-inside.png)
 
 * **Attacks**セクションから：`api_abuse`、`account_takeover`、`scraping`、`security_crawlers`の検索キーを使用するか、**Type**フィルターで該当するオプションを選択し、目的のイベントを展開して**Add to exception list**をクリックします。
 
-    ![API Abuse Prevention - イベントからexception listに追加](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
+    ![API Abuse Prevention - イベントからexception listに追加](../../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
 
 IPアドレスをexception listに追加すると、そのアドレスがAPI Abuse Prevention自身によって追加されている場合（理由が`Bot`の場合）に限り、[deny-](../user-guides/ip-lists/overview.md)または[graylist](../user-guides/ip-lists/overview.md)から自動的に削除されます。
 
@@ -60,7 +60,7 @@ IPアドレスをexception listに追加すると、そのアドレスがAPI Abu
 
 あなたのアプリケーションが、複数のIPからリクエストを送信するマーケティングオートメーションツールKlaviyoと連携しているとします。そこで、特定のURIに対する`Klaviyo/1.0`ユーザーエージェントからのGETリクエストについては、自動化（ボット）活動のチェックを行わないように設定します。
 
-![特定のヘッダーを持つリクエストについてボット活動をチェックしない](../images/user-guides/rules/api-abuse-url-request.png)
+![特定のヘッダーを持つリクエストについてボット活動をチェックしない](../../images/user-guides/rules/api-abuse-url-request.png)
 
 **テスト用エンドポイントでのボット保護の無効化**
 
@@ -68,7 +68,7 @@ IPアドレスをexception listに追加すると、そのアドレスがAPI Abu
 
 この場合は、**API Discovery**のエンドポイント一覧からルールを作成する方が簡単です。そこに移動し、対象のエンドポイントを見つけて、そのページからルール作成を開始します。
 
-![API Discoveryのエンドポイントに対するSet API Abuse Prevention modeの作成](../images/user-guides/rules/api-abuse-url.png)
+![API Discoveryのエンドポイントに対するSet API Abuse Prevention modeの作成](../../images/user-guides/rules/api-abuse-url.png)
 
 ## profilesの無効化と削除
 

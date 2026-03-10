@@ -18,7 +18,7 @@ In Wallarm UI:
 1. Paste the copied value of HTTP Source Address (URL) to the **HTTP Source Address (URL)** field.
 1. Choose event types to trigger notifications.
 
-    ![Sumo Logic integration](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
+    ![Sumo Logic integration](../../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
 
     Details on available events:
 

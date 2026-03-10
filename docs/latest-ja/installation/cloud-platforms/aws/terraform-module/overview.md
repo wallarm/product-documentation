@@ -29,7 +29,7 @@ AWS Terraformモジュールを使用して本番環境にWallarmをデプロイ
 1. [US Cloud](https://us1.my.wallarm.com/signup)または[EU Cloud](https://my.wallarm.com/signup)でWallarm Consoleにサインアップします。
 1. Wallarm Console → **Nodes**を開き、種類が**Wallarm node**のノードを作成します。
 
-    ![Wallarmノードの作成](../../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+    ![Wallarmノードの作成](../../../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
 1. 生成されたノードトークンをコピーします。
 1. Terraform構成に`wallarm`モジュールのコードを追加します。
 

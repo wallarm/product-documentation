@@ -1,6 +1,6 @@
-[img-creating-instance-group]:          ../../../images/installation-gcp/auto-scaling/common/autoscaling-group-guide/create-instance-group.png
-[img-create-instance-group-example]:    ../../../images/installation-gcp/auto-scaling/common/autoscaling-group-guide/create-scalable-instance-group.png
-[img-checking-nodes-operation]:         ../../../images/cloud-node-status.png
+[img-creating-instance-group]:          ../../../../images/installation-gcp/auto-scaling/common/autoscaling-group-guide/create-instance-group.png
+[img-create-instance-group-example]:    ../../../../images/installation-gcp/auto-scaling/common/autoscaling-group-guide/create-scalable-instance-group.png
+[img-checking-nodes-operation]:         ../../../../images/cloud-node-status.png
 
 [link-cpu-usage-policy]:                            https://cloud.google.com/compute/docs/autoscaler/scaling-cpu-load-balancing
 [link-http-load-balancing-policy]:                  https://cloud.google.com/compute/docs/autoscaler/scaling-cpu-load-balancing#scaling_based_on_https_load_balancing_serving_capacity

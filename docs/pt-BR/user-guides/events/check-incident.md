@@ -1,7 +1,7 @@
 [link-using-search]:    ../search-and-filters/use-search.md
-[img-attacks-tab]:      ../../images/user-guides/events/check-attack.png
-[img-current-attacks]:  ../../images/glossary/attack-with-one-hit-example.png
-[img-incidents-tab]:    ../../images/user-guides/events/incident-vuln.png
+[img-attacks-tab]:      ../../../images/user-guides/events/check-attack.png
+[img-current-attacks]:  ../../../images/glossary/attack-with-one-hit-example.png
+[img-incidents-tab]:    ../../../images/user-guides/events/incident-vuln.png
 [use-search]:             ../search-and-filters/use-search.md
 [search-by-attack-status]: ../search-and-filters/use-search.md#search-attacks-by-the-action
 
@@ -43,7 +43,7 @@ Once incident appeared in the **Incidents** section:
 
 1. Follow the link in the **Vulnerabilities** column to get detailed vulnerability information including instructions on how to fix this vulnerability and the list of related incidents. 
 
-     ![Vulnerability detailed information](../../images/user-guides/vulnerabilities/vuln-info.png)
+     ![Vulnerability detailed information](../../../images/user-guides/vulnerabilities/vuln-info.png)
 
      **Fix the vulnerability** and then mark it closed in Wallarm. For detailed information, refer to [Managing Vulnerabilities](../vulnerabilities.md) article.
 

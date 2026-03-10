@@ -2,7 +2,7 @@
 [link-integrations-intro]:              ../user-guides/settings/integrations/integrations-intro.md
 [link-integrations-email]:              ../user-guides/settings/integrations/email.md#setting-up-integration
 
-# AASM's Security Issues <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
+# AASM's Security Issues <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
 Once [API Attack Surface Discovery](api-surface.md) finds the external hosts of your [selected domains](setup.md), Wallarm checks if these hosts have any security issues. Once found, the issues are listed and described in the **Security Issues** section. This article describes how to use the presented information.
 
@@ -37,7 +37,7 @@ You can manage the decisions on what to do with the found leaks:
 
 You can view requests blocked by [virtual patches](../user-guides/rules/vpatch-rule.md) in Wallarm Console → **Attacks** by setting the **Type** filter to `Virtual patch` (`vpatch`).
 
-![Events - Security issues (API leaks) via vpatch](../images/api-attack-surface/api-leaks-in-events.png)
+![Events - Security issues (API leaks) via vpatch](../../images/api-attack-surface/api-leaks-in-events.png)
 
 Note that this filter will list not only the virtual patch events caused by the **Security Issues** functionality but also all the other virtual patches, created for different purposes.
 
@@ -45,7 +45,7 @@ Note that this filter will list not only the virtual patch events caused by the 
 
 Along with all the other security issues (found by any [method](../about-wallarm/detecting-vulnerabilities.md#detection-methods)), the ones found by AASM are displayed in the Wallarm Console → **Security Issues** section.
 
-![Security Issues](../images/api-attack-surface/security-issues.png)
+![Security Issues](../../images/api-attack-surface/security-issues.png)
 
 You can recognize issues found by AASM by the `AASM` in the **Discovered by** field. You can filter issues to see only the ones found by AASM with the **Discovered by** filter.
 

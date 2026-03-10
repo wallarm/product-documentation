@@ -4,7 +4,7 @@
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![سير عمل Webhook](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
+![سير عمل Webhook](../../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
 
 ## الموارد المستخدمة
 
@@ -76,13 +76,13 @@
     ```
 
     **سجلات في Fluentd:**
-    ![السجلات في Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-curl-log.png)
+    ![السجلات في Fluentd](../../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-curl-log.png)
 
     **سجلات في QRadar:**
-    ![السجلات في QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-curl-log.png)
+    ![السجلات في QRadar](../../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-curl-log.png)
 
     **عبء سجل QRadar:**
-    ![عبء السجل في QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-curl-log-payload.png)
+    ![عبء السجل في QRadar](../../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-curl-log-payload.png)
 
 ### تهيئة QRadar (اختياري)
 
@@ -97,13 +97,13 @@
 
 يتوفر وصف أكثر تفصيلاً لإعداد مصدر سجل QRadar في [الوثائق الرسمية لـ IBM](https://www.ibm.com/support/knowledgecenter/en/SS42VS_DSM/com.ibm.dsm.doc/b_dsm_guide.pdf?origURL=SS42VS_DSM/b_dsm_guide.pdf).
 
-![إعداد مصدر السجل QRadar لـ Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-setup.png)
+![إعداد مصدر السجل QRadar لـ Fluentd](../../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-setup.png)
 
 ### تهيئة التكامل مع Fluentd
 
 --8<-- "../include/integrations/webhook-examples/create-fluentd-webhook.md"
 
-![تكامل Webhook مع Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+![تكامل Webhook مع Fluentd](../../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
 [المزيد من التفاصيل حول تهيئة التكامل مع Fluentd](../fluentd.md)
 
@@ -113,8 +113,8 @@
 
 ستسجل Fluentd الحدث على النحو التالي:
 
-![سجل حول مستخدم جديد في QRadar من Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-user-log.png)
+![سجل حول مستخدم جديد في QRadar من Fluentd](../../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-user-log.png)
 
 سيتم عرض البيانات التالية بتنسيق JSON في عبء سجل QRadar:
 
-![بطاقة المستخدم الجديد في QRadar من Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-user.png)
+![بطاقة المستخدم الجديد في QRadar من Fluentd](../../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-user.png)

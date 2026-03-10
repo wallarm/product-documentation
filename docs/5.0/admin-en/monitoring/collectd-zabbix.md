@@ -1,4 +1,4 @@
-[img-zabbix-scheme]:        ../../images/monitoring/zabbix-scheme.png
+[img-zabbix-scheme]:        ../../../images/monitoring/zabbix-scheme.png
 
 [link-zabbix]:              https://www.zabbix.com/
 [link-collectd-nagios]:     https://collectd.org/wiki/index.php/Collectd-nagios

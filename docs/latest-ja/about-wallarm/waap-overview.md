@@ -2,13 +2,13 @@
 
 WallarmのクラウドネイティブWAAP（Webアプリケーション＆API保護）は、あらゆるお客様環境でアプリケーションとAPIを高度に保護します。WallarmのWAAPはREST、SOAP、GraphQLなど複数のAPIプロトコルをサポートし、[OWASP Top 10](https://owasp.org/www-project-top-ten/)をはじめそれ以上を包括的にカバーするためにディープパケットインスペクションを実施します。WAAPは、ゼロデイを含む[さまざまな脅威](../attacks-vulns-list.md)の検知精度が高く、[誤検知](../about-wallarm/protecting-against-attacks.md#false-positives)が少ないです。これにより、インフラストラクチャを迅速かつ効果的に保護できます。
 
-![プロトコル別の攻撃](../images/user-guides/dashboard/api-protocols.png)
+![プロトコル別の攻撃](../../images/user-guides/dashboard/api-protocols.png)
 
 ## 基本原則
 
 トラフィックは2つのコンポーネントで処理します：WallarmフィルタリングノードとWallarm Cloudです。Wallarmフィルタリングノードはお客様のインフラストラクチャにデプロイされ、トラフィックの解析と攻撃のブロックを担当します。収集した攻撃の統計情報は統計分析とイベント処理のためにWallarm Cloudへ送信されます。Wallarm Cloudは集中管理や他のセキュリティツールとの連携も担当します。
 
-![アーキテクチャ図1](../images/about-wallarm-waf/overview/filtering-node-cloud.png)
+![アーキテクチャ図1](../../images/about-wallarm-waf/overview/filtering-node-cloud.png)
 
 Wallarmは、[パブリッククラウド](../installation/supported-deployment-options.md)、オンプレミス、フルSaaSデプロイ、KubernetesやGateway APIsとの統合、[Security Edges](../installation/security-edge/overview.md)など、さまざまなデプロイオプションをサポートします。Wallarmフィルタリングノードは、ニーズとインフラストラクチャに応じて[インライン](../installation/inline/overview.md)または[アウトオブバンド](../installation/oob/overview.md)でデプロイできます。柔軟なセキュリティポリシー設定オプションにより、監視とブロッキングの[モード](../admin-en/configure-wallarm-mode.md)を迅速に切り替えられ、正当なトラフィックを誤ってブロックする不安を解消します。
 

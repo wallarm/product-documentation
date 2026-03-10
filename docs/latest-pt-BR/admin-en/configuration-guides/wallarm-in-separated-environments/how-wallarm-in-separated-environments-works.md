@@ -32,13 +32,13 @@ Ao configurar um nó de filtro, você pode adicionar IDs do Wallarm para seus am
 
 1. Adicione os nomes dos ambientes e seus IDs em sua conta Wallarm → **Configurações** → seção **Aplicações**.
 
-    ![Ambientes adicionados](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/added-applications.png)
+    ![Ambientes adicionados](../../../../images/admin-guides/configuration-guides/waf-in-separate-environments/added-applications.png)
 2. Especifique a configuração do ID em um nó de filtro:
 
     * usando a diretiva [`wallarm_application`](../../configure-parameters-en.md#wallarm_application) para implementações Docker, Kubernetes lado a lado ou baseadas em Linux;
     * usando a anotação [`nginx.ingress.kubernetes.io/wallarm-application`](../../configure-kubernetes-en.md#ingress-annotations) para implementações do controlador NGINX Ingress do Kubernetes. Agora, ao criar uma nova regra de nó de filtro, é possível especificar que a regra será atribuída a um conjunto específico de IDs de aplicação. Sem o atributo, uma nova regra será automaticamente aplicada a todos os recursos protegidos em uma conta Wallarm.
 
-![Criando regra para ID](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/create-rule-for-id.png)
+![Criando regra para ID](../../../../images/admin-guides/configuration-guides/waf-in-separate-environments/create-rule-for-id.png)
 
 #### Identificação do Ambiente por Domínio
 
@@ -46,7 +46,7 @@ Se cada ambiente estiver usando diferentes nomes de domínio URL passados no cab
 
 Para usar o recurso, adicione o ponteiro de cabeçalho `HOST` adequado para cada regra de nó de filtro configurada. No exemplo a seguir, a regra só será acionada para pedidos com o cabeçalho `HOST` igual a `dev.domain.com`:
 
-![Criando regra para HOST](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/create-rule-for-host.png)
+![Criando regra para HOST](../../../../images/admin-guides/configuration-guides/waf-in-separate-environments/create-rule-for-host.png)
 
 ### Contas e Sub-contas Wallarm Separadas
 

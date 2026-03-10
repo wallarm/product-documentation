@@ -19,13 +19,13 @@ Existem duas maneiras de registrar novos vazamentos:
 * Automático - Wallarm verifica ativamente milhares de repositórios públicos e fontes e adiciona novos vazamentos à lista. Organize por **Status** e veja vazamentos `Abertos` - eles requerem sua atenção.
 * Manual - adicione vazamentos de API manualmente. Cada um representa um conjunto de tokens vazados.
 
-![API Leaks - Adicionando Manualmente](../images/api-attack-surface/api-leaks-add-manually.png)
+![API Leaks - Adicionando Manualmente](../../images/api-attack-surface/api-leaks-add-manually.png)
 
 ## Visualização interativa
 
 A seção **API Leaks** fornece uma rica representação visual para a sua situação atual com relação aos vazamentos de API encontrados. Use os gráficos para analisar rapidamente a situação atual com os vazamentos encontrados, clique nos elementos do diagrama para filtrar vazamentos por níveis de risco e fontes.
 
-![API Leaks - Visualização](../images/api-attack-surface/api-leaks-visual.png)
+![API Leaks - Visualização](../../images/api-attack-surface/api-leaks-visual.png)
 
 ## Tomando decisões
 
@@ -43,6 +43,6 @@ Independentemente de como o vazamento de API foi adicionado - automaticamente ou
 
 No Console Wallarm → **Eventos**, ajuste o filtro **Tipo** para `Patch virtual` (`vpatch`) para ver todas as tentativas de uso de tokens vazados.
 
-![Eventos - Vazamentos de API via vpatch](../images/api-attack-surface/api-leaks-in-events.png)
+![Eventos - Vazamentos de API via vpatch](../../images/api-attack-surface/api-leaks-in-events.png)
 
 Por enquanto, você só pode rastrear as tentativas de uso de tokens vazados se o `vpatch` for aplicado.

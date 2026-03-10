@@ -1,7 +1,7 @@
 [link-regex]:               https://github.com/yandex/pire
-[img-regex-example1]:       ../../images/user-guides/rules/regex-rule-1.png
-[img-regex-example2]:       ../../images/user-guides/rules/regex-rule-2.png
-[img-regex-id]:             ../../images/user-guides/rules/regex-id.png
+[img-regex-example1]:       ../../../images/user-guides/rules/regex-rule-1.png
+[img-regex-example2]:       ../../../images/user-guides/rules/regex-rule-2.png
+[img-regex-id]:             ../../../images/user-guides/rules/regex-id.png
 [request-processing]:       ../../user-guides/rules/request-processing.md
 
 # مكتشفات الهجمات المُعرّفة من المستخدم
@@ -48,7 +48,7 @@
 
 إذا كنت تستخدم Spring Core Framework القابلة للاستغلال ووضع عقدة Wallarm [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) مختلف عن الحجب، يمكنك منع استغلال الثغرة باستخدام الرقعة الافتراضية. ستقوم القاعدة التالية بحجب جميع الطلبات التي تحتوي على المعايير المذكورة في الجسم حتى في أوضاع المراقبة والحجب الآمن:
 
-![الرقعة الافتراضية لمعايير الطلبات المحددة](../../images/user-guides/rules/regexp-rule-post-params-spring.png)
+![الرقعة الافتراضية لمعايير الطلبات المحددة](../../../images/user-guides/rules/regexp-rule-post-params-spring.png)
 
 قيمة حقل التعبير النظامي هي:
 
@@ -66,7 +66,7 @@
 
 إذا كنت تستخدم هذا المكون ووضع عقدة Wallarm [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) مختلف عن الحجب، يمكنك منع استغلال الثغرة باستخدام الرقعة الافتراضية. القاعدة التالية ستقوم بحجب جميع الطلبات التي تحتوي على رأس `CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION`:
 
-![الرقعة الافتراضية للرأس المحدد](../../images/user-guides/rules/regexp-rule-header-spring.png)
+![الرقعة الافتراضية للرأس المحدد](../../../images/user-guides/rules/regexp-rule-header-spring.png)
 
 !!! info "حجب الطلبات برأس `CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION`"
     هذه القاعدة لا تحجب الطلبات برأس `CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION` لكن NGINX يرفض الطلبات برأس غير صالح كهذا بشكل افتراضي.

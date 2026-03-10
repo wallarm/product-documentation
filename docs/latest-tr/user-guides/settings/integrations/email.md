@@ -13,7 +13,7 @@ Zamanlanmış PDF raporları günlük, haftalık veya aylık olarak gönderilebi
 1. Güvenlik raporlarının gönderim sıklığını seçin. Sıklık seçilmezse raporlar gönderilmez.
 1. Bildirimleri tetikleyecek olay türlerini seçin.
 
-    ![Email report entegrasyonu](../../../images/user-guides/settings/integrations/add-email-report-integration.png)
+    ![Email report entegrasyonu](../../../../images/user-guides/settings/integrations/add-email-report-integration.png)
 
     Kullanılabilir olaylara ilişkin ayrıntılar:
 
@@ -30,7 +30,7 @@ Zamanlanmış PDF raporları günlük, haftalık veya aylık olarak gönderilebi
 
     Bu işlem, `[Test message]` önekiyle test bildirimleri gönderecektir:
 
-    ![Test e-posta iletisi](../../../images/user-guides/settings/integrations/test-email-scope-changed.png)
+    ![Test e-posta iletisi](../../../../images/user-guides/settings/integrations/test-email-scope-changed.png)
 
 1. **Add integration**'a tıklayın.
 

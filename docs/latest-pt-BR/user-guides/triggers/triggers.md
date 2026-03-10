@@ -16,7 +16,7 @@ Você pode configurar todos os componentes do gatilho:
 
 Os gatilhos são configurados na seção **Gatilhos** do Console Wallarm. A seção está disponível apenas para usuários com a função de **Administrador** [papel](../settings/users.md).
 
-![Seção para configurar gatilhos](../../images/user-guides/triggers/triggers-section.png)
+![Seção para configurar gatilhos](../../../images/user-guides/triggers/triggers-section.png)
 
 ## Criando gatilhos
 
@@ -46,7 +46,7 @@ Uma condição é um evento de sistema para o qual deve ser notificado. As segui
 * Hits do mesmo IP, exceto aqueles de força bruta, navegação forçada, BOLA (IDOR), limite de recursos, bomba de dados e tipos de ataque de patch virtual
 * Usuário adicionado
 
-![Condições disponíveis](../../images/user-guides/triggers/trigger-conditions.png)
+![Condições disponíveis](../../../images/user-guides/triggers/trigger-conditions.png)
 
 Escolha uma condição na interface do Console Wallarm e defina o limite inferior para a reação, se a configuração estiver disponível.
 
@@ -69,7 +69,7 @@ Os seguintes filtros estão disponíveis:
 
 Escolha um ou mais filtros na interface do Console Wallarm e defina valores para eles.
 
-![Filtros disponíveis](../../images/user-guides/triggers/trigger-filters.png)
+![Filtros disponíveis](../../../images/user-guides/triggers/trigger-filters.png)
 
 ### Etapa 3: Adicionando reações
 
@@ -91,7 +91,7 @@ Uma reação é uma ação que deve ser realizada se a condição especificada e
 
 Escolha uma ou mais reações na interface do Console Wallarm. As reações disponíveis para a condição estão localizadas em **Número de ataques**:
 
-![Escolhendo uma integração](../../images/user-guides/triggers/select-integration.png)
+![Escolhendo uma integração](../../../images/user-guides/triggers/select-integration.png)
 
 ### Etapa 4: Salvando o gatilho
 

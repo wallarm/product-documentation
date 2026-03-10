@@ -1,4 +1,4 @@
-# Endpoint Risk Score <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Endpoint Risk Score <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 [API Discovery](overview.md) automatically calculates a **risk score** for each endpoint in your API inventory. The risk score allows you to understand which endpoints are most likely to be an attack target and therefore should be the focus of your security efforts.
 
@@ -34,7 +34,7 @@ Risk score may be from `1` (lowest) to `10` (highest):
 
 To understand what caused the risk score for the endpoint and how to reduce the risk, go to the endpoint details:
 
-![API Discovery - Risk score](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
+![API Discovery - Risk score](../../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 
 You can also get summary on APIs by their risk score levels in **Dashboards** → **API Discovery** in the [US](https://us1.my.wallarm.com/dashboard-api-discovery) or [EU](https://my.wallarm.com/dashboard-api-discovery) Cloud.
 
@@ -50,6 +50,6 @@ To change how risk score is calculated:
 1. If necessary, disable factors you do not want to affect a risk score.
 1. Set weights for the remaining.
 
-    ![API Discovery - Risk score setup](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score-setup.png)
+    ![API Discovery - Risk score setup](../../images/about-wallarm-waf/api-discovery/api-discovery-risk-score-setup.png)
 
 1. Save changes. Wallarm will re-calculate the risk score for your endpoints in accordance with the new settings in several minutes.

@@ -6,7 +6,7 @@ Os painéis cobrem os riscos do OWASP API Security Top 10 das versões de [2019]
 
 Ao usar esses painéis, você pode avaliar o estado geral de segurança e abordar proativamente os problemas de segurança descobertos configurando controles de segurança apropriados.
 
-![OWASP API Top 10 2023](../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
+![OWASP API Top 10 2023](../../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
 
 ## Avaliação de ameaças
 
@@ -18,7 +18,7 @@ A Wallarm estima o risco para cada ameaça de API com base nos **controles de se
 
 Para cada ameaça do OWASP API Top 10, você pode encontrar informações detalhadas sobre a ameaça, controles de segurança disponíveis, vulnerabilidades correspondentes e investigar ataques relacionados:
 
-![OWASP API Top 10](../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash-details.png)
+![OWASP API Top 10](../../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash-details.png)
 
 ## Controles de segurança da Wallarm para OWASP API 2023
 

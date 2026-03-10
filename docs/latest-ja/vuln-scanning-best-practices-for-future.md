@@ -1,6 +1,6 @@
 脆弱性の検出と緩和のベストプラクティス
 
-## Threat Replay Testingのベストプラクティスに従う <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
+## Threat Replay Testingのベストプラクティスに従う <a href="../subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
 
 Wallarmが[脆弱性を検出](../about-wallarm/detecting-vulnerabilities.md)する方法の1つが**Threat Replay Testing**です。
 

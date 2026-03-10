@@ -12,7 +12,7 @@ Wallarm node UI yönetim seçenekleri:
 * Düğümleri yeniden adlandırma
 * Düğümleri silme
 
-![Nodes](../../images/user-guides/nodes/table-nodes.png)
+![Nodes](../../../images/user-guides/nodes/table-nodes.png)
 
 !!! info "Yönetici erişimi"
     Wallarm düğümlerinin/token'larının oluşturulması, silinmesi ve yeniden oluşturulması yalnızca **Administrator** veya **Global Administrator** rolüne sahip kullanıcılar için kullanılabilir. Kurulu düğümlerin ayrıntılarını görüntüleme tüm kullanıcılar için mevcuttur.
@@ -37,7 +37,7 @@ Wallarm node UI yönetim seçenekleri:
 
     1. Wallarm Console → **Nodes**'u [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes)'da açın ve **Wallarm node** türünde düğümü oluşturun.
 
-        ![Wallarm node oluşturma](../../images/user-guides/nodes/create-cloud-node.png)
+        ![Wallarm node oluşturma](../../../images/user-guides/nodes/create-cloud-node.png)
     
     1. Oluşturulan token'ı kopyalayın.
     1. Node token'ınızı kullanarak yeni düğümü [uygun ortama](../../installation/supported-deployment-options.md) dağıtın.
@@ -70,7 +70,7 @@ Aşağıdaki düğüm özellikleri ve metrikleri mevcuttur:
 * Kullanılan LOM ve proton.db sürümleri
 * Kurulu Wallarm paketleri ve NGINX sürümleri (varsa)
 
-![Düğüm kartı](../../images/user-guides/nodes/view-wallarm-node.png)
+![Düğüm kartı](../../../images/user-guides/nodes/view-wallarm-node.png)
 
 Bir Wallarm node birden fazla örnek için kuruluysa (ör. başlangıç trafik işleme ve istek post-analitiği farklı sunucu örnekleri tarafından gerçekleştiriliyorsa), karşılık gelen filtreleme düğümü sayısı tabloda tek bir kayıtta gruplanır. Özellikler ve metrikler her örnek için mevcut olacaktır.
 
@@ -87,7 +87,7 @@ Token'ı yeniden oluşturmak, düğüm için yeni bir token oluşturur.
 2. Düğüm menüsünde veya kartında **Regenerate token**'a tıklayın.
 3. Düğüm zaten altyapınıza kurulmuşsa, yeni token değerini kopyalayın ve kurulu düğüm ayarları içinde belirtin.
 
-![Düğüm token'ını yeniden oluşturma](../../images/user-guides/nodes/generate-new-token.png)
+![Düğüm token'ını yeniden oluşturma](../../../images/user-guides/nodes/generate-new-token.png)
 
 ## Bir düğümü silme
 

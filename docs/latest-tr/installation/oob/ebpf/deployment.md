@@ -11,7 +11,7 @@ Wallarm, Linux çekirdeğinin gücünden yararlanan ve Kubernetes ortamlarıyla 
 
 Wallarm eBPF tabanlı çözüm ile trafik akışı:
 
-![eBPF trafik akışı](../../../images/waf-installation/epbf/ebpf-traffic-flow.png)
+![eBPF trafik akışı](../../../../images/waf-installation/epbf/ebpf-traffic-flow.png)
 
 eBPF çözümü, aşağıdaki protokolleri kullanarak trafiği izlemek üzere tasarlanmıştır:
 
@@ -30,7 +30,7 @@ Kubernetes, süreç izolasyonu, kaynak yönetimi ve ağ oluşturma gibi kritik g
 
 Aşağıdaki diyagram çözüm bileşenlerini göstermektedir:
 
-![eBPF bileşenleri](../../../images/waf-installation/epbf/ebpf-components.png)
+![eBPF bileşenleri](../../../../images/waf-installation/epbf/ebpf-components.png)
 
 eBPF ajanı, her Kubernetes işçi (worker) düğümünde bir DaemonSet olarak dağıtılır. Doğru işlevselliği sağlamak için ajan konteynerinin ayrıcalıklı modda çalışması ve şu temel yeteneklere sahip olması gerekir: `SYS_PTRACE` ve `SYS_ADMIN`.
 
@@ -87,7 +87,7 @@ Wallarm eBPF çözümünü dağıtmak için:
     * EU Cloud için https://my.wallarm.com/nodes
 1. **Wallarm node** türünde bir filtreleme düğümü oluşturun ve üretilen token’ı kopyalayın.
     
-    ![!Bir Wallarm node'unun oluşturulması](../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+    ![!Bir Wallarm node'unun oluşturulması](../../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
 
 ### Adım 2: Wallarm Helm chart’ını dağıtın
 
@@ -188,7 +188,7 @@ Wallarm eBPF’in doğru çalıştığını test etmek için:
 
     Saldırının kaydedildiğini doğrulamak için Wallarm Console → **Events** bölümüne gidin:
 
-    ![!Arayüzde saldırılar](../../../images/waf-installation/epbf/ebpf-attack-in-ui.png)
+    ![!Arayüzde saldırılar](../../../../images/waf-installation/epbf/ebpf-attack-in-ui.png)
 
 ## Sınırlamalar
 

@@ -1,7 +1,7 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
-[se-connector-setup-img]:           ../../images/waf-installation/se-connector-setup.png
+[se-connector-setup-img]:           ../../../images/waf-installation/se-connector-setup.png
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
@@ -18,7 +18,7 @@ Mule Gateway için Wallarm'ı bir connector olarak kullanmak için, **Wallarm no
 
 Mule Gateway için Wallarm connector yalnızca [in-line](../inline/overview.md) trafik analizini destekler:
 
-![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-mule-gateway-inline.png)
+![MuleSoft with Wallarm policy](../../../images/waf-installation/gateways/mulesoft/traffic-flow-mule-gateway-inline.png)
 
 ## Kullanım senaryoları
 
@@ -166,7 +166,7 @@ Wallarm policy'sini MuleSoft Exchange'e almak ve yüklemek için şu adımları 
 
 Özel policy'niz artık MuleSoft Anypoint Platform Exchange içinde kullanılabilir.
 
-![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
+![MuleSoft with Wallarm policy](../../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
 
 ### 3. Policy'yi API'nize ekleyin
 
@@ -179,7 +179,7 @@ Wallarm policy'yi tek bir API'ye veya tüm API'lere ekleyebilirsiniz.
 1. Gerekirse diğer parametreleri değiştirin.
 1. Policy'yi uygulayın.
 
-![Wallarm policy](../../images/waf-installation/gateways/mulesoft/policy-setup.png)
+![Wallarm policy](../../../images/waf-installation/gateways/mulesoft/policy-setup.png)
 
 ## Test
 

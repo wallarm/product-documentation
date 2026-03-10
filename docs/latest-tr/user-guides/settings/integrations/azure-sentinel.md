@@ -23,7 +23,7 @@ Wallarm Console UI'da:
     İsim verilmezse, her olay türü için ayrı tablolar oluşturulur.
 1. Bildirimleri tetikleyecek olay türlerini seçin.
 
-    ![Sentinel entegrasyonu](../../../images/user-guides/settings/integrations/add-sentinel-integration.png)
+    ![Sentinel entegrasyonu](../../../../images/user-guides/settings/integrations/add-sentinel-integration.png)
 
     Kullanılabilir olaylar hakkında ayrıntılar:
 
@@ -33,7 +33,7 @@ Wallarm Console UI'da:
 
     Wallarm loglarını Microsoft Workspace'inizde → **Logs** → **Custom Logs** altında bulabilirsiniz; örneğin test amaçlı `create_user_CL` logu Microsoft Sentinel'de aşağıdaki gibi görünür:
 
-    ![Sentinel test iletisi](../../../images/user-guides/settings/integrations/test-sentinel-new-vuln.png)
+    ![Sentinel test iletisi](../../../../images/user-guides/settings/integrations/test-sentinel-new-vuln.png)
 
     !!! info "Yeni workspaces için veri gönderiminde gecikme"
         Wallarm entegrasyonu için Sentinel üzerinde bir Workspace oluşturulduğunda tüm hizmetlerin çalışır duruma gelmesi 1 saate kadar sürebilir. Bu gecikme, entegrasyonun test edilmesi ve kullanımı sırasında hatalara yol açabilir. Tüm entegrasyon ayarları doğruysa ancak hatalar görünmeye devam ediyorsa, lütfen 1 saat sonra tekrar deneyin.

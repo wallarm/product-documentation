@@ -1,4 +1,4 @@
-# API Discoveryデモ動画 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discoveryデモ動画 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarmプラットフォームの[**API Discovery**](../api-discovery/overview.md)モジュールの可能性を最大限に紹介するデモ動画です。実際のAPI利用状況に基づいて構築されるAPIインベントリについて理解し、提示されている情報の活用方法を学べます。
 

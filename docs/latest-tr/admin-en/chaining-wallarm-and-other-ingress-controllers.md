@@ -1,5 +1,5 @@
 [node-token-types]:                      ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[nginx-ing-create-node-img]:             ../images/user-guides/nodes/create-wallarm-node-name-specified.png
+[nginx-ing-create-node-img]:             ../../images/user-guides/nodes/create-wallarm-node-name-specified.png
 
 # Aynı Kubernetes kümesinde Wallarm ve ek Ingress denetleyicilerinin zincirlenmesi
 

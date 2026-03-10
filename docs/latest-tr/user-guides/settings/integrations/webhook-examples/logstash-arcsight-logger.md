@@ -4,7 +4,7 @@ Bu talimatlar, olayları ArcSight Logger sistemine iletmek için Wallarm'ın Log
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![Webhook akışı](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-scheme.png)
+![Webhook akışı](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-scheme.png)
 
 !!! info "ArcSight ESM'in Enterprise sürümüyle entegrasyon"
     Logstash'ten ArcSight ESM'in Enterprise sürümüne günlük iletimini yapılandırmak için, ArcSight tarafında Syslog Connector yapılandırılması ve ardından günlüklerin Logstash'ten konektör portuna iletilmesi önerilir. Konektörlerin daha ayrıntılı açıklaması için, lütfen [resmi ArcSight SmartConnector dokümantasyonundan](https://community.microfocus.com/t5/ArcSight-Connectors/ct-p/ConnectorsDocs) **SmartConnector User Guide** belgesini indirin.
@@ -28,7 +28,7 @@ ArcSight Logger'da `Wallarm Logstash logs` adlı günlük alıcısı aşağıdak
 * Olaylar syslog ayrıştırıcısıyla ayrıştırılır
 * Diğer varsayılan ayarlar
 
-![ArcSight Logger'da alıcının yapılandırılması](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-setup.png)
+![ArcSight Logger'da alıcının yapılandırılması](../../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-setup.png)
 
 Alıcı yapılandırmasına ilişkin daha ayrıntılı açıklama için, uygun sürümün **Logger Installation Guide** belgesini [resmi ArcSight Logger dokümantasyonundan](https://community.microfocus.com/t5/Logger-Documentation/ct-p/LoggerDoc) indirin.
 
@@ -85,16 +85,16 @@ Yapılandırma dosyalarının daha ayrıntılı açıklaması [resmi Logstash do
     ```
 
     **Logstash günlükleri:**
-    ![Logstash günlükleri](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-curl-log.png)
+    ![Logstash günlükleri](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-curl-log.png)
 
     **ArcSight Logger'daki olay:**
-    ![ArcSight Logger olayı](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-curl-log.png)
+    ![ArcSight Logger olayı](../../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-curl-log.png)
 
 ### Logstash entegrasyonunun yapılandırılması
 
 --8<-- "../include/integrations/webhook-examples/create-logstash-webhook.md"
 
-![Logstash ile Webhook entegrasyonu](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+![Logstash ile Webhook entegrasyonu](../../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
 [Logstash entegrasyonunun yapılandırılması hakkında daha fazla bilgi](../logstash.md)
 
@@ -104,8 +104,8 @@ Yapılandırma dosyalarının daha ayrıntılı açıklaması [resmi Logstash do
 
 Logstash olayı aşağıdaki şekilde günlüğe kaydedecektir:
 
-![Logstash'ten ArcSight Logger'a yeni kullanıcıya ilişkin günlük](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-user-log.png)
+![Logstash'ten ArcSight Logger'a yeni kullanıcıya ilişkin günlük](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-user-log.png)
 
 ArcSight Logger olaylarında aşağıdaki kayıt görüntülenecektir:
 
-![Logstash'ten ArcSight Logger'a yeni kullanıcı kartı](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-user.png)
+![Logstash'ten ArcSight Logger'a yeni kullanıcı kartı](../../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-user.png)

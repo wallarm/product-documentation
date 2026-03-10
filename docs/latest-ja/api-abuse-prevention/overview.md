@@ -1,4 +1,4 @@
-# API Abuse Prevention <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Prevention <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarmプラットフォームの**API Abuse Prevention**モジュールは、クレデンシャルスタッフィング、偽アカウント作成、コンテンツスクレイピングなど、APIの不正利用を行うボットを検知・対策します。お客様のAPIを標的とするその他の悪意ある行為にも対応します。
 
@@ -44,7 +44,7 @@ API Abuse Preventionは、[セッション](../api-sessions/overview.md#api-sess
 !!! info "信頼度"
     detectorの動作結果として、すべての[検出された](../api-abuse-prevention/exploring-bots.md)ボットに対し、これはボットであるとどの程度確信できるかを示す**信頼度パーセンテージ**が付与されます。各ボットタイプでは、detectorごとに相対的重要度や投票数が異なります。したがって、信頼度パーセンテージは、そのボットタイプにおける可能な全投票数に対して獲得した票の割合（作動したdetectorが付与した票）です。
 
-![API Abuse Preventionの統計](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics-detectors.png)
+![API Abuse Preventionの統計](../../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics-detectors.png)
 
 1つ以上のdetectorが[ボット攻撃の兆候](#automated-threats-blocked-by-api-abuse-prevention)を示した場合、本モジュールは異常トラフィックの送信元を1時間denylistまたはgraylistに追加します。Wallarmは、過去30日以内にdenylistおよびgraylistに登録されたボットIPを集計し、直前の30日間と比べてそれらの数が何パーセント増減したかを表示します。
 

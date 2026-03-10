@@ -1,10 +1,10 @@
-# API Sessions'e Genel Bakış <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Sessions'e Genel Bakış <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm'ın **API Sessions** özelliği, trafiğinizdeki kullanıcı oturumlarına görünürlük sağlar. Her oturum için Wallarm, ayrıntılı istek ve ilgili yanıt verilerini toplayarak oturum etkinliğine yapılandırılmış bir bakış sunar. Bu makale, API Sessions’a genel bir bakış sağlar: ele aldığı sorunlar, amacı ve başlıca olanaklar.
 
 API Sessions, [NGINX Wallarm node](../installation/nginx-native-node-internals.md#nginx-node) 5.1.0 veya [native Wallarm node](../installation/nginx-native-node-internals.md#native-node) 0.8.0 gerektirir. Yanıt ayrıştırma: NGINX Wallarm node 5.3.0 veya native node 0.12.0.
 
-![!API Sessions bölümü - izlenen oturumlar](../images/api-sessions/api-sessions.png)
+![!API Sessions bölümü - izlenen oturumlar](../../images/api-sessions/api-sessions.png)
 
 ## Ele alınan sorunlar
 
@@ -47,6 +47,6 @@ Dolayısıyla, isteklerin [oturumlara nasıl gruplanacağını](setup.md#session
 
 API Sessions, [GraphQL istekleri](../user-guides/rules/request-processing.md#gql) ve bunlara özgü istek noktalarıyla çalışmayı destekler; GraphQL istek parametrelerinin değerlerini çıkarmak ve görüntülemek için oturumları yapılandırabilirsiniz.
 
-![!API Sessions yapılandırması - GraphQL istek parametresi](../images/api-sessions/api-sessions-graphql.png)
+![!API Sessions yapılandırması - GraphQL istek parametresi](../../images/api-sessions/api-sessions-graphql.png)
 
 NGINX Node 5.3.0 veya daha yüksek ya da native node 0.12.0 gerektirir.

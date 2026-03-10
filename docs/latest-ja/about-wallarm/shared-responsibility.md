@@ -12,7 +12,7 @@ Wallarmには2つの主要コンポーネントがあります。Wallarm filteri
 
 --8<-- "../include/deployment-forms.md"
 
-![責任分担の模式図](../images/shared-responsibility-variants.png)
+![責任分担の模式図](../../images/shared-responsibility-variants.png)
 
 ## Security Edge
 

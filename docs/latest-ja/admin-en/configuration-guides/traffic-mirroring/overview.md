@@ -6,7 +6,7 @@ Wallarm nodeのデプロイ方法の1つに、ミラーリングされたHTTPト
 
 ミラーリングオプションを有効にした場合のトラフィックフロー図の例です:
 
-![ミラーリングの構成図](../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
+![ミラーリングの構成図](../../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
 
 ## このアプローチのユースケース
 

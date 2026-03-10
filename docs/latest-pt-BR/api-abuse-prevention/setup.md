@@ -1,4 +1,4 @@
-# Gerenciamento do perfil de Prevenção de Abuso de API <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Gerenciamento do perfil de Prevenção de Abuso de API <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Na seção **Prevenção de Abuso de API** do Console Wallarm, você pode gerenciar perfis de abuso de API necessários para a configuração do módulo [**Prevenção de Abuso de API**](../api-abuse-prevention/overview.md).
 
@@ -19,7 +19,7 @@ Para criar um perfil de abuso de API:
 1. Se o a reação é adicionar à lista de negação ou cinza, defina o tempo durante o qual o IP estará na lista. O valor padrão é `Adicionar por um dia`.
 1. Defina um nome e, opcionalmente, uma descrição.
 
-    ![Perfil de Prevenção de Abuso de API](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
+    ![Perfil de Prevenção de Abuso de API](../../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
 
     Uma vez que o perfil de abuso de API está configurado, o módulo iniciará a [análise de tráfego e bloqueio de ameaças automatizadas suportadas](../api-abuse-prevention/overview.md#how-api-abuse-prevention-works).
 
@@ -41,7 +41,7 @@ O módulo **Prevenção de Abuso de API** bloqueia bots adicionando-os à [lista
 
 Você pode explorar os IPs de bots bloqueados no Console Wallarm → **Listas de IP** → **Lista de negação** ou **Lista cinza**. Explore IPs adicionados com o **Motivo** `Bot`.
 
-![IPs de bots na lista de negação](../images/about-wallarm-waf/abi-abuse-prevention/denylisted-bot-ips.png)
+![IPs de bots na lista de negação](../../images/about-wallarm-waf/abi-abuse-prevention/denylisted-bot-ips.png)
 
 !!! info "Confiança"
     Como resultado do [trabalho dos detectores](../api-abuse-prevention/overview.md#how-api-abuse-prevention-works), cada bot detectado obtém **porcentagem de confiança**: o quanto temos certeza de que isso é um bot. Em cada tipo de bot, os detectores têm importância relativa diferente / número de votos. Assim, a porcentagem de confiança é os votos ganhos de todos os votos possíveis neste tipo de bot (fornecido por detectores que trabalharam).
@@ -50,7 +50,7 @@ Você pode intervir no processo de proteção de bot. Se o IP listado como nega�
 
 Você também pode explorar ataques de abuso de API de bot realizados por bots na seção **Eventos** do Console Wallarm. Use a chave de pesquisa `api_abuse` ou selecione `Abuso de API` no filtro **Tipo**.
 
-![Eventos de abuso de API](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
+![Eventos de abuso de API](../../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
 
 A informação do bot é visualizada em três mapas de calor. Em todos os mapas, quanto maior a bolha, mais próxima ela está da cor vermelha e do canto superior direito - mais razões para considerar este IP como um bot.
 
@@ -88,11 +88,11 @@ Existem duas maneiras de adicionar endereços IP à lista de exceções:
 
 * A partir da seção **Prevenção de Abuso de API** → guia **Lista de exceções** por meio de **Adicionar exceção**. Aqui, além dos IPs e sub-redes, você pode adicionar localizações e tipos de fonte que devem ser ignorados pela Prevenção de Abuso de API.
 
-    ![Prevenção de abuso de API - adicionando itens de dentro da lista de exceções](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-inside.png)
+    ![Prevenção de abuso de API - adicionando itens de dentro da lista de exceções](../../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-inside.png)
 
 * A partir da seção **Eventos**: use a chave de pesquisa `api_abuse` ou selecione `Abuso de API` no filtro **Tipo**, em seguida, expanda o evento requerido e clique em **Adicionar à lista de exceções**.
 
-    ![Prevenção de abuso de API - adicionando itens de dentro da lista de exceções](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
+    ![Prevenção de abuso de API - adicionando itens de dentro da lista de exceções](../../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
 
 Quando o endereço IP é adicionado à lista de exceções, o endereço é automaticamente removido da [lista de negação](../user-guides/ip-lists/denylist.md) ou [lista cinza](../user-guides/ip-lists/graylist.md), mas somente se foi adicionado lá pela própria Prevenção de Abuso de API (tem um motivo `Bot`).
 

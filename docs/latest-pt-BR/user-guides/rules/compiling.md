@@ -10,7 +10,7 @@ Adicionar uma nova regra, excluir ou alterar regras existentes no Console Wallar
 
 O status de construção do conjunto de regras personalizado e o tempo de conclusão esperado são exibidos no Console Wallarm. Se não houver construção em andamento, a interface exibe a data da última construção concluída.
 
-![Status de construção](../../images/user-guides/rules/build-rules-status.png)
+![Status de construção](../../../images/user-guides/rules/build-rules-status.png)
 
 ## Descarregando um conjunto de regras personalizado para o nó de filtragem
 

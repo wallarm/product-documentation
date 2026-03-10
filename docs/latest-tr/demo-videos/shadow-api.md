@@ -1,4 +1,4 @@
-# Gölge ve Yetim API Tespiti <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Gölge ve Yetim API Tespiti <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm kullanarak API’nizde [gölge ve yetim uç noktaları](../api-discovery/rogue-api.md) nasıl tespit edebileceğinizi öğrenmek için demo videomuzu izleyin.
 

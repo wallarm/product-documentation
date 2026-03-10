@@ -5,7 +5,7 @@
 [process-time-limit-instr]: ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [allocating-memory-guide]: ../../admin-en/configuration-guides/allocate-resources-for-node.md
 [ptrav-attack-docs]: ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]: ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]: ../../../images/admin-guides/test-attacks-quickstart.png
 [nginx-process-time-limit-docs]: ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]: ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]: ../../user-guides/rules/configure-overlimit-res-detection.md
@@ -63,7 +63,7 @@
 
 1. افتح Wallarm Console → **العقد** في [السحابة الأمريكية](https://us1.my.wallarm.com/nodes) أو [السحابة الأوروبية](https://my.wallarm.com/nodes) وقم بإنشاء العقدة من نوع **Wallarm node**.
 
-    ![إنشاء Wallarm node](../../images/user-guides/nodes/create-cloud-node.png)
+    ![إنشاء Wallarm node](../../../images/user-guides/nodes/create-cloud-node.png)
 1. انسخ الرمز المميز المولد.
 
 ## الخطوة 6: نقل القوائم البيضاء والقوائم السوداء من الإصدار السابق للعقدة Wallarm إلى الإصدار 4.10 (فقط في حالة ترقية العقدة 2.18 أو أقل)

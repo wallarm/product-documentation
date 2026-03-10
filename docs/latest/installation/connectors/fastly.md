@@ -1,7 +1,7 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
-[se-connector-setup-img]:           ../../images/waf-installation/se-connector-setup.png
+[se-connector-setup-img]:           ../../../images/waf-installation/se-connector-setup.png
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
@@ -22,9 +22,9 @@ The Fastly connector supports both [in-line](../inline/overview.md) and [out-of-
 
     If Wallarm is configured to block malicious activity:
 
-    ![Fastly with Wallarm - in-line scheme](../../images/waf-installation/gateways/fastly/fastly-traffic-flow-inline.png)
+    ![Fastly with Wallarm - in-line scheme](../../../images/waf-installation/gateways/fastly/fastly-traffic-flow-inline.png)
 === "Out-of-band traffic flow"
-    ![Fastly with Wallarm - out-of-band scheme](../../images/waf-installation/gateways/fastly/fastly-traffic-flow-oob.png) -->
+    ![Fastly with Wallarm - out-of-band scheme](../../../images/waf-installation/gateways/fastly/fastly-traffic-flow-oob.png) -->
 
 ## Use cases
 
@@ -75,12 +75,12 @@ To route traffic from Fastly to the Wallarm Node, you need to deploy a Fastly Co
     * Scope: Global API access
     * Leave other settings at their default unless specific changes are required
 
-    ![](../../images/waf-installation/gateways/fastly/generate-token.png)
+    ![](../../../images/waf-installation/gateways/fastly/generate-token.png)
 1. Go to **Fastly** UI → **Compute** → **Compute services** → **Create service** → **Use a local project** and create an instance for Wallarm.
 
     Once created, copy the generated `--service-id`:
 
-    ![](../../images/waf-installation/gateways/fastly/create-compute-service.png)
+    ![](../../../images/waf-installation/gateways/fastly/create-compute-service.png)
 1. Go to the local directory containing the Wallarm package and deploy it:
 
     ```
@@ -114,7 +114,7 @@ For proper traffic routing for analysis and forwarding, you need to define the W
     * Add the Wallarm node URL as the `wallarm-node` host to route traffic to the Wallarm node for analysis.
     * Add your backend address as another host (e.g., `backend`) to forward traffic from the node to your origin backend.
 
-    ![](../../images/waf-installation/gateways/fastly/hosts.png)
+    ![](../../../images/waf-installation/gateways/fastly/hosts.png)
 1. **Activate** the new service version.
 
 ### 4. Create the Wallarm config store
@@ -132,7 +132,7 @@ Create the `wallarm_config` config defining Wallarm-specific settings:
     [More parameters](fastly.md#configuration-options)
 1. **Link** the config store to the Wallarm Compute service.
 
-![](../../images/waf-installation/gateways/fastly/config-store.png)
+![](../../../images/waf-installation/gateways/fastly/config-store.png)
 
 !!! info "Config stores for multiple services"
     If you run multiple Compute services for Wallarm, you can do one of the following:
@@ -148,7 +148,7 @@ When the Wallarm Node operates in inline mode and [blocks](../../admin-en/config
 1. Add a key named `block_page.html` and upload your custom HTML blocking page. This page will be returned to blocked requests.
 1. **Link** the KV store to the Wallarm Compute service.
 
-![](../../images/waf-installation/gateways/fastly/custom-block-page.png)
+![](../../../images/waf-installation/gateways/fastly/custom-block-page.png)
 
 ??? info "Show Wallarm template for a custom blocking page"
     As a starting point, you can use the following Wallarm-provided template for a custom blocking page. Adjust it as needed to include the information you want to display to users and to match your desired design:

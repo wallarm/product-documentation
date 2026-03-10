@@ -16,4 +16,4 @@
 
 条件を詳細化するために、1つ以上のフィルターを追加できます。条件とフィルターを設定したら、選択したアラートの送信に使用するインテグレーションを選択します。同時に複数のインテグレーションを選択できます。
 
-![インテグレーションの選択](../../../images/user-guides/triggers/select-integration.png)
+![インテグレーションの選択](../../../../images/user-guides/triggers/select-integration.png)

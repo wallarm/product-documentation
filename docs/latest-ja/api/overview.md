@@ -1,5 +1,5 @@
 [user-roles-article]:    ../user-guides/settings/users.md#user-roles
-[img-api-tokens-edit]:   ../images/api-tokens-edit.png
+[img-api-tokens-edit]:   ../../images/api-tokens-edit.png
 
 # Wallarm APIの概要
 
@@ -18,7 +18,7 @@ APIメソッドの説明は、Wallarm Console → 右上 → `?` → Wallarm API
 * https://apiconsole.us1.wallarm.com/ は[USクラウド](../about-wallarm/overview.md#cloud)向けです
 * https://apiconsole.eu1.wallarm.com/ は[EUクラウド](../about-wallarm/overview.md#cloud)向けです
 
-![Wallarm API Console](../images/wallarm-api-reference.png)
+![Wallarm API Console](../../images/wallarm-api-reference.png)
 
 ## APIエンドポイント
 

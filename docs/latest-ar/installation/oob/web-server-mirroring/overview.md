@@ -4,7 +4,7 @@
 
 يمكن تنفيذ تطابق الحركة عن طريق تكوين خادم الويب أو الوكيل أو خادم مشابه لنسخ الحركة الواردة إلى خدمات Wallarm للتحليل. مع هذا النهج، يبدو تدفق الحركة النموذجي كما يلي:
 
-![مخطط OOB](../../../images/waf-installation/oob/wallarm-oob-deployment-scheme.png)
+![مخطط OOB](../../../../images/waf-installation/oob/wallarm-oob-deployment-scheme.png)
 
 ## إجراء التنشيط
 

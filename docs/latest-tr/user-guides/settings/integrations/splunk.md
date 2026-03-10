@@ -1,4 +1,4 @@
-[splunk-dashboard-by-wallarm-img]: ../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
+[splunk-dashboard-by-wallarm-img]: ../../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
 
 #   Splunk
 
@@ -23,7 +23,7 @@ Wallarm UI'de:
 1. Splunk örneğinizin HEC URI'sini ve port numarasını **HEC URI:PORT** alanına yapıştırın. Örneğin: `https://hec.splunk.com:8088`.
 1. Bildirimleri tetikleyecek olay türlerini seçin.
 
-    ![Splunk entegrasyonu](../../../images/user-guides/settings/integrations/add-splunk-integration.png)
+    ![Splunk entegrasyonu](../../../../images/user-guides/settings/integrations/add-splunk-integration.png)
 
     Kullanılabilir olaylara ilişkin ayrıntılar:
 

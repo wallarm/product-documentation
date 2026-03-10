@@ -69,7 +69,7 @@ Amazon S3インテグレーションを設定するには:
         1. ロールの作成を完了し、そのARNをコピーします。
         1. Wallarm Console UIのインテグレーション作成ダイアログの**Role ARN**タブで、ロールのARNを貼り付けます。
 
-            ![Amazon S3インテグレーション](../../../images/user-guides/settings/integrations/add-amazon-s3-integration.png)
+            ![Amazon S3インテグレーション](../../../../images/user-guides/settings/integrations/add-amazon-s3-integration.png)
 
     === "シークレットアクセスキー"
 

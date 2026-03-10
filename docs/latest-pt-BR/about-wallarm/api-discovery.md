@@ -1,4 +1,4 @@
-# Descobrindo inventário API <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Descobrindo inventário API <a href="../subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 O módulo **API Discovery** da plataforma Wallarm [constrói](#habilita%C3%A7%C3%A3o-econfigura%C3%A7%C3%A3o-da-descoberta-da-api) o inventário da API REST do seu aplicativo com base no uso real da API. O módulo analisa continuamente as solicitações de tráfego real e constrói o inventário da API com base nos resultados da análise. Este artigo fornece uma visão geral da **API Discovery**: questões abordadas por ela, seu propósito e principais possibilidades.
 
@@ -115,13 +115,13 @@ Estes dados permitem verificar se os valores do formato esperado são passados e
 
 Antes de comprar o plano de [assinatura](subscription-plans.md#subscription-plans) com a API Discovery, você pode visualizar os dados amostrais. Para fazer isso, na seção **API Discovery**, clique em **Explorar em um playground**.
 
-![API Discovery – Amostra de Dados](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
+![API Discovery – Amostra de Dados](../../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
 
 ## Uso do inventário da API construída 
 
 A secção **API Discovery** fornece muitas opções para o uso do inventário da API construída.
 
-![Pontos de extremidade descobertos pela API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
+![Pontos de extremidade descobertos pela API Discovery](../../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
 Essas opções são:
 
@@ -200,7 +200,7 @@ O módulo **API Discovery** unifica esses elementos no formato `{parameter_X}` n
 
 Clique no ponto de extremidade para expandir seus parâmetros e ver qual tipo foi detectado automaticamente para o parâmetro diverso.
 
-![API Discovery - Variabilidade no caminho](../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path.png)
+![API Discovery - Variabilidade no caminho](../../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path.png)
 
 Note que o algoritmo analisa o novo tráfego. Se em algum momento você ver endereços, que deveriam ser unificados mas isso não aconteceu ainda, aguarde. Assim que mais dados chegarem, o sistema unificará pontos finais que correspondam ao novo padrão encontrado com a quantidade apropriada de endereços correspondentes.
 
@@ -212,11 +212,11 @@ Potenciais alvos dos ataques BOLA são pontos de extremidade com variabilidade. 
 
 Para habilitar a proteção automática BOLA, vá para a [Console Wallarm → **BOLA protection**](../user-guides/bola-protection.md) e mude a chave para o estado habilitado:
 
-![Gatilho BOLA](../images/user-guides/bola-protection/trigger-enabled-state.png)
+![Gatilho BOLA](../../images/user-guides/bola-protection/trigger-enabled-state.png)
 
 Cada ponto de extremidade protegido da API será destacado com o ícone correspondente no inventário da API, por exemplo:
 
-![Gatilho BOLA](../images/about-wallarm-waf/api-discovery/endpoints-protected-against-bola.png)
+![Gatilho BOLA](../../images/about-wallarm-waf/api-discovery/endpoints-protected-against-bola.png)
 
 Você pode filtrar os pontos de extremidade da API pelo estado de proteção automática BOLA. O parâmetro correspondente está disponível sob o filtro **Others**.
 
@@ -244,7 +244,7 @@ Encontrar API zumbi com a Wallarm pode ser o motivo para verificar novamente a c
 
 O módulo API Discovery automaticamente descobre APIs sombras, órfãs e zumbis comparando o inventário da API descoberto com as especificações fornecidas pelos clientes. Você carrega suas especificações de API na seção [**Especificações da API**](../api-specification-enforcement/overview.md) e o módulo automaticamente destaca pontos finais sombra, órfãs e zumbis.
 
-![API Discovery - destacando e filtrando API rogue](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
+![API Discovery - destacando e filtrando API rogue](../../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
 * [Saiba como carregar especificações para encontrar APIs rogue →](../api-specification-enforcement/overview.md#revelando-api-sombra-%C3%B3rf%C3%A3s-e-zumbis)
 * [Saiba como exibir APIs rogue encontradas na seção API Discovery →](../api-discovery/exploring.md#exibindo-api-sombra-e-%C3%B3rf%C3%A3s)
@@ -288,7 +288,7 @@ Para habilitar e rodar API Discovery corretamente:
 
 1. Habilite API Discovery para os aplicativos necessários no Wallarm Console → **API Discovery** → **Configurar API Discovery**.
 
-    ![API Discovery – Configurações](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
+    ![API Discovery – Configurações](../../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
 
     !!! info "Acesso às configurações de API Discovery"
         Apenas os administradores da conta  Wallarm da sua empresa podem acessar as configurações da API Discovery. Entre em contato com o administrador se você não tiver esse acesso.

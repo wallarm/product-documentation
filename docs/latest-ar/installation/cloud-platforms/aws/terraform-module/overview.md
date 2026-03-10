@@ -26,7 +26,7 @@
 1. اشترك في Wallarm Console في [US Cloud](https://us1.my.wallarm.com/signup) أو [EU Cloud](https://my.wallarm.com/signup).
 2. افتح Wallarm Console → **Nodes** وأنشئ العقدة من نوع **Wallarm node**.
 
-![إنشاء عقدة Wallarm](../../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+![إنشاء عقدة Wallarm](../../../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
 3. انسخ رمز العقدة المُستخدم.
 4. أضف كود الوحدة `wallarm` إلى تكوين Terraform الخاص بك:
 

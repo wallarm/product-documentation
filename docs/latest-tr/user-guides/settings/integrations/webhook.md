@@ -197,10 +197,10 @@ Bildirimler, entegrasyon kurulumu sırasında seçiminize bağlı olarak JSON Di
 
     --8<-- "../include/integrations/webhook-advanced-settings.md"
 
-    ![Gelişmiş ayarlar örneği](../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
+    ![Gelişmiş ayarlar örneği](../../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
 1. Bildirimleri tetikleyecek olay türlerini seçin.
 
-    ![Webhook entegrasyonu](../../../images/user-guides/settings/integrations/add-webhook-integration.png)
+    ![Webhook entegrasyonu](../../../../images/user-guides/settings/integrations/add-webhook-integration.png)
 
     Kullanılabilir olaylar hakkında ayrıntılar:
 
@@ -219,13 +219,13 @@ Bildirimler, entegrasyon kurulumu sırasında seçiminize bağlı olarak JSON Di
 
 Bir IP adresi denylist’e eklendiyse bu olaya ilişkin webhook Webhook URL’ye gönderilir.
 
-![Denylist’e alınmış IP için tetik örneği](../../../images/user-guides/triggers/trigger-example4.png)
+![Denylist’e alınmış IP için tetik örneği](../../../../images/user-guides/triggers/trigger-example4.png)
 
 **Tetiği test etmek için:**
 
 1. Wallarm Console → IP lists → Denylist bölümünü açın ve IP adresini denylist’e ekleyin. Örneğin:
 
-    ![IP’yi denylist’e ekleme](../../../images/user-guides/triggers/test-ip-blocking.png)
+    ![IP’yi denylist’e ekleme](../../../../images/user-guides/triggers/test-ip-blocking.png)
 2. Aşağıdaki webhook’un Webhook URL’ye gönderildiğini kontrol edin:
 
     ```

@@ -1,5 +1,5 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [link-wallarm-health-check]:        ../../admin-en/uat-checklist-en.md
 
 # EOL çok kiracılı düğümün yükseltilmesi
@@ -36,7 +36,7 @@ Standart prosedürler şunlardır:
 !!! warning "Çok kiracılı düğümün oluşturulması"
     Wallarm düğümü oluşturma sırasında lütfen **Multi-tenant node** seçeneğini seçin:
 
-    ![Multi-tenant node oluşturma](../../images/user-guides/nodes/create-multi-tenant-node.png)
+    ![Multi-tenant node oluşturma](../../../images/user-guides/nodes/create-multi-tenant-node.png)
 
 ## Adım 3: Çok kiracılı yapıyı yeniden yapılandırın
 
@@ -110,7 +110,7 @@ Kiracı listesini almak için Wallarm API’ye kimlik doğrulamalı istekler gö
 
         `clientid`(leri) Wallarm Console kullanıcı arayüzündeki **ID** sütunundan kopyalayın:
         
-        ![Wallarm Console’da kiracı seçici](../../images/partner-waf-node/clients-selector-in-console-ann.png)
+        ![Wallarm Console’da kiracı seçici](../../../images/partner-waf-node/clients-selector-in-console-ann.png)
     === "API’ye istek göndererek"
         1. `/v2/partner_client` rotasına GET isteği gönderin:
 

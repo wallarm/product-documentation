@@ -1,5 +1,5 @@
 [ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 
 # ترقية عقدة متعددة التأجير
 
@@ -25,4 +25,4 @@
 !!! تحذير "إنشاء العقدة متعددة التأجير"
     أثناء إنشاء العقدة Wallarm، يرجى اختيار خيار **العقدة متعددة التأجير**:
 
-    ![إنشاء العقدة متعددة التأجير](../images/user-guides/nodes/create-multi-tenant-node.png)
+    ![إنشاء العقدة متعددة التأجير](../../images/user-guides/nodes/create-multi-tenant-node.png)

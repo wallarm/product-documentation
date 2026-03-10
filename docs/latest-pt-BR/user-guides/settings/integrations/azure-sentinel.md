@@ -23,7 +23,7 @@ Na interface do usuário do Console Wallarm:
     Sem um nome, tabelas separadas são criadas para cada tipo de evento.
 1. Escolha os tipos de eventos para acionar notificações.
 
-    ![Integração Sentinel](../../../images/user-guides/settings/integrations/add-sentinel-integration.png)
+    ![Integração Sentinel](../../../../images/user-guides/settings/integrations/add-sentinel-integration.png)
 
     Detalhes sobre eventos disponíveis:
 
@@ -33,7 +33,7 @@ Na interface do usuário do Console Wallarm:
 
     Você pode encontrar os logs do Wallarm em seu Microsoft Workspace → **Logs** → **Log Personalizado**, por exemplo, o log de teste `create_user_CL` no Microsoft Sentinel aparece assim:
 
-    ![Mensagem de teste Sentinel](../../../images/user-guides/settings/integrations/test-sentinel-new-vuln.png)
+    ![Mensagem de teste Sentinel](../../../../images/user-guides/settings/integrations/test-sentinel-new-vuln.png)
 
     !!! info "Atraso no envio de dados para novos espaços de trabalho"
         Criar um espaço de trabalho no Sentinel para integração com Wallarm pode levar até 1 hora para todos os serviços funcionarem. Este atraso pode resultar em erros durante os testes e uso da integração. Se todas as configurações da integração estiverem corretas, mas os erros continuarem a aparecer, tente novamente após 1 hora.

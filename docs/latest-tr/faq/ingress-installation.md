@@ -11,7 +11,7 @@ Bu sorun giderme kılavuzu, [Wallarm NGINX tabanlı Ingress denetleyicisinin kur
 
 * [US cloud](https://us1.my.wallarm.com) veya [EU cloud](https://my.wallarm.com) için Wallarm Console'a gidin → Attacks bölümüne geçin ve istek ayrıntılarını genişletin. IP adresi Source alanında görüntülenir. Örneğin:
 
-    ![İsteğin gönderildiği IP adresi](../images/request-ip-address.png)
+    ![İsteğin gönderildiği IP adresi](../../images/request-ip-address.png)
 
     Attacks listesinin boş olması durumunda, Wallarm Ingress denetleyicisi tarafından korunan uygulamaya bir [test saldırısı](../admin-en/uat-checklist-en.md#node-registers-attacks) gönderebilirsiniz.
     
@@ -19,6 +19,6 @@ Bu sorun giderme kılavuzu, [Wallarm NGINX tabanlı Ingress denetleyicisinin kur
 
 Lütfen [US cloud](https://us1.my.wallarm.com) veya [EU cloud](https://my.wallarm.com) için Wallarm Console'a gidin → Attacks bölümüne geçin ve istek ayrıntılarını genişletin. Görüntülenen istek ayrıntılarında `X-FORWARDED-FOR` başlığına dikkat edin. Örneğin:
 
-![İsteğin X-FORWARDED-FOR başlığı](../images/x-forwarded-for-header.png)
+![İsteğin X-FORWARDED-FOR başlığı](../../images/x-forwarded-for-header.png)
 
 Attacks listesinin boş olması durumunda, Wallarm Ingress denetleyicisi tarafından korunan uygulamaya bir [test saldırısı](../admin-en/uat-checklist-en.md#node-registers-attacks) gönderebilirsiniz.

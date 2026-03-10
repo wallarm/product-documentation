@@ -5,7 +5,7 @@
 [process-time-limit-instr]:         ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [allocating-memory-guide]:          ../../admin-en/configuration-guides/allocate-resources-for-node.md
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:           ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:           ../../../images/admin-guides/test-attacks-quickstart.png
 [nginx-process-time-limit-docs]:    ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]:  ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md

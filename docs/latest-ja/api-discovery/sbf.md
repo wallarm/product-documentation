@@ -1,4 +1,4 @@
-# 機密性の高いビジネスフロー <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# 機密性の高いビジネスフロー <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 機密性の高いビジネスフロー機能により、Wallarmの[API Discovery](overview.md)は、認証、アカウント管理、課金などのビジネスフローや機能にとって重要なエンドポイントを自動的に特定します。本記事では、機密性の高いビジネスフロー機能の使い方を説明します。
 
@@ -31,7 +31,7 @@ NGINX Node 5.2.11またはNative Node 0.10.1以上が必要です。
 
 エンドポイントが属するフローの一覧を編集するには、Wallarm ConsoleでAPI Discoveryに移動し、対象のエンドポイントの**Business flow & sensitive data**で、リストから1つ以上のフローを選択します。
 
-![API Discovery - 機密性の高いビジネスフロー](../images/about-wallarm-waf/api-discovery/api-discovery-sbf.png)
+![API Discovery - 機密性の高いビジネスフロー](../../images/about-wallarm-waf/api-discovery/api-discovery-sbf.png)
 
 エンドポイントの詳細画面でも同様の操作ができます。
 
@@ -41,10 +41,10 @@ Wallarmの[API Sessions](../api-sessions/overview.md)は、ユーザー活動の
 
 セッションに機密性の高いビジネスフローのタグが付与されると、特定のビジネスフローでフィルタリングできるようになり、分析対象として重要なセッションを選びやすくなります。
 
-![!API Sessions - 機密性の高いビジネスフロー](../images/api-sessions/api-sessions-sbf-no-select.png)
+![!API Sessions - 機密性の高いビジネスフロー](../../images/api-sessions/api-sessions-sbf-no-select.png)
 
 ## ビジネスフローによるフィルタリング
 
 エンドポイントに機密性の高いビジネスフローのタグが付与されると、検出されたすべてのエンドポイントを特定のビジネスフローでフィルタリングできるようになり（**Business flow**フィルター）、最も重要なビジネス機能の保護を容易にします。
 
-![API Discovery - 機密性の高いビジネスフローでのフィルタリング](../images/about-wallarm-waf/api-discovery/api-discovery-sbf-filter.png)
+![API Discovery - 機密性の高いビジネスフローでのフィルタリング](../../images/about-wallarm-waf/api-discovery/api-discovery-sbf-filter.png)

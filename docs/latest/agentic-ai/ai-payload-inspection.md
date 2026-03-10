@@ -44,7 +44,7 @@ To create and apply a new mitigation control:
 1. Click **Add control**.
 1. In the **Add control** dialog, select **AI payload inspection**.
 
-    ![Creating mitigation control](../images/user-guides/mitigation-controls/mc-create-ai-payload.png)
+    ![Creating mitigation control](../../images/user-guides/mitigation-controls/mc-create-ai-payload.png)
 
 1. [Configure](#configuration) your control.
 1. Click **Add**. The created control is displayed in the list. It immediately goes into action and performs in accordance with the selected **Mitigation mode**.
@@ -59,7 +59,7 @@ This mitigation control can also be used for [Custom Request Anomaly](../api-pro
 
 AI payload inspection and mitigation of found threats is configured with one or several **AI payload inspection** [mitigation controls](../about-wallarm/mitigation-controls-overview.md).
 
-!["AI payload inspection" mitigation control - example](../images/agentic-ai/mitigation-controls-ai-payload-inspection.png)
+!["AI payload inspection" mitigation control - example](../../images/agentic-ai/mitigation-controls-ai-payload-inspection.png)
 
 Understand parts of the control from descriptions below.
 
@@ -150,7 +150,7 @@ When AI payload violations are detected, they show up in [API Sessions](../api-s
 
 * This is an LLM-based decision, so you always have **Reason** where LLM explains what kind of abuse has happened precisely by its opinion.
 
-![API Sessions - session with detected malicious AI payload](../images/agentic-ai/api-sessions-system-prompt-retrieval.png)
+![API Sessions - session with detected malicious AI payload](../../images/agentic-ai/api-sessions-system-prompt-retrieval.png)
 
 You can find sessions with corresponding attack types using the **Attack** filter - use the corresponding attack type to display only sessions with these attacks. 
 

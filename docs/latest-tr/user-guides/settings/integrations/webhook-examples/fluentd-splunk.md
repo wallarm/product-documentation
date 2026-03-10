@@ -1,4 +1,4 @@
-[splunk-dashboard-by-wallarm-img]: ../../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
+[splunk-dashboard-by-wallarm-img]: ../../../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
 
 # Fluentd aracılığıyla Splunk Enterprise
 
@@ -6,7 +6,7 @@ Bu talimatlar, Wallarm'ın Fluentd veri toplayıcı ile örnek entegrasyonunu sa
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![Webhook akışı](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-scheme.png)
+![Webhook akışı](../../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-scheme.png)
 
 ## Kullanılan kaynaklar
 
@@ -22,7 +22,7 @@ Splunk Enterprise ve Fluentd hizmetlerine yönelik bağlantılar örnek olarak v
 
 Fluentd günlükleri, ad olarak `Wallarm Fluentd logs` ve diğer varsayılan ayarlarla Splunk HTTP Event Controller'a gönderilir:
 
-![HTTP Event Collector yapılandırması](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-setup.png)
+![HTTP Event Collector yapılandırması](../../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-setup.png)
 
 HTTP Event Controller'a erişmek için oluşturulan belirteç `f44b3179-91aa-44f5-a6f7-202265e10475` kullanılacaktır.
 
@@ -86,16 +86,16 @@ Yapılandırma dosyalarının daha ayrıntılı açıklaması [resmi Fluentd dok
     ```
 
     **Fluentd günlükleri:**
-    ![Fluentd'deki günlükler](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-curl-log.png)
+    ![Fluentd'deki günlükler](../../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-curl-log.png)
 
     **Splunk günlükleri:**
-    ![Splunk'taki günlükler](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-curl-log.png)
+    ![Splunk'taki günlükler](../../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-curl-log.png)
 
 ### Fluentd entegrasyonunun yapılandırılması {#configuration-of-fluentd-integration}
 
 --8<-- "../include/integrations/webhook-examples/create-fluentd-webhook.md"
 
-![Fluentd ile webhook entegrasyonu](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+![Fluentd ile webhook entegrasyonu](../../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
 [Fluentd entegrasyonunun yapılandırması hakkında daha fazla bilgi](../fluentd.md)
 
@@ -105,11 +105,11 @@ Yapılandırma dosyalarının daha ayrıntılı açıklaması [resmi Fluentd dok
 
 Fluentd olayı aşağıdaki şekilde günlüğe kaydedecektir:
 
-![Fluentd'den Splunk'ta yeni kullanıcıya ait günlük](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-user-log.png)
+![Fluentd'den Splunk'ta yeni kullanıcıya ait günlük](../../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-user-log.png)
 
 Splunk olaylarında aşağıdaki kayıt görüntülenecektir:
 
-![Fluentd'den Splunk'ta yeni kullanıcı kartı](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-user.png)
+![Fluentd'den Splunk'ta yeni kullanıcı kartı](../../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-user.png)
 
 ## Splunk Enterprise'de olayları bir kontrol panelinde düzenleme
 

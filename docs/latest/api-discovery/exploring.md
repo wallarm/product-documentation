@@ -1,4 +1,4 @@
-# Exploring API Inventory <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Exploring API Inventory <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 As soon as the [API Discovery](overview.md) module has built the catalog of your endpoints (your API inventory), you can explore it in the **API Discovery** section of Wallarm Console. Learn from this article how to go through the discovered data.
 
@@ -6,7 +6,7 @@ As soon as the [API Discovery](overview.md) module has built the catalog of your
 
 Explore your discovered API inventory using the **API Discovery** section in the [US](https://us1.my.wallarm.com/api-discovery) or [EU](https://my.wallarm.com/api-discovery) Cloud.
 
-![API Discovery - built API inventory](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-built-inventory.png)
+![API Discovery - built API inventory](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-built-inventory.png)
 
 By default, endpoints and operations are sorted by host/endpoint or operation name. Also, **Group by host** is on. With grouping by host disabled, you can sort endpoints by risk.
 
@@ -26,7 +26,7 @@ Among a wide range of API endpoint filters, you can choose the ones correspondin
 
 You can create labels (e.g., `P90`, `HighTraffic`, `Legacy`, etc.) and assign them to endpoints to manage them more effectively. Once labels are assigned, use the **Label** filter to quickly search and isolate endpoints based on these custom labels.
 
-![API Discovery - labels](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-labels.png)
+![API Discovery - labels](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-labels.png)
 
 Note that several labels can be assigned to the same endpoint.
 
@@ -34,7 +34,7 @@ Note that several labels can be assigned to the same endpoint.
 
 <a name="params"></a>By clicking the REST endpoint, you can find its details, including  transferred sensitive data, risk score and what contributes to it, headers and parameters of requests and responses:
 
-![API Discovery - REST endpoint details](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-REST.png)
+![API Discovery - REST endpoint details](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-REST.png)
 
 Each request/response parameter information includes:
 
@@ -67,7 +67,7 @@ This data allows checking that values of the expected format are passed in each 
 
 By clicking the GraphQL operation, you can find its details, including transferred sensitive data, risk score and what contributes to it, schema, parameters and headers of requests and responses:
 
-![API Discovery - GraphQL operation details](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-GQL.png)
+![API Discovery - GraphQL operation details](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-GQL.png)
 
 Each request/response parameter information includes:
 
@@ -92,7 +92,7 @@ For GraphQL operations, data formats are detected in accordance with the [scalar
 
 By clicking the SOAP operation, you can find its details, including transferred sensitive data, risk score and what contributes to it, XML body parameters, HTTPS and XML headers of requests and responses:
 
-![API Discovery - SOAP operation details](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-SOAP.png)
+![API Discovery - SOAP operation details](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-SOAP.png)
 
 Each request/response XML parameter information includes:
 
@@ -121,7 +121,7 @@ For SOAP operations, it is a limited set from the [built-in primitive XML data t
 
 By clicking the gRPC operation, you can find its details, including transferred sensitive data, risk score and what contributes to it, parameters and headers of requests and responses:
 
-![API Discovery - gRPC operation details](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-GRPC.png)
+![API Discovery - gRPC operation details](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-GRPC.png)
 
 Each request/response parameter information includes:
 
@@ -183,7 +183,7 @@ You can quickly create a new [custom rule](../user-guides/rules/rules.md) from a
 1. In this endpoint menu select **Create rule**. The create rule window is displayed. The endpoint address is parsed into the window automatically.
 1. In the create rule window, specify rule information and then click **Create**.
 
-![Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)-->
+![Create rule from endpoint](../../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)-->
 
 ## Exporting API inventory data
 
@@ -204,7 +204,7 @@ To download the OAS file:
 3. Click **Download report**.
 4. In the popup, choose **OpenAPI (OAS 3.1, JSON)** and click **Generate OAS**.
 
-    ![Export API Inventory - OpenAPI option](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-export-api-inventory.png)
+    ![Export API Inventory - OpenAPI option](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-export-api-inventory.png)
 
 5. Wait until the file is generated. When ready, the browser starts the download automatically and the JSON file is saved to your default download location.
 

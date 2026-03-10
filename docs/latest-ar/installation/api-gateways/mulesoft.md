@@ -1,5 +1,5 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 
 # MuleSoft مع سياسة Wallarm
 
@@ -11,9 +11,9 @@
 
     إذا تم تكوين Wallarm لمنع النشاط الخبيث:
 
-    ![MuleSoft مع سياسة Wallarm](../../images/waf-installation/gateways/mulesoft/traffic-flow-mule-gateway-inline.png)
+    ![MuleSoft مع سياسة Wallarm](../../../images/waf-installation/gateways/mulesoft/traffic-flow-mule-gateway-inline.png)
 === "تدفق المرور خارج الأشرطة"
-    ![MuleSoft مع سياسة Wallarm](../../images/waf-installation/gateways/mulesoft/traffic-flow-oob.png)
+    ![MuleSoft مع سياسة Wallarm](../../../images/waf-installation/gateways/mulesoft/traffic-flow-oob.png)
 
 الحل يتضمن إطلاق العقدة Wallarm خارجيًا وحقن الشفرة البرمجية الخاصة أو السياسات في النظام الأساسي المحدد. هذا يتيح توجيه حركة المرور إلى العقدة الخارجية Wallarm للتحليل والحماية ضد التهديدات المحتملة. يشار إلى هذا الأسلوب باسم موصلات Wallarm، حيث يعملون كرابط أساسي بين الأنظمة الأساسية مثل Azion Edge و Akamai Edge و MuleSoft و Apigee و AWS Lambda، والعقدة الخارجية Wallarm. تضمن هذه الطريقة التكامل السلس، وتحليل حركة المرور الآمن، وتقليل المخاطر، والأمان الشامل للمنصة.
 
@@ -153,7 +153,7 @@
 
 سياستك الخاصة متاحة الآن في بورصة منصة MuleSoft Anypoint الخاصة بك.
 
-![عقدة MuleSoft مع Wallarm](../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
+![عقدة MuleSoft مع Wallarm](../../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
 
 ### 3. اعتماد سياسة Wallarm على الواجهة البرمجية (API)
 
@@ -169,7 +169,7 @@
 1. عند الحاجة، قم بتعديل الوقت الأقصى المسموح به لـ Wallarm للتعامل مع طلب واحد عن طريق تغيير قيمة `WALLARM NODE REQUEST TIMEOUT`.
 1. طبق السياسة.
 
-![سياسة Wallarm](../../images/waf-installation/gateways/mulesoft/automated-policy.png)
+![سياسة Wallarm](../../../images/waf-installation/gateways/mulesoft/automated-policy.png)
 
 #### اعتماد السياسة على واجهة برمجية فردية
 
@@ -181,7 +181,7 @@
 1. عند الحاجة، قم بتعديل الوقت الأقصى المسموح به لـ Wallarm للتعامل مع طلب واحد عن طريق تغيير قيمة `WALLARM NODE REQUEST TIMEOUT`.
 1. طبق السياسة.
 
-![سياسة Wallarm](../../images/waf-installation/gateways/mulesoft/policy-for-an-api.png)
+![سياسة Wallarm](../../../images/waf-installation/gateways/mulesoft/policy-for-an-api.png)
 
 ## الاختبار
 

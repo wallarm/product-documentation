@@ -15,4 +15,4 @@ integration cardで既に設定済みの通知に加えて、Wallarm triggersで
 
 条件を詳細化するために、1つ以上のフィルターを追加できます。条件とフィルターを設定したら、選択したアラートの送信経路となるintegrationを選択します。同時に複数のintegrationsを選択できます。
 
-![integrationの選択](../../../images/user-guides/triggers/select-integration.png)
+![integrationの選択](../../../../images/user-guides/triggers/select-integration.png)

@@ -1,7 +1,7 @@
 [docs-module-update]:   nginx-modules.md
-[img-wl-console-users]:             ../../images/check-users.png 
-[img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
-[img-attacks-in-interface]:     ../../images/admin-guides/test-attacks-quickstart.png
+[img-wl-console-users]:             ../../../images/check-users.png 
+[img-create-wallarm-node]:      ../../../images/user-guides/nodes/create-cloud-node.png
+[img-attacks-in-interface]:     ../../../images/admin-guides/test-attacks-quickstart.png
 [nginx-custom]:                 ../../custom/custom-nginx-version.md
 [wallarm-token-types]:          ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [statistics-service-all-parameters]: ../../admin-en/configure-statistics-service.md
@@ -27,7 +27,7 @@
     
         個別のLinuxパッケージによる手動アップグレードはサポートされません。
 
-    ![手動方式との比較](../../images/installation-nginx-overview/manual-vs-all-in-one.png)
+    ![手動方式との比較](../../../images/installation-nginx-overview/manual-vs-all-in-one.png)
 
 ## 要件
 

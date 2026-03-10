@@ -96,7 +96,7 @@ Você pode encontrar mais detalhes na [documentação oficial do Logstash](https
     --8<-- "../include-pt-BR/integrations/webhook-advanced-settings.md"
 1. Escolha tipos de eventos para disparar notificações.
 
-    ![Integração Logstash](../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+    ![Integração Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
     Detalhes sobre os eventos disponíveis:
 
@@ -163,7 +163,7 @@ Você pode encontrar mais detalhes na [documentação oficial do Logstash](https
 
 Por exemplo:
 
-![Fluxo do Webhook](../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
+![Fluxo do Webhook](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
 
 Para registrar eventos do Wallarm usando este esquema:
 

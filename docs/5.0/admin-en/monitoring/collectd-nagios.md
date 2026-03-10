@@ -1,4 +1,4 @@
-[img-collectd-nagios]:      ../../images/monitoring/collectd-nagios.png
+[img-collectd-nagios]:      ../../../images/monitoring/collectd-nagios.png
 
 [link-nagios]:              https://www.nagios.org/
 [link-nagios-core]:         https://www.nagios.org/downloads/nagios-core/

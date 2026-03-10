@@ -12,7 +12,7 @@ Wallarm has two main components: **Wallarm filtering node** and **Wallarm Cloud*
 
 --8<-- "../include/deployment-forms.md"
 
-![Responsibilities scheme](../images/shared-responsibility-variants.png)
+![Responsibilities scheme](../../images/shared-responsibility-variants.png)
 
 ## Security Edge
 

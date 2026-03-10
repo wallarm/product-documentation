@@ -14,7 +14,7 @@ Altyapınıza ve ele alınan ihtiyaca göre çok kiracılı düğüm dağıtım 
 
 * Tüm müşterilerin veya izole ortamların trafiğini filtrelemek için tek bir Wallarm node aşağıdaki gibi dağıtın:
 
-    ![İş ortağı düğüm şeması](../../images/partner-waf-node/partner-traffic-processing-4.0.png)
+    ![İş ortağı düğüm şeması](../../../images/partner-waf-node/partner-traffic-processing-4.0.png)
 
     * Tek bir Wallarm node birden fazla kiracının (Tenant 1, Tenant 2) trafiğini işler.
 
@@ -26,7 +26,7 @@ Altyapınıza ve ele alınan ihtiyaca göre çok kiracılı düğüm dağıtım 
 
 * Her biri belirli bir kiracının trafiğini filtreleyen birden çok Wallarm node'u aşağıdaki gibi dağıtın:
 
-    ![Müşteri - birden çok düğüm şeması](../../images/partner-waf-node/client-several-nodes.png)
+    ![Müşteri - birden çok düğüm şeması](../../../images/partner-waf-node/client-several-nodes.png)
 
     * Birden çok Wallarm node, her biri belirli bir kiracının trafiğini filtreler (Tenant 1, Tenant 2).
     * https://tenant1.com alan adı için, müşteri IP adresi 225.130.128.241 ile DNS kaydı yapılandırılmıştır.
@@ -74,7 +74,7 @@ Altyapınıza ve ele alınan ihtiyaca göre çok kiracılı düğüm dağıtım 
         Geçiş ve onay sonrası, 4. adıma ilerleyin.
 1. **Multi-tenant node** seçeneğini belirleyin.
 
-    ![Çok kiracılı düğüm oluşturma](../../images/user-guides/nodes/create-multi-tenant-node.png)
+    ![Çok kiracılı düğüm oluşturma](../../../images/user-guides/nodes/create-multi-tenant-node.png)
 1. Düğüm adını belirleyin ve **Create**'e tıklayın.
 1. Filtreleme düğümü jetonunu kopyalayın.
 1. Filtreleme düğümünün dağıtım biçimine bağlı olarak, [uygun talimatlardaki](../../installation/supported-deployment-options.md) adımları uygulayın.

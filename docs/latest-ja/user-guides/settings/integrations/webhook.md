@@ -197,10 +197,10 @@ HTTPSプロトコルでWebhookを受信できる任意のシステムに、Walla
 
     --8<-- "../include/integrations/webhook-advanced-settings.md"
 
-    ![詳細設定の例](../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
+    ![詳細設定の例](../../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
 1. 通知をトリガーするイベントタイプを選択します。
 
-    ![Webhook連携](../../../images/user-guides/settings/integrations/add-webhook-integration.png)
+    ![Webhook連携](../../../../images/user-guides/settings/integrations/add-webhook-integration.png)
 
     利用可能なイベントの詳細：
 
@@ -219,13 +219,13 @@ HTTPSプロトコルでWebhookを受信できる任意のシステムに、Walla
 
 IPアドレスがdenylistに追加されると、このイベントに関するWebhookがWebhook URLに送信されます。
 
-![denylist対象IPのトリガー例](../../../images/user-guides/triggers/trigger-example4.png)
+![denylist対象IPのトリガー例](../../../../images/user-guides/triggers/trigger-example4.png)
 
 **トリガーをテストするには：**
 
 1. Wallarm Console → **IP lists** → **Denylist**を開き、IPアドレスをdenylistに追加します。例えば：
 
-    ![denylistへのIP追加](../../../images/user-guides/triggers/test-ip-blocking.png)
+    ![denylistへのIP追加](../../../../images/user-guides/triggers/test-ip-blocking.png)
 2. 次のWebhookがWebhook URLに送信されたことを確認します：
 
     ```

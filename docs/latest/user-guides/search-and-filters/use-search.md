@@ -38,7 +38,7 @@ Available filters are presented in Wallarm Console in multiple forms:
 * Filters panel that is expanded and collapsed using the **Filter** button
 * Quick filters for excluding or showing only events with the specific parameter values
 
-![Filters in the UI](../../images/user-guides/search-and-filters/filters.png)
+![Filters in the UI](../../../images/user-guides/search-and-filters/filters.png)
 
 When values of different filters are selected, the results will meet all those conditions. When different values for the same filter are specified, the results will meet any of those conditions.
 
@@ -422,7 +422,7 @@ You can find the node UUID in the **Nodes** section, [node details](../../user-g
 
 To get the list of events related to specific [specification policy violations](../../api-specification-enforcement/overview.md), in the search field specify `spec:'<SPECIFICATION-ID>'`. To get `<SPECIFICATION-ID>`, in **API Specifications**, open your specification for editing - `specid` will be displayed in your browser address field.
 
-![Specification - use for applying security policies](../../images/api-specification-enforcement/api-specification-enforcement-events.png)
+![Specification - use for applying security policies](../../../images/api-specification-enforcement/api-specification-enforcement-events.png)
 
 Blocked and monitored events may be presented depending on the configured policy violation actions. In the event details, the violation type and link to the causing specification are displayed.
 
@@ -432,6 +432,6 @@ To get the list of attacks detected by [regexp-based customer rules](../../user-
 
 For any of such attacks, in its details, the links to the corresponding rules are presented (there can be more than one). Click the link to access the rule details and edit them if necessary.
 
-![Attack detected by regexp-based customer rule - editing rule](../../images/user-guides/search-and-filters/detected-by-custom-rule.png)
+![Attack detected by regexp-based customer rule - editing rule](../../../images/user-guides/search-and-filters/detected-by-custom-rule.png)
 
 You can use `!custom_rule` to get the list of attacks not related to any regexp-based customer rules.

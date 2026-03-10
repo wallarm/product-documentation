@@ -1,6 +1,6 @@
 [link-wallarm-mode-override]:       ../../admin-en/configure-parameters-en.md#wallarm_mode_allow_override
 
-[img-mode-rule]:        ../../images/user-guides/rules/wallarm-mode-rule-with-safe-blocking.png
+[img-mode-rule]:        ../../../images/user-guides/rules/wallarm-mode-rule-with-safe-blocking.png
 
 # Regra do modo de filtragem
 

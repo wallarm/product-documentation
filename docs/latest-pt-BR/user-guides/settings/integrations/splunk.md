@@ -1,4 +1,4 @@
-[splunk-dashboard-by-wallarm-img]: ../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
+[splunk-dashboard-by-wallarm-img]: ../../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
 
 #   Splunk
 
@@ -23,7 +23,7 @@ Na interface do usuário do Wallarm:
 1. Cole o URI do HEC e o número da porta de sua instância Splunk no campo **HEC URI:PORT**. Por exemplo: `https://hec.splunk.com:8088`.
 1. Selecione os tipos de eventos para acionar notificações.
 
-    ![Integração Splunk](../../../images/user-guides/settings/integrations/add-splunk-integration.png)
+    ![Integração Splunk](../../../../images/user-guides/settings/integrations/add-splunk-integration.png)
 
     Detalhes sobre eventos disponíveis:
 

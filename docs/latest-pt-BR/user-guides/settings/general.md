@@ -1,6 +1,6 @@
 [link-config-parameters]:       ../../admin-en/configure-wallarm-mode.md
 
-[img-general-settings]:         ../../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png
+[img-general-settings]:         ../../../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png
 
 # Configurações Gerais
 
@@ -9,7 +9,7 @@ Na aba **Geral** da seção **Configurações**, você pode:
 * Alternar o modo de filtragem do Wallarm
 * Gerenciar tempos limite de logout automático
 
-![Aba Geral](../../images/user-guides/settings/general-tab.png)
+![Aba Geral](../../../images/user-guides/settings/general-tab.png)
 
 ## Modo de filtragem
 

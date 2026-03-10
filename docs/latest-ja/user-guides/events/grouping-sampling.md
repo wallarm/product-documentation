@@ -1,19 +1,19 @@
 [link-using-search]:    ../search-and-filters/use-search.md
-[img-current-attacks]:  ../../images/glossary/attack-with-one-hit-example.png
-[img-incidents-tab]:    ../../images/user-guides/events/incident-vuln.png
-[img-show-falsepositive]: ../../images/user-guides/events/filter-for-falsepositive.png
+[img-current-attacks]:  ../../../images/glossary/attack-with-one-hit-example.png
+[img-incidents-tab]:    ../../../images/user-guides/events/incident-vuln.png
+[img-show-falsepositive]: ../../../images/user-guides/events/filter-for-falsepositive.png
 [use-search]:             ../search-and-filters/use-search.md
 [search-by-attack-status]: ../search-and-filters/use-search.md#search-attacks-by-the-action
-[img-verify-attack]:            ../../images/user-guides/events/verify-attack.png
+[img-verify-attack]:            ../../../images/user-guides/events/verify-attack.png
 [al-brute-force-attack]:      ../../attacks-vulns-list.md#brute-force-attack
 [al-forced-browsing]:         ../../attacks-vulns-list.md#forced-browsing
 [al-bola]:                    ../../attacks-vulns-list.md#broken-object-level-authorization-bola
 [link-analyzing-attacks]:       analyze-attack.md
-[img-false-attack]:             ../../images/user-guides/events/false-attack.png
-[img-removed-attack-info]:      ../../images/user-guides/events/removed-attack-info.png
+[img-false-attack]:             ../../../images/user-guides/events/false-attack.png
+[img-removed-attack-info]:      ../../../images/user-guides/events/removed-attack-info.png
 [link-check-attack]:        check-attack.md
 [link-false-attack]:        false-attack.md
-[img-current-attack]:       ../../images/user-guides/events/analyze-current-attack.png
+[img-current-attack]:       ../../../images/user-guides/events/analyze-current-attack.png
 [glossary-attack-vector]:   ../../glossary-en.md#malicious-payload
 
 # ヒットのグルーピングとサンプリング
@@ -45,7 +45,7 @@ Wallarmは、[ヒット](../../about-wallarm/protecting-against-attacks.md#what-
 
 送信元IPによるグルーピングは、Wallarm Console→**Triggers**でデフォルトで有効になっており、15分間に単一のIPアドレスから50件を超えるHitsが発生したときに作動する**Hits from the same IP**というデフォルトトリガーで実現します.
 
-![ヒットのグルーピング用トリガーの例](../../images/user-guides/triggers/trigger-example-group-hits.png)
+![ヒットのグルーピング用トリガーの例](../../../images/user-guides/triggers/trigger-example-group-hits.png)
 
 送信元IPによるグルーピングは要件に合わせて調整できます。**Hits from the same IP**タイプのカスタムトリガーを作成してください。任意のカスタムトリガーを作成するとデフォルトトリガーは削除され、すべてのカスタムトリガーを削除するとデフォルトが復元されます。デフォルトトリガーを一時的に無効化してグルーピングを一時停止することもできます。
 
@@ -57,7 +57,7 @@ Wallarmは、[ヒット](../../about-wallarm/protecting-against-attacks.md#what-
 
 **Hits sampling is enabled**という通知が表示されていると、現在サンプリングが動作していることを示します。この通知をクリックするか、検索フィールドに[`sampled`](../search-and-filters/use-search.md#search-for-sampled-hits)を追加すると、サンプリングが適用された攻撃のみを表示できます。攻撃の詳細では、検出されたものの表示されなかった類似ヒットの数が確認できます:
 
-![ドロップされたヒット](../../images/user-guides/events/bruteforce-dropped-hits.png)
+![ドロップされたヒット](../../../images/user-guides/events/bruteforce-dropped-hits.png)
 
 !!! info "攻撃一覧でのドロップ済みヒットの表示"
     ドロップされたヒットはWallarm Cloudにアップロードされないため、攻撃一覧に一部のヒットや攻撃全体が表示されない場合があります。

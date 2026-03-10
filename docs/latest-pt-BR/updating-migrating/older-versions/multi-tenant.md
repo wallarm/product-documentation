@@ -1,5 +1,5 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 
 # Atualizando o nó multi-inquilino EOL
 
@@ -32,7 +32,7 @@ Os procedimentos padrão são aqueles para:
 !!! warning "Criando o nó multi-inquilino"
     Durante a criação do nó Wallarm, selecione a opção **Nó multi-inquilino**:
 
-    ![Criação de nó multi-inquilino](../../images/user-guides/nodes/create-multi-tenant-node.png)
+    ![Criação de nó multi-inquilino](../../../images/user-guides/nodes/create-multi-tenant-node.png)
 
 ## Passo 3: Reconfigure a multilocação
 
@@ -106,7 +106,7 @@ Para obter a lista de inquilinos, envie solicitações autenticadas para a API d
 
         Copie o(s) `clientid`(s) da coluna **ID** na interface do usuário do Console Wallarm:
 
-        ![Selecionador de inquilinos no Console Wallarm](../../images/partner-waf-node/clients-selector-in-console-ann.png)
+        ![Selecionador de inquilinos no Console Wallarm](../../../images/partner-waf-node/clients-selector-in-console-ann.png)
     === "Ao enviar solicitação para API"
         1. Envie a solicitação GET para a rota `/v2/partner_client`:
 

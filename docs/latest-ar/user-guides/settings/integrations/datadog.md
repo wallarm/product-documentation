@@ -11,7 +11,7 @@
 1. اختر [منطقة Datadog](https://docs.datadoghq.com/getting_started/site/).
 1. اختر أنواع الأحداث لتحريك الإشعارات.
 
-    ![تكامل Datadog](../../../images/user-guides/settings/integrations/add-datadog-integration.png)
+    ![تكامل Datadog](../../../../images/user-guides/settings/integrations/add-datadog-integration.png)
 
     التفاصيل على الأحداث المتاحة:
 
@@ -21,7 +21,7 @@
 
     سجل Datadog التجريبي:
 
-    ![سجل Datadog التجريبي](../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
+    ![سجل Datadog التجريبي](../../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
 
     للعثور على سجلات Wallarm بين السجلات الأخرى، يمكنك استخدام علامة البحث `source:wallarm_cloud` في خدمة Datadog Logs.
 

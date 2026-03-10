@@ -1,6 +1,6 @@
 [wallarm-status-instr]:             ../../admin-en/configure-statistics-service.md
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
 [blocking-page-instr]:              ../../admin-en/configuration-guides/configure-block-page-and-code.md
 [logging-instr]:                    ../../admin-en/configure-logging.md
@@ -10,8 +10,8 @@
 [configure-proxy-balancer-instr]:   ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md
 [dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
-[img-wl-console-users]:             ../../images/check-users.png 
-[img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
+[img-wl-console-users]:             ../../../images/check-users.png 
+[img-create-wallarm-node]:      ../../../images/user-guides/nodes/create-cloud-node.png
 [nginx-custom]:                 ../../installation/custom/custom-nginx-version.md
 [nginx-process-time-limit-docs]:    ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]:  ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
@@ -459,7 +459,7 @@ O nó implantado tem o tipo **regular** descontinuado que é [substituído agora
 !!! info "Se o módulo pós-analítico está instalado em um servidor separado"
     Se os módulos de processamento de tráfego inicial e pós-analítico estiverem instalados em servidores separados, é recomendado conectar esses módulos ao Wallarm Cloud usando o mesmo token de nó. A interface de usuário do Console Wallarm exibirá cada módulo como uma instância de nó separada, por exemplo:
 
-    ![Nó com várias instâncias](../../images/user-guides/nodes/wallarm-node-with-two-instances.png)
+    ![Nó com várias instâncias](../../../images/user-guides/nodes/wallarm-node-with-two-instances.png)
 
     O nó Wallarm já foi criado durante a [atualização do módulo pós-analítico separado](separate-postanalytics.md). Para conectar o módulo de processamento de tráfego inicial ao Cloud usando as mesmas credenciais do nó:
 

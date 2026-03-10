@@ -23,7 +23,7 @@ Os registros também incluem informações sobre as seguintes ações e objetos:
 * [Vulnerabilidade marcada como falso positivo](../vulnerabilities.md#marking-vulnerabilities-as-false-positives)
 * [Ataque reexaminado](../events/verify-attack.md)
 
-![Registro de atividades](../../images/user-guides/settings/audit-log.png)
+![Registro de atividades](../../../images/user-guides/settings/audit-log.png)
 
 **Para filtrar os registros de atividades**, você pode usar os seguintes parâmetros:
 

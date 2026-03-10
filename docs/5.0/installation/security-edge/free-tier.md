@@ -29,7 +29,7 @@ Edge Nodes start in **monitoring** [mode](../../admin-en/configure-wallarm-mode.
 
         Traffic CNAME is provided once the certificate CNAME is verified.
 
-    ![](../../images/waf-installation/security-edge/inline/quick-setup-wizard-inline.png)
+    ![](../../../images/waf-installation/security-edge/inline/quick-setup-wizard-inline.png)
 === "Security Edge Connector"
     1. Choose a region for deployment.
     1. Copy the provided Node URL — the entry point for the Connector.
@@ -42,7 +42,7 @@ Edge Nodes start in **monitoring** [mode](../../admin-en/configure-wallarm-mode.
         * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly)
         * [IBM DataPower](../connectors/ibm-api-connect.md#2-obtain-and-apply-the-wallarm-policies-to-apis-in-ibm-api-connect)
 
-    ![](../../images/waf-installation/security-edge/inline/quick-setup-wizard-connector.png)
+    ![](../../../images/waf-installation/security-edge/inline/quick-setup-wizard-connector.png)
 
 After setup, a test attack is automatically sent to the Edge Node. Once detected, you gain access to the Wallarm Console with full Free Tier functionality. The attack will appear in the [**Attacks**](../../user-guides/events/check-attack.md) section.
 

@@ -32,7 +32,7 @@
 
 Eğer [gereksinimler](#requirements) karşılanıyorsa, LDAP entegrasyonunu Wallarm Console içinde Integrations → LDAP → LDAP bölümünden yapılandırabilirsiniz.
 
-![LDAP entegrasyonunun yapılandırılması](../../../images/admin-guides/configuration-guides/ldap/configuring-ldap.png)
+![LDAP entegrasyonunun yapılandırılması](../../../../images/admin-guides/configuration-guides/ldap/configuring-ldap.png)
 
 LDAP entegrasyonunda, Wallarm içinde LDAP gruplarını [user roles](../../../user-guides/settings/users.md#user-roles) ile eşlemeniz gerekir. En az bir LDAP grubunu eşlemelisiniz ve gerektiği kadar ek eşleme ekleyebilirsiniz.
 

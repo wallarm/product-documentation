@@ -2,7 +2,7 @@
 [link-wallarm-mode-override]:       ../admin-en/configure-parameters-en.md#wallarm_mode_allow_override
 [rule-creation-options]:            ../user-guides/events/check-attack.md#attack-analysis_1
 [acl-access-phase]:                 ../admin-en/configure-parameters-en.md#wallarm_acl_access_phase 
-[img-mode-rule]:                    ../images/user-guides/rules/wallarm-mode-rule.png
+[img-mode-rule]:                    ../../images/user-guides/rules/wallarm-mode-rule.png
 
 # Filtreleme Modu
 
@@ -110,7 +110,7 @@ Tüm gelen istekler için genel filtreleme modunu mitigation controls ([Advanced
     
     Tüm gelen istekler için genel filtreleme modunu [US](https://us1.my.wallarm.com/settings/general) veya [EU](https://my.wallarm.com/settings/general) Cloud’daki **Settings** → **General** bölümünde tanımlayabilirsiniz.
     
-    ![Genel ayarlar sekmesi](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
+    ![Genel ayarlar sekmesi](../../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
 
     Genel filtreleme modu ayarı, **Rules** bölümünde **Set filtration mode** [default](../user-guides/rules/rules.md#default-rules) kuralı olarak temsil edilir. Bu bölümde uç noktayı hedefleyen filtreleme kurallarının daha yüksek önceliğe sahip olduğunu unutmayın.
 

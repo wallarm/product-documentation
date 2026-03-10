@@ -19,7 +19,7 @@ Em Console Wallarm → **Listas de IP** → **Graylist**, você pode gerenciar o
 
 --8<-- "../include-pt-BR/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
-![Graylist IP](../../images/user-guides/ip-lists/graylist.png)
+![Graylist IP](../../../images/user-guides/ip-lists/graylist.png)
 
 !!! info "Nome antigo da lista"
     O nome antigo da lista de endereços IP é "IP address greylist".
@@ -85,7 +85,7 @@ Para adicionar um endereço IP, subnet ou grupo de endereços IP à lista manual
 4. Selecione o período para o qual um endereço IP ou um grupo de endereços IP deve ser adicionado à lista. O valor mínimo é 5 minutos, o valor máximo é para sempre.
 5. Especifique o motivo para adicionar um endereço IP ou um grupo de endereços IP à lista.
 
-![Adicionar IP à lista (com aplicativo)](../../images/user-guides/ip-lists/add-ip-to-list-app.png)
+![Adicionar IP à lista (com aplicativo)](../../../images/user-guides/ip-lists/add-ip-to-list-app.png)
 
 ### Inclusão automática de IPs de bot na graylist
 

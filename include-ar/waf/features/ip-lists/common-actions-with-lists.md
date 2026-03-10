@@ -21,7 +21,7 @@
 4. حدد سبب إضافة عنوان IP أو مجموعة من عنوانات IP إلى القائمة.
 5. أكد إضافة عنوان IP أو مجموعة من عنوانات IP إلى القائمة.
 
-![إضافة IP إلى القائمة (بدون تطبيق)](../../images/user-guides/ip-lists/add-ip-to-list-without-app.png)
+![إضافة IP إلى القائمة (بدون تطبيق)](../../../images/user-guides/ip-lists/add-ip-to-list-without-app.png)
 
 ## تحليل الكائنات المضافة إلى القائمة
 

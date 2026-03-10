@@ -1,4 +1,4 @@
-# Wallarm API Protection <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Wallarm API Protection <a href="../subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm's API Protection is an advanced set of API and AI protection capabilities. While basic [cloud-native WAAP](../about-wallarm/waap-overview.md) protection already includes support for all API protocols and their inspection for attacks, protection against L7 DDoS, etc., modern APIs are subject to additional risks such as automated threats, API misuse and AI exploitation. The Advanced API Security bundle provides advanced features for more complete risk mitigation.
 
@@ -18,7 +18,7 @@ While WAAP is available under the basic Cloud Native WAAP subscription, tools 
 
 The **API Specification Enforcement** is designed to apply security policies to your APIs basing on your uploaded specifications. Its primary function is to detect discrepancies between the endpoint descriptions in your specification and the actual requests made to your REST APIs. When such inconsistencies are identified, the system can take predefined actions to address them.
 
-![Specification - use for applying security policies](../images/api-specification-enforcement/specification-use-for-api-policies-enforcement.png)
+![Specification - use for applying security policies](../../images/api-specification-enforcement/specification-use-for-api-policies-enforcement.png)
 
 [Proceed to detailed description and configuration →](../api-specification-enforcement/overview.md)
 
@@ -28,7 +28,7 @@ Wallarm helps protect APIs from [Broken Object Level Authorization (BOLA)](../at
 
 Depending on your subscription plan, protection from BOLA attacks can be configured using mitigation controls or triggers. This allows you to define how Wallarm should identify suspicious enumeration behavior and what actions to take in response.
 
-![BOLA attack in the UI](../images/user-guides/events/bola-attack.png)
+![BOLA attack in the UI](../../images/user-guides/events/bola-attack.png)
 
 [Proceed to detailed description and configuration →](../admin-en/configuration-guides/protecting-against-bola-trigger.md)
 
@@ -36,7 +36,7 @@ Depending on your subscription plan, protection from BOLA attacks can be configu
 
 The **API Abuse Prevention** delivers detection and mitigation of bots performing API abuse like credential stuffing, fake account creation, content scraping and other malicious actions targeted at your APIs.
 
-![API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
+![API abuse prevention statistics](../../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
 
 **API Abuse Prevention** uses the complex bot detection model that involves ML-based methods as well as statistical and mathematical anomaly search methods and cases of direct abuse. The module self-learns the normal traffic profile and identifies dramatically different behavior as anomalies.
 
@@ -46,7 +46,7 @@ The **API Abuse Prevention** delivers detection and mitigation of bots performin
 
 Wallarm's **Credential Stuffing Detection** collects and displays real-time information about attempts to use compromised or weak credentials to access your applications and enables instant notifications about such attempts. It also forms downloadable list of all compromised or weak credentials providing access to your applications.
 
-![Wallarm Console - Credential Stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing.png)
+![Wallarm Console - Credential Stuffing](../../images/about-wallarm-waf/credential-stuffing/credential-stuffing.png)
 
 To identify compromised and weak passwords, Wallarm uses a comprehensive database of more than **850 million records** collected from the public [HIBP](https://haveibeenpwned.com/) compromised credentials database.
 
@@ -58,6 +58,6 @@ Wallarm detects regular attacks (SQLi, RCE, [etc.](../attacks-vulns-list.md)) in
 
 Wallarm to protect your APIs from these attacks by setting **GraphQL policy** - a set of limits for the GraphQL requests.
 
-![GraphQL thresholds](../images/user-guides/rules/graphql-rule.png)
+![GraphQL thresholds](../../images/user-guides/rules/graphql-rule.png)
 
 [Proceed to detailed description and configuration →](../api-protection/graphql-rule.md)

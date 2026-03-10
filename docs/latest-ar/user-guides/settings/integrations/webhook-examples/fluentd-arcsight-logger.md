@@ -4,7 +4,7 @@
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![تدفق Webhook](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-scheme.png)
+![تدفق Webhook](../../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-scheme.png)
 
 !!! info "الدمج مع نسخة Enterprise من ArcSight ESM"
     لتكوين إعادة توجيه السجلات من Fluentd إلى نسخة Enterprise لـ ArcSight ESM، يُنصح بتكوين موصل Syslog في جانب ArcSight ومن ثم إعادة توجيه السجلات من Fluentd إلى منفذ الموصل. للحصول على وصف أكثر تفصيلاً للموصلات، يُرجى تحميل **دليل مستخدم SmartConnector** من [وثائق ArcSight SmartConnector الرسمية](https://community.microfocus.com/t5/ArcSight-Connectors/ct-p/ConnectorsDocs).
@@ -28,7 +28,7 @@
 * يتم تحليل الأحداث بواسطة مُحلل ال syslog
 * الإعدادات الافتراضية الأخرى
 
-![تكوين المستقبل في ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-setup.png)
+![تكوين المستقبل في ArcSight Logger](../../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-setup.png)
 
 للحصول على وصف أكثر تفصيلاً لتكوين المستقبل، يُرجى تحميل **دليل تثبيت Logger** للنسخة المناسبة من [وثائق ArcSight Logger الرسمية](https://community.microfocus.com/t5/Logger-Documentation/ct-p/LoggerDoc).
 
@@ -92,16 +92,16 @@
     ```
 
     **سجلات Fluentd:**
-    ![سجلات في Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-curl-log.png)
+    ![سجلات في Fluentd](../../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-curl-log.png)
 
     **الحدث في ArcSight Logger:**
-    ![سجلات في ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-curl-log.png)
+    ![سجلات في ArcSight Logger](../../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-curl-log.png)
 
 ### تكوين الدمج مع Fluentd
 
 --8<-- "../include/integrations/webhook-examples/create-fluentd-webhook.md"
 
-![دمج Webhook مع Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+![دمج Webhook مع Fluentd](../../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
 [المزيد من التفاصيل حول تكوين الدمج مع Fluentd](../fluentd.md)
 
@@ -111,8 +111,8 @@
 
 سوف يسجل Fluentd الحدث كما يلي:
 
-![سجل Fluentd حول المستخدم الجديد](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-user-log.png)
+![سجل Fluentd حول المستخدم الجديد](../../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-user-log.png)
 
 سيتم عرض الإدخال التالي في أحداث ArcSight Logger:
 
-![أحداث في ArccSiight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-user.png)
+![أحداث في ArccSiight Logger](../../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-user.png)

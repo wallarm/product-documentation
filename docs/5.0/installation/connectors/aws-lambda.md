@@ -1,7 +1,7 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
-[se-connector-setup-img]:           ../../images/waf-installation/se-connector-setup.png
+[se-connector-setup-img]:           ../../../images/waf-installation/se-connector-setup.png
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
@@ -22,9 +22,9 @@ The CloudFront connector supports both [in-line](../inline/overview.md) and [out
 
     If Wallarm is configured to block malicious activity:
 
-    ![Cloudfront with Wallarm - in-line scheme](../../images/waf-installation/gateways/cloudfront/traffic-flow-inline.png)
+    ![Cloudfront with Wallarm - in-line scheme](../../../images/waf-installation/gateways/cloudfront/traffic-flow-inline.png)
 === "Out-of-band traffic flow"
-    ![Cloudfront with Wallarm - out-of-band scheme](../../images/waf-installation/gateways/cloudfront/traffic-flow-oob.png)
+    ![Cloudfront with Wallarm - out-of-band scheme](../../../images/waf-installation/gateways/cloudfront/traffic-flow-oob.png)
 
 !!! info "Security note"
     The provided solution is designed following the principle of least privilege. The functions request only the minimal set of permissions required to operate with CloudFront and Wallarm Node, ensuring secure deployment by default.
@@ -110,7 +110,7 @@ There are two Python-based functions: one for request forwarding and analysis, a
         * Check **Include body**.
         * Check **Confirm deploy to Lambda@Edge**.
 
-        ![Cloudfront function deployment](../../images/waf-installation/gateways/cloudfront/function-deploy.png)
+        ![Cloudfront function deployment](../../../images/waf-installation/gateways/cloudfront/function-deploy.png)
     1. Repeat the procedure for the Wallarm-provided response function, selecting responses as the trigger.
 
         Ensure the response trigger matches the request trigger (origin response for origin request, viewer response for viewer request).
@@ -158,7 +158,7 @@ There are two Python-based functions: one for request forwarding and analysis, a
         * Check **Include body**.
         * Check **Confirm deploy to Lambda@Edge**.
 
-        ![Cloudfront function deployment](../../images/waf-installation/gateways/cloudfront/function-deploy.png)
+        ![Cloudfront function deployment](../../../images/waf-installation/gateways/cloudfront/function-deploy.png)
     1. Return to your AWS Console → **Services** → **Lambda** → **Functions**.
     1. Open the `serverlessrepo-wallarm-connector-ResponseHandler-xxx` function.
     1. Repeat the procedure for the Wallarm-provided response function, selecting responses as the trigger.

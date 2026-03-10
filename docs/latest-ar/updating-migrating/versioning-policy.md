@@ -74,11 +74,11 @@
 * [بوابة الأخبار](https://changelog.wallarm.com/)
 * واجهة مستخدم Wallarm
 
-    ![إشعار بنسخة جديدة في واجهة مستخدم Wallarm](../images/updating-migrating/wallarm-console-new-version-notification.png)
+    ![إشعار بنسخة جديدة في واجهة مستخدم Wallarm](../../images/updating-migrating/wallarm-console-new-version-notification.png)
 
 يتم عرض معلومات حول التحديثات المتاحة للنسخ الرئيسية والثانوية ونسخ التصحيح لعقدة Wallarm أيضًا في واجهة مستخدم Wallarm → **العقد** للعقد العادية. يحتوي كل حزمة على الحالة **مُحدَّث** أو قائمة بالتحديثات المتاحة. على سبيل المثال، تبدو بطاقة عقدة التصفية بأحدث نسخ المكونات المثبتة كالتالي:
 
-![بطاقة العقدة](../images/user-guides/nodes/view-regular-node-comp-vers.png)
+![بطاقة العقدة](../../images/user-guides/nodes/view-regular-node-comp-vers.png)
 
 ### إجراء التحديث
 

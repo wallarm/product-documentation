@@ -1,4 +1,4 @@
-# Security Edge <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 Security Edge is Wallarm's managed deployment option allowing you to protect your APIs and applications without hosting the [Wallarm Node](../../about-wallarm/overview.md#filtering-node) yourself. You redirect traffic to **Wallarm's globally distributed Edge infrastructure**, where the traffic is filtered and securely forwarded to your backend.
 
@@ -21,13 +21,13 @@ Security Edge service provides a secure cloud environment where Wallarm Nodes ar
     <div class="do-main">
 
         <a class="do-card" href="../inline/overview/">
-            <img class="non-zoomable" src="../../../images/platform-icons/se-inline.svg" />
+            <img class="non-zoomable" src="../../../../images/platform-icons/se-inline.svg" />
             <h3>Security Edge Inline</h3>
             <p>Real-time traffic is redirected through the Edge Node, filtered, and forwarded to your origin</p>
         </a>
 
         <a class="do-card" href="../se-connector/">
-            <img class="non-zoomable" src="../../../images/platform-icons/se-connectors.svg" />
+            <img class="non-zoomable" src="../../../../images/platform-icons/se-connectors.svg" />
             <h3>Security Edge Connector</h3>
             <p>Connect the Edge Node to your API platform for asynchronous analysis or real-time blocking</p>
         </a>

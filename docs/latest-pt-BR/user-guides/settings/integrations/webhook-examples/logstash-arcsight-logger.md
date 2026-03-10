@@ -4,7 +4,7 @@ Estas instruções fornecem a você um exemplo de integração do Wallarm com o 
 
 --8<-- "../include-pt-BR/integrations/webhook-examples/overview.md"
 
-![Fluxo de Webhook](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-scheme.png)
+![Fluxo de Webhook](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-scheme.png)
 
 !!! info "Integração com a versão corporativa do ArcSight ESM"
     Para configurar o encaminhamento de logs do Logstash para a versão corporativa do ArcSight ESM, é recomendado configurar o Syslog Connector no lado do ArcSight e, depois, encaminhar os logs do Logstash para a porta do conector. Para obter uma descrição mais detalhada dos conectores, faça o download do **Guia do usuário do SmartConnector** na [documentação oficial do ArcSight SmartConnector](https://community.microfocus.com/t5/ArcSight-Connectors/ct-p/ConnectorsDocs).
@@ -28,7 +28,7 @@ ArcSight Logger tem um receptor de logs `Wallarm Logstash logs` configurado da s
 * Os eventos são analisados com o analisador de syslog
 * Outras configurações padrão
 
-![Configuração do receptor no ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-setup.png)
+![Configuração do receptor no ArcSight Logger](../../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-setup.png)
 
 Para obter uma descrição mais detalhada da configuração do receptor, faça o download do **Guia de instalação do Logger** da versão apropriada na [documentação oficial do ArcSight Logger](https://community.microfocus.com/t5/Logger-Documentation/ct-p/LoggerDoc).
 
@@ -85,16 +85,16 @@ Uma descrição mais detalhada dos arquivos de configuração está disponível 
     ```
 
     **Logs do Logstash:**
-    ![Logs do Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-curl-log.png)
+    ![Logs do Logstash](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-curl-log.png)
 
     **Evento no ArcSight Logger:**
-    ![Evento no ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-curl-log.png)
+    ![Evento no ArcSight Logger](../../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-curl-log.png)
 
 ### Configuração da integração Logstash
 
 --8<-- "../include-pt-BR/integrations/webhook-examples/create-logstash-webhook.md"
 
-![Integração de webhook com Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+![Integração de webhook com Logstash](../../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
 [Mais detalhes sobre a configuração de integração do Logstash](../logstash.md)
 
@@ -104,8 +104,8 @@ Uma descrição mais detalhada dos arquivos de configuração está disponível 
 
 Logstash registrará o evento da seguinte forma:
 
-![Novo registro de usuário no ArcSight Logger do Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-user-log.png)
+![Novo registro de usuário no ArcSight Logger do Logstash](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-user-log.png)
 
 A seguinte entrada será exibida nos eventos ArcSight Logger:
 
-![Cartão de novo usuário no ArcSight Logger do Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-user.png)
+![Cartão de novo usuário no ArcSight Logger do Logstash](../../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-user.png)

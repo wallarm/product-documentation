@@ -4,7 +4,7 @@ Estas instruções fornecem a você o exemplo de integração do Wallarm com o c
 
 --8<-- "../include-pt-BR/integrations/webhook-examples/overview.md"
 
-![Fluxo de Webhook](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
+![Fluxo de Webhook](../../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
 
 ## Recursos utilizados
 
@@ -76,13 +76,13 @@ Uma descrição mais detalhada dos arquivos de configuração está disponível 
     ```
 
     **Logs do Fluentd:**
-    ![Logs no Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-curl-log.png)
+    ![Logs no Fluentd](../../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-curl-log.png)
 
     **Logs do QRadar:**
-    ![Logs no QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-curl-log.png)
+    ![Logs no QRadar](../../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-curl-log.png)
 
     **Carga de log do QRadar:**
-    ![Logs no QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-curl-log-payload.png)
+    ![Logs no QRadar](../../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-curl-log-payload.png)
 
 ### Configuração do QRadar (opcional)
 
@@ -97,13 +97,13 @@ No QRadar, a origem do log é configurada. Isso ajuda a encontrar facilmente os 
 
 Uma descrição mais detalhada da configuração da origem do log do QRadar está disponível na [documentação oficial da IBM](https://www.ibm.com/support/knowledgecenter/en/SS42VS_DSM/com.ibm.dsm.doc/b_dsm_guide.pdf?origURL=SS42VS_DSM/b_dsm_guide.pdf).
 
-![Configuração da origem do log do QRadar para Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-setup.png)
+![Configuração da origem do log do QRadar para Fluentd](../../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-setup.png)
 
 ### Configuração da integração Fluentd
 
 --8<-- "../include-pt-BR/integrations/webhook-examples/create-fluentd-webhook.md"
 
-![Integração de Webhook com Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+![Integração de Webhook com Fluentd](../../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
 [Mais detalhes sobre a configuração da integração Fluentd](../fluentd.md)
 
@@ -113,8 +113,8 @@ Uma descrição mais detalhada da configuração da origem do log do QRadar est�
 
 O Fluentd registrará o evento da seguinte forma:
 
-![Log sobre novo usuário no QRadar do Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-user-log.png)
+![Log sobre novo usuário no QRadar do Fluentd](../../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-user-log.png)
 
 Os seguintes dados no formato JSON serão exibidos no payload de log do QRadar:
 
-![Novo cartão de usuário no QRadar do Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-user.png)
+![Novo cartão de usuário no QRadar do Fluentd](../../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-user.png)

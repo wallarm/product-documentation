@@ -1,4 +1,4 @@
-# CI/CD üzerinde OpenAPI Güvenlik Testi <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# CI/CD üzerinde OpenAPI Güvenlik Testi <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm tarafından desteklenen CI/CD üzerinde OpenAPI Güvenlik Testi, gölge ve zombi API'ler de dahil olmak üzere kritik API iş senaryolarınızdaki güvenlik açıklarını belirleyip ele almanıza yönelik bir çözüm sunar. Bu makale bu çözümün nasıl çalıştırılacağını ve kullanılacağını açıklar.
 
@@ -27,7 +27,7 @@ OpenAPI güvenlik testini çalıştırmak için şu adımları izleyin:
 
 1. [US Cloud](https://us1.my.wallarm.com/security-testing) veya [EU Cloud](https://my.wallarm.com/security-testing) bağlantısını izleyerek Wallarm Console → **OpenAPI Testing** bölümüne gidin ve **Create testing policy**.
 
-    ![!Politika oluşturma](../images/user-guides/openapi-testing/create-testing-policy.png)
+    ![!Politika oluşturma](../../images/user-guides/openapi-testing/create-testing-policy.png)
 1. Test etmek istediğiniz API uç noktalarını, [otomatik olarak keşfedilmiş](../api-discovery/overview.md) API envanterinizden seçin veya JSON formatında bir OpenAPI 3.0 spesifikasyonu yükleyin.
 
     API Discovery modülü yeni uç noktaları otomatik olarak belirlese de, bunları mevcut zafiyet test politikalarına otomatik olarak dahil etmez. Sonuç olarak, yeni keşfedilen her uç nokta için ayrı bir politika gereklidir.
@@ -121,4 +121,4 @@ Wallarm Console'un **OpenAPI Testing** bölümünde, hesabınızla ilişkili gü
 
 Gereksinimlerinize uygun olacak şekilde mevcut politikaları düzenleyebilir ve silebilirsiniz.
 
-![!Politika listesi](../images/user-guides/openapi-testing/testing-policies-list.png)
+![!Politika listesi](../../images/user-guides/openapi-testing/testing-policies-list.png)

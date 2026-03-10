@@ -1,9 +1,9 @@
 [رابط-إطلاق-النسخة]:     https://cloud.google.com/deep-learning-vm/docs/quickstart-marketplace
 
-[صورة-توليد-مفتاح-ssh]:       ../../../images/installation-gcp/common/ssh-key-generation.png
+[صورة-توليد-مفتاح-ssh]:       ../../../../images/installation-gcp/common/ssh-key-generation.png
 [سياسة-الإصدار]:            ../../../updating-migrating/versioning-policy.md#version-list
-[صورة-واجهة-مستخدمي-wallarm]:         ../../../images/check-user-no-2fa.png
-[صورة-إنشاء-نقطة-wallarm]:      ../../../images/user-guides/nodes/create-cloud-node.png
+[صورة-واجهة-مستخدمي-wallarm]:         ../../../../images/check-user-no-2fa.png
+[صورة-إنشاء-نقطة-wallarm]:      ../../../../images/user-guides/nodes/create-cloud-node.png
 [وثائق-منصة-النشر]:     ../../../installation/supported-deployment-options.md
 
 [رمز-العقدة]:                       ../../../quickstart.md#deploy-the-wallarm-filtering-node
@@ -11,7 +11,7 @@
 [أنواع-رموز-wallarm]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [المنصة]:                         ../../../installation/supported-deployment-options.md
 [وثائق-هجمات-ptrav]:                ../../../attacks-vulns-list.md#path-traversal
-[صورة-الهجمات-في-واجهة-المستخدم]:              ../../../images/admin-guides/test-attacks-quickstart.png
+[صورة-الهجمات-في-واجهة-المستخدم]:              ../../../../images/admin-guides/test-attacks-quickstart.png
 [توجيهات-nginx-لـwallarm]:         ../../../admin-en/configure-parameters-en.md
 [وثائق-التوسع-التلقائي]:                 ../../../admin-en/installation-guides/google-cloud/autoscaling-overview.md
 [وثائق-ip-الحقيقي]:                     ../../../admin-en/using-proxy-or-balancer-en.md
@@ -24,7 +24,7 @@
 [وثائق-oob]:                         ../../oob/overview.md
 [وصول-wallarm-api-عبر-proxy]:            ../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [أمثلة-تهيئة-مخدم-الويب-لعكس-المرور]:    ../../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
-[صورة-العقد-المجمعة]:                ../../../images/user-guides/nodes/grouped-nodes.png
+[صورة-العقد-المجمعة]:                ../../../../images/user-guides/nodes/grouped-nodes.png
 [مواصفات-cloud-init]:                  ../../cloud-platforms/cloud-init.md
 [توجيه-wallarm_force]:          ../../../admin-en/configure-parameters-en.md#wallarm_force
 [link-wallarm-health-check]:        ../../../admin-en/uat-checklist-en.md

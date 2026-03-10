@@ -1,6 +1,6 @@
 [configure-selinux-instr]:    configure-selinux.md
 [configure-proxy-balancer-instr]:   configuration-guides/access-to-wallarm-api-via-proxy.md
-[img-wl-console-users]:             ../images/check-user-no-2fa.png
+[img-wl-console-users]:             ../../images/check-user-no-2fa.png
 [wallarm-token-types]:              ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 
 # postanalyticsモジュールの分離インストール
@@ -17,9 +17,9 @@ Wallarmノードでのリクエスト処理は次の2段階で構成されます
 以下の図は、同一サーバーにインストールした場合と異なるサーバーにインストールした場合のモジュール間の連携を示します。
 
 === "1台のサーバー上のNGINX‑Wallarmとpostanalytics"
-    ![postanalyticsとnginx-wallarm間のトラフィックフロー](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-the-same-server.png)
+    ![postanalyticsとnginx-wallarm間のトラフィックフロー](../../images/waf-installation/separate-postanalytics/processing-postanalytics-on-the-same-server.png)
 === "異なるサーバー上のNGINX‑Wallarmとpostanalytics"
-    ![postanalyticsとnginx-wallarm間のトラフィックフロー](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-different-servers.png)
+    ![postanalyticsとnginx-wallarm間のトラフィックフロー](../../images/waf-installation/separate-postanalytics/processing-postanalytics-on-different-servers.png)
 
 ## 要件
 
@@ -233,7 +233,7 @@ curl http://localhost/etc/passwd
 
 NGINX‑Wallarmと分離postanalyticsモジュールが正しく構成されていれば、攻撃はWallarm Cloudにアップロードされ、Wallarm Consoleの**Attacks**セクションに表示されます:
 
-![インターフェイスのAttacks](../images/admin-guides/test-attacks-quickstart.png)
+![インターフェイスのAttacks](../../images/admin-guides/test-attacks-quickstart.png)
 
 攻撃がWallarm Cloudにアップロードされなかった場合、サービスの動作にエラーがないか確認してください:
 

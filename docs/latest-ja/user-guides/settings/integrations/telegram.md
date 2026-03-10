@@ -14,7 +14,7 @@
 1. セキュリティレポートの送信頻度を選択します。頻度を選択しない場合、レポートは送信されません。
 1. 通知をトリガーするイベントタイプを選択します。
 
-    ![Telegram連携](../../../images/user-guides/settings/integrations/add-telegram-integration.png)
+    ![Telegram連携](../../../../images/user-guides/settings/integrations/add-telegram-integration.png)
 
     利用可能なイベントの詳細：
 

@@ -1,4 +1,4 @@
-# API Discovery Demo Videosu <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discovery Demo Videosu <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm platformunun [**API Discovery**](../api-discovery/overview.md) modülünün tüm potansiyelini keşfetmek için tanıtım videomuzu izleyin. Gerçek API kullanımına dayanarak oluşturduğu API envanterine aşina olun ve sunulan bilgileri nasıl etkin şekilde kullanacağınızı öğrenin.
 

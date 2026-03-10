@@ -1,4 +1,4 @@
-# Blocking in API Sessions <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Blocking in API Sessions <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 As Wallarm's API Sessions aim to provide full visibility into sessions within your traffic, this visibility includes information about Wallarm intervention into session's traffic flow, particularly, request that were by different reasons defined as part of attack, marked as such and, if configured, blocked.
 
@@ -38,7 +38,7 @@ Both [automatic](#automatic-blocking) and [manual](#manual-blocking) blocking pu
 
 While the session is in the Session Denylist, all its requests are blocked, 403 response is sent.
 
-![!IP & Session Lists - Session Denylist](../images/api-sessions/api-sessions-denylist.png)
+![!IP & Session Lists - Session Denylist](../../images/api-sessions/api-sessions-denylist.png)
 
 Note that Session Denylist by default is in **Now** state and displays sessions that are blocked now. However you can select specific date range, than the list will also display sessions that were in the list in that period but now are not in the list and thus are not blocked.
 
@@ -50,11 +50,11 @@ The session can be blocked automatically by:
 
 * [Mitigation control](../about-wallarm/mitigation-controls-overview.md)
 
-    ![!Mitigation control - blocking by session](../images/api-sessions/api-sessions-blocking-mc.png)
+    ![!Mitigation control - blocking by session](../../images/api-sessions/api-sessions-blocking-mc.png)
 
 * Wallarm's [API Abuse Prevention](../api-abuse-prevention/overview.md)
 
-    ![!API Abuse Prevention profile - blocking by session](../images/api-sessions/api-sessions-blocking-api-abuse.png)
+    ![!API Abuse Prevention profile - blocking by session](../../images/api-sessions/api-sessions-blocking-api-abuse.png)
 
 In that case, in **API Sessions**, it will obtain the **Blocked** status<!--, in session details, blocked requests will be highlighted-->, from request details you can click link to the <!--corresponding blocking record in Session Denylist, there, in the **Added by** column you will see the name and link to the--> mitigation control that put session in the list. Click this link to view the details on mitigation control configuration and adjust if necessary.
 
@@ -64,7 +64,7 @@ Automatic blocking may be not forever, in that case, at specified moment, the se
 
 You can manually block the session: expand the session details and click **Add to denylist**.
 
-![!API Sessions - add session to denylist](../images/api-sessions/api-sessions-add-session-to-denylist.png)
+![!API Sessions - add session to denylist](../../images/api-sessions/api-sessions-add-session-to-denylist.png)
 
 ### Unblocking
 
@@ -92,7 +92,7 @@ Consider the following:
 <!--* Expand blocked request details to see information about attack and a reason of blocking.
 * If reason of blocking is IP Denylist or Session Denylist, you can click link to navigate to corresponding records there; in the list itself, you'll see the reason of being in this list and link to this reason (for example, to [mitigation control](../about-wallarm/mitigation-controls-overview.md)).-->
 
-![!API Sessions - Wallarm action on request from attack](../images/api-sessions/api-sessions-wallarm-action.png)
+![!API Sessions - Wallarm action on request from attack](../../images/api-sessions/api-sessions-wallarm-action.png)
 
 * Even in the currently **Blocked** session, there can be unblocked requests (as session was not always blocked).
 * Even in the session that is not currently blocked, there can be blocked requests (different reasons, discussed in the introduction of this article), including blocked by session if session was blocked at some period in past.

@@ -76,7 +76,7 @@ Os passos para configurar o gatilho são:
 
 Exemplo do gatilho **Força bruta** para bloquear os ataques regulares de força bruta direcionados a `https://example.com/api/v1/login`:
 
-![Exemplo de gatilho de força bruta](../../images/user-guides/triggers/trigger-example6.png)
+![Exemplo de gatilho de força bruta](../../../images/user-guides/triggers/trigger-example6.png)
 
 A descrição do exemplo fornecida e outros exemplos de gatilho usados para proteção contra força bruta estão disponíveis neste [link](../../user-guides/triggers/trigger-examples.md#mark-requests-as-a-bruteforce-attack-if-31-or-more-requests-are-sent-to-the-protected-resource).
 
@@ -94,7 +94,7 @@ Você pode configurar vários gatilhos para proteção contra força bruta.
     Se a reação do gatilho for **Adicionar endereço IP à lista cinza**, verifique a seção **Listas de IP** → **Lista cinza** do Console Wallarm.
 3. Abra a seção **Eventos** e verifique se as solicitações são exibidas na lista como um ataque de força bruta ou de navegação forçada.
 
-    ![Ataque de navegação forçada na interface](../../images/user-guides/events/forced-browsing-attack.png)
+    ![Ataque de navegação forçada na interface](../../../images/user-guides/events/forced-browsing-attack.png)
 
     O número de solicitações exibidas corresponde ao número de solicitações enviadas após o limite do gatilho ter sido excedido ([mais detalhes sobre a detecção de ataques comportamentais](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)). Se este número for superior a 5, a amostragem de solicitação é aplicada e os detalhes da solicitação são exibidos apenas para os primeiros 5 acertos ([mais detalhes sobre a amostragem de solicitações](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
 

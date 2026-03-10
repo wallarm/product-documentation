@@ -1,11 +1,11 @@
-[img-cert-request]:         ../../../images/fast/ssl/common/browsers-ssl/edge-ssl/e-certificate-request.png
-[img-cert-window]:          ../../../images/fast/ssl/common/browsers-ssl/edge-ssl/e-certificate-window.png
-[img-store-location]:       ../../../images/fast/ssl/common/browsers-ssl/edge-ssl/e-store-location.png
-[img-store]:                ../../../images/fast/ssl/common/browsers-ssl/edge-ssl/e-store-selection.png
-[img-wizard-resume]:        ../../../images/fast/ssl/common/browsers-ssl/edge-ssl/e-wizard-resume.png
-[img-fingerprint-warning]:  ../../../images/fast/ssl/common/browsers-ssl/edge-ssl/e-fingerprint-warning.png
-[img-import-ok]:            ../../../images/fast/ssl/common/browsers-ssl/edge-ssl/e-import-success.png
-[img-https-ok]:             ../../../images/fast/ssl/common/browsers-ssl/edge-ssl/e-https-ok.png
+[img-cert-request]:         ../../../../images/fast/ssl/common/browsers-ssl/edge-ssl/e-certificate-request.png
+[img-cert-window]:          ../../../../images/fast/ssl/common/browsers-ssl/edge-ssl/e-certificate-window.png
+[img-store-location]:       ../../../../images/fast/ssl/common/browsers-ssl/edge-ssl/e-store-location.png
+[img-store]:                ../../../../images/fast/ssl/common/browsers-ssl/edge-ssl/e-store-selection.png
+[img-wizard-resume]:        ../../../../images/fast/ssl/common/browsers-ssl/edge-ssl/e-wizard-resume.png
+[img-fingerprint-warning]:  ../../../../images/fast/ssl/common/browsers-ssl/edge-ssl/e-fingerprint-warning.png
+[img-import-ok]:            ../../../../images/fast/ssl/common/browsers-ssl/edge-ssl/e-import-success.png
+[img-https-ok]:             ../../../../images/fast/ssl/common/browsers-ssl/edge-ssl/e-https-ok.png
     
     
 #   Microsoft Edge向けFAST nodeの自己署名SSL証明書のインストール

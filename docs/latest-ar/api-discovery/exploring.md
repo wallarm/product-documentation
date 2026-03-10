@@ -1,4 +1,4 @@
-# استكشاف جرد API <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# استكشاف جرد API <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 بمجرد أن يقوم وحدة [اكتشاف API](overview.md) ببناء فهرس نقاط النهاية لديك (جرد API الخاص بك)، يمكنك استكشافه في قسم **اكتشاف API** في لوحة تحكم Wallarm. تعلم من هذه المقالة كيف تتنقل خلال البيانات المكتشفة.
 
@@ -6,7 +6,7 @@
 
 استكشف جرد API المكتشف الخاص بك باستخدام قسم **اكتشاف API** في سحابة [US](https://us1.my.wallarm.com/api-discovery) أو [EU](https://my.wallarm.com/api-discovery).
 
-![نقاط النهاية المكتشفة بواسطة اكتشاف API](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
+![نقاط النهاية المكتشفة بواسطة اكتشاف API](../../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
 في كل مرة تفتح قسم **اكتشاف API**، ترى جميع نقاط النهاية المكتشفة و[التغييرات](track-changes.md) التي حدثت خلال الأسبوع الماضي. بواسطة فلتر **التغييرات منذ**، يمكنك تغيير `الأسبوع الأخير` إلى أي فترة أخرى.
 
@@ -43,7 +43,7 @@
 
 <a name="params"></a>بالنقر على نقطة النهاية، يمكنك أيضًا العثور على تفاصيل نقطة النهاية، بما في ذلك إحصائيات الطلبات، الرؤوس، البرامترات المطلوبة والاختيارية مع أنواع البيانات ذات الصلة:
 
-![برامترات الطلب المكتشفة بواسطة اكتشاف API](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
+![برامترات الطلب المكتشفة بواسطة اكتشاف API](../../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
 
 تشمل معلومات كل بارامتر:
 
@@ -85,7 +85,7 @@
 
 انقر على نقطة النهاية لتوسيع البرامترات الخاصة بها وعرض النوع الذي تم اكتشافه تلقائيًا للبرامتر المتنوع.
 
-![اكتشاف API - التباين في المسار](../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path.png)
+![اكتشاف API - التباين في المسار](../../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path.png)
 
 لاحظ أن الخوارزمية تحلل حركة المرور الجديدة. إذا رأيت في لحظة ما عناوين، ينبغي أن تكون موحدة ولكن هذا لم يحدث بعد، امنحها بعض الوقت. بمجرد وصول المزيد من البيانات، ستوحد النظام نقاط النهاية التي تتطابق مع النمط المكتشف حديثًا مع الكمية المناسبة من العناوين المتطابقة.
 
@@ -95,7 +95,7 @@
 
 لرؤية الهجمات على نقطة نهاية ما، انقر على الرقم في عمود **الضربات**:
 
-![افتتاح الأحداث - نقطة نهاية API](../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
+![افتتاح الأحداث - نقطة نهاية API](../../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
 
 سيتم عرض قسم **الهجمات** مع [الفيلتر المطبق](../user-guides/search-and-filters/use-search.md):
 

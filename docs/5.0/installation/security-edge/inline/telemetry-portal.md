@@ -1,8 +1,8 @@
-# Telemetry Portal for Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Telemetry Portal for Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 The telemetry portal for [Security Edge Inline](overview.md) provides Grafana dashboards with real-time insights into metrics on traffic processed by Wallarm.
 
-![!](../../../images/waf-installation/security-edge/inline/telemetry/telemetry-portal.png)
+![!](../../../../images/waf-installation/security-edge/inline/telemetry/telemetry-portal.png)
 
 ## Available dashboards
 
@@ -25,8 +25,8 @@ The dashboards use standard Grafana features like [sharing](https://grafana.com/
 
 **Run telemetry portal** once the Node reaches the [**Active** status](upgrade-and-management.md#statuses). It becomes accessible via a direct link from the Security Edge section about 5 minutes after starting.
 
-![!](../../../images/waf-installation/security-edge/inline/telemetry/run-telemetry-portal.png)
+![!](../../../../images/waf-installation/security-edge/inline/telemetry/run-telemetry-portal.png)
 
 From the Grafana home page, to reach the dashboard, navigate to **Dashboards** → **Wallarm**.
 
-![!](../../../images/waf-installation/security-edge/inline/telemetry/telemetry-portal-dashboards.png)
+![!](../../../../images/waf-installation/security-edge/inline/telemetry/telemetry-portal-dashboards.png)

@@ -39,7 +39,7 @@ Os filtros disponíveis são apresentados no console do Wallarm de várias forma
 * Painel de filtros que é expandido e recolhido usando o botão **Filtro**
 * Filtros rápidos para excluir ou mostrar apenas eventos com os valores de parâmetro específicos
 
-![Filtros na interface do usuário](../../images/user-guides/search-and-filters/filters.png)
+![Filtros na interface do usuário](../../../images/user-guides/search-and-filters/filters.png)
 
 Quando os valores de diferentes filtros são selecionados, os resultados atenderão a todas essas condições. Quando diferentes valores para o mesmo filtro são especificados, os resultados atenderão a qualquer uma dessas condições.
 
@@ -402,6 +402,6 @@ Para obter a lista de ataques detectados por [regras de cliente baseadas em rege
 
 Para qualquer desses ataques, em seus detalhes, são apresentados os links para as regras correspondentes (pode haver mais de uma). Clique no link para acessar os detalhes da regra e editá-los, se necessário.
 
-![Ataque detectado por regra baseada em regex - edição de regra](../../images/user-guides/search-and-filters/detected-by-custom-rule.png)
+![Ataque detectado por regra baseada em regex - edição de regra](../../../images/user-guides/search-and-filters/detected-by-custom-rule.png)
 
 Você pode usar `!custom_rule` para obter a lista de ataques não relacionados a qualquer regra de cliente baseada em regex.

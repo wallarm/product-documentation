@@ -31,7 +31,7 @@ Escolha um ou mais filtros na interface do Console Wallarm e defina valores para
 
 Nesta etapa, você seleciona a integração através da qual o alerta selecionado deve ser enviado. Você pode selecionar várias integrações simultaneamente.
 
-![Escolhendo uma integração](../../images/user-guides/triggers/select-integration.png)
+![Escolhendo uma integração](../../../images/user-guides/triggers/select-integration.png)
 
 ### Etapa 4: Salvando o gatilho
 

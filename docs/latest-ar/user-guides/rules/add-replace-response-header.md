@@ -35,4 +35,4 @@
 
 للسماح بكل محتوى `https://example.com/*` أن يأتي فقط من مصدر الموقع، يمكنك إضافة رأس الاستجابة [`Content-Security-Policy: default-src 'self'`](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#example_1) باستخدام قاعدة **تغيير رؤوس استجابة الخادم** كما يلي:
 
-![مثال على القاعدة "تغيير رؤوس استجابة الخادم"](../../images/user-guides/rules/add-replace-response-header.png)
+![مثال على القاعدة "تغيير رؤوس استجابة الخادم"](../../../images/user-guides/rules/add-replace-response-header.png)

@@ -1,4 +1,4 @@
-# Enumeration Attack Protection <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Enumeration Attack Protection <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm allows protecting your APIs from the [enumeration attacks](../attacks-vulns-list.md#enumeration-attacks) preventing the reveal of information highly valuable for malicious actors. By identifying valid usernames, email addresses, or system resources, attackers can significantly narrow their focus for subsequent attacks. This reconnaissance phase allows attackers to understand the target system better, potentially uncovering vulnerabilities and enabling the planning of more sophisticated and targeted attacks, ultimately increasing the likelihood of a successful breach.
 
@@ -108,7 +108,7 @@ To create and apply a new mitigation control:
   * **Forced browsing protection**
   * Generic **Enumeration attack protection**
 
-    ![Creating mitigation control](../images/user-guides/mitigation-controls/mc-create.png)
+    ![Creating mitigation control](../../images/user-guides/mitigation-controls/mc-create.png)
 
 1. [Configure](#configuration) your control.
 1. Click **Add**. The created control is displayed in the list. It immediately goes into action and performs in accordance with the selected **Mitigation mode**.
@@ -200,7 +200,7 @@ Let us say your e-commerce `E-APPC` application stores information about each us
 
 To achieve that, configure the **BOLA protection** mitigation control as displayed on the screenshot:
 
-![BOLA protection mitigation control - example](../images/user-guides/mitigation-controls/mc-bola-example-01.png)
+![BOLA protection mitigation control - example](../../images/user-guides/mitigation-controls/mc-bola-example-01.png)
 
 In this example, the `\d*` regex in parameter values stands for `zero or more digits` - the attempt to enumerate object ID composed of digits.
 
@@ -212,7 +212,7 @@ To test the mitigation control described in the [Example](#example) section, TBD
 
 When enumeration attacks are detected or blocked in accordance with the [mitigation mode](#mitigation-mode), they are displayed in the [API Sessions](../api-sessions/exploring.md) section:
 
-![Enumeration attack (brute force) in API Sessions](../images/user-guides/mitigation-controls/mc-found-attack-in-api-sessions.png)
+![Enumeration attack (brute force) in API Sessions](../../images/user-guides/mitigation-controls/mc-found-attack-in-api-sessions.png)
 
 You can find sessions with corresponding attack types using the **Attack** filter; also, if necessary, filter inside session details to see only requests related to the enumeration attack.
 

@@ -1,8 +1,8 @@
-# Security Edge Inlineの概要 <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inlineの概要 <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 [**Security Edge**](../overview.md)プラットフォームは、Wallarmがホストする環境内の地理的に分散したロケーションにWallarm Nodesをデプロイするためのマネージドサービスを提供します。主要なデプロイオプションの1つがインラインデプロイで、お客様側でのインストールを必要とせず、API全体に対してリアルタイムかつ堅牢な保護を提供します。
 
-![!](../../../images/waf-installation/security-edge/inline/traffic-flow.png)
+![!](../../../../images/waf-installation/security-edge/inline/traffic-flow.png)
 
 ## ユースケース
 

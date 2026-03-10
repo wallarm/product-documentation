@@ -1,7 +1,7 @@
 [link-analyzing-attacks]:       analyze-attack.md
 
-[img-false-attack]:             ../../images/user-guides/events/false-attack.png
-[img-removed-attack-info]:      ../../images/user-guides/events/removed-attack-info.png
+[img-false-attack]:             ../../../images/user-guides/events/false-attack.png
+[img-removed-attack-info]:      ../../../images/user-guides/events/removed-attack-info.png
 
 
 # Trabalhando com falsos ataques
@@ -35,7 +35,7 @@ Para marcar todas as solicitações (hits) no ataque como falsos positivos:
     Para reduzir o tempo de análise da solicitação, você pode ocultar as solicitações que são precisamente maliciosas usando a [tag `!known`](../search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits).
 2. Clique em **Marcar como positivo falso**.
 
-    ![False attack](../../images/user-guides/events/analyze-attack.png)
+    ![False attack](../../../images/user-guides/events/analyze-attack.png)
 
 !!! Aviso "Se um ataque for hits agrupados por IPs"
     Se um ataque consistir em hits [agrupados](../../about-wallarm/protecting-against-attacks.md#attack) por endereços IP, o botão **Marcar como falso positivo** não estará disponível. Você pode [marcar certos hits](#mark-a-hit-as-a-false-positive) como positivos falsos.
@@ -56,4 +56,4 @@ O Console da Wallarm permite controlar a exibição de falsos positivos na lista
 * **Com falsos positivos**: ataques reais e falsos positivos
 * **Somente falsos positivos**
 
-![Filtro positivo falso](../../images/user-guides/events/filter-for-falsepositive.png)
+![Filtro positivo falso](../../../images/user-guides/events/filter-for-falsepositive.png)

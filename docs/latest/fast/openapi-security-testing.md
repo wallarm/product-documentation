@@ -1,4 +1,4 @@
-# OpenAPI Security Testing on CI/CD <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# OpenAPI Security Testing on CI/CD <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 OpenAPI Security Testing on CI/CD, powered by Wallarm, offers a solution to identify and address security vulnerabilities within your critical API business scenarios, including shadow and zombie APIs. This article explains how to run and use this solution.
 
@@ -27,7 +27,7 @@ To run OpenAPI security testing, follow these steps:
 
 1. Proceed to Wallarm Console → **OpenAPI Testing** by following the link for the [US Cloud](https://us1.my.wallarm.com/security-testing) or [EU Cloud](https://my.wallarm.com/security-testing) and **Create testing policy**.
 
-    ![!Policy create](../images/user-guides/openapi-testing/create-testing-policy.png)
+    ![!Policy create](../../images/user-guides/openapi-testing/create-testing-policy.png)
 1. Select the API endpoints that you want to test either from your [automatically discovered](../api-discovery/overview.md) API inventory or upload an OpenAPI 3.0 specification in JSON format.
 
     Although the API Discovery module automatically identifies new endpoints, it does not automatically include them in existing vulnerability testing policies. As a result, each newly discovered endpoint requires a separate policy.
@@ -121,4 +121,4 @@ In the **OpenAPI Testing** section of the Wallarm Console, you have the ability 
 
 You can edit and delete existing policies as needed to suit your requirements.
 
-![!Policies list](../images/user-guides/openapi-testing/testing-policies-list.png)
+![!Policies list](../../images/user-guides/openapi-testing/testing-policies-list.png)

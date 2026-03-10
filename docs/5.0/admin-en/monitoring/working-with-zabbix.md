@@ -1,8 +1,8 @@
-[img-zabbix-hosts]:           ../../images/monitoring/zabbix-hosts.png
-[img-zabbix-items]:           ../../images/monitoring/zabbix-items.png
-[img-zabbix-widget]:          ../../images/monitoring/zabbix-widget.png
-[img-global-view-0]:          ../../images/monitoring/global-view-0-value.png
-[img-global-view-16]:         ../../images/monitoring/global-view-16-value.png
+[img-zabbix-hosts]:           ../../../images/monitoring/zabbix-hosts.png
+[img-zabbix-items]:           ../../../images/monitoring/zabbix-items.png
+[img-zabbix-widget]:          ../../../images/monitoring/zabbix-widget.png
+[img-global-view-0]:          ../../../images/monitoring/global-view-0-value.png
+[img-global-view-16]:         ../../../images/monitoring/global-view-16-value.png
 
 [doc-zabbix-parameters]:      collectd-zabbix.md#4-add-custom-parameters-to-the-zabbix-agent-configuration-file-on-the-filter-node-host-to-get-the-metrics-you-need
 

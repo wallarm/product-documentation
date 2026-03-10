@@ -9,7 +9,7 @@
 
 تقرأ الوحدة Wallarm عنوان IP المصدر للطلب من المتغير NGINX `$remote_addr`. إذا مر الطلب عبر خادم الوكيل أو موزع الحمولة قبل إرساله إلى الوحدة ، فيحتفظ المتغير `$remote_addr` بعنوان IP لخادم الوكيل أو  موزع الحمولة.
 
-![استخدام الموزع](../images/admin-guides/using-proxy-or-balancer/using-balancer-en.png)
+![استخدام الموزع](../../images/admin-guides/using-proxy-or-balancer/using-balancer-en.png)
 
 يتم عرض عنوان IP الأصلي للطلب الذي تم تحديده بواسطة وحدة Wallarm في [تفاصيل الهجوم](../user-guides/events/check-attack.md#attacks) في لوحة التحكم Wallarm.
 
@@ -132,11 +132,11 @@
         ```
 2. افتح لوحة التحكم Wallarm وتأكد من أن عنوان IP العميل الأصلي يظهر في تفاصيل الهجوم:
 
-    ![عنوان IP منشئ الطلب](../images/request-ip-address.png)
+    ![عنوان IP منشئ الطلب](../../images/request-ip-address.png)
 
   إذا قرأ NGINX العنوان الأصلي من الرأس `X-Forwarded-For` (`X-Real-IP` أو ما شابه) ، سيتم أيضاً عرض قيمة الرأس في الهجوم الأصلي.
 
-    ![رأس X-Forwarded-For](../images/x-forwarded-for-header.png)
+    ![رأس X-Forwarded-For](../../images/x-forwarded-for-header.png)
 
 ## أمثلة على التهيئة
 

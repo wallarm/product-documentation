@@ -4,7 +4,7 @@
 
 トリガーは、[US](https://us1.my.wallarm.com/triggers)または[EU](https://my.wallarm.com/triggers)のCloudの**Triggers**セクションで設定します。
 
-![トリガーの設定セクション](../../images/user-guides/triggers/triggers-section.png)
+![トリガーの設定セクション](../../../images/user-guides/triggers/triggers-section.png)
 
 ## 動作の仕組み
 
@@ -32,7 +32,7 @@
 
 フィルターは[条件](#how-it-works)を詳細化するために使用します。例えば、ブルートフォース攻撃、SQLインジェクションなど特定タイプの攻撃に対するリアクションを設定できます。Wallarm Consoleインターフェイスで1つ以上のフィルターを追加し、それぞれの値を設定できます。
 
-![利用可能なフィルター](../../images/user-guides/triggers/trigger-filters.png)
+![利用可能なフィルター](../../../images/user-guides/triggers/trigger-filters.png)
 
 利用できるフィルターは次のとおりです。
 

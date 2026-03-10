@@ -30,7 +30,7 @@
 * إصدارات حزم Wallarm المُثبتة
 * مؤشر لتحديثات المكونات المتاحة
 
-![بطاقة عقدة CDN](../../images/user-guides/nodes/view-cdn-node-comp-vers.png)
+![بطاقة عقدة CDN](../../../images/user-guides/nodes/view-cdn-node-comp-vers.png)
 
 ## تحديث عنوان المنشأ للمورد المحمي
 
@@ -63,7 +63,7 @@
 1. انتظر حتى يتم نشر التغييرات. تُعرض حالة سجل CNAME الفعلية في Wallarm Console → **العقد** → **CDN** → **حذف العقدة**.
 1. حذف العقدة CDN من قائمة العقد.
 
-![حذف العقدة](../../images/user-guides/nodes/delete-cdn-node.png)
+![حذف العقدة](../../../images/user-guides/nodes/delete-cdn-node.png)
 
 ## مشكلات عقدة CDN
 

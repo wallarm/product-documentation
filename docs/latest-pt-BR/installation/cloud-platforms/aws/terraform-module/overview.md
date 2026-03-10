@@ -26,7 +26,7 @@ Para implantar o Wallarm para produção usando o módulo Terraform da AWS:
 1. Inscreva-se para o Console Wallarm na [Cloud EUA](https://us1.my.wallarm.com/signup) or [Cloud EU](https://my.wallarm.com/signup).
 1. Abra o Console Wallarm → **Nós** e crie o nó do tipo **Wallarm node**.
    
-   ![Criando um nó Wallarm](../../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+   ![Criando um nó Wallarm](../../../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
 1. Copie o token de nó gerado.
 1. Adicione o código do módulo `wallarm` à sua configuração Terraform:
 

@@ -18,7 +18,7 @@
 1. الصق القيمة المنسوخة لعنوان **HTTP Source Address (URL)** في حقل **HTTP Source Address (URL)**.
 1. اختر أنواع الأحداث لتحفيز الإشعارات.
 
-    ![إدماج Sumo Logic](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
+    ![إدماج Sumo Logic](../../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
 
     تفاصيل حول الأحداث المتاحة:
 

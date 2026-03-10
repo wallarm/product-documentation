@@ -11,7 +11,7 @@
 1. [Datadog bölgesini](https://docs.datadoghq.com/getting_started/site/) seçin.
 1. Bildirimleri tetikleyecek etkinlik türlerini seçin.
 
-    ![Datadog entegrasyonu](../../../images/user-guides/settings/integrations/add-datadog-integration.png)
+    ![Datadog entegrasyonu](../../../../images/user-guides/settings/integrations/add-datadog-integration.png)
 
     Mevcut etkinliklerle ilgili ayrıntılar:
 
@@ -21,7 +21,7 @@
 
     Test Datadog günlüğü:
 
-    ![Test Datadog günlüğü](../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
+    ![Test Datadog günlüğü](../../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
 
     Wallarm kayıtlarını diğer kayıtlar arasında bulmak için Datadog Logs hizmetinde `source:wallarm_cloud` arama etiketini kullanabilirsiniz.
 

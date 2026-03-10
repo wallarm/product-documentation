@@ -1,11 +1,11 @@
-[cdn-node-operation-scheme]:        ../../images/waf-installation/quickstart/cdn-node-scheme.png
+[cdn-node-operation-scheme]:        ../../../images/waf-installation/quickstart/cdn-node-scheme.png
 [data-to-wallarm-cloud-docs]:       ../rules/sensitive-data-rule.md
 [operation-modes-docs]:             ../../admin-en/configure-wallarm-mode.md
 [operation-mode-rule-docs]:         ../../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode
 [wallarm-cloud-docs]:               ../../about-wallarm/overview.md#cloud
-[cdn-node-creation-modal]:          ../../images/waf-installation/quickstart/cdn-node-creation-modal.png
-[cname-required-modal]:             ../../images/waf-installation/quickstart/cname-required-modal.png
-[attacks-in-ui]:                    ../../images/admin-guides/test-attacks-quickstart.png
+[cdn-node-creation-modal]:          ../../../images/waf-installation/quickstart/cdn-node-creation-modal.png
+[cname-required-modal]:             ../../../images/waf-installation/quickstart/cname-required-modal.png
+[attacks-in-ui]:                    ../../../images/admin-guides/test-attacks-quickstart.png
 [user-roles-docs]:                  ../settings/users.md
 [update-origin-ip-docs]:            #updating-the-origin-address-of-the-protected-resourse
 [rules-docs]:                       ../rules/rules.md
@@ -50,7 +50,7 @@ The following node properties and metrics are available:
 * Versions of installed Wallarm packages
 * Indicator of available component updates
 
-![CDN node card](../../images/user-guides/nodes/view-cdn-node-comp-vers.png)
+![CDN node card](../../../images/user-guides/nodes/view-cdn-node-comp-vers.png)
 
 ## Updating the origin address of the protected resourse
 
@@ -83,7 +83,7 @@ When the filtering node is deleted, the filtration of requests to your domain wi
 1. Wait for the changes to be propagated. The actual CNAME record status is displayed in Wallarm Console → **Nodes** → **CDN** → **Delete node**.
 1. Delete the CDN node from the node list.
 
-![Deleting the node](../../images/user-guides/nodes/delete-cdn-node.png)
+![Deleting the node](../../../images/user-guides/nodes/delete-cdn-node.png)
 
 ## CDN node troubleshooting
 

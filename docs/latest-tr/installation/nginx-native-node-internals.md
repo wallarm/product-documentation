@@ -26,19 +26,19 @@ Kubernetes ortamınız için bir NGINX Node dağıtım çözümü bulun:
     <div class="do-main">
 
         <a class="do-card" href="../../admin-en/installation-kubernetes-en/">
-            <img class="non-zoomable" src="../../images/platform-icons/ingress.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/ingress.svg" />
             <h3>NGINX Ingress Controller</h3>
             <p>Entegre Wallarm servisleriyle NGINX Ingress Controller'ı dağıtın</p>
         </a>
 
         <a class="do-card" href="../../installation/kubernetes/sidecar-proxy/deployment/">
-            <img class="non-zoomable" src="../../images/platform-icons/pod.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/pod.svg" />
             <h3>Sidecar</h3>
             <p>Pod güvenliği için Wallarm Sidecar controller'ını dağıtın</p>
         </a>
 
         <a class="do-card" href="../../installation/kubernetes/ebpf/deployment/">
-            <img class="non-zoomable" src="../../images/platform-icons/ebpf.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/ebpf.svg" />
             <h3>eBPF</h3>
             <p>eBPF teknolojisini kullanarak Kubernetes üzerinde bant dışı dağıtım</p>
         </a>
@@ -55,19 +55,19 @@ NGINX Node, aşağıda listelenen platformlar için kullanılır, ancak analiz g
     <div class="do-main">
 
         <a class="do-card" href="../../installation/connectors/apigee/">
-            <img class="non-zoomable" src="../../images/platform-icons/apigee.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/apigee.svg" />
             <h3>Apigee</h3>
             <p>Apigee üzerinde çalışan API'leri güvenceye alın</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/akamai-edgeworkers/">
-            <img class="non-zoomable" src="../../images/platform-icons/akamai.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/akamai.svg" />
             <h3>Akamai EdgeWorkers</h3>
             <p>Akamai EdgeWorkers üzerinde çalışan API'leri güvenceye alın</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/azion-edge/">
-            <img class="non-zoomable" src="../../images/platform-icons/azion-edge.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/azion-edge.svg" />
             <h3>Azion Edge</h3>
             <p>Azion Edge üzerinde çalışan API'leri güvenceye alın</p>
         </a>
@@ -82,43 +82,43 @@ Korunan API'lere giden trafik, API'ye ulaşmadan önce Wallarm NGINX Node örnek
     <div class="do-main">
 
         <a class="do-card" href="../../installation/inline/compute-instances/linux/all-in-one/">
-            <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/linux.svg" />
             <h3>Hepsi bir arada yükleyici</h3>
             <p>Düğümü Linux işletim sistemli bir makinede çalıştırın</p>
         </a>
 
         <div id="inline-public-clouds-aws" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/aws.svg" />
             <h3>Amazon Web Services</h3>
             <p>AWS üzerinde dağıtım için artifaktler</p>
         </div>
 
         <div id="inline-public-clouds-gcp" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/gcp.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/gcp.svg" />
             <h3>Google Cloud</h3>
             <p>GCP üzerinde dağıtım için artifaktler</p>
         </div>
 
         <div id="inline-public-clouds-azure" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/azure-cloud.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/azure-cloud.svg" />
             <h3>Microsoft Azure</h3>
             <p>Microsoft Azure üzerinde dağıtım için artifaktler</p>
         </div>
 
         <div id="inline-public-clouds-alibaba" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/alibaba-cloud.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/alibaba-cloud.svg" />
             <h3>Alibaba Cloud</h3>
             <p>Alibaba Cloud üzerinde dağıtım için artifaktler</p>
         </div>
 
         <a class="do-card" href=../../installation/heroku/docker-image/>
-            <img class="non-zoomable" src="../../images/platform-icons/heroku.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/heroku.svg" />
             <h3>Heroku</h3>
             <p>Bir Wallarm Docker imajı oluşturun ve Heroku üzerinde çalıştırın</p>
         </a>
         
         <a class="do-card" href="../../installation/inline/compute-instances/docker/nginx-based/">
-            <img class="non-zoomable" src="../../images/platform-icons/docker.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/docker.svg" />
             <h3>Docker imajı</h3>
             <p>Düğümü konteynerize ortamda çalıştırın</p>
         </a>
@@ -126,7 +126,7 @@ Korunan API'lere giden trafik, API'ye ulaşmadan önce Wallarm NGINX Node örnek
 
     <div class="do-nested" data-for="inline-public-clouds-aws">
         <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/aws.svg" />
             <h3>Amazon Web Services</h3>
             <p>AWS üzerinde dağıtım için artifaktler</p>
         </div>
@@ -149,7 +149,7 @@ Korunan API'lere giden trafik, API'ye ulaşmadan önce Wallarm NGINX Node örnek
 
     <div class="do-nested" data-for="inline-public-clouds-aws-terraform">
         <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/terraform.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/terraform.svg" />
             <h3>Terraform modülü</h3>
             <p>AWS üzerinde hat içi Wallarm dağıtımı için Terraform modülünü kullanın</p>
         </div>
@@ -168,7 +168,7 @@ Korunan API'lere giden trafik, API'ye ulaşmadan önce Wallarm NGINX Node örnek
 
     <div class="do-nested" data-for="inline-public-clouds-gcp">
         <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/gcp.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/gcp.svg" />
             <h3>Google Cloud</h3>
             <p>GCP üzerinde dağıtım için artifaktler</p>
         </div>
@@ -186,7 +186,7 @@ Korunan API'lere giden trafik, API'ye ulaşmadan önce Wallarm NGINX Node örnek
 
     <div class="do-nested" data-for="inline-public-clouds-azure">
         <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/azure-cloud.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/azure-cloud.svg" />
             <h3>Microsoft Azure</h3>
             <p>Microsoft Azure üzerinde dağıtım için artifaktler</p>
         </div>
@@ -199,7 +199,7 @@ Korunan API'lere giden trafik, API'ye ulaşmadan önce Wallarm NGINX Node örnek
 
     <div class="do-nested" data-for="inline-public-clouds-alibaba">
         <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/alibaba-cloud.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/alibaba-cloud.svg" />
             <h3>Alibaba Cloud</h3>
             <p>Alibaba Cloud üzerinde dağıtım için artifaktler</p>
         </div>
@@ -234,55 +234,55 @@ Native Node, aşağıdaki platformlarla herhangi bir sınırlama olmaksızın ç
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../../installation/connectors/mulesoft/">
-            <img class="non-zoomable" src="../../images/platform-icons/mulesoft.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/mulesoft.svg" />
             <h3>MuleSoft Mule Gateway</h3>
             <p>Mule Gateway tarafından yönetilen API'leri güvenceye almak için Wallarm'ı dağıtın</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/mulesoft-flex/">
-            <img class="non-zoomable" src="../../images/platform-icons/mulesoft-flex-gateway.png" />
+            <img class="non-zoomable" src="../../../images/platform-icons/mulesoft-flex-gateway.png" />
             <h3>MuleSoft Flex Gateway</h3>
             <p>Flex Gateway tarafından yönetilen API'leri güvenceye almak için Wallarm'ı dağıtın</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/aws-lambda/">
-            <img class="non-zoomable" src="../../images/platform-icons/aws-cloudfront.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/aws-cloudfront.svg" />
             <h3>CloudFront</h3>
             <p>Amazon CloudFront üzerinden iletilen trafiği güvenceye almak için Wallarm'ı dağıtın</p>
         </a>
         
         <a class="do-card" href="../../installation/connectors/cloudflare/">
-            <img class="non-zoomable" src="../../images/platform-icons/cloudflare.png" />
+            <img class="non-zoomable" src="../../../images/platform-icons/cloudflare.png" />
             <h3>Cloudflare</h3>
             <p>Cloudflare üzerinden çalışan trafiği güvenceye almak için Wallarm'ı dağıtın</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/kong-api-gateway/">
-            <img class="non-zoomable" src="../../images/platform-icons/kong-new.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/kong-new.svg" />
             <h3>Kong API Gateway</h3>
             <p>Kong Ingress Controller tarafından yönetilen API'leri güvenceye almak için Wallarm'ı dağıtın</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/istio/">
-            <img class="non-zoomable" src="../../images/platform-icons/istio.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/istio.svg" />
             <h3>Istio</h3>
             <p>Istio tarafından yönetilen API'leri güvenceye almak için Wallarm'ı in-line veya OOB olarak dağıtın</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/layer7-api-gateway/">
-            <img class="non-zoomable" src="../../images/platform-icons/layer7.png" />
+            <img class="non-zoomable" src="../../../images/platform-icons/layer7.png" />
             <h3>Broadcom Layer7 API Gateways</h3>
             <p>Layer7 API Gateways ile yönetilen API'leri güvenceye alın</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/fastly/">
-            <img class="non-zoomable" src="../../images/platform-icons/fastly.png" />
+            <img class="non-zoomable" src="../../../images/platform-icons/fastly.png" />
             <h3>Fastly</h3>
             <p>Fastly üzerinde çalışan API'leri güvenceye almak için Wallarm'ı dağıtın</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/ibm-api-connect/">
-            <img class="non-zoomable" src="../../images/platform-icons/ibm-api-connect.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/ibm-api-connect.svg" />
             <h3>IBM API Connect</h3>
             <p>IBM API Connect üzerinden yönetilen API'leri güvenceye almak için Wallarm'ı dağıtın</p>
         </a>
@@ -294,7 +294,7 @@ Native Node, aşağıdaki platformlarla herhangi bir sınırlama olmaksızın ç
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../../installation/oob/tcp-traffic-mirror/deployment/">
-            <img class="non-zoomable" src="../../images/platform-icons/tcp-mirror-analysis.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/tcp-mirror-analysis.svg" />
             <h3>TCP Trafik Yansıtma Analizi</h3>
             <p>TCP trafik yansıtma analizi için bant dışı dağıtım</p>
         </a>

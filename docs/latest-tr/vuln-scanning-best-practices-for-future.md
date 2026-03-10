@@ -1,6 +1,6 @@
 Güvenlik Açıklarının Tespiti ve Mitigasyonu için En İyi Uygulamalar
 
-## Threat Replay Testing için en iyi uygulamaları izleyin <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
+## Threat Replay Testing için en iyi uygulamaları izleyin <a href="../subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
 
 Wallarm'ın [güvenlik açıklarını tespit etmek](../about-wallarm/detecting-vulnerabilities.md) için kullandığı yöntemlerden biri **Threat Replay Testing**'dir.
 

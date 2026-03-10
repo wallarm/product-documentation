@@ -1,5 +1,5 @@
 [ptrav-attack-docs]: ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]: ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]: ../../../images/admin-guides/test-attacks-quickstart.png
 [link-wallarm-health-check]:        ../../admin-en/uat-checklist-en.md
 
 # ترقية عقدة العميل متعددة التواجد EOL
@@ -33,7 +33,7 @@
 !!! warning "إنشاء العقد العميل متعدد التواجد"
     أثناء إنشاء العقدة Wallarm ، يرجى اختيار خيار العقدة متعددة التواجد:
 
-    ![إنشاء العقد العميل متعدد التواجد](../../images/user-guides/nodes/create-multi-tenant-node.png)
+    ![إنشاء العقد العميل متعدد التواجد](../../../images/user-guides/nodes/create-multi-tenant-node.png)
 
 ## الخطوة 3: إعادة تكوين العدد المتعدد
 
@@ -107,7 +107,7 @@
 
         نسخ `clientid(s)` من العمود**ID** في واجهة مستخدم وحدة التحكم Wallarm:
         
-        ![معايرة المستأجرين في وحدة التحكم Wallarm](../../images/partner-waf-node/clients-selector-in-console-ann.png)
+        ![معايرة المستأجرين في وحدة التحكم Wallarm](../../../images/partner-waf-node/clients-selector-in-console-ann.png)
     === "من خلال إرسال طلب لAPI"
         1. إرسال طلب GET للطريق `/v2/partner_client`:
 

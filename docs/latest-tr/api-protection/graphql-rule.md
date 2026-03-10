@@ -1,6 +1,6 @@
 [api-discovery-enable-link]:        ../api-discovery/setup.md#enable
 
-# GraphQL API Koruması <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# GraphQL API Koruması <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm, temel [WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) abonelik planında bile GraphQL içindeki düzenli saldırıları (SQLi, RCE, [vb.](../attacks-vulns-list.md)) [varsayılan olarak](../user-guides/rules/request-processing.md#gql) tespit eder. Ancak, protokolün bazı yönleri, aşırı bilgi ifşası ve DoS ile ilgili [GraphQL’e özgü](../attacks-vulns-list.md#graphql-attacks) saldırıların uygulanmasına izin verir. Bu belge, **GraphQL policy** (GraphQL istekleri için bir dizi limit) belirleyerek API’lerinizi bu saldırılardan korumak için Wallarm’ın nasıl kullanılacağını açıklar.
 
@@ -24,7 +24,7 @@ Abonelik planınıza bağlı olarak, GraphQL API koruması için aşağıdaki ya
 * Mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) aboneliği)
 * Rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) aboneliği)
 
-## Mitigation control tabanlı koruma <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Mitigation control tabanlı koruma <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;"></a>
 
 !!! tip ""
     [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.2.0 veya üstünü gerektirir ve şu anda [Native Node](../installation/nginx-native-node-internals.md#native-node) tarafından desteklenmemektedir.
@@ -65,7 +65,7 @@ GraphQL policy’yi ayarlamak ve uygulamak için:
 
     Varsayılan olarak, bir policy maksimum POST istek sorgu boyutunu 100 KB, değer boyutunu 10 KB, sorgu derinliği ve toplu sorgu limitlerini 10, alias sayısını 5 olarak belirler; ayrıca introspection ve debug sorgularını reddeder. Ekran görüntüsünde gösterildiği gibi (not: yaygın meşru GraphQL sorgularınızın istatistiklerini dikkate alarak varsayılan değerleri kendi değerlerinizle değiştirebilirsiniz):
         
-    ![GraphQL eşik değerleri](../images/api-protection/mitigation-controls-graphql.png)
+    ![GraphQL eşik değerleri](../../images/api-protection/mitigation-controls-graphql.png)
 
 1. **Mitigation mode** bölümünde yapılacak işlemi ayarlayın.
 1. **Add**’e tıklayın.
@@ -74,7 +74,7 @@ GraphQL policy’yi ayarlamak ve uygulamak için:
 
 You can explore GraphQL policy violations (GraphQL attacks) in Wallarm Console → **Attacks** section. Use the GraphQL specific [search keys](../user-guides/search-and-filters/use-search.md#graphql-tags) or corresponding filters:
 
-![GraphQL attacks](../images/user-guides/rules/graphql-attacks.png)-->
+![GraphQL attacks](../../images/user-guides/rules/graphql-attacks.png)-->
 
 ### Mitigation control örnekleri
 
@@ -87,11 +87,11 @@ Bunu yapmak için:
 
 1. **GraphQL API protection** mitigation control’ü ekran görüntüsünde gösterildiği gibi ayarlayın (not: bunlar örnek değerlerdir - gerçek hayattaki kurallar için yaygın meşru GraphQL sorgularınızın istatistiklerini dikkate alarak kendi değerlerinizi tanımlamalısınız):
 
-    ![Uç noktalarınız için GraphQL Policy](../images/api-protection/mitigation-controls-graphql-1.png)
+    ![Uç noktalarınız için GraphQL Policy](../../images/api-protection/mitigation-controls-graphql-1.png)
 
 1. `example.com` için filtration mode `monitoring` durumunda ve GraphQL uç noktaları için `block` istiyorsanız, **Override filtration mode** rule’ünü ekran görüntüsünde gösterildiği gibi yapılandırın:
 
-    ![GraphQL policy engelleme işlemi](../images/user-guides/rules/graphql-rule-1-action.png)
+    ![GraphQL policy engelleme işlemi](../../images/user-guides/rules/graphql-rule-1-action.png)
 
 #### Belirli uç noktalar için policy'nin değiştirilmesi
 
@@ -101,11 +101,11 @@ Bunu yapmak için:
 
 1. **GraphQL API protection** mitigation control’ü ekran görüntüsünde gösterildiği gibi ayarlayın (not: bunlar örnek değerlerdir - gerçek hayattaki kurallar için yaygın meşru GraphQL sorgularınızın istatistiklerini dikkate alarak kendi değerlerinizi tanımlamalısınız):
 
-    ![Alt uç nokta için daha sıkı GraphQL policy](../images/api-protection/mitigation-controls-graphql-2.png)
+    ![Alt uç nokta için daha sıkı GraphQL policy](../../images/api-protection/mitigation-controls-graphql-2.png)
 
 1. `example.com/graphql` için filtration mode `block` ve `example.com/graphql/v2` için `monitoring` istiyorsanız, **Override filtration mode** rule’ünü ekran görüntüsünde gösterildiği gibi yapılandırın:
 
-    ![GraphQL policy engelleme işlemi](../images/user-guides/rules/graphql-rule-2-action.png)
+    ![GraphQL policy engelleme işlemi](../../images/user-guides/rules/graphql-rule-2-action.png)
 
 ## Rule tabanlı koruma
 

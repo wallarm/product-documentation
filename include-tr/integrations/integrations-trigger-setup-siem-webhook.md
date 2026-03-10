@@ -34,7 +34,7 @@ Wallarm Console arayüzünde bir veya daha fazla filtre seçin ve bunlar için d
 
 Bu adımda, seçilen uyarının gönderileceği entegrasyonu seçersiniz. Aynı anda birden fazla entegrasyon seçebilirsiniz.
 
-![Bir entegrasyon seçme](../../images/user-guides/triggers/select-integration.png)
+![Bir entegrasyon seçme](../../../images/user-guides/triggers/select-integration.png)
 
 ### Adım 4: Tetikleyiciyi kaydetme
 

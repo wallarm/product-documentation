@@ -1,11 +1,11 @@
-[cdn-node-operation-scheme]:        ../../images/waf-installation/quickstart/cdn-node-scheme.png
+[cdn-node-operation-scheme]:        ../../../images/waf-installation/quickstart/cdn-node-scheme.png
 [data-to-wallarm-cloud-docs]:       ../rules/sensitive-data-rule.md
 [operation-modes-docs]:             ../../admin-en/configure-wallarm-mode.md
 [operation-mode-rule-docs]:         ../rules/wallarm-mode-rule.md
 [wallarm-cloud-docs]:               ../../about-wallarm/overview.md#cloud
-[cdn-node-creation-modal]:          ../../images/waf-installation/quickstart/cdn-node-creation-modal.png
-[cname-required-modal]:             ../../images/waf-installation/quickstart/cname-required-modal.png
-[attacks-in-ui]:                    ../../images/admin-guides/test-attacks-quickstart.png
+[cdn-node-creation-modal]:          ../../../images/waf-installation/quickstart/cdn-node-creation-modal.png
+[cname-required-modal]:             ../../../images/waf-installation/quickstart/cname-required-modal.png
+[attacks-in-ui]:                    ../../../images/admin-guides/test-attacks-quickstart.png
 [user-roles-docs]:                  ../settings/users.md
 [update-origin-ip-docs]:            #updating-the-origin-address-of-the-protected-resource
 [rules-docs]:                       ../rules/rules.md
@@ -50,7 +50,7 @@ As seguintes propriedades e métricas do nó estão disponíveis:
 * Versões dos pacotes Wallarm instalados
 * Indicador de atualizações de componentes disponíveis
 
-![Cartão do nó CDN](../../images/user-guides/nodes/view-cdn-node-comp-vers.png)
+![Cartão do nó CDN](../../../images/user-guides/nodes/view-cdn-node-comp-vers.png)
 
 ## Atualizando o endereço de origem do recurso protegido
 
@@ -83,7 +83,7 @@ Quando o nó de filtragem é excluído, a filtragem de solicitações para o seu
 1. Aguarde as mudanças serem propagadas. O status atual do registro CNAME é exibido em Console Wallarm → **Nós** → **CDN** → **Excluir nó**.
 1. Exclua o nó CDN da lista de nós.
 
-![Excluindo o nó](../../images/user-guides/nodes/delete-cdn-node.png)
+![Excluindo o nó](../../../images/user-guides/nodes/delete-cdn-node.png)
 
 ## Solução de problemas do nó CDN
 

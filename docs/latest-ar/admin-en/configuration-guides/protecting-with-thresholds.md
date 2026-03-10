@@ -37,7 +37,7 @@
     
         ستقوم عقدة Wallarm بحجب الطلبات الصادرة من IPs المدرجة في القائمة الرمادية فقط إذا كانت الطلبات تحتوي على علامات الهجوم [التحقق من صحة الإدخال](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks)، [ال `vpatch`](../../user-guides/rules/vpatch-rule.md) أو [المخصصة](../../user-guides/rules/regex-rule.md).
 
-    ![المشغل الافتراضي](../../images/user-guides/triggers/trigger-example-default.png)
+    ![المشغل الافتراضي](../../../images/user-guides/triggers/trigger-example-default.png)
         
 1. احفظ المشغل وانتظر [اكتمال مزامنة السحابة والعقدة](../configure-cloud-node-synchronization-en.md) (عادةً ما يستغرق الأمر 2-4 دقائق).
 
@@ -71,6 +71,6 @@
 1. افتح وحدة تحكم Wallarm → **قوائم IP** → **القائمة الرمادية** وتحقق من أن عنوان IP الذي تم إرسال الطلبات منه مدرج في القائمة الرمادية لمدة ساعة واحدة.
 1. افتح قسم **الهجمات** وتحقق من عرض الهجمات في القائمة:
 
-    ![ثلاث حمولات ضارة في واجهة المستخدم](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
+    ![ثلاث حمولات ضارة في واجهة المستخدم](../../../images/user-guides/triggers/test-3-attack-vectors-events.png)
 
     للبحث عن الهجمات، يمكنك استخدام العلامة `multiple_payloads` [بحث](../../user-guides/search-and-filters/use-search.md#search-by-attack-type).

@@ -1,7 +1,7 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
-[se-connector-setup-img]:           ../../images/waf-installation/se-connector-setup.png
+[se-connector-setup-img]:           ../../../images/waf-installation/se-connector-setup.png
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
@@ -23,11 +23,11 @@ The Wallarm connector for Azure APIM supports the **synchronous** and **asynchro
 === "Synchronous traffic analysis"
     In [synchronous (inline)](../inline/overview.md) mode, the policy intercepts requests and sends them to the Wallarm Node for inspection. Based on the Node's [filtration mode](../../admin-en/configure-wallarm-mode.md), malicious requests may be blocked with `403`, providing real-time threat mitigation.
 
-    ![Azure APIM with Wallarm policy, synchronous traffic analysis](../../images/waf-installation/gateways/azure-apim/traffic-flow-azure-apim-inline.png)
+    ![Azure APIM with Wallarm policy, synchronous traffic analysis](../../../images/waf-installation/gateways/azure-apim/traffic-flow-azure-apim-inline.png)
 === "Asynchronous traffic analysis"
     In [asynchronous (out-of-band)](../oob/overview.md) mode, traffic is mirrored to the Node without affecting the original flow. Malicious requests are logged in Wallarm Console but not blocked.
 
-    ![Azure APIM with Wallarm policy, asynchronous traffic analysis](../../images/waf-installation/gateways/azure-apim/traffic-flow-azure-apim-oob.png)
+    ![Azure APIM with Wallarm policy, asynchronous traffic analysis](../../../images/waf-installation/gateways/azure-apim/traffic-flow-azure-apim-oob.png)
 
 ## Use cases
 
@@ -95,7 +95,7 @@ Define the following [named values in Azure API Management](https://learn.micros
 
 The example below shows how the named values look in the Azure Portal:
 
-![Named values for Wallarm in Azure APIM](../../images/waf-installation/gateways/azure-apim/create-named-values.png)
+![Named values for Wallarm in Azure APIM](../../../images/waf-installation/gateways/azure-apim/create-named-values.png)
 
 ### 3. Obtain and deploy Wallarm policy fragments
 
@@ -123,14 +123,14 @@ The steps below use the Azure Portal UI, but you can also deploy policy fragment
 
     Example of a request policy fragment in Azure Portal:
 
-    ![Wallarm request policy fragment](../../images/waf-installation/gateways/azure-apim/request-policy-fragment.png)
+    ![Wallarm request policy fragment](../../../images/waf-installation/gateways/azure-apim/request-policy-fragment.png)
 1. Create a response policy fragment using `wallarm-sync-response.xml` for synchronous mode or `wallarm-async-response.xml` for asynchronous mode.
    
     You can name the fragment consistently with the file: `wallarm-sync-response` or `wallarm-async-response`.
 
     Example of a response response fragment in Azure Portal:
 
-    ![Wallarm response policy fragment](../../images/waf-installation/gateways/azure-apim/response-policy-fragment.png)
+    ![Wallarm response policy fragment](../../../images/waf-installation/gateways/azure-apim/response-policy-fragment.png)
 
 ### 4. Apply Wallarm policy fragments to APIs
 
@@ -222,7 +222,7 @@ To apply the created fragments to individual APIs or operations:
 
 Example of per-API application in Azure Portal:
 
-![Wallarm policy fragment applied to individual API on Azure APIM](../../images/waf-installation/gateways/azure-apim/policies-for-indiv-api.png)
+![Wallarm policy fragment applied to individual API on Azure APIM](../../../images/waf-installation/gateways/azure-apim/policies-for-indiv-api.png)
 
 ## Testing
 
@@ -232,31 +232,31 @@ Test the deployed policy fragments with both legitimate and malicious traffic.
 
 1. In Azure Portal, go to your API → **Test** → select an operation → enter valid parameters → **Trace**:
 
-    ![Azure APIM Trace legitimate request](../../images/waf-installation/gateways/azure-apim/trace-legitimate-request.png)
+    ![Azure APIM Trace legitimate request](../../../images/waf-installation/gateways/azure-apim/trace-legitimate-request.png)
 
 1. Review the HTTP response trace - you should see the inbound policy `request-forwarder`:
 
-    ![Azure APIM Trace legitimate request - view log on request forwarded to Wallarm Node](../../images/waf-installation/gateways/azure-apim/trace-legitimate-request-result.png)
+    ![Azure APIM Trace legitimate request - view log on request forwarded to Wallarm Node](../../../images/waf-installation/gateways/azure-apim/trace-legitimate-request-result.png)
 
 1. In Wallarm Console → [**API Sessions**](../../api-sessions/overview.md), verify that the legitimate request is displayed:
 
-    ![Wallarm Console: legitimate request in API Sessions](../../images/waf-installation/gateways/azure-apim/legitimate-request-in-sessions.png)
+    ![Wallarm Console: legitimate request in API Sessions](../../../images/waf-installation/gateways/azure-apim/legitimate-request-in-sessions.png)
 
 ### Malicious traffic
 
 1. Send a request with a test [SQLi](../../attacks-vulns-list.md#sql-injection) attack by adding the query parameter `x='+OR+1=1`:
 
-    ![Azure APIM Trace SQLi attack](../../images/waf-installation/gateways/azure-apim/trace-sqli-attack.png)
+    ![Azure APIM Trace SQLi attack](../../../images/waf-installation/gateways/azure-apim/trace-sqli-attack.png)
 
     * Synchronous mode with [blocking enabled](../../admin-en/configure-wallarm-mode.md): the request is blocked with `403`.
     * Synchronous mode (monitoring): request reaches the API and is logged in Wallarm Console.  
     * Asynchronous mode: request reaches the API and is logged in Wallarm Console.
 1. In Wallarm Console → **API Sessions**, verify that the malicious request is logged: 
 
-    ![Wallarm Console: malicious request in API Sessions](../../images/waf-installation/gateways/azure-apim/attack-in-sessions.png)
+    ![Wallarm Console: malicious request in API Sessions](../../../images/waf-installation/gateways/azure-apim/attack-in-sessions.png)
 1. In Wallarm Console → **Attacks**, confirm that the attack is listed:
 
-    ![SQLi attacks in the interface (Azure APIM connector for Wallarm)](../../images/waf-installation/gateways/azure-apim/attack-in-attack-section.png)
+    ![SQLi attacks in the interface (Azure APIM connector for Wallarm)](../../../images/waf-installation/gateways/azure-apim/attack-in-attack-section.png)
 
     The attack will appear 3 times due to [APIM headers](#limitations).
 
@@ -267,7 +267,7 @@ If the Node is deployed in synchronous mode with [blocking enabled](../../admin-
 1. Navigate to Azure Portal → **API Management** → **APIs** → **Policy fragments**.
 1. Open the `wallarm-sync-request` fragment and edit the `<set-body>` section:
 
-![Customizing Wallarm block page for Azure APIM connector](../../images/waf-installation/gateways/azure-apim/customize-block-page.png)
+![Customizing Wallarm block page for Azure APIM connector](../../../images/waf-installation/gateways/azure-apim/customize-block-page.png)
 
 ## Upgrading the policies
 

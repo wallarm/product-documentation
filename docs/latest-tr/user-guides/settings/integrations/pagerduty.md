@@ -30,7 +30,7 @@ Wallarm UI'de:
 1. **Integration Key** değerini ilgili alana yapıştırın.
 1. Bildirimleri tetikleyecek olay türlerini seçin.
 
-    ![PagerDuty entegrasyonu](../../../images/user-guides/settings/integrations/add-pagerduty-integration.png)
+    ![PagerDuty entegrasyonu](../../../../images/user-guides/settings/integrations/add-pagerduty-integration.png)
 
     Kullanılabilir olaylara ilişkin ayrıntılar:
       
@@ -40,7 +40,7 @@ Wallarm UI'de:
 
     Bu, `[Test message]` önekiyle test bildirimleri gönderecektir:
 
-    ![Test PagerDuty bildirimi](../../../images/user-guides/settings/integrations/test-pagerduty-scope-changed.png)
+    ![Test PagerDuty bildirimi](../../../../images/user-guides/settings/integrations/test-pagerduty-scope-changed.png)
 
 1. **Add integration**'a tıklayın.
 

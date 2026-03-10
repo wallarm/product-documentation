@@ -11,7 +11,7 @@
 1. انسخ عنوان URL لـ Webhook المقدم والصق القيمة في حقل **عنوان URL للـ Webhook** في واجهة مستخدم Wallarm.
 1. اختر أنواع الأحداث لتشغيل الإشعارات.
 
-    ![تكامل Slack](../../../images/user-guides/settings/integrations/add-slack-integration.png)
+    ![تكامل Slack](../../../../images/user-guides/settings/integrations/add-slack-integration.png)
 
     التفاصيل حول الأحداث المتاحة:
       
@@ -43,7 +43,7 @@
 
 إذا تم إرسال ضربتين SQLi أو أكثر إلى المورد المحمي، فسيتم إرسال إشعار عن هذا الحدث إلى قناة Slack.
 
-![مثال على تشغيل الإشعار إلى Slack](../../../images/user-guides/triggers/trigger-example1.png)
+![مثال على تشغيل الإشعار إلى Slack](../../../../images/user-guides/triggers/trigger-example1.png)
 
 **لتجربة المشغل:**
 
@@ -81,16 +81,16 @@ https://my.wallarm.com/attacks?q=attacks&time_from=XXXXXXXXXX&time_to=XXXXXXXXXX
 
 إذا تمت إضافة مستخدم جديد بدور **المدير** أو **المحلل** إلى حساب الشركة في وحدة التحكم Wallarm، سيتم إرسال إشعار عن هذا الحدث إلى العنوان البريدي المُحدد في التكامل وإلى قناة Slack.
 
-![مثال على تشغيل الإشعار إلى Slack وعبر البريد الإلكتروني](../../../images/user-guides/triggers/trigger-example2.png)
+![مثال على تشغيل الإشعار إلى Slack وعبر البريد الإلكتروني](../../../../images/user-guides/triggers/trigger-example2.png)
 
 **لتجربة المشغل:**
 
 1. افتح وحدة التحكم Wallarm → **الإعدادات** → **المستخدمون** وأضف مستخدمًا جديدًا. على سبيل المثال:
 
-    ![المستخدم المضاف](../../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)
+    ![المستخدم المضاف](../../../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)
 2. افتح صندوق البريد الوارد الخاص بك وتحقق من استلام الرسالة التالية:
 
-    ![البريد الإلكتروني حول مستخدم جديد تمت إضافته](../../../images/user-guides/triggers/test-new-user-email-message.png)
+    ![البريد الإلكتروني حول مستخدم جديد تمت إضافته](../../../../images/user-guides/triggers/test-new-user-email-message.png)
 3. افتح قناة Slack وتحقق من استلام الإشعار التالي من المستخدم **wallarm**:
 
     ```

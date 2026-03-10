@@ -1,7 +1,7 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
-[se-connector-setup-img]:           ../../images/waf-installation/se-connector-setup.png
+[se-connector-setup-img]:           ../../../images/waf-installation/se-connector-setup.png
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
@@ -22,9 +22,9 @@ Wallarm’ı Cloudflare için bir bağlayıcı olarak kullanmak için, **Wallarm
 
     Wallarm kötü amaçlı etkinliği engelleyecek şekilde yapılandırılmışsa:
 
-    ![Wallarm ile Cloudflare - satır içi şema](../../images/waf-installation/gateways/cloudflare/cloudflare-traffic-flow-inline.png)
+    ![Wallarm ile Cloudflare - satır içi şema](../../../images/waf-installation/gateways/cloudflare/cloudflare-traffic-flow-inline.png)
 === "Bant dışı trafik akışı"
-    ![Wallarm ile Cloudflare - bant dışı şema](../../images/waf-installation/gateways/cloudflare/cloudflare-traffic-flow-oob.png)
+    ![Wallarm ile Cloudflare - bant dışı şema](../../../images/waf-installation/gateways/cloudflare/cloudflare-traffic-flow-oob.png)
 
 ## Kullanım senaryoları
 
@@ -74,13 +74,13 @@ Trafiği Wallarm Node’a yönlendiren bir Cloudflare worker çalıştırmak iç
 1. [Eşzamansız (bant dışı)](../oob/overview.md) mod kullanıyorsanız, `wallarm_mode` parametresini `async` olarak ayarlayın.
 1. Gerekirse, [diğer parametreleri](cloudflare.md#configuration-options) değiştirin.
 
-    ![Cloudflare worker](../../images/waf-installation/gateways/cloudflare/worker-deploy.png)
+    ![Cloudflare worker](../../../images/waf-installation/gateways/cloudflare/worker-deploy.png)
 1. **Website** → your domain içinde, **Workers Routes** → **Add route** yoluna gidin:
 
     * **Route** alanında, Wallarm tarafından analiz edilmek üzere yönlendirilecek yolları belirtin (örn., tüm yollar için `*.example.com/*`).
     * **Worker** alanında, oluşturduğunuz Wallarm worker’ı seçin.
 
-    ![Cloudflare rota ekle](../../images/waf-installation/gateways/cloudflare/add-route.png)
+    ![Cloudflare rota ekle](../../../images/waf-installation/gateways/cloudflare/add-route.png)
 
 ## Test
 
@@ -115,7 +115,7 @@ Worker kodunda aşağıdaki parametreleri belirtebilirsiniz:
 ??? info "Wallarm tarafından sağlanan hata sayfasını göster"
     HTTP 403 yanıtlarıyla döndürülen, Wallarm tarafından sağlanan hata sayfası aşağıdaki gibidir:
 
-    ![Wallarm engelleme sayfası](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+    ![Wallarm engelleme sayfası](../../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
 ## Cloudflare worker’ı yükseltme
 

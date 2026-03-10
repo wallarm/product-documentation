@@ -100,7 +100,7 @@
 
 Wallarmが提供するサンプルのブロッキングページは次のとおりです:
 
-![Wallarmのブロッキングページ](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+![Wallarmのブロッキングページ](../../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
 このサンプルページをカスタマイズの出発点として用い、次のような拡張が可能です:
 

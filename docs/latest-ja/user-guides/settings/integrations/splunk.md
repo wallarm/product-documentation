@@ -1,4 +1,4 @@
-[splunk-dashboard-by-wallarm-img]: ../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
+[splunk-dashboard-by-wallarm-img]: ../../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
 
 #   Splunk
 
@@ -23,7 +23,7 @@ Wallarm UIで:
 1. SplunkインスタンスのHEC URIとポート番号を**HEC URI:PORT**フィールドに貼り付けます。例えば: `https://hec.splunk.com:8088`。
 1. 通知をトリガーするイベントタイプを選択します。
 
-    ![Splunkインテグレーション](../../../images/user-guides/settings/integrations/add-splunk-integration.png)
+    ![Splunkインテグレーション](../../../../images/user-guides/settings/integrations/add-splunk-integration.png)
 
     利用可能なイベントの詳細:
 

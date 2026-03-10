@@ -2,13 +2,13 @@
 
 Wallarm Cloud-Native WAAP (Web Application & API Protection) provides advanced protection for applications and APIs in any customer environment. Wallarm's WAAP supports multiple API protocols, such as REST, SOAP, GraphQL, and others, and implies a deep packet inspection to fully cover [OWASP Top 10](https://owasp.org/www-project-top-ten/) and more. WAAP provides high accuracy in detecting [various threats](../attacks-vulns-list.md), including 0-days, and a low number of [false positives](../about-wallarm/protecting-against-attacks.md#false-positives). This allows you to quickly and effectively protect your infrastructure.
 
-![Attack by protocols](../images/user-guides/dashboard/api-protocols.png)
+![Attack by protocols](../../images/user-guides/dashboard/api-protocols.png)
 
 ## General principles
 
 Traffic is handled by two components: Wallarm filtering nodes and Wallarm Cloud. Wallarm filtering nodes are deployed in the customer's infrastructure and are responsible for analyzing traffic and blocking attacks. The collected attack statistics are sent to Wallarm Cloud for statistical analysis and event processing. Wallarm Cloud is also responsible for centralized management and integration with other security tools.
 
-![!Arch scheme1](../images/about-wallarm-waf/overview/filtering-node-cloud.png)
+![!Arch scheme1](../../images/about-wallarm-waf/overview/filtering-node-cloud.png)
 
 Wallarm supports [various deployment options](../installation/supported-deployment-options.md), including public cloud, on-premises, full SaaS deployment, and integrating with Kubernetes, Gateway APIs, Security Edges, etc.
 

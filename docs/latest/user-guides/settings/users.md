@@ -3,18 +3,18 @@
 [link-glossary-incident]:       ../../glossary-en.md#security-incident
 [link-glossary-vulnerability]:  ../../glossary-en.md#security-issue-vulnerability
 
-[img-configure-user]:       ../../images/user-guides/settings/configure-user.png
-[img-disabled-users]:       ../../images/user-guides/settings/disabled-users.png
-[img-search-user]:          ../../images/user-guides/settings/search-users.png
-[img-add-user]:             ../../images/user-guides/settings/integrations/webhook-examples/adding-user.png
-[img-add-user-invitation-link]: ../../images/user-guides/settings/invite-user-by-link.png
-[img-user-menu]:            ../../images/user-guides/settings/user-menu.png
-[img-disabled-user-menu]:   ../../images/user-guides/settings/disabled-user-menu.png
-[img-edit-user]:            ../../images/user-guides/settings/edit-user.png
-[img-user-disable-2fa]:     ../../images/user-guides/settings/users-disable-2fa.png
-[img-user-menu-disable-2fa]:    ../../images/user-guides/settings/disable-2fa-button.png
-[img-disable-delete-multi]:     ../../images/user-guides/settings/users-multi-disable-access.png
-[img-enable-delete-multi]:      ../../images/user-guides/settings/users-multi-enable-access.png    
+[img-configure-user]:       ../../../images/user-guides/settings/configure-user.png
+[img-disabled-users]:       ../../../images/user-guides/settings/disabled-users.png
+[img-search-user]:          ../../../images/user-guides/settings/search-users.png
+[img-add-user]:             ../../../images/user-guides/settings/integrations/webhook-examples/adding-user.png
+[img-add-user-invitation-link]: ../../../images/user-guides/settings/invite-user-by-link.png
+[img-user-menu]:            ../../../images/user-guides/settings/user-menu.png
+[img-disabled-user-menu]:   ../../../images/user-guides/settings/disabled-user-menu.png
+[img-edit-user]:            ../../../images/user-guides/settings/edit-user.png
+[img-user-disable-2fa]:     ../../../images/user-guides/settings/users-disable-2fa.png
+[img-user-menu-disable-2fa]:    ../../../images/user-guides/settings/disable-2fa-button.png
+[img-disable-delete-multi]:     ../../../images/user-guides/settings/users-multi-disable-access.png
+[img-enable-delete-multi]:      ../../../images/user-guides/settings/users-multi-enable-access.png    
 
 # Managing Users
 
@@ -72,7 +72,7 @@ To define custom permissions
 1. Select **Edit user settings** from the user's menu.
 1. In the role field, select **Custom permissions**, set and save.
 
-![User - custom permissions](../../images/user-guides/settings/user-custom-permissions.png)
+![User - custom permissions](../../../images/user-guides/settings/user-custom-permissions.png)
 
 Note that:
 
@@ -143,7 +143,7 @@ You can enforce all company users to use two-factor authentication (2FA). To do 
 1. Open Wallarm Console → **Settings** → **General**.
 1. In the **Sign-in management** section, select the **Enforce two-factor authentication for all company users** option and confirm.
 
-![2FA - Enabling for all company users](../../images/user-guides/settings/2fa-enforce.png)
+![2FA - Enabling for all company users](../../../images/user-guides/settings/2fa-enforce.png)
 
 Once enabled, all users of your company account will have to set up 2FA before they can log in without an option of bypassing: on the next login they will be informed about 2FA set to be obligatory and will be provided with the 2FA configuration options. However, enabling the option does not affect the current user sessions.
 
@@ -172,14 +172,14 @@ Team members interested in these notifications must set up their own triggers.
 
 If a new user with the **Administrator** or **Analyst** role is added to the company account in Wallarm Console, notification about this event will be sent to the email address specified in the integration and to the Slack channel.
 
-![Example of a trigger sending the notification to Slack and by email](../../images/user-guides/triggers/trigger-example2.png)
+![Example of a trigger sending the notification to Slack and by email](../../../images/user-guides/triggers/trigger-example2.png)
 
 **To test the trigger:**
 
 1. Open the Wallarm Console → **Settings** → **Users** and add a new user.
 2. Open your email Inbox and check that the following message received:
 
-    ![Email about new user added](../../images/user-guides/triggers/test-new-user-email-message.png)
+    ![Email about new user added](../../../images/user-guides/triggers/test-new-user-email-message.png)
 3. Open the Slack channel and check that the following notification from the user **wallarm** received:
 
     ```
@@ -205,4 +205,4 @@ If a new user with the **Administrator** or **Analyst** role is added to the com
 
 **Administrator** and **Global Administrator** [roles](users.md#user-roles) can set up logout timeouts for company account in **Settings** → **General**. Settings will affect all account users. Idle and absolute timeouts can be set.
 
-![General tab](../../images/user-guides/settings/general-tab.png)
+![General tab](../../../images/user-guides/settings/general-tab.png)

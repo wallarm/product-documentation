@@ -16,4 +16,4 @@ Entegrasyon kartı üzerinden zaten kurduğunuz bildirimlere ek olarak, Wallarm 
 
 Koşulu ayrıntılandırmak için bir veya daha fazla filtre ekleyebilirsiniz. Koşul ve filtreler ayarlandıktan sonra, seçilen uyarının gönderileceği entegrasyonu seçin. Aynı anda birden fazla entegrasyon seçebilirsiniz.
 
-![Bir entegrasyon seçme](../../../images/user-guides/triggers/select-integration.png)
+![Bir entegrasyon seçme](../../../../images/user-guides/triggers/select-integration.png)

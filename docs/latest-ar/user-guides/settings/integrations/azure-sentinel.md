@@ -23,7 +23,7 @@
     بدون اسم، يتم إنشاء جداول منفصلة لكل نوع حدث.
 1. اختر أنواع الأحداث لتشغيل الإشعارات.
 
-    ![تكامل Sentinel](../../../images/user-guides/settings/integrations/add-sentinel-integration.png)
+    ![تكامل Sentinel](../../../../images/user-guides/settings/integrations/add-sentinel-integration.png)
 
     تفاصيل حول الأحداث المتاحة:
 
@@ -33,7 +33,7 @@
 
     يمكنك العثور على سجلات Wallarm في مساحة عملك Microsoft → **Logs** → **Custom Logs**، على سبيل المثال، سجل اختبار `create_user_CL` في Microsoft Sentinel يظهر كما يلي:
 
-    ![رسالة اختبار Sentinel](../../../images/user-guides/settings/integrations/test-sentinel-new-vuln.png)
+    ![رسالة اختبار Sentinel](../../../../images/user-guides/settings/integrations/test-sentinel-new-vuln.png)
 
     !!! info "تأخير في إرسال البيانات إلى مساحات العمل الجديدة"
         قد يستغرق إنشاء مساحة عمل على Sentinel لتكامل Wallarm ما يصل إلى ساعة واحدة لكي تعمل جميع الخدمات. يمكن أن يؤدي هذا التأخير إلى ظهور أخطاء أثناء اختبار التكامل واستخدامه. إذا كانت جميع إعدادات التكامل صحيحة لكن الأخطاء تستمر في الظهور، يُرجى المحاولة مرة أخرى بعد ساعة واحدة.

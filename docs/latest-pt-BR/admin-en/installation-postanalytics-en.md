@@ -1,7 +1,7 @@
-[tarantool-status]:           ../images/tarantool-status.png
+[tarantool-status]:           ../../images/tarantool-status.png
 [configure-selinux-instr]:    configure-selinux.md
 [configure-proxy-balancer-instr]:   configuration-guides/access-to-wallarm-api-via-proxy.md
-[img-wl-console-users]:             ../images/check-user-no-2fa.png
+[img-wl-console-users]:             ../../images/check-user-no-2fa.png
 [wallarm-token-types]:              ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 
 # Instalação do Módulo Postanalytics Separado
@@ -27,9 +27,9 @@ O processamento de solicitações no nó Wallarm consiste em duas etapas:
 Os esquemas abaixo representam a interação do módulo em dois cenários: quando instalado no mesmo servidor e em servidores diferentes.
 
 === "NGINX-Wallarm e pós-análise em um servidor"
-    ![Fluxo de tráfego entre pós-análise e nginx-wallarm](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-the-same-server.png)
+    ![Fluxo de tráfego entre pós-análise e nginx-wallarm](../../images/waf-installation/separate-postanalytics/processing-postanalytics-on-the-same-server.png)
 === "NGINX-Wallarm e pós-análise em servidores diferentes"
-    ![Fluxo de tráfego entre pós-análise e nginx-wallarm](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-different-servers.png)
+    ![Fluxo de tráfego entre pós-análise e nginx-wallarm](../../images/waf-installation/separate-postanalytics/processing-postanalytics-on-different-servers.png)
 
 ## Métodos de instalação
 
@@ -184,7 +184,7 @@ curl http://localhost/etc/passwd
 
 Se os módulos NGINX‑Wallarm e pós-análise separados estiverem configurados corretamente, o ataque será enviado para a nuvem Wallarm e exibido na seção **Eventos** do Console Wallarm:
 
-![Ataques na interface](../images/admin-guides/test-attacks-quickstart.png)
+![Ataques na interface](../../images/admin-guides/test-attacks-quickstart.png)
 
 Se o ataque não foi enviado para a Nuvem, por favor, verifique se não há erros na operação dos serviços:
 
@@ -310,7 +310,7 @@ Instale o pacote `wallarm-node-tarantool` do repositório Wallarm para o módulo
 
 O módulo de pós-análise interage com a Cloud Wallarm. É necessário criar o nó Wallarm para o módulo de pós-análise e conectar esse nó à Cloud. Ao conectar, você pode definir o nome do nó de pós-análise, sob o qual ele será exibido na UI do Console Wallarm e colocar o nó no **grupo de nós** apropriado (usado para organizar logicamente os nós na UI). É **recomendado** usar o mesmo grupo de nós para o nó que processa o tráfego inicial e o nó que realiza a pós-análise.
 
-![Nós agrupados](../images/user-guides/nodes/grouped-nodes.png)
+![Nós agrupados](../../images/user-guides/nodes/grouped-nodes.png)
 
 Para fornecer acesso ao nó, você precisa gerar um token no lado da Cloud e especificá-lo na máquina com os pacotes do nó.
 
@@ -517,7 +517,7 @@ curl http://localhost/etc/passwd
 
 Se os módulos NGINX‑Wallarm e pós-análise separados estiverem configurados corretamente, o ataque será enviado para a nuvem Wallarm e exibido na seção **Eventos** do Console Wallarm:
 
-![Ataques na interface](../images/admin-guides/test-attacks-quickstart.png)
+![Ataques na interface](../../images/admin-guides/test-attacks-quickstart.png)
 
 Se o ataque não foi enviado para a Nuvem, por favor, verifique se não há erros na operação dos serviços:
 

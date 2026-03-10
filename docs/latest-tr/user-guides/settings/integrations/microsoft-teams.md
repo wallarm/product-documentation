@@ -11,7 +11,7 @@
 1. Sağlanan Webhook URL’sini kopyalayın ve değeri Wallarm Console içindeki **Webhook URL** alanına yapıştırın.
 1. Bildirimleri tetikleyecek olay türlerini seçin.
 
-      ![MS Teams entegrasyonu](../../../images/user-guides/settings/integrations/add-ms-teams-integration.png)
+      ![MS Teams entegrasyonu](../../../../images/user-guides/settings/integrations/add-ms-teams-integration.png)
     
       Mevcut olaylar hakkında ayrıntılar:
       

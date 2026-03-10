@@ -25,7 +25,7 @@ Pasif tespit, istekler ve yanıtlar dahil olmak üzere gerçek trafiği analiz e
 
 Pasif güvenlik açığı tespiti varsayılan olarak etkindir.
 
-### Threat Replay Testing <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
+### Threat Replay Testing <a href="../subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
 Wallarm’ın Threat Replay Testing özelliği saldırganları kendi sızma test uzmanlarınıza dönüştürür. İlk saldırı girişimlerini analiz eder, ardından aynı saldırının istismar edilebileceği diğer yolları keşfeder. Bu, orijinal saldırganların bile bulamadığı zayıf noktaları ortaya çıkarır. [Daha fazla bilgi](../vulnerability-detection/threat-replay-testing/overview.md)
 
@@ -73,11 +73,11 @@ Tespit edilen tüm güvenlik açıkları Wallarm Console → **Vulnerabilities**
 * Güvenlik açığı durum doğrulamasını çalıştırın: hâlâ aktif mi yoksa uygulama tarafında giderildi mi
 * Güvenlik açıklarını kapatın veya yanlış pozitif olarak işaretleyin
 
-![Vulnerabilities bölümü](../images/user-guides/vulnerabilities/check-vuln.png)
+![Vulnerabilities bölümü](../../images/user-guides/vulnerabilities/check-vuln.png)
 
 Wallarm platformunun [**API Discovery** modülünü](../api-discovery/overview.md) kullanıyorsanız, güvenlik açıkları keşfedilen API uç noktalarıyla ilişkilendirilir, örneğin:
 
-![API Discovery - Risk score](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
+![API Discovery - Risk score](../../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 
 Güvenlik açıklarını yönetme hakkında daha fazla bilgi için, [güvenlik açıklarıyla çalışma](../user-guides/vulnerabilities.md) talimatlarına bakın.
 

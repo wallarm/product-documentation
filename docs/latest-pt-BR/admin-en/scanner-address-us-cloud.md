@@ -1,6 +1,6 @@
 [file-ips-list]: ../downloads/scanner-ip-addresses-us.txt
 
-# Endereços do Scanner para o US Cloud <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Endereços do Scanner para o US Cloud <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 !!! info
     Esta lista só funciona para usuários que utilizam o US Cloud <https://us1.my.wallarm.com>.

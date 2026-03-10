@@ -3,18 +3,18 @@
 [link-glossary-incident]:       ../../glossary-en.md#security-incident
 [link-glossary-vulnerability]:  ../../glossary-en.md#vulnerability
 
-[img-configure-user]:       ../../images/user-guides/settings/configure-user.png
-[img-disabled-users]:       ../../images/user-guides/settings/disabled-users.png
-[img-search-user]:          ../../images/user-guides/settings/search-users.png
-[img-add-user]:             ../../images/user-guides/settings/integrations/webhook-examples/adding-user.png
-[img-add-user-invitation-link]: ../../images/user-guides/settings/invite-user-by-link.png
-[img-user-menu]:            ../../images/user-guides/settings/user-menu.png
-[img-disabled-user-menu]:   ../../images/user-guides/settings/disabled-user-menu.png
-[img-edit-user]:            ../../images/user-guides/settings/edit-user.png
-[img-user-disable-2fa]:     ../../images/user-guides/settings/users-disable-2fa.png
-[img-user-menu-disable-2fa]:    ../../images/user-guides/settings/disable-2fa-button.png
-[img-disable-delete-multi]:     ../../images/user-guides/settings/users-multi-disable-access.png
-[img-enable-delete-multi]:      ../../images/user-guides/settings/users-multi-enable-access.png
+[img-configure-user]:       ../../../images/user-guides/settings/configure-user.png
+[img-disabled-users]:       ../../../images/user-guides/settings/disabled-users.png
+[img-search-user]:          ../../../images/user-guides/settings/search-users.png
+[img-add-user]:             ../../../images/user-guides/settings/integrations/webhook-examples/adding-user.png
+[img-add-user-invitation-link]: ../../../images/user-guides/settings/invite-user-by-link.png
+[img-user-menu]:            ../../../images/user-guides/settings/user-menu.png
+[img-disabled-user-menu]:   ../../../images/user-guides/settings/disabled-user-menu.png
+[img-edit-user]:            ../../../images/user-guides/settings/edit-user.png
+[img-user-disable-2fa]:     ../../../images/user-guides/settings/users-disable-2fa.png
+[img-user-menu-disable-2fa]:    ../../../images/user-guides/settings/disable-2fa-button.png
+[img-disable-delete-multi]:     ../../../images/user-guides/settings/users-multi-disable-access.png
+[img-enable-delete-multi]:      ../../../images/user-guides/settings/users-multi-enable-access.png
 
 # إدارة المستخدمين
 
@@ -111,14 +111,14 @@
 
 إذا تم إضافة مستخدم جديد به دور **مسؤول** أو **محلل** إلى حساب الشركة في الواجهة الرئيسية لـ Wallarm، ستتم إرسال إشعار حول هذا الحدث إلى العنوان الإلكتروني المحدد في التكامل وإلى قناة Slack.
 
-![مثال على المحفّز الذي يقوم بإرسال الإشعار إلى Slack وبالبريد الإلكتروني](../../images/user-guides/triggers/trigger-example2.png)
+![مثال على المحفّز الذي يقوم بإرسال الإشعار إلى Slack وبالبريد الإلكتروني](../../../images/user-guides/triggers/trigger-example2.png)
 
 **لإختبار المحفّز:**
 
 1. افتح الواجهة الرئيسية ل Wallarm → **الإعدادات** → **المستخدمين** وأضف مستخدم جديد.
 2. افتح صندوق بريدك الوارد وتأكد من أن الرسالة التالية قد وصلت:
 
-    ![البريد الإلكتروني حول إضافة مستخدم جديد](../../images/user-guides/triggers/test-new-user-email-message.png)
+    ![البريد الإلكتروني حول إضافة مستخدم جديد](../../../images/user-guides/triggers/test-new-user-email-message.png)
 3. افتح قناة Slack وتحقق من أن الإشعار التالي قد وصل من المستخدم  **wallarm** :
 
     ```
@@ -144,4 +144,4 @@
 
 أدوار [المسؤول](users.md#user-roles) و**المسؤول العام** يمكنهم تعيين وقت انتهاء التسجيل لحساب الشركة في **الإعدادات** → **العام**. ستؤثر الإعدادات على جميع مستخدمي الحساب. يمكن تعيين أوقات الخمول والأوقات النهائية.
 
-![التبويب العام](../../images/user-guides/settings/general-tab.png)
+![التبويب العام](../../../images/user-guides/settings/general-tab.png)

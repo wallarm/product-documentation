@@ -4,7 +4,7 @@ Tetikleyiciler, Wallarm'ın farklı olaylara vereceği yanıtı ayarlamak için 
 
 Tetikleyiciler, **Triggers** bölümünde [US](https://us1.my.wallarm.com/triggers) veya [EU](https://my.wallarm.com/triggers) Cloud içinde yapılandırılır.
 
-![Tetikleyicileri yapılandırma bölümü](../../images/user-guides/triggers/triggers-section.png)
+![Tetikleyicileri yapılandırma bölümü](../../../images/user-guides/triggers/triggers-section.png)
 
 ## Nasıl çalışır
 
@@ -32,7 +32,7 @@ Tetikleyicileri kullanarak şunları yapabilirsiniz:
 
 Filtreler, [koşulu](#how-it-works) detaylandırmak için kullanılır. Örneğin, brute-force, SQL injection ve diğerleri gibi belirli türdeki saldırılara yönelik tepkiler ayarlayabilirsiniz. Wallarm Console arayüzünde bir veya daha fazla filtre ekleyebilir ve bunlar için değerler belirleyebilirsiniz.
 
-![Mevcut filtreler](../../images/user-guides/triggers/trigger-filters.png)
+![Mevcut filtreler](../../../images/user-guides/triggers/trigger-filters.png)
 
 Aşağıdaki filtreler mevcuttur:
 

@@ -5,7 +5,7 @@
 [link-virtual-patch]:           vpatch-rule.md
 [link-regex-rule]:              regex-rule.md
 
-[img-add-rule]:     ../../images/user-guides/rules/add-rule.png
+[img-add-rule]:     ../../../images/user-guides/rules/add-rule.png
 
 # Adicionando Regras no Perfil da Aplicação
 
@@ -75,7 +75,7 @@ A sintaxe da expressão regular é diferente dos curingas clássicos, mas os mes
 
 Mas no Wallarm, seu `something-1.example.com/user/create.com` será analisado em:
 
-![Exemplo de análise de URI em componentes](../../images/user-guides/rules/something-parsed.png)
+![Exemplo de análise de URI em componentes](../../../images/user-guides/rules/something-parsed.png)
 
 ...onde `something-1.example.com` é o ponto `header`-`HOST`. Nós mencionamos que o curinga não pode ser usado dentro do ponto, então, em vez disso, precisamos usar expressão regular: defina o tipo de condição como REGEX e então use a [sintaxe específica](#condition-type-regex) de expressão regular do Wallarm:
 
@@ -95,7 +95,7 @@ Mas no Wallarm, seu `something-1.example.com/user/create.com` será analisado em
     !!! informação "A maneira mais simples"
         Você pode omitir `.*` e deixar apenas `[.]example[.]com$`. Em ambos os casos, o Wallarm assumirá que qualquer caractere pode aparecer antes de `[.]example[.]com$` qualquer número de vezes.
 
-    ![Usando expressão regular no componente de cabeçalho](../../images/user-guides/rules/wildcard-regex.png)
+    ![Usando expressão regular no componente de cabeçalho](../../../images/user-guides/rules/wildcard-regex.png)
 
 ### Formulário de Edição Avançada
 

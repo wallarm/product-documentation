@@ -11,7 +11,7 @@ Wallarm offers an eBPF-based security solution that leverages the power of the L
 
 Traffic flow with Wallarm eBPF-based solution:
 
-![eBPF traffic flow](../../../images/waf-installation/epbf/ebpf-traffic-flow.png)
+![eBPF traffic flow](../../../../images/waf-installation/epbf/ebpf-traffic-flow.png)
 
 The eBPF solution is designed to monitor traffic using the following protocols:
 
@@ -46,7 +46,7 @@ The agent generates a traffic mirror and forwards it to the Wallarm Native Node.
 
 The following diagram demonstrates the solution components:
 
-![eBPF components](../../../images/waf-installation/epbf/ebpf-components.png)
+![eBPF components](../../../../images/waf-installation/epbf/ebpf-components.png)
 
 ### API Discovery
 

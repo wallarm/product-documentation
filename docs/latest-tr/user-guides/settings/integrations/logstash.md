@@ -96,7 +96,7 @@ Daha fazla ayrıntıyı [resmi Logstash dokümantasyonunda](https://www.elastic.
     --8<-- "../include/integrations/webhook-advanced-settings.md"
 1. Bildirimleri tetikleyecek olay türlerini seçin.
 
-    ![Logstash entegrasyonu](../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+    ![Logstash entegrasyonu](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
     Kullanılabilir olaylara ilişkin ayrıntılar:
 
@@ -165,7 +165,7 @@ Daha fazla ayrıntıyı [resmi Logstash dokümantasyonunda](https://www.elastic.
 
 Örneğin:
 
-![Webhook akışı](../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
+![Webhook akışı](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
 
 Bu şemayı kullanarak Wallarm olaylarını loglamak için:
 

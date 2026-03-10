@@ -1,5 +1,5 @@
 [user-roles-article]:       ../../user-guides/settings/users.md#user-roles
-[img-api-tokens-edit]:      ../../images/api-tokens-edit.png
+[img-api-tokens-edit]:      ../../../images/api-tokens-edit.png
 
 # API Belirteçleri
 

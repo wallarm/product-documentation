@@ -1,4 +1,4 @@
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [custom-blocking-page-docs]:        ../../admin-en/configuration-guides/configure-block-page-and-code.md
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [multitenancy-overview]:            ../multi-tenant/overview.md
@@ -13,7 +13,7 @@ Wallarm provides a connector for securing APIs managed by Istio to analyze traff
 
 The integration relies on a Lua plugin, deployed within the Envoy proxy, to handle traffic mirroring and communication with the Wallarm node.
 
-![Istio with Wallarm plugin](../../images/waf-installation/gateways/istio/traffic-flow-oob.png)
+![Istio with Wallarm plugin](../../../images/waf-installation/gateways/istio/traffic-flow-oob.png)
 
 ## Use cases
 

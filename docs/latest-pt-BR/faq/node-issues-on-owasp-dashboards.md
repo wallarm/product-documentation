@@ -4,7 +4,7 @@ Quando os nós do Wallarm não são atualizados ou enfrentam problemas de sincro
 
 Nós desatualizados podem carecer de importantes atualizações de segurança, permitindo que o tráfego malicioso contorne as defesas. Problemas de sincronização podem interromper a funcionalidade dos nós, impedindo-os de receber políticas de segurança vitais da Cloud. Esses problemas estão principalmente relacionados à ameaça **OWASP API7 (Má Configuração de Segurança)**, onde uma solução de segurança faltante em qualquer parte da pilha de aplicativos pode tornar o sistema vulnerável. Para prevenir isso, o painel alerta você para problemas de operação do nó, por exemplo:
 
-![Painel OWASP com problemas no nó](../images/user-guides/dashboard/owasp-dashboard-node-issues.png)
+![Painel OWASP com problemas no nó](../../images/user-guides/dashboard/owasp-dashboard-node-issues.png)
 
 Para manter um ambiente seguro, é crucial atualizar regularmente os nós do Wallarm e resolver problemas de sincronização. Aqui estão as instruções sobre como lidar com as mensagens de erro:
 

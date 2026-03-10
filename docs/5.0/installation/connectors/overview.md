@@ -15,9 +15,9 @@ With connectors, traffic can be analyzed either [in-line](../inline/overview.md)
 
     If Wallarm is configured to [block](../../admin-en/configure-wallarm-mode.md) malicious activity:
 
-    ![image](../../images/waf-installation/general-traffic-flow-for-connectors-inline.png)
+    ![image](../../../images/waf-installation/general-traffic-flow-for-connectors-inline.png)
 === "Out-of-band traffic flow"
-    ![image](../../images/waf-installation/general-traffic-flow-for-connectors-oob.png)
+    ![image](../../../images/waf-installation/general-traffic-flow-for-connectors-oob.png)
 
 ## Supported platforms
 

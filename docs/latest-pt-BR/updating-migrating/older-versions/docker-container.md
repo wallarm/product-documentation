@@ -5,7 +5,7 @@
 [process-time-limit-instr]:         ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [allocating-memory-guide]:          ../../admin-en/configuration-guides/allocate-resources-for-node.md
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:           ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:           ../../../images/admin-guides/test-attacks-quickstart.png
 [nginx-process-time-limit-docs]:    ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]:  ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md
@@ -63,7 +63,7 @@ Para criar um novo nó Wallarm e obter seu token:
 
 1. Abra o Wallarm Console → **Nós** no [US Cloud](https://us1.my.wallarm.com/nodes) ou [EU Cloud](https://my.wallarm.com/nodes) e crie o nó do tipo **Nó Wallarm**.
 
-    ![Criação do nó Wallarm](../../images/user-guides/nodes/create-cloud-node.png)
+    ![Criação do nó Wallarm](../../../images/user-guides/nodes/create-cloud-node.png)
 1. Copie o token gerado.
 
 ## Passo 6: Migrar allowlists e denylists da versão anterior do nó Wallarm para 4.8 (somente se atualizando o nó 2.18 ou inferior)

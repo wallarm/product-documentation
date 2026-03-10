@@ -11,7 +11,7 @@ Estas instruções descrevem os passos para atualizar o nó CDN da Wallarm, disp
 1. Aguarde a propagação das alterações. O status real do registro CNAME é exibido no Console Wallarm → **Nós** → **CDN** → **Excluir nó**.
 1. Exclua o nó CDN no Console Wallarm → **Nós**.
 
-    ![Excluindo o nó](../images/user-guides/nodes/delete-cdn-node.png)
+    ![Excluindo o nó](../../images/user-guides/nodes/delete-cdn-node.png)
 1. Crie o nó CDN de uma versão mais recente protegendo o mesmo domínio, seguindo as [instruções](../installation/cdn-node.md).
 
 Como todas as configurações do nó CDN são salvas na Nuvem Wallarm, o novo nó CDN receberá automaticamente as configurações. Não é necessário mover a configuração do nó manualmente se o domínio protegido não mudou.

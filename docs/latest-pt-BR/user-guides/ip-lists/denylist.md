@@ -6,7 +6,7 @@ No Console Wallarm → **Listas de IP** → **Lista de negação**, você pode g
 
 --8<-- "../include-pt-BR/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
-![Lista de negação de IP](../../images/user-guides/ip-lists/denylist-apps.png)
+![Lista de negação de IP](../../../images/user-guides/ip-lists/denylist-apps.png)
 
 !!! info "Nome antigo da lista"
     O nome antigo da lista de negação de endereços IP é "lista de endereços IP na blacklist".
@@ -73,7 +73,7 @@ Para adicionar um endereço IP, sub-rede ou grupo de endereços IP à lista:
 4. Selecione o período para o qual um endereço IP ou um grupo de endereços IP deve ser adicionado à lista. O valor mínimo é de 5 minutos, o valor máximo é para sempre.
 5. Especifique a razão para adicionar um endereço IP ou um grupo de endereços IP à lista.
 
-![Adicionar IP à lista (com app)](../../images/user-guides/ip-lists/add-ip-to-list-app.png)
+![Adicionar IP à lista (com app)](../../../images/user-guides/ip-lists/add-ip-to-list-app.png)
 
 ### Lista de negação automática de IPs de bots
 
@@ -83,6 +83,6 @@ Para adicionar um endereço IP, sub-rede ou grupo de endereços IP à lista:
 
 Você pode receber notificações sobre novos IPs na Lista de negação através dos mensageiros ou sistemas SIEM que você usa todos os dias. Para habilitar as notificações, configure o [gatilho](../triggers/triggers.md) apropriado, por exemplo:
 
-![Exemplo de gatilho para IP na Lista de negação](../../images/user-guides/triggers/trigger-example4.png)
+![Exemplo de gatilho para IP na Lista de negação](../../../images/user-guides/triggers/trigger-example4.png)
 
 --8<-- "../include-pt-BR/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"

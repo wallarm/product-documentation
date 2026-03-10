@@ -20,7 +20,7 @@ API'nin işlediği istek sayısını öğrenmek için birkaç yöntem vardır:
 
 * ELB veya ALB yük dengeleyicileri (load balancer) kullanan AWS müşterileri, yük dengeleyicilerin AWS izleme metriklerini kullanarak, yük dengeleyicilerin servis verdiği API'ler için günlük ve haftalık istek seviyelerini tahmin edebilir:
 
-    ![AWS izleme örneği](../../images/operation/aws-requests-example.png)
+    ![AWS izleme örneği](../../../images/operation/aws-requests-example.png)
 
     Örneğin, bir grafik dakikadaki ortalama istek seviyesinin 350 olduğunu gösteriyorsa ve bir ayda ortalama 730 saat olduğunu varsayarsak, aylık istek sayısı `350 * 60 * 730 = 15,330,000` olur.
 

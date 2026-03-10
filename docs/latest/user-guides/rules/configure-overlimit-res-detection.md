@@ -37,7 +37,7 @@ By default, this is:
     * Marks the request as the `overlimit_res` attack and displays it in **Attacks**. If the processed request part contains other [attack types](../../attacks-vulns-list.md), the attacks of the corresponding types will be displayed as well.
     * Allows original request to reach the application (protection bypass).<!-- Note that the application has the risk to be exploited by the attacks included in both processed and unprocessed request parts. The default general configuration and [adjusting for specific endpoints](#specific-endpoint-configuration) minimizes this risk.-->
 
-![Limit request processing time - General configuration](../../images/user-guides/rules/fine-tune-overlimit-detection-generic.png)
+![Limit request processing time - General configuration](../../../images/user-guides/rules/fine-tune-overlimit-detection-generic.png)
 
 You can change the general configuration by adjusting time limit and changing the response.
 
@@ -78,4 +78,4 @@ To reduce the number of unnecessary `overlimit_res` notifications and lower the 
 
 To do so, set the **Limit request processing time** rule as displayed on the screenshot.
 
-![The "Register and display in the events" rule example](../../images/user-guides/rules/fine-tune-overlimit-detection-example.png)
+![The "Register and display in the events" rule example](../../../images/user-guides/rules/fine-tune-overlimit-detection-example.png)

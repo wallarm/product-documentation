@@ -1,7 +1,7 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
-[se-connector-setup-img]:           ../../images/waf-installation/se-connector-setup.png
+[se-connector-setup-img]:           ../../../images/waf-installation/se-connector-setup.png
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
@@ -19,9 +19,9 @@ To use Wallarm as a connector for Flex Gateway, you need to **deploy the Wallarm
 The Wallarm connector for Flex Gateway supports both [synchronous (in-line)](../inline/overview.md) and [asynchronous (out‑of‑band)](../oob/overview.md) traffic analysis:
 
 === "Synchronous traffic flow"
-    ![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-flex-gateway-inline.png)
+    ![MuleSoft with Wallarm policy](../../../images/waf-installation/gateways/mulesoft/traffic-flow-flex-gateway-inline.png)
 === "Asynchronous traffic flow"
-    ![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-flex-gateway-oob.png)
+    ![MuleSoft with Wallarm policy](../../../images/waf-installation/gateways/mulesoft/traffic-flow-flex-gateway-oob.png)
 
 ## Use cases
 
@@ -105,7 +105,7 @@ To acquire and upload the Wallarm policy to MuleSoft Exchange, follow these step
 
 Your custom policy is now available in your MuleSoft Anypoint Platform Exchange.
 
-![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
+![MuleSoft with Wallarm policy](../../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
 
 ### 3. Attach the Wallarm policy to your API
 
@@ -118,7 +118,7 @@ You can attach the Wallarm policy to either an individual API or all APIs.
 1. If necessary, modify [other parameters](#configuration-options).
 1. Apply the policy.
 
-![Wallarm policy](../../images/waf-installation/gateways/mulesoft/policy-setup-flex.png)
+![Wallarm policy](../../../images/waf-installation/gateways/mulesoft/policy-setup-flex.png)
 
 ## Configuration options
 

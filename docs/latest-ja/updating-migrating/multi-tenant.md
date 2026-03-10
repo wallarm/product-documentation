@@ -1,5 +1,5 @@
 [ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 
 # マルチテナントノードのアップグレード
 
@@ -30,4 +30,4 @@
 !!! warning "マルチテナントノードの作成"
     Wallarmノードの作成時は、**Multi-tenant node**オプションを選択してください:
 
-    ![マルチテナントノードの作成](../images/user-guides/nodes/create-multi-tenant-node.png)
+    ![マルチテナントノードの作成](../../images/user-guides/nodes/create-multi-tenant-node.png)

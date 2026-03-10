@@ -3,9 +3,9 @@
 
 [link-aws-lb-comparison]:           https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html?icmpid=docs_elbv2_console#elb-features   
 
-[img-lb-basics]:                    ../../../images/installation-ami/auto-scaling/common/load-balancing-guide/lb-create-1.png
-[img-lb-routing]:                   ../../../images/installation-ami/auto-scaling/common/load-balancing-guide/lb-create-3.png
-[img-checking-operation]:           ../../../images/admin-guides/test-attacks-quickstart.png
+[img-lb-basics]:                    ../../../../images/installation-ami/auto-scaling/common/load-balancing-guide/lb-create-1.png
+[img-lb-routing]:                   ../../../../images/installation-ami/auto-scaling/common/load-balancing-guide/lb-create-3.png
+[img-checking-operation]:           ../../../../images/admin-guides/test-attacks-quickstart.png
 
 [anchor-create]:        #1-creating-a-load-balancer
 [anchor-configure]:     #2-setting-up-an-auto-scaling-group-for-using-the-created-balancer

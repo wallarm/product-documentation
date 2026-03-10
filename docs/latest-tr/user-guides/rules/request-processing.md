@@ -27,7 +27,7 @@ Ayrıştırıcılardan çıkan çıktı, benzer şekilde analiz edilmesi gereken
 
     Örneğin, bir saldırı `SOAPACTION` başlığında tespit edildiyse:
 
-    ![Etiket örneği](../../images/user-guides/rules/tags-example.png)
+    ![Etiket örneği](../../../images/user-guides/rules/tags-example.png)
 
 ### URL
 
@@ -271,7 +271,7 @@ p1=1&p2[a]=2&p2[b]=3&p3[]=4&p3[]=5&p4=6&p4=7
 * `[post, form_urlencoded, 'p4', array, 1]` — `7`
 * `[post, form_urlencoded, 'p4', pollution]` — `6,7`
 
-#### grpc<a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;height: 21px;margin-bottom: -4px;"></a>
+#### grpc<a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;height: 21px;margin-bottom: -4px;"></a>
 
 gRPC API isteklerini ayrıştırır ve yalnızca istek gövdesine uygulanabilir.
 
@@ -346,7 +346,7 @@ Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3
 * Önce JWT içeren istek bölümünün ayrıştırıcısını seçin
 * `jwt` ayrıştırıcı değeri olarak listelenen `jwt_*` parametrelerinden birini belirtin, ör. `name` JWT yükü parametresi değeri için:
 
-![Bir kuralda JWT param tanımı](../../images/user-guides/rules/request-element-desc.png)
+![Bir kuralda JWT param tanımı](../../../images/user-guides/rules/request-element-desc.png)
 
 #### gql
 
@@ -406,7 +406,7 @@ fragment UserFields on User {
 
 Ayrıştırıcı, [API Sessions](../../api-sessions/overview.md#graphql-requests-in-api-sessions) içinde GraphQL istek parametrelerinin değerlerini çıkarmayı ve görüntülemeyi ve isteklerin GraphQL’e özgü bölümlerine [kurallar](rules.md) uygulamayı sağlar:
 
-![GraphQL istek noktasına uygulanan kural örneği](../../images/user-guides/rules/rule-applied-to-graphql-point.png)
+![GraphQL istek noktasına uygulanan kural örneği](../../../images/user-guides/rules/rule-applied-to-graphql-point.png)
 
 !!! info "Wallarm ile GraphQL koruması"
     Varsayılan olarak [her zaman etkin](#managing-parsers) ayrıştırıcı, GraphQL’de düzenli saldırıların (SQLi, RCE, vb.) tespitini sağlarken, Wallarm ayrıca GraphQL’e özgü saldırılara karşı korumayı [yapılandırmayı](../../api-protection/graphql-rule.md) da sağlar.
@@ -463,4 +463,4 @@ Bu tür yanlış pozitifleri önlemek için Wallarm, belirli istek ögelerine ya
 
 Bunu yapmak için kuralı ekrandaki gibi ayarlayın:
 
-![“Disable/Enable request parser” kuralı örneği](../../images/user-guides/rules/disable-parsers-example.png)
+![“Disable/Enable request parser” kuralı örneği](../../../images/user-guides/rules/disable-parsers-example.png)

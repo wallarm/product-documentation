@@ -55,10 +55,10 @@ Wallarm, majör ve minör güncellemeler için sürüm notlarını şu kanallard
 * [Ürün Değişiklik Günlüğü](https://changelog.wallarm.com/)
 * Wallarm Console içindeki güncellemeler bölümü
 
-    ![Wallarm Console’da yeni sürüm bildirimi](../images/updating-migrating/wallarm-console-new-version-notification.png)
+    ![Wallarm Console’da yeni sürüm bildirimi](../../images/updating-migrating/wallarm-console-new-version-notification.png)
 * Wallarm Console içindeki her düğüm, **Up to date** durumunu gösterir veya her bileşen için mevcut güncellemeleri listeler.
 
-    ![Düğüm kartı](../images/user-guides/nodes/view-regular-node-comp-vers.png)
+    ![Düğüm kartı](../../images/user-guides/nodes/view-regular-node-comp-vers.png)
 
 ## Yükseltme prosedürü
 

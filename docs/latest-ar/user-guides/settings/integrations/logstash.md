@@ -96,7 +96,7 @@ output {
     --8<-- "../include/integrations/webhook-advanced-settings.md"
 1. اختر أنواع الأحداث لتشغيل الإشعارات.
 
-    ![اندماج Logstash](../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+    ![اندماج Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
     التفاصيل حول الأحداث المتاحة:
 
@@ -163,7 +163,7 @@ output {
 
 على سبيل المثال:
 
-![تدفق الويب هوك](../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
+![تدفق الويب هوك](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
 
 لتسجيل أحداث Wallarm باستخدام هذه الخطة:
 

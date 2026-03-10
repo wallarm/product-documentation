@@ -1,4 +1,4 @@
-[img-masking]:      ../../images/user-guides/rules/sensitive-data-rule.png
+[img-masking]:      ../../../images/user-guides/rules/sensitive-data-rule.png
 
 # Regras para Mascaramento de Dados
 

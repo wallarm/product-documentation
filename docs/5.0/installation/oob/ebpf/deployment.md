@@ -11,7 +11,7 @@ Wallarm offers a beta version of its eBPF-based security solution that leverages
 
 Traffic flow with Wallarm eBPF-based solution:
 
-![eBPF traffic flow](../../../images/waf-installation/epbf/ebpf-traffic-flow.png)
+![eBPF traffic flow](../../../../images/waf-installation/epbf/ebpf-traffic-flow.png)
 
 The eBPF solution is designed to monitor traffic using the following protocols:
 
@@ -30,7 +30,7 @@ The solution consists of an agent that generates a traffic mirror and forwards i
 
 The following diagram demonstrates the solution components:
 
-![eBPF components](../../../images/waf-installation/epbf/ebpf-components.png)
+![eBPF components](../../../../images/waf-installation/epbf/ebpf-components.png)
 
 The eBPF agent is deployed as a DaemonSet on every Kubernetes worker node. To ensure proper functionality, the agent container must run in a privileged mode with the following essential capabilities: `SYS_PTRACE` and `SYS_ADMIN`.
 
@@ -87,7 +87,7 @@ To deploy the Wallarm eBPF solution:
     * https://my.wallarm.com/nodes for the EU Cloud
 1. Create a filtering node with the **Wallarm node** type and copy the generated token.
     
-    ![!Creation of a Wallarm node](../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+    ![!Creation of a Wallarm node](../../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
 
 ### Step 2: Deploy the Wallarm Helm chart
 
@@ -188,7 +188,7 @@ To test that the Wallarm eBPF operates correctly:
 
     To check that the attack has been registered, proceed to Wallarm Console → **Events**:
 
-    ![!Attacks in the interface](../../../images/waf-installation/epbf/ebpf-attack-in-ui.png)
+    ![!Attacks in the interface](../../../../images/waf-installation/epbf/ebpf-attack-in-ui.png)
 
 ## Limitations
 

@@ -1,10 +1,10 @@
-# Security Edge Inline <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inline <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 The **Security Edge** platform provides a managed service for deploying Wallarm nodes across geographically distributed locations within a Wallarm-hosted environment. One of its key deployment options is **inline** deployment, offering real-time, robust protection for your entire API landscape without the need for any onsite installation.
 
 This is an ideal solution for securing APIs when you can redirect traffic from your hosts to Wallarm's edge nodes by modifying the CNAME records in your DNS settings.
 
-![!](../../images/waf-installation/security-edge/inline/traffic-flow.png)
+![!](../../../images/waf-installation/security-edge/inline/traffic-flow.png)
 
 ## How it works
 
@@ -98,7 +98,7 @@ If an origin has multiple servers, you can specify all of them. Requests are dis
         51.96.67.145
         ```
 
-![!](../../images/waf-installation/security-edge/inline/general-settings-section.png)
+![!](../../../images/waf-installation/security-edge/inline/general-settings-section.png)
 
 Later, when adding hosts for traffic analysis and filtering, you will assign each host or location to its designated origin.
 
@@ -111,7 +111,7 @@ In the **Certificates** section, you can obtain certificates for your domains:
     Once configuration is complete, Wallarm provides a CNAME for each DNS zone. Add this CNAME record to your DNS settings to verify domain ownership and complete the certificate issuance process.
 * If your origin servers are behind a third-party service (e.g., a CDN or a DDoS protection provider like Cloudflare or Akamai) that proxies traffic, certificate issuance is not required. In this case, select the **Skip certificate issuance** option.
 
-![!](../../images/waf-installation/security-edge/inline/certificates.png)
+![!](../../../images/waf-installation/security-edge/inline/certificates.png)
 
 You can specify multiple DNS zones, each with a different certificate issuance approach.
 
@@ -135,7 +135,7 @@ In the **Hosts** section:
     * (Optionally) Wallarm application.
     * Filtration mode.
 
-![!](../../images/waf-installation/security-edge/inline/hosts.png)
+![!](../../../images/waf-installation/security-edge/inline/hosts.png)
 
 For specific **locations** within hosts, you can further customize:
 
@@ -148,7 +148,7 @@ Each location inherits settings from the host and root location, unless specific
 
 The below example configuration customizes settings per path to meet specific needs: `/auth` prioritizes security with blocking mode enabled, while `/data` allows larger uploads by increasing the `client_max_body_size` to 5MB.
 
-![!](../../images/waf-installation/security-edge/inline/locations.png)
+![!](../../../images/waf-installation/security-edge/inline/locations.png)
 
 ### 4. (Optional) Admin settings
 
@@ -159,7 +159,7 @@ In the **Admin settings** section, you choose a node version and specify upgrade
     For the changelog of versions, refer to the [article](../../updating-migrating/node-artifact-versions.md#all-in-one-installer). The Edge node version follows the `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>` format, corresponding to the same version in the linked article. The build number in the Edge node version indicates minor changes.
 * Enable [Auto update](#upgrading-the-edge-inline) if needed.
 
-![!](../../images/waf-installation/security-edge/inline/admin-settings.png)
+![!](../../../images/waf-installation/security-edge/inline/admin-settings.png)
 
 ### 5. Certificate CNAME configuration
 
@@ -168,9 +168,9 @@ If DNS zones are specified in the **Certificates** section, add the CNAME record
 !!! warning "Do not remove the certificate CNAME"
     The certificate CNAME record must stay in your DNS settings. It is needed for further deployment configuration updates and certificate renewal.
 
-![](../../images/waf-installation/security-edge/inline/host-cnames.png)
+![](../../../images/waf-installation/security-edge/inline/host-cnames.png)
 
-![](../../images/waf-installation/security-edge/inline/cert-cname.png)
+![](../../../images/waf-installation/security-edge/inline/cert-cname.png)
 
 For example, if `myservice.com` is specified in the DNS zone, the cart CNAME is the following:
 
@@ -186,7 +186,7 @@ To route traffic to the Edge Node, you need to specify the CNAME record pointing
 
 Once the certificate CNAME is verified, a **Traffic CNAME** is available for each host. If no certificate is issued, the CNAME is available immediately after the configuration is complete.
 
-![](../../images/waf-installation/security-edge/inline/traffic-cname.png)
+![](../../../images/waf-installation/security-edge/inline/traffic-cname.png)
 
 DNS changes can take up to 24 hours to propagate. Once propagated, Wallarm will proxy all traffic to 
 
@@ -196,11 +196,11 @@ The telemetry portal for Security Edge Inline provides a Grafana dashboard with 
 
 The dashboard displays key metrics such as total processed requests, RPS, detected and blocked attacks, deployed Edge node number, resource consumption, number of 5xx responses, etc.
 
-![!](../../images/waf-installation/security-edge/inline/telemetry-portal.png)
+![!](../../../images/waf-installation/security-edge/inline/telemetry-portal.png)
 
 **Run telemetry portal** once the Node reaches the **Active** status. It becomes accessible via a direct link from the Security Edge section ~5 minutes after initiation.
 
-![!](../../images/waf-installation/security-edge/inline/run-telemetry-portal.png)
+![!](../../../images/waf-installation/security-edge/inline/run-telemetry-portal.png)
 
 From the Grafana home page, to reach the dashboard, navigate to **Dashboards** → **Wallarm** → **Portal Inline Overview**.
 
@@ -227,15 +227,15 @@ If your subscription expires, the Edge node will be automatically deleted after 
 The Edge node section provides real-time statuses of the deployment and configuration state for your origins, hosts, and regions:
 
 === "Hosts"
-    ![!](../../images/waf-installation/security-edge/inline/host-statuses.png)
+    ![!](../../../images/waf-installation/security-edge/inline/host-statuses.png)
 === "Origins"
-    ![!](../../images/waf-installation/security-edge/inline/origin-statuses.png)
+    ![!](../../../images/waf-installation/security-edge/inline/origin-statuses.png)
 === "Regions"
-    ![!](../../images/waf-installation/security-edge/inline/region-statuses.png)
+    ![!](../../../images/waf-installation/security-edge/inline/region-statuses.png)
 === "Nodes"
     The **Nodes** tab provides technical details for each Edge node. This view is primarily for Wallarm Support to assist in troubleshooting. The number of nodes depends on traffic demand and is managed automatically by Wallarm's autoscaling.
 
-    ![!](../../images/waf-installation/security-edge/inline/nodes-tab.png)
+    ![!](../../../images/waf-installation/security-edge/inline/nodes-tab.png)
 
 * **Pending cert CNAME**: Waiting for the certificate CNAME records to be added to DNS for certificate issuance (if applicable).
 * **Pending traffic CNAME**: The deployment is complete, awaiting the addition of the traffic CNAME or proxy target record to route traffic to the Edge node.

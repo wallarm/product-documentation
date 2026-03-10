@@ -1,5 +1,5 @@
 [ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 
 # Çok kiracılı düğümün yükseltilmesi
 
@@ -30,4 +30,4 @@ Standart prosedürler şunlardır:
 !!! warning "Çok kiracılı düğümün oluşturulması"
     Wallarm düğümü oluşturulurken, lütfen şu seçeneği belirleyin: **Multi-tenant node**:
 
-    ![Çok kiracılı düğüm oluşturma](../images/user-guides/nodes/create-multi-tenant-node.png)
+    ![Çok kiracılı düğüm oluşturma](../../images/user-guides/nodes/create-multi-tenant-node.png)

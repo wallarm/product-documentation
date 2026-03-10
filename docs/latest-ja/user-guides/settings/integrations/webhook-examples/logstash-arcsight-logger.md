@@ -4,7 +4,7 @@
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-scheme.png)
+![Webhook flow](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-scheme.png)
 
 !!! info "ArcSight ESMのEnterprise版とのインテグレーション"
     LogstashからArcSight ESMのEnterprise版へログを転送するには、ArcSight側でSyslog Connectorを設定し、その後Logstashから当該コネクタのポートへログを転送することを推奨します。コネクタの詳細な説明については、[公式のArcSight SmartConnectorドキュメント](https://community.microfocus.com/t5/ArcSight-Connectors/ct-p/ConnectorsDocs)から**SmartConnector User Guide**をダウンロードしてください。
@@ -28,7 +28,7 @@ ArcSight Loggerには、ログレシーバー`Wallarm Logstash logs`が次のと
 * イベントはsyslogパーサーで解析します
 * その他はデフォルト設定です
 
-![ArcSight Loggerのレシーバー設定](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-setup.png)
+![ArcSight Loggerのレシーバー設定](../../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-setup.png)
 
 レシーバー設定の詳細については、[公式のArcSight Loggerドキュメント](https://community.microfocus.com/t5/Logger-Documentation/ct-p/LoggerDoc)から該当バージョンの**Logger Installation Guide**をダウンロードしてください。
 
@@ -85,16 +85,16 @@ output {
     ```
 
     **Logstashログ:**
-    ![Logstash logs](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-curl-log.png)
+    ![Logstash logs](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-curl-log.png)
 
     **ArcSight Loggerでのイベント:**
-    ![ArcSight Logger event](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-curl-log.png)
+    ![ArcSight Logger event](../../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-curl-log.png)
 
 ### Logstashインテグレーションの設定
 
 --8<-- "../include/integrations/webhook-examples/create-logstash-webhook.md"
 
-![LogstashとのWebhookインテグレーション](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+![LogstashとのWebhookインテグレーション](../../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
 [Logstashインテグレーション設定の詳細](../logstash.md)
 
@@ -104,8 +104,8 @@ output {
 
 Logstashはイベントを次のように記録します:
 
-![LogstashからArcSight Loggerへの新規ユーザーに関するログ](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-user-log.png)
+![LogstashからArcSight Loggerへの新規ユーザーに関するログ](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-user-log.png)
 
 ArcSight Loggerのイベントには次のエントリが表示されます:
 
-![LogstashからArcSight Loggerに表示された新規ユーザーのカード](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-user.png)
+![LogstashからArcSight Loggerに表示された新規ユーザーのカード](../../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-user.png)

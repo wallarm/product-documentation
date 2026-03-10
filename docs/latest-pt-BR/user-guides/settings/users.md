@@ -3,17 +3,17 @@
 [link-glossary-incident]:       ../../glossary-en.md#security-incident
 [link-glossary-vulnerability]:  ../../glossary-en.md#vulnerability
 
-[img-configure-user]:       ../../images/user-guides/settings/configure-user.png
-[img-disabled-users]:       ../../images/user-guides/settings/disabled-users.png
-[img-search-user]:          ../../images/user-guides/settings/search-users.png
-[img-add-user]:             ../../images/user-guides/settings/integrations/webhook-examples/adding-user.png
-[img-user-menu]:            ../../images/user-guides/settings/user-menu.png
-[img-disabled-user-menu]:   ../../images/user-guides/settings/disabled-user-menu.png
-[img-edit-user]:            ../../images/user-guides/settings/edit-user.png
-[img-user-disable-2fa]:     ../../images/user-guides/settings/users-disable-2fa.png
-[img-user-menu-disable-2fa]:    ../../images/user-guides/settings/disable-2fa-button.png
-[img-disable-delete-multi]:     ../../images/user-guides/settings/users-multi-disable-access.png
-[img-enable-delete-multi]:      ../../images/user-guides/settings/users-multi-enable-access.png    
+[img-configure-user]:       ../../../images/user-guides/settings/configure-user.png
+[img-disabled-users]:       ../../../images/user-guides/settings/disabled-users.png
+[img-search-user]:          ../../../images/user-guides/settings/search-users.png
+[img-add-user]:             ../../../images/user-guides/settings/integrations/webhook-examples/adding-user.png
+[img-user-menu]:            ../../../images/user-guides/settings/user-menu.png
+[img-disabled-user-menu]:   ../../../images/user-guides/settings/disabled-user-menu.png
+[img-edit-user]:            ../../../images/user-guides/settings/edit-user.png
+[img-user-disable-2fa]:     ../../../images/user-guides/settings/users-disable-2fa.png
+[img-user-menu-disable-2fa]:    ../../../images/user-guides/settings/disable-2fa-button.png
+[img-disable-delete-multi]:     ../../../images/user-guides/settings/users-multi-disable-access.png
+[img-enable-delete-multi]:      ../../../images/user-guides/settings/users-multi-enable-access.png    
 
 # Configurando usuários
 

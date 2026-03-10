@@ -1,9 +1,9 @@
 [docs-module-update]:           nginx-modules.md
-[img-wl-console-users]:         ../images/check-users.png 
-[img-create-wallarm-node]:      ../images/user-guides/nodes/create-cloud-node.png
-[img-attacks-in-interface]:     ../images/admin-guides/test-attacks-quickstart.png
+[img-wl-console-users]:         ../../images/check-users.png 
+[img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
+[img-attacks-in-interface]:     ../../images/admin-guides/test-attacks-quickstart.png
 [wallarm-token-types]:          ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[tarantool-status]:             ../images/tarantool-status.png
+[tarantool-status]:             ../../images/tarantool-status.png
 [statistics-service-all-parameters]: ../admin-en/configure-statistics-service.md
 [configure-proxy-balancer-instr]:   ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [ip-lists-docs]:                     ../user-guides/ip-lists/overview.md
@@ -23,7 +23,7 @@ These instructions describe the steps to upgrade the postanalytics module 4.x in
     1. Connecting the installed Wallarm module to your NGINX.
     1. Connecting the filtering node to Wallarm Cloud using the provided token.
 
-    ![All-in-one compared to manual](../images/installation-nginx-overview/manual-vs-all-in-one.png)
+    ![All-in-one compared to manual](../../images/installation-nginx-overview/manual-vs-all-in-one.png)
 
 To upgrade the end‑of‑life module (3.6 or lower), please use the [different instructions](older-versions/separate-postanalytics.md).
 

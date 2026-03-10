@@ -11,7 +11,7 @@ Você pode configurar o Wallarm para enviar notificações para seu(s) canal(s) 
 1. Copie a URL do Webhook fornecida e cole o valor no campo **URL do Webhook** na interface do usuário do Wallarm.
 1. Escolha tipos de eventos para acionar notificações.
 
-    ![Integração Slack](../../../images/user-guides/settings/integrations/add-slack-integration.png)
+    ![Integração Slack](../../../../images/user-guides/settings/integrations/add-slack-integration.png)
 
     Detalhes sobre eventos disponíveis:
       
@@ -43,7 +43,7 @@ Você pode configurar o Wallarm para enviar notificações para seu(s) canal(s) 
 
 Se 2 ou mais [hits](../../../glossary-en.md#hit) SQLi forem enviados para o recurso protegido, uma notificação sobre esse evento será enviada para o canal Slack.
 
-![Exemplo de um gatilho enviando a notificação para Slack](../../../images/user-guides/triggers/trigger-example1.png)
+![Exemplo de um gatilho enviando a notificação para Slack](../../../../images/user-guides/triggers/trigger-example1.png)
 
 **Para testar o gatilho:**
 
@@ -81,16 +81,16 @@ Nuvem: EU
 
 Se um novo usuário com a função **Administrador** ou **Analista** for adicionado à conta da empresa no Console Wallarm, a notificação sobre esse evento será enviada para o endereço de e-mail especificado na integração e para o canal Slack.
 
-![Exemplo de um gatilho enviando a notificação para Slack e por e-mail](../../../images/user-guides/triggers/trigger-example2.png)
+![Exemplo de um gatilho enviando a notificação para Slack e por e-mail](../../../../images/user-guides/triggers/trigger-example2.png)
 
 **Para testar o gatilho:**
 
 1. Abra o Console Wallarm → **Configurações** → **Usuários** e adicione um novo usuário. Por exemplo:
 
-    ![Usuário adicionado](../../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)
+    ![Usuário adicionado](../../../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)
 2. Abra sua caixa de entrada de e-mail e verifique se a seguinte mensagem foi recebida:
 
-    ![E-mail sobre novo usuário adicionado](../../../images/user-guides/triggers/test-new-user-email-message.png)
+    ![E-mail sobre novo usuário adicionado](../../../../images/user-guides/triggers/test-new-user-email-message.png)
 3. Abra o canal Slack e verifique se a seguinte notificação do usuário **wallarm** foi recebida:
 
     ```

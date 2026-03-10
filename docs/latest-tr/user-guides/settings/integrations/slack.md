@@ -11,7 +11,7 @@
 1. Sağlanan Webhook URL’sini kopyalayın ve değeri Wallarm UI içindeki **Webhook URL** alanına yapıştırın.
 1. Bildirimleri tetikleyecek olay türlerini seçin.
 
-    ![Slack entegrasyonu](../../../images/user-guides/settings/integrations/add-slack-integration.png)
+    ![Slack entegrasyonu](../../../../images/user-guides/settings/integrations/add-slack-integration.png)
 
     Kullanılabilir olaylar hakkında ayrıntılar:
       
@@ -43,7 +43,7 @@
 
 Korumalı kaynağa 2 veya daha fazla SQLi [hits](../../../glossary-en.md#hit) gönderilirse, bu olayla ilgili bir bildirim Slack kanalına gönderilecektir.
 
-![Slack'e bildirim gönderen tetikleyici örneği](../../../images/user-guides/triggers/trigger-example1.png)
+![Slack'e bildirim gönderen tetikleyici örneği](../../../../images/user-guides/triggers/trigger-example1.png)
 
 **Tetikleyiciyi test etmek için:**
 
@@ -81,16 +81,16 @@ Cloud: EU
 
 Wallarm Console içindeki şirket hesabına **Administrator** veya **Analyst** rolüne sahip yeni bir kullanıcı eklendiğinde, bu olayla ilgili bildirim entegrasyonda belirtilen e‑posta adresine ve Slack kanalına gönderilecektir.
 
-![Slack'e ve e-posta ile bildirim gönderen tetikleyici örneği](../../../images/user-guides/triggers/trigger-example2.png)
+![Slack'e ve e-posta ile bildirim gönderen tetikleyici örneği](../../../../images/user-guides/triggers/trigger-example2.png)
 
 **Tetikleyiciyi test etmek için:**
 
 1. Wallarm Console → **Settings** → **Users** bölümünü açın ve yeni bir kullanıcı ekleyin. Örneğin:
 
-    ![Eklenen kullanıcı](../../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)
+    ![Eklenen kullanıcı](../../../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)
 2. E‑posta Gelen Kutunuzu açın ve aşağıdaki mesajın geldiğini kontrol edin:
 
-    ![Yeni kullanıcı eklendiğine dair e-posta](../../../images/user-guides/triggers/test-new-user-email-message.png)
+    ![Yeni kullanıcı eklendiğine dair e-posta](../../../../images/user-guides/triggers/test-new-user-email-message.png)
 3. Slack kanalını açın ve **wallarm** kullanıcısından aşağıdaki bildirimin geldiğini kontrol edin:
 
     ```

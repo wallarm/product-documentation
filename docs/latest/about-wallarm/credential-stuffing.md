@@ -1,4 +1,4 @@
-# Credential Stuffing Detection <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Credential Stuffing Detection <a href="../subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 [Credential stuffing](../attacks-vulns-list.md#credential-stuffing) is a cyber attack where hackers use lists of compromised user credentials to gain unauthorized access to user accounts on multiple websites. This article describes how to detect this type of threats using Wallarm's **Credential Stuffing Detection**.
 
@@ -17,7 +17,7 @@ Wallarm's **Credential Stuffing Detection** collects and displays real-time info
 
 To identify compromised and weak passwords, Wallarm uses a comprehensive database of more than **850 million records** collected from the public [HIBP](https://haveibeenpwned.com/) compromised credentials database.
 
-![Credential Stuffing - Schema](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-schema.png)
+![Credential Stuffing - Schema](../../images/about-wallarm-waf/credential-stuffing/credential-stuffing-schema.png)
 
 Wallarm's Credential Stuffing Detection keeps credentials data safe applying the following sequence of actions:
 
@@ -60,7 +60,7 @@ To enable Wallarm's **Credential Stuffing Detection**:
 
 You need to form the list of authentication endpoints to be checked for attempts of compromised credentials usage. To form the list, navigate to Wallarm Console → **Credential Stuffing**.
 
-![Wallarm Console - Credential Stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing.png)
+![Wallarm Console - Credential Stuffing](../../images/about-wallarm-waf/credential-stuffing/credential-stuffing.png)
 
 There are two ways of adding endpoints to the list:
 
@@ -68,7 +68,7 @@ There are two ways of adding endpoints to the list:
 
     * Wallarm's predefined rules utilizing regular expressions to specify commonly used authentication endpoints and their parameters storing passwords and logins.
     <!--
-        ![Credential Stuffing - Recommended Endpoints - Predefined rules](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-predefined-rules.png)
+        ![Credential Stuffing - Recommended Endpoints - Predefined rules](../../images/about-wallarm-waf/credential-stuffing/credential-stuffing-predefined-rules.png)
     -->
     * Endpoints used for authentication that were found by the [API Discovery](../api-discovery/overview.md) module and recorded as they actually received traffic.
 
@@ -76,11 +76,11 @@ There are two ways of adding endpoints to the list:
 
     * By **Exact location of parameters** - you will need to indicate the exact endpoint [request points](../user-guides/rules/rules.md#configuring) where password and login are located.
     <!--
-        ![Credential Stuffing - Add authentication endpoint - Exact location](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-add-endpoint-exact-location.png)
+        ![Credential Stuffing - Add authentication endpoint - Exact location](../../images/about-wallarm-waf/credential-stuffing/credential-stuffing-add-endpoint-exact-location.png)
     -->
     * By **Regular expression** - endpoint parameters with password and login will be searched using [regular expression](../user-guides/rules/rules.md#condition-type-regex).
     
-        ![Credential Stuffing - Add authentication endpoint - Regular expression](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-add-endpoint-regexp.png)
+        ![Credential Stuffing - Add authentication endpoint - Regular expression](../../images/about-wallarm-waf/credential-stuffing/credential-stuffing-add-endpoint-regexp.png)
 
 On adding the new rule, it is turned on automatically. Use **on/off** switcher to temporarily change the state of any added rule. Disabling or deleting all rules from the **Authentication endpoints** list stops credential stuffing detection.
 
@@ -90,7 +90,7 @@ The number of attempts to use compromised credentials in the last 7 days is disp
 
 Expand any of the attacks to see the list of logins which passwords were compromised.
 
-![Attacks - credential stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-attacks.png)
+![Attacks - credential stuffing](../../images/about-wallarm-waf/credential-stuffing/credential-stuffing-attacks.png)
 
 ## Getting CSV list of compromised credentials
 
@@ -106,7 +106,7 @@ You can narrow notifications by the application or host that you want to monitor
 
 In this example, if a new attempt to use compromised credentials is detected, a notification about this will be sent to your configured Slack channel.
 
-![Credential stuffing trigger](../images/user-guides/triggers/trigger-example-credentials-stuffing.png)
+![Credential stuffing trigger](../../images/user-guides/triggers/trigger-example-credentials-stuffing.png)
 
 **To test the trigger:**
 

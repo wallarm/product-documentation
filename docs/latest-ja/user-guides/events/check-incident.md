@@ -1,7 +1,7 @@
 [link-using-search]:    ../search-and-filters/use-search.md
-[img-attacks-tab]:      ../../images/user-guides/events/check-attack.png
-[img-current-attacks]:  ../../images/glossary/attack-with-one-hit-example.png
-[img-incidents-tab]:    ../../images/user-guides/events/incident-vuln.png
+[img-attacks-tab]:      ../../../images/user-guides/events/check-attack.png
+[img-current-attacks]:  ../../../images/glossary/attack-with-one-hit-example.png
+[img-incidents-tab]:    ../../../images/user-guides/events/incident-vuln.png
 [use-search]:             ../search-and-filters/use-search.md
 [search-by-attack-status]: ../search-and-filters/use-search.md#search-attacks-by-the-action
 [link-attacks]:         ../../user-guides/events/check-attack.md
@@ -54,7 +54,7 @@ Wallarm Consoleでは、検出された[インシデント](../../glossary-en.md
   
 1. **Vulnerabilities**列のリンクをたどり、修正手順や関連インシデント一覧を含む詳細な脆弱性情報を確認してください。
 
-     ![脆弱性の詳細情報](../../images/user-guides/vulnerabilities/vuln-info.png)
+     ![脆弱性の詳細情報](../../../images/user-guides/vulnerabilities/vuln-info.png)
 
      脆弱性を修正し、その後Wallarmでクローズとしてマークしてください。詳細は[脆弱性の管理](../vulnerabilities.md)を参照してください。
 1. 一覧のインシデントに戻り、どのメカニズムがシステムの反応を引き起こしたのか（攻撃の[ステータス](check-attack.md#attack-analysis)である`Blocked`、`Partially blocked`、`Monitoring`に留意してください）、今後同様のリクエストに対してシステムがどのように動作するのか、必要に応じてその将来の動作をどのように調整するかを調査してください。

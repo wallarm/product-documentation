@@ -1,4 +1,4 @@
-# Edge NodeからオリジンへのmTLS <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Edge NodeからオリジンへのmTLS <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 相互TLS（mTLS）は、Wallarm Edge Nodeがクライアント証明書を使用してオリジンに対して自身を認証できるようにします。これにより、オリジンは信頼できる送信元からのリクエストのみを受け入れるようになります。
 
@@ -15,7 +15,7 @@
 1. オリジンは、信頼できるCA（認証局）バンドルに対して証明書を検証します。
 1. 証明書が有効で、期待されるパラメータ（例：Common NameまたはSubject Alternative Name）に一致する場合、接続が確立され、リクエストが受け入れられます。
 
-![!](../../../images/waf-installation/security-edge/inline/mtls-logic.png)
+![!](../../../../images/waf-installation/security-edge/inline/mtls-logic.png)
 
 ## mTLSの有効化
 
@@ -36,4 +36,4 @@
 1. 設定を**Save**します。
 1. オリジンを、受信接続でmTLSを必須にするように構成します。クライアント証明書の発行に使用したCAバンドルを信頼するように設定します。
 
-![!](../../../images/waf-installation/security-edge/inline/mtls-settings-ui.png)
+![!](../../../../images/waf-installation/security-edge/inline/mtls-settings-ui.png)

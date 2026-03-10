@@ -30,7 +30,7 @@ Wallarm UIでは:
 1. **Integration Key**の値を該当フィールドに貼り付けます。
 1. 通知をトリガーするイベントタイプを選択します。
 
-    ![PagerDuty連携](../../../images/user-guides/settings/integrations/add-pagerduty-integration.png)
+    ![PagerDuty連携](../../../../images/user-guides/settings/integrations/add-pagerduty-integration.png)
 
     利用可能なイベントの詳細:
       
@@ -40,7 +40,7 @@ Wallarm UIでは:
 
     これにより、接頭辞`[Test message]`付きのテスト通知が送信されます:
 
-    ![PagerDutyのテスト通知](../../../images/user-guides/settings/integrations/test-pagerduty-scope-changed.png)
+    ![PagerDutyのテスト通知](../../../../images/user-guides/settings/integrations/test-pagerduty-scope-changed.png)
 
 1. **Add integration**をクリックします。
 

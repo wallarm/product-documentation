@@ -1,4 +1,4 @@
-# Security Edge Inline Deployment <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inline Deployment <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 To deploy the Wallarm [Security Edge for inline traffic analysis](overview.md), follow this guide.
 
@@ -124,7 +124,7 @@ To restrict your origins to trusted traffic only, allow Edge Node connections us
                 20.74.249.12
                 ```
 
-![!](../../../images/waf-installation/security-edge/inline/general-settings-section.png)
+![!](../../../../images/waf-installation/security-edge/inline/general-settings-section.png)
 
 ## 3. Certificates
 
@@ -133,7 +133,7 @@ To restrict your origins to trusted traffic only, allow Edge Node connections us
     Once configuration is complete, Wallarm provides a CNAME for each DNS zone. Add this CNAME record to your DNS settings to verify domain ownership and complete the certificate issuance process.
 * If your origin servers are behind a third-party service (e.g., a CDN or a DDoS protection provider like Cloudflare or Akamai) that proxies traffic, certificate issuance is not required. In this case, select the **Skip certificate issuance** option.
 
-![!](../../../images/waf-installation/security-edge/inline/certificates.png)
+![!](../../../../images/waf-installation/security-edge/inline/certificates.png)
 
 You can specify multiple DNS zones, each with a different certificate issuance approach.
 
@@ -181,7 +181,7 @@ Specify the public domains, ports and subdomains that will direct traffic to the
 
 1. (Optionally) For each host, select the [block page](custom-block-page.md) to show when a malicious request is blocked. By default, the standard NGINX 403 Forbidden page is selected. You can also choose the Wallarm-branded block page or a custom one.
 
-![!](../../../images/waf-installation/security-edge/inline/hosts.png)
+![!](../../../../images/waf-installation/security-edge/inline/hosts.png)
 
 ## 5. Locations
 
@@ -199,7 +199,7 @@ Each location inherits settings from the host and root location, unless specific
 
 The below example configuration customizes settings per path to meet specific needs: `/auth` prioritizes security with blocking mode enabled, while `/data` allows larger uploads by increasing the `client_max_body_size` to 5MB.
 
-![!](../../../images/waf-installation/security-edge/inline/locations.png)
+![!](../../../../images/waf-installation/security-edge/inline/locations.png)
 
 In addition to standard prefix paths (`/path`), you can define locations using the following NGINX regular expression patterns:
 
@@ -225,9 +225,9 @@ For domain verification, add the CNAME records provided in the Wallarm Console t
 !!! warning "Do not remove the certificate CNAME"
     The certificate CNAME record must stay in your DNS settings. It is needed for further deployment configuration updates and certificate renewal.
 
-![](../../../images/waf-installation/security-edge/inline/host-cnames.png)
+![](../../../../images/waf-installation/security-edge/inline/host-cnames.png)
 
-![](../../../images/waf-installation/security-edge/inline/cert-cname.png)
+![](../../../../images/waf-installation/security-edge/inline/cert-cname.png)
 
 DNS changes can take up to 24 hours to propagate. Wallarm starts the Edge Node deployment once the CNAME records are verified (if needed).
 
@@ -246,7 +246,7 @@ Once the certificate CNAME is verified, a **Traffic CNAME** is available for eac
 
     Per-provider CNAMEs are also available if you need to enforce routing to a specific provider - for example, to test latency or performance across providers.
 
-![](../../../images/waf-installation/security-edge/inline/traffic-cname.png)
+![](../../../../images/waf-installation/security-edge/inline/traffic-cname.png)
 
 DNS changes can take up to 24 hours to propagate. Once propagated, Wallarm will proxy all traffic to the configured origins.
 
@@ -254,7 +254,7 @@ DNS changes can take up to 24 hours to propagate. Once propagated, Wallarm will 
 
 If your protected host is an apex domain (e.g., `example.com`), a CNAME cannot be used. In this case, the DNS setup must use **A records**, which are returned once the deployment becomes [**Active**](upgrade-and-management.md#statuses).
 
-![](../../../images/waf-installation/security-edge/inline/a-records.png)
+![](../../../../images/waf-installation/security-edge/inline/a-records.png)
 
 Traffic routing in this case is managed by your DNS provider. By default, most DNS providers use [round-robin](https://en.wikipedia.org/wiki/Round-robin_DNS) logic, but some may support latency-based routing as well.
 

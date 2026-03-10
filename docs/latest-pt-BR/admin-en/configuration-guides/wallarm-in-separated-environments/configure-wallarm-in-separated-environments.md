@@ -40,8 +40,8 @@ Como cada registro de regra pode ser associado a um [conjunto diferente](how-wal
 * Primeiro aplique uma nova configuração a um ambiente de teste ou desenvolvimento, verifique a funcionalidade e, em seguida, aplique a mudança para o ambiente de produção.
 * Use a regra `Criar indicador de ataque baseado em regexp` no modo `Experimental`. Este modo permite que a regra seja implantada diretamente no ambiente de produção sem o risco de bloquear erroneamente solicitações válidas do usuário final.
 
-    ![Criando regra experimental](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/define-attack-experimental.png)
+    ![Criando regra experimental](../../../../images/admin-guides/configuration-guides/waf-in-separate-environments/define-attack-experimental.png)
 
 * Use a regra `Definir modo de filtragem` para controlar o modo de filtragem Wallarm para ambientes e solicitações específicos. Esta regra oferece flexibilidade adicional na forma como a proteção Wallarm pode ser implantada gradualmente para proteger novos endpoints e outros recursos em diferentes ambientes. Por padrão, o valor de [`wallarm_mode`](../../configure-parameters-en.md#wallarm_mode) é usado dependendo da configuração de [`wallarm_mode_allow_override`](../../configure-parameters-en.md#wallarm_mode_allow_override).
 
-    ![Criando uma regra para substituir o modo de filtragem](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/rule-overwrite-filtering-mode.png)
+    ![Criando uma regra para substituir o modo de filtragem](../../../../images/admin-guides/configuration-guides/waf-in-separate-environments/rule-overwrite-filtering-mode.png)

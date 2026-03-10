@@ -34,7 +34,7 @@ Neste modelo, você implanta Wallarm como um aparelho virtual dentro de sua infr
 
 Ao implantar um nó Wallarm, você tem a flexibilidade de posicioná-lo em diferentes localizações dentro da topologia da sua rede. No entanto, a abordagem recomendada é colocar a instância do nó atrás de um balanceador de carga público, à frente dos seus serviços de back-end, ou um balanceador de carga privado, geralmente localizado antes dos serviços de back-end. O seguinte diagrama ilustra o fluxo de tráfego típico nesta configuração:
 
-![Diagrama do esquema de filtragem em linha](../../images/waf-installation/inline/wallarm-inline-deployment-scheme.png)
+![Diagrama do esquema de filtragem em linha](../../../images/waf-installation/inline/wallarm-inline-deployment-scheme.png)
 
 Os balanceadores de carga podem ser classificados em dois tipos: L4 e L7. O tipo de balanceador de carga determina como o desembarque SSL é tratado, o que é crucial ao integrar Wallarm à sua infraestrutura existente.
 

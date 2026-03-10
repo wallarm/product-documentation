@@ -12,7 +12,7 @@ Opções de gerenciamento de UI de nó Wallarm:
 * Renomear nós
 * Deletar nós
 
-![Nós](../../images/user-guides/nodes/table-nodes.png)
+![Nós](../../../images/user-guides/nodes/table-nodes.png)
 
 !!! info "Acesso de administrador"
     A criação, exclusão e regeneração de nós/tokens Wallarm estão disponíveis apenas para usuários com a função de **Administrador** ou **Administrador Global**. A visualização dos detalhes dos nós instalados está disponível para todos os usuários.
@@ -37,7 +37,7 @@ Para criar um nó Wallarm usando o [token apropriado](#api-and-node-tokens-for-n
 
     1. Abra o Wallarm Console → **Nós** na [Nuvem dos EUA](https://us1.my.wallarm.com/nodes) ou [Nuvem da UE](https://my.wallarm.com/nodes) e crie o nó do tipo **Nó Wallarm**.
 
-        ![Criação de nó Wallarm](../../images/user-guides/nodes/create-cloud-node.png)
+        ![Criação de nó Wallarm](../../../images/user-guides/nodes/create-cloud-node.png)
 
     1. Copie o token gerado.
     1. Implante um novo nó no [ambiente conveniente](../../installation/supported-deployment-options.md) usando seu token de nó.
@@ -70,7 +70,7 @@ As seguintes propriedades e métricas de nó estão disponíveis:
 * Versões de LOM e proton.db utilizados
 * Versões dos pacotes Wallarm instalados, NGINX e Envoy (se houver)
 
-![Cartão de nó](../../images/user-guides/nodes/view-wallarm-node.png)
+![Cartão de nó](../../../images/user-guides/nodes/view-wallarm-node.png)
 
 Se um nó Wallarm estiver instalado para várias instâncias (por exemplo, para o processamento inicial de tráfego e a pós-análise de solicitação realizada por diferentes instâncias de servidor), então o número correspondente de nós de filtragem é agrupado em um único registro na tabela. Propriedades e métricas estarão disponíveis para cada instância.
 
@@ -89,7 +89,7 @@ A regeneração do token cria um novo token para o nó.
 2. Clique em **Regenerar token** no menu ou cartão do nó.
 3. Se o nó já estiver instalado na sua infraestrutura, copie o novo valor do token e especifique-o nas configurações do nó instalado.
 
-![Regenerando o token do nó](../../images/user-guides/nodes/generate-new-token.png)
+![Regenerando o token do nó](../../../images/user-guides/nodes/generate-new-token.png)
 
 ## Deletando um nó
 

@@ -243,11 +243,11 @@ Todos os ataques detectados são exibidos na seção Console Wallarm → **Event
 
 Para obter mais informações sobre como gerenciar ataques, consulte as instruções sobre [como trabalhar com ataques](../user-guides/events/analyze-attack.md).
 
-![Visão de Ataques](../images/user-guides/events/check-attack.png)
+![Visão de Ataques](../../images/user-guides/events/check-attack.png)
 
 Além disso, a Wallarm fornece painéis de controle abrangentes para ajudá-lo a manter a postura de segurança do seu sistema. O painel de [prevenção de ameaças](../user-guides/dashboards/threat-prevention.md) da Wallarm fornece métricas gerais sobre a postura de segurança do seu sistema, enquanto o painel [OWASP API Security Top 10](../user-guides/dashboards/owasp-api-top-ten.md) oferece visibilidade detalhada da postura de segurança do seu sistema contra as ameaças OWASP API Top 10.
 
-![OWASP API Top 10](../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
+![OWASP API Top 10](../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
 
 ## Notificações sobre ataques detectados, hits e cargas úteis maliciosas
 

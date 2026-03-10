@@ -11,7 +11,7 @@
 * إحصائيات عن الطلبات التي تمت معالجتها بواسطة عقدة التصفية
 * مجموعة الوحدات والميزات المتضمنة في خطة الاشتراك (تعتمد المجموعة على خطة الاشتراك المختارة)
 
-![خطة الاشتراك المدفوعة](../../images/user-guides/settings/subscriptions/subscriptions.png)
+![خطة الاشتراك المدفوعة](../../../images/user-guides/settings/subscriptions/subscriptions.png)
 
 لتفعيل أو إلغاء أو تغيير اشتراك، يرجى إرسال طلب إلى [sales@wallarm.com](mailto:sales@wallarm.com).
 
@@ -43,6 +43,6 @@
     توفر الفترة التجريبية لـ Wallarm أقصى مجموعة من الوحدات والميزات التي يمكن تضمينها في خطة [أمان API](../../about-wallarm/subscription-plans.md#subscription-plans).
 * إذا كان لديك خطة PoC معتمدة مع فريق Wallarm، رابط إلى وثيقة نتائج PoC
 
-![الفترة التجريبية](../../images/user-guides/settings/subscriptions/subscriptions-trial-with-poc.png)
+![الفترة التجريبية](../../../images/user-guides/settings/subscriptions/subscriptions-trial-with-poc.png)
 
 للحصول على مزيد من المعلومات حول الاشتراك في Wallarm أو لتفعيل خطة اشتراك مدفوعة، يرجى إرسال طلب إلى [sales@wallarm.com](mailto:sales@wallarm.com).

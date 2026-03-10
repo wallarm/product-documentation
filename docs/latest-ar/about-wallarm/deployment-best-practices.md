@@ -131,7 +131,7 @@
 * ستتلقى جميع عقد Wallarm المتصلة بنفس الحساب Wallarm نفس مجموعة القواعد الافتراضية والمخصصة لترشيح المرور. لا يزال يمكنك تطبيق قواعد مختلفة لتطبيقات مختلفة من خلال استخدام أدلة التعريف التطبيقية السليمة أو المعلمات الفريدة لطلب HTTP مثل الرؤوس، ومعلمات سلسلة الاستعلام، إلخ.
 * إذا كان لديك مشغل مكون لحجب عنوان IP تلقائيًا ([مثال المشغل](../user-guides/triggers/trigger-examples.md#denylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour))، سيقوم النظام بحجب IP لجميع التطبيقات في حساب Wallarm.
 
-## اتبع أفضل الممارسات للتحقق النشط من التهديد <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
+## اتبع أفضل الممارسات للتحقق النشط من التهديد <a href="../subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
 
 إحدى الطرق التي تستخدمها Wallarm ل[اكتشاف الثغرات الأمنية](../about-wallarm/detecting-vulnerabilities.md) هو **التحقق النشط من التهديد**.
 

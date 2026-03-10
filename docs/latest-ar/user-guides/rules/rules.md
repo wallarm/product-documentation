@@ -1,6 +1,6 @@
 [link-regex]:                   https://github.com/yandex/pire
 [link-request-processing]:      request-processing.md
-[img-add-rule]:                 ../../images/user-guides/rules/section-rules-add-rule.png
+[img-add-rule]:                 ../../../images/user-guides/rules/section-rules-add-rule.png
 
 # القواعد
 
@@ -8,7 +8,7 @@
 
 يتم تكوين القواعد في قسم **القواعد** في السحابة [الأمريكية](https://us1.my.wallarm.com/rules) أو السحابة [الأوروبية](https://my.wallarm.com/rules).
 
-![القسم القواعد](../../images/user-guides/rules/section-rules.png)
+![القسم القواعد](../../../images/user-guides/rules/section-rules.png)
 
 !!! warning "تأخير تطبيق القاعدة"
     عند إجراء تغييرات على القواعد، فإنها لا تسري فورا بحيث يستغرق بعض الوقت لـ [تجميع القواعد](#ruleset-lifecycle) وتحميلها إلى العقد الفاصلة.
@@ -36,7 +36,7 @@
 * لديه المُحدَّد مباشرة أولوية على [regex](rules.md#condition-type-regex).
 * حالات [الحساسة](rules.md#condition-type-equal) لها الأولوية على [غير الحساسة](rules.md#condition-type-iequal-aa).
 
-![نظرة عامة على علامة القواعد](../../images/user-guides/rules/rules-overview.png)
+![نظرة عامة على علامة القواعد](../../../images/user-guides/rules/rules-overview.png)
 
 ### القواعد الافتراضية
 
@@ -56,12 +56,12 @@
 * لتوسيع نقطة النهاية، انقر على الدائرة الزرقاء.
 * النقاط النهائية التي ليست لديها قواعد متميزة مظللة وغير قابلة للنقر.
     
-    ![فرع من النقاط النهائية](../../images/user-guides/rules/rules-branch.png)
+    ![فرع من النقاط النهائية](../../../images/user-guides/rules/rules-branch.png)
 
 * لعرض القواعد لنقطة النهاية، انقر عليها. أولا، ستتم عرض القواعد المميزة لهذه النقطة النهائية.
 * عند عرض قائمة القواعد لنقطة النهاية المحددة، انقر على **قواعد مميزة ومُرثى** لعرض تلك المُرثى. ستتم عرض القواعد المُرثى مع المميزة؛ ستكون غامقة مقارنة بالمميزة.
 
-    ![قواعد مميزة ومُرثى لنقطة النهاية](../../images/user-guides/rules/rules-distinct-and-inherited.png)
+    ![قواعد مميزة ومُرثى لنقطة النهاية](../../../images/user-guides/rules/rules-distinct-and-inherited.png)
 
 ## التكوين
 
@@ -127,7 +127,7 @@
 
 ولكن في Wallarm، سيتم تحليل `something-1.example.com/user/create.com` إلى:
 
-![مثال على تحليل URI إلى المكونات](../../images/user-guides/rules/something-parsed.png)
+![مثال على تحليل URI إلى المكونات](../../../images/user-guides/rules/something-parsed.png)
 
 ...حيث `something-1.example.com` هو شرط `header`-`HOST`. ذكرنا أن الرموز الخاصة لا يمكن استخدامها ضمن الشرط، لذا بدلاً من ذلك نحتاج إلى استخدام التعبير العادي: حدد نوع الشرط في REGEX ومن ثم استخدم صيغة التعبير العادي الخاصة بـ Wallarm [صيغة محددة](#condition-type-regex):
 
@@ -147,7 +147,7 @@
     !!! info "الطريقة الأبسط"
         يمكنك تجاهل `.*` وترك `[.]example[.]com$` فقط. في كلا الحالتين، ستفترض Wallarm أن أي حرف يمكن أن يظهر قبل `[.]example[.]com$` أي عدد من المرات.
 
-    ![استخدام التعبير العادي في مكون العنوان](../../images/user-guides/rules/wildcard-regex.png)
+    ![استخدام التعبير العادي في مكون العنوان](../../../images/user-guides/rules/wildcard-regex.png)
 
 ### النموذج المتقدم للتحرير
 
@@ -391,7 +391,7 @@
 
 يتم عرض حالة بناء المجموعة القاعدية المخصصة والوقت المتوقع لاكتمالها في واجهة Wallarm Console. إذا لم يكن هناك بناء جاري، فإن الواجهة تعرض تاريخ البناء الأخير المكتمل.
 
-![حالة البناء](../../images/user-guides/rules/build-rules-status.png)
+![حالة البناء](../../../images/user-guides/rules/build-rules-status.png)
 
 ### التحميل إلى العقدة الفاصلة
 
@@ -422,7 +422,7 @@
 * التحميل من النسخة الاحتياطية الموجودة: انقر على **تحميل** للنسخة الاحتياطية المطلوبة. عند التحميل من النسخة الاحتياطية، يتم حذف تكوين القاعدة الحالي واستبداله بالتكوين من النسخة الاحتياطية.
 * حذف النسخة الاحتياطية.
 
-    ![القواعد - إنشاء نسخة احتياطية](../../images/user-guides/rules/rules-create-backup.png)
+    ![القواعد - إنشاء نسخة احتياطية](../../../images/user-guides/rules/rules-create-backup.png)
 
 !!! warning "قيود تعديل القاعدة"
     لا يمكنك إنشاء أو تعديل القواعد حتى تكتمل عملية إنشاء النسخة الاحتياطية أو تحميلها من النسخة الاحتياطية.

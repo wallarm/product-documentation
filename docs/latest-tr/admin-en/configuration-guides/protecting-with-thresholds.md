@@ -31,7 +31,7 @@ Bu korumayı sağlamak için:
 
     Çoklu saldırı koruması tarafından bot IP’si denylist’e alınmış olsa bile, varsayılan olarak Wallarm, ondan kaynaklanan engellenen isteklerle ilgili istatistikleri toplar ve [görüntüler](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips).
 
-    ![Varsayılan tetikleyici](../../images/user-guides/triggers/trigger-example-default.png)
+    ![Varsayılan tetikleyici](../../../images/user-guides/triggers/trigger-example-default.png)
         
 1. Tetikleyiciyi kaydedin ve [Cloud ve node eşitlemesinin tamamlanmasını](../configure-cloud-node-synchronization-en.md) bekleyin (genellikle 2-4 dakika sürer).
 
@@ -66,6 +66,6 @@ Aşağıda, [pre-configured trigger](#pre-configured-trigger) için test örneğ
 1. Wallarm Console → **IP lists** → **Graylist**’i açın ve isteklerin geldiği IP adresinin 1 saatliğine graylist’e alındığını kontrol edin.
 1. **Attacks** bölümünü açın ve saldırıların listede görüntülendiğini kontrol edin:
 
-    ![UI'de üç kötü amaçlı payload](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
+    ![UI'de üç kötü amaçlı payload](../../../images/user-guides/triggers/test-3-attack-vectors-events.png)
 
     Saldırıları aramak için `multiple_payloads` [arama etiketi](../../user-guides/search-and-filters/use-search.md#search-by-attack-type)’ni kullanabilirsiniz.

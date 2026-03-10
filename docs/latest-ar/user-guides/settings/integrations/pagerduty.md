@@ -30,7 +30,7 @@
 1. الصق قيمة **Integration Key** في الحقل المناسب.
 1. اختر أنواع الأحداث لتشغيل الإشعارات.
 
-    ![تكامل PagerDuty](../../../images/user-guides/settings/integrations/add-pagerduty-integration.png)
+    ![تكامل PagerDuty](../../../../images/user-guides/settings/integrations/add-pagerduty-integration.png)
 
     التفاصيل حول الأحداث المتاحة:
       
@@ -40,7 +40,7 @@
 
     سيتم إرسال إشعارات الاختبار ببادئة `[رسالة اختبار]`:
 
-    ![إشعار اختبار PagerDuty](../../../images/user-guides/settings/integrations/test-pagerduty-scope-changed.png)
+    ![إشعار اختبار PagerDuty](../../../../images/user-guides/settings/integrations/test-pagerduty-scope-changed.png)
 
 1. انقر على **إضافة تكامل**.
 

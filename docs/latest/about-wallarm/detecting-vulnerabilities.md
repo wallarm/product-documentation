@@ -54,7 +54,7 @@ Passive detection refers to identifying vulnerabilities by analyzing actual traf
 
 Passive vulnerability detection is enabled by default.
 
-### Threat Replay Testing (TRT) <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a> <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/security-testing-tag.svg" style="border: none;"></a>
+### Threat Replay Testing (TRT) <a href="../subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a> <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/security-testing-tag.svg" style="border: none;"></a>
 
 Wallarm's [Threat Replay Testing](../vulnerability-detection/threat-replay-testing/overview.md) turns attackers into your own penetration testers. It analyzes initial attack attempts, then explores other ways the same attack could be exploited. This exposes weak spots in your environment that even the original attackers did not find.
 
@@ -64,7 +64,7 @@ The Threat Replay Testing capabilities:
 * **Safe & smart simulation**: Skips sensitive authentication details and removes harmful code in tests. Simulates attack techniques for max security, not risking actual harm.
 * **Safe non-production tests**: Enables you to [run vulnerability checks in a staging or development setup](../vulnerability-detection/threat-replay-testing/setup.md) using real production data, but without the risks like system overload or data exposure.
 
-### Schema-Based Testing (SBT) <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/security-testing-tag.svg" style="border: none;"></a>
+### Schema-Based Testing (SBT) <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/security-testing-tag.svg" style="border: none;"></a>
 
 Wallarm's [Schema-Based Testing](../vulnerability-detection/schema-based-testing/overview.md) is a dynamic application security testing (DAST) solution that enables "shift-left" security. It uses an API's schema (such as an OpenAPI specification or a Postman collection) as a blueprint to automatically generate and execute targeted security tests. By integrating into CI/CD pipelines, Schema-Based Testing allows development teams to proactively identify a wide range of vulnerabilities—including OWASP API Top 10 risks, business logic flaws, and input validation issues—early in the development process, making them easier and cheaper to fix.
 
@@ -75,7 +75,7 @@ Schema-Based Testing capabilities:
 * Detection of vulnerabilities in the application or API itself, as well as security misconfigurations in the underlying infrastructure or environment.
 * Lightweight execution via Docker container.
 
-### API Security Testing via Postman <a href="subscription-plans.md#rogue-mcp"><img src="../../images/rogue-mcp-tag.png" style="border: none; height: 24px; width: auto;"></a>
+### API Security Testing via Postman <a href="subscription-plans.md#rogue-mcp"><img src="../../../images/rogue-mcp-tag.png" style="border: none; height: 24px; width: auto;"></a>
 
 Wallarm's [API Security Testing via Postman](../vulnerability-detection/api-security-testing-via-postman/overview.md) runs safe, passive security tests on your Postman collections from inside Postman. You ask in natural language (e.g., "test my collection for security issues") and get results in a few minutes—auth gaps, data leaks, over-permissive endpoints, schema violations, sensitive data exposure, and basic BOLA/BOPLA indicators—with explanations and remediation guidance. Results appear in the Postman AI Agent chat and in Wallarm Cloud (Security Testing → Rogue MCP → Test runs; Security Issues).
 
@@ -85,7 +85,7 @@ API Security Testing via Postman capabilities:
 * Conversational workflow in Postman Agent Mode via the Rogue Security Testing server.
 * LLM-assisted findings tailored for developers.
 
-### API Attack Surface Management (AASM) <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
+### API Attack Surface Management (AASM) <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
 Wallarm's [API Attack Surface Management](../api-attack-surface/overview.md) (AASM) is an agentless (do not require [Wallarm node](../about-wallarm/overview.md#how-wallarm-works) installation) detection solution tailored to the API ecosystem, designed to discover external hosts with their APIs, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities. AASM:
 
@@ -187,11 +187,11 @@ All detected vulnerabilities are displayed in the Wallarm Console → **Security
 * View and analyze vulnerabilities
 * Close vulnerabilities or mark them as false positives
 
-![Security Issues](../images/api-attack-surface/security-issues.png)
+![Security Issues](../../images/api-attack-surface/security-issues.png)
 
 If you use the [**API Discovery** module](../api-discovery/overview.md) of the Wallarm platform, vulnerabilities are linked with discovered API endpoints, e.g.:
 
-![API Discovery - Risk score](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
+![API Discovery - Risk score](../../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 
 For more information on managing vulnerabilities, see the instructions on [working with vulnerabilities](../user-guides/vulnerabilities.md).
 

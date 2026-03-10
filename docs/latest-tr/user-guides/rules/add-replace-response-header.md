@@ -36,4 +36,4 @@ Kuralı oluşturmak ve uygulamak için:
 
 `https://example.com/*` kapsamındaki tüm içeriğin yalnızca sitenin orijininden gelmesine izin vermek için, **Change server response headers** kuralını kullanarak [`Content-Security-Policy: default-src 'self'`](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#example_1) yanıt üstbilgisini aşağıdaki şekilde ekleyebilirsiniz:
 
-![“Change server response headers” kuralı örneği](../../images/user-guides/rules/add-replace-response-header.png)
+![“Change server response headers” kuralı örneği](../../../images/user-guides/rules/add-replace-response-header.png)

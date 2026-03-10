@@ -36,7 +36,7 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 1. انتقل إلى Wallarm Console → **Nodes** وأنشئ **عقدة Wallarm**.
 
-    ![إنشاء عقدة Wallarm](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+    ![إنشاء عقدة Wallarm](../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
 1. انسخ الرمز المُنشأ.
 1. قم بتشغيل الصورة المُحدثة باستخدام الرمز المنسوخ وقم بإجراء التعديلات اللازمة على مسارات الملفات المُركبة إذا لزم الأمر بسبب [التغييرات الأخيرة في الصورة](what-is-new.md#optimized-and-more-secure-nginx-based-docker-image).
     

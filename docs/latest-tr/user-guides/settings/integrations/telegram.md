@@ -14,7 +14,7 @@ Zamanlanmış raporlar günlük, haftalık veya aylık olarak gönderilebilir. R
 1. Güvenlik raporlarının gönderim sıklığını seçin. Sıklık seçilmezse raporlar gönderilmez.
 1. Bildirimleri tetikleyecek olay türlerini seçin.
 
-    ![Telegram entegrasyonu](../../../images/user-guides/settings/integrations/add-telegram-integration.png)
+    ![Telegram entegrasyonu](../../../../images/user-guides/settings/integrations/add-telegram-integration.png)
 
     Kullanılabilir olaylarla ilgili ayrıntılar:
 

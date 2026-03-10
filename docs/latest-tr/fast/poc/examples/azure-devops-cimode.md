@@ -12,7 +12,7 @@ CI MODE'da FAST'in Azure DevOps pipeline'ına entegrasyonu `azure-pipelines.yml`
 
 [FAST düğüm belirtecini](../../operations/create-node.md) güvenli bir şekilde kullanmak için mevcut pipeline ayarlarınızı açın ve belirteç değerini [Azure DevOps ortam değişkenine](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch#environment-variables) iletin.
 
-![Azure DevOps ortam değişkeni geçirme](../../../images/fast/poc/common/examples/azure-devops-cimode/azure-env-var-example.png)
+![Azure DevOps ortam değişkeni geçirme](../../../../images/fast/poc/common/examples/azure-devops-cimode/azure-env-var-example.png)
 
 ## İstek Kaydetme Adımının Eklenmesi
 
@@ -93,7 +93,7 @@ Güvenlik testini uygulamak için şu talimatları izleyin:
 
 Güvenlik testinin sonucu Azure DevOps arayüzünde görüntülenecektir.
 
-![FAST düğümünün test modunda çalıştırılmasının sonucu](../../../images/fast/poc/common/examples/azure-devops-cimode/azure-ci-example.png)
+![FAST düğümünün test modunda çalıştırılmasının sonucu](../../../../images/fast/poc/common/examples/azure-devops-cimode/azure-ci-example.png)
 
 ## Daha Fazla Örnek
 

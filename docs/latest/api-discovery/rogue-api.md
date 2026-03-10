@@ -1,4 +1,4 @@
-# Rogue API Detection (Shadow & Zombie API) <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Rogue API Detection (Shadow & Zombie API) <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 The [API Discovery](overview.md) module can detect **rogue APIs** by comparing live traffic against your uploaded OpenAPI specifications. This goes beyond inventory and provides security insights: you see which endpoints are undocumented or deprecated but still in use.
 
@@ -14,7 +14,7 @@ The [API Discovery](overview.md) module can detect **rogue APIs** by comparing l
 | [Shadow API](#shadow-api) | An undocumented API that exists in your infrastructure without being described in your specifications. |
 | [Zombie API](#zombie-api) | A deprecated API that is no longer in your current specification but still receives traffic. |
 
-![API Discovery - highlighting and filtering rogue API](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-highlight-rogue.png)
+![API Discovery - highlighting and filtering rogue API](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-highlight-rogue.png)
 
 ## How it works
 
@@ -41,7 +41,7 @@ Because the OpenAPI **servers** section is often omitted, it is recommended to s
 4. Turn on **Rogue API detection**, then select the **Applications** and **Hosts** for which this spec should be used. Only endpoints for the selected hosts (and applications) will be checked for rogue APIs against this spec.
 5. Save. Allow about 5 minutes for comparison to run.
 
-![API Discovery - API Specifications - uploading API specification to find rogue APIs](../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
+![API Discovery - API Specifications - uploading API specification to find rogue APIs](../../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
 
 You can upload multiple specifications. Each one with **Rogue API detection** enabled for a given host or application contributes to the **cumulative baseline** for that host/application. An endpoint is classified as shadow only if it is missing from every spec that applies to that host/application.
 
@@ -67,7 +67,7 @@ After comparison has run (about 5 minutes after setup or after a restart):
 1. Go to **API Security** → **API Discovery** ([US](https://us1.my.wallarm.com/api-discovery) or [EU](https://my.wallarm.com/api-discovery)).
 2. Use the **Rogue APIs** filter to show only **Shadow** and/or **Zombie** endpoints.
 
-![API Discovery - highlighting and filtering rogue API](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-highlight-rogue.png)
+![API Discovery - highlighting and filtering rogue API](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-highlight-rogue.png)
 
 Rogue API counts are also shown in **API Specifications** for each spec. Full UI integration of rogue API status into risk factors and endpoint details is planned for a later release. Until then, use the **Rogue APIs** filter in API Discovery as the main way to view shadow and zombie endpoints.
 

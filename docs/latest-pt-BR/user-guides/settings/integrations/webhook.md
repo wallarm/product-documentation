@@ -115,10 +115,10 @@ As notificações são enviadas no formato JSON. O conjunto de objetos JSON depe
 
     --8<-- "../include-pt-BR/integrations/webhook-advanced-settings.md"
 
-    ![Exemplo de configurações avançadas](../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
+    ![Exemplo de configurações avançadas](../../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
 1. Escolha os tipos de eventos para acionar notificações.
 
-    ![Integração de Webhook](../../../images/user-guides/settings/integrations/add-webhook-integration.png)
+    ![Integração de Webhook](../../../../images/user-guides/settings/integrations/add-webhook-integration.png)
 
     Detalhes sobre eventos disponíveis:
 

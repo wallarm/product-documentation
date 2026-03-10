@@ -34,7 +34,7 @@
     * **قائمة الرفض لعنوان IP** والفترة لحظر عنوان IP لإضافة عناوين IP لمصادر الطلبات الضارة إلى [قائمة الرفض](../../user-guides/ip-lists/overview.md). سيحظر العقدة Wallarm جميع الطلبات الصادرة من عناوين IP المدرجة بعد تجاوز الحد.
     * **قائمة التحقق لعنوان IP** والفترة لإضافة عناوين IP لمصادر الطلبات الضارة إلى [قائمة التحقق](../../user-guides/ip-lists/overview.md). ستحظر العقدة Wallarm الطلبات الصادرة من عناوين IPs في قائمة التحقق فقط إذا احتوت الطلبات على علامات [التحقق من الصحة](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks)، [`vpatch`](../../user-guides/rules/vpatch-rule.md) أو هجمات [مخصصة](../../user-guides/rules/regex-rule.md). لا يتم حظر هجمات القوة العمياء الصادرة من عناوين IPs في قائمة التحقق.
 
-    ![مثال على محفز التصفح القسري](../../images/user-guides/triggers/trigger-example5.png)
+    ![مثال على محفز التصفح القسري](../../../images/user-guides/triggers/trigger-example5.png)
 
 1. احفظ المحفز وانتظر [اكتمال تزامن السحابة والعقدة](../configure-cloud-node-synchronization-en.md) (عادة ما يستغرق الأمر من 2-4 دقائق).
 
@@ -52,7 +52,7 @@
     إذا كانت رد فعل المحفز **قائمة التحقق لعنوان IP**، تحقق من قسم **قوائم IP** → **قائمة التحقق** في واجهة Wallarm.
 3. افتح قسم **الهجمات** وتحقق من أن الطلبات معروضة في القائمة كهجمة تصفح قسري.
 
-    ![هجمة التصفح القسري في الواجهة](../../images/user-guides/events/forced-browsing-attack.png)
+    ![هجمة التصفح القسري في الواجهة](../../../images/user-guides/events/forced-browsing-attack.png)
 
     عدد الطلبات المعروضة يتوافق مع عدد الطلبات المرسلة بعد تجاوز عتبة المحفز ([المزيد من التفاصيل حول اكتشاف الهجمات السلوكية](../../attacks-vulns-list.md#behavioral-attacks)). إذا كان هذا العدد أكبر من 5، يتم تطبيق عينة الطلب ويتم عرض تفاصيل الطلب فقط لأول 5 ضربات ([المزيد من التفاصيل حول عينات الطلبات](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
 

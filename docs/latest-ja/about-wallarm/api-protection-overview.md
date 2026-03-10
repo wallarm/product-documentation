@@ -1,4 +1,4 @@
-# Wallarm API保護 <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Wallarm API保護 <a href="../subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 WallarmのAPI保護は、APIおよびAIを保護する高度な機能セットです。基本的な[クラウドネイティブWAAP](../about-wallarm/waap-overview.md)保護には、すべてのAPIプロトコルのサポートと攻撃検査、L7 DDoS対策などがすでに含まれますが、現代のAPIは自動化された脅威、APIの不正使用、AIの悪用など、追加のリスクにもさらされています。Advanced API Securityバンドルは、より完全なリスク低減のための高度な機能を提供します。
 
@@ -18,7 +18,7 @@ WAAPは基本のCloud Native WAAPサブスクリプションで利用可能で
 
 **API仕様の強制**は、アップロードした仕様に基づいてAPIにセキュリティポリシーを適用するために設計されています。主な機能は、仕様に記載されたエンドポイントの説明と、REST APIに対して実際に行われたリクエストとの不一致を検出することです。このような不整合が特定された場合、システムはそれに対処するためにあらかじめ定義されたアクションを実行できます。
 
-![仕様 - セキュリティポリシー適用への利用](../images/api-specification-enforcement/specification-use-for-api-policies-enforcement.png)
+![仕様 - セキュリティポリシー適用への利用](../../images/api-specification-enforcement/specification-use-for-api-policies-enforcement.png)
 
 [詳細な説明と設定に進む→](../api-specification-enforcement/overview.md)
 
@@ -26,7 +26,7 @@ WAAPは基本のCloud Native WAAPサブスクリプションで利用可能で
 
 WallarmのAPI Discoveryモジュールを使用して、Broken Object Level Authorization（BOLA）脅威に対して脆弱なエンドポイントを特定し、この脆弱性を悪用しようとする攻撃から自動的に保護します。
 
-![BOLAトリガー](../images/user-guides/bola-protection/trigger-enabled-state.png)
+![BOLAトリガー](../../images/user-guides/bola-protection/trigger-enabled-state.png)
 
 自動BOLA保護は、[手動で作成した](../admin-en/configuration-guides/protecting-against-bola-trigger.md)BOLA保護ルールの優れた拡張または代替として機能します。自動BOLA保護を構成して、Wallarmの挙動が組織のセキュリティプロファイルに合致するようにできます。
 
@@ -36,7 +36,7 @@ WallarmのAPI Discoveryモジュールを使用して、Broken Object Level Auth
 
 **API不正利用防止**は、クレデンシャルスタッフィング、不正アカウント作成、コンテンツスクレイピングなど、APIを狙った悪意のあるボットによる行為を検知・緩和します。
 
-![API不正利用防止の統計](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
+![API不正利用防止の統計](../../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
 
 **API不正利用防止**は、機械学習（ML）ベースの手法に加え、統計的・数理的な異常探索手法や直接的な不正のケースを取り入れた複合的なボット検知モデルを使用します。本モジュールは通常のトラフィックプロファイルを自己学習し、著しく異なる挙動を異常として特定します。
 
@@ -46,7 +46,7 @@ WallarmのAPI Discoveryモジュールを使用して、Broken Object Level Auth
 
 Wallarmの**クレデンシャルスタッフィング検知**は、侵害済みまたは弱いクレデンシャルを使用してアプリケーションへアクセスしようとする試行に関するリアルタイム情報を収集・表示し、そのような試行について即時通知を有効化します。また、アプリケーションへのアクセスに使用された侵害済みまたは弱いクレデンシャルの一覧をダウンロード可能な形で作成します。
 
-![Wallarm Console - Credential Stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing.png)
+![Wallarm Console - Credential Stuffing](../../images/about-wallarm-waf/credential-stuffing/credential-stuffing.png)
 
 侵害済みおよび弱いパスワードを特定するために、Wallarmは、公開された[HIBP](https://haveibeenpwned.com/)の侵害クレデンシャルデータベースから収集した**8億5,000万件以上**の包括的なデータベースを使用します。
 
@@ -58,6 +58,6 @@ Wallarmは、基本の[WAAP](../about-wallarm/subscription-plans.md#core-subscri
 
 Wallarmは、**GraphQLポリシー**を設定することでこれらの攻撃からAPIを保護します - GraphQLリクエストに対する制限の集合です。
 
-![GraphQLの閾値](../images/user-guides/rules/graphql-rule.png)
+![GraphQLの閾値](../../images/user-guides/rules/graphql-rule.png)
 
 [詳細な説明と設定に進む→](../api-protection/graphql-rule.md)

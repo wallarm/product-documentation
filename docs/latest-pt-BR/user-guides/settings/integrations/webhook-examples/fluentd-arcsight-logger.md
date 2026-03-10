@@ -4,7 +4,7 @@ Estas instruções fornecem um exemplo de integração da Wallarm com o coletor 
 
 --8<-- "../include-pt-BR/integrations/webhook-examples/overview.md"
 
-![Fluxo de Webhook](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-scheme.png)
+![Fluxo de Webhook](../../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-scheme.png)
 
 !!! informação "Integração com a versão Enterprise do ArcSight ESM"
     Para configurar o encaminhamento de logs do Fluentd para a versão Enterprise do ArcSight ESM, recomenda-se configurar o Syslog Connector no lado do ArcSight e, em seguida, encaminhar logs do Fluentd para a porta do conector. Para obter uma descrição mais detalhada dos conectores, baixe o **Guia do Usuário do SmartConnector** da [documentação oficial do ArcSight SmartConnector](https://community.microfocus.com/t5/ArcSight-Connectors/ct-p/ConnectorsDocs).
@@ -28,7 +28,7 @@ O ArcSight Logger tem o receptor de logs `Wallarm Fluentd logs` configurado da s
 * Os eventos são analisados com o parser syslog
 * Outras configurações padrão
 
-![Configuração do receptor no ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-setup.png)
+![Configuração do receptor no ArcSight Logger](../../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-setup.png)
 
 Para obter uma descrição mais detalhada da configuração do receptor, baixe o **Guia de Instalação do Logger** da versão adequada da [documentação oficial do ArcSight Logger](https://community.microfocus.com/t5/Logger-Documentation/ct-p/LoggerDoc).
 
@@ -92,16 +92,16 @@ Uma descrição mais detalhada dos arquivos de configuração está disponível 
     ```
 
     **Logs do Fluentd:**
-    ![Logs no Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-curl-log.png)
+    ![Logs no Fluentd](../../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-curl-log.png)
 
     **Evento no ArcSight Logger:**
-    ![Logs no ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-curl-log.png)
+    ![Logs no ArcSight Logger](../../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-curl-log.png)
 
 ### Configuração da integração Fluentd
 
 --8<-- "../include-pt-BR/integrations/webhook-examples/create-fluentd-webhook.md"
 
-![Integração Webhook com Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+![Integração Webhook com Fluentd](../../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
 [Mais detalhes sobre a configuração da integração Fluentd](../fluentd.md)
 
@@ -111,8 +111,8 @@ Uma descrição mais detalhada dos arquivos de configuração está disponível 
 
 O Fluentd registrará o evento da seguinte maneira:
 
-![Log do Fluentd sobre o novo usuário](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-user-log.png)
+![Log do Fluentd sobre o novo usuário](../../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-user-log.png)
 
 A seguinte entrada será exibida nos eventos do ArcSight Logger:
 
-![Eventos no Logger ArcSight](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-user.png)
+![Eventos no Logger ArcSight](../../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-user.png)

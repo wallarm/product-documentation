@@ -1,9 +1,9 @@
 [api-spec-enforcement-docs]:             ../../api-specification-enforcement/overview.md
 [ip-list-docs]:                          ../../user-guides/ip-lists/overview.md
 [ptrav-attack-docs]:                     ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:                   ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:                   ../../../images/admin-guides/test-attacks-quickstart.png
 [filtration-mode-docs]:                  ../../admin-en/configure-wallarm-mode.md
-[se-connector-setup-img]:                ../../images/waf-installation/se-connector-setup.png
+[se-connector-setup-img]:                ../../../images/waf-installation/se-connector-setup.png
 [ip-list-docs]:                          ../../user-guides/ip-lists/overview.md
 [api-token]:                             ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:             ../../api-specification-enforcement/overview.md

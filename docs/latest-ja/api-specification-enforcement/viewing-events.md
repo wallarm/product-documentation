@@ -1,4 +1,4 @@
-# API Specification Enforcementによって発生したイベントの表示 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Specification Enforcementによって発生したイベントの表示 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 仕様に基づくセキュリティポリシーの適用に使用するAPI仕様を[アップロード](setup.md)し、エンフォースメントを構成すると、ポリシーの適用がリクエストに対して開始されます。本記事では、Wallarm Consoleでポリシーに違反したリクエストを表示および分析する方法を説明します。
 
@@ -14,7 +14,7 @@
 
 設定したポリシー違反時のアクションに応じて、ブロックされたイベントや監視対象のイベントが表示される場合があります。イベントの詳細には、違反の種類と原因となった仕様へのリンクが表示されます。
 
-![仕様 - セキュリティポリシー適用に使用](../images/api-specification-enforcement/api-specification-enforcement-events.png)
+![仕様 - セキュリティポリシー適用に使用](../../images/api-specification-enforcement/api-specification-enforcement-events.png)
 
 ## 上限超過イベント
 

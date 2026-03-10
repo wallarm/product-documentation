@@ -1,4 +1,4 @@
-# كشف واجهات برمجة التطبيقات الظلية واليتيمة <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# كشف واجهات برمجة التطبيقات الظلية واليتيمة <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 شاهدوا فيديو العرض التوضيحي لدينا لتتعرفوا على كيفية الكشف عن [نقاط النهاية الظلية واليتيمة](../api-discovery/overview.md#shadow-orphan-and-zombie-apis) في واجهة برمجة التطبيقات الخاصة بكم باستخدام Wallarm.
 

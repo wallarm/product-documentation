@@ -21,7 +21,7 @@
 4. IPアドレスまたはIPアドレスのグループをリストに追加する理由を指定します。
 5. IPアドレスまたはIPアドレスのグループのリストへの追加を確定します。
 
-![IPアドレスをリストに追加（アプリなし）](../../images/user-guides/ip-lists/add-ip-to-list-without-app.png)
+![IPアドレスをリストに追加（アプリなし）](../../../images/user-guides/ip-lists/add-ip-to-list-without-app.png)
 
 ## リストに追加されたオブジェクトの分析
 

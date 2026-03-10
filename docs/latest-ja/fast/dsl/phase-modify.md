@@ -2,7 +2,7 @@
 [link-ruby-regexp]:     http://ruby-doc.org/core-2.6.1/doc/regexp_rdoc.html
 [link-ext-logic]:       logic.md
 
-[img-modify]:           ../../images/fast/dsl/common/phases/modify.png
+[img-modify]:           ../../../images/fast/dsl/common/phases/modify.png
 
 # Modifyフェーズ
 

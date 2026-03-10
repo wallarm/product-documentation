@@ -11,7 +11,7 @@
 1. Select the [Datadog region](https://docs.datadoghq.com/getting_started/site/).
 1. Choose event types to trigger notifications.
 
-    ![Datadog integration](../../../images/user-guides/settings/integrations/add-datadog-integration.png)
+    ![Datadog integration](../../../../images/user-guides/settings/integrations/add-datadog-integration.png)
 
     Details on available events:
 
@@ -21,7 +21,7 @@
 
     The test Datadog log:
 
-    ![The test Datadog log](../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
+    ![The test Datadog log](../../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
 
     To find the Wallarm logs among other records, you can use the `source:wallarm_cloud` search tag in the Datadog Logs service.
 

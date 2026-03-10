@@ -1,7 +1,7 @@
 [link-cloud-node-synchronization]: ../admin-en/configure-cloud-node-synchronization-en.md
-[img-rules-create-backup]:      ../images/user-guides/rules/rules-create-backup.png
+[img-rules-create-backup]:      ../../images/user-guides/rules/rules-create-backup.png
 
-# Mitigation Controls <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Mitigation Controls <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Mitigation controls extend Wallarm's [attack protection](protecting-against-attacks.md#tools-for-attack-detection) with additional security measures and allow fine-tuning of the Wallarm behavior.
 
@@ -48,7 +48,7 @@ To create and apply a new mitigation control:
 1. Click **Add control**.
 1. In the **Add control** dialog, select the type of control you want to create.
 
-    ![Creating mitigation control](../images/user-guides/mitigation-controls/mc-create.png)
+    ![Creating mitigation control](../../images/user-guides/mitigation-controls/mc-create.png)
 
 1. [Configure](#configuration) your control.
 1. Click **Add**. The created control is displayed in the list. It immediately goes into action and performs in accordance with the selected **Mitigation mode**.
@@ -59,7 +59,7 @@ To create and apply a new mitigation control:
 
 Perform configuring in the **Security controls** → **Mitigation Controls** section of Wallarm Console. You can also access some mitigation control settings from other places in the system, for example, from API Sessions.
 
-![Mitigation Controls page in UI](../images/user-guides/mitigation-controls/mc-main-page.png)
+![Mitigation Controls page in UI](../../images/user-guides/mitigation-controls/mc-main-page.png)
 
 Before configuring, get familiar with the idea of [branches](#mitigation-control-branches) and check what already exists. 
 
@@ -150,7 +150,7 @@ All controls from the default set have the `Default` label. Such controls:
 * Can be disabled/re-enabled and edited like all others. Editing allows you to customize any default control based on the specific needs of the application, traffic patterns, or business context. For example, you may adjust default thresholds or exclude specific endpoints via the **Scope filters** section.
 <!--* Can be **reset to its default configuration** at any time.-->
 
-![Default mitigation controls](../images/user-guides/mitigation-controls/mc-defaults.png)
+![Default mitigation controls](../../images/user-guides/mitigation-controls/mc-defaults.png)
 
 --8<-- "../include/mc-subject-to-change.md"
 

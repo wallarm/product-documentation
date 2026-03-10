@@ -8,7 +8,7 @@
 
     * المعلومات الموفرة بواسطة [صفحة الحظر](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) من Wallarm إذا تم تكوينها (قد تشمل عنوان IP للمُستخدم، UUID الطلب وعناصر مُعدة مسبقًا أخرى).
 
-        ![صفحة الحظر من Wallarm](../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+        ![صفحة الحظر من Wallarm](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
         
         !!! تحذير "استخدام صفحة الحظر"
             إذا لم تستخدم صفحة الحظر الافتراضية أو المُخصصة من Wallarm، يُنصح بشدة بـ[تكوينها](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) للحصول على المعلومات المناسبة من المستخدم. تذكر أن حتى صفحة العينة تجمعوتسمح بنسخ سهل للمعلومات ذات الصلة بالطلب المحظور. بالإضافة إلى ذلك، يمكنك تخصيص أو إعادة بناء مثل هذه الصفحة لإرجاع رسالة الحظر المعلوماتية للمستخدمين.

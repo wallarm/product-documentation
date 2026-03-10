@@ -1,6 +1,6 @@
 [link-config-parameters]:       ../../admin-en/configure-wallarm-mode.md
 
-[img-general-settings]:         ../../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png
+[img-general-settings]:         ../../../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png
 
 # الإعدادات العامة
 
@@ -9,7 +9,7 @@
 * تغيير وضع تصفية Wallarm
 * إدارة مهل تسجيل الخروج التلقائي
 
-![علامة التبويب العامة](../../images/user-guides/settings/general-tab.png)
+![علامة التبويب العامة](../../../images/user-guides/settings/general-tab.png)
 
 ## وضع التصفية
 

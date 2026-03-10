@@ -13,7 +13,7 @@ Threat Management neler olup bittiğine dair tam bir resim sunar:
 * Session belirli uç noktalar etrafında mı? Wallarm'ın otomatik olarak keşfettiği tam uç nokta bilgisine geçin ([API Discovery](../../api-discovery/overview.md) gerektirir). Burada uç noktanız için hızlıca kurallar oluşturun.
 * Saldırılar, olaylar veya zafiyetlerle ilgili bilgilendirici belgeler mi istiyorsunuz? Seçtiğiniz filtrelenmiş verilerle PDF veya CSV [reports](#reports) oluşturun.
 
-![Threat Management](../../images/user-guides/events/tm-diagram.png)
+![Threat Management](../../../images/user-guides/events/tm-diagram.png)
 
 Tüm Threat Management bileşenleri gelişmiş arama ve filtreleme yetenekleri içerir. Ayrıca, seçtiğiniz filtrelenmiş içerikle saldırılar ve olaylar için PDF ve CSV raporlar oluşturabilirsiniz. Wallarm, istekleri mantıksal olarak saldırılar ve sessions içine birleştirmek için gelişmiş gruplama mekanizmaları kullanır ve uygulama mantığınıza tam uyum sağlamak için Sessions tespitinin nasıl yapıldığını değiştirmenize olanak tanır.
 
@@ -21,7 +21,7 @@ Tüm Threat Management bileşenleri gelişmiş arama ve filtreleme yetenekleri i
 
 Threat Management'ın dashboards'ı güvenlik sınırınız ve duruşunuz için görselleştirilmiş özetler sunar. Tamamı etkileşimli olan bu içerikler, sistemin farklı bölümlerindeki ayrıntılara ve verilere ile yapılandırma araçlarına hızlı erişim sağlar.
 
-![Threat Management - dashboards](../../images/user-guides/events/tm-overview-dashboards.png)
+![Threat Management - dashboards](../../../images/user-guides/events/tm-overview-dashboards.png)
 
 * Kötü amaçlı trafik hacmini ve bunun saldırı türlerine, kaynaklara, protokollere, kimlik doğrulama yöntemlerine vb. göre dağılımını [**Threat Prevention**](../../user-guides/dashboards/threat-prevention.md) dashboard'ı ile net biçimde görün.
 * Wallarm'ın API Discovery özelliği tarafından toplanan API verilerinizi [**API Discovery**](../../user-guides/dashboards/api-discovery.md) dashboard'ı ile gözden geçirin.
@@ -31,7 +31,7 @@ Threat Management'ın dashboards'ı güvenlik sınırınız ve duruşunuz için 
 
 Wallarm uygulama trafiğini sürekli analiz eder, saldırıları gerçek zamanlı olarak tespit eder ve etkisiz hale getirir. Wallarm Console içindeki [**Attacks**](check-attack.md) bölümü, güvenlik sınırınıza yönelik mevcut sızma girişimlerini analiz etmek ve bunlara karşı korunduğunuzdan emin olmak için merkezi merkezdir; ayrıca ek güvenlik önlemlerini yapılandırma aracıdır.
 
-![Threat Management - Attacks](../../images/user-guides/events/filter-for-falsepositive.png)
+![Threat Management - Attacks](../../../images/user-guides/events/filter-for-falsepositive.png)
 
 **Attacks** bölümüyle şunları yapabilirsiniz:
 
@@ -54,16 +54,16 @@ Incidents, doğrulanmış bir zafiyeti hedef alan saldırılardır. Wallarm Cons
 * **Attacks** içinde mevcut olan tüm bilgi ve araçlara sahip olun
 * İlgili zafiyet verilerini ve onunla ilgili tam bilgileri edinin 
 
-![Threat Management - Incidents](../../images/user-guides/events/incident-vuln.png)
+![Threat Management - Incidents](../../../images/user-guides/events/incident-vuln.png)
 
 ## Sessions
 
 [**API Sessions**](../../api-sessions/overview.md)'ın ele aldığı birincil zorluk, Wallarm tarafından tespit edilen tekil saldırılar görüntülendiğinde tam bağlam eksikliğidir. Her session içindeki istek ve yanıtların mantıksal sırasını yakalayarak, API Sessions daha geniş saldırı kalıplarına dair içgörüler sağlar ve güvenlik önlemlerinin etki ettiği iş mantığı alanlarını belirlemeye yardımcı olur.
 
-![!API Sessions bölümü - izlenen sessions](../../images/api-sessions/api-sessions.png)
+![!API Sessions bölümü - izlenen sessions](../../../images/api-sessions/api-sessions.png)
 
 ## Reports
 
 Saldırılar, incidents veya zafiyetler için PDF veya CSV [reports](../../user-guides/search-and-filters/custom-report.md) oluşturun. Seçilmiş veriler mi istiyorsunuz? Filtreleri uygulayın; yalnızca filtrelenen veriler raporun bir parçası olacaktır.
 
-![Attacks - rapor oluşturma](../../images/user-guides/search-and-filters/custom-report.png)
+![Attacks - rapor oluşturma](../../../images/user-guides/search-and-filters/custom-report.png)

@@ -4,7 +4,7 @@ Wallarm’ı, tespit edilen olaylara ilişkin bildirimleri Fluentd veya Logstash
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![Veri toplayıcı üzerinden Wallarm’dan Datadog’a bildirim gönderme](../../../../images/user-guides/settings/integrations/wallarm-log-collector-datadog.png)
+![Veri toplayıcı üzerinden Wallarm’dan Datadog’a bildirim gönderme](../../../../../images/user-guides/settings/integrations/wallarm-log-collector-datadog.png)
 
 !!! info "Datadog ile yerel entegrasyon"
     Wallarm ayrıca [Datadog API aracılığıyla Datadog ile yerel entegrasyonu](../datadog.md) destekler. Yerel entegrasyon, ara veri toplayıcının kullanılmasını gerektirmez.
@@ -115,7 +115,7 @@ Wallarm, günlükleri webhook’lar aracılığıyla ara veri toplayıcıya gön
 
 Fluentd entegrasyon örneği:
 
-![Fluentd ile entegrasyon ekleme](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+![Fluentd ile entegrasyon ekleme](../../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
 ## Entegrasyonun test edilmesi
 
@@ -170,6 +170,6 @@ Fluentd veya Logstash ara veri toplayıcısındaki test günlüğü:
 
 Test Datadog günlüğü:
 
-![Test Datadog günlüğü](../../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
+![Test Datadog günlüğü](../../../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
 
 Diğer kayıtlar arasında Wallarm günlüklerini bulmak için Datadog Logs servisinde `source:wallarm_cloud` arama etiketini kullanabilirsiniz.

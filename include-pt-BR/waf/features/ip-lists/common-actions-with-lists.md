@@ -21,7 +21,7 @@ Para adicionar um endereço IP, sub-rede ou grupo de endereços IP à lista:
 4. Especifique o motivo para adicionar um endereço IP ou um grupo de endereços IP à lista.
 5. Confirme a adição de um endereço IP ou um grupo de endereços IP à lista.
 
-![Adicionar IP à lista (sem aplicativo)](../../images/user-guides/ip-lists/add-ip-to-list-without-app.png)
+![Adicionar IP à lista (sem aplicativo)](../../../images/user-guides/ip-lists/add-ip-to-list-without-app.png)
 
 ## Analisando objetos adicionados à lista
 

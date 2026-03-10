@@ -9,7 +9,7 @@ Estas instruções descrevem a configuração do NGINX necessária para identifi
 
 O nó Wallarm lê um endereço IP de origem da requisição a partir da variável NGINX `$remote_addr`. Se a requisição passou por um servidor proxy ou balanceador de carga antes de ser enviada para o nó, a variável `$remote_addr` mantém o endereço IP do servidor proxy ou balanceador de carga.
 
-![Utilizando balancer](../images/admin-guides/using-proxy-or-balancer/using-balancer-en.png)
+![Utilizando balancer](../../images/admin-guides/using-proxy-or-balancer/using-balancer-en.png)
 
 O endereço IP de origem da requisição identificado pelo nó Wallarm é exibido nos [detalhes do ataque](../user-guides/events/check-attack.md#attacks) no Console Wallarm.
 
@@ -135,11 +135,11 @@ Mais detalhes sobre a identificação de um endereço IP do cliente original com
         ```
 2. Abra o Console Wallarm e certifique-se de que o endereço IP original do cliente é exibido nos detalhes do ataque:
 
-    ![Endereço IP originado da requisição](../images/request-ip-address.png)
+    ![Endereço IP originado da requisição](../../images/request-ip-address.png)
 
     Se o NGINX leu o endereço original do cabeçalho `X-Forwarded-For` (`X-Real-IP` ou similar), o valor do cabeçalho também seria exibido no ataque bruto.
 
-    ![Cabeçalho X-Forwarded-For](../images/x-forwarded-for-header.png)
+    ![Cabeçalho X-Forwarded-For](../../images/x-forwarded-for-header.png)
 
 ## Exemplos de configuração
 

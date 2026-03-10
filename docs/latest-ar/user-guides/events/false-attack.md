@@ -29,7 +29,7 @@
     لتقليل وقت تحليل الطلب، يمكنك إخفاء الطلبات التي هي بالتأكيد ضارة باستخدام [الوسم `!known`](../search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits).
 2. انقر على **وضع علامة كإيجابي زائف**.
 
-    ![هجوم زائف](../../images/user-guides/events/analyze-attack.png)
+    ![هجوم زائف](../../../images/user-guides/events/analyze-attack.png)
 
 !!! تحذير "إذا كان الهجوم يتكون من إصابات مجمعة حسب عناوين الـ IP"
     إذا كان الهجوم يتألف من إصابات [مجمعة](../../about-wallarm/protecting-against-attacks.md#attack) بواسطة عناوين الـ IP، فإن زر **وضع علامة كإيجابي زائف** غير متاح. يمكنك [وضع علامة على إصابات معينة](#mark-a-hit-as-a-false-positive) كإيجابيات زائفة.
@@ -50,4 +50,4 @@
 * **مع الإيجابيات الزائفة**: الهجمات الفعلية والإيجابيات الزائفة
 * **الإيجابيات الزائفة فقط**
 
-![فلتر الإيجابي الزائف](../../images/user-guides/events/filter-for-falsepositive.png)
+![فلتر الإيجابي الزائف](../../../images/user-guides/events/filter-for-falsepositive.png)

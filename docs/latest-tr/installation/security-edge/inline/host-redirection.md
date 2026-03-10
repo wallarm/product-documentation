@@ -1,4 +1,4 @@
-# Security Edge Inline'de Ana Makine Yönlendirme <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inline'de Ana Makine Yönlendirme <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 Wallarm [Security Edge Inline](deployment.md), trafik giriş noktalarını birleştirmenize yardımcı olmak için ana makine yönlendirme özelliği sağlar.
 
@@ -11,7 +11,7 @@ Yönlendirilen istek daha sonra hedef ana makinenin yapılandırmasına göre �
 !!! info "TLS gereksinimi"
     Yönlendiren ana makinenin DNS bölgesinde [sertifika verme özelliği etkinleştirilmiş](deployment.md#5-certificate-cname-configuration) olmalıdır.
 
-![!](../../../images/waf-installation/security-edge/inline/host-redirection.png)
+![!](../../../../images/waf-installation/security-edge/inline/host-redirection.png)
 
 Edge Node, yönlendiren ana makineye gelen isteklere HTTP 301 veya 302 yönlendirmesiyle yanıt verir ve istemciye aynı kaynağı hedef ana makineden istemesini söyler.
 
@@ -24,11 +24,11 @@ Ana makine yönlendirmeyi etkinleştirmek için:
 1. Hedef [ana makineyi](deployment.md#4-hosts) ekleyin — istemci isteklerinin yönlendirileceği ana makine.
 1. Gerekli Origin, Filtration mode ve diğer ayarlarla tamamen yapılandırın.
 
-    ![!](../../../images/waf-installation/security-edge/inline/redirect-target-host.png)
+    ![!](../../../../images/waf-installation/security-edge/inline/redirect-target-host.png)
 1. Yönlendiren ana makineyi ekleyin — kullanıcıların yönlendirilileceği kaynak ana makine.
 1. **Redirect to another host** onay kutusunu etkinleştirin ve listeden hedef ana makineyi seçin.
 
-    ![!](../../../images/waf-installation/security-edge/inline/redirecting-host.png)
+    ![!](../../../../images/waf-installation/security-edge/inline/redirecting-host.png)
 
 Yönlendiren ana makine için Origin gerekli değildir — yalnızca bir HTTPS yönlendirmesi döndürür ve trafiği proxy'lemez.
 

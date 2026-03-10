@@ -197,10 +197,10 @@
 
     --8<-- "../include/integrations/webhook-advanced-settings.md"
 
-    ![مثال على الإعدادات المتقدمة](../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
+    ![مثال على الإعدادات المتقدمة](../../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
 1. اختر أنواع الأحداث لتحفيز الإشعارات.
 
-    ![تكامل الويب هوك](../../../images/user-guides/settings/integrations/add-webhook-integration.png)
+    ![تكامل الويب هوك](../../../../images/user-guides/settings/integrations/add-webhook-integration.png)
 
     تفاصيل حول الأحداث المتاحة:
 
@@ -217,13 +217,13 @@
 
 إذا تمت إضافة عنوان IP إلى القائمة السوداء، سيتم إرسال الويب هوك حول هذا الحدث إلى URL الويب هوك.
 
-![مثال على المحفز لـIP القائمة السوداء](../../../images/user-guides/triggers/trigger-example4.png)
+![مثال على المحفز لـIP القائمة السوداء](../../../../images/user-guides/triggers/trigger-example4.png)
 
 **لاختبار المحفز:**
 
 1. افتح وحدة تحكم Wallarm → **قوائم IP** → **القائمة السوداء** وأضف عنوان IP إلى القائمة السوداء. على سبيل المثال:
 
-    ![إضافة IP إلى القائمة السوداء](../../../images/user-guides/triggers/test-ip-blocking.png)
+    ![إضافة IP إلى القائمة السوداء](../../../../images/user-guides/triggers/test-ip-blocking.png)
 2. تحقق من أن ال̉ويب هوك التالي تم إرساله إلى URL الويب هوك:
 
     ```

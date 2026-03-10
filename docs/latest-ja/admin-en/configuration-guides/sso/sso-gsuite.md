@@ -1,14 +1,14 @@
 # G SuiteとのSSO接続
 
-[img-gsuite-console]:       ../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-console.png
-[img-gsuite-add-app]:       ../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-add-app.png
-[img-fetch-metadata]:       ../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-fetch-metadata.png
-[img-fill-in-sp-data]:      ../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-fill-in-sp-data.png
-[img-app-page]:             ../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-app-page.png
+[img-gsuite-console]:       ../../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-console.png
+[img-gsuite-add-app]:       ../../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-add-app.png
+[img-fetch-metadata]:       ../../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-fetch-metadata.png
+[img-fill-in-sp-data]:      ../../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-fill-in-sp-data.png
+[img-app-page]:             ../../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-app-page.png
 [link-gsuite-adm-console]:  https://admin.google.com
-[img-sp-wizard-transfer-metadata]:  ../../../images/admin-guides/configuration-guides/sso/gsuite/sp-wizard-transfer-metadata.png
-[img-transfer-metadata-manually]:   ../../../images/admin-guides/configuration-guides/sso/gsuite/transfer-metadata-manually.png
-[img-sp-wizard-finish]:             ../../../images/admin-guides/configuration-guides/sso/gsuite/sp-wizard-finish.png
+[img-sp-wizard-transfer-metadata]:  ../../../../images/admin-guides/configuration-guides/sso/gsuite/sp-wizard-transfer-metadata.png
+[img-transfer-metadata-manually]:   ../../../../images/admin-guides/configuration-guides/sso/gsuite/transfer-metadata-manually.png
+[img-sp-wizard-finish]:             ../../../../images/admin-guides/configuration-guides/sso/gsuite/sp-wizard-finish.png
 
 本ガイドでは、アイデンティティプロバイダとしての[G Suite](https://gsuite.google.com/)(Google)サービスを、サービスプロバイダとして動作するWallarmに接続する手順を説明します。
 
@@ -30,11 +30,11 @@ G Suite側に入力するためにWallarmのメタデータが必要です:
 
 1. Wallarm Consoleで、**Integrations** → **SSO SAML AUTHENTICATION**に移動し、**Google SSO**の設定を開始します。
 
-    ![Integrations - SSO](../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
+    ![Integrations - SSO](../../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
 
 1. SSO configuration wizardの**Send details**ステップで、G Suiteサービスに渡す必要があるWallarmのメタデータを確認します。
 
-    ![Wallarmのメタデータ](../../../images/admin-guides/configuration-guides/sso/gsuite/sp-metadata.png)
+    ![Wallarmのメタデータ](../../../../images/admin-guides/configuration-guides/sso/gsuite/sp-metadata.png)
 
     * **Wallarm Entity ID**は、アイデンティティプロバイダ向けにWallarmアプリケーションが生成する一意のアプリケーション識別子です。
     * **Assertion Consumer Service URL(ACS URL)**は、アイデンティティプロバイダがSamlResponseパラメータ付きのリクエストを送信する、Wallarm側アプリケーションのアドレスです。
@@ -95,7 +95,7 @@ G Suiteでアプリケーションを設定するには:
     * `last_name`
     * ユーザーグループ(複数可)を`wallarm_roles`タグに
 
-    ![SAML SSOソリューション - G Suite - マッピング](../../../images/admin-guides/configuration-guides/sso/simple-sso-mapping.png)
+    ![SAML SSOソリューション - G Suite - マッピング](../../../../images/admin-guides/configuration-guides/sso/simple-sso-mapping.png)
 
 1. 変更を保存します。
 
@@ -134,6 +134,6 @@ G Suiteでアプリケーションを設定するには:
 
         すべてのロールの説明は[こちら](../../../user-guides/settings/users.md#user-roles)をご覧ください。
 
-    ![SSOグループからWallarmロールへのマッピング - Wallarmでの設定](../../../images/admin-guides/configuration-guides/sso/sso-mapping-in-wallarm.png)
+    ![SSOグループからWallarmロールへのマッピング - Wallarmでの設定](../../../../images/admin-guides/configuration-guides/sso/sso-mapping-in-wallarm.png)
 
 1. SSO configuration wizardを完了します。Wallarmは、G Suiteとの間でデータを転送できるかをテストします。

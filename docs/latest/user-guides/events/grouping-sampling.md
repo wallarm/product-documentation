@@ -1,19 +1,19 @@
 [link-using-search]:    ../search-and-filters/use-search.md
-[img-current-attacks]:  ../../images/glossary/attack-with-one-hit-example.png
-[img-incidents-tab]:    ../../images/user-guides/events/incident-vuln.png
-[img-show-falsepositive]: ../../images/user-guides/events/filter-for-falsepositive.png
+[img-current-attacks]:  ../../../images/glossary/attack-with-one-hit-example.png
+[img-incidents-tab]:    ../../../images/user-guides/events/incident-vuln.png
+[img-show-falsepositive]: ../../../images/user-guides/events/filter-for-falsepositive.png
 [use-search]:             ../search-and-filters/use-search.md
 [search-by-attack-status]: ../search-and-filters/use-search.md#search-attacks-by-the-action
-[img-verify-attack]:            ../../images/user-guides/events/verify-attack.png
+[img-verify-attack]:            ../../../images/user-guides/events/verify-attack.png
 [al-brute-force-attack]:      ../../attacks-vulns-list.md#brute-force-attack
 [al-forced-browsing]:         ../../attacks-vulns-list.md#forced-browsing
 [al-bola]:                    ../../attacks-vulns-list.md#broken-object-level-authorization-bola
 [link-analyzing-attacks]:       analyze-attack.md
-[img-false-attack]:             ../../images/user-guides/events/false-attack.png
-[img-removed-attack-info]:      ../../images/user-guides/events/removed-attack-info.png
+[img-false-attack]:             ../../../images/user-guides/events/false-attack.png
+[img-removed-attack-info]:      ../../../images/user-guides/events/removed-attack-info.png
 [link-check-attack]:        check-attack.md
 [link-false-attack]:        false-attack.md
-[img-current-attack]:       ../../images/user-guides/events/analyze-current-attack.png
+[img-current-attack]:       ../../../images/user-guides/events/analyze-current-attack.png
 [glossary-attack-vector]:   ../../glossary-en.md#malicious-payload
 
 # Grouping and Sampling of Hits
@@ -45,7 +45,7 @@ If hits are grouped by this method, the [**Mark as false positive**](check-attac
 
 Grouping by source IP is by default enabled in Wallarm Console → **Triggers** with the **Hits from the same IP** default trigger which activates when a single IP address originates more than 50 hits within 15 minutes.
 
-![Example of a trigger for hit grouping](../../images/user-guides/triggers/trigger-example-group-hits.png)
+![Example of a trigger for hit grouping](../../../images/user-guides/triggers/trigger-example-group-hits.png)
 
 You can adjust grouping by source IP under your needs: do this by creating your custom triggers of the **Hits from the same IP** type. Creating any custom trigger deletes the default one, if you delete all your custom triggers, the default is restored. You can also pause grouping by temporary disabling the default trigger.
 
@@ -57,7 +57,7 @@ Hit sampling does not affect the quality of attack detection but helps to avoid 
 
 The **Hits sampling is enabled** notification shows that sampling works now. You can click this notification or add [`sampled`](../search-and-filters/use-search.md#search-for-sampled-hits) to the search field to see only attacks that sampling was applied to. In the attack details you will see how many similar hits were detected but not displayed:
 
-![Dropped hits](../../images/user-guides/events/bruteforce-dropped-hits.png)
+![Dropped hits](../../../images/user-guides/events/bruteforce-dropped-hits.png)
 
 !!! info "Displaying dropped hits in the attack list"
     Since dropped hits are not uploaded to the Wallarm Cloud, certain hits or whole attacks can be absent in the list of attacks.

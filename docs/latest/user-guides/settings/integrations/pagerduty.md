@@ -30,7 +30,7 @@ In Wallarm UI:
 1. Paste the **Integration Key** value into the appropriate field.
 1. Choose event types to trigger notifications.
 
-    ![PagerDuty integration](../../../images/user-guides/settings/integrations/add-pagerduty-integration.png)
+    ![PagerDuty integration](../../../../images/user-guides/settings/integrations/add-pagerduty-integration.png)
 
     Details on available events:
       
@@ -40,7 +40,7 @@ In Wallarm UI:
 
     This will send the test notifications with the prefix `[Test message]`:
 
-    ![Test PagerDuty notification](../../../images/user-guides/settings/integrations/test-pagerduty-scope-changed.png)
+    ![Test PagerDuty notification](../../../../images/user-guides/settings/integrations/test-pagerduty-scope-changed.png)
 
 1. Click **Add integration**.
 

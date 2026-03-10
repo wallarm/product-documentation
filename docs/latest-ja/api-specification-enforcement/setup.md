@@ -1,6 +1,6 @@
 [waf-mode-instr]:   ../admin-en/configure-wallarm-mode.md
 
-# API Specification Enforcementのセットアップ <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Specification Enforcementのセットアップ <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 この記事では、[アップロード済みのAPI仕様](overview.md)に基づいてAPI保護を有効化および構成する方法を説明します。
 
@@ -9,7 +9,7 @@
 1. [US Cloud](https://us1.my.wallarm.com/api-specifications/)または[EU Cloud](https://my.wallarm.com/api-specifications/)の**API Specifications**セクションで、**Upload specification**をクリックします。
 1. 仕様のアップロードパラメータを設定し、アップロードを開始します。
 
-    ![仕様のアップロード](../images/api-specification-enforcement/specificaton-upload.png)
+    ![仕様のアップロード](../../images/api-specification-enforcement/specificaton-upload.png)
 
 仕様ファイルはAPI仕様の構文に準拠しているかを検証し、無効な場合はアップロードされません。仕様ファイルが正常にアップロードされるまで、API Specification Enforcementの設定は開始できませんのでご注意ください。
 
@@ -33,7 +33,7 @@
 
 1. リクエストが仕様に違反した場合のシステムの反応を設定します。
 
-    ![仕様 - セキュリティポリシー適用への利用](../images/api-specification-enforcement/specification-use-for-api-policies-enforcement.png)
+    ![仕様 - セキュリティポリシー適用への利用](../../images/api-specification-enforcement/specification-use-for-api-policies-enforcement.png)
 
     想定される違反の詳細:
 

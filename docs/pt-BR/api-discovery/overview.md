@@ -1,4 +1,4 @@
-# API Discovery Overview <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discovery Overview <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 The **API Discovery** module of the Wallarm platform builds your application REST API inventory based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API inventory based on the analysis results.
 
@@ -110,7 +110,7 @@ To try the module even before signing up and deploying the node to your environm
 
 In Playground, you can access the API Discovery view like it is filled with real data and thus learn and try out how the module works, and get some useful examples of its usage in the read-only mode.
 
-![API Discovery – Sample Data](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
+![API Discovery – Sample Data](../../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
 
 ## Enabling and configuring API Discovery
 

@@ -21,7 +21,7 @@ Listeye bir IP adresi, alt ağ veya IP adresleri grubu eklemek için:
 4. Bir IP adresini veya IP adresleri grubunu listeye ekleme nedenini belirtin.
 5. Bir IP adresini veya IP adresleri grubunu listeye eklemeyi onaylayın.
 
-![Listeye IP ekleme (uygulama olmadan)](../../images/user-guides/ip-lists/add-ip-to-list-without-app.png)
+![Listeye IP ekleme (uygulama olmadan)](../../../images/user-guides/ip-lists/add-ip-to-list-without-app.png)
 
 ## Listeye eklenen nesneleri analiz etme
 

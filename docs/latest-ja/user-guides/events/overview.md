@@ -11,7 +11,7 @@ Threat Management provides full picture of what is happening:
 * Work in the same way with [incidents](#incidents).
 * Do you want informative documents on attacks, incidents or vulnerabilities? Generate PDF or CSV [reports](#reports) with the filtered data of you choice.
 
-![Threat Management](../../images/user-guides/events/tm-diagram-no-sessions.png)
+![Threat Management](../../../images/user-guides/events/tm-diagram-no-sessions.png)
 
 All Threat Management components include advanced search and filtering capabilities. You can also make PDF and CSV reports for attacks and incidents with the filtered content of you choice. Wallarm uses the sophisticated grouping mechanisms to logically combine requests into attacks and sessions and provides you with the ability to modify how Sessions are detected to make a full match to your application logic.
 
@@ -19,7 +19,7 @@ All Threat Management components include advanced search and filtering capabilit
 
 Threat Management's dashboards provide visualized summaries for your security perimeter and posture. All being interactive, they provide you with quick access to details and data in different parts of the system and configuration tools.
 
-![Threat Management - dashboards](../../images/user-guides/events/tm-overview-dashboards.png)
+![Threat Management - dashboards](../../../images/user-guides/events/tm-overview-dashboards.png)
 
 * Get clear vision of the malicious traffic volume and its distribution by attack types, sources, protocols, authentication methods, etc. with the [**Threat Prevention**](../../user-guides/dashboards/threat-prevention.md) dashboard.
 * Review data about your API collected by the Wallarm's API Discovery with the [**API Discovery**](../../user-guides/dashboards/api-discovery.md) dashboard.
@@ -29,7 +29,7 @@ Threat Management's dashboards provide visualized summaries for your security pe
 
 Wallarm continuously analyzes application traffic, detects and mitigates attacks in real-time. The [**Attacks**](check-attack.md) section of the Wallarm Console is the central hub for analyzing current attempts of penetrating your security perimeter and its staying protected from them as well as the tool for configuring additional security measures.
 
-![Threat Management - Attacks](../../images/user-guides/events/filter-for-falsepositive.png)
+![Threat Management - Attacks](../../../images/user-guides/events/filter-for-falsepositive.png)
 
 With **Attacks** section you can:
 
@@ -52,10 +52,10 @@ The incidents are the attacks targeted at a confirmed vulnerability. The [**Inci
 * Have all info and tools available in **Attacks**
 * Get related vulnerability data and full info of its 
 
-![Threat Management - Incidents](../../images/user-guides/events/incident-vuln.png)
+![Threat Management - Incidents](../../../images/user-guides/events/incident-vuln.png)
 
 ## Reports
 
 For attacks, incidents or vulnerabilities, generate PDF or CSV [reports](../../user-guides/search-and-filters/custom-report.md). Do you want selected data? Apply filters and only filtered data will become the part of report.
 
-![Attacks - creating report](../../images/user-guides/search-and-filters/custom-report.png)
+![Attacks - creating report](../../../images/user-guides/search-and-filters/custom-report.png)

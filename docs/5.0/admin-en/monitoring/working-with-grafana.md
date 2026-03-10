@@ -1,8 +1,8 @@
-[img-influxdb-query-graphical]:     ../../images/monitoring/grafana-influx-1.png
-[img-influxdb-query-plaintext]:     ../../images/monitoring/grafana-influx-2.png
-[img-query-visualization]:          ../../images/monitoring/grafana-query-visualization.png
-[img-grafana-0-attacks]:            ../../images/monitoring/grafana-0-attacks.png
-[img-grafana-16-attacks]:           ../../images/monitoring/grafana-16-attacks.png
+[img-influxdb-query-graphical]:     ../../../images/monitoring/grafana-influx-1.png
+[img-influxdb-query-plaintext]:     ../../../images/monitoring/grafana-influx-2.png
+[img-query-visualization]:          ../../../images/monitoring/grafana-query-visualization.png
+[img-grafana-0-attacks]:            ../../../images/monitoring/grafana-0-attacks.png
+[img-grafana-16-attacks]:           ../../../images/monitoring/grafana-16-attacks.png
 
 [link-grafana]:                     https://grafana.com/
 

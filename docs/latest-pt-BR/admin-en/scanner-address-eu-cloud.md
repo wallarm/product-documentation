@@ -1,6 +1,6 @@
 [Lista de arquivos de IPs]: ../downloads/scanner-ip-addresses-eu.txt
 
-# Endereços do Scanner para Nuvem da UE <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Endereços do Scanner para Nuvem da UE <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 !!! info
     Esta lista funciona apenas para os usuários que utilizam a Nuvem da UE <https://my.wallarm.com>.

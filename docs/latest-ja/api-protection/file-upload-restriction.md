@@ -15,7 +15,7 @@
 * Mitigation controls（[Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans)サブスクリプション）- 緩和コントロールを使用すると、リクエスト全体のサイズだけでなく、特定のパラメータにも上限を設定できます（ルールよりも精密な設定が可能です）。
 * Rules（[Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans)サブスクリプション）
 
-## 緩和コントロールベースの保護 <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## 緩和コントロールベースの保護 <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;"></a>
 
 [Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans)サブスクリプションの一部として、Wallarmは**File upload restriction policy**という[緩和コントロール](../about-wallarm/mitigation-controls-overview.md)を提供しています。
 
@@ -48,7 +48,7 @@
 
 そのためには、次のスクリーンショットのとおり**File upload restriction policy**の緩和コントロールを設定します。
 
-![ファイルアップロード制限MC - 例](../images/api-protection/mitigation-controls-file-upload-1.png)
+![ファイルアップロード制限MC - 例](../../images/api-protection/mitigation-controls-file-upload-1.png)
 
 #### 特定ポイントのサイズ指定によるPUTアップロード制限
 
@@ -56,7 +56,7 @@
 
 そのためには、次のスクリーンショットのとおり**File upload restriction policy**の緩和コントロールを設定します。
 
-![ファイルアップロード制限MC - 例](../images/api-protection/mitigation-controls-file-upload-2.png)
+![ファイルアップロード制限MC - 例](../../images/api-protection/mitigation-controls-file-upload-2.png)
 
 上記の例では、リクエストポイントの定義における`post`は「リクエストボディ内」を意味するWallarmの[タグ](../user-guides/rules/request-processing.md#metadata)です。
 
@@ -66,7 +66,7 @@
 
 そのためには、次のスクリーンショットのとおり**File upload restriction policy**の緩和コントロールを設定します。
 
-![ファイルアップロード制限MC - 例](../images/api-protection/mitigation-controls-file-upload-3.png)
+![ファイルアップロード制限MC - 例](../../images/api-protection/mitigation-controls-file-upload-3.png)
 
 上記の例では、リクエストポイントは次のWallarmの[タグ](../user-guides/rules/request-processing.md)の並びで定義されます。
 
@@ -81,7 +81,7 @@
 
 そのため、この制限を適用するには、次のスクリーンショットのとおり**File upload restriction policy**の緩和コントロールを設定します。
 
-![ファイルアップロード制限MC - 例](../images/api-protection/mitigation-controls-file-upload-4.png)
+![ファイルアップロード制限MC - 例](../../images/api-protection/mitigation-controls-file-upload-4.png)
 
 上記の例では、リクエストポイントは次のWallarmの[タグ](../user-guides/rules/request-processing.md)の並びで定義されます。
 
@@ -104,7 +104,7 @@
 1. **Size restrictions**でサイズ制限と**Mode**を設定します。
 1. 必要に応じて、制限を適用するリクエストポイントを指定します（指定しない場合、制限はリクエスト全体のサイズに適用されます）。
 
-    ![ファイルアップロード制限 - ルール](../images/api-protection/rule-file-upload.png)
+    ![ファイルアップロード制限 - ルール](../../images/api-protection/rule-file-upload.png)
 
 1. [ルールのコンパイルとフィルタリングノードへのアップロードが完了する](../user-guides/rules/rules.md#ruleset-lifecycle)まで待ちます。
 
@@ -112,7 +112,7 @@
 
 ファイルアップロード制限ポリシーの違反は、**Attacks**および**API Sessions**で[File upload violation](../attacks-vulns-list.md#file-upload-violation)攻撃として表示されます。
 
-![ファイルアップロード制限 - 検出された攻撃](../images/api-protection/mitigation-controls-file-upload-detected.png)
+![ファイルアップロード制限 - 検出された攻撃](../../images/api-protection/mitigation-controls-file-upload-detected.png)
 
 リクエスト詳細内のボタンで**Attacks**ビューと**API Sessions**ビューを切り替えられます。この攻撃タイプの攻撃/セッションは、攻撃タイプフィルターを**File upload violation**に設定すると見つけられます（また、**Attacks**では`file_upload_violation`という[検索タグ](../user-guides/search-and-filters/use-search.md#search-by-attack-type)も使用できます）。
 

@@ -1,4 +1,4 @@
-# API Discovery Genel Bakış <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discovery Genel Bakış <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm platformunun **API Discovery** modülü, gerçek API kullanımına dayanarak uygulamanızın REST API envanterini oluşturur. Modül, gerçek trafik isteklerini sürekli olarak analiz eder ve analiz sonuçlarına göre API envanterini oluşturur.
 
@@ -99,7 +99,7 @@ Otomatik belirlemenin yanı sıra, atanan hassas iş akışı etiketlerini manue
 
 Uç noktalara hassas iş akışı etiketleri atandığında, keşfedilen tüm uç noktaları belirli bir iş akışına göre filtrelemek mümkün olur; bu da en kritik iş yeteneklerini korumayı kolaylaştırır.
 
-![API Discovery - Hassas iş akışlarına göre filtreleme](../images/about-wallarm-waf/api-discovery/api-discovery-sbf-filter.png)
+![API Discovery - Hassas iş akışlarına göre filtreleme](../../images/about-wallarm-waf/api-discovery/api-discovery-sbf-filter.png)
 
 ### Wallarm Cloud’a yüklenen verilerin güvenliği
 
@@ -126,7 +126,7 @@ Modülü kaydolmadan ve düğümü ortamınıza dağıtmadan önce bile denemek 
 
 Playground’da, sanki gerçek verilerle doldurulmuş gibi API Discovery görünümüne erişebilir; böylece modülün nasıl çalıştığını öğrenip deneyebilir ve salt okunur modda kullanımına dair bazı faydalı örnekler edinebilirsiniz.
 
-![API Discovery – Örnek Veriler](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
+![API Discovery – Örnek Veriler](../../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
 
 ## API Discovery’yi etkinleştirme ve yapılandırma
 

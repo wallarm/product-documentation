@@ -1,4 +1,4 @@
-# Prevenção de Abuso de API <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Prevenção de Abuso de API <a href="../subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 O módulo **Prevenção de Abuso de API** da plataforma Wallarm oferece detecção e mitigação de bots que realizam abuso de API, como preenchimento de credenciais, criação de contas falsas, raspagem de conteúdo e outras ações maliciosas voltadas para suas APIs.
 
@@ -33,7 +33,7 @@ Os seguintes detectores podem estar envolvidos:
 !!! info "Confiança"
     Como resultado do trabalho dos detectores, todos os bots [detectados] (../api-abuse-prevention/setup.md#exploring-blocked-malicious-bots-and-their-attacks) obtêm uma **porcentagem de confiança**: quão certos estamos de que este é um bot. Em cada tipo de bot, os detectores têm importância / número de votos diferentes. Assim, a porcentagem de confiança é os votos ganhos fora de todos os votos possíveis neste tipo de bot (fornecido por detectores que funcionaram).
 
-![Estatísticas de prevenção de abuso de API](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
+![Estatísticas de prevenção de abuso de API](../../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
 
 Se um ou vários detectores apontarem para [sinais de ataque de bot](#automated-threats-blocked-by-api-abuse-prevention), o módulo [denylists ou graylists](#reaction-to-malicious-bots) a fonte do tráfego de anomalia por 1 hora. Wallarm conta IPs de bot que foram negados e listados em cinza dentro de 30 dias e exibe quantos por cento essas quantidades aumentaram ou diminuíram em relação ao período de 30 dias anterior.
 
@@ -52,7 +52,7 @@ Para ativar a Prevenção de Abuso de API:
     !!! info "Acesso às configurações de Prevenção de Abuso de API"
         Apenas [administradores](../user-guides/settings/users.md#user-roles) da conta da empresa Wallarm podem acessar a seção **Prevenção de Abuso de API**. Entre em contato com o administrador se você não tiver esse acesso.
 
-    ![Perfil de prevenção de abuso de API](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
+    ![Perfil de prevenção de abuso de API](../../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
 
 ## Tolerância
 
@@ -94,7 +94,7 @@ Uma lista de exceções é uma lista de endereços IP, sub-redes, locais e tipos
 
 Você pode adicionar endereços IP à lista de exceções com antecedência ou se eles já foram erroneamente sinalizados como sendo associados à atividade de bot malicioso. [Aprenda como trabalhar com a lista de exceções →](../api-abuse-prevention/setup.md#working-with-exception-list)
 
-![Prevenção de abuso de API - Lista de exceções](../images/about-wallarm-waf/abi-abuse-prevention/exception-list.png)
+![Prevenção de abuso de API - Lista de exceções](../../images/about-wallarm-waf/abi-abuse-prevention/exception-list.png)
 
 ## Desativando a proteção de bot para URLs e solicitações específicas
 

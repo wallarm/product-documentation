@@ -1,6 +1,6 @@
 Práticas Recomendadas para Detecção e Mitigação de Vulnerabilidades
 
-## Siga as melhores práticas para verificação de ameaças ativas <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
+## Siga as melhores práticas para verificação de ameaças ativas <a href="../subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
 
 Um método que a Wallarm usa para [detectar vulnerabilidades](../about-wallarm/detecting-vulnerabilities.md) é a **Verificação de ameaças ativas**.
 

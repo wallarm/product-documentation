@@ -18,7 +18,7 @@ Wallarm UI'de:
 1. Kopyalanan HTTP Source Address (URL) değerini **HTTP Source Address (URL)** alanına yapıştırın.
 1. Bildirimleri tetikleyecek olay türlerini seçin.
 
-    ![Sumo Logic entegrasyonu](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
+    ![Sumo Logic entegrasyonu](../../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
 
     Kullanılabilir olaylara ilişkin ayrıntılar:
 

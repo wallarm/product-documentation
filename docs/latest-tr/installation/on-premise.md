@@ -9,7 +9,7 @@ Wallarm mimarisi [iki ana bileşen](../about-wallarm/overview.md#how-wallarm-wor
 * Filtreleme düğümü: Altyapınız içinde konuşlandırılır ve ihtiyaçlarınıza uygun esnek dağıtım seçeneklerine izin verir.
 * Wallarm Cloud: Geleneksel olarak Wallarm tarafından dışarıda barındırılır. On-Premise dağıtım modelinde, Wallarm Cloud'u kendi altyapınız içinde dağıtmanıza yönelik bir yöntem sunuyoruz. Bu yaklaşım, hizmet dağıtımının kapsamlı doğası nedeniyle tüm altyapının organize edilmesini gerektirir. Gerekli tüm hizmetleri otomatik olarak başlatan bir komut dosyası sağlayarak bu süreci basitleştiriyoruz.
 
-![On-Premise dağıtım](../images/waf-installation/on-premise.png)
+![On-Premise dağıtım](../../images/waf-installation/on-premise.png)
 
 ## Erişim ve ayrıntılar
 

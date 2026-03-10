@@ -1,4 +1,4 @@
-# Edge Node'dan Origin'lere mTLS <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Edge Node'dan Origin'lere mTLS <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 Karşılıklı TLS (mTLS), Wallarm Edge Node'un istemci sertifikası kullanarak origin sunucularınıza kendisini kimlik doğrulaması yapmasına olanak tanır. Bu, origin'lerinizin yalnızca güvenilen kaynaklardan gelen istekleri kabul etmesini sağlar.
 
@@ -15,7 +15,7 @@ Bir origin için mTLS etkinleştirildiğinde:
 1. Origin, sertifikayı güvenilen bir CA (Certificate Authority) demetine karşı doğrular.
 1. Sertifika geçerli ise ve beklenen parametrelerle (ör. Common Name veya Subject Alternative Name) eşleşiyorsa, bağlantı kurulur ve istek kabul edilir.
 
-![!](../../../images/waf-installation/security-edge/inline/mtls-logic.png)
+![!](../../../../images/waf-installation/security-edge/inline/mtls-logic.png)
 
 ## mTLS'i etkinleştirme
 
@@ -36,4 +36,4 @@ Birden fazla sertifika yükleyebilir ve farklı origin'lere farklı sertifikalar
 1. **Save** ile ayarları kaydedin.
 1. Origin'inizi gelen bağlantılar için mTLS gerektirecek şekilde yapılandırın. İstemci sertifikasını veren CA demetine güvenin.
 
-![!](../../../images/waf-installation/security-edge/inline/mtls-settings-ui.png)
+![!](../../../../images/waf-installation/security-edge/inline/mtls-settings-ui.png)

@@ -38,7 +38,7 @@ Varsayılan olarak şunlardır:
     * İsteği `overlimit_res` saldırısı olarak işaretleyip **Attacks** içinde gösterdiği anlamına gelir. İşlenen istek kısmı başka [saldırı türleri](../../attacks-vulns-list.md) içeriyorsa, ilgili türlerin saldırıları da görüntülenecektir.
     * Orijinal isteğin uygulamaya ulaşmasına izin verdiği (korumanın atlatılması) anlamına gelir.<!-- Note that the application has the risk to be exploited by the attacks included in both processed and unprocessed request parts. The default general configuration and [adjusting for specific endpoints](#specific-endpoint-configuration) minimizes this risk.-->
 
-![İstek işleme süresini sınırla - Genel yapılandırma](../../images/user-guides/rules/fine-tune-overlimit-detection-generic.png)
+![İstek işleme süresini sınırla - Genel yapılandırma](../../../images/user-guides/rules/fine-tune-overlimit-detection-generic.png)
 
 Genel yapılandırmayı zaman sınırını ayarlayarak ve yanıtı değiştirerek değiştirebilirsiniz.
 
@@ -80,4 +80,4 @@ Gereksiz `overlimit_res` bildirimlerinin sayısını azaltmak ve isteğin işlen
 
 Bunu yapmak için, ekran görüntüsünde gösterildiği gibi **Limit request processing time** kuralını ayarlayın.
 
-![“Register and display in the events” kural örneği](../../images/user-guides/rules/fine-tune-overlimit-detection-example.png)
+![“Register and display in the events” kural örneği](../../../images/user-guides/rules/fine-tune-overlimit-detection-example.png)

@@ -19,7 +19,7 @@ Você pode:
 * Carregar a partir de um backup existente: clique em **Carregar** para o backup necessário. Ao carregar a partir do backup, sua configuração de regra atual é excluída e substituída pela configuração do backup.
 * Excluir backup.
 
-    ![Regras - Criando backup](../../images/user-guides/rules/rules-create-backup.png)
+    ![Regras - Criando backup](../../../images/user-guides/rules/rules-create-backup.png)
 
 !!! Atenção "Restrições de modificação de regra"
     Você não pode criar ou modificar regras até que a criação do backup ou o carregamento a partir do backup estejam completos.

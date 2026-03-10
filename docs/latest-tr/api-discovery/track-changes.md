@@ -1,8 +1,8 @@
-# API'deki değişiklikleri izleme <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API'deki değişiklikleri izleme <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 API'nizde değişiklikler meydana geldiğinde, [API Discovery](overview.md) oluşturulmuş API envanterini günceller, değişiklikleri vurgular ve neyin, ne zaman değiştiğine dair bilgi sağlar. Ayrıca, tüm değişiklikler veya bir kısmı için bildirimler ayarlayabilirsiniz.
 
-![API Discovery - değişiklikleri izleme](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
+![API Discovery - değişiklikleri izleme](../../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
 
 Bir şirkette birden çok ekip, farklı programlama dilleri ve çeşitli dil framework'leri olabilir. Dolayısıyla değişiklikler farklı kaynaklardan herhangi bir zamanda API'ye gelebilir ve bu da kontrolü zorlaştırır. Güvenlik sorumluları için değişiklikleri en kısa sürede tespit etmek ve analiz etmek önemlidir. Kaçırılması durumunda şu riskleri barındırabilir:
 
@@ -31,7 +31,7 @@ Endpoint listesinde, aşağıdaki işaretler API'deki değişiklikleri vurgular:
 
 Hangi dönem seçilirse seçilsin, hiçbir öğe **New**, **Changed** veya **Unused** işaretiyle vurgulanmıyorsa, bu, o dönem için API'de değişiklik olmadığı anlamına gelir.
 
-![API Discovery - değişiklikleri izleme](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
+![API Discovery - değişiklikleri izleme](../../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
 
 Rogue olarak işaretlenen endpoint'ler için hızlı ipuçları:
 
@@ -63,7 +63,7 @@ Yeni, değişmiş veya kullanılmayan endpoint'ler ya da bunların tümü hakkı
 
 Bu örnekte, `example.com` API host'u için yeni endpoint'ler API Discovery modülü tarafından keşfedilirse, bununla ilgili bildirim yapılandırdığınız Slack kanalınıza gönderilecektir.
 
-![Changes in API tetikleyicisi](../images/user-guides/triggers/trigger-example-changes-in-api.png)
+![Changes in API tetikleyicisi](../../images/user-guides/triggers/trigger-example-changes-in-api.png)
 
 **Tetikleyiciyi test etmek için:**
 

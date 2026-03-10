@@ -7,7 +7,7 @@ A Wallarm é uma solução híbrida (parte software e parte SaaS) com dois princ
 * Software **nó de filtragem Wallarm**, implantado em sua infraestrutura e gerenciado por você. O componente de nó Wallarm é responsável por filtrar solicitações de usuários finais, enviar solicitações seguras para seu aplicativo e bloquear solicitações mal-intencionadas. O nó Wallarm passa o tráfego e toma a decisão localmente se uma solicitação é mal-intencionada ou não. O tráfego NÃO é espelhado para a Wallarm Cloud para análise.
 * **Nuvem Wallarm**, um componente de nuvem gerenciado pela Wallarm, é responsável por receber metainformações sobre solicitações processadas e ataques detectados pelos nós de filtragem; bem como gerar regras de filtragem específicas do aplicativo e torná-las disponíveis para os nós baixarem. Wallarm Console e API pública fornecem a você a capacidade de ver relatórios de segurança e eventos individuais; gerenciar regras de filtragem de tráfego, usuários do Wallarm Console, integrações externas, etc.
 
-![Esquema de Responsabilidades](../images/shared-responsibility.png)
+![Esquema de Responsabilidades](../../images/shared-responsibility.png)
 
 ## Responsabilidades da Wallarm
 

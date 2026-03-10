@@ -69,7 +69,7 @@
         1. أكمل إنشاء الدور وانسخ ARN الخاص بالدور.
         1. في واجهة المستخدم لوحة التحكم Wallarm ، في الحوار الخاص بإنشاء التكامل الخاص بك ، في علامة التبويب **Role ARN** ، الصق ARN الخاص بالدور الخاص بك.
 
-            ![تكامل Amazon S3](../../../images/user-guides/settings/integrations/add-amazon-s3-integration.png)
+            ![تكامل Amazon S3](../../../../images/user-guides/settings/integrations/add-amazon-s3-integration.png)
 
     === "Secret access key"
 

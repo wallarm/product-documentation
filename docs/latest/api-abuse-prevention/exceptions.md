@@ -1,6 +1,6 @@
 [api-discovery-enable-link]:        ../api-discovery/setup.md
 
-# API Abuse Prevention Exceptions <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Prevention Exceptions <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 This article describes how to fine tune [API Abuse Prevention](../api-abuse-prevention/overview.md) by marking legitimate bots and disabling bot protection for particular target URLs and request types.
 
@@ -16,11 +16,11 @@ There are two ways of adding IP addresses to the exception list:
 
 * From the **API Abuse Prevention** section → **Exception list** tab via **Add exception**. Here, besides IPs and subnets, you can add locations and source types that should be ignored by API Abuse Prevention.
 
-    ![API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-inside.png)
+    ![API Abuse prevention - adding items from inside exception list](../../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-inside.png)
 
 * From the **Attacks** section: use the `api_abuse`, `account_takeover`, `scraping` and `security_crawlers` search keys or select the appropriate options from the **Type** filter, then expand the required event and click **Add to exception list**.
 
-    ![API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
+    ![API Abuse prevention - adding items from inside exception list](../../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
 
 When the IP address is added to the exception list, the address is automatically removed from [deny-](../user-guides/ip-lists/overview.md) or [graylist](../user-guides/ip-lists/overview.md), but only if it was added there by API Abuse Prevention itself (has a `Bot` reason).
 
@@ -60,7 +60,7 @@ Note that you can temporarily disable the exception for the URL and/or request t
 
 Suppose your application is integrated with the Klaviyo marketing automation tool having multiple IPs that send requests. So we set not to check for automated (bot) activities in GET requests from the `Klaviyo/1.0` user agent for specific URIs:
 
-![Do not check for bot activity for requests with specific headers](../images/user-guides/rules/api-abuse-url-request.png)
+![Do not check for bot activity for requests with specific headers](../../images/user-guides/rules/api-abuse-url-request.png)
 
 **Disabling protection from bots for testing endpoint**
 
@@ -68,7 +68,7 @@ Let's say you have the endpoint that belongs to your application. The applicatio
 
 In this case it is easier to create rule from the **API Discovery** list of endpoints. Go there, find your endpoint and initiate rule creation from its page:
 
-![Creating Set API Abuse Prevention mode for API Discovery endpoint](../images/user-guides/rules/api-abuse-url.png)
+![Creating Set API Abuse Prevention mode for API Discovery endpoint](../../images/user-guides/rules/api-abuse-url.png)
 
 ## Disabling and deleting profiles
 

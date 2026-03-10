@@ -27,7 +27,7 @@ The output from the parsers becomes an additional set of parameters that has to 
 
     For example, if an attack was detected in the `SOAPACTION` header:
 
-    ![Tag example](../../images/user-guides/rules/tags-example.png)
+    ![Tag example](../../../images/user-guides/rules/tags-example.png)
 
 ### URL
 
@@ -271,7 +271,7 @@ p1=1&p2[a]=2&p2[b]=3&p3[]=4&p3[]=5&p4=6&p4=7
 * `[post, form_urlencoded, 'p4', array, 1]` — `7`
 * `[post, form_urlencoded, 'p4', pollution]` — `6,7`
 
-#### grpc<a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;height: 21px;margin-bottom: -4px;"></a>
+#### grpc<a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;height: 21px;margin-bottom: -4px;"></a>
 
 Parses gRPC API requests, and can be applied only to the request body.
 
@@ -346,7 +346,7 @@ When defining a request element the [rule](rules.md) is applied to:
 * Choose the parser of the request part containing JWT first
 * Specify one of the listed `jwt_*` parameters as the `jwt` parser value, e.g. for the `name` JWT payload parameter value:
 
-![JWT param desc in a rule](../../images/user-guides/rules/request-element-desc.png)
+![JWT param desc in a rule](../../../images/user-guides/rules/request-element-desc.png)
 
 #### gql
 
@@ -406,7 +406,7 @@ fragment UserFields on User {
 
 The parser allows extracting and displaying values of [GraphQL request parameters in API Sessions](../../api-sessions/overview.md#graphql-requests-in-api-sessions) and applying [rules](rules.md) to GraphQL specific parts of requests:
 
-![Example of the rule applied to GraphQL request point"](../../images/user-guides/rules/rule-applied-to-graphql-point.png)
+![Example of the rule applied to GraphQL request point"](../../../images/user-guides/rules/rule-applied-to-graphql-point.png)
 
 !!! info "GraphQL protection with Wallarm"
     While [always enabled](#managing-parsers) parser by default provides detection of regular attacks (SQLi, RCE, etc.) in GraphQL, Wallarm also allow **configuring** [protection from GraphQL-specific attacks](../../api-protection/graphql-rule.md).
@@ -463,4 +463,4 @@ Let us say the requests to `https://example.com/users/` require the authenticati
 
 To do so, set the rule as displayed on the screenshot:
 
-![Example of the rule "Disable/Enable request parser"](../../images/user-guides/rules/disable-parsers-example.png)
+![Example of the rule "Disable/Enable request parser"](../../../images/user-guides/rules/disable-parsers-example.png)

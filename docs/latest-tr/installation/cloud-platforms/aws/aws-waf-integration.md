@@ -4,7 +4,7 @@ Modern bulut mimarilerinde hem çevreyi hem de uygulamanın çekirdeğini koruma
 
 Bir derinlemesine savunma stratejisinde birleştirildiğinde, uçtan uygulama katmanına kadar web uygulamaları ve API'ler için kapsamlı koruma sağlarlar.
 
-![!](../../../images/waf-installation/aws/aws-waf-wallarm-responsibilities.png)
+![!](../../../../images/waf-installation/aws/aws-waf-wallarm-responsibilities.png)
 
 ## AWS WAF: AWS altyapısı için çevre koruması
 
@@ -69,6 +69,6 @@ Birleşik AWS WAF + Wallarm mimarisi aşağıdaki katmanlı mimari olarak görse
 
     Doğrulanmış istekler, her iki katman tarafından zaten filtrelenmiş olarak — API'ler, mikroservisler, veritabanları — çekirdek bileşenlere ulaşır. Wallarm, veri sızıntısını önlemek gibi amaçlarla, giden yanıtları da inceleyebilir. mTLS veya IAM gibi servisler arası ek korumalar bu katmanı daha da güçlendirebilir. 
 
-![!](../../../images/waf-installation/aws/aws-waf-wallarm-deployment.png)
+![!](../../../../images/waf-installation/aws/aws-waf-wallarm-deployment.png)
 
 Yaygın bir model: ALB + AWS WAF → Wallarm → Uygulama. Wallarm, altyapıda büyük değişiklikler gerektirmeden esnek dağıtımları destekler — ALB'nin arkasında inline, EKS'te bir ingress olarak veya API Gateway ya da CloudFront origin'lerinin arkasında. Standart AWS ağ yapısıyla uyumluluğu, hem genel hem de dahili trafik yollarını korumasına olanak tanır.

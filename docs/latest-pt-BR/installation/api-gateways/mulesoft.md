@@ -1,5 +1,5 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 
 # MuleSoft com Política Wallarm
 
@@ -7,7 +7,7 @@
 
 O diagrama abaixo ilustra o fluxo de tráfego de alto nível quando a política Wallarm está anexada às APIs na plataforma MuleSoft Anypoint, e a Wallarm está configurada para bloquear atividades maliciosas.
 
-![MuleSoft com política Wallarm](../../images/waf-installation/gateways/mulesoft/traffic-flow-mule-gateway-inline.png)
+![MuleSoft com política Wallarm](../../../images/waf-installation/gateways/mulesoft/traffic-flow-mule-gateway-inline.png)
 
 A solução envolve a implantação do nó Wallarm externamente e a injeção de código personalizado ou políticas na plataforma específica. Isso permite que o tráfego seja direcionado para o nó Wallarm externo para análise e proteção contra ameaças potenciais. Conhecidos como conectores Wallarm, eles servem como o elo essencial entre plataformas como Azion Edge, Akamai Edge, MuleSoft, Apigee e AWS Lambda, e o nó Wallarm externo. Esta abordagem garante uma integração perfeita, análise segura de tráfego, mitigação de riscos e segurança geral da plataforma.
 
@@ -145,7 +145,7 @@ Para adquirir e [enviar](https://docs.mulesoft.com/mule-gateway/policies-custom-
 
 A sua política personalizada agora está disponível na Exchange da sua Plataforma MuleSoft Anypoint.
 
-![MuleSoft com política Wallarm](../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
+![MuleSoft com política Wallarm](../../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
 
 ### 3. Anexar a política Wallarm à sua API
 
@@ -161,7 +161,7 @@ Para aplicar a política Wallarm a todas as APIs usando a opção de política a
 1. Se necessário, modifique o período máximo para a Wallarm processar uma única solicitação, alterando o valor de `WALLARM NODE REQUEST TIMEOUT`.
 1. Aplique a política.
 
-![Política Wallarm](../../images/waf-installation/gateways/mulesoft/automated-policy.png)
+![Política Wallarm](../../../images/waf-installation/gateways/mulesoft/automated-policy.png)
 
 #### Anexando a política a uma API individual
 
@@ -173,7 +173,7 @@ Para proteger uma API individual com a política Wallarm, siga estes passos:
 1. Se necessário, modifique o período máximo para a Wallarm processar uma única solicitação, alterando o valor de `WALLARM NODE REQUEST TIMEOUT`.
 1. Aplique a política.
 
-![Política Wallarm](../../images/waf-installation/gateways/mulesoft/policy-for-an-api.png)
+![Política Wallarm](../../../images/waf-installation/gateways/mulesoft/policy-for-an-api.png)
 
 ## Testando
 

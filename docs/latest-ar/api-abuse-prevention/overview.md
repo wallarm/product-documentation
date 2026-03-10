@@ -1,4 +1,4 @@
-# منع إساءة استخدام API <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# منع إساءة استخدام API <a href="../subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 تقدم وحدة **منع إساءة استخدام API** في منصة Wallarm الكشف والتخفيف عن الروبوتات التي تقوم بإساءة استخدام API مثل استخدام بيانات الاعتماد بشكل غير صحيح، إنشاء حسابات مزيفة، والتجريف وغيرها من الأعمال الخبيثة التي تستهدف واجهات برمجة التطبيقات الخاصة بك.
 

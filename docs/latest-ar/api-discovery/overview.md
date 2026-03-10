@@ -1,4 +1,4 @@
-# نظرة عامة حول اكتشاف واجهة برمجة التطبيقات <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# نظرة عامة حول اكتشاف واجهة برمجة التطبيقات <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 يقوم وحدة **اكتشاف واجهة برمجة التطبيقات** في منصة Wallarm ببناء جرد واجهات برمجة تطبيقات REST التطبيقية استنادًا إلى الاستخدام الفعلي لواجهة برمجة التطبيقات. تقوم الوحدة بتحليل الطلبات الفعلية للحركة وبناء جرد واجهة برمجة التطبيقات استنادًا إلى نتائج التحليل.
 
@@ -10,7 +10,7 @@
     * [نوع/تنسيق](./exploring.md#format-and-data-type) البيانات المرسلة في كل معلمة
     * تاريخ ووقت آخر تحديث لمعلومات المعلمة
 
-![نقاط النهاية التي اكتشفها اكتشاف واجهة برمجة التطبيقات](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
+![نقاط النهاية التي اكتشفها اكتشاف واجهة برمجة التطبيقات](../../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
 ## المشكلات التي يتناولها اكتشاف واجهة برمجة التطبيقات
 

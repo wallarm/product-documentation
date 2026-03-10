@@ -72,7 +72,7 @@ To detect and handle attacks, Wallarm uses the following process:
 1. Makes a decision whether the request is a part of attack or not based on basic detectors, custom rules and specific module settings.
 1. Handles request in accordance with decision and filtration mode.
 
-![Attack handling process - diagram](../images/about-wallarm-waf/overview/attack-handling-diagram.png)
+![Attack handling process - diagram](../../images/about-wallarm-waf/overview/attack-handling-diagram.png)
 
 Note that rules, settings and filtration mode can be inherited from the parent endpoint or [application](../user-guides/settings/applications.md). More specific has priority.
 
@@ -144,7 +144,7 @@ So you need to ignore SQL injections in the parameter `postBody` of the requests
 
 To do so, set the **Ignore certain attack types** rule as displayed on the screenshot:
 
-![Example of the rule "Ignore certain attack types"](../images/user-guides/rules/ignore-attack-types-rule-example.png)
+![Example of the rule "Ignore certain attack types"](../../images/user-guides/rules/ignore-attack-types-rule-example.png)
 
 --8<-- "../include/waf/features/rules/request-part-reference.md"
 
@@ -173,7 +173,7 @@ Let us say when the user uploads the binary file with the image using the form o
 
 To do so, set the **Allow binary data** rule as displayed on the screenshot:
 
-![Example of the rule "Allow binary data"](../images/user-guides/rules/ignore-binary-attacks-example.png)
+![Example of the rule "Allow binary data"](../../images/user-guides/rules/ignore-binary-attacks-example.png)
 
 --8<-- "../include/waf/features/rules/request-part-reference.md"
 
@@ -244,7 +244,7 @@ Wallarm provides you with the comprehensive user interface displaying all detect
 
 See details in the [Attack Analysis](../user-guides/events/check-attack.md) article.
 
-![Attacks view](../images/user-guides/events/check-attack.png)
+![Attacks view](../../images/user-guides/events/check-attack.png)
 
 <!-- ## Demo videos
 

@@ -1,16 +1,16 @@
 #   OktaとのSSO接続
 
 [link-okta]:                        https://www.okta.com/
-[img-dashboard]:            ../../../images/admin-guides/configuration-guides/sso/okta/dashboard.png
-[img-general]:              ../../../images/admin-guides/configuration-guides/sso/okta/wizard-general.png  
-[img-saml]:                 ../../../images/admin-guides/configuration-guides/sso/okta/wizard-saml.png
-[img-saml-preview]:         ../../../images/admin-guides/configuration-guides/sso/okta/wizard-saml-preview.png
-[img-feedback]:             ../../../images/admin-guides/configuration-guides/sso/okta/wizard-feedback.png
+[img-dashboard]:            ../../../../images/admin-guides/configuration-guides/sso/okta/dashboard.png
+[img-general]:              ../../../../images/admin-guides/configuration-guides/sso/okta/wizard-general.png  
+[img-saml]:                 ../../../../images/admin-guides/configuration-guides/sso/okta/wizard-saml.png
+[img-saml-preview]:         ../../../../images/admin-guides/configuration-guides/sso/okta/wizard-saml-preview.png
+[img-feedback]:             ../../../../images/admin-guides/configuration-guides/sso/okta/wizard-feedback.png
 [link-okta-docs]:           https://help.okta.com/en/prod/Content/Topics/Apps/Apps_App_Integration_Wizard.htm
-[img-transfer-metadata-manually]:   ../../../images/admin-guides/configuration-guides/sso/okta/transfer-metadata-manually.png
-[img-sp-wizard-finish]:             ../../../images/admin-guides/configuration-guides/sso/okta/sp-wizard-finish.png
-[img-sp-metadata]:              ../../../images/admin-guides/configuration-guides/sso/okta/sp-metadata.png
-[img-assignments]:  ../../../images/admin-guides/configuration-guides/sso/okta/assignments.png
+[img-transfer-metadata-manually]:   ../../../../images/admin-guides/configuration-guides/sso/okta/transfer-metadata-manually.png
+[img-sp-wizard-finish]:             ../../../../images/admin-guides/configuration-guides/sso/okta/sp-wizard-finish.png
+[img-sp-metadata]:              ../../../../images/admin-guides/configuration-guides/sso/okta/sp-metadata.png
+[img-assignments]:  ../../../../images/admin-guides/configuration-guides/sso/okta/assignments.png
 
 本ガイドでは、サービスプロバイダーとして動作するWallarmに、アイデンティティプロバイダーとして[Okta][link-okta]サービスを接続する手順を説明します。
 
@@ -35,7 +35,7 @@ Okta側で入力するためにWallarmのメタデータが必要です:
 
 1. Wallarm Consoleで**Integrations** → **SSO SAML AUTHENTICATION**に進み、**Okta SSO**の構成を開始します。
 
-    ![Integrations - SSO](../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
+    ![Integrations - SSO](../../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
 
 1. SSO構成ウィザードで、**Send details**手順にて、Oktaサービスへ渡す必要があるWallarmのメタデータを確認します。
 
@@ -112,7 +112,7 @@ Oktaでアプリケーションを構成するには:
     
         すべてのロールの説明は[こちら](../../../user-guides/settings/users.md#user-roles)を参照してください。
 
-    ![Integrations - SSO、Oktaでのマッピング](../../../images/admin-guides/configuration-guides/sso/okta/wallarm-sso-okta-mapping.png)
+    ![Integrations - SSO、Oktaでのマッピング](../../../../images/admin-guides/configuration-guides/sso/okta/wallarm-sso-okta-mapping.png)
 
 1. 変更を保存します。
 
@@ -136,6 +136,6 @@ Oktaでアプリケーションを構成するには:
 
 Oktaの場合、この手順はWallarmではスキップします。
 
-![SSOグループからWallarmロールへのマッピング - Wallarmでのマッピング](../../../images/admin-guides/configuration-guides/sso/sso-mapping-in-wallarm.png)
+![SSOグループからWallarmロールへのマッピング - Wallarmでのマッピング](../../../../images/admin-guides/configuration-guides/sso/sso-mapping-in-wallarm.png)
 
 次の手順に進み、SSO構成ウィザードを完了してください。WallarmはSAML SSOソリューションとの間でデータを転送できるかをテストします。

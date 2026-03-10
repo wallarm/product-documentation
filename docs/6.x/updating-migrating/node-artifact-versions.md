@@ -106,7 +106,7 @@ new attack types in logging variables and search bars?
     This variable returns the final filtration mode applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization.
 * Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
 
-    ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
+    ![Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
 
 ### 6.5.1 (2025-09-09)
 
@@ -292,7 +292,7 @@ new attack types in logging variables and search bars?
     This variable returns the final filtration mode applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization.
 * Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
 
-    ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
+    ![Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
 * Fixed the following vulnerabilities:
 
     * [CVE-2025-9230](https://nvd.nist.gov/vuln/detail/CVE-2025-9230)
@@ -455,7 +455,7 @@ new attack types in logging variables and search bars?
     This variable returns the final filtration mode applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization.
 * Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
 
-    ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
+    ![Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
 * Fixed the following vulnerabilities:
 
     * [CVE-2025-9230](https://nvd.nist.gov/vuln/detail/CVE-2025-9230)
@@ -639,7 +639,7 @@ new attack types in logging variables and search bars?
     ```
 * Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
 
-    ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
+    ![Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
 * Fixed the following vulnerabilities:
 
     * [CVE-2025-9230](https://nvd.nist.gov/vuln/detail/CVE-2025-9230)
@@ -798,7 +798,7 @@ new attack types in logging variables and search bars?
     This variable returns the final filtration mode applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization.
 * Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
 
-    ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
+    ![Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
 
 ### 6.5.1 (2025-09-09)
 
@@ -935,7 +935,7 @@ new attack types in logging variables and search bars?
     This variable returns the final filtration mode applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization.
 * Updated the wording on the [Wallarm-branded block page](../admin-en/configuration-guides/configure-block-page-and-code.md), the page now looks as follows:
 
-    ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
+    ![Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
 
 ### wallarm-node-6-5-1-20250908-174655 (2025-09-09)
 

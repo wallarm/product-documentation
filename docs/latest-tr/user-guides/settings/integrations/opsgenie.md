@@ -20,7 +20,7 @@ Wallarm UI’de:
 1. Opsgenie’nin [EU instance'ını](https://docs.opsgenie.com/docs/european-service-region) kullanıyorsanız, listeden uygun Opsgenie API endpoint’ini seçin. Varsayılan olarak US instance endpoint’i ayarlıdır.
 1. Bildirimleri tetikleyecek olay türlerini seçin.
 
-    ![Opsgenie entegrasyonu](../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
+    ![Opsgenie entegrasyonu](../../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
 
     Kullanılabilir olayların ayrıntıları:
       
@@ -30,7 +30,7 @@ Wallarm UI’de:
 
     Bu, “[Test message]” öneki ile test bildirimleri gönderecektir:
 
-    ![Opsgenie test mesajı](../../../images/user-guides/settings/integrations/test-opsgenie-new-vuln.png)
+    ![Opsgenie test mesajı](../../../../images/user-guides/settings/integrations/test-opsgenie-new-vuln.png)
 
 1. **Add integration**’a tıklayın.
 
@@ -44,7 +44,7 @@ Wallarm UI’de:
 
 Uygulama sunucusu veya veritabanı ile ilgili 1 saniye içinde 2 veya daha fazla olay tespit edilirse bu olaya ilişkin bildirim Opsgenie’ye gönderilecektir.
 
-![Verileri Splunk'a gönderen bir tetikleyici örneği](../../../images/user-guides/triggers/trigger-example3.png)
+![Verileri Splunk'a gönderen bir tetikleyici örneği](../../../../images/user-guides/triggers/trigger-example3.png)
 
 **Tetiği test etmek için**, korunan kaynağa, aktif bir güvenlik açığını istismar eden saldırı göndermek gerekir. Wallarm Console → **Vulnerabilities** bölümü, uygulamalarınızda tespit edilen aktif güvenlik açıklarını ve bu açıkları istismar eden saldırı örneklerini görüntüler.
 

@@ -32,7 +32,7 @@
 * عدد [الضربات](../../about-wallarm/protecting-against-attacks.md#hit) المكتشفة والمحظورة خلال الشهر الحالي
 * السرعة الفعلية التي يتم بها مواجهة الطلبات والضربات
 
-![إحصائيات الشهر الحالي](../../images/user-guides/dashboard/current-month-stats.png)
+![إحصائيات الشهر الحالي](../../../images/user-guides/dashboard/current-month-stats.png)
 
 ## الحركة الشرعية والضارة لفترة
 
@@ -42,7 +42,7 @@
 * العدد الإجمالي للطلبات المعالجة، [الضربات](../../glossary-en.md#hit)، و[الحوادث](../../glossary-en.md#security-incident)، وعدد الضربات المحظورة
 * الاتجاهات: تغير في عدد الأحداث لفترة مختارة ولنفس الفترة السابقة
 
-![الحركة الشرعية والضارة](../../images/user-guides/dashboard/traffic-stats.png)
+![الحركة الشرعية والضارة](../../../images/user-guides/dashboard/traffic-stats.png)
 
 ## أنواع الهجمات
 
@@ -50,7 +50,7 @@
 
 باستخدام هذه البيانات، يمكنك تحليل قابلية خدماتك لأنواع هجمات مختلفة واتخاذ التدابير المناسبة لتحسين أمن الخدمة.
 
-![أنواع الهجمات](../../images/user-guides/dashboard/attack-types.png)
+![أنواع الهجمات](../../../images/user-guides/dashboard/attack-types.png)
 
 ## بروتوكولات API
 
@@ -67,7 +67,7 @@
 
 باستخدام القطعة، يمكنك تحليل الطلبات الضارة المرسلة عبر بروتوكولات معينة وتقييم قابلية نظامك لمثل هذه الطلبات.
 
-![أنواع الهجمات](../../images/user-guides/dashboard/api-protocols.png)
+![أنواع الهجمات](../../../images/user-guides/dashboard/api-protocols.png)
 
 ## CVEs
 
@@ -75,7 +75,7 @@
 
 يتم تقديم كل CVE مع التفاصيل مثل درجة CVSS v3.0، وتعقيد الهجوم، والامتيازات المطلوبة وغيرها المستلمة من [قاعدة بيانات الضعف](https://vulners.com/). الثغرات الأمنية المسجلة قبل عام 2015 لا تُقدم مع درجة CVSS v3.0.
 
-![CVE](../../images/user-guides/dashboard/cves.png)
+![CVE](../../../images/user-guides/dashboard/cves.png)
 
 يمكنك مراجعة نظامك للوقوف على الثغرات البارزة وإذا وُجدت، تنفيذ توصيات التعويض المناسبة للقضاء على خطر استغلال الثغرة.
 
@@ -88,7 +88,7 @@
 * Bearer Token
 * Cookie Auth، وغيرها.
 
-![التوثيق](../../images/user-guides/dashboard/authentication.png)
+![التوثيق](../../../images/user-guides/dashboard/authentication.png)
 
 تتيح هذه المعلومات لك حدد طرق التوثيق الضعيفة ومن ثم اتخاذ خطوات وقائية.
 
@@ -103,7 +103,7 @@
 
 يمكنك عرض بيانات عن كل مجموعة مصادر على علامات التبويب المنفصلة.
 
-![مصادر الهجوم](../../images/user-guides/dashboard/attack-sources.png)
+![مصادر الهجوم](../../../images/user-guides/dashboard/attack-sources.png)
 
 ## أهداف الهجوم
 
@@ -115,7 +115,7 @@
 
 يمكنك عرض البيانات على النطاقات والتطبيقات على علامات التبويب المنفصلة.
 
-![أهداف الهجوم](../../images/user-guides/dashboard/attack-targets.png)
+![أهداف الهجوم](../../../images/user-guides/dashboard/attack-targets.png)
 
 ## ماسح الثغرات
 
@@ -125,4 +125,4 @@
 * عدد الثغرات النشطة من جميع مستويات المخاطر في نهاية الفترة المختارة
 * التغيرات في عدد الثغرات من جميع مستويات المخاطر للفترة المختارة
 
-![قطعة الماسح](../../images/user-guides/dashboard/dashboard-scanner.png)
+![قطعة الماسح](../../../images/user-guides/dashboard/dashboard-scanner.png)

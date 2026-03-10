@@ -1,7 +1,7 @@
 [file-ips-list-us]: ../downloads/scanner-ip-addresses-us.txt
 [file-ips-list-eu]: ../downloads/scanner-ip-addresses-eu.txt
 
-# 脆弱性スキャンのIPアドレス <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# 脆弱性スキャンのIPアドレス <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 本書では、Wallarmが[API攻撃対象領域管理](../api-attack-surface/security-issues.md)および[脅威リプレイテスト](../vulnerability-detection/threat-replay-testing/overview.md)を使用して、企業リソースの脆弱性、統合されたWAAPソリューションおよびセキュリティポスチャをスキャンする際に使用する、US CloudおよびEU CloudのIPアドレス一覧を提供します。
 

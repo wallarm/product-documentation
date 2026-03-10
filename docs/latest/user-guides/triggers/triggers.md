@@ -4,7 +4,7 @@ Triggers are tools used to set up Wallarm response to different events. Triggers
 
 Triggers are configured in the **Triggers** section in the [US](https://us1.my.wallarm.com/triggers) or [EU](https://my.wallarm.com/triggers) Cloud.
 
-![Section to configure triggers](../../images/user-guides/triggers/triggers-section.png)
+![Section to configure triggers](../../../images/user-guides/triggers/triggers-section.png)
 
 ## How it works
 
@@ -32,7 +32,7 @@ Using triggers, you can:
 
 Filters are used for [condition](#how-it-works) detailing. For example, you can set up reactions to attacks of certain types, such as brute-force attacks, SQL injections and others. You can add one or more filters in the Wallarm Console interface and set values for them.
 
-![Available filters](../../images/user-guides/triggers/trigger-filters.png)
+![Available filters](../../../images/user-guides/triggers/trigger-filters.png)
 
 The following filters are available:
 

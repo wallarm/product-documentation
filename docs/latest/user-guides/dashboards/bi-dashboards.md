@@ -1,4 +1,4 @@
-# Business Intelligence Dashboards <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# Business Intelligence Dashboards <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;"></a>
 
 In Wallarm, you have the ability to build and customize your own dashboards. This allows you to collect, present, and share security data in a way that is most relevant to your business, helping you make more informed decisions about security measures. This article describes how to create, use, and share such dashboards.
 
@@ -28,7 +28,7 @@ You can:
 * Resize and change chart positions by drag-and-drop.
 * Add a dashboard to favorites; this will display it in Wallarm's dashboard menu on the left.
 
-    ![BI dashboards](../../images/user-guides/dashboard/bi-dashboards.png)
+    ![BI dashboards](../../../images/user-guides/dashboard/bi-dashboards.png)
 
 To add a BI dashboard:
 
@@ -48,7 +48,7 @@ Depending on the chart type, settings may vary. Available types:
 * Donut chart
 * Single metric
 
-![BI dashboards - chart types](../../images/user-guides/dashboard/bi-dashboards-chart-types.png)
+![BI dashboards - chart types](../../../images/user-guides/dashboard/bi-dashboards-chart-types.png)
 
 Generally, to set up a chart, you need to select a metric and how it will be presented on the chart. Note that:
 
@@ -56,7 +56,7 @@ Generally, to set up a chart, you need to select a metric and how it will be pre
 * Chart title is required.
 * You can use **labels** to split data of a single metric "by label". For example, add the "Number of requests" metric, then add the "Application" label to see the number of requests for each application.
 
-    ![BI dashboards - using labels](../../images/user-guides/dashboard/bi-dashboards-labels.png)
+    ![BI dashboards - using labels](../../../images/user-guides/dashboard/bi-dashboards-labels.png)
 
 * You can use **filters**. Filters are chart-wide, so if you have several metrics in the chart, they will all be affected by the selected filters. Consider the interaction between chart and dashboard filters.
 

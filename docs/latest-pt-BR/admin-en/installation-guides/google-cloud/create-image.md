@@ -4,9 +4,9 @@
 [link-docs-reverse-proxy-setup]:    ../../../installation/cloud-platforms/gcp/machine-image.md#5-enable-wallarm-to-analyze-the-traffic
 [link-docs-check-operation]:        ../../installation-check-operation-en.md
 
-[img-vm-instance-poweroff]:     ../../../images/installation-gcp/auto-scaling/common/create-image/vm-poweroff.png
-[img-create-image]:             ../../../images/installation-gcp/auto-scaling/common/create-image/create-image.png
-[img-check-image]:              ../../../images/installation-gcp/auto-scaling/common/create-image/image-list.png
+[img-vm-instance-poweroff]:     ../../../../images/installation-gcp/auto-scaling/common/create-image/vm-poweroff.png
+[img-create-image]:             ../../../../images/installation-gcp/auto-scaling/common/create-image/create-image.png
+[img-check-image]:              ../../../../images/installation-gcp/auto-scaling/common/create-image/image-list.png
 
 [anchor-node]:  #1-creating-and-configuring-the-filtering-node-instance-on-the-google-cloud-platform
 [anchor-gcp]:   #2-creating-a-virtual-machine-image

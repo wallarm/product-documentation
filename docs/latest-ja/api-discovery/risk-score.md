@@ -1,4 +1,4 @@
-# エンドポイントのリスクスコア <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# エンドポイントのリスクスコア <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 [API Discovery](overview.md)は、APIインベントリ内の各エンドポイントに対して自動的にリスクスコアを計算します。リスクスコアによって、どのエンドポイントが攻撃対象になりやすいかを把握でき、セキュリティ対応の重点を定められます。
 
@@ -34,7 +34,7 @@
 
 エンドポイントのリスクスコアの要因やリスク低減方法を確認するには、エンドポイントの詳細を開きます。
 
-![API Discovery - リスクスコア](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
+![API Discovery - リスクスコア](../../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 
 また、[米国](https://us1.my.wallarm.com/dashboard-api-discovery)または[EU](https://my.wallarm.com/dashboard-api-discovery)のCloudにある**Dashboards** → **API Discovery**で、リスクスコアレベル別のAPIの概要も確認できます。
 
@@ -50,6 +50,6 @@
 1. 必要に応じて、リスクスコアに影響させたくない要因を無効化します。
 1. 残りの要因の重みを設定します。
 
-    ![API Discovery - リスクスコアのセットアップ](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score-setup.png)
+    ![API Discovery - リスクスコアのセットアップ](../../images/about-wallarm-waf/api-discovery/api-discovery-risk-score-setup.png)
 
 1. 変更を保存します。数分以内に、新しい設定に従ってエンドポイントのリスクスコアをWallarmが再計算します。

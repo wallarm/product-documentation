@@ -1,4 +1,4 @@
-# الواجهة البرمجية المظلية، اليتيمة، الزومبي <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# الواجهة البرمجية المظلية، اليتيمة، الزومبي <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 تحدد وحدة [اكتشاف الواجهة البرمجية](overview.md) تلقائيا الواجهات البرمجية الظلية، اليتيمة والزومبية من خلال مقارنة مواصفاتك المُرسلة مع حركة المرور الحية.
 
@@ -8,7 +8,7 @@
 | [الواجهة البرمجية اليتيمة](#orphan-api) | واجهة برمجية مُدونة لا تتلقى حركة مرور. |
 | [الواجهة البرمجية الزومبي](#zombie-api) | الواجهات البرمجية التي تم التخلي عنها والتي يعتقد الجميع أنها تم تعطيلها ولكنها تستخدم في الواقع. |
 
-![API Discovery - highlighting and filtering rogue API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
+![API Discovery - highlighting and filtering rogue API](../../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
 ## راقب الواجهات البرمجية المارقة كل ساعة
 
@@ -33,17 +33,17 @@
     * اختر التحميل من URL. إذا لزم الأمر ، يمكنك تحديد رمز للمصادقة.
     * اترك خيار **تنفيذ المقارنة بانتظام** المحدد (وهو هكذا بشكل افتراضي).
 
-    ![API Discovery - API Specifications - uploading API specification to find rogue APIs](../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
+    ![API Discovery - API Specifications - uploading API specification to find rogue APIs](../../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
 
 1. ابدأ التحميل.
 
 عند الانتهاء من التحميل ، سيتم عرض عدد الواجهات البرمجية المارقة (الظلية ، اليتيمة والزومبي) لكل مواصفة في قائمة **مواصفات الواجهة البرمجية**.
 
-![API Specifications section](../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
+![API Specifications section](../../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
 
 سيتم أيضًا عرض الواجهات البرمجية المارقة في قسم **اكتشاف الواجهة البرمجية**. استخدم مرشح **الواجهات البرمجية المارقة** لرؤية الواجهات البرمجية المظلية و / أو اليتيمة و / أو الزومبي فقط المتعلقة بالمقارنات المحددة وتصفية النقاط النهائية المتبقية.
 
-![API Discovery - highlighting and filtering rogue API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
+![API Discovery - highlighting and filtering rogue API](../../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
 في تفاصيل هذه النقاط النهائية ، في قسم **التعارضات المواصفات** ، سيتم الإشارة إلى المواصفات التي تم بمساعدتها كشف الواجهة المظلية / الزومبي / اليتيمة.
 
@@ -76,7 +76,7 @@
 
 في قسم **اكتشاف الواجهة البرمجية** ، استخدم مرشح **المقارنة مع...** لتحديد مقارنات المواصفات - فقط لهم ستتم تمييز الواجهات البرمجية المارقة بواسطة العلامات الخاصة في العمود **القضايا**.
 
-![API Discovery - highlighting and filtering rogue API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
+![API Discovery - highlighting and filtering rogue API](../../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
 ## الحصول على الإخطارات
 
@@ -94,7 +94,7 @@
 
 في هذا المثال ، إذا وجدت وحدة اكتشاف الواجهة البرمجية نقاط نهاية جديدة غير مدرجة في `Specification-01` (الواجهات البرمجية المظلية) ، يتم إرسال الإشعار حول هذا إلى قناة Slack المكونة.
 
-![Rogue API detected trigger](../images/user-guides/triggers/trigger-example-rogue-api.png)
+![Rogue API detected trigger](../../images/user-guides/triggers/trigger-example-rogue-api.png)
 
 **لاختبار المشغل:**
 

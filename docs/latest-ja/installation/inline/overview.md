@@ -43,7 +43,7 @@ Security Edgeプラットフォームは、Wallarmがホストする環境内の
 
 Wallarmノードをデプロイする際、ネットワークトポロジ内のさまざまな場所に柔軟に配置できます。推奨アプローチは、ノードインスタンスをパブリックロードバランサーの背後（バックエンドサービスの前段）またはプライベートロードバランサーの背後（通常バックエンドサービスの前段）に配置することです。次の図は、この構成における典型的なトラフィックフローを示します。
 
-![インラインフィルタリングの構成](../../images/waf-installation/inline/wallarm-inline-deployment-scheme.png)
+![インラインフィルタリングの構成](../../../images/waf-installation/inline/wallarm-inline-deployment-scheme.png)
 
 ロードバランサーはL4とL7の2種類に分類できます。ロードバランサーの種類によりSSLオフロードの扱いが決まり、既存インフラストラクチャにWallarmを統合する際の重要な要素になります。
 

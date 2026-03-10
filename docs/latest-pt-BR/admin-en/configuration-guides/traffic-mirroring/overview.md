@@ -6,7 +6,7 @@ O espelhamento de tráfego permite que o tráfego de entrada original seja envia
 
 Aqui está um exemplo do diagrama de fluxo de tráfego com a opção de espelhamento ativada:
 
-![Esquema Espelho](../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
+![Esquema Espelho](../../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
 
 ## Casos de uso da abordagem
 

@@ -6,7 +6,7 @@
 
 Kong Ingress Controller için Wallarm connector yalnızca [in-line](../inline/overview.md) modunu destekler:
 
-![Wallarm eklentisi ile Kong](../../images/waf-installation/gateways/kong/traffic-flow-inline.png)
+![Wallarm eklentisi ile Kong](../../../images/waf-installation/gateways/kong/traffic-flow-inline.png)
 
 ## Kullanım senaryoları
 

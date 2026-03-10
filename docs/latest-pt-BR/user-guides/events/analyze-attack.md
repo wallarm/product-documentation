@@ -1,9 +1,9 @@
 [link-check-attack]: check-attack.md
 [link-false-attack]: false-attack.md
 
-[img-analyze-attack]: ../../images/user-guides/events/analyze-attack.png
-[img-analyze-attack-raw]: ../../images/user-guides/events/analyze-attack-raw.png
-[img-current-attack]: ../../images/user-guides/events/analyze-current-attack.png
+[img-analyze-attack]: ../../../images/user-guides/events/analyze-attack.png
+[img-analyze-attack-raw]: ../../../images/user-guides/events/analyze-attack-raw.png
+[img-current-attack]: ../../../images/user-guides/events/analyze-current-attack.png
 
 [glossary-attack-vector]: ../../glossary-en.md#malicious-payload
 
@@ -53,7 +53,7 @@ A visualização da solicitação oferece as seguintes opções para ajuste fino
 
 * A seção **Detectada por regras personalizadas** é exibida se o ataque foi detectado por uma [regra personalizada baseada em expressão regular](../../user-guides/rules/regex-rule.md). A seção contém o link para a regra correspondente (pode haver mais de uma) - clique no link para acessar os detalhes da regra e editá-los, se necessário.
 
-    ![Ataque detectado por regra personalizada baseada em expressão regular - edição de regra](../../images/user-guides/search-and-filters/detected-by-custom-rule.png)
+    ![Ataque detectado por regra personalizada baseada em expressão regular - edição de regra](../../../images/user-guides/search-and-filters/detected-by-custom-rule.png)
 
     [Saiba como pesquisar esses ataques →](../../user-guides/search-and-filters/use-search.md#search-by-regexp-based-customer-rule)
 
@@ -90,7 +90,7 @@ Uma vez que os limiares do gatilho são excedidos, a atividade maliciosa é cons
 
 Assim que a transmissão de informações sobre solicitações de IPs na lista de negação estiver ativada, você verá as solicitações `Bloqueadas` desses IPs na lista de eventos. Isso se aplica também aos IPs listados manualmente.
 
-![Eventos relacionados a IPs na lista de negação - envio de dados ativado](../../images/user-guides/events/events-denylisted-export-enabled.png)
+![Eventos relacionados a IPs na lista de negação - envio de dados ativado](../../../images/user-guides/events/events-denylisted-export-enabled.png)
 
 Note que a pesquisa/filtros exibirá tanto os eventos `Monitoramento` e - se a transmissão de informações estiver habilitada - eventos `Bloqueados` para cada tipo de ataque. Para IPs na lista de negação manualmente, um evento `Monitoramento` nunca existe.
 
@@ -150,7 +150,7 @@ O algoritmo de amostragem regular tem a seguinte lógica principal:
 
 Os hits agrupados são exibidos na seção **Eventos** do Console Wallarm da seguinte maneira:
 
-![Hits descartados](../../images/user-guides/events/bruteforce-dropped-hits.png)
+![Hits descartados](../../../images/user-guides/events/bruteforce-dropped-hits.png)
 
 Para filtrar a lista de eventos de modo que ela exiba apenas os hits amostrados, clique na notificação **Amostragem de hits está ativada**. O atributo `sampled` será [adicionado](../search-and-filters/use-search.md#search-for-sampled-hits) ao campo de pesquisa e a lista de eventos exibirá apenas os hits amostrados.
 

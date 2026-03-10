@@ -15,9 +15,9 @@ Bağlayıcılarla trafik ya [satır içi](../inline/overview.md) ya da [bant dı
 
     Wallarm, kötü amaçlı etkinliği [engelleyecek](../../admin-en/configure-wallarm-mode.md) şekilde yapılandırılmışsa:
 
-    ![görsel](../../images/waf-installation/general-traffic-flow-for-connectors-inline.png)
+    ![görsel](../../../images/waf-installation/general-traffic-flow-for-connectors-inline.png)
 === "Bant dışı trafik akışı"
-    ![görsel](../../images/waf-installation/general-traffic-flow-for-connectors-oob.png)
+    ![görsel](../../../images/waf-installation/general-traffic-flow-for-connectors-oob.png)
 
 ## Desteklenen platformlar
 

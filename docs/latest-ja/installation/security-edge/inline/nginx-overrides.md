@@ -1,4 +1,4 @@
-# Security Edge Inline NGINXディレクティブのオーバーライド <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inline NGINXディレクティブのオーバーライド <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 Security Edge Inlineは、ホスト(server)およびlocationレベルでNGINXディレクティブのオーバーライドをサポートします。これらのオーバーライドにより、アプリケーションのパフォーマンスやリクエスト処理をきめ細かく調整できます。
 

@@ -43,7 +43,7 @@ Bu modelde, Wallarm’ı altyapınız içinde bir sanal aygıt olarak dağıtır
 
 Bir Wallarm node’u dağıtırken, onu ağ topolojinize göre farklı konumlara yerleştirme esnekliğine sahipsiniz. Ancak önerilen yaklaşım, node örneğini genel (public) bir yük dengeleyicinin arkasına ve arka uç servislerinin önüne veya genellikle arka uç servislerinden önce konumlandırılan özel (private) bir yük dengeleyicinin önüne yerleştirmektir. Aşağıdaki diyagram bu kurulumdaki tipik trafik akışını göstermektedir:
 
-![Inline filtreleme şeması](../../images/waf-installation/inline/wallarm-inline-deployment-scheme.png)
+![Inline filtreleme şeması](../../../images/waf-installation/inline/wallarm-inline-deployment-scheme.png)
 
 Yük dengeleyiciler iki türe ayrılabilir: L4 ve L7. Yük dengeleyici türü, SSL sonlandırmanın nasıl ele alındığını belirler; bu, Wallarm’ı mevcut altyapınıza entegre ederken kritik öneme sahiptir.
 

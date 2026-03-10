@@ -1,4 +1,4 @@
-# Automatic Protection Against BOLA Attacks <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Automatic Protection Against BOLA Attacks <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 !!! warning "Feature availability"
     In the latest versions of API Discovery, this feature is under reconstruction and may be temporarily unavailable.
@@ -9,10 +9,10 @@ Potential targets of the BOLA attacks are endpoints with variability. Wallarm ca
 
 To enable automatic BOLA protection, proceed to Wallarm Console → [**BOLA protection**](../admin-en/configuration-guides/protecting-against-bola.md) and turn the switch to the enabled state:
 
-![BOLA trigger](../images/user-guides/bola-protection/trigger-enabled-state.png)
+![BOLA trigger](../../images/user-guides/bola-protection/trigger-enabled-state.png)
 
 Each protected API endpoint will be highlighted with the corresponding icon in the API inventory, e.g.:
 
-![BOLA trigger](../images/about-wallarm-waf/api-discovery/endpoints-protected-against-bola.png)
+![BOLA trigger](../../images/about-wallarm-waf/api-discovery/endpoints-protected-against-bola.png)
 
 You can filter API endpoints by the BOLA auto protection state. The corresponding parameter is available under the **Others** filter.

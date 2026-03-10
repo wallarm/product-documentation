@@ -1,7 +1,7 @@
 [link-using-search]:    ../search-and-filters/use-search.md
-[img-attacks-tab]:      ../../images/user-guides/events/check-attack.png
-[img-current-attacks]:  ../../images/glossary/attack-with-one-hit-example.png
-[img-incidents-tab]:    ../../images/user-guides/events/incident-vuln.png
+[img-attacks-tab]:      ../../../images/user-guides/events/check-attack.png
+[img-current-attacks]:  ../../../images/glossary/attack-with-one-hit-example.png
+[img-incidents-tab]:    ../../../images/user-guides/events/incident-vuln.png
 [use-search]:             ../search-and-filters/use-search.md
 [search-by-attack-status]: ../search-and-filters/use-search.md#search-attacks-by-the-action
 [link-attacks]:         ../../user-guides/events/check-attack.md
@@ -54,7 +54,7 @@ Olayları son isteğin zamanına göre sıralamak için, **Sort by latest hit** 
   
 1. **Vulnerabilities** sütunundaki bağlantıyı takip ederek, bu güvenlik açığının nasıl düzeltileceğine ilişkin talimatlar ve ilgili olaylar listesi de dahil olmak üzere ayrıntılı güvenlik açığı bilgilerini alın. 
 
-     ![Güvenlik açığına ilişkin ayrıntılı bilgiler](../../images/user-guides/vulnerabilities/vuln-info.png)
+     ![Güvenlik açığına ilişkin ayrıntılı bilgiler](../../../images/user-guides/vulnerabilities/vuln-info.png)
 
      Güvenlik açığını düzeltin ve ardından Wallarm içinde kapalı olarak işaretleyin. Ayrıntılar için [Güvenlik Açıklarını Yönetme](../vulnerabilities.md) makalesine bakın.
 1. Listede olaya geri dönün, sistem tepkisine hangi mekanizmanın neden olduğunu araştırın (saldırıların `Blocked`, `Partially blocked` ve `Monitoring` [durumlarına](check-attack.md#attack-analysis) dikkat edin), sistemin benzer isteklere gelecekte nasıl davranacağını ve gerekirse bu gelecekteki davranışın nasıl ayarlanacağını değerlendirin.

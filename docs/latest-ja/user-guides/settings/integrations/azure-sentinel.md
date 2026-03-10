@@ -23,7 +23,7 @@ Wallarm Console UIで:
     名前を指定しない場合、イベントタイプごとに個別のテーブルが作成されます。
 1. 通知をトリガーするイベントタイプを選択します。
 
-    ![Sentinelインテグレーション](../../../images/user-guides/settings/integrations/add-sentinel-integration.png)
+    ![Sentinelインテグレーション](../../../../images/user-guides/settings/integrations/add-sentinel-integration.png)
 
     利用可能なイベントの詳細:
 
@@ -33,7 +33,7 @@ Wallarm Console UIで:
 
     Microsoft Workspace → **Logs** → **Custom Logs**でWallarmのログを確認できます。例えば、Microsoft Sentinelのテスト`create_user_CL`ログは次のように表示されます:
 
-    ![Sentinelのテストメッセージ](../../../images/user-guides/settings/integrations/test-sentinel-new-vuln.png)
+    ![Sentinelのテストメッセージ](../../../../images/user-guides/settings/integrations/test-sentinel-new-vuln.png)
 
     !!! info "新しいWorkspaceへのデータ送信の遅延"
         Wallarmとのインテグレーション用にSentinel上でWorkspaceを作成してから、すべてのサービスが機能するまで最大1時間かかる場合があります。この遅延により、インテグレーションのテストや使用中にエラーが発生することがあります。インテグレーションの設定がすべて正しいにもかかわらずエラーが出続ける場合は、1時間後に再度お試しください。

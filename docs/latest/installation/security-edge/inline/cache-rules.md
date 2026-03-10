@@ -1,4 +1,4 @@
-# Cache Rules in Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Cache Rules in Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 Cache rules are settings that define how the Security Edge Inline node stores and reuses responses from specific hosts and locations.
 
@@ -38,7 +38,7 @@ You can add cache rules during or after Edge Node deployment.
 
 1. Click **Add cache rule**.   
 
-![Add a cache rule](../../../images/configuration-guides/cache-rules/add-cache-rule.png)
+![Add a cache rule](../../../../images/configuration-guides/cache-rules/add-cache-rule.png)
 
 The added rule appears in the list of cache rules and is automatically activated.
 
@@ -55,7 +55,7 @@ It is useful in the following situations:
 After clearing, new responses are cached again automatically as matching requests arrive.
 
 1. Go to Wallarm Console → **Security Edge** → **Inline** → **Configure** → **Cache rules**.
-1. Click the ![Clear cache rule](../../../images/configuration-guides/cache-rules/clear-cache-icon.png) icon next to the rule you want to clear, and then click **Clear**.
+1. Click the ![Clear cache rule](../../../../images/configuration-guides/cache-rules/clear-cache-icon.png) icon next to the rule you want to clear, and then click **Clear**.
 
 ## Deactivating a cache rule
 
@@ -69,4 +69,4 @@ If you no longer need a cache rule, you can deactivate it temporarily and activa
 If you no longer need a cache rule permanently, you can delete it. To use the same configuration later, you will need to recreate the rule.
 
 1. Go to Wallarm Console → **Security Edge** → **Inline** → **Configure** → **Cache rules**.
-1. Click the ![Delete cache rule](../../../images/configuration-guides/cache-rules/delete-cache-rule-icon.png) icon next to the rule you want to delete, and then click **Delete**.
+1. Click the ![Delete cache rule](../../../../images/configuration-guides/cache-rules/delete-cache-rule-icon.png) icon next to the rule you want to delete, and then click **Delete**.

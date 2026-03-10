@@ -3,18 +3,18 @@
 [link-glossary-incident]:       ../../glossary-en.md#security-incident
 [link-glossary-vulnerability]:  ../../glossary-en.md#vulnerability
 
-[img-configure-user]:       ../../images/user-guides/settings/configure-user.png
-[img-disabled-users]:       ../../images/user-guides/settings/disabled-users.png
-[img-search-user]:          ../../images/user-guides/settings/search-users.png
-[img-add-user]:             ../../images/user-guides/settings/integrations/webhook-examples/adding-user.png
-[img-add-user-invitation-link]: ../../images/user-guides/settings/invite-user-by-link.png
-[img-user-menu]:            ../../images/user-guides/settings/user-menu.png
-[img-disabled-user-menu]:   ../../images/user-guides/settings/disabled-user-menu.png
-[img-edit-user]:            ../../images/user-guides/settings/edit-user.png
-[img-user-disable-2fa]:     ../../images/user-guides/settings/users-disable-2fa.png
-[img-user-menu-disable-2fa]:    ../../images/user-guides/settings/disable-2fa-button.png
-[img-disable-delete-multi]:     ../../images/user-guides/settings/users-multi-disable-access.png
-[img-enable-delete-multi]:      ../../images/user-guides/settings/users-multi-enable-access.png    
+[img-configure-user]:       ../../../images/user-guides/settings/configure-user.png
+[img-disabled-users]:       ../../../images/user-guides/settings/disabled-users.png
+[img-search-user]:          ../../../images/user-guides/settings/search-users.png
+[img-add-user]:             ../../../images/user-guides/settings/integrations/webhook-examples/adding-user.png
+[img-add-user-invitation-link]: ../../../images/user-guides/settings/invite-user-by-link.png
+[img-user-menu]:            ../../../images/user-guides/settings/user-menu.png
+[img-disabled-user-menu]:   ../../../images/user-guides/settings/disabled-user-menu.png
+[img-edit-user]:            ../../../images/user-guides/settings/edit-user.png
+[img-user-disable-2fa]:     ../../../images/user-guides/settings/users-disable-2fa.png
+[img-user-menu-disable-2fa]:    ../../../images/user-guides/settings/disable-2fa-button.png
+[img-disable-delete-multi]:     ../../../images/user-guides/settings/users-multi-disable-access.png
+[img-enable-delete-multi]:      ../../../images/user-guides/settings/users-multi-enable-access.png    
 
 # Kullanıcıları Yönetme
 
@@ -109,7 +109,7 @@ Tüm şirket kullanıcıları için iki faktörlü kimlik doğrulamayı (2FA) zo
 1. Wallarm Console’u açın → **Settings** → **General**.
 1. **Sign-in management** bölümünde, **Enforce two-factor authentication for all company users** seçeneğini işaretleyin ve onaylayın.
 
-![2FA - Tüm şirket kullanıcıları için etkinleştirme](../../images/user-guides/settings/2fa-enforce.png)
+![2FA - Tüm şirket kullanıcıları için etkinleştirme](../../../images/user-guides/settings/2fa-enforce.png)
 
 Etkinleştirildiğinde, şirket hesabınızdaki tüm kullanıcılar, atlama seçeneği olmadan giriş yapabilmeden önce 2FA’yı kurmak zorunda kalacaktır: bir sonraki girişlerinde 2FA’nın zorunlu kılındığı bildirilecek ve 2FA yapılandırma seçenekleri sunulacaktır. Ancak, bu seçeneğin etkinleştirilmesi mevcut kullanıcı oturumlarını etkilemez.
 
@@ -138,14 +138,14 @@ Bu bildirimlerle ilgilenen ekip üyeleri kendi tetikleyicilerini kendileri ayarl
 
 Wallarm Console’da şirket hesabına **Administrator** veya **Analyst** rolüne sahip yeni bir kullanıcı eklendiyse, bu olay hakkında bildirim, entegrasyonda belirtilen e-posta adresine ve Slack kanalına gönderilecektir.
 
-![Slack’e ve e-posta ile bildirim gönderen tetikleyici örneği](../../images/user-guides/triggers/trigger-example2.png)
+![Slack’e ve e-posta ile bildirim gönderen tetikleyici örneği](../../../images/user-guides/triggers/trigger-example2.png)
 
 **Tetikleyiciyi test etmek için:**
 
 1. Wallarm Console → **Settings** → **Users** bölümünü açın ve yeni bir kullanıcı ekleyin.
 2. E-posta Gelen Kutunuzu açın ve aşağıdaki mesajın geldiğini kontrol edin:
 
-    ![Yeni kullanıcı eklendiğine dair e-posta](../../images/user-guides/triggers/test-new-user-email-message.png)
+    ![Yeni kullanıcı eklendiğine dair e-posta](../../../images/user-guides/triggers/test-new-user-email-message.png)
 3. Slack kanalını açın ve aşağıdaki bildirimin **wallarm** kullanıcısından geldiğini kontrol edin:
 
     ```
@@ -171,4 +171,4 @@ Wallarm Console’da şirket hesabına **Administrator** veya **Analyst** rolün
 
 **Administrator** ve **Global Administrator** [roller](users.md#user-roles), şirket hesabı için oturum kapatma zaman aşımı sürelerini **Settings** → **General** bölümünde ayarlayabilir. Ayarlar tüm hesap kullanıcılarını etkiler. Boşta kalma ve mutlak zaman aşımı süreleri ayarlanabilir.
 
-![General sekmesi](../../images/user-guides/settings/general-tab.png)
+![General sekmesi](../../../images/user-guides/settings/general-tab.png)

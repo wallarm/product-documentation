@@ -1,5 +1,5 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [helm-chart-native-node]:           ../native-node/helm-chart.md
 [custom-blocking-page]:             ../../admin-en/configuration-guides/configure-block-page-and-code.md
 [rate-limiting]:                    ../../user-guides/rules/rate-limiting.md
@@ -15,7 +15,7 @@ The Broadcom connector supports only [in-line](../inline/overview.md) traffic fl
 
 <!-- The Wallarm policy for Layer7 API Gateways supports the [out-of-band](../oob/overview.md) mode. Diagram below shows the traffic flow for APIs on the Layer7 API Gateways with Wallarm policy applied.
 
-![Layer7 API Gateways with Wallarm image](../../images/waf-installation/gateways/layer7/traffic-flow-oob.png) -->
+![Layer7 API Gateways with Wallarm image](../../../images/waf-installation/gateways/layer7/traffic-flow-oob.png) -->
 
 ## Use cases
 
@@ -62,18 +62,18 @@ To configure the Broadcom Gateway to route traffic through the Wallarm Node:
 
     * **Request forwarding policy**: Assign the `Global Policy Fragment` type and `message-received` tag.
 
-        ![](../../images/waf-installation/gateways/layer7/request-policy.png)
+        ![](../../../images/waf-installation/gateways/layer7/request-policy.png)
     
     * **Response forwarding policy**: Assign the `Global Policy Fragment` type and `message-completed` tag.
     
-        ![](../../images/waf-installation/gateways/layer7/response-policy.png)
+        ![](../../../images/waf-installation/gateways/layer7/response-policy.png)
 1. <a name="import-new-broadcom-policies"></a>For the request forwarding policy (`forward-requests-to-wallarm` in this example):
 
     1. Import the `wallarm-request-blocking.xml` file.
     1. Specify the [Wallarm Node instance](#1-deploy-a-wallarm-node) address in the `wlrm-node-addr` parameter.
     1. **Save and Active** the policy.
 
-    ![](../../images/waf-installation/gateways/layer7/request-policy-assertion.png)
+    ![](../../../images/waf-installation/gateways/layer7/request-policy-assertion.png)
 1. For the response forwarding policy (`forward-responses-to-wallarm` in this example):
 
     1. Import the `wallarm-response.xml` file.

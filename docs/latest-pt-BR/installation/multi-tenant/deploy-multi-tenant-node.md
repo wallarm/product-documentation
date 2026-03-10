@@ -14,7 +14,7 @@ Escolha a opção de implantação de nó multi-inquilino com base em sua infrae
 
 * Implante um nó Wallarm para filtrar o tráfego de todos os clientes ou ambientes isolados da seguinte forma:
 
-    ![Esquema do nó parceiro](../../images/partner-waf-node/partner-traffic-processing-4.0.png)
+    ![Esquema do nó parceiro](../../../images/partner-waf-node/partner-traffic-processing-4.0.png)
     
     * Um único nó Wallarm processa o tráfego de vários inquilinos (Inquilino 1, Inquilino 2).
 
@@ -29,7 +29,7 @@ Escolha a opção de implantação de nó multi-inquilino com base em sua infrae
 
 * Implante vários nós Wallarm, cada um filtrando o tráfego de um inquilino específico da seguinte forma:
 
-    ![Esquema de vários nós do cliente](../../images/partner-waf-node/client-several-nodes.png)
+    ![Esquema de vários nós do cliente](../../../images/partner-waf-node/client-several-nodes.png)
 
     * Vários nós Wallarm, cada um filtrando o tráfego de um inquilino específico (Inquilino 1, Inquilino 2).
     * Para o domínio https://tenant1.com, o registro DNS com o endereço IP do cliente 225.130.128.241 é configurado.
@@ -68,7 +68,7 @@ Nó multi-inquilino:
 
         Uma vez mudado e confirmado, prossiga para a 4ª etapa.1. Selecione a opção **Nó multi-inquilino**.
 
-    ![Criação do Nó Multi-inquilino](../../images/user-guides/nodes/create-multi-tenant-node.png)
+    ![Criação do Nó Multi-inquilino](../../../images/user-guides/nodes/create-multi-tenant-node.png)
 1. Defina um nome para o nó e clique em **Criar**.
 1. Copie o token do nó de filtragem.
 1. Dependendo da forma de implantação do nó de filtragem, execute as etapas das [instruções apropriadas](../../installation/supported-deployment-options.md).

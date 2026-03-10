@@ -12,7 +12,7 @@ Aşağıdaki örnek, entegrasyonu yapılandırmak için YAML spesifikasyonunu ku
 
 [FAST düğüm belirtecini](../../operations/create-node.md) güvenli şekilde kullanmak için değerini bir [Bamboo global değişkeni](https://confluence.atlassian.com/bamboo/defining-global-variables-289277112.html) olarak tanımlayın.
 
-![Bamboo global değişkeninin iletilmesi](../../../images/fast/poc/common/examples/bamboo-cimode/bamboo-env-var-example.png)
+![Bamboo global değişkeninin iletilmesi](../../../../images/fast/poc/common/examples/bamboo-cimode/bamboo-env-var-example.png)
 
 --8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
 
@@ -118,7 +118,7 @@ Güvenlik testini uygulamak için iş akışınıza aşağıdaki talimatları iz
 
 Güvenlik testinin sonucu Bamboo UI içindeki derleme günlüklerinde görüntülenecektir. Ayrıca, Bamboo tam `.log` dosyasını indirmeye izin verir.
 
-![FAST düğümünün test modunda çalıştırılmasının sonucu](../../../images/fast/poc/common/examples/bamboo-cimode/bamboo-ci-example.png)
+![FAST düğümünün test modunda çalıştırılmasının sonucu](../../../../images/fast/poc/common/examples/bamboo-cimode/bamboo-ci-example.png)
 
 ## Daha fazla örnek
 

@@ -4,7 +4,7 @@ Bu talimatlar, olayları ArcSight Logger sistemine iletmek üzere Wallarm’ın 
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![Webhook akışı](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-scheme.png)
+![Webhook akışı](../../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-scheme.png)
 
 !!! info "ArcSight ESM’in Enterprise sürümüyle entegrasyon"
     Fluentd’ten ArcSight ESM’in Enterprise sürümüne günlük yönlendirmesini yapılandırmak için, ArcSight tarafında Syslog Connector’ı yapılandırmanız ve ardından günlükleri Fluentd’ten konektörün portuna yönlendirmeniz önerilir. Konektörlere ilişkin daha ayrıntılı bir açıklama için lütfen [resmi ArcSight SmartConnector dokümantasyonundan](https://community.microfocus.com/t5/ArcSight-Connectors/ct-p/ConnectorsDocs) **SmartConnector User Guide**’ı indirin.
@@ -28,7 +28,7 @@ ArcSight Logger’da şu şekilde yapılandırılmış `Wallarm Fluentd logs` ad
 * Olaylar syslog ayrıştırıcısı ile ayrıştırılır
 * Diğer varsayılan ayarlar
 
-![ArcSight Logger'da alıcı yapılandırması](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-setup.png)
+![ArcSight Logger'da alıcı yapılandırması](../../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-setup.png)
 
 Alıcı yapılandırmasının daha ayrıntılı bir açıklaması için, uygun sürüme ait **Logger Installation Guide**’ı [resmi ArcSight Logger dokümantasyonundan](https://community.microfocus.com/t5/Logger-Documentation/ct-p/LoggerDoc) indirin.
 
@@ -92,16 +92,16 @@ Yapılandırma dosyalarının daha ayrıntılı açıklaması [resmi Fluentd dok
     ```
 
     **Fluentd günlükleri:**
-    ![Fluentd'de günlükler](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-curl-log.png)
+    ![Fluentd'de günlükler](../../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-curl-log.png)
 
     **ArcSight Logger’daki olay:**
-    ![ArcSight Logger'da günlükler](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-curl-log.png)
+    ![ArcSight Logger'da günlükler](../../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-curl-log.png)
 
 ### Fluentd entegrasyonunun yapılandırılması
 
 --8<-- "../include/integrations/webhook-examples/create-fluentd-webhook.md"
 
-![Fluentd ile Webhook entegrasyonu](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+![Fluentd ile Webhook entegrasyonu](../../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
 [Fluentd entegrasyonunun yapılandırılması hakkında daha fazla bilgi](../fluentd.md)
 
@@ -111,8 +111,8 @@ Yapılandırma dosyalarının daha ayrıntılı açıklaması [resmi Fluentd dok
 
 Fluentd olayı aşağıdaki gibi günlüğe kaydedecektir:
 
-![Yeni kullanıcıya ilişkin Fluentd günlüğü](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-user-log.png)
+![Yeni kullanıcıya ilişkin Fluentd günlüğü](../../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-user-log.png)
 
 ArcSight Logger olaylarında aşağıdaki kayıt görüntülenecektir:
 
-![ArcSight Logger'daki olaylar](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-user.png)
+![ArcSight Logger'daki olaylar](../../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-user.png)

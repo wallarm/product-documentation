@@ -1,16 +1,16 @@
 #   Okta ile SSO’yu Bağlama
 
 [link-okta]:                        https://www.okta.com/
-[img-dashboard]:            ../../../images/admin-guides/configuration-guides/sso/okta/dashboard.png
-[img-general]:              ../../../images/admin-guides/configuration-guides/sso/okta/wizard-general.png  
-[img-saml]:                 ../../../images/admin-guides/configuration-guides/sso/okta/wizard-saml.png
-[img-saml-preview]:         ../../../images/admin-guides/configuration-guides/sso/okta/wizard-saml-preview.png
-[img-feedback]:             ../../../images/admin-guides/configuration-guides/sso/okta/wizard-feedback.png
+[img-dashboard]:            ../../../../images/admin-guides/configuration-guides/sso/okta/dashboard.png
+[img-general]:              ../../../../images/admin-guides/configuration-guides/sso/okta/wizard-general.png  
+[img-saml]:                 ../../../../images/admin-guides/configuration-guides/sso/okta/wizard-saml.png
+[img-saml-preview]:         ../../../../images/admin-guides/configuration-guides/sso/okta/wizard-saml-preview.png
+[img-feedback]:             ../../../../images/admin-guides/configuration-guides/sso/okta/wizard-feedback.png
 [link-okta-docs]:           https://help.okta.com/en/prod/Content/Topics/Apps/Apps_App_Integration_Wizard.htm
-[img-transfer-metadata-manually]:   ../../../images/admin-guides/configuration-guides/sso/okta/transfer-metadata-manually.png
-[img-sp-wizard-finish]:             ../../../images/admin-guides/configuration-guides/sso/okta/sp-wizard-finish.png
-[img-sp-metadata]:              ../../../images/admin-guides/configuration-guides/sso/okta/sp-metadata.png
-[img-assignments]:  ../../../images/admin-guides/configuration-guides/sso/okta/assignments.png
+[img-transfer-metadata-manually]:   ../../../../images/admin-guides/configuration-guides/sso/okta/transfer-metadata-manually.png
+[img-sp-wizard-finish]:             ../../../../images/admin-guides/configuration-guides/sso/okta/sp-wizard-finish.png
+[img-sp-metadata]:              ../../../../images/admin-guides/configuration-guides/sso/okta/sp-metadata.png
+[img-assignments]:  ../../../../images/admin-guides/configuration-guides/sso/okta/assignments.png
 
 Bu kılavuz, [Okta][link-okta] hizmetinin kimlik sağlayıcı (IdP) olarak, hizmet sağlayıcı (SP) rolündeki Wallarm’a bağlanması sürecini kapsar.
 
@@ -35,7 +35,7 @@ Okta tarafında girmeniz için Wallarm metadata’sına ihtiyacınız var:
 
 1. Wallarm Console’da **Integrations** → **SSO SAML AUTHENTICATION** bölümüne gidin ve **Okta SSO** yapılandırmasını başlatın.
 
-    ![Integrations - SSO](../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
+    ![Integrations - SSO](../../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
 
 1. SSO yapılandırma sihirbazında, **Send details** adımında Okta hizmetine iletilmesi gereken Wallarm metadata’sını gözden geçirin.
 
@@ -112,7 +112,7 @@ Bunun çalışması için, öznitelik eşlemesi sağlayın:
     
         Tüm rol açıklamalarını [buradan](../../../user-guides/settings/users.md#user-roles) görebilirsiniz.
 
-    ![Integrations - SSO, Okta’da eşleme](../../../images/admin-guides/configuration-guides/sso/okta/wallarm-sso-okta-mapping.png)
+    ![Integrations - SSO, Okta’da eşleme](../../../../images/admin-guides/configuration-guides/sso/okta/wallarm-sso-okta-mapping.png)
 
 1. Değişiklikleri kaydedin.
 
@@ -136,6 +136,6 @@ Bunun çalışması için, öznitelik eşlemesi sağlayın:
 
 Okta için, Wallarm tarafındaki bu adım atlanmalıdır.
 
-![SSO gruplarının Wallarm rollerine eşlenmesi - Wallarm’da eşleme](../../../images/admin-guides/configuration-guides/sso/sso-mapping-in-wallarm.png)
+![SSO gruplarının Wallarm rollerine eşlenmesi - Wallarm’da eşleme](../../../../images/admin-guides/configuration-guides/sso/sso-mapping-in-wallarm.png)
 
 Bir sonraki adıma geçin ve SSO yapılandırma sihirbazını tamamlayın. Wallarm, verilerin SAML SSO Çözümünüzle artık alınıp gönderilemediğini test edecektir.

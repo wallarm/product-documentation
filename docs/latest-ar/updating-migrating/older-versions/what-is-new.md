@@ -61,13 +61,13 @@ Although the rate limiting rule is the recommended method for setting up the fea
 * [`wallarm_rate_limit_status_code`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit_status_code)
 * [`wallarm_rate_limit_shm_size`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit_shm_size)
 
-## Credential stuffing detection <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Credential stuffing detection <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Beginning with release 4.10, Wallarm introduces real-time detection and notifications for credential stuffing attempts. Credential stuffing, the automated submission of stolen or weak username/email and password pairs into website login forms to illegitimately access user accounts, is now closely monitored. This feature allows you to identify accounts with compromised credentials and take action to secure them, such as notifying account owners and temporarily suspending account access.
 
 [Learn how to configure Credential Stuffing Detection](../../about-wallarm/credential-stuffing.md)
 
-![Attacks - credential stuffing](../../images/about-wallarm-waf/credential-stuffing/credential-stuffing-attacks.png)
+![Attacks - credential stuffing](../../../images/about-wallarm-waf/credential-stuffing/credential-stuffing-attacks.png)
 
 !!! info "Selected artifacts supporting credential stuffing detection"
     A limited selection of artifacts, such as the all-in-one installer, NGINX Ingress Controller, NGINX-based Docker image, and cloud images (AMI, GCP Image), now support the newly introduced credential stuffing detection feature.
@@ -88,7 +88,7 @@ Additionally, this update introduces new parameters for some deployment options,
 
 [Learn how to configure API Policy Enforcement](../../api-specification-enforcement/setup.md)
 
-![Specification - use for API policy enforcement](../images/api-specification-enforcement/api-specification-enforcement-events.png)
+![Specification - use for API policy enforcement](../../images/api-specification-enforcement/api-specification-enforcement-events.png)
 
 -->
 
@@ -342,7 +342,7 @@ The sample blocking page `/usr/share/nginx/html/wallarm_blocked.html` has been u
     
 New blocking page with the new layout looks as follows by default:
 
-![Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+![Wallarm blocking page](../../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
 [More details on the blocking page setup →](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)
 

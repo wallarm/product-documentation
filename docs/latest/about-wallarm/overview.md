@@ -17,7 +17,7 @@ You need to know it to protect it. Wallarm offers comprehensive API discovery ca
 * Spots endpoints that could expose sensitive data, like PII.
 * [Assesses each endpoint for security risks](../api-discovery/risk-score.md), vulnerabilities, and provides a risk score.
 
-![Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
+![Endpoints discovered by API Discovery](../../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
 ## Protect
 
@@ -41,7 +41,7 @@ Wallarm gives you the tools to effectively respond to security threats, offering
 * [Integrations](../user-guides/settings/integrations/integrations-intro.md) with the most widely used security, operational, and development tools to create tickets, notifications, and deliver data on detected security threats. Compatible platforms include Slack, Sumo Logic, Splunk, Microsoft Sentinel, and more.
 * [Virtual patches](../user-guides/rules/vpatch-rule.md) for urgent issues highlighted by Wallarm's vulnerability detection.
 
-![Events](../images/about-wallarm-waf/overview/events-with-attacks.png)
+![Events](../../images/about-wallarm-waf/overview/events-with-attacks.png)
 
 ## Test
 
@@ -59,13 +59,13 @@ Managing deployed risk is the first line of defense, but reducing the risk exhib
 
 Explore and manage all found security issues, regardless of the detection method, in one unified management center in Wallarm Console - the [**Security Issues**](../user-guides/vulnerabilities.md) section.
 
-![Security Issues](../images/api-attack-surface/security-issues.png)
+![Security Issues](../../images/api-attack-surface/security-issues.png)
 
 ## How Wallarm works
 
 Wallarm's platform is primarily built upon two main components: the Wallarm filtering node and the Wallarm Cloud.
 
-![!Arch scheme1](../images/about-wallarm-waf/overview/filtering-node-cloud.png)
+![!Arch scheme1](../../images/about-wallarm-waf/overview/filtering-node-cloud.png)
 
 ### Filtering node
 

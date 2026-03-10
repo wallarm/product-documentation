@@ -89,7 +89,7 @@ A diretiva pode ser definida dentro do bloco `http` do arquivo de configuração
 
 A página de bloqueio de amostra fornecida pelo Wallarm `/usr/share/nginx/html/wallarm_blocked.html` é a seguinte:
 
-![Página de bloqueio do Wallarm](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+![Página de bloqueio do Wallarm](../../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
 Você pode usar a página de amostra como ponto de partida para sua personalização, aprimorando-a por:
 

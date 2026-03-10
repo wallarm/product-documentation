@@ -62,6 +62,6 @@ The [IP lists](../user-guides/ip-lists/overview.md) are formed in a Cloud and th
 
 Troubles with synchronization between Wallarm Node and Cloud are visible from [Wallarm logs](../admin-en/configure-logging.md) and are also generally reported by [OWASP API 2023 Dashboard](../user-guides/dashboards/owasp-api-top-ten.md) in the **API8:2023 Security Misconfiguration** section.
 
-![OWASP dash with node issues](../images/user-guides/dashboard/owasp-dashboard-node-issues.png)
+![OWASP dash with node issues](../../images/user-guides/dashboard/owasp-dashboard-node-issues.png)
 
 See details on troubleshooting synchronization issues [here](../faq/node-issues-on-owasp-dashboards.md#wallarm-node-and-cloud-have-synchronization-issues).

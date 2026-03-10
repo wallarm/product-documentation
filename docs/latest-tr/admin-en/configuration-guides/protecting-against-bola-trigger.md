@@ -9,7 +9,7 @@ Abonelik planınıza bağlı olarak, BOLA saldırılarına karşı koruma için 
 * Azaltma kontrolleri ([Advanced API Security](../../about-wallarm/subscription-plans.md#core-subscription-plans) aboneliği)
 * Triggers ([Cloud Native WAAP](../../about-wallarm/subscription-plans.md#core-subscription-plans) aboneliği)
 
-## Azaltma kontrollerine dayalı koruma <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Azaltma kontrollerine dayalı koruma <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm'ın Advanced API Security [aboneliği](../../about-wallarm/subscription-plans.md#core-subscription-plans) gelişmiş [numaralandırma saldırısı koruması](../../api-protection/enumeration-attack-protection.md) sağlar; buna BOLA saldırılarına karşı koruma da dahildir.
 
@@ -31,7 +31,7 @@ Diyelim ki çevrimiçi mağazalar (shops) için e-ticaret platformunuz `wmall-ex
 
     * Yolda "herhangi bir tek bileşen" anlamına gelen `*` [wildcard](../../user-guides/rules/rules.md#using-wildcards). Bu, `wmall-example.com/shops/<PARTICULAR_SHOP>/financial_info` adreslerinin tümünü kapsayacaktır.
 
-        ![BOLA trigger](../../images/user-guides/triggers/trigger-example7-4.8.png)
+        ![BOLA trigger](../../../images/user-guides/triggers/trigger-example7-4.8.png)
 
 1. Bu durumda şunları kullanmayın: 
 
@@ -62,7 +62,7 @@ Diyelim ki çevrimiçi mağazalar (shops) için e-ticaret platformunuz `wmall-ex
     Trigger tepkisi **Graylist IP address** ise, Wallarm Console'un **IP lists** → **Graylist** bölümünü kontrol edin.
 1. **Attacks** bölümünü açın ve isteklerin BOLA saldırısı olarak listelendiğini doğrulayın.
 
-    ![UI'de BOLA saldırısı](../../images/user-guides/events/bola-attack.png)
+    ![UI'de BOLA saldırısı](../../../images/user-guides/events/bola-attack.png)
 
     Görüntülenen istek sayısı, trigger eşiği aşıldıktan sonra gönderilen istek sayısına karşılık gelir ([davranışsal saldırıların tespiti hakkında daha fazla ayrıntı](../../attacks-vulns-list.md#attack-types)). Bu sayı 5'ten büyükse, istek örneklemesi uygulanır ve istek ayrıntıları yalnızca ilk 5 Hits için görüntülenir ([istek örneklemesi hakkında daha fazla ayrıntı](../../user-guides/events/grouping-sampling.md#sampling-of-hits)).
 
@@ -78,6 +78,6 @@ Kaynakları BOLA saldırılarına karşı korumak için gerçek istemci IP adres
 
 BOLA saldırı işaretlerini ararken, Wallarm düğümleri yalnızca diğer saldırı türlerinin işaretlerini içermeyen HTTP isteklerini analiz eder.
 
-## Otomatik koruma  <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Otomatik koruma  <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Diğer BOLA koruma önlemlerine alternatif olarak veya ek olarak, [API Discovery tarafından bulunan uç noktalar için otomatik BOLA korumasını](protecting-against-bola.md) yapılandırabilirsiniz.

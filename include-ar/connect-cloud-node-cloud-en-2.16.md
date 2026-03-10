@@ -1,4 +1,4 @@
-[img-wl-console-users]:         ../images/check-users.png
+[img-wl-console-users]:         ../../images/check-users.png
 
 [link-wl-console-us]:              https://us1.my.wallarm.com/
 [link-wl-console-eu]:              https://my.wallarm.com/

@@ -1,4 +1,4 @@
-# Exploring Bot Activity <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Exploring Bot Activity <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 [API Abuse Prevention](../api-abuse-prevention/overview.md) identifies malicious bot activity based on ML algorithms. Such attacks are impossible to analyze based on a single blocked request. Therefore, it is essential that the Wallarm platform offers a wide range of tools to investigate bot activity from different angles.
 
@@ -8,13 +8,13 @@ API Abuse Prevention conveniently visualizes the data on bot activities for the 
 
 You can also analyze bot behaviors at the **Behavioral patterns** in the bottom. Get detailed information on each detector and how they acted together to determine bot actions. This widget and the counters of [deny- or graylisted](setup.md#creating-profiles) IPs at the top right will link you to the **IP Lists** [history](../user-guides/ip-lists/overview.md#ip-list-history) where you can check when and for what period of time the bot's IP was placed to the blocking list.
 
-![API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
+![API abuse prevention statistics](../../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
 
 ## Attacks
 
 You can explore attacks performed by bots in Wallarm Console → **Attacks** section. Use the `api_abuse`, `account_takeover`, `scraping` and `security_crawlers` search keys or select the appropriate options from the **Type** filter.
 
-![API Abuse events](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
+![API Abuse events](../../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
 
 Note that even if the bot IP is placed into the denylist by API Abuse Prevention, by default, Wallarm collects and [displays](../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) statistics regarding blocked requests originating from it.
 

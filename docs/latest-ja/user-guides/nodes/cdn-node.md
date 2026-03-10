@@ -1,11 +1,11 @@
-[cdn-node-operation-scheme]:        ../../images/waf-installation/quickstart/cdn-node-scheme.png
+[cdn-node-operation-scheme]:        ../../../images/waf-installation/quickstart/cdn-node-scheme.png
 [data-to-wallarm-cloud-docs]:       ../rules/sensitive-data-rule.md
 [operation-modes-docs]:             ../../admin-en/configure-wallarm-mode.md
 [operation-mode-rule-docs]:         ../../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode
 [wallarm-cloud-docs]:               ../../about-wallarm/overview.md#cloud
-[cdn-node-creation-modal]:          ../../images/waf-installation/quickstart/cdn-node-creation-modal.png
-[cname-required-modal]:             ../../images/waf-installation/quickstart/cname-required-modal.png
-[attacks-in-ui]:                    ../../images/admin-guides/test-attacks-quickstart.png
+[cdn-node-creation-modal]:          ../../../images/waf-installation/quickstart/cdn-node-creation-modal.png
+[cname-required-modal]:             ../../../images/waf-installation/quickstart/cname-required-modal.png
+[attacks-in-ui]:                    ../../../images/admin-guides/test-attacks-quickstart.png
 [user-roles-docs]:                  ../settings/users.md
 [update-origin-ip-docs]:            #updating-the-origin-address-of-the-protected-resourse
 [rules-docs]:                       ../rules/rules.md
@@ -50,7 +50,7 @@ CDN nodeを作成するには、[手順](../../installation/cdn-node.md)に従�
 * インストール済みWallarmパッケージのバージョン
 * 利用可能なコンポーネント更新の有無
 
-![CDN nodeカード](../../images/user-guides/nodes/view-cdn-node-comp-vers.png)
+![CDN nodeカード](../../../images/user-guides/nodes/view-cdn-node-comp-vers.png)
 
 ## 保護対象のオリジンアドレスの更新 {#updating-the-origin-address-of-the-protected-resourse}
 
@@ -83,7 +83,7 @@ WallarmはCDN nodeのドメインでHTTPSを有効にするための[Let's Encry
 1. 変更が伝播するまで待ちます。現在のCNAMEレコードの状態はWallarm Console → **Nodes** → **CDN** → **Delete node**に表示されます。
 1. ノード一覧からCDN nodeを削除します。
 
-![ノードの削除](../../images/user-guides/nodes/delete-cdn-node.png)
+![ノードの削除](../../../images/user-guides/nodes/delete-cdn-node.png)
 
 ## CDN nodeのトラブルシューティング
 

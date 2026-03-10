@@ -47,7 +47,7 @@ The Wallarm node does not collect the following collectd metrics anymore:
 
 We introduce a unique security feature tailored for the API economy - [API Sessions](../../api-sessions/overview.md). This addition gives you visibility into attacks, anomalies, and user behavior across your APIs, providing transparency into how users interact with your APIs and applications.
 
-![!API Sessions section - monitored sessions](../../images/api-sessions/api-sessions.png)
+![!API Sessions section - monitored sessions](../../../images/api-sessions/api-sessions.png)
 
 Attackers often exploit vulnerable endpoints by blending their actions with legitimate user behavior. Without the full context of how those sessions unfold, identifying patterns or threats becomes a time-consuming process involving multiple tools and systems. Organizations  do not have an appropriate visibility at the API level. 
 
@@ -77,7 +77,7 @@ Wallarm's [API Sessions](../../api-sessions/overview.md) provide visibility into
 * You can configure any headers and parameters of responses to be displayed within their corresponding requests providing a clear and full picture of user activities.
 * You can use response parameters as grouping keys for sessions (see [example](../../api-sessions/setup.md#example-of-how-grouping-keys-work)), which makes grouping of requests into sessions more precise.
 
-![!API Sessions - example of grouping keys in work](../../images/api-sessions/api-sessions-grouping-keys.png)
+![!API Sessions - example of grouping keys in work](../../../images/api-sessions/api-sessions-grouping-keys.png)
 
 ## Rate limits
 
@@ -99,18 +99,18 @@ Although the rate limiting rule is the recommended method for setting up the fea
 * [`wallarm_rate_limit_status_code`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit_status_code)
 * [`wallarm_rate_limit_shm_size`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit_shm_size)
 
-## Credential stuffing detection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Credential stuffing detection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm introduces real-time detection and notifications for credential stuffing attempts. Credential stuffing, the automated submission of stolen or weak username/email and password pairs into website login forms to illegitimately access user accounts, is now closely monitored. This feature allows you to identify accounts with compromised credentials and take action to secure them, such as notifying account owners and temporarily suspending account access.
 
 [Learn how to configure Credential Stuffing Detection](../../about-wallarm/credential-stuffing.md)
 
-![Attacks - credential stuffing](../../images/about-wallarm-waf/credential-stuffing/credential-stuffing-attacks.png)
+![Attacks - credential stuffing](../../../images/about-wallarm-waf/credential-stuffing/credential-stuffing-attacks.png)
 
 !!! info "Selected artifacts supporting credential stuffing detection"
     A limited selection of artifacts, such as the all-in-one installer, NGINX Ingress Controller, NGINX-based Docker image, and cloud images (AMI, GCP Image), now support the newly introduced credential stuffing detection feature.
 
-## GraphQL API protection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## GraphQL API protection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm detects regular attacks (SQLi, RCE, [etc.](../../attacks-vulns-list.md)) in GraphQL by default. However, some aspects of the protocol allow implementing [GraphQL specific](../../attacks-vulns-list.md#graphql-attacks) attacks related to excessive information exposure and DoS.
 
@@ -120,7 +120,7 @@ To start using the functionality, you need to create at least one [**Detect Grap
 
 [Learn how to configure GraphQL API Protection](../../api-protection/graphql-rule.md)
 
-![GraphQL thresholds](../../images/user-guides/rules/graphql-rule.png)
+![GraphQL thresholds](../../../images/user-guides/rules/graphql-rule.png)
 
 ## API Specification Enforcement
 
@@ -136,7 +136,7 @@ Additionally, this update introduces new parameters for some deployment options,
 
 [Learn how to configure API Specification Enforcement](../../api-specification-enforcement/setup.md)
 
-![Specification - use for applying security policies](../../images/api-specification-enforcement/api-specification-enforcement-events.png)
+![Specification - use for applying security policies](../../../images/api-specification-enforcement/api-specification-enforcement-events.png)
 
 ## Detection of the new attack types
 
@@ -161,13 +161,13 @@ With the sensitive business flow capability, Wallarm's [API Discovery](../../api
 
 This allows regular monitoring and audit of endpoints related to sensitive business flows for vulnerabilities or breaches and prioritizing them for development, maintenance, and security efforts.
 
-![API Discovery - Sensitive business flows](../../images/about-wallarm-waf/api-discovery/api-discovery-sbf.png)
+![API Discovery - Sensitive business flows](../../../images/about-wallarm-waf/api-discovery/api-discovery-sbf.png)
 
 Identified sensitive business flows are propagated to Wallarm's [API Sessions](../../api-sessions/overview.md): if session's requests affect the endpoints that in API Discovery were tagged as important for some sensitive business flows, such session will be automatically [tagged](../../api-sessions/exploring.md#sensitive-business-flows) as affecting this business flow as well.
 
 Once sessions are assigned with the sensitive business flow tags, it becomes possible to filter them by a specific business flow which makes it easier to select the sessions that are most important to analyze.
 
-![!API Sessions - sensitive business flows](../../images/api-sessions/api-sessions-sbf-no-select.png)
+![!API Sessions - sensitive business flows](../../../images/api-sessions/api-sessions-sbf-no-select.png)
 
 ## Full-fledged GraphQL parser
 
@@ -181,12 +181,12 @@ Key benefits:
 * **Improved detection** of input validation attacks (e.g., SQL injections)
 * **Detailed parameter insights**: extract and display values of GraphQL request parameters in API Sessions, utilizing them as session context parameters.
 
-    ![!API Sessions configuration - GraphQL request parameter](../../images/api-sessions/api-sessions-graphql.png)
+    ![!API Sessions configuration - GraphQL request parameter](../../../images/api-sessions/api-sessions-graphql.png)
 
 * **Precise attack search**: precisely identify attacks in specific GraphQL request components, such as arguments, directives, and variables.
 * **Advanced rule application**: apply granular protection rules to specific GraphQL request parts. This enables fine-tuning and configuring exclusions for certain attack types in defined parts of GraphQL request.
 
-    ![Example of the rule applied to GraphQL request point"](../../images/user-guides/rules/rule-applied-to-graphql-point.png)
+    ![Example of the rule applied to GraphQL request point"](../../../images/user-guides/rules/rule-applied-to-graphql-point.png)
 
 ## Checking JSON Web Token strength
 
@@ -409,7 +409,7 @@ The sample blocking page `/usr/share/nginx/html/wallarm_blocked.html` has been u
     
 New blocking page with the new layout looks as follows by default:
 
-![Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+![Wallarm blocking page](../../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
 [More details on the blocking page setup →](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)
 

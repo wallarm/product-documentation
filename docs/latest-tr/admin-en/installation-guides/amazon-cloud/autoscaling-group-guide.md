@@ -1,13 +1,13 @@
 [link-doc-ami-creation]:        create-image.md
 [link-doc-lb-guide]:            load-balancing-guide.md
 [link-doc-as-faq]:              https://aws.amazon.com/autoscaling/faqs/
-[img-create-lt-wizard]:         ../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/create-launch-template.png
-[img-create-asg-wizard]:        ../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/create-asg-with-template.png
-[img-asg-wizard-1]:             ../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/asg-wizard-1.png
-[img-asg-increase-policy]:      ../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/group-size-increase.png
-[img-asg-decrease-policy]:      ../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/group-size-decrease.png
-[img-alarm-example]:            ../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/alarm-example.png
-[img-check-asg-in-cloud]:       ../../../images/cloud-node-status.png
+[img-create-lt-wizard]:         ../../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/create-launch-template.png
+[img-create-asg-wizard]:        ../../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/create-asg-with-template.png
+[img-asg-wizard-1]:             ../../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/asg-wizard-1.png
+[img-asg-increase-policy]:      ../../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/group-size-increase.png
+[img-asg-decrease-policy]:      ../../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/group-size-decrease.png
+[img-alarm-example]:            ../../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/alarm-example.png
+[img-check-asg-in-cloud]:       ../../../../images/cloud-node-status.png
 
 [anchor-lt]:    #1-creating-a-launch-template
 [anchor-asg]:   #2-creating-an-auto-scaling-group

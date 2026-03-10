@@ -1,4 +1,4 @@
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [custom-blocking-page-docs]:        ../../admin-en/configuration-guides/configure-block-page-and-code.md
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [multitenancy-overview]:            ../multi-tenant/overview.md

@@ -26,7 +26,7 @@ To provide this protection:
 
     * `**` [wildcard](../../user-guides/rules/rules.md#using-wildcards) in the path meaning "any number of components". They will cover all the addresses under the `book-sale-example.com`.
 
-        ![Forced browsing trigger example](../../images/user-guides/triggers/trigger-example5-4.8.png)
+        ![Forced browsing trigger example](../../../images/user-guides/triggers/trigger-example5-4.8.png)
 
     * Besides configuring the pattern we need in this example, you can enter specific URIs (for example, URI of your resource file directory) or set trigger to work at any endpoint by not specifying any URI.
     * If using nested URIs, consider [trigger processing priorities](../../user-guides/triggers/triggers.md#trigger-processing-priorities).
@@ -62,7 +62,7 @@ To test the trigger described in the [Configuring](#configuring) section:
     If the trigger reaction is **Graylist IP address**, check the section **IP lists** → **Graylist** of Wallarm Console.
 3. Open the section **Attacks** and check that requests are displayed in the list as a forced browsing attack.
 
-    ![Forced browsing attack in the interface](../../images/user-guides/events/forced-browsing-attack.png)
+    ![Forced browsing attack in the interface](../../../images/user-guides/events/forced-browsing-attack.png)
 
     The number of displayed requests corresponds to the number of requests sent after exceeding the trigger threshold ([more details on detecting behavioral attacks](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/analyze-attack.md)).
 

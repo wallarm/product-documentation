@@ -21,7 +21,7 @@ If you have some problem when working with Wallarm, the following tools are in y
 
 Wallarm status page https://status.wallarm.com displays live and historical data on the availability of Wallarm Console and Wallarm API services for each [Wallarm Cloud](../about-wallarm/overview.md#how-wallarm-works):
 
-![Wallarm status page](../images/status-page.png)
+![Wallarm status page](../../images/status-page.png)
 
 ### Statuses
 

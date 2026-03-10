@@ -1,5 +1,5 @@
 [وثائق-الهجمات-ptrav]:                ../../attacks-vulns-list.md#path-traversal
-[صورة-الهجمات-في-واجهة-المستخدم]:              ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
+[صورة-الهجمات-في-واجهة-المستخدم]:              ../../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 
 # Akamai EdgeWorkers مع حزمة الشفرة Wallarm
 

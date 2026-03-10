@@ -1,4 +1,4 @@
-# درجة خطورة نقطة النهاية <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# درجة خطورة نقطة النهاية <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 تقوم [اكتشاف الـAPI](overview.md) بحساب **درجة الخطورة** تلقائيًا لكل نقطة نهاية في جرد الـAPI الخاص بك. تتيح لك درجة الخطورة فهم أي نقاط النهاية الأكثر عرضة لأن تكون هدفًا للهجوم وبالتالي يجب أن تكون في محور جهود الأمان الخاصة بك.
 
@@ -34,7 +34,7 @@
 
 لفهم ما أدى إلى درجة الخطورة لنقطة النهاية وكيفية التقليل من الخطورة، انتقل إلى تفاصيل نقطة النهاية:
 
-![اكتشاف الـAPI - إعدادات درجة الخطورة](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
+![اكتشاف الـAPI - إعدادات درجة الخطورة](../../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 
 يمكنك أيضًا الحصول على ملخص حول الـAPIs حسب مستويات درجة الخطورة في **لوحات التحكم** → **اكتشاف الـAPI** في سحابة [الولايات المتحدة](https://us1.my.wallarm.com/dashboard-api-discovery) أو [الاتحاد الأوروبي](https://my.wallarm.com/dashboard-api-discovery).
 
@@ -50,6 +50,6 @@
 1. إذا لزم الأمر، قم بتعطيل العوامل التي لا تريد أن تؤثر في درجة الخطورة.
 1. ضبط أوزان العوامل المتبقية.
 
-    ![اكتشاف الـAPI - إعداد درجة الخطورة](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score-setup.png)
+    ![اكتشاف الـAPI - إعداد درجة الخطورة](../../images/about-wallarm-waf/api-discovery/api-discovery-risk-score-setup.png)
 
 1. حفظ التغييرات. ستعيد Wallarm حساب درجة الخطورة لنقاط النهاية الخاصة بك وفقًا للإعدادات الجديدة خلال بضع دقائق.

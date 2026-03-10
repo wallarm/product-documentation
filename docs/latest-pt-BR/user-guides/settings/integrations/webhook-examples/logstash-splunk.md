@@ -1,4 +1,4 @@
-[splunk-dashboard-by-wallarm-img]: ../../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
+[splunk-dashboard-by-wallarm-img]: ../../../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
 
 # Splunk Enterprise via Logstash
 
@@ -6,7 +6,7 @@ Estas instruções fornecem a você o exemplo de integração do Wallarm com o c
 
 --8<-- "../include-pt-BR/integrations/webhook-examples/overview.md"
 
-![Fluxo do Webhook](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-scheme.png)
+![Fluxo do Webhook](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-scheme.png)
 
 ## Recursos utilizados
 
@@ -22,7 +22,7 @@ Como os links para os serviços Splunk Enterprise e Logstash são citados como e
 
 Os logs do Logstash são enviados para o Splunk HTTP Event Controller com o nome `Wallarm Logstash logs` e outras configurações padrão:
 
-![Configuração do coletor de eventos HTTP](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-setup.png)
+![Configuração do coletor de eventos HTTP](../../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-setup.png)
 
 Para acessar o HTTP Event Controller, o token gerado `93eaeba4-97a9-46c7-abf3-4e0c545fa5cb` será usado.
 
@@ -80,16 +80,16 @@ Uma descrição mais detalhada dos arquivos de configuração está disponível 
     ```
 
     **Logs do Logstash:**
-    ![Logs do Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-curl-log.png)
+    ![Logs do Logstash](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-curl-log.png)
 
     **Eventos Splunk:**
-    ![Eventos Splunk](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-curl-log.png)
+    ![Eventos Splunk](../../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-curl-log.png)
 
 ### Configuração da integração do Logstash
 
 --8<-- "../include-pt-BR/integrations/webhook-examples/create-logstash-webhook.md"
 
-![Integração do Webhook com o Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+![Integração do Webhook com o Logstash](../../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
 [Mais detalhes sobre a configuração da integração do Logstash](../logstash.md)
 
@@ -99,11 +99,11 @@ Uma descrição mais detalhada dos arquivos de configuração está disponível 
 
 Logstash registrará o evento da seguinte forma:
 
-![Registro sobre novo usuário no Splunk de Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-user-log.png)
+![Registro sobre novo usuário no Splunk de Logstash](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-user-log.png)
 
 A seguinte entrada será exibida nos eventos do Splunk:
 
-![Novo cartão de usuário no Splunk de Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-user.png)
+![Novo cartão de usuário no Splunk de Logstash](../../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-user.png)
 
 ## Organizando eventos em um painel
 

@@ -1,4 +1,4 @@
-# API Abuse Prevention <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Prevention <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm platformunun **API Abuse Prevention** modülü, API’lerinizi hedef alan kimlik bilgisi doldurma, sahte hesap oluşturma, içerik kazıma (scraping) ve diğer kötü amaçlı eylemleri gerçekleştiren botların tespitini ve etkisizleştirilmesini sağlar.
 
@@ -44,7 +44,7 @@ Aşağıdaki dedektörler devreye girebilir:
 !!! info "Güven"
     Dedektörlerin çalışması sonucunda, her [tespit edilen](../api-abuse-prevention/exploring-bots.md) bot için bir **güven yüzdesi** oluşur: bunun bir bot olduğundan ne kadar emin olduğumuz. Her bot türünde dedektörlerin göreli önemi / oy sayısı farklıdır. Dolayısıyla güven yüzdesi, bu bot türündeki tüm olası oylardan (çalışan dedektörlerin sağladığı) alınan oyların oranıdır.
 
-![API kötüye kullanım önleme istatistikleri](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics-detectors.png)
+![API kötüye kullanım önleme istatistikleri](../../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics-detectors.png)
 
 Bir veya birden fazla dedektör [bot saldırı işaretlerine](#automated-threats-blocked-by-api-abuse-prevention) işaret ederse, modül anomali trafiğinin kaynağını 1 saatliğine deny listesine veya gri listeye ekler. Wallarm, son 30 gün içinde deny ve gri listeye alınan bot IP’lerini sayar ve bu miktarların bir önceki 30 günlük döneme kıyasla yüzde olarak ne kadar arttığını veya azaldığını gösterir.
 

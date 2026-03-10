@@ -2,4 +2,4 @@
 
 يتم تمييز عناوين IP الخاصة بالبوتات ب**السبب** `Bot` وتفاصيل طبيعتها بما في ذلك [معدل الثقة](../../api-abuse-prevention/overview.md#how-api-abuse-prevention-works)، على سبيل المثال:
 
-![عناوين IP للبوتات المدرجة في قائمة الرفض](../../images/about-wallarm-waf/abi-abuse-prevention/denylisted-bot-ips.png)
+![عناوين IP للبوتات المدرجة في قائمة الرفض](../../../images/about-wallarm-waf/abi-abuse-prevention/denylisted-bot-ips.png)

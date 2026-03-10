@@ -21,7 +21,7 @@ The logs also include information on the following actions and objects:
 * [Vulnerability marked as the false positive](../vulnerabilities.md#issue-lifecycle)
 * [Rechecked attack](../../vulnerability-detection/threat-replay-testing/overview.md)
 
-![Activity log](../../images/user-guides/settings/audit-log.png)
+![Activity log](../../../images/user-guides/settings/audit-log.png)
 
 **To filter the activity log records**, you can use the following parameters:
 

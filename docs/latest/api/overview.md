@@ -1,5 +1,5 @@
 [user-roles-article]:    ../user-guides/settings/users.md#user-roles
-[img-api-tokens-edit]:   ../images/api-tokens-edit.png
+[img-api-tokens-edit]:   ../../images/api-tokens-edit.png
 
 # Wallarm API overview
 
@@ -18,7 +18,7 @@ Description of API methods is given in the **Wallarm API Console** available fro
 * https://apiconsole.us1.wallarm.com/ for the [US cloud](../about-wallarm/overview.md#cloud)
 * https://apiconsole.eu1.wallarm.com/ for the [EU cloud](../about-wallarm/overview.md#cloud)
 
-![Wallarm API Console](../images/wallarm-api-reference.png)
+![Wallarm API Console](../../images/wallarm-api-reference.png)
 
 ## API endpoint
 

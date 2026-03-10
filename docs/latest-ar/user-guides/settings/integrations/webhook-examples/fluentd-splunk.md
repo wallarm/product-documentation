@@ -1,4 +1,4 @@
-[splunk-dashboard-by-wallarm-img]: ../../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
+[splunk-dashboard-by-wallarm-img]: ../../../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
 
 # Splunk Enterprise عبر Fluentd
 
@@ -6,7 +6,7 @@
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![تدفق Webhook](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-scheme.png)
+![تدفق Webhook](../../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-scheme.png)
 
 ## الموارد المُستخدمة
 
@@ -22,7 +22,7 @@
 
 يتم إرسال سجلات Fluentd إلى Splunk HTTP Event Controller بالاسم `Wallarm Fluentd logs` والإعدادات الافتراضية الأخرى:
 
-![تكوين HTTP Event Collector](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-setup.png)
+![تكوين HTTP Event Collector](../../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-setup.png)
 
 للوصول إلى HTTP Event Controller، سيتم استخدام الرمز المُنشأ `f44b3179-91aa-44f5-a6f7-202265e10475`.
 
@@ -86,16 +86,16 @@
     ```
 
     **سجلات في Fluentd:**
-    ![سجلات في Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-curl-log.png)
+    ![سجلات في Fluentd](../../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-curl-log.png)
 
     **سجلات في Splunk:**
-    ![سجلات في Splunk](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-curl-log.png)
+    ![سجلات في Splunk](../../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-curl-log.png)
 
 ### تكوين دمج Fluentd
 
 --8<-- "../include/integrations/webhook-examples/create-fluentd-webhook.md"
 
-![دمج Webhook مع Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+![دمج Webhook مع Fluentd](../../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
 [مزيد من التفاصيل حول تكوين دمج Fluentd](../fluentd.md)
 
@@ -105,11 +105,11 @@
 
 سيقوم Fluentd بتسجيل الحدث على النحو التالي:
 
-![سجل عن مُستخدم جديد في Splunk من Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-user-log.png)
+![سجل عن مُستخدم جديد في Splunk من Fluentd](../../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-user-log.png)
 
 سيتم عرض الإدخال التالي في أحداث Splunk:
 
-![بطاقة مُستخدم جديد في Splunk من Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-user.png)
+![بطاقة مُستخدم جديد في Splunk من Fluentd](../../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-user.png)
 
 ## تنظيم الأحداث في Splunk Enterprise ضمن لوحة تحكم
 

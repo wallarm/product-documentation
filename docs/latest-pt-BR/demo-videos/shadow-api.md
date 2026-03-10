@@ -1,4 +1,4 @@
-# Detecção de APIs Sombra e Órfãs <a href="../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Detecção de APIs Sombra e Órfãs <a href="../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Assista ao nosso vídeo demonstrativo para se familiarizar com como você pode detectar [pontos finais sombra e órfãos](../api-discovery/overview.md#shadow-orphan-and-zombie-apis) em sua API usando Wallarm.
 

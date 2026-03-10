@@ -1,7 +1,7 @@
 [docs-module-update]:           nginx-modules.md
-[img-wl-console-users]:         ../images/check-users.png 
-[img-create-wallarm-node]:      ../images/user-guides/nodes/create-cloud-node.png
-[img-attacks-in-interface]:     ../images/admin-guides/test-attacks-quickstart.png
+[img-wl-console-users]:         ../../images/check-users.png 
+[img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
+[img-attacks-in-interface]:     ../../images/admin-guides/test-attacks-quickstart.png
 [wallarm-token-types]:          ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [statistics-service-all-parameters]: ../admin-en/configure-statistics-service.md
 [configure-proxy-balancer-instr]:   ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
@@ -22,7 +22,7 @@ Bu talimatlar, ayrı bir sunucuya kurulu postanalytics modülünün en son 6.x s
     1. Kurulan Wallarm modülünü NGINX'inize bağlar.
     1. Sağlanan token kullanılarak filtreleme düğümünü Wallarm Cloud'a bağlar.
 
-    ![El ile kuruluma kıyasla All-in-one](../images/installation-nginx-overview/manual-vs-all-in-one.png)
+    ![El ile kuruluma kıyasla All-in-one](../../images/installation-nginx-overview/manual-vs-all-in-one.png)
 
 Kullanım ömrü sona ermiş modülü (3.6 veya daha düşük) yükseltmek için lütfen [farklı talimatları](older-versions/separate-postanalytics.md) kullanın.
 

@@ -7,7 +7,7 @@
 [subscription]:                ../../about-wallarm/subscription-plans.md#core-subscription-plans
 
 
-# Wallarm Connector for Amazon API Gateway (API Discovery) <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# Wallarm Connector for Amazon API Gateway (API Discovery) <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;"></a>
 
 The Wallarm Connector for Amazon API Gateway automatically builds an [API inventory][api-inventory] from real traffic by relying on CloudWatch logs.
 
@@ -36,7 +36,7 @@ To proceed with the deployment, ensure that the following requirements are met:
 * [Native Node version 0.21.0 or later][native-node-versions]
 * An [Advanced API Security subscription][subscription] that enables the API Discovery feature
 
-![Amazon API Gateway traffic schema](../../images/waf-installation/gateways/aws-api-discovery/traffic-schema.png)
+![Amazon API Gateway traffic schema](../../../images/waf-installation/gateways/aws-api-discovery/traffic-schema.png)
 
 ## Deployment
 
@@ -79,12 +79,12 @@ You can deploy it either hosted by Wallarm or in your own infrastructure, depend
     }
     ```
     
-    ![Create IAM policy](../../images/waf-installation/gateways/aws-api-discovery/iam-policy.png)
+    ![Create IAM policy](../../../images/waf-installation/gateways/aws-api-discovery/iam-policy.png)
 
 1. Go to **Roles** and click **Create role**.
 1. Select **AWS service** and **Lambda** for "Trusted entity type" and "Use case", respectively, and then click **Next**.
 
-    ![Create IAM role](../../images/waf-installation/gateways/aws-api-discovery/iam-role.png)
+    ![Create IAM role](../../../images/waf-installation/gateways/aws-api-discovery/iam-role.png)
 
 1. On the "Add permissions" step, select the IAM policy you have created earlier, and click **Next**.
 1. Give your IAM role a recognizable name (e.g., `WallarmAPIDiscoveryLambdaRole`) and optionally edit the role's description. 
@@ -103,7 +103,7 @@ You have created the IAM role and attached the IAM policy required by the Lambda
 1. Choose **Python 3.13** and **x86_64** under "Runtime" and "Architecture", respectively.
 1. Under "Permissions", expand **Change default execution role**, select **Use an existing role**, and then select the IAM role you created in Step 2 (`WallarmAPIDiscoveryLambdaRole`)
 
-    ![Create Lambda function](../../images/waf-installation/gateways/aws-api-discovery/lambda-function.png)
+    ![Create Lambda function](../../../images/waf-installation/gateways/aws-api-discovery/lambda-function.png)
 
 1. Click **Create function**.
 
@@ -118,7 +118,7 @@ You have created a Lambda function. You now need to configure it to process Clou
 1. In your Lambda function, go to the **Code** tab and paste the copied code into the "Code source" section.
 1. Click **Deploy**.
 
-    ![Lambda configuration](../../images/waf-installation/gateways/aws-api-discovery/lambda-config.png)
+    ![Lambda configuration](../../../images/waf-installation/gateways/aws-api-discovery/lambda-config.png)
 
 1. Go to the **Configuration** tab → **Environment variables** → **Edit**.
 1. Click **Add environment variable** and specify the following environment variables for Node communication:
@@ -130,7 +130,7 @@ You have created a Lambda function. You now need to configure it to process Clou
 
     * `X_NODE_SCHEME` - Native Node protocol (`http` or `https`), depending on how the Node was deployed and whether TLS is enabled.
 
-    ![Lambda environment variables](../../images/waf-installation/gateways/aws-api-discovery/env-vars.png)
+    ![Lambda environment variables](../../../images/waf-installation/gateways/aws-api-discovery/env-vars.png)
 
 1. Click **Save**.
 1. Go to the **Configuration** tab → **General configuration** → **Edit**.
@@ -170,7 +170,7 @@ You have configured CloudWatch API logging in API Gateway. The Lambda function i
 1. Under "Subscription filter name", specify a filter name (e.g., `WallarmFilter`).
 1. Click **Start streaming**.
 
-    ![Subscription filter](../../images/waf-installation/gateways/aws-api-discovery/sub-filter.png)
+    ![Subscription filter](../../../images/waf-installation/gateways/aws-api-discovery/sub-filter.png)
 
 By completing this step, you have linked the API Gateway log group to the Lambda function. The function will now start receiving and processing log events.
 
@@ -182,7 +182,7 @@ Generate traffic to your API endpoints (e.g., using `curl`) to build the [API in
 
 Wallarm builds the API inventory only after receiving a [sufficient number of requests for each endpoint][api-traffic].
 
-![Amazon API Gateway inventory](../../images/waf-installation/gateways/aws-api-discovery/aws-api-gateway-inventory.png)
+![Amazon API Gateway inventory](../../../images/waf-installation/gateways/aws-api-discovery/aws-api-gateway-inventory.png)
 
 If you have any issues, refer to the ["Logs and troubleshooting" section](#logs-and-troubleshooting).
 

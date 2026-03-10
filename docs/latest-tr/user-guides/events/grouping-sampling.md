@@ -1,19 +1,19 @@
 [link-using-search]:    ../search-and-filters/use-search.md
-[img-current-attacks]:  ../../images/glossary/attack-with-one-hit-example.png
-[img-incidents-tab]:    ../../images/user-guides/events/incident-vuln.png
-[img-show-falsepositive]: ../../images/user-guides/events/filter-for-falsepositive.png
+[img-current-attacks]:  ../../../images/glossary/attack-with-one-hit-example.png
+[img-incidents-tab]:    ../../../images/user-guides/events/incident-vuln.png
+[img-show-falsepositive]: ../../../images/user-guides/events/filter-for-falsepositive.png
 [use-search]:             ../search-and-filters/use-search.md
 [search-by-attack-status]: ../search-and-filters/use-search.md#search-attacks-by-the-action
-[img-verify-attack]:            ../../images/user-guides/events/verify-attack.png
+[img-verify-attack]:            ../../../images/user-guides/events/verify-attack.png
 [al-brute-force-attack]:      ../../attacks-vulns-list.md#brute-force-attack
 [al-forced-browsing]:         ../../attacks-vulns-list.md#forced-browsing
 [al-bola]:                    ../../attacks-vulns-list.md#broken-object-level-authorization-bola
 [link-analyzing-attacks]:       analyze-attack.md
-[img-false-attack]:             ../../images/user-guides/events/false-attack.png
-[img-removed-attack-info]:      ../../images/user-guides/events/removed-attack-info.png
+[img-false-attack]:             ../../../images/user-guides/events/false-attack.png
+[img-removed-attack-info]:      ../../../images/user-guides/events/removed-attack-info.png
 [link-check-attack]:        check-attack.md
 [link-false-attack]:        false-attack.md
-[img-current-attack]:       ../../images/user-guides/events/analyze-current-attack.png
+[img-current-attack]:       ../../../images/user-guides/events/analyze-current-attack.png
 [glossary-attack-vector]:   ../../glossary-en.md#malicious-payload
 
 # Hit'lerin Gruplandırılması ve Örneklenmesi
@@ -45,7 +45,7 @@ Hit'ler bu yöntemle gruplandırılmışsa, [**Mark as false positive**](check-a
 
 Kaynak IP'ye göre gruplandırma varsayılan olarak Wallarm Console → **Triggers** bölümünde, tek bir IP adresi 15 dakika içinde 50'den fazla hit ürettiğinde tetiklenen **Hits from the same IP** varsayılan trigger'ı ile etkindir.
 
-![Hit gruplandırma için trigger örneği](../../images/user-guides/triggers/trigger-example-group-hits.png)
+![Hit gruplandırma için trigger örneği](../../../images/user-guides/triggers/trigger-example-group-hits.png)
 
 Kaynak IP'ye göre gruplandırmayı ihtiyaçlarınıza göre ayarlayabilirsiniz: **Hits from the same IP** tipindeki kendi özel trigger'larınızı oluşturarak bunu yapın. Herhangi bir özel trigger oluşturmak varsayılan olanı siler, tüm özel trigger'larınızı silerseniz varsayılan geri yüklenir. Ayrıca varsayılan trigger'ı geçici olarak devre dışı bırakarak gruplandırmayı duraklatabilirsiniz.
 
@@ -57,7 +57,7 @@ Hit örnekleme, saldırı tespitinin kalitesini etkilemez ancak yavaşlamasını
 
 **Hits sampling is enabled** bildirimi, örneklemenin şu anda çalıştığını gösterir. Yalnızca örneklemenin uygulandığı saldırıları görmek için bu bildirime tıklayabilir veya arama alanına [`sampled`](../search-and-filters/use-search.md#search-for-sampled-hits) ekleyebilirsiniz. Saldırı ayrıntılarında, kaç benzer hit'in tespit edildiğini ancak gösterilmediğini göreceksiniz:
 
-![Düşürülen hit'ler](../../images/user-guides/events/bruteforce-dropped-hits.png)
+![Düşürülen hit'ler](../../../images/user-guides/events/bruteforce-dropped-hits.png)
 
 !!! info "Saldırı listesinde düşürülen hit'lerin görüntülenmesi"
     Düşürülen hit'ler Wallarm Cloud'a yüklenmediğinden, belirli hit'ler veya tüm saldırılar saldırı listesinde bulunmayabilir.

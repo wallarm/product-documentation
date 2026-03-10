@@ -16,7 +16,7 @@ search:
 [filtration-modes-docs]:            ../../../../admin-en/configure-wallarm-mode.md
 [application-configuration]:        ../../../../user-guides/settings/applications.md
 [ptrav-attack-docs]:                ../../../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../../../images/admin-guides/test-attacks-quickstart.png
 [versioning-policy]:                ../../../../updating-migrating/versioning-policy.md#version-list
 [node-status-docs]:                 ../../../../admin-en/configure-statistics-service.md
 [node-token]:                       ../../../../quickstart.md#deploy-the-wallarm-filtering-node

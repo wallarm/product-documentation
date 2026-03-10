@@ -2,7 +2,7 @@
 [link-integrations-intro]:              ../user-guides/settings/integrations/integrations-intro.md
 [link-integrations-email]:              ../user-guides/settings/integrations/email.md#setting-up-integration
 
-# API Attack Surface Management Setup  <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
+# API Attack Surface Management Setup  <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
 This article describes how to enable and configure [API Attack Surface Management](overview.md) to discover your external hosts with their APIs, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities.
 
@@ -41,7 +41,7 @@ To configure [API Attack Surface Management](overview.md) to detect hosts under 
 1. For the added domains, hosts are detected automatically. If necessary, you can add more hosts manually: click **Add host** and paste hosts separated by comma, semicolon, space or new line.
 1. Click the domain to see details on its found and added hosts.
 
-    ![AASM - configuring scope](../images/api-attack-surface/aasm-scope.png)
+    ![AASM - configuring scope](../../images/api-attack-surface/aasm-scope.png)
 
 ### Deleting from scope
 
@@ -63,7 +63,7 @@ You can select which data related to your domains will be searched for and displ
 
 For your convenience, Wallarm provides a set of predefined profiles for scan configuration. Try switching between profiles to understand their content.
 
-![AASM - scan configuration](../images/api-attack-surface/aasm-scan-configuration.png)
+![AASM - scan configuration](../../images/api-attack-surface/aasm-scan-configuration.png)
 
 Brief description of profiles:
 
@@ -139,7 +139,7 @@ To set AASM's RPS limit:
 1. Select **RPS limit**. Once selected, apply options are displayed.
 1. Select to what to apply the limit. Save the changes.
 
-![AASM - configuring RPS limits](../images/api-attack-surface/aasm-rps-limits.png)
+![AASM - configuring RPS limits](../../images/api-attack-surface/aasm-rps-limits.png)
 
 !!! info "Scan duration"
     Enforcing a rate limit increases the overall scan duration.
@@ -148,7 +148,7 @@ To set AASM's RPS limit:
 
 To make sure AASM's data is always up-to-date, you can set AASM to automatically delete retired hosts after specified period of time and number of rescans. By default, this feature is disabled. If you enable it, set additionally what to do with the security issues detected for the hosts being deleted: keep them as is (default) or delete, mark as false or close.
 
-![AASM - host retention policy](../images/api-attack-surface/aasm-host-retention.png)
+![AASM - host retention policy](../../images/api-attack-surface/aasm-host-retention.png)
 
 Note that only security issues detected by AASM itself are affected by host retention - the security issues detected by [other methods](../about-wallarm/detecting-vulnerabilities.md#detection-methods) are not changed.
 
@@ -163,7 +163,7 @@ To configure auto rescan:
 
     Note that global option has priority - when disabled, nothing is auto re-scanned. The per-domain options allow excluding some domains from auto rescan.
 
-![AASM - configuring auto rescan](../images/api-attack-surface/aasm-auto-rescan.png)
+![AASM - configuring auto rescan](../../images/api-attack-surface/aasm-auto-rescan.png)
 
 ## Manual rescan
 
@@ -175,7 +175,7 @@ If necessary, you can stop scan in progress, this will erase all the results.
 
 A brief information about when your domains were added to the scope and last scanned is presented at **AASM** → **API Attack Surface** → **Configure** → **Domains and hosts**.
 
-![AASM - configuring scope domains](../images/api-attack-surface/aasm-scope.png)
+![AASM - configuring scope domains](../../images/api-attack-surface/aasm-scope.png)
 
 Navigate back from configuration dialog to the main **API Attack Surface** screen, here you can see the **Host scanning status** summary, then switch to **Scanning status** tab to see a detailed history of all scans including:
 
@@ -185,7 +185,7 @@ Navigate back from configuration dialog to the main **API Attack Surface** scree
 * General number of security issues and new security issues found during this scan.
 * Scan status, its start and finish date/time.
 
-![AASM - detailed scanning status](../images/api-attack-surface/aasm-scanning-status.png)
+![AASM - detailed scanning status](../../images/api-attack-surface/aasm-scanning-status.png)
 
 ## Notifications
 

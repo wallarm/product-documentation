@@ -24,7 +24,7 @@
 1. Bir entegrasyon adı girin.
 1. Bildirimleri tetikleyecek olay türlerini seçin.
 
-    ![InsightConnect entegrasyonu](../../../images/user-guides/settings/integrations/add-insightconnect-integration.png)
+    ![InsightConnect entegrasyonu](../../../../images/user-guides/settings/integrations/add-insightconnect-integration.png)
 
     Mevcut olaylara ilişkin ayrıntılar:
 
@@ -34,7 +34,7 @@
 
     Bu işlem, `[Test message]` ön ekine sahip test bildirimleri gönderecektir:
 
-    ![Test InsightConnect bildirimi](../../../images/user-guides/settings/integrations/test-insightconnect-scope-changed.png)
+    ![Test InsightConnect bildirimi](../../../../images/user-guides/settings/integrations/test-insightconnect-scope-changed.png)
 
 1. **Add integration**'a tıklayın.
 

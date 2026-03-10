@@ -1,6 +1,6 @@
 # SAML SSO Authentication Setup
 
-[img-disable-sso-provider]:     ../../../images/admin-guides/configuration-guides/sso/disable-sso-provider.png
+[img-disable-sso-provider]:     ../../../../images/admin-guides/configuration-guides/sso/disable-sso-provider.png
 [doc-setup-sso-gsuite]:     gsuite/overview.md
 [doc-setup-sso-okta]:       okta/overview.md
 
@@ -26,7 +26,7 @@ You need Wallarm metadata to enter on the SAML SSO solution side:
 
     You can integrate Google, Okta or any other (**Custom**) SAML SSO solution. Note that only one SSO integration can be active at the moment.
 
-    ![Integrations - SSO](../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
+    ![Integrations - SSO](../../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
 
 1. In the SSO configuration wizard, at the **Send details** step, overview the metadata to be sent to your SAML SSO solution.
 1. Copy metadata or save them as XML.
@@ -60,7 +60,7 @@ For this to work, provide the attribute mapping:
         * `partner_analytic` (**Global Analyst**)
         * `partner_auditor` (**Global Read Only**)
 
-            ![Integrations - SSO, mapping example in Okta](../../../images/admin-guides/configuration-guides/sso/okta/wallarm-sso-okta-mapping.png)
+            ![Integrations - SSO, mapping example in Okta](../../../../images/admin-guides/configuration-guides/sso/okta/wallarm-sso-okta-mapping.png)
 
             See all role descriptions [here](../../../user-guides/settings/users.md#user-roles).
 
@@ -108,7 +108,7 @@ This step only should be fulfilled if your SAML SSO solution does not support ma
 
         See all role descriptions [here](../../../user-guides/settings/users.md#user-roles).
 
-    ![SSO groups to Wallarm roles - mapping in Wallarm](../../../images/admin-guides/configuration-guides/sso/sso-mapping-in-wallarm.png)
+    ![SSO groups to Wallarm roles - mapping in Wallarm](../../../../images/admin-guides/configuration-guides/sso/sso-mapping-in-wallarm.png)
 
 1. Complete SSO configuration wizard. Wallarm will test if data to/from your SAML SSO Solution can now be transferred.
 
@@ -125,7 +125,7 @@ To provide integration with such SAML SSO solution, Wallarm has the **Extended s
 1. Save metadata as XML, certificate data and appropriate configuration for your SAML SSO solutioin will be added to it.
 1. In SAML SSO solution, at [**Configure application**](#step-3-saml-sso-solution-configure-application) step, import provided XML to automatically get all options correctly configured. See Keycloak example below.
 
-    ![Extended security - Keycloak example](../../../images/admin-guides/configuration-guides/sso/sso-extended-security-keycloak-example.png)
+    ![Extended security - Keycloak example](../../../../images/admin-guides/configuration-guides/sso/sso-extended-security-keycloak-example.png)
 
 ## Tenant dependent permissions
 
@@ -136,14 +136,14 @@ If the [**different permissions in different tenants**](intro.md#tenant-dependen
 1. Click **Add group** and bind it to your SAML SSO solution group name.
 1. Set role, click **Add**.
 
-    ![SSO, different permissions in different tenants, creating group](../../../images/admin-guides/configuration-guides/sso/sso-iam-group-create.png)
+    ![SSO, different permissions in different tenants, creating group](../../../../images/admin-guides/configuration-guides/sso/sso-iam-group-create.png)
 
     The group is created and displayed in the list of groups.
 
 1. From the group menu, select **Edit group settings**.
 1. Your group page displayed. Set list of tenants.
 
-    ![SSO, different permissions in different tenants, adding tenants to group](../../../images/admin-guides/configuration-guides/sso/sso-iam-group-tenants.png)
+    ![SSO, different permissions in different tenants, adding tenants to group](../../../../images/admin-guides/configuration-guides/sso/sso-iam-group-tenants.png)
 
     This will result in users of your SAML SSO solution group will have access to the listed tenants with specified set of permissions (role).
 
@@ -163,7 +163,7 @@ If the same SAML SSO user belongs to several groups providing access to the same
     
     Note that users of this SAML SSO solution group cannot be anyhow restricted, even if they are included into any other SAML SSO solution groups.
 
-    ![SSO, different permissions in different tenants, global administrator exception](../../../images/admin-guides/configuration-guides/sso/sso-iam-global-administrators.png)
+    ![SSO, different permissions in different tenants, global administrator exception](../../../../images/admin-guides/configuration-guides/sso/sso-iam-global-administrators.png)
 
 <a name="override-general-sso-mapping"></a>**Overriding general mapping**
 

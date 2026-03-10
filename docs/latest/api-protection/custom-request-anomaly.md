@@ -41,7 +41,7 @@ To create and apply a new mitigation control:
 1. Click **Add control**.
 1. In the **Add control** dialog, select **AI payload inspection**.
 
-    ![Creating mitigation control](../images/user-guides/mitigation-controls/mc-create-ai-payload.png)
+    ![Creating mitigation control](../../images/user-guides/mitigation-controls/mc-create-ai-payload.png)
 
 1. [Configure](#configuration) your control.
 1. Click **Add**. The created control is displayed in the list. It immediately goes into action and performs in accordance with the selected **Mitigation mode**.
@@ -106,7 +106,7 @@ When a specified violation is detected, it shows up in [API Sessions](../api-ses
 * Corresponding requests within session are marked as part of the [**Custom AI payload inspection**](../attacks-vulns-list.md#custom-ai-payload-inspection) attack.
 * This is an LLM-based decision, so you always have **Reason** where LLM explains what kind of abuse has happened precisely by its opinion.
 
-![API Sessions - custom request anomaly detected](../images/api-protection/api-sessions-custom-request-anomaly.png)
+![API Sessions - custom request anomaly detected](../../images/api-protection/api-sessions-custom-request-anomaly.png)
 
 You can find sessions with corresponding attack types using the **Attack** filter - use the corresponding attack type to display only sessions with these attacks. 
 

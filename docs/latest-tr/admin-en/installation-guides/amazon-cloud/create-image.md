@@ -2,9 +2,9 @@
 [link-docs-aws-node-setup]:         ../../../installation/cloud-platforms/aws/ami.md
 [link-cloud-connect-guide]:         ../../../installation/inline/compute-instances/aws/aws-ami.md#4-connect-the-instance-to-the-wallarm-cloud
 [link-docs-check-operation]:        ../../../admin-en/uat-checklist-en.md#node-registers-attacks
-[img-launch-ami-wizard]:        ../../../images/installation-ami/auto-scaling/common/create-image/launch-ami-wizard.png 
-[img-config-ami-wizard]:        ../../../images/installation-ami/auto-scaling/common/create-image/config-ami-wizard.png  
-[img-explore-created-ami]:      ../../../images/installation-ami/auto-scaling/common/create-image/explore-ami.png
+[img-launch-ami-wizard]:        ../../../../images/installation-ami/auto-scaling/common/create-image/launch-ami-wizard.png 
+[img-config-ami-wizard]:        ../../../../images/installation-ami/auto-scaling/common/create-image/config-ami-wizard.png  
+[img-explore-created-ami]:      ../../../../images/installation-ami/auto-scaling/common/create-image/explore-ami.png
 
 [anchor-node]:  #1-creating-and-configuring-the-wallarm-filtering-node-instance-in-the-amazon-cloud
 [anchor-ami]:   #2-creating-an-amazon-machine-image

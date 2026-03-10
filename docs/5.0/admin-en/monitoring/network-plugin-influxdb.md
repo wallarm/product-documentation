@@ -1,4 +1,4 @@
-[img-network-plugin-influxdb]:     ../../images/monitoring/network-plugin-influxdb.png
+[img-network-plugin-influxdb]:     ../../../images/monitoring/network-plugin-influxdb.png
 
 [doc-grafana]:                     working-with-grafana.md
 

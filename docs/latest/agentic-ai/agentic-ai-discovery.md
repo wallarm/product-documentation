@@ -6,7 +6,7 @@ Wallarm's API Discovery [automatically identifies](../api-discovery/sbf.md#autom
 
 API Discovery automatically tags endpoints as belonging to **AI/LLM** sensitive business flow - on discovering a new endpoint, it checks whether this endpoint potentially belongs to this sensitive business flow, and, if so, marks it with the **AI/LLM** tag.
 
-![Agentic AI endpoints in API Discovery](../images/agentic-ai-protection/agentic-ai-in-api-discovery.png)
+![Agentic AI endpoints in API Discovery](../../images/agentic-ai-protection/agentic-ai-in-api-discovery.png)
 
 <!--Automatic checks are conducted using keywords from the endpoint URL. For AI/LLM, keywords like `TBD`, `TBD` automatically associate the endpoint with the **AI/LLM** flow. If matches are detected, the endpoint is automatically assigned to the appropriate flow.-->
 
@@ -32,4 +32,4 @@ Wallarm's [API Sessions](../api-sessions/overview.md) are used to provide you wi
 
 Once sessions are assigned with the **AI/LLM** sensitive business flow tag, it becomes possible to select only the sessions touching AI/LLM endpoints. To do that, set the **Business flow** filter to `AI/LLM`.
 
-![API sessions touching Agentic AI endpoints](../images/agentic-ai-protection/agentic-ai-in-api-sessions.png)
+![API sessions touching Agentic AI endpoints](../../images/agentic-ai-protection/agentic-ai-in-api-sessions.png)

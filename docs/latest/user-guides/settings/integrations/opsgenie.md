@@ -20,7 +20,7 @@ In Wallarm UI:
 1. If using the [EU instance](https://docs.opsgenie.com/docs/european-service-region) of Opsgenie, select the appropriate Opsgenie API endpoint from the list. By default, the US instance endpoint is set.
 1. Choose event types to trigger notifications.
 
-    ![Opsgenie integration](../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
+    ![Opsgenie integration](../../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
 
     Details on available events:
       
@@ -30,7 +30,7 @@ In Wallarm UI:
 
     This will send the test notifications with the prefix `[Test message]`:
 
-    ![Test Opsgenie message](../../../images/user-guides/settings/integrations/test-opsgenie-new-vuln.png)
+    ![Test Opsgenie message](../../../../images/user-guides/settings/integrations/test-opsgenie-new-vuln.png)
 
 1. Click **Add integration**.
 
@@ -44,7 +44,7 @@ In Wallarm UI:
 
 If 2 or more incidents with the application server or database are detected in one second, the notification about this event will be sent to Opsgenie.
 
-![Example of a trigger sending the data to Splunk](../../../images/user-guides/triggers/trigger-example3.png)
+![Example of a trigger sending the data to Splunk](../../../../images/user-guides/triggers/trigger-example3.png)
 
 **To test the trigger**, it is required to send the attack exploiting an active vulnerability to the protected resource. The Wallarm Console → **Vulnerabilities** section displays active vulnerabilities detected in your applications and the examples of attacks that exploit these vulnerabilities.
 

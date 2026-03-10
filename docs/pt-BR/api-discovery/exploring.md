@@ -1,4 +1,4 @@
-# Exploring API Inventory <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Exploring API Inventory <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 As soon as the [API Discovery](overview.md) module has built the catalog of your endpoints (your API inventory), you can explore it in the **API Discovery** section of Wallarm Console. Learn from this article how to go through the discovered data.
 
@@ -6,7 +6,7 @@ As soon as the [API Discovery](overview.md) module has built the catalog of your
 
 Explore your discovered API inventory using the **API Discovery** section in the [US](https://us1.my.wallarm.com/api-discovery) or [EU](https://my.wallarm.com/api-discovery) Cloud.
 
-![Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
+![Endpoints discovered by API Discovery](../../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
 Each time you open the **API Discovery** section, you see all discovered endpoints and their [changes](track-changes.md) for the last week. With **Changes since** filter, you can change `Last week` to any other period.
 
@@ -43,7 +43,7 @@ All filtered data can be exported in the OpenAPI v3 for additional analysis.
 
 <a name="params"></a>By clicking the endpoint, you can also find the endpoint details, including request statistics, headers and parameters of requests and responses with the relevant data types:
 
-![Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params-4.10.png)
+![Request parameters discovered by API Discovery](../../images/about-wallarm-waf/api-discovery/discovered-request-params-4.10.png)
 
 Each request/response parameter information includes:
 
@@ -88,7 +88,7 @@ The **API Discovery** module unifies such elements into the `{parameter_X}` form
 
 Click the endpoint to expand its parameters and view which type was automatically detected for the diverse parameter.
 
-![API Discovery - Variability in path](../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path-4.10.png)
+![API Discovery - Variability in path](../../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path-4.10.png)
 
 Note that the algorithm analyzes the new traffic. If at some moment you see addresses, that should be unified but this did not happen yet, give it a time. As soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount of matching addresses.
 
@@ -100,7 +100,7 @@ Number of attacks on API endpoints for the last 7 days are displayed in the **Hi
 
 To see attacks to some endpoint, click number in the **Hits** column:
 
-![API endpoint - open events](../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
+![API endpoint - open events](../../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
 
 The **Attacks** section will be displayed with the [filter applied](../user-guides/search-and-filters/use-search.md):
 
@@ -121,7 +121,7 @@ You can quickly create a new [custom rule](../user-guides/rules/rules.md) from a
 1. In this endpoint menu select **Create rule**. The create rule window is displayed. The endpoint address is parsed into the window automatically.
 1. In the create rule window, specify rule information and then click **Create**.
 
-![Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
+![Create rule from endpoint](../../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
 
 ## Exporting API inventory data
 

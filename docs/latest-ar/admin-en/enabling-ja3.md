@@ -68,12 +68,12 @@ Wallarm can integrate with CloudFront to get the `CloudFront-Viewer-JA3-Fingerpr
 1. Go to the CloudFront console and select the **Origin Request Policies** tab.
 1. Click **Create Origin Request Policy** and set the policy details.
 
-    ![CloudFront - creating origin request policy](../images/configuration-guides/ja3/aws-cloudfront-create-origin-request-policy.png)
+    ![CloudFront - creating origin request policy](../../images/configuration-guides/ja3/aws-cloudfront-create-origin-request-policy.png)
 
 1. In the **Actions** section, select **Add Header**.
 1. In the **Header Name** field, enter `CloudFront-Viewer-JA3-Fingerprint`.
 
-    ![CloudFront - adding header to origin request policy](../images/configuration-guides/ja3/aws-cloudfront-origin-request-policy-add-header.png)
+    ![CloudFront - adding header to origin request policy](../../images/configuration-guides/ja3/aws-cloudfront-origin-request-policy-add-header.png)
 
 1. Click **Create**. Your origin request policy is now created.
 1. To attach the created request policy to your CloudFront distribution, follow the steps below.
@@ -81,7 +81,7 @@ Wallarm can integrate with CloudFront to get the `CloudFront-Viewer-JA3-Fingerpr
 1. Click the **Edit** button next to **Origin Request Policies**.
 1. Select the checkbox next to the policy you created and save the changes.
 
-    ![CloudFront - attach policy to distribution](../images/configuration-guides/ja3/aws-cloudfront-attach-policy-to-distribution.png)
+    ![CloudFront - attach policy to distribution](../../images/configuration-guides/ja3/aws-cloudfront-attach-policy-to-distribution.png)
 
     Your origin request policy is now attached to your CloudFront distribution. Clients that make requests to your distribution will now have the `CloudFront-Viewer-JA3-Fingerprint` header added to their requests.
 

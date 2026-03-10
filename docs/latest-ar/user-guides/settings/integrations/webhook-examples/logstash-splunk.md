@@ -1,4 +1,4 @@
-[splunk-dashboard-by-wallarm-img]: ../../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
+[splunk-dashboard-by-wallarm-img]: ../../../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
 
 # Splunk Enterprise عبر Logstash
 
@@ -6,7 +6,7 @@
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![تدفق Webhook](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-scheme.png)
+![تدفق Webhook](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-scheme.png)
 
 ## الموارد المستخدمة
 
@@ -22,7 +22,7 @@
 
 يتم إرسال سجلات Logstash إلى Splunk HTTP Event Controller بالاسم `Wallarm Logstash logs` وإعدادات افتراضية أخرى:
 
-![تكوين HTTP Event Collector](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-setup.png)
+![تكوين HTTP Event Collector](../../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-setup.png)
 
 للوصول إلى HTTP Event Controller، سيتم استخدام الرمز المولد `93eaeba4-97a9-46c7-abf3-4e0c545fa5cb`.
 
@@ -80,16 +80,16 @@ output {
     ```
 
     **سجلات Logstash:**
-    ![سجلات Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-curl-log.png)
+    ![سجلات Logstash](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-curl-log.png)
 
     **حدث Splunk:**
-    ![أحداث Splunk](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-curl-log.png)
+    ![أحداث Splunk](../../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-curl-log.png)
 
 ### تكوين دمج Logstash
 
 --8<-- "../include/integrations/webhook-examples/create-logstash-webhook.md"
 
-![دمج Webhook مع Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+![دمج Webhook مع Logstash](../../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
 [المزيد من التفاصيل عن تكوين دمج Logstash](../logstash.md)
 
@@ -99,11 +99,11 @@ output {
 
 سيقوم Logstash بتسجيل الحدث كما يلي:
 
-![سجل عن مستخدم جديد في Splunk من Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-user-log.png)
+![سجل عن مستخدم جديد في Splunk من Logstash](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-user-log.png)
 
 سيتم عرض السجل التالي في أحداث Splunk:
 
-![بطاقة المستخدم الجديد في Splunk من Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-user.png)
+![بطاقة المستخدم الجديد في Splunk من Logstash](../../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-user.png)
 
 ## تنظيم الأحداث في لوحة بيانات
 

@@ -32,7 +32,7 @@ Let us say you want to prevent malicious actors from trying various passwords to
         `https://rentappc-example.com/usrs/us/p-login/sq`
         (note that for entire trigger to work, domains should be [linked](../../user-guides/settings/applications.md#automatic-application-identification) to selected application)
 
-        ![Brute force trigger example](../../images/user-guides/triggers/trigger-example6-4.8.png)
+        ![Brute force trigger example](../../../images/user-guides/triggers/trigger-example6-4.8.png)
     
     * Besides configuring the pattern we need in this example, you can enter specific URIs or set trigger to work at any endpoint by not specifying any URI.
     * If using nested URIs, consider [trigger processing priorities](../../user-guides/triggers/triggers.md#trigger-processing-priorities).
@@ -63,7 +63,7 @@ To test the trigger described in the [Configuring](#configuring) section:
 1. Open Wallarm Console → **IP lists** → **Denylist** and check that source IP address is blocked.
 1. Open the **Attacks** section and check that requests are displayed in the list as a brute force attack.
 
-    ![Brute force attack in the interface](../../images/user-guides/events/brute-force-attack.png)
+    ![Brute force attack in the interface](../../../images/user-guides/events/brute-force-attack.png)
 
     The number of displayed requests corresponds to the number of requests sent after exceeding the trigger threshold ([more details on detecting behavioral attacks](../../attacks-vulns-list.md#attack-types)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/grouping-sampling.md#sampling-of-hits)).
 

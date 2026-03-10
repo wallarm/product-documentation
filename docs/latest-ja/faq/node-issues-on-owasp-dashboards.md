@@ -6,7 +6,7 @@ Wallarm nodeが更新されていない、またはCloudとの同期に問題が
 
 古いnodeには重要なセキュリティ更新が欠けている可能性があり、悪意のあるトラフィックに防御をすり抜けられる可能性があります。同期の問題が発生するとnodeの機能が損なわれ、Cloudから重要なセキュリティポリシーを受信できなくなります。これらの問題は主にOWASP API8（Security Misconfiguration）の脅威に関連しており、アプリケーションスタックのいずれかの部分でセキュリティソリューションが欠落していると、システムが脆弱になります。これを防ぐために、dashboardはnodeの動作に関する問題を通知します。例えば次のとおりです:
 
-![nodeの問題を示すOWASP dashboard](../images/user-guides/dashboard/owasp-dashboard-node-issues.png)
+![nodeの問題を示すOWASP dashboard](../../images/user-guides/dashboard/owasp-dashboard-node-issues.png)
 
 安全な環境を維持するためには、Wallarm nodeを定期的に更新し、同期の問題に対処することが重要です。Wallarm nodeのバージョンが[サポート終了に達している、または近づいている](../updating-migrating/versioning-policy.md#version-list)場合は、最新バージョンへのアップグレードを推奨します。
 

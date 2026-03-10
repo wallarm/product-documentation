@@ -1,6 +1,6 @@
 [configure-selinux-instr]:    configure-selinux.md
 [configure-proxy-balancer-instr]:   configuration-guides/access-to-wallarm-api-via-proxy.md
-[img-wl-console-users]:             ../images/check-user-no-2fa.png
+[img-wl-console-users]:             ../../images/check-user-no-2fa.png
 [wallarm-token-types]:              ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 
 # Separate Postanalytics Module Installation
@@ -17,9 +17,9 @@ The processing of requests in the Wallarm node consists of two stages:
 The schemes below depict module interaction in two scenarios: when installed on the same server and on different servers.
 
 === "NGINX-Wallarm and postanalytics on one server"
-    ![Traffic flow between postanalytics and nginx-wallarm](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-the-same-server.png)
+    ![Traffic flow between postanalytics and nginx-wallarm](../../images/waf-installation/separate-postanalytics/processing-postanalytics-on-the-same-server.png)
 === "NGINX-Wallarm and postanalytics on different servers"
-    ![Traffic flow between postanalytics and nginx-wallarm](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-different-servers.png)
+    ![Traffic flow between postanalytics and nginx-wallarm](../../images/waf-installation/separate-postanalytics/processing-postanalytics-on-different-servers.png)
 
 ## Requirements
 
@@ -249,7 +249,7 @@ curl http://localhost/etc/passwd
 
 If the NGINX‑Wallarm and separate postanalytics modules are configured properly, the attack will be uploaded to the Wallarm Cloud and displayed in the **Attacks** section of Wallarm Console:
 
-![Attacks in the interface](../images/admin-guides/test-attacks-quickstart.png)
+![Attacks in the interface](../../images/admin-guides/test-attacks-quickstart.png)
 
 If the attack was not uploaded to the Cloud, please check that there are no errors in the services operation:
 

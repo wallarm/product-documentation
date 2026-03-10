@@ -24,7 +24,7 @@ Em terceiro lugar, termine a configuração na interface do usuário do Wallarm:
 1. Insira um nome para a integração.
 1. Escolha tipos de eventos para acionar notificações.
 
-    ![Integração InsightConnect](../../../images/user-guides/settings/integrations/add-insightconnect-integration.png)
+    ![Integração InsightConnect](../../../../images/user-guides/settings/integrations/add-insightconnect-integration.png)
 
     Detalhes sobre eventos disponíveis:
 
@@ -34,7 +34,7 @@ Em terceiro lugar, termine a configuração na interface do usuário do Wallarm:
 
     Isso enviará as notificações de teste com o prefixo `[Mensagem de teste]`:
 
-    ![Testar notificação InsightConnect](../../../images/user-guides/settings/integrations/test-insightconnect-scope-changed.png)
+    ![Testar notificação InsightConnect](../../../../images/user-guides/settings/integrations/test-insightconnect-scope-changed.png)
 
 1. Clique em **Add integration**.
 

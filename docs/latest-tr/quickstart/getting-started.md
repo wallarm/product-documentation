@@ -8,7 +8,7 @@ Kayıt olmadan ve ortamınıza herhangi bir bileşen dağıtmadan Wallarm’ı k
 
 Playground’da, sanki gerçek verilerle doldurulmuş gibi Wallarm Console görünümüne erişebilirsiniz. Wallarm Console, işlenen trafik verilerini gösteren ve platformun ince ayarına olanak tanıyan temel Wallarm platform bileşenidir. Bu nedenle Playground ile ürünün nasıl çalıştığını öğrenebilir ve deneyebilir, yalnızca-okunur modda kullanımına dair faydalı örnekler elde edebilirsiniz.
 
-![Playground](../images/playground.png)
+![Playground](../../images/playground.png)
 
 Wallarm çözümünün yeteneklerini kendi trafiğiniz üzerinde denemek için, [Security Edge Free Tier hesabı oluşturun](#self-signup-and-security-edge-free-tier).
 
@@ -29,7 +29,7 @@ Her yeni hesap otomatik olarak [Security Edge Free Tier](../about-wallarm/subscr
 1. Kayıt bağlantısını takip edin ve kişisel bilgilerinizi girin.
 1. Trafiğinizin analizine ücretsiz başlamak için [Security Edge Inline veya Connectors](../installation/security-edge/free-tier.md) yapılandırın:
 
-    ![!](../images/waf-installation/security-edge/onboarding-wizard.png)
+    ![!](../../images/waf-installation/security-edge/onboarding-wizard.png)
 
 ## Dağıtım gerektirmeden API’nizi tanıyın
 

@@ -1,7 +1,7 @@
 [link-cloud-node-synchronization]: ../admin-en/configure-cloud-node-synchronization-en.md
-[img-rules-create-backup]:      ../images/user-guides/rules/rules-create-backup.png
+[img-rules-create-backup]:      ../../images/user-guides/rules/rules-create-backup.png
 
-# Azaltma Kontrolleri <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Azaltma Kontrolleri <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Azaltma kontrolleri, Wallarm'ın [saldırı korumasını](protecting-against-attacks.md#tools-for-attack-detection) ek güvenlik önlemleriyle genişletir ve Wallarm davranışını ince ayar yapmanıza olanak tanır.
 
@@ -42,7 +42,7 @@ Bunların hepsi varsa ve yine de Wallarm Console içinde **Security controls** �
 
 Yapılandırmayı Wallarm Console içindeki **Security controls** → **Mitigation Controls** bölümünde gerçekleştirin. Ayrıca sistemin diğer yerlerinden, örneğin API Sessions içinden bazı azaltma kontrol ayarlarına erişebilirsiniz.
 
-![UI'de Mitigation Controls sayfası](../images/user-guides/mitigation-controls/mc-main-page.png)
+![UI'de Mitigation Controls sayfası](../../images/user-guides/mitigation-controls/mc-main-page.png)
 
 Yapılandırmadan önce, [dallar](#mitigation-control-branches) fikrine aşina olun ve halihazırda nelerin var olduğunu kontrol edin. 
 
@@ -139,7 +139,7 @@ Varsayılan setten gelen tüm kontroller `Default` etiketi taşır. Bu tür kont
 * Diğerleri gibi devre dışı bırakılabilir/yeniden etkinleştirilebilir ve düzenlenebilir. Düzenleme, herhangi bir varsayılan kontrolü uygulamanın özel ihtiyaçlarına, trafik kalıplarına veya iş bağlamına göre özelleştirmenize olanak tanır. Örneğin, varsayılan eşikleri ayarlayabilir veya **Scope filters** bölümü üzerinden belirli uç noktaları hariç tutabilirsiniz.
 <!--* Can be **reset to its default configuration** at any time.-->
 
-![Varsayılan azaltma kontrolleri](../images/user-guides/mitigation-controls/mc-defaults.png)
+![Varsayılan azaltma kontrolleri](../../images/user-guides/mitigation-controls/mc-defaults.png)
 
 --8<-- "../include/mc-subject-to-change.md"
 

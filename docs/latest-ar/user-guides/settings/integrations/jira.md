@@ -20,13 +20,13 @@
 1. اختر نوع قضية Jira التي ستنتمي إليها القضايا المُنشأة.
 1. اختر أنواع الأحداث التي ستُحفز الإخطارات. يمكن اختيار جميع الثغرات الأمنية أو تلك الخاصة بمستويات خطورة معينة فقط.
 
-    ![تكامل Jira](../../../images/user-guides/settings/integrations/add-jira-integration.png)
+    ![تكامل Jira](../../../../images/user-guides/settings/integrations/add-jira-integration.png)
 
 1. انقر على **اختبار التكامل** للتحقق من صحة الإعدادات، توفر سحابة Wallarm، وتنسيق الإخطار.
 
     اختبار إنشاء قضية Jira:
 
-    ![اختبار إنشاء قضية Jira](../../../images/user-guides/settings/integrations/test-jira-issue-creation.png)
+    ![اختبار إنشاء قضية Jira](../../../../images/user-guides/settings/integrations/test-jira-issue-creation.png)
 
 1. انقر على **إضافة التكامل**.
 

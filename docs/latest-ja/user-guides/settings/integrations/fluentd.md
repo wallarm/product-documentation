@@ -99,7 +99,7 @@ Fluentd構成例：
     --8<-- "../include/integrations/webhook-advanced-settings.md"
 1. 通知をトリガーするイベント種別を選択します。
 
-    ![Fluentd連携](../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+    ![Fluentd連携](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
     利用可能なイベントの詳細：
 
@@ -168,7 +168,7 @@ Fluentd構成例：
 
 例：
 
-![Webhookのフロー](../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
+![Webhookのフロー](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
 
 この方式でWallarmのイベントを記録するには：
 

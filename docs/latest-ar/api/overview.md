@@ -15,7 +15,7 @@
 * https://apiconsole.us1.wallarm.com/ لـ[السحابة الأمريكية](../about-wallarm/overview.md#us-cloud)
 * https://apiconsole.eu1.wallarm.com/ لـ[السحابة الأوروبية](../about-wallarm/overview.md#eu-cloud)
 
-![واجهة Wallarm API](../images/wallarm-api-reference.png)
+![واجهة Wallarm API](../../images/wallarm-api-reference.png)
 
 ## نقطة نهاية API
 

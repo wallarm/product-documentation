@@ -16,9 +16,9 @@ Both components are **fully hosted and managed by a customer** in the on-premise
 Both [inline](../../installation/inline/overview.md) and [out-of-band](../../installation/oob/overview.md) Node deployment approaches are supported in the on-premises solution. In both cases, the Filtering Node intercepts or mirrors traffic and sends metadata to the local Wallarm Cloud component for analysis and coordination.
 
 === "Inline traffic flow"
-    ![!](../../images/waf-installation/on-premise/inline-flow.png)
+    ![!](../../../images/waf-installation/on-premise/inline-flow.png)
 === "Out-of-band traffic flow"
-    ![!](../../images/waf-installation/on-premise/oob-flow.png)
+    ![!](../../../images/waf-installation/on-premise/oob-flow.png)
 
 ## Filtering Node in on-premises deployment
 
@@ -61,7 +61,7 @@ In a **cluster deployment**, a network load balancer is required to distribute t
 
     The standalone balancer should support both TCP- and UDP-layer load balancing and TCP health checks (to verify the state of Wallarm Cloud nodes).
 
-![!](../../images/waf-installation/on-premise/cluster-arch.png)
+![!](../../../images/waf-installation/on-premise/cluster-arch.png)
 
 ### Management workstation
 
@@ -75,7 +75,7 @@ The management workstation runs Wallarm's on-premises management tool **wctl** a
 
 The following diagram shows which layers of the Wallarm Cloud system are managed via **wctl** and which require customer management:
 
-![!](../../images/waf-installation/on-premise/wctl-client-managed-components.png)
+![!](../../../images/waf-installation/on-premise/wctl-client-managed-components.png)
 
 ### High availability and automatic failover
 

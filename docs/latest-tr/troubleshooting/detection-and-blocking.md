@@ -110,7 +110,7 @@ Wallarm tarafından meşru bir isteğin engellenmesi sorununu çözmek için şu
 
     * Yapılandırılmışsa, Wallarm [engelleme sayfası](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) tarafından sağlanan bilgiler (kullanıcının IP adresi, istek UUID’si ve önceden yapılandırılmış diğer öğeleri içerebilir).
 
-        ![Wallarm engelleme sayfası](../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+        ![Wallarm engelleme sayfası](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
         !!! warning "Engelleme sayfası kullanımı"
             Varsayılan veya özelleştirilmiş Wallarm engelleme sayfasını kullanmıyorsanız, kullanıcıdan uygun bilgileri almak için bunu [yapılandırmanız](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) şiddetle önerilir. Unutmayın ki örnek bir sayfa bile engellenen istekle ilgili anlamlı bilgileri toplar ve kolayca kopyalanmasına izin verir. Ek olarak, bu tür bir sayfayı özelleştirebilir veya tamamen yeniden oluşturup kullanıcılara bilgilendirici bir engelleme mesajı döndürebilirsiniz.

@@ -1,4 +1,4 @@
-# Uç Nokta Risk Puanı <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Uç Nokta Risk Puanı <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 [API Discovery](overview.md), API envanterinizdeki her uç nokta için otomatik olarak bir **risk puanı** hesaplar. Risk puanı, hangi uç noktaların saldırı hedefi olma olasılığının daha yüksek olduğunu anlamanıza ve güvenlik çalışmalarınızı bu uç noktalara odaklamanıza yardımcı olur.
 
@@ -34,7 +34,7 @@ Risk puanı `1` (en düşük) ile `10` (en yüksek) arasında olabilir:
 
 Bir uç noktanın risk puanına neyin neden olduğunu ve riski nasıl azaltabileceğinizi anlamak için uç nokta ayrıntılarına gidin:
 
-![API Discovery - Risk puanı](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
+![API Discovery - Risk puanı](../../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 
 Ayrıca API'lerin risk puanı düzeylerine göre özetini [US](https://us1.my.wallarm.com/dashboard-api-discovery) veya [EU](https://my.wallarm.com/dashboard-api-discovery) Cloud içinde **Dashboards** → **API Discovery** bölümünde alabilirsiniz.
 
@@ -50,6 +50,6 @@ Risk puanının nasıl hesaplandığını değiştirmek için:
 1. Gerekirse, risk puanını etkilemesini istemediğiniz faktörleri devre dışı bırakın.
 1. Kalanlar için ağırlıkları ayarlayın.
 
-    ![API Discovery - Risk puanı ayarı](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score-setup.png)
+    ![API Discovery - Risk puanı ayarı](../../images/about-wallarm-waf/api-discovery/api-discovery-risk-score-setup.png)
 
 1. Değişiklikleri kaydedin. Wallarm, birkaç dakika içinde yeni ayarlara uygun olarak uç noktalarınız için risk puanını yeniden hesaplayacaktır.

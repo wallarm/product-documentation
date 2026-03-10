@@ -24,7 +24,7 @@
 1. インテグレーション名を入力します。
 1. 通知をトリガーするイベントタイプを選択します。
 
-    ![InsightConnectインテグレーション](../../../images/user-guides/settings/integrations/add-insightconnect-integration.png)
+    ![InsightConnectインテグレーション](../../../../images/user-guides/settings/integrations/add-insightconnect-integration.png)
 
     利用可能なイベントの詳細:
 
@@ -34,7 +34,7 @@
 
     これにより、先頭に`[Test message]`という接頭辞が付いたテスト通知が送信されます:
 
-    ![InsightConnectのテスト通知](../../../images/user-guides/settings/integrations/test-insightconnect-scope-changed.png)
+    ![InsightConnectのテスト通知](../../../../images/user-guides/settings/integrations/test-insightconnect-scope-changed.png)
 
 1. **Add integration**をクリックします。
 

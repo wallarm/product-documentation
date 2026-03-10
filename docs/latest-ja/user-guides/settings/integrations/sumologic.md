@@ -18,7 +18,7 @@ WallarmのUIで：
 1. コピーしたHTTP Source Address (URL)の値を**HTTP Source Address (URL)**フィールドに貼り付けます。
 1. 通知をトリガーするイベントタイプを選択します。
 
-    ![Sumo Logicインテグレーション](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
+    ![Sumo Logicインテグレーション](../../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
 
     利用可能なイベントの詳細：
 

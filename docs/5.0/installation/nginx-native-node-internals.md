@@ -26,19 +26,19 @@ Find an NGINX Node deployment solution for your Kubernetes environment:
     <div class="do-main">
 
         <a class="do-card" href="../../admin-en/installation-kubernetes-en/">
-            <img class="non-zoomable" src="../../images/platform-icons/ingress.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/ingress.svg" />
             <h3>NGINX Ingress Controller</h3>
             <p>Deploy the NGINX Ingress Controller with integrated Wallarm services</p>
         </a>
 
         <a class="do-card" href="../../installation/kubernetes/sidecar-proxy/deployment/">
-            <img class="non-zoomable" src="../../images/platform-icons/pod.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/pod.svg" />
             <h3>Sidecar</h3>
             <p>Deploy Wallarm Sidecar controller for pod security</p>
         </a>
 
         <a class="do-card" href="../../installation/kubernetes/ebpf/deployment/">
-            <img class="non-zoomable" src="../../images/platform-icons/ebpf.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/ebpf.svg" />
             <h3>eBPF</h3>
             <p>Out-of-band deployment on Kubernetes using the eBPF technology</p>
         </a>
@@ -55,19 +55,19 @@ The NGINX Node is used for the platforms listed below, however the analysis is l
     <div class="do-main">
 
         <a class="do-card" href="../../installation/connectors/apigee/">
-            <img class="non-zoomable" src="../../images/platform-icons/apigee.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/apigee.svg" />
             <h3>Apigee</h3>
             <p>Secure APIs running on Apigee</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/akamai-edgeworkers/">
-            <img class="non-zoomable" src="../../images/platform-icons/akamai.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/akamai.svg" />
             <h3>Akamai EdgeWorkers</h3>
             <p>Secure APIs running on Akamai EdgeWorkers</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/azion-edge/">
-            <img class="non-zoomable" src="../../images/platform-icons/azion-edge.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/azion-edge.svg" />
             <h3>Azion Edge</h3>
             <p>Secure APIs running on Azion Edge</p>
         </a>
@@ -82,37 +82,37 @@ Traffic to protected APIs passes through Wallarm NGINX Node instances before it 
     <div class="do-main">
 
         <a class="do-card" href="../../installation/inline/compute-instances/linux/all-in-one/">
-            <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/linux.svg" />
             <h3>All-in-one installer</h3>
             <p>Run the node on a machine with a Linux OS</p>
         </a>
 
         <div id="inline-public-clouds-aws" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/aws.svg" />
             <h3>Amazon Web Services</h3>
             <p>Artifacts for deployment on AWS</p>
         </div>
 
         <div id="inline-public-clouds-gcp" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/gcp.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/gcp.svg" />
             <h3>Google Cloud</h3>
             <p>Artifacts for deployment on GCP</p>
         </div>
 
         <div id="inline-public-clouds-azure" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/azure-cloud.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/azure-cloud.svg" />
             <h3>Microsoft Azure</h3>
             <p>Artifacts for deployment on Microsoft Azure</p>
         </div>
 
         <div id="inline-public-clouds-alibaba" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/alibaba-cloud.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/alibaba-cloud.svg" />
             <h3>Alibaba Cloud</h3>
             <p>Artifacts for deployment on Alibaba Cloud</p>
         </div>
 
         <a class="do-card" href="../../installation/inline/compute-instances/docker/nginx-based/">
-            <img class="non-zoomable" src="../../images/platform-icons/docker.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/docker.svg" />
             <h3>Docker image</h3>
             <p>Run the node in the containerized environment</p>
         </a>
@@ -120,7 +120,7 @@ Traffic to protected APIs passes through Wallarm NGINX Node instances before it 
 
     <div class="do-nested" data-for="inline-public-clouds-aws">
         <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/aws.svg" />
             <h3>Amazon Web Services</h3>
             <p>Artifacts for deployment on AWS</p>
         </div>
@@ -143,7 +143,7 @@ Traffic to protected APIs passes through Wallarm NGINX Node instances before it 
 
     <div class="do-nested" data-for="inline-public-clouds-aws-terraform">
         <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/terraform.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/terraform.svg" />
             <h3>Terraform module</h3>
             <p>Use the Terraform module for in-line Wallarm deployment on AWS</p>
         </div>
@@ -162,7 +162,7 @@ Traffic to protected APIs passes through Wallarm NGINX Node instances before it 
 
     <div class="do-nested" data-for="inline-public-clouds-gcp">
         <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/gcp.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/gcp.svg" />
             <h3>Google Cloud</h3>
             <p>Artifacts for deployment on GCP</p>
         </div>
@@ -180,7 +180,7 @@ Traffic to protected APIs passes through Wallarm NGINX Node instances before it 
 
     <div class="do-nested" data-for="inline-public-clouds-azure">
         <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/azure-cloud.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/azure-cloud.svg" />
             <h3>Microsoft Azure</h3>
             <p>Artifacts for deployment on Microsoft Azure</p>
         </div>
@@ -193,7 +193,7 @@ Traffic to protected APIs passes through Wallarm NGINX Node instances before it 
 
     <div class="do-nested" data-for="inline-public-clouds-alibaba">
         <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/alibaba-cloud.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/alibaba-cloud.svg" />
             <h3>Alibaba Cloud</h3>
             <p>Artifacts for deployment on Alibaba Cloud</p>
         </div>
@@ -227,49 +227,49 @@ The Native Node works with the following platforms with no limitations:
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../../installation/connectors/mulesoft/">
-            <img class="non-zoomable" src="../../images/platform-icons/mulesoft.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/mulesoft.svg" />
             <h3>MuleSoft Mule Gateway</h3>
             <p>Deploy Wallarm to secure APIs deployed on the Mule Gateway</p>
         </a>
         
         <a class="do-card" href="../../installation/connectors/aws-lambda/">
-            <img class="non-zoomable" src="../../images/platform-icons/aws-cloudfront.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/aws-cloudfront.svg" />
             <h3>CloudFront</h3>
             <p>Deploy Wallarm to secure traffic delivered through Amazon CloudFront</p>
         </a>
         
         <a class="do-card" href="../../installation/connectors/cloudflare/">
-            <img class="non-zoomable" src="../../images/platform-icons/cloudflare.png" />
+            <img class="non-zoomable" src="../../../images/platform-icons/cloudflare.png" />
             <h3>Cloudflare</h3>
             <p>Deploy Wallarm to secure traffic running via Cloudflare</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/kong-api-gateway/">
-            <img class="non-zoomable" src="../../images/platform-icons/kong-new.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/kong-new.svg" />
             <h3>Kong API Gateway</h3>
             <p>Deploy Wallarm to secure APIs managed by Kong Ingress Controller</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/istio/">
-            <img class="non-zoomable" src="../../images/platform-icons/istio.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/istio.svg" />
             <h3>Istio (Out-of-Band)</h3>
             <p>Deploy Wallarm out-of-band to secure APIs managed by Istio</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/istio-inline/">
-            <img class="non-zoomable" src="../../images/platform-icons/istio.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/istio.svg" />
             <h3>Istio</h3>
             <p>Deploy Wallarm in-line or OOB to secure APIs managed by Istio</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/layer7-api-gateway/">
-            <img class="non-zoomable" src="../../images/platform-icons/layer7.png" />
+            <img class="non-zoomable" src="../../../images/platform-icons/layer7.png" />
             <h3>Broadcom Layer7 API Gateways</h3>
             <p>Secure APIs managed with Layer7 API Gateways</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/fastly/">
-            <img class="non-zoomable" src="../../images/platform-icons/fastly.png" />
+            <img class="non-zoomable" src="../../../images/platform-icons/fastly.png" />
             <h3>Fastly</h3>
             <p>Deploy Wallarm to secure APIs running on Fastly</p>
         </a>
@@ -281,7 +281,7 @@ The Native Node works with the following platforms with no limitations:
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../../installation/oob/tcp-traffic-mirror/deployment/">
-            <img class="non-zoomable" src="../../images/platform-icons/tcp-mirror-analysis.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/tcp-mirror-analysis.svg" />
             <h3>TCP Traffic Mirror Analysis</h3>
             <p>Out-of-band deployment for TCP traffic mirror analysis</p>
         </a>

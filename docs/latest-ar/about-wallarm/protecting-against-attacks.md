@@ -220,7 +220,7 @@ curl -H "Content-Type: application/json" -X POST https://example.com/posts -d '{
 
 للقيام بذلك، قم بتعيين القاعدة **تجاهل أنواع الهجمات المعينة** كما هو معروض على لقطة الشاشة:
 
-![مثال على القاعدة "تجاهل أنواع الهجمات المعينة"](../images/user-guides/rules/ignore-attack-types-rule-example.png)
+![مثال على القاعدة "تجاهل أنواع الهجمات المعينة"](../../images/user-guides/rules/ignore-attack-types-rule-example.png)
 
 --8<-- "../include/waf/features/rules/request-part-reference.md"
 
@@ -245,7 +245,7 @@ curl -H "Content-Type: application/json" -X POST https://example.com/posts -d '{
 
 للقيام بذلك، قم بتعيين القاعدة **السماح بالبيانات الثنائية** كما هو معروض على لقطة الشاشة::
 
-![مثال على القاعدة "السماح بالبيانات الثنائية"](../images/user-guides/rules/ignore-binary-attacks-example.png)
+![مثال على القاعدة "السماح بالبيانات الثنائية"](../../images/user-guides/rules/ignore-binary-attacks-example.png)
 
 --8<-- "../include/waf/features/rules/request-part-reference.md"
 
@@ -289,7 +289,7 @@ curl -H "Content-Type: application/json" -X POST https://example.com/posts -d '{
 * تحديد الهجمات أو الضغطات المنفصلة كإيجابيات كاذبة
 * إنشاء القواعد للتعامل المخصص مع الضغطات المنفصلة
 
-![عرض الهجمات](../images/user-guides/events/check-attack.png)
+![عرض الهجمات](../../images/user-guides/events/check-attack.png)
 
 ## لوحات معلومات الهجمات
 
@@ -297,11 +297,11 @@ curl -H "Content-Type: application/json" -X POST https://example.com/posts -d '{
 
 يقدم لوحة "الوقاية من الأهداف" [Threat Prevention](../user-guides/dashboards/threat-prevention.md) ، التابعة لـ Wallarm، مقاييس عامة حول وضعية الأمان الخاص بنظامك، بما في ذلك معلومات متعددة الجوانب حول الهجمات: مصادرهم، وأهدافهم، وأنواعهم وبروتوكولاتهم.
 
-![لوحة الوقاية من الأهداف](../images/user-guides/dashboard/threat-prevention.png)
+![لوحة الوقاية من الأهداف](../../images/user-guides/dashboard/threat-prevention.png)
 
 توفر اللوحة [OWASP API Security Top 10](../user-guides/dashboards/owasp-api-top-ten.md) رؤية مفصلة حول وضعية الأمان الخاصة بنظامك في مجال OWASP API Top 10 threats، بما في ذلك معلومات حول الهجمات.
 
-![OWASP API Top 10](../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
+![OWASP API Top 10](../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
 
 ## الإخطارات حول الهجمات المكتشفة، والضربات والأحمال الخبيثة
 

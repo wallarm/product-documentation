@@ -2,7 +2,7 @@
 [api-token]:                  ../../user-guides/settings/api-tokens.md
 [filtration-modes-docs]:      ../../admin-en/configure-wallarm-mode.md
 [ptrav-attack-docs]:          ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:        ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:        ../../../images/admin-guides/test-attacks-quickstart.png
 [api-spec-enforcement-docs]:  ../../api-specification-enforcement/overview.md
 [custom-blocking-page]:       ../../admin-en/configuration-guides/configure-block-page-and-code.md
 [rate-limiting]:              ../../user-guides/rules/rate-limiting.md
@@ -17,7 +17,7 @@ To use Wallarm with Gloo, you need to **deploy a Wallarm Node** within your clus
 
 The Wallarm connector for Gloo Gateway supports only [synchronous (in-line)](../inline/overview.md) traffic analysis:
 
-![Gloo with synchronous traffic flow to the Wallarm Node](../../images/waf-installation/gateways/gloo/traffic-flow-sync.png)
+![Gloo with synchronous traffic flow to the Wallarm Node](../../../images/waf-installation/gateways/gloo/traffic-flow-sync.png)
 
 ## Use cases
 

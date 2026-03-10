@@ -1,19 +1,19 @@
 [link-using-search]:    ../search-and-filters/use-search.md
-[img-current-attacks]:  ../../images/glossary/attack-with-one-hit-example.png
-[img-incidents-tab]:    ../../images/user-guides/events/incident-vuln.png
-[img-show-falsepositive]: ../../images/user-guides/events/filter-for-falsepositive.png
+[img-current-attacks]:  ../../../images/glossary/attack-with-one-hit-example.png
+[img-incidents-tab]:    ../../../images/user-guides/events/incident-vuln.png
+[img-show-falsepositive]: ../../../images/user-guides/events/filter-for-falsepositive.png
 [use-search]:             ../search-and-filters/use-search.md
 [search-by-attack-status]: ../search-and-filters/use-search.md#search-attacks-by-the-action
-[img-verify-attack]:            ../../images/user-guides/events/verify-attack.png
+[img-verify-attack]:            ../../../images/user-guides/events/verify-attack.png
 [al-brute-force-attack]:      ../../attacks-vulns-list.md#brute-force-attack
 [al-forced-browsing]:         ../../attacks-vulns-list.md#forced-browsing
 [al-bola]:                    ../../attacks-vulns-list.md#broken-object-level-authorization-bola
 [link-analyzing-attacks]:       analyze-attack.md
-[img-false-attack]:             ../../images/user-guides/events/false-attack.png
-[img-removed-attack-info]:      ../../images/user-guides/events/removed-attack-info.png
+[img-false-attack]:             ../../../images/user-guides/events/false-attack.png
+[img-removed-attack-info]:      ../../../images/user-guides/events/removed-attack-info.png
 [link-check-attack]:        check-attack.md
 [link-false-attack]:        false-attack.md
-[img-current-attack]:       ../../images/user-guides/events/analyze-current-attack.png
+[img-current-attack]:       ../../../images/user-guides/events/analyze-current-attack.png
 [glossary-attack-vector]:   ../../glossary-en.md#malicious-payload
 [link-attacks]:         ../../user-guides/events/check-attack.md
 [link-incidents]:       ../../user-guides/events/check-incident.md
@@ -62,7 +62,7 @@ You can undo a false positive mark only within a few seconds after the mark was 
 
 The default view of the attack list presents only actual attacks (without false positives) - to change that, under **All attacks** switch from **Default view** to **With false positives** or **Only false positives**.
 
-![False positive filter](../../images/user-guides/events/filter-for-falsepositive.png)
+![False positive filter](../../../images/user-guides/events/filter-for-falsepositive.png)
 
 See details on false positives [here](../../about-wallarm/protecting-against-attacks.md#false-positives).
 
@@ -108,11 +108,11 @@ Wallarm provides comprehensive dashboards to help you analyze detected attacks.
 
 Wallarm's [Threat Prevention](../../user-guides/dashboards/threat-prevention.md) dashboard provides general metrics on your system's security posture, including multi-aspect information about attacks: their sources, targets, types and protocols.
 
-![Threat Prevention dashboard](../../images/user-guides/dashboard/threat-prevention.png)
+![Threat Prevention dashboard](../../../images/user-guides/dashboard/threat-prevention.png)
 
 The [OWASP API Security Top 10](../../user-guides/dashboards/owasp-api-top-ten.md) dashboard provides detailed visibility into your system's security posture against the OWASP API Top 10 threats, including attack information.
 
-![OWASP API Top 10](../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
+![OWASP API Top 10](../../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
 
 ## Notifications
 

@@ -50,11 +50,11 @@ To set up a MinIO S3-compatible bucket integration:
 1. Click **Test integration** to check configuration correctness, availability of the target system, and the notification format.
 1. Click **Add integration**.
 
-![MinIO integration](../../../images/user-guides/settings/integrations/add-minio-integration.png)
+![MinIO integration](../../../../images/user-guides/settings/integrations/add-minio-integration.png)
 
 To review the data in your bucket, open the bucket in the MinIO Console and use **Object Browser**:
 
-![Hitlogs in MinIO bucket](../../../images/user-guides/settings/integrations/hitlogs-in-minio.png)
+![Hitlogs in MinIO bucket](../../../../images/user-guides/settings/integrations/hitlogs-in-minio.png)
 
 Below is an example JSON file with hits detected in the last 10 minutes:
 

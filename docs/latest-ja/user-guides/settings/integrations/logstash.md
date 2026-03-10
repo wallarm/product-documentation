@@ -96,7 +96,7 @@ output {
     --8<-- "../include/integrations/webhook-advanced-settings.md"
 1. 通知をトリガーするイベントタイプを選択します。
 
-    ![Logstashインテグレーション](../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+    ![Logstashインテグレーション](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
     利用可能なイベントの詳細:
 
@@ -165,7 +165,7 @@ output {
 
 例:
 
-![Webhookフロー](../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
+![Webhookフロー](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
 
 この方式でWallarmのイベントを記録するには:
 

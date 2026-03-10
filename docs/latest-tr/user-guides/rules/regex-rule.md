@@ -1,7 +1,7 @@
 [link-regex]:               https://github.com/yandex/pire
-[img-regex-example1]:       ../../images/user-guides/rules/regex-rule-1.png
-[img-regex-example2]:       ../../images/user-guides/rules/regex-rule-2.png
-[img-regex-id]:             ../../images/user-guides/rules/regex-id.png
+[img-regex-example1]:       ../../../images/user-guides/rules/regex-rule-1.png
+[img-regex-example2]:       ../../../images/user-guides/rules/regex-rule-2.png
+[img-regex-id]:             ../../../images/user-guides/rules/regex-id.png
 [request-processing]:       ../../user-guides/rules/request-processing.md
 [api-discovery-enable-link]:        ../../api-discovery/setup.md#enable
 
@@ -50,7 +50,7 @@ Kendi saldırı belirleyicinizi ayarlamak ve uygulamak için:
 
 Savunmasız Spring Core Framework kullanıyorsanız ve Wallarm düğüm [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) değeri blocking dışında ise, sanal yama kullanarak güvenlik açığından yararlanmayı önleyebilirsiniz. Aşağıdaki kural, monitoring ve safe blocking modes durumlarında bile listelenen gövde parametrelerine sahip tüm istekleri engeller:
 
-![Belirli POST parametreleri için sanal yama](../../images/user-guides/rules/regexp-rule-post-params-spring.png)
+![Belirli POST parametreleri için sanal yama](../../../images/user-guides/rules/regexp-rule-post-params-spring.png)
 
 Regular expression alanının değeri:
 
@@ -68,7 +68,7 @@ Spring Cloud Function bileşeninde, `CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION` ve
 
 Bu bileşeni kullanıyorsanız ve Wallarm düğüm [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) değeri blocking dışında ise, sanal yama kullanarak istismarı önleyebilirsiniz. Aşağıdaki kural, `CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION` başlığını içeren tüm istekleri engeller:
 
-![Belirli başlık için sanal yama](../../images/user-guides/rules/regexp-rule-header-spring.png)
+![Belirli başlık için sanal yama](../../../images/user-guides/rules/regexp-rule-header-spring.png)
 
 !!! info "`CLASS.CLOUD.FUNCTION-ROUTING-EXPRESSION` başlıklı istekleri engelleme"
     Bu kural, `CLASS.CLOUD.FUNCTION-ROUTING-EXPRESSION` başlığına sahip istekleri engellemez ancak NGINX bu başlığa sahip istekleri varsayılan olarak geçersiz sayarak düşürür.

@@ -4,7 +4,7 @@ In modern cloud architectures, a **layered security approach** is essential to p
 
 Combined in a **defense‑in‑depth strategy**, they provide comprehensive protection for web applications and APIs - from the edge to the application layer.
 
-![!](../../../images/waf-installation/aws/aws-waf-wallarm-responsibilities.png)
+![!](../../../../images/waf-installation/aws/aws-waf-wallarm-responsibilities.png)
 
 ## AWS WAF: perimeter protection for AWS infrastructure
 
@@ -69,6 +69,6 @@ The combined AWS WAF + Wallarm architecture can be visualized as the following l
 
     Vetted requests reach the core components - APIs, microservices, databases - already filtered by both layers. Wallarm can also inspect outbound responses, e.g., to prevent data leakage. Additional service-to-service protections like mTLS or IAM can further harden this layer. 
 
-![!](../../../images/waf-installation/aws/aws-waf-wallarm-deployment.png)
+![!](../../../../images/waf-installation/aws/aws-waf-wallarm-deployment.png)
 
 A common model is ALB + AWS WAF → Wallarm → Application. Wallarm supports flexible deployments - inline behind ALB, as an ingress in EKS, or behind API Gateway or CloudFront origins - without requiring major changes to infrastructure. Its compatibility with standard AWS networking lets it protect both public and internal traffic paths.

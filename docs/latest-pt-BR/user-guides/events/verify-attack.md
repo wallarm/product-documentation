@@ -1,10 +1,10 @@
-[img-verification-statuses]:    ../../images/user-guides/events/attack-verification-statuses.png
-[img-verify-attack]:            ../../images/user-guides/events/verify-attack.png
-[img-verified-icon]:            ../../images/user-guides/events/verified.png#mini
-[img-error-icon]:               ../../images/user-guides/events/error.png#mini
-[img-forced-icon]:              ../../images/user-guides/events/forced.png#mini
-[img-sheduled-icon]:            ../../images/user-guides/events/sheduled.png#mini
-[img-cloud-icon]:           ../../images/user-guides/events/cloud.png#mini
+[img-verification-statuses]:    ../../../images/user-guides/events/attack-verification-statuses.png
+[img-verify-attack]:            ../../../images/user-guides/events/verify-attack.png
+[img-verified-icon]:            ../../../images/user-guides/events/verified.png#mini
+[img-error-icon]:               ../../../images/user-guides/events/error.png#mini
+[img-forced-icon]:              ../../../images/user-guides/events/forced.png#mini
+[img-sheduled-icon]:            ../../../images/user-guides/events/sheduled.png#mini
+[img-cloud-icon]:           ../../../images/user-guides/events/cloud.png#mini
 
 [al-brute-force-attack]:      ../../attacks-vulns-list.md#brute-force-attack
 [al-forced-browsing]:         ../../attacks-vulns-list.md#forced-browsing

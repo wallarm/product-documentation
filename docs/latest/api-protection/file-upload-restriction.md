@@ -15,7 +15,7 @@ Depending on your subscription plan, one of the following configuration methods 
 * Mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription) - using mitigation control, you can set a limit not only for the entire size of the request, but for a specific parameter (more precise settings than in case of rule).
 * Rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription)
 
-## Mitigation control-based protection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Mitigation control-based protection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;"></a>
 
 As a part of [Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription, Wallarm provides the **File upload restriction policy** [mitigation control](../about-wallarm/mitigation-controls-overview.md).
 
@@ -48,7 +48,7 @@ Let us say you want to limit size of files uploaded to `/upload` address of your
 
 To do so, set the **File upload restriction policy** mitigation control as displayed on the screenshot:
 
-![File upload restriction MC - example](../images/api-protection/mitigation-controls-file-upload-1.png)
+![File upload restriction MC - example](../../images/api-protection/mitigation-controls-file-upload-1.png)
 
 #### PUT upload restriction via exact point size
 
@@ -56,7 +56,7 @@ Let us say you want to register as attack (without blocking) the attempts to upl
 
 To do so, set the **File upload restriction policy** mitigation control as displayed on the screenshot:
 
-![File upload restriction MC - example](../images/api-protection/mitigation-controls-file-upload-2.png)
+![File upload restriction MC - example](../../images/api-protection/mitigation-controls-file-upload-2.png)
 
 In the example above, in the request point definition, the `post` is a Wallarm's [tag](../user-guides/rules/request-processing.md#metadata) meaning "in the request body".
 
@@ -66,7 +66,7 @@ Let us say you want to register as attack (without blocking) the attempts to upl
 
 To do so, set the **File upload restriction policy** mitigation control as displayed on the screenshot:
 
-![File upload restriction MC - example](../images/api-protection/mitigation-controls-file-upload-3.png)
+![File upload restriction MC - example](../../images/api-protection/mitigation-controls-file-upload-3.png)
 
 In the example above, in the request point definition, request point is defined via the sequence of Wallarm's [tags](../user-guides/rules/request-processing.md) meaning:
 
@@ -81,7 +81,7 @@ Let us say you want to register as attack (without blocking) the attempts to sub
 
 Thus, to apply this limitation, set the **File upload restriction policy** mitigation control as displayed on the screenshot:
 
-![File upload restriction MC - example](../images/api-protection/mitigation-controls-file-upload-4.png)
+![File upload restriction MC - example](../../images/api-protection/mitigation-controls-file-upload-4.png)
 
 In the example above, in the request point definition, request point is defined via the sequence of Wallarm's [tags](../user-guides/rules/request-processing.md) meaning:
 
@@ -104,7 +104,7 @@ As a part of [Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-sub
 1. In **Size restrictions** set size restriction and **Mode**.
 1. Optionally, specify request point to apply restriction to (if not set, restriction is applied to the whole request size).
 
-    ![File upload restriction - rule](../images/api-protection/rule-file-upload.png)
+    ![File upload restriction - rule](../../images/api-protection/rule-file-upload.png)
 
 1. Wait for the [rule compilation and uploading to the filtering node to complete](../user-guides/rules/rules.md#ruleset-lifecycle).
 
@@ -112,7 +112,7 @@ As a part of [Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-sub
 
 Violations of file upload restriction policies are displayed as [file upload violation](../attacks-vulns-list.md#file-upload-violation) attacks **Attacks** and **API Sessions**:
 
-![File upload restriction - detected attacks](../images/api-protection/mitigation-controls-file-upload-detected.png)
+![File upload restriction - detected attacks](../../images/api-protection/mitigation-controls-file-upload-detected.png)
 
 You can switch between **Attacks** and **API Sessions** views using buttons in request details. All the attacks/sessions with this attack type can be found with the attack type filter set to **File upload violation** (also, use `file_upload_violation` [search tag](../user-guides/search-and-filters/use-search.md#search-by-attack-type) in **Attacks**).
 

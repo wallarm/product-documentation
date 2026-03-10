@@ -14,8 +14,8 @@ search:
 [api-token]:                        ../../../../user-guides/settings/api-tokens.md
 [wallarm-token-types]:              ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../../../installation/supported-deployment-options.md
-[aws-copy-container-ip-img]:        ../../../../images/waf-installation/aws/container-copy-ip.png
+[aws-copy-container-ip-img]:        ../../../../../images/waf-installation/aws/container-copy-ip.png
 [ptrav-attack-docs]:                ../../../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../../../images/admin-guides/test-attacks-quickstart.png
 
 --8<-- "latest-pt-BR/installation/cloud-platforms/aws/docker-container.md"

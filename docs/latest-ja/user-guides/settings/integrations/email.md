@@ -13,7 +13,7 @@
 1. セキュリティレポートの送信頻度を選択します。頻度を選択しない場合、レポートは送信されません。
 1. 通知をトリガーするイベントタイプを選択します。
 
-    ![Email reportインテグレーション](../../../images/user-guides/settings/integrations/add-email-report-integration.png)
+    ![Email reportインテグレーション](../../../../images/user-guides/settings/integrations/add-email-report-integration.png)
 
     利用可能なイベントの詳細：
 
@@ -30,7 +30,7 @@
 
     これにより、先頭に[Test message]が付いたテスト通知が送信されます：
 
-    ![テストメールメッセージ](../../../images/user-guides/settings/integrations/test-email-scope-changed.png)
+    ![テストメールメッセージ](../../../../images/user-guides/settings/integrations/test-email-scope-changed.png)
 
 1. **Add integration**をクリックします。
 

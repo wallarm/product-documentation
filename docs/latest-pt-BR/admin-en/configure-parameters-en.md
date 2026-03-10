@@ -332,7 +332,7 @@ Os possíveis valores são `on` (a análise da resposta está habilitada) e `off
 !!! warning "Melhore o desempenho"
     Recomendamos que você desabilite o processamento de arquivos estáticos através do `location` para melhorar o desempenho.
 
-### wallarm_parse_websocket <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
+### wallarm_parse_websocket <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
 O Wallarm oferece suporte total ao WebSockets sob o plano de assinatura API Security. Por padrão, as mensagens do WebSockets não são analisadas quanto a ataques.
 

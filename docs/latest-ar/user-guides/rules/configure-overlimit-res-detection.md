@@ -54,4 +54,4 @@
 * تزيد القاعدة الحد الزمني لمعالجة كل طلب POST إلى `https://example.com/upload` حتى 1020 ملي ثانية. تؤدي النقطة النهائية المحددة تحميل الملفات الكبيرة.
 * تظل باقي معايير سلوك العقدة افتراضية - إذا ما قامت العقدة بمعالجة الطلب لمدة تزيد عن 1020 ملي ثانية، توقف الطلب وتسجل هجوم `overlimit_res`.
 
-![مثال على القاعدة "التسجيل والعرض في الأحداث"](../../images/user-guides/rules/fine-tune-overlimit-detection-example.png)
+![مثال على القاعدة "التسجيل والعرض في الأحداث"](../../../images/user-guides/rules/fine-tune-overlimit-detection-example.png)

@@ -1,7 +1,7 @@
 [link-wallarm-mode-override]: ../admin-en/configure-parameters-en.md#wallarm_mode_allow_override
 [rule-creation-options]: ../user-guides/events/analyze-attack.md#analyze-requests-in-an-event
 [acl-access-phase]: ../admin-en/configure-parameters-en.md#wallarm_acl_access_phase
-[img-mode-rule]: ../images/user-guides/rules/wallarm-mode-rule.png
+[img-mode-rule]: ../../images/user-guides/rules/wallarm-mode-rule.png
 
 # وضع الفلترة
 
@@ -93,7 +93,7 @@ http {
 
 يمكنك تعريف وضع الفلترة العامة لجميع الطلبات الواردة في **الإعدادات** → **العام** في [الولايات المتحدة](https://us1.my.wallarm.com/settings/general) أو [الإتحاد الأوروبي](https://my.wallarm.com/settings/general) سحابة.
 
-![تبويب الإعدادات العامة](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
+![تبويب الإعدادات العامة](../../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
 
 يتم تمثيل إعداد وضع الفلترة العامة بواسطة **تعيين وضع الفلترة** [الافتراضي](../user-guides/rules/rules.md#default-rules) القاعدة في قسم **القواعد**. يجب الانتباه إلى أن قواعد الفلترة المستهدفة لنقطة النهاية في هذا القسم لها أولوية أعلى.
 

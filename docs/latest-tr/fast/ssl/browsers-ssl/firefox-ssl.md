@@ -1,6 +1,6 @@
-[img-cert-request]:     ../../../images/fast/ssl/common/browsers-ssl/firefox-ssl/f-certificate-request.png
-[img-cert-download]:    ../../../images/fast/ssl/common/browsers-ssl/firefox-ssl/f-certificate-download.png
-[img-https-ok]:         ../../../images/fast/ssl/common/browsers-ssl/firefox-ssl/f-https-ok.png
+[img-cert-request]:     ../../../../images/fast/ssl/common/browsers-ssl/firefox-ssl/f-certificate-request.png
+[img-cert-download]:    ../../../../images/fast/ssl/common/browsers-ssl/firefox-ssl/f-certificate-download.png
+[img-https-ok]:         ../../../../images/fast/ssl/common/browsers-ssl/firefox-ssl/f-https-ok.png
     
     
 #   Mozilla Firefox için FAST Node Kendinden İmzalı SSL Sertifikası Kurulumu

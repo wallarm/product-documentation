@@ -11,7 +11,7 @@
 
 * اذهب إلى وحدة تحكم Wallarm الخاصة بك للسحابة [الأمريكية](https://us1.my.wallarm.com) أو للسحابة [الأوروبية](https://my.wallarm.com) → قسم **الهجمات** وتوسع تفاصيل الطلب. يتم عرض عنوان IP في حقل *المصدر*. على سبيل المثال:
 
-    ![عنوان IP الذي تم إرسال الطلب منه](../images/request-ip-address.png)
+    ![عنوان IP الذي تم إرسال الطلب منه](../../images/request-ip-address.png)
 
     إذا كانت قائمة الهجمات فارغة، يمكنك إرسال [هجوم اختبار](../admin-en/installation-check-operation-en.md#2-run-a-test-attack) إلى التطبيق المحمي بواسطة وحدة تحكم دخول Wallarm.
     
@@ -19,6 +19,6 @@
 
 يرجى الذهاب إلى وحدة تحكم Wallarm للسحابة [الأمريكية](https://us1.my.wallarm.com) أو للسحابة [الأوروبية](https://my.wallarm.com) → قسم **الهجمات** وتوسيع تفاصيل الطلب. في تفاصيل الطلب المعروضة، انتبه إلى رأس `X-FORWARDED-FOR`. على سبيل المثال:
 
-![رأس X-FORWARDED-FOR للطلب](../images/x-forwarded-for-header.png)
+![رأس X-FORWARDED-FOR للطلب](../../images/x-forwarded-for-header.png)
 
 إذا كانت قائمة الهجمات فارغة، يمكنك إرسال [هجوم اختبار](../admin-en/installation-check-operation-en.md#2-run-a-test-attack) إلى التطبيق المحمي بواسطة وحدة تحكم دخول Wallarm.

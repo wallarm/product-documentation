@@ -1,4 +1,4 @@
-# Sensitive Business Flows <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Sensitive Business Flows <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 With the sensitive business flow capability, Wallarm's [API Discovery](overview.md) can automatically identifies endpoints that are critical to specific business flows and functions, such as authentication, account management, billing, and similar critical capabilities. Learn from this article how to use the sensitive business flow functionality.
 
@@ -31,7 +31,7 @@ To adjust the results of [automatic tagging](#automatic-tagging), you can manual
 
 To edit the list of flows the endpoint belongs to, in Wallarm Console, go to API Discovery, then for your endpoint, in the **Business flow & sensitive data**, select one or several flows from the list.
 
-![API Discovery - Sensitive business flows](../images/about-wallarm-waf/api-discovery/api-discovery-sbf.png)
+![API Discovery - Sensitive business flows](../../images/about-wallarm-waf/api-discovery/api-discovery-sbf.png)
 
 You can do the same in the endpoint details.
 
@@ -41,10 +41,10 @@ Wallarm's [API Sessions](../api-sessions/overview.md) are used to provide you wi
 
 Once sessions are assigned with the sensitive business flow tags, it becomes possible to filter them by a specific business flow which makes it easier to select the sessions that are most important to analyze.
 
-![!API Sessions - sensitive business flows](../images/api-sessions/api-sessions-sbf-no-select.png)
+![!API Sessions - sensitive business flows](../../images/api-sessions/api-sessions-sbf-no-select.png)
 
 ## Filtering by business flow
 
 Once endpoints are assigned with the sensitive business flow tags, it becomes possible to filter all discovered endpoint by a specific business flow (the **Business flow** filter) which makes it easier on protecting the most critical business capabilities.
 
-![API Discovery - Filtering by sensitive business flows](../images/about-wallarm-waf/api-discovery/api-discovery-sbf-filter.png)
+![API Discovery - Filtering by sensitive business flows](../../images/about-wallarm-waf/api-discovery/api-discovery-sbf-filter.png)

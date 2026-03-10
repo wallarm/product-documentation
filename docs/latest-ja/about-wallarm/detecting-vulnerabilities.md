@@ -25,7 +25,7 @@
 
 パッシブな脆弱性検出は既定で有効です。
 
-### Threat Replay Testing <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
+### Threat Replay Testing <a href="../subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
 WallarmのThreat Replay Testingは、攻撃者をお客様自身のペネトレーションテスターへと変えます。初期の攻撃試行を分析し、同じ攻撃が悪用され得る他の方法をさらに探ります。これにより、元の攻撃者でさえ見つけられなかった環境の弱点が明らかになります。[詳細はこちら](../vulnerability-detection/threat-replay-testing/overview.md)
 
@@ -73,11 +73,11 @@ API Attack Surface Managementを有効化・設定し、選択したドメイン
 * 脆弱性のステータス検証の実行（アプリケーション側でまだアクティブか、修正済みか）
 * 脆弱性をクローズする、または誤検知としてマークする
 
-![Vulnerabilitiesセクション](../images/user-guides/vulnerabilities/check-vuln.png)
+![Vulnerabilitiesセクション](../../images/user-guides/vulnerabilities/check-vuln.png)
 
 Wallarmプラットフォームの[**API Discovery**モジュール](../api-discovery/overview.md)を使用している場合、脆弱性は発見されたAPIエンドポイントに紐付けられます。例:
 
-![API Discovery - Risk score](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
+![API Discovery - Risk score](../../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 
 脆弱性の管理についての詳細は、[脆弱性の取り扱い](../user-guides/vulnerabilities.md)の手順を参照してください。
 

@@ -1,4 +1,4 @@
-# API Abuse Prevention Kurulumu <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Prevention Kurulumu <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Bu makale, kötü niyetli botları tespit edip azaltmak ve meşru faaliyetlerin engellenmesini önlemek için [API Abuse Prevention](../api-abuse-prevention/overview.md) modülünün nasıl etkinleştirileceğini ve yapılandırılacağını açıklar.
 
@@ -37,7 +37,7 @@ Bir API kötüye kullanım profili oluşturmak için:
     * **Normal** (varsayılan, önerilir) - pek çok yanlış pozitifi önlemek ve çoğu kötü niyetli bot isteğinin API'lere ulaşmasını engellemek için en uygun kuralları kullanır.
     * **Safe mode** - daha düşük duyarlılık, uygulamalarınıza DAHA FAZLA botun erişeceği anlamına gelir, ancak bu durumda herhangi bir meşru istek düşürülmez.
 
-        ![API Abuse prevention profili](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
+        ![API Abuse prevention profili](../../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
 
 1. Uygulama(ları) seçin.
 1. **Analyze behavior by** parametresini ayarlayın:
@@ -47,7 +47,7 @@ Bir API kötüye kullanım profili oluşturmak için:
 
 <a name="per-profile-traffic"></a>Oluşturulduktan sonra, profiller seçilen türdeki kötü niyetli botlara karşı seçtiğiniz uygulamaları korur. Koruma ve veri analizi, profilin uygulama trafiğinin varlığına ve miktarına bağlıdır. Profil başına duruma dikkat edin:
 
-![API Abuse prevention - profiller](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-profiles-per-profile-status.png)
+![API Abuse prevention - profiller](../../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-profiles-per-profile-status.png)
 
 ## Profilleri devre dışı bırakma ve silme
 

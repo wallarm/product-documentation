@@ -4,7 +4,7 @@
 
 تفضل الشركات Wallarm بسبب أمان التطبيق وواجهة برمجة التطبيقات المحسنة، سهولة التنفيذ، والقيمة. تجمع بين أفضل قدرات اكتشاف واجهات برمجة التطبيقات، إدارة المخاطر، الحماية، والاختبار مع قدرات WAF وأمان واجهة برمجة التطبيقات من الجيل التالي.
 
-![Diagram](../images/about-wallarm-waf/overview/wallarm-features.png)
+![Diagram](../../images/about-wallarm-waf/overview/wallarm-features.png)
 
 ## الاكتشاف
 
@@ -15,7 +15,7 @@
 * يكشف النهايات التي قد تعرض بيانات حساسة، مثل المعلومات الشخصية.
 * [يقيم كل نهاية لواجهة برمجة التطبيقات من حيث المخاطر الأمنية](../api-discovery/risk-score.md)، نقاط الضعف، ويوفر درجة المخاطر.
 
-![نهايات مكتشفة بواسطة اكتشاف واجهة برمجة التطبيقات](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
+![نهايات مكتشفة بواسطة اكتشاف واجهة برمجة التطبيقات](../../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
 ## الحماية
 
@@ -39,7 +39,7 @@
 * [التكاملات](../user-guides/settings/integrations/integrations-intro.md) مع أدوات الأمان والتشغيل والتطوير الأكثر استخدامًا لإنشاء التذاكر، الإشعارات، وتقديم البيانات حول التهديدات الأمنية المكتشفة. الأنظمة الأساسية المتوافقة تشمل Slack، Sumo Logic، Splunk، Microsoft Sentinel، والمزيد.
 * [التصحيحات الافتراضية](../user-guides/rules/vpatch-rule.md) للمشكلات العاجلة التي تبرزها كشف الثغرات من قبل Wallarm.
 
-![الأحداث](../images/about-wallarm-waf/overview/events-with-attacks.png)
+![الأحداث](../../images/about-wallarm-waf/overview/events-with-attacks.png)
 
 ## الاختبار
 
@@ -51,13 +51,13 @@
 * [ينشئ اختبارات أمان واجهات برمجة التطبيقات ديناميكيًا](../vulnerability-detection/threat-replay-testing/overview.md) من حركة المرور الملحوظة.
 * [يتحقق من المستودعات العامة للبحث عن رموز واجهة برمجة التطبيقات المكشوفة](../api-attack-surface/security-issues.md).
 
-![الثغرات](../images/about-wallarm-waf/overview/vulnerabilities.png)
+![الثغرات](../../images/about-wallarm-waf/overview/vulnerabilities.png)
 
 ## كيفية عمل Wallarm
 
 تقوم منصة Wallarm بشكل أساسي على مكونين رئيسيين: عقدة التصفية Wallarm وWallarm Cloud.
 
-![!مخطط العمارة](../images/about-wallarm-waf/overview/filtering-node-cloud.png)
+![!مخطط العمارة](../../images/about-wallarm-waf/overview/filtering-node-cloud.png)
 
 ### عقدة التصفية
 

@@ -33,7 +33,7 @@
 
 **このポリシーの特記事項:** fuzzingをサポートしません。fuzzerを有効化するには、別のテストポリシーを作成してください（[例](#policy-that-allows-working-with-uri-and-encoded-email-post-parameters-fuzzer-is-enabled)）。
 
-![ポリシー例](../../../images/fast/operations/en/test-policy/examples/default-policy-example.png)
+![ポリシー例](../../../../images/fast/operations/en/test-policy/examples/default-policy-example.png)
 
 !!! info "注意"
     次の点にご留意ください。
@@ -49,7 +49,7 @@
 
 **このポリシーの特記事項:** fuzzerは無効です。
 
-![ポリシー例](../../../images/fast/operations/en/test-policy/examples/get-post-policy-example.png)
+![ポリシー例](../../../../images/fast/operations/en/test-policy/examples/get-post-policy-example.png)
 
 !!! info "注意"
     Quick Startガイドでは、このポリシーを使用して対象アプリケーション[Google Gruyere](../../qsg/test-run.md)のセキュリティテストを実施できます。
@@ -63,7 +63,7 @@
 * 実行できるのはカスタムFAST拡張のみで、組み込みのFAST detectsは実行されません。
 * fuzzerは無効です。
 
-![ポリシー例](../../../images/fast/operations/en/test-policy/examples/custom-dsl-example.png)
+![ポリシー例](../../../../images/fast/operations/en/test-policy/examples/custom-dsl-example.png)
 
 !!! info "注意"
     このポリシーは[サンプルのカスタム拡張](../../dsl/using-extension.md)の実行に使用できます。
@@ -86,7 +86,7 @@
     * サーバーレスポンスコードの値が`500`未満の場合は異常なしと見なします。
     * すべてのペイロードを確認し終えるか、異常が2件を超えて検出された場合、fuzzerは実行を停止します。
 
-![ポリシー例](../../../images/fast/operations/en/test-policy/examples/enabled-fuzzer-example.png)
+![ポリシー例](../../../../images/fast/operations/en/test-policy/examples/enabled-fuzzer-example.png)
 
 !!! info "注意"
     このポリシーは、[OWASP Juice Shopのログインフォーム](../../dsl/extensions-examples/overview.md)の脆弱性発見に使用できます。
@@ -101,4 +101,4 @@
 
 **このポリシーの特記事項:** fuzzerは無効です。
 
-![ポリシー例](../../../images/fast/operations/en/test-policy/examples/sessionid-example.png)
+![ポリシー例](../../../../images/fast/operations/en/test-policy/examples/sessionid-example.png)

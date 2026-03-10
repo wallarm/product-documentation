@@ -1,7 +1,7 @@
-[tarantool-status]: ../images/tarantool-status.png
+[tarantool-status]: ../../images/tarantool-status.png
 [configure-selinux-instr]: configure-selinux.md
 [configure-proxy-balancer-instr]: configuration-guides/access-to-wallarm-api-via-proxy.md
-[img-wl-console-users]: ../images/check-user-no-2fa.png
+[img-wl-console-users]: ../../images/check-user-no-2fa.png
 [wallarm-token-types]: ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 
 # تنصيب وحدة Postanalytics بشكل منفصل
@@ -27,9 +27,9 @@
 المخططات أدناه تصور تواصل الوحدة في سيناريوين: عند التثبيت على نفس الخادم وعلى خوادم مختلفة.
 
 === "NGINX-Wallarm وPostanalytics على خادم واحد"
-    ![تدفق المرور بين Postanalytics وNGINX-Wallarm](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-the-same-server.png)
+    ![تدفق المرور بين Postanalytics وNGINX-Wallarm](../../images/waf-installation/separate-postanalytics/processing-postanalytics-on-the-same-server.png)
 === "NGINX-Wallarm وPostanalytics على خوادم مختلفة"
-    ![تدفق المرور بين Postanalytics وNGINX-Wallarm](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-different-servers.png)
+    ![تدفق المرور بين Postanalytics وNGINX-Wallarm](../../images/waf-installation/separate-postanalytics/processing-postanalytics-on-different-servers.png)
 
 ## طرق التثبيت
 
@@ -249,7 +249,7 @@ curl http://localhost/etc/passwd
 
 إذا تم تكوين وحدتي NGINX‑Wallarm وPostanalytics المنفصلتين بشكل صحيح، سيتم تحميل الهجوم إلى سحابة Wallarm ويتم عرضه في قسم **الهجمات** في Wallarm Console:
 
-![الهجمات في الواجهة](../images/admin-guides/test-attacks-quickstart.png)
+![الهجمات في الواجهة](../../images/admin-guides/test-attacks-quickstart.png)
 
 إذا لم يتم تحميل الهجوم إلى السحابة، يرجى التحقق من عدم وجود أخطاء في تشغيل الخدمات:
 
@@ -368,7 +368,7 @@ curl http://localhost/etc/passwd
 
 تتفاعل وحدة Postanalytics مع سحابة Wallarm. يتعين عليك إنشاء عقدة Wallarm لوحدة Postanalytics وربط هذه العقدة بالسحابة. عند الربط، يمكنك تعيين اسم العقدة Postanalytics، تحت الذي سيتم عرضه في واجهة Wallarm Console UI ووضع العقدة في **مجموعة العقدة** المناسبة (التي تُستخدم لتنظيم عقد منطقيًا في الواجهة الأمامية). يُوصى باستخدام نفس مجموعة العقدة للعقدة التي تعالج حركة البيانات الأولية وللعقدة التي تقوم بخطوة بعد التحليل.
 
-![العقد المجمعة](../images/user-guides/nodes/grouped-nodes.png)
+![العقد المجمعة](../../images/user-guides/nodes/grouped-nodes.png)
 
 لتزويد العقدة بالوصول، يلزمك توليد رمز على جانب السحابة وتحديده على الجهاز الذي يحتوي على حزم العقدة.
 
@@ -575,7 +575,7 @@ curl http://localhost/etc/passwd
 
 إذا تم تكوين وحدتي NGINX‑Wallarm وPostanalytics المنفصلتين بشكل صحيح، سيتم تحميل الهجوم إلى سحابة Wallarm ويتم عرضه في قسم **الهجمات** في Wallarm Console:
 
-![الهجمات في الواجهة](../images/admin-guides/test-attacks-quickstart.png)
+![الهجمات في الواجهة](../../images/admin-guides/test-attacks-quickstart.png)
 
 إذا لم يتم تحميل الهجوم إلى السحابة، يرجى التحقق من عدم وجود أخطاء في تشغيل الخدمات:
 

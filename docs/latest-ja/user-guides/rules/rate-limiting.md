@@ -30,7 +30,7 @@ WallarmはCookieやJSONフィールドなどさまざまなリクエストパラ
 
         以下は、5 r/s、burst 12、delay 8の設定におけるレート制限の挙動例です。
         
-        ![レート制限の動作](../../images/user-guides/rules/rate-limit-schema.png)
+        ![レート制限の動作](../../../images/user-guides/rules/rate-limit-schema.png)
 
         最初の8リクエスト（delayの値）はWallarmノードによって遅延なしで転送されます。次の4リクエスト（burst - delay）は、定義した5 r/sというレートを超えないように遅延されます。さらに次の3リクエストは、バースト総量を超過したため拒否されます。その後のリクエストは遅延されます。
 
@@ -55,7 +55,7 @@ However, an attacker could exploit this by changing the `size` parameter to an e
 
 Limiting connections to the endpoint helps to prevent such attacks. You can limit the number of connections to the endpoint to 1000 per minute. This assumes that, on average, 200 users are requested 5 times per minute. The rule specifies that this limit applies to each IP trying to access the endpoint within minute. The `remote_address` [point](request-processing.md) is used to identify the IP address of the requester.
 
-![Example](../../images/user-guides/rules/rate-limit-for-200-users.png)
+![Example](../../../images/user-guides/rules/rate-limit-for-200-users.png)
 -->
 ### APIの高可用性を確保するためのIP単位の接続制限
 
@@ -65,7 +65,7 @@ Limiting connections to the endpoint helps to prevent such attacks. You can limi
 
 例えば、各IPアドレスごとに1分あたり5件のPOSTリクエストに制限する設定は次のとおりです:
 
-![例](../../images/user-guides/rules/rate-limit-by-ip-for-patients.png)
+![例](../../../images/user-guides/rules/rate-limit-by-ip-for-patients.png)
 
 ### 認証パラメータへのブルートフォース攻撃を防ぐためのセッション単位の接続制限
 
@@ -73,13 +73,13 @@ Limiting connections to the endpoint helps to prevent such attacks. You can limi
 
 アプリケーションが各ユーザーセッションに一意のIDを割り当て、`X-SESSION-ID`ヘッダーに反映しているとします。URL`https://example.com/api/login`のAPIエンドポイントは、`Authorization`ヘッダーにBearer JWTを含むPOSTリクエストを受け付けます。このシナリオにおけるセッション単位の接続制限ルールは次のようになります:
 
-![例](../../images/user-guides/rules/rate-limit-for-jwt.png)
+![例](../../../images/user-guides/rules/rate-limit-for-jwt.png)
 
 `Authorization`の値に使用する[正規表現](rules.md#condition-type-regex)は``^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$`です。
 
 ユーザーセッションの管理にJWT (JSON Web Tokens)を使用している場合は、次のようにルールを調整してJWTを[復号](request-processing.md#jwt)し、ペイロードからセッションIDを抽出できます:
 
-![例](../../images/user-guides/rules/rate-limit-for-session-in-jwt.png)
+![例](../../../images/user-guides/rules/rate-limit-for-session-in-jwt.png)
 
 <!-- ### User-Agent based rate limiting to prevent attacks on API endpoints
 
@@ -87,7 +87,7 @@ Let's say you have an old version of your application has some known security vu
 
 For example, you can set a limit of 10 requests per minute for each `User-Agent`. If a specific `User-Agent` is making more than 10 requests evenly distributed per minute, further requests from that `User-Agent` are rejected till a new period start.
 
-![Example](../../images/user-guides/rules/rate-limit-by-user-agent.png)
+![Example](../../../images/user-guides/rules/rate-limit-by-user-agent.png)
 
 ### Endpoint-based rate limiting to prevent DoS attacks
 
@@ -106,7 +106,7 @@ In this specific case, the rate limiting rule is applied to connections by URI, 
     !!! info "Query parameters are not included into URI"
         This rule limits requests targeted at any path of the specified domain which does not contain any query parameters.
 
-![Example](../../images/user-guides/rules/rate-limit-by-uri.png) -->
+![Example](../../../images/user-guides/rules/rate-limit-by-uri.png) -->
 
 ### サーバーの過負荷を防ぐための顧客ID単位の接続制限
 
@@ -114,7 +114,7 @@ In this specific case, the rate limiting rule is applied to connections by URI, 
 
 例えば、`https://example-domain.com/orders`へのPOSTリクエストを各顧客あたり1分に10件へ制限するルールは、次のようになります。この例では、顧客IDがJSON本文オブジェクト`data.customer_id`で[渡される](request-processing.md#json_doc)ものとします。
 
-![例](../../images/user-guides/rules/rate-limit-by-customer-id.png)
+![例](../../../images/user-guides/rules/rate-limit-by-customer-id.png)
 
 ## 制限事項と特記事項
 

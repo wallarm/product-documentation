@@ -14,7 +14,7 @@
 
 * 以下のように、1つのWallarmノードで全クライアントまたは分離環境のトラフィックをフィルタリングします。
 
-    ![パートナーノードの構成図](../../images/partner-waf-node/partner-traffic-processing-4.0.png)
+    ![パートナーノードの構成図](../../../images/partner-waf-node/partner-traffic-processing-4.0.png)
 
     * 1つのWallarmノードが複数テナント（Tenant 1、Tenant 2）のトラフィックを処理します。
 
@@ -26,7 +26,7 @@
 
 * 以下のように、各テナント専用にトラフィックをフィルタリングする複数のWallarmノードをデプロイします。
 
-    ![クライアントの複数ノード構成図](../../images/partner-waf-node/client-several-nodes.png)
+    ![クライアントの複数ノード構成図](../../../images/partner-waf-node/client-several-nodes.png)
 
     * 特定のテナントごとにトラフィックをフィルタリングする複数のWallarmノード（Tenant 1、Tenant 2）があります。
     * ドメインhttps://tenant1.comには、クライアントIPアドレス225.130.128.241を指すDNSレコードを設定します。
@@ -73,7 +73,7 @@
         切り替えと確認が完了したら、4番目の手順に進みます。
 1. Multi-tenant nodeオプションを選択します。
 
-    ![マルチテナントノードの作成](../../images/user-guides/nodes/create-multi-tenant-node.png)
+    ![マルチテナントノードの作成](../../../images/user-guides/nodes/create-multi-tenant-node.png)
 1. ノード名を設定し、Createをクリックします。
 1. フィルタリングノードのトークンをコピーします。
 1. フィルタリングノードのデプロイ形態に応じて、[該当する手順](../../installation/supported-deployment-options.md)を実行します。

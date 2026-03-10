@@ -6,7 +6,7 @@
 
 Kong Ingress Controller向けWallarmコネクタがサポートするモードは[インライン](../inline/overview.md)のみです。
 
-![Wallarmプラグインを使用したKong](../../images/waf-installation/gateways/kong/traffic-flow-inline.png)
+![Wallarmプラグインを使用したKong](../../../images/waf-installation/gateways/kong/traffic-flow-inline.png)
 
 ## ユースケース
 

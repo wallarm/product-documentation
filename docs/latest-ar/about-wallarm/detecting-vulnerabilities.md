@@ -76,11 +76,11 @@
 * تشغيل التحقق من حالة الثغرة الأمنية: لا تزال نشطة أو تم إصلاحها من جانب التطبيق
 * إغلاق الثغرات الأمنية أو وسمها كإيجابيات كاذبة
 
-![قسم الثغرات الأمنية](../images/user-guides/vulnerabilities/check-vuln.png)
+![قسم الثغرات الأمنية](../../images/user-guides/vulnerabilities/check-vuln.png)
 
 إذا كنت تستخدم وحدة [**اكتشاف الـ API**](../api-discovery/overview.md) في منصة Wallarm، فإن الثغرات الأمنية مرتبطة بنقاط النهاية لـ API المكتشفة، على سبيل المثال:
 
-![اكتشاف الـ API - درجة الخطر](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
+![اكتشاف الـ API - درجة الخطر](../../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 
 لمزيد من المعلومات حول إدارة الثغرات الأمنية، راجع التعليمات حول [العمل مع الثغرات الأمنية](../user-guides/vulnerabilities.md).
 

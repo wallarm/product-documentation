@@ -1,4 +1,4 @@
-[img-write-plugin-graphite]:    ../../images/monitoring/write-plugin-graphite.png
+[img-write-plugin-graphite]:    ../../../images/monitoring/write-plugin-graphite.png
 
 [doc-grafana]:                  working-with-grafana.md
 

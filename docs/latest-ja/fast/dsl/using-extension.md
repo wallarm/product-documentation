@@ -5,13 +5,13 @@
 [doc-non-mod-extension]:        extensions-examples/non-mod-extension.md
 [doc-testpolicy]:               logic.md
 
-[img-test-policy-insertion-points]:      ../../images/fast/dsl/common/using-extensions/tp_insertion_points.png
-[img-test-policy-attacks]:              ../../images/fast/dsl/common/using-extensions/tp_attacks_test.png
-[img-test-run]:                 ../../images/fast/dsl/common/using-extensions/create_testrun.png
-[img-testrun-details]:          ../../images/fast/dsl/common/using-extensions/testrun_details.png
-[img-log]:                      ../../images/fast/dsl/common/using-extensions/log.png
-[img-vulns]:                    ../../images/fast/dsl/common/using-extensions/vulnerabilities.png
-[img-vuln-details-mod]:             ../../images/fast/dsl/common/using-extensions/vuln_details-mod.png
+[img-test-policy-insertion-points]:      ../../../images/fast/dsl/common/using-extensions/tp_insertion_points.png
+[img-test-policy-attacks]:              ../../../images/fast/dsl/common/using-extensions/tp_attacks_test.png
+[img-test-run]:                 ../../../images/fast/dsl/common/using-extensions/create_testrun.png
+[img-testrun-details]:          ../../../images/fast/dsl/common/using-extensions/testrun_details.png
+[img-log]:                      ../../../images/fast/dsl/common/using-extensions/log.png
+[img-vulns]:                    ../../../images/fast/dsl/common/using-extensions/vulnerabilities.png
+[img-vuln-details-mod]:             ../../../images/fast/dsl/common/using-extensions/vuln_details-mod.png
 
 [anchor-connect-extension]:     #connecting-extensions
 

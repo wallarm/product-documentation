@@ -11,7 +11,7 @@ If you have the paid Wallarm subscription plan, the subscription card displays t
 * Statistics on the requests processed by the filtering node
 * The set of modules and features included to the subscription plan (the set depends on the chosen subscription plan)
 
-![Paid subscription plan](../../images/user-guides/settings/subscriptions/subscriptions.png)
+![Paid subscription plan](../../../images/user-guides/settings/subscriptions/subscriptions.png)
 
 To activate, cancel, or change a subscription, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
 

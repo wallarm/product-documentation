@@ -15,7 +15,7 @@ O console Wallarm exibe os seguintes dados sobre cada objeto adicionado à lista
 
 Quando você escolhe datas específicas para examinar o conteúdo da lista de IPs, o sistema retorna um histórico detalhado de suas mudanças, incluindo o momento exato e o método de inclusão, seja manual ou automatizado. O relatório também fornece dados sobre os indivíduos responsáveis pelas alterações e os motivos de cada inclusão. Esses insights auxiliam na manutenção de um rastro de auditoria para conformidade e relatórios.
 
-![Histórico da lista de IP](../../images/user-guides/ip-lists/ip-list-history.png)
+![Histórico da lista de IP](../../../images/user-guides/ip-lists/ip-list-history.png)
 
 Ao voltar para a guia **Agora**, você acessa o estado atual da lista de IPs, permitindo visualizar os objetos atualmente incluídos na lista.
 

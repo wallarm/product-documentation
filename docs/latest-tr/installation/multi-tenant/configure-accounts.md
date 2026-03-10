@@ -16,7 +16,7 @@ Kiracı hesaplarını yapılandırmak için:
 
 1. Wallarm Console’daki kayıt formunu [US Cloud](https://us1.my.wallarm.com/signup) veya [EU Cloud](https://my.wallarm.com/signup) için doldurun ve onaylayın.
 
-    ![Kayıt formu](../../images/signup-en.png)
+    ![Kayıt formu](../../../images/signup-en.png)
 
     !!! info "Kurumsal e-posta"
         Lütfen kurumsal e-posta adresi kullanarak kaydolun.
@@ -46,7 +46,7 @@ Talebinizi aldıktan sonra Wallarm teknik destek şunları yapacaktır:
 
 **Global administrator** hesabı altında, Wallarm Console → tenant selector → **Create tenant** yolunu izleyerek kiracılar oluşturabilirsiniz.
 
-![!Wallarm Console üzerinden kiracı oluşturma](../../images/partner-waf-node/tenant-create-via-ui.png)
+![!Wallarm Console üzerinden kiracı oluşturma](../../../images/partner-waf-node/tenant-create-via-ui.png)
 
 Yeni kiracınız için yeni bir **Administrator** [kullanıcı](../../user-guides/settings/users.md#user-roles) oluşturabilirsiniz. Davet e-postası belirtilen adrese gönderilecektir.
 
@@ -100,7 +100,7 @@ Bu adımda, bir global hesaba bağlı bir kiracı hesabı oluşturulacaktır.
 
 Oluşturulan kiracılar, [global kullanıcılar](../../user-guides/settings/users.md#user-roles) için Wallarm Console’da görüntülenecektir. Örneğin, `Tenant 1` ve `Tenant 2`:
 
-![Wallarm Console’da kiracı seçici](../../images/partner-waf-node/clients-selector-in-console.png)
+![Wallarm Console’da kiracı seçici](../../../images/partner-waf-node/clients-selector-in-console.png)
 
 ### Adım 3: Belirli trafiği kiracınızla ilişkilendirin
 
@@ -145,6 +145,6 @@ Devre dışı bırakılan hesaplar silinmez ve yeniden etkinleştirilebilir.
 
 Bir kiracı hesabını devre dışı bırakmak için, tenant selector içinde, kiracı menüsünden **Deactivate** öğesini seçin ve ardından onaylayın. Kiracı hesabı devre dışı bırakılacak ve kiracı listesinden gizlenecektir.
 
-![Kiracı - Deactivate](../../images/partner-waf-node/tenant-deactivate.png)
+![Kiracı - Deactivate](../../../images/partner-waf-node/tenant-deactivate.png)
 
 Önceden devre dışı bırakılmış bir kiracı hesabını etkinleştirmek için, tenant selector içinde **Show deactivated tenants** öğesine tıklayın, ardından kiracınız için **Activate** seçeneğini belirleyin.

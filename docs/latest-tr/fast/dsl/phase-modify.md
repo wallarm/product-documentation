@@ -2,7 +2,7 @@
 [link-ruby-regexp]:     http://ruby-doc.org/core-2.6.1/doc/regexp_rdoc.html
 [link-ext-logic]:       logic.md
 
-[img-modify]:           ../../images/fast/dsl/common/phases/modify.png
+[img-modify]:           ../../../images/fast/dsl/common/phases/modify.png
 
 # Modify Aşaması
 
@@ -29,7 +29,7 @@ Modify aşamasında, öğeye yeni değerler atayabilir veya öğenin verilerini 
     ??? info "Örnek 1"
         `'HEADER_COOKIE_value': 'C=qwerty123'`
 
-        ![Modify aşaması](../../images/fast/dsl/en/phases/modify.png)
+        ![Modify aşaması](../../../images/fast/dsl/en/phases/modify.png)
 
 * Anahtarın değeri belirtilmemişse, karşılık gelen temel istek öğesinin değeri temizlenir.
     

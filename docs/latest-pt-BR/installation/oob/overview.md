@@ -16,7 +16,7 @@ Como a solução OOB apenas registra atividades maliciosas, mas não as bloqueia
 
 O diagrama abaixo fornece uma representação visual do fluxo geral de tráfego em uma implantação fora da banda do Wallarm. O diagrama pode não capturar todas as possíveis variações de infraestrutura. O espelho de tráfego pode ser gerado em qualquer camada de suporte da infraestrutura e enviado para os nós do Wallarm. Além disso, configurações específicas podem envolver vários balanceamentos de carga e outras configurações de nível de infraestrutura.
 
-![Esquema OOB](../../images/waf-installation/oob/wallarm-oob-deployment-scheme.png)
+![Esquema OOB](../../../images/waf-installation/oob/wallarm-oob-deployment-scheme.png)
 
 ## Vantagens e limitações
 

@@ -39,7 +39,7 @@ Mevcut filtreler, Wallarm Console içinde birden fazla biçimde sunulur:
 * **Filter** düğmesi kullanılarak genişletilen ve daraltılan Filters paneli
 * Belirli parametre değerlerine sahip olayları hariç tutmak veya yalnızca bunları göstermek için Quick filters
 
-![UI'de Filters](../../images/user-guides/search-and-filters/filters.png)
+![UI'de Filters](../../../images/user-guides/search-and-filters/filters.png)
 
 Farklı filtrelerin değerleri seçildiğinde, sonuçlar bu koşulların tümünü sağlayacaktır. Aynı filtre için farklı değerler belirtildiğinde, sonuçlar bu koşullardan herhangi birini sağlayacaktır.
 
@@ -424,7 +424,7 @@ Node UUID’sini **Nodes** bölümünde, [node details](../../user-guides/nodes/
 
 Belirli [spesifikasyon politikası ihlalleri](../../api-specification-enforcement/overview.md) ile ilgili olayların listesini almak için arama alanına `spec:'<SPECIFICATION-ID>'` belirtin. `<SPECIFICATION-ID>`’yi almak için **API Specifications** içinde spesifikasyonunuzu düzenleme için açın - `specid` tarayıcınızın adres alanında görüntülenecektir.
 
-![Spesifikasyon - güvenlik politikalarını uygulamak için kullanın](../../images/api-specification-enforcement/api-specification-enforcement-events.png)
+![Spesifikasyon - güvenlik politikalarını uygulamak için kullanın](../../../images/api-specification-enforcement/api-specification-enforcement-events.png)
 
 Yapılandırılan politika ihlali eylemlerine bağlı olarak engellenen ve izlenen olaylar sunulabilir. Olay ayrıntılarında, ihlal türü ve neden olan spesifikasyona bağlantı görüntülenir.
 
@@ -434,6 +434,6 @@ Yapılandırılan politika ihlali eylemlerine bağlı olarak engellenen ve izlen
 
 Bu tür saldırıların her biri için, ayrıntılarında ilgili kurallara bağlantılar sunulur (birden fazla olabilir). Gerekirse kuralların ayrıntılarına erişmek ve düzenlemek için bağlantıya tıklayın.
 
-![Regexp tabanlı müşteri kuralı tarafından tespit edilen saldırı - kuralı düzenleme](../../images/user-guides/search-and-filters/detected-by-custom-rule.png)
+![Regexp tabanlı müşteri kuralı tarafından tespit edilen saldırı - kuralı düzenleme](../../../images/user-guides/search-and-filters/detected-by-custom-rule.png)
 
 Herhangi bir regexp tabanlı müşteri kuralıyla ilişkili olmayan saldırıların listesini almak için `!custom_rule` kullanabilirsiniz.

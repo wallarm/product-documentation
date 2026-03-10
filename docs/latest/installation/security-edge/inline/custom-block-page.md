@@ -1,7 +1,7 @@
-[custom-block-page-selection]: ../../../images/configuration-guides/custom-block-page-selection.png
-[wallarm-block-page-selection]: ../../../images/configuration-guides/wallarm-block-page-selection.png
+[custom-block-page-selection]: ../../../../images/configuration-guides/custom-block-page-selection.png
+[wallarm-block-page-selection]: ../../../../images/configuration-guides/wallarm-block-page-selection.png
 
-# Block Page in Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Block Page in Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 When the Security Edge Inline Node blocks a malicious request, it returns a block page along with an HTTP 403 Forbidden response. You can choose from 3 types of block pages:
 
@@ -18,7 +18,7 @@ When the Security Edge Inline Node blocks a malicious request, it returns a bloc
 
 The Wallarm-branded block page provides a user-friendly message that the request was blocked:
 
-![Wallarm block page](../../../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
+![Wallarm block page](../../../../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
 
 This page is preloaded. You can enable it without uploading anything.
 

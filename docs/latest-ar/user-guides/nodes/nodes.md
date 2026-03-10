@@ -12,7 +12,7 @@
 * إعادة تسمية العقد
 * حذف العقد
 
-![العقد](../../images/user-guides/nodes/table-nodes.png)
+![العقد](../../../images/user-guides/nodes/table-nodes.png)
 
 !!! info "وصول المسؤول"
     إنشاء وحذف وإعادة توليد عقد/رموز Wallarm متاح فقط للمستخدمين ذوي دور **المسؤول** أو **المسؤول العالمي**. عرض تفاصيل العقد المثبتة متاح لجميع المستخدمين.
@@ -37,7 +37,7 @@
 
     1. افتح Wallarm Console → **العقد** في [السحابة الأمريكية](https://us1.my.wallarm.com/nodes) أو [السحابة الأوروبية](https://my.wallarm.com/nodes) وأنشئ العقدة من نوع **عقدة Wallarm**.
 
-        ![إنشاء عقدة Wallarm](../../images/user-guides/nodes/create-cloud-node.png)
+        ![إنشاء عقدة Wallarm](../../../images/user-guides/nodes/create-cloud-node.png)
     
     1. انسخ الرمز المولد.
     1. نشر عقدة جديدة في [البيئة المناسبة](../../installation/supported-deployment-options.md) باستخدام رمز عقدتك.
@@ -70,7 +70,7 @@
 * إصدارات LOM و proton.db المستخدمة
 * إصدارات حزم Wallarm المثبتة و NGINX و Envoy (إذا كانت موجودة)
 
-![بطاقة العقدة](../../images/user-guides/nodes/view-wallarm-node.png)
+![بطاقة العقدة](../../../images/user-guides/nodes/view-wallarm-node.png)
 
 إذا تم تثبيت عقدة Wallarm واحدة لعدة حالات (مثل معالجة حركة الإنترنت الأولية وتحليلات الطلبات التي تؤديها حالات الخادم المختلفة)، فإن العدد المناسب من عقد التصفية سيتم تجميعها في سجل واحد في الجدول. ستكون الخصائص والمقاييس متاحة لكل حالة.
 
@@ -89,7 +89,7 @@
 2. انقر على **إعادة توليد الرمز** في قائمة العقدة أو بطاقتها.
 3. إذا كانت العقدة مثبتة بالفعل في بنيتك التحتية، انسخ قيمة الرمز الجديد وحددها ضمن إعدادات العقدة المثبتة.
 
-![إعادة توليد رمز العقدة](../../images/user-guides/nodes/generate-new-token.png)
+![إعادة توليد رمز العقدة](../../../images/user-guides/nodes/generate-new-token.png)
 
 ## حذف عقدة
 

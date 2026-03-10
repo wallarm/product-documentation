@@ -37,7 +37,7 @@ The values set in the filters are automatically duplicated in the search field, 
 
 Available filters are presented in Wallarm Console on the filters panel that is expanded and collapsed using the **Filter** button.
 
-![Vulnerability filters in the UI](../../images/user-guides/search-and-filters/filters-vuln.png)
+![Vulnerability filters in the UI](../../../images/user-guides/search-and-filters/filters-vuln.png)
 
 When values of different filters are selected, the results will meet all those conditions. When different values for the same filter are specified, the results will meet any of those conditions.
 

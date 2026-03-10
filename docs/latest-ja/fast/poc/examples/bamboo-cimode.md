@@ -12,7 +12,7 @@ CI MODEでのFASTのBambooワークフローへの統合は、以下のいずれ
 
 [FASTノードトークン](../../operations/create-node.md)を安全に使用するには、その値を[Bambooのグローバル変数](https://confluence.atlassian.com/bamboo/defining-global-variables-289277112.html)で渡します。
 
-![Bambooグローバル変数の受け渡し](../../../images/fast/poc/common/examples/bamboo-cimode/bamboo-env-var-example.png)
+![Bambooグローバル変数の受け渡し](../../../../images/fast/poc/common/examples/bamboo-cimode/bamboo-env-var-example.png)
 
 --8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
 
@@ -118,7 +118,7 @@ CI MODEでのFASTのBambooワークフローへの統合は、以下のいずれ
 
 セキュリティテストの結果はBamboo UIのbuild logsに表示されます。また、Bambooでは完全な`.log`ファイルをダウンロードできます。
 
-![テストモードでFASTノードを実行した結果](../../../images/fast/poc/common/examples/bamboo-cimode/bamboo-ci-example.png)
+![テストモードでFASTノードを実行した結果](../../../../images/fast/poc/common/examples/bamboo-cimode/bamboo-ci-example.png)
 
 ## その他の例
 

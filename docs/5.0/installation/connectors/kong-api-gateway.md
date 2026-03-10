@@ -1,4 +1,4 @@
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [custom-blocking-page-docs]:        ../../admin-en/configuration-guides/configure-block-page-and-code.md
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [multitenancy-overview]:            ../multi-tenant/overview.md
@@ -13,7 +13,7 @@ To secure APIs managed by [Kong Ingress Controller](https://docs.konghq.com/kube
 
 The Wallarm connector for Kong Ingress Controller supports only [in-line](../inline/overview.md) mode:
 
-![Kong with Wallarm plugin](../../images/waf-installation/gateways/kong/traffic-flow-inline.png)
+![Kong with Wallarm plugin](../../../images/waf-installation/gateways/kong/traffic-flow-inline.png)
 
 ## Use cases
 

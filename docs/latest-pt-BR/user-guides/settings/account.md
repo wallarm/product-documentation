@@ -1,8 +1,8 @@
 [link-2fa-android-app]:     https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en
 [link-2fa-ios-app]:         https://apps.apple.com/app/google-authenticator/id388497605
 
-[img-profile]:              ../../images/user-guides/settings/profile.png
-[img-2fa-page]:             ../../images/user-guides/settings/2fa-page.png
+[img-profile]:              ../../../images/user-guides/settings/profile.png
+[img-2fa-page]:             ../../../images/user-guides/settings/2fa-page.png
 
 # Verificando Seu Perfil
 

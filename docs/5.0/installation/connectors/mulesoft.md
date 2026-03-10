@@ -1,7 +1,7 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
-[se-connector-setup-img]:           ../../images/waf-installation/se-connector-setup.png
+[se-connector-setup-img]:           ../../../images/waf-installation/se-connector-setup.png
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
@@ -18,7 +18,7 @@ To use Wallarm as a connector for Mule Gateway, you need to **deploy the Wallarm
 
 The Wallarm connector for Mule Gateway supports only [in-line](../inline/overview.md) traffic analysis:
 
-![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-mule-gateway-inline.png)
+![MuleSoft with Wallarm policy](../../../images/waf-installation/gateways/mulesoft/traffic-flow-mule-gateway-inline.png)
 
 ## Use cases
 
@@ -165,7 +165,7 @@ To acquire and upload the Wallarm policy to MuleSoft Exchange, follow these step
 
 Your custom policy is now available in your MuleSoft Anypoint Platform Exchange.
 
-![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
+![MuleSoft with Wallarm policy](../../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
 
 ### 3. Attach the Wallarm policy to your API
 
@@ -178,7 +178,7 @@ You can attach the Wallarm policy to either an individual API or all APIs.
 1. If necessary, modify other parameters.
 1. Apply the policy.
 
-![Wallarm policy](../../images/waf-installation/gateways/mulesoft/policy-setup.png)
+![Wallarm policy](../../../images/waf-installation/gateways/mulesoft/policy-setup.png)
 
 ## Testing
 

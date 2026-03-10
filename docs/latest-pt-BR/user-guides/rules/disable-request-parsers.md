@@ -29,4 +29,4 @@ Vamos supor que as solicitações para `https://example.com/users/` requerem o c
 
 A regra **Desativar/Ativar analisador de solicitação** evitando falsos positivos nos valores `X-AUTHTOKEN` pode ser configurada da seguinte maneira:
 
-![Exemplo da regra "Desativar/Ativar analisador de solicitação"](../../images/user-guides/rules/disable-parsers-example.png)
+![Exemplo da regra "Desativar/Ativar analisador de solicitação"](../../../images/user-guides/rules/disable-parsers-example.png)

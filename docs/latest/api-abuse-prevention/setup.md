@@ -1,4 +1,4 @@
-# API Abuse Prevention Setup <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Prevention Setup <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 This article describes how to enable and configure the [API Abuse Prevention](../api-abuse-prevention/overview.md) module to detect and mitigate malicious bots and to avoid blocking legitimate activities.
 
@@ -38,7 +38,7 @@ To create an API abuse profile:
     * **Normal** (default, recommended) - uses optimal rules to avoid many false positives and prevent most malicious bot requests from reaching APIs.
     * **Safe mode** - the lower sensitivity means that MORE bots access your applications, but then no legitimate requests will be dropped.
 
-        ![API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
+        ![API Abuse prevention profile](../../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
 
 1. Select application(s).
 1. Set the **Analyze behavior by** parameter:
@@ -48,7 +48,7 @@ To create an API abuse profile:
 
 <a name="per-profile-traffic"></a>Once created, profiles will protect your selected applications from the malicious bots of selected types. Note that protection and data analysis depend on profile's application traffic presence and amount. Pay your attention to the per-profile status:
 
-![API abuse prevention - profiles](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-profiles-per-profile-status.png)
+![API abuse prevention - profiles](../../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-profiles-per-profile-status.png)
 
 ## Disabling and deleting profiles
 

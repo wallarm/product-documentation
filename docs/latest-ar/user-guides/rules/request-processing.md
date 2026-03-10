@@ -26,7 +26,7 @@
 
     على سبيل المثال، إذا كان هناك هجوم تم الكشف عنه في العنوان `SOAPACTION`:
 
-    ![مثال على الوسم](../../images/user-guides/rules/tags-example.png)
+    ![مثال على الوسم](../../../images/user-guides/rules/tags-example.png)
 
 ### عنوان URL
 
@@ -263,7 +263,7 @@ p1=1&p2[a]=2&p2[b]=3&p3[]=4&p3[]=5&p4=6&p4=7
 * `[post, form_urlencoded, 'p4', array, 1]` — `7`
 * `[post, form_urlencoded, 'p4', pollution]` — `6,7`
 
-**grpc** <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;height: 21px;margin-bottom: -4px;"></a>
+**grpc** <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;height: 21px;margin-bottom: -4px;"></a>
 
 يحلل طلبات واجهة البرمجة API من gRPC، ويمكن تطبيقه فقط على جسم الطلب.
 
@@ -338,7 +338,7 @@ Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3
 * اختر أولا محلل الجزء الطلب الذي يحتوي JWT
 * حدد أحد المعاملات `jwt_*` المدرجة كقيمة لمحلل `jwt`، مثلا، لقيمة معامل الحمولة `name` JWT :
 
-![JWT param desc in a rule](../../images/user-guides/rules/request-element-desc.png)
+![JWT param desc in a rule](../../../images/user-guides/rules/request-element-desc.png)
 
 ### التشدد
 
@@ -384,4 +384,4 @@ Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3
 
 للقيام بذلك، قم بتعيين القاعدة **تعطيل/تمكين محلل الطلب** كما هو معروض في الصورة الشاشة:
 
-![Example of the rule "Disable/Enable request parser"](../../images/user-guides/rules/disable-parsers-example.png)
+![Example of the rule "Disable/Enable request parser"](../../../images/user-guides/rules/disable-parsers-example.png)

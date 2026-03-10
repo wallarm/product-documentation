@@ -11,7 +11,7 @@ Este guia de solução de problemas lista problemas comuns que você pode enfren
 
 * Acesse seu console Wallarm para a [nuvem dos EUA](https://us1.my.wallarm.com) ou para a [nuvem da UE](https://my.wallarm.com) → a seção **Eventos** e expanda os detalhes da solicitação. Um endereço IP é exibido no campo *Origem*. Por exemplo:
 
-    ![Endereço IP do qual a solicitação foi enviada](../images/request-ip-address.png)
+    ![Endereço IP do qual a solicitação foi enviada](../../images/request-ip-address.png)
 
     Se a lista de ataques estiver vazia, você pode enviar um [ataque de teste](../admin-en/installation-check-operation-en.md#2-run-a-test-attack) para o aplicativo protegido pelo controlador Wallarm Ingress.
     
@@ -19,6 +19,6 @@ Este guia de solução de problemas lista problemas comuns que você pode enfren
 
 Por favor, vá para o Console Wallarm para a [nuvem dos EUA](https://us1.my.wallarm.com) ou para a [nuvem da UE](https://my.wallarm.com) → a seção **Eventos** e expanda os detalhes da solicitação. Nos detalhes da solicitação exibidos, preste atenção ao cabeçalho `X-FORWARDED-FOR`. Por exemplo:
 
-![O cabeçalho X-FORWARDED-FOR da solicitação](../images/x-forwarded-for-header.png)
+![O cabeçalho X-FORWARDED-FOR da solicitação](../../images/x-forwarded-for-header.png)
 
 Se a lista de ataques estiver vazia, você pode enviar um [ataque de teste](../admin-en/installation-check-operation-en.md#2-run-a-test-attack) para o aplicativo protegido pelo controlador Wallarm Ingress.

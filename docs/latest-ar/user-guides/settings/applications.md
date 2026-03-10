@@ -19,7 +19,7 @@
 
 1. (اختياري) أضف تطبيقًا في لوحة تحكم Wallarm → **الإعدادات** → **التطبيقات**.
 
-    ![إضافة تطبيق](../../images/user-guides/settings/configure-app.png)
+    ![إضافة تطبيق](../../../images/user-guides/settings/configure-app.png)
 
     !!! warning "الوصول الإداري"
         فقط المستخدمون بدور **المدير** يمكنهم الوصول إلى القسم **الإعدادات** → **التطبيقات**.
@@ -80,7 +80,7 @@ curl -H "Cookie: SESSID='UNION SELECT SLEEP(5)-- -" -H "CUSTOM-ID: 222" http://e
 * ربطه بالتطبيق بالمعرف `222`.
 * إذا لم يكن التطبيق المقابل موجودًا، سيتم إضافته إلى **الإعدادات** → **التطبيقات** وتسميته تلقائيًا `التطبيق #222`.
 
-![إضافة تطبيق استنادًا إلى طلب الرأس](../../images/user-guides/settings/configure-app-auto-header.png)
+![إضافة تطبيق استنادًا إلى طلب الرأس](../../../images/user-guides/settings/configure-app-auto-header.png)
 
 ### التعرف على التطبيق استنادًا إلى رأس طلب محدد أو جزء من URLs باستخدام أمر `map` الخاص بـ NGINX
 

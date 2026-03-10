@@ -21,7 +21,7 @@ Existem vários métodos para procurar o número de solicitações atendidas pel
 
 * Clientes da AWS usando balanceadores de carga ELB ou ALB podem usar métricas de monitoramento da AWS dos balanceadores de carga para estimar o nível de solicitações diárias e semanais para aplicações atendidas pelos balanceadores de carga:
 
-    ![Exemplo de monitoramento da AWS](../../images/operation/aws-requests-example.png)
+    ![Exemplo de monitoramento da AWS](../../../images/operation/aws-requests-example.png)
 
     Por exemplo, se um gráfico mostra que a média de solicitações por minuto é de 350 e assumindo que há, em média, 730 horas em um mês, então o número de solicitações mensais é `350 * 60 * 730 = 15,330,000`.
 

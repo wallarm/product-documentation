@@ -1,4 +1,4 @@
-# Shadow and Zombie API <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Shadow and Zombie API <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 The [API Discovery](overview.md) module automatically identifies shadow and zombie APIs by comparing your uploaded specification to the live traffic.
 
@@ -7,7 +7,7 @@ The [API Discovery](overview.md) module automatically identifies shadow and zomb
 | [Shadow API](#shadow-api) | An undocumented API that exists within an organization's infrastructure without proper authorization or oversight.|
 | [Zombie API](#zombie-api) | Deprecated APIs that everyone assumes have been disabled but actually they are still in use. |
 
-![API Discovery - highlighting and filtering rogue API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
+![API Discovery - highlighting and filtering rogue API](../../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
 ## Setup
 
@@ -32,7 +32,7 @@ Also, you can download the previously uploaded specification via **API Specifica
 1. In the **API Specifications** section in [US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/), click **Upload specification**.
 1. Set specification upload parameters and start uploading.
 
-    ![Upload specification](../images/api-specification-enforcement/specificaton-upload.png)
+    ![Upload specification](../../images/api-specification-enforcement/specificaton-upload.png)
 
 Specification file is checked for correspondence to the API specification syntax, and if not valid, is not uploaded. Note that you will not be able to start configuring rogue API detection, until the specification file is successfully uploaded.
 
@@ -48,7 +48,7 @@ If you select to upload specification from URI and select the **Regularly update
 1. Select **Use for rogue APIs detection**.
 1. Select **Applications** and **Hosts** - only endpoints related to the selected hosts will be searched for rogue APIs.
 
-    ![API Discovery - API Specifications - uploading API specification to find rogue APIs](../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
+    ![API Discovery - API Specifications - uploading API specification to find rogue APIs](../../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
 
 ### Disabling
 
@@ -61,11 +61,11 @@ Rogue API detection is based on uploaded specification or several specifications
 
 As comparison is finished, the number of rogue (shadow and zombie) APIs will be displayed for each specification in the list of **API Specifications**.
 
-![API Specifications section](../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
+![API Specifications section](../../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
 
 Also rogue APIs will be displayed in the **API Discovery** section. Use the **Rogue APIs** filter to see only shadow and/or zombie APIs related to the selected comparisons and filter out the remaining endpoints.
 
-![API Discovery - highlighting and filtering rogue API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
+![API Discovery - highlighting and filtering rogue API](../../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
 In the details of such endpoints, in the **Specification conflicts** section, the specification(s) with the help of which shadow/zombie was detected will be indicated.
 
@@ -89,7 +89,7 @@ In case you use several separate specifications to describe different aspects of
 
 In the **API Discovery** section, use the **Compare to...** filter to select specification comparisons - only for them the rogue APIs will be highlighted by the special marks in the **Issues** column.
 
-![API Discovery - highlighting and filtering rogue API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
+![API Discovery - highlighting and filtering rogue API](../../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
 ## Getting notified
 
@@ -106,7 +106,7 @@ You can get messages about newly discovered shadow or zombie APIs or about all o
 
 In this example, if API Discovery finds new endpoints that are not listed in the `Specification-01` (shadow APIs), the notification about this is sent to your configured Slack channel.
 
-![Rogue API detected trigger](../images/user-guides/triggers/trigger-example-rogue-api.png)
+![Rogue API detected trigger](../../images/user-guides/triggers/trigger-example-rogue-api.png)
 
 **To test the trigger:**
 

@@ -1,4 +1,4 @@
-# API Envanterini Keşfetme <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Envanterini Keşfetme <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 [API Discovery](overview.md) modülü uç noktalarınızın kataloğunu (API envanterinizi) oluşturur oluşturmaz, Wallarm Console içindeki **API Discovery** bölümünde onu keşfedebilirsiniz. Bu makaleden, keşfedilen verileri nasıl inceleyeceğinizi öğrenin.
 
@@ -6,7 +6,7 @@
 
 Keşfedilmiş API envanterinizi [US](https://us1.my.wallarm.com/api-discovery) veya [EU](https://my.wallarm.com/api-discovery) Cloud içindeki **API Discovery** bölümünü kullanarak keşfedin.
 
-![API Discovery tarafından keşfedilen uç noktalar](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
+![API Discovery tarafından keşfedilen uç noktalar](../../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
 **API Discovery** bölümünü her açtığınızda, son bir haftaya ait tüm keşfedilen uç noktaları ve bunların [değişikliklerini](track-changes.md) görürsünüz. **Changes since** filtresiyle `Last week` seçimini başka bir dönemle değiştirebilirsiniz.
 
@@ -43,7 +43,7 @@ Tüm filtrelenmiş veriler, ek analiz için OpenAPI v3 biçiminde dışa aktarı
 
 <a name="params"></a>Uç noktaya tıklayarak, istek istatistikleri, istek ve yanıtların başlıkları ve parametreleri ile ilgili veri türleri dahil olmak üzere uç nokta ayrıntılarını da bulabilirsiniz:
 
-![API Discovery tarafından keşfedilen istek parametreleri](../images/about-wallarm-waf/api-discovery/discovered-request-params-4.10.png)
+![API Discovery tarafından keşfedilen istek parametreleri](../../images/about-wallarm-waf/api-discovery/discovered-request-params-4.10.png)
 
 Her bir istek/yanıt parametresi bilgisi şunları içerir:
 
@@ -89,7 +89,7 @@ URL’ler, kullanıcı kimliği gibi çeşitli öğeler içerebilir, örneğin:
 
 Uç noktaya tıklayarak parametrelerini genişletin ve değişken parametre için hangi türün otomatik olarak tespit edildiğini görüntüleyin.
 
-![API Discovery - Yolda değişkenlik](../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path-4.10.png)
+![API Discovery - Yolda değişkenlik](../../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path-4.10.png)
 
 Algoritmanın yeni trafiği analiz ettiğini unutmayın. Bir noktada birleştirilmesi gereken adresler görür de bunun henüz gerçekleşmediğini fark ederseniz, biraz zaman tanıyın. Daha fazla veri geldikçe, sistem yeni bulunan desenle eşleşen yeterli sayıda adres olduğunda uç noktaları birleştirecektir.
 
@@ -101,7 +101,7 @@ Son 7 gündeki API uç noktalarına yapılan saldırıların sayısı **Hits** s
 
 Bir uç noktaya yönelik saldırıları görmek için **Hits** sütunundaki sayıya tıklayın:
 
-![API uç noktası - olayları aç](../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
+![API uç noktası - olayları aç](../../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
 
 [filtre uygulanmış şekilde](../user-guides/search-and-filters/use-search.md) **Attacks** bölümü görüntülenecektir:
 
@@ -126,7 +126,7 @@ API envanterindeki herhangi bir uç noktadan hızlıca yeni bir [özel kural](..
 1. İlgili uç nokta menüsünden **Create rule** seçin. Kural oluşturma penceresi görüntülenir. Uç nokta adresi otomatik olarak pencereye ayrıştırılır.
 1. Kural oluşturma penceresinde kural bilgilerini belirtin ve ardından **Create**’e tıklayın.
 
-![Uç noktadan kural oluşturma](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
+![Uç noktadan kural oluşturma](../../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
 
 ## API envanteri verilerini dışa aktarma
 

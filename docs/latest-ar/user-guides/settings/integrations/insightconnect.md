@@ -24,7 +24,7 @@
 1. أدخل اسم التكامل.
 1. اختر أنواع الأحداث لتفعيل الإشعارات.
 
-    ![تكامل InsightConnect](../../../images/user-guides/settings/integrations/add-insightconnect-integration.png)
+    ![تكامل InsightConnect](../../../../images/user-guides/settings/integrations/add-insightconnect-integration.png)
 
     تفاصيل عن الأحداث المتاحة:
 
@@ -34,7 +34,7 @@
 
     سيتم إرسال إشعارات الاختبار بالبادئة `[رسالة اختبار]`:
 
-    ![إشعار اختبار InsightConnect](../../../images/user-guides/settings/integrations/test-insightconnect-scope-changed.png)
+    ![إشعار اختبار InsightConnect](../../../../images/user-guides/settings/integrations/test-insightconnect-scope-changed.png)
 
 1. انقر على **إضافة تكامل**.
 

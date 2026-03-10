@@ -271,7 +271,7 @@ A página de bloqueio de amostra `/usr/share/nginx/html/wallarm_blocked.html` fo
 
 A nova página de bloqueio com o novo layout fica assim por padrão:
 
-![Página de bloqueio do Wallarm](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+![Página de bloqueio do Wallarm](../../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
 [Mais detalhes sobre a configuração da página de bloqueio →](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)
 

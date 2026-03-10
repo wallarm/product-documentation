@@ -1,4 +1,4 @@
-[splunk-dashboard-by-wallarm-img]: ../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
+[splunk-dashboard-by-wallarm-img]: ../../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
 
 # Splunk
 
@@ -23,7 +23,7 @@
 1. الصق URI ورقم المنفذ لمثيل Splunk الخاص بك في حقل **HEC URI:PORT**. على سبيل المثال: `https://hec.splunk.com:8088`.
 1. اختر أنواع الأحداث لتشغيل الإشعارات.
 
-    ![تكامل Splunk](../../../images/user-guides/settings/integrations/add-splunk-integration.png)
+    ![تكامل Splunk](../../../../images/user-guides/settings/integrations/add-splunk-integration.png)
 
     تفاصيل حول الأحداث المتاحة:
 

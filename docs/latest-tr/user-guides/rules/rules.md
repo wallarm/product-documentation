@@ -1,6 +1,6 @@
 [link-regex]:                   https://github.com/yandex/pire
 [link-request-processing]:      request-processing.md
-[img-add-rule]:                 ../../images/user-guides/rules/section-rules-add-rule.png
+[img-add-rule]:                 ../../../images/user-guides/rules/section-rules-add-rule.png
 [link-attack-detection-tools]:  ../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection
 [link-sub-plans]:               ../../about-wallarm/subscription-plans.md#core-subscription-plans
 [link-filtration-mode]:         ../../admin-en/configure-wallarm-mode.md
@@ -8,7 +8,7 @@
 [link-sessions]:                ../../api-sessions/overview.md
 [link-brute-force-protection]:  ../../admin-en/configuration-guides/protecting-against-bruteforce.md
 [link-cloud-node-synchronization]: ../../admin-en/configure-cloud-node-synchronization-en.md
-[img-rules-create-backup]:      ../../images/user-guides/rules/rules-create-backup.png
+[img-rules-create-backup]:      ../../../images/user-guides/rules/rules-create-backup.png
 
 # Rules
 
@@ -16,7 +16,7 @@ Kurallar, isteklerin analiz edilmesi ve sonrasında işlenmesi sırasında Walla
 
 Kurallar, [US](https://us1.my.wallarm.com/rules) veya [EU](https://my.wallarm.com/rules) Cloud içindeki **Rules** bölümünde yapılandırılır.
 
-![Rules section](../../images/user-guides/rules/section-rules.png)
+![Rules section](../../../images/user-guides/rules/section-rules.png)
 
 !!! warning "Kuralın uygulanmasında gecikme"
     Kurallarda değişiklik yaptığınızda, bu değişiklikler hemen etkili olmaz; kuralların [derlenmesi](#ruleset-lifecycle) ve filtreleme düğümlerine yüklenmesi zaman alır.
@@ -59,7 +59,7 @@ Kurallar, uç nokta URI’leri ve diğer koşullara göre otomatik olarak iç i�
 * Doğrudan belirtilen, [regex](rules.md#condition-type-regex) üzerinde önceliklidir.
 * [Büyük/küçük harf duyarlı](rules.md#condition-type-equal), [duyarsız](rules.md#condition-type-iequal-aa) üzerinde önceliklidir.
 
-![Kurallar sekmesine genel bakış](../../images/user-guides/rules/rules-overview.png)
+![Kurallar sekmesine genel bakış](../../../images/user-guides/rules/rules-overview.png)
 
 <a id="default-rules"></a>
 ### Default rules
@@ -80,12 +80,12 @@ Kural dallarıyla çalışmaya ilişkin bazı detaylar:
 * Uç noktayı genişletmek için mavi daireye tıklayın.
 * Ayrık kuralları olmayan uç noktalar gri renklidir ve tıklanamaz.
     
-    ![Uç noktaların dalı](../../images/user-guides/rules/rules-branch.png)
+    ![Uç noktaların dalı](../../../images/user-guides/rules/rules-branch.png)
 
 * Uç noktanın kurallarını görüntülemek için üzerine tıklayın. İlk olarak, bu uç nokta için ayrık kurallar görüntülenecektir.
 * Belirli bir uç noktanın kural listesini görüntülerken, devralınanları görüntülemek için **Distinct and inherited rules** üzerine tıklayın. Devralınan kurallar, ayrık olanlarla birlikte görüntülenir; ayrıklara kıyasla gri renkte olurlar.
 
-    ![Uç nokta için ayrık ve devralınan kurallar](../../images/user-guides/rules/rules-distinct-and-inherited.png)
+    ![Uç nokta için ayrık ve devralınan kurallar](../../../images/user-guides/rules/rules-distinct-and-inherited.png)
 
 <a id="configuring"></a>
 ## Configuring
@@ -153,7 +153,7 @@ Düzenli ifadenin sözdizimi klasik joker karakterlerden farklıdır, ancak ayn�
 
 Ancak Wallarm’da `something-1.example.com/user/create.com` ifadeniz şu şekilde bileşenlere ayrıştırılacaktır:
 
-![URI’nin bileşenlere ayrıştırılması örneği](../../images/user-guides/rules/something-parsed.png)
+![URI’nin bileşenlere ayrıştırılması örneği](../../../images/user-guides/rules/something-parsed.png)
 
 ...burada `something-1.example.com` bir `header`-`HOST` koşuludur. Joker karakterin koşul içinde kullanılamayacağını belirtmiştik, bu yüzden bunun yerine düzenli ifade kullanmamız gerekiyor: koşul türünü REGEX olarak ayarlayın ve ardından Wallarm’a [özgü sözdizimini](#condition-type-regex) kullanın:
 
@@ -173,7 +173,7 @@ Ancak Wallarm’da `something-1.example.com/user/create.com` ifadeniz şu şekil
     !!! info "Daha basit yol"
         `.*` ifadesini atlayabilir ve yalnızca `[.]example[.]com$` bırakabilirsiniz. Her iki durumda da Wallarm, `[.]example[.]com$` ifadesinden önce herhangi bir karakterin herhangi bir sayıda görünebileceğini varsayacaktır.
 
-    ![Header bileşeninde düzenli ifade kullanımı](../../images/user-guides/rules/wildcard-regex.png)
+    ![Header bileşeninde düzenli ifade kullanımı](../../../images/user-guides/rules/wildcard-regex.png)
 
 <a id="advanced-edit-form"></a>
 ### Advanced edit form

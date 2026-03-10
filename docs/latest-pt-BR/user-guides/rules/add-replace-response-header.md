@@ -35,4 +35,4 @@ Para criar e aplicar a regra na seção **Regras**:
 
 Para permitir que todo o conteúdo de `https://example.com/*` venha apenas da origem do site, você pode adicionar o cabeçalho de resposta [`Content-Security-Policy: default-src 'self'`](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#example_1) usando a regra **Alterar headers de resposta do servidor** da seguinte maneira:
 
-![Exemplo da regra "Alterar headers de resposta do servidor"](../../images/user-guides/rules/add-replace-response-header.png)
+![Exemplo da regra "Alterar headers de resposta do servidor"](../../../images/user-guides/rules/add-replace-response-header.png)

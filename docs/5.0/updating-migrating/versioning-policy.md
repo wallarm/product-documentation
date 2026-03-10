@@ -55,10 +55,10 @@ Wallarm publishes release notes for major and minor updates in:
 * [Product Changelog](https://changelog.wallarm.com/)
 * The updates section in the Wallarm Console
 
-    ![Notification about a new version in Wallarm Console](../images/updating-migrating/wallarm-console-new-version-notification.png)
+    ![Notification about a new version in Wallarm Console](../../images/updating-migrating/wallarm-console-new-version-notification.png)
 * Each node in Wallarm Console displays an **Up to date** status or lists available updates for each component.
 
-    ![Node card](../images/user-guides/nodes/view-regular-node-comp-vers.png)
+    ![Node card](../../images/user-guides/nodes/view-regular-node-comp-vers.png)
 
 ## Upgrade procedure
 

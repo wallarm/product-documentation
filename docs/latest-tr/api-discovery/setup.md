@@ -1,4 +1,4 @@
-# API Discovery Kurulumu <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discovery Kurulumu <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Bu makale, [API Discovery](overview.md) modülünün nasıl etkinleştirileceğini, yapılandırılacağını ve hata ayıklanacağını açıklar.
 
@@ -27,7 +27,7 @@ API Discovery'yi tüm uygulamalar için veya yalnızca seçilenler için etkinle
 
 1. Gerekli uygulamalar için Wallarm Console → **API Discovery** → **Configure API Discovery** içinde API Discovery'yi etkinleştirin.
 
-    ![API Discovery – Settings](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
+    ![API Discovery – Settings](../../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
 
 **Settings** → **[Applications](../user-guides/settings/applications.md)** içinde yeni bir uygulama eklediğinizde, API keşfi için uygulamalar listesine otomatik olarak **devre dışı** durumda eklenir.
 

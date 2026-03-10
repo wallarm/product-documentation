@@ -29,7 +29,7 @@ AWS Terraform modülünü kullanarak üretimde Wallarm'ı dağıtmak için:
 1. [US Cloud](https://us1.my.wallarm.com/signup) veya [EU Cloud](https://my.wallarm.com/signup) içinde Wallarm Console'a kaydolun.
 1. Wallarm Console → **Nodes** bölümünü açın ve **Wallarm node** türünde bir düğüm oluşturun.
 
-    ![Bir Wallarm düğümünün oluşturulması](../../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+    ![Bir Wallarm düğümünün oluşturulması](../../../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
 1. Oluşturulan düğüm token'ını kopyalayın.
 1. Terraform yapılandırmanıza `wallarm` modül kodunu ekleyin:
 

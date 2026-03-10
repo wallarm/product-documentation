@@ -9,7 +9,7 @@ Bu talimatlar, HTTP proxy veya yük dengeleyici üzerinden sunucularınıza bağ
 
 Wallarm node, isteğin kaynak IP adresini NGINX değişkeni `$remote_addr` üzerinden okur. İstek, node’a gönderilmeden önce bir proxy sunucusu veya yük dengeleyiciden geçerse, `$remote_addr` değişkeni proxy sunucusu veya yük dengeleyicinin IP adresini korur.
 
-![Yük dengeleyici kullanımı](../images/admin-guides/using-proxy-or-balancer/using-balancer-en.png)
+![Yük dengeleyici kullanımı](../../images/admin-guides/using-proxy-or-balancer/using-balancer-en.png)
 
 Wallarm node tarafından belirlenen istek kaynak IP adresi, Wallarm Console içindeki [saldırı ayrıntılarında](../user-guides/events/check-attack.md#attack-analysis) görüntülenir.
 
@@ -131,11 +131,11 @@ Orijinal istemci IP adresini log’lara dahil etmek için, NGINX yapılandırmas
         ```
 2. Wallarm Console’u açın ve orijinal istemci IP adresinin saldırı ayrıntılarında görüntülendiğinden emin olun:
 
-    ![İsteği başlatan IP adresi](../images/request-ip-address.png)
+    ![İsteği başlatan IP adresi](../../images/request-ip-address.png)
 
     NGINX orijinal adresi `X-Forwarded-For` (`X-Real-IP` veya benzeri) başlığından okuduysa, başlık değeri ham saldırıda da görüntülenecektir.
 
-    ![X-Forwarded-For başlığı](../images/x-forwarded-for-header.png)
+    ![X-Forwarded-For başlığı](../../images/x-forwarded-for-header.png)
 
 ## Yapılandırma örnekleri
 

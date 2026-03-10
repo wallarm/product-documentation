@@ -31,7 +31,7 @@ To provide this protection:
 
     Note that even if the bot IP is placed into the denylist by multi-attack protection, by default, Wallarm collects and [displays](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) statistics regarding blocked requests originating from it.
 
-    ![Default trigger](../../images/user-guides/triggers/trigger-example-default.png)
+    ![Default trigger](../../../images/user-guides/triggers/trigger-example-default.png)
         
 1. Save the trigger and wait for the [Cloud and node synchronization completion](../configure-cloud-node-synchronization-en.md) (usually it takes 2-4 minutes).
 
@@ -65,6 +65,6 @@ The following is the testing example for the [pre-configured trigger](#pre-confi
 1. Open Wallarm Console → **IP lists** → **Graylist** and check that the IP address from which the requests originated is graylisted for 1 hour.
 1. Open the section **Attacks** and check that the attacks are displayed in the list:
 
-    ![Three malicious payloads in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
+    ![Three malicious payloads in UI](../../../images/user-guides/triggers/test-3-attack-vectors-events.png)
 
     To search for the attacks, you can use the `multiple_payloads` [search tag](../../user-guides/search-and-filters/use-search.md#search-by-attack-type).

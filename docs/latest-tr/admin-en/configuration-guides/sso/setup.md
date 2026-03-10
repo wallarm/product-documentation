@@ -1,6 +1,6 @@
 # SAML SSO Kimlik Doğrulama Kurulumu
 
-[img-disable-sso-provider]:     ../../../images/admin-guides/configuration-guides/sso/disable-sso-provider.png
+[img-disable-sso-provider]:     ../../../../images/admin-guides/configuration-guides/sso/disable-sso-provider.png
 [doc-setup-sso-gsuite]:     gsuite/overview.md
 [doc-setup-sso-okta]:       okta/overview.md
 
@@ -26,7 +26,7 @@ SAML SSO çözümü tarafına girmek üzere Wallarm metaverilerine ihtiyacınız
 
     Google, Okta veya başka bir (**Custom**) SAML SSO çözümünü entegre edebilirsiniz. Aynı anda yalnızca bir SSO entegrasyonunun aktif olabileceğini unutmayın.
 
-    ![Integrations - SSO](../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
+    ![Integrations - SSO](../../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
 
 1. SSO yapılandırma sihirbazında, **Send details** adımında, SAML SSO çözümünüze gönderilecek metaverileri gözden geçirin.
 1. Metaverileri kopyalayın veya XML olarak kaydedin.
@@ -60,7 +60,7 @@ Bunun çalışması için, öznitelik eşlemesini sağlayın:
         * `partner_analytic` (**Global Analyst**)
         * `partner_auditor` (**Global Read Only**)
 
-            ![Integrations - SSO, Okta'da eşleme örneği](../../../images/admin-guides/configuration-guides/sso/okta/wallarm-sso-okta-mapping.png)
+            ![Integrations - SSO, Okta'da eşleme örneği](../../../../images/admin-guides/configuration-guides/sso/okta/wallarm-sso-okta-mapping.png)
 
             Tüm rol açıklamalarını [burada](../../../user-guides/settings/users.md#user-roles) bulabilirsiniz.
 
@@ -108,7 +108,7 @@ Bu adım yalnızca SAML SSO çözümünüz grupları farklı özniteliklere eşl
 
         Tüm rol açıklamalarını [burada](../../../user-guides/settings/users.md#user-roles) bulabilirsiniz.
 
-    ![SSO gruplarını Wallarm rollerine eşleme - Wallarm'da eşleme](../../../images/admin-guides/configuration-guides/sso/sso-mapping-in-wallarm.png)
+    ![SSO gruplarını Wallarm rollerine eşleme - Wallarm'da eşleme](../../../../images/admin-guides/configuration-guides/sso/sso-mapping-in-wallarm.png)
 
 1. SSO yapılandırma sihirbazını tamamlayın. Wallarm, SAML SSO Çözümünüzden/Çözümünüze veri aktarımının artık mümkün olup olmadığını test edecektir.
 
@@ -125,7 +125,7 @@ Bu tür bir SAML SSO çözümü ile entegrasyonu sağlamak için Wallarm, **Exte
 1. Metaverileri XML olarak kaydedin; sertifika verileri ve SAML SSO çözümünüz için uygun yapılandırma buna eklenecektir.
 1. SAML SSO çözümünde, [**Configure application**](#step-3-saml-sso-solution-configure-application) adımında, sağlanan XML'i içe aktararak tüm seçeneklerin otomatik olarak doğru şekilde yapılandırılmasını sağlayın. Aşağıda Keycloak örneğine bakın.
 
-    ![Genişletilmiş güvenlik - Keycloak örneği](../../../images/admin-guides/configuration-guides/sso/sso-extended-security-keycloak-example.png)
+    ![Genişletilmiş güvenlik - Keycloak örneği](../../../../images/admin-guides/configuration-guides/sso/sso-extended-security-keycloak-example.png)
 
 ## Kiracıya bağlı izinler
 
@@ -136,14 +136,14 @@ Bu tür bir SAML SSO çözümü ile entegrasyonu sağlamak için Wallarm, **Exte
 1. **Add group**'a tıklayın ve SAML SSO çözümü grup adınıza bağlayın.
 1. Rolü ayarlayın, **Add**'e tıklayın.
 
-    ![SSO, different permissions in different tenants, grup oluşturma](../../../images/admin-guides/configuration-guides/sso/sso-iam-group-create.png)
+    ![SSO, different permissions in different tenants, grup oluşturma](../../../../images/admin-guides/configuration-guides/sso/sso-iam-group-create.png)
 
     Grup oluşturulur ve gruplar listesinde görüntülenir.
 
 1. Grup menüsünden **Edit group settings** seçeneğini belirleyin.
 1. Grup sayfanız görüntülenir. Kiracı listesini ayarlayın.
 
-    ![SSO, different permissions in different tenants, gruba kiracı ekleme](../../../images/admin-guides/configuration-guides/sso/sso-iam-group-tenants.png)
+    ![SSO, different permissions in different tenants, gruba kiracı ekleme](../../../../images/admin-guides/configuration-guides/sso/sso-iam-group-tenants.png)
 
     Bunun sonucunda SAML SSO çözümü grubunuzun kullanıcıları, belirtilen izinler (rol) setiyle listelenen kiracılara erişebilecek.
 
@@ -163,7 +163,7 @@ Aynı SAML SSO kullanıcısı farklı izinlerle aynı kiracıya erişim sağlaya
     
     Bu SAML SSO çözümü grubundaki kullanıcıların, başka herhangi bir SAML SSO çözümü grubuna dahil olsalar bile, herhangi bir şekilde kısıtlanamayacağını unutmayın.
 
-    ![SSO, different permissions in different tenants, global administrator istisnası](../../../images/admin-guides/configuration-guides/sso/sso-iam-global-administrators.png)
+    ![SSO, different permissions in different tenants, global administrator istisnası](../../../../images/admin-guides/configuration-guides/sso/sso-iam-global-administrators.png)
 
 <a name="override-general-sso-mapping"></a>**Genel eşlemeyi geçersiz kılma**
 

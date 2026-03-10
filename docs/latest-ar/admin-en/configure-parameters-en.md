@@ -353,7 +353,7 @@ api:
 
     **القيمة الافتراضية**: `on`
 
-### wallarm_parse_websocket <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
+### wallarm_parse_websocket <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
 يوفر Wallarm الدعم الكامل لـ WebSockets تحت خطة الاشتراك في الأمان API. بشكل افتراضي، رسائل WebSockets لا يتم تحليلها للهجمات.
 

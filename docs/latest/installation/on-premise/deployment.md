@@ -231,7 +231,7 @@ For Disaster Recovery planning, Wallarm recommends to implement the following ar
 * While the data is replicated to the DR site regularly (at least daily), the replication is not real-time.
 * Normally, the DR site only runs the block storage system and does not run any databases or Wallarm Cloud software components, so the DR instance cannot offer any services without additional reconfiguration steps.
 
-![!](../../images/waf-installation/on-premise/backup-dr.png)
+![!](../../../images/waf-installation/on-premise/backup-dr.png)
 
 Currently, Wallarm Cloud software does not support automatic failover to the DR site in case of the primary site outage. The following is a high-level overview of the manual DR failover process:
 

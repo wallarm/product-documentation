@@ -9,7 +9,7 @@
 * **سحابة Wallarm الأمريكية**
 * **سحابة Wallarm الأوروبية**
 
-![صفحة حالة Wallarm](../images/status-page.png)
+![صفحة حالة Wallarm](../../images/status-page.png)
 
 ## هل سأتلقى إشعارًا عندما يتغير حالة الخدمة؟
 

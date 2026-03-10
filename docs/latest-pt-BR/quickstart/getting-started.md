@@ -24,7 +24,7 @@ Para explorar o Wallarm antes mesmo de se inscrever e implementar quaisquer comp
 
 No Playground, você pode acessar a visualização do Console Wallarm como se estivesse preenchida com dados reais. O Console Wallarm é o principal componente da plataforma Wallarm que exibe dados sobre tráfego processado e permite o ajuste fino da plataforma. Portanto, com o Playground você pode aprender e experimentar como o produto funciona e obter alguns exemplos úteis de seu uso no modo somente leitura.
 
-![UI para criar conta](../images/playground.png)
+![UI para criar conta](../../images/playground.png)
 
 Para experimentar as capacidades da solução Wallarm em seu tráfego, [crie uma conta gratuita](#criar-conta-wallarm-e-obter-plano-gratis).
 
@@ -57,7 +57,7 @@ Implante o nó de filtragem Wallarm a partir da imagem Docker:
 
 1. Abra o Console Wallarm → **Nós** na [Nuvem dos EUA](https://us1.my.wallarm.com/nodes) ou na [Nuvem da UE](https://my.wallarm.com/nodes) e crie o nó do tipo **Nó Wallarm**.
 
-   ![Criação do nó Wallarm](../images/create-wallarm-node-empty-list.png)
+   ![Criação do nó Wallarm](../../images/create-wallarm-node-empty-list.png)
 
    Quanto à caixa de seleção **Nó multi-inquilino**, deixe-a desmarcada. Essa caixa de seleção está relacionada à configuração de um recurso correspondente que não faz parte de um início rápido.
 1. Copie o token gerado.
@@ -89,7 +89,7 @@ Se `NGINX_BACKEND` for `example.com`, passe adicionalmente a opção `-H 'Host: 
 
 Como o nó opera no [modo de filtragem de **monitoramento**](../admin-en/configure-wallarm-mode.md#available-filtration-modes) por padrão, o nó Wallarm não bloqueará o ataque, mas o registrará. Para verificar se o ataque foi registrado, prossiga para o Console Wallarm → **Eventos**:
 
-![Ataques na interface](../images/admin-guides/test-attacks-quickstart.png)
+![Ataques na interface](../../images/admin-guides/test-attacks-quickstart.png)
 
 ## Próximos passos
 

@@ -11,7 +11,7 @@ Abonelik planınıza bağlı olarak, brute force koruması için aşağıdaki ya
 * Mitigation controls ([Advanced API Security](../../about-wallarm/subscription-plans.md#core-subscription-plans) aboneliği)
 * Triggers ([Cloud Native WAAP](../../about-wallarm/subscription-plans.md#core-subscription-plans) aboneliği)
 
-## Azaltma kontrollerine dayalı koruma <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Azaltma kontrollerine dayalı koruma <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm'ın Advanced API Security [aboneliği](../../about-wallarm/subscription-plans.md#core-subscription-plans), brute force saldırılarına karşı koruma dahil olmak üzere gelişmiş [enumeration attack protection](../../api-protection/enumeration-attack-protection.md) sağlar.
 
@@ -47,7 +47,7 @@ Diyelim ki kötü niyetli aktörlerin `rent-car` uygulamanızın kimlik doğrula
         `https://rentappc-example.com/usrs/us/p-login/sq`
         (tüm tetikleyicinin çalışması için alan adlarının seçili uygulamaya [bağlı](../../user-guides/settings/applications.md#automatic-application-identification) olması gerektiğini unutmayın)
 
-        ![Kaba kuvvet tetikleyici örneği](../../images/user-guides/triggers/trigger-example6-4.8.png)
+        ![Kaba kuvvet tetikleyici örneği](../../../images/user-guides/triggers/trigger-example6-4.8.png)
     
     * Bu örnekte ihtiyacımız olan deseni yapılandırmanın yanı sıra, belirli URI’ler girebilir veya herhangi bir URI belirtmeyerek tetikleyicinin herhangi bir uç noktada çalışmasını sağlayabilirsiniz.
     * İç içe URI’ler kullanıyorsanız, [tetikleyici işleme önceliklerini](../../user-guides/triggers/triggers.md#trigger-processing-priorities) dikkate alın.
@@ -78,7 +78,7 @@ Brute force koruması için birden fazla tetikleyici yapılandırabilirsiniz.
 1. Wallarm Console → **IP lists** → **Denylist**’i açın ve kaynak IP adresinin engellendiğini kontrol edin.
 1. **Attacks** bölümünü açın ve isteklerin listede bir brute force saldırısı olarak görüntülendiğini kontrol edin.
 
-    ![Arayüzde brute force saldırısı](../../images/user-guides/events/brute-force-attack.png)
+    ![Arayüzde brute force saldırısı](../../../images/user-guides/events/brute-force-attack.png)
 
     Görüntülenen istek sayısı, tetikleyici eşiği aşıldıktan sonra gönderilen istek sayısına karşılık gelir ([davranışsal saldırıların tespiti hakkında daha fazla bilgi](../../attacks-vulns-list.md#attack-types)). Bu sayı 5’ten büyükse, istek örneklemesi uygulanır ve istek ayrıntıları yalnızca ilk 5 hit için görüntülenir ([istek örneklemesi hakkında daha fazla bilgi](../../user-guides/events/grouping-sampling.md#sampling-of-hits)).
 

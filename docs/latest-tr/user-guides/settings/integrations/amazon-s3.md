@@ -69,7 +69,7 @@ Bir Amazon S3 entegrasyonu kurmak için:
         1. Rol oluşturmayı tamamlayın ve rolün ARN’sini kopyalayın.
         1. Wallarm Console UI’da, entegrasyon oluşturma iletişim kutunuzda, **Role ARN** sekmesinde rolünüzün ARN’sini yapıştırın.
 
-            ![Amazon S3 entegrasyonu](../../../images/user-guides/settings/integrations/add-amazon-s3-integration.png)
+            ![Amazon S3 entegrasyonu](../../../../images/user-guides/settings/integrations/add-amazon-s3-integration.png)
 
     === "Gizli erişim anahtarı"
 

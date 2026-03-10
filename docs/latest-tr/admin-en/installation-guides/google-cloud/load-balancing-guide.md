@@ -8,11 +8,11 @@
 [link-test-attack]:                 ../../../admin-en/uat-checklist-en.md#node-registers-attacks
 [link-network-service-tier]:        https://cloud.google.com/network-tiers/docs/
 
-[img-backend-configuration]:        ../../../images/installation-gcp/auto-scaling/common/load-balancing-guide/backend-configuration.png
-[img-creating-lb]:                  ../../../images/installation-gcp/auto-scaling/common/load-balancing-guide/creating-load-balancer.png
-[img-creating-tcp-lb]:              ../../../images/installation-gcp/auto-scaling/common/load-balancing-guide/creating-tcp-load-balancer.png
-[img-new-frontend-ip-and-port]:     ../../../images/installation-gcp/auto-scaling/common/load-balancing-guide/frontend-configuration.png
-[img-checking-attacks]:             ../../../images/admin-guides/test-attacks-quickstart.png
+[img-backend-configuration]:        ../../../../images/installation-gcp/auto-scaling/common/load-balancing-guide/backend-configuration.png
+[img-creating-lb]:                  ../../../../images/installation-gcp/auto-scaling/common/load-balancing-guide/creating-load-balancer.png
+[img-creating-tcp-lb]:              ../../../../images/installation-gcp/auto-scaling/common/load-balancing-guide/creating-tcp-load-balancer.png
+[img-new-frontend-ip-and-port]:     ../../../../images/installation-gcp/auto-scaling/common/load-balancing-guide/frontend-configuration.png
+[img-checking-attacks]:             ../../../../images/admin-guides/test-attacks-quickstart.png
 
 
 # GCP üzerinde gelen isteklerin yük dengelenmesini yapılandırma

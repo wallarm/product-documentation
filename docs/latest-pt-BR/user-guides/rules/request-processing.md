@@ -20,7 +20,7 @@ A saída dos interpretadores se torna um conjunto adicional de parâmetros que t
 
     Por exemplo, se um ataque foi detectado no cabeçalho `SOAPACTION`:
 
-    ![Exemplo de etiqueta](../../images/user-guides/rules/tags-example.png)
+    ![Exemplo de etiqueta](../../../images/user-guides/rules/tags-example.png)
 
 ### URL
 
@@ -257,7 +257,7 @@ p1=1&p2[a]=2&p2[b]=3&p3[]=4&p3[]=5&p4=6&p4=7
 * `[post, form_urlencoded, 'p4', array, 1]` — `7`
 * `[post, form_urlencoded, 'p4', poluição]` — `6,7`
 
-#### grpc <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;height: 21px;margin-bottom: -4px;"></a>
+#### grpc <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;height: 21px;margin-bottom: -4px;"></a>
 
 Interpreta solicitações de API gRPC, e pode ser aplicado apenas ao corpo da solicitação.
 
@@ -332,7 +332,7 @@ Ao definir um elemento de solicitação a [regra](rules.md) é aplicada a:
 * Escolha primeiro o interpretador da parte da solicitação contendo o JWT
 * Especifique um dos parâmetros `jwt_*` listados como o valor do interpretador `jwt`, por exemplo, para o valor do parâmetro `name` na carga JWT:
 
-![Descrição do parâmetro JWT em uma regra](../../images/user-guides/rules/request-element-desc.png)
+![Descrição do parâmetro JWT em uma regra](../../../images/user-guides/rules/request-element-desc.png)
 
 ### Normas
 

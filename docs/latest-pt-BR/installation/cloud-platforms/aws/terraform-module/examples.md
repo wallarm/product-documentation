@@ -14,7 +14,7 @@ Existem 4 exemplos representando abordagens frequentes de implementação:
 
 A solução proxy Wallarm fornece uma camada de rede funcional adicional que atua como um roteador de tráfego HTTP avançado com as funções de segurança do Next-Gen WAF e API. Esta é a opção de implantação **recomendada**, pois oferece a solução mais funcional e fácil de implementar.
 
-![Esquema Proxy](../../../../images/waf-installation/aws/terraform/wallarm-as-proxy.png)
+![Esquema Proxy](../../../../../images/waf-installation/aws/terraform/wallarm-as-proxy.png)
 
 Características principais da solução:
 
@@ -45,7 +45,7 @@ A solução proxy Wallarm fornece uma camada de rede funcional adicional que atu
 
 [Este exemplo](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/mirror) demonstra como implantar o módulo Terraform Wallarm como uma solução Out-of-Band analisando o tráfego espelhado. Espera-se que o NGINX, Envoy, Istio e/ou Traefik já forneçam espelhamento de tráfego.
 
-![Esquema Espelho](../../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
+![Esquema Espelho](../../../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
 
 Características principais da solução:
 

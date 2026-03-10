@@ -1,6 +1,6 @@
 [api-discovery-enable-link]:        ../api-discovery/setup.md
 
-# GraphQL API Protection <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# GraphQL API Protection <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm detects regular attacks (SQLi, RCE, [etc.](../attacks-vulns-list.md)) in GraphQL [by default](../user-guides/rules/request-processing.md#gql) even under the basic [WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription plan. However, some aspects of the protocol allow implementing [GraphQL-specific](../attacks-vulns-list.md#graphql-attacks) attacks related to excessive information exposure and DoS. This document describes how to use Wallarm to protect your APIs from these attacks by setting **GraphQL policy** - a set of limits for the GraphQL requests.
 
@@ -24,7 +24,7 @@ Depending on your subscription plan, one of the following configuration methods 
 * Mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription)
 * Rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription)
 
-## Mitigation control-based protection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Mitigation control-based protection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;"></a>
 
 !!! tip ""
     Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.2.0 or higher or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.15.1 or higher.
@@ -65,7 +65,7 @@ To set and apply GraphQL policy:
 
     By default, a policy sets maximum POST request query size to 100 KB, value size to 10 KB, query depth and batched query limits to 10, aliases to 5, plus deny introspection and debug queries as displayed on the screenshot (note that you can change default values to your own considering statistics of your common legitimate GraphQL queries):
         
-    ![GraphQL thresholds](../images/api-protection/mitigation-controls-graphql.png)
+    ![GraphQL thresholds](../../images/api-protection/mitigation-controls-graphql.png)
 
 1. In the **Mitigation mode** section, set action to be done.
 1. Click **Add**.
@@ -74,7 +74,7 @@ To set and apply GraphQL policy:
 
 You can explore GraphQL policy violations (GraphQL attacks) in Wallarm Console → **Attacks** section. Use the GraphQL specific [search keys](../user-guides/search-and-filters/use-search.md#graphql-tags) or corresponding filters:
 
-![GraphQL attacks](../images/user-guides/rules/graphql-attacks.png)-->
+![GraphQL attacks](../../images/user-guides/rules/graphql-attacks.png)-->
 
 ### Mitigation control examples
 
@@ -86,11 +86,11 @@ To do so:
 
 1. Set the **GraphQL API protection** mitigation control as displayed on the screenshot (note that these are the example values - for the real-life rules you should define your own values considering statistics of your common legitimate GraphQL queries):
 
-    ![GraphQL Policy for your endpoints](../images/api-protection/mitigation-controls-graphql-1.png)
+    ![GraphQL Policy for your endpoints](../../images/api-protection/mitigation-controls-graphql-1.png)
 
 1. As filtration mode for `example.com` is `monitoring` and you want `block` for its GraphQL endpoints, configure the **Override filtration mode** rule as displayed on the screenshot:
 
-    ![GraphQL policy blocking action](../images/user-guides/rules/graphql-rule-1-action.png)
+    ![GraphQL policy blocking action](../../images/user-guides/rules/graphql-rule-1-action.png)
 
 #### Altering policy for specific endpoints
 
@@ -100,11 +100,11 @@ To do so:
 
 1. Set the **GraphQL API protection** mitigation control as displayed on the screenshot (note that these are the example values - for the real-life rules you should define your own values considering statistics of your common legitimate GraphQL queries):
 
-    ![GraphQL stricter policy for child endpoint](../images/api-protection/mitigation-controls-graphql-2.png)
+    ![GraphQL stricter policy for child endpoint](../../images/api-protection/mitigation-controls-graphql-2.png)
 
 1. As filtration mode for `example.com/graphql` is `block` and you want `monitoring` for `example.com/graphql/v2`, configure the **Override filtration mode** rule as displayed on the screenshot:
 
-    ![GraphQL policy blocking action](../images/user-guides/rules/graphql-rule-2-action.png)
+    ![GraphQL policy blocking action](../../images/user-guides/rules/graphql-rule-2-action.png)
 
 ## Rule-based protection
 

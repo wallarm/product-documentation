@@ -6,7 +6,7 @@
 [mc-link]:                          ../about-wallarm/protecting-against-attacks.md#mitigation-controls      
 [specific module settings-link]:    ../about-wallarm/protecting-against-attacks.md#specific-module-settings
 [filtration-mode-link]:             ../admin-en/configure-wallarm-mode.md
-[attack-handling-process-img]:      ../images/about-wallarm-waf/overview/attack-handling-diagram.png
+[attack-handling-process-img]:      ../../images/about-wallarm-waf/overview/attack-handling-diagram.png
 [applications-link]:                ../user-guides/settings/applications.md         
 
 # Detection Tools Troubleshooting
@@ -30,7 +30,7 @@ To detect and handle attacks, Wallarm uses the following process:
 1. Makes a decision whether the request is a part of attack or not based on basic detectors, custom rules and specific module settings.
 1. Handles request in accordance with decision and filtration mode.
 
-![Attack handling process - diagram](../images/about-wallarm-waf/overview/attack-handling-diagram.png)
+![Attack handling process - diagram](../../images/about-wallarm-waf/overview/attack-handling-diagram.png)
 
 Note that rules, settings and filtration mode can be inherited from the parent endpoint or [application](../user-guides/settings/applications.md). More specific has priority.
 
@@ -65,7 +65,7 @@ Note that:
     * Besides inheritance, use [variability](../user-guides/rules/rules.md#using-wildcards) with wildcards or regular expressions, but remember your should use **wildcards** in URI field only.
 
         ??? info "Show where to use wildcards"
-            ![Wildcards - correct/incorrect usage](../images/user-guides/rules/wildcards-correct-incorrect.png)
+            ![Wildcards - correct/incorrect usage](../../images/user-guides/rules/wildcards-correct-incorrect.png)
 
 * Disable rules instead of deleting them. You can adjust and re-activate them later if you want.
 * [Filtration modes](../admin-en/configure-wallarm-mode.md) other than `off` affect only input validation attacks, but `off` turns off **everything** for the selected scope.

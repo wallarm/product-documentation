@@ -2,11 +2,11 @@
 [link-integrations-intro]:              ../user-guides/settings/integrations/integrations-intro.md
 [link-integrations-email]:              ../user-guides/settings/integrations/email.md#setting-up-integration
 
-# API Attack Surface Discovery <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
+# API Attack Surface Discovery <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
 Wallarm'ın [API Attack Surface Management](overview.md) çözümünün bir bileşeni olan **API Attack Surface Discovery** (**AASD**), seçtiğiniz alan adlarını tarayarak tüm harici host'larını ve bunların API'lerini keşfeder, Web ve API tabanlı saldırılara karşı korumalarını değerlendirir ve eksik WAF/WAAP çözümlerini belirler. Wallarm içinde abone olarak çalışır - herhangi bir şey dağıtmanız gerekmez. Bu makale bileşene genel bir bakış sunar.
 
-![API Attack Surface Discovery](../images/api-attack-surface/aasm-api-surface.png)
+![API Attack Surface Discovery](../../images/api-attack-surface/aasm-api-surface.png)
 
 ## Ele alınan konular
 
@@ -38,7 +38,7 @@ Tüm bunlara Wallarm içinde bileşene abone olarak sahip olursunuz - herhangi b
 
 API Attach Surface Discovery (AASD) yetenekleri, eski Wallarm Scanner'ın tüm işlevselliğini kapsadığından ve - [Security Issues](security-issues.md) ile birlikte - çok daha fazlasını sunduğundan, 7 Mayıs 2025 itibarıyla Scanner devre dışı bırakılmıştır.
 
-![Old Scanner](../images/user-guides/scanner/check-scope.png)
+![Old Scanner](../../images/user-guides/scanner/check-scope.png)
 
 Eski Scanner'ın devre dışı bırakılması şunları içerir:
 
@@ -67,7 +67,7 @@ Alan adlarınız için host'lar bulunduğunda, Wallarm Console içinde **API Att
 
 Wallarm, harici ağ çevrenizin security posture durumunu otomatik olarak değerlendirir ve durumunu 0 (en kötü) ile 100 (en iyi) koruma arasında **Total score** olarak yansıtır.
 
-![API yüzeyi - koruma skoru](../images/api-attack-surface/aasm-api-surface-protection-score.png)
+![API yüzeyi - koruma skoru](../../images/api-attack-surface/aasm-api-surface-protection-score.png)
 
 Toplam skor, aşağıdakileri içeren karmaşık, tescilli bir formülle hesaplanır:
 
@@ -98,7 +98,7 @@ Bunun yanı sıra, API yüzeyiniz hakkında tablo görünümünde (CSV) bilgi al
 * Portlar (her port için bir satır)
 * API'ler (her API için bir satır)
 
-![API yüzeyi - raporlar](../images/api-attack-surface/aasm-reports.png)
+![API yüzeyi - raporlar](../../images/api-attack-surface/aasm-reports.png)
 
 Bir diğer seçenek de, makine tarafından okunabilir formatta API yüzeyi hakkında bilgiler içeren JSON rapordur.
 

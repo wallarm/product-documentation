@@ -1,4 +1,4 @@
-# API Discoveryのセットアップ <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discoveryのセットアップ <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 この記事では、[API Discovery](overview.md)モジュールを有効化、構成、デバッグする方法を説明します。
 
@@ -27,7 +27,7 @@ API Discoveryモジュールを有効化すると、トラフィック解析とA
 
 1. Wallarm Console → **API Discovery** → **Configure API Discovery**で、必要なアプリケーションに対してAPI Discoveryを有効化します。
 
-    ![API Discovery – Settings](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
+    ![API Discovery – Settings](../../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
 
 **Settings** → **[Applications](../user-guides/settings/applications.md)**で新しいアプリケーションを追加すると、**disabled**の状態でAPI Discoveryの対象アプリケーション一覧に自動的に追加されます。
 

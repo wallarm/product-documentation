@@ -6,7 +6,7 @@ Trafik yansıtma, gelen özgün trafiğin paralel olarak birden fazla backend'e 
 
 Yansıtma seçeneği etkinleştirilmiş trafik akış diyagramı örneği:
 
-![Yansıtma şeması](../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
+![Yansıtma şeması](../../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
 
 ## Yaklaşımın kullanım senaryaları
 

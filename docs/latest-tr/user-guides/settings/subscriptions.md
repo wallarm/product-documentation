@@ -11,7 +11,7 @@ Wallarm Console içindeki **Settings** → **Subscriptions** bölümü, Wallarm 
 * Filtreleme düğümü tarafından işlenen isteklere ilişkin istatistikler
 * Abonelik planına dahil edilen modül ve özelliklerin kümesi (küme, seçilen abonelik planına bağlıdır)
 
-![Ücretli abonelik planı](../../images/user-guides/settings/subscriptions/subscriptions.png)
+![Ücretli abonelik planı](../../../images/user-guides/settings/subscriptions/subscriptions.png)
 
 Bir aboneliği etkinleştirmek, iptal etmek veya değiştirmek için lütfen [sales@wallarm.com](mailto:sales@wallarm.com) adresine bir talep gönderin.
 

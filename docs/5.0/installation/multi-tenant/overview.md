@@ -48,7 +48,7 @@ Tenant accounts are characterised by the following:
 
 Tenant accounts are created according to the following structure:
 
-![!Tenant account structure](../../images/partner-waf-node/accounts-scheme.png)
+![!Tenant account structure](../../../images/partner-waf-node/accounts-scheme.png)
 
 * **Global account** is used only to group tenant accounts by a partner or a client.
 * **Technical tenant account** is used to add [global users](../../user-guides/settings/users.md#user-roles) providing them with access to tenant accounts. Global users are usually employees of Wallarm partner companies or Wallarm clients using multitenancy for isolated environments.
@@ -63,7 +63,7 @@ Tenant accounts are created according to the following structure:
 * Monitor tenants' [subscriptions and quotas](../../about-wallarm/subscription-plans.md).
 * [Migrate rules](#migrating-rules) between tenants (global **administrators**)
 
-![!Tenant selector in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console.png)
+![!Tenant selector in Wallarm Console](../../../images/partner-waf-node/clients-selector-in-console.png)
 
 * `Technical tenant` is a technical tenant account
 * `Tenant 1` and `Tenant 2` are tenant accounts
@@ -104,7 +104,7 @@ To migrate rules between tenants:
 1. Click **Migrate rules**, select **target** tenant by name or ID.
 1. If necessary, configure mappings (for [applications](../../user-guides/settings/applications.md) and/or domains).
 
-    ![!Migrating rules between tenants](../../images/partner-waf-node/migrating-rules-between-tenants.png)
+    ![!Migrating rules between tenants](../../../images/partner-waf-node/migrating-rules-between-tenants.png)
 
 1. Start rules migration. Lock page is displayed for all copied sections in **source** and **target**. Progress is displayed. On finish, notification about result is displayed.
 1. If mappings were used, check they worked as expected.

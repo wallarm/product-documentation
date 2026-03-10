@@ -1,4 +1,4 @@
-# API Sessions Setup <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Sessions Setup <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 [API Sessions](overview.md) include the built-in rules for the session identification and requires only enabled Wallarm [node](../about-wallarm/overview.md#how-wallarm-works) to start working. Optionally, you can fine-tune API Sessions under your needs as described in this article.
 
@@ -15,7 +15,7 @@ By default, sessions are identified with the **built-in set** of such parameters
 
 You can add several grouping keys, they are tried in [specified order](#example-of-how-grouping-keys-work) - next is tried only if previous did not work. Drag to change the order. You own keys are always tried before the built-in ones.
 
-![!API Sessions - Configuration](../images/api-sessions/api-sessions-settings.png)
+![!API Sessions - Configuration](../../images/api-sessions/api-sessions-settings.png)
 
 Consider the following:
 
@@ -50,7 +50,7 @@ To add grouping keys from recommendations:
 1. Drag and drop to define order (priority) - see [example](#example-of-how-grouping-keys-work).
 1. **Save** changes.
 
-![!API Sessions - Recommendations](../images/api-sessions/api-sessions-settings-recommendations.png)
+![!API Sessions - Recommendations](../../images/api-sessions/api-sessions-settings-recommendations.png)
 
 #### Adding from API Discovery
 
@@ -62,7 +62,7 @@ Wallarm's [API Discovery](../api-discovery/overview.md) automatically finds your
 
     The API Discovery configuration dialog is displayed with your parameter added as a grouping key.
 
-    ![!API Discovery - adding grouping keys to API Sessions](../images/api-sessions/api-sessions-grouping-keys-add-from-apid.png)
+    ![!API Discovery - adding grouping keys to API Sessions](../../images/api-sessions/api-sessions-grouping-keys-add-from-apid.png)
 
 1. If necessary, adjust grouping key order ([changes priority](#example-of-how-grouping-keys-work)).
 1. Save changes.
@@ -86,7 +86,7 @@ You can configure 3 parameters to be used as grouping keys (for response body, g
 3. `REQUEST → BODY → JSON → PROPERTY → token`
 4. (built-in set, will be used if none of previous work)
 
-![!API Sessions - example of grouping keys in work](../images/api-sessions/api-sessions-grouping-keys.png)
+![!API Sessions - example of grouping keys in work](../../images/api-sessions/api-sessions-grouping-keys.png)
 
 Requests:
 
@@ -113,7 +113,7 @@ In **API Sessions**, within session, the request details by default include:
 
 You can add any additional (context) [parameters](../user-guides/rules/request-processing.md) both for requests and for their related responses, that you need to understand the session content: what and in what order the actor did and what the response was. To do so, add these parameters in Wallarm Console → **API Sessions** → **Session context parameters**. Once added, Wallarm will export them to the Wallarm Cloud and [display](#data-protection) in Wallarm Console, in details of your session requests (in the **API session parameters** group).
 
-![!API Sessions - context parameters](../images/api-sessions/api-sessions-context-parameters.png)
+![!API Sessions - context parameters](../../images/api-sessions/api-sessions-context-parameters.png)
 
 Here are some examples:
 
@@ -145,25 +145,25 @@ Getting the username out of the `jwt_payload` of the request:
 
 ... looks like:
 
-![!API Sessions - context parameters - example - JWT](../images/api-sessions/api-sessions-context-parameters-example-jwt.png)
+![!API Sessions - context parameters - example - JWT](../../images/api-sessions/api-sessions-context-parameters-example-jwt.png)
 
 Getting the `email` parameter from the request body:
 
-![!API Sessions - context parameters - example - request](../images/api-sessions/api-sessions-context-parameters-example-request.png)
+![!API Sessions - context parameters - example - request](../../images/api-sessions/api-sessions-context-parameters-example-request.png)
 
 Getting the `product_id` parameter form the response body:
 
-![!API Sessions - context parameters - example - response](../images/api-sessions/api-sessions-context-parameters-example-response.png)
+![!API Sessions - context parameters - example - response](../../images/api-sessions/api-sessions-context-parameters-example-response.png)
 
 Getting JWT token from the request header:
 
-![!API Sessions - context parameters - example - header](../images/api-sessions/api-sessions-context-parameters-example-header.png)
+![!API Sessions - context parameters - example - header](../../images/api-sessions/api-sessions-context-parameters-example-header.png)
 
 <!--### Sensitive business flows
 
 You can associate sessions with sensitive business flows. To do so, in Wallarm Console → **API Sessions** → **Session context parameters**, add your parameter and select **Context** for it.
 
-![!API Sessions - sensitive business flows](../images/api-sessions/api-sessions-sbf-select.png)
+![!API Sessions - sensitive business flows](../../images/api-sessions/api-sessions-sbf-select.png)
 -->
 
 ### Simplified selection
@@ -177,11 +177,11 @@ In API Sessions, selecting parameters is simplified compared to how they are sel
 
 For example, what in Rules would be:
 
-![!Rules - parameter selection as opposed to API Sessions](../images/api-sessions/rules-parameters-example-request.png)
+![!Rules - parameter selection as opposed to API Sessions](../../images/api-sessions/rules-parameters-example-request.png)
 
 ...in API Sessions will be:
 
-![!API Sessions - context parameters - example - request](../images/api-sessions/api-sessions-context-parameters-example-request.png)
+![!API Sessions - context parameters - example - request](../../images/api-sessions/api-sessions-context-parameters-example-request.png)
 
 ### Simplest selection
 
@@ -198,11 +198,11 @@ In this scenario, you do not to think or care about specifying path to your para
 
 You can highlight session parameters, that should be used for naming the session user and its role. To do so, in Wallarm Console → **API Sessions** → **Session context parameters**, add your parameter, then from **Type**, select `User` or `Role`.
 
-![!API Sessions - user and user role setup](../images/api-sessions/api-sessions-user-role-select.png)
+![!API Sessions - user and user role setup](../../images/api-sessions/api-sessions-user-role-select.png)
 
 Once you configured parameters to be used for user and his/her role identification, these parameters are started to be filled for the sessions. You can filter sessions by users and roles.
 
-![!API Sessions - user and user role display](../images/api-sessions/api-sessions-user-role-display.png)
+![!API Sessions - user and user role display](../../images/api-sessions/api-sessions-user-role-display.png)
 
 
 ## Enabling JA3 fingerprinting

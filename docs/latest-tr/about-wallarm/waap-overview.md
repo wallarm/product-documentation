@@ -2,13 +2,13 @@
 
 Wallarm Cloud-Native WAAP (Web Uygulaması ve API Koruması), herhangi bir müşteri ortamındaki uygulamalar ve API'ler için gelişmiş koruma sağlar. Wallarm'ın WAAP'i REST, SOAP, GraphQL ve diğerleri gibi birden çok API protokolünü destekler ve [OWASP Top 10](https://owasp.org/www-project-top-ten/) ve daha fazlasını tam kapsam altına almak için derin paket incelemesi uygular. WAAP, 0-day'ler dahil [çeşitli tehditleri](../attacks-vulns-list.md) yüksek doğrulukla tespit eder ve [yalancı pozitiflerin](../about-wallarm/protecting-against-attacks.md#false-positives) sayısını düşük tutar. Bu da altyapınızı hızlı ve etkili bir şekilde korumanızı sağlar.
 
-![Protokollere göre saldırılar](../images/user-guides/dashboard/api-protocols.png)
+![Protokollere göre saldırılar](../../images/user-guides/dashboard/api-protocols.png)
 
 ## Genel ilkeler
 
 Trafik iki bileşen tarafından işlenir: Wallarm filtering nodes ve Wallarm Cloud. Wallarm filtering nodes müşteri altyapısına kuruludur ve trafiği analiz edip saldırıları engellemekten sorumludur. Toplanan saldırı istatistikleri istatistiksel analiz ve olay işleme için Wallarm Cloud'a gönderilir. Wallarm Cloud ayrıca merkezi yönetimden ve diğer güvenlik araçlarıyla entegrasyondan sorumludur.
 
-![!Mimari şema1](../images/about-wallarm-waf/overview/filtering-node-cloud.png)
+![!Mimari şema1](../../images/about-wallarm-waf/overview/filtering-node-cloud.png)
 
 Wallarm, [genel bulut](../installation/supported-deployment-options.md), şirket içi, tam SaaS kurulumları ve Kubernetes, Gateway APIs, [Security Edges](../installation/security-edge/overview.md) vb. ile entegrasyon dahil olmak üzere çeşitli kurulum seçeneklerini destekler. Wallarm filtering nodes, ihtiyaçlarınıza ve altyapınıza bağlı olarak ya [hat içi](../installation/inline/overview.md) ya da [bant dışı](../installation/oob/overview.md) konuşlandırılabilir. Esnek güvenlik politikası yapılandırma seçenekleri, [modlar](../admin-en/configure-wallarm-mode.md) arasında izleme ile engelleme arasında hızlıca geçiş yapmanıza olanak tanıyarak meşru trafiğin engellenmesi korkusunu ortadan kaldırır.
 

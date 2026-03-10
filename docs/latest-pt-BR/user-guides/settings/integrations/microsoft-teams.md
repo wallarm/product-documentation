@@ -11,7 +11,7 @@ Você pode configurar o Wallarm para enviar notificações para o(s) seu(s) cana
 1. Copie a URL do Webhook fornecida e cole o valor no campo **URL do Webhook** no Console Wallarm.
 1. Escolha os tipos de eventos para acionar notificações.
 
-      ![Integração MS Teams](../../../images/user-guides/settings/integrations/add-ms-teams-integration.png)
+      ![Integração MS Teams](../../../../images/user-guides/settings/integrations/add-ms-teams-integration.png)
     
       Detalhes sobre os eventos disponíveis:
       

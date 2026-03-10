@@ -1,4 +1,4 @@
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [custom-blocking-page-docs]:        ../../admin-en/configuration-guides/configure-block-page-and-code.md
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [multitenancy-overview]:            ../multi-tenant/overview.md
@@ -13,7 +13,7 @@ Wallarm, trafiği [bant dışı (OOB)](../oob/overview.md) olarak analiz etmek �
 
 Entegrasyon, trafiğin yansıtılması ve Wallarm node’u ile iletişimi yönetmek için Envoy proxy içerisinde dağıtılan bir Lua eklentisine dayanır.
 
-![Wallarm eklentisi ile Istio](../../images/waf-installation/gateways/istio/traffic-flow-oob.png)
+![Wallarm eklentisi ile Istio](../../../images/waf-installation/gateways/istio/traffic-flow-oob.png)
 
 ## Kullanım senaryoları
 

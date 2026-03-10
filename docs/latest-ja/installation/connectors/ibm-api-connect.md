@@ -1,7 +1,7 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/waf-installation/gateways/ibm/test-attack-ui.png
+[attacks-in-ui-image]:              ../../../images/waf-installation/gateways/ibm/test-attack-ui.png
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
-[se-connector-setup-img]:           ../../images/waf-installation/se-connector-setup.png
+[se-connector-setup-img]:           ../../../images/waf-installation/se-connector-setup.png
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
@@ -18,7 +18,7 @@ WallarmをIBM API Connectと統合するには、外部にWallarm Nodeをデプ�
 
 IBM API Connect向けWallarmコネクタは[インライン](../inline/overview.md)トラフィック解析のみをサポートします:
 
-![](../../images/waf-installation/gateways/ibm/ibm-traffic-flow-inline.png)
+![](../../../images/waf-installation/gateways/ibm/ibm-traffic-flow-inline.png)
 
 !!! info "API仕様に一致するリクエスト"
     IBM API Connectの動作により、定義されたOpenAPIのパスに一致するリクエストのみがWallarm Nodeによって検査されます。

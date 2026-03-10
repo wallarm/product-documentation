@@ -11,7 +11,7 @@
 1. 提供されたWebhook URLをコピーし、Wallarm UIの**Webhook URL**フィールドに値を貼り付けます。
 1. 通知をトリガーするイベントタイプを選択します。
 
-    ![Slack integration](../../../images/user-guides/settings/integrations/add-slack-integration.png)
+    ![Slack integration](../../../../images/user-guides/settings/integrations/add-slack-integration.png)
 
     利用可能なイベントの詳細:
       
@@ -43,7 +43,7 @@
 
 保護対象リソースに2件以上のSQLi [hits](../../../glossary-en.md#hit)が送られた場合、このイベントに関する通知がSlackチャンネルに送信されます。
 
-![Slackに通知を送信するトリガーの例](../../../images/user-guides/triggers/trigger-example1.png)
+![Slackに通知を送信するトリガーの例](../../../../images/user-guides/triggers/trigger-example1.png)
 
 **トリガーをテストするには:**
 
@@ -81,16 +81,16 @@ Cloud: EU
 
 Wallarm Consoleの会社アカウントに**Administrator**または**Analyst**ロールの新しいユーザーが追加されると、このイベントに関する通知がintegrationに指定したメールアドレスとSlackチャンネルに送信されます。
 
-![Slackおよびメールで通知を送信するトリガーの例](../../../images/user-guides/triggers/trigger-example2.png)
+![Slackおよびメールで通知を送信するトリガーの例](../../../../images/user-guides/triggers/trigger-example2.png)
 
 **トリガーをテストするには:**
 
 1. Wallarm Consoleで**Settings** → **Users**を開き、新しいユーザーを追加します。例:
 
-    ![追加したユーザー](../../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)
+    ![追加したユーザー](../../../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)
 2. メールの受信トレイを開き、次のメッセージが受信されていることを確認します:
 
-    ![新規ユーザー追加に関するメール](../../../images/user-guides/triggers/test-new-user-email-message.png)
+    ![新規ユーザー追加に関するメール](../../../../images/user-guides/triggers/test-new-user-email-message.png)
 3. Slackチャンネルを開き、次のとおりユーザー**wallarm**からの通知が受信されていることを確認します:
 
     ```

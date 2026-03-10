@@ -231,7 +231,7 @@ Felaket Kurtarma planlaması için Wallarm, aşağıdaki mimarinin uygulanmasın
 * Veriler DR sahasına düzenli olarak (en az günlük) çoğaltılsa da, çoğaltma gerçek zamanlı değildir.
 * Normalde, DR sahası yalnızca blok depolama sistemini çalıştırır ve hiçbir veritabanı veya Wallarm Cloud yazılım bileşenini çalıştırmaz; bu nedenle DR örneği ek yeniden yapılandırma adımları olmadan herhangi bir hizmet sunamaz.
 
-![!](../../images/waf-installation/on-premise/backup-dr.png)
+![!](../../../images/waf-installation/on-premise/backup-dr.png)
 
 Şu anda, Wallarm Cloud yazılımı birincil saha kesintisi durumunda DR sahasına otomatik geçişi desteklememektedir. Aşağıda manuel DR geçiş sürecine üst düzey bir bakış verilmiştir:
 

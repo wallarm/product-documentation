@@ -1,4 +1,4 @@
-[img-custom-report]:        ../../images/user-guides/search-and-filters/custom-report.png
+[img-custom-report]:        ../../../images/user-guides/search-and-filters/custom-report.png
 [link-using-search]:        use-search.md
 
 # Creating Reports

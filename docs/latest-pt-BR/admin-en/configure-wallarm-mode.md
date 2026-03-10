@@ -99,7 +99,7 @@ Na guia **Geral**, você pode especificar um dos seguintes modos de filtração:
 * [**Bloqueio seguro**](#available-filtration-modes)
 * [**Bloqueio**](#available-filtration-modes)
     
-![A guia de configurações gerais](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
+![A guia de configurações gerais](../../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
 
 !!! info "A sincronização do Cloud Wallarm e do nó de filtragem"
     As regras definidas no Console Wallarm são aplicadas durante o processo de sincronização do Cloud Wallarm e do nó de filtragem, que é realizado a cada 2-4 minutos.

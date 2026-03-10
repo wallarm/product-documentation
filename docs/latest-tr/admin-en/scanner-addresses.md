@@ -1,7 +1,7 @@
 [file-ips-list-us]: ../downloads/scanner-ip-addresses-us.txt
 [file-ips-list-eu]: ../downloads/scanner-ip-addresses-eu.txt
 
-# Güvenlik Açığı Tarama IP'leri <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Güvenlik Açığı Tarama IP'leri <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Bu belge, Wallarm'ın [API Attack Surface Management](../api-attack-surface/security-issues.md) ve [Threat Replay Testing](../vulnerability-detection/threat-replay-testing/overview.md) ile şirket kaynaklarını güvenlik açıkları açısından taradığı, entegre WAAP çözümleri ve güvenlik duruşunu değerlendirdiği US Cloud ve EU Cloud için IP adresi listelerini sağlar.
 

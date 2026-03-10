@@ -14,7 +14,7 @@
 1. اختر تواتر إرسال التقارير الأمنية. إذا لم يتم اختيار تواتر، فلن يتم إرسال التقارير.
 1. اختر أنواع الأحداث لتشغيل الإشعارات.
 
-    ![تكامل تيليجرام](../../../images/user-guides/settings/integrations/add-telegram-integration.png)
+    ![تكامل تيليجرام](../../../../images/user-guides/settings/integrations/add-telegram-integration.png)
 
     تفاصيل عن الأحداث المتاحة:
 

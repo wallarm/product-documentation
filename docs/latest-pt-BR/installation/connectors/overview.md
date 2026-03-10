@@ -8,7 +8,7 @@ A solução envolve a implantação do nó Wallarm externamente e a injeção de
 
 O seguinte esquema demonstra o fluxo de tráfego de alto nível no [modo](../../admin-en/configure-wallarm-mode.md) de bloqueio Wallarm:
 
-![imagem](../../images/waf-installation/general-traffic-flow-for-connectors.png)
+![imagem](../../../images/waf-installation/general-traffic-flow-for-connectors.png)
 
 O tráfego é analisado em linha, o script Wallarm injetado captura solicitações e as encaminha para o nó para análise. Dependendo da resposta do nó, as atividades maliciosas são bloqueadas e apenas solicitações legítimas têm permissão para acessar as APIs.
 

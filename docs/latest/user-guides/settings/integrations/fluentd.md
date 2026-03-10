@@ -99,7 +99,7 @@ You will find more details in the [official Fluentd documentation](https://docs.
     --8<-- "../include/integrations/webhook-advanced-settings.md"
 1. Choose event types to trigger notifications.
 
-    ![Fluentd integration](../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+    ![Fluentd integration](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
     Details on available events:
 
@@ -168,7 +168,7 @@ You will find more details in the [official Fluentd documentation](https://docs.
 
 For example:
 
-![Webhook flow](../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
+![Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
 
 To log Wallarm events using this scheme:
 

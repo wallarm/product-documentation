@@ -1,7 +1,7 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
-[se-connector-setup-img]:           ../../images/waf-installation/se-connector-setup.png
+[se-connector-setup-img]:           ../../../images/waf-installation/se-connector-setup.png
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
@@ -22,9 +22,9 @@ To use Wallarm as a connector for Cloudflare, you need to **deploy the Wallarm N
 
     If Wallarm is configured to block malicious activity:
 
-    ![Cloudflare with Wallarm - in-line scheme](../../images/waf-installation/gateways/cloudflare/cloudflare-traffic-flow-inline.png)
+    ![Cloudflare with Wallarm - in-line scheme](../../../images/waf-installation/gateways/cloudflare/cloudflare-traffic-flow-inline.png)
 === "Out-of-band traffic flow"
-    ![Cloudflare with Wallarm - out-of-band scheme](../../images/waf-installation/gateways/cloudflare/cloudflare-traffic-flow-oob.png)
+    ![Cloudflare with Wallarm - out-of-band scheme](../../../images/waf-installation/gateways/cloudflare/cloudflare-traffic-flow-oob.png)
 
 ## Use cases
 
@@ -72,13 +72,13 @@ To run a Cloudflare worker routing traffic to the Wallarm Node:
 1. If using [asynchronous (out-of-band)](../oob/overview.md) mode, set the `wallarm_mode` parameter to `async`.
 1. If required, modify [other parameters](cloudflare.md#configuration-options).
 
-    ![Cloudflare worker](../../images/waf-installation/gateways/cloudflare/worker-deploy.png)
+    ![Cloudflare worker](../../../images/waf-installation/gateways/cloudflare/worker-deploy.png)
 1. In **Website** → your domain, go to **Workers Routes** → **Add route**:
 
     * In **Route**, specify the paths to be routed to Wallarm for analysis (e.g., `*.example.com/*` for all paths).
     * In **Worker**, select the Wallarm worker you created.
 
-    ![Cloudflare add route](../../images/waf-installation/gateways/cloudflare/add-route.png)
+    ![Cloudflare add route](../../../images/waf-installation/gateways/cloudflare/add-route.png)
 
 ## Testing
 
@@ -112,7 +112,7 @@ In the worker code, you can specify the following parameters:
 ??? info "Show Wallarm-provided error page"
     The Wallarm-provided error page returned with HTTP 403 responses looks as follows:
 
-    ![Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+    ![Wallarm blocking page](../../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
 ## Upgrading the Cloudflare worker
 

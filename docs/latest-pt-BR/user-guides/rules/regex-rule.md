@@ -1,8 +1,8 @@
 [link-regex]:       https://github.com/yandex/pire
 
-[img-regex-example1]:       ../../images/user-guides/rules/regex-rule-1.png
-[img-regex-example2]:       ../../images/user-guides/rules/regex-rule-2.png
-[img-regex-id]:             ../../images/user-guides/rules/regex-id.png
+[img-regex-example1]:       ../../../images/user-guides/rules/regex-rule-1.png
+[img-regex-example2]:       ../../../images/user-guides/rules/regex-rule-2.png
+[img-regex-id]:             ../../../images/user-guides/rules/regex-id.png
 
 # Regras de Detecção Definidas pelo Usuário
 
@@ -59,7 +59,7 @@ Uma das maneiras de explorar a vulnerabilidade 0-day no [Spring Core Framework](
 
 Se você usar o Spring Core Framework vulnerável e o [modo](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) do nó Wallarm for diferente de bloqueio, você pode prevenir a exploração da vulnerabilidade usando o patch virtual. A seguinte regra bloqueará todas as solicitações com parâmetros de corpo listados até mesmo nos modos de monitoramento e bloqueio seguro:
 
-![Virtual patch for specific post params](../../images/user-guides/rules/regexp-rule-post-params-spring.png)
+![Virtual patch for specific post params](../../../images/user-guides/rules/regexp-rule-post-params-spring.png)
 
 O valor do campo de expressão regular é:
 
@@ -77,7 +77,7 @@ O componente Spring Cloud Function tem a vulnerabilidade ativa (CVE-2022-22963) 
 
 Se usar este componente e o [modo](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) do nó Wallarm for diferente de bloqueio, você pode evitar a exploração da vulnerabilidade usando o patch virtual. A seguinte regra bloqueará todas as solicitações contendo o cabeçalho `CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION`:
 
-![Virtual patch for specific header](../../images/user-guides/rules/regexp-rule-header-spring.png)
+![Virtual patch for specific header](../../../images/user-guides/rules/regexp-rule-header-spring.png)
 
 !!! info "Bloqueando solicitações com o cabeçalho `CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION`"
     Esta regra não bloqueia solicitações com o cabeçalho `CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION`, mas o NGINX descarta solicitações com este cabeçalho como inválidas por padrão.

@@ -32,7 +32,7 @@ Filters içinde ayarlanan değerler Search field içinde otomatik olarak çoğal
 
 Mevcut filtreler, Wallarm Console içinde, **Filter** düğmesi kullanılarak genişletilip daraltılan filtreler panelinde sunulur.
 
-![UI'de zafiyet filtreleri](../../images/user-guides/search-and-filters/filters-vuln.png)
+![UI'de zafiyet filtreleri](../../../images/user-guides/search-and-filters/filters-vuln.png)
 
 Farklı filtrelerin değerleri seçildiğinde, sonuçlar bu koşulların tümünü karşılar. Aynı filtre için farklı değerler belirtildiğinde, sonuçlar bu koşullardan herhangi birini karşılar.
 

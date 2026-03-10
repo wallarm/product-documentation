@@ -1,8 +1,8 @@
-# Tracking changes in API <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Tracking changes in API <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 If changes occur in your API, [API Discovery](overview.md) updates the built API inventory, highlights the changes and gives you information on when and what has changed. Additionally, you can set up notifications on all or some of the changes.
 
-![API Discovery - track changes](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
+![API Discovery - track changes](../../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
 
 The company may have several teams, disparate programming languages, and a variety of language frameworks. Thus changes can come to API at any time from different sources which make them difficult to control. For security officers it is important to detect changes as soon as possible and analyze them. If missed, such changes may hold some risks, for example:
 
@@ -31,7 +31,7 @@ In the endpoint list, the following marks highlight the changes in API:
 
 Note that whatever period is selected, if nothing is highlighted with the **New**, **Changed** or **Unused** mark, this means there are no changes in API for that period.
 
-![API Discovery - track changes](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
+![API Discovery - track changes](../../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
 
 Quick tips for endpoints marked as rogue:
 
@@ -64,7 +64,7 @@ You can get messages about new, changed or unused endpoints or about all of thes
 
 In this example, if new endpoints for the `example.com` API host are discovered by the API Discovery module, the notification about this will be sent to your configured Slack channel.
 
-![Changes in API trigger](../images/user-guides/triggers/trigger-example-changes-in-api.png)
+![Changes in API trigger](../../images/user-guides/triggers/trigger-example-changes-in-api.png)
 
 **To test the trigger:**
 

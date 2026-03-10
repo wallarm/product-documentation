@@ -2,7 +2,7 @@
 
 Wallarm provides API-first security for AI systems by protecting AI agents, AI proxies, and APIs with AI features by preventing injection attacks and data leakage, controlling costs, and ensuring secure, compliant operations.
 
-![Agentic AI in work - schema](../images/agentic-ai-protection/agentic-ai-schema.png)
+![Agentic AI in work - schema](../../images/agentic-ai-protection/agentic-ai-schema.png)
 
 ## Common attacks on AI Agents
 
@@ -45,13 +45,13 @@ Wallarm's protection against attacks on AI Agents works in a few simple steps:
 1. Wallarm automatically detects attacks and [performs action](../agentic-ai/ai-payload-inspection.md#mitigation-mode) (just register an attack or perform blocking by IP or session).
 1. Detected and blocked attacks are displayed in [API Sessions](../api-sessions/overview.md). In the malicious request details, the back-link to the policy that caused detection and/or blocking is presented.
 
-![API Sessions - session with detected malicious AI payload](../images/agentic-ai/api-sessions-system-prompt-retrieval.png)
+![API Sessions - session with detected malicious AI payload](../../images/agentic-ai/api-sessions-system-prompt-retrieval.png)
 
 ## Demo
 
 [Explore the Agentic AI attack mitigation demo →](https://rsa-demo-playground.darkmatter.wallarm.tools/)
 
-![Wallarm against attacks on Agentic AI - demo](../images/agentic-ai-protection/agentic-ai-wallarm-demo.png)
+![Wallarm against attacks on Agentic AI - demo](../../images/agentic-ai-protection/agentic-ai-wallarm-demo.png)
 
 This demo demonstrates the following cases:
 

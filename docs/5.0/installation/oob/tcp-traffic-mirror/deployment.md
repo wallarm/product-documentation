@@ -18,7 +18,7 @@ It functions as a mirror target, seamlessly switching between multiple traffic s
 
 Additionally, the solution enables response mirror parsing, providing Wallarm features that rely on response data. These features include [vulnerability detection](../../../about-wallarm/detecting-vulnerabilities.md), [API discovery](../../../api-discovery/overview.md) and more.
 
-![!TCP traffic mirror scheme](../../../images/waf-installation/oob/tcp-mirror-analysis.png)
+![!TCP traffic mirror scheme](../../../../images/waf-installation/oob/tcp-mirror-analysis.png)
 
 ## Requirements
 
@@ -220,7 +220,7 @@ Since the Wallarm solution for TCP traffic mirror analysis operates out-of-band,
 
 To check that the attack has been registered, proceed to Wallarm Console → **Events**:
 
-![!Attacks in the interface](../../../images/waf-installation/epbf/ebpf-attack-in-ui.png)
+![!Attacks in the interface](../../../../images/waf-installation/epbf/ebpf-attack-in-ui.png)
 
 ## Verifying the node operation
 

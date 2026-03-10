@@ -1,5 +1,5 @@
 [user-roles-article]:    ../user-guides/settings/users.md#user-roles
-[img-api-tokens-edit]:   ../images/api-tokens-edit.png
+[img-api-tokens-edit]:   ../../images/api-tokens-edit.png
 
 # Wallarm API genel bakış
 
@@ -18,7 +18,7 @@ API yöntemlerinin açıklaması, Wallarm Console → sağ üst → `?` → **Wa
 * [ABD bulutu](../about-wallarm/overview.md#cloud) için https://apiconsole.us1.wallarm.com/
 * [AB bulutu](../about-wallarm/overview.md#cloud) için https://apiconsole.eu1.wallarm.com/
 
-![Wallarm API Console](../images/wallarm-api-reference.png)
+![Wallarm API Console](../../images/wallarm-api-reference.png)
 
 ## API uç noktası
 

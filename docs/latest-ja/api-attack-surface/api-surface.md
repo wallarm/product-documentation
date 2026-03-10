@@ -2,11 +2,11 @@
 [link-integrations-intro]:              ../user-guides/settings/integrations/integrations-intro.md
 [link-integrations-email]:              ../user-guides/settings/integrations/email.md#setting-up-integration
 
-# API Attack Surface Discovery <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
+# API Attack Surface Discovery <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
 Wallarmの[API Attack Surface Management](overview.md)の**API Attack Surface Discovery**（**AASD**）コンポーネントは、選択したドメインをスキャンして外部ホストとそのAPIをすべて発見し、WebおよびAPIベースの攻撃に対する保護状況を評価し、不足しているWAF/WAAPソリューションを特定します。Wallarmでサブスクライブするだけで利用でき、デプロイは不要です。本記事ではこのコンポーネントの概要を説明します。
 
-![API Attack Surface Discovery](../images/api-attack-surface/aasm-api-surface.png)
+![API Attack Surface Discovery](../../images/api-attack-surface/aasm-api-surface.png)
 
 ## 対応する課題
 
@@ -38,7 +38,7 @@ Wallarmの[API Attack Surface Management](overview.md)の**API Attack Surface Di
 
 API Attack Surface Discovery（AASD）の機能は旧来のWallarm Scannerの全機能を網羅しており、[Security Issues](security-issues.md)と組み合わせることでさらに多くの価値を提供するため、2025年5月7日以降、Scannerは無効化されます。
 
-![旧Scanner](../images/user-guides/scanner/check-scope.png)
+![旧Scanner](../../images/user-guides/scanner/check-scope.png)
 
 旧Scannerの無効化には次が含まれます:
 
@@ -67,7 +67,7 @@ API Attack Surface Discovery（AASD）の機能は旧来のWallarm Scannerの全
 
 Wallarmは外部ネットワーク境界のセキュリティ態勢を自動評価し、その状態を0（最低）から100（最高）の保護レベルで表す**Total score**として表示します。
 
-![APIサーフェス - 保護スコア](../images/api-attack-surface/aasm-api-surface-protection-score.png)
+![APIサーフェス - 保護スコア](../../images/api-attack-surface/aasm-api-surface-protection-score.png)
 
 Total scoreは、以下を組み合わせた複合的な独自アルゴリズムにより算出します。
 
@@ -98,7 +98,7 @@ Total scoreは、以下を組み合わせた複合的な独自アルゴリズム
 * ポート（1ポートにつき1行）
 * API（1 APIにつき1行）
 
-![APIサーフェス - レポート](../images/api-attack-surface/aasm-reports.png)
+![APIサーフェス - レポート](../../images/api-attack-surface/aasm-reports.png)
 
 もう1つの選択肢として、機械可読形式のJSONレポートでAPIサーフェス情報を取得できます。
 

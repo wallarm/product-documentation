@@ -1,4 +1,4 @@
-# كشف Credential Stuffing <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# كشف Credential Stuffing <a href="../subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 تعد [هجمات Credential Stuffing](../attacks-vulns-list.md#credential-stuffing) هي نوع من الهجمات الإلكترونية حيث يستخدم القراصنة قوائم من بيانات الاعتماد المستخدمين التي تم اختراقها للوصول غير المصرح به إلى حسابات المستخدمين على مواقع الويب العديدة.تشرح هذه المقالة كيفية كشف هذا النوع من التهديدات باستخدام **كشف Credential Stuffing** الخاص بـ Wallarm.
 
@@ -10,7 +10,7 @@
 
 لتحديد كلمات المرور المخترقة والضعيفة، يستخدم Wallarm قاعدة بيانات شاملة تحتوي على أكثر من **850 مليون سجل** تم جمعها من قاعدة بيانات بيانات الاعتماد المخترقة العامة [HIBP](https://haveibeenpwned.com/).
 
-![مخطط Credential Stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-schema.png)
+![مخطط Credential Stuffing](../../images/about-wallarm-waf/credential-stuffing/credential-stuffing-schema.png)
 
 يحافظ كشف Credential Stuffing الخاص بـ Wallarm على أمان بيانات الاعتماد من خلال تطبيق سلسلة من الإجراءات التالية:
 
@@ -54,7 +54,7 @@
 
 تحتاج لتشكيل قائمة نقاط النهاية للمصادقة ليتم التحقق من محاولات استخدام بيانات الاعتماد التي تم اختراقها. لتشكيل القائمة، انتقل إلى واجهة Wallarm → **Credential Stuffing**.
 
-![واجهة Wallarm - Credential Stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing.png)
+![واجهة Wallarm - Credential Stuffing](../../images/about-wallarm-waf/credential-stuffing/credential-stuffing.png)
 
 هناك طريقتين لإضافة نقاط النهاية إلى القائمة:
 
@@ -68,7 +68,7 @@
     * بواسطة **موقع البارامترات بالضبط** - ستحتاج إلى التشير إلى نقاط الطلب [النقطة](../user-guides/rules/rules.md#points) التي توجد فيها كلمة المرور واسم الدخول بدقة.
     * بواسطة **التعبير العادي** - سيتم البحث عن معلمات نقطة النهاية مع كلمة المرور واسم الدخول باستخدام [التعبير العادي](../user-guides/rules/rules.md#condition-type-regex).
     
-        ![Credential Stuffing - إضافة نقاط النهاية للمصادقة - التعبير العادي](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-add-endpoint-regexp.png)
+        ![Credential Stuffing - إضافة نقاط النهاية للمصادقة - التعبير العادي](../../images/about-wallarm-waf/credential-stuffing/credential-stuffing-add-endpoint-regexp.png)
 
 ## عرض محاولات استخدام بيانات الاعتماد المُخترقة
 
@@ -76,7 +76,7 @@
 
 قم بتوسيع أي من الهجمات لرؤية قائمة تسجيلات الدخول التي تم اختراق كلمات مرورها.
 
-![هجمات - credential stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-attacks.png)
+![هجمات - credential stuffing](../../images/about-wallarm-waf/credential-stuffing/credential-stuffing-attacks.png)
 
 ## الحصول على قائمة CSV لبيانات الاعتماد المُخترقة
 
@@ -92,7 +92,7 @@
 
 في هذا المثال، إذا تم اكتشاف محاولة جديدة لاستخدام بيانات الاعتماد المُخترقة، سيتم إرسال إشعار حول هذا إلى قناة Slack الخاصة بك التي تم تكوينها.
 
-![مُحفز Credential stuffing](../images/user-guides/triggers/trigger-example-credentials-stuffing.png)
+![مُحفز Credential stuffing](../../images/user-guides/triggers/trigger-example-credentials-stuffing.png)
 
 **لاختبار المُحفز:**
 

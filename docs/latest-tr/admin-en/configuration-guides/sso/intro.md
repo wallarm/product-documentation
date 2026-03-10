@@ -2,7 +2,7 @@
 
 Wallarm Console’a şirketinizin kullanıcılarını kimlik doğrulamak için tek oturum açma (SSO) teknolojisini kullanabilirsiniz. Wallarm, hizmet sağlayıcı (SP) olarak davranırken, Google veya Okta gibi SAML standardını destekleyen herhangi bir kimlik sağlayıcı (IdP) ile sorunsuz biçimde entegre olur.
 
-![Integrations - SSO](../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
+![Integrations - SSO](../../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
 
 ## Mevcut seçenekler
 

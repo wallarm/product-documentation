@@ -1,19 +1,19 @@
 [link-using-search]:    ../search-and-filters/use-search.md
-[img-current-attacks]:  ../../images/glossary/attack-with-one-hit-example.png
-[img-incidents-tab]:    ../../images/user-guides/events/incident-vuln.png
-[img-show-falsepositive]: ../../images/user-guides/events/filter-for-falsepositive.png
+[img-current-attacks]:  ../../../images/glossary/attack-with-one-hit-example.png
+[img-incidents-tab]:    ../../../images/user-guides/events/incident-vuln.png
+[img-show-falsepositive]: ../../../images/user-guides/events/filter-for-falsepositive.png
 [use-search]:             ../search-and-filters/use-search.md
 [search-by-attack-status]: ../search-and-filters/use-search.md#search-attacks-by-the-action
-[img-verify-attack]:            ../../images/user-guides/events/verify-attack.png
+[img-verify-attack]:            ../../../images/user-guides/events/verify-attack.png
 [al-brute-force-attack]:      ../../attacks-vulns-list.md#brute-force-attack
 [al-forced-browsing]:         ../../attacks-vulns-list.md#forced-browsing
 [al-bola]:                    ../../attacks-vulns-list.md#broken-object-level-authorization-bola
 [link-analyzing-attacks]:       analyze-attack.md
-[img-false-attack]:             ../../images/user-guides/events/false-attack.png
-[img-removed-attack-info]:      ../../images/user-guides/events/removed-attack-info.png
+[img-false-attack]:             ../../../images/user-guides/events/false-attack.png
+[img-removed-attack-info]:      ../../../images/user-guides/events/removed-attack-info.png
 [link-check-attack]:        check-attack.md
 [link-false-attack]:        false-attack.md
-[img-current-attack]:       ../../images/user-guides/events/analyze-current-attack.png
+[img-current-attack]:       ../../../images/user-guides/events/analyze-current-attack.png
 [glossary-attack-vector]:   ../../glossary-en.md#malicious-payload
 [link-attacks]:         ../../user-guides/events/check-attack.md
 [link-incidents]:       ../../user-guides/events/check-incident.md
@@ -64,7 +64,7 @@ Yanlış pozitif işaretini yalnızca uygulandıktan sonraki birkaç saniye içi
 
 Saldırı listesi varsayılan görünümü yalnızca güncel saldırıları (yanlış pozitifler olmadan) gösterir – bunu değiştirmek için, **All attacks** altında **Default view**’den **With false positives** veya **Only false positives** seçeneğine geçin.
 
-![Yanlış pozitif filtresi](../../images/user-guides/events/filter-for-falsepositive.png)
+![Yanlış pozitif filtresi](../../../images/user-guides/events/filter-for-falsepositive.png)
 
 ## Saldırılara yanıt verme
 
@@ -108,11 +108,11 @@ Wallarm, tespit edilen saldırıları analiz etmenize yardımcı olacak kapsaml�
 
 Wallarm’ın [Threat Prevention](../../user-guides/dashboards/threat-prevention.md) panosu, saldırılarla ilgili çok yönlü bilgiler dahil olmak üzere sisteminizin güvenlik duruşuna ilişkin genel metrikler sunar: kaynakları, hedefleri, türleri ve protokolleri.
 
-![Threat Prevention panosu](../../images/user-guides/dashboard/threat-prevention.png)
+![Threat Prevention panosu](../../../images/user-guides/dashboard/threat-prevention.png)
 
 [OWASP API Security Top 10](../../user-guides/dashboards/owasp-api-top-ten.md) panosu, saldırı bilgileri de dahil olmak üzere sisteminizin OWASP API Top 10 tehditlerine karşı güvenlik duruşuna ilişkin ayrıntılı görünürlük sağlar.
 
-![OWASP API Top 10](../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
+![OWASP API Top 10](../../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
 
 ## Bildirimler
 

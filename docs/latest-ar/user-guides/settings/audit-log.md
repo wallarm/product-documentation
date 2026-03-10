@@ -23,7 +23,7 @@
 * [الثغرة الأمنية المحددة كإيجابية كاذبة](../vulnerabilities.md#marking-vulnerabilities-as-false-positives)
 * [الهجوم المعاد فحصه](../events/verify-attack.md)
 
-![سجل النشاط](../../images/user-guides/settings/audit-log.png)
+![سجل النشاط](../../../images/user-guides/settings/audit-log.png)
 
 **لتصفية سجلات سجل النشاط**، يمكنك استخدام البارامترات التالية:
 

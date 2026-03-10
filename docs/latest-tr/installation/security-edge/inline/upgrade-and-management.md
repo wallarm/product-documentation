@@ -1,4 +1,4 @@
-# Security Edge Inline'ı Yönetme <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inline'ı Yönetme <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 [Security Edge Inline](overview.md) dağıtımınızı Wallarm Console üzerinden yapılandırma ayarlarını güncelleyerek, Node sürümlerini yükselterek, durumu izleyerek ve dağıtımı silerek yönetin.
 
@@ -7,15 +7,15 @@
 Edge Node bölümü, origin'leriniz, hostlarınız ve bölgeleriniz için dağıtım ve yapılandırma durumuna ilişkin gerçek zamanlı durumlar sağlar:
 
 === "Hostlar"
-    ![!](../../../images/waf-installation/security-edge/inline/host-statuses.png)
+    ![!](../../../../images/waf-installation/security-edge/inline/host-statuses.png)
 === "Origin'ler"
-    ![!](../../../images/waf-installation/security-edge/inline/origin-statuses.png)
+    ![!](../../../../images/waf-installation/security-edge/inline/origin-statuses.png)
 === "Bölgeler"
-    ![!](../../../images/waf-installation/security-edge/inline/region-statuses.png)
+    ![!](../../../../images/waf-installation/security-edge/inline/region-statuses.png)
 === "Düğümler"
     **Nodes** sekmesi her bir Edge Node için teknik ayrıntılar sağlar. Bu görünüm öncelikle sorun gidermede yardımcı olması için Wallarm Support içindir. Node sayısı trafik talebine bağlıdır ve Wallarm'ın otomatik ölçeklendirmesi tarafından otomatik olarak yönetilir.
 
-    ![!](../../../images/waf-installation/security-edge/inline/nodes-tab.png)
+    ![!](../../../../images/waf-installation/security-edge/inline/nodes-tab.png)
 
 * **Pending cert CNAME**: Sertifika verilmesi için (uygunsa) DNS'e [sertifika CNAME kayıtlarının](deployment.md#5-certificate-cname-configuration) eklenmesi bekleniyor.
 * **Pending traffic CNAME** veya **Pending traffic A record**: Dağıtım tamamlandı, trafiği Edge Node'a yönlendirmek için [trafik CNAME veya A kaydının](deployment.md#6-routing-traffic-to-the-edge-node) eklenmesi bekleniyor.
@@ -31,7 +31,7 @@ Hostlar ve origin'ler başına RPS ve istek sayısı [sürüm](../../../updating
 
 **Admin settings** içinde **Auto update** etkinleştirildiğinde, Edge Node, yeni bir minor veya patch sürümü yayınlandığında (seçilen seçeneğe bağlı olarak) otomatik olarak yükseltilir. Tüm başlangıç ayarlarınız korunur. Auto update varsayılan olarak kapalıdır.
 
-![!](../../../images/waf-installation/security-edge/inline/admin-settings.png)
+![!](../../../../images/waf-installation/security-edge/inline/admin-settings.png)
 
 Edge Node'u manuel olarak yükseltmek için **Configure** → **Admin settings** bölümüne gidin ve listeden bir sürüm seçin. En iyi performans ve güvenlik için en son sürümün kullanılması önerilir.
 

@@ -1,5 +1,5 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [link-wallarm-health-check]:        ../../admin-en/uat-checklist-en.md
 
 # EOLマルチテナントノードのアップグレード
@@ -36,7 +36,7 @@
 !!! warning "マルチテナントノードの作成"
     Wallarmノードを作成する際は、**Multi-tenant node**オプションを選択してください:
 
-    ![マルチテナントノードの作成](../../images/user-guides/nodes/create-multi-tenant-node.png)
+    ![マルチテナントノードの作成](../../../images/user-guides/nodes/create-multi-tenant-node.png)
 
 ## ステップ3: マルチテナンシーを再設定
 
@@ -110,7 +110,7 @@ server {
 
         Wallarm Consoleのユーザーインターフェイスの**ID**列から`clientid`（複数可）をコピーします:
         
-        ![Wallarm Consoleのテナントセレクター](../../images/partner-waf-node/clients-selector-in-console-ann.png)
+        ![Wallarm Consoleのテナントセレクター](../../../images/partner-waf-node/clients-selector-in-console-ann.png)
     === "APIへのリクエスト送信"
         1. `/v2/partner_client`ルートにGETリクエストを送信します:
 

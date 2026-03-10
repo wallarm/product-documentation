@@ -4,7 +4,7 @@ Este artigo explica como implantar o Wallarm como a solução de [OOB](../overvi
 
 O espelhamento de tráfego pode ser implementado configurando um servidor web, proxy ou semelhante para copiar o tráfego de entrada para os serviços Wallarm para análise. Com essa abordagem, o fluxo de tráfego típico se parece com o seguinte:
 
-![Esquema OOB](../../../images/waf-installation/oob/wallarm-oob-deployment-scheme.png)
+![Esquema OOB](../../../../images/waf-installation/oob/wallarm-oob-deployment-scheme.png)
 
 ## Procedimento de implantação
 

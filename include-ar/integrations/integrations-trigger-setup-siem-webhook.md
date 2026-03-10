@@ -34,7 +34,7 @@
 
 في هذه الخطوة تختار التكامل الذي من خلاله يجب إرسال الإشعار المختار. يمكنك اختيار عدة تكاملات في آنٍ واحد.
 
-![اختيار تكامل](../../images/user-guides/triggers/select-integration.png)
+![اختيار تكامل](../../../images/user-guides/triggers/select-integration.png)
 
 ### الخطوة 4: حفظ المشغل
 

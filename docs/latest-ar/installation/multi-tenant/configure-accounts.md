@@ -16,7 +16,7 @@
 
 1. قم بملء وتأكيد نموذج التسجيل في لوحة تحكم Wallarm في [ السحابة الأمريكية](https://us1.my.wallarm.com/signup) أو [ السحابة الأوروبية](https://my.wallarm.com/signup).
 
-    ![نموذج التسجيل](../../images/signup-en.png)
+    ![نموذج التسجيل](../../../images/signup-en.png)
 
     !!! info "البريد الإلكتروني للشركة"
         يرجى الاشتراك باستخدام عنوان البريد الإلكتروني للشركة.
@@ -46,7 +46,7 @@
 
 تحت حساب **المسئول العالمي**، يمكنك إنشاء المستأجرين من خلال لوحة تحكم Wallarm → محدد المستأجر → **إنشاء مستأجر**.
 
-![إنشاء مستأجر من خلال لوحة تحكم Wallarm](../../images/partner-waf-node/tenant-create-via-ui.png)
+![إنشاء مستأجر من خلال لوحة تحكم Wallarm](../../../images/partner-waf-node/tenant-create-via-ui.png)
 
 يمكنك إنشاء [مستخدم](../../user-guides/settings/users.md#user-roles) **مسؤول** جديد للمستأجر الجديد الخاص بك. سيتم إرسال البريد الإلكتروني للدعوة إلى العنوان المحدد.
 
@@ -100,7 +100,7 @@
 
 ستتم عرض المستأجرين المنشأين في لوحة تحكم Wallarm لـ [المستخدمين العالميين](../../user-guides/settings/users.md#user-roles). مثل `Tenant 1` و `Tenant 2` :
 
-![محدد المستأجر في لوحة تحكم Wallarm](../../images/partner-waf-node/clients-selector-in-console.png)
+![محدد المستأجر في لوحة تحكم Wallarm](../../../images/partner-waf-node/clients-selector-in-console.png)
 
 ### الخطوة 3: ربط حركة مرور محددة بمستأجرك
 
@@ -145,6 +145,6 @@ server {
 
 لتعطيل حساب المستأجر، في محدد المستأجر، من قائمة المستأجر، اختر **تعطيل**، ثم أكد. سيتم تعطيل حساب المستأجر وإخفاؤه من قائمة المستأجر.
 
-![مستأجر - تعطيل](../../images/partner-waf-node/tenant-deactivate.png)
+![مستأجر - تعطيل](../../../images/partner-waf-node/tenant-deactivate.png)
 
  لتنشيط حساب المستأجر المعطل مسبقا، في محدد المستأجر، انقر على **إظهار حسابات المستأجر المعطلة**، ثم اختر **تنشيط** لمستأجرك.

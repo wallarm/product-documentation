@@ -1,4 +1,4 @@
-# Security Edge Inline'ın Çok Bulutlu ve Çok Bölgeli Dağıtımı <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inline'ın Çok Bulutlu ve Çok Bölgeli Dağıtımı <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 Coğrafi yedeklilik ve düşük gecikme için inline Edge Node'ları birden çok bölgeye ve bulut sağlayıcısına dağıtabilirsiniz.
 
@@ -10,7 +10,7 @@ Tek bir bulut sağlayıcısı içinde birden çok bölge seçildiğinde, trafik 
 
 Bu en yaygın kurulumdur; talepleri birden fazla konumdan karşıladığınız durumlarda önerilir.
 
-![!](../../../images/waf-installation/security-edge/inline/multi-region-edge-nodes.png)
+![!](../../../../images/waf-installation/security-edge/inline/multi-region-edge-nodes.png)
 
 Kullanılabilir bölgeler [Wallarm Cloud](../../../about-wallarm/overview.md#cloud) hesabınıza bağlıdır (US → US bölgeleri, EU → EU bölgeleri).
 
@@ -23,7 +23,7 @@ Bu kurulum şu durumlarda önerilir:
 * Bulut sağlayıcısı yedekliliği — trafik tüm seçili sağlayıcılar arasında dağıtılır; böylece biri kullanılamaz hale gelirse (ör. AWS) diğerleri (ör. Azure) kesinti olmadan trafiği işlemeye devam eder.
 * Bölgesel yüksek erişilebilirlik — örneğin, hem `AWS US East 1` hem de `Azure East US` seçildiğinde trafik bölgeler arasında dengede kalır ve bir bölge veya sağlayıcı kullanılamaz olsa bile hizmet devam eder.
 
-![!](../../../images/waf-installation/security-edge/inline/multi-cloud-edge-nodes.png)
+![!](../../../../images/waf-installation/security-edge/inline/multi-cloud-edge-nodes.png)
 
 ## Orijin erişimi için Wallarm IP aralıkları
 
@@ -109,7 +109,7 @@ Korumadaki hostunuz üçüncü seviye (veya daha üst seviye) bir alan adıysa (
 
     Belirli bir sağlayıcıya yönlendirmeyi zorlamak gerekiyorsa — örneğin sağlayıcılar arası gecikme veya performansı test etmek için — sağlayıcıya özel CNAME'ler de mevcuttur.
 
-![](../../../images/waf-installation/security-edge/inline/traffic-cname.png)
+![](../../../../images/waf-installation/security-edge/inline/traffic-cname.png)
 
 ## A kayıtları
 
@@ -117,7 +117,7 @@ Korumadaki hostunuz kök alan adıysa (ör. `example.com`), CNAME kullanılamaz.
 
 Edge Node dağıtımı için birden fazla bölge veya sağlayıcı seçtiyseniz, döndürülen tüm A kayıtlarını DNS bölgenize eklemeniz gerekir.
 
-![](../../../images/waf-installation/security-edge/inline/a-records.png)
+![](../../../../images/waf-installation/security-edge/inline/a-records.png)
 
 Bu durumda trafik yönlendirmesi DNS sağlayıcınız tarafından yönetilir. Varsayılan olarak çoğu DNS sağlayıcısı [round-robin](https://en.wikipedia.org/wiki/Round-robin_DNS) mantığını kullanır, ancak bazıları gecikme tabanlı yönlendirmeyi de destekleyebilir.
 

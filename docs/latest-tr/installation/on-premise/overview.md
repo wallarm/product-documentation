@@ -16,9 +16,9 @@ Yerinde çözümde her iki bileşen de **tamamen müşteri tarafından barındı
 Yerinde çözümde hem [satır içi](../../installation/inline/overview.md) hem de [bant dışı](../../installation/oob/overview.md) Node dağıtım yaklaşımları desteklenir. Her iki durumda da Filtering Node, trafiği keser veya yansıtır ve analiz ve koordinasyon için yerel Wallarm Cloud bileşenine metaveri gönderir.
 
 === "Satır içi trafik akışı"
-    ![!](../../images/waf-installation/on-premise/inline-flow.png)
+    ![!](../../../images/waf-installation/on-premise/inline-flow.png)
 === "Bant dışı trafik akışı"
-    ![!](../../images/waf-installation/on-premise/oob-flow.png)
+    ![!](../../../images/waf-installation/on-premise/oob-flow.png)
 
 ## Yerinde dağıtımda Filtering Node
 
@@ -61,7 +61,7 @@ Bir Wallarm Cloud örneğinin nasıl dağıtılacağı ve yönetileceğine iliş
 
     Bağımsız dengeleyici hem TCP hem de UDP katmanı yük dengelemeyi ve Wallarm Cloud düğümlerinin durumunu doğrulamak için TCP sağlık kontrollerini desteklemelidir.
 
-![!](../../images/waf-installation/on-premise/cluster-arch.png)
+![!](../../../images/waf-installation/on-premise/cluster-arch.png)
 
 ### Yönetim çalışma istasyonu
 
@@ -75,7 +75,7 @@ Yönetim çalışma istasyonu, Wallarm’ın yerinde yönetim aracı **wctl**’
 
 Aşağıdaki diyagram, Wallarm Cloud sisteminin hangi katmanlarının **wctl** aracılığıyla yönetildiğini ve hangilerinin müşteri yönetimi gerektirdiğini göstermektedir:
 
-![!](../../images/waf-installation/on-premise/wctl-client-managed-components.png)
+![!](../../../images/waf-installation/on-premise/wctl-client-managed-components.png)
 
 ### Yüksek kullanılabilirlik ve otomatik devretme
 

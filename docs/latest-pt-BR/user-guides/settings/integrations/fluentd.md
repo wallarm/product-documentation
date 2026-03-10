@@ -99,7 +99,7 @@ Você encontrará mais detalhes na [documentação oficial do Fluentd](https://d
     --8<-- "../include-pt-BR/integrations/webhook-advanced-settings.md"
 1. Escolha tipos de eventos para acionar notificações.
 
-    ![Integração Fluentd](../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+    ![Integração Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
     Detalhes sobre eventos disponíveis:
 
@@ -165,7 +165,7 @@ Você encontrará mais detalhes na [documentação oficial do Fluentd](https://d
 
 Por exemplo:
 
-![Fluxo de Webhook](../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
+![Fluxo de Webhook](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
 
 Para registrar eventos do Wallarm usando este esquema:
 

@@ -1,4 +1,4 @@
-# Gölge, Yetim, Zombi API <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Gölge, Yetim, Zombi API <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 [API Discovery](overview.md) modülü, yüklediğiniz spesifikasyonu canlı trafikle karşılaştırarak shadow, orphan ve zombie API'leri otomatik olarak belirler.
 
@@ -8,7 +8,7 @@
 | [Orphan API](#orphan-api) | Trafik almayan, belgelenmiş bir API. |
 | [Zombie API](#zombie-api) | Herkesin devre dışı bırakıldığını varsaydığı ancak aslında hâlâ kullanılan kullanımdan kalkmış API'ler. |
 
-![API Discovery - Rogue API'yi vurgulama ve filtreleme](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
+![API Discovery - Rogue API'yi vurgulama ve filtreleme](../../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
 ## Setup
 
@@ -33,7 +33,7 @@ Ayrıca daha önce yüklenmiş spesifikasyonu **API Specifications** → spesifi
 1. [US Cloud](https://us1.my.wallarm.com/api-specifications/) veya [EU Cloud](https://my.wallarm.com/api-specifications/) içindeki **API Specifications** bölümünde **Upload specification**'ı tıklayın.
 1. Spesifikasyon yükleme parametrelerini ayarlayın ve yüklemeyi başlatın.
 
-    ![Spesifikasyon yükleme](../images/api-specification-enforcement/specificaton-upload.png)
+    ![Spesifikasyon yükleme](../../images/api-specification-enforcement/specificaton-upload.png)
 
 Spesifikasyon dosyası, API spesifikasyon sözdizimine uygunluk açısından kontrol edilir ve geçerli değilse yüklenmez. Spesifikasyon dosyası başarıyla yüklenene kadar rogue API tespitini yapılandırmaya başlayamayacağınızı unutmayın.
 
@@ -49,7 +49,7 @@ Spesifikasyonu bir URI'den yüklemeyi ve **Regularly update the specification** 
 1. **Use for rogue APIs detection** seçeneğini işaretleyin.
 1. **Applications** ve **Hosts** seçin - yalnızca seçilen host'larla ilişkili uç noktalar rogue API'ler için aranacaktır.
 
-    ![API Discovery - Rogue API'leri bulmak için API spesifikasyonunu yükleme](../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
+    ![API Discovery - Rogue API'leri bulmak için API spesifikasyonunu yükleme](../../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
 
 ### Devre dışı bırakma
 
@@ -62,11 +62,11 @@ Rogue API tespiti, yüklenen spesifikasyona veya **Use for rogue APIs detection*
 
 Karşılaştırma tamamlandığında, **API Specifications** listesindeki her spesifikasyon için rogue (shadow, orphan ve zombie) API sayısı görüntülenecektir.
 
-![API Specifications bölümü](../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
+![API Specifications bölümü](../../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
 
 Ayrıca rogue API'ler **API Discovery** bölümünde de görüntülenir. Seçilen karşılaştırmalarla ilişkili yalnızca shadow, orphan ve/veya zombie API'leri görmek ve kalan uç noktaları filtrelemek için **Rogue APIs** filtresini kullanın.
 
-![API Discovery - Rogue API'yi vurgulama ve filtreleme](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
+![API Discovery - Rogue API'yi vurgulama ve filtreleme](../../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
 Bu tür uç noktaların ayrıntılarında, **Specification conflicts** bölümünde, shadow/zombie/orphan tespitinde kullanılan spesifikasyon(lar) belirtilir.
 
@@ -90,7 +90,7 @@ API'nizin farklı yönlerini tanımlamak için birden fazla ayrı spesifikasyon 
 
 **API Discovery** bölümünde, spesifikasyon karşılaştırmalarını seçmek için **Compare to...** filtresini kullanın - yalnızca bu karşılaştırmalar için **Issues** sütununda özel işaretlerle rogue API'ler vurgulanacaktır.
 
-![API Discovery - Rogue API'yi vurgulama ve filtreleme](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
+![API Discovery - Rogue API'yi vurgulama ve filtreleme](../../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
 ## Bildirim alma
 
@@ -108,7 +108,7 @@ Yeni keşfedilen shadow, orphan veya zombie API'ler hakkında ayrı ayrı ya da 
 
 Bu örnekte, API Discovery `Specification-01` içinde listelenmeyen yeni uç noktalar bulursa (shadow API'ler), bununla ilgili bildirim yapılandırdığınız Slack kanalınıza gönderilir.
 
-![Rogue API detected tetikleyicisi](../images/user-guides/triggers/trigger-example-rogue-api.png)
+![Rogue API detected tetikleyicisi](../../images/user-guides/triggers/trigger-example-rogue-api.png)
 
 **Tetikleyiciyi test etmek için:**
 

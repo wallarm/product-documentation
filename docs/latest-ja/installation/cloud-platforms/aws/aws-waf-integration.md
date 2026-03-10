@@ -4,7 +4,7 @@
 
 これらを**多層防御（defense-in-depth）**の戦略として組み合わせることで、エッジからアプリケーション層までWebアプリケーションとAPIを包括的に保護します。
 
-![!](../../../images/waf-installation/aws/aws-waf-wallarm-responsibilities.png)
+![!](../../../../images/waf-installation/aws/aws-waf-wallarm-responsibilities.png)
 
 ## AWS WAF: AWSインフラストラクチャの境界防御
 
@@ -69,6 +69,6 @@ AWS WAFとWallarmを組み合わせたアーキテクチャは、次のような
 
     精査済みのリクエストは、すでに両レイヤーでフィルタ済みの状態で、API、マイクロサービス、データベースといった中核コンポーネントに到達します。Wallarmは、例えばデータ漏えいを防ぐために、送信レスポンスの検査も実施できます。mTLSやIAMなどのサービス間保護を追加することで、このレイヤーをさらに強化できます。 
 
-![!](../../../images/waf-installation/aws/aws-waf-wallarm-deployment.png)
+![!](../../../../images/waf-installation/aws/aws-waf-wallarm-deployment.png)
 
 一般的なモデルは、ALB + AWS WAF → Wallarm → Applicationです。Wallarmは柔軟なデプロイに対応しており、インフラに大きな変更を加えることなく、ALBの背後でのインライン、EKSのIngress、またはAPI GatewayやCloudFrontのオリジン背後などに配置できます。標準的なAWSネットワーキングとの互換性により、パブリックと内部の両方のトラフィック経路を保護できます。

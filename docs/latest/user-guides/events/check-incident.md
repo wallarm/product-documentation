@@ -1,7 +1,7 @@
 [link-using-search]:    ../search-and-filters/use-search.md
-[img-attacks-tab]:      ../../images/user-guides/events/check-attack.png
-[img-current-attacks]:  ../../images/glossary/attack-with-one-hit-example.png
-[img-incidents-tab]:    ../../images/user-guides/events/incident-vuln.png
+[img-attacks-tab]:      ../../../images/user-guides/events/check-attack.png
+[img-current-attacks]:  ../../../images/glossary/attack-with-one-hit-example.png
+[img-incidents-tab]:    ../../../images/user-guides/events/incident-vuln.png
 [use-search]:             ../search-and-filters/use-search.md
 [search-by-attack-status]: ../search-and-filters/use-search.md#search-attacks-by-the-action
 [link-attacks]:         ../../user-guides/events/check-attack.md
@@ -69,7 +69,7 @@ You can analyze incidents from the perspective of existing [security issues](../
 * Go to the **Security Issues** section and pay attention to the issues having `Incident` tag in the **Security issue** column.
 * Set the **Incident** filter to `Incident detected` to see all issues with incidents. Go to issue details, view the **Related incidents** section. From here, you can go to every incident details.
 
-![Incidents in Security Issues](../../images/user-guides/vulnerabilities/si-incidents.png)
+![Incidents in Security Issues](../../../images/user-guides/vulnerabilities/si-incidents.png)
 
 ## Full context of threat actor activities
 
@@ -87,7 +87,7 @@ Once incident appeared in the **Incidents** section:
   
 1. Follow the link in the **Security issues** column to get detailed security issue (vulnerability) information including instructions on how to fix this vulnerability and the list of related incidents. 
 
-     ![Security issue (vulnerability) detailed information](../../images/user-guides/vulnerabilities/vuln-info.png)
+     ![Security issue (vulnerability) detailed information](../../../images/user-guides/vulnerabilities/vuln-info.png)
 
      **Fix the security issue (vulnerability)** and then mark it closed in Wallarm. For detailed information, refer to [Managing Security Issues](../vulnerabilities.md) article.
 

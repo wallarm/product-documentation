@@ -12,7 +12,7 @@ In the **IP & Session Lists** → **IP lists** section of Wallarm Console, you c
     * [Attacks of the vpatch type](../rules/vpatch-rule.md)
     * [Attacks detected based on regular expressions](../rules/regex-rule.md)
 
-![All IP lists](../../images/user-guides/ip-lists/ip-lists-home-apps.png)
+![All IP lists](../../../images/user-guides/ip-lists/ip-lists-home-apps.png)
 
 ## How allowlist, denylist, and graylist work together
 
@@ -20,7 +20,7 @@ The filtering node employs different approaches based on the selected operation 
 
 The image provided below visually represents the priorities and combinations of IP lists in each operation mode, highlighting which lists are considered in each case:
 
-![IP list priorities](../../images/user-guides/ip-lists/ip-lists-priorities.png)
+![IP list priorities](../../../images/user-guides/ip-lists/ip-lists-priorities.png)
 
 This means that:
 
@@ -56,7 +56,7 @@ Use **Add object** to add the following into any of IP lists:
 !!! info "Locations and source types"
     Wallarm uses paid feeds from [IP2location](https://www.ip2location.com/) for detecting country/region and source type in which the IP addresses are registered.
 
-![Add object to IP list](../../images/user-guides/ip-lists/add-ip-to-list.png)
+![Add object to IP list](../../../images/user-guides/ip-lists/add-ip-to-list.png)
 
 !!! info "Automatic population of IP lists"
     Note that besides adding objects manually, you can use [automatic list population](#automatic-listing), which is **preferable**.
@@ -89,7 +89,7 @@ When adding the **Malicious IPs** [source type](#select-object) to one of the IP
 
 IP lists have not only the current state, but also the states [back in time](#select-time-to-stay-in-list) and they differ. Choose specific dates to examine the IP list content, and the system will return a detailed **History** of its changes, including the exact timing and method of addition, be it manual or automated. The report also provides data on the individuals responsible for the changes and the reasons behind each inclusion. Such insights help in maintaining an audit trail for compliance and reporting.
 
-![IP List history](../../images/user-guides/ip-lists/ip-list-history.png)
+![IP List history](../../../images/user-guides/ip-lists/ip-list-history.png)
 
 Switch back to the **Now** tab to get the current state of the IP list, allowing you to view the objects presently included in the list.
 
@@ -133,7 +133,7 @@ The listed behavioral attacks can be detected only after accumulating certain st
 
 Once trigger thresholds are exceeded, Wallarm adds the IP to the denylist and blocks further requests. You will see `Blocked` requests from this IP in the attack list. This applies to manually denylisted IPs as well.
 
-![Events related to denylisted IPs - sending data enabled](../../images/user-guides/events/events-denylisted-export-enabled.png)
+![Events related to denylisted IPs - sending data enabled](../../../images/user-guides/events/events-denylisted-export-enabled.png)
 
 Use [search tags of filters](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) to find requests from denylisted IPs: [API abuse related](../../attacks-vulns-list.md#api-abuse), `brute`, `dirbust`, `bola`, `multiple_payloads` for automatically listed, `blocked_source` - for manual ones.
 
@@ -145,7 +145,7 @@ Among the attacks in the `Blocked` status, use tags to switch to the reason of d
 
 You can get notifications about newly denylisted IPs via the messengers or SIEM systems you use every day. To enable notifications, in **Triggers** section, configure one or several triggers with the **Denylisted IP** condition, e.g.:
 
-![Example of trigger for denylisted IP](../../images/user-guides/triggers/trigger-example4.png)
+![Example of trigger for denylisted IP](../../../images/user-guides/triggers/trigger-example4.png)
 
 **To test the trigger:**
 

@@ -20,13 +20,13 @@ No Wallarm UI:
 1. Selecione o tipo de problema do Jira ao qual os problemas criados pertencerão.
 1. Selecione os tipos de evento para disparar notificações. Todas as vulnerabilidades ou apenas de um nível de risco específico podem ser selecionadas.
 
-    ![Integração Jira](../../../images/user-guides/settings/integrations/add-jira-integration.png)
+    ![Integração Jira](../../../../images/user-guides/settings/integrations/add-jira-integration.png)
 
 1. Clique em **Testar integração** para verificar a correção da configuração, a disponibilidade do Wallarm Cloud e o formato da notificação.
 
     Teste a criação de problemas do Jira:
 
-    ![Testar a criação de problemas do Jira](../../../images/user-guides/settings/integrations/test-jira-issue-creation.png)
+    ![Testar a criação de problemas do Jira](../../../../images/user-guides/settings/integrations/test-jira-issue-creation.png)
 
 1. Clique em **Adicionar integração**.
 

@@ -20,13 +20,13 @@ Wallarm UIで：
 1. 作成される課題が属するJiraのissue typeを選択します。
 1. 通知をトリガーするevent typesを選択します。すべての脆弱性、または特定のリスクレベルのみを選択できます。
 
-    ![Jiraインテグレーション](../../../images/user-guides/settings/integrations/add-jira-integration.png)
+    ![Jiraインテグレーション](../../../../images/user-guides/settings/integrations/add-jira-integration.png)
 
 1. 構成が正しいか、Wallarm Cloudの到達性、通知のフォーマットを確認するために**Test integration**をクリックします。
 
     Jira課題作成のテスト：
 
-    ![Jira課題作成のテスト](../../../images/user-guides/settings/integrations/test-jira-issue-creation.png)
+    ![Jira課題作成のテスト](../../../../images/user-guides/settings/integrations/test-jira-issue-creation.png)
 
 1. **Add integration**をクリックします。
 

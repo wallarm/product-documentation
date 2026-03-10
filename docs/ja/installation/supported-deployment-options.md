@@ -11,13 +11,13 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../../admin-en/installation-kubernetes-en/">
-            <img class="non-zoomable" src="../../images/platform-icons/ingress.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/ingress.svg" />
             <h3>NGINX Ingress Controller</h3>
             <p>Deploy the NGINX Ingress Controller with integrated Wallarm services</p>
         </a>
 
         <a class="do-card" href="../../installation/oob/ebpf/deployment/">
-            <img class="non-zoomable" src="../../images/platform-icons/ebpf.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/ebpf.svg" />
             <h3>eBPF</h3>
             <p>Out-of-band deployment on Kubernetes using the eBPF technology</p>
         </a>
@@ -29,31 +29,31 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 <div class="do-section">
     <div class="do-main">
         <div id="public-clouds-aws" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/aws.svg" />
             <h3>Amazon Web Services</h3>
             <p>Artifacts for Wallarm deployment on AWS</p>
         </div>
 
         <div id="public-clouds-gcp" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/gcp.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/gcp.svg" />
             <h3>Google Cloud</h3>
             <p>Artifacts for Wallarm deployment on GCP</p>
         </div>
 
         <div id="public-clouds-azure" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/azure-cloud.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/azure-cloud.svg" />
             <h3>Microsoft Azure</h3>
             <p>Artifacts for Wallarm deployment on Microsoft Azure</p>
         </div>
 
         <div id="public-clouds-alibaba" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/alibaba-cloud.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/alibaba-cloud.svg" />
             <h3>Alibaba Cloud</h3>
             <p>Artifacts for Wallarm deployment on Alibaba Cloud</p>
         </div>
 
         <a class="do-card" href=../../installation/heroku/docker-image/>
-            <img class="non-zoomable" src="../../images/platform-icons/heroku.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/heroku.svg" />
             <h3>Heroku</h3>
             <p>Build a Wallarm Docker image and run it on Heroku</p>
         </a>
@@ -61,7 +61,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="public-clouds-aws">
         <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/aws.svg" />
             <h3>Amazon Web Services</h3>
             <p>Artifacts for Wallarm deployment on AWS</p>
         </div>
@@ -84,7 +84,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="public-clouds-aws-terraform">
         <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/terraform.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/terraform.svg" />
             <h3>Terraform module</h3>
             <p>Use the Terraform module for Wallarm deployment on AWS</p>
         </div>
@@ -102,7 +102,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="public-clouds-gcp">
         <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/gcp.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/gcp.svg" />
             <h3>Google Cloud</h3>
             <p>Artifacts for Wallarm deployment on GCP</p>
         </div>
@@ -120,7 +120,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="public-clouds-azure">
         <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/azure-cloud.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/azure-cloud.svg" />
             <h3>Microsoft Azure</h3>
             <p>Artifacts for Wallarm deployment on Microsoft Azure</p>
         </div>
@@ -133,7 +133,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="public-clouds-alibaba">
         <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/alibaba-cloud.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/alibaba-cloud.svg" />
             <h3>Alibaba Cloud</h3>
             <p>Artifacts for Wallarm deployment on Alibaba Cloud</p>
         </div>
@@ -153,13 +153,13 @@ Choose an API gateway connector if traffic already flows through a gateway and y
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../../installation/connectors/layer7-api-gateway/">
-            <img class="non-zoomable" src="../../images/platform-icons/layer7.png" />
+            <img class="non-zoomable" src="../../../images/platform-icons/layer7.png" />
             <h3>Broadcom Layer7 API Gateways</h3>
             <p>Secure APIs managed with Layer7 API Gateways</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/kong-api-gateway/">
-            <img class="non-zoomable" src="../../images/platform-icons/kong-new.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/kong-new.svg" />
             <h3>Kong API Gateway</h3>
             <p>Deploy Wallarm to secure APIs managed by Kong API Gateway</p>
         </a>
@@ -173,31 +173,31 @@ Choose a CDN or edge integration if your traffic is fronted by a CDN and you wan
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../../installation/connectors/akamai-edgeworkers/">
-            <img class="non-zoomable" src="../../images/platform-icons/akamai.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/akamai.svg" />
             <h3>Akamai EdgeWorkers</h3>
             <p>Secure APIs running on Akamai EdgeWorkers</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/aws-lambda/">
-            <img class="non-zoomable" src="../../images/platform-icons/aws-cloudfront.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/aws-cloudfront.svg" />
             <h3>CloudFront</h3>
             <p>Deploy Wallarm to secure traffic delivered through Amazon CloudFront</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/azion-edge/">
-            <img class="non-zoomable" src="../../images/platform-icons/azion-edge.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/azion-edge.svg" />
             <h3>Azion Edge</h3>
             <p>Secure APIs running on Azion Edge</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/cloudflare/">
-            <img class="non-zoomable" src="../../images/platform-icons/cloudflare.png" />
+            <img class="non-zoomable" src="../../../images/platform-icons/cloudflare.png" />
             <h3>Cloudflare</h3>
             <p>Deploy Wallarm to secure traffic running via Cloudflare</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/fastly/">
-            <img class="non-zoomable" src="../../images/platform-icons/fastly.png" />
+            <img class="non-zoomable" src="../../../images/platform-icons/fastly.png" />
             <h3>Fastly</h3>
             <p>Deploy Wallarm to secure APIs running on Fastly</p>
         </a>
@@ -211,13 +211,13 @@ Choose an API management connector if you expose APIs through one of these platf
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../../installation/connectors/mulesoft/">
-            <img class="non-zoomable" src="../../images/platform-icons/mulesoft.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/mulesoft.svg" />
             <h3>MuleSoft</h3>
             <p>Deploy Wallarm to secure APIs managed by MuleSoft</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/ibm-api-connect/">
-            <img class="non-zoomable" src="../../images/platform-icons/ibm-api-connect.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/ibm-api-connect.svg" />
             <h3>IBM API Connect</h3>
             <p>Deploy Wallarm to secure APIs managed through IBM API Connect</p>
         </a>
@@ -232,13 +232,13 @@ Choose packages or containers if you run on VMs or bare metal and prefer them ov
     <div class="do-main">
 
         <div id="packages-nginx-node" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/nginx.svg">
+            <img class="non-zoomable" src="../../../images/platform-icons/nginx.svg">
             <h3>NGINX Node</h3>
             <p>Node for infrastructures that rely on NGINX</p>
         </div>
 
         <div id="packages-native-node" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/native-node.svg">
+            <img class="non-zoomable" src="../../../images/platform-icons/native-node.svg">
             <h3>Native Node</h3>
             <p>Self-hosted node for connectors or TCP traffic</p>
         </div>
@@ -248,31 +248,31 @@ Choose packages or containers if you run on VMs or bare metal and prefer them ov
     <div class="do-nested" data-for="packages-nginx-node">
 
         <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/nginx.svg">
+            <img class="non-zoomable" src="../../../images/platform-icons/nginx.svg">
             <h3>NGINX Node</h3>
             <p>Node for infrastructures that rely on NGINX</p>
         </div>
 
         <a class="do-card" href="../../installation/nginx/all-in-one/">
-            <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/linux.svg" />
             <h3>All-in-one installer</h3>
             <p>Let Wallarm detect your OS and NGINX version to install the appropriate modules</p>
         </a>
 
         <a class="do-card" href="../../admin-en/installation-docker-en/">
-            <img class="non-zoomable" src="../../images/platform-icons/docker.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/docker.svg" />
             <h3>Docker image (NGINX)</h3>
             <p>Use the NGINX-based Docker image for Wallarm deployment</p>
         </a>
 
         <div id="packages-cloud-images" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/cloud.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/cloud.svg" />
             <h3>Cloud images</h3>
             <p>Machine Images to deploy Wallarm on public clouds</p>
         </div>
 
         <a class="do-card" href="../../installation/cloud-platforms/aws/terraform-module/overview/">
-            <img class="non-zoomable" src="../../images/platform-icons/terraform.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/terraform.svg" />
             <h3>Terraform module</h3>
             <p>Use the Terraform module for Wallarm deployment on AWS</p>
         </a>
@@ -280,7 +280,7 @@ Choose packages or containers if you run on VMs or bare metal and prefer them ov
 
     <div class="do-nested" data-for="packages-cloud-images">
         <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/cloud.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/cloud.svg" />
             <h3>Cloud images</h3>
             <p>Machine Images to deploy Wallarm on public clouds</p>
         </div>
@@ -299,25 +299,25 @@ Choose packages or containers if you run on VMs or bare metal and prefer them ov
     <div class="do-nested" data-for="packages-native-node">
 
         <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/native-node.svg">
+            <img class="non-zoomable" src="../../../images/platform-icons/native-node.svg">
             <h3>Native Node</h3>
             <p>Self-hosted node for connectors or TCP traffic</p>
         </div>
 
         <a class="do-card" href="../../installation/native-node/all-in-one/">
-            <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/linux.svg" />
             <h3>All-in-one installer</h3>
             <p>Run the Native Node on a virtual machine on Linux</p>
         </a>
 
         <a class="do-card" href="../../installation/native-node/helm-chart/">
-            <img class="non-zoomable" src="../../images/platform-icons/helm.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/helm.svg" />
             <h3>Helm chart</h3>
             <p>Run the Native Node in an infrastructure utilizing K8s</p>
         </a>
 
         <a class="do-card" href="../../installation/native-node/docker-image/">
-            <img class="non-zoomable" src="../../images/platform-icons/docker.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/docker.svg" />
             <h3>Docker image</h3>
             <p>Run the Native Node in a containerized environment using Docker</p>
         </a>
@@ -331,7 +331,7 @@ Choose packages or containers if you run on VMs or bare metal and prefer them ov
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../../installation/on-premise/overview/">
-            <img class="non-zoomable" src="../../images/platform-icons/on-premise.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/on-premise.svg" />
             <h3>On-Premise</h3>
             <p>Host both Wallarm Nodes and the Wallarm Cloud within your environment</p>
         </a>
@@ -360,7 +360,7 @@ Deployment options that don't follow the platform matrix: known scenarios (multi
         </a>
 
         <a class="do-card" href="../../installation/custom/request-custom-deployment/">
-            <img class="non-zoomable" src="../../images/platform-icons/custom-deployment.svg" />
+            <img class="non-zoomable" src="../../../images/platform-icons/custom-deployment.svg" />
             <h3>Request custom deployment</h3>
             <p>Need something else? Request a custom deployment or integration</p>
         </a>

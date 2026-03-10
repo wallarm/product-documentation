@@ -1,4 +1,4 @@
-# API Abuse Preventionのセットアップ <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Preventionのセットアップ <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 このドキュメントでは、[API Abuse Prevention](../api-abuse-prevention/overview.md)モジュールを有効化して構成し、悪意あるボットを検出・軽減しつつ、正当なアクティビティのブロックを回避する方法を説明します。
 
@@ -36,7 +36,7 @@ API Abuse Preventionプロファイルを作成するには:
     * **Normal**(デフォルト、推奨) - 多くの誤検知を避けつつ、ほとんどの悪意あるボットのリクエストがAPIに到達するのを防ぐ最適なルールを使用します。
     * **Safe mode** - 感度が低いほど、より多くのボットがアプリケーションにアクセスできる一方で、正当なリクエストは破棄されません。
 
-        ![API Abuse Preventionプロファイル](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
+        ![API Abuse Preventionプロファイル](../../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
 
 1. アプリケーションを選択します。
 1. **Analyze behavior by**パラメータを設定します:
@@ -46,7 +46,7 @@ API Abuse Preventionプロファイルを作成するには:
 
 <a name="per-profile-traffic"></a>作成後、プロファイルは選択したタイプの悪意あるボットから選択したアプリケーションを保護します。保護とデータ分析は、そのプロファイルに紐づくアプリケーショントラフィックの有無や量に依存します。プロファイルごとのステータスに注意してください:
 
-![API Abuse Prevention - プロファイル](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-profiles-per-profile-status.png)
+![API Abuse Prevention - プロファイル](../../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-profiles-per-profile-status.png)
 
 ## プロファイルの無効化と削除
 

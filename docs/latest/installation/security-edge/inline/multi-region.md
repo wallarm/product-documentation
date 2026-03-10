@@ -1,4 +1,4 @@
-# Multi-Cloud and Multi-Region Deployment of Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Multi-Cloud and Multi-Region Deployment of Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 You can deploy the inline Edge Nodes across multiple regions and cloud providers to achieve geo‑redundancy and low latency.
 
@@ -10,7 +10,7 @@ When selecting multiple regions within a single cloud provider, traffic is route
 
 This is the most common setup, recommended when you serve requests from multiple locations.
 
-![!](../../../images/waf-installation/security-edge/inline/multi-region-edge-nodes.png)
+![!](../../../../images/waf-installation/security-edge/inline/multi-region-edge-nodes.png)
 
 Available regions depend on your [Wallarm Cloud](../../../about-wallarm/overview.md#cloud) (US → US regions, EU → EU regions and UAE North).
 
@@ -23,7 +23,7 @@ This setup is recommended in the following cases:
 * Cloud provider redundancy - traffic is distributed across all selected providers, ensuring that if one becomes unavailable (e.g., AWS), others (e.g., Azure) continue handling traffic without disruption.
 * Regional high availability - for example, selecting both `AWS US East 1` and `Azure East US` ensures traffic remains balanced across regions, and service continues even if one region or provider becomes unavailable.
 
-![!](../../../images/waf-installation/security-edge/inline/multi-cloud-edge-nodes.png)
+![!](../../../../images/waf-installation/security-edge/inline/multi-cloud-edge-nodes.png)
 
 ## Wallarm IP ranges for origin access
 
@@ -114,7 +114,7 @@ If your protected host is a third-level (or higher-level) domain (e.g., `api.exa
 
     Per-provider CNAMEs are also available if you need to enforce routing to a specific provider - for example, to test latency or performance across providers.
 
-![](../../../images/waf-installation/security-edge/inline/traffic-cname.png)
+![](../../../../images/waf-installation/security-edge/inline/traffic-cname.png)
 
 ## A records
 
@@ -122,7 +122,7 @@ If your protected host is an apex domain (e.g., `example.com`), a CNAME cannot b
 
 If you have selected multiple regions or providers for Edge Node deployment, you need to configure all returned A records in your DNS zone.
 
-![](../../../images/waf-installation/security-edge/inline/a-records.png)
+![](../../../../images/waf-installation/security-edge/inline/a-records.png)
 
 Traffic routing in this case is managed by your DNS provider. By default, most DNS providers use [round-robin](https://en.wikipedia.org/wiki/Round-robin_DNS) logic, but some may support latency-based routing as well.
 

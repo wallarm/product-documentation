@@ -41,7 +41,7 @@ To create and apply a new mitigation control:
 1. Click **Add control**.
 1. In the **Add control** dialog, select **AI Business logic abuse detection**.
 
-    ![Creating mitigation control](../images/user-guides/mitigation-controls/mc-create-bla.png)
+    ![Creating mitigation control](../../images/user-guides/mitigation-controls/mc-create-bla.png)
 
 1. [Configure](#configuration) your control.
 1. Click **Add**. The created control is displayed in the list. It immediately goes into action and performs in accordance with the selected **Mitigation mode**.
@@ -52,7 +52,7 @@ To create and apply a new mitigation control:
 
 Business logic abuse detection and mitigation is configured with one or several **AI Business logic abuse detection** [mitigation controls](../about-wallarm/mitigation-controls-overview.md).
 
-!["AI Business logic abuse detection" mitigation control - example](../images/api-protection/mitigation-controls-business-logic-abuse.png)
+!["AI Business logic abuse detection" mitigation control - example](../../images/api-protection/mitigation-controls-business-logic-abuse.png)
 
 Understand parts of the control from descriptions below.
 
@@ -154,7 +154,7 @@ When business logic abuse is detected, it shows up in [API Sessions](../api-sess
 * Corresponding requests within session are marked as part of the [**Custom logic abuse** attack](../attacks-vulns-list.md#custom-logic-abuse).
 * This is an LLM-based decision, so you always have **Reason** where LLM explains what kind of abuse has happened precisely by its opinion.
 
-![API Sessions - session with detected business logic abuse](../images/api-protection/api-sessions-business-logic-abuse.png)
+![API Sessions - session with detected business logic abuse](../../images/api-protection/api-sessions-business-logic-abuse.png)
 
 You can find sessions with corresponding attack types using the **Attack** filter - use the **Custom logic abuse** attack type to display only sessions with these attacks. 
 

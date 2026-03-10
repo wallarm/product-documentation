@@ -1,7 +1,7 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
-[se-connector-setup-img]:           ../../images/waf-installation/se-connector-setup.png
+[se-connector-setup-img]:           ../../../images/waf-installation/se-connector-setup.png
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
@@ -19,9 +19,9 @@ Flex Gateway için Wallarm'ı bir connector olarak kullanmak için, **Wallarm no
 Flex Gateway için Wallarm connector, hem [eşzamanlı (in-line)](../inline/overview.md) hem de [eşzamansız (out‑of‑band)](../oob/overview.md) trafik analizini destekler:
 
 === "Eşzamanlı trafik akışı"
-    ![Wallarm policy ile MuleSoft](../../images/waf-installation/gateways/mulesoft/traffic-flow-flex-gateway-inline.png)
+    ![Wallarm policy ile MuleSoft](../../../images/waf-installation/gateways/mulesoft/traffic-flow-flex-gateway-inline.png)
 === "Eşzamansız trafik akışı"
-    ![Wallarm policy ile MuleSoft](../../images/waf-installation/gateways/mulesoft/traffic-flow-flex-gateway-oob.png)
+    ![Wallarm policy ile MuleSoft](../../../images/waf-installation/gateways/mulesoft/traffic-flow-flex-gateway-oob.png)
 
 ## Kullanım senaryoları
 
@@ -102,7 +102,7 @@ Wallarm policy'sini edinmek ve MuleSoft Exchange'e yüklemek için şu adımlar�
 
 Özel policy'niz artık MuleSoft Anypoint Platform Exchange'de kullanılabilir.
 
-![Wallarm policy ile MuleSoft](../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
+![Wallarm policy ile MuleSoft](../../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
 
 ### 3. Wallarm policy'sini API'nize ekleyin
 
@@ -115,7 +115,7 @@ Wallarm policy'yi tek bir API'ya veya tüm API'lara ekleyebilirsiniz.
 1. Gerekirse, [diğer parametreleri](#configuration-options) değiştirin.
 1. Policy'yi uygulayın.
 
-![Wallarm policy](../../images/waf-installation/gateways/mulesoft/policy-setup-flex.png)
+![Wallarm policy](../../../images/waf-installation/gateways/mulesoft/policy-setup-flex.png)
 
 ## Yapılandırma seçenekleri {#configuration-options}
 

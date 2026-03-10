@@ -8,7 +8,7 @@
 
 توضح الخطة التالية تدفق حركة المرور بمستوى عال من التفصيل في وضع حجب Wallarm:
 
-![image](../../images/waf-installation/general-traffic-flow-for-connectors.png)
+![image](../../../images/waf-installation/general-traffic-flow-for-connectors.png)
 
 يتم تحليل حركة المرور على الخط، حيث يلتقط الشفرة البرمجية لـ Wallarm الطلبات ويوجهها إلى العقدة للتحليل. اعتمادًا على الرد من العقدة، يتم حجب النشاطات الخبيثة، ويُسمح فقط للطلبات المشروعة بالوصول إلى واجهات برمجة التطبيقات.
 

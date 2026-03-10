@@ -1,4 +1,4 @@
-# إعداد استكشاف واجهة البرمجة التطبيقية <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# إعداد استكشاف واجهة البرمجة التطبيقية <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 تصف هذه المقالة كيفية تمكين وتكوين وتشخيص موديول [استكشاف واجهة البرمجة التطبيقية](overview.md).
 
@@ -42,7 +42,7 @@
 
 1. قم بتمكين استكشاف واجهة البرمجة التطبيقية للتطبيقات المطلوبة في لوحة تحكم Wallarm → **استكشاف واجهة البرمجة التطبيقية** → **تكوين استكشاف واجهة البرمجة التطبيقية**.
 
-    ![استكشاف واجهة البرمجة التطبيقية – الإعدادات](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
+    ![استكشاف واجهة البرمجة التطبيقية – الإعدادات](../../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
 
 عند إضافة تطبيق جديد في **الإعدادات** → **[التطبيقات](../user-guides/settings/applications.md)**، يتم إضافته تلقائيًا إلى قائمة التطبيقات لاستكشاف واجهة البرمجة التطبيقية في الحالة **المعطلة**.
 

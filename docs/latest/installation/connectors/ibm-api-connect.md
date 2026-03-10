@@ -1,7 +1,7 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/waf-installation/gateways/ibm/test-attack-ui.png
+[attacks-in-ui-image]:              ../../../images/waf-installation/gateways/ibm/test-attack-ui.png
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
-[se-connector-setup-img]:           ../../images/waf-installation/se-connector-setup.png
+[se-connector-setup-img]:           ../../../images/waf-installation/se-connector-setup.png
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
@@ -18,7 +18,7 @@ To integrate Wallarm with IBM API Connect, **deploy a Wallarm node externally** 
 
 The Wallarm connector for IBM API Connect supports only [in-line](../inline/overview.md) traffic analysis:
 
-![](../../images/waf-installation/gateways/ibm/ibm-traffic-flow-inline.png)
+![](../../../images/waf-installation/gateways/ibm/ibm-traffic-flow-inline.png)
 
 !!! info "Requests matching API specification"
     According to IBM API Connect behavior, only requests matching the defined OpenAPI paths will be inspected by the Wallarm Node.

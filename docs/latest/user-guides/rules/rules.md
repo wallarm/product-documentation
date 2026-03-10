@@ -1,6 +1,6 @@
 [link-regex]:                   https://github.com/yandex/pire
 [link-request-processing]:      request-processing.md
-[img-add-rule]:                 ../../images/user-guides/rules/section-rules-add-rule.png
+[img-add-rule]:                 ../../../images/user-guides/rules/section-rules-add-rule.png
 [link-attack-detection-tools]:  ../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection
 [link-sub-plans]:               ../../about-wallarm/subscription-plans.md#core-subscription-plans
 [link-filtration-mode]:         ../../admin-en/configure-wallarm-mode.md
@@ -8,7 +8,7 @@
 [link-sessions]:                ../../api-sessions/overview.md
 [link-brute-force-protection]:  ../../admin-en/configuration-guides/protecting-against-bruteforce.md
 [link-cloud-node-synchronization]: ../../admin-en/configure-cloud-node-synchronization-en.md
-[img-rules-create-backup]:      ../../images/user-guides/rules/rules-create-backup.png
+[img-rules-create-backup]:      ../../../images/user-guides/rules/rules-create-backup.png
 
 # Rules
 
@@ -16,7 +16,7 @@ Rules are used to fine-tune the [default](../../about-wallarm/protecting-against
 
 Rules are configured in the **Rules** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules) Cloud.
 
-![Rules section](../../images/user-guides/rules/section-rules.png)
+![Rules section](../../../images/user-guides/rules/section-rules.png)
 
 !!! warning "Rule application delay"
     When you make changes to the rules, they don't take effect immediately as it takes some time to [compile the rules](#ruleset-lifecycle) and upload them to the filtering nodes.
@@ -58,7 +58,7 @@ Rules are automatically grouped into nested branches by endpoint URIs and other 
 * Directly specified has priority over [regex](rules.md#condition-type-regex).
 * Case [sensitive](rules.md#condition-type-equal) has priority over [insensitive](rules.md#condition-type-iequal-aa).
 
-![Rules tab overview](../../images/user-guides/rules/rules-overview.png)
+![Rules tab overview](../../../images/user-guides/rules/rules-overview.png)
 
 !!! info "No inheritance for parameters/points of request"
     Inheritance [does not work for rules](../rules/rules.md#rule-branches) with **In this part of request** part specified, for example, [rate limiting](rate-limiting.md), [virtual patches](vpatch-rule.md) and others. If in these rules, **In this part of request** is not used, the inheritance will work as usually.
@@ -81,12 +81,12 @@ Here are some details of how to work with the rule branches:
 * To expand the endpoint, click the blue circle.
 * Endpoints that do not have distinct rules are greyed out and not clickable.
     
-    ![Branch of endpoints](../../images/user-guides/rules/rules-branch.png)
+    ![Branch of endpoints](../../../images/user-guides/rules/rules-branch.png)
 
 * To view rules for the endpoint, click it. First, distinct rules for this endpoint will be displayed.
 * When viewing the rule list for the specific endpoint, click **Distinct and inherited rules** to display the inherited ones. Inherited rules will be displayed together with the distinct; they will be greyed out compared to distinct.
 
-    ![Distinct and inherited rules for endpoint](../../images/user-guides/rules/rules-distinct-and-inherited.png)
+    ![Distinct and inherited rules for endpoint](../../../images/user-guides/rules/rules-distinct-and-inherited.png)
 
 ## Configuring
 
@@ -139,7 +139,7 @@ Can you use wildcards when working with URI constructor in Wallarm? No and yes. 
 * Within parsed components of your URI, instead of wildcards, use regular expressions.
 * Place `*` or `**` symbol into the URI field itself to replace one or any number of components (see examples in the section [above](#uri-constructor)).
 
-    ![Wildcards - correct/incorrect usage](../../images/user-guides/rules/wildcards-correct-incorrect.png)
+    ![Wildcards - correct/incorrect usage](../../../images/user-guides/rules/wildcards-correct-incorrect.png)
 
 **Some details**
 
@@ -154,7 +154,7 @@ The syntax of the regular expression is different from the classical wildcards, 
 
 But in Wallarm, your `something-1.example.com/user/create.com` will be parsed into:
 
-![Example of parsing URI into components](../../images/user-guides/rules/something-parsed.png)
+![Example of parsing URI into components](../../../images/user-guides/rules/something-parsed.png)
 
 ...where `something-1.example.com` is a `header`-`HOST` condition. We mentioned that wildcard cannot be used within the condition, so instead we need to use regular expression: set the condition type to REGEX and then use the regular expression Wallarm [specific syntax](#condition-type-regex):
 
@@ -174,7 +174,7 @@ But in Wallarm, your `something-1.example.com/user/create.com` will be parsed in
     !!! info "The simpler way"
         You can omit `.*` and leave only `[.]example[.]com$`. In both cases, Wallarm will assume that any character can appear before `[.]example[.]com$` any number of times.
 
-    ![Using regular expression in header component](../../images/user-guides/rules/wildcard-regex.png)
+    ![Using regular expression in header component](../../../images/user-guides/rules/wildcard-regex.png)
 
 ### Advanced edit form
 

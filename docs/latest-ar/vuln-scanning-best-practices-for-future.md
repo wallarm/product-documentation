@@ -1,6 +1,6 @@
 كشف الثغرات وأفضل ممارسات التخفيف
 
-## اتبع أفضل الممارسات للتحقق من التهديدات النشطة <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
+## اتبع أفضل الممارسات للتحقق من التهديدات النشطة <a href="../subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
 
 إحدى الطرق التي يستخدمها Wallarm ل[كشف الثغرات](../about-wallarm/detecting-vulnerabilities.md) هي **التحقق من التهديدات النشطة**.
 

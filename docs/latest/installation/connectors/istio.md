@@ -1,4 +1,4 @@
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [custom-blocking-page-docs]:        ../../admin-en/configuration-guides/configure-block-page-and-code.md
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [multitenancy-overview]:            ../multi-tenant/overview.md
@@ -23,9 +23,9 @@ To use Wallarm with Istio, you need to **deploy a Wallarm Node** (either externa
 The Wallarm connector for Istio ingress supports both [synchronous (in-line)](../inline/overview.md) and [asynchronous (out‑of‑band)](../oob/overview.md) traffic analysis:
 
 === "Synchronous traffic flow"
-    ![Istio with synchronous traffic flow to the Wallarm Node](../../images/waf-installation/gateways/istio/traffic-flow-sync.png)
+    ![Istio with synchronous traffic flow to the Wallarm Node](../../../images/waf-installation/gateways/istio/traffic-flow-sync.png)
 === "Asynchronous traffic flow"
-    ![Istio with asynchronous traffic flow to the Wallarm Node](../../images/waf-installation/gateways/istio/traffic-flow-async.png)
+    ![Istio with asynchronous traffic flow to the Wallarm Node](../../../images/waf-installation/gateways/istio/traffic-flow-async.png)
 
 ## Use cases
 

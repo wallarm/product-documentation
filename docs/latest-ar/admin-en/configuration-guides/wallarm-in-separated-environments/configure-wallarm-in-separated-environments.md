@@ -40,8 +40,8 @@
 * أولًا، طبق تكوينًا جديدًا على بيئة اختبار أو تطوير، تحقق من وظائفه، ثم طبق التغيير على بيئة الإنتاج.
 * استخدم قاعدة `إنشاء مؤشر هجوم مستند إلى regexp` في وضع `Experimental`. يسمح هذا الوضع بنشر القاعدة مباشرة في بيئة الإنتاج دون خطر حظر طلبات المستخدمين الصحيحة عن طريق الخطأ.
 
-    ![إنشاء قاعدة تجريبية](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/define-attack-experimental.png)
+    ![إنشاء قاعدة تجريبية](../../../../images/admin-guides/configuration-guides/waf-in-separate-environments/define-attack-experimental.png)
 
 * استخدم قاعدة `ضبط وضع الفلترة` للتحكم في وضع فلترة Wallarm لبيئات وطلبات محددة. توفر هذه القاعدة مرونة إضافية في كيفية طرح حماية Wallarm بشكل تدريجي لحماية نقاط نهائية جديدة وموارد أخرى في بيئات مختلفة. بشكل افتراضي، يُستخدم قيمة [`wallarm_mode`](../../configure-parameters-en.md#wallarm_mode) اعتمادًا على إعداد [`wallarm_mode_allow_override`](../../configure-parameters-en.md#wallarm_mode_allow_override).
 
-    ![إنشاء قاعدة لتجاوز وضع الفلترة](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/rule-overwrite-filtering-mode.png)
+    ![إنشاء قاعدة لتجاوز وضع الفلترة](../../../../images/admin-guides/configuration-guides/waf-in-separate-environments/rule-overwrite-filtering-mode.png)

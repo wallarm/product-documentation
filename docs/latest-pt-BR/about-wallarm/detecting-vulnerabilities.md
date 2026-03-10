@@ -26,7 +26,7 @@ Com a detecção passiva, a Wallarm detecta uma vulnerabilidade devido ao incide
 
 A detecção passiva de vulnerabilidades está ativada por padrão.
 
-### Verificação de ameaças ativas <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
+### Verificação de ameaças ativas <a href="../subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
 A Verificação de Ameaças Ativas da Wallarm transforma os invasores em seus próprios testers de penetração. Ele analisa as primeiras tentativas de ataque e, em seguida, explora outras maneiras pelas quais o mesmo ataque pode ser explorado. Isso expõe pontos fracos em seu ambiente que até mesmo os invasores originais não encontraram. [Leia mais](../vulnerability-detection/threat-replay-testing/overview.md)
 
@@ -45,7 +45,7 @@ O módulo está desativado por padrão. Para ativá-lo:
 
 Você tem ainda a capacidade de [ajustar ou personalizar o comportamento do módulo](../vulnerability-detection/threat-replay-testing/setup.md#enable) para endpoints específicos.
 
-### Scanner de Vulnerabilidades <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
+### Scanner de Vulnerabilidades <a href="../subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
 #### Como funciona
 
@@ -81,11 +81,11 @@ Todas as vulnerabilidades detectadas são exibidas na seção Wallarm Console �
 * Executar a verificação de status da vulnerabilidade: ainda ativo ou corrigido no lado do aplicativo
 * Fechar vulnerabilidades ou marcá-las como falsos positivos
 
-![Seção Vulnerabilidades](../images/user-guides/vulnerabilities/check-vuln.png)
+![Seção Vulnerabilidades](../../images/user-guides/vulnerabilities/check-vuln.png)
 
 Se você usar o módulo [**API Discovery**](../api-discovery/overview.md) da plataforma Wallarm, as vulnerabilidades serão vinculadas aos endpoints de API descobertos, por exemplo:
 
-![API Discovery - Pontuação de Risco](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
+![API Discovery - Pontuação de Risco](../../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 
 Para mais informações sobre o gerenciamento de vulnerabilidades, consulte as instruções sobre [trabalho com vulnerabilidades](../user-guides/vulnerabilities.md).
 

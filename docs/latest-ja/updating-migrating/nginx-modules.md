@@ -1,6 +1,6 @@
 [wallarm-status-instr]:             ../admin-en/configure-statistics-service.md
 [ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 [waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
 [blocking-page-instr]:              ../admin-en/configuration-guides/configure-block-page-and-code.md
 [logging-instr]:                    ../admin-en/configure-logging.md
@@ -10,8 +10,8 @@
 [configure-proxy-balancer-instr]:   ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [install-postanalytics-instr]:      ../admin-en/installation-postanalytics-en.md
 [dynamic-dns-resolution-nginx]:     ../admin-en/configure-dynamic-dns-resolution-nginx.md
-[img-wl-console-users]:             ../images/check-users.png 
-[img-create-wallarm-node]:      ../images/user-guides/nodes/create-cloud-node.png
+[img-wl-console-users]:             ../../images/check-users.png 
+[img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
 [nginx-process-time-limit-docs]:    ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]:  ../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.md
@@ -42,7 +42,7 @@
     1. インストール済みのWallarmモジュールをNGINXに接続します。
     1. 提供されたトークンを使用してフィルタリングノードをWallarm Cloudに接続します。
 
-    ![手動手順とAll-in-oneの比較](../images/installation-nginx-overview/manual-vs-all-in-one.png)
+    ![手動手順とAll-in-oneの比較](../../images/installation-nginx-overview/manual-vs-all-in-one.png)
 
 サポート終了のノード(3.6以下)をアップグレードする場合は、[別の手順](older-versions/nginx-modules.md)を使用してください。
 

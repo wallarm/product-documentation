@@ -18,7 +18,7 @@ Bir yansı hedefi olarak çalışır ve birden çok trafik kaynağı arasında s
 
 Ek olarak, çözüm yanıt yansımasını ayrıştırmayı da etkinleştirir ve yanıt verisine dayanan Wallarm özelliklerini sağlar. Bu özellikler arasında [security vulnerability detection](../../../about-wallarm/detecting-vulnerabilities.md), [API Discovery](../../../api-discovery/overview.md) ve daha fazlası bulunur.
 
-![!TCP trafik yansıtma şeması](../../../images/waf-installation/oob/tcp-mirror-analysis.png)
+![!TCP trafik yansıtma şeması](../../../../images/waf-installation/oob/tcp-mirror-analysis.png)
 
 ## Gereksinimler
 
@@ -220,7 +220,7 @@ Wallarm’ın TCP trafik yansıtma analizi çözümü bant dışı çalıştığ
 
 Saldırının kaydedildiğini doğrulamak için Wallarm Console → **Events** bölümüne gidin:
 
-![!Arayüzde saldırılar](../../../images/waf-installation/epbf/ebpf-attack-in-ui.png)
+![!Arayüzde saldırılar](../../../../images/waf-installation/epbf/ebpf-attack-in-ui.png)
 
 ## Düğümün çalışmasını doğrulama
 

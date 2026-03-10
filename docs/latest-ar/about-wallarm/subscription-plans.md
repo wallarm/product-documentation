@@ -56,7 +56,7 @@
 
 يتم عرض معلومات حول الخطة النشطة في وحدة تحكم Wallarm → **الإعدادات** → **الاشتراكات**.
 
-![خطة الاشتراك المدفوع](../images/user-guides/settings/subscriptions/subscriptions.png)
+![خطة الاشتراك المدفوع](../../images/user-guides/settings/subscriptions/subscriptions.png)
 
 ## إشعارات الاشتراك
 

@@ -11,7 +11,7 @@ Você pode configurar o Wallarm para enviar notificações de eventos detectados
 1. Selecione a [região do Datadog](https://docs.datadoghq.com/getting_started/site/).
 1. Escolha os tipos de eventos que acionarão as notificações.
 
-    ![Integração Datadog](../../../images/user-guides/settings/integrations/add-datadog-integration.png)
+    ![Integração Datadog](../../../../images/user-guides/settings/integrations/add-datadog-integration.png)
 
     Detalhes sobre eventos disponíveis:
 
@@ -21,7 +21,7 @@ Você pode configurar o Wallarm para enviar notificações de eventos detectados
 
     O log de teste do Datadog:
 
-    ![O log de teste do Datadog](../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
+    ![O log de teste do Datadog](../../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
 
     Para encontrar os logs Wallarm entre outros registros, você pode usar a tag de pesquisa `source:wallarm_cloud` no serviço Datadog Logs.
 

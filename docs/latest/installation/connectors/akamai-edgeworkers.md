@@ -1,5 +1,5 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [helm-chart-native-node]:           ../native-node/helm-chart.md
 [custom-blocking-page]:             ../../admin-en/configuration-guides/configure-block-page-and-code.md
 [rate-limiting]:                    ../../user-guides/rules/rate-limiting.md
@@ -14,9 +14,9 @@ To use Wallarm as a connector for Akamai, you need to **deploy the Wallarm node 
 The Wallarm connector for Akamai supports both [synchronous (in-line)](../inline/overview.md) and [asynchronous (out‑of‑band)](../oob/overview.md) traffic analysis:
 
 === "Synchronous traffic flow"
-    ![!Akamai synchronous traffic flow with Wallarm EdgeWorker](../../images/waf-installation/gateways/akamai/traffic-flow-sync.png)
+    ![!Akamai synchronous traffic flow with Wallarm EdgeWorker](../../../images/waf-installation/gateways/akamai/traffic-flow-sync.png)
 === "Asynchronous traffic flow"
-    ![!Akamai asynchronous traffic flow with Wallarm EdgeWorker](../../images/waf-installation/gateways/akamai/traffic-flow-async.png)
+    ![!Akamai asynchronous traffic flow with Wallarm EdgeWorker](../../../images/waf-installation/gateways/akamai/traffic-flow-async.png)
 
 ## Use cases
 
@@ -110,7 +110,7 @@ To acquire and run the Wallarm code bundle on Akamai EdgeWorkers, follow these s
     ```
 1. [Activate the property in staging](https://techdocs.akamai.com/property-mgr/docs/activate-stage), verify functionality, then [activate in production](https://techdocs.akamai.com/property-mgr/docs/activate-prod).
 
-![!Wallarm Node Property in Akamai](../../images/waf-installation/gateways/akamai/wallarm-property.png)
+![!Wallarm Node Property in Akamai](../../../images/waf-installation/gateways/akamai/wallarm-property.png)
 
 ### 4. Configure variables in the origin property
 
@@ -124,7 +124,7 @@ Open your existing origin property → **Edit New Version** and configure the fo
 | `PMUSER_WALLARM_INSPECT_REQ_BODY` | Controls whether to send request bodies to the Wallarm node for analysis or not. Default: `true`. | No |
 | `PMUSER_WALLARM_INSPECT_RSP_BODY` | Controls whether to send response bodies to the Wallarm node for analysis or not. It enables response schema discovery and enhanced attack and vulnerability detection capabilities. Default: `true`. | No |
 
-![!Wallarm variables for the Akamai origin property](../../images/waf-installation/gateways/akamai/origin-property-variables.png)
+![!Wallarm variables for the Akamai origin property](../../../images/waf-installation/gateways/akamai/origin-property-variables.png)
 
 You can fine-tune the connector mode and body inspection settings per-route or per-file type by using the **Set Variable** behavior.
 

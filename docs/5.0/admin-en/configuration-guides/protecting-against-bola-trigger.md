@@ -21,7 +21,7 @@ Let us say your e-commerce `wmall-example.com` platform for online stores (shops
 
     * `*` [wildcard](../../user-guides/rules/rules.md#using-wildcards) in the path meaning "any one component". They will cover all the `wmall-example.com/shops/<PARTICULAR_SHOP>/financial_info` addresses.
 
-        ![BOLA trigger](../../images/user-guides/triggers/trigger-example7-4.8.png)
+        ![BOLA trigger](../../../images/user-guides/triggers/trigger-example7-4.8.png)
 
 1. Do not use in this case: 
 
@@ -52,7 +52,7 @@ To test the trigger described in the [Configuring](#configuring) section:
     If the trigger reaction is **Graylist IP address**, check the section **IP lists** → **Graylist** of Wallarm Console.
 1. Open the section **Attacks** and check that requests are displayed in the list as BOLA attack.
 
-    ![BOLA attack in the UI](../../images/user-guides/events/bola-attack.png)
+    ![BOLA attack in the UI](../../../images/user-guides/events/bola-attack.png)
 
     The number of displayed requests corresponds to the number of requests sent after the trigger threshold was exceeded ([more details on detecting behavioral attacks](../../attacks-vulns-list.md#attack-types)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/grouping-sampling.md#sampling-of-hits)).
 
@@ -68,6 +68,6 @@ To protect resources from BOLA attacks, real clients' IP addresses are required.
 
 When searching for BOLA attack signs, Wallarm nodes analyze only HTTP requests that do not contain signs of other attack types.
 
-## Automatic protection  <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Automatic protection  <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Alternatively or additionally to other BOLA protection measures, you can configure [Automatic BOLA protection for endpoints found by API Discovery](protecting-against-bola.md).

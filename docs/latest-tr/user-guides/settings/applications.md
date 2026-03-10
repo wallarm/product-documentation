@@ -19,7 +19,7 @@ Varsayılan olarak, Wallarm her uygulamayı kimliği (ID) `-1` olan `default` uy
 
 1. (İsteğe bağlı) Wallarm Console → **Settings** → **Applications** bölümünden bir uygulama ekleyin.
 
-    ![Uygulama ekleme](../../images/user-guides/settings/configure-app.png)
+    ![Uygulama ekleme](../../../images/user-guides/settings/configure-app.png)
 
     !!! warning "Yönetici erişimi"
         Yalnızca **Administrator** rolüne sahip kullanıcılar **Settings** → **Applications** bölümüne erişebilir.
@@ -82,7 +82,7 @@ Bu istek:
 * ID’si `222` olan uygulama ile ilişkilendirilir.
 * İlgili uygulama yoksa, **Settings** → **Applications** bölümüne eklenir ve otomatik olarak `Application #222` olarak adlandırılır.
 
-![İstek başlığı temelinde uygulama ekleme](../../images/user-guides/settings/configure-app-auto-header.png)
+![İstek başlığı temelinde uygulama ekleme](../../../images/user-guides/settings/configure-app-auto-header.png)
 
 ### `map` NGINX yönergesini kullanarak belirli istek başlığına veya URL’lerin bir bölümüne göre uygulama tanımlama
 

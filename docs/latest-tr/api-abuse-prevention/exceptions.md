@@ -1,6 +1,6 @@
 [api-discovery-enable-link]:        ../api-discovery/setup.md#enable
 
-# API Abuse Prevention İstisnaları <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Prevention İstisnaları <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Bu makale, meşru botları işaretleyerek ve belirli hedef URL’ler ve istek türleri için bot korumasını devre dışı bırakarak [API Abuse Prevention](../api-abuse-prevention/overview.md) özelliğini nasıl ince ayarlayacağınızı açıklar.
 
@@ -16,11 +16,11 @@ IP adreslerini exception list’e eklemenin iki yolu vardır:
 
 * **API Abuse Prevention** bölümünden → **Exception list** sekmesinde **Add exception** üzerinden. Burada IP ve alt ağların yanı sıra, API Abuse Prevention tarafından yok sayılması gereken konumlar ve kaynak türlerini de ekleyebilirsiniz.
 
-    ![API Abuse prevention - exception list içinden öğe ekleme](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-inside.png)
+    ![API Abuse prevention - exception list içinden öğe ekleme](../../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-inside.png)
 
 * **Attacks** bölümünden: `api_abuse`, `account_takeover`, `scraping` ve `security_crawlers` arama anahtarlarını kullanın veya **Type** filtresinden uygun seçenekleri seçin, ardından gerekli olayı genişletip **Add to exception list**’e tıklayın.
 
-    ![API Abuse prevention - olay içinden exception list’e ekleme](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
+    ![API Abuse prevention - olay içinden exception list’e ekleme](../../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
 
 Bir IP adresi exception list’e eklendiğinde, adres otomatik olarak [deny-](../user-guides/ip-lists/overview.md) veya [graylist](../user-guides/ip-lists/overview.md) listesinden kaldırılır, ancak yalnızca API Abuse Prevention tarafından (nedeni `Bot` ise) eklenmişse.
 
@@ -60,7 +60,7 @@ Kuralı silmeden URL ve/veya istek türü için istisnayı geçici olarak devre 
 
 Uygulamanızın, birden fazla IP’den istek gönderen Klaviyo pazarlama otomasyon aracıyla entegre olduğunu varsayalım. Bu nedenle, belirli URI’ler için `Klaviyo/1.0` user agent’ından gelen GET isteklerinde otomatik (bot) etkinlikleri kontrol etmemeyi ayarlıyoruz:
 
-![Belirli başlıklara sahip istekler için bot etkinliğini kontrol etme](../images/user-guides/rules/api-abuse-url-request.png)
+![Belirli başlıklara sahip istekler için bot etkinliğini kontrol etme](../../images/user-guides/rules/api-abuse-url-request.png)
 
 **Test endpoint’i için bot korumasının devre dışı bırakılması**
 
@@ -68,7 +68,7 @@ Diyelim ki uygulamanıza ait bir endpoint’iniz var. Uygulama bot etkinliklerin
 
 Bu durumda kuralı **API Discovery** endpoint listesinden oluşturmak daha kolaydır. Oraya gidin, endpoint’inizi bulun ve sayfasından kural oluşturmayı başlatın:
 
-![API Discovery endpoint’i için Set API Abuse Prevention mode oluşturma](../images/user-guides/rules/api-abuse-url.png)
+![API Discovery endpoint’i için Set API Abuse Prevention mode oluşturma](../../images/user-guides/rules/api-abuse-url.png)
 
 ## Profil devre dışı bırakma ve silme
 

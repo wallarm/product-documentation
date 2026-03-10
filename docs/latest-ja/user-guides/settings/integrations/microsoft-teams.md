@@ -11,7 +11,7 @@
 1. 提供されたWebhook URLをコピーし、Wallarm Consoleの**Webhook URL**フィールドに貼り付けます。
 1. 通知をトリガーするイベントタイプを選択します。
 
-      ![MS Teamsインテグレーション](../../../images/user-guides/settings/integrations/add-ms-teams-integration.png)
+      ![MS Teamsインテグレーション](../../../../images/user-guides/settings/integrations/add-ms-teams-integration.png)
     
       利用可能なイベントの詳細:
       

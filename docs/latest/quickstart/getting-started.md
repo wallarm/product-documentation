@@ -42,7 +42,7 @@ To register with Wallarm yourself:
 
 After registration, the **Welcome to Wallarm** wizard is launched automatically. It is equipped with a ready-to-use demo Wallarm Node that lets you observe how Wallarm protects APIs in just 5 minutes.
 
-![Self-signup - Welcome Wizard](../images/waf-installation/quickstart/welcome-wizard.png)
+![Self-signup - Welcome Wizard](../../images/waf-installation/quickstart/welcome-wizard.png)
 
 In the wizard, you can:
 
@@ -66,7 +66,7 @@ Knowing the full list of your organization's external APIs is the first step in 
 
 Subscribe to Wallarm's [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) to immediately discover all your external hosts and their APIs without deployment and get the information about how well your hosts are protected and what [security issues](../api-attack-surface/security-issues.md) (vulnerabilities) they have.
 
-![AASM](../images/api-attack-surface/aasm.png)
+![AASM](../../images/api-attack-surface/aasm.png)
 
 To start, do one of the following:
 
@@ -80,7 +80,7 @@ To explore Wallarm even before signing up and deploying any components to your e
 
 In Playground, you can access the Wallarm Console view like it is filled with real data. Wallarm Console is the major Wallarm platform component that displays data on processed traffic and allows the platform fine-tuning. So, with Playground you can learn and try out how the product works, and get some useful examples of its usage in the read-only mode.
 
-![Playground](../images/playground.png)
+![Playground](../../images/playground.png)
 
 To try the Wallarm solution capabilities on your traffic, [create a Security Edge Free tier account](#security-edge-free-tier).
 

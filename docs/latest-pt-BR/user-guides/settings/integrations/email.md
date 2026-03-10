@@ -15,7 +15,7 @@ As notificações incluem detalhes breves dos eventos acionados.
 1. Escolha a frequência dos relatórios de segurança. Se a frequência não for escolhida, os relatórios não serão enviados.
 1. Escolha os tipos de eventos para acionar as notificações.
 
-    ![Integração de relatório por e-mail](../../../images/user-guides/settings/integrations/add-email-report-integration.png)
+    ![Integração de relatório por e-mail](../../../../images/user-guides/settings/integrations/add-email-report-integration.png)
 
     Detalhes sobre eventos disponíveis:
 
@@ -25,7 +25,7 @@ As notificações incluem detalhes breves dos eventos acionados.
 
     Isso enviará as notificações de teste com o prefixo `[Test message]`:
 
-    ![Mensagem de teste por email](../../../images/user-guides/settings/integrations/test-email-scope-changed.png)
+    ![Mensagem de teste por email](../../../../images/user-guides/settings/integrations/test-email-scope-changed.png)
 
 1. Clique em **Adicionar integração**.
 

@@ -1,4 +1,4 @@
-# Security Edge Inlineのマルチクラウドおよびマルチリージョンデプロイメント <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inlineのマルチクラウドおよびマルチリージョンデプロイメント <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 インラインEdge Nodeを複数リージョンおよび複数クラウドプロバイダにデプロイして、地理的冗長性と低レイテンシを実現できます。
 
@@ -10,7 +10,7 @@
 
 これは最も一般的な構成であり、複数の場所からリクエストを処理する場合に推奨されます。
 
-![!](../../../images/waf-installation/security-edge/inline/multi-region-edge-nodes.png)
+![!](../../../../images/waf-installation/security-edge/inline/multi-region-edge-nodes.png)
 
 利用可能なリージョンはご利用の[Wallarm Cloud](../../../about-wallarm/overview.md#cloud)に依存します（US→USリージョン、EU→EUリージョン）。
 
@@ -23,7 +23,7 @@
 * クラウドプロバイダの冗長化: トラフィックが選択したすべてのプロバイダに分散され、1つが利用不能になっても（例: AWS）、他のプロバイダ（例: Azure）が中断なくトラフィック処理を継続します。
 * リージョンの高可用性: 例えば、`AWS US East 1`と`Azure East US`の両方を選択すると、リージョン間でトラフィックのバランスが維持され、いずれかのリージョンまたはプロバイダが利用不能になってもサービスが継続します。
 
-![!](../../../images/waf-installation/security-edge/inline/multi-cloud-edge-nodes.png)
+![!](../../../../images/waf-installation/security-edge/inline/multi-cloud-edge-nodes.png)
 
 ## オリジンアクセスのためのWallarm IP範囲
 
@@ -104,7 +104,7 @@ mTLSを使用できない場合は、選択したリージョンのWallarm IPア
 
     特定のプロバイダにルーティングを固定する必要がある場合は、プロバイダ別のCNAMEも利用できます。例えば、プロバイダ間のレイテンシやパフォーマンスをテストする目的です。
 
-![](../../../images/waf-installation/security-edge/inline/traffic-cname.png)
+![](../../../../images/waf-installation/security-edge/inline/traffic-cname.png)
 
 ## Aレコード
 
@@ -112,7 +112,7 @@ mTLSを使用できない場合は、選択したリージョンのWallarm IPア
 
 Edge Nodeのデプロイメントに複数のリージョンまたはプロバイダを選択した場合は、返されたすべてのAレコードをDNSゾーンに設定する必要があります。
 
-![](../../../images/waf-installation/security-edge/inline/a-records.png)
+![](../../../../images/waf-installation/security-edge/inline/a-records.png)
 
 この場合のトラフィックのルーティングはDNSプロバイダによって管理されます。既定では、ほとんどのDNSプロバイダは[ラウンドロビン](https://en.wikipedia.org/wiki/Round-robin_DNS)のロジックを使用しますが、レイテンシベースのルーティングをサポートしている場合もあります。
 

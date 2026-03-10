@@ -1,4 +1,4 @@
-# Security Edge <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 Security Edge, [Wallarm Node](../../about-wallarm/overview.md#filtering-node) barındırmadan API’lerinizi ve uygulamalarınızı korumanıza olanak tanıyan, Wallarm tarafından yönetilen bir dağıtım seçeneğidir. Trafiği **Wallarm’ın küresel olarak dağıtılmış Edge altyapısına** yönlendirirsiniz; burada trafik filtrelenir ve güvenle backend’inize iletilir.
 
@@ -21,13 +21,13 @@ Security Edge hizmeti, Wallarm Node’ların Wallarm tarafından dağıtıldığ
     <div class="do-main">
 
         <a class="do-card" href="../inline/overview/">
-            <img class="non-zoomable" src="../../../images/platform-icons/se-inline.svg" />
+            <img class="non-zoomable" src="../../../../images/platform-icons/se-inline.svg" />
             <h3>Security Edge Inline</h3>
             <p>Gerçek zamanlı trafik Edge Node üzerinden yönlendirilir, filtrelenir ve origin’inize iletilir</p>
         </a>
 
         <a class="do-card" href="../se-connector/">
-            <img class="non-zoomable" src="../../../images/platform-icons/se-connectors.svg" />
+            <img class="non-zoomable" src="../../../../images/platform-icons/se-connectors.svg" />
             <h3>Security Edge Connector</h3>
             <p>Asenkron analiz veya gerçek zamanlı engelleme için Edge Node’u API platformunuza bağlayın</p>
         </a>

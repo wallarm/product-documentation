@@ -20,7 +20,7 @@ Wallarm UI:
 1. Opsgenieの[EUインスタンス](https://docs.opsgenie.com/docs/european-service-region)を使用している場合は、リストから適切なOpsgenieのAPIエンドポイントを選択します。既定ではUSインスタンスのエンドポイントが設定されています。
 1. 通知をトリガーするイベントタイプを選択します。
 
-    ![Opsgenieインテグレーション](../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
+    ![Opsgenieインテグレーション](../../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
 
     利用可能なイベントの詳細:
       
@@ -30,7 +30,7 @@ Wallarm UI:
 
     これにより、接頭辞`[Test message]`付きのテスト通知が送信されます:
 
-    ![Opsgenieのテストメッセージ](../../../images/user-guides/settings/integrations/test-opsgenie-new-vuln.png)
+    ![Opsgenieのテストメッセージ](../../../../images/user-guides/settings/integrations/test-opsgenie-new-vuln.png)
 
 1. **Add integration**をクリックします。
 
@@ -44,7 +44,7 @@ Wallarm UI:
 
 アプリケーションサーバーまたはデータベースに関するインシデントが1秒間に2件以上検出された場合、このイベントについての通知がOpsgenieに送信されます。
 
-![Splunkにデータを送信するトリガーの例](../../../images/user-guides/triggers/trigger-example3.png)
+![Splunkにデータを送信するトリガーの例](../../../../images/user-guides/triggers/trigger-example3.png)
 
 **トリガーをテストするには**、アクティブな脆弱性を悪用する攻撃を保護対象のリソースに送信する必要があります。Wallarm Console → **Vulnerabilities**セクションには、アプリケーションで検出されたアクティブな脆弱性と、それらの脆弱性を悪用する攻撃の例が表示されます。
 

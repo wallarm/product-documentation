@@ -1,4 +1,4 @@
-# Access Control Lists (ACL) in Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Access Control Lists (ACL) in Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 An access control list (ACL) is a set of rules that defines which IP addresses can access specific hosts and locations of your APIs protected by [Security Edge Inline](/overview.md).
 
@@ -35,7 +35,7 @@ The created ACL appears in the list. You can see how many rules it contains and 
 
 The newly created ACL is used in 0 hosts and locations. To secure hosts or locations with this ACL, you need to assign it to them.
 
-![Zero locations](../../../images/configuration-guides/acl-zero-locations.png)
+![Zero locations](../../../../images/configuration-guides/acl-zero-locations.png)
 
 ## Assigning an ACL to protect hosts and locations
 
@@ -44,7 +44,7 @@ You can assign an ACL either during or after Edge Node deployment.
 1. Go to Wallarm Console → **Security Edge** → **Inline** → **Configure** → **Hosts**.
 1. Under "Access control list (ACL)", select the desired ACL.
 
-![Select ACL](../../../images/configuration-guides/select-acl.png)
+![Select ACL](../../../../images/configuration-guides/select-acl.png)
 
 ## ACL and IP list evaluation order
 

@@ -102,7 +102,7 @@ Yönerge, NGINX yapılandırma dosyasının `http` bloğu içinde ayarlanabilir.
 
 Wallarm tarafından sağlanan örnek engelleme sayfası aşağıdaki gibidir:
 
-![Wallarm engelleme sayfası](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+![Wallarm engelleme sayfası](../../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
 Özelleştirmenize başlangıç noktası olarak örnek sayfayı kullanabilir ve aşağıdakilerle geliştirebilirsiniz:
 

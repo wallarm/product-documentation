@@ -73,11 +73,11 @@ Wallarm publica informações sobre as novas versões principais e secundárias 
 * [Portal de notícias](https://changelog.wallarm.com/)
 * Console Wallarm
 
-    ![Notificação sobre uma nova versão no Console Wallarm](../images/updating-migrating/wallarm-console-new-version-notification.png)
+    ![Notificação sobre uma nova versão no Console Wallarm](../../images/updating-migrating/wallarm-console-new-version-notification.png)
 
 Informações sobre atualizações disponíveis para as versões principais e secundárias do nó Wallarm e para as versões de correção do nó Wallarm também são exibidas no Console Wallarm → **Nós** para nós regulares. Cada pacote tem o status **Atualizado** ou a lista de atualizações disponíveis. Por exemplo, o cartão do nó de filtragem com as últimas versões dos componentes instalados tem a seguinte aparência:
 
-![Cartão de nó](../images/user-guides/nodes/view-regular-node-comp-vers.png)
+![Cartão de nó](../../images/user-guides/nodes/view-regular-node-comp-vers.png)
 
 ### Procedimento de atualização
 

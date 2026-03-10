@@ -99,7 +99,7 @@
     --8<-- "../include/integrations/webhook-advanced-settings.md"
 1. اختر أنواع الأحداث لتشغيل الإشعارات.
 
-    ![تكامل Fluentd](../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+    ![تكامل Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
     التفاصيل على الأحداث المتاحة:
 
@@ -166,7 +166,7 @@
 
 على سبيل المثال:
 
-![مخطط الواب هوك](../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
+![مخطط الواب هوك](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
 
 لتسجيل أحداث Wallarm باستخدام هذا المخطط:
 

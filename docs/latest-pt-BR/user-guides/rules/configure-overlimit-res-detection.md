@@ -54,4 +54,4 @@ A regra NÃO permite:
 * A regra aumenta o limite de tempo para processar cada requisição POST para `https://example.com/upload` até 1.020 milissegundos. O endpoint especificado realiza o envio de arquivos grandes.
 * Outros parâmetros do comportamento do nó permanecem padrão - se o nó processa a requisição por mais de 1.020 milissegundos, ele interrompe o processamento da requisição e registra o ataque `overlimit_res`.
 
-![Exemplo da regra "Registrar e exibir nos eventos"](../../images/user-guides/rules/fine-tune-overlimit-detection-example.png)
+![Exemplo da regra "Registrar e exibir nos eventos"](../../../images/user-guides/rules/fine-tune-overlimit-detection-example.png)

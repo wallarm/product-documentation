@@ -1,5 +1,5 @@
-[img-vpatch-example1]:      ../../images/user-guides/rules/vpatch-rule-1.png
-[img-vpatch-example2]:      ../../images/user-guides/rules/vpatch-rule-2.png
+[img-vpatch-example1]:      ../../../images/user-guides/rules/vpatch-rule-1.png
+[img-vpatch-example2]:      ../../../images/user-guides/rules/vpatch-rule-2.png
 
 # Correção Virtual
 

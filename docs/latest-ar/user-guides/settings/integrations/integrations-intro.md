@@ -11,7 +11,7 @@
 
 يمكنك إدارة الميزة في قسم **التكاملات** من وحدة تحكم Wallarm وقسم **المحفزات** لتكوين التنبيهات الإضافية للتكاملات الخاصة بك.
 
-![التكاملات](../../../images/user-guides/settings/integrations/integration-panel.png)
+![التكاملات](../../../../images/user-guides/settings/integrations/integration-panel.png)
 
 Wallarm تتصل بكل سلاسة بعدد من الأدوات والمنصات الموجودة. عدد التكاملات مع نظام واحد غير محدود.
 
@@ -22,22 +22,22 @@ Wallarm تتصل بكل سلاسة بعدد من الأدوات والمنصات
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../email/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/email.svg" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/email.svg" />
             <h3>البريد الإلكتروني</h3>
             <p>احصل على إشعارات على البريد الإلكتروني المشار إليه عند التسجيل ورسائل إلكترونية إضافية</p>
         </a>
         <a class="do-card" href="../slack/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/slack.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/slack.png" />
             <h3>Slack</h3>
             <p>إرسال الإشعارات إلى القناة الخاصة Slack المحددة</p>
         </a>
         <a class="do-card" href="../telegram/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/telegram.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/telegram.png" />
             <h3>Telegram</h3>
             <p>أضف بوت Wallarm إلى Telegram وأرسل الإشعارات إليه</p>
         </a>
         <a class="do-card" href="../microsoft-teams/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/msteams.svg" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/msteams.svg" />
             <h3>Microsoft Teams</h3>
             <p>إرسال الإشعارات إلى القناة الخاصة Microsoft Teams المحددة</p>
         </a>
@@ -49,22 +49,22 @@ Wallarm تتصل بكل سلاسة بعدد من الأدوات والمنصات
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../opsgenie/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/opsgenie.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/opsgenie.png" />
             <h3>Opsgenie</h3>
             <p>قم بالتكامل عبر Opsgenie API</p>
         </a>
         <a class="do-card" href="../pagerduty/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/pagerduty.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/pagerduty.png" />
             <h3>PagerDuty</h3>
             <p>إرسال الحوادث إلى PagerDuty</p>
         </a>
         <a class="do-card" href="../jira/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/jira.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/jira.png" />
             <h3>Jira</h3>
             <p>قم بإعداد Wallarm لإنشاء قضايا في Jira</p>
         </a>
         <a class="do-card" href="../servicenow/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/servicenow.svg" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/servicenow.svg" />
             <h3>ServiceNow</h3>
             <p>قم بإعداد Wallarm لإنشاء تذاكر المشاكل في ServiceNow</p>
         </a>
@@ -76,22 +76,22 @@ Wallarm تتصل بكل سلاسة بعدد من الأدوات والمنصات
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../sumologic/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/sumologic.svg" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/sumologic.svg" />
             <h3>Sumo Logic</h3>
             <p>إرسال الرسائل إلى Sumo Logic</p>
         </a>
         <a class="do-card" href="../splunk/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/splunk.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/splunk.png" />
             <h3>Splunk</h3>
             <p>إرسال التنبيهات إلى Splunk</p>
         </a>
         <a class="do-card" href="../insightconnect/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/insightconnect.svg" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/insightconnect.svg" />
             <h3>InsightConnect</h3>
             <p>إرسال الإشعارات إلى InsightConnect</p>
         </a>
         <a class="do-card" href="../azure-sentinel/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/mssentinel.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/mssentinel.png" />
             <h3>Microsoft Sentinel</h3>
             <p>قم بتسجيل الأحداث في Microsoft Azure Sentinel</p>
         </a>
@@ -103,14 +103,14 @@ Wallarm تتصل بكل سلاسة بعدد من الأدوات والمنصات
 <div class="do-section">
     <div class="do-main">
         <div id="datadog" class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/datadog.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/datadog.png" />
             <h3>Datadog</h3>
             <p>إرسال الأحداث إلى خدمة Datadog Logs مباشرة أو من خلال جامعي البيانات الوسطاء</p>
         </div>
     </div>
     <div class="do-nested" data-for="datadog">
         <div class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/datadog.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/datadog.png" />
             <h3>Datadog</h3>
             <p>إرسال الأحداث إلى خدمة Datadog Logs مباشرة أو من خلال جامعي البيانات الوسطاء</p>
         </div>
@@ -134,24 +134,24 @@ Wallarm تتصل بكل سلاسة بعدد من الأدوات والمنصات
 <div class="do-section">
     <div class="do-main">
         <div id="fluentd" class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/fluentd.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/fluentd.png" />
             <h3>Fluentd</h3>
             <p>إرسال الإشعارات المكتشفة للأحداث الى Fluentd أو استخدم Fluentd كنظام وسيط للتكامل مع النظم الأخرى</p>
         </div>
         <div id="logstash" class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/logstash.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/logstash.png" />
             <h3>Logstash</h3>
             <p>إرسال الإشعارات المكتشفة للأحداث الى Logstash أو استخدم Logstash كنظام وسيط للتكامل مع النظم الأخرى</p>
         </div>
         <a class="do-card" href="../amazon-s3/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/awss3.svg" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/awss3.svg" />
             <h3>AWS S3</h3>
             <p>قم بإعداد Wallarm لإرسال الملفات التي تحتوي على معلومات حول الhits المكتشفة إلى دلو Amazon S3 الخاص بك</p>
         </a>
     </div>
     <div class="do-nested" data-for="fluentd">
         <div class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/fluentd.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/fluentd.png" />
             <h3>Fluentd</h3>
             <p>إرسال الإشعارات المكتشفة للأحداث الى Fluentd أو استخدم Fluentd كنظام وسيط للتكامل مع الأنظمة الأخرى</p>
         </div>
@@ -188,7 +188,7 @@ Wallarm تتصل بكل سلاسة بعدد من الأدوات والمنصات
     </div>
     <div class="do-nested" data-for="logstash">
         <div class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/logstash.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/logstash.png" />
             <h3>Logstash</h3>
             <p>إرسال الإشعارات المكتشفة للأحداث الى Logstash أو استخدم Logstash كنظام وسيط للتكامل مع الأنظمة الأخرى</p>
         </div>
@@ -230,29 +230,29 @@ Wallarm تتصل بكل سلاسة بعدد من الأدوات والمنصات
 <div class="do-section">
     <div class="do-main">
         <div id="ibm-qradar" class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/ibm-qradar.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/ibm-qradar.png" />
             <h3>IBM QRadar</h3>
             <p>إرسال السجلات الى IBM QRadar عبر Fluentd أو Logstash</p>
         </div>
         <div id="splunk-enterprise" class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/splunk.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/splunk.png" />
             <h3>Splunk Enterprise</h3>
             <p>إرسال السجلات الى Splunk Enterprise عبر Fluentd أو Logstash</p>
         </div>
         <div id="arcsight-logger" class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/arcsight-logger.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/arcsight-logger.png" />
             <h3>Micro Focus ArcSight Logger</h3>
             <p>إرسال الإشعارات الى Micro Focus ArcSight Logger عبر Fluentd أو Logstash</p>
         </div>
         <div id="datadogp" class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/datadog.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/datadog.png" />
             <h3>Datadog</h3>
             <p>إرسال الأحداث الى خدمة Datadog Logs عبر Fluentd أو Logstash</p>
         </div>
     </div>
     <div class="do-nested" data-for="ibm-qradar">
         <div class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/ibm-qradar.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/ibm-qradar.png" />
             <h3>IBM QRadar</h3>
             <p>إرسال السجلات الى IBM QRadar عبر Fluentd أو Logstash</p>
         </div>
@@ -267,7 +267,7 @@ Wallarm تتصل بكل سلاسة بعدد من الأدوات والمنصات
     </div>
     <div class="do-nested" data-for="splunk-enterprise">
         <div class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/splunk.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/splunk.png" />
             <h3>Splunk Enterprise</h3>
             <p>إرسال السجلات الى Splunk Enterprise عبر Fluentd أو Logstash</p>
         </div>
@@ -282,7 +282,7 @@ Wallarm تتصل بكل سلاسة بعدد من الأدوات والمنصات
     </div>
     <div class="do-nested" data-for="arcsight-logger">
         <div class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/arcsight-logger.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/arcsight-logger.png" />
             <h3>Micro Focus ArcSight Logger</h3>
             <p>إرسال الإشعارات الى Micro Focus ArcSight Logger عبر Fluentd أو Logstash</p>
         </div>
@@ -297,7 +297,7 @@ Wallarm تتصل بكل سلاسة بعدد من الأدوات والمنصات
     </div>
     <div class="do-nested" data-for="datadogp">
         <div class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/datadog.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/datadog.png" />
             <h3>Datadog</h3>
             <p>إرسال الأحداث الى خدمة Datadog Logs عبر Fluentd أو Logstash</p>
         </div>
@@ -317,12 +317,12 @@ Wallarm تتصل بكل سلاسة بعدد من الأدوات والمنصات
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../webhook/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/webhook.svg" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/webhook.svg" />
             <h3>حلقات الوصل على الويب</h3>
             <p>موصل عام: ارسل الاشعارات الفورية الى اي نظام يقبل الويبhooks الواردة عبر بروتوكول HTTPS</p>
         </a>
         <a class="do-card" href="mailto:sales@wallarm.com?subject=Request%20for%20integration%20between%20Wallarm%20and%20<SYSTEM>&body=Hello%20Wallarm%20Sales%20Team%2C%0AIn%20Wallarm%2C%20the%20integration%20with%20<SYSTEM>%20is%20not%20presented%2C%20although%20the%20ability%20to%20integrate%20with%20this%20system%20would%20be%20benefitial%20for%20us.%0A%0AWe%20would%20be%20grateful%20if%20you%20could%20consider%20the%20technical%20feasibility%20of%20this%20integration%20and%20are%20ready%20to%20schedule%20a%20call%20with%20you%20to%20discuss%20our%20requirements%20in%20detail.%0A%0AWe%20are%20looking%20forward%20to%20your%20response.">
-            <img class="non-zoomable" src="../../../../images/integration-icons/other-system.svg" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/other-system.svg" />
             <h3>طلب التكامل</h3>
             <p>إذا لم يكن النظام الذي تبحث عنه موجودًا، أخبرنا. سنتحقق من إمكانية التكامل ونتصل بك.</p>
         </a>

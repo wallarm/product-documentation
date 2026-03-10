@@ -1,4 +1,4 @@
-# mTLS for Edge Node to Origins <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# mTLS for Edge Node to Origins <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 Mutual TLS (mTLS) allows the Wallarm Edge Node to authenticate itself to your origin servers using a client certificate. This ensures that your origins accept requests only from trusted sources.
 
@@ -15,7 +15,7 @@ When mTLS is enabled for an origin:
 1. The origin verifies the certificate against a trusted CA (Certificate Authority) bundle.
 1. If the certificate is valid and matches the expected parameters (e.g., Common Name or Subject Alternative Name), the connection is established and the request is accepted.
 
-![!](../../../images/waf-installation/security-edge/inline/mtls-logic.png)
+![!](../../../../images/waf-installation/security-edge/inline/mtls-logic.png)
 
 ## Enabling mTLS
 
@@ -37,4 +37,4 @@ You can upload multiple certificates and assign different ones to different orig
 1. **Save** the settings.
 1. Configure your origin to require mTLS for incoming connections. Trust the CA bundle used to issue the client certificate.
 
-![!](../../../images/waf-installation/security-edge/inline/mtls-settings-ui.png)
+![!](../../../../images/waf-installation/security-edge/inline/mtls-settings-ui.png)

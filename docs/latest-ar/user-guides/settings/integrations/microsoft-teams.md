@@ -11,7 +11,7 @@
 1. انسخ عنوان URL لـ Webhook المُقدم والصق القيمة في حقل **Webhook URL** في لوحة تحكم Wallarm.
 1. اختر أنواع الأحداث لتشغيل الإشعارات.
 
-      ![تكامل MS Teams](../../../images/user-guides/settings/integrations/add-ms-teams-integration.png)
+      ![تكامل MS Teams](../../../../images/user-guides/settings/integrations/add-ms-teams-integration.png)
     
       تفاصيل حول الأحداث المتاحة:
       

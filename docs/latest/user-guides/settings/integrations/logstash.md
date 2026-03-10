@@ -96,7 +96,7 @@ You will find more details in the [official Logstash documentation](https://www.
     --8<-- "../include/integrations/webhook-advanced-settings.md"
 1. Choose event types to trigger notifications.
 
-    ![Logstash integration](../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+    ![Logstash integration](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
     Details on available events:
 
@@ -165,7 +165,7 @@ You will find more details in the [official Logstash documentation](https://www.
 
 For example:
 
-![Webhook flow](../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
+![Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
 
 To log Wallarm events using this scheme:
 

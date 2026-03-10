@@ -4,7 +4,7 @@
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![إرسال الإشعارات من Wallarm إلى Datadog عبر مُجمِّع البيانات](../../../../images/user-guides/settings/integrations/wallarm-log-collector-datadog.png)
+![إرسال الإشعارات من Wallarm إلى Datadog عبر مُجمِّع البيانات](../../../../../images/user-guides/settings/integrations/wallarm-log-collector-datadog.png)
 
 !!! info "التكامل المباشر مع Datadog"
     يدعم Wallarm أيضًا [التكامل المباشر مع Datadog عبر واجهة برمجة تطبيقات Datadog](../datadog.md). التكامل المباشر لا يتطلب استخدام مُجمِّع البيانات الوسيط.
@@ -115,7 +115,7 @@
 
 مثال على التكامل مع Fluentd:
 
-![إضافة التكامل مع Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+![إضافة التكامل مع Fluentd](../../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
 ## اختبار التكامل
 
@@ -170,6 +170,6 @@
 
 السجل التجريبي في Datadog:
 
-![السجل التجريبي في Datadog](../../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
+![السجل التجريبي في Datadog](../../../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
 
 للعثور على سجلات Wallarm بين السجلات الأخرى، يمكن استخدام علامة البحث `source:wallarm_cloud` في خدمة سجلات Datadog.

@@ -32,13 +32,13 @@
 
 1. أضف أسماء البيئات ومُعرفاتها في حساب Wallarm الخاص بك → **الإعدادات** → قسم **التطبيقات**.
 
-    ![إضافة البيئات](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/added-applications.png)
+    ![إضافة البيئات](../../../../images/admin-guides/configuration-guides/waf-in-separate-environments/added-applications.png)
 2. حدد تكوين المُعرف في عقدة التصفية:
 
     * باستخدام التوجيه [`wallarm_application`](../../configure-parameters-en.md#wallarm_application) لنشرات Linux وKubernetes sidecar و Docker؛
     * باستخدام التعليق التوضيحي [`nginx.ingress.kubernetes.io/wallarm-application`](../../configure-kubernetes-en.md#ingress-annotations) لنشرات تحكم دخول Kubernetes NGINX. الآن، عند إنشاء قاعدة عقدة تصفية جديدة، يصبح من الممكن تحديد أن القاعدة ستُعين لمجموعة معينة من مُعرفات التطبيق. بدون السمة، ستُطبق قاعدة جديدة تلقائيًا على جميع الموارد المحمية في حساب Wallarm.
 
-![إنشاء قاعدة للمُعرف](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/create-rule-for-id.png)
+![إنشاء قاعدة للمُعرف](../../../../images/admin-guides/configuration-guides/waf-in-separate-environments/create-rule-for-id.png)
 
 #### تحديد الهوية للبيئة بالنطاق
 
@@ -46,7 +46,7 @@
 
 لاستخدام الميزة، يُرجى إضافة إشارة رأس `HOST` المناسبة لكل قاعدة عقدة تصفية مُعدة. في المثال التالي، ستُطلق القاعدة فقط للطلبات التي يكون رأس `HOST` فيها مساوٍ لـ `dev.domain.com`:
 
-![إنشاء قاعدة لـ HOST](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/create-rule-for-host.png)
+![إنشاء قاعدة لـ HOST](../../../../images/admin-guides/configuration-guides/waf-in-separate-environments/create-rule-for-host.png)
 
 ### حسابات Wallarm المنفصلة والحسابات الفرعية
 

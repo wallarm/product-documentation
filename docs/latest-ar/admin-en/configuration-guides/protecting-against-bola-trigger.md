@@ -44,7 +44,7 @@
         !!! info "هجمات BOLA الصادرة عن عناوين IP في القائمة الرمادية"
             هجمات BOLA الصادرة عن عناوين IP في القائمة الرمادية لا يتم حظرها.
 
-        ![مشغل BOLA](../../images/user-guides/triggers/trigger-example7.png)
+        ![مشغل BOLA](../../../images/user-guides/triggers/trigger-example7.png)
 
 1. احفظ المشغل وانتظر [اكتمال مزامنة السحابة والعقدة](../configure-cloud-node-synchronization-en.md) (عادةً ما يستغرق ذلك من 2 إلى 4 دقائق).
 
@@ -60,7 +60,7 @@
     إذا كانت ردة فعل المشغل **إدراج عنوان IP في القائمة الرمادية**، تحقق من قسم **قوائم IP** → **القائمة الرمادية** في واجهة Wallarm.
 1. افتح قسم **الهجمات** وتحقق من أن الطلبات معروضة في القائمة كهجوم BOLA.
 
-    ![هجوم BOLA في واجهة المستخدم](../../images/user-guides/events/bola-attack.png)
+    ![هجوم BOLA في واجهة المستخدم](../../../images/user-guides/events/bola-attack.png)
 
     يُقابل عدد الطلبات المعروضة عدد الطلبات المُرسلة بعد تجاوز عتبة المشغل ([مزيد من التفاصيل حول اكتشاف الهجمات السلوكية](../../attacks-vulns-list.md#behavioral-attacks)). إذا كان هذا العدد أكبر من 5، يُطبق أخذ عينات الطلبات وتُعرض تفاصيل الطلب فقط لأول 5 ضربات ([مزيد من التفاصيل حول أخذ عينات الطلبات](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
 

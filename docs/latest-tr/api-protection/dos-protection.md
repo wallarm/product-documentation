@@ -1,4 +1,4 @@
-# DoS Koruması <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# DoS Koruması <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;"></a>
 
 [Unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md), en ciddi API güvenlik risklerinden oluşan [OWASP API Top 10 2023](../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) listesinde yer almaktadır. Kendi başına bir tehdit olmakla birlikte (aşırı yüklenme nedeniyle hizmetin yavaşlaması veya tamamen durması), bu durum aynı zamanda numaralandırma saldırıları gibi farklı saldırı türleri için temel oluşturur. Belirli bir zaman diliminde çok fazla isteğe izin verilmesi bu risklerin başlıca nedenlerindendir.
 
@@ -28,7 +28,7 @@ Kullanıcı oturumlarına göre birim zamanda istekleri sınırlayarak, korunan 
 
 Uygulamanızın `https://example.com/api/login` uç noktasında Bearer JWT içeren POST isteklerini kabul ettiğini varsayalım. Bu uç noktaya 60 saniyede 10'dan fazla isteğin gönderildiği oturumları 1 saat süreyle engellemek istiyoruz. Bu senaryo için, birim zamanda istekleri sınırlayan önleme kontrolü şu şekilde görünecektir:
 
-![DoS koruması - JWT örneği](../images/api-protection/mitigation-controls-dos-protection-jwt.png)
+![DoS koruması - JWT örneği](../../images/api-protection/mitigation-controls-dos-protection-jwt.png)
 
 ## Oran sınırlama ile farkı
 

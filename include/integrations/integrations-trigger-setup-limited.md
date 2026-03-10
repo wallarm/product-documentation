@@ -15,4 +15,4 @@ Besides the notifications you have already set up through the integration card, 
 
 For condition detailing, you can add one or more filters. As soon, as condition and filters are set, select the integration through which the selected alert should be sent. You can select several integrations simultaneously.
 
-![Choosing an integration](../../../images/user-guides/triggers/select-integration.png)
+![Choosing an integration](../../../../images/user-guides/triggers/select-integration.png)

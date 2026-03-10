@@ -1,4 +1,4 @@
-# API Discovery Setup <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discovery Setup <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 This article describes how to enable and configure Wallarm's [API Discovery](overview.md).
 
@@ -26,7 +26,7 @@ You can get define general API Discovery settings in Wallarm Console  → **API 
 !!! info "Parameter availability"
     Some of the parameters may be unavailable if they are managed by a **global administrator** of [multi-tenant](../installation/multi-tenant/overview.md) Wallarm installation.
 
-![API Discovery - general settings](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-configure-settings-read-only.png)
+![API Discovery - general settings](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-configure-settings-read-only.png)
 
 They are:
 
@@ -39,7 +39,7 @@ They are:
 
         This settings aim to avoid showing API entries, that had no traffic or had a traffic for a short timeframe only - they are considered unstable. Even if the specific endpoint was requested huge amount of times, but just within a short timeframe, there’s no need to consider this one-time spike as stable API endpoint.
 
-        ![API Discovery - general settings - endpoint stability](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-stability.png)
+        ![API Discovery - general settings - endpoint stability](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-stability.png)
 
 * Percentage of requests used to: **determine parameter types** (50% by default) and **detect sensitive data** (10% by default). Non-100% values are used to lower CPU usage. Increased numbers are good for environments with less requests.
 * Applications to be displayed: only data for the selected applications will be displayed by API Discovery. Note that this is about displaying: data is discovered for all applications, you just decide whether to show it.
@@ -65,7 +65,7 @@ You can set up API Discovery notifications to be sent to your personal email (th
 
 1. In the **API Discovery notifications** section select notifications you want to get (hourly or daily notifications on [new and changed](track-changes.md#highlighting-changes-in-api) endpoints).
 
-    ![API Discovery - email notification settings](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-notifications.png)
+    ![API Discovery - email notification settings](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-notifications.png)
 
 ## Debug
 

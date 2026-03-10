@@ -14,7 +14,7 @@ Scheduled reports can be sent on a daily, weekly, or monthly basis. Reports incl
 1. Choose the frequency of sending security reports. If the frequency is not chosen, then reports will not be sent.
 1. Choose event types to trigger notifications.
 
-    ![Telegram integration](../../../images/user-guides/settings/integrations/add-telegram-integration.png)
+    ![Telegram integration](../../../../images/user-guides/settings/integrations/add-telegram-integration.png)
 
     Details on available events:
 

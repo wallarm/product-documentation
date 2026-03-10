@@ -1,5 +1,5 @@
 [ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 
 # Atualizando o nó multilocatário
 
@@ -25,4 +25,4 @@ Os procedimentos padrão são para:
 !!! aviso "Criando o nó multilocatário"
     Durante a criação do nó Wallarm, por favor, selecione a opção **Nó Multilocatário**:
 
-    ![Criação de nó multilocatário](../images/user-guides/nodes/create-multi-tenant-node.png)
+    ![Criação de nó multilocatário](../../images/user-guides/nodes/create-multi-tenant-node.png)

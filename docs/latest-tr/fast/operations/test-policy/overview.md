@@ -41,7 +41,7 @@ Politika aşağıdaki noktaları düzenler:
     İstekteki diğer hiçbir nokta işlenmez.
 
 ??? info "Politika örneği"
-    ![Politika örneği](../../../images/fast/operations/common/test-policy/overview/policy-flow-example.png)
+    ![Politika örneği](../../../../images/fast/operations/common/test-policy/overview/policy-flow-example.png)
 
     Yukarıdaki görsel, FAST düğümünün zafiyet tespitinde kullandığı politikayı göstermektedir. Bu politika, hedef uygulamaya her zaman dokunulmadan iletilen `token` GET parametresi hariç, temel istekteki tüm GET parametrelerinin işlenmesine izin verir.
 

@@ -11,7 +11,7 @@ Wallarm entegrasyonlarıyla aşağıdakiler dahil kritik olaylardan her zaman ha
 
 Bu özelliği Wallarm Console içindeki Integrations bölümünden yönetin; entegrasyonlarınız için ek uyarıları yapılandırmak üzere Triggers bölümünü kullanın.
 
-![Integrations](../../../images/user-guides/settings/integrations/integration-panel.png)
+![Integrations](../../../../images/user-guides/settings/integrations/integration-panel.png)
 
 Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bir sistemle yapılabilecek entegrasyon sayısı sınırlı değildir.
 
@@ -22,22 +22,22 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../email/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/email.svg" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/email.svg" />
             <h3>Email</h3>
             <p>Kayıt sırasında belirtilen e-postaya ve ek e-posta adreslerine bildirim alın</p>
         </a>
         <a class="do-card" href="../slack/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/slack.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/slack.png" />
             <h3>Slack</h3>
             <p>Seçili Slack kanalına bildirim gönderin</p>
         </a>
         <a class="do-card" href="../telegram/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/telegram.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/telegram.png" />
             <h3>Telegram</h3>
             <p>Wallarm botunu Telegram'a ekleyin ve bildirimleri ona gönderin</p>
         </a>
         <a class="do-card" href="../microsoft-teams/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/msteams.svg" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/msteams.svg" />
             <h3>Microsoft Teams</h3>
             <p>Seçili Microsoft Teams kanalına bildirim gönderin</p>
         </a>
@@ -49,22 +49,22 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../opsgenie/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/opsgenie.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/opsgenie.png" />
             <h3>Opsgenie</h3>
             <p>Opsgenie API üzerinden entegre edin</p>
         </a>
         <a class="do-card" href="../pagerduty/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/pagerduty.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/pagerduty.png" />
             <h3>PagerDuty</h3>
             <p>Olayları PagerDuty'ye gönderin</p>
         </a>
         <a class="do-card" href="../jira/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/jira.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/jira.png" />
             <h3>Jira</h3>
             <p>Wallarm'ı Jira'da kayıtlar oluşturacak şekilde yapılandırın</p>
         </a>
         <a class="do-card" href="../servicenow/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/servicenow.svg" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/servicenow.svg" />
             <h3>ServiceNow</h3>
             <p>Wallarm'ı ServiceNow'da destek kayıtları oluşturacak şekilde yapılandırın</p>
         </a>
@@ -76,22 +76,22 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../sumologic/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/sumologic.svg" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/sumologic.svg" />
             <h3>Sumo Logic</h3>
             <p>Mesajları Sumo Logic'e gönderin</p>
         </a>
         <a class="do-card" href="../splunk/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/splunk.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/splunk.png" />
             <h3>Splunk</h3>
             <p>Uyarıları Splunk'a gönderin</p>
         </a>
         <a class="do-card" href="../insightconnect/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/insightconnect.svg" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/insightconnect.svg" />
             <h3>InsightConnect</h3>
             <p>Bildirimleri InsightConnect'e gönderin</p>
         </a>
         <a class="do-card" href="../azure-sentinel/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/mssentinel.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/mssentinel.png" />
             <h3>Microsoft Sentinel</h3>
             <p>Olayları Microsoft Azure Sentinel'de kaydedin</p>
         </a>
@@ -103,14 +103,14 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
 <div class="do-section">
     <div class="do-main">
         <div id="datadog" class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/datadog.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/datadog.png" />
             <h3>Datadog</h3>
             <p>Olayları Datadog Logs servisine doğrudan veya ara veri toplayıcıları üzerinden gönderin</p>
         </div>
     </div>
     <div class="do-nested" data-for="datadog">
         <div class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/datadog.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/datadog.png" />
             <h3>Datadog</h3>
             <p>Olayları Datadog Logs servisine doğrudan veya ara veri toplayıcıları üzerinden gönderin</p>
         </div>
@@ -134,24 +134,24 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
 <div class="do-section">
     <div class="do-main">
         <div id="fluentd" class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/fluentd.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/fluentd.png" />
             <h3>Fluentd</h3>
             <p>Tespit edilen olayların bildirimlerini Fluentd sistemine gönderin veya diğer sistemlerle entegrasyon için Fluentd'yi ara sistem olarak kullanın</p>
         </div>
         <div id="logstash" class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/logstash.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/logstash.png" />
             <h3>Logstash</h3>
             <p>Tespit edilen olayların bildirimlerini Logstash sistemine gönderin veya diğer sistemlerle entegrasyon için Logstash'i ara sistem olarak kullanın</p>
         </div>
         <a class="do-card" href="../amazon-s3/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/awss3.svg" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/awss3.svg" />
             <h3>AWS S3</h3>
             <p>Tespit edilen Hits hakkındaki bilgileri içeren dosyaları Amazon S3 bucket'ınıza göndermek için Wallarm'ı yapılandırın</p>
         </a>
     </div>
     <div class="do-nested" data-for="fluentd">
         <div class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/fluentd.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/fluentd.png" />
             <h3>Fluentd</h3>
             <p>Tespit edilen olayların bildirimlerini Fluentd sistemine gönderin veya diğer sistemlerle entegrasyon için Fluentd'yi ara sistem olarak kullanın</p>
         </div>
@@ -188,7 +188,7 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
     </div>
     <div class="do-nested" data-for="logstash">
         <div class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/logstash.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/logstash.png" />
             <h3>Logstash</h3>
             <p>Tespit edilen olayların bildirimlerini Logstash sistemine gönderin veya diğer sistemlerle entegrasyon için Logstash'i ara sistem olarak kullanın</p>
         </div>
@@ -230,29 +230,29 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
 <div class="do-section">
     <div class="do-main">
         <div id="ibm-qradar" class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/ibm-qradar.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/ibm-qradar.png" />
             <h3>IBM QRadar</h3>
             <p>Günlükleri Fluentd veya Logstash aracılığıyla IBM QRadar'a gönderin</p>
         </div>
         <div id="splunk-enterprise" class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/splunk.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/splunk.png" />
             <h3>Splunk Enterprise</h3>
             <p>Günlükleri Fluentd veya Logstash aracılığıyla Splunk Enterprise'a gönderin</p>
         </div>
         <div id="arcsight-logger" class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/arcsight-logger.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/arcsight-logger.png" />
             <h3>Micro Focus ArcSight Logger</h3>
             <p>Bildirimleri Fluentd veya Logstash aracılığıyla Micro Focus ArcSight Logger'a gönderin</p>
         </div>
         <div id="datadogp" class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/datadog.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/datadog.png" />
             <h3>Datadog</h3>
             <p>Olayları Fluentd veya Logstash aracılığıyla Datadog Logs servisine gönderin</p>
         </div>
     </div>
     <div class="do-nested" data-for="ibm-qradar">
         <div class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/ibm-qradar.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/ibm-qradar.png" />
             <h3>IBM QRadar</h3>
             <p>Günlükleri Fluentd veya Logstash aracılığıyla IBM QRadar'a gönderin</p>
         </div>
@@ -267,7 +267,7 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
     </div>
     <div class="do-nested" data-for="splunk-enterprise">
         <div class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/splunk.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/splunk.png" />
             <h3>Splunk Enterprise</h3>
             <p>Günlükleri Fluentd veya Logstash aracılığıyla Splunk Enterprise'a gönderin</p>
         </div>
@@ -282,7 +282,7 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
     </div>
     <div class="do-nested" data-for="arcsight-logger">
         <div class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/arcsight-logger.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/arcsight-logger.png" />
             <h3>Micro Focus ArcSight Logger</h3>
             <p>Bildirimleri Fluentd veya Logstash aracılığıyla Micro Focus ArcSight Logger'a gönderin</p>
         </div>
@@ -297,7 +297,7 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
     </div>
     <div class="do-nested" data-for="datadogp">
         <div class="do-card">
-            <img class="non-zoomable" src="../../../../images/integration-icons/datadog.png" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/datadog.png" />
             <h3>Datadog</h3>
             <p>Olayları Fluentd veya Logstash aracılığıyla Datadog Logs servisine gönderin</p>
         </div>
@@ -317,12 +317,12 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../webhook/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/webhook.svg" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/webhook.svg" />
             <h3>Webhook</h3>
             <p>Evrensel bağlayıcı: HTTPS protokolü üzerinden gelen webhooks kabul eden herhangi bir sisteme anlık bildirimler gönderin</p>
         </a>
         <a class="do-card" href="mailto:sales@wallarm.com?subject=Request%20for%20integration%20between%20Wallarm%20and%20<SYSTEM>&body=Hello%20Wallarm%20Sales%20Team%2C%0AIn%20Wallarm%2C%20the%20integration%20with%20<SYSTEM>%20is%20not%20presented%2C%20although%20the%20ability%20to%20integrate%20with%20this%20system%20would%20be%20benefitial%20for%20us.%0A%0AWe%20would%20be%20grateful%20if%20you%20could%20consider%20the%20technical%20feasibility%20of%20this%20integration%20and%20are%20ready%20to%20schedule%20a%20call%20with%20you%20to%20discuss%20our%20requirements%20in%20detail.%0A%0AWe%20are%20looking%20forward%20to%20your%20response.">
-            <img class="non-zoomable" src="../../../../images/integration-icons/other-system.svg" />
+            <img class="non-zoomable" src="../../../../../images/integration-icons/other-system.svg" />
             <h3>Entegrasyon talep edin</h3>
             <p>Aradığınız sistem yoksa bize bildirin. Entegrasyonun mümkün olup olmadığını kontrol eder ve sizinle iletişime geçeriz.</p>
         </a>

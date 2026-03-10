@@ -1,8 +1,8 @@
-# API Sessions Overview <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Sessions Overview <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm API Sessions provide deep visibility into user actions within your APIs. Instead of analyzing individual requests in isolation, this feature groups them into logical sessions that represent actual user journeys. This article gives an overview of API Sessions: issues addressed by it, its purpose and main possibilities.
 
-![!API Sessions section - monitored sessions](../images/api-sessions/api-sessions.png)
+![!API Sessions section - monitored sessions](../../images/api-sessions/api-sessions.png)
 
 ## Addressed issues
 
@@ -45,6 +45,6 @@ Thus, when you [customize how requests are grouped](setup.md#session-grouping) i
 
 API Sessions support working with [GraphQL requests](../user-guides/rules/request-processing.md#gql) and their specific request points, you can configure sessions to extract and display values of GraphQL request parameters.
 
-![!API Sessions configuration - GraphQL request parameter](../images/api-sessions/api-sessions-graphql.png)
+![!API Sessions configuration - GraphQL request parameter](../../images/api-sessions/api-sessions-graphql.png)
 
 Requires NGINX Node 5.3.0 or higher or native node 0.12.0.

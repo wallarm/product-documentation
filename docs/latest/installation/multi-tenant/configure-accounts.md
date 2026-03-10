@@ -16,7 +16,7 @@ To configure tenant accounts:
 
 1. Fill in and confirm the registration form in Wallarm Console in the [US Cloud](https://us1.my.wallarm.com/signup) or [EU Cloud](https://my.wallarm.com/signup).
 
-    ![Registration form](../../images/signup-en.png)
+    ![Registration form](../../../images/signup-en.png)
 
 2. Open your email inbox and activate the account using the link from the received message.
 3. Send a request for activating the multitenancy feature for your account to the [Wallarm technical support](mailto:support@wallarm.com). Send the following data with the request:
@@ -44,7 +44,7 @@ After getting your request, the Wallarm technical support will:
 
 Under the **Global administrator** account, you can create tenants via Wallarm Console → tenant selector → **Create tenant**.
 
-![!Creating tenant via Wallarm Console](../../images/partner-waf-node/tenant-create-via-ui.png)
+![!Creating tenant via Wallarm Console](../../../images/partner-waf-node/tenant-create-via-ui.png)
 
 You can create a new **Administrator** [user](../../user-guides/settings/users.md#user-roles) for your new tenant. The invitation email will be sent to the specified address.
 
@@ -98,7 +98,7 @@ At this step, a tenant account linked to a global account will be created.
 
 Created tenants will be displayed in Wallarm Console for [global users](../../user-guides/settings/users.md#user-roles). For example, `Tenant 1` and `Tenant 2`:
 
-![Selector of tenants in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console.png)
+![Selector of tenants in Wallarm Console](../../../images/partner-waf-node/clients-selector-in-console.png)
 
 ### Step 3: Associate specific traffic with your tenant
 
@@ -143,6 +143,6 @@ Deactivated accounts are not deleted and can be activated again.
 
 To deactivate a tenant account, in the tenant selector, from the tenant menu, select **Deactivate**, then confirm. The tenant account will be deactivated and hidden from the tenant list.
 
-![Tenant - Deactivate](../../images/partner-waf-node/tenant-deactivate.png)
+![Tenant - Deactivate](../../../images/partner-waf-node/tenant-deactivate.png)
 
 To activate previously deactivated tenant account, in the tenant selector, click **Show deactivated tenants**, then select **Activate** for your tenant.

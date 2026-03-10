@@ -13,7 +13,7 @@
 1. اختر تكرار إرسال التقارير الأمنية. إذا لم يتم اختيار التكرار، فلن يتم إرسال التقارير.
 1. اختر أنواع الأحداث التي ستُثير الإخطارات.
 
-    ![تكامل تقرير البريد الإلكتروني](../../../images/user-guides/settings/integrations/add-email-report-integration.png)
+    ![تكامل تقرير البريد الإلكتروني](../../../../images/user-guides/settings/integrations/add-email-report-integration.png)
 
     تفاصيل حول الأحداث المتاحة:
 
@@ -23,7 +23,7 @@
 
     سيتم إرسال الإخطارات التجريبية ببادئة `[رسالة اختبار]`:
 
-    ![رسالة بريد إلكتروني تجريبية](../../../images/user-guides/settings/integrations/test-email-scope-changed.png)
+    ![رسالة بريد إلكتروني تجريبية](../../../../images/user-guides/settings/integrations/test-email-scope-changed.png)
 
 1. انقر على **أضف التكامل**.
 

@@ -1,4 +1,4 @@
-# Endpoint Risk Score <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Endpoint Risk Score <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 [API Discovery](overview.md) automatically calculates a **risk score** for each endpoint in your API inventory. The risk score allows you to understand which endpoints are most likely to be an attack target and therefore should be the focus of your security efforts.
 
@@ -32,6 +32,6 @@ Risk score may be from `1` (lowest) to `10` (highest):
 
 To understand what caused the risk score for the endpoint and how to reduce the risk, go to the endpoint details:
 
-![API Discovery - Risk score](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-risk-score-details.png)
+![API Discovery - Risk score](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-risk-score-details.png)
 
 [Security issues](../api-attack-surface/security-issues.md) (vulnerabilities) are one of the most important factors contributing to an endpoint's risk score. In endpoint details, click the vulnerability name to open its full description in the **Security Issues** section. There you can learn mitigation methods and apply them.

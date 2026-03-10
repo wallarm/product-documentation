@@ -1,7 +1,7 @@
 # GCP üzerinde filtreleme düğümü için instance şablonu oluşturma
 
-[img-creating-template]:                ../../../images/installation-gcp/auto-scaling/common/autoscaling-group-guide/create-instance-template.png
-[img-selecting-image]:                  ../../../images/installation-gcp/auto-scaling/common/autoscaling-group-guide/select-image.png
+[img-creating-template]:                ../../../../images/installation-gcp/auto-scaling/common/autoscaling-group-guide/create-instance-template.png
+[img-selecting-image]:                  ../../../../images/installation-gcp/auto-scaling/common/autoscaling-group-guide/select-image.png
 
 [link-creating-image]:                  create-image.md
 [link-creating-instance-group]:         creating-autoscaling-group.md

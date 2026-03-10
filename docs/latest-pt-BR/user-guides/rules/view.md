@@ -1,5 +1,5 @@
-[img-rules-overview]: ../../images/user-guides/rules/rules-overview.png
-[img-view-rules]: ../../images/user-guides/rules/view-rules.png
+[img-rules-overview]: ../../../images/user-guides/rules/rules-overview.png
+[img-view-rules]: ../../../images/user-guides/rules/view-rules.png
 
 # Inspeção das regras do perfil da aplicação
 
@@ -55,12 +55,12 @@ Aqui estão alguns detalhes de como trabalhar com o ramo de regras:
 * Para expandir o endpoint, clique no círculo azul.
 * Endpoints que não tem regras distintas estão esmaecidos e não são clicáveis.
     
-    ![Ramo de endpoints](../../images/user-guides/rules/rules-branch.png)
+    ![Ramo de endpoints](../../../images/user-guides/rules/rules-branch.png)
 
 * Para ver regras para o endpoint, clique nele. Primeiro, serão exibidas as regras distintas para esse endpoint.
 * Ao visualizar a lista de regras para um endpoint específico, clique em **Regras distintas e herdadas** para exibir as herdadas. As regras herdadas serão exibidas junto com as distintas; elas estarão esmaecidas em comparação às distintas.
 
-    ![Regras distintas e herdadas para o endpoint](../../images/user-guides/rules/rules-distinct-and-inherited.png)
+    ![Regras distintas e herdadas para o endpoint](../../../images/user-guides/rules/rules-distinct-and-inherited.png)
 
 ## Chamadas de API para obter regras
 

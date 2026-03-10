@@ -1,4 +1,4 @@
-# API Discovery Overview <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discovery Overview <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 The **API Discovery** module of the Wallarm platform builds your application REST API inventory based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API inventory based on the analysis results.
 
@@ -66,7 +66,7 @@ The API Discovery module bases noise detection on the two major traffic paramete
 
     This settings aim to avoid showing API entries, that had no traffic or had a traffic for a short timeframe only - they are considered unstable. Even if the specific endpoint was requested huge amount of times, but just within a short timeframe, there’s no need to consider this one-time spike as stable API endpoint.
 
-    ![API Discovery - endpoint stability](../images/about-wallarm-waf/api-discovery/api-discovery-endpoint-stability.png)
+    ![API Discovery - endpoint stability](../../images/about-wallarm-waf/api-discovery/api-discovery-endpoint-stability.png)
 
 * **Parameter stability** - the occurrence of the parameter in requests to the endpoint must be more than 1 percent.
 
@@ -104,7 +104,7 @@ In addition to automatic identification, you can manually adjust the assigned se
 
 Once endpoints are assigned with the sensitive business flow tags, it becomes possible to filter all discovered endpoint by a specific business flow which makes it easier on protecting the most critical business capabilities.
 
-![API Discovery - Filtering by sensitive business flows](../images/about-wallarm-waf/api-discovery/api-discovery-sbf-filter.png)
+![API Discovery - Filtering by sensitive business flows](../../images/about-wallarm-waf/api-discovery/api-discovery-sbf-filter.png)
 
 ### Security of data uploaded to the Wallarm Cloud
 
@@ -131,7 +131,7 @@ To try the module even before signing up and deploying the node to your environm
 
 In Playground, you can access the API Discovery view like it is filled with real data and thus learn and try out how the module works, and get some useful examples of its usage in the read-only mode.
 
-![API Discovery – Sample Data](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
+![API Discovery – Sample Data](../../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
 
 ## Enabling and configuring API Discovery
 

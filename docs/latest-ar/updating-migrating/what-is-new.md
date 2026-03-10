@@ -5,13 +5,13 @@
 !!! info "المكونات المحسنة في الإصدار 4.10"
     تم إصدار عدد قليل من المكونات، بما في ذلك الأداة التثبيتية الشاملة، صورة Docker المبنية على NGINX وصور السحاب (AMI، صورة GCP) كجزء من الإصدار 4.10، والتي تتضمن دعمًا للقدرات الجديدة المُدخلة.
 
-## كشف استغلال بيانات الاعتماد <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+## كشف استغلال بيانات الاعتماد <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 بدءًا من الإصدار 4.10، يُقدم Wallarm كشفًا فوريًا وإشعارات لمحاولات استغلال بيانات الاعتماد. استغلال بيانات الاعتماد، الإدخال الآلي لأزواج اسم المستخدم/البريد الإلكتروني وكلمات السر الضعيفة أو المسروقة في نماذج تسجيل الدخول على المواقع الإلكترونية للوصول غير المشروع إلى حسابات المستخدمين، أصبح الآن تحت المراقبة عن كثب. تتيح لك هذه الميزة تحديد الحسابات ذات البيانات الاعتمادية المُخترقة واتخاذ إجراءات لتأمينها، مثل إبلاغ أصحاب الحسابات وتعليق الوصول للحساب مؤقتًا.
 
 [تعلم كيفية تكوين كشف استغلال بيانات الاعتماد](../about-wallarm/credential-stuffing.md)
 
-![الهجمات - استغلال بيانات الاعتماد](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-attacks.png)
+![الهجمات - استغلال بيانات الاعتماد](../../images/about-wallarm-waf/credential-stuffing/credential-stuffing-attacks.png)
 
 ## صورة Docker المبنية على NGINX المحسنة والأكثر أمانًا
 

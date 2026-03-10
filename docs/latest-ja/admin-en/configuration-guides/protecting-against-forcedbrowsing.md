@@ -13,7 +13,7 @@
 * 緩和コントロール（[Advanced API Security](../../about-wallarm/subscription-plans.md#core-subscription-plans)サブスクリプション）
 * Triggers（[Cloud Native WAAP](../../about-wallarm/subscription-plans.md#core-subscription-plans)サブスクリプション）
 
-## 緩和コントロールに基づく保護 <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## 緩和コントロールに基づく保護 <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;"></a>
 
 WallarmのAdvanced API Security[サブスクリプション](../../about-wallarm/subscription-plans.md#core-subscription-plans)は、強制ブラウジング攻撃からの保護を含む高度な[列挙攻撃対策](../../api-protection/enumeration-attack-protection.md)を提供します。
 
@@ -40,7 +40,7 @@ WallarmのAdvanced API Security[サブスクリプション](../../about-wallarm
 
     * パスに「任意の数のコンポーネント」を意味する`**`[ワイルドカード](../../user-guides/rules/rules.md#using-wildcards)を使用します。これにより`book-sale-example.com`配下のすべてのアドレスを対象にできます。
 
-        ![強制ブラウジング用トリガーの例](../../images/user-guides/triggers/trigger-example5-4.8.png)
+        ![強制ブラウジング用トリガーの例](../../../images/user-guides/triggers/trigger-example5-4.8.png)
 
     * この例で必要なパターンの設定に加えて、特定のURI（たとえばリソースファイルのディレクトリのURI）を入力することもできます。あるいはURIを指定しないことで、任意のエンドポイントでトリガーを動作させることもできます。
     * ネストしたURIを使用する場合は、[トリガーの処理優先順位](../../user-guides/triggers/triggers.md#trigger-processing-priorities)を考慮してください。
@@ -76,7 +76,7 @@ WallarmのAdvanced API Security[サブスクリプション](../../about-wallarm
     トリガーの反応が**Graylist IP address**の場合、Wallarm Consoleの**IP lists** → **Graylist**を確認します。
 3. **Attacks**セクションを開き、リクエストが強制ブラウジング攻撃として一覧に表示されていることを確認します。
 
-    ![インターフェース上の強制ブラウジング攻撃](../../images/user-guides/events/forced-browsing-attack.png)
+    ![インターフェース上の強制ブラウジング攻撃](../../../images/user-guides/events/forced-browsing-attack.png)
 
     表示されるリクエスト数は、トリガーのしきい値超過後に送信されたリクエスト数に対応します（[行動的攻撃の検知の詳細](../../attacks-vulns-list.md#attack-types)）。この数が5を超える場合、リクエストのサンプリングが適用され、リクエストの詳細は最初の5hitsに対してのみ表示されます（[リクエストのサンプリングの詳細](../../user-guides/events/grouping-sampling.md#sampling-of-hits)）。
 

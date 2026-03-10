@@ -4,7 +4,7 @@ Você pode configurar o Wallarm para enviar notificações de eventos detectados
 
 --8<-- "../include-pt-BR/integrations/webhook-examples/overview.md"
 
-![Enviando notificações do Wallarm para o Datadog via coletor de dados](../../../../images/user-guides/settings/integrations/wallarm-log-collector-datadog.png)
+![Enviando notificações do Wallarm para o Datadog via coletor de dados](../../../../../images/user-guides/settings/integrations/wallarm-log-collector-datadog.png)
 
 !!! info "Integração nativa com o Datadog"
     O Wallarm também suporta a [integração nativa com o Datadog via API do Datadog](../datadog.md). A integração nativa não requer que o coletor de dados intermediário seja utilizado.
@@ -115,7 +115,7 @@ Como o Wallarm envia logs para o coletor de dados intermediário via webhooks, a
 
 Exemplo de integração com o Fluentd:
 
-![Adicionando integração com o Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+![Adicionando integração com o Fluentd](../../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
 ## Testando a integração
 
@@ -170,6 +170,6 @@ O log de teste no coletor de dados intermediário Fluentd ou Logstash:
 
 O log de teste no Datadog:
 
-![O log de teste no Datadog](../../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
+![O log de teste no Datadog](../../../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
 
 Para encontrar os logs do Wallarm entre outros registros, você pode usar a tag de busca `source:wallarm_cloud` no serviço Datadog Logs.

@@ -197,10 +197,10 @@ Notifications are sent in either JSON Array or New Line Delimited JSON (NDJSON) 
 
     --8<-- "../include/integrations/webhook-advanced-settings.md"
 
-    ![Advanced settings example](../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
+    ![Advanced settings example](../../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
 1. Choose event types to trigger notifications.
 
-    ![Webhook integration](../../../images/user-guides/settings/integrations/add-webhook-integration.png)
+    ![Webhook integration](../../../../images/user-guides/settings/integrations/add-webhook-integration.png)
 
     Details on available events:
 
@@ -219,13 +219,13 @@ Notifications are sent in either JSON Array or New Line Delimited JSON (NDJSON) 
 
 If an IP address was added to the denylist, the webhook about this event will be sent to Webhook URL.
 
-![Example of trigger for denylisted IP](../../../images/user-guides/triggers/trigger-example4.png)
+![Example of trigger for denylisted IP](../../../../images/user-guides/triggers/trigger-example4.png)
 
 **To test the trigger:**
 
 1. Open the Wallarm Console → **IP lists** → **Denylist** and add the IP address to the denylist. For example:
 
-    ![Adding IP to the denylist](../../../images/user-guides/triggers/test-ip-blocking.png)
+    ![Adding IP to the denylist](../../../../images/user-guides/triggers/test-ip-blocking.png)
 2. Check that the following webhook was sent to the Webhook URL:
 
     ```

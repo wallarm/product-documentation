@@ -1,4 +1,4 @@
-[splunk-dashboard-by-wallarm-img]: ../../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
+[splunk-dashboard-by-wallarm-img]: ../../../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
 
 # Logstash üzerinden Splunk Enterprise
 
@@ -6,7 +6,7 @@ Bu talimatlar, Wallarm’ın Logstash veri toplayıcı ile entegrasyonuna ilişk
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![Webhook akışı](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-scheme.png)
+![Webhook akışı](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-scheme.png)
 
 ## Kullanılan kaynaklar
 
@@ -22,7 +22,7 @@ Splunk Enterprise ve Logstash servislerine ait bağlantılar örnek olarak veril
 
 Logstash günlükleri, `Wallarm Logstash logs` adı ve diğer varsayılan ayarlarla Splunk HTTP Event Controller’a gönderilir:
 
-![HTTP Event Collector yapılandırması](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-setup.png)
+![HTTP Event Collector yapılandırması](../../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-setup.png)
 
 HTTP Event Controller’a erişmek için oluşturulan `93eaeba4-97a9-46c7-abf3-4e0c545fa5cb` jetonu kullanılacaktır.
 
@@ -80,16 +80,16 @@ Yapılandırma dosyalarının daha ayrıntılı açıklaması [resmi Logstash do
     ```
 
     **Logstash günlükleri:**
-    ![Logstash günlükleri](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-curl-log.png)
+    ![Logstash günlükleri](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-curl-log.png)
 
     **Splunk olayı:**
-    ![Splunk olayları](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-curl-log.png)
+    ![Splunk olayları](../../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-curl-log.png)
 
 ### Logstash entegrasyonunun yapılandırılması {#configuration-of-logstash-integration}
 
 --8<-- "../include/integrations/webhook-examples/create-logstash-webhook.md"
 
-![Logstash ile Webhook entegrasyonu](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+![Logstash ile Webhook entegrasyonu](../../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
 [Logstash entegrasyonunun yapılandırması hakkında daha fazla bilgi](../logstash.md)
 
@@ -99,11 +99,11 @@ Yapılandırma dosyalarının daha ayrıntılı açıklaması [resmi Logstash do
 
 Logstash olayı aşağıdaki gibi günlüğe yazacaktır:
 
-![Logstash'tan Splunk'ta yeni kullanıcıya ilişkin günlük](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-user-log.png)
+![Logstash'tan Splunk'ta yeni kullanıcıya ilişkin günlük](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-user-log.png)
 
 Splunk olaylarında aşağıdaki kayıt görüntülenecektir:
 
-![Logstash'tan Splunk'ta yeni kullanıcı kartı](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-user.png)
+![Logstash'tan Splunk'ta yeni kullanıcı kartı](../../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-user.png)
 
 ## Olayları bir panoda düzenleme
 

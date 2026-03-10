@@ -10,7 +10,7 @@ A Wallarm emprega várias técnicas para [descobrir](../about-wallarm/detecting-
 
 A Wallarm armazena o histórico de todas as vulnerabilidades detectadas na seção **Vulnerabilidades**:
 
-![Aba de Vulnerabilidades](../images/user-guides/vulnerabilities/check-vuln.png)
+![Aba de Vulnerabilidades](../../images/user-guides/vulnerabilities/check-vuln.png)
 
 ## Ciclo de vida da vulnerabilidade
 
@@ -23,7 +23,7 @@ O ciclo de vida de uma vulnerabilidade envolve as etapas de avaliação, remedia
 
 Ao gerenciar vulnerabilidades, você pode alternar manualmente os status de vulnerabilidade. Além disso, a Wallarm regularmente [reverifica](#verifying-vulnerabilities) as vulnerabilidades e muda o status das vulnerabilidades automaticamente de acordo com os resultados.
 
-![Ciclo de vida da vulnerabilidade](../images/user-guides/vulnerabilities/vulnerability-lifecycle.png)
+![Ciclo de vida da vulnerabilidade](../../images/user-guides/vulnerabilities/vulnerability-lifecycle.png)
 
 As mudanças no ciclo de vida da vulnerabilidade são refletidas no histórico de mudanças da vulnerabilidade.
 
@@ -48,11 +48,11 @@ A Wallarm fornece a cada vulnerabilidade os detalhes que ajudam a avaliar o nív
 
 Você pode filtrar vulnerabilidades usando a [linha de pesquisa](search-and-filters/use-search.md) e filtros predefinidos.
 
-![Informações detalhadas da vulnerabilidade](../images/user-guides/vulnerabilities/vuln-info.png)
+![Informações detalhadas da vulnerabilidade](../../images/user-guides/vulnerabilities/vuln-info.png)
 
 Todas as vulnerabilidades devem ser corrigidas no lado do aplicativo porque tornam seu sistema mais vulnerável a ações maliciosas. Se uma vulnerabilidade não puder ser corrigida, o uso da regra de [pacth virtual](rules/vpatch-rule.md) pode ajudar a bloquear ataques relacionados e eliminar o risco de um incidente.
 
-## Verificando vulnerabilidades <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
+## Verificando vulnerabilidades <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
 
 A Wallarm regularmente reverifica as vulnerabilidades ativas e fechadas. Isso envolve repetir o teste de uma infraestrutura para um problema de segurança que foi descoberto anteriormente. Se o resultado da rechecagem indicar que a vulnerabilidade não existe mais, a Wallarm muda seu status para **Fechado**. Isso também pode acontecer se o servidor estiver temporariamente indisponível. Por outro lado, se a rechecagem de uma vulnerabilidade fechada indicar que ela ainda existe no aplicativo, a Wallarm muda seu status de volta para **Ativo**.
 
@@ -64,7 +64,7 @@ Não é possível reverificar vulnerabilidades que foram detectadas passivamente
 
 Se você precisar reverificar uma vulnerabilidade manualmente, pode acionar o processo de reverificação usando a opção apropriada no menu de vulnerabilidade:
 
-![Uma vulnerabilidade que pode ser reverificada](../images/user-guides/vulnerabilities/recheck-vuln.png)
+![Uma vulnerabilidade que pode ser reverificada](../../images/user-guides/vulnerabilities/recheck-vuln.png)
 
 ## Configurando a detecção de vulnerabilidades
 
@@ -79,7 +79,7 @@ A configuração de detecção de vulnerabilidade pode ser ajustada usando o bot
 
     Por padrão, este módulo está desativado, aprenda suas melhores práticas de configuração [melhores práticas](../vulnerability-detection/threat-replay-testing/setup.md) antes de ativá-lo.
 
-![Configurações de verificação de vulnerabilidade](../images/user-guides/vulnerabilities/vuln-scan-settings.png)
+![Configurações de verificação de vulnerabilidade](../../images/user-guides/vulnerabilities/vuln-scan-settings.png)
 
 Além disso, na seção [**Scanner**](scanner.md) da interface do usuário, você pode controlar quais recursos expostos devem ser verificados pelo Scanner de Vulnerabilidade e qual RPS/RPM gerado pelo Scanner é permitido para cada recurso.
 

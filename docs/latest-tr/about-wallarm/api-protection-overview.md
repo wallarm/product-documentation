@@ -1,4 +1,4 @@
-# Wallarm API Protection <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Wallarm API Protection <a href="../subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm'ın API Protection'ı, API ve yapay zekayı korumaya yönelik gelişmiş yetenekler setidir. Temel [bulut-yerel WAAP](../about-wallarm/waap-overview.md) koruması zaten tüm API protokollerini ve bunların saldırılara karşı incelenmesini, L7 DDoS'a karşı korumayı vb. içerirken, modern API'ler otomatik tehditler, API kötüye kullanımı ve yapay zekanın suistimali gibi ek risklere maruz kalır. Advanced API Security paketi, riskleri daha kapsamlı azaltmak için gelişmiş özellikler sunar.
 
@@ -18,7 +18,7 @@ WAAP, temel Cloud Native WAAP aboneliği kapsamında sunulurken, API Protectio
 
 **API Specification Enforcement**, yüklediğiniz spesifikasyonlara dayanarak API'lerinize güvenlik politikaları uygulamak için tasarlanmıştır. Birincil işlevi, spesifikasyonunuzdaki uç nokta tanımları ile REST API'lerinize yapılan gerçek istekler arasındaki tutarsızlıkları tespit etmektir. Bu tür tutarsızlıklar belirlendiğinde, sistem bunları ele almak için önceden tanımlanmış eylemler gerçekleştirebilir.
 
-![Spesifikasyon - güvenlik politikalarını uygulamak için kullanım](../images/api-specification-enforcement/specification-use-for-api-policies-enforcement.png)
+![Spesifikasyon - güvenlik politikalarını uygulamak için kullanım](../../images/api-specification-enforcement/specification-use-for-api-policies-enforcement.png)
 
 [Ayrıntılı açıklama ve yapılandırmaya geçin →](../api-specification-enforcement/overview.md)
 
@@ -26,7 +26,7 @@ WAAP, temel Cloud Native WAAP aboneliği kapsamında sunulurken, API Protectio
 
 Wallarm'ın API Discovery modülünü, kırık nesne düzeyi yetkilendirme (BOLA) tehdidine karşı savunmasız uç noktaları keşfetmek ve bu zafiyeti istismar etmeye çalışan saldırılara karşı otomatik olarak koruma sağlamak için kullanın.
 
-![BOLA tetikleyicisi](../images/user-guides/bola-protection/trigger-enabled-state.png)
+![BOLA tetikleyicisi](../../images/user-guides/bola-protection/trigger-enabled-state.png)
 
 Otomatik BOLA koruması, [elle oluşturulan](../admin-en/configuration-guides/protecting-against-bola-trigger.md) BOLA koruma kurallarına harika bir eklenti veya onların yerine geçecek bir alternatiftir. Wallarm'ın davranışını kuruluşunuzun güvenlik profiliyle uyumlu hale getirmek için otomatik BOLA korumasını yapılandırabilirsiniz.
 
@@ -36,7 +36,7 @@ Otomatik BOLA koruması, [elle oluşturulan](../admin-en/configuration-guides/pr
 
 **API Abuse Prevention**, credential stuffing, sahte hesap oluşturma, içerik kazıma ve API'lerinizi hedef alan diğer kötü niyetli eylemleri gerçekleştiren botların tespitini ve etkisizleştirilmesini sağlar.
 
-![API kötüye kullanımını önleme istatistikleri](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
+![API kötüye kullanımını önleme istatistikleri](../../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
 
 **API Abuse Prevention**, ML tabanlı yöntemlerin yanı sıra istatistiksel ve matematiksel anomali arama yöntemlerini ve doğrudan kötüye kullanım vakalarını içeren karmaşık bir bot tespit modelini kullanır. Modül, normal trafik profilini kendi kendine öğrenir ve belirgin biçimde farklı davranışları anomali olarak tanımlar.
 
@@ -46,7 +46,7 @@ Otomatik BOLA koruması, [elle oluşturulan](../admin-en/configuration-guides/pr
 
 Wallarm'ın **Credential Stuffing Detection** özelliği, uygulamalarınıza erişmek için ele geçirilmiş veya zayıf kimlik bilgilerini kullanma girişimleri hakkında gerçek zamanlı bilgi toplar ve görüntüler ve bu tür girişimler hakkında anında bildirimler sağlar. Ayrıca, uygulamalarınıza erişim sağlayan tüm ele geçirilmiş veya zayıf kimlik bilgilerinin indirilebilir bir listesini oluşturur.
 
-![Wallarm Console - Credential Stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing.png)
+![Wallarm Console - Credential Stuffing](../../images/about-wallarm-waf/credential-stuffing/credential-stuffing.png)
 
 Ele geçirilmiş ve zayıf parolaları belirlemek için Wallarm, herkese açık [HIBP](https://haveibeenpwned.com/) ele geçirilmiş kimlik bilgileri veritabanından derlenen **850 milyondan fazla kayıttan** oluşan kapsamlı bir veritabanı kullanır.
 
@@ -58,6 +58,6 @@ Wallarm, temel [WAAP](../about-wallarm/subscription-plans.md#core-subscription-p
 
 Wallarm, **GraphQL politikası** ayarlayarak — GraphQL istekleri için bir dizi sınır — API'lerinizi bu saldırılardan korumanıza olanak tanır.
 
-![GraphQL eşikleri](../images/user-guides/rules/graphql-rule.png)
+![GraphQL eşikleri](../../images/user-guides/rules/graphql-rule.png)
 
 [Ayrıntılı açıklama ve yapılandırmaya geçin →](../api-protection/graphql-rule.md)

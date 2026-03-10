@@ -4,7 +4,7 @@ Bu talimatlar, Wallarm'ın Logstash veri toplayıcısı ile entegrasyonunun bir 
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![Webhook akışı](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
+![Webhook akışı](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
 
 ## Kullanılan kaynaklar
 
@@ -69,13 +69,13 @@ Yapılandırma dosyalarının daha ayrıntılı açıklaması [resmi Logstash be
     ```
 
     **Logstash günlükleri:**
-    ![Logstash'taki günlükler](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-curl-log.png)
+    ![Logstash'taki günlükler](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-curl-log.png)
 
     **QRadar günlükleri:**
-    ![QRadar'daki günlükler](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-curl-log.png)
+    ![QRadar'daki günlükler](../../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-curl-log.png)
 
     **QRadar günlük yükü:**
-    ![QRadar'daki günlükler](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-curl-log-payload.png)
+    ![QRadar'daki günlükler](../../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-curl-log-payload.png)
 
 ### QRadar yapılandırması (isteğe bağlı)
 
@@ -90,13 +90,13 @@ QRadar'da günlük kaynağı yapılandırılır. Bu, QRadar'daki tüm günlükle
 
 QRadar günlük kaynağı kurulumunun daha ayrıntılı açıklaması [resmi IBM belgelerinde](https://www.ibm.com/support/knowledgecenter/en/SS42VS_DSM/com.ibm.dsm.doc/b_dsm_guide.pdf?origURL=SS42VS_DSM/b_dsm_guide.pdf) mevcuttur.
 
-![Logstash için QRadar günlük kaynağı kurulumu](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-setup.png)
+![Logstash için QRadar günlük kaynağı kurulumu](../../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-setup.png)
 
 ### Logstash entegrasyonunun yapılandırılması
 
 --8<-- "../include/integrations/webhook-examples/create-logstash-webhook.md"
 
-![Logstash ile Webhook entegrasyonu](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+![Logstash ile Webhook entegrasyonu](../../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
 [Logstash entegrasyonunun yapılandırması hakkında daha fazla ayrıntı](../logstash.md)
 
@@ -106,8 +106,8 @@ QRadar günlük kaynağı kurulumunun daha ayrıntılı açıklaması [resmi IBM
 
 Logstash olayı aşağıdaki gibi günlüğe kaydedecektir:
 
-![Logstash'tan QRadar'da yeni kullanıcıyla ilgili günlük](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-user-log.png)
+![Logstash'tan QRadar'da yeni kullanıcıyla ilgili günlük](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-user-log.png)
 
 QRadar günlük yükünde aşağıdaki JSON biçimli veriler görüntülenecektir:
 
-![Logstash'tan QRadar'da yeni kullanıcı kartı](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-user.png)
+![Logstash'tan QRadar'da yeni kullanıcı kartı](../../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-user.png)

@@ -1,4 +1,4 @@
-# API Spesifikasyonu Zorlaması Nedeniyle Oluşan Olayları Görüntüleme <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Spesifikasyonu Zorlaması Nedeniyle Oluşan Olayları Görüntüleme <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Spesifikasyon tabanlı güvenlik politikalarını uygulamak için API spesifikasyonunuzu [yüklediğiniz](setup.md) ve zorlamayı yapılandırdığınız anda, politikalar isteklere uygulanmaya başlar. Bu makale, Wallarm Console içinde politikaları ihlal eden istekleri nasıl görüntüleyip analiz edeceğinizi açıklar.
 
@@ -14,7 +14,7 @@ Spesifikasyon tabanlı politika ihlalleriyle ilgili olayları bulmak için **Att
 
 Yapılandırılmış politika ihlali eylemlerine bağlı olarak engellenen ve izlenen olaylar gösterilebilir. Olay ayrıntılarında ihlal türü ve buna neden olan spesifikasyona bağlantı görüntülenir.
 
-![Spesifikasyon - güvenlik politikalarını uygulamak için kullanım](../images/api-specification-enforcement/api-specification-enforcement-events.png)
+![Spesifikasyon - güvenlik politikalarını uygulamak için kullanım](../../images/api-specification-enforcement/api-specification-enforcement-events.png)
 
 ## Limit aşımı olayları
 

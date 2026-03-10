@@ -99,7 +99,7 @@ Daha fazla ayrıntıyı [resmi Fluentd belgelerinde](https://docs.datadoghq.com/
     --8<-- "../include/integrations/webhook-advanced-settings.md"
 1. Bildirimleri tetikleyecek olay türlerini seçin.
 
-    ![Fluentd entegrasyonu](../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+    ![Fluentd entegrasyonu](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
     Kullanılabilir olayların ayrıntıları:
 
@@ -168,7 +168,7 @@ Daha fazla ayrıntıyı [resmi Fluentd belgelerinde](https://docs.datadoghq.com/
 
 Örneğin:
 
-![Webhook akışı](../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
+![Webhook akışı](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
 
 Bu şemayı kullanarak Wallarm olaylarını kaydetmek için:
 

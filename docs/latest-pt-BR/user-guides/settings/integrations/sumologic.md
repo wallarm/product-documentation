@@ -18,7 +18,7 @@ No Wallarm UI:
 4. Cole o valor copiado do Endereço da Fonte HTTP (URL) no campo **Endereço da Fonte HTTP (URL)**.
 5. Escolha os tipos de eventos para disparar notificações.
 
-    ![Integração do Sumo Logic](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
+    ![Integração do Sumo Logic](../../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
 
     Detalhes sobre eventos disponíveis:
 

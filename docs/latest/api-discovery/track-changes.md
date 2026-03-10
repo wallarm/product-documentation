@@ -1,8 +1,8 @@
-# Tracking changes in API <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Tracking changes in API <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 If changes occur in your API, [API Discovery](overview.md) updates the built API inventory, highlights the changes and gives you information on when and what has changed.<!-- Additionally, you can set up notifications on all or some of the changes.-->
 
-![API Discovery - track changes](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-changes.png)
+![API Discovery - track changes](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-changes.png)
 
 ## Overview
 
@@ -28,7 +28,7 @@ In the **Status** column for endpoints and parameters, API Discovery provides da
 
     * If later the endpoint in the `Unused` status is requested (with the code 200 in response) again it will lose the `Unused` status.
 
-![API Discovery - track changes](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-changes.png)
+![API Discovery - track changes](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-changes.png)
 
 Use **Changed since** filter to only see endpoints changed in specific time period, for example, today.
 
@@ -51,7 +51,7 @@ You can get messages about new, changed or unused endpoints or about all of thes
 
 In this example, if new endpoints for the `example.com` API host are discovered by the API Discovery module, the notification about this will be sent to your configured Slack channel.
 
-![Changes in API trigger](../images/user-guides/triggers/trigger-example-changes-in-api.png)
+![Changes in API trigger](../../images/user-guides/triggers/trigger-example-changes-in-api.png)
 
 **To test the trigger:**
 

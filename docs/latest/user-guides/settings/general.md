@@ -1,6 +1,6 @@
 [link-config-parameters]:       ../../admin-en/configure-wallarm-mode.md
 
-[img-general-settings]:         ../../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png
+[img-general-settings]:         ../../../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png
 
 # General Settings
 
@@ -9,7 +9,7 @@ On the **General** tab of the **Settings** section you can:
 * Switch Wallarm filtration mode
 * Manage automatic logout timeouts
 
-![General tab](../../images/user-guides/settings/general-tab.png)
+![General tab](../../../images/user-guides/settings/general-tab.png)
 
 ## Filtration mode
 

@@ -11,7 +11,7 @@ Se você tiver o plano de assinatura paga Wallarm, o cartão de assinatura exibi
 * Estatísticas sobre as solicitações processadas pelo nó de filtragem
 * O conjunto de módulos e recursos incluídos no plano de assinatura (o conjunto depende do plano de assinatura escolhido)
 
-![Plano de assinatura pago](../../images/user-guides/settings/subscriptions/subscriptions.png)
+![Plano de assinatura pago](../../../images/user-guides/settings/subscriptions/subscriptions.png)
 
 Para ativar, cancelar ou alterar uma assinatura, envie uma solicitação para [sales@wallarm.com](mailto:sales@wallarm.com).
 
@@ -43,6 +43,6 @@ Se você se registrou recentemente na Nuvem da UE e está usando a [versão de t
     O teste Wallarm fornece o conjunto máximo de módulos e recursos que podem ser incluídos no [plano](../../about-wallarm/subscription-plans.md#subscription-plans) API Security.
 * Se você tiver o plano PoC aprovado com a equipe Wallarm, link para o documento de resultados PoC
 
-![Período de Teste](../../images/user-guides/settings/subscriptions/subscriptions-trial-with-poc.png)
+![Período de Teste](../../../images/user-guides/settings/subscriptions/subscriptions-trial-with-poc.png)
 
 Para obter mais informações sobre a assinatura do Wallarm ou para ativar um plano de assinatura paga, envie uma solicitação para [sales@wallarm.com](mailto:sales@wallarm.com).

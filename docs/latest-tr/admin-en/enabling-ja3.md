@@ -68,12 +68,12 @@ Wallarm, `CloudFront-Viewer-JA3-Fingerprint` ve `CloudFront-Viewer-TLS` JA3 baş
 1. CloudFront console’a gidin ve **Origin Request Policies** sekmesini seçin.
 1. **Create Origin Request Policy**’ye tıklayın ve ilke ayrıntılarını ayarlayın.
 
-    ![CloudFront - origin request policy oluşturma](../images/configuration-guides/ja3/aws-cloudfront-create-origin-request-policy.png)
+    ![CloudFront - origin request policy oluşturma](../../images/configuration-guides/ja3/aws-cloudfront-create-origin-request-policy.png)
 
 1. **Actions** bölümünde **Add Header**’ı seçin.
 1. **Header Name** alanına `CloudFront-Viewer-JA3-Fingerprint` girin.
 
-    ![CloudFront - origin request policy’e başlık ekleme](../images/configuration-guides/ja3/aws-cloudfront-origin-request-policy-add-header.png)
+    ![CloudFront - origin request policy’e başlık ekleme](../../images/configuration-guides/ja3/aws-cloudfront-origin-request-policy-add-header.png)
 
 1. **Create**’e tıklayın. Origin request policy’niz artık oluşturuldu.
 1. Oluşturulan request policy’yi CloudFront distribution’ınıza eklemek için aşağıdaki adımları izleyin.
@@ -81,7 +81,7 @@ Wallarm, `CloudFront-Viewer-JA3-Fingerprint` ve `CloudFront-Viewer-TLS` JA3 baş
 1. **Origin Request Policies** yanında bulunan **Edit** düğmesine tıklayın.
 1. Oluşturduğunuz politikanın yanındaki onay kutusunu seçin ve değişiklikleri kaydedin.
 
-    ![CloudFront - policy’yi distribution’a ekleme](../images/configuration-guides/ja3/aws-cloudfront-attach-policy-to-distribution.png)
+    ![CloudFront - policy’yi distribution’a ekleme](../../images/configuration-guides/ja3/aws-cloudfront-attach-policy-to-distribution.png)
 
     Origin request policy’niz artık CloudFront distribution’ınıza eklendi. Distribution’ınıza istek yapan istemcilerin isteklerine `CloudFront-Viewer-JA3-Fingerprint` başlığı eklenecektir.
 

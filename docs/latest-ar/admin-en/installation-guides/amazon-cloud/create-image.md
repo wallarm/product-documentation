@@ -6,9 +6,9 @@
 [link-docs-reverse-proxy-setup]:    ../../../installation/cloud-platforms/aws/ami.md#6-enable-wallarm-to-analyze-the-traffic
 [link-docs-check-operation]:        ../../installation-check-operation-en.md
 
-[img-launch-ami-wizard]:        ../../../images/installation-ami/auto-scaling/common/create-image/launch-ami-wizard.png 
-[img-config-ami-wizard]:        ../../../images/installation-ami/auto-scaling/common/create-image/config-ami-wizard.png  
-[img-explore-created-ami]:      ../../../images/installation-ami/auto-scaling/common/create-image/explore-ami.png
+[img-launch-ami-wizard]:        ../../../../images/installation-ami/auto-scaling/common/create-image/launch-ami-wizard.png 
+[img-config-ami-wizard]:        ../../../../images/installation-ami/auto-scaling/common/create-image/config-ami-wizard.png  
+[img-explore-created-ami]:      ../../../../images/installation-ami/auto-scaling/common/create-image/explore-ami.png
 
 [anchor-node]:  #1-creating-and-configuring-the-wallarm-filtering-node-instance-in-the-amazon-cloud
 [anchor-ami]:   #2-creating-an-amazon-machine-image

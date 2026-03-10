@@ -1,11 +1,11 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 
 # Wallarm Node.js para AWS Lambda
 
 [AWS Lambda@Edge](https://aws.amazon.com/lambda/edge/) é um serviço de computação sem servidor e orientado a eventos que permite que você execute código para vários tipos de aplicativos ou serviços de back-end sem a necessidade de provisionar ou gerenciar servidores. Ao incorporar o código Node.js do Wallarm, você pode direcionar o tráfego de entrada para o nó Wallarm para análise e filtragem. Este artigo fornece instruções sobre como configurar o Wallarm para análise e filtragem de tráfego especificamente para lambdas Node.js em seu aplicativo AWS.
 
-<!-- ![Lambda](../../images/waf-installation/gateways/aws-lambda-traffic-flow.png) -->
+<!-- ![Lambda](../../../images/waf-installation/gateways/aws-lambda-traffic-flow.png) -->
 
 A solução envolve a implantação do nó Wallarm externamente e a injeção de código ou políticas personalizadas na plataforma específica. Isso permite que o tráfego seja direcionado para o nó Wallarm externo para análise e proteção contra possíveis ameaças. Referidos como conectores Wallarm, eles servem como o elo essencial entre plataformas como Azion Edge, Akamai Edge, MuleSoft, Apigee, e AWS Lambda, e o nó Wallarm externo. Essa abordagem garante integração contínua, análise segura de tráfego, mitigação de riscos e segurança geral da plataforma.
 

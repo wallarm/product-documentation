@@ -1,4 +1,4 @@
-# シャドーAPIとオーファンAPIの検出 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# シャドーAPIとオーファンAPIの検出 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarmを使用してAPI内の[シャドーおよびオーファンエンドポイント](../api-discovery/rogue-api.md)をどのように検出できるかを紹介するデモ動画をご覧ください。
 

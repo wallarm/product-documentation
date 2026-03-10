@@ -1,4 +1,4 @@
-# API Attack Surface Management  <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
+# API Attack Surface Management  <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
 Wallarm's **API Attack Surface Management** (**AASM**) is an agentless detection solution  tailored to the API ecosystem, designed to discover external hosts with their APIs, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities.
 
@@ -7,7 +7,7 @@ API Attack Surface Management includes:
 * [API Attack Surface Discovery (AASD)](api-surface.md)
 * [Security Issues Detection](security-issues.md)
 
-![AASM](../images/api-attack-surface/aasm.png)
+![AASM](../../images/api-attack-surface/aasm.png)
 
 ## How it works
 

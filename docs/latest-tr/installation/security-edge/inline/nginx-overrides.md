@@ -1,4 +1,4 @@
-# Security Edge Inline NGINX Geçersiz Kılmaları <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inline NGINX Geçersiz Kılmaları <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 Security Edge Inline, ana makine (server) ve location seviyelerinde NGINX yönergelerinin geçersiz kılınmasını destekler. Bu geçersiz kılmalar, uygulamanızın performansını ve istek işleme davranışını ince ayar yapmanıza olanak tanır.
 

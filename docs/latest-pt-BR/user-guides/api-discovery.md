@@ -1,4 +1,4 @@
-# Descoberta de API <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Descoberta de API <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 A seção **Descoberta de API** do console Wallarm permite gerenciar seu [inventário de API](../api-discovery/overview.md), além de ajustar detalhadamente sua descoberta. Este guia instrui como usar esta seção.
 
@@ -9,7 +9,7 @@ A seção só está disponível para usuários com os seguintes [papéis](../use
     **Administrador Global** e **Analista Global** nas contas com o recurso de multilocação têm os mesmos direitos.
 * **Desenvolvedor de API** pode visualizar e baixar os dados descobertos pelo módulo de descoberta de API. Este papel permite distinguir usuários cujas tarefas só requerem usar o Wallarm para obter dados reais sobre as APIs da empresa. Esses usuários não têm acesso a nenhuma outra seção do console do Wallarm, exceto **Descoberta de API** e **Configurações → Perfil**.
 
-![Endpoints descobertos por API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
+![Endpoints descobertos por API Discovery](../../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
 !!! info "Visualização padrão: período de tempo, classificação e agrupamento"
 
@@ -48,7 +48,7 @@ Todos os dados filtrados podem ser exportados no OpenAPI v3 para análise adicio
 
 <a name="params"></a>Ao clicar no endpoint, você também pode encontrar os detalhes do endpoint, incluindo estatísticas de solicitação, parâmetros obrigatórios e opcionais com os tipos de dados relevantes:
 
-![Parâmetros de solicitação descobertos pela Descoberta de API](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
+![Parâmetros de solicitação descobertos pela Descoberta de API](../../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
 
 Cada informação do parâmetro inclui:
 
@@ -83,7 +83,7 @@ Você pode verificar quais [mudanças ocorreram](../api-discovery/overview.md#tr
 
 Observe que, independentemente do período selecionado, se nada estiver destacado com a marca **Novo**, **Alterado** ou **Não usado**, isso significa que não há mudanças na API para esse período.
 
-![API Discovery - rastrear mudanças](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
+![API Discovery - rastrear mudanças](../../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
 
 !!! info "Período padrão"
     Cada vez que você abre a seção **API Discovery**, o filtro **Alterações desde** vai para o estado `Última semana`, o que significa que apenas as mudanças ocorridas na última semana são destacadas.
@@ -122,7 +122,7 @@ A pontuação de risco pode variar de `1` (menor) a `10` (maior):
 
 Para entender o que causou a pontuação de risco para o endpoint e como reduzir o risco, vá para os detalhes do endpoint:
 
-![API Discovery - Pontuação de risco](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
+![API Discovery - Pontuação de risco](../../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 
 ## Monitorando ataques em endpoints de API
 
@@ -135,7 +135,7 @@ Você pode:
 
 Para ver ataques a algum endpoint, clique no número na coluna **Hits**:
 
-![Endpoint de API - eventos abertos](../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
+![Endpoint de API - eventos abertos](../../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
 
 A seção **Eventos** será exibida com o [filtro aplicado](../user-guides/search-and-filters/use-search.md):
 
@@ -152,7 +152,7 @@ Você pode criar rapidamente uma nova [regra personalizada](../user-guides/rules
 1. No menu deste endpoint, selecione **Criar regra**. A janela de criação de regra é exibida. O endereço do endpoint é analisado na janela automaticamente.
 1. Na janela de criação de regra, especifique a informação da regra e, em seguida, clique em **Criar**.
 
-![Criar regra a partir do endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
+![Criar regra a partir do endpoint](../../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
 
 ## Exibindo API sombra, órfã e zumbi
 
@@ -160,7 +160,7 @@ O módulo **Descoberta de API** descobre automaticamente APIs desonestas (sombra
 
 * Use o filtro **Comparar com...** para selecionar comparações de especificações - apenas para elas as APIs desonestas serão destacadas pelas marcas especiais na coluna **Problemas**.
 
-    ![Descoberta de API - destacando e filtrando API desonesta](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
+    ![Descoberta de API - destacando e filtrando API desonesta](../../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
 * Use o filtro **APIs desonestas** para ver apenas APIs sombra, órfãs e/ou zumbis relacionadas às comparações selecionadas e filtre os demais endpoints.
 
@@ -187,7 +187,7 @@ A interface de usuário da Descoberta de API oferece a opção de baixar a espec
 
 O Wallarm pode [descobrir e proteger automaticamente endpoints que são vulneráveis aos ataques BOLA](../admin-en/configuration-guides/protecting-against-bola.md#automatic-bola-protection-for-endpoints-discovered-by-api-discovery) entre os explorados pelo módulo **API Discovery**. Se a opção estiver ativada, os endpoints protegidos são destacados com o ícone correspondente no inventário de API, por exemplo:
 
-![Gatilho BOLA](../images/about-wallarm-waf/api-discovery/endpoints-protected-against-bola.png)
+![Gatilho BOLA](../../images/about-wallarm-waf/api-discovery/endpoints-protected-against-bola.png)
 
 Você pode filtrar os endpoints de API pelo estado de proteção automática contra BOLA. O parâmetro correspondente está disponível no filtro **Outros**.
 
@@ -201,7 +201,7 @@ Se a assinatura [Descoberta de API](../api-discovery/overview.md) foi adquirida 
 
 Você pode ativar/desativar a Descoberta de API para todos os aplicativos ou apenas os selecionados.
 
-![Descoberta de API – Configurações](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
+![Descoberta de API – Configurações](../../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
 
 Quando você adiciona um novo aplicativo em **Configurações** → **[Aplicações](settings/applications.md)**, ele é automaticamente adicionado à lista de aplicativos para descoberta de API no estado **desativado**.
 
@@ -230,5 +230,5 @@ Para alterar como a pontuação de risco é calculada:
 1. Se necessário, desative os fatores que você não deseja que afetem a pontuação de risco.
 1. Defina o peso para os restantes.
 
-    ![Configuração de Descoberta de API - Configuração de pontuação de risco](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score-setup.png)
+    ![Configuração de Descoberta de API - Configuração de pontuação de risco](../../images/about-wallarm-waf/api-discovery/api-discovery-risk-score-setup.png)
 1. Salve as mudanças. O Wallarm recalcula a pontuação de risco para seus endpoints, de acordo com as novas configurações, em alguns minutos.

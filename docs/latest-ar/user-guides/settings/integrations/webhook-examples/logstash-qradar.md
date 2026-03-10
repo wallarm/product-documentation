@@ -4,7 +4,7 @@
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![سير عمل الويب هوك](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
+![سير عمل الويب هوك](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
 
 ## الموارد المستخدمة
 
@@ -69,13 +69,13 @@ output {
     ```
 
     **سجلات Logstash:**
-    ![السجلات في Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-curl-log.png)
+    ![السجلات في Logstash](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-curl-log.png)
 
     **سجلات QRadar:**
-    ![السجلات في QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-curl-log.png)
+    ![السجلات في QRadar](../../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-curl-log.png)
 
     **بيانات سجل QRadar:**
-    ![بطاقة مستخدم جديد في QRadar من Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-curl-log-payload.png)
+    ![بطاقة مستخدم جديد في QRadar من Logstash](../../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-curl-log-payload.png)
 
 ### تكوين QRadar (اختياري)
 
@@ -90,13 +90,13 @@ output {
 
 يتوفر وصف أكثر تفصيلًا لإعداد مصدر السجل في QRadar في [الوثائق الرسمية لIBM](https://www.ibm.com/support/knowledgecenter/en/SS42VS_DSM/com.ibm.dsm.doc/b_dsm_guide.pdf?origURL=SS42VS_DSM/b_dsm_guide.pdf).
 
-![إعداد مصدر السجل QRadar لـLogstash](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-setup.png)
+![إعداد مصدر السجل QRadar لـLogstash](../../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-setup.png)
 
 ### تكوين تكامل Logstash
 
 --8<-- "../include/integrations/webhook-examples/create-logstash-webhook.md"
 
-![تكامل ويب هوك مع Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+![تكامل ويب هوك مع Logstash](../../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
 [مزيد من التفاصيل حول تكوين تكامل Logstash](../logstash.md)
 
@@ -106,8 +106,8 @@ output {
 
 سيقوم Logstash بتسجيل الحدث على النحو التالي:
 
-![سجل عن المستخدم الجديد في QRadar من Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-user-log.png)
+![سجل عن المستخدم الجديد في QRadar من Logstash](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-user-log.png)
 
 سيتم عرض البيانات التالية بتنسيق JSON في بيانات سجل QRadar:
 
-![بطاقة مستخدم جديد في QRadar من Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-user.png)
+![بطاقة مستخدم جديد في QRadar من Logstash](../../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-user.png)

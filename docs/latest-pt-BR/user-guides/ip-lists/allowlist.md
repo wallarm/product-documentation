@@ -6,7 +6,7 @@ No Console Wallarm → **Listas de IP** → **Lista de permissões**, você pode
 
 --8<-- "../include-pt-BR/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
-![Lista de permissões IP](../../images/user-guides/ip-lists/allowlist-apps.png)
+![Lista de permissões IP](../../../images/user-guides/ip-lists/allowlist-apps.png)
 
 !!! info "Nome antigo da lista"
     O nome antigo da lista de permissões de endereço IP é "lista de permissões de endereço IP".
@@ -52,6 +52,6 @@ Para adicionar um endereço IP, sub-rede ou grupo de endereços IP à lista:
 4. Selecione o período pelo qual um endereço IP ou um grupo de endereços IP deve ser adicionado à lista. O valor mínimo é de 5 minutos, o valor máximo é para sempre.
 5. Especifique o motivo para adicionar um endereço IP ou um grupo de endereços IP à lista.
 
-![Adicione IP à lista (com aplicativo)](../../images/user-guides/ip-lists/add-ip-to-list-app.png)
+![Adicione IP à lista (com aplicativo)](../../../images/user-guides/ip-lists/add-ip-to-list-app.png)
 
 --8<-- "../include-pt-BR/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"

@@ -2,7 +2,7 @@
 
 シングルサインオン(SSO)技術を使用して、貴社のユーザーをWallarm Consoleに対して認証できます。Wallarmはサービスプロバイダー(SP)として動作し、GoogleやOktaなどSAML標準をサポートする任意のアイデンティティプロバイダー(IdP)とシームレスに統合します。
 
-![Integrations - SSO](../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
+![Integrations - SSO](../../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
 
 ## 利用可能なオプション
 

@@ -1,9 +1,9 @@
 [link-attacks]:                 ../user-guides/events/check-attack.md
 [link-sessions]:                ../api-sessions/overview.md
 [link-api-abuse-prevention]:    ../api-abuse-prevention/overview.md
-[img-api-sessions-api-abuse]:   ../images/api-sessions/api-sessions-api-abuse.png
+[img-api-sessions-api-abuse]:   ../../images/api-sessions/api-sessions-api-abuse.png
 
-# Bot Etkinliğini Keşfetme <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Bot Etkinliğini Keşfetme <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 [API Abuse Prevention](../api-abuse-prevention/overview.md), kötü amaçlı bot etkinliğini ML algoritmalarına dayanarak tanımlar. Bu tür saldırılar tek bir engellenen isteğe bakılarak analiz edilemez. Bu nedenle Wallarm platformunun bot etkinliğini farklı açılardan araştırmak için geniş bir araç yelpazesi sunması esastır.
 
@@ -13,11 +13,11 @@ API Abuse Prevention, son 30 güne ait bot etkinliği verilerini **API Abuse Pre
 
 Ayrıca alt kısımdaki **Behavioral patterns** bölümünde bot davranışlarını analiz edebilirsiniz. Her bir dedektör hakkında ayrıntılı bilgi edinin ve bot eylemlerini belirlemek için birlikte nasıl hareket ettiklerini görün. Bu widget ve sağ üstteki [deny- veya graylisted](setup.md#creating-profiles) IP sayaçları sizi, botun IP’sinin engelleme listesine ne zaman ve hangi süreyle alındığını kontrol edebileceğiniz **IP Lists** [geçmişine](../user-guides/ip-lists/overview.md#ip-list-history) götürür.
 
-![API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
+![API abuse prevention statistics](../../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
 
 Herhangi bir bot etkinliği tespit edilmediyse, **Legitimate traffic** durumu görüntülenir:
 
-![API abuse prevention statistics - no bots detected](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics-nobots.png)
+![API abuse prevention statistics - no bots detected](../../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics-nobots.png)
 
 Bot tespitinin trafiğe bağlı olduğunu unutmayın – yeterli trafik yoksa, API Abuse Prevention bunu **Insufficient data to build statistics** mesajıyla bildirir. **Profiles** sekmesinde profil başına trafiği [kontrol edebilirsiniz](setup.md#per-profile-traffic).
 
@@ -25,7 +25,7 @@ Bot tespitinin trafiğe bağlı olduğunu unutmayın – yeterli trafik yoksa, A
 
 Wallarm Console → **Attacks** bölümünde botlar tarafından gerçekleştirilen saldırıları inceleyebilirsiniz. `api_abuse`, `account_takeover`, `scraping` ve `security_crawlers` arama anahtarlarını kullanın veya **Type** filtresinden uygun seçenekleri seçin.
 
-![API Abuse events](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
+![API Abuse events](../../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
 
 Bot IP’si API Abuse Prevention tarafından denylist’e alınsa bile, varsayılan olarak, Wallarm ondan kaynaklanan engellenen isteklere ilişkin istatistikleri toplar ve [gösterir](../user-guides/ip-lists/overview.md#requests-from-denylisted-ips).
 

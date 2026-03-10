@@ -2,4 +2,4 @@ Wallarm'ın [API Abuse Prevention](../../api-abuse-prevention/overview.md) modü
 
 Botların IP'leri, `Bot` Reason değeri ve doğasına ilişkin ayrıntılar (örn. [güven oranı](../../api-abuse-prevention/overview.md#how-api-abuse-prevention-works)) ile ayırt edilir, örneğin:
 
-![Denylist'e alınmış bot IP'leri](../../images/about-wallarm-waf/abi-abuse-prevention/denylisted-bot-ips.png)
+![Denylist'e alınmış bot IP'leri](../../../images/about-wallarm-waf/abi-abuse-prevention/denylisted-bot-ips.png)

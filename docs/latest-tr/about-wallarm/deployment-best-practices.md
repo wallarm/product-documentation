@@ -136,7 +136,7 @@ Wallarm, filtreleme düğümü yazılımını geliştirmek için sürekli çalı
 * Aynı Wallarm hesabına bağlı tüm Wallarm düğümleri, trafik filtreleme için aynı varsayılan ve özel kurallar setini alır. Yine de uygun uygulama ID'lerini veya başlıklar, sorgu dizesi parametreleri vb. gibi benzersiz HTTP istek parametrelerini kullanarak farklı uygulamalar için farklı kurallar uygulayabilirsiniz.
 * Bir IP adresini otomatik olarak engelleyecek şekilde yapılandırılmış bir trigger'a sahipseniz ([trigger örneği](../user-guides/triggers/trigger-examples.md#denylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour)), sistem Wallarm hesabındaki tüm uygulamalar için IP'yi engelleyecektir.
 
-## Threat Replay Testing için en iyi uygulamaları izleyin <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
+## Threat Replay Testing için en iyi uygulamaları izleyin <a href="../subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
 
 Wallarm'ın [güvenlik açıklarını tespit etmek](../about-wallarm/detecting-vulnerabilities.md) için kullandığı yöntemlerden biri **Threat Replay Testing**'dir.
 

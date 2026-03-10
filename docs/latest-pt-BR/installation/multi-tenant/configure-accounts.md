@@ -16,7 +16,7 @@ Para configurar contas de inquilino:
 
 1. Preencha e confirme o formulário de registro no Console Wallarm na [Nuvem US](https://us1.my.wallarm.com/signup) ou [Nuvem EU](https://my.wallarm.com/signup).
 
-    ![Formulário de registro](../../images/signup-en.png)
+    ![Formulário de registro](../../../images/signup-en.png)
 
     !!! informação "Email empresarial"
         Por favor inscreva-se usando um endereço de email empresarial.
@@ -46,7 +46,7 @@ Depois de receber sua solicitação, o suporte técnico da Wallarm irá:
 
 Embaixo da conta de **Administrador Global**, você pode criar inquilinos via Console Wallarm → seletor de inquilinos → **Criar inquilino**.
 
-![!Criando inquilino via Console Wallarm](../../images/partner-waf-node/tenant-create-via-ui.png)
+![!Criando inquilino via Console Wallarm](../../../images/partner-waf-node/tenant-create-via-ui.png)
 
 Você pode criar um novo [usuário](../../user-guides/settings/users.md#user-roles) **Administrador** para seu novo inquilino. O e-mail de convite será enviado para o endereço especificado.
 
@@ -100,7 +100,7 @@ Neste passo, uma conta de inquilino vinculada a uma conta global será criada.
 
 Inquilinos criados serão exibidos no Console Wallarm para [usuários globais](../../user-guides/settings/users.md#user-roles). Por exemplo, `Inquilino 1` e `Inquilino 2`:
 
-![Selecionador de inquilinos no Console Wallarm](../../images/partner-waf-node/clients-selector-in-console.png)
+![Selecionador de inquilinos no Console Wallarm](../../../images/partner-waf-node/clients-selector-in-console.png)
 
 ### Passo 3: Associar tráfego específico ao seu inquilino
 
@@ -145,6 +145,6 @@ Contas desativadas não são excluídas e podem ser ativadas novamente.
 
 Para desativar uma conta de inquilino, no seletor de inquilino, do menu de inquilino, selecione **Desativar**, então confirme. A conta de inquilino será desativada e oculta da lista de inquilinos.
 
-![Inquilino - Desativar](../../images/partner-waf-node/tenant-deactivate.png)
+![Inquilino - Desativar](../../../images/partner-waf-node/tenant-deactivate.png)
 
 Para ativar uma conta de inquilino anteriormente desativada, no seletor de inquilino, clique em **Mostrar inquilinos desativados**, depois selecione **Ativar** para seu inquilino.

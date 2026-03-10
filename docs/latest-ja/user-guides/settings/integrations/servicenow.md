@@ -23,7 +23,7 @@ Wallarm UIで：
 1. OAuth認証データ（client IDとsecret）を入力します。
 1. 通知をトリガーするイベントタイプを選択します。
 
-    ![ServiceNow統合](../../../images/user-guides/settings/integrations/add-servicenow-integration.png)
+    ![ServiceNow統合](../../../../images/user-guides/settings/integrations/add-servicenow-integration.png)
 
     利用可能なイベントの詳細：
       

@@ -23,7 +23,7 @@ In the Wallarm Console UI:
     Without a name, separate tables are created for each event type.
 1. Choose event types to trigger notifications.
 
-    ![Sentinel integration](../../../images/user-guides/settings/integrations/add-sentinel-integration.png)
+    ![Sentinel integration](../../../../images/user-guides/settings/integrations/add-sentinel-integration.png)
 
     Details on available events:
 
@@ -33,7 +33,7 @@ In the Wallarm Console UI:
 
     You can find Wallarm logs in your Microsoft Workspace → **Logs** → **Custom Logs**, e.g. the test `create_user_CL` log in Microsoft Sentinel looks as follows:
 
-    ![Test Sentinel message](../../../images/user-guides/settings/integrations/test-sentinel-new-vuln.png)
+    ![Test Sentinel message](../../../../images/user-guides/settings/integrations/test-sentinel-new-vuln.png)
 
     !!! info "Delay in sending data to new workspaces"
         Creating a Workspace on Sentinel for Wallarm integration can take up to 1 hour for all services to function. This delay can result in errors during integration testing and usage. If all integration settings are correct but errors continue to appear, please try again after 1 hour.

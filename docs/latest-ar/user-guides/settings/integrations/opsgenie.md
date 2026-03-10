@@ -20,7 +20,7 @@
 1. إذا كنت تستخدم [نسخة EU](https://docs.opsgenie.com/docs/european-service-region) من Opsgenie، فاختر نقطة نهاية API المناسبة لـ Opsgenie من القائمة. افتراضيًا، يتم تعيين نقطة نهاية نسخة الولايات المتحدة.
 1. اختر أنواع الأحداث لتشغيل الإخطارات.
 
-    ![تكامل Opsgenie](../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
+    ![تكامل Opsgenie](../../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
 
     التفاصيل عن الأحداث المتاحة:
       
@@ -30,7 +30,7 @@
 
     سيتم إرسال الإخطارات التجريبية بالبادئة `[رسالة اختبار]`:
 
-    ![رسالة اختبار Opsgenie](../../../images/user-guides/settings/integrations/test-opsgenie-new-vuln.png)
+    ![رسالة اختبار Opsgenie](../../../../images/user-guides/settings/integrations/test-opsgenie-new-vuln.png)
 
 1. انقر على **أضف تكامل**.
 
@@ -42,7 +42,7 @@
 
 إذا تم اكتشاف حادثين أو أكثر تتعلق بخادم التطبيقات أو قاعدة البيانات في ثانية واحدة، فسيتم إرسال إخطار بهذا الحدث إلى Opsgenie.
 
-![مثال على مشغل يرسل البيانات إلى Splunk](../../../images/user-guides/triggers/trigger-example3.png)
+![مثال على مشغل يرسل البيانات إلى Splunk](../../../../images/user-guides/triggers/trigger-example3.png)
 
 **لاختبار المشغل**، يُطلب إرسال الهجوم الذي يستغل نقطة ضعف نشطة إلى المورد المحمي. يعرض قسم **الثغرات الأمنية** في لوحة تحكم Wallarm الثغرات الأمنية النشطة المكتشفة في تطبيقاتك وأمثلة الهجمات التي تستغل هذه الثغرات.
 

@@ -10,7 +10,7 @@
 
 يخزن Wallarm تاريخ جميع الثغرات الأمنية التي تم اكتشافها في قسم **الثغرات الأمنية**:
 
-![علامة التبويب الثغرات](../images/user-guides/vulnerabilities/check-vuln.png)
+![علامة التبويب الثغرات](../../images/user-guides/vulnerabilities/check-vuln.png)
 
 ## دورة حياة الثغرة الأمنية
 
@@ -23,7 +23,7 @@
 
 عند إدارة الثغرات الأمنية، يمكنك تغيير حالات الثغرة الأمنية يدويًا. بالإضافة إلى ذلك، يقوم Wallarm بـ[إعادة التحقق](#verifying-vulnerabilities) من الثغرات الأمنية بانتظام ويغير حالة الثغرات الأمنية تلقائيًا حسب النتائج.
 
-![دورة حياة الثغرة](../images/user-guides/vulnerabilities/vulnerability-lifecycle.png)
+![دورة حياة الثغرة](../../images/user-guides/vulnerabilities/vulnerability-lifecycle.png)
 
 تُعكس التغييرات في دورة حياة الثغرة في تاريخ تغييرات حالة الثغرة.
 
@@ -48,11 +48,11 @@
 
 يمكنك فلترة الثغرات الأمنية باستخدام [سلسلة البحث](search-and-filters/use-search.md) والفلاتر المحددة مسبقًا.
 
-![معلومات تفصيلية عن الثغرة](../images/user-guides/vulnerabilities/vuln-info.png)
+![معلومات تفصيلية عن الثغرة](../../images/user-guides/vulnerabilities/vuln-info.png)
 
 ينبغي إصلاح جميع الثغرات الأمنية في جانب التطبيق لأنها تجعل نظامك أكثر عرضة للأعمال الضارة. إذا لم يكن بالإمكان إصلاح ثغرة أمنية، يمكن أن يساعد استخدام قاعدة [التصحيح الافتراضي](rules/vpatch-rule.md) في منع الهجمات ذات الصلة والقضاء على خطر وقوع حادث.
 
-## التأكد من الثغرات الأمنية <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
+## التأكد من الثغرات الأمنية <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
 
 يقوم Wallarm بإعادة التحقق من الثغرات الأمنية النشطة والمغلقة بانتظام. ويتضمن ذلك اختبار البنية التحتية مرة أخرى لمشكلة أمان تم اكتشافها سابقًا. إذا أشارت نتيجة إعادة التحقق إلى أن الثغرة الأمنية لم تعد موجودة، يغير Wallarm حالتها إلى **مغلق**. وقد يحدث هذا أيضًا إذا كان الخادم غير متاح مؤقتًا. بالمقابل، إذا أشارت إعادة التحقق من ثغرة أمنية مغلقة إلى أنها لا تزال موجودة في التطبيق، يغير Wallarm حالتها إلى **نشط** مرة أخرى.
 
@@ -64,7 +64,7 @@
 
 إذا كنت بحاجة إلى إعادة التحقق من ثغرة أمنية يدويًا، يمكنك تشغيل عملية إعادة التحقق باستخدام الخيار المناسب في قائمة الثغرة الأمنية:
 
-![ثغرة يمكن إعادة التحقق منها](../images/user-guides/vulnerabilities/recheck-vuln.png)
+![ثغرة يمكن إعادة التحقق منها](../../images/user-guides/vulnerabilities/recheck-vuln.png)
 
 ## تكوين اكتشاف الثغرات الأمنية
 
@@ -79,7 +79,7 @@
 
     بشكل افتراضي، يتم تعطيل هذه الوحدة، تعرف على أفضل الممارسات الخاصة بتكوينها [قبل التمكين](../vulnerability-detection/threat-replay-testing/setup.md).
 
-![إعدادات فحص الثغرة](../images/user-guides/vulnerabilities/vuln-scan-settings.png)
+![إعدادات فحص الثغرة](../../images/user-guides/vulnerabilities/vuln-scan-settings.png)
 
 بالإضافة إلى ذلك، في قسم [**الماسح**](scanner.md) من واجهة المستخدم، يمكنك التحكم في الأصول المعرضة التي يجب مسحها بواسطة ماسح الثغرات الضوئي وما هي عمليات RPS/RPM التي يتم إنشاؤها بواسطة الماسح مسموح بها لكل أصل.
 

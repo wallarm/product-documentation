@@ -2,9 +2,9 @@
 [link-incidents]:               ../user-guides/events/check-incident.md
 [link-sessions]:                ../api-sessions/overview.md
 [link-api-abuse-prevention]:    ../api-abuse-prevention/overview.md
-[img-api-sessions-api-abuse]:   ../images/api-sessions/api-sessions-api-abuse.png
+[img-api-sessions-api-abuse]:   ../../images/api-sessions/api-sessions-api-abuse.png
 
-# Exploring API Sessions <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Exploring API Sessions <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 As soon as Wallarm's [API Sessions](overview.md) identified user sessions related to your applications, you can explore them in the **API Sessions** section of Wallarm Console. Learn from this article how to go through the discovered data.
 
@@ -19,13 +19,13 @@ For effective analysis, long sessions are separated in one-day parts. Also, no p
 1. In the session details, right-click and copy session's ID.<!-- It is automatically copied.-->
 1. Paste the ID to the **Session ID** filter.
 
-![!API Sessions - multi-day session](../images/api-sessions/api-sessions-multi-day.png)
+![!API Sessions - multi-day session](../../images/api-sessions/api-sessions-multi-day.png)
 
 ## Activities within specific time
 
 You can investigate what happened within the specified time interval. To do so, set the date/time filter. Only sessions with the requests that took place at specified time will be displayed - only requests from that time interval will be displayed within each session.
 
-![!API Sessions - activities within specific time](../images/api-sessions/api-sessions-timeframe.png)
+![!API Sessions - activities within specific time](../../images/api-sessions/api-sessions-timeframe.png)
 
 Hint: use the [link to your session](#sharing-session-information) in your own browser and **then** set time interval to see only requests from the selected session within the selected time.
 
@@ -35,7 +35,7 @@ The session may contain a lot of requests of different types (POST, GET, etc.), 
 
 In session details, you can see a comprehensive statistics providing information on its request distribution by different criteria. You can apply in-session filters (one or several) to see only specific requests.
 
-![!API Sessions - filters inside session](../images/api-sessions/api-sessions-inline-filters.png)
+![!API Sessions - filters inside session](../../images/api-sessions/api-sessions-inline-filters.png)
 
 Note that in-session filters communicate with general filters of the **API Sessions** section: 
 
@@ -46,7 +46,7 @@ Note that in-session filters communicate with general filters of the **API Sessi
 
 Use the **API Discovery insights** in the session request details to inspect the affected endpoints. You can immediately get information whether the endpoint is at risk, whether this risk is caused by the endpoint being [rogue](../api-discovery/rogue-api.md) (specifically, shadow or zombie APIs) and how well and by what measures it is protected.
 
-![!API Sessions - APID endpoint insights](../images/api-sessions/api-sessions-apid-insight.png)
+![!API Sessions - APID endpoint insights](../../images/api-sessions/api-sessions-apid-insight.png)
 
 Click **Explore in API Discovery** to switch to the endpoint information in the [**API Discovery**](../api-discovery/overview.md) section.
 
@@ -62,7 +62,7 @@ If the sessions' requests affect the endpoints that in API Discovery were tagged
 
 Once sessions are assigned with the sensitive business flow tags, it becomes possible to filter them by a specific business flow which makes it easier to select the sessions that are most important to analyze.
 
-![!API Sessions - sensitive business flows](../images/api-sessions/api-sessions-sbf-no-select.png)
+![!API Sessions - sensitive business flows](../../images/api-sessions/api-sessions-sbf-no-select.png)
 
 Wallarm lists business flows and displays number and percentage of requests related to the flow from the total number of session requests.
 
@@ -76,7 +76,7 @@ Use the **Business flow** filter to quickly analyze all the sessions affecting s
 
 If you [configured](setup.md#users-and-roles) API Sessions to obtain information on users and their roles, you can filter sessions by users and roles.
 
-![!API Sessions - user and user role display](../images/api-sessions/api-sessions-user-role-display.png)
+![!API Sessions - user and user role display](../../images/api-sessions/api-sessions-user-role-display.png)
 
 ## Verifying API abuse detection accuracy
 
@@ -89,10 +89,10 @@ You can adjust how Wallarm behaves regarding attack detection directly from the 
 * The attack may be marked as [false-positive](../about-wallarm/protecting-against-attacks.md#false-positives) - the filtering node will not recognize such requests as attacks in future.
 * The [rule](../user-guides/rules/rules.md) may be created - once active, the rule will alter the default Wallarm behavior during the analysis of requests and their further processing.
 
-![!API Sessions - request details - available actions](../images/api-sessions/api-sessions-request-details-actions.png)
+![!API Sessions - request details - available actions](../../images/api-sessions/api-sessions-request-details-actions.png)
 
 ## Sharing session information
 
 If you found suspicious behavior in the session and would like to share insights with colleagues and store the session for further analysis, use the **Copy link** or **Download CSV** in the session details.
 
-![!API Sessions - sharing session information](../images/api-sessions/api-sessions-share.png)
+![!API Sessions - sharing session information](../../images/api-sessions/api-sessions-share.png)

@@ -17,7 +17,7 @@ The dashboard contains the following rows:
 
 The Overview row provides a summary of the health, performance, and security activity of the Wallarm Security Edge cluster. It includes key metrics about nodes, NGINX, upstream services, and Wallarm request statistics.
 
-![!](../../../images/waf-installation/security-edge/inline/telemetry/overview-row.png)
+![!](../../../../images/waf-installation/security-edge/inline/telemetry/overview-row.png)
 
 The Overview row features the following panels:
 
@@ -35,7 +35,7 @@ The Overview row features the following panels:
 
 The RPS Detailed row shows detailed request traffic per URI, categorized by response codes. It helps identify the most frequently accessed endpoints and spot unusual request patterns.
 
-![!](../../../images/waf-installation/security-edge/inline/telemetry/rps-detailed-row.png)
+![!](../../../../images/waf-installation/security-edge/inline/telemetry/rps-detailed-row.png)
 
 The RPS Detailed row features the following panels:
 
@@ -47,7 +47,7 @@ The RPS Detailed row features the following panels:
 
 The Response Time row shows request and upstream latency, helping monitor performance and detect potential bottlenecks.
 
-![!](../../../images/waf-installation/security-edge/inline/telemetry/response-time-row.png)
+![!](../../../../images/waf-installation/security-edge/inline/telemetry/response-time-row.png)
 
 The Response Time row features the following panels:
 
@@ -60,7 +60,7 @@ The Response Time row features the following panels:
 
 The Stats from Logs row shows aggregated NGINX log data. It helps monitor traffic patterns, detect anomalies, and investigate potential performance or security issues.
 
-![!](../../../images/waf-installation/security-edge/inline/telemetry/stats-from-logs-row.png)
+![!](../../../../images/waf-installation/security-edge/inline/telemetry/stats-from-logs-row.png)
 
 The Stats from Logs row features the following panels:
 
@@ -79,7 +79,7 @@ The Stats from Logs row features the following panels:
 
 The Node Logs row shows NGINX error and access logs from the Node, helping you investigate failures, slow requests, and abnormal traffic.
 
-![!](../../../images/waf-installation/security-edge/inline/telemetry/node-logs-row.png)
+![!](../../../../images/waf-installation/security-edge/inline/telemetry/node-logs-row.png)
 
 The Node Logs row features the following panels:
 
@@ -96,7 +96,7 @@ To quickly view NGINX error and access logs without additional metrics, use the 
 
 The Wallarm Metrics row shows operational status, performance, and internal statistics of the Wallarm Nodes. It helps monitor request handling, rule application, error conditions, and resource use.
 
-![!](../../../images/waf-installation/security-edge/inline/telemetry/wallarm-metrics-row-1.png)
+![!](../../../../images/waf-installation/security-edge/inline/telemetry/wallarm-metrics-row-1.png)
 
 The Wallarm Metrics row features the following panels:
 
@@ -126,7 +126,7 @@ The Wallarm Metrics row features the following panels:
 
 The Resource Overview row provides a detailed view of resource usage, container performance, and pod status. It helps monitor efficiency, capacity, and stability of the Wallarm Security Edge deployment.
 
-![!](../../../images/waf-installation/security-edge/inline/telemetry/resource-overview-row.png)
+![!](../../../../images/waf-installation/security-edge/inline/telemetry/resource-overview-row.png)
 
 The Resource Overview row features the following panels:
 
@@ -145,7 +145,7 @@ The Resource Overview row features the following panels:
 
 The Nginx Cache Status row shows NGINX cache efficiency and behavior across hosts and request paths. It helps assess cache effectiveness, identify cache bypasses or misses, and troubleshoot cache-related performance issues.
 
-![!](../../../images/waf-installation/security-edge/inline/telemetry/nginx-cache-status-row.png)
+![!](../../../../images/waf-installation/security-edge/inline/telemetry/nginx-cache-status-row.png)
 
 The Nginx Cache Status row features the following panels:
 

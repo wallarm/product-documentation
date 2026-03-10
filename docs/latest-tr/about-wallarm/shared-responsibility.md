@@ -12,7 +12,7 @@ Wallarm'ın iki ana bileşeni vardır: **Wallarm filtering node** ve **Wallarm C
 
 --8<-- "../include/deployment-forms.md"
 
-![Sorumluluklar şeması](../images/shared-responsibility-variants.png)
+![Sorumluluklar şeması](../../images/shared-responsibility-variants.png)
 
 ## Security Edge
 

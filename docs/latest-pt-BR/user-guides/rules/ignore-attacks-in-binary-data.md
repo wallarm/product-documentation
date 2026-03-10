@@ -36,4 +36,4 @@ Digamos que, ao usuário fazer o upload do arquivo binário com a imagem usando 
 
 A regra **Permitir dados binários** ajustando a detecção de ataques no parâmetro `fileContents` é a seguinte:
 
-![Exemplo da regra "Permitir dados binários"](../../images/user-guides/rules/ignore-binary-attacks-example.png)
+![Exemplo da regra "Permitir dados binários"](../../../images/user-guides/rules/ignore-binary-attacks-example.png)

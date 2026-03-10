@@ -32,7 +32,7 @@
 
 [要件](#requirements)が満たされている場合、Wallarm Consoleの**Integrations** → **LDAP** → **LDAP**でLDAP統合を設定できます。
 
-![LDAP統合の設定](../../../images/admin-guides/configuration-guides/ldap/configuring-ldap.png)
+![LDAP統合の設定](../../../../images/admin-guides/configuration-guides/ldap/configuring-ldap.png)
 
 LDAP統合では、LDAPグループをWallarmの[ユーザーロール](../../../user-guides/settings/users.md#user-roles)にマッピングする必要があります。少なくとも1つのLDAPグループをマッピングし、必要に応じて追加できます。
 

@@ -1,6 +1,6 @@
 [versioning-policy]:                ../../../updating-migrating/versioning-policy.md#version-list
 [ptrav-attack-docs]:                ../../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../../images/admin-guides/test-attacks-quickstart.png
 [wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [nginx-directives-docs]:            ../../configure-parameters-en.md
 [docker-envoy-configuration-docs]:  ../../configuration-guides/envoy/fine-tuning.md

@@ -1,5 +1,5 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [helm-chart-native-node]:           ../native-node/helm-chart.md
 [custom-blocking-page]:             ../../admin-en/configuration-guides/configure-block-page-and-code.md
 [rate-limiting]:                    ../../user-guides/rules/rate-limiting.md
@@ -14,9 +14,9 @@ Wallarm’ı Akamai için bir bağlayıcı olarak kullanmak için, **Wallarm nod
 Akamai için Wallarm bağlayıcısı hem [senkron (in-line)](../inline/overview.md) hem de [asenkron (out‑of‑band)](../oob/overview.md) trafik analizini destekler:
 
 === "Senkron trafik akışı"
-    ![!Wallarm EdgeWorker ile Akamai senkron trafik akışı](../../images/waf-installation/gateways/akamai/traffic-flow-sync.png)
+    ![!Wallarm EdgeWorker ile Akamai senkron trafik akışı](../../../images/waf-installation/gateways/akamai/traffic-flow-sync.png)
 === "Asenkron trafik akışı"
-    ![!Wallarm EdgeWorker ile Akamai asenkron trafik akışı](../../images/waf-installation/gateways/akamai/traffic-flow-async.png)
+    ![!Wallarm EdgeWorker ile Akamai asenkron trafik akışı](../../../images/waf-installation/gateways/akamai/traffic-flow-async.png)
 
 ## Kullanım durumları
 
@@ -107,7 +107,7 @@ Wallarm kod paketini Akamai EdgeWorkers üzerinde edinmek ve çalıştırmak iç
     ```
 1. [Property’yi staging’de etkinleştirin](https://techdocs.akamai.com/property-mgr/docs/activate-stage), işlevselliği doğrulayın, ardından [production’da etkinleştirin](https://techdocs.akamai.com/property-mgr/docs/activate-prod).
 
-![!Akamai'de Wallarm Node Property](../../images/waf-installation/gateways/akamai/wallarm-property.png)
+![!Akamai'de Wallarm Node Property](../../../images/waf-installation/gateways/akamai/wallarm-property.png)
 
 ### 4. Origin property’de değişkenleri yapılandırın
 
@@ -121,7 +121,7 @@ Mevcut origin property’nizi açın → **Edit New Version** ve aşağıdaki de
 | `PMUSER_WALLARM_INSPECT_REQ_BODY` | İstek gövdelerinin analiz için Wallarm node’una gönderilip gönderilmeyeceğini kontrol eder. Varsayılan: `true`. | Hayır |
 | `PMUSER_WALLARM_INSPECT_RSP_BODY` | Yanıt gövdelerinin analiz için Wallarm node’una gönderilip gönderilmeyeceğini kontrol eder. Yanıt şeması keşfini ve gelişmiş saldırı ile zafiyet tespit kabiliyetlerini etkinleştirir. Varsayılan: `true`. | Hayır |
 
-![!Akamai origin property için Wallarm değişkenleri](../../images/waf-installation/gateways/akamai/origin-property-variables.png)
+![!Akamai origin property için Wallarm değişkenleri](../../../images/waf-installation/gateways/akamai/origin-property-variables.png)
 
 Bağlayıcı modunu ve gövde inceleme ayarlarını rota bazında veya dosya türüne göre **Set Variable** davranışını kullanarak ince ayar yapabilirsiniz.
 

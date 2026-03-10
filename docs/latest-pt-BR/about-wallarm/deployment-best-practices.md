@@ -132,7 +132,7 @@ Wallarm está constantemente trabalhando para melhorar o software do nó de filt
 * Todos os nós Wallarm conectados à mesma conta Wallarm receberão o mesmo conjunto de regras padrão e personalizadas para a filtragem de tráfego. Você ainda pode aplicar regras diferentes para diferentes aplicações usando IDs de aplicações adequadas ou parâmetros únicos de solicitação HTTP como cabeçalhos, parâmetros de string de consulta, etc.
 * Se você tiver o gatilho configurado para bloquear automaticamente um endereço IP ([exemplo de gatilho](../user-guides/triggers/trigger-examples.md#denylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour)), o sistema bloqueará o IP para todas as aplicações em uma conta Wallarm.
 
-## Siga as melhores práticas para Verificação de ameaça ativa <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border:none;margin-bottom:-4px;"></a>
+## Siga as melhores práticas para Verificação de ameaça ativa <a href="../subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border:none;margin-bottom:-4px;"></a>
 
 Um dos métodos que o Wallarm usa para [detectar vulnerabilidades](../about-wallarm/detecting-vulnerabilities.md) é a **Verificação de ameaça ativa**.
 

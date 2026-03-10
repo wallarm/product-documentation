@@ -1,14 +1,14 @@
 # G Suite ile SSO Bağlantısı
 
-[img-gsuite-console]:       ../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-console.png
-[img-gsuite-add-app]:       ../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-add-app.png
-[img-fetch-metadata]:       ../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-fetch-metadata.png
-[img-fill-in-sp-data]:      ../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-fill-in-sp-data.png
-[img-app-page]:             ../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-app-page.png
+[img-gsuite-console]:       ../../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-console.png
+[img-gsuite-add-app]:       ../../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-add-app.png
+[img-fetch-metadata]:       ../../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-fetch-metadata.png
+[img-fill-in-sp-data]:      ../../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-fill-in-sp-data.png
+[img-app-page]:             ../../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-app-page.png
 [link-gsuite-adm-console]:  https://admin.google.com
-[img-sp-wizard-transfer-metadata]:  ../../../images/admin-guides/configuration-guides/sso/gsuite/sp-wizard-transfer-metadata.png
-[img-transfer-metadata-manually]:   ../../../images/admin-guides/configuration-guides/sso/gsuite/transfer-metadata-manually.png
-[img-sp-wizard-finish]:             ../../../images/admin-guides/configuration-guides/sso/gsuite/sp-wizard-finish.png
+[img-sp-wizard-transfer-metadata]:  ../../../../images/admin-guides/configuration-guides/sso/gsuite/sp-wizard-transfer-metadata.png
+[img-transfer-metadata-manually]:   ../../../../images/admin-guides/configuration-guides/sso/gsuite/transfer-metadata-manually.png
+[img-sp-wizard-finish]:             ../../../../images/admin-guides/configuration-guides/sso/gsuite/sp-wizard-finish.png
 
 Bu kılavuz, hizmet sağlayıcı olarak hareket eden Wallarm’a kimlik sağlayıcı olarak [G Suite](https://gsuite.google.com/) (Google) hizmetinin bağlanması sürecini kapsar.
 
@@ -30,11 +30,11 @@ G Suite tarafında girmek üzere Wallarm metadata’sına ihtiyacınız var:
 
 1. Wallarm Console’da **Integrations** → **SSO SAML AUTHENTICATION** yoluna gidin ve **Google SSO** yapılandırmasını başlatın.
 
-    ![Integrations - SSO](../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
+    ![Integrations - SSO](../../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
 
 1. SSO yapılandırma sihirbazında, **Send details** adımında, G Suite servisine iletilmesi gereken Wallarm metadata’sını görüntüleyin.
 
-    ![Wallarm metadata’sı](../../../images/admin-guides/configuration-guides/sso/gsuite/sp-metadata.png)
+    ![Wallarm metadata’sı](../../../../images/admin-guides/configuration-guides/sso/gsuite/sp-metadata.png)
 
     * **Wallarm Entity ID**, kimlik sağlayıcı için Wallarm uygulaması tarafından oluşturulan benzersiz uygulama tanımlayıcısıdır.
     * **Assertion Consumer Service URL (ACS URL)**, kimlik sağlayıcının SamlResponse parametresiyle istekleri gönderdiği uygulamanın Wallarm tarafındaki adresidir.
@@ -95,7 +95,7 @@ Bunun çalışması için öznitelik eşlemesini sağlayın:
     * `last_name`
     * kullanıcı grubu/gruplarını `wallarm_roles` etiketine
 
-    ![SAML SSO çözümü - G Suite - Eşleme](../../../images/admin-guides/configuration-guides/sso/simple-sso-mapping.png)
+    ![SAML SSO çözümü - G Suite - Eşleme](../../../../images/admin-guides/configuration-guides/sso/simple-sso-mapping.png)
 
 1. Değişiklikleri kaydedin.
 
@@ -134,6 +134,6 @@ Bunun çalışması için öznitelik eşlemesini sağlayın:
 
         Tüm rol açıklamalarını [burada](../../../user-guides/settings/users.md#user-roles) görebilirsiniz.
 
-    ![SSO gruplarının Wallarm rollerine eşlenmesi - Wallarm’da eşleme](../../../images/admin-guides/configuration-guides/sso/sso-mapping-in-wallarm.png)
+    ![SSO gruplarının Wallarm rollerine eşlenmesi - Wallarm’da eşleme](../../../../images/admin-guides/configuration-guides/sso/sso-mapping-in-wallarm.png)
 
 1. SSO yapılandırma sihirbazını tamamlayın. Wallarm, verilerin G Suite’iniz ile karşılıklı aktarılabilir olduğunu test edecektir.

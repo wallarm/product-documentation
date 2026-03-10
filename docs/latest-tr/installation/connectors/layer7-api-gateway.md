@@ -1,5 +1,5 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [helm-chart-native-node]:           ../native-node/helm-chart.md
 [custom-blocking-page]:             ../../admin-en/configuration-guides/configure-block-page-and-code.md
 [rate-limiting]:                    ../../user-guides/rules/rate-limiting.md
@@ -15,7 +15,7 @@ Broadcom bağlayıcısı yalnızca [hat içi](../inline/overview.md) trafik akı
 
 <!-- The Wallarm policy for Layer7 API Gateways supports the [out-of-band](../oob/overview.md) mode. Diagram below shows the traffic flow for APIs on the Layer7 API Gateways with Wallarm policy applied.
 
-![Layer7 API Gateways with Wallarm image](../../images/waf-installation/gateways/layer7/traffic-flow-oob.png) -->
+![Layer7 API Gateways with Wallarm image](../../../images/waf-installation/gateways/layer7/traffic-flow-oob.png) -->
 
 ## Kullanım senaryoları
 
@@ -63,18 +63,18 @@ Broadcom Gateway'in trafiği Wallarm Node üzerinden yönlendirmesi için yapıl
 
     * **İstek iletme politikası**: `Global Policy Fragment` türünü ve `message-received` etiketini atayın.
 
-        ![](../../images/waf-installation/gateways/layer7/request-policy.png)
+        ![](../../../images/waf-installation/gateways/layer7/request-policy.png)
     
     * **Yanıt iletme politikası**: `Global Policy Fragment` türünü ve `message-completed` etiketini atayın.
     
-        ![](../../images/waf-installation/gateways/layer7/response-policy.png)
+        ![](../../../images/waf-installation/gateways/layer7/response-policy.png)
 1. <a name="import-new-broadcom-policies"></a>İstek iletme politikası için (bu örnekte `forward-requests-to-wallarm`):
 
     1. `wallarm-request-blocking.xml` dosyasını içe aktarın.
     1. `wlrm-node-addr` parametresinde [Wallarm Node örneğinin](#1-deploy-a-wallarm-node) adresini belirtin.
     1. Politikayı **Save and Active** edin.
 
-    ![](../../images/waf-installation/gateways/layer7/request-policy-assertion.png)
+    ![](../../../images/waf-installation/gateways/layer7/request-policy-assertion.png)
 1. Yanıt iletme politikası için (bu örnekte `forward-responses-to-wallarm`):
 
     1. `wallarm-response.xml` dosyasını içe aktarın.

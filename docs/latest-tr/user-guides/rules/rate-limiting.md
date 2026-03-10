@@ -30,7 +30,7 @@ Hız limitini ayarlamak ve uygulamak için:
 
         Aşağıda limitin 5 r/s, burst 12 ve delay 8 olduğu hız sınırlama davranışı örneği yer almaktadır.
         
-        ![Hız sınırlamanın çalışma şekli](../../images/user-guides/rules/rate-limit-schema.png)
+        ![Hız sınırlamanın çalışma şekli](../../../images/user-guides/rules/rate-limit-schema.png)
 
         İlk 8 istek (Delay değerinin) Wallarm düğümü tarafından gecikme olmadan iletilir. Sonraki 4 istek (burst - delay), tanımlı 5 r/s oranı aşılmayacak şekilde geciktirilir. Sonraki 3 istek, toplam burst boyutu aşıldığı için reddedilir. Takip eden istekler geciktirilir.
 
@@ -55,7 +55,7 @@ However, an attacker could exploit this by changing the `size` parameter to an e
 
 Limiting connections to the endpoint helps to prevent such attacks. You can limit the number of connections to the endpoint to 1000 per minute. This assumes that, on average, 200 users are requested 5 times per minute. The rule specifies that this limit applies to each IP trying to access the endpoint within minute. The `remote_address` [point](request-processing.md) is used to identify the IP address of the requester.
 
-![Example](../../images/user-guides/rules/rate-limit-for-200-users.png)
+![Example](../../../images/user-guides/rules/rate-limit-for-200-users.png)
 -->
 ### API yüksek erişilebilirliğini sağlamak için IP’ye göre bağlantıları sınırlama
 
@@ -65,7 +65,7 @@ Bir sağlık şirketinin, doktorların `https://example-host.com` ana makinesini
 
 Örneğin, her IP adresi için dakikada 5 POST isteği olarak aşağıdaki gibi bir limit belirlenebilir:
 
-![Örnek](../../images/user-guides/rules/rate-limit-by-ip-for-patients.png)
+![Örnek](../../../images/user-guides/rules/rate-limit-by-ip-for-patients.png)
 
 ### Kimlik doğrulama parametrelerine yönelik kaba kuvvet (brute force) saldırılarını önlemek için oturuma göre bağlantıları sınırlama
 
@@ -73,13 +73,13 @@ Kullanıcı oturumlarına hız sınırlama uygulayarak, korunan kaynaklara yetki
 
 Uygulamanızın her kullanıcı oturumuna benzersiz bir kimlik atadığını ve bunu `X-SESSION-ID` başlığında yansıttığını varsayalım. `https://example.com/api/login` URL’sindeki API uç noktası, `Authorization` başlığında Bearer JWT içeren POST isteklerini kabul eder. Bu senaryoda, oturuma göre bağlantıları sınırlayan kural aşağıdaki gibi görünecektir:
 
-![Örnek](../../images/user-guides/rules/rate-limit-for-jwt.png)
+![Örnek](../../../images/user-guides/rules/rate-limit-for-jwt.png)
 
 `Authorization` değeri için kullanılan [düzenli ifade](rules.md#condition-type-regex) ``^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$` şeklindedir.
 
 Kullanıcı oturumlarını yönetmek için JWT (JSON Web Tokens) kullanıyorsanız, oturum kimliğini yükünden çıkarmak için JWT’nin [şifresini çözmek](request-processing.md#jwt) üzere kuralı aşağıdaki gibi ayarlayabilirsiniz:
 
-![Örnek](../../images/user-guides/rules/rate-limit-for-session-in-jwt.png)
+![Örnek](../../../images/user-guides/rules/rate-limit-for-session-in-jwt.png)
 
 <!-- ### User-Agent based rate limiting to prevent attacks on API endpoints
 
@@ -87,7 +87,7 @@ Let's say you have an old version of your application has some known security vu
 
 For example, you can set a limit of 10 requests per minute for each `User-Agent`. If a specific `User-Agent` is making more than 10 requests evenly distributed per minute, further requests from that `User-Agent` are rejected till a new period start.
 
-![Example](../../images/user-guides/rules/rate-limit-by-user-agent.png)
+![Example](../../../images/user-guides/rules/rate-limit-by-user-agent.png)
 
 ### Endpoint-based rate limiting to prevent DoS attacks
 
@@ -106,7 +106,7 @@ In this specific case, the rate limiting rule is applied to connections by URI, 
     !!! info "Query parameters are not included into URI"
         This rule limits requests targeted at any path of the specified domain which does not contain any query parameters.
 
-![Example](../../images/user-guides/rules/rate-limit-by-uri.png) -->
+![Example](../../../images/user-guides/rules/rate-limit-by-uri.png) -->
 
 ### Sunucunun aşırı yüklenmesini önlemek için müşteri kimliklerine göre bağlantıları sınırlama
 
@@ -114,7 +114,7 @@ Bir web servisinin, bir e-ticaret platformu için müşteri sipariş verilerine 
 
 Örneğin, her müşteri için `https://example-domain.com/orders` adresine dakikada 10 POST isteği ile sınırlayan kural aşağıdaki gibi görünebilir. Bu örnekte, müşteri kimliğinin `data.customer_id` JSON gövde nesnesinde [iletildiği](request-processing.md#json_doc) varsayılmaktadır.
 
-![Örnek](../../images/user-guides/rules/rate-limit-by-customer-id.png)
+![Örnek](../../../images/user-guides/rules/rate-limit-by-customer-id.png)
 
 ## Sınırlamalar ve özellikler
 

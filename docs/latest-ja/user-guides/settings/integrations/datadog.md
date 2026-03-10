@@ -11,7 +11,7 @@
 1. [Datadogリージョン](https://docs.datadoghq.com/getting_started/site/)を選択します。
 1. 通知をトリガーするイベントタイプを選択します。
 
-    ![Datadogインテグレーション](../../../images/user-guides/settings/integrations/add-datadog-integration.png)
+    ![Datadogインテグレーション](../../../../images/user-guides/settings/integrations/add-datadog-integration.png)
 
     利用可能なイベントの詳細:
 
@@ -21,7 +21,7 @@
 
     テスト用のDatadogログ:
 
-    ![テスト用のDatadogログ](../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
+    ![テスト用のDatadogログ](../../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
 
     他のレコードの中からWallarmのログを見つけるには、Datadog Logsサービスで`source:wallarm_cloud`検索タグを使用できます。
 

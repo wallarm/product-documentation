@@ -1,11 +1,11 @@
-[cdn-node-operation-scheme]:        ../images/waf-installation/quickstart/cdn-node-scheme.png
+[cdn-node-operation-scheme]:        ../../images/waf-installation/quickstart/cdn-node-scheme.png
 [data-to-wallarm-cloud-docs]:       ../user-guides/rules/sensitive-data-rule.md
 [operation-modes-docs]:             ../admin-en/configure-wallarm-mode.md
 [operation-mode-rule-docs]:         ../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode
 [wallarm-cloud-docs]:               ../about-wallarm/overview.md#cloud
-[cdn-node-creation-modal]:          ../images/waf-installation/quickstart/cdn-node-creation-modal.png
-[cname-required-modal]:             ../images/waf-installation/quickstart/cname-required-modal.png
-[attacks-in-ui]:                    ../images/admin-guides/test-attacks-quickstart.png
+[cdn-node-creation-modal]:          ../../images/waf-installation/quickstart/cdn-node-creation-modal.png
+[cname-required-modal]:             ../../images/waf-installation/quickstart/cname-required-modal.png
+[attacks-in-ui]:                    ../../images/admin-guides/test-attacks-quickstart.png
 [user-roles-docs]:                  ../user-guides/settings/users.md
 [update-origin-ip-docs]:            ../user-guides/nodes/cdn-node.md#updating-the-origin-address-of-the-protected-resourse
 [rules-docs]:                       ../user-guides/rules/rules.md

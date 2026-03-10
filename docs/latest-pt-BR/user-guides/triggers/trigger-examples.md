@@ -8,7 +8,7 @@ Se 4 ou mais diferentes cargas úteis maliciosas forem enviadas para o recurso p
 
 Se você criou recentemente a conta Wallarm, este [gatilho já está criado e habilitado](triggers.md#pre-configured-triggers-default-triggers). Você pode editar, desativar, excluir ou copiar este gatilho, bem como os gatilhos criados manualmente.
 
-![Gatilho de listagem cinza](../../images/user-guides/triggers/trigger-example-graylist.png)
+![Gatilho de listagem cinza](../../../images/user-guides/triggers/trigger-example-graylist.png)
 
 **Para testar o gatilho:**
 
@@ -24,7 +24,7 @@ Se você criou recentemente a conta Wallarm, este [gatilho já está criado e ha
 1. Abra o Console Wallarm → **Listas de IP** → **Lista cinza** e verifique que o endereço IP de onde as solicitações se originaram está na lista cinza por 1 hora.
 1. Abra a seção **Eventos** e verifique se os ataques estão exibidos na lista:
 
-    ![Três cargas úteis maliciosas na interface do usuário](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
+    ![Três cargas úteis maliciosas na interface do usuário](../../../images/user-guides/triggers/test-3-attack-vectors-events.png)
 
     Para procurar ataques, você pode usar os filtros, por exemplo: `sqli` para os ataques [SQLi](../../attacks-vulns-list.md#sql-injection), `xss` para os ataques [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), `ptrav` para os ataques [Path Traversal](../../attacks-vulns-list.md#path-traversal). Todos os filtros estão descritos nas [instruções de uso de pesquisa](../../user-guides/search-and-filters/use-search.md).
 
@@ -34,7 +34,7 @@ O gatilho é liberado em qualquer modo de filtragem de nó, para que ele coloque
 
 Se 4 ou mais diferentes [cargas úteis maliciosas](../../glossary-en.md#malicious-payload) forem enviadas ao recurso protegido de um endereço IP, este endereço IP será colocado na lista de negação por 1 hora para todos os aplicativos em uma conta Wallarm.
 
-![Gatilho padrão](../../images/user-guides/triggers/trigger-example-default.png)
+![Gatilho padrão](../../../images/user-guides/triggers/trigger-example-default.png)
 
 **Para testar o gatilho:**
 
@@ -50,7 +50,7 @@ Se 4 ou mais diferentes [cargas úteis maliciosas](../../glossary-en.md#maliciou
 2. Abra Console Wallarm → **Listas de IP** → **Lista de negação** e verifique que o endereço IP de onde as solicitações se originaram está bloqueado por 1 hora.
 1. Abra a seção **Eventos** e verifique se os ataques estão exibidos na lista:
 
-    ![Três cargas úteis maliciosas na interface do usuário](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
+    ![Três cargas úteis maliciosas na interface do usuário](../../../images/user-guides/triggers/test-3-attack-vectors-events.png)
 
     Para procurar ataques, você pode usar os filtros, por exemplo: `sqli` para os ataques [SQLi](../../attacks-vulns-list.md#sql-injection), `xss` para os ataques [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), `ptrav` para os ataques [Path Traversal](../../attacks-vulns-list.md#path-traversal). Todos os filtros estão descritos nas [instruções de uso de pesquisa](../../user-guides/search-and-filters/use-search.md).
 
@@ -62,7 +62,7 @@ Para marcar solicitações como um ataque de força bruta regular, o gatilho com
 
 Se 31 ou mais solicitações forem enviadas para `https://example.com/api/v1/login` em 30 segundos, essas solicitações serão marcadas como [ataque de força bruta](../../attacks-vulns-list.md#brute-force-attack) e o endereço IP de onde as solicitações se originaram será adicionado à lista de negação.
 
-![Gatilho de força bruta com contador](../../images/user-guides/triggers/trigger-example6.png)
+![Gatilho de força bruta com contador](../../../images/user-guides/triggers/trigger-example6.png)
 
 [Detalhes sobre a configuração de proteção contra força bruta e teste de gatilho →](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
 
@@ -74,7 +74,7 @@ Se o endpoint `https://example.com/**.**` retornar o código de resposta 404 31 
 
 Exemplos de endpoints que correspondem ao valor URI são `https://example.com/config.json`, `https://example.com/password.txt`.
 
-![Gatilho de navegação forçada](../../images/user-guides/triggers/trigger-example5.png)
+![Gatilho de navegação forçada](../../../images/user-guides/triggers/trigger-example5.png)
 
 [Detalhes sobre a configuração de proteção contra força bruta e teste de gatilho →](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
 
@@ -82,7 +82,7 @@ Exemplos de endpoints que correspondem ao valor URI são `https://example.com/co
 
 Se 31 ou mais solicitações forem enviadas para `https://example.com/shops/{shop_id}/financial_info` em 30 segundos, essas solicitações serão marcadas como o [ataque BOLA](../../attacks-vulns-list.md#broken-object-level-authorization-bola) e o endereço IP de onde as solicitações se originaram será adicionado à lista de negação.
 
-![Gatilho BOLA](../../images/user-guides/triggers/trigger-example7.png)
+![Gatilho BOLA](../../../images/user-guides/triggers/trigger-example7.png)
 
 [Detalhes sobre a configuração da proteção BOLA e teste de gatilho →](../../admin-en/configuration-guides/protecting-against-bola.md)
 
@@ -97,7 +97,7 @@ JWTs fracos são aqueles que são:
 
 Se você criou recentemente a conta Wallarm, este [gatilho já está criado e habilitado](triggers.md#pre-configured-triggers-default-triggers). Você pode editar, desativar, excluir ou copiar este gatilho, bem como os gatilhos criados manualmente.
 
-![Exemplo de gatilho para JWTs fracos](../../images/user-guides/triggers/trigger-example-weak-jwt.png)
+![Exemplo de gatilho para JWTs fracos](../../../images/user-guides/triggers/trigger-example-weak-jwt.png)
 
 **Para testar o gatilho:**
 
@@ -109,13 +109,13 @@ Se você criou recentemente a conta Wallarm, este [gatilho já está criado e ha
 1. Gere algum tráfego com solicitações autenticadas usando um JWT comprometido.
 1. Se uma quantidade significativa de solicitações recebidas processadas pelo nó 4.4 ou acima contiver JWTs fracos, a Wallarm registrará a vulnerabilidade, por exemplo:
 
-    ![Exemplo de vulnerabilidade JWT](../../images/user-guides/vulnerabilities/weak-auth-vuln.png)
+    ![Exemplo de vulnerabilidade JWT](../../../images/user-guides/vulnerabilities/weak-auth-vuln.png)
 
 ## Notificação de Opsgenie se 2 ou mais incidentes forem detectados em um segundo
 
 Se 2 ou mais incidentes com o servidor de aplicativos ou banco de dados forem detectados em um segundo, a notificação sobre este evento será enviada ao Opsgenie.
 
-![Exemplo de um gatilho que envia dados para o Splunk](../../images/user-guides/triggers/trigger-example3.png)
+![Exemplo de um gatilho que envia dados para o Splunk](../../../images/user-guides/triggers/trigger-example3.png)
 
 **Para testar o gatilho**, é necessário enviar um ataque explorando uma vulnerabilidade ativa ao recurso protegido. A seção Console Wallarm → **Vulnerabilidades** exibe as vulnerabilidades ativas detectadas em seus aplicativos e os exemplos de ataques que exploram essas vulnerabilidades.
 
@@ -150,13 +150,13 @@ Nuvem: EU
 
 Se um endereço IP foi adicionado à lista de negação, o webhook sobre este evento será enviado para a URL do Webhook.
 
-![Exemplo de gatilho para IP na lista de negação](../../images/user-guides/triggers/trigger-example4.png)
+![Exemplo de gatilho para IP na lista de negação](../../../images/user-guides/triggers/trigger-example4.png)
 
 **Para testar o gatilho:**
 
 1. Abra o Console Wallarm → **Listas de IP** → **Lista de negação** e adicione o endereço IP à lista de negação. Por exemplo:
 
-    ![Adicionando IP à lista de negação](../../images/user-guides/triggers/test-ip-blocking.png)
+    ![Adicionando IP à lista de negação](../../../images/user-guides/triggers/test-ip-blocking.png)
 2. Verifique que o seguinte webhook foi enviado para a URL do Webhook:
 
     ```
@@ -188,7 +188,7 @@ Se mais de 50 [hits](../../about-wallarm/protecting-against-attacks.md#hit) do m
 
 Se você criou recentemente a conta Wallarm, este [gatilho já está criado e habilitado](triggers.md#pre-configured-triggers-default-triggers). Você pode editar, desativar, excluir ou copiar este gatilho, bem como os gatilhos criados manualmente.
 
-![Exemplo de um gatilho de agrupamento de hits](../../images/user-guides/triggers/trigger-example-group-hits.png)
+![Exemplo de um gatilho de agrupamento de hits](../../../images/user-guides/triggers/trigger-example-group-hits.png)
 
 **Para testar o gatilho**, envie 51 ou mais hits da seguinte forma:
 
@@ -205,7 +205,7 @@ Exemplo:
 
 Os primeiros 50 acertos aparecerão na lista de eventos como acertos individuais. Todos os acertos seguintes serão agrupados em um ataque, por exemplo:
 
-![Acertos agrupados por IP em um ataque](../../images/user-guides/events/attack-from-grouped-hits.png)
+![Acertos agrupados por IP em um ataque](../../../images/user-guides/events/attack-from-grouped-hits.png)
 
 O botão [**Marcar como falso positivo**](../events/false-attack.md#mark-an-attack-as-a-false-positive) e a opção de [verificação ativa](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) não estarão disponíveis para o ataque.
 
@@ -221,7 +221,7 @@ Para receber notificações sobre algumas ou todas essas mudanças no seu e-mail
 
 Neste exemplo, se novos pontos de extremidade para o host da API `example.com` forem descobertos pelo módulo API Discovery, a notificação sobre isso será enviada para o seu canal Slack configurado.
 
-![Gatilho de mudanças na API](../../images/user-guides/triggers/trigger-example-changes-in-api.png)
+![Gatilho de mudanças na API](../../../images/user-guides/triggers/trigger-example-changes-in-api.png)
 
 **Para testar o gatilho:**
 

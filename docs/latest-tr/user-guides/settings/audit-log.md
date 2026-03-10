@@ -21,7 +21,7 @@ Günlükler ayrıca aşağıdaki eylemler ve nesneler hakkında bilgiler içerir
 * [false positive olarak işaretlenen zafiyet](../vulnerabilities.md#vulnerability-lifecycle)
 * [Yeniden kontrol edilen saldırı](../../vulnerability-detection/threat-replay-testing/overview.md)
 
-![Activity log](../../images/user-guides/settings/audit-log.png)
+![Activity log](../../../images/user-guides/settings/audit-log.png)
 
 **Activity log kayıtlarını filtrelemek için**, aşağıdaki parametreleri kullanabilirsiniz:
 

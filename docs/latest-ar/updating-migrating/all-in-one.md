@@ -1,6 +1,6 @@
 [خدمة-الإحصاءات-كل-المعايير]:        ../admin-en/configure-statistics-service.md
-[صورة-الهجمات-في-الواجهة]:             ../images/admin-guides/test-attacks-quickstart.png
-[حالة-تارانتول]:                        ../images/tarantool-status.png
+[صورة-الهجمات-في-الواجهة]:             ../../images/admin-guides/test-attacks-quickstart.png
+[حالة-تارانتول]:                        ../../images/tarantool-status.png
 [تعليمات-ضبط-البروكسي-الموازن]:      ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [وثائق-الهجوم-بمسار-الارتداد]:           ../attacks-vulns-list.md#path-traversal
 

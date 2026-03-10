@@ -4,7 +4,7 @@
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![تدفق الويب هوك](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-scheme.png)
+![تدفق الويب هوك](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-scheme.png)
 
 !!! info "التكامل مع نسخة Enterprise من ArcSight ESM"
     لتهيئة إعادة توجيه السجلات من Logstash إلى نسخة Enterprise من ArcSight ESM، يُوصى بتكوين الرابط Syslog على جانب ArcSight ثم إعادة توجيه السجلات من Logstash إلى منفذ الرابط. للحصول على وصف أكثر تفصيلًا للروابط، يُرجى تحميل **دليل مستخدم SmartConnector** من [التوثيق الرسمي لـ ArcSight SmartConnector](https://community.microfocus.com/t5/ArcSight-Connectors/ct-p/ConnectorsDocs).
@@ -28,7 +28,7 @@
 * يتم تحليل الأحداث بمحلل syslog
 * الإعدادات الافتراضية الأخرى
 
-![تهيئة المستقبل في ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-setup.png)
+![تهيئة المستقبل في ArcSight Logger](../../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-setup.png)
 
 للحصول على وصف أكثر تفصيلًا لتهيئة المستقبل، يُرجى تحميل **دليل تثبيت Logger** للنسخة المناسبة من [التوثيق الرسمي لـ ArcSight Logger](https://community.microfocus.com/t5/Logger-Documentation/ct-p/LoggerDoc).
 
@@ -85,16 +85,16 @@ output {
     ```
 
     **سجلات Logstash:**
-    ![سجلات Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-curl-log.png)
+    ![سجلات Logstash](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-curl-log.png)
 
     **الحدث في ArcSight Logger:**
-    ![حدث ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-curl-log.png)
+    ![حدث ArcSight Logger](../../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-curl-log.png)
 
 ### تهيئة تكامل Logstash
 
 --8<-- "../include/integrations/webhook-examples/create-logstash-webhook.md"
 
-![تكامل الويب هوك مع Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+![تكامل الويب هوك مع Logstash](../../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
 [المزيد من التفاصيل حول تهيئة تكامل Logstash](../logstash.md)
 
@@ -104,8 +104,8 @@ output {
 
 سيُسجل Logstash الحدث على النحو التالي:
 
-![سجل عن المستخدم الجديد في ArcSight Logger من Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-user-log.png)
+![سجل عن المستخدم الجديد في ArcSight Logger من Logstash](../../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-user-log.png)
 
 سيتم عرض الإدخال التالي في أحداث ArcSight Logger:
 
-![بطاقة المستخدم الجديد في ArcSight Logger من Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-user.png)
+![بطاقة المستخدم الجديد في ArcSight Logger من Logstash](../../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-user.png)

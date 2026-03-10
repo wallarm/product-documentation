@@ -10,9 +10,9 @@
 [deployment-platform-docs]:               ../installation/supported-deployment-options.md
 [chaining-doc]:                           ../admin-en/chaining-wallarm-and-other-ingress-controllers.md
 [node-token-types]:                       ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[nginx-ing-image]:                        ../images/waf-installation/kubernetes/nginx-ingress-controller.png
-[nginx-ing-create-node-img]:              ../images/user-guides/nodes/create-wallarm-node-name-specified.png
-[attacks-in-ui-image]:                    ../images/admin-guides/test-attacks-quickstart.png
+[nginx-ing-image]:                        ../../images/waf-installation/kubernetes/nginx-ingress-controller.png
+[nginx-ing-create-node-img]:              ../../images/user-guides/nodes/create-wallarm-node-name-specified.png
+[attacks-in-ui-image]:                    ../../images/admin-guides/test-attacks-quickstart.png
 [migration-doc]:                          ../updating-migrating/ingress-controller.md
 
 

@@ -1,4 +1,4 @@
-[img-security-group]:                ../../../images/aws-ami/security-group.png
+[img-security-group]:                ../../../../images/aws-ami/security-group.png
 [latest-node-version]:              ../../../updating-migrating/node-artifact-versions.md#amazon-machine-image-ami
 [nginx-native-node]:                       ../../../installation/nginx-native-node-internals.md
 [wallarm-logs]:                     ../../../admin-en/configure-logging.md
@@ -13,7 +13,7 @@ The image is based on Debian and the NGINX version provided by Debian. Currently
 
 Deploying the Wallarm Node from the AMI on AWS typically takes around 10 minutes.
 
-![!](../../../images/waf-installation/aws/aws-ami-flow.png)
+![!](../../../../images/waf-installation/aws/aws-ami-flow.png)
 
 !!! info "Security note"
     This solution is designed to follow AWS security best practices. We recommend avoiding the use of the AWS root account for deployment. Instead, use IAM users or roles with only the necessary permissions.

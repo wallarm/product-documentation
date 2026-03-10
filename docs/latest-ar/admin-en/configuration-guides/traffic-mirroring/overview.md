@@ -6,7 +6,7 @@
 
 إليك مثال على مخطط تدفق حركة المرور مع تمكين خيار المرآة:
 
-![مخطط المرآة](../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
+![مخطط المرآة](../../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
 
 ## حالات استخدام النهج
 

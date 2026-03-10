@@ -16,7 +16,7 @@ As notificações incluem detalhes breves dos eventos disparados.
 1. Escolha a frequência do envio de relatórios de segurança. Se a frequência não for escolhida, então os relatórios não serão enviados.
 1. Escolha os tipos de evento para disparar notificações.
 
-    ![Integração do Telegram](../../../images/user-guides/settings/integrations/add-telegram-integration.png)
+    ![Integração do Telegram](../../../../images/user-guides/settings/integrations/add-telegram-integration.png)
 
     Detalhes sobre eventos disponíveis:
 

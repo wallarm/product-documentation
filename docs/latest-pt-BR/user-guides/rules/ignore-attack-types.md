@@ -42,4 +42,4 @@ curl -H "Content-Type: application/json" -X POST https://exemplo.com/posts -d '{
 
 Para ignorar injeções de SQL no parâmetro `postBody` das solicitações para `https://exemplo.com/posts/`, a regra **Ignore certos tipos de ataque** pode ser configurada da seguinte forma:
 
-![Exemplo da regra "Ignore certos tipos de ataque"](../../images/user-guides/rules/ignore-attack-types-rule-example.png)
+![Exemplo da regra "Ignore certos tipos de ataque"](../../../images/user-guides/rules/ignore-attack-types-rule-example.png)

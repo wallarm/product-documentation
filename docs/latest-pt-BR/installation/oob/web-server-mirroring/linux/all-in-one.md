@@ -3,12 +3,12 @@ search:
   exclude: true
 ---
 
-[img-wl-console-users]:             ../../../../images/check-user-no-2fa.png
+[img-wl-console-users]:             ../../../../../images/check-user-no-2fa.png
 [wallarm-status-instr]:             ../../../../admin-en/configure-statistics-service.md
 [memory-instr]:                     ../../../../admin-en/configuration-guides/allocate-resources-for-node.md
 [waf-directives-instr]:             ../../../../admin-en/configure-parameters-en.md
 [ptrav-attack-docs]:                ../../../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:           ../../../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:           ../../../../../images/admin-guides/test-attacks-quickstart.png
 [waf-mode-instr]:                   ../../../../admin-en/configure-wallarm-mode.md
 [logging-instr]:                    ../../../../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../../../../admin-en/using-proxy-or-balancer-en.md
@@ -22,13 +22,13 @@ search:
 [versioning-policy]:                ../../../../updating-migrating/versioning-policy.md#version-list
 [install-postanalytics-instr]:      ../../../../admin-en/installation-postanalytics-en.md
 [waf-installation-instr-latest]:     /installation/nginx/dynamic-module/
-[img-node-with-several-instances]:  ../../../../images/user-guides/nodes/wallarm-node-with-two-instances.png
-[img-create-wallarm-node]:      ../../../../images/user-guides/nodes/create-cloud-node.png
+[img-node-with-several-instances]:  ../../../../../images/user-guides/nodes/wallarm-node-with-two-instances.png
+[img-create-wallarm-node]:      ../../../../../images/user-guides/nodes/create-cloud-node.png
 [nginx-custom]:                 ../../../../faq/nginx-compatibility.md#is-wallarm-filtering-node-compatible-with-the-custom-build-of-nginx
 [node-token]:                       ../../../../quickstart/getting-started.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../../../user-guides/settings/api-tokens.md
 [platform]:                         ../../../supported-deployment-options.md
-[img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
+[img-grouped-nodes]:                ../../../../../images/user-guides/nodes/grouped-nodes.png
 [wallarm-token-types]:              ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
 [oob-advantages-limitations]:       ../../../oob/overview.md#advantages-and-limitations
@@ -46,7 +46,7 @@ Em comparação com os pacotes Linux individuais oferecidos pelo Wallarm para [N
 1. Conectando o módulo Wallarm instalado ao seu NGINX.
 1. Conectando o nó de filtragem ao Wallarm Cloud usando o token fornecido.
 
-![Comparação entre All-in-One e Manual](../../../../images/installation-nginx-overview/manual-vs-all-in-one.png)
+![Comparação entre All-in-One e Manual](../../../../../images/installation-nginx-overview/manual-vs-all-in-one.png)
 
 ## Casos de uso
 

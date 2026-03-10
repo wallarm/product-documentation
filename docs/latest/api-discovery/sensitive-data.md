@@ -1,8 +1,8 @@
-# Sensitive Data Detection <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Sensitive Data Detection <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 API Discovery detects and highlights sensitive data consumed and carried by your APIs, which allows applying encryption, tokenization, or other security controls to protect it and prevent data breaches and transmitting sensitive data across insecure channels or to unauthorized systems.
 
-![API Discovery - sensitive data](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-sensitive-data.png)
+![API Discovery - sensitive data](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-sensitive-data.png)
 
 <!--You get Wallarm's sensitive data detection ready-to-use with the comprehensive default configuration. It is also highly customizable: you can fine-tune the existing detection process and extend it with your own data types to detect.
 
@@ -46,7 +46,7 @@ Patterns are suitable for fixed-length tokens, IDs, and URIs.
 
 Wallarm looks at the words around the suspected sensitive data that match the pattern. If any of the context words is found, it boosts the resulting confidence score. The context can come from URL path, query parameter name, JSON keys, and other parameters next to it.
 
-![API Discovery – Settings - Sensitive data](../images/about-wallarm-waf/api-discovery/api-discovery-settings-sd.png)
+![API Discovery – Settings - Sensitive data](../../images/about-wallarm-waf/api-discovery/api-discovery-settings-sd.png)
 
 For example, on the picture above, the sensitive data will be detected:
 
@@ -73,4 +73,4 @@ We must match `middle_name,` but not `name` or `middle`. So, we set a score for 
 
 To prevent us from detecting "middle" without `name,` we mark `name` as mandatory for an entity. If `name` is not found, no sensitive data is detected.
 
-![API Discovery – Settings - Sensitive data - Creating custom pattern](../images/about-wallarm-waf/api-discovery/api-discovery-settings-sd-own-pattern.png)-->
+![API Discovery – Settings - Sensitive data - Creating custom pattern](../../images/about-wallarm-waf/api-discovery/api-discovery-settings-sd-own-pattern.png)-->

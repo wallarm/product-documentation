@@ -1,5 +1,5 @@
 [ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 
 # Upgrading the multi-tenant node
 
@@ -30,5 +30,5 @@ Standard procedures are the ones for:
 !!! warning "Creating the multi-tenant node"
     During the Wallarm node creation, please select the **Multi-tenant node** option:
 
-    ![Multi-tenant node creation](../images/user-guides/nodes/create-multi-tenant-node.png)
+    ![Multi-tenant node creation](../../images/user-guides/nodes/create-multi-tenant-node.png)
 

@@ -1,7 +1,7 @@
 [وثائق-قوائم-ip]:                    ../../user-guides/ip-lists/overview.md
 [أنواع-الرموز-للعقدة]:                 ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [وثائق-الهجوم-باستخدام-التجاوز]:                ../../attacks-vulns-list.md#path-traversal
-[صورة-للواجهة-توضح-الهجمات]:              ../../images/admin-guides/test-attacks-quickstart.png
+[صورة-للواجهة-توضح-الهجمات]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [وثائق-مكون-الإحصائيات]:                 ../../admin-en/configure-statistics-service.md
 [جميع-الوثائق-في-مكان-واحد]:                         ../nginx/all-in-one.md
 [تعليمات-أمر-والارم-في-إنجينكس]:             ../../admin-en/configure-parameters-en.md

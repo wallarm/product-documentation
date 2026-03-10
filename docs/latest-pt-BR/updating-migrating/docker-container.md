@@ -5,7 +5,7 @@
 [process-time-limit-instr]:         ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [allocating-memory-guide]:          ../admin-en/configuration-guides/allocate-resources-for-node.md
 [ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 [nginx-process-time-limit-docs]:    ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]:  ../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.md
@@ -58,7 +58,7 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 1. Vá para Wallarm Console → **Nodes** e crie o **Nó Wallarm**.
 
-    ![Criação de um nó Wallarm](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+    ![Criação de um nó Wallarm](../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
 1. Copie o token gerado.
 1. Execute a imagem atualizada usando o token copiado. Você pode passar os mesmos parâmetros de configuração que foram passados ao executar uma versão anterior da imagem (exceto pelo token de nó).
     

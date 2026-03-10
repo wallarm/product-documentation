@@ -98,7 +98,7 @@
 
 تبدو الصفحة النموذجية المُقدمة من Wallarm كالتالي:
 
-![صفحة الحجب من Wallarm](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+![صفحة الحجب من Wallarm](../../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
 يمكنك استخدام الصفحة النموذجية كنقطة بداية لتخصيصك بتعزيزها بما يلي:
 

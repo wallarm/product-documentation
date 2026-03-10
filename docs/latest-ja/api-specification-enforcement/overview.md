@@ -1,10 +1,10 @@
 [waf-mode-instr]:   ../admin-en/configure-wallarm-mode.md
 
-# API Specification Enforcementの概要  <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Specification Enforcementの概要  <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 **API Specification Enforcement**は、アップロードした仕様に基づいてAPIにセキュリティポリシーを適用するために設計されています。その主な機能は、仕様内のエンドポイント記述とREST APIに対して行われる実際のリクエストとの不一致を検出することです。こうした不整合が特定された場合、システムは事前定義されたアクションを実行して対処できます。
 
-![API Specification Enforcement - 図](../images/api-specification-enforcement/api-specification-enforcement-diagram.png)
+![API Specification Enforcement - 図](../../images/api-specification-enforcement/api-specification-enforcement-diagram.png)
 
 ## API Specification Enforcementが解決する課題
 

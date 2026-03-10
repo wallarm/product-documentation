@@ -32,7 +32,7 @@ To provide seamless integration with your company's existing user management sys
 
 If [requirements](#requirements) are met, you can configure LDAP integration in Wallarm Console at **Integrations** → **LDAP** → **LDAP**.
 
-![Configuring LDAP integration](../../../images/admin-guides/configuration-guides/ldap/configuring-ldap.png)
+![Configuring LDAP integration](../../../../images/admin-guides/configuration-guides/ldap/configuring-ldap.png)
 
 In LDAP integration, you need to map LDAP groups to [user roles](../../../user-guides/settings/users.md#user-roles) in Wallarm. You need to map at least one LDAP group and may add as many additional as necessary.
 

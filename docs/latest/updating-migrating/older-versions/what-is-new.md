@@ -48,7 +48,7 @@ As a result of this change, also the following changed in the configuration rule
 
 We introduce a unique security feature tailored for the API economy - [API Sessions](../../api-sessions/overview.md). This addition gives you visibility into attacks, anomalies, and user behavior across your APIs, providing transparency into how users interact with your APIs and applications.
 
-![!API Sessions section - monitored sessions](../../images/api-sessions/api-sessions.png)
+![!API Sessions section - monitored sessions](../../../images/api-sessions/api-sessions.png)
 
 Attackers often exploit vulnerable endpoints by blending their actions with legitimate user behavior. Without the full context of how those sessions unfold, identifying patterns or threats becomes a time-consuming process involving multiple tools and systems. Organizations  do not have an appropriate visibility at the API level. 
 
@@ -87,11 +87,11 @@ The session can be blocked automatically by:
 
 * [Mitigation control](../../about-wallarm/mitigation-controls-overview.md)
 
-    ![!Mitigation control - blocking by session](../../images/api-sessions/api-sessions-blocking-mc.png)
+    ![!Mitigation control - blocking by session](../../../images/api-sessions/api-sessions-blocking-mc.png)
 
 * Wallarm's [API Abuse Prevention](../../api-abuse-prevention/overview.md)
 
-    ![!API Abuse Prevention profile - blocking by session](../../images/api-sessions/api-sessions-blocking-api-abuse.png)
+    ![!API Abuse Prevention profile - blocking by session](../../../images/api-sessions/api-sessions-blocking-api-abuse.png)
 
 You can also block/unblock any session manually at any moment.
 
@@ -105,7 +105,7 @@ Wallarm's [API Sessions](../../api-sessions/overview.md) provide visibility into
 * You can configure any headers and parameters of responses to be displayed within their corresponding requests providing a clear and full picture of user activities.
 * You can use response parameters as grouping keys for sessions (see [example](../../api-sessions/setup.md#example-of-how-grouping-keys-work)), which makes grouping of requests into sessions more precise.
 
-![!API Sessions - example of grouping keys in work](../../images/api-sessions/api-sessions-grouping-keys.png)
+![!API Sessions - example of grouping keys in work](../../../images/api-sessions/api-sessions-grouping-keys.png)
 
 ## Rate limits
 
@@ -127,18 +127,18 @@ Although the rate limiting rule is the recommended method for setting up the fea
 * [`wallarm_rate_limit_status_code`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit_status_code)
 * [`wallarm_rate_limit_shm_size`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit_shm_size)
 
-## Credential stuffing detection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Credential stuffing detection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm introduces real-time detection and notifications for credential stuffing attempts. Credential stuffing, the automated submission of stolen or weak username/email and password pairs into website login forms to illegitimately access user accounts, is now closely monitored. This feature allows you to identify accounts with compromised credentials and take action to secure them, such as notifying account owners and temporarily suspending account access.
 
 [Learn how to configure Credential Stuffing Detection](../../about-wallarm/credential-stuffing.md)
 
-![Attacks - credential stuffing](../../images/about-wallarm-waf/credential-stuffing/credential-stuffing-attacks.png)
+![Attacks - credential stuffing](../../../images/about-wallarm-waf/credential-stuffing/credential-stuffing-attacks.png)
 
 !!! info "Selected artifacts supporting credential stuffing detection"
     A limited selection of artifacts, such as the all-in-one installer, NGINX Ingress Controller, NGINX-based Docker image, and cloud images (AMI, GCP Image), now support the newly introduced credential stuffing detection feature.
 
-## GraphQL API protection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## GraphQL API protection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm detects regular attacks (SQLi, RCE, [etc.](../../attacks-vulns-list.md)) in GraphQL by default. However, some aspects of the protocol allow implementing [GraphQL specific](../../attacks-vulns-list.md#graphql-attacks) attacks related to excessive information exposure and DoS.
 
@@ -148,7 +148,7 @@ To start using the functionality, you need to create at least one [**Detect Grap
 
 [Learn how to configure GraphQL API Protection](../../api-protection/graphql-rule.md)
 
-![GraphQL thresholds](../../images/user-guides/rules/graphql-rule.png)
+![GraphQL thresholds](../../../images/user-guides/rules/graphql-rule.png)
 
 ## New API Discovery
 
@@ -166,7 +166,7 @@ If some of your APIs utilize the GraphQL protocol and are requested in the real 
 
 Within each GraphQL operation, you will find its details, including transferred sensitive data, risk score and what contributes to it, schema, parameters and headers of requests and responses:
 
-![API Discovery - GraphQL operation details](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-GQL.png)
+![API Discovery - GraphQL operation details](../../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-GQL.png)
 
 Each request/response parameter information includes:
 
@@ -183,7 +183,7 @@ Each request/response parameter information includes:
 
 If some of your APIs utilize the SOAP protocol and are requested in the real traffic, API Discovery will now detect them. In the built API inventory, you will see data about SOAP operations, including such data as transferred sensitive data, risk score and what contributes to it, XML body parameters, HTTPS and XML headers of requests and responses:
 
-![API Discovery - SOAP operation details](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-SOAP.png)
+![API Discovery - SOAP operation details](../../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-SOAP.png)
 
 Each request/response XML parameter information includes:
 
@@ -204,7 +204,7 @@ We introduce a unified management center for all Wallarm attack mitigation setti
 * Easily overview the current mode of each control: is it active? is it just monitoring or also blocking?
 * Get quick overview of attacks caught by each control.
 
-![Mitigation Controls page in UI](../../images/user-guides/mitigation-controls/mc-main-page.png)
+![Mitigation Controls page in UI](../../../images/user-guides/mitigation-controls/mc-main-page.png)
 
 ## File upload restriction policy
 
@@ -212,7 +212,7 @@ Wallarm now provides tools for direct restricting the size of uploaded files. Th
 
 Depending on your subscription plan, upload restrictions are applied via mitigation control or rule. You can set file size restrictions for the full request or its selected point.
 
-![File upload restriction MC - example](../../images/api-protection/mitigation-controls-file-upload-1.png)
+![File upload restriction MC - example](../../../images/api-protection/mitigation-controls-file-upload-1.png)
 
 ### Enumeration attack protection
 
@@ -232,7 +232,7 @@ Comparing to triggers that were used for this protection before, mitigation cont
 * Allow advanced sophisticated filtering of which exact requests will be counted.
 * Provide deep integration with [API Sessions](../../api-sessions/overview.md): the detected attacks are displayed within a corresponding session, providing you with full context of what was happening and why the session activities were marked as attack and blocked.
 
-![BOLA protection mitigation control - example](../../images/user-guides/mitigation-controls/mc-bola-example-01.png)
+![BOLA protection mitigation control - example](../../../images/user-guides/mitigation-controls/mc-bola-example-01.png)
 
 ### DoS protection
 
@@ -243,7 +243,7 @@ The [unrestricted resource consumption](https://github.com/OWASP/API-Security/bl
 
 Wallarm provides the new [**DoS protection**](../../api-protection/dos-protection.md) mitigation control to help prevent excessive traffic to your API.
 
-![DoS protection - JWT example](../../images/api-protection/mitigation-controls-dos-protection-jwt.png)
+![DoS protection - JWT example](../../../images/api-protection/mitigation-controls-dos-protection-jwt.png)
 
 ### Default controls
 
@@ -266,7 +266,7 @@ Wallarm provides a set of [default mitigation controls](../../about-wallarm/miti
 
 Wallarm's [API Abuse Prevention](../../api-abuse-prevention/overview.md) introduces the possibility to prevent the [unrestricted resource consumption](../../attacks-vulns-list.md#unrestricted-resource-consumption) - abusive behavior where an automated client consumes excessive API or application resources without proper limits. This may include sending high volumes of non-malicious requests, exhausting compute, memory, or bandwidth, and causing service degradation for legitimate users.
 
-![API Abuse prevention profile](../../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
+![API Abuse prevention profile](../../../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
 
 To detect this type of automated threats, API Abuse Prevention provides a set of three new [detectors](../../api-abuse-prevention/overview.md#how-api-abuse-prevention-works):
 
@@ -288,7 +288,7 @@ Additionally, this update introduces new parameters for some deployment options,
 
 [Learn how to configure API Specification Enforcement](../../api-specification-enforcement/setup.md)
 
-![Specification - use for applying security policies](../../images/api-specification-enforcement/api-specification-enforcement-events.png)
+![Specification - use for applying security policies](../../../images/api-specification-enforcement/api-specification-enforcement-events.png)
 
 ## Detection of the new attack types
 
@@ -313,13 +313,13 @@ With the sensitive business flow capability, Wallarm's [API Discovery](../../api
 
 This allows regular monitoring and audit of endpoints related to sensitive business flows for vulnerabilities or breaches and prioritizing them for development, maintenance, and security efforts.
 
-![API Discovery - Sensitive business flows](../../images/about-wallarm-waf/api-discovery/api-discovery-sbf.png)
+![API Discovery - Sensitive business flows](../../../images/about-wallarm-waf/api-discovery/api-discovery-sbf.png)
 
 Identified sensitive business flows are propagated to Wallarm's [API Sessions](../../api-sessions/overview.md): if session's requests affect the endpoints that in API Discovery were tagged as important for some sensitive business flows, such session will be automatically [tagged](../../api-sessions/exploring.md#sensitive-business-flows) as affecting this business flow as well.
 
 Once sessions are assigned with the sensitive business flow tags, it becomes possible to filter them by a specific business flow which makes it easier to select the sessions that are most important to analyze.
 
-![!API Sessions - sensitive business flows](../../images/api-sessions/api-sessions-sbf-no-select.png)
+![!API Sessions - sensitive business flows](../../../images/api-sessions/api-sessions-sbf-no-select.png)
 
 ## Full-fledged GraphQL parser
 
@@ -333,12 +333,12 @@ Key benefits:
 * **Improved detection** of input validation attacks (e.g., SQL injections)
 * **Detailed parameter insights**: extract and display values of GraphQL request parameters in API Sessions, utilizing them as session context parameters.
 
-    ![!API Sessions configuration - GraphQL request parameter](../../images/api-sessions/api-sessions-graphql.png)
+    ![!API Sessions configuration - GraphQL request parameter](../../../images/api-sessions/api-sessions-graphql.png)
 
 * **Precise attack search**: precisely identify attacks in specific GraphQL request components, such as arguments, directives, and variables.
 * **Advanced rule application**: apply granular protection rules to specific GraphQL request parts. This enables fine-tuning and configuring exclusions for certain attack types in defined parts of GraphQL request.
 
-    ![Example of the rule applied to GraphQL request point"](../../images/user-guides/rules/rule-applied-to-graphql-point.png)
+    ![Example of the rule applied to GraphQL request point"](../../../images/user-guides/rules/rule-applied-to-graphql-point.png)
 
 ## Checking JSON Web Token strength
 
@@ -561,7 +561,7 @@ The sample blocking page `/usr/share/nginx/html/wallarm_blocked.html` has been u
     
 New blocking page with the new layout looks as follows by default:
 
-![Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+![Wallarm blocking page](../../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
 [More details on the blocking page setup →](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)
 
@@ -658,7 +658,7 @@ As for now, Wallarm offers multiple [methods](../../about-wallarm/detecting-vuln
 
 Previously vulnerabilities found by different methods were displayed in different sections of Wallarm Console - now the view is unified and you can see all of them in one place - the **Security Issues** section.
 
-![Security Issues](../../images/api-attack-surface/security-issues.png)
+![Security Issues](../../../images/api-attack-surface/security-issues.png)
 
 Here you can:
 

@@ -8,7 +8,7 @@ Para resolver o problema de uma solicitação legítima ser bloqueada pelo Walla
 
     * Informações fornecidas pela página de [bloqueio do Wallarm](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) se estiver configurada (pode incluir o endereço IP do usuário, UUID da solicitação e outros elementos pré-configurados).
 
-        ![Página de bloqueio do Wallarm](../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+        ![Página de bloqueio do Wallarm](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
         !!! aviso "Uso da página de bloqueio"
             Se você não usa a página de bloqueio padrão ou personalizada do Wallarm, é altamente recomendável [configurá-la](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) para obter informações adequadas do usuário. Lembre-se de que até mesmo uma página de exemplo coleta e permite a fácil cópia de informações significativas relacionadas à solicitação bloqueada. Além disso, você pode personalizar ou reconstruir completamente esta página para retornar aos usuários a mensagem informativa de bloqueio.

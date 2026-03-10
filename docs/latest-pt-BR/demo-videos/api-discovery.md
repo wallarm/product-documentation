@@ -1,4 +1,4 @@
-# Visão geral do API Discovery <a href="../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Visão geral do API Discovery <a href="../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Assista ao nosso vídeo de demonstração para descobrir o potencial total do módulo [**API Discovery**](../api-discovery/overview.md) da plataforma Wallarm. Familiarize-se com o inventário de API que ele constrói com base no uso real da API e aprenda a aproveitar as informações apresentadas. 
 

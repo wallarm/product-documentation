@@ -1,7 +1,7 @@
 # Visão geral das opções de instalação
 
-[img-postanalytics-options]:    ../images/installation-nginx-overview/postanalytics-options.png
-[img-nginx-options]:            ../images/installation-nginx-overview/nginx-options.png
+[img-postanalytics-options]:    ../../images/installation-nginx-overview/postanalytics-options.png
+[img-nginx-options]:            ../../images/installation-nginx-overview/nginx-options.png
 
 [anchor-mod-overview]:              #modules-overview
 [anchor-mod-installation]:          #installing-and-configuring-the-modules

@@ -48,7 +48,7 @@ Kiracı hesaplarının özellikleri şunlardır:
 
 Kiracı hesapları aşağıdaki yapıya göre oluşturulur:
 
-![!Kiracı hesap yapısı](../../images/partner-waf-node/accounts-scheme.png)
+![!Kiracı hesap yapısı](../../../images/partner-waf-node/accounts-scheme.png)
 
 * **Global hesap**, kiracı hesaplarını yalnızca bir iş ortağı veya müşteri bazında gruplamak için kullanılır.
 * **Teknik kiracı hesabı**, [global users](../../user-guides/settings/users.md#user-roles) eklemek ve onlara kiracı hesaplarına erişim sağlamak için kullanılır. Global users genellikle Wallarm iş ortağı şirketlerinin çalışanları veya izole ortamlar için çok kiracılılığı kullanan Wallarm müşterileridir.
@@ -62,7 +62,7 @@ Kiracı hesapları aşağıdaki yapıya göre oluşturulur:
 * Wallarm Console'da hesaplar arasında geçiş yapmak.
 * Kiracıların [aboneliklerini ve kotalarını](../../about-wallarm/subscription-plans.md) izlemek.
 
-![!Wallarm Console'da kiracı seçici](../../images/partner-waf-node/clients-selector-in-console.png)
+![!Wallarm Console'da kiracı seçici](../../../images/partner-waf-node/clients-selector-in-console.png)
 
 * `Technical tenant` bir teknik kiracı hesabıdır
 * `Tenant 1` ve `Tenant 2` kiracı hesaplarıdır

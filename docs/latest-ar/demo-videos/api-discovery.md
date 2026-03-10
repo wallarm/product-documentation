@@ -1,4 +1,4 @@
-# نظرة عامة على اكتشاف API <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# نظرة عامة على اكتشاف API <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 شاهد فيديو العرض التوضيحي لدينا لاكتشاف الإمكانيات الكاملة لوحدة [**اكتشاف API**](../api-discovery/overview.md) ضمن منصة Wallarm. تعرف على جرد API الذي يتم بناؤه بناءً على استخدام API الفعلي وتعلم كيفية استغلال المعلومات المقدمة.
 

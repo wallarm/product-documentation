@@ -71,17 +71,17 @@ Para o nó Wallarm identificar os ataques BOLA:
 
 Exemplo do gatilho para detectar e bloquear ataques BOLA direcionados aos dados financeiros da loja (o endpoint da API é `https://example.com/lojas/{id_loja}/informacoes_financeiras`):
 
-![Gatilho BOLA](../../images/user-guides/triggers/trigger-example7.png)
+![Gatilho BOLA](../../../images/user-guides/triggers/trigger-example7.png)
 
 Você pode configurar vários gatilhos com diferentes filtros para a proteção BOLA.
 
-## Proteção automática BOLA para endpoints descobertos pelo recurso de Descoberta de API <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Proteção automática BOLA para endpoints descobertos pelo recurso de Descoberta de API <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;"></a>
 
 A proteção automática BOLA está disponível se você utilizar o módulo **[Descoberta de API](../../api-discovery/overview.md)**.
 
 Para habilitar a autoproteção, vá para o console Wallarm → **Proteção BOLA** e ative a opção:
 
-![Gatilho BOLA](../../images/user-guides/bola-protection/trigger-enabled-state.png)
+![Gatilho BOLA](../../../images/user-guides/bola-protection/trigger-enabled-state.png)
 
 --8<-- "../include-pt-BR/waf/features/bola-mitigation/bola-auto-mitigation-logic.md"
 
@@ -99,7 +99,7 @@ A seção **Proteção BOLA** da interface do usuário permite que você ajuste 
     Se a reação ao gatilho for **Lista de IPs em estado de alerta**, verifique a seção **Listas de IPs** → **Lista de Alerta** do Console Wallarm.
 1. Abra a seção **Eventos** e verifique se as solicitações estão exibidas na lista como um ataque BOLA.
 
-    ![Ataque BOLA na interface do usuário](../../images/user-guides/events/bola-attack.png)
+    ![Ataque BOLA na interface do usuário](../../../images/user-guides/events/bola-attack.png)
 
     O número de solicitações exibidas corresponde ao número de solicitações enviadas após ter excedido o limite do gatilho ([mais detalhes sobre a detecção de ataques comportamentais](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)). Se este número for superior a 5, a amostragem de solicitações é aplicada e os detalhes da solicitação são exibidos apenas para os 5 primeiros hits ([mais detalhes sobre a amostragem das solicitações](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
 

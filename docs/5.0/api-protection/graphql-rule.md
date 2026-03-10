@@ -1,6 +1,6 @@
 [api-discovery-enable-link]:        ../api-discovery/setup.md#enable
 
-# GraphQL API Protection <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# GraphQL API Protection <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm detects regular attacks (SQLi, RCE, [etc.](../attacks-vulns-list.md)) in GraphQL [by default](../user-guides/rules/request-processing.md#gql) even under the basic [WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription plan. However, some aspects of the protocol allow implementing [GraphQL-specific](../attacks-vulns-list.md#graphql-attacks) attacks related to excessive information exposure and DoS. This document describes how to use Wallarm to protect your APIs from these attacks by setting **GraphQL policy** - a set of limits for the GraphQL requests.
 
@@ -45,7 +45,7 @@ To set and apply GraphQL policy:
 
     By default, a policy sets maximum POST request query size to 100 KB, value size to 10 KB, query depth and batched query limits to 10, aliases to 5, plus deny introspection and debug queries as displayed on the screenshot (note that you can change default values to your own considering statistics of your common legitimate GraphQL queries):
         
-    ![GraphQL thresholds](../images/user-guides/rules/graphql-rule.png)
+    ![GraphQL thresholds](../../images/user-guides/rules/graphql-rule.png)
 
 Once created, the rule may be at any moment temporarily disabled and later re-enabled again using the **Mode** parameter of the rule.
 
@@ -55,7 +55,7 @@ Reaction to the policy violation is defined by the [filtration mode](../admin-en
 
 If you are using Wallarm in blocking mode and want to safely test GraphQL rules, you can easily enable monitoring mode for `/graphql` routes by creating a **Set filtration mode** rule [specifically](../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode) for your GraphQL route. Note that this rule will apply to all attacks, including SQLi, XSS, etc., so it is not recommended to leave it for a long time.
 
-![GraphQL policy blocking action](../images/user-guides/rules/graphql-rule-2-action.png)
+![GraphQL policy blocking action](../../images/user-guides/rules/graphql-rule-2-action.png)
 
 Consider that you node configuration via the [`wallarm_mode_allow_override` directive](../admin-en/configure-wallarm-mode.md#prioritization-of-methods) may be set to ignore rules created in Wallarm Console. If this is a case, [explore](../admin-en/configure-wallarm-mode.md#configuration-methods) and use other ways to change the filtration mode.
 
@@ -63,7 +63,7 @@ Consider that you node configuration via the [`wallarm_mode_allow_override` dire
 
 You can explore GraphQL policy violations (GraphQL attacks) in Wallarm Console → **Attacks** section. Use the GraphQL specific [search keys](../user-guides/search-and-filters/use-search.md#graphql-tags) or corresponding filters:
 
-![GraphQL attacks](../images/user-guides/rules/graphql-attacks.png)
+![GraphQL attacks](../../images/user-guides/rules/graphql-attacks.png)
 
 ### Setting policy for your GraphQL endpoints to block attacks
 
@@ -73,11 +73,11 @@ To do so:
 
 1. Set the **GraphQL API protection** rule as displayed on the screenshot (note that these are the example values - for the real-life rules you should define your own values considering statistics of your common legitimate GraphQL queries):
 
-    ![GraphQL Policy for your endpoints](../images/user-guides/rules/graphql-rule-1.png)
+    ![GraphQL Policy for your endpoints](../../images/user-guides/rules/graphql-rule-1.png)
 
 1. As filtration mode for `example.com` is `monitoring` and you want `block` for its GraphQL endpoints, configure the **Set filtration mode** rule as displayed on the screenshot:
 
-    ![GraphQL policy blocking action](../images/user-guides/rules/graphql-rule-1-action.png)
+    ![GraphQL policy blocking action](../../images/user-guides/rules/graphql-rule-1-action.png)
 
 ### Altering policy for specific endpoints
 
@@ -87,8 +87,8 @@ To do so:
 
 1. Set the **GraphQL API protection** rule as displayed on the screenshot (note that these are the example values - for the real-life rules you should define your own values considering statistics of your common legitimate GraphQL queries):
 
-    ![GraphQL stricter policy for child endpoint](/../images/user-guides/rules/graphql-rule-2.png)
+    ![GraphQL stricter policy for child endpoint](/../../images/user-guides/rules/graphql-rule-2.png)
 
 1. As filtration mode for `example.com/graphql` is `block` and you want `monitoring` for `example.com/graphql/v2`, configure the **Set filtration mode** rule as displayed on the screenshot:
 
-    ![GraphQL policy blocking action](../images/user-guides/rules/graphql-rule-2-action.png)
+    ![GraphQL policy blocking action](../../images/user-guides/rules/graphql-rule-2-action.png)

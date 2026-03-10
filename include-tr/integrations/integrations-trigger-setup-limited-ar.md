@@ -15,4 +15,4 @@ Entegration card üzerinden zaten yapılandırdığınız bildirimlere ek olarak
 
 Koşulu ayrıntılandırmak için bir veya daha fazla filtre ekleyebilirsiniz. Koşul ve filtreler ayarlanır ayarlanmaz, seçilen uyarının gönderileceği entegrasyonu seçin. Aynı anda birden fazla entegrasyon seçebilirsiniz.
 
-![Entegrasyon seçimi](../../../images/user-guides/triggers/select-integration.png)
+![Entegrasyon seçimi](../../../../images/user-guides/triggers/select-integration.png)

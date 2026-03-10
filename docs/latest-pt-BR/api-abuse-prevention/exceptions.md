@@ -31,7 +31,7 @@ Observe que você pode desativar temporariamente a exceção para a URL e/ou tip
 
 Suponha que sua aplicação esteja integrada com a ferramenta de automação de marketing Klaviyo que tem vários IPs que enviam solicitações. Portanto, definimos que não devemos verificar as atividades automatizadas (bot) em solicitações GET do agente de usuário `Klaviyo/1.0` para URIs específicas:
 
-![Não verifique a atividade dos bots para solicitações com cabeçalhos específicos](../images/user-guides/rules/api-abuse-url-request.png)
+![Não verifique a atividade dos bots para solicitações com cabeçalhos específicos](../../images/user-guides/rules/api-abuse-url-request.png)
 
 ### Desativando a proteção contra bots para o endpoint de teste
 
@@ -39,4 +39,4 @@ Vamos dizer que você tem um endpoint que pertence à sua aplicação. A aplica�
 
 Neste caso, é mais fácil criar uma regra a partir da lista de endpoints do **Descoberta de API**. Vá até lá, encontre o seu endpoint e inicie a criação da regra a partir da sua página:
 
-![Criando modo de Prevenção de Abuso de API para endpoint de Descoberta de API](../images/user-guides/rules/api-abuse-url.png)
+![Criando modo de Prevenção de Abuso de API para endpoint de Descoberta de API](../../images/user-guides/rules/api-abuse-url.png)

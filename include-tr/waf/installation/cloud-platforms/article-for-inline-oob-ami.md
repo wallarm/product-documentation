@@ -1,4 +1,4 @@
-[img-security-group]:                ../../../images/aws-ami/security-group.png
+[img-security-group]:                ../../../../images/aws-ami/security-group.png
 [latest-node-version]:              ../../../updating-migrating/node-artifact-versions.md#amazon-machine-image-ami
 [nginx-native-node]:                       ../../../installation/nginx-native-node-internals.md
 [wallarm-logs]:                     ../../../admin-en/configure-logging.md
@@ -13,7 +13,7 @@ Bu makale, Wallarm [NGINX düğümü][nginx-native-node]’nü AWS üzerinde [in
 
 AWS üzerinde AMI’den Wallarm Node’un dağıtılması genellikle yaklaşık 10 dakika sürer.
 
-![!](../../../images/waf-installation/aws/aws-ami-flow.png)
+![!](../../../../images/waf-installation/aws/aws-ami-flow.png)
 
 !!! info "Güvenlik notu"
     Bu çözüm, AWS güvenlik en iyi uygulamalarını takip edecek şekilde tasarlanmıştır. Dağıtım için AWS root hesabını kullanmaktan kaçınmanızı öneririz. Bunun yerine, yalnızca gerekli izinlere sahip IAM kullanıcıları veya rollerini kullanın.

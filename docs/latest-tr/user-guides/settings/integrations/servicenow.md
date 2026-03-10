@@ -23,7 +23,7 @@ Wallarm UI:
 1. OAuth kimlik doğrulama verilerini girin: client ID ve secret.
 1. Bildirimleri tetikleyecek olay türlerini seçin.
 
-    ![ServiceNow entegrasyonu](../../../images/user-guides/settings/integrations/add-servicenow-integration.png)
+    ![ServiceNow entegrasyonu](../../../../images/user-guides/settings/integrations/add-servicenow-integration.png)
 
     Kullanılabilir olaylara ilişkin ayrıntılar:
       

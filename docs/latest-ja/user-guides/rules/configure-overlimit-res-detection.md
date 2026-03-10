@@ -37,7 +37,7 @@ Wallarm Console → **Settings** → **General** → **Limit request processing 
     * 当該リクエストを`overlimit_res`攻撃としてマークし、**Attacks**に表示します。処理済み部分に他の[攻撃タイプ](../../attacks-vulns-list.md)が含まれている場合は、それらのタイプの攻撃も表示されます。
     * 元のリクエストをアプリケーションに到達させます（保護のバイパス）。<!-- Note that the application has the risk to be exploited by the attacks included in both processed and unprocessed request parts. The default general configuration and [adjusting for specific endpoints](#specific-endpoint-configuration) minimizes this risk.-->
 
-![Limit request processing time - 一般設定](../../images/user-guides/rules/fine-tune-overlimit-detection-generic.png)
+![Limit request processing time - 一般設定](../../../images/user-guides/rules/fine-tune-overlimit-detection-generic.png)
 
 時間上限の調整や応答の変更によって一般設定を変更できます。
 
@@ -78,4 +78,4 @@ Wallarm Console → **Settings** → **General** → **Limit request processing 
 
 そのために、スクリーンショットのとおり**Limit request processing time**ルールを設定します。
 
-![「Register and display in the events」ルールの例](../../images/user-guides/rules/fine-tune-overlimit-detection-example.png)
+![「Register and display in the events」ルールの例](../../../images/user-guides/rules/fine-tune-overlimit-detection-example.png)

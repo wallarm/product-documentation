@@ -2,7 +2,7 @@
 [link-wallarm-mode-override]:       ../admin-en/configure-parameters-en.md#wallarm_mode_allow_override
 [rule-creation-options]:            ../user-guides/events/check-attack.md#attack-analysis_1
 [acl-access-phase]:                 ../admin-en/configure-parameters-en.md#wallarm_acl_access_phase 
-[img-mode-rule]:                    ../images/user-guides/rules/wallarm-mode-rule.png
+[img-mode-rule]:                    ../../images/user-guides/rules/wallarm-mode-rule.png
 
 # Filtration Mode
 
@@ -92,7 +92,7 @@ Note that described configuration is applicable only for [in-line](../installati
 
 You can define the general filtration mode for all incoming requests in **Settings** → **General** in the [US](https://us1.my.wallarm.com/settings/general) or [EU](https://my.wallarm.com/settings/general) Cloud.
     
-![The general settings tab](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
+![The general settings tab](../../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
 
 The general filtration mode setting is represented as **Set filtration mode** [default](../user-guides/rules/rules.md#default-rules) rule in the **Rules** section. Note that endpoint-targeted filtration rules in this section have higher priority.
 

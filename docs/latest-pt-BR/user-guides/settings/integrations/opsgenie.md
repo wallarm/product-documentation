@@ -20,7 +20,7 @@ No UI do Wallarm:
 5. Se estiver usando a [instância EU](https://docs.opsgenie.com/docs/european-service-region) do Opsgenie, selecione o endpoint da API do Opsgenie apropriado da lista. Por padrão, o endpoint da instância dos EUA está definido.
 6. Escolha os tipos de eventos para disparar notificações.
 
-    ![Integração Opsgenie](../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
+    ![Integração Opsgenie](../../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
 
     Detalhes sobre eventos disponíveis:
       
@@ -30,7 +30,7 @@ No UI do Wallarm:
 
     Isso enviará as notificações de teste com o prefixo `[Mensagem de teste]`:
 
-    ![Testar mensagem Opsgenie](../../../images/user-guides/settings/integrations/test-opsgenie-new-vuln.png)
+    ![Testar mensagem Opsgenie](../../../../images/user-guides/settings/integrations/test-opsgenie-new-vuln.png)
 
 8. Clique em **Adicionar integração**.
 

@@ -21,7 +21,7 @@ Let us say your e-commerce `wmall-example.com` platform for online stores (shops
 
     * `*` [wildcard](../../user-guides/rules/rules.md#using-wildcards) in the path meaning "any one component". They will cover all the `wmall-example.com/shops/<PARTICULAR_SHOP>/financial_info` addresses.
 
-        ![BOLA trigger](../../images/user-guides/triggers/trigger-example7-4.8.png)
+        ![BOLA trigger](../../../images/user-guides/triggers/trigger-example7-4.8.png)
 
 1. Do not use in this case: 
 
@@ -52,7 +52,7 @@ To test the trigger described in the [Configuring](#configuring) section:
     If the trigger reaction is **Graylist IP address**, check the section **IP lists** → **Graylist** of Wallarm Console.
 1. Open the section **Attacks** and check that requests are displayed in the list as BOLA attack.
 
-    ![BOLA attack in the UI](../../images/user-guides/events/bola-attack.png)
+    ![BOLA attack in the UI](../../../images/user-guides/events/bola-attack.png)
 
     The number of displayed requests corresponds to the number of requests sent after the trigger threshold was exceeded ([more details on detecting behavioral attacks](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/analyze-attack.md)).
 
