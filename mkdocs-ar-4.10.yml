@@ -34,6 +34,8 @@ extra:
 
 theme:
   language: ar
+
+extra:
   language_lowercase: ar
   language_name: Arabic
   version: "4.10"

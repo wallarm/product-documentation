@@ -1,6 +1,6 @@
 INHERIT: mkdocs-base.yml
 
-theme:
+extra:
   version: "7.x"
   versionNative: "0.24.x+"
 

@@ -1,6 +1,6 @@
 INHERIT: mkdocs-base.yml
 
-theme:
+extra:
   version: "4.10"
 
 docs_dir: docs/deprecated

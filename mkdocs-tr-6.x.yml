@@ -7,6 +7,8 @@ copyright: '<a href="https://www.wallarm.com/terms-of-service" target="_blank">H
 
 theme:
   language: tr
+
+extra:
   language_lowercase: tr
   language_name: Turkish
   version: "6.x"
