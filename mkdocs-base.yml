@@ -56,6 +56,7 @@ theme:
     - content.code.copy
     - content.code.select
     - content.action.edit
+    - content.action.view
     - search.suggest
     - content.tabs.link
   logo: images/wallarm-logo-new.svg

@@ -1,0 +1,39 @@
+<!--
+  Override of mkdocs-material actions.html partial.
+  Replaces the "view source" button with a "copy markdown" button.
+-->
+
+<!-- Actions -->
+{% if page.edit_url %}
+
+  <!-- Edit button -->
+  {% if "content.action.edit" in features %}
+    <a
+      href="{{ page.edit_url }}"
+      title="{{ lang.t('action.edit') }}"
+      class="md-content__button md-icon"
+      rel="edit"
+    >
+      {% set icon = config.theme.icon.edit or "material/file-edit-outline" %}
+      {% include ".icons/" ~ icon ~ ".svg" %}
+    </a>
+  {% endif %}
+
+  <!-- Copy markdown button (replaces view source) -->
+  {% if "content.action.view" in features %}
+    {% if "/blob/" in page.edit_url %}
+      {% set part = "blob" %}
+    {% else %}
+      {% set part = "edit" %}
+    {% endif %}
+    <button
+      class="md-content__button md-icon md-clipboard-page"
+      title="Copy as Markdown"
+      data-clipboard-src="{{ page.edit_url | replace(part, 'raw') }}"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12V1Z"/>
+      </svg>
+    </button>
+  {% endif %}
+{% endif %}

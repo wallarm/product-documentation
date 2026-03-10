@@ -1,3 +1,50 @@
+// Copy page markdown to clipboard
+document.addEventListener('click', function(e) {
+  var btn = e.target.closest('.md-clipboard-page');
+  if (!btn) return;
+
+  e.preventDefault();
+  var rawUrl = btn.getAttribute('data-clipboard-src');
+  if (!rawUrl) return;
+
+  // Convert GitHub edit/blob URL to raw content URL
+  // e.g. https://github.com/user/repo/raw/master/path → https://raw.githubusercontent.com/user/repo/master/path
+  var fetchUrl = rawUrl
+    .replace('github.com', 'raw.githubusercontent.com')
+    .replace('/raw/', '/');
+
+  btn.classList.add('md-clipboard-page--active');
+
+  fetch(fetchUrl)
+    .then(function(res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.text();
+    })
+    .then(function(text) {
+      return navigator.clipboard.writeText(text);
+    })
+    .then(function() {
+      btn.classList.remove('md-clipboard-page--active');
+
+      // Show "Copied to clipboard" snackbar via mkdocs-material's built-in dialog
+      var dialog = document.querySelector('[data-md-component="dialog"]');
+      if (dialog) {
+        var inner = dialog.querySelector('.md-typeset');
+        if (inner) inner.textContent = 'Copied to clipboard';
+        dialog.classList.add('md-dialog--active');
+        setTimeout(function() {
+          dialog.classList.remove('md-dialog--active');
+        }, 2000);
+      }
+    })
+    .catch(function(err) {
+      btn.classList.remove('md-clipboard-page--active');
+      console.error('Failed to copy markdown:', err);
+      // Fallback: open raw URL in new tab
+      window.open(rawUrl, '_blank');
+    });
+});
+
 // Open external links in new tab
 var links = document.links;
 

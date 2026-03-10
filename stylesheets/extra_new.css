@@ -1,3 +1,23 @@
+/* Copy page markdown button */
+button.md-clipboard-page {
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: color 250ms;
+  color: black;
+}
+
+button.md-clipboard-page:hover {
+  color: #fc7303;
+}
+
+button.md-clipboard-page svg {
+  fill: currentColor;
+}
+button.md-clipboard-page--active {
+  opacity: 0.5;
+  pointer-events: none;
+}
 /* Root styles */
 [data-md-color-scheme="wallarm-palette"] {
     --md-default-fg-color:               hsla(0, 0%, 0%, 1);

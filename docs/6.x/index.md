@@ -852,4 +852,12 @@ button.md-header__button.header-ask-ai-btn {
   }
 }
 
+button.md-clipboard-page {
+  display: none;
+}
+
+a.md-content__button {
+  display: none;
+}
+
 </style>
