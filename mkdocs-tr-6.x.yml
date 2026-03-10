@@ -7,6 +7,7 @@ copyright: '<a href="https://www.wallarm.com/terms-of-service" target="_blank">H
 
 theme:
   language: tr
+  logo: ../images/wallarm-logo-new.svg
 
 extra:
   language_lowercase: tr

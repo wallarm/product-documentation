@@ -7,6 +7,9 @@ extra:
 docs_dir: docs/5.0
 site_dir: site/5.x
 
+theme:
+  logo: ../images/wallarm-logo-new.svg
+
 nav:
   # ============================================================================
   # SECTION 1: INTRODUCTION

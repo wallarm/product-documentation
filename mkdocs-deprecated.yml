@@ -6,5 +6,8 @@ extra:
 docs_dir: docs/deprecated
 site_dir: site/4.10
 
+theme:
+  logo: ../images/wallarm-logo-new.svg
+
 nav:
   - Home: index.md
