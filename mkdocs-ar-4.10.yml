@@ -35,6 +35,7 @@ extra:
 theme:
   language: ar
   logo: ../images/wallarm-logo-new.svg
+  favicon: ../images/favicon.png
 
 extra:
   language_lowercase: ar
