@@ -122,7 +122,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:6.10.1"
+                "image": "registry-1.docker.io/wallarm/node:6.10.2"
                 }
             ],
             "family": "wallarm-api-security-node"
@@ -160,7 +160,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:6.10.1"
+                "image": "registry-1.docker.io/wallarm/node:6.10.2"
                 }
             ],
             "family": "wallarm-api-security-node"
@@ -294,7 +294,7 @@ To deploy the container with environment variables and configuration file mounte
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:6.10.1"
+                "image": "registry-1.docker.io/wallarm/node:6.10.2"
                 }
             ],
             "volumes": [
@@ -343,7 +343,7 @@ To deploy the container with environment variables and configuration file mounte
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:6.10.1"
+                "image": "registry-1.docker.io/wallarm/node:6.10.2"
                 }
             ],
             "volumes": [
@@ -440,7 +440,7 @@ To avoid this, authenticate ECS tasks to Docker Hub using a paid Docker Hub acco
     "containerDefinitions": [
         {
             "name": "wallarm-container",
-            "image": "registry-1.docker.io/wallarm/node:6.10.1",
+            "image": "registry-1.docker.io/wallarm/node:6.10.2",
             "repositoryCredentials": {
                 "credentialsParameter": "arn:aws:secretsmanager:<REGION>:<ACCOUNT>:secret:<DOCKER_HUB_SECRET_NAME>"
             },

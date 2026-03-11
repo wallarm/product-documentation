@@ -226,6 +226,10 @@ To obtain the filtering node statistics, make a request from one of the allowed 
         "acl_allow_list": 0,
         "bytes_in": 0,
         "bytes_out": 0,
+        "bytes_blocked_in": 0,
+        "bytes_blocked_out": 0,
+        "bytes_blocked_by_acl_in": 0,
+        "bytes_blocked_by_acl_out": 0,
         "tnt_errors": 0,
         "api_errors": 0,
         "requests_lost": 0,
@@ -290,6 +294,12 @@ To obtain the filtering node statistics, make a request from one of the allowed 
                 "attacks": 0,
                 "blocked": 0,
                 "blocked_by_acl": 0,
+                "bytes_in": 0,
+                "bytes_out": 0,
+                "bytes_blocked_in": 0,
+                "bytes_blocked_out": 0,
+                "bytes_blocked_by_acl_in": 0,
+                "bytes_blocked_by_acl_out": 0,
                 "overlimits_time": 0,
                 "time_detect": 0,
                 "applications": [
@@ -301,6 +311,12 @@ To obtain the filtering node statistics, make a request from one of the allowed 
                     "attacks": 0,
                     "blocked": 0,
                     "blocked_by_acl": 0,
+                    "bytes_in": 0,
+                    "bytes_out": 0,
+                    "bytes_blocked_in": 0,
+                    "bytes_blocked_out": 0,
+                    "bytes_blocked_by_acl_in": 0,
+                    "bytes_blocked_by_acl_out": 0,
                     "overlimits_time": 0,
                     "time_detect": 0
                 }
@@ -351,6 +367,18 @@ To obtain the filtering node statistics, make a request from one of the allowed 
     # HELP wallarm_bytes_out total bytes sent from listen servers
     # TYPE wallarm_bytes_out gauge
     wallarm_bytes_out 123847
+    # HELP wallarm_bytes_blocked_in total bytes received in blocked requests
+    # TYPE wallarm_bytes_blocked_in counter
+    wallarm_bytes_blocked_in 0
+    # HELP wallarm_bytes_blocked_out total bytes sent in blocked responses
+    # TYPE wallarm_bytes_blocked_out counter
+    wallarm_bytes_blocked_out 0
+    # HELP wallarm_bytes_blocked_by_acl_in total bytes received in ACL-blocked requests
+    # TYPE wallarm_bytes_blocked_by_acl_in counter
+    wallarm_bytes_blocked_by_acl_in 0
+    # HELP wallarm_bytes_blocked_by_acl_out total bytes sent in ACL-blocked responses
+    # TYPE wallarm_bytes_blocked_by_acl_out counter
+    wallarm_bytes_blocked_by_acl_out 0
     # HELP wallarm_tnt_errors wstore write errors count
     # TYPE wallarm_tnt_errors gauge
     wallarm_tnt_errors 0
@@ -465,6 +493,10 @@ The following response parameters are available (Prometheus metrics have the `wa
     * Response body (HTML, JSON, files, etc.)
 
     Does not include traffic to the `wallarm-status` endpoint.
+*   `bytes_blocked_in` (available starting from the NGINX Node release 6.10.2): the total number of incoming bytes in requests blocked due to detected attacks, computational resource overlimiting, or antibot protection. Excludes requests blocked by denylisted IPs and sessions — those are counted separately in `bytes_blocked_by_acl_in`.
+*   `bytes_blocked_out` (available starting from the NGINX Node release 6.10.2): the total number of outgoing bytes in responses to requests blocked due to detected attacks, computational resource overlimiting, or antibot protection. Excludes responses to requests blocked by denylisted IPs and sessions — those are counted separately in `bytes_blocked_by_acl_out`.
+*   `bytes_blocked_by_acl_in` (available starting from the NGINX Node release 6.10.2): the total number of incoming bytes in requests blocked by [denylisted IPs](../user-guides/ip-lists/overview.md) or [denylisted sessions](../api-sessions/blocking.md).
+*   `bytes_blocked_by_acl_out` (available starting from the NGINX Node release 6.10.2): the total number of outgoing bytes in responses to requests blocked by [denylisted IPs](../user-guides/ip-lists/overview.md) or [denylisted sessions](../api-sessions/blocking.md).
 *   `tnt_errors`: the number of requests not analyzed by a post-analytics module. For these requests, the reasons for blocking are recorded, but the requests themselves are not counted in statistics and behavior checks.
 *   `api_errors`: the number of requests that were not submitted to the API for further analysis. For these requests, blocking parameters were applied (i.e., malicious requests were blocked if the system was operating in blocking mode); however, data on these events is not visible in the UI. This parameter is only used when the Wallarm Node works with a local post-analytics module.
 *   `requests_lost`: the number of requests that were not analyzed in a post-analytics module and transferred to API. For these requests, blocking parameters were applied (i.e., malicious requests were blocked if the system was operating in blocking mode); however, data on these events is not visible in the UI. This parameter is only used when the Wallarm Node works with a local post-analytics module.
