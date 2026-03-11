@@ -19,6 +19,19 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.10.2 (2026-03-10)
+
+* Added new traffic metrics to the [`wallarm-status`](../admin-en/configure-statistics-service.md) statistics service: `bytes_blocked_in`, `bytes_blocked_out`, `bytes_blocked_by_acl_in`, and `bytes_blocked_by_acl_out`
+
+    These counters track the volume of incoming and outgoing traffic in blocked requests, split by block reason (attack/overlimit/antibot vs. denylists). Available in JSON, Prometheus, and per-application split formats.
+* Fixed a shared memory allocation bug in the statistics service initialization that could lead to data corruption under high load
+* Fixed memory limit handling for **wcli** jobs
+* Fixed security vulnerabilities:
+
+    * [CVE-2025-68121](https://www.cve.org/CVERecord?id=CVE-2025-68121)
+    * [CVE-2026-25646](https://www.cve.org/CVERecord?id=CVE-2026-25646)
+    * [CVE-2025-61726](https://www.cve.org/CVERecord?id=CVE-2025-61726)
+
 ### 6.10.1 (2026-02-18)
 
 * Added support for circular references in OpenAPI specifications uploaded for [API Specification Enforcement](../api-specification-enforcement/overview.md)
@@ -192,6 +205,19 @@ new attack types in logging variables and search bars?
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.10.2 (2026-03-10)
+
+* Added new traffic metrics to the [`wallarm-status`](../admin-en/configure-statistics-service.md) statistics service: `bytes_blocked_in`, `bytes_blocked_out`, `bytes_blocked_by_acl_in`, and `bytes_blocked_by_acl_out`
+
+    These counters track the volume of incoming and outgoing traffic in blocked requests, split by block reason (attack/overlimit/antibot vs. denylists). Available in JSON, Prometheus, and per-application split formats.
+* Fixed a shared memory allocation bug in the statistics service initialization that could lead to data corruption under high load
+* Fixed memory limit handling for **wcli** jobs
+* Fixed security vulnerabilities:
+
+    * [CVE-2025-68121](https://www.cve.org/CVERecord?id=CVE-2025-68121)
+    * [CVE-2026-25646](https://www.cve.org/CVERecord?id=CVE-2026-25646)
+    * [CVE-2025-61726](https://www.cve.org/CVERecord?id=CVE-2025-61726)
 
 ### 6.10.1 (2026-02-18)
 
@@ -378,6 +404,19 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.10.2 (2026-03-10)
+
+* Added new traffic metrics to the [`wallarm-status`](../admin-en/configure-statistics-service.md) statistics service: `bytes_blocked_in`, `bytes_blocked_out`, `bytes_blocked_by_acl_in`, and `bytes_blocked_by_acl_out`
+
+    These counters track the volume of incoming and outgoing traffic in blocked requests, split by block reason (attack/overlimit/antibot vs. denylists). Available in JSON, Prometheus, and per-application split formats.
+* Fixed a shared memory allocation bug in the statistics service initialization that could lead to data corruption under high load
+* Fixed memory limit handling for **wcli** jobs
+* Fixed security vulnerabilities:
+
+    * [CVE-2025-68121](https://www.cve.org/CVERecord?id=CVE-2025-68121)
+    * [CVE-2026-25646](https://www.cve.org/CVERecord?id=CVE-2026-25646)
+    * [CVE-2025-61726](https://www.cve.org/CVERecord?id=CVE-2025-61726)
+
 ### 6.10.1 (2026-02-18)
 
 * Added support for circular references in OpenAPI specifications uploaded for [API Specification Enforcement](../api-specification-enforcement/overview.md)
@@ -547,6 +586,19 @@ new attack types in logging variables and search bars?
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.10.2 (2026-03-10)
+
+* Added new traffic metrics to the [`wallarm-status`](../admin-en/configure-statistics-service.md) statistics service: `bytes_blocked_in`, `bytes_blocked_out`, `bytes_blocked_by_acl_in`, and `bytes_blocked_by_acl_out`
+
+    These counters track the volume of incoming and outgoing traffic in blocked requests, split by block reason (attack/overlimit/antibot vs. denylists). Available in JSON, Prometheus, and per-application split formats.
+* Fixed a shared memory allocation bug in the statistics service initialization that could lead to data corruption under high load
+* Fixed memory limit handling for **wcli** jobs
+* Fixed security vulnerabilities:
+
+    * CVE-2025-68121
+    * CVE-2026-25646
+    * CVE-2025-61726
 
 ### 6.10.1 (2026-02-18)
 
@@ -721,6 +773,19 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
+### 6.10.2 (2026-03-10)
+
+* Added new traffic metrics to the [`wallarm-status`](../admin-en/configure-statistics-service.md) statistics service: `bytes_blocked_in`, `bytes_blocked_out`, `bytes_blocked_by_acl_in`, and `bytes_blocked_by_acl_out`
+
+    These counters track the volume of incoming and outgoing traffic in blocked requests, split by block reason (attack/overlimit/antibot vs. denylists). Available in JSON, Prometheus, and per-application split formats.
+* Fixed a shared memory allocation bug in the statistics service initialization that could lead to data corruption under high load
+* Fixed memory limit handling for **wcli** jobs
+* Fixed security vulnerabilities:
+
+    * [CVE-2025-68121](https://www.cve.org/CVERecord?id=CVE-2025-68121)
+    * [CVE-2026-25646](https://www.cve.org/CVERecord?id=CVE-2026-25646)
+    * [CVE-2025-61726](https://www.cve.org/CVERecord?id=CVE-2025-61726)
+
 ### 6.10.1 (2026-02-18)
 
 * Added support for circular references in OpenAPI specifications uploaded for [API Specification Enforcement](../api-specification-enforcement/overview.md)
@@ -857,6 +922,19 @@ new attack types in logging variables and search bars?
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-10-2-20260310-115237 (2026-03-10)
+
+* Added new traffic metrics to the [`wallarm-status`](../admin-en/configure-statistics-service.md) statistics service: `bytes_blocked_in`, `bytes_blocked_out`, `bytes_blocked_by_acl_in`, and `bytes_blocked_by_acl_out`
+
+    These counters track the volume of incoming and outgoing traffic in blocked requests, split by block reason (attack/overlimit/antibot vs. denylists). Available in JSON, Prometheus, and per-application split formats.
+* Fixed a shared memory allocation bug in the statistics service initialization that could lead to data corruption under high load
+* Fixed memory limit handling for **wcli** jobs
+* Fixed security vulnerabilities:
+
+    * [CVE-2025-68121](https://www.cve.org/CVERecord?id=CVE-2025-68121)
+    * [CVE-2026-25646](https://www.cve.org/CVERecord?id=CVE-2026-25646)
+    * [CVE-2025-61726](https://www.cve.org/CVERecord?id=CVE-2025-61726)
 
 ### wallarm-node-6-10-1-20260218-104823 (2026-02-18)
 
