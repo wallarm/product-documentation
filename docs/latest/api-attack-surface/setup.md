@@ -61,7 +61,7 @@ In addition to domains and hosts, AASM supports scanning of IP addresses and net
 
 ### Adding to scope
 
-1. In Wallarm Console, proceed to **AASM** → **API Attack Surface** → **Configure** → **IP addresses & Network ranges**.
+1. In Wallarm Console, proceed to **AASM** → **API Attack Surface** → **Configure** → **IP addresses & Network ranges**.
 1. Click **+ Add IPs**.
 1. Paste IP addresses or network ranges separated by comma, semicolon, space or new line.
 
@@ -79,7 +79,9 @@ In addition to domains and hosts, AASM supports scanning of IP addresses and net
 1. Optionally, enable **Auto rescan** to automatically re-scan the added IPs on a regular basis.
 1. Click **Add to scope**.
 
-Once added, Wallarm will immediately start scanning for data selected in [**Scan configuration**](#scan-configuration). The **IP addresses & Network ranges** tab displays all added entries with the number of discovered hosts, auto rescan status, date added, and a **Scan now** button to trigger a manual rescan.
+![AASM - configuring scope (IP)](../images/api-attack-surface/aasm-ips-scope.png)
+
+Once added, Wallarm will immediately start scanning for data selected in [**Scan configuration**](#scan-configuration). The **IP addresses & Network ranges** tab displays all added entries with the number of discovered hosts, auto rescan status, date added, and a **Scan now** button to trigger a manual rescan.
 
 AASM automatically handles duplicates and overlapping targets. If a security issue has already been detected for a host that resolves to the same IP address, no duplicate issue will be created. Similarly, issues detected by both hostname and IP address are deduplicated.
 
@@ -87,7 +89,7 @@ AASM automatically handles duplicates and overlapping targets. If a security iss
 
 You can delete IP addresses and network ranges from the scope:
 
-1. At the **IP addresses & Network ranges** tab, select entries with checkboxes and click **Delete**.
+1. At the **IP addresses & Network ranges** tab, select entries with checkboxes and click **Delete**.
 1. As there can be security issues found for these IPs, you need to decide what to do with them. Options are:
 
     * Keep related security issues
@@ -203,13 +205,13 @@ To configure auto rescan:
 
     Note that global option has priority - when disabled, nothing is auto re-scanned. The per-domain options allow excluding some domains from auto rescan.
 
-1. At the **IP addresses & Network ranges** tab, auto rescan can be toggled per entry individually.
+1. At the **IP addresses & Network ranges** tab, auto rescan can be toggled per entry individually.
 
 ![AASM - configuring auto rescan](../images/api-attack-surface/aasm-auto-rescan.png)
 
 ## Manual rescan
 
-You can start scanning for any domain manually at **AASM** → **API Attack Surface** → **Configure** → **Domains and hosts** by clicking the **Scan now** button. Similarly, you can trigger a manual scan for any IP address or network range at the **IP addresses & Network ranges** tab.
+You can start scanning for any domain manually at **AASM** → **API Attack Surface** → **Configure** → **Domains and hosts** by clicking the **Scan now** button. Similarly, you can trigger a manual scan for any IP address or network range at the **IP addresses & Network ranges** tab.
 
 If necessary, you can stop scan in progress, this will erase all the results.
 
