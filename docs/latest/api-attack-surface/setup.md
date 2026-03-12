@@ -62,7 +62,7 @@ In addition to domains and hosts, AASM supports scanning of IP addresses and net
 ### Adding to scope
 
 1. In Wallarm Console, proceed to **AASM** → **API Attack Surface** → **Configure** → **IP addresses & Network ranges**.
-1. Click **+ Add IP addresses**.
+1. Click **+ Add IPs**.
 1. Paste IP addresses or network ranges separated by comma, semicolon, space or new line.
 
     Supported formats:
@@ -213,7 +213,7 @@ You can start scanning for any domain manually at **AASM** → **API Attack Surf
 
 If necessary, you can stop scan in progress, this will erase all the results.
 
-You can also rescan an individual host from the main **API Attack Surface** page by selecting **Rescan host** from the host menu.
+You can also rescan an individual host or IP address from the main **API Attack Surface** page by selecting **Rescan host** from the host menu.
 
 ## Scanning status
 
