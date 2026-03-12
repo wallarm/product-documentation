@@ -37,7 +37,7 @@ The **Object type** filter and column show what kind of Wallarm resource was aff
 |-------------|---------------|
 | `Client` | Changes to [tenant](../../installation/multi-tenant/overview.md) account settings — name, status, configuration. |
 | `User` | User account changes — role assignments, profile updates, enabling or disabling accounts. See [Managing Users](users.md). |
-| `Login` | User login events — successful and failed sign-in attempts. |
+| `Sign-in` | User sign-in events — successful and failed authentication attempts. |
 | `Subscription` | Changes to your Wallarm [subscription plan](../../about-wallarm/subscription-plans.md) — plan upgrades, renewals, expiration date modifications. |
 | `Application` | Changes to [protected application](applications.md) definitions — adding, renaming, or removing applications. |
 | `Invitation` | Email [invitations](users.md#inviting-users) sent to new users or revoked. |
@@ -52,11 +52,11 @@ The **Object type** filter and column show what kind of Wallarm resource was aff
 | `API spec` | Uploads or updates to [API specifications](../../api-specification-enforcement/overview.md) used for endpoint validation. |
 | `API spec policy` | Changes to [policies](../../api-specification-enforcement/overview.md) that enforce API specification compliance. |
 | `Export config` | Changes to [API Sessions](../../api-sessions/overview.md) export configuration — defines which request and response parameters are exported from the filtering node to the Wallarm Cloud for session analysis. |
-| `Rules migration` | Events related to [copying rules](../../installation/multi-tenant/overview.md#migrating-rules) between tenant accounts. |
-| `Rules settings` | Changes to [traffic processing rules](../rules/rules.md). |
-| `Attack` | [Attack rechecking](../../vulnerability-detection/threat-replay-testing/overview.md) events. |
-| `MFA` | [Two-factor authentication](account.md#enabling-two-factor-authentication) enabled or disabled for a user account. |
-| `Blocklist rule` | Changes to [IP denylist](../../user-guides/ip-lists/overview.md) rules — blocking or unblocking IPs, subnets, or countries. |
+| `Rule migration` | Events related to [copying rules](../../installation/multi-tenant/overview.md#migrating-rules) between tenant accounts. |
+| `Rule settings` | Changes to [traffic processing rules](../rules/rules.md). |
+| `Attack` | Marking detected attacks as [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives). |
+| `2FA` | [Two-factor authentication](account.md#enabling-two-factor-authentication) enabled or disabled for a user account. |
+| `IP list object` | Changes to [IP list](../../user-guides/ip-lists/overview.md) entries — adding or removing IPs, subnets, countries, or other sources in the denylist, graylist, or allowlist. |
 
 ## Action types
 
