@@ -171,6 +171,8 @@ You can start scanning for any domain manually at **AASM** → **API Attack Surf
 
 If necessary, you can stop scan in progress, this will erase all the results.
 
+You can also rescan an individual host from the main **API Attack Surface** page by selecting **Rescan host** from the host menu.
+
 ## Scanning status
 
 A brief information about when your domains were added to the scope and last scanned is presented at **AASM** → **API Attack Surface** → **Configure** → **Domains and hosts**.
@@ -179,7 +181,7 @@ A brief information about when your domains were added to the scope and last sca
 
 Navigate back from configuration dialog to the main **API Attack Surface** screen, here you can see the **Host scanning status** summary, then switch to **Scanning status** tab to see a detailed history of all scans including:
 
-* Which domain was scanned (**Target**).
+* Which domain or host was scanned (**Target**) and the scan type - **Domain scan** or **Single host scan**.
 * How scan was started - manually or automatically (**Start-up option**).
 * General number of hosts and new hosts found during this scan.
 * General number of security issues and new security issues found during this scan.
