@@ -1,6 +1,6 @@
 # API Attack Surface Management  <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
-Wallarm's **API Attack Surface Management** (**AASM**) is an agentless detection solution  tailored to the API ecosystem, designed to discover external hosts with their APIs, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities.
+Wallarm's **API Attack Surface Management** (**AASM**) is an agentless detection solution tailored to the API ecosystem, designed to discover external hosts with their APIs by scanning domains, IP addresses, and network ranges, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities.
 
 API Attack Surface Management includes:
 
@@ -15,7 +15,7 @@ API Attack Surface Management provides multiple automated activities described i
 
 ### Step 1: External API attack surface discovery
 
-* [Discovers](api-surface.md) external hosts and their APIs (including hosting e.g. CDN, IaaS, or PaaS providers).
+* [Discovers](api-surface.md) external hosts and their APIs by scanning domains, IP addresses, and network ranges (including hosting e.g. CDN, IaaS, or PaaS providers).
 * Identifies geolocation and data centers based on IP resolution.
 * Provides insights into potential API protocols that an organization is using (JSON-API, GraphQL, XML-RPC, JSON-RPC, OData, gRPC, WebSocket, SOAP, WebDav, HTML WEB and more).
 * Uncovers private API specifications unintentionally made publicly available.
