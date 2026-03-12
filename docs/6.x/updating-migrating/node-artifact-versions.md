@@ -19,6 +19,10 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.10.3 (2026-03-12)
+
+* Fixed a memory leak in the [API Specification Enforcement](../api-specification-enforcement/overview.md) component that caused steadily increasing memory consumption and eventual OOMKill pod restarts
+
 ### 6.10.2 (2026-03-10)
 
 * Added new traffic metrics to the [`wallarm-status`](../admin-en/configure-statistics-service.md) statistics service: `bytes_blocked_in`, `bytes_blocked_out`, `bytes_blocked_by_acl_in`, and `bytes_blocked_by_acl_out`
@@ -205,6 +209,10 @@ new attack types in logging variables and search bars?
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.10.3 (2026-03-12)
+
+* Fixed a memory leak in the [API Specification Enforcement](../api-specification-enforcement/overview.md) component that caused steadily increasing memory consumption and eventual OOMKill pod restarts
 
 ### 6.10.2 (2026-03-10)
 
@@ -404,6 +412,10 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.10.3 (2026-03-12)
+
+* Fixed a memory leak in the [API Specification Enforcement](../api-specification-enforcement/overview.md) component that caused steadily increasing memory consumption and eventual OOMKill pod restarts
+
 ### 6.10.2 (2026-03-10)
 
 * Added new traffic metrics to the [`wallarm-status`](../admin-en/configure-statistics-service.md) statistics service: `bytes_blocked_in`, `bytes_blocked_out`, `bytes_blocked_by_acl_in`, and `bytes_blocked_by_acl_out`
@@ -586,6 +598,10 @@ new attack types in logging variables and search bars?
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.10.3 (2026-03-12)
+
+* Fixed a memory leak in the [API Specification Enforcement](../api-specification-enforcement/overview.md) component that caused steadily increasing memory consumption and eventual OOMKill pod restarts
 
 ### 6.10.2 (2026-03-10)
 
@@ -773,6 +789,10 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
+### 6.10.3 (2026-03-12)
+
+* Fixed a memory leak in the [API Specification Enforcement](../api-specification-enforcement/overview.md) component that caused steadily increasing memory consumption and eventual OOMKill pod restarts
+
 ### 6.10.2 (2026-03-10)
 
 * Added new traffic metrics to the [`wallarm-status`](../admin-en/configure-statistics-service.md) statistics service: `bytes_blocked_in`, `bytes_blocked_out`, `bytes_blocked_by_acl_in`, and `bytes_blocked_by_acl_out`
@@ -922,6 +942,10 @@ new attack types in logging variables and search bars?
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-10-3-20260312-143020 (2026-03-12)
+
+* Fixed a memory leak in the [API Specification Enforcement](../api-specification-enforcement/overview.md) component that caused steadily increasing memory consumption and eventual OOMKill pod restarts
 
 ### wallarm-node-6-10-2-20260310-115237 (2026-03-10)
 

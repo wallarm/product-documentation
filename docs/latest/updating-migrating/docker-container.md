@@ -31,7 +31,7 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
 ## Step 1: Download the updated filtering node image
 
 ``` bash
-docker pull wallarm/node:6.10.2
+docker pull wallarm/node:6.10.3
 ```
 
 ## Step 2: Stop the running container
