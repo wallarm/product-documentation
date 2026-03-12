@@ -4,7 +4,7 @@
 
 # API Attack Surface Management Setup  <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
-This article describes how to enable and configure [API Attack Surface Management](overview.md) to discover your external hosts with their APIs, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities.
+This article describes how to enable and configure [API Attack Surface Management](overview.md) to discover your external hosts with their APIs by scanning domains and IP addresses, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities.
 
 ## Prerequisites
 
@@ -50,7 +50,47 @@ You can delete domains from the scope. On deletion, all hosts previously detecte
 1. At the **Domains and hosts** tab, select domain(s) with checkboxes and click **Delete**.
 1. As there can be the security issues found for these domains, you need to decide what to do with them. Options are:
 
-    * Keep related security issues 
+    * Keep related security issues
+    * Close related security issues
+    * Mark false related security issues
+    * Delete related security issues
+
+## IP addresses and network ranges
+
+In addition to domains and hosts, AASM supports scanning of IP addresses and network ranges. This is useful when you want to scan infrastructure that is not associated with a domain name, or when you want to target specific IP ranges directly.
+
+### Adding to scope
+
+1. In Wallarm Console, proceed to **AASM** → **API Attack Surface** → **Configure** → **IP addresses & Network ranges**.
+1. Click **+ Add IP addresses**.
+1. Paste IP addresses or network ranges separated by comma, semicolon, space or new line.
+
+    Supported formats:
+
+    * Individual IP addresses (e.g. `8.8.8.8`)
+    * IP ranges (e.g. `8.8.8.8 - 8.8.8.10`)
+    * CIDR notation (e.g. `8.8.8.0/24`), including host addresses within a network (e.g. `8.8.8.1/24` is treated as `8.8.8.0/24`)
+
+    Restrictions:
+
+    * Network ranges larger than `/16` are not allowed.
+    * Internal (non-routable) IP addresses cannot be added, including private (RFC 1918), loopback, link-local, multicast, broadcast, and other reserved ranges.
+
+1. Optionally, enable **Auto rescan** to automatically re-scan the added IPs on a regular basis.
+1. Click **Add to scope**.
+
+Once added, Wallarm will immediately start scanning for data selected in [**Scan configuration**](#scan-configuration). The **IP addresses & Network ranges** tab displays all added entries with the number of discovered hosts, auto rescan status, date added, and a **Scan now** button to trigger a manual rescan.
+
+AASM automatically handles duplicates and overlapping targets. If a security issue has already been detected for a host that resolves to the same IP address, no duplicate issue will be created. Similarly, issues detected by both hostname and IP address are deduplicated.
+
+### Deleting from scope
+
+You can delete IP addresses and network ranges from the scope:
+
+1. At the **IP addresses & Network ranges** tab, select entries with checkboxes and click **Delete**.
+1. As there can be security issues found for these IPs, you need to decide what to do with them. Options are:
+
+    * Keep related security issues
     * Close related security issues
     * Mark false related security issues
     * Delete related security issues
@@ -154,7 +194,7 @@ Note that only security issues detected by AASM itself are affected by host rete
 
 ## Auto rescan
 
-When auto rescan is enabled, previously added domains are automatically re-scanned once every 7 days - new hosts are added automatically, previously listed but not found during re-scan are staying in the list.
+When auto rescan is enabled, previously added domains and IP addresses are automatically re-scanned once every 7 days - new hosts are added automatically, previously listed but not found during re-scan are staying in the list.
 
 To configure auto rescan:
 
@@ -163,11 +203,13 @@ To configure auto rescan:
 
     Note that global option has priority - when disabled, nothing is auto re-scanned. The per-domain options allow excluding some domains from auto rescan.
 
+1. At the **IP addresses & Network ranges** tab, auto rescan can be toggled per entry individually.
+
 ![AASM - configuring auto rescan](../images/api-attack-surface/aasm-auto-rescan.png)
 
 ## Manual rescan
 
-You can start scanning for any domain manually at **AASM** → **API Attack Surface** → **Configure** → **Domains and hosts** by clicking the **Scan now** button.
+You can start scanning for any domain manually at **AASM** → **API Attack Surface** → **Configure** → **Domains and hosts** by clicking the **Scan now** button. Similarly, you can trigger a manual scan for any IP address or network range at the **IP addresses & Network ranges** tab.
 
 If necessary, you can stop scan in progress, this will erase all the results.
 

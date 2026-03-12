@@ -4,7 +4,7 @@
 
 # API Attack Surface Discovery <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
-The **API Attack Surface Discovery** (**AASD**) component of the Wallarm's [API Attack Surface Management](overview.md) scans your selected domains to discover all their external hosts and their APIs, evaluate their protection against Web and API-based attacks, and identify missing WAF/WAAP solutions. It works simply by subscribing in Wallarm - you do not need to deploy anything. This article gives an overview of the component.
+The **API Attack Surface Discovery** (**AASD**) component of the Wallarm's [API Attack Surface Management](overview.md) scans your selected domains, IP addresses, and network ranges to discover all their external hosts and their APIs, evaluate their protection against Web and API-based attacks, and identify missing WAF/WAAP solutions. It works simply by subscribing in Wallarm - you do not need to deploy anything. This article gives an overview of the component.
 
 ![API Attack Surface Discovery](../images/api-attack-surface/aasm-api-surface.png)
 
@@ -16,7 +16,7 @@ Knowing the full list of your organization's external APIs is the first step in 
 
 The **API Attack Surface Discovery** Wallarm component helps to solve these issues by providing the following:
 
-* Automatic detection of external hosts for your [selected domains](setup.md).
+* Automatic detection of external hosts for your [selected domains, IP addresses, and network ranges](setup.md).
 * Automatic detection of found hosts' open ports.
 * Automatic detection of found hosts' APIs.
 
