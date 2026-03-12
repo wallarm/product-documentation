@@ -85,9 +85,9 @@ Wallarm compares the current version with the previous one and marks endpoints t
 * **Coverage:** Rogue API detection runs only for the **hosts and applications** you selected when enabling the feature for each specification. For example: one host with 5 specs describing 50 endpoints, while API Discovery sees 100 endpoints on that host — the 50 endpoints not covered by any spec will be classified as **shadow**. Endpoints on hosts/applications that have no specs with rogue API detection enabled are not classified as shadow or zombie.
 * **Specs produced by API Discovery:** You can use specifications [downloaded from API Discovery](exploring.md) for rogue API detection, but use them with care. API Discovery does not process 100% of traffic, so such a spec may be incomplete (e.g. rarely used parameters or endpoints may be missing). A clear in-product flow for “use APID-generated spec for rogue detection” is planned for a later release; for now, manually maintained or externally authored specs are better for testing and production.
 
-## Notifications
+<!-- ## Notifications
 
-Trigger-based notifications for **Rogue API detected** in the **Triggers** section were built for the previous API Discovery. They are **not compatible** with the current (new) API Discovery. Support for notifications in the new API Discovery is planned; until then, use the **Rogue APIs** filter in API Discovery to review newly found shadow and zombie endpoints.
+Trigger-based notifications for **Rogue API detected** in the **Triggers** section were built for the previous API Discovery. They are **not compatible** with the current (new) API Discovery. Support for notifications in the new API Discovery is planned; until then, use the **Rogue APIs** filter in API Discovery to review newly found shadow and zombie endpoints. -->
 
 ## Rogue API types and risks
 
