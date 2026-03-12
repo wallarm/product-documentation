@@ -83,8 +83,6 @@ In addition to domains and hosts, AASM supports scanning of IP addresses and net
 
 Once added, Wallarm will immediately start scanning for data selected in [**Scan configuration**](#scan-configuration). The **IP addresses & Network ranges** tab displays all added entries with the number of discovered hosts, auto rescan status, date added, and a **Scan now** button to trigger a manual rescan.
 
-AASM automatically handles duplicates and overlapping targets. If a security issue has already been detected for a host that resolves to the same IP address, no duplicate issue will be created. Similarly, issues detected by both hostname and IP address are deduplicated.
-
 ### Deleting from scope
 
 You can delete IP addresses and network ranges from the scope:
