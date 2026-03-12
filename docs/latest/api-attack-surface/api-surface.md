@@ -90,17 +90,19 @@ The total score is calculated using a complex proprietary formula that incorpora
 
 ## API attack surface reports
 
-You can download locally or immediately send to the emails of your choice a detailed DOCX report on external hosts and their APIs discovered for your domains. This report will also include information of your choice on the [security issues](security-issues.md) detected for these APIs.
+You can download or send via email the following reports on the discovered hosts and APIs:
 
-Besides, you can get information about your API surface in a table view (CSV), organized by:
+* **DOCX** - a detailed report that can also include information of your choice on the [security issues](security-issues.md) detected for these APIs.
+* **CSV** - a table view organized by:
 
-* Hosts (one row for one host)
-* Ports (one row for one port)
-* APIs (one row for one API)
+    * Hosts (one row for one host)
+    * Ports (one row for one port)
+    * APIs (one row for one API)
+
+* **JSON** - information about API surface in a machine readable format.
+* **PDF** - a detailed report on the discovered hosts and APIs.
 
 ![API surface - reports](../images/api-attack-surface/aasm-reports.png)
-
-One more option - JSON report with information about API surface in a machine readable format.
 
 You can also get a [separate report](../user-guides/vulnerabilities.md#security-issue-reports) on the security issues.
 
