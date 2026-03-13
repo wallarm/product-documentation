@@ -22,5 +22,6 @@
 [wstore-metrics-mount]:             ../../../admin-en/wstore-metrics.md
 [link-docs-check-operation]:        ../../../admin-en/uat-checklist-en.md
 [wcli-metrics]:                     ../../../admin-en/wcli-metrics.md
+[ssl-certificates]:                 ../../../admin-en/ssl-certificates.md
 
 --8<-- "latest/installation/cloud-platforms/gcp/docker-container.md"
