@@ -5,7 +5,7 @@
 * Any AWS region of your choice, there are no specific restrictions on the region for the Wallarm node deployment
 
     Wallarm supports both single availability zone (AZ) and multi availability zone deployments. In multi-AZ setups, Wallarm Nodes can be launched in separate availability zones and placed behind a Load Balancer for high availability.
-* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
+* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/), or [ME Cloud](https://me1.my.wallarm.com/)
 * Executing all commands on a Wallarm instance as a superuser (e.g. `root`)
 * No system user named `wallarm` exists 
 
@@ -47,13 +47,13 @@ Generate a token as follows:
 
 === "API token"
 
-    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens), or [ME Cloud](https://me1.my.wallarm.com/settings/api-tokens).
     1. Find or create API token with the `Node deployment/Deployment` usage type.
     1. Copy this token.
 === "Node token"
 
-    1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
-    1. Do one of the following:
+    1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes), or [ME Cloud](https://me1.my.wallarm.com/nodes).
+    1. Do one of the following: 
         * Create the node of the **Wallarm node** type and copy the generated token.
         * Use existing node group - copy token using node's menu → **Copy token**.
 

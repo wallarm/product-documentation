@@ -29,7 +29,7 @@ Also, you can download the previously uploaded specification via **API Specifica
 
 ### Step 1: Upload specification
 
-1. In the **API Specifications** section in [US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/), click **Upload specification**.
+1. In the **API Specifications** section in [US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/), or [ME Cloud](https://me1.my.wallarm.com/api-specifications/), click **Upload specification**.
 1. Set specification upload parameters and start uploading.
 
     ![Upload specification](../images/api-specification-enforcement/specificaton-upload.png)
@@ -110,7 +110,7 @@ In this example, if API Discovery finds new endpoints that are not listed in the
 
 **To test the trigger:**
 
-1. Go to Wallarm Console → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/) cloud, and configure [integration with Slack](../user-guides/settings/integrations/slack.md).
+1. Go to Wallarm Console → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/), or [ME](https://me1.my.wallarm.com/integrations/) cloud, and configure [integration with Slack](../user-guides/settings/integrations/slack.md).
 1. In the **API Discovery** section, filter endpoints by API host of your choice, then download results as a specification and name it `Specification-01`.
 1. In the **API Specifications** section, upload `Specification-01` for comparison.
 1. In the **Triggers** section, create a trigger as shown above.

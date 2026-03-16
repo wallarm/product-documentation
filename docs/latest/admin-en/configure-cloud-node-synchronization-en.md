@@ -24,7 +24,7 @@ The `node.yaml` file may contain the following access parameters:
 | `api.regtoken`       | Token for node to be able to access the Wallarm API. | Provided by `register-node` |
 | `api.uuid`           | Filtering node UUID. This variable is **required** to be set in the `node.yaml` file. | Provided by `regtoken` |
 | `api.secret`         | Secret key to access the Wallarm API. This variable is **required** to be set in the `node.yaml` file. | Provided by `regtoken` |
-| `api.host`       | Wallarm API endpoint. Can be:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul> | `api.wallarm.com` |
+| `api.host`       | Wallarm API endpoint. Can be:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li><li>`me1.api.wallarm.com` for the ME Cloud</li></ul> | `api.wallarm.com` |
 | `api.port`       | Wallarm API port. | `443` |
 | `api.use_ssl`  | Whether to use SSL when connecting to Wallarm API. | `true` |
 | `api.ca_verify`  | Whether to enable/disable Wallarm API server certificate verification. Can be:<ul><li>`true` to enable verification</li><li>`false` to disable verification</li></ul>. | `true` |

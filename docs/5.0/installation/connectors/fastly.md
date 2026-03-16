@@ -373,7 +373,7 @@ To test the functionality of the deployed solution, follow these steps:
     ```
     curl http://<WALLARM_FASTLY_SERVICE>/etc/passwd
     ```
-1. Open Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks) and make sure the attack is displayed in the list.
+1. Open Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks), or [ME Cloud](https://me1.my.wallarm.com/attacks) and make sure the attack is displayed in the list.
     
     ![Attacks in the interface][attacks-in-ui-image]
 

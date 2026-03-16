@@ -13,7 +13,7 @@ You can set up Wallarm to send notifications of detected events to Datadog throu
 
 * The Fluentd or Logstash service available on the public URL
 * The Datadog service available on the public URL
-* Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the Fluentd/Logstash integration](#setting-up-integration-with-fluentd-or-logstash)
+* Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com), or [ME cloud](https://me1.my.wallarm.com) to [configure the Fluentd/Logstash integration](#setting-up-integration-with-fluentd-or-logstash)
 
 --8<-- "../include/cloud-ip-by-request.md"
 

@@ -14,7 +14,7 @@
 
 Rules are used to fine-tune the [default](../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection) Wallarm behavior during the analysis of requests and their further processing. Thus, using rules you can change how the system detects malicious requests and acts when such malicious requests are detected.
 
-Rules are configured in the **Rules** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules) Cloud.
+Rules are configured in the **Rules** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules), or [ME](https://me1.my.wallarm.com/rules) Cloud.
 
 ![Rules section](../../images/user-guides/rules/section-rules.png)
 
@@ -90,7 +90,7 @@ Here are some details of how to work with the rule branches:
 
 ## Configuring
 
-To add a new rule, go to the **Rules** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules) Cloud. Rules can be added to both existing [branches](#rule-branches) and from scratch which will create a new branch if one does not exist.
+To add a new rule, go to the **Rules** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules), or [ME](https://me1.my.wallarm.com/rules) Cloud. Rules can be added to both existing [branches](#rule-branches) and from scratch which will create a new branch if one does not exist.
 
 ![Adding a new rule][img-add-rule]
 

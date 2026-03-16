@@ -24,6 +24,10 @@ Run the `cloud-init.py` script on the instance created from the cloud image as f
     ``` bash
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring --proxy-pass <PROXY_ADDRESS>
     ```
+=== "ME Cloud"
+    ``` bash
+    sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring --proxy-pass <PROXY_ADDRESS> -H me1.api.wallarm.com
+    ```
 
 * `WALLARM_LABELS='group=<GROUP>'` sets a node group name (existing, or, if does not exist, it will be created). It is only applied if using an API token.
 * `<TOKEN>` is the copied value of the token.

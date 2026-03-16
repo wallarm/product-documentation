@@ -41,7 +41,7 @@ All configurable parameters are listed in the table below:
 | Parameter             | Value     | Required? |
 |--------------------	| --------	| -----------	|
 | `WALLARM_API_TOKEN`  	| A token from the Wallarm cloud. | Yes |
-| `WALLARM_API_HOST`   	| Address of the Wallarm API server. <br>Allowed values: <br>`us1.api.wallarm.com` for the server in the Wallarm US cloud and <br>`api.wallarm.com` for the server in the Wallarm EU cloud. | Yes |
+| `WALLARM_API_HOST`   	| Address of the Wallarm API server. <br>Allowed values: <br>`us1.api.wallarm.com` for the server in the Wallarm US cloud and <br>`api.wallarm.com` for the server in the Wallarm EU cloud and <br>`me1.api.wallarm.com` for the ME cloud. | Yes |
 | `ALLOWED_HOSTS`       | A list of a target application's hosts. The incoming requests that are targeted to these hosts will be written to a test record.<br>All incoming requests are recorded by default.<br>See more details [here][anchor-allowed-hosts].| No |
 | `WALLARM_API_USE_SSL` | Defines whether or not to use SSL when connecting to one of the Wallarm API servers.<br>Allowed values: `true` and `false`.<br>Default value: `true`. | No |
 | `WORKERS`             | The number of threads that process baseline requests and do security testing.<br>Default value: `10`. | No |

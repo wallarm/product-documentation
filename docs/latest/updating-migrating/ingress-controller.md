@@ -208,7 +208,17 @@ Before starting the migration, gather the following information from your existi
               token: "<NODE_TOKEN>"
               # nodeGroup: defaultIngressGroup
         ```
-
+    === "ME Cloud"
+        ```yaml
+        config:
+          wallarm:
+            enabled: true
+            api:
+              host: "me1.api.wallarm.com" 
+              token: "<NODE_TOKEN>"
+              # nodeGroup: defaultIngressGroup
+        ```
+    
     `<NODE_TOKEN>` is the [API token](../user-guides/settings/api-tokens.md) generated for Wallarm Node deployment. You can reuse the existing API token with the `Node deployment/Deployment` usage type from your current NGINX Ingress Controller deployment or generate a new one.
 
 1. Verify the Ingress Controller deployment in Kubernetes:

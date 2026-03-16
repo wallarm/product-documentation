@@ -88,11 +88,13 @@ The Wallarm Cloud does the following:
 * Builds API structure based on the traffic metrics received from the filtering node.
 * Houses the Wallarm Console UI, your command center for navigating and configuring the Wallarm platform, ensuring you have a comprehensive view of all security insights.
 
-Wallarm offers cloud instances in both the US and Europe, enabling you to select the best fit considering your data storage preferences and regional service operation requirements.
+Wallarm offers cloud instances in the US, Europe, and the Middle East, enabling you to select the best fit considering your data storage preferences and regional service operation requirements.
 
 [Proceed to signup on the US Wallarm Cloud](https://us1.my.wallarm.com/signup)
 
 [Proceed to signup on the EU Wallarm Cloud](https://my.wallarm.com/signup)
+
+[Proceed to signup on the ME Wallarm Cloud](https://me1.my.wallarm.com/signup)
 
 ## Where Wallarm works
 

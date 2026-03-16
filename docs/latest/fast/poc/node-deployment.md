@@ -45,7 +45,7 @@ Running and configuration of FAST node comprises the following steps:
 ##  Deployment of the Docker Container with the FAST Node
 
 !!! warning "Grant Access to Wallarm API Servers"
-    It is crucial for the proper operation for the FAST node to have access to the `us1.api.wallarm.com` or `api.wallarm.com` Wallarm API servers via the HTTPS protocol (`TCP/443`).
+    It is crucial for the proper operation for the FAST node to have access to the `us1.api.wallarm.com` or `api.wallarm.com` or `me1.api.wallarm.com` Wallarm API servers via the HTTPS protocol (`TCP/443`).
     
     Make sure that your firewall does not restrict the Docker host from accessing the Wallarm API servers.
 

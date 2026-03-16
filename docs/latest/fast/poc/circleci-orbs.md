@@ -55,7 +55,7 @@ To configure security testing, add the separate step `fast/run_security_tests` t
 | test_run_name | The name of the test run.<br>By default, the value will be automatically generated from the date of the test run creation. | No |
 | test_run_desc | The description of the test run. | No |
 | test_run_rps | A limit on the number of test requests (*RPS*, *requests per second*) to be sent to the target application.<br>Minimum value: `1`.<br>Maximum value: `1000`.<br>Default value: `null` (RPS is unlimited). | No |
-| wallarm_api_host | Address of the Wallarm API server. <br>Allowed values: <br>`us1.api.wallarm.com` for the server in the Wallarm US cloud and <br>`api.wallarm.com` for the server in the Wallarm EU cloud<br>Default value is `us1.api.wallarm.com`. | No|
+| wallarm_api_host | Address of the Wallarm API server. <br>Allowed values: <br>`us1.api.wallarm.com` for the server in the Wallarm US cloud and <br>`api.wallarm.com` for the server in the Wallarm EU cloud and <br>`me1.api.wallarm.com` for the ME cloud.<br>Default value is `us1.api.wallarm.com`. | No|
 | wallarm_fast_port | The port of the FAST node.<br>Default value is 8080. | No |
 | wallarm_version | The version of the used Wallarm FAST Orbs.<br>The versions list is available by clicking the [link][circleci-fast-plugin].<br>Default value is latest.| No|
 

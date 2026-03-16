@@ -48,7 +48,7 @@ Before deploying the connector, make sure that:
 * You have a Kubernetes cluster with Istio installed
 * Envoy v1.30.0+ is used
 * Applications are deployed and reachable through an Istio Gateway and VirtualService
-* Access to the **Administrator** account in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
+* Access to the **Administrator** account in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/), or [ME Cloud](https://me1.my.wallarm.com/)
 * A Wallarm Native Node v0.13.0+ is used
 * A trusted TLS certificate and private key are available for the domain used by the Node
 
@@ -405,7 +405,7 @@ To test the functionality of the deployed filter, follow these steps:
     ```
     curl https://<YOUR_APP_DOMAIN>/etc/passwd
     ```
-1. Open Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks) and make sure the attack is displayed in the list.
+1. Open Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks), or [ME Cloud](https://me1.my.wallarm.com/attacks) and make sure the attack is displayed in the list.
 
     ![Attacks in the interface][attacks-in-ui-image]
 

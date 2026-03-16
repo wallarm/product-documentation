@@ -357,6 +357,16 @@ Minimal steps:
           token: "<NODE_TOKEN>"
           # nodeGroup: defaultIngressGroup
     ```
+=== "ME Cloud"
+    ```yaml
+    config:
+      wallarm:
+        enabled: true
+        api:
+          host: "me1.api.wallarm.com"
+          token: "<NODE_TOKEN>"
+          # nodeGroup: defaultIngressGroup
+    ```
 
 ```bash
 helm install --version 7.0.0 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>

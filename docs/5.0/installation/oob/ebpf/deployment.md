@@ -65,7 +65,7 @@ To ensure the solution functions correctly in environments with restricted outbo
 
 * `https://charts.wallarm.com` to add the Wallarm Helm charts.
 * `https://hub.docker.com/r/wallarm` to retrieve Wallarm Docker images from Docker Hub.
-* For users working with the US Wallarm Cloud, access `https://us1.api.wallarm.com`. For those using the EU Wallarm Cloud, access `https://api.wallarm.com`.
+* For users working with the US Wallarm Cloud, access `https://us1.api.wallarm.com`. For those using the EU Wallarm Cloud, access `https://api.wallarm.com`. For those using the ME Wallarm Cloud, access `https://me1.api.wallarm.com`.
 * IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and [API specifications](../../../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../../../user-guides/ip-lists/overview.md) countries, regions, or data centers.
 
     --8<-- "../include/wallarm-cloud-ips.md"
@@ -114,7 +114,14 @@ To deploy the Wallarm eBPF solution:
           api:
             token: "<NODE_TOKEN>"
         ```
-    
+    === "ME Cloud"
+        ```yaml
+        config:
+          api:
+            token: "<NODE_TOKEN>"
+            host: "me1.api.wallarm.com"
+        ```
+
     `<NODE_TOKEN>` is the token of the Wallarm node to be run in Kubernetes.
 
     --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.md"

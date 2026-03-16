@@ -102,6 +102,10 @@ Alternatively, you can pass the token directly on the command line. This approac
     ``` bash
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring --proxy-pass <PROXY_ADDRESS>
     ```
+=== "ME Cloud"
+    ``` bash
+    sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring --proxy-pass <PROXY_ADDRESS> -H me1.api.wallarm.com
+    ```
 
 ### 6. Configure sending traffic to the Wallarm instance
 
