@@ -1,5 +1,6 @@
 [file-ips-list-us]: ../downloads/scanner-ip-addresses-us.txt
 [file-ips-list-eu]: ../downloads/scanner-ip-addresses-eu.txt
+[file-ips-list-me]: ../downloads/scanner-ip-addresses-me.txt
 
 # Vulnerability Scanning IPs <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
@@ -29,4 +30,8 @@ The IP addresses from which Wallarm scans your assets in the [EU Cloud](https://
 
 The IP addresses from which Wallarm scans your assets in the [ME Cloud](https://me1.my.wallarm.com):
 
-*TBD*
+* 34.166.130.155
+* 34.166.169.250
+
+!!! info "Download the list of IP addresses"
+    [Download the plain text file containing list of Wallarm's asset scanning IPs for ME Cloud][file-ips-list-me]
