@@ -29,4 +29,4 @@ The IP addresses from which Wallarm scans your assets in the [EU Cloud](https://
 
 The IP addresses from which Wallarm scans your assets in the [ME Cloud](https://me1.my.wallarm.com):
 
-*ME Cloud scanner IP addresses will be published here once available.*
+*TBD*
