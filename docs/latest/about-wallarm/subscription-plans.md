@@ -97,9 +97,12 @@ To activate the subscription plan, do one of the following:
 
 The **Rogue MCP** subscription plan provides access to the extended functions of Wallarm's MCP server, including [API Security Testing via Postman](../vulnerability-detection/api-security-testing-via-postman/overview.md).
 
+!!! info "Free features"
+    [Rogue MCP Inspection](../agentic-ai/rogue-mcp-inspection.md) — auditing local MCP servers for supply-chain risks and excessive privileges — is always free and does not require a subscription or API key.
+
 To activate this subscription:
 
-* **New users**: go to [roguemcp.wallarm.com](https://roguemcp.wallarm.com/) to create a Wallarm account and obtain the subscription.
+* **New users**: register and subscribe at [roguemcp.wallarm.com](https://roguemcp.wallarm.com/).
 * **Existing users**: contact [Wallarm Support](https://support.wallarm.com) to get the subscription added to your account.
 
 ## Security Edge (Paid Plan)
