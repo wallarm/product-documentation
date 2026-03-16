@@ -4,9 +4,9 @@ Wallarm allows you to audit every installed local MCP server to expose supply-ch
 
 ## Access via Postman
 
-You can access Rogue MCP Inspection via **Rogue Security Testing** (Wallarm's MCP server), which is easily accessible via Postman. Scenario:
+You can access Rogue MCP Inspection via **Rogue MCP Server Detection** (Wallarm's MCP server), which is easily accessible via Postman. Scenario:
 
-1. In Postman, you add the **Rogue Security Testing** server to your Workspace.
+1. In Postman, you add the **Rogue MCP Server Detection** server to your Workspace.
 1. With Postman's AI Agent, you just ask to inspect your local machine for the rogue MCP.
 1. Agent spends 2 minutes learning your PC and responds with the report covering:
 
@@ -32,13 +32,13 @@ This feature is free.
 1. In AI Agent panel, click **Configure** ("gear"), and select **Configure MCP servers**.
 1. In displayed **MCP Servers** tab, click **Add** ("plus") and do one of the following:
 
-    * Select **Rogue Security Testing** from the list of the featured MCP servers
+    * Select **Rogue MCP Server Detection** from the list of the featured MCP servers
     * Or just click Edit config and save the following to it:
 
         ```json
         {
             "mcpServers": {
-                "Rogue Security Testing": {
+                "Rogue MCP Server Detection": {
                     "command": "npx",
                     "args": [
                         "-y",
@@ -52,8 +52,8 @@ This feature is free.
         }
         ```
 
-    !!! info "WALLARM_API_TOKEN"
-        `WALLARM_API_TOKEN` is not required for the Rogue MCP Inspection but is needed for using the [other tools](#other-tools) of Wallarm's MCP server.
+    !!! info "No API key required for MCP inspection"
+        Rogue MCP Inspection is free and does not require a `WALLARM_API_TOKEN`. The token is only needed for [API Security Testing via Postman](../vulnerability-detection/api-security-testing-via-postman/overview.md), which requires a paid [subscription](../about-wallarm/subscription-plans.md#rogue-mcp).
 
 ### 2. Ask to inspect for rogue MCP
 
@@ -65,4 +65,4 @@ Postman's AI Agent will give you an answer with the test results and suggested m
 
 ## Other tools
 
-Besides Rogue MCP Inspection, **Rogue Security Testing** provides other tools for security testing, such as [API Security Testing via Postman](../vulnerability-detection/api-security-testing-via-postman/overview.md)—safe, passive testing of Postman collections for auth gaps, data leaks, and design-level issues.
+Besides Rogue MCP Inspection, **Rogue MCP Server Detection** provides other tools for security testing, such as [API Security Testing via Postman](../vulnerability-detection/api-security-testing-via-postman/overview.md)—safe, passive testing of Postman collections for auth gaps, data leaks, and design-level issues.
