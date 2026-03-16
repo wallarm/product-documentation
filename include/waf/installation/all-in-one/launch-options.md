@@ -60,13 +60,13 @@ Below are examples of commands to run the script in batch mode for node installa
     If using the x86_64 version:
 
     ```bash
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.2.x86_64-glibc.sh -- --batch -t <TOKEN> -c ME
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.3.x86_64-glibc.sh -- --batch -t <TOKEN> -c ME
     ```
 
     If using the ARM64 version:
 
     ```bash
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.2.aarch64-glibc.sh -- --batch -t <TOKEN> -c ME
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.3.aarch64-glibc.sh -- --batch -t <TOKEN> -c ME
     ```
 
 ### Separate execution of node installation stages
@@ -114,16 +114,16 @@ This functionality is supported starting from version 4.10.0 of the all-in-one i
     If using the x86_64 version:
 
     ```bash
-    curl -O https://meganode.wallarm.com/6.10/wallarm-6.10.2.x86_64-glibc.sh
-    sudo sh wallarm-6.10.2.x86_64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/6.10/wallarm-6.10.3.x86_64-glibc.sh
+    sudo sh wallarm-6.10.3.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c ME
     ```
 
     If using the ARM64 version:
 
     ```bash
-    curl -O https://meganode.wallarm.com/6.10/wallarm-6.10.2.aarch64-glibc.sh
-    sudo sh wallarm-6.10.2.aarch64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/6.10/wallarm-6.10.3.aarch64-glibc.sh
+    sudo sh wallarm-6.10.3.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c ME
     ```
 Finally, to complete the installation, you need to [enable Wallarm to analyze traffic][enable-traffic-analysis-step] and [restart NGINX][restart-nginx-step].
