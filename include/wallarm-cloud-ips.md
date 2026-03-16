@@ -15,7 +15,6 @@
     ```
 === "ME Cloud"
     ```
-    node-data0.me1.wallarm.com - TBD
-    node-data1.me1.wallarm.com - TBD
-    me1.api.wallarm.com - TBD
+    node-data0.me1.wallarm.com - 34.54.49.85
+    me1.api.wallarm.com - 34.166.82.208
     ```
