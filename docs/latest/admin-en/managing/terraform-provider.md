@@ -21,7 +21,7 @@ If you use [Terraform](https://www.terraform.io/) to manage your infrastructures
       required_providers {
         wallarm = {
           source = "wallarm/wallarm"
-          version = "1.5.0"
+          version = "2.0.0"
         }
       }
     }
@@ -73,7 +73,9 @@ With the Wallarm provider, via Terraform you can manage:
 * [Users](../../user-guides/settings/users.md)
 * [Integrations](../../user-guides/settings/integrations/integrations-intro.md)
 * Global [filtration mode](../../admin-en/configure-wallarm-mode.md)
-* [Vulnerabilities](../../user-guides/vulnerabilities.md)
+* [Security issues](../../user-guides/vulnerabilities.md)
+* [Tenants](../../installation/multi-tenant/overview.md)
+* [API specifications](../../api-specification-enforcement/overview.md)
 
 !!! info "Wallarm Terraform provider and Edge nodes"
     Currently, Edge [inline](../../installation/security-edge/inline/overview.md) and [connector](../../installation/security-edge/se-connector.md) nodes cannot be managed via the Wallarm Terraform provider.
@@ -91,7 +93,7 @@ provider "wallarm" {
 }
 
 resource "wallarm_global_mode" "global_block" {
-  waf_mode = "default"
+  filtration_mode = "default"
 }
 
 resource "wallarm_application" "tf_app" {
@@ -122,7 +124,7 @@ Save the configuration file, then perform `terraform apply`.
 The configuration does the following:
 
 * Connects to the US Cloud → company account with the provided Wallarm API token.
-* `resource "wallarm_global_mode" "global_block"` → sets global filtration mode to `Local settings (default)` which means the filtration mode is controlled locally on each node.
+* `resource "wallarm_global_mode" "global_block"` → sets global filtration mode to `Local settings (default)` using the `filtration_mode` attribute, which means the filtration mode is controlled locally on each node.
 * `resource "wallarm_application" "tf_app"` → creates application named `Terraform Application 001` with ID `42`.
 * `resource "wallarm_rule_mode" "tiredful_api_mode"` → creates rule that sets traffic filtration mode to `Monitoring` for all the requests sent via HTTPS protocol to the application with ID `42`.
 
