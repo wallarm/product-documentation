@@ -39,7 +39,7 @@ To proceed with the deployment, ensure that the following requirements are met:
 * An IBM API Connect environment up and running (either local or cloud-managed).
 * A published API in IBM API Connect.
 * IBM API Toolkit installed for command-line interaction (`apic` or `apic-slim`).
-* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
+* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/), or [ME Cloud](https://me1.my.wallarm.com/).
 * Wallarm Node of version 0.13.3 or later in the 0.13.x series, or version 0.14.1 or later.
 
 ## Deployment
@@ -258,7 +258,7 @@ To test the functionality of the deployed policies, follow these steps:
 
     According to IBM API Connect behavior, only requests matching the defined OpenAPI paths will be inspected by the Wallarm Node.
 
-1. Open Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks) and make sure the attack is displayed in the list.
+1. Open Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks), or [ME Cloud](https://me1.my.wallarm.com/attacks) and make sure the attack is displayed in the list.
     
     ![Attacks in the interface][attacks-in-ui-image]
 

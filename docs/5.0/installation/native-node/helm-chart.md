@@ -37,7 +37,7 @@ The Kubernetes cluster for deploying the Native Node with the Helm chart must me
 
     * `https://charts.wallarm.com` to download the Wallarm Helm chart
     * `https://hub.docker.com/r/wallarm` to download the Docker images required for the deployment
-    * `https://us1.api.wallarm.com` or `https://api.wallarm.com` for US/EU Wallarm Cloud
+    * `https://us1.api.wallarm.com` or `https://api.wallarm.com` or `https://me1.api.wallarm.com` for US/EU/ME Wallarm Cloud
     * IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and [API specifications][api-spec-enforcement-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][ip-list-docs] countries, regions, or data centers
 
         --8<-- "../include/wallarm-cloud-ips.md"
@@ -57,7 +57,7 @@ The Kubernetes cluster for deploying the Native Node with the Helm chart must me
 
 To install node, you will need a token for registering the node in the Wallarm Cloud. To prepare a token:
 
-1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens), or [ME Cloud](https://me1.my.wallarm.com/settings/api-tokens).
 1. Find or create API token with the `Node deployment/Deployment` usage type.
 1. Copy this token.
 
@@ -216,6 +216,10 @@ helm repo update wallarm
 === "EU Cloud"
     ```
     helm upgrade --install --version 0.13.7 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com
+    ```
+=== "ME Cloud"
+    ```
+    helm upgrade --install --version 0.13.7 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=me1.api.wallarm.com
     ```
 
 ### 5. Get the Wallarm load balancer

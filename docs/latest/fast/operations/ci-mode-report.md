@@ -26,7 +26,7 @@ To run FAST node in report mode, perform the following steps when [deploying the
 | Variable           	| Description 	| Required 	|
 |--------------------	| --------	| -----------	|
 | `WALLARM_API_TOKEN`  	| A [token][doc-get-token] from the Wallarm cloud. | Yes |
-| `WALLARM_API_HOST`   	| The address of the Wallarm API server. <br>Allowed values: <br>`us1.api.wallarm.com` for the server in the Wallarm US cloud and <br>`api.wallarm.com` for the server in the Wallarm EU cloud.| Yes |
+| `WALLARM_API_HOST`   	| The address of the Wallarm API server. <br>Allowed values: <br>`us1.api.wallarm.com` for the server in the Wallarm US cloud and <br>`api.wallarm.com` for the server in the Wallarm EU cloud and <br>`me1.api.wallarm.com` for the ME cloud.| Yes |
 | `CI_MODE`            	| The FAST node's operation mode.<br>Must be `report`. | Yes |
 | `TEST_RUN_ID`      	| The test run ID needed to get the report.<br>The ID is displayed on your Wallarm account > **Test runs** and in logs of running the FAST node in testing mode.<br>By default, ID of the last test run is used. | No |
 

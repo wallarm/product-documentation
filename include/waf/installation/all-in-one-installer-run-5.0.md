@@ -28,5 +28,5 @@
         sudo sh wallarm-5.3.19.aarch64-glibc.sh
         ```
 
-1. Select [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
+1. Select [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/), or [ME Cloud](https://me1.my.wallarm.com/).
 1. Enter Wallarm token.

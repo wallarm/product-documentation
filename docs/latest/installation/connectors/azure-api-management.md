@@ -60,7 +60,7 @@ Before deployment, ensure the following prerequisites are met:
 
     * **API Management Workspace Contributor** - for managing policy fragments within a workspace.
     * **API Management Service Contributor** - for global configuration across the entire APIM instance.
-* Access to the **Administrator** account in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
+* Access to the **Administrator** account in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/), or [ME Cloud](https://me1.my.wallarm.com/).
 * Native Node [version 0.18.0 or higher](../../updating-migrating/native-node/node-artifact-versions.md).
 * A valid **trusted** SSL/TLS certificate for the Wallarm Node domain (self-signed certificates are not supported).
 

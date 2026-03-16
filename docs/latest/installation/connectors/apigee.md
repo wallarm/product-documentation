@@ -56,7 +56,7 @@ Before deployment, ensure the following prerequisites are met:
 * Apigee [environment is of type **Intermediate** or higher](https://cloud.google.com/apigee/docs/api-platform/reference/pay-as-you-go-environment-types).
 * A user with the **Environment Admin** or **Org Admin** [role in Apigee](https://cloud.google.com/apigee/docs/api-platform/system-administration/apigee-roles).
 * [Google Cloud SDK (gcloud CLI) installed and configured](https://cloud.google.com/sdk/docs/quickstart) (if managing Apigee from CLI).
-* Access to the **Administrator** account in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
+* Access to the **Administrator** account in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/), or [ME Cloud](https://me1.my.wallarm.com/).
 * Native Node [version 0.18.0 or higher](../../updating-migrating/native-node/node-artifact-versions.md).
 * A valid **trusted** SSL/TLS certificate for the Wallarm Node domain (self-signed certificates are not supported).
 

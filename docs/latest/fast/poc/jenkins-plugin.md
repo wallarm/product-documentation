@@ -63,7 +63,7 @@ To add the step of request recording, select the `Record baselines` mode on the 
     | Variable              | Value  | Required   |
     |--------------------   | --------  | -----------  |
     | `Wallarm API token`     | A token from the Wallarm cloud. | Yes |
-    | `Wallarm API host`      | The address of the Wallarm API server. <br>Allowed values: <br>`us1.api.wallarm.com` for the server in the Wallarm US cloud and <br>`api.wallarm.com` for the server in the Wallarm EU cloud.<br>Default value is `us1.api.wallarm.com`. | No |
+    | `Wallarm API host`      | The address of the Wallarm API server. <br>Allowed values: <br>`us1.api.wallarm.com` for the server in the Wallarm US cloud and <br>`api.wallarm.com` for the server in the Wallarm EU cloud and <br>`me1.api.wallarm.com` for the ME cloud.<br>Default value is `us1.api.wallarm.com`. | No |
     | `Application host`      | The address of the test application. The value can be an IP address or a domain name. | Yes |
     | `Application port`      | The port of the test application. Default value is 8080. | No |
     | `Fast port`   | The port of FAST node. | Yes |
@@ -96,7 +96,7 @@ Please note that the application must be already started and available for testi
     | Variable              | Value  | Required   |
     |--------------------   | --------  | -----------  |
     | `Wallarm API token`     | A token from the Wallarm cloud. | Yes |
-    | `Wallarm API host`    | The address of the Wallarm API server. <br>Allowed values: <br>`us1.api.wallarm.com` for the server in the Wallarm US cloud and <br>`api.wallarm.com` for the server in the Wallarm EU cloud<br>Default value is `us1.api.wallarm.com`. | No |
+    | `Wallarm API host`    | The address of the Wallarm API server. <br>Allowed values: <br>`us1.api.wallarm.com` for the server in the Wallarm US cloud and <br>`api.wallarm.com` for the server in the Wallarm EU cloud and <br>`me1.api.wallarm.com` for the ME cloud.<br>Default value is `us1.api.wallarm.com`. | No |
     | `Application host`      | The address of the test application. The value can be an IP address or a domain name. | Yes |
     | `Application port`      | The port of the test application. Default value is 8080. | No |
     | `Policy id`   | [Test policy](../operations/test-policy/overview.md) ID.<br> Default value is `0`-`Default Test Policy`. | No |

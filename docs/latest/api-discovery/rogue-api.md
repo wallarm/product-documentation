@@ -27,7 +27,7 @@ Because the OpenAPI **servers** section is often omitted, it is recommended to s
 
 ## Setup
 
-1. Go to **API Security** → **API Specifications** ([US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/)).
+1. Go to **API Security** → **API Specifications** ([US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/), or [ME Cloud](https://me1.my.wallarm.com/api-specifications/)).
 2. Click **Upload specification** and upload an OpenAPI 3.0 or 3.1 file (JSON or YAML).
 
     !!! tip ""

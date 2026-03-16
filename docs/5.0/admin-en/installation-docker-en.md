@@ -70,6 +70,11 @@ To run the container:
         docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -p 80:80 wallarm/node:5.3.17
         ```
 
+    === "ME Cloud"
+        ```bash
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='me1.api.wallarm.com' -p 80:80 wallarm/node:5.3.17
+        ```
+
 You can pass the following basic filtering node settings to the container via the option `-e`:
 
 --8<-- "../include/waf/installation/nginx-docker-all-env-vars-5.0.md"
@@ -102,6 +107,11 @@ To run the container:
     === "EU Cloud"
         ```bash
         docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:5.3.17
+        ```
+
+    === "ME Cloud"
+        ```bash
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='me1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:5.3.17
         ```
 
     * The `-e` option passes the following required environment variables to the container:

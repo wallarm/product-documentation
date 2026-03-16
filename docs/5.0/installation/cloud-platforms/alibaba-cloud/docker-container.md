@@ -35,7 +35,7 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 ## Requirements
 
 * Access to the [Alibaba Cloud Console](https://account.alibabacloud.com/login/login.htm)
-* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
+* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/), or [ME Cloud](https://me1.my.wallarm.com/)
 * Access to the IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and [API specifications][api-policy-enf-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][graylist-docs] countries, regions, or data centers
 
     --8<-- "../include/wallarm-cloud-ips.md"
@@ -166,7 +166,7 @@ To deploy the containerized Wallarm filtering node configured through environmen
     ```
     curl http://<COPIED_IP>/etc/passwd
     ```
-3. Open Wallarm Console → **Attacks** in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks) and make sure the attack is displayed in the list.
+3. Open Wallarm Console → **Attacks** in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks), or [ME Cloud](https://me1.my.wallarm.com/attacks) and make sure the attack is displayed in the list.
     ![Attacks in UI][attacks-in-ui-image]
 1. Optionally, [test](../../../admin-en/uat-checklist-en.md) other aspects of the node functioning.
 

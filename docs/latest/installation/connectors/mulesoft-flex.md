@@ -41,7 +41,7 @@ To proceed with the deployment, ensure that the following requirements are met:
     !!! info "Partial requests note"
         For the connector operating in the blocking [mode](../../admin-en/configure-wallarm-mode.md), ensure your upstream can safely handle partial requests. This is due to the streaming nature of `proxy wasm` policies - some body data may reach the upstream before full validation completes. [Read more](https://docs.mulesoft.com/pdk/latest/policies-pdk-configure-features-stop)
 * Your MuleSoft user is enabled to upload artifacts to the MuleSoft Anypoint Platform account.
-* Access to the **Administrator** account in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
+* Access to the **Administrator** account in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/), or [ME Cloud](https://me1.my.wallarm.com/).
 * [Node.js](https://nodejs.org/en/download) 16.0.0+ and `npm` 7+ installed on your host system.
 * [`make`](https://formulae.brew.sh/formula/make) installed on your host system.
 * [Anypoint CLI 4.x](https://docs.mulesoft.com/anypoint-cli/latest/install) installed on your host system.
@@ -144,7 +144,7 @@ To test the functionality of the deployed policy, follow these steps:
     ```
     curl http://<GATEWAY_URL>/etc/passwd
     ```
-1. Open Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks) and make sure the attack is displayed in the list.
+1. Open Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks), or [ME Cloud](https://me1.my.wallarm.com/attacks) and make sure the attack is displayed in the list.
     
     ![Attacks in the interface][attacks-in-ui-image]
 

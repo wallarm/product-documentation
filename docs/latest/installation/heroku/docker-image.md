@@ -20,7 +20,7 @@ At present, there is no official Docker image for Heroku from Wallarm. So, this 
 * Docker account for pushing Heroku Wallarm Docker image
 * [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) installed on your host system
 * Applications or APIs running on Heroku web dynos
-* Administrator access to Wallarm Console in the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
+* Administrator access to Wallarm Console in the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/), or [ME Cloud](https://me1.my.wallarm.com/)
 * Access to `https://meganode.wallarm.com` to download all-in-one Wallarm installer
 * Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud
 * Access to the IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and [API specifications][api-spec-enforcement-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][ip-lists-docs] countries, regions, or data centers
@@ -464,7 +464,7 @@ To deploy the image on Heroku:
 1. Generate a filtering node token of the [appropriate type][node-token-types] to link the Wallarm node instance to the Wallarm Cloud:
 
     === "API token"
-        1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+        1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens), or [ME Cloud](https://me1.my.wallarm.com/settings/api-tokens).
         1. Find or create API token with the `Node deployment/Deployment` usage type.
         1. Copy this token.
         1. Specify the node group name to add the Wallarm node to in the following environment variable:
@@ -473,7 +473,7 @@ To deploy the image on Heroku:
         heroku config:set WALLARM_LABELS=group=<NODE_GROUP_NAME>
         ```
     === "Node token"
-        1. Open Wallarm Console → **Nodes** in either the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
+        1. Open Wallarm Console → **Nodes** in either the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes), or [ME Cloud](https://me1.my.wallarm.com/nodes).
         1. Create a filtering node with the **Wallarm node** type and copy the generated token.
 1. Establish the parameters for connecting the node to the Cloud within the relevant variables:
 
@@ -484,6 +484,11 @@ To deploy the image on Heroku:
     === "EU Cloud"
         ```
         heroku config:set WALLARM_API_HOST=api.wallarm.com
+        heroku config:set WALLARM_API_TOKEN=<NODE_TOKEN>
+        ```
+    === "ME Cloud"
+        ```
+        heroku config:set WALLARM_API_HOST=me1.api.wallarm.com
         heroku config:set WALLARM_API_TOKEN=<NODE_TOKEN>
         ```
 1. Push your application to trigger a restart, thereby deploying the Wallarm node:

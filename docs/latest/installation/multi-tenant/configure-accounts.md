@@ -14,7 +14,7 @@ To configure tenant accounts:
 
 ### Step 1: Sign up and send a request to activate the multitenancy feature
 
-1. Fill in and confirm the registration form in Wallarm Console in the [US Cloud](https://us1.my.wallarm.com/signup) or [EU Cloud](https://my.wallarm.com/signup).
+1. Fill in and confirm the registration form in Wallarm Console in the [US Cloud](https://us1.my.wallarm.com/signup) or [EU Cloud](https://my.wallarm.com/signup), or [ME Cloud](https://me1.my.wallarm.com/signup).
 
     ![Registration form](../../images/signup-en.png)
 
@@ -77,7 +77,11 @@ At this step, a tenant account linked to a global account will be created.
             ``` bash
             curl -v -X POST "https://api.wallarm.com/v1/objects/client/create" -H "X-WallarmApi-Token: <YOUR_TOKEN>" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
             ```
-
+        === "ME Cloud"
+            ``` bash
+            curl -v -X POST "https://me1.api.wallarm.com/v1/objects/client/create" -H "X-WallarmApi-Token: <YOUR_TOKEN>" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
+            ```
+    
     ??? info "Show an example of the response"
         ``` bash
         {

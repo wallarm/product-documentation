@@ -2,14 +2,17 @@
 
 [link-wl-console-us]:              https://us1.my.wallarm.com/
 [link-wl-console-eu]:              https://my.wallarm.com/
+[link-wl-console-me]:              https://me1.my.wallarm.com/
 [link-wl-console-users-us]:        https://us1.my.wallarm.com/settings/users
 [link-wl-console-users-eu]:        https://my.wallarm.com/settings/users
+[link-wl-console-users-me]:        https://me1.my.wallarm.com/settings/users
 
 
 !!! info "API Access"
     The API choice for your filtering node depends on the Cloud you are using. Please, select the API accordingly:
     
     * If you are using <https://my.wallarm.com/>, your node requires access to `https://api.wallarm.com:444`.
+    * If you are using <https://me1.my.wallarm.com/>, your node requires access to `https://me1.api.wallarm.com:444`.
     * If you are using <https://us1.my.wallarm.com/>, your node requires access to `https://us1.api.wallarm.com:444`.
     
     Ensure the access is not blocked by a firewall.
@@ -42,6 +45,10 @@ To connect the node to the cloud using your cloud account requisites, proceed wi
     === "EU Cloud"
         ``` bash
         sudo /usr/share/wallarm-common/addnode
+        ```
+    === "ME Cloud"
+        ``` bash
+        sudo /usr/share/wallarm-common/addnode -H me1.api.wallarm.com
         ```
     
     To specify the name of the created node, use the `-n <node name>` option. Also, the node name can be changed in Wallarm Console → **Nodes**.

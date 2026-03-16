@@ -107,7 +107,7 @@ An [API token](../../user-guides/settings/api-tokens.md) for connecting the node
 
 To generate an API token:
 
-1. Go to Wallarm Console → **Settings** → **API tokens** in either the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+1. Go to Wallarm Console → **Settings** → **API tokens** in either the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens), or [ME Cloud](https://me1.my.wallarm.com/settings/api-tokens).
 1. Create an API token with the **Node deployment/Deployment** usage type.
 
 ### config.api.host

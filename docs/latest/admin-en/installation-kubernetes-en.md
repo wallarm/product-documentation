@@ -59,7 +59,7 @@ Among all supported [Wallarm deployment options][deployment-platform-docs], this
 
 Generate a [Node API token][node-token-types]:
 
-1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens), or [ME Cloud](https://me1.my.wallarm.com/settings/api-tokens).
 1. Find or create API token with the `Node deployment/Deployment` usage type.
 1. Copy this token.
 
@@ -104,7 +104,17 @@ Generate a [Node API token][node-token-types]:
               token: "<NODE_TOKEN>"
               # nodeGroup: defaultIngressGroup
         ```
-
+    === "ME Cloud"
+        ```yaml
+        config:
+          wallarm:
+            enabled: true
+            api:
+              host: "me1.api.wallarm.com" 
+              token: "<NODE_TOKEN>"
+              # nodeGroup: defaultIngressGroup
+        ```
+    
     `<NODE_TOKEN>` is the API token generated for Wallarm Node deployment.
    
     You can also store the Wallarm node token in [Kubernetes secrets][IC-existingsecret] and pull it to the Helm chart.

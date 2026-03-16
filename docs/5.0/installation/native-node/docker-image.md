@@ -31,7 +31,7 @@ The Docker image for the Native Node is ideal if you are already using container
 * Outbound access from your containerized environment to:
 
     * `https://hub.docker.com/r/wallarm` to download the Docker images required for the deployment
-    * `https://us1.api.wallarm.com` or `https://api.wallarm.com` for US/EU Wallarm Cloud
+    * `https://us1.api.wallarm.com` or `https://api.wallarm.com` or `https://me1.api.wallarm.com` for US/EU/ME Wallarm Cloud
     * IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and [API specifications][api-spec-enforcement-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][ip-list-docs] countries, regions, or data centers
 
         --8<-- "../include/wallarm-cloud-ips.md"
@@ -84,7 +84,7 @@ Create the `wallarm-node-conf.yaml` file with the following minimal configuratio
 
 To install node, you will need a token for registering the node in the Wallarm Cloud. To prepare a token:
 
-1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens), or [ME Cloud](https://me1.my.wallarm.com/settings/api-tokens).
 1. Find or create API token with the `Node deployment/Deployment` usage type.
 1. Copy this token.
 
@@ -100,12 +100,16 @@ To run the Docker image, use the following commands. Mount the `wallarm-node-con
     ```bash
     docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='api.wallarm.com' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.13.7
     ```
+=== "ME Cloud"
+    ```bash
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='me1.api.wallarm.com' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.13.7
+    ```
 
 Environment variable | Description| Required
 --- | ---- | ----
 `WALLARM_API_TOKEN` | API token with the `Deploy` role. | Yes
 `WALLARM_LABELS` | Sets the `group` label for node instance grouping, for example:<br>`WALLARM_LABELS="group=<GROUP>"` will place node instance into the `<GROUP>` instance group (existing, or, if does not exist, it will be created). | Yes
-`WALLARM_API_HOST` | Wallarm API server:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul>By default: `api.wallarm.com`. | Yes
+`WALLARM_API_HOST` | Wallarm API server:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li><li>`me1.api.wallarm.com` for the ME Cloud</li></ul>By default: `api.wallarm.com`. | Yes
 `WALLARM_APID_ONLY` (0.12.1 and higher) | In this mode, attacks detected in your traffic are blocked locally by the node (if [enabled](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)) but not exported to Wallarm Cloud. Meanwhile, [API Discovery](../../api-discovery/overview.md) and some other features remain fully functional, detecting your API inventory and uploading it to the Cloud for visualization. This mode is for those who want to review their API inventory and identify sensitive data first, and plan controlled attack data export accordingly. However, disabling attack export is rare, as Wallarm securely processes attack data and provides [sensitive attack data masking](../../user-guides/rules/sensitive-data-rule.md) if needed. [More details](../../installation/native-node/all-in-one.md#apid-only-mode)<br>By default: `false`. | No
 
 * The `-p` option maps host and container ports:
