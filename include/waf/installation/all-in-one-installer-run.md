@@ -30,3 +30,14 @@
 
 1. Select [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/), or [ME Cloud](https://me1.my.wallarm.com/).
 1. Enter Wallarm token.
+
+    ??? info "ME Cloud: use batch mode for node versions 6.10.2 and below"
+        For ME Cloud, node versions 6.10.2 and below do not support cloud selection via the interactive installer. Use batch mode instead:
+
+        ```bash
+        # x86_64
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.2.x86_64-glibc.sh -- --batch -t <TOKEN> -H me1.api.wallarm.com
+
+        # ARM64
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.2.aarch64-glibc.sh -- --batch -t <TOKEN> -H me1.api.wallarm.com
+        ```

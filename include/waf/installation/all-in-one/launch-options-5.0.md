@@ -17,7 +17,7 @@ OPTION                      DESCRIPTION
     --register-only         Initiates the second stage of the all-in-one installer in batch mode, completing the setup by registering the node in the Cloud and starting its service. Requires --batch.
 -t, --token TOKEN           Node token, required in a batch mode.
 -c, --cloud CLOUD           Wallarm Cloud, one of US/EU, default is EU, only used in a batch mode.
--H, --host HOST             Wallarm API address, for example, api.wallarm.com or us1.api.wallarm.com, only used in a batch mode.
+-H, --host HOST             Wallarm API address, for example, api.wallarm.com, us1.api.wallarm.com or me1.api.wallarm.com, only used in a batch mode.
 -P, --port PORT             Wallarm API pot, for example, 443.
     --no-ssl                Disable SSL for Wallarm API access.
     --no-verify             Disable SSL certificates verification.
