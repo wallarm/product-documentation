@@ -60,7 +60,7 @@ The **Object type** filter and column show what kind of Wallarm resource was aff
 | `IP list object` | Changes to [IP list](../../user-guides/ip-lists/overview.md) entries — adding or removing IPs, subnets, countries, or other sources in the denylist, graylist, or allowlist. |
 | `LDAP settings` | Changes to [LDAP](../../admin-en/configuration-guides/ldap/ldap.md) directory authentication configuration. |
 | `SAML authentication` | Changes to [SAML SSO](../../admin-en/configuration-guides/sso/intro.md) identity provider settings and provisioning rules. |
-| `Email notification` | Changes to [email report](integrations/email.md) integration settings - scheduled PDF reports and instant security event notifications. |
+| `Email integration` | Changes to [email report](integrations/email.md) integration settings - scheduled PDF reports and instant security event notifications. |
 
 ## Action types
 
