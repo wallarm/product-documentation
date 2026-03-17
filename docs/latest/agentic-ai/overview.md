@@ -35,6 +35,7 @@ Wallarm addresses AI security through two complementary capabilities:
 * Prevention of data leakage through AI systems
 * Cost control by blocking abuse and unauthorized usage
 * Custom protection policies for AI-specific threats
+* [MCP mitigation controls](mcp-mitigation-controls.md) — ACL policies, request verification, and tool input schema enforcement for MCP servers
 
 ## How It Works
 
@@ -47,6 +48,7 @@ Wallarm addresses AI security through two complementary capabilities:
 
 * Explore the [AI Discovery](agentic-ai-discovery.md) documentation to identify AI endpoints in your API inventory
 * Learn about [AI Protection](agentic-ai-protection.md) capabilities and threat detection
+* Configure [MCP Mitigation Controls](mcp-mitigation-controls.md) to protect MCP servers with access policies, request verification, and schema enforcement
 
 ## Learn More
 
