@@ -35,28 +35,32 @@ The **Object type** filter and column show what kind of Wallarm resource was aff
 
 | Object type | What it means |
 |-------------|---------------|
-| `Client` | Changes to [tenant](../../installation/multi-tenant/overview.md) account settings — name, status, configuration. |
+| `Client` | Changes to [tenant](../../installation/multi-tenant/overview.md) account settings — name, status, or configuration. |
 | `User` | User account changes — role assignments, profile updates, enabling or disabling accounts. See [Managing Users](users.md). |
 | `Sign-in` | User sign-in events — successful and failed authentication attempts. |
-| `Subscription` | Changes to your Wallarm [subscription plan](../../about-wallarm/subscription-plans.md) — plan upgrades, renewals, expiration date modifications. |
+| `Subscription` | Changes to your Wallarm [subscription plan](../../about-wallarm/subscription-plans.md) — plan upgrades, renewals, or expiration date modifications. |
 | `Application` | Changes to [protected application](applications.md) definitions — adding, renaming, or removing applications. |
 | `Invitation` | Email [invitations](users.md#inviting-users) sent to new users or revoked. |
 | `Integration` | Changes to third-party [integrations](integrations/integrations-intro.md) — Slack, email, SIEM connectors, webhooks, etc. |
 | `API token` | [API token](api-tokens.md) creation, permission changes, regeneration, or revocation. |
-| `Node` | [Filtering node](../nodes/nodes.md) registration, updates, or removal. When you see many `Create` entries with `Node` source, these are nodes auto-registering in the Cloud. |
+| `Node` | [Filtering node](../nodes/nodes.md) registration, updates, or removal. When you see many `Create` entries with the `Node` source, these are nodes auto-registering in the Cloud. |
 | `Node token` | [Node token](api-tokens.md#api-tokens-vs-node-tokens) lifecycle events — creation, regeneration, or revocation. |
+| `Security Edge` | Changes to [Security Edge](../../installation/security-edge/overview.md) configuration and deployment settings. |
 | `Trigger` | Changes to [triggers](../triggers/triggers.md) — automated reactions to events like new attacks or hits exceeding thresholds. |
 | `Sampling` | Changes to [hit sampling](../../user-guides/events/grouping-sampling.md) configuration that controls how much attack data is stored. |
 | `Extreme sampling` | Changes to extreme sampling settings applied under high-load conditions. |
-| `Rule` | Changes to traffic processing [rules](../rules/rules.md) — creating, modifying, or deleting individual rules. |
+| `Rule` | Creating, modifying, or deleting individual traffic processing [rules](../rules/rules.md). |
 | `API spec` | Uploads or updates to [API specifications](../../api-specification-enforcement/overview.md) used for endpoint validation. |
 | `API spec policy` | Changes to [policies](../../api-specification-enforcement/overview.md) that enforce API specification compliance. |
-| `Export config` | Changes to [API Sessions](../../api-sessions/overview.md) export configuration — defines which request and response parameters are exported from the filtering node to the Wallarm Cloud for session analysis. |
-| `Rule migration` | Events related to [copying rules](../../installation/multi-tenant/overview.md#migrating-rules) between tenant accounts. |
-| `Rule settings` | Changes to [traffic processing rules](../rules/rules.md). |
+| `Session export config` | Changes to [API Sessions](../../api-sessions/overview.md) export configuration — defines which session context parameters are exported from the filtering node to the Wallarm Cloud for session analysis. |
+| `Rule migration` | Events related to [copying the full ruleset](../../installation/multi-tenant/overview.md#migrating-rules) between tenant accounts. |
+| `Rule settings` | Changes to global [rules](../rules/rules.md) engine configuration, such as ruleset build parameters. |
 | `Attack` | Marking detected attacks as [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives). |
 | `2FA` | [Two-factor authentication](account.md#enabling-two-factor-authentication) enabled or disabled for a user account. |
 | `IP list object` | Changes to [IP list](../../user-guides/ip-lists/overview.md) entries — adding or removing IPs, subnets, countries, or other sources in the denylist, graylist, or allowlist. |
+| `LDAP settings` | Changes to [LDAP](../../admin-en/configuration-guides/ldap/ldap.md) directory authentication configuration. |
+| `SAML authentication` | Changes to [SAML SSO](../../admin-en/configuration-guides/sso/intro.md) identity provider settings and provisioning rules. |
+| `Email notification` | Changes to [email report](integrations/email.md) integration settings - scheduled PDF reports and instant security event notifications. |
 
 ## Action types
 
