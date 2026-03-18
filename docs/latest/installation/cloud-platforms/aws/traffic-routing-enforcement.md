@@ -27,9 +27,9 @@ If your application is already behind an ALB, you need to insert the Wallarm Nod
 Internet → ALB (existing) → Wallarm Node (new target group) → Application
 ```
 
-1. **Create a target group for the Wallarm Node** (e.g., `wallarm-tg`) containing the Wallarm Node EC2 instance(s) or [Auto Scaling Group](../../../admin-en/installation-guides/amazon-cloud/autoscaling-overview.md).
+1. [**Create a target group**](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-target-group.html) for the Wallarm Node (e.g., `wallarm-tg`) containing the Wallarm Node EC2 instance(s) or [Auto Scaling Group](../../../admin-en/installation-guides/amazon-cloud/autoscaling-overview.md).
 
-2. **Update your ALB listener rules** to forward traffic to the `wallarm-tg` target group instead of the application target group.
+2. [**Update your ALB listener rules**](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/listener-update-rules.html) to forward traffic to the `wallarm-tg` target group instead of the application target group.
 
 3. **Configure the Wallarm Node** to proxy traffic to the application. Point it to your application's internal DNS, IP, or load balancer endpoint:
 
@@ -60,9 +60,9 @@ If your application is behind an NLB, the approach is similar to ALB: insert the
 Internet → NLB (existing) → Wallarm Node (new target group) → Application
 ```
 
-1. **Create a target group for the Wallarm Node** containing the Node instance(s) or [Auto Scaling Group](../../../admin-en/installation-guides/amazon-cloud/autoscaling-overview.md). Register it with your existing NLB.
+1. [**Create a target group**](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-target-group.html) for the Wallarm Node containing the Node instance(s) or [Auto Scaling Group](../../../admin-en/installation-guides/amazon-cloud/autoscaling-overview.md). Register it with your existing NLB.
 
-2. **Update NLB listeners** to forward traffic to the Wallarm Node target group instead of the application target group.
+2. [**Update NLB listeners**](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/listener-update-rules.html) to forward traffic to the Wallarm Node target group instead of the application target group.
 
 3. **Configure the Wallarm Node** to proxy traffic to the application. Point it to your application's internal DNS, IP, or load balancer endpoint:
 
@@ -103,7 +103,7 @@ If you use CloudFront as a CDN, update the origin to point to the Wallarm Node i
 Internet → CloudFront (existing) → Wallarm Node (new origin) → Application
 ```
 
-1. **Update the CloudFront origin.** In your CloudFront distribution, change the origin domain to point to the Wallarm Node instead of the application. Use the same type of endpoint you already have as an origin:
+1. **Update the CloudFront origin.** In your CloudFront distribution, [change the origin domain](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistS3AndCustomOrigins.html#concept_CustomOrigin) to point to the Wallarm Node instead of the application. Use the same type of endpoint you already have as an origin:
 
     * If your current origin is an **ALB or NLB** — create a Wallarm Node target group in that load balancer (as described in the [ALB](#application-load-balancer-alb) or [NLB](#network-load-balancer-nlb) sections) and keep the load balancer as the CloudFront origin.
     * If your current origin is a **single EC2 instance** — replace it with the Wallarm Node's EC2 public DNS as the new origin. For production workloads, consider placing the Node behind an ALB with an [Auto Scaling Group](../../../admin-en/installation-guides/amazon-cloud/autoscaling-overview.md) for high availability.
