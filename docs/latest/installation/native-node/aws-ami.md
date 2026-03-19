@@ -80,7 +80,132 @@ Recommended configuration:
         --8<-- "../include/wallarm-cloud-ips.md"
 * SSH key pair for accessing the instance
 
-### 2. Connect to the Node instance via SSH
+### 2. Prepare the Wallarm API token
+
+To register the Node in the Wallarm Cloud, you need an API token:
+
+1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+1. Find or create API token with the `Node deployment/Deployment` usage type.
+1. Copy this token.
+
+### 3. Store the token in AWS Secrets Manager (recommended)
+
+For secure token handling, store the token in [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html).
+
+The secret must be in the same AWS region as your Wallarm Node EC2 instance.
+
+1. Store the token in AWS Secrets Manager:
+
+    === "AWS Console"
+        1. Open the [AWS Secrets Manager console](https://console.aws.amazon.com/secretsmanager/).
+        1. Click **Store a new secret**.
+        1. Select **Other type of secret**.
+        1. In **Key/value pairs**, switch to **Plaintext** and paste your Wallarm API token.
+        1. Click **Next**, set the secret name to `wallarm/api-token`, then complete the wizard.
+    === "AWS CLI"
+        If you have the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) installed and configured, run the [`aws secretsmanager`](https://docs.aws.amazon.com/cli/latest/reference/secretsmanager/) command:
+
+        ```bash
+        aws secretsmanager create-secret \
+          --region <AWS_REGION> \
+          --name wallarm/api-token \
+          --description "Wallarm node API token" \
+          --secret-string "<YOUR_WALLARM_API_TOKEN>"
+        ```
+
+        Replace `<AWS_REGION>` with the region where your Wallarm Node EC2 instance is running (e.g., `us-east-1`).
+
+    ![Secret with Wallarm token in AWS Secrets Manager](../../images/aws-ami/secret-with-wallarm-token.png)
+
+1. Grant the EC2 instance access to the secret. Create an IAM policy with least-privilege access to the secret, then attach it to the EC2 instance via an [IAM role](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html).
+
+    === "AWS Console"
+        1. Open the [IAM console → Policies](https://console.aws.amazon.com/iam/home#/policies) and click **Create policy**.
+        1. Switch to the **JSON** tab and paste the policy.
+
+            ```json
+            {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                "Effect": "Allow",
+                "Action": [
+                    "secretsmanager:GetSecretValue"
+                ],
+                "Resource": "arn:aws:secretsmanager:<REGION>:<ACCOUNT_ID>:secret:wallarm/api-token*"
+                }
+              ]
+            }
+            ```
+
+            Replace `<REGION>` and `<ACCOUNT_ID>` with your values.
+
+            If the secret is encrypted with a [customer managed KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) (rather than the default AWS managed key), also add `kms:Decrypt` permission for that key.
+
+        1. Name the policy (e.g., `WallarmSecretsReadOnly`) and create it.
+        1. Open the [IAM console → Roles](https://console.aws.amazon.com/iam/home#/roles) and click **Create role**.
+        1. Select **AWS service** → **EC2** as the trusted entity, then click **Next**.
+        1. Attach the `WallarmSecretsReadOnly` policy and complete the wizard.
+        1. Open the [EC2 console](https://console.aws.amazon.com/ec2/), select your Wallarm Node instance, then go to **Actions → Security → Modify IAM role** and attach the role you created.
+
+    === "AWS CLI"
+        1. Create a trust policy file that allows EC2 to assume the role:
+
+            ```bash
+            cat > trust-policy.json << 'EOF'
+            {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Principal": { "Service": "ec2.amazonaws.com" },
+                  "Action": "sts:AssumeRole"
+                }
+              ]
+            }
+            EOF
+            ```
+
+        1. Create the IAM role and attach the policy:
+
+            ```bash
+            aws iam create-role \
+              --role-name WallarmNodeRole \
+              --assume-role-policy-document file://trust-policy.json
+
+            aws iam put-role-policy \
+              --role-name WallarmNodeRole \
+              --policy-name WallarmSecretsReadOnly \
+              --policy-document '{
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                    "Effect": "Allow",
+                    "Action": ["secretsmanager:GetSecretValue"],
+                    "Resource": "arn:aws:secretsmanager:<REGION>:<ACCOUNT_ID>:secret:wallarm/api-token*"
+                  }
+                ]
+              }'
+            ```
+
+            Replace `<REGION>` and `<ACCOUNT_ID>` with your values.
+
+        1. Create an instance profile and attach the role to your EC2 instance:
+
+            ```bash
+            aws iam create-instance-profile \
+              --instance-profile-name WallarmNodeProfile
+
+            aws iam add-role-to-instance-profile \
+              --instance-profile-name WallarmNodeProfile \
+              --role-name WallarmNodeRole
+
+            aws ec2 associate-iam-instance-profile \
+              --instance-id <INSTANCE_ID> \
+              --iam-instance-profile Name=WallarmNodeProfile
+            ```
+
+### 4. Connect to the Node instance via SSH
 
 [Use the selected SSH key](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-to-linux-instance.html) to connect to your running EC2 instance:
 
@@ -90,15 +215,7 @@ ssh -i <your-key.pem> admin@<your-ec2-public-ip>
 
 You need to use the `admin` username to connect to the instance.
 
-### 3. Prepare Wallarm token
-
-To register the Node in the Wallarm Cloud, you need an API token:
-
-1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-1. Find or create API token with the `Node deployment/Deployment` usage type.
-1. Copy this token.
-
-### 4. Upload TLS certificates
+### 5. Upload TLS certificates
 
 For the `connector-server` and `envoy-external-filter` mode, issue a **trusted** TLS certificate and private key for the Node domain. These files must be accessible inside the instance and referenced in the further configuration.
 
@@ -108,7 +225,7 @@ Upload the certificate and key files to the EC2 instance using `scp`, `rsync`, o
 scp -i <your-key.pem> tls-cert.crt tls-key.key admin@<your-ec2-public-ip>:~
 ```
 
-### 5. Prepare the configuration file
+### 6. Prepare the configuration file
 
 On the EC2 instance, create a file named `wallarm-node-conf.yaml` with one of the following minimal configurations:
 
@@ -158,44 +275,54 @@ On the EC2 instance, create a file named `wallarm-node-conf.yaml` with one of th
 
 [All configuration parameters](all-in-one-conf.md)
 
-### 6. Run the Node installation script
+### 7. Run the Node installation script
 
-On the EC2 instance, execute the installer:
+On the EC2 instance, execute the installer.
+
+If you stored the token in AWS Secrets Manager ([step 3](#3-store-the-token-in-aws-secrets-manager-recommended)), retrieve it:
+
+```bash
+WALLARM_TOKEN=$(aws secretsmanager get-secret-value \
+  --secret-id wallarm/api-token \
+  --query SecretString --output text)
+```
+
+Then run the installer using `$WALLARM_TOKEN`. Alternatively, you can pass the token directly as `<API_TOKEN>` (simpler for testing but **not recommended for production**):
 
 === "connector-server"
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=./wallarm-node-conf.yaml --host us1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token $WALLARM_TOKEN --mode=connector-server --go-node-config=./wallarm-node-conf.yaml --host us1.api.wallarm.com
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=./wallarm-node-conf.yaml --host api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token $WALLARM_TOKEN --mode=connector-server --go-node-config=./wallarm-node-conf.yaml --host api.wallarm.com
     ```
 === "tcp-capture-v2"
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=./wallarm-node-conf.yaml --host us1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token $WALLARM_TOKEN --mode=tcp-capture-v2 --go-node-config=./wallarm-node-conf.yaml --host us1.api.wallarm.com
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=./wallarm-node-conf.yaml --host api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token $WALLARM_TOKEN --mode=tcp-capture-v2 --go-node-config=./wallarm-node-conf.yaml --host api.wallarm.com
     ```
 === "envoy-external-filter"
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=./wallarm-node-conf.yaml --host us1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token $WALLARM_TOKEN --mode=envoy-external-filter --go-node-config=./wallarm-node-conf.yaml --host us1.api.wallarm.com
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=./wallarm-node-conf.yaml --host api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token $WALLARM_TOKEN --mode=envoy-external-filter --go-node-config=./wallarm-node-conf.yaml --host api.wallarm.com
     ```
 
 * The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
-* `<API_TOKEN>` specifies the generated API token for the `Node deployment/Deployment` usage type.
+* `$WALLARM_TOKEN` (or `<API_TOKEN>`) specifies the API token for the `Node deployment/Deployment` usage type.
 * `--go-node-config` specifies the path to the configuration file prepared before.
 
 The provided configuration file will be copied to the path: `/opt/wallarm/etc/wallarm/go-node.yaml`.
 
 If needed, you can change the copied file after the installation is finished. To apply the changes, you will need to restart the Wallarm service with `sudo systemctl restart wallarm`.
 
-### 7. Finish the installation
+### 8. Finish the installation
 
 === "connector-server"
     After deploying the node, the next step is to apply the Wallarm code to your API management platform or service in order to route traffic to the deployed node.

@@ -37,17 +37,7 @@ Recommended configuration:
 
         --8<-- "../include/wallarm-cloud-ips.md"
 
-### 2. Connect to the Wallarm Node instance via SSH
-
-[Use the selected SSH key](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-to-linux-instance.html) to connect to your running EC2 instance:
-
-```bash
-ssh -i <your-key.pem> admin@<your-ec2-public-ip>
-```
-
-You need to use the `admin` username to connect to the instance.
-
-### 3. Generate a token to connect an instance to the Wallarm Cloud
+### 2. Prepare the Wallarm API token
 
 The Wallarm node needs to connect to the Wallarm Cloud using a Wallarm token of the [appropriate type][wallarm-token-types]. An API token allows you to create a node group in the Wallarm Console UI, helping you organize your node instances more effectively.
 
@@ -63,6 +53,131 @@ Generate a token as follows:
 === "Node token"
 
     1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
-    1. Do one of the following: 
+    1. Do one of the following:
         * Create the node of the **Wallarm node** type and copy the generated token.
         * Use existing node group - copy token using node's menu → **Copy token**.
+
+### 3. Store the token in AWS Secrets Manager (recommended)
+
+For secure token handling, store the token in [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html). 
+
+The secret must be in the same AWS region as your Wallarm Node EC2 instance.
+
+1. Store the token in AWS Secrets Manager:
+
+    === "AWS Console"
+        1. Open the [AWS Secrets Manager console](https://console.aws.amazon.com/secretsmanager/).
+        1. Click **Store a new secret**.
+        1. Select **Other type of secret**.
+        1. In **Key/value pairs**, switch to **Plaintext** and paste your Wallarm API token.
+        1. Click **Next**, set the secret name to `wallarm/api-token`, then complete the wizard.
+    === "AWS CLI"
+        If you have the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) installed and configured, run the [`aws secretsmanager`](https://docs.aws.amazon.com/cli/latest/reference/secretsmanager/) command:
+
+        ```bash
+        aws secretsmanager create-secret \
+          --region <AWS_REGION> \
+          --name wallarm/api-token \
+          --description "Wallarm node API token" \
+          --secret-string "<YOUR_WALLARM_API_TOKEN>"
+        ```
+
+    ![Secret with Wallarm token in AWS Secrets Manager][img-secret-with-wallarm-token]
+
+1. Grant the EC2 instance access to the secret. Create an IAM policy with least-privilege access to the secret, then attach it to the EC2 instance via an [IAM role](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html).
+
+    === "AWS Console"
+        1. Open the [IAM console → Policies](https://console.aws.amazon.com/iam/home#/policies) and click **Create policy**.
+        1. Switch to the **JSON** tab and paste the policy.
+
+            ```json
+            {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                "Effect": "Allow",
+                "Action": [
+                    "secretsmanager:GetSecretValue"
+                ],
+                "Resource": "arn:aws:secretsmanager:<REGION>:<ACCOUNT_ID>:secret:wallarm/api-token*"
+                }
+              ]
+            }
+            ```
+
+            Replace `<REGION>` and `<ACCOUNT_ID>` with your values.
+
+            If the secret is encrypted with a [customer managed KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) (rather than the default AWS managed key), also add `kms:Decrypt` permission for that key.
+
+        1. Name the policy (e.g., `WallarmSecretsReadOnly`) and create it.
+        1. Open the [IAM console → Roles](https://console.aws.amazon.com/iam/home#/roles) and click **Create role**.
+        1. Select **AWS service** → **EC2** as the trusted entity, then click **Next**.
+        1. Attach the `WallarmSecretsReadOnly` policy and complete the wizard.
+        1. Open the [EC2 console](https://console.aws.amazon.com/ec2/), select your Wallarm Node instance, then go to **Actions → Security → Modify IAM role** and attach the role you created.
+
+    === "AWS CLI"
+        1. Create a trust policy file that allows EC2 to assume the role:
+
+            ```bash
+            cat > trust-policy.json << 'EOF'
+            {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Principal": { "Service": "ec2.amazonaws.com" },
+                  "Action": "sts:AssumeRole"
+                }
+              ]
+            }
+            EOF
+            ```
+
+        1. Create the IAM role and attach the policy:
+
+            ```bash
+            aws iam create-role \
+              --role-name WallarmNodeRole \
+              --assume-role-policy-document file://trust-policy.json
+
+            aws iam put-role-policy \
+              --role-name WallarmNodeRole \
+              --policy-name WallarmSecretsReadOnly \
+              --policy-document '{
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                    "Effect": "Allow",
+                    "Action": ["secretsmanager:GetSecretValue"],
+                    "Resource": "arn:aws:secretsmanager:<REGION>:<ACCOUNT_ID>:secret:wallarm/api-token*"
+                  }
+                ]
+              }'
+            ```
+
+            Replace `<REGION>` and `<ACCOUNT_ID>` with your values.
+
+        1. Create an instance profile and attach the role to your EC2 instance:
+
+            ```bash
+            aws iam create-instance-profile \
+              --instance-profile-name WallarmNodeProfile
+
+            aws iam add-role-to-instance-profile \
+              --instance-profile-name WallarmNodeProfile \
+              --role-name WallarmNodeRole
+
+            aws ec2 associate-iam-instance-profile \
+              --instance-id <INSTANCE_ID> \
+              --iam-instance-profile Name=WallarmNodeProfile
+            ```
+
+### 4. Connect to the Wallarm Node instance via SSH
+
+[Use the selected SSH key](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-to-linux-instance.html) to connect to your running EC2 instance:
+
+```bash
+ssh -i <your-key.pem> admin@<your-ec2-public-ip>
+```
+
+You need to use the `admin` username to connect to the instance.

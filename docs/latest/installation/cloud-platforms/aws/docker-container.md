@@ -49,6 +49,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
         To allow the Docker container to read the encrypted sensitive data, please ensure the AWS settings meet the following requirements:
 
         * Sensitive data is stored in the region used to run the Docker container.
+
         * The ECS task execution role specified in the `executionRoleArn` parameter of the task definition has a least-privilege read policy scoped to the specific secret ARN. If you use a customer-managed KMS key to encrypt the secret, also grant `kms:Decrypt` for that key. [More details on the IAM policies setup →](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html)
 
             Example IAM policy:
@@ -253,6 +254,7 @@ To deploy the container with environment variables and configuration file mounte
         To allow the Docker container to read the encrypted sensitive data, please ensure the AWS settings meet the following requirements:
 
         * Sensitive data is stored in the region used to run the Docker container.
+        
         * The ECS task execution role specified in the `executionRoleArn` parameter of the task definition has a least-privilege read policy scoped to the specific secret ARN. If you use a customer-managed KMS key to encrypt the secret, also grant `kms:Decrypt` for that key. See the [policy example above](#deploying-the-wallarm-node-docker-container-configured-through-environment-variables) and the [IAM policies documentation →](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html)
 1. Create the following local JSON file with the [task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) (task definition sets the Docker container operating scenario):
 
