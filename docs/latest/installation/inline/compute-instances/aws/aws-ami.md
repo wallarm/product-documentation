@@ -21,11 +21,39 @@ For guidance on estimating AWS infrastructure costs for this deployment, see the
 
 --8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami-latest.md"
 
-### 4. Connect the instance to the Wallarm Cloud
+### 5. Connect the instance to the Wallarm Cloud
 
 The instance's node connects to the Wallarm Cloud via the [cloud-init.py][cloud-init-spec] script. This script registers the node with the Wallarm Cloud using a provided token, globally sets it to the monitoring [mode][wallarm-mode], and sets up the node to forward legitimate traffic based on the `--proxy-pass` flag.
 
-Run the `cloud-init.py` script on the instance created from the cloud image as follows:
+If you stored the token in AWS Secrets Manager ([step 3](#3-store-the-token-in-aws-secrets-manager-recommended)), retrieve it and run the script:
+
+=== "US Cloud"
+    ```bash
+    WALLARM_TOKEN=$(aws secretsmanager get-secret-value \
+      --secret-id wallarm/api-token \
+      --query SecretString --output text)
+
+    sudo env WALLARM_LABELS='group=<GROUP>' \
+      /opt/wallarm/usr/share/wallarm-common/cloud-init.py \
+      -t "$WALLARM_TOKEN" -m monitoring \
+      --proxy-pass <PROXY_ADDRESS> -H us1.api.wallarm.com
+    ```
+=== "EU Cloud"
+    ```bash
+    WALLARM_TOKEN=$(aws secretsmanager get-secret-value \
+      --secret-id wallarm/api-token \
+      --query SecretString --output text)
+
+    sudo env WALLARM_LABELS='group=<GROUP>' \
+      /opt/wallarm/usr/share/wallarm-common/cloud-init.py \
+      -t "$WALLARM_TOKEN" -m monitoring \
+      --proxy-pass <PROXY_ADDRESS>
+    ```
+
+* `WALLARM_LABELS='group=<GROUP>'` sets a node group name (existing, or, if does not exist, it will be created). It is only applied if using an API token.
+* `<PROXY_ADDRESS>` is the address the Wallarm node proxies legitimate traffic to. It can be the IP of an application instance, a load balancer, or a DNS name (depending on your architecture), with the specified `http` or `https` protocol, e.g., `http://example.com` or `https://192.0.2.1`. [See more information on the proxy address format](https://nginx.org/en/docs/http/ngx_http_proxy_module.html?&_ga=2.23729850.1231698478.1756133814-1504295816.1756133814#proxy_pass).
+
+Alternatively, you can pass the token directly on the command line. This approach is simpler for testing but is **not recommended for production**:
 
 === "US Cloud"
     ``` bash
@@ -36,15 +64,11 @@ Run the `cloud-init.py` script on the instance created from the cloud image as f
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring --proxy-pass <PROXY_ADDRESS>
     ```
 
-* `WALLARM_LABELS='group=<GROUP>'` sets a node group name (existing, or, if does not exist, it will be created). It is only applied if using an API token.
-* `<TOKEN>` is the copied value of the token.
-* `<PROXY_ADDRESS>` is the address the Wallarm node proxies legitimate traffic to. It can be the IP of an application instance, a load balancer, or a DNS name (depending on your architecture), with the specified `http` or `https` protocol, e.g., `http://example.com` or `https://192.0.2.1`. [See more information on the proxy address format](https://nginx.org/en/docs/http/ngx_http_proxy_module.html?&_ga=2.23729850.1231698478.1756133814-1504295816.1756133814#proxy_pass).
-
-### 5. Configure sending traffic to the Wallarm instance
+### 6. Configure sending traffic to the Wallarm instance
 
 --8<-- "../include/waf/installation/sending-traffic-to-node-inline.md"
 
-### 6. Test the Wallarm operation
+### 7. Test the Wallarm operation
 
 --8<-- "../include/waf/installation/cloud-platforms/test-operation-inline.md"
 

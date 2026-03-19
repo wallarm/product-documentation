@@ -36,5 +36,6 @@
 [nginx-native-node]:                       ../../../installation/nginx-native-node-internals.md
 [wallarm-logs]:                     ../../../admin-en/configure-logging.md
 [log-level]:                        ../../../installation/native-node/all-in-one-conf.md#loglevel
+[img-secret-with-wallarm-token]:    ../../../images/aws-ami/secret-with-wallarm-token.png
 
 --8<-- "latest/installation/inline/compute-instances/aws/aws-ami.md"
