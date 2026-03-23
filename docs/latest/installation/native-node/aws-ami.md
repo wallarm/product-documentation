@@ -70,7 +70,7 @@ Recommended configuration:
 * Any preferred AWS region
 * EC2 instance type: `t3.medium` or `t3.large`, [see cost guidance for details](../cloud-platforms/aws/costs.md)
 * Appropriate [VPC and subnet](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html) based on your infrastructure
-* [Security Group](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html) inbound access to the port defined in the [Node configuration](#5-prepare-the-configuration-file)
+* [Security Group](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html) inbound access to the port defined in the [Node configuration](#6-prepare-the-configuration-file)
 * [Security Group](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html) outbound access to:
 
     * `https://meganode.wallarm.com` to download the Wallarm installer

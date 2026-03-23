@@ -13,7 +13,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 0.23.1 (2026-03-19)
 
 * Fixed a memory leak in the [API Specification Enforcement](../../api-specification-enforcement/overview.md) component that caused steadily increasing memory consumption and eventual OOMKill pod restarts
-* Added new traffic metrics to the [`wallarm-status`](../admin-en/configure-statistics-service.md) statistics service: `bytes_blocked_in`, `bytes_blocked_out`, `bytes_blocked_by_acl_in`, and `bytes_blocked_by_acl_out`
+* Added new traffic metrics to the [`wallarm-status`](../../admin-en/configure-statistics-service.md) statistics service: `bytes_blocked_in`, `bytes_blocked_out`, `bytes_blocked_by_acl_in`, and `bytes_blocked_by_acl_out`
 
     These counters track the volume of incoming and outgoing traffic in blocked requests, split by block reason (attack/overlimit/antibot vs. denylists). Available in JSON, Prometheus, and per-application split formats.
 * Fixed a shared memory allocation bug in the statistics service initialization that could lead to data corruption under high load
