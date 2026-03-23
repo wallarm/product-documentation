@@ -207,6 +207,7 @@ nav:
           - Terraform for VPC: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
           - Terraform for API Gateway: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
         - AWS WAF Integration: installation/cloud-platforms/aws/aws-waf-integration.md
+        - Routing Traffic to the Node: installation/cloud-platforms/aws/traffic-routing.md
         - Cost Estimation: installation/cloud-platforms/aws/costs.md
         - Autoscaling:
           - Overview: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
