@@ -49,7 +49,7 @@ Run the `cloud-init.py` script on the instance created from the cloud image as f
 
 ### 5. Configure sending traffic to the Wallarm instance
 
---8<-- "../include/waf/installation/sending-traffic-to-node-inline.md"
+Configure your AWS infrastructure to route all traffic through the Wallarm Node. See [Routing Traffic to the Wallarm Node on AWS](../../cloud-platforms/aws/traffic-routing.md) for guidance on ALB, NLB, CloudFront, and API Gateway configurations.
 
 ### 6. Test the Wallarm operation
 

@@ -214,6 +214,7 @@ nav:
           - Create AMI Image: admin-en/installation-guides/amazon-cloud/create-image.md
           - Autoscaling Group Setup: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
           - Load Balancing: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
+        - Routing Traffic to the Node: installation/cloud-platforms/aws/traffic-routing.md
       - GCP:
         - Machine Image for NGINX Node: installation/cloud-platforms/gcp/machine-image.md
         - Docker on GCE: installation/cloud-platforms/gcp/docker-container.md
