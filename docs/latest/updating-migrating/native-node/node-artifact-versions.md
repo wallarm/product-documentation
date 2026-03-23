@@ -10,6 +10,22 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.23.1 (2026-03-19)
+
+* Fixed a memory leak in the [API Specification Enforcement](../../api-specification-enforcement/overview.md) component that caused steadily increasing memory consumption and eventual OOMKill pod restarts
+* Added new traffic metrics to the [`wallarm-status`](../admin-en/configure-statistics-service.md) statistics service: `bytes_blocked_in`, `bytes_blocked_out`, `bytes_blocked_by_acl_in`, and `bytes_blocked_by_acl_out`
+
+    These counters track the volume of incoming and outgoing traffic in blocked requests, split by block reason (attack/overlimit/antibot vs. denylists). Available in JSON, Prometheus, and per-application split formats.
+* Fixed a shared memory allocation bug in the statistics service initialization that could lead to data corruption under high load
+* Fixed memory limit handling for **wcli** jobs
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-33186](https://nvd.nist.gov/vuln/detail/CVE-2026-33186)
+    * [CVE-2026-27137](https://nvd.nist.gov/vuln/detail/CVE-2026-27137)
+    * [CVE-2026-25679](https://nvd.nist.gov/vuln/detail/CVE-2026-25679)
+    * [CVE-2026-27141](https://nvd.nist.gov/vuln/detail/CVE-2026-27141)
+    * [CVE-2026-24049](https://nvd.nist.gov/vuln/detail/CVE-2026-24049)
+
 ### 0.23.0 (2026-02-24)
 
 * Added support for circular references in OpenAPI specifications uploaded for [API Specification Enforcement](../../api-specification-enforcement/overview.md)
@@ -176,6 +192,22 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 The Helm chart for the Native Node is used for self-hosted node deployments with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](helm-chart.md)
+
+### 0.23.1 (2026-03-19)
+
+* Fixed a memory leak in the [API Specification Enforcement](../../api-specification-enforcement/overview.md) component that caused steadily increasing memory consumption and eventual OOMKill pod restarts
+* Added new traffic metrics to the [`wallarm-status`](../../admin-en/configure-statistics-service.md) statistics service: `bytes_blocked_in`, `bytes_blocked_out`, `bytes_blocked_by_acl_in`, and `bytes_blocked_by_acl_out`
+
+    These counters track the volume of incoming and outgoing traffic in blocked requests, split by block reason (attack/overlimit/antibot vs. denylists). Available in JSON, Prometheus, and per-application split formats.
+* Fixed a shared memory allocation bug in the statistics service initialization that could lead to data corruption under high load
+* Fixed memory limit handling for **wcli** jobs
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-33186](https://nvd.nist.gov/vuln/detail/CVE-2026-33186)
+    * [CVE-2026-27137](https://nvd.nist.gov/vuln/detail/CVE-2026-27137)
+    * [CVE-2026-25679](https://nvd.nist.gov/vuln/detail/CVE-2026-25679)
+    * [CVE-2026-27141](https://nvd.nist.gov/vuln/detail/CVE-2026-27141)
+    * [CVE-2026-24049](https://nvd.nist.gov/vuln/detail/CVE-2026-24049)
 
 ### 0.23.0 (2026-02-24)
 
@@ -357,6 +389,22 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 [How to upgrade](docker-image.md)
 
+### 0.23.1 (2026-03-19)
+
+* Fixed a memory leak in the [API Specification Enforcement](../../api-specification-enforcement/overview.md) component that caused steadily increasing memory consumption and eventual OOMKill pod restarts
+* Added new traffic metrics to the [`wallarm-status`](../../admin-en/configure-statistics-service.md) statistics service: `bytes_blocked_in`, `bytes_blocked_out`, `bytes_blocked_by_acl_in`, and `bytes_blocked_by_acl_out`
+
+    These counters track the volume of incoming and outgoing traffic in blocked requests, split by block reason (attack/overlimit/antibot vs. denylists). Available in JSON, Prometheus, and per-application split formats.
+* Fixed a shared memory allocation bug in the statistics service initialization that could lead to data corruption under high load
+* Fixed memory limit handling for **wcli** jobs
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-33186](https://nvd.nist.gov/vuln/detail/CVE-2026-33186)
+    * [CVE-2026-27137](https://nvd.nist.gov/vuln/detail/CVE-2026-27137)
+    * [CVE-2026-25679](https://nvd.nist.gov/vuln/detail/CVE-2026-25679)
+    * [CVE-2026-27141](https://nvd.nist.gov/vuln/detail/CVE-2026-27141)
+    * [CVE-2026-24049](https://nvd.nist.gov/vuln/detail/CVE-2026-24049)
+
 ### 0.23.0 (2026-02-24)
 
 * Added support for circular references in OpenAPI specifications uploaded for [API Specification Enforcement](../../api-specification-enforcement/overview.md)
@@ -390,7 +438,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
     The metric and other outdated fields have been removed.
 * Fixed an issue where large or overlapping denylisted IP ranges were not being blocked in Security Edge-hosted environments
 * Fixed the following vulnerabilities:
-    
+
     * [CVE-2025-66418](https://nvd.nist.gov/vuln/detail/CVE-2025-66418)
     * [CVE-2025-66471](https://nvd.nist.gov/vuln/detail/CVE-2025-66471)
     * [CVE-2024-58251](https://nvd.nist.gov/vuln/detail/CVE-2024-58251)
