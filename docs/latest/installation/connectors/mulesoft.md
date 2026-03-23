@@ -30,11 +30,10 @@ This solution is recommended for securing Mule APIs managed by Mule Gateway.
 
 ## Requirements
 
-To proceed with the deployment, ensure that you meet the following requirements:
+To proceed with the deployment, ensure that the following requirements are met:
 
 * Understanding of the MuleSoft platform.
 * An Enterprise subscription in Anypoint Platform (required for custom policy deployment and external traffic routing).
-* [Docker](https://docs.docker.com/engine/install/) installed and running on your host system.
 * [Maven (`mvn`)](https://maven.apache.org/install.html).
 * Your MuleSoft user is enabled to upload artifacts to your MuleSoft Anypoint Platform account.
 * Your [MuleSoft Exchange credentials (username and password)](https://docs.mulesoft.com/mule-gateway/policies-custom-upload-to-exchange#deploying-a-policy-created-using-the-maven-archetype) are specified in the `<MAVEN_DIRECTORY>/conf/settings.xml` file.

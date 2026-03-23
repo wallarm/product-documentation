@@ -53,7 +53,7 @@ Among all supported [Wallarm deployment options](../supported-deployment-options
 
 ## Requirements
 
-To proceed with the deployment, ensure that you meet the following requirements:
+To proceed with the deployment, ensure that the following requirements are met:
 
 * Understanding of AWS CloudFront and Lambda technologies.
 * APIs or traffic running through CloudFront CDN.

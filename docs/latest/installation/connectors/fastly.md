@@ -38,7 +38,7 @@ This solution is recommended in case when you deliver traffic through Fastly.
 
 ## Requirements
 
-To proceed with the deployment, ensure that you meet the following requirements:
+To proceed with the deployment, ensure that the following requirements are met:
 
 * Understanding of Fastly technologies.
 * APIs or traffic running through Fastly.

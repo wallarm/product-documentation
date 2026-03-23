@@ -24,7 +24,7 @@ The solution has certain limitations as it only works with incoming requests:
 
 ## Requirements
 
-To proceed with the deployment, ensure that you meet the following requirements:
+To proceed with the deployment, ensure that the following requirements are met:
 
 * Understanding of Azion Edge technologies
 * APIs or traffic running on Azion Edge.

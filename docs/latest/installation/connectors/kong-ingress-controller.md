@@ -21,7 +21,7 @@ This setup allows fine-tuning Wallarm only via the Wallarm Console UI. Some Wall
 
 ## Requirements
 
-To proceed with the deployment, ensure that you meet the following requirements:
+To proceed with the deployment, ensure that the following requirements are met:
 
 * Kong Ingress Controller deployed and managing your API traffic in Kubernetes cluster
 * Kong Ingress Controller version 3.4-3.9

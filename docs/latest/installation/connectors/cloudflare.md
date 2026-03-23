@@ -38,7 +38,7 @@ This solution is recommended in case when you provide access to your application
 
 ## Requirements
 
-To proceed with the deployment, ensure that you meet the following requirements:
+To proceed with the deployment, ensure that the following requirements are met:
 
 * Understanding of Cloudflare technologies.
 * APIs or traffic running through Cloudflare.

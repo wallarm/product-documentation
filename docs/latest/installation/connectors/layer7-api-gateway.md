@@ -27,7 +27,7 @@ This solution is recommended in case when you manage your APIs with the Layer7 A
 
 ## Requirements
 
-To proceed with the deployment, ensure that you meet the following requirements:
+To proceed with the deployment, ensure that the following requirements are met:
 
 * Understanding of the Broadcom Layer7 API Gateways product.
 * Your application and API are linked and running on Broadcom Layer7 API Gateways.

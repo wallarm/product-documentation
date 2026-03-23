@@ -33,7 +33,7 @@ This solution is recommended for securing APIs published via IBM API Connect.
 
 ## Requirements
 
-To proceed with the deployment, ensure that you meet the following requirements:
+To proceed with the deployment, ensure that the following requirements are met:
 
 * Familiarity with IBM API Connect and IBM DataPower Gateway.
 * An IBM API Connect environment up and running (either local or cloud-managed).

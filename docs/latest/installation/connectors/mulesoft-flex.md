@@ -33,7 +33,7 @@ This solution is recommended for securing APIs managed by Flex Gateway.
 
 ## Requirements
 
-To proceed with the deployment, ensure that you meet the following requirements:
+To proceed with the deployment, ensure that the following requirements are met:
 
 * Understanding of the MuleSoft platform.
 * Your application and API are linked and running on Flex Gateway.
