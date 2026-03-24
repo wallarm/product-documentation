@@ -24,7 +24,9 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
     * [CVE-2026-27137](https://nvd.nist.gov/vuln/detail/CVE-2026-27137)
     * [CVE-2026-25679](https://nvd.nist.gov/vuln/detail/CVE-2026-25679)
     * [CVE-2026-27141](https://nvd.nist.gov/vuln/detail/CVE-2026-27141)
-    * [CVE-2026-24049](https://nvd.nist.gov/vuln/detail/CVE-2026-24049)
+    * [CVE-2026-27142](https://nvd.nist.gov/vuln/detail/CVE-2026-27142)
+    * [CVE-2026-27138](https://nvd.nist.gov/vuln/detail/CVE-2026-27138)
+    * [CVE-2026-27139](https://nvd.nist.gov/vuln/detail/CVE-2026-27139)
 
 ### 0.23.0 (2026-02-24)
 
@@ -207,7 +209,11 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
     * [CVE-2026-27137](https://nvd.nist.gov/vuln/detail/CVE-2026-27137)
     * [CVE-2026-25679](https://nvd.nist.gov/vuln/detail/CVE-2026-25679)
     * [CVE-2026-27141](https://nvd.nist.gov/vuln/detail/CVE-2026-27141)
-    * [CVE-2026-24049](https://nvd.nist.gov/vuln/detail/CVE-2026-24049)
+    * [CVE-2026-27142](https://nvd.nist.gov/vuln/detail/CVE-2026-27142)
+    * [CVE-2026-27138](https://nvd.nist.gov/vuln/detail/CVE-2026-27138)
+    * [CVE-2026-22184](https://nvd.nist.gov/vuln/detail/CVE-2026-22184)
+    * [CVE-2026-27171](https://nvd.nist.gov/vuln/detail/CVE-2026-27171)
+    * [CVE-2026-27139](https://nvd.nist.gov/vuln/detail/CVE-2026-27139)
 
 ### 0.23.0 (2026-02-24)
 
@@ -404,6 +410,11 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
     * [CVE-2026-25679](https://nvd.nist.gov/vuln/detail/CVE-2026-25679)
     * [CVE-2026-27141](https://nvd.nist.gov/vuln/detail/CVE-2026-27141)
     * [CVE-2026-24049](https://nvd.nist.gov/vuln/detail/CVE-2026-24049)
+    * [CVE-2026-27142](https://nvd.nist.gov/vuln/detail/CVE-2026-27142)
+    * [CVE-2026-27138](https://nvd.nist.gov/vuln/detail/CVE-2026-27138)
+    * [CVE-2026-22184](https://nvd.nist.gov/vuln/detail/CVE-2026-22184)
+    * [CVE-2026-27171](https://nvd.nist.gov/vuln/detail/CVE-2026-27171)
+    * [CVE-2026-27139](https://nvd.nist.gov/vuln/detail/CVE-2026-27139)
 
 ### 0.23.0 (2026-02-24)
 
