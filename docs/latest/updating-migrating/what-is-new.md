@@ -33,7 +33,7 @@ There are important changes between the two controllers and in how Wallarm is in
 | | Community-based (6.x) | F5-based (7.x) |
 | --- | --- | --- |
 | **Base project** | [Community Ingress NGINX](https://github.com/kubernetes/ingress-nginx) (retired) | [F5 NGINX Ingress Controller](https://github.com/nginx/kubernetes-ingress) |
-| **Upstream version** | 1.11.8 | 5.3.3 |
+| **Upstream version** | 1.15.0 | 5.3.3 |
 | **NGINX version** | NGINX stable 1.25.x | NGINX stable 1.29.x |
 | **Base image** | Alpine Linux 3.22 | Alpine Linux 3.23 |
 | **Architecture support** | amd64, arm64 | amd64, arm64 |

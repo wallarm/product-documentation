@@ -22,7 +22,7 @@ Bu talimatlar, dağıtılmış kullanım ömrü dolmuş (EOL) Wallarm Ingress Co
 
 ## Gereksinimler
 
---8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
+--8<-- "../include/waf/installation/requirements-nginx-ingress-controller-6.x.md"
 
 ## Adım 1: Filtreleme node modüllerini yükselttiğinizi Wallarm teknik desteğine bildirin (yalnızca node 2.18 veya altını yükseltiyorsanız)
 
