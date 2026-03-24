@@ -10,6 +10,54 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.24.0 (TBD)
+
+* [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) (`tcp-capture-v2` mode):
+
+    * Added support for [VXLAN](../../installation/oob/tcp-traffic-mirror/deployment.md#vxlan) and [GENEVE](../../installation/oob/tcp-traffic-mirror/deployment.md#geneve) decapsulation, including support for [AWS VPC Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html) via `nested_vxlan`
+    * Added new configuration parameters: [`tcp_stream.from_vxlan`](../../installation/native-node/all-in-one-conf.md#tcp_streamfrom_vxlan) and [`tcp_stream.from_geneve`](../../installation/native-node/all-in-one-conf.md#tcp_streamfrom_geneve) for receiving encapsulated mirrored traffic
+    * Fixed issues that caused missing and unanalyzed requests, incorrect response-to-request association, and VLAN ID mishandling
+    * Fixed incorrect reassembly of interlaced packets captured from multiple interfaces in promiscuous mode
+* Fixed minor stability and reliability issues
+* Updated [Prometheus metrics](../../admin-en/native-node-metrics-gonode.md):
+
+    | Change | Metric |
+    |--------|--------|
+    | New | `wallarm_gonode_tcp_stream_input_packets_total{source=…}` |
+    | New | `wallarm_gonode_tcp_stream_input_bytes_total{source=…}` |
+    | New | `wallarm_gonode_tcp_stream_output_packets_total` |
+    | New | `wallarm_gonode_tcp_stream_output_bytes_total` |
+    | New | `wallarm_gonode_tcp_stream_packets_rejected_total{reason=…}` |
+    | New | `wallarm_gonode_tcp_stream_bytes_rejected_total{reason=…}` |
+    | New | `wallarm_gonode_tcp_reassembler_http_decode_bytes_decoded_total` |
+    | New | `wallarm_gonode_tcp_reassembler_http_flow_bytes_rejected_total` |
+    | New | `wallarm_gonode_tcp_reassembler_container_is_overloaded` |
+    | New | `wallarm_gonode_tcp_reassembler_http_unpaired_messages` |
+    | New | `wallarm_gonode_tcp_stream_diag_interface_counters_total` |
+    | New | `wallarm_gonode_tcp_stream_errors_total` (Geneve/VXLAN error types) |
+    | New | `wallarm_gonode_envoy_external_filter_requests_blocked_total` |
+    | Changed | `wallarm_gonode_tcp_stream_diag_interface_info` — now only reports MTU; I/O counters moved to `diag_interface_counters_total` |
+    | Renamed | `…errors_total{type="ResponseBeforeRequest"}` → `…{type="ResponseReadyBeforeRequest"}` |
+    | Removed | `wallarm_gonode_tcp_stream_tcp_packets_read_total` |
+    | Removed | `wallarm_gonode_http_connector_server_errors_total{type="MsgType"}` |
+
+
+<!-- 
+
+уже было:
+
+Bug
+NODE-7099
+Aggregation/WCLI Container is crash looping on US 43330 due to OOM
+Critical
+Resolved
+
+Task
+NODE-7548
+Bump base AIO version to 6.10.3 in go-node
+Normal
+RELEASING -->
+
 ### 0.23.2 (2026-03-24)
 
 * Fixed the [GHSA-6g7g-w4f8-9c9x](https://github.com/advisories/GHSA-6g7g-w4f8-9c9x) vulnerability

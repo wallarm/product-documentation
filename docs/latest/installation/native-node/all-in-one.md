@@ -41,7 +41,6 @@ The machine intended for running the Native Node with the all-in-one installer m
 
 * When using the all-in-one installer in `connector-server` or `envoy_external_filter` mode, a **trusted** SSL/TLS certificate is required for the machine's domain. Self-signed certificates are not yet supported.
 * The `tcp-capture-v2` mode does not support traffic mirrored as independent, one-way streams (e.g., by some FortiGate configurations), because such traffic cannot be reliably reconstructed and HTTP request/response pairs may not be matched. `tcp-capture-v2` requires bidirectional TCP streams, with all packets from both directions captured in a single coherent flow. 
-* At the moment, the `tcp-capture-v2` mode does not support VXLAN or SPAN-mirrored traffic.
 * [Custom blocking page and blocking code](../../admin-en/configuration-guides/configure-block-page-and-code.md) configurations are not yet supported.
 * [Rate limiting](../../user-guides/rules/rate-limiting.md) by the Wallarm rule is not supported.
 
@@ -97,12 +96,6 @@ Create the `wallarm-node-conf.yaml` file on the machine with the following minim
       from_interface:
         enabled: true
         interface: "enp7s0"
-    ```
-
-    In the `tcp_stream.from_interface.interface` parameter, you specify the network interface to capture traffic from. To check network interfaces available on the host:
-
-    ```
-    ip addr show
     ```
 === "envoy-external-filter"
     ```yaml

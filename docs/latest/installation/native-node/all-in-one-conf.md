@@ -419,9 +419,9 @@ Maximum lifetime of a connection (e.g., `1m` for 1 minute).
 
 ## TCP mirror-specific settings
 
-### tcp_stream.from_interface.enabled (required)
+### tcp_stream.from_interface.enabled
 
-Specifies if capturing traffic from a network interface is active.
+Enables capturing traffic from a network interface. This source is one of several available traffic sources (`from_interface`, `from_vxlan`, `from_geneve`) — at least one must be enabled.
 
 Default: `false`.
 
@@ -436,9 +436,9 @@ tcp_stream:
     interface: "lo"
 ```
 
-### tcp_stream.from_interface.interface (required)
+### tcp_stream.from_interface.interface
 
-Specifies the network interface name to capture traffic from (e.g., `eth0`, `enp7s0`).
+Specifies the network interface name to capture traffic from (e.g., `eth0`, `enp7s0`). Required when `from_interface.enabled` is `true`.
 
 Default: `any`.
 
@@ -537,7 +537,31 @@ Default: `true`.
 If `tcp_stream.from_interface.promiscuous` is not set, promiscuous mode is enabled by default.
 
 !!! info "Promiscuous mode limitation"
-    Promiscuous mode does not work with [`tcp_stream.from_interface.interface`](#tcp_streamfrom_interfaceinterface-required) set to `any`.
+    Promiscuous mode does not work with [`tcp_stream.from_interface.interface`](#tcp_streamfrom_interfaceinterface) set to `any`.
+
+### tcp_stream.from_vxlan
+
+Configuration for receiving [VXLAN](https://datatracker.ietf.org/doc/html/rfc7348)-encapsulated mirrored traffic. The node listens on a UDP port and decapsulates VXLAN packets for analysis. Available [starting from version 0.24.0](../../updating-migrating/native-node/node-artifact-versions.md).
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `enabled` | bool | `false` | Enable VXLAN listener. |
+| `listen_addr` | string | `0.0.0.0:4789` | UDP address and port to listen on. |
+| `vni_filter` | list of integers | empty (all VNIs) | List of VXLAN VNIs to accept. If empty, all VNIs are accepted. |
+| `filter` | string | empty (no filter) | [BPF filter](https://biot.com/capstats/bpf.html) applied to decapsulated inner packets. |
+
+### tcp_stream.from_geneve
+
+Configuration for receiving [GENEVE](https://datatracker.ietf.org/doc/html/rfc8926)-encapsulated mirrored traffic. The node listens on a UDP port and decapsulates GENEVE packets for analysis. Supports [AWS VPC Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html) with nested VXLAN. Available [starting from version 0.24.0](../../updating-migrating/native-node/node-artifact-versions.md).
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `enabled` | bool | `false` | Enable GENEVE listener. |
+| `listen_addr` | string | `0.0.0.0:6081` | UDP address and port to listen on. |
+| `nested_vxlan` | bool | `false` | Enable decapsulation of nested VXLAN inside GENEVE (AWS VPC Traffic Mirroring). |
+| `vni_filter` | list of integers | empty (all VNIs) | List of outer GENEVE VNIs to accept. If empty, all VNIs are accepted. |
+| `inner_vni_filter` | list of integers | empty (all VNIs) | List of inner VXLAN VNIs to accept when `nested_vxlan` is enabled. If empty, all VNIs are accepted. |
+| `filter` | string | empty (no filter) | [BPF filter](https://biot.com/capstats/bpf.html) applied to decapsulated inner packets. |
 
 ## Envoy external filter-specific settings
 
