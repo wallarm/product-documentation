@@ -19,6 +19,11 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.11.1 (2026-03-25)
+
+* Added support for NGINX stable 1.28.3
+* Added support for NGINX mainline 1.29.7
+
 ### 6.11.0 (2026-03-25)
 
 * Fixed empty response (`000` status code) instead of [custom block page](../admin-en/configuration-guides/configure-block-page-and-code.md) when [`ngx_http_auth_request_module`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) is used
@@ -216,7 +221,7 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](ingress-controller.md)
 
-### 6.11.0 (2026-03-25)
+### 6.11.1 (2026-03-25)
 
 * Upgraded to Community Ingress NGINX Controller version [1.15.0](https://github.com/kubernetes/ingress-nginx/releases/tag/controller-v1.15.0), aligning with the upstream Helm chart version 4.15.0
 
@@ -429,7 +434,7 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
-### 6.11.0 (2026-03-25)
+### 6.11.1 (2026-03-25)
 
 * Fixed empty response (`000` status code) instead of [custom block page](../admin-en/configuration-guides/configure-block-page-and-code.md) when [`ngx_http_auth_request_module`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) is used
 * Fixed the [GHSA-6g7g-w4f8-9c9x](https://github.com/advisories/GHSA-6g7g-w4f8-9c9x) vulnerability
@@ -622,7 +627,7 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](docker-container.md)
 
-### 6.11.0 (2026-03-25)
+### 6.11.1 (2026-03-25)
 
 * Fixed empty response (`000` status code) instead of [custom block page](../admin-en/configuration-guides/configure-block-page-and-code.md) when [`ngx_http_auth_request_module`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) is used
 * Fixed the [GHSA-6g7g-w4f8-9c9x](https://github.com/advisories/GHSA-6g7g-w4f8-9c9x) vulnerability
@@ -818,7 +823,7 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
-### 6.11.0 (2026-03-25)
+### 6.11.1 (2026-03-25)
 
 * Fixed empty response (`000` status code) instead of [custom block page](../admin-en/configuration-guides/configure-block-page-and-code.md) when [`ngx_http_auth_request_module`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) is used
 * Fixed the [GHSA-6g7g-w4f8-9c9x](https://github.com/advisories/GHSA-6g7g-w4f8-9c9x) vulnerability
@@ -978,7 +983,7 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
-### wallarm-node-6-11-0-20260325-085620 (2026-03-25)
+### wallarm-node-6-11-1-20260325-092834 (2026-03-25)
 
 * Fixed empty response (`000` status code) instead of [custom block page](../admin-en/configuration-guides/configure-block-page-and-code.md) when [`ngx_http_auth_request_module`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) is used
 * Fixed the [GHSA-6g7g-w4f8-9c9x](https://github.com/advisories/GHSA-6g7g-w4f8-9c9x) vulnerability
