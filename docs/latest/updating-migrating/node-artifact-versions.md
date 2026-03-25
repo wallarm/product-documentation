@@ -14,7 +14,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](ingress-controller.md)
 
-### 7.0.0-rc1 (2026-02-16)
+### 7.0.0 (2026-02-16)
 
 * Initial release 7.0, [see changelog](what-is-new.md)
 
