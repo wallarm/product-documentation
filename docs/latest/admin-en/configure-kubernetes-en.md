@@ -40,6 +40,7 @@ config:
       existingSecret:
         enabled: false
     fallback: "on"
+    wstoreMaxConns: 2
 
   wcliPostanalytics:
     logLevel: "WARN"
@@ -111,6 +112,10 @@ controller:
 
   annotations: {}
 
+  nginxReloadTimeout: 60000
+
+  enableConfigSafety: false
+
   wallarm:
     metrics:
       enabled: false
@@ -166,6 +171,13 @@ controller:
           targetLabels: []
           relabelings: []
           metricRelabelings: []
+      extraEnvs: []
+
+    apiFirewall:
+      resources: {}
+      securityContext: {}
+      livenessProbeEnabled: false
+      readinessProbeEnabled: false
       extraEnvs: []
 
     extraVolumes: []
@@ -423,6 +435,7 @@ postanalytics:
   serviceAddress: "0.0.0.0:3313"
   serviceProtocol: "tcp4"
   resources: {}
+  securityContext: {}
   livenessProbe:
     failureThreshold: 3
     initialDelaySeconds: 5
@@ -533,6 +546,8 @@ prometheusExtended:
   port: 10113
   portName: prom-ext
   endpointPath: "/vts-status"
+  # detailedCodes: ""
+  # shmSize: ""
   service:
     create: false
     annotations: {}
@@ -670,6 +685,12 @@ To store the node token in Kubernetes Secrets and pull it to the Helm chart:
 Controls [fallback behavior][fallback] when Wallarm data (for example, [`proton.db][proton-db] or a [custom rule set][lom]) cannot be downloaded.
 
 **Default value**: `"on"`
+
+#### config.wallarm.wstoreMaxConns
+
+Maximum number of simultaneous connections to the wstore upstream. Do not change unless advised by Wallarm support.
+
+**Default value**: `2`
 
 ### Wallarm wcli parameters
 
@@ -1111,13 +1132,63 @@ postanalytics:
 | `mutualTLS.enabled` | Enables mutual TLS (mTLS), where both the Filtering Node and the postanalytics module verify each other's identity via certificates. By default, `false` (disabled). | No |
 | `mutualTLS.clientCACertFile` | Specifies the path to a trusted Certificate Authority (CA) certificate used to validate the TLS certificate presented by the Filtering Node. | Yes if using a custom CA |
 
-### Other parameters
+### Controller parameters
 
-#### controller.wallarm.initContainer.extraEnvs
+#### controller.nginxReloadTimeout
 
-Additional environment variables to pass to the init container.
+Timeout in milliseconds which the Ingress Controller will wait for a successful NGINX reload after a configuration change or at the initial start. Increase this value if you have a large number of Ingress resources that cause slow reloads.
 
-The example below shows how to pass the `https_proxy` and `no_proxy` variables. This setup directs outgoing HTTPS traffic through a designated proxy, while local traffic bypasses it. This configuration is important when external traffic, such as to the Wallarm API, must go through a proxy for security reasons.
+**Default value**: `60000`
+
+#### controller.enableConfigSafety
+
+Enables NGINX configuration validation before applying a reload. When enabled, the controller verifies the generated config with `nginx -t` prior to reloading, preventing broken configurations from being applied.
+
+**Default value**: `false`
+
+### API Specification Enforcement container parameters
+
+#### controller.wallarm.apiFirewall.resources
+
+Kubernetes resource requests and limits for the [API Specification Enforcement][api-firewall] container running in the `controller` pod. Set these to ensure proper resource allocation in production.
+
+**Default value**: `{}`
+
+#### controller.wallarm.apiFirewall.securityContext
+
+Kubernetes security context for the [API Specification Enforcement][api-firewall] container.
+
+**Default value**: `{}`
+
+#### controller.wallarm.apiFirewall.livenessProbeEnabled
+
+Enables the liveness probe for the [API Specification Enforcement][api-firewall] container. When enabled, Kubernetes periodically checks the health endpoint and restarts the container if it becomes unresponsive.
+
+**Default value**: `false`
+
+#### controller.wallarm.apiFirewall.readinessProbeEnabled
+
+Enables the readiness probe for the [API Specification Enforcement][api-firewall] container. When enabled, the container is only marked as ready after passing the readiness check.
+
+**Default value**: `false`
+
+### Extra environment variables for containers
+
+You can pass additional environment variables to any Wallarm container. This is useful for configuring proxy settings, custom logging, or injecting secrets.
+
+The following containers support the `extraEnvs` parameter:
+
+| Parameter | Container |
+| --------- | --------- |
+| `controller.wallarm.initContainer.extraEnvs` | Init container (node registration) in the controller pod |
+| `controller.wallarm.wcli.extraEnvs` | Wallarm CLI container in the controller pod |
+| `controller.wallarm.apiFirewall.extraEnvs` | API Specification Enforcement container in the controller pod |
+| `postanalytics.extraEnvs` | Wstore container in the postanalytics pod |
+| `postanalytics.initContainer.extraEnvs` | Init container in the postanalytics pod |
+| `postanalytics.wcli.extraEnvs` | Wallarm CLI container in the postanalytics pod |
+| `postanalytics.appstructure.extraEnvs` | Appstructure container in the postanalytics pod |
+
+Example — passing proxy settings to the init container:
 
 ```yaml
 controller:
@@ -1128,6 +1199,32 @@ controller:
         - name: https_proxy
           value: https://1.1.1.1:3128
 ```
+
+### Postanalytics security context
+
+#### postanalytics.securityContext
+
+Kubernetes security context for the wstore container. Use this to configure security constraints in restricted environments (e.g., OpenShift, Pod Security Standards).
+
+**Default value**: `{}`
+
+### Extended Prometheus metrics parameters
+
+#### prometheusExtended.shmSize
+
+Shared memory zone size for the VTS (Virtual Host Traffic Status) module. Controls how much data can be stored for extended metrics collection. Increase this if you have a large number of virtual hosts or upstreams and see VTS-related errors in NGINX logs.
+
+Examples: `"1m"`, `"10m"`, `"32m"`.
+
+**Default value**: `"10m"` (if not set)
+
+#### prometheusExtended.detailedCodes
+
+Specifies which HTTP status codes to track in detail. By default, VTS aggregates response codes into classes (2xx, 3xx, etc.). This parameter allows tracking individual status codes.
+
+Examples: `"all"`, `"200 301 302 400 403 404 500 502 503"`.
+
+**Default value**: not set (codes are aggregated by class)
 
 ### Annotation validation
 
@@ -1166,18 +1263,18 @@ Besides the Wallarm-specific annotations described below, [standard NGINX Ingres
 !!! info "Annotation prefix"
     In the F5-based controller, annotations use the `nginx.org/*` prefix instead of `nginx.ingress.kubernetes.io/*`. This applies to both general NGINX annotations and Wallarm-specific annotations. [See more details][new-annotations].
 
-| Annotation | Description | 
-| --- | --- | 
-| `nginx.org/wallarm-mode` | [Traffic filtration mode](../admin-en/configure-wallarm-mode.md): `monitoring` (default), `safe_blocking`, `block` or `off`. | 
-| `nginx.org/wallarm-mode-allow-override` | Manages the [ability to override the `wallarm_mode values` via settings in the Cloud](../admin-en/configure-wallarm-mode.md#prioritization-of-methods): `on` (default), `off` or `strict`. | 
-| `nginx.org/wallarm-fallback` | [Wallarm fallback mode](../admin-en/configure-parameters-en.md#wallarm_fallback) : `on` (default) or `off`. | 
+| Annotation | Description |
+| --- | --- |
+| `nginx.org/wallarm-mode` | [Traffic filtration mode](../admin-en/configure-wallarm-mode.md): `monitoring` (default), `safe_blocking`, `block` or `off`. |
+| `nginx.org/wallarm-mode-allow-override` | Manages the [ability to override the `wallarm_mode values` via settings in the Cloud](../admin-en/configure-wallarm-mode.md#prioritization-of-methods): `on` (default), `off` or `strict`. |
+| `nginx.org/wallarm-fallback` | [Wallarm fallback mode](../admin-en/configure-parameters-en.md#wallarm_fallback) : `on` (default) or `off`. |
 | `nginx.org/wallarm-application` | [Wallarm application ID](../user-guides/settings/applications.md). |
 | `nginx.org/wallarm-block-page` | [Blocking page and error code](../admin-en/configuration-guides/configure-block-page-and-code.md) to return to blocked requests. |
 | `nginx.org/wallarm-unpack-response` | Whether to decompress compressed data returned in the application response: `on` (default) or `off`. |
 | `nginx.org/wallarm-parse-response` | Whether to analyze the application responses for attacks: `on` (default) or `off`. Response analysis is required for vulnerability detection during [passive detection](../about-wallarm/detecting-vulnerabilities.md#passive-detection) and [threat replay testing](../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing-trt). |
 | `nginx.org/wallarm-parse-websocket` | Wallarm has full WebSockets support. By default, the WebSockets' messages are not analyzed for attacks. To force the feature, activate the API Security [subscription plan](../about-wallarm/subscription-plans.md#core-subscription-plans) and use this annotation: `on` or `off` (default). |
 | `nginx.org/wallarm-parser-disable` | Allows to disable [parsers](../user-guides/rules/request-processing.md). The directive values correspond to the name of the parser to be disabled, e.g. `json`. Multiple parsers can be specified, dividing by semicolon, e.g. `json;base64`. |
-| `nginx.org/wallarm-partner-client-uuid` | Partner client [UUID](../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants) for multi-tenant setups. | 
+| `nginx.org/wallarm-partner-client-uuid` | Partner client [UUID](../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants) for multi-tenant setups. |
 
 ### Applying annotation to the Ingress resource
 
@@ -1226,7 +1323,7 @@ You can control the [**libdetection**](../admin-en/configure-parameters-en.md#wa
 * (Cluster‑wide) Uses the controller `ConfigMap` (via `controller.config.entries`) to apply the setting globally to the Ingress Controller:
 
   ```bash
-  helm upgrade --reuse-values <INGRESS_CONTROLLER_RELEASE_NAME> ./charts/nginx-ingress -n <KUBERNETES_NAMESPACE> \
+  helm upgrade --reuse-values <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> \
     --set-string controller.config.entries.server-snippets="wallarm_enable_libdetection off;"
   ```
 
@@ -1235,7 +1332,7 @@ You can control the [**libdetection**](../admin-en/configure-parameters-en.md#wa
 
 ## Wallarm policy custom resource definition (CRD)
 
-The F5-based controller supports [Custom Resource Definitions](https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/) as an alternative to standard Ingress resources for advanced routing (canary deployments, traffic splitting, header-based routing).
+The F5-based controller supports [Custom Resource Definitions](https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/) as an alternative to standard Ingress resources for advanced routing (canary deployments, traffic splitting, header-based routing). All [standard F5 NGINX Ingress Controller CRDs](https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/custom-resources/) are available.
 
 When using CRDs, Wallarm settings are configured via the **Policy** resource instead of annotations. Wallarm patches the upstream Policy CRD to add an optional `spec.wallarm` block — an alternative to Wallarm annotations that provides the same set of settings through a dedicated resource. The Policy is then referenced from `VirtualServer` or `VirtualServerRoute` routes.
 
