@@ -20,7 +20,7 @@
 
 ## متطلبات
 
---8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
+--8<-- "../include/waf/installation/requirements-nginx-ingress-controller-6.x.md"
 
 ## الخطوة 1: أبلغ Wallarm technical support بالترقية
 

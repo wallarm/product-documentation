@@ -19,6 +19,12 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.11.0 (2026-03-25)
+
+* Fixed empty response (`000` status code) instead of [custom block page](../admin-en/configuration-guides/configure-block-page-and-code.md) when [`ngx_http_auth_request_module`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) is used
+* Fixed the [GHSA-6g7g-w4f8-9c9x](https://github.com/advisories/GHSA-6g7g-w4f8-9c9x) vulnerability
+* Bumped Go version to 1.26.1
+
 ### 6.10.3 (2026-03-16)
 
 * Fixed a memory leak in the [API Specification Enforcement](../api-specification-enforcement/overview.md) component that caused steadily increasing memory consumption and eventual OOMKill pod restarts
@@ -209,6 +215,17 @@ new attack types in logging variables and search bars?
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.11.0 (2026-03-25)
+
+* Upgraded to Community Ingress NGINX Controller version [1.15.0](https://github.com/kubernetes/ingress-nginx/releases/tag/controller-v1.15.0), aligning with the upstream Helm chart version 4.15.0
+
+    The underlying NGINX has been updated to 1.27.1 and the base Alpine image to 3.23.3.
+
+    Supported Kubernetes versions are now 1.31–1.35.
+* Fixed empty response (`000` status code) instead of [custom block page](../admin-en/configuration-guides/configure-block-page-and-code.md) when [`ngx_http_auth_request_module`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) is used
+* Fixed the [GHSA-6g7g-w4f8-9c9x](https://github.com/advisories/GHSA-6g7g-w4f8-9c9x) vulnerability
+* Bumped Go version to 1.26.1
 
 ### 6.10.3 (2026-03-16)
 
@@ -412,6 +429,12 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.11.0 (2026-03-25)
+
+* Fixed empty response (`000` status code) instead of [custom block page](../admin-en/configuration-guides/configure-block-page-and-code.md) when [`ngx_http_auth_request_module`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) is used
+* Fixed the [GHSA-6g7g-w4f8-9c9x](https://github.com/advisories/GHSA-6g7g-w4f8-9c9x) vulnerability
+* Bumped Go version to 1.26.1
+
 ### 6.10.3 (2026-03-16)
 
 * Fixed a memory leak in the [API Specification Enforcement](../api-specification-enforcement/overview.md) component that caused steadily increasing memory consumption and eventual OOMKill pod restarts
@@ -598,6 +621,12 @@ new attack types in logging variables and search bars?
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.11.0 (2026-03-25)
+
+* Fixed empty response (`000` status code) instead of [custom block page](../admin-en/configuration-guides/configure-block-page-and-code.md) when [`ngx_http_auth_request_module`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) is used
+* Fixed the [GHSA-6g7g-w4f8-9c9x](https://github.com/advisories/GHSA-6g7g-w4f8-9c9x) vulnerability
+* Bumped Go version to 1.26.1
 
 ### 6.10.3 (2026-03-16)
 
@@ -789,6 +818,12 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
+### 6.11.0 (2026-03-25)
+
+* Fixed empty response (`000` status code) instead of [custom block page](../admin-en/configuration-guides/configure-block-page-and-code.md) when [`ngx_http_auth_request_module`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) is used
+* Fixed the [GHSA-6g7g-w4f8-9c9x](https://github.com/advisories/GHSA-6g7g-w4f8-9c9x) vulnerability
+* Bumped Go version to 1.26.1
+
 ### 6.10.3 (2026-03-16)
 
 * Fixed a memory leak in the [API Specification Enforcement](../api-specification-enforcement/overview.md) component that caused steadily increasing memory consumption and eventual OOMKill pod restarts
@@ -942,6 +977,12 @@ new attack types in logging variables and search bars?
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-11-0-20260325-085620 (2026-03-25)
+
+* Fixed empty response (`000` status code) instead of [custom block page](../admin-en/configuration-guides/configure-block-page-and-code.md) when [`ngx_http_auth_request_module`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) is used
+* Fixed the [GHSA-6g7g-w4f8-9c9x](https://github.com/advisories/GHSA-6g7g-w4f8-9c9x) vulnerability
+* Bumped Go version to 1.26.1
 
 ### wallarm-node-6-10-3-20260312-143020 (2026-03-16)
 

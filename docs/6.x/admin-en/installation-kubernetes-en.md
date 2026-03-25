@@ -20,7 +20,7 @@
 
 These instructions provide you with the steps to deploy the Wallarm NGINX-based Ingress controller to your K8s cluster. The solution is deployed from the Wallarm Helm chart.
 
-The solution is built on the [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) with integrated Wallarm services. The latest version uses Community Ingress NGINX Controller 1.11.8 with NGINX stable 1.25.5, the upstream Helm chart 4.11.8, and Alpine Linux 3.22.0 as the base image.
+The solution is built on the [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) with integrated Wallarm services. The latest version uses Community Ingress NGINX Controller 1.15.0 with NGINX stable 1.27.1, the upstream Helm chart 4.15.0, and Alpine Linux 3.23.3 as the base image.
 
 !!! warning
     The Kubernetes community will [retire the Community Ingress NGINX in March 2026](https://blog.nginx.org/blog/the-ingress-nginx-alternative-open-source-nginx-ingress-controller-for-the-long-term). The Wallarm NGINX Ingress Controller based on this project will be supported through the same date. You can continue using it until then, and it will remain fully functional during the support window.
@@ -44,7 +44,7 @@ Among all supported [Wallarm deployment options][deployment-platform-docs], this
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
+--8<-- "../include/waf/installation/requirements-nginx-ingress-controller-6.x.md"
 
 !!! info "See also"
     * [What is Ingress?](https://kubernetes.io/docs/concepts/services-networking/ingress/)
@@ -118,7 +118,7 @@ To install the Wallarm Ingress Controller:
 1. Install the Wallarm packages:
 
     ``` bash
-    helm install --version 6.10.3 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
+    helm install --version 6.11.0 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` is the name for the Helm release of the Ingress controller chart

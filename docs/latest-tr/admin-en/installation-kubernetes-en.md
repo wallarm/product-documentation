@@ -26,7 +26,7 @@ Desteklenen tüm [Wallarm dağıtım seçenekleri][deployment-platform-docs] ara
 
 ## Gereksinimler
 
---8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
+--8<-- "../include/waf/installation/requirements-nginx-ingress-controller-6.x.md"
 
 !!! info "Ayrıca bakınız"
     * [Ingress nedir?](https://kubernetes.io/docs/concepts/services-networking/ingress/)

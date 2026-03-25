@@ -20,7 +20,7 @@
 
 ## المتطلبات
 
---8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
+--8<-- "../include/waf/installation/requirements-nginx-ingress-controller-6.x.md"
 
 ## الخطوة 1: تحديث مستودع Wallarm Helm chart
 

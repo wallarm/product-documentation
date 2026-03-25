@@ -26,7 +26,7 @@
 
 ## 要件
 
---8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
+--8<-- "../include/waf/installation/requirements-nginx-ingress-controller-6.x.md"
 
 !!! info "関連情報"
     * [Ingressとは？](https://kubernetes.io/docs/concepts/services-networking/ingress/)

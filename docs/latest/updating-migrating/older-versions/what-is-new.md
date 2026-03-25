@@ -357,7 +357,7 @@ Wallarm node finds the JWT anywhere in the request, [decodes](../../user-guides/
 
 ## Supported installation options
 
-* Wallarm Ingress controller based on the Community Ingress NGINX Controller 1.11.8.
+* Wallarm Ingress controller based on the Community Ingress NGINX Controller 1.15.0.
 
     [Instructions on migrating to the latest Wallarm Ingress controller →](ingress-controller.md)
 * Added support for AlmaLinux, Rocky Linux and Oracle Linux 8.x instead of the [deprecated](https://www.centos.org/centos-linux-eol/) CentOS 8.x.
@@ -642,7 +642,7 @@ Now you can easily group node instances using one [**API token**](../../user-gui
 For example: 
 
 ```bash
-docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>' -p 80:80 wallarm/node:6.10.3
+docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>' -p 80:80 wallarm/node:6.11.0
 ```
 ...will place node instance into the `<GROUP>` instance group (existing, or, if does not exist, it will be created).
 

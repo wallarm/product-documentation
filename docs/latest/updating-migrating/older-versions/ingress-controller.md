@@ -14,9 +14,9 @@ These instructions describe the steps to upgrade deployed end‑of‑life Wallar
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
 !!! warning "The upgraded version of Community Ingress NGINX Controller"
-    If you upgrade the node from version 3.4 or lower, please note that the version of Community Ingress NGINX Controller the Wallarm Ingress controller is based on has been upgraded from 0.26.2 to 1.11.8.
+    If you upgrade the node from version 3.4 or lower, please note that the version of Community Ingress NGINX Controller the Wallarm Ingress controller is based on has been upgraded from 0.26.2 to 1.15.0.
     
-    Since the operation of Community Ingress NGINX Controller 1.11.8 has been significantly changed, its configuration has to be adjusted to these changes during the Wallarm Ingress controller upgrade.
+    Since the operation of Community Ingress NGINX Controller 1.15.0 has been significantly changed, its configuration has to be adjusted to these changes during the Wallarm Ingress controller upgrade.
 
     These instructions contain the list of Community Ingress NGINX Controller settings you probably have to change. Nevertheless, please draw up and individual plan for the configuration migration based on the [Community Ingress NGINX Controller release notes](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md). 
 
@@ -29,7 +29,7 @@ These instructions describe the steps to upgrade deployed end‑of‑life Wallar
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
+--8<-- "../include/waf/installation/requirements-nginx-ingress-controller-6.x.md"
 
 ## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules (only if upgrading node 2.18 or lower)
 
@@ -209,7 +209,7 @@ To install and run the plugin:
 2. Run the plugin:
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.10.3 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.11.0 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
@@ -316,7 +316,7 @@ By using this method, you can deploy Ingress Controller 6.x as an additional ent
 2. Deploy the Ingress controller 6.x:
 
     ```bash
-    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.10.3 -f <PATH_TO_VALUES>
+    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.11.0 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: the name for the Helm release of the Ingress controller chart
@@ -352,7 +352,7 @@ To re‑create the Ingress controller release:
     2. Create a new release with Ingress controller 6.x:
 
         ```bash
-        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.10.3 -f <PATH_TO_VALUES>
+        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.11.0 -f <PATH_TO_VALUES>
         ```
 
         * `<RELEASE_NAME>`: the name for the Helm release of the Ingress controller chart
@@ -404,7 +404,7 @@ Release re‑creation will take several minutes and the Ingress controller will 
 
     ```bash
     cat objects-to-remove.txt | xargs kubectl delete --wait=false -n <NAMESPACE>    && \
-    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.10.3 -f `<PATH_TO_VALUES>`
+    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.11.0 -f `<PATH_TO_VALUES>`
     ```
 
     To decrease service downtime, it is NOT recommended to execute commands separately.
@@ -430,7 +430,7 @@ There are the following parameters passed in the commands:
     helm ls
     ```
 
-    The chart version should correspond to `wallarm-ingress-6.10.3`.
+    The chart version should correspond to `wallarm-ingress-6.11.0`.
 1. Get the Wallarm pod:
     
     ``` bash

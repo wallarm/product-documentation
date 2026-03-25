@@ -22,7 +22,7 @@ Bu talimatlar, dağıtılmış Wallarm NGINX tabanlı Ingress Controller'ı en s
 
 ## Gereksinimler
 
---8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
+--8<-- "../include/waf/installation/requirements-nginx-ingress-controller-6.x.md"
 
 ## Adım 1: Wallarm Helm chart deposunu güncelleyin
 
