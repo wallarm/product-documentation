@@ -5,7 +5,8 @@
 [new-IC-configuration]:     ../admin-en/configure-kubernetes-en.md
 [IC-retirement]:            ../updating-migrating/nginx-ingress-retirement.md
 [old-IC-maintenance]:        ../updating-migrating/nginx-ingress-retirement.md#wallarms-nginx-based-ingress-controller-support-timeline
-
+[api-spec-enforcement-docs]: ../api-specification-enforcement/overview.md
+[ip-lists-docs]:             ../user-guides/ip-lists/overview.md
 
 # Migrating From the Community‑Based to F5‑Based Wallarm Ingress Controller
 
@@ -54,22 +55,16 @@ Review the summary table below to determine which approach best fits your enviro
 
 **Purpose:** Prepare the new Ingress Controller and validate your converted Ingress configuration **without changing production**. You will deploy the new controller alongside the existing one, convert Ingress manifests on **copies**, and test them in a separate namespace. Part 1 is the same for every migration strategy.
 
-### Prerequisites
+### Requirements
 
-Before starting the migration, ensure the following components meet the minimum version requirements:
+Before starting the migration, ensure the following requirements are met:
 
-* Kubernetes CLI (kubectl) – v1.25+
-* Helm – v3.10+
-* cURL – 7.x+ (usually pre-installed on Linux/macOS)
-* Basic shell utilities – grep, sed, awk
+--8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest-7.x.md"
 
-Additionally, you need these **access and permissions**:
+Depending on the chosen migration strategy, additional access may be required:
 
-* **Namespace administration** – Can create, modify, and delete resources in target namespaces.
-* **Wallarm API token** – You can reuse the existing API token with the `Node deployment/Deployment` usage type from your current NGINX Ingress Controller deployment.
-* **DNS management access** (required for strategies [B](#strategy-b-dns-switch) and [D](#strategy-d-direct-replacement)) – Ability to create/update A/CNAME records.
 * **Load balancer access** (required for [strategy A](#strategy-a-load-balancer-traffic-splitting) – Access to your external load balancer configuration.
-* **Monitoring/metrics access** – Ability to view logs and metrics.
+* **DNS management access** (required for strategies [B](#strategy-b-dns-switch) and [D](#strategy-d-direct-replacement)) – Ability to create/update A/CNAME records.
 
 ### Step 0. Collect current Ingress deployment details and validate environment
 
@@ -182,7 +177,7 @@ Before starting the migration, gather the following information from your existi
 
     # Deploy the new Ingress Controller
     helm install wallarm-ingress-new wallarm/wallarm-ingress \
-      --version 7.0.0-rc1 \
+      --version 7.0.0 \
       -n wallarm-ingress-new \
       --create-namespace \
       -f values.yaml
@@ -214,7 +209,7 @@ Before starting the migration, gather the following information from your existi
               # nodeGroup: defaultIngressGroup
         ```
 
-    `<NODE_TOKEN>` is the API token generated for Wallarm Node deployment.        
+    `<NODE_TOKEN>` is the [API token](../user-guides/settings/api-tokens.md) generated for Wallarm Node deployment. You can reuse the existing API token with the `Node deployment/Deployment` usage type from your current NGINX Ingress Controller deployment or generate a new one.
 
 1. Verify the Ingress Controller deployment in Kubernetes:
 
@@ -223,11 +218,11 @@ Before starting the migration, gather the following information from your existi
     kubectl get pods -n wallarm-ingress-new
 
     # Check Wallarm WCLI logs for cloud connectivity and errors
-    kubectl logs -n wallarm-ingress-new deployment/wallarm-ingress-controller \
+    kubectl logs -n wallarm-ingress-new -l app.kubernetes.io/component=controller \
       -c wallarm-wcli --tail=50 | grep -i "sync\|connect\|error"
 
     # Check Postanalytics logs
-    kubectl logs -n wallarm-ingress-new deployment/wallarm-ingress-postanalytics --tail=50
+    kubectl logs -n wallarm-ingress-new -l app.kubernetes.io/component=wallarm-postanalytics --tail=50
     ```
 
 1. Verify the new Ingress Controller in the Wallarm Console.
@@ -276,20 +271,22 @@ Use the exported files (e.g. `old-ingresses-backup.yaml`) as the source for crea
 ### Step 4. Convert annotations
 
 !!! warning "Work with copies, not production"
-    Do **not** modify existing production Ingress resources directly. Changing annotations or the `IngressClass` can affect live traffic. Instead, work with **copies** of your Ingress manifests: export or copy them, apply the conversions below to the copies, and test in a separate namespace ([Step 5](#step-5-test-converted-ingress-resources)). Only in [Part 2](#migration-part-2-strategy-dependent) will you apply the validated changes to your actual production Ingress resources.
+    Do **not** modify existing production Ingress resources directly. Changing annotations or the `IngressClass` will immediately change which controller serves them, causing traffic disruption. Instead, work with **copies** of your Ingress manifests: export or copy them, apply the conversions below to the copies, and test in a separate namespace ([Step 5](#step-5-test-converted-ingress-resources)). In [Part 2](#migration-part-2-strategy-dependent), you will apply these converted copies as **new Ingress resources** alongside the originals (for strategies A, B) or replace the originals (for strategies C, D).
 
 Update your **copied** Ingress manifests to ensure compatibility with the new Ingress Controller, as follows.
 
-1. Change the `IngressClass` to match the new controller:
+1. Change the `IngressClass` to match the new controller. Also **rename the Ingress resource** (e.g., add a `-new` suffix) so it can coexist with the original during migration (required for strategies A and B):
 
     ```yaml
     # Old
     metadata:
+      name: my-ingress
       annotations:
         kubernetes.io/ingress.class: nginx
 
-    # New
+    # New (renamed + new IngressClass)
     metadata:
+      name: my-ingress-new
       annotations:
         kubernetes.io/ingress.class: nginx-new
     ```
@@ -341,7 +338,8 @@ Before migrating production traffic, verify your converted Ingress resources in 
 1. Check the NGINX configuration generated by the new controller. Use the host from your test Ingress in the `grep` pattern (the example below uses a placeholder host `test.example.com`):
 
     ```bash
-    kubectl exec -n wallarm-ingress-new deployment/wallarm-ingress-controller \
+    kubectl exec -n wallarm-ingress-new \
+      $(kubectl get pod -n wallarm-ingress-new -l app.kubernetes.io/component=controller -o name | head -1) \
       -- nginx -T | grep -A 20 "server_name test.example.com"
     ```
 
@@ -350,7 +348,7 @@ Before migrating production traffic, verify your converted Ingress resources in 
 1. Get the new load balancer IP:
 
     ```bash
-    NEW_LB_IP=$(kubectl get svc -n wallarm-ingress-new wallarm-ingress-controller \
+    NEW_LB_IP=$(kubectl get svc -n wallarm-ingress-new wallarm-ingress-new-controller \
       -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 
     if [ -z "$NEW_LB_IP" ]; then
@@ -386,6 +384,7 @@ Before migrating production traffic, verify your converted Ingress resources in 
     ```
 
     Wait 2–3 minutes and verify in Wallarm Console → **Events** → **Attacks** that the request is detected/blocked.
+1. [Test other core Wallarm functionality](../admin-en/uat-checklist-en.md).
 
 Congratulations! You have completed the strategy-independent portion of the migration. So far you have worked only with **copies** of Ingress manifests and tested them in a test namespace. **Production Ingress resources have not been changed yet**.
 
@@ -393,13 +392,22 @@ Congratulations! You have completed the strategy-independent portion of the migr
 
 **Purpose:** Shift traffic from the old controller to the new one and **apply the validated Ingress changes to your production Ingress resources**. You choose one of four strategies ([load balancer](#strategy-a-load-balancer-traffic-splitting), [DNS switch](#strategy-b-dns-switch), [selector swap](#strategy-c-selector-swap), or [direct replacement](#strategy-d-direct-replacement)) depending on your environment.
 
+!!! info "How `IngressClass` controls which controller serves your traffic"
+    A Kubernetes Ingress Controller only processes Ingress resources that match its `IngressClass`. In each strategy below, you will update your production Ingress resources to use the new controller's `IngressClass` (`nginx-new`). This is what tells the new controller to pick them up. The old controller stops serving an Ingress as soon as its `IngressClass` no longer matches. The infrastructure-level switch (DNS, load balancer, or service selector) determines **which controller receives network traffic**, while the `IngressClass` update determines **which controller owns the routing configuration**. Both must happen for the migration to be complete.
+
 ### Strategy A - load balancer (traffic splitting)
 
 This method uses an external load balancer (F5, HAProxy, cloud ALB, etc.) to gradually shift traffic from the old controller to the new one.
 
 **Migration steps:**
 
-1. **Apply validated Ingress changes to production.** Update your production Ingress resources with the new `IngressClass` and `nginx.org/*` annotations (as validated in Part 1, Steps 4–5). This ensures the new controller will serve those Ingresses when traffic is shifted to it. Use the same converted manifests you tested; apply them to the actual production namespaces (e.g. with `kubectl apply -f <validated-manifests>.yaml` per namespace, or your preferred rollout method).
+1. Apply converted Ingress resources as new resources alongside the existing ones. Do **not** modify or delete the original Ingress resources — the old controller must continue serving traffic while you shift it gradually. Apply the validated manifests from Part 1 with a new `IngressClass` (`nginx-new`) and different resource names (e.g., add a `-new` suffix):
+
+    ```bash
+    kubectl apply -f <validated-manifests>.yaml
+    ```
+
+    At this point, **both** controllers are serving traffic: the old controller handles Ingress resources with `IngressClass: nginx`, and the new controller handles those with `IngressClass: nginx-new`.
 
 1. Configure your external load balancer to split traffic:
 
@@ -429,13 +437,9 @@ This method uses an external load balancer (F5, HAProxy, cloud ALB, etc.) to gra
     kubectl top pods -n wallarm-ingress-new
 
     # Check for HTTP errors
-    kubectl logs -n wallarm-ingress-new deployment/wallarm-ingress-controller \
+    kubectl logs -n wallarm-ingress-new deployment/wallarm-ingress-new-controller \
       | grep -E "HTTP/[0-9.]+ (4|5)[0-9]{2}"
     ```
-
-1. Complete migration by removing the old controller.
-
-    Once 100% of traffic is routed to the new controller and all metrics are stable, you can safely remove the old controller.
 
 ### Strategy B - DNS switch
 
@@ -446,7 +450,7 @@ This method deploys the new controller with a new load balancer IP and updates D
 1. Get the new load balancer IP:
 
     ```bash
-    NEW_LB_IP=$(kubectl get svc -n wallarm-ingress-new wallarm-ingress-controller \
+    NEW_LB_IP=$(kubectl get svc -n wallarm-ingress-new wallarm-ingress-new-controller \
       -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 
     if [ -z "$NEW_LB_IP" ]; then
@@ -457,20 +461,15 @@ This method deploys the new controller with a new load balancer IP and updates D
     echo "New LoadBalancer IP: $NEW_LB_IP"
     ```
 
-1. **Apply validated Ingress changes to production.** 
-
-    Update your production Ingress resources so they use the new controller: apply the `IngressClass` and `nginx.org/*` annotation changes you validated in Part 1. For example, to update all Ingress resources in a target namespace to the new `IngressClass`:
+1. Apply converted Ingress resources as new resources alongside the existing ones. Do **not** modify or delete the original Ingress resources yet — the old controller must continue serving traffic via the old DNS until propagation completes. Apply the validated manifests from Part 1 with a new `IngressClass` (`nginx-new`) and different resource names:
 
     ```bash
-    # Update all Ingress resources in the target namespace
-    kubectl get ingress -n <namespace> -o yaml | \
-      sed 's/kubernetes.io\/ingress.class: nginx/kubernetes.io\/ingress.class: nginx-new/' | \
-      kubectl apply -f -
+    kubectl apply -f <validated-manifests>.yaml
     ```
 
-    Ensure all annotation prefixes and values match your validated manifests (Step 4). Repeat for each production namespace, or apply your validated manifest files with `kubectl apply -f <validated-manifests>.yaml`.
+    Both controllers are now serving traffic: old via the old IP, new via the new IP.
 
-1. Test the new setup:
+1. Test the new setup directly against the new IP:
 
     ```bash
     # Test HTTP connectivity directly against the new IP
@@ -508,11 +507,10 @@ This method deploys the new controller with a new load balancer IP and updates D
     nslookup your-domain.com
 
     # Monitor logs and traffic on the new controller
-    kubectl logs -n wallarm-ingress-new deployment/wallarm-ingress-controller -f
+    kubectl logs -n wallarm-ingress-new deployment/wallarm-ingress-new-controller -f
     ```
 
 1. Wait for DNS TTL to expire while monitoring the old controller for declining traffic.
-1. After 24–48 hours, remove the old Ingress Controller once all traffic has migrated.
 
 ### Strategy C - Selector Swap
 
@@ -526,7 +524,7 @@ This method preserves the existing load balancer IP by switching the Kubernetes 
 1. Get the current load balancer IP:
 
     ```bash
-    OLD_LB_IP=$(kubectl get svc -n ingress-nginx ingress-nginx-controller \
+    OLD_LB_IP=$(kubectl get svc -n <CURRENT_IC_NAMESPACE> <OLD_IC_SERVICE_NAME> \
       -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 
     if [ -z "$OLD_LB_IP" ]; then
@@ -537,7 +535,7 @@ This method preserves the existing load balancer IP by switching the Kubernetes 
     echo "Current LoadBalancer IP (must preserve): $OLD_LB_IP"
     ```
 
-1. Update your values file (e.g., `values-same-namespace.yaml`) with the following configuration:
+1. Update your values file (e.g., `values-same-namespace.yaml`) with the following configuration for the **new** Ingress Controller:
 
     ```yaml
     controller:
@@ -549,45 +547,49 @@ This method preserves the existing load balancer IP by switching the Kubernetes 
       service:
         create: false  # Critical: Do not create a new LoadBalancer Service
 
-      ingressClass: nginx-new
+      ingressClass:
+        name: nginx-new
 
     config:
       wallarm:
+        enabled: true
         api:
           host: "api.wallarm.com"  # or us1.api.wallarm.com
-          token: "YOUR_TOKEN"
+          token: "<NODE_TOKEN>"
     ```
 
 1. Deploy the new Ingress Controller in the **same namespace as the old controller** using the updated values file:
 
     ```bash
     helm install wallarm-ingress-new wallarm/wallarm-ingress \
-      --version 7.0.0-rc1 \
-      -n ingress-nginx \
+      --version 7.0.0 \
+      -n <CURRENT_IC_NAMESPACE> \
       -f values-same-namespace.yaml
     ```
+
+    Where `<CURRENT_IC_NAMESPACE>` is the namespace where your existing Ingress Controller is deployed (e.g., `ingress-nginx`).
 
 1. Verify no new `LoadBalancer` service was created:
 
     ```bash
-    kubectl get svc -n ingress-nginx
+    kubectl get svc -n <CURRENT_IC_NAMESPACE>
     # Only the OLD LoadBalancer Service should be visible
     ```
 
 1. Verify new pods are running:
 
     ```bash
-    kubectl get pods -n ingress-nginx -l app.kubernetes.io/instance=wallarm-new
+    kubectl get pods -n <CURRENT_IC_NAMESPACE> -l app.kubernetes.io/instance=wallarm-new
     ```
 
 1. Test new controller pods directly:
 
     ```bash
-    NEW_POD=$(kubectl get pod -n ingress-nginx \
+    NEW_POD=$(kubectl get pod -n <CURRENT_IC_NAMESPACE> \
       -l app.kubernetes.io/instance=wallarm-new \
       -o jsonpath='{.items[0].metadata.name}')
 
-    kubectl port-forward -n ingress-nginx $NEW_POD 8080:80 &
+    kubectl port-forward -n <CURRENT_IC_NAMESPACE> $NEW_POD 8080:80 &
     PF_PID=$!
 
     sleep 2  # Wait for port-forward to establish
@@ -597,9 +599,7 @@ This method preserves the existing load balancer IP by switching the Kubernetes 
     kill $PF_PID
     ```
 
-1. **Apply validated Ingress changes to production.** 
-
-    Update your production Ingress resources to use the new controller (`IngressClass` and `nginx.org/*` annotations as validated in Part 1). This ensures the new controller will serve them once the service selector is switched. For each production Ingress (or in bulk per namespace):
+1. Update your production Ingress resources to use the new controller (`IngressClass` and `nginx.org/*` annotations as validated in Part 1). This ensures the new controller will serve them once the service selector is switched. For each production Ingress (or in bulk per namespace):
 
     ```bash
     kubectl patch ingress <ingress-name> -n <namespace> \
@@ -608,13 +608,13 @@ This method preserves the existing load balancer IP by switching the Kubernetes 
 
     Apply the full set of annotation changes from your validated manifests if you use more than `IngressClass` (e.g. `nginx.org/wallarm-mode`, `nginx.org/rewrites`). Repeat for all production Ingress resources that will be served by the new controller.
 
-    !!! info "Important"
-        The next steps switch traffic from the old controller to the new one. Verify all previous steps before proceeding.
+    !!! warning "Brief traffic disruption"
+        Between updating the `IngressClass` (this step) and switching the service selector (next steps), traffic arriving at the old controller pods will not match any Ingress configuration. Execute the next steps **immediately** after this one to minimize the gap to a few seconds. If zero downtime is critical, consider [Strategy A](#strategy-a-load-balancer-traffic-splitting) with dual Ingress resources instead.
 
 1. Check the labels of the new controller pods. You will need them later to update the service selector:
 
     ```bash
-    kubectl get pods -n ingress-nginx \
+    kubectl get pods -n <CURRENT_IC_NAMESPACE> \
       -l app.kubernetes.io/instance=wallarm-new \
       --show-labels
     ```
@@ -629,7 +629,7 @@ This method preserves the existing load balancer IP by switching the Kubernetes 
 1. Update the `LoadBalancer` service to point to the new pods:
 
     ```bash
-    kubectl patch svc ingress-nginx-controller -n ingress-nginx -p '{
+    kubectl patch svc <OLD_IC_SERVICE_NAME> -n <CURRENT_IC_NAMESPACE> -p '{
       "spec": {
         "selector": {
           "app.kubernetes.io/name": "nginx-ingress-new",
@@ -643,15 +643,15 @@ This method preserves the existing load balancer IP by switching the Kubernetes 
     Where:
 
     * `kubectl patch` - Updates an existing resource without replacing it entirely.
-    * `svc ingress-nginx-controller` - The service name (your existing load balancer).
-    * `-n ingress-nginx` - The namespace where the service exists.
+    * `svc <OLD_IC_SERVICE_NAME>` - The Kubernetes Service name of your old Ingress Controller (e.g., `ingress-nginx-controller`). Find it with `kubectl get svc -n <CURRENT_IC_NAMESPACE> -l app.kubernetes.io/component=controller`.
+    * `-n <CURRENT_IC_NAMESPACE>` - The namespace where the service exists.
     * `-p '{ "spec": { "selector": {...} } }'` - JSON patch to update the selector.
     * The selector labels MUST match your new controller pod labels exactly.
 
     Expected outcome:
   
     ```bash
-    service/ingress-nginx-controller patched
+    service/<OLD_IC_SERVICE_NAME> patched
     ```
   
     This confirms that the service selector was updated successfully and traffic will now be routed to the new controller pods.
@@ -659,7 +659,7 @@ This method preserves the existing load balancer IP by switching the Kubernetes 
 1. Verify IP preservation:
 
     ```bash
-    NEW_LB_IP=$(kubectl get svc -n ingress-nginx ingress-nginx-controller \
+    NEW_LB_IP=$(kubectl get svc -n <CURRENT_IC_NAMESPACE> <OLD_IC_SERVICE_NAME> \
       -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
     echo "LoadBalancer IP after switch: $NEW_LB_IP"
 
@@ -675,14 +675,14 @@ This method preserves the existing load balancer IP by switching the Kubernetes 
 
     ```bash
     # Watch logs on the new controller
-    kubectl logs -n ingress-nginx -l app.kubernetes.io/instance=wallarm-new -f
+    kubectl logs -n <CURRENT_IC_NAMESPACE> -l app.kubernetes.io/instance=wallarm-new -f
 
     # Check metrics (find the correct deployment name first)
-    DEPLOYMENT_NAME=$(kubectl get deployment -n ingress-nginx \
+    DEPLOYMENT_NAME=$(kubectl get deployment -n <CURRENT_IC_NAMESPACE> \
       -l app.kubernetes.io/instance=wallarm-new \
       -o jsonpath='{.items[0].metadata.name}')
 
-    kubectl exec -n ingress-nginx \
+    kubectl exec -n <CURRENT_IC_NAMESPACE> \
       deployment/wallarm-ingress-new-controller \
       -c wallarm-wcli -- wcli metric
     ```
@@ -691,14 +691,14 @@ This method preserves the existing load balancer IP by switching the Kubernetes 
 
     ```bash
     # Scale to zero (keeps configuration for potential rollback)
-    kubectl scale deployment -n ingress-nginx \
-      ingress-nginx-controller --replicas=0
+    kubectl scale deployment -n <CURRENT_IC_NAMESPACE> \
+      <OLD_CONTROLLER_DEPLOYMENT> --replicas=0
     ```      
 
 1. After an additional 24 hours of stable traffic, delete the old controller:
 
     ```bash
-    helm uninstall ingress-nginx -n ingress-nginx
+    helm uninstall <OLD_RELEASE_NAME> -n <CURRENT_IC_NAMESPACE>
     ```
 
     !!! info "Recommended cleanup"
@@ -710,7 +710,7 @@ This method preserves the existing load balancer IP by switching the Kubernetes 
 
     ```bash
     helm upgrade wallarm-ingress-new wallarm/wallarm-ingress \
-      -n ingress-nginx \
+      -n <CURRENT_IC_NAMESPACE> \
       --set controller.service.create=true \
       --set controller.service.loadBalancerIP="$OLD_LB_IP" \
       -f values.yaml
@@ -720,19 +720,19 @@ This method preserves the existing load balancer IP by switching the Kubernetes 
 
     ```bash
     # Monitor the service status
-    kubectl get svc -n ingress-nginx -w
+    kubectl get svc -n <CURRENT_IC_NAMESPACE> -w
     ```
 
 1. Verify the new service has the same IP, then delete the old service:
 
     ```bash
     # Verify new service has the correct IP
-    NEW_SERVICE_IP=$(kubectl get svc -n ingress-nginx wallarm-ingress-new-controller \
+    NEW_SERVICE_IP=$(kubectl get svc -n <CURRENT_IC_NAMESPACE> wallarm-ingress-new-controller \
       -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 
     if [ "$NEW_SERVICE_IP" == "$OLD_LB_IP" ]; then
       echo "SUCCESS: New service has correct IP - safe to delete old service"
-      kubectl delete svc ingress-nginx-controller -n ingress-nginx
+      kubectl delete svc <OLD_IC_SERVICE_NAME> -n <CURRENT_IC_NAMESPACE>
     else
       echo "WARNING: IP mismatch. Review before deleting old service."
     fi
@@ -741,7 +741,7 @@ This method preserves the existing load balancer IP by switching the Kubernetes 
 1. Verify the configuration:
 
     ```bash
-    kubectl get svc -n ingress-nginx
+    kubectl get svc -n <CURRENT_IC_NAMESPACE>
     ```
 
 ### Strategy D - direct replacement 
@@ -847,7 +847,7 @@ This method removes the old controller and deploys the new one in its place.
 
     ```bash
     helm install wallarm-ingress wallarm/wallarm-ingress \
-      --version 7.0.0-rc1 \
+      --version 7.0.0 \
       -n wallarm-ingress \
       --create-namespace \
       -f new-values.yaml
@@ -859,7 +859,7 @@ This method removes the old controller and deploys the new one in its place.
       --timeout=300s
     ```
 
-1. **Apply validated Ingress changes to production.** Apply the converted Ingress resources (the validated manifests from Part 1, saved as `new-ingresses.yaml`) to your production namespaces. This is the step where production Ingress resources are updated; downtime is already in effect and the new controller is running.
+1. Apply the converted Ingress resources (the validated manifests from Part 1, saved as `new-ingresses.yaml`) to your production namespaces. This is the step where production Ingress resources are updated; downtime is already in effect and the new controller is running.
 
     ```bash
     kubectl apply -f new-ingresses.yaml
@@ -894,3 +894,77 @@ This method removes the old controller and deploys the new one in its place.
     ```
 
 1. Verify in Wallarm Console that attacks are detected.
+
+## Removing the old controller
+
+After the migration is complete and traffic is fully served by the new controller, remove the old Ingress Controller to avoid resource waste and configuration conflicts.
+
+It is recommended for the new controller to be stable for at least 24-48 hours before removing the old controller.
+
+**Steps:**
+
+1. Scale down the old controller first (allows quick rollback if needed):
+
+    ```bash
+    # Find the old controller deployment
+    kubectl get deployments -n <OLD_IC_NAMESPACE> | grep ingress
+
+    # Scale to zero
+    kubectl scale deployment <OLD_CONTROLLER_DEPLOYMENT> -n <OLD_IC_NAMESPACE> --replicas=0
+    ```
+
+1. Monitor for 24 hours to ensure nothing breaks.
+1. Uninstall the old Helm release:
+
+    ```bash
+    # Find the old release name
+    helm list -A | grep ingress
+
+    # Uninstall
+    helm uninstall <OLD_RELEASE_NAME> -n <OLD_IC_NAMESPACE>
+    ```
+1. Clean up orphaned resources (if any):
+
+    ```bash
+    # Check for leftover resources
+    kubectl get all -n <OLD_IC_NAMESPACE> -l app.kubernetes.io/name=ingress-nginx
+    ```
+
+## Getting help with migration
+
+If you encounter issues during migration, contact [Wallarm support](https://support.wallarm.com).
+
+To speed up troubleshooting, collect and share the following data:
+
+1. Your architecture overview and the chosen migration strategy.
+1. Helm release info and values (remove tokens before sharing):
+
+    ```bash
+    helm list -A | grep wallarm
+    helm get values <RELEASE_NAME> -n <NAMESPACE> > wallarm-values.yaml
+    ```
+1. Pod status:
+
+    ```bash
+    kubectl get pods -n <NAMESPACE> -l app.kubernetes.io/name=wallarm-ingress -o wide
+    ```
+1. Controller logs:
+
+    ```bash
+    kubectl logs -n <NAMESPACE> -l app.kubernetes.io/component=controller --all-containers --tail=200 > controller-logs.txt
+    ```
+1. Postanalytics logs:
+
+    ```bash
+    kubectl logs -n <NAMESPACE> -l app.kubernetes.io/component=wallarm-postanalytics --all-containers --tail=200 > postanalytics-logs.txt
+    ```
+1. NGINX configuration dump:
+
+    ```bash
+    kubectl exec -n <NAMESPACE> $(kubectl get pod -n <NAMESPACE> -l app.kubernetes.io/component=controller -o name | head -1) -- nginx -T > nginx-config.txt
+    ```
+1. Kubernetes events:
+
+    ```bash
+    kubectl get events -n <NAMESPACE> --sort-by='.lastTimestamp' > k8s-events.txt
+    ```

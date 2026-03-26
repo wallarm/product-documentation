@@ -3,6 +3,15 @@
 
 # Fine‑tuning of NGINX-based Wallarm Ingress Controller
 
+!!! warning "Community-based NGINX Ingress Controller — end of support"
+    Official support of the Community-based NGINX Ingress Controller ends in **April 2026**. This controller will remain functional but will no longer receive updates, bug fixes, or security patches.
+
+    Wallarm has released a **new Ingress Controller** based on the [F5 NGINX Ingress Controller](https://docs.wallarm.com/7.x/admin-en/installation-kubernetes-en/). We strongly recommend migrating to this version for continued support and security updates.
+
+    [Deploy the new F5-based Ingress Controller →](https://docs.wallarm.com/7.x/admin-en/installation-kubernetes-en/)
+
+    [Migration guide →](https://docs.wallarm.com/7.x/updating-migrating/ingress-controller/)
+
 Learn fine-tuning options available for the self-hosted Wallarm Ingress controller to get the most out of the Wallarm solution.
 
 !!! info "Official documentation for NGINX Ingress Controller"

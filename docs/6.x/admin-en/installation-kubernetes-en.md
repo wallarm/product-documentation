@@ -18,16 +18,18 @@
 
 # Deploying NGINX Ingress Controller with Integrated Wallarm Services
 
+!!! warning "Community-based NGINX Ingress Controller — end of support"
+    Official support of the Community-based NGINX Ingress Controller ends in **April 2026**. This controller will remain functional but will no longer receive updates, bug fixes, or security patches.
+
+    Wallarm has released a **new Ingress Controller** based on the [F5 NGINX Ingress Controller](https://docs.wallarm.com/7.x/admin-en/installation-kubernetes-en/). We strongly recommend migrating to this version for continued support and security updates.
+
+    [Deploy the new F5-based Ingress Controller →](https://docs.wallarm.com/7.x/admin-en/installation-kubernetes-en/)
+
+    [Migration guide →](https://docs.wallarm.com/7.x/updating-migrating/ingress-controller/)
+
 These instructions provide you with the steps to deploy the Wallarm NGINX-based Ingress controller to your K8s cluster. The solution is deployed from the Wallarm Helm chart.
 
 The solution is built on the [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) with integrated Wallarm services. The latest version uses Community Ingress NGINX Controller 1.15.0 with NGINX stable 1.27.1, the upstream Helm chart 4.15.0, and Alpine Linux 3.23.3 as the base image.
-
-!!! warning
-    The Kubernetes community will [retire the Community Ingress NGINX in March 2026](https://blog.nginx.org/blog/the-ingress-nginx-alternative-open-source-nginx-ingress-controller-for-the-long-term). The Wallarm NGINX Ingress Controller based on this project will be supported through the same date. You can continue using it until then, and it will remain fully functional during the support window.
-
-    Wallarm will provide alternative deployment options and migration guidance as they become available. [Details][nginx-ingress-retirement-plan]
-
-    An [Envoy/Istio-based connector][envoy-connector] is also available today for environments already using Envoy.
 
 It has the following architecture:
 
