@@ -41,14 +41,12 @@
       </div>
 
       <!-- Button to open search dialogue -->
-      {% if "search" in config.plugins %}
       <label class="md-header__button md-icon" for="__search">
         {% include ".icons/material/magnify.svg" %}
       </label>
 
       <!-- Search interface -->
       {% include "partials/search.html" %}
-      {% endif %}
 
       <!-- Ask AI button -->
       <button type="button" class="md-header__button header-ask-ai-btn" onclick="if(window.openInkeepChat) window.openInkeepChat();">
