@@ -25,7 +25,7 @@ button.md-clipboard-page--active {
     --md-primary-bg-color:               #000000;
     --md-primary-fg-color:               #FFFF;
     --md-accent-fg-color:                #FC7303;
-    --md-accent-fg-color--transparent:   #FC7303;
+    --md-accent-fg-color--transparent:   #FC730333;
     --md-accent-bg-color:                #FC7303;
     --md-accent-bg-color--light:         #FC7303;
     --md-typeset-a-color:                #222222;
@@ -1172,8 +1172,28 @@ button.md-clipboard.md-icon {
 }
 
 /* Search bar */
-.md-search__inner {
+
+.md-search__button {
+  height: 1.8rem;
+  background-color: #F9FAFB;
+  font-size: 15px;
+  color: rgb(160, 160, 160);
   width: 340px;
+}
+
+.md-search__button:before {
+  background-color: rgb(160, 160, 160);
+  top: unset;
+}
+
+.md-search__button:after {
+  background: white;
+  border: 1px solid #DAE1EB;
+}
+
+.md-search__button:focus, .md-search__button:hover {
+  background-color: #F9FAFB;
+  color: rgb(160, 160, 160);
 }
 
 .md-search__form {
