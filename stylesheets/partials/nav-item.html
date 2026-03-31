@@ -83,7 +83,7 @@
     <li class="{{ class }} md-nav__item--nested">
       <!-- Active checkbox expands items contained within nested section -->
       {% set checked = "checked" if nav_item.active %}
-      {% if not checked and "navigation.expand" in features %}
+      {% if not checked and "navigation.expand" in features and level <= 2 %}
         {% set indeterminate = "md-toggle--indeterminate" %}
       {% endif %}
       <input
