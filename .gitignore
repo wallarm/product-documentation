@@ -12,3 +12,6 @@ package-lock.json
 .idea/
 
 .cache
+
+# Images copied into docs dirs before zensical build (workaround for symlink support)
+docs/*/images/
