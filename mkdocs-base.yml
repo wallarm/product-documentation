@@ -37,21 +37,20 @@ watch:
   - stylesheets
 
 theme:
-  language_name: English
   language: en
-  language_lowercase: en
   name: material
+  variant: classic
   custom_dir: stylesheets
   palette:
     scheme: wallarm-palette
   features:
-    - navigation.tabs   
+    - navigation.tabs
     - navigation.top
     - navigation.expand
     - navigation.footer
     - navigation.path
-    - navigation.top    
-#    - navigation.prune 
+    - navigation.top
+#    - navigation.prune
 
     - content.code.copy
     - content.code.select
@@ -66,14 +65,16 @@ theme:
   font:
     text: Schibsted Grotesk
     code: Roboto Mono
+
+extra:
+  language_name: English
+  language_lowercase: en
   playground_button_name: "Product tour"
   try_button_name: "Use for free"
   footer:
     need_help: Need help or have questions?
     contact_support: Contact Support
     contact_sales: Contact Sales
-
-extra:
   social:
     - icon: fontawesome/solid/globe
       link: https://www.wallarm.com

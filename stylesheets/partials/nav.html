@@ -1,8 +1,5 @@
-<!-- Mitigate bug: https://github.com/mkdocs/mkdocs/issues/2191 -->
-{% set site_url = config.site_url | d(nav.homepage.url, true) | url %}
-{% if not config.use_directory_urls and site_url[0] == site_url[-1] == "." %}
-  {% set site_url = site_url ~ "/index.html" %}
-{% endif %}
+{#- Custom nav partial adapted for zensical (MiniJinja) -#}
+{% import "partials/nav-item.html" as item with context %}
 
 <!-- Determine class according to configuration -->
 {% set class = "md-nav md-nav--primary" %}
@@ -23,25 +20,24 @@
 
   <!-- Render item list -->
   <ul class="md-nav__list" data-md-scrollfix>
-    {% for nav_item in nav %}
-      {% set path = "nav-" ~ loop.index %}
-      {% set level = 1 %}
-      {% include "partials/nav-item.html" %}
+    {% for nav_item in nav.items %}
+      {% set path = "__nav_" ~ loop.index %}
+      {{ item.render(nav_item, path, 1) }}
     {% endfor %}
   </ul>
 
   <!-- Version selector (moved to bottom) -->
   <div id="versionsDiv" class="versions versions-bottom" style="display: none;">
-    {% if config.theme.versionNative %}
+    {% if config.extra.versionNative %}
       <button type="button" id="versionsMain" class="versions-main" aria-expanded="false" aria-haspopup="true" aria-controls="versionsList">
-        Version {{ config.theme.version }} and {{ config.theme.versionNative }}
+        Version {{ config.extra.version }} and {{ config.extra.versionNative }}
       <svg class="versions-drop" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2.25" fill="none">
         <path d="M8 10.5L12 14.5L16 10.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
       </button>
     {% else %}
       <button type="button" id="versionsMain" class="versions-main" aria-expanded="false" aria-haspopup="true" aria-controls="versionsList">
-        Version {{ config.theme.version }}
+        Version {{ config.extra.version }}
       <svg class="versions-drop" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2.25" fill="none">
         <path d="M8 10.5L12 14.5L16 10.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
@@ -49,10 +45,10 @@
     {% endif %}
     <span class="divider"></span>
     <div id="versionsList" style="display: none;" class="versions-list" tabindex="-1">
-      <a href="" onClick="goToVersion(event, '{{ config.theme.version }}', '6.x')">Versions 6.x and 0.14.x+</a>
-      <a href="" onClick="goToVersion(event, '{{ config.theme.version }}', '7.x')">Versions 7.x and 0.24.x+ 🧪</a>
-      <a href="" onClick="goToVersion(event, '{{ config.theme.version }}', '5.x')">Versions 5.x and 0.13.x-</a>
-      <a href="" onClick="goToVersion(event, '{{ config.theme.version }}', '4.10')">Version 4.10 ⚠️</a>
+      <a href="" onClick="goToVersion(event, '{{ config.extra.version }}', '6.x')">Versions 6.x and 0.14.x+</a>
+      <a href="" onClick="goToVersion(event, '{{ config.extra.version }}', '7.x')">Versions 7.x and 0.24.x+ 🧪</a>
+      <a href="" onClick="goToVersion(event, '{{ config.extra.version }}', '5.x')">Versions 5.x and 0.13.x-</a>
+      <a href="" onClick="goToVersion(event, '{{ config.extra.version }}', '4.10')">Version 4.10 ⚠️</a>
     </div>
   </div>
 </nav>

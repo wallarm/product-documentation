@@ -47,7 +47,7 @@
               {% endif %}
             
               <!-- Replace {url} and {title} placeholders in note -->
-            {{ rating.note.format(url = url, title = title) }}
+            {{ rating.note | replace("{url}", url) | replace("{title}", title) }}
             </div>
           {% endfor %}
         </div>
