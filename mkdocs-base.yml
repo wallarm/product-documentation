@@ -9,18 +9,6 @@ copyright: '<a href="https://www.wallarm.com/terms-of-service" target="_blank">T
 
 plugins:
   - search
-  - minify:
-      minify_html: true
-      minify_js: true
-      minify_css: true
-      js_files:
-          - extra.js
-          - feedback.js
-          - supported-platforms.js
-          - inkeep-widget.js
-      css_files:
-          - extra_new.css
-          - supported-platforms.css
   - meta-descriptions
   - meta
   - glightbox:
