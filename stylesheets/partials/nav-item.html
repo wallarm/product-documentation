@@ -83,23 +83,16 @@
     <li class="{{ class }} md-nav__item--nested">
       <!-- Active checkbox expands items contained within nested section -->
       {% set checked = "checked" if nav_item.active %}
-      {% if level <= 2 %}
-        <input
-          class="md-nav__toggle md-toggle"
-          data-md-toggle="{{ path }}"
-          type="checkbox"
-          id="{{ path }}"
-          checked
-        />
-      {% else %}
-        <input
-          class="md-nav__toggle md-toggle"
-          data-md-toggle="{{ path }}"
-          type="checkbox"
-          id="{{ path }}"
-          {{ checked }}
-        />
+      {% if not checked and "navigation.expand" in features %}
+        {% set indeterminate = "md-toggle--indeterminate" %}
       {% endif %}
+      <input
+        class="md-nav__toggle md-toggle {{ indeterminate }}"
+        data-md-toggle="{{ path }}"
+        type="checkbox"
+        id="{{ path }}"
+        {{ checked }}
+      />
 
       <!-- Expand active pages -->
       <label class="md-nav__link" for="{{ path }}">
