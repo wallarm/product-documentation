@@ -128,11 +128,13 @@ extra:
 
 extra_css:
   - 'extra_new.css'
+  - 'glightbox.min.css'
 
 extra_javascript:
   - 'extra.js'
   - 'feedback.js'
   - 'inkeep-widget.js'
+  - 'glightbox.min.js'
 
 markdown_extensions:
   - admonition

@@ -1,3 +1,14 @@
+/* GLightbox — hide title/description in lightbox */
+.gslide-title,
+.gslide-desc {
+  display: none !important;
+}
+
+/* Zoomable images — pointer cursor */
+.md-content p > img:not(.non-zoomable):not([src$='.svg']) {
+  cursor: pointer;
+}
+
 /* Copy page markdown button */
 button.md-clipboard-page {
   border: none;
