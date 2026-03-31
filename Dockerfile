@@ -1,54 +1,22 @@
-FROM python:3.14.0 as latest
-EXPOSE 8000
+FROM python:3.14.0 AS build
 
 WORKDIR /tmp
-
-# If you need to build the docs without mkdocs-material-insiders
-
-COPY requirements-no-insiders.txt /tmp
-RUN pip install --no-cache-dir -r /tmp/requirements-no-insiders.txt
+COPY requirements.txt /tmp
+RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
 WORKDIR /docs
 COPY . .
 
-FROM latest as all
-RUN mkdocs build -f mkdocs-6.x.yml
-RUN mkdocs build -f mkdocs-7.x.yml
-RUN mkdocs build -f mkdocs-5.0.yml
-RUN mkdocs build -f mkdocs-deprecated.yml
-RUN mkdocs build -f mkdocs-ja-6.x.yml
-RUN mkdocs build -f mkdocs-tr-6.x.yml
-RUN mkdocs build -f mkdocs-pt-BR-4.8.yml
-RUN mkdocs build -f mkdocs-ar-4.10.yml
+RUN zensical build -f mkdocs-6.x.yml
+RUN zensical build -f mkdocs-7.x.yml
+RUN zensical build -f mkdocs-5.0.yml
+RUN zensical build -f mkdocs-deprecated.yml
+RUN zensical build -f mkdocs-ja-6.x.yml
+RUN zensical build -f mkdocs-tr-6.x.yml
+RUN zensical build -f mkdocs-pt-BR-4.8.yml
+RUN zensical build -f mkdocs-ar-4.10.yml
 
-FROM nginx:1.18-alpine as prod
-COPY --from=all /docs/site /usr/share/nginx/html
+FROM nginx:1.18-alpine AS prod
+COPY --from=build /docs/site /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
-
-
-
-# If you have a token to access the mkdocs-material-insiders repo and need to run the docs with it. Comment out the above section then and uncomment the below
-
-# ARG CLONE_INSIDERS_TOKEN
-# ENV CLONE_INSIDERS_TOKEN=${CLONE_INSIDERS_TOKEN}
-# COPY requirements.txt /tmp
-# RUN pip install --no-cache-dir -r /tmp/requirements.txt
-# RUN apt-get update && apt-get install -y pngquant
-
-# WORKDIR /docs
-# COPY . .
-
-# FROM latest as all
-# RUN INSIDERS=true mkdocs build -f mkdocs-6.x.yml
-# RUN INSIDERS=true mkdocs build -f mkdocs-5.0.yml
-# RUN INSIDERS=true mkdocs build -f mkdocs-4.10.yml
-# RUN INSIDERS=true mkdocs build -f mkdocs-deprecated.yml
-# RUN INSIDERS=true mkdocs build -f mkdocs-ja-4.8.yml
-# RUN INSIDERS=true mkdocs build -f mkdocs-tr-4.8.yml
-# RUN INSIDERS=true mkdocs build -f mkdocs-pt-BR-4.8.yml
-
-# FROM nginx:1.18-alpine as prod
-# COPY --from=all /docs/site /usr/share/nginx/html
-# EXPOSE 80
-# CMD ["nginx", "-g", "daemon off;"]
