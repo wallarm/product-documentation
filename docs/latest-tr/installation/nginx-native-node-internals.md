@@ -301,6 +301,6 @@ Native Node, aşağıdaki platformlarla herhangi bir sınırlama olmaksızın ç
     </div>
 </div>
 
-<link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
+<link rel="stylesheet" href="/supported-platforms.css" />
 
 <script src="/nginx-native-internals.js"></script>

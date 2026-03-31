@@ -43,4 +43,4 @@ Security Edge, aylık en fazla **500.000 istek için ücretsiz** olan Free Tier 
 
 Edge Node’ları Free Tier planı üzerinden [**Quick setup** wizard](free-tier.md) aracılığıyla dağıtabilirsiniz.  
 
-<link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
+<link rel="stylesheet" href="/supported-platforms.css" />
