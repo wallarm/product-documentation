@@ -1,3 +1,18 @@
+// GLightbox — image zoom (temporary until zensical adds native support)
+document.addEventListener("DOMContentLoaded", function() {
+  if (typeof GLightbox !== "undefined") {
+    GLightbox({
+      selector: ".md-content p > img:not(.non-zoomable):not([src$='.svg'])",
+      openEffect: "fade",
+      closeEffect: "fade",
+      zoomable: true,
+      draggable: false,
+      title: false,
+      description: false
+    });
+  }
+});
+
 // Copy page markdown to clipboard
 document.addEventListener('click', function(e) {
   var btn = e.target.closest('.md-clipboard-page');
