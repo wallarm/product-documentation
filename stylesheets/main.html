@@ -46,15 +46,15 @@
 {% endblock %}
 
 {% block announce %}
-  {% if not config.theme.get("is_latest") and config.theme.get("language", "en") == "en" %}
-    {% if config.theme.version == "4.10" %}
+  {% if not config.extra.is_latest and (config.extra.language_lowercase | default("en")) == "en" %}
+    {% if config.extra.version == "4.10" %}
       You are viewing docs for an unsupported Node version.
       <a href="{{ config.site_url }}" style="color:inherit; text-decoration: underline;">View latest documentation</a>
-    {% elif config.theme.version == "7.x" %}
-      You are viewing documentation for a preview version — NGINX Node <strong>{{ config.theme.version }}</strong>.
+    {% elif config.extra.version == "7.x" %}
+      You are viewing documentation for a preview version — NGINX Node <strong>{{ config.extra.version }}</strong>.
       <a href="{{ config.site_url }}" style="color:inherit; text-decoration: underline;">View current stable version</a>
-    {% elif config.theme.version %}
-      You are viewing NGINX Node <strong>{{ config.theme.version }}</strong> and Native Node <strong>{{ config.theme.versionNative }}</strong> docs.
+    {% elif config.extra.version %}
+      You are viewing NGINX Node <strong>{{ config.extra.version }}</strong> and Native Node <strong>{{ config.extra.versionNative }}</strong> docs.
       <a href="{{ config.site_url }}" style="color:inherit; text-decoration: underline;">View latest docs</a>
     {% endif %}
   {% endif %}
@@ -65,9 +65,9 @@
 
 {{ super() }}
 
-  {% if config.theme.get("is_latest") or config.theme.get("language", "en") != "en" %}
+  {% if config.extra.is_latest or (config.extra.language_lowercase | default("en")) != "en" %}
   <style>div[data-md-component="announce"] { display: none !important; }</style>
-  {% elif config.theme.version == "4.10" or config.theme.version %}
+  {% elif config.extra.version == "4.10" or config.extra.version %}
   <style>:root, body { --md-announce-height: 2.4rem; }</style>
   {% endif %}
 

@@ -8,6 +8,10 @@ copyright: '<a href="https://www.wallarm.com/terms-of-service" target="_blank">T
 
 theme:
   language: pt-BR
+  logo: ../images/wallarm-logo-new.svg
+  favicon: ../images/favicon.png
+
+extra:
   language_lowercase: pt-br
   language_name: Portuguese (BR)
   version: "4.8"
