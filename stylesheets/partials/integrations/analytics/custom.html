@@ -413,10 +413,29 @@
 
     onReady(function () {
       if (window.location.hostname !== "docs.wallarm.com") return;
+
+      // Try known selectors first (mkdocs-material)
       var inputs = document.querySelectorAll(
         'input[data-md-component="search-query"], .md-search__input'
       );
       inputs.forEach(wireInput);
+
+      // Zensical renders search inside Shadow DOM on a div appended to body
+      var bodyObserver = new MutationObserver(function () {
+        var els = document.body.children;
+        for (var i = els.length - 1; i >= 0; i--) {
+          var el = els[i];
+          if (el.shadowRoot) {
+            var input = el.shadowRoot.querySelector('input[type="text"][placeholder="Search"]');
+            if (input) {
+              wireInput(input);
+              bodyObserver.disconnect();
+              return;
+            }
+          }
+        }
+      });
+      bodyObserver.observe(document.body, { childList: true, subtree: true });
     });
   }
 
