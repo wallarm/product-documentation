@@ -100,7 +100,7 @@ button.md-clipboard-page--active {
 .md-top.md-icon {
   background-color: rgba(0,0,0,0.8);
   color: #FFFFFF;
-  z-index: 70;
+  z-index: 4;
 }
 
 nav.md-header__inner.md-grid {
@@ -154,7 +154,7 @@ nav.md-header__inner.md-grid {
 div[data-md-component="announce"] {
   position: sticky;
   top: 0;
-  z-index: 60;
+  z-index: 3;
 }
 
 .md-banner {
@@ -288,6 +288,10 @@ a.md-header__button.md-logo:after {
 
 
 /* Navigation tabs */
+
+.md-tabs {
+  z-index: 2;
+}
 
 .md-tabs__link {
   opacity: 100;
@@ -867,7 +871,7 @@ img {
     grid-area: search;
   }
   .md-header {
-    z-index: 10;
+    z-index: 2;
   }
   .header-buttons {
     display: flex;
