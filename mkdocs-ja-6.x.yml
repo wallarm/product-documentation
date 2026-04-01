@@ -9,7 +9,7 @@ copyright: '<a href="https://www.wallarm.com/terms-of-service" target="_blank">ã
 theme:
   language: ja
   logo: ../images/wallarm-logo-new.svg
-  favicon: ../images/favicon.png
+  favicon: favicon.png
 
 extra:
   language_lowercase: ja

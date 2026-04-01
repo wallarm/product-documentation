@@ -8,7 +8,7 @@ site_dir: site/4.10
 
 theme:
   logo: ../images/wallarm-logo-new.svg
-  favicon: ../images/favicon.png
+  favicon: favicon.png
 
 nav:
   - Home: index.md

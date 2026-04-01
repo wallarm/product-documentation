@@ -9,7 +9,7 @@ site_dir: site/7.x
 
 theme:
   logo: ../images/wallarm-logo-new.svg
-  favicon: ../images/favicon.png
+  favicon: favicon.png
 
 nav:
   # ============================================================================
