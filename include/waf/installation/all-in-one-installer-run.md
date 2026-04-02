@@ -4,13 +4,13 @@
         If using the x86_64 version:
 
         ```bash
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.11.1.x86_64-glibc.sh
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.11.2.x86_64-glibc.sh
         ```
 
         If using the ARM64 version:
 
         ```bash
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.11.1.aarch64-glibc.sh
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.11.2.aarch64-glibc.sh
         ```        
 
         The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -19,13 +19,13 @@
         If using the x86_64 version:
 
         ```bash
-        sudo sh wallarm-6.11.1.x86_64-glibc.sh
+        sudo sh wallarm-6.11.2.x86_64-glibc.sh
         ```
 
         If using the ARM64 version:
 
         ```bash
-        sudo sh wallarm-6.11.1.aarch64-glibc.sh
+        sudo sh wallarm-6.11.2.aarch64-glibc.sh
         ```
 
 1. Select [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
