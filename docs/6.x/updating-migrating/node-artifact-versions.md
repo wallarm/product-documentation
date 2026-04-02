@@ -19,6 +19,10 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.11.2 (2026-03-27)
+
+* Added compatibility with latest NGINX versions shipped by RHEL-based distros
+
 ### 6.11.1 (2026-03-25)
 
 * Added support for NGINX stable 1.28.3
@@ -220,6 +224,10 @@ new attack types in logging variables and search bars?
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.11.2 (2026-03-27)
+
+* Internal improvements
 
 ### 6.11.1 (2026-03-25)
 
@@ -434,6 +442,11 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.11.2 (2026-03-27)
+
+* Bump Alpine version to 3.23
+* Upgrade NGINX to version 1.28.3
+
 ### 6.11.1 (2026-03-25)
 
 * Fixed empty response (`000` status code) instead of [custom block page](../admin-en/configuration-guides/configure-block-page-and-code.md) when [`ngx_http_auth_request_module`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) is used
@@ -626,6 +639,11 @@ new attack types in logging variables and search bars?
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.11.2 (2026-03-27)
+
+* Bump Alpine version to 3.23
+* Upgrade NGINX to version 1.28.3
 
 ### 6.11.1 (2026-03-25)
 
@@ -823,6 +841,10 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
+### 6.11.2 (2026-03-27)
+
+* Internal improvements
+
 ### 6.11.1 (2026-03-25)
 
 * Fixed empty response (`000` status code) instead of [custom block page](../admin-en/configuration-guides/configure-block-page-and-code.md) when [`ngx_http_auth_request_module`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) is used
@@ -982,6 +1004,10 @@ new attack types in logging variables and search bars?
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-11-2-20260327-122303 (2026-03-27)
+
+* Internal improvements
 
 ### wallarm-node-6-11-1-20260325-092834 (2026-03-25)
 
