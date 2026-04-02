@@ -10,7 +10,7 @@
   {% if "content.action.edit" in features %}
     <a
       href="{{ page.edit_url }}"
-      title="{{ lang.t('action.edit') }}"
+      title="{% if config.theme.language == 'en' %}Suggest changes{% else %}{{ lang.t('action.edit') }}{% endif %}"
       class="md-content__button md-icon"
       rel="edit"
     >
