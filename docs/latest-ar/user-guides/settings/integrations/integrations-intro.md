@@ -15,7 +15,7 @@
 
 Wallarm تتصل بكل سلاسة بعدد من الأدوات والمنصات الموجودة. عدد التكاملات مع نظام واحد غير محدود.
 
-<link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
+<link rel="stylesheet" href="/supported-platforms.css" />
 
 ## البريد الإلكتروني والرسائل
 
@@ -329,4 +329,4 @@ Wallarm تتصل بكل سلاسة بعدد من الأدوات والمنصات
     </div>
 </div>
 
-<script src="/supported-platforms.min.js?v=1"></script>
+<script src="/supported-platforms.js"></script>

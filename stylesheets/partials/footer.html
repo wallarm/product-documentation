@@ -5,11 +5,13 @@
     <div class="md-footer-meta__inner md-grid">
 
     <!-- Help block -->
+    {% if config.extra.footer %}
     <div class="help-support">
-      <p>{{ config.theme.footer.need_help }}</p>
-      <a href= "https://support.wallarm.com/" target="_blank">{{ config.theme.footer.contact_support }}</a> <p>|</p>
-      <a href= "mailto:sales@wallarm.com" target="_blank">{{ config.theme.footer.contact_sales }}</a>
+      <p>{{ config.extra.footer.need_help }}</p>
+      <a href= "https://support.wallarm.com/" target="_blank">{{ config.extra.footer.contact_support }}</a> <p>|</p>
+      <a href= "mailto:sales@wallarm.com" target="_blank">{{ config.extra.footer.contact_sales }}</a>
     </div>
+    {% endif %}
 
       <!-- Social links -->
       {% if config.extra.social %}

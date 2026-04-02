@@ -2,7 +2,7 @@
 
 Wallarm supports multiple deployment models — from Security Edge and Kubernetes to cloud VMs and API gateways. Choose by **who hosts the [Node](../about-wallarm/overview.md#filtering-node)**, **the infrastructure** that handles your traffic, and whether you need **inline** or **out-of-band** protection.
 
-<link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
+<link rel="stylesheet" href="/supported-platforms.css" />
 
 ## Security Edge
 
@@ -441,4 +441,4 @@ Deployment options that don’t follow the platform matrix: known scenarios (mul
 * [NGINX and Native Node overview](nginx-native-node-internals.md)
 * [Connector overview](connectors/overview.md)
 
-<script src="/supported-platforms.min.js?v=1"></script>
+<script src="/supported-platforms.js"></script>

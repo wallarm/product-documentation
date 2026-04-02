@@ -409,6 +409,8 @@ API'lerinizi, MCP'lerinizi ve yapay zeka ajanlarınızı keşfetmek, tehditlerde
   flex: 1;
   min-width: 280px;
   overflow: visible;
+  border: 1px solid #DAE1EB;
+  border-radius: 8px;
 }
 
 /* Ask AI stays compact */
@@ -650,6 +652,31 @@ API'lerinizi, MCP'lerinizi ve yapay zeka ajanlarınızı keşfetmek, tehditlerde
 /* ==========================
    Ask AI button: fixed height
    ========================== */
+
+.md-search__button {
+  width: 100%;
+  height: 44px;
+  background-color: #F9FAFB;
+  border-radius: 8px;
+  font-size: 15px;
+  color: rgb(160, 160, 160);
+}
+
+.md-search__button:before {
+  background-color: rgb(160, 160, 160);
+  top: unset;
+}
+
+.md-search__button:after {
+  top: .60rem;
+  background: white;
+  border: 1px solid #DAE1EB;
+}
+
+.md-search__button:focus, .md-search__button:hover {
+  background-color: #F9FAFB;
+  color: rgb(160, 160, 160);
+}
 
 .homepage-btn {
   display: inline-flex;

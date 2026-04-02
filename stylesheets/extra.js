@@ -1,3 +1,18 @@
+// GLightbox — image zoom (temporary until zensical adds native support)
+document.addEventListener("DOMContentLoaded", function() {
+  if (typeof GLightbox !== "undefined") {
+    GLightbox({
+      selector: ".md-content p > img:not(.non-zoomable):not([src$='.svg'])",
+      openEffect: "fade",
+      closeEffect: "fade",
+      zoomable: true,
+      draggable: false,
+      title: false,
+      description: false
+    });
+  }
+});
+
 // Copy page markdown to clipboard
 document.addEventListener('click', function(e) {
   var btn = e.target.closest('.md-clipboard-page');
@@ -524,12 +539,6 @@ document.querySelector('.md-nav--primary').addEventListener('click', () => {
   localStorage.removeItem('do');
 });
 
-// Heap
-
-if (window.location.hostname === "docs.wallarm.com") {
-  window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=document.createElement("script");r.type="text/javascript",r.async=!0,r.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(r,a);for(var n=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],o=0;o<p.length;o++)heap[p[o]]=n(p[o])};
-  heap.load("1543582484");
-}
 
 // Show the list of languages
 

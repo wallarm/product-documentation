@@ -15,7 +15,7 @@ Bu özelliği Wallarm Console içindeki Integrations bölümünden yönetin; ent
 
 Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bir sistemle yapılabilecek entegrasyon sayısı sınırlı değildir.
 
-<link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
+<link rel="stylesheet" href="/supported-platforms.css" />
 
 ## E-posta ve mesajlaşma uygulamaları
 
@@ -329,4 +329,4 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
     </div>
 </div>
 
-<script src="/supported-platforms.min.js?v=1"></script>
+<script src="/supported-platforms.js"></script>

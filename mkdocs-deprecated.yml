@@ -1,10 +1,14 @@
 INHERIT: mkdocs-base.yml
 
-theme:
+extra:
   version: "4.10"
 
 docs_dir: docs/deprecated
 site_dir: site/4.10
+
+theme:
+  logo: ../images/wallarm-logo-new.svg
+  favicon: favicon.png
 
 nav:
   - Home: index.md

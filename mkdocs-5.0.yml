@@ -1,11 +1,15 @@
 INHERIT: mkdocs-base.yml
 
-theme:
+extra:
   version: "5.x"
   versionNative: "0.13.x-"
 
 docs_dir: docs/5.0
 site_dir: site/5.x
+
+theme:
+  logo: ../images/wallarm-logo-new.svg
+  favicon: favicon.png
 
 nav:
   # ============================================================================
@@ -131,7 +135,7 @@ nav:
   # ============================================================================
   # SECTION 5: AI PROTECTION
   # ============================================================================
-  - AI Protection:
+  - AI Security:
     - Rogue MCP Inspection: agentic-ai/rogue-mcp-inspection.md
 
   # ============================================================================

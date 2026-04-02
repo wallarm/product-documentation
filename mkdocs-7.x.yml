@@ -1,11 +1,15 @@
 INHERIT: mkdocs-base.yml
 
-theme:
+extra:
   version: "7.x"
   versionNative: "0.24.x+"
 
 docs_dir: docs/7.x
 site_dir: site/7.x
+
+theme:
+  logo: ../images/wallarm-logo-new.svg
+  favicon: favicon.png
 
 nav:
   # ============================================================================

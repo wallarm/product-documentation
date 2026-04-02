@@ -4,7 +4,7 @@ In a self-hosted deployment, you are responsible for installing and operating th
 
 Wallarm supports many deployment options enabling you to seamlessly integrate the platform with your environment. Learn the options and choose the most appropriate one from this document.
 
-<link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
+<link rel="stylesheet" href="/supported-platforms.css" />
 
 ## Kubernetes
 
@@ -373,4 +373,4 @@ Deployment options that don't follow the platform matrix: known scenarios (multi
 * [NGINX and Native Node overview](nginx-native-node-internals.md)
 * [Connector overview](connectors/overview.md)
 
-<script src="/supported-platforms.min.js?v=1"></script>
+<script src="/supported-platforms.js"></script>

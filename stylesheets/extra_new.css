@@ -1,3 +1,14 @@
+/* GLightbox — hide title/description in lightbox */
+.gslide-title,
+.gslide-desc {
+  display: none !important;
+}
+
+/* Zoomable images — pointer cursor */
+.md-content p > img:not(.non-zoomable):not([src$='.svg']) {
+  cursor: pointer;
+}
+
 /* Copy page markdown button */
 button.md-clipboard-page {
   border: none;
@@ -25,7 +36,7 @@ button.md-clipboard-page--active {
     --md-primary-bg-color:               #000000;
     --md-primary-fg-color:               #FFFF;
     --md-accent-fg-color:                #FC7303;
-    --md-accent-fg-color--transparent:   #FC7303;
+    --md-accent-fg-color--transparent:   #FC730333;
     --md-accent-bg-color:                #FC7303;
     --md-accent-bg-color--light:         #FC7303;
     --md-typeset-a-color:                #222222;
@@ -89,7 +100,7 @@ button.md-clipboard-page--active {
 .md-top.md-icon {
   background-color: rgba(0,0,0,0.8);
   color: #FFFFFF;
-  z-index: 70;
+  z-index: 4;
 }
 
 nav.md-header__inner.md-grid {
@@ -143,7 +154,7 @@ nav.md-header__inner.md-grid {
 div[data-md-component="announce"] {
   position: sticky;
   top: 0;
-  z-index: 60;
+  z-index: 3;
 }
 
 .md-banner {
@@ -278,10 +289,13 @@ a.md-header__button.md-logo:after {
 
 /* Navigation tabs */
 
+.md-tabs {
+  z-index: 2;
+}
+
 .md-tabs__link {
   opacity: 100;
   font-size: 16px;
-  font-weight: 500;
 }
 
 
@@ -857,7 +871,7 @@ img {
     grid-area: search;
   }
   .md-header {
-    z-index: 10;
+    z-index: 2;
   }
   .header-buttons {
     display: flex;
@@ -1172,8 +1186,28 @@ button.md-clipboard.md-icon {
 }
 
 /* Search bar */
-.md-search__inner {
+
+.md-search__button {
+  height: 1.8rem;
+  background-color: #F9FAFB;
+  font-size: 15px;
+  color: rgb(160, 160, 160);
   width: 340px;
+}
+
+.md-search__button:before {
+  background-color: rgb(160, 160, 160);
+  top: unset;
+}
+
+.md-search__button:after {
+  background: white;
+  border: 1px solid #DAE1EB;
+}
+
+.md-search__button:focus, .md-search__button:hover {
+  background-color: #F9FAFB;
+  color: rgb(160, 160, 160);
 }
 
 .md-search__form {
