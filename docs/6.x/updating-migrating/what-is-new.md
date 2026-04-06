@@ -210,9 +210,6 @@ To detect this type of automated threats, API Abuse Prevention provides a set of
 
 ## Blocking by session
 
-!!! tip ""
-    [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.5.1 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far
-
 Wallarm now provides a new protection action - [blocking by session](../api-sessions/blocking.md#blocking-sessions). It allows for more intelligent security decisions based on the state of the current interaction with the application, rather than just its network origins ([source IP addresses](../user-guides/ip-lists/overview.md)).
 
 Blocking by session is required for the cases of:
@@ -253,9 +250,6 @@ Here you can:
 The old **Vulnerabilities** section is not displayed anymore.
 
 ## OAS 3.1 support
-
-!!! tip ""
-    [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.6.1 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
 
 For [API Specification Enforcement](../api-specification-enforcement/overview.md), you can now upload OpenAPI specifications of **version 3.1**.
 

@@ -70,9 +70,6 @@ With API Sessions, security teams can now easily:
 
 ### Blocking by session
 
-!!! tip ""
-    [NGINX Node](../../installation/nginx-native-node-internals.md#nginx-node) 6.5.1 or higher and not supported by [Native Node](../../installation/nginx-native-node-internals.md#native-node) so far
-
 Wallarm now provides a new protection action - [blocking by session](../../api-sessions/blocking.md#blocking-sessions). It allows for more intelligent security decisions based on the state of the current interaction with the application, rather than just its network origins ([source IP addresses](../../user-guides/ip-lists/overview.md)).
 
 Blocking by session is required for the cases of:
@@ -177,9 +174,6 @@ Each request/response parameter information includes:
 * Date and time when parameter value was last transferred by requests
 
 ### SOAP protocol support
-
-!!! tip ""
-    [NGINX Node 6.2.0 and higher](../node-artifact-versions.md) and not supported by Native Node so far
 
 If some of your APIs utilize the SOAP protocol and are requested in the real traffic, API Discovery will now detect them. In the built API inventory, you will see data about SOAP operations, including such data as transferred sensitive data, risk score and what contributes to it, XML body parameters, HTTPS and XML headers of requests and responses:
 
@@ -670,9 +664,6 @@ Here you can:
 The old **Vulnerabilities** section is not displayed anymore.
 
 ## OAS 3.1 support
-
-!!! tip ""
-    [NGINX Node](../../installation/nginx-native-node-internals.md#nginx-node) 6.6.1 or higher and not supported by [Native Node](../../installation/nginx-native-node-internals.md#native-node) so far.
 
 For [API Specification Enforcement](../../api-specification-enforcement/overview.md), you can now upload OpenAPI specifications of **version 3.1**.
 
