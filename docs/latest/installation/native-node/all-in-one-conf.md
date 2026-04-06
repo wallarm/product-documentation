@@ -1063,7 +1063,7 @@ Default: `/opt/wallarm/etc/wallarm`.
 
 HTTP analyzer shared directory. Typically, you do not need to modify this parameter.
 
-Default: `/tmp`.
+Default: `/opt/wallarm/shm` (starting from version 0.24.0; previously `/tmp`).
 
 ### http_inspector.wallarm_process_time_limit
 
@@ -1093,7 +1093,7 @@ In Node version 0.12.1 and earlier, this parameter is set as `tarantool_exporter
 
 The mask for internal traffic logging. Typically, you do not need to modify this parameter.
 
-Default: `info@*`.
+Default: `info+@*` (starting from version 0.24.0; previously `info@*`).
 
 ### metrics.enabled
 

@@ -10,7 +10,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
-### 0.24.0 (TBD)
+### 0.24.0 (2026-04-06)
 
 * [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) (`tcp-capture-v2` mode):
 
@@ -18,7 +18,9 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
     * Added new configuration parameters: [`tcp_stream.from_vxlan`](../../installation/native-node/all-in-one-conf.md#tcp_streamfrom_vxlan) and [`tcp_stream.from_geneve`](../../installation/native-node/all-in-one-conf.md#tcp_streamfrom_geneve) for receiving encapsulated mirrored traffic
     * Fixed issues that caused missing and unanalyzed requests, incorrect response-to-request association, and VLAN ID mishandling
     * Fixed incorrect reassembly of interlaced packets captured from multiple interfaces in promiscuous mode
-* Fixed minor stability and reliability issues
+* Changed default [`log.proton_log_mask`](../../installation/native-node/all-in-one-conf.md#logproton_log_mask) from `info@*` to `info+@*` to show warning and error messages from the traffic analysis engine (previously only info-level messages were displayed)
+* Changed default [`http_inspector.shm_dir`](../../installation/native-node/all-in-one-conf.md#http_inspectorshm_dir) from `/tmp` to `/opt/wallarm/shm` for better compatibility with containerized environments
+* Fixed [API Specification Enforcement](../../api-specification-enforcement/overview.md) not triggering [specification processing overlimit](../../api-specification-enforcement/viewing-events.md#overlimit-events) events for requests exceeding size or time limits
 * Updated [Prometheus metrics](../../admin-en/native-node-metrics-gonode.md):
 
     | Change | Metric |
@@ -37,26 +39,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
     | New | `wallarm_gonode_tcp_stream_errors_total` (Geneve/VXLAN error types) |
     | New | `wallarm_gonode_envoy_external_filter_requests_blocked_total` |
     | Changed | `wallarm_gonode_tcp_stream_diag_interface_info` — now only reports MTU; I/O counters moved to `diag_interface_counters_total` |
+    | Changed | Per-host metrics (`*_per_host_total`) — `host` label is now validated, normalized to lowercase; invalid/oversized values bucketed under `__invalid_host__` |
     | Renamed | `…errors_total{type="ResponseBeforeRequest"}` → `…{type="ResponseReadyBeforeRequest"}` |
     | Removed | `wallarm_gonode_tcp_stream_tcp_packets_read_total` |
     | Removed | `wallarm_gonode_http_connector_server_errors_total{type="MsgType"}` |
-
-
-<!-- 
-
-уже было:
-
-Bug
-NODE-7099
-Aggregation/WCLI Container is crash looping on US 43330 due to OOM
-Critical
-Resolved
-
-Task
-NODE-7548
-Bump base AIO version to 6.10.3 in go-node
-Normal
-RELEASING -->
+* Fixed minor stability and reliability issues
 
 ### 0.23.2 (2026-03-24)
 
