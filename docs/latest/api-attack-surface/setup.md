@@ -45,15 +45,31 @@ To configure [API Attack Surface Management](overview.md) to detect hosts under 
 
 ### Deleting from scope
 
-You can delete domains from the scope. On deletion, all hosts previously detected and manually added for this domain will be removed from the list:
+You can delete domains and individual hosts from the scope.
+
+**Deleting domains**
+
+When you delete a domain, all hosts previously detected and manually added for this domain are also removed:
 
 1. At the **Domains and hosts** tab, select domain(s) with checkboxes and click **Delete**.
-1. As there can be the security issues found for these domains, you need to decide what to do with them. Options are:
+1. If there are security issues associated with the selected domains, choose what to do with them:
 
-    * Keep related security issues
-    * Close related security issues
-    * Mark false related security issues
-    * Delete related security issues
+    * Keep security issues as is
+    * Close security issues
+    * Mark security issues as false positive
+    * Delete security issues
+
+**Deleting hosts**
+
+You can delete individual hosts — both automatically discovered and manually added. Note that root domains cannot be deleted; to remove a root domain, delete the entire domain from the scope instead.
+
+1. At the **Domains and hosts** tab, click a domain to see its hosts, select host(s) with checkboxes and click **Delete**.
+1. If there are security issues associated with the selected hosts, choose what to do with them:
+
+    * Keep security issues as is
+    * Close security issues
+    * Mark security issues as false positive
+    * Delete security issues
 
 ## IP addresses and network ranges
 
@@ -88,12 +104,12 @@ Once added, Wallarm will immediately start scanning for data selected in [**Scan
 You can delete IP addresses and network ranges from the scope:
 
 1. At the **IP addresses & Network ranges** tab, select entries with checkboxes and click **Delete**.
-1. As there can be security issues found for these IPs, you need to decide what to do with them. Options are:
+1. If there are security issues associated with the selected IPs, choose what to do with them:
 
-    * Keep related security issues
-    * Close related security issues
-    * Mark false related security issues
-    * Delete related security issues
+    * Keep security issues as is
+    * Close security issues
+    * Mark security issues as false positive
+    * Delete security issues
 
 ## Scan configuration
 
