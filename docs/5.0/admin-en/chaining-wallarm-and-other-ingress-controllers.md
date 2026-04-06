@@ -17,7 +17,7 @@ Ingress controller chaining enables you to utilize an existing controller to get
 
 * Kubernetes platform version 1.26-1.30
 * [Helm](https://helm.sh/) package manager
-* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
+* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/), or [ME Cloud](https://me1.my.wallarm.com/)
 * Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud
 * Access to `https://charts.wallarm.com` to add the Wallarm Helm charts. Ensure the access is not blocked by a firewall
 * Access to the Wallarm repositories on Docker Hub `https://hub.docker.com/r/wallarm`. Make sure the access is not blocked by a firewall
@@ -46,11 +46,11 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
 1. Generate a filtering node token of the [appropriate type][node-token-types]:
 
     === "API token (Helm chart 4.6.8 and above)"
-        1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+        1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens), or [ME Cloud](https://me1.my.wallarm.com/settings/api-tokens).
         1. Find or create API token with the `Node deployment/Deployment` usage type.
         1. Copy this token.
     === "Node token"
-        1. Open Wallarm Console → **Nodes** in either the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
+        1. Open Wallarm Console → **Nodes** in either the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes), or [ME Cloud](https://me1.my.wallarm.com/nodes).
         1. Create a filtering node with the **Wallarm node** type and copy the generated token.
             
             ![Creation of a Wallarm node][nginx-ing-create-node-img]
@@ -96,7 +96,25 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
             type: "ClusterIP"
         nameOverride: wallarm-ingress
         ```    
-    
+    === "ME Cloud"
+        ```bash
+        controller:
+          wallarm:
+            enabled: true
+            token: "<NODE_TOKEN>"
+            apiHost: me1.api.wallarm.com
+            # nodeGroup: defaultIngressGroup
+          config:
+            use-forwarded-headers: "true"
+          ingressClass: wallarm-ingress
+          ingressClassResource:
+            name: wallarm-ingress
+            controllerValue: "k8s.io/wallarm-ingress"
+          service:
+            type: "ClusterIP"
+        nameOverride: wallarm-ingress
+        ```
+
     * `<NODE_TOKEN>` is the Wallarm node token.
     * When using an API token, specify a node group name in the `nodeGroup` parameter. Your node will be assigned to this group, shown in the Wallarm Console's **Nodes** section. The default group name is `defaultIngressGroup`.
 

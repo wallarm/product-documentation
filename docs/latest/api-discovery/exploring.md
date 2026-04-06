@@ -4,7 +4,7 @@ As soon as the [API Discovery](overview.md) module has built the catalog of your
 
 ## Endpoints
 
-Explore your discovered API inventory using the **API Discovery** section in the [US](https://us1.my.wallarm.com/api-discovery) or [EU](https://my.wallarm.com/api-discovery) Cloud.
+Explore your discovered API inventory using the **API Discovery** section in the [US](https://us1.my.wallarm.com/api-discovery) or [EU](https://my.wallarm.com/api-discovery), or [ME](https://me1.my.wallarm.com/api-discovery) Cloud.
 
 ![API Discovery - built API inventory](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-built-inventory.png)
 

@@ -128,6 +128,7 @@ To inquire about this subscription, please contact [sales@wallarm.com](mailto:sa
 For smaller companies and educational purposes, Wallarm offers the option to create a [Security Edge](#security-edge-paid-plan) Free Tier account yourself. You can choose the Wallarm cloud that best suits your storage preferences:
 
 * [Create Free Tier account on the US Wallarm Cloud](https://us1.my.wallarm.com/signup)
+* [Create Free Tier account on the ME Wallarm Cloud](https://me1.my.wallarm.com/signup)
 * [Create Free Tier account on the EU Wallarm Cloud](https://my.wallarm.com/signup)
 
 The Security Edge Free Tier account allows:

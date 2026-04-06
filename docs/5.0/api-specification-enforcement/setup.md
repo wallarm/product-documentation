@@ -6,7 +6,7 @@ This article describes how to enable and configure your API protection based on 
 
 ## Step 1: Upload specification
 
-1. In the **API Specifications** section in [US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/), click **Upload specification**.
+1. In the **API Specifications** section in [US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/), or [ME Cloud](https://me1.my.wallarm.com/api-specifications/), click **Upload specification**.
 1. Set specification upload parameters and start uploading.
 
     ![Upload specification](../images/api-specification-enforcement/specificaton-upload.png)

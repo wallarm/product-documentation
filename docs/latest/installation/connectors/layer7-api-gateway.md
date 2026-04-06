@@ -88,7 +88,7 @@ To test the functionality of the deployed policy, follow these steps:
     ```
     curl http://<YOUR_GATEWAY_ADDRESS>/etc/passwd
     ```
-1. Open Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks) and make sure the attack is displayed in the list.
+1. Open Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks), or [ME Cloud](https://me1.my.wallarm.com/attacks) and make sure the attack is displayed in the list.
     
     ![Attacks in the interface][attacks-in-ui-image]
 

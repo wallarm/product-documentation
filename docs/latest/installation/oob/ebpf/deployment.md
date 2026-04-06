@@ -97,7 +97,7 @@ To ensure the solution functions correctly in environments with restricted outbo
 
 * `https://charts.wallarm.com` to add the Wallarm Helm charts.
 * `https://hub.docker.com/r/wallarm` to retrieve Wallarm Docker images from Docker Hub.
-* For users working with the US Wallarm Cloud, access `https://us1.api.wallarm.com`. For those using the EU Wallarm Cloud, access `https://api.wallarm.com`.
+* For users working with the US Wallarm Cloud, access `https://us1.api.wallarm.com`. For those using the EU Wallarm Cloud, access `https://api.wallarm.com`. For those using the ME Wallarm Cloud, access `https://me1.api.wallarm.com`.
 * IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and [API specifications](../../../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../../../user-guides/ip-lists/overview.md) countries, regions, or data centers.
 
     --8<-- "../include/wallarm-cloud-ips.md"
@@ -125,7 +125,7 @@ To deploy the Wallarm eBPF solution:
 
 Generate an API token for a Wallarm filtering node to connect to the Wallarm Cloud:
 
-1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens), or [ME Cloud](https://me1.my.wallarm.com/settings/api-tokens).
 1. Create API token with the `Node deployment/Deployment` usage type.
 
 ### Step 2: Deploy the Wallarm Helm chart
@@ -153,7 +153,14 @@ Generate an API token for a Wallarm filtering node to connect to the Wallarm Clo
           api:
             token: "<NODE_TOKEN>"
         ```
-    
+    === "ME Cloud"
+        ```yaml
+        config:
+          api:
+            token: "<NODE_TOKEN>"
+            host: "me1.api.wallarm.com"
+        ```
+
     `<NODE_TOKEN>` is the token of the Wallarm node to be run in Kubernetes.
 
     --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.md"

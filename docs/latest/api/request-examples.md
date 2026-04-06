@@ -17,7 +17,14 @@ To make API calls to Wallarm's endpoints, you need to know your client ID (also 
       -H "Content-Type: application/json" \
       -d "{}"
     ```
-
+=== "ME Cloud"
+    ```bash
+    
+    curl -X POST "https://me1.api.wallarm.com/v1/user" \
+      -H "X-WallarmAPI-Token: YOUR_API_TOKEN" \
+      -H "Content-Type: application/json" \
+      -d "{}"
+    ```
 === "US Cloud"
     ```bash
     
@@ -66,6 +73,14 @@ The following are examples of API calls for retrieving all attacks detected sinc
       -H 'Content-Type: application/json' \
       -d '{"paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
     ```
+=== "ME Cloud"
+    ```bash
+    curl -k 'https://me1.api.wallarm.com/v2/objects/attack' \
+      -X POST \
+      -H 'X-WallarmApi-Token: <YOUR_TOKEN>' \
+      -H 'Content-Type: application/json' \
+      -d '{"paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
+    ```
 === "US Cloud"
     ```bash
     curl -k 'https://us1.api.wallarm.com/v2/objects/attack' \
@@ -82,6 +97,14 @@ To retrieve the next 100 attacks, use the same request as before but include the
 === "EU Cloud"
     ```bash
     curl -k 'https://api.wallarm.com/v2/objects/attack' \
+      -X POST \
+      -H 'X-WallarmApi-Token: <YOUR_TOKEN>' \
+      -H 'Content-Type: application/json' \
+      -d '{"cursor":"<POINTER_FROM_PREVIOUS_RESPONSE>", "paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
+    ```
+=== "ME Cloud"
+    ```bash
+    curl -k 'https://me1.api.wallarm.com/v2/objects/attack' \
       -X POST \
       -H 'X-WallarmApi-Token: <YOUR_TOKEN>' \
       -H 'Content-Type: application/json' \
@@ -112,6 +135,44 @@ Below is the Python code example for retrieving attacks using cursor paging:
     ts = <TIMESTAMP>  # UNIX time
 
     url = "https://api.wallarm.com/v2/objects/attack"
+    headers = {
+        "X-WallarmApi-Token": "<YOUR_TOKEN>",
+        "Content-Type": "application/json",
+    }
+    payload = {
+        "paging": True,
+        "filter": {
+            "clientid": [client_id],
+            "vulnid": None,
+            "time": [[ts, None]],
+            "!state": "falsepositive",
+        },
+    }
+
+
+    while True:
+        response = requests.post(url, headers=headers, json=payload)
+        data = response.json()
+
+        cursor = data.get("cursor")
+        if not cursor:
+            break
+
+        pp(data)
+        payload["cursor"] = cursor
+    ```
+=== "ME Cloud"
+    ```python
+    import json
+    from pprint import pprint as pp
+
+    import requests
+
+
+    client_id = <YOUR_CLIENT_ID>
+    ts = <TIMESTAMP>  # UNIX time
+
+    url = "https://me1.api.wallarm.com/v2/objects/attack"
     headers = {
         "X-WallarmApi-Token": "<YOUR_TOKEN>",
         "Content-Type": "application/json",

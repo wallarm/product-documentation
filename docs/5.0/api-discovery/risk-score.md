@@ -36,7 +36,7 @@ To understand what caused the risk score for the endpoint and how to reduce the 
 
 ![API Discovery - Risk score](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 
-You can also get summary on APIs by their risk score levels in **Dashboards** → **API Discovery** in the [US](https://us1.my.wallarm.com/dashboard-api-discovery) or [EU](https://my.wallarm.com/dashboard-api-discovery) Cloud.
+You can also get summary on APIs by their risk score levels in **Dashboards** → **API Discovery** in the [US](https://us1.my.wallarm.com/dashboard-api-discovery) or [EU](https://my.wallarm.com/dashboard-api-discovery), or [ME](https://me1.my.wallarm.com/dashboard-api-discovery) Cloud.
 
 ## Customizing risk score calculation
 

@@ -176,7 +176,7 @@ To enable SSL/TLS termination:
       wallarm:
         api:
           token: "<NODE_TOKEN>"
-          host: "us1.api.wallarm.com" # or empty string if using the EU Cloud
+          host: "us1.api.wallarm.com" # or empty string if using the EU Cloud, or "me1.api.wallarm.com" for the ME Cloud
         # Other Wallarm settings https://docs.wallarm.com/installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm/
       profiles:
         tls-profile: # Set any desired TLS profile name here

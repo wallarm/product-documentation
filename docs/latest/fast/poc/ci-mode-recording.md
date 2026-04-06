@@ -36,7 +36,7 @@ FAST node configuration is done via environment variables. The table below holds
 | Environment Variable   | Value  | Required? |
 |--------------------	| --------	| -----------	|
 | `WALLARM_API_TOKEN`  	| Token for a node. | Yes |
-| `WALLARM_API_HOST`   	| The domain name of the Wallarm API server to use. <br>Allowed values: <br>`us1.api.wallarm.com` for use with the US cloud;<br>`api.wallarm.com` for use with the EU cloud.| Yes |
+| `WALLARM_API_HOST`   	| The domain name of the Wallarm API server to use. <br>Allowed values: <br>`us1.api.wallarm.com` for use with the US cloud;<br>`api.wallarm.com` for use with the EU cloud and <br>`me1.api.wallarm.com` for the ME cloud.| Yes |
 | `CI_MODE`            	| FAST node's operation mode. <br>Required value: `recording`. | Yes |
 | `TEST_RECORD_NAME`   	| The name of a new test record to create. <br>Default value is in a similar format: “TestRecord Oct 08 12:18 UTC”. | No |
 | `INACTIVITY_TIMEOUT` 	| If no baseline requests arrive to the FAST node within the `INACTIVITY_TIMEOUT` interval, then the recording process is stopped along with the FAST node.<br>Allowed value range: from 1 to 691200 seconds (1 week)<br>Default value: 600 seconds (10 minutes). | No |

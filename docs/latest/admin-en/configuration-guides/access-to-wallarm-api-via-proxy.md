@@ -3,6 +3,7 @@
 These instructions describe the steps to configure access to Wallarm API via the proxy server.
 
 * `https://api.wallarm.com/` for the EU Cloud
+* `https://me1.api.wallarm.com/` for the ME Cloud
 * `https://us1.api.wallarm.com/` for the US Cloud
 
 The instructions are applicable both for [NGINX](../../installation/nginx-native-node-internals.md#nginx-node) and [Native](../../installation/nginx-native-node-internals.md#native-node) nodes.

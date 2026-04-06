@@ -32,7 +32,7 @@ The processes of creating and executing the test requests begin when the first b
 
 The test run state is displayed in Wallarm UI in real-time mode. To check the state:
 
-1. Log in to your Wallarm account in [US cloud](https://us1.my.wallarm.com/) or [EU cloud](https://my.wallarm.com/).
+1. Log in to your Wallarm account in [US cloud](https://us1.my.wallarm.com/) or [EU cloud](https://my.wallarm.com/), or [ME cloud](https://me1.my.wallarm.com/).
 2. Open the **Test runs** section and click the required test run.
 
 ![Test run example][img-test-runs]

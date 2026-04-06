@@ -68,7 +68,7 @@ In this example, if new endpoints for the `example.com` API host are discovered 
 
 **To test the trigger:**
 
-1. Go to Wallarm Console → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/) cloud, and configure [integration with Slack](../user-guides/settings/integrations/slack.md).
+1. Go to Wallarm Console → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/), or [ME](https://me1.my.wallarm.com/integrations/) cloud, and configure [integration with Slack](../user-guides/settings/integrations/slack.md).
 1. In the **Triggers** section, create a trigger as shown above.
 1. Send several requests to the `example.com/users` endpoint to get the `200` (`OK`) response.
 1. In the **API Discovery** section, check that your endpoint was added with the **New** mark.

@@ -2,7 +2,7 @@
 
 Triggers are tools used to set up Wallarm response to different events. Triggers combine a significant number of events the system can react to with a variety of possible reactions. This constructor-like process allows configuring complex behaviors that match your company unique security needs.
 
-Triggers are configured in the **Triggers** section in the [US](https://us1.my.wallarm.com/triggers) or [EU](https://my.wallarm.com/triggers) Cloud.
+Triggers are configured in the **Triggers** section in the [US](https://us1.my.wallarm.com/triggers) or [EU](https://my.wallarm.com/triggers), or [ME](https://me1.my.wallarm.com/triggers) Cloud.
 
 ![Section to configure triggers](../../images/user-guides/triggers/triggers-section.png)
 

@@ -110,7 +110,7 @@ In this example, if a new attempt to use compromised credentials is detected, a 
 
 **To test the trigger:**
 
-1. Go to Wallarm Console → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/) cloud, and configure [integration with Slack](../user-guides/settings/integrations/slack.md).
+1. Go to Wallarm Console → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/), or [ME](https://me1.my.wallarm.com/integrations/) cloud, and configure [integration with Slack](../user-guides/settings/integrations/slack.md).
 1. In the **Credential Stuffing** section, make sure Credential Stuffing is enabled, and the following Wallarm's predefined rule is added from the **Recommended endpoints** to the active **Authentication endpoints**:
 
     Request is:

@@ -66,11 +66,11 @@ To install the Wallarm Ingress Controller:
 1. Generate a filtering node token of the [appropriate type][node-token-types]:
 
     === "API token (Helm chart 4.6.8 and above)"
-        1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+        1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens), or [ME Cloud](https://me1.my.wallarm.com/settings/api-tokens).
         1. Find or create API token with the `Node deployment/Deployment` usage type.
         1. Copy this token.
     === "Node token"
-        1. Open Wallarm Console → **Nodes** in either the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
+        1. Open Wallarm Console → **Nodes** in either the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes), or [ME Cloud](https://me1.my.wallarm.com/nodes).
         1. Create a filtering node with the **Wallarm node** type and copy the generated token.
             
             ![Creation of a Wallarm node][nginx-ing-create-node-img]
@@ -107,7 +107,16 @@ To install the Wallarm Ingress Controller:
             token: "<NODE_TOKEN>"
             # nodeGroup: defaultIngressGroup
         ```
-    
+    === "ME Cloud"
+        ```yaml
+        controller:
+          wallarm:
+            enabled: "true"
+            token: "<NODE_TOKEN>"
+            apiHost: "me1.api.wallarm.com"
+            # nodeGroup: defaultIngressGroup
+        ```
+
     You can also store the Wallarm node token in Kubernetes secrets and pull it to the Helm chart. [Read more][controllerwallarmexistingsecret-docs]
 
     !!! info "Deployment from your own registries"    
