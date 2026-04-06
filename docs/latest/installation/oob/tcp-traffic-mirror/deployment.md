@@ -168,7 +168,7 @@ tcp_stream:
 
 Use `tcp_stream.from_geneve` when mirrored traffic is encapsulated in [GENEVE](https://datatracker.ietf.org/doc/html/rfc8926). The node opens a UDP socket on the configured port, decapsulates GENEVE headers, and feeds the inner Ethernet frames into the processing pipeline.
 
-For [AWS VPC Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html), which wraps VXLAN inside GENEVE, enable the `nested_vxlan` option.
+[AWS VPC Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html), which wraps VXLAN inside GENEVE, is supported automatically — no additional configuration is required.
 
 Available [starting from version 0.24.0](../../../updating-migrating/native-node/node-artifact-versions.md).
 
@@ -189,7 +189,7 @@ Available [starting from version 0.24.0](../../../updating-migrating/native-node
         filter: "tcp port 443"
     ```
 === "AWS VPC Traffic Mirroring (GENEVE + nested VXLAN)"
-    AWS VPC Traffic Mirroring wraps VXLAN inside GENEVE. Enable `nested_vxlan` to handle this format:
+    AWS VPC Traffic Mirroring wraps VXLAN inside GENEVE. Nested VXLAN decapsulation is handled automatically:
 
     ```yaml
     version: 4
@@ -200,8 +200,7 @@ Available [starting from version 0.24.0](../../../updating-migrating/native-node
       from_geneve:
         enabled: true
         listen_addr: "0.0.0.0:6081"
-        nested_vxlan: true
-        # Optional: filter by outer Geneve VNI
+        # Optional: filter by Geneve VNI
         vni_filter:
           - 100
         # Optional: filter by inner VXLAN VNI

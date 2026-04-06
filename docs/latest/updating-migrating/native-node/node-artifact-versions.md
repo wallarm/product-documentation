@@ -14,7 +14,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) (`tcp-capture-v2` mode):
 
-    * Added support for [VXLAN](../../installation/oob/tcp-traffic-mirror/deployment.md#vxlan) and [GENEVE](../../installation/oob/tcp-traffic-mirror/deployment.md#geneve) decapsulation, including support for [AWS VPC Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html) via `nested_vxlan`
+    * Added support for [VXLAN](../../installation/oob/tcp-traffic-mirror/deployment.md#vxlan) and [GENEVE](../../installation/oob/tcp-traffic-mirror/deployment.md#geneve) decapsulation, including automatic support for [AWS VPC Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html) (GENEVE with nested VXLAN)
     * Added new configuration parameters: [`tcp_stream.from_vxlan`](../../installation/native-node/all-in-one-conf.md#tcp_streamfrom_vxlan) and [`tcp_stream.from_geneve`](../../installation/native-node/all-in-one-conf.md#tcp_streamfrom_geneve) for receiving encapsulated mirrored traffic
     * Fixed issues that caused missing and unanalyzed requests, incorrect response-to-request association, and VLAN ID mishandling
     * Fixed incorrect reassembly of interlaced packets captured from multiple interfaces in promiscuous mode

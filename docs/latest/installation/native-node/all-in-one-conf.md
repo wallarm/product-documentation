@@ -552,15 +552,14 @@ Configuration for receiving [VXLAN](https://datatracker.ietf.org/doc/html/rfc734
 
 ### tcp_stream.from_geneve
 
-Configuration for receiving [GENEVE](https://datatracker.ietf.org/doc/html/rfc8926)-encapsulated mirrored traffic. The node listens on a UDP port and decapsulates GENEVE packets for analysis. Supports [AWS VPC Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html) with nested VXLAN. Available [starting from version 0.24.0](../../updating-migrating/native-node/node-artifact-versions.md).
+Configuration for receiving [GENEVE](https://datatracker.ietf.org/doc/html/rfc8926)-encapsulated mirrored traffic. The node listens on a UDP port and decapsulates GENEVE packets for analysis. Nested VXLAN inside GENEVE ([AWS VPC Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html)) is decapsulated automatically. Available [starting from version 0.24.0](../../updating-migrating/native-node/node-artifact-versions.md).
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `enabled` | bool | `false` | Enable GENEVE listener. |
 | `listen_addr` | string | `0.0.0.0:6081` | UDP address and port to listen on. |
-| `nested_vxlan` | bool | `false` | Enable decapsulation of nested VXLAN inside GENEVE (AWS VPC Traffic Mirroring). |
-| `vni_filter` | list of integers | empty (all VNIs) | List of outer GENEVE VNIs to accept. If empty, all VNIs are accepted. |
-| `inner_vni_filter` | list of integers | empty (all VNIs) | List of inner VXLAN VNIs to accept when `nested_vxlan` is enabled. If empty, all VNIs are accepted. |
+| `vni_filter` | list of integers | empty (all VNIs) | List of GENEVE VNIs to accept. If empty, all VNIs are accepted. |
+| `inner_vni_filter` | list of integers | empty (all VNIs) | List of inner VXLAN VNIs to accept when nested VXLAN is auto-detected. If empty, all VNIs are accepted. |
 | `filter` | string | empty (no filter) | [BPF filter](https://biot.com/capstats/bpf.html) applied to decapsulated inner packets. |
 
 ## Envoy external filter-specific settings
