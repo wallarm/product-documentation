@@ -94,7 +94,7 @@ In the example above, in the request point definition, request point is defined 
 As a part of [Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription, Wallarm provides the **File upload restriction policy** [rule](../user-guides/rules/rules.md).
 
 !!! tip ""
-    Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.0 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
+    Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.0+ or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.16.0+.
 
 **Creating and applying the rule**
 

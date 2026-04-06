@@ -9,6 +9,10 @@ This article describes how to enable and configure your API protection based on 
 You can upload only specifications in the OpenAPI 3.0, 3.1 (JSON or YAML formats):
 
 1. In the **API Specifications** section in [US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/), click **Upload specification**.
+
+    !!! tip ""
+        OAS 3.1 requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.6.1+ or or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.20.0+.
+
 1. Set specification upload parameters and start uploading.
 
     ![Upload specification](../images/api-specification-enforcement/specificaton-upload.png)

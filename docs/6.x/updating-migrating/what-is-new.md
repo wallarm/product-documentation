@@ -103,7 +103,7 @@ Each request/response parameter information includes:
 ### SOAP protocol support
 
 !!! tip ""
-    [NGINX Node 6.2.0 and higher](node-artifact-versions.md) and not supported by Native Node so far
+    SOAP protocol discovery requires [NGINX Node](../node-artifact-versions.md) 6.2.0+ or Native Node 0.15.1+.
 
 If some of your APIs utilize the SOAP protocol and are requested in the real traffic, API Discovery will now detect them. In the built API inventory, you will see data about SOAP operations, including such data as transferred sensitive data, risk score and what contributes to it, XML body parameters, HTTPS and XML headers of requests and responses:
 
@@ -210,6 +210,9 @@ To detect this type of automated threats, API Abuse Prevention provides a set of
 
 ## Blocking by session
 
+!!! tip ""
+    API session blocking requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.5.1+ or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.19.0+.
+
 Wallarm now provides a new protection action - [blocking by session](../api-sessions/blocking.md#blocking-sessions). It allows for more intelligent security decisions based on the state of the current interaction with the application, rather than just its network origins ([source IP addresses](../user-guides/ip-lists/overview.md)).
 
 Blocking by session is required for the cases of:
@@ -250,6 +253,9 @@ Here you can:
 The old **Vulnerabilities** section is not displayed anymore.
 
 ## OAS 3.1 support
+
+!!! tip ""
+    OAS 3.1 support in [API Specification Enforcement](../api-specification-enforcement/overview.md) requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.6.1+ or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.20.0+.
 
 For [API Specification Enforcement](../api-specification-enforcement/overview.md), you can now upload OpenAPI specifications of **version 3.1**.
 
