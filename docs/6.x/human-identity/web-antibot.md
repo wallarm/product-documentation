@@ -1,0 +1,1 @@
+--8<-- "latest/human-identity/web-antibot.md"
