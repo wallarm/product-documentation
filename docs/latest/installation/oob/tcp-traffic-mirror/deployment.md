@@ -14,7 +14,13 @@ Among all supported [deployment options](../../supported-deployment-options.md),
 
 This solution operates in out-of-band (OOB) mode, capturing mirrored TCP traffic directly from the network interface, independent of web servers like NGINX. The captured traffic is then parsed, reassembled, and analyzed for threats.
 
-It functions as a mirror target, seamlessly switching between multiple traffic sources. The solution supports VLAN (802.1Q) mirrored traffic without requiring VLAN tags.
+It functions as a mirror target, seamlessly switching between multiple traffic sources. The supported encapsulation formats are:
+
+* **[VLAN](https://www.ieee802.org/1/pages/802.1Q-2022.html)** (802.1Q) — captured via network interface with a BPF filter
+* **[VXLAN](https://datatracker.ietf.org/doc/html/rfc7348)** — received via a dedicated UDP listener
+* **[GENEVE](https://datatracker.ietf.org/doc/html/rfc8926)** — received via a dedicated UDP listener, including nested VXLAN for [AWS VPC Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html)
+
+Other encapsulation protocols (GRE, ERSPAN, SPAN, STT) are not supported.
 
 Additionally, the solution enables response mirror parsing, providing Wallarm features that rely on response data. These features include [vulnerability detection](../../../about-wallarm/detecting-vulnerabilities.md), [API discovery](../../../api-discovery/overview.md) and more.
 
@@ -33,7 +39,8 @@ Additionally, the solution enables response mirror parsing, providing Wallarm fe
     * Allowed outgoing connections to the IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and [API specifications](../../../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../../../user-guides/ip-lists/overview.md) countries, regions, or data centers
 
         --8<-- "../include/wallarm-cloud-ips.md"
-* Traffic and response mirroring must be configured with both source and target set up, and the prepared instance chosen as a mirror target. Specific environment requirements must be met, such as allowing specific protocols for traffic mirroring configurations.
+* Traffic and response mirroring must be configured with both source and target set up, and the prepared instance chosen as a mirror target.
+* The mirrored traffic must use one of the supported encapsulation formats: raw/VLAN, VXLAN, or GENEVE.
 
 ## Step 1: Prepare Wallarm token
 
@@ -54,13 +61,13 @@ To download Wallarm installation script and make it executable, use the followin
 
 === "x86_64 version"
     ```bash
-    curl -O https://meganode.wallarm.com/native/aio-native-0.23.2.x86_64.sh
-    chmod +x aio-native-0.23.2.x86_64.sh
+    curl -O https://meganode.wallarm.com/native/aio-native-0.24.0.x86_64.sh
+    chmod +x aio-native-0.24.0.x86_64.sh
     ```
 === "ARM64 version"
     ```bash
-    curl -O https://meganode.wallarm.com/native/aio-native-0.23.2.aarch64.sh
-    chmod +x aio-native-0.23.2.aarch64.sh
+    curl -O https://meganode.wallarm.com/native/aio-native-0.24.0.aarch64.sh
+    chmod +x aio-native-0.24.0.aarch64.sh
     ```
 
 ## Step 3: Prepare the configuration file
@@ -84,9 +91,21 @@ In the [article](../../native-node/all-in-one-conf.md), you will find the list o
 
 It is required to specify the `tcp-capture-v2` mode in the corresponding parameter to run the solution for the TCP traffic mirror analysis.
 
-### Choosing a network interface for listening
+### Configuring the traffic source
 
-To specify the network interface to capture traffic from:
+The node supports several traffic source types depending on how mirrored traffic is delivered to the machine. At least one source should be enabled. Multiple sources can run simultaneously — they operate independently and feed into the same processing pipeline.
+
+| Source | Use when | Config section |
+|--------|----------|----------------|
+| [Network interface](#network-interface-raw-or-vlan) | Traffic is mirrored at L2 level (raw or VLAN-tagged). | `tcp_stream.from_interface` |
+| [VXLAN listener](#vxlan) | Traffic is encapsulated in VXLAN. | `tcp_stream.from_vxlan` |
+| [GENEVE listener](#geneve) | Traffic is encapsulated in GENEVE, including AWS VPC Traffic Mirroring | `tcp_stream.from_geneve` |
+
+#### Network interface (raw or VLAN)
+
+Use `tcp_stream.from_interface` to capture raw (unencapsulated) or VLAN-tagged mirrored traffic directly from a network interface.
+
+This source does **not** perform tunnel decapsulation — for VXLAN or GENEVE traffic, use the dedicated listeners below.
 
 1. Check network interfaces available on the host:
 
@@ -96,23 +115,38 @@ To specify the network interface to capture traffic from:
 
 1. Specify the network interface in the `interface` parameter.
 
-    The value must be the network interface name (e.g., `eth0`, `enp7s0`). To capture traffic on a specific port, specify a [BPF (Berkeley Packet Filter)](https://biot.com/capstats/bpf.html) expression in the `filter` parameter.
+    The value must be the network interface name (e.g., `eth0`, `enp7s0`). To filter traffic by port or VLAN, specify a [BPF (Berkeley Packet Filter)](https://biot.com/capstats/bpf.html) expression in the `filter` parameter.
 
-    ```yaml
-    version: 4
+    === "Raw traffic on a specific port"
+        ```yaml
+        version: 4
 
-    mode: tcp-capture-v2
+        mode: tcp-capture-v2
 
-    tcp_stream:
-      from_interface:
-        enabled: true
-        interface: "eth0"
-        filter: "port 80"
-    ```
+        tcp_stream:
+          from_interface:
+            enabled: true
+            interface: "eth0"
+            filter: "port 80"
+        ```
+    === "VLAN-tagged traffic"
+        ```yaml
+        version: 4
 
-### Capturing VLAN
+        mode: tcp-capture-v2
 
-If mirrored traffic is wrapped in VLAN, you can capture it by specifying `vlan` in the `filter` parameter using a [BPF (Berkeley Packet Filter)](https://biot.com/capstats/bpf.html) expression.
+        tcp_stream:
+          from_interface:
+            enabled: true
+            interface: "eth0"
+            filter: "vlan"
+        ```
+
+#### VXLAN
+
+Use `tcp_stream.from_vxlan` when mirrored traffic is encapsulated in [VXLAN](https://datatracker.ietf.org/doc/html/rfc7348). The node opens a UDP socket on the configured port, decapsulates VXLAN headers, and feeds the inner Ethernet frames into the processing pipeline.
+
+Available [starting from version 0.24.0](../../../updating-migrating/native-node/node-artifact-versions.md).
 
 ```yaml
 version: 4
@@ -120,11 +154,61 @@ version: 4
 mode: tcp-capture-v2
 
 tcp_stream:
-  from_interface:
+  from_vxlan:
     enabled: true
-    interface: "eth0"
-    filter: "vlan"
+    listen_addr: "0.0.0.0:4789"
+    # Optional: list of VNIs to accept (empty = all VNIs)
+    vni_filter:
+      - 100
+    # Optional: BPF filter applied to the inner (decapsulated) packets
+    filter: "tcp port 80"
 ```
+
+#### GENEVE
+
+Use `tcp_stream.from_geneve` when mirrored traffic is encapsulated in [GENEVE](https://datatracker.ietf.org/doc/html/rfc8926). The node opens a UDP socket on the configured port, decapsulates GENEVE headers, and feeds the inner Ethernet frames into the processing pipeline.
+
+[AWS VPC Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html), which wraps VXLAN inside GENEVE, is supported automatically — no additional configuration is required.
+
+Available [starting from version 0.24.0](../../../updating-migrating/native-node/node-artifact-versions.md).
+
+=== "Standard GENEVE"
+    ```yaml
+    version: 4
+
+    mode: tcp-capture-v2
+
+    tcp_stream:
+      from_geneve:
+        enabled: true
+        listen_addr: "0.0.0.0:6081"
+        # Optional: list of VNIs to accept (empty = all VNIs)
+        vni_filter:
+          - 100
+        # Optional: BPF filter applied to the inner (decapsulated) packets
+        filter: "tcp port 443"
+    ```
+=== "AWS VPC Traffic Mirroring (GENEVE + nested VXLAN)"
+    AWS VPC Traffic Mirroring wraps VXLAN inside GENEVE. Nested VXLAN decapsulation is handled automatically:
+
+    ```yaml
+    version: 4
+
+    mode: tcp-capture-v2
+
+    tcp_stream:
+      from_geneve:
+        enabled: true
+        listen_addr: "0.0.0.0:6081"
+        # Optional: filter by Geneve VNI
+        vni_filter:
+          - 100
+        # Optional: filter by inner VXLAN VNI
+        inner_vni_filter:
+          - 200
+        # Optional: BPF filter applied to the inner (decapsulated) packets
+        filter: "tcp port 443"
+    ```
 
 ### Identifying the original client IP and host headers
 
@@ -163,18 +247,18 @@ To install the Wallarm node for TCP traffic mirror analysis, run the following c
 === "x86_64 version"
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.23.2.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.24.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.23.2.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.24.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
     ```
 === "ARM64 version"
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.23.2.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.24.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.23.2.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.24.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
     ```
 
 * The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -219,21 +303,21 @@ For additional debugging, set the [`log.level`](../../native-node/all-in-one-con
 
     === "x86_64 version"
         ```
-        sudo ./aio-native-0.23.2.x86_64.sh -- --help
+        sudo ./aio-native-0.24.0.x86_64.sh -- --help
         ```
     === "ARM64 version"
         ```
-        sudo ./aio-native-0.23.2.aarch64.sh -- --help
+        sudo ./aio-native-0.24.0.aarch64.sh -- --help
         ```
 * You can also run the installer in an **interactive** mode and choose the `tcp-capture-v2` mode in the 1st step:
 
     === "x86_64 version"
         ```
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.23.2.x86_64.sh
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.24.0.x86_64.sh
         ```
     === "ARM64 version"
         ```
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.23.2.aarch64.sh
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.24.0.aarch64.sh
         ```
 * You can use the node in API Discovery-only mode (available since version 0.12.1). In this mode, attacks - including those detected by the Node's built-in mechanisms and those requiring additional configuration (e.g., credential stuffing, API specification violation attempts and brute force) - are detected and [logged](../../../admin-en/configure-logging.md) locally but not exported to Wallarm Cloud. Since there is no attack data in the Cloud, [Threat Replay Testing](../../../vulnerability-detection/threat-replay-testing/overview.md) does not work.
 
@@ -279,5 +363,4 @@ For additional debugging, set the [`log.level`](../../native-node/all-in-one-con
     * [Rate limiting](../../../user-guides/rules/rate-limiting.md) is not supported as it is impossible to limit load on target servers.
     * [Filtering by IP addresses](../../../user-guides/ip-lists/overview.md) is not supported.
 * The solution analyzes only unencrypted HTTP traffic over raw TCP, not encrypted HTTPS traffic.
-* At the moment, the solution does not support VXLAN or SPAN-mirrored traffic.
 * The solution does not support traffic mirrored as independent, one-way streams (e.g., by some FortiGate configurations), because such traffic cannot be reliably reconstructed and HTTP request/response pairs may not be matched. `tcp-capture-v2` requires bidirectional TCP streams, with all packets from both directions captured in a single coherent flow. 

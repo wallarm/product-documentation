@@ -53,6 +53,10 @@ Contains details about applied configuration and ruleset files, including format
 
 Standard process and Go runtime metrics, including resource usage (CPU, memory, network) and garbage collector statistics.
 
+### `wallarm_gonode_envoy_external_filter_*`
+
+Metrics for [Wallarm Filter for Istio Ingress](../installation/connectors/istio.md), including processed messages, gRPC stream statistics, blocked and bypassed requests.
+
 ### `wallarm_gonode_http_connector_*`
 
 Metrics related to the connector server component, covering request processing, blocked/bypassed requests, error counters, and latency.
@@ -67,7 +71,7 @@ Contains metrics related to exporting data to the postanalytics service (wstore)
 
 ### `wallarm_gonode_tcp_*`
 
-Provides metrics from the TCP packet processing pipeline, including packet and byte counters, active flows, HTTP message reconstruction statistics, and TCP-level parsing or reassembly errors.
+Provides metrics from the [TCP packet](../installation/oob/tcp-traffic-mirror/deployment.md) processing pipeline, including packet and byte counters, active flows, HTTP message reconstruction statistics, and TCP-level parsing or reassembly errors.
 
 ## Example metrics output
 
@@ -220,7 +224,6 @@ wallarm_gonode_http_connector_server_debug_container_len{type="map:responseWaitM
 wallarm_gonode_http_connector_server_errors_total{type="DroppedOnOverload"} 0
 wallarm_gonode_http_connector_server_errors_total{type="DuplicateReqId"} 0
 wallarm_gonode_http_connector_server_errors_total{type="MsgDataFormat"} 0
-wallarm_gonode_http_connector_server_errors_total{type="MsgType"} 0
 wallarm_gonode_http_connector_server_errors_total{type="MsgpackDataFormat"} 0
 wallarm_gonode_http_connector_server_errors_total{type="MsgpackDecode"} 0
 wallarm_gonode_http_connector_server_errors_total{type="NilBody"} 0
@@ -571,7 +574,7 @@ wallarm_gonode_tcp_reassembler_errors_total{type="InvalidHttpHeader"} 0
 wallarm_gonode_tcp_reassembler_errors_total{type="InvalidHttpTrailer"} 0
 wallarm_gonode_tcp_reassembler_errors_total{type="InvalidKeepaliveTimeout"} 0
 wallarm_gonode_tcp_reassembler_errors_total{type="RequestTimeout"} 0
-wallarm_gonode_tcp_reassembler_errors_total{type="ResponseBeforeRequest"} 0
+wallarm_gonode_tcp_reassembler_errors_total{type="ResponseReadyBeforeRequest"} 0
 wallarm_gonode_tcp_reassembler_errors_total{type="ResponseTimeout"} 19
 wallarm_gonode_tcp_reassembler_errors_total{type="TcpReadError"} 0
 wallarm_gonode_tcp_reassembler_errors_total{type="UnexpectedHttpBodyEnd"} 2
@@ -648,9 +651,6 @@ wallarm_gonode_tcp_stream_step_is_running 1
 # TYPE wallarm_gonode_tcp_stream_step_output_messages_total counter
 wallarm_gonode_tcp_stream_step_output_messages_total{dropped="false",msgtype="MsgGoPacket",receiver="0"} 1.2987394e+07
 wallarm_gonode_tcp_stream_step_output_messages_total{dropped="true",msgtype="MsgGoPacket",receiver="0"} 0
-# HELP wallarm_gonode_tcp_stream_tcp_packets_read_total Number of TCP packets read from the stream.
-# TYPE wallarm_gonode_tcp_stream_tcp_packets_read_total counter
-wallarm_gonode_tcp_stream_tcp_packets_read_total 1.2987394e+07
 ```
 
 <style>

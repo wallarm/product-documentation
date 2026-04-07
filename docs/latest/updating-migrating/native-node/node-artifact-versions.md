@@ -10,6 +10,41 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.24.0 (2026-04-06)
+
+* [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) (`tcp-capture-v2` mode):
+
+    * Added support for [VXLAN](../../installation/oob/tcp-traffic-mirror/deployment.md#vxlan) and [GENEVE](../../installation/oob/tcp-traffic-mirror/deployment.md#geneve) decapsulation, including automatic support for [AWS VPC Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html) (GENEVE with nested VXLAN)
+    * Added new configuration parameters: [`tcp_stream.from_vxlan`](../../installation/native-node/all-in-one-conf.md#tcp_streamfrom_vxlan) and [`tcp_stream.from_geneve`](../../installation/native-node/all-in-one-conf.md#tcp_streamfrom_geneve) for receiving encapsulated mirrored traffic
+    * Fixed issues that caused missing and unanalyzed requests, incorrect response-to-request association, and VLAN ID mishandling
+    * Fixed incorrect reassembly of interlaced packets captured from multiple interfaces in promiscuous mode
+* Changed default [`log.proton_log_mask`](../../installation/native-node/all-in-one-conf.md#logproton_log_mask) from `info@*` to `info+@*` to show warning and error messages from the traffic analysis engine (previously only info-level messages were displayed)
+* Changed default [`http_inspector.shm_dir`](../../installation/native-node/all-in-one-conf.md#http_inspectorshm_dir) from `/tmp` to `/opt/wallarm/shm` for better compatibility with containerized environments
+* Fixed [API Specification Enforcement](../../api-specification-enforcement/overview.md) not triggering [specification processing overlimit](../../api-specification-enforcement/viewing-events.md#overlimit-events) events for requests exceeding size or time limits
+* Updated [Prometheus metrics](../../admin-en/native-node-metrics-gonode.md):
+
+    | Change | Metric |
+    |--------|--------|
+    | New | `wallarm_gonode_tcp_stream_input_packets_total{source=…}` |
+    | New | `wallarm_gonode_tcp_stream_input_bytes_total{source=…}` |
+    | New | `wallarm_gonode_tcp_stream_output_packets_total` |
+    | New | `wallarm_gonode_tcp_stream_output_bytes_total` |
+    | New | `wallarm_gonode_tcp_stream_packets_rejected_total{reason=…}` |
+    | New | `wallarm_gonode_tcp_stream_bytes_rejected_total{reason=…}` |
+    | New | `wallarm_gonode_tcp_reassembler_http_decode_bytes_decoded_total` |
+    | New | `wallarm_gonode_tcp_reassembler_http_flow_bytes_rejected_total` |
+    | New | `wallarm_gonode_tcp_reassembler_container_is_overloaded` |
+    | New | `wallarm_gonode_tcp_reassembler_http_unpaired_messages` |
+    | New | `wallarm_gonode_tcp_stream_diag_interface_counters_total` |
+    | New | `wallarm_gonode_tcp_stream_errors_total` (Geneve/VXLAN error types) |
+    | New | `wallarm_gonode_envoy_external_filter_requests_blocked_total` |
+    | Changed | `wallarm_gonode_tcp_stream_diag_interface_info` — now only reports MTU; I/O counters moved to `diag_interface_counters_total` |
+    | Changed | Per-host metrics (`*_per_host_total`) — `host` label is now validated, normalized to lowercase; invalid/oversized values bucketed under `__invalid_host__` |
+    | Renamed | `…errors_total{type="ResponseBeforeRequest"}` → `…{type="ResponseReadyBeforeRequest"}` |
+    | Removed | `wallarm_gonode_tcp_stream_tcp_packets_read_total` |
+    | Removed | `wallarm_gonode_http_connector_server_errors_total{type="MsgType"}` |
+* Fixed minor stability and reliability issues
+
 ### 0.23.2 (2026-03-24)
 
 * Fixed the [GHSA-6g7g-w4f8-9c9x](https://github.com/advisories/GHSA-6g7g-w4f8-9c9x) vulnerability
@@ -199,6 +234,19 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 The Helm chart for the Native Node is used for self-hosted node deployments with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](helm-chart.md)
+
+### 0.24.0 (2026-04-06)
+
+* Fixed [API Specification Enforcement](../../api-specification-enforcement/overview.md) not triggering [specification processing overlimit](../../api-specification-enforcement/viewing-events.md#overlimit-events) events for requests exceeding size or time limits
+* Updated [Prometheus metrics](../../admin-en/native-node-metrics-gonode.md):
+
+    | Change | Metric |
+    |--------|--------|
+    | New | `wallarm_gonode_envoy_external_filter_requests_blocked_total` |
+    | Changed | Per-host metrics (`*_per_host_total`) — `host` label is now validated, normalized to lowercase; invalid/oversized values bucketed under `__invalid_host__` |
+    | Renamed | `…errors_total{type="ResponseBeforeRequest"}` → `…{type="ResponseReadyBeforeRequest"}` |
+    | Removed | `wallarm_gonode_http_connector_server_errors_total{type="MsgType"}` |
+* Fixed minor stability and reliability issues
 
 ### 0.23.2 (2026-03-24)
 
@@ -404,6 +452,21 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](docker-image.md)
+
+### 0.24.0 (2026-04-06)
+
+* Changed default [`log.proton_log_mask`](../../installation/native-node/all-in-one-conf.md#logproton_log_mask) from `info@*` to `info+@*` to show warning and error messages from the traffic analysis engine (previously only info-level messages were displayed)
+* Changed default [`http_inspector.shm_dir`](../../installation/native-node/all-in-one-conf.md#http_inspectorshm_dir) from `/tmp` to `/opt/wallarm/shm` for better compatibility with containerized environments
+* Fixed [API Specification Enforcement](../../api-specification-enforcement/overview.md) not triggering [specification processing overlimit](../../api-specification-enforcement/viewing-events.md#overlimit-events) events for requests exceeding size or time limits
+* Updated [Prometheus metrics](../../admin-en/native-node-metrics-gonode.md):
+
+    | Change | Metric |
+    |--------|--------|
+    | New | `wallarm_gonode_envoy_external_filter_requests_blocked_total` |
+    | Changed | Per-host metrics (`*_per_host_total`) — `host` label is now validated, normalized to lowercase; invalid/oversized values bucketed under `__invalid_host__` |
+    | Renamed | `…errors_total{type="ResponseBeforeRequest"}` → `…{type="ResponseReadyBeforeRequest"}` |
+    | Removed | `wallarm_gonode_http_connector_server_errors_total{type="MsgType"}` |
+* Fixed minor stability and reliability issues
 
 ### 0.23.2 (2026-03-24)
 
