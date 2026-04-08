@@ -164,7 +164,7 @@ If some of your APIs utilize the GraphQL protocol and are requested in the real 
 * GraphQL operations (queries, mutations, subscriptions)
 * GraphQL schema
 
-Within each GraphQL operation, you will find its details, including transferred sensitive data, risk score and what contributes to it, schema, parameters and headers of requests and responses:
+Click any GraphQL operation to open its full-screen details page, including transferred sensitive data, risk score and what contributes to it, schema, parameters and headers of requests and responses:
 
 ![API Discovery - GraphQL operation details](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-GQL.png)
 
@@ -181,7 +181,7 @@ Each request/response parameter information includes:
 !!! tip ""
     SOAP protocol discovery requires [NGINX Node](../node-artifact-versions.md) 6.2.0+ or Native Node 0.15.1+.
 
-If some of your APIs utilize the SOAP protocol and are requested in the real traffic, API Discovery will now detect them. In the built API inventory, you will see data about SOAP operations, including such data as transferred sensitive data, risk score and what contributes to it, XML body parameters, HTTPS and XML headers of requests and responses:
+If some of your APIs utilize the SOAP protocol and are requested in the real traffic, API Discovery will now detect them. Click any SOAP operation to open its full-screen details page, including such data as transferred sensitive data, risk score and what contributes to it, XML body parameters, HTTPS and XML headers of requests and responses:
 
 ![API Discovery - SOAP operation details](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-SOAP.png)
 

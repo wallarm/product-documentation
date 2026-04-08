@@ -24,15 +24,29 @@ Among a wide range of API endpoint filters, you can choose the ones correspondin
 
 ### Labeling
 
-You can create labels (e.g., `P90`, `HighTraffic`, `Legacy`, etc.) and assign them to endpoints to manage them more effectively. Once labels are assigned, use the **Label** filter to quickly search and isolate endpoints based on these custom labels.
+You can assign labels to endpoints to manage them more effectively.
+
+To assign a label, open the endpoint's [full-screen details page](#endpoint-details-view) and click **Assign label** in the sidebar. You can choose from predefined labels (e.g., `Critical`, `Identity service`) or create your own custom labels.
+
+![API Discovery - assign a label](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-assign-label.png)
+
+Once labels are assigned, use the **Label** filter to quickly search and isolate endpoints based on these custom labels.
 
 ![API Discovery - labels](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-labels.png)
 
 Note that several labels can be assigned to the same endpoint.
 
-## REST endpoint details
+## Endpoint details view
 
-<a name="params"></a>By clicking the REST endpoint, you can find its details, including  transferred sensitive data, risk score and what contributes to it, headers and parameters of requests and responses:
+Clicking an endpoint or operation opens its details in a **full-screen page**.
+
+Each endpoint details page has a **unique URL** that you can share with colleagues or clients for direct access to a specific endpoint.
+
+When you navigate back from the details page, all your previously applied **filters are preserved**, so you can continue working with the filtered list without re-applying them.
+
+### REST endpoint details
+
+<a name="params"></a>Click the REST endpoint to open its full-screen details page, including transferred sensitive data, risk score and what contributes to it, headers and parameters of requests and responses:
 
 ![API Discovery - REST endpoint details](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-REST.png)
 
@@ -63,9 +77,9 @@ This data allows checking that values of the expected format are passed in each 
 * The `String` values ​​are passed to the field with `IP`
 * The `Double` values are passed to the field where there should be a value no more than `Int32`
 
-## GraphQL operation details
+### GraphQL operation details
 
-By clicking the GraphQL operation, you can find its details, including transferred sensitive data, risk score and what contributes to it, schema, parameters and headers of requests and responses:
+Click the GraphQL operation to open its full-screen details page, including transferred sensitive data, risk score and what contributes to it, schema, parameters and headers of requests and responses:
 
 ![API Discovery - GraphQL operation details](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-GQL.png)
 
@@ -88,9 +102,9 @@ For GraphQL operations, data formats are detected in accordance with the [scalar
 * `String`: A UTF‐8 character sequence.
 * `Boolean`: true or false.
 
-## SOAP operation details
+### SOAP operation details
 
-By clicking the SOAP operation, you can find its details, including transferred sensitive data, risk score and what contributes to it, XML body parameters, HTTPS and XML headers of requests and responses:
+Click the SOAP operation to open its full-screen details page, including transferred sensitive data, risk score and what contributes to it, XML body parameters, HTTPS and XML headers of requests and responses:
 
 ![API Discovery - SOAP operation details](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-SOAP.png)
 
@@ -117,9 +131,9 @@ For SOAP operations, it is a limited set from the [built-in primitive XML data t
 * soapTypeDuration = `Duration`
 * soapTypeURI      = `URI`
 
-## gRPC operation details
+### gRPC operation details
 
-By clicking the gRPC operation, you can find its details, including transferred sensitive data, risk score and what contributes to it, parameters and headers of requests and responses:
+Click the gRPC operation to open its full-screen details page, including transferred sensitive data, risk score and what contributes to it, parameters and headers of requests and responses:
 
 ![API Discovery - gRPC operation details](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-GRPC.png)
 
@@ -165,7 +179,7 @@ The **API Discovery** module unifies such elements into the `{parameter_X}` form
 
 * `/api/articles/author/{parameter_1}`
 
-Click the endpoint to expand its parameters and view which type was automatically detected for the diverse parameter.
+Click the endpoint to open its details page and view which type was automatically detected for the diverse parameter.
 
 ## Notifications
 
