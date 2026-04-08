@@ -270,8 +270,21 @@ Stops collection, encrypts signals, sends them to the server (`POST /app/:appID/
 
 Stops collection without sending data. Use when the user navigates away or cancels the action.
 
+## Using with Wallarm Node
+
+If your traffic passes through a [Wallarm Node](../installation/supported-deployment-options.md), you can extend the Human Identity integration with additional capabilities.
+
+### Token validation and enforcement
+
+The Wallarm Node can validate the Human Identity JWT at the edge. If the token verdict indicates a bot, the Node applies the action according to its [filtration mode](../admin-en/configure-wallarm-mode.md) — reducing the need for custom verification logic on your backend.
+
+### Anonymous session tracking
+
+The `hid` (device fingerprint) from the Human Identity JWT can be used as a [session context parameter](../api-sessions/overview.md) to track anonymous sessions by device identity — even before the user logs in and even when the attacker rotates IP addresses.
+
+Combined with [API Abuse Prevention](../api-abuse-prevention/overview.md), this allows detecting distributed bot patterns across sessions identified by browser fingerprint rather than by IP address alone.
+
 ## Limitations
 
 * **Action‑based, not site‑wide**: human identification protects specific user actions (button clicks, form submissions) — not passive page views. You can deploy it on any page that has a call‑to‑action, but there is no "wall page" mode that blocks all access until verified. For site‑wide bot protection of all traffic, use [API Abuse Prevention](../api-abuse-prevention/overview.md).
 * **Token is short‑lived**: the JWT expires in approximately 1 minute. There is no token refresh mechanism. Each protected action requires a new `start()` → `verify()` cycle.
-* **Monitoring mode only**: in the current implementation, the solution cannot block requests based on the human identification verdict. All enforcement must be implemented on your backend.
