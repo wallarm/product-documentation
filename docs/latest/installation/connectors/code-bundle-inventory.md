@@ -80,6 +80,10 @@ The current version can be found in `Cargo.toml` → `[package]` → `version` p
 | ------------------- | ------------------- |
 | 1.x.x               | 0.16.0 and higher   |
 
+### 1.4.0 (2026-04-09)
+
+* Upgraded Flex PDK to 1.7.0
+
 ### 1.3.0 (2025-11-25)
 
 * Added the `verbose_logging` parameter to [Wallarm policy settings for Flex Gateway](mulesoft-flex.md#configuration-options) — it enables extended debug logging to the standard Flex Gateway logging output
