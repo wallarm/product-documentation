@@ -31,6 +31,8 @@ To edit the list of flows the endpoint belongs to, in Wallarm Console, go to API
 
 ![API Discovery - Sensitive business flows](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-sbf.png)
 
+You can do this both from the endpoint list and from the endpoint's [full-screen details page](exploring.md#endpoint-details-view) sidebar.
+
 <!--## Business flows in Sessions
 
 Wallarm's [API Sessions](../api-sessions/overview.md) are used to provide you with the full sequence of user activities and thus give more visibility into the logic of malicious actors. If session's requests affect the endpoints that in API Discovery were tagged as important for some sensitive business flows, such session will be automatically [tagged](../api-sessions/exploring.md#sensitive-business-flows) as affecting this business flow as well.

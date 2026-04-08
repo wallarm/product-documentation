@@ -30,8 +30,8 @@ Risk score may be from `1` (lowest) to `10` (highest):
 * Sort by risk score in the **Risk** column.
 * Filter `High`, `Medium` or `Low` using the **Risk score** filter.
 
-To understand what caused the risk score for the endpoint and how to reduce the risk, go to the endpoint details:
+To understand what caused the risk score for the endpoint and how to reduce the risk, click the endpoint to open its [full-screen details page](exploring.md#endpoint-details-view) and go to the **Risk** tab:
 
 ![API Discovery - Risk score](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-risk-score-details.png)
 
-[Security issues](../api-attack-surface/security-issues.md) (vulnerabilities) are one of the most important factors contributing to an endpoint's risk score. In endpoint details, click the vulnerability name to open its full description in the **Security Issues** section. There you can learn mitigation methods and apply them.
+[Security issues](../api-attack-surface/security-issues.md) (vulnerabilities) are one of the most important factors contributing to an endpoint's risk score. On the endpoint details page, click the vulnerability name to open its full description in the **Security Issues** section. There you can learn mitigation methods and apply them.
