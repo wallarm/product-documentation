@@ -23,7 +23,11 @@ The [API Discovery](overview.md) module can detect **rogue APIs** by comparing l
 * Traffic is compared against this baseline. Endpoints that appear in traffic but not in the baseline are **shadow**; endpoints that were in a previous version of a spec but not in the current version and still appear in traffic are **zombie**.
 * Applications and/or hosts, selected in each API specification [configuration](#setup), are considered as filters for the comparison: traffic within a selected scope only is compared with a specification.
 
-Because the OpenAPI **servers** section is often omitted, it is recommended to specify **hosts** and **applications** explicitly when enabling rogue API detection. That way it is clear which traffic is compared to which specifications. If you do not set them, the same endpoint could be treated as rogue or not depending on which specification is considered.
+!!! warning "Base paths and the `servers` section"
+    Rogue API detection **ignores** hostnames and base paths from the `servers` section of your OpenAPI specification. To ensure accurate comparison:
+
+    * **Define hosts and applications explicitly** in Wallarm Console when enabling rogue API detection for each specification.
+    * **Include base paths in the `paths` section** of your specification. For example, if your API base path is `/api/v1`, use `/api/v1/users` instead of `/users` as the path key.
 
 ## Setup
 
