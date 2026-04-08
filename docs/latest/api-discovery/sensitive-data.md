@@ -73,4 +73,10 @@ We must match `middle_name,` but not `name` or `middle`. So, we set a score for 
 
 To prevent us from detecting "middle" without `name,` we mark `name` as mandatory for an entity. If `name` is not found, no sensitive data is detected.
 
-![API Discovery – Settings - Sensitive data - Creating custom pattern](../images/about-wallarm-waf/api-discovery/api-discovery-settings-sd-own-pattern.png)-->
+![API Discovery – Settings - Sensitive data - Creating custom pattern](../images/about-wallarm-waf/api-discovery/api-discovery-settings-sd-own-pattern.png)
+
+## Viewing sensitive data in endpoint details
+
+On the [endpoint's details page](exploring.md#endpoint-details-view), the **Sensitive data** tab shows which parameters carry sensitive data, the exact sensitive data type detected for each parameter, and the request or response location (headers, body, query) where it was found.
+
+![Sensitive data types in endpoint details](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-sensitive-data-types.png)
