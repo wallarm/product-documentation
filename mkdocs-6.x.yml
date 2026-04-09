@@ -72,7 +72,7 @@ nav:
       - Setup: api-abuse-prevention/setup.md
       - Exploring Detected Bots: api-abuse-prevention/exploring-bots.md
       - Exceptions: api-abuse-prevention/exceptions.md
-      - "Human Identification: Web": human-identity/web-antibot.md
+      # - "Human Identification: Web": human-identity/web-antibot.md
 
     - API Spec Enforcement:
       - Overview: api-specification-enforcement/overview.md

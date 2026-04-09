@@ -35,7 +35,7 @@ Human Identity solves these problems by verifying the browser execution environm
 
 At a high level: a JavaScript library collects browser signals, the Human Identification Server (hosted and managed by Wallarm) evaluates them and returns a signed JWT with a verdict. The verdict is then enforced — either by Wallarm's modules or by your own backend logic.
 
-![How client‑side human identification works](../images/human-identity/human-identity-web.png)
+<!-- ![How client‑side human identification works](../images/human-identity/human-identity-web.png) -->
 
 ### Step-by-step flow
 
