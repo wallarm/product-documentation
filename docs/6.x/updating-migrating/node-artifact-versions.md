@@ -19,6 +19,12 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.11.3 (2026-04-09)
+
+* Added support for NGINX mainline 1.29.8
+* Fixed the [file upload restriction](../api-protection/file-upload-restriction.md) policy not enforcing the maximum request size limit when a [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) event occurred during request body inspection
+* Fixed intermittent errors in custom ruleset loading and GraphQL processing
+
 ### 6.11.2 (2026-03-27)
 
 * Added compatibility with latest NGINX versions shipped by RHEL-based distros
@@ -224,6 +230,11 @@ new attack types in logging variables and search bars?
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.11.3 (2026-04-09)
+
+* Fixed the [file upload restriction](../api-protection/file-upload-restriction.md) policy not enforcing the maximum request size limit when a [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) event occurred during request body inspection
+* Fixed intermittent errors in custom ruleset loading and GraphQL processing
 
 ### 6.11.2 (2026-03-27)
 
@@ -442,6 +453,11 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.11.3 (2026-04-09)
+
+* Fixed the [file upload restriction](../api-protection/file-upload-restriction.md) policy not enforcing the maximum request size limit when a [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) event occurred during request body inspection
+* Fixed intermittent errors in custom ruleset loading and GraphQL processing
+
 ### 6.11.2 (2026-03-27)
 
 * Bump Alpine version to 3.23
@@ -639,6 +655,11 @@ new attack types in logging variables and search bars?
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.11.3 (2026-04-09)
+
+* Fixed the [file upload restriction](../api-protection/file-upload-restriction.md) policy not enforcing the maximum request size limit when a [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) event occurred during request body inspection
+* Fixed intermittent errors in custom ruleset loading and GraphQL processing
 
 ### 6.11.2 (2026-03-27)
 
@@ -841,6 +862,11 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
+### 6.11.3 (2026-04-09)
+
+* Fixed the [file upload restriction](../api-protection/file-upload-restriction.md) policy not enforcing the maximum request size limit when a [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) event occurred during request body inspection
+* Fixed intermittent errors in custom ruleset loading and GraphQL processing
+
 ### 6.11.2 (2026-03-27)
 
 * Internal improvements
@@ -1004,6 +1030,11 @@ new attack types in logging variables and search bars?
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-11-3-20260409-XXXXXX (2026-04-09)
+
+* Fixed the [file upload restriction](../api-protection/file-upload-restriction.md) policy not enforcing the maximum request size limit when a [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) event occurred during request body inspection
+* Fixed intermittent errors in custom ruleset loading and GraphQL processing
 
 ### wallarm-node-6-11-2-20260327-122303 (2026-03-27)
 
