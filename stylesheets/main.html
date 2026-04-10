@@ -33,6 +33,23 @@
 <div id="LeadFlows-3989912" data-response="OFF FORMS POPUP MODULE"></div>
 <div id="CollectedForms-3989912" data-response="OFF LISTENING NON HUBSPOT FORMS MODULE"></div>
 
+<!-- Wallarm Human Identity (antibot) — monitoring mode -->
+<script type="module">
+if (window.location.hostname === 'docs.wallarm.com' && !window.__wallarmHID_initialized) {
+    window.__wallarmHID_initialized = true;
+    const { start, evaluate } = await import('https://human-id.us-hi.wallarm.com/app/1d7e95d7-12d9-402f-af1d-d49d24b921b4/js/engine.js');
+    await start('https://human-id.us-hi.wallarm.com', '1d7e95d7-12d9-402f-af1d-d49d24b921b4', { timeout: 10000 });
+    setTimeout(async () => {
+        const token = await evaluate();
+        if (token) {
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            document.cookie = `wallarm_hid_token=${token}; path=/; samesite=strict`;
+            console.log('[HID] verdict:', payload.verdict, 'hid:', payload.hid);
+        }
+    }, 3000);
+}
+</script>
+
 <!-- Posthog -->
 <script>
   !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
