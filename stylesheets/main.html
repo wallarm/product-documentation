@@ -39,14 +39,7 @@ if (window.location.hostname === 'docs.wallarm.com' && !window.__wallarmHID_init
     window.__wallarmHID_initialized = true;
     const { start, evaluate } = await import('https://human-id.us-hi.wallarm.com/app/1d7e95d7-12d9-402f-af1d-d49d24b921b4/js/engine.js');
     await start('https://human-id.us-hi.wallarm.com', '1d7e95d7-12d9-402f-af1d-d49d24b921b4', { timeout: 10000 });
-    setTimeout(async () => {
-        const token = await evaluate();
-        if (token) {
-            const payload = JSON.parse(atob(token.split('.')[1]));
-            document.cookie = `wallarm_hid_token=${token}; path=/; samesite=strict`;
-            console.log('[HID] verdict:', payload.verdict, 'hid:', payload.hid);
-        }
-    }, 3000);
+    setTimeout(() => { evaluate(); }, 3000);
 }
 </script>
 
