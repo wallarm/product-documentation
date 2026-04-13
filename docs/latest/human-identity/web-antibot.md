@@ -1,12 +1,12 @@
 # Client‑Side Human Identification for Web
 
-**Client‑Side Human Identification by Wallarm** verifies that each request to your web application originates from a real browser operated by a human.
+**Human Identity by Wallarm** is a client-side service that verifies whether requests to your applications come from real users or automated tools. It covers web and mobile platforms — this article describes the **Web Antibot** component.
 
 ## Overview
 
-Human Identity is an agent-based (client-side JS) solution that detects and blocks automated behavior in web browsers. It verifies the browser environment at the moment of a user action and provides a signed verdict (`human`, `suspicious`, or `bot`).
+Web Antibot is a JavaScript-based agent that detects and blocks automated behavior in browsers. It verifies the browser environment at the moment of a user action and provides a signed verdict (`human`, `suspicious`, or `bot`).
 
-Depending on your setup, the verdict can be enforced by a Wallarm Node or by your own backend logic.
+Depending on your setup, the verdict can be enforced by Wallarm's modules or by your own backend logic.
 
 ## Where human identification adds value
 
@@ -35,7 +35,7 @@ Human Identity solves these problems by verifying the browser execution environm
 
 At a high level: a JavaScript library collects browser signals, the Human Identification Server (hosted and managed by Wallarm) evaluates them and returns a signed JWT with a verdict. The verdict is then enforced — either by Wallarm's modules or by your own backend logic.
 
-<!-- ![How client‑side human identification works](../images/human-identity/human-identity-web.png) -->
+![How client‑side human identification works](../images/human-identity/human-identity-web.png)
 
 ### Step-by-step flow
 
@@ -51,12 +51,27 @@ At a high level: a JavaScript library collects browser signals, the Human Identi
 1. **Token issuance**
    The result is returned as a signed JWT containing the verdict, score, and a stable device identifier (`hid`).
 
-1. **Submit & enforce**
-   Your frontend attaches the JWT to the request. The verdict can be enforced by Wallarm modules (brute force protection, API Abuse Prevention, session denylist — all scoped by the `hid` session parameter) or by your own backend logic.
+1. **Enforce**
+   How you enforce the verdict depends on your setup. If you use a Wallarm Node inline, store the JWT in a cookie and configure `hid` as a [session context parameter](../api-sessions/overview.md) in Wallarm Console — Wallarm's modules handle the rest.
+   
+    If you use your own backend, attach the JWT to the request and verify it server-side.
+
+### Library functions
+
+The `engine.js` library provides 2 functions used in the flow above:
+
+| Function | What it does |
+| --- | --- |
+| `start(url, appID, options)` | Initializes the WASM engine, loads bytecode, and begins collecting browser signals in the background. Call it when the page loads. |
+| `evaluate()` | Finalizes signal collection, sends the data to the Human Identification Server, and returns a JWT with the verdict (or `null` on failure). Call it when the user triggers the protected action, e.g. "Login". |
+
+After `evaluate()` completes, the engine stops. For each new protected action, call `start()` and `evaluate()` again.
+
+Each `evaluate()` call produces a new JWT (new `iat`, `exp`, potentially new `score`). If the user reloads the page, the entire cycle restarts: `start()` collects signals again, `evaluate()` returns a fresh token.
 
 ### Token
 
-The Human Identity service does not enforce decisions — it returns a **signed JWT**. The JWT contains the following claims:
+The Human Identity service returns a **signed JWT**. The JWT contains the following claims:
 
 | Claim | Type | Description |
 | --- | --- | --- |
@@ -64,15 +79,15 @@ The Human Identity service does not enforce decisions — it returns a **signed 
 | `score` | float | Numeric risk score (0.0 = definitely human, higher = more suspicious). |
 | `hid` | string | Device fingerprint — stable across visits for the same browser/device. |
 | `monitoring` | boolean | Present when the solution is in monitoring mode (tokens issued even for bots). |
-| `iat`, `exp` | timestamp | Token issue time and expiration. Tokens are short‑lived (~1 minute for login use case) to prevent relay and replay attacks. |
-
-Enforcement is handled separately: by Wallarm modules (when the [`hid` is configured as a session context parameter](#step-3-enforce-the-verdict)) or by your own backend.
+| `iat`, `exp` | timestamp | Token issue time and expiration. Tokens are short‑lived (~1 minute) to prevent relay and replay attacks. |
 
 ## Setup
 
 ### Step 1: Get your credentials
 
-Contact [sales@wallarm.com](mailto:sales@wallarm.com?subject=Human%20Identity%20for%20Web%20inquiry) to enable Human Identity. The Wallarm team will provision a server instance for your account and provide:
+Contact [sales@wallarm.com](mailto:sales@wallarm.com?subject=Human%20Identity%20for%20Web%20inquiry) to enable Human Identity. Provide the domain(s) where you plan to integrate the solution (e.g., `login.example.com`).
+
+The Wallarm team will provision a server instance for your account and provide:
 
 * **Human Identification Server (HID) endpoint** — the base URL depends on the chosen [Wallarm Cloud](../about-wallarm/overview/#cloud) region:
 
@@ -84,12 +99,7 @@ You will use these credentials when initializing the Wallarm JavaScript library.
 
 ### Step 2: Integrate the library and protect an action
 
-Add the `engine.js` library to your page and wire it to the action you want to protect.
-
-The library exports two main functions:
-
-* `start(url, appID, options)` — initializes the WASM engine and begins collecting browser signals in the background. Call it when the page loads. The user sees nothing.
-* `evaluate()` — finalizes signal collection, sends the data to the Human Identification Server, and returns a JWT token with the verdict (or `null` on failure). Call it when the user triggers the protected action (e.g., clicks "Login").
+Add the `engine.js` [library](#library-functions) to your page and wire it to the action you want to protect.
 
 Below are 2 integration examples:
 
@@ -168,11 +178,11 @@ In both examples, the token is sent to your backend along with the login request
 
 ### Step 3: Enforce the verdict
 
-There are two approaches — choose based on your infrastructure:
+There are 2 approaches — choose based on your infrastructure:
 
 === "Wallarm modules"
 
-    If your traffic passes through a [Wallarm Node](../installation/supported-deployment-options.md), you can use the `hid` from the token as a [session context parameter](../api-sessions/overview.md) — enabling enforcement by device fingerprint across Wallarm's modules.
+    If you have a [Wallarm Node](../installation/supported-deployment-options.md) deployed inline — receiving all traffic after the Human Identity script has run — you can use the `hid` from the token as a [session context parameter](../api-sessions/overview.md), enabling enforcement by device fingerprint across Wallarm's modules.
 
     Set up session tracking by `hid`:
 
@@ -195,13 +205,14 @@ There are two approaches — choose based on your infrastructure:
 
         Enable **Group sessions by this key** so that sessions are grouped by device fingerprint rather than by IP alone.
 
-    Once `hid` is configured as a session context parameter, it becomes available across Wallarm's enforcement mechanisms. They can scope enforcement by `hid` — blocking by device fingerprint, not just by IP:
+    Once `hid` is configured as a session context parameter, it becomes available across Wallarm's enforcement mechanisms:
 
     * **Visibility**: in **API Sessions**, filter and inspect sessions grouped by `hid`. This reveals patterns invisible when grouping by IP — for example, the same browser rotating through multiple IPs.
 
         ![hid parameter in API session](../images/api-sessions/hid-parameter-in-session.png)
+    * **Anonymous session tracking**: `hid` identifies the browser before the user logs in. Without it, pre-authentication traffic (e.g., login attempts) has no stable identifier — only IP, which attackers rotate. With `hid` as a grouping key, Wallarm builds sessions from anonymous requests, and all enforcement mechanisms listed below can be applied to these sessions.
     * **Session denylist**: block a specific `hid` session via [Session Denylist](../api-sessions/blocking.md).
-    * **API Abuse Prevention**: [API Abuse Prevention](../api-abuse-prevention/overview.md) analyzes behavioral patterns within sessions and blocks sessions by `hid`. When sessions are grouped by `hid`, the module can detect and block distributed bot campaigns that use a single browser across many IP addresses.
+    * **API Abuse Prevention**: when [API Abuse Prevention](../api-abuse-prevention/overview.md) is configured with the **Denylist session** reaction and sessions are grouped by `hid`, the module analyzes behavioral patterns within sessions identified by the device fingerprint. If bot behavior is detected, the session with that `hid` is added to the [Session Denylist](../api-sessions/blocking.md) — blocking all subsequent requests from the same browser, regardless of IP rotation.
     * **Brute force protection**: configure a [Brute Force Protection](../admin-en/configuration-guides/protecting-against-bruteforce.md) rule that limits login attempts per `hid`. If the same browser fingerprint exceeds the threshold, the session is blocked.
 
 === "Your own backend"
@@ -227,13 +238,13 @@ There are two approaches — choose based on your infrastructure:
 
 **Verify that tokens are issued correctly:**
 
-1. Open your protected page in a browser and complete the protected action (e.g., login).
+1. Open your protected page in a browser and trigger the protected action.
 1. In the browser DevTools (Network tab), verify that the `evaluate` request succeeds and returns a JWT.
-1. Check that the JWT is attached to your login request.
+1. Check that the JWT is attached to your request (as a hidden field, JSON property, or cookie — depending on your integration).
 1. Test with a headless browser or automation tool — the `verdict` in the returned token should be `"bot"`.
 
 **Verify that enforcement works:**
 
-* **Wallarm Node**: check that the `hid` cookie appears in requests passing through the Node. In Wallarm Console → **API Sessions**, confirm that sessions are grouped by `hid`. Then trigger a blocking rule (e.g., exceed the brute force threshold) and verify that the session is added to the Session Denylist and subsequent requests are blocked.
+* **Wallarm modules**: check that the `hid` cookie appears in requests passing through the Node. In Wallarm Console → **API Sessions**, confirm that sessions are grouped by `hid`. Then trigger a configured enforcement rule and verify that the session is added to the Session Denylist and subsequent requests are blocked.
 * **Your own backend**: send a request with a `"bot"` verdict token and confirm your backend rejects it. Send a request with a `"human"` verdict token and confirm it passes.
 
