@@ -120,8 +120,4 @@ apic products:publish \
   .md-tabs {
     display: none;
   }
-
-  [id^="inkeep-widget-"] {
-    display: none
-  }
 </style>

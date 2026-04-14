@@ -96,8 +96,4 @@ You can attach the Wallarm policy to either an individual API or all APIs.
   .md-tabs {
     display: none;
   }
-
-  [id^="inkeep-widget-"] {
-    display: none
-  }
 </style>

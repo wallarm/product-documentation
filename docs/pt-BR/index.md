@@ -13,12 +13,6 @@ Tudo o que vocÃª precisa para descobrir suas APIs, MCPs e agentes de IA, protegÃ
   <!-- Search will be moved here from the header via JS (desktop only) -->
   <div id="homepage-search-mount"></div>
 
-  <button type="button" class="homepage-btn homepage-btn-ai" onclick="if(window.openInkeepChat) window.openInkeepChat();">
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path>
-    </svg>
-    <span>Perguntar Ã  IA</span>
-  </button>
 </div>
 
 <!-- Row 1: Introduction -->
@@ -365,7 +359,7 @@ Tudo o que vocÃª precisa para descobrir suas APIs, MCPs e agentes de IA, protegÃ
 
 <style>
 /* =====================================================
-   Homepage search + Ask AI: DESKTOP ONLY
+   Homepage search: DESKTOP ONLY
    Tablet and below â†’ hide, header search is used instead
    ===================================================== */
 
@@ -410,11 +404,6 @@ Tudo o que vocÃª precisa para descobrir suas APIs, MCPs e agentes de IA, protegÃ
   overflow: visible;
   border: 1px solid #DAE1EB;
   border-radius: 8px;
-}
-
-/* Ask AI stays compact */
-.homepage-btn-ai {
-  flex: 0 0 auto;
 }
 
 /* ==========================
@@ -649,7 +638,7 @@ Tudo o que vocÃª precisa para descobrir suas APIs, MCPs e agentes de IA, protegÃ
 }
 
 /* ==========================
-   Ask AI button: fixed height
+   Search button: fixed height
    ========================== */
 
 .md-search__button {
@@ -692,21 +681,6 @@ Tudo o que vocÃª precisa para descobrir suas APIs, MCPs e agentes de IA, protegÃ
   font-size: 15px;
   font-family: inherit;
 }
-
-.homepage-btn-ai {
-  background-color: #F9FAFB;
-  color: #374151;
-  transition: all 0.2s ease;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-}
-
-.homepage-btn-ai:hover {
-  background-color: #F3F4F6;
-  border-color: #C5CCD6;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.homepage-btn-ai svg { flex-shrink: 0; }
 
 /* Keep desktop actions row stable on small desktop widths */
 @media screen and (max-width: 1100px) {
@@ -866,11 +840,6 @@ Tudo o que vocÃª precisa para descobrir suas APIs, MCPs e agentes de IA, protegÃ
 @media screen and (max-width: 600px) {
   .demo-cta-section { padding: 24px; }
   .demo-cta-heading { font-size: 20px !important; }
-}
-
-/* If you intentionally hide a custom header AI button, keep it */
-button.md-header__button.header-ask-ai-btn {
-  display: none;
 }
 
 @media screen and (max-width: 475px) {

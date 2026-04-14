@@ -120,7 +120,6 @@ extra_css:
 extra_javascript:
   - 'extra.js'
   - 'feedback.js'
-  - 'inkeep-widget.js'
   - 'glightbox.min.js'
 
 markdown_extensions:
