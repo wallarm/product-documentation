@@ -108,8 +108,4 @@ In the origin property, create another new blank rule:
   .md-tabs {
     display: none;
   }
-
-  [id^="inkeep-widget-"] {
-    display: none
-  }
 </style>

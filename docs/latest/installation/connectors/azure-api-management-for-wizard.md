@@ -107,8 +107,4 @@ To apply Wallarm policies **per API or operation**:
   .md-tabs {
     display: none;
   }
-
-  [id^="inkeep-widget-"] {
-    display: none
-  }
 </style>

@@ -52,8 +52,4 @@ Follow the steps below to set up the connection.
   .md-tabs {
     display: none;
   }
-
-  [id^="inkeep-widget-"] {
-    display: none
-  }
 </style>

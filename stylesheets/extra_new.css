@@ -194,38 +194,6 @@ div[data-md-component="announce"] {
   font-size: 16px;
 }
 
-/* Header Ask AI button */
-.header-ask-ai-btn {
-  display: inline-flex !important;
-  flex-direction: row;
-  align-items: center;
-  gap: 6px;
-  line-height: 1.8rem;
-  padding: 0 12px;
-  margin-left: 8px;
-  background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-}
-
-.header-ask-ai-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.5);
-}
-
-.header-ask-ai-btn svg {
-  flex-shrink: 0;
-}
-
-.header-ask-ai-btn span {
-  flex-shrink: 0;
-}
 
 .back-wallarmcom {
   display: block;
@@ -846,26 +814,9 @@ img {
     height: 107px;
     grid-template-rows: 65px 40px;
     grid-template-areas:
-      "toggle logo title back askai search"
-      "buttons buttons buttons buttons buttons lang";
-    grid-template-columns: 44px 138px auto 60px 44px 44px;
-  }
-  .header-ask-ai-btn {
-    grid-area: askai;
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
-    padding: 8px;
-    margin: 0;
-    border: none;
-    background: transparent;
-  }
-  .header-ask-ai-btn span {
-    display: none;
-  }
-  .header-ask-ai-btn svg {
-    width: 20px;
-    height: 20px;
+      "toggle logo title back search"
+      "buttons buttons buttons buttons lang";
+    grid-template-columns: 44px 138px auto 60px 44px;
   }
   label[for="__search"] {
     grid-area: search;
@@ -1049,7 +1000,7 @@ img {
     min-width: 0;
   }
 
-  .header-ask-ai-btn, .header-buttons, .languages {
+  .header-buttons, .languages {
     flex: 0 0 auto;
   }
 }
