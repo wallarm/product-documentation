@@ -1,301 +1,270 @@
-# Client-Side Human Identification for Mobile
+# Client‑Side Human Identification for Mobile
 
-**Client-side human identification by Wallarm** for mobile verifies that API requests to your backend originate from a genuine, untampered mobile application running on a real physical device — not from an emulator, a rooted phone, or a repackaged app binary.
+**Human Identity by Wallarm** is a client-side service that verifies whether requests to your applications come from real users or automated tools. It covers web and mobile platforms — this article describes the **Mobile Antibot** component.
 
-Integration requires adding a native SDK to your iOS or Android application. No proxy, no infrastructure changes — just an SDK initialization and a token attachment to your API calls. Your backend verifies the resulting JWT and decides how to act.
+## Overview
 
-## What task does Human Identity for Mobile solve
+Mobile Antibot is a native SDK (iOS / Android) that verifies device integrity using hardware-backed attestation. It proves that each API request originates from a genuine, untampered application running on a real physical device — not from an emulator, a rooted phone, or a repackaged app binary.
 
-| Layer | What it does | What it does not do |
-| --- | --- | --- |
-| **WAF / WAAP** | Blocks known attack signatures, provides rate limiting and IP filtering for API traffic. | Cannot verify whether the request comes from a real device or an emulator with a spoofed user-agent. |
-| **[API Abuse Prevention](../api-abuse-prevention/overview.md)** | Detects bots by analyzing behavioral patterns across sessions server-side. | Cannot act on the first request. Cannot verify device integrity or app binary authenticity. |
-| **[Human identification for Web](web-antibot.md)** | Verifies real browser execution via JS/WASM challenges. | Does not work inside native mobile apps — only in browsers. |
-| **Human identification for Mobile** | Verifies device integrity via hardware attestation (Secure Enclave / StrongBox). Issues a cryptographic proof that the request comes from a genuine app on a genuine device. | Does not analyze traffic patterns. Does not work in mobile browsers — only in native apps with the SDK integrated. |
+Depending on your setup, the result can be enforced by Wallarm's modules or by your own backend logic.
 
-### Where Human Identity for Mobile adds value
+## Where mobile antibot adds value
 
-Deploy in your **native iOS / Android application** to protect high-value actions:
+Native mobile applications face threats that browser-based detection cannot address. Bots run on emulator farms, rooted devices, repackaged app binaries, and scripted API clients that bypass the app entirely.
 
-* **Account Takeover (ATO) prevention** — verify that each login attempt comes from a real device, not an emulator farm.
-* **API abuse prevention** — ensure every API call originates from the genuine, unmodified version of your app.
-* **Fraud prevention** — block fake account creation and promotion abuse from scripted environments.
+These threats lead to:
 
-### How it differs from human identification for Web
+* Account takeover via credential stuffing from emulator farms
+* Fake account creation at scale from scripted environments
+* Checkout and inventory abuse from automated API clients
+* API probing from tampered app binaries
 
-These are **two separate products** that solve the same problem (proving the client is real) using fundamentally different approaches:
+Mobile Antibot solves these problems by verifying the device hardware before the action is processed. Deploy it in your **native iOS / Android application** to protect high-value actions:
 
-| | Web | Mobile |
-| --- | --- | --- |
-| **Where it runs** | In the browser (any device) | In a native iOS / Android app |
-| **How it verifies** | JS/WASM challenge — analyzes browser environment, mouse movements, canvas, WebGL | Hardware attestation — cryptographic proof from device's Secure Enclave (iOS) or StrongBox/TEE (Android) |
-| **What it proves** | "This is a real browser, not headless automation" | "This is a real device with the genuine, unmodified app" |
-| **Obfuscation** | Yes — per-session unique bytecode | Not needed — security is rooted in hardware |
-| **Key persistence** | None — each verification is independent | Yes — ECDSA key pair is generated in hardware and reused across sessions |
-| **Request signing** | No | Yes — each API request is signed with the hardware-protected private key |
-| **Protocol** | 1 request (`POST /app/:appID/verify`) | 2–3 requests (challenge → attestation → optional security checks) |
+| Use case                | What happens                                                    |
+| ----------------------- | --------------------------------------------------------------- |
+| **Login**               | Verifies that each authentication attempt comes from a real device, not an emulator farm. |
+| **Checkout**            | Prevents automated purchases from scripted environments.         |
+| **Account creation**    | Blocks fake account registration from emulators and tampered apps. |
+| **Any API call**        | Ensures the request originates from the genuine, unmodified version of your app. |
 
 ## How it works
 
-The protocol follows a **challenge-response** model with hardware attestation:
-
-```
-                         +-----------------+
-   User opens app  ----->| Your Mobile App |
-                         | + Wallarm SDK   |
-                         +-------+---------+
-                                 |
-                  1. SDK requests challenge
-                                 |
-                         +-------v---------+
-                         | Human Identity   |
-                         | Server           |
-                         | POST /v1/m/hid/c |
-                         +-------+---------+
-                                 |
-                  2. Server returns nonce +
-                     key status (new/existing)
-                                 |
-                         +-------v---------+
-                         | Device Hardware  |
-                         | Secure Enclave / |
-                         | StrongBox        |
-                         +-------+---------+
-                                 |
-                  3. Hardware generates/proves
-                     ECDSA key + attestation
-                                 |
-                         +-------v---------+
-                         | Human Identity   |
-                         | Server           |
-                         | POST /v1/m/hid/v |
-                         +-------+---------+
-                                 |
-                  4. Server verifies attestation,
-                     returns JWT token
-                                 |
-                         +-------v---------+
-                         | Your Backend     |
-                         | (verify JWT via  |
-                         |  JWKS endpoint)  |
-                         +-------+---------+
-                                / \
-                      human   /     \   bot
-                            /       \
-                    +------v-+    +--v--------+
-                    | Allow  |    | Block /   |
-                    | request|    | step-up   |
-                    +--------+    +-----------+
-```
+The SDK communicates with the Human Identification Server in two steps: first it requests a challenge, then it submits a hardware attestation proof.
 
 ### Step-by-step flow
 
-1. **Challenge** — the SDK sends a challenge request to the Human Identity server (`POST /v1/m/hid/c`) with the app ID, device ID, and platform. The server returns a cryptographic nonce and a key status: `new` (first time) or `existing` (returning device).
+1. **Challenge**
+   The SDK sends a challenge request to the Human Identification Server (`POST /v1/m/hid/c`) with the app ID, device ID, and platform. The server returns a nonce and a key status: `new` (first time) or `existing` (returning device).
 
-2. **Attestation or key proof** — depending on the key status:
-    * **New device**: the SDK generates an ECDSA key pair inside the device's hardware security module (Secure Enclave on iOS, StrongBox/TEE on Android). The private key **never leaves the hardware** — it cannot be extracted even by the device owner. The SDK then requests a hardware attestation certificate from the OS and submits it to the server (`POST /v1/m/hid/v` with `type: "attestation"`).
+1. **Attestation or key proof**
+    * **New device**: the SDK generates a key pair inside the device's hardware security module (Secure Enclave on iOS, StrongBox/TEE on Android). The private key never leaves the hardware. The SDK requests a hardware attestation certificate from the OS and submits it to the server (`POST /v1/m/hid/v` with `type: "attestation"`).
     * **Returning device**: the SDK proves it still holds the previously registered private key by signing the challenge nonce (`POST /v1/m/hid/v` with `type: "key_proof"`). No full re-attestation needed.
 
-3. **Server verification** — the server validates the attestation:
-    * **Android**: verifies the X.509 certificate chain up to Google's root, parses the Key Attestation Extension (OID `1.3.6.1.4.1.11129.2.1.17`), checks security level (StrongBox/TEE), bootloader lock status, and nonce.
-    * **iOS**: verifies the App Attest attestation object, validates the AAGUID (production vs. development), and checks the nonce.
+1. **Server verification**
+   The Human Identification Server (hosted and managed by Wallarm) validates the attestation:
+    * **Android**: verifies the certificate chain, parses Key Attestation Extension, checks security level (StrongBox/TEE), bootloader lock status, and nonce.
+    * **iOS**: verifies the App Attest attestation object, validates the AAGUID, and checks the nonce.
 
-4. **Token issuance** — on success, the server returns a signed JWT. On failure, the server issues a **blocked token** (rather than an error) so your backend can distinguish "verified as bot" from "never attempted verification".
+1. **Token issuance**
+   On success, the server returns a signed JWT and the SDK makes it available to your code. On failure, the SDK returns an empty token (`isPresent = false` on Android, or throws an error on iOS) so your app can handle it accordingly.
 
-5. **Request signing** — for subsequent API calls, the SDK signs each request body with the hardware-protected private key. Your backend receives two headers:
-    * `X-HID-Token` — the JWT from step 4
-    * `X-HID-Signature` — per-request signature proving the device still holds the private key
+1. **Per-request signing**
+   Beyond the initial token, the SDK can sign each API request body with the hardware-protected private key. This produces a per-request signature proving the device still holds the key — preventing token theft and replay.
 
-6. **Backend verification** — your backend verifies the JWT signature via the JWKS endpoint and optionally verifies the per-request signature.
+1. **Enforce**
+   How you enforce depends on your setup. If you use a Wallarm Node inline, the token and signature headers are forwarded automatically. If you use your own backend, verify the JWT and optionally the per-request signature.
 
-### Optional: additional security checks
+### SDK functions
 
-For applications that require deeper device analysis beyond hardware attestation, the server can respond with status `"pending"` and an encrypted payload of security checks for the SDK to execute on the device. The SDK runs these checks, encrypts the results, and submits them back (`POST /v1/m/hid/v` with `type: "check_results"`). This is configured per-application via server-side policy.
+=== "Android (Kotlin)"
 
-### Key technical properties
+    | Function | What it does |
+    | --- | --- |
+    | `HumanIDSDK.init(context, config)` | Initializes the SDK. Returns a `HumanIDSession`. |
+    | `session.getToken()` | Performs the full challenge-response attestation and returns a `HumanIDToken`. |
+    | `session.signRequestBody(body)` | Signs the request body with the hardware-protected key. Returns a base64-encoded signature string for the `X-HID-Signature` header. |
+    | `session.deleteKey()` | Removes the hardware-backed key from the device. |
 
-| Property | Details |
+    **HumanIDToken:**
+
+    | Property | Type | Description |
+    | --- | --- | --- |
+    | `value` | String | The JWT token string. |
+    | `expiresAtEpochSec` | Long | Token expiration as Unix timestamp. |
+    | `isPresent` | Boolean | `false` if token acquisition failed. |
+
+=== "iOS (Swift)"
+
+    | Function | What it does |
+    | --- | --- |
+    | `SDK(configuration:)` | Creates and configures the SDK instance. |
+    | `sdk.authenticate()` | Performs the full challenge-response attestation and returns an `AuthenticationToken`. |
+    | `sdk.signRequestBody(body)` | Signs the request body with the hardware-protected key. Returns the `X-HID-Signature` header value. |
+
+    **AuthenticationToken:**
+
+    | Property | Type | Description |
+    | --- | --- | --- |
+    | `jwt` | String | The JWT token string. |
+    | `expiresIn` | Int | Token lifetime in seconds. |
+
+### Request headers
+
+The SDK attaches two headers to protected API requests:
+
+| Header | Description |
 | --- | --- |
-| **Hardware-rooted security** | Verification relies on the device's Secure Enclave (iOS) or StrongBox/TEE (Android). The attestation certificate is signed by Apple/Google — it cannot be faked by software. |
-| **Persistent key registration** | The ECDSA key pair is generated once in hardware and reused across sessions. Returning devices only need to prove key ownership, not re-attest — faster and lighter. |
-| **Per-request signing** | Beyond the initial attestation, each API request is signed with the hardware-protected private key, preventing token theft and replay attacks. |
-| **Hardware Device Fingerprint (HFP)** | A SHA-256 hash of the attestation certificate chain's intermediate public key. Detects device spoofing when attackers fake `device_id` but share the same underlying hardware. |
-| **Blocked tokens on failure** | Even when verification fails, a token with a "blocked" verdict is issued. This allows your backend to distinguish between "this device failed verification" and "this device never attempted verification". |
-| **Zero PII collection** | The SDK collects only hardware attestation signals. No usernames, passwords, location data, or personal information. |
+| `X-HID-Token` | The JWT from `getToken()` / `authenticate()`. |
+| `X-HID-Signature` | Per-request body signature from `signRequestBody()`. Proves the device still holds the hardware key. |
 
 ### Platform details
 
 | | iOS | Android |
 | --- | --- | --- |
+| **Min version** | iOS 14+ | Android 9+ (API level 28) |
 | **Attestation mechanism** | App Attest via Secure Enclave | Key Attestation via StrongBox or TEE |
-| **Security levels** | Production / Development (AAGUID-based) | StrongBox (highest) → TEE (default) → Software (rejected by default — key is publicly known in AOSP) |
-| **What hardware proves** | App is genuine, device is real | App is genuine, device is real, bootloader is locked, OS integrity verified |
-| **Key storage** | Secure Enclave — hardware-isolated | StrongBox (dedicated HSM) or TEE (ARM TrustZone) |
-
-## What your backend receives
-
-Human Identity for Mobile does not block anything itself. It returns a **signed JWT token** that your backend uses to make decisions.
-
-### Token format
-
-The JWT is signed with **ECDSA P-256 (ES256)** and contains:
-
-| Claim | Description |
-| --- | --- |
-| `verdict` | `"human"` (attestation passed) or `"blocked"` (attestation failed) |
-| `hid` | Device fingerprint — stable across sessions for the same device |
-| `iat`, `exp` | Token issue time and expiration |
-
-### What to do with the token
-
-| Scenario | What your backend does |
-| --- | --- |
-| **Block bots** | Check `verdict` — reject requests with `"blocked"` verdict (emulators, rooted devices, tampered apps). |
-| **Track devices** | Use `hid` as a stable device identifier — group requests by device, detect brute force from the same hardware even across IP rotations. |
-| **Monitor first** | Start in monitoring mode — log verdicts without blocking to understand your traffic before enforcing. The server issues tokens for all requests including bots. |
-
-!!! info "Blocked tokens"
-    When device verification fails, the server **still issues a JWT** — but with a `"blocked"` verdict. This is intentional: it allows your backend to distinguish between "this device failed verification" (blocked token present) and "this device never attempted verification" (no token at all). Handle both cases in your backend logic.
-
-!!! warning "Current limitation"
-    In the current implementation, Human Identity operates in **monitoring mode only**. Blocking must be implemented on your backend by verifying the JWT and acting on the `verdict` claim. Native enforcement via the Wallarm Node is planned for a future release.
+| **Security levels** | Production / Development (AAGUID-based) | StrongBox (highest) → TEE (default) → Software (rejected by default) |
+| **Key storage** | Secure Enclave | StrongBox (dedicated HSM) or TEE (ARM TrustZone) |
 
 ## Setup
 
-### Step 1: Get your credentials
+### Step 1: Get your credentials and SDK
 
-Contact [sales@wallarm.com](mailto:sales@wallarm.com?subject=Human%20Identity%20for%20Mobile%20inquiry) to enable Human Identity. The Wallarm team will provision a server instance and provide:
+Contact [sales@wallarm.com](mailto:sales@wallarm.com?subject=Human%20Identity%20for%20Mobile%20inquiry) to enable Human Identity. Provide the application(s) you plan to protect and the platforms you need (iOS, Android, or both).
 
-* **Server URL** — the base URL of your Human Identity Mobile endpoint
-* **Application ID** (`APP_ID`) — identifies your application in the system
-* **SDK access** — credentials for the SDK package repository
+The Wallarm team will provide:
 
-**Supported platforms**: iOS 14+ / Android API level 24+ (Android 7.0+).
+* **Human Identification Server endpoint** — the base URL depends on the chosen [Wallarm Cloud](../about-wallarm/overview/#cloud) region:
 
-### Step 2: Add the SDK
+    * `https://human-id.us-hi.wallarm.com/` for the US Cloud
+    * `https://human-id.eu-hi.wallarm.com/` for the EU Cloud
+* **Application ID** — identifies your application in the HIS and links requests to your configuration.
+* **Mobile SDK package**:
 
-=== "iOS (Swift)"
+    * iOS: XCFramework
+    * Android: `.aar` library
 
-    Add the Wallarm SDK via Swift Package Manager or CocoaPods:
+The SDK is provided directly by the Wallarm team during onboarding — it is not available in public package registries.
 
-    ```swift
-    // Swift Package Manager
-    .package(url: "https://github.com/wallarm/human-identity-ios", from: "1.0.0")
-    ```
+**Supported platforms**: iOS 14+ / Android 9+ (API level 28).
 
-=== "Android (Kotlin)"
+### Step 2: Add the SDK to your project
 
-    Add the Wallarm SDK via Gradle:
+=== "iOS"
 
-    ```kotlin
-    // build.gradle.kts
-    dependencies {
-        implementation("com.wallarm:human-identity:1.0.0")
-    }
-    ```
+    Add the provided `.xcframework` to your Xcode project:
 
-### Step 3: Initialize the SDK
+    1. Drag the `.xcframework` file into your project navigator.
+    1. In your target's **General** → **Frameworks, Libraries, and Embedded Content**, ensure it is set to **Embed & Sign**.
 
-=== "iOS (Swift)"
+=== "Android"
 
-    ```swift
-    import WallarmHumanIdentity
+    Add the provided `.aar` file to your project:
 
-    @main
-    class AppDelegate: UIResponder, UIApplicationDelegate {
-        func application(
-            _ application: UIApplication,
-            didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
-        ) -> Bool {
-            WallarmHID.initialize(appId: "YOUR_APP_ID")
-            return true
+    1. Place the `.aar` file in your module's `libs/` directory.
+    1. In your `build.gradle.kts`:
+
+        ```kotlin
+        dependencies {
+            implementation(files("libs/wallarm-antibot.aar"))
         }
-    }
-    ```
+        ```
+
+### Step 3: Initialize the SDK and get a token
 
 === "Android (Kotlin)"
 
     ```kotlin
-    import com.wallarm.hid.WallarmHID
+    import com.wallarm.humanid.HumanIDConfig
+    import com.wallarm.humanid.HumanIDSDK
 
-    class MyApplication : Application() {
-        override fun onCreate() {
-            super.onCreate()
-            WallarmHID.initialize(this, appId = "YOUR_APP_ID")
-        }
+    // 1. Initialize at app startup
+    val config = HumanIDConfig(
+        clientIDKey = "YOUR_APP_ID",
+        serverUrl = "https://human-id.us-hi.wallarm.com"  // or EU Cloud URL
+    )
+    val session = HumanIDSDK.init(context = applicationContext, config = config)
+
+    // 2. Before a protected action, get the token
+    val token = session.getToken()
+
+    if (token.isPresent) {
+        // 3. Sign the request body
+        val bodyBytes = requestJson.toByteArray()
+        val signature = session.signRequestBody(bodyBytes)
+
+        // 4. Attach both headers to your API request
+        request.addHeader("X-HID-Token", token.value)
+        request.addHeader("X-HID-Signature", signature)
     }
     ```
-
-### Step 4: Get a token and attach it to requests
-
-Before each protected API call, request a token from the SDK. The SDK handles the full challenge-response flow (challenge → attestation/key proof → token) internally:
 
 === "iOS (Swift)"
 
     ```swift
-    func performLogin(username: String, password: String) async throws {
-        let token = try await WallarmHID.getToken()
+    import WallarmMobileAntibotSDK
 
-        var request = URLRequest(url: URL(string: "https://api.example.com/login")!)
-        request.httpMethod = "POST"
-        request.setValue(token, forHTTPHeaderField: "X-HID-Token")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try JSONEncoder().encode(
-            LoginRequest(username: username, password: password)
-        )
+    // 1. Initialize at app startup
+    let config = Configuration(
+        cloud: .us,          // or .eu, or .custom(url: "https://...")
+        appId: "YOUR_APP_ID"
+    )
+    let sdk = SDK(configuration: config)
 
-        let (data, response) = try await URLSession.shared.data(for: request)
-    }
-    ```
+    // 2. Before a protected action, get the token
+    let token = try await sdk.authenticate()
 
-=== "Android (Kotlin)"
+    // 3. Sign the request body
+    let signature = try await sdk.signRequestBody(bodyData)
 
-    ```kotlin
-    suspend fun performLogin(username: String, password: String) {
-        val token = WallarmHID.getToken()
-
-        val request = Request.Builder()
-            .url("https://api.example.com/login")
-            .post(
-                """{"username":"$username","password":"$password"}"""
-                    .toRequestBody("application/json".toMediaType())
-            )
-            .header("X-HID-Token", token)
-            .build()
-
-        val response = okHttpClient.newCall(request).execute()
-    }
+    // 4. Attach both headers to your API request
+    request.setValue(token.jwt, forHTTPHeaderField: "X-HID-Token")
+    request.setValue(signature, forHTTPHeaderField: "X-HID-Signature")
     ```
 
 !!! tip "Network layer integration"
-    For apps using a centralized network layer (Alamofire, Retrofit, OkHttp interceptors), add the token in a single interceptor rather than in every API call.
+    For apps using a centralized network layer (Alamofire, Retrofit, OkHttp interceptors), add the token and signature in a single interceptor rather than in every API call.
 
-### Step 5: Verify the token on your backend
+### Step 4: Enforce
 
-1. Fetch the JWKS public key: `GET <server_url>/.well-known/jwks.json`
-1. Verify the JWT signature (ES256 / ECDSA P-256).
-1. Check the `exp` claim.
-1. Read the `verdict` claim:
-    * `"human"` — allow the request.
-    * `"blocked"` — reject or flag the request.
-1. Optionally, extract the `hid` claim to track the device across sessions.
+There are 2 approaches — choose based on your infrastructure:
 
-### Step 6: Test the integration
+=== "Wallarm modules"
 
-1. Launch your app on a **real device** and complete a protected action.
-1. Verify that the `X-HID-Token` header is present in the API request.
-1. Decode the JWT — the `verdict` should be `"human"`.
-1. Test with an **emulator** — the `verdict` should be `"blocked"`.
+    If you have a [Wallarm Node](../installation/supported-deployment-options.md) deployed inline — receiving all traffic after the Mobile Antibot SDK has attached the headers — you can use the device identity from the token as a [session context parameter](../api-sessions/overview.md), enabling enforcement by device fingerprint across Wallarm's modules.
 
-## Limitations
+    **Set up session tracking by device identity:**
 
-* **Native apps only**: human identification for mobile works only inside native iOS and Android applications with the SDK integrated. It does not work in mobile browsers — for mobile web, use [human identification for Web](web-antibot.md).
-* **Per-action verification**: each protected action requires a challenge-response cycle. The token is short-lived and designed for a single action (login, checkout), not for protecting all API calls across an entire user session.
-* **Monitoring mode only**: in the current implementation, all enforcement must be implemented on your backend. The Wallarm Node cannot yet block requests based on the mobile human identification verdict.
-* **No direct backend communication**: the human identification server does not push verdicts to your backend. Your app must relay the JWT, and your backend must verify it independently.
-* **Hardware dependency**: attestation quality depends on the device hardware. Older Android devices without StrongBox fall back to TEE (less secure). Devices with software-only attestation are rejected by default.
+    1. **Ensure the `X-HID-Token` header reaches the Node.** The SDK attaches it automatically. If your mobile app communicates with your backend through the Wallarm Node, no additional code is needed.
+
+    1. **Add the device identifier as a session context parameter.** In Wallarm Console, go to **API Sessions** → **Session context parameters** and [add](../api-sessions/setup.md#session-context) a new parameter. Set the path to the device identity claim inside the JWT in the `X-HID-Token` header, e.g.:
+
+        `Request` → `Header` → `X-HID-Token` → `JWT` → `jwt_payload` → `PROPERTY` → `hid`
+
+        ![hid session context parameter in API sessions](../images/api-sessions/hid-context-parameter.png)
+
+        Enable **Group sessions by this key** so that sessions are grouped by device fingerprint rather than by IP alone.
+
+    Once configured, this becomes available across Wallarm's enforcement mechanisms:
+
+    * **Visibility**: in **API Sessions**, filter and inspect sessions grouped by device identity. This reveals patterns invisible when grouping by IP — for example, the same device rotating through multiple IPs.
+
+        ![hid parameter in API session](../images/api-sessions/hid-parameter-in-session.png)
+    * **Anonymous session tracking**: the device identity from the token identifies the device before the user logs in. Without it, pre-authentication traffic has no stable identifier — only IP, which attackers rotate. With device identity as a grouping key, Wallarm builds sessions from anonymous requests, and all enforcement mechanisms listed below can be applied to these sessions.
+    * **Session denylist**: block a specific device session via [Session Denylist](../api-sessions/blocking.md).
+    * **API Abuse Prevention**: when [API Abuse Prevention](../api-abuse-prevention/overview.md) is configured with the **Denylist session** reaction and sessions are grouped by device identity, the module analyzes behavioral patterns within sessions. If bot behavior is detected, the session is added to the [Session Denylist](../api-sessions/blocking.md) — blocking all subsequent requests from the same device, regardless of IP rotation.
+    * **Brute force protection**: configure a [Brute Force Protection](../admin-en/configuration-guides/protecting-against-bruteforce.md) rule that limits attempts per device identity. If the same device exceeds the threshold, the session is blocked.
+
+=== "Your own backend"
+
+    Your backend verifies the token and decides how to handle the request.
+
+    For each protected request:
+
+    1. Fetch the JWKS public key from the Human Identification Server:
+
+        * US Cloud: `GET https://human-id.us-hi.wallarm.com/.well-known/jwks.json`
+        * EU Cloud: `GET https://human-id.eu-hi.wallarm.com/.well-known/jwks.json`
+    1. Verify the JWT signature.
+    1. Check the token expiration.
+    1. Optionally, verify the `X-HID-Signature` header against the request body to confirm the request was not tampered with in transit.
+
+### Step 5: Test the integration
+
+**Verify that tokens are issued correctly:**
+
+1. Launch your app on a **real device** and trigger a protected action.
+1. Verify that both `X-HID-Token` and `X-HID-Signature` headers are present in the API request.
+1. Confirm that `token.isPresent == true` (Android) or `authenticate()` returns without error (iOS).
+1. Test with an **emulator** — `token.isPresent` should be `false` (Android) or `authenticate()` should throw an error (iOS).
+
+**Verify that enforcement works:**
+
+* **Wallarm modules**: in Wallarm Console → **API Sessions**, confirm that sessions are grouped by device identifier. Trigger a configured enforcement rule and verify that the session is blocked.
+* **Your own backend**: verify that requests with a valid JWT are accepted and requests without headers are rejected.
 
 ## Related resources
 
-* [Human Identification for Web](web-antibot.md) — browser-based JS/WASM verification for web applications
+* [Human Identification for Web](web-antibot.md) — browser-based verification for web applications
 * [API Abuse Prevention](../api-abuse-prevention/overview.md) — server-side behavioral bot detection
