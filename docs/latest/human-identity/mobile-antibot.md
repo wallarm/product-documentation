@@ -4,7 +4,9 @@
 
 ## Overview
 
-Mobile Antibot is a native SDK (iOS / Android) that verifies device integrity using hardware-backed attestation. It proves that each API request originates from a genuine, untampered application running on a real physical device — not from an emulator, a rooted phone, or a repackaged app binary.
+Mobile Antibot is a native SDK (iOS / Android) that verifies device integrity using hardware-backed attestation. It proves that a critical action (e.g., login, checkout) originates from a genuine, untampered application running on a real physical device — not from an emulator, a rooted phone, or a repackaged app binary.
+
+The SDK obtains a short-lived (~30 seconds) token and signs the request body immediately before each protected action. This cycle (`getToken` → `signRequestBody` → send request) is repeated for every critical operation — the token is not reused across multiple API calls.
 
 Depending on your setup, the result can be enforced by Wallarm's modules or by your own backend logic.
 
@@ -26,11 +28,13 @@ Mobile Antibot solves these problems by verifying the device hardware before the
 | **Login**               | Verifies that each authentication attempt comes from a real device, not an emulator farm. |
 | **Checkout**            | Prevents automated purchases from scripted environments.         |
 | **Account creation**    | Blocks fake account registration from emulators and tampered apps. |
-| **Any API call**        | Ensures the request originates from the genuine, unmodified version of your app. |
+| **Any critical action** | Protects password reset, payment confirmation, or other sensitive operations. |
 
 ## How it works
 
 The SDK communicates with the Human Identification Server in two steps: first it requests a challenge, then it submits a hardware attestation proof.
+
+![How client‑side human identification works (Mobile)](../images/human-identity/human-identity-mobile.png)
 
 ### Step-by-step flow
 
@@ -49,8 +53,8 @@ The SDK communicates with the Human Identification Server in two steps: first it
 1. **Token issuance**
    On success, the server returns a signed JWT and the SDK makes it available to your code. On failure, the SDK returns an empty token (`isPresent = false` on Android, or throws an error on iOS) so your app can handle it accordingly.
 
-1. **Per-request signing**
-   Beyond the initial token, the SDK can sign each API request body with the hardware-protected private key. This produces a per-request signature proving the device still holds the key — preventing token theft and replay.
+1. **Request signing**
+   The SDK signs the request body of the critical action with the hardware-protected private key. This produces a signature proving the device still holds the key — preventing token theft and replay. Both the token and the signature are attached to the request as headers.
 
 1. **Enforce**
    How you enforce depends on your setup. If you use a Wallarm Node inline, the token and signature headers are forwarded automatically. If you use your own backend, verify the JWT and optionally the per-request signature.
@@ -61,10 +65,9 @@ The SDK communicates with the Human Identification Server in two steps: first it
 
     | Function | What it does |
     | --- | --- |
-    | `HumanIDSDK.init(context, config)` | Initializes the SDK. Returns a `HumanIDSession`. |
-    | `session.getToken()` | Performs the full challenge-response attestation and returns a `HumanIDToken`. |
-    | `session.signRequestBody(body)` | Signs the request body with the hardware-protected key. Returns a base64-encoded signature string for the `X-HID-Signature` header. |
-    | `session.deleteKey()` | Removes the hardware-backed key from the device. |
+    | `HumanIDSDK.init(context, config)` | Initializes the SDK. Returns a `HumanIDSession`. Call once at app startup. |
+    | `session.getToken()` | Performs the full challenge-response attestation and returns a `HumanIDToken`. Call before each critical action. |
+    | `session.signRequestBody(body)` | Signs the request body with the hardware-protected key. Returns a base64-encoded signature string for the `X-HID-Signature` header. Call for each critical request. |
 
     **HumanIDToken:**
 
@@ -78,9 +81,9 @@ The SDK communicates with the Human Identification Server in two steps: first it
 
     | Function | What it does |
     | --- | --- |
-    | `SDK(configuration:)` | Creates and configures the SDK instance. |
-    | `sdk.authenticate()` | Performs the full challenge-response attestation and returns an `AuthenticationToken`. |
-    | `sdk.signRequestBody(body)` | Signs the request body with the hardware-protected key. Returns the `X-HID-Signature` header value. |
+    | `SDK(configuration:)` | Creates and configures the SDK instance. Call once at app startup. |
+    | `sdk.authenticate()` | Performs the full challenge-response attestation and returns an `AuthenticationToken`. Call before each critical action. |
+    | `sdk.signRequestBody(body)` | Signs the request body with the hardware-protected key. Returns the `X-HID-Signature` header value. Call for each critical request. |
 
     **AuthenticationToken:**
 
@@ -151,7 +154,9 @@ The SDK is provided directly by the Wallarm team during onboarding — it is not
         }
         ```
 
-### Step 3: Initialize the SDK and get a token
+### Step 3: Initialize the SDK and protect critical actions
+
+Initialize the SDK once at app startup. Then, before **each critical action**, call `getToken()` / `authenticate()` and `signRequestBody()` to obtain a fresh token and sign the request. The token is short-lived (~30 seconds) and must not be reused across multiple actions.
 
 === "Android (Kotlin)"
 
@@ -159,25 +164,25 @@ The SDK is provided directly by the Wallarm team during onboarding — it is not
     import com.wallarm.humanid.HumanIDConfig
     import com.wallarm.humanid.HumanIDSDK
 
-    // 1. Initialize at app startup
+    // Initialize once at app startup
     val config = HumanIDConfig(
         clientIDKey = "YOUR_APP_ID",
         serverUrl = "https://human-id.us-hi.wallarm.com"  // or EU Cloud URL
     )
     val session = HumanIDSDK.init(context = applicationContext, config = config)
 
-    // 2. Before a protected action, get the token
+    // Before EACH critical action (e.g., login, checkout):
     val token = session.getToken()
 
     if (token.isPresent) {
-        // 3. Sign the request body
         val bodyBytes = requestJson.toByteArray()
         val signature = session.signRequestBody(bodyBytes)
 
-        // 4. Attach both headers to your API request
         request.addHeader("X-HID-Token", token.value)
         request.addHeader("X-HID-Signature", signature)
     }
+
+    // Repeat getToken() + signRequestBody() for every critical request
     ```
 
 === "iOS (Swift)"
@@ -185,26 +190,25 @@ The SDK is provided directly by the Wallarm team during onboarding — it is not
     ```swift
     import WallarmMobileAntibotSDK
 
-    // 1. Initialize at app startup
+    // Initialize once at app startup
     let config = Configuration(
         cloud: .us,          // or .eu, or .custom(url: "https://...")
         appId: "YOUR_APP_ID"
     )
     let sdk = SDK(configuration: config)
 
-    // 2. Before a protected action, get the token
+    // Before EACH critical action (e.g., login, checkout):
     let token = try await sdk.authenticate()
-
-    // 3. Sign the request body
     let signature = try await sdk.signRequestBody(bodyData)
 
-    // 4. Attach both headers to your API request
     request.setValue(token.jwt, forHTTPHeaderField: "X-HID-Token")
     request.setValue(signature, forHTTPHeaderField: "X-HID-Signature")
+
+    // Repeat authenticate() + signRequestBody() for every critical request
     ```
 
-!!! tip "Network layer integration"
-    For apps using a centralized network layer (Alamofire, Retrofit, OkHttp interceptors), add the token and signature in a single interceptor rather than in every API call.
+!!! warning "One token per action"
+    Do not obtain a token once and reuse it for multiple API calls. Each critical action requires its own `getToken()` / `authenticate()` + `signRequestBody()` cycle. The token is short-lived (~30 seconds) and bound to the specific request.
 
 ### Step 4: Enforce
 
