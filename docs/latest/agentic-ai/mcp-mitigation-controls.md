@@ -14,36 +14,17 @@ These controls appear in Wallarm Console under **Mitigation Controls** → **AI 
 
 * The [Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription plan
 * [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.12.0 or higher or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.23.0 or higher
-* [MCP Session Configuration](#mcp-session-configuration) should be set up for each MCP server you want to protect — without it, the node cannot parse MCP-specific fields from traffic, and mitigation controls will not function effectively
+* MCP protocol enabled in [API Discovery settings](../api-discovery/setup.md#general-api-discovery-settings)
 
 ## How MCP protection works
 
-MCP protection relies on two components working together:
+The Wallarm node automatically detects MCP traffic by recognizing JSON-RPC 2.0 requests with MCP-specific methods and the `MCP-Protocol-Version` header. Once MCP traffic is identified, you can create mitigation controls that define protection policies. Each control is scoped to a specific MCP server URI and can target specific MCP methods and primitives.
 
-1. **MCP Session Configuration** — Tells the Wallarm node where to find the MCP Session ID (typically the `Mcp-Session-Id` header) and how to parse MCP-specific fields (method, primitive name) from the JSON-RPC request body. You create this configuration manually for each MCP server via the API Sessions settings. See [MCP Session Configuration](#mcp-session-configuration) for details.
+The node analyzes MCP responses to capture `tools/list` data and maintain an up-to-date tool schema for each server. The captured schema is uploaded to the Wallarm Cloud and distributed to all nodes in the cluster, so every node has access to up-to-date tool definitions — this is used by the [Tool Input Schema Enforcement](#tool-input-schema-enforcement) control.
 
-2. **MCP Mitigation Controls** — Once the node can parse MCP traffic, you create mitigation controls that define protection policies. Each control is scoped to a specific MCP server URI and can target specific MCP methods and primitives.
+When creating a mitigation control, the **MCP server** URI and **primitives** fields offer autocomplete suggestions based on data from [API Discovery](../agentic-ai/agentic-ai-discovery.md#mcp-server-discovery).
 
-Once configured, the node analyzes 100% of responses for the specified MCP endpoints to capture `tools/list` responses and maintain an up-to-date schema for each server.
-
-## MCP Session Configuration
-
-Before creating mitigation controls, you need to configure MCP session tracking so the Wallarm node can identify and parse MCP traffic.
-
-To set up MCP Session Configuration:
-
-1. Go to Wallarm Console → **API Sessions** → click the settings icon.
-1. In the **MCP Sessions** section, click **Add MCP Session config**.
-1. Specify the MCP server:
-    * **Host** — the hostname of your MCP server (e.g., `mcp.example.com`)
-    * **Location** — the path to the MCP endpoint (e.g., `/mcp` or `/sse`)
-1. Configure session identification rules. Each rule specifies where to find a session parameter:
-    * **MCP Session ID** — typically found in the `Mcp-Session-Id` header. This is required for the node to group requests into MCP sessions.
-    * **MCP User** (optional) — location of the user identifier, needed for ACL policies based on user.
-    * **MCP Role** (optional) — location of the user role, needed for ACL policies based on role.
-1. Click **Save**.
-
-The node periodically fetches this configuration and starts processing MCP traffic for the specified endpoints.
+Optionally, you can configure [MCP session context parameters](../api-sessions/mcp-sessions.md#mcp-session-configuration) to extract user and role information from MCP requests. This is required for user- and role-based [ACL policies](#acl-policy).
 
 ## Creating MCP mitigation controls
 

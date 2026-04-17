@@ -17,11 +17,13 @@ Traditional API security solutions lack the specialized detection capabilities n
 
 Wallarm addresses AI security through two complementary capabilities:
 
-### Discover AI Endpoints
+### Discover AI Endpoints and MCP Servers
 
-[AI Discovery](agentic-ai-discovery.md) automatically identifies APIs related to AI/LLM systems in your environment:
+[AI Discovery](agentic-ai-discovery.md) automatically identifies APIs related to AI/LLM systems and MCP servers in your environment:
 
 * Automatic tagging of AI/LLM endpoints in your [API inventory](../api-discovery/overview.md)
+* [MCP server discovery](agentic-ai-discovery.md#mcp-server-discovery) — automatic detection of MCP servers and their primitives (tools, resources, prompts)
+* [MCP Sessions](../api-sessions/mcp-sessions.md) — dedicated view of AI agent interactions with MCP servers
 * Visibility into which [API sessions](../api-sessions/overview.md) interact with AI endpoints
 * Manual tagging for endpoints not automatically detected
 * Filtering capabilities to focus on AI-related traffic
@@ -40,16 +42,13 @@ Wallarm addresses AI security through two complementary capabilities:
 ## How It Works
 
 1. **Deploy** - Install Wallarm filtering node using your preferred [deployment option](../installation/supported-deployment-options.md)
-2. **Discover** - Enable [API Discovery](../api-discovery/overview.md) to automatically identify AI/LLM endpoints
-3. **Configure** - Create custom protection policies for your AI systems
-4. **Monitor** - View detected attacks and sessions in [API Sessions](../api-sessions/overview.md)
+2. **Discover** - Enable [API Discovery](../api-discovery/overview.md) to automatically identify AI/LLM endpoints and [MCP servers](agentic-ai-discovery.md#mcp-server-discovery)
+3. **Configure** - Create [AI payload inspection](ai-payload-inspection.md) and [MCP mitigation controls](mcp-mitigation-controls.md) for your AI systems
+4. **Monitor** - View detected attacks in [API Sessions](../api-sessions/overview.md) and [MCP Sessions](../api-sessions/mcp-sessions.md)
 
 ## Getting Started
 
-* Explore the [AI Discovery](agentic-ai-discovery.md) documentation to identify AI endpoints in your API inventory
+* Explore [AI Discovery](agentic-ai-discovery.md) to identify AI endpoints and MCP servers in your API inventory
 * Learn about [AI Protection](agentic-ai-protection.md) capabilities and threat detection
+* Set up [MCP Sessions](../api-sessions/mcp-sessions.md) to monitor AI agent interactions with MCP servers
 * Configure [MCP Mitigation Controls](mcp-mitigation-controls.md) to protect MCP servers with access policies, request verification, and schema enforcement
-
-## Learn More
-
-For detailed information about AI security threats and Wallarm's protection capabilities, visit [Wallarm's Agentic AI Security page](https://www.wallarm.com/solutions/s-protect-agentic-ai).
