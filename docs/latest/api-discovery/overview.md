@@ -150,7 +150,13 @@ Only general gRPC services that use [protocol buffers](https://protobuf.dev/) ar
 * JSON-RPC 2.0 payload with MCP-specific methods (`initialize`, `tools/list`, `tools/call`, `resources/list`, `resources/read`, `prompts/list`, `prompts/get`, etc.)
 * `MCP-Protocol-Version` header presence (primary indicator used to distinguish MCP from generic JSON-RPC)
 
-Once an MCP server endpoint is discovered, API Discovery captures the server's primitive inventory - tools, resources, and prompts - from `tools/list`, `resources/list`, and `prompts/list` responses.
+Once an MCP server endpoint is discovered, API Discovery captures the server's primitive inventory:
+
+* **Tools** — invocable functions exposed by the MCP server (e.g., `get_user_profile`, `create_lead`)
+* **Resources** — data and files available for reading (e.g., `crm://legal/nda`)
+* **Prompts** — parametrized templates for common workflows (e.g., `account_research_prompt`)
+
+Service methods such as `initialize`, `ping`, `resources/subscribe`, `completion/complete`, and `logging/setLevel` are automatically filtered out and do not appear as discovered primitives.
 
 The Node automatically enables 100% response parsing for discovered MCP endpoints to ensure complete schema capture.
 

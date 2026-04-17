@@ -1,6 +1,6 @@
 # Exploring API Inventory <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-As soon as the [API Discovery](overview.md) module has built the catalog of your endpoints (your API inventory), you can explore it in the **API Discovery** section of Wallarm Console. Learn from this article how to go through the discovered data.
+As soon as the [API Discovery](overview.md) module has built the catalog of your endpoints and MCP servers (your API inventory), you can explore it in the **API Discovery** section of Wallarm Console. Learn from this article how to go through the discovered data.
 
 ## Endpoints
 
@@ -8,7 +8,7 @@ Explore your discovered API inventory using the **API Discovery** section in the
 
 ![API Discovery - built API inventory](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-built-inventory.png)
 
-By default, endpoints and operations are sorted by host/endpoint or operation name. Also, **Group by host** is on. With grouping by host disabled, you can sort endpoints by risk.
+By default, endpoints and operations are sorted by host/endpoint or operation name. Also, **Group by host** is on. With grouping by host disabled, you can sort endpoints by risk. For MCP servers, primitives are grouped by MCP server (**Group by MCP server**).
 
 ### Filtering
 
@@ -163,6 +163,45 @@ Wallarm discovers general gRPC services that use [protocol buffers](https://prot
 * `Float`: A signed double-precision floating-point value.
 * `String`: A UTF‐8 character sequence.
 * `Boolean`: true or false.
+
+### MCP primitive details
+
+Discovered MCP servers are displayed in the **MCP Servers** tab of API Discovery. Each MCP server lists its primitives — tools, resources, and prompts. Click a primitive to open its full-screen details page.
+
+The details page displays:
+
+* **Primitive name** and **description** — as reported by the MCP server
+* **MCP server version** — protocol version of the MCP server
+* **Request counters** — number of requests for the last 7 days
+
+The **Schema** tab content depends on the primitive type:
+
+=== "Tools"
+    Tool primitives display the **Arguments** section with the tool's input parameters as declared in the `tools/list` response:
+
+    * Parameter name
+    * Data type (e.g., `String`, `Integer`, `Boolean`)
+    * Parameter description
+
+    Request and response headers are also displayed.
+
+=== "Resources"
+    Resource primitives display:
+
+    * **MIME type** of the resource
+    * Request and response headers
+
+=== "Prompts"
+    Prompt primitives display:
+
+    * **Arguments** — input parameters for the prompt template
+    * Request and response headers
+
+Each parameter information also includes:
+
+* Information about parameter changes (new, unused)
+* Presence and type of sensitive data transmitted by this parameter
+* Date and time when parameter value was last transferred by requests
 
 ## Endpoint activities
 
