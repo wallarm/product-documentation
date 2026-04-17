@@ -36,7 +36,7 @@ nav:
     - Exploring Your APIs:
       - API Inventory: api-discovery/exploring.md
       - Dashboard: api-discovery/dashboard.md
-      - Track API Changes: api-discovery/track-changes.md
+      - Track API and MCP Changes: api-discovery/track-changes.md
 
     - Risk Analysis:
       - Risk Score: api-discovery/risk-score.md

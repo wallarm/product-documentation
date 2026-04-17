@@ -1,6 +1,6 @@
 # API Discovery Overview <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm's multi-protocol API Discovery continuously analyzes the real traffic requests and builds the API inventory (full picture of your active APIs) based on the analysis results.
+Wallarm's multi-protocol API Discovery continuously analyzes the real traffic requests and builds the API inventory (full picture of your active APIs and MCP servers) based on the analysis results.
 
 ## Supported protocols
 
@@ -12,6 +12,7 @@ API Discovery is capable of finding and representing hosts and endpoints utilizi
 | **GraphQL** | Operation (query, mutation, subscription) | 6.1.0 | 0.15.1 |
 | **SOAP** | Operation | 6.3.0 | 0.17.1 |
 | **gRPC** | Operation | 6.4.0 | NA |
+| **MCP** | MCP server | 6.12.0-rc1 | 0.25.0-rc1 |
 
 ## Your API inventory
 
@@ -28,8 +29,12 @@ API inventory is a picture of your active APIs automatically built by Wallarm's 
 * GraphQL schema
 * SOAP operations
 * gRPC operations
+* MCP servers and their tools, resources, and prompts
 
-![API Discovery - built API inventory](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-built-inventory.png)
+=== "APIs"
+    ![API Discovery - built API inventory](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-built-inventory.png)
+=== "MCP Servers"
+    ![Discovered MCP Servers](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-mcp-servers.png)
 
 ## Issues addressed by API Discovery
 
@@ -136,6 +141,20 @@ Also, the API Discovery performs filtering of requests relying on the other crit
 * Protocol buffer encoded payload
 
 Only general gRPC services that use [protocol buffers](https://protobuf.dev/) are discovered.
+
+##### MCP
+
+**Detection method**: analyzes JSON-RPC 2.0 request/response patterns specific to the [Model Context Protocol](https://modelcontextprotocol.io/).
+**Key indicators**:
+
+* JSON-RPC 2.0 payload with MCP-specific methods (`initialize`, `tools/list`, `tools/call`, `resources/list`, `resources/read`, `prompts/list`, `prompts/get`, etc.)
+* `MCP-Protocol-Version` header presence (primary indicator used to distinguish MCP from generic JSON-RPC)
+
+Once an MCP server endpoint is discovered, API Discovery captures the server's primitive inventory - tools, resources, and prompts - from `tools/list`, `resources/list`, and `prompts/list` responses.
+
+The Node automatically enables 100% response parsing for discovered MCP endpoints to ensure complete schema capture.
+
+Discovered MCP servers are displayed in the API inventory with the **MCP** protocol label and can be used as a scope for [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md).
 
 ##### REST
 
