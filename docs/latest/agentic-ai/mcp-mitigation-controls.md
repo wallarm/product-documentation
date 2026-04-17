@@ -46,7 +46,7 @@ All three MCP mitigation controls share the following configuration sections:
 
 ### Scope (MCP server)
 
-Defines which MCP server the control applies to. The scope is set as a full URI of the MCP server endpoint (e.g., `https://api.example.com/mcp`).
+Defines which MCP server the control applies to. Select an MCP server from the dropdown (populated from [API Discovery](mcp-discovery.md)) or enter a URI manually.
 
 ### MCP parameters
 
@@ -70,15 +70,15 @@ The ACL Policy controls who can access specific MCP methods and primitives based
 | **MCP server** | Full URI of the MCP server to protect. |
 | **MCP methods** | Array of MCP methods the policy applies to. Supports wildcards. |
 | **Primitives** | Array of tool names, resource URIs, or prompt names the policy applies to. |
-| **Access policy mode** | **Allow** — only the specified access objects can access the defined scope. **Deny** — the specified access objects are blocked from accessing the defined scope. |
-| **Access objects** | One or more conditions defining who the policy targets: IP Address, Country, Location, User Name, or User Role. Multiple object types can be combined. |
+| **Access policy mode** | **Allow** — only requests matching the specified access objects are permitted; all other requests are blocked with a `403` response. Use this to create an allowlist of trusted identities or networks. **Deny** — requests matching the specified access objects are blocked with a `403` response; all other requests are permitted. Use this to block specific actors from accessing the defined scope. |
+| **Access objects** | One or more conditions defining who the policy targets: **IP Address**, **Country**, **User Name**, or **User Role**. Multiple object types can be combined — all specified conditions must match for the policy to apply. |
 
 !!! info "User and role in MCP sessions"
-    To use ACL by user or role, the user and role information must be present in the MCP session context. The Wallarm node associates users with MCP sessions based on session context parameters.
+    To use ACL by user or role, the user and role information must be present in the MCP session context. Configure user and role extraction in [MCP Session Configuration](../api-sessions/mcp-sessions.md#mcp-session-configuration).
 
-### Attack type
+### Reaction
 
-When the ACL Policy blocks a request, an **ACL Violation** attack is registered.
+When a request matches the ACL policy conditions (Deny mode) or does not match them (Allow mode), the request is blocked with an HTTP `403 Forbidden` response. An **ACL Violation** attack is registered in Wallarm Console.
 
 ## Request Verification
 
@@ -94,11 +94,11 @@ The Request Verification control validates that specific session context paramet
 | **MCP methods** | Array of MCP methods the control applies to. Supports wildcards. |
 | **Primitives** | Array of primitive IDs the control applies to. |
 | **Verification parameters** | One or more rules, each defining: a **call point** (the location in the request to check, e.g., a specific JWT claim), an **operator** (`AND` — all listed values must be present, or `OR` — at least one value must be present), and an array of **expected values**. |
-| **Scope verification** | Optional. Allows marking a call point as a "scope" field — space-separated values in the field are treated as an array for matching purposes. For example, `read:profile is:developer data:read` is treated as `["read:profile", "is:developer", "data:read"]`. |
-| **Mode** | **Monitoring** — log attack only. **Blocking** — block the request. |
+| **Scope verification** | Optional. Points to the `scope` claim inside the JWT token. The JWT `scope` claim is a space-separated string of permissions (e.g., `"read:profile is:developer data:read"`). Scope verification parses this string into individual values and checks them against the expected values using the selected operator. This parameter works exclusively with the JWT `scope` claim. |
+| **Mode** | **Monitoring** — log attack only. **Blocking** — block the request and return a `403 Forbidden` response. |
 
-!!! tip "Verification parameters"
-    Only exported session context parameters can be used for verification, since only their values are available to the Wallarm node. You can configure session context parameters in [API Sessions settings](../api-sessions/setup.md).
+!!! tip "JWT token location"
+    The JWT token is typically located in the `Authorization` header as a Bearer token. The call point should point to the `scope` claim inside the JWT payload. Only exported [session context parameters](../api-sessions/setup.md) can be used, since only their values are available to the Wallarm node.
 
 ### Attack type
 
@@ -125,10 +125,10 @@ The schema is maintained per MCP server — schemas of different MCP servers do 
 
 | Parameter | Description |
 |---|---|
-| **MCP server** | Full URI of the MCP server. Must match an MCP server with an existing [MCP Session Configuration](#mcp-session-configuration). |
+| **MCP server** | Full URI of the MCP server to protect. |
 | **Tools** | Select which tools to enforce the schema for. If set to **All**, all tools reported by `tools/list` are validated. You can also select specific tools. |
 | **Allow tools undefined in the schema** | When enabled (default), tool calls to tools not listed in the `tools/list` response are allowed. When disabled, calls to unknown tools are treated as violations. |
-| **Mode** | **Monitoring** — log attack only. **Blocking** — block the request. |
+| **Mode** | **Monitoring** — log attack only. **Blocking** — block the request and return a `403 Forbidden` response. |
 
 ### Attack type
 

@@ -19,7 +19,9 @@ The Wallarm node identifies MCP traffic by detecting JSON-RPC 2.0 requests with 
 
 ![Discovered MCP Servers](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-mcp-servers.png)
 
-The node automatically enables 100% response parsing for discovered MCP endpoints to ensure complete schema capture. The captured tool schema is uploaded to the Wallarm Cloud and distributed to all nodes in the cluster.
+The node automatically enables 100% response parsing for discovered MCP endpoints to ensure complete schema capture. The captured tool schema is uploaded to the Wallarm Cloud.
+
+![Schema of discovered MCP primitive](../images/about-wallarm-waf/api-discovery-2.0/mcp-server-schema.png)
 
 ## Discovered primitives
 

@@ -73,6 +73,8 @@ When viewing request details within an MCP session, the following MCP-specific i
 * **Primitive name** — the tool, resource, or prompt name
 * **Arguments** — the parameters passed to the tool call (for `tools/call` requests)
 
+![MCP session details](../images/api-sessions/mcp-session-details.png)
+
 ## Viewing attacks in MCP Sessions
 
 Attacks detected by [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md) are displayed directly within the MCP session where they occurred. In the request details, you can see:
