@@ -41,6 +41,12 @@ Wallarm's [API Abuse Prevention](../api-abuse-prevention/overview.md) detects ma
 
 Thus, when you [customize how requests are grouped](setup.md#session-grouping) into sessions in accordance with your specific application logic, it affects the work of API Abuse Prevention making both session identification and bot detection more precise.
 
+## MCP Sessions
+
+Wallarm provides dedicated support for [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) sessions, displayed in a separate **MCP Sessions** tab. MCP sessions group AI agent interactions with MCP servers — tool calls, resource reads, and prompt invocations — into logical sessions based on the `Mcp-Session-Id` header.
+
+See [MCP Sessions](mcp-sessions.md) for details on setup and usage.
+
 ## GraphQL requests in API Sessions
 
 API Sessions support working with [GraphQL requests](../user-guides/rules/request-processing.md#gql) and their specific request points, you can configure sessions to extract and display values of GraphQL request parameters.
