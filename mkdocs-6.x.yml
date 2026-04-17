@@ -145,6 +145,10 @@ nav:
     - AI Discovery:
       - AI Agent Discovery: agentic-ai/agentic-ai-discovery.md
 
+    - MCP Discovery:
+      - MCP Server Discovery: agentic-ai/mcp-discovery.md
+      - MCP Sessions: api-sessions/mcp-sessions.md
+
     - AI Protection:
       - AI Agent Protection: agentic-ai/agentic-ai-protection.md
       - AI Payload Inspection: agentic-ai/ai-payload-inspection.md
