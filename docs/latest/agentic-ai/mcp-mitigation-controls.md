@@ -8,9 +8,9 @@ Since MCP operates over standard HTTP with JSON-RPC payloads, Wallarm's [built-i
 
 On top of that, Wallarm provides three dedicated **MCP mitigation controls** to address MCP-specific threats:
 
-* [**ACL Policy**](#acl-policy) - Controls who can access specific MCP methods and primitives
-* [**Request Verification**](#request-verification) - Validates that session context parameters (e.g., JWT scopes) contain expected values
-* [**Tool Input Schema Enforcement**](#tool-input-schema-enforcement) - Validates MCP tool call arguments against the schema automatically learned from the server's `tools/list` response
+* [**ACL policy**](#acl-policy) - Controls who can access specific MCP methods and primitives
+* [**Request verification**](#request-verification) - Validates that session context parameters (e.g., JWT scopes) contain expected values
+* [**Tool input schema enforcement**](#tool-input-schema-enforcement) - Validates MCP tool call arguments against the schema automatically learned from the server's `tools/list` response
 
 These controls appear in Wallarm Console under **Mitigation Controls** → **AI Protection** tab.
 
@@ -24,7 +24,7 @@ These controls appear in Wallarm Console under **Mitigation Controls** → **AI 
 
 The Wallarm node automatically detects MCP traffic by recognizing JSON-RPC 2.0 requests with MCP-specific methods. Once MCP traffic is identified, you can create mitigation controls that define protection policies. Each control is scoped to a specific MCP server URI and can target specific MCP methods and primitives.
 
-The node analyzes MCP responses to capture `tools/list` data and maintain an up-to-date tool schema for each server. The captured schema is uploaded to the Wallarm Cloud and distributed to all nodes in the cluster, so every node has access to up-to-date tool definitions — this is used by the [Tool Input Schema Enforcement](#tool-input-schema-enforcement) control.
+The node analyzes MCP responses to capture `tools/list` data and maintain an up-to-date tool schema for each server. The captured schema is uploaded to the Wallarm Cloud and distributed to all nodes in the cluster, so every node has access to up-to-date tool definitions — this is used by the [Tool input schema enforcement](#tool-input-schema-enforcement) control.
 
 When creating a mitigation control, the **MCP server** URI and **primitives** fields offer autocomplete suggestions based on data from [API Discovery](../agentic-ai/agentic-ai-discovery.md#mcp-server-discovery).
 
@@ -44,26 +44,9 @@ To create an MCP mitigation control:
 !!! info "Generic information on mitigation controls"
     Before proceeding: use the [Mitigation Controls](../about-wallarm/mitigation-controls-overview.md#configuration) article to get familiar with how **Scope** and **Mitigation mode** are set for any mitigation control.
 
-## Common configuration
+## ACL policy
 
-All three MCP mitigation controls share the following configuration sections:
-
-### Scope (MCP server)
-
-Defines which MCP server the control applies to. Select an MCP server from the dropdown (populated from [API Discovery](mcp-discovery.md)) or enter a URI manually.
-
-### MCP parameters
-
-Available for ACL Policy and Request Verification controls. Define which MCP methods and primitives the control applies to:
-
-* **Methods** — MCP protocol methods such as `tools/call`, `resources/read`, `prompts/get`, `notifications/initialized`, etc. Supports wildcards (e.g., `resources/*`).
-* **Primitives** — Names of specific MCP entities targeted by the selected methods. For `tools/call`, these are tool names (e.g., `get_user_profile`). For `resources/read`, these are resource URIs (e.g., `data://config`). For `prompts/get`, these are prompt names.
-
-If no methods or primitives are specified, the control applies to all methods and primitives on the MCP server.
-
-## ACL Policy
-
-The ACL Policy controls who can access specific MCP methods and primitives based on the identity or network properties of the request source.
+The ACL policy controls who can access specific MCP methods and primitives based on the identity or network properties of the request source.
 
 **Use case:** Restrict access to sensitive MCP tools to specific users, roles, IP addresses, or geographic locations. For example, allow only users with the `admin` role to call the `delete_account` tool, or block access to all MCP tools from specific countries.
 
@@ -71,11 +54,10 @@ The ACL Policy controls who can access specific MCP methods and primitives based
 
 | Parameter | Description |
 |---|---|
-| **MCP server** | Full URI of the MCP server to protect. |
-| **MCP methods** | Array of MCP methods the policy applies to. Supports wildcards. |
-| **Primitives** | Array of tool names, resource URIs, or prompt names the policy applies to. |
-| **Access policy mode** | **Allow** — only requests matching the specified access objects are permitted; all other requests are blocked with a `403` response. Use this to create an allowlist of trusted identities or networks. **Deny** — requests matching the specified access objects are blocked with a `403` response; all other requests are permitted. Use this to block specific actors from accessing the defined scope. |
-| **Access objects** | One or more conditions defining who the policy targets: **IP Address**, **Country**, **User Name**, or **User Role**. Multiple object types can be combined — all specified conditions must match for the policy to apply. |
+| **MCP server** (required) | The MCP server this control applies to. Each control targets exactly one MCP server. Select a server from the dropdown (populated from [API Discovery](mcp-discovery.md)) or enter a URI manually. |
+| **MCP parameters** | MCP methods and primitives the control applies to, within the selected MCP server.<ul><li>**Methods** — MCP protocol methods such as `tools/call`, `resources/read`, `prompts/get`, etc. Supports wildcards (e.g., `resources/*`).</li><li>**Primitives** — specific MCP entities targeted by the selected methods. For `tools/call`, these are tool names (e.g., `get_user_profile`). For `resources/read`, these are resource URIs (e.g., `data://config`). For `prompts/get`, these are prompt names.</li></ul>If no methods or primitives are specified, the control applies to all methods and primitives on the selected MCP server. |
+| **Access mode** | **Allow** — only requests matching the specified access objects are permitted; all other requests are blocked with a `403` response. **Deny** — requests matching the specified access objects are blocked with a `403` response; all other requests are permitted. |
+| **Access objects** | One or more conditions defining who the policy targets: **IP address**, **Country**, **User name**, or **User role**. Multiple object types can be combined. |
 
 !!! info "User and role in MCP sessions"
     To use ACL by user or role, the user and role information must be present in the MCP session context. Configure user and role extraction in [MCP Session Configuration](../api-sessions/mcp-sessions.md#mcp-session-configuration).
@@ -84,9 +66,9 @@ The ACL Policy controls who can access specific MCP methods and primitives based
 
 When a request matches the ACL policy conditions (Deny mode) or does not match them (Allow mode), the request is blocked with an HTTP `403 Forbidden` response. An **ACL Violation** attack is registered in Wallarm Console.
 
-## Request Verification
+## Request verification
 
-The Request Verification control validates that specific session context parameters contain expected values before allowing an MCP request to proceed. This is designed primarily for enforcing JWT scope requirements in MCP environments.
+The **request verification** control validates that specific session context parameters contain expected values before allowing an MCP request to proceed. This is designed primarily for enforcing JWT scope requirements in MCP environments.
 
 **Use case:** Ensure that all `tools/call` requests to the `profile_read` tool carry a JWT token with the `profile:read` scope. This prevents the [confused deputy problem](https://en.wikipedia.org/wiki/Confused_deputy_problem) — where an AI agent calls a tool on behalf of a user who lacks the required permissions.
 
@@ -94,23 +76,22 @@ The Request Verification control validates that specific session context paramet
 
 | Parameter | Description |
 |---|---|
-| **MCP server** | Full URI of the MCP server to protect. Supports wildcards. |
-| **MCP methods** | Array of MCP methods the control applies to. Supports wildcards. |
-| **Primitives** | Array of primitive IDs the control applies to. |
+| **MCP server** (required) | The MCP server this control applies to. Each control targets exactly one MCP server. Select a server from the dropdown (populated from [API Discovery](mcp-discovery.md)) or enter a URI manually. |
+| **MCP parameters** | MCP methods and primitives the control applies to, within the selected MCP server.<ul><li>**Methods** — MCP protocol methods such as `tools/call`, `resources/read`, `prompts/get`, etc. Supports wildcards (e.g., `resources/*`).</li><li>**Primitives** — specific MCP entities targeted by the selected methods. For `tools/call`, these are tool names (e.g., `get_user_profile`). For `resources/read`, these are resource URIs (e.g., `data://config`). For `prompts/get`, these are prompt names.</li></ul>If no methods or primitives are specified, the control applies to all methods and primitives on the selected MCP server. |
 | **Verification parameters** | One or more rules, each defining: a **call point** (the location in the request to check, e.g., a specific JWT claim), an **operator** (`AND` — all listed values must be present, or `OR` — at least one value must be present), and an array of **expected values**. |
 | **Scope verification** | Optional. Points to the `scope` claim inside the JWT token. The JWT `scope` claim is a space-separated string of permissions (e.g., `"read:profile is:developer data:read"`). Scope verification parses this string into individual values and checks them against the expected values using the selected operator. This parameter works exclusively with the JWT `scope` claim. |
-| **Mode** | **Monitoring** — log attack only. **Blocking** — block the request and return a `403 Forbidden` response. |
+| **Mitigation mode** | **Monitoring** — log attack only. **Blocking** — block the request and return a `403 Forbidden` response. |
 
 !!! tip "JWT token location"
     The JWT token is typically located in the `Authorization` header as a Bearer token. The call point should point to the `scope` claim inside the JWT payload. Only exported [session context parameters](../api-sessions/setup.md) can be used, since only their values are available to the Wallarm node.
 
 ### Attack type
 
-When verification fails, an **MCP Request Verification Failure** attack is registered.
+When verification fails, an **MCP request verification failure** attack is registered.
 
-## Tool Input Schema Enforcement
+## Tool input schema enforcement
 
-The Tool Input Schema Enforcement control automatically validates that MCP `tools/call` requests conform to the input schema published by the MCP server via its `tools/list` response. This is a **zero-configuration** schema enforcement — no spec upload is required.
+The **tool input schema enforcement** control automatically validates that MCP `tools/call` requests conform to the input schema published by the MCP server via its `tools/list` response. This is a **zero-configuration** schema enforcement — no spec upload is required.
 
 **Use case:** Protect MCP servers from injection attacks and malformed tool calls without manually defining schemas. The schema is learned automatically from the MCP server's own tool discovery response.
 
@@ -129,10 +110,10 @@ The schema is maintained per MCP server — schemas of different MCP servers do 
 
 | Parameter | Description |
 |---|---|
-| **MCP server** | Full URI of the MCP server to protect. |
-| **Tools** | Select which tools to enforce the schema for. If set to **All**, all tools reported by `tools/list` are validated. You can also select specific tools. |
+| **MCP server** (required) | The MCP server this control applies to. Each control targets exactly one MCP server. Select a server from the dropdown (populated from [API Discovery](mcp-discovery.md)) or enter a URI manually. |
+| **MCP tools** | Select which tools to enforce the schema for. If set to **All**, all tools reported by `tools/list` are validated. You can also select specific tools. |
 | **Allow tools undefined in the schema** | When enabled (default), tool calls to tools not listed in the `tools/list` response are allowed. When disabled, calls to unknown tools are treated as violations. |
-| **Mode** | **Monitoring** — log attack only. **Blocking** — block the request and return a `403 Forbidden` response. |
+| **Mitigation mode** | **Monitoring** — log attack only. **Blocking** — block the request and return a `403 Forbidden` response. |
 
 ### Attack type
 
