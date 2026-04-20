@@ -2,7 +2,11 @@
 
 The [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) is an open standard for connecting AI agents to external data sources and tools. MCP servers expose **tools** (invocable functions), **resources** (data/files), and **prompts** (parametrized templates) through a stateful, session-based HTTP protocol.
 
-While MCP enables powerful AI agent integrations, it also introduces new attack surfaces: unauthorized tool access, confused deputy attacks, and schema manipulation. Wallarm provides three dedicated **MCP mitigation controls** to protect MCP servers:
+While MCP enables powerful AI agent integrations, it also introduces new attack surfaces: unauthorized tool access, confused deputy attacks, and schema manipulation.
+
+Since MCP operates over standard HTTP with JSON-RPC payloads, Wallarm's [built-in attack detection](../about-wallarm/protecting-against-attacks.md) — including SQL injection, path traversal, XSS, and other [OWASP threats](../attacks-vulns-list.md) — applies to MCP traffic automatically, with no additional configuration required.
+
+On top of that, Wallarm provides three dedicated **MCP mitigation controls** to address MCP-specific threats:
 
 * [**ACL Policy**](#acl-policy) - Controls who can access specific MCP methods and primitives
 * [**Request Verification**](#request-verification) - Validates that session context parameters (e.g., JWT scopes) contain expected values
@@ -143,19 +147,3 @@ When a violation is detected, an **Invalid Tool Call** attack is registered. Thi
 Attacks detected by MCP mitigation controls are displayed in Wallarm Console → **API Sessions** → **MCP Sessions** tab. Each session shows the MCP server, requested primitives, and individual requests with their MCP method and primitive name.
 
 In the request details, the attack type and back-link to the mitigation control that triggered detection are displayed.
-
-## AI Protection tab
-
-MCP mitigation controls are displayed in a dedicated **AI Protection** tab within the Mitigation Controls section. The tab provides an MCP-oriented view with the following columns:
-
-| Column | Description |
-|---|---|
-| **Title** | Name of the mitigation control. |
-| **MCP Server** | The MCP server URI the control is applied to. |
-| **Created by** | Who created the control. |
-| **Updated** | When the control was last modified. |
-| **Methods** | MCP methods the control targets (e.g., `tools/call`). |
-| **Primitives** | MCP primitive names the control targets. |
-| **Triggered** | Number of times the control was triggered in the last 7 days. Not applicable for ACL policies. |
-| **Mode** | Current mode (Monitoring/Blocking for verification and schema enforcement; Allow/Deny for ACL). |
-| **On/Off** | Toggle to enable or disable the control. |
