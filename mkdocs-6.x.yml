@@ -34,7 +34,7 @@ nav:
     - Overview: api-discovery/overview.md
 
     - Exploring Your APIs:
-      - API Inventory: api-discovery/exploring.md
+      - API Inventory & MCP Servers: api-discovery/exploring.md
       - Dashboard: api-discovery/dashboard.md
       - Track API and MCP Changes: api-discovery/track-changes.md
 

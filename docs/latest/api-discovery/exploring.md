@@ -1,14 +1,14 @@
-# Exploring API Inventory <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Exploring API Inventory and MCP Servers <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-As soon as the [API Discovery](overview.md) module has built the catalog of your endpoints and MCP servers (your API inventory), you can explore it in the **API Discovery** section of Wallarm Console. Learn from this article how to go through the discovered data.
+As soon as the [API Discovery](overview.md) module has built the catalog of your API endpoints and MCP servers, you can explore it in the **API Discovery** section of Wallarm Console. The section has two tabs: **APIs** for REST, GraphQL, SOAP, and gRPC endpoints, and **MCP Servers** for discovered MCP servers and their primitives. Learn from this article how to go through the discovered data.
 
-## Endpoints
+## API endpoints
 
-Explore your discovered API inventory using the **API Discovery** section in the [US](https://us1.my.wallarm.com/api-discovery) or [EU](https://my.wallarm.com/api-discovery), or [ME](https://me1.my.wallarm.com/api-discovery) Cloud.
+Explore your discovered API endpoints using the **APIs** tab of the **API Discovery** section in the [US](https://us1.my.wallarm.com/api-discovery) or [EU](https://my.wallarm.com/api-discovery), or [ME](https://me1.my.wallarm.com/api-discovery) Cloud.
 
 ![API Discovery - built API inventory](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-built-inventory.png)
 
-By default, endpoints and operations are sorted by host/endpoint or operation name. Also, **Group by host** is on. With grouping by host disabled, you can sort endpoints by risk. For MCP servers, primitives are grouped by MCP server (**Group by MCP server**).
+By default, endpoints and operations are sorted by host/endpoint or operation name. Also, **Group by host** is on. With grouping by host disabled, you can sort endpoints by risk.
 
 ### Filtering
 
@@ -37,11 +37,11 @@ Once labels are assigned, use the **Label** filter to quickly search and isolate
 
 Note that several labels can be assigned to the same endpoint.
 
-## Endpoint details view
+## Details view
 
-Clicking an endpoint or operation opens its details in a **full-screen page**.
+Clicking an endpoint, operation, or MCP primitive opens its details in a **full-screen page**.
 
-Each endpoint details page has a **unique URL** that you can share with colleagues or clients for direct access to a specific endpoint.
+Each details page has a **unique URL** that you can share with colleagues or clients for direct access.
 
 When you navigate back from the details page, all your previously applied **filters are preserved**, so you can continue working with the filtered list without re-applying them.
 
@@ -203,13 +203,13 @@ Each parameter information also includes:
 * Presence and type of sensitive data transmitted by this parameter
 * Date and time when parameter value was last transferred by requests
 
-## Endpoint activities
+## Activities
 
-The number of requests related to the endpoint is displayed in the **Requests** column. Click this number to open the [**API Sessions**](../api-sessions/overview.md) section with the list of user sessions for the last week with these requests.
+The number of requests related to the endpoint or MCP primitive is displayed in the **Requests** column. Click this number to open the [**API Sessions**](../api-sessions/overview.md) section (or [**MCP Sessions**](../api-sessions/mcp-sessions.md) for MCP primitives) with the list of sessions for the last week containing these requests.
 
-Within each found session, only requests to your endpoint will be initially displayed - in session, remove filter by endpoint to see all requests for context.
+Within each found session, only requests to your endpoint or primitive will be initially displayed — in session, remove the filter to see all requests for context.
 
-A structured view of session activity helps in understanding your endpoint place in malicious and legitimate activities, its relation to sensitive business flows and required protection measures.
+A structured view of session activity helps in understanding your endpoint or primitive's place in malicious and legitimate activities, its relation to sensitive business flows and required protection measures.
 
 ## Variability
 
