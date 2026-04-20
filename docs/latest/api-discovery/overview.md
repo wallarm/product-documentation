@@ -64,7 +64,9 @@ API Discovery relies on request statistics and uses sophisticated algorithms to 
 
 API Discovery uses a hybrid approach to conduct analysis locally and in the Cloud. This approach enables a [privacy-first process](#security-of-data-uploaded-to-the-wallarm-cloud) where request data and sensitive data are kept locally while using the power of the Cloud for the statistics analysis:
 
-1. API Discovery analyzes legitimate traffic locally. Wallarm analyzes the endpoints to which requests are made and what parameters are passed and returned.
+1. API Discovery analyzes legitimate traffic locally — it inspects which endpoints are requested and what parameters are passed in requests and responses.
+
+    For REST, GraphQL, SOAP, and gRPC, the node sends ~10% of responses for analysis. For MCP, it sends 100% to ensure complete capture of tool schemas from `tools/list`, `resources/list`, and `prompts/list` responses.
 1. According to this data, statistics are made and sent to the Cloud.
 1. Wallarm Cloud aggregates the received statistics and builds an [API description](exploring.md) on its basis.
 
