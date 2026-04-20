@@ -43,7 +43,7 @@ Thus, when you [customize how requests are grouped](setup.md#session-grouping) i
 
 ## MCP Sessions
 
-Wallarm provides dedicated support for [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) sessions, displayed in a separate **MCP Sessions** tab. MCP sessions group AI agent interactions with MCP servers — tool calls, resource reads, and prompt invocations — into logical sessions based on the `Mcp-Session-Id` header.
+Wallarm provides dedicated support for [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) sessions, displayed in a separate **MCP Sessions** tab. MCP sessions group AI agent interactions with MCP servers — tool calls, resource reads, and prompt invocations — into logical sessions based on the `MCP-SESSION-ID` header.
 
 See [MCP Sessions](mcp-sessions.md) for details on setup and usage.
 

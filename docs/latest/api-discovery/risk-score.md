@@ -1,6 +1,6 @@
 # Endpoint and MCP Primitive Risk Score <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-[API Discovery](overview.md) automatically calculates a **risk score** for each endpoint and MCP primitive in your API inventory. The risk score allows you to understand which endpoints and MCP primitives are most likely to be an attack target and therefore should be the focus of your security efforts.
+[API Discovery](overview.md) automatically calculates a **risk score** for each API endpoint and MCP primitive in your inventory. The risk score allows you to understand which endpoints and MCP primitives are most likely to be an attack target and therefore should be the focus of your security efforts.
 
 ## Risk score factors
 

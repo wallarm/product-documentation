@@ -119,7 +119,7 @@ The Tool Input Schema Enforcement control automatically validates that MCP `tool
     * Whether any unknown parameters are present.
 3. If validation fails, the configured action (monitor or block) is applied.
 
-The schema is maintained per MCP server — schemas of different MCP servers do not interfere with each other. When a schema change is detected (new tools added or removed), the control automatically switches to **Monitoring** mode for 15 minutes to avoid false positives during the transition.
+The schema is maintained per MCP server — schemas of different MCP servers do not interfere with each other.
 
 ### Configuration
 

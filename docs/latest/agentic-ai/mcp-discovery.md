@@ -1,6 +1,6 @@
 # MCP Server Discovery <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm's [API Discovery](../api-discovery/overview.md) detects [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) servers in your traffic, captures their primitive inventory, and displays them in the API inventory alongside your REST, GraphQL, SOAP, and gRPC endpoints.
+Wallarm's [API Discovery](../api-discovery/overview.md) detects [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) servers in your traffic, captures their primitives, and displays them in the API inventory alongside your REST, GraphQL, SOAP, and gRPC endpoints.
 
 ## Enabling MCP discovery
 
@@ -47,6 +47,6 @@ Discovered MCP servers can be used as a scope when creating [MCP mitigation cont
 
 ## Auto-created MCP Session Configuration
 
-When an MCP server is discovered, Wallarm automatically creates an [MCP Session Configuration](../api-sessions/mcp-sessions.md#mcp-session-configuration) for it with default session identification rules (extracting session ID from the `Mcp-Session-Id` header). This enables [MCP Sessions](../api-sessions/mcp-sessions.md) — grouping MCP requests into logical sessions visible in the **MCP Sessions** tab.
+When an MCP server is discovered, Wallarm automatically creates an [MCP Session Configuration](../api-sessions/mcp-sessions.md#mcp-session-configuration) for it with default session identification rules (extracting session ID from the `MCP-SESSION-ID` header). This enables [MCP Sessions](../api-sessions/mcp-sessions.md) — grouping MCP requests into logical sessions visible in the **MCP Sessions** tab.
 
 You can customize the auto-created session configuration to extract additional parameters such as user identity and role. See [MCP Session Configuration](../api-sessions/mcp-sessions.md#mcp-session-configuration) for details.

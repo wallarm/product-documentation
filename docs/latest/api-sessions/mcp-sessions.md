@@ -8,12 +8,12 @@ MCP sessions are displayed in a dedicated **MCP Sessions** tab in Wallarm Consol
 
 ## How MCP Sessions work
 
-When Wallarm detects MCP traffic (JSON-RPC 2.0 requests with MCP-specific methods), it groups requests into sessions based on the `Mcp-Session-Id` header — a standard MCP protocol header that identifies a session.
+When Wallarm detects MCP traffic (JSON-RPC 2.0 requests with MCP-specific methods), it groups requests into sessions based on the `MCP-SESSION-ID` header — a standard MCP protocol header that identifies a session.
 
 For each MCP session, Wallarm displays:
 
 * **MCP server** — the host and path of the MCP server endpoint
-* **Session ID** — the value of the `Mcp-Session-Id` header
+* **Session ID** — the value of the `MCP-SESSION-ID` header
 * **User** and **Role** — extracted from session context if [configured](#mcp-session-configuration)
 * **Methods** — MCP methods called during the session (`tools/call`, `resources/read`, `prompts/get`, etc.)
 * **Primitives** — names of tools, resources, or prompts accessed during the session
@@ -28,9 +28,9 @@ You can click on any session to see the full request sequence, with each request
 
 ## MCP Session Configuration
 
-MCP sessions are detected automatically — the Wallarm node recognizes MCP traffic by JSON-RPC 2.0 patterns and groups requests into sessions using the standard `Mcp-Session-Id` header. No manual configuration is required for basic MCP session detection.
+MCP sessions are detected automatically — the Wallarm node recognizes MCP traffic by JSON-RPC 2.0 patterns and groups requests into sessions using the standard `MCP-SESSION-ID` header. No manual configuration is required for basic MCP session detection.
 
-When [API Discovery](../api-discovery/overview.md) detects an MCP server, it automatically creates an MCP Session Configuration with default rules (extracting session ID from the `Mcp-Session-Id` header). You can view and customize these auto-created configurations or create new ones manually.
+When [API Discovery](../api-discovery/overview.md) detects an MCP server, it automatically creates an MCP Session Configuration with default rules (extracting session ID from the `MCP-SESSION-ID` header). You can view and customize these auto-created configurations or create new ones manually.
 
 You can optionally add **MCP session context parameters** to extract additional information from MCP traffic, such as user identity and role. This enables:
 
@@ -52,7 +52,7 @@ To configure MCP session context parameters:
 
     | Type | Description |
     |---|---|
-    | **MCP Session ID** | Location of the session identifier. By default, the node uses the `Mcp-Session-Id` header. Set this only if your MCP server uses a non-standard session ID location. |
+    | **MCP Session ID** | Location of the session identifier. By default, the node uses the `MCP-SESSION-ID` header. Set this only if your MCP server uses a non-standard session ID location. |
     | **MCP User** | Location of the user identifier (e.g., a JWT claim or a custom header). |
     | **MCP Role** | Location of the user role (e.g., a JWT claim). |
 
