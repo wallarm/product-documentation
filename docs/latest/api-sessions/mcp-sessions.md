@@ -79,6 +79,6 @@ When viewing request details within an MCP session, the following MCP-specific i
 
 Attacks detected by [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md) are displayed directly within the MCP session where they occurred. In the request details, you can see:
 
-* The attack type (ACL Violation, MCP Request Verification Failure, Invalid Tool Call)
+* The attack type (**ACL violation**, **MCP request verification failure**, **Invalid tool call**)
 * A link to the mitigation control that triggered the detection
 * The full request content that caused the violation
