@@ -154,7 +154,7 @@ Once an MCP server endpoint is discovered, API Discovery captures the server's p
 * **Resources** — data and files available for reading (e.g., `crm://legal/nda`)
 * **Prompts** — parametrized templates for common workflows (e.g., `account_research_prompt`)
 
-Service methods such as `initialize`, `ping`, `resources/subscribe`, `completion/complete`, and `logging/setLevel` are automatically filtered out and do not appear as discovered primitives.
+Service methods such as `ping`, `resources/subscribe`, `completion/complete`, and `logging/setLevel` are automatically filtered out and do not appear as discovered primitives.
 
 The Node automatically enables 100% response parsing for discovered MCP endpoints to ensure complete schema capture.
 
