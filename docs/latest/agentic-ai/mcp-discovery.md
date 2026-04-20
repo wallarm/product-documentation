@@ -47,6 +47,6 @@ Discovered MCP servers can be used as a scope when creating [MCP mitigation cont
 
 ## Auto-created MCP Session Configuration
 
-When an MCP server is discovered, Wallarm automatically creates an [MCP Session Configuration](../api-sessions/mcp-sessions.md#mcp-session-configuration) for it with default session identification rules (extracting session ID from the `MCP-SESSION-ID` header). This enables [MCP Sessions](../api-sessions/mcp-sessions.md) — grouping MCP requests into logical sessions visible in the **MCP Sessions** tab.
+Within 30 minutes of discovering an MCP server, Wallarm automatically creates an [MCP Session Configuration](../api-sessions/mcp-sessions.md#mcp-session-configuration) for it with default session identification rules (extracting session ID from the `MCP-SESSION-ID` header). This enables [MCP Sessions](../api-sessions/mcp-sessions.md) — grouping MCP requests into logical sessions visible in the **MCP Sessions** tab.
 
 You can customize the auto-created session configuration to extract additional parameters such as user identity and role. See [MCP Session Configuration](../api-sessions/mcp-sessions.md#mcp-session-configuration) for details.
