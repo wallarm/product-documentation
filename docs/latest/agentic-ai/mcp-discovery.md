@@ -15,7 +15,7 @@ MCP discovery is disabled by default. To enable it, select the **MCP** protocol 
 
 ## How MCP detection works
 
-The Wallarm node identifies MCP traffic by detecting JSON-RPC 2.0 requests with MCP-specific methods combined with the `MCP-Protocol-Version` header — a standard MCP protocol header sent by all MCP clients. Once detected, the endpoint is added to the API inventory with the **MCP** protocol label.
+The Wallarm node identifies MCP traffic by detecting JSON-RPC 2.0 requests with MCP-specific methods. Once detected, the endpoint is added to the API inventory with the **MCP** protocol label.
 
 ![Discovered MCP Servers](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-mcp-servers.png)
 

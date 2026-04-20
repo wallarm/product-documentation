@@ -18,7 +18,7 @@ These controls appear in Wallarm Console under **Mitigation Controls** → **AI 
 
 ## How MCP protection works
 
-The Wallarm node automatically detects MCP traffic by recognizing JSON-RPC 2.0 requests with MCP-specific methods and the `MCP-Protocol-Version` header. Once MCP traffic is identified, you can create mitigation controls that define protection policies. Each control is scoped to a specific MCP server URI and can target specific MCP methods and primitives.
+The Wallarm node automatically detects MCP traffic by recognizing JSON-RPC 2.0 requests with MCP-specific methods. Once MCP traffic is identified, you can create mitigation controls that define protection policies. Each control is scoped to a specific MCP server URI and can target specific MCP methods and primitives.
 
 The node analyzes MCP responses to capture `tools/list` data and maintain an up-to-date tool schema for each server. The captured schema is uploaded to the Wallarm Cloud and distributed to all nodes in the cluster, so every node has access to up-to-date tool definitions — this is used by the [Tool Input Schema Enforcement](#tool-input-schema-enforcement) control.
 

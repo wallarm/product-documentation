@@ -144,11 +144,7 @@ Only general gRPC services that use [protocol buffers](https://protobuf.dev/) ar
 
 ##### MCP
 
-**Detection method**: analyzes JSON-RPC 2.0 request/response patterns specific to the [Model Context Protocol](https://modelcontextprotocol.io/).
-**Key indicators**:
-
-* JSON-RPC 2.0 payload with MCP-specific methods (`initialize`, `tools/list`, `tools/call`, `resources/list`, `resources/read`, `prompts/list`, `prompts/get`, etc.)
-* `MCP-Protocol-Version` header presence (primary indicator used to distinguish MCP from generic JSON-RPC)
+**Detection method**: analyzes JSON-RPC 2.0 request/response structure for patterns specific to the [Model Context Protocol](https://modelcontextprotocol.io/), such as MCP-specific method names and protocol headers. For instance, `initialize`, `tools/list`, `tools/call`, `resources/list`, `resources/read`, `prompts/list`, `prompts/get`, etc.
 
 Once an MCP server endpoint is discovered, API Discovery captures the server's primitives:
 
