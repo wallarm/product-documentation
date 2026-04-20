@@ -39,7 +39,7 @@ For each discovered MCP server, the API Discovery UI displays:
 * Resource MIME types
 * Request counters for the last 7 days
 
-See [Exploring API Inventory → MCP primitive details](../api-discovery/exploring.md#mcp-primitive-details) for more information on what is displayed for each primitive type.
+See [Exploring API Inventory and MCP Servers → MCP primitive details](../api-discovery/exploring.md#mcp-primitive-details) for more information on what is displayed for each primitive type.
 
 ## Using discovered MCP servers for protection
 
