@@ -21,6 +21,7 @@ Among a wide range of API endpoint filters, you can choose the ones correspondin
 * Find the endpoints being used to upload data to your server by the PUT or POST calls (REST) or mutations (GraphQL) (**API protocols** filter with methods for REST and operation types for GraphQL). Since such endpoints are a frequent attack target, they should be well secured. Using this kind of request you can check that endpoints are known to the team and are well secured from attacks.
 * Find the endpoints processing sensitive data to ensure they are properly secured.
 * Find the endpoints of a deprecated API version (e.g. by searching `/v1`) and make sure that they are not used by clients.
+* Find endpoints without authentication by using the **Authentication flow** filter and selecting **No authentication**. This helps identify potential security risks where endpoints may be unprotected.
 
 ### Labeling
 
@@ -43,6 +44,26 @@ Clicking an endpoint or operation opens its details in a **full-screen page**.
 Each endpoint details page has a **unique URL** that you can share with colleagues or clients for direct access to a specific endpoint.
 
 When you navigate back from the details page, all your previously applied **filters are preserved**, so you can continue working with the filtered list without re-applying them.
+
+### Authentication flow
+
+In the endpoint details sidebar, the **Authentication** section shows the detected authentication method(s) for this endpoint. This information helps you verify that endpoints have proper authentication mechanisms in place.
+
+<!-- TODO: add screenshot -->
+
+The authentication flow can include:
+
+* **No authentication** - The endpoint does not use any recognized authentication methods
+* **Basic** - HTTP Basic authentication
+* **Bearer token** - Bearer token in Authorization header
+* **API key** - API key in headers or query parameters
+* **Cookie authentication** - Session-based authentication using cookies
+* **OAuth/OpenID Connect** - OAuth 2.0 or OpenID Connect flows
+* **AWS signature** - AWS request signing
+* **Custom authentication** - Other authentication patterns detected
+* **Multiple types** - Endpoints that support multiple authentication methods
+
+Endpoints without authentication are highlighted as potential security risks and can be filtered using the **Authentication flow** filter in the main API Discovery view.
 
 ### REST endpoint details
 

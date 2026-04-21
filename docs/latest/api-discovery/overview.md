@@ -44,6 +44,7 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 * Have a full visibility into the whole API estate.
 * See what data ([REST](exploring.md#rest-endpoint-details), [GraphQL](exploring.md#graphql-operation-details), [SOAP](exploring.md#soap-operation-details), [gRPC](exploring.md#grpc-operation-details)) is going into and out of the APIs.
 * Filter APIs that consume and carry [sensitive data](#sensitive-data-detection).
+* Filter APIs that have no [authentication](exploring.md#authentication-flow).
 * Understand which endpoints are [most likely](risk-score.md) to be an attack target.
 * Find endpoints that have [security issues](../api-attack-surface/security-issues.md) (vulnerabilities) and navigate from endpoint details to full descriptions and mitigation methods.
 * [Track changes](track-changes.md) in API that took place within the selected period of time.
@@ -71,7 +72,7 @@ The API Discovery module bases noise detection on the two major traffic paramete
 
 * **Endpoint stability** - at least specific **number of requests** should be registered for the endpoint for it to be displayed by API Discovery AND and at least one of them must be outside the **timeframe**.
 
-    This settings aim to avoid showing API entries, that had no traffic or had a traffic for a short timeframe only - they are considered unstable. Even if the specific endpoint was requested huge amount of times, but just within a short timeframe, there’s no need to consider this one-time spike as stable API endpoint.
+    This settings aim to avoid showing API entries, that had no traffic or had a traffic for a short timeframe only - they are considered unstable. Even if the specific endpoint was requested huge amount of times, but just within a short timeframe, there's no need to consider this one-time spike as stable API endpoint.
 
     ![API Discovery - endpoint stability](../images/about-wallarm-waf/api-discovery/api-discovery-endpoint-stability.png)
 
@@ -149,6 +150,29 @@ Only general gRPC services that use [protocol buffers](https://protobuf.dev/) ar
 1. **Multipart request filtering** - multipart requests with header parts are not processed.
 1. **Base64 content filtering** - request points ending with "base64" are excluded.
 1. **Empty value filtering** - request points with empty values are excluded in most contexts.
+
+### Authentication flow detection
+
+API Discovery analyzes the HTTP headers and request parameters present in the traffic to identify the **authentication flow** used by each endpoint. This detection helps identify endpoints that may lack proper authentication and could be potential security risks.
+
+The module recognizes multiple authentication patterns based on well-known frameworks and standards:
+
+| Header | Pattern | Authentication flow |
+| --- | --- | --- |
+| `authorization` | Basic authentication format | Basic |
+| `authorization` | Bearer token format | Bearer token |
+| `authorization` | AWS4-HMAC-SHA256 signature | AWS signature |
+| `authorization` | NTLM/Negotiate pattern | NTLM |
+| `authorization` | Digest authentication | Digest authentication |
+| `authorization` | Hawk authentication | Hawk |
+| `authorization` | JWT tokens with specific claims | OAuth/OpenID Connect |
+| `x-api-key` | API key patterns | API key |
+| `cookie` / `set-cookie` | Session identifiers | Cookie authentication |
+| Various headers | CSRF tokens | CSRF protection |
+| `x-forwarded-client-cert` | Client certificates | mTLS |
+| Various custom headers | Access/auth tokens | Custom authentication |
+
+Authentication flow information is displayed in the endpoint details and can be used for filtering endpoints without proper authentication.
 
 ### Sensitive data detection
 
