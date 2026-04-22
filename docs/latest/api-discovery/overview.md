@@ -153,26 +153,9 @@ Only general gRPC services that use [protocol buffers](https://protobuf.dev/) ar
 
 ### Authentication flow detection
 
-API Discovery analyzes the HTTP headers and request parameters present in the traffic to identify the **authentication flow** used by each endpoint. This detection helps identify endpoints that may lack proper authentication and could be potential security risks.
+API Discovery automatically detects [authentication flows](authentication.md) used by each endpoint by analyzing HTTP headers and request parameters in the traffic. This helps identify endpoints that lack proper authentication — the #1 API security risk.
 
-The module recognizes multiple authentication patterns based on well-known frameworks and standards:
-
-| Header | Pattern | Authentication flow |
-| --- | --- | --- |
-| `authorization` | Basic authentication format | Basic |
-| `authorization` | Bearer token format | Bearer token |
-| `authorization` | AWS4-HMAC-SHA256 signature | AWS signature |
-| `authorization` | NTLM/Negotiate pattern | NTLM |
-| `authorization` | Digest authentication | Digest authentication |
-| `authorization` | Hawk authentication | Hawk |
-| `authorization` | JWT tokens with specific claims | OAuth/OpenID Connect |
-| `x-api-key` | API key patterns | API key |
-| `cookie` / `set-cookie` | Session identifiers | Cookie authentication |
-| Various headers | CSRF tokens | CSRF protection |
-| `x-forwarded-client-cert` | Client certificates | mTLS |
-| Various custom headers | Access/auth tokens | Custom authentication |
-
-Authentication flow information is displayed in the endpoint details and can be used for filtering endpoints without proper authentication.
+<!-- TODO: add screenshot -->
 
 ### Sensitive data detection
 

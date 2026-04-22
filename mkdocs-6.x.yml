@@ -42,6 +42,7 @@ nav:
       - Risk Score: api-discovery/risk-score.md
       - Rogue APIs (Shadow/Zombie): api-discovery/rogue-api.md
       - Sensitive Business Flows: api-discovery/sbf.md
+      - Authentication Flows: api-discovery/authentication.md
       - Sensitive Data Detection: api-discovery/sensitive-data.md
 
     - Setup & Configuration: api-discovery/setup.md

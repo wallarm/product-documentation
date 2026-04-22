@@ -45,26 +45,6 @@ Each endpoint details page has a **unique URL** that you can share with colleagu
 
 When you navigate back from the details page, all your previously applied **filters are preserved**, so you can continue working with the filtered list without re-applying them.
 
-### Authentication flow
-
-In the endpoint details sidebar, the **Authentication** section shows the detected authentication method(s) for this endpoint. This information helps you verify that endpoints have proper authentication mechanisms in place.
-
-<!-- TODO: add screenshot -->
-
-The authentication flow can include:
-
-* **No authentication** - The endpoint does not use any recognized authentication methods
-* **Basic** - HTTP Basic authentication
-* **Bearer token** - Bearer token in Authorization header
-* **API key** - API key in headers or query parameters
-* **Cookie authentication** - Session-based authentication using cookies
-* **OAuth/OpenID Connect** - OAuth 2.0 or OpenID Connect flows
-* **AWS signature** - AWS request signing
-* **Custom authentication** - Other authentication patterns detected
-* **Multiple types** - Endpoints that support multiple authentication methods
-
-Endpoints without authentication are highlighted as potential security risks and can be filtered using the **Authentication flow** filter in the main API Discovery view.
-
 ### REST endpoint details
 
 <a name="params"></a>Click the REST endpoint to open its full-screen details page, including transferred sensitive data, risk score and what contributes to it, headers and parameters of requests and responses:
@@ -86,6 +66,7 @@ Each request/response parameter information includes:
 
 * [Type/format](#data_format_rest) of data sent in this parameter
 * Date and time when parameter value was last transferred by requests
+* [Authentication flows](authentication.md) and their coverage status — authentication type, per-parameter coverage percentage, parameter key and path, and last seen timestamp
 
 <a id="data_format_rest"></a>**REST format and data type**
 
@@ -109,8 +90,9 @@ Each request/response parameter information includes:
 * Parameter name and the part of request/response this parameter belongs to
 * Path: the hierarchical location of a parameter within a GraphQL query structure (not displayed, if all parameters are stored in the same root location)
 * Information about parameter changes (new, unused)
-* Presence and type of sensitive data transmitted by this parameter, including:
+* Presence and type of sensitive data transmitted by this parameter
 * Date and time when parameter value was last transferred by requests
+* [Authentication flows](authentication.md) and their coverage status — authentication type, per-parameter coverage percentage, parameter key and path, and last seen timestamp
 
 <a name="data_format_graphql"></a>**Format and data type**
 
@@ -138,6 +120,7 @@ Each request/response XML parameter information includes:
 * Presence and type of sensitive data transmitted by this parameter
 * Information about parameter changes (new, unused)
 * Date and time when parameter value was last transferred by requests
+* [Authentication flows](authentication.md) and their coverage status — authentication type, per-parameter coverage percentage, parameter key and path, and last seen timestamp
 
 <a name="data_format_soap"></a>**Format and data type**
 
@@ -168,6 +151,7 @@ Each request/response parameter information includes:
 * Information about parameter changes (new, unused)
 * Presence and type of sensitive data transmitted by this parameter
 * Date and time when parameter value was last transferred by requests
+* [Authentication flows](authentication.md) and their coverage status — authentication type, per-parameter coverage percentage, parameter key and path, and last seen timestamp
 
 **Format and data type**
 
