@@ -23,8 +23,8 @@ new attack types in logging variables and search bars?
 
 * Added support for NGINX mainline 1.29.8
 * Added support for NGINX stable 1.30.0
-* Fixed the [file upload restriction](../api-protection/file-upload-restriction.md) policy not enforcing the maximum request size limit when a [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) event occurred during request body inspection
 * Fixed intermittent errors in custom ruleset loading and GraphQL processing
+* Fixed NGINX worker crash (signal 11) when serving [custom blocking pages](../admin-en/configuration-guides/configure-block-page-and-code.md) configured via file path while response header modification rules were active
 
 ### 6.11.2 (2026-03-27)
 
@@ -234,8 +234,8 @@ new attack types in logging variables and search bars?
 
 ### 6.11.3 (2026-04-09)
 
-* Fixed the [file upload restriction](../api-protection/file-upload-restriction.md) policy not enforcing the maximum request size limit when a [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) event occurred during request body inspection
 * Fixed intermittent errors in custom ruleset loading and GraphQL processing
+* Fixed NGINX worker crash (signal 11) when serving [custom blocking pages](../admin-en/configuration-guides/configure-block-page-and-code.md) configured via file path while response header modification rules were active
 
 ### 6.11.2 (2026-03-27)
 
@@ -456,8 +456,8 @@ new attack types in logging variables and search bars?
 
 ### 6.11.3 (2026-04-09)
 
-* Fixed the [file upload restriction](../api-protection/file-upload-restriction.md) policy not enforcing the maximum request size limit when a [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) event occurred during request body inspection
 * Fixed intermittent errors in custom ruleset loading and GraphQL processing
+* Fixed NGINX worker crash (signal 11) when serving [custom blocking pages](../admin-en/configuration-guides/configure-block-page-and-code.md) configured via file path while response header modification rules were active
 
 ### 6.11.2 (2026-03-27)
 
@@ -659,8 +659,8 @@ new attack types in logging variables and search bars?
 
 ### 6.11.3 (2026-04-09)
 
-* Fixed the [file upload restriction](../api-protection/file-upload-restriction.md) policy not enforcing the maximum request size limit when a [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) event occurred during request body inspection
 * Fixed intermittent errors in custom ruleset loading and GraphQL processing
+* Fixed NGINX worker crash (signal 11) when serving [custom blocking pages](../admin-en/configuration-guides/configure-block-page-and-code.md) configured via file path while response header modification rules were active
 
 ### 6.11.2 (2026-03-27)
 
@@ -865,8 +865,8 @@ new attack types in logging variables and search bars?
 
 ### 6.11.3 (2026-04-09)
 
-* Fixed the [file upload restriction](../api-protection/file-upload-restriction.md) policy not enforcing the maximum request size limit when a [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) event occurred during request body inspection
 * Fixed intermittent errors in custom ruleset loading and GraphQL processing
+* Fixed NGINX worker crash (signal 11) when serving [custom blocking pages](../admin-en/configuration-guides/configure-block-page-and-code.md) configured via file path while response header modification rules were active
 
 ### 6.11.2 (2026-03-27)
 
@@ -1034,8 +1034,8 @@ new attack types in logging variables and search bars?
 
 ### wallarm-node-6-11-3-20260409-XXXXXX (2026-04-09)
 
-* Fixed the [file upload restriction](../api-protection/file-upload-restriction.md) policy not enforcing the maximum request size limit when a [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) event occurred during request body inspection
 * Fixed intermittent errors in custom ruleset loading and GraphQL processing
+* Fixed NGINX worker crash (signal 11) when serving [custom blocking pages](../admin-en/configuration-guides/configure-block-page-and-code.md) configured via file path while response header modification rules were active
 
 ### wallarm-node-6-11-2-20260327-122303 (2026-03-27)
 
