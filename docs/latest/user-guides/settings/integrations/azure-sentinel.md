@@ -442,7 +442,7 @@ All events are sent to a single custom table (e.g., `WallarmSentinel_CL`). The `
 
 The previous version of the Microsoft Sentinel integration used the Azure Log Analytics Data Collector API with **Workspace ID** and **Primary key** for authentication. This API will be [deprecated by Microsoft on July 1, 2026](https://techcommunity.microsoft.com/blog/microsoft-security-blog/planning-your-move-to-microsoft-defender-portal-for-all-microsoft-sentinel-custo/4428613).
 
-In the Wallarm Console, the legacy integration remains available with a **Legacy** suffix in its name. It continues to work until the Microsoft deprecation date.
+If you already have an active legacy integration, it remains visible in the Wallarm Console with a **Legacy** suffix and continues to work until the Microsoft deprecation date. For new setups, only the new integration is available.
 
 ### Legacy integration setup reference
 
