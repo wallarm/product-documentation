@@ -2,13 +2,9 @@
 
 Wallarm's [API Discovery](../api-discovery/overview.md) detects [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) servers in your traffic, captures their primitives, and displays them in the API inventory alongside your REST, GraphQL, SOAP, and gRPC endpoints.
 
-## Enabling MCP discovery
-
-MCP discovery is disabled by default. To enable it, select the **MCP** protocol in **API Discovery** → **Configure** → **Settings** (see [API Discovery Setup](../api-discovery/setup.md#general-api-discovery-settings)).
-
-![API Discovery, MCP Discovery enabled in Settings](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-configure-settings-mcp-highlight.png)
-
 ## Requirements
+
+MCP discovery is enabled by default when API Discovery is active — no additional configuration is needed.
 
 * The [Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription plan
 * [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.12.0-rc1 or higher, or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.25.0-rc1 or higher

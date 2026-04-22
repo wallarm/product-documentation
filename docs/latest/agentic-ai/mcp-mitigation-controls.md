@@ -10,7 +10,7 @@ Wallarm protects [MCP](https://modelcontextprotocol.io/) servers at two levels. 
 
 * The [Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription plan
 * [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.12.0 or higher or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.23.0 or higher
-* MCP protocol enabled in [API Discovery settings](../api-discovery/setup.md#general-api-discovery-settings)
+* [API Discovery](../api-discovery/overview.md) active (MCP discovery is enabled by default)
 * For ACL policies by user or role: configure MCP user and role extraction in [MCP session context parameters](../api-sessions/mcp-sessions.md#mcp-session-configuration). IP address and country are available automatically.
 * For request verification: any parameters you want to check (e.g., JWT claims) must be exported as [session context parameters](../api-sessions/setup.md#session-context) so the node can evaluate them.
 
