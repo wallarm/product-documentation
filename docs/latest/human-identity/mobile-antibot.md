@@ -6,7 +6,9 @@
 
 Mobile Antibot is a native SDK (iOS / Android) that verifies device integrity using hardware-backed attestation. It proves that a critical action (e.g., login, checkout) originates from a genuine, untampered application running on a real physical device — not from an emulator, a rooted phone, or a repackaged app binary.
 
-The SDK obtains a short-lived (~30 seconds) token and signs the request body immediately before each protected action. This cycle (`getToken` → `signRequestBody` → send request) is repeated for every critical operation — the token is not reused across multiple API calls.
+The SDK obtains a short-lived (~30 seconds) token and signs the request body immediately before each protected action. This cycle (`getToken()` → `signRequestBody()` → send request) is repeated for every critical operation — the token is not reused across multiple API calls.
+
+Even when the server's verdict is to **block** the device, the SDK still returns a well-formed JWT with a `blocked` claim — enforcement happens on your backend or Wallarm Node, not in the SDK.
 
 Depending on your setup, the result can be enforced by Wallarm's modules or by your own backend logic.
 
@@ -42,7 +44,7 @@ The SDK communicates with the Human Identification Server in two steps: first it
    The SDK sends a challenge request to the Human Identification Server (`POST /v1/m/hid/c`) with the app ID, device ID, and platform. The server returns a nonce and a key status: `new` (first time) or `existing` (returning device).
 
 1. **Attestation or key proof**
-    * **New device**: the SDK generates a key pair inside the device's hardware security module (Secure Enclave on iOS, StrongBox/TEE on Android). The private key never leaves the hardware. The SDK requests a hardware attestation certificate from the OS and submits it to the server (`POST /v1/m/hid/v` with `type: "attestation"`).
+    * **New device**: the SDK generates a key pair inside the device hardware (Secure Enclave on iOS, StrongBox/TEE on Android). The private key never leaves the hardware. The SDK requests a hardware attestation certificate from the OS and submits it to the server (`POST /v1/m/hid/v` with `type: "attestation"`).
     * **Returning device**: the SDK proves it still holds the previously registered private key by signing the challenge nonce (`POST /v1/m/hid/v` with `type: "key_proof"`). No full re-attestation needed.
 
 1. **Server verification**
@@ -51,7 +53,7 @@ The SDK communicates with the Human Identification Server in two steps: first it
     * **iOS**: verifies the App Attest attestation object, validates the AAGUID, and checks the nonce.
 
 1. **Token issuance**
-   On success, the server returns a signed JWT and the SDK makes it available to your code. On failure, the SDK returns an empty token (`isPresent = false` on Android, or throws an error on iOS) so your app can handle it accordingly.
+   On success, the server returns a signed JWT and the SDK makes it available to your code. On failure, the SDK returns an empty token (`isPresent = false` on Android) or throws a `HumanIDError` (iOS) so your app can handle it accordingly.
 
 1. **Request signing**
    The SDK signs the request body of the critical action with the hardware-protected private key. This produces a signature proving the device still holds the key — preventing token theft and replay. Both the token and the signature are attached to the request as headers.
@@ -81,16 +83,37 @@ The SDK communicates with the Human Identification Server in two steps: first it
 
     | Function | What it does |
     | --- | --- |
-    | `SDK(configuration:)` | Creates and configures the SDK instance. Call once at app startup. |
-    | `sdk.authenticate()` | Performs the full challenge-response attestation and returns an `AuthenticationToken`. Call before each critical action. |
-    | `sdk.signRequestBody(body)` | Signs the request body with the hardware-protected key. Returns the `X-HID-Signature` header value. Call for each critical request. |
+    | `HumanIDSDK(config:)` | Creates and configures the SDK instance. Call once at app startup. Throws `HumanIDConfigError` if `applicationID` is blank. |
+    | `sdk.getToken()` | Performs the full challenge-response attestation and returns a `HumanIDToken`. Call before each critical action. |
+    | `sdk.signRequestBody(body)` | Signs the request body with the hardware-protected key. Returns the `X-HID-Signature` header value. Requires a successful `getToken()` call first. |
 
-    **AuthenticationToken:**
+    **HumanIDToken:**
 
     | Property | Type | Description |
     | --- | --- | --- |
-    | `jwt` | String | The JWT token string. |
+    | `value` | String | The JWT token string. |
     | `expiresIn` | Int | Token lifetime in seconds. |
+
+    **Error handling:**
+
+    All SDK methods throw `HumanIDError` (typed throws). Handle errors as follows:
+
+    ```swift
+    do {
+        let token = try await sdk.getToken()
+        let signature = try await sdk.signRequestBody(body)
+        // ...
+    } catch {
+        switch error {
+        case .getTokenFailed(let message):
+            logger.error("getToken failed: \(message)")
+        case .signRequestBodyFailed(let message):
+            logger.error("signRequestBody failed: \(message)")
+        case .unknownError(let message):
+            logger.error("unexpected SDK error: \(message)")
+        }
+    }
+    ```
 
 ### Request headers
 
@@ -98,17 +121,17 @@ The SDK attaches two headers to protected API requests:
 
 | Header | Description |
 | --- | --- |
-| `X-HID-Token` | The JWT from `getToken()` / `authenticate()`. |
+| `X-HID-Token` | The JWT from `getToken()`. |
 | `X-HID-Signature` | Per-request body signature from `signRequestBody()`. Proves the device still holds the hardware key. |
 
 ### Platform details
 
 | | iOS | Android |
 | --- | --- | --- |
-| **Min version** | iOS 14+ | Android 9+ (API level 28) |
+| **Min version** | iOS 18+ | Android 9+ (API level 28) |
 | **Attestation mechanism** | App Attest via Secure Enclave | Key Attestation via StrongBox or TEE |
 | **Security levels** | Production / Development (AAGUID-based) | StrongBox (highest) → TEE (default) → Software (rejected by default) |
-| **Key storage** | Secure Enclave | StrongBox (dedicated HSM) or TEE (ARM TrustZone) |
+| **Key storage** | Secure Enclave | StrongBox (dedicated security chip) or TEE (ARM TrustZone) |
 
 ## Setup
 
@@ -118,10 +141,7 @@ Contact [sales@wallarm.com](mailto:sales@wallarm.com?subject=Human%20Identity%20
 
 The Wallarm team will provide:
 
-* **Human Identification Server endpoint** — the base URL depends on the chosen [Wallarm Cloud](../about-wallarm/overview/#cloud) region:
-
-    * `https://human-id.us-hi.wallarm.com/` for the US Cloud
-    * `https://human-id.eu-hi.wallarm.com/` for the EU Cloud
+* **Human Identification Server endpoint**: `https://mobile.us-hi.wallarm.com`
 * **Application ID** — identifies your application in the HIS and links requests to your configuration.
 * **Mobile SDK package**:
 
@@ -130,7 +150,7 @@ The Wallarm team will provide:
 
 The SDK is provided directly by the Wallarm team during onboarding — it is not available in public package registries.
 
-**Supported platforms**: iOS 14+ / Android 9+ (API level 28).
+**Supported platforms**: iOS 18+ / Android 9+ (API level 28).
 
 ### Step 2: Add the SDK to your project
 
@@ -156,7 +176,7 @@ The SDK is provided directly by the Wallarm team during onboarding — it is not
 
 ### Step 3: Initialize the SDK and protect critical actions
 
-Initialize the SDK once at app startup. Then, before **each critical action**, call `getToken()` / `authenticate()` and `signRequestBody()` to obtain a fresh token and sign the request. The token is short-lived (~30 seconds) and must not be reused across multiple actions.
+Initialize the SDK once at app startup. Then, before **each critical action**, call `getToken()` and `signRequestBody()` to obtain a fresh token and sign the request. The token is short-lived (~30 seconds) and must not be reused across multiple actions.
 
 === "Android (Kotlin)"
 
@@ -167,7 +187,7 @@ Initialize the SDK once at app startup. Then, before **each critical action**, c
     // Initialize once at app startup
     val config = HumanIDConfig(
         clientIDKey = "YOUR_APP_ID",
-        serverUrl = "https://human-id.us-hi.wallarm.com"  // or EU Cloud URL
+        serverUrl = "https://mobile.us-hi.wallarm.com"
     )
     val session = HumanIDSDK.init(context = applicationContext, config = config)
 
@@ -188,27 +208,31 @@ Initialize the SDK once at app startup. Then, before **each critical action**, c
 === "iOS (Swift)"
 
     ```swift
-    import WallarmMobileAntibotSDK
+    import WallarmHumanIDSDK
 
     // Initialize once at app startup
-    let config = Configuration(
-        cloud: .us,          // or .eu, or .custom(url: "https://...")
-        appId: "YOUR_APP_ID"
+    let config = try HumanIDConfig(
+        cloud: .us,
+        applicationID: "YOUR_APP_ID"
     )
-    let sdk = SDK(configuration: config)
+    let sdk = HumanIDSDK(config: config)
 
     // Before EACH critical action (e.g., login, checkout):
-    let token = try await sdk.authenticate()
-    let signature = try await sdk.signRequestBody(bodyData)
+    do {
+        let token = try await sdk.getToken()
+        let signature = try await sdk.signRequestBody(bodyData)
 
-    request.setValue(token.jwt, forHTTPHeaderField: "X-HID-Token")
-    request.setValue(signature, forHTTPHeaderField: "X-HID-Signature")
+        request.setValue(token.value, forHTTPHeaderField: "X-HID-Token")
+        request.setValue(signature, forHTTPHeaderField: "X-HID-Signature")
+    } catch {
+        // error is typed as HumanIDError — see SDK functions section
+    }
 
-    // Repeat authenticate() + signRequestBody() for every critical request
+    // Repeat getToken() + signRequestBody() for every critical request
     ```
 
 !!! warning "One token per action"
-    Do not obtain a token once and reuse it for multiple API calls. Each critical action requires its own `getToken()` / `authenticate()` + `signRequestBody()` cycle. The token is short-lived (~30 seconds) and bound to the specific request.
+    Do not obtain a token once and reuse it for multiple API calls. Each critical action requires its own `getToken()` + `signRequestBody()` cycle. The token is short-lived (~30 seconds) and bound to the specific request.
 
 ### Step 4: Enforce
 
@@ -248,8 +272,7 @@ There are 2 approaches — choose based on your infrastructure:
 
     1. Fetch the JWKS public key from the Human Identification Server:
 
-        * US Cloud: `GET https://human-id.us-hi.wallarm.com/.well-known/jwks.json`
-        * EU Cloud: `GET https://human-id.eu-hi.wallarm.com/.well-known/jwks.json`
+        * US Cloud: `GET https://mobile.us-hi.wallarm.com/.well-known/jwks.json`
     1. Verify the JWT signature.
     1. Check the token expiration.
     1. Optionally, verify the `X-HID-Signature` header against the request body to confirm the request was not tampered with in transit.
@@ -260,8 +283,8 @@ There are 2 approaches — choose based on your infrastructure:
 
 1. Launch your app on a **real device** and trigger a protected action.
 1. Verify that both `X-HID-Token` and `X-HID-Signature` headers are present in the API request.
-1. Confirm that `token.isPresent == true` (Android) or `authenticate()` returns without error (iOS).
-1. Test with an **emulator** — `token.isPresent` should be `false` (Android) or `authenticate()` should throw an error (iOS).
+1. Confirm that `token.isPresent == true` (Android) or `getToken()` returns without error (iOS).
+1. Test with an **emulator** — `token.isPresent` should be `false` (Android) or `getToken()` should throw a `HumanIDError` (iOS).
 
 **Verify that enforcement works:**
 
