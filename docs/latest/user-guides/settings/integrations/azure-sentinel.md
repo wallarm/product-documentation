@@ -9,11 +9,11 @@ On top of that, you can optionally enable:
 
 ## What this setup creates
 
-* One custom table in a Log Analytics Workspace
-* One Data Collection Endpoint (DCE)
-* One Data Collection Rule (DCR) with the Wallarm event schema
-* One Microsoft Entra app registration with a client secret
-* One role assignment: `Monitoring Metrics Publisher` on the DCR
+* One [custom table](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/create-custom-table) in a Log Analytics Workspace
+* One [Data Collection Endpoint (DCE)](https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/data-collection-endpoint-overview)
+* One [Data Collection Rule (DCR)](https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/data-collection-rule-overview) with the Wallarm event schema
+* One [Microsoft Entra app registration](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app) with a client secret
+* One role assignment: [`Monitoring Metrics Publisher`](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/monitor#monitoring-metrics-publisher) on the DCR
 
 ## Prerequisites
 
