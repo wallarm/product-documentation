@@ -379,7 +379,7 @@ nav:
     - SIEM & Analytics:
       - Splunk: user-guides/settings/integrations/splunk.md
       - Sumo Logic: user-guides/settings/integrations/sumologic.md
-      - Microsoft Sentinel: user-guides/settings/integrations/azure-sentinel.md
+      - Azure Monitor Logs / Microsoft Sentinel: user-guides/settings/integrations/azure-sentinel.md
       - Datadog: user-guides/settings/integrations/datadog.md
 
     - Log Collectors:

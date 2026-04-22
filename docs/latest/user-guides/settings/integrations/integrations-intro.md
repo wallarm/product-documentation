@@ -92,8 +92,8 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
         </a>
         <a class="do-card" href="../azure-sentinel/">
             <img class="non-zoomable" src="../../../../images/integration-icons/mssentinel.png" />
-            <h3>Microsoft Sentinel</h3>
-            <p>Log events in Microsoft Azure Sentinel</p>
+            <h3>Azure Monitor Logs / Microsoft Sentinel</h3>
+            <p>Send security events to Azure Monitor Logs and Microsoft Sentinel</p>
         </a>
     </div>
 </div>

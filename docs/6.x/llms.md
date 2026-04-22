@@ -370,7 +370,7 @@ search:
 
 - [Splunk](https://docs.wallarm.com/user-guides/settings/integrations/splunk/): In Splunk UI:
 - [Sumo Logic](https://docs.wallarm.com/user-guides/settings/integrations/sumologic/): In Sumo Logic UI:
-- [Microsoft Sentinel](https://docs.wallarm.com/user-guides/settings/integrations/azure-sentinel/): In the Microsoft UI:
+- [Azure Monitor Logs / Microsoft Sentinel](https://docs.wallarm.com/user-guides/settings/integrations/azure-sentinel/): In the Microsoft Azure portal:
 - [Datadog](https://docs.wallarm.com/user-guides/settings/integrations/datadog/): 1. Open the Datadog UI → Organization Settings → API Keys and generate the API key for the integration with Wallarm.
 #### Log Collectors
 
