@@ -22,6 +22,7 @@ new attack types in logging variables and search bars?
 ### 6.11.3 (2026-04-09)
 
 * Added support for NGINX mainline 1.29.8
+* Added support for NGINX stable 1.30.0
 * Fixed the [file upload restriction](../api-protection/file-upload-restriction.md) policy not enforcing the maximum request size limit when a [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) event occurred during request body inspection
 * Fixed intermittent errors in custom ruleset loading and GraphQL processing
 
