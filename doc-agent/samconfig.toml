@@ -1,0 +1,14 @@
+version = 0.1
+
+[default.deploy.parameters]
+stack_name = "doc-agent"
+resolve_s3 = true
+s3_prefix = "doc-agent"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+disable_rollback = true
+parameter_overrides = "JiraApiTokenArn=\"arn:aws:secretsmanager:us-west-1:459166819286:secret:doc-agent/jira-token-giAgbZ\" GitHubTokenArn=\"arn:aws:secretsmanager:us-west-1:459166819286:secret:doc-agent/github-token-i01vMy\" ClaudeApiKeyArn=\"arn:aws:secretsmanager:us-west-1:459166819286:secret:doc-agent/claude-key-8DZfme\" SlackSigningSecretArn=\"arn:aws:secretsmanager:us-west-1:459166819286:secret:doc-agent/slack-signing-secret-mzMfqL\" SlackBotTokenArn=\"arn:aws:secretsmanager:us-west-1:459166819286:secret:doc-agent/slack-bot-token-NrlhJ7\" JiraUserEmail=\"testsupportcase@wallarm.com\" DocsGitHubRepo=\"wallarm/product-docs-en\""
+image_repositories = ["SlackReceiver=459166819286.dkr.ecr.us-west-1.amazonaws.com/docagent2feaf4f8/slackreceiver36d23b09repo", "Worker=459166819286.dkr.ecr.us-west-1.amazonaws.com/docagent2feaf4f8/worker62efb9ecrepo"]
+
+[default.global.parameters]
+region = "us-west-1"

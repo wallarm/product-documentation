@@ -1,0 +1,100 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Doc Agent — Slack-triggered documentation generation from Jira tickets
+
+Parameters:
+  JiraApiTokenArn:
+    Type: String
+    Description: Secrets Manager ARN — Jira API token
+  GitHubTokenArn:
+    Type: String
+    Description: Secrets Manager ARN — GitHub token (write, for docs repo PRs)
+  ClaudeApiKeyArn:
+    Type: String
+    Description: Secrets Manager ARN — Anthropic API key
+  SlackSigningSecretArn:
+    Type: String
+    Description: Secrets Manager ARN — Slack app signing secret
+  SlackBotTokenArn:
+    Type: String
+    Description: Secrets Manager ARN — Slack bot token (xoxb-...)
+  JiraUserEmail:
+    Type: String
+  DocsGitHubRepo:
+    Type: String
+    Default: wallarm/product-docs-en
+
+Resources:
+
+  # ── Slack receiver (fast, 10s timeout) ──────────────────────
+  SlackReceiver:
+    Type: AWS::Serverless::Function
+    Metadata:
+      DockerTag: slack-latest
+      DockerContext: .
+      Dockerfile: Dockerfile.slack
+    Properties:
+      PackageType: Image
+      Timeout: 10
+      MemorySize: 256
+      Environment:
+        Variables:
+          SLACK_SIGNING_SECRET_ARN: !Ref SlackSigningSecretArn
+          SLACK_BOT_TOKEN_ARN: !Ref SlackBotTokenArn
+          WORKER_FUNCTION_NAME: !Ref Worker
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action: secretsmanager:GetSecretValue
+              Resource:
+                - !Ref SlackSigningSecretArn
+                - !Ref SlackBotTokenArn
+            - Effect: Allow
+              Action: lambda:InvokeFunction
+              Resource: !GetAtt Worker.Arn
+      Events:
+        SlackEvent:
+          Type: Api
+          Properties:
+            Path: /slack/events
+            Method: POST
+
+  # ── Worker (long-running, up to 15 min) ─────────────────────
+  Worker:
+    Type: AWS::Serverless::Function
+    Metadata:
+      DockerTag: latest
+      DockerContext: .
+      Dockerfile: Dockerfile
+    Properties:
+      PackageType: Image
+      Timeout: 900
+      MemorySize: 2048
+      Environment:
+        Variables:
+          JIRA_API_TOKEN_ARN: !Ref JiraApiTokenArn
+          GITHUB_TOKEN_ARN: !Ref GitHubTokenArn
+          CLAUDE_API_KEY_ARN: !Ref ClaudeApiKeyArn
+          SLACK_BOT_TOKEN_ARN: !Ref SlackBotTokenArn
+          JIRA_USER_EMAIL: !Ref JiraUserEmail
+          JIRA_BASE_URL: https://wallarm.atlassian.net
+          DOCS_GITHUB_REPO: !Ref DocsGitHubRepo
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action: secretsmanager:GetSecretValue
+              Resource:
+                - !Ref JiraApiTokenArn
+                - !Ref GitHubTokenArn
+                - !Ref ClaudeApiKeyArn
+                - !Ref SlackBotTokenArn
+
+Outputs:
+  SlackEventUrl:
+    Description: Paste this URL into Slack app Event Subscriptions
+    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/slack/events'
+  WorkerFunctionName:
+    Description: For manual invoke — aws lambda invoke --function-name <name> --payload '{"issue_key":"PROD-3059"}' out.json
+    Value: !Ref Worker
