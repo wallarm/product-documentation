@@ -12,7 +12,9 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.25.0 (2026-05-04)
 
-* Added support for MCP server discovery and protection
+* Added support for [MCP server discovery](../../agentic-ai/mcp-discovery.md) in API Discovery
+* Added support for [MCP Sessions](../../api-sessions/mcp-sessions.md)
+* Added [MCP mitigation controls](../../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
 * Fixed [API Specification Enforcement](../api-specification-enforcement/overview.md) incorrectly reporting requests as "undefined endpoint" for OpenAPI specs that define a base path in the `servers` block
 
@@ -251,7 +253,9 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ### 0.25.0 (2026-05-04)
 
-* Added support for MCP server discovery and protection
+* Added support for [MCP server discovery](../../agentic-ai/mcp-discovery.md) in API Discovery
+* Added support for [MCP Sessions](../../api-sessions/mcp-sessions.md)
+* Added [MCP mitigation controls](../../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
 * Fixed [API Specification Enforcement](../api-specification-enforcement/overview.md) incorrectly reporting requests as "undefined endpoint" for OpenAPI specs that define a base path in the `servers` block
 
@@ -481,7 +485,9 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 ### 0.25.0 (2026-05-04)
 
-* Added support for MCP server discovery and protection
+* Added support for [MCP server discovery](../../agentic-ai/mcp-discovery.md) in API Discovery
+* Added support for [MCP Sessions](../../api-sessions/mcp-sessions.md)
+* Added [MCP mitigation controls](../../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
 * Fixed [API Specification Enforcement](../api-specification-enforcement/overview.md) incorrectly reporting requests as "undefined endpoint" for OpenAPI specs that define a base path in the `servers` block
 

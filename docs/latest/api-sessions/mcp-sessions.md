@@ -24,7 +24,7 @@ You can click on any session to see the full request sequence, with each request
 ## Requirements
 
 * The [Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription plan
-* [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.12.0-rc1 or higher, or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.25.0-rc1 or higher
+* [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.12.0 or higher, or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.25.0 or higher
 
 ## MCP Session Configuration
 

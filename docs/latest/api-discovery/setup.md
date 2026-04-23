@@ -8,7 +8,7 @@ This article describes how to enable and configure Wallarm's [API Discovery](ove
 * For **GraphQL** - [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.1.0+ or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.15.1+.
 * For **SOAP** - [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.0 or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.17.1+.
 * For **gRPC** - [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.4.0 or higher (not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far)
-* For **MCP** - [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.12.0-rc1+ or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.25.0-rc1+.
+* For **MCP** - [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.12.0+ or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.25.0+.
 
 API Discovery is included in [all forms of the Wallarm node installation](../installation/supported-deployment-options.md). During node deployment, it installs the API Discovery module but keeps it disabled by default.
 

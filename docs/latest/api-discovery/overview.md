@@ -12,7 +12,7 @@ API Discovery is capable of finding and representing hosts and endpoints utilizi
 | **GraphQL** | Operation (query, mutation, subscription) | 6.1.0 | 0.15.1 |
 | **SOAP** | Operation | 6.3.0 | 0.17.1 |
 | **gRPC** | Operation | 6.4.0 | NA |
-| **MCP** | MCP server | 6.12.0-rc1 | 0.25.0-rc1 |
+| **MCP** | MCP server | 6.12.0 | 0.25.0 |
 
 ## Your API inventory
 

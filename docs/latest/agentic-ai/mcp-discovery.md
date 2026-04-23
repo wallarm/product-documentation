@@ -7,7 +7,7 @@ Wallarm's [API Discovery](../api-discovery/overview.md) detects [Model Context P
 MCP discovery is enabled by default when API Discovery is active — no additional configuration is needed.
 
 * The [Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription plan
-* [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.12.0-rc1 or higher, or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.25.0-rc1 or higher
+* [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.12.0 or higher, or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.25.0 or higher
 
 ## How MCP detection works
 

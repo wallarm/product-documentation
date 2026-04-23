@@ -81,7 +81,7 @@ Wallarm's New [API Discovery](../api-discovery/overview.md) is now **multi-proto
 ### MCP protocol support
 
 !!! tip ""
-    MCP discovery requires [NGINX Node 6.12.0-rc1 and higher](node-artifact-versions.md) or [Native Node 0.25.0-rc1 and higher](native-node/node-artifact-versions.md).
+    MCP discovery requires [NGINX Node 6.12.0 and higher](node-artifact-versions.md) or [Native Node 0.25.0 and higher](native-node/node-artifact-versions.md).
 
 [API Discovery](../api-discovery/overview.md) now detects [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) servers — the protocol AI agents use to interact with external tools and data sources. MCP discovery is enabled by default and requires no additional configuration.
 
