@@ -152,6 +152,14 @@ nav:
       - Rogue MCP Inspection: agentic-ai/rogue-mcp-inspection.md
 
   # ============================================================================
+  # SECTION 5b: INFRASTRUCTURE DISCOVERY
+  # ============================================================================
+  - Infrastructure Discovery:
+    - Overview: infrastructure-discovery/overview.md
+    - Setup: infrastructure-discovery/setup.md
+    - Exploring Inventory: infrastructure-discovery/exploring.md
+
+  # ============================================================================
   # SECTION 6: DEPLOYMENT
   # Structure: Security Edge → Kubernetes → Cloud → API Gateways → CDN → APIM
   #            → Host & Runtime → On-Premise → Artifacts → Upgrades
