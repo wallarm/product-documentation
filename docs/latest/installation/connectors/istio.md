@@ -762,6 +762,57 @@ If you are running Envoy outside Istio, insert the filter and cluster directly i
                 filename: /path/to/node-ca.pem
     ```
 
+## Scaling and tuning for high concurrency
+
+Under heavy traffic — especially with long-lived connections such as WebSockets or a high number of concurrent HTTP/2 streams — the throughput between Envoy and the Wallarm Node can be limited by Envoy's default circuit breaker settings and by operating system limits on open files.
+
+Symptoms of hitting these limits include rising values for the following Node metrics:
+
+```
+wallarm_gonode_envoy_external_filter_grpc_streams_current
+wallarm_gonode_envoy_external_filter_errors_total{type="FailedToSendResponse"}
+wallarm_gonode_http_inspector_errors_total{type="FlowIsMissing"}
+```
+
+### Envoy circuit breakers
+
+By default, Envoy applies conservative [circuit breaker](https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/circuit_breaking) thresholds to every upstream cluster, including the Wallarm cluster. The default cap of 1024 maximum concurrent connections to the upstream may throttle the number of parallel requests that can be sent to the Wallarm Node.
+
+If the Node is expected to process a higher number of concurrent connections, raise the thresholds on the Wallarm cluster:
+
+```yaml
+clusters:
+- name: wallarm_cluster
+  circuit_breakers:
+    thresholds:
+    - priority: DEFAULT
+      max_connections: 100000
+      max_pending_requests: 100000
+      max_requests: 100000
+  # ... rest of the cluster configuration
+```
+
+Tune the values to match your expected peak load. The same `circuit_breakers` block applies when the cluster is defined inside an `EnvoyFilter` for Istio.
+
+### Operating system file limits
+
+Each gRPC stream between Envoy and the Wallarm Node consumes a file descriptor. On Linux, the default `nofile` (maximum number of open files) limit may be reached before the circuit breaker thresholds, causing new connections to be dropped.
+
+Check the current limits on the Wallarm Node host (or container) and raise them if required:
+
+```
+ulimit -n
+```
+
+For containerized deployments, set `LimitNOFILE` in the systemd unit, or configure the appropriate pod/container resource limits in your orchestrator.
+
+### Behavior under saturation
+
+When the Node cannot accept more traffic, Envoy's handling of the request depends on the [`failure_mode_allow`](#manual-setup-standalone-envoy) setting of the `ext_proc` filter:
+
+* `failure_mode_allow: true` (used in the examples in this guide) — traffic passes through to the upstream service without Wallarm analysis.
+* `failure_mode_allow: false` — Envoy rejects the request.
+
 ## Upgrading the filter
 
 To upgrade the filter:
