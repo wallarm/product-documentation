@@ -21,7 +21,7 @@ Among a wide range of API endpoint filters, you can choose the ones correspondin
 * Find the endpoints being used to upload data to your server by the PUT or POST calls (REST) or mutations (GraphQL) (**API protocols** filter with methods for REST and operation types for GraphQL). Since such endpoints are a frequent attack target, they should be well secured. Using this kind of request you can check that endpoints are known to the team and are well secured from attacks.
 * Find the endpoints processing sensitive data to ensure they are properly secured.
 * Find the endpoints of a deprecated API version (e.g. by searching `/v1`) and make sure that they are not used by clients.
-* Find endpoints without authentication by using the **Authentication flow** filter and selecting **No authentication**. This helps identify potential security risks where endpoints may be unprotected.
+* Find endpoints without authentication by using the **Authentication** filter and selecting **No authentication**. This helps identify potential security risks where endpoints may be unprotected.
 
 ### Labeling
 
@@ -66,7 +66,7 @@ Each request/response parameter information includes:
 
 * [Type/format](#data_format_rest) of data sent in this parameter
 * Date and time when parameter value was last transferred by requests
-* [Authentication flows](authentication.md) and their coverage status — authentication type, per-parameter coverage percentage, parameter key and path, and last seen timestamp
+* [Authentication flows](authentication.md) and their coverage status — authentication type, per-parameter coverage percentage, parameter key and path
 
 <a id="data_format_rest"></a>**REST format and data type**
 
@@ -92,7 +92,7 @@ Each request/response parameter information includes:
 * Information about parameter changes (new, unused)
 * Presence and type of sensitive data transmitted by this parameter
 * Date and time when parameter value was last transferred by requests
-* [Authentication flows](authentication.md) and their coverage status — authentication type, per-parameter coverage percentage, parameter key and path, and last seen timestamp
+* [Authentication flows](authentication.md) and their coverage status — authentication type, per-parameter coverage percentage, parameter key and path
 
 <a name="data_format_graphql"></a>**Format and data type**
 
@@ -120,7 +120,7 @@ Each request/response XML parameter information includes:
 * Presence and type of sensitive data transmitted by this parameter
 * Information about parameter changes (new, unused)
 * Date and time when parameter value was last transferred by requests
-* [Authentication flows](authentication.md) and their coverage status — authentication type, per-parameter coverage percentage, parameter key and path, and last seen timestamp
+* [Authentication flows](authentication.md) and their coverage status — authentication type, per-parameter coverage percentage, parameter key and path
 
 <a name="data_format_soap"></a>**Format and data type**
 
@@ -151,7 +151,7 @@ Each request/response parameter information includes:
 * Information about parameter changes (new, unused)
 * Presence and type of sensitive data transmitted by this parameter
 * Date and time when parameter value was last transferred by requests
-* [Authentication flows](authentication.md) and their coverage status — authentication type, per-parameter coverage percentage, parameter key and path, and last seen timestamp
+* [Authentication flows](authentication.md) and their coverage status — authentication type, per-parameter coverage percentage, parameter key and path
 
 **Format and data type**
 

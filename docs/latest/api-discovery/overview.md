@@ -155,7 +155,7 @@ Only general gRPC services that use [protocol buffers](https://protobuf.dev/) ar
 
 API Discovery automatically detects [authentication flows](authentication.md) used by each endpoint by analyzing HTTP headers and request parameters in the traffic. This helps identify endpoints that lack proper authentication — the #1 API security risk.
 
-<!-- TODO: add screenshot -->
+![Authentication tab in endpoint details](../images/about-wallarm-waf/api-discovery-2.0/endpoint-auth-tab.png)
 
 ### Sensitive data detection
 

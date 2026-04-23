@@ -1,10 +1,14 @@
-# Authentication Flow Detection
+# Authentication Flow Detection <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 API Discovery analyzes HTTP headers and request parameters in the traffic to automatically identify the **authentication flow** used by each endpoint. This helps you find endpoints that lack proper authentication — the #1 API security risk.
 
-You can use the **Authentication flow** filter in the API Discovery inventory to quickly find unauthenticated endpoints or endpoints using a specific authentication type.
+You can use the **Authentication** filter in the API Discovery inventory to quickly find unauthenticated endpoints or endpoints using a specific authentication type.
 
-<!-- TODO: add screenshot -->
+![API Inventory: Auth flow filter](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-auth-flow-filter.png)
+
+## Requirements
+
+Authentication flow detection is supported starting from [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.10.0 and [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.23.0.
 
 ## Detected authentication types
 
@@ -39,13 +43,11 @@ In the **Authentication** tab of the endpoint details, Wallarm displays the over
 !!! info "7-day observation window"
     Authentication status and coverage are calculated based on the last 7 days of traffic. When authentication is newly added to an endpoint, it initially appears as **Partial** and gradually moves to **Consistent** as the 7-day window fills with authenticated requests.
 
-<!-- TODO: add screenshot -->
+![Authentication tab in endpoint details](../images/about-wallarm-waf/api-discovery-2.0/endpoint-auth-tab.png)
 
 ## Authentication parameters
 
 In the **Authentication** tab of the endpoint details, Wallarm lists every detected authentication parameter with the following details:
-
-<!-- TODO: add screenshot -->
 
 | Column | Description |
 | --- | --- |
@@ -53,6 +55,5 @@ In the **Authentication** tab of the endpoint details, Wallarm lists every detec
 | **Coverage** | Percentage of requests where this parameter contained a valid authentication value over the last 7 days. |
 | **Key** | Parameter name and its context — header, cookie, or body field. |
 | **Path** | Hierarchical location of the parameter within the request structure. |
-| **Last seen** | Date and time when the parameter was last observed in traffic. |
 
 A single endpoint can have multiple authentication parameters. For example, one endpoint might use a Bearer token in the `Authorization` header for 80% of requests and an API key in the body for 5%. Each parameter's coverage is calculated independently — coverages may not add up to 100%.

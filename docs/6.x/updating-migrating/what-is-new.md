@@ -119,6 +119,21 @@ Each request/response XML parameter information includes:
 * Information about parameter changes (new, unused)
 * Date and time when parameter value was last transferred by requests
 
+### Authentication flow detection
+
+!!! tip ""
+    [NGINX Node 6.10.0 and higher](node-artifact-versions.md) and [Native Node 0.23.0 and higher](native-node/node-artifact-versions.md)
+
+API Discovery now automatically detects [authentication flows](../api-discovery/authentication.md) used by each endpoint. This helps you identify endpoints that lack proper authentication — the #1 API security risk according to OWASP.
+
+The module recognizes multiple authentication types including API key, Basic, Bearer, Cookie-based, Digest, AWS Signature v4, Hawk, HMAC signature, Negotiate, NTLM, and SCRAM.
+
+For each detected authentication parameter, Wallarm provides coverage percentage based on the last 7 days of traffic. Endpoints are assigned an overall authentication status: **Consistent** (95%+ requests authenticated), **Partial** (0–95%), or **Missing** (0%).
+
+Use the **Authentication** filter in the API Discovery inventory to quickly find unauthenticated endpoints.
+
+![API Inventory: Auth flow filter](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-auth-flow-filter.png)
+
 ## Mitigation Controls
 
 We introduce a unified management center for all Wallarm attack mitigation settings - [**Mitigation Controls**](../about-wallarm/mitigation-controls-overview.md). With mitigation controls you can:
