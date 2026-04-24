@@ -1,9 +1,12 @@
 # Infrastructure Discovery Setup (Early Access)
 
-This article describes how to connect your AWS accounts to Wallarm's [Infrastructure Discovery](overview.md) and configure scanning.
+This article describes how to connect your cloud accounts to Wallarm's [Infrastructure Discovery](overview.md) and configure scanning.
 
 !!! info "Early Access"
     Infrastructure Discovery is available as an Early Access feature with a separate subscription. Contact [sales@wallarm.com](mailto:sales@wallarm.com) to request access.
+
+!!! info "Supported cloud providers"
+    Infrastructure Discovery currently supports **AWS**. Support for **Azure** and **GCP** is coming soon.
 
 ## Requirements
 
@@ -101,13 +104,3 @@ Infrastructure Discovery is designed to scan across many AWS accounts from a sin
 Infrastructure Discovery runs automated scans every **6 hours** by default. During each scan, it enumerates all supported resource types across all connected accounts and regions.
 
 You can trigger an on-demand scan at any time from the Infrastructure Discovery UI.
-
-## Enabling traffic mirroring
-
-For VPCs where you want Wallarm to analyze API traffic, you can enable out-of-band traffic mirroring directly from the Infrastructure Discovery UI:
-
-1. Navigate to a discovered VPC in the inventory.
-1. Click **Enable Mirroring**.
-1. Infrastructure Discovery provisions the necessary VPC Traffic Mirror sessions and targets.
-
-Mirrored traffic is sent to Wallarm's analysis pipeline for API Discovery, attack detection, and other security capabilities. The mirroring is out-of-band and does not affect your application's latency or availability.
