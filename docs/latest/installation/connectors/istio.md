@@ -764,12 +764,11 @@ If you are running Envoy outside Istio, insert the filter and cluster directly i
 
 ## Scaling and tuning for high concurrency
 
-Under heavy traffic — especially with long-lived connections such as WebSockets or a high number of concurrent HTTP/2 streams — the throughput between Envoy and the Wallarm Node can be limited by Envoy's default circuit breaker settings and by operating system limits on open files.
+Under heavy traffic — especially with a high number of concurrent HTTP/2 streams — the throughput between Envoy and the Wallarm Node can be limited by Envoy's default circuit breaker settings and by operating system limits on open files.
 
-Symptoms of hitting these limits include rising values for the following Node metrics:
+Symptoms of hitting these limits include the `wallarm_gonode_envoy_external_filter_grpc_streams_current` metric plateauing at a fixed value (around 1024 by default) while the following error counters keep rising:
 
 ```
-wallarm_gonode_envoy_external_filter_grpc_streams_current
 wallarm_gonode_envoy_external_filter_errors_total{type="FailedToSendResponse"}
 wallarm_gonode_http_inspector_errors_total{type="FlowIsMissing"}
 ```
@@ -796,7 +795,7 @@ Tune the values to match your expected peak load. The same `circuit_breakers` bl
 
 ### Operating system file limits
 
-Each gRPC stream between Envoy and the Wallarm Node consumes a file descriptor. On Linux, the default `nofile` (maximum number of open files) limit may be reached before the circuit breaker thresholds, causing new connections to be dropped.
+Each TCP connection between Envoy and the Wallarm Node consumes a file descriptor (note that with HTTP/2 a single TCP connection can carry many multiplexed gRPC streams). On Linux, the default `nofile` (maximum number of open files) limit may be reached before the circuit breaker thresholds, causing new connections to be dropped.
 
 Check the current limits on the Wallarm Node host (or container) and raise them if required:
 
