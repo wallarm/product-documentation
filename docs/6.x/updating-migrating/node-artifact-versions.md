@@ -245,6 +245,18 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](ingress-controller.md)
 
+### 6.12.0
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-33810](https://www.cve.org/CVERecord?id=CVE-2026-33810)
+    * [CVE-2026-32283](https://www.cve.org/CVERecord?id=CVE-2026-32283)
+    * [CVE-2026-32281](https://www.cve.org/CVERecord?id=CVE-2026-32281)
+    * [CVE-2026-32280](https://www.cve.org/CVERecord?id=CVE-2026-32280)
+    * [CVE-2026-32282](https://www.cve.org/CVERecord?id=CVE-2026-32282)
+    * [CVE-2026-32289](https://www.cve.org/CVERecord?id=CVE-2026-32289)
+    * [CVE-2026-32288](https://www.cve.org/CVERecord?id=CVE-2026-32288)
+
 ### 6.11.3 (2026-04-29)
 
 * Fixed intermittent errors in custom ruleset loading and GraphQL processing
@@ -467,6 +479,10 @@ new attack types in logging variables and search bars?
 ## Helm chart for Sidecar
 
 [How to upgrade](sidecar-proxy.md)
+
+### 6.12.0
+
+* Fixed the [CVE-2026-34743](https://www.cve.org/CVERecord?id=CVE-2026-34743) security vulnerability
 
 ### 6.11.3 (2026-04-29)
 
