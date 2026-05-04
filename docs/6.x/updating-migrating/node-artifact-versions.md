@@ -57,6 +57,7 @@ new attack types in logging variables and search bars?
 
 ### 6.10.0 (2026-02-09)
 
+* Added [authentication flow detection](../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
 * Added support for NGINX stable 1.28.2
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
@@ -263,6 +264,7 @@ new attack types in logging variables and search bars?
 
 ### 6.10.0 (2026-02-09)
 
+* Added [authentication flow detection](../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 
@@ -476,6 +478,7 @@ new attack types in logging variables and search bars?
 
 ### 6.10.0 (2026-02-09)
 
+* Added [authentication flow detection](../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 
@@ -674,6 +677,7 @@ new attack types in logging variables and search bars?
 
 ### 6.10.0 (2026-02-09)
 
+* Added [authentication flow detection](../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 
@@ -874,6 +878,7 @@ new attack types in logging variables and search bars?
 
 ### 6.10.0 (2026-02-09)
 
+* Added [authentication flow detection](../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 
@@ -1038,6 +1043,7 @@ new attack types in logging variables and search bars?
 
 ### wallarm-node-6-10-0-20260206-084755 (2026-02-09)
 
+* Added [authentication flow detection](../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 

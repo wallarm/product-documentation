@@ -70,6 +70,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.23.0 (2026-02-24)
 
+* Added [authentication flow detection](../../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Added support for circular references in OpenAPI specifications uploaded for [API Specification Enforcement](../../api-specification-enforcement/overview.md)
 * Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
 * Increased the frequency of session updates sent to the Wallarm Cloud. Sessions now appear in the UI faster, closer to real time
@@ -275,6 +276,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ### 0.23.0 (2026-02-24)
 
+* Added [authentication flow detection](../../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Improved the Helm chart for high-availability deployments by adding pod disruption budgets, tuning resource settings, and introducing the [`topologySpreadConstraints`](https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/) and [`startupProbe`](https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/#startup-probe) values
 * Added support for circular references in OpenAPI specifications uploaded for [API Specification Enforcement](../../api-specification-enforcement/overview.md)
 * Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
@@ -496,6 +498,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 ### 0.23.0 (2026-02-24)
 
+* Added [authentication flow detection](../../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Added support for circular references in OpenAPI specifications uploaded for [API Specification Enforcement](../../api-specification-enforcement/overview.md)
 * Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
 * Increased the frequency of session updates sent to the Wallarm Cloud. Sessions now appear in the UI faster, closer to real time
