@@ -25,12 +25,14 @@ When using the directive, statistics can be given in JSON format or in a format 
 
 ```
 wallarm_status [on|off] [format=json|prometheus];
-``` 
+```
 
 !!! info
     The directive can be configured in the context of `server` and/or `location`.
 
     The `format` parameter has the `json` value by default in most deployment options except for the NGINX-based Docker image; when the `/wallarm-status` endpoint is called from outside the container, it returns metrics in the Prometheus format.
+
+    Starting from NGINX Node 6.12.0, you can override the configured format at request time by appending a `?format=json` or `?format=prometheus` query parameter, e.g. `curl http://127.0.0.8/wallarm-status?format=prometheus`.
 
 ### Default configuration
 
@@ -554,6 +556,8 @@ The following response parameters are available (Prometheus metrics have the `wa
     * `no_free_nodes`: the value different from `0` indicates that there is insufficient memory allocated for the rate limit module, the [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size) value increase is recommended.
 * `timestamp`: time when the last incoming request was processed by the node (in the [Unix Timestamp](https://www.unixtimestamp.com/) format).
 * `split.clients`: main statistics on each [tenant](../installation/multi-tenant/overview.md). If the multitenancy feature is not activated, the statistics is returned for the only tenant (your account) with the static value `"client_id":null`.
+
+    Starting from NGINX Node 6.12.0, when a label is set via the [`wallarm_partner_client_uuid`](configure-parameters-en.md#wallarm_partner_client_uuid) directive, Prometheus output includes `client_uuid` and `client_label` labels for per-tenant metric split (e.g. `wallarm_requests{client_uuid="...",client_label="US-8",app_id="-1"} 100`).
 * `split.clients.applications`: main statistics on each [application](../user-guides/settings/applications.md). Parameters that are not included into this section returns the statistics on all applications.
 * `apifw_subrequest_timeouts`: the number of subrequests in the API Firewall service that timed out during processing. 
 

@@ -110,24 +110,26 @@ The next steps differ depending on your filtering node type: NGINX Node or Nativ
         listen       80;
         server_name  tenant1.com;
         wallarm_mode block;
-        wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111;
-        
+        wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111 Tenant-1;
+
         location / {
             proxy_pass      http://upstream1:8080;
         }
     }
-    
+
     server {
         listen       80;
         server_name  tenant2.com;
         wallarm_mode monitoring;
-        wallarm_partner_client_uuid 22222222-2222-2222-2222-222222222222;
-        
+        wallarm_partner_client_uuid 22222222-2222-2222-2222-222222222222 Tenant-2;
+
         location / {
             proxy_pass      http://upstream2:8080;
         }
     }
     ```
+
+    The second parameter after the UUID (e.g. `Tenant-1`) is an optional human-readable label available starting from NGINX Node 6.12.0. When set, this label appears in the [`wallarm_status`](../../admin-en/configure-statistics-service.md) output alongside the tenant UUID, making it easier to identify tenants in metrics and logs. See the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive reference for details.
 
     * On the tenant side, the DNS A records with the partner IP address are configured
     * On the partner side, proxying of requests to the addresses of tenants (`http://upstream1:8080` for the tenant with `wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111` and `http://upstream2:8080` for the tenant with `wallarm_partner_client_uuid 22222222-2222-2222-2222-222222222222`) is configured
@@ -142,8 +144,8 @@ The next steps differ depending on your filtering node type: NGINX Node or Nativ
         listen       80;
         server_name  tenant1.com;
         wallarm_mode block;
-        wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111;
-        
+        wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111 Tenant-1;
+
         location / {
             proxy_pass      http://upstream1:8080;
         }

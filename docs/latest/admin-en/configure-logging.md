@@ -49,6 +49,8 @@ You may use the following filter node variables when defining the NGINX logging 
 | `wallarm_mode` (NGINX node 6.6.0 or later) | string | Returns the final [filtration mode](configure-wallarm-mode.md) applied to a malicious request, taking into account both local settings and those from the Wallarm Cloud (e.g., rules and mitigation controls) with their prioritization. |
 | `wallarm_fingerprint_ja4` (NGINX node 6.7.0 or later) | string | Returns the JA4 fingerprint (e.g., `t13d1516h2_8daaf6152771_d8a2da3f94cd`, which summarizes key TLS `ClientHello` parameters. Available when [JA4 fingerprinting](../admin-en/configure-parameters-en.md#wallarm_fingerprint) is enabled. |
 | `wallarm_fingerprint_ja4_raw` (NGINX node 6.7.0 or later) | string | Returns the raw TLS `ClientHello` metadata used to generate the JA4 fingerprint. This includes full, unprocessed details of the TLS handshake. Available when [JA4 fingerprinting](../admin-en/configure-parameters-en.md#wallarm_fingerprint) is enabled. |
+| `wallarm_partner_client_uuid` (NGINX node 6.12.0 or later) | string | Returns the resolved tenant UUID for the current request in [multi-tenant](../installation/multi-tenant/overview.md) deployments. |
+| `wallarm_partner_client_label` (NGINX node 6.12.0 or later) | string | Returns the human-readable label set for the tenant via the [`wallarm_partner_client_uuid`](configure-parameters-en.md#wallarm_partner_client_uuid) directive in [multi-tenant](../installation/multi-tenant/overview.md) deployments. |
 
 ### Configuration Example
 

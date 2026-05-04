@@ -19,6 +19,18 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.12.0 (2026-05-04)
+
+* Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
+* Added per-tenant statistics and logging in [multi-tenant](../installation/multi-tenant/overview.md) deployments:
+
+    * The [`wallarm_partner_client_uuid`](../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive now accepts an optional human-readable label
+    * Two new NGINX variables (`$wallarm_partner_client_uuid`, `$wallarm_partner_client_label`) are available for use in [extended log formats](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+    * The [`wallarm_status`](../admin-en/configure-statistics-service.md) endpoint now includes per-tenant traffic breakdown with `client_uuid` and `client_label` labels in both JSON and Prometheus output formats
+* Added `?format=json` and `?format=prometheus` query parameter support to the [`wallarm_status`](../admin-en/configure-statistics-service.md) endpoint, allowing the output format to be overridden at request time
+* Fixed [API Specification Enforcement](../api-specification-enforcement/overview.md) incorrectly reporting requests as "undefined endpoint" for OpenAPI specs that define a base path in the `servers` block
+* Bumped Go version to 1.26.1
+
 ### 6.11.3 (2026-04-29)
 
 * Added support for NGINX mainline 1.29.8
