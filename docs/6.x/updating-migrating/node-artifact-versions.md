@@ -19,7 +19,7 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
-### 6.11.3 (2026-04-09)
+### 6.11.3 (2026-04-29)
 
 * Added support for NGINX mainline 1.29.8
 * Added support for NGINX stable 1.30.0
@@ -232,7 +232,7 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](ingress-controller.md)
 
-### 6.11.3 (2026-04-09)
+### 6.11.3 (2026-04-29)
 
 * Fixed intermittent errors in custom ruleset loading and GraphQL processing
 * Fixed NGINX worker crash (signal 11) when serving [custom blocking pages](../admin-en/configuration-guides/configure-block-page-and-code.md) configured via file path while response header modification rules were active
@@ -454,7 +454,7 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
-### 6.11.3 (2026-04-09)
+### 6.11.3 (2026-04-29)
 
 * Fixed intermittent errors in custom ruleset loading and GraphQL processing
 * Fixed NGINX worker crash (signal 11) when serving [custom blocking pages](../admin-en/configuration-guides/configure-block-page-and-code.md) configured via file path while response header modification rules were active
@@ -657,7 +657,7 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](docker-container.md)
 
-### 6.11.3 (2026-04-09)
+### 6.11.3 (2026-04-29)
 
 * Fixed intermittent errors in custom ruleset loading and GraphQL processing
 * Fixed NGINX worker crash (signal 11) when serving [custom blocking pages](../admin-en/configuration-guides/configure-block-page-and-code.md) configured via file path while response header modification rules were active
@@ -863,11 +863,6 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
-### 6.11.3 (2026-04-09)
-
-* Fixed intermittent errors in custom ruleset loading and GraphQL processing
-* Fixed NGINX worker crash (signal 11) when serving [custom blocking pages](../admin-en/configuration-guides/configure-block-page-and-code.md) configured via file path while response header modification rules were active
-
 ### 6.11.2 (2026-03-27)
 
 * Internal improvements
@@ -1032,7 +1027,7 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
-### wallarm-node-6-11-3-20260409-XXXXXX (2026-04-09)
+### wallarm-node-6-11-3-20260422-125758 (2026-04-29)
 
 * Fixed intermittent errors in custom ruleset loading and GraphQL processing
 * Fixed NGINX worker crash (signal 11) when serving [custom blocking pages](../admin-en/configuration-guides/configure-block-page-and-code.md) configured via file path while response header modification rules were active
