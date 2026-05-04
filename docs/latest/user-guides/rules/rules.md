@@ -291,6 +291,7 @@ To match requests with regular expressions, the PIRE library is used. Mostly, th
     * `\b` before or after the whitespace character in the end of the string
     * `??`, `*?`, `+?` lazy quantifiers
     * Conditionals
+    * `?=` lookahead assertions
 
 **Testing regular expressions**
 

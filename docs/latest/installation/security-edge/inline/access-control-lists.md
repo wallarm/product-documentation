@@ -1,6 +1,6 @@
 # Access Control Lists (ACL) in Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
 
-An access control list (ACL) is a set of rules that defines which IP addresses can access specific hosts and locations of your APIs protected by [Security Edge Inline](/overview.md).
+An access control list (ACL) is a set of rules that defines which IP addresses can access specific hosts and locations of your APIs protected by [Security Edge Inline](overview.md).
 
 The Wallarm Node checks each incoming request against the ACL rules. If a request matches a deny rule, it gets blocked. This prevents unauthorized activity and potential attacks.
 
