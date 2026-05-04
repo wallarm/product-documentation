@@ -903,6 +903,7 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
         enabled: true
         listen_address: 127.0.0.1:10246
       namespace: wallarm_gonode
+      per_host_stats: true
 
     health_check:
       enabled: true
@@ -947,6 +948,7 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
         enabled: true
         listen_address: 127.0.0.1:10246
       namespace: wallarm_gonode
+      per_host_stats: true
 
     health_check:
       enabled: true
@@ -1127,6 +1129,16 @@ Default: `wallarm_gonode`.
 All metrics emitted by `go-node` will use this prefix (e.g., `wallarm_gonode_requests_total`). Other components of the node, such as `wstore` and `wcli`, use their own fixed prefixes.
 
 Supported in Native Node 0.13.5 and later 0.13.x versions, and in 0.15.1 and later.
+
+### metrics.per_host_stats
+
+Controls whether per-host statistics are collected in the HTTP inspector. When enabled, the node exports additional `wallarm_gonode_http_inspector_*_per_host_total` [Prometheus metrics](../../admin-en/native-node-metrics-gonode.md#per-host-metrics) with a `host` label.
+
+Set to `false` to disable these metrics and reduce metric cardinality in environments with many unique hostnames.
+
+Default: `true` (per-host statistics are collected).
+
+Supported in Native Node 0.24.1 and later.
 
 ### health_check.enabled
 

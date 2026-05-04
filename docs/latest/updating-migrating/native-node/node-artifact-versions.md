@@ -10,6 +10,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.24.1 (2026-04-27)
+
+* Added the [`metrics.per_host_stats`](../../installation/native-node/all-in-one-conf.md#metricsper_host_stats) configuration parameter to control per-host metrics collection (enabled by default)
+* Bumped Go version to 1.26.2
+* Fixed intermittent errors in custom ruleset loading and GraphQL processing
+* Fixed occasional panic in [`tcp-capture-v2`](../../installation/oob/tcp-traffic-mirror/deployment.md) mode
+
 ### 0.24.0 (2026-04-06)
 
 * [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) (`tcp-capture-v2` mode):
@@ -236,6 +243,11 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.24.1 (2026-04-27)
+
+* Bumped Go version to 1.26.2
+* Fixed intermittent errors in custom ruleset loading and GraphQL processing
+
 ### 0.24.0 (2026-04-06)
 
 * Fixed [API Specification Enforcement](../../api-specification-enforcement/overview.md) not triggering [specification processing overlimit](../../api-specification-enforcement/viewing-events.md#overlimit-events) events for requests exceeding size or time limits
@@ -454,6 +466,12 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](docker-image.md)
+
+### 0.24.1 (2026-04-27)
+
+* Added the [`metrics.per_host_stats`](../../installation/native-node/all-in-one-conf.md#metricsper_host_stats) configuration parameter to control per-host metrics collection (enabled by default)
+* Bumped Go version to 1.26.2
+* Fixed intermittent errors in custom ruleset loading and GraphQL processing
 
 ### 0.24.0 (2026-04-06)
 
