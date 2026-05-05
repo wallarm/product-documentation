@@ -189,7 +189,7 @@ Below is the Wallarm Helm chart example for Google Kubernetes Engine (GKE), whic
             kubernetes.io/arch: arm64
         enabled: true
         token: "<NODE_TOKEN>"
-        apiHost: "us1.api.wallarm.com" # if using EU Cloud, comment out this line
+        apiHost: "us1.api.wallarm.com" # if using EU Cloud, comment out this line; if using ME Cloud, set to "me1.api.wallarm.com"
         # If using an API token, uncomment the following line and specify your node group name
         # nodeGroup: defaultIngressGroup
     ```
@@ -217,7 +217,7 @@ Below is the Wallarm Helm chart example for Google Kubernetes Engine (GKE), whic
               effect: NoSchedule
         enabled: true
         token: "<NODE_TOKEN>"
-        apiHost: "us1.api.wallarm.com" # if using EU Cloud, comment out this line
+        apiHost: "us1.api.wallarm.com" # if using EU Cloud, comment out this line; if using ME Cloud, set to "me1.api.wallarm.com"
         # If using an API token, uncomment the following line and specify your node group name
         # nodeGroup: defaultIngressGroup
     ```

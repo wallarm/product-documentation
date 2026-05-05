@@ -49,7 +49,7 @@ If you stored the token in AWS Secrets Manager ([step 3](#3-store-the-token-in-a
       -t "$WALLARM_TOKEN" -m monitoring \
       --proxy-pass <PROXY_ADDRESS>
     ```
-=== "US Cloud"
+=== "ME Cloud"
     ```bash
     WALLARM_TOKEN=$(aws secretsmanager get-secret-value \
       --secret-id wallarm/api-token \

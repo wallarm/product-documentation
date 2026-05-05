@@ -189,6 +189,48 @@ To deploy the containerized Wallarm filtering node configured only through envir
             "family": "wallarm-api-security-node"
             }
          ```
+    === "If you use the Wallarm ME Cloud"
+         ```json
+         {
+             "executionRoleArn": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/ecsTaskExecutionRole",
+             "containerDefinitions": [
+                 {
+                     "memory": 128,
+                     "portMappings": [
+                    {
+                        "hostPort": 80,
+                        "containerPort": 80,
+                        "protocol": "tcp"
+                    }
+                ],
+                "essential": true,
+                "environment": [
+                    {
+                        "name": "WALLARM_API_HOST",
+                        "value": "me1.api.wallarm.com"
+                    },
+                    {
+                        "name": "NGINX_BACKEND",
+                        "value": "<HOST_TO_PROTECT_WITH_WALLARM>"
+                    },
+                    {
+                        "name": "WALLARM_LABELS",
+                        "value": "group=<GROUP>"
+                    }
+                ],
+                "secrets": [
+                    {
+                        "name": "WALLARM_API_TOKEN",
+                        "valueFrom": "arn:aws:secretsmanager:<SECRETS_MANAGER_AWS_REGION>:<AWS_ACCOUNT_ID>:secret:<SECRET_NAME>:<WALLARM_API_TOKEN_PARAMETER_NAME>::"
+                    }
+                ],
+                "name": "wallarm-container",
+                "image": "registry-1.docker.io/wallarm/node:5.3.17"
+                }
+            ],
+            "family": "wallarm-api-security-node"
+            }
+         ```
 
     * `<AWS_ACCOUNT_ID>`: [your AWS account ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html).
     * The `environment` object sets the environment variables that should be passed to the Docker container in a text format. The set of available environment variables is described in the table below. It is recommended to pass the variable `WALLARM_API_TOKEN` in the `secrets` object.
@@ -373,6 +415,59 @@ To deploy the container with environment variables and configuration file mounte
             "volumes": [
                 {
                     "name": "default",
+                    "efsVolumeConfiguration": {
+                        "fileSystemId": "<EFS_FILE_SYSTEM_ID>",
+                        "transitEncryption": "ENABLED"
+                    }
+                }
+            ],
+            "family": "wallarm-api-security-node"
+            }
+         ```
+    === "If you use the Wallarm ME Cloud"
+         ```json
+         {
+             "executionRoleArn": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/ecsTaskExecutionRole",
+             "containerDefinitions": [
+                 {
+                     "memory": 128,
+                     "portMappings": [
+                    {
+                        "hostPort": 80,
+                        "containerPort": 80,
+                        "protocol": "tcp"
+                    }
+                ],
+                "essential": true,
+                "mountPoints": [
+                    {
+                        "containerPath": "<PATH_FOR_MOUNTED_CONFIG>",
+                        "sourceVolume": "<NAME_FROM_VOLUMES_OBJECT>"
+                    }
+                ],
+                "environment": [
+                    {
+                        "name": "WALLARM_API_HOST",
+                        "value": "me1.api.wallarm.com"
+                    },
+                    {
+                        "name": "WALLARM_LABELS",
+                        "value": "group=<GROUP>"
+                    }
+                ],
+                "secrets": [
+                    {
+                        "name": "WALLARM_API_TOKEN",
+                        "valueFrom": "arn:aws:secretsmanager:<SECRETS_MANAGER_AWS_REGION>:<AWS_ACCOUNT_ID>:secret:<SECRET_NAME>:<WALLARM_API_TOKEN_PARAMETER_NAME>::"
+                    }
+                ],
+                "name": "wallarm-container",
+                "image": "registry-1.docker.io/wallarm/node:5.3.17"
+                }
+            ],
+            "volumes": [
+                {
+                    "name": "<VOLUME_NAME>",
                     "efsVolumeConfiguration": {
                         "fileSystemId": "<EFS_FILE_SYSTEM_ID>",
                         "transitEncryption": "ENABLED"

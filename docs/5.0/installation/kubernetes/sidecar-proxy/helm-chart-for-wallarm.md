@@ -1,6 +1,7 @@
 [sidecar-upgrade-docs]:               ../../../updating-migrating/sidecar-proxy.md
 [us-cloud-docs]:                      ../../../about-wallarm/overview.md#cloud
 [eu-cloud-docs]:                      ../../../about-wallarm/overview.md#cloud
+[me-cloud-docs]:                      ../../../about-wallarm/overview.md#cloud
 [configure-wallarm-mode-docs]:        ../../../admin-en/configure-wallarm-mode.md
 [filtration-mode-priorities-docs]:    ../../../admin-en/configure-wallarm-mode.md#prioritization-of-methods
 [libdetection-docs]:                  ../../../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors
@@ -107,6 +108,7 @@ Wallarm API endpoint. Can be:
 
 * `us1.api.wallarm.com` for the [US cloud][us-cloud-docs]
 * `api.wallarm.com` for the [EU cloud][eu-cloud-docs] (default)
+* `me1.api.wallarm.com` for the [ME cloud][me-cloud-docs]
 
 ## config.wallarm.api.nodeGroup
 

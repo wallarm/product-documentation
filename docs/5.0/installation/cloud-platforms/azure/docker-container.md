@@ -96,7 +96,17 @@ In these instructions, the container is deployed using the Azure CLI.
             --image registry-1.docker.io/wallarm/node:5.3.17 \
             --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} NGINX_BACKEND='example.com' WALLARM_LABELS='group=<GROUP>'
          ```
-        
+    === "Command for the Wallarm ME Cloud"
+         ```bash
+         az container create \
+            --resource-group myResourceGroup \
+            --name wallarm-node \
+            --dns-name-label wallarm \
+            --ports 80 \
+            --image registry-1.docker.io/wallarm/node:5.3.17 \
+            --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} NGINX_BACKEND='example.com' WALLARM_API_HOST='me1.api.wallarm.com' WALLARM_LABELS='group=<GROUP>'
+         ```
+
     * `--resource-group`: name of the resource group created in the second step.
     * `--name`: name of the container.
     * `--dns-name-label`: DNS name label for the container.
@@ -187,6 +197,18 @@ To deploy the container with environment variables and mounted configuration fil
             --gitrepo-url <URL_OF_GITREPO> \
             --gitrepo-mount-path /etc/nginx/sites-enabled \
             --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} WALLARM_LABELS='group=<GROUP>'
+         ```
+    === "Command for the Wallarm ME Cloud"
+         ```bash
+         az container create \
+            --resource-group myResourceGroup \
+            --name wallarm-node \
+            --dns-name-label wallarm \
+            --ports 80 \
+            --image registry-1.docker.io/wallarm/node:5.3.17 \
+            --gitrepo-url <URL_OF_GITREPO> \
+            --gitrepo-mount-path /etc/nginx/sites-enabled \
+            --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} WALLARM_API_HOST='me1.api.wallarm.com' WALLARM_LABELS='group=<GROUP>'
          ```
 
     * `--resource-group`: name of the resource group created in the 2nd step.
