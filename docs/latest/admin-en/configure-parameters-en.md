@@ -467,25 +467,34 @@ This parameter is effective only if `wallarm_parse_response on`.
 
 ### wallarm_partner_client_uuid
 
-Unique identifier of the tenant for the [multi-tenant](../installation/multi-tenant/overview.md) Wallarm node. The value should be a string in the [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) format, for example:
+Unique identifier of the tenant for the [multi-tenant](../installation/multi-tenant/overview.md) Wallarm node. The value should be a string in the [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) format, with an optional human-readable label:
 
-* `11111111-1111-1111-1111-111111111111`
-* `123e4567-e89b-12d3-a456-426614174000`
+```
+wallarm_partner_client_uuid <UUID> [label];
+```
+
+* `<UUID>` — tenant UUID, e.g. `11111111-1111-1111-1111-111111111111`
+* `[label]` — (optional, NGINX Node 6.12.0+) a human-readable identifier for the tenant, e.g. `US-8`. When set, the label is included in per-tenant [Prometheus metrics](configure-statistics-service.md#getting-statistics-in-the-prometheus-format) as the `client_label` label.
+
+The directive also exposes two NGINX variables (NGINX Node 6.12.0+) that can be used in [log formats](configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node):
+
+* `$wallarm_partner_client_uuid` — the resolved tenant UUID for the current request
+* `$wallarm_partner_client_label` — the human-readable label for that tenant
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
 
     Know how to:
-    
+
     * [Get the UUID of the tenant during tenant creation →](../installation/multi-tenant/configure-accounts.md#via-the-wallarm-api)
     * [Get the list of UUIDs of existing tenants →](../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants)
-    
+
 Configuration example:
 
 ```
 server {
   server_name  tenant1.com;
-  wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111;
+  wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111 US-8;
   ...
   location /login {
      wallarm_application 21;
@@ -498,14 +507,14 @@ server {
 
 server {
   server_name  tenant1-1.com;
-  wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111;
+  wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111 US-8;
   wallarm_application 23;
   ...
 }
 
 server {
   server_name  tenant2.com;
-  wallarm_partner_client_uuid 22222222-2222-2222-2222-222222222222;
+  wallarm_partner_client_uuid 22222222-2222-2222-2222-222222222222 EU-3;
   ...
 }
 ...
@@ -515,8 +524,8 @@ server {
 In the configuration above:
 
 * Tenant stands for partner's client. The partner has 2 clients.
-* The traffic targeting `tenant1.com` and `tenant1-1.com` will be associated with the client `11111111-1111-1111-1111-111111111111`.
-* The traffic targeting `tenant2.com` will be associated with the client `22222222-2222-2222-2222-222222222222`.
+* The traffic targeting `tenant1.com` and `tenant1-1.com` will be associated with the client `11111111-1111-1111-1111-111111111111` (label `US-8`).
+* The traffic targeting `tenant2.com` will be associated with the client `22222222-2222-2222-2222-222222222222` (label `EU-3`).
 * The first client also has 3 applications, specified via the [`wallarm_application`](#wallarm_application) directive:
     * `tenant1.com/login` – `wallarm_application 21`
     * `tenant1.com/users` – `wallarm_application 22`
@@ -757,6 +766,44 @@ Also, it is strongly advised not to alter any of the existing lines of the defau
     The directive can be configured in the NGINX context of `server` and/or `location`.
 
     The `format` parameter has the `json` value by default.
+
+### wallarm_status_group
+
+Assigns a custom group name to requests matching the current context. Grouped statistics are then available in the [`wallarm_status`](configure-statistics-service.md) output — both in JSON (`split.clients[].groups[]`) and in Prometheus format as dedicated `wallarm_*_per_group_total` metrics with a `group` label.
+
+```
+wallarm_status_group <name>;
+```
+
+This allows you to split traffic statistics by arbitrary categories (e.g. by API version, service, or environment) in addition to the per-application split provided by [`wallarm_application`](#wallarm_application).
+
+!!! info
+    This parameter can be set inside the http, server, and location blocks.
+
+Configuration example:
+
+```
+server {
+    server_name  api.example.com;
+
+    location /v1/ {
+        wallarm_status_group api-v1;
+        proxy_pass http://backend-v1;
+    }
+
+    location /v2/ {
+        wallarm_status_group api-v2;
+        proxy_pass http://backend-v2;
+    }
+}
+```
+
+With this configuration, the `wallarm_status` Prometheus output will include metrics like:
+
+```
+wallarm_requests_per_group_total{client_uuid="...",client_label="...",group="api-v1"} 150
+wallarm_requests_per_group_total{client_uuid="...",client_label="...",group="api-v2"} 320
+```
 
 ### wallarm_tarantool_upstream
 
