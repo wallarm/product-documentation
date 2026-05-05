@@ -2,7 +2,7 @@ INHERIT: mkdocs-base.yml
 
 extra:
   version: "7.x"
-  versionNative: "0.25.x+"
+  versionNative: "0.26.x+"
 
 docs_dir: docs/7.x
 site_dir: site/7.x
