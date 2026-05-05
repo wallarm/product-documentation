@@ -18,7 +18,7 @@ Ingress controller chaining enables you to utilize an existing controller to get
 * Kubernetes platform version 1.26-1.30
 * [Helm](https://helm.sh/) package manager
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/), or [ME Cloud](https://me1.my.wallarm.com/)
-* Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud
+* Access to the Wallarm API host for your Cloud: `https://us1.api.wallarm.com`, `https://api.wallarm.com`, or `https://me1.api.wallarm.com`
 * Access to `https://charts.wallarm.com` to add the Wallarm Helm charts. Ensure the access is not blocked by a firewall
 * Access to the Wallarm repositories on Docker Hub `https://hub.docker.com/r/wallarm`. Make sure the access is not blocked by a firewall
 * Access to the IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and [API specifications](../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions, or data centers

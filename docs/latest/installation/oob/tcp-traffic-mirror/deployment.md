@@ -35,7 +35,7 @@ Additionally, the solution enables response mirror parsing, providing Wallarm fe
     * x86_64/ARM64 architecture
     * Executing all commands as a superuser (e.g. `root`).
     * Allowed outgoing connections to `https://meganode.wallarm.com` to download the Wallarm installer
-    * Allowed outgoing connections to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud
+    * Allowed outgoing connections to the Wallarm API host for your Cloud: `https://us1.api.wallarm.com`, `https://api.wallarm.com`, or `https://me1.api.wallarm.com`
     * Allowed outgoing connections to the IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and [API specifications](../../../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../../../user-guides/ip-lists/overview.md) countries, regions, or data centers
 
         --8<-- "../include/wallarm-cloud-ips.md"
@@ -251,6 +251,9 @@ To install the Wallarm node for TCP traffic mirror analysis, run the following c
 
     # EU Cloud
     sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.24.1.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+
+    # ME Cloud
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.24.1.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com
     ```
 === "ARM64 version"
     ```bash
@@ -259,6 +262,9 @@ To install the Wallarm node for TCP traffic mirror analysis, run the following c
 
     # EU Cloud
     sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.24.1.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+
+    # ME Cloud
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.24.1.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com
     ```
 
 * The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).

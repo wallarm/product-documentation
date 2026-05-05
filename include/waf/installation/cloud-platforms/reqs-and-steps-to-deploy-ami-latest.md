@@ -32,7 +32,7 @@ Recommended configuration:
 * [Security Group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-security-group.html) outbound access to:
 
     * `https://meganode.wallarm.com` to download the Wallarm installer
-    * `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][wallarm-api-via-proxy]
+    * Wallarm API host for your Cloud: `https://us1.api.wallarm.com`, `https://api.wallarm.com`, or `https://me1.api.wallarm.com`. If access can be configured only via the proxy server, then use the [instructions][wallarm-api-via-proxy]
     * IP addresses below for downloading updates to attack detection rules and [API specifications][api-spec-enforcement-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][ip-lists-docs] countries, regions, or data centers
 
         --8<-- "../include/wallarm-cloud-ips.md"
