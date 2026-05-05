@@ -260,6 +260,10 @@ For additional debugging, set the [`log.level`](all-in-one-conf.md#loglevel) par
         ```
         sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh
         ```
+
+    !!! info "ME Cloud"
+        The interactive mode does not yet support ME Cloud selection. Use the batch mode with `-H me1.api.wallarm.com` instead.
+
 * <a name="apid-only-mode"></a>You can use the node in API Discovery-only mode (available since version 0.12.1). In this mode, attacks - including those detected by the Node's built-in mechanisms and those requiring additional configuration (e.g., credential stuffing, API specification violation attempts, and malicious activity from denylisted and graylisted IPs) - are detected and blocked locally (if enabled) but not exported to Wallarm Cloud. Since there is no attack data in the Cloud, [Threat Replay Testing](../../vulnerability-detection/threat-replay-testing/overview.md) does not work. Traffic from whitelisted IPs is allowed.
 
     Meanwhile, [API Discovery](../../api-discovery/overview.md), [API session tracking](../../api-sessions/overview.md), and [security vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md) remain fully functional, detecting relevant security entities and uploading them to the Cloud for visualization.
