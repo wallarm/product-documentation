@@ -299,15 +299,15 @@ helm repo update wallarm
 
 === "US Cloud"
     ```
-    helm upgrade --install --version 0.24.1 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace -f <PATH_TO_VALUES> --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com
+    helm upgrade --install --version 0.25.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace -f <PATH_TO_VALUES> --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com
     ```
 === "EU Cloud"
     ```
-    helm upgrade --install --version 0.24.1 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace -f <PATH_TO_VALUES> --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com
+    helm upgrade --install --version 0.25.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace -f <PATH_TO_VALUES> --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com
     ```
 === "ME Cloud"
     ```
-    helm upgrade --install --version 0.24.1 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace -f <PATH_TO_VALUES> --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=me1.api.wallarm.com
+    helm upgrade --install --version 0.25.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace -f <PATH_TO_VALUES> --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=me1.api.wallarm.com
     ```
 
 ### 5. Configure DNS access to the Wallarm Node

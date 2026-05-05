@@ -10,6 +10,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.25.0 (2026-05-04)
+
+* Added support for MCP server discovery and protection
+* Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
+* Fixed [API Specification Enforcement](../api-specification-enforcement/overview.md) incorrectly reporting requests as "undefined endpoint" for OpenAPI specs that define a base path in the `servers` block
+
 ### 0.24.1 (2026-04-27)
 
 * Added the [`metrics.per_host_stats`](../../installation/native-node/all-in-one-conf.md#metricsper_host_stats) configuration parameter to control per-host metrics collection (enabled by default)
@@ -243,6 +249,12 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.25.0 (2026-05-04)
+
+* Added support for MCP server discovery and protection
+* Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
+* Fixed [API Specification Enforcement](../api-specification-enforcement/overview.md) incorrectly reporting requests as "undefined endpoint" for OpenAPI specs that define a base path in the `servers` block
+
 ### 0.24.1 (2026-04-27)
 
 * Bumped Go version to 1.26.2
@@ -466,6 +478,12 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](docker-image.md)
+
+### 0.25.0 (2026-05-04)
+
+* Added support for MCP server discovery and protection
+* Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
+* Fixed [API Specification Enforcement](../api-specification-enforcement/overview.md) incorrectly reporting requests as "undefined endpoint" for OpenAPI specs that define a base path in the `servers` block
 
 ### 0.24.1 (2026-04-27)
 
