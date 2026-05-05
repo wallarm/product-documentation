@@ -37,11 +37,11 @@
     The command for x86_64:
 
     ```bash
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.3.x86_64-glibc.sh -- --batch -t <TOKEN> -H me1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.0.x86_64-glibc.sh -- --batch -t <TOKEN> -H me1.api.wallarm.com
     ```
 
     The command for ARM64:
 
     ```bash
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.10.3.aarch64-glibc.sh -- --batch -t <TOKEN> -H me1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.0.aarch64-glibc.sh -- --batch -t <TOKEN> -H me1.api.wallarm.com
     ```
