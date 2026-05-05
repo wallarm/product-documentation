@@ -9,7 +9,7 @@ These instructions describe the steps to upgrade the end‑of‑life multi-tenan
 ## Requirements
 
 * Execution of further commands by the user with the **Global administrator** role added under the [technical tenant account](../../installation/multi-tenant/overview.md#tenant-accounts)
-* Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud. Please ensure the access is not blocked by a firewall
+* Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud, to `https://me1.api.wallarm.com` if working with ME Wallarm Cloud. Please ensure the access is not blocked by a firewall
 * Access to the IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and API specifications, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers.
 
     --8<-- "../include/wallarm-cloud-ips.md"
@@ -129,6 +129,13 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
                     -H 'accept: application/json' \
                     -H "X-WallarmApi-Token: <YOUR_TOKEN>"
                     ```
+                === "ME Cloud"
+                    ``` bash
+                    curl -X GET \
+                    'https://me1.api.wallarm.com/v2/partner_client?partnerid=PARTNER_ID' \
+                    -H 'accept: application/json' \
+                    -H "X-WallarmApi-Token: <YOUR_TOKEN>"
+                    ```
             
             Where `PARTNER_ID` is the one obtained at [**Step 2**](../../installation/multi-tenant/configure-accounts.md#step-1-sign-up-and-send-a-request-to-activate-the-multitenancy-feature) of the tenant creation procedure.
 
@@ -173,7 +180,15 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
             -H 'X-WallarmApi-Token: <YOUR_TOKEN>' \
             -d '{ "filter": { "id": [<CLIENT_1_ID>, <CLIENT_2_ID>]}}'
             ```        
-
+        === "ME Cloud"
+            ``` bash
+            curl -X POST \
+            https://me1.api.wallarm.com/v1/objects/client \
+            -H 'content-type: application/json' \
+            -H 'X-WallarmApi-Token: <YOUR_TOKEN>' \
+            -d '{ "filter": { "id": [<CLIENT_1_ID>, <CLIENT_2_ID>]}}'
+            ```        
+    
     Response example:
 
     ```

@@ -39,7 +39,7 @@ For guidance on estimating AWS infrastructure costs for this deployment, see the
 * Any AWS region of your choice, there are no specific restrictions on the region for the Wallarm node deployment
 
     Wallarm supports both single availability zone (AZ) and multi availability zone deployments. In multi-AZ setups, Wallarm Nodes can be launched in separate availability zones and placed behind a Load Balancer for high availability.
-* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
+* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/), or [ME Cloud](https://me1.my.wallarm.com/)
 * Executing all commands on a Wallarm EC2 instance as a superuser (e.g. `root`)
 * When running the node in the `connector-server` or `envoy-external-filter` mode, a **trusted** SSL/TLS certificate for the machine's domain should be issued and uploaded to the machine along with the private key
 * When running the node in the `tcp-capture-v2` mode:
@@ -74,7 +74,7 @@ Recommended configuration:
 * [Security Group](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html) outbound access to:
 
     * `https://meganode.wallarm.com` to download the Wallarm installer
-    * `https://us1.api.wallarm.com` or `https://api.wallarm.com` for US/EU Wallarm Cloud
+    * `https://us1.api.wallarm.com` or `https://api.wallarm.com` or `https://me1.api.wallarm.com` for US/EU/ME Wallarm Cloud
     * IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and [API specifications][api-spec-enforcement-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][ip-list-docs] countries, regions, or data centers
 
         --8<-- "../include/wallarm-cloud-ips.md"
@@ -84,7 +84,7 @@ Recommended configuration:
 
 To register the Node in the Wallarm Cloud, you need an API token:
 
-1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens), [EU Cloud](https://my.wallarm.com/settings/api-tokens) or [ME Cloud](https://me1.my.wallarm.com/settings/api-tokens).
 1. Find or create API token with the `Node deployment/Deployment` usage type.
 1. Copy this token.
 
@@ -364,6 +364,10 @@ The AMI includes an installer script with the following launch options:
     ```
     sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh
     ```
+
+    !!! info "ME Cloud"
+        The interactive mode does not yet support ME Cloud selection. Use the batch mode with `-H me1.api.wallarm.com` instead.
+
 * <a name="apid-only-mode"></a>You can use the node in API Discovery-only mode. In this mode, attacks - including those detected by the Node's built-in mechanisms and those requiring additional configuration (e.g., credential stuffing, API specification violation attempts, and malicious activity from denylisted and graylisted IPs) - are detected and blocked locally (if enabled) but not exported to Wallarm Cloud. Since there is no attack data in the Cloud, [Threat Replay Testing](../../vulnerability-detection/threat-replay-testing/overview.md) does not work. Traffic from whitelisted IPs is allowed.
 
     Meanwhile, [API Discovery](../../api-discovery/overview.md), [API session tracking](../../api-sessions/overview.md), and [security vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md) remain fully functional, detecting relevant security entities and uploading them to the Cloud for visualization.

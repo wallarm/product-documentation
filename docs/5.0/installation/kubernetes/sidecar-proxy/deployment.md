@@ -74,11 +74,11 @@ To deploy the Wallarm Sidecar solution:
 Generate a filtering node token of the [appropriate type][node-token-types] to connect the sidecar pods to the Wallarm Cloud:
 
 === "API token"
-    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens), or [ME Cloud](https://me1.my.wallarm.com/settings/api-tokens).
     1. Find or create API token with the `Node deployment/Deployment` usage type.
     1. Copy this token.
 === "Node token"
-    1. Open Wallarm Console → **Nodes** in either the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
+    1. Open Wallarm Console → **Nodes** in either the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes), or [ME Cloud](https://me1.my.wallarm.com/nodes).
     1. Create a filtering node with the **Wallarm node** type and copy the generated token.
         
       ![Creation of a Wallarm node][create-wallarm-node-img]
@@ -111,7 +111,16 @@ Generate a filtering node token of the [appropriate type][node-token-types] to c
               token: "<NODE_TOKEN>"
               # nodeGroup: "defaultSidecarGroup"
         ```    
-    
+    === "ME Cloud"
+        ```yaml
+        config:
+          wallarm:
+            api:
+              host: "me1.api.wallarm.com"
+              token: "<NODE_TOKEN>"
+              # nodeGroup: "defaultSidecarGroup"
+        ```
+
     `<NODE_TOKEN>` is the token of the Wallarm node to be run in Kubernetes.
 
     --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.md"

@@ -6,6 +6,7 @@ wallarm:
      pullPolicy: Always
   # Wallarm API endpoint: 
   # "api.wallarm.com" for the EU Cloud
+  # "me1.api.wallarm.com" for the ME Cloud
   # "us1.api.wallarm.com" for the US Cloud
   wallarm_host_api: "api.wallarm.com"
   # Wallarm node token

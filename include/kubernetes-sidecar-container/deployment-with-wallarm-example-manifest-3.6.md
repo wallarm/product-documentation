@@ -20,6 +20,7 @@ spec:
           env:
           # Wallarm API endpoint: 
           # "api.wallarm.com" for the EU Cloud
+          # "me1.api.wallarm.com" for the ME Cloud
           # "us1.api.wallarm.com" for the US Cloud
           - name: WALLARM_API_HOST
             value: "api.wallarm.com"

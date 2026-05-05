@@ -5,7 +5,7 @@
 * Any AWS region of your choice, there are no specific restrictions on the region for the Wallarm node deployment
 
     Wallarm supports both single availability zone (AZ) and multi availability zone deployments. In multi-AZ setups, Wallarm Nodes can be launched in separate availability zones and placed behind a Load Balancer for high availability.
-* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
+* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/), or [ME Cloud](https://me1.my.wallarm.com/)
 * Executing all commands on a Wallarm instance as a superuser (e.g. `root`)
 * No system user named `wallarm` exists 
 
@@ -32,7 +32,7 @@ Recommended configuration:
 * [Security Group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-security-group.html) outbound access to:
 
     * `https://meganode.wallarm.com` to download the Wallarm installer
-    * `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][wallarm-api-via-proxy]
+    * Wallarm API host for your Cloud: `https://us1.api.wallarm.com`, `https://api.wallarm.com`, or `https://me1.api.wallarm.com`. If access can be configured only via the proxy server, then use the [instructions][wallarm-api-via-proxy]
     * IP addresses below for downloading updates to attack detection rules and [API specifications][api-spec-enforcement-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][ip-lists-docs] countries, regions, or data centers
 
         --8<-- "../include/wallarm-cloud-ips.md"
@@ -47,13 +47,13 @@ Generate a token as follows:
 
 === "API token"
 
-    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens), or [ME Cloud](https://me1.my.wallarm.com/settings/api-tokens).
     1. Find or create API token with the `Node deployment/Deployment` usage type.
     1. Copy this token.
 === "Node token"
 
-    1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
-    1. Do one of the following:
+    1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes), or [ME Cloud](https://me1.my.wallarm.com/nodes).
+    1. Do one of the following: 
         * Create the node of the **Wallarm node** type and copy the generated token.
         * Use existing node group - copy token using node's menu → **Copy token**.
 

@@ -88,6 +88,17 @@ If you stored the token in AWS Secrets Manager ([step 3](#3-store-the-token-in-a
       -t "$WALLARM_TOKEN" -m monitoring \
       --proxy-pass <PROXY_ADDRESS>
     ```
+=== "ME Cloud"
+    ```bash
+    WALLARM_TOKEN=$(aws secretsmanager get-secret-value \
+      --secret-id wallarm/api-token \
+      --query SecretString --output text)
+
+    sudo env WALLARM_LABELS='group=<GROUP>' \
+      /opt/wallarm/usr/share/wallarm-common/cloud-init.py \
+      -t "$WALLARM_TOKEN" -m monitoring \
+      --proxy-pass <PROXY_ADDRESS> -H me1.api.wallarm.com
+    ```
 
 * `WALLARM_LABELS='group=<GROUP>'` sets a node group name (existing, or, if does not exist, it will be created). It is only applied if using an API token.
 * `<PROXY_ADDRESS>` is the address the Wallarm node proxies legitimate traffic to. It can be the IP of an application instance, a load balancer, or a DNS name (depending on your architecture), with the specified `http` or `https` protocol, e.g., `http://example.com` or `https://192.0.2.1`. [See more information on the proxy address format](https://nginx.org/en/docs/http/ngx_http_proxy_module.html?&_ga=2.23729850.1231698478.1756133814-1504295816.1756133814#proxy_pass).
@@ -101,6 +112,10 @@ Alternatively, you can pass the token directly on the command line. This approac
 === "EU Cloud"
     ``` bash
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring --proxy-pass <PROXY_ADDRESS>
+    ```
+=== "ME Cloud"
+    ``` bash
+    sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring --proxy-pass <PROXY_ADDRESS> -H me1.api.wallarm.com
     ```
 
 ### 6. Configure sending traffic to the Wallarm instance

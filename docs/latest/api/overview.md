@@ -17,6 +17,7 @@ Description of API methods is given in the **Wallarm API Console** available fro
 
 * https://apiconsole.us1.wallarm.com/ for the [US cloud](../about-wallarm/overview.md#cloud)
 * https://apiconsole.eu1.wallarm.com/ for the [EU cloud](../about-wallarm/overview.md#cloud)
+* https://apiconsole.me1.wallarm.com/ for the [ME cloud](../about-wallarm/overview.md#cloud)
 
 ![Wallarm API Console](../images/wallarm-api-reference.png)
 
@@ -26,6 +27,7 @@ API requests are sent to the following URL:
 
 * `https://us1.api.wallarm.com/` for the [US cloud](../about-wallarm/overview.md#cloud)
 * `https://api.wallarm.com/` for the [EU cloud](../about-wallarm/overview.md#cloud)
+* `https://me1.api.wallarm.com/` for the [ME cloud](../about-wallarm/overview.md#cloud)
 
 ## Authentication of API requests
 
@@ -41,16 +43,18 @@ A token is used for request authentication. The token is generated after success
 1. Sign in to your Wallarm Console using the link:
     * https://us1.my.wallarm.com/ for the US cloud
     * https://my.wallarm.com/ for the EU cloud
+    * https://me1.my.wallarm.com/ for the ME cloud
 2. Refresh the Wallarm API Console page using the link:
     * https://apiconsole.us1.wallarm.com/ for the US cloud
     * https://apiconsole.eu1.wallarm.com/ for the EU cloud
+    * https://apiconsole.me1.wallarm.com/ for the ME cloud
 3. Go to the required API method → the **Try it out** section, input parameter values, and **Execute** the request.
 
 ### Your own API client
 
 To authenticate requests from your own API client to Wallarm API:
 
-1. Sign in to your Wallarm account in the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)  → **Settings** → **API tokens**.
+1. Sign in to your Wallarm account in the [US Cloud](https://us1.my.wallarm.com/), [EU Cloud](https://my.wallarm.com/), or [ME Cloud](https://me1.my.wallarm.com/)  → **Settings** → **API tokens**.
 1. [Create token](../user-guides/settings/api-tokens.md) to access the Wallarm API.
 1. Open your token and copy value from the **Token** section.
 1. Send the required API request passing the **Token** value in the `X-WallarmApi-Token` header parameter.

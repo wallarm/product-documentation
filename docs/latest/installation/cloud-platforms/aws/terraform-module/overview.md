@@ -15,7 +15,7 @@ Among all supported [Wallarm deployment options](../../../supported-deployment-o
 
 * Terraform 1.0.5 or higher [installed locally](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 * Access to the account with the **Administrator** [role](../../../../user-guides/settings/users.md#user-roles) in Wallarm Console in the US or EU [Cloud](../../../../about-wallarm/overview.md#cloud)
-* Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud. Please ensure the access is not blocked by a firewall
+* Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud, to `https://me1.api.wallarm.com` if working with ME Wallarm Cloud. Please ensure the access is not blocked by a firewall
 * Access to the IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and [API specifications](../../../../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../../../../user-guides/ip-lists/overview.md) countries, regions, or data centers
 
     --8<-- "../include/wallarm-cloud-ips.md"
@@ -26,7 +26,7 @@ This topic does not include instructions for creating all AWS resources necessar
 
 To deploy Wallarm for production using the AWS Terraform module:
 
-1. Sign up for Wallarm Console in the [US Cloud](https://us1.my.wallarm.com/signup) or [EU Cloud](https://my.wallarm.com/signup).
+1. Sign up for Wallarm Console in the [US Cloud](https://us1.my.wallarm.com/signup) or [EU Cloud](https://my.wallarm.com/signup), or [ME Cloud](https://me1.my.wallarm.com/signup).
 1. Open Wallarm Console → **Nodes** and create the node of the **Wallarm node** type.
 
     ![Creation of a Wallarm node](../../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
@@ -56,7 +56,7 @@ To deploy Wallarm for production using the AWS Terraform module:
 | `vpc_id` | [ID of the AWS Virtual Private Cloud](https://docs.aws.amazon.com/managedservices/latest/userguide/find-vpc.html) to deploy the Wallarm EC2 instance to. | string | Yes
 | `token` | [Wallarm node token](../../../../user-guides/nodes/nodes.md#creating-node) copied from the Wallarm Console UI.<br><div class="admonition info"> <p class="admonition-title">Using one token for several installations</p> <p>You can use one token in several installations regardless of the selected [platform](../../../../installation/supported-deployment-options.md). It allows logical grouping of node instances in the Wallarm Console UI. Example: you deploy several Wallarm nodes to a development environment, each node is on its own machine owned by a certain developer.</p></div> | string | Yes
 | **Wallarm-specific variables** | | | |
-| `host` | [Wallarm API server](../../../../about-wallarm/overview.md#cloud). Possible values:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul>By default, `api.wallarm.com`. | string | No
+| `host` | [Wallarm API server](../../../../about-wallarm/overview.md#cloud). Possible values:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li><li>`me1.api.wallarm.com` for the ME Cloud</li></ul>By default, `api.wallarm.com`. | string | No
 `upstream` | The [Wallarm node version](../../../../updating-migrating/versioning-policy.md#version-list) to be deployed. Minimum supported version is `4.0`.<br><br>By default, `4.8`. | string | No
 | `preset` | Wallarm deployment scheme. Possible values: `proxy` (default). | string | No
 | `proxy_pass` | Proxied server protocol and address. Wallarm node will process requests sent to the specified address and proxy legitimate ones to. As a protocol, 'http' or 'https' can be specified. The address can be specified as a domain name or IP address, and an optional port. | string | Yes, if `preset` is `proxy`

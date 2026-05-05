@@ -39,7 +39,7 @@ FAST node configuration is done via environment variables. The table below holds
 | Environment Variable   | Value  | Required? |
 |--------------------	| --------	| -----------	|
 | `WALLARM_API_TOKEN`  	| The token for a node. | Yes |
-| `WALLARM_API_HOST`   	| The domain name of the Wallarm API server to use. <br>Allowed values: <br>`us1.api.wallarm.com` for use with the US cloud;<br>`api.wallarm.com` for use with the EU cloud.| Yes |
+| `WALLARM_API_HOST`   	| The domain name of the Wallarm API server to use. <br>Allowed values: <br>`us1.api.wallarm.com` for use with the US cloud;<br>`api.wallarm.com` for use with the EU cloud and <br>`me1.api.wallarm.com` for the ME cloud.| Yes |
 | `CI_MODE`            	| The FAST node's operation mode. <br>Required value: `testing`. | Yes |
 | `WORKERS` | The number of concurrent threads that work with multiple baseline requests in a parallel fashion.<br>Default value: `10`.| No |
 | `TEST_RECORD_ID` | The identifier of a test record.<br>Default: empty value. | No |

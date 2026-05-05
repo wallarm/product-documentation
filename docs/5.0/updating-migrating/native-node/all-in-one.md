@@ -17,7 +17,7 @@ These instructions describe the steps to upgrade the [Native Node installed usin
 * Outbound access to:
 
     * `https://meganode.wallarm.com` to download the Wallarm installer
-    * `https://us1.api.wallarm.com` or `https://api.wallarm.com` for US/EU Wallarm Cloud
+    * `https://us1.api.wallarm.com` or `https://api.wallarm.com` or `https://me1.api.wallarm.com` for US/EU/ME Wallarm Cloud
     * IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and [API specifications][api-spec-enforcement-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][ip-list-docs] countries, regions, or data centers
 
         --8<-- "../include/wallarm-cloud-ips.md"

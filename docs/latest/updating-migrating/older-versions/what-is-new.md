@@ -376,7 +376,7 @@ Wallarm node finds the JWT anywhere in the request, [decodes](../../user-guides/
 * Wallarm node instances now require access to the IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and [API specifications](../../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../../user-guides/ip-lists/overview.md) countries, regions, or data centers.
 
     --8<-- "../include/wallarm-cloud-ips.md"
-* The filtering node now uploads data to the Cloud using `us1.api.wallarm.com:443` (US Cloud) and `api.wallarm.com:443` (EU Cloud) instead of `us1.api.wallarm.com:444` and `api.wallarm.com:444`.
+* The filtering node now uploads data to the Cloud using `us1.api.wallarm.com:443` (US Cloud) and `api.wallarm.com:443` (EU Cloud) and `me1.api.wallarm.com:443` (ME Cloud) instead of `us1.api.wallarm.com:444` and `api.wallarm.com:444`.
 
     If your server with the deployed node has a limited access to the external resources and the access is granted to each resource separately, after upgrade the synchronization between the filtering node and the Cloud will stop. The upgraded node needs to be granted access to the API endpoint with the new port.
 

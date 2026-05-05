@@ -1,8 +1,9 @@
 #   Wallarm Clouds List
 
-FAST relies on two clouds for its operation. These clouds are divided based on geographical location. They are:
+FAST relies on three clouds for its operation. These clouds are divided based on geographical location. They are:
 * American cloud (aka *US cloud*).
 * European cloud (aka *EU cloud*).
+* Middle East cloud (aka *ME cloud*).
 
 During its operation, FAST interacts with the Wallarm portal and API server that are located in one of the clouds:
 * US cloud:
@@ -11,6 +12,9 @@ During its operation, FAST interacts with the Wallarm portal and API server that
 * EU cloud:
     * Wallarm portal: <https://my.wallarm.com>
     * Wallarm API server: `api.wallarm.com`
+* ME cloud:
+    * Wallarm portal: <https://me1.my.wallarm.com>
+    * Wallarm API server: `me1.api.wallarm.com`
 
 !!! warning "Please, pay attention"
     **Rules of interaction with Wallarm clouds:**
@@ -21,4 +25,4 @@ During its operation, FAST interacts with the Wallarm portal and API server that
 
     * For the sake of simplicity, it is assumed throughout the documentation that FAST interacts with the American Wallarm cloud.
     * All information from the documentation is equally applicable to all available clouds, unless stated otherwise.   
-    * If you interact with the European cloud, then use the corresponding addresses of the Wallarm portal and the API server when working with FAST and the documentation.
+    * If you interact with the European or Middle East cloud, then use the corresponding addresses of the Wallarm portal and the API server when working with FAST and the documentation.

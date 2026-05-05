@@ -25,7 +25,7 @@ To control and customize the OpenAPI Security Testing feature, you can utilize t
 
 To run OpenAPI security testing, follow these steps:
 
-1. Proceed to Wallarm Console → **OpenAPI Testing** by following the link for the [US Cloud](https://us1.my.wallarm.com/security-testing) or [EU Cloud](https://my.wallarm.com/security-testing) and **Create testing policy**.
+1. Proceed to Wallarm Console → **OpenAPI Testing** by following the link for the [US Cloud](https://us1.my.wallarm.com/security-testing) or [EU Cloud](https://my.wallarm.com/security-testing), or [ME Cloud](https://me1.my.wallarm.com/security-testing) and **Create testing policy**.
 
     ![!Policy create](../images/user-guides/openapi-testing/create-testing-policy.png)
 1. Select the API endpoints that you want to test either from your [automatically discovered](../api-discovery/overview.md) API inventory or upload an OpenAPI 3.0 specification in JSON format.
@@ -48,12 +48,15 @@ The Docker command example:
     ```
     docker run -e WALLARM_API_HOST=api.wallarm.com -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_TESTING_POLICY_ID=7 -e TARGET_URL=${WALLARM_SCANNER_TARGET_URL} -v ${WALLARM_REPORT_PATH}:/app/reports --pull=always wallarm/oas-fast-scanner:latest
     ```
-
+=== "ME Cloud"
+    ```
+    docker run -e WALLARM_API_HOST=me1.api.wallarm.com -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_TESTING_POLICY_ID=7 -e TARGET_URL=${WALLARM_SCANNER_TARGET_URL} -v ${WALLARM_REPORT_PATH}:/app/reports --pull=always wallarm/oas-fast-scanner:latest
+    ```
 The list of environment variables that the [Docker container](https://hub.docker.com/r/wallarm/oas-fast-scanner) accepts is provided below:
 
 Environment variable | Description| Required?
 --- | ---- | ----
-`WALLARM_API_HOST` | Wallarm API server:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul> | Yes
+`WALLARM_API_HOST` | Wallarm API server:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li><li>`me1.api.wallarm.com` for the ME Cloud</li></ul> | Yes
 `WALLARM_API_TOKEN` | [Wallarm API token](../user-guides/settings/api-tokens.md) with the **OpenAPI testing** permissions. | Yes
 `WALLARM_TESTING_POLICY_ID` | Wallarm testing policy ID. It is automatically generated once the policy is created. | Yes
 `TARGET_URL` | URL where the API endpoints you wish to test are hosted. The test requests are sent to this host, e.g., staging, or local build. | Yes

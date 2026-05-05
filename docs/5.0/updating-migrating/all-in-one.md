@@ -62,7 +62,7 @@ To upgrade node, you will need a Wallarm token of [one of the types](../user-gui
 
 === "API token"
 
-    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens), or [ME Cloud](https://me1.my.wallarm.com/settings/api-tokens).
     1. Find or create API token with the `Node deployment/Deployment` usage type.
     1. Copy this token.
 
@@ -70,7 +70,7 @@ To upgrade node, you will need a Wallarm token of [one of the types](../user-gui
 
     For upgrade, use the same node token that was used for installation:
 
-    1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
+    1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes), or [ME Cloud](https://me1.my.wallarm.com/nodes).
     1. In your existing node group, copy token using node's menu → **Copy token**.
 
 ### Step 2: Download newest version of all-in-one Wallarm installer
@@ -116,7 +116,7 @@ To test the new node operation:
     curl http://localhost/etc/passwd
     ```
 
-1. Open the Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks) and ensure attacks are displayed in the list.
+1. Open the Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks), or [ME Cloud](https://me1.my.wallarm.com/attacks) and ensure attacks are displayed in the list.
 1. As soon as your Cloud stored data (rules, IP lists) is synchronized to the new node, perform some test attacks to make sure your rules work as expected. -->
 
 <!-- ### Step 1: Prepare Wallarm token
@@ -125,7 +125,7 @@ To upgrade node, you will need a Wallarm token of [one of the types](../user-gui
 
 === "API token"
 
-    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens), or [ME Cloud](https://me1.my.wallarm.com/settings/api-tokens).
     1. Find or create API token with the `Node deployment/Deployment` usage type.
     1. Copy this token.
 
@@ -133,7 +133,7 @@ To upgrade node, you will need a Wallarm token of [one of the types](../user-gui
 
     For upgrade, use the same node token that was used for installation:
 
-    1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
+    1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes), or [ME Cloud](https://me1.my.wallarm.com/nodes).
     1. In your existing node group, copy token using node's menu → **Copy token**.
 
 ### Step 2: Download newest version of all-in-one Wallarm installer to postanalytics machine
