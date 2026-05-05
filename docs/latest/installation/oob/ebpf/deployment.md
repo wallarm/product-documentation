@@ -167,7 +167,7 @@ Generate an API token for a Wallarm filtering node to connect to the Wallarm Clo
 1. Deploy the Wallarm Helm chart:
 
     ``` bash
-    helm install --version 0.23.0 <RELEASE_NAME> wallarm/wallarm-oob --wait -n wallarm-ebpf --create-namespace -f <PATH_TO_VALUES>
+    helm install --version 0.24.1 <RELEASE_NAME> wallarm/wallarm-oob --wait -n wallarm-ebpf --create-namespace -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` is the name for the Helm release of the Wallarm eBPF chart
