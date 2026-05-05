@@ -557,7 +557,7 @@ The following response parameters are available (Prometheus metrics have the `wa
 * `timestamp`: time when the last incoming request was processed by the node (in the [Unix Timestamp](https://www.unixtimestamp.com/) format).
 * `split.clients`: main statistics on each [tenant](../installation/multi-tenant/overview.md). If the multitenancy feature is not activated, the statistics is returned for the only tenant (your account) with the static value `"client_id":null`.
 
-    Starting from NGINX Node 6.12.0, when a label is set via the [`wallarm_partner_client_uuid`](configure-parameters-en.md#wallarm_partner_client_uuid) directive, Prometheus output includes `client_uuid` and `client_label` labels for per-tenant metric split (e.g. `wallarm_requests{client_uuid="...",client_label="US-8",app_id="-1"} 100`).
+    Starting from NGINX Node 6.12.0, when a label is set via the [`wallarm_partner_client_uuid`](configure-parameters-en.md#wallarm_partner_client_uuid) directive, Prometheus output includes dedicated per-app and per-group split metrics with `client_uuid` and `client_label` labels (e.g. `wallarm_requests_per_app_total{client_uuid="...",client_label="US-8",application_id="-1"} 100` or `wallarm_requests_per_group_total{client_uuid="...",client_label="US-8",group="my_group"} 101`). Groups are defined via the [`wallarm_status_group`](configure-parameters-en.md#wallarm_status_group) directive.
 * `split.clients.applications`: main statistics on each [application](../user-guides/settings/applications.md). Parameters that are not included into this section returns the statistics on all applications.
 * `apifw_subrequest_timeouts`: the number of subrequests in the API Firewall service that timed out during processing. 
 

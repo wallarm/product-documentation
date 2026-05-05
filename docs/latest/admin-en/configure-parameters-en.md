@@ -767,6 +767,44 @@ Also, it is strongly advised not to alter any of the existing lines of the defau
 
     The `format` parameter has the `json` value by default.
 
+### wallarm_status_group
+
+Assigns a custom group name to requests matching the current context. Grouped statistics are then available in the [`wallarm_status`](configure-statistics-service.md) output — both in JSON (`split.clients[].groups[]`) and in Prometheus format as dedicated `wallarm_*_per_group_total` metrics with a `group` label.
+
+```
+wallarm_status_group <name>;
+```
+
+This allows you to split traffic statistics by arbitrary categories (e.g. by API version, service, or environment) in addition to the per-application split provided by [`wallarm_application`](#wallarm_application).
+
+!!! info
+    This parameter can be set inside the http, server, and location blocks.
+
+Configuration example:
+
+```
+server {
+    server_name  api.example.com;
+
+    location /v1/ {
+        wallarm_status_group api-v1;
+        proxy_pass http://backend-v1;
+    }
+
+    location /v2/ {
+        wallarm_status_group api-v2;
+        proxy_pass http://backend-v2;
+    }
+}
+```
+
+With this configuration, the `wallarm_status` Prometheus output will include metrics like:
+
+```
+wallarm_requests_per_group_total{client_uuid="...",client_label="...",group="api-v1"} 150
+wallarm_requests_per_group_total{client_uuid="...",client_label="...",group="api-v2"} 320
+```
+
 ### wallarm_tarantool_upstream
 
 !!! warning "Rename `wallarm_tarantool_upstream` to `wallarm_wstore_upstream`"

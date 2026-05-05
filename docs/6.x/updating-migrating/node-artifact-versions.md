@@ -26,7 +26,7 @@ new attack types in logging variables and search bars?
 
     * The [`wallarm_partner_client_uuid`](../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive now accepts an optional human-readable label
     * Two new NGINX variables (`$wallarm_partner_client_uuid`, `$wallarm_partner_client_label`) are available for use in [extended log formats](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
-    * The [`wallarm_status`](../admin-en/configure-statistics-service.md) endpoint now includes per-tenant traffic breakdown with `client_uuid` and `client_label` labels in both JSON and Prometheus output formats
+    * The [`wallarm_status`](../admin-en/configure-statistics-service.md) endpoint now includes per-tenant traffic breakdown in both JSON and Prometheus output formats — per-application (e.g. `wallarm_requests_per_app_total{client_uuid="...",client_label="US-8",application_id="-1"}`) and per-group via the new [`wallarm_status_group`](../admin-en/configure-parameters-en.md#wallarm_status_group) directive (e.g. `wallarm_requests_per_group_total{client_uuid="...",client_label="US-8",group="my_group"}`)
 * Added `?format=json` and `?format=prometheus` query parameter support to the [`wallarm_status`](../admin-en/configure-statistics-service.md) endpoint, allowing the output format to be overridden at request time
 * Fixed [API Specification Enforcement](../api-specification-enforcement/overview.md) incorrectly reporting requests as "undefined endpoint" for OpenAPI specs that define a base path in the `servers` block
 * Bumped Go version to 1.26.1
