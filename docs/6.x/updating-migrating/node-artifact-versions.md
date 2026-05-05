@@ -21,12 +21,13 @@ new attack types in logging variables and search bars?
 
 ### 6.12.0 (2026-05-04)
 
+* Added support for MCP server discovery and protection
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
 * Added per-tenant statistics and logging in [multi-tenant](../installation/multi-tenant/overview.md) deployments:
 
     * The [`wallarm_partner_client_uuid`](../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive now accepts an optional human-readable label
     * Two new NGINX variables (`$wallarm_partner_client_uuid`, `$wallarm_partner_client_label`) are available for use in [extended log formats](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
-    * The [`wallarm_status`](../admin-en/configure-statistics-service.md) endpoint now includes per-tenant traffic breakdown in both JSON and Prometheus output formats — per-application (e.g. `wallarm_requests_per_app_total{client_uuid="...",client_label="US-8",application_id="-1"}`) and per-group via the new [`wallarm_status_group`](../admin-en/configure-parameters-en.md#wallarm_status_group) directive (e.g. `wallarm_requests_per_group_total{client_uuid="...",client_label="US-8",group="my_group"}`)
+    * The [`wallarm_status`](../admin-en/configure-statistics-service.md) endpoint now includes per-tenant traffic breakdown in both JSON and Prometheus output formats — per-application (`wallarm_*_per_app_total` metrics) and per-group (`wallarm_*_per_group_total` metrics) via the [`wallarm_status_group`](../admin-en/configure-parameters-en.md#wallarm_status_group) directive
 * Added `?format=json` and `?format=prometheus` query parameter support to the [`wallarm_status`](../admin-en/configure-statistics-service.md) endpoint, allowing the output format to be overridden at request time
 * Fixed [API Specification Enforcement](../api-specification-enforcement/overview.md) incorrectly reporting requests as "undefined endpoint" for OpenAPI specs that define a base path in the `servers` block
 * Bumped Go version to 1.26.1
@@ -245,8 +246,18 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](ingress-controller.md)
 
-### 6.12.0
+### 6.12.0 (2026-05-04)
 
+* Added support for MCP server discovery and protection
+* Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
+* Added per-tenant statistics and logging in [multi-tenant](../installation/multi-tenant/overview.md) deployments:
+
+    * The [`wallarm_partner_client_uuid`](../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive now accepts an optional human-readable label
+    * Two new NGINX variables (`$wallarm_partner_client_uuid`, `$wallarm_partner_client_label`) are available for use in [extended log formats](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+    * The [`wallarm_status`](../admin-en/configure-statistics-service.md) endpoint now includes per-tenant traffic breakdown in both JSON and Prometheus output formats — per-application (`wallarm_*_per_app_total` metrics) and per-group (`wallarm_*_per_group_total` metrics) via the [`wallarm_status_group`](../admin-en/configure-parameters-en.md#wallarm_status_group) directive
+* Added `?format=json` and `?format=prometheus` query parameter support to the [`wallarm_status`](../admin-en/configure-statistics-service.md) endpoint, allowing the output format to be overridden at request time
+* Fixed [API Specification Enforcement](../api-specification-enforcement/overview.md) incorrectly reporting requests as "undefined endpoint" for OpenAPI specs that define a base path in the `servers` block
+* Bumped Go version to 1.26.1
 * Fixed security vulnerabilities:
 
     * [CVE-2026-33810](https://www.cve.org/CVERecord?id=CVE-2026-33810)
@@ -480,8 +491,18 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
-### 6.12.0
+### 6.12.0 (2026-05-04)
 
+* Added support for MCP server discovery and protection
+* Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
+* Added per-tenant statistics and logging in [multi-tenant](../installation/multi-tenant/overview.md) deployments:
+
+    * The [`wallarm_partner_client_uuid`](../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive now accepts an optional human-readable label
+    * Two new NGINX variables (`$wallarm_partner_client_uuid`, `$wallarm_partner_client_label`) are available for use in [extended log formats](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+    * The [`wallarm_status`](../admin-en/configure-statistics-service.md) endpoint now includes per-tenant traffic breakdown in both JSON and Prometheus output formats — per-application (`wallarm_*_per_app_total` metrics) and per-group (`wallarm_*_per_group_total` metrics) via the [`wallarm_status_group`](../admin-en/configure-parameters-en.md#wallarm_status_group) directive
+* Added `?format=json` and `?format=prometheus` query parameter support to the [`wallarm_status`](../admin-en/configure-statistics-service.md) endpoint, allowing the output format to be overridden at request time
+* Fixed [API Specification Enforcement](../api-specification-enforcement/overview.md) incorrectly reporting requests as "undefined endpoint" for OpenAPI specs that define a base path in the `servers` block
+* Bumped Go version to 1.26.1
 * Fixed the [CVE-2026-34743](https://www.cve.org/CVERecord?id=CVE-2026-34743) security vulnerability
 
 ### 6.11.3 (2026-04-29)
@@ -687,6 +708,19 @@ new attack types in logging variables and search bars?
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.12.0 (2026-05-04)
+
+* Added support for MCP server discovery and protection
+* Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
+* Added per-tenant statistics and logging in [multi-tenant](../installation/multi-tenant/overview.md) deployments:
+
+    * The [`wallarm_partner_client_uuid`](../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive now accepts an optional human-readable label
+    * Two new NGINX variables (`$wallarm_partner_client_uuid`, `$wallarm_partner_client_label`) are available for use in [extended log formats](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+    * The [`wallarm_status`](../admin-en/configure-statistics-service.md) endpoint now includes per-tenant traffic breakdown in both JSON and Prometheus output formats — per-application (`wallarm_*_per_app_total` metrics) and per-group (`wallarm_*_per_group_total` metrics) via the [`wallarm_status_group`](../admin-en/configure-parameters-en.md#wallarm_status_group) directive
+* Added `?format=json` and `?format=prometheus` query parameter support to the [`wallarm_status`](../admin-en/configure-statistics-service.md) endpoint, allowing the output format to be overridden at request time
+* Fixed [API Specification Enforcement](../api-specification-enforcement/overview.md) incorrectly reporting requests as "undefined endpoint" for OpenAPI specs that define a base path in the `servers` block
+* Bumped Go version to 1.26.1
 
 ### 6.11.3 (2026-04-29)
 
@@ -895,6 +929,19 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
+### 6.12.0 (2026-05-04)
+
+* Added support for MCP server discovery and protection
+* Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
+* Added per-tenant statistics and logging in [multi-tenant](../installation/multi-tenant/overview.md) deployments:
+
+    * The [`wallarm_partner_client_uuid`](../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive now accepts an optional human-readable label
+    * Two new NGINX variables (`$wallarm_partner_client_uuid`, `$wallarm_partner_client_label`) are available for use in [extended log formats](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+    * The [`wallarm_status`](../admin-en/configure-statistics-service.md) endpoint now includes per-tenant traffic breakdown in both JSON and Prometheus output formats — per-application (`wallarm_*_per_app_total` metrics) and per-group (`wallarm_*_per_group_total` metrics) via the [`wallarm_status_group`](../admin-en/configure-parameters-en.md#wallarm_status_group) directive
+* Added `?format=json` and `?format=prometheus` query parameter support to the [`wallarm_status`](../admin-en/configure-statistics-service.md) endpoint, allowing the output format to be overridden at request time
+* Fixed [API Specification Enforcement](../api-specification-enforcement/overview.md) incorrectly reporting requests as "undefined endpoint" for OpenAPI specs that define a base path in the `servers` block
+* Bumped Go version to 1.26.1
+
 ### 6.11.2 (2026-03-27)
 
 * Internal improvements
@@ -1059,6 +1106,19 @@ new attack types in logging variables and search bars?
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-12-0-20260501-220140 (2026-05-04)
+
+* Added support for MCP server discovery and protection
+* Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
+* Added per-tenant statistics and logging in [multi-tenant](../installation/multi-tenant/overview.md) deployments:
+
+    * The [`wallarm_partner_client_uuid`](../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive now accepts an optional human-readable label
+    * Two new NGINX variables (`$wallarm_partner_client_uuid`, `$wallarm_partner_client_label`) are available for use in [extended log formats](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+    * The [`wallarm_status`](../admin-en/configure-statistics-service.md) endpoint now includes per-tenant traffic breakdown in both JSON and Prometheus output formats — per-application (`wallarm_*_per_app_total` metrics) and per-group (`wallarm_*_per_group_total` metrics) via the [`wallarm_status_group`](../admin-en/configure-parameters-en.md#wallarm_status_group) directive
+* Added `?format=json` and `?format=prometheus` query parameter support to the [`wallarm_status`](../admin-en/configure-statistics-service.md) endpoint, allowing the output format to be overridden at request time
+* Fixed [API Specification Enforcement](../api-specification-enforcement/overview.md) incorrectly reporting requests as "undefined endpoint" for OpenAPI specs that define a base path in the `servers` block
+* Bumped Go version to 1.26.1
 
 ### wallarm-node-6-11-3-20260422-125758 (2026-04-29)
 
