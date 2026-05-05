@@ -1,5 +1,6 @@
 [us-cloud-docs]:                      ../../about-wallarm/overview.md#cloud
 [eu-cloud-docs]:                      ../../about-wallarm/overview.md#cloud
+[me-cloud-docs]:                      ../../about-wallarm/overview.md#cloud
 
 # Configuring Native Node with the Helm Chart
 
@@ -89,6 +90,7 @@ Wallarm API endpoint. Can be:
 
 * `us1.api.wallarm.com` for the [US cloud][us-cloud-docs]
 * `api.wallarm.com` for the [EU cloud][eu-cloud-docs] (default)
+* `me1.api.wallarm.com` for the [ME cloud][me-cloud-docs]
 
 ### config.api.nodeGroup
 

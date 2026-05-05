@@ -78,6 +78,16 @@ To deploy the containerized Wallarm filtering node configured only through envir
             --container-env NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> \
             --container-image registry-1.docker.io/wallarm/node:5.3.17
         ```
+    === "Command for the Wallarm ME Cloud"
+        ```bash
+        gcloud compute instances create-with-container <INSTANCE_NAME> \
+            --zone <DEPLOYMENT_ZONE> \
+            --tags http-server \
+            --container-env WALLARM_API_TOKEN=${WALLARM_API_TOKEN} \
+            --container-env NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> \
+            --container-env WALLARM_API_HOST=me1.api.wallarm.com \
+            --container-image registry-1.docker.io/wallarm/node:5.3.17
+        ```
 
     * `<INSTANCE_NAME>`: name of the instance, for example: `wallarm-node`.
     * `--zone`: [zone](https://cloud.google.com/compute/docs/regions-zones) that will host the instance.
@@ -156,6 +166,10 @@ To deploy the containerized Wallarm filtering node configured through environmen
     === "Command for the Wallarm EU Cloud"
         ```bash
         docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_LABELS='group=<GROUP>' -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:5.3.17
+        ```
+    === "Command for the Wallarm ME Cloud"
+        ```bash
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='me1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:5.3.17
         ```
 
     * `<INSTANCE_PATH_TO_CONFIG>`: path to the configuration file created in the previous step. For example, `configs`.

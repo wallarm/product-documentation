@@ -114,6 +114,7 @@ Wallarm API endpoint. Can be:
 
 * `us1.api.wallarm.com` for the [US cloud][us-cloud-docs]
 * `api.wallarm.com` for the [EU cloud][eu-cloud-docs] (default)
+* `me1.api.wallarm.com` for the [ME cloud][me-cloud-docs]
 
 ## config.wallarm.api.nodeGroup
 
