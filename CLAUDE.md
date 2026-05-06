@@ -1,30 +1,70 @@
-# Documentation Agent Guidelines
+# CLAUDE.md
 
-## Repository structure
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-- `docs/latest/` — **source of truth**. All content lives here. Edit ONLY these files.
-- `docs/6.x/`, `docs/7.x/` — version wrappers. Each file contains a single include:
-  ```
-  --8<-- "latest/section/page.md"
-  ```
-  When creating a new page, create the wrapper files too.
-- `include/` — reusable English content snippets shared across pages (`--8<-- "../include/snippet.md"`)
-- `include-ja/`, `include-ar/`, etc. — translated reusable content for localized docs
-- `images/` — **root-level directory** for all screenshots and diagrams. Version directories (`docs/6.x/images`, etc.) are symbolic links to this root folder. Always place images here, never inside `docs/`.
-- `mkdocs-7.x.yml`, `mkdocs-6.x.yml` — navigation config per version. Update when adding/removing pages.
-- `mkdocs-base.yml` — base theme, plugins, extensions inherited by all version configs. Do NOT modify.
-- `stylesheets/` — custom CSS and JS for the documentation site. Do NOT modify unless explicitly asked.
-- `netlify.toml` — deployment config for Netlify. Do NOT modify.
+## Build & Serve Commands
 
-## Documentation platform
+This is a documentation site built with **zensical** (MkDocs-based). Python dependencies are in `requirements.txt`.
 
-- Static site generator: **zensical**
-- Source format: **Markdown** with YAML front matter
-- Deployment: **Netlify** — every PR triggers a preview build automatically
-- Site: https://docs.wallarm.com
-- Languages: English (primary), Japanese and others are auto-translated
+```bash
+# Install dependencies
+pip install -r requirements.txt
 
-## Creating a new page
+# Serve locally (7.x version — the current/default version)
+cp -R images/ docs/7.x/images/ && zensical serve -f mkdocs-7.x.yml
+# After stopping, clean up: rm -rf docs/7.x/images/
+
+# Serve locally (6.x version)
+cp -R images/ docs/6.x/images/ && zensical serve -f mkdocs-6.x.yml
+
+# Build a specific version
+cp -R images/ docs/7.x/images/ && zensical build -f mkdocs-7.x.yml && rm -rf docs/7.x/images/
+```
+
+Images must be copied into the version's `docs_dir` before build/serve because zensical does not follow symlinks. Always clean up after.
+
+There are no tests or linters. Validation happens via Netlify preview builds on PRs.
+
+## Repository Architecture
+
+### Content flow: latest → version wrappers → site
+
+```
+docs/latest/         ← SOURCE OF TRUTH. All editing happens here.
+  ├── about-wallarm/
+  ├── api-discovery/
+  ├── installation/
+  ├── user-guides/
+  └── ...30+ section folders
+
+docs/7.x/           ← Version wrapper. Each file is a one-line include:
+  └── section/page.md    contains:  --8<-- "latest/section/page.md"
+
+docs/6.x/           ← Same pattern, older version
+```
+
+`mkdocs-7.x.yml` and `mkdocs-6.x.yml` inherit from `mkdocs-base.yml` and define navigation + version-specific extras. The `6.x` config sets `is_latest: true` (serves at site root `/`), while `7.x` serves under `/7.x/`.
+
+### Reusable content (includes)
+
+```
+include/             ← English snippets shared across pages
+include-ja/          ← Japanese translated snippets
+include-ar/          ← Arabic translated snippets
+```
+
+Referenced from docs via `--8<-- "../include/snippet.md"`. The snippet base path is `docs/` (configured in `mkdocs-base.yml` under `pymdownx.snippets`), so paths in snippet directives are relative to the `docs/` directory.
+
+### Images
+
+`images/` at repo root is the single source for all screenshots/diagrams. Version directories (`docs/6.x/images/`, `docs/7.x/images/`) are either symlinks or get images copied in at build time.
+
+### Reference files
+
+- `.doc-agent/glossary.md` — official terminology with approved/forbidden synonyms
+- `.doc-agent/style-guide.md` — writing conventions (American English, no contractions, present tense, active voice, second person)
+
+## Creating a New Page
 
 1. Write the page in `docs/latest/<section>/new-page.md`
 2. Create wrapper in `docs/7.x/<section>/new-page.md`:
@@ -33,60 +73,54 @@
    ```
 3. Create wrapper in `docs/6.x/<section>/new-page.md` (same pattern)
 4. Add to navigation in **both** `mkdocs-7.x.yml` and `mkdocs-6.x.yml`
-5. Use lowercase filenames with hyphens: `api-discovery-setup.md`, not `ApiDiscoverySetup.md`
-6. Place the file in the appropriate existing section folder. Create a new folder only if no existing one fits.
+5. Use lowercase filenames with hyphens: `api-discovery-setup.md`
+6. Place in an appropriate existing section folder
 
-## Formatting rules
+## Formatting Rules
 
-### Markdown syntax
+### Markdown extensions (Material for MkDocs)
 
 - **Admonitions**: `!!! info "Title"`, `!!! warning "Title"`, `!!! tip ""`
 - **Tabs**: `=== "Tab name"`
 - **Collapsible sections**: `??? "Title"` (collapsed), `???+ "Title"` (expanded)
-- **Code blocks**: triple backticks with language (```bash, ```yaml, ```sql)
-- **Snippets/includes**: `--8<-- "path/to/file.md"` — for content reused across multiple pages, put it in `include/` and reference from there
+- **Code blocks**: triple backticks with language identifier
+- **Snippets/includes**: `--8<-- "path/to/file.md"`
 
 ### Cross-references
 
-- Sibling file: `[Link text](sibling.md)`
+- Sibling: `[Link text](sibling.md)`
 - Other section: `[Link text](../section/page.md)`
 - With anchor: `[Link text](../section/page.md#section-anchor)`
 - Never use absolute paths or full URLs to docs.wallarm.com
 
 ### Images
 
-- **Always place in the root `images/` directory**, organized by section (e.g., `images/about-wallarm-waf/api-discovery-2.0/`)
-- Reference from docs: `![Description](../images/<section>/filename.png)`
+- Place in root `images/` directory, organized by section (e.g., `images/about-wallarm-waf/api-discovery-2.0/`)
+- Reference: `![Description](../images/<section>/filename.png)`
 - Non-zoomable: `![!Description](../images/<section>/filename.png)`
-- Subscription badges: `<a href="..."><img src="../../images/api-security-tag.svg" style="border: none;"></a>`
-- When screenshots are not yet available, add: `<!-- TODO: add screenshot -->`
-- For diagrams/schemes: Wallarm uses Figma for scheme design. Do not create new schemes, only reference existing images or leave TODO placeholders.
+- Missing screenshots: `<!-- TODO: add screenshot -->`
+- Do not create diagrams/schemes — Wallarm uses Figma. Leave TODO placeholders.
 
-### Tables
+## Writing Style
 
-Standard Markdown tables. Always include the header separator:
-```
-| Column 1 | Column 2 |
-| --- | --- |
-| Data | Data |
-```
-
-## Writing style
-
-- **User-focused**: document what the user can DO, not internal implementation
-- **Concise**: short paragraphs, bullet points where appropriate
-- **Present tense, active voice**: "Wallarm detects..." not "Detection is performed by..."
-- **No marketing language**: state facts, not sales pitches
-- **Consistent terminology**: use the glossary (see `.doc-agent/glossary.md` if available)
-- **English only**: do not write content in other languages; translations are handled separately via GPT
-- **Version requirements**: always specify Node version when a feature requires a minimum version:
+- **American English**, no contractions ("do not" not "don't")
+- **Present tense, active voice, second person**: "You configure..." not "Configuration is performed..."
+- **Imperative for instructions**: "Open the file" not "You should open the file"
+- **No marketing language** — state facts
+- **Consistent terminology** — check `.doc-agent/glossary.md`. Key rules:
+  - "NGINX Node" / "Native Node" (not "Nginx Node" or "native Node")
+  - "Wallarm Console" (not "Wallarm portal" or lowercase "console")
+  - "security issue" or "vulnerability" (not "vuln")
+  - "denylist" / "allowlist" (not "blacklist" / "whitelist")
+- **Placeholder format in code**: `<UPPERCASE_WITH_UNDERSCORES>` (e.g., `<YOUR_API_TOKEN>`)
+- **Version requirements**: when a feature needs a minimum Node version, include a version table:
   ```
   | Required [NGINX Node](path) version | Required [Native Node](path) version |
   | --- | --- |
   | 6.12.0 | 0.25.0 |
   ```
 
-## What NOT to do
+## What NOT to Do
 
 - Do NOT edit `mkdocs-base.yml`, `netlify.toml`, or files in `stylesheets/`
 - Do NOT edit files in `docs/6.x/` or `docs/7.x/` directly — they are include wrappers (exception: creating new wrappers for new pages)
