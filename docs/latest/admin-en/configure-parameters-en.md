@@ -182,7 +182,7 @@ A directory in which the backup catalog for the proton.db and custom ruleset fil
 
 ### wallarm_fingerprint
 
-The directive enables [JA4 fingerprinting](https://foxio.io/ja4) in the [NGINX node](../updating-migrating/node-artifact-versions.md) and is available starting from release 6.7.0.
+The directive enables [JA4 fingerprinting](https://github.com/FoxIO-LLC/ja4) in the [NGINX node](../updating-migrating/node-artifact-versions.md) and is available starting from release 6.7.0.
 
 It generates a JA4 TLS fingerprint for each incoming connection. The fingerprint summarizes the TLS ClientHello parameters and is added to the serialized request that the Node sends to the Wallarm Cloud.
 
