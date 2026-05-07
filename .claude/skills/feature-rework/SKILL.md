@@ -147,3 +147,4 @@ Same as all Wallarm docs:
 - Leave broken cross-references after renaming or restructuring
 - Forget to update overview/landing pages that link to reworked content
 - Skip creating wrappers in 6.x/7.x for any new pages
+- Rename or delete a page without adding a redirect in `docs/6.x/_redirects` (format: `/old/path  /new/path`)
