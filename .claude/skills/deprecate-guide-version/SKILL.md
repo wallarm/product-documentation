@@ -10,8 +10,8 @@ You are removing a deprecated documentation guide version from the Wallarm produ
 ## Input
 
 The author provides:
-- **Version to deprecate**: e.g., `5.x`
-- **Previous deprecated version** (optional): the version currently in `mkdocs-deprecated.yml` (e.g., `4.10`)
+* **Version to deprecate**: e.g., `5.x`
+* **Previous deprecated version** (optional): the version currently in `mkdocs-deprecated.yml` (e.g., `4.10`)
 
 ## Steps
 
@@ -83,12 +83,12 @@ The author provides:
 ### Phase 5: Clean up
 
 10. **Check for includes referencing the deleted folder**:
-    - Grep for `docs/<DEPRECATED_VERSION>/` across the repo
-    - If any files include content from the deleted folder, replace the include with the actual content or update the reference
+    * Grep for `docs/<DEPRECATED_VERSION>/` across the repo
+    * If any files include content from the deleted folder, replace the include with the actual content or update the reference
 
 11. **Check for cross-references to the deprecated version**:
-    - Grep for `<DEPRECATED_VERSION>` in remaining docs
-    - Remove or update references that point to deprecated version instructions
+    * Grep for `<DEPRECATED_VERSION>` in remaining docs
+    * Remove or update references that point to deprecated version instructions
 
 12. **Update home page descriptions** in remaining versions to reflect the deprecation.
 
@@ -101,20 +101,20 @@ The author provides:
     ```
 
 14. Check that:
-    - Deprecated version no longer appears as an active version in the selector (only with ⚠️ marker)
-    - All remaining version builds succeed
-    - No broken includes or cross-references remain
+    * Deprecated version no longer appears as an active version in the selector (only with ⚠️ marker)
+    * All remaining version builds succeed
+    * No broken includes or cross-references remain
 
 ## Translation configs
 
 If there are translation configs for the deprecated version (e.g., `mkdocs-ja-<DEPRECATED_VERSION>.yml`):
-- Delete the translation config files
-- Delete corresponding translation content folders (e.g., `docs/ja-<DEPRECATED_VERSION>/` if separate)
-- Remove their build commands from `netlify.toml` and `Dockerfile`
+* Delete the translation config files
+* Delete corresponding translation content folders (e.g., `docs/ja-<DEPRECATED_VERSION>/` if separate)
+* Remove their build commands from `netlify.toml` and `Dockerfile`
 
 ## Do NOT
 
-- Delete the `docs/deprecated/` folder — it contains the stub page for all deprecated versions
-- Forget to add redirects — this causes 404 errors for users with bookmarked URLs
-- Remove version from nav.html without also removing from netlify.toml and Dockerfile
-- Delete `mkdocs-deprecated.yml` — only update it to point to the newly deprecated version
+* Delete the `docs/deprecated/` folder — it contains the stub page for all deprecated versions
+* Forget to add redirects — this causes 404 errors for users with bookmarked URLs
+* Remove version from nav.html without also removing from netlify.toml and Dockerfile
+* Delete `mkdocs-deprecated.yml` — only update it to point to the newly deprecated version
