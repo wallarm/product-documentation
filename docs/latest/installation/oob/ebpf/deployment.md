@@ -84,7 +84,7 @@ Ensure the following technical prerequisites are met for a successful deployment
     * Bare-metal server - Kubernetes 1.22 and above
 * (Optional) Installed [cert-manager](https://cert-manager.io/docs/installation/helm/) — required only if you enable certificate provisioning via cert-manager for secure communication between the agent and the Native Node. Alternatively, you can use a pre-existing secret or provide certificates manually. See [certificate configuration](helm-chart-for-wallarm.md#configconnectorcertificate) for details.
 * [Helm v3](https://helm.sh/) package manager.
-* Linux kernel version 5.10 or 5.15 with BTF (BPF Type Format) enabled. Supported on Ubuntu, Debian, RedHat, Google COS, or Amazon Linux 2.
+* Linux kernel version 5.15 or higher with BTF (BPF Type Format) on Ubuntu, Debian, RedHat, Google COS, and Amazon Linux.
 * Processor with the x86_64 architecture.
 * Applications must use the shared **OpenSSL** library for TLS — this is required for the eBPF agent to observe encrypted traffic. Applications using other TLS implementations (BoringSSL, Go `crypto/tls`, Java built-in TLS) will not be visible. See [TLS/SSL visibility](#tlsssl-visibility) for details.
 * Your user account should have [**Administrator** access](../../../user-guides/settings/users.md#user-roles) to the Wallarm Console.

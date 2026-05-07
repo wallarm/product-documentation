@@ -10,10 +10,10 @@ You are adding a new major guide version to the Wallarm product documentation.
 ## Input
 
 The author provides:
-- **New NGINX Node version**: e.g., `7.x`
-- **Corresponding Native Node version**: e.g., `0.26.x+`
-- **Previous latest version**: the version that was serving at site root before (e.g., `6.x`)
-- **What is new**: key changes or a link to the what-is-new page content
+* **New NGINX Node version**: e.g., `7.x`
+* **Corresponding Native Node version**: e.g., `0.26.x+`
+* **Previous latest version**: the version that was serving at site root before (e.g., `6.x`)
+* **What is new**: key changes or a link to the what-is-new page content
 
 ## Steps
 
@@ -64,13 +64,13 @@ The author provides:
      ```
 
 10. **Update `netlify.toml`**:
-    - Add a new build command for the new version. Place it among the other version build commands:
+    * Add a new build command for the new version. Place it among the other version build commands:
       ```
       cp -R images/ docs/<NEW_VERSION>/images/ && zensical build -f mkdocs-<NEW_VERSION>.yml && rm -rf docs/<NEW_VERSION>/images/ &&
       ```
 
 11. **Update `Dockerfile`**:
-    - Add a new `RUN` line for the version build:
+    * Add a new `RUN` line for the version build:
       ```
       RUN cp -R images/ docs/<NEW_VERSION>/images/ && zensical build -f mkdocs-<NEW_VERSION>.yml && rm -rf docs/<NEW_VERSION>/images/
       ```
@@ -80,9 +80,9 @@ The author provides:
 12. **Update home page descriptions** in each version to reflect the new latest version and its key features.
 
 13. **Create the what-is-new page** for the new version if it does not exist:
-    - `docs/latest/updating-migrating/what-is-new.md`
-    - Add wrapper in `docs/<NEW_VERSION>/updating-migrating/what-is-new.md`
-    - Add to nav in `mkdocs-<NEW_VERSION>.yml`
+    * `docs/latest/updating-migrating/what-is-new.md`
+    * Add wrapper in `docs/<NEW_VERSION>/updating-migrating/what-is-new.md`
+    * Add to nav in `mkdocs-<NEW_VERSION>.yml`
 
 ### Phase 5: Verify
 
@@ -92,20 +92,20 @@ The author provides:
     ```
 
 15. Check that:
-    - Navigation renders correctly
-    - Version selector shows the new version
-    - Pages resolve without 404s
-    - Images load correctly
+    * Navigation renders correctly
+    * Version selector shows the new version
+    * Pages resolve without 404s
+    * Images load correctly
 
 ## Important notes
 
-- The version number in mkdocs config filenames corresponds to the **NGINX Node** major version. The documentation covers both NGINX and Native Node.
-- The new version may initially serve under `/<NEW_VERSION>/` (not at root) until it becomes the default.
-- Translation configs (`mkdocs-ja-*.yml`, etc.) may also need new version configs — check with the author.
+* The version number in mkdocs config filenames corresponds to the **NGINX Node** major version. The documentation covers both NGINX and Native Node.
+* The new version may initially serve under `/<NEW_VERSION>/` (not at root) until it becomes the default.
+* Translation configs (`mkdocs-ja-*.yml`, etc.) may also need new version configs — check with the author.
 
 ## Do NOT
 
-- Delete the previous version's content — only freeze it by replacing wrappers with full content
-- Change `mkdocs-base.yml` — it is shared across all versions
-- Forget to update ALL of: nav.html, extra.js, netlify.toml, Dockerfile
-- Modify `rootVersion` in extra.js without explicit approval — this controls which version serves at `/`
+* Delete the previous version's content — only freeze it by replacing wrappers with full content
+* Change `mkdocs-base.yml` — it is shared across all versions
+* Forget to update ALL of: nav.html, extra.js, netlify.toml, Dockerfile
+* Modify `rootVersion` in extra.js without explicit approval — this controls which version serves at `/`
