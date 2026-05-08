@@ -25,6 +25,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.24.0 (2026-04-06)
 
+* Added [authentication flow detection](../../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) (`tcp-capture-v2` mode):
 
     * Added support for [VXLAN](../../installation/oob/tcp-traffic-mirror/deployment.md#vxlan) and [GENEVE](../../installation/oob/tcp-traffic-mirror/deployment.md#geneve) decapsulation, including automatic support for [AWS VPC Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html) (GENEVE with nested VXLAN)
@@ -83,7 +84,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.23.0 (2026-02-24)
 
-* Added [authentication flow detection](../../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Added support for circular references in OpenAPI specifications uploaded for [API Specification Enforcement](../../api-specification-enforcement/overview.md)
 * Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
 * Increased the frequency of session updates sent to the Wallarm Cloud. Sessions now appear in the UI faster, closer to real time
@@ -262,6 +262,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ### 0.24.0 (2026-04-06)
 
+* Added [authentication flow detection](../../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Fixed [API Specification Enforcement](../../api-specification-enforcement/overview.md) not triggering [specification processing overlimit](../../api-specification-enforcement/viewing-events.md#overlimit-events) events for requests exceeding size or time limits
 * Updated [Prometheus metrics](../../admin-en/native-node-metrics-gonode.md):
 
@@ -300,7 +301,6 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ### 0.23.0 (2026-02-24)
 
-* Added [authentication flow detection](../../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Improved the Helm chart for high-availability deployments by adding pod disruption budgets, tuning resource settings, and introducing the [`topologySpreadConstraints`](https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/) and [`startupProbe`](https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/#startup-probe) values
 * Added support for circular references in OpenAPI specifications uploaded for [API Specification Enforcement](../../api-specification-enforcement/overview.md)
 * Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
@@ -493,6 +493,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 ### 0.24.0 (2026-04-06)
 
+* Added [authentication flow detection](../../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Changed default [`log.proton_log_mask`](../../installation/native-node/all-in-one-conf.md#logproton_log_mask) from `info@*` to `info+@*` to show warning and error messages from the traffic analysis engine (previously only info-level messages were displayed)
 * Changed default [`http_inspector.shm_dir`](../../installation/native-node/all-in-one-conf.md#http_inspectorshm_dir) from `/tmp` to `/opt/wallarm/shm` for better compatibility with containerized environments
 * Fixed [API Specification Enforcement](../../api-specification-enforcement/overview.md) not triggering [specification processing overlimit](../../api-specification-enforcement/viewing-events.md#overlimit-events) events for requests exceeding size or time limits
@@ -534,7 +535,6 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 ### 0.23.0 (2026-02-24)
 
-* Added [authentication flow detection](../../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Added support for circular references in OpenAPI specifications uploaded for [API Specification Enforcement](../../api-specification-enforcement/overview.md)
 * Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
 * Increased the frequency of session updates sent to the Wallarm Cloud. Sessions now appear in the UI faster, closer to real time
