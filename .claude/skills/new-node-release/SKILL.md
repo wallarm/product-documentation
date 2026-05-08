@@ -14,31 +14,106 @@ The author provides:
 * **New version**: e.g., `6.12.0` or `0.25.0`
 * **Release date**: YYYY-MM-DD (or "today")
 * **Source of release contents** — one of:
-    * **Jira release link**: the skill pulls the issues the Product Manager has marked with the `docs_required` label and writes them up. If the release contains no `docs_required` issues, the skill must stop and ask the author: "No issues in this release are labeled `docs_required`. What should I describe?" — never silently fall back to documenting every issue in the release.
-    * **Explicit list of items**: a list of Jira keys (e.g., `NODE-7672, NODE-7700`) or free-text bullets the Product Manager / author has already curated. Document everything on the list — do not drop items, do not add items, do not second-guess inclusion.
+    * **Jira release link**: the skill fetches every issue from the release, classifies each as customer-facing or internal, asks the author about ambiguous cases, and writes up the customer-facing ones. The classification is a layered heuristic (file paths in linked PRs, issue labels/components, description wording) — see Part 1, step 2.
+    * **Explicit list of items**: a list of Jira keys (e.g., `NODE-7672, NODE-7700`) or free-text bullets the author has already curated. Document everything on the list — do not classify, do not drop items, do not add items. The author has already made the call.
 * **Additional context** (optional): anything the author wants to highlight or exclude
 
-In both modes, **the Product Manager has already decided what to document.** Your job is not to re-litigate that decision — it is to read each item carefully, check the linked PRs for substance and form-factor coverage, and turn each item into accurate changelog prose. You do not classify items as "customer-facing" vs "internal" — the `docs_required` label or the explicit list is the filter.
+When the author provides an explicit list, the classification step is short-circuited and every item is treated as customer-facing. In Jira-link mode the skill performs the classification itself. The `docs_required` label, when present on an issue, is a strong "customer-facing" signal that biases the decision but does not replace the analysis — labels are sometimes missed, and conversely sometimes set on items that turn out to be purely internal.
 
 ## Steps
 
-### Part 1: Gather and understand the items to document
+### Part 0: Pre-flight — identify the target version directory
 
-The Product Manager has already filtered the release contents — either by labeling Jira issues with `docs_required`, or by handing the author an explicit list. Do not second-guess that filter. Your task in Part 1 is to gather the items, read them carefully, and pick the right changelog verb for each.
+Before gathering items, decide which version directory the release lands in. This decision drives everything downstream — which changelog file gets the entry, whether `docs/latest/` edits flow into older versions or need to be insulated, whether the work is even in scope for this skill.
+
+**Read [CLAUDE.md](../../../CLAUDE.md) for the version-directory lifecycle.** Key rules to internalize:
+
+* `docs/latest/` is the single source of truth — all editing happens there.
+* Each active version directory (`docs/6.x/`, `docs/7.x/`, …) holds wrapper files that include from `docs/latest/` via `--8<-- "latest/..."`.
+* When a version is no longer the latest, its wrappers are progressively replaced with **full-content copies** of `docs/latest/` files — that is what "freezing" means and that is how a version stops receiving new edits.
+* The current root version is determined by `rootVersion` in `stylesheets/extra.js`; whichever `mkdocs-<X>.yml` matches it serves at `/`. Other versions are served at `/<X>/`.
+
+Decide which of the following cases applies and follow the corresponding rule:
+
+| Case | Trigger | Changelog target | `docs/latest/` edits |
+|------|---------|------------------|----------------------|
+| Patch/minor on current root | New version's MAJOR matches `rootVersion` | Current-root changelog file | Edit normally; flows into the root through its wrappers |
+| Hotfix on an older line that is no longer current | A backport (e.g., 0.22.2 while 0.25.x is current) | The older version's section inside the same `node-artifact-versions.md` | Usually only the changelog itself; if config-reference updates are needed, use the freeze flow below to keep them out of the current root |
+| Patch/minor on a hidden preview version | A 7.x release while 7.x is served at `/7.x/`, not yet at root | The 7.x changelog file | Edit `docs/latest/` only after using the freeze flow below to insulate older versions that must not receive the change |
+| Major version on a preview line | A `MAJOR.0.0` whose MAJOR equals the preview's MAJOR (e.g., `7.0.0` while 7.x is still served at `/7.x/`) | The preview-version changelog file (e.g., the 7.x changelog) | Same as the preview-version case — edit `docs/latest/` only after the freeze flow has insulated older versions; do NOT touch structural configs |
+
+**Major-version case — explicit scope.** When the new release bumps the MAJOR, the workflow is the same as a regular preview-version release: write the changelog to the preview's changelog file, apply the freeze flow for any `docs/latest/` content that must not reach 6.x / 5.x, document the new feature surface in `docs/latest/` only after freezing.
+
+**Out of scope for this skill** even on a major bump:
+
+* Swapping `rootVersion` in `stylesheets/extra.js`
+* Swapping `mkdocs-*.yml` configs (which one is root)
+* Editing `netlify.toml`, `Dockerfile`, version selector partials, redirects
+* Any other structural promotion of the preview to root
+
+These are a separate cutover operation. If the author asks for any of them inside this skill, decline and point them to the dedicated promotion skill (analogous to `add-guide-version` / `deprecate-guide-version`).
+
+**Tell the author** as soon as you detect a MAJOR bump, even before drafting items:
+
+> "This release introduces a new MAJOR version. I will write the changelog and freeze older versions where needed, but I will NOT touch structural configs (`stylesheets/extra.js`, `mkdocs-*.yml`, `netlify.toml`, `Dockerfile`, version selector, redirects) — those belong to a separate promote-preview-to-root operation.
+>
+> To preview the new MAJOR locally, run: `./serve.sh mkdocs-<NEW-MAJOR>.x.yml` (e.g., `./serve.sh mkdocs-7.x.yml` for a 7.x release). The site will be available at `http://127.0.0.1:8000/<NEW-MAJOR>.x/` until the structural promotion happens."
+
+**Freeze flow** — used whenever an item must reach version `<NEW>` but must NOT reach version `<OLD>`, and `docs/<OLD>/` still uses wrappers for the affected pages:
+
+1. List the `docs/latest/<path>.md` files the item touches.
+2. For each, inspect `docs/<OLD>/<same-path>.md`:
+   * **Single-line wrapper** (`--8<-- "latest/..."`) → FREEZE: replace the wrapper with a verbatim copy of the current `docs/latest/<same-path>.md` content. Make the freeze its own mechanical commit so the diff is reviewable as "snapshot only, no content change."
+   * **Full-content file already** → no action needed; `<OLD>` is already insulated.
+3. Edit `docs/latest/` with the new content **only after** the freeze is in place. Doing it in the other order pollutes `<OLD>` with content meant for `<NEW>`.
+4. If the item introduces a brand-new page, create the wrapper only in the version directories that should see it; do not create wrappers in directories where the page must not appear.
+
+**Author's responsibility in this part.** Version applicability is a product decision, not something the skill can infer from a Jira description. For every item, the author must confirm:
+
+* Which versions should see the change (e.g., 7.x only, 6.x and 7.x, all active versions).
+* For backports/hotfixes on older lines: whether the docs change applies to that line only, or also to newer lines.
+
+Until applicability is confirmed, do not run the freeze flow and do not edit `docs/latest/`.
+
+### Part 1: Gather, classify, and understand the items to document
+
+In Jira-link mode the skill is responsible for separating customer-facing items (which go into the changelog) from internal ones (which are skipped). In explicit-list mode the author has already done that separation, and the classification step is skipped.
 
 1. **Gather the items.**
 
-   * **Jira release link mode** — query the release scoped to the `docs_required` label:
+   * **Jira release link mode** — query every issue in the release:
 
        ```
-       project = NODE AND fixVersion = <VERSION_ID> AND labels = docs_required
+       project = NODE AND fixVersion = <VERSION_ID>
        ```
 
-       If this query returns zero issues, **stop and ask the author**: "No issues in this release are labeled `docs_required`. What should I describe?" Wait for an explicit list (which switches the source into explicit-list mode) or for confirmation that documentation is not needed. Do NOT broaden the query to all issues on your own — the absence of `docs_required` is a signal, not a problem to route around.
+       Fetch description, labels, components, and linked PRs for each issue. Do NOT pre-filter by label — classification happens explicitly in step 2 so the result is auditable.
 
-   * **Explicit list mode** — take the list as-is. Fetch each Jira key to read its description and linked PRs (still needed for accurate prose and the form-factor check below). Do not drop items, do not add items.
+   * **Explicit list mode** — take the list as-is. Fetch each Jira key to read its description and linked PRs (still needed for accurate prose and the form-factor check). Do not drop items, do not add items.
 
-2. **Pick a changelog verb for each item.** This is purely a wording choice for the bullet — it does not gate inclusion. Use:
+2. **Classify each item as customer-facing or internal** — Jira-link mode only. Skip this step in explicit-list mode.
+
+   Apply the layered heuristic in this order, falling through only when the current layer is inconclusive:
+
+   1. **File-path signals from the linked PR diff** (most reliable):
+       * Touches `pkg/<public-API>/`, `cmd/`, `api/`, OpenAPI specs, config-schema structs, parameter parsers, metrics exporters, log emitters, error-message tables → **customer-facing**
+       * Touches only `internal/`, `tests/`, `mocks/`, `tools/`, `.github/`, `Makefile`, `Dockerfile.dev`, formatter configs → **internal**
+       * Mixed — fall to the next layer
+
+   2. **Issue metadata**:
+       * Labels `docs_required`, `bug`, `customer-reported`, `cve`, `security-fix`, `breaking-change` → **customer-facing**
+       * Labels `tech-debt`, `refactor`, `chore`, `ci`, `test`, `cleanup` → **internal**
+       * Component "Configuration" / "API" / "Public API" → **customer-facing**; "CI/CD" / "Build" / "Internal Tooling" → **internal**
+
+   3. **Description / PR wording**:
+       * "Customers see…", "user receives…", "now blocks/allows…", error-message changes, default-behavior changes, renamed user-visible parameters → **customer-facing**
+       * "Refactored…", "moved to…", "extracted helper…", "no user-visible change", "n/a" in a PR's `Release notes` / `User impact` section → **internal**
+
+   4. **All three layers agree** → decide. **Layers disagree, or only one layer has signal** → mark as **Unclear** and ask the author. Never guess on a borderline case — false negatives (silently dropping a user-visible change) are the dangerous failure mode here.
+
+   The classification is fundamentally probabilistic. Be honest about uncertainty: it is better to surface five borderline cases for the author than to silently drop one user-visible change.
+
+3. **Pick a changelog verb for each customer-facing item.** This is purely a wording choice for the bullet — it does not gate inclusion. Use:
 
    * **Added** — new capability, new config parameter, new UI element, new API, new protocol support
    * **Fixed** — a bug fix, CVE fix, behavior correction
@@ -48,7 +123,7 @@ The Product Manager has already filtered the release contents — either by labe
 
    If an item could plausibly take more than one verb, pick the one that best matches the user-visible effect described in the linked PRs.
 
-3. **Read the linked PRs** to understand the substance — what actually changed, which config parameters, which endpoints, which version bumps. The Jira description alone is often incomplete; the PRs are authoritative.
+4. **Read the linked PRs** to understand the substance — what actually changed, which config parameters, which endpoints, which version bumps. The Jira description alone is often incomplete; the PRs are authoritative.
 
    **For items that add new config parameters**, also determine whether the change covers all form factors:
    * Check whether the PRs touch the Helm chart (`values.yaml`, chart templates) in addition to the AIO code path (`go-node.yaml`).
@@ -56,7 +131,7 @@ The Product Manager has already filtered the release contents — either by labe
    * If no PR touches the Helm chart and the AIO PR added new parameters, **ask the author**: "Were the new parameters also added to the Helm chart `values.yaml`? If yes, please share a link or describe where to look." Do not assume.
    * If the new parameters were **not** added to the Helm chart for this release, the changelog bullet about new parameters must NOT appear in the Helm chart section. If that bullet was the only change for that form factor, omit the form-factor entry entirely for this version.
 
-3a. **Special case — Native Node release that bumps the base on a specific NGINX Node version.**
+4a. **Special case — Native Node release that bumps the base on a specific NGINX Node version.**
 
    Some Native Node releases include an item that says, in effect, "base image / underlying components rebased on NGINX Node X.Y.Z" (typical wording: "bumped base to wallarm/node 6.12.0", "synced with NGINX Node 6.12.x", "rebased on NGINX Node X.Y.Z"). When you see such an item, you cannot just write "bumped NGINX Node to X.Y.Z" and move on — that base bump pulls a set of fixes and features into Native Node, and each one needs an individual decision.
 
@@ -72,7 +147,7 @@ The Product Manager has already filtered the release contents — either by labe
 
    3. The Native Node CVE list still comes from `docker scout compare` per Part 2b (run against Native Node images), **not** by copying the NGINX Node CVE list. Use the NGINX Node changelog only as a hint for what to look for, not as the source — the underlying base images differ, so the fix sets typically differ.
 
-3b. **Special case — replacing, renaming, or removing an internal component.**
+4b. **Special case — replacing, renaming, or removing an internal component.**
 
    Some releases swap a technical component inside the Node — e.g., replacing the postanalytics backend, switching the traffic-analysis engine, removing a deprecated internal module, renaming a service/binary, replacing the metrics-export pipeline, replacing an embedded library. The Jira item often looks small ("Replace X with Y", "Migrate to Y", "Drop legacy module"), but the documentation impact is cross-cutting: changelog, configuration reference, metrics/statistics tables, architecture/internals page, deployment guides, troubleshooting, and usually a dedicated migration page.
 
@@ -110,20 +185,25 @@ The Product Manager has already filtered the release contents — either by labe
    * A draft of the migration page (if needed), structured around the mapping tables and behavioral diffs the author provided.
    * A grep-driven punch list (e.g., `grep -rn "<old-name>" docs/latest/ include/`) to make sure no stale mention of the old component remains outside changelog/history sections.
 
-4. **Show the author a draft preview** before writing into files, so they can catch wording or scope mistakes early. The Jira keys appear here **only as an internal cross-reference** — they must NOT appear in the actual changelog text. Format:
+5. **Show the author a draft preview** before writing into files, so they can catch classification or wording mistakes early. The Jira keys appear here **only as an internal cross-reference** — they must NOT appear in the actual changelog text. Format:
 
    ```
    Draft preview (Jira keys are for your review only — they will NOT be written into the changelog):
 
+   Customer-facing — to be documented:
    * Added (NODE-XXXX): feature description
    * Fixed (NODE-YYYY): bug description
    * Changed (NODE-ZZZZ): change description
 
-   Unclear — please clarify:
-   * NODE-BBBB — issue title — what specifically changed from the user's point of view?
+   Skipped (internal — no changelog entry):
+   * NODE-AAAA — internal refactor / CI / test infrastructure / dev tooling
+
+   Unclear — please confirm:
+   * NODE-BBBB — issue title — customer-facing or internal? (Layered heuristic gave: <PR paths>: <signal>; <labels>: <signal>; <wording>: <signal>)
+   * NODE-CCCC — issue title — what specifically changed from the user's point of view?
    ```
 
-   "Unclear" here means the wording / substance is ambiguous (e.g., the PR description is sparse), not "is this customer-facing?" — the author has already answered the latter.
+   The "Skipped (internal)" block is part of the preview so the author can spot a misclassification before content gets dropped silently. The "Unclear" block is for items where the layered heuristic disagreed with itself, or where the substance is ambiguous regardless of classification.
 
 ### Part 2: Verify artifacts
 
@@ -293,7 +373,7 @@ Every release should list the HIGH/CRITICAL CVEs that were fixed since the previ
     * **Article-level overview / general config examples** — the full configuration sample(s) at the top of the page that show how all settings fit together. Add the new parameter there alongside related optional settings, typically commented out (e.g., `# new_param: value`) so users discover it when scanning the overall config shape.
     * **Feature-specific code blocks** — any other example in the page (or in deployment guides, feature pages) that demonstrates the same component or mode the new parameter belongs to.
 
-    Cover both AIO/Docker config (`docs/latest/installation/native-node/all-in-one-conf.md`) and Helm chart values (`docs/latest/installation/native-node/helm-chart-conf.md`) when the parameter exists for both form factors. Do NOT add Helm chart examples for parameters that were not actually added to the Helm chart values (see step 3).
+    Cover both AIO/Docker config (`docs/latest/installation/native-node/all-in-one-conf.md`) and Helm chart values (`docs/latest/installation/native-node/helm-chart-conf.md`) when the parameter exists for both form factors. Do NOT add Helm chart examples for parameters that were not actually added to the Helm chart values (see Part 1 step 4).
 
     Search for code blocks that need updating:
     ```bash
@@ -343,15 +423,17 @@ Every release should list the HIGH/CRITICAL CVEs that were fixed since the previ
 ## Do NOT
 
 * Publish changelog before confirming artifacts are available
-* Drop or add items relative to what the author provided (the `docs_required`-labeled issues, or the explicit list) — document exactly that set, no more and no less
-* Silently broaden the JQL query when zero issues match `labels = docs_required` — stop and ask the author instead
+* In Jira-link mode, skip the classification step (Part 1, step 2) — every release issue must be assigned to "customer-facing", "internal", or "unclear"; never silently document everything or silently drop everything
+* In Jira-link mode, drop an item from the changelog without surfacing it in the "Skipped (internal)" preview block — the author must be able to spot a misclassification before content disappears
+* Pre-filter the JQL query by `docs_required` and treat the result as the full input — the label is a signal, not the gate; classify all release issues explicitly so the result is auditable
+* In explicit-list mode, drop or add items relative to what the author provided — document exactly that set, no more and no less
 * Invent changes not present in the source items
 * Change existing changelog entries unless fixing a factual error
 * Modify wrapper files in `docs/6.x/` or `docs/7.x/`
 * Bump versions in `docs/5.0/` unless explicitly requested
 * Forget to check both x86_64 and ARM64 installer URLs
 * Mix up NGINX Node and Native Node changelogs
-* Proceed when the substance of an item is unclear — ask the author about the user-visible effect, not about whether the item should be included
+* Guess on a borderline classification call — flag it as "Unclear" and ask the author. False negatives (silently dropping a user-visible change) are the dangerous failure mode
 * Assume that AIO and Helm chart got the same parameters in a release — verify via linked PRs, and if unclear, ask the author for the Helm chart PR or confirmation
 * Add a "new config parameter" bullet to a Helm chart changelog entry without confirming the parameter was actually added to `values.yaml`
 * Add a new parameter only to its own reference subsection — also add it to the article-level overview/general config example and to any feature-specific example block where it applies
@@ -364,3 +446,6 @@ Every release should list the HIGH/CRITICAL CVEs that were fixed since the previ
 * When a Native Node release bumps the NGINX Node base, document a NGINX Node feature in the Native Node changelog using the NGINX directive name — Native Node parameter names usually differ; ask the author for the actual Native Node parameter name and only document it after confirmation
 * Use the NGINX Node CVE list as the Native Node CVE list when bumping the base — always run `docker scout compare` against the Native Node images themselves (Part 2b); the NGINX changelog is a hint, not a source
 * Draft changelog text for a component-replacement item before the author has confirmed the old↔new mappings, deprecation policy, and migration path — without those answers the documentation cannot be correct, so pause and ask
+* Edit `docs/latest/` with version-specific content before freezing the wrappers in versions that must not receive that content — `docs/latest/` is shared by every version whose wrapper still includes from it, so an edit leaks into all of them by default
+* On a major-version bump, touch any structural config — `stylesheets/extra.js` (`rootVersion`), `mkdocs-*.yml` choice of root, `netlify.toml`, `Dockerfile`, version selector partials, or redirects. Those belong to the separate promote-preview-to-root operation. This skill writes the changelog and freezes older versions; the promotion is somebody else's job
+* On a major-version bump, forget to tell the author the local serve command for the new MAJOR (e.g., `./serve.sh mkdocs-7.x.yml`) and the URL it will be served at (`http://127.0.0.1:8000/<NEW-MAJOR>.x/` until promotion)
