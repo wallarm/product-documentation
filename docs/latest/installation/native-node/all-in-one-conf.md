@@ -51,6 +51,8 @@ The Wallarm node operation mode. It can be:
         # max_requests: 300
         # max_received_bytes: 640_000
         # max_duration: 1m
+      # app_reply_timeout: 200ms
+      # app_reply_timeout_code: 503
 
     proxy_headers:
       # Rule 1: Internal company proxies
@@ -416,6 +418,36 @@ Maximum number of bytes that can be received through a connection.
 #### max_duration
 
 Maximum lifetime of a connection (e.g., `1m` for 1 minute).
+
+### connector.app_reply_timeout
+
+Sets a hard upper bound on how long the Node may take to reply to a connector client (for example, an API gateway) after receiving a request or response message. If the Node does not produce a reply within this time, it returns a synthetic response with the status code set by [`connector.app_reply_timeout_code`](#connectorapp_reply_timeout_code).
+
+Use this parameter when the upstream caller enforces a strict per-request budget and a guaranteed response time is required regardless of analysis time, mesh forwarding, or queue waiting.
+
+Unlike [`http_inspector.wallarm_process_time_limit`](#http_inspectorwallarm_process_time_limit), which limits only the time spent on traffic analysis for a specific flow, this parameter applies to the absolute time since the message reached the Node.
+
+By default, no hard timeout is enforced.
+
+Supported in Native Node 0.22.2 only.
+
+```yaml
+version: 4
+
+mode: connector-server
+
+connector:
+  app_reply_timeout: 200ms
+  app_reply_timeout_code: 503
+```
+
+### connector.app_reply_timeout_code
+
+HTTP status code returned to the connector client when [`connector.app_reply_timeout`](#connectorapp_reply_timeout) is exceeded. Has effect only when `connector.app_reply_timeout` is set.
+
+Default: `500`.
+
+Supported in Native Node 0.22.2 only.
 
 ## TCP mirror-specific settings
 

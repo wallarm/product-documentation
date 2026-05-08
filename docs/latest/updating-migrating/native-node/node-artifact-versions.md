@@ -94,6 +94,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 * Fixed an issue where the installer script failed with the "Incorrect config content for tcp-capture-v2 mode" error when the [`mode`](../../installation/native-node/all-in-one-conf.md#mode-required) parameter value was quoted
 * Minor bug fixes and performance improvements
 
+### 0.22.2 (2026-05-08)
+
+* Added [`connector.app_reply_timeout`](../../installation/native-node/all-in-one-conf.md#connectorapp_reply_timeout) and [`connector.app_reply_timeout_code`](../../installation/native-node/all-in-one-conf.md#connectorapp_reply_timeout_code) configuration parameters that enforce a hard time-based cut-off on request handling in `connector-server` mode. Use them when the upstream caller (for example, an API gateway) requires a strict response budget per request
+
 ### 0.22.1 (2026-02-03)
 
 * Fixed an issue where real IP header overrides were not applied when the header value contained an IP address with a port
@@ -543,6 +547,10 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 * Fixed the [CVE-2026-21441](https://scout.docker.com/vulnerabilities/id/CVE-2026-21441) vulnerability
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 * Minor bug fixes and performance improvements
+
+### 0.22.2 (2026-05-08)
+
+* Added [`connector.app_reply_timeout`](../../installation/native-node/all-in-one-conf.md#connectorapp_reply_timeout) and [`connector.app_reply_timeout_code`](../../installation/native-node/all-in-one-conf.md#connectorapp_reply_timeout_code) configuration parameters that enforce a hard time-based cut-off on request handling in `connector-server` mode. Use them when the upstream caller (for example, an API gateway) requires a strict response budget per request
 
 ### 0.22.1 (2026-02-03)
 
