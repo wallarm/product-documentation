@@ -72,6 +72,44 @@ The Product Manager has already filtered the release contents — either by labe
 
    3. The Native Node CVE list still comes from `docker scout compare` per Part 2b (run against Native Node images), **not** by copying the NGINX Node CVE list. Use the NGINX Node changelog only as a hint for what to look for, not as the source — the underlying base images differ, so the fix sets typically differ.
 
+3b. **Special case — replacing, renaming, or removing an internal component.**
+
+   Some releases swap a technical component inside the Node — e.g., replacing the postanalytics backend, switching the traffic-analysis engine, removing a deprecated internal module, renaming a service/binary, replacing the metrics-export pipeline, replacing an embedded library. The Jira item often looks small ("Replace X with Y", "Migrate to Y", "Drop legacy module"), but the documentation impact is cross-cutting: changelog, configuration reference, metrics/statistics tables, architecture/internals page, deployment guides, troubleshooting, and usually a dedicated migration page.
+
+   **Detection signals** (any one is enough to treat the item this way):
+
+   * Linked PRs rename or remove configuration keys, rename Prometheus / JSON metrics, delete a service/binary/process, rename a log file or directory, change a default port, or move a sizable directory tree.
+   * Jira description uses wording like "replace", "migrate to", "switch from … to …", "rewrite", "rebuild on top of", "deprecate", "drop".
+
+   **What the skill does — pause and gather, do not draft yet.**
+
+   **What the skill asks the author** before writing any changelog text:
+
+   1. **Old vs new names as users see them** — binary / service, configuration key family (e.g., `wstore.*` → `postanalytics.*`), metrics prefix (e.g., `wallarm_wstore_*` → `wallarm_postanalytics_*`), log paths.
+   2. **Affected doc surfaces** — confirm which of these need updating in this release:
+       * Configuration reference: `docs/latest/installation/native-node/all-in-one-conf.md`, `helm-chart-conf.md`; `docs/latest/admin-en/configure-parameters-en.md` for NGINX Node
+       * Metrics / statistics: `docs/latest/admin-en/native-node-metrics-*.md`, `configure-statistics-service.md`
+       * Architecture / internals: `docs/latest/installation/nginx-native-node-internals.md`
+       * Deployment guides (per-form-factor): all-in-one, Helm, Docker, sidecar, ingress, OOB modes
+       * Troubleshooting / logs pages
+       * Any how-to or admin pages that reference the old component by name (the skill should grep for the old name and present the hit list back to the author for confirmation)
+   3. **Compatibility & cutover policy**:
+       * Is the old component removed entirely in this version, or kept with a deprecation warning?
+       * Are old parameter names accepted as aliases for one or more releases, or rejected immediately?
+       * Are old metrics still exported in parallel during a transition window, or removed atomically?
+   4. **Migration path** — does this need a dedicated migration / upgrade-notes page? If yes, what does it cover (mapping table for renamed parameters, mapping table for renamed metrics, behavioral diffs, rollback notes, sample upgrade command sequence)?
+   5. **Breaking-change surfacing** — should `what-is-new.md` and the upgrade page mention this prominently? Should the changelog entry carry a `!!! warning` admonition?
+
+   **What the author is expected to provide.** The author owns the substance here; the skill cannot infer it from the Jira description alone. The author should hand over: the old/new name mappings (parameters, metrics, services), the deprecation policy, and a migration storyline ("users upgrading from X.Y.Z need to do these steps"). If the author cannot answer 1–5 yet, the right outcome is to wait — do not publish a half-documented component swap.
+
+   **What the skill produces** once the author has answered:
+
+   * Changelog entry with **both halves** present — at minimum a `Changed` or `Removed` bullet for the old component and an `Added` bullet for the new one, plus a link to the migration notes if any.
+   * Updates to every reference page on the affected-surfaces list, not just the changelog. Renamed parameters and metrics must be updated in place in their reference docs so the docs and the changelog cannot drift.
+   * Redirects in `docs/<root-version>/_redirects` for any renamed or deleted pages about the old component.
+   * A draft of the migration page (if needed), structured around the mapping tables and behavioral diffs the author provided.
+   * A grep-driven punch list (e.g., `grep -rn "<old-name>" docs/latest/ include/`) to make sure no stale mention of the old component remains outside changelog/history sections.
+
 4. **Show the author a draft preview** before writing into files, so they can catch wording or scope mistakes early. The Jira keys appear here **only as an internal cross-reference** — they must NOT appear in the actual changelog text. Format:
 
    ```
@@ -325,3 +363,4 @@ Every release should list the HIGH/CRITICAL CVEs that were fixed since the previ
 * When a Native Node release bumps the NGINX Node base, copy NGINX Node bullets verbatim into the Native Node changelog without a per-bullet applicability check — NGINX-specific fixes (NGINX directives, ingress controller, NGINX module issues) never apply to Native Node
 * When a Native Node release bumps the NGINX Node base, document a NGINX Node feature in the Native Node changelog using the NGINX directive name — Native Node parameter names usually differ; ask the author for the actual Native Node parameter name and only document it after confirmation
 * Use the NGINX Node CVE list as the Native Node CVE list when bumping the base — always run `docker scout compare` against the Native Node images themselves (Part 2b); the NGINX changelog is a hint, not a source
+* Draft changelog text for a component-replacement item before the author has confirmed the old↔new mappings, deprecation policy, and migration path — without those answers the documentation cannot be correct, so pause and ask
