@@ -22,6 +22,34 @@ When the author provides an explicit list, the classification step is short-circ
 
 ## Steps
 
+### Part 0a: Set up the working branch
+
+Before any edits, create a dedicated git branch for this release. The branch isolates your changes so the author can review and merge them as one PR.
+
+1. Check the current branch:
+
+    ```bash
+    git rev-parse --abbrev-ref HEAD
+    ```
+
+2. **If the current branch is `master`**, create a new branch off it and switch to it:
+
+    ```bash
+    git checkout -b <BRANCH_NAME>
+    ```
+
+3. **If the current branch is NOT `master`**, ask the author once: "I see you are on `<current-branch>`. Should I create a new branch off `master` for this release, or continue on the current branch?" — and follow the answer. Do not silently switch branches.
+
+**Branch naming convention.** Use descriptive English names that reflect the release scope, using lowercase and hyphens:
+
+* Single-form-factor release: `nginx-node-6.12.1`, `native-node-0.25.0`
+* Release with a salient theme worth highlighting: `nginx-node-6.12.1-me-cloud`, `native-node-0.25.0-mcp-fields`
+* Umbrella/multi-form-factor release: `node-6.12.1-release`
+
+Avoid: dates (commits already carry them), Jira keys (those are internal cross-references and never appear in branch/commit names), generic names like `update`, `patch`, `release-notes`, `wip`.
+
+**This skill does NOT commit or push.** Branch creation is the only state-changing git operation you perform. Staging (`git add`), committing (`git commit`, including `--amend`), pushing (`git push`), tagging, force-pushing, rebasing, and stashing are owned by the author/PM and are out of scope. The skill leaves the branch with uncommitted changes — the author reviews the diff and creates the PR.
+
 ### Part 0: Pre-flight — identify the target version directory
 
 Before gathering items, decide which version directory the release lands in. This decision drives everything downstream — which changelog file gets the entry, whether `docs/latest/` edits flow into older versions or need to be insulated, whether the work is even in scope for this skill.
@@ -35,12 +63,20 @@ Before gathering items, decide which version directory the release lands in. Thi
 
 Decide which of the following cases applies and follow the corresponding rule:
 
-| Case | Trigger | Changelog target | `docs/latest/` edits |
-|------|---------|------------------|----------------------|
-| Patch/minor on current root | New version's MAJOR matches `rootVersion` | Current-root changelog file | Edit normally; flows into the root through its wrappers |
-| Hotfix on an older line that is no longer current | A backport (e.g., 0.22.2 while 0.25.x is current) | The older version's section inside the same `node-artifact-versions.md` | Usually only the changelog itself; if config-reference updates are needed, use the freeze flow below to keep them out of the current root |
-| Patch/minor on a hidden preview version | A 7.x release while 7.x is served at `/7.x/`, not yet at root | The 7.x changelog file | Edit `docs/latest/` only after using the freeze flow below to insulate older versions that must not receive the change |
-| Major version on a preview line | A `MAJOR.0.0` whose MAJOR equals the preview's MAJOR (e.g., `7.0.0` while 7.x is still served at `/7.x/`) | The preview-version changelog file (e.g., the 7.x changelog) | Same as the preview-version case — edit `docs/latest/` only after the freeze flow has insulated older versions; do NOT touch structural configs |
+| Case | Trigger | Changelog target | `docs/latest/` edits | `docs/<MAJOR>/` edits |
+|------|---------|------------------|----------------------|------------------------|
+| Patch/minor on current root | New version's MAJOR matches `rootVersion` | Current-root changelog file (typically `docs/<root>/updating-migrating/node-artifact-versions.md` if it is a frozen full-content file in this repo) | Edit normally; flows into the root through its wrappers | Edit any frozen full-content files in `docs/<root>/` directly (e.g., the changelog); leave wrappers alone |
+| Hotfix on an older line that is no longer current | A backport (e.g., 0.22.2 while 0.25.x is current) | The older version's section inside the same `node-artifact-versions.md` | Usually only the changelog itself; if config-reference updates are needed, use the freeze flow below to keep them out of the current root | If the old line has a frozen `docs/<OLD>/` directory, bump there too |
+| Patch/minor on a hidden preview version | A 7.x release while 7.x is served at `/7.x/`, not yet at root | The preview-line changelog file — in this repo it is `docs/latest/updating-migrating/node-artifact-versions.md` (the `docs/<root>/` changelog is the **frozen** root-version one) | Edit `docs/latest/` only after using the freeze flow below to insulate older versions that must not receive the change | Bump every frozen full-content file in `docs/<preview>/` (e.g., `docs/7.x/`) that references the version. Do NOT touch `docs/<other-version>/` directories — those are scoped to other version lines |
+| Major version on a preview line | A `MAJOR.0.0` whose MAJOR equals the preview's MAJOR (e.g., `7.0.0` while 7.x is still served at `/7.x/`) | The preview-version changelog file (same as the preview-version row) | Same as the preview-version case — edit `docs/latest/` only after the freeze flow has insulated older versions; do NOT touch structural configs | Same as the preview-version row — bump frozen files in `docs/<preview>/`, leave `docs/<other-version>/` alone |
+
+**Pinning down the version directories.** Whatever the case, before any edits:
+
+1. List the version directories (`docs/<X>/`) that exist.
+2. Decide which of them are in scope for **this** release:
+    * The version directory matching the release's MAJOR (e.g., `docs/7.x/` for any 7.x release).
+    * Any version directory with frozen full-content files that reference the release version (cross-line bumps are unusual but possible — e.g., a compatibility table page).
+3. Every other `docs/<X>/` is out of scope — leave it untouched. Cross-line edits leak version statements into the wrong major.
 
 **Major-version case — explicit scope.** When the new release bumps the MAJOR, the workflow is the same as a regular preview-version release: write the changelog to the preview's changelog file, apply the freeze flow for any `docs/latest/` content that must not reach 6.x / 5.x, document the new feature surface in `docs/latest/` only after freezing.
 
@@ -90,6 +126,8 @@ In Jira-link mode the skill is responsible for separating customer-facing items 
        Fetch description, labels, components, and linked PRs for each issue. Do NOT pre-filter by label — classification happens explicitly in step 2 so the result is auditable.
 
    * **Explicit list mode** — take the list as-is. Fetch each Jira key to read its description and linked PRs (still needed for accurate prose and the form-factor check). Do not drop items, do not add items.
+
+   **Do NOT block on the Jira ticket `status` field.** A ticket may still be in `In Review`, `In Progress`, or any non-`Done` state at the time the release is cut, because the workflow is asynchronous (cherry-picks land first, the ticket transitions later). If the issue is in the release `fixVersion` or the explicit list the author handed you, trust that it ships — do not surface "ticket is still In Review, are you sure?" as a blocking question. The author has already decided the release scope by giving you the list. Status is informational only.
 
 2. **Classify each item as customer-facing or internal** — Jira-link mode only. Skip this step in explicit-list mode.
 
@@ -244,16 +282,35 @@ In Jira-link mode the skill is responsible for separating customer-facing items 
 
        If `gcloud` is not installed locally, fall back to asking the author to run the command, or mark as "could not verify."
 
-6. **Report verification results** to the author:
+6. **Report verification results** to the author and, for each unverified form factor, ask explicitly whether it is part of this release.
+
+   First, surface what you found:
+
    ```
    Artifact verification:
    ✓ Docker image wallarm/node:<VERSION> — found on Docker Hub
-   ✓ Helm chart wallarm-node <VERSION> — found
    ✓ All-in-one installer — download URL responds
+   ✓ GCP image wallarm-node-X-Y-Z-* — found via gcloud
+   ✗ Helm chart wallarm-sidecar <VERSION> — not visible in `helm search`
+   ✗ Helm chart wallarm-ingress <VERSION> — not visible in `helm search`
    ✗ AWS AMI — could not verify (requires marketplace access)
    ```
 
-   If any critical artifact is missing, warn the author and do NOT proceed with publishing docs until confirmed.
+   Then, for **every form factor on the `✗` list**, ask the author one focused question per artifact:
+
+   > "I cannot confirm `wallarm-sidecar <VERSION>` is published. Is this Helm chart being released as part of this version?
+   >
+   > * **Yes, it is being released** → I will add the changelog entry, bump every reference to it across the docs, and use `(TBD)` in place of the release date in the entry header until you confirm publication.
+   > * **No, this form factor is not in this release** → I will skip the changelog entry entirely, leave existing references at the previous version, and not invent any updates for it."
+
+   Drive the rest of Part 3 and Part 4 from the answers:
+
+   * **"Yes" answers** → write the changelog entry for that form factor, bump every encoding of the version everywhere it appears (Part 4 step 11 covers the encodings), use `(TBD)` in the entry header until publication is confirmed, and replace `TBD` with the actual date later.
+   * **"No" answers** → do not add a changelog entry for that form factor, do not bump any version reference tied to it (Helm `--version` flags, chart names, image tags pinned to that chart, deployment-doc image tags, etc.), and do not write a "Internal improvements" placeholder. The form factor stays at the previous version across the docs.
+
+   This is stricter than "trust the release scope by default": the default for an unverified form factor is **don't touch it** until the author confirms it is in scope. The cost of asking once per form factor is tiny; the cost of bumping a tag for a chart that turns out not to be released is a broken install command in production docs.
+
+   The exception is **inventing artifacts** — never write a Helm chart entry, a Docker tag bump, or an installer URL for a form factor the author has not confirmed. "Yes" must come from the author; you do not infer it from "well, every release usually ships X."
 
 ### Part 2b: Collect fixed CVEs per artifact
 
@@ -344,21 +401,51 @@ Every release should list the HIGH/CRITICAL CVEs that were fixed since the previ
    * Bumped [dependency] version to X.Y.Z
    ```
 
+   **Every form factor that the author has confirmed is part of this release gets an entry, even when nothing user-visible changed for it.** When a release rebuilds an artifact (Docker image, Helm chart, AMI, GCP image) without any user-visible change beyond what is already covered elsewhere, still add a version entry to that section using `* Internal improvements` as a placeholder. The author can replace the placeholder with substantive content; an empty section invites confusion ("did the chart even ship?"). Form factors the author confirmed are NOT in this release (per Part 2 step 6) are skipped entirely — no entry, no version bumps anywhere else either.
+
 9. **Update `what-is-new.md`** if the release includes significant user-facing features.
 
 ### Part 4: Bump versions across docs
 
 10. **Determine the old version** from the changelog (the previous latest entry).
 
-11. **Search and replace** the old version in `docs/latest/` and `include/`:
-    * Docker tags: `wallarm/node:X.Y.Z-N`
-    * Installer URLs:
-        * NGINX Node: `wallarm-X.Y.Z.x86_64-glibc.sh` and `wallarm-X.Y.Z.aarch64-glibc.sh` (and the `<MAJOR.MINOR>/` path segment if it changed)
-        * Native Node: `aio-native-X.Y.Z.x86_64.sh` and `aio-native-X.Y.Z.aarch64.sh`
-    * Helm chart `--version` flags
-    * Plain text version mentions in requirements and compatibility notes
+11. **Search and replace** the old version. Sweep these locations in order:
 
-12. **Verify** no stale references remain — grep for the old version string. Changelog/history sections are the only valid exception.
+    1. `docs/latest/` — the source of truth.
+    2. `docs/<MAJOR>/` for **every** version directory you marked in scope in Part 0 (typically the version directory matching the release's MAJOR, e.g., `docs/7.x/` for a 7.x release, `docs/6.x/` for a 6.x release). Skip `docs/<X>/` directories that Part 0 marked out of scope — bumping there leaks the version statement into the wrong major.
+    3. `include/` — shared snippets used by all version directories.
+
+    The version of a release shows up in many encodings — bump every encoding, not just the dotted form. The list below is non-exhaustive; always grep for whatever encoding the build pipeline of a given form factor uses.
+
+    * **Dotted form** (most common):
+        * Docker tags: `wallarm/node:X.Y.Z`, `wallarm/node:X.Y.Z-N`, `wallarm/node-native-aio:X.Y.Z`, `wallarm/sidecar:X.Y.Z`, `wallarm/ingress-controller:X.Y.Z`, `wallarm/node-helpers:X.Y.Z`, `wallarm/node-native-processing:X.Y.Z`
+        * AIO installer URLs:
+            * NGINX Node: `wallarm-X.Y.Z.x86_64-glibc.sh` and `wallarm-X.Y.Z.aarch64-glibc.sh` (and the `<MAJOR.MINOR>/` path segment if it changed)
+            * Native Node: `aio-native-X.Y.Z.x86_64.sh` and `aio-native-X.Y.Z.aarch64.sh`
+        * Helm chart `--version X.Y.Z` flags and `wallarm-sidecar-X.Y.Z` / `wallarm-ingress-X.Y.Z` chart-name references
+        * YAML `tag: "X.Y.Z"` overrides for image-tag pinning in Helm values examples
+        * Heroku/Dockerfile `ARG VERSION="X.Y.Z"` and similar build-arg patterns
+        * Plain-text version mentions in requirements and compatibility notes
+
+    * **Dash-separated form** — appears in artifact names that disallow dots:
+        * GCP image names: `wallarm-node-X-Y-Z-<YYYYMMDD>-<HHMMSS>` (the `<YYYYMMDD>-<HHMMSS>` build suffix changes per release; copy the actual full image name from `gcloud compute images list` output rather than guessing the suffix)
+        * Any other artifact identifier where dots are forbidden by the registry/platform (some package managers, some object-storage paths)
+
+    * **Underscore-separated form** — rare, but check: branch references, file names, kernel module names that can use underscores.
+
+    Mechanical sweep recipe — adapt patterns per release. Substitute `<IN-SCOPE-DIRS>` with the version directories Part 0 marked in scope (e.g., `docs/7.x/` for a 7.x release):
+
+    ```bash
+    # Dotted version
+    grep -rn "X\.Y\.Z" docs/latest/ <IN-SCOPE-DIRS> include/
+
+    # Dashed version (GCP image names, etc.)
+    grep -rn "X-Y-Z" docs/latest/ <IN-SCOPE-DIRS> include/
+    ```
+
+    Process each hit individually rather than running a blind `sed` — some `X.Y.Z` mentions are intentional history references ("(NGINX Node X.Y.Z+)", "Starting from version X.Y.Z", `older-versions/` files, the previous version's changelog entry) and must be preserved.
+
+12. **Verify** no stale references remain — grep for both the dotted and dashed forms of the old version string across `docs/latest/`, the in-scope version directories, and `include/`. Changelog/history sections, version-introduction notes ("Starting from NGINX Node X.Y.Z"), and `older-versions/` directories are the only valid exceptions.
 
 ### Part 5: Update related docs (if needed)
 
@@ -367,6 +454,7 @@ Every release should list the HIGH/CRITICAL CVEs that were fixed since the previ
     * **Changed feature behavior** → update the feature documentation page
     * **New artifact type** → create deployment docs or add to existing ones
     * **New protocol/format support** → update overview and setup pages
+    * **Every bullet, regardless of verb** → audit articles that describe the same subject for cross-page staleness (see step 13b below)
 
 13a. **For new config parameters**, the parameter must appear in **every** code example where it is relevant — not just in its own dedicated subsection. Update both:
 
@@ -380,6 +468,25 @@ Every release should list the HIGH/CRITICAL CVEs that were fixed since the previ
     grep -n "mode: connector-server\|mode: tcp-capture-v2\|mode: envoy-external-filter" docs/latest/installation/native-node/all-in-one-conf.md
     ```
     Then audit related deployment/feature pages that copy the same config shape.
+
+13b. **After every changelog bullet, audit the articles that describe the same subject.**
+
+   Every changelog item — `Added`, `Fixed`, `Changed`, `Removed`, `Bumped`, `Improved` — describes a *state transition*: something was one way, now it is another. The pages that describe that same subject elsewhere in the docs will, by default, still describe the **old** state. The changelog itself is the easy part; the rest of the article surface is where staleness silently accumulates and the docs start contradicting themselves across pages.
+
+   For each bullet, walk through three questions:
+
+   1. **What is the subject?** The feature, parameter, CLI flag, default value, dependency, error message, supported platform, integration, behavior — whatever the bullet is actually about. Name it explicitly before searching.
+   2. **Where else does the subject live in the docs?** Reference pages, conceptual overviews, how-to guides, troubleshooting, FAQ, examples, info/warning admonitions, deprecation notes, compatibility matrices, screenshots. `grep -rn` on the subject name is a fine starting point, but read the surrounding paragraphs — the staleness is in the prose around the subject, not in the keyword itself.
+   3. **Does that page still describe the old state?** Limitations that no longer apply, workarounds that are no longer needed, defaults that have changed, examples that use the old syntax, compatibility tables that miss the new version, screenshots of an outdated UI, "as of version X" notes that are now stale, **prose labels right next to a correctly-bumped artifact identifier** ("To launch the filtering node version 5.x, use this image: `wallarm-node-6-12-1-...`" — image name was bumped to 6.x, but the surrounding "version 5.x" prose was not, and now contradicts the example it introduces).
+
+   The "prose label vs. artifact identifier" mismatch is especially easy to miss because a `sed` on the version string fixes the identifier but never touches the surrounding sentence. After bumping any artifact tag (Docker tag, image name, installer URL, Helm chart version), read the **paragraph that contains the bumped value**, not just the bumped line itself, and check that the version-related wording around it still matches.
+
+   For each affected page, choose one of two outcomes — never silent removal:
+
+   * If the old state no longer applies to any version `docs/latest/` describes → **update the page to the new state**.
+   * If the old state still applies to older supported versions readers might be on → **keep the note but bound it with a version qualifier** (e.g., "Node versions X.Y.Z and earlier do not support…", "Before version X.Y.Z, the default was…"). Silent removal hurts users still on the old version; silent retention of the unqualified old fact hurts users on the new one. The version qualifier is what makes both correct simultaneously.
+
+   The dangerous failure mode here is **cross-page contradiction** — the changelog says one thing, an admonition three pages away says the opposite, and neither author nor reader notices because they are reading different files. Sweep every bullet, not just the obvious `Added support for…` ones; a `Bumped Go to 1.27` bullet has the same problem if a compatibility note elsewhere says "requires Go 1.26."
 
 ### Part 6: Validate
 
@@ -422,6 +529,13 @@ Every release should list the HIGH/CRITICAL CVEs that were fixed since the previ
 
 ## Do NOT
 
+* Run `git commit`, `git push`, `git stash`, `git rebase`, `git tag`, or any other state-changing git operation. The skill creates the working branch in Part 0a and edits files; staging, committing, and pushing belong to the author/PM and are explicitly out of scope. Leave the branch with uncommitted changes for the author to review
+* Switch branches mid-skill — Part 0a is the only place a branch is created or switched. Do not `git checkout` a different branch later in the workflow
+* Block on a Jira ticket's `status` field (`In Review`, `In Progress`, etc.) — if a ticket is in the release `fixVersion` or the explicit list, trust that it ships. Status is informational only and is asynchronous with code merges
+* Decide unilaterally what to do with a missing artifact — for every form factor that fails the verification check, ask the author one focused question ("Is this form factor part of this release? Yes → I will write the entry with TBD until publication; No → I will skip everything for it.") and follow the answer. Default is **don't touch** until the author confirms scope (Part 2 step 6)
+* Bump a version reference tied to a form factor the author has confirmed is NOT in this release — that includes Helm `--version` flags, chart-name refs, image tags pinned to that chart, deployment-doc examples that reference the unreleased form factor. Leave them at the previous version
+* Skip a form factor section in the changelog when the author HAS confirmed it is in this release — every confirmed form factor gets an entry; use `* Internal improvements` as a placeholder when there is no substance, never silently omit the section
+* Write a changelog bullet without auditing the rest of the article surface that describes the same subject — every bullet is a state transition, and the prose elsewhere will still describe the old state by default. Cross-page contradiction is the dangerous failure mode (Part 5, step 13b)
 * Publish changelog before confirming artifacts are available
 * In Jira-link mode, skip the classification step (Part 1, step 2) — every release issue must be assigned to "customer-facing", "internal", or "unclear"; never silently document everything or silently drop everything
 * In Jira-link mode, drop an item from the changelog without surfacing it in the "Skipped (internal)" preview block — the author must be able to spot a misclassification before content disappears
@@ -429,8 +543,9 @@ Every release should list the HIGH/CRITICAL CVEs that were fixed since the previ
 * In explicit-list mode, drop or add items relative to what the author provided — document exactly that set, no more and no less
 * Invent changes not present in the source items
 * Change existing changelog entries unless fixing a factual error
-* Modify wrapper files in `docs/6.x/` or `docs/7.x/`
-* Bump versions in `docs/5.0/` unless explicitly requested
+* Modify wrapper files in any `docs/<X>/` directory — wrappers receive their content from `docs/latest/`, so editing them directly creates a version-pinned snapshot that will silently fall behind. Edit `docs/latest/` (the wrapper's target) instead, with the freeze flow if needed
+* Bump versions in a `docs/<X>/` directory whose MAJOR does not match the release — e.g., never bump `docs/5.0/` references for a 6.x or 7.x release, never bump `docs/6.x/` references for a 7.x release. Each `docs/<X>/` is scoped to its own version line; cross-line bumps leak the new version statement into the wrong major's docs (Part 0 + Part 4 step 11 — only sweep the in-scope version directories)
+* Forget to bump `docs/<NEW-MAJOR>/` for a release on a non-current-root line — when documenting a 7.x release while 6.x is still root, the changelog goes to `docs/latest/.../node-artifact-versions.md`, but any frozen full-content files in `docs/7.x/` that reference the version still need to be bumped, and `docs/6.x/` should not be touched
 * Forget to check both x86_64 and ARM64 installer URLs
 * Mix up NGINX Node and Native Node changelogs
 * Guess on a borderline classification call — flag it as "Unclear" and ask the author. False negatives (silently dropping a user-visible change) are the dangerous failure mode
