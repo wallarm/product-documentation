@@ -56,6 +56,22 @@ The Product Manager has already filtered the release contents — either by labe
    * If no PR touches the Helm chart and the AIO PR added new parameters, **ask the author**: "Were the new parameters also added to the Helm chart `values.yaml`? If yes, please share a link or describe where to look." Do not assume.
    * If the new parameters were **not** added to the Helm chart for this release, the changelog bullet about new parameters must NOT appear in the Helm chart section. If that bullet was the only change for that form factor, omit the form-factor entry entirely for this version.
 
+3a. **Special case — Native Node release that bumps the base on a specific NGINX Node version.**
+
+   Some Native Node releases include an item that says, in effect, "base image / underlying components rebased on NGINX Node X.Y.Z" (typical wording: "bumped base to wallarm/node 6.12.0", "synced with NGINX Node 6.12.x", "rebased on NGINX Node X.Y.Z"). When you see such an item, you cannot just write "bumped NGINX Node to X.Y.Z" and move on — that base bump pulls a set of fixes and features into Native Node, and each one needs an individual decision.
+
+   Workflow for this item:
+
+   1. Open the NGINX Node changelog entry for the version the Native Node was bumped TO (`docs/6.x/updating-migrating/node-artifact-versions.md`, or whichever 6.x/7.x file is current).
+   2. For each bullet in that NGINX Node entry, decide whether it lands in the Native Node changelog:
+
+      * **Skip** items that are NGINX-Node-specific — anything tied to NGINX directives, NGINX modules, the ingress controller, NGINX-only deployment shapes. Native Node has no analog, so these never appear in its changelog.
+      * **Skip** items already covered by a separate Native Node Jira issue in the same release. Those items are documented from their own Jira source, not from the NGINX side.
+      * **Carry over** anything user-visible that Native Node receives by virtue of sharing components with NGINX Node — typically Go version bumps, libproton / wstore / **wcli** behavior changes, API Discovery and API Specification Enforcement improvements that live in shared components.
+      * **For new functionality or new config parameters introduced in that NGINX Node version**: the same feature is most likely now in Native Node too, but the **parameter names usually differ** between NGINX Node directives and Native Node YAML keys. **Ask the author**: "NGINX Node X.Y.Z added `<NGINX_PARAM>`. What is the equivalent Native Node parameter (and is it shipped in this release)?" Document the Native Node parameter only after the author confirms its name and shape — never invent it by translating the NGINX directive name.
+
+   3. The Native Node CVE list still comes from `docker scout compare` per Part 2b (run against Native Node images), **not** by copying the NGINX Node CVE list. Use the NGINX Node changelog only as a hint for what to look for, not as the source — the underlying base images differ, so the fix sets typically differ.
+
 4. **Show the author a draft preview** before writing into files, so they can catch wording or scope mistakes early. The Jira keys appear here **only as an internal cross-reference** — they must NOT appear in the actual changelog text. Format:
 
    ```
@@ -306,3 +322,6 @@ Every release should list the HIGH/CRITICAL CVEs that were fixed since the previ
 * Reuse a single CVE list across all form factors — each artifact (Docker image, Helm chart base image, AIO via Docker proxy, sidecar) gets its own `docker scout compare` run and its own CVE bullet list
 * For AIO, list a CVE that scout reports only in OS-level paths (`/usr/lib`, `/lib`, `/var/lib/dpkg/...`) — only `/opt/wallarm`-located fixes belong to AIO; OS-level fixes are the host's responsibility
 * Write a CVE/GHSA ID as bare text — every CVE/GHSA in the changelog must be a markdown link to its authoritative advisory page (NVD for `CVE-...`, GitHub Advisories for `GHSA-...`)
+* When a Native Node release bumps the NGINX Node base, copy NGINX Node bullets verbatim into the Native Node changelog without a per-bullet applicability check — NGINX-specific fixes (NGINX directives, ingress controller, NGINX module issues) never apply to Native Node
+* When a Native Node release bumps the NGINX Node base, document a NGINX Node feature in the Native Node changelog using the NGINX directive name — Native Node parameter names usually differ; ask the author for the actual Native Node parameter name and only document it after confirmation
+* Use the NGINX Node CVE list as the Native Node CVE list when bumping the base — always run `docker scout compare` against the Native Node images themselves (Part 2b); the NGINX changelog is a hint, not a source
