@@ -50,6 +50,7 @@ new attack types in logging variables and search bars?
 
 ### 6.11.0 (2026-03-25)
 
+* Added [authentication flow detection](../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Fixed empty response (`000` status code) instead of [custom block page](../admin-en/configuration-guides/configure-block-page-and-code.md) when [`ngx_http_auth_request_module`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) is used
 * Fixed the [GHSA-6g7g-w4f8-9c9x](https://github.com/advisories/GHSA-6g7g-w4f8-9c9x) vulnerability
 * Bumped Go version to 1.26.1
@@ -77,7 +78,6 @@ new attack types in logging variables and search bars?
 
 ### 6.10.0 (2026-02-09)
 
-* Added [authentication flow detection](../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
 * Added support for NGINX stable 1.28.2
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
@@ -279,6 +279,7 @@ new attack types in logging variables and search bars?
 
 ### 6.11.1 (2026-03-25)
 
+* Added [authentication flow detection](../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Upgraded to Community Ingress NGINX Controller version [1.15.0](https://github.com/kubernetes/ingress-nginx/releases/tag/controller-v1.15.0), aligning with the upstream Helm chart version 4.15.0
 
     The underlying NGINX has been updated to 1.27.1 and the base Alpine image to 3.23.3.
@@ -311,7 +312,6 @@ new attack types in logging variables and search bars?
 
 ### 6.10.0 (2026-02-09)
 
-* Added [authentication flow detection](../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 
@@ -517,6 +517,7 @@ new attack types in logging variables and search bars?
 
 ### 6.11.1 (2026-03-25)
 
+* Added [authentication flow detection](../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Fixed empty response (`000` status code) instead of [custom block page](../admin-en/configuration-guides/configure-block-page-and-code.md) when [`ngx_http_auth_request_module`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) is used
 * Fixed the [GHSA-6g7g-w4f8-9c9x](https://github.com/advisories/GHSA-6g7g-w4f8-9c9x) vulnerability
 * Bumped Go version to 1.26.1
@@ -544,7 +545,6 @@ new attack types in logging variables and search bars?
 
 ### 6.10.0 (2026-02-09)
 
-* Added [authentication flow detection](../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 
@@ -734,6 +734,7 @@ new attack types in logging variables and search bars?
 
 ### 6.11.1 (2026-03-25)
 
+* Added [authentication flow detection](../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Fixed empty response (`000` status code) instead of [custom block page](../admin-en/configuration-guides/configure-block-page-and-code.md) when [`ngx_http_auth_request_module`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) is used
 * Fixed the [GHSA-6g7g-w4f8-9c9x](https://github.com/advisories/GHSA-6g7g-w4f8-9c9x) vulnerability
 * Bumped Go version to 1.26.1
@@ -761,7 +762,6 @@ new attack types in logging variables and search bars?
 
 ### 6.10.0 (2026-02-09)
 
-* Added [authentication flow detection](../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 
@@ -948,6 +948,7 @@ new attack types in logging variables and search bars?
 
 ### 6.11.1 (2026-03-25)
 
+* Added [authentication flow detection](../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Fixed empty response (`000` status code) instead of [custom block page](../admin-en/configuration-guides/configure-block-page-and-code.md) when [`ngx_http_auth_request_module`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) is used
 * Fixed the [GHSA-6g7g-w4f8-9c9x](https://github.com/advisories/GHSA-6g7g-w4f8-9c9x) vulnerability
 * Bumped Go version to 1.26.1
@@ -975,7 +976,6 @@ new attack types in logging variables and search bars?
 
 ### 6.10.0 (2026-02-09)
 
-* Added [authentication flow detection](../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 
@@ -1131,6 +1131,7 @@ new attack types in logging variables and search bars?
 
 ### wallarm-node-6-11-1-20260325-092834 (2026-03-25)
 
+* Added [authentication flow detection](../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Fixed empty response (`000` status code) instead of [custom block page](../admin-en/configuration-guides/configure-block-page-and-code.md) when [`ngx_http_auth_request_module`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) is used
 * Fixed the [GHSA-6g7g-w4f8-9c9x](https://github.com/advisories/GHSA-6g7g-w4f8-9c9x) vulnerability
 * Bumped Go version to 1.26.1
@@ -1158,7 +1159,6 @@ new attack types in logging variables and search bars?
 
 ### wallarm-node-6-10-0-20260206-084755 (2026-02-09)
 
-* Added [authentication flow detection](../api-discovery/authentication.md) in API Discovery — automatically identifies authentication methods used by each endpoint and highlights unauthenticated endpoints
 * Added support for OpenAPI v3 specifications with non-string (for example, integer) YAML keys in [API Specification Enforcement](../api-specification-enforcement/overview.md). This improves compatibility and prevents schema parsing failures
 * Fixed an issue where the Node sent too many requests in a single batch to **wstore**, causing submission failures
 

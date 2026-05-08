@@ -8,9 +8,9 @@ You can use the **Authentication** filter in the API Discovery inventory to quic
 
 ## Requirements
 
-Authentication flow detection is supported starting from [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.11.0 and [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.23.0.
+Authentication flow detection is supported starting from [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.11.0 and [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.24.0.
 
-## Detected authentication types
+## Default authentication types
 
 Wallarm recognizes the following authentication types:
 
@@ -29,6 +29,24 @@ Wallarm recognizes the following authentication types:
 | **SCRAM** | Salted Challenge Response Authentication Mechanism. |
 
 An endpoint can have multiple authentication types if different requests use different authentication mechanisms.
+
+## Default authentication parameters
+
+In addition to the recognized authentication types above, Wallarm ships a curated list of common authentication parameter names that are detected automatically — no configuration needed.
+
+The defaults cover the following request points grouped by request location:
+
+| Location | Parameter names |
+| --- | --- |
+| HTTP headers | `APIKEY`, `CLIENT_SECRET`, `JWT`, `OCP-APIM-SUBSCRIPTION-KEY`, `X-SECRET`, `X-TOKEN` |
+| Cookies | `access-token`, `access_token`, `auth-token`, `Authorization`, `jwt`, `KEYCLOAK_IDENTITY`, `refresh_token`, `session-token` |
+| Query string | `access_token`, `api_key`, `apiKey`, `apikey`, `Authorization`, `authorization`, `client_secret`, `refresh_token` |
+| Form-encoded body (`application/x-www-form-urlencoded`) | `access_token`, `api_key`, `apiKey`, `Authorization`, `authorization`, `client_secret`, `refresh_token` |
+| JSON body (`application/json`) | `access_token`, `api_key`, `apiKey`, `client_secret`, `refresh_token` |
+
+Header names are matched case-insensitively. Cookie, query, and body parameter names are matched as written — different casings (`apiKey`, `apikey`, `APIKEY`) are listed separately because real APIs use them inconsistently.
+
+If your APIs use parameter names that fall outside this list, you can [extend the per-tenant configuration](#customizing-detected-authentication-parameters).
 
 ## Authentication status
 
@@ -60,27 +78,9 @@ A single endpoint can have multiple authentication parameters. For example, one 
 
 ## Customizing detected authentication parameters
 
-If your APIs use authentication parameters that are not part of the [recognized set](#detected-authentication-types) above — for example, a custom header, a non-standard cookie name, or a token field in the request body — you can extend the per-tenant detection list through the Wallarm API. After a parameter is added, requests carrying it are counted as authenticated when calculating endpoint authentication status, coverage, and the **Authentication** filter.
+If your APIs use authentication parameters that are not part of the [default parameters](#default-authentication-parameters) — for example, a custom header, a non-standard cookie name, or a token field in the request body — you can extend the per-tenant detection list through the Wallarm API. After a parameter is added, requests carrying it are counted as authenticated when calculating endpoint authentication status, coverage, and the **Authentication** filter.
 
 The configuration is per client (tenant). Changes affect only the client whose ID is in the request path.
-
-### Default detection parameters
-
-In addition to the [recognized authentication types](#detected-authentication-types) above, Wallarm ships a curated list of common authentication parameter names that are detected automatically — no configuration needed. The list was assembled from cross-tenant analysis of real production traffic and rolled out to all clients running an upgraded node.
-
-The defaults cover **34 parameter points** grouped by request location:
-
-| Location | Parameter names |
-| --- | --- |
-| HTTP headers | `APIKEY`, `CLIENT_SECRET`, `JWT`, `OCP-APIM-SUBSCRIPTION-KEY`, `X-SECRET`, `X-TOKEN` |
-| Cookies | `access-token`, `access_token`, `auth-token`, `Authorization`, `jwt`, `KEYCLOAK_IDENTITY`, `refresh_token`, `session-token` |
-| Query string | `access_token`, `api_key`, `apiKey`, `apikey`, `Authorization`, `authorization`, `client_secret`, `refresh_token` |
-| Form-encoded body (`application/x-www-form-urlencoded`) | `access_token`, `api_key`, `apiKey`, `Authorization`, `authorization`, `client_secret`, `refresh_token` |
-| JSON body (`application/json`) | `access_token`, `api_key`, `apiKey`, `client_secret`, `refresh_token` |
-
-Header names are matched case-insensitively. Cookie, query, and body parameter names are matched as written — different casings (`apiKey`, `apikey`, `APIKEY`) are listed separately because real APIs use them inconsistently.
-
-If your APIs use parameter names that fall outside this list, extend the per-tenant configuration as described below.
 
 ### Reviewing the current configuration
 
@@ -104,6 +104,8 @@ To retrieve the parameters currently in effect for a client, send a `GET` reques
       'https://me1.api.wallarm.com/v1/clients/<CLIENT_ID>/apid/config/auth-parameters' \
       -H 'X-WallarmApi-Token: <YOUR_TOKEN>'
     ```
+
+Learn how to get an [API token](../api/overview/#your-own-api-client).
 
 The response lists every authentication parameter that the tenant currently treats as a valid authentication signal — the recognized defaults plus any custom entries previously added.
 
@@ -145,7 +147,11 @@ Header names in the `point` array are written in uppercase and are matched case-
       -H 'Content-Type: application/json' \
       -d '{"point": [["header", "X-CUSTOM-AUTH"]]}'
     ```
+    
+Learn how to get an [API token](../api/overview/#your-own-api-client).
 
 The endpoint accepts **one parameter per request**. To register multiple parameters, send a separate `POST` for each one. Use the `GET` call above to review the current list and avoid duplicates.
 
 After a parameter is added, authentication coverage is recalculated for new traffic. Existing endpoints transition between [authentication statuses](#authentication-status) on the same 7-day observation window.
+
+The [authentication type](#default-authentication-types) for a custom parameter is determined by analyzing the parameter value.
