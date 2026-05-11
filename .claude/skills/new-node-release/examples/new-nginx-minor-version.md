@@ -16,7 +16,7 @@ I need to document a new Wallarm Node release using the new-node-release skill. 
 
 * Artifact type: NGINX Node
 * New version: 6.12.1
-* Release date: 2026-05-09
+* Release date: 2026-05-11
 * Source of release contents: JIRA link with the release
 
 Please run the full workflow end-to-end. Show me draft previews and verification reports at each checkpoint before committing changes to files. When in doubt about classification, version applicability, or component-replacement specifics — ask me rather than guess.
