@@ -19,6 +19,14 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.12.1 (2026-05-11)
+
+* Added full support for the [ME (Middle East) Wallarm Cloud](../about-wallarm/overview.md#cloud) in the [all-in-one installer](../installation/nginx/all-in-one.md):
+
+    * Interactive mode now lists **ME Cloud** alongside the US and EU options.
+    * The `-c, --cloud` flag now accepts `ME` as a value.
+    * The `-H, --host` flag description now references `me1.api.wallarm.com`.
+
 ### 6.12.0 (2026-05-04)
 
 * Added support for MCP server discovery and protection
@@ -245,6 +253,10 @@ new attack types in logging variables and search bars?
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.12.1 (TBD)
+
+* Internal improvements
 
 ### 6.12.0 (2026-05-04)
 
@@ -491,6 +503,10 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.12.1 (TBD)
+
+* Internal improvements
+
 ### 6.12.0 (2026-05-04)
 
 * Added support for MCP server discovery and protection
@@ -708,6 +724,10 @@ new attack types in logging variables and search bars?
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.12.1 (2026-05-11)
+
+* Internal improvements
 
 ### 6.12.0 (2026-05-04)
 
@@ -929,6 +949,10 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
+### 6.12.1 (2026-05-11)
+
+* Internal improvements
+
 ### 6.12.0 (2026-05-04)
 
 * Added support for MCP server discovery and protection
@@ -1106,6 +1130,10 @@ new attack types in logging variables and search bars?
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-12-1-20260507-144647 (2026-05-07)
+
+* Internal improvements
 
 ### wallarm-node-6-12-0-20260501-220140 (2026-05-04)
 
