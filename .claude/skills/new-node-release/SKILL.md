@@ -20,6 +20,21 @@ The author provides:
 
 When the author provides an explicit list, the classification step is short-circuited and every item is treated as customer-facing. In Jira-link mode the skill performs the classification itself. The `docs_required` label, when present on an issue, is a strong "customer-facing" signal that biases the decision but does not replace the analysis — labels are sometimes missed, and conversely sometimes set on items that turn out to be purely internal.
 
+## When to ask the author
+
+**Asking is cheap; guessing is expensive.** Whenever this workflow involves a decision that the skill cannot infer with high confidence, stop and ask the author one focused question with explicit options. The asymmetry: asking adds a 20-second back-and-forth; guessing wrong leaves a published doc with a factual error that is hard to spot and harder to fix. Decision points where asking is **mandatory** (do not pick unilaterally):
+
+* **Borderline classification of a Jira item** (Part 1, step 2) — when the layered heuristic does not converge, surface the item in the "Unclear" preview block and let the author decide.
+* **Form factor scope** (Part 2, step 6) — when an artifact cannot be verified, ask whether it ships in this release; default behaviour for an unverified form factor is "don't touch" until the author confirms.
+* **Date mismatches between artifacts** (Part 2, step 5 — GCP, AMI, Helm chart, etc.) — when an artifact's actual build date differs from the human-declared release date, ask which date to put in the changelog header (the actual build date, the release date, or `TBD` until a rebuild lands).
+* **Component replacement details** (Part 1, step 4b) — old↔new mappings, deprecation policy, migration path, breaking-change surfacing. The skill does not have enough context to invent these; the author owns the substance.
+* **Native Node parameter names when a Native release bumps the NGINX Node base** (Part 1, step 4a) — never invent a Native Node parameter name by translating the NGINX directive name; ask the author for the actual key.
+* **Wording for an `Improved` / `Changed` / `Internal improvements` bullet when the user-visible effect is not crisp** — present 2–3 candidate phrasings (use a multi-option question) rather than picking unilaterally. The author chooses the one that matches their internal product framing.
+* **Version applicability of an item** (Part 0) — which versions should see the change. The skill cannot infer this from the Jira description; the author must confirm before any freeze flow runs.
+* **Anything else where the answer changes the published doc and the skill is more than ~70% confident but not certain** — err on the side of asking. A 20-second question beats a published mistake.
+
+When asking, prefer multi-option questions with explicit, exclusive choices over open-ended ones — the author can pick a labeled choice in seconds, whereas an open prompt forces them to formulate the answer from scratch. When you have a recommended choice, label it as such and put it first.
+
 ## Steps
 
 ### Part 0a: Set up the working branch
@@ -282,6 +297,16 @@ In Jira-link mode the skill is responsible for separating customer-facing items 
 
        If `gcloud` is not installed locally, fall back to asking the author to run the command, or mark as "could not verify."
 
+       **The GCP image build date will not always match the release date — that is normal.** The build pipeline stamps the image when it runs, which is often days before or after the human-declared release date. For example, when documenting NGINX Node 6.12.1 with release date 2026-05-09, the actual image name might be `wallarm-node-6-12-1-20260507-144647` (built on 2026-05-07). Do not silently pick one — **ask the author** which date should appear in the changelog entry header for the GCP section:
+
+       > "The GCP image `wallarm-node-<X-Y-Z>-<YYYYMMDD>-<HHMMSS>` was built on `<image-build-date>` per the image name suffix. The release date you provided is `<release-date>`. Which should appear in the changelog entry header for the Google Cloud Platform Image section?
+       >
+       > * **The actual image build date** (`<image-build-date>`) — most accurate, matches the artifact users will actually pull from the marketplace.
+       > * **The release date** (`<release-date>`) — matches the other form factor entries in this release for consistency.
+       > * **Wait and rebuild** — only if a new GCP image with the release date is planned; in that case I will mark this entry as `(TBD)` until publication."
+
+       The conventions vary across teams; default to asking rather than guessing.
+
 6. **Report verification results** to the author and, for each unverified form factor, ask explicitly whether it is part of this release.
 
    First, surface what you found:
@@ -443,9 +468,21 @@ Every release should list the HIGH/CRITICAL CVEs that were fixed since the previ
     grep -rn "X-Y-Z" docs/latest/ <IN-SCOPE-DIRS> include/
     ```
 
-    Process each hit individually rather than running a blind `sed` — some `X.Y.Z` mentions are intentional history references ("(NGINX Node X.Y.Z+)", "Starting from version X.Y.Z", `older-versions/` files, the previous version's changelog entry) and must be preserved.
+    Process each hit individually rather than running a blind `sed` — some `X.Y.Z` mentions are intentional history references ("(NGINX Node X.Y.Z+)", "Starting from version X.Y.Z", the previous version's changelog entry) and must be preserved.
 
-12. **Verify** no stale references remain — grep for both the dotted and dashed forms of the old version string across `docs/latest/`, the in-scope version directories, and `include/`. Changelog/history sections, version-introduction notes ("Starting from NGINX Node X.Y.Z"), and `older-versions/` directories are the only valid exceptions.
+    **`older-versions/` subfolders are NOT frozen — they must be bumped.** A folder named `older-versions/` (e.g., `docs/latest/updating-migrating/older-versions/`) does NOT contain frozen historical content. It contains guides for migrating **from** older Wallarm Node versions **to** the current latest version — so the *target* version inside those guides is the latest one, and version references must move forward release after release. This is different from version directories (`docs/<X>/`) where `<X>` matches a specific frozen MAJOR. Always include `docs/latest/<...>/older-versions/` and `docs/<MAJOR>/<...>/older-versions/` in the sweep.
+
+    **Recurring miss patterns to grep for explicitly** (these have repeatedly slipped through past sweeps):
+
+    * `--version X.Y.Z` — Helm chart version flags in install/upgrade/diff commands.
+    * `wallarm-sidecar-X.Y.Z`, `wallarm-ingress-X.Y.Z` — Helm chart name references in "verify chart version" instructions.
+    * `tag: "X.Y.Z"` — YAML overrides in `controller.image.tag`, `wallarm.helpers.image.tag`, etc.
+    * `older-versions/` files — see the note above.
+    * Version-suffixed installer filenames inside `older-versions/` migration guides (e.g., `wallarm-X.Y.Z.x86_64-glibc.sh` in old-version migration steps).
+
+    Run a final dedicated grep for each of these patterns at the end of the sweep, not just a single `X.Y.Z` grep — the surrounding syntax (Helm flags, YAML keys, dashes) sometimes hides hits in tools that fold whitespace or skip non-prose lines.
+
+12. **Verify** no stale references remain — grep for both the dotted and dashed forms of the old version string across `docs/latest/` (including its `older-versions/` subfolders), the in-scope version directories (including their `older-versions/` subfolders, if any), and `include/`. The only valid exceptions are: changelog/history sections (`### X.Y.Z (date)` blocks for the previous version), version-introduction notes ("Starting from NGINX Node X.Y.Z", "(NGINX Node X.Y.Z+)"), and version-qualified workaround admonitions ("Node versions X.Y.Z and earlier do not support…"). Everything else carrying the old version is a stale reference and must be bumped.
 
 ### Part 5: Update related docs (if needed)
 
@@ -533,6 +570,8 @@ Every release should list the HIGH/CRITICAL CVEs that were fixed since the previ
 * Switch branches mid-skill — Part 0a is the only place a branch is created or switched. Do not `git checkout` a different branch later in the workflow
 * Block on a Jira ticket's `status` field (`In Review`, `In Progress`, etc.) — if a ticket is in the release `fixVersion` or the explicit list, trust that it ships. Status is informational only and is asynchronous with code merges
 * Decide unilaterally what to do with a missing artifact — for every form factor that fails the verification check, ask the author one focused question ("Is this form factor part of this release? Yes → I will write the entry with TBD until publication; No → I will skip everything for it.") and follow the answer. Default is **don't touch** until the author confirms scope (Part 2 step 6)
+* Pick a date for the GCP image (or any other artifact whose build timestamp differs from the human-declared release date) without asking — the GCP image name carries a `YYYYMMDD-HHMMSS` build suffix that often does not match the release date, and which date appears in the changelog header is a team convention, not something the skill can infer. Ask the author with explicit options (actual build date / release date / TBD pending rebuild)
+* Pick a phrasing for an ambiguous `Improved` / `Changed` bullet without offering the author 2–3 candidates — when the user-visible framing is not crisp, the choice between candidate phrasings shapes how the release is perceived and is the author's call
 * Bump a version reference tied to a form factor the author has confirmed is NOT in this release — that includes Helm `--version` flags, chart-name refs, image tags pinned to that chart, deployment-doc examples that reference the unreleased form factor. Leave them at the previous version
 * Skip a form factor section in the changelog when the author HAS confirmed it is in this release — every confirmed form factor gets an entry; use `* Internal improvements` as a placeholder when there is no substance, never silently omit the section
 * Write a changelog bullet without auditing the rest of the article surface that describes the same subject — every bullet is a state transition, and the prose elsewhere will still describe the old state by default. Cross-page contradiction is the dangerous failure mode (Part 5, step 13b)
