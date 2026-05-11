@@ -22,4 +22,4 @@ I need to document a new Wallarm Node release using the new-node-release skill. 
 Please run the full workflow end-to-end. Show me draft previews and verification reports at each checkpoint before committing changes to files. When in doubt about classification, version applicability, or component-replacement specifics — ask me rather than guess.
 
 
-<!-- Reference output: TBD -->
+<!-- Reference output: https://github.com/wallarm/product-documentation/pull/2022 -->
