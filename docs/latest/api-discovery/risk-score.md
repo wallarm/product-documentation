@@ -1,10 +1,10 @@
-# Endpoint Risk Score <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Endpoint and MCP Primitive Risk Score <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-[API Discovery](overview.md) automatically calculates a **risk score** for each endpoint in your API inventory. The risk score allows you to understand which endpoints are most likely to be an attack target and therefore should be the focus of your security efforts.
+[API Discovery](overview.md) automatically calculates a **risk score** for each API endpoint and MCP primitive in your inventory. The risk score allows you to understand which endpoints and MCP primitives are most likely to be an attack target and therefore should be the focus of your security efforts.
 
 ## Risk score factors
 
-The risk score is made up of various factors, each having its own weight when calculating the final risk score. By default, the highest weight from all factors is used as endpoint risk score.
+The risk score is made up of various factors, each having its own weight when calculating the final risk score. By default, the highest weight from all factors is used as the endpoint or MCP primitive risk score.
 
 | Factor | Description | Default weight |
 | --- | --- | --- |
@@ -26,12 +26,12 @@ Risk score may be from `1` (lowest) to `10` (highest):
 | 4 to 7 | Medium | Orange |
 | 8 to 10 | High | Red |
 
-* `1` means no risk factors for this endpoint.
+* `1` means no risk factors for this endpoint or MCP primitive.
 * Sort by risk score in the **Risk** column.
 * Filter `High`, `Medium` or `Low` using the **Risk score** filter.
 
-To understand what caused the risk score for the endpoint and how to reduce the risk, click the endpoint to open its [full-screen details page](exploring.md#endpoint-details-view) and go to the **Risk** tab:
+To understand what caused the risk score and how to reduce the risk, click the endpoint or MCP primitive to open its [full-screen details page](exploring.md#endpoint-details-view) and go to the **Risk** tab:
 
 ![API Discovery - Risk score](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-risk-score-details.png)
 
-[Security issues](../api-attack-surface/security-issues.md) (vulnerabilities) are one of the most important factors contributing to an endpoint's risk score. On the endpoint details page, click the vulnerability name to open its full description in the **Security Issues** section. There you can learn mitigation methods and apply them.
+[Security issues](../api-attack-surface/security-issues.md) (vulnerabilities) are one of the most important factors contributing to risk score. On the endpoint or MCP primitive details page, click the vulnerability name to open its full description in the **Security Issues** section. There you can learn mitigation methods and apply them.

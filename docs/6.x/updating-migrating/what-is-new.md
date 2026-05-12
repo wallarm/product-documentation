@@ -78,6 +78,23 @@ As a result of this change, also the following changed in the configuration rule
 
 Wallarm's New [API Discovery](../api-discovery/overview.md) is now **multi-protocol**: the REST protocol is extended with the support of GraphQL and SOAP. Also, improved user interface and performance make work with the API Discovery more comfortable and effective than before.
 
+### MCP protocol support
+
+!!! tip ""
+    MCP discovery requires [NGINX Node 6.12.0 and higher](node-artifact-versions.md) or [Native Node 0.25.0 and higher](native-node/node-artifact-versions.md).
+
+[API Discovery](../api-discovery/overview.md) now detects [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) servers — the protocol AI agents use to interact with external tools and data sources. MCP discovery is enabled by default and requires no additional configuration.
+
+Wallarm discovers MCP server endpoints and their primitives (**tools**, **resources**, **prompts**), displayed in a dedicated **MCP Servers** tab.
+
+Discovered servers get auto-created [MCP Session Configurations](../api-sessions/mcp-sessions.md#mcp-session-configuration), and MCP traffic is grouped into [MCP Sessions](../api-sessions/mcp-sessions.md).
+
+Three new [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md) protect MCP servers:
+
+* **ACL policy** — controls access to MCP methods and primitives by user, role, IP, or country
+* **Request verification** — validates that request parameters (headers, JWT claims) contain expected values
+* **Tool input schema enforcement** — validates `tools/call` arguments against the schema learned from the server
+
 ### GraphQL protocol support
 
 !!! tip ""

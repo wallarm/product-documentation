@@ -21,7 +21,9 @@ new attack types in logging variables and search bars?
 
 ### 6.12.0 (2026-05-04)
 
-* Added support for MCP server discovery and protection
+* Added support for [MCP server discovery](../agentic-ai/mcp-discovery.md) in API Discovery
+* Added support for [MCP Sessions](../api-sessions/mcp-sessions.md)
+* Added [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
 * Added per-tenant statistics and logging in [multi-tenant](../installation/multi-tenant/overview.md) deployments:
 
@@ -248,7 +250,9 @@ new attack types in logging variables and search bars?
 
 ### 6.12.0 (2026-05-04)
 
-* Added support for MCP server discovery and protection
+* Added support for [MCP server discovery](../agentic-ai/mcp-discovery.md) in API Discovery
+* Added support for [MCP Sessions](../api-sessions/mcp-sessions.md)
+* Added [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
 * Added per-tenant statistics and logging in [multi-tenant](../installation/multi-tenant/overview.md) deployments:
 
@@ -493,7 +497,9 @@ new attack types in logging variables and search bars?
 
 ### 6.12.0 (2026-05-04)
 
-* Added support for MCP server discovery and protection
+* Added support for [MCP server discovery](../agentic-ai/mcp-discovery.md) in API Discovery
+* Added support for [MCP Sessions](../api-sessions/mcp-sessions.md)
+* Added [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
 * Added per-tenant statistics and logging in [multi-tenant](../installation/multi-tenant/overview.md) deployments:
 
@@ -711,7 +717,9 @@ new attack types in logging variables and search bars?
 
 ### 6.12.0 (2026-05-04)
 
-* Added support for MCP server discovery and protection
+* Added support for [MCP server discovery](../agentic-ai/mcp-discovery.md) in API Discovery
+* Added support for [MCP Sessions](../api-sessions/mcp-sessions.md)
+* Added [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
 * Added per-tenant statistics and logging in [multi-tenant](../installation/multi-tenant/overview.md) deployments:
 
@@ -931,7 +939,9 @@ new attack types in logging variables and search bars?
 
 ### 6.12.0 (2026-05-04)
 
-* Added support for MCP server discovery and protection
+* Added support for [MCP server discovery](../agentic-ai/mcp-discovery.md) in API Discovery
+* Added support for [MCP Sessions](../api-sessions/mcp-sessions.md)
+* Added [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
 * Added per-tenant statistics and logging in [multi-tenant](../installation/multi-tenant/overview.md) deployments:
 
@@ -1109,7 +1119,9 @@ new attack types in logging variables and search bars?
 
 ### wallarm-node-6-12-0-20260501-220140 (2026-05-04)
 
-* Added support for MCP server discovery and protection
+* Added support for [MCP server discovery](../agentic-ai/mcp-discovery.md) in API Discovery
+* Added support for [MCP Sessions](../api-sessions/mcp-sessions.md)
+* Added [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
 * Added per-tenant statistics and logging in [multi-tenant](../installation/multi-tenant/overview.md) deployments:
 

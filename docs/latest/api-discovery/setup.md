@@ -8,6 +8,7 @@ This article describes how to enable and configure Wallarm's [API Discovery](ove
 * For **GraphQL** - [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.1.0+ or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.15.1+.
 * For **SOAP** - [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.0 or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.17.1+.
 * For **gRPC** - [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.4.0 or higher (not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far)
+* For **MCP** - [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.12.0+ or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.25.0+.
 
 API Discovery is included in [all forms of the Wallarm node installation](../installation/supported-deployment-options.md). During node deployment, it installs the API Discovery module but keeps it disabled by default.
 
@@ -30,7 +31,9 @@ You can get define general API Discovery settings in Wallarm Console  → **API 
 
 They are:
 
-* Protocols to discover: note that if you already have discovered data for some of the protocols and then deselect this protocol in settings, its data will remain and will still by displayed, but the new endpoints for the corresponding protocol will stop appearing, those already found will stop being updated.
+* Protocols to discover (REST, GraphQL, SOAP, gRPC, MCP): select which protocols API Discovery should analyze.
+    
+    Note that if you already have discovered data for some of the protocols and then deselect this protocol in settings, its data will remain and will still be displayed. The new endpoints for the corresponding protocol will stop appearing, those already found will stop being updated.
 * Parameters defining how API Discovery [detects noise](overview.md#noise-detection) to show only relevant APIs. This is important as API Discovery bases its findings on the real traffic:
 
     * **Filter endpoints by response content type** turns on/off validation of traffic by the `Content-type` header of response. The necessity of this validation in noise reduction depends on the peculiarities of your traffic.

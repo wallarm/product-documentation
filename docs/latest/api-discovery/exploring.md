@@ -1,10 +1,10 @@
-# Exploring API Inventory <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Exploring API Inventory and MCP Servers <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-As soon as the [API Discovery](overview.md) module has built the catalog of your endpoints (your API inventory), you can explore it in the **API Discovery** section of Wallarm Console. Learn from this article how to go through the discovered data.
+As soon as the [API Discovery](overview.md) module has built the catalog of your API endpoints and MCP servers, you can explore it in the **API Discovery** section of Wallarm Console. The section has two tabs: **APIs** for REST, GraphQL, SOAP, and gRPC endpoints, and **MCP Servers** for discovered MCP servers and their primitives. Learn from this article how to go through the discovered data.
 
-## Endpoints
+## API endpoints
 
-Explore your discovered API inventory using the **API Discovery** section in the [US](https://us1.my.wallarm.com/api-discovery) or [EU](https://my.wallarm.com/api-discovery), or [ME](https://me1.my.wallarm.com/api-discovery) Cloud.
+Explore your discovered API endpoints using the **APIs** tab of the **API Discovery** section in the [US](https://us1.my.wallarm.com/api-discovery) or [EU](https://my.wallarm.com/api-discovery), or [ME](https://me1.my.wallarm.com/api-discovery) Cloud.
 
 ![API Discovery - built API inventory](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-built-inventory.png)
 
@@ -37,11 +37,11 @@ Once labels are assigned, use the **Label** filter to quickly search and isolate
 
 Note that several labels can be assigned to the same endpoint.
 
-## Endpoint details view
+## Details view
 
-Clicking an endpoint or operation opens its details in a **full-screen page**.
+Clicking an endpoint, operation, or MCP primitive opens its details in a **full-screen page**.
 
-Each endpoint details page has a **unique URL** that you can share with colleagues or clients for direct access to a specific endpoint.
+Each details page has a **unique URL** that you can share with colleagues or clients for direct access.
 
 When you navigate back from the details page, all your previously applied **filters are preserved**, so you can continue working with the filtered list without re-applying them.
 
@@ -164,13 +164,52 @@ Wallarm discovers general gRPC services that use [protocol buffers](https://prot
 * `String`: A UTF‐8 character sequence.
 * `Boolean`: true or false.
 
-## Endpoint activities
+### MCP primitive details
 
-The number of requests related to the endpoint is displayed in the **Requests** column. Click this number to open the [**API Sessions**](../api-sessions/overview.md) section with the list of user sessions for the last week with these requests.
+Discovered MCP servers are displayed in the **MCP Servers** tab of API Discovery. Each MCP server lists its primitives — tools, resources, and prompts. Click a primitive to open its full-screen details page.
 
-Within each found session, only requests to your endpoint will be initially displayed - in session, remove filter by endpoint to see all requests for context.
+The details page displays:
 
-A structured view of session activity helps in understanding your endpoint place in malicious and legitimate activities, its relation to sensitive business flows and required protection measures.
+* **Primitive name** and **description** — as reported by the MCP server
+* **MCP server version** — protocol version of the MCP server
+* **Request counters** — number of requests for the last 7 days
+
+The **Schema** tab content depends on the primitive type:
+
+=== "Tools"
+    Tool primitives display the **Arguments** section with the tool's input parameters as declared in the `tools/list` response:
+
+    * Parameter name
+    * Data type (e.g., `String`, `Integer`, `Boolean`)
+    * Parameter description
+
+    Request and response headers are also displayed.
+
+=== "Resources"
+    Resource primitives display:
+
+    * **MIME type** of the resource
+    * Request and response headers
+
+=== "Prompts"
+    Prompt primitives display:
+
+    * **Arguments** — input parameters for the prompt template
+    * Request and response headers
+
+Each parameter information also includes:
+
+* Information about parameter changes (new, unused)
+* Presence and type of sensitive data transmitted by this parameter
+* Date and time when parameter value was last transferred by requests
+
+## Activities
+
+The number of requests related to the endpoint or MCP primitive is displayed in the **Requests** column. Click this number to open the [**API Sessions**](../api-sessions/overview.md) section (or [**MCP Sessions**](../api-sessions/mcp-sessions.md) for MCP primitives) with the list of sessions for the last week containing these requests.
+
+Within each found session, only requests to your endpoint or primitive will be initially displayed — in session, remove the filter to see all requests for context.
+
+A structured view of session activity helps in understanding your endpoint or primitive's place in malicious and legitimate activities, its relation to sensitive business flows and required protection measures.
 
 ## Variability
 

@@ -1,6 +1,6 @@
-# Tracking changes in API <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Tracking changes in API and MCP <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-If changes occur in your API, [API Discovery](overview.md) updates the built API inventory, highlights the changes and gives you information on when and what has changed.<!-- Additionally, you can set up notifications on all or some of the changes.-->
+If changes occur in your API or MCP servers, [API Discovery](overview.md) updates the built API inventory, highlights the changes and gives you information on when and what has changed. This applies to both REST/GraphQL/SOAP/gRPC endpoints and MCP primitives (tools, resources, prompts).<!-- Additionally, you can set up notifications on all or some of the changes.-->
 
 ![API Discovery - track changes](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-changes.png)
 
@@ -12,28 +12,29 @@ The company may have several teams, disparate programming languages, and a varie
 * The PII data begin to be transferred to the endpoint. An unplanned transfer of PII can lead to a violation of compliance with the requirements of regulators, as well as lead to reputational risks.
 * Important for the business logic endpoint (for example, `/login`, `/order/{order_id}/payment/`) is no longer called.
 * Other parameters that should not be transferred, for example `is_admin` (someone accesses the endpoint and tries to do it with administrator rights) begin to be transferred to the endpoint.
+* A new MCP tool or resource appears on an MCP server without the security team's knowledge, potentially exposing sensitive data or operations to AI agents.
 
 ## Highlighting changes in API
 
-In the **Status** column for endpoints and parameters, API Discovery provides data about changes in your API for the last week:
+In the **Status** column for endpoints, MCP primitives, and their parameters, API Discovery provides data about changes for the last week:
 
-* **New** for the endpoints discovered within a week.
-* **Changed** for the endpoints that have newly discovered parameters or parameters that obtained the `Unused` status within the period. In the details of the endpoint such parameters will have a corresponding mark.
+* **New** for the endpoints or MCP primitives discovered within a week.
+* **Changed** for the endpoints or MCP primitives that have newly discovered parameters or parameters that obtained the `Unused` status within the period. In the details of the endpoint or primitive, such parameters will have a corresponding mark.
 
     * A parameter gets the `New` status if it is discovered within the last week.
-    * A parameter gets the `Unused` status if it does not pass any data for a week. 
+    * A parameter gets the `Unused` status if it does not pass any data for a week.
     * If later the parameter in the `Unused` status passes data again it will lose the `Unused` status.
 
-* **Unused** for the endpoints not requested (with the code 200 in response) within the last week or longer.
+* **Unused** for the endpoints or MCP primitives not requested (with the code 200 in response) within the last week or longer.
 
-    * If later the endpoint in the `Unused` status is requested (with the code 200 in response) again it will lose the `Unused` status.
+    * If later the endpoint or primitive in the `Unused` status is requested (with the code 200 in response) again it will lose the `Unused` status.
 
 !!! warning "Unused endpoints are removed after 35 days"
     Endpoints that receive no qualifying requests for **35 days** since their last update are automatically removed from your API inventory, together with their parameters, sensitive-data history, authentication coverage, and risk-score evolution. **Removed entries cannot be restored.** If traffic to such an endpoint resumes later, the endpoint reappears as **New** and discovery starts over from scratch — past parameter information and history are not recovered.
 
 ![API Discovery - track changes](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-changes.png)
 
-Use **Changed since** filter to only see endpoints changed in specific time period, for example, today.
+Use **Changed since** filter to only see endpoints or MCP primitives changed in a specific time period, for example, today.
 
 ## Notifications
 

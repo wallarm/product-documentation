@@ -26,6 +26,13 @@ Once endpoints are assigned with the **AI/LLM** sensitive business flow tag, you
 
 You can create generic protection rules right from the details page of your AI/LLM endpoint. Also, from here, you can create (**under development**) custom protection policies for AI/LLM specifically.
 
+## MCP server and session discovery
+
+In addition to tagging AI/LLM endpoints, Wallarm can automatically discover MCP servers, their primitives (tools, resources, prompts), and group MCP traffic into sessions. See dedicated articles:
+
+* [MCP Server Discovery](mcp-discovery.md) — automatic detection of MCP servers and their primitives in API Discovery
+* [MCP Sessions](../api-sessions/mcp-sessions.md) — grouping MCP traffic into sessions with dedicated UI
+
 ## AI/LLM business flows in Sessions
 
 Wallarm's [API Sessions](../api-sessions/overview.md) are used to provide you with the full sequence of user activities and thus give more visibility into the logic of malicious actors. If session's requests affect the endpoints that in API Discovery were tagged as **AI/LLM**, such session will be automatically tagged as affecting the **AI/LLM** business flow as well.

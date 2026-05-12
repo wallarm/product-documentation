@@ -1,6 +1,6 @@
 # API Discovery Overview <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm's multi-protocol API Discovery continuously analyzes the real traffic requests and builds the API inventory (full picture of your active APIs) based on the analysis results.
+Wallarm's multi-protocol API Discovery continuously analyzes the real traffic requests and builds the API inventory (full picture of your active APIs and MCP servers) based on the analysis results.
 
 ## Supported protocols
 
@@ -12,6 +12,7 @@ API Discovery is capable of finding and representing hosts and endpoints utilizi
 | **GraphQL** | Operation (query, mutation, subscription) | 6.1.0 | 0.15.1 |
 | **SOAP** | Operation | 6.3.0 | 0.17.1 |
 | **gRPC** | Operation | 6.4.0 | NA |
+| **MCP** | MCP server | 6.12.0 | 0.25.0 |
 
 ## Your API inventory
 
@@ -28,8 +29,12 @@ API inventory is a picture of your active APIs automatically built by Wallarm's 
 * GraphQL schema
 * SOAP operations
 * gRPC operations
+* MCP servers and their tools, resources, and prompts
 
-![API Discovery - built API inventory](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-built-inventory.png)
+=== "APIs"
+    ![API Discovery - built API inventory](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-built-inventory.png)
+=== "MCP Servers"
+    ![Discovered MCP Servers](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-mcp-servers.png)
 
 ## Issues addressed by API Discovery
 
@@ -59,7 +64,9 @@ API Discovery relies on request statistics and uses sophisticated algorithms to 
 
 API Discovery uses a hybrid approach to conduct analysis locally and in the Cloud. This approach enables a [privacy-first process](#security-of-data-uploaded-to-the-wallarm-cloud) where request data and sensitive data are kept locally while using the power of the Cloud for the statistics analysis:
 
-1. API Discovery analyzes legitimate traffic locally. Wallarm analyzes the endpoints to which requests are made and what parameters are passed and returned.
+1. API Discovery analyzes legitimate traffic locally — it inspects which endpoints are requested and what parameters are passed in requests and responses.
+
+    For REST, GraphQL, SOAP, and gRPC, the node sends ~10% of responses for analysis. For MCP, it sends 100% to ensure complete capture of tool schemas from `tools/list`, `resources/list`, and `prompts/list` responses.
 1. According to this data, statistics are made and sent to the Cloud.
 1. Wallarm Cloud aggregates the received statistics and builds an [API description](exploring.md) on its basis.
 
@@ -136,6 +143,22 @@ Also, the API Discovery performs filtering of requests relying on the other crit
 * Protocol buffer encoded payload
 
 Only general gRPC services that use [protocol buffers](https://protobuf.dev/) are discovered.
+
+##### MCP
+
+**Detection method**: analyzes JSON-RPC 2.0 request/response structure for patterns specific to the [Model Context Protocol](https://modelcontextprotocol.io/), such as MCP-specific method names and protocol headers. For instance, `initialize`, `tools/list`, `tools/call`, `resources/list`, `resources/read`, `prompts/list`, `prompts/get`, etc.
+
+Once an MCP server endpoint is discovered, API Discovery captures the server's primitives:
+
+* **Tools** — invocable functions exposed by the MCP server (e.g., `get_user_profile`, `create_lead`)
+* **Resources** — data and files available for reading (e.g., `crm://legal/nda`)
+* **Prompts** — parametrized templates for common workflows (e.g., `account_research_prompt`)
+
+Service methods such as `ping`, `resources/subscribe`, `completion/complete`, and `logging/setLevel` are automatically filtered out and do not appear as discovered primitives.
+
+The Node automatically enables 100% response parsing for discovered MCP endpoints to ensure complete schema capture.
+
+Discovered MCP servers are displayed in the API inventory with the **MCP** protocol label and can be used as a scope for [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md).
 
 ##### REST
 
