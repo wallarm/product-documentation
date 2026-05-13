@@ -468,6 +468,8 @@ nav:
     - Schema-Based Testing:
       - Overview: vulnerability-detection/schema-based-testing/overview.md
       - Setup: vulnerability-detection/schema-based-testing/setup.md
+      - Strategies: vulnerability-detection/schema-based-testing/strategies.md
+      - Docker reference: vulnerability-detection/schema-based-testing/docker-reference.md
       - Exploring Results: vulnerability-detection/schema-based-testing/explore.md
 
     - API Security Testing via Postman:
