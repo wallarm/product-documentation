@@ -2,6 +2,12 @@
 /en/quickstart-en/qs-intro-en.html         /en/quickstart-en/how-wallarm-works/qs-intro-en.html
 /ru/admin-ru/configure-tarantool-ru.html   /ru/admin-ru/configuration-guides/allocate-memory-for-waf-node.html
 
+/installation/on-premise/overview     /installation/supported-deployment-options/
+/installation/on-premise/deployment   /installation/supported-deployment-options/
+/installation/on-premise/maintenance  /installation/supported-deployment-options/
+/installation/on-premise              /installation/supported-deployment-options/
+/installation/on-premise/*            /installation/supported-deployment-options/
+
 /ru/ https://docs.wallarm.ru/
 /ru https://docs.wallarm.ru/
 /en/ /
@@ -847,13 +853,18 @@
 /4.10/faq/attacks-not-uploaded-to-cloud/ /4.10/troubleshooting/detection-and-blocking/#attacks-are-not-displayed
 /4.10/faq/wrong-blocking/ /4.10/troubleshooting/detection-and-blocking/#user-gets-blocking-page-after-legitimate-request
 
-/installation/on-premise/ /installation/on-premise/overview/
-/5.x/installation/on-premise/ /5.x/installation/on-premise/overview/
-/4.10/installation/on-premise/ /4.10/installation/on-premise/overview/
-/ja/installation/on-premise/ /ja/installation/on-premise/overview/
-/tr/installation/on-premise/ /tr/installation/on-premise/overview/
-/pt-br/installation/on-premise/ /pt-br/installation/on-premise/overview/
-/ar/installation/on-premise/ /ar/installation/on-premise/overview/
+/installation/on-premise/ /installation/supported-deployment-options/
+/5.x/installation/on-premise/ /5.x/installation/supported-deployment-options/
+/5.x/installation/on-premise/* /5.x/installation/supported-deployment-options/
+/4.10/installation/on-premise/ /4.10/installation/supported-deployment-options/
+/ja/installation/on-premise/ /ja/installation/supported-deployment-options/
+/ja/installation/on-premise/* /ja/installation/supported-deployment-options/
+/tr/installation/on-premise/ /tr/installation/supported-deployment-options/
+/tr/installation/on-premise/* /tr/installation/supported-deployment-options/
+/pt-br/installation/on-premise/ /pt-br/installation/supported-deployment-options/
+/pt-br/installation/on-premise/* /pt-br/installation/supported-deployment-options/
+/ar/installation/on-premise/ /ar/installation/supported-deployment-options/
+/ar/installation/on-premise/* /ar/installation/supported-deployment-options/
 
 /installation/connectors/istio-inline/ /installation/connectors/istio/
 /5.x/installation/connectors/istio-inline/ /5.x/installation/connectors/istio/
