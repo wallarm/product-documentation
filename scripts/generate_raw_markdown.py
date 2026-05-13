@@ -27,8 +27,30 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 SITE_URL = "https://docs.wallarm.com"
 
 SNIPPET_RE = re.compile(r'^(?P<indent>[ \t]*)--8<--\s*"(?P<path>[^"]+)"\s*$', re.MULTILINE)
+HTML_COMMENT_RE = re.compile(r'<!--.*?-->', re.DOTALL)
+# Greedy-by-design code-fence match: same indent on opener and closer, same
+# fence marker (``` or ~~~). Non-greedy body so successive blocks don't merge.
+CODE_FENCE_RE = re.compile(
+    r'^(?P<indent>[ \t]*)(?P<fence>```|~~~)[^\n]*\n.*?^(?P=indent)(?P=fence)[ \t]*$',
+    re.DOTALL | re.MULTILINE,
+)
 INLINE_LINK_RE = re.compile(r'(?P<bang>!?)\[(?P<text>[^\]]*)\]\((?P<target>[^)\s]+)(?P<title>\s+"[^"]*")?\)')
 REF_DEF_RE = re.compile(r'^(?P<label>\[[^\]]+\]):\s*(?P<target>\S+)(?P<title>\s+"[^"]*")?\s*$', re.MULTILINE)
+FRONTMATTER_RE = re.compile(r'\A---\n.*?\n---\n', re.DOTALL)
+
+# For inline_ref_defs:
+REF_DEF_FULL_RE = re.compile(
+    r'^(?P<indent>[ \t]*)\[(?P<name>[^\]\n]+)\]:\s*(?P<url>\S+)(?:\s+"(?P<title>[^"]*)")?\s*$',
+    re.MULTILINE,
+)
+FULL_REF_USE_RE = re.compile(r'(?P<bang>!?)\[(?P<text>[^\]\n]*)\]\[(?P<name>[^\]\n]+)\]')
+# Shortcut form `[name]` — must not be followed by `[`, `(`, or `:` which would
+# indicate a different markdown construct (collapsed ref, inline link, def).
+SHORTCUT_REF_USE_RE = re.compile(r'(?<!\!)\[(?P<name>[^\]\n]+)\](?![\[\(:])')
+
+# Pymdownx tabbed marker (use the standard `===` form; we don't customize the
+# extension to use other delimiters).
+TAB_MARKER_RE = re.compile(r'^(?P<indent>[ \t]*)===\s+"(?P<title>[^"]+)"\s*$')
 
 
 class _SafeLoader(yaml.SafeLoader):
@@ -211,6 +233,134 @@ def rewrite_links(
     return content
 
 
+def strip_html_comments(content: str) -> str:
+    """Remove `<!-- ... -->` blocks (single- or multi-line) from prose, while
+    preserving them inside fenced code blocks.
+
+    Why: authors use HTML comments to TODO-out unfinished sections (entire
+    paragraphs incl. snippet directives wrapped in a comment). zensical's HTML
+    suppresses them visually; our raw .md must match. But ```html / ```xml /
+    server-config code samples can contain legitimate `<!--` syntax — that's
+    real content, not author scaffolding, so we shield fenced blocks before
+    running the strip.
+    """
+    fences: list[str] = []
+
+    def stash(m: re.Match) -> str:
+        fences.append(m.group(0))
+        return f"\x00FENCE{len(fences) - 1}\x00"
+
+    shielded = CODE_FENCE_RE.sub(stash, content)
+    shielded = HTML_COMMENT_RE.sub("", shielded)
+
+    def restore(m: re.Match) -> str:
+        return fences[int(m.group(1))]
+
+    return re.sub(r"\x00FENCE(\d+)\x00", restore, shielded)
+
+
+def inline_ref_defs(content: str) -> str:
+    """Replace `[text][name]` / `[name]` shortcuts with inline `[text](URL)` and
+    delete the `[name]: URL` definition block.
+
+    Why: reference-style links are valid Markdown, but the 40-line ref block at
+    the top of wrapper pages adds token noise for LLM consumers, and a reader
+    opening the raw .md must scroll past it to reach content. Inlining makes
+    the file self-readable top-to-bottom with no information loss.
+    """
+    defs: dict[str, tuple[str, str | None]] = {}
+    for m in REF_DEF_FULL_RE.finditer(content):
+        defs[m.group("name").lower()] = (m.group("url"), m.group("title"))
+
+    if not defs:
+        return content
+
+    # Remove the definition lines.
+    content = REF_DEF_FULL_RE.sub("", content)
+
+    def _title_suffix(title: str | None) -> str:
+        return f' "{title}"' if title else ""
+
+    def replace_full(m: re.Match) -> str:
+        name = m.group("name").lower()
+        if name not in defs:
+            return m.group(0)
+        url, title = defs[name]
+        return f'{m.group("bang") or ""}[{m.group("text")}]({url}{_title_suffix(title)})'
+
+    content = FULL_REF_USE_RE.sub(replace_full, content)
+
+    def replace_shortcut(m: re.Match) -> str:
+        original = m.group("name")
+        name = original.lower()
+        if name not in defs:
+            return m.group(0)
+        url, title = defs[name]
+        return f"[{original}]({url}{_title_suffix(title)})"
+
+    content = SHORTCUT_REF_USE_RE.sub(replace_shortcut, content)
+
+    # Collapse the run of blank lines left where the ref-def block lived.
+    content = re.sub(r"\n{3,}", "\n\n", content)
+    return content
+
+
+def flatten_tabs(content: str) -> str:
+    """Convert pymdownx `=== "Tab"` blocks into `**Tab:**` bold headers with
+    de-indented bodies.
+
+    Why: tabbed content carries semantically distinct alternatives (per-OS
+    commands, per-region IPs). LLMs parse the `===` syntax inconsistently;
+    flattening to bold headers preserves the same information in
+    universally-understood Markdown with no loss.
+
+    Tabs can nest (an outer tab body containing more `=== "..."` markers).
+    A single pass dedents nested markers but doesn't re-process them, so we
+    iterate until no markers remain (bounded loop guards against pathological
+    input).
+    """
+
+    def _one_pass(text: str) -> str:
+        lines = text.split("\n")
+        out: list[str] = []
+        tab_indent: str | None = None
+        content_indent: str | None = None
+
+        for line in lines:
+            if tab_indent is not None:
+                if line.strip() == "":
+                    out.append("")
+                    continue
+                if content_indent and line.startswith(content_indent):
+                    out.append(tab_indent + line[len(content_indent):])
+                    continue
+                tab_indent = None
+                content_indent = None
+
+            m = TAB_MARKER_RE.match(line)
+            if m:
+                indent = m.group("indent")
+                title = m.group("title")
+                if out and out[-1] != "":
+                    out.append("")
+                out.append(f"{indent}**{title}:**")
+                out.append("")
+                tab_indent = indent
+                content_indent = indent + "    "
+                continue
+
+            out.append(line)
+
+        return "\n".join(out)
+
+    for _ in range(10):  # depth cap; real-world nesting rarely exceeds 2
+        new = _one_pass(content)
+        if new == content:
+            break
+        content = new
+    return content
+
+
 def page_to_output_path(nav_path: str, site_dir: Path) -> Path:
     # nav_path is always relative (e.g. "installation/nginx/all-in-one.md").
     # The directory tree is preserved as-is; the .md companion sits next to
@@ -268,6 +418,15 @@ def main(argv: list[str]) -> int:
     if (docs_dir / "index.md").is_file() and "index.md" not in pages:
         pages.insert(0, "index.md")
 
+    # Pick up any built pages that aren't in nav (orphans like wizard variants,
+    # llms.md, beta antibot pages). zensical still renders them to HTML, so we
+    # need .md companions for the <link rel="alternate"> tag to stay symmetric.
+    nav_set = set(pages)
+    for md_file in sorted(docs_dir.rglob("*.md")):
+        rel = md_file.relative_to(docs_dir).as_posix()
+        if rel not in nav_set:
+            pages.append(rel)
+
     # Deduplicate while preserving order.
     seen_pages: set[str] = set()
     unique_pages = []
@@ -278,6 +437,7 @@ def main(argv: list[str]) -> int:
 
     written = 0
     missing = 0
+    full_chunks: list[str] = []
     for nav_path in unique_pages:
         src = docs_dir / nav_path
         if not src.is_file():
@@ -288,13 +448,45 @@ def main(argv: list[str]) -> int:
         content = resolve_snippets(content, snippet_base)
         page_url_dir = page_to_url_dir(nav_path, url_prefix_path)
         content = rewrite_links(content, src.parent, docs_dir, url_prefix, page_url_dir)
+
+        # LLM-friendly transforms (applied in order):
+        #   1. Strip YAML front matter — zensical layout/search directives only.
+        #   2. Strip HTML comments — authors hide draft sections inside <!-- -->,
+        #      and zensical's HTML doesn't render them; the raw .md must match.
+        #      Runs AFTER snippet resolution so it also catches comments brought
+        #      in via inlined snippets.
+        #   3. Inline ref-defs — drops the noisy top-of-file `[name]: URL` block.
+        #   4. Flatten `=== "Tab"` blocks into `**Tab:**` headers.
+        content = FRONTMATTER_RE.sub("", content, count=1)
+        content = strip_html_comments(content)
+        content = inline_ref_defs(content)
+        content = flatten_tabs(content)
+        content = content.lstrip("\n")
+
         out_path = page_to_output_path(nav_path, site_dir)
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_text(content, encoding="utf-8")
         written += 1
 
-    print(f"generate_raw_markdown: {written} files written to {site_dir}"
-          + (f" ({missing} missing sources skipped)" if missing else ""))
+        # Collect for the llms-full.txt bundle (uses the same transformed body).
+        full_chunks.append(f"## {SITE_URL}{page_url_dir}\n\n{content.strip()}\n")
+
+    # llms-full.txt: concatenated full text of every page. Convention from the
+    # llms.txt spec — companion to /llms.txt that lets LLMs ingest everything
+    # in one fetch.
+    llms_full = site_dir / "llms-full.txt"
+    header = (
+        "# Wallarm Documentation — Full Text\n\n"
+        f"> Concatenated full text of every page in {SITE_URL}{url_prefix_path}/ "
+        "for LLM consumption.\n"
+        f"> See {SITE_URL}{url_prefix_path}/llms.txt for the indexed (link-only) version.\n"
+    )
+    llms_full.write_text(header + "\n---\n\n" + "\n---\n\n".join(full_chunks), encoding="utf-8")
+
+    print(
+        f"generate_raw_markdown: {written} .md + 1 llms-full.txt written to {site_dir}"
+        + (f" ({missing} missing sources skipped)" if missing else "")
+    )
     return 0
 
 

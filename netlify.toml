@@ -19,18 +19,47 @@ cp -R images/ docs/ar/images/ && zensical build -f mkdocs-ar-4.10.yml && rm -rf 
     X-Content-Type-Options = "nosniff"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains"
 
-# Serve raw .md companion files as plain UTF-8 text so browsers render them
-# inline (Markdown has no universally-served Content-Type, and nosniff above
-# would otherwise force a download in some browsers).
+# Serve raw .md / llms*.txt companion files as plain UTF-8 text. CORS is open
+# so AI tools, edge functions, and browser-side fetchers can read them
+# cross-origin (Cloudflare/Anthropic/Stripe do the same on their .md docs);
+# X-Robots-Tag tells Google/Bing not to index these as duplicates of the HTML
+# pages (the markdown has no <head>, so robots meta can't live in the file
+# itself); 1-hour Cache-Control prevents CDN/browser thrash.
 [[headers]]
   for = "/**/*.md"
   [headers.values]
     Content-Type = "text/markdown; charset=utf-8"
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, OPTIONS"
+    Cache-Control = "public, max-age=3600, must-revalidate"
+    X-Robots-Tag = "noindex, follow"
 
 [[headers]]
   for = "/*.md"
   [headers.values]
     Content-Type = "text/markdown; charset=utf-8"
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, OPTIONS"
+    Cache-Control = "public, max-age=3600, must-revalidate"
+    X-Robots-Tag = "noindex, follow"
+
+[[headers]]
+  for = "/llms*.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, OPTIONS"
+    Cache-Control = "public, max-age=3600, must-revalidate"
+    X-Robots-Tag = "noindex, follow"
+
+[[headers]]
+  for = "/**/llms*.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, OPTIONS"
+    Cache-Control = "public, max-age=3600, must-revalidate"
+    X-Robots-Tag = "noindex, follow"
 
 # Redirect sitemap.xml requests from any path to the version root sitemap
 [[redirects]]

@@ -117,6 +117,19 @@ if (window.location.hostname === 'docs.wallarm.com' && !window.__wallarmHID_init
   <link rel="alternate" hreflang="pt-br" href="https://docs.wallarm.com/pt-br/{{ current_page }}">
   <link rel="alternate" hreflang="ar" href="https://docs.wallarm.com/ar/{{ current_page }}">
 
+  {# Raw-Markdown companion URL for AI agents / LLM crawlers.
+     Only emitted on English builds (raw_md flag is set in mkdocs-{6.x,7.x,5.0}.yml).
+     Companion file paths are produced by scripts/generate_raw_markdown.py:
+       page URL  /foo/bar/    →   /foo/bar.md
+       homepage  /            →   /index.md  (page.url is empty for homepage) #}
+  {% if config.extra.raw_md %}
+    {% if not page.url %}
+  <link rel="alternate" type="text/markdown" href="{{ page.canonical_url }}index.md">
+    {% else %}
+  <link rel="alternate" type="text/markdown" href="{{ page.canonical_url[:-1] }}.md">
+    {% endif %}
+  {% endif %}
+
 {% endblock %}
 
 {% block fonts %}
