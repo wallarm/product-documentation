@@ -28,7 +28,7 @@ To detect vulnerabilities in the applications and APIs, Wallarm uses the followi
     !!! tip ""
         Available in the **Security Testing** [subscription](../about-wallarm/subscription-plans.md). Requires installed [**Wallarm node**](../about-wallarm/overview.md#how-wallarm-works).
 
-* [**Schema-Based Testing (SBT)**](#schema-based-testing-sbt), part of [Wallarm's Security Testing suite](../vulnerability-detection/security-testing-overview.md): dynamic application security testing (DAST) solution that enables "shift-left" security - proactively identifies a wide range of vulnerabilities early in the development process; uses an API's schema (such as an OpenAPI specification or a Postman collection) as a blueprint to automatically generate and execute targeted security tests.
+* [**Schema-Based Testing (SBT)**](#schema-based-testing-sbt), part of [Wallarm's Security Testing suite](../vulnerability-detection/security-testing-overview.md): dynamic application security testing (DAST) solution that enables "shift-left" security. SBT takes a Postman collection as its test basis and uses an AI-driven engine to generate and validate targeted security tests, identifying a wide range of vulnerabilities early in the development process.
 
     !!! tip ""
         Available in the **Security Testing** [subscription](../about-wallarm/subscription-plans.md). **Does not require** installed [Wallarm node](../about-wallarm/overview.md#how-wallarm-works).
@@ -66,14 +66,14 @@ The Threat Replay Testing capabilities:
 
 ### Schema-Based Testing (SBT) <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/security-testing-tag.svg" style="border: none;"></a>
 
-Wallarm's [Schema-Based Testing](../vulnerability-detection/schema-based-testing/overview.md) is a dynamic application security testing (DAST) solution that enables "shift-left" security. It uses an API's schema (such as an OpenAPI specification or a Postman collection) as a blueprint to automatically generate and execute targeted security tests. By integrating into CI/CD pipelines, Schema-Based Testing allows development teams to proactively identify a wide range of vulnerabilities—including OWASP API Top 10 risks, business logic flaws, and input validation issues—early in the development process, making them easier and cheaper to fix.
+Wallarm's [Schema-Based Testing](../vulnerability-detection/schema-based-testing/overview.md) is a dynamic application security testing (DAST) solution that enables "shift-left" security. It takes a Postman collection — your existing functional tests — as a blueprint and runs an AI-driven scanner that analyzes the application context, generates vulnerability hypotheses, and validates each finding with an executable proof-of-exploit test. By integrating into CI/CD pipelines, Schema-Based Testing helps development teams proactively identify a wide range of vulnerabilities — including OWASP API Top 10 risks, business logic flaws, and input validation issues — early in the development process, making them easier and cheaper to fix.
 
 Schema-Based Testing capabilities:
 
-* Tests based on provided application's OpenAPI specification or Postman collection.
-* Deep, dynamic analysis of API endpoints.
-* Detection of vulnerabilities in the application or API itself, as well as security misconfigurations in the underlying infrastructure or environment.
-* Lightweight execution via Docker container.
+* Tests built from your Postman collection: functional tests drive realistic, multi-request attack scenarios.
+* Deep, dynamic analysis of API endpoints with AI-generated hypotheses validated by proof-of-exploit tests.
+* Detection of OWASP API Top 10 risks, business logic and access control vulnerabilities (BOLA, BFLA, mass assignment, etc.), input validation issues, and traffic-observable misconfigurations.
+* Lightweight execution via Docker container, with results streamed back to Wallarm Cloud.
 
 ### API Security Testing via Postman <a href="subscription-plans.md#rogue-mcp"><img src="../../images/rogue-mcp-tag.svg" style="border: none;"></a>
 
