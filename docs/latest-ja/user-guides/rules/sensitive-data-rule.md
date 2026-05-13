@@ -8,7 +8,7 @@
 [ハイブリッド](../../about-wallarm/shared-responsibility.md#overview)のWallarmインストールにおいて、貴社のインフラ内でWallarmフィルタリングノードを管理し、WallarmがWallarm Cloudコンポーネントを管理する場合、リクエスト内の機密データが貴社のインフラ内で安全に保たれ、[Wallarm Cloud](../../about-wallarm/overview.md#how-wallarm-works)を含むいかなる第三者サービスにも送信されないことが極めて重要です。この目的は[共有責任モデル](../../about-wallarm/shared-responsibility.md)によって実現します。Wallarm側では、悪意のあるリクエストに関するデータ以外は送信しないため、機密データが露出する可能性は極めて低くなります。貴社側では、機密データのマスキングを行うことが期待されており、これにより保護すべき情報フィールドがセキュリティ境界の外へ決して出ないことをさらに保証します。
 
 !!! info "その他のデプロイ形態"
-    **on-premise**[インストール](../../about-wallarm/shared-responsibility.md#overview)ではデータはセキュリティ境界の外へ出ることはなく、**security edge**ではすべてのデータがこのセキュリティ境界の外にありますが、Wallarm Consoleユーザーによる機密データへのアクセスを制限するためにマスキングルールを引き続き使用できます。
+    **security edge** [インストール](../../about-wallarm/shared-responsibility.md#overview)ではすべてのデータがセキュリティ境界の外にありますが、Wallarm Consoleユーザーによる機密データへのアクセスを制限するためにマスキングルールを引き続き使用できます。
 
 Wallarmはデータマスキングを構成するための**Mask sensitive data**[ルール](../rules/rules.md)を提供します。Wallarmノードは以下のデータをWallarm Cloudに送信します。
 

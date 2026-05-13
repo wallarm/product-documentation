@@ -8,7 +8,7 @@
 [hibrit](../../about-wallarm/shared-responsibility.md#overview) Wallarm kurulumlarında, Wallarm filtreleme düğümlerini kendi altyapınızda siz yönetirken ve Wallarm, Wallarm Cloud bileşenini yönetirken, isteklerinizdeki hassas verilerin altyapınız içinde güvende kalması ve [Wallarm Cloud](../../about-wallarm/overview.md#how-wallarm-works) dahil herhangi bir üçüncü taraf servise iletilmemesi kritik öneme sahiptir. Bu hedef [paylaşılan sorumluluk modeli](../../about-wallarm/shared-responsibility.md) kullanılarak gerçekleştirilir: Wallarm kendi tarafında, hassas verilerin açığa çıkma ihtimalini son derece düşüren, yalnızca kötü amaçlı isteklere ilişkin verileri iletir; sizin tarafınızda ise hassas verilerin maskelenmesi beklenir; bu da korunan bilgi alanlarının güvenlik çevrenizi asla terk etmeyeceğini ek olarak garanti eder.
 
 !!! info "Diğer dağıtım biçimleri"
-    **on-premise** [kurulumlarda](../../about-wallarm/shared-responsibility.md#overview) veriler güvenlik çevrenizi asla terk etmezken, **security edge** biçiminde tüm veriler bu güvenlik çevresi dışındadır; yine de Wallarm Console kullanıcılarının hassas verilere erişimini kısıtlamak için maskeleme kurallarını kullanabilirsiniz.
+    **security edge** [kurulumlarda](../../about-wallarm/shared-responsibility.md#overview) tüm veriler güvenlik çevresi dışındadır; yine de Wallarm Console kullanıcılarının hassas verilere erişimini kısıtlamak için maskeleme kurallarını kullanabilirsiniz.
 
 Wallarm, veri maskelemeyi yapılandırmak için **Mask sensitive data** [kuralını](../rules/rules.md) sağlar. Wallarm düğümü Wallarm Cloud’a aşağıdaki verileri gönderir:
 

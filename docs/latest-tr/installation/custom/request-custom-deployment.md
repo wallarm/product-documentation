@@ -5,7 +5,7 @@
 Belirli altyapı gereksinimleri, güvenlik ihtiyaçları, entegrasyon bağımlılıkları ve daha fazlası gibi çeşitli senaryolarda özel bir Wallarm dağıtım derlemesine ihtiyaç duyabilirsiniz. Aşağıda, özel bir dağıtım derlemesinin gerekli olabileceği durumlara bazı örnekler verilmiştir:
 
 * Hizmetler, desteklenen seçenek olarak listelenmeyen bir bulut platformunda çalışıyor.
-* Dağıtım prosedürü birkaç teknolojinin bir kombinasyonunu içeriyor veya şirket içi ve bulut tabanlı altyapının bir karışımına sahip hibrit ortamlarda çalışıyor; bu da önceden tanımlanmış listeden doğru dağıtım seçeneğini seçmeyi zorlaştırıyor.
+* Dağıtım prosedürü birkaç teknolojinin bir kombinasyonunu içeriyor veya kendi kendine barındırılan ve bulut tabanlı altyapının bir karışımına sahip hibrit ortamlarda çalışıyor; bu da önceden tanımlanmış listeden doğru dağıtım seçeneğini seçmeyi zorlaştırıyor.
 * Özel olarak kurgulanmış bir trafik aynası için bant dışı bir çözüme ihtiyaç duyuyorsunuz.
 * Hizmetler, belgelerde belirtilmeyen özel sürüm veya türlerde Ingress denetleyicileri, web sunucuları, yük dengeleyiciler vb. ile uyumludur.
 

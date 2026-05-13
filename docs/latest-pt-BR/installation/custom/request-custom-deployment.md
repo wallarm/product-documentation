@@ -5,7 +5,7 @@ Se você estiver interessado em opções de implantação personalizadas que nã
 Existem vários cenários em que você pode precisar de uma construção de implantação Wallarm personalizada, como requisitos específicos de infraestrutura, necessidades de segurança, dependências de integração e mais. Aqui estão alguns exemplos de casos em que uma construção de implantação personalizada pode ser necessária:
 
 * Serviços estão sendo executados em uma plataforma de nuvem que não está listada como uma opção suportada.
-* Procedimento de implantação envolve uma combinação de várias tecnologias ou está sendo executado em ambientes híbridos com uma mistura de infraestrutura no local e baseada na nuvem, tornando desafiador escolher a opção de implantação correta da lista pré-definida.
+* Procedimento de implantação envolve uma combinação de várias tecnologias ou está sendo executado em ambientes híbridos com uma mistura de infraestrutura auto-hospedada e baseada na nuvem, tornando desafiador escolher a opção de implantação correta da lista pré-definida.
 * Você exige uma solução fora de banda para um espelho de tráfego especialmente projetado.
 * Serviços são compatíveis com versões personalizadas ou tipos de controladores de Ingress, servidores web, balanceadores de carga, etc, que não são mencionados na documentação.
 

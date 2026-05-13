@@ -1,6 +1,6 @@
 # Wallarm Subscription Plans
 
-Wallarm is the only solution that unifies API discovery, risk management, real-time protection, and testing capabilities to protect your entire API portfolio in multi-cloud, cloud-native and on-premise environments. You can easily choose the set of functionality that best suits your needs.
+Wallarm is the only solution that unifies API discovery, risk management, real-time protection, and testing capabilities to protect your entire API portfolio in multi-cloud and cloud-native environments. You can easily choose the set of functionality that best suits your needs.
 
 ## Core subscription plans
 

@@ -14,7 +14,7 @@ In the [hybrid](../../about-wallarm/shared-responsibility.md#overview) Wallarm i
 This goal is achieved using the [shared responsibility model](../../about-wallarm/shared-responsibility.md): from its side, Wallarm never transmits data excessing the protection goal and stores all the obtained data [securely](../../about-wallarm/shared-responsibility.md#client-data-storage-in-cloud) - to your side, Wallarm transfers a full visibility of what data is sent from node to Cloud and a [set of tools](../../admin-en/export-to-cloud.md) to shape this transfer under your needs - masking of sensitive data is one of these tools.
 
 !!! info "Other deployment forms"
-    While in **on-premise** [installations](../../about-wallarm/shared-responsibility.md#overview) data never leaves your security perimeter, and in **security edge** all data is outside this security perimeter, you can still use masking rules to restrict access to the sensitive data by the users of Wallarm Console.
+    In **security edge** [installations](../../about-wallarm/shared-responsibility.md#overview), data is outside your security perimeter; you can still use masking rules to restrict access to the sensitive data by the users of Wallarm Console.
 
 ## Side effects
 
