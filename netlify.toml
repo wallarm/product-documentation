@@ -3,9 +3,9 @@ publish = "site"
 command = """
 pip3 install --no-cache-dir -r requirements.txt &&
 npm install pngquant &&
-cp -R images/ docs/6.x/images/ && zensical build -f mkdocs-6.x.yml && rm -rf docs/6.x/images/ &&
-cp -R images/ docs/7.x/images/ && zensical build -f mkdocs-7.x.yml && rm -rf docs/7.x/images/ &&
-cp -R images/ docs/5.0/images/ && zensical build -f mkdocs-5.0.yml && rm -rf docs/5.0/images/ &&
+cp -R images/ docs/6.x/images/ && zensical build -f mkdocs-6.x.yml && python3 scripts/generate_raw_markdown.py mkdocs-6.x.yml && rm -rf docs/6.x/images/ &&
+cp -R images/ docs/7.x/images/ && zensical build -f mkdocs-7.x.yml && python3 scripts/generate_raw_markdown.py mkdocs-7.x.yml && rm -rf docs/7.x/images/ &&
+cp -R images/ docs/5.0/images/ && zensical build -f mkdocs-5.0.yml && python3 scripts/generate_raw_markdown.py mkdocs-5.0.yml && rm -rf docs/5.0/images/ &&
 cp -R images/ docs/deprecated/images/ && zensical build -f mkdocs-deprecated.yml && rm -rf docs/deprecated/images/ &&
 cp -R images/ docs/ja/images/ && zensical build -f mkdocs-ja-6.x.yml && rm -rf docs/ja/images/ &&
 cp -R images/ docs/tr/images/ && zensical build -f mkdocs-tr-6.x.yml && rm -rf docs/tr/images/ &&
@@ -18,6 +18,19 @@ cp -R images/ docs/ar/images/ && zensical build -f mkdocs-ar-4.10.yml && rm -rf 
     Content-Security-Policy = "frame-ancestors *"
     X-Content-Type-Options = "nosniff"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains"
+
+# Serve raw .md companion files as plain UTF-8 text so browsers render them
+# inline (Markdown has no universally-served Content-Type, and nosniff above
+# would otherwise force a download in some browsers).
+[[headers]]
+  for = "/**/*.md"
+  [headers.values]
+    Content-Type = "text/markdown; charset=utf-8"
+
+[[headers]]
+  for = "/*.md"
+  [headers.values]
+    Content-Type = "text/markdown; charset=utf-8"
 
 # Redirect sitemap.xml requests from any path to the version root sitemap
 [[redirects]]
