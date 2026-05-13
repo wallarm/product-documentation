@@ -54,7 +54,7 @@ Managing deployed risk is the first line of defense, but reducing the risk exhib
 * Even **without node** (agentless solutions):
 
     * Discover your external hosts, their APIs and security issues and further manage the discovered vulnerability mitigation with [API Attack Surface Management (AASM)](../api-attack-surface/overview.md).
-    * Use [Schema-Based Testing (SBT)](../vulnerability-detection/schema-based-testing/overview.md) Wallarm's dynamic application security testing (DAST) solution that enables "shift-left" security - proactively identifies a wide range of vulnerabilities early in the development process. SBT starts as Docker container and is tailored to your specification.
+    * Use [Schema-Based Testing (SBT)](../vulnerability-detection/schema-based-testing/overview.md) — Wallarm's dynamic application security testing (DAST) solution that enables "shift-left" security. SBT takes a Postman collection as its test basis, runs as a Docker container in your environment or CI/CD pipeline, and proactively identifies a wide range of vulnerabilities early in the development process.
 
 Explore and manage all found security issues, regardless of the detection method, in one unified management center in Wallarm Console - the [**Security Issues**](../user-guides/vulnerabilities.md) section.
 
