@@ -9,6 +9,7 @@ You are updating Wallarm product documentation. The task may be any of:
 * **New feature** — a capability that did not exist before
 * **Changed functionality** — a feature was redesigned, its UI/API/config changed
 * **Documentation fix** — factual error, missing content, broken link, review feedback
+* **Removal of a discontinued feature/product** — purge all docs related to something that no longer exists; goal is that the content is no longer accessible on the public site
 
 This skill can be used as a step-by-step workflow by an AI agent or as a checklist by a human contributor working without an agent. Steps with code snippets are mechanical; steps that say "ask the author" are decision points where product knowledge is required.
 
@@ -71,8 +72,17 @@ Batch related questions. Prefer multi-option questions with concrete choices ove
     | **New feature** | Capability did not exist before | New page + updates to overview/setup/related pages |
     | **Changed functionality** | Existing feature redesigned, new API/UI/config | Rewrite or extend existing pages, possibly add/remove pages |
     | **Fix** | Something is wrong or missing in current docs | Targeted edits to 1-3 files |
+    | **Removal** | Feature/product discontinued; "remove all docs for X", "purge X from the site" | Delete pages, wrappers, nav entries, related sections, images, **including across all versions AND all translation directories** — see "Removal across all languages" below |
 
 4. **Find all affected pages**: grep for the feature name, key terms, and related concepts across `docs/latest/` and `include/`. List every hit, including ones that look unrelated — read the surrounding paragraphs before dismissing.
+
+    **For removal tasks**, broaden the grep to cover every version dir AND every translation dir from the start:
+
+    ```bash
+    grep -rln "<feature-term>" docs/ include/ include-*/ mkdocs-*.yml
+    ```
+
+    Translated sources live under `docs/latest-ja/`, `docs/latest-tr/`, `docs/latest-ar/`, `docs/latest-pt-BR/`. Version wrappers live under `docs/{5.0,6.x,7.x,ja,tr,ar,pt-BR}/`. Translated terms also need to be searched (e.g., "オンプレ" for Japanese, "şirket içi" for Turkish, "في الموقع" for Arabic, "no local" / "implantação local" for Portuguese) — ask the author for the translated term, or check the existing translated source file before deciding.
 5. **Read each affected page** fully before making changes.
 6. **Surface discrepancies to the author.** If the repo describes the feature differently from the author's description, if two existing pages contradict each other, or if you found related areas the author did not mention — raise them now, before scoping further.
 
@@ -130,9 +140,36 @@ Batch related questions. Prefer multi-option questions with concrete choices ove
     * Add navigation entries in every `mkdocs-*.yml`
 
 14. **If pages were renamed or deleted**:
-    * Add a redirect in `_redirects`
-    * Update nav in every `mkdocs-*.yml`
+    * Add a redirect in `_redirects` (the active root version's `_redirects`, plus the next-root's, plus any language-specific `docs/<lang>/_redirects` that exist)
+    * Update nav in every `mkdocs-*.yml` — including the translation configs (`mkdocs-ja-*.yml`, `mkdocs-tr-*.yml`, `mkdocs-ar-*.yml`, `mkdocs-pt-BR-*.yml`) when the deletion is meant to apply across all languages
     * Fix all inbound cross-references
+
+    **Removal across all languages.** When the request is "remove all documentation for X from the site" (typically a discontinued product/feature), the cleanup must include translations even though CLAUDE.md normally says "do not edit translated files". This is an explicit override — the translated content is stale because it describes something that no longer exists. Touch all of the following:
+
+    | Surface | Files |
+    |---------|-------|
+    | English sources | `docs/latest/<paths>` |
+    | English version dirs | `docs/{5.0,6.x,7.x}/<paths>` (wrappers or frozen full copies — check) |
+    | Translated sources | `docs/latest-ja/<paths>`, `docs/latest-tr/<paths>`, `docs/latest-ar/<paths>`, `docs/latest-pt-BR/<paths>` (full translated files) |
+    | Translation version dirs | `docs/{ja,tr,ar,pt-BR}/<paths>` (wrappers, usually) |
+    | mkdocs nav | `mkdocs-*.yml` for every active English version AND every translation config (`mkdocs-ja-6.x.yml`, `mkdocs-tr-6.x.yml`, `mkdocs-ar-4.10.yml`, `mkdocs-pt-BR-4.8.yml`) |
+    | Shared includes | `include/<files>` and `include-ja/<files>`, `include-tr/<files>` (other translation includes exist but typically have no equivalent file) |
+    | Redirects | `docs/{5.0,6.x,7.x,ja,tr,ar,pt-BR}/_redirects` (only those that exist; English roots are the main ones) |
+    | Images | `images/<paths>` (single shared source; remove only if no surviving page references them) |
+    | Auto-generated LLM indexes | `docs/{6.x,7.x}/llms.md` and `llms.txt` — pruning is optional (they regenerate), but cleaner to scrub in the same PR |
+
+    Watch for **frozen full copies in older version dirs**: when a version stops being root, version-specific pages get copied from `docs/latest/` into that older version dir as full files (instead of `--8<-- "latest/..."` wrappers). For removals, these frozen copies must be edited directly — they will not follow updates to `docs/latest/`. Verify each affected path in each version dir individually:
+
+    ```bash
+    for v in 5.0 6.x 7.x ar ja tr pt-BR; do
+      head -1 "docs/$v/<path-to-affected-file>" 2>/dev/null | grep -q "8<--" \
+        && echo "$v: wrapper" || echo "$v: FULL — needs direct edit"
+    done
+    ```
+
+    For translation full files, edit them in their native language. Match the existing translation's voice — do not introduce English terms where a translated equivalent is already established (check the surrounding paragraphs). For terminology you cannot translate confidently, prefer deleting the stale phrase rather than inventing wording. The auto-translation pipeline will eventually catch up, but stale references to a removed product must not survive in the interim.
+
+    Translation cleanup is not optional polish — it is part of "the content is no longer accessible on the public site", since translation URLs serve from the same domain.
 
 15. **Update related pages**: overview/landing pages always. Add an entry to `updating-migrating/what-is-new.md` only if this is a user-visible capability or behavior change — skip it for fixes, terminology updates, internal restructuring, and screenshot refreshes.
 
@@ -168,6 +205,9 @@ Started as a single page, evolved through: draft → review rewrite → companio
 ### Fix: actualization
 Smaller-scope: parameter names changed, UI screenshots outdated, new options added. Usually 1-3 files, not full rewrites.
 
+### Removal: discontinued On-Premise product
+Whole product line retired. Required deleting source pages in `docs/latest/installation/on-premise/`, wrappers in every version dir (`5.0/`, `6.x/`, `7.x/`), translated full sources in `docs/latest-ja/` and `docs/latest-tr/`, translation wrappers in `docs/{ar,ja,tr,pt-BR}/`, removing nav entries from 7 mkdocs configs (3 English + 4 translation), pruning the "On-Premise" item from `include/deployment-forms.md` + the `include-ja/` and `include-tr/` equivalents, removing the dedicated `## On-Premise` section from `shared-responsibility.md` across all language sources (where it existed), rewriting generic mentions of "on-premise" to "self-hosted" (and the translated equivalents), removing the "On-Premise" card from `installation/supported-deployment-options.md` in 6.x/7.x/5.0 and in every translation version dir, deleting the on-premise images, adding redirects from the deleted URLs to `installation/supported-deployment-options/` in each `_redirects` file, and scrubbing the On-Premise entries from `llms.md` / `llms.txt`. ~40+ files touched. The acceptance criterion was URL inaccessibility — translations had to be cleaned too because they serve from the same domain.
+
 ## Do NOT
 
 * Invent features not in the source material
@@ -178,3 +218,4 @@ Smaller-scope: parameter names changed, UI screenshots outdated, new options add
 * When creating new pages, omit any of: wrappers in every active version directory, nav entries in every `mkdocs-*.yml`, inbound links from overview/landing pages — they must all land in the same PR
 * Rename or delete pages without adding a redirect in `_redirects` and fixing every inbound cross-reference
 * Add an entry to `what-is-new.md` for fixes, terminology, or internal restructuring — reserve it for user-visible capability or behavior changes
+* For a "remove all docs for X" request, stop at `docs/latest/` and the English version dirs — translations under `docs/latest-*/`, `docs/{ja,tr,ar,pt-BR}/`, and translation mkdocs configs (`mkdocs-{ja,tr,ar,pt-BR}-*.yml`) must be cleaned in the same PR. The "do not edit translated files" rule from CLAUDE.md is overridden for explicit removal requests, because stale translations would otherwise keep the discontinued content publicly accessible at translated URLs.
