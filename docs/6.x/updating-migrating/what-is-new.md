@@ -120,7 +120,7 @@ Each request/response parameter information includes:
 ### SOAP protocol support
 
 !!! tip ""
-    SOAP protocol discovery requires [NGINX Node](../node-artifact-versions.md) 6.2.0+ or Native Node 0.15.1+.
+    SOAP protocol discovery requires [NGINX Node](node-artifact-versions.md) 6.2.0+ or Native Node 0.15.1+.
 
 If some of your APIs utilize the SOAP protocol and are requested in the real traffic, API Discovery will now detect them. In the built API inventory, you will see data about SOAP operations, including such data as transferred sensitive data, risk score and what contributes to it, XML body parameters, HTTPS and XML headers of requests and responses:
 
