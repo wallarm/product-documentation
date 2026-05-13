@@ -325,18 +325,6 @@ Choose packages or containers if you run on VMs or bare metal and prefer them ov
 
 </div>
 
-## On-premise
-
-<div class="do-section">
-    <div class="do-main">
-        <a class="do-card" href="../../installation/on-premise/overview/">
-            <img class="non-zoomable" src="../../images/platform-icons/on-premise.svg" />
-            <h3>On-Premise</h3>
-            <p>Host both Wallarm Nodes and the Wallarm Cloud within your environment</p>
-        </a>
-    </div>
-</div>
-
 ## Special setups
 
 Deployment options that don't follow the platform matrix: known scenarios (multi-tenant, separate postanalytics, custom NGINX) and custom requests when nothing above fits.
