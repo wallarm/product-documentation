@@ -10,7 +10,7 @@ Trafik iki bileşen tarafından işlenir: Wallarm filtering nodes ve Wallarm Clo
 
 ![!Mimari şema1](../images/about-wallarm-waf/overview/filtering-node-cloud.png)
 
-Wallarm, [genel bulut](../installation/supported-deployment-options.md), şirket içi, tam SaaS kurulumları ve Kubernetes, Gateway APIs, [Security Edges](../installation/security-edge/overview.md) vb. ile entegrasyon dahil olmak üzere çeşitli kurulum seçeneklerini destekler. Wallarm filtering nodes, ihtiyaçlarınıza ve altyapınıza bağlı olarak ya [hat içi](../installation/inline/overview.md) ya da [bant dışı](../installation/oob/overview.md) konuşlandırılabilir. Esnek güvenlik politikası yapılandırma seçenekleri, [modlar](../admin-en/configure-wallarm-mode.md) arasında izleme ile engelleme arasında hızlıca geçiş yapmanıza olanak tanıyarak meşru trafiğin engellenmesi korkusunu ortadan kaldırır.
+Wallarm, [genel bulut](../installation/supported-deployment-options.md), kendi kendine barındırılan altyapı, tam SaaS kurulumları ve Kubernetes, Gateway APIs, [Security Edges](../installation/security-edge/overview.md) vb. ile entegrasyon dahil olmak üzere çeşitli kurulum seçeneklerini destekler. Wallarm filtering nodes, ihtiyaçlarınıza ve altyapınıza bağlı olarak ya [hat içi](../installation/inline/overview.md) ya da [bant dışı](../installation/oob/overview.md) konuşlandırılabilir. Esnek güvenlik politikası yapılandırma seçenekleri, [modlar](../admin-en/configure-wallarm-mode.md) arasında izleme ile engelleme arasında hızlıca geçiş yapmanıza olanak tanıyarak meşru trafiğin engellenmesi korkusunu ortadan kaldırır.
 
 ## Koruma önlemleri
 

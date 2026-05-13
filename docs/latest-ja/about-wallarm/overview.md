@@ -1,10 +1,9 @@
 [link-deployment-se]:           ../installation/security-edge/overview.md
 [link-deployment-hybrid]:       ../installation/supported-deployment-options.md
-[link-deployment-on-prem]:      ../installation/on-premise/overview.md
 
 # Wallarmプラットフォームの概要
 
-今日のデジタル世界では、AIの台頭に伴い、APIが直面する脅威が増大しています。従来型のセキュリティではAPIの脆弱性を見落としたり、導入が難しかったりすることがあります。Wallarmを使用すると、クラウドネイティブおよびオンプレミス環境全体でAPI保護とインベントリの可視化を一元的に提供する単一のプラットフォームを利用できます。
+今日のデジタル世界では、AIの台頭に伴い、APIが直面する脅威が増大しています。従来型のセキュリティではAPIの脆弱性を見落としたり、導入が難しかったりすることがあります。Wallarmを使用すると、クラウドネイティブおよびセルフホスト環境全体でAPI保護とインベントリの可視化を一元的に提供する単一のプラットフォームを利用できます。
 
 企業は、強化されたAPIセキュリティ、容易な導入、そして価値の高さからWallarmを選択します。高度なAPIセキュリティ機能とともに、APIディスカバリ、リスク管理、リアルタイム保護、テストを組み合わせています。
 

@@ -1,10 +1,9 @@
 [link-deployment-se]:           ../installation/security-edge/overview.md
 [link-deployment-hybrid]:       ../installation/supported-deployment-options.md
-[link-deployment-on-prem]:      ../installation/on-premise/overview.md
 
 # Wallarm Platform’a Genel Bakış
 
-Günümüzün dijital dünyasında, özellikle yapay zekânın yükselişiyle birlikte API’ler artan tehditlerle karşı karşıya. Geleneksel güvenlik, API zafiyetlerini gözden kaçırabilir veya devreye almak zor olabilir. Wallarm ile bulut-yerel ve şirket içi ortamlar genelinde API koruması ve envanter gözlemlenebilirliği için tek bir platform elde edersiniz.
+Günümüzün dijital dünyasında, özellikle yapay zekânın yükselişiyle birlikte API’ler artan tehditlerle karşı karşıya. Geleneksel güvenlik, API zafiyetlerini gözden kaçırabilir veya devreye almak zor olabilir. Wallarm ile bulut-yerel ve kendi kendine barındırılan ortamlar genelinde API koruması ve envanter gözlemlenebilirliği için tek bir platform elde edersiniz.
 
 Kuruluşlar, gelişmiş API güvenliği, kolay dağıtım ve sağladığı değer nedeniyle Wallarm’ı tercih ediyor. Wallarm; API keşfi, risk yönetimi, gerçek zamanlı koruma ve testleri gelişmiş API güvenlik yetenekleriyle birleştirir.
 

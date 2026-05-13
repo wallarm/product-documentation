@@ -1,6 +1,6 @@
 # Wallarm Abonelik Planları
 
-Wallarm, çoklu bulut, buluta özgü ve şirket içi ortamlarda tüm API portföyünüzü korumak için API keşfini, risk yönetimini, gerçek zamanlı korumayı ve test yeteneklerini birleştiren tek çözümdür. İhtiyaçlarınıza en uygun işlev setini kolayca seçebilirsiniz.
+Wallarm, çoklu bulut, buluta özgü ve kendi kendine barındırılan ortamlarda tüm API portföyünüzü korumak için API keşfini, risk yönetimini, gerçek zamanlı korumayı ve test yeteneklerini birleştiren tek çözümdür. İhtiyaçlarınıza en uygun işlev setini kolayca seçebilirsiniz.
 
 ## Temel abonelik planları
 

@@ -10,7 +10,7 @@ WallarmのクラウドネイティブWAAP（Webアプリケーション＆API保
 
 ![アーキテクチャ図1](../images/about-wallarm-waf/overview/filtering-node-cloud.png)
 
-Wallarmは、[パブリッククラウド](../installation/supported-deployment-options.md)、オンプレミス、フルSaaSデプロイ、KubernetesやGateway APIsとの統合、[Security Edges](../installation/security-edge/overview.md)など、さまざまなデプロイオプションをサポートします。Wallarmフィルタリングノードは、ニーズとインフラストラクチャに応じて[インライン](../installation/inline/overview.md)または[アウトオブバンド](../installation/oob/overview.md)でデプロイできます。柔軟なセキュリティポリシー設定オプションにより、監視とブロッキングの[モード](../admin-en/configure-wallarm-mode.md)を迅速に切り替えられ、正当なトラフィックを誤ってブロックする不安を解消します。
+Wallarmは、[パブリッククラウド](../installation/supported-deployment-options.md)、セルフホストインフラ、フルSaaSデプロイ、KubernetesやGateway APIsとの統合、[Security Edges](../installation/security-edge/overview.md)など、さまざまなデプロイオプションをサポートします。Wallarmフィルタリングノードは、ニーズとインフラストラクチャに応じて[インライン](../installation/inline/overview.md)または[アウトオブバンド](../installation/oob/overview.md)でデプロイできます。柔軟なセキュリティポリシー設定オプションにより、監視とブロッキングの[モード](../admin-en/configure-wallarm-mode.md)を迅速に切り替えられ、正当なトラフィックを誤ってブロックする不安を解消します。
 
 ## 保護対策
 

@@ -1,6 +1,5 @@
 [link-deployment-se]:           ../installation/security-edge/overview.md
 [link-deployment-hybrid]:       ../installation/supported-deployment-options.md
-[link-deployment-on-prem]:      ../installation/on-premise/overview.md
 
 # Shared Responsibility for Clients' Data
 
@@ -8,7 +7,7 @@ Wallarm relies on a shared responsibility security model. In this model, all par
 
 ## Overview
 
-Wallarm has two main components: **Wallarm filtering node** and **Wallarm Cloud**. See their general descriptions [here](../about-wallarm/overview.md#how-wallarm-works). These components can be deployed in one of three forms for which Wallarm and client's responsibilities are shared differently:
+Wallarm has two main components: **Wallarm filtering node** and **Wallarm Cloud**. See their general descriptions [here](../about-wallarm/overview.md#how-wallarm-works). These components can be deployed in one of two forms for which Wallarm and client's responsibilities are shared differently:
 
 --8<-- "../include/deployment-forms.md"
 
@@ -59,27 +58,9 @@ Wallarm clients are responsible for the following points:
 
 * Developing, and if necessary, implementing a business continuity and disaster recovery plan (BCDRP) that will aid in the continuation of services provided by Wallarm.
 
-## On-Premise
-
-In this deployment form, both Wallarm filtering node and Wallarm Cloud components are hosted and managed by the client and thus most responsibilities (along with control) go to client side.
-
-**Wallarm responsibilities**
-
-* The security of Wallarm filtering node and Cloud code.
-* Updating the Wallarm filtering node and Cloud components on a periodic basis. Please note that the application of these updates is the responsibility of the client.
-
-**Client responsibilities**
-
-* Providing the security and availability of environments used for Wallarm filtering nodes and Cloud deployment.
-* Updating filtering nodes and Cloud with new software updates released by Wallarm in a timely manner.
-* Implementing sound and consistent internal controls regarding general IT system access and system usage appropriateness for all internal components associated with Wallarm, including Wallarm filtering node and Wallarm Cloud.
-* Practicing removal of user accounts for any users who have been terminated and were previously involved in any material functions or activities associated with Wallarm’s services.
-* Ensuring that transactions for client organizations relating to Wallarm’s services are appropriately authorized, and transactions are secure, timely, and complete.
-* Developing, and if necessary, implementing a business continuity and disaster recovery plan (BCDRP) that will aid in the continuation of services provided by Wallarm.
-
 ## Client data storage in Cloud
 
-In Wallarm's hybrid and cloud deployments, any data sent from filtering nodes is stored in the Wallarm Cloud, fully managed by Wallarm:
+Any data sent from filtering nodes is stored in the Wallarm Cloud, fully managed by Wallarm:
 
 * Request and attack data are stored in a PostgreSQL database, with related content persisted in Google Cloud Storage (S3-compatible) and cached in Redis for performance. No third-party services outside Google Cloud are used.
 * All storage is hosted on Google Cloud Platform as part of Wallarm’s secure infrastructure.

@@ -160,7 +160,7 @@ nav:
   # ============================================================================
   # SECTION 6: DEPLOYMENT
   # Structure: Security Edge → Kubernetes → Cloud → API Gateways → CDN → APIM
-  #            → Host & Runtime → On-Premise → Artifacts → Upgrades
+  #            → Host & Runtime → Artifacts → Upgrades
   # ============================================================================
   - Deployment:
     - All Deployment Options: installation/supported-deployment-options.md
@@ -268,10 +268,6 @@ nav:
         - Image for Native Node: installation/native-node/docker-image.md
       - NGINX Node Configuration: admin-en/configure-parameters-en.md
       - Native Node Configuration: installation/native-node/all-in-one-conf.md
-    - On-Premise:
-      - Overview: installation/on-premise/overview.md
-      - Deployment: installation/on-premise/deployment.md
-      - Maintenance: installation/on-premise/maintenance.md
     - Special Setups:
       - Multi-Tenant Node:
         - Overview: installation/multi-tenant/overview.md

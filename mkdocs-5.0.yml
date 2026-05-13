@@ -141,7 +141,7 @@ nav:
   # ============================================================================
   # SECTION 6: DEPLOYMENT
   # Structure: Security Edge → Kubernetes → Cloud → API Gateways → CDN → APIM
-  #            → Host & Runtime → On-Premise → Artifacts → Upgrades
+  #            → Host & Runtime → Artifacts → Upgrades
   # ============================================================================
   - Deployment:
     - All Deployment Options: installation/supported-deployment-options.md
@@ -241,10 +241,6 @@ nav:
         - Configuration Reference: installation/native-node/all-in-one-conf.md
       - NGINX Node Configuration: admin-en/configure-parameters-en.md
       - Separate Postanalytics Module: admin-en/installation-postanalytics-en.md
-    - On-Premise:
-      - Overview: installation/on-premise/overview.md
-      - Deployment: installation/on-premise/deployment.md
-      - Maintenance: installation/on-premise/maintenance.md
     - Special Setups:
       - Multi-Tenant Node:
         - Overview: installation/multi-tenant/overview.md

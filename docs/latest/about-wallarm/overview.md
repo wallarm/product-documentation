@@ -1,10 +1,9 @@
 [link-deployment-se]:           ../installation/security-edge/overview.md
 [link-deployment-hybrid]:       ../installation/supported-deployment-options.md
-[link-deployment-on-prem]:      ../installation/on-premise/overview.md
 
 # Wallarm Platform Overview
 
-In today's digital world, APIs face growing threats, especially with the rise of AI. Traditional security can overlook API vulnerabilities or be difficult to deploy. With Wallarm, you get a single platform for API protection and inventory observability across cloud-native and on-prem environments.
+In today's digital world, APIs face growing threats, especially with the rise of AI. Traditional security can overlook API vulnerabilities or be difficult to deploy. With Wallarm, you get a single platform for API protection and inventory observability across cloud-native environments.
 
 Enterprises prefer Wallarm for its enhanced API security, easy deployment, and value. It combines API discovery, risk management, real-time protection, and testing with advanced API security capabilities.
 
@@ -98,7 +97,7 @@ Wallarm offers cloud instances in the US, Europe, and the Middle East, enabling 
 
 ## Where Wallarm works
 
-The [described](#how-wallarm-works) Wallarm components: filtering node and Cloud - can be deployed in one of three forms:
+The [described](#how-wallarm-works) Wallarm components: filtering node and Cloud - can be deployed in one of two forms:
 
 --8<-- "../include/deployment-forms.md"
 

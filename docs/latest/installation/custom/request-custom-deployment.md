@@ -5,7 +5,7 @@ If you are interested in custom deployment options that are not listed on our [s
 There are various scenarios where you may require a custom Wallarm deployment build, such as specific infrastructure requirements, security needs, integration dependencies, and more. Here are some examples of cases when a custom deployment build may be necessary:
 
 * Services are running on a cloud platform that is not listed as a supported option.
-* Deployment procedure involves a combination of several technologies or is running in hybrid environments with a mix of on-premises and cloud-based infrastructure, making it challenging to choose the right deployment option from the pre-defined list.
+* Deployment procedure involves a combination of several technologies or is running in hybrid environments with a mix of self-hosted and cloud-based infrastructure, making it challenging to choose the right deployment option from the pre-defined list.
 * You require an out-of-band solution for a specially crafted traffic mirror.
 * Services are compatible with custom versions or types of Ingress controllers, web servers, load balancers, etc that are not mentioned in the documentation.
 

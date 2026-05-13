@@ -1,1 +1,0 @@
---8<-- "latest-tr/installation/on-premise/deployment.md"
