@@ -32,34 +32,50 @@ export default async (request: Request, context: Context) => {
     .split(",")
     .some((t) => t.trim().toLowerCase().startsWith("text/markdown"));
 
+  const stem = path === "/" ? "/index" : path.replace(/\/$/, "");
+  const mdHref = `${stem}.md`;
+
   if (!wantsMarkdown) {
     // Standard HTML response, but:
     //   1. Flag the alternate Markdown representation for caches via Vary so
     //      they keep separate slots for HTML and Markdown variants.
-    //   2. Advertise the .md companion as a Link header (RFC 8288) — a
-    //      second discovery channel for agents that consume HTTP headers
-    //      without parsing the HTML <head>.
+    //   2. Advertise the .md companion as a Link header (RFC 8288) plus the
+    //      site-wide /llms.txt service-doc — a second discovery channel for
+    //      agents that consume HTTP headers without parsing the HTML <head>.
     const response = await context.next();
     response.headers.set("Vary", mergeVary(response.headers.get("Vary"), "Accept"));
-    const mdHref = `${path === "/" ? "/index" : path.replace(/\/$/, "")}.md`;
+    appendLink(response.headers, `</llms.txt>; rel="service-doc"; type="text/plain"`);
     appendLink(response.headers, `<${mdHref}>; rel="alternate"; type="text/markdown"`);
     return response;
   }
 
-  // Compute the companion .md URL. The generator at
-  // scripts/generate_raw_markdown.py writes one of these for every page:
+  // Caller asked for Markdown. Fetch the pre-built .md companion. The
+  // generator at scripts/generate_raw_markdown.py writes one of these for
+  // every page:
   //   /                       →  /index.md     (root home)
   //   /foo/bar/    or  /foo/bar →  /foo/bar.md
   //   /7.x/foo/    or  /7.x/foo →  /7.x/foo.md (per-version URL prefix
   //                                              already baked into the path)
-  const stem = path === "/" ? "/index" : path.replace(/\/$/, "");
-  const mdResp = await fetch(new URL(`${stem}.md`, url.origin));
-
-  if (!mdResp.ok) {
-    // No .md companion exists at this path (orphan HTML, redirect target,
-    // etc.). Serve HTML instead — better than 404'ing the request.
+  let mdResp: Response;
+  try {
+    mdResp = await fetch(new URL(mdHref, url.origin));
+  } catch (err) {
+    // Network failure fetching the companion (timeout, DNS, edge-to-origin
+    // hiccup, etc.). Don't 500 the user — fall back to the HTML page.
+    console.error("markdown-negotiation: companion fetch failed:", err);
     const fallback = await context.next();
     fallback.headers.set("Vary", mergeVary(fallback.headers.get("Vary"), "Accept"));
+    appendLink(fallback.headers, `</llms.txt>; rel="service-doc"; type="text/plain"`);
+    appendLink(fallback.headers, `<${mdHref}>; rel="alternate"; type="text/markdown"`);
+    return fallback;
+  }
+
+  if (!mdResp.ok) {
+    // No .md companion at this path (orphan HTML, redirect target, etc.).
+    // Serve HTML instead — better than 404'ing the request.
+    const fallback = await context.next();
+    fallback.headers.set("Vary", mergeVary(fallback.headers.get("Vary"), "Accept"));
+    appendLink(fallback.headers, `</llms.txt>; rel="service-doc"; type="text/plain"`);
     return fallback;
   }
 
@@ -73,6 +89,12 @@ export default async (request: Request, context: Context) => {
   // the static header rules in netlify.toml can't accidentally regress this.
   headers.set("Content-Type", "text/markdown; charset=utf-8");
   headers.set("Vary", mergeVary(headers.get("Vary"), "Accept"));
+  // Vary: Accept tells well-behaved caches to keep HTML and Markdown under
+  // separate keys, but intermediate proxies sometimes ignore Vary entirely.
+  // `private` keeps this response out of shared caches — only the
+  // originating browser can store it — so a non-Accept request can never
+  // be served stale Markdown. Slightly less CDN-efficient, much safer.
+  headers.set("Cache-Control", "private, max-age=3600");
   // Emerging "Content-Signal" standard (Netlify's own AI-pages template
   // uses it): explicit signal to AI crawlers that this content is OK to
   // ingest for search, as prompt context, AND for model training — we want
@@ -80,6 +102,9 @@ export default async (request: Request, context: Context) => {
   headers.set("Content-Signal", "ai-train=yes, search=yes, ai-input=yes");
   // Rough token estimate (1 token ≈ 4 chars) so clients can budget context.
   headers.set("X-Markdown-Tokens", Math.ceil(body.length / 4).toString());
+  // Site-wide service-doc Link (used to live in netlify.toml on every "/*"
+  // response — moved here so asset/font/image responses don't carry it).
+  appendLink(headers, `</llms.txt>; rel="service-doc"; type="text/plain"`);
   return new Response(body, { status: 200, headers });
 };
 
@@ -101,31 +126,32 @@ function appendLink(headers: Headers, link: string): void {
 
 export const config = {
   path: "/*",
-  // Skip asset paths so the function never even loads for them. The
-  // in-function extension regex still catches one-off cases like
-  // /favicon.ico, but excluding the bulk of assets up-front avoids ~20 ms
-  // of cold-start per asset request on first visit.
+  // Skip asset paths so the function never even loads for them. Netlify's
+  // glob: `*` matches a single segment, `**` matches multi-segment — most
+  // of our assets are deep (e.g. `/images/about-wallarm-waf/foo.png`,
+  // `/installation/nginx/all-in-one.md`), so we list both flat and nested.
+  // The in-function extension regex still catches anything missed here.
   excludedPath: [
-    "/*.md",
-    "/*.txt",
-    "/*.xml",
-    "/*.json",
-    "/*.css",
-    "/*.js",
-    "/*.map",
-    "/*.png",
-    "/*.jpg",
-    "/*.jpeg",
-    "/*.gif",
-    "/*.svg",
-    "/*.webp",
-    "/*.ico",
-    "/*.pdf",
-    "/*.woff",
-    "/*.woff2",
-    "/*.ttf",
-    "/*.otf",
-    "/images/*",
-    "/stylesheets/*",
+    "/*.md",      "/**/*.md",
+    "/*.txt",     "/**/*.txt",
+    "/*.xml",     "/**/*.xml",
+    "/*.json",    "/**/*.json",
+    "/*.css",     "/**/*.css",
+    "/*.js",      "/**/*.js",
+    "/*.map",     "/**/*.map",
+    "/*.png",     "/**/*.png",
+    "/*.jpg",     "/**/*.jpg",
+    "/*.jpeg",    "/**/*.jpeg",
+    "/*.gif",     "/**/*.gif",
+    "/*.svg",     "/**/*.svg",
+    "/*.webp",    "/**/*.webp",
+    "/*.ico",     "/**/*.ico",
+    "/*.pdf",     "/**/*.pdf",
+    "/*.woff",    "/**/*.woff",
+    "/*.woff2",   "/**/*.woff2",
+    "/*.ttf",     "/**/*.ttf",
+    "/*.otf",     "/**/*.otf",
+    "/images/**",
+    "/stylesheets/**",
   ],
 };
