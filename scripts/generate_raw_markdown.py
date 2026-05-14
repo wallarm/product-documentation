@@ -152,13 +152,18 @@ def to_absolute_url(
     url_prefix: str,
     page_url_dir: str,
 ) -> str:
-    """Convert a relative .md/image/URL link to an absolute URL.
+    """Convert a relative .md/image/URL link to an absolute URL pointing at the
+    Wallarm docs site.
+
+    Internal doc links resolve to the `.md` companion file (Stripe-style),
+    preserving any anchor fragment. Image and other-asset links resolve to
+    their deployed asset path. External URLs (`http(s)://example.com/`,
+    `mailto:`, `tel:`, etc.) and bare anchors (`#section`) are returned
+    unchanged — we only ever rewrite paths that point inside the docs tree.
 
     `page_url_dir` is the deployed-URL "directory" the page lives in
-    (e.g. "/installation/nginx/all-in-one/" — the trailing slash matters
-    because mkdocs uses directory-style URLs).
-
-    Unrecognized targets are returned unchanged.
+    (e.g. "/installation/nginx/all-in-one/"); used for directory-style
+    relative URLs.
     """
     if not target or target[0] in "#?":
         return target
@@ -169,11 +174,17 @@ def to_absolute_url(
     if not path:
         return target  # bare anchor
 
-    # Absolute-path link starting with "/": already a site-rooted URL.
+    # Absolute-path link starting with "/" — a site-rooted URL. If it's
+    # directory-style (`/foo/bar/`), redirect to the .md companion; if it
+    # already names a file (`.png`, `.svg`, …), pass through.
     if path.startswith("/"):
+        if path.endswith("/"):
+            return f"{SITE_URL}{path.rstrip('/')}.md{anchor}"
+        if not Path(path).suffix:
+            return f"{SITE_URL}{path}.md{anchor}"
         return f"{SITE_URL}{path}{anchor}"
 
-    # .md link or image link → resolve as a file under docs_dir.
+    # .md link or image link — resolve as a file under docs_dir.
     if path.endswith(_DOC_EXT) or Path(path).suffix.lower() in _IMG_EXTS:
         candidate = (page_dir / path).resolve()
         try:
@@ -181,27 +192,22 @@ def to_absolute_url(
         except ValueError:
             return target  # leave alone if outside docs_dir
         rel_posix = rel.as_posix()
-        if rel_posix.endswith(_DOC_EXT):
-            url_path = rel_posix[:-3]
-            if url_path == "index":
-                return f"{url_prefix}/{anchor}" if anchor else f"{url_prefix}/"
-            if url_path.endswith("/index"):
-                url_path = url_path[: -len("/index")]
-            return f"{url_prefix}/{url_path}/{anchor}"
+        # For .md targets, point at the .md companion (Stripe convention);
+        # the anchor — if any — stays attached and is resolved by the
+        # reader (humans via section heading match; LLMs by text search).
         return f"{url_prefix}/{rel_posix}{anchor}"
 
     # Directory-style relative URL (e.g. "../../foo/bar/"). Resolve against
     # the page's deployed URL using URL-segment arithmetic, not the source
     # file path (mkdocs source uses URL-relative links for directory-style
-    # targets).
+    # targets). All such targets in our docs are doc pages, so they map to
+    # the .md companion.
     if path.endswith("/") or "." not in Path(path).name:
         base_segments = [s for s in page_url_dir.strip("/").split("/") if s]
         target_segments = path.split("/")
-        # If link ends with "/", trailing empty segment marks the directory.
         merged = _normalize_url_path(base_segments + target_segments)
         joined = "/".join(merged)
-        trailing = "/" if path.endswith("/") else ""
-        return f"{SITE_URL}/{joined}{trailing}{anchor}"
+        return f"{SITE_URL}/{joined}.md{anchor}"
 
     return target
 
@@ -233,16 +239,10 @@ def rewrite_links(
     return content
 
 
-def strip_html_comments(content: str) -> str:
-    """Remove `<!-- ... -->` blocks (single- or multi-line) from prose, while
-    preserving them inside fenced code blocks.
-
-    Why: authors use HTML comments to TODO-out unfinished sections (entire
-    paragraphs incl. snippet directives wrapped in a comment). zensical's HTML
-    suppresses them visually; our raw .md must match. But ```html / ```xml /
-    server-config code samples can contain legitimate `<!--` syntax — that's
-    real content, not author scaffolding, so we shield fenced blocks before
-    running the strip.
+def _apply_outside_code_fences(content: str, transform) -> str:
+    """Run `transform(text)` only on portions of `content` that lie OUTSIDE
+    fenced code blocks (``` / ~~~). Lets us strip / rewrite prose while
+    leaving HTML examples, diff blocks, and code samples verbatim.
     """
     fences: list[str] = []
 
@@ -251,12 +251,56 @@ def strip_html_comments(content: str) -> str:
         return f"\x00FENCE{len(fences) - 1}\x00"
 
     shielded = CODE_FENCE_RE.sub(stash, content)
-    shielded = HTML_COMMENT_RE.sub("", shielded)
+    shielded = transform(shielded)
 
     def restore(m: re.Match) -> str:
         return fences[int(m.group(1))]
 
     return re.sub(r"\x00FENCE(\d+)\x00", restore, shielded)
+
+
+def strip_html_comments(content: str) -> str:
+    """Remove `<!-- ... -->` blocks (single- or multi-line) from prose, while
+    preserving them inside fenced code blocks.
+
+    Why: authors use HTML comments to TODO-out unfinished sections (entire
+    paragraphs incl. snippet directives wrapped in a comment). zensical's HTML
+    suppresses them visually; our raw .md must match. But ```html / ```xml /
+    server-config code samples can contain legitimate `<!--` syntax — that's
+    real content, not author scaffolding.
+    """
+    return _apply_outside_code_fences(content, lambda c: HTML_COMMENT_RE.sub("", c))
+
+
+# Matches `href="..."` and `src="..."` attributes on any HTML tag.
+# All hrefs in source are double-quoted (verified by grep on the corpus);
+# we don't bother matching single-quoted or unquoted variants.
+HTML_ATTR_RE = re.compile(r'(?P<attr>\b(?:href|src))="(?P<value>[^"]*)"')
+
+
+def rewrite_html_attrs(
+    content: str,
+    page_dir: Path,
+    docs_dir: Path,
+    url_prefix: str,
+    page_url_dir: str,
+) -> str:
+    """Rewrite href/src on inline HTML tags (e.g. `<a class="card" href="...">`,
+    `<img src="...">`) the same way `rewrite_links` rewrites markdown links —
+    relative or absolute-path docs paths become absolute Wallarm URLs;
+    external URLs stay untouched (`to_absolute_url` short-circuits them).
+
+    Why: source markdown carries hand-rolled HTML (homepage navigation cards,
+    inline `<img>` badges, custom `<a class="do-card">` connectors). Without
+    rewriting, a reader opening the raw .md sees broken relative paths.
+    """
+    def replace(m: re.Match) -> str:
+        attr = m.group("attr")
+        value = m.group("value")
+        new_value = to_absolute_url(value, page_dir, docs_dir, url_prefix, page_url_dir)
+        return f'{attr}="{new_value}"'
+
+    return _apply_outside_code_fences(content, lambda c: HTML_ATTR_RE.sub(replace, c))
 
 
 def inline_ref_defs(content: str) -> str:
@@ -448,6 +492,7 @@ def main(argv: list[str]) -> int:
         content = resolve_snippets(content, snippet_base)
         page_url_dir = page_to_url_dir(nav_path, url_prefix_path)
         content = rewrite_links(content, src.parent, docs_dir, url_prefix, page_url_dir)
+        content = rewrite_html_attrs(content, src.parent, docs_dir, url_prefix, page_url_dir)
 
         # LLM-friendly transforms (applied in order):
         #   1. Strip YAML front matter — zensical layout/search directives only.
