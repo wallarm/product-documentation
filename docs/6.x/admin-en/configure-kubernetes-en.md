@@ -618,6 +618,8 @@ These annotations are used for setting up parameters for processing individual i
 * [nginx.ingress.kubernetes.io/wallarm-parser-disable](configure-parameters-en.md#wallarm_parser_disable)
 * [nginx.ingress.kubernetes.io/wallarm-partner-client-uuid](configure-parameters-en.md#wallarm_partner_client_uuid)
 
+    Starting from NGINX Node 6.12.1, the annotation accepts an optional human-readable label after the UUID, e.g. `"11111111-1111-1111-1111-111111111111 Tenant-1"`.
+
 ### Applying annotation to the Ingress resource
 
 To apply the settings to your Ingress, please use the following command:

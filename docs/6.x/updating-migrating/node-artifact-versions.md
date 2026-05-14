@@ -19,7 +19,7 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
-### 6.12.1 (2026-05-11)
+### 6.12.1 (2026-05-12)
 
 * Added full support for the [ME (Middle East) Wallarm Cloud](../about-wallarm/overview.md#cloud) in the [all-in-one installer](../installation/nginx/all-in-one.md):
 
@@ -254,9 +254,11 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](ingress-controller.md)
 
-### 6.12.1 (TBD)
+### 6.12.1 (2026-05-12)
 
-* Internal improvements
+* Added optional human-readable label support to the [`nginx.ingress.kubernetes.io/wallarm-partner-client-uuid`](../admin-en/configure-kubernetes-en.md#ingress-annotations) annotation, aligning it with the [`wallarm_partner_client_uuid`](../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive (added in NGINX Node 6.12.0)
+
+    Pass the UUID and label as a space-separated value: `"<UUID> <LABEL>"`.
 
 ### 6.12.0 (2026-05-04)
 
@@ -503,7 +505,7 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
-### 6.12.1 (TBD)
+### 6.12.1 (2026-05-12)
 
 * Internal improvements
 
@@ -725,7 +727,7 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](docker-container.md)
 
-### 6.12.1 (2026-05-11)
+### 6.12.1 (2026-05-12)
 
 * Internal improvements
 
@@ -949,7 +951,7 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
-### 6.12.1 (2026-05-11)
+### 6.12.1 (2026-05-12)
 
 * Internal improvements
 
@@ -1131,7 +1133,7 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
-### wallarm-node-6-12-1-20260507-144647 (2026-05-07)
+### wallarm-node-6-12-1-20260512-212132 (2026-05-12)
 
 * Internal improvements
 

@@ -96,6 +96,12 @@ The next steps differ depending on your filtering node type: NGINX Node or Nativ
         ```
         kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-partner-client-uuid=VALUE
         ```
+
+        Starting from NGINX Node 6.12.1, the annotation accepts an optional human-readable label after the UUID, separated by a space. The label appears alongside the UUID in per-tenant [Prometheus metrics](../../admin-en/configure-statistics-service.md#getting-statistics-in-the-prometheus-format) and [extended logs](../../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node):
+
+        ```
+        kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-partner-client-uuid="<UUID> <LABEL>"
+        ```
     === "Docker NGINX‑based image"
         1. Open the NGINX configuration file and split traffic between tenants using the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive. See example below.
         1. Run the docker container [mounting the configuration file](../../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file).
@@ -129,7 +135,7 @@ The next steps differ depending on your filtering node type: NGINX Node or Nativ
     }
     ```
 
-    The second parameter after the UUID (e.g. `Tenant-1`) is an optional human-readable label available starting from NGINX Node 6.12.0. When set, this label appears in the [`wallarm_status`](../../admin-en/configure-statistics-service.md) output alongside the tenant UUID, making it easier to identify tenants in metrics and logs. See the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive reference for details.
+    The second parameter after the UUID (e.g. `Tenant-1`) is an optional human-readable label available starting from NGINX Node 6.12.0 (6.12.1 for the Ingress controller). When set, this label appears in the [`wallarm_status`](../../admin-en/configure-statistics-service.md) output alongside the tenant UUID, making it easier to identify tenants in metrics and logs. See the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive reference for details.
 
     * On the tenant side, the DNS A records with the partner IP address are configured
     * On the partner side, proxying of requests to the addresses of tenants (`http://upstream1:8080` for the tenant with `wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111` and `http://upstream2:8080` for the tenant with `wallarm_partner_client_uuid 22222222-2222-2222-2222-222222222222`) is configured
