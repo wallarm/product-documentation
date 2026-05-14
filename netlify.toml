@@ -19,6 +19,11 @@ cp -R images/ docs/ar/images/ && zensical build -f mkdocs-ar-4.10.yml && rm -rf 
     Content-Security-Policy = "frame-ancestors *"
     X-Content-Type-Options = "nosniff"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains"
+    # RFC 8288 Link: site-wide entry-point for AI agents that consume HTTP
+    # headers without parsing HTML. `service-doc` (RFC 8631) is the registered
+    # rel-type for documentation-of-the-service; we point at /llms.txt — the
+    # human/AI-readable index of every page on the docs site.
+    Link = '</llms.txt>; rel="service-doc"; type="text/plain"'
 
 # Serve raw .md / llms*.txt companion files as plain UTF-8 text. CORS is open
 # so AI tools, edge functions, and browser-side fetchers can read them

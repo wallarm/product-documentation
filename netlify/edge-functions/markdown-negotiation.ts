@@ -33,10 +33,16 @@ export default async (request: Request, context: Context) => {
     .some((t) => t.trim().toLowerCase().startsWith("text/markdown"));
 
   if (!wantsMarkdown) {
-    // Standard HTML response, but flag the alternate Markdown representation
-    // for caches via Vary so they keep separate slots.
+    // Standard HTML response, but:
+    //   1. Flag the alternate Markdown representation for caches via Vary so
+    //      they keep separate slots for HTML and Markdown variants.
+    //   2. Advertise the .md companion as a Link header (RFC 8288) — a
+    //      second discovery channel for agents that consume HTTP headers
+    //      without parsing the HTML <head>.
     const response = await context.next();
     response.headers.set("Vary", mergeVary(response.headers.get("Vary"), "Accept"));
+    const mdHref = `${path === "/" ? "/index" : path.replace(/\/$/, "")}.md`;
+    appendLink(response.headers, `<${mdHref}>; rel="alternate"; type="text/markdown"`);
     return response;
   }
 
@@ -84,6 +90,13 @@ function mergeVary(existing: string | null, value: string): string {
   if (parts.some((p) => p.toLowerCase() === value.toLowerCase())) return existing;
   parts.push(value);
   return parts.join(", ");
+}
+
+/** Add an RFC 8288 link to the response's `Link` header, preserving any
+ *  existing values (e.g. the site-wide `service-doc` link from netlify.toml). */
+function appendLink(headers: Headers, link: string): void {
+  const existing = headers.get("Link");
+  headers.set("Link", existing ? `${existing}, ${link}` : link);
 }
 
 export const config = {
