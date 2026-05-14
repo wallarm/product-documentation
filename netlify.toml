@@ -65,6 +65,38 @@ cp -R images/ docs/ar/images/ && zensical build -f mkdocs-ar-4.10.yml && rm -rf 
 # raw .md / .txt files have no HTML <head> to read <link rel="icon"> from, so
 # they fall back to auto-discovering /favicon.ico — without this rewrite the
 # tab would show no favicon for any .md page.
+# Markdown content negotiation for AI agents.
+#
+# Runs netlify/edge-functions/markdown.ts on all content paths. The function
+# only acts on requests carrying `Accept: text/markdown` — every other request
+# is passed through to origin untouched, so registering on `/*` is safe.
+#
+# To add a new content section: nothing to do — `/*` already covers it.
+# To exclude a path: add it to `excludedPath` below.
+# To remove this feature entirely: delete this [[edge_functions]] block and
+# the netlify/edge-functions/markdown.ts file.
+[[edge_functions]]
+  path = "/*"
+  function = "markdown"
+  excludedPath = [
+    # Translations (auto-generated; English source is the canonical content)
+    "/ja/*",
+    "/tr/*",
+    "/pt-BR/*",
+    "/ar/*",
+    # Utility routes (no meaningful prose content)
+    "/search*",
+    "/sitemap.xml",
+    "/robots.txt",
+    "/favicon.ico",
+    "/favicon.png",
+    # Static assets — never HTML, skip the invocation cost
+    "/assets/*",
+    "/stylesheets/*",
+    "/javascripts/*",
+    "/images/*",
+  ]
+
 [[redirects]]
   from = "/favicon.ico"
   to = "/favicon.png"
