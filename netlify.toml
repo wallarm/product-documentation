@@ -1,5 +1,6 @@
 [build]
 publish = "site"
+edge_functions = "netlify/edge-functions"
 command = """
 pip3 install --no-cache-dir -r requirements.txt &&
 npm install pngquant &&
@@ -18,6 +19,10 @@ cp -R images/ docs/ar/images/ && zensical build -f mkdocs-ar-4.10.yml && rm -rf 
     Content-Security-Policy = "frame-ancestors *"
     X-Content-Type-Options = "nosniff"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains"
+    # NOTE: the RFC 8288 `Link: </llms.txt>; rel="service-doc"` is added in
+    # the edge function (netlify/edge-functions/markdown-negotiation.ts) for
+    # HTML and negotiated-markdown responses only — keeps asset responses
+    # (.png, .css, fonts, …) free of useless Link headers on every request.
 
 # Serve raw .md / llms*.txt companion files as plain UTF-8 text. CORS is open
 # so AI tools, edge functions, and browser-side fetchers can read them
