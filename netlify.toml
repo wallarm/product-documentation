@@ -61,6 +61,15 @@ cp -R images/ docs/ar/images/ && zensical build -f mkdocs-ar-4.10.yml && rm -rf 
     Cache-Control = "public, max-age=3600, must-revalidate"
     X-Robots-Tag = "noindex, follow"
 
+# Serve favicon.png under the conventional /favicon.ico path. Browsers viewing
+# raw .md / .txt files have no HTML <head> to read <link rel="icon"> from, so
+# they fall back to auto-discovering /favicon.ico — without this rewrite the
+# tab would show no favicon for any .md page.
+[[redirects]]
+  from = "/favicon.ico"
+  to = "/favicon.png"
+  status = 200
+
 # Redirect sitemap.xml requests from any path to the version root sitemap
 [[redirects]]
   from = "/*/sitemap.xml"
