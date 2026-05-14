@@ -1,5 +1,6 @@
 [build]
 publish = "site"
+edge_functions = "netlify/edge-functions"
 command = """
 pip3 install --no-cache-dir -r requirements.txt &&
 npm install pngquant &&
