@@ -69,8 +69,9 @@ export default async (request: Request, context: Context) => {
   headers.set("Vary", mergeVary(headers.get("Vary"), "Accept"));
   // Emerging "Content-Signal" standard (Netlify's own AI-pages template
   // uses it): explicit signal to AI crawlers that this content is OK to
-  // ingest for search and as prompt context, but NOT for model training.
-  headers.set("Content-Signal", "ai-train=no, search=yes, ai-input=yes");
+  // ingest for search, as prompt context, AND for model training — we want
+  // Wallarm's docs surface in current and future AI models.
+  headers.set("Content-Signal", "ai-train=yes, search=yes, ai-input=yes");
   // Rough token estimate (1 token ≈ 4 chars) so clients can budget context.
   headers.set("X-Markdown-Tokens", Math.ceil(body.length / 4).toString());
   return new Response(body, { status: 200, headers });
