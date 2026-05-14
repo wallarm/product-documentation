@@ -4,6 +4,7 @@ extra:
   version: "6.x"
   versionNative: "0.14.x+"
   is_latest: true
+  raw_md: true
 
 docs_dir: docs/6.x
 site_dir: site

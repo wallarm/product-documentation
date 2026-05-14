@@ -8,9 +8,9 @@ WORKDIR /docs
 COPY . .
 
 # Copy images into each docs_dir before build (zensical doesn't follow symlinks)
-RUN cp -R images/ docs/6.x/images/ && zensical build -f mkdocs-6.x.yml && rm -rf docs/6.x/images/
-RUN cp -R images/ docs/7.x/images/ && zensical build -f mkdocs-7.x.yml && rm -rf docs/7.x/images/
-RUN cp -R images/ docs/5.0/images/ && zensical build -f mkdocs-5.0.yml && rm -rf docs/5.0/images/
+RUN cp -R images/ docs/6.x/images/ && zensical build -f mkdocs-6.x.yml && python3 scripts/generate_raw_markdown.py mkdocs-6.x.yml && rm -rf docs/6.x/images/
+RUN cp -R images/ docs/7.x/images/ && zensical build -f mkdocs-7.x.yml && python3 scripts/generate_raw_markdown.py mkdocs-7.x.yml && rm -rf docs/7.x/images/
+RUN cp -R images/ docs/5.0/images/ && zensical build -f mkdocs-5.0.yml && python3 scripts/generate_raw_markdown.py mkdocs-5.0.yml && rm -rf docs/5.0/images/
 RUN cp -R images/ docs/deprecated/images/ && zensical build -f mkdocs-deprecated.yml && rm -rf docs/deprecated/images/
 RUN cp -R images/ docs/ja/images/ && zensical build -f mkdocs-ja-6.x.yml && rm -rf docs/ja/images/
 RUN cp -R images/ docs/tr/images/ && zensical build -f mkdocs-tr-6.x.yml && rm -rf docs/tr/images/

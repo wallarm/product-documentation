@@ -5,3 +5,4 @@ prependnewline==1.2
 mkdocs-meta-descriptions-plugin==3.0.0
 markdown==3.10.2
 importlib_metadata==9.0.0
+PyYAML==6.0.3
