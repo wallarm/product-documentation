@@ -1,3 +1,35 @@
 User-agent: *
 Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Disallow: /4.10/
+
+# AI crawlers — both training bots and on-demand RAG/browse bots — must skip
+# translated docs. Translations (ja, tr, pt-BR, ar) are auto-generated and
+# not yet the source of truth; only the English content (root, /7.x/, /5.x/)
+# should be ingested by AI. Trade-off: AI-search engines (OAI-SearchBot,
+# PerplexityBot, etc.) also lose visibility into translated pages — that's
+# the simpler-policy compromise we chose over a per-bot-role split.
+# Per RFC 9309, a User-agent that matches a specific group uses ONLY that
+# group's rules, so we re-declare /4.10/ and the (still-yes) Content-Signal
+# for the English paths that remain Allowed.
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
+User-agent: ClaudeBot
+User-agent: Claude-Web
+User-agent: anthropic-ai
+User-agent: Google-Extended
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: CCBot
+User-agent: Applebot-Extended
+User-agent: Bytespider
+User-agent: cohere-ai
+User-agent: meta-externalagent
+User-agent: FacebookBot
+User-agent: Diffbot
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+Disallow: /4.10/
+Disallow: /ja/
+Disallow: /tr/
+Disallow: /pt-BR/
+Disallow: /ar/

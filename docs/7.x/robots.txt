@@ -1,3 +1,30 @@
 User-agent: *
 Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Disallow: /4.10/
+
+# AI crawlers — both training bots and on-demand RAG/browse bots — must skip
+# translated docs. See docs/6.x/robots.txt for the rationale; this file is
+# kept in sync so that when 7.x becomes the root version the AI-bot block is
+# already in place.
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
+User-agent: ClaudeBot
+User-agent: Claude-Web
+User-agent: anthropic-ai
+User-agent: Google-Extended
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: CCBot
+User-agent: Applebot-Extended
+User-agent: Bytespider
+User-agent: cohere-ai
+User-agent: meta-externalagent
+User-agent: FacebookBot
+User-agent: Diffbot
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+Disallow: /4.10/
+Disallow: /ja/
+Disallow: /tr/
+Disallow: /pt-BR/
+Disallow: /ar/
