@@ -20,6 +20,10 @@ if [ "$CONTEXT" != "production" ]; then printf 'User-agent: *\nDisallow: /\n' > 
     Content-Security-Policy = "frame-ancestors *"
     X-Content-Type-Options = "nosniff"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains"
+    # NOTE: the RFC 8288 `Link: </llms.txt>; rel="service-doc"` is added in
+    # the edge function (netlify/edge-functions/markdown-negotiation.ts) for
+    # HTML and negotiated-markdown responses only — keeps asset responses
+    # (.png, .css, fonts, …) free of useless Link headers on every request.
 
 # Block indexing on non-production deploys (branch deploys like
 # llm-sbt-ea.docs.wallarm.com and PR deploy-previews). Production
@@ -37,10 +41,6 @@ if [ "$CONTEXT" != "production" ]; then printf 'User-agent: *\nDisallow: /\n' > 
   for = "/*"
   [context.deploy-preview.headers.values]
     X-Robots-Tag = "noindex, nofollow, noai, noimageai"
-    # NOTE: the RFC 8288 `Link: </llms.txt>; rel="service-doc"` is added in
-    # the edge function (netlify/edge-functions/markdown-negotiation.ts) for
-    # HTML and negotiated-markdown responses only — keeps asset responses
-    # (.png, .css, fonts, …) free of useless Link headers on every request.
 
 # Serve raw .md / llms*.txt companion files as plain UTF-8 text. CORS is open
 # so AI tools, edge functions, and browser-side fetchers can read them
