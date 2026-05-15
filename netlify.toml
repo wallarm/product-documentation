@@ -11,7 +11,8 @@ cp -R images/ docs/deprecated/images/ && zensical build -f mkdocs-deprecated.yml
 cp -R images/ docs/ja/images/ && zensical build -f mkdocs-ja-6.x.yml && rm -rf docs/ja/images/ &&
 cp -R images/ docs/tr/images/ && zensical build -f mkdocs-tr-6.x.yml && rm -rf docs/tr/images/ &&
 cp -R images/ docs/pt-BR/images/ && zensical build -f mkdocs-pt-BR-4.8.yml && rm -rf docs/pt-BR/images/ &&
-cp -R images/ docs/ar/images/ && zensical build -f mkdocs-ar-4.10.yml && rm -rf docs/ar/images/
+cp -R images/ docs/ar/images/ && zensical build -f mkdocs-ar-4.10.yml && rm -rf docs/ar/images/ &&
+if [ "$CONTEXT" != "production" ]; then printf 'User-agent: *\nDisallow: /\n' > site/robots.txt; fi
 """
 [[headers]]
   for = "/*"
@@ -19,6 +20,23 @@ cp -R images/ docs/ar/images/ && zensical build -f mkdocs-ar-4.10.yml && rm -rf 
     Content-Security-Policy = "frame-ancestors *"
     X-Content-Type-Options = "nosniff"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains"
+
+# Block indexing on non-production deploys (branch deploys like
+# llm-sbt-ea.docs.wallarm.com and PR deploy-previews). Production
+# (docs.wallarm.com) is unaffected — these blocks are context-scoped.
+# Belt-and-suspenders with the build-time robots.txt overwrite above:
+# the header covers responses that bots reach directly (.md, images,
+# llms*.txt) without consulting robots.txt, and the `noai`/`noimageai`
+# tokens signal opt-out to AI crawlers that honor them.
+[[context.branch-deploy.headers]]
+  for = "/*"
+  [context.branch-deploy.headers.values]
+    X-Robots-Tag = "noindex, nofollow, noai, noimageai"
+
+[[context.deploy-preview.headers]]
+  for = "/*"
+  [context.deploy-preview.headers.values]
+    X-Robots-Tag = "noindex, nofollow, noai, noimageai"
     # NOTE: the RFC 8288 `Link: </llms.txt>; rel="service-doc"` is added in
     # the edge function (netlify/edge-functions/markdown-negotiation.ts) for
     # HTML and negotiated-markdown responses only — keeps asset responses
