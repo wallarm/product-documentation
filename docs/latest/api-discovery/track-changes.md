@@ -28,8 +28,8 @@ In the **Status** column for endpoints and parameters, API Discovery provides da
 
     * If later the endpoint in the `Unused` status is requested (with the code 200 in response) again it will lose the `Unused` status.
 
-!!! warning "Unused endpoints are removed after 35 days"
-    Endpoints that receive no qualifying requests for **35 days** since their last update are automatically removed from your API inventory, together with their parameters, sensitive-data history, authentication coverage, and risk-score evolution. **Removed entries cannot be restored.** If traffic to such an endpoint resumes later, the endpoint reappears as **New** and discovery starts over from scratch — past parameter information and history are not recovered.
+!!! warning "Unused endpoints are removed after 30 days"
+    Endpoints that receive no qualifying requests for **30 days** since their last update are automatically removed from your API inventory, together with their parameters, sensitive-data history, authentication coverage, and risk-score evolution. **Removed entries cannot be restored.** If traffic to such an endpoint resumes later, the endpoint reappears as **New** and discovery starts over from scratch — past parameter information and history are not recovered.
 
 ![API Discovery - track changes](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-changes.png)
 
