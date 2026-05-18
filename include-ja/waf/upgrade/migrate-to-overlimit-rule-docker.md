@@ -6,7 +6,7 @@
 
 上記のパラメータで`overlimit_res`攻撃の検出設定をカスタマイズしている場合は、次の手順でルールに移行することを推奨します:
 
-1. Wallarm Console → **Rules**を開き、[**Limit request processing time**][overlimit-res-rule-docs]ルールの設定に進みます。
+1. Wallarm Console → **Rules WAF**を開き、[**Limit request processing time**][overlimit-res-rule-docs]ルールの設定に進みます。
 1. マウントされた設定ファイルと同様にルールを設定します:
 
     * ノードが単一のリクエストを処理する時間上限(ミリ秒): `wallarm_process_time_limit`または`process_time_limit`の値です。

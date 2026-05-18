@@ -14,7 +14,7 @@
 
 ルールは、リクエストの解析およびその後の処理におけるWallarmの[既定][link-attack-detection-tools]の挙動を微調整するために使用します。つまり、ルールを使用すると、悪意のあるリクエストの検出方法や、そのようなリクエストが検出された際のシステムの動作を変更できます。
 
-ルールは[US](https://us1.my.wallarm.com/rules)または[EU](https://my.wallarm.com/rules)のCloudにある**Rules**セクションで設定します。
+ルールは[US](https://us1.my.wallarm.com/rules)または[EU](https://my.wallarm.com/rules)のCloudにある**Rules WAF**セクションで設定します。
 
 ![Rules section](../../images/user-guides/rules/section-rules.png)
 
@@ -83,7 +83,7 @@
 
 ## 構成
 
-新しいルールを追加するには、[US](https://us1.my.wallarm.com/rules)または[EU](https://my.wallarm.com/rules)のCloudにある**Rules**セクションに移動します。ルールは既存の[ブランチ](#rule-branches)に追加することも、存在しない場合は新しいブランチを作成して一から追加することもできます。
+新しいルールを追加するには、[US](https://us1.my.wallarm.com/rules)または[EU](https://my.wallarm.com/rules)のCloudにある**Rules WAF**セクションに移動します。ルールは既存の[ブランチ](#rule-branches)に追加することも、存在しない場合は新しいブランチを作成して一から追加することもできます。
 
 ![新しいルールの追加][img-add-rule]
 

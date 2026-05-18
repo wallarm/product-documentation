@@ -14,7 +14,7 @@
 
 Kurallar, isteklerin analiz edilmesi ve sonrasında işlenmesi sırasında Wallarm’ın [varsayılan](../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection) davranışını ince ayar yapmak için kullanılır. Böylece kuralları kullanarak sistemin kötü amaçlı istekleri nasıl tespit ettiğini ve bu tür kötü amaçlı istekler tespit edildiğinde nasıl davrandığını değiştirebilirsiniz.
 
-Kurallar, [US](https://us1.my.wallarm.com/rules) veya [EU](https://my.wallarm.com/rules) Cloud içindeki **Rules** bölümünde yapılandırılır.
+Kurallar, [US](https://us1.my.wallarm.com/rules) veya [EU](https://my.wallarm.com/rules) Cloud içindeki **Rules WAF** bölümünde yapılandırılır.
 
 ![Rules section](../../images/user-guides/rules/section-rules.png)
 
@@ -90,7 +90,7 @@ Kural dallarıyla çalışmaya ilişkin bazı detaylar:
 <a id="configuring"></a>
 ## Configuring
 
-Yeni bir kural eklemek için [US](https://us1.my.wallarm.com/rules) veya [EU](https://my.wallarm.com/rules) Cloud içindeki **Rules** bölümüne gidin. Kurallar, mevcut [dallara](#rule-branches) eklenebileceği gibi sıfırdan da eklenebilir; bu durumda henüz yoksa yeni bir dal oluşturulur.
+Yeni bir kural eklemek için [US](https://us1.my.wallarm.com/rules) veya [EU](https://my.wallarm.com/rules) Cloud içindeki **Rules WAF** bölümüne gidin. Kurallar, mevcut [dallara](#rule-branches) eklenebileceği gibi sıfırdan da eklenebilir; bu durumda henüz yoksa yeni bir dal oluşturulur.
 
 ![Yeni kural ekleme][img-add-rule]
 

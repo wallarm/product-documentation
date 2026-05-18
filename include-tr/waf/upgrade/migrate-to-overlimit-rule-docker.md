@@ -6,7 +6,7 @@ Listelenen yönergeler ve parametreler, yeni kuralın yayınlanmasıyla kullanı
 
 `overlimit_res` saldırı tespiti ayarları listelenen parametreler aracılığıyla özelleştirildiyse, bunları aşağıdaki şekilde kurala taşımanız önerilir:
 
-1. Wallarm Console → **Rules** öğesini açın ve [**Limit request processing time**][overlimit-res-rule-docs] kuralının kurulumuna ilerleyin.
+1. Wallarm Console → **Rules WAF** öğesini açın ve [**Limit request processing time**][overlimit-res-rule-docs] kuralının kurulumuna ilerleyin.
 1. Kuralı, mount edilmiş yapılandırma dosyalarında yapıldığı gibi yapılandırın:
 
     * Düğümün tek bir isteği işlemesi için zaman sınırı (milisaniye): `wallarm_process_time_limit` veya `process_time_limit` değeri.

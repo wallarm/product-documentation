@@ -96,7 +96,7 @@ Wallarm nodeがblocking[mode](../../admin-en/configure-wallarm-mode.md#available
 
 該当のルールを作成するには:
 
-1. **Rules** tabに移動します。
+1. **Rules WAF** tabに移動します。
 1. `example.com/test.php`のブランチを探すか作成し、**Add rule**をクリックします。
 1. **Fine-tuning attack detection** → **Disable custom attack detector**を選択します。
 1. 無効化したい正規表現を選択します。

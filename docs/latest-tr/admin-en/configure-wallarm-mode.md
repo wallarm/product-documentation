@@ -112,7 +112,7 @@ Tüm gelen istekler için genel filtreleme modunu mitigation controls ([Advanced
     
     ![Genel ayarlar sekmesi](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
 
-    Genel filtreleme modu ayarı, **Rules** bölümünde **Set filtration mode** [default](../user-guides/rules/rules.md#default-rules) kuralı olarak temsil edilir. Bu bölümde uç noktayı hedefleyen filtreleme kurallarının daha yüksek önceliğe sahip olduğunu unutmayın.
+    Genel filtreleme modu ayarı, **Rules WAF** bölümünde **Set filtration mode** [default](../user-guides/rules/rules.md#default-rules) kuralı olarak temsil edilir. Bu bölümde uç noktayı hedefleyen filtreleme kurallarının daha yüksek önceliğe sahip olduğunu unutmayın.
 
 ### Koşullu filtreleme modu
 

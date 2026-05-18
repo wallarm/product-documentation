@@ -2,14 +2,14 @@
 [link-request-processing]:      request-processing.md
 [img-add-rule]:                 ../../images/user-guides/rules/section-rules-add-rule.png
 
-# Rules
+# Rules WAF
 
 Rules are used to fine-tune the [default](../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection) Wallarm behavior during the analysis of requests and their further processing. Thus, using rules you can change how the system detects malicious requests and acts when such malicious requests are detected.
 
-Rules are configured in the **Rules** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules), or [ME](https://me1.my.wallarm.com/rules) Cloud.
+Rules are configured in the **Rules WAF** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules), or [ME](https://me1.my.wallarm.com/rules) Cloud. They are part of the basic [Cloud Native WAAP](../../about-wallarm/subscription-plans.md#core-subscription-plans) subscription and provide WAF-level fine-tuning of request analysis.
 
 
-![Rules section](../../images/user-guides/rules/section-rules.png)
+![Rules WAF section](../../images/user-guides/rules/section-rules.png)
 
 !!! warning "Rule application delay"
     When you make changes to the rules, they don't take effect immediately as it takes some time to [compile the rules](#ruleset-lifecycle) and upload them to the filtering nodes.
@@ -51,7 +51,7 @@ Rules are automatically grouped into nested branches by endpoint URIs and other 
 * Directly specified has priority over [regex](rules.md#condition-type-regex).
 * Case [sensitive](rules.md#condition-type-equal) has priority over [insensitive](rules.md#condition-type-iequal-aa).
 
-![Rules tab overview](../../images/user-guides/rules/rules-overview.png)
+![Rules WAF tab overview](../../images/user-guides/rules/rules-overview.png)
 
 ### Default rules
 
@@ -80,7 +80,7 @@ Here are some details of how to work with the rule branches:
 
 ## Configuring
 
-To add a new rule, go to the **Rules** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules), or [ME](https://me1.my.wallarm.com/rules) Cloud. Rules can be added to both existing [branches](#rule-branches) and from scratch which will create a new branch if one does not exist.
+To add a new rule, go to the **Rules WAF** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules), or [ME](https://me1.my.wallarm.com/rules) Cloud. Rules can be added to both existing [branches](#rule-branches) and from scratch which will create a new branch if one does not exist.
 
 ![Adding a new rule][img-add-rule]
 
@@ -384,7 +384,7 @@ Changes of custom rules do NOT take effect instantly. Changes are applied to the
 
 ### Custom ruleset building
 
-Adding a new rule, deleting or changing existing rules in the Wallarm Console → **Rules** launch a custom ruleset build. During the building process, rules are optimized and compiled into a format adopted for the filtering node. The process of building a custom ruleset typically takes from a few seconds for a small number of rules to up to an hour for complex rule trees.
+Adding a new rule, deleting or changing existing rules in the Wallarm Console → **Rules WAF** launch a custom ruleset build. During the building process, rules are optimized and compiled into a format adopted for the filtering node. The process of building a custom ruleset typically takes from a few seconds for a small number of rules to up to an hour for complex rule trees.
 
 ### Uploading to filtering node
 
@@ -405,7 +405,7 @@ There are the following rule backup options:
 
 You can:
 
-* Access current backups: in the **Rules** section, click **Backups**.
+* Access current backups: in the **Rules WAF** section, click **Backups**.
 * Create a new backup manually: in the **Backups** window, click **Create backup**.
 * Set name and description for the manual backup and edit them at any moment.
 
