@@ -96,7 +96,7 @@ Oluşturulan kural belirli bir dal (branch) için kısmen devre dışı bırakı
 
 İlgili kuralı oluşturmak için:
 
-1. **Rules** sekmesine gidin
+1. **Rules WAF** sekmesine gidin
 1. `example.com/test.php` için dalı (branch) bulun veya oluşturun ve **Add rule**’a tıklayın.
 1. **Fine-tuning attack detection** → **Disable custom attack detector** öğesini seçin.
 1. Devre dışı bırakmak istediğiniz düzenli ifadeyi seçin.

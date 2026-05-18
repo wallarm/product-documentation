@@ -201,7 +201,7 @@ To check:
       * In [node statistics](#node-statistics-service-works), note `custom_ruleset_id` and `custom_ruleset_apply_time`.
       * In the `wcli-out.log` [node log](#node-logs-are-collected), note the latest line containing `"lom"`, pay attention to `version` and `time` in that string.
 
-1. Go to **Security Controls** → **Rules**.
+1. Go to **Security Controls** → **Rules WAF**.
 1. Use **Add rule** → **Fine-tuning attack detection** → **Ignore certain attacks**, select to ignore **Path traversal** in `uri` part of request, then create the rule.
 1. Check that data from first step is updated (may take 2-4 minutes).
 1. Repeat attack from the [Node registers attacks](#node-registers-attacks) check. Now this attack should be ignored and not displayed in the **Attacks**.

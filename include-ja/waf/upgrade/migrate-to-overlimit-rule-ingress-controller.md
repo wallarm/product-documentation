@@ -4,7 +4,7 @@
 
 上記のディレクティブで`overlimit_res`攻撃検出の設定をカスタマイズしている場合は、次のようにルールへ移行することを推奨します：
 
-1. Wallarm Console → **Rules**を開き、[**Limit request processing time**][overlimit-res-rule-docs]ルールの設定に進みます。
+1. Wallarm Console → **Rules WAF**を開き、[**Limit request processing time**][overlimit-res-rule-docs]ルールの設定に進みます。
 1. NGINXディレクティブで行っていたのと同様にルールを構成します：
 
     * ルール条件は、`wallarm_process_time_limit`および`wallarm_process_time_limit_block`ディレクティブが指定されたNGINXの設定ブロックに一致するように設定します。

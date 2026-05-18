@@ -217,7 +217,7 @@ Kontrol etmek için:
       * [Düğüm istatistiklerinde](#node-statistics-service-works) `custom_ruleset_id` ve `custom_ruleset_apply_time` değerlerini not edin.
       * `wcli-out.log` [düğüm günlüğünde](#node-logs-are-collected), `"lom"` içeren son satırı not edin, o satırdaki `version` ve `time` değerlerine dikkat edin.
 
-1. **Security Controls** → **Rules**’a gidin.
+1. **Security Controls** → **Rules WAF**’a gidin.
 1. **Add rule** → **Fine-tuning attack detection** → **Ignore certain attacks**'i kullanın, isteğin `uri` bölümünde **Path traversal**'ı yok saymayı seçin ve ardından kuralı oluşturun.
 1. İlk adımdaki verilerin güncellendiğini kontrol edin (2-4 dakika sürebilir).
 1. [Düğüm saldırıları kaydeder](#node-registers-attacks) kontrolündeki saldırıyı tekrarlayın. Artık bu saldırı yok sayılmalı ve **Attacks** içinde görüntülenmemelidir.

@@ -51,7 +51,7 @@ Wallarmクライアントのユーザーには次のロールがあります。
 | **API Specifications**   | 閲覧・管理                      | 閲覧          | 閲覧                            | 閲覧 |
 | **Triggers**        | 閲覧・管理                      | -                        | -                            | - |
 | **IP lists**       | 閲覧・管理・エクスポート             | 閲覧・管理・エクスポート | 閲覧・エクスポート              | - |
-| **Rules**           | 閲覧・管理                      | 閲覧・管理          | 閲覧                         | - |
+| **Rules WAF**           | 閲覧・管理                      | 閲覧・管理          | 閲覧                         | - |
 | **Credential Stuffing Detection**           | 閲覧・管理                      | 閲覧・管理          | 閲覧                         | - |
 | **BOLA protection**           | 閲覧・管理                      | 閲覧          | - | - |
 | **Security Edge**    | 閲覧・管理                      | 閲覧                        | -                            | - |

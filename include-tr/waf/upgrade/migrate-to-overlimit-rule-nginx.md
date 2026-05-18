@@ -4,7 +4,7 @@ Daha önce, [`wallarm_process_time_limit`][nginx-process-time-limit-docs] ve [`w
 
 `overlimit_res` saldırı tespiti ayarları listelenen yönergelerle özelleştirildiyse, bunları aşağıdaki şekilde kurala taşımanız önerilir:
 
-1. Wallarm Console → **Rules** bölümünü açın ve [**Limit request processing time**][overlimit-res-rule-docs] kuralı yapılandırmasına ilerleyin.
+1. Wallarm Console → **Rules WAF** bölümünü açın ve [**Limit request processing time**][overlimit-res-rule-docs] kuralı yapılandırmasına ilerleyin.
 1. Kuralı NGINX yönergelerinde yaptığınız gibi yapılandırın:
 
     * Kural koşulu, `wallarm_process_time_limit` ve `wallarm_process_time_limit_block` yönergelerinin belirtildiği NGINX yapılandırma bloğu ile eşleşmelidir.

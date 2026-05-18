@@ -4,7 +4,7 @@ Earlier, the [`wallarm_process_time_limit`][nginx-process-time-limit-docs] and [
 
 If the `overlimit_res` attack detection settings are customized via the listed directives, it is recommended to transfer them to the rule as follows:
 
-1. Open Wallarm Console → **Rules** and proceed to the [**Limit request processing time**][overlimit-res-rule-docs] rule setup.
+1. Open Wallarm Console → **Rules WAF** and proceed to the [**Limit request processing time**][overlimit-res-rule-docs] rule setup.
 1. Configure the rule as done via the NGINX directives:
 
     * The rule condition should match the NGINX configuration block with the `wallarm_process_time_limit` and `wallarm_process_time_limit_block` directives specified.

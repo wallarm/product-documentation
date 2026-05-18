@@ -4,7 +4,7 @@ Anteriormente, as diretivas NGINX [`wallarm_process_time_limit`][nginx-process-t
 
 Se as configurações de detecção de ataque `overlimit_res` forem personalizadas por meio das diretivas listadas, é recomendado transferi-las para a regra da seguinte forma:
 
-1. Abra o Console Wallarm → **Rules** e prossiga para a configuração da regra [**Ajuste fino da detecção de ataque overlimit_res**][overlimit-res-rule-docs].
+1. Abra o Console Wallarm → **Rules WAF** e prossiga para a configuração da regra [**Ajuste fino da detecção de ataque overlimit_res**][overlimit-res-rule-docs].
 1. Configure a regra da mesma maneira que as diretivas NGINX:
 
     * A condição da regra deve corresponder ao bloco de configuração NGINX com as diretivas `wallarm_process_time_limit` e `wallarm_process_time_limit_block` especificadas.

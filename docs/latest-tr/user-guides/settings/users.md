@@ -51,7 +51,7 @@ Farklı kullanıcı rollerinin Wallarm varlıklarına erişimi hakkında daha ay
 | **API Specifications**   | Görüntüle ve yönet                      | Görüntüle          | Görüntüle                            | Görüntüle |
 | **Triggers**        | Görüntüle ve yönet                      | -                        | -                            | - |
 | **IP lists**       | Görüntüle, yönet ve dışa aktar             | Görüntüle, yönet ve dışa aktar | Görüntüle ve dışa aktar              | - |
-| **Rules**           | Görüntüle ve yönet                      | Görüntüle ve yönet          | Görüntüle                         | - |
+| **Rules WAF**           | Görüntüle ve yönet                      | Görüntüle ve yönet          | Görüntüle                         | - |
 | **Credential Stuffing Detection**           | Görüntüle ve yönet                      | Görüntüle ve yönet          | Görüntüle                         | - |
 | **BOLA protection**           | Görüntüle ve yönet                      | Görüntüle          | - | - |
 | **Security Edge**    | Görüntüle ve yönet                      | Görüntüle                        | -                            | - |

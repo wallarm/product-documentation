@@ -1,6 +1,6 @@
 ### Özel kurallar kümesi oluşturma
 
-Wallarm Console → **Security Controls** → **Rules** veya **Mitigation Controls** içinde yeni bir rule/mitigation control eklemek, mevcut olanları silmek veya değiştirmek, özel bir kurallar kümesi derlemesini başlatır. Oluşturma sürecinde, kurallar ve kontroller optimize edilir ve filtreleme düğümü için uyarlanmış bir biçime derlenir. Özel bir kurallar kümesi oluşturma süreci, az sayıda kural için birkaç saniyeden karmaşık kural ağaçları için bir saate kadar sürebilir.
+Wallarm Console → **Security Controls** → **Rules WAF** veya **Mitigation Controls** içinde yeni bir rule/mitigation control eklemek, mevcut olanları silmek veya değiştirmek, özel bir kurallar kümesi derlemesini başlatır. Oluşturma sürecinde, kurallar ve kontroller optimize edilir ve filtreleme düğümü için uyarlanmış bir biçime derlenir. Özel bir kurallar kümesi oluşturma süreci, az sayıda kural için birkaç saniyeden karmaşık kural ağaçları için bir saate kadar sürebilir.
 
 ### Filtreleme düğümüne yükleme
 
@@ -21,7 +21,7 @@ Aşağıdaki kural yedekleme seçenekleri vardır:
 
 Şunları yapabilirsiniz:
 
-* Mevcut yedeklere erişin: **Rules** bölümünde **Backups**’a tıklayın.
+* Mevcut yedeklere erişin: **Rules WAF** bölümünde **Backups**’a tıklayın.
 * Yeni bir yedeği manuel olarak oluşturun: **Backups** penceresinde **Create backup**’a tıklayın.
 * Manuel yedek için ad ve açıklama belirleyin ve bunları istediğiniz anda düzenleyin.
 

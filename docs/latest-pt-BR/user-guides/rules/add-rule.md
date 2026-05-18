@@ -9,7 +9,7 @@
 
 # Adicionando Regras no Perfil da Aplicação
 
-Para adicionar uma nova regra, vá para a aba *Rules*.
+Para adicionar uma nova regra, vá para a aba *Rules WAF*.
 
 As regras podem ser adicionadas tanto a branches existentes quanto a novas branches. Elas podem ser criadas do zero ou baseadas em uma das branches existentes.
 

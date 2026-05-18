@@ -90,7 +90,7 @@ Note that described configuration is applicable only for [in-line](../installati
 
 ### General filtration mode
 
-You can define the general filtration mode for all incoming requests using mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription) or rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription)..
+You can define the general filtration mode for all incoming requests using mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription) or WAF rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription).
 
 === "Mitigation controls"
 
@@ -112,11 +112,11 @@ You can define the general filtration mode for all incoming requests using mitig
     
     ![The general settings tab](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
 
-    The general filtration mode setting is represented as **Set filtration mode** [default](../user-guides/rules/rules.md#default-rules) rule in the **Rules** section. Note that endpoint-targeted filtration rules in this section have higher priority.
+    The general filtration mode setting is represented as **Set filtration mode** [default](../user-guides/rules/rules.md#default-rules) rule in the **Rules WAF** section. Note that endpoint-targeted filtration rules in this section have higher priority.
 
 ### Conditioned filtration mode
 
-You can set filtration mode for specific branches, endpoints and relying on other conditions using mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription) or rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription).
+You can set filtration mode for specific branches, endpoints and relying on other conditions using mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription) or WAF rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription).
 
 === "Mitigation controls"
 

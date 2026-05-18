@@ -22,7 +22,7 @@ Wallarm supports both POST and GET HTTP methods for GraphQL requests.
 Depending on your subscription plan, one of the following configuration methods for GraphQL API protection will be available:
 
 * Mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription)
-* Rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription)
+* WAF rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription)
 
 ## Mitigation control-based protection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
@@ -108,4 +108,6 @@ To do so:
 
 ## Rule-based protection
 
-Use same settings as described for the **GraphQL API protection** mitigation control, with the only difference in that you act in Wallarm Console → **Security Controls** → **Rules**.
+Rule-based GraphQL protection is part of the basic [Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription — for advanced GraphQL controls, use the mitigation control [described above](#mitigation-control-based-protection).
+
+Use same settings as described for the **GraphQL API protection** mitigation control, with the only difference in that you act in Wallarm Console → **Security Controls** → **Rules WAF**.

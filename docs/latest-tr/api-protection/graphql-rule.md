@@ -109,4 +109,4 @@ Bunu yapmak için:
 
 ## Rule tabanlı koruma
 
-Wallarm Console → **Security Controls** → **Rules** içinde işlem yaptığınız dışında, **GraphQL API protection** mitigation control için açıklanan ayarların aynısını kullanın.
+Wallarm Console → **Security Controls** → **Rules WAF** içinde işlem yaptığınız dışında, **GraphQL API protection** mitigation control için açıklanan ayarların aynısını kullanın.
