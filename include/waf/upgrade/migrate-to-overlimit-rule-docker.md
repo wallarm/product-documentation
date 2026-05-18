@@ -6,7 +6,7 @@ The listed directives and parameters are considered to be deprecated with the ne
 
 If the `overlimit_res` attack detection settings are customized via the listed parameters, it is recommended to transfer them to the rule as follows:
 
-1. Open Wallarm Console → **Rules** and proceed to the [**Limit request processing time**][overlimit-res-rule-docs] rule setup.
+1. Open Wallarm Console → **Rules WAF** and proceed to the [**Limit request processing time**][overlimit-res-rule-docs] rule setup.
 1. Configure the rule as done in the mounted configuration files:
 
     * The time limit for the node to process a single request (milliseconds): the value of `wallarm_process_time_limit` or `process_time_limit`.

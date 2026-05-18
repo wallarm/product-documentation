@@ -99,7 +99,7 @@ To migrate rules between tenants:
 1. In Wallarm Console, go to **source** tenant → any of the sections:
 
     * **Mitigation Controls**
-    * **Rules**
+    * **Rules WAF**
     * **Credential Stuffing**
 
 1. Click **Migrate rules**, select **target** tenant by name or ID.

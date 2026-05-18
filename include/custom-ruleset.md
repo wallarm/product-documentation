@@ -1,6 +1,6 @@
 ### Custom ruleset building
 
-Adding a new rule/mitigation control, deleting or changing existing ones in the Wallarm Console → **Security Controls** →  **Rules** or **Mitigation Controls** launch a custom ruleset build. During the building process, rules and controls are optimized and compiled into a format adopted for the filtering node. The process of building a custom ruleset typically takes from a few seconds for a small number of rules to up to an hour for complex rule trees.
+Adding a new rule/mitigation control, deleting or changing existing ones in the Wallarm Console → **Security Controls** →  **Rules WAF** or **Mitigation Controls** launch a custom ruleset build. During the building process, rules and controls are optimized and compiled into a format adopted for the filtering node. The process of building a custom ruleset typically takes from a few seconds for a small number of rules to up to an hour for complex rule trees.
 
 ### Uploading to filtering node
 
@@ -21,7 +21,7 @@ There are the following rule backup options:
 
 You can:
 
-* Access current backups: in the **Rules** section, click **Backups**.
+* Access current backups: in the **Rules WAF** section, click **Backups**.
 * Create a new backup manually: in the **Backups** window, click **Create backup**.
 * Set name and description for the manual backup and edit them at any moment.
 

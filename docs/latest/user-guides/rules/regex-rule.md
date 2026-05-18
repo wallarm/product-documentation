@@ -107,7 +107,7 @@ Let's say you have a script at `example.com/test.php`, and you want to change th
 
 To create the relevant rule:
 
-1. Go to the **Rules** tab
+1. Go to the **Rules WAF** tab
 1. Find or create the branch for `example.com/test.php` and click **Add rule**.
 1. Choose **Fine-tuning attack detection** → **Disable custom attack detector**.
 1. Select the regular expression that you want to disable.

@@ -10,13 +10,13 @@
 [link-cloud-node-synchronization]: ../../admin-en/configure-cloud-node-synchronization-en.md
 [img-rules-create-backup]:      ../../images/user-guides/rules/rules-create-backup.png
 
-# Rules
+# Rules WAF
 
 Rules are used to fine-tune the [default](../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection) Wallarm behavior during the analysis of requests and their further processing. Thus, using rules you can change how the system detects malicious requests and acts when such malicious requests are detected.
 
-Rules are configured in the **Rules** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules), or [ME](https://me1.my.wallarm.com/rules) Cloud.
+Rules are configured in the **Rules WAF** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules), or [ME](https://me1.my.wallarm.com/rules) Cloud. They are part of the basic [Cloud Native WAAP](../../about-wallarm/subscription-plans.md#core-subscription-plans) subscription and provide WAF-level fine-tuning of request analysis. For advanced API protection controls, see [Mitigation Controls](../../about-wallarm/mitigation-controls-overview.md).
 
-![Rules section](../../images/user-guides/rules/section-rules.png)
+![Rules WAF section](../../images/user-guides/rules/section-rules.png)
 
 !!! warning "Rule application delay"
     When you make changes to the rules, they don't take effect immediately as it takes some time to [compile the rules](#ruleset-lifecycle) and upload them to the filtering nodes.
@@ -58,7 +58,7 @@ Rules are automatically grouped into nested branches by endpoint URIs and other 
 * Directly specified has priority over [regex](rules.md#condition-type-regex).
 * Case [sensitive](rules.md#condition-type-equal) has priority over [insensitive](rules.md#condition-type-iequal-aa).
 
-![Rules tab overview](../../images/user-guides/rules/rules-overview.png)
+![Rules WAF tab overview](../../images/user-guides/rules/rules-overview.png)
 
 !!! info "No inheritance for parameters/points of request"
     Inheritance [does not work for rules](../rules/rules.md#rule-branches) with **In this part of request** part specified, for example, [rate limiting](rate-limiting.md), [virtual patches](vpatch-rule.md) and others. If in these rules, **In this part of request** is not used, the inheritance will work as usually.
@@ -90,7 +90,7 @@ Here are some details of how to work with the rule branches:
 
 ## Configuring
 
-To add a new rule, go to the **Rules** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules), or [ME](https://me1.my.wallarm.com/rules) Cloud. Rules can be added to both existing [branches](#rule-branches) and from scratch which will create a new branch if one does not exist.
+To add a new rule, go to the **Rules WAF** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules), or [ME](https://me1.my.wallarm.com/rules) Cloud. Rules can be added to both existing [branches](#rule-branches) and from scratch which will create a new branch if one does not exist.
 
 ![Adding a new rule][img-add-rule]
 

@@ -12,8 +12,8 @@ Note that file size upload restrictions are not the only [measure for preventing
 
 Depending on your subscription plan, one of the following configuration methods for file upload restriction will be available:
 
-* Mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription) - using mitigation control, you can set a limit not only for the entire size of the request, but for a specific parameter (more precise settings than in case of rule).
-* Rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription)
+* Mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription) - using mitigation control, you can set a limit not only for the entire size of the request, but for a specific parameter (more precise settings than in case of a WAF rule).
+* WAF rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription)
 
 ## Mitigation control-based protection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
@@ -91,7 +91,9 @@ In the example above, in the request point definition, request point is defined 
 
 ## Rule-based protection
 
-As a part of [Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription, Wallarm provides the **File upload restriction policy** [rule](../user-guides/rules/rules.md).
+Rule-based file upload restriction is part of the basic [Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription and applied via the WAF rule set. For more precise per-parameter restrictions, use the [mitigation control](#mitigation-control-based-protection) available with Advanced API Security.
+
+Wallarm provides the **File upload restriction policy** [rule](../user-guides/rules/rules.md).
 
 !!! tip ""
     Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.0+ or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.16.0+.
