@@ -52,23 +52,6 @@ To add grouping keys from recommendations:
 
 ![!API Sessions - Recommendations](../images/api-sessions/api-sessions-settings-recommendations.png)
 
-#### Adding from API Discovery
-
-Wallarm's [API Discovery](../api-discovery/overview.md) automatically finds your endpoints and their parameters - you can instruct Wallarm to use any of these parameters as session grouping keys right from API Discovery:
-
-1. In **API Discovery**, go to your endpoint.
-1. Scroll to its request/response parameters.
-1. For the desired parameter, in the **Context parameters** column, click **Add**.
-
-    The API Discovery configuration dialog is displayed with your parameter added as a grouping key.
-
-    ![!API Discovery - adding grouping keys to API Sessions](../images/api-sessions/api-sessions-grouping-keys-add-from-apid.png)
-
-1. If necessary, adjust grouping key order ([changes priority](#example-of-how-grouping-keys-work)).
-1. Save changes.
-
-    Wallarm goes back to **API Discovery** while **API Sessions** now have added grouping key.
-
 #### Adding keys manually
 
 To add session grouping keys manually, go to Wallarm Console → **API Sessions** → **Session context parameters**, add your request or response parameter and select **Group sessions by this key** for it.
@@ -183,17 +166,6 @@ For example, what in Rules would be:
 ...in API Sessions will be:
 
 ![!API Sessions - context parameters - example - request](../images/api-sessions/api-sessions-context-parameters-example-request.png)
-
-### Simplest selection
-
-While adding context parameters manually is truly [simple](#simplified-selection), there is even more efficient and simple way to add context parameters - adding them from API Discovery:
-
-1. Act [the same way](#adding-from-api-discovery) as for adding grouping key.
-1. Remove **Group session by this key** option. Now it is not a grouping key - just another parameter to be displayed within API Sessions - context parameter.
-1. Remove **Export as hashed** option to see values.
-1. Save changes.
-
-In this scenario, you do not to think or care about specifying path to your parameter - Wallarm will do that path for you automatically. This is also a good way to learn how to form these paths - try adding some parameters and check automatically created paths.
 
 ### Users and roles
 
