@@ -1,442 +1,571 @@
-# Wallarm Documentation: Comprehensive Technical Guide
+# Wallarm Documentation — Version 7.x (Preview)
 
-> Wallarm Documentation provides complete technical documentation for deploying, configuring, and managing the Wallarm API Security Platform. Documentation is available in 5 languages to support global enterprise deployments.
+> Wallarm is an API security platform that detects and blocks the OWASP API Top 10 threats, automated abuse and bots, AI-targeted attacks, and attacks against Model Context Protocol (MCP) servers. This file indexes the **preview** documentation: NGINX Node 7.x / Native Node 0.26.x+. Once 7.x is fully released it will replace 6.x as the stable version.
+
+## Important context for AI agents
+
+- This file covers Wallarm Node **version 7.x — currently in preview / not yet the default**. The current stable / default version is [6.x](https://docs.wallarm.com/llms.txt). URLs below carry the `/7.x/` prefix because 7.x is served under `/7.x/` on the docs site.
+- For other versions, fetch the version-specific llms.txt: [6.x (current stable)](https://docs.wallarm.com/llms.txt), [5.x (legacy)](https://docs.wallarm.com/5.x/llms.txt). See [Versioning Policy](https://docs.wallarm.com/7.x/updating-migrating/versioning-policy.md) for the support lifecycle.
+- Every link below points to the raw markdown (.md) companion of the page — directly ingestible, no HTML conversion needed.
+- Two Wallarm node types coexist: **NGINX Node** (7.x, NGINX-based inline filter) and **Native Node** (0.26.x+, runs without NGINX, used with connectors). Confirm which node the user has before answering node-specific questions — many commands and config keys differ.
+- Wallarm supports many deployment shapes: Security Edge (managed), Kubernetes (NGINX Ingress, Sidecar, eBPF OOB, Helm for Native Node), cloud VMs (AWS/GCP/Azure/Alibaba), API gateways (AWS API Gateway, Apigee, Layer7, Kong, IBM API Connect, MuleSoft), CDN connectors (Akamai, CloudFront, Cloudflare, Fastly, Azion), and Linux all-in-one installer. Deployment shape changes almost everything — clarify it before answering deployment questions.
+- Notable 7.x change: the NGINX Ingress Controller is now a Wallarm-maintained deployment artifact (replaces the Community Ingress NGINX project, retired November 2025). See [What's New in 7.x](https://docs.wallarm.com/7.x/updating-migrating/what-is-new.md).
+- Canonical attack catalog: [Attack Types](https://docs.wallarm.com/7.x/attacks-vulns-list.md). Canonical terminology: [Glossary](https://docs.wallarm.com/7.x/glossary-en.md).
 
 ## Available Languages
 
-- **English**: [https://docs.wallarm.com](https://docs.wallarm.com) (Primary language)
-- **日本語 (Japanese)**: Available via language selector
-- **Türkçe (Turkish)**: Available via language selector
-- **Português (Portuguese/BR)**: Available via language selector
-- **العربية (Arabic)**: Available via language selector
+- **English** (primary): [https://docs.wallarm.com/7.x/](https://docs.wallarm.com/7.x/)
+- **日本語 / Türkçe / Português (BR) / العربية**: selectable via the language switcher in the docs UI; auto-translated from English — English is canonical.
 
 ## Documentation Structure
 
 ### Introduction
 
-#### Getting Started
+- [Wallarm Platform Overview](https://docs.wallarm.com/7.x/about-wallarm/overview.md): Architecture, deployment options, supported protocols, and core capabilities of the Wallarm API security platform.
+- [Quick Start Guide](https://docs.wallarm.com/7.x/quickstart/getting-started.md): End-to-end first-time setup walkthrough for new users (also: getting started, initial setup, onboarding).
 
-- [Platform Overview](https://docs.wallarm.com/about-wallarm/overview/): In today's digital world, APIs face growing threats, especially with the rise of AI. Traditional security can...
-- [Quick Start](https://docs.wallarm.com/quickstart/getting-started/): Wallarm delivers all-in-one API security, identifying and protecting your APIs from vulnerabilities and malicious...
-#### Video Guides
-
-- [Platform Overview](https://docs.wallarm.com/demo-videos/platform-overview/): Watch our comprehensive platform overview video to learn about Wallarm's unified API security platform, including...
-- [API Discovery Overview](https://docs.wallarm.com/demo-videos/api-discovery/): Watch our demo video to discover the full potential of the Wallarm platform's API Discovery module. Get familiar...
-- [API Leaks Overview](https://docs.wallarm.com/demo-videos/api-leaks/): Watch our demo video to gain familiarity with the various types of API leaks that the Wallarm platform's API Leaks...
-- [Shadow and Orphan API](https://docs.wallarm.com/demo-videos/shadow-api/): Watch our demo video to become familiar with how you can detect shadow and orphan endpoints in your API using Wallarm.
-- [Analyzing CVEs and Attacks](https://docs.wallarm.com/demo-videos/events-inspection/): Watch our demo video to get familiar with the Wallarm platform's CVEs dashboard and know how to use this dashboard...
-- [API Abuse Prevention](https://docs.wallarm.com/demo-videos/api-abuse-prevention/): Watch our demo video to become familiar with the various bot types that the Wallarm platform's API Abuse Prevention...
-- [Platform Settings](https://docs.wallarm.com/demo-videos/overview/): Related documentation articles
 ### API Discovery
 
-- [Overview](https://docs.wallarm.com/api-discovery/overview/): Wallarm's multi-protocol API Discovery continuously analyzes the real traffic requests and builds the API inventory...
+- [API Discovery Overview](https://docs.wallarm.com/7.x/api-discovery/overview.md): Continuous multi-protocol API discovery from real traffic — REST, GraphQL, SOAP, gRPC, WebSocket, MCP — builds and maintains the API inventory (also: endpoint discovery, API inventory build, APID).
+
 #### Exploring Your APIs
 
-- [API Inventory](https://docs.wallarm.com/api-discovery/exploring/): As soon as the API Discovery module has built the catalog of your endpoints (your API inventory), you can explore it...
-- [Dashboard](https://docs.wallarm.com/api-discovery/dashboard/)
-- [Track API Changes](https://docs.wallarm.com/api-discovery/track-changes/): If changes occur in your API, API Discovery updates the built API inventory, highlights the changes and gives you...
+- [API Inventory & MCP Servers](https://docs.wallarm.com/7.x/api-discovery/exploring.md): Browse, filter, and inspect discovered REST/GraphQL/SOAP/gRPC endpoints and MCP servers in the inventory UI.
+- [API Discovery Dashboard](https://docs.wallarm.com/7.x/api-discovery/dashboard.md): Aggregated metrics view for the API inventory — endpoint counts, risk distribution, sensitive data exposure, change velocity.
+- [Track API and MCP Changes](https://docs.wallarm.com/7.x/api-discovery/track-changes.md): Review additions, modifications, removals, and re-appearances of endpoints and MCP primitives over time (also: API change tracking, API drift detection).
+
 #### Risk Analysis
 
-- [Risk Score](https://docs.wallarm.com/api-discovery/risk-score/): The risk score is made up of various factors, each having its own weight when calculating the final risk score. By...
-- [Rogue APIs (Shadow/Zombie)](https://docs.wallarm.com/api-discovery/rogue-api/): The API Discovery module can detect rogue APIs by comparing live traffic against your uploaded OpenAPI...
-- [Sensitive Business Flows](https://docs.wallarm.com/api-discovery/sbf/): With the sensitive business flow capability, Wallarm's API Discovery can automatically identify endpoints that are...
-- [Sensitive Data Detection](https://docs.wallarm.com/api-discovery/sensitive-data/): API Discovery detects and highlights sensitive data consumed and carried by your APIs, which allows applying...
-- [Setup & Configuration](https://docs.wallarm.com/api-discovery/setup/): This article describes how to enable and configure Wallarm's API Discovery.
+- [Endpoint Risk Score](https://docs.wallarm.com/7.x/api-discovery/risk-score.md): How the per-endpoint risk score is calculated and how to interpret it (also: risk rating, endpoint criticality).
+- [Rogue APIs (Shadow / Zombie)](https://docs.wallarm.com/7.x/api-discovery/rogue-api.md): Detect endpoints serving live traffic that are absent from your OpenAPI spec or no longer expected to exist (also: shadow API, zombie API, orphan API).
+- [Sensitive Business Flows (SBF)](https://docs.wallarm.com/7.x/api-discovery/sbf.md): Automatic identification of endpoints implementing critical business logic — authentication, payments, password reset, account changes (also: SBF, critical-flow endpoints).
+- [Authentication Flow Detection](https://docs.wallarm.com/7.x/api-discovery/authentication.md): Detect the authentication scheme used by each endpoint (API key, Basic, Bearer, OAuth, HMAC, NTLM, SCRAM, etc.) and surface unauthenticated endpoints (also: auth scheme detection, unauthenticated endpoint detection).
+- [Sensitive Data Detection](https://docs.wallarm.com/7.x/api-discovery/sensitive-data.md): Detect and label endpoints that consume or return sensitive data — PII, credentials, financial, health (also: PII detection, data classification, sensitive parameter detection).
+
+- [API Discovery Setup & Configuration](https://docs.wallarm.com/7.x/api-discovery/setup.md): Enable API Discovery, set required node version, configure traffic sampling and parameter customization.
+
 ### API Protection
 
-- [Overview](https://docs.wallarm.com/about-wallarm/api-protection-overview/): Wallarm's API Protection is an advanced set of API and AI protection capabilities. While basic cloud-native WAAP...
-- [Best Practices](https://docs.wallarm.com/quickstart/attack-prevention-best-practices/): This article will show you how to use Wallarm, a unique platform that is like having two guards in one, for attack...
+- [API Protection Overview](https://docs.wallarm.com/7.x/about-wallarm/api-protection-overview.md): The advanced (paid) API and AI protection feature set above the basic cloud-native WAAP (also: advanced API security, API runtime protection).
+- [Attack Prevention Best Practices](https://docs.wallarm.com/7.x/quickstart/attack-prevention-best-practices.md): Recommended baseline configuration of blocking modes, rules, and thresholds for production traffic.
+
 #### API Session Security
 
-- [Overview](https://docs.wallarm.com/api-sessions/overview/): Wallarm API Sessions provide deep visibility into user actions within your APIs. Instead of analyzing individual...
-- [Setup](https://docs.wallarm.com/api-sessions/setup/): API Sessions require NGINX Wallarm node 5.1.0 or Native Wallarm Node 0.8.0.
-- [Exploring Sessions](https://docs.wallarm.com/api-sessions/exploring/): As soon as Wallarm's API Sessions identified user sessions related to your applications, you can explore them in the...
-- [Session Blocking](https://docs.wallarm.com/api-sessions/blocking/): As Wallarm's API Sessions aim to provide full visibility into sessions within your traffic, this visibility includes...
-- [Business Logic Abuse](https://docs.wallarm.com/api-protection/business-logic-abuse-detection/): Wallarm utilizes LLM-based analysis to detect the attempts to abuse a business logic of your applications and block...
+- [API Sessions Overview](https://docs.wallarm.com/7.x/api-sessions/overview.md): Group requests into per-user sessions to analyze behavior across multiple endpoints (also: session reconstruction, user-session visibility).
+- [API Sessions Setup](https://docs.wallarm.com/7.x/api-sessions/setup.md): Configure session-identifying headers/cookies/JWT claims and session context parameters; requires NGINX Node 5.1.0+ or Native Node 0.8.0+.
+- [Exploring API Sessions](https://docs.wallarm.com/7.x/api-sessions/exploring.md): Filter, inspect, and pivot on reconstructed user sessions in the Console.
+- [Session Blocking](https://docs.wallarm.com/7.x/api-sessions/blocking.md): Block all requests belonging to a session that exhibited malicious behavior (also: session-level blocking, session ban).
+- [Business Logic Abuse Detection](https://docs.wallarm.com/7.x/api-protection/business-logic-abuse-detection.md): LLM-based detection of business-logic abuse (price manipulation, free-tier farming, etc.) within sessions (also: BLA, logic flaw detection).
+
 #### API-Specific Protection
 
-- [BOLA Protection](https://docs.wallarm.com/admin-en/configuration-guides/protecting-against-bola-trigger/): Behavioral attacks such as Broken Object Level Authorization (BOLA) exploit the vulnerability of the same name. This...
-- [Enumeration Attack Protection](https://docs.wallarm.com/api-protection/enumeration-attack-protection/): Wallarm allows protecting your APIs from the enumeration attacks preventing the reveal of information highly...
-- [GraphQL Protection](https://docs.wallarm.com/api-protection/graphql-rule/): Wallarm detects regular attacks (SQLi, RCE, etc.) in GraphQL by default even under the basic WAAP subscription plan....
-- [File Upload Restriction](https://docs.wallarm.com/api-protection/file-upload-restriction/): The unrestricted resource consumption is included in the OWASP API Top 10 2023 list of most serious API security...
-- [Custom Request Anomaly](https://docs.wallarm.com/api-protection/custom-request-anomaly/): Wallarm can utilize LLM-based analysis to semantically detect any custom anomalies in different points of requests....
-#### Bot Management
+- [BOLA Protection](https://docs.wallarm.com/7.x/admin-en/configuration-guides/protecting-against-bola-trigger.md): Detect and block Broken Object Level Authorization on endpoints with identifier variability (also: IDOR, authorization bypass, object-level access).
+- [Enumeration Attack Protection](https://docs.wallarm.com/7.x/api-protection/enumeration-attack-protection.md): Block parameter/identifier enumeration that probes for valid IDs, usernames, or coupon codes (also: ID enumeration, username enumeration, scraping).
+- [GraphQL Protection](https://docs.wallarm.com/7.x/api-protection/graphql-rule.md): GraphQL-aware request analysis — depth/complexity limits, introspection control, and standard attack detection on GraphQL payloads.
+- [File Upload Restriction](https://docs.wallarm.com/7.x/api-protection/file-upload-restriction.md): Restrict allowed file types, size, and upload patterns to prevent OWASP API Top 10 "Unrestricted Resource Consumption" abuse.
+- [Custom Request Anomaly](https://docs.wallarm.com/7.x/api-protection/custom-request-anomaly.md): LLM-based semantic anomaly detection in custom parts of requests, configured per use-case.
 
-- [Overview](https://docs.wallarm.com/api-abuse-prevention/overview/): The API Abuse Prevention module of the Wallarm platform delivers detection and mitigation of bots performing API...
-- [Setup](https://docs.wallarm.com/api-abuse-prevention/setup/): This article describes how to enable and configure the API Abuse Prevention module to detect and mitigate malicious...
-- [Exploring Detected Bots](https://docs.wallarm.com/api-abuse-prevention/exploring-bots/): API Abuse Prevention conveniently visualizes the data on bot activities for the last 30 days at the API Abuse...
-- [Exceptions](https://docs.wallarm.com/api-abuse-prevention/exceptions/): This article describes how to fine tune API Abuse Prevention by marking legitimate bots and disabling bot protection...
-#### API Spec Enforcement
+#### Bot Management (API Abuse Prevention)
 
-- [Overview](https://docs.wallarm.com/api-specification-enforcement/overview/): The API Specification Enforcement is designed to apply security policies to your APIs basing on your uploaded...
-- [Setup](https://docs.wallarm.com/api-specification-enforcement/setup/): This article describes how to enable and configure your API protection based on your uploaded API specification.
-- [Viewing Events](https://docs.wallarm.com/api-specification-enforcement/viewing-events/): As soon as you uploaded your API specification to be used for applying  specification-based security policies and...
+- [API Abuse Prevention Overview](https://docs.wallarm.com/7.x/api-abuse-prevention/overview.md): Detect and mitigate malicious bots performing scraping, account takeover, scalping, content abuse (also: bot detection, bot management, anti-bot, automated traffic protection).
+- [API Abuse Prevention Setup](https://docs.wallarm.com/7.x/api-abuse-prevention/setup.md): Enable bot detection, choose blocking mode, configure exposed endpoints.
+- [Exploring Detected Bots](https://docs.wallarm.com/7.x/api-abuse-prevention/exploring-bots.md): Drill into the 30-day rolling view of detected bot activity by type and target.
+- [Bot Detection Exceptions](https://docs.wallarm.com/7.x/api-abuse-prevention/exceptions.md): Mark known-legitimate bots (search crawlers, monitoring) and disable detection per endpoint (also: bot allowlist, bot exception rules).
+
+#### API Specification Enforcement
+
+- [API Spec Enforcement Overview](https://docs.wallarm.com/7.x/api-specification-enforcement/overview.md): Positive-security enforcement of uploaded OpenAPI / GraphQL specs — block any request that violates the schema (also: schema validation, positive security model, OAS enforcement).
+- [API Spec Enforcement Setup](https://docs.wallarm.com/7.x/api-specification-enforcement/setup.md): Upload the spec, choose enforced endpoints, set blocking behavior.
+- [API Spec Enforcement Events](https://docs.wallarm.com/7.x/api-specification-enforcement/viewing-events.md): View and triage requests blocked or flagged by spec enforcement.
+
 #### Credential Protection
 
-- [Credential Stuffing Detection](https://docs.wallarm.com/about-wallarm/credential-stuffing/): A credential stuffing attack is hazardous because of the common practice of reusing identical usernames and...
+- [Credential Stuffing Detection](https://docs.wallarm.com/7.x/about-wallarm/credential-stuffing.md): Detect login attempts using leaked credential pairs (also: account takeover, ATO detection, password reuse attack).
+
 #### Threat Protection (WAAP)
 
-- [WAAP Overview](https://docs.wallarm.com/about-wallarm/waap-overview/): Wallarm Cloud-Native WAAP (Web Application & API Protection) provides advanced protection for applications and APIs...
-- [Attack Detection & Handling](https://docs.wallarm.com/about-wallarm/protecting-against-attacks/): The Wallarm platform continuously analyzes API traffic and mitigates malicious requests in real-time. From this...
-- [Brute Force Protection](https://docs.wallarm.com/admin-en/configuration-guides/protecting-against-bruteforce/): A brute force attack is one of the attack types not detected by Wallarm out-of-the-box, its detection should be...
-- [Forced Browsing Protection](https://docs.wallarm.com/admin-en/configuration-guides/protecting-against-forcedbrowsing/): A forced browsing attack is one of the attack types not detected by Wallarm out-of-the-box, its detection should be...
-- [Multi-Attack Thresholds](https://docs.wallarm.com/admin-en/configuration-guides/protecting-with-thresholds/): When Wallarm is in blocking mode, it automatically blocks all requests with malicious payloads, letting only...
-- [DoS Protection](https://docs.wallarm.com/api-protection/dos-protection/): The unrestricted resource consumption is included in the OWASP API Top 10 2023 list of most serious API security...
-- [DDoS Protection](https://docs.wallarm.com/admin-en/configuration-guides/protecting-against-ddos/): A DDoS (Distributed Denial of Service) attack is a type of cyber attack in which an attacker seeks to make a website...
-- [IP Filtering](https://docs.wallarm.com/user-guides/ip-lists/overview/): In the IP & Session Lists → IP lists section of Wallarm Console, you can control access to your applications by...
-- [Filtration Mode](https://docs.wallarm.com/admin-en/configure-wallarm-mode/): Filtration mode defines the filtering node behavior when processing incoming requests. These instructions describe...
+- [WAAP Overview](https://docs.wallarm.com/7.x/about-wallarm/waap-overview.md): The Cloud-Native WAAP layer — web application & API firewall for the OWASP Top 10 (also: WAF, web application firewall, API firewall).
+- [Attack Detection & Handling](https://docs.wallarm.com/7.x/about-wallarm/protecting-against-attacks.md): How Wallarm detects malicious traffic in real-time and what actions it takes (block / monitor) under each filtration mode.
+- [Brute Force Protection](https://docs.wallarm.com/7.x/admin-en/configuration-guides/protecting-against-bruteforce.md): Configure rate-based detection of brute-force attacks on login and similar endpoints (also: credential brute-forcing, password spraying).
+- [Forced Browsing Protection](https://docs.wallarm.com/7.x/admin-en/configuration-guides/protecting-against-forcedbrowsing.md): Detect attempts to access non-listed or hidden resources by URL guessing (also: directory enumeration, path bruteforce).
+- [Multi-Attack Thresholds](https://docs.wallarm.com/7.x/admin-en/configuration-guides/protecting-with-thresholds.md): Block sources sending many malicious requests in a window, even when individual requests would otherwise be allowed.
+- [DoS Protection](https://docs.wallarm.com/7.x/api-protection/dos-protection.md): Mitigate application-layer DoS through resource exhaustion (also: layer-7 DoS, API resource exhaustion).
+- [DDoS Protection](https://docs.wallarm.com/7.x/admin-en/configuration-guides/protecting-against-ddos.md): Mitigate distributed volumetric denial-of-service attacks (also: volumetric DDoS, L3/L4 DDoS).
+- [IP Filtering / IP Lists](https://docs.wallarm.com/7.x/user-guides/ip-lists/overview.md): Allowlist or denylist IPs, networks, countries, or data centers (also: IP allowlist, IP denylist, IP block).
+- [Filtration Mode](https://docs.wallarm.com/7.x/admin-en/configure-wallarm-mode.md): Per-app or global filtering mode (off / monitoring / safe-blocking / blocking) controlling whether the node blocks or only reports.
+
 #### Mitigation Controls
 
-- [Overview](https://docs.wallarm.com/about-wallarm/mitigation-controls-overview/): Mitigation controls extend Wallarm's attack protection with additional security measures and allow fine-tuning of...
-#### Rules & Policies
+- [Mitigation Controls Overview](https://docs.wallarm.com/7.x/about-wallarm/mitigation-controls-overview.md): Advanced fine-tuning layer on top of basic attack detection — ACL policies, request verification, schema enforcement (also: advanced policies, advanced rules).
 
-- [Overview](https://docs.wallarm.com/user-guides/rules/rules/): Rules are used to fine-tune the default Wallarm behavior during the analysis of requests and their further...
-- [Rate Limiting](https://docs.wallarm.com/user-guides/rules/rate-limiting/): The unrestricted resource consumption is included in the OWASP API Top 10 2023 list of most serious API security...
-- [Virtual Patching](https://docs.wallarm.com/user-guides/rules/vpatch-rule/): In cases when it is impossible to fix a critical vulnerability in the code of your application or install the...
-- [Custom Regex Rules](https://docs.wallarm.com/user-guides/rules/regex-rule/): Wallarm provides the Create regexp-based attack indicator rule to define your own attack signs that are described...
-- [Sensitive Data Masking](https://docs.wallarm.com/user-guides/rules/sensitive-data-rule/): Wallarm provides the Mask sensitive data rules to configure data masking for sensitive data not to leak outside the...
-- [Request Processing](https://docs.wallarm.com/user-guides/rules/request-processing/): When analyzing requests, Wallarm filtering node uses a comprehensive set of parsers. After identifying the request...
-- [Response Headers](https://docs.wallarm.com/user-guides/rules/add-replace-response-header/): The Change server response headers rule allows adding, deleting server response headers and changing its values.
-- [Overlimit Detection](https://docs.wallarm.com/user-guides/rules/configure-overlimit-res-detection/): The Wallarm node spends limited time on a single incoming request processing and if the time limit is exceeded,...
+#### Rules (WAF)
+
+- [Rules (WAF) Overview](https://docs.wallarm.com/7.x/user-guides/rules/rules.md): Custom rules that fine-tune WAF detection per branch/endpoint — exceptions, parser overrides, attack indicators (also: custom rules, WAF tuning, exceptions, rule branches).
+- [Rate Limiting](https://docs.wallarm.com/7.x/user-guides/rules/rate-limiting.md): Per-endpoint or per-source request rate caps (also: throttling, request limiting, RPS limits).
+- [Virtual Patching](https://docs.wallarm.com/7.x/user-guides/rules/vpatch-rule.md): Block requests matching a specific CVE/vulnerability pattern without changing application code (also: vpatch, hotpatch, runtime patching).
+- [Custom Regex Rules](https://docs.wallarm.com/7.x/user-guides/rules/regex-rule.md): Define custom attack indicators using regular expressions on chosen request parts (also: regex rule, custom detector).
+- [Sensitive Data Masking](https://docs.wallarm.com/7.x/user-guides/rules/sensitive-data-rule.md): Mask sensitive request parts so they are not stored or exported (also: data masking, PII masking, redaction).
+- [Request Parser Configuration](https://docs.wallarm.com/7.x/user-guides/rules/request-processing.md): Override how the node parses specific endpoints/parameters (JSON, XML, etc.).
+- [Response Header Manipulation](https://docs.wallarm.com/7.x/user-guides/rules/add-replace-response-header.md): Add, remove, or replace response headers (also: HSTS, CSP injection rule).
+- [Overlimit Detection Configuration](https://docs.wallarm.com/7.x/user-guides/rules/configure-overlimit-res-detection.md): Tune behavior when request processing exceeds the per-request time budget.
+
 ### API Security Testing
 
-- [Security Testing Overview](https://docs.wallarm.com/vulnerability-detection/security-testing-overview/): Wallarm's Security Testing suite is a comprehensive platform designed to secure APIs throughout the software...
+- [Security Testing Overview](https://docs.wallarm.com/7.x/vulnerability-detection/security-testing-overview.md): The suite of pre-production and runtime test capabilities (Threat Replay, Schema-Based, Postman) (also: DAST, API testing).
+
 #### Threat Replay Testing
 
-- [Overview](https://docs.wallarm.com/vulnerability-detection/threat-replay-testing/overview/): By replaying incoming real-world attacks as unharmful security tests, Wallarm's Threat Replay Testing addresses the...
-- [Setup](https://docs.wallarm.com/vulnerability-detection/threat-replay-testing/setup/): This article describes how to enable and configure Wallarm's Threat Replay Testing.
-- [Exploring Results](https://docs.wallarm.com/vulnerability-detection/threat-replay-testing/exploring/): Once Threat Replay Testing is enabled and configured, you can explore the performed tests and their results as...
+- [Threat Replay Testing Overview](https://docs.wallarm.com/7.x/vulnerability-detection/threat-replay-testing/overview.md): Re-run real-world attacks as harmless safety tests to discover vulnerable endpoints (also: replay testing, attack replay).
+- [Threat Replay Testing Setup](https://docs.wallarm.com/7.x/vulnerability-detection/threat-replay-testing/setup.md): Enable and configure Threat Replay Testing.
+- [Threat Replay Testing Results](https://docs.wallarm.com/7.x/vulnerability-detection/threat-replay-testing/exploring.md): Explore test outcomes and prioritize discovered issues.
+
 #### Schema-Based Testing
 
-- [Overview](https://docs.wallarm.com/vulnerability-detection/schema-based-testing/overview/): Wallarm's Schema-Based Testing is a dynamic application security testing (DAST) solution that enables "shift-left"...
-- [Setup](https://docs.wallarm.com/vulnerability-detection/schema-based-testing/setup/): This article describes how to enable and configure Wallarm's Schema-Based Testing.
-- [Exploring Results](https://docs.wallarm.com/vulnerability-detection/schema-based-testing/explore/): Once Schema-Based Testing is enabled and tests are run, you can explore the test run results as described in this...
+- [Schema-Based Testing Overview](https://docs.wallarm.com/7.x/vulnerability-detection/schema-based-testing/overview.md): Shift-left DAST that probes endpoints listed in an OpenAPI / GraphQL schema (also: schema DAST, OpenAPI testing, shift-left testing).
+- [Schema-Based Testing Setup](https://docs.wallarm.com/7.x/vulnerability-detection/schema-based-testing/setup.md): Upload schema, configure auth, schedule runs.
+- [Schema-Based Testing Results](https://docs.wallarm.com/7.x/vulnerability-detection/schema-based-testing/explore.md): Browse test runs and reported findings.
+
 #### API Security Testing via Postman
 
-- [Overview](https://docs.wallarm.com/vulnerability-detection/api-security-testing-via-postman/overview/): Run safe, passive security tests on your Postman collections to detect authentication gaps, data leaks, and...
-- [Setup](https://docs.wallarm.com/vulnerability-detection/api-security-testing-via-postman/setup/): This article describes how to enable and configure API Security Testing via Postman.
-- [Exploring Results](https://docs.wallarm.com/vulnerability-detection/api-security-testing-via-postman/exploring/): You can view API Security Testing results in two ways: mainly in Postman's AI Mode (recommended), or in Wallarm...
-#### API Attack Surface (AASM)
+- [Postman Testing Overview](https://docs.wallarm.com/7.x/vulnerability-detection/api-security-testing-via-postman/overview.md): Run passive security tests on Postman collections (also: Postman tests, passive API testing).
+- [Postman Testing Setup](https://docs.wallarm.com/7.x/vulnerability-detection/api-security-testing-via-postman/setup.md): Connect Postman to Wallarm and authorize collections.
+- [Postman Testing Results](https://docs.wallarm.com/7.x/vulnerability-detection/api-security-testing-via-postman/exploring.md): View results in Postman AI Mode or in Wallarm Console.
 
-- [Overview](https://docs.wallarm.com/api-attack-surface/overview/): Wallarm's API Attack Surface Management (AASM) is an agentless detection solution tailored to the API ecosystem,...
-- [Setup](https://docs.wallarm.com/api-attack-surface/setup/): This article describes how to enable and configure API Attack Surface Management to discover your external hosts...
-- [API Surface Discovery](https://docs.wallarm.com/api-attack-surface/api-surface/): The API Attack Surface Discovery (AASD) component of the Wallarm's API Attack Surface Management scans your selected...
-- [Security Issues](https://docs.wallarm.com/api-attack-surface/security-issues/): Once API Attack Surface Discovery finds the external hosts of your selected domains, Wallarm checks if these hosts...
-- [Detecting Vulnerabilities](https://docs.wallarm.com/about-wallarm/detecting-vulnerabilities/): Due to negligence or inadequate information when building or implementing an application, it can be vulnerable to...
+#### API Attack Surface Management (AASM)
+
+- [AASM Overview](https://docs.wallarm.com/7.x/api-attack-surface/overview.md): Agentless external attack surface management for APIs (also: EASM, external attack surface, API ASM).
+- [AASM Setup](https://docs.wallarm.com/7.x/api-attack-surface/setup.md): Configure domains, scope, and scan cadence.
+- [API Surface Discovery (AASD)](https://docs.wallarm.com/7.x/api-attack-surface/api-surface.md): External enumeration of hosts and API endpoints reachable from the internet (also: subdomain enumeration, exposed API discovery).
+- [AASM Security Issues](https://docs.wallarm.com/7.x/api-attack-surface/security-issues.md): Misconfigurations and risks found on discovered external hosts.
+
+- [Detecting Vulnerabilities](https://docs.wallarm.com/7.x/about-wallarm/detecting-vulnerabilities.md): How Wallarm passively detects application vulnerabilities from live traffic (also: passive vulnerability detection, vuln detection).
+
 ### AI Security
 
-- [Overview](https://docs.wallarm.com/agentic-ai/overview/): As AI agents and large language models (LLMs) become integrated into enterprise applications, they introduce new...
+- [AI Security Overview](https://docs.wallarm.com/7.x/agentic-ai/overview.md): Wallarm's protection coverage for AI agents, LLM-backed APIs, and MCP servers (also: AI security, LLM security, agentic AI security).
+
 #### AI Discovery
 
-- [AI Agent Discovery](https://docs.wallarm.com/agentic-ai/agentic-ai-discovery/): Wallarm's API Discovery automatically identifies your APIs that are related to ML models, neural networks, chatbots...
+- [AI Agent Discovery](https://docs.wallarm.com/7.x/agentic-ai/agentic-ai-discovery.md): Automatic identification of APIs that talk to LLMs, ML models, chatbots, or AI agents (also: LLM endpoint discovery).
+
+#### MCP Discovery
+
+- [MCP Server Discovery](https://docs.wallarm.com/7.x/agentic-ai/mcp-discovery.md): Detect Model Context Protocol servers in traffic and capture their tools / resources / prompts (also: MCP detection, MCP inventory).
+- [MCP Sessions](https://docs.wallarm.com/7.x/api-sessions/mcp-sessions.md): Group MCP tool calls, resource reads, and prompt invocations into sessions keyed by `MCP-SESSION-ID` (also: MCP session reconstruction).
+
 #### AI Protection
 
-- [AI Agent Protection](https://docs.wallarm.com/agentic-ai/agentic-ai-protection/): Wallarm provides API-first security for AI systems by protecting AI agents, AI proxies, and APIs with AI features by...
-- [AI Payload Inspection](https://docs.wallarm.com/agentic-ai/ai-payload-inspection/): Wallarm utilizes LLM-based analysis to detect the attempts to exploit an AI agent’s logic to leak system secrets,...
-- [Rogue MCP Inspection](https://docs.wallarm.com/agentic-ai/rogue-mcp-inspection/): Wallarm allows you to audit every installed local MCP server to expose supply-chain risks, excessive privileges, and...
+- [AI Agent Protection](https://docs.wallarm.com/7.x/agentic-ai/agentic-ai-protection.md): API-level protection of AI agents, AI proxies, and AI-enabled APIs (also: AI runtime protection, LLM gateway protection).
+- [AI Payload Inspection](https://docs.wallarm.com/7.x/agentic-ai/ai-payload-inspection.md): LLM-based detection of prompt injection, system-prompt leakage, and jailbreaks in AI payloads (also: prompt injection detection, LLM input/output inspection).
+- [MCP Mitigation Controls](https://docs.wallarm.com/7.x/agentic-ai/mcp-mitigation-controls.md): MCP-specific policies — ACL by method/primitive/user/role, request verification, tool input schema enforcement (also: MCP ACL, MCP policy).
+- [Rogue MCP Inspection](https://docs.wallarm.com/7.x/agentic-ai/rogue-mcp-inspection.md): Audit locally installed MCP servers for supply-chain risks and excessive privileges (also: MCP supply-chain audit).
+
 ### Deployment
 
-- [All Deployment Options](https://docs.wallarm.com/installation/supported-deployment-options/)
-#### Security Edge
+- [All Deployment Options](https://docs.wallarm.com/7.x/installation/supported-deployment-options.md): Decision matrix of all supported deployment shapes — start here when choosing how to deploy.
 
-- [Overview](https://docs.wallarm.com/installation/security-edge/overview/): Security Edge is Wallarm's managed deployment option allowing you to protect your APIs and applications without...
-- [Free Tier](https://docs.wallarm.com/installation/security-edge/free-tier/): The Free Tier of Security Edge lets you evaluate the Wallarm platform and protect up to 500,000 requests per month -...
-- **Inline**
-- [Overview](https://docs.wallarm.com/installation/security-edge/inline/overview/): The Security Edge platform provides a managed service for deploying Wallarm Nodes across geographically distributed...
-- [Deployment Guide](https://docs.wallarm.com/installation/security-edge/inline/deployment/): To deploy the Wallarm Security Edge for inline traffic analysis, follow this guide.
-- [Access Control Lists](https://docs.wallarm.com/installation/security-edge/inline/access-control-lists/): An access control list (ACL) is a set of rules that defines which IP addresses can access specific hosts and...
-- [Cache Rules](https://docs.wallarm.com/installation/security-edge/inline/cache-rules/): Cache rules are settings that define how the Security Edge Inline node stores and reuses responses from specific...
-- [Custom Block Page](https://docs.wallarm.com/installation/security-edge/inline/custom-block-page/): When the Security Edge Inline Node blocks a malicious request, it returns a block page along with an HTTP 403...
-- [Host Redirection](https://docs.wallarm.com/installation/security-edge/inline/host-redirection/): Wallarm Security Edge Inline provides a host redirection feature to help you unify traffic entry points.
-- [mTLS Configuration](https://docs.wallarm.com/installation/security-edge/inline/mtls/): Mutual TLS (mTLS) allows the Wallarm Edge Node to authenticate itself to your origin servers using a client...
-- [Multi-Region](https://docs.wallarm.com/installation/security-edge/inline/multi-region/): You can deploy the inline Edge Nodes across multiple regions and cloud providers to achieve geo‑redundancy and low...
-- [NGINX Overrides](https://docs.wallarm.com/installation/security-edge/inline/nginx-overrides/): Security Edge Inline supports overriding NGINX directives at the host (server) and location levels. These overrides...
-- [Upgrade & Management](https://docs.wallarm.com/installation/security-edge/inline/upgrade-and-management/): Manage the Security Edge Inline deployment from the Wallarm Console by updating configuration settings, upgrading...
-- **Telemetry Portal**
-- [Overview](https://docs.wallarm.com/installation/security-edge/inline/telemetry-portal/): The telemetry portal for Security Edge Inline provides Grafana dashboards with real-time insights into metrics on...
-- [Main Dashboard](https://docs.wallarm.com/installation/security-edge/inline/telemetry-portal-main-dashboard/): This article describes one of the two dashboards in the Security Edge Inline telemetry portal, called Portal Inline...
-- [Logs Dashboard](https://docs.wallarm.com/installation/security-edge/inline/telemetry-portal-logs-dashboard/): This article describes one of the two dashboards in the Security Edge Inline telemetry portal, called Portal Inline...
-- [Connectors](https://docs.wallarm.com/installation/security-edge/se-connector/): The Security Edge platform provides a managed service for deploying Wallarm Nodes across geographically distributed...
+#### Security Edge (Managed)
+
+- [Security Edge Overview](https://docs.wallarm.com/7.x/installation/security-edge/overview.md): Wallarm-managed deployment of nodes in geographically distributed PoPs — no infrastructure to run (also: managed edge, SaaS deployment).
+- [Security Edge Free Tier](https://docs.wallarm.com/7.x/installation/security-edge/free-tier.md): Free Security Edge tier — up to 500,000 requests per month.
+
+##### Security Edge Inline
+
+- [Security Edge Inline Overview](https://docs.wallarm.com/7.x/installation/security-edge/inline/overview.md): Inline managed Edge Nodes proxying traffic to your origin.
+- [Security Edge Inline Deployment Guide](https://docs.wallarm.com/7.x/installation/security-edge/inline/deployment.md): Step-by-step onboarding of an inline Edge deployment.
+- [Edge Inline Access Control Lists](https://docs.wallarm.com/7.x/installation/security-edge/inline/access-control-lists.md): Edge ACLs by IP / network / country / data center.
+- [Edge Inline Cache Rules](https://docs.wallarm.com/7.x/installation/security-edge/inline/cache-rules.md): Configure response caching at the Edge.
+- [Edge Inline Custom Block Page](https://docs.wallarm.com/7.x/installation/security-edge/inline/custom-block-page.md): Customize the HTTP 403 block page served when Edge blocks a request.
+- [Edge Inline Host Redirection](https://docs.wallarm.com/7.x/installation/security-edge/inline/host-redirection.md): Redirect requests between hosts at the Edge to unify entry points.
+- [Edge Inline mTLS Configuration](https://docs.wallarm.com/7.x/installation/security-edge/inline/mtls.md): Mutual TLS between the Edge Node and your origin (client certificate auth).
+- [Edge Inline Multi-Region Deployment](https://docs.wallarm.com/7.x/installation/security-edge/inline/multi-region.md): Deploy Edge Nodes across multiple regions / cloud providers for geo-redundancy.
+- [Edge Inline NGINX Overrides](https://docs.wallarm.com/7.x/installation/security-edge/inline/nginx-overrides.md): Override NGINX directives on Edge at server / location level.
+- [Edge Inline Upgrade & Management](https://docs.wallarm.com/7.x/installation/security-edge/inline/upgrade-and-management.md): Manage Edge configuration and upgrade Edge Nodes from the Console.
+
+###### Security Edge Telemetry Portal
+
+- [Edge Telemetry Portal Overview](https://docs.wallarm.com/7.x/installation/security-edge/inline/telemetry-portal.md): Grafana dashboards with real-time Edge metrics — overview.
+- [Edge Telemetry Main Dashboard](https://docs.wallarm.com/7.x/installation/security-edge/inline/telemetry-portal-main-dashboard.md): "Portal Inline Main" dashboard — traffic, latency, blocks.
+- [Edge Telemetry Logs Dashboard](https://docs.wallarm.com/7.x/installation/security-edge/inline/telemetry-portal-logs-dashboard.md): "Portal Inline Logs" dashboard — request and access logs.
+
+- [Security Edge Connectors](https://docs.wallarm.com/7.x/installation/security-edge/se-connector.md): Managed connector deployments via Security Edge for non-inline integrations.
+
 #### Kubernetes
 
-- [Istio](https://docs.wallarm.com/installation/connectors/istio/): This guide describes how to secure your APIs managed by Istio using the Wallarm Connector for Istio Ingress.
-- [Gloo Gateway](https://docs.wallarm.com/installation/connectors/gloo/): This guide describes how to secure your APIs managed by Gloo Gateway (Gloo Edge API) using the Wallarm Connector...
-- **NGINX Ingress Controller**
-- [Deployment](https://docs.wallarm.com/admin-en/installation-kubernetes-en/): These instructions provide you with the steps to deploy the Wallarm NGINX-based Ingress controller to your K8s...
-- [Configuration Options](https://docs.wallarm.com/admin-en/configure-kubernetes-en/): This page describes the Helm chart configuration options for the Wallarm Ingress Controller based on F5 NGINX...
-- [High Availability](https://docs.wallarm.com/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations/): This article provides configuration recommendations for the Wallarm Ingress controller to be highly available and...
-- [Monitoring](https://docs.wallarm.com/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring/): The general aspects of NGINX Ingress controller monitoring are already well covered on the Internet. Wallarm...
-- [Real Client IP](https://docs.wallarm.com/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip/): These instructions describe the Wallarm Ingress controller configuration required to identify an originating IP...
-- [Chaining Ingress Controllers](https://docs.wallarm.com/admin-en/chaining-wallarm-and-other-ingress-controllers/): These instructions provide you with the steps to deploy the Wallarm Ingress controller to your K8s cluster and chain...
-- [Kong Ingress Controller](https://docs.wallarm.com/installation/connectors/kong-ingress-controller/): To secure APIs managed by Kong Ingress Controller, Wallarm provides a connector that integrates seamlessly into your...
-- **Helm Chart for Native Node**
-- [Deployment](https://docs.wallarm.com/installation/native-node/helm-chart/): The Wallarm Native Node, which operates independently of NGINX, is designed for deployment with some connectors. You...
-- [Configuration](https://docs.wallarm.com/installation/native-node/helm-chart-conf/): When deploying the self-hosted Wallarm Native Node using the Helm chart, configuration is specified in the...
-- **Sidecar Proxy**
-- [Deployment](https://docs.wallarm.com/installation/kubernetes/sidecar-proxy/deployment/): To secure an application deployed as a Pod in a Kubernetes cluster, you can run the NGINX-based Wallarm node in...
-- [Helm Chart](https://docs.wallarm.com/installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm/): This document describes Wallarm-specific Helm chart values you can change during Wallarm Sidecar deployment or...
-- [Customization](https://docs.wallarm.com/installation/kubernetes/sidecar-proxy/customization/): This article instructs you on safe and effective customization of the Wallarm Kubernetes Sidecar solution providing...
-- [Pod Annotations](https://docs.wallarm.com/installation/kubernetes/sidecar-proxy/pod-annotations/): The Wallarm Sidecar solution can be configured via annotations on the per-pod's basis. The list of annotations...
-- [Scaling](https://docs.wallarm.com/installation/kubernetes/sidecar-proxy/scaling/): This guide focuses on the nuances of scaling, High Availability (HA), and the correct allocation of resources for...
-- **eBPF (Out-of-Band)**
-- [Deployment](https://docs.wallarm.com/installation/oob/ebpf/deployment/): !!! info "Beta"
-- [Helm Chart](https://docs.wallarm.com/installation/oob/ebpf/helm-chart-for-wallarm/): This document provides information about Wallarm-specific Helm chart values that can be modified during the...
-- [Selecting Packets](https://docs.wallarm.com/installation/oob/ebpf/selecting-packets/): The Wallarm eBPF solution operates on a traffic mirror and provides control over the traffic mirror scope. It allows...
+- [Istio Connector](https://docs.wallarm.com/7.x/installation/connectors/istio.md): Secure Istio-managed APIs via the Wallarm Connector for Istio Ingress.
+- [Gloo Gateway Connector](https://docs.wallarm.com/7.x/installation/connectors/gloo.md): Secure Gloo Gateway (Gloo Edge) APIs via the Wallarm Connector.
+
+##### NGINX Ingress Controller
+
+- [Wallarm NGINX Ingress Deployment](https://docs.wallarm.com/7.x/admin-en/installation-kubernetes-en.md): Deploy the F5 NGINX-based Wallarm Ingress controller on Kubernetes (also: K8s ingress, kubernetes installation, Helm install).
+- [NGINX Ingress Configuration Options](https://docs.wallarm.com/7.x/admin-en/configure-kubernetes-en.md): Full Helm chart values reference for the Wallarm Ingress controller.
+- [NGINX Ingress High Availability](https://docs.wallarm.com/7.x/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md): HA / resilience guidance for the Wallarm Ingress controller.
+- [NGINX Ingress Monitoring](https://docs.wallarm.com/7.x/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md): Monitoring guidance specific to the Wallarm Ingress controller.
+- [NGINX Ingress Real Client IP](https://docs.wallarm.com/7.x/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md): Configure the controller to extract the originating client IP behind proxies.
+- [Chaining Wallarm with Other Ingress Controllers](https://docs.wallarm.com/7.x/admin-en/chaining-wallarm-and-other-ingress-controllers.md): Run the Wallarm Ingress controller alongside an existing primary ingress.
+
+- [Kong Ingress Controller Connector](https://docs.wallarm.com/7.x/installation/connectors/kong-ingress-controller.md): Secure Kong Ingress-managed APIs via the Wallarm connector.
+
+##### Helm Chart for Native Node
+
+- [Native Node Helm Chart Deployment](https://docs.wallarm.com/7.x/installation/native-node/helm-chart.md): Deploy the standalone Native Node on Kubernetes via Helm.
+- [Native Node Helm Chart Configuration](https://docs.wallarm.com/7.x/installation/native-node/helm-chart-conf.md): `values.yaml` reference for the Native Node Helm chart.
+
+##### Sidecar Proxy
+
+- [Sidecar Proxy Deployment](https://docs.wallarm.com/7.x/installation/kubernetes/sidecar-proxy/deployment.md): Run the NGINX-based Wallarm node as a per-pod sidecar (also: K8s sidecar, ambient mode).
+- [Sidecar Proxy Helm Chart](https://docs.wallarm.com/7.x/installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md): Helm chart reference for the Wallarm sidecar.
+- [Sidecar Proxy Customization](https://docs.wallarm.com/7.x/installation/kubernetes/sidecar-proxy/customization.md): Safe customization patterns for the sidecar solution.
+- [Sidecar Pod Annotations](https://docs.wallarm.com/7.x/installation/kubernetes/sidecar-proxy/pod-annotations.md): Per-pod sidecar configuration via Kubernetes annotations.
+- [Sidecar Scaling Guide](https://docs.wallarm.com/7.x/installation/kubernetes/sidecar-proxy/scaling.md): Scaling, HA, and resource allocation for the sidecar.
+
+##### eBPF (Out-of-Band)
+
+- [eBPF OOB Deployment](https://docs.wallarm.com/7.x/installation/oob/ebpf/deployment.md): eBPF-based out-of-band traffic inspection on Kubernetes (Beta) (also: OOB inspection, traffic mirror, kernel-level capture).
+- [eBPF OOB Helm Chart](https://docs.wallarm.com/7.x/installation/oob/ebpf/helm-chart-for-wallarm.md): Helm chart reference for the eBPF OOB deployment.
+- [eBPF OOB Packet Selection](https://docs.wallarm.com/7.x/installation/oob/ebpf/selecting-packets.md): Scope the traffic mirror by pod / namespace / protocol.
+
 #### Cloud Platforms
 
-- **AWS**
-- [AMI for NGINX Node](https://docs.wallarm.com/installation/cloud-platforms/aws/ami/)
-- [AMI for Native Node](https://docs.wallarm.com/installation/native-node/aws-ami/): The Wallarm Native Node, which operates independently of NGINX, is designed for Wallarm connector self-hosted...
-- [Docker on ECS](https://docs.wallarm.com/installation/cloud-platforms/aws/docker-container/): This quick guide provides the steps to deploy the Docker image of the NGINX-based Wallarm node to the Amazon cloud...
-- **Terraform Module**
-- [Overview](https://docs.wallarm.com/installation/cloud-platforms/aws/terraform-module/overview/): Wallarm provides the Terraform module to deploy the node to AWS from the Terraform-compatible environment. Use these...
-- [Terraform for VPC](https://docs.wallarm.com/installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc/): This example demonstrates how to deploy Wallarm as an inline proxy to an existing AWS Virtual Private Cloud (VPC)...
-- [Terraform for API Gateway](https://docs.wallarm.com/installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway/): This example demonstrates how to protect Amazon API Gateway with Wallarm deployed as an inline proxy to AWS Virtual...
-- [AWS WAF Integration](https://docs.wallarm.com/installation/cloud-platforms/aws/aws-waf-integration/): In modern cloud architectures, a layered security approach is essential to protect both the perimeter and the...
-- [Cost Estimation](https://docs.wallarm.com/installation/cloud-platforms/aws/costs/): This page outlines the typical AWS infrastructure costs associated with deploying Wallarm NGINX Nodes using...
-- **Autoscaling**
-- [Overview](https://docs.wallarm.com/admin-en/installation-guides/amazon-cloud/autoscaling-overview/): You can set up Wallarm filtering node auto scaling to make sure that filtering nodes are capable of handling traffic...
-- [Create AMI Image](https://docs.wallarm.com/admin-en/installation-guides/amazon-cloud/create-image/): You can set up auto scaling for the Wallarm filtering nodes deployed on the Amazon cloud. This function requires...
-- [Autoscaling Group Setup](https://docs.wallarm.com/admin-en/installation-guides/amazon-cloud/autoscaling-group-guide/): !!! info "Required rights"
-- [Load Balancing](https://docs.wallarm.com/admin-en/installation-guides/amazon-cloud/load-balancing-guide/): Now, once you have a [configured][link-doc-asg-guide] filtering node Auto Scaling Group, you need to create and...
-- **GCP**
-- [Machine Image for NGINX Node](https://docs.wallarm.com/installation/cloud-platforms/gcp/machine-image/)
-- [Docker on GCE](https://docs.wallarm.com/installation/cloud-platforms/gcp/docker-container/): This quick guide provides the steps to deploy the Docker image of the NGINX-based Wallarm node to the Google Cloud...
-- **Autoscaling**
-- [Overview](https://docs.wallarm.com/admin-en/installation-guides/google-cloud/autoscaling-overview/): You can set up Wallarm filtering node auto scaling on the Google Cloud Platform (GCP) to make sure that filtering...
-- [Create GCP Image](https://docs.wallarm.com/admin-en/installation-guides/google-cloud/create-image/): To set up auto scaling of the Wallarm filtering nodes deployed on the Google Cloud Platform (GCP) you first need...
-- [Instance Template](https://docs.wallarm.com/admin-en/installation-guides/google-cloud/creating-instance-template/): A filtering node instance template will be used later as the base when creating a managed instance group. To create...
-- [Autoscaling Group](https://docs.wallarm.com/admin-en/installation-guides/google-cloud/creating-autoscaling-group/): To create a managed instance group and configure its auto scaling, perform the following steps:
-- [Load Balancing](https://docs.wallarm.com/admin-en/installation-guides/google-cloud/load-balancing-guide/): Now that you have a [configured][link-doc-asg-guide] managed instance group with enabled auto scaling, you need to...
-- **Azure**
-- [Container Instances](https://docs.wallarm.com/installation/cloud-platforms/azure/docker-container/): This quick guide provides the steps to deploy the Docker image of the NGINX-based Wallarm node to the Microsoft...
-- **Alibaba Cloud**
-- [Docker on ECS](https://docs.wallarm.com/installation/cloud-platforms/alibaba-cloud/docker-container/): This quick guide provides the steps to deploy the Docker image of the NGINX-based Wallarm node to the Alibaba Cloud...
-- [Heroku](https://docs.wallarm.com/installation/heroku/docker-image/): Wallarm can protect web applications and APIs deployed on the Heroku cloud platform. This guide walks you through...
-- [Private Cloud](https://docs.wallarm.com/installation/cloud-platforms/private-cloud/): Private clouds are cloud environments deployed solely to a single organization or entity, providing exclusive use...
-- [Cloud-Init Script](https://docs.wallarm.com/installation/cloud-platforms/cloud-init/): If following the Infrastructure as Code (IaC) approach, you may need to use the `cloud-init` script to deploy the...
+##### AWS
+
+- [Wallarm NGINX Node AMI for AWS](https://docs.wallarm.com/7.x/installation/cloud-platforms/aws/ami.md): Pre-built EC2 AMI of the NGINX Wallarm Node — fastest way to launch on AWS.
+- [Wallarm Native Node AMI for AWS](https://docs.wallarm.com/7.x/installation/native-node/aws-ami.md): Pre-built EC2 AMI of the Native Node, intended for use with connectors and TCP traffic mirror.
+- [NGINX Node Docker on AWS ECS](https://docs.wallarm.com/7.x/installation/cloud-platforms/aws/docker-container.md): Deploy the NGINX Node Docker image to Amazon ECS.
+
+###### Terraform Module (AWS)
+
+- [Terraform Module Overview](https://docs.wallarm.com/7.x/installation/cloud-platforms/aws/terraform-module/overview.md): Wallarm-provided Terraform module for deploying the node to AWS (also: IaC, terraform deploy).
+- [Terraform — Wallarm in a VPC](https://docs.wallarm.com/7.x/installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md): Deploy Wallarm as an inline proxy in an existing AWS VPC.
+- [Terraform — Wallarm in front of API Gateway](https://docs.wallarm.com/7.x/installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md): Protect Amazon API Gateway with Wallarm deployed inline in a VPC.
+
+- [AWS WAF Integration](https://docs.wallarm.com/7.x/installation/cloud-platforms/aws/aws-waf-integration.md): Layered protection combining AWS WAF (perimeter) with Wallarm (API security).
+- [AWS Cost Estimation](https://docs.wallarm.com/7.x/installation/cloud-platforms/aws/costs.md): Typical AWS infrastructure costs for running Wallarm NGINX Nodes via AMI.
+
+###### AWS Autoscaling
+
+- [AWS Autoscaling Overview](https://docs.wallarm.com/7.x/admin-en/installation-guides/amazon-cloud/autoscaling-overview.md): Auto-scale Wallarm filtering nodes on EC2 to match traffic.
+- [Create AWS AMI Image](https://docs.wallarm.com/7.x/admin-en/installation-guides/amazon-cloud/create-image.md): Build a custom Wallarm AMI for use in an Auto Scaling Group.
+- [AWS Autoscaling Group Setup](https://docs.wallarm.com/7.x/admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md): Create and configure the Auto Scaling Group for Wallarm nodes (requires Wallarm "Administrator" or "Deploy" rights).
+- [AWS Load Balancing for Wallarm](https://docs.wallarm.com/7.x/admin-en/installation-guides/amazon-cloud/load-balancing-guide.md): Create an AWS load balancer in front of the Wallarm ASG.
+
+- [Routing Traffic to the Wallarm Node on AWS](https://docs.wallarm.com/7.x/installation/cloud-platforms/aws/traffic-routing.md): Configure ALB, NLB, CloudFront, or API Gateway to send all traffic through the Wallarm Node and lock down direct origin access.
+
+##### GCP
+
+- [Wallarm NGINX Node Machine Image for GCP](https://docs.wallarm.com/7.x/installation/cloud-platforms/gcp/machine-image.md): Pre-built Compute Engine image of the NGINX Wallarm Node.
+- [NGINX Node Docker on GCE](https://docs.wallarm.com/7.x/installation/cloud-platforms/gcp/docker-container.md): Deploy the NGINX Node Docker image on Google Compute Engine.
+
+###### GCP Autoscaling
+
+- [GCP Autoscaling Overview](https://docs.wallarm.com/7.x/admin-en/installation-guides/google-cloud/autoscaling-overview.md): Auto-scale Wallarm nodes on GCP Managed Instance Groups.
+- [Create GCP Image](https://docs.wallarm.com/7.x/admin-en/installation-guides/google-cloud/create-image.md): Build a custom Wallarm Compute Engine image.
+- [GCP Instance Template](https://docs.wallarm.com/7.x/admin-en/installation-guides/google-cloud/creating-instance-template.md): Define the instance template used by the Managed Instance Group.
+- [GCP Managed Instance Group](https://docs.wallarm.com/7.x/admin-en/installation-guides/google-cloud/creating-autoscaling-group.md): Create the MIG and configure its autoscaling policy.
+- [GCP Load Balancing for Wallarm](https://docs.wallarm.com/7.x/admin-en/installation-guides/google-cloud/load-balancing-guide.md): Configure a Google load balancer in front of the Wallarm MIG.
+
+##### Azure
+
+- [Azure Container Instances Deployment](https://docs.wallarm.com/7.x/installation/cloud-platforms/azure/docker-container.md): Deploy the NGINX Node Docker image to Azure Container Instances.
+
+##### Alibaba Cloud
+
+- [Alibaba Docker on ECS](https://docs.wallarm.com/7.x/installation/cloud-platforms/alibaba-cloud/docker-container.md): Deploy the NGINX Node Docker image to Alibaba Cloud ECS.
+
+- [Heroku Deployment](https://docs.wallarm.com/7.x/installation/heroku/docker-image.md): Deploy Wallarm in front of a Heroku-hosted application via Docker image.
+- [Private Cloud Deployment](https://docs.wallarm.com/7.x/installation/cloud-platforms/private-cloud.md): Run Wallarm in a private / dedicated cloud environment.
+- [Cloud-Init Script](https://docs.wallarm.com/7.x/installation/cloud-platforms/cloud-init.md): Bootstrap Wallarm nodes via cloud-init for IaC workflows.
+
 #### API Gateways
 
-- [AWS API Gateway](https://docs.wallarm.com/installation/connectors/aws-api-gateway/): The Wallarm Connector for Amazon API Gateway automatically builds an [API inventory][api-inventory] from real...
-- [Broadcom Layer7](https://docs.wallarm.com/installation/connectors/layer7-api-gateway/): Broadcom's Layer7 API Gateways provide a robust solution for controlling and securing an organization's API traffic....
-- [Kong API Gateway](https://docs.wallarm.com/installation/connectors/standalone-kong-api-gateway/): To secure APIs managed by a standalone Kong API Gateway, Wallarm provides a connector implemented as a Lua plugin.
+- [AWS API Gateway Connector](https://docs.wallarm.com/7.x/installation/connectors/aws-api-gateway.md): Build an API inventory and protect APIs managed by Amazon API Gateway.
+- [Broadcom Layer7 API Gateway Connector](https://docs.wallarm.com/7.x/installation/connectors/layer7-api-gateway.md): Secure Layer7-managed APIs via the Wallarm connector.
+- [Kong API Gateway Connector (Standalone)](https://docs.wallarm.com/7.x/installation/connectors/standalone-kong-api-gateway.md): Lua-plugin connector for standalone Kong API Gateway.
+
 #### CDN
 
-- [Akamai EdgeWorkers](https://docs.wallarm.com/installation/connectors/akamai-edgeworkers/): For customers delivering their APIs through Akamai CDN properties, Wallarm provides a dedicated EdgeWorker code...
-- [CloudFront](https://docs.wallarm.com/installation/connectors/aws-lambda/): To use Wallarm as a connector for CloudFront, you need to deploy the Wallarm node externally and run...
-- [Azion Edge](https://docs.wallarm.com/installation/connectors/azion-edge/): The solution involves deploying the Wallarm node externally and injecting custom code or policies into the specific...
-- [Cloudflare](https://docs.wallarm.com/installation/connectors/cloudflare/): To use Wallarm as a connector for Cloudflare, you need to deploy the Wallarm Node externally and run a Cloudflare...
-- [Fastly](https://docs.wallarm.com/installation/connectors/fastly/): To use Wallarm as a Fastly connector, you need to deploy the Wallarm Node externally and run a Fastly Compute...
-#### API Management Platform
+- [Akamai EdgeWorkers Connector](https://docs.wallarm.com/7.x/installation/connectors/akamai-edgeworkers.md): Forward traffic from Akamai EdgeWorkers to a Wallarm Node for inspection.
+- [AWS CloudFront Connector (Lambda@Edge)](https://docs.wallarm.com/7.x/installation/connectors/aws-lambda.md): Wallarm connector for CloudFront via Lambda@Edge.
+- [Azion Edge Connector](https://docs.wallarm.com/7.x/installation/connectors/azion-edge.md): Wallarm connector for Azion Edge.
+- [Cloudflare Connector](https://docs.wallarm.com/7.x/installation/connectors/cloudflare.md): Wallarm connector for Cloudflare (Workers-based).
+- [Fastly Connector](https://docs.wallarm.com/7.x/installation/connectors/fastly.md): Wallarm connector for Fastly Compute@Edge.
 
-- **Mulesoft**
-- [Flex Gateway](https://docs.wallarm.com/installation/connectors/mulesoft-flex/): This guide describes how to secure your Mule and non-Mule APIs managed by MuleSoft Flex Gateway using the Wallarm...
-- [Mule Gateway](https://docs.wallarm.com/installation/connectors/mulesoft/): This guide describes how to secure your Mule APIs managed by Mule Gateway using the Wallarm connector.
-- [Azure API Management](https://docs.wallarm.com/installation/connectors/azure-api-management/): This guide describes how to secure your APIs managed by Azure API Management (APIM) using the Wallarm connector.
-- [Apigee](https://docs.wallarm.com/installation/connectors/apigee/): This guide describes how to secure your APIs managed by Apigee API Management (APIM) using the Wallarm connector.
-- [IBM API Connect](https://docs.wallarm.com/installation/connectors/ibm-api-connect/): To integrate Wallarm with IBM API Connect, deploy a Wallarm node externally and configure IBM API Gateway to proxy...
+#### API Management Platforms
+
+##### MuleSoft
+
+- [MuleSoft Flex Gateway Connector](https://docs.wallarm.com/7.x/installation/connectors/mulesoft-flex.md): Secure MuleSoft Flex Gateway-managed APIs (Mule and non-Mule).
+- [MuleSoft Mule Gateway Connector](https://docs.wallarm.com/7.x/installation/connectors/mulesoft.md): Secure Mule APIs managed by Mule Gateway.
+
+- [Azure API Management Connector](https://docs.wallarm.com/7.x/installation/connectors/azure-api-management.md): Secure APIs managed by Azure API Management (APIM).
+- [Apigee Connector](https://docs.wallarm.com/7.x/installation/connectors/apigee.md): Secure APIs managed by Apigee API Management.
+- [IBM API Connect Connector](https://docs.wallarm.com/7.x/installation/connectors/ibm-api-connect.md): Proxy IBM API Connect traffic through an external Wallarm node.
+
 #### TCP Traffic Mirror
 
-- [Deployment](https://docs.wallarm.com/installation/oob/tcp-traffic-mirror/deployment/): Wallarm provides an artifact for deploying its filtering node, specifically designed for TCP traffic mirror...
+- [TCP Traffic Mirror Deployment](https://docs.wallarm.com/7.x/installation/oob/tcp-traffic-mirror/deployment.md): Wallarm filtering node deployment for OOB analysis of mirrored TCP traffic (also: SPAN, port mirror, OOB inspection).
+
 #### Packages & Containers
 
-- **Linux OS**
-- [All-in-one installer for NGINX Node](https://docs.wallarm.com/installation/nginx/all-in-one/)
-- [All-in-one installer for Native Node](https://docs.wallarm.com/installation/native-node/all-in-one/): The Wallarm Native Node, which operates independently of NGINX, is designed for Wallarm connector self-hosted...
-- **Docker**
-- [Image for NGINX Node](https://docs.wallarm.com/admin-en/installation-docker-en/): The Wallarm NGINX-based filtering node can be deployed using a Docker image. This node supports both x8664 and ARM64...
-- [Image for Native Node](https://docs.wallarm.com/installation/native-node/docker-image/): The Wallarm Native Node, which operates independently of NGINX, is designed for deployment with some connectors. You...
-- [NGINX Node Configuration](https://docs.wallarm.com/admin-en/configure-parameters-en/): Learn fine-tuning options available for the self-hosted Wallarm NGINX node to get the most out of the Wallarm solution.
-- [Native Node Configuration](https://docs.wallarm.com/installation/native-node/all-in-one-conf/): When deploying the self-hosted Wallarm Native Node using the all-in-one installer, Docker image or AWS AMI, you...
+##### Linux (All-in-One Installer)
+
+- [All-in-One Installer for NGINX Node](https://docs.wallarm.com/7.x/installation/nginx/all-in-one.md): One-command Linux installer for the NGINX Wallarm Node — supported on major distributions.
+- [All-in-One Installer for Native Node](https://docs.wallarm.com/7.x/installation/native-node/all-in-one.md): One-command Linux installer for the standalone Native Node.
+
+##### Docker
+
+- [Docker Image for NGINX Node](https://docs.wallarm.com/7.x/admin-en/installation-docker-en.md): Run the NGINX Wallarm Node from the official Docker image (x86_64 and ARM64).
+- [Docker Image for Native Node](https://docs.wallarm.com/7.x/installation/native-node/docker-image.md): Run the standalone Native Node from the official Docker image.
+
+- [NGINX Node Configuration Reference](https://docs.wallarm.com/7.x/admin-en/configure-parameters-en.md): Full directive reference for the self-hosted NGINX Wallarm Node.
+- [Native Node Configuration Reference](https://docs.wallarm.com/7.x/installation/native-node/all-in-one-conf.md): Full `.yaml` reference for the self-hosted Native Node (all-in-one / Docker / AMI).
+
 #### Special Setups
 
-- **Multi-Tenant Node**
-- [Overview](https://docs.wallarm.com/installation/multi-tenant/overview/): The multitenancy feature allows using Wallarm to protect several independent company infrastructures or isolated...
-- [Configure Accounts](https://docs.wallarm.com/installation/multi-tenant/configure-accounts/): These instructions provide you with the steps for the correct configuration of tenant accounts.
-- [Deploy Multi-Tenant Node](https://docs.wallarm.com/installation/multi-tenant/deploy-multi-tenant-node/): The multi-tenant node protects several independent company infrastructures or isolated environments simultaneously.
-- [Separate Postanalytics Module](https://docs.wallarm.com/admin-en/installation-postanalytics-en/): In Wallarm's request processing, two stages are involved, including the postanalytics stage for statistical request...
-- [Custom NGINX Version](https://docs.wallarm.com/installation/custom/custom-nginx-version/): If you require Wallarm for an NGINX version that is different from the versions supported by all-in-one...
-- [Request Custom Deployment Option](https://docs.wallarm.com/installation/custom/request-custom-deployment/): If you are interested in custom deployment options that are not listed on our supported option list, we are happy to...
-#### Related Documentation
+##### Multi-Tenant Node
 
-- [Inline Traffic Flow](https://docs.wallarm.com/installation/inline/overview/): Wallarm can be deployed in-line to mitigate threats in real-time. In this case, traffic to protected APIs passes...
-- [Out-of-band Traffic Flow](https://docs.wallarm.com/installation/oob/overview/): Wallarm can be deployed as a self-hosted Out-of-Band (OOB) security solution inspecting requests via a mirror of the...
-- [NGINX and Native Node Overview](https://docs.wallarm.com/installation/nginx-native-node-internals/): The Wallarm Node is the core component of the Wallarm platform, responsible for filtering and analyzing traffic. You...
-- [Connector Overview](https://docs.wallarm.com/installation/connectors/overview/): API deployment can be done in various ways, including utilizing external tools such as Azion Edge, Akamai Edge,...
+- [Multi-Tenant Node Overview](https://docs.wallarm.com/7.x/installation/multi-tenant/overview.md): One Wallarm node protecting multiple isolated tenants (also: multitenancy, MSSP deployment).
+- [Multi-Tenant Configure Accounts](https://docs.wallarm.com/7.x/installation/multi-tenant/configure-accounts.md): Correctly configure tenant accounts in the Cloud.
+- [Deploy Multi-Tenant Node](https://docs.wallarm.com/7.x/installation/multi-tenant/deploy-multi-tenant-node.md): Deploy the multi-tenant node.
+
+- [Separate Postanalytics Module](https://docs.wallarm.com/7.x/admin-en/installation-postanalytics-en.md): Run the postanalytics (statistics) stage on a separate server from the filtering node.
+- [Custom NGINX Version](https://docs.wallarm.com/7.x/installation/custom/custom-nginx-version.md): Build Wallarm for an NGINX version not covered by the standard packages.
+- [Request a Custom Deployment Option](https://docs.wallarm.com/7.x/installation/custom/request-custom-deployment.md): Request support for a deployment shape not currently listed.
+
+#### Deployment Reference
+
+- [Inline Traffic Flow](https://docs.wallarm.com/7.x/installation/inline/overview.md): Conceptual overview of inline deployments — Wallarm in the request path.
+- [Out-of-Band Traffic Flow](https://docs.wallarm.com/7.x/installation/oob/overview.md): Conceptual overview of out-of-band deployments — Wallarm inspecting mirrored traffic.
+- [NGINX vs. Native Node Comparison](https://docs.wallarm.com/7.x/installation/nginx-native-node-internals.md): Architecture comparison of the NGINX Node and the Native Node — critical reading before choosing a node type.
+- [Connector Architecture Overview](https://docs.wallarm.com/7.x/installation/connectors/overview.md): How connectors integrate Wallarm with external gateways and CDNs.
+
 ### Maintenance
 
-- [Overview](https://docs.wallarm.com/maintenance/overview/): This section provides comprehensive guidance on maintaining, monitoring, and upgrading your Wallarm deployment to...
+- [Maintenance Overview](https://docs.wallarm.com/7.x/maintenance/overview.md): Index of maintenance, monitoring, and upgrade topics for a running deployment.
+
 #### Nodes & Infrastructure
 
-- [Node Overview](https://docs.wallarm.com/user-guides/nodes/nodes/): The Nodes section of the Wallarm Console allows you to manage self-hosted nodes (Security Edge nodes are managed...
-- [Resource Allocation](https://docs.wallarm.com/admin-en/configuration-guides/allocate-resources-for-node/): The amount of memory and CPU resources allocated for the Wallarm NGINX node determines the quality and speed of...
-- [Control over Export to Cloud](https://docs.wallarm.com/admin-en/export-to-cloud/): You can have full visibility and control on which data is exported from Wallarm node to Cloud. This article...
-- [Cloud Synchronization](https://docs.wallarm.com/admin-en/configure-cloud-node-synchronization-en/): The filtering node regularly synchronizes with the Wallarm Cloud to:
-- [Proxy Configuration](https://docs.wallarm.com/admin-en/configuration-guides/access-to-wallarm-api-via-proxy/): These instructions describe the steps to configure access to Wallarm API via the proxy server.
-- [Block Page Configuration](https://docs.wallarm.com/admin-en/configuration-guides/configure-block-page-and-code/): These instructions describe the method to customize the blocking page and error code returned in the response to...
-- [Handling Invalid Headers](https://docs.wallarm.com/admin-en/configuration-guides/handling-invalid-headers/): By default, NGINX drops headers it considers invalid, such as those with `.` or `` in their names. This prevents...
-- [JA3 Fingerprinting](https://docs.wallarm.com/admin-en/enabling-ja3/): This article describes how to enable JA3 fingerprinting for the most popular software such as NGINX and...
-- [Terraform Provider](https://docs.wallarm.com/admin-en/managing/terraform-provider/): If you use Terraform to manage your infrastructures, that may be a comfortable option for you to use it for managing...
+- [Nodes Section of the Console](https://docs.wallarm.com/7.x/user-guides/nodes/nodes.md): Manage self-hosted nodes from Wallarm Console.
+- [Resource Allocation for the Node](https://docs.wallarm.com/7.x/admin-en/configuration-guides/allocate-resources-for-node.md): CPU and memory sizing guidance for the NGINX Wallarm Node (also: capacity planning, node sizing).
+- [Control over Export to Cloud](https://docs.wallarm.com/7.x/admin-en/export-to-cloud.md): What request data leaves the node and how to restrict it (also: data export control, request-data privacy).
+- [Cloud Synchronization](https://docs.wallarm.com/7.x/admin-en/configure-cloud-node-synchronization-en.md): How the node syncs configuration and rules with Wallarm Cloud.
+- [Proxy Configuration for Wallarm API](https://docs.wallarm.com/7.x/admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md): Route node-to-Cloud traffic through an HTTP/HTTPS proxy.
+- [Block Page Configuration](https://docs.wallarm.com/7.x/admin-en/configuration-guides/configure-block-page-and-code.md): Customize the page and HTTP code returned when the node blocks a request.
+- [Handling Invalid Headers](https://docs.wallarm.com/7.x/admin-en/configuration-guides/handling-invalid-headers.md): Preserve headers with characters NGINX considers invalid (e.g. `.`).
+- [JA3 Fingerprinting](https://docs.wallarm.com/7.x/admin-en/enabling-ja3.md): Enable JA3 TLS client fingerprinting on the Wallarm Node.
+- [Wallarm Terraform Provider](https://docs.wallarm.com/7.x/admin-en/managing/terraform-provider.md): Manage Wallarm Cloud configuration as code via the official Terraform provider (also: IaC, terraform).
+
 #### Monitoring & Metrics
 
-- **NGINX Node Metrics**
-- [Overview](https://docs.wallarm.com/admin-en/nginx-node-metrics/): The [NGINX Node][nginx-node-landing] exposes metrics in the Prometheus format, which you can use to monitor its...
-- [Postanalytics Metrics](https://docs.wallarm.com/admin-en/wstore-metrics/): This article describes the Postanalytics module and the service runtime metrics of the NGINX Node to help monitor...
-- [wcli Controller Metrics](https://docs.wallarm.com/admin-en/wcli-metrics/): This article describes the metrics of the wcli Controller of the NGINX Node to help monitor and troubleshoot the...
-- [API Firewall Metrics](https://docs.wallarm.com/admin-en/apifw-metrics/): This article describes the API Firewall metrics of the NGINX Node. The API Firewall provides the core functionality...
-- **Native Node Metrics**
-- [Overview](https://docs.wallarm.com/admin-en/native-node-metrics/): The [Native Node][nginx-node-landing] exposes metrics in the Prometheus format, which you can use to monitor its...
-- [Postanalytics Metrics](https://docs.wallarm.com/admin-en/native-node-metrics-wstore/): This article describes the Postanalytics module and the service runtime metrics of the Native Node to help monitor...
-- [Runtime Metrics](https://docs.wallarm.com/admin-en/native-node-metrics-gonode/): This article describes the Native Node runtime metrics to help monitor and troubleshoot the Native Node.
-- [Statistics Service](https://docs.wallarm.com/admin-en/configure-statistics-service/): You can obtain Wallarm NGINX or Native node statistics using the `wallarmstatus` service. This article describes how...
-- [Node Logging](https://docs.wallarm.com/admin-en/configure-logging/): This article guides you on how to find the log files of a Wallarm filtering node.
-- [Failover Configuration](https://docs.wallarm.com/admin-en/configure-backup-en/): Deploying a filter node as a reverse proxy requires that the filter node is highly available. The filter node...
-- [Health Check](https://docs.wallarm.com/admin-en/uat-checklist-en/): This document provides you with a checklist to ensure Wallarm operates correctly after a new filtering node...
+##### NGINX Node Metrics
+
+- [NGINX Node Prometheus Metrics — Overview](https://docs.wallarm.com/7.x/admin-en/nginx-node-metrics.md): The metrics exposed by the NGINX Node in Prometheus format.
+- [NGINX Node — Postanalytics Metrics](https://docs.wallarm.com/7.x/admin-en/wstore-metrics.md): Postanalytics module / service runtime metrics for the NGINX Node.
+- [NGINX Node — wcli Controller Metrics](https://docs.wallarm.com/7.x/admin-en/wcli-metrics.md): Metrics of the wcli controller component of the NGINX Node.
+- [NGINX Node — API Firewall Metrics](https://docs.wallarm.com/7.x/admin-en/apifw-metrics.md): Metrics exposed by the API Firewall component of the NGINX Node.
+
+##### Native Node Metrics
+
+- [Native Node Prometheus Metrics — Overview](https://docs.wallarm.com/7.x/admin-en/native-node-metrics.md): The metrics exposed by the Native Node in Prometheus format.
+- [Native Node — Postanalytics Metrics](https://docs.wallarm.com/7.x/admin-en/native-node-metrics-wstore.md): Postanalytics module / service runtime metrics for the Native Node.
+- [Native Node — Runtime Metrics](https://docs.wallarm.com/7.x/admin-en/native-node-metrics-gonode.md): Native Node runtime metrics (Go-process metrics).
+
+- [Statistics Service (`wallarm-status`)](https://docs.wallarm.com/7.x/admin-en/configure-statistics-service.md): Local `wallarm-status` service exposing node statistics.
+- [Node Logging](https://docs.wallarm.com/7.x/admin-en/configure-logging.md): Where node log files live and how to configure logging.
+- [Failover Configuration](https://docs.wallarm.com/7.x/admin-en/configure-backup-en.md): High-availability and failover patterns for the filtering node.
+- [Post-Install Health Check](https://docs.wallarm.com/7.x/admin-en/uat-checklist-en.md): Checklist to confirm correct operation after a new node deployment (also: UAT checklist, post-install verification).
+
 #### Upgrades & Migration
 
-- [Versioning Policy](https://docs.wallarm.com/updating-migrating/versioning-policy/): This document details Wallarm's versioning policy for self-hosted NGINX-based and Native Nodes and Edge Nodes, which...
-- [General Recommendations](https://docs.wallarm.com/updating-migrating/general-recommendations/): This document describes recommendations and associated risks for a safe upgrade of Wallarm Nodes.
-- [What's New](https://docs.wallarm.com/updating-migrating/what-is-new/): Wallarm Node 7.x introduces a new deployment artifact for Kubernetes environments — the Wallarm Ingress Controller...
-- [NGINX Node Changelog](https://docs.wallarm.com/updating-migrating/node-artifact-versions/): This document lists available  versions of the NGINX Wallarm Node 6.x in various form factors, helping you track...
-- [Native Node Changelog](https://docs.wallarm.com/updating-migrating/native-node/node-artifact-versions/): This document lists available versions of the Native Wallarm Node 0.14.x+ in various form factors, helping you track...
-- **NGINX Node Upgrade Instructions**
-- [DEB/RPM Packages](https://docs.wallarm.com/updating-migrating/nginx-modules/): These instructions describe the steps to upgrade the Wallarm NGINX modules 4.x installed from the individual...
-- [Postanalytics Module](https://docs.wallarm.com/updating-migrating/separate-postanalytics/): These instructions describe the steps to upgrade the postanalytics module installed on a separate server up to the...
-- [All-in-One Installer](https://docs.wallarm.com/updating-migrating/all-in-one/): These instructions describe the steps to upgrade the Wallarm node installed using all‑in‑one installer to the latest...
-- [Docker Image](https://docs.wallarm.com/updating-migrating/docker-container/): These instructions describe the steps to upgrade the running Docker NGINX-based image to the latest version 6.x.
-- [Ingress Controller](https://docs.wallarm.com/updating-migrating/ingress-controller/): This topic explains why and how to migrate from the Wallarm Ingress Controller based on the [Community Ingress...
-- [Ingress Controller Retirement](https://docs.wallarm.com/updating-migrating/nginx-ingress-retirement/): In November 2025, the Kubernetes community announced the retirement of the Community Ingress NGINX project, with...
-- [Sidecar Proxy](https://docs.wallarm.com/updating-migrating/sidecar-proxy/): These instructions describe the steps to upgrade Wallarm Sidecar solution up to the latest 6.x version.
-- [Cloud Image](https://docs.wallarm.com/updating-migrating/cloud-image/): These instructions describe the steps to upgrade the cloud node image deployed on AWS or GCP up to the latest 6.x.
-- [Multi-Tenant Node](https://docs.wallarm.com/updating-migrating/multi-tenant/): These instructions describe the steps to upgrade the multi-tenant node up to the latest 6.x.
-- **Native Node Upgrade Instructions**
-- [All-in-One Installer](https://docs.wallarm.com/updating-migrating/native-node/all-in-one/): These instructions describe the steps to upgrade the Native Node installed using all-in-one installer.
-- [Helm Chart](https://docs.wallarm.com/updating-migrating/native-node/helm-chart/): These instructions describe the steps to upgrade the Native Node deployed using Helm chart.
-- [Docker Image](https://docs.wallarm.com/updating-migrating/native-node/docker-image/): These instructions describe the steps to upgrade the Native Node deployed from the Docker image.
-- [Connector's Code Bundle Release Notes](https://docs.wallarm.com/installation/connectors/code-bundle-inventory/): This document lists the versions of connector code bundles that work with the Native Node (MuleSoft, Cloudflare, etc.).
-- **EOL Node Upgrades (3.6 and lower)**
-- [What's New](https://docs.wallarm.com/updating-migrating/older-versions/what-is-new/): This page lists the changes available when upgrading the node of the deprecated version (3.6 and lower) up to...
-- [NGINX Modules](https://docs.wallarm.com/updating-migrating/older-versions/nginx-modules/): These instructions describe the steps to upgrade the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to...
-- [Postanalytics](https://docs.wallarm.com/updating-migrating/older-versions/separate-postanalytics/): These instructions describe the steps to upgrade the end‑of‑life postanalytics module (version 3.6 and lower)...
-- [Docker Image](https://docs.wallarm.com/updating-migrating/older-versions/docker-container/): These instructions describe the steps to upgrade the running end‑of‑life Docker NGINX-based image (version 3.6 and...
-- [Ingress Controller](https://docs.wallarm.com/updating-migrating/older-versions/ingress-controller/): These instructions describe the steps to upgrade deployed end‑of‑life Wallarm Ingress Controller (version 3.6 and...
-- [Cloud Image](https://docs.wallarm.com/updating-migrating/older-versions/cloud-image/): These instructions describe the steps to upgrade the end‑of‑life cloud node image (version 3.6 and lower) deployed...
-- [Multi-Tenant](https://docs.wallarm.com/updating-migrating/older-versions/multi-tenant/): These instructions describe the steps to upgrade the end‑of‑life multi-tenant node (version 3.6 and lower) up to the...
-- [Migrate IP Lists](https://docs.wallarm.com/updating-migrating/migrate-ip-lists-to-node-3/): Starting with Wallarm node 3.x, the method of IP address allowlist and denylist configuration has been changed. This...
+- [Wallarm Node Versioning Policy](https://docs.wallarm.com/7.x/updating-migrating/versioning-policy.md): Versioning scheme, release cadence, support window for NGINX / Native / Edge nodes.
+- [Upgrade General Recommendations](https://docs.wallarm.com/7.x/updating-migrating/general-recommendations.md): Recommended pre-upgrade safety steps and rollback considerations.
+- [What's New in 7.x](https://docs.wallarm.com/7.x/updating-migrating/what-is-new.md): Notable changes when upgrading to 7.x — including the new Wallarm-maintained NGINX Ingress Controller artifact.
+- [NGINX Node Changelog (Artifact Inventory)](https://docs.wallarm.com/7.x/updating-migrating/node-artifact-versions.md): Available NGINX Wallarm Node 7.x versions across form factors (also: NGINX node release notes).
+
+##### NGINX Node Upgrade Instructions
+
+- [Upgrade — DEB/RPM Packages](https://docs.wallarm.com/7.x/updating-migrating/nginx-modules.md): Upgrade Wallarm NGINX modules installed from DEB/RPM packages to the latest 7.x.
+- [Upgrade — Separate Postanalytics Module](https://docs.wallarm.com/7.x/updating-migrating/separate-postanalytics.md): Upgrade a standalone postanalytics server to the latest 7.x.
+- [Upgrade — All-in-One Installer](https://docs.wallarm.com/7.x/updating-migrating/all-in-one.md): Upgrade a Wallarm node installed via the all-in-one installer to the latest 7.x.
+- [Upgrade — Docker Image](https://docs.wallarm.com/7.x/updating-migrating/docker-container.md): Upgrade a running NGINX-based Docker image to the latest 7.x.
+- [Migrate to the Wallarm NGINX Ingress Controller](https://docs.wallarm.com/7.x/updating-migrating/ingress-controller.md): Migrate off the Community Ingress NGINX controller onto the Wallarm-maintained one.
+- [Community Ingress NGINX Retirement](https://docs.wallarm.com/7.x/updating-migrating/nginx-ingress-retirement.md): Background and timeline for the November 2025 retirement of the Community Ingress NGINX project.
+- [Upgrade — Sidecar Proxy](https://docs.wallarm.com/7.x/updating-migrating/sidecar-proxy.md): Upgrade the Wallarm Sidecar solution to the latest 7.x.
+- [Upgrade — Cloud Image](https://docs.wallarm.com/7.x/updating-migrating/cloud-image.md): Upgrade cloud node images deployed on AWS / GCP to the latest 7.x.
+- [Upgrade — Multi-Tenant Node](https://docs.wallarm.com/7.x/updating-migrating/multi-tenant.md): Upgrade the multi-tenant node to the latest 7.x.
+
+##### Native Node Upgrade Instructions
+
+- [Upgrade — Native All-in-One Installer](https://docs.wallarm.com/7.x/updating-migrating/native-node/all-in-one.md): Upgrade a Native Node installed via the all-in-one installer.
+- [Upgrade — Native Helm Chart](https://docs.wallarm.com/7.x/updating-migrating/native-node/helm-chart.md): Upgrade a Native Node deployed via Helm.
+- [Upgrade — Native Docker Image](https://docs.wallarm.com/7.x/updating-migrating/native-node/docker-image.md): Upgrade a Native Node deployed from the Docker image.
+
+- [Connector Code Bundle Release Notes](https://docs.wallarm.com/7.x/installation/connectors/code-bundle-inventory.md): Versions of connector code bundles compatible with the Native Node (MuleSoft, Cloudflare, etc.).
+
 #### Operations
 
-- [Learning Request Volume](https://docs.wallarm.com/admin-en/operation/learn-incoming-request-number/): Wallarm's primary licensing/billing methods are based on the level of requests served by Wallarm filtering nodes...
-- [Scanner IP Addresses](https://docs.wallarm.com/admin-en/scanner-addresses/): This document provides the lists of IP addresses for US and EU Clouds from which Wallarm scans company resources for...
+- [Learning Request Volume](https://docs.wallarm.com/7.x/admin-en/operation/learn-incoming-request-number.md): Measure incoming request volume — needed for licensing/billing decisions.
+- [Wallarm Scanner IP Addresses](https://docs.wallarm.com/7.x/admin-en/scanner-addresses.md): The fixed list of US/EU/ME Cloud IPs Wallarm uses for active scans (allowlist these on origin).
+
 #### Troubleshooting
 
-- [Overview](https://docs.wallarm.com/troubleshooting/overview/): This section describes most common troubleshooting cases related to Wallarm, providing you with solutions to...
-- [Detection and Blocking](https://docs.wallarm.com/troubleshooting/detection-and-blocking/): If you suspect that attacks from the traffic are not uploaded to the Wallarm Cloud and, as a result, do not appear...
-- [Detection Tools](https://docs.wallarm.com/troubleshooting/detection-tools-tuning/): Wallarm is a set of protection tools. If they work not as expected, you can always tune them under your specific...
-- [Performance](https://docs.wallarm.com/troubleshooting/performance/): Recommended CPU usage by Wallarm is about 10-15%, meaning that filtering nodes will be able to handle a x10 traffic...
-- [Real Client IP](https://docs.wallarm.com/admin-en/using-proxy-or-balancer-en/): These instructions describe the NGINX configuration required to identify an originating IP address of a client...
-- [End User Problems](https://docs.wallarm.com/faq/common-errors-after-installation/): If some errors occur after NGINX Wallarm node installation, check this troubleshooting guide to address them. If you...
-- [Wallarm Ingress Controller](https://docs.wallarm.com/faq/ingress-installation/): This troubleshooting guide lists common issues you can face during the Wallarm NGINX-based Ingress controller...
-- [Wallarm Cloud is Down](https://docs.wallarm.com/faq/wallarm-cloud-down/): If the Wallarm Cloud is down, Wallarm nodes continue attack mitigation with some limitations. To learn more, use...
-- [OWASP Dashboard Alerts](https://docs.wallarm.com/faq/node-issues-on-owasp-dashboards/): When Wallarm nodes are not updated or face synchronization issues with the Cloud, error messages appear on the OWASP...
-- [NGINX Error Log](https://docs.wallarm.com/troubleshooting/wallarm-issues-in-nginx-error-log/): This article lists common NGINX error log lines related to Wallarm and describes how to fix the corresponding problems.
-- [Dynamic DNS in NGINX](https://docs.wallarm.com/admin-en/configure-dynamic-dns-resolution-nginx/): This article explains the difference between static and dynamic DNS resolution in NGINX and how to configure dynamic...
+- [Troubleshooting Overview](https://docs.wallarm.com/7.x/troubleshooting/overview.md): Index of common troubleshooting scenarios.
+- [Troubleshooting — Detection & Blocking](https://docs.wallarm.com/7.x/troubleshooting/detection-and-blocking.md): Diagnose why expected attacks are not showing in the Cloud or not being blocked.
+- [Troubleshooting — Detection Tools Tuning](https://docs.wallarm.com/7.x/troubleshooting/detection-tools-tuning.md): Tune Wallarm detection tools for false positives / negatives.
+- [Troubleshooting — Performance](https://docs.wallarm.com/7.x/troubleshooting/performance.md): Diagnose high CPU / latency / slow request processing on the Wallarm node.
+- [Real Client IP Behind a Proxy](https://docs.wallarm.com/7.x/admin-en/using-proxy-or-balancer-en.md): NGINX configuration to extract the originating client IP behind another proxy / LB.
+- [End-User Problems After Install](https://docs.wallarm.com/7.x/faq/common-errors-after-installation.md): Common end-user-visible errors after installing the NGINX Wallarm node.
+- [Wallarm Ingress Controller Troubleshooting](https://docs.wallarm.com/7.x/faq/ingress-installation.md): Common issues during Wallarm NGINX Ingress installation.
+- [Wallarm Cloud Outage Behavior](https://docs.wallarm.com/7.x/faq/wallarm-cloud-down.md): How Wallarm nodes behave when the Wallarm Cloud is unavailable (also: cloud down, cloud outage).
+- [OWASP Dashboard Alerts](https://docs.wallarm.com/7.x/faq/node-issues-on-owasp-dashboards.md): Node sync error messages shown on the OWASP dashboards.
+- [Wallarm Lines in NGINX Error Log](https://docs.wallarm.com/7.x/troubleshooting/wallarm-issues-in-nginx-error-log.md): Decode common Wallarm-related lines in the NGINX error log.
+- [Dynamic DNS Resolution in NGINX](https://docs.wallarm.com/7.x/admin-en/configure-dynamic-dns-resolution-nginx.md): Configure NGINX dynamic DNS resolution for upstreams (vs. resolve-once-at-start behavior).
+
 ### Integrations
 
-- [Integrations Overview](https://docs.wallarm.com/user-guides/settings/integrations/integrations-intro/): Being your shield against the OWASP API Top 10 threats, API abuse, and automated threats, Wallarm takes your...
+- [Integrations Overview](https://docs.wallarm.com/7.x/user-guides/settings/integrations/integrations-intro.md): The catalog of available outbound integrations from Wallarm (also: webhooks, SIEM connectors, messaging).
+
 #### Messaging & Alerts
 
-- [Email](https://docs.wallarm.com/user-guides/settings/integrations/email/): You can set additional email addresses that will be used to deliver scheduled PDF reports and instant notifications....
-- [Slack](https://docs.wallarm.com/user-guides/settings/integrations/slack/): 1. Open the Integrations section.
-- [Microsoft Teams](https://docs.wallarm.com/user-guides/settings/integrations/microsoft-teams/): 1. Open the Integrations section.
-- [Telegram](https://docs.wallarm.com/user-guides/settings/integrations/telegram/): Scheduled reports can be sent on a daily, weekly, or monthly basis. Reports include detailed information about...
+- [Email Integration](https://docs.wallarm.com/7.x/user-guides/settings/integrations/email.md): Send scheduled reports and instant notifications via email.
+- [Slack Integration](https://docs.wallarm.com/7.x/user-guides/settings/integrations/slack.md): Send Wallarm notifications to a Slack channel.
+- [Microsoft Teams Integration](https://docs.wallarm.com/7.x/user-guides/settings/integrations/microsoft-teams.md): Send Wallarm notifications to a Microsoft Teams channel.
+- [Telegram Integration](https://docs.wallarm.com/7.x/user-guides/settings/integrations/telegram.md): Send scheduled reports to a Telegram chat.
+
 #### Incident Management
 
-- [PagerDuty](https://docs.wallarm.com/user-guides/settings/integrations/pagerduty/): In PagerDuty UI, [set up an integration][link-pagerduty-docs] for any existing service or create a new service...
-- [Opsgenie](https://docs.wallarm.com/user-guides/settings/integrations/opsgenie/): In Opsgenie UI:
-- [Jira](https://docs.wallarm.com/user-guides/settings/integrations/jira/): !!! info "Supported versions"
-- [ServiceNow](https://docs.wallarm.com/user-guides/settings/integrations/servicenow/): ServiceNow is a platform to help companies manage digital workflows for enterprise operations. Your company needs an...
-- [InsightConnect](https://docs.wallarm.com/user-guides/settings/integrations/insightconnect/): First, generate and copy an API key as follows:
+- [PagerDuty Integration](https://docs.wallarm.com/7.x/user-guides/settings/integrations/pagerduty.md): Page on-call via PagerDuty (also: on-call paging, incident escalation).
+- [Opsgenie Integration](https://docs.wallarm.com/7.x/user-guides/settings/integrations/opsgenie.md): Page on-call via Opsgenie.
+- [Jira Integration](https://docs.wallarm.com/7.x/user-guides/settings/integrations/jira.md): Create Jira issues from Wallarm events (supported Jira versions noted in the article).
+- [ServiceNow Integration](https://docs.wallarm.com/7.x/user-guides/settings/integrations/servicenow.md): Create ServiceNow tickets from Wallarm events.
+- [Rapid7 InsightConnect Integration](https://docs.wallarm.com/7.x/user-guides/settings/integrations/insightconnect.md): Send Wallarm events to Rapid7 InsightConnect playbooks.
+
 #### SIEM & Analytics
 
-- [Splunk](https://docs.wallarm.com/user-guides/settings/integrations/splunk/): In Splunk UI:
-- [Sumo Logic](https://docs.wallarm.com/user-guides/settings/integrations/sumologic/): In Sumo Logic UI:
-- [Microsoft Sentinel](https://docs.wallarm.com/user-guides/settings/integrations/azure-sentinel/): In the Microsoft UI:
-- [Datadog](https://docs.wallarm.com/user-guides/settings/integrations/datadog/): 1. Open the Datadog UI → Organization Settings → API Keys and generate the API key for the integration with Wallarm.
+- [Splunk Integration](https://docs.wallarm.com/7.x/user-guides/settings/integrations/splunk.md): Forward Wallarm events to Splunk (also: SIEM, log forwarding).
+- [Sumo Logic Integration](https://docs.wallarm.com/7.x/user-guides/settings/integrations/sumologic.md): Forward Wallarm events to Sumo Logic.
+- [Microsoft Sentinel / Azure Monitor Logs](https://docs.wallarm.com/7.x/user-guides/settings/integrations/azure-sentinel.md): Forward Wallarm events to Microsoft Sentinel / Azure Monitor.
+- [Datadog Integration](https://docs.wallarm.com/7.x/user-guides/settings/integrations/datadog.md): Forward Wallarm events to Datadog via the Datadog API key.
+
 #### Log Collectors
 
-- [Fluentd](https://docs.wallarm.com/user-guides/settings/integrations/fluentd/): Wallarm sends notifications to Fluentd via webhooks in the JSON format. The set of JSON objects depends on the event...
-- [Logstash](https://docs.wallarm.com/user-guides/settings/integrations/logstash/): Wallarm sends notifications to Logstash via webhooks in the JSON format. The set of JSON objects depends on the...
-- **Integration Examples**
-- [IBM QRadar via Fluentd](https://docs.wallarm.com/user-guides/settings/integrations/webhook-examples/fluentd-qradar/): These instructions provide you with the example integration of Wallarm with the Fluentd data collector to further...
-- [IBM QRadar via Logstash](https://docs.wallarm.com/user-guides/settings/integrations/webhook-examples/logstash-qradar/): These instructions provide you with the example integration of Wallarm with the Logstash data collector to further...
-- [Splunk via Fluentd](https://docs.wallarm.com/user-guides/settings/integrations/webhook-examples/fluentd-splunk/): These instructions provide you with the example integration of Wallarm with the Fluentd data collector to further...
-- [Splunk via Logstash](https://docs.wallarm.com/user-guides/settings/integrations/webhook-examples/logstash-splunk/): These instructions provide you with the example integration of Wallarm with the Logstash data collector to further...
-- [ArcSight via Fluentd](https://docs.wallarm.com/user-guides/settings/integrations/webhook-examples/fluentd-arcsight-logger/): These instructions provide you with the example integration of Wallarm with the Fluentd data collector to further...
-- [ArcSight via Logstash](https://docs.wallarm.com/user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger/): These instructions provide you with the example integration of Wallarm with the Logstash data collector to further...
-- [Datadog via Fluentd/Logstash](https://docs.wallarm.com/user-guides/settings/integrations/webhook-examples/fluentd-logstash-datadog/): You can set up Wallarm to send notifications of detected events to Datadog through the Fluentd or Logstash...
+- [Fluentd Integration](https://docs.wallarm.com/7.x/user-guides/settings/integrations/fluentd.md): Send Wallarm JSON webhooks to Fluentd.
+- [Logstash Integration](https://docs.wallarm.com/7.x/user-guides/settings/integrations/logstash.md): Send Wallarm JSON webhooks to Logstash.
+
+##### Integration Examples (Webhook Recipes)
+
+- [IBM QRadar via Fluentd](https://docs.wallarm.com/7.x/user-guides/settings/integrations/webhook-examples/fluentd-qradar.md): Wallarm → Fluentd → IBM QRadar.
+- [IBM QRadar via Logstash](https://docs.wallarm.com/7.x/user-guides/settings/integrations/webhook-examples/logstash-qradar.md): Wallarm → Logstash → IBM QRadar.
+- [Splunk via Fluentd](https://docs.wallarm.com/7.x/user-guides/settings/integrations/webhook-examples/fluentd-splunk.md): Wallarm → Fluentd → Splunk.
+- [Splunk via Logstash](https://docs.wallarm.com/7.x/user-guides/settings/integrations/webhook-examples/logstash-splunk.md): Wallarm → Logstash → Splunk.
+- [ArcSight via Fluentd](https://docs.wallarm.com/7.x/user-guides/settings/integrations/webhook-examples/fluentd-arcsight-logger.md): Wallarm → Fluentd → Micro Focus ArcSight.
+- [ArcSight via Logstash](https://docs.wallarm.com/7.x/user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md): Wallarm → Logstash → Micro Focus ArcSight.
+- [Datadog via Fluentd / Logstash](https://docs.wallarm.com/7.x/user-guides/settings/integrations/webhook-examples/fluentd-logstash-datadog.md): Wallarm → Fluentd or Logstash → Datadog.
+
 #### Cloud Storage
 
-- [Amazon S3](https://docs.wallarm.com/user-guides/settings/integrations/amazon-s3/): Data fields for each hit:
-- [MinIO](https://docs.wallarm.com/user-guides/settings/integrations/minio/): Every 10 minutes, Wallarm exports data on detected hits to a MinIO S3-compatible bucket. A hit is a serialized...
+- [Amazon S3 Integration](https://docs.wallarm.com/7.x/user-guides/settings/integrations/amazon-s3.md): Export hit data to an S3 bucket every 10 minutes.
+- [MinIO Integration](https://docs.wallarm.com/7.x/user-guides/settings/integrations/minio.md): Export hit data to an S3-compatible MinIO bucket every 10 minutes.
+
 #### Webhooks
 
-- [Webhook Configuration](https://docs.wallarm.com/user-guides/settings/integrations/webhook/): You can set up Wallarm to send instant notifications to any system that accepts incoming webhooks via HTTPS protocol.
+- [Generic Webhook Configuration](https://docs.wallarm.com/7.x/user-guides/settings/integrations/webhook.md): Send instant notifications via HTTPS webhook to any system.
+
 #### DevSecOps
 
-- [Docker Image Security](https://docs.wallarm.com/integrations-devsecops/verify-docker-image-signature/): Wallarm signs and shares the public key for its Docker images, enabling you to verify their authenticity and...
-- [Generate SBOM](https://docs.wallarm.com/integrations-devsecops/generate-sbom-for-docker-images/): The Software Bill of Materials (SBOM) is an inventory that lists the software components and their dependencies in...
+- [Verify Docker Image Signature](https://docs.wallarm.com/7.x/integrations-devsecops/verify-docker-image-signature.md): Verify the cryptographic signature of Wallarm Docker images.
+- [Generate SBOM for Docker Images](https://docs.wallarm.com/7.x/integrations-devsecops/generate-sbom-for-docker-images.md): Generate a Software Bill of Materials for Wallarm Docker images.
+
 ### Platform Management
 
-- [Overview](https://docs.wallarm.com/platform-management/overview/): This section covers the administration and management of the Wallarm platform, including user access, monitoring,...
+- [Platform Management Overview](https://docs.wallarm.com/7.x/platform-management/overview.md): Index of platform admin topics — users, dashboards, monitoring, triggers, settings.
+
 #### Dashboards
 
-- [Threat Prevention Dashboard](https://docs.wallarm.com/user-guides/dashboards/threat-prevention/): Review the malicious traffic characteristics for the period of time with the Threat Prevention dashboard. Get clear...
-- [API Discovery Dashboard](https://docs.wallarm.com/user-guides/dashboards/api-discovery/)
-- [OWASP API Top 10 Dashboard](https://docs.wallarm.com/user-guides/dashboards/owasp-api-top-ten/): The OWASP API Security Top 10 is a gold standard for the evaluation of security risk in APIs. To help you measure...
-- [Business Intelligence](https://docs.wallarm.com/user-guides/dashboards/bi-dashboards/): In Wallarm, you have the ability to build and customize your own dashboards. This allows you to collect, present,...
+- [Threat Prevention Dashboard](https://docs.wallarm.com/7.x/user-guides/dashboards/threat-prevention.md): Top-level malicious-traffic dashboard for a chosen time window.
+- [API Discovery Dashboard (Platform)](https://docs.wallarm.com/7.x/user-guides/dashboards/api-discovery.md): API inventory dashboard in the Platform Management section.
+- [OWASP API Top 10 Dashboard](https://docs.wallarm.com/7.x/user-guides/dashboards/owasp-api-top-ten.md): Measure exposure to each OWASP API Top 10 risk category.
+- [Business Intelligence Dashboards](https://docs.wallarm.com/7.x/user-guides/dashboards/bi-dashboards.md): Build custom dashboards from Wallarm telemetry (also: BI, custom dashboards).
+
 #### Monitoring & Events
 
-- [Event Overview](https://docs.wallarm.com/user-guides/events/overview/): Wallarm's Threat Management provides full, real-time picture of your security posture and allows controlling used...
-- [Analyzing Attacks](https://docs.wallarm.com/user-guides/events/check-attack/): This article describes how you can analyze attacks detected by the Wallarm node and take actions regarding them.
-- [Analyzing Incidents](https://docs.wallarm.com/user-guides/events/check-incident/): Incidents are attacks that successfully exploited the security issue (vulnerability) passively detected by Wallarm....
-- [Grouping & Sampling](https://docs.wallarm.com/user-guides/events/grouping-sampling/): When analyzing attacks, it is important to understand how malicious requests are presented. Wallarm uses hit...
-- [Security Issues](https://docs.wallarm.com/user-guides/vulnerabilities/): Security issues (vulnerabilities) are security flaws in an infrastructure that may be exploited by attackers to...
+- [Event Overview](https://docs.wallarm.com/7.x/user-guides/events/overview.md): How Wallarm's Threat Management surfaces attacks and incidents in real time.
+- [Analyzing Attacks](https://docs.wallarm.com/7.x/user-guides/events/check-attack.md): Investigate a single attack record in the Console.
+- [Analyzing Incidents](https://docs.wallarm.com/7.x/user-guides/events/check-incident.md): Investigate an incident — an attack that hit a known vulnerability.
+- [Hit Grouping & Sampling](https://docs.wallarm.com/7.x/user-guides/events/grouping-sampling.md): How hits are grouped into attacks and how Wallarm samples for storage.
+- [Security Issues (Vulnerabilities)](https://docs.wallarm.com/7.x/user-guides/vulnerabilities.md): Passively detected application vulnerabilities (also: vulnerabilities, security issues).
+
 #### Triggers & Alerts
 
-- [Trigger Configuration](https://docs.wallarm.com/user-guides/triggers/triggers/): Triggers are tools used to set up Wallarm response to different events. Triggers combine a significant number of...
+- [Trigger Configuration](https://docs.wallarm.com/7.x/user-guides/triggers/triggers.md): Define event-driven actions (notify / block IP / create issue) (also: alerting rules, automations).
+
 #### Search & Reports
 
-- [Search & Filters](https://docs.wallarm.com/user-guides/search-and-filters/use-search/): Wallarm provides convenient methods for searching detected events (attacks and incidents). In the Attacks and...
-- [Custom Reports](https://docs.wallarm.com/user-guides/search-and-filters/custom-report/): You can filter events and then export the results into a PDF or CSV report. Wallarm will email the created report to...
+- [Search & Filters](https://docs.wallarm.com/7.x/user-guides/search-and-filters/use-search.md): Query syntax for searching attacks, hits, incidents (also: search query language, Wallarm search syntax).
+- [Custom Reports (PDF / CSV)](https://docs.wallarm.com/7.x/user-guides/search-and-filters/custom-report.md): Generate scheduled or on-demand PDF / CSV reports.
+
 #### Account Settings
 
-- [Account](https://docs.wallarm.com/user-guides/settings/account/): To see your profile data and settings, proceed to Settings → Profile tab.
-- [Applications](https://docs.wallarm.com/user-guides/settings/applications/): If your company has several applications, you may find it convenient not only to view the statistics of the entire...
-- [Audit Log](https://docs.wallarm.com/user-guides/settings/audit-log/): On the Settings → Activity log tab of Wallarm Console, you can check the history of user actions in the Wallarm...
+- [User Profile Settings](https://docs.wallarm.com/7.x/user-guides/settings/account.md): Settings → Profile tab — personal account preferences.
+- [Applications](https://docs.wallarm.com/7.x/user-guides/settings/applications.md): Group protected services into logical applications and view per-app stats.
+- [Audit Log / Activity Log](https://docs.wallarm.com/7.x/user-guides/settings/audit-log.md): Settings → Activity log — history of user actions in the Wallarm Console (also: audit trail, activity log).
+
 #### Users & Access
 
-- [User Management](https://docs.wallarm.com/user-guides/settings/users/): Invite your team members to your Wallarm account and assign each one a specific role to safeguard sensitive...
-- [API Tokens](https://docs.wallarm.com/user-guides/settings/api-tokens/): In Wallarm Console → Settings → API tokens, you can manage tokens for API request authentication and for filtering...
-- **SSO Configuration**
-- [SSO Overview](https://docs.wallarm.com/admin-en/configuration-guides/sso/intro/): You can use single sign‑on (SSO) technology to authenticate your company's users to the Wallarm Console. Wallarm...
-- [SSO Setup](https://docs.wallarm.com/admin-en/configuration-guides/sso/setup/): This article describes the generic flow of enabling and configuring Wallarm's SAML SSO Authentication.
-- [Google Workspace](https://docs.wallarm.com/admin-en/configuration-guides/sso/sso-gsuite/): This guide covers the process of connecting the G Suite (Google) service as an identity provider to Wallarm, which...
-- [Okta](https://docs.wallarm.com/admin-en/configuration-guides/sso/sso-okta/): This guide covers the process of connecting the [Okta][link-okta] service as an identity provider to Wallarm, which...
-- [Troubleshooting](https://docs.wallarm.com/admin-en/configuration-guides/sso/troubleshooting/): This article describes how to troubleshoot Wallarm's SAML SSO Authentication.
-- [LDAP Integration](https://docs.wallarm.com/admin-en/configuration-guides/ldap/ldap/): You can use LDAP technology to authenticate your company's users to the Wallarm Console if your company already uses...
+- [User Management](https://docs.wallarm.com/7.x/user-guides/settings/users.md): Invite users and assign roles (also: RBAC, role assignment, team management).
+- [API Tokens](https://docs.wallarm.com/7.x/user-guides/settings/api-tokens.md): Manage tokens for Wallarm API authentication and node filtration (also: API keys, authentication tokens).
+
+##### SSO Configuration
+
+- [SSO Overview](https://docs.wallarm.com/7.x/admin-en/configuration-guides/sso/intro.md): SAML SSO support overview (also: single sign-on, SAML).
+- [SSO Setup (Generic)](https://docs.wallarm.com/7.x/admin-en/configuration-guides/sso/setup.md): Generic flow for enabling SAML SSO.
+- [SSO — Google Workspace (G Suite)](https://docs.wallarm.com/7.x/admin-en/configuration-guides/sso/sso-gsuite.md): SAML SSO via Google Workspace as IdP.
+- [SSO — Okta](https://docs.wallarm.com/7.x/admin-en/configuration-guides/sso/sso-okta.md): SAML SSO via Okta as IdP.
+- [SSO Troubleshooting](https://docs.wallarm.com/7.x/admin-en/configuration-guides/sso/troubleshooting.md): Troubleshoot common SAML SSO problems.
+
+- [LDAP Integration](https://docs.wallarm.com/7.x/admin-en/configuration-guides/ldap/ldap.md): Authenticate Console users via LDAP / Active Directory.
+
 #### Plans & Pricing
 
-- [Subscription Plans](https://docs.wallarm.com/about-wallarm/subscription-plans/): Wallarm is the only solution that unifies API discovery, risk management, real-time protection, and testing...
+- [Subscription Plans](https://docs.wallarm.com/7.x/about-wallarm/subscription-plans.md): The Wallarm subscription plans and what each one includes (also: pricing, plans, tiers).
+
 ### Reference
 
-- [Overview](https://docs.wallarm.com/reference/overview/): This section provides reference materials, technical specifications, and resources for the Wallarm platform.
+- [Reference Section Overview](https://docs.wallarm.com/7.x/reference/overview.md): Index of reference material (API, attack catalog, glossary).
+
 #### API Reference
 
-- [Overview](https://docs.wallarm.com/api/overview/): Wallarm API provides interaction between components of the Wallarm system. You can use Wallarm API methods to...
-- [Request Examples](https://docs.wallarm.com/api/request-examples/): The following are some examples of Wallarm API use. You can also generate code examples via the API Reference UI for...
-- [Attack Types](https://docs.wallarm.com/attacks-vulns-list/): This article lists and describes attacks and vulnerabilities that Wallarm can detect including those presented in...
-- [Glossary](https://docs.wallarm.com/glossary-en/): The glossary covers the core Wallarm entities to provide you with a better understanding of the platform.
-- [Data Retention Policy](https://docs.wallarm.com/about-wallarm/data-retention-policy/): This policy outlines retention periods for different datasets collected by Wallarm and stored in the Wallarm Cloud.
-- [Shared Responsibility Model](https://docs.wallarm.com/about-wallarm/shared-responsibility/): Wallarm relies on a shared responsibility security model. In this model, all parties (Wallarm and its clients) have...
-- [Comparing Wallarm to Other Solutions](https://docs.wallarm.com/reference/comparing-wallarm-to-other-solutions/): When comparing Wallarm to other security or WAF solutions, it's essential to gather and present meaningful data....
-- [SLA](https://docs.wallarm.com/sla/): This article describes such aspects of Wallarm's service level as service availability time percentage, possible...
+- [Wallarm API Overview](https://docs.wallarm.com/7.x/api/overview.md): Overview of the Wallarm REST API (also: REST API, public API).
+- [Wallarm API Request Examples](https://docs.wallarm.com/7.x/api/request-examples.md): Worked examples of Wallarm API calls.
+
+- [Attack Types Catalog](https://docs.wallarm.com/7.x/attacks-vulns-list.md): Canonical list of attacks and vulnerabilities Wallarm detects, with descriptions and CWE/OWASP mapping (also: attack catalog, vulnerability list, supported attacks).
+- [Glossary](https://docs.wallarm.com/7.x/glossary-en.md): Canonical terminology used across Wallarm documentation.
+- [Data Retention Policy](https://docs.wallarm.com/7.x/about-wallarm/data-retention-policy.md): Retention periods per data type stored in the Wallarm Cloud.
+- [Shared Responsibility Model](https://docs.wallarm.com/7.x/about-wallarm/shared-responsibility.md): What Wallarm is responsible for and what the customer is responsible for.
+- [Comparing Wallarm to Other Solutions](https://docs.wallarm.com/7.x/reference/comparing-wallarm-to-other-solutions.md): How to compare Wallarm against other WAF / API security solutions.
+- [SLA](https://docs.wallarm.com/7.x/sla.md): Service-level agreement — availability commitments and credits.
+
+## Optional
+
+The pages below are linked here rather than in the main tree because they are less directly useful for an LLM agent answering a question — videos can't be ingested as text, and legacy / EOL material is unlikely to be relevant to questions about the current product.
+
+### Video Guides (not ingestible by text-only agents)
+
+- [Demo Videos — Platform Overview](https://docs.wallarm.com/7.x/demo-videos/platform-overview.md)
+- [Demo Videos — API Discovery](https://docs.wallarm.com/7.x/demo-videos/api-discovery.md)
+- [Demo Videos — API Leaks](https://docs.wallarm.com/7.x/demo-videos/api-leaks.md)
+- [Demo Videos — Shadow & Orphan APIs](https://docs.wallarm.com/7.x/demo-videos/shadow-api.md)
+- [Demo Videos — CVE Inspection](https://docs.wallarm.com/7.x/demo-videos/events-inspection.md)
+- [Demo Videos — API Abuse Prevention](https://docs.wallarm.com/7.x/demo-videos/api-abuse-prevention.md)
+- [Demo Videos — Platform Settings](https://docs.wallarm.com/7.x/demo-videos/overview.md)
+
+### EOL Node Upgrades (nodes 3.6 and lower — out of support)
+
+- [EOL — What's New](https://docs.wallarm.com/7.x/updating-migrating/older-versions/what-is-new.md): Changes when upgrading from EOL versions to current.
+- [EOL — NGINX Modules Upgrade](https://docs.wallarm.com/7.x/updating-migrating/older-versions/nginx-modules.md): Upgrade EOL NGINX modules (3.6 and lower).
+- [EOL — Postanalytics Upgrade](https://docs.wallarm.com/7.x/updating-migrating/older-versions/separate-postanalytics.md): Upgrade EOL standalone postanalytics module.
+- [EOL — Docker Image Upgrade](https://docs.wallarm.com/7.x/updating-migrating/older-versions/docker-container.md): Upgrade EOL NGINX-based Docker image.
+- [EOL — Ingress Controller Upgrade](https://docs.wallarm.com/7.x/updating-migrating/older-versions/ingress-controller.md): Upgrade EOL Wallarm Ingress Controller.
+- [EOL — Cloud Image Upgrade](https://docs.wallarm.com/7.x/updating-migrating/older-versions/cloud-image.md): Upgrade EOL cloud node images.
+- [EOL — Multi-Tenant Upgrade](https://docs.wallarm.com/7.x/updating-migrating/older-versions/multi-tenant.md): Upgrade EOL multi-tenant node.
+- [Migrate IP Lists to Node 3.x+ Format](https://docs.wallarm.com/7.x/updating-migrating/migrate-ip-lists-to-node-3.md): One-time IP allowlist/denylist format migration.
