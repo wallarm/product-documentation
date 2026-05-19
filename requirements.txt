@@ -1,5 +1,5 @@
 zensical==0.0.31
-pymdown-extensions==10.21.2
+pymdown-extensions==10.21.3
 pygments==2.20.0
 prependnewline==1.2
 mkdocs-meta-descriptions-plugin==3.0.0
