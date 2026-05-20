@@ -19,6 +19,16 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.12.2 (2026-05-19)
+
+* Fixed security vulnerabilities in the bundled NGINX package:
+
+    * [CVE-2026-42945](https://nvd.nist.gov/vuln/detail/CVE-2026-42945)
+    * [CVE-2026-42946](https://nvd.nist.gov/vuln/detail/CVE-2026-42946)
+    * [CVE-2026-40460](https://nvd.nist.gov/vuln/detail/CVE-2026-40460)
+    * [CVE-2026-42934](https://nvd.nist.gov/vuln/detail/CVE-2026-42934)
+    * [CVE-2026-40701](https://nvd.nist.gov/vuln/detail/CVE-2026-40701)
+
 ### 6.12.1 (2026-05-12)
 
 * Added full support for the [ME (Middle East) Wallarm Cloud](../about-wallarm/overview.md#cloud) in the [all-in-one installer](../installation/nginx/all-in-one.md):
@@ -255,6 +265,17 @@ new attack types in logging variables and search bars?
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.12.2 (2026-05-19)
+
+* Fixed security vulnerabilities in the bundled NGINX package:
+
+    * [CVE-2026-42945](https://nvd.nist.gov/vuln/detail/CVE-2026-42945)
+    * [CVE-2026-42946](https://nvd.nist.gov/vuln/detail/CVE-2026-42946)
+    * [CVE-2026-40460](https://nvd.nist.gov/vuln/detail/CVE-2026-40460)
+    * [CVE-2026-42934](https://nvd.nist.gov/vuln/detail/CVE-2026-42934)
+    * [CVE-2026-40701](https://nvd.nist.gov/vuln/detail/CVE-2026-40701)
+* Fixed the [CVE-2026-3805](https://nvd.nist.gov/vuln/detail/CVE-2026-3805) vulnerability in the bundled curl/libcurl
 
 ### 6.12.1 (2026-05-12)
 
@@ -509,6 +530,16 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.12.2 (2026-05-19)
+
+* Fixed security vulnerabilities in the bundled NGINX package:
+
+    * [CVE-2026-42945](https://nvd.nist.gov/vuln/detail/CVE-2026-42945)
+    * [CVE-2026-42946](https://nvd.nist.gov/vuln/detail/CVE-2026-42946)
+    * [CVE-2026-40460](https://nvd.nist.gov/vuln/detail/CVE-2026-40460)
+    * [CVE-2026-42934](https://nvd.nist.gov/vuln/detail/CVE-2026-42934)
+    * [CVE-2026-40701](https://nvd.nist.gov/vuln/detail/CVE-2026-40701)
+
 ### 6.12.1 (2026-05-12)
 
 * Internal improvements
@@ -732,6 +763,16 @@ new attack types in logging variables and search bars?
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.12.2 (2026-05-19)
+
+* Fixed security vulnerabilities in the bundled NGINX package:
+
+    * [CVE-2026-42945](https://nvd.nist.gov/vuln/detail/CVE-2026-42945)
+    * [CVE-2026-42946](https://nvd.nist.gov/vuln/detail/CVE-2026-42946)
+    * [CVE-2026-40460](https://nvd.nist.gov/vuln/detail/CVE-2026-40460)
+    * [CVE-2026-42934](https://nvd.nist.gov/vuln/detail/CVE-2026-42934)
+    * [CVE-2026-40701](https://nvd.nist.gov/vuln/detail/CVE-2026-40701)
 
 ### 6.12.1 (2026-05-12)
 
@@ -959,6 +1000,16 @@ new attack types in logging variables and search bars?
 
 [How to upgrade](cloud-image.md)
 
+### 6.12.2 (2026-05-19)
+
+* Fixed security vulnerabilities in the bundled NGINX package:
+
+    * [CVE-2026-42945](https://nvd.nist.gov/vuln/detail/CVE-2026-42945)
+    * [CVE-2026-42946](https://nvd.nist.gov/vuln/detail/CVE-2026-42946)
+    * [CVE-2026-40460](https://nvd.nist.gov/vuln/detail/CVE-2026-40460)
+    * [CVE-2026-42934](https://nvd.nist.gov/vuln/detail/CVE-2026-42934)
+    * [CVE-2026-40701](https://nvd.nist.gov/vuln/detail/CVE-2026-40701)
+
 ### 6.12.1 (2026-05-12)
 
 * Internal improvements
@@ -1142,6 +1193,16 @@ new attack types in logging variables and search bars?
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-12-2-20260518-171044 (2026-05-19)
+
+* Fixed security vulnerabilities in the bundled NGINX package:
+
+    * [CVE-2026-42945](https://nvd.nist.gov/vuln/detail/CVE-2026-42945)
+    * [CVE-2026-42946](https://nvd.nist.gov/vuln/detail/CVE-2026-42946)
+    * [CVE-2026-40460](https://nvd.nist.gov/vuln/detail/CVE-2026-40460)
+    * [CVE-2026-42934](https://nvd.nist.gov/vuln/detail/CVE-2026-42934)
+    * [CVE-2026-40701](https://nvd.nist.gov/vuln/detail/CVE-2026-40701)
 
 ### wallarm-node-6-12-1-20260512-212132 (2026-05-12)
 

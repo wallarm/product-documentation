@@ -1,7 +1,7 @@
 As soon as you have the all-in one script downloaded, you can get help on it with:
 
 ```
-sudo sh ./wallarm-6.12.1.x86_64-glibc.sh -- -h
+sudo sh ./wallarm-6.12.2.x86_64-glibc.sh -- -h
 ```
 
 Which returns:
@@ -36,37 +36,37 @@ Below are examples of commands to run the script in batch mode for node installa
     If using the x86_64 version:
 
     ```bash
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.1.x86_64-glibc.sh -- --batch -t <TOKEN> -c US
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.2.x86_64-glibc.sh -- --batch -t <TOKEN> -c US
     ```
 
     If using the ARM64 version:
 
     ```bash
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.1.aarch64-glibc.sh -- --batch -t <TOKEN> -c US
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.2.aarch64-glibc.sh -- --batch -t <TOKEN> -c US
     ```
 === "EU Cloud"
     If using the x86_64 version:
 
     ```bash
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.1.x86_64-glibc.sh -- --batch -t <TOKEN>
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.2.x86_64-glibc.sh -- --batch -t <TOKEN>
     ```
 
     If using the ARM64 version:
 
     ```bash
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.1.aarch64-glibc.sh -- --batch -t <TOKEN>
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.2.aarch64-glibc.sh -- --batch -t <TOKEN>
     ```
 === "ME Cloud"
     If using the x86_64 version:
 
     ```bash
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.1.x86_64-glibc.sh -- --batch -t <TOKEN> -c ME
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.2.x86_64-glibc.sh -- --batch -t <TOKEN> -c ME
     ```
 
     If using the ARM64 version:
 
     ```bash
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.1.aarch64-glibc.sh -- --batch -t <TOKEN> -c ME
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.2.aarch64-glibc.sh -- --batch -t <TOKEN> -c ME
     ```
 
 ### Separate execution of node installation stages
@@ -82,48 +82,48 @@ This functionality is supported starting from version 4.10.0 of the all-in-one i
     If using the x86_64 version:
 
     ```bash
-    curl -O https://meganode.wallarm.com/6.12/wallarm-6.12.1.x86_64-glibc.sh
-    sudo sh wallarm-6.12.1.x86_64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/6.12/wallarm-6.12.2.x86_64-glibc.sh
+    sudo sh wallarm-6.12.2.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
     ```
 
     If using the ARM64 version:
 
     ```bash
-    curl -O https://meganode.wallarm.com/6.12/wallarm-6.12.1.aarch64-glibc.sh
-    sudo sh wallarm-6.12.1.aarch64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/6.12/wallarm-6.12.2.aarch64-glibc.sh
+    sudo sh wallarm-6.12.2.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
     ```
 === "EU Cloud"
     If using the x86_64 version:
 
     ```bash
-    curl -O https://meganode.wallarm.com/6.12/wallarm-6.12.1.x86_64-glibc.sh
-    sudo sh wallarm-6.12.1.x86_64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/6.12/wallarm-6.12.2.x86_64-glibc.sh
+    sudo sh wallarm-6.12.2.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
     ```
 
     If using the ARM64 version:
 
     ```bash
-    curl -O https://meganode.wallarm.com/6.12/wallarm-6.12.1.aarch64-glibc.sh
-    sudo sh wallarm-6.12.1.aarch64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/6.12/wallarm-6.12.2.aarch64-glibc.sh
+    sudo sh wallarm-6.12.2.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
     ```
 === "ME Cloud"
     If using the x86_64 version:
 
     ```bash
-    curl -O https://meganode.wallarm.com/6.12/wallarm-6.12.1.x86_64-glibc.sh
-    sudo sh wallarm-6.12.1.x86_64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/6.12/wallarm-6.12.2.x86_64-glibc.sh
+    sudo sh wallarm-6.12.2.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c ME
     ```
 
     If using the ARM64 version:
 
     ```bash
-    curl -O https://meganode.wallarm.com/6.12/wallarm-6.12.1.aarch64-glibc.sh
-    sudo sh wallarm-6.12.1.aarch64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/6.12/wallarm-6.12.2.aarch64-glibc.sh
+    sudo sh wallarm-6.12.2.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c ME
     ```
 Finally, to complete the installation, you need to [enable Wallarm to analyze traffic][enable-traffic-analysis-step] and [restart NGINX][restart-nginx-step].
