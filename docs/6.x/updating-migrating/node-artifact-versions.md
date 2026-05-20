@@ -21,6 +21,7 @@ new attack types in logging variables and search bars?
 
 ### 6.12.2 (2026-05-19)
 
+* Added support for NGINX stable 1.30.1
 * Fixed security vulnerabilities in the bundled NGINX package:
 
     * [CVE-2026-42945](https://nvd.nist.gov/vuln/detail/CVE-2026-42945)
