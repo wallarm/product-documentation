@@ -22,13 +22,9 @@ new attack types in logging variables and search bars?
 ### 6.12.2 (2026-05-19)
 
 * Added support for NGINX stable 1.30.1
-* Fixed security vulnerabilities in the bundled NGINX package:
+* Added support for NGINX mainline 1.31.0
 
-    * [CVE-2026-42945](https://nvd.nist.gov/vuln/detail/CVE-2026-42945)
-    * [CVE-2026-42946](https://nvd.nist.gov/vuln/detail/CVE-2026-42946)
-    * [CVE-2026-40460](https://nvd.nist.gov/vuln/detail/CVE-2026-40460)
-    * [CVE-2026-42934](https://nvd.nist.gov/vuln/detail/CVE-2026-42934)
-    * [CVE-2026-40701](https://nvd.nist.gov/vuln/detail/CVE-2026-40701)
+To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.nist.gov/vuln/detail/CVE-2026-42945), [CVE-2026-42946](https://nvd.nist.gov/vuln/detail/CVE-2026-42946), [CVE-2026-40460](https://nvd.nist.gov/vuln/detail/CVE-2026-40460), [CVE-2026-42934](https://nvd.nist.gov/vuln/detail/CVE-2026-42934), and [CVE-2026-40701](https://nvd.nist.gov/vuln/detail/CVE-2026-40701), upgrade NGINX to stable 1.30.1 or mainline 1.31.0 and update Wallarm Node to 6.12.2.
 
 ### 6.12.1 (2026-05-12)
 
@@ -269,14 +265,7 @@ new attack types in logging variables and search bars?
 
 ### 6.12.2 (2026-05-19)
 
-* Fixed security vulnerabilities in the bundled NGINX package:
-
-    * [CVE-2026-42945](https://nvd.nist.gov/vuln/detail/CVE-2026-42945)
-    * [CVE-2026-42946](https://nvd.nist.gov/vuln/detail/CVE-2026-42946)
-    * [CVE-2026-40460](https://nvd.nist.gov/vuln/detail/CVE-2026-40460)
-    * [CVE-2026-42934](https://nvd.nist.gov/vuln/detail/CVE-2026-42934)
-    * [CVE-2026-40701](https://nvd.nist.gov/vuln/detail/CVE-2026-40701)
-* Fixed the [CVE-2026-3805](https://nvd.nist.gov/vuln/detail/CVE-2026-3805) vulnerability in the bundled curl/libcurl
+* Pulled in a curl/libcurl security patch from the Alpine base image: [CVE-2026-3805](https://nvd.nist.gov/vuln/detail/CVE-2026-3805).
 
 ### 6.12.1 (2026-05-12)
 
@@ -533,13 +522,7 @@ new attack types in logging variables and search bars?
 
 ### 6.12.2 (2026-05-19)
 
-* Fixed security vulnerabilities in the bundled NGINX package:
-
-    * [CVE-2026-42945](https://nvd.nist.gov/vuln/detail/CVE-2026-42945)
-    * [CVE-2026-42946](https://nvd.nist.gov/vuln/detail/CVE-2026-42946)
-    * [CVE-2026-40460](https://nvd.nist.gov/vuln/detail/CVE-2026-40460)
-    * [CVE-2026-42934](https://nvd.nist.gov/vuln/detail/CVE-2026-42934)
-    * [CVE-2026-40701](https://nvd.nist.gov/vuln/detail/CVE-2026-40701)
+* Pulled in NGINX security patches from the base image: [CVE-2026-42945](https://nvd.nist.gov/vuln/detail/CVE-2026-42945), [CVE-2026-42946](https://nvd.nist.gov/vuln/detail/CVE-2026-42946), [CVE-2026-40460](https://nvd.nist.gov/vuln/detail/CVE-2026-40460), [CVE-2026-42934](https://nvd.nist.gov/vuln/detail/CVE-2026-42934), and [CVE-2026-40701](https://nvd.nist.gov/vuln/detail/CVE-2026-40701).
 
 ### 6.12.1 (2026-05-12)
 
@@ -767,13 +750,7 @@ new attack types in logging variables and search bars?
 
 ### 6.12.2 (2026-05-19)
 
-* Fixed security vulnerabilities in the bundled NGINX package:
-
-    * [CVE-2026-42945](https://nvd.nist.gov/vuln/detail/CVE-2026-42945)
-    * [CVE-2026-42946](https://nvd.nist.gov/vuln/detail/CVE-2026-42946)
-    * [CVE-2026-40460](https://nvd.nist.gov/vuln/detail/CVE-2026-40460)
-    * [CVE-2026-42934](https://nvd.nist.gov/vuln/detail/CVE-2026-42934)
-    * [CVE-2026-40701](https://nvd.nist.gov/vuln/detail/CVE-2026-40701)
+* Pulled in NGINX security patches from the Alpine base image: [CVE-2026-42945](https://nvd.nist.gov/vuln/detail/CVE-2026-42945), [CVE-2026-42946](https://nvd.nist.gov/vuln/detail/CVE-2026-42946), [CVE-2026-40460](https://nvd.nist.gov/vuln/detail/CVE-2026-40460), [CVE-2026-42934](https://nvd.nist.gov/vuln/detail/CVE-2026-42934), and [CVE-2026-40701](https://nvd.nist.gov/vuln/detail/CVE-2026-40701).
 
 ### 6.12.1 (2026-05-12)
 
@@ -1003,13 +980,7 @@ new attack types in logging variables and search bars?
 
 ### 6.12.2 (2026-05-19)
 
-* Fixed security vulnerabilities in the bundled NGINX package:
-
-    * [CVE-2026-42945](https://nvd.nist.gov/vuln/detail/CVE-2026-42945)
-    * [CVE-2026-42946](https://nvd.nist.gov/vuln/detail/CVE-2026-42946)
-    * [CVE-2026-40460](https://nvd.nist.gov/vuln/detail/CVE-2026-40460)
-    * [CVE-2026-42934](https://nvd.nist.gov/vuln/detail/CVE-2026-42934)
-    * [CVE-2026-40701](https://nvd.nist.gov/vuln/detail/CVE-2026-40701)
+* Pulled in NGINX security patches from the Debian base image: [CVE-2026-27651](https://nvd.nist.gov/vuln/detail/CVE-2026-27651), [CVE-2026-27654](https://nvd.nist.gov/vuln/detail/CVE-2026-27654), [CVE-2026-27784](https://nvd.nist.gov/vuln/detail/CVE-2026-27784), [CVE-2026-28753](https://nvd.nist.gov/vuln/detail/CVE-2026-28753), [CVE-2026-28755](https://nvd.nist.gov/vuln/detail/CVE-2026-28755), [CVE-2026-32647](https://nvd.nist.gov/vuln/detail/CVE-2026-32647), [CVE-2026-40701](https://nvd.nist.gov/vuln/detail/CVE-2026-40701), [CVE-2026-42934](https://nvd.nist.gov/vuln/detail/CVE-2026-42934), [CVE-2026-42945](https://nvd.nist.gov/vuln/detail/CVE-2026-42945), and [CVE-2026-42946](https://nvd.nist.gov/vuln/detail/CVE-2026-42946).
 
 ### 6.12.1 (2026-05-12)
 
@@ -1197,13 +1168,7 @@ new attack types in logging variables and search bars?
 
 ### wallarm-node-6-12-2-20260518-171044 (2026-05-19)
 
-* Fixed security vulnerabilities in the bundled NGINX package:
-
-    * [CVE-2026-42945](https://nvd.nist.gov/vuln/detail/CVE-2026-42945)
-    * [CVE-2026-42946](https://nvd.nist.gov/vuln/detail/CVE-2026-42946)
-    * [CVE-2026-40460](https://nvd.nist.gov/vuln/detail/CVE-2026-40460)
-    * [CVE-2026-42934](https://nvd.nist.gov/vuln/detail/CVE-2026-42934)
-    * [CVE-2026-40701](https://nvd.nist.gov/vuln/detail/CVE-2026-40701)
+* Pulled in NGINX security patches from the Debian base image: [CVE-2026-27651](https://nvd.nist.gov/vuln/detail/CVE-2026-27651), [CVE-2026-27654](https://nvd.nist.gov/vuln/detail/CVE-2026-27654), [CVE-2026-27784](https://nvd.nist.gov/vuln/detail/CVE-2026-27784), [CVE-2026-28753](https://nvd.nist.gov/vuln/detail/CVE-2026-28753), [CVE-2026-28755](https://nvd.nist.gov/vuln/detail/CVE-2026-28755), [CVE-2026-32647](https://nvd.nist.gov/vuln/detail/CVE-2026-32647), [CVE-2026-40701](https://nvd.nist.gov/vuln/detail/CVE-2026-40701), [CVE-2026-42934](https://nvd.nist.gov/vuln/detail/CVE-2026-42934), [CVE-2026-42945](https://nvd.nist.gov/vuln/detail/CVE-2026-42945), and [CVE-2026-42946](https://nvd.nist.gov/vuln/detail/CVE-2026-42946).
 
 ### wallarm-node-6-12-1-20260512-212132 (2026-05-12)
 
