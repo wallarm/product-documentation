@@ -78,30 +78,24 @@ When creating the trigger, you can narrow notifications using filters specific t
 
 All filters accept multiple values. If you set several filters, they are combined with AND — all conditions must match for the notification to be sent.
 
-**Event attributes:**
+**Event data points:**
 
-Each event represents one changed endpoint. The table below lists the **maximum** set of attributes the event can carry; the actual fields that reach the receiving system depend on the integration (delivery) type selected in the trigger's action. Structured channels (webhook, SIEM) typically receive the full payload, while message-oriented channels (Slack, Microsoft Teams, Telegram, email) render a condensed summary built from the same attributes.
+Each event represents one changed endpoint. The table below lists the **maximum** set of data points the event can carry; the actual content that reaches the receiving system depends on the integration (delivery) type selected in the trigger's action. Structured channels (webhook, SIEM) typically receive the full payload, while message-oriented channels (Slack, Microsoft Teams, Telegram, email) render a condensed summary built from the same data.
 
-| Attribute | Description |
-|-----------|-------------|
-| `summary` | Short headline of the event, used by message-oriented integrations as the message title. |
-| `description` | Human-readable summary line describing what changed. |
-| `details.notification_type` | Always `api_structure_changed` for this trigger. |
-| `details.client_name` | Wallarm client (account) name. |
-| `details.partner_name` | Wallarm partner name. |
-| `details.cloud` | Wallarm cloud — for example, `US`, `EU`, or `ME`. |
-| `details.application` | Name of the [application](../user-guides/settings/applications.md) the endpoint belongs to. |
-| `details.domain` | Hostname on which the endpoint was discovered. |
-| `details.endpoint_path` | Path of the endpoint. |
-| `details.http_method` | HTTP method — `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, and so on. |
-| `details.change_type` | Kind of change on the endpoint: `added`, `changed`, or `unused`. |
-| `details.link` | Deep link that opens the endpoint in API Discovery in Wallarm Console. |
-| `details.changed_parameters` | Array of endpoint parameters that caused or accompanied the change. |
-| `details.changed_parameters[].point` | Path-like location of the parameter — for example, `["header", "ACCEPT"]` for a request header named `ACCEPT`, or `["response_header", "CONTENT-TYPE"]` for a response header. |
-| `details.changed_parameters[].name` | Parameter name. |
-| `details.changed_parameters[].type` | Parameter class — for example, `header`, `response_header`, `request_body`. |
-| `details.changed_parameters[].change_type` | Whether the parameter itself is `new` or `changed`. |
-| `details.language` | Language code of the rendered `summary` and `description` — for example, `en`. |
+| Data point | Description |
+|------------|-------------|
+| Headline | Short headline of the event, used by message-oriented integrations as the message title. |
+| Summary | Human-readable summary describing what changed. |
+| Application | Name of the [application](../user-guides/settings/applications.md) the endpoint belongs to. |
+| Domain | Hostname on which the endpoint was discovered. |
+| Endpoint path | Path of the endpoint. |
+| HTTP method | `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, and so on. |
+| Change type | Kind of change detected on the endpoint: `added`, `changed`, or `unused`. |
+| Parameters | List of endpoint parameters that caused or accompanied the change. For each parameter, the event carries: |
+| — Path-like location | Where the parameter sits inside the request or response — for example, `["header", "ACCEPT"]` for a request header named `ACCEPT`, or `["response_header", "CONTENT-TYPE"]` for a response header. |
+| — Parameter name | Name of the parameter. |
+| — Parameter class | Where the parameter is carried — for example, `header`, `response_header`, `request_body`. |
+| — Parameter change type | Whether the parameter itself is `new` or `changed`. |
 
 **Example: notify in Slack when new endpoints appear on `example.com`**
 
