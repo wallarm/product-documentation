@@ -429,7 +429,7 @@ Unlike [`http_inspector.wallarm_process_time_limit`](#http_inspectorwallarm_proc
 
 By default, no hard timeout is enforced.
 
-Supported in Native Node 0.22.2 only.
+Available in Native Node 0.22.2 and in Native Node 0.25.1 or higher.
 
 ```yaml
 version: 4
@@ -447,7 +447,7 @@ HTTP status code returned to the connector client when [`connector.app_reply_tim
 
 Default: `500`.
 
-Supported in Native Node 0.22.2 only.
+Available in Native Node 0.22.2 and in Native Node 0.25.1 or higher.
 
 ## TCP mirror-specific settings
 
@@ -916,6 +916,7 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
       workers: auto
       libdetection_enabled: true
       api_firewall_enabled: true
+      wmcp_enabled: true
       api_firewall_database: /opt/wallarm/var/lib/wallarm-api/2/wallarm_api.db
       wallarm_dir: /opt/wallarm/etc/wallarm
       shm_dir: /tmp
@@ -961,6 +962,7 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
       workers: auto
       libdetection_enabled: true
       api_firewall_enabled: true
+      wmcp_enabled: true
       api_firewall_database: /opt/wallarm/var/lib/wallarm-api/2/wallarm_api.db
       wallarm_dir: /opt/wallarm/etc/wallarm
       shm_dir: /tmp
@@ -1077,6 +1079,14 @@ Default: `true`.
 Controls whether [API Specification Enforcement](../../api-specification-enforcement/overview.md) is enabled. Please note that activating this feature does not substitute for the required subscription and configuration through the Wallarm Console UI.
 
 Default: `true`.
+
+### http_inspector.wmcp_enabled
+
+Enables [MCP (Model Context Protocol)](../../agentic-ai/mcp-discovery.md) traffic analysis. When set to `false`, the Node skips MCP setup even when MCP analysis would otherwise be enabled automatically by your [Advanced API Security](../../about-wallarm/subscription-plans.md#core-subscription-plans) subscription. Use this opt-out flag when you do not need MCP analysis.
+
+Default: `true`.
+
+Available starting from Native Node 0.25.1.
 
 ### http_inspector.api_firewall_database
 
