@@ -29,6 +29,7 @@ Wallarm is the only solution that unifies API discovery, risk management, real-t
 | [GraphQL security policies](../api-protection/graphql-rule.md) | No | Yes | No |
 | [Enumeration attack protection](../api-protection/enumeration-attack-protection.md) | No | Yes | No |
 | [Mitigation controls](../about-wallarm/mitigation-controls-overview.md) | No | Yes | No |
+| [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md) | No | Yes | No |
 | **API protocol support** | | | |
 | Legacy (SOAP, XML-RPC, WebDAV, WebForm) | Yes | Yes | No |
 | Mainstream (REST, GraphQL) | Yes | Yes | No |
@@ -37,7 +38,9 @@ Wallarm is the only solution that unifies API discovery, risk management, real-t
 | [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) | No | Yes | No |
 | [Vulnerability assessment](../user-guides/vulnerabilities.md) | Yes | Yes | No |
 | [API Sessions](../api-sessions/overview.md) | No | Yes | No |
+| [MCP Sessions](../api-sessions/mcp-sessions.md) | No | Yes | No |
 | [API Discovery](../api-discovery/overview.md) | No | Yes | No |
+| [MCP server discovery](../agentic-ai/mcp-discovery.md) | No | Yes | No |
 | [Sensitive data detection](../api-discovery/overview.md#sensitive-data-detection) | No | Yes | No |
 | [Rogue API Detection (shadow, zombie)](../api-discovery/rogue-api.md) | No | Yes | No |
 | [BI Dashboards](../user-guides/dashboards/bi-dashboards.md) | No | Yes | No |
