@@ -148,6 +148,18 @@ In Jira-link mode the skill classifies. In explicit-list mode classification is 
 
    **Do NOT block on ticket `status`.** A ticket may still be `In Review` or `In Progress` at release time — the workflow is asynchronous. If the issue is in `fixVersion` or the author's list, trust that it ships. Status is informational.
 
+   **Source-fidelity cascade — when Jira `description` is empty.** An empty body does not mean "nothing changed." Walk these sources in order, stopping when you have enough substance to draft customer-facing prose:
+
+   1. **Linked PRs on the ticket (Jira "remote links" / linked issues).** If the ticket has linked merge requests, read each one — title, description, diff if needed — and extract what actually shipped. Reflect that substance in the docs.
+   2. **Group-wide GitLab search by ticket ID.** Wallarm uses a self-hosted GitLab at `https://gl.wallarm.com` (not gitlab.com). If no PRs are linked from Jira (or only some are linked), search by the ticket key across the whole `wallarm-node` group at `https://gl.wallarm.com/wallarm-node`, matching the ID in MR title, description, or source branch name:
+
+       ```
+       search merge_requests, search "<TICKET-ID>", group_id: wallarm-node
+       search merge_requests, search "<TICKET-ID>", group_id: secureedge/charts   # helm chart MRs live here
+       ```
+
+   3. **Ask the author.** If neither linked PRs nor a group-wide search turn up enough to understand the change, ask the author what the ticket is about and what should appear in the release notes. Do not invent context.
+
 2. **Classify each item** — Jira-link mode only.
 
    Layered heuristic, fall through when inconclusive:
@@ -236,7 +248,29 @@ In Jira-link mode the skill classifies. In explicit-list mode classification is 
    * A draft migration page (if needed), structured around the mapping tables and behavioral diffs.
    * A grep-driven punch list (e.g., `grep -rn "<old-name>" docs/latest/ include/`) to verify no stale mention remains outside changelog/history sections.
 
-5. **Show the author a draft preview** before writing into files. Jira keys appear here as internal cross-references only — they must NOT appear in the actual changelog.
+4c. **Special case — backport on an older line landing in mainline.**
+
+   When a feature originally shipped as a hotfix backport on an older maintenance line (e.g., Native Node 0.22.2 on the 0.22.x line) and is now landing in mainline (e.g., 0.25.1) for the first time, the bullet **must** appear in the mainline changelog entry — even though "it was documented in 0.22.2" looks like coverage at first glance.
+
+   **Reason the numeric-ordering intuition fails:** version numbers and release dates often disagree. A backport on 0.22.x cut *after* 0.23.0/0.24.0/0.25.0 means those higher-numbered mainline releases predate the backport and do NOT contain the feature. For a user upgrading along the mainline (0.25.0 → 0.25.1), the feature is new on their line.
+
+   **Procedure:**
+
+   1. For every "already documented in an older patch" candidate, compare release dates of the backport entry against the intervening mainline cuts. If any mainline cut postdates the backport, the feature was missing from that cut.
+   2. Re-add the bullet to the mainline changelog (same wording as the backport entry is usually fine — the author already approved it).
+   3. **Update the existing parameter reference.** Statements like "Supported in <backport-version> only" or "Available starting from <backport-version>" become inaccurate the moment the feature lands in mainline. Rewrite to "Available in <backport-version> and in <mainline-version> or higher" (or list both lines explicitly when there is a gap).
+   4. Form-factor scope follows the backport precedent unless the author says otherwise: if the backport bullet was AIO-only, the mainline bullet is likely AIO-only too.
+
+   Default for backport-to-mainline: **ADD the bullet**, don't omit. Only omit if the author explicitly confirms the feature was actually present in the intervening mainline releases (which is rare — that would mean the backport ticket was duplicated).
+
+5. **Validate every drafted bullet against the repo, then show the author a draft preview.**
+
+   **Validation gate (run before the preview):**
+
+   * **No undocumented identifiers.** A bullet must not name a config key, parameter, CLI flag, env var, file path, or internal component name that is not documented in `docs/latest/`. Run `grep -rn "<identifier>" docs/latest/` for every identifier in the bullet text. If the only hits are in changelog/history sections (or there are 0 hits), do one of: (a) document the identifier first (preferred, especially for config keys), (b) reword the bullet to describe the user-visible symptom without naming the identifier, or (c) surface as a question to the author. Bullets that reference undocumented internals leave readers unable to verify the fix applies to them. *Example caught in past releases: a bullet referencing `acl.enabled: false` while `acl.enabled` had no documentation.*
+   * **No engineer-speak.** PR descriptions, Jira ticket bodies, Go struct help-tag text, and `--help` output often reference internal files (`node.yaml`, `env.list`), internal services (`wstore`, `wcli`), or use loose terms like "credentials" / "tokens" / "secrets" that have no public-facing definition. Do not paste this text verbatim. Translate to documented vocabulary — subscription tier names, documented features and files, documented behaviors — before drafting the bullet or parameter description. *Example caught in past releases: "MCP verification is skipped even if MCP credentials are available in node.yaml" — `node.yaml` is internal; there are no separate "MCP credentials"; the actual activator is the Advanced API Security subscription.*
+
+   **Draft preview format.** Jira keys appear here as internal cross-references only — they must NOT appear in the actual changelog.
 
    ```
    Draft preview (Jira keys are for your review only — they will NOT be written into the changelog):
@@ -476,6 +510,29 @@ List HIGH/CRITICAL CVEs fixed since the previous version, **per form factor**. U
 
    The prose-vs-identifier mismatch is easy to miss because a `sed` fixes the identifier but not the sentence. After bumping any artifact tag, read the **paragraph that contains** the bumped value, not just the line.
 
+   **Concrete patterns to grep for**, beyond the general "what is the subject" sweep:
+
+   * **Limitation language the release lifts.** When a release adds a previously-missing capability (e.g., ME Cloud interactive picker, OpenAPI 3.1 support, IPv6 binding), every admonition that says the capability is missing becomes stale on versions that now have it. Grep patterns:
+
+       ```bash
+       grep -rn "does not yet support\|not yet support\|is not supported\|use .* instead\|as a workaround\|limitation:" docs/latest/
+       grep -rn '!!! info "[^"]*Cloud"\|!!! warning "Limit' docs/latest/    # info/warning blocks named after the subject
+       ```
+
+       For each hit, check whether the admonition's subject matches a feature the release adds. If yes — remove the admonition on pages that describe the new version, or bound it with a version qualifier ("Native Node versions <X> and earlier do not support…") on pages that still cover the older line. *Example caught in past releases: `!!! info "ME Cloud" — The interactive mode does not yet support ME Cloud selection. Use the batch mode with -H me1.api.wallarm.com instead.` left in `installation/native-node/all-in-one.md` after 0.25.1 added interactive ME support.*
+
+   * **Version-availability statements on parameters/features that the release ships in a new line.** When backport-to-mainline (4c) or feature carry-over happens, existing `Available in / Supported in / Starting from / Introduced in / Since version` statements drift out of date. Grep patterns:
+
+       ```bash
+       grep -rn "Supported in Native Node\|Available in Native Node\|Available starting from Native Node\|Starting from version\|Introduced in version\|Since version" docs/latest/installation/native-node/ docs/latest/admin-en/
+       ```
+
+       For every match whose subject is the release's feature, rewrite to reflect the new line. *Example caught in past releases: `Supported in Native Node 0.22.2 only.` for `connector.app_reply_timeout` after 0.25.1 also shipped the feature on mainline.*
+
+   * **`docs/latest/updating-migrating/what-is-new.md`.** Significant user-visible features and security fixes belong here in addition to the per-artifact changelog. Stale "what's new" content also rots over time — sweep it for the release's subject.
+
+   When the release ships a brand-new customer-facing capability (a feature, not just a config tweak or a fix), the subscription-plans audit is owned by the `update-feature-docs` skill — invoke it for that capability so its feature page, the subscription-plans table, and navigation get updated together.
+
    For each affected page, choose one of two outcomes — never silent removal:
 
    * If the old state no longer applies to any version `docs/latest/` describes → **update to the new state**.
@@ -527,10 +584,14 @@ List HIGH/CRITICAL CVEs fixed since the previous version, **per form factor**. U
 * Run any state-changing git operation beyond the branch creation in Part 0a (no `commit`, `push`, `stash`, `rebase`, `tag`, no switching branches mid-skill).
 * Ask the author about things the repo can answer (previous changelog wording, existing parameters, current form-factor coverage) — investigate the repo first.
 * Silently resolve discrepancies between the repo and the author's description — surface them and let the author decide.
-* Write Jira keys (e.g., `NODE-7672`) into the changelog or any published doc — internal cross-references only.
+* Write Jira keys into the changelog or any published doc — internal cross-references only.
 * Invent changes not present in the source items, or invent a form factor entry the author has not confirmed is in this release.
 * Modify wrapper files in any `docs/<X>/` directory — edit `docs/latest/` instead, with the freeze flow if needed.
 * Bump versions in a `docs/<X>/` whose MAJOR does not match the release — cross-line bumps leak version statements into the wrong major.
 * On a major-version bump, touch any structural config (`stylesheets/extra.js`, `mkdocs-*.yml` root choice, `netlify.toml`, `Dockerfile`, version selector, redirects) — separate operation.
 * Mix up NGINX Node and Native Node changelogs, or reuse the NGINX CVE list as the Native one — each artifact gets its own `docker scout compare` run.
 * List a CVE without confirming via `docker scout compare --only-fixed`, or write a CVE/GHSA ID as bare text (every one must be a markdown link).
+* Reference a config key, parameter, CLI flag, env var, file path, or internal component in a changelog bullet without confirming it is documented in `docs/latest/` first (see Part 1 step 5 validation gate).
+* Copy engineer help text — PR descriptions, Go struct help tags, ticket bodies, `--help` output — verbatim into customer-facing prose. Translate to documented vocabulary first (see Part 1 step 5 validation gate).
+* Treat "feature was documented in a previous patch on an older line" as coverage for the current mainline release without comparing release dates — backports often land *after* higher-numbered mainline cuts (see 4c).
+* Try to document a brand-new feature inline in the release skill instead of delegating to `update-feature-docs` — the feature page, subscription-plans table, and navigation belong to that skill.

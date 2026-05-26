@@ -139,7 +139,14 @@ Batch related questions. Prefer multi-option questions with concrete choices ove
     * Create parent directories if they do not exist
     * Add navigation entries in every `mkdocs-*.yml`
 
-14. **If pages were renamed or deleted**:
+14. **If a new customer-facing capability was added** (a feature, not just a config tweak or a bug fix), audit `docs/latest/about-wallarm/subscription-plans.md`. The table lists features per subscription tier and needs a new row when a new capability ships. Procedure:
+    * Open the feature page and read its **Requirements** section to learn which subscription tier(s) the feature requires.
+    * Open `subscription-plans.md` and find the matching section header (`Real-time protection`, `API protocol support`, `Security posture`, `Security testing`, `Additional options`). Place the new row next to its closest parent feature so related rows cluster.
+    * Set tier columns based on the Requirements section: `Yes` for tiers that include the capability, `No` for tiers that do not.
+    * Link the feature name in the new row to its documentation page.
+    * Skip this step for fixes, config tweaks, performance improvements, and other non-capability changes — those do not get table rows.
+
+15. **If pages were renamed or deleted**:
     * Add a redirect in `_redirects` (the active root version's `_redirects`, plus the next-root's, plus any language-specific `docs/<lang>/_redirects` that exist)
     * Update nav in every `mkdocs-*.yml` — including the translation configs (`mkdocs-ja-*.yml`, `mkdocs-tr-*.yml`, `mkdocs-ar-*.yml`, `mkdocs-pt-BR-*.yml`) when the deletion is meant to apply across all languages
     * Fix all inbound cross-references
