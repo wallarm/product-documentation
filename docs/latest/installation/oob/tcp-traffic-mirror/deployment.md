@@ -245,25 +245,39 @@ proxy_headers:
 To install the Wallarm node for TCP traffic mirror analysis, run the following command:
 
 === "x86_64 version"
+    US Cloud:
+
     ```bash
-    # US Cloud
     sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.25.1.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+    ```
 
-    # EU Cloud
+    EU Cloud:
+
+    ```bash
     sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.25.1.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+    ```
 
-    # ME Cloud
+    ME Cloud:
+
+    ```bash
     sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.25.1.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com
     ```
 === "ARM64 version"
+    US Cloud:
+
     ```bash
-    # US Cloud
     sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.25.1.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+    ```
 
-    # EU Cloud
+    EU Cloud:
+
+    ```bash
     sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.25.1.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+    ```
 
-    # ME Cloud
+    ME Cloud:
+
+    ```bash
     sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.25.1.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com
     ```
 

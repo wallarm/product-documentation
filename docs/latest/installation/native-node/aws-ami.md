@@ -290,28 +290,58 @@ WALLARM_TOKEN=$(aws secretsmanager get-secret-value \
 Then run the installer using `$WALLARM_TOKEN`. Alternatively, you can pass the token directly as `<API_TOKEN>` (simpler for testing but **not recommended for production**):
 
 === "connector-server"
-    ```bash
-    # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token $WALLARM_TOKEN --mode=connector-server --go-node-config=./wallarm-node-conf.yaml --host us1.api.wallarm.com
+    US Cloud:
 
-    # EU Cloud
+    ```bash
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token $WALLARM_TOKEN --mode=connector-server --go-node-config=./wallarm-node-conf.yaml --host us1.api.wallarm.com
+    ```
+
+    EU Cloud:
+
+    ```bash
     sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token $WALLARM_TOKEN --mode=connector-server --go-node-config=./wallarm-node-conf.yaml --host api.wallarm.com
     ```
-=== "tcp-capture-v2"
-    ```bash
-    # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token $WALLARM_TOKEN --mode=tcp-capture-v2 --go-node-config=./wallarm-node-conf.yaml --host us1.api.wallarm.com
 
-    # EU Cloud
+    ME Cloud:
+
+    ```bash
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token $WALLARM_TOKEN --mode=connector-server --go-node-config=./wallarm-node-conf.yaml --host me1.api.wallarm.com
+    ```
+=== "tcp-capture-v2"
+    US Cloud:
+
+    ```bash
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token $WALLARM_TOKEN --mode=tcp-capture-v2 --go-node-config=./wallarm-node-conf.yaml --host us1.api.wallarm.com
+    ```
+
+    EU Cloud:
+
+    ```bash
     sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token $WALLARM_TOKEN --mode=tcp-capture-v2 --go-node-config=./wallarm-node-conf.yaml --host api.wallarm.com
     ```
-=== "envoy-external-filter"
-    ```bash
-    # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token $WALLARM_TOKEN --mode=envoy-external-filter --go-node-config=./wallarm-node-conf.yaml --host us1.api.wallarm.com
 
-    # EU Cloud
+    ME Cloud:
+
+    ```bash
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token $WALLARM_TOKEN --mode=tcp-capture-v2 --go-node-config=./wallarm-node-conf.yaml --host me1.api.wallarm.com
+    ```
+=== "envoy-external-filter"
+    US Cloud:
+
+    ```bash
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token $WALLARM_TOKEN --mode=envoy-external-filter --go-node-config=./wallarm-node-conf.yaml --host us1.api.wallarm.com
+    ```
+
+    EU Cloud:
+
+    ```bash
     sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token $WALLARM_TOKEN --mode=envoy-external-filter --go-node-config=./wallarm-node-conf.yaml --host api.wallarm.com
+    ```
+
+    ME Cloud:
+
+    ```bash
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token $WALLARM_TOKEN --mode=envoy-external-filter --go-node-config=./wallarm-node-conf.yaml --host me1.api.wallarm.com
     ```
 
 * The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
