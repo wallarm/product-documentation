@@ -126,81 +126,125 @@ Create the `wallarm-node-conf.yaml` file on the machine with the following minim
 === "connector-server"
     For the x86_64 installer version:
 
-    ```bash
-    # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+    * US Cloud:
 
-    # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+        ```bash
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+        ```
 
-    # ME Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com
-    ```
+    * EU Cloud:
+
+        ```bash
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+        ```
+
+    * ME Cloud:
+
+        ```bash
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com
+        ```
 
     For the ARM64 installer version:
 
-    ```bash
-    # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+    * US Cloud:
 
-    # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+        ```bash
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+        ```
 
-    # ME Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com
-    ```
+    * EU Cloud:
+
+        ```bash
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+        ```
+
+    * ME Cloud:
+
+        ```bash
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com
+        ```
 === "tcp-capture"
     For the x86_64 installer version:
-        
-    ```bash
-    # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
-    # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+    * US Cloud:
 
-    # ME Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com
-    ```
+        ```bash
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+        ```
+
+    * EU Cloud:
+
+        ```bash
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+        ```
+
+    * ME Cloud:
+
+        ```bash
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com
+        ```
 
     For the ARM64 installer version:
 
-    ```bash
-    # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+    * US Cloud:
 
-    # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+        ```bash
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+        ```
 
-    # ME Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com
-    ```
+    * EU Cloud:
+
+        ```bash
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+        ```
+
+    * ME Cloud:
+
+        ```bash
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com
+        ```
 === "envoy-external-filter"
     For the x86_64 installer version:
-        
-    ```bash
-    # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
-    # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+    * US Cloud:
 
-    # ME Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com
-    ```
+        ```bash
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+        ```
+
+    * EU Cloud:
+
+        ```bash
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+        ```
+
+    * ME Cloud:
+
+        ```bash
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com
+        ```
 
     For the ARM64 installer version:
 
-    ```bash
-    # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+    * US Cloud:
 
-    # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+        ```bash
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+        ```
 
-    # ME Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com
-    ```
+    * EU Cloud:
+
+        ```bash
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+        ```
+
+    * ME Cloud:
+
+        ```bash
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com
+        ```
+
+Parameter values:
 
 * The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
 * `<API_TOKEN>` specifies the generated API token for the `Deploy` role.
