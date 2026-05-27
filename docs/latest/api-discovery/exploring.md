@@ -227,12 +227,10 @@ Click the endpoint to open its details page and view which type was automaticall
 
 ## Notifications
 
-You can [set up](setup.md#notifications) API Discovery notifications to be sent to your personal email (the one you use to log in) and to any additional emails:
+API Discovery can notify you about endpoint changes in two ways:
 
-* Daily endpoint changes
-* Hourly endpoint changes
-
-The notification will include both [changed and new](track-changes.md) endpoints. By default, the notification is disabled.
+* [**Email digests**](track-changes.md#email-notifications) — daily or hourly summaries of new and changed endpoints, delivered to your account email and any additional addresses.
+* [**Per-endpoint alerts via triggers**](track-changes.md#per-endpoint-alerts-via-triggers) — one notification per changed endpoint, delivered through any configured integration (Slack, webhook, SIEM, PagerDuty, Microsoft Teams, Telegram, and others) using the **Changes in API** trigger.
 
 <!--## Creating rules for API endpoints
 

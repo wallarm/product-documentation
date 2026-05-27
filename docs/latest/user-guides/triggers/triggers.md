@@ -18,15 +18,24 @@ Each trigger consists of the following components that you can configure:
 
 Using triggers, you can:
 
-* Provide the following protection measures for your applications and APIs:
+* Configure protection mechanisms for your applications and APIs:
 
     * [Protection from multi-attack perpetrators](../../admin-en/configuration-guides/protecting-with-thresholds.md)
     * [Brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
     * [Forced browsing protection](../../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
     * [BOLA protection](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
 
-* Set up extended alerts for different [integrations](../../user-guides/settings/integrations/integrations-intro.md).
-* Optimize attacks and incidents representation by [grouping hits](../../user-guides/events/grouping-sampling.md#grouping-of-hits).
+* Configure notifications and alerts for security and API inventory events, including:
+
+    * [New, unused, and changed API endpoints discovered from real traffic](../../api-discovery/track-changes.md#per-endpoint-alerts-via-triggers)
+    * Exceeded thresholds for attacks and incidents
+    * Detection of certain attack types or compromised user accounts in traffic
+    * IP addresses added to the denylist
+    * New users added to the company account in Wallarm Console
+
+    Notifications can be delivered through configured [integrations](../../user-guides/settings/integrations/integrations-intro.md), including SIEM systems, messengers, and other external tools.
+
+* Optimize attack and incident representation by [grouping hits](../../user-guides/events/grouping-sampling.md#grouping-of-hits).
 
 ## Understanding filters
 
