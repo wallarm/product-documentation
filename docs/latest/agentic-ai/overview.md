@@ -22,7 +22,7 @@ Wallarm addresses AI security through two complementary capabilities:
 [AI Discovery](agentic-ai-discovery.md) automatically identifies APIs related to AI/LLM systems and MCP servers in your environment:
 
 * Automatic tagging of AI/LLM endpoints in your [API inventory](../api-discovery/overview.md)
-* [MCP server discovery](agentic-ai-discovery.md#mcp-server-discovery) — automatic detection of MCP servers and their primitives (tools, resources, prompts)
+* [MCP server discovery](mcp-discovery.md) — automatic detection of MCP servers and their primitives (tools, resources, prompts)
 * [MCP Sessions](../api-sessions/mcp-sessions.md) — dedicated view of AI agent interactions with MCP servers
 * Visibility into which [API sessions](../api-sessions/overview.md) interact with AI endpoints
 * Manual tagging for endpoints not automatically detected
@@ -42,7 +42,7 @@ Wallarm addresses AI security through two complementary capabilities:
 ## How It Works
 
 1. **Deploy** - Install Wallarm filtering node using your preferred [deployment option](../installation/supported-deployment-options.md)
-2. **Discover** - Enable [API Discovery](../api-discovery/overview.md) to automatically identify AI/LLM endpoints and [MCP servers](agentic-ai-discovery.md#mcp-server-discovery)
+2. **Discover** - Enable [API Discovery](../api-discovery/overview.md) to automatically identify AI/LLM endpoints and [MCP servers](mcp-discovery.md)
 3. **Configure** - Create [AI payload inspection](ai-payload-inspection.md) and [MCP mitigation controls](mcp-mitigation-controls.md) for your AI systems
 4. **Monitor** - View detected attacks in [API Sessions](../api-sessions/overview.md) and [MCP Sessions](../api-sessions/mcp-sessions.md)
 
