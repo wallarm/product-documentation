@@ -43,14 +43,27 @@ API Discovery can notify you about endpoint changes in two ways:
 * **Email digests** — daily or hourly summaries of new and changed endpoints, delivered to your account email and any additional addresses.
 * **Per-endpoint alerts via triggers** — one notification per changed endpoint, delivered through any configured integration (Slack, webhook, SIEM, PagerDuty, Microsoft Teams, Telegram, and others) using the **Changes in API** [trigger](../user-guides/triggers/triggers.md) condition.
 
-### Email digests
+### Email notifications
 
-You can [set up](setup.md#notifications) API Discovery email notifications to be sent to your personal email (the one you use to log in) and to any additional emails:
+You can configure API Discovery email notifications to be sent to your personal email address (used to log in) and to additional email recipients.
+
+Available notifications:
 
 * Daily endpoint changes
 * Hourly endpoint changes
 
-The notification includes both changed and new endpoints. By default, email notifications are disabled.
+Notifications include both newly discovered and changed endpoints. Email notifications are disabled by default.
+
+1. In Wallarm Console, go to **Configuration** → **Integrations** → **Email and messengers**:
+
+    * **Personal email** – configure notifications for your login email address
+    * **Email report** – configure notifications for additional email recipients
+
+        For details, see [email integrations](../user-guides/settings/integrations/email.md).
+
+2. In the **API Discovery notifications** section, select the notifications you want to receive (hourly or daily notifications about [new and changed](track-changes.md#highlighting-changes-in-api) endpoints).
+
+    ![API Discovery - email notification settings](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-notifications.png)
 
 ### Per-endpoint alerts via triggers
 
