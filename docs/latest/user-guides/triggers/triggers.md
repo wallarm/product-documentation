@@ -18,15 +18,24 @@ Each trigger consists of the following components that you can configure:
 
 Using triggers, you can:
 
-* Provide the following protection measures for your applications and APIs:
+* Configure protection mechanisms for your applications and APIs:
 
     * [Protection from multi-attack perpetrators](../../admin-en/configuration-guides/protecting-with-thresholds.md)
     * [Brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
     * [Forced browsing protection](../../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
     * [BOLA protection](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
 
-* Set up extended alerts for different [integrations](../../user-guides/settings/integrations/integrations-intro.md).
-* Optimize attacks and incidents representation by [grouping hits](../../user-guides/events/grouping-sampling.md#grouping-of-hits).
+* Configure notifications and alerts for security and API inventory events, including:
+
+    * [New, unused, and changed API endpoints discovered from real traffic](../../api-discovery/track-changes.md#per-endpoint-alerts-via-triggers)
+    * Exceeded thresholds for attacks and incidents
+    * Detection of certain attack types or compromised user accounts in traffic
+    * IP addresses added to the denylist
+    * New users added to the company account in Wallarm Console
+
+    Notifications can be delivered through configured [integrations](../../user-guides/settings/integrations/integrations-intro.md), including SIEM systems, messengers, and other external tools.
+
+* Optimize attack and incident representation by [grouping hits](../../user-guides/events/grouping-sampling.md#grouping-of-hits).
 
 ## Understanding filters
 
@@ -46,29 +55,6 @@ The following filters are available:
 * **Response status** is the response code returned to the request.
 * **Target** is an application architecture part that the attack is directed at or in which the incident is detected. It can take the following values: `Server`, `Client`, `Database`.
 * **User's role** is the [role](../../user-guides/settings/users.md#user-roles) of the added user. It can take the following values: `Deploy`, `Analyst`, `Administrator`, `Read only`, `API developer`, and if [multitenancy](../../installation/multi-tenant/overview.md) feature is enabled - `Global Administrator`, `Global Analyst`, `Global Read Only`.
-
-## Notifying on API Discovery changes
-
-The **Changes in API** condition fires when [API Discovery](../../api-discovery/track-changes.md) detects new, changed, or unused endpoints in your API inventory. Use it to send alerts to Slack, webhook, SIEM, email, or any other configured [integration](../settings/integrations/integrations-intro.md) whenever your API surface shifts — including alerts scoped to endpoints that carry sensitive data such as PCI or PII.
-
-![Choosing the Changes in API condition](../../images/user-guides/triggers/trigger-changes-in-api-conditions.png)
-
-When you select the **Changes in API** condition, the following filters become available on the right:
-
-![Filters available for the Changes in API condition](../../images/user-guides/triggers/trigger-changes-in-api-filters.png)
-
-| Filter | Values | Purpose |
-|--------|--------|---------|
-| **Application** | One or more [applications](../settings/applications.md) | Narrow the range by application. |
-| **API host** | One or more hostnames | Narrow the range by API host. |
-| **Endpoint change type** | `New endpoints`, `Changed endpoints`, `Unused endpoints` | Notify only about a specific kind of change. |
-| **Sensitive data** | One or more [sensitive data types](../../api-discovery/sensitive-data.md) | Notify only when the changed endpoint carries the selected sensitive data types — for example, credit card data for PCI monitoring. |
-
-All filters accept multiple values. If you add several filters, they are combined with AND — all conditions must match for the notification to be sent.
-
-![A filled-in Changes in API trigger](../../images/user-guides/triggers/trigger-changes-in-api-filled.png)
-
-For details on how the trigger evaluates changes, the cadence at which it runs, and the payload sent to integrations, see [Tracking changes in API → Per-endpoint alerts via triggers](../../api-discovery/track-changes.md#per-endpoint-alerts-via-triggers).
 
 ## Default triggers
 

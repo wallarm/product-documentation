@@ -69,16 +69,18 @@ Notifications include both newly discovered and changed endpoints. Email notific
 
 To receive a notification for every endpoint that changes — and to deliver these notifications through any integration configured in your account — configure a Wallarm [trigger](../user-guides/triggers/triggers.md) with the **Changes in API** condition.
 
-**How it works:**
+**How it works**
 
 * Every hour, API Discovery evaluates endpoints that changed since the previous run against all enabled **Changes in API** triggers for your account.
-* For every REST endpoint whose status matches the trigger filters (**New**, **Changed**, or **Unused** — see [Highlighting changes in API](#highlighting-changes-in-api)), one event is sent to the integrations selected in the trigger's actions.
+* For every REST endpoint whose status matches the trigger [filters (**New**, **Changed**, or **Unused**)](#highlighting-changes-in-api), one event is sent to the integrations selected in the trigger's actions.
 * Each event includes the endpoint's HTTP method, host, path, application, change type, and the list of parameters with their detected sensitive data types — so the receiving system has the full context without needing to open Wallarm Console.
 
 !!! info "REST only"
     Currently, the **Changes in API** trigger evaluates only REST endpoints. Changes in GraphQL, SOAP, gRPC, and MCP primitives are not yet delivered through this trigger.
 
-**Filters:**
+![A filled-in Changes in API trigger](../../images/user-guides/triggers/trigger-changes-in-api-filled.png)
+
+**Filters**
 
 When creating the trigger, you can narrow notifications using filters specific to the **Changes in API** condition:
 
@@ -91,7 +93,7 @@ When creating the trigger, you can narrow notifications using filters specific t
 
 All filters accept multiple values. If you set several filters, they are combined with AND — all conditions must match for the notification to be sent.
 
-**Event data points:**
+**Event data points**
 
 Each event represents one changed endpoint. The table below lists the **maximum** set of data points the event can carry; the actual content that reaches the receiving system depends on the integration (delivery) type selected in the trigger's action. Structured channels (webhook, SIEM) typically receive the full payload, while message-oriented channels (Slack, Microsoft Teams, Telegram, email) render a condensed summary built from the same data.
 
@@ -119,3 +121,26 @@ Each event represents one changed endpoint. The table below lists the **maximum*
 1. Send several requests to `example.com/users` to receive the `200` (`OK`) response.
 1. In the **API Discovery** section, verify that the endpoint appears with the **New** mark.
 1. Within an hour, a message summarizing the new endpoint and any sensitive data it carries arrives in your Slack channel.
+
+    The message will look similar to the following:
+
+    ```
+    [wallarm] A new endpoint has been discovered in your API
+
+    Notification type: api_structure_changed
+
+    The new GET example.com/users endpoint has been discovered in your API.
+
+        Client: Client 001
+        Cloud: US
+
+        Details:
+
+          application: Application 1802
+          domain: example.com
+          endpoint_path: /users
+          http_method: GET
+          change_type: added
+          link: https://my.wallarm.com/api-discovery?instance=1802&method=GET&q=example.com%2Fusers
+    ```
+
