@@ -560,6 +560,25 @@ List HIGH/CRITICAL CVEs fixed since the previous version, **per form factor**. U
 * Date format in header: `(YYYY-MM-DD)`
 * If the same version applies to multiple form factors, add it under each relevant H2 section
 
+## Bullet voice — write tight
+
+The first draft of a bullet is almost always too long. After the validation gate (Part 1 step 5) but before showing the preview to the author, re-read every bullet and cut everything that doesn't help the reader decide *whether this affects their deployment*. A bullet at ~50% of the first-draft length is normal; if you can't cut, suspect padding. The dev team will push back on bloated wording on review (paraphrasing past feedback: "same meaning in 50% of the volume").
+
+| Keep | Cut |
+|------|-----|
+| Symptom the reader could have observed | Mechanism of the fix ("the parser now requires a longer minimum length") |
+| Subject — feature, parameter, attack category | Implementation detail ("a warning is logged at startup", "automatically") |
+| Form-factor scope if non-obvious | Parenthetical version notes the surrounding entry already implies — "(introduced in X.Y.0)" inside the entry for X.Y.3 |
+| Cross-reference to the doc page where the subject lives | Filler — "for the Wallarm NGINX module", "by individual features" |
+
+**Be specific about attack categories.** If a fix or behavior change is scoped to one detection category — typically `infoleak`, sometimes `bot`, `scanner`, `brute` — name that category instead of the generic words "attacks", "threats", or "vulnerabilities". The dev team catches this on review.
+
+**Before/after examples that lose nothing factual:**
+
+* `Added BoringSSL compatibility for the Wallarm NGINX module — the module can now load on NGINX builds linked against BoringSSL.` → `Added BoringSSL compatibility — the Wallarm NGINX module can now load on BoringSSL-linked NGINX builds.`
+* `Fixed the hex parser (introduced in 6.12.0) producing spurious detections from very short alphanumeric inputs such as two-character values; the parser now requires a longer minimum length before applying HEX decoding.` → `Fixed the HEX parser producing false detections on very short alphanumeric inputs such as two-character values.`
+* `attacks in responses are still detected and recorded for statistics` → `infoleaks in responses are still recorded in statistics` (specific category; drop the redundant "detected and").
+
 ## Common file locations
 
 ### NGINX Node
