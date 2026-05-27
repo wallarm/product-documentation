@@ -193,6 +193,9 @@ JA4 fingerprints are used as an additional factor when deciding to block a reque
 
     For [self-hosted deployments](../installation/nginx-native-node-internals.md#nginx-node), the directive can be set inside the `http` or `server` blocks of the NGINX configuration file (the default value is `off`).
 
+!!! info "BoringSSL support"
+    Starting from version 6.12.3, the Wallarm NGINX module can load on NGINX builds linked against BoringSSL. BoringSSL does not export the symbols required for JA4 fingerprinting; on such builds the directive is silently disabled and the module logs a warning at startup. Use a build linked against OpenSSL if JA4 fingerprinting is required.
+
 ### wallarm_custom_ruleset_path
 
 A path to the [custom ruleset](../user-guides/rules/rules.md) file that contains information on the protected application and the filtering node settings.

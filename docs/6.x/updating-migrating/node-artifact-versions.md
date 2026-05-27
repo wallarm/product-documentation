@@ -19,6 +19,14 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.12.3 (2026-05-25)
+
+* Added BoringSSL compatibility — the Wallarm NGINX module can now run on BoringSSL-linked NGINX builds. [JA4 TLS fingerprinting](../admin-en/configure-parameters-en.md#wallarm_fingerprint) and encrypted upstream traffic to the postanalytics service are disabled when the build lacks the required symbols
+* Fixed the HEX parser producing false detections on very short alphanumeric inputs such as two-character values
+* Fixed HEX-encoded points in serialized requests causing parsing errors in the postanalytics service and [API Discovery](../api-discovery/overview.md)
+* Fixed [API Discovery](../api-discovery/overview.md) inferring the wrong content type for responses — the value is now read from request-level metadata instead of the response `Content-Type` header
+* Fixed gRPC and WebSocket responses being blocked on detected infoleaks
+
 ### 6.12.2 (2026-05-19)
 
 * Added support for NGINX stable 1.30.1
@@ -262,6 +270,14 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.12.3 (2026-05-25)
+
+* Added BoringSSL compatibility — the Wallarm NGINX module can now run on BoringSSL-linked NGINX builds. [JA4 TLS fingerprinting](../admin-en/configure-parameters-en.md#wallarm_fingerprint) and encrypted upstream traffic to the postanalytics service are disabled when the build lacks the required symbols
+* Fixed the HEX parser producing false detections on very short alphanumeric inputs such as two-character values
+* Fixed HEX-encoded points in serialized requests causing parsing errors in the postanalytics service and [API Discovery](../api-discovery/overview.md)
+* Fixed [API Discovery](../api-discovery/overview.md) inferring the wrong content type for responses — the value is now read from request-level metadata instead of the response `Content-Type` header
+* Fixed gRPC and WebSocket responses being blocked on detected infoleaks
 
 ### 6.12.2 (2026-05-19)
 
@@ -520,6 +536,14 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.12.3 (2026-05-25)
+
+* Added BoringSSL compatibility — the Wallarm NGINX module can now run on BoringSSL-linked NGINX builds. [JA4 TLS fingerprinting](../admin-en/configure-parameters-en.md#wallarm_fingerprint) and encrypted upstream traffic to the postanalytics service are disabled when the build lacks the required symbols
+* Fixed the HEX parser producing false detections on very short alphanumeric inputs such as two-character values
+* Fixed HEX-encoded points in serialized requests causing parsing errors in the postanalytics service and [API Discovery](../api-discovery/overview.md)
+* Fixed [API Discovery](../api-discovery/overview.md) inferring the wrong content type for responses — the value is now read from request-level metadata instead of the response `Content-Type` header
+* Fixed gRPC and WebSocket responses being blocked on detected infoleaks
+
 ### 6.12.2 (2026-05-19)
 
 * Pulled in NGINX security patches from the base image: [CVE-2026-42945](https://nvd.nist.gov/vuln/detail/CVE-2026-42945), [CVE-2026-42946](https://nvd.nist.gov/vuln/detail/CVE-2026-42946), [CVE-2026-40460](https://nvd.nist.gov/vuln/detail/CVE-2026-40460), [CVE-2026-42934](https://nvd.nist.gov/vuln/detail/CVE-2026-42934), and [CVE-2026-40701](https://nvd.nist.gov/vuln/detail/CVE-2026-40701).
@@ -747,6 +771,14 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.12.3 (2026-05-25)
+
+* Added BoringSSL compatibility — the Wallarm NGINX module can now run on BoringSSL-linked NGINX builds. [JA4 TLS fingerprinting](../admin-en/configure-parameters-en.md#wallarm_fingerprint) and encrypted upstream traffic to the postanalytics service are disabled when the build lacks the required symbols
+* Fixed the HEX parser producing false detections on very short alphanumeric inputs such as two-character values
+* Fixed HEX-encoded points in serialized requests causing parsing errors in the postanalytics service and [API Discovery](../api-discovery/overview.md)
+* Fixed [API Discovery](../api-discovery/overview.md) inferring the wrong content type for responses — the value is now read from request-level metadata instead of the response `Content-Type` header
+* Fixed gRPC and WebSocket responses being blocked on detected infoleaks
 
 ### 6.12.2 (2026-05-19)
 
@@ -978,6 +1010,14 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](cloud-image.md)
 
+### 6.12.3 (2026-05-25)
+
+* Added BoringSSL compatibility — the Wallarm NGINX module can now run on BoringSSL-linked NGINX builds. [JA4 TLS fingerprinting](../admin-en/configure-parameters-en.md#wallarm_fingerprint) and encrypted upstream traffic to the postanalytics service are disabled when the build lacks the required symbols
+* Fixed the HEX parser producing false detections on very short alphanumeric inputs such as two-character values
+* Fixed HEX-encoded points in serialized requests causing parsing errors in the postanalytics service and [API Discovery](../api-discovery/overview.md)
+* Fixed [API Discovery](../api-discovery/overview.md) inferring the wrong content type for responses — the value is now read from request-level metadata instead of the response `Content-Type` header
+* Fixed gRPC and WebSocket responses being blocked on detected infoleaks
+
 ### 6.12.2 (2026-05-19)
 
 * Pulled in NGINX security patches from the Debian base image: [CVE-2026-27651](https://nvd.nist.gov/vuln/detail/CVE-2026-27651), [CVE-2026-27654](https://nvd.nist.gov/vuln/detail/CVE-2026-27654), [CVE-2026-27784](https://nvd.nist.gov/vuln/detail/CVE-2026-27784), [CVE-2026-28753](https://nvd.nist.gov/vuln/detail/CVE-2026-28753), [CVE-2026-28755](https://nvd.nist.gov/vuln/detail/CVE-2026-28755), [CVE-2026-32647](https://nvd.nist.gov/vuln/detail/CVE-2026-32647), [CVE-2026-40701](https://nvd.nist.gov/vuln/detail/CVE-2026-40701), [CVE-2026-42934](https://nvd.nist.gov/vuln/detail/CVE-2026-42934), [CVE-2026-42945](https://nvd.nist.gov/vuln/detail/CVE-2026-42945), and [CVE-2026-42946](https://nvd.nist.gov/vuln/detail/CVE-2026-42946).
@@ -1165,6 +1205,14 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-12-3-20260522-031313 (2026-05-25)
+
+* Added BoringSSL compatibility — the Wallarm NGINX module can now run on BoringSSL-linked NGINX builds. [JA4 TLS fingerprinting](../admin-en/configure-parameters-en.md#wallarm_fingerprint) and encrypted upstream traffic to the postanalytics service are disabled when the build lacks the required symbols
+* Fixed the HEX parser producing false detections on very short alphanumeric inputs such as two-character values
+* Fixed HEX-encoded points in serialized requests causing parsing errors in the postanalytics service and [API Discovery](../api-discovery/overview.md)
+* Fixed [API Discovery](../api-discovery/overview.md) inferring the wrong content type for responses — the value is now read from request-level metadata instead of the response `Content-Type` header
+* Fixed gRPC and WebSocket responses being blocked on detected infoleaks
 
 ### wallarm-node-6-12-2-20260518-171044 (2026-05-19)
 
