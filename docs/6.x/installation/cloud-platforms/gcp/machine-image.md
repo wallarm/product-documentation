@@ -5,7 +5,6 @@
 [img-wl-console-users]:         ../../../images/check-user-no-2fa.png
 [img-create-wallarm-node]:      ../../../images/user-guides/nodes/create-cloud-node.png
 [deployment-platform-docs]:     ../../../installation/supported-deployment-options.md
-[node-token]:                       ../../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../../user-guides/settings/api-tokens.md
 [wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../../installation/supported-deployment-options.md
@@ -17,14 +16,10 @@
 [allocate-memory-docs]:             ../../../admin-en/configuration-guides/allocate-resources-for-node.md
 [limiting-request-processing]:      ../../../user-guides/rules/configure-overlimit-res-detection.md
 [logs-docs]:                        ../../../admin-en/configure-logging.md
-[oob-advantages-limitations]:       ../oob/overview.md#limitations
 [wallarm-mode]:                     ../../../admin-en/configure-wallarm-mode.md
-[oob-docs]:                         ../oob/overview.md
 [wallarm-api-via-proxy]:            ../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-[web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#configuration-examples-for-traffic-mirroring
 [img-grouped-nodes]:                ../../../images/user-guides/nodes/grouped-nodes.png
 [cloud-init-spec]:                  ../cloud-init.md
-[wallarm_force_directive]:          ../../../admin-en/configure-parameters-en.md#wallarm_force
 [ip-lists-docs]:                    ../../../user-guides/ip-lists/overview.md
 [api-spec-enforcement-docs]:        ../../../api-specification-enforcement/overview.md
 [inline-docs]:                      ../../inline/overview.md
