@@ -1,0 +1,28 @@
+{#-
+  Custom TOC item partial — strips inline HTML (SVG icons, <code>, etc.) from
+  TOC labels so the sidebar stays clean. zensical 0.0.35 added HTML rendering
+  in the TOC (the typeset feature), which clutters our TOC because many of
+  our headings contain SVG icons and inline code spans.
+
+  Difference from zensical's bundled version: `toc_item.content | striptags`
+  instead of `toc_item.content`. striptags is a Jinja2 builtin filter that
+  removes all HTML tags and returns plain text.
+-#}
+<li class="md-nav__item">
+  <a href="{{ toc_item.url }}" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        {{ toc_item.content | striptags }}
+      </span>
+    </span>
+  </a>
+  {% if toc_item.children %}
+    <nav class="md-nav" aria-label="{{ toc_item.title | striptags | e }}">
+      <ul class="md-nav__list">
+        {% for toc_item in toc_item.children %}
+          {% include "partials/toc-item.html" %}
+        {% endfor %}
+      </ul>
+    </nav>
+  {% endif %}
+</li>
