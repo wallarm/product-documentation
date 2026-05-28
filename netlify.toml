@@ -12,7 +12,9 @@ edge_functions = "netlify/edge-functions"
 command = """
 pip3 install --no-cache-dir -r requirements.txt &&
 curl -fsSL https://github.com/oxipng/oxipng/releases/download/v10.1.1/oxipng-10.1.1-x86_64-unknown-linux-gnu.tar.gz | tar xz --strip-components=1 oxipng-10.1.1-x86_64-unknown-linux-gnu/oxipng &&
+echo "Image size before oxipng: $(du -sh images/ | cut -f1) ($(find images/ -name '*.png' | wc -l) PNGs)" &&
 ./oxipng -r -o 2 --strip safe -q images/ &&
+echo "Image size after  oxipng: $(du -sh images/ | cut -f1)" &&
 cp -R images/ docs/6.x/images/ && zensical build -f mkdocs-6.x.yml && python3 scripts/generate_raw_markdown.py mkdocs-6.x.yml && rm -rf docs/6.x/images/ &&
 cp -R images/ docs/7.x/images/ && zensical build -f mkdocs-7.x.yml && python3 scripts/generate_raw_markdown.py mkdocs-7.x.yml && rm -rf docs/7.x/images/ &&
 cp -R images/ docs/5.0/images/ && zensical build -f mkdocs-5.0.yml && python3 scripts/generate_raw_markdown.py mkdocs-5.0.yml && rm -rf docs/5.0/images/ &&
