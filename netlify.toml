@@ -1,16 +1,18 @@
 [build]
 publish = "site"
 edge_functions = "netlify/edge-functions"
-# Image optimisation step: oxipng-bin pulls the oxipng binary at install
-# time; we then run it across every PNG in images/ once, before any of
-# the per-version builds copy the directory. Lossless, --strip safe
-# keeps colour profile and gamma metadata. -o 2 is the recommended
-# speed/size tradeoff for batch use. Typical savings ~30% (~60 MB on
-# the current set), runs in roughly one minute.
+# Image optimisation step: download the oxipng release binary from GitHub
+# (single ~500 KB file, no transitive deps and so no audit issues — the
+# npm `oxipng-bin` wrapper drags in 150+ packages, several with known
+# ReDoS vulnerabilities and no upstream fix), then run it across every
+# PNG in images/ once, before any of the per-version builds copy the
+# directory. Lossless; --strip safe keeps colour profile and gamma
+# metadata. -o 2 is the recommended speed/size tradeoff for batch use.
+# Typical savings ~30% (~60 MB on the current set) in roughly a minute.
 command = """
 pip3 install --no-cache-dir -r requirements.txt &&
-npm install --no-save oxipng-bin &&
-./node_modules/.bin/oxipng -r -o 2 --strip safe -q images/ &&
+curl -fsSL https://github.com/oxipng/oxipng/releases/download/v10.1.1/oxipng-10.1.1-x86_64-unknown-linux-gnu.tar.gz | tar xz --strip-components=1 oxipng-10.1.1-x86_64-unknown-linux-gnu/oxipng &&
+./oxipng -r -o 2 --strip safe -q images/ &&
 cp -R images/ docs/6.x/images/ && zensical build -f mkdocs-6.x.yml && python3 scripts/generate_raw_markdown.py mkdocs-6.x.yml && rm -rf docs/6.x/images/ &&
 cp -R images/ docs/7.x/images/ && zensical build -f mkdocs-7.x.yml && python3 scripts/generate_raw_markdown.py mkdocs-7.x.yml && rm -rf docs/7.x/images/ &&
 cp -R images/ docs/5.0/images/ && zensical build -f mkdocs-5.0.yml && python3 scripts/generate_raw_markdown.py mkdocs-5.0.yml && rm -rf docs/5.0/images/ &&
