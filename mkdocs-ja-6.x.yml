@@ -21,8 +21,6 @@ extra:
 
 docs_dir: docs/ja
 site_dir: site/ja
-watch:
-  - docs/latest-ja
 
 # Translated docs are auto-generated from the English sources; we do not edit
 # them by hand. Disable link-validation checks so stale or version-mismatched

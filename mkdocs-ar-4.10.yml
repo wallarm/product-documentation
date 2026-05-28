@@ -51,9 +51,6 @@ extra:
 docs_dir: docs/ar
 site_dir: site/ar
 
-watch:
-  - docs/latest-ar
-
 # Translated docs are auto-generated from the English sources; we do not edit
 # them by hand. Disable link-validation checks so stale or version-mismatched
 # refs in translations do not produce warnings until the regeneration catches

@@ -75,7 +75,7 @@ Suppose your application assigns each user session with a unique ID and reflects
 
 ![Example](../../images/user-guides/rules/rate-limit-for-jwt.png)
 
-The [regexp](rules.md#condition-type-regex) used for the `Authorization` value is ``^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$`.
+The [regexp](rules.md#condition-type-regex) used for the `Authorization` value is `^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$`.
 
 If you use JWT (JSON Web Tokens) to manage user sessions, you can adjust the rule to [decrypt](request-processing.md#jwt) the JWT and extract the session ID from its payload as follows:
 

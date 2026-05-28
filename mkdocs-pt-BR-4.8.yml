@@ -20,8 +20,6 @@ extra:
 
 docs_dir: docs/pt-BR
 site_dir: site/pt-br
-watch:
-  - docs/latest-pt-BR
 
 # Translated docs are auto-generated from the English sources; we do not edit
 # them by hand. Disable link-validation checks so stale or version-mismatched

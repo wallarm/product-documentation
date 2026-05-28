@@ -20,8 +20,6 @@ extra:
 
 docs_dir: docs/tr
 site_dir: site/tr
-watch:
-  - docs/tr
 
 # Translated docs are auto-generated from the English sources; we do not edit
 # them by hand. Disable link-validation checks so stale or version-mismatched
