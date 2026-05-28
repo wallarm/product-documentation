@@ -3,16 +3,13 @@
 [img-incidents-tab]:    ../../images/user-guides/events/incident-vuln.png
 [img-show-falsepositive]: ../../images/user-guides/events/filter-for-falsepositive.png
 [use-search]:             ../search-and-filters/use-search.md
-[search-by-attack-status]: ../search-and-filters/use-search.md#search-attacks-by-the-action
 [img-verify-attack]:            ../../images/user-guides/events/verify-attack.png
 [al-brute-force-attack]:      ../../attacks-vulns-list.md#brute-force-attack
 [al-forced-browsing]:         ../../attacks-vulns-list.md#forced-browsing
 [al-bola]:                    ../../attacks-vulns-list.md#broken-object-level-authorization-bola
-[link-analyzing-attacks]:       analyze-attack.md
 [img-false-attack]:             ../../images/user-guides/events/false-attack.png
 [img-removed-attack-info]:      ../../images/user-guides/events/removed-attack-info.png
 [link-check-attack]:        check-attack.md
-[link-false-attack]:        false-attack.md
 [img-current-attack]:       ../../images/user-guides/events/analyze-current-attack.png
 [glossary-attack-vector]:   ../../glossary-en.md#malicious-payload
 [link-attacks]:         ../../user-guides/events/check-attack.md

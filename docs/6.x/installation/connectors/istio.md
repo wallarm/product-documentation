@@ -4,6 +4,5 @@
 [multitenancy-overview]:            ../multi-tenant/overview.md
 [applications-docs]:                ../../user-guides/settings/applications.md
 [available-filtration-modes]:       ../../admin-en/configure-wallarm-mode.md#available-filtration-modes
-[ui-filtration-mode]:              ../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console
 
 --8<-- "latest/installation/connectors/istio.md"

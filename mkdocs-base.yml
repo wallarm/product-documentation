@@ -11,9 +11,6 @@ plugins:
   - search
   - meta-descriptions
   - meta
-  - glightbox:
-      skip_classes:
-        - non-zoomable
   - group:
       plugins:
         - optimize
@@ -115,12 +112,10 @@ extra:
 
 extra_css:
   - 'extra_new.css'
-  - 'glightbox.min.css'
 
 extra_javascript:
   - 'extra.js'
   - 'feedback.js'
-  - 'glightbox.min.js'
 
 markdown_extensions:
   - admonition
@@ -154,6 +149,9 @@ markdown_extensions:
   - attr_list
   - prependnewline
   - meta
+  - zensical.extensions.glightbox:
+      skip_classes:
+        - non-zoomable
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
@@ -166,3 +164,4 @@ edit_uri: ../product-documentation/edit/master/docs/latest/
 validation:
   absolute_links: ignore
   unrecognized_links: ignore
+  unused_definitions: false

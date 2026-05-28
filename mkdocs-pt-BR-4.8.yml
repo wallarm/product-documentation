@@ -20,8 +20,19 @@ extra:
 
 docs_dir: docs/pt-BR
 site_dir: site/pt-br
-watch:
-  - docs/latest-pt-BR
+
+# Translated docs are auto-generated from the English sources; we do not edit
+# them by hand. Disable link-validation checks so stale or version-mismatched
+# refs in translations do not produce warnings until the regeneration catches
+# up. Keep absolute/unrecognized/unused as in the base config.
+validation:
+  absolute_links: ignore
+  unrecognized_links: ignore
+  unused_definitions: false
+  unresolved_references: false
+  shadowed_definitions: false
+  invalid_links: false
+  invalid_link_anchors: false
 
 nav:
   - Introdução:

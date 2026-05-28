@@ -1,5 +1,4 @@
 [wallarm-status-instr]:             ../../admin-en/configure-statistics-service.md
-[memory-instr]:                     ../../admin-en/configuration-guides/allocate-memory-for-waf-node.md
 [waf-directives-instr]:             ../../admin-en/configure-parameters-en.md
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:           ../../images/admin-guides/test-attacks-quickstart.png
@@ -68,7 +67,7 @@ Copy the settings for processing and proxying requests from the following config
       * [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)
       * [GCP documentation](https://cloud.google.com/compute/docs/instances/connecting-to-instance)
 2. Create a new Wallarm node and connect it to the Wallarm Cloud using the generated token as described in the instructions for the cloud platform:
-      * [AWS](../../installation/cloud-platforms/aws/ami.md#4-connect-the-instance-to-the-wallarm-cloud)
+      * [AWS](../../installation/cloud-platforms/aws/ami.md#5-connect-the-instance-to-the-wallarm-cloud)
       * [GCP](../../installation/cloud-platforms/gcp/machine-image.md#5-connect-the-filtering-node-to-the-wallarm-cloud)
 
 ## Step 8: Copy the filtering node settings from the previous version to the new version

@@ -1,9 +1,28 @@
 [build]
 publish = "site"
 edge_functions = "netlify/edge-functions"
+# Image optimisation step: download the oxipng release binary from GitHub
+# (single ~500 KB file, no transitive deps and so no audit issues — the
+# npm `oxipng-bin` wrapper drags in 150+ packages, several with known
+# ReDoS vulnerabilities and no upstream fix), then run it across every
+# PNG in images/ once, before any of the per-version builds copy the
+# directory. Lossless; --strip safe keeps colour profile and gamma
+# metadata. -o 2 is the recommended speed/size tradeoff for batch use.
+# Typical savings ~36% (~67 MB on the current set) in roughly two minutes.
+#
+# Only runs on production deploys ($CONTEXT == "production"). PR previews
+# and branch deploys skip oxipng to keep iteration fast and save build
+# minutes — readers don't see those, so the extra weight doesn't matter.
 command = """
 pip3 install --no-cache-dir -r requirements.txt &&
-npm install pngquant &&
+if [ "$CONTEXT" = "production" ]; then \
+  curl -fsSL https://github.com/oxipng/oxipng/releases/download/v10.1.1/oxipng-10.1.1-x86_64-unknown-linux-gnu.tar.gz | tar xz --strip-components=1 oxipng-10.1.1-x86_64-unknown-linux-gnu/oxipng && \
+  echo "Image size before oxipng: $(du -sh images/ | cut -f1) ($(find images/ -name '*.png' | wc -l) PNGs)" && \
+  ./oxipng -r -o 2 --strip safe -q images/ && \
+  echo "Image size after  oxipng: $(du -sh images/ | cut -f1)"; \
+else \
+  echo "Skipping oxipng (CONTEXT=$CONTEXT — only runs on production deploys)"; \
+fi &&
 cp -R images/ docs/6.x/images/ && zensical build -f mkdocs-6.x.yml && python3 scripts/generate_raw_markdown.py mkdocs-6.x.yml && rm -rf docs/6.x/images/ &&
 cp -R images/ docs/7.x/images/ && zensical build -f mkdocs-7.x.yml && python3 scripts/generate_raw_markdown.py mkdocs-7.x.yml && rm -rf docs/7.x/images/ &&
 cp -R images/ docs/5.0/images/ && zensical build -f mkdocs-5.0.yml && python3 scripts/generate_raw_markdown.py mkdocs-5.0.yml && rm -rf docs/5.0/images/ &&
