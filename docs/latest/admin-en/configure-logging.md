@@ -2,7 +2,7 @@
 [doc-vuln-list]:            ../attacks-vulns-list.md
 [doc-lom]:                  ../user-guides/rules/rules.md#ruleset-lifecycle
 [antibot]:                  ../api-abuse-prevention/overview.md
-[resource-overlimit]:        ../attacks-vulns-list.md/#resource-overlimit
+[resource-overlimit]:        ../attacks-vulns-list.md#resource-overlimit
 [acl]:                       ../user-guides/ip-lists/overview.md
 
 #   Working with Filter Node Logs
