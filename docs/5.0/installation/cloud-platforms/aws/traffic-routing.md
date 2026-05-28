@@ -29,7 +29,7 @@ Internet → ALB (existing) → Wallarm Node (new target group) → Application
 1. [Update your ALB listener rules](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/listener-update-rules.html) to forward traffic to the `wallarm-tg` target group instead of the application target group.
 1. Configure the Wallarm Node to proxy traffic to the application. Point it to your application's internal DNS, IP, or load balancer endpoint:
 
-    * NGINX Node AMI — use the [`--proxy-pass`](ami.md#4-connect-the-instance-to-the-wallarm-cloud) flag during setup
+    * NGINX Node AMI — use the [`--proxy-pass`](ami.md#5-connect-the-instance-to-the-wallarm-cloud) flag during setup
     * Docker image on ECS — set the [`NGINX_BACKEND`](../../../installation/cloud-platforms/aws/docker-container.md) environment variable
 1. Update the application's security group to only allow inbound traffic from the Wallarm Node. The inbound rules should look like this:
 
@@ -52,7 +52,7 @@ Internet → NLB (existing) → Wallarm Node (new target group) → Application
 1. [Update NLB listeners](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/listener-update-rules.html) to forward traffic to the Wallarm Node target group instead of the application target group.
 1. Configure the Wallarm Node to proxy traffic to the application. Point it to your application's internal DNS, IP, or load balancer endpoint:
 
-    * NGINX Node AMI — use the [`--proxy-pass`](ami.md#4-connect-the-instance-to-the-wallarm-cloud) flag during setup
+    * NGINX Node AMI — use the [`--proxy-pass`](ami.md#5-connect-the-instance-to-the-wallarm-cloud) flag during setup
     * Docker image on ECS — set the [`NGINX_BACKEND`](../../../installation/cloud-platforms/aws/docker-container.md) environment variable
 1. Update the application's security group to only allow inbound traffic from the Wallarm Node. The inbound rules should look like this:
 
@@ -118,7 +118,7 @@ Internet → API Gateway (existing) → VPC Link → Wallarm Node (NLB/ALB) → 
     * If your API Gateway uses a public endpoint integration — create a [VPC Link](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vpc-links.html) pointing to an NLB or ALB that fronts the Wallarm Node, then update API Gateway routes to use this VPC Link integration. For production workloads, place the Node behind a load balancer with an [Auto Scaling Group](../../../admin-en/installation-guides/amazon-cloud/autoscaling-overview.md) for high availability.
 1. Configure the Wallarm Node to proxy traffic to the application. Point it to your application's internal DNS, IP, or load balancer endpoint:
 
-    * NGINX Node AMI — use the [`--proxy-pass`](ami.md#4-connect-the-instance-to-the-wallarm-cloud) flag during setup
+    * NGINX Node AMI — use the [`--proxy-pass`](ami.md#5-connect-the-instance-to-the-wallarm-cloud) flag during setup
     * Docker image on ECS — set the [`NGINX_BACKEND`](../../../installation/cloud-platforms/aws/docker-container.md) environment variable
 1. Update the application's security group to only allow inbound traffic from the Wallarm Node. The inbound rules should look like this:
 

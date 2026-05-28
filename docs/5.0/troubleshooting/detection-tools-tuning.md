@@ -1,9 +1,7 @@
 [ip-lists-link]:                    ../user-guides/ip-lists/overview.md
-[ip-sessions-link]:                 ../api-sessions/blocking.md#blocking-sessions
 [parsing-requests-link]:            ../user-guides/rules/request-processing.md  
 [basic-detectors-link]:             ../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors
 [custom-rules-link]:                ../about-wallarm/protecting-against-attacks.md#custom-rules
-[mc-link]:                          ../about-wallarm/protecting-against-attacks.md#mitigation-controls      
 [specific module settings-link]:    ../about-wallarm/protecting-against-attacks.md#specific-module-settings
 [filtration-mode-link]:             ../admin-en/configure-wallarm-mode.md
 [attack-handling-process-img]:      ../images/about-wallarm-waf/overview/attack-handling-diagram.png

@@ -4,7 +4,6 @@
 
 [anchor-tnt]:               #number-of-requests-not-analyzed-by-the-postanalytics-module
 [anchor-api]:               #number-of-requests-not-passed-to-the-wallarm-api
-[anchor-metric-1]:          #indication-that-the-postanalytics-module-drops-requests
 
 #   Available Metrics
 

@@ -1,4 +1,3 @@
-[waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
 [blocking-page-instr]:              ../admin-en/configuration-guides/configure-block-page-and-code.md
 [logging-instr]:                    ../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../admin-en/using-proxy-or-balancer-en.md

@@ -5,7 +5,6 @@
 [filtration-modes-docs]:            ../../../admin-en/configure-wallarm-mode.md
 [application-configuration]:        ../../../user-guides/settings/applications.md
 [node-status-docs]:                 ../../../admin-en/configure-statistics-service.md
-[node-token]:                       ../../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../../user-guides/settings/api-tokens.md
 [wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../../installation/supported-deployment-options.md
@@ -18,7 +17,6 @@
 [sensitive-data-rule]:              ../../../user-guides/rules/sensitive-data-rule.md
 [apid-only-mode-details]:           ../../../installation/nginx/all-in-one.md#api-discovery-only-mode
 [attack-analysis-docs]:             ../../../user-guides/events/check-attack.md
-[limit-export-details]:             ../../../installation/nginx/all-in-one.md#limited-attack-export
 
 # Deployment of the Wallarm Docker Image to GCP
 

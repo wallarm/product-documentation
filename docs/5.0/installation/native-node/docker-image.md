@@ -1,5 +1,3 @@
-[api-spec-enforcement-docs]:             ../../api-specification-enforcement/overview.md
-[ip-list-docs]:                          ../../user-guides/ip-lists/overview.md
 [ptrav-attack-docs]:                     ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:                   ../../images/admin-guides/test-attacks-quickstart.png
 [filtration-mode-docs]:                  ../../admin-en/configure-wallarm-mode.md
@@ -7,7 +5,6 @@
 [ip-list-docs]:                          ../../user-guides/ip-lists/overview.md
 [api-token]:                             ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:             ../../api-specification-enforcement/overview.md
-[self-hosted-connector-node-helm-conf]:  ../connectors/self-hosted-node-conf/helm-chart.md
 
 # Deploying the Native Node from Docker Image
 

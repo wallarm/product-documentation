@@ -20,7 +20,6 @@ search:
 [ssti-injection]:         ../../attacks-vulns-list.md#serverside-template-injection-ssti
 [al-weak-jwt]:            ../../attacks-vulns-list.md#weak-authentication
 [al-bola]:                ../../attacks-vulns-list.md#broken-object-level-authorization-bola
-[al-anomaly]:             ../../fast/vuln-list.md#anomaly
 
 # Vulnerability Search and Filters
 

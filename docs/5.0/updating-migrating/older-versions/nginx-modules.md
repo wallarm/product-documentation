@@ -20,7 +20,6 @@
 [wallarm-token-types]:              ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [sqli-attack-docs]:                 ../../attacks-vulns-list.md#sql-injection
 [xss-attack-docs]:                  ../../attacks-vulns-list.md#crosssite-scripting-xss
-[web-server-mirroring-examples]:    ../../installation/oob/web-server-mirroring/overview.md#configuration-examples-for-traffic-mirroring
 [ip-lists-docs]:                     ../../user-guides/ip-lists/overview.md
 
 # Upgrading EOL Wallarm NGINX modules
