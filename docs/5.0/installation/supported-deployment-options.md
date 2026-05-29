@@ -181,7 +181,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Select an artifact or a solution for running Wallarm in-line on a compute instance</p>
         </div>
 
-        <a class="do-card" href="../installation/inline/compute-instances/linux/all-in-one/">
+        <a class="do-card" href="../installation/nginx/all-in-one/">
             <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
             <h3>All-in-one installer</h3>
             <p>Let Wallarm detect your OS and NGINX version to install the appropriate modules</p>
@@ -226,12 +226,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Artifacts for Wallarm deployment on AWS</p>
         </div>
 
-        <a class="do-card" href="../installation/inline/compute-instances/aws/aws-ami/">
+        <a class="do-card" href="../installation/cloud-platforms/aws/ami/">
             <h3>AMI</h3>
             <p>Use the official Amazon Machine Image to deploy Wallarm</p>
         </a>
 
-        <a class="do-card" href="../installation/inline/compute-instances/aws/aws-ecs/">
+        <a class="do-card" href="../installation/cloud-platforms/aws/docker-container/">
             <h3>ECS</h3>
             <p>Use the Docker image to deploy Wallarm with Elastic Container Service</p>
         </a>
@@ -249,12 +249,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Use the Terraform module for in-line Wallarm deployment on AWS</p>
         </div>
 
-        <a class="do-card" href="../installation/inline/compute-instances/aws/terraform-module-for-aws-vpc/">
+        <a class="do-card" href="../installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc/">
             <h3>Proxy in AWS VPC</h3>
             <p>Wallarm as proxy in AWS Virtual Private Cloud</p>
         </a>
 
-        <a class="do-card" href="../installation/inline/compute-instances/aws/terraform-module-for-aws-api-gateway/">
+        <a class="do-card" href="../installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway/">
             <h3>Proxy for Amazon API Gateway</h3>
             <p>Wallarm as proxy for Amazon API Gateway protection</p>
         </a>
@@ -268,12 +268,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Artifacts for Wallarm deployment on GCP</p>
         </div>
 
-        <a class="do-card" href="../installation/inline/compute-instances/gcp/machine-image/">
+        <a class="do-card" href="../installation/cloud-platforms/gcp/machine-image/">
             <h3>Machine Image</h3>
             <p>Use the official Google Cloud Machine Image to deploy Wallarm</p>
         </a>
 
-        <a class="do-card" href="../installation/inline/compute-instances/gcp/gce/">
+        <a class="do-card" href="../installation/cloud-platforms/gcp/docker-container/">
             <h3>GCE</h3>
             <p>Use the Docker image to deploy Wallarm with Google Compute Engine</p>
         </a>
@@ -286,7 +286,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Artifacts for Wallarm deployment on Microsoft Azure</p>
         </div>
 
-        <a class="do-card" href="../installation/inline/compute-instances/azure/docker-image/">
+        <a class="do-card" href="../installation/cloud-platforms/azure/docker-container/">
             <h3>Azure Container Instances</h3>
             <p>Use the Docker image to deploy Wallarm with Azure Container Instances</p>
         </a>
@@ -299,7 +299,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Artifacts for Wallarm deployment on Alibaba Cloud</p>
         </div>
 
-        <a class="do-card" href="../installation/inline/compute-instances/alibaba/docker-image/">
+        <a class="do-card" href="../installation/cloud-platforms/alibaba-cloud/docker-container/">
             <h3>ECS</h3>
             <p>Use the Docker image to deploy Wallarm with Elastic Compute Service</p>
         </a>

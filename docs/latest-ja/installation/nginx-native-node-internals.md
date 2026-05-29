@@ -81,7 +81,7 @@ NGINXノードは以下のプラットフォームで使用できますが、解
 <div class="do-section">
     <div class="do-main">
 
-        <a class="do-card" href="../installation/inline/compute-instances/linux/all-in-one/">
+        <a class="do-card" href="../installation/nginx/all-in-one/">
             <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
             <h3>All-in-oneインストーラー</h3>
             <p>Linux OSを搭載したマシン上でノードを実行します</p>
@@ -131,12 +131,12 @@ NGINXノードは以下のプラットフォームで使用できますが、解
             <p>AWSでのデプロイ用アーティファクト</p>
         </div>
 
-        <a class="do-card" href="../installation/inline/compute-instances/aws/aws-ami/">
+        <a class="do-card" href="../installation/cloud-platforms/aws/ami/">
             <h3>AMI</h3>
             <p>公式のAmazon Machine Imageを使用してWallarmをデプロイします</p>
         </a>
 
-        <a class="do-card" href="../installation/inline/compute-instances/aws/aws-ecs/">
+        <a class="do-card" href="../installation/cloud-platforms/aws/docker-container/">
             <h3>ECS</h3>
             <p>Dockerイメージを使用してElastic Container ServiceでWallarmをデプロイします</p>
         </a>
@@ -154,12 +154,12 @@ NGINXノードは以下のプラットフォームで使用できますが、解
             <p>AWSでのインラインWallarmデプロイにTerraformモジュールを使用します</p>
         </div>
 
-        <a class="do-card" href="../installation/inline/compute-instances/aws/terraform-module-for-aws-vpc/">
+        <a class="do-card" href="../installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc/">
             <h3>AWS VPC内のプロキシ</h3>
             <p>AWS Virtual Private CloudにおいてWallarmをプロキシとして利用します</p>
         </a>
 
-        <a class="do-card" href="../installation/inline/compute-instances/aws/terraform-module-for-aws-api-gateway/">
+        <a class="do-card" href="../installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway/">
             <h3>Amazon API Gateway向けプロキシ</h3>
             <p>Amazon API Gatewayの保護用プロキシとしてWallarmを利用します</p>
         </a>
@@ -173,12 +173,12 @@ NGINXノードは以下のプラットフォームで使用できますが、解
             <p>GCPでのデプロイ用アーティファクト</p>
         </div>
 
-        <a class="do-card" href="../installation/inline/compute-instances/gcp/machine-image/">
+        <a class="do-card" href="../installation/cloud-platforms/gcp/machine-image/">
             <h3>Machine Image</h3>
             <p>公式のGoogle Cloud Machine Imageを使用してWallarmをデプロイします</p>
         </a>
 
-        <a class="do-card" href="../installation/inline/compute-instances/gcp/gce/">
+        <a class="do-card" href="../installation/cloud-platforms/gcp/docker-container/">
             <h3>GCE</h3>
             <p>Dockerイメージを使用してGoogle Compute EngineでWallarmをデプロイします</p>
         </a>
@@ -191,7 +191,7 @@ NGINXノードは以下のプラットフォームで使用できますが、解
             <p>Microsoft Azureでのデプロイ用アーティファクト</p>
         </div>
 
-        <a class="do-card" href="../installation/inline/compute-instances/azure/docker-image/">
+        <a class="do-card" href="../installation/cloud-platforms/azure/docker-container/">
             <h3>Azure Container Instances</h3>
             <p>Dockerイメージを使用してAzure Container InstancesでWallarmをデプロイします</p>
         </a>
@@ -204,7 +204,7 @@ NGINXノードは以下のプラットフォームで使用できますが、解
             <p>Alibaba Cloudでのデプロイ用アーティファクト</p>
         </div>
 
-        <a class="do-card" href="../installation/inline/compute-instances/alibaba/docker-image/">
+        <a class="do-card" href="../installation/cloud-platforms/alibaba-cloud/docker-container/">
             <h3>ECS</h3>
             <p>Dockerイメージを使用してElastic Compute ServiceでWallarmをデプロイします</p>
         </a>

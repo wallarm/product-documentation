@@ -81,7 +81,7 @@ Korunan API'lere giden trafik, API'ye ulaşmadan önce Wallarm NGINX Node örnek
 <div class="do-section">
     <div class="do-main">
 
-        <a class="do-card" href="../installation/inline/compute-instances/linux/all-in-one/">
+        <a class="do-card" href="../installation/nginx/all-in-one/">
             <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
             <h3>Hepsi bir arada yükleyici</h3>
             <p>Düğümü Linux işletim sistemli bir makinede çalıştırın</p>
@@ -131,12 +131,12 @@ Korunan API'lere giden trafik, API'ye ulaşmadan önce Wallarm NGINX Node örnek
             <p>AWS üzerinde dağıtım için artifaktler</p>
         </div>
 
-        <a class="do-card" href="../installation/inline/compute-instances/aws/aws-ami/">
+        <a class="do-card" href="../installation/cloud-platforms/aws/ami/">
             <h3>AMI</h3>
             <p>Wallarm'ı dağıtmak için resmi Amazon Machine Image'ı kullanın</p>
         </a>
 
-        <a class="do-card" href="../installation/inline/compute-instances/aws/aws-ecs/">
+        <a class="do-card" href="../installation/cloud-platforms/aws/docker-container/">
             <h3>ECS</h3>
             <p>Elastic Container Service ile Wallarm'ı dağıtmak için Docker imajını kullanın</p>
         </a>
@@ -154,12 +154,12 @@ Korunan API'lere giden trafik, API'ye ulaşmadan önce Wallarm NGINX Node örnek
             <p>AWS üzerinde hat içi Wallarm dağıtımı için Terraform modülünü kullanın</p>
         </div>
 
-        <a class="do-card" href="../installation/inline/compute-instances/aws/terraform-module-for-aws-vpc/">
+        <a class="do-card" href="../installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc/">
             <h3>AWS VPC'de Proxy</h3>
             <p>Wallarm, AWS Virtual Private Cloud içinde proxy olarak</p>
         </a>
 
-        <a class="do-card" href="../installation/inline/compute-instances/aws/terraform-module-for-aws-api-gateway/">
+        <a class="do-card" href="../installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway/">
             <h3>Amazon API Gateway için Proxy</h3>
             <p>Wallarm, Amazon API Gateway koruması için proxy olarak</p>
         </a>
@@ -173,12 +173,12 @@ Korunan API'lere giden trafik, API'ye ulaşmadan önce Wallarm NGINX Node örnek
             <p>GCP üzerinde dağıtım için artifaktler</p>
         </div>
 
-        <a class="do-card" href="../installation/inline/compute-instances/gcp/machine-image/">
+        <a class="do-card" href="../installation/cloud-platforms/gcp/machine-image/">
             <h3>Makine İmajı</h3>
             <p>Wallarm'ı dağıtmak için resmi Google Cloud Machine Image'ı kullanın</p>
         </a>
 
-        <a class="do-card" href="../installation/inline/compute-instances/gcp/gce/">
+        <a class="do-card" href="../installation/cloud-platforms/gcp/docker-container/">
             <h3>GCE</h3>
             <p>Google Compute Engine ile Wallarm'ı dağıtmak için Docker imajını kullanın</p>
         </a>
@@ -191,7 +191,7 @@ Korunan API'lere giden trafik, API'ye ulaşmadan önce Wallarm NGINX Node örnek
             <p>Microsoft Azure üzerinde dağıtım için artifaktler</p>
         </div>
 
-        <a class="do-card" href="../installation/inline/compute-instances/azure/docker-image/">
+        <a class="do-card" href="../installation/cloud-platforms/azure/docker-container/">
             <h3>Azure Container Instances</h3>
             <p>Azure Container Instances ile Wallarm'ı dağıtmak için Docker imajını kullanın</p>
         </a>
@@ -204,7 +204,7 @@ Korunan API'lere giden trafik, API'ye ulaşmadan önce Wallarm NGINX Node örnek
             <p>Alibaba Cloud üzerinde dağıtım için artifaktler</p>
         </div>
 
-        <a class="do-card" href="../installation/inline/compute-instances/alibaba/docker-image/">
+        <a class="do-card" href="../installation/cloud-platforms/alibaba-cloud/docker-container/">
             <h3>ECS</h3>
             <p>Elastic Compute Service ile Wallarm'ı dağıtmak için Docker imajını kullanın</p>
         </a>

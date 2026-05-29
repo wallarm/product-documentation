@@ -63,7 +63,7 @@ Traffic to protected APIs passes through Wallarm NGINX Node instances before it 
 <div class="do-section">
     <div class="do-main">
 
-        <a class="do-card" href="../installation/inline/compute-instances/linux/all-in-one/">
+        <a class="do-card" href="../installation/nginx/all-in-one/">
             <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
             <h3>All-in-one installer</h3>
             <p>Run the node on a machine with a Linux OS</p>
@@ -113,12 +113,12 @@ Traffic to protected APIs passes through Wallarm NGINX Node instances before it 
             <p>Artifacts for deployment on AWS</p>
         </div>
 
-        <a class="do-card" href="../installation/inline/compute-instances/aws/aws-ami/">
+        <a class="do-card" href="../installation/cloud-platforms/aws/ami/">
             <h3>AMI</h3>
             <p>Use the official Amazon Machine Image to deploy Wallarm</p>
         </a>
 
-        <a class="do-card" href="../installation/inline/compute-instances/aws/aws-ecs/">
+        <a class="do-card" href="../installation/cloud-platforms/aws/docker-container/">
             <h3>ECS</h3>
             <p>Use the Docker image to deploy Wallarm with Elastic Container Service</p>
         </a>
@@ -136,12 +136,12 @@ Traffic to protected APIs passes through Wallarm NGINX Node instances before it 
             <p>Use the Terraform module for in-line Wallarm deployment on AWS</p>
         </div>
 
-        <a class="do-card" href="../installation/inline/compute-instances/aws/terraform-module-for-aws-vpc/">
+        <a class="do-card" href="../installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc/">
             <h3>Proxy in AWS VPC</h3>
             <p>Wallarm as proxy in AWS Virtual Private Cloud</p>
         </a>
 
-        <a class="do-card" href="../installation/inline/compute-instances/aws/terraform-module-for-aws-api-gateway/">
+        <a class="do-card" href="../installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway/">
             <h3>Proxy for Amazon API Gateway</h3>
             <p>Wallarm as proxy for Amazon API Gateway protection</p>
         </a>
@@ -155,12 +155,12 @@ Traffic to protected APIs passes through Wallarm NGINX Node instances before it 
             <p>Artifacts for deployment on GCP</p>
         </div>
 
-        <a class="do-card" href="../installation/inline/compute-instances/gcp/machine-image/">
+        <a class="do-card" href="../installation/cloud-platforms/gcp/machine-image/">
             <h3>Machine Image</h3>
             <p>Use the official Google Cloud Machine Image to deploy Wallarm</p>
         </a>
 
-        <a class="do-card" href="../installation/inline/compute-instances/gcp/gce/">
+        <a class="do-card" href="../installation/cloud-platforms/gcp/docker-container/">
             <h3>GCE</h3>
             <p>Use the Docker image to deploy Wallarm with Google Compute Engine</p>
         </a>
