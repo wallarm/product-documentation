@@ -21,22 +21,22 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
 
 <div class="do-section">
     <div class="do-main">
-        <a class="do-card" href="../email/">
+        <a class="do-card" href="email/">
             <img class="non-zoomable" src="../../../../images/integration-icons/email.svg" />
             <h3>Email</h3>
             <p>Kayıt sırasında belirtilen e-postaya ve ek e-posta adreslerine bildirim alın</p>
         </a>
-        <a class="do-card" href="../slack/">
+        <a class="do-card" href="slack/">
             <img class="non-zoomable" src="../../../../images/integration-icons/slack.png" />
             <h3>Slack</h3>
             <p>Seçili Slack kanalına bildirim gönderin</p>
         </a>
-        <a class="do-card" href="../telegram/">
+        <a class="do-card" href="telegram/">
             <img class="non-zoomable" src="../../../../images/integration-icons/telegram.png" />
             <h3>Telegram</h3>
             <p>Wallarm botunu Telegram'a ekleyin ve bildirimleri ona gönderin</p>
         </a>
-        <a class="do-card" href="../microsoft-teams/">
+        <a class="do-card" href="microsoft-teams/">
             <img class="non-zoomable" src="../../../../images/integration-icons/msteams.svg" />
             <h3>Microsoft Teams</h3>
             <p>Seçili Microsoft Teams kanalına bildirim gönderin</p>
@@ -48,22 +48,22 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
 
 <div class="do-section">
     <div class="do-main">
-        <a class="do-card" href="../opsgenie/">
+        <a class="do-card" href="opsgenie/">
             <img class="non-zoomable" src="../../../../images/integration-icons/opsgenie.png" />
             <h3>Opsgenie</h3>
             <p>Opsgenie API üzerinden entegre edin</p>
         </a>
-        <a class="do-card" href="../pagerduty/">
+        <a class="do-card" href="pagerduty/">
             <img class="non-zoomable" src="../../../../images/integration-icons/pagerduty.png" />
             <h3>PagerDuty</h3>
             <p>Olayları PagerDuty'ye gönderin</p>
         </a>
-        <a class="do-card" href="../jira/">
+        <a class="do-card" href="jira/">
             <img class="non-zoomable" src="../../../../images/integration-icons/jira.png" />
             <h3>Jira</h3>
             <p>Wallarm'ı Jira'da kayıtlar oluşturacak şekilde yapılandırın</p>
         </a>
-        <a class="do-card" href="../servicenow/">
+        <a class="do-card" href="servicenow/">
             <img class="non-zoomable" src="../../../../images/integration-icons/servicenow.svg" />
             <h3>ServiceNow</h3>
             <p>Wallarm'ı ServiceNow'da destek kayıtları oluşturacak şekilde yapılandırın</p>
@@ -75,22 +75,22 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
 
 <div class="do-section">
     <div class="do-main">
-        <a class="do-card" href="../sumologic/">
+        <a class="do-card" href="sumologic/">
             <img class="non-zoomable" src="../../../../images/integration-icons/sumologic.svg" />
             <h3>Sumo Logic</h3>
             <p>Mesajları Sumo Logic'e gönderin</p>
         </a>
-        <a class="do-card" href="../splunk/">
+        <a class="do-card" href="splunk/">
             <img class="non-zoomable" src="../../../../images/integration-icons/splunk.png" />
             <h3>Splunk</h3>
             <p>Uyarıları Splunk'a gönderin</p>
         </a>
-        <a class="do-card" href="../insightconnect/">
+        <a class="do-card" href="insightconnect/">
             <img class="non-zoomable" src="../../../../images/integration-icons/insightconnect.svg" />
             <h3>InsightConnect</h3>
             <p>Bildirimleri InsightConnect'e gönderin</p>
         </a>
-        <a class="do-card" href="../azure-sentinel/">
+        <a class="do-card" href="azure-sentinel/">
             <img class="non-zoomable" src="../../../../images/integration-icons/mssentinel.png" />
             <h3>Microsoft Sentinel</h3>
             <p>Olayları Microsoft Azure Sentinel'de kaydedin</p>
@@ -114,15 +114,15 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
             <h3>Datadog</h3>
             <p>Olayları Datadog Logs servisine doğrudan veya ara veri toplayıcıları üzerinden gönderin</p>
         </div>
-        <a class="do-card" href="../datadog/">
+        <a class="do-card" href="datadog/">
             <h3>Yerel entegrasyon</h3>
             <p>Günlükleri doğrudan Datadog'a gönderin</p>
         </a>
-        <a class="do-card" href="../webhook-examples/fluentd-logstash-datadog/">
+        <a class="do-card" href="webhook-examples/fluentd-logstash-datadog/">
             <h3>Wallarm → Fluentd → Datadog</h3>
             <p>Günlükleri Fluentd aracılığıyla Datadog'a gönderin</p>
         </a>
-        <a class="do-card" href="../webhook-examples/fluentd-logstash-datadog/">
+        <a class="do-card" href="webhook-examples/fluentd-logstash-datadog/">
             <h3>Wallarm → Logstash → Datadog</h3>
             <p>Günlükleri Logstash aracılığıyla Datadog'a gönderin</p>
         </a>
@@ -143,7 +143,7 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
             <h3>Logstash</h3>
             <p>Tespit edilen olayların bildirimlerini Logstash sistemine gönderin veya diğer sistemlerle entegrasyon için Logstash'i ara sistem olarak kullanın</p>
         </div>
-        <a class="do-card" href="../amazon-s3/">
+        <a class="do-card" href="amazon-s3/">
             <img class="non-zoomable" src="../../../../images/integration-icons/awss3.svg" />
             <h3>AWS S3</h3>
             <p>Tespit edilen Hits hakkındaki bilgileri içeren dosyaları Amazon S3 bucket'ınıza göndermek için Wallarm'ı yapılandırın</p>
@@ -155,7 +155,7 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
             <h3>Fluentd</h3>
             <p>Tespit edilen olayların bildirimlerini Fluentd sistemine gönderin veya diğer sistemlerle entegrasyon için Fluentd'yi ara sistem olarak kullanın</p>
         </div>
-        <a class="do-card" href="../fluentd/">
+        <a class="do-card" href="fluentd/">
             <h3>Yerel entegrasyon</h3>
             <p>Tespit edilen olayların bildirimlerini doğrudan Fluentd'ye gönderin</p>
         </a>
@@ -169,19 +169,19 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
             <h3>Ara veri bağlayıcısı olarak Fluentd</h3>
             <p>Diğer sistemlerle entegrasyon için Fluentd'yi ara sistem olarak kullanın</p>
         </div>
-        <a class="do-card" href="../webhook-examples/fluentd-qradar/">
+        <a class="do-card" href="webhook-examples/fluentd-qradar/">
             <h3>Wallarm → Fluentd → IBM QRadar</h3>
             <p>Günlükleri Fluentd aracılığıyla IBM QRadar'a gönderin</p>
         </a>
-        <a class="do-card" href="../webhook-examples/fluentd-splunk/">
+        <a class="do-card" href="webhook-examples/fluentd-splunk/">
             <h3>Wallarm → Fluentd → Splunk Enterprise</h3>
             <p>Günlükleri Fluentd aracılığıyla Splunk Enterprise'a gönderin</p>
         </a>
-        <a class="do-card" href="../webhook-examples/fluentd-arcsight-logger/">
+        <a class="do-card" href="webhook-examples/fluentd-arcsight-logger/">
             <h3>Wallarm → Fluentd → Micro Focus ArcSight Logger</h3>
             <p>Bildirimleri Fluentd aracılığıyla Micro Focus ArcSight Logger'a gönderin</p>
         </a>
-        <a class="do-card" href="../webhook-examples/fluentd-logstash-datadog/">
+        <a class="do-card" href="webhook-examples/fluentd-logstash-datadog/">
             <h3>Wallarm → Fluentd → Datadog</h3>
             <p>Bildirimleri Fluentd aracılığıyla Datadog'a gönderin</p>
         </a>
@@ -192,7 +192,7 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
             <h3>Logstash</h3>
             <p>Tespit edilen olayların bildirimlerini Logstash sistemine gönderin veya diğer sistemlerle entegrasyon için Logstash'i ara sistem olarak kullanın</p>
         </div>
-        <a class="do-card" href="../logstash/">
+        <a class="do-card" href="logstash/">
             <h3>Yerel entegrasyon</h3>
             <p>Tespit edilen olayların bildirimlerini doğrudan Logstash'e gönderin</p>
         </a>
@@ -206,19 +206,19 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
             <h3>Ara veri bağlayıcısı olarak Logstash</h3>
             <p>Diğer sistemlerle entegrasyon için Logstash'i ara sistem olarak kullanın</p>
         </div>
-        <a class="do-card" href="../webhook-examples/logstash-qradar/">
+        <a class="do-card" href="webhook-examples/logstash-qradar/">
             <h3>Wallarm → Logstash → IBM QRadar</h3>
             <p>Günlükleri Logstash aracılığıyla IBM QRadar'a gönderin</p>
         </a>
-        <a class="do-card" href="../webhook-examples/logstash-splunk/">
+        <a class="do-card" href="webhook-examples/logstash-splunk/">
             <h3>Wallarm → Logstash → Splunk Enterprise</h3>
             <p>Günlükleri Logstash aracılığıyla Splunk Enterprise'a gönderin</p>
         </a>
-        <a class="do-card" href="../webhook-examples/logstash-arcsight-logger/">
+        <a class="do-card" href="webhook-examples/logstash-arcsight-logger/">
             <h3>Wallarm → Logstash → Micro Focus ArcSight Logger</h3>
             <p>Bildirimleri Logstash aracılığıyla Micro Focus ArcSight Logger'a gönderin</p>
         </a>
-        <a class="do-card" href="../webhook-examples/fluentd-logstash-datadog/">
+        <a class="do-card" href="webhook-examples/fluentd-logstash-datadog/">
             <h3>Wallarm → Logstash → Datadog</h3>
             <p>Bildirimleri Logstash aracılığıyla Datadog'a gönderin</p>
         </a>
@@ -256,11 +256,11 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
             <h3>IBM QRadar</h3>
             <p>Günlükleri Fluentd veya Logstash aracılığıyla IBM QRadar'a gönderin</p>
         </div>
-        <a class="do-card" href="../webhook-examples/fluentd-qradar/">
+        <a class="do-card" href="webhook-examples/fluentd-qradar/">
             <h3>Wallarm → Fluentd → IBM QRadar</h3>
             <p>Günlükleri Fluentd aracılığıyla IBM QRadar'a gönderin</p>
         </a>
-        <a class="do-card" href="../webhook-examples/logstash-qradar/">
+        <a class="do-card" href="webhook-examples/logstash-qradar/">
             <h3>Wallarm → Logstash → IBM QRadar</h3>
             <p>Günlükleri Logstash aracılığıyla IBM QRadar'a gönderin</p>
         </a>
@@ -271,11 +271,11 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
             <h3>Splunk Enterprise</h3>
             <p>Günlükleri Fluentd veya Logstash aracılığıyla Splunk Enterprise'a gönderin</p>
         </div>
-        <a class="do-card" href="../webhook-examples/fluentd-splunk/">
+        <a class="do-card" href="webhook-examples/fluentd-splunk/">
             <h3>Wallarm → Fluentd → Splunk Enterprise</h3>
             <p>Günlükleri Fluentd aracılığıyla Splunk Enterprise'a gönderin</p>
         </a>
-        <a class="do-card" href="../webhook-examples/logstash-splunk/">
+        <a class="do-card" href="webhook-examples/logstash-splunk/">
             <h3>Wallarm → Logstash → Splunk Enterprise</h3>
             <p>Günlükleri Logstash aracılığıyla Splunk Enterprise'a gönderin</p>
         </a>
@@ -286,11 +286,11 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
             <h3>Micro Focus ArcSight Logger</h3>
             <p>Bildirimleri Fluentd veya Logstash aracılığıyla Micro Focus ArcSight Logger'a gönderin</p>
         </div>
-        <a class="do-card" href="../webhook-examples/fluentd-arcsight-logger/">
+        <a class="do-card" href="webhook-examples/fluentd-arcsight-logger/">
             <h3>Wallarm → Fluentd → Micro Focus ArcSight Logger</h3>
             <p>Bildirimleri Fluentd aracılığıyla Micro Focus ArcSight Logger'a gönderin</p>
         </a>
-        <a class="do-card" href="../webhook-examples/logstash-arcsight-logger/">
+        <a class="do-card" href="webhook-examples/logstash-arcsight-logger/">
             <h3>Wallarm → Logstash → Micro Focus ArcSight Logger</h3>
             <p>Bildirimleri Logstash aracılığıyla Micro Focus ArcSight Logger'a gönderin</p>
         </a>
@@ -301,11 +301,11 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
             <h3>Datadog</h3>
             <p>Olayları Fluentd veya Logstash aracılığıyla Datadog Logs servisine gönderin</p>
         </div>
-        <a class="do-card" href="../webhook-examples/fluentd-logstash-datadog/">
+        <a class="do-card" href="webhook-examples/fluentd-logstash-datadog/">
             <h3>Wallarm → Fluentd → Datadog</h3>
             <p>Günlükleri Fluentd aracılığıyla Datadog'a gönderin</p>
         </a>
-        <a class="do-card" href="../webhook-examples/fluentd-logstash-datadog/">
+        <a class="do-card" href="webhook-examples/fluentd-logstash-datadog/">
             <h3>Wallarm → Logstash → Datadog</h3>
             <p>Günlükleri Logstash aracılığıyla Datadog'a gönderin</p>
         </a>
@@ -316,12 +316,12 @@ Wallarm, mevcut birçok araç ve platformla zahmetsizce bağlantı kurar. Tek bi
 
 <div class="do-section">
     <div class="do-main">
-        <a class="do-card" href="../webhook/">
+        <a class="do-card" href="webhook/">
             <img class="non-zoomable" src="../../../../images/integration-icons/webhook.svg" />
             <h3>Webhook</h3>
             <p>Evrensel bağlayıcı: HTTPS protokolü üzerinden gelen webhooks kabul eden herhangi bir sisteme anlık bildirimler gönderin</p>
         </a>
-        <a class="do-card" href="mailto:sales@wallarm.com?subject=Request%20for%20integration%20between%20Wallarm%20and%20<SYSTEM>&body=Hello%20Wallarm%20Sales%20Team%2C%0AIn%20Wallarm%2C%20the%20integration%20with%20<SYSTEM>%20is%20not%20presented%2C%20although%20the%20ability%20to%20integrate%20with%20this%20system%20would%20be%20benefitial%20for%20us.%0A%0AWe%20would%20be%20grateful%20if%20you%20could%20consider%20the%20technical%20feasibility%20of%20this%20integration%20and%20are%20ready%20to%20schedule%20a%20call%20with%20you%20to%20discuss%20our%20requirements%20in%20detail.%0A%0AWe%20are%20looking%20forward%20to%20your%20response.">
+       <a class="do-card" href="mailto:sales@wallarm.com?subject=Request%20for%20integration%20between%20Wallarm%20and%20<SYSTEM>&body=Hello%20Wallarm%20Sales%20Team%2C%0AIn%20Wallarm%2C%20the%20integration%20with%20<SYSTEM>%20is%20not%20presented%2C%20although%20the%20ability%20to%20integrate%20with%20this%20system%20would%20be%20benefitial%20for%20us.%0A%0AWe%20would%20be%20grateful%20if%20you%20could%20consider%20the%20technical%20feasibility%20of%20this%20integration%20and%20are%20ready%20to%20schedule%20a%20call%20with%20you%20to%20discuss%20our%20requirements%20in%20detail.%0A%0AWe%20are%20looking%20forward%20to%20your%20response.">
             <img class="non-zoomable" src="../../../../images/integration-icons/other-system.svg" />
             <h3>Entegrasyon talep edin</h3>
             <p>Aradığınız sistem yoksa bize bildirin. Entegrasyonun mümkün olup olmadığını kontrol eder ve sizinle iletişime geçeriz.</p>

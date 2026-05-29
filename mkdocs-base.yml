@@ -30,11 +30,11 @@ theme:
     scheme: wallarm-palette
   features:
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.top
     - navigation.expand
     - navigation.footer
     - navigation.path
-    - navigation.top
 #    - navigation.prune
 
     - content.code.copy
