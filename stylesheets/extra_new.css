@@ -263,12 +263,14 @@ a.md-header__button.md-logo:after {
 
 .md-tabs {
   z-index: 2;
+  background: #fff;
+  border-bottom: 1px solid #E2E8F0;
 }
 
 .md-tabs__link, .md-tabs__link:focus {
   opacity: 1;
   font-weight: 500;
-  color: #90a1b9;
+  color: #62748E;
 }
 
 .md-tabs__item {
@@ -277,30 +279,40 @@ a.md-header__button.md-logo:after {
 
 .md-tabs__item--active .md-tabs__link,
 .md-tabs__link--active {
-  color: #ffffff;
+  color: #020618;
   font-weight: 600;
 }
 
-.md-tabs {
-  background: #1d293d; /* slate-800 — slightly lighter dark */
-  border-bottom: 1px solid #020618;
-}
-
 /* Active tab orange underline (2px) */
-.md-tabs__item--active .md-tabs__link::after,
-.md-tabs__link--active::after {
+.md-tabs__item--active .md-tabs__link::after {
   content: "";
   position: absolute;
-  left: 10px;
-  right: 10px;
+  left: 1px;
+  right: 1px;
   bottom: -1px;
   height: 2px;
-  background: var(--color-w-orange-600);
+  background: #FF441C;
   border-radius: 1px;
 }
 .md-tabs__item--active .md-tabs__link,
 .md-tabs__link--active {
   position: relative;
+}
+
+.md-tabs__link:hover {
+  color: #1D293D;
+  border-bottom: 1px solid #1D293D;
+}
+
+.md-tabs__item--active .md-tabs__link:hover {
+  color: #020618;
+  border-bottom: 1px solid #020618;
+}
+
+@media (max-width: 345px) {
+  .md-header__inner.md-grid {
+    grid-template-columns: unset;
+  }
 }
 
 /* Left navigation */
@@ -1694,22 +1706,5 @@ html {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-}
-
-/* Hover effect for top navigation tabs */
-.md-tabs__link:hover {
-  color: #cad5e2;
-  border-bottom: 1px solid #cad5e2;
-}
-
-.md-tabs__item--active .md-tabs__link:hover {
-  color: #ffffff;
-  border-bottom: 1px solid #ffffff;
-}
-
-@media (max-width: 345px) {
-  .md-header__inner.md-grid {
-    grid-template-columns: unset;
   }
 }
