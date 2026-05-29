@@ -30,6 +30,7 @@ theme:
     scheme: wallarm-palette
   features:
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.top
     - navigation.expand
     - navigation.footer
