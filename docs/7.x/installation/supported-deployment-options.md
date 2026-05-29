@@ -10,13 +10,13 @@ Fully managed at the edge: no Node to run. Traffic goes to Wallarm’s edge, is 
 
 <div class="do-section">
     <div class="do-main">
-        <a class="do-card" href="../security-edge/inline/overview/">
+        <a class="do-card" href="security-edge/inline/overview/">
             <img class="non-zoomable" src="../../../images/platform-icons/se-inline.svg" />
             <h3>Security Edge Inline</h3>
             <p>Point traffic to Wallarm via CNAME for real-time filtering</p>
         </a>
 
-        <a class="do-card" href="../security-edge/se-connector/">
+        <a class="do-card" href="security-edge/se-connector/">
             <img class="non-zoomable" src="../../../images/platform-icons/se-connectors.svg" />
             <h3>Security Edge Connector</h3>
             <p>Connect Edge Node to your API gateway, CDN, or API management platform</p>
@@ -30,37 +30,37 @@ Choose a Kubernetes option if your APIs run in-cluster and you want in-cluster p
 
 <div class="do-section">
     <div class="do-main">
-        <a class="do-card" href="../connectors/istio/">
+        <a class="do-card" href="connectors/istio/">
             <img class="non-zoomable" src="../../images/platform-icons/istio.svg" />
             <h3>Istio</h3>
             <p>gRPC-based external processing filter for Istio-managed APIs</p>
         </a>
 
-        <a class="do-card" href="../../admin-en/installation-kubernetes-en/">
+         <a class="do-card" href="admin-en/installation-kubernetes-en/">
             <img class="non-zoomable" src="../../images/platform-icons/ingress.svg" />
             <h3>NGINX Ingress Controller</h3>
             <p>Deploy the NGINX Ingress Controller with integrated Wallarm services</p>
         </a>
 
-        <a class="do-card" href="../connectors/kong-ingress-controller/">
+        <a class="do-card" href="connectors/kong-ingress-controller/">
             <img class="non-zoomable" src="../../images/platform-icons/kong-new.svg" />
             <h3>Kong Ingress Controller</h3>
             <p>Deploy Wallarm to secure APIs managed by Kong Ingress Controller</p>
         </a>
 
-        <a class="do-card" href="../native-node/helm-chart/">
+        <a class="do-card" href="native-node/helm-chart/">
             <img class="non-zoomable" src="../../images/platform-icons/helm.svg" />
             <h3>Helm Chart for Native Node</h3>
             <p>Run the Native Node in Kubernetes (for connectors and Istio filter)</p>
         </a>
 
-        <a class="do-card" href="../kubernetes/sidecar-proxy/deployment/">
+        <a class="do-card" href="kubernetes/sidecar-proxy/deployment/">
             <img class="non-zoomable" src="../../images/platform-icons/pod.svg" />
             <h3>Sidecar Proxy</h3>
             <p>Deploy Wallarm Sidecar controller for pod security</p>
         </a>
 
-        <a class="do-card" href="../oob/ebpf/deployment/">
+        <a class="do-card" href="oob/ebpf/deployment/">
             <img class="non-zoomable" src="../../images/platform-icons/ebpf.svg" />
             <h3>eBPF (out-of-band)</h3>
             <p>Out-of-band deployment on Kubernetes using the eBPF technology</p>
@@ -98,13 +98,13 @@ Choose a cloud option if you run in a public or private cloud and want ready-to-
             <p>Artifacts for Wallarm deployment on Alibaba Cloud</p>
         </div>
 
-        <a class="do-card" href="../heroku/docker-image/">
+        <a class="do-card" href="heroku/docker-image/">
             <img class="non-zoomable" src="../../images/platform-icons/heroku.svg" />
             <h3>Heroku</h3>
             <p>Build a Wallarm Docker image and run it on Heroku</p>
         </a>
 
-        <a class="do-card" href="../cloud-platforms/private-cloud/">
+        <a class="do-card" href="cloud-platforms/private-cloud/">
             <img class="non-zoomable" src="../../images/platform-icons/on-premise.svg" />
             <h3>Private Cloud</h3>
             <p>Deploy Wallarm in a private or hybrid cloud</p>
@@ -118,17 +118,17 @@ Choose a cloud option if you run in a public or private cloud and want ready-to-
             <p>Artifacts for Wallarm deployment on AWS</p>
         </div>
 
-        <a class="do-card" href="../cloud-platforms/aws/ami/">
+        <a class="do-card" href="cloud-platforms/aws/ami/">
             <h3>AMI for NGINX Node</h3>
             <p>Use the official Amazon Machine Image for NGINX Node (in-line)</p>
         </a>
 
-        <a class="do-card" href="../native-node/aws-ami/">
+        <a class="do-card" href="native-node/aws-ami/">
             <h3>AMI for Native Node</h3>
             <p>Use the official Amazon Machine Image for Native Node (connectors)</p>
         </a>
 
-        <a class="do-card" href="../cloud-platforms/aws/docker-container/">
+        <a class="do-card" href="cloud-platforms/aws/docker-container/">
             <h3>Docker on ECS</h3>
             <p>Use the Docker image with Elastic Container Service</p>
         </a>
@@ -146,17 +146,17 @@ Choose a cloud option if you run in a public or private cloud and want ready-to-
             <p>Use the Terraform module for Wallarm deployment on AWS</p>
         </div>
 
-        <a class="do-card" href="../cloud-platforms/aws/terraform-module/overview/">
+        <a class="do-card" href="cloud-platforms/aws/terraform-module/overview/">
             <h3>Overview</h3>
             <p>Terraform module for Wallarm on AWS</p>
         </a>
 
-        <a class="do-card" href="../cloud-platforms/aws/terraform-module/proxy-in-aws-vpc/">
+        <a class="do-card" href="cloud-platforms/aws/terraform-module/proxy-in-aws-vpc/">
             <h3>Proxy in AWS VPC</h3>
             <p>Wallarm as proxy in AWS Virtual Private Cloud</p>
         </a>
 
-        <a class="do-card" href="../cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway/">
+        <a class="do-card" href="cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway/">
             <h3>Proxy for Amazon API Gateway</h3>
             <p>Wallarm as proxy for Amazon API Gateway protection</p>
         </a>
@@ -169,12 +169,12 @@ Choose a cloud option if you run in a public or private cloud and want ready-to-
             <p>Artifacts for Wallarm deployment on GCP</p>
         </div>
 
-        <a class="do-card" href="../cloud-platforms/gcp/machine-image/">
+        <a class="do-card" href="cloud-platforms/gcp/machine-image/">
             <h3>Machine Image for NGINX Node</h3>
             <p>Use the official Google Cloud Machine Image for NGINX Node</p>
         </a>
 
-        <a class="do-card" href="../cloud-platforms/gcp/docker-container/">
+        <a class="do-card" href="cloud-platforms/gcp/docker-container/">
             <h3>Docker on GCE</h3>
             <p>Use the Docker image with Google Compute Engine</p>
         </a>
@@ -187,7 +187,7 @@ Choose a cloud option if you run in a public or private cloud and want ready-to-
             <p>Artifacts for Wallarm deployment on Microsoft Azure</p>
         </div>
 
-        <a class="do-card" href="../cloud-platforms/azure/docker-container/">
+        <a class="do-card" href="cloud-platforms/azure/docker-container/">
             <h3>Azure Container Instances</h3>
             <p>Use the Docker image with Azure Container Instances</p>
         </a>
@@ -200,7 +200,7 @@ Choose a cloud option if you run in a public or private cloud and want ready-to-
             <p>Artifacts for Wallarm deployment on Alibaba Cloud</p>
         </div>
 
-        <a class="do-card" href="../cloud-platforms/alibaba-cloud/docker-container/">
+        <a class="do-card" href="cloud-platforms/alibaba-cloud/docker-container/">
             <h3>Docker on ECS</h3>
             <p>Use the Docker image with Alibaba Elastic Compute Service</p>
         </a>
@@ -213,19 +213,19 @@ Choose an API gateway connector if traffic already flows through a gateway and y
 
 <div class="do-section">
     <div class="do-main">
-        <a class="do-card" href="../connectors/aws-api-gateway/">
+        <a class="do-card" href="connectors/aws-api-gateway/">
             <img class="non-zoomable" src="../../images/platform-icons/aws-api-gateway.svg" />
             <h3>Amazon API Gateway</h3>
             <p>Deploy Wallarm to build an API inventory from CloudWatch logs</p>
         </a>
 
-        <a class="do-card" href="../connectors/layer7-api-gateway/">
+        <a class="do-card" href="connectors/layer7-api-gateway/">
             <img class="non-zoomable" src="../../images/platform-icons/layer7.png" />
             <h3>Broadcom Layer7 API Gateways</h3>
             <p>Secure APIs managed with Layer7 API Gateways</p>
         </a>
 
-        <a class="do-card" href="../connectors/standalone-kong-api-gateway/">
+        <a class="do-card" href="connectors/standalone-kong-api-gateway/">
             <img class="non-zoomable" src="../../images/platform-icons/kong-new.svg" />
             <h3>Standalone Kong API Gateway</h3>
             <p>Deploy Wallarm to secure APIs managed by standalone Kong API Gateway</p>
@@ -239,31 +239,31 @@ Choose a CDN or edge integration if your traffic is fronted by a CDN and you wan
 
 <div class="do-section">
     <div class="do-main">
-        <a class="do-card" href="../connectors/akamai-edgeworkers/">
+        <a class="do-card" href="connectors/akamai-edgeworkers/">
             <img class="non-zoomable" src="../../images/platform-icons/akamai.svg" />
             <h3>Akamai EdgeWorkers</h3>
             <p>Secure APIs running on Akamai EdgeWorkers</p>
         </a>
 
-        <a class="do-card" href="../connectors/aws-lambda/">
+        <a class="do-card" href="connectors/aws-lambda/">
             <img class="non-zoomable" src="../../images/platform-icons/aws-cloudfront.svg" />
             <h3>CloudFront</h3>
             <p>Deploy Wallarm to secure traffic delivered through Amazon CloudFront</p>
         </a>
 
-        <a class="do-card" href="../connectors/azion-edge/">
+        <a class="do-card" href="connectors/azion-edge/">
             <img class="non-zoomable" src="../../images/platform-icons/azion-edge.svg" />
             <h3>Azion Edge</h3>
             <p>Secure APIs running on Azion Edge</p>
         </a>
 
-        <a class="do-card" href="../connectors/cloudflare/">
+        <a class="do-card" href="connectors/cloudflare/">
             <img class="non-zoomable" src="../../images/platform-icons/cloudflare.png" />
             <h3>Cloudflare</h3>
             <p>Deploy Wallarm to secure traffic running via Cloudflare</p>
         </a>
 
-        <a class="do-card" href="../connectors/fastly/">
+        <a class="do-card" href="connectors/fastly/">
             <img class="non-zoomable" src="../../images/platform-icons/fastly.png" />
             <h3>Fastly</h3>
             <p>Deploy Wallarm to secure APIs running on Fastly</p>
@@ -283,19 +283,19 @@ Choose an API management connector if you expose APIs through one of these platf
             <p>Use Wallarm Node to secure APIs managed by Mulesoft</p>
         </div>
 
-        <a class="do-card" href="../connectors/azure-api-management/">
+        <a class="do-card" href="connectors/azure-api-management/">
             <img class="non-zoomable" src="../../images/platform-icons/azure-apim.svg" />
             <h3>Azure API Management</h3>
             <p>Deploy Wallarm to secure APIs managed by Azure API Management</p>
         </a>
 
-        <a class="do-card" href="../connectors/apigee/">
+        <a class="do-card" href="connectors/apigee/">
             <img class="non-zoomable" src="../../images/platform-icons/apigee.svg" />
             <h3>Apigee</h3>
             <p>Secure APIs running on Apigee</p>
         </a>
 
-        <a class="do-card" href="../connectors/ibm-api-connect/">
+        <a class="do-card" href="connectors/ibm-api-connect/">
             <img class="non-zoomable" src="../../images/platform-icons/ibm-api-connect.svg" />
             <h3>IBM API Connect</h3>
             <p>Deploy Wallarm to secure APIs managed through IBM API Connect</p>
@@ -309,12 +309,12 @@ Choose an API management connector if you expose APIs through one of these platf
             <p>Use Wallarm Node to secure APIs managed by Mulesoft</p>
         </div>
 
-        <a class="do-card" href="../connectors/mulesoft-flex/">
+        <a class="do-card" href="connectors/mulesoft-flex/">
             <h3>MuleSoft Flex Gateway</h3>
             <p>Deploy Wallarm to secure APIs managed by the Flex Gateway</p>
         </a>
 
-        <a class="do-card" href="../connectors/mulesoft/">
+        <a class="do-card" href="connectors/mulesoft/">
             <h3>MuleSoft Mule Gateway</h3>
             <p>Deploy Wallarm to secure APIs managed by the Mule Gateway</p>
         </a>
@@ -327,7 +327,7 @@ Deploy the Wallarm Node for TCP traffic mirror analysis when you need out-of-ban
 
 <div class="do-section">
     <div class="do-main">
-        <a class="do-card" href="../oob/tcp-traffic-mirror/deployment/">
+        <a class="do-card" href="oob/tcp-traffic-mirror/deployment/">
             <img class="non-zoomable" src="../../images/platform-icons/tcp-mirror-analysis.svg" />
             <h3>TCP Traffic Mirror</h3>
             <p>Out-of-band deployment for TCP traffic mirror analysis</p>
@@ -361,12 +361,12 @@ Choose packages or containers if you run on VMs or bare metal and prefer them ov
             <p>Install Wallarm on Linux</p>
         </div>
 
-        <a class="do-card" href="../nginx/all-in-one/">
+        <a class="do-card" href="nginx/all-in-one/">
             <h3>All-in-one installer for NGINX Node</h3>
             <p>Let Wallarm detect your OS and NGINX version to install the appropriate modules</p>
         </a>
 
-        <a class="do-card" href="../native-node/all-in-one/">
+        <a class="do-card" href="native-node/all-in-one/">
             <h3>All-in-one installer for Native Node</h3>
             <p>Run the Native Node on a virtual machine on Linux (connectors and TCP mirror)</p>
         </a>
@@ -379,12 +379,12 @@ Choose packages or containers if you run on VMs or bare metal and prefer them ov
             <p>Run Wallarm in containers</p>
         </div>
 
-        <a class="do-card" href="../../admin-en/installation-docker-en/">
+         <a class="do-card" href="admin-en/installation-docker-en/">
             <h3>Image for NGINX Node</h3>
             <p>Use the NGINX-based Docker image for Wallarm deployment</p>
         </a>
 
-        <a class="do-card" href="../native-node/docker-image/">
+        <a class="do-card" href="native-node/docker-image/">
             <h3>Image for Native Node</h3>
             <p>Run the Native Node in a containerized environment using Docker (connectors and TCP mirror)</p>
         </a>
@@ -412,7 +412,7 @@ Deployment options that don’t follow the platform matrix: known scenarios (mul
             <p>Use Wallarm with a custom NGINX build when standard packages do not match your stack</p>
         </a>
 
-        <a class="do-card" href="../custom/request-custom-deployment/">
+        <a class="do-card" href="custom/request-custom-deployment/">
             <img class="non-zoomable" src="../../images/platform-icons/custom-deployment.svg" />
             <h3>Request custom deployment</h3>
             <p>Need something else? Request a custom deployment or integration</p>

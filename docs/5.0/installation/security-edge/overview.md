@@ -20,13 +20,13 @@ Security Edge service provides a secure cloud environment where Wallarm Nodes ar
 <div class="do-section">
     <div class="do-main">
 
-        <a class="do-card" href="../inline/overview/">
+        <a class="do-card" href="inline/overview/">
             <img class="non-zoomable" src="../../../images/platform-icons/se-inline.svg" />
             <h3>Security Edge Inline</h3>
             <p>Real-time traffic is redirected through the Edge Node, filtered, and forwarded to your origin</p>
         </a>
 
-        <a class="do-card" href="../se-connector/">
+        <a class="do-card" href="se-connector/">
             <img class="non-zoomable" src="../../../images/platform-icons/se-connectors.svg" />
             <h3>Security Edge Connector</h3>
             <p>Connect the Edge Node to your API platform for asynchronous analysis or real-time blocking</p>

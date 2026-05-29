@@ -20,13 +20,13 @@ Security Edge hizmeti, Wallarm Node’ların Wallarm tarafından dağıtıldığ
 <div class="do-section">
     <div class="do-main">
 
-        <a class="do-card" href="../inline/overview/">
+        <a class="do-card" href="inline/overview/">
             <img class="non-zoomable" src="../../../images/platform-icons/se-inline.svg" />
             <h3>Security Edge Inline</h3>
             <p>Gerçek zamanlı trafik Edge Node üzerinden yönlendirilir, filtrelenir ve origin’inize iletilir</p>
         </a>
 
-        <a class="do-card" href="../se-connector/">
+        <a class="do-card" href="se-connector/">
             <img class="non-zoomable" src="../../../images/platform-icons/se-connectors.svg" />
             <h3>Security Edge Connector</h3>
             <p>Asenkron analiz veya gerçek zamanlı engelleme için Edge Node’u API platformunuza bağlayın</p>

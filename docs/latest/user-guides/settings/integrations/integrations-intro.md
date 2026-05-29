@@ -21,22 +21,22 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
 
 <div class="do-section">
     <div class="do-main">
-        <a class="do-card" href="../email/">
+        <a class="do-card" href="email/">
             <img class="non-zoomable" src="../../../../images/integration-icons/email.svg" />
             <h3>Email</h3>
             <p>Get notifications to the email indicated upon registration and additional emails</p>
         </a>
-        <a class="do-card" href="../slack/">
+        <a class="do-card" href="slack/">
             <img class="non-zoomable" src="../../../../images/integration-icons/slack.png" />
             <h3>Slack</h3>
             <p>Send notifications to the selected Slack channel</p>
         </a>
-        <a class="do-card" href="../telegram/">
+        <a class="do-card" href="telegram/">
             <img class="non-zoomable" src="../../../../images/integration-icons/telegram.png" />
             <h3>Telegram</h3>
             <p>Add Wallarm bot to Telegram and send notifications to it</p>
         </a>
-        <a class="do-card" href="../microsoft-teams/">
+        <a class="do-card" href="microsoft-teams/">
             <img class="non-zoomable" src="../../../../images/integration-icons/msteams.svg" />
             <h3>Microsoft Teams</h3>
             <p>Send notifications to the selected Microsoft Teams channel</p>
@@ -48,22 +48,22 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
 
 <div class="do-section">
     <div class="do-main">
-        <a class="do-card" href="../opsgenie/">
+        <a class="do-card" href="opsgenie/">
             <img class="non-zoomable" src="../../../../images/integration-icons/opsgenie.png" />
             <h3>Opsgenie</h3>
             <p>Integrate via Opsgenie API</p>
         </a>
-        <a class="do-card" href="../pagerduty/">
+        <a class="do-card" href="pagerduty/">
             <img class="non-zoomable" src="../../../../images/integration-icons/pagerduty.png" />
             <h3>PagerDuty</h3>
             <p>Send incidents to PagerDuty</p>
         </a>
-        <a class="do-card" href="../jira/">
+        <a class="do-card" href="jira/">
             <img class="non-zoomable" src="../../../../images/integration-icons/jira.png" />
             <h3>Jira</h3>
             <p>Set up Wallarm to create issues in Jira</p>
         </a>
-        <a class="do-card" href="../servicenow/">
+        <a class="do-card" href="servicenow/">
             <img class="non-zoomable" src="../../../../images/integration-icons/servicenow.svg" />
             <h3>ServiceNow</h3>
             <p>Set up Wallarm to create trouble tickets in ServiceNow</p>
@@ -75,22 +75,22 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
 
 <div class="do-section">
     <div class="do-main">
-        <a class="do-card" href="../sumologic/">
+        <a class="do-card" href="sumologic/">
             <img class="non-zoomable" src="../../../../images/integration-icons/sumologic.svg" />
             <h3>Sumo Logic</h3>
             <p>Send messages to Sumo Logic</p>
         </a>
-        <a class="do-card" href="../splunk/">
+        <a class="do-card" href="splunk/">
             <img class="non-zoomable" src="../../../../images/integration-icons/splunk.png" />
             <h3>Splunk</h3>
             <p>Send alerts to Splunk</p>
         </a>
-        <a class="do-card" href="../insightconnect/">
+        <a class="do-card" href="insightconnect/">
             <img class="non-zoomable" src="../../../../images/integration-icons/insightconnect.svg" />
             <h3>InsightConnect</h3>
             <p>Send notifications to InsightConnect</p>
         </a>
-        <a class="do-card" href="../azure-sentinel/">
+        <a class="do-card" href="azure-sentinel/">
             <img class="non-zoomable" src="../../../../images/integration-icons/mssentinel.png" />
             <h3>Azure Monitor Logs / Microsoft Sentinel</h3>
             <p>Send security events to Azure Monitor Logs and Microsoft Sentinel</p>
@@ -114,15 +114,15 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
             <h3>Datadog</h3>
             <p>Send events to Datadog Logs service directly or through intermediate data collectors</p>
         </div>
-        <a class="do-card" href="../datadog/">
+        <a class="do-card" href="datadog/">
             <h3>Native integration</h3>
             <p>Send logs to Datadog directly</p>
         </a>
-        <a class="do-card" href="../webhook-examples/fluentd-logstash-datadog/">
+        <a class="do-card" href="webhook-examples/fluentd-logstash-datadog/">
             <h3>Wallarm → Fluentd → Datadog</h3>
             <p>Send logs to Datadog via Fluentd</p>
         </a>
-        <a class="do-card" href="../webhook-examples/fluentd-logstash-datadog/">
+        <a class="do-card" href="webhook-examples/fluentd-logstash-datadog/">
             <h3>Wallarm → Logstash → Datadog</h3>
             <p>Send logs to Datadog via Logstash</p>
         </a>
@@ -143,12 +143,12 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
             <h3>Logstash</h3>
             <p>Send notifications of detected events to Logstash or use Logstash as intermediate system to integrate with other systems</p>
         </div>
-        <a class="do-card" href="../amazon-s3/">
+        <a class="do-card" href="amazon-s3/">
             <img class="non-zoomable" src="../../../../images/integration-icons/awss3.svg" />
             <h3>AWS S3</h3>
             <p>Set up Wallarm to send files with the information about detected hits to your Amazon S3 bucket</p>
         </a>
-        <a class="do-card" href="../minio/">
+        <a class="do-card" href="minio/">
             <img class="non-zoomable" src="../../../../images/integration-icons/minio.svg" />
             <h3>MinIO</h3>
             <p>Set up Wallarm to export the data on detected malicious traffic to your MinIO S3-compatible bucket</p>
@@ -160,7 +160,7 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
             <h3>Fluentd</h3>
             <p>Send notifications of detected events to Fluentd or use Fluentd as intermediate system to integrate with other systems</p>
         </div>
-        <a class="do-card" href="../fluentd/">
+        <a class="do-card" href="fluentd/">
             <h3>Native integration</h3>
             <p>Send notifications of detected events to Fluentd itself</p>
         </a>
@@ -174,19 +174,19 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
             <h3>Fluentd as intermediate data connector</h3>
             <p>Use Fluentd as intermediate system to integrate with other systems</p>
         </div>
-        <a class="do-card" href="../webhook-examples/fluentd-qradar/">
+        <a class="do-card" href="webhook-examples/fluentd-qradar/">
             <h3>Wallarm → Fluentd → IBM QRadar</h3>
             <p>Send logs to IBM QRadar via Fluentd</p>
         </a>
-        <a class="do-card" href="../webhook-examples/fluentd-splunk/">
+        <a class="do-card" href="webhook-examples/fluentd-splunk/">
             <h3>Wallarm → Fluentd → Splunk Enterprise</h3>
             <p>Send logs to Splunk Enterprise via Fluentd</p>
         </a>
-        <a class="do-card" href="../webhook-examples/fluentd-arcsight-logger/">
+        <a class="do-card" href="webhook-examples/fluentd-arcsight-logger/">
             <h3>Wallarm → Fluentd → Micro Focus ArcSight Logger</h3>
             <p>Send notifications to Micro Focus ArcSight Logger via Fluentd</p>
         </a>
-        <a class="do-card" href="../webhook-examples/fluentd-logstash-datadog/">
+        <a class="do-card" href="webhook-examples/fluentd-logstash-datadog/">
             <h3>Wallarm → Fluentd → Datadog</h3>
             <p>Send notifications to Datadog via Fluentd</p>
         </a>
@@ -197,7 +197,7 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
             <h3>Logstash</h3>
             <p>Send notifications of detected events to Logstash or use Logstash as intermediate system to integrate with other systems</p>
         </div>
-        <a class="do-card" href="../logstash/">
+        <a class="do-card" href="logstash/">
             <h3>Native integration</h3>
             <p>Send notifications of detected events to Logstash itself</p>
         </a>
@@ -211,19 +211,19 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
             <h3>Logstash as intermediate data connector</h3>
             <p>Use Logstash as intermediate system to integrate with other systems</p>
         </div>
-        <a class="do-card" href="../webhook-examples/logstash-qradar/">
+        <a class="do-card" href="webhook-examples/logstash-qradar/">
             <h3>Wallarm → Logstash → IBM QRadar</h3>
             <p>Send logs to IBM QRadar via Logstash</p>
         </a>
-        <a class="do-card" href="../webhook-examples/logstash-splunk/">
+        <a class="do-card" href="webhook-examples/logstash-splunk/">
             <h3>Wallarm → Logstash → Splunk Enterprise</h3>
             <p>Send logs to Splunk Enterprise via Logstash</p>
         </a>
-        <a class="do-card" href="../webhook-examples/logstash-arcsight-logger/">
+        <a class="do-card" href="webhook-examples/logstash-arcsight-logger/">
             <h3>Wallarm → Logstash → Micro Focus ArcSight Logger</h3>
             <p>Send notifications to Micro Focus ArcSight Logger via Logstash</p>
         </a>
-        <a class="do-card" href="../webhook-examples/fluentd-logstash-datadog/">
+        <a class="do-card" href="webhook-examples/fluentd-logstash-datadog/">
             <h3>Wallarm → Logstash → Datadog</h3>
             <p>Send notifications to Datadog via Logstash</p>
         </a>
@@ -261,11 +261,11 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
             <h3>IBM QRadar</h3>
             <p>Send logs to IBM QRadar via Fluentd or Logstash</p>
         </div>
-        <a class="do-card" href="../webhook-examples/fluentd-qradar/">
+        <a class="do-card" href="webhook-examples/fluentd-qradar/">
             <h3>Wallarm → Fluentd → IBM QRadar</h3>
             <p>Send logs to IBM QRadar via Fluentd</p>
         </a>
-        <a class="do-card" href="../webhook-examples/logstash-qradar/">
+        <a class="do-card" href="webhook-examples/logstash-qradar/">
             <h3>Wallarm → Logstash → IBM QRadar</h3>
             <p>Send logs to IBM QRadar via Logstash</p>
         </a>
@@ -276,11 +276,11 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
             <h3>Splunk Enterprise</h3>
             <p>Send logs to Splunk Enterprise via Fluentd or Logstash</p>
         </div>
-        <a class="do-card" href="../webhook-examples/fluentd-splunk/">
+        <a class="do-card" href="webhook-examples/fluentd-splunk/">
             <h3>Wallarm → Fluentd → Splunk Enterprise</h3>
             <p>Send logs to Splunk Enterprise via Fluentd</p>
         </a>
-        <a class="do-card" href="../webhook-examples/logstash-splunk/">
+        <a class="do-card" href="webhook-examples/logstash-splunk/">
             <h3>Wallarm → Logstash → Splunk Enterprise</h3>
             <p>Send logs to Splunk Enterprise via Logstash</p>
         </a>
@@ -291,11 +291,11 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
             <h3>Micro Focus ArcSight Logger</h3>
             <p>Send notifications to Micro Focus ArcSight Logger via Fluentd or Logstash</p>
         </div>
-        <a class="do-card" href="../webhook-examples/fluentd-arcsight-logger/">
+        <a class="do-card" href="webhook-examples/fluentd-arcsight-logger/">
             <h3>Wallarm → Fluentd → Micro Focus ArcSight Logger</h3>
             <p>Send notifications to Micro Focus ArcSight Logger via Fluentd</p>
         </a>
-        <a class="do-card" href="../webhook-examples/logstash-arcsight-logger/">
+        <a class="do-card" href="webhook-examples/logstash-arcsight-logger/">
             <h3>Wallarm → Logstash → Micro Focus ArcSight Logger</h3>
             <p>Send notifications to Micro Focus ArcSight Logger via Logstash</p>
         </a>
@@ -306,11 +306,11 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
             <h3>Datadog</h3>
             <p>Send events to Datadog Logs service via Fluentd or Logstash</p>
         </div>
-        <a class="do-card" href="../webhook-examples/fluentd-logstash-datadog/">
+        <a class="do-card" href="webhook-examples/fluentd-logstash-datadog/">
             <h3>Wallarm → Fluentd → Datadog</h3>
             <p>Send logs to Datadog via Fluentd</p>
         </a>
-        <a class="do-card" href="../webhook-examples/fluentd-logstash-datadog/">
+        <a class="do-card" href="webhook-examples/fluentd-logstash-datadog/">
             <h3>Wallarm → Logstash → Datadog</h3>
             <p>Send logs to Datadog via Logstash</p>
         </a>
@@ -321,12 +321,12 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
 
 <div class="do-section">
     <div class="do-main">
-        <a class="do-card" href="../webhook/">
+        <a class="do-card" href="webhook/">
             <img class="non-zoomable" src="../../../../images/integration-icons/webhook.svg" />
             <h3>Webhook</h3>
             <p>Universal connector: send instant notifications to any system that accepts incoming webhooks via HTTPS protocol</p>
         </a>
-        <a class="do-card" href="mailto:sales@wallarm.com?subject=Request%20for%20integration%20between%20Wallarm%20and%20<SYSTEM>&body=Hello%20Wallarm%20Sales%20Team%2C%0AIn%20Wallarm%2C%20the%20integration%20with%20<SYSTEM>%20is%20not%20presented%2C%20although%20the%20ability%20to%20integrate%20with%20this%20system%20would%20be%20benefitial%20for%20us.%0A%0AWe%20would%20be%20grateful%20if%20you%20could%20consider%20the%20technical%20feasibility%20of%20this%20integration%20and%20are%20ready%20to%20schedule%20a%20call%20with%20you%20to%20discuss%20our%20requirements%20in%20detail.%0A%0AWe%20are%20looking%20forward%20to%20your%20response.">
+       <a class="do-card" href="mailto:sales@wallarm.com?subject=Request%20for%20integration%20between%20Wallarm%20and%20<SYSTEM>&body=Hello%20Wallarm%20Sales%20Team%2C%0AIn%20Wallarm%2C%20the%20integration%20with%20<SYSTEM>%20is%20not%20presented%2C%20although%20the%20ability%20to%20integrate%20with%20this%20system%20would%20be%20benefitial%20for%20us.%0A%0AWe%20would%20be%20grateful%20if%20you%20could%20consider%20the%20technical%20feasibility%20of%20this%20integration%20and%20are%20ready%20to%20schedule%20a%20call%20with%20you%20to%20discuss%20our%20requirements%20in%20detail.%0A%0AWe%20are%20looking%20forward%20to%20your%20response.">
             <img class="non-zoomable" src="../../../../images/integration-icons/other-system.svg" />
             <h3>Request integration</h3>
             <p>If there is no system you are looking for, let us know. We will check the possibility of the integration and contact you.</p>
