@@ -1,0 +1,21 @@
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_aih)">
+<circle cx="8" cy="8" r="6.75" stroke="url(#paint0_linear_aih)" stroke-width="1.2"/>
+<line x1="8" y1="8" x2="8" y2="4.5" stroke="url(#paint0_linear_aih)" stroke-width="1" stroke-linecap="round"/>
+<line x1="8" y1="8" x2="5.25" y2="10.5" stroke="url(#paint0_linear_aih)" stroke-width="1" stroke-linecap="round"/>
+<line x1="8" y1="8" x2="10.75" y2="10.5" stroke="url(#paint0_linear_aih)" stroke-width="1" stroke-linecap="round"/>
+<circle cx="8" cy="4.5" r="0.9" fill="url(#paint0_linear_aih)"/>
+<circle cx="5.25" cy="10.5" r="0.9" fill="url(#paint0_linear_aih)"/>
+<circle cx="10.75" cy="10.5" r="0.9" fill="url(#paint0_linear_aih)"/>
+<circle cx="8" cy="8" r="1.2" fill="url(#paint0_linear_aih)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_aih" x1="8" y1="1" x2="8" y2="15" gradientUnits="userSpaceOnUse">
+<stop stop-color="#B8C0CD"/>
+<stop offset="1" stop-color="#6C7993"/>
+</linearGradient>
+<clipPath id="clip0_aih">
+<rect width="16" height="16" fill="white"/>
+</clipPath>
+</defs>
+</svg>
