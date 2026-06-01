@@ -1,4 +1,4 @@
-# Notifications <a href="overview.md#subscription"><img src="../../images/ai-hypervisor-tag.svg" style="border: none;"></a>
+# Notifications <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
 Notifications is the **inbox** of significant things the platform has detected — new applications brought under coverage, CVEs found or resolved in a scanned app, PII observed in agent traffic, scanner-health changes. Most entries are informational; some deep-link into a follow-up view ([User Tracks](user-tracks.md), [Supply Chain](supply-chain.md)) when there is something to act on.
 

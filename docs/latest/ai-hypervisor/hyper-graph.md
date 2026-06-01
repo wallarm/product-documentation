@@ -1,4 +1,4 @@
-# Hyper Graph <a href="overview.md#subscription"><img src="../../images/ai-hypervisor-tag.svg" style="border: none;"></a>
+# Hyper Graph <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
 Hyper Graph is the **3D unified graph view** of every entity the platform observes — agents, MCP servers, LLM providers, data sources, APIs — and the traffic edges between them. It draws from the same data that powers [Topology](topology.md), [Registry](registry.md), and [Data Tracks](data-tracks.md), but the 3D arrangement surfaces relationships and clustering the row-shaped views miss.
 

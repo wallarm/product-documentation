@@ -1,4 +1,4 @@
-# Settings <a href="overview.md#subscription"><img src="../../images/ai-hypervisor-tag.svg" style="border: none;"></a>
+# Settings <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
 Settings is the tenant-level admin surface — everything that is configured once per tenant rather than per page: who has access, how the scanners are running, and the platform's own configuration knobs. This page documents what each section owns.
 
