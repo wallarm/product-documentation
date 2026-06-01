@@ -1,0 +1,1 @@
+--8<-- "latest/ai-hypervisor/supply-chain.md"
