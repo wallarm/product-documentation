@@ -1,4 +1,4 @@
-# Red Team <a href="overview.md#subscription"><img src="../../images/ai-hypervisor-tag.svg" style="border: none;"></a>
+# Red Team <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
 Red Team is the **scope-builder for a Wallarm professional-services red-team engagement** against your AI estate — not a self-serve testing tool. The view lives in the AI Hypervisor UI so the engagement can be scoped against the same asset inventory the platform has already discovered ([Registry](registry.md), [Heatmap](heatmap.md)).
 

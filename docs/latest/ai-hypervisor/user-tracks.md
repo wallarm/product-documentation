@@ -1,4 +1,4 @@
-# User Tracks <a href="overview.md#subscription"><img src="../../images/ai-hypervisor-tag.svg" style="border: none;"></a>
+# User Tracks <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
 User Tracks is the **session-level evidence view** — every user-to-agent or agent-to-agent interaction as a discrete session, with the full chain from prompt through tool calls through responses, plus the PII profile and step-level evidence.
 

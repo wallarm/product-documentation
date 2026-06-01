@@ -1,4 +1,4 @@
-# Labels and Annotations <a href="overview.md#subscription"><img src="../../images/ai-hypervisor-tag.svg" style="border: none;"></a>
+# Labels and Annotations <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
 AI Hypervisor decides which workloads to observe and how to tag them through Kubernetes labels and annotations applied to your own pods or namespaces. The scanner picks up changes within ~30 seconds — no pod restart needed.
 

@@ -1,4 +1,4 @@
-# AI Hypervisor Overview <a href="#subscription"><img src="../../images/ai-hypervisor-tag.svg" style="border: none;"></a>
+# AI Hypervisor Overview <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
 AI Hypervisor is the runtime governance layer for every LLM call, agent action, and MCP tool invocation running in your Kubernetes cluster on AWS.
 

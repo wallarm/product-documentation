@@ -1,4 +1,4 @@
-# Topology <a href="overview.md#subscription"><img src="../../images/ai-hypervisor-tag.svg" style="border: none;"></a>
+# Topology <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
 Topology is the **traffic-flow map** of your environment — how requests move between agents, MCP servers, LLM providers, data sources, and APIs. It shows the same entities as [Hyper Graph](hyper-graph.md) and [Registry](registry.md) but emphasises the *connections* between them.
 

@@ -1,4 +1,4 @@
-# Briefing <a href="overview.md#subscription"><img src="../../images/ai-hypervisor-tag.svg" style="border: none;"></a>
+# Briefing <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
 The **Briefing** view is the **agent-first overview** of your AI estate. It answers *"what is connected, what is normal, what should I look at first"* on a single screen — populated from real runtime data within ~30 seconds of traffic starting through the labelled workloads.
 
