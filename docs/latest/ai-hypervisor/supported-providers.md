@@ -1,4 +1,4 @@
-# Supported Model Providers <a href="overview.md#subscription"><img src="../../images/ai-hypervisor-tag.svg" style="border: none;"></a>
+# Supported Model Providers <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
 AI Hypervisor inspects outbound calls from instrumented workloads to every major commercial model provider and to self-hosted inference endpoints. Provider detection is automatic — no per-provider configuration is required for discovery or observation.
 

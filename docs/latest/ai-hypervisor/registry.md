@@ -1,4 +1,4 @@
-# Registry <a href="overview.md#subscription"><img src="../../images/ai-hypervisor-tag.svg" style="border: none;"></a>
+# Registry <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
 Registry is the **single inventory** of every AI, LLM, and MCP component running across your infrastructure — agents, MCP servers, LLM providers, data sources, APIs, tools, and A2AS certificates. One table, one mental model.
 

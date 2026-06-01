@@ -1,4 +1,4 @@
-# Supply Chain <a href="overview.md#subscription"><img src="../../images/ai-hypervisor-tag.svg" style="border: none;"></a>
+# Supply Chain <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
 Supply Chain is the **inventory of third-party code your AI stack depends on** — the packages, model weights, MCP server binaries, container images, and libraries running inside your instrumented workloads, with the vulnerabilities, license posture, and load-time risk for each. It is the per-asset version of the AI-SBOM that [Reports](reports.md) folds into the compliance evidence pack.
 

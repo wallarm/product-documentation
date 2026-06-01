@@ -1,4 +1,4 @@
-# Data Tracks <a href="overview.md#subscription"><img src="../../images/ai-hypervisor-tag.svg" style="border: none;"></a>
+# Data Tracks <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
 Data Tracks is the **per-flow evidence view**. For every data flow between two entities, it records which data classes were touched, which PII patterns matched, and which rule produced the detection. It is the evidence layer behind data governance — *"did a customer's email leave for OpenAI yesterday"* is a Data Tracks query, not a survey.
 

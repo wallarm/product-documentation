@@ -1,4 +1,4 @@
-# Chart Values <a href="overview.md#subscription"><img src="../../images/ai-hypervisor-tag.svg" style="border: none;"></a>
+# Chart Values <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
 The HIGGS Scanner ships as a Helm chart (`wallarm/aih-scanner`, current version `2.1.1`). The tables below list the values most customers tune; everything else in the [chart's `values.yaml`](https://github.com/wallarm/helm-charts/tree/main/aih-scanner) has a sensible default that rarely needs overriding.
 

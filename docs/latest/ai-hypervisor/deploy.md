@@ -1,4 +1,4 @@
-# Install HIGGS Scanner <a href="overview.md#subscription"><img src="../../images/ai-hypervisor-tag.svg" style="border: none;"></a>
+# Install HIGGS Scanner <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
 The **HIGGS Scanner** (Hypervisor Inspection & GenerativeAI Guarding Scanner) is the only AI Hypervisor component you install in your own environment. The dashboard, backend, and telemetry store are hosted by Wallarm — your scanner uploads to that hosted service over HTTPS.
 

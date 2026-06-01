@@ -1,4 +1,4 @@
-# Heatmap <a href="overview.md#subscription"><img src="../../images/ai-hypervisor-tag.svg" style="border: none;"></a>
+# Heatmap <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
 Heatmap is the single-screen overview of your AI estate. It answers four questions at a glance: *what AI do we run, how healthy is it, what is on fire right now, are we trending in the right direction.*
 

@@ -1,4 +1,4 @@
-# Reports <a href="overview.md#subscription"><img src="../../images/ai-hypervisor-tag.svg" style="border: none;"></a>
+# Reports <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
 The **Reports** page is the **compliance evidence pack** for your AI estate. It rolls everything the platform observed during a chosen evidence period — control coverage, PII events, SBOM components and their CVEs, and the audit trail of platform activity — into a single document you can hand to an auditor, brief the board with, or upload to a GRC tool.
 
