@@ -1,6 +1,6 @@
 # Wallarm API Protection <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm's API Protection is an advanced set of API and AI protection capabilities. While basic [cloud-native WAAP](../about-wallarm/waap-overview.md) protection already includes support for all API protocols and their inspection for attacks, protection against L7 DDoS, etc., modern APIs are subject to additional risks such as automated threats, API misuse and AI exploitation. The Advanced API Security bundle provides advanced features for more complete risk mitigation.
+API Protection is an advanced set of mitigation capabilities. While basic [cloud-native WAAP](../about-wallarm/waap-overview.md) protection already includes support for all API protocols and their inspection for attacks, protection against L7 DDoS, etc., modern APIs are subject to additional risks such as automated threats, API misuse, and AI-targeted exploitation. The Advanced API Security bundle provides advanced features for more complete risk mitigation.
 
 API Protection includes:
 

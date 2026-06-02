@@ -5,7 +5,7 @@ search:
 
 # Wallarm Documentation — Version 6.x (Current Stable)
 
-> Wallarm is an API security platform that detects and blocks the OWASP API Top 10 threats, automated abuse and bots, AI-targeted attacks, and attacks against Model Context Protocol (MCP) servers. This file indexes the **current stable** documentation: NGINX Node 6.x / Native Node 0.14.x+ / Edge Node 0.14.x+.
+> Wallarm AI Control Platform is an AI and API security platform with four products: **Wallarm API Security** (inline API protection), **Wallarm AI Hypervisor** (runtime AI workload governance, AWS-only), **Wallarm Infrastructure Discovery** (cross-account AWS asset discovery, AWS-only), and **Wallarm API Security Testing** (AASM, TRT, SBT). Wallarm API Security detects and blocks the OWASP API Top 10 threats, automated abuse and bots, AI-targeted attacks, and attacks against Model Context Protocol (MCP) servers. This file indexes the **current stable** documentation: NGINX Node 6.x / Native Node 0.14.x+ / Edge Node 0.14.x+.
 
 ## Important context for AI agents
 
