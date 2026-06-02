@@ -395,6 +395,13 @@ nav:
       - Generate SBOM: integrations-devsecops/generate-sbom-for-docker-images.md
 
   # ============================================================================
+  # SECTION 5b: INFRASTRUCTURE DISCOVERY
+  # ============================================================================
+  - Infrastructure Discovery:
+    - Overview: infrastructure-discovery/overview.md
+    - Setup: infrastructure-discovery/setup.md
+    - Exploring Inventory: infrastructure-discovery/exploring.md
+  # ============================================================================
   # SECTION 7: WALLARM CONSOLE
   # ============================================================================
   - Wallarm Console:

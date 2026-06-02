@@ -345,6 +345,14 @@ nav:
       - Dynamic DNS in NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
 
   # ============================================================================
+  # SECTION 5b: INFRASTRUCTURE DISCOVERY
+  # ============================================================================
+  - Infrastructure Discovery:
+    - Overview: infrastructure-discovery/overview.md
+    - Setup: infrastructure-discovery/setup.md
+    - Exploring Inventory: infrastructure-discovery/exploring.md
+
+  # ============================================================================
   # SECTION 6: INTEGRATIONS
   # ============================================================================
   - Integrations:
