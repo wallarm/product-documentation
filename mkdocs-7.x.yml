@@ -395,9 +395,9 @@ nav:
       - Generate SBOM: integrations-devsecops/generate-sbom-for-docker-images.md
 
   # ============================================================================
-  # SECTION 7: PLATFORM MANAGEMENT
+  # SECTION 7: WALLARM CONSOLE
   # ============================================================================
-  - Platform Management:
+  - Wallarm Console:
     - Overview: platform-management/overview.md
     - Dashboards:
       - Threat Prevention Dashboard: user-guides/dashboards/threat-prevention.md
