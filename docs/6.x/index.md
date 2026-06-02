@@ -7,7 +7,7 @@ hide:
 
 # Wallarm Documentation
 
-Everything you need to discover your APIs, MCPs, and AI agents, protect them from threats, and test for vulnerabilities.
+Wallarm AI Control Platform — discover, observe, enforce, and govern AI workloads and APIs across your environment.
 
 <div class="homepage-actions">
   <!-- Search will be moved here from the header via JS (desktop only) -->
@@ -28,31 +28,37 @@ Everything you need to discover your APIs, MCPs, and AI agents, protect them fro
   </div>
 </div>
 
-<!-- Row 2: API Discovery, API Protection, API Security Testing, AI Security -->
+<!-- Row 2: 4 Platform Products -->
 <div class="navigation navigation-4col">
 
   <div class="navigation-card">
-    <h3 class="icon-homepage api-discovery-title"><a href="./api-discovery/overview/">API Discovery <span class="card-arrow">→</span></a></h3>
-    <p class="card-description">Catalog all your APIs/MCPs/agents, their risks and sensisitve data flows.</p>
+    <h3 class="icon-homepage api-threat-prevent"><a href="./about-wallarm/api-security-overview/">API Security <span class="card-arrow">→</span></a></h3>
+    <p class="card-description">Discover and inline-protect your APIs against the OWASP API Top 10, abuse, account takeover, and AI-targeted attacks.</p>
     <p><ul>
-      <li><a href="./api-discovery/exploring/">Exploring Your APIs</a></li>
-      <li><a href="./api-discovery/risk-score/">Risk Score</a></li>
-      <li><a href="./api-discovery/rogue-api/">Rogue APIs (Shadow/Zombie)</a></li>
-      <li><a href="./api-discovery/sensitive-data/">Sensitive Data Detection</a></li>
-      <li><a href="./api-discovery/setup/">Setup & Configuration</a></li>
+      <li><a href="./api-discovery/overview/">API Discovery</a></li>
+      <li><a href="./about-wallarm/api-protection-overview/">API Protection</a></li>
+      <li><a href="./agentic-ai/agentic-ai-protection/">AI Agent Protection</a></li>
+      <li><a href="./api-sessions/overview/">API Sessions</a></li>
+      <li><a href="./about-wallarm/waap-overview/">Threat Protection (WAAP)</a></li>
     </ul></p>
   </div>
 
   <div class="navigation-card">
-    <h3 class="icon-homepage api-threat-prevent"><a href="./about-wallarm/api-protection-overview/">API Protection <span class="card-arrow">→</span></a></h3>
-    <p class="card-description">Block attacks, bots, and abuse in real-time with intelligent threat detection.</p>
+    <h3 class="icon-homepage api-discovery-title"><a href="./infrastructure-discovery/overview/">Infrastructure Discovery <span class="card-arrow">→</span></a></h3>
+    <p class="card-description">Cross-account AWS asset and shadow AI discovery on a single relationship graph. <strong>AWS-only</strong>.</p>
     <p><ul>
-      <li><a href="./api-sessions/overview/">API Sessions</a></li>
-      <li><a href="./api-specification-enforcement/overview/">API Spec Enforcement</a></li>
-      <li><a href="./api-abuse-prevention/overview/">Bot Management</a></li>
-      <li><a href="./about-wallarm/credential-stuffing/">Credential Stuffing</a></li>
-      <li><a href="./about-wallarm/waap-overview/">Threat Protection (WAAP)</a></li>
-      <li><a href="./user-guides/rules/rules/">Rules & Policies</a></li>
+      <li><a href="./infrastructure-discovery/overview/">Overview</a></li>
+      <li><a href="./infrastructure-discovery/setup/">Setup</a></li>
+      <li><a href="./about-wallarm/subscription-plans/#wallarm-infrastructure-discovery">Free tier &amp; paid plans</a></li>
+    </ul></p>
+  </div>
+
+  <div class="navigation-card">
+    <h3 class="icon-homepage agent-ai-title"><a href="./ai-hypervisor/overview/">AI Hypervisor <span class="card-arrow">→</span></a></h3>
+    <p class="card-description">Runtime observability, enforcement, and governance for AI workloads on Amazon EKS. <strong>AWS-only</strong>.</p>
+    <p><ul>
+      <li><a href="./ai-hypervisor/overview/">Overview</a></li>
+      <li><a href="./about-wallarm/subscription-plans/#wallarm-ai-hypervisor">Access via Sales</a></li>
     </ul></p>
   </div>
 
@@ -63,18 +69,7 @@ Everything you need to discover your APIs, MCPs, and AI agents, protect them fro
       <li><a href="./vulnerability-detection/threat-replay-testing/overview/">Threat Replay Testing</a></li>
       <li><a href="./vulnerability-detection/schema-based-testing/overview/">Schema-Based Testing</a></li>
       <li><a href="./vulnerability-detection/api-security-testing-via-postman/overview/">API Security Testing via Postman</a></li>
-      <li><a href="./api-attack-surface/overview/">Attack Surface (AASM)</a></li>
-    </ul></p>
-  </div>
-
-  <div class="navigation-card">
-    <h3 class="icon-homepage agent-ai-title"><a href="./agentic-ai/overview/">AI Security <span class="card-arrow">→</span></a></h3>
-    <p class="card-description">Discover and protect AI agents and MCPs.</p>
-    <p><ul>
-      <li><a href="./agentic-ai/agentic-ai-discovery/">AI Agent Discovery</a></li>
-      <li><a href="./agentic-ai/agentic-ai-protection/">AI Agent Protection</a></li>
-      <li><a href="./agentic-ai/ai-payload-inspection/">AI Payload Inspection</a></li>
-      <li><a href="./agentic-ai/rogue-mcp-inspection/">Rogue MCP Inspection</a></li>
+      <li><a href="./api-attack-surface/overview/">API Attack Surface (AASM)</a></li>
     </ul></p>
   </div>
 
@@ -85,7 +80,7 @@ Everything you need to discover your APIs, MCPs, and AI agents, protect them fro
 
   <div class="navigation-card">
     <h3 class="icon-homepage deployment-title"><a href="./installation/supported-deployment-options/">Deployment <span class="card-arrow">→</span></a></h3>
-    <p class="card-description">Deploy Wallarm using managed, self-hosted, or connector-based options.</p>
+    <p class="card-description">Deploy Wallarm Node for API Security using managed, self-hosted, or connector-based options.</p>
     <p><ul>
       <li><a href="./installation/supported-deployment-options/">All deployment options</a></li>
       <li><a href="./installation/security-edge/overview/">Security Edge (Managed)</a></li>
@@ -110,8 +105,8 @@ Everything you need to discover your APIs, MCPs, and AI agents, protect them fro
   </div>
 
   <div class="navigation-card">
-    <h3 class="icon-homepage platform-management-title"><a href="./platform-management/overview/">Platform Management <span class="card-arrow">→</span></a></h3>
-    <p class="card-description">Monitor threats, configure alerts, and manage access and infrastructure.</p>
+    <h3 class="icon-homepage platform-management-title"><a href="./platform-management/overview/">Wallarm Console <span class="card-arrow">→</span></a></h3>
+    <p class="card-description">Monitor threats, configure alerts, and manage users and access in the unified web interface.</p>
     <p><ul>
       <li><a href="./user-guides/events/overview/">Monitoring & Events</a></li>
       <li><a href="./user-guides/triggers/triggers/">Triggers & Alerts</a></li>
