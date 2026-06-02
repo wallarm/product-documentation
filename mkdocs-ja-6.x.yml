@@ -123,8 +123,6 @@ nav:
       - セキュリティ問題の検出: api-attack-surface/security-issues.md
     - 脆弱性の検出: about-wallarm/detecting-vulnerabilities.md
   - AI セキュリティ:
-    - AI ディスカバリ:
-      - AI ディスカバリ: agentic-ai/agentic-ai-discovery.md
     - AI 保護:
       - エージェント型 AI 保護: agentic-ai/agentic-ai-protection.md
   - デプロイ:
