@@ -16,7 +16,7 @@ AWS WAF establishes a perimeter defense that blocks known threats and malicious 
 
 ## Wallarm: API‑centric application security for microservices
 
-Wallarm is an **Advanced API Security** platform designed to secure modern applications, especially APIs and microservice‑based architectures. Whereas AWS WAF focuses on the perimeter, **Wallarm operates closer to the application**, analyzing traffic with context about your APIs, microservices, and application logic.
+**Wallarm API Security** — the API protection product of [Wallarm AI Control Platform](../../../about-wallarm/overview.md) — is designed to secure modern applications, especially APIs and microservice‑based architectures. Whereas AWS WAF focuses on the perimeter, **Wallarm operates closer to the application**, analyzing traffic with context about your APIs, microservices, and application logic.
 
 Wallarm uses **deep request inspection, adaptive filtering, and AI‑driven threat detection** to catch complex attacks that traditional pattern‑based WAFs might miss. 
 
