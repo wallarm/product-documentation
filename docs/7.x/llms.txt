@@ -54,6 +54,7 @@
 - [API Sessions Overview](https://docs.wallarm.com/7.x/api-sessions/overview.md): Group requests into per-user sessions to analyze behavior across multiple endpoints (also: session reconstruction, user-session visibility).
 - [API Sessions Setup](https://docs.wallarm.com/7.x/api-sessions/setup.md): Configure session-identifying headers/cookies/JWT claims and session context parameters; requires NGINX Node 5.1.0+ or Native Node 0.8.0+.
 - [Exploring API Sessions](https://docs.wallarm.com/7.x/api-sessions/exploring.md): Filter, inspect, and pivot on reconstructed user sessions in the Console.
+- [MCP Sessions](https://docs.wallarm.com/7.x/api-sessions/mcp-sessions.md): Group MCP tool calls, resource reads, and prompt invocations into sessions keyed by `MCP-SESSION-ID` (also: MCP session reconstruction).
 - [Session Blocking](https://docs.wallarm.com/7.x/api-sessions/blocking.md): Block all requests belonging to a session that exhibited malicious behavior (also: session-level blocking, session ban).
 - [Business Logic Abuse Detection](https://docs.wallarm.com/7.x/api-protection/business-logic-abuse-detection.md): LLM-based detection of business-logic abuse (price manipulation, free-tier farming, etc.) within sessions (also: BLA, logic flaw detection).
 
@@ -63,7 +64,12 @@
 - [Enumeration Attack Protection](https://docs.wallarm.com/7.x/api-protection/enumeration-attack-protection.md): Block parameter/identifier enumeration that probes for valid IDs, usernames, or coupon codes (also: ID enumeration, username enumeration, scraping).
 - [GraphQL Protection](https://docs.wallarm.com/7.x/api-protection/graphql-rule.md): GraphQL-aware request analysis — depth/complexity limits, introspection control, and standard attack detection on GraphQL payloads.
 - [File Upload Restriction](https://docs.wallarm.com/7.x/api-protection/file-upload-restriction.md): Restrict allowed file types, size, and upload patterns to prevent OWASP API Top 10 "Unrestricted Resource Consumption" abuse.
-- [Custom Request Anomaly](https://docs.wallarm.com/7.x/api-protection/custom-request-anomaly.md): LLM-based semantic anomaly detection in custom parts of requests, configured per use-case.
+
+#### AI Agent Protection
+
+- [Agentic AI Protection Overview](https://docs.wallarm.com/7.x/agentic-ai/agentic-ai-protection.md): API-level protection of AI agents, AI proxies, and AI-enabled APIs (also: AI runtime protection, LLM gateway protection).
+- [AI Payload Inspection](https://docs.wallarm.com/7.x/agentic-ai/ai-payload-inspection.md): LLM-based detection of prompt injection, system-prompt leakage, and jailbreaks in AI payloads (also: prompt injection detection, LLM input/output inspection).
+- [MCP Mitigation Controls](https://docs.wallarm.com/7.x/agentic-ai/mcp-mitigation-controls.md): MCP-specific policies — ACL by method/primitive/user/role, request verification, tool input schema enforcement (also: MCP ACL, MCP policy).
 
 #### Bot Management (API Abuse Prevention)
 
@@ -139,26 +145,6 @@
 - [AASM Security Issues](https://docs.wallarm.com/7.x/api-attack-surface/security-issues.md): Misconfigurations and risks found on discovered external hosts.
 
 - [Detecting Vulnerabilities](https://docs.wallarm.com/7.x/about-wallarm/detecting-vulnerabilities.md): How Wallarm passively detects application vulnerabilities from live traffic (also: passive vulnerability detection, vuln detection).
-
-### AI Security
-
-- [AI Security Overview](https://docs.wallarm.com/7.x/agentic-ai/overview.md): Wallarm's protection coverage for AI agents, LLM-backed APIs, and MCP servers (also: AI security, LLM security, agentic AI security).
-
-#### AI Discovery
-
-- [AI Agent Discovery](https://docs.wallarm.com/7.x/agentic-ai/agentic-ai-discovery.md): Automatic identification of APIs that talk to LLMs, ML models, chatbots, or AI agents (also: LLM endpoint discovery).
-
-#### MCP Discovery
-
-- [MCP Server Discovery](https://docs.wallarm.com/7.x/agentic-ai/mcp-discovery.md): Detect Model Context Protocol servers in traffic and capture their tools / resources / prompts (also: MCP detection, MCP inventory).
-- [MCP Sessions](https://docs.wallarm.com/7.x/api-sessions/mcp-sessions.md): Group MCP tool calls, resource reads, and prompt invocations into sessions keyed by `MCP-SESSION-ID` (also: MCP session reconstruction).
-
-#### AI Protection
-
-- [AI Agent Protection](https://docs.wallarm.com/7.x/agentic-ai/agentic-ai-protection.md): API-level protection of AI agents, AI proxies, and AI-enabled APIs (also: AI runtime protection, LLM gateway protection).
-- [AI Payload Inspection](https://docs.wallarm.com/7.x/agentic-ai/ai-payload-inspection.md): LLM-based detection of prompt injection, system-prompt leakage, and jailbreaks in AI payloads (also: prompt injection detection, LLM input/output inspection).
-- [MCP Mitigation Controls](https://docs.wallarm.com/7.x/agentic-ai/mcp-mitigation-controls.md): MCP-specific policies — ACL by method/primitive/user/role, request verification, tool input schema enforcement (also: MCP ACL, MCP policy).
-- [Rogue MCP Inspection](https://docs.wallarm.com/7.x/agentic-ai/rogue-mcp-inspection.md): Audit locally installed MCP servers for supply-chain risks and excessive privileges (also: MCP supply-chain audit).
 
 ### Deployment
 
