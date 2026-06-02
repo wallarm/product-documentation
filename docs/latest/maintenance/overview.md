@@ -1,6 +1,6 @@
 # Maintenance
 
-This section provides comprehensive guidance on maintaining, monitoring, and upgrading your Wallarm deployment to ensure optimal performance and security.
+This section covers maintenance, monitoring, and upgrades for the **Wallarm Node** — the main filtering component customers install in their own infrastructure. The Node powers API protection from [Wallarm API Security](../about-wallarm/api-security-overview.md) and also runs [passive vulnerability detection](../about-wallarm/detecting-vulnerabilities.md#passive-detection) and [Threat Replay Testing](../vulnerability-detection/threat-replay-testing/overview.md) from [Wallarm API Security Testing](../vulnerability-detection/security-testing-overview.md). **Wallarm AI Hypervisor** and **Wallarm Infrastructure Discovery** (both AWS-only) have their own maintenance flows and are not covered here.
 
 ## What's Included
 
