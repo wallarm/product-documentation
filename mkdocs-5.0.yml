@@ -134,12 +134,6 @@ nav:
     - Detecting Vulnerabilities: about-wallarm/detecting-vulnerabilities.md      
 
   # ============================================================================
-  # SECTION 5: AI PROTECTION
-  # ============================================================================
-  - AI Security:
-    - Rogue MCP Inspection: agentic-ai/rogue-mcp-inspection.md
-
-  # ============================================================================
   # SECTION 6: DEPLOYMENT
   # Structure: Security Edge → Kubernetes → Cloud → API Gateways → CDN → APIM
   #            → Host & Runtime → Artifacts → Upgrades
