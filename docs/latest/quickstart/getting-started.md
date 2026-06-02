@@ -1,30 +1,46 @@
-# Getting Started with the Wallarm Platform
+# Getting Started with Wallarm
 
-Wallarm delivers all-in-one API security, identifying and protecting your APIs from vulnerabilities and malicious activities. Whether you are evaluating Wallarm or ready to secure production environments, you can choose the most convenient way to begin.
+[Wallarm AI Control Platform](../about-wallarm/overview.md) is an AI and API security platform with four products, each with its own onboarding path:
 
-## Ways to get started with Wallarm
+* **[Wallarm API Security](#wallarm-api-security)** — start self-service: explore the Playground and sign up for the Security Edge Free Tier (500K requests/month).
+* **[Wallarm Infrastructure Discovery](#wallarm-infrastructure-discovery)** (AWS-only) — included with new Wallarm accounts on a free tier; existing customers contact Sales to add it.
+* **[Wallarm AI Hypervisor](#wallarm-ai-hypervisor)** (AWS-only) — separate onboarding flow through Sales.
+* **Wallarm API Security Testing** — enabled by default for every Wallarm account; covered in the [Wallarm API Security](#wallarm-api-security) section below.
 
-Depending on your goals, you can start with one of the following options:
+Need help choosing or want a personalized walkthrough? [Talk to Sales](mailto:sales@wallarm.com?subject=Request%20for%20a%20Guided%20Wallarm%20Trial&body=Hello%20Wallarm%20Sales%20Engineer%20Team%2C%0A%0AI'm%20writing%20to%20request%20a%20guided%20Wallarm%20trial.%20I%20would%20be%20happy%20to%20schedule%20a%20call%20with%20you%20to%20discuss%20my%20requirements%20in%20detail.%0A%0AThank%20you%20for%20your%20time%20and%20assistance.)
 
-* [Security Edge Free Tier](#security-edge-free-tier) — includes most capabilities of Advanced API Security Free Tier and optional AASM Freemium features. Get 500K free requests per month and explore most Wallarm's core functionality for free.
+## Wallarm API Security
 
-    A built-in welcome wizard lets you test Wallarm protection using demo traffic before moving to production.
+Wallarm API Security delivers discovery and protection for your APIs: internal services, partner-facing endpoints, third-party integrations, and the APIs consumed by AI workloads. It blocks the OWASP API Top 10, automated abuse, account takeover, AI-targeted attacks, and attacks against Model Context Protocol (MCP) servers across REST, GraphQL, gRPC, SOAP, and WebSocket — and continuously discovers, inventories, and risk-scores every endpoint in your environment.
 
-* [API Attack Surface Management (AASM) Freemium](#aasm-freemium-know-your-api-with-zero-deployment) — instantly discover your external hosts and APIs without any deployment. Simply provide your business email, and Wallarm will start scanning your company domain automatically.
-* [Playground](#learn-wallarm-in-playground) — explore Wallarm in a hosted demo environment before creating an account.
-* [Guided trial](#guided-trial) — request a personalized walkthrough and onboarding assistance from the Wallarm team.
+You can start in one of the ways:
 
-## Security Edge Free Tier
+* [Playground](#playground) — explore Wallarm Console with realistic data; no signup required.
+* [Security Edge Free Tier](#security-edge-free-tier) — create a free account, get 500K requests per month for free, with Wallarm API Security Testing enabled by default and optional AASM Freemium.
 
-Every new account created in the Wallarm Console is automatically enrolled in the [Security Edge Free Tier](../about-wallarm/subscription-plans.md#security-edge-free-tier), which gives you **500 thousand requests per month** for free. This tier includes most **Advanced API Security capabilities** and **optional AASM Freemium** features.
+### Playground
 
-When you sign up, Wallarm automatically provisions an account and launches a built-in **Welcome Wizard** that lets you quickly experience how Wallarm protects APIs using demo traffic.
+The [Wallarm Playground](https://tour.playground.wallarm.com/?utm_source=wallarm_docs_quickstart) gives you a read-only view of Wallarm Console filled with realistic production-like data — discovered API inventory, attacks blocked, vulnerabilities detected, dashboards, integrations — so you can see how the product works without deploying anything or creating an account.
 
-### Self-signup
+![Playground](../images/playground.png)
+
+To try Wallarm on your own traffic, [create a Security Edge Free Tier account](#security-edge-free-tier).
+
+### Security Edge Free Tier
+
+Every new account created in the Wallarm Console is automatically enrolled in the [Security Edge Free Tier](../about-wallarm/subscription-plans.md#security-edge-free-tier), which gives you **500 thousand requests per month** for free. The tier includes:
+
+* **Wallarm API Security** core capabilities — API protection, attack detection, custom rules, integrations.
+* **[Wallarm API Security Testing](../vulnerability-detection/security-testing-overview.md)** — proactively finds vulnerabilities in your applications and APIs before attackers do. Enabled by default. Includes optional **[AASM Freemium](../api-attack-surface/overview.md)** for agentless discovery of your external hosts and APIs.
+* **[Wallarm Infrastructure Discovery](../infrastructure-discovery/overview.md)** (AWS-only) — cross-account AWS asset and shadow AI discovery, with findings from native AWS security services on a single relationship graph. Free tier included.
+
+When you sign up, Wallarm automatically provisions an account and launches a built-in **Welcome Wizard** that lets you experience how Wallarm protects APIs using demo traffic.
+
+#### Self-signup
 
 To register with Wallarm yourself:
 
-1. Choose your [Wallarm Cloud](../about-wallarm/overview.md#cloud):
+1. Choose your [Wallarm Cloud](../about-wallarm/api-security-overview.md#cloud):
 
     | | US Cloud | EU Cloud | ME Cloud |
     | -- | --- | --- | --- |
@@ -32,15 +48,13 @@ To register with Wallarm yourself:
     | **Physical location** | USA | Netherlands | Kingdom of Saudi Arabia |
     | **Wallarm Console URL** | https://us1.my.wallarm.com/ | https://my.wallarm.com/ | https://me1.my.wallarm.com/ |
     | **Wallarm API Endpoint** | https://us1.api.wallarm.com/ | https://api.wallarm.com/ | https://me1.api.wallarm.com/ |
-    
-1. Follow the signup link and input requested data about yourself and your company.
-1. Select whether you want to immediately start **discovering your external APIs and security issues** (nothing needs to be deployed, see details [below](#aasm-freemium-know-your-api-with-zero-deployment)).
 
-    Visit the Wallarm Console's [**API Attack Surface**](../api-attack-surface/overview.md) section later to see how Wallarm detects APIs and their security issues. This activates the Core (freemium) version, and scanning of the used email's domain starts immediately.
+1. Follow the signup link and input the requested data about yourself and your company.
+1. Choose whether to enable **AASM Freemium** (external API discovery) at this step. AASM activates immediately and scans your company domain. If you skip this, you can add a domain later from the [API Attack Surface](../api-attack-surface/overview.md) section of Wallarm Console.
 
-### Welcome wizard
+#### Welcome wizard
 
-After registration, the **Welcome to Wallarm** wizard is launched automatically. It is equipped with a ready-to-use demo Wallarm Node that lets you observe how Wallarm protects APIs in just 5 minutes.
+After registration, the **Welcome to Wallarm** wizard launches automatically. It is equipped with a ready-to-use demo Wallarm Node that lets you observe how Wallarm protects APIs in just 5 minutes.
 
 ![Self-signup - Welcome Wizard](../images/waf-installation/quickstart/welcome-wizard.png)
 
@@ -51,41 +65,43 @@ In the wizard, you can:
 1. Simulate attacks and see them detected in real time.
 1. Switch to [blocking mode](../admin-en/configure-wallarm-mode.md) to watch malicious requests being blocked.
 
-Once the Welcome Wizard is completed, you can continue with one of the following options:
+Once the Welcome Wizard is completed, continue with one of:
 
-* **Switch DNS to Security Edge inline** to start you traffic analysis for free within Security Edge Free Tier subscription. This will switch Wallarm to [Security Edge quick setup wizard](../installation/security-edge/free-tier.md#quick-setup-wizard).
-* **Configure Security Edge connector** to start you traffic analysis for free within Security Edge Free Tier subscription. This will switch Wallarm to [Security Edge quick setup wizard](../installation/security-edge/free-tier.md#quick-setup-wizard).
-* [**Deploy hybrid node locally**](../installation/supported-deployment-options.md) for full control over your traffic and data.
+* **Switch DNS to Security Edge inline** for free traffic analysis within the Security Edge Free Tier. This launches the [Security Edge quick setup wizard](../installation/security-edge/free-tier.md#quick-setup-wizard).
+* **Configure a Security Edge connector** for free traffic analysis within the Security Edge Free Tier.
+* **[Deploy a hybrid node locally](../installation/supported-deployment-options.md)** for full control over your traffic and data.
+* **Set up [Wallarm Infrastructure Discovery](../infrastructure-discovery/overview.md)** (AWS-only) to start cross-account AWS asset and shadow AI discovery. No node deployment required — you can configure this directly from Wallarm Console without going through the Welcome Wizard.
 
 !!! info "Demo Node"
     The Demo Node does not process real traffic and is not shown in your Wallarm Console. It is managed by Wallarm and provided only for demo testing.
 
-## AASM Freemium: know your API with zero deployment
+## Wallarm Infrastructure Discovery
 
-Knowing the full list of your organization's external APIs is the first step in mitigating potential security risks as unmonitored or undocumented APIs can become potential entry points for malicious attacks.
+Wallarm Infrastructure Discovery is available on **AWS only**. It maps every AWS workload across all your accounts via cross-account IAM role assumption, surfaces shadow AI within minutes of deployment, and makes findings from native AWS security services (Security Hub, GuardDuty, Inspector, Macie, IAM Access Analyzer) actionable on a single relationship graph.
 
-Subscribe to Wallarm's [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) to immediately discover all your external hosts and their APIs without deployment and get the information about how well your hosts are protected and what [security issues](../api-attack-surface/security-issues.md) (vulnerabilities) they have.
+How to get access:
 
-![AASM](../images/api-attack-surface/aasm.png)
+* **New Wallarm customers** — Infrastructure Discovery is available immediately after [creating a Wallarm account](#self-signup) on a free tier.
+* **Existing Wallarm customers** — if you already have an active Wallarm subscription, contact [Wallarm Sales](mailto:sales@wallarm.com) to add Infrastructure Discovery to your account.
 
-To start, do one of the following:
+See the [Infrastructure Discovery overview and setup flow](../infrastructure-discovery/overview.md).
 
-* [Activate AASM on the Wallarm's official site](https://www.wallarm.com/product/aasm?utm_source=wallarm_docs&utm_campaign=getting_started_guide).
-* Activate the feature immediately during [self-signup](#security-edge-free-tier).    
-* Contact [sales@wallarm.com](mailto:sales@wallarm.com)
+## Wallarm AI Hypervisor
 
-## Learn Wallarm in Playground
+Wallarm AI Hypervisor is available on **AWS only** and deploys on Amazon EKS. It is the runtime governance layer for every LLM call, agent action, and MCP tool invocation running in your Kubernetes cluster on AWS.
 
-To explore Wallarm even before signing up and deploying any components to your environment, use [Wallarm Playground](https://tour.playground.wallarm.com/?utm_source=wallarm_docs_quickstart).
+AI Hypervisor follows a separate onboarding flow with the Wallarm team. To get access, contact [Wallarm Sales](mailto:sales@wallarm.com).
 
-In Playground, you can access the Wallarm Console view like it is filled with real data. Wallarm Console is the major Wallarm platform component that displays data on processed traffic and allows the platform fine-tuning. So, with Playground you can learn and try out how the product works, and get some useful examples of its usage in the read-only mode.
+See the [AI Hypervisor overview](../ai-hypervisor/overview.md) for what the product covers.
 
-![Playground](../images/playground.png)
+## Talk to Sales
 
-To try the Wallarm solution capabilities on your traffic, [create a Security Edge Free tier account](#security-edge-free-tier).
+For any of the following, the Wallarm team is here to help:
 
-## Guided trial
+* Guided onboarding or a personalized walkthrough — for any Wallarm product
+* Access to Wallarm AI Hypervisor
+* Adding Wallarm Infrastructure Discovery to an existing subscription, or raising free-tier limits
+* Custom deployment requirements, pricing, or enterprise-scale planning
+* Choosing the right product mix for your environment
 
-You can opt for a guided trial where our Sales Engineer team will assist you during the entire onboarding process. They will demonstrate the product's value over a 2-week period and help you deploy Wallarm filtering instances to filter your traffic.
-
-To request this trial, please email us at [sales@wallarm.com](mailto:sales@wallarm.com?subject=Request%20for%20a%20Guided%20Wallarm%20Trial&body=Hello%20Wallarm%20Sales%20Engineer%20Team%2C%0A%0AI'm%20writing%20to%20request%20a%20guided%20Wallarm%20trial.%20I%20would%20be%20happy%20to%20schedule%20a%20call%20with%20you%20to%20discuss%20my%20requirements%20in%20detail.%0A%0AThank%20you%20for%20your%20time%20and%20assistance.).
+Send a [request for a guided Wallarm trial](mailto:sales@wallarm.com?subject=Request%20for%20a%20Guided%20Wallarm%20Trial&body=Hello%20Wallarm%20Sales%20Engineer%20Team%2C%0A%0AI'm%20writing%20to%20request%20a%20guided%20Wallarm%20trial.%20I%20would%20be%20happy%20to%20schedule%20a%20call%20with%20you%20to%20discuss%20my%20requirements%20in%20detail.%0A%0AThank%20you%20for%20your%20time%20and%20assistance.).

@@ -1,6 +1,6 @@
-[us-cloud-docs]:                      ../../about-wallarm/overview.md#cloud
-[eu-cloud-docs]:                      ../../about-wallarm/overview.md#cloud
-[me-cloud-docs]:                      ../../about-wallarm/overview.md#cloud
+[us-cloud-docs]:                      ../../about-wallarm/api-security-overview.md#cloud
+[eu-cloud-docs]:                      ../../about-wallarm/api-security-overview.md#cloud
+[me-cloud-docs]:                      ../../about-wallarm/api-security-overview.md#cloud
 [native-node-metrics-wstore]:         ../../admin-en/native-node-metrics-wstore.md
 
 

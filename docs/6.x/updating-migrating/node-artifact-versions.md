@@ -36,7 +36,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 ### 6.12.1 (2026-05-12)
 
-* Added full support for the [ME (Middle East) Wallarm Cloud](../about-wallarm/overview.md#cloud) in the [all-in-one installer](../installation/nginx/all-in-one.md):
+* Added full support for the [ME (Middle East) Wallarm Cloud](../about-wallarm/api-security-overview.md#cloud) in the [all-in-one installer](../installation/nginx/all-in-one.md):
 
     * Interactive mode now lists **ME Cloud** alongside the US and EU options.
     * The `-c, --cloud` flag now accepts `ME` as a value.

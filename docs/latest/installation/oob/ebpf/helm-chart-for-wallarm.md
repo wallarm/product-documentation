@@ -77,9 +77,9 @@ The Wallarm node token created in Wallarm Console in the [US](https://us1.my.wal
 
 Wallarm API endpoint. Can be:
 
-* `us1.api.wallarm.com` for the [US cloud](../../../about-wallarm/overview.md#cloud)
-* `api.wallarm.com` for the [EU cloud](../../../about-wallarm/overview.md#cloud) (default)
-* `me1.api.wallarm.com` for the [ME cloud](../../../about-wallarm/overview.md#cloud)
+* `us1.api.wallarm.com` for the [US cloud](../../../about-wallarm/api-security-overview.md#cloud)
+* `api.wallarm.com` for the [EU cloud](../../../about-wallarm/api-security-overview.md#cloud) (default)
+* `me1.api.wallarm.com` for the [ME cloud](../../../about-wallarm/api-security-overview.md#cloud)
 
 ## config.api.port
 

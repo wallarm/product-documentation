@@ -21,27 +21,27 @@ To detect vulnerabilities in the applications and APIs, Wallarm uses the followi
 * [**Passive detection**](#passive-detection): works only for the scope with the `monitoring` [filtration mode](../admin-en/configure-wallarm-mode.md); identifies vulnerabilities and [incidents](../user-guides/events/check-incident.md) by analyzing real traffic, including both requests and responses. This can happen during a security incident, where a real flaw is exploited, or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation.
 
     !!! tip ""
-        Available in both **Cloud Native WAAP** and **Advanced API Security** [subscriptions](../about-wallarm/subscription-plans.md), also in **Security Edge Free Tier**. Requires installed [**Wallarm node**](../about-wallarm/overview.md#how-wallarm-works).
+        Available in both **Cloud Native WAAP** and **Advanced API Security** [subscriptions](../about-wallarm/subscription-plans.md), also in **Security Edge Free Tier**. Requires installed [**Wallarm node**](../about-wallarm/api-security-overview.md#how-wallarm-api-security-works).
 
 * [**Threat Replay Testing (TRT)**](#threat-replay-testing-trt), part of [Wallarm's Security Testing suite](../vulnerability-detection/security-testing-overview.md): lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. This module finds possible vulnerabilities by probing application endpoints using real attack data from the traffic.
 
     !!! tip ""
-        Available in the **Security Testing** [subscription](../about-wallarm/subscription-plans.md). Requires installed [**Wallarm node**](../about-wallarm/overview.md#how-wallarm-works).
+        Available in the **Security Testing** [subscription](../about-wallarm/subscription-plans.md). Requires installed [**Wallarm node**](../about-wallarm/api-security-overview.md#how-wallarm-api-security-works).
 
 * [**Schema-Based Testing (SBT)**](#schema-based-testing-sbt), part of [Wallarm's Security Testing suite](../vulnerability-detection/security-testing-overview.md): dynamic application security testing (DAST) solution that enables "shift-left" security - proactively identifies a wide range of vulnerabilities early in the development process; uses an API's schema (such as an OpenAPI specification or a Postman collection) as a blueprint to automatically generate and execute targeted security tests.
 
     !!! tip ""
-        Available in the **Security Testing** [subscription](../about-wallarm/subscription-plans.md). **Does not require** installed [Wallarm node](../about-wallarm/overview.md#how-wallarm-works).
+        Available in the **Security Testing** [subscription](../about-wallarm/subscription-plans.md). **Does not require** installed [Wallarm node](../about-wallarm/api-security-overview.md#how-wallarm-api-security-works).
 
 * [**API Security Testing via Postman**](#api-security-testing-via-postman): safe, passive security testing of Postman collections from within [Postman Agent Mode](https://learning.postman.com/docs/agent-mode/get-started)—detects authentication gaps, data leaks, over-permissive endpoints, schema issues, and basic BOLA/BOPLA; results in the Agent chat and in Wallarm Cloud.
 
     !!! tip ""
-        Available in the **Rogue MCP** [subscription](../about-wallarm/subscription-plans.md#rogue-mcp). **Does not require** installed [Wallarm node](../about-wallarm/overview.md#how-wallarm-works).
+        Available in the **Rogue MCP** [subscription](../about-wallarm/subscription-plans.md#rogue-mcp). **Does not require** installed [Wallarm node](../about-wallarm/api-security-overview.md#how-wallarm-api-security-works).
 
 * [**API Attack Surface Management (AASM)**](#api-attack-surface-management-aasm): discovers external hosts with their APIs, for each of them identifies missing WAF/WAAP solutions and vulnerabilities.
 
     !!! tip ""
-        Available in the **Advanced API Security** [subscription](../about-wallarm/subscription-plans.md), can be added to **Cloud Native WAAP** by request, can be used alone in the separate **API Attack Surface** subscription. **Does not require** installed [Wallarm node](../about-wallarm/overview.md#how-wallarm-works).
+        Available in the **Advanced API Security** [subscription](../about-wallarm/subscription-plans.md), can be added to **Cloud Native WAAP** by request, can be used alone in the separate **API Attack Surface** subscription. **Does not require** installed [Wallarm node](../about-wallarm/api-security-overview.md#how-wallarm-api-security-works).
 
 See details on each method in the corresponding sections below along with the information of why and how to [combine](#combining-methods) these methods.
 
@@ -87,7 +87,7 @@ API Security Testing via Postman capabilities:
 
 ### API Attack Surface Management (AASM) <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" class="non-zoomable" style="border: none;"></a>
 
-Wallarm's [API Attack Surface Management](../api-attack-surface/overview.md) (AASM) is an agentless (do not require [Wallarm node](../about-wallarm/overview.md#how-wallarm-works) installation) detection solution tailored to the API ecosystem, designed to discover external hosts with their APIs, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities. AASM:
+Wallarm's [API Attack Surface Management](../api-attack-surface/overview.md) (AASM) is an agentless (do not require [Wallarm node](../about-wallarm/api-security-overview.md#how-wallarm-api-security-works) installation) detection solution tailored to the API ecosystem, designed to discover external hosts with their APIs, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities. AASM:
 
 * Discovers external hosts and their APIs (including hosting e.g. CDN, IaaS, or PaaS providers).
 * Discovers if APIs are protected by WAFs/WAAPs and from which type of threats they protect.
@@ -102,7 +102,7 @@ From May 7, 2025, AASM [replaced the old Scanner](../api-attack-surface/api-surf
 
 As Wallarm provides many different [methods](#detection-methods) of detecting vulnerabilities, the questions arise about which of them to choose and how to combine them. Consider the information below to answer this.
 
-Passive detection and TRT require the [Wallarm node](../about-wallarm/overview.md#how-wallarm-works). SBT, [API Security Testing via Postman](../vulnerability-detection/api-security-testing-via-postman/overview.md), and AASM do not. Some [vulnerabilities](../attacks-vulns-list.md#vulnerability-types) are found only by some (not by all) of the listed methods.
+Passive detection and TRT require the [Wallarm node](../about-wallarm/api-security-overview.md#how-wallarm-api-security-works). SBT, [API Security Testing via Postman](../vulnerability-detection/api-security-testing-via-postman/overview.md), and AASM do not. Some [vulnerabilities](../attacks-vulns-list.md#vulnerability-types) are found only by some (not by all) of the listed methods.
 
 Also, it is important to understand why we may need AASM if we already have passive detection for vulnerabilities and API Discovery (APID) for discovering hosts.
 
