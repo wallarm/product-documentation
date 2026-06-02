@@ -40,7 +40,7 @@ nav:
     - API Discovery:
       - Overview: api-discovery/overview.md
 
-      - Exploring Your APIs:
+      - Exploring APIs and MCPs:
         - API Inventory & MCP Servers: api-discovery/exploring.md
         - Dashboard: api-discovery/dashboard.md
         - Track API and MCP Changes: api-discovery/track-changes.md
@@ -61,7 +61,8 @@ nav:
       - API Session Security:
         - Overview: api-sessions/overview.md
         - Setup: api-sessions/setup.md
-        - Exploring Sessions: api-sessions/exploring.md
+        - Exploring API Sessions: api-sessions/exploring.md
+        - Exploring MCP Sessions: api-sessions/mcp-sessions.md
         - Session Blocking: api-sessions/blocking.md
         - Business Logic Abuse: api-protection/business-logic-abuse-detection.md
 
@@ -70,7 +71,6 @@ nav:
         - Enumeration Attack Protection: api-protection/enumeration-attack-protection.md
         - GraphQL Protection: api-protection/graphql-rule.md
         - File Upload Restriction: api-protection/file-upload-restriction.md
-        - Custom Request Anomaly: api-protection/custom-request-anomaly.md
 
       - Bot Management:
         - Overview: api-abuse-prevention/overview.md
@@ -110,6 +110,11 @@ nav:
         - Response Headers: user-guides/rules/add-replace-response-header.md
         - Overlimit Detection: user-guides/rules/configure-overlimit-res-detection.md
 
+    - AI Protection:
+      - Overview: agentic-ai/agentic-ai-protection.md
+      - AI Payload Inspection: agentic-ai/ai-payload-inspection.md
+      - MCP Mitigation Controls: agentic-ai/mcp-mitigation-controls.md
+
   # ============================================================================
   # SECTION 4: API SECURITY TESTING
   # ============================================================================
@@ -140,26 +145,7 @@ nav:
     - Detecting Vulnerabilities: about-wallarm/detecting-vulnerabilities.md      
 
   # ============================================================================
-  # SECTION 5: AI SECURITY
-  # ============================================================================
-  - AI Security:
-    - Overview: agentic-ai/overview.md
-
-    - AI Discovery:
-      - AI Agent Discovery: agentic-ai/agentic-ai-discovery.md
-
-    - MCP Discovery:
-      - MCP Server Discovery: agentic-ai/mcp-discovery.md
-      - MCP Sessions: api-sessions/mcp-sessions.md
-
-    - AI Protection:
-      - AI Agent Protection: agentic-ai/agentic-ai-protection.md
-      - AI Payload Inspection: agentic-ai/ai-payload-inspection.md
-      - MCP Mitigation Controls: agentic-ai/mcp-mitigation-controls.md
-      - Rogue MCP Inspection: agentic-ai/rogue-mcp-inspection.md
-
-  # ============================================================================
-  # SECTION 6: DEPLOYMENT
+  # SECTION 5: DEPLOYMENT
   # Structure: Security Edge → Kubernetes → Cloud → API Gateways → CDN → APIM
   #            → Host & Runtime → Artifacts → Upgrades
   # ============================================================================
@@ -361,7 +347,7 @@ nav:
       - Dynamic DNS in NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
 
   # ============================================================================
-  # SECTION 7: INTEGRATIONS
+  # SECTION 6: INTEGRATIONS
   # ============================================================================
   - Integrations:
     - Integrations Overview: user-guides/settings/integrations/integrations-intro.md
@@ -409,7 +395,7 @@ nav:
       - Generate SBOM: integrations-devsecops/generate-sbom-for-docker-images.md
 
   # ============================================================================
-  # SECTION 8: PLATFORM MANAGEMENT
+  # SECTION 7: PLATFORM MANAGEMENT
   # ============================================================================
   - Platform Management:
     - Overview: platform-management/overview.md
@@ -455,7 +441,7 @@ nav:
       - Subscription Plans: about-wallarm/subscription-plans.md
 
   # ============================================================================
-  # SECTION 9: REFERENCE
+  # SECTION 8: REFERENCE
   # ============================================================================
   - Reference:
     - Overview: reference/overview.md

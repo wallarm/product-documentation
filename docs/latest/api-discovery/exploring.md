@@ -37,6 +37,28 @@ Once labels are assigned, use the **Label** filter to quickly search and isolate
 
 Note that several labels can be assigned to the same endpoint.
 
+### AI/LLM endpoints
+
+Endpoints that talk to LLMs, ML models, chatbots, or third-party AI services (e.g., OpenAI) are automatically tagged with the **AI/LLM** [sensitive business flow](sbf.md). Filter by **Business flow → AI/LLM** to see only AI-related endpoints.
+
+You can also adjust the tag manually if automatic detection misses any.
+
+![Agentic AI endpoints in API Discovery](../images/agentic-ai-protection/agentic-ai-in-api-discovery.png)
+
+Sessions that touch AI/LLM-tagged endpoints are themselves tagged with the **AI/LLM** business flow in [API Sessions](../api-sessions/overview.md), so you can isolate user activity that exercises AI-backed APIs.
+
+## MCP Servers
+
+The **MCP Servers** tab lists discovered [Model Context Protocol](https://modelcontextprotocol.io/) servers alongside their primitives — tools, resources, and prompts.
+
+![Discovered MCP Servers](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-mcp-servers.png)
+
+**How detection works.** The Wallarm node identifies MCP traffic by JSON-RPC 2.0 requests with MCP-specific methods. When detected, the MCP server is added to the **MCP Servers** tab, and the node automatically enables 100% response parsing for the MCP endpoint to capture the full schema from `tools/list`, `resources/list`, and `prompts/list` responses.
+
+Within 30 minutes of discovering an MCP server, Wallarm automatically creates an [MCP Session Configuration](../api-sessions/mcp-sessions.md#mcp-session-configuration) for it with default session-identification rules. Discovered MCP servers can also be used as the scope when creating [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md) — ACL policies, request verification, and tool input schema enforcement.
+
+For what is displayed for each MCP server and its primitives, see [MCP primitive details](#mcp-primitive-details) below.
+
 ## Details view
 
 Clicking an endpoint, operation, or MCP primitive opens its details in a **full-screen page**.

@@ -45,7 +45,7 @@ To configure MCP session context parameters:
 
 1. Go to Wallarm Console → **API Sessions** → click **Session context parameters**.
 1. Switch to the **MCP Sessions** tab.
-1. Select an existing MCP server (auto-created by [API Discovery](../agentic-ai/mcp-discovery.md)) or click **Add MCP Session config** to add a new one manually. For a new server, specify:
+1. Select an existing MCP server (auto-created by [API Discovery](../api-discovery/exploring.md#mcp-servers)) or click **Add MCP Session config** to add a new one manually. For a new server, specify:
     * **Host** — the hostname of your MCP server (e.g., `mcp.example.com`)
     * **Location** — the path to the MCP endpoint (e.g., `/mcp` or `/sse`)
 1. Within the selected MCP server configuration, add context parameters. Each parameter specifies a request/response location and its type:

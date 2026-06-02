@@ -848,7 +848,7 @@ Multiple malicious anomalies in request to AI or its response, such as:
 * Any others not listed above
 
 !!! info "Alternative usage"
-    This attack type also marks found [custom request anomalies](api-protection/custom-request-anomaly.md) not related to Agentic AI.
+    This attack type also marks generic [custom semantic anomalies](agentic-ai/ai-payload-inspection.md#semantic-anomalies-in-arbitrary-request-points) detected in non-AI request points.
 
 **Required configuration:**
 
