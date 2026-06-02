@@ -44,7 +44,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 ### 6.12.0 (2026-05-04)
 
-* Added support for [MCP server discovery](../agentic-ai/mcp-discovery.md) in API Discovery
+* Added support for [MCP server discovery](../api-discovery/exploring.md#mcp-servers) in API Discovery
 * Added support for [MCP Sessions](../api-sessions/mcp-sessions.md)
 * Added [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
@@ -291,7 +291,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 ### 6.12.0 (2026-05-04)
 
-* Added support for [MCP server discovery](../agentic-ai/mcp-discovery.md) in API Discovery
+* Added support for [MCP server discovery](../api-discovery/exploring.md#mcp-servers) in API Discovery
 * Added support for [MCP Sessions](../api-sessions/mcp-sessions.md)
 * Added [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
@@ -554,7 +554,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 ### 6.12.0 (2026-05-04)
 
-* Added support for [MCP server discovery](../agentic-ai/mcp-discovery.md) in API Discovery
+* Added support for [MCP server discovery](../api-discovery/exploring.md#mcp-servers) in API Discovery
 * Added support for [MCP Sessions](../api-sessions/mcp-sessions.md)
 * Added [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
@@ -790,7 +790,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 ### 6.12.0 (2026-05-04)
 
-* Added support for [MCP server discovery](../agentic-ai/mcp-discovery.md) in API Discovery
+* Added support for [MCP server discovery](../api-discovery/exploring.md#mcp-servers) in API Discovery
 * Added support for [MCP Sessions](../api-sessions/mcp-sessions.md)
 * Added [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
@@ -1028,7 +1028,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 ### 6.12.0 (2026-05-04)
 
-* Added support for [MCP server discovery](../agentic-ai/mcp-discovery.md) in API Discovery
+* Added support for [MCP server discovery](../api-discovery/exploring.md#mcp-servers) in API Discovery
 * Added support for [MCP Sessions](../api-sessions/mcp-sessions.md)
 * Added [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
@@ -1224,7 +1224,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 ### wallarm-node-6-12-0-20260501-220140 (2026-05-04)
 
-* Added support for [MCP server discovery](../agentic-ai/mcp-discovery.md) in API Discovery
+* Added support for [MCP server discovery](../api-discovery/exploring.md#mcp-servers) in API Discovery
 * Added support for [MCP Sessions](../api-sessions/mcp-sessions.md)
 * Added [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques

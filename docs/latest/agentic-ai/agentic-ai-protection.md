@@ -1,6 +1,8 @@
 # Agentic AI Protection
 
-Wallarm provides API-first security for AI systems by protecting AI agents, AI proxies, and APIs with AI features by preventing injection attacks and data leakage, controlling costs, and ensuring secure, compliant operations.
+[Wallarm API Security](../about-wallarm/api-security-overview.md) — the API protection product of [Wallarm AI Control Platform](../about-wallarm/overview.md) — delivers API-first security for AI systems. It protects AI agents, AI proxies, and APIs with AI features by preventing injection attacks and data leakage, controlling costs, and ensuring secure, compliant operations.
+
+AI systems face risks that traditional API security tools were not designed for: **prompt injection** and **jailbreaks** that manipulate model behavior, **agent abuse** that drives credential stuffing and cost overruns, and **shadow AI** agents deployed without security oversight. Wallarm API Security addresses these threats at the application layer; for runtime governance of AI workloads themselves (AWS-only), see [Wallarm AI Hypervisor](../ai-hypervisor/overview.md).
 
 ![Agentic AI in work - schema](../images/agentic-ai-protection/agentic-ai-schema.png)
 
@@ -39,7 +41,7 @@ See detailed description of Wallarm's Agentic AI Protection of the official site
 
 Wallarm's protection against attacks on AI Agents works in a few simple steps:
 
-1. You deploy Wallarm [filtering node](../about-wallarm/overview.md#how-wallarm-works) using the [appropriate deployment option](../installation/supported-deployment-options.md).
+1. You deploy Wallarm [filtering node](../about-wallarm/api-security-overview.md#how-wallarm-api-security-works) using the [appropriate deployment option](../installation/supported-deployment-options.md).
 1. Optionally, you enable [automatic discovery](agentic-ai-discovery.md) of AI/LLM endpoints in your API inventory by enabling and Wallarm's [API Discovery](../api-discovery/overview.md).
 1. In Wallarm Console, you create one or several [AI payload inspection](../agentic-ai/ai-payload-inspection.md) mitigation controls defining how to detect [AI-agent attacks](../attacks-vulns-list.md#attack-types) and mitigate them.
 1. For MCP servers, you configure [MCP mitigation controls](mcp-mitigation-controls.md) to enforce access policies, validate request parameters, and ensure tool calls conform to the published schema.
