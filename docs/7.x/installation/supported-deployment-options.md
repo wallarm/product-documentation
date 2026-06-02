@@ -1,5 +1,7 @@
 # Wallarm Node Deployment Options
 
+This section covers deployment of the **Wallarm Node** — the main filtering component customers install in their own infrastructure. The Node powers inline (or out-of-band) API protection from [Wallarm API Security](../about-wallarm/api-security-overview.md) and also runs [passive vulnerability detection](../about-wallarm/detecting-vulnerabilities.md#passive-detection) and [Threat Replay Testing](../vulnerability-detection/threat-replay-testing/overview.md) from [Wallarm API Security Testing](../vulnerability-detection/security-testing-overview.md). **Wallarm AI Hypervisor** and **Wallarm Infrastructure Discovery** (both AWS-only) have their own architectures and are not deployed through this section.
+
 Wallarm supports multiple deployment models — from Security Edge and Kubernetes to cloud VMs and API gateways. Choose by **who hosts the [Node](../about-wallarm/api-security-overview.md#filtering-node)**, **the infrastructure** that handles your traffic, and whether you need **inline** or **out-of-band** protection.
 
 <link rel="stylesheet" href="/supported-platforms.css" />
