@@ -7,7 +7,7 @@ hide:
 
 # Wallarm Documentation
 
-Everything you need to discover your APIs, MCPs, and AI agents, protect them from threats, and test for vulnerabilities.
+Wallarm AI Control Platform — discover, observe, enforce, and govern AI workloads and APIs across your environment.
 
 !!! warning "Unsupported version"
     Wallarm node 4.10 and lower is not supported. Please learn [what is new in the later versions](/updating-migrating/what-is-new/) and plan the upgrade procedure.
