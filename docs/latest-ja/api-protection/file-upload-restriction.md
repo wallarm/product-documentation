@@ -15,7 +15,7 @@
 * Mitigation controls（[Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans)サブスクリプション）- 緩和コントロールを使用すると、リクエスト全体のサイズだけでなく、特定のパラメータにも上限を設定できます（ルールよりも精密な設定が可能です）。
 * Rules（[Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans)サブスクリプション）
 
-## 緩和コントロールベースの保護 <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## 緩和コントロールベースの保護 <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 [Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans)サブスクリプションの一部として、Wallarmは**File upload restriction policy**という[緩和コントロール](../about-wallarm/mitigation-controls-overview.md)を提供しています。
 

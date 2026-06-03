@@ -13,7 +13,7 @@
 * 緩和コントロール（[Advanced API Security](../../about-wallarm/subscription-plans.md#core-subscription-plans)サブスクリプション）
 * Triggers（[Cloud Native WAAP](../../about-wallarm/subscription-plans.md#core-subscription-plans)サブスクリプション）
 
-## 緩和コントロールに基づく保護 <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## 緩和コントロールに基づく保護 <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 WallarmのAdvanced API Security[サブスクリプション](../../about-wallarm/subscription-plans.md#core-subscription-plans)は、強制ブラウジング攻撃からの保護を含む高度な[列挙攻撃対策](../../api-protection/enumeration-attack-protection.md)を提供します。
 

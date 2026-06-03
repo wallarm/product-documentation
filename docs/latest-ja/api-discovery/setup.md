@@ -1,4 +1,4 @@
-# API Discoveryのセットアップ <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discoveryのセットアップ <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 この記事では、[API Discovery](overview.md)モジュールを有効化、構成、デバッグする方法を説明します。
 

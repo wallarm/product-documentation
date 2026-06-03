@@ -3,7 +3,7 @@
 [link-api-abuse-prevention]:    ../api-abuse-prevention/overview.md
 [img-api-sessions-api-abuse]:   ../images/api-sessions/api-sessions-api-abuse.png
 
-# ボット活動の調査 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# ボット活動の調査 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 [API Abuse Prevention](../api-abuse-prevention/overview.md)は機械学習(ML)アルゴリズムに基づいて悪意のあるボット活動を特定します。この種の攻撃は、単一のブロックされたリクエストだけでは分析できません。そのため、Wallarmプラットフォームが多角的にボット活動を調査できる幅広いツールを提供していることが重要です。
 

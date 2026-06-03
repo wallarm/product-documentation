@@ -1,4 +1,4 @@
-# API'deki değişiklikleri izleme <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API'deki değişiklikleri izleme <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 API'nizde değişiklikler meydana geldiğinde, [API Discovery](overview.md) oluşturulmuş API envanterini günceller, değişiklikleri vurgular ve neyin, ne zaman değiştiğine dair bilgi sağlar. Ayrıca, tüm değişiklikler veya bir kısmı için bildirimler ayarlayabilirsiniz.
 

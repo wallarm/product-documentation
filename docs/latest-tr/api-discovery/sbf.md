@@ -1,4 +1,4 @@
-# Hassas İş Akışları <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Hassas İş Akışları <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Hassas iş akışı yeteneğiyle Wallarm'ın [API Discovery](overview.md) özelliği, kimlik doğrulama, hesap yönetimi, faturalama ve benzeri kritik yetenekler gibi belirli iş akışları ve işlevler için kritik olan uç noktaları otomatik olarak tanımlar. Bu makaleden hassas iş akışı işlevini nasıl kullanacağınızı öğrenin.
 

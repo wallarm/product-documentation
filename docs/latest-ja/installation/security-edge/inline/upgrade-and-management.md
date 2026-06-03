@@ -1,4 +1,4 @@
-# Security Edge Inlineの管理 <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inlineの管理 <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm Consoleから、設定の更新、Nodeバージョンのアップグレード、ステータスの監視、デプロイメントの削除を行って[Security Edge Inline](overview.md)のデプロイメントを管理できます。
 

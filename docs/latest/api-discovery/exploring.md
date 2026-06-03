@@ -1,4 +1,4 @@
-# Exploring API Inventory and MCP Servers <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Exploring API Inventory and MCP Servers <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 As soon as the [API Discovery](overview.md) module has built the catalog of your API endpoints and MCP servers, you can explore it in the **API Discovery** section of Wallarm Console. The section has two tabs: **APIs** for REST, GraphQL, SOAP, and gRPC endpoints, and **MCP Servers** for discovered MCP servers and their primitives. Learn from this article how to go through the discovered data.
 

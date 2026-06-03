@@ -1,4 +1,4 @@
-# BOLA攻撃に対する自動保護 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# BOLA攻撃に対する自動保護 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 [オブジェクトレベル認可の不備（BOLA）](../attacks-vulns-list.md#broken-object-level-authorization-bola)のような振る舞いベースの攻撃は、同名の脆弱性を悪用します。この脆弱性により、攻撃者はAPIリクエストでオブジェクトの識別子を用いてオブジェクトにアクセスし、認可メカニズムを回避してそのデータの読み取りや変更を行うことができます。
 

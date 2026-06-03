@@ -11,7 +11,7 @@ Abonelik planınıza bağlı olarak, brute force koruması için aşağıdaki ya
 * Mitigation controls ([Advanced API Security](../../about-wallarm/subscription-plans.md#core-subscription-plans) aboneliği)
 * Triggers ([Cloud Native WAAP](../../about-wallarm/subscription-plans.md#core-subscription-plans) aboneliği)
 
-## Azaltma kontrollerine dayalı koruma <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Azaltma kontrollerine dayalı koruma <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm'ın Advanced API Security [aboneliği](../../about-wallarm/subscription-plans.md#core-subscription-plans), brute force saldırılarına karşı koruma dahil olmak üzere gelişmiş [enumeration attack protection](../../api-protection/enumeration-attack-protection.md) sağlar.
 

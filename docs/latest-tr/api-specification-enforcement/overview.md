@@ -1,6 +1,6 @@
 [waf-mode-instr]:   ../admin-en/configure-wallarm-mode.md
 
-# API Specification Enforcement Genel Bakış  <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Specification Enforcement Genel Bakış  <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 **API Specification Enforcement**, yüklediğiniz spesifikasyonlara dayanarak API’lerinize güvenlik politikaları uygulamak üzere tasarlanmıştır. Birincil işlevi, spesifikasyonunuzdaki uç nokta açıklamaları ile REST API’lerinize yapılan gerçek istekler arasındaki tutarsızlıkları tespit etmektir. Bu tür tutarsızlıklar belirlendiğinde, sistem bunları ele almak için önceden tanımlanmış eylemler gerçekleştirebilir.
 

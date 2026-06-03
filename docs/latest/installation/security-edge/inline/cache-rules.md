@@ -1,4 +1,4 @@
-# Cache Rules in Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Cache Rules in Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Cache rules are settings that define how the Security Edge Inline node stores and reuses responses from specific hosts and locations.
 

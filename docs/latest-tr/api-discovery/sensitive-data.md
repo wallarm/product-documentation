@@ -1,4 +1,4 @@
-# Hassas Veri Tespiti <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Hassas Veri Tespiti <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 API Discovery, API’leriniz tarafından tüketilen ve taşınan hassas verileri tespit eder ve vurgular; böylece bu verileri korumak ve veri ihlallerini veya hassas verilerin güvensiz kanallar üzerinden ya da yetkisiz sistemlere iletilmesini önlemek için şifreleme, tokenleştirme veya diğer güvenlik kontrollerini uygulayabilirsiniz. Bu makale özelliğin nasıl kullanılacağını ve yapılandırılacağını açıklar.
 

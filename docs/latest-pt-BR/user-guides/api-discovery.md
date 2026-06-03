@@ -1,4 +1,4 @@
-# Descoberta de API <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Descoberta de API <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 A seção **Descoberta de API** do console Wallarm permite gerenciar seu [inventário de API](../api-discovery/overview.md), além de ajustar detalhadamente sua descoberta. Este guia instrui como usar esta seção.
 

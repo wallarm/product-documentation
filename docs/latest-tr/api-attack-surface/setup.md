@@ -2,7 +2,7 @@
 [link-integrations-intro]:              ../user-guides/settings/integrations/integrations-intro.md
 [link-integrations-email]:              ../user-guides/settings/integrations/email.md#setting-up-integration
 
-# API Attack Surface Management Kurulumu  <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
+# API Attack Surface Management Kurulumu  <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Bu makale, harici host’larınızı ve onların API’lerini keşfetmek, eksik WAF/WAAP çözümlerini belirlemek ve API Leaks ile diğer güvenlik açıklarını azaltmak için [API Attack Surface Management](overview.md) özelliğinin nasıl etkinleştirileceğini ve yapılandırılacağını açıklar.
 

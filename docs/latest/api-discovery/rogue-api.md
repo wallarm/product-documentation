@@ -1,4 +1,4 @@
-# Rogue API Detection (Shadow & Zombie API) <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Rogue API Detection (Shadow & Zombie API) <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 The [API Discovery](overview.md) module can detect **rogue APIs** by comparing live traffic against your uploaded OpenAPI specifications. This goes beyond inventory and provides security insights: you see which endpoints are undocumented or deprecated but still in use.
 

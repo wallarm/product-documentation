@@ -2,7 +2,7 @@
 [link-integrations-intro]:              ../user-guides/settings/integrations/integrations-intro.md
 [link-integrations-email]:              ../user-guides/settings/integrations/email.md#setting-up-integration
 
-# Güvenlik Sorunlarını Tespit Etme <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
+# Güvenlik Sorunlarını Tespit Etme <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 [API Attack Surface Discovery](api-surface.md), [seçili alan adlarınızın](setup.md) harici hostlarını bulduğunda, Wallarm bu hostlarda herhangi bir güvenlik sorunu olup olmadığını kontrol eder. Bulunduğunda, sorunlar **Security Issues** bölümünde listelenir ve açıklanır. Bu makale sunulan bilgilerin nasıl kullanılacağını açıklar.
 

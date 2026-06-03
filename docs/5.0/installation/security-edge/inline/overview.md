@@ -1,4 +1,4 @@
-# Security Edge Inline Overview <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inline Overview <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 The [**Security Edge**](../overview.md) platform provides a managed service for deploying Wallarm Nodes across geographically distributed locations within a Wallarm-hosted environment. One of its key deployment options is **inline** deployment, offering real-time, robust protection for your entire API landscape without the need for any onsite installation.
 

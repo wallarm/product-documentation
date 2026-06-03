@@ -1,4 +1,4 @@
-# Security Edge <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Security Edgeは、[Wallarm Node](../../about-wallarm/overview.md#filtering-node)をお客様自身でホストすることなくAPIとアプリケーションを保護できる、Wallarmのマネージドなデプロイオプションです。トラフィックを**Wallarmのグローバルに分散したEdgeインフラストラクチャ**にリダイレクトすると、そこでトラフィックがフィルタリングされ、安全にお客様のバックエンドへ転送されます。
 

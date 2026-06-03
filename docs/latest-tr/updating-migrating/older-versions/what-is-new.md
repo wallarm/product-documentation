@@ -100,7 +100,7 @@ Rate limiting kuralı, özelliği kurmanın önerilen yöntemi olsa da, yeni NGI
 * [`wallarm_rate_limit_status_code`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit_status_code)
 * [`wallarm_rate_limit_shm_size`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit_shm_size)
 
-## Credential stuffing tespiti <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Credential stuffing tespiti <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm, credential stuffing girişimleri için gerçek zamanlı tespit ve bildirimler sunar. Credential stuffing, çalınmış veya zayıf kullanıcı adı/e‑posta ve parola çiftlerinin, kullanıcı hesaplarına yasa dışı erişim sağlamak amacıyla web sitesi giriş formlarına otomatik olarak gönderilmesidir; artık yakından izlenmektedir. Bu özellik, kimlik bilgileri tehlikeye atılmış hesapları belirlemenize ve hesap sahiplerini bilgilendirme ve hesap erişimini geçici olarak askıya alma gibi aksiyonlar alarak güvence altına almanıza olanak tanır.
 
@@ -111,7 +111,7 @@ Wallarm, credential stuffing girişimleri için gerçek zamanlı tespit ve bildi
 !!! info "Credential stuffing tespitini destekleyen seçili yapıtlar"
     All-in-one yükleyici, NGINX Ingress Controller, NGINX tabanlı Docker imajı ve bulut imajları (AMI, GCP Image) gibi sınırlı sayıda yapıt artık yeni tanıtılan credential stuffing tespiti özelliğini desteklemektedir.
 
-## GraphQL API koruması <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## GraphQL API koruması <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm, varsayılan olarak GraphQL’de düzenli saldırıları (SQLi, RCE, [vb.](../../attacks-vulns-list.md)) tespit eder. Ancak, protokolün bazı yönleri, aşırı bilgi ifşası ve DoS ile ilgili [GraphQL’e özgü](../../attacks-vulns-list.md#graphql-attacks) saldırıların uygulanmasına olanak tanır.
 

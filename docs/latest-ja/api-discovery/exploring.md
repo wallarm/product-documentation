@@ -1,4 +1,4 @@
-# APIインベントリの探索 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# APIインベントリの探索 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 [API Discovery](overview.md)モジュールがエンドポイント（APIインベントリ）のカタログを構築すると、Wallarm Consoleの**API Discovery**セクションで探索できます。本記事では、検出されたデータの見方を説明します。
 

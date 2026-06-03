@@ -1,4 +1,4 @@
-# Tracking changes in API and MCP <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Tracking changes in API and MCP <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 If changes occur in your API or MCP servers, [API Discovery](overview.md) updates the built API inventory, highlights the changes and gives you information on when and what has changed. This applies to both REST/GraphQL/SOAP/gRPC endpoints and MCP primitives (tools, resources, prompts).<!-- Additionally, you can set up notifications on all or some of the changes.-->
 

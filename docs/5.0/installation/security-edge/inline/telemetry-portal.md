@@ -1,4 +1,4 @@
-# Telemetry Portal for Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Telemetry Portal for Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 The telemetry portal for [Security Edge Inline](overview.md) provides Grafana dashboards with real-time insights into metrics on traffic processed by Wallarm.
 

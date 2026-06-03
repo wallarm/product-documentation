@@ -1,4 +1,4 @@
-# Host Redirection in Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Host Redirection in Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm [Security Edge Inline](deployment.md) provides a host redirection feature to help you unify traffic entry points.
 

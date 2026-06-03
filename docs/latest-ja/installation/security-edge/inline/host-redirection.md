@@ -1,4 +1,4 @@
-# Security Edge Inlineにおけるホストリダイレクト <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inlineにおけるホストリダイレクト <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm [Security Edge Inline](deployment.md)は、トラフィックのエントリポイントを統一するのに役立つホストリダイレクト機能を提供します。
 

@@ -2,7 +2,7 @@
 [link-integrations-intro]:              ../user-guides/settings/integrations/integrations-intro.md
 [link-integrations-email]:              ../user-guides/settings/integrations/email.md#setting-up-integration
 
-# API Attack Surface Managementのセットアップ  <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
+# API Attack Surface Managementのセットアップ  <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 この記事では、[API Attack Surface Management](overview.md)を有効化および構成し、APIを持つ外部ホストを発見し、未導入のWAF/WAAPソリューションを特定し、APIリークやその他の脆弱性を軽減する方法を説明します。
 

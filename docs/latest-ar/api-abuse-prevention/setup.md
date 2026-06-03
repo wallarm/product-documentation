@@ -1,4 +1,4 @@
-# إدارة ملف تعريف الوقاية من سوء استخدام واجهة برمجة التطبيقات <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# إدارة ملف تعريف الوقاية من سوء استخدام واجهة برمجة التطبيقات <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 في قسم **الوقاية من سوء استخدام واجهة برمجة التطبيقات** من واجهة Wallarm، يمكنك إدارة ملفات تعريف الوقاية من سوء استخدام واجهة برمجة التطبيقات التي مطلوبة لتكوين وحدة [**الوقاية من سوء استخدام واجهة برمجة التطبيقات**](../api-abuse-prevention/overview.md).
 

@@ -1,4 +1,4 @@
-# API Discovery Genel Bakış <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discovery Genel Bakış <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm platformunun **API Discovery** modülü, gerçek API kullanımına dayanarak uygulamanızın REST API envanterini oluşturur. Modül, gerçek trafik isteklerini sürekli olarak analiz eder ve analiz sonuçlarına göre API envanterini oluşturur.
 

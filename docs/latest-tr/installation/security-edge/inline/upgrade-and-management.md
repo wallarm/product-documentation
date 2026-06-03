@@ -1,4 +1,4 @@
-# Security Edge Inline'ı Yönetme <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inline'ı Yönetme <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 [Security Edge Inline](overview.md) dağıtımınızı Wallarm Console üzerinden yapılandırma ayarlarını güncelleyerek, Node sürümlerini yükselterek, durumu izleyerek ve dağıtımı silerek yönetin.
 

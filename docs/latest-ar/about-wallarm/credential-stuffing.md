@@ -1,4 +1,4 @@
-# كشف Credential Stuffing <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# كشف Credential Stuffing <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 تعد [هجمات Credential Stuffing](../attacks-vulns-list.md#credential-stuffing) هي نوع من الهجمات الإلكترونية حيث يستخدم القراصنة قوائم من بيانات الاعتماد المستخدمين التي تم اختراقها للوصول غير المصرح به إلى حسابات المستخدمين على مواقع الويب العديدة.تشرح هذه المقالة كيفية كشف هذا النوع من التهديدات باستخدام **كشف Credential Stuffing** الخاص بـ Wallarm.
 

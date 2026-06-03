@@ -1,4 +1,4 @@
-# Block Page in Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Block Page in Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 When the Security Edge Inline Node blocks a malicious request, it can return a styled block page along with HTTP 403 Forbidden response.
 

@@ -1,4 +1,4 @@
-# Uç Nokta Risk Puanı <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Uç Nokta Risk Puanı <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 [API Discovery](overview.md), API envanterinizdeki her uç nokta için otomatik olarak bir **risk puanı** hesaplar. Risk puanı, hangi uç noktaların saldırı hedefi olma olasılığının daha yüksek olduğunu anlamanıza ve güvenlik çalışmalarınızı bu uç noktalara odaklamanıza yardımcı olur.
 

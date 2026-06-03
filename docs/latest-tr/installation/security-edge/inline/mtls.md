@@ -1,4 +1,4 @@
-# Edge Node'dan Origin'lere mTLS <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Edge Node'dan Origin'lere mTLS <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Karşılıklı TLS (mTLS), Wallarm Edge Node'un istemci sertifikası kullanarak origin sunucularınıza kendisini kimlik doğrulaması yapmasına olanak tanır. Bu, origin'lerinizin yalnızca güvenilen kaynaklardan gelen istekleri kabul etmesini sağlar.
 

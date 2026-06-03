@@ -1,4 +1,4 @@
-# استكشاف جرد API <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# استكشاف جرد API <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 بمجرد أن يقوم وحدة [اكتشاف API](overview.md) ببناء فهرس نقاط النهاية لديك (جرد API الخاص بك)، يمكنك استكشافه في قسم **اكتشاف API** في لوحة تحكم Wallarm. تعلم من هذه المقالة كيف تتنقل خلال البيانات المكتشفة.
 

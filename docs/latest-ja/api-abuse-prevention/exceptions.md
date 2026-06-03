@@ -1,6 +1,6 @@
 [api-discovery-enable-link]:        ../api-discovery/setup.md#enable
 
-# API Abuse Preventionの例外 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Preventionの例外 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 本記事では、正当なボットを識別してマークし、特定の対象URLやリクエストタイプに対するボット保護を無効化することで、[API Abuse Prevention](../api-abuse-prevention/overview.md)を細かく調整する方法を説明します。
 

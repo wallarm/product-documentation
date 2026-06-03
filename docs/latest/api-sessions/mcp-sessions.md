@@ -1,4 +1,4 @@
-# MCP Sessions <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# MCP Sessions <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 In addition to regular [API Sessions](overview.md), Wallarm provides dedicated support for [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) sessions. MCP sessions group MCP tool calls, resource reads, and prompt invocations into logical sessions, giving you visibility into how AI agents interact with MCP servers.
 

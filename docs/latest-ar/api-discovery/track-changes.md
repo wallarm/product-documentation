@@ -1,4 +1,4 @@
-# تتبع التغييرات في الواجهة البرمجية للتطبيق <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# تتبع التغييرات في الواجهة البرمجية للتطبيق <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 إذا حدثت تغييرات في الواجهة البرمجية للتطبيق، فإن [اكتشاف الواجهة البرمجية](overview.md) يُحدث الجرد الذي تم بناؤه للواجهة البرمجية، ويسلط الضوء على التغييرات ويزودك بمعلومات عن موعد وماهية التغييرات. بالإضافة إلى ذلك، يمكنك ضبط الإشعارات لجميع التغييرات أو بعضها.
 

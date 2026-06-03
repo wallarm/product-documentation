@@ -1,4 +1,4 @@
-# API Abuse Preventionのセットアップ <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Preventionのセットアップ <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 このドキュメントでは、[API Abuse Prevention](../api-abuse-prevention/overview.md)モジュールを有効化して構成し、悪意あるボットを検出・軽減しつつ、正当なアクティビティのブロックを回避する方法を説明します。
 

@@ -1,4 +1,4 @@
-# APIの変更の追跡 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# APIの変更の追跡 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 APIに変更が発生すると、[API Discovery](overview.md)は構築済みのAPIインベントリを更新し、変更点を強調表示し、いつ何が変更されたかの情報を提供します。さらに、これらの変更のすべてまたは一部について通知を設定できます。
 

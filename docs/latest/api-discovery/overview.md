@@ -1,4 +1,4 @@
-# API Discovery Overview <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discovery Overview <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm's multi-protocol API Discovery continuously analyzes the real traffic requests and builds the API inventory (full picture of your active APIs and MCP servers) based on the analysis results.
 

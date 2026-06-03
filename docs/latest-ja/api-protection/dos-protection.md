@@ -1,4 +1,4 @@
-# DoS保護 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# DoS保護 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 [無制限なリソース消費](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md)は、最も重大なAPIセキュリティリスクの一覧である[OWASP API Top 10 2023](../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023)に含まれています。これは単独でも脅威（過負荷によるサービスの低速化や完全停止）であるうえ、列挙攻撃などさまざまな攻撃タイプの基盤にもなります。単位時間あたりに過剰な数のリクエストを許可することは、これらのリスクの主な原因の1つです。
 

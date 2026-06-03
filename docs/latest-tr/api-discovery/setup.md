@@ -1,4 +1,4 @@
-# API Discovery Kurulumu <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discovery Kurulumu <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Bu makale, [API Discovery](overview.md) modülünün nasıl etkinleştirileceğini, yapılandırılacağını ve hata ayıklanacağını açıklar.
 

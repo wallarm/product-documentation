@@ -1,4 +1,4 @@
-# DoS Koruması <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# DoS Koruması <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 [Unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md), en ciddi API güvenlik risklerinden oluşan [OWASP API Top 10 2023](../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) listesinde yer almaktadır. Kendi başına bir tehdit olmakla birlikte (aşırı yüklenme nedeniyle hizmetin yavaşlaması veya tamamen durması), bu durum aynı zamanda numaralandırma saldırıları gibi farklı saldırı türleri için temel oluşturur. Belirli bir zaman diliminde çok fazla isteğe izin verilmesi bu risklerin başlıca nedenlerindendir.
 

@@ -1,4 +1,4 @@
-# API Specification Enforcementによって発生したイベントの表示 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Specification Enforcementによって発生したイベントの表示 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 仕様に基づくセキュリティポリシーの適用に使用するAPI仕様を[アップロード](setup.md)し、エンフォースメントを構成すると、ポリシーの適用がリクエストに対して開始されます。本記事では、Wallarm Consoleでポリシーに違反したリクエストを表示および分析する方法を説明します。
 

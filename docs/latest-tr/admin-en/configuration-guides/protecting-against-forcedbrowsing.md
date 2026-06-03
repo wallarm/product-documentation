@@ -13,7 +13,7 @@ Abonelik planınıza bağlı olarak, kaba kuvvet koruması için aşağıdaki ya
 * Mitigation kontrolleri ([Advanced API Security](../../about-wallarm/subscription-plans.md#core-subscription-plans) aboneliği)
 * Triggers ([Cloud Native WAAP](../../about-wallarm/subscription-plans.md#core-subscription-plans) aboneliği)
 
-## Mitigation kontrolüne dayalı koruma <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Mitigation kontrolüne dayalı koruma <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm'ın Advanced API Security [aboneliği](../../about-wallarm/subscription-plans.md#core-subscription-plans), zorla gezinti saldırılarına karşı koruma da dahil olmak üzere gelişmiş [numaralandırma saldırı koruması](../../api-protection/enumeration-attack-protection.md) sağlar.
 

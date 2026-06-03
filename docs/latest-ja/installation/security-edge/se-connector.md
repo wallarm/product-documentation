@@ -2,7 +2,7 @@
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
 [se-connector-hosts-locations-img]: ../../images/waf-installation/security-edge/connectors/hosts-locations.png
 
-# Security Edgeコネクタ <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edgeコネクタ <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 [**Security Edge**](overview.md)プラットフォームは、Wallarmがホスティングする環境内で地理的に分散したロケーションにWallarm Nodeをデプロイするためのマネージドサービスを提供します。主要なデプロイオプションの1つが[**コネクタ**](../connectors/overview.md)Nodeのデプロイで、オンサイトでのインストールは不要で、API全体を堅牢に保護します。
 

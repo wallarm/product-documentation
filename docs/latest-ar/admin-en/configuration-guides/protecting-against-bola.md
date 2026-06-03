@@ -2,7 +2,7 @@
 [changes-in-api-docs]:       ../../api-discovery/track-changes.md
 [bola-protection-for-endpoints-docs]:  ../../api-discovery/bola-protection.md
 
-# حماية BOLA التلقائية لنقاط النهاية المكتشفة بواسطة استكشاف API <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# حماية BOLA التلقائية لنقاط النهاية المكتشفة بواسطة استكشاف API <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 يصف هذا المقال الحماية التلقائية لـBOLA لنقاط النهاية التي تم اكتشافها بواسطة [استكشاف API](../../api-discovery/overview.md) (APID).
 

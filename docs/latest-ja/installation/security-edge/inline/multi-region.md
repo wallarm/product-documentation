@@ -1,4 +1,4 @@
-# Security Edge Inlineのマルチクラウドおよびマルチリージョンデプロイメント <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inlineのマルチクラウドおよびマルチリージョンデプロイメント <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 インラインEdge Nodeを複数リージョンおよび複数クラウドプロバイダにデプロイして、地理的冗長性と低レイテンシを実現できます。
 

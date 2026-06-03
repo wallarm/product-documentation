@@ -2,7 +2,7 @@
 [link-integrations-intro]:              ../user-guides/settings/integrations/integrations-intro.md
 [link-integrations-email]:              ../user-guides/settings/integrations/email.md#setting-up-integration
 
-# セキュリティ問題の検出 <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
+# セキュリティ問題の検出 <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 [API Attack Surface Discovery](api-surface.md)が[選択したドメイン](setup.md)の外部ホストを特定すると、Wallarmはそれらのホストにセキュリティ問題がないかを確認します。問題が見つかると、**Security Issues**セクションに一覧表示され、内容が説明されます。本記事では、この情報の活用方法を説明します。
 

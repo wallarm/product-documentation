@@ -1,4 +1,4 @@
-# 機密データ検出 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# 機密データ検出 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 API Discoveryは、APIが取り扱い・伝送する機密データを検出してハイライト表示し、暗号化、トークン化などのセキュリティ制御を適用して保護し、データ侵害や安全でないチャネルや未承認システムへの機密データ送信を防げるようにします。本記事では、この機能の使用方法と設定方法を説明します。
 

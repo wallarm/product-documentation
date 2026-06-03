@@ -1,4 +1,4 @@
-# MCP Mitigation Controls <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# MCP Mitigation Controls <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm protects [MCP](https://modelcontextprotocol.io/) servers at two levels. Standard attacks (SQL injection, XSS, path traversal, etc.) are [detected automatically](../about-wallarm/protecting-against-attacks.md) since MCP operates over HTTP with JSON-RPC payloads. For MCP‑specific threats, Wallarm provides three dedicated mitigation controls:
 

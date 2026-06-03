@@ -1,4 +1,4 @@
-# Security Edge <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Security Edge is Wallarm's managed deployment option allowing you to protect your APIs and applications without hosting the [Wallarm Node](../../about-wallarm/overview.md#filtering-node) yourself. You redirect traffic to **Wallarm's globally distributed Edge infrastructure**, where the traffic is filtered and securely forwarded to your backend.
 

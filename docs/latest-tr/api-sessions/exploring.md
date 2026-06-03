@@ -4,7 +4,7 @@
 [link-api-abuse-prevention]:    ../api-abuse-prevention/overview.md
 [img-api-sessions-api-abuse]:   ../images/api-sessions/api-sessions-api-abuse.png
 
-# API Sessions'ı Keşfetme <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Sessions'ı Keşfetme <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm'ın [API Sessions](overview.md) özelliği uygulamalarınızla ilgili kullanıcı oturumlarını belirler belirlemez, bunları Wallarm Console içindeki **API Sessions** bölümünde inceleyebilirsiniz. Bu makaleden keşfedilen verilerde nasıl gezineceğinizi öğrenin.
 
