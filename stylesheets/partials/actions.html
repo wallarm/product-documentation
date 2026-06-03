@@ -21,15 +21,10 @@
 
   <!-- Copy markdown button (replaces view source) -->
   {% if "content.action.view" in features %}
-    {% if "/blob/" in page.edit_url %}
-      {% set part = "blob" %}
-    {% else %}
-      {% set part = "edit" %}
-    {% endif %}
     <button
       class="md-content__button md-icon md-clipboard-page"
       title="Copy as Markdown"
-      data-clipboard-src="{{ page.edit_url | replace(part, 'raw') }}"
+      data-clipboard-src="{{ base_url }}/{{ page.url[:-1] if page.url else 'index' }}.md"
     >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12V1Z"/>
