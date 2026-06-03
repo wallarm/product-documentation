@@ -30,6 +30,3 @@ Install the latest NGINX version of:
         sudo yum -y update 
         sudo yum install -y nginx
         ```
-
-!!! info "BoringSSL-linked NGINX"
-    Starting from version 6.12.3, the installer supports and automatically detects NGINX builds linked against BoringSSL. JA4 TLS fingerprinting and encrypted postanalytics upstream traffic are unavailable due to BoringSSL limitations.
