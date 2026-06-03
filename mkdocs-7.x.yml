@@ -32,6 +32,34 @@ nav:
       - Platform Settings: demo-videos/overview.md      
 
   # ============================================================================
+  # SECTION 2: AI Hypervisor
+  # ============================================================================
+
+  - AI Hypervisor:
+    - Overview: ai-hypervisor/overview.md
+
+    - Scanner Installation:
+      - Install HIGGS Scanner: ai-hypervisor/deploy.md
+      - Chart Values: ai-hypervisor/chart-values.md
+      - Labels and Annotations: ai-hypervisor/annotations.md
+
+    - UI Reference:
+      - Briefing: ai-hypervisor/briefing.md
+      - Heatmap: ai-hypervisor/heatmap.md
+      - Registry: ai-hypervisor/registry.md
+      - Topology: ai-hypervisor/topology.md
+      - Data Tracks: ai-hypervisor/data-tracks.md
+      - Supply Chain: ai-hypervisor/supply-chain.md
+      - Hyper Graph: ai-hypervisor/hyper-graph.md
+      - Notifications: ai-hypervisor/notifications.md
+      - User Tracks: ai-hypervisor/user-tracks.md
+      - Red Team: ai-hypervisor/red-team.md
+      - Reports: ai-hypervisor/reports.md
+      - Settings: ai-hypervisor/settings.md
+
+    - Supported Model Providers: ai-hypervisor/supported-providers.md
+
+  # ============================================================================
   # SECTION 2: API DISCOVERY
   # ============================================================================
   - API Discovery:
