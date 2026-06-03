@@ -1,8 +1,22 @@
 # Briefing <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
-The **Briefing** view is the **agent-first overview** of your AI estate. It answers *"what is connected, what is normal, what should I look at first"* on a single screen — populated from real runtime data within ~30 seconds of traffic starting through the labelled workloads.
+<a href="#role-and-altitude"><img src="../../images/role-executive.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="#role-and-altitude"><img src="../../images/role-security.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="#role-and-altitude"><img src="../../images/role-platform.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="#role-and-altitude"><img src="../../images/role-compliance.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="#role-and-altitude"><img src="../../images/role-developer.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a>
+
+The **Briefing** view is the **role-tailored, agent-first overview** of your AI estate. It is the first thing you see after signing in. It answers *"what is connected, what is normal, what should I look at first"* on a single screen — populated from real runtime data within ~30 seconds of traffic starting through the labelled workloads.
 
 Briefing is also where the built-in conversational agent lives, so a question about anything visible on the screen turns into a conversation in place.
+
+## Role and altitude
+
+On first sign-in you pick a **role**; the dashboard lays itself out at the **altitude** that fits that role. Roles supported today:
+
+* **CISO / Security Officer** — overall AI-risk posture, top exposures, compliance readiness at a glance.
+* **Security Engineer / SOC Analyst** — agent-level findings, suspicious sessions, recent PII events.
+* **Platform / SRE / DevOps Engineer** — coverage health (scanners alive, applications onboarded), inventory deltas.
+* **Compliance / GRC / Risk Officer** — control-coverage status against SOC 2 / EU AI Act / NIST AI RMF, evidence gaps.
+* **Developer / ML Engineer / AI Engineer** — pre-deploy signals on the specific workloads you own — CVEs, missing A2AS components, risky tool exposures.
+
+Role is a switch — flip it at any time from the Briefing header, and the same underlying data is re-projected through the new facet.
 
 ## What it puts in front of you
 

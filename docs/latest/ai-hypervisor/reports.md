@@ -1,5 +1,7 @@
 # Reports <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
+<a href="briefing.md#role-and-altitude"><img src="../../images/role-executive.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-compliance.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a>
+
 The **Reports** page is the **compliance evidence pack** for your AI estate. It rolls everything the platform observed during a chosen evidence period — control coverage, PII events, SBOM components and their CVEs, and the audit trail of platform activity — into a single document you can hand to an auditor, brief the board with, or upload to a GRC tool.
 
 Compared to scrolling [Heatmap](heatmap.md), [Data Tracks](data-tracks.md), and other surfaces individually, **Reports** packages all of it for a fixed time window and signs the result — so an evidence pack is reproducible and exportable without manual data-stitching.

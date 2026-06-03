@@ -1,5 +1,7 @@
 # Registry <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
+<a href="briefing.md#role-and-altitude"><img src="../../images/role-security.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-platform.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-developer.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a>
+
 Registry is the **single inventory** of every AI, LLM, and MCP component running across your infrastructure — agents, MCP servers, LLM providers, data sources, APIs, tools, and A2AS certificates. One table, one mental model.
 
 Registry stays current on its own: the scanner's continuous discovery feeds every new workload, every new vendor call, every new MCP server into the inventory without per-team integration work. Your decisions land per row — promote to managed, leave as shadow, or block.

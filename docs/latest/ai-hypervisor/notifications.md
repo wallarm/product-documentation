@@ -1,5 +1,7 @@
 # Notifications <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
+<a href="briefing.md#role-and-altitude"><img src="../../images/role-security.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-platform.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a>
+
 Notifications is the **inbox** of significant things the platform has detected — new applications brought under coverage, CVEs found or resolved in a scanned app, PII observed in agent traffic, scanner-health changes. Most entries are informational; some deep-link into a follow-up view ([User Tracks](user-tracks.md), [Supply Chain](supply-chain.md)) when there is something to act on.
 
 Reviewing it regularly is the difference between learning about a critical finding today and hearing about it from someone outside security next week.

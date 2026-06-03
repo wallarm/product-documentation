@@ -1,5 +1,7 @@
 # Data Tracks <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
+<a href="briefing.md#role-and-altitude"><img src="../../images/role-security.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-compliance.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a>
+
 Data Tracks is the **per-flow evidence view**. For every data flow between two entities, it records which data classes were touched, which PII patterns matched, and which rule produced the detection. It is the evidence layer behind data governance — *"did a customer's email leave for OpenAI yesterday"* is a Data Tracks query, not a survey.
 
 Every flow carries its full lineage: which agent initiated it, which destination it reached, which PII classes were observed, which rule fired, and how many requests and bytes that flow has carried over a given time window.

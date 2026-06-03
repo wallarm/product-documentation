@@ -1,5 +1,7 @@
 # Heatmap <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
+<a href="briefing.md#role-and-altitude"><img src="../../images/role-executive.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-security.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-compliance.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a>
+
 Heatmap is the single-screen overview of your AI estate. It answers four questions at a glance: *what AI do we run, how healthy is it, what is on fire right now, are we trending in the right direction.*
 
 The same data is available through two lenses, each grouping observed findings differently:

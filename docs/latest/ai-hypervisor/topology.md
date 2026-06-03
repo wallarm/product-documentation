@@ -1,5 +1,7 @@
 # Topology <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
+<a href="briefing.md#role-and-altitude"><img src="../../images/role-security.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-platform.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-developer.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a>
+
 Topology is the **traffic-flow map** of your environment — how requests move between agents, MCP servers, LLM providers, data sources, and APIs. It shows the same entities as [Hyper Graph](hyper-graph.md) and [Registry](registry.md) but emphasises the *connections* between them.
 
 A node is one entity the scanner observed; an edge is a flow between two entities. Severities on each node aggregate the findings on that entity; severities on each edge surface PII, unsanctioned destinations, and other per-flow concerns.

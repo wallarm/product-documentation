@@ -1,5 +1,7 @@
 # Settings <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
+<a href="briefing.md#role-and-altitude"><img src="../../images/role-platform.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-executive.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a>
+
 Settings is the tenant-level admin surface — everything that is configured once per tenant rather than per page: who has access, how the scanners are running, and the platform's own configuration knobs. This page documents what each section owns.
 
 ## Demo / Onboarding

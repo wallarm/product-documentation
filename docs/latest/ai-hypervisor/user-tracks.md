@@ -1,5 +1,7 @@
 # User Tracks <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
+<a href="briefing.md#role-and-altitude"><img src="../../images/role-security.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-compliance.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a>
+
 User Tracks is the **session-level evidence view** — every user-to-agent or agent-to-agent interaction as a discrete session, with the full chain from prompt through tool calls through responses, plus the PII profile and step-level evidence.
 
 The page has two complementary views: **Sessions** follows agent sessions end-to-end; **Sensitive data** follows individual PII records across sessions.
@@ -13,8 +15,10 @@ Per session, the platform records:
 * **User identity** — the calling end user, stitched across every internal service hop (see [Cross-hop attribution](#how-user-attribution-works-across-service-hops) below).
 * **Applications** touched — one or several, when the session crossed multiple apps via linked traces.
 * **Tool-call count** and **PII presence** indicators.
-* **Status** — `active`, `completed`, `error`, or `timeout`.
+* **Status** — `active`, `completed`, `killed`, `error`, or `timeout`.
 * **Per-step evidence** — the prompt or payload, the step's status, and any PII the platform detected in the payload.
+
+A **Kill Session** action terminates an active session at the kernel level — every open TCP connection of the session is reset immediately, without touching other sessions on the same pod. See [Enforcement → Kill Session](enforcement.md#kill-session).
 
 ## Sensitive data view
 

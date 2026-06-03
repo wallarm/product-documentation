@@ -13,12 +13,13 @@ No SDK, no application code changes, no pod restart to instrument. Label a workl
 
 AI agents in production are a security blind spot. Engineering teams ship support bots, RAG systems, and agentic workflows that call OpenAI, Bedrock, Anthropic, hit internal databases, and act on behalf of users — and security has no live picture of what runs, what each agent sends where, what data it leaks, or who triggered each call.
 
-AI Hypervisor closes that gap as a **Discover → Observe → Govern** arc:
+AI Hypervisor closes that gap as a **Discover → Observe → Enforce → Govern** arc:
 
 | Pillar | What you get | Where in the product |
 |---|---|---|
 | **Discover** *(know what AI is running)* | Live inventory of every LLM provider, agent, MCP server, and tool — built from real traffic, not a declared list. Anthropic, OpenAI, AWS Bedrock, Azure OpenAI, Gemini, Cohere, Mistral, and Together are recognised out of the box; shadow AI surfaces next to approved providers. | [Heatmap](heatmap.md), [Registry](registry.md), [Topology](topology.md), [Hyper Graph](hyper-graph.md) |
 | **Observe** *(know who triggered it)* | Every model call, agent step, and tool invocation attributed to the originating end user across every service hop. Replay prompts, reconstruct incident timelines, attribute LLM cost by user and team. | [User Tracks](user-tracks.md), [Data Tracks](data-tracks.md) |
+| **Enforce** *(stop the bad ones)* | Kernel-level session termination for active misbehaviour, plus pattern-match policies that block, redact, or alert on outbound calls before they reach the model provider. | [Enforcement](enforcement.md) |
 | **Govern** *(prove it to auditors)* | PII flow records, AI-SBOM with CVE enrichment, full session replay — mapped to EU AI Act, SOC 2, and NIST AI RMF controls. | [Reports](reports.md) |
 
 ## Who AI Hypervisor is for
@@ -33,7 +34,7 @@ AI Hypervisor supplements your existing APM, log pipeline, and SIEM rather than 
 
 AI Hypervisor splits into two pieces with a clean boundary between them: a scanner you run, and a tenant Wallarm hosts.
 
-<!-- TODO: add architecture diagram — customer EKS cluster (HIGGS Scanner DaemonSet + AI workload pods) → HTTPS → Wallarm-hosted tenant (dashboard, backend, ClickHouse) on *.hypervisor.wallarm-cloud.com -->
+![AI Hypervisor architecture: HIGGS Scanner DaemonSet in customer EKS cluster uploads observations over HTTPS to a Wallarm-hosted tenant containing dashboard, backend, and ClickHouse](../../images/ai-hypervisor-architecture.svg)
 
 **On your side — Amazon EKS:**
 

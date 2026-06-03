@@ -1,5 +1,7 @@
 # Supply Chain <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
+<a href="briefing.md#role-and-altitude"><img src="../../images/role-security.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-developer.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-compliance.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a>
+
 Supply Chain is the **inventory of third-party code your AI stack depends on** — the packages, model weights, MCP server binaries, container images, and libraries running inside your instrumented workloads, with the vulnerabilities, license posture, and load-time risk for each. It is the per-asset version of the AI-SBOM that [Reports](reports.md) folds into the compliance evidence pack.
 
 The scanner builds the inventory continuously from in-process introspection and on-disk scanning; you do not declare components yourself. New CVEs published against components you already run surface in [Notifications](notifications.md) within one scan cycle of the CVE database update.
