@@ -1,6 +1,72 @@
+// ----------------------------------------------------------
+// Tabs overflow indicator — show a right-edge scroll arrow
+// when the tabs row overflows the viewport horizontally.
+// ----------------------------------------------------------
+(function tabsOverflowIndicator() {
+  function init() {
+    var tabs = document.querySelector('.md-tabs');
+    if (!tabs) return;
+    var list = tabs.querySelector('.md-tabs__list');
+    if (!list) return;
+
+    // Inject the arrow button once
+    var arrow = tabs.querySelector('.md-tabs__scroll-arrow');
+    if (!arrow) {
+      arrow = document.createElement('button');
+      arrow.type = 'button';
+      arrow.className = 'md-tabs__scroll-arrow';
+      arrow.setAttribute('aria-label', 'Scroll tabs right');
+      arrow.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12L8.59 7.41L10 6l6 6l-6 6z"/></svg>';
+      tabs.appendChild(arrow);
+      arrow.addEventListener('click', function () {
+        list.scrollBy({ left: 220, behavior: 'smooth' });
+      });
+    }
+
+    function update() {
+      var hasOverflow = list.scrollWidth > list.clientWidth + 4;
+      var atEnd = list.scrollLeft + list.clientWidth >= list.scrollWidth - 4;
+      if (!hasOverflow) {
+        tabs.removeAttribute('data-md-overflow');
+      } else if (atEnd) {
+        tabs.setAttribute('data-md-overflow', 'end');
+      } else {
+        tabs.setAttribute('data-md-overflow', 'true');
+      }
+    }
+
+    list.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    // Initial + a delayed check (in case fonts/layout shift after load)
+    update();
+    setTimeout(update, 100);
+    setTimeout(update, 500);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
+// Set body[data-page-section] from URL path so CSS can target sections.
+// Used by sidebar version pill to hide itself on AI Hypervisor and
+// Infrastructure Discovery pages (those products have their own version cycles).
+(function setPageSectionAttr() {
+  var path = window.location.pathname;
+  // Match either /<section>/... or /<version>/<section>/...
+  var m = path.match(/^\/(?:[0-9.x]+\/)?([a-z0-9-]+)(?:\/|$)/i);
+  if (m && m[1]) {
+    document.body.setAttribute('data-page-section', m[1]);
+  }
+})();
+
 // Copy page markdown to clipboard
 document.addEventListener('click', function(e) {
   var btn = e.target.closest('.md-clipboard-page');
+  // If user clicked the dropdown caret, don't run the copy action.
+  if (btn && e.target.closest('.md-clipboard-page__caret')) return;
   if (!btn) return;
 
   e.preventDefault();
@@ -44,6 +110,90 @@ document.addEventListener('click', function(e) {
       window.open(rawUrl, '_blank');
     });
 });
+
+// ----------------------------------------------------------
+// Copy page dropdown — caret toggle + menu actions
+// ----------------------------------------------------------
+(function copyPageDropdown() {
+  var MCP_URL = 'https://docs.wallarm.com/mcp/sse';
+
+  function showToast(msg) {
+    var dialog = document.querySelector('[data-md-component="dialog"]');
+    if (!dialog) return;
+    var inner = dialog.querySelector('.md-typeset');
+    if (inner) inner.textContent = msg;
+    dialog.classList.add('md-dialog--active');
+    setTimeout(function () { dialog.classList.remove('md-dialog--active'); }, 2000);
+  }
+
+  function closeAllMenus() {
+    document.querySelectorAll('.md-clipboard-page__menu').forEach(function (m) {
+      m.hidden = true;
+      var caret = m.parentElement.querySelector('.md-clipboard-page__caret');
+      if (caret) caret.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  document.addEventListener('click', function (e) {
+    // Toggle caret
+    var caret = e.target.closest('.md-clipboard-page__caret');
+    if (caret) {
+      e.preventDefault();
+      e.stopPropagation();
+      var group = caret.closest('.md-clipboard-page__group');
+      var menu = group.querySelector('.md-clipboard-page__menu');
+      var willOpen = menu.hidden;
+      closeAllMenus();
+      if (willOpen) {
+        menu.hidden = false;
+        caret.setAttribute('aria-expanded', 'true');
+      }
+      return;
+    }
+
+    // Menu items
+    var item = e.target.closest('.md-clipboard-page__menu [data-action]');
+    if (item) {
+      e.preventDefault();
+      var group = item.closest('.md-clipboard-page__group');
+      var pageUrl = group.getAttribute('data-page-url');
+      var rawUrl  = group.getAttribute('data-raw-url');
+      var action  = item.getAttribute('data-action');
+      var aiPrompt = 'Read this Wallarm docs page and help me understand it: ' + pageUrl;
+
+      if (action === 'copy-md') {
+        var fetchUrl = rawUrl.replace('github.com', 'raw.githubusercontent.com').replace('/raw/', '/');
+        fetch(fetchUrl).then(function (r) { return r.text(); })
+          .then(function (t) { return navigator.clipboard.writeText(t); })
+          .then(function () { showToast('Page copied as Markdown'); })
+          .catch(function () { window.open(rawUrl, '_blank'); });
+      } else if (action === 'view-md') {
+        window.open(rawUrl, '_blank');
+      } else if (action === 'copy-mcp') {
+        navigator.clipboard.writeText(MCP_URL).then(function () { showToast('MCP server URL copied'); });
+      } else if (action === 'open-chatgpt') {
+        window.open('https://chatgpt.com/?hints=search&q=' + encodeURIComponent(aiPrompt), '_blank');
+      } else if (action === 'open-claude') {
+        window.open('https://claude.ai/new?q=' + encodeURIComponent(aiPrompt), '_blank');
+      } else if (action === 'open-perplexity') {
+        window.open('https://www.perplexity.ai/search?q=' + encodeURIComponent(aiPrompt), '_blank');
+      } else if (action === 'open-gemini') {
+        window.open('https://gemini.google.com/app?q=' + encodeURIComponent(aiPrompt), '_blank');
+      }
+      closeAllMenus();
+      return;
+    }
+
+    // Outside click — close
+    if (!e.target.closest('.md-clipboard-page__menu')) {
+      closeAllMenus();
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeAllMenus();
+  });
+})();
 
 // Open external links in new tab
 var links = document.links;
@@ -134,15 +284,10 @@ function versionClicked (event) {
   var list = document.getElementById('versionsList');
   var main = document.getElementById('versionsMain');
   if (!list || !main) return;
-  if (list.style.display === 'none' || !list.style.display) {
-    list.style.display = 'block';
-    main.classList.add('versions-main-active');
-    main.setAttribute('aria-expanded', 'true');
-  } else {
-    list.style.display = 'none';
-    main.classList.remove('versions-main-active');
-    main.setAttribute('aria-expanded', 'false');
-  }
+  var willOpen = !list.classList.contains('open');
+  list.classList.toggle('open', willOpen);
+  main.classList.toggle('open', willOpen);
+  main.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
 }
 
 // Open the docs for selected Wallarm version and change value in the selector
@@ -177,7 +322,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     if (pathsLang[1] === 'tr' || pathsLang[1] === 'pt-br' || pathsLang[1] === 'ja' || pathsLang[1] === 'ar') {
       versionsDiv.style.display = 'none';
     } else {
-      versionsDiv.style.display = 'inline-block';
+      versionsDiv.style.display = '';
     }
   }
 
@@ -197,20 +342,28 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }, { passive: false, capture: true });
 
   /* Close version list when clicking outside */
-  function closeVersionsIfOutside(e) {
+  function closeVersionsMenu() {
     var list = document.getElementById('versionsList');
-    var div = document.getElementById('versionsDiv');
-    if (!list || !div || list.style.display !== 'block') return;
-    if (e.target.closest && e.target.closest('#versionsDiv')) return;
-    list.style.display = 'none';
     var main = document.getElementById('versionsMain');
+    if (list) list.classList.remove('open');
     if (main) {
-      main.classList.remove('versions-main-active');
+      main.classList.remove('open');
       main.setAttribute('aria-expanded', 'false');
     }
   }
+  function closeVersionsIfOutside(e) {
+    var list = document.getElementById('versionsList');
+    if (!list || !list.classList.contains('open')) return;
+    if (e.target.closest && e.target.closest('#versionsDiv')) return;
+    closeVersionsMenu();
+  }
   document.addEventListener('click', closeVersionsIfOutside, true);
   document.addEventListener('touchend', closeVersionsIfOutside, true);
+
+  /* Escape closes the version menu */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeVersionsMenu();
+  });
 
   const addButtons = document.querySelectorAll('.md-header__button[for="__search"]');
 

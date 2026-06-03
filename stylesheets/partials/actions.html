@@ -19,21 +19,60 @@
     </a>
   {% endif %}
 
-  <!-- Copy markdown button (replaces view source) -->
+  <!-- Copy page split-button with dropdown -->
   {% if "content.action.view" in features %}
     {% if "/blob/" in page.edit_url %}
       {% set part = "blob" %}
     {% else %}
       {% set part = "edit" %}
     {% endif %}
-    <button
-      class="md-content__button md-icon md-clipboard-page"
-      title="Copy as Markdown"
-      data-clipboard-src="{{ page.edit_url | replace(part, 'raw') }}"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12V1Z"/>
-      </svg>
-    </button>
+    {% set raw_url = page.edit_url | replace(part, 'raw') %}
+    {% set page_url = config.site_url + page.url %}
+
+    <div class="md-clipboard-page__group" data-page-url="{{ page_url }}" data-raw-url="{{ raw_url }}">
+      <button
+        class="md-content__button md-icon md-clipboard-page"
+        title="Copy as Markdown"
+        data-clipboard-src="{{ raw_url }}"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12V1Z"/>
+        </svg>
+      </button>
+      <button
+        type="button"
+        class="md-content__button md-icon md-clipboard-page__caret"
+        title="More page actions"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14">
+          <path d="M7 10l5 5 5-5z"/>
+        </svg>
+      </button>
+      <div class="md-clipboard-page__menu" role="menu" hidden>
+        <button type="button" role="menuitem" data-action="copy-md">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14"><path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12V1Z"/></svg>
+          Copy as Markdown
+        </button>
+        <button type="button" role="menuitem" data-action="view-md">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5M12 17a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-8a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3"/></svg>
+          View as Markdown
+        </button>
+        <div class="md-clipboard-page__menu-sep" role="separator"></div>
+        <div class="md-clipboard-page__menu-label">MCP server</div>
+        <button type="button" role="menuitem" data-action="copy-mcp">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14"><path d="M20 18v-4h-3v1h-2v-1H9v1H7v-1H4v4zm-1-7l-3-7H8L5 11h14M16 9.5h-2.5V12h-3V9.5H8L12 5z"/></svg>
+          Copy MCP server URL
+          <kbd>SSE</kbd>
+        </button>
+        <div class="md-clipboard-page__menu-sep" role="separator"></div>
+        <div class="md-clipboard-page__menu-label">Open in</div>
+        <button type="button" role="menuitem" data-action="open-chatgpt">ChatGPT</button>
+        <button type="button" role="menuitem" data-action="open-claude">Claude</button>
+        <button type="button" role="menuitem" data-action="open-perplexity">Perplexity</button>
+        <button type="button" role="menuitem" data-action="open-gemini">Gemini</button>
+      </div>
+    </div>
   {% endif %}
 {% endif %}
