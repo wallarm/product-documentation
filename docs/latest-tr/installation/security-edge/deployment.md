@@ -1,4 +1,4 @@
-# Security Edge Inline <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inline <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 **Security Edge** platformu, Wallarm tarafından barındırılan bir ortamda coğrafi olarak dağıtılmış konumlarda Wallarm düğümlerini (node) dağıtmak için yönetilen bir hizmet sunar. Başlıca dağıtım seçeneklerinden biri olan **inline** dağıtım, herhangi bir yerinde kurulum gerektirmeden tüm API yelpazeniz için gerçek zamanlı ve güçlü koruma sağlar.
 

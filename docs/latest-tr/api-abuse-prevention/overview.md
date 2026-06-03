@@ -1,4 +1,4 @@
-# API Abuse Prevention <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Prevention <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm platformunun **API Abuse Prevention** modülü, API’lerinizi hedef alan kimlik bilgisi doldurma, sahte hesap oluşturma, içerik kazıma (scraping) ve diğer kötü amaçlı eylemleri gerçekleştiren botların tespitini ve etkisizleştirilmesini sağlar.
 

@@ -1,4 +1,4 @@
-# الحماية التلقائية ضد هجمات BOLA <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# الحماية التلقائية ضد هجمات BOLA <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 الهجمات السلوكية مثل [التفويض المعطل على مستوى الكائن (BOLA)](../attacks-vulns-list.md#broken-object-level-authorization-bola) تستغل نقطة الضعف التي تحمل نفس الاسم. تتيح هذه الثغرة للمهاجم الوصول إلى كائن من خلال معرفه عبر طلب API وإما قراءة بياناته أو تعديلها متجاوزًا آلية التفويض.
 

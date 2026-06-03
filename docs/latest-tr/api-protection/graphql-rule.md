@@ -1,6 +1,6 @@
 [api-discovery-enable-link]:        ../api-discovery/setup.md#enable
 
-# GraphQL API Koruması <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# GraphQL API Koruması <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm, temel [WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) abonelik planında bile GraphQL içindeki düzenli saldırıları (SQLi, RCE, [vb.](../attacks-vulns-list.md)) [varsayılan olarak](../user-guides/rules/request-processing.md#gql) tespit eder. Ancak, protokolün bazı yönleri, aşırı bilgi ifşası ve DoS ile ilgili [GraphQL’e özgü](../attacks-vulns-list.md#graphql-attacks) saldırıların uygulanmasına izin verir. Bu belge, **GraphQL policy** (GraphQL istekleri için bir dizi limit) belirleyerek API’lerinizi bu saldırılardan korumak için Wallarm’ın nasıl kullanılacağını açıklar.
 
@@ -24,7 +24,7 @@ Abonelik planınıza bağlı olarak, GraphQL API koruması için aşağıdaki ya
 * Mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) aboneliği)
 * Rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) aboneliği)
 
-## Mitigation control tabanlı koruma <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Mitigation control tabanlı koruma <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 !!! tip ""
     [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.2.0 veya üstünü gerektirir ve şu anda [Native Node](../installation/nginx-native-node-internals.md#native-node) tarafından desteklenmemektedir.

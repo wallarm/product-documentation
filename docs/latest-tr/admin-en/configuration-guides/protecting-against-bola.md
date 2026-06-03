@@ -2,7 +2,7 @@
 [changes-in-api-docs]:       ../../api-discovery/track-changes.md
 [bola-protection-for-endpoints-docs]:  ../../api-discovery/bola-protection.md
 
-# API Discovery tarafından bulunan uç noktalar için Otomatik BOLA Koruması <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discovery tarafından bulunan uç noktalar için Otomatik BOLA Koruması <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Bu makale, [API Discovery](../../api-discovery/overview.md) (APID) tarafından keşfedilen uç noktalar için otomatik BOLA korumasını açıklar.
 

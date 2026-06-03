@@ -1,4 +1,4 @@
-# Security Edge <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Security Edge, [Wallarm Node](../../about-wallarm/overview.md#filtering-node) barındırmadan API’lerinizi ve uygulamalarınızı korumanıza olanak tanıyan, Wallarm tarafından yönetilen bir dağıtım seçeneğidir. Trafiği **Wallarm’ın küresel olarak dağıtılmış Edge altyapısına** yönlendirirsiniz; burada trafik filtrelenir ve güvenle backend’inize iletilir.
 

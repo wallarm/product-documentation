@@ -1,4 +1,4 @@
-# Wallarm API Protection <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Wallarm API Protection <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm'ın API Protection'ı, API ve yapay zekayı korumaya yönelik gelişmiş yetenekler setidir. Temel [bulut-yerel WAAP](../about-wallarm/waap-overview.md) koruması zaten tüm API protokollerini ve bunların saldırılara karşı incelenmesini, L7 DDoS'a karşı korumayı vb. içerirken, modern API'ler otomatik tehditler, API kötüye kullanımı ve yapay zekanın suistimali gibi ek risklere maruz kalır. Advanced API Security paketi, riskleri daha kapsamlı azaltmak için gelişmiş özellikler sunar.
 

@@ -1,4 +1,4 @@
-# Wallarm API保護 <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Wallarm API保護 <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 WallarmのAPI保護は、APIおよびAIを保護する高度な機能セットです。基本的な[クラウドネイティブWAAP](../about-wallarm/waap-overview.md)保護には、すべてのAPIプロトコルのサポートと攻撃検査、L7 DDoS対策などがすでに含まれますが、現代のAPIは自動化された脅威、APIの不正使用、AIの悪用など、追加のリスクにもさらされています。Advanced API Securityバンドルは、より完全なリスク低減のための高度な機能を提供します。
 

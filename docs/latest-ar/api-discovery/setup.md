@@ -1,4 +1,4 @@
-# إعداد استكشاف واجهة البرمجة التطبيقية <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# إعداد استكشاف واجهة البرمجة التطبيقية <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 تصف هذه المقالة كيفية تمكين وتكوين وتشخيص موديول [استكشاف واجهة البرمجة التطبيقية](overview.md).
 

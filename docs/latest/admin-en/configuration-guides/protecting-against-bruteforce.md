@@ -11,7 +11,7 @@ Depending on your subscription plan, one of the following configuration methods 
 * Mitigation controls ([Advanced API Security](../../about-wallarm/subscription-plans.md#core-subscription-plans) subscription)
 * Triggers ([Cloud Native WAAP](../../about-wallarm/subscription-plans.md#core-subscription-plans) subscription)
 
-## Mitigation control-based protection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Mitigation control-based protection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm's Advanced API Security [subscription](../../about-wallarm/subscription-plans.md#core-subscription-plans) provides advanced [enumeration attack protection](../../api-protection/enumeration-attack-protection.md), including protection from brute force attacks.
 

@@ -1,4 +1,4 @@
-# API Attack Surface Management  <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
+# API Attack Surface Management  <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm'ın **API Attack Surface Management** (**AASM**) çözümü, API ekosistemine özel tasarlanmış ajan gerektirmeyen bir tespit çözümüdür; harici ana makineleri ve bunların API'lerini keşfetmek, eksik WAF/WAAP çözümlerini belirlemek ve API sızıntıları ile diğer güvenlik açıklarını azaltmak için tasarlanmıştır.
 

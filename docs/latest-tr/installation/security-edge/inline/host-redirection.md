@@ -1,4 +1,4 @@
-# Security Edge Inline'de Ana Makine Yönlendirme <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inline'de Ana Makine Yönlendirme <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm [Security Edge Inline](deployment.md), trafik giriş noktalarını birleştirmenize yardımcı olmak için ana makine yönlendirme özelliği sağlar.
 

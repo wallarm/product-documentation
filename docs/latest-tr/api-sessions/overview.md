@@ -1,4 +1,4 @@
-# API Sessions'e Genel Bakış <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Sessions'e Genel Bakış <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm'ın **API Sessions** özelliği, trafiğinizdeki kullanıcı oturumlarına görünürlük sağlar. Her oturum için Wallarm, ayrıntılı istek ve ilgili yanıt verilerini toplayarak oturum etkinliğine yapılandırılmış bir bakış sunar. Bu makale, API Sessions’a genel bir bakış sağlar: ele aldığı sorunlar, amacı ve başlıca olanaklar.
 

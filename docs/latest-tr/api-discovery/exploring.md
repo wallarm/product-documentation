@@ -1,4 +1,4 @@
-# API Envanterini Keşfetme <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Envanterini Keşfetme <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 [API Discovery](overview.md) modülü uç noktalarınızın kataloğunu (API envanterinizi) oluşturur oluşturmaz, Wallarm Console içindeki **API Discovery** bölümünde onu keşfedebilirsiniz. Bu makaleden, keşfedilen verileri nasıl inceleyeceğinizi öğrenin.
 

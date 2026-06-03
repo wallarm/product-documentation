@@ -1,4 +1,4 @@
-# استكشاف البوتات المكتشفة <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# استكشاف البوتات المكتشفة <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 تصف هذه المقالة كيفية عرض معلومات حول البوتات الضارة التي اكتشفها وحدة [الوقاية من إساءة استخدام واجهة برمجة التطبيقات](../api-abuse-prevention/overview.md) والهجمات التي قامت بها هذه البوتات.
  

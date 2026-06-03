@@ -1,7 +1,7 @@
 [link-cloud-node-synchronization]: ../admin-en/configure-cloud-node-synchronization-en.md
 [img-rules-create-backup]:      ../images/user-guides/rules/rules-create-backup.png
 
-# Mitigation Controls <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Mitigation Controls <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Mitigation controls extend Wallarm's [attack protection](protecting-against-attacks.md#tools-for-attack-detection) with additional security measures and allow fine-tuning of the Wallarm behavior.
 

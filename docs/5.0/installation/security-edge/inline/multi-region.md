@@ -1,4 +1,4 @@
-# Multi-Cloud and Multi-Region Deployment of Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Multi-Cloud and Multi-Region Deployment of Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 You can deploy the inline Edge Nodes across multiple regions and cloud providers to achieve geo‑redundancy and low latency.
 

@@ -1,4 +1,4 @@
-# Authentication Flow Detection <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Authentication Flow Detection <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 API Discovery analyzes HTTP headers and request parameters in the traffic to automatically identify the **authentication flow** used by each endpoint. This helps you find endpoints that lack proper authentication — the #1 API security risk.
 

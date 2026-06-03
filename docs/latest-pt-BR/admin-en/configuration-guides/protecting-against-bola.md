@@ -75,7 +75,7 @@ Exemplo do gatilho para detectar e bloquear ataques BOLA direcionados aos dados 
 
 Você pode configurar vários gatilhos com diferentes filtros para a proteção BOLA.
 
-## Proteção automática BOLA para endpoints descobertos pelo recurso de Descoberta de API <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Proteção automática BOLA para endpoints descobertos pelo recurso de Descoberta de API <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 A proteção automática BOLA está disponível se você utilizar o módulo **[Descoberta de API](../../api-discovery/overview.md)**.
 

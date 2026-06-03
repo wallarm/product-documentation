@@ -2,7 +2,7 @@
 [link-integrations-intro]:              ../user-guides/settings/integrations/integrations-intro.md
 [link-integrations-email]:              ../user-guides/settings/integrations/email.md#setting-up-integration
 
-# API Attack Surface Discovery <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
+# API Attack Surface Discovery <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarmの[API Attack Surface Management](overview.md)の**API Attack Surface Discovery**（**AASD**）コンポーネントは、選択したドメインをスキャンして外部ホストとそのAPIをすべて発見し、WebおよびAPIベースの攻撃に対する保護状況を評価し、不足しているWAF/WAAPソリューションを特定します。Wallarmでサブスクライブするだけで利用でき、デプロイは不要です。本記事ではこのコンポーネントの概要を説明します。
 

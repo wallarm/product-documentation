@@ -1,6 +1,6 @@
 [api-discovery-enable-link]:        ../api-discovery/setup.md#enable
 
-# API Abuse Prevention İstisnaları <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Prevention İstisnaları <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Bu makale, meşru botları işaretleyerek ve belirli hedef URL’ler ve istek türleri için bot korumasını devre dışı bırakarak [API Abuse Prevention](../api-abuse-prevention/overview.md) özelliğini nasıl ince ayarlayacağınızı açıklar.
 

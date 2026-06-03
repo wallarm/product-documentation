@@ -3,7 +3,7 @@
 [link-api-abuse-prevention]:    ../api-abuse-prevention/overview.md
 [img-api-sessions-api-abuse]:   ../images/api-sessions/api-sessions-api-abuse.png
 
-# Bot Etkinliğini Keşfetme <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Bot Etkinliğini Keşfetme <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 [API Abuse Prevention](../api-abuse-prevention/overview.md), kötü amaçlı bot etkinliğini ML algoritmalarına dayanarak tanımlar. Bu tür saldırılar tek bir engellenen isteğe bakılarak analiz edilemez. Bu nedenle Wallarm platformunun bot etkinliğini farklı açılardan araştırmak için geniş bir araç yelpazesi sunması esastır.
 

@@ -2,7 +2,7 @@
 [changes-in-api-docs]:       ../../api-discovery/track-changes.md
 [bola-protection-for-endpoints-docs]:  ../../api-discovery/bola-protection.md
 
-# API Discoveryで検出されたエンドポイントの自動BOLA保護 <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discoveryで検出されたエンドポイントの自動BOLA保護 <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 この記事では、[API Discovery](../../api-discovery/overview.md)（APID）で検出されたエンドポイント向けの自動BOLA保護について説明します。
 

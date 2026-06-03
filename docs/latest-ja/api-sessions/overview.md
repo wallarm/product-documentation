@@ -1,4 +1,4 @@
-# API Sessionsの概要 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Sessionsの概要 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarmの**API Sessions**は、トラフィック内のユーザーセッションの可視性を提供します。各セッションについて、Wallarmは詳細なリクエストおよび関連するレスポンスデータを収集し、セッション内のアクティビティを構造化して表示できるようにします。本記事では、API Sessionsの概要として、その目的、解決する課題、および主な機能について説明します。
 

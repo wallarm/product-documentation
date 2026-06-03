@@ -15,7 +15,7 @@ Depending on your subscription plan, one of the following configuration methods 
 * Mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription) - using mitigation control, you can set a limit not only for the entire size of the request, but for a specific parameter (more precise settings than in case of a WAF rule).
 * WAF rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription)
 
-## Mitigation control-based protection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Mitigation control-based protection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 As a part of [Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription, Wallarm provides the **File upload restriction policy** [mitigation control](../about-wallarm/mitigation-controls-overview.md).
 

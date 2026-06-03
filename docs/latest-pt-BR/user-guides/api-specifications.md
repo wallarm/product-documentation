@@ -1,4 +1,4 @@
-# Fazendo upload de suas especificações de API <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Fazendo upload de suas especificações de API <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Na seção **Especificações da API** da Wallarm Console UI, você pode manter suas especificações de API que a Wallarm usa para descobrir as APIs irregulares (sombra, órfã e zumbi). Este artigo fornece informações sobre como usar esta seção.
 

@@ -1,4 +1,4 @@
-# BOLA Saldırılarına Karşı Otomatik Koruma <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# BOLA Saldırılarına Karşı Otomatik Koruma <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 [Kırık Nesne Düzeyi Yetkilendirme (BOLA)](../attacks-vulns-list.md#broken-object-level-authorization-bola) gibi davranışsal saldırılar, aynı adlı zafiyetten yararlanır. Bu zafiyet, bir saldırganın bir API isteği aracılığıyla bir nesneye tanımlayıcısıyla erişmesine ve yetkilendirme mekanizmasını atlayarak verilerini okumasına veya değiştirmesine olanak tanır.
 

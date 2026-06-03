@@ -1,4 +1,4 @@
-# Security Edgeインラインデプロイ <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edgeインラインデプロイ <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarmの[インライントラフィック解析用Security Edge](overview.md)をデプロイするには、本ガイドに従います。
 

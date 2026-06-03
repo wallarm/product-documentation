@@ -1,4 +1,4 @@
-# Automatic Protection Against BOLA Attacks <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Automatic Protection Against BOLA Attacks <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 !!! warning "Feature availability"
     In the latest versions of API Discovery, this feature is under reconstruction and may be temporarily unavailable.

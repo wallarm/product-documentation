@@ -1,4 +1,4 @@
-# الواجهة البرمجية المظلية، اليتيمة، الزومبي <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# الواجهة البرمجية المظلية، اليتيمة، الزومبي <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 تحدد وحدة [اكتشاف الواجهة البرمجية](overview.md) تلقائيا الواجهات البرمجية الظلية، اليتيمة والزومبية من خلال مقارنة مواصفاتك المُرسلة مع حركة المرور الحية.
 

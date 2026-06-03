@@ -1,4 +1,4 @@
-# mTLS for Edge Node to Origins <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# mTLS for Edge Node to Origins <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Mutual TLS (mTLS) allows the Wallarm Edge Node to authenticate itself to your origin servers using a client certificate. This ensures that your origins accept requests only from trusted sources.
 

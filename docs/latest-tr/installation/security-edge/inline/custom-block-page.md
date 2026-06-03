@@ -1,4 +1,4 @@
-# Security Edge Inline içinde Engelleme Sayfası <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inline içinde Engelleme Sayfası <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Security Edge Inline Node bir kötü amaçlı isteği engellediğinde, HTTP 403 Forbidden yanıtı ile birlikte biçimlendirilmiş bir engelleme sayfası döndürebilir.
 

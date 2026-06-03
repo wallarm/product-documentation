@@ -1,4 +1,4 @@
-# Security Edge Inline Deployment <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inline Deployment <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 To deploy the Wallarm [Security Edge for inline traffic analysis](overview.md), follow this guide.
 

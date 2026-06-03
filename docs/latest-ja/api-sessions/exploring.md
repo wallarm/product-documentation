@@ -4,7 +4,7 @@
 [link-api-abuse-prevention]:    ../api-abuse-prevention/overview.md
 [img-api-sessions-api-abuse]:   ../images/api-sessions/api-sessions-api-abuse.png
 
-# API Sessionsの探索 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Sessionsの探索 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarmの[API Sessions](overview.md)がお使いのアプリケーションに関連するユーザーセッションを特定すると、Wallarm Consoleの**API Sessions**セクションでそれらを確認できます。本記事では、検出されたデータをどのように確認するかを説明します。
 

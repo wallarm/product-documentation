@@ -1,4 +1,4 @@
-# CI/CD上のOpenAPIセキュリティテスト <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# CI/CD上のOpenAPIセキュリティテスト <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarmが提供するCI/CD上のOpenAPIセキュリティテストは、シャドウAPIやゾンビAPIを含む重要なAPIのビジネスシナリオに内在するセキュリティ脆弱性を特定し、対処するためのソリューションを提供します。本記事では、このソリューションの実行方法と使用方法を説明します。
 

@@ -1,4 +1,4 @@
-# API Abuse Prevention <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Prevention <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarmプラットフォームの**API Abuse Prevention**モジュールは、クレデンシャルスタッフィング、偽アカウント作成、コンテンツスクレイピングなど、APIの不正利用を行うボットを検知・対策します。お客様のAPIを標的とするその他の悪意ある行為にも対応します。
 

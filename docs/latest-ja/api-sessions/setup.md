@@ -1,4 +1,4 @@
-# API Sessionsのセットアップ <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Sessionsのセットアップ <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 [API Sessions](overview.md)にはセッション識別のための組み込みルールが含まれており、有効化されたWallarm[node](../about-wallarm/overview.md#how-wallarm-works)があるだけで動作し始めます。必要に応じて、本記事で説明する方法でAPI Sessionsを細かく調整できます。
 

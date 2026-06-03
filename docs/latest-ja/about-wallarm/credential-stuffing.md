@@ -1,4 +1,4 @@
-# クレデンシャルスタッフィング検知 <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# クレデンシャルスタッフィング検知 <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 [クレデンシャルスタッフィング](../attacks-vulns-list.md#credential-stuffing)は、攻撃者が漏えいしたユーザー認証情報のリストを用いて、複数のWebサイト上のユーザーアカウントへ不正アクセスするサイバー攻撃です。この記事では、Wallarmの**Credential Stuffing Detection**を使用してこの種の脅威を検知する方法について説明します。
 

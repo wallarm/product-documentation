@@ -2,7 +2,7 @@
 [link-integrations-intro]:              ../user-guides/settings/integrations/integrations-intro.md
 [link-integrations-email]:              ../user-guides/settings/integrations/email.md#setting-up-integration
 
-# API Attack Surface Discovery <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
+# API Attack Surface Discovery <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm'ın [API Attack Surface Management](overview.md) çözümünün bir bileşeni olan **API Attack Surface Discovery** (**AASD**), seçtiğiniz alan adlarını tarayarak tüm harici host'larını ve bunların API'lerini keşfeder, Web ve API tabanlı saldırılara karşı korumalarını değerlendirir ve eksik WAF/WAAP çözümlerini belirler. Wallarm içinde abone olarak çalışır - herhangi bir şey dağıtmanız gerekmez. Bu makale bileşene genel bir bakış sunar.
 

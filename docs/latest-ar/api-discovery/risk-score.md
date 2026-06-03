@@ -1,4 +1,4 @@
-# درجة خطورة نقطة النهاية <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# درجة خطورة نقطة النهاية <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 تقوم [اكتشاف الـAPI](overview.md) بحساب **درجة الخطورة** تلقائيًا لكل نقطة نهاية في جرد الـAPI الخاص بك. تتيح لك درجة الخطورة فهم أي نقاط النهاية الأكثر عرضة لأن تكون هدفًا للهجوم وبالتالي يجب أن تكون في محور جهود الأمان الخاصة بك.
 

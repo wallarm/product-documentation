@@ -2,7 +2,7 @@
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
 [se-connector-hosts-locations-img]: ../../images/waf-installation/security-edge/connectors/hosts-locations.png
 
-# Security Edge Bağlayıcıları <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Bağlayıcıları <a href="../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 [**Security Edge**](overview.md) platformu, Wallarm tarafından barındırılan bir ortamda coğrafi olarak dağıtılmış konumlarda Wallarm Node’larının dağıtımı için yönetilen bir hizmet sunar. Temel dağıtım seçeneklerinden biri, sahada kurulum gerektirmeden tüm API ortamınız için güçlü koruma sağlayan [**connector**](../connectors/overview.md) Node dağıtımıdır.
 

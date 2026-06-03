@@ -1,4 +1,4 @@
-# Descobrindo inventário API <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Descobrindo inventário API <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 O módulo **API Discovery** da plataforma Wallarm [constrói](#habilita%C3%A7%C3%A3o-econfigura%C3%A7%C3%A3o-da-descoberta-da-api) o inventário da API REST do seu aplicativo com base no uso real da API. O módulo analisa continuamente as solicitações de tráfego real e constrói o inventário da API com base nos resultados da análise. Este artigo fornece uma visão geral da **API Discovery**: questões abordadas por ela, seu propósito e principais possibilidades.
 

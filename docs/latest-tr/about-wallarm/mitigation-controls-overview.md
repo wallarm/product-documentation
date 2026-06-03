@@ -1,7 +1,7 @@
 [link-cloud-node-synchronization]: ../admin-en/configure-cloud-node-synchronization-en.md
 [img-rules-create-backup]:      ../images/user-guides/rules/rules-create-backup.png
 
-# Azaltma Kontrolleri <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Azaltma Kontrolleri <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Azaltma kontrolleri, Wallarm'ın [saldırı korumasını](protecting-against-attacks.md#tools-for-attack-detection) ek güvenlik önlemleriyle genişletir ve Wallarm davranışını ince ayar yapmanıza olanak tanır.
 

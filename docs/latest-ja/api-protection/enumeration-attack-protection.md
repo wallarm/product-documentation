@@ -1,4 +1,4 @@
-# 列挙攻撃の保護 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# 列挙攻撃の保護 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarmは、攻撃者にとって高い価値を持つ情報の漏えいを防ぐため、APIを[列挙攻撃](../attacks-vulns-list.md#enumeration-attacks)から保護します。攻撃者は有効なユーザー名やメールアドレス、システムリソースを特定することで、後続攻撃の焦点を大幅に絞り込めます。この偵察フェーズにより、攻撃者は対象システムの理解を深め、脆弱性を発見し、より巧妙で標的化された攻撃を計画できる可能性が高まり、最終的に侵害成功の確率が上がってしまいます。
 

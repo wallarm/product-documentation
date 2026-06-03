@@ -1,4 +1,4 @@
-# MCP Server Discovery <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# MCP Server Discovery <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm's [API Discovery](../api-discovery/overview.md) detects [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) servers in your traffic, captures their primitives, and displays them in the API inventory alongside your REST, GraphQL, SOAP, and gRPC endpoints.
 

@@ -1,4 +1,4 @@
-# Shadow and Zombie API <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Shadow and Zombie API <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 The [API Discovery](overview.md) module automatically identifies shadow and zombie APIs by comparing your uploaded specification to the live traffic.
 

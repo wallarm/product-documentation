@@ -1,4 +1,4 @@
-# Edge NodeからオリジンへのmTLS <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Edge NodeからオリジンへのmTLS <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 相互TLS（mTLS）は、Wallarm Edge Nodeがクライアント証明書を使用してオリジンに対して自身を認証できるようにします。これにより、オリジンは信頼できる送信元からのリクエストのみを受け入れるようになります。
 

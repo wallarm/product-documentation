@@ -1,4 +1,4 @@
-# Enumeration Attack Protection <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Enumeration Attack Protection <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm allows protecting your APIs from the [enumeration attacks](../attacks-vulns-list.md#enumeration-attacks) preventing the reveal of information highly valuable for malicious actors. By identifying valid usernames, email addresses, or system resources, attackers can significantly narrow their focus for subsequent attacks. This reconnaissance phase allows attackers to understand the target system better, potentially uncovering vulnerabilities and enabling the planning of more sophisticated and targeted attacks, ultimately increasing the likelihood of a successful breach.
 

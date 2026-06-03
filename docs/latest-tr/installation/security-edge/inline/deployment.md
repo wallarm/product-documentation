@@ -1,4 +1,4 @@
-# Security Edge Inline Dağıtımı <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inline Dağıtımı <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm [inline trafik analizi için Security Edge](overview.md) dağıtmak için bu kılavuzu izleyin.
 

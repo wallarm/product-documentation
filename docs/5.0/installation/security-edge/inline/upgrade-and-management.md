@@ -1,4 +1,4 @@
-# Managing Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Managing Security Edge Inline <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Manage the [Security Edge Inline](overview.md) deployment from the Wallarm Console by updating configuration settings, upgrading Node versions, monitoring status, and deleting the deployment.
 

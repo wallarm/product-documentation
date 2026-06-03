@@ -1,4 +1,4 @@
-# Security Edge Inlineのブロックページ <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inlineのブロックページ <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Security Edge Inline Nodeが悪意のあるリクエストをブロックした場合、HTTP 403 Forbiddenレスポンスとともにスタイル付きのブロックページを返すことができます。
 

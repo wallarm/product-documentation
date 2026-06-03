@@ -1,4 +1,4 @@
-# API Abuse Prevention Kurulumu <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Prevention Kurulumu <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Bu makale, kötü niyetli botları tespit edip azaltmak ve meşru faaliyetlerin engellenmesini önlemek için [API Abuse Prevention](../api-abuse-prevention/overview.md) modülünün nasıl etkinleştirileceğini ve yapılandırılacağını açıklar.
 

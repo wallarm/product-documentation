@@ -1,4 +1,4 @@
-# Business Intelligence Dashboards <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# Business Intelligence Dashboards <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 In Wallarm, you have the ability to build and customize your own dashboards. This allows you to collect, present, and share security data in a way that is most relevant to your business, helping you make more informed decisions about security measures. This article describes how to create, use, and share such dashboards.
 

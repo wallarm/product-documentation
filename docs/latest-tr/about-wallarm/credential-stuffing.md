@@ -1,4 +1,4 @@
-# Credential Stuffing Detection <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Credential Stuffing Detection <a href="../subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 [Credential stuffing](../attacks-vulns-list.md#credential-stuffing), bilgisayar korsanlarının ele geçirilmiş kullanıcı kimlik bilgileri listelerini kullanarak birden fazla web sitesindeki kullanıcı hesaplarına yetkisiz erişim sağlamaya çalıştığı bir siber saldırıdır. Bu makale, Wallarm'ın **Credential Stuffing Detection** özelliğini kullanarak bu tür tehditlerin nasıl tespit edileceğini açıklar.
 

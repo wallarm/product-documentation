@@ -1,4 +1,4 @@
-# Numaralandırma Saldırısı Koruması <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Numaralandırma Saldırısı Koruması <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm, kötü niyetli aktörler için yüksek değere sahip bilgilerin ifşasını önleyerek API’lerinizi [numaralandırma saldırılarına](../attacks-vulns-list.md#enumeration-attacks) karşı korumanızı sağlar. Geçerli kullanıcı adlarını, e‑posta adreslerini veya sistem kaynaklarını tespit ederek saldırganlar, sonraki saldırılar için odaklarını önemli ölçüde daraltabilir. Bu keşif aşaması, saldırganların hedef sistemi daha iyi anlamasına, potansiyel olarak güvenlik açıklarını ortaya çıkarmasına ve daha sofistike ve hedefli saldırıların planlanmasına olanak tanır; nihayetinde başarılı bir ihlal olasılığını artırır.
 

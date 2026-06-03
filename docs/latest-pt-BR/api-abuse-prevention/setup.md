@@ -1,4 +1,4 @@
-# Gerenciamento do perfil de Prevenção de Abuso de API <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Gerenciamento do perfil de Prevenção de Abuso de API <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Na seção **Prevenção de Abuso de API** do Console Wallarm, você pode gerenciar perfis de abuso de API necessários para a configuração do módulo [**Prevenção de Abuso de API**](../api-abuse-prevention/overview.md).
 

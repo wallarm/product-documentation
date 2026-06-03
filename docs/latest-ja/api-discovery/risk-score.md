@@ -1,4 +1,4 @@
-# エンドポイントのリスクスコア <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# エンドポイントのリスクスコア <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 [API Discovery](overview.md)は、APIインベントリ内の各エンドポイントに対して自動的にリスクスコアを計算します。リスクスコアによって、どのエンドポイントが攻撃対象になりやすいかを把握でき、セキュリティ対応の重点を定められます。
 

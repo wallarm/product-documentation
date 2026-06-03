@@ -1,4 +1,4 @@
-# API Discoveryの概要 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discoveryの概要 <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarmプラットフォームの**API Discovery**モジュールは、実際のAPI利用状況に基づいてアプリケーションのREST APIインベントリを構築します。モジュールは実トラフィックのリクエストを継続的に分析し、その結果に基づいてAPIインベントリを作成します。
 

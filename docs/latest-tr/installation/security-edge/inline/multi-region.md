@@ -1,4 +1,4 @@
-# Security Edge Inline'ın Çok Bulutlu ve Çok Bölgeli Dağıtımı <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" style="border: none;"></a>
+# Security Edge Inline'ın Çok Bulutlu ve Çok Bölgeli Dağıtımı <a href="../../../../about-wallarm/subscription-plans/#security-edge-paid-plan"><img src="../../../../images/security-edge-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Coğrafi yedeklilik ve düşük gecikme için inline Edge Node'ları birden çok bölgeye ve bulut sağlayıcısına dağıtabilirsiniz.
 

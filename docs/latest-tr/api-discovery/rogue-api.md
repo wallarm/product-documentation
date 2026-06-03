@@ -1,4 +1,4 @@
-# Gölge, Yetim, Zombi API <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Gölge, Yetim, Zombi API <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 [API Discovery](overview.md) modülü, yüklediğiniz spesifikasyonu canlı trafikle karşılaştırarak shadow, orphan ve zombie API'leri otomatik olarak belirler.
 

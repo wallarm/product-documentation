@@ -1,4 +1,4 @@
-# 機密性の高いビジネスフロー <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# 機密性の高いビジネスフロー <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 機密性の高いビジネスフロー機能により、Wallarmの[API Discovery](overview.md)は、認証、アカウント管理、課金などのビジネスフローや機能にとって重要なエンドポイントを自動的に特定します。本記事では、機密性の高いビジネスフロー機能の使い方を説明します。
 

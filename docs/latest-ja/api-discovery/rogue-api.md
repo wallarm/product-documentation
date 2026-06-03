@@ -1,4 +1,4 @@
-# シャドウ、オーファン、ゾンビAPI <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# シャドウ、オーファン、ゾンビAPI <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 [API Discovery](overview.md)モジュールは、アップロードした仕様と実トラフィックを比較することで、シャドウ、オーファン、ゾンビAPIを自動的に特定します。
 

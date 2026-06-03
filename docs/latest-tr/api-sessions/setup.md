@@ -1,4 +1,4 @@
-# API Sessions Kurulumu <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Sessions Kurulumu <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 [API Sessions](overview.md), oturum tanımlaması için yerleşik kuralları içerir ve çalışmaya başlaması için yalnızca etkinleştirilmiş Wallarm [node](../about-wallarm/overview.md#how-wallarm-works)'a ihtiyaç duyar. İsteğe bağlı olarak, bu makalede açıklandığı gibi API Sessions'ı ihtiyaçlarınıza göre ince ayar yapabilirsiniz.
 

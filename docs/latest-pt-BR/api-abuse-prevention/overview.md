@@ -1,4 +1,4 @@
-# Prevenção de Abuso de API <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Prevenção de Abuso de API <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 O módulo **Prevenção de Abuso de API** da plataforma Wallarm oferece detecção e mitigação de bots que realizam abuso de API, como preenchimento de credenciais, criação de contas falsas, raspagem de conteúdo e outras ações maliciosas voltadas para suas APIs.
 
