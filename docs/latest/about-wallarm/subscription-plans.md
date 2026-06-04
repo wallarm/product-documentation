@@ -1,6 +1,6 @@
 # Wallarm Subscription Plans
 
-Wallarm is the only solution that unifies API discovery, risk management, real-time protection, and testing capabilities to protect your entire API portfolio in multi-cloud and cloud-native environments. You can easily choose the set of functionality that best suits your needs.
+[Wallarm AI Control Platform](overview.md) covers AI security and API security across cloud-native and multi-cloud environments through four products — Wallarm API Security, Wallarm Infrastructure Discovery, Wallarm AI Hypervisor, and Wallarm API Security Testing. Each product has its own subscription model. This page describes the plans available across all four. Choose the set of functionality that best suits your needs.
 
 ## Core subscription plans
 
@@ -40,7 +40,7 @@ Wallarm is the only solution that unifies API discovery, risk management, real-t
 | [API Sessions](../api-sessions/overview.md) | No | Yes | No |
 | [MCP Sessions](../api-sessions/mcp-sessions.md) | No | Yes | No |
 | [API Discovery](../api-discovery/overview.md) | No | Yes | No |
-| [MCP server discovery](../agentic-ai/mcp-discovery.md) | No | Yes | No |
+| [MCP server discovery](../api-discovery/exploring.md#mcp-servers) | No | Yes | No |
 | [Sensitive data detection](../api-discovery/overview.md#sensitive-data-detection) | No | Yes | No |
 | [Rogue API Detection (shadow, zombie)](../api-discovery/rogue-api.md) | No | Yes | No |
 | [BI Dashboards](../user-guides/dashboards/bi-dashboards.md) | No | Yes | No |
@@ -59,6 +59,41 @@ Wallarm is the only solution that unifies API discovery, risk management, real-t
 | Support | Standard/<br>Advanced/<br>Platinum | Standard/<br>Advanced/<br>Platinum | Standard/<br>Advanced/<br>Platinum |
 
 To activate the subscription plan, contact [sales@wallarm.com](mailto:sales@wallarm.com).
+
+## Wallarm Infrastructure Discovery
+
+Wallarm Infrastructure Discovery is available on **AWS only**. It provides cross-account AWS asset discovery, surfaces shadow AI within minutes of deployment, and makes findings from native AWS security services (Security Hub, GuardDuty, Inspector, Macie, IAM Access Analyzer) actionable on a single relationship graph.
+
+!!! info "Early Access"
+    Wallarm Infrastructure Discovery is currently in Early Access. The free tier limits below are subject to change before general availability.
+
+### Free tier
+
+A free tier is enabled by default for every new Wallarm Console account:
+
+* **1** AWS account
+* **1** AWS region
+* **1** scan per day (24 h minimum interval between scans)
+* AI-powered finding enrichment of Security Hub findings is disabled
+
+The free tier is enough to evaluate the product on a single non-production AWS account. Once you have a Wallarm Console account, go to the **Infrastructure Discovery** section to configure cross-account access.
+
+### Paid tier
+
+For higher limits — additional AWS accounts, more regions, more frequent scans, and AI-powered finding enrichment — contact [sales@wallarm.com](mailto:sales@wallarm.com). Sales will provision the appropriate subscription for your scope.
+
+* **New Wallarm customers** — sign up for a Wallarm Console account; Infrastructure Discovery is available immediately on the free tier.
+* **Existing Wallarm customers** — contact Sales to add Infrastructure Discovery to your account.
+
+## Wallarm AI Hypervisor
+
+Wallarm AI Hypervisor is available on **AWS only** and deploys on Amazon EKS. It instruments AI workloads at runtime with no application code changes, enforces policy inline at the connection level, and produces continuous compliance evidence — coverage heatmap, AI software bill of materials (AI-SBOM), session audit logs, and sensitive data flow records.
+
+AI Hypervisor follows a **separate onboarding flow** with the Wallarm team. There is no self-service signup, free tier, or in-Console activation — AI Hypervisor is managed on a separate domain and is not configured through Wallarm Console.
+
+To get access, contact [sales@wallarm.com](mailto:sales@wallarm.com). Sales will scope your deployment (EKS clusters, model providers, compliance framework targets such as EU AI Act or SOC 2) and provision access.
+
+See the [AI Hypervisor overview](../ai-hypervisor/overview.md) for product details.
 
 ## API Attack Surface
 
@@ -99,7 +134,7 @@ To activate the subscription plan, do one of the following:
 The **Rogue MCP** subscription plan provides access to the extended functions of Wallarm's MCP server, including [API Security Testing via Postman](../vulnerability-detection/api-security-testing-via-postman/overview.md).
 
 !!! info "Free features"
-    [Rogue MCP Inspection](../agentic-ai/rogue-mcp-inspection.md) — auditing local MCP servers for supply-chain risks and excessive privileges — is always free and does not require a subscription or API key.
+    [Rogue MCP Inspection](../vulnerability-detection/api-security-testing-via-postman/overview.md#bonus-rogue-mcp-inspection-free) — auditing local MCP servers for supply-chain risks and excessive privileges — is always free and does not require a subscription or API key.
 
 To activate this subscription:
 

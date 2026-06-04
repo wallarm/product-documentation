@@ -12,7 +12,7 @@ This is the most common setup, recommended when you serve requests from multiple
 
 ![!](../../../images/waf-installation/security-edge/inline/multi-region-edge-nodes.png)
 
-Available regions depend on your [Wallarm Cloud](../../../about-wallarm/overview.md#cloud) (US → US regions, EU → EU regions and UAE North).
+Available regions depend on your [Wallarm Cloud](../../../about-wallarm/api-security-overview.md#cloud) (US → US regions, EU → EU regions and UAE North).
 
 ## Multi-cloud deployment
 

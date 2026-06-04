@@ -1,6 +1,6 @@
 # Best Practices for Attack Prevention with Wallarm
 
-This article will show you how to use Wallarm, a unique platform that is like having two guards in one, for attack prevention. It not only protects websites like other tools (known as WAAP), but it also specifically safeguards your system's APIs, making sure all the technical parts of your online space are safe.
+This article shows you how to use [Wallarm API Security](../about-wallarm/api-security-overview.md) — the API protection product of [Wallarm AI Control Platform](../about-wallarm/overview.md) — for attack prevention. It not only protects web applications like a traditional WAAP, but also specifically safeguards APIs, covering the full range of modern application traffic.
 
 With so many threats we have online, it is crucial to have a strong shield. Wallarm can stop common threats such as SQL injection, cross-site scripting, remote code execution, and Path Traversal all on its own. But for some sneaky dangers and specialized use-cases like protection against DoS-attack, account takeover, API abuse, a few adjustments might be needed. We will walk you through those steps, ensuring you get the best protection possible. Whether you are a seasoned security expert or just embarking on your cybersecurity journey, this article will provide valuable insights to bolster your security strategy.
 

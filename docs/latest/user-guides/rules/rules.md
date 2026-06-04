@@ -4,7 +4,7 @@
 [link-attack-detection-tools]:  ../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection
 [link-sub-plans]:               ../../about-wallarm/subscription-plans.md#core-subscription-plans
 [link-filtration-mode]:         ../../admin-en/configure-wallarm-mode.md
-[link-nodes]:                   ../../about-wallarm/overview.md#how-wallarm-works
+[link-nodes]:                   ../../about-wallarm/api-security-overview.md#how-wallarm-api-security-works
 [link-sessions]:                ../../api-sessions/overview.md
 [link-brute-force-protection]:  ../../admin-en/configuration-guides/protecting-against-bruteforce.md
 [link-cloud-node-synchronization]: ../../admin-en/configure-cloud-node-synchronization-en.md

@@ -12,7 +12,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.25.1 (2026-05-21)
 
-* Added full support for the [ME (Middle East) Wallarm Cloud](../../about-wallarm/overview.md#cloud) in the [all-in-one installer](../../installation/native-node/all-in-one.md):
+* Added full support for the [ME (Middle East) Wallarm Cloud](../../about-wallarm/api-security-overview.md#cloud) in the [all-in-one installer](../../installation/native-node/all-in-one.md):
 
     * Interactive mode now lists **ME Cloud** alongside the US and EU options.
     * The `-c, --cloud` flag now accepts `ME` as a value.
@@ -34,7 +34,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.25.0 (2026-05-04)
 
-* Added support for [MCP server discovery](../../agentic-ai/mcp-discovery.md) in API Discovery
+* Added support for [MCP server discovery](../../api-discovery/exploring.md#mcp-servers) in API Discovery
 * Added support for [MCP Sessions](../../api-sessions/mcp-sessions.md)
 * Added [MCP mitigation controls](../../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
@@ -292,7 +292,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ### 0.25.0 (2026-05-04)
 
-* Added support for [MCP server discovery](../../agentic-ai/mcp-discovery.md) in API Discovery
+* Added support for [MCP server discovery](../../api-discovery/exploring.md#mcp-servers) in API Discovery
 * Added support for [MCP Sessions](../../api-sessions/mcp-sessions.md)
 * Added [MCP mitigation controls](../../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
@@ -541,7 +541,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 ### 0.25.0 (2026-05-04)
 
-* Added support for [MCP server discovery](../../agentic-ai/mcp-discovery.md) in API Discovery
+* Added support for [MCP server discovery](../../api-discovery/exploring.md#mcp-servers) in API Discovery
 * Added support for [MCP Sessions](../../api-sessions/mcp-sessions.md)
 * Added [MCP mitigation controls](../../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques

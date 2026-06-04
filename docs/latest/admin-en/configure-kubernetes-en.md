@@ -594,9 +594,9 @@ Enables or disables the Wallarm module in the Ingress Controller.
 
 Wallarm API endpoint. Can be:
 
-* `us1.api.wallarm.com` for the [US cloud](../about-wallarm/overview.md#cloud).
-* `api.wallarm.com` for the [EU cloud](../about-wallarm/overview.md#cloud).
-* `me1.api.wallarm.com` for the [ME cloud](../about-wallarm/overview.md#cloud).
+* `us1.api.wallarm.com` for the [US cloud](../about-wallarm/api-security-overview.md#cloud).
+* `api.wallarm.com` for the [EU cloud](../about-wallarm/api-security-overview.md#cloud).
+* `me1.api.wallarm.com` for the [ME cloud](../about-wallarm/api-security-overview.md#cloud).
 
 **Default value**: `api.wallarm.com`
 
