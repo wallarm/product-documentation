@@ -64,26 +64,7 @@ To activate the subscription plan, contact [sales@wallarm.com](mailto:sales@wall
 
 Wallarm Infrastructure Discovery is available on **AWS only**. It provides cross-account AWS asset discovery, surfaces shadow AI within minutes of deployment, and makes findings from native AWS security services (Security Hub, GuardDuty, Inspector, Macie, IAM Access Analyzer) actionable on a single relationship graph.
 
-!!! info "Early Access"
-    Wallarm Infrastructure Discovery is currently in Early Access. The free tier limits below are subject to change before general availability.
-
-### Free tier
-
-A free tier is enabled by default for every new Wallarm Console account:
-
-* **1** AWS account
-* **1** AWS region
-* **1** scan per day (24 h minimum interval between scans)
-* AI-powered finding enrichment of Security Hub findings is disabled
-
-The free tier is enough to evaluate the product on a single non-production AWS account. Once you have a Wallarm Console account, go to the **Infrastructure Discovery** section to configure cross-account access.
-
-### Paid tier
-
-For higher limits — additional AWS accounts, more regions, more frequent scans, and AI-powered finding enrichment — contact [sales@wallarm.com](mailto:sales@wallarm.com). Sales will provision the appropriate subscription for your scope.
-
-* **New Wallarm customers** — sign up for a Wallarm Console account; Infrastructure Discovery is available immediately on the free tier.
-* **Existing Wallarm customers** — contact Sales to add Infrastructure Discovery to your account.
+Infrastructure Discovery is procured through the [AWS Marketplace listing](https://aws.amazon.com/marketplace/pp/prodview-kvqg6s3jjelv6). The listing describes all available plans — including the free tier and paid tiers — and is the entry point for self-service signup.
 
 ## Wallarm AI Hypervisor
 

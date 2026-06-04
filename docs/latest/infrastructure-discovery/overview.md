@@ -1,12 +1,13 @@
-# Infrastructure Discovery Overview
+# Infrastructure Discovery Overview <a href="../../about-wallarm/subscription-plans/#wallarm-infrastructure-discovery"><img src="../../images/infrastructure-discovery-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Wallarm Infrastructure Discovery is a SaaS product that continuously maps your cloud infrastructure, identifies vulnerable configurations, and gives you full visibility into what you have deployed and how resources are connected. Access is read-only — Infrastructure Discovery never modifies your cloud resources.
 
-!!! info "Subscription"
-    Infrastructure Discovery requires a separate subscription. Contact [sales@wallarm.com](mailto:sales@wallarm.com) to request access.
+Infrastructure Discovery is distributed primarily through the [AWS Marketplace listing](https://aws.amazon.com/marketplace/pp/prodview-kvqg6s3jjelv6) and is available on all [Wallarm Cloud](../about-wallarm/api-security-overview.md#cloud) instances — US, EU, and ME. See [Setup → Get access](setup.md#1-get-access) for the sign-up flow.
 
 !!! info "Supported cloud providers"
     Infrastructure Discovery currently supports **AWS**. Support for **Azure** and **GCP** is coming soon.
+
+![Findings tab](../images/infrastructure-discovery/findings.png)
 
 ## Issues addressed by Infrastructure Discovery
 
@@ -49,7 +50,7 @@ Infrastructure Discovery inventories resources from the following AWS services:
 In addition to inventorying resources, Infrastructure Discovery imports existing **AWS Security Hub** findings and correlates them with the resources it discovers, so that third-party security signals appear alongside Wallarm's own findings.
 
 !!! info "Expanding coverage"
-    The list of supported services and cloud providers is expanding. If you need coverage for a service not listed here, contact your Wallarm account team.
+    The list of supported services and cloud providers is expanding. If you need coverage for a service not listed here, contact [Wallarm Sales](mailto:sales@wallarm.com).
 
 ## Data handling
 
@@ -63,11 +64,3 @@ All metadata is:
 
 For details on AWS permissions, see [Setup → Required AWS permissions](setup.md#required-aws-permissions).
 
-## Getting started
-
-To start using Infrastructure Discovery:
-
-1. Ensure you have an active Infrastructure Discovery subscription. Contact [sales@wallarm.com](mailto:sales@wallarm.com) if needed.
-1. [Connect your cloud accounts](setup.md).
-1. Wait for the first scan to complete (typically a few minutes depending on account size).
-1. [Explore your inventory](exploring.md) in the Wallarm Console.
