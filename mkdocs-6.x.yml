@@ -445,6 +445,14 @@ nav:
     - Supported Model Providers: ai-hypervisor/supported-providers.md
 
   # ============================================================================
+  # SECTION 5b: INFRASTRUCTURE DISCOVERY
+  # ============================================================================
+  - Infrastructure Discovery:
+    - Overview: infrastructure-discovery/overview.md
+    - Setup: infrastructure-discovery/setup.md
+    - Exploring Inventory: infrastructure-discovery/exploring.md
+
+  # ============================================================================
   # SECTION 4: API SECURITY TESTING
   # ============================================================================
   - API Security Testing:
