@@ -1,6 +1,6 @@
 # Chart Values <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
-The HIGGS Scanner ships as a Helm chart (`wallarm/aih-scanner`, current version `2.1.1`). The tables below list the values most customers tune; everything else in the [chart's `values.yaml`](https://github.com/wallarm/helm-charts/tree/main/aih-scanner) has a sensible default that rarely needs overriding.
+The HIGGS Scanner ships as a Helm chart (`wallarm/aih-scanner`, current version `2.1.1`). The tables below cover the values most customers tune. Everything else in the [chart's `values.yaml`](https://github.com/wallarm/helm-charts/tree/main/aih-scanner) has a default that rarely needs overriding.
 
 For pod and namespace labels that control which workloads the scanner observes, see [Labels and Annotations](annotations.md).
 
@@ -16,7 +16,7 @@ For pod and namespace labels that control which workloads the scanner observes, 
 
 | Key | Default | Description |
 |---|---|---|
-| `config.scanAllPods` | `false` | When `false`, the scanner only observes pods that opted in via the labels described in [Labels and Annotations](annotations.md). When `true`, the scanner observes every pod on the node (anti-loop exclusions still apply). Use `true` for short-lived investigations only — opt-in is the production pattern. |
+| `config.scanAllPods` | `false` | When `false`, the scanner observes only pods that opted in via the labels described in [Labels and Annotations](annotations.md). When `true`, the scanner observes every pod on the node (anti-loop exclusions still apply). Use `true` for short-lived investigations only. Opt-in is the production pattern. |
 | `config.continuousScanEnabled` | `false` | When `true`, the scanner re-scans labeled pods continuously. When `false`, it scans once per pod lifecycle event. |
 
 ## Image and namespace
@@ -83,4 +83,4 @@ helm upgrade aih-scanner wallarm/aih-scanner \
   --set <KEY>=<NEW_VALUE>
 ```
 
-The DaemonSet rolls out one node at a time. Scanner restarts do not interrupt observation — events buffer in memory until the new scanner attaches.
+The DaemonSet rolls out one node at a time. Scanner restarts do not interrupt observation; events buffer in memory until the new scanner attaches.

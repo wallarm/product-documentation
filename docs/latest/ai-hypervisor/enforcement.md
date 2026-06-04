@@ -2,79 +2,85 @@
 
 <a href="briefing.md#role-and-altitude"><img src="../../images/role-security.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-platform.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a>
 
-AI Hypervisor enforces policy at runtime through two primitives that operate at different time horizons:
+AI Hypervisor enforces policy at runtime through the HIGGS Scanner. The enforcement engine ships in every scanner deployment; the operator-facing UI controls that drive it are enabled per tenant by Wallarm. This page describes what the engine can do, how to opt a workload in, and which surfaces in the default UI drive enforcement today.
 
-* **Kill Session** — an **immediate, kernel-level termination** of an active session. Production-grade; ships in the current release.
-* **Policies** — **prospective rules** that block, redact, or alert on outbound calls matching a pattern. Surfaced through the **Policies** view, currently feature-flagged.
+## Capabilities
 
-Together they cover *"stop this one session right now"* (Kill Session) and *"never let this pattern through again"* (Policies).
+The scanner provides three enforcement primitives, each operating at a different layer of the stack:
 
-## Kill Session
+* **Namespace quarantine.** Block all egress to AI providers from a namespace that has not been brought under coverage. Implemented at the kernel level on the scanner DaemonSet (cgroup_skb drop on the target pods). Used by the **Enforce** action in [Shadow AI](shadow-ai.md).
+* **Inline call enforcement.** Outbound HTTPS to model providers is transparently re-routed through a per-node MITM proxy, where rules match on prompt, response, tool input or output, and other parsed fields. Actions are **block** (reject and surface as error to the agent), **redact** (replace the matched substring), or **alert** (log without altering). Rule matching is local to the proxy — sub-millisecond, no backend round-trip per call.
+* **Session-level termination.** Reset every open TCP connection of a misbehaving session at the kernel level via eBPF, without touching other sessions on the same pod. Used when policy alone is not enough and the active session must stop now.
 
-When a session is misbehaving in real time — a jailbroken agent, an over-permissioned tool sequence, an active data-exfiltration attempt — block rules alone are not always enough. The session may already have an open connection to a model provider, or be mid-stream on a tool call. Kill Session terminates every active connection of that session at the kernel level, immediately.
+The first two are *prospective* — they stop the next call that matches. The third is *immediate* — it stops the current call.
 
-### How it works
+### How session-level termination is implemented
 
-The HIGGS Scanner instruments each pod via eBPF. Kernel-side TCP tracepoints record the relationship between each outbound socket and the originating session ID (stitched from request headers, user identity, and trace correlation). When you invoke **Kill Session** in [User Tracks](user-tracks.md), the scanner:
+The scanner attaches eBPF programs to TCP egress hooks on each instrumented pod. Every outbound connection is recorded in an in-kernel map keyed by connection tuple (source IP, source port, destination, PID), with the session ID the scanner has stitched for that flow attached. A second map carries the per-session verdict: `allow` (default) or `block`.
 
-1. Looks up every TCP connection whose session ID matches the target.
-2. Issues a kernel-level `SO_LINGER`-zero close on each matching socket — the connection is reset, not drained.
-3. Marks the session as `killed` in the backend, with the reason you supplied.
-4. Preserves the full waterfall up to the kill point for post-incident review.
+When the verdict for a session flips to `block` — because an operator pressed **Kill Session** in [User Tracks](user-tracks.md), or because an inline rule fired on a call inside that session — the eBPF program emits a TCP **RST** on the next packet of every matching connection instead of forwarding it. The connection is reset, not drained: the agent sees `ECONNRESET` on every active socket of that session within one round-trip. Other sessions on the same pod, and sessions of other pods on the same node, are untouched.
 
-No pod restart, no deploy cycle, no impact on other sessions in the same pod. Other workloads remain undisturbed.
+The same eBPF path handles two cases:
 
-### When to use Kill Session
+* *Block this session now* (operator-initiated, from a session row).
+* *Block calls matching this inline rule from now on* (rule-initiated, after the proxy detects a match the scanner sets the verdict for that session).
 
-* A session is producing visibly bad output (jailbroken agent, off-policy tool calls) and there is no time to author a new policy.
-* A data-exfiltration pattern is detected mid-flight and the egress connection must be torn down immediately.
-* An incident-response team needs a stop-the-bleeding action before forensic review.
+The verdict map is queried by the local MITM proxy over a localhost endpoint (`GET /api/policy?src_ip=…`), so HTTPS sessions are caught at the proxy layer in addition to the kernel-level RST — the proxy refuses to relay the bytes onward and the kernel reset stops any retry attempt on the same socket.
 
-For systemic patterns — the same bad behaviour across many sessions — author a policy rather than killing each session individually. Kill Session is an incident control, not a policy mechanism.
+## Opting workloads in
 
-### What the agent sees
+Enforcement is a per-workload opt-in, separate from observation. The labels are independent so you can run a workload in observe-only mode for as long as you need before applying any controls.
 
-The agent's connection terminates with `ECONNRESET`. Most LLM SDKs surface this as a retryable network error. Application code that retries unconditionally may attempt the same call again — depending on your topology, the retry either matches a policy (and is rejected) or hits a fresh session ID (and runs normally). For consistent enforcement of intent, combine the kill action with a policy that prevents the next attempt.
+| Label | Effect |
+|---|---|
+| `higgs.scan=enabled` | Observation only — the scanner captures sessions, attributes calls, detects PII. No enforcement. |
+| `higgs.io/enforce=enabled` | Observation + enforcement. The scanner adds DNAT rules that route outbound LLM traffic through the local MITM proxy, where the in-proxy rule set decides block / redact / alert. |
 
-## Policies
+Both labels apply at pod or namespace scope. A namespace-level label applies to every pod in the namespace. See [Labels and Annotations](annotations.md) for the full list and precedence.
 
-The **Policies** view in the [Briefing](briefing.md) tray is the policy-management surface. A policy is a pattern, a destination scope, and an action; when an outbound call from an instrumented workload matches all three, the call is rejected, redacted, or alerted on at the egress boundary before it reaches the model provider.
+Applying `higgs.io/enforce=enabled` triggers a scanner reconfiguration within ~30 seconds — no pod restart, no Helm operation. Removing the label or replacing it with `=disabled` rolls the workload back to observation-only.
 
-!!! info "Availability"
-    The Policies view and the underlying pattern-match enforcement engine are **feature-flagged** in the current release. Wallarm enables them per tenant on request. The underlying engine runs in every scanner deployment, but the customer-facing rule editor and active-policy table are gated behind the feature flag.
+## How enforcement surfaces in the default UI
 
-### Policy lifecycle
+Several surfaces drive the enforcement engine in the current release:
 
-Policies move through five states, each surfaced as a sub-tab in the Policies view:
+* **Per-finding "Block …" buttons in the *Needs a decision* panel.** Each finding row on the [Briefing](briefing.md) carries its own action button, and the label is chosen from the finding's category — different rows in the same panel show different labels. Confirmed mappings include:
 
-* **Active** — currently in force. The Disable action revokes a policy without deleting it.
-* **Pending** — drafted (often by the platform itself as an *agent-drafted policy*) and awaiting human approval before activation.
-* **Watching** — applied in observe-only mode; the platform records what *would* have matched, without taking action. Use this to baseline a policy's match rate before flipping to Active.
-* **Declined** — proposals you have rejected. Kept for audit.
-* **Certs** — A2AS Behavior Certificates per agent: signed declarations of the actions an agent is meant to take. Drift between a cert and observed behaviour is what drives most Pending policies.
+    | Finding category | Button label |
+    |---|---|
+    | `pii` | *Block PII egress* |
+    | `auth` | *Block unauthenticated calls* |
+    | `access` | *Block this target* |
+    | `injection` | *Block the injection vector* |
 
-### Anatomy of a policy
+    Other dimensions on the [Findings model](findings.md) (threat, anomaly, shadow, supply, cert, compliance, fidelity) carry their own category-specific actions on the rows they produce.
 
-* **Pattern** — a regular expression evaluated against a specified field (`prompt`, `tool_input`, `tool_output`, `headers`, `body`).
-* **Field** — the part of the call to inspect. For LLM calls, common fields are `prompt` and `response`. For MCP tool calls, `tool_input` and `tool_output`.
-* **Destination scope** — which downstream targets the rule applies to: a specific asset, an asset class (`LLM`, `MCP`, `API`, `Data`), or all destinations.
-* **Action** — `block` (reject and surface as error to the agent), `redact` (replace matched substrings with a configured token), or `alert` (log without altering).
-* **Severity** — `low` / `medium` / `high` / `critical`, drives how the resulting finding rolls up on [Heatmap](heatmap.md).
+    Pressing the button takes the matching pattern from the finding (for example, the prompt-injection score threshold *≥ 50*, or the destination host from an access finding) and adds it as an active inline rule that fires across every app from that moment on. A typical *Needs a decision* panel surfaces many rows from multiple categories simultaneously, so multiple *Block …* actions are usually visible at once.
+* **[Shadow AI](shadow-ai.md) → Enforce on a namespace card.** Applies the namespace-quarantine primitive to every workload in the namespace. Subsequent egress to AI providers from that namespace is dropped at the kernel level.
+* **Session-level Kill Session.** Lives on a session row in [User Tracks](user-tracks.md). The UI button is feature-flagged off by default; Wallarm enables it per tenant once safety guardrails are validated for your deployment. The scanner-side primitive — eBPF-based session termination — is always present.
+* **Policies tray card in the Briefing.** A scoped view of the inline rule set, available in the [Briefing](briefing.md) action bar when enabled. Also enabled per tenant by Wallarm.
 
-Policies are evaluated in order until the first match. If no policy matches, the call is allowed by default.
+For roles that do not see these surfaces directly, the engine still operates on every labelled workload — the absence of a UI control does not mean the absence of enforcement.
 
-## Putting them together
+## What the agent sees when something is blocked
 
-The two primitives cover different time horizons:
+The exact failure surface depends on which primitive fired:
 
-* **Policies** are *prospective* — they prevent the next call that matches. Use them for policy: *"no credit-card numbers in prompts to external LLMs"*, *"no calls to unsanctioned providers"*.
-* **Kill Session** is *immediate* — it stops the current call. Use it for incident response: *"this session is doing something we did not anticipate; cut it now."*
+* **Namespace quarantine.** Outbound connections to AI provider domains fail at connect time. Most SDKs surface this as `ECONNREFUSED` or DNS-resolution failure if the resolver itself is short-circuited.
+* **Inline block.** The proxy returns a synthetic error response to the agent (HTTP 4xx with a structured body for OpenAI-shaped APIs, `tool_result.is_error=true` for MCP tool calls). The model provider never sees the call.
+* **Session termination.** Every open connection of the session terminates with `ECONNRESET`. SDKs surface this as a retryable network error; depending on retry behaviour, the next attempt either matches an inline rule (and is rejected) or hits a fresh session ID.
 
-A mature deployment runs many policies and rarely needs Kill Session. Early deployments often need Kill Session frequently while the policy library is built up.
+Application code that retries unconditionally may still complete the action on a fresh session. For consistent enforcement of intent, pair the session kill with an inline rule that prevents the next attempt.
+
+## Auditability
+
+Every enforcement decision is logged. The proxy emits one record per evaluated call (matched rule, action taken, latency); the kernel-side quarantine emits a record per first-blocked connection; session terminations emit a record per killed session. Records carry the rule identifier, the operator who applied the rule, and a hash of the matched field. They appear in [Notifications](notifications.md), in the per-app finding feed, and in the audit trail packaged by [Compliance](compliance.md).
 
 ## Cross-references
 
-* [User Tracks](user-tracks.md) — where Kill Session lives, and where killed sessions surface
-* [Data Tracks](data-tracks.md) — per-flow records of what a policy produced
-* [Briefing](briefing.md) — where the Policies view lives
-* [Reports](reports.md) — how enforcement events flow into audit reports
+| From Enforcement-driven event | You land in |
+|---|---|
+| Blocked egress from a quarantined namespace | [Shadow AI](shadow-ai.md), the namespace card |
+| Inline block / redact / alert on a call | [User Tracks](user-tracks.md), the session that triggered the rule |
+| Drift-triggered rule proposal | [Patterns](patterns.md), the originating Behavior-cert drift pattern |
+| Audit evidence of an enforcement event | [Compliance](compliance.md), the evidence pack |
