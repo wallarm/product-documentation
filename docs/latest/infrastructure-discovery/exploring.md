@@ -127,7 +127,9 @@ The **Graph** tab provides a visual map of your cloud resources and how they con
 
 A **Results** panel summarizes the current view with counts such as **Critical** findings, **Entry points**, **New this week**, and **Orphaned** (unconnected) resources, plus a **Top 10 critical assets** list.
 
-Use the filters to narrow the graph by **account**, **region**, **service**, **resource type**, and **severity**.
+Use the filters to narrow the graph by **account**, **region**, **service**, **resource type**, and **severity**. Select any node to open its details and highlight its connections.
+
+![Graph resource details](../images/infrastructure-discovery/graph-detail.png)
 
 ## Change tracking
 
