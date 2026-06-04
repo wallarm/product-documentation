@@ -1082,7 +1082,7 @@ Default: `true`.
 
 ### http_inspector.wmcp_enabled
 
-Enables [MCP (Model Context Protocol)](../../agentic-ai/mcp-discovery.md) traffic analysis. When set to `false`, the Node skips MCP setup even when MCP analysis would otherwise be enabled automatically by your [Advanced API Security](../../about-wallarm/subscription-plans.md#core-subscription-plans) subscription. Use this opt-out flag when you do not need MCP analysis.
+Enables [MCP (Model Context Protocol)](../../api-discovery/exploring.md#mcp-servers) traffic analysis. When set to `false`, the Node skips MCP setup even when MCP analysis would otherwise be enabled automatically by your [Advanced API Security](../../about-wallarm/subscription-plans.md#core-subscription-plans) subscription. Use this opt-out flag when you do not need MCP analysis.
 
 Default: `true`.
 

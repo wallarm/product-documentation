@@ -1,104 +1,51 @@
-[link-deployment-se]:           ../installation/security-edge/overview.md
-[link-deployment-hybrid]:       ../installation/supported-deployment-options.md
+# Wallarm AI Control Platform Overview
 
-# Wallarm Platform Overview
+Wallarm provides AI Control Platform — an AI and API security platform that discovers your APIs and AI workloads, protects them against attacks and abuse, tests them for vulnerabilities, and produces continuous governance evidence.
 
-In today's digital world, APIs face growing threats, especially with the rise of AI. Traditional security can overlook API vulnerabilities or be difficult to deploy. With Wallarm, you get a single platform for API protection and inventory observability across cloud-native environments.
+Enterprises are deploying AI faster than they can govern it. AI agents act, decide, and call APIs autonomously, with less oversight than the people they replace. At the same time, APIs — internal services, partner-facing endpoints, third-party integrations, and the ones AI workloads consume — have become the primary attack surface, exposed to both classic abuse and AI-specific exploitation. Wallarm AI Control Platform addresses both problems in one place.
 
-Enterprises prefer Wallarm for its enhanced API security, easy deployment, and value. It combines API discovery, risk management, real-time protection, and testing with advanced API security capabilities.
+## Platform products
 
-## Discover
+Wallarm AI Control Platform comprises four products:
 
-You need to know it to protect it. Wallarm offers comprehensive API discovery capabilities to identify APIs in your environment and evaluate their security risks. Here is what Wallarm's API discovery does:
+* **[Wallarm API Security](api-security-overview.md)** — protection for your APIs: internal services, partner-facing endpoints, third-party integrations, and the APIs consumed by AI workloads. Blocks the OWASP API Top 10, automated abuse, account takeover, AI-targeted attacks, and attacks against Model Context Protocol (MCP) servers across REST, GraphQL, gRPC, SOAP, and WebSocket. Deploys wherever your traffic lives — cloud, hybrid, or edge.
+* **[Wallarm AI Hypervisor](../ai-hypervisor/overview.md)** — runtime observability, enforcement, and governance for AI workloads. Observes every AI agent decision, enforces policy at the connection level, and produces continuous compliance evidence — without modifying the application. **Available on AWS only**.
+* **[Wallarm Infrastructure Discovery](../infrastructure-discovery/overview.md)** — cross-account visibility across your cloud estate. Maps every workload, surfaces shadow AI within minutes of deployment, and makes findings from native cloud security services actionable. **Available on AWS only**.
+* **[Wallarm API Security Testing](../vulnerability-detection/security-testing-overview.md)** — proactively uncovers security issues in your applications and APIs before attackers exploit them, through dynamic testing, threat replay, and external attack surface management.
 
-* [Detects your API endpoints and their parameters](../api-discovery/overview.md), and continually updates the API view through consistent traffic analysis.
-* [Identifies rogue endpoints](../api-discovery/rogue-api.md), including shadow and zombie APIs.
-* Spots endpoints that could expose sensitive data, like PII.
-* [Assesses each endpoint for security risks](../api-discovery/risk-score.md), vulnerabilities, and provides a risk score.
+## The Wallarm AI Control Loop
 
-![Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
+AI and API security in production is not one job. It is four jobs that must work together. Wallarm AI Control Platform delivers all four as the **Wallarm AI Control Loop** — a continuous cycle where each stage feeds the next.
 
-## Protect
+### Discover
 
-Wallarm extends discovery to deliver real protection by detecting and blocking application and API attacks in traffic. Wallarm’s proprietary detection techniques deliver highly accurate results, including detection of attacks against [OWASP Top 10](https://owasp.org/www-project-top-ten/) and [OWASP API Top 10](https://owasp.org/www-project-api-security/) vulnerabilities. Here is how Wallarm ensures protection:
+See every AI workload, every API, every cloud asset — including the ones nobody inventoried.
 
-* Detects attacks both [inline](../installation/inline/overview.md) and [out-of-band](../installation/oob/overview.md).
-* Combats [various threats](../attacks-vulns-list.md), from web-based to API-specific ones, like code injections, remote code execution, brute force, BOLA, and more.
-* Identifies [API specific malicious bot abuse](../api-abuse-prevention/overview.md).
-* Counters Layer 7 Denial of Service attacks with customizable [rate limiting](../user-guides/rules/rate-limiting.md).
-* Allows users to create [custom defenses](../user-guides/rules/regex-rule.md) by setting their own threat definitions, complementing the built-in measures.
-* Maps attacks with your system's vulnerabilities to highlight critical incidents.
-* Detects [credential stuffing attempts](../about-wallarm/credential-stuffing.md).
+* **APIs** ([Wallarm API Security](api-security-overview.md)): detects API endpoints and parameters from live traffic, identifies [rogue endpoints](../api-discovery/rogue-api.md) including shadow and zombie APIs, spots endpoints that expose sensitive data, and [assigns each endpoint a risk score](../api-discovery/risk-score.md).
+* **AI workloads on AWS** ([Wallarm AI Hypervisor](../ai-hypervisor/overview.md)): auto-discovers MCP servers, agent frameworks, data sources, and model provider calls from runtime behavior on Amazon EKS. Shadow AI surfaces from what is actually running, not from what was declared in a manifest.
+* **AWS estate** ([Wallarm Infrastructure Discovery](../infrastructure-discovery/overview.md)): cross-account discovery of compute, network, API Gateway, Lambda, and IAM resources, with creator attribution on every asset and a live relationship graph that shows how systems connect.
+* **External attack surface** ([Wallarm API Security Testing](../vulnerability-detection/security-testing-overview.md)): discovers external hosts and APIs without deployment via [API Attack Surface Management (AASM)](../api-attack-surface/overview.md).
 
-## Respond
+### Observe
 
-Wallarm gives you the tools to effectively respond to security threats, offering in-depth data, broad integrations, and blocking mechanisms. It first presents detailed information, helping security analysts gauge the threat's nature and severity. You can then tailor responses, act on threats, and send alerts to relevant systems. Here is how Wallarm backs you up:
+Watch what AI and APIs actually do at runtime - every call, every data flow, every decision.
 
-* [Deep attack inspection](../user-guides/events/check-attack.md), which includes unpacked encoded requests, detailing every aspect of an attack, from headers to the body.
-* [Geolocation-based controls](../user-guides/ip-lists/overview.md) to block suspicious traffic sources like VPNs and Tor networks.
-* [Attack blocking measures](../admin-en/configure-wallarm-mode.md#available-filtration-modes) to prevent malicious activities from reaching your APIs.
-* [Integrations](../user-guides/settings/integrations/integrations-intro.md) with the most widely used security, operational, and development tools to create tickets, notifications, and deliver data on detected security threats. Compatible platforms include Slack, Sumo Logic, Splunk, Microsoft Sentinel, and more.
-* [Virtual patches](../user-guides/rules/vpatch-rule.md) for urgent issues highlighted by Wallarm's vulnerability detection.
+* **API traffic** ([Wallarm API Security](api-security-overview.md)): analyzes every request and response, identifying attacks against [OWASP Top 10](https://owasp.org/www-project-top-ten/) and [OWASP API Top 10](https://owasp.org/www-project-api-security/), [API-specific bot abuse](../api-abuse-prevention/overview.md), [credential stuffing attempts](../about-wallarm/credential-stuffing.md), and behavioral anomalies.
+* **AI agent behavior on AWS** ([Wallarm AI Hypervisor](../ai-hypervisor/overview.md)): captures every outbound connection an AI workload makes on EKS — LLM calls, internal APIs, databases, third-party services — and attributes each call back to the user or session that triggered it, across service hops.
+* **AWS findings on one graph** ([Wallarm Infrastructure Discovery](../infrastructure-discovery/overview.md)): findings from native AWS security services land on the asset they affect, with full asset context, so analysts can see them in relation to everything else running.
 
-![Events](../images/about-wallarm-waf/overview/events-with-attacks.png)
+### Enforce
 
-## Test
+Stop policy violations and malicious actors automatically. Block, quarantine, revoke.
 
-Managing deployed risk is the first line of defense, but reducing the risk exhibited by product applications and APIs is the most effective way to reduce incidents. Wallarm closes the loop on application and API security by providing a [suite of testing capabilities](../about-wallarm/detecting-vulnerabilities.md#detection-methods) to find and eliminate applications' and APIs' **security issues (vulnerabilities)**:
+* **API protection** ([Wallarm API Security](api-security-overview.md)): detects attacks both [inline](../installation/inline/overview.md) and [out-of-band](../installation/oob/overview.md). Counters Layer 7 DoS with [rate limiting](../user-guides/rules/rate-limiting.md). Lets you define [custom defenses](../user-guides/rules/regex-rule.md) alongside built-in measures. Geolocation-based controls, [virtual patches](../user-guides/rules/vpatch-rule.md), and [filtration mode controls](../admin-en/configure-wallarm-mode.md#available-filtration-modes) keep malicious activity off your APIs.
+* **AI runtime enforcement on AWS** ([Wallarm AI Hypervisor](../ai-hypervisor/overview.md)): blocks outbound LLM calls on pattern-match rules and revokes compromised AI agent sessions by user identity or trace ID. Active connections terminate at the kernel — no pod restart, no deploy cycle.
 
-* With the installed [Wallarm filtering node](#filtering-node):
+### Govern
 
-    * Your security issues are found **by default without any further configuration**, just by working Wallarm filtering node based on its analysis of the actual traffic, including both requests and responses. As no special test requests are sent, this is called [passive detection](../about-wallarm/detecting-vulnerabilities.md#passive-detection).
-    * For a single attack, passive detection checks only one request/response pair. By configuring [Threat Replay Testing (TRT)](../vulnerability-detection/threat-replay-testing/overview.md), use this data from the traffic as a start point to create multiple attack modifications to try all of them on a test server.
+Generate evidence — do not assemble it. Continuous coverage records, audit logs, AI inventories, and regulatory mappings. Audit-ready at any time, with live data.
 
-* Even **without node** (agentless solutions):
-
-    * Discover your external hosts, their APIs and security issues and further manage the discovered vulnerability mitigation with [API Attack Surface Management (AASM)](../api-attack-surface/overview.md).
-    * Use [Schema-Based Testing (SBT)](../vulnerability-detection/schema-based-testing/overview.md) Wallarm's dynamic application security testing (DAST) solution that enables "shift-left" security - proactively identifies a wide range of vulnerabilities early in the development process. SBT starts as Docker container and is tailored to your specification.
-
-Explore and manage all found security issues, regardless of the detection method, in one unified management center in Wallarm Console - the [**Security Issues**](../user-guides/vulnerabilities.md) section.
-
-![Security Issues](../images/api-attack-surface/security-issues.png)
-
-## How Wallarm works
-
-Wallarm's platform is primarily built upon two main components: the Wallarm filtering node and the Wallarm Cloud.
-
-![!Arch scheme1](../images/about-wallarm-waf/overview/filtering-node-cloud.png)
-
-### Filtering node
-
-Positioned between the Internet and your APIs, the Wallarm filtering node:
-
-* Analyzes the company's entire network traffic and mitigates malicious requests.
-* Collects the network traffic metrics and uploads the metrics to the Wallarm Cloud.
-* Downloads resource-specific security rules you defined in the Wallarm Cloud and applies them during the traffic analysis.
-* Detects sensitive data in your requests, ensuring it remains secure within your infrastructure and is not transmitted to the Cloud as to a third-party service.
-
-You can set up the Wallarm filtering node within [your own network or opt for Wallarm Security Edge](../installation/supported-deployment-options.md).
-
-### Cloud
-
-The Wallarm Cloud does the following:
-
-* Processes the metrics that the filtering node uploads.
-* Compiles custom resource-specific security rules.
-* Scans the company's exposed assets to detect vulnerabilities.
-* Builds API structure based on the traffic metrics received from the filtering node.
-* Houses the Wallarm Console UI, your command center for navigating and configuring the Wallarm platform, ensuring you have a comprehensive view of all security insights.
-
-Wallarm offers cloud instances in the US, Europe, and the Middle East, enabling you to select the best fit considering your data storage preferences and regional service operation requirements.
-
-[Proceed to signup on the US Wallarm Cloud](https://us1.my.wallarm.com/signup)
-
-[Proceed to signup on the EU Wallarm Cloud](https://my.wallarm.com/signup)
-
-[Proceed to signup on the ME Wallarm Cloud](https://me1.my.wallarm.com/signup)
-
-## Where Wallarm works
-
-The [described](#how-wallarm-works) Wallarm components: filtering node and Cloud - can be deployed in one of two forms:
-
---8<-- "../include/deployment-forms.md"
-
-See details on [shared responsibility](shared-responsibility.md) for each deployment form.
+* **AI governance evidence on AWS** ([Wallarm AI Hypervisor](../ai-hypervisor/overview.md)): continuous coverage heatmap, AI software bill of materials (AI-SBOM), session audit logs, and sensitive data flow records. Maps to EU AI Act, SOC 2, and sector audit requirements at any time.
+* **AWS asset and finding audit trail** ([Wallarm Infrastructure Discovery](../infrastructure-discovery/overview.md)): every triage decision logged, every asset attributed to the user who created it, drift detection on every scan.
+* **Vulnerability evidence** ([Wallarm API Security Testing](../vulnerability-detection/security-testing-overview.md)): all found security issues, regardless of detection method, are consolidated in the [**Security Issues**](../user-guides/vulnerabilities.md) section of Wallarm Console.
+* **Operational response** ([Wallarm API Security](api-security-overview.md)): [deep attack inspection](../user-guides/events/check-attack.md), broad [integrations](../user-guides/settings/integrations/integrations-intro.md) with SIEM, SOAR, ticketing, and chat tools (Slack, Sumo Logic, Splunk, Microsoft Sentinel, and more) route findings into the workflows security teams already operate.

@@ -1,3 +1,26 @@
+# Filtering node + Cloud architecture moved from about-wallarm/overview to about-wallarm/api-security-overview
+/about-wallarm/overview/#filtering-node             /about-wallarm/api-security-overview/#filtering-node
+/about-wallarm/overview/#cloud                      /about-wallarm/api-security-overview/#cloud
+/about-wallarm/overview/#how-wallarm-works          /about-wallarm/api-security-overview/#how-wallarm-api-security-works
+
+# AI Security section dissolved into API Security; overview page merged into Agentic AI Protection
+/agentic-ai/overview/    /agentic-ai/agentic-ai-protection/
+/agentic-ai/overview     /agentic-ai/agentic-ai-protection/
+
+# AI/LLM Endpoint and MCP Server discovery pages merged into api-discovery/exploring
+/agentic-ai/agentic-ai-discovery/    /api-discovery/exploring/#aillm-endpoints
+/agentic-ai/agentic-ai-discovery     /api-discovery/exploring/#aillm-endpoints
+/agentic-ai/mcp-discovery/           /api-discovery/exploring/#mcp-servers
+/agentic-ai/mcp-discovery            /api-discovery/exploring/#mcp-servers
+
+# Custom Request Anomaly merged into AI Payload Inspection (same mitigation control)
+/api-protection/custom-request-anomaly/    /agentic-ai/ai-payload-inspection/
+/api-protection/custom-request-anomaly     /agentic-ai/ai-payload-inspection/
+
+# Rogue MCP Inspection merged into API Security Testing via Postman overview (same Postman MCP server)
+/agentic-ai/rogue-mcp-inspection/    /vulnerability-detection/api-security-testing-via-postman/overview/#bonus-rogue-mcp-inspection-free
+/agentic-ai/rogue-mcp-inspection     /vulnerability-detection/api-security-testing-via-postman/overview/#bonus-rogue-mcp-inspection-free
+
 /en/admin-en/configure-tarantool-en.html   /en/admin-en/configuration-guides/allocate-resources-for-waf-node.html
 /en/quickstart-en/qs-intro-en.html         /en/quickstart-en/how-wallarm-works/qs-intro-en.html
 /ru/admin-ru/configure-tarantool-ru.html   /ru/admin-ru/configuration-guides/allocate-memory-for-waf-node.html

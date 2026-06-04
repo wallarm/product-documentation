@@ -122,8 +122,6 @@ nav:
       - Güvenlik Sorunlarını Tespit Etme: api-attack-surface/security-issues.md
     - Zafiyetleri Tespit Etme: about-wallarm/detecting-vulnerabilities.md
   - AI güvenliği:
-    - AI keşfi:
-      - Yapay Zeka Keşfi: agentic-ai/agentic-ai-discovery.md
     - AI koruması:
       - Etken Yapay Zeka Koruması: agentic-ai/agentic-ai-protection.md
   - Dağıtım:

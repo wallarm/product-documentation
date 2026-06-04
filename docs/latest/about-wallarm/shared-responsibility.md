@@ -7,7 +7,7 @@ Wallarm relies on a shared responsibility security model. In this model, all par
 
 ## Overview
 
-Wallarm has two main components: **Wallarm filtering node** and **Wallarm Cloud**. See their general descriptions [here](../about-wallarm/overview.md#how-wallarm-works). These components can be deployed in one of two forms for which Wallarm and client's responsibilities are shared differently:
+Wallarm has two main components: **Wallarm filtering node** and **Wallarm Cloud**. See their general descriptions [here](../about-wallarm/api-security-overview.md#how-wallarm-api-security-works). These components can be deployed in one of two forms for which Wallarm and client's responsibilities are shared differently:
 
 --8<-- "../include/deployment-forms.md"
 

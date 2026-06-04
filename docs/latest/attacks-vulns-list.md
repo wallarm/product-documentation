@@ -95,7 +95,7 @@ Technically, all attacks that can be detected by Wallarm are divided into three 
 
     Examples: [System prompt retrieval](#system-prompt-retrieval), [prompt injection](#prompt-injection), [custom AI payload inspection](#custom-ai-payload-inspection).
 
-<a name="attack-det-methods"></a>[Handling](about-wallarm/protecting-against-attacks.md#attack-handling-process) of all attacks require [Wallarm filtering node](about-wallarm/overview.md#how-wallarm-works). However, as described above, methods of detection vary.
+<a name="attack-det-methods"></a>[Handling](about-wallarm/protecting-against-attacks.md#attack-handling-process) of all attacks require [Wallarm filtering node](about-wallarm/api-security-overview.md#how-wallarm-api-security-works). However, as described above, methods of detection vary.
 
 !!! info "Method names and abbreviations"
     BID - **built-in detectors**, the major node function, [basic set of detectors](about-wallarm/protecting-against-attacks.md#basic-set-of-detectors), no configuration required
@@ -848,7 +848,7 @@ Multiple malicious anomalies in request to AI or its response, such as:
 * Any others not listed above
 
 !!! info "Alternative usage"
-    This attack type also marks found [custom request anomalies](api-protection/custom-request-anomaly.md) not related to Agentic AI.
+    This attack type also marks generic [custom semantic anomalies](agentic-ai/ai-payload-inspection.md#semantic-anomalies-in-arbitrary-request-points) detected in non-AI request points.
 
 **Required configuration:**
 

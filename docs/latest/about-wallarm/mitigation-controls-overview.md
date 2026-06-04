@@ -21,7 +21,7 @@ Using mitigation controls, you can enable and configure:
 * [MCP ACL Policy](../agentic-ai/mcp-mitigation-controls.md#acl-policy)
 * [MCP Request Verification](../agentic-ai/mcp-mitigation-controls.md#request-verification)
 * [MCP Tool Input Schema Enforcement](../agentic-ai/mcp-mitigation-controls.md#tool-input-schema-enforcement)
-* [Custom request anomaly detection](../api-protection/custom-request-anomaly.md)
+* [Custom request anomaly detection](../agentic-ai/ai-payload-inspection.md)
 * [File upload restriction policy](../api-protection/file-upload-restriction.md)
 
 ## Mitigation control branches
