@@ -39,6 +39,8 @@ The **Findings** tab lists every finding produced across your infrastructure. Ea
 
 You can group the list **by finding** or **by rule**, and filter it by severity, status, and source. Filtering by source lets you separate Wallarm findings from AWS Security Hub findings, or focus on a single AWS product.
 
+![Findings tab](../images/infrastructure-discovery/findings.png)
+
 !!! info "AWS Security Hub findings"
     If you use AWS Security Hub, Infrastructure Discovery imports its findings and correlates them with the resources it has discovered. Imported findings keep their original product attribution and appear alongside Wallarm's own findings. No extra configuration is required beyond the [Security Hub permissions](setup.md#required-aws-permissions) in the connected account's policy.
 
@@ -52,6 +54,8 @@ Click any finding to open its detail view, which shows:
 * **Connections** — the resources directly related to the affected asset, with their relationship types (for example, `associated_with_eni`)
 * The finding **status** and when it was first **discovered**
 * A **blast radius graph** that visualizes how the asset is exposed and which resources are reachable from it — for example, an `Internet → exposed → asset` path through the connected network interfaces and instances
+
+![Finding details and blast radius](../images/infrastructure-discovery/finding-blast-radius.png)
 
 ### Policies
 
@@ -90,6 +94,8 @@ The main inventory view (the **Assets** tab) displays all discovered resources i
 
 Click any row to open the resource detail view with its full configuration, tags, and findings.
 
+![Assets inventory](../images/infrastructure-discovery/assets.png)
+
 ### Filtering and search
 
 Use the filter bar to narrow down the inventory by:
@@ -117,6 +123,8 @@ Relationships between resources are visualized in the [relationship graph](#rela
 
 The **Graph** tab provides a visual map of your cloud resources and how they connect. Resources are grouped by **account, region, and VPC**, so you can read the topology at any zoom level — from a high-level cluster view down to individual resources and their connections. From the graph you can trace how traffic reaches a resource (for example, from an internet gateway through a load balancer to a compute instance) and spot isolated or unexpectedly connected resources.
 
+![Relationship graph](../images/infrastructure-discovery/graph.png)
+
 A **Results** panel summarizes the current view with counts such as **Critical** findings, **Entry points**, **New this week**, and **Orphaned** (unconnected) resources, plus a **Top 10 critical assets** list.
 
 Use the filters to narrow the graph by **account**, **region**, **service**, **resource type**, and **severity**.
@@ -130,3 +138,5 @@ Infrastructure Discovery automatically compares each scan to the previous one an
 * **Deleted** — a resource that was present in the previous scan but is no longer found
 
 You can filter drift events by severity, change type, service, and account to review what changed in a given scan cycle.
+
+![Drift events](../images/infrastructure-discovery/drift-events.png)

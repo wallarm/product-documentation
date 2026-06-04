@@ -18,9 +18,11 @@ This article describes how to connect your cloud accounts to Wallarm's [Infrastr
 
 To connect an AWS account, open **Settings** in the Infrastructure Discovery section of Wallarm Console and click **Add Account** on the **Accounts** tab.
 
+![Connected AWS accounts](../images/infrastructure-discovery/accounts.png)
+
 ### Authentication type
 
-The **Authentication Type** dropdown provides two options:
+The first step of the **Add AWS account** wizard offers two authentication types:
 
 | Method | How it works | Best for |
 | --- | --- | --- |
@@ -28,6 +30,8 @@ The **Authentication Type** dropdown provides two options:
 | **Access Key** | You provide an Access Key ID and Secret Access Key for an IAM user in your account. The key is long-lived and stored encrypted in Wallarm. Rotation is your responsibility. | Evaluation, sandboxes, or environments where role assumption is not available |
 
 Both methods use the same read-only permissions and produce the same inventory.
+
+![Choose authentication method](../images/infrastructure-discovery/add-account-auth.png)
 
 ### Required AWS permissions
 
@@ -89,6 +93,8 @@ The **Add AWS account** wizard guides you through three steps:
 
 The template creates the read-only role and a trust policy scoped to your Wallarm tenant, so you do not configure trust settings or an external ID manually.
 
+![Deploy CloudFormation step](../images/infrastructure-discovery/add-account-cloudformation.png)
+
 ### Setup with Access Key
 
 The wizard guides you through three steps:
@@ -96,6 +102,8 @@ The wizard guides you through three steps:
 1. **Choose authentication method** — select **Access Key**, enter an **Account name**, and click **Next**.
 1. **Account details** — enter the **Account ID**, the **Default region**, and the **Access Key ID** and **Secret Access Key** of a read-only IAM user, then click **Next**. Attach a policy with the [required permissions](#required-aws-permissions) to that user.
 1. **Schedule discovery scans** — keep **Enable scheduled discovery scan** on, set the **Scan Interval (Minutes)**, and click **Add account**.
+
+![Access Key account details](../images/infrastructure-discovery/add-account-accesskey.png)
 
 ## Multi-account setup
 
