@@ -116,35 +116,6 @@ nav:
       - MCP Mitigation Controls: agentic-ai/mcp-mitigation-controls.md
 
   # ============================================================================
-  # SECTION 4: API SECURITY TESTING
-  # ============================================================================
-  - API Security Testing:
-    - Security Testing Overview: vulnerability-detection/security-testing-overview.md
-
-    - Threat Replay Testing:
-      - Overview: vulnerability-detection/threat-replay-testing/overview.md
-      - Setup: vulnerability-detection/threat-replay-testing/setup.md
-      - Exploring Results: vulnerability-detection/threat-replay-testing/exploring.md
-
-    - Schema-Based Testing:
-      - Overview: vulnerability-detection/schema-based-testing/overview.md
-      - Setup: vulnerability-detection/schema-based-testing/setup.md
-      - Exploring Results: vulnerability-detection/schema-based-testing/explore.md
-
-    - API Security Testing via Postman:
-      - Overview: vulnerability-detection/api-security-testing-via-postman/overview.md
-      - Setup: vulnerability-detection/api-security-testing-via-postman/setup.md
-      - Exploring Results: vulnerability-detection/api-security-testing-via-postman/exploring.md
-
-    - API Attack Surface (AASM):
-      - Overview: api-attack-surface/overview.md
-      - Setup: api-attack-surface/setup.md
-      - API Surface Discovery: api-attack-surface/api-surface.md
-      - Security Issues: api-attack-surface/security-issues.md
-
-    - Detecting Vulnerabilities: about-wallarm/detecting-vulnerabilities.md      
-
-  # ============================================================================
   # SECTION 5: DEPLOYMENT
   # Structure: Security Edge → Kubernetes → Cloud → API Gateways → CDN → APIM
   #            → Host & Runtime → Artifacts → Upgrades
@@ -439,6 +410,70 @@ nav:
 
     - Plans & Pricing:
       - Subscription Plans: about-wallarm/subscription-plans.md
+
+  # ============================================================================
+  # SECTION 2: AI Hypervisor
+  # ============================================================================
+
+  - AI Hypervisor:
+    - Overview: ai-hypervisor/overview.md
+
+    - Scanner Installation:
+      - Install HIGGS Scanner: ai-hypervisor/deploy.md
+      - Chart Values: ai-hypervisor/chart-values.md
+      - Labels and Annotations: ai-hypervisor/annotations.md
+
+    - Briefing: ai-hypervisor/briefing.md
+    - Findings and risk model: ai-hypervisor/findings.md
+
+    - Briefing surfaces:
+      - Patterns: ai-hypervisor/patterns.md
+      - Behavior Cert: ai-hypervisor/behavior-cert.md
+      - Shadow AI: ai-hypervisor/shadow-ai.md
+      - Registry: ai-hypervisor/registry.md
+      - Topology: ai-hypervisor/topology.md
+      - Debugger: ai-hypervisor/debugger.md
+      - Red Team: ai-hypervisor/red-team.md
+      - Compliance: ai-hypervisor/compliance.md
+
+    - Drill-in views:
+      - Data Tracks: ai-hypervisor/data-tracks.md
+      - User Tracks: ai-hypervisor/user-tracks.md
+      - Supply Chain: ai-hypervisor/supply-chain.md
+
+    - Enforcement: ai-hypervisor/enforcement.md
+    - Notifications: ai-hypervisor/notifications.md
+    - Settings: ai-hypervisor/settings.md
+    - Supported Model Providers: ai-hypervisor/supported-providers.md
+
+  # ============================================================================
+  # SECTION 4: API SECURITY TESTING
+  # ============================================================================
+  - API Security Testing:
+    - Security Testing Overview: vulnerability-detection/security-testing-overview.md
+
+    - Threat Replay Testing:
+      - Overview: vulnerability-detection/threat-replay-testing/overview.md
+      - Setup: vulnerability-detection/threat-replay-testing/setup.md
+      - Exploring Results: vulnerability-detection/threat-replay-testing/exploring.md
+
+    - Schema-Based Testing:
+      - Overview: vulnerability-detection/schema-based-testing/overview.md
+      - Setup: vulnerability-detection/schema-based-testing/setup.md
+      - Exploring Results: vulnerability-detection/schema-based-testing/explore.md
+
+    - API Security Testing via Postman:
+      - Overview: vulnerability-detection/api-security-testing-via-postman/overview.md
+      - Setup: vulnerability-detection/api-security-testing-via-postman/setup.md
+      - Exploring Results: vulnerability-detection/api-security-testing-via-postman/exploring.md
+
+    - API Attack Surface (AASM):
+      - Overview: api-attack-surface/overview.md
+      - Setup: api-attack-surface/setup.md
+      - API Surface Discovery: api-attack-surface/api-surface.md
+      - Security Issues: api-attack-surface/security-issues.md
+
+    - Detecting Vulnerabilities: about-wallarm/detecting-vulnerabilities.md      
 
   # ============================================================================
   # SECTION 8: REFERENCE
