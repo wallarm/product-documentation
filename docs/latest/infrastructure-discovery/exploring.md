@@ -1,4 +1,4 @@
-# Exploring Infrastructure Inventory
+# Exploring Infrastructure Inventory <a href="../../about-wallarm/subscription-plans/#wallarm-infrastructure-discovery"><img src="../../images/infrastructure-discovery-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 Once your cloud accounts are [connected](setup.md) and the first scan completes, the Infrastructure Discovery section in Wallarm Console provides a full view of your cloud resources, their security posture, and configuration changes over time.
 
@@ -77,9 +77,6 @@ On paid subscription plans, Infrastructure Discovery can use AI to enrich findin
 * Reduces noise by assessing whether a rule match is a genuine concern in context
 
 AI enrichment processes only the resource metadata already collected during scanning, and it never modifies your cloud resources.
-
-!!! info "Availability"
-    AI-assisted finding enrichment is available only on paid subscription plans. Contact your Wallarm account team to enable it.
 
 ## Inventory view
 

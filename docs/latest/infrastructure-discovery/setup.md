@@ -1,26 +1,40 @@
-# Infrastructure Discovery Setup
+# Infrastructure Discovery Setup <a href="../../about-wallarm/subscription-plans/#wallarm-infrastructure-discovery"><img src="../../images/infrastructure-discovery-tag.svg" class="non-zoomable" style="border: none;"></a>
 
-This article describes how to connect your cloud accounts to Wallarm's [Infrastructure Discovery](overview.md) and configure scanning.
-
-!!! info "Subscription"
-    Infrastructure Discovery requires a separate subscription. Contact [sales@wallarm.com](mailto:sales@wallarm.com) to request access.
-
-!!! info "Supported cloud providers"
-    Infrastructure Discovery currently supports **AWS**. Support for **Azure** and **GCP** is coming soon.
+This article describes how to get access to Wallarm's [Infrastructure Discovery](overview.md), connect your AWS accounts, and configure scanning.
 
 ## Requirements
 
-* Active Infrastructure Discovery subscription
+* Infrastructure running in AWS
 * An AWS account with permissions to create a CloudFormation stack (for the IAM Role method) or an IAM access key
-* Network access from your AWS account to the Wallarm Cloud (no inbound firewall rules required — all communication is outbound from Wallarm)
+* Network access from your AWS account to the [Wallarm Cloud](../about-wallarm/api-security-overview.md#cloud) (no inbound firewall rules required — all communication is outbound from Wallarm)
 
-## Connecting an AWS account
+## Setup flow
 
-To connect an AWS account, open **Settings** in the Infrastructure Discovery section of Wallarm Console and click **Add Account** on the **Accounts** tab.
+### 1. Get access
 
-![Connected AWS accounts](../images/infrastructure-discovery/accounts.png)
+Self-service sign-up runs through AWS Marketplace:
 
-### Authentication type
+1. Open the [Wallarm Infrastructure Discovery listing on AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-kvqg6s3jjelv6), choose a subscription plan, and click **Subscribe**.
+1. After the subscription is processed, AWS shows a **Set up your account** button on the listing. Click it to start registration with Wallarm.
+1. Fill in the Wallarm registration form with your email and account details, then submit.
+
+    Wallarm creates the account and activates the Infrastructure Discovery subscription on it automatically — no extra step is required.
+1. Check your inbox. Wallarm sends a confirmation email with your Wallarm Console credentials and next-step instructions.
+1. Sign in to Wallarm Console, [connect your AWS accounts](#2-connect-an-aws-account), and wait for the first scan to complete — typically a few minutes depending on account size.
+1. [Explore your inventory](exploring.md).
+
+!!! info "Wallarm Cloud region"
+    The AWS Marketplace sign-up flow provisions a [US Wallarm Cloud](../about-wallarm/api-security-overview.md#cloud) account by default, and your scan data is stored there. Infrastructure Discovery also runs on the EU and ME Wallarm Cloud instances — if you need an EU or ME account, contact [sales@wallarm.com](mailto:sales@wallarm.com) instead of subscribing through AWS Marketplace.
+
+Existing Wallarm API Security customers who run into issues with the flow above can contact [sales@wallarm.com](mailto:sales@wallarm.com) instead.
+
+### 2. Connect an AWS account
+
+To connect an AWS account, click **Add account** in the **Infrastructure Discovery** section of Wallarm Console.
+
+![Connected AWS accounts](../images/infrastructure-discovery/add-account.png)
+
+#### Authentication type
 
 The first step of the **Add AWS account** wizard offers two authentication types:
 
@@ -33,9 +47,9 @@ Both methods use the same read-only permissions and produce the same inventory.
 
 ![Choose authentication method](../images/infrastructure-discovery/add-account-auth.png)
 
-### Required AWS permissions
+#### Required AWS permissions
 
-Infrastructure Discovery requires **read-only** permissions aligned with the AWS services it inspects. When you use the IAM Role method, the CloudFormation template grants these permissions for you — the policy below is shown for review. When you connect with an access key, attach a policy with the same permissions to the IAM user. The following IAM policy covers all supported resource types:
+Infrastructure Discovery requires **read-only** permissions aligned with the AWS services it inspects. When you use the IAM Role method, the CloudFormation template grants these permissions for you — the policy below is shown for review. When you connect with an access key, attach a policy with the same permissions to the IAM user. The following IAM policy covers all supported resource types:
 
 ```json
 {
@@ -83,7 +97,7 @@ For [multi-account setup](#multi-account-setup) via AWS Organizations, add the f
 !!! warning "No data-plane access"
     Infrastructure Discovery does **not** request data-plane permissions. It will never access your data: no `s3:GetObject`, no `rds:*Data`, no log-reading, no `kms:Decrypt`. All collected information is resource metadata only (IDs, configurations, tags, relationships).
 
-### Setup with IAM Role
+#### Setup with IAM Role
 
 The **Add AWS account** wizard guides you through three steps:
 
@@ -95,7 +109,7 @@ The template creates the read-only role and a trust policy scoped to your Wallar
 
 ![Deploy CloudFormation step](../images/infrastructure-discovery/add-account-cloudformation.png)
 
-### Setup with Access Key
+#### Setup with Access Key
 
 The wizard guides you through three steps:
 
@@ -109,13 +123,13 @@ The wizard guides you through three steps:
 
 Infrastructure Discovery is designed to scan across many AWS accounts from a single Wallarm tenant. Two approaches are available:
 
-**Connect each account individually** — repeat the [connection steps](#connecting-an-aws-account) for every account. Simple and straightforward for a small number of accounts.
+**Connect each account individually** — repeat the [connection steps](#2-connect-an-aws-account) for every account. Straightforward for a small number of accounts.
 
 **Delegate through AWS Organizations** — if your accounts are managed by AWS Organizations, you can create a single IAM role in the management account with the `organizations:ListAccounts` permission. Infrastructure Discovery enumerates member accounts and scans them using the delegated role. This approach scales to hundreds of accounts without manual per-account setup.
 
 ## Scan schedule
 
-Infrastructure Discovery scans your connected accounts on a recurring schedule. On the **Schedules** tab in **Settings**, you create a schedule for an account and region and set how often it runs (the scan interval, in minutes). The minimum interval depends on your subscription plan — the free tier is limited to one scan every 24 hours, and paid plans allow more frequent scans.
+Infrastructure Discovery scans your connected accounts on a recurring schedule. On the **Schedules** tab in **Settings**, you create a schedule for an account and region and set how often it runs (the scan interval, in minutes). The minimum interval depends on your subscription plan — see the [AWS Marketplace listing](https://aws.amazon.com/marketplace/pp/prodview-kvqg6s3jjelv6) for per-plan limits.
 
 You can also run an on-demand scan at any time with the **Quick Scan** action on the **Accounts** tab.
 
@@ -129,4 +143,4 @@ Your subscription plan determines:
 * The number of regions you can scan per account
 * How frequently scans run (see [Scan schedule](#scan-schedule))
 
-The free tier includes a limited number of accounts and regions and a fixed 24-hour scan interval. Paid plans raise these limits and allow more frequent scans. Contact your Wallarm account team for the limits that apply to your plan.
+Per-plan limits are described in the [AWS Marketplace listing](https://aws.amazon.com/marketplace/pp/prodview-kvqg6s3jjelv6). Contact [Wallarm Sales](mailto:sales@wallarm.com) if you need limits adjusted for your account.

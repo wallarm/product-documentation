@@ -3,7 +3,7 @@
 [Wallarm AI Control Platform](../about-wallarm/overview.md) is an AI and API security platform with four products, each with its own onboarding path:
 
 * **[Wallarm API Security](#wallarm-api-security)** — start self-service: explore the Playground and sign up for the Security Edge Free Tier (500K requests/month).
-* **[Wallarm Infrastructure Discovery](#wallarm-infrastructure-discovery)** (AWS-only) — included with new Wallarm accounts on a free tier; existing customers contact Sales to add it.
+* **[Wallarm Infrastructure Discovery](#wallarm-infrastructure-discovery)** (AWS-only) — subscribe through AWS Marketplace.
 * **[Wallarm AI Hypervisor](#wallarm-ai-hypervisor)** (AWS-only) — separate onboarding flow through Sales.
 * **Wallarm API Security Testing** — enabled by default for every Wallarm account; covered in the [Wallarm API Security](#wallarm-api-security) section below.
 
@@ -32,7 +32,7 @@ Every new account created in the Wallarm Console is automatically enrolled in th
 
 * **Wallarm API Security** core capabilities — API protection, attack detection, custom rules, integrations.
 * **[Wallarm API Security Testing](../vulnerability-detection/security-testing-overview.md)** — proactively finds vulnerabilities in your applications and APIs before attackers do. Enabled by default. Includes optional **[AASM Freemium](../api-attack-surface/overview.md)** for agentless discovery of your external hosts and APIs.
-* **[Wallarm Infrastructure Discovery](../infrastructure-discovery/overview.md)** (AWS-only) — cross-account AWS asset and shadow AI discovery, with findings from native AWS security services on a single relationship graph. Free tier included.
+* **[Wallarm Infrastructure Discovery](../infrastructure-discovery/overview.md)** (AWS-only) — cross-account AWS asset and shadow AI discovery, with findings from native AWS security services on a single relationship graph. Procured separately through AWS Marketplace.
 
 When you sign up, Wallarm automatically provisions an account and launches a built-in **Welcome Wizard** that lets you experience how Wallarm protects APIs using demo traffic.
 
@@ -81,10 +81,10 @@ Wallarm Infrastructure Discovery is available on **AWS only**. It maps every AWS
 
 How to get access:
 
-* **New Wallarm customers** — Infrastructure Discovery is available immediately after [creating a Wallarm account](#self-signup) on a free tier.
+* **New Wallarm customers** — subscribe to Infrastructure Discovery on the [AWS Marketplace listing](https://aws.amazon.com/marketplace/pp/prodview-kvqg6s3jjelv6) (free tier and paid plans are described there). After subscribing, click **Set up your account** on the listing to register with Wallarm, fill in the sign-up form, and watch your inbox — Wallarm sends a confirmation email with Console credentials and next steps.
 * **Existing Wallarm customers** — if you already have an active Wallarm subscription, contact [Wallarm Sales](mailto:sales@wallarm.com) to add Infrastructure Discovery to your account.
 
-See the [Infrastructure Discovery overview and setup flow](../infrastructure-discovery/overview.md).
+See the [Infrastructure Discovery overview and setup flow](../infrastructure-discovery/overview.md) for the full sign-up details.
 
 ## Wallarm AI Hypervisor
 
@@ -100,7 +100,7 @@ For any of the following, the Wallarm team is here to help:
 
 * Guided onboarding or a personalized walkthrough — for any Wallarm product
 * Access to Wallarm AI Hypervisor
-* Adding Wallarm Infrastructure Discovery to an existing subscription, or raising free-tier limits
+* Adding Wallarm Infrastructure Discovery to an existing Wallarm subscription, or adjusting plan limits
 * Custom deployment requirements, pricing, or enterprise-scale planning
 * Choosing the right product mix for your environment
 
