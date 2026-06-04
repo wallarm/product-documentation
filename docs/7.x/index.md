@@ -33,7 +33,7 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
 
   <div class="navigation-card">
     <h3 class="icon-homepage api-threat-prevent"><a href="./about-wallarm/api-security-overview/">API Security <span class="card-arrow">→</span></a></h3>
-    <p class="card-description">Discover and inline-protect your APIs against the OWASP API Top 10, abuse, account takeover, and AI-targeted attacks.</p>
+    <p class="card-description">Discover and protect your APIs against the OWASP API Top 10, abuse, account takeover, and AI-targeted attacks.</p>
     <p><ul>
       <li><a href="./api-discovery/overview/">API Discovery</a></li>
       <li><a href="./about-wallarm/api-protection-overview/">API Protection</a></li>
@@ -44,21 +44,23 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
   </div>
 
   <div class="navigation-card">
-    <h3 class="icon-homepage api-discovery-title"><a href="./infrastructure-discovery/overview/">Infrastructure Discovery <span class="card-arrow">→</span></a></h3>
-    <p class="card-description">Cross-account AWS asset and shadow AI discovery on a single relationship graph. <strong>AWS-only</strong>.</p>
+    <h3 class="icon-homepage ai-hypervisor-title"><a href="./ai-hypervisor/overview/">AI Hypervisor <span class="card-arrow">→</span></a></h3>
+    <p class="card-description">Runtime observability, enforcement, and governance for AI workloads on Amazon EKS.</p>
     <p><ul>
-      <li><a href="./infrastructure-discovery/overview/">Overview</a></li>
-      <li><a href="./infrastructure-discovery/setup/">Setup</a></li>
-      <li><a href="./about-wallarm/subscription-plans/#wallarm-infrastructure-discovery">Free tier &amp; paid plans</a></li>
+      <li><a href="./ai-hypervisor/overview/">Overview</a></li>
+      <li><a href="./ai-hypervisor/deploy/">Scanner Installation</a></li>
+      <li><a href="./ai-hypervisor/findings/">Findings & Risk Model</a></li>
+      <li><a href="./ai-hypervisor/findings/">Enforcement</a></li>
     </ul></p>
   </div>
 
   <div class="navigation-card">
-    <h3 class="icon-homepage agent-ai-title"><a href="./ai-hypervisor/overview/">AI Hypervisor <span class="card-arrow">→</span></a></h3>
-    <p class="card-description">Runtime observability, enforcement, and governance for AI workloads on Amazon EKS. <strong>AWS-only</strong>.</p>
+    <h3 class="icon-homepage infrastructure-discovery-title"><a href="./infrastructure-discovery/overview/">Infrastructure Discovery <span class="card-arrow">→</span></a></h3>
+    <p class="card-description">Cross-account AWS asset and shadow AI discovery on a single relationship graph.</p>
     <p><ul>
-      <li><a href="./ai-hypervisor/overview/">Overview</a></li>
-      <li><a href="./about-wallarm/subscription-plans/#wallarm-ai-hypervisor">Access via Sales</a></li>
+      <li><a href="./infrastructure-discovery/overview/">Overview</a></li>
+      <li><a href="./infrastructure-discovery/setup/">Setup</a></li>
+      <li><a href="./infrastructure-discovery/exploring/">Exploring Inventory</a></li>
     </ul></p>
   </div>
 

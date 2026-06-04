@@ -29,6 +29,8 @@ Infrastructure Discovery connects to your cloud accounts via read-only credentia
 1. **Inventory** — scan results are assembled into a searchable inventory with a relationship graph. You can filter by account, region, service, and resource type.
 1. **Track changes** — each scan is compared to the previous one. Created, updated, and deleted resources are highlighted so you can review what changed over time.
 
+![!Infrastructure Discovery diagram](../images/infrastructure-discovery/how-it-works.png)
+
 ## What is discovered
 
 Infrastructure Discovery inventories resources from the following AWS services:
