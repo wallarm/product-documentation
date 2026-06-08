@@ -19,6 +19,13 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.12.4 (2026-06-04)
+
+* Added support for NGINX stable 1.30.2
+* Added support for NGINX mainline 1.31.1
+* Added support for OpenResty 1.31.1.1
+* Changed the [Limit data export](../admin-en/export-to-cloud.md) rule — the request structure is now preserved when the rule is applied
+
 ### 6.12.3 (2026-05-25)
 
 * Added BoringSSL compatibility — the Wallarm NGINX module can now run on BoringSSL-linked NGINX builds. [JA4 TLS fingerprinting](../admin-en/configure-parameters-en.md#wallarm_fingerprint) and encrypted upstream traffic to the postanalytics service are disabled when the build lacks the required symbols
@@ -270,6 +277,13 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.12.4 (2026-06-04)
+
+* Added support for NGINX stable 1.30.2
+* Added support for NGINX mainline 1.31.1
+* Added support for OpenResty 1.31.1.1
+* Changed the [Limit data export](../admin-en/export-to-cloud.md) rule — the request structure is now preserved when the rule is applied
 
 ### 6.12.3 (2026-05-25)
 
@@ -536,6 +550,13 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.12.4 (2026-06-04)
+
+* Added support for NGINX stable 1.30.2
+* Added support for NGINX mainline 1.31.1
+* Added support for OpenResty 1.31.1.1
+* Changed the [Limit data export](../admin-en/export-to-cloud.md) rule — the request structure is now preserved when the rule is applied
+
 ### 6.12.3 (2026-05-25)
 
 * Added BoringSSL compatibility — the Wallarm NGINX module can now run on BoringSSL-linked NGINX builds. [JA4 TLS fingerprinting](../admin-en/configure-parameters-en.md#wallarm_fingerprint) and encrypted upstream traffic to the postanalytics service are disabled when the build lacks the required symbols
@@ -771,6 +792,13 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.12.4 (2026-06-04)
+
+* Added support for NGINX stable 1.30.2
+* Added support for NGINX mainline 1.31.1
+* Added support for OpenResty 1.31.1.1
+* Changed the [Limit data export](../admin-en/export-to-cloud.md) rule — the request structure is now preserved when the rule is applied
 
 ### 6.12.3 (2026-05-25)
 
@@ -1009,6 +1037,13 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Amazon Machine Image (AMI)
 
 [How to upgrade](cloud-image.md)
+
+### 6.12.4 (2026-06-04)
+
+* Added support for NGINX stable 1.30.2
+* Added support for NGINX mainline 1.31.1
+* Added support for OpenResty 1.31.1.1
+* Changed the [Limit data export](../admin-en/export-to-cloud.md) rule — the request structure is now preserved when the rule is applied
 
 ### 6.12.3 (2026-05-25)
 
