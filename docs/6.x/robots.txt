@@ -1,5 +1,5 @@
 User-agent: *
-Content-Signal: ai-train=yes, search=yes, ai-input=yes
+Content-Signal: ai-train=no, search=yes, ai-input=yes
 Disallow: /4.10/
 
 # AI crawlers — both training bots and on-demand RAG/browse bots — must skip
@@ -27,7 +27,7 @@ User-agent: cohere-ai
 User-agent: meta-externalagent
 User-agent: FacebookBot
 User-agent: Diffbot
-Content-Signal: ai-train=yes, search=yes, ai-input=yes
+Content-Signal: ai-train=no, search=yes, ai-input=yes
 Disallow: /4.10/
 Disallow: /ja/
 Disallow: /tr/
