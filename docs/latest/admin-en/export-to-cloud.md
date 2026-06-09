@@ -52,6 +52,9 @@ To control:
 
 * [**Mask sensitive data**](../user-guides/rules/sensitive-data-rule.md): create rules of this type for your endpoints or applications to set which request point values should be cut before sending - values will never leave your security perimeter.
 * **Limit data export**: create rules of this type for your endpoints or applications to avoid sending full malicious request data to the Cloud. When the rule is applied, the node preserves the request structure (parameter names and nesting) but masks the values, so parameter values never leave your security perimeter. "Keep headers" mode is available.
+
+    !!! info "Behavior change in NGINX Node 6.12.4"
+        Starting from NGINX Node 6.12.4, an applied **Limit data export** rule preserves the request structure (parameter names and nesting) and masks only the values. In earlier versions, the rule switched the matched traffic to metadata only — the node sent just the request method, URI, IP address, HTTP status code, request time, and the `Host` header, while the body, query parameters, and other headers were excluded from both requests and responses.
 * **Limited data export exceptions**: if you forbade export to the Cloud with one of more **Limit data export** rules (for all traffic or for specific endpoints), add parameters-exceptions here - they will be exported in spite of restrictions.
 * **Sensitive data types**: Wallarm's API Discovery can by default detect different types of sensitive data transferred by endpoints/parameters. You can modify the default rules, add your own, and **enable automatic masking** (not available yet) for found sensitive data.
 * **Combining methods**: for **Attacks** and **Incidents**, Wallarm never transmits parameter values except the ones of malicious requests. Even this can be disabled by **Limit data export** rules for all traffic or specific endpoints. If these restrictions make needed data unavailable, explicitly specify **limited data export exceptions** - parameters that you allow to export in spite of restrictions. This gives you necessary data and you stay in control: even if new sensitive parameters appear with time, they will never be exported until you allow that.
@@ -59,9 +62,9 @@ To control:
     Examples:
 
     * No rules or settings - parameter values are exported only for input validation attacks.
-    * **Limit data export** for all traffic - nothing will be exported ever (only metadata).
-    * **Limit data export** for `example.com/customers/` - nothing will be exported for this endpoint (including all sub-endpoints).
-    * **Limit data export** for `example.com/customers/` but `POST > JSON_DOC > HASH > users > name` parameter is in **Limited data export exceptions** - only value of this parameter will be exported for `example.com/customers/`; for all other traffic, all parameter values for for input validation attacks will be exported.
+    * **Limit data export** for all traffic - no parameter values are ever exported; the node still sends the request structure (parameter names and nesting) with the values masked.
+    * **Limit data export** for `example.com/customers/` - no parameter values are exported for this endpoint (including all sub-endpoints); only the masked request structure is sent.
+    * **Limit data export** for `example.com/customers/` but `POST > JSON_DOC > HASH > users > name` parameter is in **Limited data export exceptions** - only the value of this parameter will be exported for `example.com/customers/`; for all other traffic, all parameter values for input validation attacks will be exported.
     * **Limit data export** for `example.com/customers/` but `POST > JSON_DOC > HASH > users > name` parameter is in **Limited data export exceptions**, and new parameter appears at this endpoint - its value will not be exported unless you add it to the exceptions explicitly.
     * There is no sense in adding anything in **Limited data export exceptions** unless you limit something with **Limit data export**.
 
