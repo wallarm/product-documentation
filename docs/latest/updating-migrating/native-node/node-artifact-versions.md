@@ -10,6 +10,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.25.2 (2026-06-05)
+
+* Fixed issues with caching MCP schemas for schema enforcement
+
 ### 0.25.1 (2026-05-21)
 
 * Added full support for the [ME (Middle East) Wallarm Cloud](../../about-wallarm/api-security-overview.md#cloud) in the [all-in-one installer](../../installation/native-node/all-in-one.md):
@@ -521,6 +525,10 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](docker-image.md)
+
+### 0.25.2 (2026-06-05)
+
+* Fixed issues with caching MCP schemas for schema enforcement
 
 ### 0.25.1 (2026-05-21)
 
