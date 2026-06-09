@@ -4,13 +4,13 @@
         If using the x86_64 version:
 
         ```bash
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.3.x86_64-glibc.sh
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.4.x86_64-glibc.sh
         ```
 
         If using the ARM64 version:
 
         ```bash
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.3.aarch64-glibc.sh
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.4.aarch64-glibc.sh
         ```        
 
         The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -19,13 +19,13 @@
         If using the x86_64 version:
 
         ```bash
-        sudo sh wallarm-6.12.3.x86_64-glibc.sh
+        sudo sh wallarm-6.12.4.x86_64-glibc.sh
         ```
 
         If using the ARM64 version:
 
         ```bash
-        sudo sh wallarm-6.12.3.aarch64-glibc.sh
+        sudo sh wallarm-6.12.4.aarch64-glibc.sh
         ```
 
 1. Select [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/), or [ME Cloud](https://me1.my.wallarm.com/).
@@ -37,11 +37,11 @@
     The command for x86_64:
 
     ```bash
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.3.x86_64-glibc.sh -- --batch -t <TOKEN> -H me1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.4.x86_64-glibc.sh -- --batch -t <TOKEN> -H me1.api.wallarm.com
     ```
 
     The command for ARM64:
 
     ```bash
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.3.aarch64-glibc.sh -- --batch -t <TOKEN> -H me1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.4.aarch64-glibc.sh -- --batch -t <TOKEN> -H me1.api.wallarm.com
     ```

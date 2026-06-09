@@ -433,6 +433,13 @@ List HIGH/CRITICAL CVEs fixed since the previous version, **per form factor**. U
 
    **Every form factor confirmed in this release gets an entry**, even when nothing user-visible changed. Use `* Internal improvements` as a placeholder. The author can replace it; an empty section invites confusion. Form factors NOT in this release are skipped entirely.
 
+   **Match each bullet to the artifacts it actually applies to — do NOT copy the same bullet list into every form-factor section.** Some changes are artifact-specific:
+
+   * **NGINX/OpenResty version-support bullets** (`Added support for NGINX stable X.Y.Z`, `Added support for NGINX mainline X.Y.Z`, `Added support for OpenResty X.Y.Z.N`) belong **only to the All-in-one installer** section — that is the artifact that bundles selectable NGINX/OpenResty builds. The Helm charts (Ingress, Sidecar, eBPF), the NGINX-based Docker image, the AMI, and the GCP image do **not** get these bullets. Verify against history: in `docs/6.x/updating-migrating/node-artifact-versions.md` these entries only ever appear under `## All-in-one installer`.
+   * A **Cloud-side or cross-cutting behavior change** (e.g., the **Limit data export** rule change) applies to every confirmed form factor, so it does belong in each section's entry.
+
+   When unsure whether a bullet is artifact-specific, grep the same bullet in prior `### X.Y.Z` entries and see which `## <section>` it lived under before duplicating it.
+
 9. **Update `what-is-new.md`** if the release includes significant user-facing features.
 
 ### Part 4: Bump versions across docs
