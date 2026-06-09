@@ -198,6 +198,66 @@ Batch related questions. Prefer multi-option questions with concrete choices ove
 
     * **Terminology and style.** Cross-check feature/product names against `.doc-agent/glossary.md`. Cross-check formatting (lists, admonitions, code fences, links) against `.doc-agent/markdown-guide.md` and `.doc-agent/style-guide.md`.
 
+## Writing principles
+
+These come from repeated review-and-rewrite cycles on real PRs. Apply during Phase 3 (Execute) and during self-review before handoff — they prevent a class of rewrites the author would otherwise drive. They sit on top of `.doc-agent/style-guide.md`, which covers sentence-level conventions; this section covers paragraph-, section-, and article-level choices.
+
+### Describe what the user does, not the UI itself
+
+When a screenshot, table, or wizard accompanies a section, the prose should explain *what the section is for* and *what decisions the user makes there*. It should not enumerate every column, field, or button visible in the image — those are self-evident. A two-sentence description ("Use this tab to create recurring scans and review their history") beats a four-bullet enumeration of column headers when both convey the same information. Reserve bold formatting for the few UI elements the user actually interacts with (buttons they click, fields where the value matters), not every visible label.
+
+### Skip obvious mechanical actions
+
+Inside a numbered step sequence, "click **Next**" and "click **Add Account**" at the end of every step carry no information — they describe inevitable UI mechanics, not decisions. Document the *configuration choices* (which option is selected, what value is entered, what file is uploaded) and let the obvious clicks remain implicit. "Set X, click Next, then set Y, click Next, then Z, click Add" reduces to "Configure X, Y, and Z" with the field-level guidance.
+
+### Mirror product UI structure
+
+When documenting a Console section with tabs or sub-tabs, structure the article to match: top-level tabs become `##` headings, sub-tabs become `###` headings, in the same order the user sees them. Do not invent abstract categories that mix items the UI presents separately, and do not split items the UI presents together into different pages. A reader reading the docs side-by-side with the product should see the same hierarchy in both.
+
+### Prose for concepts, bullets for parallel discrete items
+
+Bullets fit parallel, discrete, non-overlapping items: a list of mutually exclusive actions, a set of supported services, a checklist of prerequisites. Explanation of a concept or a process belongs in a paragraph. If a bullet item is more than one sentence, or if bullets re-introduce the same subject each time ("Each finding shows: severity — ...; status — ...; source — ..."), prose is the better fit. Keep paragraphs short — one idea each, split when stuffing more than two or three.
+
+### Plain prose over corporate abstractions
+
+"Remediation recommendation" → "how to fix it". "Surface the IAM principal" → "show who created it". "Resource configuration analysis" → "checks for risky setups". When a shorter, more concrete phrasing conveys the same meaning, prefer it. Avoid abstraction nouns ("attribution", "enrichment", "aggregation") in favor of verbs and concrete nouns where possible.
+
+### Define product-specific terms in context
+
+When a term like "finding", "policy", "rule", or "drift" appears as a section heading or anchor concept, the first paragraph should define it inline — even if it is defined elsewhere. Readers land on pages from search and external links, not always via the overview. Do not assume the reader has read prior sections.
+
+### Verify product claims against code, not marketing
+
+AWS Marketplace listings, blog posts, sales decks, and adjacent products' changelogs may claim capabilities the product does not have, list services it does not yet cover, or describe authentication methods that work only in dev. Source of truth: the IAM policy template, the actual collectors directory, the product's own changelog, the routes in API handlers. If a claim cannot be traced to code, raise it with the author rather than transcribing it.
+
+### Link to external products' docs, do not re-explain them
+
+For setup that involves a third-party product (AWS, Azure, GCP, Postman, etc.), link to that product's own documentation rather than reproducing its UI workflow. State the intent — "create an IAM user, attach the policy, generate access keys" — and link each phrase to the corresponding vendor docs page. Their UI changes; their docs follow; ours do not. Less to maintain.
+
+### Be specific about where in someone else's UI
+
+When directing the reader to a value in a third-party UI, name the exact location: tab, page, or section. "See the stack outputs" is not enough; "once the status changes to `CREATE_COMPLETE`, open the **Outputs** tab on the stack page and copy the `DiscoveryRoleArn` value" is.
+
+### Be precise about timing
+
+When describing a feature that involves lookups, scans, or computation, be explicit about *when* it happens — on every scan, on user request, once at setup, daily, etc. "Infrastructure Discovery queries CloudTrail" reads as automatic and per-asset. "When you open an asset, Infrastructure Discovery queries CloudTrail" makes it clear the lookup is lazy and on-demand. The reader's mental model of cost, latency, and behavior depends on this.
+
+### Do not duplicate content that lives authoritatively elsewhere
+
+Pricing, plan-tier limits, feature-comparison tables, AWS region lists, third-party version-support matrices — content maintained in another channel (marketplace listing, vendor docs, dynamic page) should be *linked* from our docs, not duplicated. Duplication drifts; the moment one side updates, the other lies. Link the source and write a short context sentence.
+
+### Audit anchors after every restructure
+
+When section headings are renamed, reordered, or demoted/promoted, the slug-based anchor changes. Internal `[text](#anchor)` and external `file.md#anchor` links break silently — the page still renders, the link does not jump where intended. After any restructure, grep for the old anchor name across `docs/latest/` (and across version dirs for frozen full copies) and update every reference. Do this as a discrete pass, not interleaved with other edits.
+
+### Pseudo-duplicate bullets indicate one underlying mechanism
+
+If two list items describe the same product mechanism through different framings ("Exposure detection" + "Security posture analysis", both implemented by the same built-in rule engine), they are not two features — they are one feature described twice. Merge them. The marketplace may split them into separate marketing pillars; docs follow product reality, not marketing framing.
+
+### Skip filler before actionable content
+
+"The Findings sub-tab is the primary place to review findings. Each finding shows..." — the first sentence is preamble. Open with substantive content. The reader already knows they are reading the Findings section; they do not need to be told that the Findings section is about findings.
+
 ## Real patterns from this repository
 
 ### New feature: MCP in API Discovery
