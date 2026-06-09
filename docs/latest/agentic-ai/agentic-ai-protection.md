@@ -50,6 +50,45 @@ Wallarm's protection against attacks on AI Agents works in a few simple steps:
 
 ![API Sessions - session with detected malicious AI payload](../images/agentic-ai/api-sessions-system-prompt-retrieval.png)
 
+## OWASP Top 10 coverage
+
+The controls described above map to two OWASP frameworks that address risks in AI agent and MCP deployments:
+
+* [**OWASP Top 10 for Agentic Applications (2026)**](https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/) — the ten most critical risks for autonomous AI systems that plan, decide, and act across tools and steps.
+* [**OWASP MCP Top 10 (2025)**](https://owasp.org/www-project-mcp-top-10/) — the first OWASP framework dedicated to the [Model Context Protocol](https://modelcontextprotocol.io/), covering risks specific to MCP servers, tools, and context handling.
+
+The tables below describe how Wallarm helps address each risk. Full coverage of any framework relies on defense in depth: several items also depend on organizational and development-side practices — secret rotation, dependency vetting, agent and memory design — that a runtime security platform addresses in combination with those practices, not alone.
+
+### OWASP Top 10 for Agentic Applications (2026)
+
+| OWASP risk | How Wallarm helps | Primary controls |
+|---|---|---|
+| **ASI01 — Agent Goal Hijacking** | Detects direct and indirect prompt injection, jailbreaks, and system prompt retrieval in agent inputs and responses before they alter the agent's goal. | [AI payload inspection](ai-payload-inspection.md) |
+| **ASI02 — Tool Misuse and Exploitation** | Restricts which tools a caller may invoke and with what arguments, blocks calls with unknown or wrong-typed arguments, and flags attempts to drive tools toward unauthorized actions (payment bypass, identity bypass). | [MCP mitigation controls](mcp-mitigation-controls.md) (ACL policy, tool input schema enforcement), [AI payload inspection](ai-payload-inspection.md) |
+| **ASI03 — Identity and Privilege Abuse** | Enforces access by user, role, IP, and country at the MCP layer; verifies JWT scope on sensitive tool calls; detects broken object-level authorization (BOLA) and authentication attacks on agent APIs. | [MCP mitigation controls](mcp-mitigation-controls.md) (ACL policy, request verification), [Core API protection](../about-wallarm/protecting-against-attacks.md) |
+| **ASI04 — Agentic Supply Chain Vulnerabilities** | Protects the APIs and MCP servers agents depend on from exploitation; AI Hypervisor inventories model providers and dependencies, builds an AI-SBOM with CVE enrichment, and surfaces unsanctioned components. | [Core API protection](../about-wallarm/protecting-against-attacks.md), [AI Hypervisor](../ai-hypervisor/supply-chain.md) |
+| **ASI05 — Unexpected Code Execution (RCE)** | Automatically detects RCE, command injection, and template injection in payloads, including JSON-RPC; schema enforcement blocks malformed tool arguments that carry injected code. | [Core API protection](../about-wallarm/protecting-against-attacks.md), [MCP mitigation controls](mcp-mitigation-controls.md) (tool input schema enforcement) |
+| **ASI06 — Memory & Context Poisoning** | Detects malicious or manipulative content in inputs and responses at the API layer before it can persist into agent memory or context. | [AI payload inspection](ai-payload-inspection.md) |
+| **ASI07 — Insecure Inter-Agent Communication** | Secures the APIs and MCP channels agents use to communicate (authentication-attack detection, ACL, schema enforcement); AI Hypervisor observes and attributes agent-to-agent calls across service hops. | [MCP mitigation controls](mcp-mitigation-controls.md), [Core API protection](../about-wallarm/protecting-against-attacks.md), [AI Hypervisor](../ai-hypervisor/overview.md) |
+| **ASI08 — Cascading Failures** | Rate limiting, DoS protection, and bot and agent-abuse controls bound runaway loops and request floods; AI Hypervisor enforcement can terminate misbehaving sessions at the kernel level. | [Rate limiting](../user-guides/rules/rate-limiting.md), [DoS protection](../api-protection/dos-protection.md), [AI Hypervisor](../ai-hypervisor/enforcement.md) |
+| **ASI09 — Human-Agent Trust Exploitation** | Custom AI payload inspection detects social-engineering and manipulation attempts in prompts (for example, coercing an agent or operator into bypassing policy) and content misuse. | [AI payload inspection](ai-payload-inspection.md) |
+| **ASI10 — Rogue Agents** | API Discovery and agentic AI discovery surface unknown and shadow agents; AI Hypervisor detects shadow AI, monitors behavior, and enforces against drifting agents; bot and agent-abuse controls limit automated abuse. | [API Discovery](../api-discovery/overview.md), [AI Hypervisor](../ai-hypervisor/shadow-ai.md) |
+
+### OWASP MCP Top 10 (2025)
+
+| OWASP risk | How Wallarm helps | Primary controls |
+|---|---|---|
+| **MCP01 — Token Mismanagement & Secret Exposure** | Custom AI payload inspection detects leaked credentials, tokens, and private keys in prompts, tool arguments, and responses (high-entropy and keyword analysis); API Discovery flags sensitive-data exposure. Secret storage and rotation remain a deployment responsibility. | [AI payload inspection](ai-payload-inspection.md), [API Discovery](../api-discovery/overview.md) |
+| **MCP02 — Privilege Escalation via Scope Creep** | ACL policy constrains which MCP methods and primitives each user or role may call; request verification enforces the JWT scope expected for each tool. | [MCP mitigation controls](mcp-mitigation-controls.md) (ACL policy, request verification) |
+| **MCP03 — Tool Poisoning** | Tool input schema enforcement validates `tools/call` arguments against the schema learned from `tools/list`, blocking unknown tools and unexpected arguments; AI payload inspection detects manipulative content in tool inputs and outputs. | [MCP mitigation controls](mcp-mitigation-controls.md) (tool input schema enforcement), [AI payload inspection](ai-payload-inspection.md) |
+| **MCP04 — Software Supply Chain Attacks & Dependency Tampering** | Core API protection shields MCP server endpoints from exploitation; AI Hypervisor builds an AI-SBOM with CVE enrichment and surfaces unsanctioned dependencies and providers. | [Core API protection](../about-wallarm/protecting-against-attacks.md), [AI Hypervisor](../ai-hypervisor/supply-chain.md) |
+| **MCP05 — Command Injection & Execution** | Standard attacks (SQL injection, command injection, path traversal, RCE) are detected automatically over MCP's HTTP and JSON-RPC payloads; schema enforcement rejects malformed arguments. | [Core API protection](../about-wallarm/protecting-against-attacks.md), [MCP mitigation controls](mcp-mitigation-controls.md) (tool input schema enforcement) |
+| **MCP06 — Intent Flow Subversion** | Detects prompt injection, instruction override, and system prompt retrieval embedded in the context an MCP agent reads and obeys. | [AI payload inspection](ai-payload-inspection.md) |
+| **MCP07 — Insufficient Authentication & Authorization** | ACL policy and request verification enforce identity, role, and scope at the MCP layer; core protection detects authentication and authorization attacks on the underlying API. | [MCP mitigation controls](mcp-mitigation-controls.md) (ACL policy, request verification), [Core API protection](../about-wallarm/protecting-against-attacks.md) |
+| **MCP08 — Lack of Audit and Telemetry** | MCP Sessions records every MCP method, primitive, and request, with the triggering control linked from each detected attack; AI Hypervisor adds full session replay and per-user attribution. | [MCP Sessions](../api-sessions/mcp-sessions.md), [AI Hypervisor](../ai-hypervisor/overview.md) |
+| **MCP09 — Shadow MCP Servers** | API Discovery inventories MCP servers from live traffic (MCP discovery is on by default), surfacing instances deployed outside governance; AI Hypervisor flags shadow AI assets. | [API Discovery](../api-discovery/overview.md), [AI Hypervisor](../ai-hypervisor/shadow-ai.md) |
+| **MCP10 — Context Injection & Over-Sharing** | ACL policy and request verification limit cross-user and cross-tenant access to MCP primitives; custom AI payload inspection detects PII harvesting and context-exfiltration attempts; AI Hypervisor records PII data flows. | [MCP mitigation controls](mcp-mitigation-controls.md), [AI payload inspection](ai-payload-inspection.md), [AI Hypervisor](../ai-hypervisor/compliance.md) |
+
 ## Demo
 
 [Explore the Agentic AI attack mitigation demo →](https://rsa-demo-playground.darkmatter.wallarm.tools/)
