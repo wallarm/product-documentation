@@ -34,7 +34,6 @@ AI Hypervisor sits next to your APM, log pipeline, and SIEM rather than replacin
 
 AI Hypervisor splits into two pieces with a clean boundary between them: a scanner you run, and a tenant Wallarm hosts.
 
-![AI Hypervisor architecture: HIGGS Scanner DaemonSet in customer EKS cluster uploads observations over HTTPS to a Wallarm-hosted tenant containing dashboard, backend, and ClickHouse](../../images/ai-hypervisor-architecture.svg)
 
 **On your side, Amazon EKS:**
 
