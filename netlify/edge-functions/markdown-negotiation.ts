@@ -99,7 +99,7 @@ export default async (request: Request, context: Context) => {
   // uses it): explicit signal to AI crawlers that this content is OK to
   // ingest for search, as prompt context, AND for model training — we want
   // Wallarm's docs surface in current and future AI models.
-  headers.set("Content-Signal", "ai-train=no, search=yes, ai-input=yes");
+  headers.set("Content-Signal", "ai-train=yes, search=yes, ai-input=yes");
   // Rough token estimate (1 token ≈ 4 chars) so clients can budget context.
   headers.set("X-Markdown-Tokens", Math.ceil(body.length / 4).toString());
   // Site-wide service-doc Link (used to live in netlify.toml on every "/*"
