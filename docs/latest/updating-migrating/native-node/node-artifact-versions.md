@@ -281,6 +281,10 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.25.2 (2026-06-05)
+
+* Fixed issues with caching MCP schemas for schema enforcement
+
 ### 0.25.1 (2026-05-21)
 
 * Fixed an issue where MCP session locations were not invalidated on configuration reload, causing stale entries to persist after reconfiguration
