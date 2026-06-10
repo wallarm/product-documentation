@@ -41,7 +41,7 @@ For example, you can allow only users with the `admin` role to call the `delete_
 
 | Parameter | Description |
 |---|---|
-| **MCP server** | The MCP server this control applies to. Each control targets exactly one MCP server. Select a server from the dropdown (populated from [API Discovery](mcp-discovery.md)) or enter a URI manually. |
+| **MCP server** | The MCP server this control applies to. Each control targets exactly one MCP server. Select a server from the dropdown (populated from [API Discovery](../api-discovery/overview.md)) or enter a URI manually. |
 | **MCP parameters** | MCP methods and primitives the control applies to, within the selected MCP server.<ul><li>**Methods** - MCP protocol methods such as `tools/call`, `resources/read`, `prompts/get`, etc. Supports wildcards (e.g., `resources/*`).</li><li>**Primitives** - specific MCP entities targeted by the selected methods. For `tools/call`, these are tool names (e.g., `get_user_profile`). For `resources/read`, these are resource URIs (e.g., `data://config`). For `prompts/get`, these are prompt names.</li></ul>If no methods or primitives are specified, the control applies to all methods and primitives on the selected MCP server. |
 | **Access mode** | **Allow** - only requests matching the specified access objects are permitted; all other requests are blocked with a `403` response. **Deny** - requests matching the specified access objects are blocked with a `403` response; all other requests are permitted. |
 | **Access objects** | One or more conditions defining who the policy targets: **IP address**, **Country**, **User name**, or **User role**. Multiple object types can be combined. |
@@ -81,7 +81,7 @@ For example, you can require that `tools/call` requests to `profile_read` carry 
 
 | Parameter | Description |
 |---|---|
-| **MCP server** | The MCP server this control applies to. Each control targets exactly one MCP server. Select a server from the dropdown (populated from [API Discovery](mcp-discovery.md)) or enter a URI manually. |
+| **MCP server** | The MCP server this control applies to. Each control targets exactly one MCP server. Select a server from the dropdown (populated from [API Discovery](../api-discovery/overview.md)) or enter a URI manually. |
 | **MCP parameters** | MCP methods and primitives the control applies to, within the selected MCP server.<ul><li>**Methods** - MCP protocol methods such as `tools/call`, `resources/read`, `prompts/get`, etc. Supports wildcards (e.g., `resources/*`).</li><li>**Primitives** - specific MCP entities targeted by the selected methods. For `tools/call`, these are tool names (e.g., `get_user_profile`). For `resources/read`, these are resource URIs (e.g., `data://config`). For `prompts/get`, these are prompt names.</li></ul>If no methods or primitives are specified, the control applies to all methods and primitives on the selected MCP server. |
 | **Verification parameters** | One or more rules, each defining a **call point** and **expected values**.<br>A call point is a sequence of parsers that the node applies to reach the target parameter in the request (see [request point syntax](../user-guides/rules/rules.md#advanced-edit-form) for details).<br>The control is triggered when any parameter value is not in the expected list. |
 | **Scope verification** | Points to the JWT `scope` claim using the same call point syntax. The JWT `scope` claim is a space-separated string of permissions (e.g., `"read:profile is:developer data:read"`).<br>A typical path is: `header` → `AUTHORIZATION` → `jwt` → `jwt_payload` → `base64` → `json_doc` → `hash` → `scope`.<br>Scope verification parses this string into individual values and checks them against the expected values. When multiple expected values are specified, the **operator** (`AND` or `OR`) defines the matching logic. |
@@ -112,7 +112,7 @@ With this control, if the agent's JWT token does not contain `profile:read` in i
 
 ## Tool input schema enforcement
 
-The **tool input schema enforcement** control validates that MCP `tools/call` arguments conform to the input schema published by the MCP server. No spec upload is required - [API Discovery](mcp-discovery.md) automatically captures `tools/list` responses, learns the expected schema (parameter names, types, required fields) for each tool, and distributes it to all nodes via the Wallarm Cloud.
+The **tool input schema enforcement** control validates that MCP `tools/call` arguments conform to the input schema published by the MCP server. No spec upload is required - [API Discovery](../api-discovery/overview.md) automatically captures `tools/list` responses, learns the expected schema (parameter names, types, required fields) for each tool, and distributes it to all nodes via the Wallarm Cloud.
 
 MCP tool calls accept free-form JSON arguments, which makes them a natural target for injection attacks - an attacker or compromised agent can pass unexpected parameters, wrong types, or call tools that don't exist. This control enforces the schema learned by API Discovery on every `tools/call` request - blocking calls with unknown arguments, wrong types, or calls to tools not present in the schema.
 
@@ -120,7 +120,7 @@ MCP tool calls accept free-form JSON arguments, which makes them a natural targe
 
 | Parameter | Description |
 |---|---|
-| **MCP server** | The MCP server this control applies to. Each control targets exactly one MCP server. Select a server from the dropdown (populated from [API Discovery](mcp-discovery.md)) or enter a URI manually. |
+| **MCP server** | The MCP server this control applies to. Each control targets exactly one MCP server. Select a server from the dropdown (populated from [API Discovery](../api-discovery/overview.md)) or enter a URI manually. |
 | **MCP tools** | Select which tools to enforce the schema for. If set to **All**, all tools reported by `tools/list` are validated. You can also select specific tools. |
 | **Allow tools undefined in the schema** | When enabled (default), tool calls to tools not listed in the `tools/list` response are allowed. When disabled, calls to unknown tools are treated as violations. |
 | **Mitigation mode** | **Monitoring** - log attack only. **Blocking** - block the request and return a `403 Forbidden` response. |
