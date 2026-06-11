@@ -6,6 +6,8 @@
 
 The view is app-independent. It does not require the workload to be labelled `higgs.scan=enabled`. Shadow AI is detected from external signals that arrive even when the in-cluster scanner has no foothold inside the calling pod. That is the point: the workloads you do not know about are the ones you cannot label.
 
+![AI Hypervisor Shadow AI](../../images/ai-hypervisor/aih-shadow-ai.png)
+
 ## Detection signals
 
 AI Hypervisor recognises shadow AI from four orthogonal signals:

@@ -6,6 +6,8 @@
 
 A node is one observed entity; an edge is a flow between two of them. Node severities aggregate the findings on that entity. Edge severities surface PII, unsanctioned destinations, and other per-flow concerns.
 
+![AI Hypervisor Topology](../../images/ai-hypervisor/aih-topology.png)
+
 ## Layers and zones
 
 Nodes sit on a two-dimensional grid that matches the [Findings](findings.md) full-stack lens:

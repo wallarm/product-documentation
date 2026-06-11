@@ -6,6 +6,8 @@
 
 **Registry** stays current on its own. The scanner's continuous discovery feeds every new workload, every new vendor call, every new MCP server into the inventory without per-team integration work. Your decisions land per row: promote to managed, leave as shadow, or block.
 
+![AI Hypervisor Registry: a single inventory table of agents, MCP servers, LLM providers, APIs, data sources, and tools with category, type, status, risk, certification, and request-rate columns and per-row Promote actions, beside an all-assets statistics panel showing certification rate and counts of total, sanctioned, tolerated, and unsanctioned assets](../../images/ai-hypervisor/aih-registry.png)
+
 ## Governance state
 
 Every entity in the registry carries one of three governance states:
