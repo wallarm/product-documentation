@@ -29,6 +29,8 @@ Layout is different per role, but four elements appear in all of them:
 * **Account menu.** The avatar in the top-right opens the cross-role surfaces: [Notifications](notifications.md), [Red Team](red-team.md), [Settings](settings.md). These three are available to every role.
 * **Ask the Agent chat strip** sits at the bottom of the canvas. See below.
 
+![AI Hypervisor Briefing in the Executive role: a caller-mix bar over 32,659 observed sessions, posture tiles trending active threats and data exposure, and a right-hand Needs a decision panel grouping open findings by exposure theme (Active threats, Data exposure, Supply-chain risk, Ungoverned AI, Access and authentication)](../../images/ai-hypervisor/aih-dashboard.png)
+
 What varies by role — the tiles at the top and the right-side panel:
 
 * **Executive.** Posture tiles and a *Needs a decision* panel grouped by exposure theme (**Data exposure**, **Ungoverned AI**, **Active threats**, **Access & authentication**, **Supply-chain risk**). Each finding row inside the panel carries its own **Block …** action — the label depends on the finding's category (*Block PII egress* on PII findings, *Block unauthenticated calls* on auth findings, *Block this target* on access findings, *Block the injection vector* on injection findings, and so on). Different rows show different labels at the same time; pressing one turns on a live estate-wide rule. See [Enforcement](enforcement.md).

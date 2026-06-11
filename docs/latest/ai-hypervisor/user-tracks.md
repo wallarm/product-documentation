@@ -6,6 +6,8 @@
 
 The page has two complementary views. **Sessions** follows agent sessions end to end. **Sensitive data** follows individual PII records across sessions.
 
+![AI Hypervisor User Tracks](../../images/ai-hypervisor/aih-user-tracks.png)
+
 ## How to reach this view
 
 **User Tracks** does not appear in the [Briefing](briefing.md) action bar. You arrive here by drilling in from a session count or a finding:
