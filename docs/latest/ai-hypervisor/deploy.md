@@ -11,7 +11,7 @@ A tenant is your private AI Hypervisor instance: a dedicated dashboard URL, isol
 
 1. [Contact Wallarm sales](https://www.wallarm.com/contact/ai-hypervisor) to discuss sizing and receive an AWS Marketplace private-offer link.
 2. Accept the private offer in your AWS account. AWS records the entitlement and the Wallarm subscription appears on your AWS bill.
-3. Wallarm provisions your tenant on Wallarm-hosted infrastructure and emails you the **tenant URL** (something like `<your-name>.hypervisor.wallarm-cloud.com`) and a link to the first-time login screen.
+3. Wallarm provisions your tenant on Wallarm-hosted infrastructure and emails you the **tenant URL** (something like `<your-name>.play.hypervisor.wallarm-cloud.com`) and a link to the first-time login screen.
 
 After first-time login, your tenant dashboard opens with the exact Helm commands for the next step, pre-filled with your tenant's `backendUrl` and `scannerPrivateKey`.
 
@@ -26,7 +26,7 @@ The HIGGS Scanner is a Helm chart you install into the Amazon EKS cluster runnin
     GKE, AKS, and self‑hosted Kubernetes are not supported.
 * Helm 3.12 or later
 * `kubectl` configured for the target EKS cluster
-* Outbound HTTPS access from worker nodes to your tenant URL on `*.hypervisor.wallarm-cloud.com`
+* Outbound HTTPS access from worker nodes to your tenant URL on `*.play.hypervisor.wallarm-cloud.com`
 
 ### Install commands
 

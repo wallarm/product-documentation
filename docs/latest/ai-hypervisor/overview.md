@@ -34,7 +34,7 @@ AI Hypervisor sits next to your APM, log pipeline, and SIEM rather than replacin
 
 AI Hypervisor splits into two pieces with a clean boundary between them: a scanner you run, and a tenant Wallarm hosts.
 
-![AI Hypervisor architecture: HIGGS Scanner DaemonSet in customer EKS cluster uploads observations over HTTPS to a Wallarm-hosted tenant containing dashboard, backend, and ClickHouse](../../images/ai-hypervisor-architecture.png)
+![AI Hypervisor architecture: HIGGS Scanner DaemonSet in customer EKS cluster uploads observations over HTTPS to a Wallarm-hosted tenant containing dashboard, backend, and ClickHouse](../../images/ai-hypervisor/ai-hypervisor-architecture.png)
 
 **On your side, Amazon EKS:**
 
@@ -45,7 +45,7 @@ AI Hypervisor splits into two pieces with a clean boundary between them: a scann
 
 **On Wallarm's side, your tenant:**
 
-* The dashboard, backend, and telemetry store (ClickHouse) are **hosted by Wallarm** at `<your-tenant>.hypervisor.wallarm-cloud.com`. Nothing to operate. Updates roll out without an upgrade window on your side.
+* The dashboard, backend, and telemetry store (ClickHouse) are **hosted by Wallarm** at `<your-tenant>.play.hypervisor.wallarm-cloud.com`. Nothing to operate. Updates roll out without an upgrade window on your side.
 * The platform inventories every commercial provider (Anthropic, OpenAI, AWS Bedrock, Azure OpenAI, Gemini, Cohere, Mistral, Together; see [Supported Model Providers](supported-providers.md)) and every self-hosted inference endpoint your agents call.
 * Sessions, prompts, tool calls, PII flows, and compliance evidence are stitched together per tenant and exposed through the UI surfaces listed in the [pillar table](#the-problem-ai-hypervisor-solves) above.
 
