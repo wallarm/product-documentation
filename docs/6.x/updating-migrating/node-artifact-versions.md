@@ -19,6 +19,12 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.12.5 (2026-06-12)
+
+* Added support for Alpine and Debian packages
+* Added support for NGINX Plus R37
+* Fixed the [CVE-2026-49975](https://nvd.nist.gov/vuln/detail/CVE-2026-49975) NGINX vulnerability
+
 ### 6.12.4 (2026-06-04)
 
 * Added support for NGINX stable 1.30.2
@@ -277,6 +283,10 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.12.5 (2026-06-12)
+
+* Internal improvements
 
 ### 6.12.4 (2026-06-04)
 
@@ -547,6 +557,10 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.12.5 (2026-06-12)
+
+* Fixed the [CVE-2026-49975](https://nvd.nist.gov/vuln/detail/CVE-2026-49975) NGINX vulnerability
+
 ### 6.12.4 (2026-06-04)
 
 * Changed the [Limit data export](../admin-en/export-to-cloud.md) rule — when applied, the node now preserves the request structure (parameter names and nesting) and masks only the values, instead of switching the matched traffic to metadata only
@@ -786,6 +800,10 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.12.5 (2026-06-12)
+
+* Fixed the [CVE-2026-49975](https://nvd.nist.gov/vuln/detail/CVE-2026-49975) NGINX vulnerability
 
 ### 6.12.4 (2026-06-04)
 
@@ -1029,6 +1047,10 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](cloud-image.md)
 
+### 6.12.5 (2026-06-12)
+
+* Fixed the [CVE-2026-49975](https://nvd.nist.gov/vuln/detail/CVE-2026-49975) NGINX vulnerability
+
 ### 6.12.4 (2026-06-04)
 
 * Changed the [Limit data export](../admin-en/export-to-cloud.md) rule — when applied, the node now preserves the request structure (parameter names and nesting) and masks only the values, instead of switching the matched traffic to metadata only
@@ -1228,6 +1250,10 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-12-5-20260610-102606 (2026-06-12)
+
+* Fixed the [CVE-2026-49975](https://nvd.nist.gov/vuln/detail/CVE-2026-49975) NGINX vulnerability
 
 ### wallarm-node-6-12-4-20260604-145803 (2026-06-04)
 
