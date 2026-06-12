@@ -42,6 +42,81 @@ document.addEventListener('click', function(e) {
     });
 });
 
+// Page-actions dropdown: "Copy page" menu + "Add Docs MCP" section.
+// Handles the caret toggle, outside-click / Escape close, and the generic
+// copy-to-clipboard items (MCP server URL, Claude / Codex install commands).
+(function () {
+  function showPopSnackbar(message) {
+    var dialog = document.querySelector('[data-md-component="dialog"]');
+    if (!dialog) return;
+    var inner = dialog.querySelector('.md-typeset');
+    if (inner) inner.textContent = message;
+    dialog.classList.add('md-dialog--active');
+    setTimeout(function () {
+      dialog.classList.remove('md-dialog--active');
+    }, 2000);
+  }
+
+  function closeAllPagePops() {
+    document.querySelectorAll('.md-page-pop__menu.is-open').forEach(function (menu) {
+      menu.classList.remove('is-open');
+      var caret = menu.parentElement && menu.parentElement.querySelector('[data-page-pop-toggle]');
+      if (caret) caret.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  document.addEventListener('click', function (e) {
+    // Toggle the dropdown via the caret
+    var toggle = e.target.closest('[data-page-pop-toggle]');
+    if (toggle) {
+      e.preventDefault();
+      e.stopPropagation();
+      var pop = toggle.closest('.md-page-pop');
+      var menu = pop && pop.querySelector('[data-page-pop-menu]');
+      if (!menu) return;
+      var wasOpen = menu.classList.contains('is-open');
+      closeAllPagePops();
+      if (!wasOpen) {
+        menu.classList.add('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+      return;
+    }
+
+    // Generic copy items (MCP URL, Claude / Codex commands) — keep the menu open
+    // so the user sees the confirmation tick.
+    var copyBtn = e.target.closest('[data-page-copy]');
+    if (copyBtn) {
+      e.preventDefault();
+      var val = copyBtn.getAttribute('data-page-copy');
+      navigator.clipboard.writeText(val).then(function () {
+        showPopSnackbar('Copied to clipboard');
+      }).catch(function (err) {
+        console.error('Failed to copy:', err);
+        showPopSnackbar('Failed to copy to clipboard');
+      });
+      return;
+    }
+
+    // Clicks inside the menu: close after activating a link or the Markdown copy
+    // (the Markdown copy is handled by the .md-clipboard-page listener above).
+    var openMenu = e.target.closest('.md-page-pop__menu');
+    if (openMenu) {
+      if (e.target.closest('a.md-page-pop__mi, button.md-clipboard-page, .md-page-pop__foot a')) {
+        setTimeout(closeAllPagePops, 50);
+      }
+      return;
+    }
+
+    // Click outside any menu — close all
+    closeAllPagePops();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeAllPagePops();
+  });
+})();
+
 // Open external links in new tab
 var links = document.links;
 
