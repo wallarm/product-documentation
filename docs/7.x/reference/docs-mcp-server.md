@@ -1,0 +1,1 @@
+--8<-- "latest/reference/docs-mcp-server.md"

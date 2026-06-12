@@ -1,34 +1,93 @@
 <!--
   Override of mkdocs-material actions.html partial.
-  Replaces the "view source" button with a "copy markdown" button.
+  Renders a "Copy page" split button with a dropdown menu that groups the
+  page-level actions (copy/view Markdown, suggest changes) together with a
+  "Add Docs MCP" section for the Wallarm docs MCP server.
 -->
 
-<!-- Actions -->
-{% if page.edit_url %}
+{% set md_url = base_url ~ "/" ~ (page.url[:-1] if page.url else "index") ~ ".md" %}
+{% set mcp_url = "https://mcp-docs.wallarm.com/mcp" %}
 
-  <!-- Edit button -->
-  {% if "content.action.edit" in features %}
-    <a
-      href="{{ page.edit_url }}"
-      title="{% if config.theme.language == 'en' %}Suggest changes{% else %}{{ lang.t('action.edit') }}{% endif %}"
-      class="md-content__button md-icon"
-      rel="edit"
-    >
-      {% set icon = config.theme.icon.edit or "material/file-edit-outline" %}
-      {% include ".icons/" ~ icon ~ ".svg" %}
-    </a>
-  {% endif %}
+{% if ("content.action.view" in features or "content.action.edit" in features) and page.url and not page.is_homepage %}
+<div class="md-page-pop">
 
-  <!-- Copy markdown button (replaces view source) -->
-  {% if "content.action.view" in features %}
+  <!-- Split button: main action copies the page as Markdown, caret opens the menu -->
+  <div class="md-page-pop__split">
     <button
-      class="md-content__button md-icon md-clipboard-page"
-      title="Copy as Markdown"
-      data-clipboard-src="{{ base_url }}/{{ page.url[:-1] if page.url else 'index' }}.md"
+      class="md-page-pop__main md-clipboard-page"
+      title="Copy page as Markdown"
+      aria-label="Copy page as Markdown"
+      data-clipboard-src="{{ md_url }}"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12V1Z"/>
-      </svg>
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12V1Z"/></svg>
     </button>
-  {% endif %}
+    <button
+      class="md-page-pop__caret"
+      type="button"
+      aria-label="More page actions"
+      aria-haspopup="true"
+      aria-expanded="false"
+      data-page-pop-toggle
+    >
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.41 8.58 12 13.17l4.59-4.59L18 10l-6 6-6-6z"/></svg>
+    </button>
+  </div>
+
+  <!-- Dropdown menu -->
+  <div class="md-page-pop__menu" data-page-pop-menu>
+
+    <div class="md-page-pop__head">Copy</div>
+
+    <button class="md-page-pop__mi md-clipboard-page" data-clipboard-src="{{ md_url }}">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.27 19.385H1.73A1.73 1.73 0 0 1 0 17.655V6.345a1.73 1.73 0 0 1 1.73-1.73h20.54A1.73 1.73 0 0 1 24 6.345v11.308a1.73 1.73 0 0 1-1.73 1.731zM5.769 15.923v-4.5l2.308 2.885 2.307-2.885v4.5h2.308V8.078h-2.308l-2.307 2.885-2.308-2.885H3.46v7.847zM21.232 12h-2.309V8.077h-2.307V12h-2.308l3.461 4.039z"/></svg>
+      Copy page as Markdown<kbd>⌥M</kbd>
+    </button>
+
+    <a class="md-page-pop__mi" href="{{ md_url }}" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm4 18H6V4h7v5h5z"/></svg>
+      View as Markdown
+    </a>
+
+    {% if "content.action.edit" in features and page.edit_url %}
+    <a class="md-page-pop__mi" href="{{ page.edit_url }}" target="_blank" rel="edit noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
+      Suggest changes
+      <svg class="md-page-pop__ext" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2z"/></svg>
+    </a>
+    {% endif %}
+
+    <hr>
+
+    <div class="md-page-pop__head">Add Docs MCP</div>
+
+    <button class="md-page-pop__mi" data-page-copy='{
+  "mcpServers": {
+    "wallarm-docs": {
+      "type": "http",
+      "url": "{{ mcp_url }}"
+    }
+  }
+}' title="Copy the docs MCP server config as JSON">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12V1Z"/></svg>
+      Copy server config<kbd>JSON</kbd>
+    </button>
+
+    <button class="md-page-pop__mi" data-page-copy="claude mcp add --transport http --scope user wallarm-docs {{ mcp_url }}" title="Copy the Claude Code install command">
+      <span class="md-page-pop__mark claude">C</span>
+      Claude
+      <svg class="md-page-pop__ext" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12V1Z"/></svg>
+    </button>
+
+    <button class="md-page-pop__mi" data-page-copy="codex mcp add wallarm-docs --url {{ mcp_url }}" title="Copy the Codex install command">
+      <span class="md-page-pop__mark codex">Cx</span>
+      Codex
+      <svg class="md-page-pop__ext" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12V1Z"/></svg>
+    </button>
+
+    <a class="md-page-pop__mi" href="{{ base_url }}/reference/docs-mcp-server/">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm4 18H6V4h7v5h5z"/></svg>
+      Setup guide
+    </a>
+  </div>
+</div>
 {% endif %}

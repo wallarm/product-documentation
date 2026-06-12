@@ -499,3 +499,4 @@ nav:
     - Shared Responsibility Model: about-wallarm/shared-responsibility.md
     - Comparing Wallarm to Other Solutions: reference/comparing-wallarm-to-other-solutions.md
     - SLA: sla.md
+    - Docs MCP Server: reference/docs-mcp-server.md
