@@ -21,9 +21,8 @@ new attack types in logging variables and search bars?
 
 ### 6.12.5 (2026-06-12)
 
-* Added support for Alpine and Debian packages
+* Added support for the latest Alpine and Debian/Ubuntu distribution NGINX package rebuilds shipping the upstream fix for [CVE-2026-49975](https://nvd.nist.gov/vuln/detail/CVE-2026-49975)
 * Added support for NGINX Plus R37
-* Fixed the [CVE-2026-49975](https://nvd.nist.gov/vuln/detail/CVE-2026-49975) NGINX vulnerability
 
 ### 6.12.4 (2026-06-04)
 
