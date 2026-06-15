@@ -22,6 +22,7 @@
 ### Introduction
 
 - [Wallarm Platform Overview](https://docs.wallarm.com/7.x/about-wallarm/overview.md): Architecture, deployment options, supported protocols, and core capabilities of the Wallarm API security platform.
+- [Wallarm API Security Overview](https://docs.wallarm.com/7.x/about-wallarm/api-security-overview.md): The API Security product — combines API Discovery (build the inventory) and API Protection (block attacks) into one module; entry point for the API Discovery and API Protection sections below.
 - [Quick Start Guide](https://docs.wallarm.com/7.x/quickstart/getting-started.md): End-to-end first-time setup walkthrough for new users (also: getting started, initial setup, onboarding).
 
 ### API Discovery
@@ -114,6 +115,51 @@
 - [Request Parser Configuration](https://docs.wallarm.com/7.x/user-guides/rules/request-processing.md): Override how the node parses specific endpoints/parameters (JSON, XML, etc.).
 - [Response Header Manipulation](https://docs.wallarm.com/7.x/user-guides/rules/add-replace-response-header.md): Add, remove, or replace response headers (also: HSTS, CSP injection rule).
 - [Overlimit Detection Configuration](https://docs.wallarm.com/7.x/user-guides/rules/configure-overlimit-res-detection.md): Tune behavior when request processing exceeds the per-request time budget.
+
+### AI Hypervisor
+
+> AI Hypervisor is a separate Wallarm product — runtime observability, enforcement, and governance for AI workloads on Amazon EKS. **AWS-only** and **version-independent** (not tied to the 5.x / 6.x / 7.x Node version axis). A Wallarm DaemonSet (HIGGS Scanner) attaches to your AI workloads via eBPF and non-invasive memory analysis to inventory agents, LLM calls, and MCP tool calls.
+
+- [AI Hypervisor Overview](https://docs.wallarm.com/7.x/ai-hypervisor/overview.md): Runtime governance layer for every LLM call, agent action, and MCP tool invocation in a Kubernetes cluster on AWS — eBPF + non-invasive memory analysis builds a live AI inventory (also: AIH, AI runtime governance, LLM observability).
+
+#### Scanner Installation
+
+- [Install HIGGS Scanner](https://docs.wallarm.com/7.x/ai-hypervisor/deploy.md): Subscribe via AWS Marketplace to get a tenant, then install the HIGGS Scanner Helm chart into your Amazon EKS cluster — the only AI Hypervisor component you self-host.
+- [HIGGS Scanner Chart Values](https://docs.wallarm.com/7.x/ai-hypervisor/chart-values.md): Helm chart (`wallarm/aih-scanner`) values reference — the settings most customers tune.
+- [Labels and Annotations](https://docs.wallarm.com/7.x/ai-hypervisor/annotations.md): Kubernetes pod / namespace labels and annotations that select and tag which workloads the scanner observes.
+
+- [Briefing](https://docs.wallarm.com/7.x/ai-hypervisor/briefing.md): Role-tailored landing view after sign-in — what is connected, what is normal, what to look at first; also hosts the conversational agent.
+- [Findings and Risk Model](https://docs.wallarm.com/7.x/ai-hypervisor/findings.md): Product-level reference for the finding taxonomy — risk categories, asset domains, and statuses used across every AI Hypervisor UI surface.
+
+#### Briefing Surfaces
+
+- [Patterns](https://docs.wallarm.com/7.x/ai-hypervisor/patterns.md): Central feed of clustered findings on the Briefing.
+- [Behavior Cert](https://docs.wallarm.com/7.x/ai-hypervisor/behavior-cert.md): Per-agent A2AS (Agent-to-Agent Security) Behavior Certificate — a signed YAML declaration of what an agent is intended to do, enforced at runtime (also: A2AS, agent behavior certificate).
+- [Shadow AI](https://docs.wallarm.com/7.x/ai-hypervisor/shadow-ai.md): Surface AI components in use but not formally approved — unsanctioned vendors, agents on unmanaged infrastructure, undeclared MCP servers (also: unsanctioned AI, shadow LLM).
+- [Registry](https://docs.wallarm.com/7.x/ai-hypervisor/registry.md): Single inventory of every AI / LLM / MCP component — agents, MCP servers, LLM providers, data sources, APIs, tools, A2AS certificates.
+- [Topology](https://docs.wallarm.com/7.x/ai-hypervisor/topology.md): Traffic-flow map of how requests move between agents, MCP servers, LLM providers, data sources, and APIs.
+- [Debugger](https://docs.wallarm.com/7.x/ai-hypervisor/debugger.md): Low-level event and asset browser aggregating everything the scanner emitted across observed applications.
+- [Red Team](https://docs.wallarm.com/7.x/ai-hypervisor/red-team.md): Scope-builder for a Wallarm professional-services red-team engagement against the AI estate (not a self-serve testing tool).
+- [Compliance](https://docs.wallarm.com/7.x/ai-hypervisor/compliance.md): Signed compliance evidence pack for the AI estate over a chosen period — control coverage, PII events, SBOM components.
+
+#### Drill-in Views
+
+- [Data Tracks](https://docs.wallarm.com/7.x/ai-hypervisor/data-tracks.md): Per-flow evidence view — data classes touched, PII patterns matched, and the rule that fired for every flow between two entities.
+- [User Tracks](https://docs.wallarm.com/7.x/ai-hypervisor/user-tracks.md): Session-level evidence — every user-to-agent or agent-to-agent interaction as a session, from prompt through tool calls to response.
+- [Supply Chain](https://docs.wallarm.com/7.x/ai-hypervisor/supply-chain.md): Inventory of third-party code the AI stack depends on — packages, model weights, MCP binaries, container images — with CVE surfacing (also: AI SBOM, dependency CVEs).
+
+- [Enforcement](https://docs.wallarm.com/7.x/ai-hypervisor/enforcement.md): Runtime policy enforcement through the HIGGS Scanner — three enforcement primitives operating at different layers of the stack.
+- [Notifications](https://docs.wallarm.com/7.x/ai-hypervisor/notifications.md): Inbox of significant detections — new covered apps, CVEs found / resolved, PII observed in agent traffic, scanner status.
+- [Settings](https://docs.wallarm.com/7.x/ai-hypervisor/settings.md): Tenant-level admin surface — access, scanner status, and platform configuration knobs.
+- [Supported Model Providers](https://docs.wallarm.com/7.x/ai-hypervisor/supported-providers.md): Inspection level per supported commercial model provider and self-hosted inference endpoint, plus per-provider configuration knobs.
+
+### Infrastructure Discovery
+
+> Infrastructure Discovery is a separate Wallarm product — agentless, cross-account asset visibility across an AWS estate that also surfaces shadow AI. **AWS-only** and **version-independent** (not tied to the Node version axis).
+
+- [Infrastructure Discovery Overview](https://docs.wallarm.com/7.x/infrastructure-discovery/overview.md): Agentless SaaS for AWS that answers what you have, what changed, and what is exposed across cloud accounts; surfaces shadow AI (also: cloud asset discovery, attack surface visibility).
+- [Infrastructure Discovery Setup](https://docs.wallarm.com/7.x/infrastructure-discovery/setup.md): Get access, connect AWS accounts, and configure scanning.
+- [Exploring Infrastructure Inventory](https://docs.wallarm.com/7.x/infrastructure-discovery/exploring.md): Browse discovered cloud resources and their security posture, including the Graph topology map grouped by account, region, and VPC.
 
 ### API Security Testing
 
