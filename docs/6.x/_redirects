@@ -968,3 +968,10 @@
 
 /admin-en/configuration-guides/protecting-against-bola/ /admin-en/configuration-guides/protecting-against-bola-trigger/
 /api-discovery/bola-protection/ /admin-en/configuration-guides/protecting-against-bola-trigger/
+# Docs MCP server discovery — expose the MCP Server Card (the JSON lives at the
+# root because the static build drops dotfile directories) at the emerging
+# .well-known discovery paths so MCP-capable clients can detect the server from
+# the docs.wallarm.com domain. 200 = rewrite (serve in place, no redirect).
+/.well-known/mcp/server-card.json   /mcp-server-card.json   200
+/.well-known/mcp.json               /mcp-server-card.json   200
+/.well-known/mcp-server             /mcp-server-card.json   200
