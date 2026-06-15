@@ -1,0 +1,13 @@
+{
+  "name": "com.wallarm/docs",
+  "title": "Wallarm Docs",
+  "description": "Read-only MCP server for the Wallarm documentation. Lets AI clients search and read current Wallarm API security documentation and return grounded, cited answers.",
+  "version": "0.8.0",
+  "websiteUrl": "https://docs.wallarm.com/reference/docs-mcp-server/",
+  "remotes": [
+    {
+      "url": "https://mcp-docs.wallarm.com/mcp",
+      "transport": "streamable-http"
+    }
+  ]
+}

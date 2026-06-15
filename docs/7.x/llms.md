@@ -535,6 +535,7 @@ search:
 - [Shared Responsibility Model](https://docs.wallarm.com/7.x/about-wallarm/shared-responsibility.md): What Wallarm is responsible for and what the customer is responsible for.
 - [Comparing Wallarm to Other Solutions](https://docs.wallarm.com/7.x/reference/comparing-wallarm-to-other-solutions.md): How to compare Wallarm against other WAF / API security solutions.
 - [SLA](https://docs.wallarm.com/7.x/sla.md): Service-level agreement — availability commitments and credits.
+- [Docs MCP Server](https://docs.wallarm.com/7.x/reference/docs-mcp-server.md): Connect an MCP client to this documentation. Read-only MCP server over streamable HTTP at `https://mcp-docs.wallarm.com/mcp` (server card: https://docs.wallarm.com/.well-known/mcp/server-card.json); exposes `search_pages`, `get_page`, `list_pages`, `list_versions` so AI clients can search and read Wallarm docs with citations.
 
 ## Optional
 
