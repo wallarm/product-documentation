@@ -115,6 +115,13 @@ document.addEventListener('click', function(e) {
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') closeAllPagePops();
   });
+
+  // Close the dropdown on scroll: it is anchored to a button that lives in the
+  // scrolling content, so an open menu would otherwise drift over the sticky
+  // header/tabs. Capture phase catches scrolls on any scrollable ancestor.
+  document.addEventListener('scroll', function () {
+    if (document.querySelector('.md-page-pop__menu.is-open')) closeAllPagePops();
+  }, true);
 })();
 
 // Open external links in new tab
