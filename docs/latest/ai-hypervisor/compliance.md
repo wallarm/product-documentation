@@ -44,7 +44,7 @@ The rendered PDF also carries an **executive-summary** card (four numbers: contr
 
 ## Evidence period, attestation, and export
 
-When you generate a report, you choose its **evidence period**: the time window the report aggregates over. The range is bounded by tenant retention. Default retention is 90 days for session and PII data, indefinite for SBOM and previously generated reports. Longer retention is available on request: [contact Wallarm sales](https://www.wallarm.com/contact/ai-hypervisor).
+When you generate a report, you choose its **evidence period**: the time window the report aggregates over. The range is bounded by tenant retention. Default retention is 90 days for session and PII data, indefinite for SBOM and previously generated reports. Longer retention is available on request: [contact Wallarm sales](mailto:sales@wallarm.com).
 
 Each report carries an **attestation block** at the foot: generation signature, timestamp, and content hash. The hash binds the document to the exact dataset it was generated from, so any later edit is detectable. Auditors who care about chain-of-custody check this first.
 

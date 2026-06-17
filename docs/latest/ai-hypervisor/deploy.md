@@ -9,7 +9,7 @@ Onboarding is two steps: **subscribe and get a tenant** through AWS Marketplace,
 
 A tenant is your private AI Hypervisor instance: a dedicated dashboard URL, isolated storage, and a unique scanner key. You get one through the AWS Marketplace subscription flow.
 
-1. [Contact Wallarm sales](https://www.wallarm.com/contact/ai-hypervisor) to discuss sizing and receive an AWS Marketplace private-offer link.
+1. [Contact Wallarm sales](mailto:sales@wallarm.com) to discuss sizing and receive an AWS Marketplace private-offer link.
 2. Accept the private offer in your AWS account. AWS records the entitlement and the Wallarm subscription appears on your AWS bill.
 3. Wallarm provisions your tenant on Wallarm-hosted infrastructure and emails you the **tenant URL** (something like `<your-name>.hypervisor.wallarm-cloud.com`) and a link to the first-time login screen.
 
