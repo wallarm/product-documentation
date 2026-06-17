@@ -81,7 +81,7 @@ The subscription covers:
 
 AWS resources the scanner runs on (worker-node compute and egress) stay on your standard AWS bill.
 
-For pricing and a private offer, [contact Wallarm sales](https://www.wallarm.com/contact/ai-hypervisor).
+For pricing and a private offer, [contact Wallarm sales](mailto:sales@wallarm.com).
 
 ## Next steps
 

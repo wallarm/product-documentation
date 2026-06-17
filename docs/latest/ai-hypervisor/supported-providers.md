@@ -83,7 +83,7 @@ Self-hosted inference endpoints are detected when the request and response schem
 
 ### Other providers
 
-Providers not in the built-in list are still discovered and observed at the network and request-body level. Per-call parsing is best-effort: AI Hypervisor extracts prompt and response from common schemas, and falls back to recording the raw request body for PII detection and rule matching. To add full parsing for a provider not on the list, [contact Wallarm](https://www.wallarm.com/contact/ai-hypervisor).
+Providers not in the built-in list are still discovered and observed at the network and request-body level. Per-call parsing is best-effort: AI Hypervisor extracts prompt and response from common schemas, and falls back to recording the raw request body for PII detection and rule matching. To add full parsing for a provider not on the list, [contact Wallarm](mailto:sales@wallarm.com).
 
 ## How detection works
 
