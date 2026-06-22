@@ -19,6 +19,13 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.12.6 (2026-06-22)
+
+* Added support for NGINX stable 1.30.3
+* Added support for NGINX mainline 1.31.2
+* Improved [MCP (Model Context Protocol)](../api-discovery/exploring.md#mcp-servers) traffic analysis logging — the Node no longer produces excessive log output when there is no MCP traffic
+* Fixed a vulnerability in [API Specification Enforcement](../api-specification-enforcement/overview.md)
+
 ### 6.12.5 (2026-06-12)
 
 * Added support for the latest Alpine and Debian/Ubuntu distribution NGINX package rebuilds shipping the upstream fix for [CVE-2026-49975](https://nvd.nist.gov/vuln/detail/CVE-2026-49975)
@@ -285,6 +292,11 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.12.6 (2026-06-22)
+
+* Improved [MCP (Model Context Protocol)](../api-discovery/exploring.md#mcp-servers) traffic analysis logging — the Node no longer produces excessive log output when there is no MCP traffic
+* Fixed a vulnerability in [API Specification Enforcement](../api-specification-enforcement/overview.md)
 
 ### 6.12.5 (2026-06-12)
 
@@ -562,6 +574,11 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.12.6 (2026-06-22)
+
+* Improved [MCP (Model Context Protocol)](../api-discovery/exploring.md#mcp-servers) traffic analysis logging — the Node no longer produces excessive log output when there is no MCP traffic
+* Fixed a vulnerability in [API Specification Enforcement](../api-specification-enforcement/overview.md)
+
 ### 6.12.5 (2026-06-12)
 
 * Fixed the [CVE-2026-49975](https://nvd.nist.gov/vuln/detail/CVE-2026-49975) NGINX vulnerability
@@ -808,6 +825,11 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.12.6 (2026-06-22)
+
+* Improved [MCP (Model Context Protocol)](../api-discovery/exploring.md#mcp-servers) traffic analysis logging — the Node no longer produces excessive log output when there is no MCP traffic
+* Fixed a vulnerability in [API Specification Enforcement](../api-specification-enforcement/overview.md)
 
 ### 6.12.5 (2026-06-12)
 
@@ -1058,6 +1080,11 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](cloud-image.md)
 
+### 6.12.6 (2026-06-22)
+
+* Improved [MCP (Model Context Protocol)](../api-discovery/exploring.md#mcp-servers) traffic analysis logging — the Node no longer produces excessive log output when there is no MCP traffic
+* Fixed a vulnerability in [API Specification Enforcement](../api-specification-enforcement/overview.md)
+
 ### 6.12.5 (2026-06-12)
 
 * Fixed the [CVE-2026-49975](https://nvd.nist.gov/vuln/detail/CVE-2026-49975) NGINX vulnerability
@@ -1264,6 +1291,11 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-12-6-20260622-033906 (2026-06-22)
+
+* Improved [MCP (Model Context Protocol)](../api-discovery/exploring.md#mcp-servers) traffic analysis logging — the Node no longer produces excessive log output when there is no MCP traffic
+* Fixed a vulnerability in [API Specification Enforcement](../api-specification-enforcement/overview.md)
 
 ### wallarm-node-6-12-5-20260610-102606 (2026-06-12)
 
