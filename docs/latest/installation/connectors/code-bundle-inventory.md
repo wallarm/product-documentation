@@ -237,7 +237,17 @@ The current version can be found in the Wallarm policy file → `info.version`. 
 
 | Policy version      | [Native Node version](../../updating-migrating/native-node/node-artifact-versions.md) |
 | ------------------- | ------------------- |
+| 1.0.2               | 0.13.3 or later in the 0.13.x series, or 0.14.1 or later |
 | 1.0.1               | 0.13.3 or later in the 0.13.x series, or 0.14.1 or later |
+
+### 1.0.2 (2026-06-22)
+
+* Added the **monitoring (out-of-band)** traffic mode, selectable per policy with the `failSafeBlock` property
+
+    With `failSafeBlock: false`, the policy mirrors traffic to the Wallarm Node fire-and-forget and never blocks requests or responses. With `failSafeBlock: true` (default), the policy keeps the existing in-line (blocking) behavior. See [Traffic modes](ibm-api-connect.md#traffic-modes).
+* Fixed `failSafeBlock` handling when the property is set as a boolean in the assembly YAML
+
+    Previously only the string form (`"true"`/`"false"`) was recognized, so a boolean value (`true`/`false`) set in the assembly was ignored.
 
 ### 1.0.1 (2025-05-20)
 

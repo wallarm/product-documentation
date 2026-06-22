@@ -53,7 +53,7 @@ x-ibm-configuration:
   assembly:
     execute:
       - wallarm_pre:
-          version: 1.0.1
+          version: 1.0.2
           title: wallarm_pre
           wallarmNodeAddress: <WALLARM_NODE_URL>
       - invoke:
@@ -63,7 +63,7 @@ x-ibm-configuration:
           target-url: $(target-url)$(request.path)?$(request.query-string)
           persistent-connection: true
       - wallarm_post:
-          version: 1.0.1
+          version: 1.0.2
           title: wallarm_post
           wallarmNodeAddress: <WALLARM_NODE_URL>
 ...
