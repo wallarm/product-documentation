@@ -247,6 +247,17 @@ curl "http://localhost/?id=1' UNION SELECT"
 
     Default value is `on` for all [deployment options](../installation/supported-deployment-options.md).
 
+### wallarm_enable_mcp
+
+The directive enables `on` / disables `off` inspection of [MCP (Model Context Protocol)](../agentic-ai/mcp-mitigation-controls.md) traffic by the [NGINX node](../updating-migrating/node-artifact-versions.md). MCP inspection backs MCP discovery in [API Discovery](../api-discovery/overview.md), [MCP session visibility](../api-sessions/mcp-sessions.md), and [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md). Available starting from release 6.12.0.
+
+When enabled, the node inspects MCP traffic and exchanges the related data with the Wallarm Cloud. Set the directive to `off` if your deployment does not use MCP discovery and protection - for example, when your subscription plan does not include it, or when the node runs in an isolated environment with no outbound access to the Wallarm Cloud. This stops MCP processing and the related Cloud requests, which would otherwise produce connection errors in the logs.
+
+!!! info
+    **Default value**: `on`.
+
+    This parameter can be set inside the `http`, `server`, and `location` blocks.
+
 ### wallarm_export_streams <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
 Controls whether the Node exports information about long-lived streaming connections — such as gRPC and WebSocket streams — to the internal postanalytics storage (wstore).
