@@ -59,6 +59,9 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 * Added support for [MCP server discovery](../api-discovery/exploring.md#mcp-servers) in API Discovery
 * Added support for [MCP Sessions](../api-sessions/mcp-sessions.md)
 * Added [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
+* Added the [`wallarm_enable_mcp`](../admin-en/configure-parameters-en.md#wallarm_enable_mcp) directive to enable or disable MCP traffic inspection (enabled by default)
+
+    Set it to `off` to stop MCP processing on deployments that do not use MCP discovery and protection.
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
 * Added per-tenant statistics and logging in [multi-tenant](../installation/multi-tenant/overview.md) deployments:
 
@@ -314,6 +317,9 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 * Added support for [MCP server discovery](../api-discovery/exploring.md#mcp-servers) in API Discovery
 * Added support for [MCP Sessions](../api-sessions/mcp-sessions.md)
 * Added [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
+* Added the [`wallarm_enable_mcp`](../admin-en/configure-parameters-en.md#wallarm_enable_mcp) directive to enable or disable MCP traffic inspection (enabled by default)
+
+    Set it to `off` to stop MCP processing on deployments that do not use MCP discovery and protection.
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
 * Added per-tenant statistics and logging in [multi-tenant](../installation/multi-tenant/overview.md) deployments:
 
@@ -585,6 +591,9 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 * Added support for [MCP server discovery](../api-discovery/exploring.md#mcp-servers) in API Discovery
 * Added support for [MCP Sessions](../api-sessions/mcp-sessions.md)
 * Added [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
+* Added the [`wallarm_enable_mcp`](../admin-en/configure-parameters-en.md#wallarm_enable_mcp) directive to enable or disable MCP traffic inspection (enabled by default)
+
+    Set it to `off` to stop MCP processing on deployments that do not use MCP discovery and protection.
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
 * Added per-tenant statistics and logging in [multi-tenant](../installation/multi-tenant/overview.md) deployments:
 
@@ -829,6 +838,9 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 * Added support for [MCP server discovery](../api-discovery/exploring.md#mcp-servers) in API Discovery
 * Added support for [MCP Sessions](../api-sessions/mcp-sessions.md)
 * Added [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
+* Added the [`wallarm_enable_mcp`](../admin-en/configure-parameters-en.md#wallarm_enable_mcp) directive to enable or disable MCP traffic inspection (enabled by default)
+
+    Set it to `off` to stop MCP processing on deployments that do not use MCP discovery and protection.
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
 * Added per-tenant statistics and logging in [multi-tenant](../installation/multi-tenant/overview.md) deployments:
 
@@ -1075,6 +1087,9 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 * Added support for [MCP server discovery](../api-discovery/exploring.md#mcp-servers) in API Discovery
 * Added support for [MCP Sessions](../api-sessions/mcp-sessions.md)
 * Added [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
+* Added the [`wallarm_enable_mcp`](../admin-en/configure-parameters-en.md#wallarm_enable_mcp) directive to enable or disable MCP traffic inspection (enabled by default)
+
+    Set it to `off` to stop MCP processing on deployments that do not use MCP discovery and protection.
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
 * Added per-tenant statistics and logging in [multi-tenant](../installation/multi-tenant/overview.md) deployments:
 
@@ -1279,6 +1294,9 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 * Added support for [MCP server discovery](../api-discovery/exploring.md#mcp-servers) in API Discovery
 * Added support for [MCP Sessions](../api-sessions/mcp-sessions.md)
 * Added [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
+* Added the [`wallarm_enable_mcp`](../admin-en/configure-parameters-en.md#wallarm_enable_mcp) directive to enable or disable MCP traffic inspection (enabled by default)
+
+    Set it to `off` to stop MCP processing on deployments that do not use MCP discovery and protection.
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
 * Added per-tenant statistics and logging in [multi-tenant](../installation/multi-tenant/overview.md) deployments:
 
