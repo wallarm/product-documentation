@@ -21,10 +21,8 @@ The HIGGS Scanner is a Helm chart you install into the Amazon EKS cluster runnin
 
 ### Requirements
 
-* **Amazon EKS only** — 1.31 or later, with worker-node kernel 6.1.0 or later
-
-    GKE, AKS, and self‑hosted Kubernetes are not supported.
-* Helm 3.12 or later
+* **Amazon EKS** — Kubernetes 1.29 or later, with worker-node kernel 5.10 or later
+* Helm 3.10 or later
 * `kubectl` configured for the target EKS cluster
 * Outbound HTTPS access from worker nodes to your tenant URL on `*.play.hypervisor.wallarm-cloud.com`
 
@@ -136,13 +134,13 @@ kubectl get namespace <YOUR_NAMESPACE> -L higgs.scan
 
 **Scanner pods are crashlooping**
 
-Most common cause is a kernel older than 6.1. Check kernel version on the affected node:
+Most common cause is a kernel older than 5.10. Check kernel version on the affected node:
 
 ```bash
 kubectl get node <NODE_NAME> -o jsonpath='{.status.nodeInfo.kernelVersion}'
 ```
 
-If the kernel is older than 6.1, upgrade the node group's image to a recent Bottlerocket or Amazon Linux 2023 release.
+If the kernel is older than 5.10, upgrade the node group's image to a recent Bottlerocket or Amazon Linux 2023 release.
 
 **`Unauthorized` from the scanner**
 
