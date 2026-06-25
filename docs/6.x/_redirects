@@ -975,3 +975,5 @@
 /.well-known/mcp/server-card.json   /mcp-server-card.json   200
 /.well-known/mcp.json               /mcp-server-card.json   200
 /.well-known/mcp-server             /mcp-server-card.json   200
+
+/user-guides/rules/limit-data-export/ /admin-en/export-to-cloud/#attacks-incidents

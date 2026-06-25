@@ -940,3 +940,5 @@
 
 /admin-en/configuration-guides/protecting-against-bola/ /admin-en/configuration-guides/protecting-against-bola-trigger/
 /api-discovery/bola-protection/ /admin-en/configuration-guides/protecting-against-bola-trigger/
+
+/user-guides/rules/limit-data-export/ /admin-en/export-to-cloud/#attacks-incidents
