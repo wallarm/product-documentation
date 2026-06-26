@@ -1,7 +1,28 @@
 {
     "dependencies": {
         "ansi-escapes": "^4.3.0",
-        "puppeteer": "^2.1.1",
-        "pdf-merger-js": "^3.0.1"
+        "pdf-merger-js": "^3.0.1",
+        "puppeteer": "^2.1.1"
+    },
+    "name": "stoic-ramanujan",
+    "version": "1.0.0",
+    "description": "Wallarm delivers real-time protection for APIs and AI agents, stopping automated threats and abuse while also providing full security visibility with complete API inventory and risk detection.",
+    "main": "index.js",
+    "directories": {
+        "doc": "docs"
+    },
+    "scripts": {
+        "test": "playwright test",
+        "test:desktop": "playwright test --project=desktop-chrome",
+        "test:mobile": "playwright test --project=mobile-chrome --project=mobile-safari",
+        "test:ui": "playwright test --ui",
+        "test:report": "playwright show-report"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "commonjs",
+    "devDependencies": {
+        "@playwright/test": "^1.58.0"
     }
 }
