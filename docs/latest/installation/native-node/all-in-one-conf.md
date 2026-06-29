@@ -639,9 +639,11 @@ Configures how the Native Node extracts the original client IP and host when tra
 
 * `trusted_networks`: trusted proxy IP ranges (CIDRs). Headers like `X-Forwarded-For` are only trusted if the request comes from these networks.
 
+    Specify only the network directly in front of the Node — the address seen as the remote IP before any proxy headers are evaluated.
+
     If omitted, all networks are trusted (not recommended).
 * `original_host`: headers to use for the original `Host` value, if modified by a proxy.
-* `real_ip`: headers to use for extracting the real client IP address.
+* `real_ip`: headers to use for extracting the real client IP address. If a header holds multiple comma-separated values, the first one is used.
 
 You can define multiple rules for different proxy types or trust levels.
 
