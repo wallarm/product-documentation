@@ -258,6 +258,17 @@ When enabled, the node inspects MCP traffic and exchanges the related data with 
 
     This parameter can be set inside the `http`, `server`, and `location` blocks.
 
+### wallarm_enable_mcp_global
+
+The directive enables `on` / disables `off` downloading of [MCP (Model Context Protocol)](../agentic-ai/mcp-mitigation-controls.md) rules and schemas from the Wallarm Cloud by the [NGINX node](../updating-migrating/node-artifact-versions.md). It operates independently of [`wallarm_enable_mcp`](#wallarm_enable_mcp), which controls inspection of MCP traffic. Available starting from release 6.12.7.
+
+When enabled, the node retrieves MCP rules and schemas from the Wallarm Cloud and applies them to MCP traffic. Set the directive to `off` to stop the node from synchronizing MCP rules and schemas with the Cloud - for example, on deployments that do not use MCP protection. Synchronization of non-MCP data with the Cloud is not affected.
+
+!!! info
+    **Default value**: `on`.
+
+    This parameter can be set inside the `http` block only.
+
 ### wallarm_export_streams <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
 Controls whether the Node exports information about long-lived streaming connections — such as gRPC and WebSocket streams — to the internal postanalytics storage (wstore).

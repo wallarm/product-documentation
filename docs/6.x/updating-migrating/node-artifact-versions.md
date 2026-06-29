@@ -19,6 +19,11 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.12.7 (2026-06-26)
+
+* Added support for the latest Ubuntu, Alpine, and Oracle Linux distribution NGINX packages
+* Added the [`wallarm_enable_mcp_global`](../admin-en/configure-parameters-en.md#wallarm_enable_mcp_global) directive to enable or disable downloading MCP rules and schemas from the Wallarm Cloud (enabled by default)
+
 ### 6.12.6 (2026-06-22)
 
 * Added support for NGINX stable 1.30.3
@@ -292,6 +297,10 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.12.7 (2026-06-26)
+
+* Added the [`wallarm_enable_mcp_global`](../admin-en/configure-parameters-en.md#wallarm_enable_mcp_global) directive to enable or disable downloading MCP rules and schemas from the Wallarm Cloud (enabled by default)
 
 ### 6.12.6 (2026-06-22)
 
@@ -574,6 +583,10 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.12.7 (2026-06-26)
+
+* Added the [`wallarm_enable_mcp_global`](../admin-en/configure-parameters-en.md#wallarm_enable_mcp_global) directive to enable or disable downloading MCP rules and schemas from the Wallarm Cloud (enabled by default)
+
 ### 6.12.6 (2026-06-22)
 
 * Improved [MCP (Model Context Protocol)](../api-discovery/exploring.md#mcp-servers) traffic analysis logging — the Node no longer produces excessive log output when there is no MCP traffic
@@ -825,6 +838,10 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.12.7 (2026-06-26)
+
+* Added the [`wallarm_enable_mcp_global`](../admin-en/configure-parameters-en.md#wallarm_enable_mcp_global) directive to enable or disable downloading MCP rules and schemas from the Wallarm Cloud (enabled by default)
 
 ### 6.12.6 (2026-06-22)
 
@@ -1080,6 +1097,10 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](cloud-image.md)
 
+### 6.12.7 (2026-06-26)
+
+* Added the [`wallarm_enable_mcp_global`](../admin-en/configure-parameters-en.md#wallarm_enable_mcp_global) directive to enable or disable downloading MCP rules and schemas from the Wallarm Cloud (enabled by default)
+
 ### 6.12.6 (2026-06-22)
 
 * Improved [MCP (Model Context Protocol)](../api-discovery/exploring.md#mcp-servers) traffic analysis logging — the Node no longer produces excessive log output when there is no MCP traffic
@@ -1291,6 +1312,10 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-12-7-20260625-060642 (2026-06-25)
+
+* Added the [`wallarm_enable_mcp_global`](../admin-en/configure-parameters-en.md#wallarm_enable_mcp_global) directive to enable or disable downloading MCP rules and schemas from the Wallarm Cloud (enabled by default)
 
 ### wallarm-node-6-12-6-20260622-033906 (2026-06-22)
 
