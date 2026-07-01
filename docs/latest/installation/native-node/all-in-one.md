@@ -28,7 +28,7 @@ The machine intended for running the Native Node with the all-in-one installer m
 * Outbound access to:
 
     * `https://meganode.wallarm.com` to download the Wallarm installer
-    * `https://us1.api.wallarm.com` or `https://api.wallarm.com` or `https://me1.api.wallarm.com` for US/EU/ME Wallarm Cloud
+    * `https://us1.api.wallarm.com` or `https://api.wallarm.com` for US/EU Wallarm Cloud
     * IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and [API specifications][api-spec-enforcement-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][ip-list-docs] countries, regions, or data centers
 
         --8<-- "../include/wallarm-cloud-ips.md"
@@ -50,7 +50,7 @@ The machine intended for running the Native Node with the all-in-one installer m
 
 To install node, you will need a token for registering the node in the Wallarm Cloud. To prepare a token:
 
-1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens), or [ME Cloud](https://me1.my.wallarm.com/settings/api-tokens).
+1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
 1. Find or create API token with the `Node deployment/Deployment` usage type.
 1. Copy this token.
 
@@ -130,12 +130,6 @@ Create the `wallarm-node-conf.yaml` file on the machine with the following minim
         sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.25.3.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
         ```
 
-    * ME Cloud:
-
-        ```bash
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.25.3.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com
-        ```
-
     For the ARM64 installer version:
 
     * US Cloud:
@@ -148,12 +142,6 @@ Create the `wallarm-node-conf.yaml` file on the machine with the following minim
 
         ```bash
         sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.25.3.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
-        ```
-
-    * ME Cloud:
-
-        ```bash
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.25.3.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com
         ```
 === "tcp-capture-v2"
     For the x86_64 installer version:
@@ -170,12 +158,6 @@ Create the `wallarm-node-conf.yaml` file on the machine with the following minim
         sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.25.3.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
         ```
 
-    * ME Cloud:
-
-        ```bash
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.25.3.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com
-        ```
-
     For the ARM64 installer version:
 
     * US Cloud:
@@ -188,12 +170,6 @@ Create the `wallarm-node-conf.yaml` file on the machine with the following minim
 
         ```bash
         sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.25.3.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
-        ```
-
-    * ME Cloud:
-
-        ```bash
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.25.3.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com
         ```
 === "envoy-external-filter"
     For the x86_64 installer version:
@@ -210,12 +186,6 @@ Create the `wallarm-node-conf.yaml` file on the machine with the following minim
         sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.25.3.x86_64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
         ```
 
-    * ME Cloud:
-
-        ```bash
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.25.3.x86_64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com
-        ```
-
     For the ARM64 installer version:
 
     * US Cloud:
@@ -228,12 +198,6 @@ Create the `wallarm-node-conf.yaml` file on the machine with the following minim
 
         ```bash
         sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.25.3.aarch64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
-        ```
-
-    * ME Cloud:
-
-        ```bash
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.25.3.aarch64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com
         ```
 
 Parameter values:

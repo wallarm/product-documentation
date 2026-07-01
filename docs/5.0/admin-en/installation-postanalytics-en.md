@@ -45,13 +45,13 @@ To install node, you will need a Wallarm token of the [appropriate type][wallarm
 
 === "API token"
 
-    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens), or [ME Cloud](https://me1.my.wallarm.com/settings/api-tokens).
+    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
     1. Find or create API token with the `Node deployment/Deployment` usage type.
     1. Copy this token.
 
 === "Node token"
 
-    1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes), or [ME Cloud](https://me1.my.wallarm.com/nodes).
+    1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
     1. Do one of the following: 
         * Create the node of the **Wallarm node** type and copy the generated token.
         * Use existing node group - copy token using node's menu → **Copy token**.
@@ -285,7 +285,6 @@ If the attack was not uploaded to the Cloud, please check that there are no erro
     *   Allow the HTTPS traffic to and from the Wallarm API servers, so the postanalytics module can interact with these servers:
         *   `us1.api.wallarm.com` is the API server in the US Wallarm Cloud
         *   `api.wallarm.com` is the API server in the EU Wallarm Cloud
-        *   `me1.api.wallarm.com` is the API server in the ME Wallarm Cloud
     *   Restrict the access to the `3313` Tarantool port via TCP and UDP protocols by allowing connections only from the IP addresses of the Wallarm filtering nodes.
 
 ## Tarantool troubleshooting

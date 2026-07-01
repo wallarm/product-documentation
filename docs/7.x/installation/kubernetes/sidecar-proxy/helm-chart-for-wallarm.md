@@ -1,7 +1,6 @@
 [sidecar-upgrade-docs]:               ../../../updating-migrating/sidecar-proxy.md
 [us-cloud-docs]:                      ../../../about-wallarm/api-security-overview.md#cloud
 [eu-cloud-docs]:                      ../../../about-wallarm/api-security-overview.md#cloud
-[me-cloud-docs]:                      ../../../about-wallarm/api-security-overview.md#cloud
 [configure-wallarm-mode-docs]:        ../../../admin-en/configure-wallarm-mode.md
 [filtration-mode-priorities-docs]:    ../../../admin-en/configure-wallarm-mode.md#prioritization-of-methods
 [libdetection-docs]:                  ../../../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors

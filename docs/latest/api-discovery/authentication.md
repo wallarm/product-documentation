@@ -98,12 +98,6 @@ To retrieve the parameters currently in effect for a client, send a `GET` reques
       'https://api.wallarm.com/v1/clients/<CLIENT_ID>/apid/config/auth-parameters' \
       -H 'X-WallarmApi-Token: <YOUR_TOKEN>'
     ```
-=== "ME Cloud"
-    ``` bash
-    curl -X GET \
-      'https://me1.api.wallarm.com/v1/clients/<CLIENT_ID>/apid/config/auth-parameters' \
-      -H 'X-WallarmApi-Token: <YOUR_TOKEN>'
-    ```
 
 Learn how to get an [API token](../api/overview/#your-own-api-client).
 
@@ -135,14 +129,6 @@ Header names in the `point` array are written in uppercase and are matched case-
     ``` bash
     curl -X POST \
       'https://api.wallarm.com/v1/clients/<CLIENT_ID>/apid/config/auth-parameters' \
-      -H 'X-WallarmApi-Token: <YOUR_TOKEN>' \
-      -H 'Content-Type: application/json' \
-      -d '{"point": [["header", "X-CUSTOM-AUTH"]]}'
-    ```
-=== "ME Cloud"
-    ``` bash
-    curl -X POST \
-      'https://me1.api.wallarm.com/v1/clients/<CLIENT_ID>/apid/config/auth-parameters' \
       -H 'X-WallarmApi-Token: <YOUR_TOKEN>' \
       -H 'Content-Type: application/json' \
       -d '{"point": [["header", "X-CUSTOM-AUTH"]]}'

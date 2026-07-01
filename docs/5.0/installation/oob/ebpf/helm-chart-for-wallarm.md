@@ -63,7 +63,7 @@ processing:
 
 ## config.api.token
 
-The Wallarm node token created in Wallarm Console in the [US](https://us1.my.wallarm.com/nodes) or [EU](https://my.wallarm.com/nodes), or [ME](https://me1.my.wallarm.com/nodes) Cloud. It is required to access Wallarm API.
+The Wallarm node token created in Wallarm Console in the [US](https://us1.my.wallarm.com/nodes) or [EU](https://my.wallarm.com/nodes) Cloud. It is required to access Wallarm API.
 
 ## config.api.host
 
@@ -71,7 +71,6 @@ Wallarm API endpoint. Can be:
 
 * `us1.api.wallarm.com` for the [US cloud](../../../about-wallarm/overview.md#cloud)
 * `api.wallarm.com` for the [EU cloud](../../../about-wallarm/overview.md#cloud) (default)
-* `me1.api.wallarm.com` for the [ME cloud](../../../about-wallarm/overview.md#cloud)
 
 ## config.api.port
 

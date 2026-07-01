@@ -73,7 +73,7 @@ Batch related questions. Asking is a working tool, not a sign that something wen
 **Branch naming.** Descriptive English, lowercase, hyphens:
 
 * Single-form-factor: `nginx-node-6.12.1`, `native-node-0.25.0`
-* With salient theme: `nginx-node-6.12.1-me-cloud`, `native-node-0.25.0-mcp-fields`
+* With salient theme: `nginx-node-6.12.1-us-cloud`, `native-node-0.25.0-mcp-fields`
 * Umbrella/multi-form-factor: `node-6.12.1-release`
 
 Avoid: dates, Jira keys, generic names like `update`, `patch`, `release-notes`, `wip`.
@@ -519,14 +519,14 @@ List HIGH/CRITICAL CVEs fixed since the previous version, **per form factor**. U
 
    **Concrete patterns to grep for**, beyond the general "what is the subject" sweep:
 
-   * **Limitation language the release lifts.** When a release adds a previously-missing capability (e.g., ME Cloud interactive picker, OpenAPI 3.1 support, IPv6 binding), every admonition that says the capability is missing becomes stale on versions that now have it. Grep patterns:
+   * **Limitation language the release lifts.** When a release adds a previously-missing capability (e.g., OpenAPI 3.1 support, IPv6 binding, gRPC parsing), every admonition that says the capability is missing becomes stale on versions that now have it. Grep patterns:
 
        ```bash
        grep -rn "does not yet support\|not yet support\|is not supported\|use .* instead\|as a workaround\|limitation:" docs/latest/
        grep -rn '!!! info "[^"]*Cloud"\|!!! warning "Limit' docs/latest/    # info/warning blocks named after the subject
        ```
 
-       For each hit, check whether the admonition's subject matches a feature the release adds. If yes — remove the admonition on pages that describe the new version, or bound it with a version qualifier ("Native Node versions <X> and earlier do not support…") on pages that still cover the older line. *Example caught in past releases: `!!! info "ME Cloud" — The interactive mode does not yet support ME Cloud selection. Use the batch mode with -H me1.api.wallarm.com instead.` left in `installation/native-node/all-in-one.md` after 0.25.1 added interactive ME support.*
+       For each hit, check whether the admonition's subject matches a feature the release adds. If yes — remove the admonition on pages that describe the new version, or bound it with a version qualifier ("Native Node versions <X> and earlier do not support…") on pages that still cover the older line. *Example pattern: an `!!! info "IPv6"` block stating "The node does not yet support binding to IPv6 addresses. Use IPv4 instead." left in `installation/native-node/all-in-one.md` after a release adds IPv6 binding — it must be removed or version-bounded on pages describing the new line.*
 
    * **Version-availability statements on parameters/features that the release ships in a new line.** When backport-to-mainline (4c) or feature carry-over happens, existing `Available in / Supported in / Starting from / Introduced in / Since version` statements drift out of date. Grep patterns:
 

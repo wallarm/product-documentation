@@ -21,11 +21,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.25.1 (2026-05-21)
 
-* Added full support for the [ME (Middle East) Wallarm Cloud](../../about-wallarm/api-security-overview.md#cloud) in the [all-in-one installer](../../installation/native-node/all-in-one.md):
-
-    * Interactive mode now lists **ME Cloud** alongside the US and EU options.
-    * The `-c, --cloud` flag now accepts `ME` as a value.
-    * The `-H, --host` flag description now references `me1.api.wallarm.com`.
 * Added the [`http_inspector.wmcp_enabled`](../../installation/native-node/all-in-one-conf.md#http_inspectorwmcp_enabled) configuration parameter (default `true`) that lets you opt out of MCP traffic analysis even when it would otherwise be enabled automatically by your Wallarm subscription
 * Added [`connector.app_reply_timeout`](../../installation/native-node/all-in-one-conf.md#connectorapp_reply_timeout) and [`connector.app_reply_timeout_code`](../../installation/native-node/all-in-one-conf.md#connectorapp_reply_timeout_code) configuration parameters that enforce a hard time-based cut-off on request handling in `connector-server` mode. Use them when the upstream caller (for example, an API gateway) requires a strict response budget per request
 * Fixed an issue where MCP session locations were not invalidated on configuration reload, causing stale entries to persist after reconfiguration

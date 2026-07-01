@@ -35,7 +35,7 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 * [GCP project created](https://cloud.google.com/resource-manager/docs/creating-managing-projects)
 * [Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com?q=compute%20eng&id=a08439d8-80d6-43f1-af2e-6878251f018d) enabled
 * [Google Cloud SDK (gcloud CLI) installed and configured](https://cloud.google.com/sdk/docs/quickstart)
-* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/), or [ME Cloud](https://me1.my.wallarm.com/)
+* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
 * Access to the IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and [API specifications][api-policy-enf-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][graylist-docs] countries, regions, or data centers
 
     --8<-- "../include/wallarm-cloud-ips.md"
@@ -74,16 +74,6 @@ To deploy the containerized Wallarm filtering node configured only through envir
             --tags http-server \
             --container-env WALLARM_API_TOKEN=${WALLARM_API_TOKEN} \
             --container-env NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> \
-            --container-image registry-1.docker.io/wallarm/node:5.3.17
-        ```
-    === "Command for the Wallarm ME Cloud"
-        ```bash
-        gcloud compute instances create-with-container <INSTANCE_NAME> \
-            --zone <DEPLOYMENT_ZONE> \
-            --tags http-server \
-            --container-env WALLARM_API_TOKEN=${WALLARM_API_TOKEN} \
-            --container-env NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> \
-            --container-env WALLARM_API_HOST=me1.api.wallarm.com \
             --container-image registry-1.docker.io/wallarm/node:5.3.17
         ```
 
@@ -165,10 +155,6 @@ To deploy the containerized Wallarm filtering node configured through environmen
         ```bash
         docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_LABELS='group=<GROUP>' -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:5.3.17
         ```
-    === "Command for the Wallarm ME Cloud"
-        ```bash
-        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='me1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:5.3.17
-        ```
 
     * `<INSTANCE_PATH_TO_CONFIG>`: path to the configuration file created in the previous step. For example, `configs`.
     * `<DIRECTORY_FOR_MOUNTING>`: directory of the container to mount the configuration file to. Configuration files can be mounted to the following container directories used by NGINX:
@@ -198,7 +184,7 @@ To deploy the containerized Wallarm filtering node configured through environmen
     ```
     curl http://<COPIED_IP>/etc/passwd
     ```
-3. Open Wallarm Console → **Attacks** in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks), or [ME Cloud](https://me1.my.wallarm.com/attacks) and make sure the attack is displayed in the list.
+3. Open Wallarm Console → **Attacks** in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks) and make sure the attack is displayed in the list.
     ![Attacks in UI][attacks-in-ui-image]
 1. Optionally, [test](../../../admin-en/uat-checklist-en.md) other aspects of the node functioning.
 

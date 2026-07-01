@@ -116,7 +116,7 @@ Each event represents one changed endpoint. The table below lists the **maximum*
 
 ![Changes in API trigger](../images/user-guides/triggers/trigger-example-changes-in-api.png)
 
-1. Configure a Slack [integration](../user-guides/settings/integrations/slack.md) in Wallarm Console → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/), [EU](https://my.wallarm.com/integrations/), or [ME](https://me1.my.wallarm.com/integrations/) cloud.
+1. Configure a Slack [integration](../user-guides/settings/integrations/slack.md) in Wallarm Console → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/) cloud.
 1. Go to the **Triggers** section and create a trigger with the **Changes in API** condition. Set the **API host** filter to `example.com` and the **Endpoint change type** filter to `New endpoints`. Select the Slack integration as the action.
 1. Send several requests to `example.com/users` to receive the `200` (`OK`) response.
 1. In the **API Discovery** section, verify that the endpoint appears with the **New** mark.
