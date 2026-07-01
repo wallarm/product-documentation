@@ -2,7 +2,7 @@
 
 **Wallarm Infrastructure Discovery** is an **agentless** SaaS solution for AWS that gives security, platform, and compliance teams a defensible answer to what they have, what changed, and what is exposed. Part of the **Wallarm AI Control Platform**, it delivers the platform's **Discover** and **Observe** capabilities for AWS — continuous asset inventory, drift detection, and exposure surfacing across your cloud estate. Access is read-only — Infrastructure Discovery never modifies your cloud resources.
 
-Infrastructure Discovery is distributed primarily through the [AWS Marketplace listing](https://aws.amazon.com/marketplace/pp/prodview-kvqg6s3jjelv6) and is available on all [Wallarm Cloud](../about-wallarm/api-security-overview.md#cloud) instances — US, EU, and ME. See the [Setup guide](setup.md) for the sign-up flow.
+Infrastructure Discovery is distributed primarily through the [AWS Marketplace listing](https://aws.amazon.com/marketplace/pp/prodview-kvqg6s3jjelv6) and is available on all [Wallarm Cloud](../about-wallarm/api-security-overview.md#cloud) instances — US and EU. See the [Setup guide](setup.md) for the sign-up flow.
 
 !!! info "Supported cloud providers"
     Infrastructure Discovery currently supports **AWS**. Support for **Azure** and **GCP** is coming soon.

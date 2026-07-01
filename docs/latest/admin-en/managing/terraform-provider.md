@@ -6,9 +6,9 @@ If you use [Terraform](https://www.terraform.io/) to manage your infrastructures
 
 * Knowing the [Terraform](https://www.terraform.io/) basics
 * Terraform 0.15.5 binary or higher
-* Wallarm account in the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/), or [ME Cloud](https://me1.my.wallarm.com/)
+* Wallarm account in the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
 * Access to the account with the **Administrator** [role](../../user-guides/settings/users.md#user-roles) in Wallarm Console in the US or EU [Cloud](../../about-wallarm/api-security-overview.md#cloud)
-* Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud, to `https://me1.api.wallarm.com` if working with ME Wallarm Cloud. Please ensure the access is not blocked by a firewall
+* Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud. Please ensure the access is not blocked by a firewall
 
 ## Installing provider
 
@@ -35,7 +35,7 @@ If you use [Terraform](https://www.terraform.io/) to manage your infrastructures
 
 ## Connecting provider to your Wallarm account
 
-To connect Wallarm Terraform provider to your Wallarm account in the [US](https://us1.my.wallarm.com/signup) or [EU](https://my.wallarm.com/signup), or [ME](https://me1.my.wallarm.com/signup) Cloud, set API access credentials in your Terraform configuration:
+To connect Wallarm Terraform provider to your Wallarm account in the [US](https://us1.my.wallarm.com/signup) or [EU](https://my.wallarm.com/signup) Cloud, set API access credentials in your Terraform configuration:
 
 === "US Cloud"
     ```
@@ -51,15 +51,6 @@ To connect Wallarm Terraform provider to your Wallarm account in the [US](https:
     provider "wallarm" {
       api_token = "<WALLARM_API_TOKEN>"
       api_host = "https://api.wallarm.com"
-      # Required only when multitenancy feature is used:
-      # client_id = <CLIENT_ID>
-    }
-    ```
-=== "ME Cloud"
-    ```
-    provider "wallarm" {
-      api_token = "<WALLARM_API_TOKEN>"
-      api_host = "https://me1.api.wallarm.com"
       # Required only when multitenancy feature is used:
       # client_id = <CLIENT_ID>
     }

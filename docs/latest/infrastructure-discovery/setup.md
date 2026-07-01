@@ -24,7 +24,7 @@ Self-service sign-up runs through AWS Marketplace:
 1. [Explore your inventory](exploring.md).
 
 !!! info "Wallarm Cloud region"
-    The AWS Marketplace sign-up flow provisions a [US Wallarm Cloud](../about-wallarm/api-security-overview.md#cloud) account by default, and your scan data is stored there. Infrastructure Discovery also runs on the EU and ME Wallarm Cloud instances — if you need an EU or ME account, contact [sales@wallarm.com](mailto:sales@wallarm.com) instead of subscribing through AWS Marketplace.
+    The AWS Marketplace sign-up flow provisions a [US Wallarm Cloud](../about-wallarm/api-security-overview.md#cloud) account by default, and your scan data is stored there. Infrastructure Discovery also runs on the EU Wallarm Cloud instance — if you need an EU account, contact [sales@wallarm.com](mailto:sales@wallarm.com) instead of subscribing through AWS Marketplace.
 
 Existing Wallarm API Security customers who run into issues with the flow above can contact [sales@wallarm.com](mailto:sales@wallarm.com) instead.
 

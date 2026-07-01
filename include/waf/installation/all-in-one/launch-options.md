@@ -16,8 +16,8 @@ OPTION                      DESCRIPTION
     --skip-ngx-config       Avoids automatic NGINX configuration changes that occur during the --install-only stage in batch mode, suitable for users who prefer manual adjustments later. When used with --install-only, it ensures only essential configurations are copied without altering NGINX settings. Requires --batch.
     --register-only         Initiates the second stage of the all-in-one installer in batch mode, completing the setup by registering the node in the Cloud and starting its service. Requires --batch.
 -t, --token TOKEN           Node token, required in a batch mode.
--c, --cloud CLOUD           Wallarm Cloud, one of US/EU/ME, default is EU, only used in a batch mode.
--H, --host HOST             Wallarm API address, for example, api.wallarm.com, us1.api.wallarm.com or me1.api.wallarm.com, only used in a batch mode.
+-c, --cloud CLOUD           Wallarm Cloud, one of US/EU, default is EU, only used in a batch mode.
+-H, --host HOST             Wallarm API address, for example, api.wallarm.com or us1.api.wallarm.com, only used in a batch mode.
 -P, --port PORT             Wallarm API pot, for example, 443.
     --no-ssl                Disable SSL for Wallarm API access.
     --no-verify             Disable SSL certificates verification.
@@ -68,18 +68,6 @@ Below are examples of commands to run the script in batch mode for node installa
     ```bash
     sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.7.aarch64-glibc.sh -- --batch -t <TOKEN>
     ```
-=== "ME Cloud"
-    If using the x86_64 version:
-
-    ```bash
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.7.x86_64-glibc.sh -- --batch -t <TOKEN> -c ME
-    ```
-
-    If using the ARM64 version:
-
-    ```bash
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.7.aarch64-glibc.sh -- --batch -t <TOKEN> -c ME
-    ```
 
 ### Separate execution of node installation stages
 
@@ -121,22 +109,6 @@ This functionality is supported starting from version 4.10.0 of the all-in-one i
     curl -O https://meganode.wallarm.com/6.12/wallarm-6.12.7.aarch64-glibc.sh
     sudo sh wallarm-6.12.7.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
-    ```
-=== "ME Cloud"
-    If using the x86_64 version:
-
-    ```bash
-    curl -O https://meganode.wallarm.com/6.12/wallarm-6.12.7.x86_64-glibc.sh
-    sudo sh wallarm-6.12.7.x86_64-glibc.sh -- --batch --install-only
-    sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c ME
-    ```
-
-    If using the ARM64 version:
-
-    ```bash
-    curl -O https://meganode.wallarm.com/6.12/wallarm-6.12.7.aarch64-glibc.sh
-    sudo sh wallarm-6.12.7.aarch64-glibc.sh -- --batch --install-only
-    sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c ME
     ```
 Finally, to complete the installation, you need to [enable Wallarm to analyze traffic][enable-traffic-analysis-step] and [restart NGINX][restart-nginx-step].
 

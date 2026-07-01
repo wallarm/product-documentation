@@ -380,7 +380,7 @@
 #### Operations
 
 - [Learning Request Volume](https://docs.wallarm.com/5.x/admin-en/operation/learn-incoming-request-number.md): Measure incoming request volume — needed for licensing/billing decisions.
-- [Wallarm Scanner IP Addresses](https://docs.wallarm.com/5.x/admin-en/scanner-addresses.md): The fixed list of US/EU/ME Cloud IPs Wallarm uses for active scans (allowlist these on origin).
+- [Wallarm Scanner IP Addresses](https://docs.wallarm.com/5.x/admin-en/scanner-addresses.md): The fixed list of US/EU Cloud IPs Wallarm uses for active scans (allowlist these on origin).
 
 #### Troubleshooting
 

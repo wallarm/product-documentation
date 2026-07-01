@@ -17,7 +17,7 @@ These instructions describe the steps to upgrade the [Native Node installed usin
 * Outbound access to:
 
     * `https://meganode.wallarm.com` to download the Wallarm installer
-    * `https://us1.api.wallarm.com` or `https://api.wallarm.com` or `https://me1.api.wallarm.com` for US/EU/ME Wallarm Cloud
+    * `https://us1.api.wallarm.com` or `https://api.wallarm.com` for US/EU Wallarm Cloud
     * IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and [API specifications][api-spec-enforcement-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][ip-list-docs] countries, regions, or data centers
 
         --8<-- "../include/wallarm-cloud-ips.md"
@@ -76,12 +76,6 @@ For the configuration file, you can reuse the one used during the initial instal
         sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com --preserve false
         ```
 
-    * ME Cloud:
-
-        ```bash
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com --preserve false
-        ```
-
     For the ARM64 installer version:
 
     * US Cloud:
@@ -96,11 +90,6 @@ For the configuration file, you can reuse the one used during the initial instal
         sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com --preserve false
         ```
 
-    * ME Cloud:
-
-        ```bash
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com --preserve false
-        ```
 === "tcp-capture"
     The `tcp-capture` mode is used when you deployed the self-hosted node for [TCP traffic analysis](../../installation/oob/tcp-traffic-mirror/deployment.md).
 
@@ -132,12 +121,6 @@ For the configuration file, you can reuse the one used during the initial instal
         sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com --preserve false
         ```
 
-    * ME Cloud:
-
-        ```bash
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com --preserve false
-        ```
-
     The upgrade command for the ARM64 installer version:
 
     * US Cloud:
@@ -152,11 +135,6 @@ For the configuration file, you can reuse the one used during the initial instal
         sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com --preserve false
         ```
 
-    * ME Cloud:
-
-        ```bash
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com --preserve false
-        ```
 === "envoy-external-filter"
     The `envoy-external-filter` mode is used for [gRPC-based external processing filter](../../installation/connectors/istio.md) for APIs managed by Istio.
 
@@ -174,12 +152,6 @@ For the configuration file, you can reuse the one used during the initial instal
         sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com --preserve false
         ```
 
-    * ME Cloud:
-
-        ```bash
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.x86_64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com --preserve false
-        ```
-
     The upgrade command for the ARM64 installer version:
 
     * US Cloud:
@@ -192,12 +164,6 @@ For the configuration file, you can reuse the one used during the initial instal
 
         ```bash
         sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com --preserve false
-        ```
-
-    * ME Cloud:
-
-        ```bash
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.13.7.aarch64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host me1.api.wallarm.com --preserve false
         ```
 
 Parameter values:

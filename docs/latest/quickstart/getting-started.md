@@ -42,12 +42,12 @@ To register with Wallarm yourself:
 
 1. Choose your [Wallarm Cloud](../about-wallarm/api-security-overview.md#cloud):
 
-    | | US Cloud | EU Cloud | ME Cloud |
-    | -- | --- | --- | --- |
-    | **Signup link** | https://us1.my.wallarm.com/signup | https://my.wallarm.com/signup | https://me1.my.wallarm.com/signup |
-    | **Physical location** | USA | Netherlands | Kingdom of Saudi Arabia |
-    | **Wallarm Console URL** | https://us1.my.wallarm.com/ | https://my.wallarm.com/ | https://me1.my.wallarm.com/ |
-    | **Wallarm API Endpoint** | https://us1.api.wallarm.com/ | https://api.wallarm.com/ | https://me1.api.wallarm.com/ |
+    | | US Cloud | EU Cloud |
+    | -- | --- | --- |
+    | **Signup link** | https://us1.my.wallarm.com/signup | https://my.wallarm.com/signup |
+    | **Physical location** | USA | Netherlands |
+    | **Wallarm Console URL** | https://us1.my.wallarm.com/ | https://my.wallarm.com/ |
+    | **Wallarm API Endpoint** | https://us1.api.wallarm.com/ | https://api.wallarm.com/ |
 
 1. Follow the signup link and input the requested data about yourself and your company.
 1. Choose whether to enable **AASM Freemium** (external API discovery) at this step. AASM activates immediately and scans your company domain. If you skip this, you can add a domain later from the [API Attack Surface](../api-attack-surface/overview.md) section of Wallarm Console.

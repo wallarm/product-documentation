@@ -8,9 +8,3 @@
     ```
     WALLARM_API_HOST=api.wallarm.com      
     ```
-
-    Example (for a FAST node using the API server located in the Middle East Wallarm cloud):
-
-    ```
-    WALLARM_API_HOST=me1.api.wallarm.com      
-    ```

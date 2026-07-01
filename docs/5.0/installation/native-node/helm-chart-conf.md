@@ -1,6 +1,5 @@
 [us-cloud-docs]:                      ../../about-wallarm/overview.md#cloud
 [eu-cloud-docs]:                      ../../about-wallarm/overview.md#cloud
-[me-cloud-docs]:                      ../../about-wallarm/overview.md#cloud
 
 # Configuring Native Node with the Helm Chart
 
@@ -81,7 +80,7 @@ An [API token](../../user-guides/settings/api-tokens.md) for connecting the node
 
 To generate an API token:
 
-1. Go to Wallarm Console → **Settings** → **API tokens** in either the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens), or [ME Cloud](https://me1.my.wallarm.com/settings/api-tokens).
+1. Go to Wallarm Console → **Settings** → **API tokens** in either the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
 1. Create an API token with the **Node deployment/Deployment** usage type.
 
 ### config.api.host
@@ -90,7 +89,6 @@ Wallarm API endpoint. Can be:
 
 * `us1.api.wallarm.com` for the [US cloud][us-cloud-docs]
 * `api.wallarm.com` for the [EU cloud][eu-cloud-docs] (default)
-* `me1.api.wallarm.com` for the [ME cloud][me-cloud-docs]
 
 ### config.api.nodeGroup
 

@@ -20,7 +20,7 @@ For guidance on estimating AWS infrastructure costs for this deployment, see the
 
 * AWS account and user with the **admin** permissions
 * AWS CLI 1 or AWS CLI 2 properly [installed](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
-* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/), or [ME Cloud](https://me1.my.wallarm.com/)
+* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
 * Access to the IP addresses and their corresponding hostnames (if any) listed below. This is needed for downloading updates to attack detection rules and [API specifications][api-policy-enf-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][graylist-docs] countries, regions, or data centers
 
     --8<-- "../include/wallarm-cloud-ips.md"
@@ -145,48 +145,6 @@ To deploy the containerized Wallarm filtering node configured only through envir
                 ],
                 "essential": true,
                 "environment": [
-                    {
-                        "name": "NGINX_BACKEND",
-                        "value": "<HOST_TO_PROTECT_WITH_WALLARM>"
-                    },
-                    {
-                        "name": "WALLARM_LABELS",
-                        "value": "group=<GROUP>"
-                    }
-                ],
-                "secrets": [
-                    {
-                        "name": "WALLARM_API_TOKEN",
-                        "valueFrom": "arn:aws:secretsmanager:<SECRETS_MANAGER_AWS_REGION>:<AWS_ACCOUNT_ID>:secret:<SECRET_NAME>:<WALLARM_API_TOKEN_PARAMETER_NAME>::"
-                    }
-                ],
-                "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:6.12.7"
-                }
-            ],
-            "family": "wallarm-api-security-node"
-            }
-         ```
-    === "If you use the Wallarm ME Cloud"
-         ```json
-         {
-             "executionRoleArn": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/ecsTaskExecutionRole",
-             "containerDefinitions": [
-                 {
-                     "memory": 128,
-                     "portMappings": [
-                    {
-                        "hostPort": 80,
-                        "containerPort": 80,
-                        "protocol": "tcp"
-                    }
-                ],
-                "essential": true,
-                "environment": [
-                    {
-                        "name": "WALLARM_API_HOST",
-                        "value": "me1.api.wallarm.com"
-                    },
                     {
                         "name": "NGINX_BACKEND",
                         "value": "<HOST_TO_PROTECT_WITH_WALLARM>"
@@ -402,59 +360,6 @@ To deploy the container with environment variables and configuration file mounte
             "family": "wallarm-api-security-node"
             }
          ```
-    === "If you use the Wallarm ME Cloud"
-         ```json
-         {
-             "executionRoleArn": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/ecsTaskExecutionRole",
-             "containerDefinitions": [
-                 {
-                     "memory": 128,
-                     "portMappings": [
-                    {
-                        "hostPort": 80,
-                        "containerPort": 80,
-                        "protocol": "tcp"
-                    }
-                ],
-                "essential": true,
-                "mountPoints": [
-                    {
-                        "containerPath": "<PATH_FOR_MOUNTED_CONFIG>",
-                        "sourceVolume": "<NAME_FROM_VOLUMES_OBJECT>"
-                    }
-                ],
-                "environment": [
-                    {
-                        "name": "WALLARM_API_HOST",
-                        "value": "me1.api.wallarm.com"
-                    },
-                    {
-                        "name": "WALLARM_LABELS",
-                        "value": "group=<GROUP>"
-                    }
-                ],
-                "secrets": [
-                    {
-                        "name": "WALLARM_API_TOKEN",
-                        "valueFrom": "arn:aws:secretsmanager:<SECRETS_MANAGER_AWS_REGION>:<AWS_ACCOUNT_ID>:secret:<SECRET_NAME>:<WALLARM_API_TOKEN_PARAMETER_NAME>::"
-                    }
-                ],
-                "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:6.12.7"
-                }
-            ],
-            "volumes": [
-                {
-                    "name": "<VOLUME_NAME>",
-                    "efsVolumeConfiguration": {
-                        "fileSystemId": "<EFS_FILE_SYSTEM_ID>",
-                        "transitEncryption": "ENABLED"
-                    }
-                }
-            ],
-            "family": "wallarm-api-security-node"
-            }
-         ```
 
     * `<AWS_ACCOUNT_ID>`: [your AWS account ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html).
     * `<PATH_FOR_MOUNTED_CONFIG>`: directory of the container to mount the configuration file to. Configuration files can be mounted to the following container directories used by NGINX:
@@ -508,7 +413,7 @@ To deploy the container with environment variables and configuration file mounte
     ```
     curl http://<COPIED_IP>/etc/passwd
     ```
-3. Open Wallarm Console → **Attacks** in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks), or [ME Cloud](https://me1.my.wallarm.com/attacks) and make sure the attack is displayed in the list.
+3. Open Wallarm Console → **Attacks** in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks) and make sure the attack is displayed in the list.
     ![Attacks in UI][attacks-in-ui-image]
 1. Optionally, [test][link-docs-check-operation] other aspects of the node functioning.
 

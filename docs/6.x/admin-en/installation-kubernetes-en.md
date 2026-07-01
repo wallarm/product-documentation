@@ -70,11 +70,11 @@ To install the Wallarm Ingress Controller:
 1. Generate a filtering node token of the [appropriate type][node-token-types]:
 
     === "API token (Helm chart 4.6.8 and above)"
-        1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens), or [ME Cloud](https://me1.my.wallarm.com/settings/api-tokens).
+        1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
         1. Find or create API token with the `Node deployment/Deployment` usage type.
         1. Copy this token.
     === "Node token"
-        1. Open Wallarm Console → **Nodes** in either the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes), or [ME Cloud](https://me1.my.wallarm.com/nodes).
+        1. Open Wallarm Console → **Nodes** in either the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
         1. Create a filtering node with the **Wallarm node** type and copy the generated token.
             
             ![Creation of a Wallarm node][nginx-ing-create-node-img]
@@ -109,15 +109,6 @@ To install the Wallarm Ingress Controller:
           wallarm:
             enabled: "true"
             token: "<NODE_TOKEN>"
-            # nodeGroup: defaultIngressGroup
-        ```
-    === "ME Cloud"
-        ```yaml
-        controller:
-          wallarm:
-            enabled: "true"
-            token: "<NODE_TOKEN>"
-            apiHost: "me1.api.wallarm.com"
             # nodeGroup: defaultIngressGroup
         ```
 
@@ -193,7 +184,7 @@ Below is the Wallarm Helm chart example for Google Kubernetes Engine (GKE), whic
             kubernetes.io/arch: arm64
         enabled: true
         token: "<NODE_TOKEN>"
-        apiHost: "us1.api.wallarm.com" # if using EU Cloud, comment out this line; if using ME Cloud, set to "me1.api.wallarm.com"
+        apiHost: "us1.api.wallarm.com" # if using EU Cloud, comment out this line
         # If using an API token, uncomment the following line and specify your node group name
         # nodeGroup: defaultIngressGroup
     ```
@@ -221,7 +212,7 @@ Below is the Wallarm Helm chart example for Google Kubernetes Engine (GKE), whic
               effect: NoSchedule
         enabled: true
         token: "<NODE_TOKEN>"
-        apiHost: "us1.api.wallarm.com" # if using EU Cloud, comment out this line; if using ME Cloud, set to "me1.api.wallarm.com"
+        apiHost: "us1.api.wallarm.com" # if using EU Cloud, comment out this line
         # If using an API token, uncomment the following line and specify your node group name
         # nodeGroup: defaultIngressGroup
     ```
