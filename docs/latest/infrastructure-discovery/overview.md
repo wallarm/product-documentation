@@ -17,7 +17,7 @@ Modern cloud environments grow organically: teams spin up resources across multi
 * **Relationship mapping** — a graph view showing how resources connect to each other (e.g. which EC2 instances sit behind which load balancers, which security groups are attached to which ENIs).
 * **Exposure detection** — automatically flags resources reachable from the internet: instances and load balancers with public IPs, security groups with sensitive ports open to `0.0.0.0/0`, EKS clusters with public API endpoints, and similar patterns.
 * **Security posture analysis** — built-in rules that automatically evaluate resource configurations against security best practices, flag vulnerable setups, and surface findings with severity levels. Policies let you tune how findings are handled for your environment.
-* **AWS-native finding aggregation** — imports AWS Security Hub findings (Amazon GuardDuty, Amazon Inspector, IAM Access Analyzer, and more) and correlates them with discovered resources, so all findings live in one place.
+* **AWS-native finding aggregation** — imports findings from AWS Security Hub, Amazon GuardDuty, Amazon Inspector, and IAM Access Analyzer and correlates them with discovered resources, so all security signals live in one place.
 * **Impact analysis** — a blast radius view for each finding that shows which connected resources could be affected, helping you prioritize remediation.
 * **Change tracking** — comparison of successive scans highlighting created, updated, and deleted resources so you can spot unintended configuration changes.
 * **Creator attribution** — for each asset, Infrastructure Discovery looks up the IAM principal that created it from your CloudTrail history, so every asset record carries an answer to "who made this change?".
@@ -40,19 +40,40 @@ Infrastructure Discovery inventories resources from the following AWS services:
 
 | AWS service | Examples of discovered resources |
 | --- | --- |
-| **EC2** | Instances |
-| **VPC networking** | VPCs, subnets, route tables, internet gateways, NAT gateways, security groups, network interfaces (ENIs), elastic IPs, VPC peering connections, transit gateways |
+| **EC2** | Instances, volumes, snapshots, network interfaces (ENIs) |
+| **VPC networking** | VPCs, subnets, route tables, internet gateways, NAT gateways, security groups, elastic IPs, VPC peering connections, transit gateways and attachments |
 | **Elastic Load Balancing** | Application, Network, and Gateway Load Balancers; target groups; listeners and listener rules |
 | **EKS** | Clusters, node groups, Fargate profiles |
 | **Lambda** | Functions, layers |
 | **API Gateway** | REST APIs, HTTP APIs, stages, VPC links |
 | **Route53** | Public and private hosted zones, record sets |
+| **CloudFront** | Distributions |
+| **S3** | Buckets (metadata, policies, encryption and access settings — no object-level access) |
+| **RDS** | DB instances, DB clusters, DB snapshots, DB cluster snapshots |
+| **DynamoDB** | Tables |
+| **ElastiCache** | Cache clusters, replication groups |
+| **Redshift** | Clusters, snapshots |
+| **ECS** | Clusters, services, tasks, task definitions |
+| **ECR** | Repositories |
+| **EFS** | File systems |
 | **IAM** | Roles, users, groups, policies, access keys |
+| **KMS** | Keys (metadata and rotation status — no access to key material) |
+| **Secrets Manager** | Secrets (metadata and resource policies — no access to secret values) |
+| **ACM** | Certificates |
+| **SSM** | Documents, managed instances |
+| **SNS** | Topics |
+| **SQS** | Queues |
+| **WAF** | Web ACLs (WAFv2 regional and CloudFront scopes) |
 | **Amazon Bedrock** | Foundation models, custom models, provisioned throughput, agents, knowledge bases |
 
 For each discovered asset, Infrastructure Discovery also queries **AWS CloudTrail** to find the earliest recorded event and surface the IAM principal that created the resource.
 
-In addition to inventorying resources, Infrastructure Discovery imports existing **AWS Security Hub** findings and correlates them with the resources it discovers, so that third-party security signals appear alongside Wallarm's own findings.
+In addition to inventorying resources, Infrastructure Discovery imports findings from the following AWS security services and correlates them with discovered resources, so that all security signals appear in one place:
+
+* **AWS Security Hub** — aggregated ASFF findings from all enabled integrations
+* **Amazon GuardDuty** — threat intelligence findings
+* **Amazon Inspector** — vulnerability findings
+* **IAM Access Analyzer** — external access findings
 
 !!! info "Expanding coverage"
     The list of supported services and cloud providers is expanding. If you need coverage for a service not listed here, contact [Wallarm Sales](mailto:sales@wallarm.com).

@@ -26,22 +26,22 @@ Click any row to open the resource detail view, which collects everything Infras
 
 ### Findings
 
-A **finding** is a security issue Wallarm spotted on one of your resources — for example, an EC2 instance with a public IP, an SSH port open to the world, or an EKS cluster with a public API endpoint.
+A **finding** is a security issue spotted on one of your resources — for example, an EC2 instance with a public IP, an SSH port open to the world, or an EKS cluster with a public API endpoint.
 
-Each finding tells you what the issue is, how serious it is (Critical to Info), which resource it affects, and how to fix it. Findings from AWS Security Hub appear in the same list, alongside Wallarm's own.
+Each finding tells you what the issue is, how serious it is (Critical to Info), which resource it affects, and how to fix it. Findings come from multiple sources: Wallarm's own built-in rules, AWS Security Hub, Amazon GuardDuty, Amazon Inspector, and IAM Access Analyzer. Each finding carries a **source** badge so you can tell where it originated.
 
 The **Findings** sub-tab is where you browse them. Filter by severity, status, or source. Switch between **by finding** and **by rule** views to look at the issues themselves or at the rules producing them.
 
 ![Findings sub-tab](../images/infrastructure-discovery/findings.png)
 
-!!! info "AWS Security Hub findings"
-    If you use AWS Security Hub, Infrastructure Discovery imports its findings and correlates them with the resources it has discovered. Imported findings keep their original product attribution and appear alongside Wallarm's own findings. No extra configuration is required beyond the [Security Hub permissions](setup.md#required-aws-permissions) in the connected account's policy.
+!!! info "AWS security service findings"
+    Infrastructure Discovery imports findings from **AWS Security Hub**, **Amazon GuardDuty**, **Amazon Inspector**, and **IAM Access Analyzer**, and correlates them with discovered resources. Imported findings keep their original product attribution and appear alongside Wallarm's own findings. No extra configuration is required beyond the [read-only permissions](setup.md#required-aws-permissions) in the connected account's policy — Infrastructure Discovery detects which services are enabled in your account and pulls findings automatically.
 
 #### Finding details and blast radius
 
 Click any finding to open its detail view, which shows:
 
-* The **severity**, the **source** (and the AWS Security Hub product, if imported), a plain-language **explanation**, and a recommended **fix**
+* The **severity**, the **source** (Wallarm, Security Hub, GuardDuty, Inspector, or Access Analyzer), a plain-language **explanation**, and a recommended **fix**
 * The **rule** that produced the finding
 * The **affected asset** — name, type, service, region, account, and ARN
 * **Connections** — the resources directly related to the affected asset, with their relationship types (for example, `associated_with_eni`)
@@ -91,6 +91,11 @@ Built-in rules check for common issues such as:
 * Internet-facing load balancers
 * Load balancer listeners that serve HTTP without redirecting to HTTPS
 * EKS clusters with a public API endpoint or without secrets encryption
+* S3 buckets with public access or without encryption
+* RDS instances without encryption at rest or with public accessibility
+* KMS keys with overly permissive policies or disabled rotation
+* Secrets Manager secrets without rotation configured
+* IAM users and roles with overly permissive policies
 * Deletion of critical infrastructure resources
 * Misconfigured or stale Amazon Bedrock resources, such as agents without instructions or knowledge bases without storage
 

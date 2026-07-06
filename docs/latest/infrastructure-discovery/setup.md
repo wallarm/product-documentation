@@ -49,60 +49,26 @@ Both methods use the same read-only permissions and produce the same inventory.
 
 #### Required AWS permissions
 
-The following read-only IAM policy covers all supported resource types. With the [IAM Role method](#setup-with-iam-role), the CloudFormation template applies it automatically. With the [Access Key method](#setup-with-access-key), you need to attach this policy to the IAM user manually.
+With the [IAM Role method](#setup-with-iam-role), the CloudFormation template creates the role and attaches all required policies automatically. With the [Access Key method](#setup-with-access-key), you need to attach these policies to the IAM user manually.
 
+The CloudFormation template creates six managed policies grouped by area. Each policy grants read-only access and includes explicit **Deny** statements that block mutations and data-plane operations. The table below summarizes the permissions by area:
 
-```json
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "WallarmInfraDiscoveryReadOnly",
-            "Effect": "Allow",
-            "Action": [
-                "ec2:Describe*",
-                "elasticloadbalancing:Describe*",
-                "eks:List*",
-                "eks:Describe*",
-                "lambda:List*",
-                "lambda:GetFunction",
-                "lambda:GetPolicy",
-                "apigateway:GET",
-                "route53:List*",
-                "route53:Get*",
-                "iam:List*",
-                "iam:Get*",
-                "bedrock:List*",
-                "bedrock:Get*",
-                "cloudtrail:List*",
-                "cloudtrail:Get*",
-                "cloudtrail:Describe*",
-                "cloudtrail:LookupEvents",
-                "securityhub:GetFindings",
-                "securityhub:ListFindingAggregators",
-                "sts:GetCallerIdentity"
-            ],
-            "Resource": "*"
-        }
-    ]
-}
-```
+| Policy area | AWS services | Key actions |
+| --- | --- | --- |
+| **Compute** | API Gateway, EC2, ECR, ECS, EKS, Elastic Beanstalk, Lambda | `apigateway:GET`, `ec2:Describe*`, `ecr:Describe*`/`List*`/`Get*Policy`, `ecs:List*`/`Describe*`, `eks:List*`/`Describe*`, `elasticbeanstalk:Describe*`/`List*`, `lambda:List*`/`Get*` |
+| **Database** | DynamoDB, ElastiCache, RDS, Redshift | `dynamodb:List*`/`Describe*`, `elasticache:Describe*`/`List*`, `rds:Describe*`/`ListTagsForResource`, `redshift:Describe*` |
+| **Management** | Bedrock, CloudFormation, CloudTrail, CloudWatch, Config, EventBridge, Organizations, SNS, SQS, SSM, Step Functions, Tagging | `bedrock:List*`/`Get*`, `bedrock-agent:List*`/`Get*`, `cloudtrail:List*`/`Get*`/`Describe*`/`LookupEvents`, `organizations:List*`/`Describe*`, `sns:List*`/`Get*`, `sqs:List*`/`Get*`, `ssm:Describe*`/`List*`/`Get*`, `tag:Get*` |
+| **Networking** | CloudFront, Elastic Load Balancing, Route53 | `cloudfront:List*`/`Get*`, `elasticloadbalancing:Describe*`, `route53:List*`/`Get*` |
+| **Security** | Access Analyzer, ACM, GuardDuty, IAM, Inspector, KMS, Secrets Manager, Security Hub, Shield, WAF | `access-analyzer:List*`/`Get*`, `acm:List*`/`Describe*`/`Get*`, `guardduty:List*`/`Get*`/`Describe*`, `iam:List*`/`Get*`, `inspector2:List*`/`Get*`/`BatchGet*`/`Describe*`, `kms:List*`/`Describe*`/`GetKeyPolicy`/`GetKeyRotationStatus`, `secretsmanager:List*`/`Describe*`/`GetResourcePolicy`, `securityhub:Get*`/`List*`/`Describe*`, `wafv2:List*`/`Get*` |
+| **Storage** | Backup, EFS, FSx, Glacier, S3 | `backup:List*`/`Describe*`/`Get*`, `elasticfilesystem:Describe*`, `s3:ListAllMyBuckets`/`GetBucket*`/`GetEncryptionConfiguration` |
 
-For [multi-account setup](#multi-account-setup) via AWS Organizations, add the following permission to the management account role:
+Additionally, `sts:GetCallerIdentity` is used for account verification.
 
-```json
-{
-    "Sid": "WallarmInfraDiscoveryOrganizations",
-    "Effect": "Allow",
-    "Action": [
-        "organizations:ListAccounts"
-    ],
-    "Resource": "*"
-}
-```
+??? note "Full IAM policy JSON for manual setup"
+    If you prefer to create a single consolidated policy manually instead of using the CloudFormation template, include all read-only actions listed in the table above. The CloudFormation template is the recommended approach as it also sets up the trust policy and explicit Deny statements automatically.
 
 !!! warning "No data-plane access"
-    Infrastructure Discovery does **not** request data-plane permissions. It will never access your data: no `s3:GetObject`, no `rds:*Data`, no log-reading, no `kms:Decrypt`. All collected information is resource metadata only (IDs, configurations, tags, relationships). All actions are read-only.
+    Infrastructure Discovery does **not** request data-plane permissions. It will never access your data: no `s3:GetObject`, no `rds:*Data`, no `kms:Decrypt`, no `secretsmanager:GetSecretValue`, no log-reading. The CloudFormation template includes explicit Deny statements blocking all mutation and data-plane operations. All collected information is resource metadata only (IDs, configurations, tags, relationships).
 
 #### Setup with IAM Role
 
