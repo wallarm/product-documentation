@@ -395,7 +395,7 @@ Choose packages or containers if you run on VMs or bare metal and prefer them ov
 
 ## Special setups
 
-Deployment options that don’t follow the platform matrix: known scenarios (multi-tenant, separate postanalytics, custom NGINX) and custom requests when nothing above fits.
+Deployment options that do not follow the platform matrix: known scenarios (multi-tenant, separate postanalytics, custom NGINX) and custom requests when nothing above fits.
 
 <div class="do-section">
     <div class="do-main">

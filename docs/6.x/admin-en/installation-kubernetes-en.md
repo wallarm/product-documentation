@@ -40,7 +40,7 @@ It has the following architecture:
 Among all supported [Wallarm deployment options][deployment-platform-docs], this solution is the recommended one for the following **use cases**:
 
 * There is no Ingress controller and security layer routing traffic to Ingress resources compatible with [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx).
-* You are currently using the Community Ingress NGINX Controller and are in search of a security solution that offers both the standard controller functionality and enhanced security features. In this case, you can effortlessly switch to the Wallarm-NGINX Ingress Controller detailed in these instructions. Simply migrate your existing configuration to a new deployment to complete the replacement.
+* You are currently using the Community Ingress NGINX Controller and are in search of a security solution that offers both the standard controller functionality and enhanced security features. In this case, you can switch to the Wallarm-NGINX Ingress Controller detailed in these instructions. Migrate your existing configuration to a new deployment to complete the replacement.
 
     For simultaneous use of both the existing Ingress controller and the Wallarm controller, refer to the [Ingress Controller chaining guide][chaining-doc] for configuration details.
 
@@ -71,7 +71,7 @@ To install the Wallarm Ingress Controller:
 
     === "API token (Helm chart 4.6.8 and above)"
         1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-        1. Find or create API token with the `Node deployment/Deployment` usage type.
+        1. Find or create an API token with the `Node deployment/Deployment` usage type.
         1. Copy this token.
     === "Node token"
         1. Open Wallarm Console → **Nodes** in either the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
@@ -90,7 +90,7 @@ To install the Wallarm Ingress Controller:
     helm repo update wallarm
     ```
 
-1. Create the `values.yaml` file with the [Wallarm configuration][configure-nginx-ing-controller-docs]. Example of the file with the minimum configuration is below.
+1. Create the `values.yaml` file with the [Wallarm configuration][configure-nginx-ing-controller-docs]. An example of the file with the minimum configuration is below.
 
     When using an API token, specify a node group name in the `nodeGroup` parameter. Your node will be assigned to this group, shown in the Wallarm Console's **Nodes** section. The default group name is `defaultIngressGroup`.
 
@@ -161,7 +161,7 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.i
 
 ## ARM64 deployment
 
-With the NGINX Ingress controller's Helm chart version 4.8.2, ARM64 processor compatibility is introduced. Initially set for x86 architectures, deploying on ARM64 nodes involves modifying the Helm chart parameters.
+With the NGINX Ingress controller's Helm chart version 4.8.2, ARM64 processor compatibility is introduced. Initially set for x86 architectures, the controller requires modified Helm chart parameters for deployment on ARM64 nodes.
 
 In ARM64 settings, Kubernetes nodes often carry an `arm64` label. To assist the Kubernetes scheduler in allocating the Wallarm workload to the appropriate node type, reference this label using `nodeSelector`, `tolerations`, or affinity rules in the Wallarm Helm chart configuration.
 
@@ -219,7 +219,7 @@ Below is the Wallarm Helm chart example for Google Kubernetes Engine (GKE), whic
 
 ## Deployment from your own registries
 
-If you cannot pull the Docker images from the Wallarm public repository due to some reasons, for example because you company security policy restricts usage of any external resources, instead you can:
+If you cannot pull the Docker images from the Wallarm public repository for some reason — for example, because your company security policy restricts the use of external resources — you can:
 
 1. Clone these images to your private registry.
 1. Install Wallarm NGINX-based Ingress controller using them.
@@ -229,7 +229,7 @@ The following Docker images are used by the Helm chart for NGINX-based Ingress C
 * [wallarm/ingress-controller](https://hub.docker.com/r/wallarm/ingress-controller)
 * [wallarm/node-helpers](https://hub.docker.com/r/wallarm/node-helpers)
 
-To install Wallarm NGINX-based Ingress controller using images stored in your registry, overwrite the `values.yaml` file of Wallarm Ingress controller Helm chart:
+To install Wallarm NGINX-based Ingress controller using images stored in your registry, overwrite the `values.yaml` file of the Wallarm Ingress controller Helm chart:
 
 ```yaml
 controller:
@@ -400,4 +400,4 @@ After the Wallarm Ingress controller is successfully installed and checked, you 
 * [High availability considerations][best-practices-for-high-availability]
 * [Ingress Controller monitoring][best-practices-for-ingress-monitoring]
 
-To find parameters used for advanced configuration and appropriate instructions, please follow the [link][configure-nginx-ing-controller-docs].
+To find parameters used for advanced configuration and appropriate instructions, follow the [link][configure-nginx-ing-controller-docs].

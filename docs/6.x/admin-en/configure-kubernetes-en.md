@@ -242,7 +242,7 @@ Allows you to enable or disable Wallarm functions.
 Wallarm API endpoint. Can be:
 
 * `us1.api.wallarm.com` for the [US cloud](../about-wallarm/api-security-overview.md#cloud).
-* `api.wallarm.com` for the [EU cloud](../about-wallarm/api-security-overview.md#cloud),
+* `api.wallarm.com` for the [EU cloud](../about-wallarm/api-security-overview.md#cloud).
 
 **Default value**: `api.wallarm.com`
 
@@ -252,7 +252,7 @@ A filtering node token value. It is required to access the Wallarm API.
 
 The token can be one of these [types][node-token-types]:
 
-* **API token (recommended)** - Ideal if you need to dynamically add/remove node groups for UI organization or if you want to control token lifecycle for added security. To generate an API token:
+* **API token (recommended)** - Ideal if you need to dynamically add/remove node groups for UI organization or if you want to control token lifecycle for added security.
 
     To generate an API token:
     
@@ -310,11 +310,11 @@ To store the node token in K8s secrets and pull it to the Helm chart:
 
 ### controller.wallarm.postanalytics.arena
 
-Specifies the amount of memory allocated for postanalytics service. It is recommended to set up a value sufficient to store request data for the last 5-15 minutes.
+Specifies the amount of memory allocated for the postanalytics service. It is recommended to set up a value sufficient to store request data for the last 5-15 minutes.
 
 **Default value**: `2.0`
 
-In the [NGINX Node 5.x and earlier](../updating-migrating/what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics), the parameter has been named `controller.wallarm.tarantool.arena`. Renaming is required during upgrade.
+In [NGINX Node 5.x and earlier](../updating-migrating/what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics), the parameter was named `controller.wallarm.tarantool.arena`. Renaming is required during upgrade.
 
 ### controller.wallarm.postanalytics.serviceAddress
 
@@ -364,7 +364,7 @@ Supported from the release 6.2.0 onwards.
 | Parameter | Description | Required? |
 | --------- | ----------- | --------- |
 | `enabled` | Enables or disables SSL/TLS for the connection to the postanalytics module. By default, `false` (disabled). | Yes |
-| `certFile` | Specifies the path to the client certificate used by the the Filtering Node to authenticate itself when establishing an SSL/TLS connection to the postanalytics module. | Yes if `mutualTLS.enabled` is `true` |
+| `certFile` | Specifies the path to the client certificate used by the Filtering Node to authenticate itself when establishing an SSL/TLS connection to the postanalytics module. | Yes if `mutualTLS.enabled` is `true` |
 | `keyFile` | Specifies the path to the private key corresponding to the client certificate provided via `certFile`. | Yes if `mutualTLS.enabled` is `true` |
 | `caCertFile` | Specifies the path to a trusted Certificate Authority (CA) certificate used to validate the TLS certificate presented by the postanalytics module. | Yes if using a custom CA |
 | `mutualTLS.enabled` | Enables mutual TLS (mTLS), where both the Filtering Node and the postanalytics module verify each other's identity via certificates. By default, `false` (disabled). | No |
@@ -444,7 +444,7 @@ controller:
       ...
 ```
 
-Since node 5.1.0, the following is presented (see default values in the example above):
+Since node 5.1.0, the following is available (see default values in the example above):
 
 | Setting | Description |
 | ------- | ----------- |
@@ -465,7 +465,7 @@ When enabled, metrics are available by default at `http://<host>:9010/metrics`.
 | ------- | ----------- |
 | `enabled` | Enables Prometheus metrics for the API Specification Enforcement module.<br>By default: `false` (disabled). |
 | `port` | Defines the port on which the API Specification Enforcement module exposes metrics. If you change this value, also update `controller.wallarm.apiFirewall.metrics.service.servicePort`.<br>Default: `9010`. |
-| `endpointPath` | Defines the HTTP path of the API Specification Enforcement metrics endpoint<br>By default: `metrics`. |
+| `endpointPath` | Defines the HTTP path of the API Specification Enforcement metrics endpoint.<br>By default: `metrics`. |
 | `host` | IP address and port for binding the metrics server.<br>By default: `:9010` (all interfaces on port 9010). |
 
 ```yaml
@@ -521,7 +521,7 @@ controller:
 
 Extra environment variables to be passed to the Docker containers utilized by the solution. Supported starting from the release 4.10.6.
 
-The example below shows how to pass the `https_proxy` and `no_proxy` variables to Docker containers. This setup directs outgoing HTTPS traffic through a designated proxy, while local traffic bypasses it. Such configuration is crucial in environments where external communications, like those with the Wallarm API, must pass through a proxy for security reasons.
+The example below shows how to pass the `https_proxy` and `no_proxy` variables to Docker containers. This setup directs outgoing HTTPS traffic through a designated proxy, while local traffic bypasses it. Such a configuration is crucial in environments where external communications, like those with the Wallarm API, must pass through a proxy for security reasons.
 
 ```yaml
 controller:
@@ -622,7 +622,7 @@ These annotations are used for setting up parameters for processing individual i
 
 ### Applying annotation to the Ingress resource
 
-To apply the settings to your Ingress, please use the following command:
+To apply the settings to your Ingress, use the following command:
 
 ```
 kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> <ANNOTATION_NAME>=<VALUE>
@@ -640,8 +640,8 @@ kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESP
 The annotation `nginx.ingress.kubernetes.io/wallarm-block-page` is used to configure the blocking page and error code returned in the response to the request blocked for the following reasons:
 
 * Request contains malicious payloads of the following types: [input validation attacks](../attacks-vulns-list.md#attack-types), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md).
-* Request containing malicious payloads from the list above is originated from [graylisted IP address](../user-guides/ip-lists/overview.md) and the node filters requests in the safe blocking [mode](configure-wallarm-mode.md).
-* Request is originated from the [denylisted IP address](../user-guides/ip-lists/overview.md).
+* Request containing malicious payloads from the list above originates from a [graylisted IP address](../user-guides/ip-lists/overview.md) and the node filters requests in the safe blocking [mode](configure-wallarm-mode.md).
+* Request originates from the [denylisted IP address](../user-guides/ip-lists/overview.md).
 
 For example, to return the default Wallarm blocking page and the error code 445 in the response to any blocked request:
 
@@ -665,14 +665,14 @@ You can control the [**libdetection**](../admin-en/configure-parameters-en.md#wa
     ```
 
     Available values of `wallarm_enable_libdetection` are `on`/`off`.
-* Pass the parameter `controller.config.server-snippet` to the Helm chart:
+* Passing the parameter `controller.config.server-snippet` to the Helm chart:
 
     === "Ingress controller installation"
         ```bash
         helm install --set controller.config.server-snippet='wallarm_enable_libdetection off;' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
 
-        There are also [other parameters](#additional-settings-for-helm-chart) required for correct Ingress controller installation. Please pass them in the `--set` option too.
+        There are also [other parameters](#additional-settings-for-helm-chart) required for correct Ingress controller installation. Pass them in the `--set` option too.
     === "Updating Ingress controller parameters"
         ```bash
         helm upgrade --reuse-values --set controller.config.server-snippet='wallarm_enable_libdetection off;' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
