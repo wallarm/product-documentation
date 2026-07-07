@@ -1,6 +1,6 @@
 # Business Logic Abuse Detection
 
-Wallarm utilizes LLM-based analysis to detect the attempts to abuse a business logic of your applications and block these attempts. This article describes what business logic abuse is, how detection and protection works, and how to configure it.
+Wallarm utilizes LLM-based analysis to detect attempts to abuse the business logic of your applications and block these attempts. This article describes what business logic abuse is, how detection and protection works, and how to configure it.
 
 ## Examples of logic abuse
 
@@ -17,7 +17,7 @@ See [possible Wallarm configuration](#detection-prompt-and-context-window-for-an
 
 ## Requirements
 
-* This functionality is available in **Free Tier** subscription.
+* This functionality is available in the **Free Tier** subscription.
 * If you utilize other [subscriptions](../about-wallarm/subscription-plans.md), contact [Wallarm Support team](https://support.wallarm.com) to enable this feature.
 * Requires [NGINX node](../installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or higher or [Native node](../installation/nginx-native-node-internals.md#native-node) 0.14.1 or higher.
 
@@ -31,7 +31,7 @@ The business logic abuse is not detected by default and requires configuration. 
 * Variable inconsistency - changes of values (like `price` or `user_id`) mid-flow in a way the application didn't intend
 * Etc.
 
-If decision is that yes, this is an attempt to abuse business logic, the corresponding requests in **API Sessions** are [marked](#viewing-detected-attacks) as part of the [**Custom logic abuse** attack](../attacks-vulns-list.md#custom-logic-abuse) and processed due to the selected mitigation mode.
+If the decision is that this is an attempt to abuse business logic, the corresponding requests in **API Sessions** are [marked](#viewing-detected-attacks) as part of the [**Custom logic abuse** attack](../attacks-vulns-list.md#custom-logic-abuse) and processed according to the selected mitigation mode.
 
 ## Creating and applying mitigation control
 
@@ -119,7 +119,7 @@ How it works:
 * Your context window is 5 minutes and 20 requests.
 * `Request A` arrives; Gemini decides it may be related to a refund.
 * Case 1: before `Request A`, within 5 minutes, 32 requests occurred: `Request A` and 20 from this 32 will be analyzed by Gemini.
-* Case 2: before `Request A`, within 5 minutes, 5 requests occurred: `Request A` and these 5 will be analyzed, 15 more that could be taken are outside time limitation.
+* Case 2: before `Request A`, within 5 minutes, 5 requests occurred: `Request A` and these 5 will be analyzed, 15 more that could be taken are outside the time limitation.
 
 The aim of this setting is to provide enough context for the model to detect patterns and identify hidden abuse attempts. You need to rely on your application logic and usual traffic intensity in specific business flows to set the appropriate context.
 
@@ -152,7 +152,7 @@ When business logic abuse is detected, it shows up in [API Sessions](../api-sess
 
 * Session having corresponding requests is marked as **AI Business logic abuse detection** subject with specified action (**Monitoring** or **Blocking**).
 * Corresponding requests within session are marked as part of the [**Custom logic abuse** attack](../attacks-vulns-list.md#custom-logic-abuse).
-* This is an LLM-based decision, so you always have **Reason** where LLM explains what kind of abuse has happened precisely by its opinion.
+* This is an LLM-based decision, so you always have a **Reason** where the LLM explains what kind of abuse has happened, in its opinion.
 
 ![API Sessions - session with detected business logic abuse](../images/api-protection/api-sessions-business-logic-abuse.png)
 

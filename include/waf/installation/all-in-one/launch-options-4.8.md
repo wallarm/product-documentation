@@ -1,4 +1,4 @@
-As soon as you have the all-in one script downloaded, you can get help on it with:
+As soon as you have the all-in-one script downloaded, you can get help on it with:
 
 ```
 sudo sh ./wallarm-4.8.10.x86_64-glibc.sh -- -h
@@ -18,7 +18,7 @@ OPTION                      DESCRIPTION
 -t, --token TOKEN           Node token, required in a batch mode.
 -c, --cloud CLOUD           Wallarm Cloud, one of US/EU, default is EU, only used in a batch mode.
 -H, --host HOST             Wallarm API address, for example, api.wallarm.com or us1.api.wallarm.com, only used in a batch mode.
--P, --port PORT             Wallarm API pot, for example, 443.
+-P, --port PORT             Wallarm API port, for example, 443.
     --no-ssl                Disable SSL for Wallarm API access.
     --no-verify             Disable SSL certificates verification.
 -f, --force                 If there is a node with the same name, create a new instance.

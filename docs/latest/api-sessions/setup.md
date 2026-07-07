@@ -1,6 +1,6 @@
 # API Sessions Setup <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
-[API Sessions](overview.md) include the built-in rules for the session identification and requires only enabled Wallarm [node](../about-wallarm/api-security-overview.md#how-wallarm-api-security-works) to start working. Optionally, you can fine-tune API Sessions under your needs as described in this article.
+[API Sessions](overview.md) include built-in rules for session identification and require only an enabled Wallarm [node](../about-wallarm/api-security-overview.md#how-wallarm-api-security-works) to start working. Optionally, you can fine-tune API Sessions to your needs as described in this article.
 
 ## Requirements
 
@@ -13,15 +13,15 @@ Wallarm groups requests of your applications' traffic into user sessions based o
 
 By default, sessions are identified with the **built-in set** of such parameters (not displayed in Wallarm Console). Its logic is to try most common identification parameters, such as `PHPSESSID` or `SESSION-ID` headers, and if they do not work - form session based on the combination of `request source IP and user-agent` (or at least IP if user-agent is not presented).
 
-You can add several grouping keys, they are tried in [specified order](#example-of-how-grouping-keys-work) - next is tried only if previous did not work. Drag to change the order. You own keys are always tried before the built-in ones.
+You can add several grouping keys, they are tried in [specified order](#example-of-how-grouping-keys-work) - next is tried only if previous did not work. Drag to change the order. Your own keys are always tried before the built-in ones.
 
 ![!API Sessions - Configuration](../images/api-sessions/api-sessions-settings.png)
 
 Consider the following:
 
-* **Multi-part sessions**: For effective analysis, [long sessions](exploring.md#multi-day-sessions) are separated in one-day parts. Also, no parts older than 7 days are stored and displayed.
+* **Multi-part sessions**: For effective analysis, [long sessions](exploring.md#multi-day-sessions) are separated into one-day parts. Also, no parts older than 7 days are stored and displayed.
 * **Impact to bot detection by `API Abuse prevention`**: Wallarm's API Abuse Prevention uses sessions for the malicious bot detection. Adding your own session identification parameters based on your applications' logic makes both session detection and API Abuse Prevention's bot detection more precise. See [details](overview.md#api-sessions-and-api-abuse-prevention).
-* **Impact from `Mask sensitive data` rule**: For the parameter to work as a grouping key, it should not be affected by the the [Mask sensitive data](../user-guides/rules/sensitive-data-rule.md) rule
+* **Impact from `Mask sensitive data` rule**: For the parameter to work as a grouping key, it should not be affected by the [Mask sensitive data](../user-guides/rules/sensitive-data-rule.md) rule
 
 ### Adding grouping keys
 
@@ -135,7 +135,7 @@ Getting the `email` parameter from the request body:
 
 ![!API Sessions - context parameters - example - request](../images/api-sessions/api-sessions-context-parameters-example-request.png)
 
-Getting the `product_id` parameter form the response body:
+Getting the `product_id` parameter from the response body:
 
 ![!API Sessions - context parameters - example - response](../images/api-sessions/api-sessions-context-parameters-example-response.png)
 
@@ -157,7 +157,7 @@ In API Sessions, selecting parameters is simplified compared to how they are sel
 * You always start with selecting `Request` or `Response`
 * Instead of the `post` tag to mark body, you directly select `Body`
 * Instead of `hush` tag for values (as opposite to arrays), you select `Property`
-* API Sessions provide "live" request preview to the right structure you specified
+* API Sessions provide a "live" request preview of the structure you specified
 
 For example, what in Rules would be:
 
@@ -173,13 +173,13 @@ You can highlight session parameters, that should be used for naming the session
 
 ![!API Sessions - user and user role setup](../images/api-sessions/api-sessions-user-role-select.png)
 
-Once you configured parameters to be used for user and his/her role identification, these parameters are started to be filled for the sessions. You can filter sessions by users and roles.
+Once you have configured parameters to be used for user and his/her role identification, these parameters start to be filled for the sessions. You can filter sessions by users and roles.
 
 ![!API Sessions - user and user role display](../images/api-sessions/api-sessions-user-role-display.png)
 
 ### Mitigation controls
 
-[Mitigation controls](../about-wallarm/mitigation-controls-overview.md) are capable of adding more parameters to session context, for example, the **BOLA protection** mitigation control may want to use the `object_id` parameter as [tracked for enumeration](../api-protection/enumeration-attack-protection.md#enumerated-parameters) or as [filter for scope](../api-protection/enumeration-attack-protection.md#scope-filters); if such parameter is not added in **API Sessions** → **Session context parameters**, it can be added directly in mitigation control configuration: in API Session, it will be added hidden, meaning you will see these parameters in session details if they are presented in requests, but you will not see them in **Session context parameters** configuration.
+[Mitigation controls](../about-wallarm/mitigation-controls-overview.md) are capable of adding more parameters to session context, for example, the **BOLA protection** mitigation control may want to use the `object_id` parameter as [tracked for enumeration](../api-protection/enumeration-attack-protection.md#enumerated-parameters) or as [filter for scope](../api-protection/enumeration-attack-protection.md#scope-filters); if such parameter is not added in **API Sessions** → **Session context parameters**, it can be added directly in mitigation control configuration: in API Session, it will be added hidden, meaning you will see these parameters in session details if they are present in requests, but you will not see them in **Session context parameters** configuration.
 
 Hidden parameters do not take anything from 20 parameter quota. Parameters are hidden to avoid their deletion as such deletion can lead to ceasing protection provided by mitigation control.
 
@@ -189,7 +189,7 @@ It is recommended to enable [JA3 fingerprinting](../admin-en/enabling-ja3.md#ove
 
 ## Data protection
 
-For API Sessions, from node to the Cloud, Wallarm only exports parameters selected by you. If they contain sensitive data, be sure to hash it before exporting. Note that hashing will transform the actual value into unreadable - the presence of parameter and particular but unknown value will provide the limited information for the analysis.
+For API Sessions, from node to the Cloud, Wallarm only exports parameters selected by you. If they contain sensitive data, be sure to hash it before exporting. Note that hashing will make the actual value unreadable - the presence of the parameter and a particular but unknown value will provide limited information for the analysis.
 
 To hash the sensitive parameters, once they are added in Wallarm Console → **API Sessions** → **Session context parameters**, select the **Hashing (secret)** option for them.
 
@@ -201,4 +201,4 @@ API Sessions analyze all traffic that Wallarm node is enabled to secure to organ
 
 ## Storage period
 
-The **API Sessions** section stores and displays sessions for the last week. The older sessions are deleted to provide an optimal performance and resource consumption.
+The **API Sessions** section stores and displays sessions for the last week. The older sessions are deleted to provide optimal performance and resource consumption.

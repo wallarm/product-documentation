@@ -2,7 +2,7 @@
 
 <a href="briefing.md#role-and-altitude"><img src="../../images/role-security.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-platform.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a>
 
-**Topology** is the traffic-flow map of your environment: how requests move between agents, MCP servers, LLM providers, data sources, and APIs. It shows the same entities as [Registry](registry.md), but emphasises the connections between them.
+**Topology** is the traffic-flow map of your environment: how requests move between agents, MCP servers, LLM providers, data sources, and APIs. It shows the same entities as [Registry](registry.md), but emphasizes the connections between them.
 
 A node is one observed entity; an edge is a flow between two of them. Node severities aggregate the findings on that entity. Edge severities surface PII, unsanctioned destinations, and other per-flow concerns.
 
@@ -17,7 +17,7 @@ Nodes sit on a two-dimensional grid that matches the [Findings](findings.md) ful
 
 Read the canvas top to bottom to follow a request from the public entry point through identity, orchestration, and inference towards data. Read left to right to see what stays inside your platform versus what reaches out to third-party services.
 
-A complementary **Flow** view renders the same nodes and edges as a directional tree, emphasising the path traffic takes rather than the architectural layout.
+A complementary **Flow** view renders the same nodes and edges as a directional tree, emphasizing the path traffic takes rather than the architectural layout.
 
 ## Pipelines
 

@@ -51,13 +51,13 @@ The CDN node highlighted in red does not proxy requests and as a result, does no
 
 ### Why the CDN node could disappear from the node list in Wallarm Console?
 
-Wallarm deletes CDN nodes with CNAME records left unchanged for 10 or more days since the moment of the node creation.
+Wallarm deletes CDN nodes with CNAME records left unchanged for 10 or more days since the node was created.
 
 If you find the CDN node disappeared, create a new node.
 
 ### Why is there a delay in the update of the content protected by the CDN node?
 
-If your site is protected by the CDN node and you notice that when you change your data, the site is updated with a sensible delay, the probable reason may be the [Varnish Cache][using-varnish-cache] which speeds up your content delivery, but the cached copy on the CDN may be updated with a delay.
+If your site is protected by the CDN node and you notice that when you change your data, the site is updated with a noticeable delay, the probable reason may be the [Varnish Cache][using-varnish-cache] which speeds up your content delivery, but the cached copy on the CDN may be updated with a delay.
 
 Example:
 

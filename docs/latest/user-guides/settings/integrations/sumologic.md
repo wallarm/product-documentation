@@ -1,6 +1,6 @@
 # Sumo Logic
 
-[Sumo Logic](https://www.sumologic.com/) is a cloud-native, machine data analytics platform that provides organizations with real-time insights into their IT operations, security, and application performance.  You can set up Wallarm to send messages to Sumo Logic.
+[Sumo Logic](https://www.sumologic.com/) is a cloud-native, machine data analytics platform that provides organizations with real-time insights into their IT operations, security, and application performance. You can set up Wallarm to send messages to Sumo Logic.
 
 ## Setting up integration
 
@@ -15,7 +15,7 @@ In Wallarm UI:
 1. Open the **Integrations** section.
 1. Click the **Sumo Logic** block or click the **Add integration** button and choose **Sumo Logic**.
 1. Enter an integration name.
-1. Paste the copied value of HTTP Source Address (URL) to the **HTTP Source Address (URL)** field.
+1. Paste the copied value of HTTP Source Address (URL) into the **HTTP Source Address (URL)** field.
 1. Choose event types to trigger notifications.
 
     ![Sumo Logic integration](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)

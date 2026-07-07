@@ -9,7 +9,7 @@ With the sensitive business flow capability, Wallarm's [API Discovery](overview.
 
 The abuse of the sensitive business flows ranks sixth ([API6](https://owasp.org/API-Security/editions/2023/en/0xa6-unrestricted-access-to-sensitive-business-flows/)) among OWASP API Top 10 risks. Protecting these sensitive business flows ensures business continuity, prevents leaking of sensitive data, reputation risks, and financial damage.
 
-WIth the sensitive business flows capability, Wallarm highlights health of the business-critical functions and helps to:
+With the sensitive business flows capability, Wallarm highlights the health of the business-critical functions and helps to:
 
 * Regularly monitor and audit endpoints related to sensitive business flows for vulnerabilities or breaches.
 * Prioritize them for development, maintenance, and security efforts.
@@ -28,7 +28,7 @@ The automatic tagging discovers most of the sensitive business flows. However, i
 
 ## Tagging endpoints manually
 
-To adjust the results of [automatic tagging](#automatic-tagging), you can manually edit the list of sensitive business flow the endpoint belongs to. You can also manually tag endpoints that do not directly fall under the keyword list.
+To adjust the results of [automatic tagging](#automatic-tagging), you can manually edit the list of sensitive business flows the endpoint belongs to. You can also manually tag endpoints that do not directly fall under the keyword list.
 
 To edit the list of flows the endpoint belongs to, in Wallarm Console, go to API Discovery, then for your endpoint, in the **Business flow**, select one or several flows from the list.
 
@@ -46,6 +46,6 @@ Once sessions are assigned with the sensitive business flow tags, it becomes pos
 -->
 ## Filtering by business flow
 
-Once endpoints are assigned with the sensitive business flow tags, it becomes possible to filter all discovered endpoint by a specific business flow (the **Business flow** filter) which makes it easier on protecting the most critical business capabilities.
+Once endpoints are assigned the sensitive business flow tags, it becomes possible to filter all discovered endpoints by a specific business flow (the **Business flow** filter), which makes it easier to protect the most critical business capabilities.
 
 ![API Discovery - Filtering by sensitive business flows](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-sbf-filter.png)

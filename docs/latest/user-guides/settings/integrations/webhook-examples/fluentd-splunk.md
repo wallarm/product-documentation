@@ -34,7 +34,7 @@ Since Wallarm sends logs to the Fluentd intermediate data collector via webhooks
 
 * Accept the POST or PUT requests
 * Accept HTTPS requests
-* Have public URL
+* Have a public URL
 * Forward logs to Splunk Enterprise, this example uses the `splunk_hec` plugin to forward logs
 
 Fluentd is configured in the `td-agent.conf` file:

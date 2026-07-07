@@ -1,6 +1,6 @@
 The Wallarm filtering node interacts with the Wallarm Cloud. You need to connect the node to the Cloud.
 
-When connecting node to the Cloud, you can set the node name, under which it will be displayed in the Wallarm Console UI and put the node into the appropriate **node group** (used to logically organize nodes in UI).
+When connecting the node to the Cloud, you can set the node name, under which it will be displayed in the Wallarm Console UI and put the node into the appropriate **node group** (used to logically organize nodes in the UI).
 
 ![Grouped nodes][img-grouped-nodes]
 
@@ -23,7 +23,7 @@ To connect the node to the Cloud, use a Wallarm token of the [appropriate type][
             ```
         
         * `<TOKEN>` is the copied value of the API token with the `Deploy` role.
-        * `--labels 'group=<GROUP>'` parameter puts your node to the `<GROUP>` node group (existing, or, if does not exist, it will be created). If you are installing filtering and postanalytics modules [separately][install-postanalytics-instr], it is recommended to put them into the same group.
+        * `--labels 'group=<GROUP>'` parameter puts your node into the `<GROUP>` node group (existing, or, if it does not exist, it will be created). If you are installing filtering and postanalytics modules [separately][install-postanalytics-instr], it is recommended to put them into the same group.
 
 === "Node token"
 

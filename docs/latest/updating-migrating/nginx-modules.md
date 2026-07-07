@@ -101,7 +101,7 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
         sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.7.aarch64-glibc.sh filtering
         ```        
 
-        The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
+        The `WALLARM_LABELS` variable sets the group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
 
     === "Node token"
         If using the x86_64 version:
@@ -152,16 +152,16 @@ To test the new node operation:
 
 Update targets of your load balancer to send traffic to the Wallarm instance. For details, please refer to the documentation on your load balancer.
 
-Before full redirecting of the traffic to the new node, it is recommended to first redirect it partially and check that the new node behaves as expected.
+Before fully redirecting the traffic to the new node, it is recommended to first redirect it partially and check that the new node behaves as expected.
 
 ## Step 10: Remove old node
 
-1. Delete old node in Wallarm Console → **Nodes** by selecting your node and clicking **Delete**.
+1. Delete the old node in Wallarm Console → **Nodes** by selecting your node and clicking **Delete**.
 1. Confirm the action.
     
     When the node is deleted from Cloud, it will stop filtration of requests to your applications. Deleting the filtering node cannot be undone. The node will be deleted from the list of nodes permanently.
 
-1. Delete machine with the old node or just clean it from Wallarm node components:
+1. Delete the machine with the old node or just clean it from Wallarm node components:
 
     === "Debian"
         ```bash

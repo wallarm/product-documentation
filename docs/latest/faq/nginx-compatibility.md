@@ -15,7 +15,7 @@ No, Wallarm filtering node is incompatible with NGINX `mainline`. You can instal
 Yes, the Wallarm module can be connected to the custom build of NGINX after rebuilding Wallarm packages. To rebuild the packages, please contact [Wallarm technical support team](mailto:support@wallarm.com) and send the following data:
 
 * Linux kernel version: `uname -a`
-* Linux distributive: `cat /etc/*release`
+* Linux distribution: `cat /etc/*release`
 * NGINX version:
 
     * [NGINX official build](https://nginx.org/en/linux_packages.html): `/usr/sbin/nginx -V`

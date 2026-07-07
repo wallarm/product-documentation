@@ -10,16 +10,16 @@ ServiceNow is a platform to help companies manage digital workflows for enterpri
 
 In ServiceNow UI:
 
-1. Get name of your [ServiceNow instance](https://docs.servicenow.com/bundle/tokyo-application-development/page/build/team-development/concept/c_InstanceHierarchies.html).
-1. Get username and password to access the instance.
-1. Enable OAuth authentication and get client ID and secret as described [here](https://docs.servicenow.com/bundle/tokyo-application-development/page/integrate/inbound-rest/task/t_EnableOAuthWithREST.html).
+1. Get the name of your [ServiceNow instance](https://docs.servicenow.com/bundle/tokyo-application-development/page/build/team-development/concept/c_InstanceHierarchies.html).
+1. Get the username and password to access the instance.
+1. Enable OAuth authentication and get the client ID and secret as described [here](https://docs.servicenow.com/bundle/tokyo-application-development/page/integrate/inbound-rest/task/t_EnableOAuthWithREST.html).
 
 In Wallarm UI:
 
 1. Open Wallarm Console → **Integrations** → **ServiceNow**.
 1. Enter an integration name.
 1. Enter the ServiceNow instance name.
-1. Enter username and password to access the specified instance.
+1. Enter the username and password to access the specified instance.
 1. Enter OAuth authentication data: client ID and secret.
 1. Choose event types to trigger notifications.
 

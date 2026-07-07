@@ -2,7 +2,7 @@
 | ------------- | ------------------------------------------ | ---- |
 | Authorization: | Required | With the token |
 | HTTP header with the token: | `X-WallarmAPI-Token` | Serves to pass the token’s value to the API server |
-| Parameters: | `test_run_id` **(required)** | The identifier of the test run whose state to obtain |
+| Parameters: | `test_run_id` **(required)** | The identifier of the test run whose state is to be obtained |
 
 
 **Example of a request:**

@@ -37,7 +37,7 @@ Users of Wallarm clients can have the following roles:
 
 The [multitenancy](../../installation/multi-tenant/overview.md) feature also enables you to use the global roles **Global Administrator**, **Global Analyst**, **Global Read Only**. Global roles provide users with access to the technical tenant account and linked tenant accounts, regular roles provide users with access only to the technical tenant account.
 
-More detailed information about access of different user roles to the Wallarm entities is provided in the table below. Entity management covers entity creating, editing, and deleting.
+More detailed information about access of different user roles to the Wallarm entities is provided in the table below. Entity management covers creating, editing, and deleting entities.
 
 | Entity              | Administrator / Global Administrator | Analyst / Global Analyst | Read Only / Global Read Only | API Developer |
 |---------------------|--------------------------------------|--------------------------|------------------------------|---|
@@ -65,9 +65,9 @@ More detailed information about access of different user roles to the Wallarm en
 
 ## Custom permissions
 
-While standard role-based access control (RBAC) provides a helpful, high-level structure, in Wallarm, for the selected user, you can define custom, individual permission set where every position and action is manually and individually configured. This moves control from broad buckets to precise, fine-grained settings.
+While standard role-based access control (RBAC) provides a helpful, high-level structure, in Wallarm, for the selected user, you can define a custom, individual permission set where every position and action is manually and individually configured. This moves control from broad buckets to precise, fine-grained settings.
 
-To define custom permissions
+To define custom permissions:
 
 1. Select **Edit user settings** from the user's menu.
 1. In the role field, select **Custom permissions**, set and save.
@@ -76,9 +76,9 @@ To define custom permissions
 
 Note that:
 
-* When a new user is created and **Custom permissions** are selected, they are all by default denied, you need to specify explicitly what to allow.
-* If new features appear in the list (new releases), they will be initially all denied, you need to allow them manually.
-* If **View** permission is not selected, user will not see the corresponding interface element and will not be able to use other permissions even if they are allowed.
+* When a new user is created and **Custom permissions** are selected, they are all denied by default, and you need to specify explicitly what to allow.
+* If new features appear in the list (new releases), they will initially all be denied, and you need to allow them manually.
+* If **View** permission is not selected, the user will not see the corresponding interface element and will not be able to use other permissions even if they are allowed.
 
 ## Inviting users
 
@@ -151,7 +151,7 @@ You can disable the enforcement mode at any moment later. After disabling, users
 
 ### Disabling for selected users
 
-If a user has [two-factor authentication (2FA) enabled](account.md#enabling-two-factor-authentication) and you need to reset it, select the **Disable 2FA** option from the user menu. Confirm the action by entering your Wallarm administrator account password. You cannot disable 2FA for the separate users when the [2FA enforcement mode](#enforcing-for-all-users) is active.
+If a user has [two-factor authentication (2FA) enabled](account.md#enabling-two-factor-authentication) and you need to reset it, select the **Disable 2FA** option from the user menu. Confirm the action by entering your Wallarm administrator account password. You cannot disable 2FA for individual users when the [2FA enforcement mode](#enforcing-for-all-users) is active.
 
 ![User actions menu][img-user-menu-disable-2fa]
 
@@ -170,17 +170,17 @@ Team members interested in these notifications must set up their own triggers.
 
 **Trigger example: new user alerts to Slack**
 
-If a new user with the **Administrator** or **Analyst** role is added to the company account in Wallarm Console, notification about this event will be sent to the email address specified in the integration and to the Slack channel.
+If a new user with the **Administrator** or **Analyst** role is added to the company account in Wallarm Console, a notification about this event will be sent to the email address specified in the integration and to the Slack channel.
 
 ![Example of a trigger sending the notification to Slack and by email](../../images/user-guides/triggers/trigger-example2.png)
 
 **To test the trigger:**
 
 1. Open the Wallarm Console → **Settings** → **Users** and add a new user.
-2. Open your email Inbox and check that the following message received:
+2. Open your email Inbox and check that the following message is received:
 
     ![Email about new user added](../../images/user-guides/triggers/test-new-user-email-message.png)
-3. Open the Slack channel and check that the following notification from the user **wallarm** received:
+3. Open the Slack channel and check that the following notification from the user **wallarm** is received:
 
     ```
     [Wallarm] Trigger: New user was added to the company account
@@ -203,6 +203,6 @@ If a new user with the **Administrator** or **Analyst** role is added to the com
 
 ## Logout management
 
-**Administrator** and **Global Administrator** [roles](users.md#user-roles) can set up logout timeouts for company account in **Settings** → **General**. Settings will affect all account users. Idle and absolute timeouts can be set.
+**Administrator** and **Global Administrator** [roles](users.md#user-roles) can set up logout timeouts for the company account in **Settings** → **General**. Settings will affect all account users. Idle and absolute timeouts can be set.
 
 ![General tab](../../images/user-guides/settings/general-tab.png)

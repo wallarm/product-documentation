@@ -617,7 +617,7 @@ The Node token value. It is required to access the Wallarm API.
 
 The token can be one of these [types][node-token-types]:
 
-* **API token (recommended)** - Ideal if you need to dynamically add/remove node groups for UI organization or if you want to control token lifecycle for added security. To generate an API token:
+* **API token (recommended)** - Ideal if you need to dynamically add/remove node groups for UI organization or if you want to control token lifecycle for added security.
 
     To generate an API token:
     
@@ -682,7 +682,7 @@ To store the node token in Kubernetes Secrets and pull it to the Helm chart:
 
 #### config.wallarm.fallback
 
-Controls [fallback behavior][fallback] when Wallarm data (for example, [`proton.db][proton-db] or a [custom rule set][lom]) cannot be downloaded.
+Controls [fallback behavior][fallback] when Wallarm data (for example, [`proton.db`][proton-db] or a [custom rule set][lom]) cannot be downloaded.
 
 **Default value**: `"on"`
 
@@ -1083,7 +1083,7 @@ The secrets must already exist in the same namespace as the Helm release.
 
 #### postanalytics.arena
 
-Specifies the amount of memory in GB allocated for postanalytics service. It is recommended to set up a value sufficient to store request data for the last 5-15 minutes.
+Specifies the amount of memory in GB allocated for the postanalytics service. It is recommended to set up a value sufficient to store request data for the last 5-15 minutes.
 
 **Default value**: `"2.0"`
 
@@ -1126,7 +1126,7 @@ postanalytics:
 | Parameter | Description | Required? |
 | --------- | ----------- | --------- |
 | `enabled` | Enables or disables SSL/TLS for the connection to the postanalytics module. By default, `false` (disabled). | Yes |
-| `certFile` | Specifies the path to the client certificate used by the the Filtering Node to authenticate itself when establishing an SSL/TLS connection to the postanalytics module. | Yes if `mutualTLS.enabled` is `true` |
+| `certFile` | Specifies the path to the client certificate used by the Filtering Node to authenticate itself when establishing an SSL/TLS connection to the postanalytics module. | Yes if `mutualTLS.enabled` is `true` |
 | `keyFile` | Specifies the path to the private key corresponding to the client certificate provided via `certFile`. | Yes if `mutualTLS.enabled` is `true` |
 | `caCertFile` | Specifies the path to a trusted Certificate Authority (CA) certificate used to validate the TLS certificate presented by the postanalytics module. | Yes if using a custom CA |
 | `mutualTLS.enabled` | Enables mutual TLS (mTLS), where both the Filtering Node and the postanalytics module verify each other's identity via certificates. By default, `false` (disabled). | No |
@@ -1273,7 +1273,7 @@ Besides the Wallarm-specific annotations described below, [standard NGINX Ingres
 | `nginx.org/wallarm-unpack-response` | Whether to decompress compressed data returned in the application response: `on` (default) or `off`. |
 | `nginx.org/wallarm-parse-response` | Whether to analyze the application responses for attacks: `on` (default) or `off`. Response analysis is required for vulnerability detection during [passive detection](../about-wallarm/detecting-vulnerabilities.md#passive-detection) and [threat replay testing](../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing-trt). |
 | `nginx.org/wallarm-parse-websocket` | Wallarm has full WebSockets support. By default, the WebSockets' messages are not analyzed for attacks. To force the feature, activate the API Security [subscription plan](../about-wallarm/subscription-plans.md#core-subscription-plans) and use this annotation: `on` or `off` (default). |
-| `nginx.org/wallarm-parser-disable` | Allows to disable [parsers](../user-guides/rules/request-processing.md). The directive values correspond to the name of the parser to be disabled, e.g. `json`. Multiple parsers can be specified, dividing by semicolon, e.g. `json;base64`. |
+| `nginx.org/wallarm-parser-disable` | Allows you to disable [parsers](../user-guides/rules/request-processing.md). The directive values correspond to the name of the parser to be disabled, e.g. `json`. Multiple parsers can be specified, separated by a semicolon, e.g. `json;base64`. |
 | `nginx.org/wallarm-partner-client-uuid` | Partner client [UUID](../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants) for multi-tenant setups. |
 
 ### Applying annotation to the Ingress resource
@@ -1298,8 +1298,8 @@ kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESP
 The annotation `nginx.org/wallarm-block-page` is used to configure the blocking page and error code returned in the response to the request blocked for the following reasons:
 
 * Request contains malicious payloads of the following types: [input validation attacks](../attacks-vulns-list.md#attack-types), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md).
-* Request containing malicious payloads from the list above is originated from [graylisted IP address](../user-guides/ip-lists/overview.md) and the node filters requests in the safe blocking [mode](configure-wallarm-mode.md).
-* Request is originated from the [denylisted IP address](../user-guides/ip-lists/overview.md).
+* Request containing malicious payloads from the list above originates from a [graylisted IP address](../user-guides/ip-lists/overview.md) and the node filters requests in the safe blocking [mode](configure-wallarm-mode.md).
+* Request originates from the [denylisted IP address](../user-guides/ip-lists/overview.md).
 
 For example, to return the default Wallarm blocking page and the error code 445 in the response to any blocked request:
 

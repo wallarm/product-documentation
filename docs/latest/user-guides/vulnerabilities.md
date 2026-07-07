@@ -18,19 +18,19 @@ Here, the detailed information on found issues is presented, including:
 * Top vulnerable hosts list
 * Distribution of security issues by type
 * [Risk level](#issue-risk-level) evaluation and distribution of security issues by these levels
-* Monthly historical information on detected and resolved issues for the last 6 month
+* Monthly historical information on detected and resolved issues for the last 6 months
 
 ## Issue details and lifecycle
 
-Wallarm provides detailed information on each detected security issues to allow clear understanding of what is happening and what can be done.
+Wallarm provides detailed information on each detected security issue to allow a clear understanding of what is happening and what can be done.
 
 ### Grouped view
 
-By default, alike security issues are grouped (**Grouped view**), if they:
+By default, similar security issues are grouped (**Grouped view**), if they:
 
 * Have the same title (**Security issue** column)
 * Have the same risk level (**Risk** column)
-* Discovered by the same tool (**Discovered by** column)
+* Are discovered by the same tool (**Discovered by** column)
 
 You can:
 
@@ -55,11 +55,11 @@ Open issue to see its details, such as:
 
 ### Issue lifecycle
 
-Once a security issue is detected, it obtains the **Open** status meaning some measures are required to mitigate it. In the issue details, you can close it (means it was resolved) or mark as false.
+Once a security issue is detected, it obtains the **Open** status meaning some measures are required to mitigate it. In the issue details, you can close it (means it was resolved) or mark it as false.
 
-It is useful to provide comment on each status change, giving others the full view of what is the reason of change. Author and time of change are tracked automatically.
+It is useful to provide a comment on each status change, giving others the full view of the reason for the change. Author and time of change are tracked automatically.
 
-Security issues can be closed by Wallarm automatically after next automatic or manual rescan in the following cases:
+Security issues can be closed by Wallarm automatically after the next automatic or manual rescan in the following cases:
 
 * Port not found during last scan
 * Network service has changed
@@ -67,17 +67,17 @@ Security issues can be closed by Wallarm automatically after next automatic or m
 * Vulnerable version no longer present
 * Vulnerability not detected during last scan
 
-Issues can be re-opened automatically after next rescan or manually. Note that issues marked as false are never re-opened automatically.
+Issues can be re-opened automatically after the next rescan or manually. Note that issues marked as false are never re-opened automatically.
 
 ![Security issues - lifecycle diagram](../images/api-attack-surface/security-issue-lifecycle.png)
 
 ### Changing risk level
 
-If you re-evaluate the [risk level](#issue-risk-level) of the issue, go to its details and select new risk level from the list.
+If you re-evaluate the [risk level](#issue-risk-level) of the issue, go to its details and select a new risk level from the list.
 
 ### Adding comments
 
-While it is always useful to provide comment on status change (closing, re-opening), you can add any comments to the issue at any moment without changing anything else. To do so, use the **Add comment** button: your comment will become the part of **Status history**.
+While it is always useful to provide a comment on a status change (closing, re-opening), you can add any comments to the issue at any moment without changing anything else. To do so, use the **Add comment** button: your comment will become part of the **Status history**.
 
 ### Status history
 
@@ -107,15 +107,15 @@ You can re-evaluate and manually adjust the risk level at any moment.
 
 [Incidents](../user-guides/events/check-incident.md) are attacks that successfully exploited the security issue (vulnerability). These attacks were detected, but not blocked by Wallarm due to the current settings (`monitoring` [filtration mode](../admin-en/configure-wallarm-mode.md) or others).
 
-Presence of incidents indicates jump from a theoretical risk to a live threat and requires prioritizing fixes of these security issues:
+Presence of incidents indicates a jump from a theoretical risk to a live threat and requires prioritizing fixes of these security issues:
 
 * Once a vulnerability is successfully exploited, it often becomes public knowledge in the hacker community.
 * If one attacker succeeds, others will use the same method. An incident indicates that your system is now a confirmed target.
-* Incidents are the subject of investigation to find out data losses or other damages.
+* Incidents are the subject of investigation to identify data losses or other damages.
 
-Analyze incidents presence and impact:
+Analyze the presence and impact of incidents:
 
-* Pay attention to the issues having `Incident` tag in the **Security issue** column.
+* Pay attention to the issues having the `Incident` tag in the **Security issue** column.
 * Set the **Incident** filter to `Incident detected` to see all issues with incidents. Go to issue details, view the **Related incidents** section. From here, you can go to every incident details.
 
 ![Incidents in Security Issues](../images/user-guides/vulnerabilities/si-incidents.png)
@@ -196,15 +196,15 @@ You automatically receive notifications to your personal email (the one you use 
 * **Daily critical security issues (new only)** - all [critical][link-aasm-security-issue-risk-level] security issues opened for the day, sent once a day with a detailed description of each issue and instructions on how to mitigate it.
 * **Daily security issues (new only)** - statistics for security issues opened for the day, sent once a day with information on how many issues of every [risk level][link-aasm-security-issue-risk-level] were found and general action items for mitigation.
 
-Additionally, information about security issues found specifically by [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) are sent within additional AASM-specific report:
+Additionally, information about security issues found specifically by [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) is sent within an additional AASM-specific report:
 
-* **Weekly AASM statistics** - information about hosts, APIs, and statistics for security issues discovered for your configured domains within last week.
+* **Weekly AASM statistics** - information about hosts, APIs, and statistics for security issues discovered for your configured domains within the last week.
 
 The notifications are enabled by default. You can unsubscribe at any moment and configure any additional emails to get all or some of these notifications in Wallarm Console → **Configuration** → **Integrations** → **Email and messengers** → **Personal email** (your email) or **Email report** (extra emails) as described [here][link-integrations-email].
 
 ### Instant notification
 
-You can configure instant notification for the new and re-opened security issues. Select all or only some risk levels that should trigger notification. Separate message will be sent for each security issue.
+You can configure instant notification for the new and re-opened security issues. Select all or only some risk levels that should trigger a notification. A separate message will be sent for each security issue.
 
 Example:
 

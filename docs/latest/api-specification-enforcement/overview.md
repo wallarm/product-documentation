@@ -2,7 +2,7 @@
 
 # API Specification Enforcement Overview  <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
-The **API Specification Enforcement** is designed to apply security policies to your APIs basing on your uploaded specifications. Its primary function is to detect discrepancies between the endpoint descriptions in your specification and the actual requests made to your REST APIs. When such inconsistencies are identified, the system can take predefined actions to address them.
+The **API Specification Enforcement** is designed to apply security policies to your APIs based on your uploaded specifications. Its primary function is to detect discrepancies between the endpoint descriptions in your specification and the actual requests made to your REST APIs. When such inconsistencies are identified, the system can take predefined actions to address them.
 
 ![API Specification Enforcement - diagram](../images/api-specification-enforcement/api-specification-enforcement-diagram.png)
 
@@ -19,13 +19,13 @@ The API Specification Enforcement allows lowering the security effort by utilizi
 
 And thus:
 
-* Avoid creating of specific restricting rules.
-* Avoid these rules inevitable necessary updates.
+* Avoid creating specific restricting rules.
+* Avoid the inevitable, necessary updates to these rules.
 * Never miss attacks for which a direct restricting rule is not configured.
 
 ## How it works
 
-Requests may violate your specification by different positions:
+Requests may violate your specification in different ways:
 
 --8<-- "../include/api-policies-enforcement/api-policies-violations.md"
 
@@ -38,7 +38,7 @@ To limit resource consumption, API Specification Enforcement has limits by time 
 
 To change limits or Wallarm behavior (from monitoring of overlimits to blocking such requests), contact [Wallarm Support](mailto:support@wallarm.com).
 
-Note that API Specification Enforcement adds its regulation to a usual [attack detection](../about-wallarm/protecting-against-attacks.md) performed by the Wallarm node and does not replaces it, so your traffic will be checked both for the absence of the attack signs and for correspondence to your specification.
+Note that API Specification Enforcement adds its regulation to the usual [attack detection](../about-wallarm/protecting-against-attacks.md) performed by the Wallarm node and does not replace it, so your traffic will be checked both for the absence of the attack signs and for correspondence to your specification.
 
 ## Setup
 

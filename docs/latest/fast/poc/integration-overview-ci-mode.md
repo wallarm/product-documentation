@@ -10,7 +10,7 @@
 
 #   Integration via FAST Node: Principles and Steps
 
-To conduct a security testing in CI mode, a FAST node must be sequentially run in two modes:
+To conduct security testing in CI mode, a FAST node must be sequentially run in two modes:
 1.  [Recording mode][doc-recording-mode]
 2.  [Testing mode][doc-testing-mode]
 
@@ -58,7 +58,7 @@ The corresponding workflow steps are:
 
     In testing mode, the FAST node performs the following actions:
     
-    * Creates a test run based on the baseline requests recorded on the step 4.
+    * Creates a test run based on the baseline requests recorded in step 4.
     * Starts to create and execute a security test set.
     
 7.  Obtaining the results of the testing. Stopping the FAST node container.    

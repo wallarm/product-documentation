@@ -128,7 +128,7 @@ The steps below use the Azure Portal UI, but you can also deploy policy fragment
    
     You can name the fragment consistently with the file: `wallarm-sync-response` or `wallarm-async-response`.
 
-    Example of a response response fragment in Azure Portal:
+    Example of a response policy fragment in Azure Portal:
 
     ![Wallarm response policy fragment](../../images/waf-installation/gateways/azure-apim/response-policy-fragment.png)
 

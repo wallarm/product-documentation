@@ -61,7 +61,7 @@ To get a quick introduction to FAST, do the following:
     ![The proxy settings in Mozilla Firefox][img-ff-proxy-settings]
     
     !!! info "Using a different port number"
-        If you do not want to provide the `8080` port  to the FAST node (e.g., there is another service listening on that port), you can set another port number to be used by FAST. To do so, pass the desired port number via the `-p` parameter of the `docker run` command. For example, to use port `9090` you would write the following: `-p 9090:8080`.
+        If you do not want to provide the `8080` port to the FAST node (e.g., there is another service listening on that port), you can set another port number to be used by FAST. To do so, pass the desired port number via the `-p` parameter of the `docker run` command. For example, to use port `9090` you would write the following: `-p 9090:8080`.
     
     Click the “Create a Test Run →” button to go to the next step.
     

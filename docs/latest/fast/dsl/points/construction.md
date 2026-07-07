@@ -168,7 +168,7 @@ Cookie: username=John. secret-word=abcde.
 
 
 
-To meet the conditions of the example, the point obtained in the fourth step can be added to the extension in one of the following ways:
+To meet the conditions of the example, the point obtained in the fifth step can be added to the extension in one of the following ways:
 * not surrounded by any of the service symbols.
 * surrounded by apostrophes (`'HEADER_Cookie_COOKIE_secret-word_value'`).
 * surrounded by quotation marks (`"HEADER_Cookie_COOKIE_secret-word_value"`).

@@ -4,7 +4,7 @@
 
 Wallarm detects regular attacks (SQLi, RCE, [etc.](../attacks-vulns-list.md)) in GraphQL [by default](../user-guides/rules/request-processing.md#gql) even under the basic [WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription plan. However, some aspects of the protocol allow implementing [GraphQL-specific](../attacks-vulns-list.md#graphql-attacks) attacks related to excessive information exposure and DoS. This document describes how to use Wallarm to protect your APIs from these attacks by setting **GraphQL policy** - a set of limits for the GraphQL requests.
 
-Being the extended protection, GraphQL API Protection is the part of the advanced [API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription plan. When plan is purchased, start protection by setting your organization's GraphQL policy in the **GraphQL API protection** [mitigation control](../about-wallarm/mitigation-controls-overview.md).
+Being the extended protection, GraphQL API Protection is part of the advanced [API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription plan. When the plan is purchased, start protection by setting your organization's GraphQL policy in the **GraphQL API protection** [mitigation control](../about-wallarm/mitigation-controls-overview.md).
 
 ## Supported GraphQL formats
 
@@ -13,7 +13,7 @@ GraphQL queries are typically sent as HTTP POST requests to a GraphQL server end
 * commonly used options: `application/json` and `application/graphql` 
 * options that can also occur: `text/plain` and `multipart/form-data`
 
-GraphQL queries can be also sent as HTTP GET requests. In such case, the query is included as a query parameter in the URL. While GET requests can be used for GraphQL queries, it's less common than the POST requests, especially for the more complex queries. The cause of that is that GET requests are typically used for idempotent operations (i.e., operations that can be repeated without different outcomes), and they have length restrictions that can be problematic for longer queries.
+GraphQL queries can be also sent as HTTP GET requests. In such a case, the query is included as a query parameter in the URL. While GET requests can be used for GraphQL queries, it is less common than the POST requests, especially for the more complex queries. The cause of that is that GET requests are typically used for idempotent operations (i.e., operations that can be repeated without different outcomes), and they have length restrictions that can be problematic for longer queries.
 
 Wallarm supports both POST and GET HTTP methods for GraphQL requests.
 
@@ -55,7 +55,7 @@ To set and apply GraphQL policy:
 1. Describe the **Scope** to apply the mitigation control to.
 1. Set thresholds for GraphQL requests in accordance with your traffic metrics (if left empty/unselected, no limitation is applied by this criteria):
 
-    * **Maximum total query size in kilobytes** - sets the upper limit for the size of an entire GraphQL query. It's crucial for preventing Denial of Service (DoS) attacks that exploit server resources by submitting excessively large queries.
+    * **Maximum total query size in kilobytes** - sets the upper limit for the size of an entire GraphQL query. It is crucial for preventing Denial of Service (DoS) attacks that exploit server resources by submitting excessively large queries.
     * **Maximum value size in kilobytes** - sets the maximum size for any individual value (whether a variable or query parameter) within a GraphQL query. This limit helps mitigate attacks that attempt to overwhelm the server through Excessive Value Length, where attackers send requests with overly long string values for variables or arguments.
     * **Maximum query depth** - determines the maximum allowed depth for a GraphQL query. By limiting query depth, the server can avoid performance issues or resource exhaustion from maliciously crafted, deeply nested queries.
     * **Maximum number of aliases** - sets the limit on the number of aliases that can be used in a single GraphQL query. Restricting the number of aliases prevents Resource Exhaustion and DoS attacks that exploit alias functionality to create overly complex queries.

@@ -46,7 +46,7 @@ docker pull wallarm/node:6.12.7
 
 ## Step 5: Switch to the token-based connection to the Wallarm Cloud
 
-Approach to connect the container to the Wallarm Cloud has been upgraded as follows:
+The approach to connect the container to the Wallarm Cloud has been upgraded as follows:
 
 * [The "email and password"-based approach has been deprecated](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-api-tokens). In this approach, the node was registered in the Wallarm Cloud automatically once the container started with correct credentials passed in the `DEPLOY_USER` and `DEPLOY_PASSWORD` variables.
 * The token-based approach has been included. To connect the container to the Cloud, run the container with the `WALLARM_API_TOKEN` variable containing the Wallarm API token copied from the Wallarm Console UI.
@@ -86,7 +86,7 @@ There are the following deprecated configuration options:
 
 ## Step 8: Update the Wallarm blocking page (if upgrading NGINX-based image)
 
-In new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.
+In the new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.
 
 If the Docker container was configured to return the `&/usr/share/nginx/html/wallarm_blocked.html` page to blocked requests, change this configuration as follows:
 

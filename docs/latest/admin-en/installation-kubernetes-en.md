@@ -36,7 +36,7 @@ Traffic flow with Wallarm Ingress Controller:
 Among all supported [Wallarm deployment options][deployment-platform-docs], this solution is the recommended one for the following **use cases**:
 
 * There is no Ingress controller and security layer routing traffic to Ingress resources compatible with [F5 NGINX Ingress Controller][new-ic]
-* You are currently using F5 NGINX Ingress Controller and are in search of a security solution that offers both the standard controller functionality and enhanced security features. In this case, you can effortlessly switch to the Wallarm-NGINX Ingress Controller detailed in these instructions. Simply migrate your existing configuration to a new deployment to complete the replacement.
+* You are currently using F5 NGINX Ingress Controller and are in search of a security solution that offers both the standard controller functionality and enhanced security features. In this case, you can switch to the Wallarm-NGINX Ingress Controller detailed in these instructions. Migrate your existing configuration to a new deployment to complete the replacement.
 
     For simultaneous use of both the existing Ingress controller and the Wallarm controller, refer to the [Ingress Controller chaining guide][chaining-doc] for configuration details.
 
@@ -159,7 +159,7 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.o
 
 ## ARM64 deployment
 
-The F5 NGINX Ingress Controller supports ARM64 processors. Originally designed for x86 architectures, deploying on ARM64 nodes requires updating the Helm chart parameters.
+The F5 NGINX Ingress Controller supports ARM64 processors. Originally designed for x86 architectures, the controller requires updated Helm chart parameters for deployment on ARM64 nodes.
 
 In ARM64 settings, Kubernetes nodes often carry an `arm64` label. To assist the Kubernetes scheduler in allocating the Wallarm workload to the appropriate node type, reference this label using `nodeSelector`, `tolerations`, or affinity rules in the Wallarm Helm chart configuration.
 

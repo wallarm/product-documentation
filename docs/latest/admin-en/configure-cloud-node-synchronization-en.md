@@ -56,7 +56,7 @@ To change the interval between filtering node and Wallarm Cloud synchronizations
 
 ## IP lists synchronization
 
-The [IP lists](../user-guides/ip-lists/overview.md) are formed in a Cloud and then sent to a Node to become effective. This synchronization is process separate from synching of other entities described in this article and performed **every minute** (not configurable).
+The [IP lists](../user-guides/ip-lists/overview.md) are formed in a Cloud and then sent to a Node to become effective. This synchronization is a process separate from the synching of other entities described in this article and is performed **every minute** (not configurable).
 
 ## Troubleshooting
 

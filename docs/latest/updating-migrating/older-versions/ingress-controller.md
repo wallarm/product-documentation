@@ -18,7 +18,7 @@ These instructions describe the steps to upgrade deployed end‑of‑life Wallar
     
     Since the operation of Community Ingress NGINX Controller 1.15.0 has been significantly changed, its configuration has to be adjusted to these changes during the Wallarm Ingress controller upgrade.
 
-    These instructions contain the list of Community Ingress NGINX Controller settings you probably have to change. Nevertheless, please draw up and individual plan for the configuration migration based on the [Community Ingress NGINX Controller release notes](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md). 
+    These instructions contain the list of Community Ingress NGINX Controller settings you probably have to change. Nevertheless, please draw up an individual plan for the configuration migration based on the [Community Ingress NGINX Controller release notes](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md). 
 
 !!! warning
     The Kubernetes community will [retire the Community Ingress NGINX in March 2026](https://blog.nginx.org/blog/the-ingress-nginx-alternative-open-source-nginx-ingress-controller-for-the-long-term). The Wallarm NGINX Ingress Controller based on this project will be supported through the same date. You can continue using it until then, and it will remain fully functional during the support window.
@@ -73,7 +73,7 @@ To migrate to Wallarm Ingress controller 6.x, update the following configuration
 1. Check out the [release notes on Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md) 0.27.0 and higher and define the settings to be changed in the `values.yaml` file.
 2. Update the defined settings in the `values.yaml` file.
 
-There are the following setting probably to be changed:
+There are the following settings probably to be changed:
 
 * [Proper reporting of end user public IP address](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md) if requests are passed through a load balancer before being sent to the Wallarm Ingress controller.
 
@@ -188,8 +188,8 @@ Change the Wallarm module configuration set in the `values.yaml` file as follows
     ```
 * If the page `&/usr/share/nginx/html/wallarm_blocked.html` configured via ConfigMap was returned to blocked requests, [adjust its configuration](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) to the released changes.
 
-    In new node version, the Wallarm sample blocking page [has](what-is-new.md#new-blocking-page) the updated UI with no logo and support email specified by default.
-* If you have customized the `overlimit_res` attack detection via the [`wallarm_process_time_limit`][nginx-process-time-limit-docs] and [`wallarm_process_time_limit_block`][nginx-process-time-limit-block-docs] NGINX directives, please [transfer](#step-6-transfer-the-overlimit_res-attack-detection-configuration-from-directives-to-the-rule) this settings to the rule and delete from the `values.yaml` file.
+    In the new node version, the Wallarm sample blocking page [has](what-is-new.md#new-blocking-page) the updated UI with no logo and support email specified by default.
+* If you have customized the `overlimit_res` attack detection via the [`wallarm_process_time_limit`][nginx-process-time-limit-docs] and [`wallarm_process_time_limit_block`][nginx-process-time-limit-block-docs] NGINX directives, please [transfer](#step-6-transfer-the-overlimit_res-attack-detection-configuration-from-directives-to-the-rule) these settings to the rule and delete from the `values.yaml` file.
 
 ## Step 6: Transfer the `overlimit_res` attack detection configuration from directives to the rule
 
@@ -302,7 +302,7 @@ There are three ways of upgrading the Wallarm Ingress controller. Depending on w
 !!! warning "Using the staging environment or minikube"
     If the Wallarm Ingress controller is deployed to your staging environment, it is recommended to upgrade it first. With all services operating correctly in the staging environment, you can proceed to the upgrade procedure in the production environment.
 
-    Unless it is recommended to [deploy the Wallarm Ingress controller 6.x](../../admin-en/installation-kubernetes-en.md) with the updated configuration using minikube or another service first. Ensure all services operates as expected and then upgrade the Ingress controller in the production environment.
+    Otherwise, it is recommended to [deploy the Wallarm Ingress controller 6.x](../../admin-en/installation-kubernetes-en.md) with the updated configuration using minikube or another service first. Ensure all services operate as expected and then upgrade the Ingress controller in the production environment.
 
     This approach helps to avoid downtime of the services in the production environment.
 
@@ -470,7 +470,7 @@ Adjust the following Ingress annotations to the changes released in Ingress cont
     Only the annotation name has changed, its logic remains the same. The annotation with the former name will be deprecated soon, so you are recommended to rename it before.
 1. If the page `&/usr/share/nginx/html/wallarm_blocked.html` configured via Ingress annotations is returned to blocked requests, [adjust its configuration](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) to the released changes.
 
-    In new node versions, the Wallarm blocking page [has](what-is-new.md#new-blocking-page) the updated UI with no logo and support email specified by default.
+    In the new node versions, the Wallarm blocking page [has](what-is-new.md#new-blocking-page) the updated UI with no logo and support email specified by default.
 
 ## Step 11: Re-enable the Threat Replay Testing module (only if upgrading node 2.16 or lower)
 

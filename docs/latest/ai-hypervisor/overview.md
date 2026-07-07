@@ -17,9 +17,9 @@ AI Hypervisor closes that gap as a **Discover → Observe → Enforce → Govern
 
 | Pillar | What you get | Where in the product |
 |---|---|---|
-| **Discover** *(know what AI is running)* | Inventory of every LLM provider, agent, MCP server, and tool, built from observed traffic. Anthropic, OpenAI, AWS Bedrock, Azure OpenAI, Gemini, Cohere, Mistral, and Together are recognised out of the box. Shadow AI surfaces alongside approved providers. | [Findings](findings.md), [Registry](registry.md), [Topology](topology.md) |
+| **Discover** *(know what AI is running)* | Inventory of every LLM provider, agent, MCP server, and tool, built from observed traffic. Anthropic, OpenAI, AWS Bedrock, Azure OpenAI, Gemini, Cohere, Mistral, and Together are recognized out of the box. Shadow AI surfaces alongside approved providers. | [Findings](findings.md), [Registry](registry.md), [Topology](topology.md) |
 | **Observe** *(know who triggered it)* | Every model call, agent step, and tool invocation attributed to the originating end user across service hops. Replay prompts, reconstruct incident timelines, attribute LLM cost by user and team. | [User Tracks](user-tracks.md), [Data Tracks](data-tracks.md) |
-| **Enforce** *(stop the bad ones)* | Kernel-level session termination for active misbehaviour, plus pattern-match policies that block, redact, or alert on outbound calls before they reach the model provider. The enforcement engine ships in every scanner; the operator-facing controls are enabled per tenant by Wallarm. | [Enforcement](enforcement.md), driven from [Shadow AI](shadow-ai.md) and [User Tracks](user-tracks.md) |
+| **Enforce** *(stop the bad ones)* | Kernel-level session termination for active misbehavior, plus pattern-match policies that block, redact, or alert on outbound calls before they reach the model provider. The enforcement engine ships in every scanner; the operator-facing controls are enabled per tenant by Wallarm. | [Enforcement](enforcement.md), driven from [Shadow AI](shadow-ai.md) and [User Tracks](user-tracks.md) |
 | **Govern** *(prove it to auditors)* | PII flow records, AI-SBOM with CVE enrichment, full session replay. Mapped to EU AI Act, SOC 2, and NIST AI RMF controls. | [Compliance](compliance.md) |
 
 ## Who AI Hypervisor is for

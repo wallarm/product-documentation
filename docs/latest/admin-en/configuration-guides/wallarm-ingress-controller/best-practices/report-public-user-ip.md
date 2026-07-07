@@ -4,7 +4,7 @@ These instructions describe the Wallarm Ingress controller configuration require
 
 By default, the Ingress controller assumes that it is directly exposed to the Internet and that the IP addresses of connecting clients are their actual IPs. However, the requests can be passed through the load balancer (e.g. AWS ELB or Google Network Load Balancer) before being sent to the Ingress controller.
 
-In situations when a controller is placed behind a load balancer the Ingress controller considers the load balancer IP to be a real end user IP that can lead to [incorrect operation of some Wallarm features](../../../using-proxy-or-balancer-en.md#possible-problems-of-using-a-proxy-server-or-load-balancer-ip-address-as-a-request-source-address). To report proper end user IP addresses to the Ingress controller, please configure the controller as described below.
+In situations when a controller is placed behind a load balancer, the Ingress controller considers the load balancer IP to be a real end user IP, which can lead to [incorrect operation of some Wallarm features](../../../using-proxy-or-balancer-en.md#possible-problems-of-using-a-proxy-server-or-load-balancer-ip-address-as-a-request-source-address). To report proper end user IP addresses to the Ingress controller, please configure the controller as described below.
 
 ## Step 1: Enable passing the real client IP on the network layer
 

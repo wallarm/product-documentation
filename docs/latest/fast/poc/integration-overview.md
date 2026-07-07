@@ -65,6 +65,6 @@ See [this document][doc-concurrent-pipelines] for detailed explanation about how
 
 
 !!! info "HTTPS support"
-    This instruction describes the integration of FAST with CI/CD to test the application working over HTTP protocol.
+    This instruction describes the integration of FAST with CI/CD to test the application working over the HTTP protocol.
     
-    FAST node also supports testing applications working over HTTPS protocol. More details are described in the [Quick Start guide][doc-qsg].
+    FAST node also supports testing applications working over the HTTPS protocol. More details are described in the [Quick Start guide][doc-qsg].

@@ -14,6 +14,6 @@ Besides the notifications you have already set up through the integration card, 
 * New [rogue API](../../../api-discovery/rogue-api.md) (shadow, zombie) was detected
 * New user was added to the company account
 
-For condition detailing, you can add one or more filters. As soon, as condition and filters are set, select the integration through which the selected alert should be sent. You can select several integrations simultaneously.
+To detail the condition, you can add one or more filters. As soon as the condition and filters are set, select the integration through which the selected alert should be sent. You can select several integrations simultaneously.
 
 ![Choosing an integration](../../../images/user-guides/triggers/select-integration.png)

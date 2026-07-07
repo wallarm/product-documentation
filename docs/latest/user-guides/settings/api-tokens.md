@@ -28,7 +28,7 @@ The selected usage scope restricts how and where the token can be used:
 
     Appropriate for self-hosted Nodes only.
 * Wallarm API - select this option to use the token for making authenticated requests directly to the Wallarm API.
-* Schema-Based Testing agent - [required](../../vulnerability-detection/schema-based-testing/) for work of [Schema-Based Testing](../../vulnerability-detection/schema-based-testing/setup.md#token).
+* Schema-Based Testing agent - [required](../../vulnerability-detection/schema-based-testing/) for the operation of [Schema-Based Testing](../../vulnerability-detection/schema-based-testing/setup.md#token).
 
 ## Token expiration
 
@@ -62,20 +62,20 @@ If a token owner is [disabled](../../user-guides/settings/users.md#disabling-and
 
 ## Backward-compatible tokens
 
-Previously UUID and secret key were used for request authentication which is now replaced with tokens. The UUID and secret key your were using are automatically transformed to the **backward-compatible** token. With this token requests authenticated with UUID and secret key will continue working.
+Previously UUID and secret key were used for request authentication which is now replaced with tokens. The UUID and secret key you were using are automatically transformed into the **backward-compatible** token. With this token, requests authenticated with UUID and secret key will continue working.
 
 !!! warning "Renew token or enable SSO"
     If you renew the value of the backward-compatible token or enable [SSO](../../admin-en/configuration-guides/sso/intro.md) for this token's owner, the backward compatibility ends - all requests authenticated with old UUID and secret key will stop working.
 
 You can also use the generated value of the backward-compatible token passing it in the `X-WallarmApi-Token` header parameter of your requests.
 
-Backward-compatible token has the same permissions as the user role does, these permissions are not displayed in the token window and cannot be changed. If you want to control permissions, you need to remove a backward-compatible token and create a new one.
+The backward-compatible token has the same permissions as the user role does, these permissions are not displayed in the token window and cannot be changed. If you want to control permissions, you need to remove a backward-compatible token and create a new one.
 
 ## API tokens vs. node tokens
 
 You can use API tokens described in this article for Wallarm Cloud API [request authentication](../../api/overview.md) from any client and with any set of permissions.
 
-One of the clients accessing Wallarm Cloud API is Wallarm filtering node itself. To grant a filtering node with the access to API of Wallarm Cloud, besides API tokens, you can use node tokens. [Know the difference and what to prefer →](../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation)
+One of the clients accessing Wallarm Cloud API is Wallarm filtering node itself. To grant a filtering node access to the Wallarm Cloud API, besides API tokens, you can use node tokens. [Know the difference and what to prefer →](../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation)
 
 !!! info "API tokens are not supported by some deployment options"
     API tokens currently cannot be used for AWS deployments based on [Terraform module](../../installation/cloud-platforms/aws/terraform-module/overview.md). Use node tokens instead.

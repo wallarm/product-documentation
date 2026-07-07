@@ -3,7 +3,7 @@
     
     If you do not use a proxy server, skip this step of the setup.
 
-You need to assign new values to the environment variables, which define the proxy server used, to configure Wallarm node for using your proxy server.
+You need to assign new values to the environment variables, which define the proxy server used, to configure the Wallarm node to use your proxy server.
 
 Add new values of the environment variables to the `/etc/environment` file:
 *   Add `https_proxy` to define a proxy for the https protocol.

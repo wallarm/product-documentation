@@ -15,7 +15,7 @@
     * a token
     * a test run identifier
 
-    To stop recording via web interface, you need a Wallarrm account.
+    To stop recording via web interface, you need a Wallarm account.
     
     You can get detailed information about test run and token [here][doc-about-tr-token].
     
@@ -24,7 +24,7 @@
     * `token_Qwe12345` as a token.
     * `tr_1234` as an identifier of a test run.
 
-The need to stop baseline requests recording is described by the [link][link-stop-explained]. 
+The need to stop baseline requests recording is described at the [link][link-stop-explained]. 
 
 ## Stopping the Recording Process via API
 

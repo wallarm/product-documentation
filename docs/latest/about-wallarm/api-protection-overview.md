@@ -4,19 +4,19 @@ API Protection is an advanced set of mitigation capabilities. While basic [cloud
 
 API Protection includes:
 
-* [API Specification Enforcement](#api-specification-enforcement) is designed to apply security policies to your APIs basing on your uploaded specifications. It detects discrepancies between the endpoint descriptions in your specification and the actual requests made to your REST APIs and take predefined actions if discrepancies are found.
+* [API Specification Enforcement](#api-specification-enforcement) is designed to apply security policies to your APIs based on your uploaded specifications. It detects discrepancies between the endpoint descriptions in your specification and the actual requests made to your REST APIs and takes predefined actions if discrepancies are found.
 * [BOLA Protection](#bola-protection) helps protect APIs against BOLA attacks, one of the top risks in the OWASP API Top 10. Depending on your subscription plan, Wallarm provides configuration options to detect and mitigate enumeration attempts associated with BOLA exploitation.
-* [API Abuse Prevention](#api-abuse-prevention) protects your applications and APIs against different types of automated threats. Based on behavioral analysis Wallarm can easily identify and block malicious bots such as  Scrappers, Security Crawlers, etc.  
+* [API Abuse Prevention](#api-abuse-prevention) protects your applications and APIs against different types of automated threats. Based on behavioral analysis, Wallarm can identify and block malicious bots such as Scrapers, Security Crawlers, etc.
 * [Credential Stuffing Detection](#credential-stuffing-detection) provides one more layer of protection against Account Takeover attacks. Wallarm allows you to recognize even a single use of compromised credentials, which is important to identify low and slow Credential Stuffing attacks.
-* [GraphQL API Protection](#graphql-api-protection) protects your GraphQL APIs against specialized attacks that exploit protocol specific such as batching, nesting queries, introspection, etc. It can prevent Resource Exhaustion, Denial of Service (DoS), Excessive Information Exposure and other attacks.
+* [GraphQL API Protection](#graphql-api-protection) protects your GraphQL APIs against specialized attacks that exploit protocol-specific capabilities such as batching, nested queries, introspection, etc. It can prevent Resource Exhaustion, Denial of Service (DoS), Excessive Information Exposure and other attacks.
 
 <!--Diagram for API Protection bundle of Wallarm products, being prepared by Iskandar-->
 
-While WAAP is available under the basic Cloud Native WAAP subscription, tools of the API Protection bundle are the part of the [Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription.
+While WAAP is available under the basic Cloud Native WAAP subscription, tools of the API Protection bundle are part of the [Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription.
 
 ## API Specification Enforcement
 
-The **API Specification Enforcement** is designed to apply security policies to your APIs basing on your uploaded specifications. Its primary function is to detect discrepancies between the endpoint descriptions in your specification and the actual requests made to your REST APIs. When such inconsistencies are identified, the system can take predefined actions to address them.
+The **API Specification Enforcement** is designed to apply security policies to your APIs based on your uploaded specifications. Its primary function is to detect discrepancies between the endpoint descriptions in your specification and the actual requests made to your REST APIs. When such inconsistencies are identified, the system can take predefined actions to address them.
 
 ![Specification - use for applying security policies](../images/api-specification-enforcement/specification-use-for-api-policies-enforcement.png)
 
@@ -44,7 +44,7 @@ The **API Abuse Prevention** delivers detection and mitigation of bots performin
 
 ## Credential Stuffing Detection
 
-Wallarm's **Credential Stuffing Detection** collects and displays real-time information about attempts to use compromised or weak credentials to access your applications and enables instant notifications about such attempts. It also forms downloadable list of all compromised or weak credentials providing access to your applications.
+Wallarm's **Credential Stuffing Detection** collects and displays real-time information about attempts to use compromised or weak credentials to access your applications and enables instant notifications about such attempts. It also forms a downloadable list of all compromised or weak credentials providing access to your applications.
 
 ![Wallarm Console - Credential Stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing.png)
 
@@ -54,9 +54,9 @@ To identify compromised and weak passwords, Wallarm uses a comprehensive databas
 
 ## GraphQL API Protection
 
-Wallarm detects regular attacks (SQLi, RCE, [etc.](../attacks-vulns-list.md)) in GraphQL by default even under the basic [WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription plan. However, some aspects of the protocol allow implementing [GraphQL specific](../attacks-vulns-list.md#graphql-attacks) attacks related to excessive information exposure and DoS.
+Wallarm detects regular attacks (SQLi, RCE, [etc.](../attacks-vulns-list.md)) in GraphQL by default even under the basic [WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription plan. However, some aspects of the protocol allow implementing [GraphQL-specific](../attacks-vulns-list.md#graphql-attacks) attacks related to excessive information exposure and DoS.
 
-Wallarm to protect your APIs from these attacks by setting **GraphQL policy** - a set of limits for the GraphQL requests.
+Wallarm protects your APIs from these attacks by setting a **GraphQL policy** - a set of limits for the GraphQL requests.
 
 ![GraphQL thresholds](../images/user-guides/rules/graphql-rule.png)
 

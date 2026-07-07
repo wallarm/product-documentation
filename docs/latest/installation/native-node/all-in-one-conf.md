@@ -1,6 +1,6 @@
 # Configuring Native Node with the All-in-One Installer, Docker Image or AWS AMI
 
-When deploying the self-hosted [Wallarm Native Node](../nginx-native-node-internals.md#native-node) using the all-in-one installer, Docker image or AWS AMI, you create the `.yaml` configuration file. In this file, you can specify node configiration, all the parameters for that are described in this document.
+When deploying the self-hosted [Wallarm Native Node](../nginx-native-node-internals.md#native-node) using the all-in-one installer, Docker image or AWS AMI, you create the `.yaml` configuration file. In this file, you can specify the node configuration; all the parameters are described in this document.
 
 To modify the settings after the node is running using the all-in-one installer or AWS AMI:
 
@@ -251,7 +251,7 @@ Typically, you do not need to modify this parameter. Specific blocking behavior 
 
 This parameter enables the Native Node's general capability to block incoming requests, whether they are malicious, from denylisted IPs, or any other conditions that require blocking.
 
-Defalt: `true`.
+Default: `true`.
 
 ### connector.allowed_networks
 

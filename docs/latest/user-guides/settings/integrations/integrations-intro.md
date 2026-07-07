@@ -1,11 +1,11 @@
 # Integrations Overview
 
-Being your shield against the OWASP API Top 10 threats, API abuse, and automated threats, Wallarm takes your security a step further by seamlessly integrating with an extensive range of systems to keep you informed in real-time.
+Being your shield against the OWASP API Top 10 threats, API abuse, and automated threats, Wallarm takes your security a step further by integrating with an extensive range of systems to keep you informed in real time.
 
 With Wallarm's integrations you will always stay informed about critical events, including:
 
 * Instant alerts about [detected hits](../../../user-guides/events/check-attack.md), so you can take immediate action against the threats.
-* Updates on system events (changes in registered [users](../../../user-guides/settings/users.md), integrations, and [applications](../../../user-guides/settings/applications.md)), ensuring you're always in control.
+* Updates on system events (changes in registered [users](../../../user-guides/settings/users.md), integrations, and [applications](../../../user-guides/settings/applications.md)), ensuring you are always in control.
 * Notification on important changes in your security profile, such as your [rules](../../../user-guides/rules/rules.md) and [triggers](../../../user-guides/triggers/triggers.md) changes.
 * Timely warnings about potential [vulnerabilities](../../../about-wallarm/detecting-vulnerabilities.md) in your infrastructure and their risk levels, so you can proactively address the most dangerous weaknesses.
 

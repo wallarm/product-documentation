@@ -202,10 +202,10 @@ You need to obtain a [*token*][anchor-token] in order to make such API calls and
 
 ### Token
 
-A FAST node comprises of:
+A FAST node comprises:
 * The up and running Docker container with FAST software.
     
-    This is where the process of traffic proxying, security test creation, execution take place.
+    This is where the process of traffic proxying, security test creation, and execution take place.
     
 * The Wallarm cloud FAST node.
 

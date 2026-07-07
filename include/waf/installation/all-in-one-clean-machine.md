@@ -9,6 +9,6 @@ When upgrading modules with all-in-one installer, you cannot upgrade an old pack
 * Oracle Linux 9.x
 * Redox
 * SuSe Linux
-* Others (the list is constantly widening, contact [Wallarm support team](mailto:support@wallarm.com) to check if your OS is in the list)
+* Others (the list is constantly growing, contact the [Wallarm support team](mailto:support@wallarm.com) to check if your OS is in the list)
 
-Using new clean machine will lead to that at some moment you will have both old and new node, which is good: you can test the new one working properly without stopping the old one.
+Using a new clean machine means that at some point you will have both the old and the new node, which is good: you can test that the new one works properly without stopping the old one.

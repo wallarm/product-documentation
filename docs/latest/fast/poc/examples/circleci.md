@@ -43,7 +43,7 @@
 !!! info "Chapter conventions"
     The following token value is used as an example value throughout the chapter: `token_Qwe12345`.
 
-A sample project [fast-example-api-circleci-rails-integration][link-example-project] is available on the Wallarm’s GitHub. It’s purpose is to demonstrate how to perform FAST integration into existing CI/CD processes. This example follows the [“Deployment via the API when Baseline Requests Recording Takes Place”][link-api-recoding-mode] scenario.
+A sample project [fast-example-api-circleci-rails-integration][link-example-project] is available on Wallarm’s GitHub. Its purpose is to demonstrate how to perform FAST integration into existing CI/CD processes. This example follows the [“Deployment via the API when Baseline Requests Recording Takes Place”][link-api-recoding-mode] scenario.
 
 This document contains the following pieces of information:
 1.  [An explanation of how the sample application works.][anchor-project-description]
@@ -52,7 +52,7 @@ This document contains the following pieces of information:
 
 ##  How the Sample Application Works
 
-The sample application is a web application that allows you to publish posts on a blog and the capability to manage the blog posts.
+The sample application is a web application that allows you to publish posts on a blog and to manage the blog posts.
 
 ![The sample application][img-demo-app]
 
@@ -91,7 +91,7 @@ config.before :context, type: :feature do
 
 This essentially means that it is possible to augment the steps RSpec takes to test the application with the steps involving FAST security testing.
 
-We can point a Selenium server to a proxy server with the `HTTP_PROXY` environment variable. Thus, HTTP requests to the application will be proxied. Usage of proxying mechanism allows you to pass the requests issued by the integration tests through the FAST node with the minimal intervention into the existing testing flow:
+We can point a Selenium server to a proxy server with the `HTTP_PROXY` environment variable. Thus, HTTP requests to the application will be proxied. Use of the proxying mechanism allows you to pass the requests issued by the integration tests through the FAST node with minimal intervention in the existing testing flow:
 
 ![Testing flow with FAST][img-testing-flow-fast]
 
@@ -106,7 +106,7 @@ After a new CI job is in place, the variable’s value is passed to the Docker c
     
 2.  Build services
     
-    In this stage a few Docker containers are to be built for a set of services. The containers are placed to a shared Docker network. Therefore, they could communicate with each using the IP addresses as well as containers’ names.
+    In this stage a few Docker containers are to be built for a set of services. The containers are placed in a shared Docker network. Therefore, they could communicate with each other using the IP addresses as well as containers’ names.
     
     The following services are built (see the `docker-compose.yaml` file):
     
@@ -137,7 +137,7 @@ After a new CI job is in place, the variable’s value is passed to the Docker c
         
         The service is reachable via HTTP at `selenium:4444` after deployment.
         
-    All services form following relations between them:
+    All services form the following relations between them:
     
     ![Relations between services][img-services-relations]
     
@@ -171,12 +171,12 @@ After a new CI job is in place, the variable’s value is passed to the Docker c
     3.  The following actions are performed after the RSpec tests are done:
         1.  The baseline requests recording process [is stopped][doc-stopping-recording]; 
         2.  The test run state [is being monitored periodically][doc-waiting-for-tests]:
-            * If FAST security tests are completed successfully (the test run’s state is `state: passed`), thene an exit code `0` is returned to the RSpec.
-            * If FAST security tests are completed unsuccessfully (some vulnerabilities were detected and the test run’s state is `state: failed`), then an exit code `1` is returned to the RSpec.
+            * If FAST security tests are completed successfully (the test run’s state is `state: passed`), then an exit code `0` is returned to RSpec.
+            * If FAST security tests are completed unsuccessfully (some vulnerabilities were detected and the test run’s state is `state: failed`), then an exit code `1` is returned to RSpec.
     
 5.  The testing result is obtained:
     
-    The RSpec process’ exit code is passed to the `docker-compose run` process and then to the CircleCI.     
+    The RSpec process’ exit code is passed to the `docker-compose run` process and then to CircleCI.     
     
     ![The job result in CircleCI][img-cci-pass-results]
 
@@ -188,7 +188,7 @@ The described CircleCI job closely follows the steps listed [earlier][link-api-r
 
 1.  [Create a FAST node][doc-get-token] in the Wallarm cloud and copy the provided token.
 2.  Copy the [sample project files][link-example-project] into your own GitHub repository.
-3.  Add your GitHub repository to the [CircleCI][link-circleci] (press the “Follow Project” button in CircleCI) so that CI job fires up every time you change the content of the repository. A repository is called “a project” in the CircleCI terminology.
+3.  Add your GitHub repository to [CircleCI][link-circleci] (press the “Follow Project” button in CircleCI) so that the CI job fires up every time you change the content of the repository. A repository is called “a project” in CircleCI terminology.
 4.  Add a `TOKEN` environment variable to your CircleCI project. You can do this in the settings of the project. Pass the FAST token as a value of this variable:
     
     ![Pass the token into the project][img-cci-demo-pass-token]
@@ -207,12 +207,12 @@ The described CircleCI job closely follows the steps listed [earlier][link-api-r
     
     ![The completion of the CI job][img-cci-demo-tests-failed]
     
-    Given that there is the Wallarm demo application under the test, the failed CI job represents the vulnerabilities FAST detected in the application (the message “FAST tests have failed” should appear in the build log files). The failure is not invoked by any build-related technical issues in this case.
+    Given that there is the Wallarm demo application under the test, the failed CI job represents the vulnerabilities FAST detected in the application (the message “FAST tests have failed” should appear in the build log files). The failure is not caused by any build-related technical issues in this case.
     
     !!! info "Error message"
         The “FAST tests have failed” error message is produced by the `wait_test_run_finish` method that is located in the `spec/support/fast_helper.rb` file, which is before the termination with the exit code `1`.
 
-8.  There is no information about detected vulnerabilities displayed in the CircleCI console during testing process. 
+8.  There is no information about detected vulnerabilities displayed in the CircleCI console during the testing process. 
 
     You can explore the vulnerabilities in detail on the Wallarm portal. To do this, navigate to the test run link. The link is displayed as a part of the FAST informational message in the CircleCI console.
     

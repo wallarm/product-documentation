@@ -29,7 +29,7 @@ The **Nodes** section of the Wallarm Console UI allows you to manage the nodes o
 
 ## Creating a node
 
-To create the CDN node, please follow the [instructions](../../installation/cdn-node.md).
+To create a CDN node, follow the [instructions](../../installation/cdn-node.md).
 
 ## Viewing details of a node
 
@@ -54,7 +54,7 @@ The following node properties and metrics are available:
 
 ## Updating the origin address of the protected resourse
 
-If your hosting provider dynamically updates the origin IP address or domain associated with the protected resource, please keep the origin address specified in the CDN node configuration up to date. Otherwise, requests will not reach the protected resource since the CDN node will try to proxy them to an incorrect origin address.
+If your hosting provider dynamically updates the origin IP address or domain associated with the protected resource, keep the origin address specified in the CDN node configuration up to date. Otherwise, requests will not reach the protected resource since the CDN node will try to proxy them to an incorrect origin address.
 
 To update the origin address, use the **Edit origin address** option.
 
@@ -66,20 +66,20 @@ If you already have a certificate for the protected domain and prefer that to th
 
 ## Using Varnish Cache
 
-Utilizing a CDN node with the [Varnish Cache](https://varnish-cache.org/intro/index.html#intro) HTTP accelerator speeds up content delivery to users (e.g. your server responses). However if you change your content, the cached copy on the CDN may be updated with a delay, which may cause [problems](#why-is-there-a-delay-in-the-update-of-the-content-protected-by-the-cdn-node) and be the reason to disable Varnish Cache.
+Utilizing a CDN node with the [Varnish Cache](https://varnish-cache.org/intro/index.html#intro) HTTP accelerator speeds up content delivery to users (e.g. your server responses). However, if you change your content, the cached copy on the CDN may be updated with a delay, which may cause [problems](#why-is-there-a-delay-in-the-update-of-the-content-protected-by-the-cdn-node) and be the reason to disable Varnish Cache.
 
 To avoid problems with the content update speed, Varnish Cache is disabled by default. You can enable/disable Varnish Cache manually. To do so, proceed to **Nodes** → CDN node menu → **Enable Varnish Cache** or **Disable Varnish Cache**.
 
 ## Deleting a node
 
-When the filtering node is deleted, the filtration of requests to your domain will be stopped. The deleting of the filtering node cannot be undone. The Wallarm node will be deleted from the list of nodes permanently.
+When the filtering node is deleted, the filtration of requests to your domain will be stopped. Deleting the filtering node cannot be undone. The Wallarm node will be deleted from the list of nodes permanently.
 
 1. Delete the Wallarm CNAME record from the DNS records of the protected domain.
 
     !!! warning "Malicious request mitigation will be stopped"
         Once the CNAME record is removed and changes take effect on the Internet, the Wallarm CDN node will stop request proxying, and legitimate and malicious traffic will go directly to the protected resource.
 
-        It results in the risk of the protected server vulnerability exploitation when deleted DNS record took effect but the CNAME record generated for the new node version did not take effect yet.
+        It results in the risk of the protected server vulnerability exploitation when the deleted DNS record took effect but the CNAME record generated for the new node version did not take effect yet.
 1. Wait for the changes to be propagated. The actual CNAME record status is displayed in Wallarm Console → **Nodes** → **CDN** → **Delete node**.
 1. Delete the CDN node from the node list.
 

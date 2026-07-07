@@ -75,7 +75,7 @@ To deploy the containerized Wallarm filtering node configured through environmen
 
 --8<-- "../include/waf/installation/get-api-or-node-token.md"
 
-1. Create the instance based on any operating system image from the Compute Engine registry by using the [`gcloud compute instances create`](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create) comand:
+1. Create the instance based on any operating system image from the Compute Engine registry by using the [`gcloud compute instances create`](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create) command:
 
     ```bash
     gcloud compute instances create <INSTANCE_NAME> \
@@ -91,7 +91,7 @@ To deploy the containerized Wallarm filtering node configured through environmen
     * All parameters of the `gcloud compute instances create` command are described in the [GCP documentation](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create).
 1. Open the [GCP Console → **Compute Engine** → VM instances](https://console.cloud.google.com/compute/instances) and ensure the instance is displayed in the list and is in the **RUNNING** status.
 1. Connect to the instance via SSH following the [GCP instructions](https://cloud.google.com/compute/docs/instances/ssh).
-1. Install the Docker packages in the instance following the [instrauctions for an appropriate operating system](https://docs.docker.com/engine/install/#server).
+1. Install the Docker packages in the instance following the [instructions for an appropriate operating system](https://docs.docker.com/engine/install/#server).
 1. Set the local environment variable with the Wallarm node token to be used to connect the instance to the Wallarm Cloud:
 
     ```bash

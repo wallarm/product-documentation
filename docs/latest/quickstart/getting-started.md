@@ -13,7 +13,7 @@ Need help choosing or want a personalized walkthrough? [Talk to Sales](mailto:sa
 
 Wallarm API Security delivers discovery and protection for your APIs: internal services, partner-facing endpoints, third-party integrations, and the APIs consumed by AI workloads. It blocks the OWASP API Top 10, automated abuse, account takeover, AI-targeted attacks, and attacks against Model Context Protocol (MCP) servers across REST, GraphQL, gRPC, SOAP, and WebSocket — and continuously discovers, inventories, and risk-scores every endpoint in your environment.
 
-You can start in one of the ways:
+You can start in one of the following ways:
 
 * [Playground](#playground) — explore Wallarm Console with realistic data; no signup required.
 * [Security Edge Free Tier](#security-edge-free-tier) — create a free account, get 500K requests per month for free, with Wallarm API Security Testing enabled by default and optional AASM Freemium.

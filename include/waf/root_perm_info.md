@@ -1,4 +1,4 @@
-!!! info "Providing user with `root` permission"
+!!! info "Providing a user with `root` permission"
     If you are running NGINX as a user that does not have `root` permission, then add this user to the `wallarm` group using the following command:
     
     ```

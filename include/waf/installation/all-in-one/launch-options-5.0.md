@@ -1,4 +1,4 @@
-As soon as you have the all-in one script downloaded, you can get help on it with:
+As soon as you have the all-in-one script downloaded, you can get help on it with:
 
 ```
 sudo sh ./wallarm-5.3.19.x86_64-glibc.sh -- -h
@@ -18,7 +18,7 @@ OPTION                      DESCRIPTION
 -t, --token TOKEN           Node token, required in a batch mode.
 -c, --cloud CLOUD           Wallarm Cloud, one of US/EU, default is EU, only used in a batch mode.
 -H, --host HOST             Wallarm API address, for example, api.wallarm.com or us1.api.wallarm.com, only used in a batch mode.
--P, --port PORT             Wallarm API pot, for example, 443.
+-P, --port PORT             Wallarm API port, for example, 443.
     --no-ssl                Disable SSL for Wallarm API access.
     --no-verify             Disable SSL certificates verification.
 -f, --force                 If there is a node with the same name, create a new instance.
@@ -109,7 +109,7 @@ The filtering/postanalytics switch provides the option to install the postanalyt
 
 ### API Discovery-only mode
 
-You can use the node in API Discovery-only mode (available since version 5.3.7). In this mode, attacks - including those detected by the Node's built-in mechanisms and those requiring additional configuration (e.g., credential stuffing, API specification violation attempts, and malicious activity from denylisted and graylisted IPs) - are detected and blocked locally (if enabled) but not exported to Wallarm Cloud. Since there is no attack data in the Cloud, [Threat Replay Testing][threat-replay-testing-docs] does not work. Traffic from whitelisted IPs is allowed.
+You can use the node in API Discovery-only mode (available since version 5.3.7). In this mode, attacks - including those detected by the Node's built-in mechanisms and those requiring additional configuration (e.g., credential stuffing, API specification violation attempts, and malicious activity from denylisted and graylisted IPs) - are detected and blocked locally (if enabled) but not exported to Wallarm Cloud. Since there is no attack data in the Cloud, [Threat Replay Testing][threat-replay-testing-docs] does not work. Traffic from allowlisted IPs is allowed.
 
 Meanwhile, [API Discovery][api-discovery-docs], [API session tracking][api-sessions-docs], and [security vulnerability detection][vuln-detection-docs] remain fully functional, detecting relevant security entities and uploading them to the Cloud for visualization.
 

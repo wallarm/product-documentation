@@ -33,7 +33,7 @@ Priorities of the filtration mode configuration methods are determined in the [`
 
 You can set the node filtration mode on the node side using the [`wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode) directive. Peculiarities of how the `wallarm_mode` directive is set in different deployments are described below.
 
-Note that described configuration is applicable only for [in-line](../installation/inline/overview.md) deployments - for [out-of-band (OOB)](../installation/oob/overview.md) solutions only the `monitoring` mode can be active.
+Note that the described configuration is applicable only for [in-line](../installation/inline/overview.md) deployments - for [out-of-band (OOB)](../installation/oob/overview.md) solutions only the `monitoring` mode can be active.
 
 === "All-in-one installer"
 
@@ -150,7 +150,7 @@ You can set filtration mode for specific branches, endpoints and relying on othe
     --8<-- "../include/rule-creation-initial-step.md"
 
     1. Choose **Fine-tuning attack detection** → **Override filtration mode**. 
-    1. In **If request is**, [describe](../user-guides/rules/rules.md#configuring) the scope to apply the rule to. If you initiated the rule for specific branch, hit or endpoint, they will define the scope - if necessary, you can add more conditions.
+    1. In **If request is**, [describe](../user-guides/rules/rules.md#configuring) the scope to apply the rule to. If you initiated the rule for a specific branch, hit or endpoint, they will define the scope - if necessary, you can add more conditions.
     1. Select filtration mode for the specified scope:
 
         | Setting | Filtration mode |
@@ -168,7 +168,7 @@ You can set filtration mode for specific branches, endpoints and relying on othe
 ### Prioritization of methods
 
 !!! warning "Support of the `wallarm_mode_allow_override` directive on the Edge node"
-    Please note that the `wallarm_mode_allow_override` directive cannot be customized on the Wallarm Edge [inline](../installation/security-edge/inline/deployment.md) and [connector](../installation/security-edge/se-connector.md) nodes.
+    Note that the `wallarm_mode_allow_override` directive cannot be customized on the Wallarm Edge [inline](../installation/security-edge/inline/deployment.md) and [connector](../installation/security-edge/se-connector.md) nodes.
 
 The `wallarm_mode_allow_override` directive manages the ability to apply mode rules/mitigation controls that are defined on Wallarm Console instead of using the `wallarm_mode` directive values from the filtering node configuration file.
 
@@ -295,7 +295,7 @@ Examples of the requests sent to the configured server `SERVER_A` and the action
 * The malicious request with the `/main/signup` path is blocked due to the `wallarm_mode_allow_override strict;` setting for the requests with the `/main/signup` path and the **Blocking** rule defined in Wallarm Console for the requests with the `/main` path.
 * The malicious request with the `/main/apply` path and the `GET` method is blocked due to the `wallarm_mode_allow_override on;` setting for the requests with the `/main/apply` path and the **Blocking** rule defined in Wallarm Console for the requests with the `/main` path.
 * The malicious request with the `/main/apply` path and the `POST` method is blocked due to the `wallarm_mode_allow_override on;` setting for those requests with the `/main/apply` path, the **Default** rule defined in Wallarm Console, and the `wallarm_mode block;` setting for the requests with the `/main/apply` path in the filtering node configuration file.
-* The malicious request with the `/main/feedback` path is blocked only if it originates from a [graylisted IP](../user-guides/ip-lists/overview.md) due to the `wallarm_mode safe_blocking;` setting for the requests with the `/main/feedback` path in the filtering node configuration file
+* The malicious request with the `/main/feedback` path is blocked only if it originates from a [graylisted IP](../user-guides/ip-lists/overview.md) due to the `wallarm_mode safe_blocking;` setting for the requests with the `/main/feedback` path in the filtering node configuration file.
 
     The **Monitoring** rule defined in Wallarm Console is not applied to it due to the `wallarm_mode_allow_override off;` setting in the filtering node configuration file.
 

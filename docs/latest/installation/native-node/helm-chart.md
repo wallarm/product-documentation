@@ -11,7 +11,7 @@
 
 # Deploying the Native Node with Helm Chart
 
-The [Wallarm Native Node](../nginx-native-node-internals.md), which operates independently of NGINX, is designed for deployment with some connectors. You can run the Native Node on as a separate service or as a load balancer in your Kubernetes cluster using the Helm chart.
+The [Wallarm Native Node](../nginx-native-node-internals.md), which operates independently of NGINX, is designed for deployment with some connectors. You can run the Native Node as a separate service or as a load balancer in your Kubernetes cluster using the Helm chart.
 
 ## Use cases
 

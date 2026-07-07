@@ -70,7 +70,7 @@
 This article lists and describes attacks and [vulnerabilities](about-wallarm/detecting-vulnerabilities.md) that Wallarm can detect including those presented in the [OWASP Top 10](https://owasp.org/www-project-top-ten/) and [OWASP API Top 10](https://owasp.org/www-project-api-security/) security risk lists. Most of the vulnerabilities and attacks on the list are accompanied by one or more codes from the list of software weakness types, also known as the [Common Weakness Enumeration][link-cwe] or CWE.
 
 !!! info "No configuration required"
-    If in the attack/vulnerability description no specific configuration is mentioned, this means Wallarm detects this attack/vulnerability by default **without any configuration** from you side and handles it in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md).
+    If in the attack/vulnerability description no specific configuration is mentioned, this means Wallarm detects this attack/vulnerability by default **without any configuration** from your side and handles it in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md).
 
 ## Attack types
 
@@ -88,21 +88,21 @@ Technically, all attacks that can be detected by Wallarm are divided into three 
 
     For behavioral attacks to be detected, corresponding tool should be properly configured.
 
-* **AI-agent attacks** are characterized by attempt to exploit an AI agent’s logic to leak system secrets, override safety guardrails, or trigger unauthorized or harmful actions in the related systems. Main attack vectors:
+* **AI-agent attacks** are characterized by an attempt to exploit an AI agent’s logic to leak system secrets, override safety guardrails, or trigger unauthorized or harmful actions in the related systems. Main attack vectors:
 
     * **Direct interaction (simple chain)**: `Client <-> AI Agent (LLM Chatbot)` The user tries to manipulate the chatbot's internal logic or retrieve its system prompt directly through the chat interface.
     * **Integrated exploitation (full-scale chain)**: `Client <-> AI Agent <-> MCP <-> Related System(s)` The user tricks the agent into using its Model Context Protocol (MCP) or other integrations to execute commands (like processing a refund or deleting data) in downstream databases or applications.
 
     Examples: [System prompt retrieval](#system-prompt-retrieval), [prompt injection](#prompt-injection), [custom AI payload inspection](#custom-ai-payload-inspection).
 
-<a name="attack-det-methods"></a>[Handling](about-wallarm/protecting-against-attacks.md#attack-handling-process) of all attacks require [Wallarm filtering node](about-wallarm/api-security-overview.md#how-wallarm-api-security-works). However, as described above, methods of detection vary.
+<a name="attack-det-methods"></a>[Handling](about-wallarm/protecting-against-attacks.md#attack-handling-process) of all attacks requires the [Wallarm filtering node](about-wallarm/api-security-overview.md#how-wallarm-api-security-works). However, as described above, methods of detection vary.
 
 !!! info "Method names and abbreviations"
     BID - **built-in detectors**, the major node function, [basic set of detectors](about-wallarm/protecting-against-attacks.md#basic-set-of-detectors), no configuration required
     MCL - [mitigation controls](about-wallarm/mitigation-controls-overview.md)
     RLS - [rules](user-guides/rules/rules.md) 
     CRD - [Credential Stuffing Detection](about-wallarm/credential-stuffing.md)
-    ASE - [API Specification Enforcement](api-specification-enforcement/overview.md) security policies basing on your uploaded specifications
+    ASE - [API Specification Enforcement](api-specification-enforcement/overview.md) security policies based on your uploaded specifications
     TRG - [triggers](user-guides/triggers/triggers.md)
     APIAP - [API Abuse Prevention](api-abuse-prevention/overview.md) antibot solution
     ACL - [IP lists](user-guides/ip-lists/overview.md), specifically, Denylist
@@ -591,7 +591,7 @@ APIs vulnerable to mass assignment attacks allow converting client input to inte
 **In addition to Wallarm protection:**
 
 * Avoid using functions that automatically bind a client’s input into code variables or object properties.
-* Use built-in function features to whitelist only the properties that should be updated by the client and blacklist private properties.
+* Use built-in function features to allowlist only the properties that should be updated by the client and denylist private properties.
 * If applicable, explicitly define and enforce schemas for the input data payloads.
 
 ## API abuse
@@ -650,7 +650,7 @@ Besides common [detectors](api-abuse-prevention/overview.md#how-api-abuse-preven
 * **Session rotation** for account takeover attacks using a pool of IP sessions.
 * **Persistent ATO** for account takeover attacks that occur gradually over an extended period.
 * **Credential stuffing** for account takeover attacks that involve repeated login attempts with different credentials while maintaining stable request attributes ([credential stuffing](#credential-stuffing)).
-* **Low-frequency credential stuffing** for account takeover attacks that that are characterized by isolated or minimal authentication attempts ([credential stuffing](#credential-stuffing)) without subsequent API interaction: attackers purposefully restrict login attempts per session or client to evade detection. Such attacks often utilize stolen, synthetic, or auto-generated credentials, dispersed across multiple IP addresses, sessions, or time frames.
+* **Low-frequency credential stuffing** for account takeover attacks that are characterized by isolated or minimal authentication attempts ([credential stuffing](#credential-stuffing)) without subsequent API interaction: attackers purposefully restrict login attempts per session or client to evade detection. Such attacks often utilize stolen, synthetic, or auto-generated credentials, dispersed across multiple IP addresses, sessions, or time frames.
 
 API Abuse Prevention detects bots performing a [credential cracking](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-007_Credential_Cracking.html) usually performed as a brute force attack on the critical endpoints or/and endpoints that are related to authentication and/or registration endpoints. The automatic threshold of acceptable behavior metrics is calculated based on legitimate traffic for 1 hour.
 
@@ -796,7 +796,7 @@ Attempts to extract or reconstruct the AI's underlying prompt, system instructio
 
 **Required configuration:**
 
-Wallarm detects and mitigates **AI systepm prompt retrieval** only if it has one or more configured [AI payload inspection](agentic-ai/ai-payload-inspection.md) mitigation controls with the **System prompt retrieval** option selected (requires [NGINX node](installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or [Native node](installation/nginx-native-node-internals.md#native-node) 0.14.1).
+Wallarm detects and mitigates **AI system prompt retrieval** only if it has one or more configured [AI payload inspection](agentic-ai/ai-payload-inspection.md) mitigation controls with the **System prompt retrieval** option selected (requires [NGINX node](installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or [Native node](installation/nginx-native-node-internals.md#native-node) 0.14.1).
 
 **In addition to Wallarm protection:**
 
@@ -815,7 +815,7 @@ Wallarm detects and mitigates **AI systepm prompt retrieval** only if it has one
 
 **Description:**
 
-Attempts to extract or reconstruct the AI's underlying prompt, system instructions, or configuration.
+Attempts to override or bypass the AI's original instructions by embedding malicious commands in the input it processes.
 
 **Required configuration:**
 
@@ -867,13 +867,13 @@ Wallarm detects and mitigates **Custom malicious AI payload** only if it has one
 
 **Description:**
 
-GraphQL has peculiarities that allow implementing the protocol specific attacks related to excessive information exposure and DoS, see details in subsections.
+GraphQL has peculiarities that allow implementing the protocol-specific attacks related to excessive information exposure and DoS, see details in subsections.
 
-An adequate measure for preventing these type of threats is setting limits for GraphQL requests, such as request and value sizes, query depth, allowed number of batched queries, etc. In Wallarm, you set these limits in [GraphQL policy](api-protection/graphql-rule.md) - any GraphQL requests exceeding limits are considered to be a GraphQL attack.
+An adequate measure for preventing these types of threats is setting limits for GraphQL requests, such as request and value sizes, query depth, allowed number of batched queries, etc. In Wallarm, you set these limits in [GraphQL policy](api-protection/graphql-rule.md) - any GraphQL requests exceeding limits are considered to be a GraphQL attack.
 
 **Required configuration:**
 
-Wallarm detects and mitigates GraphQL attacks only if it has one or more configured [Detect GraphQL attacks mitigation control or rule](api-protection/graphql-rule.md) (requires node 4.10.3 of higher).
+Wallarm detects and mitigates GraphQL attacks only if it has one or more configured [Detect GraphQL attacks mitigation control or rule](api-protection/graphql-rule.md) (requires node 4.10.3 or higher).
 
 [Default controls](api-protection/graphql-rule.md#default-protection) are provided in a monitoring mode (for new clients) or disabled (enable if necessary).
 
@@ -932,7 +932,7 @@ In GraphQL, aliases offer the capability to rename the result fields to prevent 
 
 **Description:** 
 
-In GraphQL, multiple queries (operations) can be batched together in a single HTTP-request; by combining multiple operations into a single request, an attacker organize batching attack and try to bypass security measures such as rate limiting.
+In GraphQL, multiple queries (operations) can be batched together in a single HTTP-request; by combining multiple operations into a single request, an attacker organizes a batching attack and tries to bypass security measures such as rate limiting.
 
 ### GraphQL introspection
 
@@ -962,7 +962,7 @@ In GraphQL, when debug mode is left turned on by developers, an attacker may gat
 
 **Description:**
 
-The [API Specification Enforcement](api-specification-enforcement/overview.md) is designed to apply security policies to your APIs basing on your uploaded specifications. Its primary function is to detect discrepancies between the endpoint descriptions in your specification and the actual requests made to your REST APIs. When such inconsistencies are identified, the system can take predefined actions to address them.
+The [API Specification Enforcement](api-specification-enforcement/overview.md) is designed to apply security policies to your APIs based on your uploaded specifications. Its primary function is to detect discrepancies between the endpoint descriptions in your specification and the actual requests made to your REST APIs. When such inconsistencies are identified, the system can take predefined actions to address them.
 
 Note that API Specification Enforcement has limits applied to comparing requests against specifications - when exceeding these limits, it stops processing the request and creates the event informing about that: see [processing overlimit](#processing-overlimit).
 
@@ -994,7 +994,7 @@ Requests marked as attacks because they include parameters not presented for thi
 
 **Description:**
 
-Requests marked as attacks because some of their parameter's value in not in correspondence with its type/format defined by your specification.
+Requests marked as attacks because some of their parameter's value is not in correspondence with its type/format defined by your specification.
 
 ### Missing parameter
 
@@ -1004,7 +1004,7 @@ Requests marked as attacks because some of their parameter's value in not in cor
 
 **Description:**
 
-Requests marked as attacks because they does not include the parameter or its value that are marked as required in your specification
+Requests marked as attacks because they do not include the parameter or its value that are marked as required in your specification.
 
 ### Missing authentication
 
@@ -1042,7 +1042,7 @@ Requests marked as attacks because they contain an invalid JSON.
 
 Wallarm marks a request as the Data bomb attack if it contains the Zip or XML bomb:
 
-* [Zip bomb](https://en.wikipedia.org/wiki/Zip_bomb)  is a malicious archive file designed to crash or render useless the program or system reading it. Zip bomb allows the program to work as intended, but the archive is crafted so that unpacking it requires inordinate amounts of time, disk space and/or memory.
+* [Zip bomb](https://en.wikipedia.org/wiki/Zip_bomb) is a malicious archive file designed to crash or render useless the program or system reading it. Zip bomb allows the program to work as intended, but the archive is crafted so that unpacking it requires inordinate amounts of time, disk space and/or memory.
 * [XML bomb (billion laughs attack)](https://en.wikipedia.org/wiki/Billion_laughs_attack) is the DoS attack type that is aimed at parsers of XML documents. An attacker sends malicious payloads in XML entities.
 
     For example, `entityOne` can be defined as 20 `entityTwo`, which themselves can be defined as 20 `entityThree`. If the same pattern is continued until `entityEight`, the XML parser will unfold a single occurrence of `entityOne` to 1 280 000 000 `entityEight` — taking up 5 GB of memory.
@@ -1107,7 +1107,7 @@ A request is marked as a `vpatch` if it is part of an attack that was mitigated 
 
 **Required configuration:**
 
-Virtual patching is blocking specific or all requests to some endpoint that is performed regardless the current [filtration mode](admin-en/configure-wallarm-mode.md). Virtual patches are custom rules that you create [manually][doc-vpatch].
+Virtual patching is blocking specific or all requests to some endpoint that is performed regardless of the current [filtration mode](admin-en/configure-wallarm-mode.md). Virtual patches are custom rules that you create [manually][doc-vpatch].
 
 **In addition to Wallarm protection:**
 
@@ -1231,7 +1231,7 @@ For most sites, these cookies include credentials associated with the site. Ther
 
 As a result, the attacker can send a request to the vulnerable web application from a malicious website by posing as a legitimate user who is authenticated on the vulnerable site; the attacker does not even need to have access to that user's cookies.
 
-Wallarm only discovers CSRF vulnerabilities, but does not detect and thus does not block CSRF attacks. CSRF problem is solved in all modern browsers via content security policies (CSP).
+Wallarm only discovers CSRF vulnerabilities, but does not detect and thus does not block CSRF attacks. The CSRF problem is solved in all modern browsers via content security policies (CSP).
 
 **Protection:**
 
@@ -1269,9 +1269,9 @@ Note that file size upload restrictions are not the only [measure for preventing
 
 **In addition to Wallarm protection:**
 
-* Setup client-side JavaScript validation for file size
+* Set up client-side JavaScript validation for file size
 * Configure web server (like Nginx or Apache) to reject large files
-* Setup file size check within your application's code
+* Set up file size check within your application's code
 
 ### HTTP request smuggling
 

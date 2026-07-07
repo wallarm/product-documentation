@@ -22,7 +22,7 @@ By clicking the **Configure** button in the **API Discovery** section, you proce
 
 ### General API Discovery settings
 
-You can get define general API Discovery settings in Wallarm Console  → **API Discovery** → **Configure** → **Settings**.
+You can define general API Discovery settings in Wallarm Console → **API Discovery** → **Configure** → **Settings**.
 
 !!! info "Parameter availability"
     Some of the parameters may be unavailable if they are managed by a **global administrator** of [multi-tenant](../installation/multi-tenant/overview.md) Wallarm installation.
@@ -38,13 +38,13 @@ They are:
 
     * **Filter endpoints by response content type** turns on/off validation of traffic by the `Content-type` header of response. The necessity of this validation in noise reduction depends on the peculiarities of your traffic.
 
-    * Endpoint stability thresholds: at least specific **number of requests** should be registered for the endpoint for it to be displayed by API Discovery AND and at least one of them must be outside the **timeframe**.
+    * Endpoint stability thresholds: at least a specific **number of requests** should be registered for the endpoint for it to be displayed by API Discovery AND at least one of them must be outside the **timeframe**.
 
-        This settings aim to avoid showing API entries, that had no traffic or had a traffic for a short timeframe only - they are considered unstable. Even if the specific endpoint was requested huge amount of times, but just within a short timeframe, there’s no need to consider this one-time spike as stable API endpoint.
+        These settings aim to avoid showing API entries that had no traffic or had traffic for a short timeframe only - they are considered unstable. Even if the specific endpoint was requested a huge amount of times, but just within a short timeframe, there is no need to consider this one-time spike as a stable API endpoint.
 
         ![API Discovery - general settings - endpoint stability](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-stability.png)
 
-* Percentage of requests used to: **determine parameter types** (50% by default) and **detect sensitive data** (10% by default). Non-100% values are used to lower CPU usage. Increased numbers are good for environments with less requests.
+* Percentage of requests used to: **determine parameter types** (50% by default) and **detect sensitive data** (10% by default). Non-100% values are used to lower CPU usage. Increased numbers are good for environments with fewer requests.
 * Applications to be displayed: only data for the selected applications will be displayed by API Discovery. Note that this is about displaying: data is discovered for all applications, you just decide whether to show it.
 
 ### Customizing sensitive data detection

@@ -15,7 +15,7 @@
 #   Setting up filtering node auto scaling
 
 !!! info "Required rights"
-    Before setting up auto scaling, make sure that your Amazon AWS account is granted with one of the following rights:
+    Before setting up auto scaling, make sure that your Amazon AWS account is granted one of the following rights:
     
     *   `AutoScalingFullAccess`
     *   `AutoScalingConsoleFullAccess`
@@ -97,7 +97,7 @@ To create an Auto Scaling Group, do the following steps:
         * If you are using the US Cloud, your node needs to be granted access to `https://us1.api.wallarm.com`.
         * If you are using the EU Cloud, your node needs to be granted access to `https://api.wallarm.com`.
 
-        Make sure that you choose the correct VPC and subnets and configure a security group in a way that does not prevent the filtering node access to Wallarm API servers.
+        Make sure that you choose the correct VPC and subnets and configure a security group in a way that does not prevent the filtering node from accessing Wallarm API servers.
 
     ![General Auto Scaling Group settings][img-asg-wizard-1]
     

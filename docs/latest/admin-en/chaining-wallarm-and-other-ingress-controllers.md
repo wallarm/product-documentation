@@ -37,7 +37,7 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
     * Ingress controller requests routing rules configured in the same way as the existing Ingress controller.
 
     !!! info "Wallarm Ingress controller will not be exposed outside the cluster"
-        Please note that the Wallarm Ingress controller uses `ClusterIP` for its service, which means it will not be exposed outside the cluster.
+        The Wallarm Ingress controller uses `ClusterIP` for its service, which means it will not be exposed outside the cluster.
 1. Reconfigure the existing Ingress controller to forward incoming requests to the new Wallarm Ingress controller instead of application services.
 1. Test the Wallarm Ingress controller operation.
 
@@ -157,7 +157,7 @@ spec:
 
 Reconfigure the existing Ingress controller to forward incoming requests to the new Wallarm Ingress controller instead of application services as follows:
 
-* Create the Ingress object with the `ingressClass` name to be `nginx`. Please note it is the default value, you can replace it by your own value if it differs. 
+* Create the Ingress object with the `ingressClass` name to be `nginx`. Note that this is the default value; you can replace it with your own value if it differs. 
 * Ingress object must be in the same namespace as Wallarm Ingress Chart, which is `wallarm-ingress` in our example.
 * The value of `spec.rules[0].http.paths[0].backend.service.name` must be the name of the Wallarm Ingress controller service that is made up of the Helm release name and `.Values.nameOverride`.
 

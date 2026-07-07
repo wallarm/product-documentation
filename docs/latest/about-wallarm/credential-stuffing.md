@@ -1,6 +1,6 @@
 # Credential Stuffing Detection <a href="subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
-[Credential stuffing](../attacks-vulns-list.md#credential-stuffing) is a cyber attack where hackers use lists of compromised user credentials to gain unauthorized access to user accounts on multiple websites. This article describes how to detect this type of threats using Wallarm's **Credential Stuffing Detection**.
+[Credential stuffing](../attacks-vulns-list.md#credential-stuffing) is a cyber attack where hackers use lists of compromised user credentials to gain unauthorized access to user accounts on multiple websites. This article describes how to detect this type of threat using Wallarm's **Credential Stuffing Detection**.
 
 <div>
         <script src="https://js.storylane.io/js/v1/storylane.js"></script>
@@ -13,13 +13,13 @@ A credential stuffing attack is hazardous because of the common practice of reus
 
 ## How Wallarm addresses credential stuffing
 
-Wallarm's **Credential Stuffing Detection** collects and displays real-time information about attempts to use compromised or weak credentials to access your applications. It also enables instant notifications about such attempts and forms downloadable list of all compromised or weak credentials providing access to your applications.
+Wallarm's **Credential Stuffing Detection** collects and displays real-time information about attempts to use compromised or weak credentials to access your applications. It also enables instant notifications about such attempts and forms a downloadable list of all compromised or weak credentials providing access to your applications.
 
 To identify compromised and weak passwords, Wallarm uses a comprehensive database of more than **850 million records** collected from the public [HIBP](https://haveibeenpwned.com/) compromised credentials database.
 
 ![Credential Stuffing - Schema](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-schema.png)
 
-Wallarm's Credential Stuffing Detection keeps credentials data safe applying the following sequence of actions:
+Wallarm's Credential Stuffing Detection keeps credentials data safe by applying the following sequence of actions:
 
 1. As the request arrives at the node, it generates [SHA-1](https://en.wikipedia.org/wiki/SHA-1) from the password and sends several chars to the Cloud.
 1. Cloud checks its database of known compromised passwords looking for those starting with the received chars. If found, they are sent to the node in the SHA-1 encrypted format, and the node compares them to the password from the request.
@@ -132,7 +132,7 @@ In this example, if a new attempt to use compromised credentials is detected, a 
     ```
 
 1. In the **Triggers** section, create a trigger as shown above, map it to your own Slack integration.
-1. Send a request containing compromised credentials to you node's `localhost/login` endpoint:
+1. Send a request containing compromised credentials to your node's `localhost/login` endpoint:
 
     ```
     curl -X POST http://localhost/login -d '{"password": "123456", "user": "user-01@company.com"}'

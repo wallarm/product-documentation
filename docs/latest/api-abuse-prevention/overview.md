@@ -28,7 +28,7 @@ The following detectors may be involved:
 * **Suspicious behavior score** analyzing usual and unusual business logic API requests taken during a session. 
 * **Business logic score** analyzing usage of the critical or sensitive API endpoints within the context of your application behavior.
 * **Request rate** analyzing the number of requests made in a specific time interval. If an API client consistently makes a high percentage of requests over a certain threshold, it is likely that it is a bot rather than a human user.
-* **Request interval** analyzing the time intervals between consecutive requests to find lacks the randomness which is the sign of bot behavior.
+* **Request interval** analyzing the time intervals between consecutive requests to find a lack of randomness, which is a sign of bot behavior.
 * **Query abuse** analyzing a volume of requests that exceed a predefined threshold as an anomaly. Clients that exceed a threshold for queries that vary a parameter are also considered anomalies. Moreover, the detector compares client query patterns to normal behavior to identify bot activity.
 * **Outdated browser** analyzing the browser and platform used in requests. If a client is using an outdated or unsupported browser or platform, it is likely that it is a bot rather than a human user.
 * **Wide scope** analyzing breadth of IP activity to behaviorally identify crawler-like bots.
@@ -53,11 +53,11 @@ The following detectors may be involved:
         Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.0 or  [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.16.0 or higher.
 
 !!! info "Confidence"
-    As a result of detectors' work, every [detected](../api-abuse-prevention/exploring-bots.md) bot obtain **confidence percentage**: how sure we are that this is a bot. In each bot type, detectors have different relative importance / number of votes. Thus, the confidence percentage is the votes gained out of all possible votes in this bot type (provided by detectors that worked).
+    As a result of detectors' work, every [detected](../api-abuse-prevention/exploring-bots.md) bot obtains a **confidence percentage**: how sure we are that this is a bot. In each bot type, detectors have different relative importance / number of votes. Thus, the confidence percentage is the votes gained out of all possible votes in this bot type (provided by detectors that worked).
 
 ![API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics-detectors.png)
 
-If one or several detectors point to [bot attack signs](#automated-threats-blocked-by-api-abuse-prevention), the module denylists or graylists the source of the anomaly traffic for 1 hour. Wallarm counts bot IPs that were deny- and graylisted within 30 days and displays how many percents these amounts increased or decreased compared to the previous 30 day period.
+If one or several detectors point to [bot attack signs](#automated-threats-blocked-by-api-abuse-prevention), the module denylists or graylists the source of the anomaly traffic for 1 hour. Wallarm counts bot IPs that were deny- and graylisted within 30 days and displays how many percent these amounts increased or decreased compared to the previous 30 day period.
 
 The solution deeply observes traffic anomalies before attributing them as malicious bot actions and blocking their origins. Since metric collection and analysis take some time, the module does not block malicious bots in real-time once the first malicious request originated but significantly reduces abnormal activity on average.
 
@@ -65,4 +65,4 @@ The solution deeply observes traffic anomalies before attributing them as malici
 
 To start malicious bot detection and mitigation with the **API Abuse Prevention** module, create and configure one or more [API abuse profiles](../api-abuse-prevention/setup.md#creating-profiles).
 
-To make the API Abuse Prevention functionality more precise, it is recommended to enable [JA3 fingerprinting](../admin-en/enabling-ja3.md) for better identification of the the unauthenticated traffic when combining requests into [sessions](../api-sessions/overview.md).
+To make the API Abuse Prevention functionality more precise, it is recommended to enable [JA3 fingerprinting](../admin-en/enabling-ja3.md) for better identification of the unauthenticated traffic when combining requests into [sessions](../api-sessions/overview.md).

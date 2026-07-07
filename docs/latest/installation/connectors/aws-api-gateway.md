@@ -21,7 +21,7 @@ The solution consists of three AWS components (your API in API Gateway, CloudWat
 1. **CloudWatch logs** capture information about each request and make it available for processing.
 1. A **Lambda function** subscribes to these logs, reads new entries, and extracts API metadata.
 1. The Lambda function forwards the extracted metadata to the **Wallarm Native Node**.
-1. The Native Node collects this metadata and build an [API inventory][api-inventory].
+1. The Native Node collects this metadata and builds an [API inventory][api-inventory].
 
 ## Limitations
 

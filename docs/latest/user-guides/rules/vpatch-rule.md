@@ -7,12 +7,12 @@
 
 # Virtual Patching
 
-In cases when it is impossible to fix a critical [vulnerability](../../user-guides/vulnerabilities.md) in the code of your application or install the necessary updates quickly, you can create a virtual patch to block all or specific requests to the endpoints that may allow exploiting these vulnerabilities. Virtual patch will block requests even in the monitoring and safe blocking [modes](../../admin-en/configure-wallarm-mode.md), except the ones originating from the [allowlisted](../ip-lists/overview.md) IPs.
+In cases when it is impossible to fix a critical [vulnerability](../../user-guides/vulnerabilities.md) in the code of your application or install the necessary updates quickly, you can create a virtual patch to block all or specific requests to the endpoints that may allow exploiting these vulnerabilities. A virtual patch will block requests even in the monitoring and safe blocking [modes](../../admin-en/configure-wallarm-mode.md), except the ones originating from the [allowlisted](../ip-lists/overview.md) IPs.
 
-Wallarm provides the following [rules](../../user-guides/rules/rules.md) to create virtual patch:
+Wallarm provides the following [rules](../../user-guides/rules/rules.md) to create a virtual patch:
 
-* **Create a virtual patch** rule - allows creating virtual patch that blocks requests containing in its selected part one of the [known](../../attacks-vulns-list.md) attack signs, such as SQLi, SSTi, RCE etc. Also, you can select **Any request** to block specific requests without any attack signs.
-* **Create regexp-based attack indicator** rule with **Virtual patch** option selected - allows creating virtual patch that blocks requests containing your own attack signs or your own reason for blocking (see [example](#blocking-all-requests-with-incorrect-x-authentication-header)) that are described with the regular expressions. Details on working with rule based on regular expression are described [here](../../user-guides/rules/regex-rule.md).
+* **Create a virtual patch** rule - allows creating a virtual patch that blocks requests containing in its selected part one of the [known](../../attacks-vulns-list.md) attack signs, such as SQLi, SSTi, RCE, etc. Also, you can select **Any request** to block specific requests without any attack signs.
+* **Create regexp-based attack indicator** rule with **Virtual patch** option selected - allows creating a virtual patch that blocks requests containing your own attack signs or your own reason for blocking (see [example](#blocking-all-requests-with-incorrect-x-authentication-header)) that are described with regular expressions. Details on working with a rule based on regular expressions are described [here](../../user-guides/rules/regex-rule.md).
 
 ## Creating and applying the rule
 
@@ -34,7 +34,7 @@ Wallarm provides the following [rules](../../user-guides/rules/rules.md) to crea
 
 ### Blocking specific requests for selected endpoint
 
-Let us say your application online purchase section accessible at the `example.com/purchase` endpoint crashes upon processing the `refresh` query string parameter. Before the bug is fixed, you need to block requests leading to the crash.
+Let us say your application's online purchase section accessible at the `example.com/purchase` endpoint crashes upon processing the `refresh` query string parameter. Before the bug is fixed, you need to block requests leading to the crash.
 
 To do so, set the **Create a virtual patch** rule as displayed on the screenshot:
 
@@ -42,7 +42,7 @@ To do so, set the **Create a virtual patch** rule as displayed on the screenshot
 
 ### Blocking exploitation attempts for discovered but not yet fixed vulnerability
 
-Let us say your application accessible at the `example.com` domain has discovered but not yet fixed vulnerability: the application's `id` parameter is vulnerable to SQL injection attacks. Meanwhile, Wallarm filtering node is set to monitoring mode and yet you need to immediately block the vulnerability exploitation attempts.
+Let us say your application accessible at the `example.com` domain has a discovered but not yet fixed vulnerability: the application's `id` parameter is vulnerable to SQL injection attacks. Meanwhile, the Wallarm filtering node is set to monitoring mode and yet you need to immediately block the vulnerability exploitation attempts.
 
 To do so, set the **Create a virtual patch** rule as displayed on the screenshot:
 

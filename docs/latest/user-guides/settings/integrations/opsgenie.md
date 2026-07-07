@@ -16,7 +16,7 @@ In Wallarm UI:
 1. Open the **Integrations** section.
 1. Click the **Opsgenie** block or click the **Add integration** button and choose **Opsgenie**.
 1. Enter an integration name.
-1. Paste the copied API key to the **API key** field.
+1. Paste the copied API key into the **API key** field.
 1. If using the [EU instance](https://docs.opsgenie.com/docs/european-service-region) of Opsgenie, select the appropriate Opsgenie API endpoint from the list. By default, the US instance endpoint is set.
 1. Choose event types to trigger notifications.
 

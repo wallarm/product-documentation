@@ -1,6 +1,6 @@
 # In-line Deployment of Wallarm Node
 
-Wallarm can be deployed in-line to mitigate threats in real-time. In this case, traffic to protected APIs passes through Wallarm node instances before it reaches the API. There is no chance of an attacker bypassing Wallarm nodes as long as they are inline and are the only path available to end users. This article explains the approach in details.
+Wallarm can be deployed in-line to mitigate threats in real-time. In this case, traffic to protected APIs passes through Wallarm node instances before it reaches the API. There is no chance of an attacker bypassing Wallarm nodes as long as they are inline and are the only path available to end users. This article explains the approach in detail.
 
 Wallarm node instances sit between the client and the servers, analyzing incoming traffic, mitigating malicious requests, and forwarding legitimate requests to the protected server. 
 
@@ -21,7 +21,7 @@ The in-line deployment approach to the Wallarm deployment offers several advanta
 
 To implement an inline scheme, you will need to change the traffic route in your infrastructure. Additionally, carefully consider [resource allocation](../../admin-en/configuration-guides/allocate-resources-for-node.md) for Wallarm nodes to ensure uninterrupted service.
 
-When deploying Wallarm nodes on public clouds like AWS or GCP for production environments it is required  to use properly configured autoscaling group for optimal performance, scalability and resilience (refer to articles for [AWS](../../admin-en/installation-guides/amazon-cloud/autoscaling-overview.md) or [GCP](../../admin-en/installation-guides/google-cloud/autoscaling-overview.md)).
+When deploying Wallarm nodes on public clouds like AWS or GCP for production environments it is required to use a properly configured autoscaling group for optimal performance, scalability and resilience (refer to articles for [AWS](../../admin-en/installation-guides/amazon-cloud/autoscaling-overview.md) or [GCP](../../admin-en/installation-guides/google-cloud/autoscaling-overview.md)).
 
 ## Deployment models and supported deployment methods
 

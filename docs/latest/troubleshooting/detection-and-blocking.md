@@ -65,7 +65,7 @@ If the steps above do not help to resolve the issue, please capture the node log
 
 ## Filtering node RPS and APS values are not exported to Cloud
 
-If filtering node information about RPS (requests per second) and APS (attacks per second) are not exported to Wallarm cloud, the possible reason is SELinux.
+If filtering node information about RPS (requests per second) and APS (attacks per second) is not exported to Wallarm cloud, the possible reason is SELinux.
 
 [SELinux](https://www.redhat.com/en/topics/linux/what-is-selinux) is installed and enabled by default on RedHat‑based Linux distributions (e.g., CentOS or Amazon Linux 2.0.2021x and lower). SELinux can also be installed on other Linux distributions, such as Debian or Ubuntu.
 
@@ -77,7 +77,7 @@ sestatus
 
 If the SELinux mechanism is enabled on a host with a filtering node, during node installation or upgrade, the [all-in-one installer](../installation/nginx/all-in-one.md) performs its automatic configuration for the node not to interfere with it.
 
-If after automatic configuration you still experience the problems that can be caused by SeLinux, do the following:
+If after automatic configuration you still experience the problems that can be caused by SELinux, do the following:
 
 1. Temporarily disable SELinux by executing the `setenforce 0` command.
 
@@ -87,7 +87,7 @@ If after automatic configuration you still experience the problems that can be c
 1. [Contact](mailto:support@wallarm.com) Wallarm's technical support for help.
 
     !!! warning "SELinux permanent disabling not recommended"
-        It is not recommended to disable SELinux permanently due to the security issues.
+        It is not recommended to disable SELinux permanently due to security issues.
 
 ## Filtering node does not block attacks when operating in blocking mode (`wallarm_mode block`)
 
@@ -102,7 +102,7 @@ If you have configured blocking mode via `wallarm_mode block` but Wallarm filter
 
 ## User gets blocking page after legitimate request
 
-If your user reports a legitimate request being blocked despite the Wallarm measures, you can review and evaluate their requests as this articles explains.
+If your user reports a legitimate request being blocked despite the Wallarm measures, you can review and evaluate their requests as this article explains.
 
 To resolve the issue of a legitimate request being blocked by Wallarm, follow these steps:
 
@@ -113,7 +113,7 @@ To resolve the issue of a legitimate request being blocked by Wallarm, follow th
         ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
 
         !!! warning "Blocking page usage"
-            If you do not use the default or customized Wallarm blocking page, it is highly recommended to [configure](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) it to get the appropriate info from user. Remember that even a sample page collects and allows easy copying of meaningful information related to the blocked request. Additionally, you can customize or fully rebuild such page to return users the informative blocking message.
+            If you do not use the default or customized Wallarm blocking page, it is highly recommended to [configure](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) it to get the appropriate info from the user. Remember that even a sample page collects and allows easy copying of meaningful information related to the blocked request. Additionally, you can customize or fully rebuild such a page to return users the informative blocking message.
     
     * Copy of user's client request and response. Browser page source code or terminal client textual input and output suits well.
 

@@ -59,7 +59,7 @@ To create a test run via your Wallarm account interface, follow the steps below:
 
 3. Enter the name of your test run.
 
-4. Select the test policy from the **Test policy** drop-down list. To create a new test policy, please follow this [instructions][link-create-policy]. Also, you can use the default policy.
+4. Select the test policy from the **Test policy** drop-down list. To create a new test policy, please follow these [instructions][link-create-policy]. Also, you can use the default policy.
 
 5. Select FAST node from the **Node** drop-down list. To create FAST node, please follow this [instruction][link-create-node].
 

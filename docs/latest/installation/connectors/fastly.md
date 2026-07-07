@@ -28,7 +28,7 @@ The Fastly connector supports both [in-line](../inline/overview.md) and [out-of-
 
 ## Use cases
 
-This solution is recommended in case when you deliver traffic through Fastly.
+This solution is recommended when you deliver traffic through Fastly.
 
 ## Limitations
 
@@ -137,7 +137,7 @@ Create the `wallarm_config` config defining Wallarm-specific settings:
 !!! info "Config stores for multiple services"
     If you run multiple Compute services for Wallarm, you can do one of the following:
     
-    * Create multiple config stores with different configurations and link each of them to corresponding service.
+    * Create multiple config stores with different configurations and link each of them to the corresponding service.
     * Share the same config store (for example, `wallarm_config`) across multiple services. Note that while all services must use the same origin backend name, the actual backend value can be customized in each service's settings.
 
 ### 5. (Optional) Set up a custom blocking page

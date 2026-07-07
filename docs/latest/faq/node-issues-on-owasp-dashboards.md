@@ -34,11 +34,11 @@ Search for them in your OS, they can be located in `/opt/wallarm/etc/wallarm` or
 -rw-r--r--    1 wallarm  wallarm          6 Jul 29 20:11 version
 ```
 
-The mentioned and other files must have correct group (second column with `wallarm`), this group should be the same as the one running NGINX's workers (check with `ps aux|grep nginx`)
+The mentioned and other files must have the correct group (second column with `wallarm`); this group should be the same as the one running NGINX's workers (check with `ps aux|grep nginx`)
 
 ### custom_ruleset version
 
-Problems with [`custom_ruleset`](../user-guides/rules/rules.md#ruleset-lifecycle) synchronization can be caused by inconsistency between min custom ruleset version set for you by Wallarm support group and the node version:
+Problems with [`custom_ruleset`](../user-guides/rules/rules.md#ruleset-lifecycle) synchronization can be caused by inconsistency between the minimum custom ruleset version set for you by Wallarm support group and the node version:
 
 1. Get your custom ruleset version via node's [statistics service](../admin-en/configure-statistics-service.md#usage) - `custom_ruleset_ver`. For example:
 

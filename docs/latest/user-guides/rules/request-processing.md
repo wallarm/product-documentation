@@ -4,9 +4,9 @@
 
 # Parsing Requests
 
-When analyzing requests, Wallarm filtering node uses a comprehensive set of parsers. After identifying the request parts, parsers are sequentially applied to each of them to provide request meta parameters further used for attack detection. Available parsers, logic of their usage and possible configurations for this logic are described in this article.
+When analyzing requests, the Wallarm filtering node uses a comprehensive set of parsers. After identifying the request parts, parsers are sequentially applied to each of them to provide request meta parameters further used for attack detection. Available parsers, logic of their usage and possible configurations for this logic are described in this article.
 
-For an effective parsing, Wallarm follows the principles:
+For effective parsing, Wallarm follows these principles:
 
 * Work with the same data as the protected application. For example:
 
@@ -14,7 +14,7 @@ For an effective parsing, Wallarm follows the principles:
 
 * Consider the context of data processing. For example:
 
-    The parameter `name` can be passed in creation requests both as the product name and as a username. However, the processing code for such requests can be different. To define the method of analyzing such parameters, Wallarm may use the URL from which the requests were sent to or other parameters.
+    The parameter `name` can be passed in creation requests both as the product name and as a username. However, the processing code for such requests can be different. To define the method of analyzing such parameters, Wallarm may use the URL to which the requests were sent, or other parameters.
 
 ## Identifying and parsing the request parts
 
@@ -31,7 +31,7 @@ The output from the parsers becomes an additional set of parameters that has to 
 
 ### URL
 
-Each HTTP request contains an URL. To find attacks, the filtering node analyzes both the original value and its individual components: **path**, **action_name**, **action_ext**, **query**.
+Each HTTP request contains a URL. To find attacks, the filtering node analyzes both the original value and its individual components: **path**, **action_name**, **action_ext**, **query**.
 
 The following tags correspond to the URL parser:
 
@@ -127,7 +127,7 @@ Decodes GZIP encoded data, and can be applied to any part of the request.
 
 #### htmljs
 
-Converts HTML and JS symbols to the text format, and can be applied to any part of the request.
+Converts HTML and JS characters to text format, and can be applied to any part of the request.
 
 Example: `&#x22;&#97;&#97;&#97;&#x22;` will be converted to `"aaa"`.
 
@@ -236,7 +236,7 @@ Example:
 
 #### percent
 
-Decodes the URL symbols, and can be applied only to the **uri** component of URL.
+Decodes the URL characters, and can be applied only to the **uri** component of the URL.
 
 #### cookie
 
@@ -350,7 +350,7 @@ When defining a request element the [rule](rules.md) is applied to:
 
 #### gql
 
-Parses GraphQL executable definitions (queries, mutations, subscriptions and fragments) that enables an improved detection of the [input validation attacks](../../attacks-vulns-list.md#attack-types) in GraphQL specific request points. Requires NGINX Node 5.3.0 or higher or native node 0.12.0.
+Parses GraphQL executable definitions (queries, mutations, subscriptions and fragments) that enables improved detection of [input validation attacks](../../attacks-vulns-list.md#attack-types) in GraphQL-specific request points. Requires NGINX Node 5.3.0 or higher or native node 0.12.0.
 
 Filters:
 
@@ -404,12 +404,12 @@ fragment UserFields on User {
 
 * `[..., gql, gql_fragment, 'UserFields', gql_type,` `'User', hash, 'posts', gql_arg, hash, 'status']` — `published`
 
-The parser allows extracting and displaying values of [GraphQL request parameters in API Sessions](../../api-sessions/overview.md#graphql-requests-in-api-sessions) and applying [rules](rules.md) to GraphQL specific parts of requests:
+The parser allows extracting and displaying values of [GraphQL request parameters in API Sessions](../../api-sessions/overview.md#graphql-requests-in-api-sessions) and applying [rules](rules.md) to GraphQL-specific parts of requests:
 
 ![Example of the rule applied to GraphQL request point"](../../images/user-guides/rules/rule-applied-to-graphql-point.png)
 
 !!! info "GraphQL protection with Wallarm"
-    While [always enabled](#managing-parsers) parser by default provides detection of regular attacks (SQLi, RCE, etc.) in GraphQL, Wallarm also allow **configuring** [protection from GraphQL-specific attacks](../../api-protection/graphql-rule.md).
+    While [always enabled](#managing-parsers) parser by default provides detection of regular attacks (SQLi, RCE, etc.) in GraphQL, Wallarm also allows **configuring** [protection from GraphQL-specific attacks](../../api-protection/graphql-rule.md).
 
 ### Norms
 
@@ -441,7 +441,7 @@ Used to get names of all elements, parameters, or objects. For example:
 
 By default, when analyzing the request the Wallarm node attempts to sequentially apply each of the suitable [parsers](request-processing.md) to each element of the request. However, certain parsers can be applied mistakenly and as a result, the Wallarm node may detect attack signs in the decoded value.
 
-For example: the Wallarm node may mistakenly identify unencoded data as encoded into [Base64](https://en.wikipedia.org/wiki/Base64), since the Base64 alphabet symbols are often used in the regular text, token values, UUID values and other data formats. If decoding the unencoded data and detecting attack signs in the resulting value, the [false positive](../../about-wallarm/protecting-against-attacks.md#false-positives) occurs.
+For example: the Wallarm node may mistakenly identify unencoded data as encoded into [Base64](https://en.wikipedia.org/wiki/Base64), since the Base64 alphabet characters are often used in regular text, token values, UUID values and other data formats. If the unencoded data is decoded and attack signs are detected in the resulting value, a [false positive](../../about-wallarm/protecting-against-attacks.md#false-positives) occurs.
 
 To prevent false positives in such cases, Wallarm provides the **Disable/Enable request parser** rule to disable the parsers mistakenly applied to certain request elements.
 
@@ -459,7 +459,7 @@ To prevent false positives in such cases, Wallarm provides the **Disable/Enable 
 
 **Rule example**
 
-Let us say the requests to `https://example.com/users/` require the authentication header `X-AUTHTOKEN`. The header value may contain specific symbol combinations (e.g. `=` in the end) that may be potentially decoded by Wallarm with the parser `base64` resulting in false detection of attack sign. You need to prevent this decoding to avoid false positives. 
+Let us say the requests to `https://example.com/users/` require the authentication header `X-AUTHTOKEN`. The header value may contain specific character combinations (e.g. `=` in the end) that may be potentially decoded by Wallarm with the parser `base64` resulting in false detection of an attack sign. You need to prevent this decoding to avoid false positives. 
 
 To do so, set the rule as displayed on the screenshot:
 

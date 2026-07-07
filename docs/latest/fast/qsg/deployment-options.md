@@ -1,5 +1,5 @@
 ---
-description: FAST is a two-component solution, comprising of the FAST node and the Wallarm cloud. This guide instructs you on deploying the FAST node.
+description: FAST is a two-component solution, comprising the FAST node and the Wallarm cloud. This guide instructs you on deploying the FAST node.
 ---
 
 [img-fast-integration]:         ../../images/fast/qsg/en/deployment-options/0-qsg-fast-depl.png
@@ -13,11 +13,11 @@ description: FAST is a two-component solution, comprising of the FAST node and t
     
 #   Deployment options
 
-FAST is a two-component solution, comprising of the FAST node and the Wallarm cloud. This guide instructs you on deploying the FAST node.
+FAST is a two-component solution, comprising the FAST node and the Wallarm cloud. This guide instructs you on deploying the FAST node.
 
 --8<-- "../include/fast/cloud-note.md"
 
-To conduct application testing, HTTP or HTTPS requests are proxied through the FAST node first. FAST creates a new request set based on the original queries according to policy obtained from the cloud. The newly created requests form a security test set are executed in order to test the application for vulnerabilities.
+To conduct application testing, HTTP or HTTPS requests are proxied through the FAST node first. FAST creates a new request set based on the original queries according to the policy obtained from the cloud. The newly created requests form a security test set that is executed in order to test the application for vulnerabilities.
 
 ![A process of testing with FAST][img-fast-integration]
 
@@ -42,7 +42,7 @@ FAST node is shipped as a Docker container and can be run on every platform that
 
 An account in the Wallarm cloud is a mandatory requirement for FAST deployment. The cloud is responsible for providing a user interface for FAST configuration. The testing results are also gathered by the cloud.
 
-After completing the FAST node deployment you should ensure that
+After completing the FAST node deployment, you should ensure that
 1.  The node has access to the target application.
 2.  The node has access to the Wallarm cloud.
 3.  All the baseline HTTP or HTTPS requests will be proxied through the node.
@@ -68,10 +68,10 @@ The installation that is used in this guide has the following specifics:
 * A self-signed SSL certificate from the FAST node is installed into the browser.
 * Google Gruyere serves as the target application.
 * The target application is tested against XSS vulnerabilities.
-* The policy is created with the web interface of Wallarm cloud.
-* The testing process is started with the web interface of Wallarm cloud.
+* The policy is created with the web interface of the Wallarm cloud.
+* The testing process is started with the web interface of the Wallarm cloud.
 
 ![Quick Start guide deployment scheme][img-qsg-deployment-scheme]
 
 !!! info "Google Gruyere"
-    Google Gruyere is a purpose-built application for security testing. It contains a lot of intentionally integrated vulnerabilities. Therefore, every application instance runs in an isolated sandbox for security reasons. To begin working with the application, you should navigate to <https://google-gruyere.appspot.com> and run a sandbox with the separated instance of Gruyere application.
+    Google Gruyere is a purpose-built application for security testing. It contains a lot of intentionally integrated vulnerabilities. Therefore, every application instance runs in an isolated sandbox for security reasons. To begin working with the application, you should navigate to <https://google-gruyere.appspot.com> and run a sandbox with a separate instance of the Gruyere application.

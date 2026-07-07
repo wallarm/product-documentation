@@ -41,7 +41,7 @@ The `wallarm_block_page` directive accepts the listed parameters in the followin
     wallarm_block_page &/<PATH_TO_FILE/HTML_HTM_FILE_NAME> response_code=<CUSTOM_CODE> type=<BLOCKED_REQUEST_TYPE>;
     ```
     
-    Wallarm provides the sample blocking page which you can use this page as a start point for your [customization](#customizing-sample-blocking-page). The page is located under the following path:
+    Wallarm provides the sample blocking page which you can use as a starting point for your [customization](#customizing-sample-blocking-page). The page is located under the following path:
     
     === "All-in-one installer, AMI or GCP image, NGINX-based Docker image"
         ```
@@ -102,7 +102,7 @@ The sample blocking page provided by Wallarm looks as follows:
 
 ![Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
 
-You can use the sample page as a start point for your customization enhancing it by:
+You can use the sample page as a starting point for your customization, enhancing it by:
 
 * Adding your company logo – by default, no logo is presented on the page.
 * Adding your company support email – by default, no email links are used and the `contact us` phrase is the simple text without any link.
@@ -342,7 +342,7 @@ You can make a copy of the `/usr/share/nginx/html/wallarm_blocked.html` (`/opt/w
 
 **Docker container**
 
-To modify the sample blocking page or provide your own custom from scratch, you can use Docker's [bind mount](https://docs.docker.com/storage/bind-mounts/) functionality. When using it, your page and NGINX configuration file from your host machine are copied to the container and then referenced with the originals, so that if you change files on the host machine, their copies will be synchronized and vice versa.
+To modify the sample blocking page or provide your own custom page from scratch, you can use Docker's [bind mount](https://docs.docker.com/storage/bind-mounts/) functionality. When using it, your page and NGINX configuration file from your host machine are copied to the container and then referenced with the originals, so that if you change files on the host machine, their copies will be synchronized and vice versa.
 
 Therefore, to modify the sample blocking page or provide your own, do the following:
 
@@ -407,7 +407,7 @@ To add your company support email and customize the "Contact us" email content, 
 
 Below are examples of configuring the blocking page and error code via the directives `wallarm_block_page` and `wallarm_block_page_add_dynamic_path`.
 
-The `type` parameter of the `wallarm_block_page` directive is explicitly specified in each example. If you remove the `type` parameter, then configured block page, message, etc will be returned only in the response to the request blocked by the filtering node in the blocking or safe blocking [mode](../configure-wallarm-mode.md).
+The `type` parameter of the `wallarm_block_page` directive is explicitly specified in each example. If you remove the `type` parameter, then the configured block page, message, etc. will be returned only in the response to the request blocked by the filtering node in the blocking or safe blocking [mode](../configure-wallarm-mode.md).
 
 ### Path to the HTM or HTML file with the blocking page and error code
 

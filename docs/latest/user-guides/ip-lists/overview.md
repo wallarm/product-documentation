@@ -24,7 +24,7 @@ The image provided below visually represents the priorities and combinations of 
 
 This means that:
 
-* In any mode, if IP is found in the earlier list, the next one is not considered.
+* In any mode, if an IP is found in the earlier list, the next one is not considered.
 * Graylist is only considered in `Safe blocking` mode.
 
 !!! warning "Exceptions"
@@ -41,7 +41,7 @@ Steps:
 
 ### Select object
 
-Use **Add object** to add the following into any of IP lists:
+Use **Add object** to add the following into any of the IP lists:
 
 * **IP or subnet** - the supported maximum subnet mask is `/32` for IPv6 addresses and `/12` for IPv4 addresses.
 
@@ -63,15 +63,15 @@ Use **Add object** to add the following into any of IP lists:
 
 ### Select time to stay in list
 
-When adding object to a list, you specify time for which it is added. The minimum time is 5 minutes, default is 1 hour, the maximum is forever. On expiration, the object is automatically deleted from the list.
+When adding an object to a list, you specify the time for which it is added. The minimum time is 5 minutes, default is 1 hour, the maximum is forever. On expiration, the object is automatically deleted from the list.
 
 You can change the specified time at any moment later - to do this, in the object's menu, click **Change time period** and make adjustments.
 
-Setting this time along with manual objects adding and deleting leads to changes of IP lists in time. You can [view the historical states](#ip-list-history) of all lists.
+Setting this time along with manually adding and deleting objects leads to changes to IP lists over time. You can [view the historical states](#ip-list-history) of all lists.
 
 ### Limit by target application
 
-When adding object to a list, by default all requests from the listed IP will be processed. But you can limit that by target [applications](../../user-guides/settings/applications.md): select one or several applications and only requests from the listed IP to that applications will be processed.
+When adding an object to a list, by default all requests from the listed IP will be processed. But you can limit that by target [applications](../../user-guides/settings/applications.md): select one or several applications and only requests from the listed IP to those applications will be processed.
 
 ## Malicious IP feeds
 
@@ -113,10 +113,10 @@ Note that if you manually delete an automatically listed IP, if new malicious ac
 
 ## Requests from denylisted IPs
 
-Even if IP is in the denylist, it is good to have information about further requests from it. This allows conducting precise analysis of IP's behavior. Wallarm collects and displays statistics regarding blocked requests from denylisted source IPs.
+Even if an IP is in the denylist, it is good to have information about further requests from it. This allows conducting precise analysis of the IP's behavior. Wallarm collects and displays statistics regarding blocked requests from denylisted source IPs.
 
 !!! info "Feature availability"
-    Feature is available starting from node version 4.8, for NGINX-based nodes. You can control this with the [wallarm_acl_export_enable](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable) directive.
+    The feature is available starting from node version 4.8, for NGINX-based nodes. You can control this with the [wallarm_acl_export_enable](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable) directive.
 
 Such information is available for:
 
@@ -182,4 +182,4 @@ You can get any IP list content, populate it with objects and delete objects fro
 
 ## IP lists synchronization
 
-The IP lists are formed in a Cloud and then sent to a Node to become effective. This synchronization is process separate from [synching of other entities](../../admin-en/configure-cloud-node-synchronization-en.md) and performed **every minute** (not configurable).
+The IP lists are formed in a Cloud and then sent to a Node to become effective. This synchronization is a process separate from [synching of other entities](../../admin-en/configure-cloud-node-synchronization-en.md) and performed **every minute** (not configurable).

@@ -85,7 +85,7 @@ The state is displayed for each baseline request:
     * `tr_1234` as an identifier of a test run.
 
 
-!!! info "How to choose the right period of time to perform check of a test run"
+!!! info "How to choose the right period of time to perform a check of a test run"
     You can check the state of the test run in the pre-defined period of time (e.g., 15 seconds). Alternatively, you can employ the estimated time of completion for a test run to determine when the next check is to be done. You can obtain this estimate while checking the state of a test run. [See details below.][anchor-testrun-estimates]
 
 To perform a single check of the test run state, send the GET request to the URL `https://us1.api.wallarm.com/v1/test_run/test_run_id`:
@@ -138,14 +138,14 @@ If the request to the API server is successful, you are presented with the serve
 
 There is a separate group of parameters in the API server's response, that allows you to estimate a test run's execution speed and time to completion. The group comprises the following parameters:
 
-* `current_rps`—the current speed with which FAST sends requests to the target application (in the moment of obtaining the test run's state).
+* `current_rps`—the current speed with which FAST sends requests to the target application (at the moment of obtaining the test run's state).
 
     This value is the average requests per second (RPS). This average RPS is calculated as the number of requests FAST sent to the target application in the 10 second interval before the test run's state was acquired. 
 
     **Example:**
-    If the test run's state is acquired in 12:03:01 that the `current_rps` parameter's value is calculated as *(the number of requests sent in [12:02:51-12:03:01] time interval)/10*.
+    If the test run's state is acquired at 12:03:01, then the `current_rps` parameter's value is calculated as *(the number of requests sent in [12:02:51-12:03:01] time interval)/10*.
 
-* `avg_rps`—the average speed with which FAST sends requests to the target application (in the moment of obtaining the test run's state).
+* `avg_rps`—the average speed with which FAST sends requests to the target application (at the moment of obtaining the test run's state).
 
     This value is the average number of requests per second (RPS) that FAST sent to the target application in *the whole test run's execution time*:
 
@@ -154,7 +154,7 @@ There is a separate group of parameters in the API server's response, that allow
 
         The value of the `avg_rps` parameter is calculated as *(`sended_requests_count`/(the whole test run's execution time))*.
     
-* `estimated_time_to_completion`—the amount of time (in seconds) after which test run's execution is likely to be completed (in the moment of obtaining the test run's state). 
+* `estimated_time_to_completion`—the amount of time (in seconds) after which test run's execution is likely to be completed (at the moment of obtaining the test run's state). 
 
     The parameter's value is `null` if:
     

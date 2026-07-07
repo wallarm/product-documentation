@@ -26,11 +26,11 @@ If required, you can edit account information on the same page.
 ## Changing Your Password
 
 !!! info "Unavailable if using SSO"
-    If you are using the SSO authentication, email/password authentication is unavailable and you cannot use or change your password. Changing password section will be unavailable.
+    If you are using the SSO authentication, email/password authentication is unavailable and you cannot use or change your password. The password change section will be unavailable.
 
 1. Click the *Change* button.
 1. In the form that appears, enter your current password, your new password, and a new password confirmation.
-1. Click the *Change password* button
+1. Click the *Change password* button.
 
 ## Enabling Two-Factor Authentication
 

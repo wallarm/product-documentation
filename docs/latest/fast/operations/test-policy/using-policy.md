@@ -16,7 +16,7 @@
 
 # Using Test Policies
 
-Test policies are [related][doc-pol-tr-relations] with security tests. When creating a test iteration, each test policy will define and specify the FAST node behavior. 
+Test policies are [related][doc-pol-tr-relations] to security tests. When creating a test iteration, each test policy will define and specify the FAST node behavior. 
 
 You can specify the test policy in the following ways:
 

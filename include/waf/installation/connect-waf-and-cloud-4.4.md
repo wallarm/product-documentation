@@ -1,6 +1,6 @@
 The Wallarm node interacts with the Wallarm Cloud. To connect the filtering node to the Cloud:
 
-1. If the [postanalytics module installed separately][install-postanalytics-instr]:
+1. If the [postanalytics module is installed separately][install-postanalytics-instr]:
 
     1. Copy the node token generated during the separate postanalytics module installation.
     1. Proceed to the 5th step in the list below. It is **recommended** to use one token for the node processing initial traffic and for the node performing postanalysis.

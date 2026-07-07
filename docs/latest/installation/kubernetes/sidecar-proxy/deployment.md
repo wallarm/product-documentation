@@ -6,7 +6,7 @@ The **key features** of the Wallarm Sidecar solution:
 
 * Simplifies protection of discrete microservices and their replicas and shards by providing the deployment format that is similar to applications
 * Fully compatible with any Ingress controller
-* Works stable under high loads that is usually common for the service mesh approach
+* Works stably under high loads that are usually common for the service mesh approach
 * Requires minimum service configuration to secure your apps; just add some annotations and labels for the application pod to protect it
 * Supports two modes of the Wallarm container deployment: for medium loads with the Wallarm services running in one container and for high loads with the Wallarm services split into several containers
 * Provides a dedicated entity for the postanalytics module that is the local data analytics backend for the Wallarm sidecar solution consuming most of the memory
@@ -176,7 +176,7 @@ To test that the Wallarm Sidecar operates correctly:
     NAME                     READY   STATUS    RESTARTS   AGE
     myapp-5c48c97b66-lzkwf   2/2     Running   0          3h4m
     ```
-1. Send the test  [Path Traversal][ptrav-attack-docs] attack to the application cluster address Wallarm is enabled to filter traffic:
+1. Send the test [Path Traversal][ptrav-attack-docs] attack to the application cluster address Wallarm is enabled to filter traffic:
 
     ```bash
     curl http://<APPLICATION_CLUSTER_IP>/etc/passwd
@@ -336,7 +336,7 @@ Below is the recommended custom SCC for the Wallarm Sidecar solution tailored fo
                 api:
                   ...
             ```
-        1. In you application Service manifest, set `spec.ports.targetPort` to `proxy`. With iptables disabled, the Sidecar exposes this port.
+        1. In your application Service manifest, set `spec.ports.targetPort` to `proxy`. With iptables disabled, the Sidecar exposes this port.
 
             ```yaml hl_lines="9"
             apiVersion: v1
@@ -357,7 +357,7 @@ Below is the recommended custom SCC for the Wallarm Sidecar solution tailored fo
             When exposing the application via an OpenShift Route, set `spec.ports.targetPort` to `26001`.
     === "Disabling iptables via the pod annotation"
         1. Disable iptables on a per-pod basis by setting the Pod's annotation `sidecar.wallarm.io/sidecar-injection-iptables-enable` to `"false"`.
-        1. In you application Service manifest, set `spec.ports.targetPort` to `proxy`. With iptables disabled, the Sidecar exposes this port.
+        1. In your application Service manifest, set `spec.ports.targetPort` to `proxy`. With iptables disabled, the Sidecar exposes this port.
 
         ```yaml hl_lines="16-17 34"
         apiVersion: apps/v1

@@ -17,7 +17,7 @@ wallarm_tarantool_upstream wallarm_tarantool;
 * `keepalive` value must not be lower than the number of the Tarantool servers.
 * The `# wallarm_tarantool_upstream wallarm_tarantool;` string is commented by default - please delete `#`.
 
-Once the configuration file changed, restart NGINX/NGINX Plus on the NGINX-Wallarm module server:
+Once the configuration file is changed, restart NGINX/NGINX Plus on the NGINX-Wallarm module server:
 
 === "Debian"
     ```bash

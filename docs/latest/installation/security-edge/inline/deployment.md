@@ -237,7 +237,7 @@ To send client requests through the Edge Node, update your DNS records based on 
 
 ### CNAME record
 
-If your protected host is a third-level (or higher-level) domain (e.g., `api.example.com`), you need to specify the CNAME record pointing to the Wallarm‑proided FQDN in your DNS zone.
+If your protected host is a third-level (or higher-level) domain (e.g., `api.example.com`), you need to specify the CNAME record pointing to the Wallarm‑provided FQDN in your DNS zone.
 
 Once the certificate CNAME is verified, a **Traffic CNAME** is available for each host. If no certificate is issued, the CNAME is available immediately after the configuration is complete.
 
@@ -258,7 +258,7 @@ If your protected host is an apex domain (e.g., `example.com`), a CNAME cannot b
 
 Traffic routing in this case is managed by your DNS provider. By default, most DNS providers use [round-robin](https://en.wikipedia.org/wiki/Round-robin_DNS) logic, but some may support latency-based routing as well.
 
-## More configuation options
+## More configuration options
 
 * [Edge Node deployment in multi regions and providers](multi-region.md)
 * [mTLS for Edge Node to origins](mtls.md)

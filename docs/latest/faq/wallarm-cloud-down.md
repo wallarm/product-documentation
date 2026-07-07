@@ -22,7 +22,7 @@ What continues to work:
 
     These dates/times will not be updated until the Cloud is restored and synced; also there will be no new/removed addresses until the Cloud restoration/synchronization.
 
-    Note that expiration of some IP addresses in the lists leads to cease of protection from the [brute force attacks](../admin-en/configuration-guides/protecting-against-bruteforce.md) related to these addresses.
+    Note that expiration of some IP addresses in the lists leads to cessation of protection from the [brute force attacks](../admin-en/configuration-guides/protecting-against-bruteforce.md) related to these addresses.
 
 * [API Specification Enforcement](../api-specification-enforcement/overview.md) using the specifications uploaded to the node during last successful upload from the Cloud to the node.
 
@@ -37,15 +37,15 @@ What stops working:
         The size of the buffer is [limited](../admin-en/configuration-guides/allocate-resources-for-node.md#wstore) and when exceeded, the older data is deleted. So the amount of time the Cloud was down and the amount of information collected during this time may lead to the situation when you get in Wallarm Console only some data after the Cloud restoration.
 
 * The node collects but cannot send [metrics](../admin-en/configure-statistics-service.md) for processed traffic to the Cloud.
-* [API Sessions](../api-sessions/overview.md) - all information about legitimate requests that tool place while the Cloud was down is lost; the information about attacks will be presented (uploaded to Cloud after its restoration).
+* [API Sessions](../api-sessions/overview.md) - all information about legitimate requests that took place while the Cloud was down is lost; the information about attacks will be presented (uploaded to Cloud after its restoration).
 * [Triggers](../user-guides/triggers/triggers.md) will stop working and thus:
     * [IP lists](../user-guides/ip-lists/overview.md) stop being updated.
-    * [Trigger-based notifications](../user-guides/triggers/triggers.md) will not popup.
+    * [Trigger-based notifications](../user-guides/triggers/triggers.md) will not pop up.
 * [Discovering API inventory](../api-discovery/overview.md) will not work.
 * [Threat Replay Testing](../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing-trt) will stop.
 * [Brute force attacks](../admin-en/configuration-guides/protecting-against-bruteforce.md) will not be detected.
 * Integrations will stop, including that:
-    * Instant and email [notifications](../user-guides/settings/integrations/integrations-intro.md) will not popup.
+    * Instant and email [notifications](../user-guides/settings/integrations/integrations-intro.md) will not pop up.
     * Reporting will stop.
 * No access to Wallarm Console.
 * [Wallarm API](../api/overview.md) will not respond.
@@ -59,7 +59,7 @@ After Cloud restoration:
 * Access to Wallarm Console is restored.
 * The node sends buffered information to the Cloud (consider limitations above).
 * Triggers react to the new data by sending notifications and updating IPs.
-* If any changes in IPs, they are sent to the node during next synchronization.
+* If there are any changes in IPs, they are sent to the node during the next synchronization.
 * If there was an [unfinished custom ruleset](#is-there-a-case-when-node-did-not-get-settings-saved-in-wallarm-console-before-wallarm-cloud-is-down) build, it is restarted.
 * The Cloud and the filtering node synchronize on schedule in a usual way.
 
@@ -76,12 +76,12 @@ Yes, this is possible. For example, let us consider that the [synchronization](.
 
 ## How does Wallarm protect its Cloud data from loss?
 
-The Wallarm Cloud saves **all the data** provided by a user in Wallarm Console and uploaded to it from the nodes. As mentioned above, the Wallarm Cloud temporarily going down is an extremely rare case. But if this happens the chance is significantly low that down state will affect saved data. It means that after restoration you will immediately continue working with all your data.
+The Wallarm Cloud saves **all the data** provided by a user in Wallarm Console and uploaded to it from the nodes. As mentioned above, the Wallarm Cloud temporarily going down is an extremely rare case. But if this happens, the chance is significantly low that the down state will affect saved data. It means that after restoration you will immediately continue working with all your data.
 
 To deal with the low chance that the hard drives storing actual data of the Wallarm Cloud are destroyed, Wallarm automatically creates backups and restores from them if necessary:
 
 * RPO: backup is created every 24 hours
-* RTO: the system will be available again no more than in 48 hours
+* RTO: the system will be available again in no more than 48 hours
 * 14 latest backups are stored
 
 !!! info "RPO/RTO protection and availability parameters"

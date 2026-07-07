@@ -66,7 +66,7 @@ Create a file that describes the extension (e.g., `mod-extension.yaml`) and popu
     2.  `PATH_1_value` for the second part of the path
     3.  `ACTION_NAME_value` for the `login` action method
     
-    If you add the condition that the combination of these three elements must be unique, then the extension will only run for the first `/rest/user/login` baseline request to the API (such request will be treated as unique one, and all the following requests to the API for logging in will not be unique). 
+    If you add the condition that the combination of these three elements must be unique, then the extension will only run for the first `/rest/user/login` baseline request to the API (such request will be treated as a unique one, and all the following requests to the API for logging in will not be unique). 
     
     Add the corresponding `collect` section to the extension YAML file. 
     
@@ -78,7 +78,7 @@ Create a file that describes the extension (e.g., `mod-extension.yaml`) and popu
 
 3.  **The `match` section, the [Match phase][doc-match-phase]**.
     
-    It is necessary to check whether the incoming baseline requests is really the request to the API for logging in, because the extension we are creating will exploit the vulnerabilities that the login form contains.
+    It is necessary to check whether the incoming baseline request is really the request to the API for logging in, because the extension we are creating will exploit the vulnerabilities that the login form contains.
     
     Set up the extension so that it only runs if a baseline request is targeted to the following URI: `/rest/user/login`. Add the Match phase that checks whether the received request contains the required elements. This can be done using the following `match` section:
 
@@ -208,4 +208,4 @@ Now the `mod-extension.yaml` file contains the complete set of the sections requ
 
 ##  Using Extension
 
-For detailed information about how to use the created expression, read [this document][link-using-extension]. 
+For detailed information about how to use the created extension, read [this document][link-using-extension]. 

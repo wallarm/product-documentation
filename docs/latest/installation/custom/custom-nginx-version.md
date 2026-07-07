@@ -5,7 +5,7 @@ If you require Wallarm for an NGINX version that is different from the versions 
 The Wallarm module can be integrated with a custom build of NGINX, including NGINX `mainline`, by rebuilding the Wallarm packages. To rebuild the packages, please contact the [Wallarm technical support](mailto:support@wallarm.com) team and provide the following information:
 
 * Linux kernel version: `uname -a`
-* Linux distributive: `cat /etc/*release`
+* Linux distribution: `cat /etc/*release`
 * NGINX version:
 
     * [NGINX official build](https://nginx.org/en/linux_packages.html): `/usr/sbin/nginx -V`

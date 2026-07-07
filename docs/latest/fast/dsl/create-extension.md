@@ -63,7 +63,7 @@ meta-info:
     ??? info "Example"
         `title: "Example vulnerability"`
 
-* `type` — an obligatory parameter that describes the type of vulnerability that the extension is trying to exploit. The specified value will be shown in the “Type” column of the list of detected vulnerabilities on the Wallarm web interface. The parameter can The parameter can take one of the values which are described [here][link-vuln-list].
+* `type` — an obligatory parameter that describes the type of vulnerability that the extension is trying to exploit. The specified value will be shown in the “Type” column of the list of detected vulnerabilities on the Wallarm web interface. The parameter can take one of the values which are described [here][link-vuln-list].
    
     ??? info "Example"
         `type: sqli`    

@@ -9,7 +9,7 @@ This page lists the changes available when upgrading the node of the deprecated 
 
 ## All-in-one installer and DEB/RPM packages deprecation
 
-Now, when installing and upgrading Wallarm node as a dynamic module for NGINX in various environments, you use the **all-in-one installer** designed to streamline and standardize the process of installation. This installer automatically identifies your operating system’s and NGINX versions, and install all the necessary dependencies.
+Now, when installing and upgrading Wallarm node as a dynamic module for NGINX in various environments, you use the **all-in-one installer** designed to streamline and standardize the process of installation. This installer automatically identifies your operating system’s and NGINX versions, and installs all the necessary dependencies.
 
 The installer simplifies the process by automatically performing the following actions:
 
@@ -50,7 +50,7 @@ We introduce a unique security feature tailored for the API economy - [API Sessi
 
 ![!API Sessions section - monitored sessions](../../images/api-sessions/api-sessions.png)
 
-Attackers often exploit vulnerable endpoints by blending their actions with legitimate user behavior. Without the full context of how those sessions unfold, identifying patterns or threats becomes a time-consuming process involving multiple tools and systems. Organizations  do not have an appropriate visibility at the API level. 
+Attackers often exploit vulnerable endpoints by blending their actions with legitimate user behavior. Without the full context of how those sessions unfold, identifying patterns or threats becomes a time-consuming process involving multiple tools and systems. Organizations do not have appropriate visibility at the API level. 
 
 With API Sessions, security teams now have the ability to see all relevant activity grouped by user session, offering unparalleled visibility into attack sequences, user anomalies, and normal behaviors. Investigations that once took hours or days can now be conducted directly from the Wallarm Console in just minutes.
 
@@ -142,7 +142,7 @@ Wallarm introduces real-time detection and notifications for credential stuffing
 
 Wallarm detects regular attacks (SQLi, RCE, [etc.](../../attacks-vulns-list.md)) in GraphQL by default. However, some aspects of the protocol allow implementing [GraphQL specific](../../attacks-vulns-list.md#graphql-attacks) attacks related to excessive information exposure and DoS.
 
-Wallarm introduces protection from these attacks. Protection is set by configuring your organization's GraphQL policy - a set of limits for the GraphQL requests. Requests exceeding any of set limits the filtering node will handle in accordance with the active filtration mode - will only register policy violations or will register and block such attempts.
+Wallarm introduces protection from these attacks. Protection is set by configuring your organization's GraphQL policy - a set of limits for the GraphQL requests. The filtering node handles requests that exceed any of the set limits in accordance with the active filtration mode: it will either only register policy violations, or register and block such attempts.
 
 To start using the functionality, you need to create at least one [**Detect GraphQL attacks** rule](../../api-protection/graphql-rule.md#) in Wallarm Console.
 
@@ -208,7 +208,7 @@ We introduce a unified management center for all Wallarm attack mitigation setti
 
 ## File upload restriction policy
 
-Wallarm now provides tools for direct restricting the size of uploaded files. This comes as a part of set of measures aimed to prevent the [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) included in the [OWASP API Top 10 2023](../../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks.
+Wallarm now provides tools for directly restricting the size of uploaded files. This comes as part of a set of measures aimed to prevent the [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) included in the [OWASP API Top 10 2023](../../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks.
 
 Depending on your subscription plan, upload restrictions are applied via mitigation control or rule. You can set file size restrictions for the full request or its selected point.
 
@@ -226,7 +226,7 @@ New level of protection from [enumeration attacks](../../attacks-vulns-list.md#e
 * [Forced browsing protection](../../api-protection/enumeration-attack-protection.md)
 * [Brute force protection](../../api-protection/enumeration-attack-protection.md)
 
-Comparing to triggers that were used for this protection before, mitigation controls:
+Compared to triggers that were used for this protection before, mitigation controls:
 
 * Allow selecting which parameters will be monitored for enumeration attempts.
 * Allow advanced sophisticated filtering of which exact requests will be counted.
@@ -276,7 +276,7 @@ To detect this type of automated threats, API Abuse Prevention provides a set of
 
 ## API Specification Enforcement
 
-In this latest update, we introduce API Specification Enforcement feature. This filters incoming traffic, permitting only requests that comply with your API specifications. Using the Wallarm node, which sits between clients and your applications, it compares endpoint descriptions in your specifications with actual API requests. Discrepancies, such as undefined endpoint requests or those with unauthorized parameters, are either blocked or monitored as configured.
+In this latest update, we introduce the API Specification Enforcement feature. This filters incoming traffic, permitting only requests that comply with your API specifications. Using the Wallarm node, which sits between clients and your applications, it compares endpoint descriptions in your specifications with actual API requests. Discrepancies, such as undefined endpoint requests or those with unauthorized parameters, are either blocked or monitored as configured.
 
 This strengthens security by preventing potential attack attempts and also optimizes API performance by avoiding overloading and misuse.
 
@@ -411,7 +411,7 @@ Now, registration of the node looks as follows:
 
 You can now easily deploy Wallarm to [AWS](https://aws.amazon.com/) from the Infrastructure as Code (IaC)-based environment using the [Wallarm Terraform module](https://registry.terraform.io/modules/wallarm/wallarm/aws/).
 
-The Wallarm Terraform module is the scalable solution meeting the best industry standards of security and failover ensuring. This is designed for deploying Wallarm as **proxy**.
+The Wallarm Terraform module is a scalable solution that meets the best industry standards for security and failover. It is designed for deploying Wallarm as a **proxy**.
 
 [Documentation on the Wallarm Terraform module for AWS](../../installation/cloud-platforms/aws/terraform-module/overview.md)
 
@@ -443,7 +443,7 @@ If following the Infrastructure as Code (IaC) approach, you may need to use the 
 
 For the [multi-tenant nodes](../../installation/multi-tenant/overview.md), tenants and applications are now defined each with its own directive:
 
-* The [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) NGINX directive have been added to configure the unique identifier of a tenant.
+* The [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) NGINX directive has been added to configure the unique identifier of a tenant.
 * The [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) NGINX directive behavior has been changed. Now it is **only** used to configure an application ID.
 
 [Instructions on the multi-tenant node upgrade](../multi-tenant.md)
@@ -493,7 +493,7 @@ New Wallarm nodes are distributed with the module **API Discovery** automaticall
 
 ## Enhanced attack analysis with the libdetection library
 
-Attack analysis performed by Wallarm has been enhanced by involving an additional attack validation layer. Wallarm node in all form-factors are distributed with the libdetection library enabled by default. This library performs secondary fully grammar-based validation of all [SQLi](../../attacks-vulns-list.md#sql-injection) attacks reducing the number of false positives detected among SQL injections.
+Attack analysis performed by Wallarm has been enhanced by involving an additional attack validation layer. Wallarm node in all form-factors is distributed with the libdetection library enabled by default. This library performs secondary fully grammar-based validation of all [SQLi](../../attacks-vulns-list.md#sql-injection) attacks reducing the number of false positives detected among SQL injections.
 
 !!! warning "Memory consumption increase"
     With the **libdetection** library enabled, the amount of memory consumed by NGINX and Wallarm processes may increase by about 10%.
@@ -507,7 +507,7 @@ We have introduced the new [rule allowing the `overlimit_res` attack detection f
 The `overlimit_res` attack detection fine-tuning via the NGINX configuration files is considered to be the deprecated way:
 
 * The rule allows setting up a single request processing time limit as the `wallarm_process_time_limit` NGINX directive did before.
-* The rule allows to block or pass the `overlimit_res` attacks in accordance with the [node filtration mode](../../admin-en/configure-wallarm-mode.md) instead of the `wallarm_process_time_limit_block` NGINX directive configuration.
+* The rule allows blocking or passing the `overlimit_res` attacks in accordance with the [node filtration mode](../../admin-en/configure-wallarm-mode.md) instead of the `wallarm_process_time_limit_block` NGINX directive configuration.
 
 The listed directives and parameters have been deprecated and will be deleted in future releases. It is recommended to transfer the `overlimit_res` attack detection configuration from directives to the rule before. Relevant instructions are provided for each [node deployment option](../general-recommendations.md#update-process).
 
@@ -557,7 +557,7 @@ The newly released product features are also supported by the cloud images of th
 
 ## New blocking page
 
-The sample blocking page `/usr/share/nginx/html/wallarm_blocked.html` has been updated. In the new node version, it has new layout and supports the logo and support email customization.
+The sample blocking page `/usr/share/nginx/html/wallarm_blocked.html` has been updated. In the new node version, it has a new layout and supports the logo and support email customization.
     
 New blocking page with the new layout looks as follows by default:
 
@@ -608,7 +608,7 @@ The NGINX-based Wallarm Docker image now supports the new environment variable `
     ```
 * The Wallarm statistics service returns the new `rate_limit` parameters with the [Wallarm rate limiting](#rate-limits) module data. New parameters cover rejected and delayed requests, as well as indicate any problems with the module's operation.
 * The number of requests originating from denylisted IPs is now displayed in the statistic service output, in the new parameter `blocked_by_acl` and in the existing parameters `requests`, `blocked`.
-* The service return one more new parameter `custom_ruleset_ver` which points to the [custom ruleset](../../glossary-en.md#custom-ruleset-the-former-term-is-lom) format being used by Wallarm nodes.
+* The service returns one more new parameter `custom_ruleset_ver` which points to the [custom ruleset](../../glossary-en.md#custom-ruleset-the-former-term-is-lom) format being used by Wallarm nodes.
 * The following node statistics parameters have been renamed:
 
     * `lom_apply_time` → `custom_ruleset_apply_time`
@@ -644,7 +644,7 @@ For example:
 ```bash
 docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>' -p 80:80 wallarm/node:6.12.7
 ```
-...will place node instance into the `<GROUP>` instance group (existing, or, if does not exist, it will be created).
+...will place the node instance into the `<GROUP>` instance group (existing, or, if does not exist, it will be created).
 
 ## Addressed vulnerabilities
 
@@ -654,7 +654,7 @@ Among the vulnerabilities addressed are those identified by [CVE-2020-36327](htt
 
 ## Security Issues: all vulnerabilities in one unified view
 
-As for now, Wallarm offers multiple [methods](../../about-wallarm/detecting-vulnerabilities.md#detection-methods) of detecting vulnerabilities (security issues) which vary at scope, usage scenarios, required elements (with or without node) and a set of vulnerabilities they are able to find.
+As for now, Wallarm offers multiple [methods](../../about-wallarm/detecting-vulnerabilities.md#detection-methods) of detecting vulnerabilities (security issues) which vary in scope, usage scenarios, required elements (with or without node) and a set of vulnerabilities they are able to find.
 
 Previously vulnerabilities found by different methods were displayed in different sections of Wallarm Console - now the view is unified and you can see all of them in one place - the **Security Issues** section.
 
@@ -663,7 +663,7 @@ Previously vulnerabilities found by different methods were displayed in differen
 Here you can:
 
 * Easily view and [manage](../../user-guides/vulnerabilities.md) the list of found vulnerabilities distinguished by the risk level
-* Access detailed information on each security issue (vulnerability): description, mitigation measures, links to relates CWEs, history of status changes and comments from your team members
+* Access detailed information on each security issue (vulnerability): description, mitigation measures, links to related CWEs, history of status changes and comments from your team members
 * Close and re-open vulnerabilities
 * Get reports
 

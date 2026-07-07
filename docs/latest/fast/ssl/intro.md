@@ -14,13 +14,13 @@ When working with a web application through a browser using HTTPS, you may see t
 
 ![Mozilla Firefox's untrusted certificate message][img-insecure-connection]
 
-The FAST node interrupts HTTPS requests from a client and initiates connection to the remote server itself. Your browser must trust the FAST node certificate, otherwise the browser will treat this situation as a man-in-the-middle attack.  
+The FAST node interrupts HTTPS requests from a client and initiates a connection to the remote server itself. Your browser must trust the FAST node certificate, otherwise the browser will treat this situation as a man-in-the-middle attack.  
 
 If a FAST node does not have a certificate that is trusted by the browser you are using, then attempting to send HTTPS requests to the server from that browser will result in an unsecured connection warning. 
 
 For successful work with web applications via HTTPS you can use one of the following solutions:
 * If you have your own SSL certificate that your browser already trusts, you can [add it to the FAST node][link-node-installation].
-* If you don't have your own SSL certificate, you can add the self-signed root certificate of the FAST node to your browser. To do this, follow the instructions for your browser:
+* If you do not have your own SSL certificate, you can add the self-signed root certificate of the FAST node to your browser. To do this, follow the instructions for your browser:
     * [Apple Safari][link-safari-ssl]
     * [Google Chrome][link-chrome-ssl]
     * [Microsoft Edge][link-edge-ssl]

@@ -127,7 +127,7 @@ To run the container:
                             return 500 "API FW fallback";
                     }
                     ```
-                1. Mount the `/etc/nginx/conf.d/wallarm-status.conf` file with the content below. It is crucial not to modify any lines from the provided configuration as this may interfere with the successful upload of node metrics to the Wallarm cloud.
+                1. Mount the `/etc/nginx/conf.d/wallarm-status.conf` file with the content below. It is crucial not to modify any lines from the provided configuration as this may interfere with the successful upload of node metrics to the Wallarm Cloud.
 
                     ```
                     server {

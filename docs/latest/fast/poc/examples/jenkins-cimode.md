@@ -82,7 +82,7 @@ The result of security testing will be displayed on the Jenkins interface.
 
 ## More Examples
 
-You can find examples of integrating FAST to the Jenkins workflow on our [GitHub][fast-examples-github].
+You can find examples of integrating FAST into the Jenkins workflow on our [GitHub][fast-examples-github].
 
 !!! info "Further questions"
     If you have questions related to FAST integration, please [contact us][mail-to-us].

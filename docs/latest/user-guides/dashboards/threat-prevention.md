@@ -1,6 +1,6 @@
 # Threat Prevention Dashboard
 
-Review the malicious traffic characteristics for the period of time with the **Threat Prevention** dashboard. Get clear vision of the malicious traffic volume and its distribution by attack types, sources, protocols, authentication methods, etc.
+Review the malicious traffic characteristics for the period of time with the **Threat Prevention** dashboard. Get a clear view of the malicious traffic volume and its distribution by attack types, sources, protocols, authentication methods, etc.
 
 The dashboard helps in identifying the threat patterns. A clear view of how attackers are trying to exploit the system enables faster detection of threats and better-informed responses. This contributes to overall security posture improvement and helps in taking proactive measures.
 

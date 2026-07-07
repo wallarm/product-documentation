@@ -29,12 +29,12 @@ These instructions describe the steps to upgrade the Wallarm node installed usin
 ## Step 2: Remove the old node
 
 1. Once traffic is routed to the new machine and your Cloud-stored data (rules, IP lists) is synchronized, perform some test attacks to ensure your rules work as expected.
-1. Delete old node in Wallarm Console → **Nodes** by selecting your node and clicking **Delete**.
+1. Delete the old node in Wallarm Console → **Nodes** by selecting your node and clicking **Delete**.
 1. Confirm the action.
     
     When the node is deleted from Cloud, it will stop filtration of requests to your applications. Deleting the filtering node cannot be undone. The node will be deleted from the list of nodes permanently.
 
-1. Delete machine with the old node or just clean it from Wallarm node components:
+1. Delete the machine with the old node or just clean it from Wallarm node components:
 
     ```
     sudo systemctl stop wallarm

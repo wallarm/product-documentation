@@ -48,7 +48,7 @@ All configurable parameters are listed in the table below:
 | `GIT_EXTENSIONS`      | The link to a Git repository containing [custom FAST DSL extensions][doc-dsl-ext] (this repository should be accessible by the FAST node container) | No |
 | `CI_MODE`             | The FAST node's operation mode when integrating into CI/CD. <br>Allowed values are: <br>`recording` for the [recording mode][doc-record-mode] and <br>`testing` for the [testing mode][doc-test-mode]. | No |
 | `BACKEND_HTTPS_PORTS` | The HTTPS port number(s) that are in use by a target application if non-default port(s) are configured for the application.<br>A few ports can be listed in this parameter's value, for example: <br>`BACKEND_HTTPS_PORTS='443;3000;8091'`<br>Default value: `443` | No |
-| `WALLARM_API_CA_VERIFY` | Defines if a Wallarm API server's CA certificate should be validated.<br>Allowed values: `true`and `false`.<br>Default value: `false`. | No |
+| `WALLARM_API_CA_VERIFY` | Defines if a Wallarm API server's CA certificate should be validated.<br>Allowed values: `true` and `false`.<br>Default value: `false`. | No |
 | `CA_CERT`             | The path to a CA certificate to be used by the FAST node.<br>Default value: `/etc/nginx/ssl/nginx.crt`. | No |
 | `CA_KEY`              | The path to a CA private key to be used by the FAST node. <br>Default value: `/etc/nginx/ssl/nginx.key`. | No |
 
@@ -57,7 +57,7 @@ All configurable parameters are listed in the table below:
 
 By default, the FAST node treats all incoming requests as baseline ones. Therefore, the node records them and creates and executes security tests on their basis. However, it is possible for extraneous requests that should not be recognized as baseline requests to pass through the FAST node to the target application.
 
-You can limit the number of requests to be recorded by the FAST node by filtering out all requests that are not targeted to the application (note that the FAST node proxies the filtered requests but does not record them). This limitation reduces the load that applied to the FAST node and the target application, while boosting the testing process. To apply this limitation, you need to know which hosts the request source interacts with during testing.
+You can limit the number of requests to be recorded by the FAST node by filtering out all requests that are not targeted to the application (note that the FAST node proxies the filtered requests but does not record them). This limitation reduces the load applied to the FAST node and the target application, while boosting the testing process. To apply this limitation, you need to know which hosts the request source interacts with during testing.
 
 You can filter out all non-baseline requests by configuring the `ALLOWED_HOSTS` environment variable.
 

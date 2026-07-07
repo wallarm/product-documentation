@@ -31,11 +31,11 @@ A target application is a web application or an API that should be tested for vu
 
 ##  Request Source 
 
-A requests source is a tool that will test the target application using HTTP and HTTPS requests. FAST can create the security test set based on these requests (see “baseline requests”).
+A request source is a tool that will test the target application using HTTP and HTTPS requests. FAST can create the security test set based on these requests (see “baseline requests”).
 
 ##  Security Test Set
 
-A security test set allows revealing vulnerabilities in the target application.
+A security test set allows you to reveal vulnerabilities in the target application.
 Each security test comprises one or more test requests.
 
 ##  Test Requests
@@ -50,7 +50,7 @@ The FAST node is one of the FAST components.
 
 The node proxies HTTP and HTTPS requests and creates security tests based on the baseline requests.
 
-In addition to this, FAST node executes the security tests. In other words, node sends test requests to the target application to check the application's response and determine if there are any security vulnerabilities in the application.
+In addition to this, FAST node executes the security tests. In other words, the node sends test requests to the target application to check the application's response and determine if there are any security vulnerabilities in the application.
 
 ##  Wallarm Cloud
 
@@ -64,16 +64,16 @@ The cloud provides the user with an interface for creating test policies, managi
 
 ##  Baseline requests
 
-The baseline requests are HTTP и HTTPS requests that are directed from the requests source to the target application.
-FAST creates the security tests on the basis of this requests.
+The baseline requests are HTTP and HTTPS requests that are directed from the requests source to the target application.
+FAST creates the security tests on the basis of these requests.
 
-All the non-baseline requests, that are proxied through the FAST node, would not be used as a source during the test set creation process.
+All the non-baseline requests that are proxied through the FAST node would not be used as a source during the test set creation process.
 
 ##  Test Run
 
 A test run describes the single iteration of the vulnerability testing process using FAST.
 
-Test run passes a test policy to a FAST node. The policy defines which baseline requests will serve as a basis for the security tests.
+A test run passes a test policy to a FAST node. The policy defines which baseline requests will serve as a basis for the security tests.
 
 Each test run is tightly coupled with a single FAST node by the token.
 
@@ -107,6 +107,6 @@ A token is the unique secret identifier that serves the following purposes:
 * Binding a test run with the FAST node.
 * Creating and managing a test run.
 
-Token is one of the essential FAST node's properties.
+The token is one of the essential FAST node's properties.
 
 **See also:** [relations between FAST components][doc-internals].

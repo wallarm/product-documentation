@@ -41,7 +41,7 @@ FAST generates and executes a security test set in the following way:
     
     All the other requests that are not targeted to the application are transparently proxied without any modifications.
 
-4.  The FAST node fetches all the recorded baseline requests from the Wallarm cloud based on test run ID.
+4.  The FAST node fetches all the recorded baseline requests from the Wallarm cloud based on the test run ID.
 
 5.  The FAST node generates security tests for each baseline request using the test policy received from the cloud.
 
@@ -59,9 +59,9 @@ To start the security test set generation and execution process, do the followin
     
 ##  1.  Create and run the test run  
 
-Create a test run via Wallarm account web interface following the [instructions][link-create-tr-gui].
+Create a test run via the Wallarm account web interface following the [instructions][link-create-tr-gui].
 
-After following the instruction, set the following basic parameters when creating a test run:
+After following the instructions, set the following basic parameters when creating a test run:
 
 * test run name: `DEMO TEST RUN`;
 * test policy: `DEMO POLICY`;
@@ -69,7 +69,7 @@ After following the instruction, set the following basic parameters when creatin
 
 These instructions do not contain advanced settings.
 
-After the test run is saved, its ID will be automatically passed to FAST node. In the “Testruns” tab you will see the created test run with a blinking red dot indicator. This indicator means that baseline requests for the test run are being recorded.
+After the test run is saved, its ID will be automatically passed to the FAST node. In the “Testruns” tab you will see the created test run with a blinking red dot indicator. This indicator means that baseline requests for the test run are being recorded.
 
 You can click on the “Baseline req.” column to see all the baseline requests that are being recorded.
 

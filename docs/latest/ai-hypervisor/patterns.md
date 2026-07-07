@@ -2,7 +2,7 @@
 
 <a href="briefing.md#role-and-altitude"><img src="../../images/role-security.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a>
 
-**Patterns** is the central feed of clustered findings on the [Briefing](briefing.md). It occupies the right-side column you read top to bottom when you sign in. [Findings and risk model](findings.md) defines the taxonomy; the [Findings by dimension tile](briefing.md#what-you-see) shows the count rollup; Patterns is the narrative form. Each row describes one repeated, named behaviour AI Hypervisor saw across many sessions, with enough context to decide whether to act.
+**Patterns** is the central feed of clustered findings on the [Briefing](briefing.md). It occupies the right-side column you read top to bottom when you sign in. [Findings and risk model](findings.md) defines the taxonomy; the [Findings by dimension tile](briefing.md#what-you-see) shows the count rollup; Patterns is the narrative form. Each row describes one repeated, named behavior AI Hypervisor saw across many sessions, with enough context to decide whether to act.
 
 A Patterns row reads like:
 

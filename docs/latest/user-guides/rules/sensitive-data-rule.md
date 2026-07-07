@@ -5,13 +5,13 @@
 
 # Masking Sensitive Data
 
-Wallarm provides the **Mask sensitive data** [rules](../rules/rules.md) to configure data masking for sensitive data not to leak outside the trusted environment. These rules cut the original value of the specified request point before sending the request to the postanalytics module and Wallarm Cloud. This article describes how to use these rules.
+Wallarm provides the **Mask sensitive data** [rules](../rules/rules.md) to configure data masking so that sensitive data does not leak outside the trusted environment. These rules cut the original value of the specified request point before sending the request to the postanalytics module and Wallarm Cloud. This article describes how to use these rules.
 
 ## Overview
 
 In the [hybrid](../../about-wallarm/shared-responsibility.md#overview) Wallarm installations, when you manage the Wallarm filtering nodes in your infrastructure, and Wallarm manages the Wallarm Cloud component, it is crucial that sensitive data in your requests remains secure within your infrastructure and is not transmitted to any third-party service including [Wallarm Cloud](../../about-wallarm/api-security-overview.md#how-wallarm-api-security-works).
 
-This goal is achieved using the [shared responsibility model](../../about-wallarm/shared-responsibility.md): from its side, Wallarm never transmits data excessing the protection goal and stores all the obtained data [securely](../../about-wallarm/shared-responsibility.md#client-data-storage-in-cloud) - to your side, Wallarm transfers a full visibility of what data is sent from node to Cloud and a [set of tools](../../admin-en/export-to-cloud.md) to shape this transfer under your needs - masking of sensitive data is one of these tools.
+This goal is achieved using the [shared responsibility model](../../about-wallarm/shared-responsibility.md): from its side, Wallarm never transmits data exceeding the protection goal and stores all the obtained data [securely](../../about-wallarm/shared-responsibility.md#client-data-storage-in-cloud) - to your side, Wallarm provides full visibility of what data is sent from node to Cloud and a [set of tools](../../admin-en/export-to-cloud.md) to shape this transfer to your needs - masking of sensitive data is one of these tools.
 
 !!! info "Other deployment forms"
     In **security edge** [installations](../../about-wallarm/shared-responsibility.md#overview), data is outside your security perimeter; you can still use masking rules to restrict access to the sensitive data by the users of Wallarm Console.
@@ -31,7 +31,7 @@ To set and apply data mask:
 --8<-- "../include/rule-creation-initial-step.md"
 1. Choose **Change requests/responses** → **Mask sensitive data**.
 1. In **If request is**, [describe](rules.md#configuring) the scope to apply the rule to.
-1. In **In this part of request**, specify [request points](request-processing.md) for which its original value should be cut.
+1. In **In this part of request**, specify [request points](request-processing.md) for which the original value should be cut.
 1. Wait for the [rule compilation and uploading to the filtering node to complete](rules.md#ruleset-lifecycle).
 
 ## Example: masking of a cookie value

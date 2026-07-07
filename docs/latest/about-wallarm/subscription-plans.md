@@ -55,7 +55,7 @@
 | [SSO authentication](../admin-en/configuration-guides/sso/intro.md) | Yes | Yes | Yes |
 | [Role-based access control (RBAC)](../user-guides/settings/users.md#user-roles) | Yes | Yes | Yes |
 | [Multi-tenant](../installation/multi-tenant/overview.md) | Yes (by request) | Yes (by request) | Yes (by request) |
-| Period of event storage | 6 month | 6 month | 6 month |
+| Period of event storage | 6 months | 6 months | 6 months |
 | Support | Standard/<br>Advanced/<br>Platinum | Standard/<br>Advanced/<br>Platinum | Standard/<br>Advanced/<br>Platinum |
 
 To activate the subscription plan, contact [sales@wallarm.com](mailto:sales@wallarm.com).
@@ -84,7 +84,7 @@ Variants: **Core (Free)**, **Enterprise (Paid)** - see comparison [here](https:/
 
     This subscription plan:
 
-    * Is included into [Advanced API Security](#core-subscription-plans) plan
+    * Is included in [Advanced API Security](#core-subscription-plans) plan
     * Can be added to [Cloud Native WAAP](#core-subscription-plans) plan
     * Can be used alone (no other plans or filtering node required)
 
@@ -97,11 +97,11 @@ The subscription plan provides the [API Attack Surface Management (AASM)](../api
 
 To activate the subscription plan, do one of the following:
 
-* If you do not have Wallarm account yet, get pricing information and activate AASM on the Wallarm's official site [here](https://www.wallarm.com/product/aasm).
+* If you do not have a Wallarm account yet, get pricing information and activate AASM on Wallarm's official site [here](https://www.wallarm.com/product/aasm).
 
-    When activating, scanning of the used email's domain starts immediately while you negotiate sales team. After activation, you can add additional domains to the scope.
+    When activating, scanning of the used email's domain starts immediately while you negotiate with the sales team. After activation, you can add additional domains to the scope.
 
-* If you already have Wallarm account, contact [sales@wallarm.com](mailto:sales@wallarm.com).
+* If you already have a Wallarm account, contact [sales@wallarm.com](mailto:sales@wallarm.com).
 
 ## Rogue MCP
 

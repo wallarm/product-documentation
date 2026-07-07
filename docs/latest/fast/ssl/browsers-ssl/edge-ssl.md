@@ -44,7 +44,7 @@ To install the certificate for the Microsoft Edge browser, do the following:
 
     ![Fingerprint validation warning][img-fingerprint-warning]
 
-    Given that the import is successsful, “The import was successful” informational message will appear.
+    Given that the import is successful, “The import was successful” informational message will appear.
 
     ![Successful import of the certificate][img-import-ok]
 

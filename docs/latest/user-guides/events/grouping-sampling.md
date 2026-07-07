@@ -47,11 +47,11 @@ Grouping by source IP is by default enabled in Wallarm Console → **Triggers** 
 
 ![Example of a trigger for hit grouping](../../images/user-guides/triggers/trigger-example-group-hits.png)
 
-You can adjust grouping by source IP under your needs: do this by creating your custom triggers of the **Hits from the same IP** type. Creating any custom trigger deletes the default one, if you delete all your custom triggers, the default is restored. You can also pause grouping by temporary disabling the default trigger.
+You can adjust grouping by source IP to your needs: do this by creating your custom triggers of the **Hits from the same IP** type. Creating any custom trigger deletes the default one; if you delete all your custom triggers, the default is restored. You can also pause grouping by temporarily disabling the default trigger.
 
 ## Sampling of hits
 
-When forming the attack details, Wallarm automatically makes information about attack more comfortable for analysis by displaying only unique [hits](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) - non-unique (comparable and identical) hits are dropped from uploading to the Wallarm Cloud and not displayed. This process is called hit **sampling**.
+When forming the attack details, Wallarm automatically makes information about the attack easier to analyze by displaying only unique [hits](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) - non-unique (comparable and identical) hits are dropped from uploading to the Wallarm Cloud and not displayed. This process is called hit **sampling**.
 
 Hit sampling does not affect the quality of attack detection but helps to avoid its slowdown. Wallarm node continues attack detection and [blocking](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) even with hit sampling enabled.
 

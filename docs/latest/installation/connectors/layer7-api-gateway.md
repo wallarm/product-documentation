@@ -19,7 +19,7 @@ The Broadcom connector supports only [in-line](../inline/overview.md) traffic fl
 
 ## Use cases
 
-This solution is recommended in case when you manage your APIs with the Layer7 API Gateways.
+This solution is recommended when you manage your APIs with the Layer7 API Gateways.
 
 ## Limitations
 
@@ -71,13 +71,13 @@ To configure the Broadcom Gateway to route traffic through the Wallarm Node:
 
     1. Import the `wallarm-request-blocking.xml` file.
     1. Specify the [Wallarm Node instance](#1-deploy-a-wallarm-node) address in the `wlrm-node-addr` parameter.
-    1. **Save and Active** the policy.
+    1. **Save and Activate** the policy.
 
     ![](../../images/waf-installation/gateways/layer7/request-policy-assertion.png)
 1. For the response forwarding policy (`forward-responses-to-wallarm` in this example):
 
     1. Import the `wallarm-response.xml` file.
-    1. **Save and Active** the policy.
+    1. **Save and Activate** the policy.
 
 ## Testing
 

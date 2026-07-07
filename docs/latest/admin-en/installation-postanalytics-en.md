@@ -72,7 +72,7 @@ To install postanalytics separately with all-in-one installer, use:
     sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.7.aarch64-glibc.sh postanalytics
     ```        
 
-    The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
+    The `WALLARM_LABELS` variable sets the group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
 
 === "Node token"
     If using the x86_64 version:
@@ -177,7 +177,7 @@ Once the postanalytics module is installed on the separate server:
         sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.7.aarch64-glibc.sh filtering
         ```        
 
-        The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
+        The `WALLARM_LABELS` variable sets the group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
 
     === "Node token"
         If using the x86_64 version:
@@ -216,7 +216,7 @@ http {
 * `max_conns` value must be specified for each of the upstream wstore servers to prevent the creation of excessive connections.
 * `keepalive` value must not be lower than the number of the wstore servers.
 
-Once the configuration file changed, restart NGINX/NGINX Plus on the NGINX-Wallarm module server:
+Once the configuration file is changed, restart NGINX/NGINX Plus on the NGINX-Wallarm module server:
 
 === "Debian"
     ```bash
@@ -259,14 +259,14 @@ If the attack was not uploaded to the Cloud, please check that there are no erro
     sudo cat /opt/wallarm/var/log/wallarm/wstore-out.log
     ```
 
-    If there is the record like `SystemError binary: failed to bind: Cannot assign requested address`, make sure that the server accepts connection on specified address and port.
+    If there is the record like `SystemError binary: failed to bind: Cannot assign requested address`, make sure that the server accepts connections on the specified address and port.
 * On the server with the NGINX‑Wallarm module, analyze the NGINX logs:
 
     ```bash
     sudo cat /var/log/nginx/error.log
     ```
 
-    If there is the record like `[error] wallarm: <address> connect() failed`, make sure that the address of separate postanalytics module is specified correctly in the NGINX‑Wallarm module configuration files and separate postanalytics server accepts connection on specified address and port.
+    If there is the record like `[error] wallarm: <address> connect() failed`, make sure that the address of separate postanalytics module is specified correctly in the NGINX‑Wallarm module configuration files and the separate postanalytics server accepts connections on the specified address and port.
 * On the server with the NGINX‑Wallarm module, get the statistics on processed requests using the command below and make sure that the value of `tnt_errors` is 0
 
     ```bash
@@ -414,7 +414,7 @@ To enable mutual authentication, where both the NGINX-Wallarm module and the pos
           # clientCACertFile: "/opt/wallarm/wstore/client-ca.crt"
     ```
 
-    * `mutualTLS.enabled`: enables or disabled mTLS. Default is `false`.
+    * `mutualTLS.enabled`: enables or disables mTLS. Default is `false`.
     * `mutualTLS.clientCACertFile` (optional): path to the custom CA certificate for the NGINX‑Wallarm client.
 
 
@@ -427,12 +427,12 @@ To enable mutual authentication, where both the NGINX-Wallarm module and the pos
 ## Postanalytics module protection
 
 !!! warning "Protect installed postanalytics module"
-    We **highly recommend** to protect a newly installed Wallarm postanalytics module with a firewall. Otherwise, there is a risk of getting unauthorized access to the service that may result in:
+    We **highly recommend** protecting a newly installed Wallarm postanalytics module with a firewall. Otherwise, there is a risk of getting unauthorized access to the service that may result in:
     
     *   Disclosure of information about processed requests
     *   Possibility of executing arbitrary Lua code and operating system commands
    
-    Please note that no such risk exists if you are deploying the postanalytics module alongside with the NGINX-Wallarm module on the same server. This holds true because the postanalytics module will listen to the port `3313`.
+    Note that no such risk exists if you are deploying the postanalytics module alongside the NGINX-Wallarm module on the same server. This holds true because the postanalytics module will listen to the port `3313`.
     
     **Here are the firewall settings that should be applied to the separately installed postanalytics module:**
     

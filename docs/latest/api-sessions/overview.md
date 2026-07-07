@@ -6,9 +6,9 @@ Wallarm API Sessions provide deep visibility into user actions within your APIs.
 
 ## Addressed issues
 
-The primary challenge the API Sessions address is the lack of full context when viewing only individual attacks. By capturing the logical sequence of requests and responses within each session, API Sessions provide insights into broader attack patterns and helps identify the areas of business logic impacted by security measures.
+The primary challenge the API Sessions address is the lack of full context when viewing only individual attacks. By capturing the logical sequence of requests and responses within each session, API Sessions provide insights into broader attack patterns and help identify the areas of business logic impacted by security measures.
 
-**As there are API sessions precisely identified by Wallarm, they**:
+**As API sessions are precisely identified by Wallarm, they**:
 
 * Make bot detection by API Abuse Prevention [more precise](#api-sessions-and-api-abuse-prevention).
 
@@ -33,7 +33,7 @@ You can customize how requests should be grouped into sessions based on your app
   </div>
 </div>
 
-Note that Wallarm stores and displays sessions **only for the last week**. The older sessions are deleted to provide an optimal performance and resource consumption.
+Note that Wallarm stores and displays sessions **only for the last week**. The older sessions are deleted to provide optimal performance and resource consumption.
 
 ## API Sessions and API Abuse Prevention
 

@@ -195,7 +195,7 @@ To obtain statistics in the Prometheus format from node deployment options that 
     ```
 
     !!! warning "Do not delete or change the default `/wallarm-status` configuration"
-        Please do not delete or change the default configuration of the `/wallarm-status` location. Default operation of this endpoint is crucial.
+        Do not delete or change the default configuration of the `/wallarm-status` location. Default operation of this endpoint is crucial.
 1. Restart NGINX to apply changes:
 
     --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
@@ -483,7 +483,7 @@ The following response parameters are available (Prometheus metrics have the `wa
 *   `blocked`: the number of blocked requests including those originated from [denylisted](../user-guides/ip-lists/overview.md) IPs.
 *   `blocked_by_acl`: the number of requests blocked due to [denylisted](../user-guides/ip-lists/overview.md) request sources.
 *   `blocked_by_antibot`: the number of requests blocked by the [API Abuse Prevention module](../api-abuse-prevention/overview.md).
-*   `acl_allow_list`: the number of requests originating by [allowlisted](../user-guides/ip-lists/overview.md) request sources.
+*   `acl_allow_list`: the number of requests originating from [allowlisted](../user-guides/ip-lists/overview.md) request sources.
 *   `bytes_in`: the total number of bytes received by listening servers from clients (browsers, API clients, load balancers, etc.) — incoming traffic. The metric is collected regardless of [`wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode) (including `off`). Includes:
     * HTTP request size (request line)
     * HTTP request headers
@@ -506,8 +506,8 @@ The following response parameters are available (Prometheus metrics have the `wa
 *   `segfaults`: the number of issues that led to the emergency termination of the worker process.
 *   `memfaults`: the number of issues where the virtual memory limits were reached.
 * `softmemfaults`: the number of issues where the virtual memory limit for proton.db +lom was exceeded ([`wallarm_general_ruleset_memory_limit`](configure-parameters-en.md#wallarm_general_ruleset_memory_limit)).
-* `proton_errors`: the number of the proton.db errors except for those occurred due to the situations when the virtual memory limit was exceeded.
-*   `time_detect`: the total time of requests analysis.
+* `proton_errors`: the number of the proton.db errors, except for those that occurred when the virtual memory limit was exceeded.
+*   `time_detect`: the total time of request analysis.
 *   `db_id`: proton.db version.
 *   `lom_id`: will be deprecated soon, please use `custom_ruleset_id`.
 *   `custom_ruleset_id`: version of the [custom ruleset][gl-lom] build.
@@ -537,7 +537,7 @@ The following response parameters are available (Prometheus metrics have the `wa
     *   `size`: proton.db file size in bytes.
     *   `mod_time`: Unix time of the last update of the proton.db file.
     *   `fname`: path to the proton.db file.
-* `startid`: randomly-generated unique ID of the filtering node.
+* `startid`: randomly generated unique ID of the filtering node.
 * `compatibility`: numeric value indicating how well the Wallarm NGINX module is compatible with the running NGINX executable. This metric helps the support team diagnose compatibility issues. Values:
     *   `0`: not compatible by any source.
     *   `1`: this value is not used.
@@ -552,13 +552,13 @@ The following response parameters are available (Prometheus metrics have the `wa
     * `delayed`: the number of requests that have been buffered by the rate limiting module due to the `burst` setting.
     * `exceeded`: the number of requests that have been rejected by the rate limiting module because they exceeded the limit.
     * `expired`: the total number of keys that are removed from the bucket on a regular 60-second basis if the rate limit for those keys was not exceeded.
-    * `removed`: the number of keys abruptly removed from the backet. If the value is higher that `expired`, increase the [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size) value.
+    * `removed`: the number of keys abruptly removed from the bucket. If the value is higher than `expired`, increase the [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size) value.
     * `no_free_nodes`: the value different from `0` indicates that there is insufficient memory allocated for the rate limit module, the [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size) value increase is recommended.
 * `timestamp`: time when the last incoming request was processed by the node (in the [Unix Timestamp](https://www.unixtimestamp.com/) format).
 * `split.clients`: main statistics on each [tenant](../installation/multi-tenant/overview.md). If the multitenancy feature is not activated, the statistics is returned for the only tenant (your account) with the static value `"client_id":null`.
 
     Starting from NGINX Node 6.12.0, when a label is set via the [`wallarm_partner_client_uuid`](configure-parameters-en.md#wallarm_partner_client_uuid) directive, Prometheus output includes dedicated split metrics: `wallarm_*_per_app_total` (per application) and `wallarm_*_per_group_total` (per group). These metrics carry `client_uuid` and `client_label` labels for tenant identification. Groups are defined via the [`wallarm_status_group`](configure-parameters-en.md#wallarm_status_group) directive.
-* `split.clients.applications`: main statistics on each [application](../user-guides/settings/applications.md). Parameters that are not included into this section returns the statistics on all applications.
+* `split.clients.applications`: main statistics on each [application](../user-guides/settings/applications.md). Parameters that are not included in this section return the statistics on all applications.
 * `apifw_subrequest_timeouts`: the number of subrequests in the API Firewall service that timed out during processing. 
 
     !!! info "API Firewall subrequest timeouts"        

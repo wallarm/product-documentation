@@ -13,7 +13,7 @@ To install postanalytics separately with all-in-one installer, use:
     sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.7.aarch64-glibc.sh postanalytics
     ```        
 
-    The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
+    The `WALLARM_LABELS` variable sets the group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
 
 === "Node token"
     If using the x86_64 version:

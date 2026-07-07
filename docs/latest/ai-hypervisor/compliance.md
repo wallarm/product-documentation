@@ -35,8 +35,8 @@ Additional frameworks (ISO 42001, ISO 27001, GLBA, NYDFS 500, PCI DSS) are surfa
 
 A report has four evidence types, each fed by a different platform signal. Each is also available independently through the platform API.
 
-* **AI Software Bill of Materials (AI-SBOM).** Every package, model weight, MCP server binary, container image, and library running in your AI stack, with version, ecosystem, licence, CVE mapping, and a load-time-risk flag set for pickle and torch loads. Backed by [Supply Chain](supply-chain.md).
-* **Coverage heatmap.** Per framework, every control labelled `Covered`, `Partial`, or `Gap` against observed evidence.
+* **AI Software Bill of Materials (AI-SBOM).** Every package, model weight, MCP server binary, container image, and library running in your AI stack, with version, ecosystem, license, CVE mapping, and a load-time-risk flag set for pickle and torch loads. Backed by [Supply Chain](supply-chain.md).
+* **Coverage heatmap.** Per framework, every control labeled `Covered`, `Partial`, or `Gap` against observed evidence.
 * **Session audit logs.** Every agent session preserved end to end: caller identity and class, application, full chronological waterfall (prompt → LLM call → tool call → response), step status, session status. Backed by [User Tracks](user-tracks.md).
 * **PII flow records.** Every flow that carried PII: source entity, destination, PII classes, data classification, the rule that matched, volume, and time window. Backed by [Data Tracks](data-tracks.md).
 

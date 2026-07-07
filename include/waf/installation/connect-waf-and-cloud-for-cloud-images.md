@@ -14,7 +14,7 @@ Depending on the selected Wallarm deployment approach ([in-line][inline-docs] or
         sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring --proxy-pass <PROXY_ADDRESS>
         ```
     
-    * `WALLARM_LABELS='group=<GROUP>'` sets a node group name (existing, or, if does not exist, it will be created). It is only applied if using an API token.
+    * `WALLARM_LABELS='group=<GROUP>'` sets a node group name (existing, or, if it does not exist, it will be created). It is only applied if using an API token.
     * `<TOKEN>` is the copied value of the token.
     * `<PROXY_ADDRESS>` is an address for Wallarm node to proxy legitimate traffic to. It can be an IP of an application instance, load balancer, or DNS name, etc., depending on your architecture.
 === "Out-of-Band"
@@ -31,5 +31,5 @@ Depending on the selected Wallarm deployment approach ([in-line][inline-docs] or
         sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring -p mirror
         ```
     
-    * `WALLARM_LABELS='group=<GROUP>'` sets a node group name (existing, or, if does not exist, it will be created). It is only applied if using an API token.
+    * `WALLARM_LABELS='group=<GROUP>'` sets a node group name (existing, or, if it does not exist, it will be created). It is only applied if using an API token.
     * `<TOKEN>` is the copied value of the token.

@@ -10,7 +10,7 @@ PDF is a visually rich report, good for data analysis and presenting. This repor
 * Summaries for attacks, vulnerabilities and incidents
 * Detailed information on the events
 
-CSV includes details on each event matching the filter and is good for the technical purposes. You can use it for creating dashboards, getting unique attacker IPs, producing a list of attacked API hosts/applications, etc.
+CSV includes details on each event matching the filter and is good for technical purposes. You can use it for creating dashboards, getting unique attacker IPs, producing a list of attacked API hosts/applications, etc.
 
 CSV report may include several CSV files, one for each type of event - attack, incident, vulnerability. Each CSV has a maximum of 10,000 events, sorted by the events with the most hits.
 
@@ -36,6 +36,6 @@ If necessary, download them from the export window.
 
 ## Getting regular reports via email
 
-You can get PDF report regularly - daily, weekly or monthly - via email. This report will contain data about attacks, incidents for the corresponding period and active vulnerabilities.
+You can get a PDF report regularly - daily, weekly or monthly - via email. This report will contain data about attacks, incidents for the corresponding period and active vulnerabilities.
 
 Set whether to get such report and how often by configuring the [email report](../../user-guides/settings/integrations/email.md) integration.

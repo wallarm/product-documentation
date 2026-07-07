@@ -40,7 +40,7 @@ After logging in to the Wallarm portal, you will be presented with the following
 
     The [“Using Search”][doc-use-search] document introduces you to the search query syntax and explains how to use search.
 
-*   A *Settings* button at the upper right corner of the portal near the search box. This button looks like small gear.
+*   A *Settings* button at the upper right corner of the portal near the search box. This button looks like a small gear.
 
     Use this button to open the Wallarm settings page.
     

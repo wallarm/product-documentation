@@ -103,7 +103,7 @@ The **Json_array** filter refers to the array of the JSON object values. The ele
 
 The [Array][link-array] filter applied to the JSON data works similarly to the Json_array filter.
 
-The values from the arrays in the JSON format may also contain hash tables. Use the [Hash][link-jsonarray-hash] or [Json_obj][anchor1].
+The values from the arrays in the JSON format may also contain hash tables. Use the [Hash][link-jsonarray-hash] or [Json_obj][anchor1] filter.
 
 **Example:** 
 

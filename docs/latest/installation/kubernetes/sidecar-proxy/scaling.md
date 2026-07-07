@@ -62,7 +62,7 @@ The postanalytics component handles traffic from all sidecar containers injected
 For the HA deployment, you can manually adjust the amount of replicas using the following settings of the `values.yaml` file:
 
 * Use more than one instance of the postanalytics Pod. Control this with the [`postanalytics.replicaCount`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L447) attribute.
-* Configure [`postanalytics.wstore.config.arena`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L625) in gigabytes (GB) based on the anticipated traffic volume to the application workload. This setting determines the maximum memory wstore will utilize. For calculation guidelines, you may find useful [the same of our recommendations for other deployment options][wstore-memory-recommendations].
+* Configure [`postanalytics.wstore.config.arena`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L625) in gigabytes (GB) based on the anticipated traffic volume to the application workload. This setting determines the maximum memory wstore will utilize. For calculation guidelines, you may find [our recommendations for other deployment options][wstore-memory-recommendations] useful.
 
     In the [NGINX Node 5.x and earlier][what-is-new-wstore], the parameter has been named `postanalytics.tarantool.config.arena`. Renaming is required during upgrade.
 * Align [`postanalytics.wstore.resources.limits` and `postanalytics.wstore.resources.requests`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L654) with the `arena` configuration. Set `limits` at or above the `arena` value to handle peak demand and avoid memory-related crashes. Ensure `requests` meet or exceed the `arena` value for wstore's optimal performance. For further information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
@@ -238,7 +238,7 @@ spec:
 
 ## Example
 
-Below is the example of the Wallarm chart's `values.yaml` file with the settings describe above applied. This example assumes that resources for containers injected by Wallarm are allocated globally.
+Below is the example of the Wallarm chart's `values.yaml` file with the settings described above applied. This example assumes that resources for containers injected by Wallarm are allocated globally.
 
 ```yaml
 controller:

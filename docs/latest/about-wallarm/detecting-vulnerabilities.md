@@ -87,7 +87,7 @@ API Security Testing via Postman capabilities:
 
 ### API Attack Surface Management (AASM) <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" class="non-zoomable" style="border: none;"></a>
 
-Wallarm's [API Attack Surface Management](../api-attack-surface/overview.md) (AASM) is an agentless (do not require [Wallarm node](../about-wallarm/api-security-overview.md#how-wallarm-api-security-works) installation) detection solution tailored to the API ecosystem, designed to discover external hosts with their APIs, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities. AASM:
+Wallarm's [API Attack Surface Management](../api-attack-surface/overview.md) (AASM) is an agentless (does not require [Wallarm node](../about-wallarm/api-security-overview.md#how-wallarm-api-security-works) installation) detection solution tailored to the API ecosystem, designed to discover external hosts with their APIs, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities. AASM:
 
 * Discovers external hosts and their APIs (including hosting e.g. CDN, IaaS, or PaaS providers).
 * Discovers if APIs are protected by WAFs/WAAPs and from which type of threats they protect.
@@ -115,7 +115,7 @@ Questions:
 
 <a name="q_1"></a>**If I already have a node and automatically have passive detection, why do I need to set up TRT additionally?**
 
-Passive detection is a great bonus of filtering node: nothing needs to be configured, requests themselves pass through the node and Wallarm analyzes them for attacks and try to extract additional benefit (identify vulnerabilities).
+Passive detection is a great bonus of filtering node: nothing needs to be configured, requests themselves pass through the node and Wallarm analyzes them for attacks and tries to extract additional benefit (identify vulnerabilities).
 
 It also plays an important role in detecting [incidents](../user-guides/events/check-incident.md): if Wallarm finds an attack and this attack is successful (determined by the response), then this means that there is a vulnerability in the application, plus the attacker successfully exploited it means this is an incident.
 
@@ -127,9 +127,9 @@ But here comes a limitation - vulnerability will only be detected if the:
 
 TRT takes attacks from the Cloud, strips them of their malicious payload, and attempts to exploit them on a test server. If successful, a vulnerability is created. Differences from passive detection:
 
-* Passive detection doesn't send anything itself; it only analyzes existing requests.
+* Passive detection does not send anything itself; it only analyzes existing requests.
 TRT sends requests itself (active checking).
-* For a single attack, passive detection checks only one request/response pair. TRT will create multiple request modifications for a single attack to increase the chance of successful exploitation. Even if the original request was unsuccessful, TRT can modify it to successfully exploit the vulnerability (for example, the attacker failed, didn't tweak it properly, but Wallarm could).
+* For a single attack, passive detection checks only one request/response pair. TRT will create multiple request modifications for a single attack to increase the chance of successful exploitation. Even if the original request was unsuccessful, TRT can modify it to successfully exploit the vulnerability (for example, the attacker failed, did not tweak it properly, but Wallarm could).
 * TRT works even if the original request was blocked.
 * Passive detection allows you to detect vulnerabilities even on your internal network (on servers that are not accessible from the internet). TRT scans from the cloud and can only check on servers accessible from the internet.
 
@@ -146,11 +146,11 @@ SBT is the answer if the goal is to thoroughly analyze an API (custom, in-house 
 
 <a name="q_4"></a>**Why do I need AASM if I already have a node with passive detection and APID, which has already found all my hosts?**
 
-Not all hosts on the perimeter are protected by a node. Even if all are protected, the node may be blocking attacks, and passive detection won't find any vulnerabilities ("protected by node"). For passive detection to find anything, someone needs to exploit the vulnerability. We can wait a very long time, while AASM sends requests itself.
+Not all hosts on the perimeter are protected by a node. Even if all are protected, the node may be blocking attacks, and passive detection will not find any vulnerabilities ("protected by node"). For passive detection to find anything, someone needs to exploit the vulnerability. We can wait a very long time, while AASM sends requests itself.
 
 <a name="q_5"></a>**Why do I need APID if AASM has already found all my hosts and their problems?**
 
-AASM only finds hosts on the perimeter, while APID is everywhere a node is located. AASM finds very few APIs, about 1-3%, and there's almost no information on them because it's collecting everything blindly. APID sees all traffic and can almost completely recreate endpoints, methods, and parameters.
+AASM only finds hosts on the perimeter, while APID is everywhere a node is located. AASM finds very few APIs, about 1-3%, and there is almost no information on them because it is collecting everything blindly. APID sees all traffic and can almost completely recreate endpoints, methods, and parameters.
 
 ## False positives
 

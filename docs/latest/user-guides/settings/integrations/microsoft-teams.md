@@ -8,7 +8,7 @@
 1. Click the **Microsoft Teams** block or click the **Add integration** button and choose **Microsoft Teams**.
 1. Enter an integration name.
 1. Open the settings of the Microsoft Teams channel where you want to post notifications and configure a new Webhook by using the [instructions](https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook).
-1. Copy the provided Webhook URL and paste the value to the **Webhook URL** field in Wallarm Console.
+1. Copy the provided Webhook URL and paste the value into the **Webhook URL** field in Wallarm Console.
 1. Choose event types to trigger notifications.
 
       ![MS Teams integration](../../../images/user-guides/settings/integrations/add-ms-teams-integration.png)

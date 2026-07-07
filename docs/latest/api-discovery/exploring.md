@@ -16,7 +16,7 @@ Among a wide range of API endpoint filters, you can choose the ones correspondin
 
 * Find the endpoints characterized with the highest [risk level](risk-score.md) to analyze and mitigate the risks.
 * Find the endpoints that have [security issues](../api-attack-surface/security-issues.md) (vulnerabilities) by severity: use the **Vulnerabilities** filter to narrow by **Critical**, **High**, **Medium**, or **Low**.
-* Find endpoints related to specific [application](../user-guides/settings/applications.md).
+* Find endpoints related to a specific [application](../user-guides/settings/applications.md).
 * Find the endpoints that have been changed or newly discovered in the last week and that process PII data. This kind of request can help you to stay up to date with critical [changes in your APIs](track-changes.md).
 * Find the endpoints being used to upload data to your server by the PUT or POST calls (REST) or mutations (GraphQL) (**API protocols** filter with methods for REST and operation types for GraphQL). Since such endpoints are a frequent attack target, they should be well secured. Using this kind of request you can check that endpoints are known to the team and are well secured from attacks.
 * Find the endpoints processing sensitive data to ensure they are properly secured.
@@ -229,13 +229,13 @@ Each parameter information also includes:
 
 The number of requests related to the endpoint or MCP primitive is displayed in the **Requests** column. Click this number to open the [**API Sessions**](../api-sessions/overview.md) section (or [**MCP Sessions**](../api-sessions/mcp-sessions.md) for MCP primitives) with the list of sessions for the last week containing these requests.
 
-Within each found session, only requests to your endpoint or primitive will be initially displayed — in session, remove the filter to see all requests for context.
+Within each found session, only requests to your endpoint or primitive will be initially displayed — within the session, remove the filter to see all requests for context.
 
 A structured view of session activity helps in understanding your endpoint or primitive's place in malicious and legitimate activities, its relation to sensitive business flows and required protection measures.
 
 ## Variability
 
-URLs can include diverse elements, such as ID of user. API Discovery supports finding such elements for UUID, INTEGER, FLOAT and HEX path segment types:
+URLs can include diverse elements, such as a user ID. API Discovery supports finding such elements for UUID, INTEGER, FLOAT and HEX path segment types:
 
 * `/api/users/profile/a1b2c3d4-e5f6-7890-1234-567890abcdef12`
 * `/api/users/profile/f0e9d8c7-b6a5-4321-fedc-ba9876543210`

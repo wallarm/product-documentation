@@ -9,9 +9,9 @@
 
 ## API abuse dashboards
 
-API Abuse Prevention conveniently visualizes the data on bot activities for the last 30 days at the **API Abuse Prevention** section → **Statistics** tab. Using timeline diagram you can easily identify spikes in bot activity. The additional **Top Attackers** and **Top Targets** widgets allow you to determine the most active bots and the most attacked APIs and applications. You can drill down to investigate these bot activities at the **Attacks** tab in one click on the dashboard element.
+API Abuse Prevention conveniently visualizes the data on bot activities for the last 30 days at the **API Abuse Prevention** section → **Statistics** tab. Using the timeline diagram, you can easily identify spikes in bot activity. The additional **Top Attackers** and **Top Targets** widgets allow you to determine the most active bots and the most attacked APIs and applications. You can drill down to investigate these bot activities at the **Attacks** tab in one click on the dashboard element.
 
-You can also analyze bot behaviors at the **Behavioral patterns** in the bottom. Get detailed information on each detector and how they acted together to determine bot actions. This widget and the counters of [deny- or graylisted](setup.md#creating-profiles) IPs at the top right will link you to the **IP Lists** [history](../user-guides/ip-lists/overview.md#ip-list-history) where you can check when and for what period of time the bot's IP was placed to the blocking list.
+You can also analyze bot behaviors at the **Behavioral patterns** at the bottom. Get detailed information on each detector and how they acted together to determine bot actions. This widget and the counters of [deny- or graylisted](setup.md#creating-profiles) IPs at the top right will link you to the **IP Lists** [history](../user-guides/ip-lists/overview.md#ip-list-history) where you can check when and for what period of time the bot's IP was placed on the blocking list.
 
 ![API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
 
@@ -19,7 +19,7 @@ If no bot activities were detected, the **Legitimate traffic** state is displaye
 
 ![API abuse prevention statistics - no bots detected](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics-nobots.png)
 
-Note that bot detection relies on the traffic - if there is no sufficient amount of one, API Abuse Prevention notifies about that with the **Insufficient data to build statistics** message. You can [check](setup.md#per-profile-traffic) the per-profile traffic on the **Profiles** tab.
+Note that bot detection relies on the traffic - if there is not a sufficient amount of it, API Abuse Prevention notifies about that with the **Insufficient data to build statistics** message. You can [check](setup.md#per-profile-traffic) the per-profile traffic on the **Profiles** tab.
 
 ## Attacks
 
@@ -34,13 +34,13 @@ Note that:
 
 **Detector values**
 
-Pay your attention to the list of triggered [detectors](overview.md#how-api-abuse-prevention-works) and their values showing how big the deviation from normal behavior is for particular anomalies. On the figure above, for example, they are **Query abuse** with the value `326` when normal is `< 10`, **Request interval** with the value `0.05` when normal is `> 1` and others.
+Pay attention to the list of triggered [detectors](overview.md#how-api-abuse-prevention-works) and their values showing how big the deviation from normal behavior is for particular anomalies. On the figure above, for example, they are **Query abuse** with the value `326` when normal is `< 10`, **Request interval** with the value `0.05` when normal is `> 1` and others.
 
 **Heatmaps**
 
-Bot information is visualized in three heatmaps. In all heatmaps, the bigger the bubble, the closer it to red color and to the right upper corner - the more reasons to consider this IP to be a bot.
+Bot information is visualized in three heatmaps. In all heatmaps, the bigger the bubble, the closer it is to red color and to the upper right corner - the more reasons to consider this IP to be a bot.
 
-On the heatmaps, you can also compare you current bot (**this bot**) with the other bots that attacked the same application within the past 24 hours. If too many bots did that, only 30 most suspicious will be displayed.
+On the heatmaps, you can also compare your current bot (**this bot**) with the other bots that attacked the same application within the past 24 hours. If too many bots did that, only the 30 most suspicious will be displayed.
 
 The heatmaps:
 

@@ -92,7 +92,7 @@ When utilizing Wallarm on Azion Edge, the traffic flow is [in-line](../inline/ov
     }
     ```
 
-    Please ensure to pay attention to the following configurations:
+    Pay attention to the following configurations:
 
     * TLS/SSL certificates for HTTPS traffic: To enable the Wallarm node to handle secure HTTPS traffic, configure the TLS/SSL certificates accordingly. The specific configuration will depend on the chosen deployment method. For example, if you are using NGINX, you can refer to [its article](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/) for guidance.
     * [Wallarm operation mode](../../admin-en/configure-wallarm-mode.md) configuration.
@@ -113,7 +113,7 @@ To acquire and run the Wallarm code for Azion Edge Functions, follow these steps
 1. Switch to the **Functions** tab, click **Add Function** and select the previously created function.
 1. Switch to the **Rules Engine** tab → **New Rule** and set the criteria for traffic to be filtered by Wallarm:
 
-    * To analyze and filter all request, select `If Request URI starts with /`.
+    * To analyze and filter all requests, select `If Request URI starts with /`.
     * In **Behaviors**, choose `Then Run Function` and select the previously created function.
 
 ## Testing

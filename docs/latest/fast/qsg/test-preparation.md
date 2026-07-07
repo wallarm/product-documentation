@@ -41,13 +41,13 @@ To set the environment for testing, do the following:
 2.  [Create the test policy targeted at XSS vulnerabilities][anchor2]
     
 !!! info "Target application"
-    The current example uses [Google Gruyere][link-https-google-gruyere] as the target application. If you construct the baseline request to your local application, please use the IP address of the machine running this application instead of Google Gruyere address.
+    The current example uses [Google Gruyere][link-https-google-gruyere] as the target application. If you construct the baseline request to your local application, please use the IP address of the machine running this application instead of the Google Gruyere address.
     
     To get the IP address, you can use tools like `ifconfig` or `ip addr`.
         
 ##  1.  Prepare the baseline request
 
-1.  Provided baseline request is targeted to the [Google Gruyere][link-https-google-gruyere] application, you should create a sandboxed instance of the application first. Then you should obtain a unique identifier of the instance.
+1.  Since the baseline request is targeted at the [Google Gruyere][link-https-google-gruyere] application, you should create a sandboxed instance of the application first. Then you should obtain a unique identifier of the instance.
     
     To do that, navigate to this [link][link-https-google-gruyere-start]. You will be given the identifier of the Google Gruyere instance, which you should copy. Read the terms of service and select the **Agree & Start** button.
     
@@ -57,7 +57,7 @@ To set the environment for testing, do the following:
     
     `https://google-gruyere.appspot.com/<your instance ID>/`
 
-2.  Construct the baseline request to your instance of the Google Gruyere application.     It is suggested in the guide that you use a legitimate request.
+2.  Construct the baseline request to your instance of the Google Gruyere application. It is suggested in the guide that you use a legitimate request.
 
     The request is as follows:
 
@@ -80,7 +80,7 @@ To set the environment for testing, do the following:
 
     ![Test policy wizard: the “General” tab.][img-wizard-general]
 
-4.  In the “Insertion points” tab set the [baseline request elements][gl-element] that are eligible for processing during the process of security test set requests generation. It is are sufficient for the purposes of this guide to allow the processing of all GET parameters. To allow this, please add the `GET_.*` expression in the “Where to include” block. When creating a policy, FAST allows processing of some parameters by default. You can delete them using the «—» symbol.
+4.  In the “Insertion points” tab set the [baseline request elements][gl-element] that are eligible for processing during the process of security test set requests generation. It is sufficient for the purposes of this guide to allow the processing of all GET parameters. To allow this, please add the `GET_.*` expression in the “Where to include” block. When creating a policy, FAST allows processing of some parameters by default. You can delete them using the «—» symbol.
 
     ![Test policy wizard: the “Insertion points” tab.][img-wizard-insertion-points]
 

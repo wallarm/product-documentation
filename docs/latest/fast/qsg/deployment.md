@@ -77,7 +77,7 @@ You have set the environment variables. Their purpose can be described as follow
 * `ALLOWED_HOSTS` — limits the scope of requests to generate a security test from; security tests will be generated only from the requests to the domain `google-gruyere.appspot.com`, which is where the target application resides.
     
 !!! info "Using the `ALLOWED_HOSTS` environment variable"
-    Setting the fully qualified domain name is not necessary. You could use a substring (e. g. `google-gruyere` or `appspot.com`).
+    Setting the fully qualified domain name is not necessary. You could use a substring (e.g. `google-gruyere` or `appspot.com`).
 
 --8<-- "../include/fast/wallarm-api-host-note.md"
    

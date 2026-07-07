@@ -192,7 +192,7 @@ Notifications are sent in either JSON Array or New Line Delimited JSON (NDJSON) 
 1. Open Wallarm UI → **Integrations**.
 1. Click the **Webhook** block or click the **Add integration** button and choose **Webhook**.
 1. Enter an integration name.
-1. Enter target Webhook URL.
+1. Enter the target Webhook URL.
 1. If required, configure advanced settings:
 
     --8<-- "../include/integrations/webhook-advanced-settings.md"
@@ -217,7 +217,7 @@ Notifications are sent in either JSON Array or New Line Delimited JSON (NDJSON) 
 
 ### Example: notification to Webhook URL if IP address is added to the denylist
 
-If an IP address was added to the denylist, the webhook about this event will be sent to Webhook URL.
+If an IP address was added to the denylist, the webhook about this event will be sent to the Webhook URL.
 
 ![Example of trigger for denylisted IP](../../../images/user-guides/triggers/trigger-example4.png)
 

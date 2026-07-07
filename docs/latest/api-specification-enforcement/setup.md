@@ -6,12 +6,12 @@ This article describes how to enable and configure your API protection based on 
 
 ## Step 1: Upload specification
 
-You can upload only specifications in the OpenAPI 3.0, 3.1 (JSON or YAML formats):
+You can upload only specifications in OpenAPI 3.0 or 3.1 (JSON or YAML formats):
 
 1. In the **API Specifications** section in [US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/), click **Upload specification**.
 
     !!! tip ""
-        OAS 3.1 requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.6.1+ or or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.20.0+.
+        OAS 3.1 requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.6.1+ or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.20.0+.
 
 1. Set specification upload parameters and start uploading.
 
@@ -19,7 +19,7 @@ You can upload only specifications in the OpenAPI 3.0, 3.1 (JSON or YAML formats
 
 Specification file is checked for correspondence to the API specification syntax, and if not valid, is not uploaded. Note that you will not be able to start configuring API specification enforcement, until the specification file is successfully uploaded.
 
-If you select to upload specification from URI and select the **Regularly update the specification** (every hour) option, there may be errors during regular update: URI can be unavailable or updated specification file may not correspond to the API specification syntax. To get notifications on such errors, in your configured [**Integrations**](../user-guides/settings/integrations/integrations-intro.md), select the **System related** events—notifications about specification upload errors is included into this category.
+If you select to upload specification from URI and select the **Regularly update the specification** (every hour) option, there may be errors during regular update: URI can be unavailable or updated specification file may not correspond to the API specification syntax. To get notifications on such errors, in your configured [**Integrations**](../user-guides/settings/integrations/integrations-intro.md), select the **System related** events—notifications about specification upload errors are included in this category.
 
 ## Step 2: Set actions for violations of policies
 
@@ -51,7 +51,7 @@ If you select to upload specification from URI and select the **Regularly update
 
 API Specification Enforcement's work is based on uploaded specification or several specifications each having the **Use for API specification enforcement** option selected. Consider that unchecking this option for some specification or deleting this specification will result in stopping protection based on this specification.
 
-Also, in some cases that may be necessary to disable the API Specification Enforcement functionality only for some parts of your API. This can be done:
+Also, in some cases it may be necessary to disable the API Specification Enforcement functionality only for some parts of your API. This can be done:
 
 * For [all-in-one installer](../installation/nginx/all-in-one.md) deployments, for any `server` section where API Specification Enforcement is used by means of the [`wallarm_enable_apifw`](../admin-en/configure-parameters-en.md#wallarm_enable_apifw) NGINX directive set to `off`.
 * For NGINX-based Docker image, by means of the `WALLARM_APIFW_ENABLE` [environment variable](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) set to `false`.

@@ -1,6 +1,6 @@
 # DDoS protection
 
-A DDoS (Distributed Denial of Service) attack is a type of cyber attack in which an attacker seeks to make a website or online service unavailable by overwhelming it with traffic from multiple sources. This document described recommendations for DDoS protection and methods to protect your resources with Wallarm.
+A DDoS (Distributed Denial of Service) attack is a type of cyber attack in which an attacker seeks to make a website or online service unavailable by overwhelming it with traffic from multiple sources. This document describes recommendations for DDoS protection and methods to protect your resources with Wallarm.
 
 DDoS attacks are often launched from a network of compromised computer systems, often referred to as a botnet. Attackers use these systems to send a large volume of traffic to the target, overloading the server and preventing it from being able to respond to legitimate requests. DDoS attacks can be targeted at any type of online service, including websites, online games, and even social media platforms.
 
@@ -22,12 +22,12 @@ There are several types of DDoS attacks that attackers can use to disrupt the av
 
 ## Mitigation of DDoS attacks
 
-Since DDoS attacks can take many different forms and target different OSI layers, single measures are not effective, it is important to use a combination of measures to provide comprehensive protection against DDoS attacks.
+Since DDoS attacks can take many different forms and target different OSI layers, single measures are not effective. It is important to use a combination of measures to provide comprehensive protection against DDoS attacks.
 
 * Internet Service Providers and Cloud Service Providers usually provide the first line of L3-L4 DDoS attack defense. As for high-severity L3-L4 DDoS attacks, additional mitigation tools are required, e.g.:
 
     The DDoS attack that generates traffic at a rate of 1 Gbps or more may require specialized DDoS protection services for traffic scrubbing. Traffic scrubbing is a technique for routing traffic through a third-party service that filters out all malicious traffic and transfers to your service only legitimate requests. As an additional protection measure against L3-L4 DDoS attacks you can also use the solutions like NGFW.
-* L7 DDoS attacks, also known as "application layer" attacks, are more targeted and sophisticated than L3-L4 attacks. Typically, L7 DDoS attacks are aimed at peculiarities of attacked applications and they can be difficult to distinguish from legitimate traffic. For protection against L7 DDoS attacks, use WAAP or specialized Anti-DDoS solutions that analyze traffic on application layer. It is also recommended to configure the API Gateway or WEB server to be able to handle peak loads.
+* L7 DDoS attacks, also known as "application layer" attacks, are more targeted and sophisticated than L3-L4 attacks. Typically, L7 DDoS attacks are aimed at peculiarities of attacked applications and they can be difficult to distinguish from legitimate traffic. For protection against L7 DDoS attacks, use WAAP or specialized Anti-DDoS solutions that analyze traffic on the application layer. It is also recommended to configure the API Gateway or web server to be able to handle peak loads.
 
 When choosing protection measures, carefully evaluate the needs and resources of an organization based on the following factors:
 
@@ -35,7 +35,7 @@ When choosing protection measures, carefully evaluate the needs and resources of
 * Volume of attacks
 * Complexity of a web application or API, and costs
 
-It is also necessary to prepare a response plan in order to identify the DDoS attack as soon as possible and take timely countermeasures to mitigate them.
+It is also necessary to prepare a response plan in order to identify the DDoS attack as soon as possible and take timely countermeasures to mitigate it.
 
 ## L7 DDoS protection with Wallarm
 
@@ -43,14 +43,14 @@ Wallarm provides a wide range of protection measures across L7 DDoS threats:
 
 * DoS protection with [mitigation controls](../../api-protection/dos-protection.md)
 * [API Abuse Prevention](../../api-abuse-prevention/overview.md). Enable the API Abuse Prevention functionality to identify and stop various types of malicious bots.
-* [Brute force trigger](protecting-against-bruteforce.md) to prevent massive number of requests brute-forcing some parameter values, e.g. passwords.
+* [Brute force trigger](protecting-against-bruteforce.md) to prevent a massive number of requests brute-forcing some parameter values, e.g. passwords.
 * [Forced browsing trigger](protecting-against-bruteforce.md) to prevent malicious attempts to detect a web application's hidden resources, namely directories and files.
 * Geolocation filtering using [denylists and graylists](../../user-guides/ip-lists/overview.md). Prevent access to applications and APIs for certain regions distributing attacks.
 * Block untrusted origins using [denylists and graylists](../../user-guides/ip-lists/overview.md). To protect from targeted attacks, it may be helpful to block any untrustworthy origins (Tor, Proxy, VPN) which allow an attacker to hide location and bypass geofilters.
 * [Logic (Data) bomb](#proto-attacks-logicbombs) detection. Wallarm automatically detects and blocks malicious requests containing Zip or XML bomb.
 * [Rate limiting](../../user-guides/rules/rate-limiting.md) configuration. Specify the maximum number of connections that can be made to a particular API scope. If a request exceeds the defined limit, Wallarm rejects it.
 
-If you are using NGINX-based Wallarm node, it is recommended to configure NGINX to enhance your security across L7 DDoS as follows:
+If you are using an NGINX-based Wallarm node, it is recommended to configure NGINX to enhance your security across L7 DDoS as follows:
 
 * Caching. Configure cache responses to common requests to absorb some of the traffic generated under DDoS attacks and prevent it from reaching your web application or API.
 * Rate limiting. Create rate limiting rules for incoming requests to restrict the volume of traffic that can be sent to a target web application or API.

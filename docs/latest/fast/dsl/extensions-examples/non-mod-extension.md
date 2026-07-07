@@ -94,7 +94,7 @@ Create a file that describes the extension (e.g., `non-mod-extension.yaml`) and 
     ``` 
     
     !!! info "A note about the `Host` header" 
-        The `Host` header can be omitted in these requests because it does not influence the exploitation of this particular SQLi vulnerability. A FAST node will automatically add the `Host` header extracted from an incoming baseline requests.
+        The `Host` header can be omitted in these requests because it does not influence the exploitation of this particular SQLi vulnerability. A FAST node will automatically add the `Host` header extracted from an incoming baseline request.
         
         Read [here][link-send-headers] about how the Send phase handles request's headers.
 
@@ -158,4 +158,4 @@ Now the `non-mod-extension.yaml` file contains a complete set of the sections re
 
 ##  Using Extension
 
-For detailed information about how to use the created expression, read [this document][link-using-extension].
+For detailed information about how to use the created extension, read [this document][link-using-extension].

@@ -14,7 +14,7 @@
 
 # How Wallarm Detects and Handles Attacks
 
-The Wallarm platform continuously analyzes API traffic and mitigates malicious requests in real-time. From this article, you will learn resource types Wallarm protects from attacks, methods of detecting attacks in traffic and how you can track and manage detected threats.
+The Wallarm platform continuously analyzes API traffic and mitigates malicious requests in real-time. From this article, you will learn which resource types Wallarm protects from attacks, methods of detecting attacks in traffic and how you can track and manage detected threats.
 
 ## What is attack and what are attack components?
 
@@ -27,7 +27,7 @@ The Wallarm platform continuously analyzes API traffic and mitigates malicious r
 
 <a name="attack"></a>**Attack** is a single hit or multiple hits grouped by the following characteristics:
 
-* The same attack type, the parameter with the malicious payload, and the address the hits were sent to. Hits may come from the same or different IP addresses and have different values of the malicious payloads within one attack type. New hit should arrive within an hour from the last - otherwise it will go to a separate attack.
+* The same attack type, the parameter with the malicious payload, and the address the hits were sent to. Hits may come from the same or different IP addresses and have different values of the malicious payloads within one attack type. A new hit should arrive within an hour from the last - otherwise it will go to a separate attack.
 
     This hit grouping method is basic and applied to all hits.
 
@@ -88,13 +88,13 @@ To detect attacks, Wallarm [analyzes](#attack-handling-process) all requests sen
 
 Wallarm uses a basic set of detectors (**libproton** library, developed by Wallarm) to determine different attack type signs as token sequences, for example: `union select` for the [SQL injection attack type](../attacks-vulns-list.md#sql-injection). If the request contains a token sequence matching the sequence from the set, this request is considered to be an attack of the corresponding type.
 
-Wallarm regularly updates list of detectors (token sequences) for new attack types and for already described attack types.
+Wallarm regularly updates the list of detectors (token sequences) for new attack types and for already described attack types.
 
-Wallarm additionally validates SQL injection attacks (**libdetection** library, developed by Wallarm). See how to  [manage](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection).
+Wallarm additionally validates SQL injection attacks (**libdetection** library, developed by Wallarm). See how to [manage](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection).
 
 ### Custom rules
 
-Custom [rules](../user-guides/rules/rules.md) are used to fine-tune the behavior defined by basic set of detectors. Users create them in Wallarm Console and the set of them is uploaded to filtering node.
+Custom [rules](../user-guides/rules/rules.md) are used to fine-tune the behavior defined by basic set of detectors. Users create them in Wallarm Console and the set of them is uploaded to the filtering node.
 
 ### Mitigation controls
 
@@ -219,7 +219,7 @@ In such cases, standard rules need to be adjusted to accommodate protected API s
 * [Disable detection of certain attack signs in binary data](../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data).
 * [Disable parsers mistakenly applied to the requests](../user-guides/rules/request-processing.md#managing-parsers).
 
-Identifying and handling false positives is a part of Wallarm fine‑tuning to protect your APIs. We recommend to deploy the first Wallarm node in the monitoring [mode](#monitoring-and-blocking-attacks) and analyze detected attacks. If some attacks are mistakenly recognized as attacks, mark them as false positives and switch the filtering node to blocking mode.
+Identifying and handling false positives is a part of Wallarm fine‑tuning to protect your APIs. We recommend deploying the first Wallarm node in the monitoring [mode](#monitoring-and-blocking-attacks) and analyzing detected attacks. If some requests are mistakenly recognized as attacks, mark them as false positives and switch the filtering node to blocking mode.
 
 <a name="false-positive-safe"></a>**What happens when you mark an attack or incident as a false positive?**
 
@@ -230,7 +230,7 @@ When pressing a **False** button, Wallarm creates a hidden rule that turns off t
 * The same attacked parameter (point)
 * The similar payload (**stamp**)
 
-About **stamps**: in Wallarm's terminology, "[stamp](../about-wallarm/waap-overview.md#protection-measures)" is a specific variation of attack (specific state of different attributes defining the attack). For each [attack type](../attacks-vulns-list.md), there is a sufficient number of stamps. This makes pressing the **False** button safely, since only literally 1 of about 30 checks for a specific attack type is disabled exclusively.
+About **stamps**: in Wallarm's terminology, "[stamp](../about-wallarm/waap-overview.md#protection-measures)" is a specific variation of attack (specific state of different attributes defining the attack). For each [attack type](../attacks-vulns-list.md), there is a sufficient number of stamps. This makes pressing the **False** button safe, since only literally 1 of about 30 checks for a specific attack type is disabled exclusively.
 
 Moreover, as mentioned above, this check is disabled only for particular endpoint/parameter, and not for others. Result: if you click **False** for `example.com/books` → `title` parameter, SQLi attack of stamp `A(1)-B(1)-C(2)`:
 
@@ -244,7 +244,7 @@ Moreover, as mentioned above, this check is disabled only for particular endpoin
 
 ## Attacks in Wallarm UI
 
-Wallarm provides you with the comprehensive user interface displaying all detected attacks and details on them. You can use attack dashboards for quick visualization and set you custom notifications.
+Wallarm provides you with the comprehensive user interface displaying all detected attacks and details on them. You can use attack dashboards for quick visualization and set your custom notifications.
 
 See details in the [Attack Analysis](../user-guides/events/check-attack.md) article.
 

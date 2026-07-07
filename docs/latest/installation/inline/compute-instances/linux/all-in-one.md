@@ -1,6 +1,6 @@
 # Deploying with All-in-One Installer
 
-An **all-in-one installer** is designed for installing Wallarm node as a dynamic module for NGINX in Linux-based environments for [inline traffic filtration][inline-docs]. This installer automatically identifies your operating system’s and NGINX versions, and install all the necessary dependencies.
+An **all-in-one installer** is designed for installing Wallarm node as a dynamic module for NGINX in Linux-based environments for [inline traffic filtration][inline-docs]. This installer automatically identifies your operating system’s and NGINX versions, and installs all the necessary dependencies.
 
 The **all-in-one installer** provides a simple node installation process by automatically performing the following actions:
 
@@ -82,7 +82,7 @@ Below there are a few of the typical settings that you can apply if needed:
 If you need to delete the Wallarm node installation and start again, follow the steps below.
 
 !!! warning "Impact of starting the installation over"
-    Starting the installation over involves stopping and deleteing already running Wallarm services, thus pausing traffic filtering until reinstallation. Exercise caution in production or critical traffic environments, as this leaves traffic unfiltered and at risk.
+    Starting the installation over involves stopping and deleting already running Wallarm services, thus pausing traffic filtering until reinstallation. Exercise caution in production or critical traffic environments, as this leaves traffic unfiltered and at risk.
 
     To upgrade an existing node (e.g., from 4.10 to 5.0), see the [upgrade instructions][upgrade-docs].
 

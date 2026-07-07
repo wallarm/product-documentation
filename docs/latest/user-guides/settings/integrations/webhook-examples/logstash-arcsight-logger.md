@@ -38,7 +38,7 @@ Since Wallarm sends logs to the Logstash intermediate data collector via webhook
 
 * Accept the POST or PUT requests
 * Accept HTTPS requests
-* Have public URL
+* Have a public URL
 * Forward logs to ArcSight Logger, this example uses the `syslog` plugin to forward logs
 
 Logstash is configured in the `logstash-sample.conf` file:

@@ -19,7 +19,7 @@ Rules are configured in the **Rules WAF** section in the [US](https://us1.my.wal
 ![Rules WAF section](../../images/user-guides/rules/section-rules.png)
 
 !!! warning "Rule application delay"
-    When you make changes to the rules, they don't take effect immediately as it takes some time to [compile the rules](#ruleset-lifecycle) and upload them to the filtering nodes.
+    When you make changes to the rules, they do not take effect immediately as it takes some time to [compile the rules](#ruleset-lifecycle) and upload them to the filtering nodes.
 
 ## What you can do with rules
 
@@ -46,11 +46,11 @@ Using rules, you can control how Wallarm mitigates attacks on your applications 
 * Change requests/responses:
 
     * [Mask sensitive data](../../user-guides/rules/sensitive-data-rule.md)
-    * Configure the additional layer of the application security by [changing response headers](../../user-guides/rules/add-replace-response-header.md)
+    * Configure an additional layer of application security by [changing response headers](../../user-guides/rules/add-replace-response-header.md)
 
 ## Rule branches
 
-Rules are automatically grouped into nested branches by endpoint URIs and other conditions. This builds a  tree-like structure in which rules are inherited down. Principles:
+Rules are automatically grouped into nested branches by endpoint URIs and other conditions. This builds a tree-like structure in which rules are inherited down. Principles:
 
 * All branches inherit [default](#default-rules) rules.
 * In a branch, child endpoints inherit rules from the parent.
@@ -61,18 +61,18 @@ Rules are automatically grouped into nested branches by endpoint URIs and other 
 ![Rules WAF tab overview](../../images/user-guides/rules/rules-overview.png)
 
 !!! info "No inheritance for parameters/points of request"
-    Inheritance [does not work for rules](../rules/rules.md#rule-branches) with **In this part of request** part specified, for example, [rate limiting](rate-limiting.md), [virtual patches](vpatch-rule.md) and others. If in these rules, **In this part of request** is not used, the inheritance will work as usually.
+    Inheritance [does not work for rules](../rules/rules.md#rule-branches) with **In this part of request** part specified, for example, [rate limiting](rate-limiting.md), [virtual patches](vpatch-rule.md) and others. If in these rules, **In this part of request** is not used, the inheritance will work as usual.
 
 ### Default rules
 
 You can create rules with specified action but not linked to any endpoint - they are called **default rules**. Such rules are applied to all endpoints.
 
-* To create default rule, follow the [standard procedure](#configuring) but leave URI blank. The new rule not linked to any endpoint will be created.
+* To create a default rule, follow the [standard procedure](#configuring) but leave URI blank. The new rule not linked to any endpoint will be created.
 * To view the list of created default rules, click the **Default rules** button.
 * Default rules are inherited by all branches.
 
 !!! info "Traffic filtration mode default rule"
-    Wallarm automatically creates the `Set filtration mode` default rule for all clients and sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#general-filtration-mode) setting.
+    Wallarm automatically creates the `Set filtration mode` default rule for all clients and sets its value on the basis of the [general filtration mode](../../admin-en/configure-wallarm-mode.md#general-filtration-mode) setting.
 
 ### Viewing branch rules
 
@@ -124,7 +124,7 @@ The string specified in the URI constructor is automatically parsed into the set
 
 * `method`
 * `header`. The URI constructor allows specifying only the header `HOST`.
-* `path`, `action_name`, `action_ext`. Before confirming the rule creation, please ensure the values of these request parts are parsed in one of the following ways:
+* `path`, `action_name`, `action_ext`. Before confirming the rule creation, ensure the values of these request parts are parsed in one of the following ways:
     * Explicit value of certain `path` number + `action_name` + `action_ext` (optional)
     * Explicit value of `action_name` + `action_ext` (optional)
     * Explicit value of certain `path` number without `action_name` and without `action_ext`
@@ -158,12 +158,12 @@ But in Wallarm, your `something-1.example.com/user/create.com` will be parsed in
 
 ...where `something-1.example.com` is a `header`-`HOST` condition. We mentioned that wildcard cannot be used within the condition, so instead we need to use regular expression: set the condition type to REGEX and then use the regular expression Wallarm [specific syntax](#condition-type-regex):
 
-1. Do not use `*` in a meaning "any number of symbols".
+1. Do not use `*` to mean "any number of characters".
 1. Put all the `.` that we want to be interpreted as "actual dots" in square brackets:
 
     `something-1[.]example[.]com`
 
-1. Use `.` without brackets as replacement of "any symbol" and `*` after it as quantifier "0 or more repetitions of the preceding", so `.*` and:
+1. Use `.` without brackets as a replacement for "any character" and `*` after it as a quantifier "0 or more repetitions of the preceding", so `.*` and:
     
     `.*[.]example[.]com`
 
@@ -207,7 +207,7 @@ The following conditions are currently supported:
 
 #### Condition type: EQUAL (`=`)
 
-The value must match precisely with the comparison argument. For example, only `example` matches with The value `example`.
+The value must match precisely with the comparison argument. For example, only `example` matches with the value `example`.
 
 !!! info "EQUAL condition type for the HOST header value"
     To cover more requests with the rules, we have restricted the EQUAL condition type for the HOST header. Instead of the EQUAL type, we recommend using the type IEQUAL that allows parameter values in any register.
@@ -275,7 +275,7 @@ To match requests with regular expressions, the PIRE library is used. Mostly, th
 
     Character combinations that work with specifics:
 
-    * `^.*$` is equal to `^.+$` (empty values does not match with `^.*$`)
+    * `^.*$` is equal to `^.+$` (empty values do not match with `^.*$`)
     * `^.?$`, `^.{0,}$`, `^.{0,n}$` are equal to `^.+$`
 
     Temporarily not supported:
@@ -343,7 +343,7 @@ The utility will return the result:
     ```
     [.]example[.]com
     ```
-* To match any string ending with <code>/.example.*.com</code> where `*` can be any symbol repeated any number of times
+* To match any string ending with <code>/.example.*.com</code> where `*` can be any character repeated any number of times
 
     ```
     /[.]example[.].*[.]com$
@@ -358,7 +358,7 @@ The utility will return the result:
     ```
     /[.]example[.]com[.]php$
     ```
-* To match any string that includes <code>sqlmap</code>with letters in lower and upper case: <code>sqLmAp</code>, <code>SqLMap</code>, etc
+* To match any string that includes <code>sqlmap</code> with letters in lower and upper case: <code>sqLmAp</code>, <code>SqLMap</code>, etc.
 
     ```
     [sS][qQ][lL][mM][aA][pP]
@@ -390,9 +390,9 @@ The request should not contain the designated part. In this case, the comparison
 
 ## Ruleset lifecycle
 
-All created rules and [mitigation controls](../../about-wallarm/mitigation-controls-overview.md) form a custom ruleset. The Wallarm node relies on the custom ruleset during incoming requests analysis.
+All created rules and [mitigation controls](../../about-wallarm/mitigation-controls-overview.md) form a custom ruleset. The Wallarm node relies on the custom ruleset during incoming request analysis.
 
-Changes of of rules and mitigation controls do NOT take effect instantly. Changes are applied to the request analysis process only after the custom ruleset **building** and **uploading to the filtering node** are finished.
+Changes of rules and mitigation controls do NOT take effect instantly. Changes are applied to the request analysis process only after the custom ruleset **building** and **uploading to the filtering node** are finished.
 
 --8<-- "../include/custom-ruleset.md"
 

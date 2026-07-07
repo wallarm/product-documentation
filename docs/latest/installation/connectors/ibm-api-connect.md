@@ -262,7 +262,7 @@ To test the functionality of the deployed policies, follow these steps:
     
     ![Attacks in the interface][attacks-in-ui-image]
 
-    If the Wallarm node mode is set to [blocking](../../admin-en/configure-wallarm-mode.md) and the traffic flows in-line, the request will also be blocked (the screenshot demonstartes this case).
+    If the Wallarm node mode is set to [blocking](../../admin-en/configure-wallarm-mode.md) and the traffic flows in-line, the request will also be blocked (the screenshot demonstrates this case).
 
 ## Upgrading the policies
 

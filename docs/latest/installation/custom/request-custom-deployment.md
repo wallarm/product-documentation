@@ -7,7 +7,7 @@ There are various scenarios where you may require a custom Wallarm deployment bu
 * Services are running on a cloud platform that is not listed as a supported option.
 * Deployment procedure involves a combination of several technologies or is running in hybrid environments with a mix of self-hosted and cloud-based infrastructure, making it challenging to choose the right deployment option from the pre-defined list.
 * You require an out-of-band solution for a specially crafted traffic mirror.
-* Services are compatible with custom versions or types of Ingress controllers, web servers, load balancers, etc that are not mentioned in the documentation.
+* Services are compatible with custom versions or types of Ingress controllers, web servers, load balancers, etc. that are not mentioned in the documentation.
 
     If you are looking for the installer for a custom NGINX version, refer to the [specific instructions](custom-nginx-version.md) on how to get it.
 

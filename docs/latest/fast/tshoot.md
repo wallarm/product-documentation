@@ -41,7 +41,7 @@
 
 If you either cannot find your issue in the list above, or consider the solution unhelpful, contact the Wallarm support team.
 
-You can either [write an email](mailto:support@wallarm.com) or fill in the form on the Wallarm portal. To send a feedback through the portal, do the following:
+You can either [write an email](mailto:support@wallarm.com) or fill in the form on the Wallarm portal. To send feedback through the portal, do the following:
 
 * Click the question mark in the top right corner of the portal.
 * In the opened sidebar, select the “Wallarm Support” entry.

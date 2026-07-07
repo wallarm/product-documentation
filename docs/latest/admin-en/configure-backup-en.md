@@ -6,7 +6,7 @@ A failover method introduces additional nodes to which the traffic is automatica
 
 ## Data Center Failover
 
-If your API and filter nodes are in a data center, use the data center's "Failover IP" service
+If your API and filter nodes are in a data center, use the data center's "Failover IP" service.
 
 ## VRRP or CARP 
 
@@ -25,4 +25,4 @@ A layer 3 or layer 4 load balancer is a good high availability solution.
 
 ## DNS Load Balancing
 
-Specify several IP addresses in the DNS settings. While this method targets load balancing, you may also find it useful as high availability method.
+Specify several IP addresses in the DNS settings. While this method targets load balancing, you may also find it useful as a high availability method.

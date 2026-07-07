@@ -52,7 +52,7 @@ You can upload multiple specifications. Each one with **Rogue API detection** en
 ### When comparison runs
 
 * Comparison starts after you complete the setup above.
-* It re-runs if you change and save rogue API detection settings, upload a new specification file.
+* It re-runs if you change and save rogue API detection settings, or upload a new specification file.
 * If the specification is loaded from a URI and **Regularly update the specification** (every hour) is enabled, comparison can also re-run when the file at the URI is updated.
 
 You can download the current specification from **API Specifications** → open the spec → **Download specification**.

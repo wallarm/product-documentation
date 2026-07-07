@@ -17,12 +17,12 @@
 
 ##  Installing SSL Certificate
 
-To install an SSL certificate to th FAST node, follow these steps:
+To install an SSL certificate to the FAST node, follow these steps:
 1.  Make sure that you already have an SSL certificate, as well as the private key that signed the certificate, in the PEM format.
 
 2.  Place the certificate file and the key file in the same directory on the Docker host. It will be necessary to mount this directory to the Docker container with the FAST node in the next steps.
 
-3.  Specify the FAST node where the certificate and key are located using the following environment variables:
+3.  Specify to the FAST node where the certificate and key are located using the following environment variables:
 
     ```
     CA_CERT=<internal path to the certificate>
@@ -60,7 +60,7 @@ To install an SSL certificate to th FAST node, follow these steps:
 Now your SSL certificate should be successfully installed. Your FAST node instance will now proxy HTTPS requests without any untrusted certificate messages.
 
 
-##  An Example of Installing an SSL Certificate.
+##  An Example of Installing an SSL Certificate
 
 The following is supposed to be the case:
 * The `cert.pem` and `cert.key` files with the SSL certificate and corresponding private key are located in the `/home/user/certs` directory of the Docker host where the FAST node is launched,

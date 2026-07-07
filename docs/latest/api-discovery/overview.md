@@ -40,20 +40,20 @@ API inventory is a picture of your active APIs automatically built by Wallarm's 
 
 **Building an actual and complete API inventory** is the main issue the API Discovery module is addressing.
 
-Keeping API inventory up-to-date is a difficult task. There is a high chance that one API is used by multiple teams and clients and it is a common case that different tools and processes are used to produce the API documentation. As a result, companies struggle in both understanding what APIs they have, what data they expose and having up-to-date API documentation.
+Keeping API inventory up-to-date is a difficult task. There is a high chance that one API is used by multiple teams and clients and it is a common case that different tools and processes are used to produce the API documentation. As a result, companies struggle both to understand what APIs they have and what data they expose, and to keep API documentation up to date.
 
-Since the API Discovery module uses the real traffic as a data source, it helps to get up-to-date and complete API documentation by including to the API inventory all endpoints that are actually processing the requests.
+Since the API Discovery module uses the real traffic as a data source, it helps to get up-to-date and complete API documentation by including in the API inventory all endpoints that are actually processing the requests.
 
 **As you have your API inventory discovered by Wallarm, you can**:
 
-* Have a full visibility into the whole API estate.
+* Have full visibility into the whole API estate.
 * See what data ([REST](exploring.md#rest-endpoint-details), [GraphQL](exploring.md#graphql-operation-details), [SOAP](exploring.md#soap-operation-details), [gRPC](exploring.md#grpc-operation-details)) is going into and out of the APIs.
 * Filter APIs that consume and carry [sensitive data](#sensitive-data-detection).
 * Filter APIs that have no [authentication](exploring.md#authentication-flow).
 * Understand which endpoints are [most likely](risk-score.md) to be an attack target.
 * Find endpoints that have [security issues](../api-attack-surface/security-issues.md) (vulnerabilities) and navigate from endpoint details to full descriptions and mitigation methods.
 * [Track changes](track-changes.md) in API that took place within the selected period of time.
-* Provide your developers with [access](../user-guides/settings/users.md#user-roles) to the built API inventory reviewing and downloading.
+* Provide your developers with [access](../user-guides/settings/users.md#user-roles) to review and download the built API inventory.
 <!--* Get a list of the threats that occurred over the past 7 days per any given API endpoint.-->
 
 ## How does API Discovery work?
@@ -77,15 +77,15 @@ API Discovery uses a hybrid approach to conduct analysis locally and in the Clou
 
 The API Discovery module bases noise detection on the two major traffic parameters:
 
-* **Endpoint stability** - at least specific **number of requests** should be registered for the endpoint for it to be displayed by API Discovery AND and at least one of them must be outside the **timeframe**.
+* **Endpoint stability** - at least a specific **number of requests** should be registered for the endpoint for it to be displayed by API Discovery AND at least one of them must be outside the **timeframe**.
 
-    This settings aim to avoid showing API entries, that had no traffic or had a traffic for a short timeframe only - they are considered unstable. Even if the specific endpoint was requested huge amount of times, but just within a short timeframe, there's no need to consider this one-time spike as stable API endpoint.
+    These settings aim to avoid showing API entries that had no traffic or had traffic for a short timeframe only - they are considered unstable. Even if the specific endpoint was requested a huge amount of times, but just within a short timeframe, there is no need to consider this one-time spike as a stable API endpoint.
 
     ![API Discovery - endpoint stability](../images/about-wallarm-waf/api-discovery/api-discovery-endpoint-stability.png)
 
 * **Parameter stability** - the occurrence of the parameter in requests to the endpoint must be more than 1 percent.
 
-Also, the API Discovery performs filtering of requests relying on the other criteria, described in the sections below. Note that the time required to build the complete API inventory depends on the traffic diversity and intensity.
+Also, API Discovery performs filtering of requests relying on the other criteria, described in the sections below. Note that the time required to build the complete API inventory depends on the traffic diversity and intensity.
 
 #### Core filtering criteria
 
@@ -196,7 +196,7 @@ With the [sensitive business flow](sbf.md) capability, API Discovery can automat
 
 In addition to automatic identification, you can manually adjust the assigned sensitive business flow tags and manually set tags for the endpoints of your choice.
 
-Once endpoints are assigned with the sensitive business flow tags, it becomes possible to filter all discovered endpoint by a specific business flow which makes it easier on protecting the most critical business capabilities.
+Once endpoints are assigned the sensitive business flow tags, it becomes possible to filter all discovered endpoints by a specific business flow, which makes it easier to protect the most critical business capabilities.
 
 ![API Discovery - Filtering by sensitive business flows](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-sbf-filter.png)
 
@@ -215,7 +215,7 @@ Other data (endpoint values, request methods, and parameter names) is not hashed
 
 To try the module even before signing up and deploying the node to your environment, explore [API Discovery in Wallarm Playground](https://playground.wallarm.com/api-discovery/?utm_source=wallarm_docs_apid).
 
-In Playground, you can access the API Discovery view like it is filled with real data and thus learn and try out how the module works, and get some useful examples of its usage in the read-only mode.
+In Playground, you can access the API Discovery view as if it were filled with real data and thus learn and try out how the module works, and get some useful examples of its usage in the read-only mode.
 
 ![API Discovery – Sample Data](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
 

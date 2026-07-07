@@ -35,7 +35,7 @@ Before creating an image, you need to perform an initial configuration of a sing
 2.  [Connect][link-cloud-connect-guide] the filtering node to the Wallarm Cloud.
 
     !!! warning "Use a token to connect to the Wallarm Cloud"
-        Please note that you need to connect the filtering node to the Wallarm cloud using a token. Multiple filtering nodes are allowed to connect to the Wallarm cloud using the same token.
+        Note that you need to connect the filtering node to the Wallarm Cloud using a token. Multiple filtering nodes are allowed to connect to the Wallarm Cloud using the same token.
        
         Thus, you will not need to manually connect each of the filtering nodes to the Wallarm Cloud when they auto-scale. 
 
