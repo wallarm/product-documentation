@@ -61,7 +61,7 @@ To implement the request recording, apply the following settings to the job of a
 
 ## Adding the Step of Security Testing
 
-To implement the security testing, add the corresponding separate step to your workflow following instructions:
+To implement the security testing, add the corresponding separate step to your workflow following the instructions:
 
 1. If the test application is not running, then add the command to run the application.
 2. Add the command running the FAST Docker container in the `CI_MODE=testing` mode with other required [variables](../ci-mode-testing.md#environment-variables-in-testing-mode) __after__ the command running the application.
@@ -122,7 +122,7 @@ The result of security testing will be displayed in the build logs in Bamboo UI.
 
 ## More Examples
 
-You can find more examples of integrating FAST to Bamboo workflow on our [GitHub](https://github.com/wallarm/fast-examples).
+You can find more examples of integrating FAST into a Bamboo workflow on our [GitHub](https://github.com/wallarm/fast-examples).
 
 !!! info "Further questions"
     If you have questions related to FAST integration, please [contact us](mailto:support@wallarm.com).

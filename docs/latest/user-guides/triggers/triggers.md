@@ -1,6 +1,6 @@
 # Working with Triggers
 
-Triggers are tools used to set up Wallarm response to different events. Triggers combine a significant number of events the system can react to with a variety of possible reactions. This constructor-like process allows configuring complex behaviors that match your company unique security needs.
+Triggers are tools used to set up Wallarm response to different events. Triggers combine a significant number of events the system can react to with a variety of possible reactions. This constructor-like process allows configuring complex behaviors that match your company's unique security needs.
 
 Triggers are configured in the **Triggers** section in the [US](https://us1.my.wallarm.com/triggers) or [EU](https://my.wallarm.com/triggers) Cloud.
 
@@ -10,9 +10,9 @@ Triggers are configured in the **Triggers** section in the [US](https://us1.my.w
 
 Each trigger consists of the following components that you can configure:
 
-* **Condition**: an event that Wallarm should react to. For example: getting a certain amount of attacks, denylisted IP address, and new user added to the account.
+* **Condition**: an event that Wallarm should react to. For example: getting a certain amount of attacks, a denylisted IP address, and a new user added to the account.
 * [**Filters**](#understanding-filters): the condition details. For example: if condition is "More than 10,000 attacks per day", then set the **Type** filter to "SQLi" and the **Response status** to "200" and for the trigger that will mean "Act if there were more than 10,000 SQLi attacks per day that got the 200 response".
-* **Reaction**: an action that should be performed if the specified condition and filters are met. For example: sending the notification to Slack or another system configured as the [integration](../settings/integrations/integrations-intro.md), blocking IP address, or marking requests as the brute‑force attack.
+* **Reaction**: an action that should be performed if the specified condition and filters are met. For example: sending the notification to Slack or another system configured as the [integration](../settings/integrations/integrations-intro.md), blocking IP address, or marking requests as a brute‑force attack.
 
 ## What you can do with triggers
 
@@ -54,11 +54,11 @@ The following filters are available:
 * **Domain** is the domain that receives the request.
 * **Response status** is the response code returned to the request.
 * **Target** is an application architecture part that the attack is directed at or in which the incident is detected. It can take the following values: `Server`, `Client`, `Database`.
-* **User's role** is the [role](../../user-guides/settings/users.md#user-roles) of the added user. It can take the following values: `Deploy`, `Analyst`, `Administrator`, `Read only`, `API developer`, and if [multitenancy](../../installation/multi-tenant/overview.md) feature is enabled - `Global Administrator`, `Global Analyst`, `Global Read Only`.
+* **User's role** is the [role](../../user-guides/settings/users.md#user-roles) of the added user. It can take the following values: `Deploy`, `Analyst`, `Administrator`, `Read only`, `API developer`, and if the [multitenancy](../../installation/multi-tenant/overview.md) feature is enabled - `Global Administrator`, `Global Analyst`, `Global Read Only`.
 
 ## Default triggers
 
-New company accounts are featured by the following default (pre-configured) triggers:
+New company accounts come with the following default (pre-configured) triggers:
 
 * Group hits originating from the same IP into one attack
 
@@ -81,7 +81,7 @@ New company accounts are featured by the following default (pre-configured) trig
 
     The hits with the Brute force, Forced browsing, Resource overlimit, Data bomb, or Virtual patch attack types are not considered in this trigger.
 
-You can temporary disable any default trigger. You can also modify behavior provided by the default trigger - to do so, create your custom triggers of the same type. Creating any custom trigger deletes the default one, if you delete all your custom triggers, the default is restored.
+You can temporarily disable any default trigger. You can also modify behavior provided by the default trigger - to do so, create your custom triggers of the same type. Creating any custom trigger deletes the default one; if you delete all your custom triggers, the default is restored.
 
 ## Trigger processing priorities
 

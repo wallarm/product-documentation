@@ -2,7 +2,7 @@
 
 #   Splunk
 
-[Splunk](https://www.splunk.com/) is a platform designed for searching, monitoring, and analyzing machine-generated data, including logs, events, and other forms of operational and business data.  You can set up Wallarm to send alerts to Splunk.
+[Splunk](https://www.splunk.com/) is a platform designed for searching, monitoring, and analyzing machine-generated data, including logs, events, and other forms of operational and business data. You can set up Wallarm to send alerts to Splunk.
 
 ##  Setting up integration
 
@@ -20,7 +20,7 @@ In Wallarm UI:
 1. Click the **Splunk** block or click the **Add integration** button and choose **Splunk**.
 1. Enter an integration name.
 1. Paste the copied token into the **HEC token** field.
-1. Paste HEC URI and the port number of your Splunk instance into the **HEC URI:PORT** field. For example: `https://hec.splunk.com:8088`.
+1. Paste the HEC URI and the port number of your Splunk instance into the **HEC URI:PORT** field. For example: `https://hec.splunk.com:8088`.
 1. Choose event types to trigger notifications.
 
     ![Splunk integration](../../../images/user-guides/settings/integrations/add-splunk-integration.png)

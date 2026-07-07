@@ -60,7 +60,7 @@ Several surfaces drive the enforcement engine in the current release:
 * **Session-level Kill Session.** Lives on a session row in [User Tracks](user-tracks.md). The UI button is feature-flagged off by default; Wallarm enables it per tenant once safety guardrails are validated for your deployment. The scanner-side primitive — eBPF-based session termination — is always present.
 * **Policies tray card in the Briefing.** A scoped view of the inline rule set, available in the [Briefing](briefing.md) action bar when enabled. Also enabled per tenant by Wallarm.
 
-For roles that do not see these surfaces directly, the engine still operates on every labelled workload — the absence of a UI control does not mean the absence of enforcement.
+For roles that do not see these surfaces directly, the engine still operates on every labeled workload — the absence of a UI control does not mean the absence of enforcement.
 
 ## What the agent sees when something is blocked
 
@@ -68,7 +68,7 @@ The exact failure surface depends on which primitive fired:
 
 * **Namespace quarantine.** Outbound connections to AI provider domains fail at connect time. Most SDKs surface this as `ECONNREFUSED` or DNS-resolution failure if the resolver itself is short-circuited.
 * **Inline block.** The proxy returns a synthetic error response to the agent (HTTP 4xx with a structured body for OpenAI-shaped APIs, `tool_result.is_error=true` for MCP tool calls). The model provider never sees the call.
-* **Session termination.** Every open connection of the session terminates with `ECONNRESET`. SDKs surface this as a retryable network error; depending on retry behaviour, the next attempt either matches an inline rule (and is rejected) or hits a fresh session ID.
+* **Session termination.** Every open connection of the session terminates with `ECONNRESET`. SDKs surface this as a retryable network error; depending on retry behavior, the next attempt either matches an inline rule (and is rejected) or hits a fresh session ID.
 
 Application code that retries unconditionally may still complete the action on a fresh session. For consistent enforcement of intent, pair the session kill with an inline rule that prevents the next attempt.
 

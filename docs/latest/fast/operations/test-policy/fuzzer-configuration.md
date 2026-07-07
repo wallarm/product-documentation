@@ -49,7 +49,7 @@ In the [**Stop fuzzing if response**][anchor-stop-section] section, the followin
 * **Anomalies**: the number of detected anomalies
 * **Timeout errors**: the number of times when no response was received from the server
 
-Using a combination of these parameters, you can configure required conditions that affects fuzzer operations (see below).
+Using a combination of these parameters, you can configure required conditions that affect fuzzer operations (see below).
 
 ## The "Payloads" Section
 
@@ -60,7 +60,7 @@ While the payload is inserted, the following data is specified:
 * the load size from 1 to 255 bytes
 * at which value the payload will be inserted: the beginning, random, or end position
 
-While the payload is replacing, the following data is specified:
+While the payload is replaced, the following data is specified:
 
 * the method of replacement: replace a random segment in the value — first `M` bytes, last `M` bytes, or entire string
 * the load size `M` from 1 to 255 bytes

@@ -1,6 +1,6 @@
-Once the malicious request is detected by Wallarm and displayed in the [**Attacks**][link-attacks] or [**Incidents**][link-incidents] section as the part of some attack, you have an ability to know the full context of this request: to which user session it belongs and what the full sequence of requests in this session is. This allows investigating all activity of the threat actor to understand attack vectors and what resources can be compromised.
+Once the malicious request is detected by Wallarm and displayed in the [**Attacks**][link-attacks] or [**Incidents**][link-incidents] section as the part of some attack, you can see the full context of this request: to which user session it belongs and what the full sequence of requests in this session is. This allows you to investigate all activity of the threat actor to understand attack vectors and what resources can be compromised.
 
-To perform this analysis, in Wallarm Console → **Attacks** or **Incidents**, access the attack, and then specific request details. In request details, click **Explore in API Sessions**. Wallarm will open the [**API Session**][link-sessions] section filtered: the session, the initial request belongs to is displayed, only the initial request is displayed within this session.
+To perform this analysis, in Wallarm Console → **Attacks** or **Incidents**, access the attack, and then specific request details. In request details, click **Explore in API Sessions**. Wallarm will open the [**API Session**][link-sessions] section filtered: the session that the initial request belongs to is displayed; only the initial request is displayed within this session.
 
 <div>
   <script async src="https://js.storylane.io/js/v2/storylane.js"></script>

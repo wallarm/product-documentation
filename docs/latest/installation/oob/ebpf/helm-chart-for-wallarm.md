@@ -300,7 +300,7 @@ The `loadBalancerRealIPHeader` and `loadBalancerTrustedCIDRs` parameters enable 
 
 ## config.agent.loadBalancerTrustedCIDRs
 
-Defines a whitelist of CIDR ranges for trusted L7 load balancers. Example:
+Defines an allowlist of CIDR ranges for trusted L7 load balancers. Example:
 
 ```yaml
 config:

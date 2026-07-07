@@ -6,7 +6,7 @@
 
 Wallarm sends notifications to Logstash via **webhooks** in the JSON format. The set of JSON objects depends on the event Wallarm notifies about.
 
-Example of the notification of the new hit detected:
+Example of a notification about a newly detected hit:
 
 ```json
 [
@@ -65,7 +65,7 @@ The Logstash configuration should meet the following requirements:
 
 * Accept the POST or PUT requests
 * Accept HTTPS requests
-* Have public URL
+* Have a public URL
 
 Logstash configuration example:
 
@@ -89,8 +89,8 @@ You will find more details in the [official Logstash documentation](https://www.
 ## Setting up integration
 
 1. Proceed to the Logstash integration setup in Wallarm Console → **Integrations** → **Logstash**.
-1. Input the integration name.
-1. Specify target Logstash URL (Webhook URL).
+1. Enter the integration name.
+1. Specify the target Logstash URL (Webhook URL).
 1. If required, configure advanced settings:
 
     --8<-- "../include/integrations/webhook-advanced-settings.md"
@@ -169,7 +169,7 @@ For example:
 
 To log Wallarm events using this scheme:
 
-1. Configure data collector to read incoming webhooks and forward logs to the next system. Wallarm sends events to data collectors via webhooks.
+1. Configure the data collector to read incoming webhooks and forward logs to the next system. Wallarm sends events to data collectors via webhooks.
 1. Configure a SIEM system to get and read logs from the data collector.
 1. Configure Wallarm to send logs to the data collector.
 

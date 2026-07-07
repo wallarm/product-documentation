@@ -3,7 +3,7 @@
 The integration of FAST in CI MODE into the Azure DevOps pipeline is configured via the `azure-pipelines.yml` file. The detailed schema of the `azure-pipelines.yml` file is described in [Azure DevOps official documentation](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema%2Cparameter-schema).
 
 !!! info "Configured workflow"
-    Further instructions require already configured workflow that corresponds to one of the following points:
+    Further instructions require an already configured workflow that corresponds to one of the following points:
 
     * Test automation is implemented. In this case, the FAST node token should be [passed](#passing-fast-node-token) and the [request recording](#adding-the-step-of-request-recording) and [security testing](#adding-the-step-of-security-testing) steps should be added.
     * The set of baseline requests is already recorded. In this case, the FAST node token should be [passed](#passing-fast-node-token) and the [security testing](#adding-the-step-of-security-testing) step should be added.
@@ -97,7 +97,7 @@ The result of security testing will be displayed on the Azure DevOps interface.
 
 ## More Examples
 
-You can find examples of integrating FAST to Azure DevOps workflow on our [GitHub](https://github.com/wallarm/fast-examples).
+You can find examples of integrating FAST into an Azure DevOps workflow on our [GitHub](https://github.com/wallarm/fast-examples).
 
 !!! info "Further questions"
     If you have questions related to FAST integration, please [contact us](mailto:support@wallarm.com).

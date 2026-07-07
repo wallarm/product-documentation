@@ -75,7 +75,7 @@ Choose an artifact for a self-hosted node deployment and follow the instructions
     * The Gloo `ext_proc` configuration [(step 2)](#2-configure-gloo-gateway-to-forward-traffic-to-the-wallarm-node) and the Upstream [(step 4)](#4-create-an-upstream-for-the-wallarm-node) will reference this Kubernetes Service.
 * If the Node is deployed **outside the cluster** (e.g. [Docker image](../native-node/docker-image.md) on a host or [all-in-one installer](../native-node/all-in-one.md) on a VM):
     * There will be no Kubernetes Service.
-    * You must create create a **static** Gloo Upstream pointing to the Node's address and port (see [Gloo static upstreams](https://docs.solo.io/gloo-edge/latest/guides/traffic_management/destination_types/static_upstream/)).
+    * You must create a **static** Gloo Upstream pointing to the Node's address and port (see [Gloo static upstreams](https://docs.solo.io/gloo-edge/latest/guides/traffic_management/destination_types/static_upstream/)).
     * Ensure the Node is reachable from the cluster.
     * Configure the Node to listen on the same port (e.g. `5000`) in [`envoy_external_filter.address`][envoy-port] in the Node config.
 

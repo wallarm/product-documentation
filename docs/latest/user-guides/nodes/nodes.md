@@ -13,7 +13,7 @@ Wallarm node UI management options:
 ![Nodes](../../images/user-guides/nodes/table-nodes.png)
 
 !!! info "Administrator access"
-    Adding and deleting of Wallarm node groups and regenerating their tokens is only available to users with the **Administrator** or **Global Administrator** role. Viewing the details of installed nodes is available to all users.
+    Adding and deleting Wallarm node groups and regenerating their tokens is only available to users with the **Administrator** or **Global Administrator** role. Viewing the details of installed nodes is available to all users.
 
 !!! warning "Removed regular and cloud types of nodes"
     Starting from the release 4.6, only the [**Wallarm node** type is available](../../updating-migrating/older-versions/what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-api-tokens).
@@ -27,18 +27,18 @@ To create a Wallarm node using the [appropriate token](#api-and-node-tokens-for-
 === "With API token"
 
     1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-    1. Find or create API token with the `Node deployment/Deployment` usage type.
+    1. Find or create an API token with the `Node deployment/Deployment` usage type.
     1. Copy this token.
-    1. Deploy new node to the [convenient environment](../../installation/supported-deployment-options.md) using your API token. After node registering, it will automatically appear in the **Nodes** section of Wallarm Console.
+    1. Deploy a new node to the [convenient environment](../../installation/supported-deployment-options.md) using your API token. After the node registers, it will automatically appear in the **Nodes** section of Wallarm Console.
 
 === "With node token"
 
-    1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+    1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create a node of the **Wallarm node** type.
 
         ![Wallarm node creation](../../images/user-guides/nodes/create-cloud-node.png)
     
     1. Copy the generated token.
-    1. Deploy new node to the [convenient environment](../../installation/supported-deployment-options.md) using your node token.
+    1. Deploy a new node to the [convenient environment](../../installation/supported-deployment-options.md) using your node token.
 
 !!! info "The multi-tenant option"
     The **multi-tenant** option allows using Wallarm to protect several independent company infrastructures or isolated environments simultaneously. [Read more](../../installation/multi-tenant/overview.md)
@@ -53,7 +53,7 @@ To create a Wallarm node using the [appropriate token](#api-and-node-tokens-for-
 
 ## Viewing node details
 
-Details of installed the filtering node are displayed in the table and card of each filtering node. To open the card, click the appropriate table record.
+Details of the installed filtering node are displayed in the table and card of each filtering node. To open the card, click the appropriate table record.
 
 The following node properties and metrics are available:
 
@@ -89,7 +89,7 @@ Token regeneration creates a new token for the node group.
 
 ## Active and inactive nodes
 
-[Synchronization](../../admin-en/configure-cloud-node-synchronization-en.md) between node and Cloud can be interrupted by several reasons:
+[Synchronization](../../admin-en/configure-cloud-node-synchronization-en.md) between node and Cloud can be interrupted for several reasons:
 
 * Node is down
 * No network connection between node and Cloud
@@ -131,7 +131,7 @@ The Wallarm filtering node interacts with the Wallarm Cloud. To provide the node
         !!! info "API tokens are not supported by some deployment options"
             API tokens currently cannot be used for AWS deployments based on [Terraform module](../../installation/cloud-platforms/aws/terraform-module/overview.md). Use node tokens instead.
 
-* **Node tokens** when you know in advance what node groups will be presented. Use **Nodes** → **Create node** to create and name the node group. During node deployment, use group's token for every node you want to include into the group.
+* **Node tokens** when you know in advance what node groups will be present. Use **Nodes** → **Create node** to create and name the node group. During node deployment, use the group's token for every node you want to include in the group.
 
 !!! info "Autoscaling support"
     Both token types support the node autoscaling feature available in some clouds/installation variants.

@@ -172,7 +172,7 @@ For the configuration file, you can reuse the one used during the initial instal
 
 Parameter values:
 
-* The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
+* The `WALLARM_LABELS` variable sets the group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
 * `<API_TOKEN>` specifies the generated API token for the `Node deployment/Deployment` usage type.
 * `<PATH_TO_CONFIG>` specifies the path to the configuration file.
 

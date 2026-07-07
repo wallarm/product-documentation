@@ -12,7 +12,7 @@
 
 There are several universal points building principles that must be considered when developing a custom extension.
 
-* All Points are treated as regular expressions.
+* All points are treated as regular expressions.
     
     **Example:**
 

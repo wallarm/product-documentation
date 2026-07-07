@@ -19,13 +19,13 @@ Wallarm's Advanced API Security [subscription](../../about-wallarm/subscription-
 
 By default, Wallarm automatically discovers only vulnerabilities of the BOLA type (also known as IDOR) but does not detect its exploitation attempts. Consider the example below to learn how to configure protection from BOLA attacks.
 
-Let us say your e-commerce `wmall-example.com` platform for online stores (shops) stores information for each hosted shop under `/shops/<PARTICULAR_SHOP>/`. You want to prevent malicious actors from getting the list of all hosted shop names. Such list can be obtained via a simple script manipulating the names in the list, replacing `<PARTICULAR_SHOP>` in the URL. To prevent this, for your shop hosting route, you can limit number of requests per time interval, and set to block IPs exceeding this limit:
+Let us say your e-commerce `wmall-example.com` platform for online stores (shops) stores information for each hosted shop under `/shops/<PARTICULAR_SHOP>/`. You want to prevent malicious actors from getting the list of all hosted shop names. Such list can be obtained via a simple script manipulating the names in the list, replacing `<PARTICULAR_SHOP>` in the URL. To prevent this, for your shop hosting route, you can limit the number of requests per time interval, and set to block IPs exceeding this limit:
 
 1. Open Wallarm Console → **Triggers** and open the window for trigger creation.
 1. Select the **BOLA** condition.
 1. Set the threshold 30 requests from the same IP per 30 seconds.
 
-    Note that these are the example values - when configuring trigger for your own traffic, you should define a threshold considering a legitimate usage statistics.
+    Note that these are the example values - when configuring a trigger for your own traffic, you should define a threshold considering legitimate usage statistics.
 
 1. Set the **URI** filter as displayed on the screenshot, including:
 
@@ -35,14 +35,14 @@ Let us say your e-commerce `wmall-example.com` platform for online stores (shops
 
 1. Do not use in this case: 
 
-    * The **Application** filter, but be aware that you can use it to set trigger only to react to the requests targeting domains or specific endpoints of selected applications.
+    * The **Application** filter, but be aware that you can use it to set a trigger only to react to the requests targeting domains or specific endpoints of selected applications.
     * The **IP** filter, but be aware that you can use it to set triggers only to react to specific IPs originating requests.
 
-1. Select the **Denylist IP address** - `Block for 4 hour` trigger reaction. Wallarm will put origin IP to the [denylist](../../user-guides/ip-lists/overview.md) after the threshold is exceeded and block all further requests from it.
+1. Select the **Denylist IP address** - `Block for 4 hour` trigger reaction. Wallarm will put the origin IP on the [denylist](../../user-guides/ip-lists/overview.md) after the threshold is exceeded and block all further requests from it.
 
     Note that even if the bot IP is placed into the denylist by manual BOLA protection, by default, Wallarm collects and [displays](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) statistics regarding blocked requests originating from it.
 
-1. Select the **Mark as BOLA** trigger reaction. Requests received after exceeding the threshold will be marked as the BOLA attack and displayed in the **Attacks** section of Wallarm Console. Sometimes, you can use this reaction alone to have information about the attack, but not to block anything.
+1. Select the **Mark as BOLA** trigger reaction. Requests received after exceeding the threshold will be marked as a BOLA attack and displayed in the **Attacks** section of Wallarm Console. Sometimes, you can use this reaction alone to have information about the attack, but not to block anything.
 1. Save the trigger and wait for the [Cloud and node synchronization completion](../configure-cloud-node-synchronization-en.md) (usually it takes 2-4 minutes).
 
 ### Testing
@@ -60,11 +60,11 @@ To test the trigger described in the [Configuring](#configuring) section:
 1. If the trigger reaction is **Denylist IP address**, open Wallarm Console → **IP lists** → **Denylist** and check that the source IP address is blocked.
 
     If the trigger reaction is **Graylist IP address**, check the section **IP lists** → **Graylist** of Wallarm Console.
-1. Open the section **Attacks** and check that requests are displayed in the list as BOLA attack.
+1. Open the section **Attacks** and check that requests are displayed in the list as BOLA attacks.
 
     ![BOLA attack in the UI](../../images/user-guides/events/bola-attack.png)
 
-    The number of displayed requests corresponds to the number of requests sent after the trigger threshold was exceeded ([more details on detecting behavioral attacks](../../attacks-vulns-list.md#attack-types)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/grouping-sampling.md#sampling-of-hits)).
+    The number of displayed requests corresponds to the number of requests sent after the trigger threshold was exceeded ([more details on detecting behavioral attacks](../../attacks-vulns-list.md#attack-types)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on request sampling](../../user-guides/events/grouping-sampling.md#sampling-of-hits)).
 
     To search for BOLA attacks, you can use the `bola` search tag. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 

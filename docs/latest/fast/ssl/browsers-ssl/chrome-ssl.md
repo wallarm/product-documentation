@@ -32,7 +32,7 @@ To install the certificate for the Google Chrome browser, do the following:
 
     ![Requesting the self-signed FAST node certificate][img-cert-request]
 
-3.  Open the browser's privacy and security settings list. To do this, either navigate to the <chrome://settings/privacy> link or open the browser settings and expand the additional settings by selecting the **Advanced** button in the end of the settings list.
+3.  Open the browser's privacy and security settings list. To do this, either navigate to the <chrome://settings/privacy> link or open the browser settings and expand the additional settings by selecting the **Advanced** button at the end of the settings list.
 
     ![Chrome advanced settings][img-adv-settings]
     
@@ -68,7 +68,7 @@ To install the certificate for the Google Chrome browser, do the following:
 
     ![Fingerprint validation warning][img-fingerprint-warning]
 
-    Given that the import is successsful, “The import was successful” informational message will appear.
+    Given that the import is successful, “The import was successful” informational message will appear.
 
     ![Successful import of the certificate][img-import-ok]
     

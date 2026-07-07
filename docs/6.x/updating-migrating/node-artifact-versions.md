@@ -6,9 +6,9 @@ This document lists available  [versions](versioning-policy.md) of the [NGINX Wa
 
 ## All-in-one installer
 
-Since version 4.10, installation and upgrading of Wallarm nodes is performed **only** with all [all-in-one installer](../installation/nginx/all-in-one.md). Manual upgrade with individual Linux packages is not supported anymore.
+Since version 4.10, installation and upgrading of Wallarm nodes is performed **only** with the [all-in-one installer](../installation/nginx/all-in-one.md). Manual upgrade with individual Linux packages is no longer supported.
 
-History of all-in-one installer updates simultaneously applies to it's x86_64 and ARM64 versions.
+History of all-in-one installer updates simultaneously applies to its x86_64 and ARM64 versions.
 
 [How to migrate from DEB/RPM packages](nginx-modules.md)
 
@@ -230,7 +230,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 * Introduced a new `wallarm_block_reason` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
 
-    This variable adds to the log an information on reason of request blocking (detected attack, part of bot activity, Denylist etc.)
+    This variable adds information to the log on the reason for request blocking (detected attack, part of bot activity, denylist, etc.)
 * Introduced the new [`wallarm_export_streams`](../admin-en/configure-parameters-en.md#wallarm_export_streams) Wallarm directive which controls whether the Node exports information about long-lived streaming connections to the internal postanalytics storage (wstore)
 
     By default, `wallarm_export_streams` is set to `off`. When enabled, the Node sends stream and message data to wstore, allowing [API Discovery](../api-discovery/overview.md) to build the API inventory and display gRPC/WebSocket endpoints in the Wallarm Console UI.
@@ -268,7 +268,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 * Added support for [**enumeration**](../api-protection/enumeration-attack-protection.md) mitigation controls
 * Added support for [**DoS protection**](../api-protection/dos-protection.md) mitigation control
-* Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
+* Bugfix: Attacks originating from allowlisted sources are no longer shown in the **Attacks** section
 * wstore logs now include `"component": "wstore"` for easier identification
 
 ### 6.0.3 (2025-05-07)
@@ -523,7 +523,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 * Introduced a new `wallarm_block_reason` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
 
-    This variable adds to the log an information on reason of request blocking (detected attack, part of bot activity, Denylist etc.)
+    This variable adds information to the log on the reason for request blocking (detected attack, part of bot activity, denylist, etc.)
 * Introduced the new [`wallarm_export_streams`](../admin-en/configure-parameters-en.md#wallarm_export_streams) Wallarm directive which controls whether the Node exports information about long-lived streaming connections to the internal postanalytics storage (wstore)
 
     By default, `wallarm_export_streams` is set to `off`. When enabled, the Node sends stream and message data to wstore, allowing [API Discovery](../api-discovery/overview.md) to build the API inventory and display gRPC/WebSocket endpoints in the Wallarm Console UI.
@@ -543,7 +543,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
     By default, it is set to `false` - dangerous annotations are not blocked.
 
-    Behaviour in Node 6.2.0- unchanged (annotations are blocked by default when `validation.enableCel` is `true`).
+    Behavior in Node 6.2.0- is unchanged (annotations are blocked by default when `validation.enableCel` is `true`).
 * Added support for the [`controller.wallarm.postanalytics.serviceAddress`](../admin-en/configure-kubernetes-en.md#controllerwallarmpostanalyticsserviceaddress) parameter to customize the address and port for incoming **wstore** connections
 * In rules, the separator used in [**xml_tag**](../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
 * Internal improvements
@@ -560,7 +560,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 ### 6.1.0 (2025-05-09)
 
-* Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
+* Bugfix: Attacks originating from allowlisted sources are no longer shown in the **Attacks** section
 * wstore logs now include `"component": "wstore"` for easier identification
 
 ### 6.0.2 (2025-04-25)
@@ -769,7 +769,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 * Introduced a new `wallarm_block_reason` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
 
-    This variable adds to the log an information on reason of request blocking (detected attack, part of bot activity, Denylist etc.)
+    This variable adds information to the log on the reason for request blocking (detected attack, part of bot activity, denylist, etc.)
 * Introduced the new [`wallarm_export_streams`](../admin-en/configure-parameters-en.md#wallarm_export_streams) Wallarm directive which controls whether the Node exports information about long-lived streaming connections to the internal postanalytics storage (wstore)
 
     By default, `wallarm_export_streams` is set to `off`. When enabled, the Node sends stream and message data to wstore, allowing [API Discovery](../api-discovery/overview.md) to build the API inventory and display gRPC/WebSocket endpoints in the Wallarm Console UI.
@@ -801,7 +801,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 ### 6.1.0 (2025-05-09)
 
-* Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
+* Bugfix: Attacks originating from allowlisted sources are no longer shown in the **Attacks** section
 * wstore logs now include `"component": "wstore"` for easier identification
 
 ### 6.0.1 (2025-04-22)
@@ -1045,7 +1045,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 * Introduced a new `wallarm_block_reason` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
 
-    This variable adds to the log an information on reason of request blocking (detected attack, part of bot activity, Denylist etc.)
+    This variable adds information to the log on the reason for request blocking (detected attack, part of bot activity, denylist, etc.)
 * Introduced the new [`wallarm_export_streams`](../admin-en/configure-parameters-en.md#wallarm_export_streams) Wallarm directive which controls whether the Node exports information about long-lived streaming connections to the internal postanalytics storage (wstore)
 
     By default, `wallarm_export_streams` is set to `off`. When enabled, the Node sends stream and message data to wstore, allowing [API Discovery](../api-discovery/overview.md) to build the API inventory and display gRPC/WebSocket endpoints in the Wallarm Console UI.
@@ -1078,7 +1078,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 ### 6.1.0 (2025-05-09)
 
-* Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
+* Bugfix: Attacks originating from allowlisted sources are no longer shown in the **Attacks** section
 * wstore logs now include `"component": "wstore"` for easier identification
 
 ### 6.0.1 (2025-04-22)
@@ -1263,7 +1263,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 * Introduced a new `wallarm_block_reason` variable for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
 
-    This variable adds to the log an information on reason of request blocking (detected attack, part of bot activity, Denylist etc.)
+    This variable adds information to the log on the reason for request blocking (detected attack, part of bot activity, denylist, etc.)
 * Introduced the new [`wallarm_export_streams`](../admin-en/configure-parameters-en.md#wallarm_export_streams) Wallarm directive which controls whether the Node exports information about long-lived streaming connections to the internal postanalytics storage (wstore)
 
     By default, `wallarm_export_streams` is set to `off`. When enabled, the Node sends stream and message data to wstore, allowing [API Discovery](../api-discovery/overview.md) to build the API inventory and display gRPC/WebSocket endpoints in the Wallarm Console UI.
@@ -1294,7 +1294,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 ### 6.1.0 (2025-05-09)
 
-* Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
+* Bugfix: Attacks originating from allowlisted sources are no longer shown in the **Attacks** section
 * wstore logs now include `"component": "wstore"` for easier identification
 
 ### 6.0.1 (2025-04-22)
@@ -1507,7 +1507,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 ### wallarm-node-6-1-0-20250508-144827 (2025-05-09)
 
-* Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
+* Bugfix: Attacks originating from allowlisted sources are no longer shown in the **Attacks** section
 * wstore logs now include `"component": "wstore"` for easier identification
 
 ### wallarm-node-6-0-1-20250422-104749 (2025-04-22)

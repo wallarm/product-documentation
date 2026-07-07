@@ -1,6 +1,6 @@
 # Selecting Sources for Mirroring
 
-The [Wallarm eBPF solution](deployment.md) operates on a traffic mirror and provides control over the traffic mirror scope. It allows you to produce packet mirror by Kubernetes namespaces, pods, and containers. This guide explains how to manage the selection process.
+The [Wallarm eBPF solution](deployment.md) operates on a traffic mirror and provides control over the traffic mirror scope. It allows you to produce a packet mirror by Kubernetes namespaces, pods, and containers. This guide explains how to manage the selection process.
 
 There are several methods available for selecting packets for mirroring:
 

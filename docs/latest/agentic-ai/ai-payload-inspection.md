@@ -6,7 +6,7 @@ Wallarm uses LLM-based analysis to detect attempts to **exploit an AI agent's lo
 
 ### Exploits of AI agent logic
 
-The analysis of messages sent by users to AI agents (LLM chatbots, and others performing actions on behalf of user via MCP) and the agent's responses identifies the following malicious activities:
+The analysis of messages sent by users to AI agents (LLM chatbots, and others performing actions on behalf of a user via MCP) and the agent's responses identifies the following malicious activities:
 
 * **System prompt retrieval**: attempts to extract the "hidden" rules and internal logic of the AI.
 * **Prompt injection**: attempts to override instructions or force the AI to perform unauthorized actions, to ignore its safety filters.
@@ -16,7 +16,7 @@ The analysis of messages sent by users to AI agents (LLM chatbots, and others pe
 * **Content misuse**: attempts to use AI agent to generate harmful material (malware, phishing, hate speech).
 
 !!! info "2025 Top 10 for LLMs and Gen AI"
-    See the examples listed above and much more in [2025 Top 10 for LLMs and Gen AI](https://genai.owasp.org/llm-top-10/). You can apply configuration described in this article to most of listed in **Top 10**.
+    See the examples listed above and much more in [2025 Top 10 for LLMs and Gen AI](https://genai.owasp.org/llm-top-10/). You can apply the configuration described in this article to most of those listed in **Top 10**.
 
 ### Semantic anomalies in arbitrary request points
 
@@ -49,7 +49,7 @@ The AI payload inspection is not performed by default and requires configuration
 * Attempts of prompt injection
 * Custom anomalies in prompt
 
-If decision is that yes, this is one of the listed anomalies, the corresponding requests in **API Sessions** are [marked](#viewing-detected-attacks) as part of the [corresponding attack](#viewing-detected-attacks) and processed due to the selected mitigation mode.
+If the decision is that this is one of the listed anomalies, the corresponding requests in **API Sessions** are [marked](#viewing-detected-attacks) as part of the [corresponding attack](#viewing-detected-attacks) and processed due to the selected mitigation mode.
 
 ## Creating and applying mitigation control
 
@@ -74,7 +74,7 @@ AI payload inspection and mitigation of found threats is configured with one or 
 
 !["AI payload inspection" mitigation control - example](../images/agentic-ai/mitigation-controls-ai-payload-inspection.png)
 
-Understand parts of the control from descriptions below.
+Understand the parts of the control from the descriptions below.
 
 ### Scope and scope filters
 
@@ -99,7 +99,7 @@ In the **Prompt attack types** section, you choose which type of threat should b
     | Malicious AI payload | Possible prompt for detection |
     | --- | --- |
     | **Payment bypass or manipulation**: attempts to get some products and services without corresponding payment, to get unintended refund or discount, etc. | Detect if the user is trying to trigger an unintended refund or discount. |
-    | **Unauthorized access**: attempts to access a restricted information or functionality bypassing identity check. | Detect if the message contains requests to bypass user identity checks. |
+    | **Unauthorized access**: attempts to access restricted information or functionality bypassing identity check. | Detect if the message contains requests to bypass user identity checks. |
     | **PII (personally identifiable information) harvesting**: attempts to trick the AI into revealing sensitive data it may have been trained on or has access to in its context window. | Check if user is requesting "lists," "directories," or "databases" of emails, customer names, addresses, document numbers. |
     | **Content misuse**: attempts to use AI agent to generate harmful material (malware, phishing, hate speech). | Check if user asks for functional malware, exploit payloads, or bypasses for security software. |
 
@@ -138,7 +138,7 @@ Keep in mind that selecting multiple options (like both **Prompt injection** and
 * May be redundant for this specific endpoint
 * Consumes resources and is subject to rate limits, and may be redundant
 
-About limits: LLM analysis is not free, Wallarm has limits for number of requests analyzed per specific time. Detailed info on these limits can be obtained from [Wallarm Support team](https://support.wallarm.com).
+About limits: LLM analysis is not free, so Wallarm has limits for the number of requests analyzed per specific time. Detailed info on these limits can be obtained from [Wallarm Support team](https://support.wallarm.com).
 
 ### LLM provider
 
@@ -168,10 +168,10 @@ When AI payload violations are detected, they show up in [API Sessions](../api-s
     * [**Prompt injection**](../attacks-vulns-list.md#prompt-injection)
     * [**Custom AI payload inspection**](../attacks-vulns-list.md#custom-ai-payload-inspection).
 
-* This is an LLM-based decision, so you always have **Reason** where LLM explains what kind of abuse has happened precisely by its opinion.
+* This is an LLM-based decision, so you always have **Reason** where the LLM explains what kind of abuse has happened precisely, in its opinion.
 
 ![API Sessions - session with detected malicious AI payload](../images/agentic-ai/api-sessions-system-prompt-retrieval.png)
 
-You can find sessions with corresponding attack types using the **Attack** filter - use the corresponding attack type to display only sessions with these attacks. 
+You can find sessions with corresponding attack types using the **Attack** filter - use the corresponding attack type to display only sessions with these attacks.
 
 Note AI payload inspection attacks are displayed exclusively in the **API Sessions** section (and not displayed in the [**Attacks**](../user-guides/events/check-attack.md) section).

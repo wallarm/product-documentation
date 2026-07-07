@@ -4,11 +4,11 @@ This article describes how to enable JA3 fingerprinting for the most popular sof
 
 ## Overview
 
-Attackers frequently employ various techniques to bypass security measures, such as user agent (UA) spoofing and IP rotation. These methods make it challenging to detect behavioral attacks in the unauthenticated traffic. [JA3 fingerprinting](https://www.peakhour.io/learning/fingerprinting/what-is-ja3-fingerprinting/) generates an MD5 hash for specific parameters defined during the TLS negotiation between client and server. This fingerprinting method can enhance the identification of threat actors as part of [API session](../api-sessions/overview.md) processing and contribute to building a behavioral profile for [API abuse prevention](../api-abuse-prevention/overview.md).
+Attackers frequently employ various techniques to bypass security measures, such as user agent (UA) spoofing and IP rotation. These methods make it challenging to detect behavioral attacks in unauthenticated traffic. [JA3 fingerprinting](https://www.peakhour.io/learning/fingerprinting/what-is-ja3-fingerprinting/) generates an MD5 hash for specific parameters defined during the TLS negotiation between client and server. This fingerprinting method can enhance the identification of threat actors as part of [API session](../api-sessions/overview.md) processing and contribute to building a behavioral profile for [API abuse prevention](../api-abuse-prevention/overview.md).
 
 ## NGINX
 
-An ability to get a JA3 fingerprint from NGINX makes this identification method available in all NGINX-based Wallarm [deployment options](..//installation/nginx-native-node-internals.md#nginx-node). There are two NGINX modules for JA3:
+The ability to get a JA3 fingerprint from NGINX makes this identification method available in all NGINX-based Wallarm [deployment options](..//installation/nginx-native-node-internals.md#nginx-node). There are two NGINX modules for JA3:
 
 | Module | Description | Installation |
 | - | - | - |
@@ -87,7 +87,7 @@ Wallarm can integrate with CloudFront to get the `CloudFront-Viewer-JA3-Fingerpr
 
 ## Google Cloud
 
-You can configure getting JA3 fingerprints from the classic Google Cloud Application Load Balancer by configuring custom header and getting its value via the `tls_ja3_fingerprint` variable:
+You can configure getting JA3 fingerprints from the classic Google Cloud Application Load Balancer by configuring a custom header and getting its value via the `tls_ja3_fingerprint` variable:
 
 1. Go to the Google Cloud console → **Load balancing**.
 1. Click **Backends**.
@@ -110,4 +110,4 @@ PATCH https://compute.googleapis.com/compute/v1/projects/PROJECT_ID/global/backe
 
 ## Azure
 
-For [Azure Wallarm deployment](../installation/cloud-platforms/azure/docker-container.md), use getting a JA3 fingerprint from NGINX method described [above](#nginx).
+For [Azure Wallarm deployment](../installation/cloud-platforms/azure/docker-container.md), use the method of getting a JA3 fingerprint from NGINX described [above](#nginx).

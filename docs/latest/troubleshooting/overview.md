@@ -6,7 +6,7 @@ This section describes most common troubleshooting cases related to Wallarm, pro
 
 If you have some problem when working with Wallarm, the following tools are in your hands:
 
-* This documentation, explaining logic of how things work
+* This documentation, explaining the logic of how things work
 * This **Troubleshooting** section in the documentation
 
     !!! info "How to use docs"

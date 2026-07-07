@@ -103,7 +103,7 @@ To deploy the container with environment variables and mounted configuration fil
     ```bash
     az group create --name myResourceGroup --location eastus
     ```
-1. Create a configuration file with the filtering node settings locally. A example of the file with minimal settings:
+1. Create a configuration file with the filtering node settings locally. An example of the file with minimal settings:
 
     ```bash
     server {
@@ -203,4 +203,4 @@ To deploy the container with environment variables and mounted configuration fil
     ![Attacks in UI][attacks-in-ui-image]
 1. Optionally, [test][link-docs-check-operation] other aspects of the node functioning.
 
-Details on errors occurred during the container deployment are displayed on the **Containers** → **Logs** tab of the resource details on the Azure portal. If the resource is unavailable, please ensure required filtering node parameters with correct values are passed to the container.
+Details on errors that occurred during the container deployment are displayed on the **Containers** → **Logs** tab of the resource details on the Azure portal. If the resource is unavailable, please ensure required filtering node parameters with correct values are passed to the container.

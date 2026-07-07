@@ -115,7 +115,7 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
         sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.7.aarch64-glibc.sh filtering
         ```        
 
-        The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
+        The `WALLARM_LABELS` variable sets the group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
 
     === "Node token"
         If using the x86_64 version:
@@ -181,7 +181,7 @@ In the new node version the following changes to the [node logging variables](..
       * [Endpoint-targeted filtration rules configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode)
 2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../../admin-en/configure-wallarm-mode.md).
 
-###  the `overlimit_res` attack detection configuration from directives to the rule
+### Transfer the `overlimit_res` attack detection configuration from directives to the rule
 
 --8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-nginx.md"
 
@@ -212,7 +212,7 @@ server {
 
 ### Update the Wallarm blocking page
 
-In new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.
+In the new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.
 
 If the page `&/usr/share/nginx/html/wallarm_blocked.html` was configured to be returned in response to blocked requests, [copy and customize](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
 
@@ -247,16 +247,16 @@ To test the new node operation:
 
 Update targets of your load balancer to send traffic to the Wallarm instance. For details, please refer to the documentation on your load balancer.
 
-Before full redirecting of the traffic to the new node, it is recommended to first redirect it partially and check that the new node behaves as expected.
+Before fully redirecting the traffic to the new node, it is recommended to first redirect it partially and check that the new node behaves as expected.
 
 ## Step 14: Remove old node
 
-1. Delete old node in Wallarm Console → **Nodes** by selecting your node and clicking **Delete**.
+1. Delete the old node in Wallarm Console → **Nodes** by selecting your node and clicking **Delete**.
 1. Confirm the action.
     
     When the node is deleted from Cloud, it will stop filtration of requests to your applications. Deleting the filtering node cannot be undone. The node will be deleted from the list of nodes permanently.
 
-1. Delete machine with the old node or just clean it from Wallarm node components:
+1. Delete the machine with the old node or just clean it from Wallarm node components:
 
     === "Debian"
         ```bash

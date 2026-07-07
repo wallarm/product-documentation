@@ -1,4 +1,4 @@
-1. Send the request with test [Path Traversal][ptrav-attack-docs] attack to a protected resource address:
+1. Send the request with a test [Path Traversal][ptrav-attack-docs] attack to a protected resource address:
 
     ```
     curl http://localhost/etc/passwd

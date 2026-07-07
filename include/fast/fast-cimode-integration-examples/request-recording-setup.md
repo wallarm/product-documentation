@@ -1,6 +1,6 @@
 To implement the request recording, apply the following settings to the step of automated application testing:
 
-1. Add the command running FAST Docker container in the `CI_MODE=recording` mode with other required [variables](../ci-mode-recording.md#environment-variables-in-recording-mode) __before__ the command running automated tests. For example:
+1. Add the command running the FAST Docker container in the `CI_MODE=recording` mode with other required [variables](../ci-mode-recording.md#environment-variables-in-recording-mode) __before__ the command running automated tests. For example:
 
     ```
     docker run --name fast -d -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE=recording -e WALLARM_API_HOST=us1.api.wallarm.com -e ALLOWED_HOSTS=app-test -p 8080:8080 --network my-network --rm wallarm/fast

@@ -5,4 +5,4 @@ To stop sending reports and notifications temporarily, you can disable the integ
 
 To re-enable sending reports and notifications, open the disabled integration and click **Enable**.
 
-Disabling the integration is the system event. If you receive system notifications, messages about disabled integration will be sent to the [configured system](integrations-intro.md#integration-types).
+Disabling the integration is a system event. If you receive system notifications, messages about the disabled integration will be sent to the [configured system](integrations-intro.md#integration-types).

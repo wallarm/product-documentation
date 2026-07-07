@@ -44,7 +44,7 @@ Additionally, the solution enables response mirror parsing, providing Wallarm fe
 
 ## Step 1: Prepare Wallarm token
 
-To install node, you will need a token for registering the node in the Wallarm Cloud. To prepare a token:
+To install the node, you will need a token for registering the node in the Wallarm Cloud. To prepare a token:
 
 1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
 1. Find or create API token with the `Node deployment/Deployment` usage type.
@@ -269,7 +269,7 @@ To install the Wallarm node for TCP traffic mirror analysis, run the following c
     sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.25.3.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture-v2 --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
     ```
 
-* The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
+* The `WALLARM_LABELS` variable sets the group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
 * `<API_TOKEN>` specifies the generated API token for the `Node deployment/Deployment` usage type.
 * `<PATH_TO_CONFIG>` specifies the path to the configuration file prepared before.
 
@@ -307,7 +307,7 @@ For additional debugging, set the [`log.level`](../../native-node/all-in-one-con
 
 ## Installer launch options
 
-* As soon as you have the all-in one script downloaded, you can get **help** on it with:
+* As soon as you have the all-in-one script downloaded, you can get **help** on it with:
 
     === "x86_64 version"
         ```

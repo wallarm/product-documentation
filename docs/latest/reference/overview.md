@@ -2,7 +2,7 @@
 
 This section provides reference materials, technical specifications, and resources for the Wallarm platform.
 
-## What's Included
+## What Is Included
 
 * **API Reference**
     * [Overview](../api/overview.md) - Introduction to the Wallarm API

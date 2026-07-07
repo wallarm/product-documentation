@@ -1,4 +1,4 @@
-To check the NGINX‑Wallarm and separate postanalytics modules interaction, you can send the request with test attack to the address of the protected application:
+To check the NGINX‑Wallarm and separate postanalytics modules interaction, you can send a request with a test attack to the address of the protected application:
 
 ```bash
 curl http://localhost/etc/passwd
@@ -16,14 +16,14 @@ If the attack was not uploaded to the Cloud, please check that there are no erro
     sudo cat /opt/wallarm/var/log/wallarm/tarantool-out.log
     ```
 
-    If there is the record like `SystemError binary: failed to bind: Cannot assign requested address`, make sure that the server accepts connection on specified address and port.
+    If there is the record like `SystemError binary: failed to bind: Cannot assign requested address`, make sure that the server accepts connections on the specified address and port.
 * On the server with the NGINX‑Wallarm module, analyze the NGINX logs:
 
     ```bash
     sudo cat /var/log/nginx/error.log
     ```
 
-    If there is the record like `[error] wallarm: <address> connect() failed`, make sure that the address of separate postanalytics module is specified correctly in the NGINX‑Wallarm module configuration files and separate postanalytics server accepts connection on specified address and port.
+    If there is the record like `[error] wallarm: <address> connect() failed`, make sure that the address of the separate postanalytics module is specified correctly in the NGINX‑Wallarm module configuration files and the separate postanalytics server accepts connections on the specified address and port.
 * On the server with the NGINX‑Wallarm module, get the statistics on processed requests using the command below and make sure that the value of `tnt_errors` is 0
 
     ```bash

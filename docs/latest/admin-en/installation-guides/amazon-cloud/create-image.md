@@ -41,13 +41,13 @@ Before creating an AMI you need to perform an initial configuration of a single 
 2.  [Connect][link-cloud-connect-guide] the filtering node to the Wallarm Cloud.
 
     !!! warning "Use a token to connect to the Wallarm Cloud"
-        Please note that you need to connect the filtering node to the Wallarm Cloud using a token. Multiple filtering nodes are allowed to connect to the Wallarm Cloud using the same token. 
+        Note that you need to connect the filtering node to the Wallarm Cloud using a token. Multiple filtering nodes are allowed to connect to the Wallarm Cloud using the same token. 
         
         Thus, upon filtering nodes auto scaling, you will not need to manually connect each of the filtering nodes to the Wallarm Cloud.
 
 3.  [Configure][link-docs-reverse-proxy-setup] the filtering node to act as a reverse proxy for your applications and APIs.
 
-4.  [Make sure][link-docs-check-operation] that the filtering node is configured correctly and protects your appclications and APIs against malicious requests.
+4.  [Make sure][link-docs-check-operation] that the filtering node is configured correctly and protects your applications and APIs against malicious requests.
 
 After you have finished configuring the filtering node, turn the virtual machine off by completing the following actions:
 

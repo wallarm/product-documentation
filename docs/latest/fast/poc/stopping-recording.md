@@ -22,6 +22,6 @@
 
 Stop the baseline requests recording process via API by following the steps described [here][doc-stop-recording].
 
-The process of testing the target application against the vulnerabilities could last a long time after the recording process was stopped. Use information from [this document][doc-waiting-for-tests] to determine if the FAST security tests are completed.
+The process of testing the target application against vulnerabilities could last a long time after the recording process was stopped. Use information from [this document][doc-waiting-for-tests] to determine if the FAST security tests are completed.
 
  You could refer back to the [“CI/CD Workflow with FAST”][doc-integration-overview] document if necessary.

@@ -20,7 +20,7 @@ http {
 * `keepalive` value must not be lower than the number of the wstore servers.
 * The `# wallarm_wstore_upstream wallarm_wstore;` string is commented by default - please delete `#`.
 
-Once the configuration file changed, restart NGINX/NGINX Plus on the NGINX-Wallarm module server:
+Once the configuration file is changed, restart NGINX/NGINX Plus on the NGINX-Wallarm module server:
 
 === "Debian"
     ```bash

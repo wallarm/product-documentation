@@ -1,7 +1,7 @@
 To implement the security testing, add the corresponding separate step to your workflow following these instructions:
 
 1. If the test application is not running, add the command to run the application.
-2. Add the command running FAST Docker container in the `CI_MODE=testing` mode with other required [variables](../ci-mode-testing.md#environment-variables-in-testing-mode) __after__ the command running the application.
+2. Add the command running the FAST Docker container in the `CI_MODE=testing` mode with other required [variables](../ci-mode-testing.md#environment-variables-in-testing-mode) __after__ the command running the application.
 
     !!! info "Using the recorded set of baseline requests"
         If the set of baseline requests was recorded in another pipeline, specify the record ID in the [TEST_RECORD_ID][fast-ci-mode-test] variable. Otherwise, the last recorded set will be used.

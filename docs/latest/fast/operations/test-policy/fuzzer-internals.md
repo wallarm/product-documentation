@@ -51,9 +51,9 @@ All detected bytes are provided in the anomaly description:
     * If the value is longer than 250 bytes: initially the first 250 bytes of the value will be replaced by 250 bytes of the payload, then the first 250 bytes will be replaced by 5 bytes of the payload.
     * If the value is shorter than 250 bytes: initially the value will be fully replaced by 250 bytes of the payload, then the value will be fully replaced by 5 bytes of the payload.
 
-    Suppose that the 5 bytes `ABCDE` payload replaced the first 250 bytes of the long point value `_250-bytes-long-head_qwerty` and caused an anomaly. In other words, test request with the point value `ABCDEqwerty` caused an anomaly.
+    Suppose that the 5 bytes `ABCDE` payload replaced the first 250 bytes of the long point value `_250-bytes-long-head_qwerty` and caused an anomaly. In other words, a test request with the point value `ABCDEqwerty` caused an anomaly.
 
-    In this case the fuzzer will create 5 additional requests to check  each byte with the following point values:
+    In this case the fuzzer will create 5 additional requests to check each byte with the following point values:
 
     * `Aqwerty`
     * `Bqwerty`
@@ -65,4 +65,4 @@ All detected bytes are provided in the anomaly description:
 
  Next, you can get information about the [fuzzing configuration][doc-fuzzer-configuration] and the description of rules that define whether the anomaly was found.
 
-The FAST fuzzer processes one allowed point per iteration (*fuzzing*). Depending on [fuzzing stopping rules][link-stop-fuzzing-section], one or more points will be processed consistently.
+The FAST fuzzer processes one allowed point per iteration (*fuzzing*). Depending on [fuzzing stopping rules][link-stop-fuzzing-section], one or more points will be processed consecutively.

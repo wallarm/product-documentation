@@ -27,7 +27,7 @@ send:
     ...
 ```
 
-The `send` section in the extension YAML file contains one or more parameter set. Each parameter is specified as a `<key: value>` pair. A given parameter set describes a single HTTP request to be sent as a test request. The following parameters are part of the set:
+The `send` section in the extension YAML file contains one or more parameter sets. Each parameter is specified as a `<key: value>` pair. A given parameter set describes a single HTTP request to be sent as a test request. The following parameters are part of the set:
 
 * `method`: the HTTP method to be used by the request.
 

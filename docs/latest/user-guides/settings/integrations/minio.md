@@ -1,6 +1,6 @@
 # Exporting Malicious Hits to MinIO
 
-[MinIO](https://www.min.io/) is a high-performance, S3-compatible object storage system. It is commonly used for data archiving, backups, and application data storage where full control and scalability are required. You can set up Wallarm to send files with the information about detected hits to a MinIO S3-compatible bucket. Information will be sent in the files of JSON, NDJSON or OCSF format each 10 minutes.
+[MinIO](https://www.min.io/) is a high-performance, S3-compatible object storage system. It is commonly used for data archiving, backups, and application data storage where full control and scalability are required. You can set up Wallarm to send files with the information about detected hits to a MinIO S3-compatible bucket. Information will be sent in JSON, NDJSON or OCSF files every 10 minutes.
 
 ## Data format
 

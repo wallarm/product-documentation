@@ -23,11 +23,11 @@ This page lists the level of inspection AI Hypervisor performs for each supporte
 | Perplexity | ✓ | ✓ | ✓ | — |
 | DeepSeek | ✓ | ✓ | ✓ | — |
 | Self-hosted (Ollama, vLLM, llama.cpp, TGI) | ✓ | ✓ | ✓ | — |
-| Other (any unrecognised endpoint) | ✓ | Limited: request body recorded, response parsing best-effort | ✓ on detected fields | — |
+| Other (any unrecognized endpoint) | ✓ | Limited: request body recorded, response parsing best-effort | ✓ on detected fields | — |
 
 Columns:
 
-* **Discovery.** AI Hypervisor recognises the provider by request signature (host, path, headers, content shape) and classifies the asset in [Registry](registry.md).
+* **Discovery.** AI Hypervisor recognizes the provider by request signature (host, path, headers, content shape) and classifies the asset in [Registry](registry.md).
 * **Per-call inspection.** Full parsing of prompt, response, model name, and token counts. Available for providers whose API schema is built in. Other providers fall back to "limited" mode where the request body is captured as-is.
 * **PII detection.** Scans prompt and response fields for the platform's PII patterns, regardless of parsing depth.
 * **Spend tracking.** Per-call cost attribution. Currently AWS Bedrock only; Bedrock exposes per-invocation cost in response metadata.
@@ -93,4 +93,4 @@ Provider detection is a runtime classification, not a configuration list. The HI
 2. The request signature (path, headers, content type, body schema) is matched against the provider's API patterns.
 3. The result is recorded as asset class `LLM` with a `provider` subtype in [Registry](registry.md).
 
-When a new provider domain appears that AI Hypervisor does not recognise, it is classified as `unsanctioned` shadow AI and surfaces in [Findings](findings.md) under the Shadow risk column. Promote it to `tolerated` or `sanctioned` from [Registry](registry.md) once you have decided on its governance state.
+When a new provider domain appears that AI Hypervisor does not recognize, it is classified as `unsanctioned` shadow AI and surfaces in [Findings](findings.md) under the Shadow risk column. Promote it to `tolerated` or `sanctioned` from [Registry](registry.md) once you have decided on its governance state.

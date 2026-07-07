@@ -44,7 +44,7 @@ When the filtering node is used to process requests, incoming traffic sequential
 !!! warning "Selecting the module to install"
     The Wallarm module installation and connection procedures depend on the NGINX installation method you are using.
 
-The Wallarm module for NGINX can be connected by one of the following installation methods (links to instructions for each of the installation options are listed in the parenthesis):
+The Wallarm module for NGINX can be connected by one of the following installation methods (links to instructions for each of the installation options are listed in parentheses):
 
 ![Module for NGINX Installation Options][img-nginx-options]
 

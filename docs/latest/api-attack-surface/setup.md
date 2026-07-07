@@ -10,22 +10,22 @@ This article describes how to enable and configure [API Attack Surface Managemen
 
 If besides Wallarm, you use additional facilities (software or hardware) to automatically filter and block traffic, it is recommended that you [configure an allowlist](../admin-en/scanner-addresses.md) that includes the IP addresses for API Attack Surface Management.
 
-This will allow Wallarm components, including API Attack Surface Management, to seamlessly scan your resources for vulnerabilities.
+This will allow Wallarm components, including API Attack Surface Management, to scan your resources for vulnerabilities.
 
 ## Enabling
 
-To use AASM, the Wallarm's [API Attack Surface](../about-wallarm/subscription-plans.md#api-attack-surface) subscription plan should be active for your company. To activate, do one of the following:
+To use AASM, Wallarm's [API Attack Surface](../about-wallarm/subscription-plans.md#api-attack-surface) subscription plan should be active for your company. To activate, do one of the following:
 
-* If you do not have Wallarm account yet, do one of the following:
+* If you do not have a Wallarm account yet, do one of the following:
 
-    * [Sing up](../quickstart/getting-started.md#security-edge-free-tier) to Wallarm and select to activate AASM during account creation.
+    * [Sign up](../quickstart/getting-started.md#security-edge-free-tier) to Wallarm and select to activate AASM during account creation.
     * Get pricing information and activate AASM on the Wallarm's official site [here](https://www.wallarm.com/product/aasm).
 
-    Both of this activates the Core (freemium) version, and scanning of the used email's domain starts immediately. After activation, you can [add additional domains](setup.md) to the scope.
+    Both of these activate the Core (freemium) version, and scanning of the used email's domain starts immediately. After activation, you can [add additional domains](setup.md) to the scope.
 
-    You can continue using the Core version for as long as you need, provided that Enterprise features are not necessary for your use. See differences of different versions [here](https://www.wallarm.com/product/aasm-pricing).
+    You can continue using the Core version for as long as you need, provided that Enterprise features are not necessary for your use. See the differences between the versions [here](https://www.wallarm.com/product/aasm-pricing).
 
-* If you already have Wallarm account, contact [sales@wallarm.com](mailto:sales@wallarm.com).
+* If you already have a Wallarm account, contact [sales@wallarm.com](mailto:sales@wallarm.com).
 
 ## Domains and hosts
 
@@ -36,7 +36,7 @@ To configure [API Attack Surface Management](overview.md) to detect hosts under 
 1. In Wallarm Console, proceed to **AASM** → **API Attack Surface** → **Configure** → **Domains and hosts**.
 1. Add your domains to the scope and check the scanning status.
 
-    For each newly added domain, Wallarm will immediately start scanning for data selected in [**Scan configuration**](#scan-configuration). If necessary, you can stop scan in progress, this will erase all the results.
+    For each newly added domain, Wallarm will immediately start scanning for data selected in [**Scan configuration**](#scan-configuration). If necessary, you can stop the scan in progress; this will erase all the results.
 
 1. For the added domains, hosts are detected automatically. If necessary, you can add more hosts manually: click **Add host** and paste hosts separated by comma, semicolon, space or new line.
 1. Click the domain to see details on its found and added hosts.
@@ -161,7 +161,7 @@ After discovering subdomains, AASM validates them for wildcards to ensure the ac
 
 **Subdomain discovery enabling/disabling**
 
-In some cases that could be optimal to disable subdomain discovery (to scan `example.com` but not to scan `app1.example.com`):
+In some cases it could be optimal to disable subdomain discovery (to scan `example.com` but not to scan `app1.example.com`):
 
 * You are not the owner of the subdomain (it may be owned by a subsidiary company or branch company)
 * All subdomains are wildcards (when any subdomain with any random name exists), infinite number of subdomains
@@ -172,11 +172,11 @@ When subdomain discovery is enabled in your configuration (**Scan configuration*
 1. Go to the **Domains and hosts** tab.
 1. Turn off/on the **With subdomains** option for your domains.
 
-    Note that global option has priority - when disabled, subdomains are not searched anywhere. When globally enabled, per-domain options allow making exceptions.
+    Note that the global option has priority - when disabled, subdomains are not searched anywhere. When globally enabled, per-domain options allow making exceptions.
 
 ### RPS limit
 
-To avoid overloading servers, you can set how many requests can API Attack Surface Management send per time when scanning your domains. The requests per second (RPS) limits can be set for:
+To avoid overloading servers, you can set how many requests API Attack Surface Management can send per time period when scanning your domains. The requests per second (RPS) limits can be set for:
 
 * **All domains combined**: at any moment during the scan, AASM will send no more than 100 requests per second across all resources.
 * **Each domain separately**: AASM will not exceed the RPS value for each domain (and its subdomains), for example, if set to 100 RPS:
@@ -185,9 +185,9 @@ To avoid overloading servers, you can set how many requests can API Attack Surfa
     * `domain-b.com` (and its subdomains) are scanned at up to 100 RPS
     * If `sub.domain-a.com` and `sub.domain-b.com` resolve to the same IP address, that IP could receive up to 200 RPS total
 
-* **Each IP address**: AASM will not exceed the RPS value for each IP address. Helps preventing overloading a host when multiple subdomains resolve to the same IP address, for example, if set to 100 RPS: 
+* **Each IP address**: AASM will not exceed the RPS value for each IP address. Helps prevent overloading a host when multiple subdomains resolve to the same IP address, for example, if set to 100 RPS: 
 
-    * If sub.domain-a.com and sub.domain-b.com resoles to the same IP address, this IP will be scanned with a rate not exceeding 100 RPS.
+    * If sub.domain-a.com and sub.domain-b.com resolve to the same IP address, this IP will be scanned with a rate not exceeding 100 RPS.
 
 To set AASM's RPS limit:
 
@@ -202,7 +202,7 @@ To set AASM's RPS limit:
 
 ### Host retention policy
 
-To make sure AASM's data is always up-to-date, you can set AASM to automatically delete retired hosts after specified period of time and number of rescans. By default, this feature is disabled. If you enable it, set additionally what to do with the security issues detected for the hosts being deleted: keep them as is (default) or delete, mark as false or close.
+To make sure AASM's data is always up-to-date, you can set AASM to automatically delete retired hosts after a specified period of time and number of rescans. By default, this feature is disabled. If you enable it, set additionally what to do with the security issues detected for the hosts being deleted: keep them as is (default) or delete, mark as false or close.
 
 ![AASM - host retention policy](../images/api-attack-surface/aasm-host-retention.png)
 
@@ -210,14 +210,14 @@ Note that only security issues detected by AASM itself are affected by host rete
 
 ## Auto rescan
 
-When auto rescan is enabled, previously added domains and IP addresses are automatically re-scanned once every 7 days - new hosts are added automatically, previously listed but not found during re-scan are staying in the list.
+When auto rescan is enabled, previously added domains and IP addresses are automatically re-scanned once every 7 days - new hosts are added automatically, and hosts previously listed but not found during re-scan remain in the list.
 
 To configure auto rescan:
 
 1. In Wallarm Console, proceed to **AASM** → **API Attack Surface** → **Configure** → **Scan configuration** and enable the **Auto rescan** option.
 1. At the **Domains and hosts** tab, select domains to be included or excluded from auto rescan.
 
-    Note that global option has priority - when disabled, nothing is auto re-scanned. The per-domain options allow excluding some domains from auto rescan.
+    Note that the global option has priority - when disabled, nothing is auto re-scanned. The per-domain options allow excluding some domains from auto rescan.
 
 1. At the **IP addresses & Network ranges** tab, auto rescan can be toggled per entry individually.
 
@@ -227,7 +227,7 @@ To configure auto rescan:
 
 You can start scanning for any domain manually at **AASM** → **API Attack Surface** → **Configure** → **Domains and hosts** by clicking the **Scan now** button. Similarly, you can trigger a manual scan for any IP address or network range at the **IP addresses & Network ranges** tab.
 
-If necessary, you can stop scan in progress, this will erase all the results.
+If necessary, you can stop the scan in progress; this will erase all the results.
 
 You can also rescan an individual host or IP address from the main **API Attack Surface** page by selecting **Rescan host** from the host menu.
 
@@ -249,7 +249,7 @@ Navigate back from configuration dialog to the main **API Attack Surface** scree
 
 ## Notifications
 
-You automatically receive notifications to your personal email (the one you use to log in) about discovered hosts and security issues in a **Weekly AASM statistics** - information about hosts, APIs, and statistics for security issues discovered for your configured domains within last week.
+You automatically receive notifications to your personal email (the one you use to log in) about discovered hosts and security issues in a **Weekly AASM statistics** - information about hosts, APIs, and statistics for security issues discovered for your configured domains within the last week.
 
 The notifications are enabled by default. You can unsubscribe at any moment and configure any additional emails to get all or some of these notifications in Wallarm Console → **Configuration** → **Integrations** → **Email and messengers** → **Personal email** (your email) or **Email report** (extra emails) as described [here][link-integrations-email].
 

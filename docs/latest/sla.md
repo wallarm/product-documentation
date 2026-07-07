@@ -34,7 +34,7 @@ The status updates arrive in form of comments to the raised service request at [
 
 ## Normal functioning characteristics
 
-The availability and speed of Wallarm's services and [sharing of responsibility](about-wallarm/shared-responsibility.md) strongly depends on multiple factors related to specific client context and varies from client to client. These factors include but not limited to:
+The availability and speed of Wallarm's services and [sharing of responsibility](about-wallarm/shared-responsibility.md) strongly depend on multiple factors related to specific client context and vary from client to client. These factors include but are not limited to:
 
 * Client's network infrastructure, configuration and connectivity
 * Selected Wallarm [deployment form](about-wallarm/overview.md#where-wallarm-works)
@@ -42,7 +42,7 @@ The availability and speed of Wallarm's services and [sharing of responsibility]
 * Enabled Wallarm [components and functions](about-wallarm/overview.md)
 * Traffic volume, characteristics, and intensity
 
-Due to said above, normal functioning characteristics are not described in this SLA in particular numbers.
+Due to the above, normal functioning characteristics are not described in this SLA in particular numbers.
 
 ## Further details
 

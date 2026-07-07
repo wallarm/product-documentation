@@ -22,7 +22,7 @@
 
 # Event Search and Filters
 
-Wallarm provides convenient methods for searching detected events (attacks and incidents). In the **Attacks** and **Incidents** sections of Wallarm Console, the following search methods available:
+Wallarm provides convenient methods for searching detected events (attacks and incidents). In the **Attacks** and **Incidents** sections of Wallarm Console, the following search methods are available:
 
 * **Filters** to select filtering criteria
 * **Search field** to input search queries with attributes and modifiers similar to human language
@@ -116,8 +116,8 @@ Specify in the search string:
 * <a name="spec-violation-tags"></a>`api_specification`: to search for all [specification-based](../../api-specification-enforcement/overview.md) violations. Also, specific violations can be searched by:
     * `undefined_endpoint`: attempt to request the endpoint not presented in your specification
     * `undefined_parameter`: requests marked as attacks because they include parameters not presented for this endpoint in your specification
-    * `missing_parameter`: requests marked as attacks because they does not include the parameter or its value that are marked as required in your specification
-    * `invalid_parameter_value`: requests marked as attacks because some of their parameter's value in not in correspondence with its type/format defined by your specification
+    * `missing_parameter`: requests marked as attacks because they do not include the parameter or its value that are marked as required in your specification
+    * `invalid_parameter_value`: requests marked as attacks because some of their parameter's value is not in correspondence with its type/format defined by your specification
     * `missing_auth`: requests marked as attacks because they do not contain the required information about the authentication method
     * `invalid_request`: requests marked as attacks because they contain an invalid JSON
     * auxiliary search tag - `processing_overlimit`: API Specification Enforcement has limits applied to comparing requests against specifications - when exceeding these limits, it stops processing the request and creates the event informing about that
@@ -262,7 +262,7 @@ It is possible to search by the total number of IP addresses that are related to
 
 ### Search by the data center the IP address belongs to
 
-To search by the data center, to which the IP address originated the attacks belongs, use the `source:` prefix.
+To search by the data center to which the IP address that originated the attacks belongs, use the `source:` prefix.
 
 This attribute value can be:
 
@@ -286,9 +286,9 @@ This attribute value can be:
 
 ### Search by the country or region in which the IP address is registered
 
-To search by the country or the region, in which the IP address originated the attacks is registered, use the `country:` prefix.
+To search by the country or region in which the IP address that originated the attacks is registered, use the `country:` prefix.
 
-The country/region name should be passed to the attribute in the format corresponding to the standard [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) in uppercase or lowercase letters. For example: `country:CN` or `country:cn` for attacks originated from China.
+The country/region name should be passed to the attribute in the format corresponding to the standard [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) in uppercase or lowercase letters. For example: `country:CN` or `country:cn` for attacks originating from China.
 
 ### Search for events originating from well-known malicious IPs
 
@@ -337,7 +337,7 @@ For example, you can search for attacks that have more than 100 hits: `attacks N
 
 To search by domain, use the `d:` or `domain:` prefix.
 
-Any string, that may be a domain of the second or a higher level can be specified without a prefix. Any string can be specified with a prefix. 
+Any string that may be a domain of the second or a higher level can be specified without a prefix. Any string can be specified with a prefix. 
 
 You may use masks within a domain. The symbol `*` replaces any number of characters; the symbol `?` replaces any single character.
 
@@ -363,7 +363,7 @@ Possible attribute values:
 * Name of the aimed parameter.
 
     For example, if you need to find attacks aimed at the `xss` parameter but not at XSS-attacks (for instance, SQL-injection attack having `xss` in the GET-parameter), then specify `attacks sqli p:xss` in the search string.
-* Name of the [parser](../rules/request-processing.md) used by Wallarm node to read the parameter value. The name must be in uppercase.
+* Name of the [parser](../rules/request-processing.md) used by the Wallarm node to read the parameter value. The name must be in uppercase.
 
     For example, `attacks p:*BASE64` to find attacks aimed at any parameter parsed by the base64 parser.
 * Sequence of parameters and parsers.
@@ -387,7 +387,7 @@ To refine an anomaly search, use the following parameters:
 
 Example:
 
-`attacks sqli a:size` will search for all SQL-injection attacks, that have response size anomalies in their requests.
+`attacks sqli a:size` will search for all SQL-injection attacks that have response size anomalies in their requests.
 
 ### Search by request identifier
 

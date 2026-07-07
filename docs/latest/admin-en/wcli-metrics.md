@@ -157,7 +157,7 @@ wallarm_wcli_job_export_period{component="reqexp"} 15608.084553393
 ---
 ### `wallarm_wcli_cloud_connectivity`
 
-Shows whether the Wallarm cloud is responsive.
+Shows whether the Wallarm Cloud is responsive.
 
 !!! info "Metric availability"
     Available only if `WALLARM_WCLI_CLOUD_PROBE_METRICS` environment variable is set to `1`.
@@ -240,7 +240,7 @@ go_feature_extractor_fetching_duration_seconds_bucket{partner_client_uuid="b938a
 ```
 
 ---
-### go_feature_extractor_fetching_request_total`
+### `go_feature_extractor_fetching_request_total`
 
 The total number of requests the `botexp` job fetched from the request storage.
 
@@ -263,7 +263,7 @@ Average time the `botexp` job spent sending batches of bot requests to the Walla
 
 **Type:** Histogram
 
-**Labels:**:
+**Labels:**
 
 * `result` — result of the operation (`success` or `error`)
 
@@ -305,7 +305,7 @@ The total number of interactions between the `botexp` job and the request storag
 
 **Labels:** 
 
-* `type` – interaction type (e.g. ack, put. take)
+* `type` – interaction type (e.g. ack, put, take)
 
 * `partner_client_uuid` - unique identifier for the Wallarm partner/client instance
 
@@ -345,7 +345,7 @@ wallarm_wcli_botexp_tnt_requests 505
 ---
 ### `wallarm_wcli_botexp_tnt_req_errors`
 
-The total number of requests with errors came from the request storage and received by the `botexp` job.
+The total number of requests with errors that came from the request storage and were received by the `botexp` job.
 
 **Type:** Counter
 

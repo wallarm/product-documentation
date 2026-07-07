@@ -21,7 +21,7 @@
      
      To see detailed information, proceed to this [link][link-points].
  
- This phase specifies a payload to be inserted in the particular parameters of a baseline request to create a test requests that are based on this request.
+ This phase specifies a payload to be inserted in the particular parameters of a baseline request to create test requests that are based on this request.
 
 The `generate` section has the following structure:
 
@@ -108,7 +108,7 @@ generate:
 
     * **`STR_MARKER`** — insert a random string into the payload exactly in the position where the `STR_MARKER` is specified. 
         
-        For example, the `STR_MARKER` can be used to check the application for an XXS vulnerability.
+        For example, the `STR_MARKER` can be used to check the application for an XSS vulnerability.
         
         ??? info "Example"
             `'userSTR_MARKER'`
@@ -122,7 +122,7 @@ generate:
     
     * **`DNS_MARKER`** — insert a string containing a random domain (for example, `r4nd0m.wlrm.tl`) into the payload exactly in the position where the `DNS_MARKER` is specified.
         
-        For example, the `DNS_MARKER` can be used to check the application for DNS Out-of-Bound vulnerabilities.
+        For example, the `DNS_MARKER` can be used to check the application for DNS Out-of-Band vulnerabilities.
 
         ??? info "Example"
             `'; ping DNS_MARKER'`

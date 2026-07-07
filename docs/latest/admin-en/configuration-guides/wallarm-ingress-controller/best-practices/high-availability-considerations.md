@@ -6,9 +6,9 @@ This article provides configuration recommendations for the Wallarm Ingress cont
 
 ## Configuration recommendations
 
-The following recommendations are relevant for missing-critical (production) environments.
+The following recommendations are relevant for mission-critical (production) environments.
 
-* Use more than one Ingress controller pod instances. The behavior is controlled using the attribute `controller.replicaCount` in the `values.yaml` file. For example:
+* Use more than one Ingress controller pod instance. The behavior is controlled using the attribute `controller.replicaCount` in the `values.yaml` file. For example:
     ```
     controller:
       replicaCount: 2
@@ -27,7 +27,7 @@ The following recommendations are relevant for missing-critical (production) env
                   - nginx-ingress
             topologyKey: "kubernetes.io/hostname"
     ```
-* In clusters that are subject to unexpected traffic spikes or other conditions that may justify the use of [Kubernetes's horizontal pod autoscaling (HPA)](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) feature it can enabled in the `values.yaml` file using the following example:
+* In clusters that are subject to unexpected traffic spikes or other conditions that may justify the use of [Kubernetes's horizontal pod autoscaling (HPA)](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) feature, it can be enabled in the `values.yaml` file using the following example:
     ```
     controller:
       autoscaling:
@@ -40,7 +40,7 @@ The following recommendations are relevant for missing-critical (production) env
 
 ## Configuration procedure
 
-To set listed configurations, it is recommended to use the option `--set` of the commands `helm install` and `helm upgrade`, for example:
+To set the listed configurations, it is recommended to use the option `--set` of the commands `helm install` and `helm upgrade`, for example:
 
 === "Ingress controller installation"
     ```bash

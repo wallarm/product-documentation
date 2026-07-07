@@ -59,7 +59,7 @@ request with the
 id[user]=01234&id[group]=56789
 ```
 
-body, the Hash filter applied to the `id` parameter from the request body in the form-urlencoded format refers to the following array:
+body, the Hash filter applied to the `id` parameter from the request body in the form-urlencoded format refers to the following hash table:
 
 | Key   | Value    |
 |-------|----------|

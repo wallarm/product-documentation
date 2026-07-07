@@ -45,8 +45,6 @@ description: This document lists software vulnerabilities that FAST detects. Eac
 
 This document lists software vulnerabilities that FAST detects. Each entity in the list has the Wallarm code that corresponds to this vulnerability. Most vulnerabilities are also accompanied by the [Common Weakness Enumeration (CWE)][link-cwe] codes.
 
-Each entity in the list has the Wallarm code that corresponds to this vulnerability.
-
 ## Vulnerabilities List
 
 ### Anomaly
@@ -92,7 +90,7 @@ You may follow these recommendations:
 
 ####    Description
 
-An intruder can inject an executable code into a user-filled form on a web server vulnerable to SSTI attacks so that code will be parsed and executed by the web server.
+An intruder can inject executable code into a user-filled form on a web server vulnerable to SSTI attacks so that the code will be parsed and executed by the web server.
 
 A successful attack may render a vulnerable web server completely compromised, potentially allowing an intruder to execute arbitrary requests, explore the server's file systems, and, under certain conditions, remotely execute arbitrary code (see [“RCE attack”][anchor-rce] for details), as well as many other things.   
 
@@ -131,18 +129,18 @@ You may follow these recommendations:
 
 ####    Description
 
-A cross-site scripting attack allows an intruder to execute a prepared arbitrary code in a user's browser.
+A cross-site scripting attack allows an intruder to execute prepared arbitrary code in a user's browser.
 
 There are a few XSS attack types:
-* Stored XSS is when a malicious code is pre-embedded in the web application's page.
+* Stored XSS is when malicious code is pre-embedded in the web application's page.
 
-    If the web application is vulnerable to the stored XSS attack, then it is possible for an attacker to inject a malicious code into the web application's HTML page; moreover, this code will persist and be executed by the browser of any user who requests the infected webpage.
+    If the web application is vulnerable to the stored XSS attack, then it is possible for an attacker to inject malicious code into the web application's HTML page; moreover, this code will persist and be executed by the browser of any user who requests the infected webpage.
     
 * Reflected XSS is when an intruder tricks a user into opening a specially crafted link.      
 
 * DOM-based XSS is when a JavaScript code snippet built into the web application's page parses the input and executes it as a JavaScript command due to errors in this code snippet.
 
-Exploiting any of the vulnerabilities listed above leads to the execution of an arbitrary JavaScript code. Provided that the XSS attack was successful, an intruder may steal a user's session or credentials, make requests on behalf of the user, and perform other malicious actions. 
+Exploiting any of the vulnerabilities listed above leads to the execution of arbitrary JavaScript code. Provided that the XSS attack was successful, an intruder may steal a user's session or credentials, make requests on behalf of the user, and perform other malicious actions. 
 
 This class of vulnerabilities occurs due to the incorrect validation and parsing of user input.
 
@@ -152,7 +150,7 @@ This class of vulnerabilities occurs due to the incorrect validation and parsing
 You may follow these recommendations:
 * Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
 * While forming the web application's pages, sanitize and escape any entities that are formed dynamically.
-* Apply the recommendations from the [OWASP XXS Prevention Cheat Sheet][link-owasp-xss-cheatsheet].
+* Apply the recommendations from the [OWASP XSS Prevention Cheat Sheet][link-owasp-xss-cheatsheet].
 
 
 ### Insecure Direct Object References (IDOR)
@@ -292,7 +290,7 @@ You may follow these recommendations:
 
 ####    Description
 
-Vulnerability to this attack occurs due to insufficient filtering of user input. A NoSQL injection attack is performed by injecting a specially crafted query to a NoSQL database.
+Vulnerability to this attack occurs due to insufficient filtering of user input. A NoSQL injection attack is performed by injecting a specially crafted query into a NoSQL database.
 
 ####    Remediation
 
@@ -324,7 +322,7 @@ You may follow these recommendations:
 
 ####    Description
 
-Vulnerability to this attack occurs due to insufficient filtration of user input. [An SQL injection attack](https://www.wallarm.com/what/structured-query-language-injection-sqli-part-1) is performed by injecting a specially crafted query to an SQL database.
+Vulnerability to this attack occurs due to insufficient filtration of user input. [An SQL injection attack](https://www.wallarm.com/what/structured-query-language-injection-sqli-part-1) is performed by injecting a specially crafted query into an SQL database.
 
 An SQL injection attack allows an intruder to inject arbitrary SQL code into an SQL query. This potentially leads to the attacker being granted access to read and modify confidential data as well as to DBMS administrator rights. 
 

@@ -1,6 +1,6 @@
 # Sensitive Data Detection <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
-API Discovery detects and highlights sensitive data consumed and carried by your APIs and MCP primitives, which allows applying encryption, tokenization, or other security controls to protect it and prevent data breaches and transmitting sensitive data across insecure channels or to unauthorized systems.
+API Discovery detects and highlights sensitive data consumed and carried by your APIs and MCP primitives, which allows applying encryption, tokenization, or other security controls to protect it and prevent data breaches and the transmission of sensitive data across insecure channels or to unauthorized systems.
 
 ![API Discovery - sensitive data](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-sensitive-data.png)
 
@@ -51,15 +51,15 @@ Wallarm looks at the words around the suspected sensitive data that match the pa
 For example, on the picture above, the sensitive data will be detected:
 
 * Immediately if the match to `JWT` or `AWS access key ID` pattern is found.
-* If the match to `AWS key (weak)` is found, by itself it will not result "yes" (score of `0.1` is below threshold of `0.3`).
+* If the match to `AWS key (weak)` is found, by itself it will not result in "yes" (score of `0.1` is below threshold of `0.3`).
 * But with the context words `access` (`0.1`) and `api` (`0.1`) the sum becomes `0.3` and sensitive data is detected.
 * If we mark `auth` as mandatory, the situation changes: in absence of `auth`, scores of presented `access` and `api` will be ignored and cannot boost the pattern's score.
 
 **Context word only-based detection**
 
-If you specify context words without patterns, Wallarm decides on sensitive data presence based on the presence of the words. The more the confidence scores sum, the more likely the parameter will be marked as having your described sensitive data.
+If you specify context words without patterns, Wallarm decides on sensitive data presence based on the presence of the words. The higher the sum of the confidence scores, the more likely the parameter will be marked as having your described sensitive data.
 
-For some context-only searches, it is necessary to declare some words as **mandatory**: if the mandatory word is not presented in the value's context, the parameter does not contain sensitive data.
+For some context-only searches, it is necessary to declare some words as **mandatory**: if the mandatory word is not present in the value's context, the parameter does not contain sensitive data.
 
 Example: personal_name
 

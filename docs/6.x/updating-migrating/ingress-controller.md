@@ -9,9 +9,9 @@
 
 # Upgrading NGINX Ingress controller with integrated Wallarm modules
 
-These instructions describe the steps to upgrade deployed Wallarm NGINX-based Ingress Controller to the latest 6.x.
+These instructions describe the steps to upgrade the deployed Wallarm NGINX-based Ingress Controller to the latest 6.x.
 
-To upgrade the end‑of‑life node (3.6 or lower), please use the [different instructions](older-versions/ingress-controller.md).
+To upgrade the end‑of‑life node (3.6 or lower), use the [different instructions](older-versions/ingress-controller.md).
 
 !!! warning
     The Kubernetes community will [retire the Community Ingress NGINX in March 2026](https://blog.nginx.org/blog/the-ingress-nginx-alternative-open-source-nginx-ingress-controller-for-the-long-term). The Wallarm NGINX Ingress Controller based on this project will be supported through the same date. You can continue using it until then, and it will remain fully functional during the support window.

@@ -39,7 +39,7 @@ FAST node configuration is done via environment variables. The table below holds
 | `WALLARM_API_HOST`   	| The domain name of the Wallarm API server to use. <br>Allowed values: <br>`us1.api.wallarm.com` for use with the US cloud;<br>`api.wallarm.com` for use with the EU cloud.| Yes |
 | `CI_MODE`            	| FAST node's operation mode. <br>Required value: `recording`. | Yes |
 | `TEST_RECORD_NAME`   	| The name of a new test record to create. <br>Default value is in a similar format: “TestRecord Oct 08 12:18 UTC”. | No |
-| `INACTIVITY_TIMEOUT` 	| If no baseline requests arrive to the FAST node within the `INACTIVITY_TIMEOUT` interval, then the recording process is stopped along with the FAST node.<br>Allowed value range: from 1 to 691200 seconds (1 week)<br>Default value: 600 seconds (10 minutes). | No |
+| `INACTIVITY_TIMEOUT` 	| If no baseline requests arrive at the FAST node within the `INACTIVITY_TIMEOUT` interval, then the recording process is stopped along with the FAST node.<br>Allowed value range: from 1 to 691200 seconds (1 week)<br>Default value: 600 seconds (10 minutes). | No |
 | `ALLOWED_HOSTS`       | The FAST node will record those requests that target any host listed in the environment variable. <br>Default value: empty string (all incoming requests will be recorded). See [this][doc-allowed-hosts] document for details.| No |
 | `BUILD_ID` | The identifier of a CI/CD workflow. This identifier allows several FAST nodes to work concurrently using the same cloud FAST node. See [this][doc-concurrent-pipelines] document for details.| No |
 

@@ -302,7 +302,7 @@ If there are no dedicated [pod annotations](pod-annotations.md) for some NGINX s
 
 #### Snippet
 
-Snippets is a convenient way to add one-line changes to the NGINX configuration. For more complex changes, [includes](#include) is a recommended option.
+Snippets are a convenient way to add one-line changes to the NGINX configuration. For more complex changes, [includes](#include) are a recommended option.
 
 To specify custom settings via snippets, use the following per-pod's annotations:
 

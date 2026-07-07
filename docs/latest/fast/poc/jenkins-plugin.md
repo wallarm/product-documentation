@@ -16,13 +16,13 @@
 # Integration of Wallarm FAST Plugin with Jenkins
 
 !!! warning "Compatibility"
-    Please note that the Wallarm FAST plugin only works with Freestyle Jenkins projects.
+    The Wallarm FAST plugin only works with Freestyle Jenkins projects.
     
     If your project is a Pipeline type, then please check out the [example of integration with Jenkins via FAST node][fast-jenkins-cimode].
 
 ## Step 1: Installing Plugin
 
-Install [Wallarm FAST plugin][jenkins-plugin-wallarm-fast] in the Jenkins project using Plugin Manager. There is more detailed information about managing plugins available in [Jenkins official documentation][jenkins-manage-plugin].
+Install the [Wallarm FAST plugin][jenkins-plugin-wallarm-fast] in the Jenkins project using Plugin Manager. More detailed information about managing plugins is available in the [Jenkins official documentation][jenkins-manage-plugin].
 
 ![Installation of Wallarm FAST plugin][jenkins-plugin-install]
 
@@ -49,7 +49,7 @@ If problems have been encountered during installation, then build the plugin man
     Further instructions will require the configured Jenkins workflow to correspond to one of the following points:
 
     * Test automation must be implemented. In this case, the [request recording](#adding-the-step-of-request-recording) and [security testing](#adding-the-step-of-security-testing) steps will be added.
-    * Set of baseline requests must be recorded. In this case, the [security testing](#adding-the-step-of-security-testing) step will be added.
+    * A set of baseline requests must be recorded. In this case, the [security testing](#adding-the-step-of-security-testing) step will be added.
 
 ### Adding the Step of Request Recording
 
@@ -67,12 +67,12 @@ To add the step of request recording, select the `Record baselines` mode on the 
     | `Application host`      | The address of the test application. The value can be an IP address or a domain name. | Yes |
     | `Application port`      | The port of the test application. Default value is 8080. | No |
     | `Fast port`   | The port of FAST node. | Yes |
-    | `Inactivity timeout`    | If no baseline requests arrive to the FAST node within this interval, then the recording process is stopped along with the FAST node.<br>Allowed value range: from 1 second to 1 week.<br>The value must be passed second.<br>Default value: 600 seconds (10 minutes). | No |
+    | `Inactivity timeout`    | If no baseline requests arrive at the FAST node within this interval, then the recording process is stopped along with the FAST node.<br>Allowed value range: from 1 second to 1 week.<br>The value must be passed in seconds.<br>Default value: 600 seconds (10 minutes). | No |
     | `Fast name`             | The name of the FAST node Docker container. | No |
     | `Wallarm version`       | The version of the used FAST node. | No |
     | `Local docker network`  | The Docker network where the FAST node runs. | No |
     | `Local docker ip`       | The IP address that will be assigned to the running FAST node. | No |
-    | `Without sudo`          | Whether to execute the FAST node commands with the rights of the user ran FAST node. By default, commands are executed with the superuser rights (via sudo). |No |
+    | `Without sudo`          | Whether to execute the FAST node commands with the rights of the user who ran the FAST node. By default, commands are executed with the superuser rights (via sudo). |No |
 
 **Example of configured plugin for test recording:**
 
@@ -84,9 +84,9 @@ The FAST plugin will automatically stop request recording when testing is finish
 
 ### Adding the Step of Security Testing
 
-To add the step of security testing, select the `Playback baselines` mode on the **Build** tab and set up variables described below. 
+To add the step of security testing, select the `Playback baselines` mode on the **Build** tab and set up the variables described below. 
 
-Please note that the application must be already started and available for testing **before running security testing**.
+The application must be already started and available for testing **before running security testing**.
 
 !!! warning "Network"
     Before security testing, make sure that the FAST plugin and application are on the same network.
@@ -100,7 +100,7 @@ Please note that the application must be already started and available for testi
     | `Application host`      | The address of the test application. The value can be an IP address or a domain name. | Yes |
     | `Application port`      | The port of the test application. Default value is 8080. | No |
     | `Policy id`   | [Test policy](../operations/test-policy/overview.md) ID.<br> Default value is `0`-`Default Test Policy`. | No |
-    | `TestRecord id`    | Test record ID. Corresponds to [TEST_RECORD_ID](ci-mode-testing.md#environment-variables-in-testing-mode).<br>Deafult value is the last test record created by used FAST node.| No |
+    | `TestRecord id`    | Test record ID. Corresponds to [TEST_RECORD_ID](ci-mode-testing.md#environment-variables-in-testing-mode).<br>Default value is the last test record created by the used FAST node.| No |
     | `TestRun RPS`   | A limit on the number of test requests (*RPS*, *requests per second*) to be sent to the target application.<br>Minimum value: `1`.<br>Maximum value: `500`.<br>Default value: `null` (RPS is unlimited).| No |
     | `TestRun name`   | The name of the test run.<br>By default, the value will be automatically generated from the date of test run creation.| No |
     | `TestRun description`   | The description of the test run.| No |
@@ -111,10 +111,10 @@ Please note that the application must be already started and available for testi
     | `Wallarm version`       | The version of the used FAST node. | No |
     | `Local docker network`  | The Docker network where the FAST node runs. | No |
     | `Local docker ip`       | The IP address that will be assigned to the running FAST node. | No |
-    | `Without sudo`          | Whether to execute the FAST node commands with the rights of the user ran FAST node. By default, commands are executed with the superuser rights (via sudo). |No|
+    | `Without sudo`          | Whether to execute the FAST node commands with the rights of the user who ran the FAST node. By default, commands are executed with the superuser rights (via sudo). |No|
 
     !!! warning "Running FAST node"
-        Please note that if you add to the workflow of both the step of request recording and the step of security testing, then the names of the FAST node Docker containers must be different.
+        If you add both the step of request recording and the step of security testing to the workflow, then the names of the FAST node Docker containers must be different.
 
 **Example of a configured plugin for security testing:**
 
@@ -128,7 +128,7 @@ The result of security testing will be displayed in the Jenkins interface.
 
 ## More Examples
 
-You can find examples of integrating FAST to CircleCI workflow on our [GitHub][fast-examples-github].
+You can find examples of integrating FAST into a CircleCI workflow on our [GitHub][fast-examples-github].
 
 !!! info "Further questions"
     If you have questions related to FAST integration, please [contact us][mail-to-us].

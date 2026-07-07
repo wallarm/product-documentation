@@ -1,6 +1,6 @@
 # Amazon S3
 
-[Amazon S3](https://aws.amazon.com/s3/?nc1=h_ls), or Amazon Simple Storage Service, is a scalable cloud storage service provided by Amazon Web Services (AWS). It is used for a variety of purposes, including data backup, data archiving, content distribution, website hosting, and application data storage. You can set up Wallarm to send files with the information about detected hits to your Amazon S3 bucket. Information will be sent in the files of JSON format each 10 minutes.
+[Amazon S3](https://aws.amazon.com/s3/?nc1=h_ls), or Amazon Simple Storage Service, is a scalable cloud storage service provided by Amazon Web Services (AWS). It is used for a variety of purposes, including data backup, data archiving, content distribution, website hosting, and application data storage. You can set up Wallarm to send files with the information about detected hits to your Amazon S3 bucket. Information will be sent in JSON files every 10 minutes.
 
 Data fields for each hit:
 
@@ -26,8 +26,8 @@ Files will be saved to your S3 bucket using the naming convention `wallarm_hits_
 
 When setting up the integration with Amazon S3, you need to decide which method of authorization you will use:
 
-* **Via role ARN (recommended)** - using roles with external ID option to grant access to resources is [recommended](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html?icmpid=docs_iam_console) by AWS as method increasing the security and preventing "confused deputy" attacks. Wallarm provides such ID unique for your organization account.
-* **Via secret access key** - more common, simpler method, requiring shared [access key](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html) of your AWS IAM user. If you select this method, it is recommended to use access key of a separate IAM user with only permission of writing to the S3 bucket used in integration.
+* **Via role ARN (recommended)** - using roles with external ID option to grant access to resources is [recommended](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html?icmpid=docs_iam_console) by AWS as a method that increases security and prevents "confused deputy" attacks. Wallarm provides such ID unique for your organization account.
+* **Via secret access key** - more common, simpler method, requiring shared [access key](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html) of your AWS IAM user. If you select this method, it is recommended to use the access key of a separate IAM user that has write-only permission to the S3 bucket used in the integration.
 
 To set up an Amazon S3 integration:
 
@@ -45,13 +45,13 @@ To set up an Amazon S3 integration:
         1. Enter an integration name.
         1. Enter the previously copied AWS region code of your S3 bucket.
         1. Enter your S3 bucket name.
-        1. Copy provided Wallarm account ID.
-        1. Copy provided external ID.
+        1. Copy the provided Wallarm account ID.
+        1. Copy the provided external ID.
         1. In AWS UI, initiate creation [new role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html) under IAM → **Access Management** → **Roles**.
         1. Select **AWS account** → **Another AWS Account** as trusted entity type.
         1. Paste Wallarm **Account ID**.
         1. Select **Require external ID** and paste external ID provided by Wallarm.
-        1. Click **Next** and create policy for you role:
+        1. Click **Next** and create a policy for your role:
 
             ```json
             {
@@ -67,7 +67,7 @@ To set up an Amazon S3 integration:
             }
             ```
         1. Complete role creation and copy role's ARN.
-        1. In the Wallarm Console UI, your integration creation dialog, at the **Role ARN** tab,  paste your role's ARN.
+        1. In the Wallarm Console UI, your integration creation dialog, at the **Role ARN** tab, paste your role's ARN.
 
             ![Amazon S3 integration](../../../images/user-guides/settings/integrations/add-amazon-s3-integration.png)
 
@@ -76,7 +76,7 @@ To set up an Amazon S3 integration:
         1. In AWS UI, navigate to S3 → your bucket → **Properties** tab and copy the code of your bucket's **AWS Region**, for example `us-west-1`.
         1. Navigate to IAM → Dashboard → **Manage access keys** → **Access keys** section.
         1. Get ID of access key that you store somewhere or create new/restore lost key as described [here](https://aws.amazon.com/ru/blogs/security/wheres-my-secret-access-key/). Anyway, you will need your active key and its ID.
-        1. In the Wallarm Console UI, Open the **Integrations** section.
+        1. In the Wallarm Console UI, open the **Integrations** section.
         1. Click the **AWS S3** block or click the **Add integration** button and choose **AWS S3**.
         1. Enter an integration name.
         1. Enter the previously copied AWS region code of your S3 bucket.
@@ -87,7 +87,7 @@ To set up an Amazon S3 integration:
 1. Make sure in the **Regular notifications** section, hits in the last 10 minutes are selected to be sent. If not chosen, data will not be sent to S3 bucket.
 1. Click **Test integration** to check configuration correctness, availability of the target system, and the notification format.
 
-    For Amazon S3, integration test sends the JSON file with data into your bucket. Here is the example of the JSON file with the data on hits detected in the last 10 minutes:
+    For Amazon S3, integration test sends the JSON file with data into your bucket. Here is an example of the JSON file with the data on hits detected in the last 10 minutes:
 
     === "JSON Array"
         ```json

@@ -26,7 +26,7 @@ Each finding falls into exactly one of seven risk categories. Same concerns, sam
 
 ### Compliance
 
-Compliance posture against the frameworks your organisation is audited under: SOC 2, ISO 27001, ISO 42001, NIST AI RMF, EU AI Act, GLBA, NYDFS 500. A high compliance risk means at least one control in the framework lacks runtime evidence. Export the gap from [Compliance](compliance.md).
+Compliance posture against the frameworks your organization is audited under: SOC 2, ISO 27001, ISO 42001, NIST AI RMF, EU AI Act, GLBA, NYDFS 500. A high compliance risk means at least one control in the framework lacks runtime evidence. Export the gap from [Compliance](compliance.md).
 
 ### CVE
 
@@ -50,7 +50,7 @@ Findings group by **asset domain**: the class of entity AI Hypervisor observed. 
 
 ### Agents
 
-The AI agents your teams run. Anything that takes a goal, decides what to do, and calls tools or APIs to get it done. This includes off-the-shelf agent frameworks and your own bespoke orchestrators. Risks here usually mean an agent is exposed without authorisation, is mishandling PII, or is calling tools outside its sanctioned scope.
+The AI agents your teams run. Anything that takes a goal, decides what to do, and calls tools or APIs to get it done. This includes off-the-shelf agent frameworks and your own bespoke orchestrators. Risks here usually mean an agent is exposed without authorization, is mishandling PII, or is calling tools outside its sanctioned scope.
 
 ### API
 
@@ -62,11 +62,11 @@ Data sources your agents read from and write to: **databases** (relational, docu
 
 ### LLM
 
-The language models in use: externally-hosted commercial models, cloud-provider-hosted models, and locally-served open-weight models. Plus the inference traffic that flows to them. Risks include unsanctioned providers, missing prompt-injection defence, and PII reaching external endpoints.
+The language models in use: externally-hosted commercial models, cloud-provider-hosted models, and locally-served open-weight models. Plus the inference traffic that flows to them. Risks include unsanctioned providers, missing prompt-injection defense, and PII reaching external endpoints.
 
 ### MCP
 
-MCP (Model Context Protocol) servers and the tools they expose. Each MCP server is a structured connector your agents can call. Risks include over-permissive tool catalogues, unapproved servers, and dangerous tool combinations.
+MCP (Model Context Protocol) servers and the tools they expose. Each MCP server is a structured connector your agents can call. Risks include over-permissive tool catalogs, unapproved servers, and dangerous tool combinations.
 
 ### Runtime
 
@@ -74,7 +74,7 @@ Container, sandbox, and process-level concerns: the environment your agents and 
 
 ### Supply
 
-Supply chain: the third-party code your AI stack depends on. Packages (with their version, ecosystem, licence, and CVEs), the libraries they pull in, and AI models loaded via deserialisable formats (pickle, torch) where arbitrary-code execution at load time is a risk. Findings here surface CVE-affected package versions and unsafe-pickle model loading. See [Supply Chain](supply-chain.md) for the per-component inventory.
+Supply chain: the third-party code your AI stack depends on. Packages (with their version, ecosystem, license, and CVEs), the libraries they pull in, and AI models loaded via deserializable formats (pickle, torch) where arbitrary-code execution at load time is a risk. Findings here surface CVE-affected package versions and unsafe-pickle model loading. See [Supply Chain](supply-chain.md) for the per-component inventory.
 
 ## Stack layers
 
@@ -87,7 +87,7 @@ Findings also group by **stack layer**: a vertical slice of the platform that ow
 * **Inference.** The model itself, commercial or self-hosted. Data-privacy concerns (zero retention, residency), model switching, fallback.
 * **Protocol.** MCP servers and tools: tool inventory, parameter visibility, shadow-tool detection.
 * **Connectivity.** External APIs and SaaS the agents call, plus any gateway or integration middleware in front of them.
-* **Knowledge.** The memory: internal databases, vector stores, S3. Row-level security, RAG poisoning defence, sensitive-document handling.
+* **Knowledge.** The memory: internal databases, vector stores, S3. Row-level security, RAG poisoning defense, sensitive-document handling.
 * **Infrastructure.** The container and the code. Supply-chain scanning, runtime sandboxing, preventing shell access from agent code.
 
 ## Caller mix
@@ -96,7 +96,7 @@ Every observed session also carries a **caller class** that names *who* initiate
 
 * **Human (browser).** Interactive sessions from a real user in a web browser.
 * **Human (CLI).** Operators using shell scripts, `curl`, internal tooling.
-* **AI agent (known).** Agents whose fingerprint AI Hypervisor recognises.
+* **AI agent (known).** Agents whose fingerprint AI Hypervisor recognizes.
 * **AI agent (suspected).** Traffic shaped like agent activity but without a confirmed fingerprint.
 * **Service internal.** Service-to-service calls inside your environment.
 * **Infra probe.** Health checks, monitors, Kubernetes liveness probes.
@@ -113,7 +113,7 @@ Severity is computed per detector but maps onto a unified four-level scale:
 * **Injection / Auth / Access severity.** Detector-specific scoring on the call shape. Critical is reserved for cases that demonstrably succeeded, not merely attempted.
 * **Compliance severity.** Driven by the framework: a Gap on SOC 2 CC6 is critical; a Partial on NIST RMF Measure is medium.
 
-The aggregate **Security Score** (0–100, where 100 = no risk) summarises all open findings on a per-application basis. More findings, or higher severities, lower the score. The score and the raw finding counts are two views of the same data running in opposite directions.
+The aggregate **Security Score** (0–100, where 100 = no risk) summarizes all open findings on a per-application basis. More findings, or higher severities, lower the score. The score and the raw finding counts are two views of the same data running in opposite directions.
 
 ## Where findings show up
 

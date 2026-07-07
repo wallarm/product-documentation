@@ -2,7 +2,7 @@
 
 OpenAPI Security Testing on CI/CD, powered by Wallarm, offers a solution to identify and address security vulnerabilities within your critical API business scenarios, including shadow and zombie APIs. This article explains how to run and use this solution.
 
-The solution operates by generating test requests specifically designed to uncover vulnerabilities, such as Cross-Origin Resource sharing, path traversal, access control flaws, and more. It then seamlessly integrates into your CI/CD pipeline using Docker to automatically scan your APIs for these vulnerabilities.
+The solution operates by generating test requests specifically designed to uncover vulnerabilities, such as Cross-Origin Resource Sharing, path traversal, access control flaws, and more. It then integrates into your CI/CD pipeline using Docker to automatically scan your APIs for these vulnerabilities.
 
 You have the flexibility to select the endpoints you wish to subject to testing:
 

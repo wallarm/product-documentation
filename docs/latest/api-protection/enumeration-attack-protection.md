@@ -47,7 +47,7 @@ Thus:
 * If you want to specifically highlight the attempts to enumerate valid user or object ID - the **BOLA protection** control.
 
 !!! info "Predecessors"
-    Mitigation controls are sophisticated tools available in the [Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription. In [Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription, [brute force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md), [forced browsing protection](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md), and [BOLA protection](../admin-en/configuration-guides/protecting-against-bola-trigger.md) is configured with triggers.
+    Mitigation controls are sophisticated tools available in the [Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription. In [Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription, [brute force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md), [forced browsing protection](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md), and [BOLA protection](../admin-en/configuration-guides/protecting-against-bola-trigger.md) are configured with triggers.
 
 ## Default protection
 
@@ -129,7 +129,7 @@ Note that you can use [regular expressions](#regular-expressions) to set scope a
 
 ### Scope
 
-**Scope** defines which requests the control applies to (based on URI and other parameters). It’s configured the same way as request conditions in rules. See details [here](../user-guides/rules/rules.md#configuring).
+**Scope** defines which requests the control applies to (based on URI and other parameters). It is configured the same way as request conditions in rules. See details [here](../user-guides/rules/rules.md#configuring).
 
 If you leave the **Scope** section blank, mitigation control is applied to **all traffic** and **all applications**; such controls are inherited by all [branches](../about-wallarm/mitigation-controls-overview.md#mitigation-control-branches).
 
@@ -140,7 +140,7 @@ If [Scope](#scope) does not cover all your needs, you can define other condition
 As conditions, you can use values or value patters of:
 
 * Built-in parameters of requests - elements of meta information presented in each request handled by Wallarm filtering node.
-* **Session context parameters** - quickly select parameters from the list of ones, that were [defined as important](../api-sessions/setup.md#session-context) in **API Sessions**. Use the **Add custom** option in this section to add as filters the parameters that are currently not presented in **API Sessions**. If you do so, these parameters will be added to **API Sessions**' context parameters as well (hidden, meaning you will see these parameters in session details if they are presented in requests, but you will not see them in API Session [context parameter configuration](../api-sessions/setup.md#session-context)).
+* **Session context parameters** - quickly select parameters from the list of ones, that were [defined as important](../api-sessions/setup.md#session-context) in **API Sessions**. Use the **Add custom** option in this section to add as filters the parameters that are currently not present in **API Sessions**. If you do so, these parameters will be added to **API Sessions**' context parameters as well (hidden, meaning you will see these parameters in session details if they are present in requests, but you will not see them in API Session [context parameter configuration](../api-sessions/setup.md#session-context)).
 
 !!! info "Performance note"
     As **Scope** settings are less demanding from the productivity perspective, it is always recommended to use them if it is enough for your goals, and only use **Scope filters** for the complex conditioning.
@@ -155,11 +155,11 @@ Let's say you want to provide protection from brute force for all your resources
 
 ### Enumerated parameters
 
-In the **Enumerated parameters** section, you need to select parameters that will be monitored for enumeration. Select set of parameters to be monitored via exact or or [regex](#regular-expressions) match (only one approach can be used within single mitigation control).
+In the **Enumerated parameters** section, you need to select parameters that will be monitored for enumeration. Select a set of parameters to be monitored via exact or [regex](#regular-expressions) match (only one approach can be used within a single mitigation control).
 
-For exact match, you can use the **Add custom** option to add as tracked for enumeration the parameters that are currently [not presented](../api-sessions/setup.md#session-context) in **API Sessions**. If you do so, these parameters will be added to **API Sessions**' context parameters as well (hidden, meaning you will see these parameters in session details if they are presented in requests, but you will not see them in API Session [context parameter configuration](../api-sessions/setup.md#session-context)).
+For exact match, you can use the **Add custom** option to add as tracked for enumeration the parameters that are currently [not present](../api-sessions/setup.md#session-context) in **API Sessions**. If you do so, these parameters will be added to **API Sessions**' context parameters as well (hidden, meaning you will see these parameters in session details if they are present in requests, but you will not see them in API Session [context parameter configuration](../api-sessions/setup.md#session-context)).
 
-If for regex you specify both **Filter by parameter name** and **Filter by parameter value**, they combine (`AND` operator), for example `(?i)id` for name and `\d*` for value will catch the `userId` parameter but only count requests having combination of digits as a parameter values.
+If for regex you specify both **Filter by parameter name** and **Filter by parameter value**, they combine (`AND` operator), for example `(?i)id` for name and `\d*` for value will catch the `userId` parameter but only count requests having a combination of digits as parameter values.
 
 When some request meets [scope](#scope) and [advanced filters](#scope-filters) and **contains** unique value for the parameter monitored for enumeration, this parameter's counter gets `+1`.
 
@@ -196,7 +196,7 @@ The **Scope** section uses [PIRE](../user-guides/rules/rules.md#condition-type-r
 
 ## Example
 
-Let us say your e-commerce `E-APPC` application stores information about each user's orders under `/users/*/orders`. You want to prevent malicious actors from getting the list of IDs of that orders. Such list can be obtained via a script trying different combinations of digits. To prevent this, for routes storing orders under each user account, you can set a counter `more than 2 unique values` `in minute` - if exceeded, the activity should be marked as attempt to enumerate object's (user order's) IDs (BOLA attack) and source IP should be blocked for 1 hour.
+Let us say your e-commerce `E-APPC` application stores information about each user's orders under `/users/*/orders`. You want to prevent malicious actors from getting the list of IDs of those orders. Such a list can be obtained via a script trying different combinations of digits. To prevent this, for routes storing orders under each user account, you can set a counter `more than 2 unique values` `in minute` - if exceeded, the activity should be marked as an attempt to enumerate object's (user order's) IDs (BOLA attack) and source IP should be blocked for 1 hour.
 
 To achieve that, configure the **BOLA protection** mitigation control as displayed on the screenshot:
 

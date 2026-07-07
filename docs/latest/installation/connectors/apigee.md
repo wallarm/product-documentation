@@ -62,7 +62,7 @@ Before deployment, ensure the following prerequisites are met:
 
 ## Deployment
 
-This guide shows deployment primarly via the Google Cloud Console and Apigee REST API. For automation, use the [Apigee Terraform provider](https://registry.terraform.io/providers/scastria/apigee/latest/docs), or refer to the [full Apigee API reference](https://cloud.google.com/apigee/docs/reference/apis/apigee/rest).
+This guide shows deployment primarily via the Google Cloud Console and Apigee REST API. For automation, use the [Apigee Terraform provider](https://registry.terraform.io/providers/scastria/apigee/latest/docs), or refer to the [full Apigee API reference](https://cloud.google.com/apigee/docs/reference/apis/apigee/rest).
 
 ### 1. Deploy a Wallarm Node
 

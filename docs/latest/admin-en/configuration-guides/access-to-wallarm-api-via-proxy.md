@@ -11,8 +11,8 @@ The instructions are applicable both for [NGINX](../../installation/nginx-native
 
 You need to configure access:
 
-* Before node installation - in the `/etc/environment` file; this will allow node installation process itself to access required resources via the proxy.
-* After node installation - in the `/opt/wallarm/env.list` file; this will allow the already installed node access to Wallarm API via the proxy. This file does not exist until node is installed. 
+* Before node installation - in the `/etc/environment` file; this will allow the node installation process itself to access required resources via the proxy.
+* After node installation - in the `/opt/wallarm/env.list` file; this will allow the already installed node to access Wallarm API via the proxy. This file does not exist until the node is installed. 
 
 In both cases, to configure access, please assign new values to the environment variables defining the proxy server:
 
@@ -62,12 +62,12 @@ This guarantees the correct application of proxy settings (`https_proxy`, `no_pr
 
 ## Access after installation
 
-As soon as the node installed, you need to configure its access to Wallarm API via proxy in the `/opt/wallarm/env.list` file. The variables and values are the same as were used during installation.
+As soon as the node is installed, you need to configure its access to Wallarm API via proxy in the `/opt/wallarm/env.list` file. The variables and values are the same as were used during installation.
 
 !!! info "Configuration file availability"
-    the `/opt/wallarm/env.list` file does not exist until node is installed.
+    The `/opt/wallarm/env.list` file does not exist until the node is installed.
 
-After changing configuration file, restart wallarm service:
+After changing the configuration file, restart the wallarm service:
 
 ```
 sudo systemctl restart wallarm

@@ -6,7 +6,7 @@ This document lists available [versions](../versioning-policy.md) of the [Native
 
 The all-in-one installer for the Native Node is used for [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
-History of all-in-one installer updates simultaneously applies to it's x86_64 and ARM64 versions.
+History of all-in-one installer updates simultaneously applies to its x86_64 and ARM64 versions.
 
 [How to upgrade](all-in-one.md)
 
@@ -236,7 +236,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 * Added support for [file upload restriction policy](../../api-protection/file-upload-restriction.md) via mitigation controls
 * Added support for [unrestricted resource consumption](../../attacks-vulns-list.md#unrestricted-resource-consumption) mitigation by [API Abuse Prevention](../../api-abuse-prevention/overview.md)
 * Added support for the [MuleSoft Flex Gateway connector](../../installation/connectors/mulesoft-flex.md)
-* Introduced the [`input_filters`](../../installation/native-node/all-in-one-conf.md#input_filters) configuration section, allowing to define which requests should be inspected or bypassed by the Node
+* Introduced the [`input_filters`](../../installation/native-node/all-in-one-conf.md#input_filters) configuration section, allowing you to define which requests should be inspected or bypassed by the Node
 * Fixed memory leak
 * In rules, the separator used in [**xml_tag**](../../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
 * Fixed blocking issue with denylisted origins and Wallarm Console UI-configured mode
@@ -471,7 +471,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ### 0.16.1 (2025-08-01)
 
-* Introduced the [`input_filters`](../../installation/native-node/helm-chart-conf.md#configconnectorinput_filters) configuration section, allowing to define which requests should be inspected or bypassed by the Node
+* Introduced the [`input_filters`](../../installation/native-node/helm-chart-conf.md#configconnectorinput_filters) configuration section, allowing you to define which requests should be inspected or bypassed by the Node
 * Added new [Prometheus metrics](../../admin-en/native-node-metrics.md):
 
     * `wallarm_gonode_application_info` with the general Native Node instance information, e.g.:
@@ -750,7 +750,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 * Added support for [file upload restriction policy](../../api-protection/file-upload-restriction.md) via mitigation controls
 * Added support for [unrestricted resource consumption](../../attacks-vulns-list.md#unrestricted-resource-consumption) mitigation by [API Abuse Prevention](../../api-abuse-prevention/overview.md)
 * Added support for the [MuleSoft Flex Gateway connector](../../installation/connectors/mulesoft-flex.md)
-* Introduced the [`input_filters`](../../installation/native-node/all-in-one-conf.md#input_filters) configuration section, allowing to define which requests should be inspected or bypassed by the Node
+* Introduced the [`input_filters`](../../installation/native-node/all-in-one-conf.md#input_filters) configuration section, allowing you to define which requests should be inspected or bypassed by the Node
 * Fixed memory leak
 * In rules, the separator used in [**xml_tag**](../../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
 * Fixed blocking issue with denylisted origins and Wallarm Console UI-configured mode

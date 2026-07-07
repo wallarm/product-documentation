@@ -63,7 +63,7 @@ Before starting the migration, ensure the following requirements are met:
 
 Depending on the chosen migration strategy, additional access may be required:
 
-* **Load balancer access** (required for [strategy A](#strategy-a-load-balancer-traffic-splitting) – Access to your external load balancer configuration.
+* **Load balancer access** (required for [strategy A](#strategy-a-load-balancer-traffic-splitting)) – Access to your external load balancer configuration.
 * **DNS management access** (required for strategies [B](#strategy-b-dns-switch) and [D](#strategy-d-direct-replacement)) – Ability to create/update A/CNAME records.
 
 ### Step 0. Collect current Ingress deployment details and validate environment

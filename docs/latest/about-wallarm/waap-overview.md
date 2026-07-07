@@ -1,6 +1,6 @@
 # Cloud-Native WAAP
 
-Wallarm Cloud-Native WAAP (Web Application & API Protection) provides advanced protection for applications and APIs in any customer environment. Wallarm's WAAP supports multiple API protocols, such as REST, SOAP, GraphQL, and others, and implies a deep packet inspection to fully cover [OWASP Top 10](https://owasp.org/www-project-top-ten/) and more. WAAP provides high accuracy in detecting [various threats](../attacks-vulns-list.md), including 0-days, and a low number of [false positives](../about-wallarm/protecting-against-attacks.md#false-positives). This allows you to quickly and effectively protect your infrastructure.
+Wallarm Cloud-Native WAAP (Web Application & API Protection) provides advanced protection for applications and APIs in any customer environment. Wallarm's WAAP supports multiple API protocols, such as REST, SOAP, GraphQL, and others, and performs deep packet inspection to fully cover [OWASP Top 10](https://owasp.org/www-project-top-ten/) and more. WAAP provides high accuracy in detecting [various threats](../attacks-vulns-list.md), including 0-days, and a low number of [false positives](../about-wallarm/protecting-against-attacks.md#false-positives). This allows you to quickly and effectively protect your infrastructure.
 
 ![Attack by protocols](../images/user-guides/dashboard/api-protocols.png)
 
@@ -20,7 +20,7 @@ Wallarm WAAP provides a wide range of security measures to protect your applicat
 
 * Up-to-date stamps against XSS, SQLi, RCE, etc. 
 * Virtual patching
-* Custom detectors creating
+* Custom detector creation
 * [L7 DDoS Protection](../admin-en/configuration-guides/protecting-against-ddos.md)
 * [Protection from multi-attack perpetrators](../admin-en/configuration-guides/protecting-with-thresholds.md)
 * Rate limiting
@@ -36,4 +36,4 @@ In addition to protecting applications, Wallarm Cloud Native WAAP provides capab
 
 Flexible [reporting](../user-guides/dashboards/owasp-api-top-ten.md) capabilities and [integration](../user-guides/settings/integrations/integrations-intro.md) with other applications allow you to quickly learn about emerging threats and respond to them on time.
 
-Advanced API protection and analysis capabilities can easily [be added](../about-wallarm/subscription-plans.md) as needed.
+Advanced API protection and analysis capabilities can [be added](../about-wallarm/subscription-plans.md) as needed.

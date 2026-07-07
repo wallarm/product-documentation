@@ -21,7 +21,7 @@ With Security Edge Inline, your API traffic is routed through Wallarm's globally
 * Multi-cloud and multi-region: you can deploy inline Nodes across different cloud regions for high availability and geo-redundancy.
 * Automatic scaling and updates: Wallarm handles Node scaling, updates, and maintenance - no action required on your side.
 * [Custom block pages](custom-block-page.md): when a request is blocked, the Node returns an HTTP 403 response along with a block page. You can use the default NGINX page, the Wallarm-branded page, or upload a custom HTML block page.
-* [Access control lists (ACL)](access-control-lists.md): define which IP addresses can access specific hosts and locations of your APIs preventing unauthorized activity and potential attacks.
+* [Access control lists (ACL)](access-control-lists.md): define which IP addresses can access specific hosts and locations of your APIs, preventing unauthorized activity and potential attacks.
 * [Cache rules](cache-rules.md): define how responses from specific hosts and locations are stored and reused to reduce backend load and improve performance.
 * Improved detection of bots, scanners, and brute‑force attempts with [JA4 fingerprinting](https://github.com/FoxIO-LLC/ja4), enabled by default: this feature uses TLS-based fingerprints that are difficult to spoof even if attackers change IPs, `User-Agent` headers, or other request attributes.
 

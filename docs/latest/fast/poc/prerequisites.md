@@ -9,7 +9,7 @@
 
 #   Integration Prerequisites
 
-To enable integrating FAST into a CI/CD workflow, you will need
+To integrate FAST into a CI/CD workflow, you will need
 
 * Contact the [Wallarm Sales Team](mailto:sales@wallarm.com) to get access to the Wallarm account and FAST node management.
 * The FAST node's Docker container should have access to the `us1.api.wallarm.com` Wallarm API server via the HTTPS protocol (`TCP/443`)

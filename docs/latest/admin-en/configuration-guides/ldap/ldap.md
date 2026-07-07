@@ -1,12 +1,12 @@
 # Using LDAP
 
-You can use LDAP technology to authenticate your company's users to the Wallarm Console if your company already uses a LDAP solution. This article describes how to configure an LDAP integration with your directory service.
+You can use LDAP technology to authenticate your company's users to the Wallarm Console if your company already uses an LDAP solution. This article describes how to configure an LDAP integration with your directory service.
 
 ## Overview
 
-To provide seamless integration with your company's existing user management systems ([directory services](https://en.wikipedia.org/wiki/Directory_service#LDAP_implementations)) such as [Microsoft Active Directory (AD)](https://learn.microsoft.com/en-us/entra/architecture/auth-ldap), Wallarm supports an integration with such systems via the LDAP protocol. Such integration allows you:
+To provide seamless integration with your company's existing user management systems ([directory services](https://en.wikipedia.org/wiki/Directory_service#LDAP_implementations)) such as [Microsoft Active Directory (AD)](https://learn.microsoft.com/en-us/entra/architecture/auth-ldap), Wallarm supports an integration with such systems via the LDAP protocol. Such integration allows you to:
 
-* Provide your company's users an ability to login into Wallarm Console using credentials stored in your directory service without the need for prior registration in the Wallarm Console.
+* Provide your company's users the ability to log in to Wallarm Console using credentials stored in your directory service without the need for prior registration in the Wallarm Console.
 * Forward user roles and permissions from your directory service to the Wallarm Console.
 * Use data encryption that is supported by your directory service.
 
@@ -45,7 +45,7 @@ As basic options, set:
 
 * LDAP server URL and port in **LDAP Server**.
 * Base distribution name **Base DN**.
-* **Bind DN** and password: full name of an object in the LDAP hierarchy that is used to bind (connect) to LDAP server. Should be accompanied by the password.
+* **Bind DN** and password: full name of an object in the LDAP hierarchy that is used to bind (connect) to the LDAP server. Should be accompanied by the password.
 * **Email attribute name** specifies the name of the field at the LDAP server, where user email should be stored.
 * Authentication type is set to `Simple` and cannot be changed.
 * If SSL/TLS encryption should be used, configure it by pasting the corresponding certificate and private key values.

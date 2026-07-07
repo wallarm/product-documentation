@@ -55,7 +55,7 @@ This chapter will provide you with an overview of test result interpreting tools
 
         * **Passed** ![Status: Passed][img-status-passed]
         
-            No vulnerabilities were found for the given baseline request (it depends on the chosen test policy- if you choose another one, then some vulnerabilities might be found) or the test policy is not applicable to the request.
+            No vulnerabilities were found for the given baseline request (it depends on the chosen test policy — if you choose another one, then some vulnerabilities might be found) or the test policy is not applicable to the request.
         
         * **Failed** ![Status: Failed][img-status-failed]  
         

@@ -23,7 +23,7 @@ Since Wallarm sends logs to the intermediate data collector via webhooks, the co
 
 * Accept the POST or PUT requests
 * Accept HTTPS requests
-* Have public URL
+* Have a public URL
 * Forward logs to Datadog via the `datadog_logs` Logstash plugin or the `fluent-plugin-datadog` Fluentd plugin
 
 === "Logstash configuration example"
@@ -104,8 +104,8 @@ Since Wallarm sends logs to the intermediate data collector via webhooks, the co
 ## Setting up integration with Fluentd or Logstash
 
 1. Proceed to the Datadog integration setup in Wallarm Console → **Integrations** → **Fluentd**/**Logstash**.
-1. Input the integration name.
-1. Specify target Fluentd or Logstash URL (Webhook URL).
+1. Enter the integration name.
+1. Specify the target Fluentd or Logstash URL (Webhook URL).
 1. If required, configure advanced settings:
 
     --8<-- "../include/integrations/webhook-advanced-settings.md"

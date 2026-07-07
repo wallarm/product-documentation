@@ -41,4 +41,4 @@ Having the object ID, send the following request to delete it from the list:
 
 --8<-- "../include/api-request-examples/delete-object-from-ip-list.md"
 
-You can delete multiple objects at once passing their IDs as an array in the deletion request.
+You can delete multiple objects at once by passing their IDs as an array in the deletion request.

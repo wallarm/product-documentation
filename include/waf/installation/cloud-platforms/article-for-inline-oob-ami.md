@@ -43,7 +43,7 @@ Run the `cloud-init.py` script on the instance created from the cloud image as f
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring --proxy-pass <PROXY_ADDRESS>
     ```
 
-* `WALLARM_LABELS='group=<GROUP>'` sets a node group name (existing, or, if does not exist, it will be created). It is only applied if using an API token.
+* `WALLARM_LABELS='group=<GROUP>'` sets a node group name (existing, or, if it does not exist, it will be created). It is only applied if using an API token.
 * `<TOKEN>` is the copied value of the token.
 * `<PROXY_ADDRESS>` is the address the Wallarm node proxies legitimate traffic to. It can be the IP of an application instance, a load balancer, or a DNS name (depending on your architecture), with the specified `http` or `https` protocol, e.g., `http://example.com` or `https://192.0.2.1`. [See more information on the proxy address format](https://nginx.org/en/docs/http/ngx_http_proxy_module.html?&_ga=2.23729850.1231698478.1756133814-1504295816.1756133814#proxy_pass).
 

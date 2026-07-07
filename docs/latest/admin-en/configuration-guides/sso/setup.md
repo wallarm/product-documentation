@@ -14,28 +14,28 @@ By default, SSO service for authentication in Wallarm is not active, correspondi
 
 To activate the SSO service, contact the [Wallarm support team](https://support.wallarm.com/). SSO with [provisioning](#step-4-saml-sso-solution-configure-provisioning) will be suggested by default:
 
-* No users will be able to authenticate with login and password after enabling. Request fallback account if necessary - it will retain login/password enter.
+* No users will be able to authenticate with login and password after enabling. Request a fallback account if necessary - it will retain login/password entry.
 * No users can be disabled or deleted from Wallarm side.
 
 ## Step 2 (Wallarm): Generate metadata
 
 You need Wallarm metadata to enter on the SAML SSO solution side:
 
-1. Make sure you are logged in Wallarm Console with administrative privileges.
+1. Make sure you are logged in to Wallarm Console with administrative privileges.
 1. In Wallarm Console, go to **Integrations** → **SSO SAML AUTHENTICATION** and initiate the appropriate integration.
 
     You can integrate Google, Okta or any other (**Custom**) SAML SSO solution. Note that only one SSO integration can be active at the moment.
 
     ![Integrations - SSO](../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
 
-1. In the SSO configuration wizard, at the **Send details** step, overview the metadata to be sent to your SAML SSO solution.
+1. In the SSO configuration wizard, at the **Send details** step, review the metadata to be sent to your SAML SSO solution.
 1. Copy metadata or save them as XML.
 1. If SAML SSO solution requires additional validation for SSO data exchange, select the [**Extended security**](#extended-security) checkbox.
 
 ## Step 3 (SAML SSO solution): Configure application
 
 1. Log in to your SAML SSO solution.
-1. Configure application that will provide access to Wallarm.
+1. Configure the application that will provide access to Wallarm.
 1. Copy the application's metadata or save them as XML.
 1. Make sure the application is activated and users have access to it.
 
@@ -75,7 +75,7 @@ For this to work, provide the attribute mapping:
 
 You can turn the provisioning option off by contacting the [Wallarm support team](https://support.wallarm.com/). If it is off, for users that you have in your SAML SSO solution, you will need to create corresponding users in Wallarm. User roles should also be defined in Wallarm Console.
 
-With provisioning turned off, you should manually create users, set their roles and select users that should login via SSO - the remaining will use login/password. By your request, Wallarm support can also turn on **Strict SSO** option which enables SSO authentication for all company account users at once. Other characteristics of Strict SSO are:
+With provisioning turned off, you should manually create users, set their roles and select users that should log in via SSO - the remaining will use login/password. By your request, Wallarm support can also turn on the **Strict SSO** option which enables SSO authentication for all company account users at once. Other characteristics of Strict SSO are:
 
 * The authentication method for all existing users of the account is switched to SSO.
 * All new users get the SSO as the authentication method by default.
@@ -93,7 +93,7 @@ When provisioning is off, user management is performed in Wallarm Console → **
 
 ## Step 6 (Wallarm): Configure provisioning (optional)
 
-This step only should be fulfilled if your SAML SSO solution does not support mapping of groups to different attributes and all groups are mapped to `wallarm_roles` tag (like in [case](sso-gsuite.md#step-4-g-suite-configure-provisioning-part-1) of Google).
+This step should only be completed if your SAML SSO solution does not support mapping of groups to different attributes and all groups are mapped to `wallarm_roles` tag (like in [case](sso-gsuite.md#step-4-g-suite-configure-provisioning-part-1) of Google).
 
 1. Proceed to the **Roles mapping** step.
 1. Map one or several SSO groups to Wallarm roles. Available roles are:
@@ -119,10 +119,10 @@ Your SAML SSO solution (like Keycloak or Okta) may require additional security v
 * Requirements for validation of SAML requests and responses by signature
 * Requirements for encryption of SAML requests and responses
 
-To provide integration with such SAML SSO solution, Wallarm has the **Extended security** feature. How to use:
+To provide integration with such a SAML SSO solution, Wallarm has the **Extended security** feature. How to use:
 
 1. In Wallarm, at [**Generate metadata**](#step-2-wallarm-generate-metadata) step, select the **Extended security** option.
-1. Save metadata as XML, certificate data and appropriate configuration for your SAML SSO solutioin will be added to it.
+1. Save metadata as XML, certificate data and appropriate configuration for your SAML SSO solution will be added to it.
 1. In SAML SSO solution, at [**Configure application**](#step-3-saml-sso-solution-configure-application) step, import provided XML to automatically get all options correctly configured. See Keycloak example below.
 
     ![Extended security - Keycloak example](../../../images/admin-guides/configuration-guides/sso/sso-extended-security-keycloak-example.png)
@@ -141,19 +141,19 @@ If the [**different permissions in different tenants**](intro.md#tenant-dependen
     The group is created and displayed in the list of groups.
 
 1. From the group menu, select **Edit group settings**.
-1. Your group page displayed. Set list of tenants.
+1. Your group page is displayed. Set the list of tenants.
 
     ![SSO, different permissions in different tenants, adding tenants to group](../../../images/admin-guides/configuration-guides/sso/sso-iam-group-tenants.png)
 
-    This will result in users of your SAML SSO solution group will have access to the listed tenants with specified set of permissions (role).
+    This will result in users of your SAML SSO solution group having access to the listed tenants with the specified set of permissions (role).
 
-1. Add other group and bind it to the same SAML SSO solution group name.
+1. Add another group and bind it to the same SAML SSO solution group name.
 1. Set different role.
 1. Set different list of tenants.
 
-    This will result in users of your SAML SSO solution group will have access to these other tenants with different set of permissions (another role).
+    This will result in users of your SAML SSO solution group having access to these other tenants with a different set of permissions (another role).
 
-**Access only to specific tenants**: you can also configure users of different SAML SSO solution groups have access only to specific tenants, and not to others.
+**Access only to specific tenants**: you can also configure users of different SAML SSO solution groups to have access only to specific tenants, and not to others.
 
 If the same SAML SSO user belongs to several groups providing access to the same tenant with different permissions the wider permission will be applied.
 
@@ -169,9 +169,9 @@ If the same SAML SSO user belongs to several groups providing access to the same
 
 Note that the enabled **different permissions in different tenants** option overrides the [general mapping](#step-4-saml-sso-solution-configure-provisioning), for example:
 
-* If you have your `Analytic` groups generally mapped to `wallarm_role:analytic`, and 5 tenants, if you later enable the **different permissions in different tenants** option, users of `Analytic` group will lose access to any tenants until you create and manage **Groups** (general mapping is now ignored).
-* If you later create the group providing access for `Analytic` groups to 3 of 5 tenants, other 2 will stay unavailable to them (general mapping is ignored).
-* If you want to provide users of some groups with non-administrative access to all tenants, create group with **Global something** role to access the [technical tenant account](../../../installation/multi-tenant/overview.md#tenant-accounts).
+* If you have your `Analytic` groups generally mapped to `wallarm_role:analytic`, and 5 tenants, if you later enable the **different permissions in different tenants** option, users of the `Analytic` group will lose access to any tenants until you create and manage **Groups** (general mapping is now ignored).
+* If you later create the group providing access for `Analytic` groups to 3 of 5 tenants, the other 2 will stay unavailable to them (general mapping is ignored).
+* If you want to provide users of some groups with non-administrative access to all tenants, create a group with the **Global something** role to access the [technical tenant account](../../../installation/multi-tenant/overview.md#tenant-accounts).
 
 ## Disabling and deletion
 

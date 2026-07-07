@@ -153,8 +153,8 @@ In this case, the test run with the `tr_1234` identifier is considered passed.
     A single test-set-related message is shown here for demonstration purposes.
 
 After the FAST node has finished the testing process, it terminates and returns an exit code to the process that runs as part of a CI/CD job. 
-* If security test status is “passed” and the FAST node encounters no errors during testing process, then the `0` exit code is returned. 
-* Otherwise, if security tests do fail or the FAST node encounters some errors during testing process, then the `1` exit code is returned.
+* If security test status is “passed” and the FAST node encounters no errors during the testing process, then the `0` exit code is returned. 
+* Otherwise, if security tests do fail or the FAST node encounters some errors during the testing process, then the `1` exit code is returned.
 
 The FAST node container in testing mode will stop automatically after security testing is complete. Nonetheless, a CI/CD tool can still be in control of the node and its container lifecycle by the means [described earlier][anchor-stopping-fast-node].
 

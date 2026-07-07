@@ -88,7 +88,7 @@ The result of security testing will be displayed on the GitLab CI/CD interface.
 
 ## More Examples
 
-You can find examples of integrating FAST to GitLab CI/CD workflow on our [GitHub][fast-examples-github] and [GitLab][fast-example-gitlab-cicd].
+You can find examples of integrating FAST into a GitLab CI/CD workflow on our [GitHub][fast-examples-github] and [GitLab][fast-example-gitlab-cicd].
 
 !!! info "Further questions"
     If you have questions related to FAST integration, please [contact us][mail-to-us].

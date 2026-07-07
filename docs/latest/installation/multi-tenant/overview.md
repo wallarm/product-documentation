@@ -11,11 +11,11 @@ The **multitenancy** feature allows using Wallarm to protect several independent
 
 ## Issues addressed by multitenancy
 
-The multitenancy feature is addressing the following issues:
+The multitenancy feature addresses the following issues:
 
 * **Become a partner of Wallarm**. The partner is an organization that installs a filtering node within their system infrastructure to provide their clients with attack mitigation.
 
-    Each client will be allocated a separate account in Wallarm Console so that all it's data will be isolated and accessible only for this client's users.
+    Each client will be allocated a separate account in Wallarm Console so that all its data will be isolated and accessible only for this client's users.
 
 * **Isolate the data on protected environments from each other**. An environment can be a separate application, data center, API, production or staging environment, etc.
 
@@ -39,7 +39,7 @@ Wallarm allows customization of Wallarm Console and some other components. If us
 
 ## Tenant accounts
 
-Tenant accounts are characterised by the following:
+Tenant accounts are characterized by the following:
 
 * To correctly group tenant accounts in Wallarm Console, each tenant account is linked to the global account, indicating a partner or a client with isolated environments.
 * Users are provided with access to each tenant account separately.
@@ -78,7 +78,7 @@ The multitenancy feature is inactive by default. To enable and configure the fea
 
 ## Migrating rules
 
-As [global administrator](../../user-guides/settings/users.md#user-roles), you can copy rules between tenants. This can be helpful in case you want to create/test all rules on the testing environment and only them put them on production environment.
+As [global administrator](../../user-guides/settings/users.md#user-roles), you can copy rules between tenants. This can be helpful in case you want to create/test all rules on the testing environment and only then put them on the production environment.
 
 Consider the following:
 

@@ -7,7 +7,7 @@
 
 # Custom Attack Detectors
 
-Wallarm provides the **Create regexp-based attack indicator** [rule](../../user-guides/rules/rules.md) to define your own attack signs that are described with the regular expressions.
+Wallarm provides the **Create regexp-based attack indicator** [rule](../../user-guides/rules/rules.md) to define your own attack signs that are described with regular expressions.
 
 ## Creating and applying rule
 
@@ -79,7 +79,7 @@ There is also the 0-day vulnerability in [Spring Core Framework](https://docs.sp
 
 ### Block traffic coming from certain USER-AGENT
 
-Let's say you want to deny an `l9explore` automated vulnerability scanner (of any version) to scan your applications for vulnerabilities. As it's activity is marked by the corresponding `USER-AGENT` header, configure rule as displayed on the screenshot:
+Let us say you want to deny an `l9explore` automated vulnerability scanner (of any version) to scan your applications for vulnerabilities. As its activity is marked by the corresponding `USER-AGENT` header, configure the rule as displayed on the screenshot:
 
 ![Virtual patch for USER-AGENT header](../../images/user-guides/rules/regex-rule-vpatch.png)
 
@@ -103,7 +103,7 @@ If the created rule should be partially disabled for a particular branch, this c
 
 **Example: Permit an Incorrect X-Authentication Header for a Designated URL**
 
-Let's say you have a script at `example.com/test.php`, and you want to change the format of the tokens for it.
+Let us say you have a script at `example.com/test.php`, and you want to change the format of the tokens for it.
 
 To create the relevant rule:
 

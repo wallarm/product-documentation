@@ -17,7 +17,7 @@ This deployment scheme is applicable to FAST nodes that operate in both [recordi
 
 To avoid conflicts during concurrent FAST nodes operation, the `BUILD_ID` environment variable is passed to each node's container. This variable serves the following purposes:
 1.  It is used as an additional identifier for a test record that is created by a FAST node in recording mode.
-2.  It allows determining which test record should be used by a test run that is created by a FAST node in testing mode (so the test run become tied to the test record). 
+2.  It allows determining which test record should be used by a test run that is created by a FAST node in testing mode (so the test run becomes tied to the test record). 
 3.  It identifies a certain CI/CD workflow.
 
 The `BUILD_ID` environment variable can comprise any combination of letters and digits as its value.
@@ -65,7 +65,7 @@ When the test records are populated with all the necessary baseline requests, sh
 
 ##  Running the FAST Node in Testing Mode to Use in Concurrent CI/CD Workflows
 
-Let's assume that the `rec_1111` and `rec_2222` test records were prepared during the operation of the FAST nodes `fast-node-1` and `fast-node-2` in recording mode.  
+Let us assume that the `rec_1111` and `rec_2222` test records were prepared during the operation of the FAST nodes `fast-node-1` and `fast-node-2` in recording mode.  
 
 Then, to direct a FAST node in testing mode to use the `rec_1111` test record, pass the `BUILD_ID=1` environment variable to the node container. Similarly, pass the `BUILD_ID=2` environment variable to use the `rec_2222` test record. Use the corresponding `docker run` commands below to run FAST nodes in testing mode.
 

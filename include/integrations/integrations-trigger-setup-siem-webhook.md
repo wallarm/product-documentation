@@ -17,13 +17,13 @@ The following conditions are available for notification:
 
 ### Step 2: Adding filters
 
-Filters are used for condition detailing. The following filters are available:
+Filters are used to detail the condition. The following filters are available:
 
 * **Type** is a [type](../../attacks-vulns-list.md) of attack detected in the request or a type of vulnerability the request is directed to.
 * **Application** is the [application](../settings/applications.md) that receives the request or in which an incident is detected.
 * **IP** is an IP address from which the request is sent.
 
-    The filter expects only single IPs, it does not allow subnets, locations and source types.
+    The filter expects only single IPs; it does not allow subnets, locations, and source types.
 * **Domain** is the domain that receives the request or in which an incident is detected.
 * **Response status** is the response code returned to the request.
 * **Target** is an application architecture part that the attack is directed at or in which the incident is detected. It can take the following values: `Server`, `Client`, `Database`.

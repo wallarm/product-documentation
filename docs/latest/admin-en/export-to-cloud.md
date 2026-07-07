@@ -1,6 +1,6 @@
 # Control over Export to Cloud
 
-You can have full visibility and control on which data is exported from Wallarm node to Cloud. This article describes how to achieve this.
+You can have full visibility and control over which data is exported from Wallarm node to Cloud. This article describes how to achieve this.
 
 ## Overview
 
@@ -14,7 +14,7 @@ This is what data is sent from Wallarm node to Cloud and how you can control it:
 | Where to | What for | What data | How to control |
 | ----- | ----- | ----- | ----- |
 | **Statistics and metadata** | To see your traffic - normal and malicious.| Number of requests, their sources and targets. No sensitive data ever. | <ul><li>Limit IP addresses allowed to request statistics</li></ul>[Details...](#statistics-and-metadata) |
-| **Attacks, Incidents** | To analyze security event and apply measures. | Full HTTP data of malicious request. | <ul><li>Mask sensitive data</li><li>Limit data export rules</li><li>Limited data export exceptions<sup>f</sup></li><li>Sensitive data types<sup>f</sup></li></ul>[Details...](#attacks-incidents) |
+| **Attacks, Incidents** | To analyze a security event and apply measures. | Full HTTP data of malicious request. | <ul><li>Mask sensitive data</li><li>Limit data export rules</li><li>Limited data export exceptions<sup>f</sup></li><li>Sensitive data types<sup>f</sup></li></ul>[Details...](#attacks-incidents) |
 | **API Sessions** | To see full sequence of connected actions (session). | Request metadata + what you chose (context parameters). | <ul><li>Session context parameters (with hashing)</li></ul>[Details...](#api-sessions) |
 | **API Discovery** | To see your actual and complete API inventory. | Endpoint, parameter names and statistics on them. | No need, it is safe. <br> [Details...](#api-discovery) |
 | **Security Issues** | To see security flaws in your infrastructure. | Host name and endpoint address (URL) and parameter name with vulnerability. | No need, it is safe. <br> [Details...](#security-issues) |
@@ -45,8 +45,8 @@ This is what data is sent from Wallarm node to Cloud and how you can control it:
     * Incidents - displayed separately
     * Attacks displayed exclusively in API Sessions
 
-* [Incidents](../user-guides/events/check-incident.md) are attacks that successfully exploited the [security issue](../about-wallarm/detecting-vulnerabilities.md) (vulnerability) previously [detected](../about-wallarm/detecting-vulnerabilities.md#detection-methods) by Wallarm. These attacks were detected, but not blocked by Wallarm due to the current settings (`monitoring` [filtration mode](../admin-en/configure-wallarm-mode.md) or others). Information on incident is the same as for attack plus link to security issue.
-* For input validation attacks, full HTTP data of malicious request is sent.
+* [Incidents](../user-guides/events/check-incident.md) are attacks that successfully exploited the [security issue](../about-wallarm/detecting-vulnerabilities.md) (vulnerability) previously [detected](../about-wallarm/detecting-vulnerabilities.md#detection-methods) by Wallarm. These attacks were detected, but not blocked by Wallarm due to the current settings (`monitoring` [filtration mode](../admin-en/configure-wallarm-mode.md) or others). Information on an incident is the same as for an attack, plus a link to the security issue.
+* For input validation attacks, full HTTP data of the malicious request is sent.
 
 To control:
 
@@ -55,7 +55,7 @@ To control:
 
     !!! info "Behavior change in NGINX Node 6.12.4"
         Starting from NGINX Node 6.12.4, an applied **Limit data export** rule preserves the request structure (parameter names and nesting) and masks only the values. In earlier versions, the rule switched the matched traffic to metadata only — the node sent just the request method, URI, IP address, HTTP status code, request time, and the `Host` header, while the body, query parameters, and other headers were excluded from both requests and responses.
-* **Limited data export exceptions**: if you forbade export to the Cloud with one of more **Limit data export** rules (for all traffic or for specific endpoints), add parameters-exceptions here - they will be exported in spite of restrictions.
+* **Limited data export exceptions**: if you forbade export to the Cloud with one or more **Limit data export** rules (for all traffic or for specific endpoints), add parameters-exceptions here - they will be exported in spite of restrictions.
 * **Sensitive data types**: Wallarm's API Discovery can by default detect different types of sensitive data transferred by endpoints/parameters. You can modify the default rules, add your own, and **enable automatic masking** (not available yet) for found sensitive data.
 * **Combining methods**: for **Attacks** and **Incidents**, Wallarm never transmits parameter values except the ones of malicious requests. Even this can be disabled by **Limit data export** rules for all traffic or specific endpoints. If these restrictions make needed data unavailable, explicitly specify **limited data export exceptions** - parameters that you allow to export in spite of restrictions. This gives you necessary data and you stay in control: even if new sensitive parameters appear with time, they will never be exported until you allow that.
 
@@ -75,14 +75,14 @@ To control:
 **What data is sent and how to control**
 
 * In [API Sessions](../api-sessions/overview.md), you see all requests (both legitimate and malicious) going through Wallarm Node to your applications.
-* However, for each request, only its metadata is send by default (time, source IP, target endpoint, response code).
-* Additionally, parameters used for [grouping](../api-sessions/setup.md#session-grouping) request into this session along with their values, will be displayed.
-* As all that info may be non-informative enough, you add [extra parameters](../api-sessions/setup.md#session-context) to be displayed. With them, you'll be able to understand what is happening. They will be sent to the Cloud along with values.
+* However, for each request, only its metadata is sent by default (time, source IP, target endpoint, response code).
+* Additionally, parameters used for [grouping](../api-sessions/setup.md#session-grouping) requests into this session, along with their values, will be displayed.
+* As all that info may not be informative enough, you add [extra parameters](../api-sessions/setup.md#session-context) to be displayed. With them, you will be able to understand what is happening. They will be sent to the Cloud along with values.
 
 To control:
 
-* [Session context parameters](../api-sessions/setup.md#session-context): add only **parameters you really need**. Note that some mitigation controls rely on session data and need some parameter values, such controls can [themselves](../api-sessions/setup.md#mitigation-controls) add extra parameters to session.
-* Use [hashing](../api-sessions/setup.md#data-protection) for the parameter values. Note that hashing will transform the actual value into unreadable - the presence of parameter and particular but unknown value will provide the limited information for the analysis.
+* [Session context parameters](../api-sessions/setup.md#session-context): add only **parameters you really need**. Note that some mitigation controls rely on session data and need some parameter values; such controls can [themselves](../api-sessions/setup.md#mitigation-controls) add extra parameters to the session.
+* Use [hashing](../api-sessions/setup.md#data-protection) for the parameter values. Note that hashing transforms the actual value into an unreadable one - the presence of a parameter and a particular but unknown value will provide limited information for the analysis.
 
 ## API Discovery
 
@@ -90,7 +90,7 @@ To control:
 
 **What data is sent and how to control**
 
-* Metadata of requests, on which base [API Discovery](../api-discovery/overview.md) builds and automatically updates the list of your API hosts and endpoints endpoints, for each endpoint - list of its request and response parameters.
+* Metadata of requests, based on which [API Discovery](../api-discovery/overview.md) builds and automatically updates the list of your API hosts and endpoints, for each endpoint - a list of its request and response parameters.
 * Wallarm does not send the values that are specified in the parameters to the Cloud. Only the endpoint, parameter names and statistics on them are sent.
 
 ## Security issues
@@ -99,5 +99,5 @@ To control:
 
 **What data is sent and how to control**
 
-* Security issues can be detected by [different methods](../about-wallarm/detecting-vulnerabilities.md#detection-methods). Most of them (such as AASM or any type of security testing) do not have an access to the traffic, so they don't export any data to the Cloud by design. Passive detection, on the other hand, sends entire request & response (including PII and other sensitive data) to the Cloud. Passive vulnerability detection can be disabled.
-* All the other information related to security issues are calculated and formed on the Cloud side: problem description and mitigation recommendations, status history etc.
+* Security issues can be detected by [different methods](../about-wallarm/detecting-vulnerabilities.md#detection-methods). Most of them (such as AASM or any type of security testing) do not have access to the traffic, so they do not export any data to the Cloud by design. Passive detection, on the other hand, sends entire request & response (including PII and other sensitive data) to the Cloud. Passive vulnerability detection can be disabled.
+* All the other information related to security issues is calculated and formed on the Cloud side: problem description and mitigation recommendations, status history etc.

@@ -2,13 +2,13 @@
 
 # Rate Limiting
 
-The [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) is included in the [OWASP API Top 10 2023](../../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks. Lack of rate limiting is one of the main causes of this risk. Without proper rate limiting measures, APIs are vulnerable to attacks such as denial-of-service (DoS), brute force and API overuse. This article explains how to safeguard your API and users with the Wallarm's rate limit regulation rule.
+The [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) is included in the [OWASP API Top 10 2023](../../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks. Lack of rate limiting is one of the main causes of this risk. Without proper rate limiting measures, APIs are vulnerable to attacks such as denial-of-service (DoS), brute force and API overuse. This article explains how to safeguard your API and users with Wallarm's rate limit regulation rule.
 
 Wallarm provides the **Advanced rate limiting** [rule](../../user-guides/rules/rules.md) to help prevent excessive traffic to your API. This rule enables you to specify the maximum number of connections that can be made to a particular scope, while also ensuring that incoming requests are evenly distributed. If a request exceeds the defined limit, Wallarm rejects it and returns the code you selected in the rule.
 
 Wallarm examines various request parameters such as cookies or JSON fields, which allows you to limit connections based not only on the source IP address, but also on session identifiers, usernames, or email addresses. This additional level of granularity enables you to enhance the overall security of a platform based on any origin data.
 
-Note that rate limiting described in this article is one of the ways for the load control provided by Wallarm - alternatively, you can apply [brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md). Use rate limiting for slowing down the incoming traffic and brute-force protection to completely block the attacker.
+Note that rate limiting described in this article is one of the ways for load control provided by Wallarm - alternatively, you can apply [brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md). Use rate limiting to slow down incoming traffic and brute-force protection to completely block the attacker.
 
 ## Creating and applying the rule
 
@@ -28,7 +28,7 @@ To set and apply rate limit:
     
     * **Response code** - code to return in response to rejected requests. `503` by default.
 
-        Below is the example of rate limiting behavior with limit of 5 r/s, burst 12 and delay 8.
+        Below is an example of rate limiting behavior with a limit of 5 r/s, burst 12 and delay 8.
         
         ![How rate limiting works](../../images/user-guides/rules/rate-limit-schema.png)
 
@@ -42,7 +42,7 @@ To set and apply rate limit:
     * `json` → `json_doc` → `hash` → `api_key` to limit connections by the `api_key` JSON body parameter
 
     !!! info "Restrictions on the value length"
-        The maximum allowed length of parameter values by which you measure limits is 8000 symbols.
+        The maximum allowed length of parameter values by which you measure limits is 8000 characters.
 1. Wait for the [rule compilation and uploading to the filtering node to complete](rules.md#ruleset-lifecycle).
 
 ## Rule examples
@@ -59,7 +59,7 @@ Limiting connections to the endpoint helps to prevent such attacks. You can limi
 -->
 ### Limiting connections by IP to ensure high API availability
 
-Suppose a healthcare company's REST API letting doctors to submit patient information through a POST request to the `/patients` endpoint of the `https://example-host.com` host. Accessibility of this endpoint is critically important, and thus it should not be overwhelmed by a large number of requests.
+Suppose a healthcare company's REST API letting doctors submit patient information through a POST request to the `/patients` endpoint of the `https://example-host.com` host. Accessibility of this endpoint is critically important, and thus it should not be overwhelmed by a large number of requests.
 
 Limiting connections by IP within a certain period of time specifically for the `/patients` endpoint could prevent this. This ensures the stability and availability of the endpoint to all doctors, while also protecting the security of patient information by preventing DoS attacks.
 
@@ -126,15 +126,15 @@ The rate limit functionality has the following limitations and peculiarities:
 
     * [OOB Wallarm deployment](../../installation/oob/overview.md)
     * [Wallarm Connectors](../../installation/connectors/overview.md)
-* The maximum allowed length of parameter values by which you measure limits is 8000 symbols.
+* The maximum allowed length of parameter values by which you measure limits is 8000 characters.
 * If you have multiple Wallarm nodes and the incoming traffic on each node meets the rate limit rule, they are limited independently.
 * When multiple rate limit rules apply to incoming requests, the rule with the lowest rate limit is used to limit the requests.
 * If an incoming request does not have the point specified in the **In this part of request** rule section, then this rule is not applied as a limitation for that request.
 * If your web server is configured to limit connections (e.g. by using the [`ngx_http_limit_req_module`](http://nginx.org/en/docs/http/ngx_http_limit_req_module.html) NGINX module) and you also apply the Wallarm rule, the web server rejects requests by the configured rules but Wallarm does not.
-* Wallarm does not save requests exceeding the rate limit, it only rejects them by returning the code chosen in the rule. The exception are requests with [attack signs](../../about-wallarm/protecting-against-attacks.md) - they are recorded by Wallarm even if they are rejected by the rate limiting rule.
+* Wallarm does not save requests exceeding the rate limit, it only rejects them by returning the code chosen in the rule. The exceptions are requests with [attack signs](../../about-wallarm/protecting-against-attacks.md) - they are recorded by Wallarm even if they are rejected by the rate limiting rule.
 
 ## Difference with rate abuse protection
 
-For restricting resource consumption and preventing attacks using massive amounts of requests, besides described rate limiting, Wallarm provides the [rate abuse protection](../../api-protection/dos-protection.md).
+For restricting resource consumption and preventing attacks using massive amounts of requests, besides the described rate limiting, Wallarm provides the [rate abuse protection](../../api-protection/dos-protection.md).
 
-The rate limiting delays some requests if rate is too high (puts to buffer) and rejects the remaining when buffer is full, when rate is back to normal, buffered requests are delivered, no blocking is applied by IP or session **while** rate abuse protection blocks attackers by their IPs or sessions for some time.
+The rate limiting delays some requests if the rate is too high (puts them to a buffer) and rejects the remaining ones when the buffer is full; when the rate is back to normal, buffered requests are delivered, and no blocking is applied by IP or session, **while** rate abuse protection blocks attackers by their IPs or sessions for some time.

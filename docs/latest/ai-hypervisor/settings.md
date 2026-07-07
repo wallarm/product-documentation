@@ -45,7 +45,7 @@ The list is the per-workload view of *what the scanner is actually looking at*. 
 
 Use this section to triage:
 
-* *I labelled my pod 30 minutes ago but it does not appear in [Registry](registry.md) yet.* Find it here. If the row exists with `state: idle` and a recent `last_scan`, the scanner has already covered it and **Registry** will refresh on the next reconcile. If the row is missing, the label has not propagated.
+* *I labeled my pod 30 minutes ago but it does not appear in [Registry](registry.md) yet.* Find it here. If the row exists with `state: idle` and a recent `last_scan`, the scanner has already covered it and **Registry** will refresh on the next reconcile. If the row is missing, the label has not propagated.
 * *The scanner keeps reporting zero packages for this app.* Most common cause: stale scanner version against a newer backend signature. Check the scanner version in [Cluster Infrastructure](#cluster-infrastructure) and upgrade via Helm (see [Install HIGGS Scanner](deploy.md#upgrading-the-scanner)).
 * *This namespace should be scanned but the row is missing.* Verify the `higgs.scan=enabled` label is on the namespace or the individual pod (see [Labels and Annotations](annotations.md)).
 

@@ -1,6 +1,6 @@
 # Migrating allowlists and denylists from Wallarm node 2.18 and lower to 6.x
 
-Starting with Wallarm node 3.x, the method of IP address allowlist and denylist configuration has been changed. This document instructs how to migrate allowlists and denylists configured in Wallarm node 2.18 or lower to the latest Wallarm node.
+Starting with Wallarm node 3.x, the method of IP address allowlist and denylist configuration has been changed. This document describes how to migrate allowlists and denylists configured in Wallarm node 2.18 or lower to the latest Wallarm node.
 
 ## What has changed?
 
@@ -22,6 +22,6 @@ Configuration of IP address allowlist and denylist has been changed as follows:
 3. Update the filtering node modules up to version 6.x following [appropriate instructions](general-recommendations.md#update-process).
 4. Remove the allowlist of [Wallarm's vulnerability scanning IPs](../admin-en/scanner-addresses.md) used for scanning company resources for vulnerabilities and launching additional security tests from filtering node configuration files. Starting with the filtering node 3.x, these addresses are allowlisted by default.
 5. If listed methods are used to allowlist other IP addresses that should not be blocked by the filtering node, please move them to the [allowlist in Wallarm Console](../user-guides/ip-lists/overview.md).
-6. If you have used the directive `wallarm_acl_block_page` to configure the blocking page and error code returned when the denylisted IP originated the request, please replace the directive name by `wallarm_block_page` and update its value following the [instructions](../admin-en/configuration-guides/configure-block-page-and-code.md).
+6. If you have used the directive `wallarm_acl_block_page` to configure the blocking page and error code returned when the denylisted IP originated the request, please replace the directive name with `wallarm_block_page` and update its value following the [instructions](../admin-en/configuration-guides/configure-block-page-and-code.md).
 7. Remove the [NGINX](../admin-en/installation-docker-en.md) environment variables `WALLARM_ACL_*` from the `docker run` commands.
 8. (Optional) Remove the NGINX directives `wallarm_acl_*` from filtering node configuration files.

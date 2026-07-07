@@ -56,7 +56,7 @@ Requires Native Node version 0.8.3 or higher.
 
 * Added the `CLIENT HOST EXPRESSION` and `CLIENT IP EXPRESSION` parameters
 
-    They allow to specify custom [DataWeave](https://docs.mulesoft.com/dataweave/latest/dw-functions) expressions for extracting the original host and remote IP, aligning with [MuleSoft's IP Blocklist policy](https://docs.mulesoft.com/mule-gateway/policies-included-ip-blocklist).
+    They allow you to specify custom [DataWeave](https://docs.mulesoft.com/dataweave/latest/dw-functions) expressions for extracting the original host and remote IP, aligning with [MuleSoft's IP Blocklist policy](https://docs.mulesoft.com/mule-gateway/policies-included-ip-blocklist).
 
 ### 2.0.3 (2024-11-13)
 
@@ -120,7 +120,7 @@ The current version can be found in `Cargo.toml` → `[package]` → `version` p
 | ------------------- | ------------------- |
 | 1.x                 | 0.18.0 and higher   |
 
-### 1.0.1 (2205-11-05)
+### 1.0.1 (2025-11-05)
 
 * Enhanced the code bundle structure and flow naming
 
@@ -219,7 +219,7 @@ The current version can be found in `wallarm-main`/`wallarm-sp` → `bundle.json
 
 * Added ability to use alternative configurations
 
-    If you run multiple Compute services for Wallarm, you can [create multiple config stores](../../installation/connectors/fastly.md#4-create-the-wallarm-config-store) with different configurations and link each of them to corresponding service.
+    If you run multiple Compute services for Wallarm, you can [create multiple config stores](../../installation/connectors/fastly.md#4-create-the-wallarm-config-store) with different configurations and link each of them to the corresponding service.
 
 ### 1.1.0 (2025-01-06)
 

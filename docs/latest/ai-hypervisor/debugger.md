@@ -44,7 +44,7 @@ Each column has a per-column **SHOW** control at the bottom for hiding it from v
 * You suspect a scanner-side issue and need to see the raw `scanner_offline` or `pulse` events.
 * You want to verify what the Infrastructure or Audit feeds recorded after a configuration change.
 
-For per-application drill-down with sessions and traces, work from [Registry](registry.md). For an audit-grade artefact, use [Compliance](compliance.md).
+For per-application drill-down with sessions and traces, work from [Registry](registry.md). For an audit-grade artifact, use [Compliance](compliance.md).
 
 ## Cross-references
 

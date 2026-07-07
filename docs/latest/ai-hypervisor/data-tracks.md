@@ -8,7 +8,7 @@ Every flow carries its lineage: the agent that initiated it, the destination it 
 
 ![AI Hypervisor Data Tracks PII-movement graph: a Sankey view of a sensitive-data flow running from the ai-hypervisor-demo source, through the SSN data class, to the external api.anthropic.com destination, with the flow crossing the marked estate boundary](../../images/ai-hypervisor/aih-pii-movement.png)
 
-## Data classes AI Hypervisor recognises
+## Data classes AI Hypervisor recognizes
 
 * **PII classes:** email, SSN, payment card, health record, source code, secrets, plus user-defined patterns.
 * **Data classifications:** PII, PCI, MNPI, GLBA, EU AI Act high-risk, public, internal, confidential, regulator-grade.

@@ -38,20 +38,20 @@
     * `tr_1234` as an identifier of a test run.
     * `rec_0001` as an identifier of a test record.
 
-Running and configuration of FAST node comprises the following steps:
+Running and configuring the FAST node comprises the following steps:
 1.  [Deployment of the Docker Container with the FAST Node.][anchor-node]
 2.  [Obtaining a Test Run.][anchor-testrun]
 
 ##  Deployment of the Docker Container with the FAST Node
 
 !!! warning "Grant Access to Wallarm API Servers"
-    It is crucial for the proper operation for the FAST node to have access to the `us1.api.wallarm.com` or `api.wallarm.com` Wallarm API servers via the HTTPS protocol (`TCP/443`).
+    It is crucial for the proper operation of the FAST node to have access to the `us1.api.wallarm.com` or `api.wallarm.com` Wallarm API servers via the HTTPS protocol (`TCP/443`).
     
     Make sure that your firewall does not restrict the Docker host from accessing the Wallarm API servers.
 
 Some configuration is required prior to running the Docker container with the FAST node. To configure the node, place the token into the container using the `WALLARM_API_TOKEN` environment variable. Additionally, you could use the `ALLOWED_HOSTS` variable if you need [to limit the number of requests to be recorded][doc-limit-requests].
 
-To pass the environment variables to the container, place the variables in a text file and specify the path to the file using the [`--env-file`][link-docker-envfile] parameter of the  [`docker run`][link-docker-run] command (see the [instructions][doc-docker-run-fast] in the “Quick Start” guide).
+To pass the environment variables to the container, place the variables in a text file and specify the path to the file using the [`--env-file`][link-docker-envfile] parameter of the [`docker run`][link-docker-run] command (see the [instructions][doc-docker-run-fast] in the “Quick Start” guide).
 
 Run a container with the FAST node by executing the following command:
 
@@ -142,7 +142,7 @@ This way of test run creation is to be used if it is required to test a target a
 !!! info "How to Copy a Test Run"
     This process is described in detail [here][doc-copy-testrun].
 
-Provided that a test run's has been successfully created, the FAST node begins testing immediately. There is no need to take any additional actions.
+Provided that a test run has been successfully created, the FAST node begins testing immediately. There is no need to take any additional actions.
 
 ## The Next Steps
 

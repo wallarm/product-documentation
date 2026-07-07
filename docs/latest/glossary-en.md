@@ -67,7 +67,7 @@ See:
 
 ## Security incident
 
-A security incident is an occurrence of security issue (vulnerability) successful exploitation. An incident is an [attack](#attack) targeted at a confirmed vulnerability, detected but not blocked by Wallarm due to the current settings (`monitoring` [filtration mode](admin-en/configure-wallarm-mode.md) or others).
+A security incident is an occurrence of successful exploitation of a security issue (vulnerability). An incident is an [attack](#attack) targeted at a confirmed vulnerability, detected but not blocked by Wallarm due to the current settings (`monitoring` [filtration mode](admin-en/configure-wallarm-mode.md) or others).
 
 An incident, just like an attack, is an entity external to your system and is a characteristic of the outside Internet, not the system itself. Despite the fact that the attacks targeted at existing vulnerabilities are a minority, they are of the utmost importance in terms of information security. Wallarm automatically detects the attacks targeted at existing vulnerabilities and displays them as a separate object - incident.
 
@@ -95,7 +95,7 @@ A custom ruleset is not empty by default, it contains the rules created for all 
 
 ## Invalid request
 
-A request that was checked by filter node and does not match LOM rules.
+A request that was checked by the filter node and does not match LOM rules.
 
 ## Reverse proxy
 

@@ -6,7 +6,7 @@
 
 # Exploring API Sessions <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
-As soon as Wallarm's [API Sessions](overview.md) identified user sessions related to your applications, you can explore them in the **API Sessions** section of Wallarm Console. Learn from this article how to go through the discovered data.
+As soon as Wallarm's [API Sessions](overview.md) has identified user sessions related to your applications, you can explore them in the **API Sessions** section of Wallarm Console. Learn from this article how to go through the discovered data.
 
 ## Full context of threat actor activities
 
@@ -14,7 +14,7 @@ As soon as Wallarm's [API Sessions](overview.md) identified user sessions relate
 
 ## Multi-day sessions
 
-For effective analysis, long sessions are separated in one-day parts. Also, no parts older than 7 days are stored and displayed. To view all session parts (but not older than 7 days):
+For effective analysis, long sessions are separated into one-day parts. Also, no parts older than 7 days are stored and displayed. To view all session parts (but not older than 7 days):
 
 1. In the session details, right-click and copy session's ID.<!-- It is automatically copied.-->
 1. Paste the ID to the **Session ID** filter.
@@ -23,7 +23,7 @@ For effective analysis, long sessions are separated in one-day parts. Also, no p
 
 ## Activities within specific time
 
-You can investigate what happened within the specified time interval. To do so, set the date/time filter. Only sessions with the requests that took place at specified time will be displayed - only requests from that time interval will be displayed within each session.
+You can investigate what happened within the specified time interval. To do so, set the date/time filter. Only sessions with the requests that took place at the specified time will be displayed - only requests from that time interval will be displayed within each session.
 
 ![!API Sessions - activities within specific time](../images/api-sessions/api-sessions-timeframe.png)
 
@@ -33,7 +33,7 @@ Hint: use the [link to your session](#sharing-session-information) in your own b
 
 The session may contain a lot of requests of different types (POST, GET, etc.), with different response codes, from different IPs, legitimate and malicious with the different attack types.
 
-In session details, you can see a comprehensive statistics providing information on its request distribution by different criteria. You can apply in-session filters (one or several) to see only specific requests.
+In session details, you can see comprehensive statistics providing information on its request distribution by different criteria. You can apply in-session filters (one or several) to see only specific requests.
 
 ![!API Sessions - filters inside session](../images/api-sessions/api-sessions-inline-filters.png)
 
@@ -52,7 +52,7 @@ Click **Explore in API Discovery** to switch to the endpoint information in the 
 
 ## Identifying performance issues
 
-Use the **Time,ms** and **Size,bytes** columns in the session request details to compare presented data with the average expected values. Significantly exceeded values signal about possible performance issues and bottlenecks and the possibility to optimize the user experience.
+Use the **Time,ms** and **Size,bytes** columns in the session request details to compare presented data with the average expected values. Significantly exceeded values signal possible performance issues and bottlenecks and the possibility to optimize the user experience.
 
 ## Sensitive business flows
 
@@ -60,11 +60,11 @@ In [API Discovery](../api-discovery/overview.md), the [sensitive business flow](
 
 If the sessions' requests affect the endpoints that in API Discovery were tagged as important for some sensitive business flows, such sessions are automatically tagged as affecting this business flow as well.
 
-Once sessions are assigned with the sensitive business flow tags, it becomes possible to filter them by a specific business flow which makes it easier to select the sessions that are most important to analyze.
+Once sessions are assigned the sensitive business flow tags, it becomes possible to filter them by a specific business flow, which makes it easier to select the sessions that are most important to analyze.
 
 ![!API Sessions - sensitive business flows](../images/api-sessions/api-sessions-sbf-no-select.png)
 
-Wallarm lists business flows and displays number and percentage of requests related to the flow from the total number of session requests.
+Wallarm lists business flows and displays the number and percentage of requests related to the flow from the total number of session requests.
 
 Sessions can be associated with one of the following sensitive business flows:
 

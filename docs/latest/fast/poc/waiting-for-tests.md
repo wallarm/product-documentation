@@ -19,14 +19,14 @@
     * `token_Qwe12345` as a token.
     * `tr_1234` as an identifier of a test run.
 
-The processes of creating and executing the test requests begin when the first baseline request is recorded and could take a significant amount of time after the process of baseline requests recording has been stopped. You could check the state of the test run periodically to get some insights into the performing processes.
+The processes of creating and executing the test requests begin when the first baseline request is recorded and could take a significant amount of time after the process of baseline requests recording has been stopped. You could check the state of the test run periodically to get some insights into the ongoing processes.
 
 After executing [the API call][doc-get-testrun-status], you will get a response from an API server with information regarding the test run state.
 
-It is possible to make a conclusion on the presence or absence of vulnerabilities in the application on the basis of the `state` and `vulns` parameters’ values.
+It is possible to draw a conclusion about the presence or absence of vulnerabilities in the application on the basis of the `state` and `vulns` parameters’ values.
 
 ??? info "Example"
-    A process, that is querying the test run state by making the API call periodically, could terminate with the exit code `0` if there was the `state:passed` parameter found in the API server’s response and with the exit code `1` if there was the `state:failed` parameter found in the API server’s response.
+    A process that is querying the test run state by making the API call periodically could terminate with the exit code `0` if there was the `state:passed` parameter found in the API server’s response and with the exit code `1` if there was the `state:failed` parameter found in the API server’s response.
 
     The exit code value could be employed by the CI/CD tool in order to calculate the overall CI/CD job’s status. 
 

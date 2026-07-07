@@ -99,6 +99,6 @@ To copy and execute a test run via the Wallarm portal's web interface:
         
         A test record name is often omitted: for example, if [a test run is created][doc-create-testrun] without the `test_record_name` parameter specified, then the name of the test record is the same as the name of the test run.
         
-        The figure above shows the copy dialogue that mentions a test record where the name is not equivalent to the name of the test run wthat made use of this test record in the past (the `MY TEST RECORD` test record was used by the `DEMO TEST RUN` test run). 
+        The figure above shows the copy dialog that mentions a test record where the name is not equivalent to the name of the test run that made use of this test record in the past (the `MY TEST RECORD` test record was used by the `DEMO TEST RUN` test run). 
 
 6.  Execute the test run by clicking on the “Create and run” button.    

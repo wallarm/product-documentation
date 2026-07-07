@@ -45,11 +45,11 @@ To install the certificate for the Internet Explorer 11 browser, do the followin
 
     ![Fingerprint validation warning][img-fingerprint-warning]
 
-    Given that the import is successsful, “The import was successful” informational message will appear.
+    Given that the import is successful, “The import was successful” informational message will appear.
 
     ![Successful import of the certificate][img-import-ok]
     
-7.  Check that the certificate was installed correctly. To do that, go to any site via HTTPS. You should be redirected to the HTTPS version of the site without any warning messages about untrusted certificate.
+7.  Check that the certificate was installed correctly. To do that, go to any site via HTTPS. You should be redirected to the HTTPS version of the site without any warning messages about untrusted certificates.
 
     For example, you could browse to the HTTPS version of the Google Gruyere site:
     <https://google-gruyere.appspot.com>

@@ -6,7 +6,7 @@
 
 # Configuration of Anomaly Detection Process: Overview
 
-In addition to [vulnerabilities][gl-vuln] detection, FAST can detect [anomalies][gl-anomaly] using the *fuzzer*.
+In addition to [vulnerability][gl-vuln] detection, FAST can detect [anomalies][gl-anomaly] using the *fuzzer*.
 
 This documentation section describes the following points:
 

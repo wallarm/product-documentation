@@ -20,7 +20,7 @@ API Attack Surface Management provides multiple automated activities described i
 * Provides insights into potential API protocols that an organization is using (JSON-API, GraphQL, XML-RPC, JSON-RPC, OData, gRPC, WebSocket, SOAP, WebDav, HTML WEB and more).
 * Uncovers private API specifications unintentionally made publicly available.
 * Continuously monitors changes in the external API attack surface to detect new APIs, shadow APIs, and rogue endpoints introduced during development or deployment.
-* [Notifies](setup.md#notifications) your about discovery results and changes in your API attack surface.
+* [Notifies](setup.md#notifications) you about discovery results and changes in your API attack surface.
 
 ### Step 2: WAF coverage discovery & testing
 
@@ -33,7 +33,7 @@ API Attack Surface Management provides multiple automated activities described i
 
 * Once the external attack surface landscape is discovered, starts to [discover API leaks and vulnerabilities](security-issues.md) related to the discovered apps and APIs.
 * Monitors and classifies vulnerabilities by severity, categorizing issues such as misconfigurations, weak encryption, or outdated dependencies to prioritize remediation efforts effectively.
-* [Notifies](setup.md#notifications) your about found leaks and detected vulnerabilities.
+* [Notifies](setup.md#notifications) you about found leaks and detected vulnerabilities.
 
 ## Vulnerability types detected
 

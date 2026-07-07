@@ -14,7 +14,7 @@ Learn fine-tuning options available for the [self-hosted Wallarm NGINX node](../
 
 ### disable_acl
 
-Allows disabling analysis of requests origins. If disabled (`on`), the filtering node does not download [IP lists](../user-guides/ip-lists/overview.md) from the Wallarm Cloud and skips request source IPs analysis.
+Allows disabling analysis of request origins. If disabled (`on`), the filtering node does not download [IP lists](../user-guides/ip-lists/overview.md) from the Wallarm Cloud and skips request source IP analysis.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
@@ -23,17 +23,17 @@ Allows disabling analysis of requests origins. If disabled (`on`), the filtering
 
 ### wallarm_acl_access_phase
 
-The directive forces the NGINX-based Wallarm node to block requests originating from [denylisted](../user-guides/ip-lists/overview.md) IPs at the NGINX access phase which means:
+The directive forces the NGINX-based Wallarm node to block requests originating from [denylisted](../user-guides/ip-lists/overview.md) IPs at the NGINX access phase, which means:
 
 * With `wallarm_acl_access_phase on`, the Wallarm node immediately blocks any requests from denylisted IPs in any [filtration mode](configure-wallarm-mode.md) (except `off`) and does not search attack signs in requests from denylisted IPs.
 
-    This is the **default and recommended** value since it makes denylists to work standardly and significantly reduces the load of the CPU of the node.
+    This is the **default and recommended** value since it makes denylists work in the standard way and significantly reduces the CPU load of the node.
 
 * With `wallarm_acl_access_phase off`, the Wallarm node analyzes requests for attack signs first and then if operating in the `block` or `safe_blocking` mode blocks requests originating from denylisted IPs.
 
-    In the `monitoring` filtration mode, the node searches for attack signs in all requests but never block them even if the source IP is denylisted.
+    In the `monitoring` filtration mode, the node searches for attack signs in all requests but never blocks them even if the source IP is denylisted.
 
-    The Wallarm node behavior with `wallarm_acl_access_phase off` significantly increases the load of the CPU of the node.
+    The Wallarm node behavior with `wallarm_acl_access_phase off` significantly increases the CPU load of the node.
 
 !!! info "Default value and interaction with other directives"
     **Default value**: `on` (starting from Wallarm node 4.2)
@@ -210,7 +210,7 @@ A path to the [custom ruleset](../user-guides/rules/rules.md) file that contains
 
 ### wallarm_enable_apifw
 
-The directive enables `on` / disables `off` [API Specification Enforcement](../api-specification-enforcement/overview.md), available from release 4.10 onwards. Please note that activating this feature does not substitute for the required subscription and configuration through the Wallarm Console UI.
+The directive enables `on` / disables `off` [API Specification Enforcement](../api-specification-enforcement/overview.md), available from release 4.10 onwards. Note that activating this feature does not substitute for the required subscription and configuration through the Wallarm Console UI.
 
 !!! info
     This parameter can be set inside the `server` blocks.
@@ -228,7 +228,7 @@ The directive enables `on` / disables `off` [API Specification Enforcement](../a
 
 Enables/disables additional validation of the SQL injection attacks via the [**libdetection**](https://github.com/wallarm/libdetection) library. Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
 
-Analyzing of requests with the **libdetection** library is enabled by default in all [deployment options](../installation/supported-deployment-options.md). To reduce the number of false positives, we recommend analysis to stay enabled.
+Analyzing of requests with the **libdetection** library is enabled by default in all [deployment options](../installation/supported-deployment-options.md). To reduce the number of false positives, we recommend keeping analysis enabled.
 
 To check additional validation, send the following request to the protected resource:
 
@@ -339,7 +339,7 @@ If this option is not configured, stream lengths remain unlimited, potentially c
 !!! info
     This parameter can be set within the http, server, and location blocks.
     
-    The directive does not have a default value, there are no limits on the length of HTTP/2 streams by default.
+    The directive does not have a default value; there are no limits on the length of HTTP/2 streams by default.
 
 ### wallarm_instance
 
@@ -447,7 +447,7 @@ Possible values:
 
 ### wallarm_parser_disable
 
-Allows to disable parsers. The directive values corresponds to the name of the parser to be disabled:
+Allows you to disable parsers. The directive value corresponds to the name of the parser to be disabled:
 
 - `cookie`
 - `zlib`
@@ -687,7 +687,7 @@ If `off`, neither the [rate limiting rule](../user-guides/rules/rate-limiting.md
 
 ### wallarm_rate_limit_log_level
 
-The level for logging the requests rejected by the rate limting control. Can be: `info`, `notice`, `warn`, `error`.
+The level for logging the requests rejected by the rate limiting control. Can be: `info`, `notice`, `warn`, `error`.
 
 !!! info
     **Default value:** `error`.
@@ -785,7 +785,7 @@ It is highly recommended to configure the statistics service in its own file, av
 * `/etc/nginx/wallarm-status.conf` for all-in-one installer
 * `/etc/nginx/conf.d/wallarm-status.conf` for other installations
 
-Also, it is strongly advised not to alter any of the existing lines of the default `wallarm-status` configuration as it may corrupt the process of metric data upload to the Wallarm cloud.
+Also, it is strongly advised not to alter any of the existing lines of the default `wallarm-status` configuration as it may corrupt the process of metric data upload to the Wallarm Cloud.
 
 !!! info
     The directive can be configured in the NGINX context of `server` and/or `location`.
@@ -893,7 +893,7 @@ Depending on the other directives, the default value will be assigned as follows
 ### wallarm_upstream_connect_attempts
 
 Defines the number of immediate reconnects to the wstore or Wallarm API.
-If a connection to the wstore or API is terminated, then the attempt to reconnect will not occur. However, this is not the case when there aren't anymore connections and the serialized request queue is not empty.
+If a connection to the wstore or API is terminated, then the attempt to reconnect will not occur. However, this is not the case when there are no more connections and the serialized request queue is not empty.
 
 !!! note
     Reconnection may occur through another server, because the “upstream” subsystem is responsible for choosing the server.

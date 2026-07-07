@@ -4,7 +4,7 @@
 
 # API Attack Surface Discovery <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" class="non-zoomable" style="border: none;"></a>
 
-The **API Attack Surface Discovery** (**AASD**) component of the Wallarm's [API Attack Surface Management](overview.md) scans your selected domains, IP addresses, and network ranges to discover all their external hosts and their APIs, evaluate their protection against Web and API-based attacks, and identify missing WAF/WAAP solutions. It works simply by subscribing in Wallarm - you do not need to deploy anything. This article gives an overview of the component.
+The **API Attack Surface Discovery** (**AASD**) component of Wallarm's [API Attack Surface Management](overview.md) scans your selected domains, IP addresses, and network ranges to discover all their external hosts and their APIs, evaluate their protection against Web and API-based attacks, and identify missing WAF/WAAP solutions. It works by subscribing in Wallarm - you do not need to deploy anything. This article gives an overview of the component.
 
 ![API Attack Surface Discovery](../images/api-attack-surface/aasm-api-surface.png)
 
@@ -28,7 +28,7 @@ The **API Attack Surface Discovery** Wallarm component helps to solve these issu
 * Overall WAAP score of the entire API surface.
 * Asset summaries by security vendor, data center, and location.
 
-    As one host may have more than one IP address, the assets statics by data centers and geo location is evaluated per IP address basis and not per-host basis. Due to the usage of CDNs the assets' location may be not representative.
+    As one host may have more than one IP address, the asset statistics by data center and geolocation are evaluated on a per-IP-address basis and not on a per-host basis. Due to the usage of CDNs, the assets' location may not be representative.
 
 * Automatic detection of security issues for found hosts.
 
@@ -36,7 +36,7 @@ You get all this simply by subscribing to the component in Wallarm - you do not 
 
 ### Replacement of old Scanner
 
-As API Attach Surface Discovery (AASD)'s capabilities cover all the functionality of the old Wallarm Scanner and - together with [Security Issues](security-issues.md) - suggest much more, from May 7, 2025, Scanner is disabled.
+As API Attack Surface Discovery (AASD)'s capabilities cover all the functionality of the old Wallarm Scanner and - together with [Security Issues](security-issues.md) - offer much more, from May 7, 2025, Scanner is disabled.
 
 ![Old Scanner](../images/user-guides/scanner/check-scope.png)
 
@@ -46,7 +46,7 @@ Disabling of old Scanner includes:
 * Migration of all configuration from old Scanner to AASD made by Wallarm support
 * Automatic re-discovery of hosts and APIs by AASD and presenting extended data on them
 * Automatic security issue detection for hosts and APIs
-* Vulnerabilities found by old Scanner before May 7, 2025, are continued to be presented in the Vulnerabilities section for in accordance with [data retention policy](../about-wallarm/data-retention-policy.md)
+* Vulnerabilities found by old Scanner before May 7, 2025, continue to be presented in the Vulnerabilities section in accordance with the [data retention policy](../about-wallarm/data-retention-policy.md)
 
 ## Data on found hosts
 
@@ -65,7 +65,7 @@ Once hosts are found for your domains, in Wallarm Console go to the **API Attack
 
 ## Security posture
 
-Wallarm automatically assesses your external network perimeter’s security posture and reflects its state as **Total score** from 0 (worse) to 100 (best) protection.
+Wallarm automatically assesses your external network perimeter’s security posture and reflects its state as **Total score** from 0 (worst) to 100 (best) protection.
 
 ![API surface - protection score](../images/api-attack-surface/aasm-api-surface-protection-score.png)
 

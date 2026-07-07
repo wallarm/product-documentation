@@ -51,7 +51,7 @@ The Response Time row shows request and upstream latency, helping monitor perfor
 
 The Response Time row features the following panels:
 
-* **Upstrem Response time last minute** – Shows the 95th-percentile response time (P95 RT) for the top 10 URIs by request volume in the last minute.
+* **Upstream Response time last minute** – Shows the 95th-percentile response time (P95 RT) for the top 10 URIs by request volume in the last minute.
 * **Request Time last minute** – Shows the 95th-percentile overall request response time for the last minute.
 * **Top 10 slowest Request Time** - Shows the slowest requests by total processing time.
 * **Top 10 slowest Upstream Response Time** - Shows the slowest by total processing time.

@@ -375,7 +375,7 @@ Ensure response mirroring is configured in your environment to the target instan
 
 ### tcp_reassembler.response_timeout
 
-Specifies the maximum time to wait for a response. If a response is not received within this time, the Wallarm processes stop waiting the corresponding response.
+Specifies the maximum time to wait for a response. If a response is not received within this time, the Wallarm processes stop waiting for the corresponding response.
 
 Default: `5s`.
 
@@ -393,7 +393,7 @@ Default: `true`.
 
 ### http_inspector.api_firewall_enabled
 
-Controls whether [API Specification Enforcement](../../../api-specification-enforcement/overview.md) is enabled. Please note that activating this feature does not substitute for the required subscription and configuration through the Wallarm Console UI.
+Controls whether [API Specification Enforcement](../../../api-specification-enforcement/overview.md) is enabled. Activating this feature does not substitute for the required subscription and configuration through the Wallarm Console UI.
 
 Default: `true`.
 

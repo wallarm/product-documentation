@@ -9,7 +9,7 @@ The risk score is made up of various factors, each having its own weight when ca
 | Factor | Description | Default weight |
 | --- | --- | --- |
 | Active vulnerabilities (security issues) | [Active vulnerabilities](../about-wallarm/detecting-vulnerabilities.md)  may result in unauthorized data access or corruption. | 9 |
-| Parameters with sensitive data | Rather than directly attacking APIs, attackers can steal [sensitive data](overview.md#sensitive-data-detection) and use it to seamlessly reach your resources. | 8 |
+| Parameters with sensitive data | Rather than directly attacking APIs, attackers can steal [sensitive data](overview.md#sensitive-data-detection) and use it to reach your resources. | 8 |
 | Number of query and body parameters | A large number of parameters increases the number of attack directions. | 6 |
 | Accepts XML / JSON objects<sup>*</sup> | XML or JSON objects passed in requests may be used by attackers to transfer malicious XML external entities and injections to the server. | 6 |
 | Allows uploading files to the server | Endpoints are frequently targeted by [Remote Code Execution (RCE)](../attacks-vulns-list.md#remote-code-execution-rce) attacks, where files with malicious code are uploaded to a server. To secure these endpoints, uploaded file extensions and contents should be properly validated as recommended by the [OWASP Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html). | 6 |

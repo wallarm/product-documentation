@@ -30,7 +30,7 @@ This article describes how you can analyze attacks detected by the Wallarm node 
 
 The [attacks](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) detected by the Wallarm platform are displayed in the **Attacks** or **API Sessions** section of the Wallarm Console. You can [filter](../../user-guides/search-and-filters/use-search.md) the list by attack date, type and other criteria, expand any attack and its included requests for detailed analysis.
 
-If a detected attack turns out to be a [false positive](#false-positives), you can immediately mark it as one to prevent alike false positives in future. Also, on the basis of the detected attacks, you can create rules and perform other Wallarm configurations to mitigate further alike threats.
+If a detected attack turns out to be a [false positive](#false-positives), you can immediately mark it as one to prevent similar false positives in the future. Also, on the basis of the detected attacks, you can create rules and perform other Wallarm configurations to mitigate further similar threats.
 
 <div>
   <script src="https://js.storylane.io/js/v1/storylane.js"></script>
@@ -47,9 +47,9 @@ In Wallarm:
 
 Read details [here](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components).
 
-Each attack details contain all necessary information for analysis, such as attack's hits and malicious payload summary. To simplify analysis, only unique hits are stored in the attack details. Repeated malicious requests  are dropped from uploading to the Wallarm Cloud and not displayed. This process is called [hit sampling](grouping-sampling.md#sampling-of-hits).
+Each attack's details contain all necessary information for analysis, such as the attack's hits and malicious payload summary. To simplify analysis, only unique hits are stored in the attack details. Repeated malicious requests are dropped from uploading to the Wallarm Cloud and not displayed. This process is called [hit sampling](grouping-sampling.md#sampling-of-hits).
 
-Hit sampling does not affect the quality of attack detection and Wallarm node continues protect your applications and APIs even with hit sampling enabled.
+Hit sampling does not affect the quality of attack detection and Wallarm node continues to protect your applications and APIs even with hit sampling enabled.
 
 ## Full context of threat actor activities
 
@@ -67,15 +67,15 @@ Because of that, the attacks found by such mitigation controls are displayed exc
 * [Forced browsing protection](../../api-protection/enumeration-attack-protection.md) (by mitigation control)
 * [DoS protection](../../api-protection/dos-protection.md) (by mitigation control)
 
-Attacks of the same types found by old tools like [rules](../../user-guides/rules/rules.md), can be found both in **Attacks** and **API Sessions**
+Attacks of the same types found by old tools like [rules](../../user-guides/rules/rules.md) can be found both in **Attacks** and **API Sessions**.
 
 ## False positives
 
-False positive occurs when [attack signs](../../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors) are detected in the legitimate request.
+A false positive occurs when [attack signs](../../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors) are detected in a legitimate request.
 
 To prevent the filtering node from recognizing such requests as attacks in future, **you can mark all or specific requests of the attack as false positives**. This automatically creates a rule to skip similar attack sign detection in similar requests, though it does not appear in the Wallarm Console.
 
-You can undo a false positive mark only within a few seconds after the mark was applied. If you decided to undo it later, this can be done only by sending a request to [Wallarm technical support](mailto: support@wallarm.com).
+You can undo a false positive mark only within a few seconds after the mark was applied. If you decide to undo it later, this can be done only by sending a request to [Wallarm technical support](mailto: support@wallarm.com).
 
 The default view of the attack list presents only actual attacks (without false positives) - to change that, under **All attacks** switch from **Default view** to **With false positives** or **Only false positives**.
 
@@ -85,7 +85,7 @@ See details on false positives [here](../../about-wallarm/protecting-against-att
 
 ## Responding to attacks
 
-Is is important to understand if your applications and APIs are properly protected from the attacks to have the possibility to adjust the protection measures if necessary. You can use information from the **Attacks** section to get this understanding and respond correspondingly.
+It is important to understand if your applications and APIs are properly protected from the attacks to have the possibility to adjust the protection measures if necessary. You can use information from the **Attacks** section to get this understanding and respond correspondingly.
 
 When dealing with this task, you will need to identify what type of attack took place, this will give you an understanding of what Wallarm's mechanisms provided protection and then adjust these mechanisms if necessary:
 
@@ -95,7 +95,7 @@ When dealing with this task, you will need to identify what type of attack took 
     * `Blocked` - all hits of the attack were blocked by the filtering node.
     * `Partially blocked` - some hits of the attack were blocked and others were only registered.
     * `Monitoring` - all hits of the attack were registered but not blocked.
-    * `Bot detected` - this is bot, check action within the attack.
+    * `Bot detected` - this is a bot, check action within the attack.
 
 1. Optionally (recommended), [investigate the full context](#full-context-of-threat-actor-activities) of the attack's malicious requests: to which [user session](../../api-sessions/overview.md) they belong and what the full sequence of requests in this session is.
 
@@ -103,7 +103,7 @@ When dealing with this task, you will need to identify what type of attack took 
 
 1. If you think it was not an actual attack, mark it [false positive](#false-positives).
 1. **Understand** - become aware of the Wallarm mechanism that detected and reacted to attack.
-1. **Adjust** - tune the Wallarm's behavior ("how" depends on mechanism).
+1. **Adjust** - tune Wallarm's behavior ("how" depends on the mechanism).
 
 | Identify | Understand | Adjust | 
 | -- | -- | -- |
@@ -198,9 +198,9 @@ To configure notifications:
 
 ## API calls
 
-To get the attack details, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below is the example of the API call for **getting the first 50 attacks detected in the last 24 hours**.
+To get the attack details, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below is an example of the API call for **getting the first 50 attacks detected in the last 24 hours**.
 
-Please replacing `TIMESTAMP` with the date 24 hours ago converted to the [Unix Timestamp](https://www.unixtimestamp.com/) format.
+Please replace `TIMESTAMP` with the date 24 hours ago converted to the [Unix Timestamp](https://www.unixtimestamp.com/) format.
 
 --8<-- "../include/api-request-examples/get-attacks-en.md"
 

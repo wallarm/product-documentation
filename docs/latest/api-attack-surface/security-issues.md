@@ -27,11 +27,11 @@ You can manage the decisions on what to do with the found leaks:
 
     A [virtual patch rule](../user-guides/rules/vpatch-rule.md) will be created.
     
-    Note that creating virtual patch is only possible when the leaked secret value is 6 or more symbols or regular expression is no more than 4096 symbols - `Not applicable` remediation status will be displayed if these conditions are not met. The limitations aim to prevent the legitimate traffic blocking.
+    Note that creating a virtual patch is only possible when the leaked secret value is 6 or more symbols or the regular expression is no more than 4096 symbols - `Not applicable` remediation status will be displayed if these conditions are not met. The limitations aim to prevent legitimate traffic from being blocked.
 
 * Mark the leak as false if you think it was added by mistake.
 * Close the leaks to mark that the problem is solved.
-* Even if a leak is closed, it is not deleted. Reopen it to mark that problem is still actual.
+* Even if a leak is closed, it is not deleted. Reopen it to mark that the problem is still relevant.
 
 **Viewing requests blocked by virtual patches**
 
@@ -55,7 +55,7 @@ Detailed information on how to work with security issue: understand issue status
 
 ### Email
 
-Information about security issues found specifically by AASM is sent to your personal email within **Weekly AASM statistics** report - information about hosts, APIs, and statistics for security issues discovered for your configured domains within last week.
+Information about security issues found specifically by AASM is sent to your personal email within **Weekly AASM statistics** report - information about hosts, APIs, and statistics for security issues discovered for your configured domains within the last week.
 
 Additionally, information about security issues found by [any method](../about-wallarm/detecting-vulnerabilities.md#detection-methods) (including AASM) is sent to your email:
 
@@ -68,4 +68,4 @@ The notifications are enabled by default. You can unsubscribe at any moment and 
 
 You can configure instant notification for the new and re-opened security issues in Wallarm Console → **Configuration** → **Integrations** → YOUR_INTEGRATION as described in [your integration](../user-guides/settings/integrations/integrations-intro.md) documentation.
 
-Note that this configuration affect notifications on issues found by [any method](../about-wallarm/detecting-vulnerabilities.md#detection-methods), not only found by AASM.
+Note that this configuration affects notifications on issues found by [any method](../about-wallarm/detecting-vulnerabilities.md#detection-methods), not only those found by AASM.

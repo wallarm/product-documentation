@@ -43,4 +43,4 @@ To delete the point, use the «—» symbol next to it:
 
     ![Point reference][img-point-help]
 
-    The full list of points which FAST can process is available by the [link][doc-point-list].
+    The full list of points which FAST can process is available via the [link][doc-point-list].

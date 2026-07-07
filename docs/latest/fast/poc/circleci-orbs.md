@@ -10,7 +10,7 @@
 
 # Integration of Wallarm FAST Orbs with CircleCI
 
-This instruction describes the method to integrate FAST with CircleCI workflow via [Wallarm FAST Orbs (plugin)][circleci-fast-plugin]. An integration setup is performed in the `~/.circleci/config.yml` configuration file. More details about CircleCI Orbs are available in [official CircleCI documentation][circleci-using-orbs].
+This instruction describes the method to integrate FAST with a CircleCI workflow via [Wallarm FAST Orbs (plugin)][circleci-fast-plugin]. An integration setup is performed in the `~/.circleci/config.yml` configuration file. More details about CircleCI Orbs are available in the [official CircleCI documentation][circleci-using-orbs].
 
 !!! warning "Requirements"
 
@@ -21,13 +21,13 @@ This instruction describes the method to integrate FAST with CircleCI workflow v
 
 ## Step 1: Passing FAST Node Token
 
-Pass [FAST node token][fast-node-token] value in the `WALLARM_API_TOKEN`environment variable in CircleCI project settings. The method of environment variables setup is described in [CircleCI documentation][circleci-set-env-var].
+Pass the [FAST node token][fast-node-token] value in the `WALLARM_API_TOKEN` environment variable in CircleCI project settings. The method of setting environment variables is described in the [CircleCI documentation][circleci-set-env-var].
 
 ![Passing CircleCI environment variable][circleci-example-env-var]
 
 ## Step 2: Connecting Wallarm FAST Orbs
 
-To connect Wallarm FAST Orbs, set the following settings in the `~/.circleci/config.yml` file:
+To connect Wallarm FAST Orbs, specify the following settings in the `~/.circleci/config.yml` file:
 
 1. Make sure CircleCI version 2.1 is specified in the file:
 
@@ -47,7 +47,7 @@ To configure security testing, add the separate step `fast/run_security_tests` t
 
 | Parameter | Description | Required |
 | ---------| ---------|--------------- |
-| test_record_id| Test record ID. Corresponds to [TEST_RECORD_ID](ci-mode-testing.md#environment-variables-in-testing-mode).<br>Deafult value is the last test record created by used FAST node. | Yes|
+| test_record_id| Test record ID. Corresponds to [TEST_RECORD_ID](ci-mode-testing.md#environment-variables-in-testing-mode).<br>Default value is the last test record created by the used FAST node. | Yes|
 | app_host | The address of the test application. The value can be an IP address or a domain name.<br>Default value is internal IP. | No |
 | app_port | The port of the test application.<br>Default value is 80. | No |
 | policy_id | [Test policy](../operations/test-policy/overview.md) ID.<br>Default value is `[null]`-`Default Test Policy`. | No |
@@ -80,7 +80,7 @@ To configure security testing, add the separate step `fast/run_security_tests` t
       fast: 'wallarm/fast@dev:1.1.0'
     ```
 
-    You can find more examples of integrating FAST to CircleCI workflow in our [GitHub](https://github.com/wallarm/fast-examples) and [CircleCI](https://circleci.com/gh/wallarm/fast-example-circleci-orb-rails-integration).
+    You can find more examples of integrating FAST into a CircleCI workflow in our [GitHub](https://github.com/wallarm/fast-examples) and [CircleCI](https://circleci.com/gh/wallarm/fast-example-circleci-orb-rails-integration).
 
 !!! info "Further questions"
     If you have questions related to FAST integration, please [contact us][mail-to-us].

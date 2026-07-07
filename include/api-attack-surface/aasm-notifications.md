@@ -4,13 +4,13 @@ You automatically receive notifications to your personal email (the one you use 
 
 * **Daily critical security issues (new only)** - all [critical][link-aasm-security-issue-risk-level] security issues opened for the day, sent once a day with a detailed description of each issue and instructions on how to mitigate it.
 * **Daily security issues (new only)** - statistics for security issues opened for the day, sent once a day with information on how many issues of every [risk level][link-aasm-security-issue-risk-level] were found and general action items for mitigation.
-* **Weekly AASM statistics** - information about hosts, APIs, and statistics for security issues discovered for your configured domains within last week.
+* **Weekly AASM statistics** - information about hosts, APIs, and statistics for security issues discovered for your configured domains within the last week.
 
 The notifications are enabled by default. You can unsubscribe at any moment and configure any additional emails to get all or some of these notifications in Wallarm Console → **Configuration** → **Integrations** → **Email and messengers** → **Personal email** (your email) or **Email report** (extra emails) as described [here][link-integrations-email].
 
 ### Instant notification
 
-You can configure instant notification for the new and re-opened security issues. Select all or only some risk levels that should trigger notification. Separate message will be sent for each security issue.
+You can configure instant notification for the new and re-opened security issues. Select all or only some risk levels that should trigger notification. A separate message will be sent for each security issue.
 
 Example:
 

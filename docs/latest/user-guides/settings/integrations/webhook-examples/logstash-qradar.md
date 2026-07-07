@@ -22,8 +22,8 @@ Since Wallarm sends logs to the Logstash intermediate data collector via webhook
 
 * Accept the POST or PUT requests
 * Accept HTTPS requests
-* Have public URL
-* Forward logs to IBM Qradar, this example uses the `syslog` plugin to forward logs
+* Have a public URL
+* Forward logs to IBM QRadar, this example uses the `syslog` plugin to forward logs
 
 Logstash is configured in the `logstash-sample.conf` file:
 

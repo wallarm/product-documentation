@@ -40,7 +40,7 @@ If the application is properly configured, its name will be displayed in the det
 
 ## Automatic application identification
 
-You can configure an automatic application identification on the base of:
+You can configure automatic application identification based on:
 
 * Specific request headers
 * Specific request header or part of URLs using `map` NGINX directive
@@ -53,7 +53,7 @@ You can configure an automatic application identification on the base of:
 This approach includes two steps:
 
 1. Configure your network so that the header with application ID is added to each request.
-1. Use value of this header as value for the `wallarm_application` directive. See example below.
+1. Use the value of this header as the value for the `wallarm_application` directive. See example below.
 
 Example of the NGINX configuration file:
 
@@ -86,7 +86,7 @@ This request will:
 
 ### Application identification on base of specific request header or part of URLs using `map` NGINX directive 
 
-You can add the applications on the base of specific request header or part of endpoint URLs, using the `map` NGINX directive. See detailed description of the directive in the NGINX [documentation](https://nginx.org/en/docs/http/ngx_http_map_module.html#map).
+You can add applications based on a specific request header or part of the endpoint URLs, using the `map` NGINX directive. See detailed description of the directive in the NGINX [documentation](https://nginx.org/en/docs/http/ngx_http_map_module.html#map).
 
 ## Viewing events and statistics by application
 
@@ -119,7 +119,7 @@ Once you have your applications set up, you can configure Wallarm protection fea
   </div>
 </div>
 
-Assigning Wallarm's features to applications is an easiest way to specify conditions in which those features should be applied and to differentiate configurations for the different parts of your infrastructure.
+Assigning Wallarm's features to applications is the easiest way to specify conditions in which those features should be applied and to differentiate configurations for the different parts of your infrastructure.
 
 ## Deleting applications
 

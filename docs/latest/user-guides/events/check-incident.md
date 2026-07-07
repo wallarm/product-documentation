@@ -18,7 +18,7 @@ Incidents are:
 
 * Registered together with security issues (vulnerabilities) found by [passive detection](../../about-wallarm/detecting-vulnerabilities.md#detection-methods) (enabled by default in every active filtering node):
 
-     If Wallarm finds an attack and this attack is successful (determined by the response), then this means that there is a vulnerability in the application, plus the attacker successfully exploited it means this is an incident.
+     If Wallarm finds an attack and the attack is successful (determined by the response), it means there is a vulnerability in the application and the attacker has successfully exploited it — this is an incident.
 
 !!! info "Filtration mode"
      As passive detection relies on both request and response, incidents are registered only for the scope with the `monitoring` [filtration mode](../../admin-en/configure-wallarm-mode.md).
@@ -28,11 +28,11 @@ Incidents are:
 
 ## Importance
 
-Presence of incidents indicates jump from a theoretical risk (vulnerability) to a live threat and requires prioritizing fixes of these security issues:
+Presence of incidents indicates a jump from a theoretical risk (vulnerability) to a live threat and requires prioritizing fixes of these security issues:
 
 * Once a vulnerability is successfully exploited, it often becomes public knowledge in the hacker community.
 * If one attacker succeeds, others will use the same method. An incident indicates that your system is now a confirmed target.
-* Incidents are the subject of investigation to find out data losses or other damages.
+* Incidents are the subject of investigation to identify data losses or other damages.
 
 ## Checking incidents as list
 
@@ -48,7 +48,7 @@ All the detected incidents for the selected period of time are displayed in the 
 * **Top IP / Source**: The IP address from which the malicious requests originated. When the malicious requests originate from several IP addresses, the interface shows the IP address responsible for the most requests. There is also the following data displayed for the IP address:
      * The total number of IP addresses from which the requests in the same attack originated during the specified timeframe. 
      * The country/region in which the IP address is registered (if it was found in the databases like IP2Location or others)
-     * The source type, like **Public proxy**, **Web proxy**, **Tor** or the cloud platform the IP registered in, etc (if it was found in the databases like IP2Location or others)
+     * The source type, like **Public proxy**, **Web proxy**, **Tor** or the cloud platform the IP registered in, etc. (if it was found in the databases like IP2Location or others)
      * The **Malicious IPs** label will appear if the IP address is known for malicious activities. This is based on public records and expert validations
 * **Domain / Path**: The domain, path and the application ID that the request targeted.
 * **Status**: The attack blocking status (depends on the [traffic filtration mode](../../admin-en/configure-wallarm-mode.md)):
@@ -79,7 +79,7 @@ You can analyze incidents from the perspective of existing [security issues](../
 
 ![Incidents tab][img-incidents-tab]
 
-Once incident appeared in the **Incidents** section:
+Once an incident appears in the **Incidents** section:
 
 1. Optionally (recommended), [investigate the full context](#full-context-of-threat-actor-activities) of the incident's malicious requests: to which [user session](../../api-sessions/overview.md) they belong and what the full sequence of requests in this session is.
 

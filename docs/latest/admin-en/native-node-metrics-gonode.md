@@ -17,14 +17,14 @@ To access the metrics endpoint:
 
 * **Docker or virtual machine** - open port `9000` in the firewall or expose it via Docker `-p 9000:9000`.
 
-    The port and path for metrics can be changes using the [`metrics.*`](../installation/native-node/all-in-one-conf.md#metricsenabled) parameters.
+    The port and path for metrics can be changed using the [`metrics.*`](../installation/native-node/all-in-one-conf.md#metricsenabled) parameters.
 * **Kubernetes** - use a `kubectl port-forward` command to forward the port locally, e.g.:
 
     ```bash
     kubectl port-forward svc/<NODE-SERVICE-NAME> 9000:9000 -n <NAMESPACE>
     ```
 
-    The port and path for metrics can be changes using the [`processing.metrics.*`](../installation/native-node/helm-chart-conf.md#processingmetricsenabled) parameters.
+    The port and path for metrics can be changed using the [`processing.metrics.*`](../installation/native-node/helm-chart-conf.md#processingmetricsenabled) parameters.
 
 ## Available metrics
 

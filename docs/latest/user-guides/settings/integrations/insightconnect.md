@@ -6,7 +6,7 @@
 
 First, generate and copy an API key as follows:
 
-1. Open the InsightConnect's UI → **Settings** → [**API Keys** page](https://insight.rapid7.com/platform#/apiKeyManagement) and click **New User Key**.
+1. Open the InsightConnect UI → **Settings** → [**API Keys** page](https://insight.rapid7.com/platform#/apiKeyManagement) and click **New User Key**.
 2. Enter an API key name (e.g. `Wallarm API`) and click **Generate**.
 3. Copy the generated API key.
 4. Go to Wallarm UI → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/) cloud and click **InsightConnect**.
@@ -14,7 +14,7 @@ First, generate and copy an API key as follows:
 
 Secondly, generate and copy an API URL as follows:
 
-1. Go back to the InsightConnect's UI, open the **Automation** → **Workflows** page and create a new workflow for the Wallarm notification.
+1. Go back to the InsightConnect UI, open the **Automation** → **Workflows** page and create a new workflow for the Wallarm notification.
 2. When asked to choose a trigger, choose the **API Trigger**.
 3. Copy the generated URL.
 4. Go back to Wallarm UI → **InsightConnect** configuration and paste the API URL that you copied before into the **API URL** field.

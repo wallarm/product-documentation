@@ -59,7 +59,7 @@ The collectd service, previously installed on all filtering nodes, has been remo
 
 Use the [`/wallarm-status` endpoint](../admin-en/configure-statistics-service.md), which replaces collectd by providing the same metrics in Prometheus and JSON formats.
 
-As a result of this change, also the following changed in the configuration rules:
+As a result of this change, the following also changed in the configuration rules:
 
 * The `/opt/wallarm/etc/collectd/wallarm-collectd.conf.d/wallarm-tarantool.conf` collectd configuration file is no longer used.
 * If you previously used collectd to forward metrics via a network plugin, such as:
@@ -76,7 +76,7 @@ As a result of this change, also the following changed in the configuration rule
 
 ## New API Discovery
 
-Wallarm's New [API Discovery](../api-discovery/overview.md) is now **multi-protocol**: the REST protocol is extended with the support of GraphQL and SOAP. Also, improved user interface and performance make work with the API Discovery more comfortable and effective than before.
+Wallarm's New [API Discovery](../api-discovery/overview.md) is now **multi-protocol**: the REST protocol is extended with the support of GraphQL and SOAP. Also, an improved user interface and performance make working with API Discovery more convenient and effective than before.
 
 ### MCP protocol support
 
@@ -122,7 +122,7 @@ Each request/response parameter information includes:
 !!! tip ""
     SOAP protocol discovery requires [NGINX Node](node-artifact-versions.md) 6.2.0+ or Native Node 0.15.1+.
 
-If some of your APIs utilize the SOAP protocol and are requested in the real traffic, API Discovery will now detect them. In the built API inventory, you will see data about SOAP operations, including such data as transferred sensitive data, risk score and what contributes to it, XML body parameters, HTTPS and XML headers of requests and responses:
+If some of your APIs utilize the SOAP protocol and are requested in the real traffic, API Discovery will now detect them. In the built API inventory, you will see data about SOAP operations, including such data as transferred sensitive data, risk score and what contributes to it, XML body parameters, HTTP and XML headers of requests and responses:
 
 ![API Discovery - SOAP operation details](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-SOAP.png)
 
@@ -157,8 +157,8 @@ We introduce a unified management center for all Wallarm attack mitigation setti
 
 * View and manage all Wallarm mitigation settings in one place.
 * Manage all in a unified way (all controls have similar configuration UI and options).
-* Easily overview the current mode of each control: is it active? is it just monitoring or also blocking?
-* Get quick overview of attacks caught by each control.
+* Review the current mode of each control: is it active? is it just monitoring or also blocking?
+* Get a quick overview of attacks caught by each control.
 
 ![Mitigation Controls page in UI](../images/user-guides/mitigation-controls/mc-main-page.png)
 
@@ -174,7 +174,7 @@ New level of protection from [enumeration attacks](../attacks-vulns-list.md#enum
 * [Forced browsing protection](../api-protection/enumeration-attack-protection.md)
 * [Brute force protection](../api-protection/enumeration-attack-protection.md)
 
-Comparing to triggers that were used for this protection before, mitigation controls:
+Compared to triggers that were used for this protection before, mitigation controls:
 
 * Allow selecting which parameters will be monitored for enumeration attempts.
 * Allow advanced sophisticated filtering of which exact requests will be counted.
@@ -187,7 +187,7 @@ Comparing to triggers that were used for this protection before, mitigation cont
 !!! tip ""
     [NGINX Node 6.1.0 and higher](node-artifact-versions.md) and [Native Node 0.14.1 and higher](native-node/node-artifact-versions.md)
 
-The [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) is included in the [OWASP API Top 10 2023](../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks. Being a threat by itself (service slow-down or complete down by overload), this also serves as foundation to different attack types, for example, enumeration attacks. Allowing too many requests per time is one of the main causes of these risks.
+The [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) is included in the [OWASP API Top 10 2023](../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks. Being a threat in itself (service slow-down or complete outage due to overload), this also serves as a foundation for different attack types, for example, enumeration attacks. Allowing too many requests per time is one of the main causes of these risks.
 
 Wallarm provides the new [**DoS protection**](../api-protection/dos-protection.md) mitigation control to help prevent excessive traffic to your API.
 
@@ -216,7 +216,7 @@ Wallarm provides a set of [default mitigation controls](../about-wallarm/mitigat
 
 ## File upload restriction policy
 
-Wallarm now provides tools for direct restricting the size of uploaded files. This comes as a part of set of measures aimed to prevent the [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) included in the [OWASP API Top 10 2023](../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks.
+Wallarm now provides tools for directly restricting the size of uploaded files. This comes as part of a set of measures aimed at preventing [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) included in the [OWASP API Top 10 2023](../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks.
 
 Depending on your subscription plan, upload restrictions are applied via mitigation control or rule. You can set file size restrictions for the full request or its selected point.
 
@@ -230,11 +230,11 @@ Depending on your subscription plan, upload restrictions are applied via mitigat
 !!! tip ""
     [NGINX Node 6.3.0 and higher](node-artifact-versions.md) and [Native Node 0.16.0 and higher](../installation/nginx-native-node-internals.md#native-node).
 
-Wallarm's [API Abuse Prevention](../api-abuse-prevention/overview.md) introduces the possibility to prevent the [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) - abusive behavior where an automated client consumes excessive API or application resources without proper limits. This may include sending high volumes of non-malicious requests, exhausting compute, memory, or bandwidth, and causing service degradation for legitimate users.
+Wallarm's [API Abuse Prevention](../api-abuse-prevention/overview.md) introduces the ability to prevent [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) - abusive behavior where an automated client consumes excessive API or application resources without proper limits. This may include sending high volumes of non-malicious requests, exhausting compute, memory, or bandwidth, and causing service degradation for legitimate users.
 
 ![API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
 
-To detect this type of automated threats, API Abuse Prevention provides a set of three new [detectors](../api-abuse-prevention/overview.md#how-api-abuse-prevention-works):
+To detect this type of automated threat, API Abuse Prevention provides a set of three new [detectors](../api-abuse-prevention/overview.md#how-api-abuse-prevention-works):
 
 * **Response time anomaly** identifying abnormal patterns in the latency of API responses that may signal automated abuse or backend exploitation attempts.
 * **Excessive request consumption** identifying clients that send abnormally large request payloads to the API, potentially indicating abuse or misuse of backend processing resources.
@@ -253,7 +253,7 @@ Blocking by session is required for the cases of:
 * Attackers switching IP addresses via proxy servers, VPNs or other means
 * Bot attacks, utilizing a number of machines with diverse IP addresses
 * Invalidating the specific stolen session (directly stops the hijack)
-* Necessity of immediate revocation of current access for actively logged in session
+* Necessity of immediate revocation of current access for an actively logged-in session
 
 The session can be blocked automatically by: 
 
@@ -269,7 +269,7 @@ You can also block/unblock any session manually at any moment.
 
 ## Security Issues: all vulnerabilities in one unified view
 
-As for now, Wallarm offers multiple [methods](../about-wallarm/detecting-vulnerabilities.md#detection-methods) of detecting vulnerabilities (security issues) which vary at scope, usage scenarios, required elements (with or without node) and a set of vulnerabilities they are able to find.
+As of now, Wallarm offers multiple [methods](../about-wallarm/detecting-vulnerabilities.md#detection-methods) of detecting vulnerabilities (security issues) which vary in scope, usage scenarios, required elements (with or without node) and a set of vulnerabilities they are able to find.
 
 Previously vulnerabilities found by different methods were displayed in different sections of Wallarm Console - now the view is unified and you can see all of them in one place - the **Security Issues** section.
 
@@ -277,8 +277,8 @@ Previously vulnerabilities found by different methods were displayed in differen
 
 Here you can:
 
-* Easily view and [manage](../user-guides/vulnerabilities.md) the list of found vulnerabilities distinguished by the risk level
-* Access detailed information on each security issue (vulnerability): description, mitigation measures, links to relates CWEs, history of status changes and comments from your team members
+* View and [manage](../user-guides/vulnerabilities.md) the list of found vulnerabilities distinguished by the risk level
+* Access detailed information on each security issue (vulnerability): description, mitigation measures, links to related CWEs, history of status changes and comments from your team members
 * Close and re-open vulnerabilities
 * Get reports
 

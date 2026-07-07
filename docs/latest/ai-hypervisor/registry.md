@@ -20,7 +20,7 @@ Move entities between states through the per-row **Promote** and **Demote** acti
 
 ## A2AS certification
 
-For agents and MCP servers, the registry tracks **A2AS** (Agent-to-Agent Security) certification: a set of up to five components (Behavior Certificates, Authenticated Prompts, others) that signal an entity has been hardened against agentic-security risks. The **Cert** column summarises how many components are in place per entity. The dedicated **A2AS Certs** tab focuses on certification coverage across all agents.
+For agents and MCP servers, the registry tracks **A2AS** (Agent-to-Agent Security) certification: a set of up to five components (Behavior Certificates, Authenticated Prompts, others) that signal an entity has been hardened against agentic-security risks. The **Cert** column summarizes how many components are in place per entity. The dedicated **A2AS Certs** tab focuses on certification coverage across all agents.
 
 For tools (MCP-exposed actions agents can call), the equivalent signal is a per-tool *Sanctioned* flag.
 
@@ -35,7 +35,7 @@ Beyond the table columns, each entity's detail surfaces include:
 * **CVEs.** Known vulnerabilities affecting the entity's components.
 * **Detection source.** For APIs, how AI Hypervisor learned about the endpoint: source-code import, HTTP probing, eBPF observation, or inferred from related traffic.
 
-Exact sections depend on asset class. Agents carry A2AS components and Performance; MCP servers carry transport, tool catalogue, and certification status; APIs carry detection source, protocol, and traffic metrics.
+Exact sections depend on asset class. Agents carry A2AS components and Performance; MCP servers carry transport, tool catalog, and certification status; APIs carry detection source, protocol, and traffic metrics.
 
 ## Cross-references
 

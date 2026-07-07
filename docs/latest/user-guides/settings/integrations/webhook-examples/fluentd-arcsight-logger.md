@@ -38,7 +38,7 @@ Since Wallarm sends logs to the Fluentd intermediate data collector via webhooks
 
 * Accept the POST or PUT requests
 * Accept HTTPS requests
-* Have public URL
+* Have a public URL
 * Forward logs to ArcSight Logger, this example uses the `remote_syslog` plugin to forward logs
 
 Fluentd is configured in the `td-agent.conf` file:

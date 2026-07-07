@@ -15,7 +15,7 @@ To enable API Abuse Prevention:
 
 API abuse profiles are used to configure how Wallarm's **API Abuse Prevention** detects and mitigates malicious bots. You can create different profiles for different applications. Each application can have only one associated profile.
 
-A profile defines from what type of bots to protect, with what sensitivity each type of bot should be detected and what should be the reaction to this bot's activities.
+A profile defines which types of bots to protect from, the sensitivity with which each type of bot should be detected, and the reaction to the bot's activities.
 
 To create an API abuse profile:
 
@@ -34,7 +34,7 @@ To create an API abuse profile:
 
 1. If necessary change the detection **Sensitivity** for each bot type:
     
-    * **Paranoid** - the higher sensitivity means that LESS bots access your applications, but this may block some legitimate requests due to false positives.
+    * **Paranoid** - the higher sensitivity means that FEWER bots access your applications, but this may block some legitimate requests due to false positives.
     * **Normal** (default, recommended) - uses optimal rules to avoid many false positives and prevent most malicious bot requests from reaching APIs.
     * **Safe mode** - the lower sensitivity means that MORE bots access your applications, but then no legitimate requests will be dropped.
 
@@ -46,7 +46,7 @@ To create an API abuse profile:
     * **Applications** - analyze requests to all of the domains of the application together.
     * **Domains** - analyze requests to each of the domains of the application separately.
 
-<a name="per-profile-traffic"></a>Once created, profiles will protect your selected applications from the malicious bots of selected types. Note that protection and data analysis depend on profile's application traffic presence and amount. Pay your attention to the per-profile status:
+<a name="per-profile-traffic"></a>Once created, profiles will protect your selected applications from the malicious bots of selected types. Note that protection and data analysis depend on profile's application traffic presence and amount. Pay attention to the per-profile status:
 
 ![API abuse prevention - profiles](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-profiles-per-profile-status.png)
 
@@ -66,4 +66,4 @@ You can fine tune API Abuse Prevention by [making exceptions](exceptions.md): ma
 
 API Abuse Prevention uses the [API Sessions](../api-sessions/overview.md) mechanism when analyzing the bot behavior.
 
-To make the API Abuse Prevention functionality more precise, it is recommended to enable [JA3 fingerprinting](../admin-en/enabling-ja3.md) for better identification of the the unauthenticated traffic when combining requests into sessions.
+To make the API Abuse Prevention functionality more precise, it is recommended to enable [JA3 fingerprinting](../admin-en/enabling-ja3.md) for better identification of the unauthenticated traffic when combining requests into sessions.

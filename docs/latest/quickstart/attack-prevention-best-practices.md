@@ -2,17 +2,17 @@
 
 This article shows you how to use [Wallarm API Security](../about-wallarm/api-security-overview.md) — the API protection product of [Wallarm AI Control Platform](../about-wallarm/overview.md) — for attack prevention. It not only protects web applications like a traditional WAAP, but also specifically safeguards APIs, covering the full range of modern application traffic.
 
-With so many threats we have online, it is crucial to have a strong shield. Wallarm can stop common threats such as SQL injection, cross-site scripting, remote code execution, and Path Traversal all on its own. But for some sneaky dangers and specialized use-cases like protection against DoS-attack, account takeover, API abuse, a few adjustments might be needed. We will walk you through those steps, ensuring you get the best protection possible. Whether you are a seasoned security expert or just embarking on your cybersecurity journey, this article will provide valuable insights to bolster your security strategy.
+With so many threats we have online, it is crucial to have a strong shield. Wallarm can stop common threats such as SQL injection, cross-site scripting, remote code execution, and Path Traversal all on its own. But for some sneaky dangers and specialized use-cases like protection against DoS attacks, account takeover, API abuse, a few adjustments might be needed. We will walk you through those steps, ensuring you get the best protection possible. Whether you are a seasoned security expert or just embarking on your cybersecurity journey, this article will provide valuable insights to bolster your security strategy.
 
 ## Manage multiple applications and tenants
 
-If your organization uses multiple applications or separate tenants, you will likely find the Wallarm platform useful for easy management. It allows you to view events and statistics separately [for each application](../user-guides/settings/applications.md) and configure specific triggers or rules per application. If you need, you can create isolated environment [for each tenant](../installation/multi-tenant/overview.md) with separate access controls. 
+If your organization uses multiple applications or separate tenants, you will likely find the Wallarm platform useful for easy management. It allows you to view events and statistics separately [for each application](../user-guides/settings/applications.md) and configure specific triggers or rules per application. If you need, you can create an isolated environment [for each tenant](../installation/multi-tenant/overview.md) with separate access controls.
 
 ## Establish a trust zone
 
 When introducing new security measures, the uninterrupted operation of crucial business applications must remain a top priority. To ensure trusted resources are not unnecessarily processed by the Wallarm platform, you have the option to allocate them to the [IP allowlist](../user-guides/ip-lists/overview.md).
 
-Traffic originating by the allowlisted resources is not analyzed or logged by default. This means that data from bypassed requests will not be available for review. Therefore its use should be applied cautiously.
+Traffic originating from the allowlisted resources is not analyzed or logged by default. This means that data from bypassed requests will not be available for review. Therefore, its use should be applied cautiously.
 
 For URLs that require unrestricted traffic or for which you wish to conduct manual oversight, consider [setting the Wallarm node to monitoring mode](../admin-en/configure-wallarm-mode.md). This will capture and log any malicious activities targeting these URLs. You can subsequently review these events through the Wallarm Console UI, monitor anomalies, and, if necessary, take manual actions such as blocking specific IPs.
 
@@ -52,7 +52,7 @@ The Broken Object Level Authorization (BOLA) vulnerability allows an attacker to
 
 ## Enable credential stuffing detection
 
-Enable [credential stuffing detection](../about-wallarm/credential-stuffing.md) to have a real-time information about attempts to use compromised or weak credentials to access your applications and a downloadable list of all compromised or weak credentials providing access to your applications.
+Enable [credential stuffing detection](../about-wallarm/credential-stuffing.md) to have real-time information about attempts to use compromised or weak credentials to access your applications and a downloadable list of all compromised or weak credentials providing access to your applications.
 
 Knowledge of accounts with stolen or weak passwords allows you to initiate measures to secure these accounts' data, like communicating with account owners, temporarily suspending access to the accounts, etc.
 
@@ -66,17 +66,17 @@ The Wallarm node sends attack information to the Wallarm Cloud. Certain data, li
 
 ## Analyze user sessions
 
-Dealing only with the attacks, presented in the **Attacks** or **Incidents** section, you cannot see their full contexts: the logic sequence of requests that the attack is the part of. 
+Dealing only with the attacks, presented in the **Attacks** or **Incidents** section, you cannot see their full contexts: the logic sequence of requests that the attack is part of.
 
 Wallarm's [**API Sessions**](../api-sessions/overview.md) provide this context to allow revealing of more general patterns in how your applications are being attacked as well as understanding of which business logic will be affected by the taken security measures.
 
-Analyze user sessions to identify a logic of the threat actor behavior, verify attack and malicious bot detection accuracy, track shadow, zombie and other endpoints in risk, identify the performance issues and more.
+Analyze user sessions to identify the logic of threat actor behavior, verify attack and malicious bot detection accuracy, track shadow, zombie and other endpoints at risk, identify performance issues and more.
 
 ## Seamless SIEM/SOAR integration & Instant alerts for critical events
 
-Wallarm offers seamless integration with [various SIEM/SOAR systems](../user-guides/settings/integrations/integrations-intro.md) such as Sumo Logic, Splunk and others enabling you to effortlessly export all attack information to your SOC center for centralized management.
+Wallarm offers seamless integration with [various SIEM/SOAR systems](../user-guides/settings/integrations/integrations-intro.md) such as Sumo Logic, Splunk and others enabling you to export all attack information to your SOC center for centralized management.
 
-Wallarm integrations together with the [triggers](../user-guides/triggers/triggers.md) functionality provides you with a great tool to set up reports and real-time notifications on specific attacks, denylisted IPs, and overall ongoing attack volume.
+Wallarm integrations together with the [triggers](../user-guides/triggers/triggers.md) functionality provide you with a great tool to set up reports and real-time notifications on specific attacks, denylisted IPs, and overall ongoing attack volume.
 
 ## Layered defense strategy
 

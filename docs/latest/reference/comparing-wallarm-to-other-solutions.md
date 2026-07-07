@@ -1,6 +1,6 @@
 # Comparing Wallarm to Other Solutions
 
-When comparing Wallarm to other security or WAF solutions, it's essential to gather and present meaningful data. This article describes how to showcase Wallarm's performance effectively and use Wallarm's reporting features for teams and executives.
+When comparing Wallarm to other security or WAF solutions, it is essential to gather and present meaningful data. This article describes how to showcase Wallarm's performance effectively and use Wallarm's reporting features for teams and executives.
 
 ## Step 1: Compare WAF Capabilities with GoTestWAF
 

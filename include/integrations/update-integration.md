@@ -1,4 +1,4 @@
-To update the settings of active integration:
+To update the settings of an active integration:
 
 1. Go to Wallarm Console → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/) Cloud.
 2. Open an active integration.

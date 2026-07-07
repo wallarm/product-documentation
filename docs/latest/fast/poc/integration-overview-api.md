@@ -52,7 +52,7 @@ The corresponding workflow steps are:
     
     The recording process [should be stopped][doc-stopping-recording] after all of the existing tests are executed.
     
-    Now, the [test record][doc-testrecord] that holds the recorded baseline requests, is ready to be reused in the CI/CD workflow that works with the already recorded baseline requests.  
+    Now, the [test record][doc-testrecord] that holds the recorded baseline requests is ready to be reused in the CI/CD workflow that works with the already recorded baseline requests.  
     
 6.  Waiting for the FAST security tests to finish.
     
@@ -60,7 +60,7 @@ The corresponding workflow steps are:
     
 7.  Obtaining the results of the testing.
 
-This scenario is shown on the picture below:
+This scenario is shown in the picture below:
 
 ![An example of a CI/CD job with requests recording][img-sample-job-recording]
 

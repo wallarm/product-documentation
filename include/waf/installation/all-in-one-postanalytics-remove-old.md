@@ -1,9 +1,9 @@
-1. Delete old postanalytics module in Wallarm Console → **Nodes** by selecting your postanalytics module node and clicking **Delete**.
+1. Delete the old postanalytics module in Wallarm Console → **Nodes** by selecting your postanalytics module node and clicking **Delete**.
 1. Confirm the action.
     
-    When the postanalytics module node is deleted from Cloud, it will stop participation in filtration of requests to your applications. Deleting cannot be undone. The postanalytics module node will be deleted from the list of nodes permanently.
+    When the postanalytics module node is deleted from the Cloud, it will stop participating in the filtration of requests to your applications. Deleting cannot be undone. The postanalytics module node will be deleted from the list of nodes permanently.
 
-1. Delete machine with the old postanalytics module or just clean it from Wallarm postanalytics module components:
+1. Delete the machine with the old postanalytics module or just clean it of Wallarm postanalytics module components:
 
     === "Debian"
         ```bash

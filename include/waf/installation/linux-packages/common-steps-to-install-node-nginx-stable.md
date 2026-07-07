@@ -1,6 +1,6 @@
 ## 1. Install NGINX stable and dependencies
 
-These are the following options to install NGINX `stable` from the NGINX repository:
+There are the following options to install NGINX `stable` from the NGINX repository:
 
 * Installation from the built package
 

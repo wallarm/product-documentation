@@ -4,13 +4,13 @@ This article describes how to troubleshoot Wallarm's [SAML SSO Authentication](i
 
 ### SSO and API authentication
 
-When SSO is enabled for the user, authentication for [requests to Wallarm API](../../../api/overview.md#your-own-api-client) becomes unavailable for this user. To get working API credentials, different options depending on the used SSO [options](intro.md#available-options):
+When SSO is enabled for the user, authentication for [requests to Wallarm API](../../../api/overview.md#your-own-api-client) becomes unavailable for this user. To get working API credentials, there are different options depending on the used SSO [options](intro.md#available-options):
 
 * When provisioning is on or off with the strict SSO option, you can enable API authentication for the SSO users with the **Administrator** role. To do this, select **Enable API access** from this user menu. The `SSO+API` auth method is enabled for the user which allows creating API tokens.
 
     Later you can disable API authentication for the user by selecting **Disable API access**. If this is done, all existing API tokens will be deleted and in a week - removed.
 
-* When provisioning is off and strict SSO is not used, create user without SSO option under your company account, and create [API token(s)](../../../api/overview.md#your-own-api-client).
+* When provisioning is off and strict SSO is not used, create a user without the SSO option under your company account, and create [API token(s)](../../../api/overview.md#your-own-api-client).
 
 ### Cannot sign in issues
 
@@ -24,4 +24,4 @@ If the user cannot sign in via SSO, the error message is displayed with one of t
 | `user_not_found` | Wallarm did not find the user with the specified email. | Create a user with this email in Wallarm Console. |
 | `client_not_found` | The company account was not found in Wallarm. | Create a user account with an appropriate email domain, which will create the company account immediately. |
 
- If necessary, administrator can contact the [Wallarm support team](mailto:support@wallarm.com) to get help in fixing any of these errors.
+ If necessary, the administrator can contact the [Wallarm support team](mailto:support@wallarm.com) to get help in fixing any of these errors.

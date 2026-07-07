@@ -15,7 +15,7 @@ Wallarm has two main components: **Wallarm filtering node** and **Wallarm Cloud*
 
 ## Security Edge
 
-In this deployment form, both Wallarm filtering nodes and Wallarm Cloud components are managed by Wallarm and thus most responsibilities go to Wallarm side.
+In this deployment form, both Wallarm filtering nodes and Wallarm Cloud components are managed by Wallarm and thus most responsibilities go to the Wallarm side.
 
 **Wallarm responsibilities**
 
@@ -39,7 +39,7 @@ In this deployment form, Wallarm clients deploy and manage the Wallarm filtering
 **Wallarm responsibilities**
 
 * The security and availability of Wallarm cloud environments, the security of Wallarm filtering node code and internal Wallarm systems.
-* Updating the Wallarm filtering node component on a [periodic basis](../updating-migrating/versioning-policy.md). Please note that the application of these updates is the responsibility of the client.
+* Updating the Wallarm filtering node component on a [periodic basis](../updating-migrating/versioning-policy.md). The application of these updates is the responsibility of the client.
 * Providing you with a copy of the latest Wallarm SOC 2 Type II audit report if requested.
 
 **Client responsibilities**
@@ -50,7 +50,7 @@ Wallarm clients are responsible for the following points:
 
 * Practicing removal of user accounts for any users who have been terminated and were previously involved in any material functions or activities associated with Wallarm’s services.
 
-* Configuring proper [data export process](../admin-en/export-to-cloud.md) for any sensitive data not to leave the client’s security perimeter, and, in the same time, all data required to detect malicious requests is sent to the Wallarm Cloud.
+* Configuring proper [data export process](../admin-en/export-to-cloud.md) for any sensitive data not to leave the client’s security perimeter, and, at the same time, all data required to detect malicious requests is sent to the Wallarm Cloud.
 
 * Ensuring that transactions for client organizations relating to Wallarm’s services are appropriately authorized, and transactions are secure, timely, and complete.
 
@@ -62,7 +62,7 @@ Wallarm clients are responsible for the following points:
 
 ## Visibility and control over data export
 
-Regardless of deployment form, Wallarm provides a full visibility into what data is transferred from node to Cloud and gives a set of comprehensive tools to fully control this export.
+Regardless of deployment form, Wallarm provides full visibility into what data is transferred from node to Cloud and gives a set of comprehensive tools to fully control this export.
 
 See [Control over Export to Cloud](../admin-en/export-to-cloud.md) for details.
 

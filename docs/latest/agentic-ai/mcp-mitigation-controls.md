@@ -73,7 +73,7 @@ With this policy, only agents acting on behalf of users with the `admin` role ca
 
 The **request verification** control checks that specific parameters in an MCP request contain expected values before allowing the request to proceed.
 
-MCP requests often carry important context: JWT tokens with scoped permissions, client identifiers, tenant IDs. However, the MCP server itself has no built-in mechanism to validate this context -it simply processes whatever the AI agent sends. This control closes that gap by letting you define what values must be present in specific request fields (headers, JWT claims, body parameters) for each method and primitive.
+MCP requests often carry important context: JWT tokens with scoped permissions, client identifiers, tenant IDs. However, the MCP server itself has no built-in mechanism to validate this context - it simply processes whatever the AI agent sends. This control closes that gap by letting you define what values must be present in specific request fields (headers, JWT claims, body parameters) for each method and primitive.
 
 For example, you can require that `tools/call` requests to `profile_read` carry a JWT with the `profile:read` scope, or that the `X-Client-Id` header matches an expected tenant identifier.
 

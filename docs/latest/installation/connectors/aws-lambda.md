@@ -31,7 +31,7 @@ The CloudFront connector supports both [in-line](../inline/overview.md) and [out
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is recommended in case when you deliver traffic through Amazon CloudFront.
+Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is recommended when you deliver traffic through Amazon CloudFront.
 
 ## Limitations
 

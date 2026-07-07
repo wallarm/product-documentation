@@ -8,7 +8,7 @@
 1. Click the **Slack** block or click the **Add integration** button and choose **Slack**.
 1. Enter an integration name.
 1. Open [Webhook settings in Slack](https://my.slack.com/services/incoming-webhook/) and add a new Webhook choosing the channel to post messages to.
-1. Copy the provided Webhook URL and paste the value to the **Webhook URL** field in Wallarm UI.
+1. Copy the provided Webhook URL and paste the value into the **Webhook URL** field in Wallarm UI.
 1. Choose event types to trigger notifications.
 
     ![Slack integration](../../../images/user-guides/settings/integrations/add-slack-integration.png)
@@ -53,7 +53,7 @@ Send the following requests to the protected resource:
 curl 'http://localhost/?id=1%27%20UNION%20SELECT%20username,%20password%20FROM%20users--<script>prompt(1)</script>'
 curl 'http://localhost/?id=1%27%20select%20version();'
 ```
-Open the Slack channel and check that the following notification from the user **wallarm** received:
+Open the Slack channel and check that the following notification from the user **wallarm** is received:
 
 ```
 [Wallarm] Trigger: The number of detected hits exceeded the threshold
@@ -79,7 +79,7 @@ Cloud: EU
 
 ### Example: Slack and email notification if new user is added to the account
 
-If a new user with the **Administrator** or **Analyst** role is added to the company account in Wallarm Console, notification about this event will be sent to the email address specified in the integration and to the Slack channel.
+If a new user with the **Administrator** or **Analyst** role is added to the company account in Wallarm Console, a notification about this event will be sent to the email address specified in the integration and to the Slack channel.
 
 ![Example of a trigger sending the notification to Slack and by email](../../../images/user-guides/triggers/trigger-example2.png)
 
@@ -88,10 +88,10 @@ If a new user with the **Administrator** or **Analyst** role is added to the com
 1. Open the Wallarm Console → **Settings** → **Users** and add a new user. For example:
 
     ![Added user](../../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)
-2. Open your email Inbox and check that the following message received:
+2. Open your email Inbox and check that the following message is received:
 
     ![Email about new user added](../../../images/user-guides/triggers/test-new-user-email-message.png)
-3. Open the Slack channel and check that the following notification from the user **wallarm** received:
+3. Open the Slack channel and check that the following notification from the user **wallarm** is received:
 
     ```
     [Wallarm] Trigger: New user was added to the company account

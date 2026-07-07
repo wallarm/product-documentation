@@ -1,6 +1,6 @@
 # Managing Wallarm using Terraform
 
-If you use [Terraform](https://www.terraform.io/) to manage your infrastructures, that may be a comfortable option for you to use it for managing Wallarm. The [Wallarm provider](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) for Terraform allows doing so.
+If you use [Terraform](https://www.terraform.io/) to manage your infrastructure, that may be a convenient option for you to use it for managing Wallarm. The [Wallarm provider](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) for Terraform allows doing so.
 
 ## Requirements
 
@@ -55,8 +55,8 @@ To connect Wallarm Terraform provider to your Wallarm account in the [US](https:
       # client_id = <CLIENT_ID>
     }
     ```
-* `<WALLARM_API_TOKEN>` allows to access API of your Wallarm account. [How to get it →](../../user-guides/settings/api-tokens.md)
-* `<CLIENT_ID>` is ID of tenant (client); required only when [multitenancy](../../installation/multi-tenant/overview.md) feature is used. Take `id` (not `uuid`) as described [here](../../installation/multi-tenant/configure-accounts.md#via-the-wallarm-api).
+* `<WALLARM_API_TOKEN>` allows you to access the API of your Wallarm account. [How to get it →](../../user-guides/settings/api-tokens.md)
+* `<CLIENT_ID>` is the ID of the tenant (client); required only when [multitenancy](../../installation/multi-tenant/overview.md) feature is used. Take `id` (not `uuid`) as described [here](../../installation/multi-tenant/configure-accounts.md#via-the-wallarm-api).
 
 See [details](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) in the Wallarm provider documentation.
 
@@ -124,8 +124,8 @@ The configuration does the following:
 
 * Connects to the US Cloud → company account with the provided Wallarm API token.
 * `resource "wallarm_global_mode" "global_block"` → sets global filtration mode to `Local settings (default)` using the `filtration_mode` attribute, which means the filtration mode is controlled locally on each node.
-* `resource "wallarm_application" "tf_app"` → creates application named `Terraform Application 001` with ID `42`.
-* `resource "wallarm_rule_mode" "tiredful_api_mode"` → creates rule that sets traffic filtration mode to `Monitoring` for all the requests sent via HTTPS protocol to the application with ID `42`.
+* `resource "wallarm_application" "tf_app"` → creates an application named `Terraform Application 001` with ID `42`.
+* `resource "wallarm_rule_mode" "tiredful_api_mode"` → creates a rule that sets traffic filtration mode to `Monitoring` for all the requests sent via HTTPS protocol to the application with ID `42`.
 
 ## Further information about Wallarm and Terraform
 
@@ -136,4 +136,4 @@ To this registry, Wallarm published:
 * The [Wallarm provider](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) for managing Wallarm via Terraform. Described in the current article.
 * The [Wallarm module](../../installation/cloud-platforms/aws/terraform-module/overview.md) to deploy the node to AWS from the Terraform-compatible environment.
 
-These two are independent tools used for different purposes. One is not required to use another.
+These two are independent tools used for different purposes. One is not required to use the other.

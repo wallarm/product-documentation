@@ -2,7 +2,7 @@
 
 <a href="#role-and-altitude"><img src="../../images/role-executive.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="#role-and-altitude"><img src="../../images/role-security.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="#role-and-altitude"><img src="../../images/role-platform.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="#role-and-altitude"><img src="../../images/role-compliance.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="#role-and-altitude"><img src="../../images/role-developer.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a>
 
-The **Briefing** is the role-tailored landing view you arrive at after signing in. It answers three questions: what is connected, what is normal, what should you look at first. The view populates within about 30 seconds of traffic flowing through labelled workloads.
+The **Briefing** is the role-tailored landing view you arrive at after signing in. It answers three questions: what is connected, what is normal, what should you look at first. The view populates within about 30 seconds of traffic flowing through labeled workloads.
 
 **Briefing** also hosts the conversational agent, so any question about something on the screen turns into a chat.
 
@@ -60,7 +60,7 @@ The chat strip at the bottom of the **Briefing** tray is your shortcut from *"I 
 * **Explaining a finding** — *"What does this CVE mean for the `checkout-bot` app?"*
 * **Why something is flagged** — *"Why is `support-bot` calling Cohere when our policy is OpenAI-only?"*
 * **Suggesting a tailored fix** — *"How should I remediate the PII leak in the `internal-rag` flow?"*
-* **Summarising recent activity** — *"What changed in our AI estate this week?"*
+* **Summarizing recent activity** — *"What changed in our AI estate this week?"*
 * **Pointing you to the right UI surface** — *"Where do I see every session that touched a credit card today?"*
 
 The agent reads, explains, and recommends. It does not act on your behalf. Promotion, blocking, and configuration changes go through the corresponding UI controls.
@@ -78,4 +78,4 @@ Most **Briefing** cards drill into the canonical view that owns the detail:
 
 ## Settings that affect Briefing
 
-* The cards that appear depend on what the tenant has observed. New applications onboarded via Helm and labelled `higgs.scan=enabled` start contributing within about 30 seconds (see [Labels and Annotations](annotations.md)).
+* The cards that appear depend on what the tenant has observed. New applications onboarded via Helm and labeled `higgs.scan=enabled` start contributing within about 30 seconds (see [Labels and Annotations](annotations.md)).

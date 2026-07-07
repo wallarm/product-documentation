@@ -68,13 +68,13 @@ To securely use the [FAST node token][fast-node-token], pass its value in the [e
 
 ## Getting the Result of Testing
 
-The result of security testing will be displayed in CircleCI interface.
+The result of security testing will be displayed in the CircleCI interface.
 
 ![The result of running FAST node in testing mode][fast-example-result]
 
 ## More Examples
 
-You can find examples of integrating FAST to CircleCI workflow in our [GitHub][fast-examples-github] and [CircleCI][fast-example-circleci].
+You can find examples of integrating FAST into a CircleCI workflow in our [GitHub][fast-examples-github] and [CircleCI][fast-example-circleci].
 
 !!! info "Further questions"
     If you have questions related to FAST integration, please [contact us][mail-to-us].

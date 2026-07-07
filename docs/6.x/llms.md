@@ -539,7 +539,7 @@ search:
 
 ## Optional
 
-The pages below are linked here rather than in the main tree because they are less directly useful for an LLM agent answering a question — videos can't be ingested as text, and legacy / EOL material is unlikely to be relevant to questions about the current product.
+The pages below are linked here rather than in the main tree because they are less directly useful for an LLM agent answering a question — videos cannot be ingested as text, and legacy / EOL material is unlikely to be relevant to questions about the current product.
 
 ### Video Guides (not ingestible by text-only agents)
 

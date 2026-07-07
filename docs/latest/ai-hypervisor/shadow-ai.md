@@ -2,15 +2,15 @@
 
 <a href="briefing.md#role-and-altitude"><img src="../../images/role-security.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-platform.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-compliance.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-developer.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a>
 
-**Shadow AI** surfaces AI components your organisation is using but has not formally approved: vendors a team started consuming without telling security, agents running on unmanaged infrastructure, MCP servers reached over DNS that have no registry footprint.
+**Shadow AI** surfaces AI components your organization is using but has not formally approved: vendors a team started consuming without telling security, agents running on unmanaged infrastructure, MCP servers reached over DNS that have no registry footprint.
 
-The view is app-independent. It does not require the workload to be labelled `higgs.scan=enabled`. Shadow AI is detected from external signals that arrive even when the in-cluster scanner has no foothold inside the calling pod. That is the point: the workloads you do not know about are the ones you cannot label.
+The view is app-independent. It does not require the workload to be labeled `higgs.scan=enabled`. Shadow AI is detected from external signals that arrive even when the in-cluster scanner has no foothold inside the calling pod. That is the point: the workloads you do not know about are the ones you cannot label.
 
 ![AI Hypervisor Shadow AI](../../images/ai-hypervisor/aih-shadow-ai.png)
 
 ## Detection signals
 
-AI Hypervisor recognises shadow AI from four orthogonal signals:
+AI Hypervisor recognizes shadow AI from four orthogonal signals:
 
 * **DNS queries.** Pods inside your cluster resolving hostnames that match a known AI provider (Anthropic, OpenAI, Bedrock endpoints, Cohere, Mistral, Together). Wallarm's CoreDNS log plug-in feeds these.
 * **Cloud audit logs.** Managed AI services consumed via AWS APIs (Bedrock invocations from accounts not in your sanctioned set, SageMaker endpoint usage) recovered from CloudTrail-style sources.
@@ -21,7 +21,7 @@ Each signal carries enough context to identify the component and the namespace o
 
 ## What the view shows
 
-Shadow AI groups un-governed assets by the namespace where they were observed. The header reads `N un-governed AI assets across M non-AIH namespaces`. Each namespace becomes its own card, labelled **non-AIH namespace** (the namespace does not yet carry the `higgs.scan=enabled` label).
+Shadow AI groups un-governed assets by the namespace where they were observed. The header reads `N un-governed AI assets across M non-AIH namespaces`. Each namespace becomes its own card, labeled **non-AIH namespace** (the namespace does not yet carry the `higgs.scan=enabled` label).
 
 Under each card, the assets are listed with the signal that surfaced them: `dns_detected` for DNS-pattern matches, `llm_egress` when a known provider's request signature was seen, the resolved provider name (`Anthropic`, `OpenAI`, and so on) when the classifier was able to pin it.
 
