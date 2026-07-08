@@ -17,9 +17,9 @@
 /api-protection/custom-request-anomaly/    /agentic-ai/ai-payload-inspection/
 /api-protection/custom-request-anomaly     /agentic-ai/ai-payload-inspection/
 
-# Rogue MCP Inspection merged into API Security Testing via Postman overview (same Postman MCP server)
-/agentic-ai/rogue-mcp-inspection/    /vulnerability-detection/api-security-testing-via-postman/overview/#bonus-rogue-mcp-inspection-free
-/agentic-ai/rogue-mcp-inspection     /vulnerability-detection/api-security-testing-via-postman/overview/#bonus-rogue-mcp-inspection-free
+/agentic-ai/rogue-mcp-inspection/ /vulnerability-detection/security-testing-overview/
+/agentic-ai/rogue-mcp-inspection /vulnerability-detection/security-testing-overview/
+/vulnerability-detection/api-security-testing-via-postman/* /vulnerability-detection/security-testing-overview/:splat 301!
 
 /en/admin-en/configure-tarantool-en.html   /en/admin-en/configuration-guides/allocate-resources-for-waf-node.html
 /en/quickstart-en/qs-intro-en.html         /en/quickstart-en/how-wallarm-works/qs-intro-en.html

@@ -177,12 +177,6 @@
 - [Schema-Based Testing Setup](https://docs.wallarm.com/7.x/vulnerability-detection/schema-based-testing/setup.md): Upload schema, configure auth, schedule runs.
 - [Schema-Based Testing Results](https://docs.wallarm.com/7.x/vulnerability-detection/schema-based-testing/explore.md): Browse test runs and reported findings.
 
-#### API Security Testing via Postman
-
-- [Postman Testing Overview](https://docs.wallarm.com/7.x/vulnerability-detection/api-security-testing-via-postman/overview.md): Run passive security tests on Postman collections (also: Postman tests, passive API testing).
-- [Postman Testing Setup](https://docs.wallarm.com/7.x/vulnerability-detection/api-security-testing-via-postman/setup.md): Connect Postman to Wallarm and authorize collections.
-- [Postman Testing Results](https://docs.wallarm.com/7.x/vulnerability-detection/api-security-testing-via-postman/exploring.md): View results in Postman AI Mode or in Wallarm Console.
-
 #### API Attack Surface Management (AASM)
 
 - [AASM Overview](https://docs.wallarm.com/7.x/api-attack-surface/overview.md): Agentless external attack surface management for APIs (also: EASM, external attack surface, API ASM).
