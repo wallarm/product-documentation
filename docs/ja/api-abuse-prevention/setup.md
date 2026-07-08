@@ -1,1 +1,0 @@
---8<-- "latest-ja/api-abuse-prevention/setup.md"

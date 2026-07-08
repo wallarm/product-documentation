@@ -1,1 +1,0 @@
---8<-- "latest-ar/api-protection/business-logic-abuse-detection.md"

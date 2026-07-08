@@ -71,14 +71,12 @@ All configs inherit from `mkdocs-base.yml` (shared plugins, extensions, theme se
 
 ### Translations
 
-Docs are written in English. Translation configs (`mkdocs-ja-6.x.yml`, `mkdocs-tr-6.x.yml`, etc.) and translation snippets (`include-ja/`, `include-ar/`, etc.) exist in the repo but the auto-translation pipeline is not yet in place. Do NOT edit translated files directly — they will be auto-generated from English sources.
+The docs are English-only. Non-English locales (Japanese, Turkish, Portuguese-BR, Arabic) were retired — their content directories, `include-<lang>/` snippet directories, per-language `mkdocs-<lang>-*.yml` configs, and the site language selector have been removed. Old translated URLs redirect to their English equivalents via blanket `/<lang>/* → /:splat` rules in `docs/6.x/_redirects`. Do NOT reintroduce translated content or a language selector.
 
 ### Reusable content (includes)
 
 ```
 include/             ← English snippets shared across pages
-include-ja/          ← Japanese translated snippets
-include-ar/          ← Arabic translated snippets
 ```
 
 Referenced from docs via `--8<-- "../include/snippet.md"`. The snippet base path is `docs/` (configured in `mkdocs-base.yml` under `pymdownx.snippets`), so paths in snippet directives are relative to the `docs/` directory.
@@ -155,4 +153,4 @@ Follow these guides before writing or editing any content:
 * Do NOT skip header levels for styling
 * Do NOT start titles with articles ("The configuration of...")
 * Do NOT rename or delete a page without adding a redirect in `docs/6.x/_redirects`
-* Do NOT edit translated files (`docs/ja/`, `docs/tr/`, `include-ja/`, etc.) — translations are auto-generated from English
+* Do NOT reintroduce non-English translations — the docs are English-only (translated locales were retired)

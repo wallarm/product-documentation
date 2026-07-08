@@ -1,3 +1,0 @@
-Entegrasyonu silebilir veya geçici olarak devre dışı bırakabilirsiniz. Silme işlemi bildirim gönderimini durdurur ve tüm yapılandırmayı tamamen siler; devre dışı bırakma ise yalnızca bildirim gönderimini durdurur ve aynı ayarlarla dilediğiniz anda yeniden etkinleştirebilirsiniz.
-
-Entegrasyon için bildirimleri tetiklemek üzere **System related** olayları seçildiyse, Wallarm bu iki eylemin her ikisi hakkında da bildirimde bulunur.

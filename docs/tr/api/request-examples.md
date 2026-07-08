@@ -1,1 +1,0 @@
---8<-- "latest-tr/api/request-examples.md"

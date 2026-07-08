@@ -1,2 +1,0 @@
-* [Security Edge][link-deployment-se]: 完全なクラウドベースのデプロイメントです。WallarmフィルタリングノードとWallarm Cloudコンポーネントの両方をWallarmが管理します。
-* [ハイブリッド][link-deployment-hybrid]: WallarmのクライアントがWallarmフィルタリングノードをデプロイして管理し、WallarmがWallarm Cloudコンポーネントを管理します。

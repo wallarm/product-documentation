@@ -1,1 +1,0 @@
---8<-- "latest-ja/api-specification-enforcement/overview.md"

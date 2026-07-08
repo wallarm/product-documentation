@@ -1,1 +1,0 @@
-Configure [o registro de variáveis do nó de filtragem](../admin-en/configure-logging.md) usando o NGINX. Isso permitirá realizar um diagnóstico rápido do nó de filtragem com a ajuda do arquivo de log do NGINX.

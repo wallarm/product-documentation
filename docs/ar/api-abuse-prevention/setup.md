@@ -1,1 +1,0 @@
---8<-- "latest-ar/api-abuse-prevention/setup.md"

@@ -1,1 +1,0 @@
---8<-- "latest-ja/installation/native-node/all-in-one-conf.md"

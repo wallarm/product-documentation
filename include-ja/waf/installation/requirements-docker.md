@@ -1,2 +1,0 @@
-* [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarm Consoleで**Deploy**または**Administrator**ロールを持つアカウントへのアクセス権が必要です 
-* US Wallarm Cloudを使用している場合は`https://us1.api.wallarm.com:444`、EU Wallarm Cloudを使用している場合は`https://api.wallarm.com:444`へのアクセスが必要です。ファイアウォールによってアクセスがブロックされていないことを確認してください

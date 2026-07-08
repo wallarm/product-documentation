@@ -1,1 +1,0 @@
-terraform-aws-wallarm/examples/mirror/README.md

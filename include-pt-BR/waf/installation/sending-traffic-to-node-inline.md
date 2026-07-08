@@ -1,1 +1,0 @@
-Atualize os alvos do seu balanceador de carga para enviar tráfego para a instância Wallarm. Para mais detalhes, por favor, consulte a documentação do seu balanceador de carga.

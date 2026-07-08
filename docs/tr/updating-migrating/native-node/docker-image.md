@@ -1,1 +1,0 @@
---8<-- "latest-tr/updating-migrating/native-node/docker-image.md"

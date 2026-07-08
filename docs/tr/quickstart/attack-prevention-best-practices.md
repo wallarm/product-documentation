@@ -1,1 +1,0 @@
---8<-- "latest-tr/quickstart/attack-prevention-best-practices.md"

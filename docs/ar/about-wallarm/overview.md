@@ -1,1 +1,0 @@
---8<-- "latest-ar/about-wallarm/overview.md"

@@ -1,2 +1,0 @@
-* Wallarm Console içindeki Wallarm tarafından barındırılan düğüm durumu **Failed** ise, dağıtımda bir sorun oluştu. Lütfen bunu [Wallarm Destek portalı](https://support.wallarm.com/) üzerinden bildirin; inceleyeceğiz.
-* Diğer tüm sorunlar veya destek ihtiyaçları için de lütfen [Wallarm Destek portalı](https://support.wallarm.com/) üzerinden talep bırakın. Her türlü dağıtım sorununda yardımcı olmak için hazırız.

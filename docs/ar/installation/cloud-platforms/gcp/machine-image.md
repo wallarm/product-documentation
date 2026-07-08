@@ -1,1 +1,0 @@
---8<-- "latest-ar/installation/cloud-platforms/gcp/machine-image.md"

@@ -1,1 +1,0 @@
---8<-- "latest-tr/admin-en/configure-statistics-service.md"

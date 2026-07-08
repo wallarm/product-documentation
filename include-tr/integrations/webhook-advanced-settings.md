@@ -1,7 +1,0 @@
-* **Request method**: `POST` veya `PUT`. Varsayılan olarak, POST istekleri gönderilir.
-* **Request header** ve sunucu, isteği gerçekleştirmek için standart dışı bir başlık gerektiriyorsa bunun değeri. Başlık sayısında bir sınırlama yoktur.
-* **CA certificate**: sunucu sertifikasını imzalayan CA'nın sertifikası. CA genel olarak güvenilen bir CA ise, bu alan isteğe bağlıdır. Sunucu sertifikası öz‑imzalıysa, bu alan zorunludur ve sunucu sertifikasını imzalayan kendi CA'nızın sertifikasını içermelidir.
-* **Verify TLS certificate**: bu ayar, belirtilen sunucu sertifikasının doğrulanmasını devre dışı bırakmanıza olanak tanır. Varsayılan olarak, Wallarm bir sunucu sertifikasının genel olarak güvenilen bir CA tarafından imzalanıp imzalanmadığını doğrular. Üretim sunucu sertifikalarının doğrulamasını devre dışı bırakmanızı önermiyoruz. Sunucunuz öz‑imzalı bir TLS sertifikası kullanıyorsa, bu sunucuya istek göndermeye izin vermek için öz‑imzalı bir CA sertifikası ekleyebilirsiniz.
-* **Request timeout, in seconds**: sunucu belirtilen süre içinde isteğe yanıt vermezse, istek başarısız olur. Varsayılan: 15 saniye.
-* **Connection timeout, in seconds**: sunucuya bağlantı belirtilen süre içinde kurulamazsa, istek başarısız olur. Varsayılan: 20 saniye.
-* Wallarm data format: ya JSON Array (varsayılan) ya da New Line Delimited JSON (NDJSON).

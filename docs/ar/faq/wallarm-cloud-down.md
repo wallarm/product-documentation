@@ -1,1 +1,0 @@
---8<-- "latest-ar/faq/wallarm-cloud-down.md"

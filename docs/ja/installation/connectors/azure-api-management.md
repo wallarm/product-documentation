@@ -1,1 +1,0 @@
---8<-- "latest/installation/connectors/azure-api-management.md"

@@ -1,1 +1,0 @@
---8<-- "latest-tr/installation/native-node/helm-chart.md"

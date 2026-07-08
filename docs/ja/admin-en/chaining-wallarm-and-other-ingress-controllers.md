@@ -1,1 +1,0 @@
---8<-- "latest-ja/admin-en/chaining-wallarm-and-other-ingress-controllers.md"

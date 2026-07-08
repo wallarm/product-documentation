@@ -1,1 +1,0 @@
---8<-- "latest-pt-BR/api-protection/business-logic-abuse-detection.md"

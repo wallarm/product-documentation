@@ -1,2 +1,0 @@
-!!! info "Exemplo de métrica"
-    Este exemplo mostra como trabalhar com a única métrica [`wallarm_nginx/gauge-abnormal`](../../admin-en/monitoring/available-metrics.md#number-of-requests), que mostra o número de solicitações processadas pelo nó de filtro.

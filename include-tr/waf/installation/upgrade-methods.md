@@ -1,4 +1,0 @@
-İki farklı şekilde yükseltme yapabilirsiniz:
-
-* Yükseltme işlemi sırasında [tümü bir arada yükleyici](#upgrade-with-all-in-one-installer) kullanımına geçin. Bu, NGINX ve OS sürümünün belirlenmesi, uygun Wallarm depolarının eklenmesi, paketlerin kurulması ve diğerleri gibi çeşitli düğüm kurulum ve yükseltme işlemlerini otomatikleştirdiği için önerilen yaklaşımdır.
-* Mevcut [manuel](#manual-upgrade) kurulum yöntemini, tekil DEB/RPM paketleri aracılığıyla kullanmaya devam edin. Ancak, sonraki yükseltmelerde bu yaklaşımın yeni yöntemle karşılaştırıldığında ek çaba ve manuel yapılandırma gerektireceğini unutmamak önemlidir.

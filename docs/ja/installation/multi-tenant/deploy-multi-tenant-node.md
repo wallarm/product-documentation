@@ -1,1 +1,0 @@
---8<-- "latest-ja/installation/multi-tenant/deploy-multi-tenant-node.md"

@@ -1,1 +1,0 @@
---8<-- "latest-tr/installation/security-edge/inline/upgrade-and-management.md"
