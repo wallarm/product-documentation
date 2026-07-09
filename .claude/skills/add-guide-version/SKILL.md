@@ -101,7 +101,6 @@ The author provides:
 
 * The version number in mkdocs config filenames corresponds to the **NGINX Node** major version. The documentation covers both NGINX and Native Node.
 * The new version may initially serve under `/<NEW_VERSION>/` (not at root) until it becomes the default.
-* Translation configs (`mkdocs-ja-*.yml`, etc.) may also need new version configs — check with the author.
 
 ## Do NOT
 

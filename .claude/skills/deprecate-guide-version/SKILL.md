@@ -105,13 +105,6 @@ The author provides:
     * All remaining version builds succeed
     * No broken includes or cross-references remain
 
-## Translation configs
-
-If there are translation configs for the deprecated version (e.g., `mkdocs-ja-<DEPRECATED_VERSION>.yml`):
-* Delete the translation config files
-* Delete corresponding translation content folders (e.g., `docs/ja-<DEPRECATED_VERSION>/` if separate)
-* Remove their build commands from `netlify.toml` and `Dockerfile`
-
 ## Do NOT
 
 * Delete the `docs/deprecated/` folder — it contains the stub page for all deprecated versions

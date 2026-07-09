@@ -69,10 +69,6 @@ Each active version has its own config:
 
 All configs inherit from `mkdocs-base.yml` (shared plugins, extensions, theme settings). The root version is controlled by `rootVersion` in `stylesheets/extra.js` and `site_dir` in the config.
 
-### Translations
-
-The docs are English-only. Non-English locales (Japanese, Turkish, Portuguese-BR, Arabic) were retired — their content directories, `include-<lang>/` snippet directories, per-language `mkdocs-<lang>-*.yml` configs, and the site language selector have been removed. Old translated URLs redirect to their English equivalents via blanket `/<lang>/* → /:splat` rules in `docs/6.x/_redirects`. Do NOT reintroduce translated content or a language selector.
-
 ### Reusable content (includes)
 
 ```
@@ -153,4 +149,3 @@ Follow these guides before writing or editing any content:
 * Do NOT skip header levels for styling
 * Do NOT start titles with articles ("The configuration of...")
 * Do NOT rename or delete a page without adding a redirect in `docs/6.x/_redirects`
-* Do NOT reintroduce non-English translations — the docs are English-only (translated locales were retired)
