@@ -942,3 +942,7 @@
 /api-discovery/bola-protection/ /admin-en/configuration-guides/protecting-against-bola-trigger/
 
 /user-guides/rules/limit-data-export/ /admin-en/export-to-cloud/#attacks-incidents
+
+/7.x/agentic-ai/rogue-mcp-inspection/ /7.x/vulnerability-detection/security-testing-overview/
+/7.x/agentic-ai/rogue-mcp-inspection /7.x/vulnerability-detection/security-testing-overview/
+/7.x/vulnerability-detection/api-security-testing-via-postman/* /7.x/vulnerability-detection/security-testing-overview/

@@ -124,12 +124,6 @@ search:
 - [Schema-Based Testing Setup](https://docs.wallarm.com/5.x/vulnerability-detection/schema-based-testing/setup.md): Upload schema, configure auth, schedule runs.
 - [Schema-Based Testing Results](https://docs.wallarm.com/5.x/vulnerability-detection/schema-based-testing/explore.md): Browse test runs and reported findings.
 
-#### API Security Testing via Postman
-
-- [Postman Testing Overview](https://docs.wallarm.com/5.x/vulnerability-detection/api-security-testing-via-postman/overview.md): Run passive security tests on Postman collections (also: Postman tests, passive API testing).
-- [Postman Testing Setup](https://docs.wallarm.com/5.x/vulnerability-detection/api-security-testing-via-postman/setup.md): Connect Postman to Wallarm and authorize collections.
-- [Postman Testing Results](https://docs.wallarm.com/5.x/vulnerability-detection/api-security-testing-via-postman/exploring.md): View results in Postman AI Mode or in Wallarm Console.
-
 #### API Attack Surface Management (AASM)
 
 - [AASM Overview](https://docs.wallarm.com/5.x/api-attack-surface/overview.md): Agentless external attack surface management for APIs (also: EASM, external attack surface, API ASM).
@@ -138,10 +132,6 @@ search:
 - [AASM Security Issues](https://docs.wallarm.com/5.x/api-attack-surface/security-issues.md): Misconfigurations and risks found on discovered external hosts.
 
 - [Detecting Vulnerabilities](https://docs.wallarm.com/5.x/about-wallarm/detecting-vulnerabilities.md): How Wallarm passively detects application vulnerabilities from live traffic (also: passive vulnerability detection).
-
-### AI Security
-
-- [Rogue MCP Inspection](https://docs.wallarm.com/5.x/agentic-ai/rogue-mcp-inspection.md): Audit locally installed MCP servers for supply-chain risks and excessive privileges (also: MCP supply-chain audit). Note: the broader AI Security suite (AI Agent Discovery/Protection, MCP discovery, AI Payload Inspection, MCP Mitigation Controls) is a 6.x+ feature set — 5.x has only rogue MCP audit.
 
 ### Deployment
 

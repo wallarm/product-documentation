@@ -120,7 +120,6 @@ This article lists [vulnerability](about-wallarm/detecting-vulnerabilities.md) (
     [Passive](about-wallarm/detecting-vulnerabilities.md#detection-methods) - built-in node function, no configuration required, "passive" as does not send anything itself
     TRT - [Threat Replay Testing](vulnerability-detection/threat-replay-testing/overview.md)
     SBT - [Schema-Based Testing](vulnerability-detection/schema-based-testing/overview.md)
-    ASTP - [API Security Testing via Postman](vulnerability-detection/api-security-testing-via-postman/overview.md)
     AASM - [API Attack Surface Management](api-attack-surface/overview.md)
 
 Read [here](about-wallarm/detecting-vulnerabilities.md#combining-methods) why and how you can combine different methods for vulnerability detection.
@@ -513,7 +512,7 @@ Wallarm detects and mitigates brute force attacks only if it has one of the foll
 
 ### Broken object level authorization (BOLA)
 
-**Attack** [by](#attack-det-methods) MCL, TRG / **Vulnerability** [by](#vulnerability-types) passive, AASM, ASTP.
+**Attack** [by](#attack-det-methods) MCL, TRG / **Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-639][cwe-639]
 
@@ -1010,7 +1009,7 @@ Requests marked as attacks because they do not include the parameter or its valu
 
 **Attack** [by](#attack-det-methods) ASE
 
-**Attack / Vulnerability** [by](#vulnerability-types) AASM, ASTP.
+**Attack / Vulnerability** [by](#vulnerability-types) AASM.
 
 **Wallarm code:** `missing_auth`
 
@@ -1147,7 +1146,7 @@ Note that in Wallarm, you can also configure **AI Business logic abuse detection
 
 ### Authentication bypass
 
-**Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, ASTP.
+**Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
 
 **CWE code:** [CWE-288][cwe-288]
 
@@ -1167,13 +1166,13 @@ A successful authentication bypass attack potentially leads to disclosing users'
 
 ### Broken access control
 
-**Vulnerability** [by](#vulnerability-types) AASM, ASTP.
+**Vulnerability** [by](#vulnerability-types) AASM.
 
 **Wallarm code:** `broken_access`
 
 ### Broken function level authorization (BFLA)
 
-**Vulnerability** [by](#vulnerability-types) AASM, ASTP.
+**Vulnerability** [by](#vulnerability-types) AASM.
 
 **Wallarm code:** `bfla`
 
@@ -1281,7 +1280,7 @@ Note that file size upload restrictions are not the only [measure for preventing
 
 ### Information exposure
 
-**Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, ASTP.
+**Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
 
 **CWE codes:** [CWE-200][cwe-200] (see also: [CWE-209][cwe-209], [CWE-215][cwe-215], [CWE-538][cwe-538], [CWE-541][cwe-541], [CWE-548][cwe-548], [CWE-598][cwe-598])
 
@@ -1319,7 +1318,7 @@ Wallarm's detection mechanisms alert you promptly if such exposure begins, allow
 
 ### Insecure data storage
 
-**Vulnerability** [by](#vulnerability-types) AASM, ASTP.
+**Vulnerability** [by](#vulnerability-types) AASM.
 
 **Wallarm code:** `insecure_storage`
 
@@ -1367,7 +1366,7 @@ Wallarm's detection mechanisms alert you promptly if such exposure begins, allow
 
 ### Sensitive API exposure
 
-**Vulnerability** [by](#vulnerability-types) AASM, ASTP.
+**Vulnerability** [by](#vulnerability-types) AASM.
 
 **Wallarm code:** `sensitive_api`
 
@@ -1407,7 +1406,7 @@ This vulnerability is mapped with [A06:2021 – Vulnerable and Outdated Componen
 
 ### Weak authentication
 
-**Vulnerability** [by](#vulnerability-types) passive, ASTP.
+**Vulnerability** [by](#vulnerability-types) passive.
 
 **CWE code:** [CWE-1270][cwe-1270], [CWE-1294][cwe-1294]
 
@@ -1423,12 +1422,12 @@ A weak authentication vulnerability is a flaw in an application's or system's se
 
 ### Weak credentials
 
-**Vulnerability** [by](#vulnerability-types) AASM, ASTP.
+**Vulnerability** [by](#vulnerability-types) AASM.
 
 **Wallarm code:** `weak_creds`
 
 ### Weak cryptography
 
-**Vulnerability** [by](#vulnerability-types) AASM, ASTP.
+**Vulnerability** [by](#vulnerability-types) AASM.
 
 **Wallarm code:** `weak_crypto`
