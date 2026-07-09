@@ -59,6 +59,7 @@ nav:
         - Overview: api-sessions/overview.md
         - Setup: api-sessions/setup.md
         - Exploring API Sessions: api-sessions/exploring.md
+        - Attacks API: api-sessions/attacks-api.md
         - Exploring MCP Sessions: api-sessions/mcp-sessions.md
         - Session Blocking: api-sessions/blocking.md
         - Business Logic Abuse: api-protection/business-logic-abuse-detection.md
