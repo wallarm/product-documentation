@@ -200,20 +200,27 @@ Dimensions allowed in the main query's `group_by`: `attack_type`, `host`, `norma
 {
   "data": [
     {
-      "id": "eyJmIjpbImF0dGFja190eXBlIl0sInYiOlsic3FsaSJdfQ==",
+      "id": "eyJmIjpbInRzX2RheSIsImF0dGFja190eXBlIl0sInYiOlsiMjAyNi0wNy0wOSIsInNxbGkiXX0=",
       "ts_day": "2026-07-09",
       "attack_type": "sqli",
+      "attack_type_label": "SQL Injection",
+      "attack_types": {"count": 1, "values": ["sqli"]},
       "requests_count": 1420,
       "unique_ips": 37,
       "status": "Partially Blocked"
     }
   ],
-  "next_cursor": "eyJ2IjpbMTQyMF0sIm8iOlsicmVxdWVzdHNfY291bnQiXSwiZCI6Im5leHQifQ==",
-  "prev_cursor": null
+  "next_cursor": "eyJ2IjpbMTQyMF0sIm8iOlsicmVxdWVzdHNfY291bnQiXSwiZCI6Im5leHQifQ=="
 }
 ```
 
-Each row is a flat object: one key per grouping dimension (its value) plus one key per selected metric. The `id` field is the opaque group identifier used for drill-down and marking. See [Pagination](#pagination) for `next_cursor` / `prev_cursor`.
+Each row is a flat object: one key per grouping dimension (its value) plus one key per selected column. Note the shapes:
+
+* **Scalar metrics** (`requests_count`, `unique_ips`, `blocked_count`, `status`, …) are plain values.
+* **Display columns** (`attack_types`, `hosts`, `ips`/`ip_addresses`, `cve_ids`, `users`, `paths`, …) are objects of the form `{"count": N, "values": [...]}` — the number of distinct values in the group and a capped sample of them.
+* **Dimension fields** may come with a human-readable companion, e.g. `attack_type` plus `attack_type_label`.
+
+The `id` field is the opaque group identifier used for drill-down and marking. See [Pagination](#pagination) for `next_cursor` / `prev_cursor`.
 
 ## 3. Filtering
 
@@ -487,7 +494,7 @@ Preset views (`is_preset: true`) are immutable — duplicate them to make an edi
 
 `query` and `by-group` responses are cursor-paginated:
 
-* `query` returns `next_cursor` and `prev_cursor`. To move forward, resend the **same** request body with `"cursor"` set to `next_cursor`; to move back, use `prev_cursor`. A `null` cursor means there are no more rows in that direction.
+* `query` returns `next_cursor` and `prev_cursor`. To move forward, resend the **same** request body with `"cursor"` set to `next_cursor`; to move back, use `prev_cursor`. A cursor that is `null` or absent means there are no more rows in that direction (when the whole result fits on one page, neither cursor is returned).
 * `by-group` returns an opaque `cursor` and a `has_more` boolean.
 
 Cursors are opaque and self-describing (they encode direction) — resend them unchanged and do not add a direction parameter. A cursor is only valid for the query that produced it; changing `select`, `group_by`, `order_by`, or the filter invalidates it.
