@@ -861,7 +861,6 @@
 
 /user-guides/rules/limit-data-export/ /admin-en/export-to-cloud/#attacks-incidents
 
-# Non-English locales were retired; send old translated URLs to their English equivalents.
 /ja/*  /:splat  301
 /tr/*  /:splat  301
 /ar/*  /:splat  301
