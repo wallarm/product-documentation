@@ -28,6 +28,13 @@ The current version can be found in the `pom.xml` file of the downloaded Wallarm
 | 3.0.x               | 0.8.3 and higher    |
 | 3.2.x               | 0.10.1 and higher   |
 
+### 3.2.2 (2026-07-09)
+
+* Added the Wallarm request ID to the block page as the `requestId` field
+
+    When a request is blocked, the 403 response body now includes the `requestId` field alongside `statusCode`, `errorMessage`, and `correlationId`. Use this identifier to correlate a blocked request with its record in Wallarm Console.
+* Changed the Wallarm request ID format from a UUID to a hex string (a UUID with the hyphens removed)
+
 ### 3.2.1 (2026-01-15)
 
 * Improved default host detection logic to be more robust when request headers are missing
