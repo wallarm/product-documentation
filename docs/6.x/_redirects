@@ -19,7 +19,7 @@
 
 /agentic-ai/rogue-mcp-inspection/ /vulnerability-detection/security-testing-overview/
 /agentic-ai/rogue-mcp-inspection /vulnerability-detection/security-testing-overview/
-/vulnerability-detection/api-security-testing-via-postman/* /vulnerability-detection/security-testing-overview/:splat 301!
+/vulnerability-detection/api-security-testing-via-postman/* /vulnerability-detection/security-testing-overview/
 
 /en/admin-en/configure-tarantool-en.html   /en/admin-en/configuration-guides/allocate-resources-for-waf-node.html
 /en/quickstart-en/qs-intro-en.html         /en/quickstart-en/how-wallarm-works/qs-intro-en.html

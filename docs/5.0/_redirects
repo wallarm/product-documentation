@@ -909,4 +909,4 @@
 
 /5.x/agentic-ai/rogue-mcp-inspection/ /5.x/vulnerability-detection/security-testing-overview/
 /5.x/agentic-ai/rogue-mcp-inspection /5.x/vulnerability-detection/security-testing-overview/
-/5.x/vulnerability-detection/api-security-testing-via-postman/* /5.x/vulnerability-detection/security-testing-overview/:splat 301!
+/5.x/vulnerability-detection/api-security-testing-via-postman/* /5.x/vulnerability-detection/security-testing-overview/
