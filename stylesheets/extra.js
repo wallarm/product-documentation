@@ -709,3 +709,66 @@ function goToLanguage (event, language) {
     }
   }
 }
+
+/* ============================================================
+ * Navigation tabs — edge scroll-arrows when the row overflows
+ * (WADS FY26 editorial). Injects prev/next chevrons into the
+ * tab bar and toggles them based on scroll position.
+ * ============================================================ */
+(function () {
+  var CHEV =
+    '<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+    'stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">' +
+    '<path d="m9 18 6-6-6-6"/></svg></span>';
+
+  function makeArrow(dir) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'md-tabs__arrow ' + dir;
+    b.setAttribute('aria-label', dir === 'prev' ? 'Scroll tabs left' : 'Scroll tabs right');
+    b.innerHTML = CHEV;
+    return b;
+  }
+
+  function initTabScroll() {
+    var list = document.querySelector('.md-tabs__list');
+    if (!list) return;
+    var grid = list.closest('.md-grid') || list.parentElement;
+    if (!grid) return;
+
+    var prev = grid.querySelector('.md-tabs__arrow.prev');
+    var next = grid.querySelector('.md-tabs__arrow.next');
+    if (!prev) { prev = makeArrow('prev'); grid.appendChild(prev); }
+    if (!next) { next = makeArrow('next'); grid.appendChild(next); }
+
+    function step() { return Math.max(160, Math.round(list.clientWidth * 0.6)); }
+
+    function update() {
+      var overflow = list.scrollWidth > list.clientWidth + 1;
+      var atStart = list.scrollLeft <= 2;
+      var atEnd = list.scrollLeft >= list.scrollWidth - list.clientWidth - 2;
+      prev.classList.toggle('is-shown', overflow && !atStart);
+      next.classList.toggle('is-shown', overflow && !atEnd);
+    }
+
+    if (!list.dataset.tabScrollWired) {
+      list.dataset.tabScrollWired = '1';
+      prev.addEventListener('click', function () { list.scrollBy({ left: -step(), behavior: 'smooth' }); });
+      next.addEventListener('click', function () { list.scrollBy({ left: step(), behavior: 'smooth' }); });
+      list.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      // Keep the active tab in view on load
+      var active = list.querySelector('.md-tabs__item--active, .md-tabs__link--active');
+      if (active && active.scrollIntoView) {
+        try { active.scrollIntoView({ inline: 'center', block: 'nearest' }); } catch (e) {}
+      }
+    }
+    update();
+  }
+
+  document.addEventListener('DOMContentLoaded', initTabScroll);
+  window.addEventListener('load', initTabScroll);
+  if (window.document$ && typeof window.document$.subscribe === 'function') {
+    window.document$.subscribe(initTabScroll);
+  }
+})();
