@@ -28,27 +28,41 @@
 
   <!-- Version selector (moved to bottom) -->
   <div id="versionsDiv" class="versions versions-bottom" style="display: none;">
-    {% if config.extra.versionNative %}
-      <button type="button" id="versionsMain" class="versions-main" aria-expanded="false" aria-haspopup="true" aria-controls="versionsList">
-        Version {{ config.extra.version }} and {{ config.extra.versionNative }}
+    <button type="button" id="versionsMain" class="versions-main ver-pill" aria-expanded="false" aria-haspopup="true" aria-controls="versionsList">
+      <span class="v-label">Version</span>
+      <span class="v-val">{% if config.extra.versionNative %}{{ config.extra.version }} · {{ config.extra.versionNative }}{% else %}{{ config.extra.version }}{% endif %}</span>
       <svg class="versions-drop" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2.25" fill="none">
         <path d="M8 10.5L12 14.5L16 10.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
-      </button>
-    {% else %}
-      <button type="button" id="versionsMain" class="versions-main" aria-expanded="false" aria-haspopup="true" aria-controls="versionsList">
-        Version {{ config.extra.version }}
-      <svg class="versions-drop" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2.25" fill="none">
-        <path d="M8 10.5L12 14.5L16 10.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
-      </svg>
-      </button>
-    {% endif %}
+    </button>
     <span class="divider"></span>
-    <div id="versionsList" style="display: none;" class="versions-list" tabindex="-1">
-      <a href="" onClick="goToVersion(event, '{{ config.extra.version }}', '6.x')">Versions 6.x and 0.14.x+</a>
-      <a href="" onClick="goToVersion(event, '{{ config.extra.version }}', '7.x')">Versions 7.x and 0.26.x+ 🧪</a>
-      <a href="" onClick="goToVersion(event, '{{ config.extra.version }}', '5.x')">Versions 5.x and 0.13.x-</a>
-      <a href="" onClick="goToVersion(event, '{{ config.extra.version }}', '4.10')">Version 4.10 ⚠️</a>
+    <div id="versionsList" style="display: none;" class="versions-list ver-menu" tabindex="-1">
+      <div class="vm-head">Documentation version</div>
+      <a class="vm-item{% if config.extra.version == '6.x' %} active{% endif %}" href="" onClick="goToVersion(event, '{{ config.extra.version }}', '6.x')">
+        <span class="vm-v">6.x · 0.14.x+</span>
+        <span class="vm-tag current">Current</span>
+        <svg class="vm-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      </a>
+      <a class="vm-item{% if config.extra.version == '7.x' %} active{% endif %}" href="" onClick="goToVersion(event, '{{ config.extra.version }}', '7.x')">
+        <span class="vm-v">7.x · 0.26.x+</span>
+        <span class="vm-tag preview">Preview</span>
+        <svg class="vm-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      </a>
+      <a class="vm-item{% if config.extra.version == '5.x' %} active{% endif %}" href="" onClick="goToVersion(event, '{{ config.extra.version }}', '5.x')">
+        <span class="vm-v">5.x · 0.13.x-</span>
+        <span class="vm-tag legacy">Legacy</span>
+        <svg class="vm-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      </a>
+      <a class="vm-item{% if config.extra.version == '4.10' %} active{% endif %}" href="" onClick="goToVersion(event, '{{ config.extra.version }}', '4.10')">
+        <span class="vm-v">4.10</span>
+        <span class="vm-tag eol">End of life</span>
+        <svg class="vm-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      </a>
+      <hr>
+      <a class="vm-foot" href="{% if config.extra.version == '6.x' %}/updating-migrating/versioning-policy/{% else %}/{{ config.extra.version }}/updating-migrating/versioning-policy/{% endif %}">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+        Version support policy
+      </a>
     </div>
   </div>
 </nav>
