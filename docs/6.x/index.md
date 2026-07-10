@@ -44,6 +44,8 @@ hide:
 </svg>
 </div>
 
+--8<-- "../include/home-version-picker.md"
+
 # Wallarm Documentation
 
 Wallarm AI Control Platform — discover, observe, enforce, and govern AI workloads and APIs across your environment.

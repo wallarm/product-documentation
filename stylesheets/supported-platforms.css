@@ -78,11 +78,9 @@ div.do-card:hover h3:after {
 .do-main {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
 }
 
 .do-main .do-card {
-    border-radius: 8px;
     transition: border-color 0.3s ease;
 }
 
@@ -95,7 +93,6 @@ div.do-card:hover h3:after {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     border: 1px solid var(--color-grey-300);
-    border-radius: 8px;
 }
 
 .do-nested .do-card:nth-child(n + 2) {
@@ -108,7 +105,6 @@ div.do-card:hover h3:after {
 
 .do-nested .do-card:first-child {
     border: 1px solid var(--color-primary-500);
-    border-radius: 8px 0px 0px 8px;
 }
 
 .do-nested .do-card:first-child h3:after {

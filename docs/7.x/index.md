@@ -5,6 +5,47 @@ hide:
   - feedback
 ---
 
+<div class="home-hero-media" aria-hidden="true">
+<svg viewBox="0 0 780 470" role="img" aria-label="Wallarm AI Control Platform continuous loop: APIs, AI agents and cloud estate feed into Discover, Observe, Enforce and Govern.">
+  <g class="aicp-chips">
+    <rect class="aicp-chip" x="20" y="104" width="176" height="40"/>
+    <circle cx="44" cy="124" r="5" fill="#155DFC"/>
+    <text class="aicp-chip-label" x="62" y="128">APIs</text>
+    <rect class="aicp-chip" x="20" y="210" width="176" height="40"/>
+    <circle cx="44" cy="230" r="5" fill="#9747FF"/>
+    <text class="aicp-chip-label" x="62" y="234">AI agents</text>
+    <rect class="aicp-chip" x="20" y="316" width="176" height="40"/>
+    <circle cx="44" cy="336" r="5" fill="#00A63E"/>
+    <text class="aicp-chip-label" x="62" y="340">Cloud estate</text>
+  </g>
+  <path class="aicp-conn" d="M196,124 C270,124 300,230 350,230"/>
+  <path class="aicp-conn" d="M196,230 C260,230 300,230 336,230"/>
+  <path class="aicp-conn" d="M196,336 C270,336 300,230 350,230"/>
+  <circle class="aicp-ring" cx="500" cy="230" r="150"/>
+  <circle class="aicp-inner" cx="500" cy="230" r="82"/>
+  <text class="aicp-core-brand" x="500" y="222" text-anchor="middle">WALLARM</text>
+  <text class="aicp-core-sub" x="500" y="240" text-anchor="middle">AI Control</text>
+  <text class="aicp-core-sub" x="500" y="253" text-anchor="middle">Platform</text>
+  <circle class="aicp-node n1" cx="500" cy="80" r="15"/>
+  <circle class="aicp-node-dot d1" cx="500" cy="80" r="5"/>
+  <text class="aicp-label" x="500" y="46" text-anchor="middle">Discover</text>
+  <circle class="aicp-node n2" cx="650" cy="230" r="15"/>
+  <circle class="aicp-node-dot d2" cx="650" cy="230" r="5"/>
+  <text class="aicp-label" x="678" y="234" text-anchor="start">Observe</text>
+  <circle class="aicp-node n3" cx="500" cy="380" r="15"/>
+  <circle class="aicp-node-dot d3" cx="500" cy="380" r="5"/>
+  <text class="aicp-label" x="500" y="416" text-anchor="middle">Enforce</text>
+  <circle class="aicp-node n4" cx="350" cy="230" r="15"/>
+  <circle class="aicp-node-dot d4" cx="350" cy="230" r="5"/>
+  <text class="aicp-label" x="322" y="234" text-anchor="end">Govern</text>
+  <g class="aicp-orbit">
+    <circle class="aicp-orbit-dot" cx="500" cy="80" r="6"/>
+  </g>
+</svg>
+</div>
+
+--8<-- "../include/home-version-picker.md"
+
 # Wallarm Documentation
 
 Wallarm AI Control Platform — discover, observe, enforce, and govern AI workloads and APIs across your environment.
@@ -15,8 +56,10 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
 
 </div>
 
-<!-- Row 1: Introduction -->
-<div class="navigation navigation-1col">
+<div class="home-section-label">Explore by area</div>
+
+<div class="navigation navigation-4col">
+
   <div class="navigation-card homepage-intro">
     <h3 class="icon-homepage quick-start-title"><a href="./about-wallarm/overview/">Introduction <span class="card-arrow">→</span></a></h3>
     <p class="card-description">Get started with the Wallarm platform and learn the fundamentals.</p>
@@ -26,10 +69,6 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
       <li><a href="./demo-videos/platform-overview/">Video Guides</a></li>
     </ul></p>
   </div>
-</div>
-
-<!-- Row 2: 4 Platform Products -->
-<div class="navigation navigation-4col">
 
   <div class="navigation-card">
     <h3 class="icon-homepage api-threat-prevent"><a href="./about-wallarm/api-security-overview/">API Security <span class="card-arrow">→</span></a></h3>
@@ -74,11 +113,6 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
     </ul></p>
   </div>
 
-</div>
-
-<!-- Row 3: Deployment, Integrations, Platform Management -->
-<div class="navigation navigation-3col">
-
   <div class="navigation-card">
     <h3 class="icon-homepage deployment-title"><a href="./installation/supported-deployment-options/">Deployment <span class="card-arrow">→</span></a></h3>
     <p class="card-description">Deploy Wallarm Node for API Security using managed, self-hosted, or connector-based options.</p>
@@ -117,25 +151,6 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
     </ul></p>
   </div>
 
-</div>
-
-<!-- CTA Section: Watch Demo -->
-<div class="demo-cta-section">
-  <div class="demo-cta-content">
-    <div class="demo-cta-left">
-      <div class="demo-cta-label">NEW TO WALLARM?</div>
-      <h2 class="demo-cta-heading">See How It All Works in 5 Minutes</h2>
-      <a href="./demo-videos/platform-overview/" class="demo-cta-button">Watch the Overview</a>
-    </div>
-    <div class="demo-cta-right">
-      <a href="./demo-videos/platform-overview/" class="demo-cta-video-link">
-        <div class="demo-cta-video">
-          <iframe src="https://player.vimeo.com/video/1077418935?h=8e650aed1a&title=0&byline=0&portrait=0&muted=1&autoplay=1&autopause=0&controls=0&loop=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-          <div class="demo-cta-video-overlay"></div>
-        </div>
-      </a>
-    </div>
-  </div>
 </div>
 
 <script>
@@ -368,6 +383,10 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
   .homepage .md-content__inner h1+p, .admonition {
     max-width: unset !important;
   }
+}
+
+.homepage .md-content {
+  background-color: var(--w-surface);
 }
 
 .homepage .md-content__inner h1+p {
