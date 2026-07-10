@@ -1,5 +1,6 @@
 {#- Custom nav-item partial adapted for zensical (MiniJinja) -#}
 {% set icons = {
+  "home": ".icons/material/home.svg",
   "introduction": ".icons/material/quick-start.svg",
   "quick start": ".icons/material/quick-start.svg",
   "threat management": ".icons/material/dashboard.svg",
@@ -17,7 +18,7 @@
   "cloud-native waap": ".icons/material/api-threat.svg",
   "wallarm console": ".icons/material/platform-management.svg",
   "deployment": ".icons/material/deployment.svg",
-  "maintenance": ".icons/material/deployment.svg",
+  "maintenance": ".icons/material/maintenance.svg",
   "connector deployment": ".icons/material/connector-deployment.svg",
   "self-hosted deployment": ".icons/material/self-hosted-deployment.svg",
   "reference": ".icons/material/references.svg",
@@ -151,6 +152,9 @@
       href="{{ nav_item.url | url }}"
       class="md-nav__link md-nav__link--active"
     >
+      {% if nav_item.title|lower == "home" %}
+      <span class="md-nav__icon--left">{% include ".icons/material/home.svg" %}</span>
+      {% endif %}
       {{ nav_item.title }}
     </a>
   </li>
@@ -159,6 +163,9 @@
 {% else %}
   <li class="{{ class }}">
     <a href="{{ nav_item.url | url }}" class="md-nav__link">
+      {% if nav_item.title|lower == "home" %}
+      <span class="md-nav__icon--left">{% include ".icons/material/home.svg" %}</span>
+      {% endif %}
       {{ nav_item.title }}
     </a>
   </li>
