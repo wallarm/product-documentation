@@ -4,6 +4,23 @@
 
 {{ super() }}
 
+<button id="ask-ai-btn" onclick="toggleAskAI()">Ask AI</button>
+<div id="ask-ai-panel">
+  <div id="ask-ai-panel-header">
+    <span>Ask AI</span>
+    <button id="ask-ai-close" onclick="toggleAskAI()">&times;</button>
+  </div>
+  <iframe id="ask-ai-iframe" src="http://18.144.155.105/chatbot/BSvDrRpQGpOLu0I0"></iframe>
+</div>
+<script>
+  function toggleAskAI() {
+    var panel = document.getElementById('ask-ai-panel');
+    var btn = document.getElementById('ask-ai-btn');
+    panel.classList.toggle('open');
+    btn.classList.toggle('hidden');
+  }
+</script>
+
 {% if page.url not in ["installation/connectors/mulesoft-for-wizard/", "installation/connectors/mulesoft-flex-for-wizard/", "installation/connectors/ibm-api-connect-for-wizard/", "installation/connectors/aws-lambda-for-wizard/", "installation/connectors/cloudflare-for-wizard/", "installation/connectors/fastly-for-wizard/", "installation/connectors/akamai-edgeworkers-for-wizard/", "installation/connectors/azure-api-management-for-wizard/", "installation/connectors/apigee-for-wizard/", "installation/connectors/aws-api-gateway-for-wizard/"] %}
 
 <!-- Hubspot banner -->
@@ -72,6 +89,70 @@ if (window.location.hostname === 'docs.wallarm.com' && !window.__wallarmHID_init
 
 <!-- Custom front matter -->
 {% block extrahead %}
+
+<style>
+  #ask-ai-btn {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #1C64F2;
+    color: white;
+    border: none;
+    padding: 12px 8px;
+    cursor: pointer;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: inherit;
+    border-radius: 8px 0 0 8px;
+    z-index: 9999;
+    letter-spacing: 1px;
+    transition: background 0.2s;
+  }
+  #ask-ai-btn:hover { background: #1554d4; }
+  #ask-ai-btn.hidden { display: none; }
+  #ask-ai-panel {
+    position: fixed;
+    top: 0;
+    right: -420px;
+    width: 420px;
+    height: 100%;
+    background: #fff;
+    box-shadow: -2px 0 12px rgba(0,0,0,0.15);
+    z-index: 10000;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  #ask-ai-panel.open { right: 0; }
+  #ask-ai-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: #1C64F2;
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  #ask-ai-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+  }
+  #ask-ai-close:hover { opacity: 0.8; }
+  #ask-ai-iframe { flex: 1; border: none; width: 100%; }
+  @media (max-width: 768px) {
+    #ask-ai-panel { width: 100%; right: -100%; }
+  }
+</style>
 
 {{ super() }}
 
