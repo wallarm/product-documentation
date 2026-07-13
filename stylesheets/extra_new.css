@@ -1210,15 +1210,17 @@ img {
   transition: all 0.2s ease;
 }
 
-/* Secondary ("Request a Demo"): borderless subtle fill, dark text → solid black on hover */
+/* Secondary ("Request a Demo"): strong solid-black secondary that sits next to
+   the Signal-Red primary — borderless, square, white text. Hover lightens to
+   graphite (never brand orange; avoid near-black so the change stays visible). */
 .playground-button {
-  background-color: var(--w-paper);
-  color: var(--w-ink);
+  background-color: var(--w-black);
+  color: var(--w-white);
   margin-right: 0px;
 }
 
 .playground-button:hover {
-  background-color: var(--w-black);
+  background-color: var(--w-graphite);
   color: var(--w-white);
 }
 
@@ -1230,6 +1232,16 @@ img {
 }
 .playground-button:hover .btn-arrow {
   transform: translateX(3px);
+}
+
+/* Dark theme: invert to white fill / dark text; hover lightens to light-grey */
+[data-md-color-scheme="slate"] .playground-button {
+  background-color: var(--w-white);
+  color: var(--w-ink);
+}
+[data-md-color-scheme="slate"] .playground-button:hover {
+  background-color: var(--w-light-grey, var(--w-rule)); /* #C5C4BF light grey */
+  color: var(--w-ink);
 }
 
 /* Primary ("Try For Free"): solid Signal Red fill + black text → inverts to solid black on hover */
