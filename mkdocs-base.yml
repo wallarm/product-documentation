@@ -19,7 +19,6 @@ dev_addr: '127.0.0.1:8000'
 watch:
   - docs/latest
   - include
-  - stylesheets
 
 theme:
   language: en
