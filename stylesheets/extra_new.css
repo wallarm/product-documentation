@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&family=Domine:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;500;600&family=Geist+Mono:wght@400..600&display=swap");
 
 /* ============================================================
  * WADS FY26 design tokens — single source of truth.
@@ -8,10 +8,16 @@
 :root,
 [data-md-color-scheme="wallarm-palette"] {
   /* ---- Type ---- */
-  --md-text-font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  /* Typography mirrors the live wallarm.com, NOT the FY26 design guide:
+     Inter for body/UI + all labels, Source Serif 4 for headings,
+     monospace ONLY for code. */
+  --md-text-font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --md-code-font-family: "Geist Mono", ui-monospace, SFMono-Regular, "Roboto Mono", monospace;
-  --w-serif-font: "SchoolBook", "Century Schoolbook", "Domine", Georgia, "Times New Roman", serif;
-  --w-mono-font:  "Geist Mono", ui-monospace, SFMono-Regular, "Roboto Mono", monospace;
+  --w-serif-font: "Source Serif 4", Georgia, "Times New Roman", serif;
+  /* Was Geist Mono; remapped to Inter so eyebrows / section labels / nav-tab
+     labels / breadcrumbs / badges / metadata are NOT monospace. Real monospace
+     lives in --md-code-font-family and is applied only to code selectors. */
+  --w-mono-font:  "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   /* ---- Brand accent ---- */
   --w-signal-red:      #FF4D2E;  /* Signal Red — primary + active states */
@@ -457,9 +463,10 @@ a.md-header__button.md-logo:after {
 .homepage .md-content__inner h1 {
   text-align: start;
   font-family: var(--w-serif-font);
+  font-weight: 400;
   font-size: 52px;
   line-height: 1.02;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.012em;
   max-width: 16ch;
   margin: 0 0 18px;
   color: var(--w-black);
@@ -486,7 +493,7 @@ a.md-header__button.md-logo:after {
   font-family: var(--w-mono-font);
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--w-black);
 }
@@ -971,8 +978,8 @@ svg.navigation-arrow {
 .md-typeset h1 {
     font-family: var(--w-serif-font);
     line-height: 44px;
-    font-weight: 600;
-    letter-spacing: -0.035em;
+    font-weight: 400;
+    letter-spacing: -0.012em;
     margin: 0 0 16px;
     font-size: 40px;
     color: var(--w-ink);
@@ -982,18 +989,18 @@ svg.navigation-arrow {
     font-family: var(--w-serif-font);
     font-size: 28px;
     line-height: 34px;
-    letter-spacing: -0.035em;
-    font-weight: 600;
+    letter-spacing: -0.012em;
+    font-weight: 400;
     color: var(--w-ink);
 }
 
-/* H3 stays in Geist (sans), bold */
+/* H3 — Source Serif 4, regular (matches wallarm.com headings) */
 .md-typeset h3 {
-    font-family: var(--md-text-font-family);
+    font-family: var(--w-serif-font);
     font-size: 17px;
     line-height: 24px;
-    letter-spacing: -0.01em;
-    font-weight: 700;
+    letter-spacing: -0.012em;
+    font-weight: 400;
 }
 
 .md-typeset h4 {
@@ -1468,6 +1475,15 @@ img {
 }
 
 /* Code */
+
+/* Monospace is reserved for code only. Eyebrows / labels / nav-tab labels /
+   breadcrumbs / badges / metadata use Inter (via --w-mono-font, now Inter). */
+.md-typeset code,
+.md-typeset kbd,
+.md-typeset pre,
+.md-typeset pre > code {
+  font-family: var(--md-code-font-family);
+}
 
 .md-typeset code {
   font-size: 14px;
@@ -2065,7 +2081,7 @@ html {
 
 .navigation-card h3 {
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 400;
   color: hsla(0, 0%, 0%, 1);
   margin-top: 0px;
   margin-bottom: 5px;
@@ -2119,7 +2135,8 @@ a.navigation-card:hover {
 .navigation-card h3,
 .navigation-card h3 a {
   font-family: var(--w-serif-font);
-  letter-spacing: -0.02em;
+  font-weight: 400;
+  letter-spacing: -0.012em;
 }
 
 /* Home card quick-links — WADS FY26 "card-links": mono-caps rows with a
