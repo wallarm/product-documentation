@@ -890,14 +890,13 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
   text-transform: uppercase;
   color: #fff !important;
   background: var(--w-ink);
-  border: 1px solid var(--w-black);
+  border: none;
   text-decoration: none !important;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition: background 0.15s ease;
 }
 
 .home-ver-cta:hover {
   background: var(--w-signal-red);
-  border-color: var(--w-signal-red);
   color: #fff !important;
 }
 

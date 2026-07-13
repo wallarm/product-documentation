@@ -86,19 +86,19 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
   font: 500 13px/1 var(--w-mono-font);
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 13px 18px;
-  border: 1px solid var(--w-black);
+  padding: 14px 18px;
+  border: none;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
   text-decoration: none !important;
-  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
 .eol-primary {
   background: var(--w-signal-red);
-  color: #121213 !important;
+  color: #fff !important;
 }
 
 .eol-primary:hover {
@@ -107,7 +107,7 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
 }
 
 .eol-secondary {
-  background: transparent;
+  background: var(--w-paper);
   color: var(--w-ink) !important;
 }
 
