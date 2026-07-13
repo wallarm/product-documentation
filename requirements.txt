@@ -1,4 +1,4 @@
-zensical==0.0.44
+zensical==0.0.50
 pymdown-extensions==11.0.1
 pygments==2.20.0
 prependnewline==1.2
