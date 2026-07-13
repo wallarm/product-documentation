@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;500;600&family=Geist+Mono:wght@400..600&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600&family=Geist+Mono:wght@400..600&display=swap");
 /* ============================================================
  * WADS FY26 design tokens — single source of truth.
  * Colors mirror Claude Design (design-system colors_and_type.css),
@@ -11,13 +10,13 @@
   /* Typography mirrors the live wallarm.com, NOT the FY26 design guide:
      Inter for body/UI + all labels, Source Serif 4 for headings,
      monospace ONLY for code. */
-  --md-text-font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --md-code-font-family: "Geist Mono", ui-monospace, SFMono-Regular, "Roboto Mono", monospace;
-  --w-serif-font: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --md-text-font-family: "Inter", sans-serif;
+  --md-code-font-family: "Geist Mono", sans-serif;
+  --w-serif-font: "Source Serif 4", sans-serif;
   /* Was Geist Mono; remapped to Inter so eyebrows / section labels / nav-tab
      labels / breadcrumbs / badges / metadata are NOT monospace. Real monospace
      lives in --md-code-font-family and is applied only to code selectors. */
-  --w-mono-font:  "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --w-mono-font:  "Inter", sans-serif;
 
   /* ---- Brand accent ---- */
   --w-signal-red:      #FF4D2E;  /* Signal Red — primary + active states */
@@ -1224,16 +1223,6 @@ img {
   color: var(--w-white);
 }
 
-/* Right-arrow after the secondary CTA label (demo-request form, not a video) */
-.playground-button .btn-arrow {
-  font-size: 15px;
-  line-height: 1;
-  transition: transform 0.2s ease;
-}
-.playground-button:hover .btn-arrow {
-  transform: translateX(3px);
-}
-
 /* Dark theme: invert to white fill / dark text; hover lightens to light-grey */
 [data-md-color-scheme="slate"] .playground-button {
   background-color: var(--w-white);
@@ -1247,7 +1236,7 @@ img {
 /* Primary ("Try For Free"): solid Signal Red fill + black text → inverts to solid black on hover */
 .signup-button {
   background-color: var(--w-signal-red);
-  color: var(--w-ink);
+  color: var(--w-white);
 }
 
 .signup-button:hover {
