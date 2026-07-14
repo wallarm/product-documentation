@@ -98,7 +98,7 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
 
 .eol-primary {
   background: var(--w-signal-red);
-  color: #121213 !important;
+  color: #fff !important;
 }
 
 .eol-primary:hover {
