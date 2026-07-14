@@ -13,7 +13,7 @@
      monospace ONLY for code. */
   --md-text-font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --md-code-font-family: "Geist Mono", ui-monospace, SFMono-Regular, "Roboto Mono", monospace;
-  --w-serif-font: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --w-serif-font: "Source Serif 4", sans-serif;
   /* Was Geist Mono; remapped to Inter so eyebrows / section labels / nav-tab
      labels / breadcrumbs / badges / metadata are NOT monospace. Real monospace
      lives in --md-code-font-family and is applied only to code selectors. */
@@ -2050,7 +2050,6 @@ html {
 /* --- In-content buttons: square, 2px black border, Signal Red primary --- */
 .md-typeset .md-button {
   border-radius: 0;
-  border: 2px solid var(--w-ink);
   color: var(--w-ink);
   font-weight: 600;
   transition: all 0.2s ease;
@@ -2062,7 +2061,6 @@ html {
 }
 .md-typeset .md-button--primary {
   background-color: var(--w-signal-red);
-  border-color: var(--w-ink);
   color: var(--w-ink);
 }
 .md-typeset .md-button--primary:hover {
