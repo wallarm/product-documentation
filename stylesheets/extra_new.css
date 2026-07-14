@@ -623,7 +623,7 @@ a.md-header__button.md-logo:after {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--w-graphite);
-  padding: 0 11px;
+  padding: 0 8px;
   margin-top: 0;
   height: 48px;
   display: inline-flex;
