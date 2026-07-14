@@ -53,7 +53,7 @@ theme:
 extra:
   language_name: English
   language_lowercase: en
-  playground_button_name: "Request a Demo"
+  playground_button_name: "Schedule a Demo"
   try_button_name: "Try For Free"
   footer:
     need_help: Need help or have questions?
