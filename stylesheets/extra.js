@@ -644,10 +644,16 @@ document.querySelector('.md-nav--primary').addEventListener('click', () => {
       next.addEventListener('click', function () { list.scrollBy({ left: step(), behavior: 'smooth' }); });
       list.addEventListener('scroll', update, { passive: true });
       window.addEventListener('resize', update);
-      // Keep the active tab in view on load
+      // Keep the active tab in view on load. Center it INSTANTLY (the list has
+      // scroll-behavior: smooth, which would otherwise animate this scroll and
+      // make the "next" arrow flash on/off while it settles). Arrow-button
+      // clicks stay smooth — they pass behavior:'smooth' explicitly.
       var active = list.querySelector('.md-tabs__item--active, .md-tabs__link--active');
       if (active && active.scrollIntoView) {
+        var sb = list.style.scrollBehavior;
+        list.style.scrollBehavior = 'auto';
         try { active.scrollIntoView({ inline: 'center', block: 'nearest' }); } catch (e) {}
+        list.style.scrollBehavior = sb;
       }
     }
     update();
