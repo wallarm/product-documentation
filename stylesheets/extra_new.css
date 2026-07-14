@@ -1955,7 +1955,6 @@ html {
 /* --- In-content buttons: square, 2px black border, Signal Red primary --- */
 .md-typeset .md-button {
   border-radius: 0;
-  border: 2px solid var(--w-ink);
   color: var(--w-ink);
   font-weight: 600;
   transition: all 0.2s ease;
@@ -1967,7 +1966,6 @@ html {
 }
 .md-typeset .md-button--primary {
   background-color: var(--w-signal-red);
-  border-color: var(--w-ink);
   color: var(--w-ink);
 }
 .md-typeset .md-button--primary:hover {
