@@ -12,7 +12,7 @@
      Inter for body/UI + all labels, Source Serif 4 for headings,
      monospace ONLY for code. */
   --md-text-font-family: "Inter", sans-serif;
-  --md-code-font-family: "Geist Mono", ui-monospace, SFMono-Regular, "Roboto Mono", monospace;
+  --md-code-font-family: "Geist Mono", sans-serif;
   --w-serif-font: "Source Serif 4", sans-serif;
   /* Was Geist Mono; remapped to Inter so eyebrows / section labels / nav-tab
      labels / breadcrumbs / badges / metadata are NOT monospace. Real monospace
@@ -1929,7 +1929,7 @@ html .md-footer .md-social a:hover {
 
 .help-support p {
   display: inline-block;
-  font-weight: 1000;
+  font-weight: 600;
 }
 
 .help-support svg {
@@ -2174,13 +2174,14 @@ a.navigation-card:hover {
 .homepage .md-typeset .navigation-card ul li a {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
   padding: 4px 0;
-  font-family: var(--w-mono-font);
-  font-size: 11px;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: var(--w-graphite);
+  font-family: var(--md-text-font-family);
+  font-size: 14px;
+  line-height: 1.35;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--w-ink);
   text-decoration: none;
   transition: color 140ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
