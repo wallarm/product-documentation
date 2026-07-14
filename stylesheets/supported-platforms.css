@@ -51,7 +51,7 @@ a.do-card:is(:any-link, :hover, :active) {
     gap: 8px;
     margin: 0 0 8px;
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 400; /* Source Serif headings stay regular, not bold (matches home cards) */
     line-height: 24px;
 }
 
