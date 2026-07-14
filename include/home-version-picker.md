@@ -34,6 +34,23 @@
   z-index: 30;
 }
 .home-verpick .versions-list.ver-menu[hidden] { display: none; }
+
+/* The picker sits inside .md-typeset on the home page, so the content-link
+   styles (.homepage .md-typeset a / :hover) leak in — black text, Signal-Red
+   hover, underline. Neutralize them so hovers and text colors match the
+   in-article selector exactly. */
+.home-verpick .ver-menu .vm-item,
+.home-verpick .ver-menu .vm-foot { text-decoration: none; transition: none; }
+.home-verpick .ver-menu .vm-foot { color: var(--w-core-blue); }
+.home-verpick .ver-menu .vm-item:hover {
+  color: inherit;
+  text-decoration: none;
+  background: #F8FAFC;
+}
+.home-verpick .ver-menu .vm-foot:hover {
+  color: var(--w-core-blue);
+  text-decoration: underline;
+}
 </style>
 
 <script>
