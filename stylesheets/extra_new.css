@@ -996,7 +996,7 @@ svg.navigation-arrow {
 /* H3 — Source Serif 4, regular (matches wallarm.com headings) */
 .md-typeset h3 {
     font-family: var(--w-serif-font);
-    font-size: 17px;
+    font-size: 20px;
     line-height: 24px;
     letter-spacing: -0.012em;
     font-weight: 400;
@@ -1585,96 +1585,11 @@ button.md-clipboard.md-icon {
   border-color: var(--w-hairline);
 }
 
-.md-search__form {
-  border-radius: 0;
-  border: 1px solid var(--w-hairline);
-  background-color: var(--w-white);
-  width: 100%
-}
-
-/* Hotkey indicator for search field */
-.md-search__inner::after {
-  content: "⌘K";
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--w-graphite);
-  background-color: var(--w-paper);
-  border: 1px solid var(--w-rule);
-  border-radius: 0;
-  padding: 2px 6px;
-  pointer-events: none;
-  z-index: 2;
-  font-family: var(--w-mono-font);
-}
-
-/* Show Ctrl+K on non-Mac platforms */
-.platform-windows .md-search__inner::after,
-.platform-linux .md-search__inner::after {
-  content: "Ctrl K";
-}
-
-/* Hide hotkey indicator when search is active/focused */
-.md-search__inner:focus-within::after,
-[data-md-toggle="search"]:checked ~ .md-header .md-search__inner::after {
-  display: none;
-}
-
-.md-search__input {
-  color: var(--w-black);
-  border-radius: 0;
-}
-
-.md-search__input:not(:focus-visible) {
-  background-color: var(--w-white);
-}
-
-input.md-search__input::placeholder {
-  color: #959DAC;
-}
-
-
-.md-search__icon.md-icon svg {
-  color: var(--w-graphite);
-}
-
-/* Search results dropdown — square, black frame, editorial palette */
-.md-search__output {
-  border-radius: 0;
-}
-[data-md-toggle="search"]:checked ~ .md-header .md-search__inner {
-  border: 1px solid var(--w-hairline);
-}
-.md-search-result__meta {
-  background-color: var(--w-paper);
-  color: var(--w-graphite);
-  font-family: var(--w-mono-font);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 11px;
-}
-
-a.md-search-result__link:hover {
-  background-color: var(--w-cream);
-  box-shadow: inset 0px -1px 0px var(--w-rule);
-}
-
-.md-search-result__link:focus, .md-search-result__link:hover {
-  background-color: var(--w-cream);
-}
-
-.md-search-result__more>summary:focus>div, .md-search-result__more>summary:hover>div {
-  background-color: var(--w-cream);
-  box-shadow: inset 0px -1px 0px var(--w-rule);
-}
-
-.md-search-result em {
-  color: var(--w-signal-red);
-  text-decoration: none;
-  font-weight: 600;
-}
+/* The search form, input, results dropdown, and highlight all render inside a
+   Shadow DOM (Zensical) with minified classes — .md-search__form / __input /
+   __output / .md-search-result* never exist in the light DOM, so styling them
+   here is dead. Those parts are styled by injecting a <style> into the shadow
+   root; see the "Zensical search widget" block in stylesheets/extra.js. */
 
 /* Table */
 
@@ -2077,9 +1992,7 @@ a.navigation-card:hover {
   content: none;
 }
 .homepage .md-typeset .navigation-card ul li a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  display: block;
   padding: 4px 0;
   font-family: var(--md-text-font-family);
   font-size: 14px;
@@ -2090,9 +2003,13 @@ a.navigation-card:hover {
   text-decoration: none;
   transition: color 140ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
+/* inline-block arrow = atomic inline box: an ancestor underline is never drawn
+   across it, so the hover underline lands on the text only, not the arrow. */
 .homepage .md-typeset .navigation-card ul li a::before {
   content: "→";
-  flex: none;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
   color: var(--w-signal-red);
   font-size: 12px;
   transition: transform 140ms cubic-bezier(0.2, 0.7, 0.2, 1);

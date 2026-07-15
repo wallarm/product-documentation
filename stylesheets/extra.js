@@ -665,3 +665,80 @@ document.querySelector('.md-nav--primary').addEventListener('click', () => {
     window.document$.subscribe(initTabScroll);
   }
 })();
+
+// Style the Zensical search widget, which renders inside a Shadow DOM.
+// External CSS cannot cross the shadow boundary, so we inject a <style> element
+// directly into the shadow root. The `--w-*` design tokens defined on :root are
+// inherited through the boundary, so var(--w-*) below resolves to the site palette.
+//
+// IMPORTANT: the classes inside the shadow tree are minified (a, n, y, k, f, r, z…)
+// and change on every Zensical rebuild — never target them. Anchor selectors on
+// stable attributes instead: placeholder="Search", role="combobox", type="text".
+(function () {
+  var SEARCH_CSS = [
+    /* Square off the whole widget: panel, input, buttons, results dropdown.
+       Universal selector (0,0,0) needs !important to beat Zensical's own
+       class-based border-radius rules inside the shadow tree. ::before/::after
+       are listed explicitly — the bare "*" does not match pseudo-elements. */
+    '*, *::before, *::after {',
+    '  border-radius: 0 !important;',
+    '}',
+    /* Icon buttons flanking the input (search / clear) */
+    'button {',
+    '  color: var(--w-graphite);',
+    '}',
+    /* Search-term highlight inside results */
+    'mark, em {',
+    '  color: var(--w-signal-red);',
+    '  background: transparent;',
+    '  font-weight: 600;',
+    '  text-decoration: none;',
+    '}'
+  ].join('\n');
+
+  // Insert our <style> once the shadow root actually holds the search input.
+  // Gating on the input keeps us from touching unrelated shadow roots and is a
+  // no-op until Zensical has populated the widget.
+  function inject(root) {
+    if (!root || !root.querySelector('input[placeholder="Search"]')) return;
+    if (root.querySelector('style[data-wallarm-search]')) return;
+    var style = document.createElement('style');
+    style.setAttribute('data-wallarm-search', '');
+    style.textContent = SEARCH_CSS;
+    root.appendChild(style);
+  }
+
+  // Once a shadow root exists, watch IT directly: Zensical populates the input
+  // and rebuilds the widget on open/close, and those mutations never reach an
+  // observer on <body>. Re-running inject() on every shadow mutation re-adds the
+  // <style> if a rebuild dropped it (inject() dedupes, so this is cheap).
+  var watched = new WeakSet();
+  function watch(root) {
+    if (!root || watched.has(root)) return;
+    watched.add(root);
+    inject(root);
+    new MutationObserver(function () { inject(root); })
+      .observe(root, { childList: true, subtree: true });
+  }
+
+  // The shadow host is a fixed-position <div> appended to <body>. subtree:true
+  // (mirroring the analytics observer that works in production) makes this
+  // re-fire as the light DOM settles, so we reliably catch the host appearing.
+  function scan() {
+    var els = document.body.children;
+    for (var i = els.length - 1; i >= 0; i--) {
+      if (els[i].shadowRoot) watch(els[i].shadowRoot);
+    }
+  }
+
+  function start() {
+    scan();
+    new MutationObserver(scan).observe(document.body, { childList: true, subtree: true });
+  }
+
+  if (document.body) {
+    start();
+  } else {
+    document.addEventListener('DOMContentLoaded', start);
+  }
+})();
