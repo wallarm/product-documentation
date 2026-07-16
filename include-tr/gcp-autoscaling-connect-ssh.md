@@ -1,2 +1,0 @@
-!!! info "Kullanıcı tanımlı özel anahtar aracılığıyla örneğe bağlanma"
-    Temel örnek oluşturma süreci sırasında özel bir SSH anahtar çifti aracılığıyla örneğe bağlantıyı etkinleştirdiyseniz, bu anahtar çiftinin özel anahtarına erişiminizin olduğundan emin olun.

@@ -1,1 +1,0 @@
---8<-- "latest-ja/faq/common-errors-after-installation.md"

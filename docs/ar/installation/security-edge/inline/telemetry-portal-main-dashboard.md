@@ -1,1 +1,0 @@
---8<-- "latest-ar/installation/security-edge/inline/telemetry-portal-main-dashboard.md"

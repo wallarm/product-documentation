@@ -1,2 +1,0 @@
-* Wallarm Console'da [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) içinde **Deploy** veya **Administrator** rolüne sahip hesaba erişim
-* US Wallarm Cloud ile çalışıyorsanız `https://us1.api.wallarm.com:444` adresine veya EU Wallarm Cloud ile çalışıyorsanız `https://api.wallarm.com:444` adresine erişim. Lütfen erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun

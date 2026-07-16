@@ -1,1 +1,0 @@
---8<-- "latest-ja/updating-migrating/versioning-policy.md"

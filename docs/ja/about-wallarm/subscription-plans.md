@@ -1,1 +1,0 @@
---8<-- "latest-ja/about-wallarm/subscription-plans.md"

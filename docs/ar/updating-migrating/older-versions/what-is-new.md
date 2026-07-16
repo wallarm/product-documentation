@@ -1,1 +1,0 @@
---8<-- "latest-ar/updating-migrating/older-versions/what-is-new.md"

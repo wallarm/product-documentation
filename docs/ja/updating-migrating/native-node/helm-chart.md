@@ -1,1 +1,0 @@
---8<-- "latest-ja/updating-migrating/native-node/helm-chart.md"

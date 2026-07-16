@@ -1,1 +1,0 @@
---8<-- "latest/admin-en/nginx-node-metrics.md"

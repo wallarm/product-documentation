@@ -1,1 +1,0 @@
---8<-- "latest-ja/api-discovery/risk-score.md"

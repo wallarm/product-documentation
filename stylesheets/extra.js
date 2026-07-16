@@ -141,7 +141,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
   let main = document.querySelector(".md-main");
-  let isHomepage = location.pathname === "/" || location.pathname === "/ja/" || location.pathname === "/4.4/" || location.pathname === "/4.2/" || location.pathname === "/4.6/" || location.pathname === "/4.8/" | location.pathname === "/4.10/" || location.pathname === "/5.x/" || location.pathname === "/7.x/" || location.pathname === "/tr/" || location.pathname === "/pt-br/" || location.pathname === "/ar/" || location.pathname === "/index.html";
+  let isHomepage = location.pathname === "/" || location.pathname === "/4.4/" || location.pathname === "/4.2/" || location.pathname === "/4.6/" || location.pathname === "/4.8/" || location.pathname === "/4.10/" || location.pathname === "/5.x/" || location.pathname === "/7.x/" || location.pathname === "/index.html";
   if (main) {
     if (isHomepage) {
       main.classList.add('homepage');
@@ -249,15 +249,9 @@ function goToVersion (event, currentVersion, version) {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-  /* Show/hide version selector by language */
-  var pathsLang = window.location.pathname.split('/');
   var versionsDiv = document.getElementById('versionsDiv');
   if (versionsDiv) {
-    if (pathsLang[1] === 'tr' || pathsLang[1] === 'pt-br' || pathsLang[1] === 'ja' || pathsLang[1] === 'ar') {
-      versionsDiv.style.display = 'none';
-    } else {
-      versionsDiv.style.display = 'inline-block';
-    }
+    versionsDiv.style.display = 'inline-block';
   }
 
   /* Version selector: delegation + touch so it works on mobile; list opens upward on small screens */
@@ -602,110 +596,3 @@ document.querySelector('.md-nav--primary').addEventListener('click', () => {
   // Reset the "Deployment options" opened states
   localStorage.removeItem('do');
 });
-
-
-// Show the list of languages
-
-var rootLanguage = 'en';
-
-const supportedLanguages = new Set(['ar', 'ja', 'tr', 'pt-br']);
-const versionSegments = new Set([
-  '7.x',
-  '5.x',
-  '4.10',
-  '3.6',
-  '2.18'
-]);
-
-function getCurrentLanguage() {
-  const button = document.getElementById('languagesMain');
-  if (button && button.dataset && button.dataset.currentLanguage) {
-    return button.dataset.currentLanguage;
-  }
-  return rootLanguage;
-}
-
-function stripVersionFromPath(pathname) {
-  let cleaned = pathname;
-
-  versionSegments.forEach((seg) => {
-    const matcher = new RegExp(`/${seg}(/|$)`);
-    cleaned = cleaned.replace(matcher, '/');
-  });
-
-  cleaned = cleaned.replace(/\/{2,}/g, '/');
-  return cleaned;
-}
-
-function languageClicked (event) {
-  if (document.getElementById('languagesList').style.display === 'none') {
-    document.getElementById('languagesList').style.display = 'block'
-    document.getElementById('languagesMain').classList.add("languages-main-active")
-  } else {
-    document.getElementById('languagesList').style.display = 'none'
-    document.getElementById('languagesMain').classList.remove("languages-main-active")
-  }
-}
-
-document.addEventListener('click', (event) => {
-  const languagesDiv = document.getElementById('languagesDiv');
-  const languagesList = document.getElementById('languagesList');
-  const languagesMain = document.getElementById('languagesMain');
-
-  if (!languagesDiv || !languagesList || !languagesMain) return;
-  if (languagesDiv.contains(event.target)) return;
-  if (languagesList.style.display !== 'block') return;
-
-  languagesList.style.display = 'none';
-  languagesMain.classList.remove("languages-main-active");
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  const { pathname } = window.location;
-  const hadTrailingSlash = pathname.endsWith('/');
-  const segments = pathname.split('/').filter(Boolean);
-
-  if (segments.length < 2) return;
-  if (!supportedLanguages.has(segments[0])) return;
-  if (!versionSegments.has(segments[1])) return;
-
-  const newSegments = [segments[0], ...segments.slice(2)];
-  let newPath = '/' + newSegments.join('/');
-  if (hadTrailingSlash && newPath !== '/') {
-    newPath += '/';
-  }
-
-  if (newPath !== pathname) {
-    window.location.replace(newPath);
-  }
-});
-
-// Open the docs for selected language and change value in the selector
-function goToLanguage (event, language) {
-  event.preventDefault()
-  const currentLanguage = getCurrentLanguage();
-
-  if (currentLanguage === language) {
-    window.location.reload(false);
-  }
-  else {
-    const cleanedPath = stripVersionFromPath(window.location.pathname);
-    let tmp = cleanedPath.split('/');
-    window.top.location.href = tmp.join('/');
-    if (language === rootLanguage) {
-      window.top.location.href = cleanedPath.replace('/'+currentLanguage+'/','/');
-    } else {
-      if (currentLanguage === rootLanguage) {
-        if (tmp[1].startsWith('docs')) {
-          window.top.location.href = cleanedPath.replace('/'+'docs'+'/','/'+'docs'+'/'+language+'/');
-        }
-        else {
-          window.top.location.href = cleanedPath.replace('/','/'+language+'/');
-        }
-      }
-      else {
-          window.top.location.href = cleanedPath.replace('/'+currentLanguage+'/','/'+language+'/')
-      }
-    }
-  }
-}

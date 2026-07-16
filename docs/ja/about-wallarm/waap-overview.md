@@ -1,1 +1,0 @@
---8<-- "latest-ja/about-wallarm/waap-overview.md"

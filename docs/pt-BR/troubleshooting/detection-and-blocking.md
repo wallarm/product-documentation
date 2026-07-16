@@ -1,1 +1,0 @@
---8<-- "latest-pt-BR/troubleshooting/detection-and-blocking.md"

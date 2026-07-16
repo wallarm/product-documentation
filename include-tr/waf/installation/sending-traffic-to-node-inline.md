@@ -1,1 +1,0 @@
-Yük dengeleyicinizin hedeflerini Wallarm örneğine trafik gönderecek şekilde güncelleyin. Ayrıntılar için yük dengeleyicinizin belgelerine başvurun.

@@ -1,1 +1,0 @@
---8<-- "latest-pt-BR/user-guides/events/analyze-attack.md"

@@ -1,2 +1,0 @@
-!!! info "Metrik örneği"
-    Bu örnek, filtre düğümü tarafından işlenen istek sayısını gösteren tek bir [`wallarm_nginx/gauge-abnormal`](../../admin-en/monitoring/available-metrics.md#number-of-requests) metrik ile nasıl çalışılacağını gösterir.

@@ -1004,7 +1004,7 @@ img {
     grid-template-rows: 65px 40px;
     grid-template-areas:
       "toggle logo title back search"
-      "buttons buttons buttons buttons lang";
+      "buttons buttons buttons buttons buttons";
     grid-template-columns: 44px 138px auto 60px 44px;
   }
   label[for="__search"] {
@@ -1044,17 +1044,6 @@ img {
   .md-header__button:nth-child(1) {
     display: block;
     grid-area: toggle;
-  }
-  .languages {
-    position: relative;
-    grid-area: lang;
-    padding-left: 6px;
-  }
-  .languages .languages-list, .languages .languages-main {
-    width: 100%;
-  }
-  .languages {
-    margin: 0;
   }
   .md-header__button.md-logo {
     grid-area: logo;
@@ -1189,7 +1178,7 @@ img {
     min-width: 0;
   }
 
-  .header-buttons, .languages {
+  .header-buttons {
     flex: 0 0 auto;
   }
 }
@@ -1686,86 +1675,6 @@ html .md-footer .md-social a:hover {
 .wlrm-button:hover {
   background-color: var(--color-primary-200);
 }
-
-/* Language selector */
-
-.languages {
-  position: relative;
-  display: inline-block;
-}
-
-.languages-main {
-  height: 36px;
-  border-style: solid;
-  background-color: transparent;
-  border-color: rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
-  border-width: 1px;
-  font-size: 14px;
-  cursor: pointer;
-  min-width: 36px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 0 8px;
-  color: #FFFFFF;
-  transition: all 0.2s ease;
-}
-
-.languages-list {
-  top: 45px;
-  background-color: #FFFF;
-  box-shadow: 0px 1px 8px rgba(149, 157, 172, 0.4);
-  border-radius: 4px;
-  position: absolute;
-  right: 0;
-  padding: 8px 0px;
-  min-width: 131px;
-  z-index: 1;
-  line-height: 1.8rem;
-}
-
-[dir="rtl"] .languages-list {
-  right: auto;
-  left: 0;
-}
-
-.languages-main:focus {
-  outline:0;
-}
-
-.languages-list:focus {
-  outline:0;
-}
-
-.languages-list a {
-  display: block;
-  padding: 0px 12px;
-  transition: all 0.3s ease;
-  color: hsla(0, 0%, 0%, 1);
-  font-size: 14px
-}
-
-.languages-list a:hover {
-  background-color: #F7F7F8;
-}
-
-.languages-main:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.5);
-}
-
-.languages-main-active {
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.5);
-}
-
-
-.languages-icon {
-  display: inline-block;
-}
-
 
 /* Table of contents */
 

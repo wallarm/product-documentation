@@ -1,1 +1,0 @@
---8<-- "latest-pt-BR/api-abuse-prevention/setup.md"

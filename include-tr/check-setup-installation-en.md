@@ -1,1 +1,0 @@
-Filtreleme düğümünün çalıştığını ve trafiği filtrelediğini kontrol edin. Bkz. [Filtreleme düğümünün çalışmasını kontrol etme](uat-checklist-en.md).

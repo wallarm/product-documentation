@@ -946,3 +946,8 @@
 /7.x/agentic-ai/rogue-mcp-inspection/ /7.x/vulnerability-detection/security-testing-overview/
 /7.x/agentic-ai/rogue-mcp-inspection /7.x/vulnerability-detection/security-testing-overview/
 /7.x/vulnerability-detection/api-security-testing-via-postman/* /7.x/vulnerability-detection/security-testing-overview/
+
+/ja/*  /:splat  301
+/tr/*  /:splat  301
+/ar/*  /:splat  301
+/pt-br/*  /:splat  301

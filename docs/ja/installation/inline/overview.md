@@ -1,1 +1,0 @@
---8<-- "latest-ja/installation/inline/overview.md"

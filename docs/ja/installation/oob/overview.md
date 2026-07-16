@@ -1,1 +1,0 @@
---8<-- "latest-ja/installation/oob/overview.md"

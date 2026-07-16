@@ -1,3 +1,0 @@
-!!! warning "破壊的変更とノード種別ごとのアップグレード推奨事項"
-    * Wallarm node 2.18以下をアップグレードする場合、3.xには**破壊的変更**が含まれていることにご注意ください。2.18以下のモジュールを3.6にアップグレードする前に、「[Wallarm nodeの変更点](older-versions/what-is-new.md)」をよく確認し、必要に応じて設定の変更をご検討ください。
-    * 通常（クライアント）ノードと[マルチテナント](../installation/multi-tenant/overview.md)ノードの両方をバージョン3.6にアップグレードすることを推奨します。これにより、最新のWallarmリリースに追随でき、[インストール済みモジュールの非推奨化](versioning-policy.md#version-support)を防止できます。

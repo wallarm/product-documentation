@@ -1,1 +1,0 @@
---8<-- "latest-tr/troubleshooting/wallarm-issues-in-nginx-error-log.md"

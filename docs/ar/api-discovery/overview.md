@@ -1,1 +1,0 @@
---8<-- "latest-ar/api-discovery/overview.md"

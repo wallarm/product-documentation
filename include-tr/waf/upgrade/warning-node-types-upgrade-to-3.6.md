@@ -1,3 +1,0 @@
-!!! warning "Uyumluluğu bozan değişiklikler ve farklı node türlerinin yükseltilmesine yönelik öneriler"
-    * Wallarm node 2.18 veya daha düşük bir sürümden yükseltiyorsanız, 3.x sürümünün **uyumluluğu bozan değişiklikler** içerdiğini lütfen unutmayın. 2.18 ve altındaki modülleri 3.6'ya yükseltmeden önce, [Wallarm node değişiklikleri](older-versions/what-is-new.md) listesini dikkatle inceleyin ve olası bir yapılandırma değişikliğini değerlendirin.
-    * Hem normal (client) hem de [çok kiracılı](../installation/multi-tenant/overview.md) node'ları 3.6 sürümüne yükseltmenizi öneririz. Bu, Wallarm sürümleriyle güncel kalmanızı ve [yüklü modülün kullanımdan kaldırılmasını](versioning-policy.md#version-support) önlemeyi sağlar.

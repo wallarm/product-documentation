@@ -1,2 +1,0 @@
-!!! info "Wallarm bağımlılıklarının yükseltilmesi"
-    `sudo apt dist-upgrade` komutu hem Wallarm paketlerini hem de filtreleme düğümü bağımlılıklarını yükseltir. Daha yeni filtreleme düğümü sürümünün doğru çalışmasını sağlayan önerilen yükseltme seçeneğidir.

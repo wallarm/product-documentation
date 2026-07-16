@@ -1,2 +1,0 @@
-!!! info "Birden fazla kurulum için tek bir token kullanma"
-    Seçilen [platform][deployment-platform-docs] ne olursa olsun, bir token'ı birden fazla kurulumda kullanabilirsiniz. Bu, Wallarm Console UI içinde düğüm örneklerinin mantıksal olarak gruplanmasını sağlar. Örnek: bir geliştirme ortamına birden fazla Wallarm düğümü dağıtırsınız; her düğüm, belirli bir geliştiriciye ait kendi makinesinde bulunur.

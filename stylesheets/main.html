@@ -56,7 +56,7 @@ if (window.location.hostname === 'docs.wallarm.com' && !window.__wallarmHID_init
 {% endblock %}
 
 {% block announce %}
-  {% if not config.extra.is_latest and (config.extra.language_lowercase | default("en")) == "en" %}
+  {% if not config.extra.is_latest %}
     {% if config.extra.version == "4.10" %}
       You are viewing docs for an unsupported Node version.
       <a href="{{ config.site_url }}" style="color:inherit; text-decoration: underline;">View latest documentation</a>
@@ -75,7 +75,7 @@ if (window.location.hostname === 'docs.wallarm.com' && !window.__wallarmHID_init
 
 {{ super() }}
 
-  {% if config.extra.is_latest or (config.extra.language_lowercase | default("en")) != "en" %}
+  {% if config.extra.is_latest %}
   <style>div[data-md-component="announce"] { display: none !important; }</style>
   {% elif config.extra.version == "4.10" or config.extra.version %}
   <style>:root, body { --md-announce-height: 2.4rem; }</style>
@@ -112,10 +112,6 @@ if (window.location.hostname === 'docs.wallarm.com' && !window.__wallarmHID_init
   {% set current_page = page.url %}
   <link rel="alternate" hreflang="x-default" href="https://docs.wallarm.com/{{ current_page }}">
   <link rel="alternate" hreflang="en" href="https://docs.wallarm.com/{{ current_page }}">
-  <link rel="alternate" hreflang="ja" href="https://docs.wallarm.com/ja/{{ current_page }}">
-  <link rel="alternate" hreflang="tr" href="https://docs.wallarm.com/tr/{{ current_page }}">
-  <link rel="alternate" hreflang="pt-br" href="https://docs.wallarm.com/pt-br/{{ current_page }}">
-  <link rel="alternate" hreflang="ar" href="https://docs.wallarm.com/ar/{{ current_page }}">
 
   {# Raw-Markdown companion URL for AI agents / LLM crawlers.
      Only emitted on English builds (raw_md flag is set in mkdocs-{6.x,7.x,5.0}.yml).

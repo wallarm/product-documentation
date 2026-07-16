@@ -1,1 +1,0 @@
---8<-- "latest-tr/api-discovery/risk-score.md"

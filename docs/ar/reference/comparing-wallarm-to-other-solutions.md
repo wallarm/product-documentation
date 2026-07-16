@@ -1,1 +1,0 @@
---8<-- "latest-ar/reference/comparing-wallarm-to-other-solutions.md"

@@ -1,1 +1,0 @@
---8<-- "latest-tr/installation/connectors/ibm-api-connect.md"

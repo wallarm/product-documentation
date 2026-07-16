@@ -1,1 +1,0 @@
---8<-- "latest-pt-BR/admin-en/installation-guides/google-cloud/creating-autoscaling-group.md"

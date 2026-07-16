@@ -1,6 +1,0 @@
-Ortam değişkeni | Açıklama| Gerekli
---- | ---- | ----
-`DEPLOY_USER` | Wallarm Console'daki **Deploy** veya **Administrator** kullanıcı hesabının e-posta adresi.| Evet
-`DEPLOY_PASSWORD` | Wallarm Console'daki **Deploy** veya **Administrator** kullanıcı hesabının parolası. | Evet
-`WALLARM_API_HOST` | Wallarm API sunucusu:<ul><li>`us1.api.wallarm.com` US Cloud için</li><li>`api.wallarm.com` EU Cloud için</li></ul>Varsayılan olarak: `api.wallarm.com`. | Hayır
-`DEPLOY_FORCE` | Çalıştırdığınız konteynerin tanımlayıcısı mevcut bir Wallarm düğümünün adıyla eşleşirse, mevcut Wallarm düğümünü yenisiyle değiştirir. Değişkene şu değerler atanabilir:<ul><li>filtreleme düğümünü değiştirmek için `true`</li><li>filtreleme düğümünün değiştirilmesini devre dışı bırakmak için `false`</li></ul>Varsayılan değer (değişken konteynere iletilmezse) `false`'dur.<br>Wallarm düğümünün adı her zaman çalıştırdığınız konteynerin tanımlayıcısıyla eşleşir. Ortamınızdaki Docker konteyner tanımlayıcıları statik ise ve filtreleme düğümüyle başka bir Docker konteyneri çalıştırmaya çalışıyorsanız (örneğin, imajın yeni bir sürümüne sahip bir konteyner), filtreleme düğümünün değiştirilmesi yararlıdır. Bu durumda değişkenin değeri `false` ise, filtreleme düğümü oluşturma işlemi başarısız olur. | Hayır
