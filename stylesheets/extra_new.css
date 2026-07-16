@@ -1295,6 +1295,13 @@ img {
   .md-sidebar--primary {
     height: calc(100% - 120px);
   }
+  /* Content is full-width white here (tabs are hidden), so drop the canvas
+     top margin that otherwise left an empty milky strip under the header
+     buttons. The milky gutter stays on wider screens where it frames the
+     floating content card. */
+  .md-main__inner {
+    margin-top: 0;
+  }
 }
 
 /* Video iframe */
