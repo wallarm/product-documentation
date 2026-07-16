@@ -1,21 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600&family=Geist+Mono:wght@400..600&display=swap");
 /* ============================================================
- * WADS FY26 design tokens — single source of truth.
- * Colors mirror Claude Design (design-system colors_and_type.css),
- * NOT the legacy palette. Reference these vars; avoid hardcoding hex.
+ * Design tokens — single source of truth. Reference these vars; avoid hardcoding hex.
  * ============================================================ */
 :root,
 [data-md-color-scheme="wallarm-palette"] {
-  /* ---- Type ---- */
-  /* Typography mirrors the live wallarm.com, NOT the FY26 design guide:
-     Inter for body/UI + all labels, Source Serif 4 for headings,
-     monospace ONLY for code. */
+  /* ---- Type: Inter for body/UI/labels, Source Serif 4 for headings, monospace for code ---- */
   --md-text-font-family: "Inter", sans-serif;
   --md-code-font-family: "Geist Mono", sans-serif;
   --w-serif-font: "Source Serif 4", sans-serif;
-  /* Was Geist Mono; remapped to Inter so eyebrows / section labels / nav-tab
-     labels / breadcrumbs / badges / metadata are NOT monospace. Real monospace
-     lives in --md-code-font-family and is applied only to code selectors. */
+  /* Labels use Inter, not monospace; real monospace is --md-code-font-family */
   --w-mono-font:  "Inter", sans-serif;
 
   /* ---- Brand accent ---- */
@@ -308,8 +301,7 @@
   display: block;
 }
 
-/* "Back to top" — laconic editorial: square black chip, mono-caps label,
-   inverts to Signal Red on hover. */
+/* "Back to top" — square black chip, mono-caps label, Signal Red on hover */
 .md-top.md-icon {
   background-color: var(--w-black);
   color: var(--w-white);
@@ -396,7 +388,7 @@ div[data-md-component="announce"] {
   font-size: 14px;
 }
 
-/* Header offset so it doesn't overlap the sticky announce bar (only when announce is shown; theme sets --md-announce-height) */
+/* Header offset for the sticky announce bar (theme sets --md-announce-height) */
 
 .md-header {
   top: var(--md-announce-height, 0);
@@ -458,7 +450,7 @@ a.md-header__button.md-logo:after {
 
 /* Main */
 
-/* Home hero — larger, more prominent stacked serif headline (WADS FY26) */
+/* Home hero — stacked serif headline */
 .homepage .md-content__inner h1 {
   text-align: start;
   font-family: var(--w-serif-font);
@@ -479,8 +471,7 @@ a.md-header__button.md-logo:after {
   color: var(--w-graphite);
 }
 
-/* Section-label strip before the home cells — mono-caps eyebrow with an
-   orange dot over a full-width black hairline (WADS FY26). */
+/* Section-label strip — mono-caps eyebrow with an orange dot over a black hairline */
 .homepage .home-section-label {
   display: flex;
   align-items: center;
@@ -524,10 +515,7 @@ a.md-header__button.md-logo:after {
 
 /* Navigation tabs */
 
-/* Tab bar — WADS FY26 editorial: paper strip separating it from the white
-   header, black bottom hairline, vertical light-grey hairlines between
-   cells, Geist-Mono UPPERCASE labels, active = white cell + bold +
-   full-width 3px Signal-Red underline. */
+/* Tab bar — paper strip, mono-caps labels, active = white cell + red underline */
 .md-tabs {
   z-index: 2;
   background: var(--w-paper);
@@ -552,8 +540,7 @@ a.md-header__button.md-logo:after {
   position: relative;
 }
 
-/* Edge scroll-arrows — a square white chevron over a paper fade,
-   shown only when the tab row overflows (toggled by JS). */
+/* Edge scroll-arrows — shown when the tab row overflows (toggled by JS) */
 .md-tabs__arrow {
   position: absolute;
   top: 0;
@@ -680,8 +667,7 @@ a.md-header__button.md-logo:after {
   border-top: 1px solid rgba(149, 157, 172, 0.24);
 }
 
-/* Keep the version selector pinned to the bottom of the sidebar so it stays
-   visible while the nav list scrolls behind it (desktop persistent sidebar). */
+/* Pin the version selector to the bottom of the sidebar (desktop) */
 @media screen and (min-width: 76.25em) {
   .md-nav--primary .versions-bottom {
     position: sticky;
@@ -904,9 +890,7 @@ a.md-header__button.md-logo:after {
     box-shadow: none;
   }
   .md-nav--primary .md-nav__title {
-    /* On mobile the nav title acts like a sticky header for drill-down menus.
-       Transparent background makes underlying items (e.g., "Introduction") show
-       through and look "stuck"/overlapped. */
+    /* Opaque background so items don't show through the sticky mobile nav title */
     background-color: var(--md-default-bg-color);
     padding: 0;
     height: 48px;
@@ -1186,7 +1170,7 @@ img {
 
 /* Request a demo button, Playgroun button */
 
-/* CTA buttons follow the live wallarm.com: solid fills, NO border, square. */
+/* CTA buttons: solid fills, no border, square */
 .button {
   border: none;
   color: var(--w-ink);
@@ -1209,9 +1193,7 @@ img {
   transition: all 0.2s ease;
 }
 
-/* Secondary ("Request a Demo"): strong solid-black secondary that sits next to
-   the Signal-Red primary — borderless, square, white text. Hover lightens to
-   graphite (never brand orange; avoid near-black so the change stays visible). */
+/* Secondary ("Request a Demo"): solid black, white text, graphite on hover */
 .playground-button {
   background-color: var(--w-black);
   color: var(--w-white);
@@ -1295,10 +1277,7 @@ img {
   .md-sidebar--primary {
     height: calc(100% - 120px);
   }
-  /* Content is full-width white here (tabs are hidden), so drop the canvas
-     top margin that otherwise left an empty milky strip under the header
-     buttons. The milky gutter stays on wider screens where it frames the
-     floating content card. */
+  /* Drop the canvas top margin: content is full-width here, no milky gutter */
   .md-main__inner {
     margin-top: 0;
   }
@@ -1485,8 +1464,7 @@ img {
 
 /* Code */
 
-/* Monospace is reserved for code only. Eyebrows / labels / nav-tab labels /
-   breadcrumbs / badges / metadata use Inter (via --w-mono-font, now Inter). */
+/* Monospace for code only; labels/breadcrumbs/badges use Inter (--w-mono-font) */
 .md-typeset code,
 .md-typeset kbd,
 .md-typeset pre,
@@ -1592,11 +1570,8 @@ button.md-clipboard.md-icon {
   border-color: var(--w-hairline);
 }
 
-/* The search form, input, results dropdown, and highlight all render inside a
-   Shadow DOM (Zensical) with minified classes — .md-search__form / __input /
-   __output / .md-search-result* never exist in the light DOM, so styling them
-   here is dead. Those parts are styled by injecting a <style> into the shadow
-   root; see the "Zensical search widget" block in stylesheets/extra.js. */
+/* Search renders in a Zensical Shadow DOM; styled via injected <style> — see
+   the "Zensical search widget" block in stylesheets/extra.js */
 
 /* Table */
 
@@ -1617,8 +1592,7 @@ button.md-clipboard.md-icon {
   border-top: 0;
 }
 
-/* Footer — editorial closing band: paper surface, black top hairline,
-   Geist-Mono uppercase meta, Signal-Red hover (was dark navy + salmon). */
+/* Footer — paper surface, black top hairline, mono-caps meta, Signal-Red hover */
 
 .md-footer {
   background-color: var(--w-paper);
@@ -1822,7 +1796,7 @@ html {
 }
 
 /* ============================================================
- * WADS docs refresh — square geometry, cards, mono-caps UI
+ * Docs refresh — square geometry, cards, mono-caps UI
  * ============================================================ */
 
 /* --- Remove rounding everywhere (cards may keep up to 2px) --- */
@@ -2010,8 +1984,7 @@ a.navigation-card:hover {
   text-decoration: none;
   transition: color 140ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-/* inline-block arrow = atomic inline box: an ancestor underline is never drawn
-   across it, so the hover underline lands on the text only, not the arrow. */
+/* inline-block arrow so the hover underline lands on the text only, not the arrow */
 .homepage .md-typeset .navigation-card ul li a::before {
   content: "→";
   display: inline-block;
@@ -2033,8 +2006,7 @@ a.navigation-card:hover {
   display: none;
 }
 
-/* Home cells arranged as a contiguous dashed "sticker sheet" (WADS FY26):
-   no gaps, shared dashed hairlines — grid draws top+left, each cell right+bottom. */
+/* Home cells as a contiguous dashed grid: grid draws top+left, each cell right+bottom */
 .homepage .navigation {
   gap: 0;
   grid-gap: 0;
@@ -2053,9 +2025,7 @@ a.navigation-card:hover {
   border-color: var(--w-dash);
 }
 
-/* Align the links divider across cells: reserve equal space for the title
-   (up to 2 lines) and description (up to 3 lines) so the top-border of the
-   card-links list starts at the same level in every card. Multi-column only. */
+/* Reserve equal description height so card-links line up across cells (multi-column) */
 @media screen and (min-width: 601px) {
   .homepage .navigation-card .card-description {
     min-height: 4.6em;
@@ -2075,9 +2045,7 @@ a.navigation-card:hover {
 }
 
 /* ============================================================
- * Version selector — borrowed from the WADS mockup
- * (eyebrow label + mono value pill, dropdown with tags + check),
- * adapted to the square docs system.
+ * Version selector — eyebrow label + mono value pill, dropdown with tags + check
  * ============================================================ */
 .versions-main.ver-pill {
   display: flex;
@@ -2215,8 +2183,7 @@ a.navigation-card:hover {
 }
 
 /* ============================================================
- * Home hero — animated "AI Control Platform" loop (WADS FY26).
- * Floats into the reserved right half of the homepage hero.
+ * Home hero — animated "AI Control Platform" loop, floated into the hero's right half
  * ============================================================ */
 .home-hero-media {
   display: none;
