@@ -1623,7 +1623,6 @@ button.md-clipboard.md-icon {
 .help-support a {
   font-family: var(--w-mono-font);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
 .md-copyright__highlight {
