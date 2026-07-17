@@ -28,6 +28,7 @@ from __future__ import annotations
 
 import concurrent.futures
 import functools
+import html
 import os
 import re
 import sys
@@ -64,6 +65,15 @@ BADGE_COLOR = (0x54, 0x53, 0x4F)
 BADGE_SIZE = 23
 BADGE_RIGHT = 1150             # right edge (aligns with content right margin)
 BADGE_Y = 64                  # baseline-aligned with the logo
+
+# Home-card content — matches the static og-docs-banner.png. The latest/root
+# version keeps that plain banner; every non-root version renders this same
+# content plus its version badge (deprecated swaps in a "no longer supported"
+# line). Home pages are HTML-heavy (hero SVG, cards) with no clean prose to
+# extract, so the text is fixed here rather than pulled from index.md.
+HOME_TITLE = "Wallarm Documentation"
+HOME_DESC = ("Product docs for the Wallarm AI Control Platform — discover, "
+             "observe, enforce, and govern AI workloads and APIs.")
 
 H1_RE = re.compile(r'^#[ \t]+(.+?)[ \t]*#*[ \t]*$', re.MULTILINE)
 ATTR_LIST_RE = re.compile(r'\s*\{[^}]*\}\s*$')          # trailing `{ #id .class }`
@@ -309,6 +319,27 @@ def page_to_slug(nav_path: str) -> str | None:
     return stem
 
 
+_OG_DESC_RE = re.compile(r'(<meta property="og:description" content=")[^"]*(")')
+_TW_DESC_RE = re.compile(r'(<meta name="twitter:description" content=")[^"]*(")')
+
+
+def _patch_html_description(html_path: Path, desc: str) -> None:
+    """Rewrite the built page's og:description / twitter:description to the exact
+    text shown on its card, so the link-preview blurb matches the image. The
+    SEO <meta name="description"> is left to the meta-descriptions plugin.
+    Runs post-build (HTML already emitted); silently no-ops if the file/tags
+    are absent.
+    """
+    if not html_path.is_file():
+        return
+    esc = html.escape(desc, quote=True)
+    original = html_path.read_text(encoding="utf-8")
+    patched = _OG_DESC_RE.sub(lambda m: m.group(1) + esc + m.group(2), original)
+    patched = _TW_DESC_RE.sub(lambda m: m.group(1) + esc + m.group(2), patched)
+    if patched != original:
+        html_path.write_text(patched, encoding="utf-8")
+
+
 def _render_task(task: tuple) -> str | None:
     """Worker: render one page's card. Returns None on success, or an error
     string. Runs in a separate process (rendering is CPU-bound); each worker
@@ -324,8 +355,10 @@ def _render_task(task: tuple) -> str | None:
         resolved = grm.resolve_snippets(raw, snippet_base)
         title = extract_title(resolved, nav_label, nav_path)
         desc = extract_description(raw, resolved, site_description)
-        out_path = site_dir / "images" / "og" / f"{page_to_slug(nav_path)}.png"
-        render_card(title, desc, out_path, version_label)
+        slug = page_to_slug(nav_path)
+        render_card(title, desc, site_dir / "images" / "og" / f"{slug}.png", version_label)
+        # Mirror the card's description into the page's link-preview meta tags.
+        _patch_html_description(site_dir / slug / "index.html", desc)
         return None
     except Exception as exc:                    # never break the build over one page
         return f"{nav_path}: {exc}"
@@ -410,22 +443,23 @@ def main(argv: list[str]) -> int:
     for e in errors:
         print(f"  skip (render error) {e}", file=sys.stderr)
 
-    # A deprecated version is a single home stub, which normally uses the shared
-    # banner. Give it a dedicated card so the share preview flags the dead
-    # version (main.html points the deprecated home og:image at images/og/home.png).
+    # Home page. The latest/root version keeps the plain static banner; every
+    # non-root version (7.x, 5.0, deprecated) gets a home card = banner content
+    # + its version badge, so a shared home link is labelled with the version.
+    # main.html points non-latest home og:image at images/og/home.png. Either
+    # way, mirror the home description into the link-preview meta so it matches.
     home_note = ""
+    home_desc = HOME_DESC
     if extra.get("status") == "deprecated":
-        idx = docs_dir / "index.md"
-        if idx.is_file():
-            try:
-                resolved = grm.resolve_snippets(idx.read_text(encoding="utf-8"), snippet_base)
-                title = extract_title(resolved, nav_titles.get("index.md"), "index.md")
-                desc = (f"Wallarm node {version} and lower is no longer supported "
-                        f"— see the latest documentation for current versions.")
-                render_card(title, desc, site_dir / "images" / "og" / "home.png", version_label)
-                home_note = " + deprecated home card"
-            except Exception as exc:
-                print(f"  skip (deprecated home card): {exc}", file=sys.stderr)
+        home_desc = (f"Wallarm node {version} and lower is no longer supported "
+                     f"— see the latest documentation for current versions.")
+    try:
+        if version_label:                       # non-root → dedicated badged card
+            render_card(HOME_TITLE, home_desc, site_dir / "images" / "og" / "home.png", version_label)
+            home_note = " + home card"
+        _patch_html_description(site_dir / "index.html", home_desc)
+    except Exception as exc:
+        print(f"  skip (home card): {exc}", file=sys.stderr)
 
     print(f"OG images: wrote {len(tasks) - len(errors)}, skipped {len(errors)} "
           f"({workers} worker{'s' if workers != 1 else ''}){home_note} -> {site_dir}/images/og/")
