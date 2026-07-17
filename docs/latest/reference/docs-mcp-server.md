@@ -12,32 +12,108 @@ You can copy this URL at any time from the **Copy page** menu in the top-right c
 
 ## Supported clients
 
-The server works with any client that supports remote MCP servers over the streamable HTTP transport, such as Claude (Claude Code and Claude Desktop), Cursor, and Codex.
+The server works with any client that supports remote MCP servers over the streamable HTTP transport, such as Claude Code, Claude Desktop, Antigravity, the Codex app and CLI, Cursor, Factory Droid, GitHub Copilot CLI, Kimi Code, and OpenCode.
 
 Older clients that only support the deprecated HTTP+SSE transport are not supported.
 
 ## Add the server
 
-For clients that use a JSON configuration file, add the server to your MCP configuration:
+The exact steps depend on your client. Some clients provide a command to add the server; others read a JSON or TOML configuration file. The examples below add the server under the name `wallarm-docs`.
 
-```json
-{
-  "mcpServers": {
-    "wallarm-docs": {
-      "type": "http",
-      "url": "https://mcp-docs.wallarm.com/mcp"
+Watch the transport key, which differs between clients: most use `type: "http"` or a `url` field, Antigravity uses `serverUrl`, and OpenCode uses `type: "remote"`. Use the exact key your client expects.
+
+=== "Claude Code"
+    ```bash
+    claude mcp add --transport http --scope user wallarm-docs https://mcp-docs.wallarm.com/mcp
+    ```
+
+=== "Claude Desktop"
+    Add the server to your MCP configuration:
+    ```json
+    {
+      "mcpServers": {
+        "wallarm-docs": {
+          "type": "http",
+          "url": "https://mcp-docs.wallarm.com/mcp"
+        }
+      }
     }
-  }
-}
-```
+    ```
 
-For clients with a command-line interface, add the server with a single command, for example:
+=== "Antigravity"
+    Add the server to the MCP configuration file `~/.gemini/config/mcp_config.json`, then refresh the installed servers:
+    ```json
+    {
+      "mcpServers": {
+        "wallarm-docs": {
+          "serverUrl": "https://mcp-docs.wallarm.com/mcp"
+        }
+      }
+    }
+    ```
 
-```bash
-claude mcp add --transport http --scope user wallarm-docs https://mcp-docs.wallarm.com/mcp
-```
+=== "Codex App"
+    Open **Settings → MCP servers → Add server**, set the name to `wallarm-docs`, select the **Streamable HTTP** transport, enter the URL `https://mcp-docs.wallarm.com/mcp`, and restart the app.
 
-You can copy either the JSON configuration or the server URL at any time from the **Add Docs MCP** section of the **Copy page** menu on any documentation page.
+=== "Codex CLI"
+    ```bash
+    codex mcp add wallarm-docs --url https://mcp-docs.wallarm.com/mcp
+    ```
+    Alternatively, add the server to `~/.codex/config.toml`:
+    ```toml
+    [mcp_servers.wallarm-docs]
+    url = "https://mcp-docs.wallarm.com/mcp"
+    ```
+
+=== "Cursor"
+    Add the server to `~/.cursor/mcp.json` (global) or `.cursor/mcp.json` (project), then restart Cursor:
+    ```json
+    {
+      "mcpServers": {
+        "wallarm-docs": {
+          "url": "https://mcp-docs.wallarm.com/mcp"
+        }
+      }
+    }
+    ```
+
+=== "Factory Droid"
+    ```bash
+    droid mcp add wallarm-docs https://mcp-docs.wallarm.com/mcp --type http
+    ```
+
+=== "GitHub Copilot CLI"
+    ```bash
+    copilot mcp add --transport http wallarm-docs https://mcp-docs.wallarm.com/mcp
+    ```
+
+=== "Kimi Code"
+    ```bash
+    kimi mcp add --transport http wallarm-docs https://mcp-docs.wallarm.com/mcp
+    ```
+
+=== "OpenCode"
+    Add the server to `opencode.json` (project) or `~/.config/opencode/opencode.json` (global):
+    ```json
+    {
+      "$schema": "https://opencode.ai/config.json",
+      "mcp": {
+        "wallarm-docs": {
+          "type": "remote",
+          "url": "https://mcp-docs.wallarm.com/mcp",
+          "enabled": true
+        }
+      }
+    }
+    ```
+
+=== "Pi"
+    Pi adds MCP support through an MCP extension. Once the extension is installed, add the server:
+    ```
+    /mcp add wallarm-docs https://mcp-docs.wallarm.com/mcp
+    ```
+
+You can copy either the standard JSON configuration or the server URL at any time from the **Add Docs MCP** section of the **Copy page** menu on any documentation page.
 
 ## Available tools
 
