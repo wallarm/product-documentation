@@ -127,6 +127,18 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
   </div>
 
   <div class="navigation-card">
+    <h3 class="icon-homepage maintenance-title"><a href="./maintenance/overview/">Maintenance <span class="card-arrow">→</span></a></h3>
+    <p class="card-description">Keep your Wallarm deployment healthy: nodes, monitoring, upgrades, and troubleshooting.</p>
+    <p><ul>
+      <li><a href="./maintenance/overview/">Overview</a></li>
+      <li><a href="./user-guides/nodes/nodes/">Nodes & Infrastructure</a></li>
+      <li><a href="./admin-en/nginx-node-metrics/">Monitoring & Metrics</a></li>
+      <li><a href="./updating-migrating/versioning-policy/">Upgrades & Migration</a></li>
+      <li><a href="./troubleshooting/overview/">Troubleshooting</a></li>
+    </ul></p>
+  </div>
+
+  <div class="navigation-card">
     <h3 class="icon-homepage integration-title"><a href="./user-guides/settings/integrations/integrations-intro/">Integrations <span class="card-arrow">→</span></a></h3>
     <p class="card-description">Connect Wallarm with your existing security tools, SIEMs, and alerting systems.</p>
     <p><ul>
@@ -148,6 +160,18 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
       <li><a href="./user-guides/search-and-filters/use-search/">Search & Reports</a></li>
       <li><a href="./user-guides/settings/users/">Users & Access</a></li>
       <li><a href="./troubleshooting/overview/">Troubleshooting</a></li>
+    </ul></p>
+  </div>
+
+  <div class="navigation-card">
+    <h3 class="icon-homepage references-title"><a href="./reference/overview/">Reference <span class="card-arrow">→</span></a></h3>
+    <p class="card-description">API reference, attack types, glossary, and platform policies.</p>
+    <p><ul>
+      <li><a href="./api/overview/">API Reference</a></li>
+      <li><a href="./attacks-vulns-list/">Attack Types</a></li>
+      <li><a href="./glossary-en/">Glossary</a></li>
+      <li><a href="./about-wallarm/data-retention-policy/">Data Retention Policy</a></li>
+      <li><a href="./reference/docs-mcp-server/">Docs MCP Server</a></li>
     </ul></p>
   </div>
 
@@ -419,8 +443,6 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
   flex: 1;
   min-width: 280px;
   overflow: visible;
-  border: 1px solid #DAE1EB;
-  border-radius: 8px;
 }
 
 /* ==========================
@@ -662,7 +684,6 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
   width: 100%;
   height: 44px;
   background-color: #F9FAFB;
-  border-radius: 8px;
   font-size: 15px;
   color: rgb(160, 160, 160);
 }

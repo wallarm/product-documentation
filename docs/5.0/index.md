@@ -416,8 +416,6 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
   flex: 1;
   min-width: 280px;
   overflow: visible;
-  border: 1px solid #DAE1EB;
-  border-radius: 8px;
 }
 
 /* ==========================
@@ -659,7 +657,6 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
   width: 100%;
   height: 44px;
   background-color: #F9FAFB;
-  border-radius: 8px;
   font-size: 15px;
   color: rgb(160, 160, 160);
 }
@@ -739,24 +736,12 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
   margin-bottom: 48px;
 }
 
-/* 5.0: two rows of 3 cards — smaller gap between rows, keep space before CTA */
-.navigation-3col-first {
-  margin-bottom: 24px !important;
-}
-.navigation-3col-last {
-  margin-bottom: 48px !important;
-}
-
 @media screen and (max-width: 1100px) {
   .navigation-4col { grid-template-columns: repeat(2, 1fr) !important; }
 }
 
 @media screen and (max-width: 900px) {
   .navigation-3col { grid-template-columns: repeat(2, 1fr) !important; }
-  /* 5.0: 3 cards in row — make 3rd card span full width so no empty cell on the right */
-  .navigation-3col .navigation-card:nth-child(3):nth-last-child(1) {
-    grid-column: 1 / -1;
-  }
 }
 
 @media screen and (max-width: 600px) {
