@@ -85,9 +85,15 @@ HTML_TAG_RE = re.compile(r'<[^>]+>')
 EMPH_RE = re.compile(r'[*_`]{1,3}')
 WS_RE = re.compile(r'\s+')
 
-# A source line that cannot be the start of a plain prose paragraph.
-_BLOCK_START = ('#', '>', '|', '-', '*', '+', '!', '<', '[', '=', '~', '`',
-                '!!!', '???', '===', '--8<--')
+# Line-start markers that mean a source line is NOT plain prose. Note `-`/`*`/`+`
+# are deliberately NOT bare prefixes here: a list item is "marker + space", but
+# a paragraph often *starts* with `**bold**`, `*em*` or `_em_`, which must count
+# as prose. List items (and ordered lists) are matched by _LIST_RE instead, and
+# reference definitions (`[label]: url`) by _REFDEF_RE — so a paragraph opening
+# with a `[link](url)` still counts as prose.
+_BLOCK_PREFIXES = ('#', '>', '|', '<', '![', '!!!', '???', '===', '--8<--', '```', '~~~')
+_LIST_RE = re.compile(r'^([-*+]\s|\d+[.)]\s)')
+_REFDEF_RE = re.compile(r'^\[[^\]]+\]:\s')
 
 
 def load_titled_nav(nav, mapping: dict[str, str]) -> None:
@@ -158,12 +164,11 @@ def extract_description(raw: str, resolved: str, fallback: str) -> str:
             if para:
                 break
             continue
-        if stripped.startswith(_BLOCK_START):
-            if para:
-                break
-            continue
-        # A lone reference definition like `[label]: url`.
-        if re.match(r'^\[[^\]]+\]:\s', stripped):
+        # Skip block-level lines (headings, lists, tables, HTML, admonitions,
+        # fences, snippets, images, ref-defs). Bold/italic/link-led lines pass.
+        if (stripped.startswith(_BLOCK_PREFIXES)
+                or _LIST_RE.match(stripped)
+                or _REFDEF_RE.match(stripped)):
             if para:
                 break
             continue
