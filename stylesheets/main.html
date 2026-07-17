@@ -121,11 +121,16 @@ if (window.location.hostname === 'docs.wallarm.com' && !window.__wallarmHID_init
   {% endif %}
   {% set description = page.meta.description if page and page.meta and page.meta.description else config.site_description %}
 
-  <!-- Open graph meta tags -->
+  <!-- Open graph meta tags. og:url must be the version-specific URL (og_base +
+       page.url), NOT page.canonical_url: config.site_url is root-only for every
+       version, so canonical_url drops the /7.x//5.x//4.10/ prefix and points at
+       the 6.x address. og:url is the object's permanent ID for unfurlers (Slack
+       dedupes by it) — without the prefix, every version's page (and every
+       ?query variant) collapses to one 6.x object and previews never refresh. -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="{{ title }}" />
   <meta property="og:description" content="{{ description }}" />
-  <meta property="og:url" content="{{ page.canonical_url }}" />
+  <meta property="og:url" content="{{ og_base ~ page.url }}" />
   <meta property="og:image" content="{{ image }}" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1200" />
