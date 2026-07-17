@@ -667,14 +667,39 @@ a.md-header__button.md-logo:after {
   border-top: 1px solid rgba(149, 157, 172, 0.24);
 }
 
-/* Pin the version selector to the bottom of the sidebar (desktop) */
+/* Desktop sidebar as a flex column: the nav list scrolls in its own area (with
+   a soft bottom fade), and the version selector is a footer beneath it. They
+   never overlap, so no nav text can show through around the selector. */
 @media screen and (min-width: 76.25em) {
-  .md-nav--primary .versions-bottom {
-    position: sticky;
-    bottom: 0;
-    z-index: 5;
+  .md-sidebar--primary .md-sidebar__scrollwrap {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .md-sidebar--primary .md-sidebar__inner {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  .md-sidebar--primary .md-nav--primary {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  .md-nav--primary > .md-nav__list {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 18px), transparent);
+    mask-image: linear-gradient(to bottom, #000 calc(100% - 18px), transparent);
+  }
+  .md-nav--primary > .versions-bottom {
+    position: relative;
+    flex: 0 0 auto;
     width: 100%;
-    margin-top: 24px;
+    margin-top: 0;
     padding: 12px 8px 12px 0;
     background: var(--w-surface);
     border-top: 1px solid var(--w-rule);
@@ -864,7 +889,11 @@ a.md-header__button.md-logo:after {
     left: -16.1rem;
   }
   .md-sidebar--primary {
-    top: 97px;
+    top: 0 !important;
+    height: 100% !important;
+    background: var(--w-surface);
+    /* Separate the drawer from the (same-colour) page behind it */
+    border-right: 1px solid var(--w-hairline);
   }
   [dir=ltr] .md-sidebar--primary {
     width: 15rem !important;
@@ -888,10 +917,11 @@ a.md-header__button.md-logo:after {
   }
   .md-nav--primary .md-nav__title~.md-nav__list {
     box-shadow: none;
+    background-color: var(--w-surface);
   }
   .md-nav--primary .md-nav__title {
     /* Opaque background so items don't show through the sticky mobile nav title */
-    background-color: var(--md-default-bg-color);
+    background-color: var(--w-surface);
     padding: 0;
     height: 48px;
     z-index: 2;
@@ -1275,7 +1305,8 @@ img {
     grid-area: logo;
   }
   .md-sidebar--primary {
-    height: calc(100% - 120px);
+    top: 0 !important;
+    height: 100% !important;
   }
   /* Drop the canvas top margin: content is full-width here, no milky gutter */
   .md-main__inner {
