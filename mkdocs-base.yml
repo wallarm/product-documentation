@@ -43,7 +43,13 @@ theme:
     - search.suggest
     - content.tabs.link
   logo: images/wallarm-logo-new.svg
-  favicon: favicon.png
+  # Absolute URL (not a bare path): zensical's base.html renders the icon link
+  # through the `url` filter, which makes a bare path per-page RELATIVE
+  # (./favicon.png on the home, ../../favicon.png on subpages). Link-preview
+  # crawlers (Slack) resolved the home's ./favicon.png unreliably, so shared
+  # home links unfurled without a site icon. An absolute URL is emitted as-is.
+  # The favicon.png file still deploys from the custom_dir regardless.
+  favicon: https://docs.wallarm.com/favicon.png
   icon:
     repo: fontawesome/brands/github-alt
   font:
