@@ -85,10 +85,16 @@ if (window.location.hostname === 'docs.wallarm.com' && !window.__wallarmHID_init
   <style>@media (min-width:960px){.md-header .md-search{opacity:0;pointer-events:none}}</style>
   {% endif %}
 
-  <!-- Determine title -->
-  {% set title = config.site_name %}
-  {% if page and page.title and not page.is_homepage %}
-    {% set title = config.site_name ~ " - " ~ page.title | striptags %}
+  <!-- Determine social-preview title. Non-root versions (7.x, 5.0) carry the
+       version in the label so a shared link reads e.g. "Wallarm Documentation
+       7.x - ...". The root/latest version stays unlabelled. -->
+  {% set site_label = config.site_name %}
+  {% if not config.extra.is_latest and config.extra.version %}
+    {% set site_label = config.site_name ~ " " ~ config.extra.version %}
+  {% endif %}
+  {% set title = site_label %}
+  {% if page and page.title and not page.is_homepage and page.title != config.site_name %}
+    {% set title = site_label ~ " - " ~ page.title | striptags %}
   {% endif %}
 
     <style>
@@ -97,8 +103,22 @@ if (window.location.hostname === 'docs.wallarm.com' && !window.__wallarmHID_init
         }
     </style>
 
-  <!-- The image needs to have an absolute URL -->
+  <!-- Open Graph / share image. Per-page card generated at build by
+       scripts/generate_og_images.py into <site_dir>/images/og/<page-slug>.png
+       (mirrors page.url). The homepage (page.url == "") keeps the static
+       banner. og:image needs an absolute URL, and non-root versions (7.x, 5.0)
+       serve under a /<version>/ prefix that config.site_url lacks, so prepend
+       it from config.extra.version. -->
   {% set image = config.site_url ~ 'images/og-docs-banner.png' %}
+  {% set og_base = config.site_url %}
+  {% if not config.extra.is_latest and config.extra.version %}
+    {% set og_base = config.site_url ~ config.extra.version ~ '/' %}
+  {% endif %}
+  {% if page and page.url %}
+    {% set image = og_base ~ 'images/og/' ~ page.url[:-1] ~ '.png' %}
+  {% elif config.extra.status == "deprecated" %}
+    {% set image = og_base ~ 'images/og/home.png' %}
+  {% endif %}
   {% set description = page.meta.description if page and page.meta and page.meta.description else config.site_description %}
 
   <!-- Open graph meta tags -->
