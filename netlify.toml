@@ -28,10 +28,10 @@ fi &&
 # only ever fetch them from docs.wallarm.com, so PR previews and branch
 # deploys skip the step to save build minutes. On previews the button will
 # fall back to its "Failed to copy" snackbar, which is the expected dev UX.
-cp -R images/ docs/6.x/images/ && zensical build -f mkdocs-6.x.yml && if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_raw_markdown.py mkdocs-6.x.yml; fi && rm -rf docs/6.x/images/ &&
-cp -R images/ docs/7.x/images/ && zensical build -f mkdocs-7.x.yml && if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_raw_markdown.py mkdocs-7.x.yml; fi && rm -rf docs/7.x/images/ &&
-cp -R images/ docs/5.0/images/ && zensical build -f mkdocs-5.0.yml && if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_raw_markdown.py mkdocs-5.0.yml; fi && rm -rf docs/5.0/images/ &&
-cp -R images/ docs/deprecated/images/ && zensical build -f mkdocs-deprecated.yml && rm -rf docs/deprecated/images/
+cp -R images/ docs/6.x/images/ && zensical build -f mkdocs-6.x.yml && if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_raw_markdown.py mkdocs-6.x.yml && python3 scripts/generate_og_images.py mkdocs-6.x.yml; fi && rm -rf docs/6.x/images/ &&
+cp -R images/ docs/7.x/images/ && zensical build -f mkdocs-7.x.yml && if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_raw_markdown.py mkdocs-7.x.yml && python3 scripts/generate_og_images.py mkdocs-7.x.yml; fi && rm -rf docs/7.x/images/ &&
+cp -R images/ docs/5.0/images/ && zensical build -f mkdocs-5.0.yml && if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_raw_markdown.py mkdocs-5.0.yml && python3 scripts/generate_og_images.py mkdocs-5.0.yml; fi && rm -rf docs/5.0/images/ &&
+cp -R images/ docs/deprecated/images/ && zensical build -f mkdocs-deprecated.yml && if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_og_images.py mkdocs-deprecated.yml; fi && rm -rf docs/deprecated/images/
 """
 [[headers]]
   for = "/*"

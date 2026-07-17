@@ -2,6 +2,7 @@ INHERIT: mkdocs-base.yml
 
 extra:
   version: "4.10"
+  status: "deprecated"
 
 docs_dir: docs/deprecated
 site_dir: site/4.10

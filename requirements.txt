@@ -6,3 +6,4 @@ mkdocs-meta-descriptions-plugin==4.1.0
 markdown==3.10.2
 importlib_metadata==9.0.0
 PyYAML==6.0.3
+pillow==10.4.0
