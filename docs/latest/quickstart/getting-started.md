@@ -20,7 +20,7 @@ You can start in one of the following ways:
 
 ### Playground
 
-The [Wallarm Playground](https://tour.playground.wallarm.com/?utm_source=wallarm_docs_quickstart) gives you a read-only view of Wallarm Console filled with realistic production-like data — discovered API inventory, attacks blocked, vulnerabilities detected, dashboards, integrations — so you can see how the product works without deploying anything or creating an account.
+The [Wallarm Playground](https://playground.wallarm.com/?utm_source=wallarm_docs_quickstart) gives you a read-only view of Wallarm Console filled with realistic production-like data — discovered API inventory, attacks blocked, vulnerabilities detected, dashboards, integrations — so you can see how the product works without deploying anything or creating an account.
 
 ![Playground](../images/playground.png)
 

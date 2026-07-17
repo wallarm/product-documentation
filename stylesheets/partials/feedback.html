@@ -87,10 +87,21 @@
   <style>
 
       .md-feedback {
-          background-color: #F1F3F5;
-          padding: 15px;
+          background-color: var(--w-cream);
+          border: 1px dashed var(--w-dash);
+          border-radius: 0;
+          padding: 18px 20px;
       }
-      
+
+      .md-feedback__title {
+          font-family: var(--w-mono-font, "Geist Mono", monospace);
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+          font-size: 12px;
+          font-weight: 600;
+          color: #000;
+      }
+
       .feedback-input {
           cursor: default;
           text-align: left;
@@ -110,21 +121,23 @@
       .feedback-input textarea {
           resize: none;
           width: 100%;
-          border-radius: 4px;
-          border: 1px solid #DBE0E7;
-          transition: border-color 0.3s ease;
+          border-radius: 0;
+          border: 1px solid var(--w-hairline, #000);
+          transition: border-color 0.2s ease;
           margin-top: 16px;
-          font-family: Inter;
+          background-color: #fff;
+          font-family: var(--md-text-font-family, "Geist", sans-serif);
       }
 
       .feedback-input textarea:focus-visible {
-          border-color: #FC7303;
+          border-color: var(--w-signal-red, #FF4D2E);
           outline: none;
       }
 
       .feedback-input .character-count {
         text-align: right;
-        color: #959dac;
+        color: var(--w-graphite, #54534F);
+        font-family: var(--w-mono-font, "Geist Mono", monospace);
         font-size: 10px;
         margin-top: unset;
       }
@@ -152,13 +165,13 @@
       .feedback-input input[type="radio"] + label::before {
           content: "";
           display: inline-block;
-          width: 15px;
-          height: 15px;
+          width: 14px;
+          height: 14px;
           margin-right: 10px;
           border-radius: 50%;
-          border: 1px solid #DBE0E7;
+          border: 1px solid var(--w-hairline, #000);
           vertical-align: middle;
-          transition: all 0.3s ease;
+          transition: all 0.2s ease;
           background-color: #FFFFFF;
       }
 
@@ -168,36 +181,41 @@
       }
 
       input[type="radio"]:checked + label::before {
-          background-color: #FC7303;
-          border: 4px solid #F2E9E2;
+          background-color: var(--w-signal-red, #FF4D2E);
+          border: 4px solid #fff;
+          box-shadow: 0 0 0 1px var(--w-hairline, #000);
       }
 
       .feedback-submit-button:disabled {
           background-color: #ccc;
           color: #888;
+          border-color: #ccc;
           cursor: not-allowed;
       }
 
       .feedback-submit-button:disabled:hover {
         background-color: #ccc;
+        color: #888;
       }
 
+      /* Square Signal-Red primary → inverts to black on hover */
       .feedback-submit-button {
-          border-radius: 4px;
-          border: none;
-          background-color: #FEF6E5;
-          color: #FC7303;
+          border-radius: 0;
+          border: 2px solid var(--w-hairline, #000);
+          background-color: var(--w-signal-red, #FF4D2E);
+          color: #000;
+          font-weight: 600;
           cursor: pointer;
-          padding: 6px 12px;
+          padding: 6px 16px;
           display: block;
-          transition: all 0.3s ease;
-          width: 58px;
+          transition: all 0.2s ease;
           height: 32px;
           font-size: 14px;
       }
 
       .feedback-submit-button:hover {
-          background-color: #F6C09C;
+          background-color: #000;
+          color: #fff;
       }
 
   </style>
