@@ -116,7 +116,7 @@ if (window.location.hostname === 'docs.wallarm.com' && !window.__wallarmHID_init
   {% endif %}
   {% if page and page.url %}
     {% set image = og_base ~ 'images/og/' ~ page.url[:-1] ~ '.png' %}
-  {% elif config.extra.status == "deprecated" %}
+  {% elif not config.extra.is_latest and config.extra.version %}
     {% set image = og_base ~ 'images/og/home.png' %}
   {% endif %}
   {% set description = page.meta.description if page and page.meta and page.meta.description else config.site_description %}
