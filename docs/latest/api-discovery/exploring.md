@@ -51,6 +51,9 @@ Sessions that touch AI/LLM-tagged endpoints are themselves tagged with the **AI/
 
 The **MCP Servers** tab lists discovered [Model Context Protocol](https://modelcontextprotocol.io/) servers alongside their primitives — tools, resources, and prompts.
 
+!!! info ""
+    MCP discovery requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.12.0 or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.25.0. For all protocols and their required Node versions, see [Supported protocols](overview.md#supported-protocols).
+
 ![Discovered MCP Servers](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-mcp-servers.png)
 
 **How detection works.** The Wallarm node identifies MCP traffic by JSON-RPC 2.0 requests with MCP-specific methods. When detected, the MCP server is added to the **MCP Servers** tab, and the node automatically enables 100% response parsing for the MCP endpoint to capture the full schema from `tools/list`, `resources/list`, and `prompts/list` responses.
@@ -103,6 +106,9 @@ This data allows checking that values of the expected format are passed in each 
 
 ### GraphQL operation details
 
+!!! info ""
+    GraphQL discovery requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.1.0 or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.15.1. For all protocols and their required Node versions, see [Supported protocols](overview.md#supported-protocols).
+
 Click the GraphQL operation to open its full-screen details page, including transferred sensitive data, risk score and what contributes to it, schema, parameters and headers of requests and responses:
 
 ![API Discovery - GraphQL operation details](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-GQL.png)
@@ -128,6 +134,9 @@ For GraphQL operations, data formats are detected in accordance with the [scalar
 * `Boolean`: true or false.
 
 ### SOAP operation details
+
+!!! info ""
+    SOAP discovery requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.0 or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.17.1. For all protocols and their required Node versions, see [Supported protocols](overview.md#supported-protocols).
 
 Click the SOAP operation to open its full-screen details page, including transferred sensitive data, risk score and what contributes to it, XML body parameters, HTTPS and XML headers of requests and responses:
 
@@ -159,6 +168,9 @@ For SOAP operations, it is a limited set from the [built-in primitive XML data t
 
 ### gRPC operation details
 
+!!! info ""
+    gRPC discovery requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.4.0 and is not available on [Native Node](../installation/nginx-native-node-internals.md#native-node). For all protocols and their required Node versions, see [Supported protocols](overview.md#supported-protocols).
+
 Click the gRPC operation to open its full-screen details page, including transferred sensitive data, risk score and what contributes to it, parameters and headers of requests and responses:
 
 ![API Discovery - gRPC operation details](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-GRPC.png)
@@ -187,6 +199,9 @@ Wallarm discovers general gRPC services that use [protocol buffers](https://prot
 * `Boolean`: true or false.
 
 ### MCP primitive details
+
+!!! info ""
+    MCP discovery requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.12.0 or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.25.0. For all protocols and their required Node versions, see [Supported protocols](overview.md#supported-protocols).
 
 Discovered MCP servers are displayed in the **MCP Servers** tab of API Discovery. Each MCP server lists its primitives — tools, resources, and prompts. Click a primitive to open its full-screen details page.
 
