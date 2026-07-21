@@ -66,7 +66,6 @@ Array, newest first. Each record:
 | `line` | NGINX: `5.x`/`6.x`/`7.x`; Native: `0.x`; connectors: the connector name |
 | `date` | `YYYY-MM-DD` |
 | `url` | canonical deep link to the changelog entry |
-| `summary` | first line of the entry, plain text |
 | `body_markdown` | full entry body (for nodes, with a `#### <form factor>` section per form factor) |
 
 ## Running locally

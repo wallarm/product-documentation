@@ -75,7 +75,6 @@ For scripts, CI pipelines, and agents, use the JSON feed instead of Atom. It con
 | `line` | The artifact's own version line — NGINX Node: `5.x` / `6.x` / `7.x`; Native Node: `0.x`; connector code bundle: the connector name |
 | `date` | Release date, `YYYY-MM-DD` |
 | `url` | Link to the changelog entry in the matching docs version |
-| `summary` | Short plain-text summary of the entry |
 | `body_markdown` | Full entry body, in Markdown |
 
 The JSON feed keeps the full history, while the Atom feed is capped at the 30 most recent entries.

@@ -310,20 +310,6 @@ def render_html(body_markdown: str, refdefs: str, base_url: str,
     return rewrite_links(html_text, base_url, url_prefix, src_dir)
 
 
-def plain_summary(body_markdown: str, limit: int = 300) -> str:
-    for raw in body_markdown.splitlines():
-        line = raw.strip()
-        if not line:
-            continue
-        line = re.sub(r"^[\*\-\+]\s+", "", line)          # bullet marker
-        line = re.sub(r"\[([^\]]+)\]\([^\)]+\)", r"\1", line)  # links -> text
-        line = re.sub(r"[`*_#]", "", line)                 # inline md
-        line = line.strip()
-        if line:
-            return line[:limit]
-    return ""
-
-
 # --------------------------------------------------------------------------- #
 # Feed assembly
 # --------------------------------------------------------------------------- #
@@ -396,7 +382,7 @@ def build_entries(cfg: dict, docs_root: Path, product_key: str) -> list[dict]:
             line_label, url_prefix = derive_line(cfg, product, e, folder_cfg)
             subs.append({**e, "line": line_label, "url_prefix": url_prefix, "refdefs": refdefs})
 
-    def emit(version, subgroup, line, url_prefix, anchor, date, body_md, refdefs, summary):
+    def emit(version, subgroup, line, url_prefix, anchor, date, body_md, refdefs):
         url = f"{base_url}{url_prefix}/{page_url_path}#{anchor}"
         return {
             "product": product_key,
@@ -406,7 +392,6 @@ def build_entries(cfg: dict, docs_root: Path, product_key: str) -> list[dict]:
             "date": date,
             "url": url,
             "title": entry_title(product_key, product["name"], version, subgroup),
-            "summary": summary,
             "body_markdown": body_md,
             "content_html": render_html(body_md, refdefs, base_url, url_prefix, src_dir),
         }
@@ -425,14 +410,12 @@ def build_entries(cfg: dict, docs_root: Path, product_key: str) -> list[dict]:
             out.append(emit(
                 version, None, first["line"], first["url_prefix"], first["anchor"],
                 max(s["date"] for s in items), body_md, first["refdefs"],
-                plain_summary(first["body_markdown"]),
             ))
     else:
         for s in subs:
             out.append(emit(
                 s["version"], s["subgroup"], s["line"], s["url_prefix"], s["anchor"],
                 s["date"], s["body_markdown"], s["refdefs"],
-                plain_summary(s["body_markdown"]),
             ))
     return out
 
@@ -457,7 +440,6 @@ def json_record(e: dict) -> dict:
         "line": e["line"],
         "date": e["date"],
         "url": e["url"],
-        "summary": e["summary"],
         "body_markdown": e["body_markdown"],
     }
 
@@ -493,7 +475,6 @@ def build_atom(cfg: dict, product_key: str, entries: list[dict]) -> str:
             f"    <updated>{e['date']}T00:00:00Z</updated>",
             f"    <published>{e['date']}T00:00:00Z</published>",
             f'    <category term="{xml_escape(e["line"])}"/>',
-            f'    <summary>{xml_escape(e["summary"])}</summary>',
             f'    <content type="html">{xml_escape(e["content_html"])}</content>',
             "  </entry>",
         ]
