@@ -1,0 +1,1 @@
+[:material-rss: Subscribe (RSS)](https://docs.wallarm.com/feeds/changelog-native-node.xml){ .md-button .subscribe-btn } [All formats & Slack](../subscribe-to-release-updates.md){ .md-button .subscribe-btn }

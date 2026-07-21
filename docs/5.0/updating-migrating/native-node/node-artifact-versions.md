@@ -2,6 +2,8 @@
 
 This document lists available [versions](../versioning-policy.md) of the [Native Wallarm Node](../../installation/nginx-native-node-internals.md#native-node) 0.x in various form factors, helping you track releases and plan upgrades.
 
+--8<-- "../include/subscribe/changelog-native-node.md"
+
 ## All-in-one installer
 
 The all-in-one installer for the Native Node is used for [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) and self-hosted node deployment with the [MuleSoft Mule Gateway](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md) connectors.
