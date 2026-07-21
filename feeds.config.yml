@@ -1,0 +1,80 @@
+# Configuration for scripts/generate_feeds.py — the single source of truth for
+# the aggregated changelog feeds.
+#
+# MODEL
+#   Wallarm ships three independently-versioned node artifacts, and each has its
+#   own changelog and its own feed:
+#     - NGINX Node          — versioned 5.x / 6.x / 7.x
+#     - Native Node         — versioned 0.13.x- / 0.14.x+ / 0.26.x+ (its OWN train,
+#                             released independently of the NGINX Node)
+#     - connector code bundle — per-connector versions (MuleSoft, Cloudflare, …),
+#                             used only for the connector deployment of the Native Node
+#   The docs site is versioned by the NGINX Node line (5.x/6.x/7.x). Native and
+#   connector changelogs physically live inside each docs version, but their
+#   entries are labelled and linked by their OWN versioning — NOT by the NGINX
+#   line of the docs folder they happen to sit in.
+#
+# HOW IT WORKS
+#   For every product the generator scans each docs version folder (following
+#   `--8<--` include wrappers), parses per-(sub-group, version) entries, and
+#   dedupes by (product, sub-group, version). Each entry's line label + docs URL
+#   are then derived FROM THE VERSION (nginx_lines / native_lines), not from the
+#   folder — so shared `latest/` content lands on the correct line regardless of
+#   which version folder wraps it today.
+#
+# ADD A NEW LINE (e.g. NGINX 8.x / Native 0.30.x): add the docs folder to
+#   `docs_versions`, its prefix to `url_prefixes`, and a rule to nginx_lines /
+#   native_lines.
+
+base_url: https://docs.wallarm.com
+
+# Docs version folders scanned for changelog files. Current-stable FIRST: for a
+# changelog shared across versions (Native, connectors), the first folder in
+# which an entry appears wins dedup and, for connectors, provides its docs URL —
+# so shared content resolves to the current-stable site.
+#
+#   nginx_line  — the NGINX Node line label for entries taken from this folder.
+#                 (The NGINX changelog is a separate full file per version, never
+#                 shared, so the folder unambiguously fixes the NGINX line — even
+#                 though it also lists NGINX form factors with their own version
+#                 series, e.g. the eBPF Helm chart at 0.23.x.)
+#   url_prefix  — served URL prefix for this docs version.
+docs_versions:
+  - {folder: "6.x", nginx_line: "6.x", url_prefix: ""}      # current stable (served at /)
+  - {folder: "7.x", nginx_line: "7.x", url_prefix: "/7.x"}  # preview
+  - {folder: "5.0", nginx_line: "5.x", url_prefix: "/5.x"}  # legacy
+
+products:
+  nginx-node:
+    name: "NGINX Node"
+    path: "updating-migrating/node-artifact-versions.md"
+    feed_basename: "changelog-nginx-node"
+    feed_title: "Wallarm NGINX Node changelog"
+    line_from: docs_folder         # line = the folder's NGINX line; URL from folder
+  native-node:
+    name: "Native Node"
+    path: "updating-migrating/native-node/node-artifact-versions.md"
+    feed_basename: "changelog-native-node"
+    feed_title: "Wallarm Native Node changelog"
+    line_from: native_version      # line + URL derived from the Native Node version
+  connectors:
+    name: "connector code bundle"
+    path: "installation/connectors/code-bundle-inventory.md"
+    feed_basename: "changelog-connectors-bundle"
+    feed_title: "Wallarm connector code bundle changelog"
+    line_from: connector           # line = connector name; URL from the source folder
+
+# Native Node: match by version FLOOR (checked high -> low) -> line label + docs
+# URL prefix. The Native Node has had no breaking major split yet — every release
+# is on the 0.x train — so the LABEL is just "0.x" for now (add a "1.x" rule when
+# the Native Node reaches 1.0). The floors still differ because each version range
+# is documented under a different docs site: 0.13.x- under /5.x/, 0.14.x+ at the
+# root (6.x), 0.26.x+ under /7.x/. So the URL comes from the version, not the
+# docs folder (the Native changelog is a shared `latest/` file).
+native_lines:
+  - {floor: "0.26", label: "0.x", url_prefix: "/7.x"}
+  - {floor: "0.14", label: "0.x", url_prefix: ""}
+  - {floor: "0.0",  label: "0.x", url_prefix: "/5.x"}
+
+# Atom feeds carry only the most recent N entries; JSON carries full history.
+atom_max_entries: 30

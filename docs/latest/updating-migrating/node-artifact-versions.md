@@ -2,6 +2,8 @@
 
 This document lists available [versions](versioning-policy.md) of the [NGINX Wallarm Node](../installation/nginx-native-node-internals.md#nginx-node) 6.x in various form factors, helping you track releases and plan upgrades.
 
+--8<-- "../include/subscribe/changelog-nginx-node.md"
+
 <!-- ## All-in-one installer
 
 History of all-in-one installer updates simultaneously applies to it's x86_64 and ARM64 versions.

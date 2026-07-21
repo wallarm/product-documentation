@@ -2068,6 +2068,22 @@ html {
   color: var(--w-white);
 }
 
+/* "Subscribe" button on changelog pages: header-sized, and a subtle
+   focus/hover (no fill on focus, no underline on hover). */
+.md-typeset .md-button.subscribe-btn {
+  font-size: 14px;
+  line-height: 1.8rem;
+  padding: 0 12px;
+}
+.md-typeset .md-button.subscribe-btn:focus {
+  background-color: unset;
+  border-color: unset;
+  color: unset;
+}
+.md-typeset .md-button.subscribe-btn:hover {
+  text-decoration: unset;
+}
+
 /* ============================================================
  * HOME / CAPABILITY CARDS
  * ============================================================ */

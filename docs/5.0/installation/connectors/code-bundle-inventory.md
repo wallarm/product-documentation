@@ -2,6 +2,8 @@
 
 This document lists the versions of connector code bundles that work with the Native Node (MuleSoft, Cloudflare, etc.).
 
+--8<-- "../include/subscribe/changelog-connectors-bundle.md"
+
 ## Version format
 
 Connector code bundle versions follow this format:
@@ -76,7 +78,7 @@ Requires Native Node version 0.8.3 or higher.
 
 [How to upgrade](cloudflare.md#upgrading-the-cloudflare-worker)
 
-### 1.0.1
+### 1.0.1 (2024-12-11)
 
 * Support custom blocking pages for malicious requests, configurable with the [parameters](cloudflare.md#configuration-options):
 
