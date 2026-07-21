@@ -2,6 +2,8 @@
 
 This document lists available  [versions](versioning-policy.md) of the [NGINX Wallarm Node](../installation/nginx-native-node-internals.md#nginx-node) 5.x in various form factors, helping you track releases and plan upgrades.
 
+--8<-- "../include/subscribe/changelog-nginx-node.md"
+
 ## All-in-one installer
 
 Since version 4.10, installation and upgrading of Wallarm nodes is performed **only** with all [all-in-one installer](../installation/nginx/all-in-one.md). Manual upgrade with individual Linux packages is not supported anymore.

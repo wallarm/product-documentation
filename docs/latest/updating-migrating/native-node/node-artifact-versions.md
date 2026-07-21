@@ -2,6 +2,8 @@
 
 This document lists available [versions](../versioning-policy.md) of the [Native Wallarm Node](../../installation/nginx-native-node-internals.md#native-node) 0.14.x+ in various form factors, helping you track releases and plan upgrades.
 
+--8<-- "../include/subscribe/changelog-native-node.md"
+
 ## All-in-one installer
 
 The all-in-one installer for the Native Node is used for [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
