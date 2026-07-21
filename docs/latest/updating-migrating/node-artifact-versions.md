@@ -1,6 +1,8 @@
 # NGINX Node Artifact Versions and Changelog
 
-This document lists available [versions](versioning-policy.md) of the [NGINX Wallarm Node](../installation/nginx-native-node-internals.md#nginx-node) 6.x in various form factors, helping you track releases and plan upgrades.
+This document lists available [versions](versioning-policy.md) of the [NGINX Wallarm Node](../installation/nginx-native-node-internals.md#nginx-node) 6.x in various form factors, helping you track releases and plan upgrades. For the NGINX versions supported by each release, see [NGINX Version Compatibility](../installation/nginx-compatibility.md).
+
+--8<-- "../include/subscribe/changelog-nginx-node.md"
 
 <!-- ## All-in-one installer
 

@@ -1,8 +1,8 @@
 # Custom NGINX Packages
 
-If you require Wallarm for an NGINX version that is different from the versions supported by [all-in-one installation](../../installation/nginx/all-in-one.md), such as stable version, mainline NGINX Plus, or the distributive version, you can request a custom Wallarm build by following these instructions.
+If you require Wallarm for an NGINX version that is different from the versions [supported by all-in-one installation](../nginx-compatibility.md), such as stable version, mainline NGINX Plus, or the distributive version, you can request a custom Wallarm build by following these instructions.
 
-The Wallarm module can be integrated with a custom build of NGINX, including NGINX `mainline`, by rebuilding the Wallarm packages. To rebuild the packages, please contact the [Wallarm technical support](mailto:support@wallarm.com) team and provide the following information:
+The Wallarm module can be integrated with such a custom build of NGINX by rebuilding the Wallarm packages. To rebuild the packages, please contact the [Wallarm technical support](mailto:support@wallarm.com) team and provide the following information:
 
 * Linux kernel version: `uname -a`
 * Linux distribution: `cat /etc/*release`

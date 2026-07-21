@@ -667,42 +667,29 @@ a.md-header__button.md-logo:after {
   border-top: 1px solid rgba(149, 157, 172, 0.24);
 }
 
-/* Desktop sidebar as a flex column: the nav list scrolls in its own area (with
-   a soft bottom fade), and the version selector is a footer beneath it. They
-   never overlap, so no nav text can show through around the selector. */
+/* Desktop sidebar: keep .md-sidebar__scrollwrap as the scroll container — the
+   theme's built-in "scroll active into view" runs
+   activeLink.closest('.md-sidebar__scrollwrap').scrollTo(...), so it only works
+   when the wrap is the scroller. The version selector is pinned as a sticky
+   footer beneath the nav (opaque, so nothing shows through). A previous
+   flex-column layout moved scrolling into the inner .md-nav__list, which broke
+   the theme's auto-scroll — hence the wrap-as-scroller approach here. */
 @media screen and (min-width: 76.25em) {
   .md-sidebar--primary .md-sidebar__scrollwrap {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-  .md-sidebar--primary .md-sidebar__inner {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 auto;
-    min-height: 0;
-  }
-  .md-sidebar--primary .md-nav--primary {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 auto;
-    min-height: 0;
-  }
-  .md-nav--primary > .md-nav__list {
-    flex: 1 1 auto;
-    min-height: 0;
     overflow-y: auto;
-    -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 18px), transparent);
-    mask-image: linear-gradient(to bottom, #000 calc(100% - 18px), transparent);
+  }
+  .md-nav--primary {
+    margin-bottom: 0;
   }
   .md-nav--primary > .versions-bottom {
-    position: relative;
-    flex: 0 0 auto;
+    position: sticky;
+    bottom: 0;
     width: 100%;
     margin-top: 0;
     padding: 12px 8px 12px 0;
     background: var(--w-surface);
     border-top: 1px solid var(--w-rule);
+    z-index: 1;
   }
 }
 
@@ -848,13 +835,6 @@ a.md-header__button.md-logo:after {
 
 .md-nav--primary .md-nav__item:last-child {
   padding-bottom: 0;
-}
-
-.md-nav__link {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 8px;
 }
 
 /* Active leaf: signal-red 2px left bar + bold, no fill */
@@ -1897,6 +1877,22 @@ html {
 .md-typeset .md-button--primary:hover {
   background-color: var(--w-ink);
   color: var(--w-white);
+}
+
+/* "Subscribe" button on changelog pages: header-sized, and a subtle
+   focus/hover (no fill on focus, no underline on hover). */
+.md-typeset .md-button.subscribe-btn {
+  font-size: 14px;
+  line-height: 1.8rem;
+  padding: 0 12px;
+}
+.md-typeset .md-button.subscribe-btn:focus {
+  background-color: unset;
+  border-color: unset;
+  color: unset;
+}
+.md-typeset .md-button.subscribe-btn:hover {
+  text-decoration: unset;
 }
 
 /* ============================================================

@@ -1,4 +1,4 @@
-# Deploying with All-in-One Installer
+# Deploying NGINX Node with All-in-One Installer
 
 An **all-in-one installer** is designed for installing Wallarm node as a dynamic module for NGINX in Linux-based environments for [inline traffic filtration][inline-docs]. This installer automatically identifies your operating system’s and NGINX versions, and installs all the necessary dependencies.
 
