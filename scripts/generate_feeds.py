@@ -435,7 +435,7 @@ def sort_key(e: dict):
 
 def json_record(e: dict) -> dict:
     return {
-        "product": e["product"],
+        "artifact_id": e["product"],
         "version": e["version"],
         "line": e["line"],
         "date": e["date"],

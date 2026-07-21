@@ -61,7 +61,7 @@ Array, newest first. Each record:
 
 | Field | Meaning |
 |-------|---------|
-| `product` | `nginx-node` \| `native-node` \| `connectors` |
+| `artifact_id` | `nginx-node` \| `native-node` \| `connectors` |
 | `version` | version string as written in the heading (e.g. `6.12.7`, `0.25.3`) |
 | `line` | NGINX: `5.x`/`6.x`/`7.x`; Native: `0.x`; connectors: the connector name |
 | `date` | `YYYY-MM-DD` |

@@ -66,18 +66,18 @@ Wallarm does not send release updates by email directly. To receive them in your
 
 ## Automate with the JSON feed
 
-For scripts, CI pipelines, and agents, use the JSON feed instead of Atom. It contains the full release history as an array, ordered newest first. Each entry has these fields:
+For scripts, CI pipelines, and agents, use the JSON feed instead of Atom. It contains the full release history as an array, ordered by release date, newest first. Each entry has these fields:
 
 | Field | Description |
 |-------|-------------|
-| `product` | Artifact identifier: `nginx-node`, `native-node`, or `connectors` |
+| `artifact_id` | Artifact identifier: `nginx-node`, `native-node`, or `connectors` |
 | `version` | Version string as written in the changelog (for example, `6.12.7` or `0.25.3`) |
 | `line` | The artifact's own version line — NGINX Node: `5.x` / `6.x` / `7.x`; Native Node: `0.x`; connector code bundle: the connector name |
 | `date` | Release date, `YYYY-MM-DD` |
 | `url` | Link to the changelog entry in the matching docs version |
 | `body_markdown` | Full entry body, in Markdown |
 
-The JSON feed keeps the full history, while the Atom feed is capped at the 30 most recent entries.
+The JSON feed keeps the full history, while the Atom feed is capped at the 30 most recent entries by release date.
 
 For example, to get the latest NGINX Node version on the 6.x line:
 
