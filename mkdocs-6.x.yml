@@ -221,6 +221,7 @@ nav:
     - Packages & Containers:
       - Linux OS:
         - All-in-one installer for NGINX Node: installation/nginx/all-in-one.md
+        - NGINX Version Compatibility: installation/nginx-compatibility.md
         - All-in-one installer for Native Node: installation/native-node/all-in-one.md
       - Docker:
         - Image for NGINX Node: admin-en/installation-docker-en.md
