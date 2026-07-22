@@ -24,7 +24,9 @@ edge_functions = "netlify/edge-functions"
 # save build minutes — readers don't see those, so the extra weight doesn't matter.
 command = """
 pip3 install --no-cache-dir -r requirements.txt &&
-if [ "$CONTEXT" = "production" ]; then \
+# TEMP(revert-before-merge): un-gated so image optimisation runs on the preview
+# build to verify the resize pass end-to-end. Restore `[ "$CONTEXT" = "production" ]`.
+if true; then \
   echo "Image size before optimisation: $(du -sh images/ | cut -f1) ($(find images/ -name '*.png' | wc -l) PNGs)" && \
   python3 scripts/optimize_images.py images/ --max-width 1800 && \
   curl -fsSL https://github.com/oxipng/oxipng/releases/download/v10.1.1/oxipng-10.1.1-x86_64-unknown-linux-gnu.tar.gz | tar xz --strip-components=1 oxipng-10.1.1-x86_64-unknown-linux-gnu/oxipng && \
