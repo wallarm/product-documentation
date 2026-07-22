@@ -19,7 +19,6 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 * Changed node process management — the `supervisord` process manager is replaced by the Go-based `wd` service, configured by the new `wd.yaml` file
 * Changed the [API Discovery](../api-discovery/overview.md) processing service — the `appstructure` process is replaced by the Go-based `api-discovery` service, with no change in functionality
 * Fixed an attack-detection bypass caused by incomplete reads of WebSocket and streamed request data
-* Fixed a node crash when a custom ruleset contained HEX parser rules
 * Fixed the installer reporting spurious "NGINX binary is not officially supported" errors for custom NGINX builds run with `--custom-ngx-build`
 * Fixed security vulnerabilities:
 
@@ -39,7 +38,6 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 * Changed node process management — the `supervisord` process manager is replaced by the Go-based `wd` service, configured by the new `wd.yaml` file
 * Changed the [API Discovery](../api-discovery/overview.md) processing service — the `appstructure` process is replaced by the Go-based `api-discovery` service, with no change in functionality
 * Fixed an attack-detection bypass caused by incomplete reads of WebSocket and streamed request data
-* Fixed a node crash when a custom ruleset contained HEX parser rules
 * Fixed security vulnerabilities:
 
     * [CVE-2026-29181](https://nvd.nist.gov/vuln/detail/CVE-2026-29181)
@@ -62,7 +60,6 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 * Changed node process management — the `supervisord` process manager is replaced by the Go-based `wd` service, configured by the new `wd.yaml` file
 * Changed the [API Discovery](../api-discovery/overview.md) processing service — the `appstructure` process is replaced by the Go-based `api-discovery` service, with no change in functionality
 * Fixed an attack-detection bypass caused by incomplete reads of WebSocket and streamed request data
-* Fixed a node crash when a custom ruleset contained HEX parser rules
 * Fixed security vulnerabilities:
 
     * [CVE-2026-29181](https://nvd.nist.gov/vuln/detail/CVE-2026-29181)
@@ -81,7 +78,6 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 * Changed node process management — the `supervisord` process manager is replaced by the Go-based `wd` service, configured by the new `wd.yaml` file
 * Changed the [API Discovery](../api-discovery/overview.md) processing service — the `appstructure` process is replaced by the Go-based `api-discovery` service, with no change in functionality
 * Fixed an attack-detection bypass caused by incomplete reads of WebSocket and streamed request data
-* Fixed a node crash when a custom ruleset contained HEX parser rules
 * Fixed security vulnerabilities:
 
     * [CVE-2026-29181](https://nvd.nist.gov/vuln/detail/CVE-2026-29181)
@@ -100,7 +96,6 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 * Changed node process management — the `supervisord` process manager is replaced by the Go-based `wd` service, configured by the new `wd.yaml` file
 * Changed the [API Discovery](../api-discovery/overview.md) processing service — the `appstructure` process is replaced by the Go-based `api-discovery` service, with no change in functionality
 * Fixed an attack-detection bypass caused by incomplete reads of WebSocket and streamed request data
-* Fixed a node crash when a custom ruleset contained HEX parser rules
 * Fixed security vulnerabilities:
 
     * [CVE-2026-29181](https://nvd.nist.gov/vuln/detail/CVE-2026-29181)
@@ -119,7 +114,6 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 * Changed node process management — the `supervisord` process manager is replaced by the Go-based `wd` service, configured by the new `wd.yaml` file
 * Changed the [API Discovery](../api-discovery/overview.md) processing service — the `appstructure` process is replaced by the Go-based `api-discovery` service, with no change in functionality
 * Fixed an attack-detection bypass caused by incomplete reads of WebSocket and streamed request data
-* Fixed a node crash when a custom ruleset contained HEX parser rules
 * Fixed security vulnerabilities:
 
     * [CVE-2026-29181](https://nvd.nist.gov/vuln/detail/CVE-2026-29181)
