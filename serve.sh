@@ -10,4 +10,5 @@ rm -rf site/ .cache/
 cp -R images/ "$DOCS_DIR/images/"
 trap "rm -rf $DOCS_DIR/images/" EXIT
 
-zensical serve -f "$CONFIG"
+# Repo root on PYTHONPATH so the local mdx_lazy_images markdown extension imports.
+PYTHONPATH="$(pwd)${PYTHONPATH:+:$PYTHONPATH}" zensical serve -f "$CONFIG"
