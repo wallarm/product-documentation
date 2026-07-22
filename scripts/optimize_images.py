@@ -1,111 +1,97 @@
 #!/usr/bin/env python3
-"""Downscale oversized PNG screenshots in place before the per-version builds.
+"""Lossy-quantise PNG screenshots to <=256-colour palettes with pngquant.
 
-Screenshots are captured on HiDPI/retina displays at 2500-8000px wide, but the
-docs content column is under ~900px, so at 2x density nothing above ~1800px is
-ever visible — the browser just downscales on every view, and readers pay the
-full byte cost every time (the top bandwidth consumers in analytics are all
-oversized /images/*.png). This resizes only images WIDER than --max-width, with
-high-quality Lanczos resampling, and leaves everything at or below the cap
-untouched. It is lossless-by-intent for on-screen viewing: the cap keeps a >=2x
-pixel budget for the widest realistic column, so downscaled screenshots stay
-crisp on retina.
+The images that dominate bandwidth are 24-bit true-colour retina screenshots,
+but UI screenshots use relatively few real colours — so quantising them to a
+palette (exactly what TinyPNG/ImageOptim do) roughly halves each file with no
+visible loss, and keeps the .png extension so no markdown references change.
+Across the current set this takes images/ from ~191 MB to ~63 MB, versus ~121 MB
+for oxipng alone.
 
-Runs at build time on the ephemeral CI checkout (like the oxipng step) — the
-full-resolution originals stay in git. Resize runs BEFORE oxipng so oxipng gets
-the final lossless squeeze on the already-smaller file. Per-file errors are
-warned and skipped; a bad image never aborts the deploy.
+Resizing was tried first and abandoned: a lossless PNG's size tracks content
+complexity, not pixel count, so downscaling just anti-aliases the edges and
+compresses no smaller once oxipng runs. Bit depth, not dimensions, is the lever.
+
+pngquant self-protects, so this is safe to run blindly over the whole tree:
+  * --quality=MIN-MAX makes it SKIP (exit 99) any image it cannot quantise to at
+    least MIN quality, so gradients/photos are left untouched rather than banded;
+  * --skip-if-larger (exit 98) never writes a file bigger than the original.
+Both are expected, non-fatal outcomes. Runs at build time on the ephemeral CI
+checkout (like oxipng) — full-resolution originals stay in git — and before
+oxipng, which then losslessly squeezes the quantised palettes further.
 
 Usage:
-    python3 scripts/optimize_images.py images/ --max-width 1800
+    python3 scripts/optimize_images.py images/ --pngquant ./pngquant
 """
 
 import argparse
 import os
+import subprocess
 import sys
+from concurrent.futures import ThreadPoolExecutor
 
-from PIL import Image
+# pngquant exit codes that mean "intentionally left the original in place", not
+# a failure: 99 = below the quality floor, 98 = quantised result was larger.
+SKIP_CODES = {98, 99}
 
 
-def resize_in_place(path, max_width):
-    """Resize one PNG to max_width if wider. Returns (before, after) bytes, or
-    (size, size) if left untouched, or None on error."""
+def quantise(pngquant, quality, path):
+    """Quantise one PNG in place. Returns (status, before_bytes, after_bytes)."""
     before = os.path.getsize(path)
-    try:
-        with Image.open(path) as im:
-            if im.width <= max_width:
-                return (before, before)  # under the cap — leave as-is
-
-            # Only downscale true-colour PNGs (RGB/RGBA) — the retina screenshots
-            # that dominate bandwidth. Palette ('P') and grayscale ('L') PNGs are
-            # already compact (1 byte/pixel); promoting them to true-colour for a
-            # Lanczos resample makes the file BIGGER, because resampled edges gain
-            # colours and oxipng can no longer re-palette them. That group is only
-            # ~7% of oversized weight, so leave it untouched for oxipng.
-            if im.mode not in ("RGB", "RGBA"):
-                return (before, before)
-            # An RGB PNG carrying byte-encoded transparency (rare) becomes RGBA so
-            # the transparent areas survive the resample.
-            if im.mode == "RGB" and "transparency" in im.info:
-                im = im.convert("RGBA")
-
-            new_h = round(im.height * max_width / im.width)
-            im = im.resize((max_width, new_h), Image.LANCZOS)
-
-            # Preserve colour profile / DPI if the source carried them; --strip
-            # safe in the oxipng step keeps these too, so we stay consistent.
-            save_kwargs = {"optimize": True}
-            icc = im.info.get("icc_profile")
-            if icc:
-                save_kwargs["icc_profile"] = icc
-            dpi = im.info.get("dpi")
-            if dpi:
-                save_kwargs["dpi"] = dpi
-
-            im.save(path, format="PNG", **save_kwargs)
-    except Exception as exc:  # noqa: BLE001 — never abort the deploy for one image
-        print(f"  WARN: skipped {path}: {exc}", file=sys.stderr)
-        return None
-
-    return (before, os.path.getsize(path))
+    proc = subprocess.run(
+        [pngquant, "--force", "--ext", ".png", "--skip-if-larger",
+         "--quality", quality, "--strip", path],
+        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+    )
+    after = os.path.getsize(path)
+    if proc.returncode == 0:
+        return ("ok", before, after)
+    if proc.returncode in SKIP_CODES:
+        return ("skip", before, after)
+    return ("warn", before, after)
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("root", help="directory to walk for PNGs (e.g. images/)")
-    ap.add_argument("--max-width", type=int, default=1800,
-                    help="images wider than this are downscaled to it (default 1800)")
+    ap.add_argument("--pngquant", default="pngquant", help="path to the pngquant binary")
+    ap.add_argument("--quality", default="65-95",
+                    help="pngquant MIN-MAX quality; images below MIN are skipped (default 65-95)")
+    ap.add_argument("--workers", type=int, default=min(8, (os.cpu_count() or 4)),
+                    help="parallel pngquant processes")
     args = ap.parse_args()
 
     if not os.path.isdir(args.root):
         print(f"error: {args.root} is not a directory", file=sys.stderr)
         return 1
 
-    scanned = resized = failed = 0
-    bytes_before = bytes_after = 0
+    # Fail loudly if the binary is missing/unusable — a silent skip would leave
+    # every image un-optimised while the build still went green.
+    try:
+        subprocess.run([args.pngquant, "--version"], check=True,
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except (FileNotFoundError, subprocess.CalledProcessError) as exc:
+        print(f"error: pngquant not runnable at '{args.pngquant}': {exc}", file=sys.stderr)
+        return 1
 
-    for cur, _dirs, files in os.walk(args.root):
-        for name in files:
-            if not name.lower().endswith(".png"):
-                continue
-            scanned += 1
-            path = os.path.join(cur, name)
-            result = resize_in_place(path, args.max_width)
-            if result is None:
-                failed += 1
-                continue
-            b, a = result
-            if a < b:
-                resized += 1
-                bytes_before += b
-                bytes_after += a
+    files = [os.path.join(cur, name)
+             for cur, _dirs, names in os.walk(args.root)
+             for name in names if name.lower().endswith(".png")]
 
-    saved = bytes_before - bytes_after
-    pct = (100 * saved / bytes_before) if bytes_before else 0
-    print(f"Resize (>{args.max_width}px): {resized}/{scanned} PNGs downscaled, "
-          f"{bytes_before/1e6:.1f} MB -> {bytes_after/1e6:.1f} MB "
-          f"(saved {saved/1e6:.1f} MB, {pct:.0f}%)"
-          + (f"; {failed} skipped on error" if failed else ""))
+    with ThreadPoolExecutor(max_workers=args.workers) as pool:
+        results = list(pool.map(lambda p: quantise(args.pngquant, args.quality, p), files))
+
+    ok = sum(1 for s, _, _ in results if s == "ok")
+    skipped = sum(1 for s, _, _ in results if s == "skip")
+    warned = sum(1 for s, _, _ in results if s == "warn")
+    before = sum(b for _, b, _ in results)
+    after = sum(a for _, _, a in results)
+    saved = before - after
+    pct = (100 * saved / before) if before else 0
+    print(f"Quantise (pngquant q{args.quality}): {ok}/{len(files)} PNGs quantised, "
+          f"{skipped} left as-is, "
+          f"{before/1e6:.1f} MB -> {after/1e6:.1f} MB (saved {saved/1e6:.1f} MB, {pct:.0f}%)"
+          + (f"; {warned} pngquant warnings" if warned else ""))
     return 0
 
 
