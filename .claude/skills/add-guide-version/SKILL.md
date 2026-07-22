@@ -37,6 +37,12 @@ The author provides:
 4. **Update the previous version config**:
    - In `mkdocs-<PREVIOUS_VERSION>.yml`, set `site_dir` to `site/<PREVIOUS_VERSION>` (it previously built to `site/` root)
 
+4a. **Register the new version in the changelog feeds config** (`feeds.config.yml`):
+   - Add the new folder to `docs_versions` with its `nginx_line` and `url_prefix` (e.g., `{folder: "8.x", nginx_line: "8.x", url_prefix: "/8.x"}`).
+   - Add a rule to `nginx_lines` for the new NGINX major (`label` + `url_prefix`); and to `native_lines` if this line starts a new Native train floor.
+   - Without this, the new version's releases will not appear in the RSS/JSON feeds, and the feed build fails with `no nginx_lines rule for version <NEW>`.
+   - The `subscribe-to-release-updates.md` and `installation/nginx-compatibility.md` pages carry over automatically via the folder copy (Step 1) and config copy (Step 3) — no separate wrapper/nav work needed. (The `url_prefix` flip that happens when this version is promoted to root belongs to the separate promote-preview-to-root operation, not here.)
+
 ### Phase 2: Copy version-specific content
 
 5. **Identify pages with version-specific content** that must be frozen in the previous version. These typically include:

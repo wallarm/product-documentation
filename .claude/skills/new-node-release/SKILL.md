@@ -440,6 +440,8 @@ List HIGH/CRITICAL CVEs fixed since the previous version, **per form factor**. U
 
    When unsure whether a bullet is artifact-specific, grep the same bullet in prior `### X.Y.Z` entries and see which `## <section>` it lived under before duplicating it.
 
+8a. **When the release adds NGINX/OpenResty version support, update the compatibility matrix.** Any `Added support for NGINX stable/mainline X.Y.Z` or `Added support for NGINX Plus RNN` bullet also changes `docs/latest/installation/nginx-compatibility.md`. Add or extend the row for this Node version so the `stable` / `mainline` / NGINX Plus "… and below" values reflect the newly supported versions (support is cumulative — a new row, or a bumped value on the newest row if the Node-version range there still holds). **This table is maintained by hand — it is not auto-generated from the changelog.**
+
 9. **Update `what-is-new.md`** if the release includes significant user-facing features.
 
 ### Part 4: Bump versions across docs
@@ -566,6 +568,7 @@ List HIGH/CRITICAL CVEs fixed since the previous version, **per form factor**. U
 * Use tables for metrics changes: `| Change | Metric |`
 * Date format in header: `(YYYY-MM-DD)`
 * If the same version applies to multiple form factors, add it under each relevant H2 section
+* The NGINX and Native Node changelogs feed the public RSS/Atom + JSON release feeds (regenerated automatically on deploy — see `scripts/README-feeds.md`). Two consequences for the entry you write: every `### X.Y.Z` version heading **must** carry a parseable `(YYYY-MM-DD)` date — an undated entry fails the feed build; and the entry markdown must render cleanly — e.g., leave a blank line before a bullet that follows a table, or it is absorbed into the table (in the docs page *and* in the feed's rendered HTML).
 
 ## Bullet voice — write tight
 
