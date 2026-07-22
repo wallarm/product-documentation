@@ -21,8 +21,8 @@ Pipeline (see scripts/README-feeds.md for the full write-up):
   4. Derive each entry's line + docs URL from its own version axis
      (feeds.config.yml): NGINX from the docs folder, Native from the version,
      connectors from the connector name + source folder.
-  5. Emit <output>/feeds/<basename>.xml (Atom, capped at atom_max_entries) and
-     .json (full current history).
+  5. Emit <output>/feeds/<basename>.xml (Atom) and .rss (RSS 2.0), both capped at
+     atom_max_entries, plus .json (full current history).
 
 Fail-fast: any version heading (an H3 starting with a digit) without a parseable
 `(YYYY-MM-DD)` date aborts the whole run with the offending entries listed. No
@@ -382,8 +382,11 @@ def build_entries(cfg: dict, docs_root: Path, product_key: str) -> list[dict]:
             line_label, url_prefix = derive_line(cfg, product, e, folder_cfg)
             subs.append({**e, "line": line_label, "url_prefix": url_prefix, "refdefs": refdefs})
 
-    def emit(version, subgroup, line, url_prefix, anchor, date, body_md, refdefs):
-        url = f"{base_url}{url_prefix}/{page_url_path}#{anchor}"
+    def artifact_link(url_prefix, anchor, label):
+        # a <summary> entry: the released artifact, linked to its changelog section
+        return f'<a href="{base_url}{url_prefix}/{page_url_path}#{anchor}">{label}</a>'
+
+    def emit(version, subgroup, line, url, url_prefix, date, body_md, refdefs, summary_html):
         return {
             "product": product_key,
             "product_name": product["name"],
@@ -391,10 +394,14 @@ def build_entries(cfg: dict, docs_root: Path, product_key: str) -> list[dict]:
             "line": line,
             "date": date,
             "url": url,
+            "id": entry_id(product_key, version, subgroup),
             "title": entry_title(product_key, product["name"], version, subgroup),
+            "summary_html": summary_html,
             "body_markdown": body_md,
             "content_html": render_html(body_md, refdefs, base_url, url_prefix, src_dir),
         }
+
+    page_url_of = lambda url_prefix: f"{base_url}{url_prefix}/{page_url_path}"
 
     out: list[dict] = []
     if merge_form_factors:
@@ -407,15 +414,27 @@ def build_entries(cfg: dict, docs_root: Path, product_key: str) -> list[dict]:
                 f"#### {s['subgroup'] or product['name']}\n\n{s['body_markdown']}".rstrip()
                 for s in items
             )
+            # summary = the form factors released in this version, each linked to
+            # its own section in the changelog.
+            summary_html = "Released for: " + ", ".join(
+                artifact_link(s["url_prefix"], s["anchor"], s["subgroup"] or product["name"])
+                for s in items
+            )
+            # Entry link goes to the changelog page (NO form-factor anchor) — a
+            # release spans several form factors, each of which has its own deep
+            # link in the summary above, so the entry itself must not favour one.
             out.append(emit(
-                version, None, first["line"], first["url_prefix"], first["anchor"],
-                max(s["date"] for s in items), body_md, first["refdefs"],
+                version, None, first["line"], page_url_of(first["url_prefix"]),
+                first["url_prefix"], max(s["date"] for s in items),
+                body_md, first["refdefs"], summary_html,
             ))
     else:
-        for s in subs:
+        for s in subs:                              # connectors: one section per entry
+            summary_html = artifact_link(s["url_prefix"], s["anchor"], s["subgroup"])
+            url = f'{page_url_of(s["url_prefix"])}#{s["anchor"]}'
             out.append(emit(
-                s["version"], s["subgroup"], s["line"], s["url_prefix"], s["anchor"],
-                s["date"], s["body_markdown"], s["refdefs"],
+                s["version"], s["subgroup"], s["line"], url, s["url_prefix"],
+                s["date"], s["body_markdown"], s["refdefs"], summary_html,
             ))
     return out
 
@@ -428,6 +447,20 @@ def entry_title(product_key: str, product_name: str, version: str, subgroup=None
     return f"Wallarm {product_name} {version}"
 
 
+def entry_id(product_key: str, version: str, subgroup=None) -> str:
+    """Stable, URL-independent entry identifier (RFC 4151 tag: URI) for the Atom
+    <id> and RSS <guid>. It must NEVER change once published, so it is derived
+    from product + version (+ connector), NOT from the docs URL — the URL moves
+    when a version is promoted to root, but the id must stay put so readers do
+    not re-notify. The <link> carries the resolvable (possibly redirected) URL.
+    """
+    slug = f"{product_key}/{version}"
+    if subgroup:                                    # connectors: include the connector
+        conn = re.sub(r"[^a-z0-9]+", "-", subgroup.lower()).strip("-")
+        slug = f"{product_key}/{conn}/{version}"
+    return f"tag:docs.wallarm.com,2026:{slug}"
+
+
 def sort_key(e: dict):
     # newest first; tie-break by version string then title for stability
     return (e["date"], e["version"], e["title"])
@@ -435,11 +468,13 @@ def sort_key(e: dict):
 
 def json_record(e: dict) -> dict:
     return {
+        "id": e["id"],                              # matches Atom <id> / RSS <guid>
         "artifact_id": e["product"],
         "version": e["version"],
         "line": e["line"],
+        "title": e["title"],                        # matches Atom/RSS <title>
         "date": e["date"],
-        "url": e["url"],
+        "url": e["url"],                            # matches Atom/RSS <link>
         "body_markdown": e["body_markdown"],
     }
 
@@ -470,11 +505,12 @@ def build_atom(cfg: dict, product_key: str, entries: list[dict]) -> str:
         parts += [
             "  <entry>",
             f"    <title>{xml_escape(e['title'])}</title>",
-            f"    <id>{xml_escape(e['url'])}</id>",
+            f"    <id>{xml_escape(e['id'])}</id>",
             f'    <link rel="alternate" href="{xml_escape(e["url"])}"/>',
             f"    <updated>{e['date']}T00:00:00Z</updated>",
             f"    <published>{e['date']}T00:00:00Z</published>",
             f'    <category term="{xml_escape(e["line"])}"/>',
+            f'    <summary type="html">{xml_escape(e["summary_html"])}</summary>',
             f'    <content type="html">{xml_escape(e["content_html"])}</content>',
             "  </entry>",
         ]
@@ -482,9 +518,75 @@ def build_atom(cfg: dict, product_key: str, entries: list[dict]) -> str:
     return "\n".join(parts) + "\n"
 
 
+def _rfc822(date_str: str) -> str:
+    """'2026-06-26' -> 'Fri, 26 Jun 2026 00:00:00 +0000' (RSS 2.0 pubDate format)."""
+    from datetime import datetime, timezone
+    dt = datetime.strptime(date_str, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+    return dt.strftime("%a, %d %b %Y %H:%M:%S +0000")
+
+
+def build_rss(cfg: dict, product_key: str, entries: list[dict]) -> str:
+    """RSS 2.0 rendering of the same entries (offered alongside the Atom feed).
+
+    <description> carries the summary (artifact list); <content:encoded> carries
+    the full rendered release notes — mirroring the Atom <summary>/<content> split.
+    """
+    product = cfg["products"][product_key]
+    base_url = cfg["base_url"].rstrip("/")
+    feed_url = f"{base_url}/feeds/{product['feed_basename']}.rss"
+    site_link = f"{base_url}/{md_target_to_url(product['path'])}"
+    lines_covered = ", ".join(dict.fromkeys(e["line"] for e in entries))
+    build_date = _rfc822(entries[0]["date"] if entries else "1970-01-01")
+
+    parts = [
+        '<?xml version="1.0" encoding="utf-8"?>',
+        '<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" '
+        'xmlns:atom="http://www.w3.org/2005/Atom">',
+        "  <channel>",
+        f"    <title>{xml_escape(product['feed_title'])}</title>",
+        f"    <link>{site_link}</link>",
+        f'    <atom:link href="{feed_url}" rel="self" type="application/rss+xml"/>',
+        f"    <description>Full {xml_escape(product['name'])} release history. "
+        f"Each item is tagged with its version line ({xml_escape(lines_covered)}).</description>",
+        f"    <lastBuildDate>{build_date}</lastBuildDate>",
+    ]
+    for e in entries[: cfg["atom_max_entries"]]:
+        parts += [
+            "    <item>",
+            f"      <title>{xml_escape(e['title'])}</title>",
+            f"      <link>{xml_escape(e['url'])}</link>",
+            f'      <guid isPermaLink="false">{xml_escape(e["id"])}</guid>',
+            f"      <pubDate>{_rfc822(e['date'])}</pubDate>",
+            f"      <category>{xml_escape(e['line'])}</category>",
+            f"      <description>{xml_escape(e['summary_html'])}</description>",
+            f"      <content:encoded>{xml_escape(e['content_html'])}</content:encoded>",
+            "    </item>",
+        ]
+    parts += ["  </channel>", "</rss>"]
+    return "\n".join(parts) + "\n"
+
+
 # --------------------------------------------------------------------------- #
 # Validation
 # --------------------------------------------------------------------------- #
+
+def validate_rss(xml_text: str, product_key: str) -> None:
+    import xml.etree.ElementTree as ET
+
+    root = ET.fromstring(xml_text)              # raises on malformed XML
+    items = root.findall("./channel/item")
+    if not items:
+        raise ParseError(f"[{product_key}] RSS feed has 0 items")
+    guids = set()
+    for it in items:
+        g = it.findtext("guid")
+        if not g:
+            raise ParseError(f"[{product_key}] RSS item without <guid>")
+        if g in guids:
+            raise ParseError(f"[{product_key}] duplicate <guid>: {g}")
+        guids.add(g)
+        if it.find("category") is None:
+            raise ParseError(f"[{product_key}] RSS item {g} missing <category>")
 
 def validate_atom(xml_text: str, product_key: str) -> None:
     import xml.etree.ElementTree as ET
@@ -531,14 +633,18 @@ def main() -> int:
             validate_atom(atom, product_key)
             (out_dir / f"{product['feed_basename']}.xml").write_text(atom, encoding="utf-8")
 
+            rss = build_rss(cfg, product_key, entries)            # RSS 2.0, same entries
+            validate_rss(rss, product_key)
+            (out_dir / f"{product['feed_basename']}.rss").write_text(rss, encoding="utf-8")
+
             json_out = [json_record(e) for e in entries]          # full current history
             (out_dir / f"{product['feed_basename']}.json").write_text(
                 json.dumps(json_out, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
             )
 
             print(f"[{product_key}] {len(entries)} entries "
-                  f"({min(len(entries), cfg['atom_max_entries'])} in Atom) -> "
-                  f"{product['feed_basename']}.xml/.json")
+                  f"({min(len(entries), cfg['atom_max_entries'])} in Atom/RSS) -> "
+                  f"{product['feed_basename']}.xml/.rss/.json")
     except ParseError as e:
         print(f"ERROR: {e}", file=sys.stderr)
         return 1
