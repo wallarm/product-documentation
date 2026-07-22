@@ -101,6 +101,8 @@ Also, API Discovery performs filtering of requests relying on the other criteria
     * `application/octet-stream`
     * `application/*xml` (any XML variant)
 
+    Responses without a `Content-type` header, and the corresponding requests that also carry no `Content-type` header, are considered valid as well.
+
     This type of validation is only performed if enabled (see [how to check](setup.md#general-api-discovery-settings)) by the Wallarm support team, except cases when presence of file extension in the path makes it mandatory. The necessity of this validation in noise reduction depends on the peculiarities of your traffic.
 
 1. **Security filtering** - the following is not processed:
