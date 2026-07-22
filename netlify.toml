@@ -32,13 +32,15 @@ cp -R images/ docs/6.x/images/ && zensical build -f mkdocs-6.x.yml && if [ "$CON
 cp -R images/ docs/7.x/images/ && zensical build -f mkdocs-7.x.yml && if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_raw_markdown.py mkdocs-7.x.yml && python3 scripts/generate_og_images.py mkdocs-7.x.yml; fi && rm -rf docs/7.x/images/ &&
 cp -R images/ docs/5.0/images/ && zensical build -f mkdocs-5.0.yml && if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_raw_markdown.py mkdocs-5.0.yml && python3 scripts/generate_og_images.py mkdocs-5.0.yml; fi && rm -rf docs/5.0/images/ &&
 cp -R images/ docs/deprecated/images/ && zensical build -f mkdocs-deprecated.yml && if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_og_images.py mkdocs-deprecated.yml; fi && rm -rf docs/deprecated/images/ &&
-# Aggregated changelog feeds (Atom + JSON), one per node artifact. Generated
-# straight into the published site, on PRODUCTION deploys only (same gating as
-# the raw-markdown step) — skipped on PR previews and branch deploys. The script
-# reads the changelog files from docs/, self-validates the output, and aborts the
-# deploy on a broken changelog. The published feed changes only when a changelog
-# changes (deterministic output). See scripts/README-feeds.md.
-if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_feeds.py --output site; fi
+# Aggregated changelog feeds (Atom + RSS + JSON), one per node artifact. Reads the
+# changelog files from docs/, self-validates, and aborts the deploy on a broken
+# changelog. See scripts/README-feeds.md.
+# >>> TEMPORARY (feed testing on previews): generating on ALL contexts, including
+#     PR deploy-previews and branch deploys. TO REVERT before final merge: delete
+#     the unconditional line below and uncomment the production-gated one.
+python3 scripts/generate_feeds.py --output site
+# if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_feeds.py --output site; fi
+# <<< TEMPORARY
 """
 [[headers]]
   for = "/*"
