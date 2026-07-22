@@ -29,9 +29,10 @@ edge_functions = "netlify/edge-functions"
 # save build minutes — readers don't see those, so the extra weight doesn't matter.
 command = """
 pip3 install --no-cache-dir -r requirements.txt &&
-# TEMP(revert-before-merge): un-gated so image optimisation runs on the preview
-# build to verify the resize pass end-to-end. Restore `[ "$CONTEXT" = "production" ]`.
-if true; then \
+# The lazy-loading markdown extension (mdx_lazy_images) lives at the repo root;
+# make it importable for every `zensical build` below.
+export PYTHONPATH="$PWD" &&
+if [ "$CONTEXT" = "production" ]; then \
   echo "Image size before optimisation: $(du -sh images/ | cut -f1) ($(find images/ -name '*.png' | wc -l) PNGs)" && \
   curl -fsSL https://pngquant.org/pngquant-linux.tar.bz2 | tar xj pngquant && \
   python3 scripts/optimize_images.py images/ --pngquant ./pngquant && \
