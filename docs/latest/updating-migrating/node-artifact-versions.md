@@ -17,7 +17,7 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 * Added node readiness and liveness endpoints (`/ready` and `/health` on port `9446`) for orchestrator health probes — the node reports ready only after initialization completes
 * Added [`wallarm_wd_*` node process metrics](../admin-en/nginx-node-metrics.md) on port `9445`, covering managed-process state, restarts, and uptime
 * Changed node process management — the `supervisord` process manager is replaced by the Go-based `wd` service, configured by the new `wd.yaml` file
-* Removed the `appstructure` process — [API Discovery](../api-discovery/overview.md) processing is now handled by the `wd` service with no change in functionality
+* Changed the [API Discovery](../api-discovery/overview.md) processing service — the `appstructure` process is replaced by the Go-based `api-discovery` service, with no change in functionality
 * Fixed an attack-detection bypass caused by incomplete reads of WebSocket and streamed request data
 * Fixed a node crash when a custom ruleset contained HEX parser rules
 * Fixed the installer reporting spurious "NGINX binary is not officially supported" errors for custom NGINX builds run with `--custom-ngx-build`
@@ -37,7 +37,7 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 * Added node readiness and liveness endpoints (`/ready` and `/health` on port `9446`) for orchestrator health probes — the node reports ready only after initialization completes
 * Added [`wallarm_wd_*` node process metrics](../admin-en/nginx-node-metrics.md) on port `9445`, covering managed-process state, restarts, and uptime
 * Changed node process management — the `supervisord` process manager is replaced by the Go-based `wd` service, configured by the new `wd.yaml` file
-* Removed the `appstructure` process — [API Discovery](../api-discovery/overview.md) processing is now handled by the `wd` service with no change in functionality
+* Changed the [API Discovery](../api-discovery/overview.md) processing service — the `appstructure` process is replaced by the Go-based `api-discovery` service, with no change in functionality
 * Fixed an attack-detection bypass caused by incomplete reads of WebSocket and streamed request data
 * Fixed a node crash when a custom ruleset contained HEX parser rules
 * Fixed security vulnerabilities:
@@ -60,7 +60,7 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 * Added node readiness and liveness endpoints (`/ready` and `/health` on port `9446`) for orchestrator health probes — the node reports ready only after initialization completes
 * Added [`wallarm_wd_*` node process metrics](../admin-en/nginx-node-metrics.md) on port `9445`, covering managed-process state, restarts, and uptime
 * Changed node process management — the `supervisord` process manager is replaced by the Go-based `wd` service, configured by the new `wd.yaml` file
-* Removed the `appstructure` process — [API Discovery](../api-discovery/overview.md) processing is now handled by the `wd` service with no change in functionality
+* Changed the [API Discovery](../api-discovery/overview.md) processing service — the `appstructure` process is replaced by the Go-based `api-discovery` service, with no change in functionality
 * Fixed an attack-detection bypass caused by incomplete reads of WebSocket and streamed request data
 * Fixed a node crash when a custom ruleset contained HEX parser rules
 * Fixed security vulnerabilities:
@@ -79,7 +79,7 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 * Added node readiness and liveness endpoints (`/ready` and `/health` on port `9446`) for orchestrator health probes — the node reports ready only after initialization completes
 * Added [`wallarm_wd_*` node process metrics](../admin-en/nginx-node-metrics.md) on port `9445`, covering managed-process state, restarts, and uptime
 * Changed node process management — the `supervisord` process manager is replaced by the Go-based `wd` service, configured by the new `wd.yaml` file
-* Removed the `appstructure` process — [API Discovery](../api-discovery/overview.md) processing is now handled by the `wd` service with no change in functionality
+* Changed the [API Discovery](../api-discovery/overview.md) processing service — the `appstructure` process is replaced by the Go-based `api-discovery` service, with no change in functionality
 * Fixed an attack-detection bypass caused by incomplete reads of WebSocket and streamed request data
 * Fixed a node crash when a custom ruleset contained HEX parser rules
 * Fixed security vulnerabilities:
@@ -98,7 +98,7 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 * Added node readiness and liveness endpoints (`/ready` and `/health` on port `9446`) for orchestrator health probes — the node reports ready only after initialization completes
 * Added [`wallarm_wd_*` node process metrics](../admin-en/nginx-node-metrics.md) on port `9445`, covering managed-process state, restarts, and uptime
 * Changed node process management — the `supervisord` process manager is replaced by the Go-based `wd` service, configured by the new `wd.yaml` file
-* Removed the `appstructure` process — [API Discovery](../api-discovery/overview.md) processing is now handled by the `wd` service with no change in functionality
+* Changed the [API Discovery](../api-discovery/overview.md) processing service — the `appstructure` process is replaced by the Go-based `api-discovery` service, with no change in functionality
 * Fixed an attack-detection bypass caused by incomplete reads of WebSocket and streamed request data
 * Fixed a node crash when a custom ruleset contained HEX parser rules
 * Fixed security vulnerabilities:
@@ -117,7 +117,7 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 * Added node readiness and liveness endpoints (`/ready` and `/health` on port `9446`) for orchestrator health probes — the node reports ready only after initialization completes
 * Added [`wallarm_wd_*` node process metrics](../admin-en/nginx-node-metrics.md) on port `9445`, covering managed-process state, restarts, and uptime
 * Changed node process management — the `supervisord` process manager is replaced by the Go-based `wd` service, configured by the new `wd.yaml` file
-* Removed the `appstructure` process — [API Discovery](../api-discovery/overview.md) processing is now handled by the `wd` service with no change in functionality
+* Changed the [API Discovery](../api-discovery/overview.md) processing service — the `appstructure` process is replaced by the Go-based `api-discovery` service, with no change in functionality
 * Fixed an attack-detection bypass caused by incomplete reads of WebSocket and streamed request data
 * Fixed a node crash when a custom ruleset contained HEX parser rules
 * Fixed security vulnerabilities:
