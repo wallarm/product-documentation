@@ -100,9 +100,7 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to upgrade](cloud-image.md)
 
-<!-- TODO: replace the header below with the actual GCP image name and build date once the image is built:
-     gcloud compute images list --project wallarm-node-195710 --filter="name~'wallarm-node-7-1-0-.*'" --no-standard-images -->
-### wallarm-node-7-1-0-<YYYYMMDD-HHMMSS> (2026-07-21)
+### wallarm-node-7-1-0-20260722-105251 (2026-07-22)
 
 * Added [Server-Sent Events (SSE)](../api-sessions/mcp-sessions.md) support, enabling [API Discovery](../api-discovery/overview.md) to analyze responses from MCP servers that stream over SSE
 * Added the ability for the node to start even when the Wallarm Cloud is temporarily unavailable
