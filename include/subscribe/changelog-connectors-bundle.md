@@ -1,1 +1,1 @@
-[:material-rss: Subscribe (RSS)](https://docs.wallarm.com/feeds/changelog-connectors-bundle.xml){ .md-button .subscribe-btn } [All formats & Slack](../../updating-migrating/subscribe-to-release-updates.md){ .md-button .subscribe-btn }
+[:material-rss: Subscribe (RSS 2.0)](https://docs.wallarm.com/feeds/changelog-connectors-bundle.rss){ .md-button .subscribe-btn } [All formats & Slack](../../updating-migrating/subscribe-to-release-updates.md){ .md-button .subscribe-btn }
