@@ -121,6 +121,27 @@ if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_feeds.py --outpu
     Access-Control-Allow-Methods = "GET, OPTIONS"
     Cache-Control = "public, max-age=3600, must-revalidate"
 
+# Screenshots and diagrams. Without an explicit header Netlify serves static
+# assets as `max-age=0, must-revalidate`, so every page view / new visitor /
+# crawler re-downloads the full file instead of reusing a cached copy — in
+# analytics the top bandwidth consumers are all /images/*.png fetched tens of
+# thousands of times each. A week-long browser cache stops the bleeding. NOT
+# `immutable`: image filenames are not content-hashed, so a replaced screenshot
+# reuses its name — max-age bounds how long a stale copy can linger, and Netlify
+# purges its own edge cache on every deploy regardless.
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, stale-while-revalidate=86400"
+
+# Theme bundles and fonts under /assets/ ARE content-hashed by the build
+# (e.g. main.f62f0af6.min.css, bundle.d7f30b55.min.js), so a new build ships a
+# new filename — the old URL can be cached forever safely.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 # Serve favicon.png under the conventional /favicon.ico path. Browsers viewing
 # raw .md / .txt files have no HTML <head> to read <link rel="icon"> from, so
 # they fall back to auto-discovering /favicon.ico — without this rewrite the
