@@ -8,10 +8,12 @@ edge_functions = "netlify/edge-functions"
 # 1. Downscale (scripts/optimize_images.py, Pillow): screenshots are captured on
 #    retina displays at 2500-8000px wide, but the docs column is under ~900px, so
 #    anything above ~1800px is never seen at native resolution — readers just pay
-#    the bytes. Resizes only images WIDER than 1800px (Lanczos), leaving smaller
-#    ones untouched. 1800px keeps a >=2x budget for retina, so no visible loss.
-#    This is the real bandwidth lever: oversized PNGs are ~86% of images/ weight
-#    and the top consumers in analytics.
+#    the bytes. Resizes only true-colour (RGB/RGBA) PNGs WIDER than 1800px
+#    (Lanczos); leaves smaller ones and the already-compact palette/grayscale
+#    PNGs untouched (promoting those to true-colour for the resample would bloat
+#    them). 1800px keeps a >=2x budget for retina, so no visible loss. This is
+#    the real bandwidth lever: oversized true-colour PNGs are the top consumers
+#    in analytics.
 # 2. oxipng: download the release binary from GitHub (single ~500 KB file, no
 #    transitive deps and so no audit issues — the npm `oxipng-bin` wrapper drags
 #    in 150+ packages, several with known ReDoS vulnerabilities and no upstream

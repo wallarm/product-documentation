@@ -36,12 +36,18 @@ def resize_in_place(path, max_width):
             if im.width <= max_width:
                 return (before, before)  # under the cap — leave as-is
 
-            # Palette / LA modes don't resample cleanly with Lanczos; promote to
-            # a true-colour mode so the downscale is high quality. oxipng will
-            # re-optimise (and can re-quantise) the result afterwards.
-            resample_mode = im.mode
-            if im.mode in ("P", "PA"):
-                im = im.convert("RGBA" if "A" in im.getbands() else "RGB")
+            # Only downscale true-colour PNGs (RGB/RGBA) — the retina screenshots
+            # that dominate bandwidth. Palette ('P') and grayscale ('L') PNGs are
+            # already compact (1 byte/pixel); promoting them to true-colour for a
+            # Lanczos resample makes the file BIGGER, because resampled edges gain
+            # colours and oxipng can no longer re-palette them. That group is only
+            # ~7% of oversized weight, so leave it untouched for oxipng.
+            if im.mode not in ("RGB", "RGBA"):
+                return (before, before)
+            # An RGB PNG carrying byte-encoded transparency (rare) becomes RGBA so
+            # the transparent areas survive the resample.
+            if im.mode == "RGB" and "transparency" in im.info:
+                im = im.convert("RGBA")
 
             new_h = round(im.height * max_width / im.width)
             im = im.resize((max_width, new_h), Image.LANCZOS)
