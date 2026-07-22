@@ -32,12 +32,10 @@ cp -R images/ docs/6.x/images/ && zensical build -f mkdocs-6.x.yml && if [ "$CON
 cp -R images/ docs/7.x/images/ && zensical build -f mkdocs-7.x.yml && if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_raw_markdown.py mkdocs-7.x.yml && python3 scripts/generate_og_images.py mkdocs-7.x.yml; fi && rm -rf docs/7.x/images/ &&
 cp -R images/ docs/5.0/images/ && zensical build -f mkdocs-5.0.yml && if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_raw_markdown.py mkdocs-5.0.yml && python3 scripts/generate_og_images.py mkdocs-5.0.yml; fi && rm -rf docs/5.0/images/ &&
 cp -R images/ docs/deprecated/images/ && zensical build -f mkdocs-deprecated.yml && if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_og_images.py mkdocs-deprecated.yml; fi && rm -rf docs/deprecated/images/ &&
-# Aggregated changelog feeds (Atom + JSON), one per node artifact. Generated
-# straight into the published site, on PRODUCTION deploys only (same gating as
-# the raw-markdown step) — skipped on PR previews and branch deploys. The script
-# reads the changelog files from docs/, self-validates the output, and aborts the
-# deploy on a broken changelog. The published feed changes only when a changelog
-# changes (deterministic output). See scripts/README-feeds.md.
+# Aggregated changelog feeds (Atom + RSS + JSON), one per node artifact. Reads the
+# changelog files from docs/, self-validates, and aborts the deploy on a broken
+# changelog. Production only — PR deploy-previews and branch deploys skip it.
+# See scripts/README-feeds.md.
 if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_feeds.py --output site; fi
 """
 [[headers]]
@@ -103,6 +101,14 @@ if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_feeds.py --outpu
   for = "/feeds/*.xml"
   [headers.values]
     Content-Type = "application/atom+xml; charset=utf-8"
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, OPTIONS"
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
+[[headers]]
+  for = "/feeds/*.rss"
+  [headers.values]
+    Content-Type = "application/rss+xml; charset=utf-8"
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "GET, OPTIONS"
     Cache-Control = "public, max-age=3600, must-revalidate"

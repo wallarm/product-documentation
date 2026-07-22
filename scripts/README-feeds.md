@@ -4,11 +4,15 @@
 independently-versioned node artifacts. Each feed aggregates that artifact's
 history across every docs version; the feed URL never carries a version.
 
-| Artifact | Atom | JSON |
-|----------|------|------|
-| NGINX Node | `/feeds/changelog-nginx-node.xml` | `/feeds/changelog-nginx-node.json` |
-| Native Node | `/feeds/changelog-native-node.xml` | `/feeds/changelog-native-node.json` |
-| connector code bundle | `/feeds/changelog-connectors-bundle.xml` | `/feeds/changelog-connectors-bundle.json` |
+Each artifact is published in three formats: Atom (`.xml`), RSS 2.0 (`.rss`), and
+JSON (`.json`). Atom and RSS 2.0 carry the same capped entries (readers/Slack accept
+either); JSON carries the full history.
+
+| Artifact | Atom | RSS 2.0 | JSON |
+|----------|------|---------|------|
+| NGINX Node | `/feeds/changelog-nginx-node.xml` | `/feeds/changelog-nginx-node.rss` | `/feeds/changelog-nginx-node.json` |
+| Native Node | `/feeds/changelog-native-node.xml` | `/feeds/changelog-native-node.rss` | `/feeds/changelog-native-node.json` |
+| connector code bundle | `/feeds/changelog-connectors-bundle.xml` | `/feeds/changelog-connectors-bundle.rss` | `/feeds/changelog-connectors-bundle.json` |
 
 ## Versioning model (why the code is shaped this way)
 
@@ -61,11 +65,13 @@ Array, newest first. Each record:
 
 | Field | Meaning |
 |-------|---------|
+| `id` | stable identifier, same as Atom `<id>` / RSS `<guid>` (a `tag:` URI) |
 | `artifact_id` | `nginx-node` \| `native-node` \| `connectors` |
 | `version` | version string as written in the heading (e.g. `6.12.7`, `0.25.3`) |
 | `line` | NGINX: `5.x`/`6.x`/`7.x`; Native: `0.x`; connectors: the connector name |
+| `title` | human-readable release title, same as Atom/RSS `<title>` |
 | `date` | `YYYY-MM-DD` |
-| `url` | canonical deep link to the changelog entry |
+| `url` | changelog-page URL (nodes: page, no anchor; connectors: connector section) |
 | `body_markdown` | full entry body (for nodes, with a `#### <form factor>` section per form factor) |
 
 ## Running locally

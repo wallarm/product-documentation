@@ -55,6 +55,11 @@ The author provides:
 7. **Update `Dockerfile`**:
    - Remove the `RUN` line for the deprecated version build
 
+7a. **Remove the version from the changelog feeds config** (`feeds.config.yml`):
+   - Delete its entry from `docs_versions`, and its `nginx_lines`/`native_lines` rule if no remaining version uses it.
+   - The generator skips a missing folder without error, but a stale entry should not linger.
+   - The deprecated version's releases drop out of the RSS/JSON feeds automatically (there is no retention archive) — expected at EOL. No feed-specific redirects are needed: the new `subscribe-to-release-updates` and `nginx-compatibility` pages are already covered by the wildcard redirects added in Phase 4 (`/<DEPRECATED_VERSION>/updating-migrating/*`, `/<DEPRECATED_VERSION>/installation/*`).
+
 ### Phase 4: Add redirects
 
 8. **Add redirects in `docs/6.x/_redirects`** (or whichever version serves at root) to redirect all deprecated version URLs to the stub page:

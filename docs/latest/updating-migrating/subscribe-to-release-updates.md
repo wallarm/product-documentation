@@ -14,24 +14,27 @@ Each feed carries the full release history of **one** artifact. These artifacts 
 
 ### NGINX Node
 
-* Atom (RSS): [`https://docs.wallarm.com/feeds/changelog-nginx-node.xml`](https://docs.wallarm.com/feeds/changelog-nginx-node.xml)
+* Atom: [`https://docs.wallarm.com/feeds/changelog-nginx-node.xml`](https://docs.wallarm.com/feeds/changelog-nginx-node.xml)
+* RSS 2.0: [`https://docs.wallarm.com/feeds/changelog-nginx-node.rss`](https://docs.wallarm.com/feeds/changelog-nginx-node.rss)
 * JSON: [`https://docs.wallarm.com/feeds/changelog-nginx-node.json`](https://docs.wallarm.com/feeds/changelog-nginx-node.json)
 
-Covers every NGINX Node release across all supported lines (5.x, 6.x, 7.x). There is one entry per release; the entry body has a section for each form factor (all-in-one installer, Helm chart, Docker image, and so on). Each entry is tagged with its NGINX Node line.
+Covers every [NGINX Node release](../updating-migrating/node-artifact-versions.md) across all supported lines (5.x, 6.x, 7.x). There is one entry per release; the entry body has a section for each form factor (all-in-one installer, Helm chart, Docker image, and so on). Each entry is tagged with its NGINX Node line.
 
 ### Native Node
 
-* Atom (RSS): [`https://docs.wallarm.com/feeds/changelog-native-node.xml`](https://docs.wallarm.com/feeds/changelog-native-node.xml)
+* Atom: [`https://docs.wallarm.com/feeds/changelog-native-node.xml`](https://docs.wallarm.com/feeds/changelog-native-node.xml)
+* RSS 2.0: [`https://docs.wallarm.com/feeds/changelog-native-node.rss`](https://docs.wallarm.com/feeds/changelog-native-node.rss)
 * JSON: [`https://docs.wallarm.com/feeds/changelog-native-node.json`](https://docs.wallarm.com/feeds/changelog-native-node.json)
 
-Covers every Native Node release. There is one entry per release, with a section for each form factor in the entry body. The Native Node is versioned independently of the NGINX Node and is currently on the `0.x` series.
+Covers every [Native Node release](../updating-migrating/native-node/node-artifact-versions.md). There is one entry per release, with a section for each form factor in the entry body. The Native Node is versioned independently of the NGINX Node and is currently on the `0.x` series.
 
 ### Connector code bundle
 
-* Atom (RSS): [`https://docs.wallarm.com/feeds/changelog-connectors-bundle.xml`](https://docs.wallarm.com/feeds/changelog-connectors-bundle.xml)
+* Atom: [`https://docs.wallarm.com/feeds/changelog-connectors-bundle.xml`](https://docs.wallarm.com/feeds/changelog-connectors-bundle.xml)
+* RSS 2.0: [`https://docs.wallarm.com/feeds/changelog-connectors-bundle.rss`](https://docs.wallarm.com/feeds/changelog-connectors-bundle.rss)
 * JSON: [`https://docs.wallarm.com/feeds/changelog-connectors-bundle.json`](https://docs.wallarm.com/feeds/changelog-connectors-bundle.json)
 
-Covers every connector code bundle release. Each connector (MuleSoft, Cloudflare, Apigee, and others) has its own version series, so each entry is tagged with the connector it belongs to.
+Covers every [connector code bundle release](../installation/connectors/code-bundle-inventory.md). Each connector (MuleSoft, Cloudflare, Apigee, and others) has its own version series, so each entry is tagged with the connector it belongs to.
 
 ## Subscribe with an RSS reader
 
@@ -44,11 +47,42 @@ Slack can post new releases into a channel through the built-in RSS app.
 1. Install the RSS app once per workspace from the [Slack RSS app page](https://slack.com/marketplace/A0F81R7U7-rss) (**Add to Slack**).
 2. In the channel where you want updates, run the command for the feed you want:
 
-    ```
-    /feed subscribe https://docs.wallarm.com/feeds/changelog-nginx-node.xml
-    /feed subscribe https://docs.wallarm.com/feeds/changelog-native-node.xml
-    /feed subscribe https://docs.wallarm.com/feeds/changelog-connectors-bundle.xml
-    ```
+    === "NGINX Node"
+        The command for Atom:
+
+        ```
+        /feed subscribe https://docs.wallarm.com/feeds/changelog-nginx-node.xml
+        ```
+
+        The command for RSS 2.0:
+
+        ```
+        /feed subscribe https://docs.wallarm.com/feeds/changelog-nginx-node.rss
+        ```
+    === "Native Node"
+        The command for Atom:
+
+        ```
+        /feed subscribe https://docs.wallarm.com/feeds/changelog-native-node.xml
+        ```
+
+        The command for RSS 2.0:
+
+        ```
+        /feed subscribe https://docs.wallarm.com/feeds/changelog-native-node.rss
+        ```
+    === "Connector code bundles"
+        The command for Atom:
+
+        ```
+        /feed subscribe https://docs.wallarm.com/feeds/changelog-connectors-bundle.xml
+        ```
+
+        The command for RSS 2.0:
+
+        ```
+        /feed subscribe https://docs.wallarm.com/feeds/changelog-connectors-bundle.rss
+        ```
 
     Updates post to the channel where the command is run.
 
@@ -62,19 +96,19 @@ Manage subscriptions with:
 
 Wallarm does not send release updates by email directly. To receive them in your inbox, use any RSS-to-email service (for example, Follow.it or Blogtrottr) with the Atom URL of the feed.
 
-<!-- TODO: a HubSpot RSS-to-email subscription form may replace this section once the marketing pipeline is in place. -->
-
 ## Automate with the JSON feed
 
 For scripts, CI pipelines, and agents, use the JSON feed instead of Atom. It contains the full release history as an array, ordered by release date, newest first. Each entry has these fields:
 
 | Field | Description |
 |-------|-------------|
+| `id` | Stable identifier, identical to the Atom `<id>` / RSS `<guid>` (a `tag:` URI). It never changes, so it is safe for deduplication |
 | `artifact_id` | Artifact identifier: `nginx-node`, `native-node`, or `connectors` |
 | `version` | Version string as written in the changelog (for example, `6.12.7` or `0.25.3`) |
 | `line` | The artifact's own version line — NGINX Node: `5.x` / `6.x` / `7.x`; Native Node: `0.x`; connector code bundle: the connector name |
+| `title` | Human-readable release title (for example, `Wallarm NGINX Node 6.12.7`) |
 | `date` | Release date, `YYYY-MM-DD` |
-| `url` | Link to the changelog entry in the matching docs version |
+| `url` | Link to the release on the changelog page |
 | `body_markdown` | Full entry body, in Markdown |
 
 The JSON feed keeps the full history, while the Atom feed is capped at the 30 most recent entries by release date.
@@ -97,6 +131,6 @@ curl -s -H 'If-None-Match: "<etag-from-previous-response>"' \
 
 For machine consumers of the Atom feed:
 
-* Each entry `<id>` is a stable canonical URL that never changes, so it is safe to use for deduplication.
+* Each entry has a stable identifier (Atom `<id>` / RSS `<guid>`, a `tag:` URI) that never changes — safe to use for deduplication. The `<link>` holds the current docs URL, which may change if the docs version moves.
 * Each entry carries a `<category term="…">` with its version line.
 * Each entry `<content type="html">` holds the full rendered release notes, with links rewritten to absolute `docs.wallarm.com` URLs.
