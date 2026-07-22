@@ -15,7 +15,7 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 ### 0.25.3 (2026-06-22)
 
 * Improved [MCP (Model Context Protocol)](../../api-discovery/exploring.md#mcp-servers) traffic analysis logging — the Node no longer produces excessive log output when there is no MCP traffic
-* Changed the [Limit data export](../admin-en/export-to-cloud.md) rule — when applied, the node now preserves the request structure (parameter names and nesting) and masks only the values, instead of switching the matched traffic to metadata only
+* Changed the [Limit data export](../../admin-en/export-to-cloud.md) rule — when applied, the node now preserves the request structure (parameter names and nesting) and masks only the values, instead of switching the matched traffic to metadata only
 
 ### 0.25.2 (2026-06-05)
 
@@ -44,7 +44,7 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 * Added support for [MCP Sessions](../../api-sessions/mcp-sessions.md)
 * Added [MCP mitigation controls](../../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
-* Fixed [API Specification Enforcement](../api-specification-enforcement/overview.md) incorrectly reporting requests as "undefined endpoint" for OpenAPI specs that define a base path in the `servers` block
+* Fixed [API Specification Enforcement](../../api-specification-enforcement/overview.md) incorrectly reporting requests as "undefined endpoint" for OpenAPI specs that define a base path in the `servers` block
 
 ### 0.24.1 (2026-04-27)
 
@@ -287,7 +287,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 ### 0.25.3 (2026-06-22)
 
 * Improved [MCP (Model Context Protocol)](../../api-discovery/exploring.md#mcp-servers) traffic analysis logging — the Node no longer produces excessive log output when there is no MCP traffic
-* Changed the [Limit data export](../admin-en/export-to-cloud.md) rule — when applied, the node now preserves the request structure (parameter names and nesting) and masks only the values, instead of switching the matched traffic to metadata only
+* Changed the [Limit data export](../../admin-en/export-to-cloud.md) rule — when applied, the node now preserves the request structure (parameter names and nesting) and masks only the values, instead of switching the matched traffic to metadata only
 * Fixed security vulnerabilities: [CVE-2026-34182](https://nvd.nist.gov/vuln/detail/CVE-2026-34182), [CVE-2026-45447](https://nvd.nist.gov/vuln/detail/CVE-2026-45447), [CVE-2026-7383](https://nvd.nist.gov/vuln/detail/CVE-2026-7383), [CVE-2026-9076](https://nvd.nist.gov/vuln/detail/CVE-2026-9076), [CVE-2026-45445](https://nvd.nist.gov/vuln/detail/CVE-2026-45445), [CVE-2026-42764](https://nvd.nist.gov/vuln/detail/CVE-2026-42764), [CVE-2026-34183](https://nvd.nist.gov/vuln/detail/CVE-2026-34183), [CVE-2026-34180](https://nvd.nist.gov/vuln/detail/CVE-2026-34180), [CVE-2026-34181](https://nvd.nist.gov/vuln/detail/CVE-2026-34181)
 
 ### 0.25.2 (2026-06-05)
@@ -313,7 +313,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 * Added support for [MCP Sessions](../../api-sessions/mcp-sessions.md)
 * Added [MCP mitigation controls](../../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
-* Fixed [API Specification Enforcement](../api-specification-enforcement/overview.md) incorrectly reporting requests as "undefined endpoint" for OpenAPI specs that define a base path in the `servers` block
+* Fixed [API Specification Enforcement](../../api-specification-enforcement/overview.md) incorrectly reporting requests as "undefined endpoint" for OpenAPI specs that define a base path in the `servers` block
 
 ### 0.24.1 (2026-04-27)
 
@@ -543,7 +543,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 ### 0.25.3 (2026-06-22)
 
 * Improved [MCP (Model Context Protocol)](../../api-discovery/exploring.md#mcp-servers) traffic analysis logging — the Node no longer produces excessive log output when there is no MCP traffic
-* Changed the [Limit data export](../admin-en/export-to-cloud.md) rule — when applied, the node now preserves the request structure (parameter names and nesting) and masks only the values, instead of switching the matched traffic to metadata only
+* Changed the [Limit data export](../../admin-en/export-to-cloud.md) rule — when applied, the node now preserves the request structure (parameter names and nesting) and masks only the values, instead of switching the matched traffic to metadata only
 * Fixed security vulnerabilities: [CVE-2026-34182](https://nvd.nist.gov/vuln/detail/CVE-2026-34182), [CVE-2026-45447](https://nvd.nist.gov/vuln/detail/CVE-2026-45447), [CVE-2026-7383](https://nvd.nist.gov/vuln/detail/CVE-2026-7383), [CVE-2026-9076](https://nvd.nist.gov/vuln/detail/CVE-2026-9076), [CVE-2026-45445](https://nvd.nist.gov/vuln/detail/CVE-2026-45445), [CVE-2026-42764](https://nvd.nist.gov/vuln/detail/CVE-2026-42764), [CVE-2026-34183](https://nvd.nist.gov/vuln/detail/CVE-2026-34183), [CVE-2026-34180](https://nvd.nist.gov/vuln/detail/CVE-2026-34180), [CVE-2026-34181](https://nvd.nist.gov/vuln/detail/CVE-2026-34181)
 
 ### 0.25.2 (2026-06-05)
@@ -573,7 +573,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 * Added support for [MCP Sessions](../../api-sessions/mcp-sessions.md)
 * Added [MCP mitigation controls](../../agentic-ai/mcp-mitigation-controls.md): ACL policy, request verification, and tool input schema enforcement
 * Added HEX encoding attack detection — the Node now decodes and analyzes HEX-encoded payloads, improving protection against obfuscation-based bypass techniques
-* Fixed [API Specification Enforcement](../api-specification-enforcement/overview.md) incorrectly reporting requests as "undefined endpoint" for OpenAPI specs that define a base path in the `servers` block
+* Fixed [API Specification Enforcement](../../api-specification-enforcement/overview.md) incorrectly reporting requests as "undefined endpoint" for OpenAPI specs that define a base path in the `servers` block
 
 ### 0.24.1 (2026-04-27)
 
