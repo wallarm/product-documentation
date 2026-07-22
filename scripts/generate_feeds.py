@@ -394,10 +394,6 @@ def build_entries(cfg: dict, docs_root: Path, product_key: str) -> list[dict]:
             line_label, url_prefix = derive_line(cfg, product, e, folder_cfg)
             subs.append({**e, "line": line_label, "url_prefix": url_prefix, "refdefs": refdefs})
 
-    def artifact_link(url_prefix, anchor, label):
-        # a <summary> entry: the released artifact, linked to its changelog section
-        return f'<a href="{base_url}{url_prefix}/{page_url_path}#{anchor}">{label}</a>'
-
     def emit(version, subgroup, line, url, url_prefix, date, body_md, refdefs, summary_html):
         return {
             "product": product_key,
@@ -426,14 +422,13 @@ def build_entries(cfg: dict, docs_root: Path, product_key: str) -> list[dict]:
                 f"#### {s['subgroup'] or product['name']}\n\n{s['body_markdown']}".rstrip()
                 for s in items
             )
-            # summary = the form factors released in this version, each linked to
-            # its own section in the changelog. Short labels keep the summary
-            # within Slack's truncation limit; full names remain in <content>.
+            # summary = plain-text list of the form factors released in this
+            # version (short labels). Deliberately NOT links: the entry <link>
+            # (title) already points to the changelog, and any summary href would
+            # be unfurled by Slack into a duplicate preview card. Full per-form-
+            # factor sections + links stay in <content>.
             summary_html = "Released for: " + ", ".join(
-                artifact_link(
-                    s["url_prefix"], s["anchor"],
-                    labels.get(s["subgroup"] or product["name"], s["subgroup"] or product["name"]),
-                )
+                labels.get(s["subgroup"] or product["name"], s["subgroup"] or product["name"])
                 for s in items
             )
             # Entry link goes to the changelog page (NO form-factor anchor) — a
@@ -446,7 +441,7 @@ def build_entries(cfg: dict, docs_root: Path, product_key: str) -> list[dict]:
             ))
     else:
         for s in subs:                              # connectors: one section per entry
-            summary_html = artifact_link(s["url_prefix"], s["anchor"], s["subgroup"])
+            summary_html = s["subgroup"]            # plain text (see note above)
             url = f'{page_url_of(s["url_prefix"])}#{s["anchor"]}'
             out.append(emit(
                 s["version"], s["subgroup"], s["line"], url, s["url_prefix"],
