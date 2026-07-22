@@ -89,6 +89,12 @@ def unique_id(base: str, used: set) -> str:
 INCLUDE_RE = re.compile(r'^\s*(?:-{2,}8<-{2,})\s+"([^"]+)"\s*$')
 HEADING_RE = re.compile(r"^(#{1,6})\s+(.*?)\s*#*\s*$")
 VERSION_RE = re.compile(r"^(?P<ver>\S+?)\s*(?:\((?P<date>\d{4}-\d{2}-\d{2})\))?\s*$")
+DATE_RE = re.compile(r"\((\d{4}-\d{2}-\d{2})\)")
+# Google Cloud Platform Image section uses the image name as the heading,
+# e.g. "wallarm-node-6-12-7-20260625-060642 (2026-06-25)" instead of "6.12.7".
+# Capture the version part (before the -YYYYMMDD-HHMMSS build stamp) so these
+# releases join their node-version entry like every other form factor.
+GCP_VER_RE = re.compile(r"^wallarm-node-(\d+(?:-\d+)*)-\d{8}-\d{6}\b")
 REFDEF_RE = re.compile(r"^\s{0,3}\[[^\]]+\]:\s+\S+")
 COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
 
@@ -213,14 +219,19 @@ def parse_file(text: str) -> list[dict]:
             subgroup = htext
             continue
         # level == 3
-        if not re.match(r"^\d", htext):
+        gcp = GCP_VER_RE.match(htext)              # GCP image name -> node version
+        if not re.match(r"^\d", htext) and not gcp:
             close()            # non-version H3 (a real sub-section) ends the entry
             continue
         # a version entry
         close()
-        vm = VERSION_RE.match(htext)
-        version = vm.group("ver") if vm else htext
-        date = vm.group("date") if vm else None
+        dm = DATE_RE.search(htext)
+        date = dm.group(1) if dm else None
+        if gcp:
+            version = ".".join(gcp.group(1).split("-"))
+        else:
+            vm = VERSION_RE.match(htext)
+            version = vm.group("ver") if vm else htext
         if not date:
             undated.append(f"{subgroup or '(no group)'} -> ### {htext}")
             continue
@@ -359,6 +370,7 @@ def build_entries(cfg: dict, docs_root: Path, product_key: str) -> list[dict]:
     # Connector feeds: one entry per (connector, version) — connectors are
     # separate products with their own version series.
     merge_form_factors = product["line_from"] != "connector"
+    labels = cfg.get("form_factor_labels", {})      # short names for the summary
 
     # Collect sub-entries (one per parsed heading), deduped by (subgroup, version)
     # across docs folders, keeping the first (current-stable) occurrence.
@@ -415,9 +427,13 @@ def build_entries(cfg: dict, docs_root: Path, product_key: str) -> list[dict]:
                 for s in items
             )
             # summary = the form factors released in this version, each linked to
-            # its own section in the changelog.
+            # its own section in the changelog. Short labels keep the summary
+            # within Slack's truncation limit; full names remain in <content>.
             summary_html = "Released for: " + ", ".join(
-                artifact_link(s["url_prefix"], s["anchor"], s["subgroup"] or product["name"])
+                artifact_link(
+                    s["url_prefix"], s["anchor"],
+                    labels.get(s["subgroup"] or product["name"], s["subgroup"] or product["name"]),
+                )
                 for s in items
             )
             # Entry link goes to the changelog page (NO form-factor anchor) — a

@@ -78,3 +78,15 @@ native_lines:
 
 # Atom feeds carry only the most recent N entries; JSON carries full history.
 atom_max_entries: 30
+
+# Short display labels for form factors in the Atom/RSS <summary> only (Slack
+# truncates the summary by length, and full section names are long). The full
+# names stay in <content> / on the page. Unmapped names fall back to the full name.
+form_factor_labels:
+  "All-in-one installer": "All-in-one installer"
+  "Helm chart for Wallarm NGINX Ingress controller": "Ingress Helm chart"
+  "Helm chart for Sidecar": "Sidecar Helm chart"
+  "Helm chart for eBPF-based solution": "eBPF Helm chart"
+  "NGINX-based Docker image": "Docker image"
+  "Amazon Machine Image (AMI)": "AMI"
+  "Google Cloud Platform Image": "GCP image"
