@@ -1,27 +1,45 @@
 [build]
 publish = "site"
 edge_functions = "netlify/edge-functions"
-# Image optimisation step: download the oxipng release binary from GitHub
-# (single ~500 KB file, no transitive deps and so no audit issues — the
-# npm `oxipng-bin` wrapper drags in 150+ packages, several with known
-# ReDoS vulnerabilities and no upstream fix), then run it across every
-# PNG in images/ once, before any of the per-version builds copy the
-# directory. Lossless; --strip safe keeps colour profile and gamma
-# metadata. -o 2 is the recommended speed/size tradeoff for batch use.
-# Typical savings ~36% (~67 MB on the current set) in roughly two minutes.
+# Image optimisation, two passes, before any per-version build copies the
+# directory. Both run on the ephemeral CI checkout — full-resolution originals
+# stay in git. Together they take images/ from ~191 MB to ~63 MB (oxipng alone
+# managed only ~121 MB); the top bandwidth consumers in analytics roughly halve.
 #
-# Only runs on production deploys ($CONTEXT == "production"). PR previews
-# and branch deploys skip oxipng to keep iteration fast and save build
-# minutes — readers don't see those, so the extra weight doesn't matter.
+# 1. Quantise (scripts/optimize_images.py -> pngquant): the heavy images are
+#    24-bit true-colour retina screenshots, but UI screenshots use few real
+#    colours, so quantising to a <=256-colour palette (what TinyPNG does) roughly
+#    halves each file with no visible loss and keeps the .png extension, so no
+#    markdown references change. --quality=65-95 SKIPS any image it cannot
+#    quantise cleanly (gradients/photos), --skip-if-larger never writes a bigger
+#    file. The pngquant Linux binary is pulled from pngquant.org (single ~640 KB
+#    file; unpinned "latest", served over TLS). (Resizing was tried and dropped:
+#    a lossless PNG's size tracks content complexity, not pixel count, so
+#    downscaling anti-aliases edges and is no smaller after oxipng — bit depth,
+#    not dimensions, is the lever.)
+# 2. oxipng: download the release binary from GitHub (single ~500 KB file, no
+#    transitive deps and so no audit issues — the npm `oxipng-bin` wrapper drags
+#    in 150+ packages, several with known ReDoS vulnerabilities and no upstream
+#    fix), then losslessly recompress every PNG. --strip safe keeps colour
+#    profile and gamma metadata. -o 2 is the recommended speed/size tradeoff for
+#    batch use. Runs AFTER quantise so it squeezes the palette PNGs further.
+#
+# Both passes only run on production deploys ($CONTEXT == "production"). PR
+# previews and branch deploys skip image optimisation to keep iteration fast and
+# save build minutes — readers don't see those, so the extra weight doesn't matter.
 command = """
 pip3 install --no-cache-dir -r requirements.txt &&
-if [ "$CONTEXT" = "production" ]; then \
+# TEMP(revert-before-merge): un-gated so image optimisation runs on the preview
+# build to verify the resize pass end-to-end. Restore `[ "$CONTEXT" = "production" ]`.
+if true; then \
+  echo "Image size before optimisation: $(du -sh images/ | cut -f1) ($(find images/ -name '*.png' | wc -l) PNGs)" && \
+  curl -fsSL https://pngquant.org/pngquant-linux.tar.bz2 | tar xj pngquant && \
+  python3 scripts/optimize_images.py images/ --pngquant ./pngquant && \
   curl -fsSL https://github.com/oxipng/oxipng/releases/download/v10.1.1/oxipng-10.1.1-x86_64-unknown-linux-gnu.tar.gz | tar xz --strip-components=1 oxipng-10.1.1-x86_64-unknown-linux-gnu/oxipng && \
-  echo "Image size before oxipng: $(du -sh images/ | cut -f1) ($(find images/ -name '*.png' | wc -l) PNGs)" && \
   ./oxipng -r -o 2 --strip safe -q images/ && \
-  echo "Image size after  oxipng: $(du -sh images/ | cut -f1)"; \
+  echo "Image size after  optimisation: $(du -sh images/ | cut -f1)"; \
 else \
-  echo "Skipping oxipng (CONTEXT=$CONTEXT — only runs on production deploys)"; \
+  echo "Skipping image optimisation (CONTEXT=$CONTEXT — only runs on production deploys)"; \
 fi &&
 # Raw .md companion files (scripts/generate_raw_markdown.py) only ship on
 # production. The companions power the "Copy as Markdown" button — readers
