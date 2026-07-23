@@ -12,6 +12,10 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to upgrade](all-in-one.md)
 
+### 0.25.4 (2026-07-23)
+
+* Fixed a crash that occurred when handling certain [MCP mitigation controls](../../agentic-ai/mcp-mitigation-controls.md)
+
 ### 0.25.3 (2026-06-22)
 
 * Improved [MCP (Model Context Protocol)](../../api-discovery/exploring.md#mcp-servers) traffic analysis logging — the Node no longer produces excessive log output when there is no MCP traffic
@@ -284,6 +288,10 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.25.4 (2026-07-23)
+
+* Fixed a crash that occurred when handling certain [MCP mitigation controls](../../agentic-ai/mcp-mitigation-controls.md)
+
 ### 0.25.3 (2026-06-22)
 
 * Improved [MCP (Model Context Protocol)](../../api-discovery/exploring.md#mcp-servers) traffic analysis logging — the Node no longer produces excessive log output when there is no MCP traffic
@@ -539,6 +547,10 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](docker-image.md)
+
+### 0.25.4 (2026-07-23)
+
+* Fixed a crash that occurred when handling certain [MCP mitigation controls](../../agentic-ai/mcp-mitigation-controls.md)
 
 ### 0.25.3 (2026-06-22)
 
