@@ -1,29 +1,71 @@
 /**
- * Accept-header content negotiation for raw Markdown.
+ * Two jobs, in order:
  *
- * When the caller sends `Accept: text/markdown` (e.g. AI agents that prefer
- * raw source over HTML), this function serves the `.md` companion file
- * instead of the HTML page — same convention Stripe Docs uses. Without that
- * header, requests pass through and Netlify serves HTML as usual.
+ * 1. Block a distributed image/page scraper. A pool of ~20,000 IPs all send one
+ *    frozen User-Agent — "…Intel Mac OS X 10… Chrome/125…" — and hammer images
+ *    (~520 GB/6h), then HTML pages and /search.json (136 GB) once images were
+ *    blocked. Real traffic to those paths is on current browsers (Chrome
+ *    136-149, Safari 17); none is on the frozen Chrome 125, and we additionally
+ *    require the headers every genuine Chromium request carries, so a real
+ *    Chrome-125 visitor still passes and honest crawlers (Googlebot, Amazonbot,
+ *    ClaudeBot, …) never match. This check is the FIRST thing the function does,
+ *    so a matched request is 403'd before any origin fetch — no bandwidth spent,
+ *    and no dependency on edge-function ordering. Fully reversible: delete the
+ *    isScraper block.
  *
- * Vary: Accept is always added to the response so any CDN, browser, or proxy
- * caches the HTML and Markdown variants under separate keys.
+ * 2. Accept-header content negotiation for raw Markdown. When the caller sends
+ *    `Accept: text/markdown` (e.g. AI agents that prefer raw source over HTML),
+ *    serve the `.md` companion file instead of the HTML page — same convention
+ *    Stripe Docs uses. Without that header, requests pass through and Netlify
+ *    serves HTML as usual. Vary: Accept is added so caches keep HTML and
+ *    Markdown variants under separate keys.
  *
- * Path scoping (config.path = "/*") is intentionally broad; this function
- * short-circuits for any URL whose path already names a file (anything with
- * an extension like `.md`, `.png`, `.css`, `.xml`, ...), so asset requests
- * are not affected.
+ * Scope (config.path = "/*") covers pages, images, and /search.json so the
+ * block reaches every path the scraper abuses; the in-function extension check
+ * short-circuits negotiation for non-page URLs. Cheap/cacheable assets
+ * (.css/.js/fonts/stylesheets, hashed and served straight from cache) are
+ * excludedPath'd so the function never even loads for them — the scraper can't
+ * reach them anyway once its page requests 403.
  */
 
 import type { Context } from "@netlify/edge-functions";
 
+// Frozen scraper signature: Chrome major 125 paired with "Intel Mac OS X 10".
+const SCRAPER_UA = /\bChrome\/125\b/;
+const SCRAPER_PLATFORM = /Intel Mac OS X 10/;
+
+/**
+ * True if the request is the frozen-UA scraper. Pure (headers only) so it is
+ * unit-testable. Requires the stale signature AND the absence of headers every
+ * genuine Chromium request carries on subresource loads over TLS, so a real
+ * (near-extinct) Chrome-125 browser is not caught.
+ */
+export function isScraper(headers: Headers): boolean {
+  const ua = headers.get("user-agent") ?? "";
+  if (!SCRAPER_UA.test(ua) || !SCRAPER_PLATFORM.test(ua)) return false;
+  const looksLikeRealBrowser =
+    headers.has("accept-language") &&
+    headers.has("sec-fetch-dest") &&
+    headers.has("sec-ch-ua");
+  return !looksLikeRealBrowser;
+}
+
 export default async (request: Request, context: Context) => {
+  // (1) Scraper block — first, before any origin fetch, on every scoped path.
+  if (isScraper(request.headers)) {
+    return new Response("Forbidden", {
+      status: 403,
+      headers: { "cache-control": "no-store" },
+    });
+  }
+
+  // (2) Markdown negotiation — pages only.
   const url = new URL(request.url);
   const path = url.pathname;
 
-  // Bypass for any path that already names a file (`.md`, `.png`, `.css`,
-  // `.xml`, `llms*.txt`, fonts, …). Doc pages are directory-style URLs with
-  // no extension, so anything with one is not a candidate for negotiation.
+  // Bypass for any path that already names a file (`.png`, `.json`, fonts, …).
+  // Doc pages are directory-style URLs with no extension, so anything with one
+  // is not a candidate for negotiation — but the block above already ran for it.
   if (/\.[a-zA-Z0-9]+$/.test(path)) {
     return;
   }
@@ -126,32 +168,23 @@ function appendLink(headers: Headers, link: string): void {
 
 export const config = {
   path: "/*",
-  // Skip asset paths so the function never even loads for them. Netlify's
-  // glob: `*` matches a single segment, `**` matches multi-segment — most
-  // of our assets are deep (e.g. `/images/about-wallarm-waf/foo.png`,
-  // `/installation/nginx/all-in-one.md`), so we list both flat and nested.
-  // The in-function extension regex still catches anything missed here.
+  // Skip cheap/cacheable assets so the function never loads for them: hashed
+  // JS/CSS/maps, fonts, PDFs, stylesheets, and the raw .md/.txt/.xml companions.
+  // Images and .json (search index) are DELIBERATELY not excluded — the scraper
+  // abuses them directly, and the block above must reach them. Pages have no
+  // extension and are always covered.
   excludedPath: [
     "/*.md",      "/**/*.md",
     "/*.txt",     "/**/*.txt",
     "/*.xml",     "/**/*.xml",
-    "/*.json",    "/**/*.json",
     "/*.css",     "/**/*.css",
     "/*.js",      "/**/*.js",
     "/*.map",     "/**/*.map",
-    "/*.png",     "/**/*.png",
-    "/*.jpg",     "/**/*.jpg",
-    "/*.jpeg",    "/**/*.jpeg",
-    "/*.gif",     "/**/*.gif",
-    "/*.svg",     "/**/*.svg",
-    "/*.webp",    "/**/*.webp",
-    "/*.ico",     "/**/*.ico",
     "/*.pdf",     "/**/*.pdf",
     "/*.woff",    "/**/*.woff",
     "/*.woff2",   "/**/*.woff2",
     "/*.ttf",     "/**/*.ttf",
     "/*.otf",     "/**/*.otf",
-    "/images/**",
     "/stylesheets/**",
   ],
 };
