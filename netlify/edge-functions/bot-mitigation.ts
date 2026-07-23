@@ -1,20 +1,23 @@
 /**
  * Block a distributed image-scraper without touching real users or honest bots.
  *
- * Incident: ~520 GB / 8.6M requests in 6h, all image/png, from a pool of
- * ~20,000 IPs that ALL send one frozen User-Agent — "…Intel Mac OS X 10…
- * Chrome/125…". Real browsers show diverse, current UAs; a single stale UA
- * (Chrome 125 shipped May 2024) across millions of requests and thousands of
- * IPs is a UA-spoofing scraper. Honest crawlers (Googlebot, Amazonbot, …) send
- * their own UA and never match this signature, so they are unaffected.
+ * Incident: a distributed scraper from a pool of ~20,000 IPs that ALL send one
+ * frozen User-Agent — "…Intel Mac OS X 10… Chrome/125…". It first hammered
+ * image/png (~520 GB / 8.6M req in 6h); once images were blocked it shifted to
+ * HTML pages (e.g. 1.1M req / 15.3 GB on one page in 10h), so the block now
+ * covers the whole site, not just /images/*. Blocking the page 403s before any
+ * HTML is served, so the scraper also stops pulling that page's sub-resources
+ * (rum, extra.js, css, …).
  *
- * Scoped to /images/* only, so a rare false positive still gets readable HTML
- * pages — just missing images — rather than a blocked site. And we require the
- * signature AND absence of headers every genuine Chromium request carries, so
- * an actual Chrome-125 visitor (near-extinct, but possible) passes through.
+ * Safe to apply site-wide: real traffic to these pages is on current browsers
+ * (Chrome 136-149, Safari 17, …) — not one is on the frozen Chrome 125 — and we
+ * additionally require the signature AND absence of headers every genuine
+ * Chromium request carries, so a real Chrome-125 visitor (near-extinct, but
+ * possible) still passes. Honest crawlers (Googlebot, Amazonbot, ClaudeBot, …)
+ * send their own UA and never match.
  *
- * Fully reversible: delete this file. Validate after deploy that the 520 GB
- * drops while Googlebot/Amazonbot and human metrics stay flat.
+ * Fully reversible: delete this file. Validate after deploy that the Chrome/125
+ * bandwidth drops while Googlebot/Amazonbot and human metrics stay flat.
  */
 
 import type { Config, Context } from "@netlify/edge-functions";
@@ -56,5 +59,12 @@ export default async (request: Request, _context: Context) => {
 };
 
 export const config: Config = {
-  path: "/images/*",
+  // Site-wide: the scraper moved from images to HTML pages. Blocking the page
+  // 403s before HTML is served, so it never fetches that page's sub-resources.
+  path: "/*",
+  // Skip the content-hashed, immutable theme bundles under /assets/*: they are
+  // cache-friendly and not an independent scraper target (a blocked page yields
+  // no HTML, so those are never requested). Excluding them avoids spending edge
+  // invocations on legitimate cached-asset traffic (credit-based Pro plan).
+  excludedPath: ["/assets/*"],
 };
