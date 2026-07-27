@@ -9,7 +9,7 @@
 [controllerwallarmexistingsecret-docs]:  configure-kubernetes-en.md#controllerwallarmexistingsecret
 [best-practices-for-public-ip]:          configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
 [best-practices-for-high-availability]:  configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
-[best-practices-for-ingress-monitoring]: configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
+[best-practices-for-ingress-monitoring]: nginx-node-metrics.md
 [node-token-types]:                      ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [chaining-doc]:                          chaining-wallarm-and-other-ingress-controllers.md
 [api-spec-enforcement-docs]:             ../api-specification-enforcement/overview.md

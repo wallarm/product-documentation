@@ -6,7 +6,7 @@
 [best-practices-for-public-ip]:           ../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
 [ip-lists-docs]:                          ../user-guides/ip-lists/overview.md
 [best-practices-for-high-availability]:   ../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
-[best-practices-for-ingress-monitoring]:  ../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
+[best-practices-for-ingress-monitoring]:  ../admin-en/nginx-node-metrics.md
 [deployment-platform-docs]:               ../installation/supported-deployment-options.md
 [chaining-doc]:                           ../admin-en/chaining-wallarm-and-other-ingress-controllers.md
 [node-token-types]:                       ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
@@ -317,6 +317,14 @@ Below is the recommended custom SCC for the Wallarm NGINX Ingress Controller.
     ```
 
 The expected output is `wallarm-ingress-controller`.
+
+## Monitoring
+
+The Wallarm services in the controller pod expose Prometheus metrics — traffic and attack counters, Postanalytics (**wstore**), **wcli**, and process metrics — on a single aggregated endpoint served by the `wd` (Wallarm Daemon) service (`http://127.0.0.1:9445/metrics` by default).
+
+The metrics service is enabled by default; to scrape it with the Prometheus Operator, enable a `ServiceMonitor` through the `controller.wallarm.wd.metrics.*` [Helm values](configure-kubernetes-en.md#wallarm-wd-container-parameters).
+
+For the list of available metrics and how to read them, see [Monitoring the NGINX Node Metrics and Health](nginx-node-metrics.md).
 
 <!-- 
 ## Configuration
