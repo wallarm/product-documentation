@@ -1,1 +1,60 @@
---8<-- "latest/api-discovery/setup.md"
+# API Discovery Setup <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
+
+This article describes how to enable and configure Wallarm's [API Discovery](overview.md).
+
+## Requirements
+
+* Advanced API Security [subscription plan](../about-wallarm/subscription-plans.md#core-subscription-plans)
+* For **GraphQL** - [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.1.0+ or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.15.1+.
+* For **SOAP** - [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.0 or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.17.1+.
+* For **gRPC** - [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.4.0 or higher (not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far)
+* For **MCP** - [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.12.0+ or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.25.0+.
+
+API Discovery is included in [all forms of the Wallarm node installation](../installation/supported-deployment-options.md). During node deployment, it installs the API Discovery module but keeps it disabled by default.
+
+## Enabled by default
+
+API Discovery is included in all [forms](../installation/supported-deployment-options.md) of the Wallarm node installation and is enabled by default, analyzing all traffic going through Wallarm nodes.
+
+## Configure
+
+By clicking the **Configure** button in the **API Discovery** section, you proceed to the API discovery fine-tuning options, including selection of protocols to be handled, general settings for how API Discovery processes traffic, displayed applications, and customizing the sensitive data detection.
+
+### General API Discovery settings
+
+You can define general API Discovery settings in Wallarm Console → **API Discovery** → **Configure** → **Settings**.
+
+!!! info "Parameter availability"
+    Some of the parameters may be unavailable if they are managed by a **global administrator** of [multi-tenant](../installation/multi-tenant/overview.md) Wallarm installation.
+
+![API Discovery - general settings](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-configure-settings-read-only.png)
+
+They are:
+
+* Protocols to discover (REST, GraphQL, SOAP, gRPC, MCP): select which protocols API Discovery should analyze.
+    
+    Note that if you already have discovered data for some of the protocols and then deselect this protocol in settings, its data will remain and will still be displayed. The new endpoints for the corresponding protocol will stop appearing, those already found will stop being updated.
+* Parameters defining how API Discovery [detects noise](overview.md#noise-detection) to show only relevant APIs. This is important as API Discovery bases its findings on the real traffic:
+
+    * **Filter endpoints by response content type** turns on/off validation of traffic by the `Content-type` header of response. The necessity of this validation in noise reduction depends on the peculiarities of your traffic.
+
+    * Endpoint stability thresholds: at least a specific **number of requests** should be registered for the endpoint for it to be displayed by API Discovery AND at least one of them must be outside the **timeframe**.
+
+        These settings aim to avoid showing API entries that had no traffic or had traffic for a short timeframe only - they are considered unstable. Even if the specific endpoint was requested a huge amount of times, but just within a short timeframe, there is no need to consider this one-time spike as a stable API endpoint.
+
+        ![API Discovery - general settings - endpoint stability](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-stability.png)
+
+* Percentage of requests used to: **determine parameter types** (50% by default) and **detect sensitive data** (10% by default). Non-100% values are used to lower CPU usage. Increased numbers are good for environments with fewer requests.
+* Applications to be displayed: only data for the selected applications will be displayed by API Discovery. Note that this is about displaying: data is discovered for all applications, you just decide whether to show it.
+
+### Customizing sensitive data detection
+
+API Discovery [detects and highlights](sensitive-data.md) sensitive data consumed and carried by your APIs. You can fine-tune the existing detection process and extend it with your own data types to detect.
+
+To view the current configuration and perform changes, in Wallarm Console, go to **API Discovery** → **Configure** → **Sensitive data**. Here, you can overview and modify the existing sensitive data patterns and add your own.
+
+[See details here →](sensitive-data.md#customizing-sensitive-data-detection)
+
+## Debug
+
+To get and analyze the API Discovery logs, you can read the log file `/opt/wallarm/var/log/wallarm/appstructure-out.log` on the Linux machine where the node is running.-->
