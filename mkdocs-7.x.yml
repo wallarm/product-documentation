@@ -152,7 +152,6 @@ nav:
         - Deployment: admin-en/installation-kubernetes-en.md
         - Configuration Options: admin-en/configure-kubernetes-en.md
         - High Availability: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
-        - Monitoring: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
         - Real Client IP: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
         - Chaining Ingress Controllers: admin-en/chaining-wallarm-and-other-ingress-controllers.md
       - Kong Ingress Controller: installation/connectors/kong-ingress-controller.md
@@ -262,9 +261,11 @@ nav:
     - Monitoring & Metrics:
       - NGINX Node Metrics:
         - Overview: admin-en/nginx-node-metrics.md
+        - Traffic and Attack Metrics: admin-en/traffic-attack-metrics.md
         - Postanalytics Metrics: admin-en/wstore-metrics.md
         - wcli Controller Metrics: admin-en/wcli-metrics.md
         - API Firewall Metrics: admin-en/apifw-metrics.md
+        - Wallarm Daemon (wd) Metrics: admin-en/wd-metrics.md
       - Native Node Metrics:
         - Overview: admin-en/native-node-metrics.md
         - Postanalytics Metrics: admin-en/native-node-metrics-wstore.md

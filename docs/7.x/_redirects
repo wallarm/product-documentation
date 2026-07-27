@@ -951,3 +951,6 @@
 /tr/*  /:splat  301
 /ar/*  /:splat  301
 /pt-br/*  /:splat  301
+
+/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring/  /admin-en/nginx-node-metrics/
+/7.x/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring/  /7.x/admin-en/nginx-node-metrics/
