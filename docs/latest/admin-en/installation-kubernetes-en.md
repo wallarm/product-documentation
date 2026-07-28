@@ -3,7 +3,7 @@
 [IC-existingsecret]:                      ../admin-en/configure-kubernetes-en.md#configwallarmapiexistingsecretenabled
 [applications]:                           ../user-guides/settings/applications.md
 [ptrav-attack]:                           ../attacks-vulns-list.md#path-traversal
-[best-practices-for-public-ip]:           ../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
+[best-practices-for-public-ip]:           ../admin-en/using-proxy-or-balancer-en.md#wallarm-ingress-controller
 [ip-lists-docs]:                          ../user-guides/ip-lists/overview.md
 [best-practices-for-high-availability]:   ../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
 [best-practices-for-ingress-monitoring]:  ../admin-en/nginx-node-metrics.md
