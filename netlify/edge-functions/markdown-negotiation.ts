@@ -34,6 +34,14 @@ import type { Context } from "@netlify/edge-functions";
 const SCRAPER_UA = /\bChrome\/125\b/;
 const SCRAPER_PLATFORM = /Intel Mac OS X 10/;
 
+// Hard IP denylist — heaviest datacenter offenders caught in the scraper wave.
+// Blunt stopgap: the scraper rotates both IPs and User-Agents, so this only
+// clips the current top talkers — the durable fix is a bot-management layer in
+// front (TLS/behavioural fingerprint), not signature/IP whack-a-mole.
+const BLOCKED_IPS = new Set<string>([
+  "52.4.32.174", // AWS; ~1.4 GB hammering /admin-en/configure-statistics-service/
+]);
+
 /**
  * True if the request is the frozen-UA scraper. Pure (headers only) so it is
  * unit-testable. Requires the stale signature AND the absence of headers every
@@ -51,6 +59,14 @@ export function isScraper(headers: Headers): boolean {
 }
 
 export default async (request: Request, context: Context) => {
+  // (0) Hard IP denylist — heaviest datacenter offenders, before anything else.
+  if (BLOCKED_IPS.has(context.ip)) {
+    return new Response("Forbidden", {
+      status: 403,
+      headers: { "cache-control": "no-store" },
+    });
+  }
+
   // (1) Scraper block — first, before any origin fetch, on every scoped path.
   if (isScraper(request.headers)) {
     return new Response("Forbidden", {
