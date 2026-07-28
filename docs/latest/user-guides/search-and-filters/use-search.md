@@ -22,6 +22,9 @@
 
 # Event Search and Filters
 
+!!! info "Searching attacks"
+    This article describes the search in the **Incidents** section. To search detected attacks, see [Attack Search and Filters](attack-filters.md).
+
 Wallarm provides convenient methods for searching detected events (attacks and incidents). In the **Attacks** and **Incidents** sections of Wallarm Console, the following search methods are available:
 
 * **Filters** to select filtering criteria
