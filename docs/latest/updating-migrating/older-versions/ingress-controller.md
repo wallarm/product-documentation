@@ -75,7 +75,7 @@ To migrate to Wallarm Ingress controller 6.x, update the following configuration
 
 There are the following settings probably to be changed:
 
-* [Proper reporting of end user public IP address](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md) if requests are passed through a load balancer before being sent to the Wallarm Ingress controller.
+* [Proper reporting of end user public IP address](../../admin-en/using-proxy-or-balancer-en.md#wallarm-ingress-controller) if requests are passed through a load balancer before being sent to the Wallarm Ingress controller.
 
     ```diff
     controller:
@@ -172,7 +172,7 @@ Change the Wallarm module configuration set in the `values.yaml` file as follows
       * [Endpoint-targeted filtration rules configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode)
 
       If the expected behavior does not correspond to the changed filtration mode logic, please adjust the [Ingress annotations](../../admin-en/configure-kubernetes-en.md#ingress-annotations) and [other settings](../../admin-en/configure-wallarm-mode.md) to released changes.
-* Get rid of the explicit [monitoring service configuration](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md). In the new Wallarm Ingress controller version, the monitoring service is enabled by default and does not require any additional configuration.
+* Get rid of the explicit [monitoring service configuration](../../admin-en/nginx-node-metrics.md). In the new Wallarm Ingress controller version, the monitoring service is enabled by default and does not require any additional configuration.
 
     ```diff
     controller:
@@ -209,7 +209,7 @@ To install and run the plugin:
 2. Run the plugin:
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.12.7 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 7.1.0 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
@@ -316,7 +316,7 @@ By using this method, you can deploy Ingress Controller 6.x as an additional ent
 2. Deploy the Ingress controller 6.x:
 
     ```bash
-    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.12.7 -f <PATH_TO_VALUES>
+    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 7.1.0 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: the name for the Helm release of the Ingress controller chart
@@ -352,7 +352,7 @@ To re‑create the Ingress controller release:
     2. Create a new release with Ingress controller 6.x:
 
         ```bash
-        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.12.7 -f <PATH_TO_VALUES>
+        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 7.1.0 -f <PATH_TO_VALUES>
         ```
 
         * `<RELEASE_NAME>`: the name for the Helm release of the Ingress controller chart
@@ -404,7 +404,7 @@ Release re‑creation will take several minutes and the Ingress controller will 
 
     ```bash
     cat objects-to-remove.txt | xargs kubectl delete --wait=false -n <NAMESPACE>    && \
-    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 6.12.7 -f `<PATH_TO_VALUES>`
+    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 7.1.0 -f `<PATH_TO_VALUES>`
     ```
 
     To decrease service downtime, it is NOT recommended to execute commands separately.
@@ -430,7 +430,7 @@ There are the following parameters passed in the commands:
     helm ls
     ```
 
-    The chart version should correspond to `wallarm-ingress-6.12.7`.
+    The chart version should correspond to `wallarm-ingress-7.1.0`.
 1. Get the Wallarm pod:
     
     ``` bash
