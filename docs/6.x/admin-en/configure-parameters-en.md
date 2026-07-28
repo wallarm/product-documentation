@@ -1,6 +1,3 @@
-[doc-nginx-install]:    ../installation/nginx/dynamic-module-from-distr.md
-[doc-eu-scanner-ip-addresses]: scanner-address-eu-cloud.md
-[doc-us-scanner-ip-addresses]: scanner-address-us-cloud.md
 [acl-access-phase]:            #wallarm_acl_access_phase
 
 # Configuration options for the NGINX‑based Wallarm node
