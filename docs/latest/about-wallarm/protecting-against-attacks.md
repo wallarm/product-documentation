@@ -35,7 +35,7 @@ The Wallarm platform continuously analyzes API traffic and mitigates malicious r
 
     This hit grouping method works for all hits except for the ones of the Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb and Virtual patch attack types.
 
-    If hits are grouped by this method, the [**Mark as false positive**](../user-guides/events/check-attack.md#false-positives) button is unavailable for the attack.
+    If hits are grouped by this method, [marking the whole attack as a false positive](../user-guides/events/check-attack.md#false-positives) is unavailable.
 
 The listed hit grouping methods do not exclude each other. If hits have characteristics of both methods, they are all grouped into one attack.
 
@@ -248,7 +248,7 @@ Wallarm provides you with the comprehensive user interface displaying all detect
 
 See details in the [Attack Analysis](../user-guides/events/check-attack.md) article.
 
-![Attacks view](../images/user-guides/events/check-attack.png)
+![Attacks view](../images/user-guides/events/attacks-page.png)
 
 <!-- ## Demo videos
 

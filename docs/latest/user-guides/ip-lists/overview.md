@@ -131,9 +131,7 @@ Such information is available for:
 
 The listed behavioral attacks can be detected only after accumulating certain statistics the required amount of which depends on the corresponding trigger thresholds. Thus, in the first stage, before denylisting, Wallarm collects this information but all requests are passed and displayed as the attacks with the `Monitoring` status.
 
-Once trigger thresholds are exceeded, Wallarm adds the IP to the denylist and blocks further requests. You will see `Blocked` requests from this IP in the attack list. This applies to manually denylisted IPs as well.
-
-![Events related to denylisted IPs - sending data enabled](../../images/user-guides/events/events-denylisted-export-enabled.png)
+Once trigger thresholds are exceeded, Wallarm adds the IP to the denylist and blocks further requests. You will see `Blocked` requests from this IP in the attack list. This applies to manually denylisted IPs as well. To tell the two apart, add the **Blocking Status** column to the attack table or filter by it.
 
 Use the [**Attack Type** filter](../../user-guides/search-and-filters/attack-filters.md#filter) to find requests from denylisted IPs: [API abuse related](../../attacks-vulns-list.md#api-abuse) types, **Brute force**, **Forced browsing**, **Broken Object Level Authorization** for automatically listed IPs, and **Blocked source** for manual ones.
 
