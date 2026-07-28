@@ -399,7 +399,7 @@ Deployment options that don’t follow the platform matrix: known scenarios (mul
 
 <div class="do-section">
     <div class="do-main">
-        <a class="do-card do-card-no-icon" href="../multi-tenant/overview/">
+        <a class="do-card do-card-no-icon" href="../../installation/multi-tenant/overview/">
             <h3>Multi-tenant Node deployment</h3>
             <p>Run Nodes for multiple tenants with per-account data and access isolation, ideal for SaaS and MSPs</p>
         </a>
@@ -409,7 +409,7 @@ Deployment options that don’t follow the platform matrix: known scenarios (mul
             <p>Deploy postanalytics on a dedicated host to scale independently and offload the Filtering Node</p>
         </a>
 
-        <a class="do-card do-card-no-icon" href="../custom/custom-nginx-version/">
+        <a class="do-card do-card-no-icon" href="../../installation/custom/custom-nginx-version/">
             <h3>Custom NGINX version</h3>
             <p>Use Wallarm with a custom NGINX build when standard packages do not match your stack</p>
         </a>

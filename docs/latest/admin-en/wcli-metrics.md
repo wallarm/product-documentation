@@ -9,7 +9,6 @@
 [sidecar-upgrade]: ../updating-migrating/sidecar-proxy.md
 [ic-deployment]: ../admin-en/installation-kubernetes-en.md
 [nginx-node-changelog]: ../updating-migrating/node-artifact-versions.md
-[nginx-node-6.6.0]: ../updating-migrating/node-artifact-versions.md#660-2025-10-03
 [api-abuse-prevention]: ../api-abuse-prevention/overview.md
 [cred-stuffing]: ../about-wallarm/credential-stuffing.md
 [jwt-tokens]: ../updating-migrating/older-versions/what-is-new.md#checking-json-web-token-strength

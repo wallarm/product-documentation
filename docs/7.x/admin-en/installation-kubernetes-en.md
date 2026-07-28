@@ -6,8 +6,6 @@
 [ptrav-attack-docs]:                     ../attacks-vulns-list.md#path-traversal
 [ip-lists-docs]:                         ../user-guides/ip-lists/overview.md
 [configure-nginx-ing-controller-docs]:   configure-kubernetes-en.md
-[controllerwallarmexistingsecret-docs]:  configure-kubernetes-en.md#controllerwallarmexistingsecret
-[best-practices-for-public-ip]:          configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
 [best-practices-for-high-availability]:  configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
 [best-practices-for-ingress-monitoring]: nginx-node-metrics.md
 [node-token-types]:                      ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation

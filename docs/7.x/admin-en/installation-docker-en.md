@@ -14,7 +14,6 @@
 [attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
 [versioning-policy]:                ../updating-migrating/versioning-policy.md#version-list
 [node-status-docs]:                 configure-statistics-service.md
-[node-token]:                       ../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../user-guides/settings/api-tokens.md
 [wallarm-token-types]:              ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../installation/supported-deployment-options.md
@@ -30,7 +29,6 @@
 [sensitive-data-rule]:              ../user-guides/rules/sensitive-data-rule.md
 [apid-only-mode-details]:           ../installation/nginx/all-in-one.md#api-discovery-only-mode
 [inline-docs]:                      ../installation/inline/overview.md
-[what-is-new-wstore]:            ../updating-migrating/what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics
 [wstore-metrics]:                    ../admin-en/wstore-metrics.md
 [wstore-metrics-mount]:             ../admin-en/wstore-metrics.md
 [link-wallarm-health-check]:        ../admin-en/uat-checklist-en.md
