@@ -81,7 +81,7 @@ Visibility is set at creation and cannot be changed afterwards.
 
 ## Export
 
-**Export attacks as CSV** exports the attacks matching the current filter, time range, and grouping, with the columns of the current view. Wallarm prepares the file in the background and emails you a download link, which stays valid for a limited time.
+**Export attacks as CSV** exports the attacks matching the current filter, time range, and grouping, with the columns of the current view. See [Creating Reports](custom-report.md#attacks) for the procedure.
 
 ## API calls
 
