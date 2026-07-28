@@ -214,7 +214,7 @@ When analyzing requests for attacks, Wallarm uses the standard ruleset that prov
 
 In such cases, standard rules need to be adjusted to accommodate protected API specificities by using the following methods:
 
-* Analyze potential false positives (by filtering all attacks by the [tag `!known`](../user-guides/search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits)) and if confirming false positives, [mark](../user-guides/events/check-attack.md#false-positives) particular attacks or hits appropriately. Wallarm will automatically create the rules disabling analysis of the same requests for detected attack signs.
+* Analyze potential false positives and, if confirming them, [mark](../user-guides/events/check-attack.md#false-positives) particular attacks or requests appropriately. Wallarm will automatically create the rules disabling analysis of the same requests for detected attack signs.
 * [Disable detection of certain attack types](../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types) in particular requests.
 * [Disable detection of certain attack signs in binary data](../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data).
 * [Disable parsers mistakenly applied to the requests](../user-guides/rules/request-processing.md#managing-parsers).

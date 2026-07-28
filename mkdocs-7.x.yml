@@ -385,7 +385,7 @@ nav:
 
     - Search & Reports:
       - Attack Search & Filters: user-guides/search-and-filters/attack-filters.md
-      - Search & Filters: user-guides/search-and-filters/use-search.md
+      - Incident Search & Filters: user-guides/search-and-filters/use-search.md
       - Custom Reports: user-guides/search-and-filters/custom-report.md
 
     - Account Settings:

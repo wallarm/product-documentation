@@ -72,7 +72,7 @@ To set and apply GraphQL policy:
 
 <!--## Exploring GraphQL attacks
 
-You can explore GraphQL policy violations (GraphQL attacks) in Wallarm Console → **Attacks** section. Use the GraphQL specific [search keys](../user-guides/search-and-filters/use-search.md#graphql-tags) or corresponding filters:
+You can explore GraphQL policy violations (GraphQL attacks) in Wallarm Console → **Attacks** section. Set the [**Attack Type** filter](../user-guides/search-and-filters/attack-filters.md#filter) to the corresponding GraphQL violation:
 
 ![GraphQL attacks](../images/user-guides/rules/graphql-attacks.png)-->
 

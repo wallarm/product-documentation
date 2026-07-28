@@ -1,26 +1,11 @@
-[link-using-search]:    ../search-and-filters/use-search.md
-[img-current-attacks]:  ../../images/glossary/attack-with-one-hit-example.png
-[img-incidents-tab]:    ../../images/user-guides/events/incident-vuln.png
-[img-show-falsepositive]: ../../images/user-guides/events/filter-for-falsepositive.png
-[use-search]:             ../search-and-filters/use-search.md
-[search-by-attack-status]: ../search-and-filters/use-search.md#search-attacks-by-the-action
-[img-verify-attack]:            ../../images/user-guides/events/verify-attack.png
-[al-brute-force-attack]:      ../../attacks-vulns-list.md#brute-force-attack
-[al-forced-browsing]:         ../../attacks-vulns-list.md#forced-browsing
-[al-bola]:                    ../../attacks-vulns-list.md#broken-object-level-authorization-bola
-[link-analyzing-attacks]:       analyze-attack.md
-[img-false-attack]:             ../../images/user-guides/events/false-attack.png
-[img-removed-attack-info]:      ../../images/user-guides/events/removed-attack-info.png
-[link-check-attack]:        check-attack.md
-[link-false-attack]:        false-attack.md
-[img-current-attack]:       ../../images/user-guides/events/analyze-current-attack.png
-[glossary-attack-vector]:   ../../glossary-en.md#malicious-payload
-
 # Grouping and Sampling of Hits
 
 When [analyzing attacks](check-attack.md), it is important to understand how malicious requests are presented. Wallarm uses hit grouping and sampling techniques to simplify the attack list. These techniques are explained in this article.
 
 ## Grouping of hits
+
+!!! info "Grouping of hits and Group by"
+    This article describes how Wallarm combines hits into attacks before they reach the attack list. It is not the same as the **Group by** control of the **Attacks** section, which [regroups](../search-and-filters/attack-filters.md#grouping) already stored data for display.
 
 Wallarm groups [hits](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) into one attack using two grouping methods:
 
@@ -41,7 +26,7 @@ The hits are grouped if they have the same source IP address. If grouped hits ha
 
 This hit grouping method works for all hits except for the ones of the Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb and Virtual patch attack types.
 
-If hits are grouped by this method, the [**Mark as false positive**](check-attack.md#false-positives) button and the [active verification](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing-trt) option are unavailable for the attack.
+If hits are grouped by this method, [marking the attack as a false positive](check-attack.md#false-positives) and the [active verification](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing-trt) option are unavailable for the attack.
 
 Grouping by source IP is by default enabled in Wallarm Console → **Triggers** with the **Hits from the same IP** default trigger which activates when a single IP address originates more than 50 hits within 15 minutes.
 
@@ -55,7 +40,7 @@ When forming the attack details, Wallarm automatically makes information about t
 
 Hit sampling does not affect the quality of attack detection but helps to avoid its slowdown. Wallarm node continues attack detection and [blocking](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) even with hit sampling enabled.
 
-The **Hits sampling is enabled** notification shows that sampling works now. You can click this notification or add [`sampled`](../search-and-filters/use-search.md#search-for-sampled-hits) to the search field to see only attacks that sampling was applied to. In the attack details you will see how many similar hits were detected but not displayed:
+The **Hits sampling is enabled** notification shows that sampling works now. In the attack details you will see how many similar hits were detected but not displayed:
 
 ![Dropped hits](../../images/user-guides/events/bruteforce-dropped-hits.png)
 
