@@ -57,7 +57,6 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
 </div>
 
 <div class="home-section-label">Explore by area</div>
-
 <div class="navigation navigation-4col">
 
   <div class="navigation-card homepage-intro">
@@ -79,37 +78,6 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
       <li><a href="./agentic-ai/agentic-ai-protection/">AI Agent Protection</a></li>
       <li><a href="./api-sessions/overview/">API Sessions</a></li>
       <li><a href="./about-wallarm/waap-overview/">Threat Protection (WAAP)</a></li>
-    </ul></p>
-  </div>
-
-  <div class="navigation-card">
-    <h3 class="icon-homepage ai-hypervisor-title"><a href="./ai-hypervisor/overview/">AI Hypervisor <span class="card-arrow">→</span></a></h3>
-    <p class="card-description">Runtime observability, enforcement, and governance for AI workloads on Amazon EKS.</p>
-    <p><ul>
-      <li><a href="./ai-hypervisor/overview/">Overview</a></li>
-      <li><a href="./ai-hypervisor/deploy/">Scanner Installation</a></li>
-      <li><a href="./ai-hypervisor/findings/">Findings & Risk Model</a></li>
-      <li><a href="./ai-hypervisor/findings/">Enforcement</a></li>
-    </ul></p>
-  </div>
-
-  <div class="navigation-card">
-    <h3 class="icon-homepage infrastructure-discovery-title"><a href="./infrastructure-discovery/overview/">Infrastructure Discovery <span class="card-arrow">→</span></a></h3>
-    <p class="card-description">Cross-account AWS asset and shadow AI discovery on a single relationship graph.</p>
-    <p><ul>
-      <li><a href="./infrastructure-discovery/overview/">Overview</a></li>
-      <li><a href="./infrastructure-discovery/setup/">Setup</a></li>
-      <li><a href="./infrastructure-discovery/exploring/">Exploring Inventory</a></li>
-    </ul></p>
-  </div>
-
-  <div class="navigation-card">
-    <h3 class="icon-homepage api-security-testing"><a href="./vulnerability-detection/security-testing-overview/">API Security Testing <span class="card-arrow">→</span></a></h3>
-    <p class="card-description">Find vulnerabilities before attackers do with automated security testing.</p>
-    <p><ul>
-      <li><a href="./vulnerability-detection/threat-replay-testing/overview/">Threat Replay Testing</a></li>
-      <li><a href="./vulnerability-detection/schema-based-testing/overview/">Schema-Based Testing</a></li>
-      <li><a href="./api-attack-surface/overview/">API Attack Surface (AASM)</a></li>
     </ul></p>
   </div>
 
@@ -160,6 +128,37 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
       <li><a href="./user-guides/search-and-filters/use-search/">Search & Reports</a></li>
       <li><a href="./user-guides/settings/users/">Users & Access</a></li>
       <li><a href="./troubleshooting/overview/">Troubleshooting</a></li>
+    </ul></p>
+  </div>
+
+  <div class="navigation-card">
+    <h3 class="icon-homepage ai-hypervisor-title"><a href="./ai-hypervisor/overview/">AI Hypervisor <span class="card-arrow">→</span></a></h3>
+    <p class="card-description">Runtime observability, enforcement, and governance for AI workloads on Amazon EKS.</p>
+    <p><ul>
+      <li><a href="./ai-hypervisor/overview/">Overview</a></li>
+      <li><a href="./ai-hypervisor/deploy/">Scanner Installation</a></li>
+      <li><a href="./ai-hypervisor/findings/">Findings & Risk Model</a></li>
+      <li><a href="./ai-hypervisor/findings/">Enforcement</a></li>
+    </ul></p>
+  </div>
+
+  <div class="navigation-card">
+    <h3 class="icon-homepage infrastructure-discovery-title"><a href="./infrastructure-discovery/overview/">Infra Discovery <span class="card-arrow">→</span></a></h3>
+    <p class="card-description">Cross-account AWS asset and shadow AI discovery on a single relationship graph.</p>
+    <p><ul>
+      <li><a href="./infrastructure-discovery/overview/">Overview</a></li>
+      <li><a href="./infrastructure-discovery/setup/">Setup</a></li>
+      <li><a href="./infrastructure-discovery/exploring/">Exploring Inventory</a></li>
+    </ul></p>
+  </div>
+
+  <div class="navigation-card">
+    <h3 class="icon-homepage api-security-testing"><a href="./vulnerability-detection/security-testing-overview/">API Security Testing <span class="card-arrow">→</span></a></h3>
+    <p class="card-description">Find vulnerabilities before attackers do with automated security testing.</p>
+    <p><ul>
+      <li><a href="./vulnerability-detection/threat-replay-testing/overview/">Threat Replay Testing</a></li>
+      <li><a href="./vulnerability-detection/schema-based-testing/overview/">Schema-Based Testing</a></li>
+      <li><a href="./api-attack-surface/overview/">API Attack Surface (AASM)</a></li>
     </ul></p>
   </div>
 
