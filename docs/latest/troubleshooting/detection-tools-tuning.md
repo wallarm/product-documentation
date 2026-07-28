@@ -26,7 +26,7 @@ Wallarm is a set of protection tools. If they do not work as expected, you can a
 
 ## Detailed approach
 
-1. Requests are in [API Sessions](../api-sessions/exploring.md) (all: legitimate and ones that are part of malicious activity, presented as logical sequence) or [Attacks](../user-guides/events/check-attack.md#attack-analysis_1) (only malicious).
+1. Requests are in [API Sessions](../api-sessions/exploring.md) (all: legitimate and ones that are part of malicious activity, presented as logical sequence) or [Attacks](../user-guides/events/check-attack.md#attacks-page) (only malicious).
 1. Get [Allowlist](../user-guides/ip-lists/overview.md) clear - no requests from it will appear in **Attacks** even if malicious. **API Sessions** is the chance to catch malicious from Allowlist.
 1. Blocked by [Denylist](../user-guides/ip-lists/overview.md)? In Attacks, use **Type** → "Blocked sources"; in Sessions, expand the session, check for presence of "Blocked sources" attack, filter by it. Switch to **IP & Session Lists** → **IP lists** → **Denylist** and find the blocked source, check **Reason**, if it was some automated tool, go to it and modify.
 

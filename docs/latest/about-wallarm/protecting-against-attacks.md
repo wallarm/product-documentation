@@ -1,4 +1,4 @@
-[rule-creation-options]:            ../user-guides/events/check-attack.md#attack-analysis_1
+[rule-creation-options]:            ../user-guides/events/check-attack.md#responding-to-attacks
 [request-processing]:               ../user-guides/rules/request-processing.md
 [api-discovery-enable-link]:        ../api-discovery/setup.md
 [ip-lists-link]:                    ../user-guides/ip-lists/overview.md

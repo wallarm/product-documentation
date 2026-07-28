@@ -40,11 +40,7 @@ This is what data is sent from Wallarm node to Cloud and how you can control it:
 
 **What data is sent and how to control**
 
-* In [Attacks](../user-guides/events/check-attack.md), you see information on all malicious requests ([input validation](../attacks-vulns-list.md#attack-types) attacks) and malicious behavior ([behavioral](../attacks-vulns-list.md#attack-types) attacks) registered by Wallarm, except:
-
-    * Incidents - displayed separately
-    * Attacks displayed exclusively in API Sessions
-
+* In [Attacks](../user-guides/events/check-attack.md), you see information on all malicious requests ([input validation](../attacks-vulns-list.md#attack-types) attacks) and malicious behavior ([behavioral](../attacks-vulns-list.md#attack-types) attacks) registered by Wallarm, except incidents - they are displayed separately.
 * [Incidents](../user-guides/events/check-incident.md) are attacks that successfully exploited the [security issue](../about-wallarm/detecting-vulnerabilities.md) (vulnerability) previously [detected](../about-wallarm/detecting-vulnerabilities.md#detection-methods) by Wallarm. These attacks were detected, but not blocked by Wallarm due to the current settings (`monitoring` [filtration mode](../admin-en/configure-wallarm-mode.md) or others). Information on an incident is the same as for an attack, plus a link to the security issue.
 * For input validation attacks, full HTTP data of the malicious request is sent.
 
