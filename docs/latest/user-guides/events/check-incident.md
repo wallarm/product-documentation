@@ -2,7 +2,6 @@
 [img-current-attacks]:  ../../images/glossary/attack-with-one-hit-example.png
 [img-incidents-tab]:    ../../images/user-guides/events/incident-vuln.png
 [use-search]:             ../search-and-filters/use-search.md
-[search-by-attack-status]: ../search-and-filters/use-search.md#search-attacks-by-the-action
 [link-attacks]:         ../../user-guides/events/check-attack.md
 [link-incidents]:       ../../user-guides/events/check-incident.md
 [link-sessions]:        ../../api-sessions/overview.md

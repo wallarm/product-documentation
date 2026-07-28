@@ -421,7 +421,7 @@ The Wallarm NGINX‑based filtering nodes now collect statistics on requests tha
 
 When using automatic IP blocking (e.g., with the brute force trigger configured), now you can analyze both the initial triggering requests and the samples of subsequent blocked requests. For requests blocked due to manual denylisting of their sources, the new functionality enhances visibility into blocked source actions.
 
-We have introduced new [search tags and filters](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) within the **Attacks** section to effortlessly access the newly introduced data:
+We have introduced new [search tags and filters](../../user-guides/search-and-filters/use-search.md#filters) within the **Attacks** section to effortlessly access the newly introduced data:
 
 * Utilize the `blocked_source` search to identify requests that were blocked due to manual denylisting of IP addresses, subnets, countries, VPNs, and more.
 * Employ the `multiple_payloads` search to pinpoint requests blocked by the **Number of malicious payloads** trigger. This trigger is designed to denylist sources that originate malicious requests containing multiple payloads, a common characteristic of multi-attack perpetrators.
