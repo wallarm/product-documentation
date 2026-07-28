@@ -574,5 +574,7 @@ Display columns (aggregated value lists, not sortable metrics): `attack_types`, 
 
 ## Related
 
-* [Exploring API Sessions][link-exploring-attacks] — the Console UI backed by this API.
-* [Wallarm API overview][api-overview] — authentication, tokens, and the API Console.
+* [Attack Analysis](../user-guides/events/check-attack.md): the Console UI backed by this API.
+* [Attack Search and Filters](../user-guides/search-and-filters/attack-filters.md): filtering, grouping, and saved views in the UI.
+* [Exploring API Sessions][link-exploring-attacks]: the session view of the same traffic.
+* [Wallarm API overview][api-overview]: authentication, tokens, and the API Console.
