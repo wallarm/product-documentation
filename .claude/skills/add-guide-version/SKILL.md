@@ -54,6 +54,7 @@ Freezing means: a page in `docs/<PREVIOUS_VERSION>/` stops being a one-line wrap
    - the entire `docs/latest/updating-migrating/` tree
    - `docs/latest/admin-en/installation-docker-en.md`, `installation-kubernetes-en.md`, `installation-postanalytics-en.md`
    - `docs/latest/admin-en/chaining-wallarm-and-other-ingress-controllers.md`
+   - `docs/latest/user-guides/rules/rules.md`
    - any other page that carries version-specific content: node metrics, logging, `configure-kubernetes-en.md`, pages that reference package repos, Docker tags, installer URLs, or node-version-specific behavior.
 
    **Exclusions:**
