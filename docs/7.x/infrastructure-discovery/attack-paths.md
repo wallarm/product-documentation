@@ -1,0 +1,1 @@
+--8<-- "latest/infrastructure-discovery/attack-paths.md"

@@ -1,6 +1,8 @@
 # Exploring Infrastructure Inventory <a href="../../about-wallarm/subscription-plans/#wallarm-infrastructure-discovery"><img src="../../images/infrastructure-discovery-tag.svg" class="non-zoomable" style="border: none;"></a>
 
-Once your cloud accounts are [connected](setup.md) and the first scan completes, the **Infrastructure Discovery** section in Wallarm Console provides a full view of your cloud resources, their security posture, and configuration changes over time. The section has two top-level tabs: **Graph** and **Security**.
+Once your cloud accounts are [connected](setup.md) and the first scan completes, the **Infrastructure Discovery** section in Wallarm Console provides a full view of your cloud resources, their security posture, and configuration changes over time. The section has three top-level tabs: **Graph**, **Security**, and **Attack Paths**.
+
+This page covers **Graph** and **Security**. For **Attack Paths** — the routes an attacker could take from an exposed resource to a valuable one, and the single resources that break the most of those routes — see [Attack Paths](attack-paths.md).
 
 ## Graph
 

@@ -19,6 +19,7 @@ Modern cloud environments grow organically: teams spin up resources across multi
 * **Security posture analysis** — built-in rules that automatically evaluate resource configurations against security best practices, flag vulnerable setups, and surface findings with severity levels. Policies let you tune how findings are handled for your environment.
 * **AWS-native finding aggregation** — imports AWS Security Hub findings (Amazon GuardDuty, Amazon Inspector, IAM Access Analyzer, and more) and correlates them with discovered resources, so all findings live in one place.
 * **Impact analysis** — a blast radius view for each finding that shows which connected resources could be affected, helping you prioritize remediation.
+* **[Attack path analysis](attack-paths.md)** — chains individual misconfigurations into complete routes from an exposed resource to a valuable one, and identifies the single resource that breaks the most routes at once.
 * **Change tracking** — comparison of successive scans highlighting created, updated, and deleted resources so you can spot unintended configuration changes.
 * **Creator attribution** — for each asset, Infrastructure Discovery looks up the IAM principal that created it from your CloudTrail history, so every asset record carries an answer to "who made this change?".
 
