@@ -10,7 +10,6 @@
 [sidecar-helm-chart]: ../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
 [sidecar-deployment]: ../installation/kubernetes/sidecar-proxy/deployment.md
 [sidecar-upgrade]: ../updating-migrating/sidecar-proxy.md
-[ic-helm-chart]: ../admin-en/configure-kubernetes-en.md#controllerwallarmwdmetricsenabled
 [ic-deployment]: ../admin-en/installation-kubernetes-en.md
 
 
