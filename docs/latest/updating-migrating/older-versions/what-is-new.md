@@ -591,7 +591,7 @@ The NGINX-based Wallarm Docker image now supports the new environment variable `
     * `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
 
     Parameters with previous names are still supported but will be deprecated in future releases. The parameter logic has not changed.
-* The Ingress [annotation](../../admin-en/configure-kubernetes-en.md#ingress-annotations) `nginx.ingress.kubernetes.io/wallarm-instance` has been renamed to `nginx.ingress.kubernetes.io/wallarm-application`.
+* The Ingress [annotation](../../admin-en/configure-kubernetes-annotations.md#supported-wallarm-ingress-annotations) `nginx.ingress.kubernetes.io/wallarm-instance` has been renamed to `nginx.ingress.kubernetes.io/wallarm-application`.
 
     The annotation with the previous name is still supported but will be deprecated in future releases. The annotation logic has not changed.
 * The file with the custom ruleset build `/etc/wallarm/lom` has been renamed to `/etc/wallarm/custom_ruleset`. In the file system of new node versions, there is only the file with the new name.
@@ -642,7 +642,7 @@ Now you can easily group node instances using one [**API token**](../../user-gui
 For example: 
 
 ```bash
-docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>' -p 80:80 wallarm/node:6.12.7
+docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>' -p 80:80 wallarm/node:7.1.0
 ```
 ...will place the node instance into the `<GROUP>` instance group (existing, or, if does not exist, it will be created).
 
@@ -672,7 +672,7 @@ The old **Vulnerabilities** section is not displayed anymore.
 ## OAS 3.1 support
 
 !!! tip ""
-    OAS 3.1 support in [API Specification Enforcement](../api-specification-enforcement/overview.md) requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.6.1+ or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.20.0+.
+    OAS 3.1 support in [API Specification Enforcement](../../api-specification-enforcement/overview.md) requires [NGINX Node](../../installation/nginx-native-node-internals.md#nginx-node) 6.6.1+ or [Native Node](../../installation/nginx-native-node-internals.md#native-node) 0.20.0+.
 
 For [API Specification Enforcement](../../api-specification-enforcement/overview.md), you can now upload OpenAPI specifications of **version 3.1**.
 
