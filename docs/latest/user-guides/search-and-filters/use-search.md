@@ -20,12 +20,12 @@
 [ssti-injection]:         ../../attacks-vulns-list.md#serverside-template-injection-ssti
 [overlimit-res]:          ../../attacks-vulns-list.md#resource-overlimit
 
-# Event Search and Filters
+# Incident Search and Filters
 
 !!! info "Searching attacks"
-    This article describes the search in the **Incidents** section. To search detected attacks, see [Attack Search and Filters](attack-filters.md).
+    This article describes the search in the **Incidents** section. Attacks are searched differently, see [Attack Search and Filters](attack-filters.md).
 
-Wallarm provides convenient methods for searching detected events (attacks and incidents). In the **Attacks** and **Incidents** sections of Wallarm Console, the following search methods are available:
+Wallarm provides convenient methods for searching detected incidents. In the **Incidents** section of Wallarm Console, the following search methods are available:
 
 * **Filters** to select filtering criteria
 * **Search field** to input search queries with attributes and modifiers similar to human language
@@ -49,26 +49,23 @@ When values of different filters are selected, the results will meet all those c
 
 The search field accepts queries with attributes and modifiers similar to human language which makes submitting queries intuitive. For example:
 
-* `attacks xss`: to search for all [XSS-attacks][al-xss]
-* `attacks today`: to search for all attacks that happened today
-* `xss 12/14/2020`: to search for all suspicions, attacks, and incidents of [cross‑site scripting][al-xss] on 14 December 2020
-* `p:xss 12/14/2020`: to search for all suspicions, attacks, and incidents of all types within the xss HTTP request parameter (i.e. `http://localhost/?xss=attack-here`) as of 14 December 2020
-* `attacks 9-12/2020`: to search for all attacks from September to December 2020
-* `rce /catalog/import.php`: to search for all [RCE][al-rce] attacks and incidents on `/catalog/import.php` path since yesterday
+* `incidents xss`: to search for all [XSS][al-xss] incidents
+* `incidents today`: to search for all incidents that happened today
+* `xss 12/14/2020`: to search for all [cross‑site scripting][al-xss] incidents as of 14 December 2020
+* `p:xss 12/14/2020`: to search for all incidents within the xss HTTP request parameter (i.e. `http://localhost/?xss=attack-here`) as of 14 December 2020
+* `incidents 9-12/2020`: to search for all incidents from September to December 2020
+* `rce /catalog/import.php`: to search for all [RCE][al-rce] incidents on `/catalog/import.php` path since yesterday
 
 When values of different parameters are specified, the results will meet all those conditions. When different values for the same parameter are specified, the results will meet any of those conditions.
 
 !!! info "Setting the attribute value to NOT"
-    To negate the attribute value, please use `!` before the attribute or modifier name. For example: `attacks !ip:111.111.111.111` to show all attacks originated from any IP address excluding `111.111.111.111`.
+    To negate the attribute value, please use `!` before the attribute or modifier name. For example: `incidents !ip:111.111.111.111` to show all incidents originated from any IP address excluding `111.111.111.111`.
 
 Below you will find the list of attributes and modifiers available for use in search queries.
 
 ### Search by object type
 
-Specify in the search string:
-
-* `attack`, `attacks`: to search only for the attacks that are *not* aimed at known vulnerabilities.
-* `incident`, `incidents`: to search only for incidents (attacks exploiting a known vulnerability).
+Specify `incident` or `incidents` in the search string to search only for incidents, that is, attacks exploiting a known vulnerability.
 
 ### Search by attack type
 

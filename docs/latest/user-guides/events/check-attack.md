@@ -22,7 +22,7 @@ The page presents attacks for the selected period and lets you shape what you se
 
 * **Views** are tabs above the filter. Each view stores a filter, a grouping, a time range, and a column layout, so you can switch between saved perspectives on your attack data in one click. See [Attack Search and Filters](../search-and-filters/attack-filters.md#views).
 * The time range selector limits the data to a period of up to 6 months.
-* **Group by** controls how requests are combined into attacks. The default grouping is by attack type; you can group by another single attribute or by a custom combination of up to 4 attributes.
+* **Group by** controls how requests are combined into attacks: by attack type (the default), by source IP, not at all, or by a custom combination of up to 4 attributes. See [Attack Search and Filters](../search-and-filters/attack-filters.md#grouping).
 * The filter field narrows the list down to the attacks you are interested in. See [Attack Search and Filters](../search-and-filters/attack-filters.md).
 * **Statistic** is a collapsible panel with charts summarizing the filtered data: requests with attacks over time, top source IPs, status code breakdown, top attacked endpoints and hosts, top attack types and subtypes. Clicking an element of a chart drills into the corresponding attacks.
 
@@ -98,7 +98,7 @@ Marking a request as a false positive excludes it from the attack data. To also 
 
 You can revert a mark with **Mark as** → **FP** on an already marked request.
 
-Wallarm hides false positives from the attack list by default. To review them, filter the list by the **Mark** field.
+Wallarm hides false positives from the attack list by default. To review them, filter the list by **Verification Status**.
 
 See details on false positives [here](../../about-wallarm/protecting-against-attacks.md#false-positives).
 

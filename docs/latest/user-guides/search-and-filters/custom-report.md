@@ -1,5 +1,6 @@
 [img-custom-report]:        ../../images/user-guides/search-and-filters/custom-report.png
 [link-using-search]:        use-search.md
+[link-attack-export]:       attack-filters.md#export
 
 # Creating Reports
 
@@ -16,11 +17,13 @@ CSV report may include several CSV files, one for each type of event - attack, i
 
 ## Generating
 
-In Wallarm Console, reports can be generated from the **Attacks**, **Incidents** or **Security Issues** section. Whichever section you use, the report will contain all types of events - attacks, incidents, and vulnerabilities. Report content depends on the current filters. Filters applied for the attacks are automatically applied also for the incidents and vice versa. For vulnerabilities, the report will always contain the list of currently active vulnerabilities.
+In Wallarm Console, reports can be generated from the **Incidents** or **Vulnerabilities** section. Whichever section you use, the report will contain all types of events - attacks, incidents, and vulnerabilities. Report content depends on the current filters. For vulnerabilities, the report will always contain the list of currently active vulnerabilities.
+
+To get attack data on its own, use the [CSV export][link-attack-export] of the **Attacks** section instead.
 
 To generate a report:
 
-1. In Wallarm Console, go to **Attacks**, **Incidents** or **Security Issues** section.
+1. In Wallarm Console, go to **Incidents** or **Vulnerabilities** section.
 1. [Filter][link-using-search] the events.
 1. Click **Report** (or **PDF/CSV** for **Security Issues**) and select PDF or CSV.
 1. Set the **Send to** email.

@@ -135,7 +135,7 @@ Once trigger thresholds are exceeded, Wallarm adds the IP to the denylist and bl
 
 ![Events related to denylisted IPs - sending data enabled](../../images/user-guides/events/events-denylisted-export-enabled.png)
 
-Use [search tags of filters](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) to find requests from denylisted IPs: [API abuse related](../../attacks-vulns-list.md#api-abuse), `brute`, `dirbust`, `bola`, `multiple_payloads` for automatically listed, `blocked_source` - for manual ones.
+Use the [**Attack Type** filter](../../user-guides/search-and-filters/attack-filters.md#filter) to find requests from denylisted IPs: [API abuse related](../../attacks-vulns-list.md#api-abuse) types, **Brute force**, **Forced browsing**, **Broken Object Level Authorization** for automatically listed IPs, and **Blocked source** for manual ones.
 
 Note that search/filters will display both attacks in the `Monitoring` status and - if sending information is enabled - with the `Blocked` status for each attack type. For manually denylisted IPs an attack with the `Monitoring` status never exists.
 

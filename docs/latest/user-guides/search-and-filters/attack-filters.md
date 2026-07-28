@@ -10,7 +10,14 @@ The filter field above the attack list builds a filter from conditions. Each con
 
 ![Attack filter - operators](../../images/user-guides/search-and-filters/attack-filter-operators.png)
 
-You can filter by the attack attributes, including attack type and subtype, host, endpoint, source IP and its country, HTTP method and response status code, request point, user and user role, session, application, API and authentication protocol, CVE, CWE, and OWASP category. Numeric conditions on aggregated metrics, such as the number of requests or unique IPs in an attack, are supported as well.
+You can filter by the attack attributes, including attack type and subtype, host, path, source IP and its country, HTTP method and response status code, attacked parameter location, user and user role, session, application, API and authentication protocol, CVE, CWE, and OWASP category. Numeric conditions on aggregated metrics, such as the number of requests or unique IPs in an attack, are supported as well.
+
+Several fields are worth knowing about:
+
+* **Attack Type** and **Attack Subtype** offer the [attack types](../../attacks-vulns-list.md) Wallarm detects as ready values, from **SQL Injection** and **Brute force** to **GraphQL query depth** and **Prompt injection**.
+* **Blocking Status** narrows the list to `Blocked`, `Partially Blocked`, or `Monitoring` attacks.
+* **Verification Status** narrows the list to `True Positive`, `False Positive`, or `Unmarked` attacks. Wallarm hides false positives by default, so use this field to review them.
+* **Attack Payload Content** and **Parameter Search** perform a full-text search in the malicious payload and in the attacked parameter. They support **is** (contains) and **is not** (does not contain) only.
 
 ### Operators
 
@@ -42,9 +49,12 @@ The time range selector limits the data to a period. Choose one of the relative 
 
 ## Grouping
 
-**Group by** controls how malicious requests are combined into the attacks you see in the list. By default Wallarm groups them by attack type, so one row is one attack type on one host. Selecting another attribute regroups the same data by it. For example, grouping by source IP answers which IPs are attacking you, and grouping by endpoint answers which endpoints are being attacked.
+**Group by** controls how malicious requests are combined into the attacks you see in the list:
 
-For a more precise breakdown, select **Custom** and specify a combination of up to 4 attributes. To see attacks ungrouped, select the grouping that produces individual attacks.
+* **Type** groups by attack type, payload location, and host. This is the default.
+* **IP** groups by source IP across all hosts, which answers which IPs are attacking you.
+* **None** applies no grouping and shows individual requests.
+* **Custom** builds a grouping from up to 4 attributes of your choice.
 
 Grouping changes the rows and the metrics computed for them, not the underlying requests. Statistics and the filter apply to the grouped data.
 

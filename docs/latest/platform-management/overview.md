@@ -20,6 +20,6 @@
 
 * **[Triggers & Alerts](../user-guides/triggers/triggers.md)** — automated triggers and alert notifications.
 
-* **[Search & Reports](../user-guides/search-and-filters/use-search.md)** — search events and generate custom reports.
+* **[Search & Reports](../user-guides/search-and-filters/attack-filters.md)** — search events and generate custom reports.
 
 * **[Account Settings](../user-guides/settings/account.md)** — your account, applications, subscriptions, and audit logs.
