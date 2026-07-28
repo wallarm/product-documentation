@@ -39,7 +39,8 @@
 | hit | Serialized malicious request (original request + metadata from Node) | | |
 | malicious request | Request with attack signs detected by Node | | invalid request |
 | legitimate request | Request without attack signs | | |
-| malicious payload | Part of request containing attack stamps (identifier + context) | payload | attack vector |
+| malicious payload | Part of request containing attack stamps (identifier + context) | payload | |
+| attack vector | Record of attack evidence for one grouped set of malicious requests, as returned by the Attacks API and shown as a row in the **Attacks** section | | malicious payload |
 | false positive | Mistaken detection of attack or vulnerability | | false attack, false vulnerability |
 | security issue | Error in application that can be exploited by attacker. Detected via: Passive detection, Threat Replay Testing, Schema-Based Testing, API Attack Surface Management | vulnerability, issue | |
 | vulnerability | See **security issue** | security issue, issue | |

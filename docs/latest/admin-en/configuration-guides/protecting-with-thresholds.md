@@ -67,4 +67,4 @@ The following is the testing example for the [pre-configured trigger](#pre-confi
 
     ![Three malicious payloads in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
 
-    To search for the attacks, you can use the `multiple_payloads` [search tag](../../user-guides/search-and-filters/use-search.md#search-by-attack-type).
+    To find these attacks, use the [**Attack Type** filter](../../user-guides/search-and-filters/attack-filters.md#filter).
