@@ -115,7 +115,7 @@ Generate a [Node API token][node-token-types]:
 1. Install the Wallarm packages:
 
     ```bash
-    helm install --version 7.0.0 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
+    helm install --version 7.1.0 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` is the name for the Helm release of the Ingress controller chart
