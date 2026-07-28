@@ -150,9 +150,9 @@ nav:
       - Gloo Gateway: installation/connectors/gloo.md
       - NGINX Ingress Controller:
         - Deployment: admin-en/installation-kubernetes-en.md
-        - Configuration Options: admin-en/configure-kubernetes-en.md
-        - High Availability: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
-        - Real Client IP: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
+        - Helm Chart: admin-en/configure-kubernetes-en.md
+        - Annotations & Policies: admin-en/configure-kubernetes-annotations.md
+        - High Availability & Resources: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
         - Chaining Ingress Controllers: admin-en/chaining-wallarm-and-other-ingress-controllers.md
       - Kong Ingress Controller: installation/connectors/kong-ingress-controller.md
       - Helm Chart for Native Node:
