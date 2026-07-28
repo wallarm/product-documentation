@@ -5,8 +5,6 @@
 [applications-docs]:                ../../user-guides/settings/applications.md
 [available-filtration-modes]:       ../../admin-en/configure-wallarm-mode.md#available-filtration-modes
 
-[self-hosted-connector-node-helm-conf]: ../native-node/helm-chart-conf.md
-
 # Wallarm Connector for Kong Ingress Controller
 
 To secure APIs managed by [Kong Ingress Controller](https://docs.konghq.com/kubernetes-ingress-controller/latest/), Wallarm provides a connector that integrates seamlessly into your Kubernetes environment. By deploying the Wallarm filtering node and connecting it to Kong via a custom Lua plugin, incoming traffic is analyzed in real-time, allowing Wallarm to mitigate malicious requests before they reach your services.

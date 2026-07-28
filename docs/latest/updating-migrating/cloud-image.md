@@ -1,5 +1,5 @@
 [wallarm-status-instr]:             ../admin-en/configure-statistics-service.md
-[memory-instr]:                     ../admin-en/configuration-guides/allocate-memory-for-waf-node.md
+[memory-instr]:                     ../admin-en/configuration-guides/allocate-resources-for-node.md
 [waf-directives-instr]:             ../admin-en/configure-parameters-en.md
 [ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png

@@ -6,7 +6,6 @@
 [logging-instr]:                    ../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../admin-en/using-proxy-or-balancer-en.md
 [process-time-limit-instr]:         ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
-[configure-selinux-instr]:          ../admin-en/configure-selinux.md
 [configure-proxy-balancer-instr]:   ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [install-postanalytics-instr]:      ../admin-en/installation-postanalytics-en.md
 [dynamic-dns-resolution-nginx]:     ../admin-en/configure-dynamic-dns-resolution-nginx.md
@@ -20,7 +19,6 @@
 [oob-docs]:                         ../installation//oob/overview.md
 [sqli-attack-docs]:                 ../attacks-vulns-list.md#sql-injection
 [xss-attack-docs]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
-[web-server-mirroring-examples]:    ../installation/oob/web-server-mirroring/overview.md#configuration-examples-for-traffic-mirroring
 [ip-lists-docs]:                     ../user-guides/ip-lists/overview.md
 
 # Upgrading Wallarm NGINX modules

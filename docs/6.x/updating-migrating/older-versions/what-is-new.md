@@ -674,7 +674,7 @@ The old **Vulnerabilities** section is not displayed anymore.
 ## OAS 3.1 support
 
 !!! tip ""
-    OAS 3.1 support in [API Specification Enforcement](../api-specification-enforcement/overview.md) requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.6.1+ or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.20.0+.
+    OAS 3.1 support in [API Specification Enforcement](../../api-specification-enforcement/overview.md) requires [NGINX Node](../../installation/nginx-native-node-internals.md#nginx-node) 6.6.1+ or [Native Node](../../installation/nginx-native-node-internals.md#native-node) 0.20.0+.
 
 For [API Specification Enforcement](../../api-specification-enforcement/overview.md), you can now upload OpenAPI specifications of **version 3.1**.
 

@@ -1176,7 +1176,7 @@ Supported in Native Node 0.13.5 and later 0.13.x versions, and in 0.15.1 and lat
 
 ### metrics.per_host_stats
 
-Controls whether per-host statistics are collected in the HTTP inspector. When enabled, the node exports additional `wallarm_gonode_http_inspector_*_per_host_total` [Prometheus metrics](../../admin-en/native-node-metrics-gonode.md#per-host-metrics) with a `host` label.
+Controls whether per-host statistics are collected in the HTTP inspector. When enabled, the node exports additional `wallarm_gonode_http_inspector_*_per_host_total` [Prometheus metrics](../../admin-en/native-node-metrics-gonode.md) with a `host` label.
 
 Set to `false` to disable these metrics and reduce metric cardinality in environments with many unique hostnames.
 
