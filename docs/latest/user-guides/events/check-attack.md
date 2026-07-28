@@ -26,7 +26,7 @@ The page presents attacks for the selected period and lets you shape what you se
 * The filter field narrows the list down to the attacks you are interested in. See [Attack Search and Filters](../search-and-filters/attack-filters.md).
 * **Statistic** is a collapsible panel with charts summarizing the filtered data: requests with attacks over time, top source IPs, status code breakdown, top attacked endpoints and hosts, top attack types and subtypes. Clicking an element of a chart drills into the corresponding attacks.
 
-The table below the panel lists the attacks themselves. Use **Table settings** to choose, reorder, resize, and pin columns; the column set is stored in the view. To get the data outside of Wallarm Console, use **Export attacks as CSV**. Wallarm emails you a download link that stays valid for a limited time.
+The table below the panel lists the attacks themselves. Use **Table settings** to choose, reorder, resize, and pin columns; the column set is stored in the view. To get the data outside of Wallarm Console, use [**Export attacks as CSV**](../search-and-filters/custom-report.md#attacks).
 
 ## Attack details
 

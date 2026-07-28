@@ -70,4 +70,4 @@ The primary challenge the [**API Sessions**](../../api-sessions/overview.md) add
 
 For incidents or vulnerabilities, generate PDF or CSV [reports](../../user-guides/search-and-filters/custom-report.md). Do you want selected data? Apply filters and only filtered data will become part of the report.
 
-For attacks, use [CSV export](../search-and-filters/attack-filters.md#export): Wallarm exports the attacks matching your filter and emails you a download link.
+For attacks, use [CSV export](../search-and-filters/custom-report.md#attacks): Wallarm exports the attacks matching your filter and emails you a download link.
