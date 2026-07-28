@@ -38,7 +38,6 @@ This section covers maintenance, monitoring, and upgrades for the **Wallarm Node
         * [Native Node Changelog](../updating-migrating/native-node/node-artifact-versions.md) - Release notes for Native nodes
         * [Connector Code Bundle](../installation/connectors/code-bundle-inventory.md) - Connector release notes
     * **NGINX Node Upgrades**
-        * [DEB/RPM Packages](../updating-migrating/nginx-modules.md)
         * [All-in-One Installer](../updating-migrating/all-in-one.md)
         * [Docker Image](../updating-migrating/docker-container.md)
         * [Ingress Controller](../updating-migrating/ingress-controller.md)

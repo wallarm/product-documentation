@@ -350,7 +350,7 @@ If this option is not configured, stream lengths remain unlimited, potentially c
     When updating configuration you used for your filtering node of the version before 4.0:
 
     * If you upgrade filtering node without multitenancy feature and have any `wallarm_instance` used to set unique identifier of the protected application, just rename it to `wallarm_application`.
-    * If you upgrade filtering node with multitenancy feature, consider all `wallarm_instance` to be `wallarm_application`, then rewrite the configuration as described in the [multitenancy reconfiguration instruction](../updating-migrating/older-versions/multi-tenant.md#step-3-reconfigure-multitenancy).
+    * If you upgrade filtering node with multitenancy feature, consider all `wallarm_instance` to be `wallarm_application`, then rewrite the configuration as described in the [multitenancy configuration instructions](../installation/multi-tenant/configure-accounts.md).
 
 ### wallarm_key_path
 
@@ -512,7 +512,7 @@ The directive also exposes two NGINX variables (NGINX Node 6.12.0+) that can be 
     Know how to:
 
     * [Get the UUID of the tenant during tenant creation →](../installation/multi-tenant/configure-accounts.md#via-the-wallarm-api)
-    * [Get the list of UUIDs of existing tenants →](../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants)
+    * [Get the list of UUIDs of existing tenants →](../installation/multi-tenant/configure-accounts.md#getting-uuids-of-existing-tenants)
 
 Configuration example:
 

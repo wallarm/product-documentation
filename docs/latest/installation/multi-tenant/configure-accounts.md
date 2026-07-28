@@ -119,6 +119,106 @@ server {
 
 In the configuration above, the traffic targeting `tenant1.com` will be associated with the client `11111111-1111-1111-1111-111111111111`.
 
+## Getting UUIDs of existing tenants
+
+If your tenants already exist and you need their UUIDs — for example, to set the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive or the `nginx.org/wallarm-partner-client-uuid` annotation — retrieve them through the Wallarm API. Authentication is the same as the one [used for tenant creation](#via-the-wallarm-api).
+
+1. Get `clientid`(s) to later find UUIDs related to them:
+
+    === "Via Wallarm Console"
+
+        Copy `clientid`(s) from the **ID** column in the Wallarm Console user interface:
+
+        ![Selector of tenants in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console-ann.png)
+    === "By sending request to API"
+        1. Send the GET request to the route `/v2/partner_client`:
+
+            !!! info "Example of the request sent from your own client"
+                === "US Cloud"
+                    ``` bash
+                    curl -X GET \
+                    'https://us1.api.wallarm.com/v2/partner_client?partnerid=PARTNER_ID' \
+                    -H 'accept: application/json' \
+                    -H "X-WallarmApi-Token: <YOUR_TOKEN>"
+                    ```
+                === "EU Cloud"
+                    ``` bash
+                    curl -X GET \
+                    'https://api.wallarm.com/v2/partner_client?partnerid=PARTNER_ID' \
+                    -H 'accept: application/json' \
+                    -H "X-WallarmApi-Token: <YOUR_TOKEN>"
+                    ```
+
+            Where `PARTNER_ID` is your partner ID.
+
+            Response example:
+
+            ```
+            {
+            "body": [
+                {
+                    "id": 1,
+                    "partnerid": <PARTNER_ID>,
+                    "clientid": <CLIENT_1_ID>,
+                    "params": null
+                },
+                {
+                    "id": 3,
+                    "partnerid": <PARTNER_ID>,
+                    "clientid": <CLIENT_2_ID>,
+                    "params": null
+                }
+            ]
+            }
+            ```
+
+        1. Copy `clientid`(s) from the response.
+1. To get the UUID of each tenant, send the POST request to the route `v1/objects/client`:
+
+    !!! info "Example of the request sent from your own client"
+        === "US Cloud"
+            ``` bash
+            curl -X POST \
+            https://us1.api.wallarm.com/v1/objects/client \
+            -H 'content-type: application/json' \
+            -H 'X-WallarmApi-Token: <YOUR_TOKEN>' \
+            -d '{ "filter": { "id": [<CLIENT_1_ID>, <CLIENT_2_ID>]}}'
+            ```
+        === "EU Cloud"
+            ``` bash
+            curl -X POST \
+            https://api.wallarm.com/v1/objects/client \
+            -H 'content-type: application/json' \
+            -H 'X-WallarmApi-Token: <YOUR_TOKEN>' \
+            -d '{ "filter": { "id": [<CLIENT_1_ID>, <CLIENT_2_ID>]}}'
+            ```
+
+    Response example:
+
+    ```
+    {
+    "status": 200,
+    "body": [
+        {
+            "id": <CLIENT_1_ID>,
+            "name": "<CLIENT_1_NAME>",
+            ...
+            "uuid": "11111111-1111-1111-1111-111111111111",
+            ...
+        },
+        {
+            "id": <CLIENT_2_ID>,
+            "name": "<CLIENT_2_NAME>",
+            ...
+            "uuid": "22222222-2222-2222-2222-222222222222",
+            ...
+        }
+    ]
+    }
+    ```
+
+1. From the response, copy `uuid`(s).
+
 ## Providing users with access to accounts
 
 * On the technical tenant account, there are **global** and **regular** [roles](../../user-guides/settings/users.md) to provide the users with.

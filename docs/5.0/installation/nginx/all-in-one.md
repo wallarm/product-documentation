@@ -9,7 +9,6 @@
 [proxy-balancer-instr]:             ../../admin-en/using-proxy-or-balancer-en.md
 [process-time-limit-instr]:         ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [configure-proxy-balancer-instr]:   ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-[update-instr]:                     ../../updating-migrating/nginx-modules.md
 [install-postanalytics-docs]:        ../../../admin-en/installation-postanalytics-en/
 [dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
 [ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md

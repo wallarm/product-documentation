@@ -704,7 +704,7 @@ Supported in Native Node 0.19.0 and later.
     Know how to:
     
     * [Get the UUID of the tenant during tenant creation →](../../installation/multi-tenant/configure-accounts.md#via-the-wallarm-api)
-    * [Get the list of UUIDs of existing tenants →](../../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants)
+    * [Get the UUIDs of existing tenants →](../multi-tenant/configure-accounts.md#getting-uuids-of-existing-tenants)
 
 Configuration example:
 

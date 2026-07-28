@@ -11,7 +11,6 @@
 [nginx-node-changelog]: ../updating-migrating/node-artifact-versions.md
 [api-abuse-prevention]: ../api-abuse-prevention/overview.md
 [cred-stuffing]: ../about-wallarm/credential-stuffing.md
-[jwt-tokens]: ../updating-migrating/older-versions/what-is-new.md#checking-json-web-token-strength
 [api-discovery]: ../api-discovery/overview.md
 
 # wcli Controller Metrics of the NGINX Node
@@ -578,7 +577,7 @@ wallarm_wcli_credstuff_requests_failed 0
 
 ## JWT token exporter metrics (jwtexp)
 
-Metrics from the  JWT token exporter, which extracts and analyzes [JSON Web Tokens][jwt-tokens] for authentication and abuse detection.
+Metrics from the  JWT token exporter, which extracts and analyzes JSON Web Tokens for authentication and abuse detection.
 
 ---
 ### `wallarm_wcli_jwtexp_tnt_requests`

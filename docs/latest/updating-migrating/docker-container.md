@@ -21,9 +21,6 @@ These instructions describe the steps to upgrade the running Docker NGINX-based 
 
 !!! warning "Using credentials of already existing Wallarm node"
     We do not recommend using the already existing Wallarm node of the previous version. Please follow these instructions to create a new filtering node of the version 6.x and deploy it as the Docker container.
-
-To upgrade the end‑of‑life node (3.6 or lower), please use the [different instructions](older-versions/docker-container.md).
-
 ## Requirements
 
 --8<-- "../include/waf/installation/requirements-docker-nginx-latest.md"

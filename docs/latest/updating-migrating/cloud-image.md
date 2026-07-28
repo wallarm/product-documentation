@@ -16,9 +16,6 @@
 # Upgrading the cloud node image
 
 These instructions describe the steps to upgrade the cloud node image deployed on AWS or GCP up to the latest 6.x.
-
-To upgrade the end‑of‑life node (3.6 or lower), please use the [different instructions](older-versions/cloud-image.md).
-
 ## Requirements
 
 --8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
