@@ -158,4 +158,4 @@ When business logic abuse is detected, it shows up in [API Sessions](../api-sess
 
 You can find sessions with corresponding attack types using the **Attack** filter - use the **Custom logic abuse** attack type to display only sessions with these attacks. 
 
-Note that business logic abuse is based entirely on [API sessions](../api-sessions/overview.md). Because of that, the attacks found by these mitigation controls are displayed exclusively in the **API Sessions** section (and not displayed in the [**Attacks**](../user-guides/events/check-attack.md) section).
+Note that business logic abuse is based entirely on [API sessions](../api-sessions/overview.md). The attacks found by these mitigation controls are displayed both in **API Sessions** and in the [**Attacks**](../user-guides/events/check-attack.md) section.
