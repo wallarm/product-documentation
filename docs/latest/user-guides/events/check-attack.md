@@ -40,9 +40,9 @@ The **Overview** tab summarizes the attack: its status, type, when it was first 
 
 The **Status** field shows what the node did with the attack:
 
-* `Blocked` - all requests of the attack were blocked by the filtering node.
-* `Partially Blocked` - some requests of the attack were blocked and others were only registered.
-* `Monitoring` - all requests of the attack were registered but not blocked.
+* **Blocked** - all requests of the attack were blocked by the filtering node.
+* **Partially Blocked** - some requests of the attack were blocked and others were only registered.
+* **Monitoring** - all requests of the attack were registered but not blocked.
 
 ### Requests
 
@@ -76,15 +76,15 @@ To respond to an attack, identify what type of attack took place, understand whi
 
 | Attack type | Detected by | Where to adjust |
 | -- | -- | -- |
-| `sqli`, `xss`, `rce`, `ptrav`, `crlf`, `nosqli`, `ssi` and other [input validation attacks](../../attacks-vulns-list.md) | [Standard detectors](../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection) | [Rules](../rules/rules.md) and the [filtration mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) of the application, host, or endpoint |
-| `custom_rule` | [Custom attack detector](../rules/regex-rule.md) | The [regexp-based rule](../rules/regex-rule.md) that matched, which you can also [partially disable](../rules/regex-rule.md#partial-disabling) |
-| `vpatch` | [Virtual patch](../rules/vpatch-rule.md) | The virtual patch rule. Virtual patches work regardless of the filtration mode |
-| `brute`, `dirbust`, `bola`, `multiple_payloads` | [Mitigation control](../../about-wallarm/mitigation-controls-overview.md) or [trigger](../triggers/triggers.md) | **Open Mitigation control**, or the trigger in **Triggers**. If the source was denylisted, the [IP list](../ip-lists/overview.md#requests-from-denylisted-ips) entry |
-| `blocked_source` | [IP lists](../ip-lists/overview.md#requests-from-denylisted-ips) | The denylist entry for the source IP |
-| `api_abuse`, `account_takeover`, `security_crawlers`, `scraping`, `resource_consumption` ([details](../../attacks-vulns-list.md#api-abuse)) | [API Abuse Prevention](../../api-abuse-prevention/overview.md) | **View API Abuse profile** to review the [detection confidence](../../api-abuse-prevention/overview.md#how-api-abuse-prevention-works) and [change the profile](../../api-abuse-prevention/setup.md#creating-profiles), or **API Abuse exception list** to [exempt the source IP](../../api-abuse-prevention/exceptions.md) |
-| `undefined_endpoint`, `undefined_parameter`, `invalid_parameter_value`, `missing_parameter`, `missing_auth`, `invalid_request` ([details](../../attacks-vulns-list.md#api-specification)) | [API Specification Enforcement](../../api-specification-enforcement/overview.md) | **Open Spec Enforcement Policy** |
-| `gql_doc_size`, `gql_value_size`, `gql_depth`, `gql_aliases`, `gql_docs_per_batch`, `gql_introspection`, `gql_debug` ([details](../../attacks-vulns-list.md#graphql-attacks)) | [GraphQL API Protection](../../api-protection/graphql-rule.md) | The **Detect GraphQL attacks** rule |
-| `credential_stuffing` | [Credential Stuffing Detection](../../about-wallarm/credential-stuffing.md) | The [Credential Stuffing configuration](../../about-wallarm/credential-stuffing.md#configuring), specifically the monitored authentication endpoints |
+| **SQL Injection**, **Cross-site Scripting**, **Remote Code Execution**, **Path traversal**, **CRLF Injection**, **NoSQL Injection** and other [input validation attacks](../../attacks-vulns-list.md#attack-types) | [Standard detectors](../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection) | [Rules](../rules/rules.md) and the [filtration mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) of the application, host, or endpoint |
+| Attacks detected by a regexp-based rule | [Custom attack detector](../rules/regex-rule.md) | The [regexp-based rule](../rules/regex-rule.md) that matched, which you can also [partially disable](../rules/regex-rule.md#partial-disabling) |
+| **Virtual patch** | [Virtual patch](../rules/vpatch-rule.md) | The virtual patch rule. Virtual patches work regardless of the filtration mode |
+| **Brute force**, **Forced browsing**, **Broken Object Level Authorization**, **Enumeration** | [Mitigation control](../../about-wallarm/mitigation-controls-overview.md) or [trigger](../triggers/triggers.md) | **Open Mitigation control**, or the trigger in **Triggers**. If the source was denylisted, the [IP list](../ip-lists/overview.md#requests-from-denylisted-ips) entry |
+| **Blocked source** | [IP lists](../ip-lists/overview.md#requests-from-denylisted-ips) | The denylist entry for the source IP |
+| **Suspicious API activity**, **Account takeover**, **Security crawlers**, **Scraping**, **Unrestricted resource consumption** ([details](../../attacks-vulns-list.md#api-abuse)) | [API Abuse Prevention](../../api-abuse-prevention/overview.md) | **View API Abuse profile** to review the [detection confidence](../../api-abuse-prevention/overview.md#how-api-abuse-prevention-works) and [change the profile](../../api-abuse-prevention/setup.md#creating-profiles), or **API Abuse exception list** to [exempt the source IP](../../api-abuse-prevention/exceptions.md) |
+| **Undefined endpoint**, **Undefined parameter**, **Invalid parameter**, **Missing parameter**, **Missing authentication**, **Invalid request** ([details](../../attacks-vulns-list.md#api-specification)) | [API Specification Enforcement](../../api-specification-enforcement/overview.md) | **Open Spec Enforcement Policy** |
+| **GraphQL query size**, **GraphQL value size**, **GraphQL query depth**, **GraphQL aliases**, **GraphQL batching**, **GraphQL introspection**, **GraphQL debug** ([details](../../attacks-vulns-list.md#graphql-attacks)) | [GraphQL API Protection](../../api-protection/graphql-rule.md) | The **Detect GraphQL attacks** rule |
+| **Credential stuffing** | [Credential Stuffing Detection](../../about-wallarm/credential-stuffing.md) | The [Credential Stuffing configuration](../../about-wallarm/credential-stuffing.md#configuring), specifically the monitored authentication endpoints |
 
 Before adjusting, it is worth [investigating the full context](#full-context-of-threat-actor-activities) of the attack's requests: the session they belong to and the full sequence of requests in it. This shows all activity of the threat actor and what resources can be compromised.
 
