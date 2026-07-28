@@ -40,10 +40,6 @@ When forming the attack details, Wallarm automatically makes information about t
 
 Hit sampling does not affect the quality of attack detection but helps to avoid its slowdown. Wallarm node continues attack detection and [blocking](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) even with hit sampling enabled.
 
-The **Hits sampling is enabled** notification shows that sampling works now. In the attack details you will see how many similar hits were detected but not displayed:
-
-![Dropped hits](../../images/user-guides/events/bruteforce-dropped-hits.png)
-
 !!! info "Displaying dropped hits in the attack list"
     Since dropped hits are not uploaded to the Wallarm Cloud, certain hits or whole attacks can be absent in the list of attacks.
 

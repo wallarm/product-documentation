@@ -23,14 +23,14 @@ Note that bot detection relies on the traffic - if there is not a sufficient amo
 
 ## Attacks
 
-You can explore attacks performed by bots in Wallarm Console → **Attacks** section. Use the `api_abuse`, `account_takeover`, `scraping` and `security_crawlers` search keys or select the appropriate options from the **Type** filter.
+You can explore attacks performed by bots in Wallarm Console → **Attacks** section. Set the [**Attack Type** filter](../user-guides/search-and-filters/attack-filters.md#filter) to **Suspicious API activity**, **Account takeover**, **Scraping**, or **Security crawlers**.
 
 ![API Abuse events](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
 
 Note that:
 
 * Even if the bot IP is placed into the denylist by API Abuse Prevention, by default, Wallarm collects and [displays](../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) statistics regarding blocked requests originating from it.
-* The detailed information on the bot attack is stored for 31 days: while the attack itself may remain in the **Attacks** section for a longer time, after 31 days, if you expand it, no detector values or heatmaps will be presented - `Not enough data` message will be displayed instead.
+* The detailed information on the bot attack is stored for 31 days: while the attack itself may remain in the **Attacks** section for a longer time, after 31 days, when you open it, no detector values or heatmaps will be presented - `Not enough data` message will be displayed instead.
 
 **Detector values**
 

@@ -68,7 +68,7 @@ New company accounts come with the following default (pre-configured) triggers:
 
     Hits can have different attack types, malicious payloads and URLs. These attack parameters will be marked with the `[multiple]` tag in the event list.
 
-    Due to different parameter values of grouped hits, the [Mark as false positive](../events/check-attack.md#false-positives) button will be unavailable for the whole attack, but you still will be able to mark certain hits as false positives. [Active verification of the attack](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing-trt) will also be unavailable.
+    Due to different parameter values of grouped hits, [marking the whole attack as a false positive](../events/check-attack.md#false-positives) will be unavailable, but you still will be able to mark certain requests as false positives. [Active verification of the attack](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing-trt) will also be unavailable.
     
     The hits with the Brute force, Forced browsing, Resource overlimit, Data bomb, or Virtual patch attack types are not considered in this trigger.
 * Graylist IP for 1 hour when it originates more than 3 different [malicious payloads](../../glossary-en.md#malicious-payload) within 1 hour
