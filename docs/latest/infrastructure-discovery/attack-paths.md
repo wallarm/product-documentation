@@ -1,4 +1,4 @@
-# Attack Paths <a href="../../about-wallarm/subscription-plans/#wallarm-infrastructure-discovery"><img src="../../images/infrastructure-discovery-tag.svg" class="non-zoomable" style="border: none;"></a>
+# Attack Paths in Infrastructure Discovery <a href="../../about-wallarm/subscription-plans/#wallarm-infrastructure-discovery"><img src="../../images/infrastructure-discovery-tag.svg" class="non-zoomable" style="border: none;"></a>
 
 A [finding](exploring.md#findings) tells you that a single resource is misconfigured. An **attack path** tells you which chain of misconfigurations actually leads somewhere — for example, that a publicly reachable EKS cluster is the first hop of a route that ends at a high-value IAM role, and that closing that one cluster removes 13 routes to your most valuable resources at once.
 
