@@ -8,6 +8,12 @@ For the exact version added in a specific release, see the [NGINX Node changelog
 
 ## Supported NGINX versions
 
+### NGINX Node 7.x
+
+| Node version   | NGINX stable      | NGINX mainline    | NGINX Plus    |
+|----------------|-------------------|-------------------|---------------|
+| 7.1.0 and above| 1.30.3 and below  | 1.31.2 and below  | R37 and below |
+
 ### NGINX Node 6.x
 
 | Node version   | NGINX stable      | NGINX mainline    | NGINX Plus    |
