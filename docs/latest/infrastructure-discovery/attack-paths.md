@@ -17,7 +17,7 @@ Every hop is backed by a specific configuration fact — a public API endpoint, 
 !!! info "Read-only analysis"
     Infrastructure Discovery never modifies your cloud resources, so it does not remediate a path for you. Use the recommendation it provides to make the change in AWS, or handle the underlying finding with [policies](exploring.md#policies).
 
-### Concepts
+## Concepts
 
 | Term | Meaning |
 | --- | --- |
@@ -27,17 +27,21 @@ Every hop is backed by a specific configuration fact — a public API endpoint, 
 | **Choke point** | The single resource a path — and often several others — must pass through, which makes it the highest-leverage place to break the chain. It is frequently a shared role, security group, or subnet in the middle of the chain rather than the entrance. |
 | **Risk** | The headline rating of a path, from low to critical. It combines how reachable the entry is, what the permissions on each hop allow, the value of the target, and the length of the chain. Risk never exceeds what the target is worth, so a route to a low-value resource does not surface as critical. |
 | **Attack type** | What the attacker gains at the end: **credential theft** (the chain ends at a secret, key, or identity), **data exfiltration** (it ends at a data store), or **reaches crown jewel** for chains that match neither shape. |
-| **Confidence** and **modality** | Per-hop honesty markers. Confidence runs from 0 to 100. Modality is **Allowed** when the configuration permits the hop, or **Observed** when the hop was seen in traffic and log data. |
+| **Confidence** and **modality** | Per-hop markers of evidence quality, kept separate from **Risk**: confidence rates how sure the analysis is that a hop exists, from 0 to 100 — not how dangerous it is. It is scored per hop, then reduced to the lowest score along the path, so one weak hop caps the whole chain.<br><br>Main drivers: the kind of hop (network reachability, identity and permission grants, trust-based entry, privilege escalation, exploitability), how directly it was resolved, how broad the access is, and any mitigating condition such as a permission boundary.<br><br>Modality reflects the evidence itself — **Observed** when the hop was seen happening in traffic or log data, or **Allowed** when the configuration merely permits it. |
 
 ## Paths
 
-The **Paths** sub-tab pairs a list of routes with a graph of the selected one. The header summarizes the current scope — total paths, how many are assume-breach and how many confirmed, the number of entry points, and a breakdown by risk. Filter the view by account, region, severity, attack type, entry class, and status.
+The **Paths** sub-tab pairs a list of routes with a graph of the selected one. The header summarizes the current scope — total paths, how many are assume-breach and how many confirmed, the number of entry points, and a breakdown by risk.
 
 The list is ordered by risk. Each row names the target and its value, the risk rating, the route in brief (for example, `via Internet → ai-os-prod`), the resource types along the chain, the hop count, how many paths break if you fix this one, and the attack type.
 
-Selecting a row draws that path on the graph, which is laid out in three lanes — **External exposure**, **Pivot**, and **Crown jewels** — so you can read where a route starts and where it ends. Use **Fit to view** to frame the selected path, or **Full screen** for a large estate.
+Selecting a row draws that path on the graph, which is laid out in three lanes — **External exposure**, **Pivot**, and **Crown jewels** — so you can read where a route starts and where it ends.
 
 ![Attack paths list](../images/infrastructure-discovery/attack-paths.png)
+
+Filter the view by account, region, severity, attack type, entry class, and status.
+
+Use **Fit to view** to frame the selected path, or **Full screen** for a large estate.
 
 Open a path to see the reasoning behind it:
 
@@ -55,7 +59,7 @@ The **Crown jewels** sub-tab is the inventory of what Infrastructure Discovery t
 
 Targets are either detected automatically from the resource type and its configuration, or pinned manually. Automatic detection reads your own metadata: a `prod` environment tag, a data classification tag such as `pii` or `pci`, a name containing `payment` or `customer`, administrative privilege, or deletion protection all raise the value of a resource, while a `dev`, `test`, or `staging` tag lowers it. Tagging your resources consistently is therefore the most effective way to make the ranking match your business, because it improves every path at once rather than one target at a time.
 
-<!-- TODO: add screenshot of the Crown jewels sub-tab -->
+![Attack paths list](../images/infrastructure-discovery/crown-jewels.png)
 
 ## Key nodes
 
@@ -67,7 +71,7 @@ Where **Paths** shows routes, the **Key nodes** sub-tab shows the resources thos
 
 Some choke points have no live path today. The misconfiguration is still real and still worth fixing before something else connects to it.
 
-<!-- TODO: add screenshot of the Key nodes sub-tab -->
+![Attack paths list](../images/infrastructure-discovery/key-nodes.png)
 
 ## Accuracy and limits
 
