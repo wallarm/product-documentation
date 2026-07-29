@@ -54,7 +54,3 @@ API Discovery [detects and highlights](sensitive-data.md) sensitive data consume
 To view the current configuration and perform changes, in Wallarm Console, go to **API Discovery** → **Configure** → **Sensitive data**. Here, you can overview and modify the existing sensitive data patterns and add your own.
 
 [See details here →](sensitive-data.md#customizing-sensitive-data-detection)
-
-## Debug
-
-To get and analyze the API Discovery logs, you can read the log file `/opt/wallarm/var/log/wallarm/appstructure-out.log` on the Linux machine where the node is running.-->

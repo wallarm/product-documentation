@@ -1,4 +1,4 @@
-[docs-module-update]:           nginx-modules.md
+[docs-module-update]:           all-in-one.md
 [img-wl-console-users]:         ../images/check-users.png 
 [img-create-wallarm-node]:      ../images/user-guides/nodes/create-cloud-node.png
 [img-attacks-in-interface]:     ../images/admin-guides/test-attacks-quickstart.png
@@ -9,7 +9,7 @@
 
 # Upgrading the postanalytics module
 
-These instructions describe the steps to upgrade the postanalytics module installed on a separate server up to the latest 6.x version. **Postanalytics module must be upgraded before [Upgrading Wallarm NGINX modules][docs-module-update].**
+These instructions describe the steps to upgrade the postanalytics module installed on a separate server up to the latest 7.x version. **Postanalytics module must be upgraded before [Upgrading Wallarm NGINX modules][docs-module-update].**
 
 !!! info "Upgrading with all-in-one installer"
     Since version 4.10, upgrading is performed using Wallarm's [all-in-one installer](../installation/nginx/all-in-one.md) as the individual Linux packages have been deprecated. This method simplifies the upgrade process and ongoing deployment maintenance compared to the previous approach.
@@ -23,9 +23,6 @@ These instructions describe the steps to upgrade the postanalytics module instal
     1. Connecting the filtering node to Wallarm Cloud using the provided token.
 
     ![All-in-one compared to manual](../images/installation-nginx-overview/manual-vs-all-in-one.png)
-
-To upgrade the end‑of‑life module (3.6 or lower), please use the [different instructions](older-versions/separate-postanalytics.md).
-
 ## Requirements
 
 --8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
@@ -48,7 +45,7 @@ To upgrade the end‑of‑life module (3.6 or lower), please use the [different 
 
 ## Step 5: Upgrade the NGINX-Wallarm module on a separate server
 
-Once the postanalytics module is installed on the separate server, [upgrade its related NGINX-Wallarm module](nginx-modules.md) running on a different server.
+Once the postanalytics module is installed on the separate server, [upgrade its related NGINX-Wallarm module](all-in-one.md) running on a different server.
 
 ## Step 6: Re-connect the NGINX-Wallarm module to the postanalytics module
 

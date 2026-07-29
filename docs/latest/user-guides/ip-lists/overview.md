@@ -174,7 +174,7 @@ You can get notifications about newly denylisted IPs via the messengers or SIEM 
 If Wallarm node is located behind a load balancer or CDN, please make sure to configure your Wallarm node to properly report end-user IP addresses:
 
 * [Instructions for NGINX-based Wallarm nodes](../../admin-en/using-proxy-or-balancer-en.md) (including AWS / GCP images and Docker node container)
-* [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
+* [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../../admin-en/using-proxy-or-balancer-en.md#wallarm-ingress-controller)
 
 ## Managing lists via API
 

@@ -1,4 +1,3 @@
-[nginx-node-6.4.1]: ../updating-migrating/node-artifact-versions.md#641-2025-08-07
 [nginx-node-changelog]: ../updating-migrating/node-artifact-versions.md
 [AIO]: ../installation/nginx/all-in-one.md
 [docker]: ../admin-en/installation-docker-en.md
@@ -22,27 +21,19 @@ This article describes the Postanalytics module and the service runtime metrics 
 
 ## Limitations
 
-Postanalytics and service runtime metrics are not yet available for [NGINX Ingress Controller][IC] and [Sidecar][sidecar].
+Postanalytics and service runtime metrics are not yet available for [Sidecar][sidecar].
 
 ## Metrics endpoint
 
-By default, the NGINX Node provides general metrics at the following endpoint:
+Starting from NGINX Node 7.1.0, the postanalytics metrics are returned on the following aggregated endpoint by default:
 
-```bash
-http://localhost:9001/metrics
+```
+http://127.0.0.1:9445/metrics
 ```
 
-This endpoint is accessible only from the server itself. 
-!!! info "Security note"
-    Unless you need to publicly expose the metrics endpoint (e.g., to run a Prometheus metrics scraper), we recommend using the default `localhost` listen address.
+The postanalytics metrics are also separately exposed on `http://127.0.0.1:9001/metrics`, but we recommend reading them from the aggregated `9445` endpoint.
 
-You can change the default metrics host and port (`http://localhost:9001/metrics`) in the following ways:
-
-* Change `metrics.listenAddress` in the `/opt/wallarm/wstore/wstore.yaml` file.
-* Provide the `WALLARM_WSTORE__METRICS__LISTEN_ADDRESS` environment variable when deploying the NGINX Node (e.g. from a Docker image).
-
-    !!! info "Environment variable precedence"
-        Environment variables take precedence over the values set in `/opt/wallarm/wstore/wstore.yaml.` For example, if the `metrics.listenAddress` in the YAML file is set to `0.0.0.0:9005`, but the `WALLARM_WSTORE__METRICS__LISTEN_ADDRESS` environment variable is set to `127.0.0.1:9005`, the metrics will be available only at `http://127.0.0.1:9005/metrics`.
+To change the ports, see [Configuring the ports](nginx-node-metrics.md#configuring-the-ports).
 
 ## Connections and traffic metrics
 ---
@@ -127,44 +118,6 @@ wallarm_wstore_iproto_calls_total{func="wallarm.blocked_stat.read",result="succe
 
 ## Request throttling and load shedding
 ---
-### `wallarm_wstore_throttle_mode`
-
-Shows if wstore is currently throttling requests due to severely insufficient resources. When this metric is `1.0`, wstore is dropping some incoming requests because system resources are critically low.
-
-**Type**: Gauge
-
-**Labels**: None
-
-**Unit**: Count
-
-**Example**:
-
-```
-wallarm_wstore_throttle_mode 0
-```
-
----
-### `wallarm_wstore_throttled_requests`
-
-The number of requests throttled due to severely insufficient resources, broken down by schema (TCP or TLS).
-
-**Type**: Counter
-
-**Labels**: 
-
-* `TCP`
-
-* `TLS`
-
-**Unit**: Count
-
-**Example**:
-
-```
-wallarm_wstore_throttled_requests{schema="TLS"} 0
-```
-
----
 ### `wallarm_wstore_queue_throttled`
 
 The number of requests rejected due to queue throttling, broken down by queue.
@@ -178,7 +131,7 @@ The number of requests rejected due to queue throttling, broken down by queue.
 **Example**:
 
 ```
-wallarm_wstore_queue_throttled{queue="appstructure"} 0
+wallarm_wstore_queue_throttled{queue="api_discovery"} 0
 ```
 
 ## Request queue metrics
@@ -217,7 +170,7 @@ The number of requests dropped when a wstore queue reaches its maximum size and 
 **Example**:
 
 ```
-wallarm_wstore_queue_drops{queue="appstructure"} 0
+wallarm_wstore_queue_drops{queue="api_discovery"} 0
 ```
 
 ---
@@ -238,7 +191,7 @@ The number of requests returned from the queue by the `wallarm.requests_processi
 **Example**:
 
 ```
-wallarm_wstore_queue_take_requests{queue="appstructure", result="success"} 313187
+wallarm_wstore_queue_take_requests{queue="api_discovery", result="success"} 313187
 ```
 
 ---
@@ -255,7 +208,7 @@ The number of acknowledgement attempts for requests that have already been remov
 **Example**:
 
 ```
-wallarm_wstore_queue_ack_drops{queue="appstructure"} 0
+wallarm_wstore_queue_ack_drops{queue="api_discovery"} 0
 ```
 
 ---
@@ -276,7 +229,7 @@ The number of requests that were captured but not acknowledged, and were therefo
 **Example**:
 
 ```
-wallarm_wstore_queue_ack_return{queue="appstructure",result="failed"} 0
+wallarm_wstore_queue_ack_return{queue="api_discovery",result="failed"} 0
 ```
 
 ---
@@ -297,7 +250,7 @@ The total number of `put`, `ack`, and `take` actions per queue, maintained for b
 **Example**:
 
 ```
-wallarm_wstore_queue_stats{queue="appstructure",action="ack"} 770
+wallarm_wstore_queue_stats{queue="api_discovery",action="ack"} 770
 ```
 
 ## Request storage metrics

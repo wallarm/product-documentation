@@ -8,5 +8,16 @@
 [wstore-metrics]: ../admin-en/wstore-metrics.md
 [apifw-metrics]: ../admin-en/apifw-metrics.md
 [api-spec-enforcement]: ../api-specification-enforcement/overview.md
+[wcli-metrics]: ../admin-en/wcli-metrics.md
 
---8<-- "latest/admin-en/nginx-node-metrics.md"
+# Monitoring the NGINX Node Metrics
+
+The [NGINX Node][nginx-node-landing] exposes metrics in the [Prometheus](https://prometheus.io/docs/instrumenting/exposition_formats/) format, which you can use to monitor its performance, traffic, and detected attacks. This topic provides an overview of these metrics. For detailed information on each metric type, refer to its dedicated topic.
+
+There are 3 types of metrics available:
+
+* [Postanalytics metrics][wstore-metrics] — include Postanalytics module **wstore** metrics, available by default at the `http://localhost:9001/metrics` endpoint.
+* [**wcli** Controller metrics][wcli-metrics] — provide data from the service that runs most Wallarm functional components (e.g., brute-force detection or attack export to the Cloud).
+* [API Firewall metrics][apifw-metrics] — available by default at `http://<host>:9010/metrics` endpoint.
+
+    The API Firewall service underlies the [API Specification Enforcement][api-spec-enforcement] feature.

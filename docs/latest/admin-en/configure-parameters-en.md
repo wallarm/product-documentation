@@ -1,6 +1,3 @@
-[doc-nginx-install]:    ../installation/nginx/dynamic-module-from-distr.md
-[doc-eu-scanner-ip-addresses]: scanner-address-eu-cloud.md
-[doc-us-scanner-ip-addresses]: scanner-address-us-cloud.md
 [acl-access-phase]:            #wallarm_acl_access_phase
 
 # Configuration options for the NGINX‑based Wallarm node
@@ -350,7 +347,7 @@ If this option is not configured, stream lengths remain unlimited, potentially c
     When updating configuration you used for your filtering node of the version before 4.0:
 
     * If you upgrade filtering node without multitenancy feature and have any `wallarm_instance` used to set unique identifier of the protected application, just rename it to `wallarm_application`.
-    * If you upgrade filtering node with multitenancy feature, consider all `wallarm_instance` to be `wallarm_application`, then rewrite the configuration as described in the [multitenancy reconfiguration instruction](../updating-migrating/older-versions/multi-tenant.md#step-3-reconfigure-multitenancy).
+    * If you upgrade filtering node with multitenancy feature, consider all `wallarm_instance` to be `wallarm_application`, then rewrite the configuration as described in the [multitenancy configuration instructions](../installation/multi-tenant/configure-accounts.md).
 
 ### wallarm_key_path
 
@@ -512,7 +509,7 @@ The directive also exposes two NGINX variables (NGINX Node 6.12.0+) that can be 
     Know how to:
 
     * [Get the UUID of the tenant during tenant creation →](../installation/multi-tenant/configure-accounts.md#via-the-wallarm-api)
-    * [Get the list of UUIDs of existing tenants →](../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants)
+    * [Get the list of UUIDs of existing tenants →](../installation/multi-tenant/configure-accounts.md#getting-uuids-of-existing-tenants)
 
 Configuration example:
 
@@ -833,7 +830,7 @@ wallarm_requests_per_group_total{client_uuid="...",client_label="...",group="api
 ### wallarm_tarantool_upstream
 
 !!! warning "Rename `wallarm_tarantool_upstream` to `wallarm_wstore_upstream`"
-    In NGINX Node version 6.x and later, this parameter has been [renamed](../updating-migrating/what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics) to [`wallarm_wstore_upstream`](#wallarm_wstore_upstream), with no changes to its logic.
+    In NGINX Node version 6.x and later, this parameter has been renamed to [`wallarm_wstore_upstream`](#wallarm_wstore_upstream), with no changes to its logic.
     
     Backward compatibility is maintained with a deprecation warning, but renaming is recommended to avoid future errors when the old directive is removed. Warning example:
 

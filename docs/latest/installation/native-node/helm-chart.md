@@ -7,7 +7,6 @@
 [ip-list-docs]:                          ../../user-guides/ip-lists/overview.md
 [api-token]:                             ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:             ../../api-specification-enforcement/overview.md
-[self-hosted-connector-node-helm-conf]:  ../connectors/self-hosted-node-conf/helm-chart.md
 
 # Deploying the Native Node with Helm Chart
 

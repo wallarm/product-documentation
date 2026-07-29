@@ -10,7 +10,6 @@
 [sidecar-helm-chart]: ../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
 [sidecar-deployment]: ../installation/kubernetes/sidecar-proxy/deployment.md
 [sidecar-upgrade]: ../updating-migrating/sidecar-proxy.md
-[ic-helm-chart]: ../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewallmetrics
 [ic-deployment]: ../admin-en/installation-kubernetes-en.md
 
 
@@ -23,6 +22,8 @@ The metrics include data on HTTP request performance, request counts, and servic
 ## Enabling API Firewall metrics
 
 API Firewall metrics are not enabled by default. You need to enable them differently depending on your deployment type.
+
+These metrics are exposed on the API Firewall's own endpoint (`http://<host>:9010/metrics` by default). In the [NGINX Ingress Controller][IC] they are also aggregated into the `wd` endpoint (`http://127.0.0.1:9445/metrics`); in other deployments they are available only on `9010`.
 
 **For [Docker image][docker]:**
 
@@ -38,24 +39,23 @@ API Firewall metrics are not enabled by default. You need to enable them differe
 
 **For [NGINX Ingress Controller][IC]:**
 
-1. Add the [`controller.wallarm.apiFirewall.metrics*`][ic-helm-chart] values to the Helm Chart during NGINX Ingress Controller [deployment][ic-deployment] or upgrade.
+Enable API Firewall metrics by setting `config.wallarm.wd.scrape.apiFirewall.enabled` to `true` in the Helm chart during [deployment][ic-deployment] or upgrade:
 
-    ```yaml hl_lines="3-10"
-    controller:
-      wallarm:
+```yaml hl_lines="6"
+config:
+  wallarm:
+    wd:
+      scrape:
         apiFirewall:
-          metrics:
-            enabled: true
-            port: 9010
-            endpointPath: /metrics
-            host: ":9010"
-            service:
-            servicePort: 9010
-    ```
+          enabled: true
+          endpoint: "http://127.0.0.1:9010/metrics"
+          type: prometheus
+```
 
-    Once enabled, metrics are available at `http://<host>:9010/metrics` unless custom host or path are used (see step 2 below).
+This enables API Firewall metrics collection and exposes them on both endpoints:
 
-2. (Optional) You can change the default API Firewall metrics endpoint using the values described above.
+* `http://127.0.0.1:9445/metrics` (recommended) - aggregated with other metrics
+* `http://127.0.0.1:9010/metrics` - dedicated endpoint for API Firewall metrics
 
 **For [Sidecar][sidecar]:**
 

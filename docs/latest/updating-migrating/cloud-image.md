@@ -1,5 +1,5 @@
 [wallarm-status-instr]:             ../admin-en/configure-statistics-service.md
-[memory-instr]:                     ../admin-en/configuration-guides/allocate-memory-for-waf-node.md
+[memory-instr]:                     ../admin-en/configuration-guides/allocate-resources-for-node.md
 [waf-directives-instr]:             ../admin-en/configure-parameters-en.md
 [ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
@@ -15,22 +15,20 @@
 
 # Upgrading the cloud node image
 
-These instructions describe the steps to upgrade the cloud node image deployed on AWS or GCP up to the latest 6.x.
-
-To upgrade the end‑of‑life node (3.6 or lower), please use the [different instructions](older-versions/cloud-image.md).
+These instructions describe the steps to upgrade the cloud node image deployed on AWS or GCP up to the latest 7.x.
 
 ## Requirements
 
 --8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
 
-## Step 1: Launch a new instance with the filtering node 6.x
+## Step 1: Launch a new instance with the filtering node 7.x
 
 1. Open the Wallarm filtering node image on the cloud platform marketplace and proceed to the image launch:
       * [Amazon Marketplace](https://aws.amazon.com/marketplace/pp/B073VRFXSD)
       * [GCP Marketplace](https://console.cloud.google.com/marketplace/details/wallarm-node-195710/wallarm-node)
 2. At the launch step, set the following settings:
 
-      * Select the image version `6.x.x`
+      * Select the image version `7.x.x`
       * For AWS, select the created security group in the field **Security Group Settings**
       * For AWS, select the name of the created key pair in the field **Key Pair Settings**
 3. Confirm the instance launch.
@@ -47,7 +45,7 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
 
 ## Step 3: Copy the filtering node settings from the previous version to the new version
 
-Copy the settings for processing and proxying requests from the following configuration files of the previous Wallarm node version to the files of the filtering node 6.x:
+Copy the settings for processing and proxying requests from the following configuration files of the previous Wallarm node version to the files of the filtering node 7.x:
 
 * `/etc/nginx/nginx.conf` and other files with NGINX settings
 * `/etc/nginx/wallarm-status.conf` (or `/etc/nginx/conf.d/wallarm-status.conf`) with the filtering node monitoring service settings
@@ -70,9 +68,9 @@ sudo systemctl restart nginx
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-## Step 6: Create the virtual machine image based on the filtering node 6.x in AWS or GCP
+## Step 6: Create the virtual machine image based on the filtering node 7.x in AWS or GCP
 
-To create the virtual machine image based on the filtering node 6.x, please follow the instructions for [AWS](../admin-en/installation-guides/amazon-cloud/create-image.md) or [GCP](../admin-en/installation-guides/google-cloud/create-image.md).
+To create the virtual machine image based on the filtering node 7.x, please follow the instructions for [AWS](../admin-en/installation-guides/amazon-cloud/create-image.md) or [GCP](../admin-en/installation-guides/google-cloud/create-image.md).
 
 ## Step 7: Delete the previous Wallarm node instance
 

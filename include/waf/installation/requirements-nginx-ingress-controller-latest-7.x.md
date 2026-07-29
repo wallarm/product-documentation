@@ -1,7 +1,7 @@
-* Kubernetes platform version 1.28-1.35
+* Kubernetes platform version 1.29-1.36
 * [Helm](https://helm.sh/) version 3.10+
 * Ability to create, modify, and delete resources in the target Kubernetes namespace
-* Compatibility of your services with the Wallarm Ingress Controller based on the [F5 NGINX Ingress Controller](https://github.com/nginx/kubernetes-ingress) [version 5.4.0](https://docs.nginx.com/nginx-ingress-controller/technical-specifications/)
+* Compatibility of your services with the Wallarm Ingress Controller based on the [F5 NGINX Ingress Controller](https://github.com/nginx/kubernetes-ingress) [version 5.5.4](https://docs.nginx.com/nginx-ingress-controller/technical-specifications/)
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
 * Access to the Wallarm API host for your Cloud: `https://us1.api.wallarm.com` or `https://api.wallarm.com`
 * Access to `https://charts.wallarm.com` to add the Wallarm Helm charts. Ensure the access is not blocked by a firewall

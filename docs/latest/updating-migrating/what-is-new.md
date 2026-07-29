@@ -1,17 +1,68 @@
-# What is New in Wallarm Ingress Controller 7.x
+# What is New in NGINX Node 7.x
 
-Wallarm Node 7.x introduces a new deployment artifact for Kubernetes environments — the **Wallarm Ingress Controller based on F5 NGINX Ingress Controller** (internally referred to as **ingress-nextgen**).
+This page describes what is new in **NGINX Node 7.x** and what to prepare for when migrating from 6.x. Wallarm Node 7.x brings changes on two levels:
 
-This release replaces the previous controller based on the Community Ingress NGINX project, [which has been retired](https://blog.nginx.org/blog/the-ingress-nginx-alternative-open-source-nginx-ingress-controller-for-the-long-term) by the Kubernetes community. For details on the retirement timeline, support windows, and alternative deployment options, see [Migration Plan for Wallarm NGINX Ingress Controller Customers](nginx-ingress-retirement.md).
+* [**Node runtime — all deployment types**](#node-architecture-and-process-management-wd). The node now runs on the new `wd` (Wallarm Daemon) service, which replaces `supervisord`, consolidates the Wallarm processes, aggregates metrics on a single endpoint.
 
-This page focuses on what changes technically in 7.x and what to prepare for when migrating from 6.x.
+    These changes arrived in 7.1.0 and apply to every NGINX Node deployment except for Wallarm Sidecar Controller (not released yet).
 
-Throughout this document, the two controllers are referred to as:
+* [**Kubernetes Ingress Controller — new F5 base**](#wallarm-ingress-controller-f5-based). It replaces the previous Community Ingress NGINX-based controller, [which has been retired](https://blog.nginx.org/blog/the-ingress-nginx-alternative-open-source-nginx-ingress-controller-for-the-long-term) by the Kubernetes community.
 
-* **Community-based (6.x)** — the Wallarm Ingress Controller built on the [Community Ingress NGINX](https://github.com/kubernetes/ingress-nginx) project (retired)
-* **F5-based (7.x)** — the Wallarm Ingress Controller built on the [F5 NGINX Ingress Controller](https://github.com/nginx/kubernetes-ingress) (ingress-nextgen)
+## Node architecture and process management (`wd`)
 
-## What stays the same
+Starting from 7.1.0, the Wallarm Node runs on the new `wd` (Wallarm Daemon) service — a Go-based process and job manager that replaces `supervisord` and consolidates the previously separate Wallarm containers.
+
+This is the significant technical change in the 7.x line. **Most of the changes in this section are breaking** for custom charts and monitoring setups.
+
+This change applies to **all** [NGINX Node deployments](../installation/supported-deployment-options.md) except for Wallarm Sidecar Controller (not released yet).
+
+### Single aggregated metrics endpoint
+
+`wd` scrapes each component and re-exposes [all metrics on a single aggregated endpoint](../admin-en/nginx-node-metrics.md), `http://127.0.0.1:9445/metrics` — the recommended endpoint for scraping.
+
+For backward compatibility, each component still exposes its own per-component endpoint as well (for example, **wstore** on `9001` and **wcli** on `9003`).
+
+### New and removed Prometheus metrics
+
+* New [`wallarm_wd_*` process metrics](../admin-en/wd-metrics.md) report managed-process state, restarts, and uptime.
+* The `wallarm_wstore_throttle_mode` and `wallarm_wstore_throttled_requests` metrics are removed.
+
+### Readiness and liveness probes
+
+`wd` exposes `/health` (liveness) and `/ready` (readiness) on port `9446` for orchestrator [health probes](../admin-en/nginx-node-metrics.md#health-endpoints).
+
+### Startup during a Wallarm Cloud outage
+
+A Wallarm node can now start and begin filtering traffic even when the Wallarm Cloud is temporarily unavailable — for example, on a fresh boot, a restart, or when an orchestrator scales out new node replicas.
+
+The Wallarm Cloud periodically generates the files a node needs to start and uploads them to cloud object storage that is hosted independently of the Cloud. If the Cloud is unavailable when a node starts, the node downloads these startup files from that storage and begins filtering traffic.
+
+### Consolidated containers (Wallarm Ingress Controller)
+
+In the F5-based Wallarm Ingress Controller, the pod layout is flattened. Instead of separate `wcli` and API Firewall sidecars (and, in the postanalytics pod, `wstore` + `wcli` + `appstructure`), each pod now runs a single `wd` container that manages these processes:
+
+* **Controller pod** — the NGINX controller container **plus** one `wd` sidecar that runs wcli and API Firewall.
+* **Postanalytics pod** — a single `wd` container that runs wstore and wcli.
+
+Because one `wd` container now runs what used to be several containers, in the Ingress Controller set the **combined** CPU and memory on `controller.wallarm.wd.resources` and `postanalytics.wd.resources` (sum the resources of the old per-container blocks). See [High Availability and Resource Configuration](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md).
+
+This consolidation is also reflected in the chart's `values.yaml`: the per-container blocks — `controller.wallarm.wcli*`, the API Firewall sidecar, `initContainer`, and `controller.wallarm.metrics.*` — are replaced by a single `wd` block per component:
+
+* `config.wallarm.wd.*` — daemon settings: process log levels (`processLogLevels`), metrics and health ports, and scrape targets (`scrape`).
+* `controller.wallarm.wd.*` and `postanalytics.wd.*` — per-pod `wd` container settings: `resources`, `extraEnvs`, and the metrics `Service`/`ServiceMonitor`.
+
+## Wallarm Ingress Controller (F5-based)
+
+In 7.x, the Wallarm Ingress Controller is rebuilt on the [F5 NGINX Ingress Controller](https://github.com/nginx/kubernetes-ingress), replacing the previous controller based on the [Community Ingress NGINX](https://github.com/kubernetes/ingress-nginx) project.
+
+The change is driven by upstream: the Community Ingress NGINX project has been [retired](https://blog.nginx.org/blog/the-ingress-nginx-alternative-open-source-nginx-ingress-controller-for-the-long-term) by the Kubernetes community and no longer receives updates or security fixes, so Wallarm moved to the actively maintained F5 project.
+
+The 7.x controller is effectively a new deployment artifact, and existing Community-based (6.x) deployments must be migrated. This section explains what changes and how to migrate; for the retirement timeline and options, see [Migration Plan for Wallarm NGINX Ingress Controller Customers](nginx-ingress-retirement.md).
+
+!!! info "Upstream migration guide"
+    Since the F5-based controller is a different upstream project, many changes are not Wallarm-specific. Before migrating, we recommend also reviewing the official [F5 migration guide](https://docs.nginx.com/nginx-ingress-controller/install/migrate-ingress-nginx/) for a complete picture of differences.
+
+### What stays the same
 
 The high-level architecture remains unchanged:
 
@@ -19,25 +70,16 @@ The high-level architecture remains unchanged:
 * Your overall traffic flow, Wallarm Cloud connectivity, and security processing model remain consistent
 * Wallarm-specific detection and protection features work the same way
 
-Only the underlying Ingress Controller implementation changes — from Community Ingress NGINX to F5 NGINX Ingress Controller.
-
-## What changes
-
-There are important changes between the two controllers and in how Wallarm is integrated in each of them. The sections below cover every area you should review before migrating.
-
-!!! info "Upstream migration guide"
-    Since the F5-based controller is a different upstream project, many changes are not Wallarm-specific. Before migrating, we recommend also reviewing the official [F5 migration guide](https://docs.nginx.com/nginx-ingress-controller/install/migrate-ingress-nginx/) for a complete picture of differences.
-
 ### Underlying controller
 
 | | Community-based (6.x) | F5-based (7.x) |
 | --- | --- | --- |
 | **Base project** | [Community Ingress NGINX](https://github.com/kubernetes/ingress-nginx) (retired) | [F5 NGINX Ingress Controller](https://github.com/nginx/kubernetes-ingress) |
-| **Upstream version** | 1.15.0 | 5.4.0 |
-| **NGINX version** | NGINX stable 1.25.x | NGINX stable 1.29.x |
+| **Upstream version** | 1.15.0 | 5.5.4 |
+| **NGINX version** | NGINX stable 1.25.x | NGINX stable 1.31.x |
 | **Base image** | Alpine Linux 3.22 | Alpine Linux 3.23 |
 | **Architecture support** | amd64, arm64 | amd64, arm64 |
-| **Kubernetes versions** | 1.26–1.30 | 1.28–1.35 |
+| **Kubernetes versions** | 1.26–1.30 | 1.29–1.36 |
 
 !!! warning "NGINX Plus is not supported"
     The Wallarm Ingress Controller uses the **open-source** edition of the F5 NGINX Ingress Controller. NGINX Plus is not included and is not supported.
@@ -82,10 +124,11 @@ The table below maps the most commonly customized Wallarm parameters between the
 | `controller.wallarm.existingSecret.*` | `config.wallarm.api.existingSecret.*` |
 | `controller.wallarm.fallback` | `config.wallarm.fallback` |
 | `controller.wallarm.postanalytics.*` | `postanalytics.*` (top-level) |
-| `controller.wallarm.metrics.*` | Unchanged |
-| `controller.wallarm.wcliPostanalytics.metrics.*` | `postanalytics.wcli.metrics.*` |
+| `controller.wallarm.metrics.*` | `controller.wallarm.wd.metrics.*` — aggregated on port `9445` |
+| `controller.wallarm.wcliPostanalytics.*`, `controller.wallarm.wcliController.*` (log levels) | `config.wallarm.wd.processLogLevels.*` |
+| `controller.wallarm.wcliPostanalytics.metrics.*` | Aggregated by `wd` on port `9445` |
 | `controller.wallarm.apiFirewall.*` | `config.apiFirewall.*` |
-| `controller.wallarm.apiFirewall.metrics.*` | Unchanged |
+| `controller.wallarm.apiFirewall.metrics.*` | Port `9010`; opt-in aggregation via `config.wallarm.wd.scrape.apiFirewall` |
 | `controller.wallarm.<container>.extraEnvs` | `controller.wallarm.<component>.extraEnvs` or `postanalytics.<component>.extraEnvs` |
 | `controller.image` | `config.images` |
 | `controller.wallarm.helpers` | `config.images.helper` |
@@ -137,7 +180,7 @@ This applies to both general NGINX annotations and Wallarm-specific annotations,
         nginx.org/rewrites: "serviceName=myservice rewrite=/$2"
     ```
 
-The set of supported **Wallarm-specific annotations** has not changed — only the prefix is different. For the full list of Wallarm annotations and their accepted values, see [Wallarm Ingress Controller annotations](../admin-en/configure-kubernetes-en.md#supported-wallarm-ingress-annotations).
+The set of supported **Wallarm-specific annotations** has not changed — only the prefix is different. For the full list of Wallarm annotations and their accepted values, see [Wallarm Ingress Controller annotations](../admin-en/configure-kubernetes-annotations.md#supported-wallarm-ingress-annotations).
 
 For the full mapping of general **NGINX annotations** between the two controllers, refer to the [F5 migration guide](https://docs.nginx.com/nginx-ingress-controller/install/migrate-ingress-nginx/#advanced-configuration-with-annotations).
 
@@ -147,7 +190,6 @@ The following features available in the Community-based controller are **not ava
 
 * Brotli compression (NGINX module)
 * ModSecurity (NGINX module)
-* Cookie-based sticky sessions (controller feature)
 
 ### NGINX configuration
 
@@ -252,6 +294,10 @@ For richer metrics, the `prometheusExtended.*` section provides VTS (Virtual Hos
 !!! warning "Experimental feature"
     Extended Prometheus metrics via `prometheusExtended.*` are experimental. Enable them in a non-production environment first before rolling out to production.
 
+**Wallarm Node metrics**
+
+The Wallarm-specific metrics (traffic and attack counters, postanalytics, wcli, and the new `wallarm_wd_*` process metrics) are aggregated by the `wd` service on port `9445` — see [Node architecture and process management](#node-architecture-and-process-management-wd) and [Monitoring the NGINX Node metrics and health](../admin-en/nginx-node-metrics.md). This is separate from the controller's own metrics on port `9113`.
+
 **Log format**
 
 The NGINX access log format has changed slightly. If you have log parsing pipelines (ELK, Splunk, Datadog, etc.), review the new format. See [F5 NGINX Ingress Controller logging](https://docs.nginx.com/nginx-ingress-controller/logging-and-monitoring/logging/).
@@ -278,11 +324,11 @@ The image configuration has moved from `controller.image` and `controller.wallar
       images:
         controller:
           repository: "<YOUR_REGISTRY>/wallarm/ingress-controller"
-          tag: "7.0.0"
+          tag: "7.1.0"
           pullPolicy: IfNotPresent
         helper:
           repository: "<YOUR_REGISTRY>/wallarm/node-helpers"
-          tag: "7.0.0"
+          tag: "7.1.0"
           pullPolicy: IfNotPresent
     ```
 
@@ -334,7 +380,7 @@ Deploying on OpenShift follows the same general approach as before: define a cus
 
 The key difference is that the `admissionWebhooks`-related SCC (`wallarm-ingress-admission`) is no longer needed — you can omit it from your SCC configuration.
 
-## Installation
+### Installation
 
 Minimal steps:
 
@@ -359,12 +405,12 @@ Minimal steps:
     ```
 
 ```bash
-helm install --version 7.0.0 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
+helm install --version 7.1.0 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
 ```
 
 For the full installation guide, see [Deploying Wallarm Ingress Controller](../admin-en/installation-kubernetes-en.md).
 
-## Traffic migration planning
+### Traffic migration planning
 
 Migration to the F5-based controller requires planning how traffic will be switched from the Community-based controller.
 
@@ -383,20 +429,21 @@ Migration to the F5-based controller requires planning how traffic will be switc
 
 [Full migration guide](ingress-controller.md)
 
-## Migration checklist
+### Migration checklist
 
 When migrating from the Community-based (6.x) to the F5-based (7.x) controller:
 
 - [ ] **Helm configuration**: Create a new `values.yaml` based on the F5-based chart structure. Map all customized parameters using the [mapping table](#wallarm-parameter-mapping) above. Remove any references to `admissionWebhooks`.
 - [ ] **Annotations**: Rewrite all Ingress annotations from `nginx.ingress.kubernetes.io/*` to `nginx.org/*`. Replace removed deprecated annotations (`wallarm-instance` → `wallarm-application`, `wallarm-acl-block-page` → `wallarm-block-page`).
 - [ ] **Ingress resources**: Validate all Ingress manifests against the F5-based controller. Check for any that may be [silently ignored or rejected](#ingress-resource-validation).
-- [ ] **Removed features**: Verify that your setup does not rely on Brotli, ModSecurity, or cookie-based sticky sessions. Find alternative approaches if needed.
+- [ ] **Removed features**: Verify that your setup does not rely on Brotli or ModSecurity. Find alternative approaches if needed.
+- [ ] **Node architecture (`wd`)**: The node now runs a single `wd` container per pod. Sum the resources of the old per-container blocks into [`controller.wallarm.wd.resources` / `postanalytics.wd.resources`](#node-architecture-and-process-management-wd), and remove any custom `appstructure` container or startup entry.
 - [ ] **NGINX configuration**: Review any custom NGINX tuning (`controller.config` → [`controller.config.entries`](#nginx-configuration)). Review [configuration snippets](https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/advanced-configuration-with-snippets/) syntax.
 - [ ] **CRDs** (if applicable): If using VirtualServer/VirtualServerRoute with Wallarm Policy, apply the [Wallarm-provided CRDs](#wallarm-policy-custom-resource-definition-crd) instead of upstream F5 CRDs.
 - [ ] **Custom registries** (if applicable): Update image paths from `controller.image` / `controller.wallarm.helpers` to [`config.images`](#deploying-from-your-own-registries).
 - [ ] **ARM64** (if applicable): Update scheduling configuration — remove `admissionWebhooks` selectors, move postanalytics to [`postanalytics.nodeSelector`](#arm64-deployment).
 - [ ] **OpenShift** (if applicable): Remove the `wallarm-ingress-admission` SCC from your configuration.
-- [ ] **Observability**: Update log parsing pipelines for the [new log format](#observability). Configure Prometheus scraping via the `prometheus.*` section.
+- [ ] **Observability**: Update log parsing pipelines for the [new log format](#observability). Scrape the aggregated Wallarm metrics on port `9445` (served by [`wd`](#node-architecture-and-process-management-wd)) and check for `9445`/`9446` port conflicts. Configure the controller's own Prometheus metrics via the `prometheus.*` section.
 - [ ] **Traffic migration**: Choose and test your [traffic migration strategy](#traffic-migration-planning). Run both controllers in parallel before the cutover.
 
 The migration requires planning but does not require changing your application workloads.

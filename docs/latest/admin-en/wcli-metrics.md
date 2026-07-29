@@ -7,13 +7,10 @@
 [sidecar-helm-chart]: ../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwclimetricsenabled
 [sidecar-deployment]: ../installation/kubernetes/sidecar-proxy/deployment.md
 [sidecar-upgrade]: ../updating-migrating/sidecar-proxy.md
-[ic-helm-chart]: ../admin-en/configure-kubernetes-en.md#controllerwallarmwclipostanalyticsmetricsenabled
 [ic-deployment]: ../admin-en/installation-kubernetes-en.md
 [nginx-node-changelog]: ../updating-migrating/node-artifact-versions.md
-[nginx-node-6.6.0]: ../updating-migrating/node-artifact-versions.md#660-2025-10-03
 [api-abuse-prevention]: ../api-abuse-prevention/overview.md
 [cred-stuffing]: ../about-wallarm/credential-stuffing.md
-[jwt-tokens]: ../updating-migrating/older-versions/what-is-new.md#checking-json-web-token-strength
 [api-discovery]: ../api-discovery/overview.md
 
 # wcli Controller Metrics of the NGINX Node
@@ -30,65 +27,21 @@ This article describes the metrics of the **wcli** Controller of the NGINX Node 
 
 * The **wcli** [service runtime metrics](#service-runtime-metrics) of the NGINX Node cover network activity, request processing, queue states, storage efficiency, and internal engine health.
 
+## Limitations
+
+The aggregated `9445` endpoint is not yet available in [Sidecar][sidecar] deployments; there, the **wcli** Controller metrics are exposed on the dedicated `9003` port instead.
+
 ## Metrics endpoint
 
-The **wcli** metrics are available by default for all deployment types. However, the metrics endpoint differs:
+Starting from NGINX Node 7.1.0, the **wcli** Controller metrics are returned on the following aggregated endpoint by default:
 
-Deployment type | Metric endpoint
---- | ---- 
-[Docker image][docker], [all-in-one installer][AIO], and cloud images | `http://localhost:9003/metrics` 
-[NGINX Ingress Controller][IC] and [Sidecar][sidecar] | `http://<host>:9003/metrics`
-
-You can change the default metrics host and endpoint. See the instructions for your specific deployment type below.
-
-**For [Docker image][docker], [all-in-one installer][AIO], and cloud images ([AWS AMI][aws-ami], [GCP Machine Image][gcp]):**
-
-Specify the `WALLARM_WCLI__METRICS__LISTEN_ADDRESS` and `WALLARM_WCLI__METRICS__ENDPOINT` environment variables to the desired host and endpoint, respectively. 
-
-To disable the **wcli** metrics, specify an empty value in `WALLARM_WCLI__METRICS__LISTEN_ADDRESS`.
-
-**For [NGINX Ingress Controller][IC]:**
-
-Edit the [`controller.wallarm.wcliPostanalytics.metrics*`][ic-helm-chart] values in the Helm Chart during NGINX Ingress Controller [deployment][ic-deployment] or upgrade.
-
-```yaml hl_lines="8 12 14"
-controller:
-  wallarm:
-    wcliPostanalytics:
-      metrics:
-        # -- Enable metrics collection
-        enabled: true
-        # -- Port for metrics endpoint
-        port: 9003
-        # -- Port name for metrics endpoint
-        portName: wcli-post-mtrc
-        # -- Path at which the metrics endpoint is exposed (optional, defaults to /metrics if not specified)
-        endpointPath: ""
-        # -- IP address and/or port for the metrics endpoint (e.g., ":9003" or "127.0.0.1:9003")
-        host: ":9003"
+```
+http://127.0.0.1:9445/metrics
 ```
 
-**For [Sidecar][sidecar]:**
+The **wcli** Controller metrics are also separately exposed on `http://127.0.0.1:9003/metrics`, but we recommend reading them from the aggregated `9445` endpoint.
 
-Edit the [`config.wallarm.wcli.metrics.*`][sidecar-helm-chart] values in the Helm Chart during Sidecar [deployment][sidecar-deployment] or [upgrade][sidecar-upgrade]. 
-
-```yaml hl_lines="11 15"
-config:
-  # Other configuration values...
-  wcli:
-    metrics:
-      ### Enable/disable wcli metrics endpoint
-      ###
-      enabled: true
-      ### IP address and port for the wcli metrics endpoint
-      ### Default: ":9003"
-      ###
-      listenAddress: ":9003"
-      ### The path at which the wcli metrics endpoint is exposed
-      ### Default: "/metrics"
-      ###
-      endpoint: "/metrics"
-```
+To change the ports, see [Configuring the ports](nginx-node-metrics.md#configuring-the-ports).
 
 ## General wcli Controller system metrics
 
@@ -624,7 +577,7 @@ wallarm_wcli_credstuff_requests_failed 0
 
 ## JWT token exporter metrics (jwtexp)
 
-Metrics from the  JWT token exporter, which extracts and analyzes [JSON Web Tokens][jwt-tokens] for authentication and abuse detection.
+Metrics from the  JWT token exporter, which extracts and analyzes JSON Web Tokens for authentication and abuse detection.
 
 ---
 ### `wallarm_wcli_jwtexp_tnt_requests`

@@ -4,8 +4,6 @@
 [multitenancy-overview]:            ../multi-tenant/overview.md
 [applications-docs]:                ../../user-guides/settings/applications.md
 [available-filtration-modes]:       ../../admin-en/configure-wallarm-mode.md#available-filtration-modes
-[ui-filtration-mode]:              ../../admin-en/configure-wallarm-mode.md#general-filtration-mode
-[self-hosted-connector-node-helm-conf]: ../native-node/helm-chart-conf.md
 [helm-chart-native-node]:           ../native-node/helm-chart.md
 [custom-blocking-page]:             ../../admin-en/configuration-guides/configure-block-page-and-code.md
 [rate-limiting]:                    ../../user-guides/rules/rate-limiting.md

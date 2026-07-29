@@ -17,7 +17,7 @@ On average, one CPU core can handle about 500 RPS. When running in production mo
 
 ### Allocating resources in Kubernetes Ingress Controller
 
---8<-- "../include/allocate-resources-for-waf-node/wstore-memory-ingress-controller.md"
+[Read the "High Availability and Resource Configuration" guide](wallarm-ingress-controller/best-practices/high-availability-considerations.md)
 
 ### Allocating resources if using All-in-One installer
 

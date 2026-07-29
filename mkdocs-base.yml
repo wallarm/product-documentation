@@ -169,6 +169,7 @@ markdown_extensions:
 edit_uri: ../product-documentation/edit/master/docs/latest/
 
 validation:
-  absolute_links: ignore
-  unrecognized_links: ignore
   unused_definitions: false
+  unused_footnotes: false
+  invalid_links: true
+  invalid_link_anchors: true

@@ -1,9 +1,9 @@
 # Real Client IP Address Troubleshooting
 
-These instructions describe the NGINX configuration required to identify an originating IP address of a client connecting to your servers through an HTTP proxy or load balancer. This is relevant for the self-hosted NGINX-based nodes.
+These instructions describe the configuration required to identify an originating IP address of a client connecting to your servers through an HTTP proxy or load balancer.
 
-* If the self-hosted Wallarm node is installed from the all-in-one installer, AWS / GCP images or the NGINX-based Docker image, please use the **current instructions**.
-* If the self-hosted Wallarm node is deployed as the K8s Ingress controller, please use [these instructions](configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md).
+* For the [Wallarm Ingress Controller](installation-kubernetes-en.md), configure the Helm chart as described in [Wallarm Ingress Controller](#wallarm-ingress-controller).
+* For the NGINX Node installed via the all-in-one installer, AWS / GCP images, or the NGINX-based Docker image, edit the NGINX configuration directly as described in [All-in-one, cloud image, or Docker deployments](#all-in-one-cloud-image-or-docker-deployments).
 
 ## How Wallarm node identifies an IP address of a request
 
@@ -29,7 +29,51 @@ If the Wallarm node considers the proxy server or load balancer IP address to be
 
 If the Wallarm node is connected via an [IPC socket](https://en.wikipedia.org/wiki/Unix_domain_socket), then `0.0.0.0` will be considered as a request source.
 
-## Configuration for an original client IP address identification
+## Wallarm Ingress Controller
+
+For the [Wallarm Ingress Controller](configure-kubernetes-en.md), configure the real client IP through the Helm chart instead of editing NGINX configuration directly. When the controller is placed behind a load balancer, it otherwise treats the load balancer IP as the client IP, which causes the [problems described above](#possible-problems-of-using-a-proxy-server-or-load-balancer-ip-address-as-a-request-source-address).
+
+### Step 1: Preserve the client IP at the network layer
+
+Set `controller.service.externalTrafficPolicy` to `Local` so the cloud load balancer preserves the client source IP. This is the default in the F5-based controller (7.x):
+
+```yaml
+controller:
+  service:
+    externalTrafficPolicy: Local
+```
+
+### Step 2: Read the client IP from a request header
+
+Load balancers usually append an [`X-Forwarded-For`](https://en.wikipedia.org/wiki/X-Forwarded-For) header with the original client IP. Make the controller trust and use it through NGINX ConfigMap entries, set via [`controller.config.entries`](configure-kubernetes-en.md#controllerconfigentries):
+
+```yaml
+controller:
+  config:
+    entries:
+      set-real-ip-from: "0.0.0.0/0"
+      real-ip-header: "X-Forwarded-For"
+      real-ip-recursive: "true"
+```
+
+* `set-real-ip-from` — trusted proxy or load balancer addresses (CIDR). Restrict it to your load balancer's addresses instead of `0.0.0.0/0` where possible.
+* `real-ip-header` — the header that carries the original client IP (default `X-Real-IP`). Find the exact header name in your load balancer documentation.
+* `real-ip-recursive` — with several chained proxies, select the client IP recursively (default `false`).
+
+Alternatively, if your load balancer supports the [PROXY protocol](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt), enable it instead of reading a header:
+
+```yaml
+controller:
+  config:
+    entries:
+      proxy-protocol: "true"
+      real-ip-header: "proxy_protocol"
+      set-real-ip-from: "0.0.0.0/0"
+```
+
+For the full list of ConfigMap keys, see the [F5 NGINX Ingress Controller ConfigMap reference](https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/configmap-resource/).
+
+## All-in-one, cloud image, or Docker deployments
 
 To configure an original client IP address identification, you can use the [NGINX module **ngx_http_realip_module**](https://nginx.org/en/docs/http/ngx_http_realip_module.html). This module allows redefining the value of `$remote_addr` [used](#how-wallarm-node-identifies-an-ip-address-of-a-request) by the Wallarm node to get a client IP address.
 
@@ -137,11 +181,11 @@ More details on identifying an original client IP address based on the `PROXY` h
 
     ![Header X-Forwarded-For](../images/x-forwarded-for-header.png)
 
-## Configuration examples
+### Configuration examples
 
 Below you will find examples of the NGINX configuration required to identify an originating IP address of a client connecting to your servers through popular load balancers.
 
-### Cloudflare CDN
+#### Cloudflare CDN
 
 If using Cloudflare CDN, you can [configure the NGINX module **ngx_http_realip_module**](#configuring-nginx-to-read-the-header-x-forwarded-for-x-real-ip-or-a-similar) to identify original client IP addresses.
 
@@ -178,7 +222,7 @@ real_ip_recursive on;
 * Before saving the configuration, please ensure that Cloudflare IP addresses specified in the configuration above match those in the [Cloudflare documentation](https://www.cloudflare.com/ips/). 
 * In the `real_ip_header` directive value, you can specify either `CF-Connecting-IP` or `X-Forwarded-For`. Cloudflare CDN appends both headers and you can configure NGINX to read any of them. [More details in the Cloudflare CDN](https://support.cloudflare.com/hc/en-us/articles/200170786-Restoring-original-visitor-IPs)
 
-### Fastly CDN
+#### Fastly CDN
 
 If using Fastly CDN, you can [configure the NGINX module **ngx_http_realip_module**](#configuring-nginx-to-read-the-header-x-forwarded-for-x-real-ip-or-a-similar) to identify original client IP addresses.
 
@@ -211,7 +255,7 @@ real_ip_recursive on;
 
 Before saving the configuration, please ensure that Fastly IP addresses specified in the configuration above match those in the [Fastly documentation](https://api.fastly.com/public-ip-list). 
 
-### HAProxy
+#### HAProxy
 
 If using HAProxy, both HAProxy and Wallarm node sides should be properly configured to identify original client IP addresses:
 

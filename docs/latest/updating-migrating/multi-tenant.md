@@ -3,10 +3,7 @@
 
 # Upgrading the multi-tenant node
 
-These instructions describe the steps to upgrade the multi-tenant node up to the latest 6.x.
-
-To upgrade the end‑of‑life multi-tenant node (3.6 or lower), please use the [different instructions](older-versions/multi-tenant.md).
-
+These instructions describe the steps to upgrade the multi-tenant node up to the latest 7.x.
 ## Requirements
 
 * Execution of further commands by the user with the **Global administrator** role added under the [technical tenant account](../installation/multi-tenant/overview.md#tenant-accounts)
@@ -19,8 +16,7 @@ To upgrade the end‑of‑life multi-tenant node (3.6 or lower), please use the 
 
 Standard procedures are the ones for:
 
-* [Upgrading Wallarm from DEB/RPM packages](nginx-modules.md)
-* [Upgrading Wallarm with all-in-one installer](nginx-modules.md)
+* [Upgrading Wallarm with all-in-one installer](all-in-one.md)
 * [Upgrading the postanalytics module](separate-postanalytics.md)
 * [Upgrading the Wallarm Docker NGINX-based image](docker-container.md)
 * [Upgrading NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)

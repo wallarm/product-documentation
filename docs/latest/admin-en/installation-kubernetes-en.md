@@ -3,10 +3,9 @@
 [IC-existingsecret]:                      ../admin-en/configure-kubernetes-en.md#configwallarmapiexistingsecretenabled
 [applications]:                           ../user-guides/settings/applications.md
 [ptrav-attack]:                           ../attacks-vulns-list.md#path-traversal
-[best-practices-for-public-ip]:           ../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
 [ip-lists-docs]:                          ../user-guides/ip-lists/overview.md
 [best-practices-for-high-availability]:   ../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
-[best-practices-for-ingress-monitoring]:  ../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
+[best-practices-for-ingress-monitoring]:  ../admin-en/nginx-node-metrics.md
 [deployment-platform-docs]:               ../installation/supported-deployment-options.md
 [chaining-doc]:                           ../admin-en/chaining-wallarm-and-other-ingress-controllers.md
 [node-token-types]:                       ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
@@ -20,7 +19,7 @@
 
 These instructions provide you with the steps to deploy the Wallarm NGINX-based Ingress controller to your K8s cluster. The solution is deployed from the Wallarm Helm chart.
 
-The solution is based on the [F5 NGINX Ingress Controller][new-ic] with integrated Wallarm services. It uses the NGINX Ingress Controller image version 5.4.0. The Wallarm controller image is built on NGINX stable 1.29.x and uses Alpine Linux 3.23 as the base image.
+The solution is based on the [F5 NGINX Ingress Controller][new-ic] with integrated Wallarm services. It uses the NGINX Ingress Controller image version 5.5.4. The Wallarm controller image is built on NGINX stable 1.31.x and uses Alpine Linux 3.23 as the base image.
 
 !!! info "Migrating from Community-based solution"
     If you currently have the Wallarm NGINX Ingress Controller based on the Community NGINX Ingress Controller, refer to the [migration guide][migration-doc] for instructions on migrating to this F5-based solution.
@@ -115,7 +114,7 @@ Generate a [Node API token][node-token-types]:
 1. Install the Wallarm packages:
 
     ```bash
-    helm install --version 7.0.0 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
+    helm install --version 7.1.0 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` is the name for the Helm release of the Ingress controller chart
@@ -144,8 +143,8 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.o
 
     ```
     NAME                                                                  READY   STATUS    RESTARTS   AGE
-    <RELEASE_NAME>-wallarm-ingress-controller-<POD_SUFFIX>             3/3     Running   0          8m7s
-    <RELEASE_NAME>-wallarm-ingress-wallarm-postanalytics-<POD_SUFFIX>  3/3     Running   0          8m7s
+    <RELEASE_NAME>-wallarm-ingress-controller-<POD_SUFFIX>                2/2     Running   0          8m7s
+    <RELEASE_NAME>-wallarm-ingress-wallarm-postanalytics-<POD_SUFFIX>     1/1     Running   0          8m7s
     ```
 2. Send the test [Path Traversal][ptrav-attack] attack to the Ingress Controller Service:
 
@@ -317,6 +316,14 @@ Below is the recommended custom SCC for the Wallarm NGINX Ingress Controller.
     ```
 
 The expected output is `wallarm-ingress-controller`.
+
+## Monitoring
+
+The Wallarm services in the controller pod expose Prometheus metrics — traffic and attack counters, Postanalytics (**wstore**), **wcli**, and process metrics — on a single aggregated endpoint served by the `wd` (Wallarm Daemon) service (`http://127.0.0.1:9445/metrics` by default).
+
+The metrics service is enabled by default; to scrape it with the Prometheus Operator, enable a `ServiceMonitor` through the `controller.wallarm.wd.metrics.*` [Helm values](configure-kubernetes-en.md#wallarm-wd-container-parameters).
+
+For the list of available metrics and how to read them, see [Monitoring the NGINX Node Metrics and Health](nginx-node-metrics.md).
 
 <!-- 
 ## Configuration
