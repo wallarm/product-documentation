@@ -52,6 +52,14 @@ What stops working:
 
 Note that besides the entire down state described above, sometimes only particular services may be temporarily inaccessible, while the others continue functioning. If this is the case, the [status.wallarm.com](https://status.wallarm.com/) service will provide you the corresponding information.
 
+## Can a Wallarm node start while the Cloud is down?
+
+A Wallarm node can start and begin filtering traffic even when the Wallarm Cloud is temporarily unavailable — for example, on a fresh boot, a restart, or when an orchestrator scales out new node replicas.
+
+The Wallarm Cloud periodically generates the files a node needs to start and uploads them to cloud object storage that is hosted independently of the Cloud. If the Cloud is unavailable when a node starts, the node downloads these startup files from that storage and begins filtering traffic.
+
+This behavior is enabled by default and requires no configuration. The independent storage is used only to bootstrap a starting node — once running, the node synchronizes directly with the Wallarm Cloud, so the [limitations above](#how-does-wallarm-node-operate-if-wallarm-cloud-is-down) still apply while the Cloud stays down.
+
 ## What happens after Cloud restoration?
 
 After Cloud restoration:
