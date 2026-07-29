@@ -5,7 +5,7 @@
 
 # Upgrading Wallarm NGINX Node with All-in-One Installer
 
-These instructions describe the steps to upgrade the Wallarm node installed using [all‑in‑one installer](../installation/nginx/all-in-one.md) to the latest version 6.x.
+These instructions describe the steps to upgrade the Wallarm node installed using [all‑in‑one installer](../installation/nginx/all-in-one.md) to the latest version 7.x.
 
 !!! info "Re-installation of the Wallarm services is required"
     For a safe upgrade procedure, install the new Node on a new machine, redirect traffic to the new machine, and then remove the old one.

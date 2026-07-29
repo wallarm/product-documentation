@@ -17,10 +17,11 @@
 
 # Upgrading the Docker NGINX-based image
 
-These instructions describe the steps to upgrade the running Docker NGINX-based image to the latest version 6.x.
+These instructions describe the steps to upgrade the running Docker NGINX-based image to the latest version 7.x.
 
 !!! warning "Using credentials of already existing Wallarm node"
-    We do not recommend using the already existing Wallarm node of the previous version. Please follow these instructions to create a new filtering node of the version 6.x and deploy it as the Docker container.
+    We do not recommend using the already existing Wallarm node of the previous version. Please follow these instructions to create a new filtering node of the version 7.x and deploy it as the Docker container.
+
 ## Requirements
 
 --8<-- "../include/waf/installation/requirements-docker-nginx-latest.md"
@@ -87,4 +88,4 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 ## Step 5: Delete the filtering node of the previous version
 
-If the deployed image of the version 6.x operates correctly, you can delete the filtering node of the previous version in Wallarm Console → **Nodes**.
+If the deployed image of the version 7.x operates correctly, you can delete the filtering node of the previous version in Wallarm Console → **Nodes**.

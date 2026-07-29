@@ -3,7 +3,7 @@
 
 # Upgrading the multi-tenant node
 
-These instructions describe the steps to upgrade the multi-tenant node up to the latest 6.x.
+These instructions describe the steps to upgrade the multi-tenant node up to the latest 7.x.
 ## Requirements
 
 * Execution of further commands by the user with the **Global administrator** role added under the [technical tenant account](../installation/multi-tenant/overview.md#tenant-accounts)
