@@ -19,7 +19,7 @@
 
 These instructions provide you with the steps to deploy the Wallarm NGINX-based Ingress controller to your K8s cluster. The solution is deployed from the Wallarm Helm chart.
 
-The solution is based on the [F5 NGINX Ingress Controller][new-ic] with integrated Wallarm services. It uses the NGINX Ingress Controller image version 5.4.0. The Wallarm controller image is built on NGINX stable 1.29.x and uses Alpine Linux 3.23 as the base image.
+The solution is based on the [F5 NGINX Ingress Controller][new-ic] with integrated Wallarm services. It uses the NGINX Ingress Controller image version 5.5.4. The Wallarm controller image is built on NGINX stable 1.31.x and uses Alpine Linux 3.23 as the base image.
 
 !!! info "Migrating from Community-based solution"
     If you currently have the Wallarm NGINX Ingress Controller based on the Community NGINX Ingress Controller, refer to the [migration guide][migration-doc] for instructions on migrating to this F5-based solution.
