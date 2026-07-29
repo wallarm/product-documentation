@@ -830,7 +830,7 @@ wallarm_requests_per_group_total{client_uuid="...",client_label="...",group="api
 ### wallarm_tarantool_upstream
 
 !!! warning "Rename `wallarm_tarantool_upstream` to `wallarm_wstore_upstream`"
-    In NGINX Node version 6.x and later, this parameter has been [renamed](../updating-migrating/what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics) to [`wallarm_wstore_upstream`](#wallarm_wstore_upstream), with no changes to its logic.
+    In NGINX Node version 6.x and later, this parameter has been renamed to [`wallarm_wstore_upstream`](#wallarm_wstore_upstream), with no changes to its logic.
     
     Backward compatibility is maintained with a deprecation warning, but renaming is recommended to avoid future errors when the old directive is removed. Warning example:
 
