@@ -456,6 +456,7 @@ nav:
     - Overview: infrastructure-discovery/overview.md
     - Setup: infrastructure-discovery/setup.md
     - Exploring Inventory: infrastructure-discovery/exploring.md
+    - Attack Paths: infrastructure-discovery/attack-paths.md
 
   # ============================================================================
   # SECTION 4: API SECURITY TESTING
