@@ -21,6 +21,17 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.13.0 (2026-07-29)
+
+* Added support for NGINX stable 1.30.4
+* Added support for NGINX mainline 1.31.3
+* Added Server-Sent Events (SSE) response analysis, enabled by default and controlled by the [`wallarm_parse_sse`](../admin-en/configure-parameters-en.md#wallarm_parse_sse) directive, improving discovery of [MCP servers](../api-discovery/exploring.md#mcp-servers)
+* Improved [DoS protection](../api-protection/dos-protection.md) mitigation control accuracy
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-7246](https://nvd.nist.gov/vuln/detail/CVE-2026-7246)
+    * [GHSA-6v7p-g79w-8964](https://github.com/advisories/GHSA-6v7p-g79w-8964)
+
 ### 6.12.7 (2026-06-26)
 
 * Added support for the latest Ubuntu, Alpine, and Oracle Linux distribution NGINX packages
@@ -295,6 +306,11 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.13.0 (2026-07-29)
+
+* Added Server-Sent Events (SSE) response analysis, enabled by default and controlled by the [`wallarm_parse_sse`](../admin-en/configure-parameters-en.md#wallarm_parse_sse) directive, improving discovery of [MCP servers](../api-discovery/exploring.md#mcp-servers)
+* Improved [DoS protection](../api-protection/dos-protection.md) mitigation control accuracy
 
 ### 6.12.7 (2026-06-26)
 
@@ -581,6 +597,11 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.13.0 (2026-07-29)
+
+* Added Server-Sent Events (SSE) response analysis, enabled by default and controlled by the [`wallarm_parse_sse`](../admin-en/configure-parameters-en.md#wallarm_parse_sse) directive, improving discovery of [MCP servers](../api-discovery/exploring.md#mcp-servers)
+* Improved [DoS protection](../api-protection/dos-protection.md) mitigation control accuracy
+
 ### 6.12.7 (2026-06-26)
 
 * Added the [`wallarm_enable_mcp_global`](../admin-en/configure-parameters-en.md#wallarm_enable_mcp_global) directive to enable or disable downloading MCP rules and schemas from the Wallarm Cloud (enabled by default)
@@ -836,6 +857,15 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.13.0 (2026-07-29)
+
+* Added Server-Sent Events (SSE) response analysis, enabled by default and controlled by the [`wallarm_parse_sse`](../admin-en/configure-parameters-en.md#wallarm_parse_sse) directive, improving discovery of [MCP servers](../api-discovery/exploring.md#mcp-servers)
+* Improved [DoS protection](../api-protection/dos-protection.md) mitigation control accuracy
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-7246](https://nvd.nist.gov/vuln/detail/CVE-2026-7246)
+    * [GHSA-6v7p-g79w-8964](https://github.com/advisories/GHSA-6v7p-g79w-8964)
 
 ### 6.12.7 (2026-06-26)
 
@@ -1095,6 +1125,11 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](cloud-image.md)
 
+### 6.13.0 (2026-07-29)
+
+* Added Server-Sent Events (SSE) response analysis, enabled by default and controlled by the [`wallarm_parse_sse`](../admin-en/configure-parameters-en.md#wallarm_parse_sse) directive, improving discovery of [MCP servers](../api-discovery/exploring.md#mcp-servers)
+* Improved [DoS protection](../api-protection/dos-protection.md) mitigation control accuracy
+
 ### 6.12.7 (2026-06-26)
 
 * Added the [`wallarm_enable_mcp_global`](../admin-en/configure-parameters-en.md#wallarm_enable_mcp_global) directive to enable or disable downloading MCP rules and schemas from the Wallarm Cloud (enabled by default)
@@ -1310,6 +1345,11 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-13-0-20260729-094623 (2026-07-29)
+
+* Added Server-Sent Events (SSE) response analysis, enabled by default and controlled by the [`wallarm_parse_sse`](../admin-en/configure-parameters-en.md#wallarm_parse_sse) directive, improving discovery of [MCP servers](../api-discovery/exploring.md#mcp-servers)
+* Improved [DoS protection](../api-protection/dos-protection.md) mitigation control accuracy
 
 ### wallarm-node-6-12-7-20260625-060642 (2026-06-25)
 

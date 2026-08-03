@@ -104,13 +104,13 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
         If using the x86_64 version:
 
         ```bash
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.7.x86_64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.13.0.x86_64-glibc.sh filtering
         ```
 
         If using the ARM64 version:
 
         ```bash
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.12.7.aarch64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.13.0.aarch64-glibc.sh filtering
         ```        
 
         The `WALLARM_LABELS` variable sets the group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -119,13 +119,13 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
         If using the x86_64 version:
 
         ```bash
-        sudo sh wallarm-6.12.7.x86_64-glibc.sh filtering
+        sudo sh wallarm-6.13.0.x86_64-glibc.sh filtering
         ```
 
         If using the ARM64 version:
         
         ```bash
-        sudo sh wallarm-6.12.7.aarch64-glibc.sh filtering
+        sudo sh wallarm-6.13.0.aarch64-glibc.sh filtering
         ```
 
 ## Step 7: Migrate allowlists and denylists from the previous Wallarm node version to 6.x (only if upgrading node 2.18 or lower)

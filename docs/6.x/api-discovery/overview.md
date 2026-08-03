@@ -1,1 +1,228 @@
---8<-- "latest/api-discovery/overview.md"
+# API Discovery Overview <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
+
+Wallarm's multi-protocol API Discovery continuously analyzes the real traffic requests and builds the API inventory (full picture of your active APIs and MCP servers) based on the analysis results.
+
+## Supported protocols
+
+API Discovery is capable of finding and representing hosts and endpoints utilizing different protocols. The following protocols are supported:
+
+| Protocol | Core entity | Required [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) version | Required [Native Node](../installation/nginx-native-node-internals.md#native-node) version |
+| --- | --- | --- | --- |
+| **REST** | Endpoint | Any | Any |
+| **GraphQL** | Operation (query, mutation, subscription) | 6.1.0 | 0.15.1 |
+| **SOAP** | Operation | 6.3.0 | 0.17.1 |
+| **gRPC** | Operation | 6.4.0 | NA |
+| **MCP** | MCP server | 6.12.0 | 0.25.0 |
+
+## Your API inventory
+
+API inventory is a picture of your active APIs automatically built by Wallarm's API Discovery based on traffic going through Wallarm nodes. It includes:
+
+* API hosts and their endpoints
+* Required and optional parameters and headers of requests and responses including:
+
+    * Type and format of data sent in each parameter    
+    * Date and time when parameter information was last updated
+
+* Request methods (GET, POST, and others) for REST
+* GraphQL operations (queries, mutations, subscriptions)
+* GraphQL schema
+* SOAP operations
+* gRPC operations
+* MCP servers and their tools, resources, and prompts
+
+=== "APIs"
+    ![API Discovery - built API inventory](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-built-inventory.png)
+=== "MCP Servers"
+    ![Discovered MCP Servers](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-mcp-servers.png)
+
+## Issues addressed by API Discovery
+
+**Building an actual and complete API inventory** is the main issue the API Discovery module is addressing.
+
+Keeping API inventory up-to-date is a difficult task. There is a high chance that one API is used by multiple teams and clients and it is a common case that different tools and processes are used to produce the API documentation. As a result, companies struggle both to understand what APIs they have and what data they expose, and to keep API documentation up to date.
+
+Since the API Discovery module uses the real traffic as a data source, it helps to get up-to-date and complete API documentation by including in the API inventory all endpoints that are actually processing the requests.
+
+**As you have your API inventory discovered by Wallarm, you can**:
+
+* Have full visibility into the whole API estate.
+* See what data ([REST](exploring.md#rest-endpoint-details), [GraphQL](exploring.md#graphql-operation-details), [SOAP](exploring.md#soap-operation-details), [gRPC](exploring.md#grpc-operation-details)) is going into and out of the APIs.
+* Filter APIs that consume and carry [sensitive data](#sensitive-data-detection).
+* Filter APIs that have no [authentication](exploring.md#authentication-flow).
+* Understand which endpoints are [most likely](risk-score.md) to be an attack target.
+* Find endpoints that have [security issues](../api-attack-surface/security-issues.md) (vulnerabilities) and navigate from endpoint details to full descriptions and mitigation methods.
+* [Track changes](track-changes.md) in API that took place within the selected period of time.
+* Provide your developers with [access](../user-guides/settings/users.md#user-roles) to review and download the built API inventory.
+<!--* Get a list of the threats that occurred over the past 7 days per any given API endpoint.-->
+
+## How does API Discovery work?
+
+API Discovery relies on request statistics and uses sophisticated algorithms to generate up-to-date API specs based on the actual API usage.
+
+### Traffic processing
+
+API Discovery uses a hybrid approach to conduct analysis locally and in the Cloud. This approach enables a [privacy-first process](#security-of-data-uploaded-to-the-wallarm-cloud) where request data and sensitive data are kept locally while using the power of the Cloud for the statistics analysis:
+
+1. API Discovery analyzes legitimate traffic locally — it inspects which endpoints are requested and what parameters are passed in requests and responses.
+
+    For REST, GraphQL, SOAP, and gRPC, the node sends ~10% of responses for analysis. For MCP, it sends 100% to ensure complete capture of tool schemas from `tools/list`, `resources/list`, and `prompts/list` responses.
+1. According to this data, statistics are made and sent to the Cloud.
+1. Wallarm Cloud aggregates the received statistics and builds an [API description](exploring.md) on its basis.
+
+    !!! info "Noise detection"
+        Rare or single requests are [determined as noise](#noise-detection) and not included in the API inventory.
+
+### Noise detection
+
+The API Discovery module bases noise detection on the two major traffic parameters:
+
+* **Endpoint stability** - at least a specific **number of requests** should be registered for the endpoint for it to be displayed by API Discovery AND at least one of them must be outside the **timeframe**.
+
+    These settings aim to avoid showing API entries that had no traffic or had traffic for a short timeframe only - they are considered unstable. Even if the specific endpoint was requested a huge amount of times, but just within a short timeframe, there is no need to consider this one-time spike as a stable API endpoint.
+
+    ![API Discovery - endpoint stability](../images/about-wallarm-waf/api-discovery/api-discovery-endpoint-stability.png)
+
+* **Parameter stability** - the occurrence of the parameter in requests to the endpoint must be more than 1 percent.
+
+Also, API Discovery performs filtering of requests relying on the other criteria, described in the sections below. Note that the time required to build the complete API inventory depends on the traffic diversity and intensity.
+
+#### Core filtering criteria
+
+1. **HTTP status code validation** - only requests with server responses in the `2xx` range (`200`-`299`) are processed.
+1. **HTTP method validation** - requests must use valid HTTP methods. The following is not processed: empty method, `OPTIONS`, `HEAD`.
+1. **Host validation** - requests must not target localhost or loopback addresses. The following is not processed: `localhost`, `127.0.0.1`, IPv6 loopback addresses (`::1`, `0:0:0:0:0:0:0:1`, etc.)
+1. **Path validation** - request paths must conform to valid patterns: `^[\w{}\s\-]+(?:[.@][\w{}\s\-]+)*$`. The following is not processed: paths containing CJK characters (Unicode range 0x3000-0x303F).
+1. **File extension filtering** - requests with file extensions are filtered based on content type validation: when a path has an extension, the `Content-type` header validation becomes mandatory.
+1. **Content-type header validation** - the `Content-type` header of response must be valid:
+
+    * `text/xml`
+    * `application/*json` (any JSON variant)
+    * `application/octet-stream`
+    * `application/*xml` (any XML variant)
+
+    Responses without a `Content-type` header, and the corresponding requests that also carry no `Content-type` header, are considered valid as well.
+
+    This type of validation is only performed if enabled (see [how to check](setup.md#general-api-discovery-settings)) by the Wallarm support team, except cases when presence of file extension in the path makes it mandatory. The necessity of this validation in noise reduction depends on the peculiarities of your traffic.
+
+1. **Security filtering** - the following is not processed:
+
+    * Requests with [attack types](../attacks-vulns-list.md)
+    * Requests from DirBuster and similar scanners
+
+#### Protocol-specific criteria
+
+##### GraphQL
+
+**Detection method**: analyzes request payload structure for GraphQL-specific patterns.
+**Key indicators**:
+
+* GraphQL structure in any HTTP valid request type (`GET`, `POST`)
+* Operation types: `query`, `mutation`, `subscription`
+
+**Response pattern**: only JSON object with structure `{"data":{}}`.
+
+##### SOAP
+
+**Detection method**: analyzes XML structure for SOAP envelope patterns.
+**Key indicators**:
+
+* XML structure with SOAP envelope
+* Must contain proper SOAP namespace structure
+
+**Requirements**:
+
+* Must have SOAP envelope with proper namespace
+* Must contain SOAP Body element
+* Must have a method name as the final element
+
+##### gRPC
+
+**Detection method**: analyzes HTTP/2 requests with `application/grpc` content type.
+**Key indicators**:
+
+* HTTP/2 protocol with `application/grpc` content type
+* Protocol buffer encoded payload
+
+Only general gRPC services that use [protocol buffers](https://protobuf.dev/) are discovered.
+
+##### MCP
+
+**Detection method**: analyzes JSON-RPC 2.0 request/response structure for patterns specific to the [Model Context Protocol](https://modelcontextprotocol.io/), such as MCP-specific method names and protocol headers. For instance, `initialize`, `tools/list`, `tools/call`, `resources/list`, `resources/read`, `prompts/list`, `prompts/get`, etc.
+
+Once an MCP server endpoint is discovered, API Discovery captures the server's primitives:
+
+* **Tools** — invocable functions exposed by the MCP server (e.g., `get_user_profile`, `create_lead`)
+* **Resources** — data and files available for reading (e.g., `crm://legal/nda`)
+* **Prompts** — parametrized templates for common workflows (e.g., `account_research_prompt`)
+
+Service methods such as `ping`, `resources/subscribe`, `completion/complete`, and `logging/setLevel` are automatically filtered out and do not appear as discovered primitives.
+
+The Node automatically enables 100% response parsing for discovered MCP endpoints to ensure complete schema capture.
+
+Many MCP servers return their responses as Server-Sent Events (SSE) streams (`Content-type: text/event-stream`) rather than a single JSON body. Starting from [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.13.0, the Node parses these SSE response streams, so tool, resource, and prompt schemas are captured from streamed responses as well.
+
+Discovered MCP servers are displayed in the API inventory with the **MCP** protocol label and can be used as a scope for [MCP mitigation controls](../agentic-ai/mcp-mitigation-controls.md).
+
+##### REST
+
+**Detection method**: default fallback for requests that don't match other patterns.
+**Key indicators**:
+
+* Does not match GraphQL, SOAP, gRPC
+* Uses standard HTTP methods (`GET`, `POST`, `PUT`, `DELETE`, etc.)
+
+#### Additional filtering criteria
+
+1. **Multipart request filtering** - multipart requests with header parts are not processed.
+1. **Base64 content filtering** - request points ending with "base64" are excluded.
+1. **Empty value filtering** - request points with empty values are excluded in most contexts.
+
+### Authentication flow detection
+
+API Discovery automatically detects [authentication flows](authentication.md) used by each endpoint by analyzing HTTP headers and request parameters in the traffic. This helps identify endpoints that lack proper authentication — the #1 API security risk.
+
+![Authentication tab in endpoint details](../images/about-wallarm-waf/api-discovery-2.0/endpoint-auth-tab.png)
+
+### Sensitive data detection
+
+API Discovery [detects and highlights](sensitive-data.md) sensitive data consumed and carried by your APIs:
+
+* Personally identifiable information (PII) like full name, passport number or SSN
+* Login credentials like secret keys and passwords
+* Financial data like bank card numbers
+* Medical data like medical license number
+* Technical data like IP and MAC addresses
+
+### Sensitive business flows
+
+With the [sensitive business flow](sbf.md) capability, API Discovery can automatically identify endpoints that are critical to specific business flows and functions, such as authentication, account management, billing, and similar critical capabilities.
+
+In addition to automatic identification, you can manually adjust the assigned sensitive business flow tags and manually set tags for the endpoints of your choice.
+
+Once endpoints are assigned the sensitive business flow tags, it becomes possible to filter all discovered endpoints by a specific business flow, which makes it easier to protect the most critical business capabilities.
+
+![API Discovery - Filtering by sensitive business flows](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-sbf-filter.png)
+
+### Security of data uploaded to the Wallarm Cloud
+
+API Discovery analyzes most of the traffic locally. The module sends to the Wallarm Cloud only the discovered endpoints, parameter names and various statistical data (time of arrival, their number, etc.) All data is transmitted via a secure channel: before uploading the statistics to the Wallarm Cloud, the API Discovery module hashes the values of request parameters using the [SHA-256](https://en.wikipedia.org/wiki/SHA-2) algorithm.
+
+On the Cloud side, hashed data is used for statistical analysis (for example, when quantifying requests with identical parameters).
+
+Other data (endpoint values, request methods, and parameter names) is not hashed before being uploaded to the Wallarm Cloud, because hashes cannot be restored to their original state which would make building API inventory impossible.
+
+!!! warning "Important"
+    API Discovery does not send the parameter values to the Cloud. Only the endpoint, parameter names and statistics on them are sent.
+
+## Checking API Discovery in playground
+
+To try the module even before signing up and deploying the node to your environment, explore [API Discovery in Wallarm Playground](https://playground.wallarm.com/api-discovery/?utm_source=wallarm_docs_apid).
+
+In Playground, you can access the API Discovery view as if it were filled with real data and thus learn and try out how the module works, and get some useful examples of its usage in the read-only mode.
+
+![API Discovery – Sample Data](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
+
+## Enabling API Discovery
+
+To start using API Discovery, enable it as described in [API Discovery Setup](setup.md).
