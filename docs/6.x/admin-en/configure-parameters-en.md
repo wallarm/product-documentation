@@ -426,6 +426,19 @@ Possible values are `on` (response analysis is enabled) and `off` (response anal
 !!! warning "Improve performance"
     You are recommended to disable processing of static files through `location` to improve performance.
 
+### wallarm_parse_sse
+
+Controls whether the Node parses Server-Sent Events (SSE) response streams for response-side inspection.
+
+Responses with the `Content-type: text/event-stream` header are recognized as SSE streams automatically. When parsing is enabled, the Node reads the streamed events and passes them to response analysis. This is required for [API Discovery](../api-discovery/overview.md) and response-based detection on [MCP servers](../api-discovery/exploring.md#mcp-servers) that stream their responses over SSE.
+
+Available starting from release 6.13.0.
+
+!!! info
+    Default value is `on`.
+
+    This parameter can be set inside the http, server, and location blocks.
+
 ### wallarm_parse_websocket <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg"></a>
 
 Wallarm provides full WebSockets support under the API Security subscription plan. By default, the WebSockets' messages are not analyzed for attacks.

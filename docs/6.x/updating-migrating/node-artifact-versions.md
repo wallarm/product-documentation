@@ -25,7 +25,7 @@ new attack types in logging variables and search bars?
 
 * Added support for NGINX stable 1.30.4
 * Added support for NGINX mainline 1.31.3
-* Added Server-Sent Events (SSE) analysis, improving discovery of [MCP servers](../api-discovery/exploring.md#mcp-servers)
+* Added Server-Sent Events (SSE) response analysis, enabled by default and controlled by the [`wallarm_parse_sse`](../admin-en/configure-parameters-en.md#wallarm_parse_sse) directive, improving discovery of [MCP servers](../api-discovery/exploring.md#mcp-servers)
 * Improved [DoS protection](../api-protection/dos-protection.md) mitigation control accuracy
 * Fixed security vulnerabilities:
 
@@ -309,7 +309,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 ### 6.13.0 (2026-07-29)
 
-* Added Server-Sent Events (SSE) analysis, improving discovery of [MCP servers](../api-discovery/exploring.md#mcp-servers)
+* Added Server-Sent Events (SSE) response analysis, enabled by default and controlled by the [`wallarm_parse_sse`](../admin-en/configure-parameters-en.md#wallarm_parse_sse) directive, improving discovery of [MCP servers](../api-discovery/exploring.md#mcp-servers)
 * Improved [DoS protection](../api-protection/dos-protection.md) mitigation control accuracy
 
 ### 6.12.7 (2026-06-26)
@@ -599,7 +599,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 ### 6.13.0 (2026-07-29)
 
-* Added Server-Sent Events (SSE) analysis, improving discovery of [MCP servers](../api-discovery/exploring.md#mcp-servers)
+* Added Server-Sent Events (SSE) response analysis, enabled by default and controlled by the [`wallarm_parse_sse`](../admin-en/configure-parameters-en.md#wallarm_parse_sse) directive, improving discovery of [MCP servers](../api-discovery/exploring.md#mcp-servers)
 * Improved [DoS protection](../api-protection/dos-protection.md) mitigation control accuracy
 
 ### 6.12.7 (2026-06-26)
@@ -860,7 +860,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 ### 6.13.0 (2026-07-29)
 
-* Added Server-Sent Events (SSE) analysis, improving discovery of [MCP servers](../api-discovery/exploring.md#mcp-servers)
+* Added Server-Sent Events (SSE) response analysis, enabled by default and controlled by the [`wallarm_parse_sse`](../admin-en/configure-parameters-en.md#wallarm_parse_sse) directive, improving discovery of [MCP servers](../api-discovery/exploring.md#mcp-servers)
 * Improved [DoS protection](../api-protection/dos-protection.md) mitigation control accuracy
 * Fixed security vulnerabilities:
 
@@ -1127,7 +1127,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 ### 6.13.0 (2026-07-29)
 
-* Added Server-Sent Events (SSE) analysis, improving discovery of [MCP servers](../api-discovery/exploring.md#mcp-servers)
+* Added Server-Sent Events (SSE) response analysis, enabled by default and controlled by the [`wallarm_parse_sse`](../admin-en/configure-parameters-en.md#wallarm_parse_sse) directive, improving discovery of [MCP servers](../api-discovery/exploring.md#mcp-servers)
 * Improved [DoS protection](../api-protection/dos-protection.md) mitigation control accuracy
 
 ### 6.12.7 (2026-06-26)
@@ -1348,7 +1348,7 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 ### wallarm-node-6-13-0-20260729-094623 (2026-07-29)
 
-* Added Server-Sent Events (SSE) analysis, improving discovery of [MCP servers](../api-discovery/exploring.md#mcp-servers)
+* Added Server-Sent Events (SSE) response analysis, enabled by default and controlled by the [`wallarm_parse_sse`](../admin-en/configure-parameters-en.md#wallarm_parse_sse) directive, improving discovery of [MCP servers](../api-discovery/exploring.md#mcp-servers)
 * Improved [DoS protection](../api-protection/dos-protection.md) mitigation control accuracy
 
 ### wallarm-node-6-12-7-20260625-060642 (2026-06-25)
