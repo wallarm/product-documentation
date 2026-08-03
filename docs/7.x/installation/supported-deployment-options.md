@@ -38,7 +38,7 @@ Choose a Kubernetes option if your APIs run in-cluster and you want in-cluster p
             <p>gRPC-based external processing filter for Istio-managed APIs</p>
         </a>
 
-         <a class="do-card" href="admin-en/installation-kubernetes-en/">
+         <a class="do-card" href="../admin-en/installation-kubernetes-en/">
             <img class="non-zoomable" src="../../images/platform-icons/ingress.svg" />
             <h3>NGINX Ingress Controller</h3>
             <p>Deploy the NGINX Ingress Controller with integrated Wallarm services</p>
@@ -381,7 +381,7 @@ Choose packages or containers if you run on VMs or bare metal and prefer them ov
             <p>Run Wallarm in containers</p>
         </div>
 
-         <a class="do-card" href="admin-en/installation-docker-en/">
+         <a class="do-card" href="../admin-en/installation-docker-en/">
             <h3>Image for NGINX Node</h3>
             <p>Use the NGINX-based Docker image for Wallarm deployment</p>
         </a>
