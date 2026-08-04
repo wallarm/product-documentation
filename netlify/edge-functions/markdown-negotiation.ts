@@ -61,6 +61,12 @@ const BLOCKED_IPS = new Set<string>([
  */
 export function isScraper(headers: Headers): boolean {
   const ua = headers.get("user-agent") ?? "";
+  // Never touch self-identifying crawlers (Googlebot, Amazonbot, bingbot,
+  // PetalBot, …). Some declare a stale Chrome token — Amazonbot rides on
+  // Chrome/119 — which would otherwise trip the stale-Chrome rule below. The
+  // scraper uses plain browser UAs with no bot/spider/crawler token, so it is
+  // unaffected by this allowance.
+  if (/bot|spider|crawl/i.test(ua)) return false;
   if (DENO_UA.test(ua)) return true;
   if (STALE_CHROME_UA.test(ua)) {
     const looksLikeRealBrowser =
