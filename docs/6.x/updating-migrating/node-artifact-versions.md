@@ -29,6 +29,9 @@ new attack types in logging variables and search bars?
 * Improved [DoS protection](../api-protection/dos-protection.md) mitigation control accuracy
 * Fixed security vulnerabilities:
 
+    * [CVE-2026-42533](https://nvd.nist.gov/vuln/detail/CVE-2026-42533)
+    * [CVE-2026-56434](https://nvd.nist.gov/vuln/detail/CVE-2026-56434)
+    * [CVE-2026-60005](https://nvd.nist.gov/vuln/detail/CVE-2026-60005)
     * [CVE-2026-7246](https://nvd.nist.gov/vuln/detail/CVE-2026-7246)
     * [GHSA-6v7p-g79w-8964](https://github.com/advisories/GHSA-6v7p-g79w-8964)
 
@@ -864,6 +867,9 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 * Improved [DoS protection](../api-protection/dos-protection.md) mitigation control accuracy
 * Fixed security vulnerabilities:
 
+    * [CVE-2026-42533](https://nvd.nist.gov/vuln/detail/CVE-2026-42533)
+    * [CVE-2026-56434](https://nvd.nist.gov/vuln/detail/CVE-2026-56434)
+    * [CVE-2026-60005](https://nvd.nist.gov/vuln/detail/CVE-2026-60005)
     * [CVE-2026-7246](https://nvd.nist.gov/vuln/detail/CVE-2026-7246)
     * [GHSA-6v7p-g79w-8964](https://github.com/advisories/GHSA-6v7p-g79w-8964)
 

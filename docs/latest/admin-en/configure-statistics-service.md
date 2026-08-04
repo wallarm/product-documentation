@@ -3,40 +3,65 @@
 [gl-lom]:                       ../glossary-en.md#custom-ruleset-the-former-term-is-lom
 [doc-selinux]:                  ../troubleshooting/detection-and-blocking.md#filtering-node-rps-and-aps-values-are-not-exported-to-cloud
 
-# Statistics Service
+# Wallarm Node Statistics Service
 
-You can obtain Wallarm [NGINX or Native](../installation/nginx-native-node-internals.md) node statistics using the `wallarm_status` service. This article describes how to configure and use the service.
+Wallarm provides the service for retrieving NGINX Node statistics for direct inspection and troubleshooting. The service exposes traffic, request processing, and attack detection statistics through the `/wallarm-status` endpoint.
 
-!!! info "Native node statistics service"
-    For [Native](../installation/nginx-native-node-internals.md#native-node) nodes, although still available, `wallarm_status` is a legacy service. The main one is the `metrics` service available by `curl localhost:9000/metrics` (see ["metrics"](../installation/native-node/all-in-one-conf.md#metricsenabled) parameters in the Native node configuration).
+Use `/wallarm-status` for direct inspection and troubleshooting. For continuous monitoring, Wallarm provides an [aggregated Prometheus metrics endpoint (`http://127.0.0.1:9445/metrics`)](nginx-node-metrics.md) which is designed to be scraped by monitoring systems and exposes traffic counters together with component and process metrics.
+
+!!! info "Native Node statistics service"
+    For [Native](../installation/nginx-native-node-internals.md#native-node) nodes, the statistics service is available for compatibility but is considered a legacy interface. The primary interface is the [`metrics` service available at `localhost:9000/metrics`](native-node-metrics.md).
 
 ## Setup
 
-!!! warning "Important"
+By default, the statistics service is exposed through the `/wallarm-status` endpoint. The endpoint location depends on the deployment option:
 
-    It is highly recommended to configure the statistics service in its own file, avoiding the `wallarm_status` directive in other NGINX setup files, because the latter may be insecure. The configuration file for `wallarm-status` is located at:
+=== "All-in-one installer, AWS or GCP machine image"
+    ```
+    http://127.0.0.8/wallarm-status
+    ```
 
-    * `/etc/nginx/wallarm-status.conf` for all-in-one installer
-    * `/etc/nginx/conf.d/wallarm-status.conf` for other installations
+=== "NGINX-based Docker image"
+    By default, the endpoint is accessible only from **inside the container** at:
     
-    Also, it is strongly advised not to alter any of the existing lines of the default `wallarm-status` configuration.
+    ```
+    http://127.0.0.8/wallarm-status
+    ``` 
 
-When using the directive, statistics can be given in JSON format or in a format compatible with [Prometheus][link-prometheus]. Usage:
+    To access it from **outside the container**:
 
-```
-wallarm_status [on|off] [format=json|prometheus];
-```
+    1. Set the `WALLARM_STATUS_ALLOW` environment variable to the CIDR or CIDRs that are allowed to access the endpoint. Separate multiple CIDRs with commas, for example:
 
-!!! info
-    The directive can be configured in the context of `server` and/or `location`.
+        ```bash
+        WALLARM_STATUS_ALLOW="10.0.0.0/8,192.168.0.0/16"
+        ```
 
-    The `format` parameter has the `json` value by default in most deployment options except for the NGINX-based Docker image; when the `/wallarm-status` endpoint is called from outside the container, it returns metrics in the Prometheus format.
+    1. Send the request to the container IP and append the `/wallarm-status` path.
 
-    Starting from NGINX Node 6.12.0, you can override the configured format at request time by appending a `?format=json` or `?format=prometheus` query parameter, e.g. `curl http://127.0.0.8/wallarm-status?format=prometheus`.
+    The endpoint runs on the same internal port as NGINX. The port is controlled by the `NGINX_PORT` environment variable and defaults to `80`:
+
+    ```bash
+    NGINX_PORT="443"
+    ```
+
+    For example, if `NGINX_PORT` is set to `443`, retrieve statistics from:
+
+    ```bash
+    curl http://<CONTAINER_IP>:443/wallarm-status
+    ```
+
+    When the endpoint is requested from outside the container, it returns statistics in the Prometheus format by default.
+
+=== "Ingress Controller"
+    The endpoint is available only internally on `controller.nginxStatus.port` (default: `10246`) and is restricted to loopback access.
+
+## Configuring the statistics service
 
 ### Default configuration
 
-By default, the filtering node statistics service has the most secure configuration. The `/etc/nginx/conf.d/wallarm-status.conf` (`/etc/nginx/wallarm-status.conf` for all-in-one installer) configuration file looks like the following:
+The filtering node statistics service configuration is described in the `/etc/nginx/conf.d/wallarm-status.conf` (`/etc/nginx/wallarm-status.conf` for all-in-one installer) file.
+
+The default configuration file looks like the following:
 
 ```
 server {
@@ -58,6 +83,31 @@ server {
   }
 }
 ```
+
+!!! warning "Keep the default `wallarm-status` configuration"
+
+    The default configuration is designed to expose the statistics endpoint securely. Unless instructed otherwise, keep the existing configuration unchanged.
+
+    If you need to customize the statistics service, make the changes in its dedicated configuration file `wallarm-status.conf` rather than adding the `wallarm_status` directive to other NGINX configuration files.
+
+### `wallarm_status` directive
+
+The `wallarm_status` NGINX directive accepts the following value format:
+
+```
+wallarm_status [on|off] [format=json|prometheus];
+```
+
+* `on` | `off` is whether the service activated. For corrent Node operation, it should be `on`.
+* `format` defines the statistics format, can be:
+
+    * `json` (default for all deployment options except for NGINX-based Docker image)
+    * `prometheus` (default for NGINX-based Docker image when the service is called outside the container)
+
+    !!! warning "Changing the default response format"
+        Wallarm recommends keeping the default response format unchanged.
+        
+        To expose statistics in the Prometheus format, configure a dedicated Prometheus endpoint or override the format for individual requests using the `format` query parameter. See [Getting statistics in the Prometheus format](#getting-statistics-in-the-prometheus-format).
 
 ### Limiting IP addresses allowed to request statistics
 
@@ -167,43 +217,45 @@ To change an IP address and/or port of the statistics service, follow the instru
 
         --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
-If SELinux is installed on the filtering node host, make sure that SELinux is either [configured or disabled][doc-selinux]. For simplicity, this document assumes that SELinux is disabled.
-
-Be aware that the local `wallarm-status` output will reset following the application of the above settings.
-
 ### Getting statistics in the Prometheus format
 
 Most deployment options return statistics in JSON format by default. The NGINX-based Docker image is an exception; when the `/wallarm-status` endpoint is called from outside the container, it returns metrics in the Prometheus format.
 
 To obtain statistics in the Prometheus format from node deployment options that default to JSON:
 
-1. Add the following configuration to the `/etc/nginx/conf.d/wallarm-status.conf` file (`/etc/nginx/wallarm-status.conf` for all-in-one installer):
-
-
-    ```diff
-    ...
-
-    location /wallarm-status {
-      wallarm_status on;
-    }
-
-    + location /wallarm-status-prometheus {
-    +   wallarm_status on format=prometheus;
-    + }
-
-    ...
+=== "Using a query parameter"
+    Starting from NGINX Node 6.12.0, you can override the configured format at request time by appending a `?format=json` or `?format=prometheus` query parameter, e.g.:
+    
     ```
-
-    !!! warning "Do not delete or change the default `/wallarm-status` configuration"
-        Do not delete or change the default configuration of the `/wallarm-status` location. Default operation of this endpoint is crucial.
-1. Restart NGINX to apply changes:
-
-    --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
-1. Call the new endpoint to get the Prometheus metrics:
-
-    ```bash
-    curl http://127.0.0.8/wallarm-status-prometheus
+    curl http://127.0.0.8/wallarm-status?format=prometheus
     ```
+=== "Creating a dedicated Prometheus endpoint"
+    1. Add the following configuration to the `/etc/nginx/conf.d/wallarm-status.conf` file (`/etc/nginx/wallarm-status.conf` for all-in-one installer):
+
+        ```diff
+        ...
+
+        location /wallarm-status {
+          wallarm_status on;
+        }
+
+        + location /wallarm-status-prometheus {
+        +   wallarm_status on format=prometheus;
+        + }
+
+        ...
+        ```
+
+        !!! warning "Do not delete or change the default `/wallarm-status` configuration"
+            Do not delete or change the default configuration of the `/wallarm-status` location. Default operation of this endpoint is crucial.
+    1. Restart NGINX to apply changes:
+
+        --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
+    1. Call the new endpoint to get the Prometheus metrics:
+
+        ```bash
+        curl http://127.0.0.8/wallarm-status-prometheus
+        ```
 
 ##  Usage
 
@@ -329,6 +381,14 @@ To obtain the filtering node statistics, make a request from one of the allowed 
     }
     ```
 === "Statistics in the Prometheus format"
+    Using the `format` query parameter (for NGINX Node 6.12.0 and above):
+
+    ```bash
+    curl "http://127.0.0.8/wallarm-status?format=prometheus"
+    ```
+
+    Using a dedicated endpoint:
+
     ```
     curl http://127.0.0.8/wallarm-status-prometheus
     ```

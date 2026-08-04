@@ -4,7 +4,7 @@
 [new-IC-installation]:      ../admin-en/installation-kubernetes-en.md
 [new-IC-configuration]:     ../admin-en/configure-kubernetes-en.md
 [IC-retirement]:            ../updating-migrating/nginx-ingress-retirement.md
-[old-IC-maintenance]:        ../updating-migrating/nginx-ingress-retirement.md#wallarms-nginx-based-ingress-controller-support-timeline
+[old-IC-maintenance]:        ../updating-migrating/nginx-ingress-retirement.md#support-timeline-for-the-community-based-controller
 [api-spec-enforcement-docs]: ../api-specification-enforcement/overview.md
 [ip-lists-docs]:             ../user-guides/ip-lists/overview.md
 
