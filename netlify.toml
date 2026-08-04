@@ -180,7 +180,7 @@ if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_feeds.py --outpu
   to = "/admin-en/configure-statistics-service/index.html"
   status = 200
   [redirects.rate_limit]
-    window_limit = 120
+    window_limit = 70
     window_size = 60
     aggregate_by = ["ip", "domain"]
 
