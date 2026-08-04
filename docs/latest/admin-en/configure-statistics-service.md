@@ -12,7 +12,7 @@ Use `/wallarm-status` for direct inspection and troubleshooting. For continuous 
 !!! info "Native Node statistics service"
     For [Native](../installation/nginx-native-node-internals.md#native-node) nodes, the statistics service is available for compatibility but is considered a legacy interface. The primary interface is the [`metrics` service available at `localhost:9000/metrics`](native-node-metrics.md).
 
-## Default statistics endpoint
+## Setup
 
 By default, the statistics service is exposed through the `/wallarm-status` endpoint. The endpoint location depends on the deployment option:
 
