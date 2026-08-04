@@ -30,9 +30,20 @@
 
 import type { Context } from "@netlify/edge-functions";
 
-// Frozen scraper signature: Chrome major 125 paired with "Intel Mac OS X 10".
-const SCRAPER_UA = /\bChrome\/125\b/;
-const SCRAPER_PLATFORM = /Intel Mac OS X 10/;
+// User-Agent signatures we hard-block:
+//  - Deno: a JS runtime, never a real browser — the heaviest non-browser
+//    channel the scraper uses.
+//  - Stale Chrome majors the scraper pins itself to (119, 125): real users have
+//    auto-updated far past these. To spare the near-zero genuine visitor still
+//    on one, we additionally require the ABSENCE of headers every real Chromium
+//    request carries (accept-language / sec-fetch-dest / sec-ch-ua) — a real
+//    Chrome-119/125 browser sends them and passes; the header-less scraper does not.
+// The rotating pool of CURRENT browser versions (Chrome 131-146, Firefox,
+// Safari 18) is deliberately NOT matched — those strings are what real visitors
+// send, so they can only be separated by fingerprint/behaviour (a bot-management
+// layer's job), not by User-Agent.
+const DENO_UA = /\bDeno\//;
+const STALE_CHROME_UA = /\bChrome\/(?:119|125)\b/;
 
 // Hard IP denylist — heaviest datacenter offenders caught in the scraper wave.
 // Blunt stopgap: the scraper rotates both IPs and User-Agents, so this only
@@ -43,19 +54,22 @@ const BLOCKED_IPS = new Set<string>([
 ]);
 
 /**
- * True if the request is the frozen-UA scraper. Pure (headers only) so it is
- * unit-testable. Requires the stale signature AND the absence of headers every
- * genuine Chromium request carries on subresource loads over TLS, so a real
- * (near-extinct) Chrome-125 browser is not caught.
+ * True if the request's User-Agent is one we hard-block. Pure (headers only) so
+ * it is unit-testable. Deno is blocked outright; a stale Chrome major is blocked
+ * only when it also lacks the headers a genuine Chromium browser always sends,
+ * so a real (near-extinct) Chrome-119/125 visitor is not caught.
  */
 export function isScraper(headers: Headers): boolean {
   const ua = headers.get("user-agent") ?? "";
-  if (!SCRAPER_UA.test(ua) || !SCRAPER_PLATFORM.test(ua)) return false;
-  const looksLikeRealBrowser =
-    headers.has("accept-language") &&
-    headers.has("sec-fetch-dest") &&
-    headers.has("sec-ch-ua");
-  return !looksLikeRealBrowser;
+  if (DENO_UA.test(ua)) return true;
+  if (STALE_CHROME_UA.test(ua)) {
+    const looksLikeRealBrowser =
+      headers.has("accept-language") &&
+      headers.has("sec-fetch-dest") &&
+      headers.has("sec-ch-ua");
+    return !looksLikeRealBrowser;
+  }
+  return false;
 }
 
 export default async (request: Request, context: Context) => {
