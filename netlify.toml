@@ -161,17 +161,20 @@ if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_feeds.py --outpu
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Rate limit the scraper's fixation target. A distributed scraper (rotating IPs
-# + rotating current-browser User-Agents) hammers this one legacy page for
-# ~100 GB/day; it cannot be caught by UA/IP signature. Netlify code-based rate
-# limiting (available on Pro, max 5 rules) is attached to a status=200 rewrite
-# that serves the page unchanged. aggregate_by = ["domain"] makes the limit
-# GLOBAL for the path (not per-IP) — the only kind that bites a distributed bot;
-# the trade-off is that real readers of this page also get 429s once the cap is
-# hit during a flood (acceptable for a low-traffic legacy page as a stopgap).
-# NOTE: verify on a deploy-preview that the page still serves (the rewrite target
-# must be the real built file) and that the limit applies. Tune window_limit as
-# needed. The durable fix remains a bot-management layer (Cloudflare).
+# Rate limit the scraper's fixation target (~100 GB/day on this one legacy page).
+# Netlify code-based rate limiting (Pro, max 5 rules) attached to a status=200
+# rewrite that serves the page unchanged (invisible to the visitor).
+#
+# aggregate_by = ["ip","domain"] = PER-IP (the only tier available on Pro; the
+# global ["domain"] cap needs Enterprise HP-Edge). Normal human traffic to this
+# page is ~1 req/min, so a tight 5/min-per-IP limit has ~5x headroom and never
+# touches real readers, while throttling the scraper's heavy IPs (the top ones
+# send ~50 req/min) by ~90%.
+# Partial by design: bot IPs sending under 5/min slip through, so this clips the
+# heavy talkers, not the fully-distributed long tail. The complete fix (global
+# cap + fingerprint) still needs Cloudflare or Netlify Enterprise.
+# NOTE: verify on a deploy-preview that the page still serves and the limit
+# applies (429 on rapid repeats from one IP).
 [[redirects]]
   from = "/admin-en/configure-statistics-service/"
   to = "/admin-en/configure-statistics-service/index.html"
@@ -179,7 +182,7 @@ if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_feeds.py --outpu
   [redirects.rate_limit]
     window_limit = 120
     window_size = 60
-    aggregate_by = ["domain"]
+    aggregate_by = ["ip", "domain"]
 
 # Serve favicon.png under the conventional /favicon.ico path. Browsers viewing
 # raw .md / .txt files have no HTML <head> to read <link rel="icon"> from, so
