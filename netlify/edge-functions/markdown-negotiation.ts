@@ -45,13 +45,65 @@ import type { Context } from "@netlify/edge-functions";
 const DENO_UA = /\bDeno\//;
 const STALE_CHROME_UA = /\bChrome\/(?:119|125)\b/;
 
-// Hard IP denylist — heaviest datacenter offenders caught in the scraper wave.
-// Blunt stopgap: the scraper rotates both IPs and User-Agents, so this only
-// clips the current top talkers — the durable fix is a bot-management layer in
-// front (TLS/behavioural fingerprint), not signature/IP whack-a-mole.
-const BLOCKED_IPS = new Set<string>([
-  "52.4.32.174", // AWS; ~1.4 GB hammering /admin-en/configure-statistics-service/
-]);
+// Hard denylist by CIDR FAMILY (not single IPs): the scraper allocates
+// sequential proxy /24 blocks and rotates within them, so blocking the whole
+// range beats chasing individual addresses. These two /24s covered ~160 of the
+// unique IPs seen in the wave. Matched on the REAL visitor IP from Cloudflare's
+// CF-Connecting-IP header — the site sits behind Cloudflare, so context.ip is
+// Cloudflare's edge IP, not the client. Still a stopgap; the durable fix is
+// fingerprint-based bot management at the Cloudflare edge.
+const BLOCKED_CIDRS = [
+  // Sequential proxy /24 pools the scraper allocates from (Alibaba/Asian hosting):
+  // consecutive addresses ALL hammering => an allocated proxy block, not real users.
+  "47.82.201.0/24",
+  "43.119.100.0/24",
+  // Heaviest current scraper single IPs, kept as narrow /32s so no neighbour is
+  // caught. AWS addresses are ephemeral/shared, so only these two confirmed top
+  // talkers are hard-blocked; revisit later.
+  "54.196.3.183/32",  // 89K req / 2.88 GB
+  "54.177.162.30/32", // 31.8K req / 1 GB
+  // NOTE: shared-hosting /24s (Linode, Hurricane Electric, etc.) are deliberately
+  // NOT hard-blocked here — a /24 on a multi-tenant provider can catch unrelated
+  // customers. Those go through a Cloudflare Managed Challenge (which never hard-
+  // blocks a real visitor) or a /32 after verification, not a blind /24 block.
+];
+
+/** Parse an IPv4 string to a 32-bit unsigned int, or null if not valid IPv4. */
+function ipv4ToInt(ip: string): number | null {
+  const parts = ip.split(".");
+  if (parts.length !== 4) return null;
+  let n = 0;
+  for (const part of parts) {
+    const o = Number(part);
+    if (!Number.isInteger(o) || o < 0 || o > 255) return null;
+    n = n * 256 + o;
+  }
+  return n >>> 0;
+}
+
+/** True if IPv4 `ip` falls inside CIDR `a.b.c.d/bits`. */
+export function inCidr(ip: string, cidr: string): boolean {
+  const [range, bitsStr] = cidr.split("/");
+  const bits = Number(bitsStr);
+  const ipN = ipv4ToInt(ip);
+  const rangeN = ipv4ToInt(range);
+  if (ipN === null || rangeN === null || !Number.isInteger(bits) || bits < 0 || bits > 32) {
+    return false;
+  }
+  const mask = bits === 0 ? 0 : (0xffffffff << (32 - bits)) >>> 0;
+  return (ipN & mask) === (rangeN & mask);
+}
+
+/** Real visitor IP. Behind Cloudflare, use CF-Connecting-IP; fall back to the
+ *  first X-Forwarded-For entry, then the direct connection IP. */
+function clientIp(request: Request, context: Context): string {
+  return (
+    request.headers.get("cf-connecting-ip") ||
+    (request.headers.get("x-forwarded-for") ?? "").split(",")[0].trim() ||
+    context.ip ||
+    ""
+  );
+}
 
 /**
  * True if the request's User-Agent is one we hard-block. Pure (headers only) so
@@ -79,8 +131,10 @@ export function isScraper(headers: Headers): boolean {
 }
 
 export default async (request: Request, context: Context) => {
-  // (0) Hard IP denylist — heaviest datacenter offenders, before anything else.
-  if (BLOCKED_IPS.has(context.ip)) {
+  // (0) IP denylist by CIDR family — matched on the real visitor IP
+  // (CF-Connecting-IP behind Cloudflare), before anything else.
+  const ip = clientIp(request, context);
+  if (ip && BLOCKED_CIDRS.some((cidr) => inCidr(ip, cidr))) {
     return new Response("Forbidden", {
       status: 403,
       headers: { "cache-control": "no-store" },
