@@ -180,7 +180,17 @@ if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_feeds.py --outpu
   to = "/admin-en/configure-statistics-service/index.html"
   status = 200
   [redirects.rate_limit]
-    window_limit = 70
+    window_limit = 50
+    window_size = 60
+    aggregate_by = ["ip", "domain"]
+
+# Same per-IP limit for the other page the scraper concentrates on.
+[[redirects]]
+  from = "/updating-migrating/older-versions/what-is-new/"
+  to = "/updating-migrating/older-versions/what-is-new/index.html"
+  status = 200
+  [redirects.rate_limit]
+    window_limit = 50
     window_size = 60
     aggregate_by = ["ip", "domain"]
 
