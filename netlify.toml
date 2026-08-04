@@ -161,6 +161,26 @@ if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_feeds.py --outpu
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Rate limit the scraper's fixation target. A distributed scraper (rotating IPs
+# + rotating current-browser User-Agents) hammers this one legacy page for
+# ~100 GB/day; it cannot be caught by UA/IP signature. Netlify code-based rate
+# limiting (available on Pro, max 5 rules) is attached to a status=200 rewrite
+# that serves the page unchanged. aggregate_by = ["domain"] makes the limit
+# GLOBAL for the path (not per-IP) — the only kind that bites a distributed bot;
+# the trade-off is that real readers of this page also get 429s once the cap is
+# hit during a flood (acceptable for a low-traffic legacy page as a stopgap).
+# NOTE: verify on a deploy-preview that the page still serves (the rewrite target
+# must be the real built file) and that the limit applies. Tune window_limit as
+# needed. The durable fix remains a bot-management layer (Cloudflare).
+[[redirects]]
+  from = "/admin-en/configure-statistics-service/"
+  to = "/admin-en/configure-statistics-service/index.html"
+  status = 200
+  [redirects.rate_limit]
+    window_limit = 120
+    window_size = 60
+    aggregate_by = ["domain"]
+
 # Serve favicon.png under the conventional /favicon.ico path. Browsers viewing
 # raw .md / .txt files have no HTML <head> to read <link rel="icon"> from, so
 # they fall back to auto-discovering /favicon.ico — without this rewrite the
