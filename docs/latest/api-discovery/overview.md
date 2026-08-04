@@ -49,7 +49,7 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 * Have full visibility into the whole API estate.
 * See what data ([REST](exploring.md#rest-endpoint-details), [GraphQL](exploring.md#graphql-operation-details), [SOAP](exploring.md#soap-operation-details), [gRPC](exploring.md#grpc-operation-details)) is going into and out of the APIs.
 * Filter APIs that consume and carry [sensitive data](#sensitive-data-detection).
-* Filter APIs that have no [authentication](exploring.md#authentication-flow).
+* Filter APIs that have no [authentication](authentication.md).
 * Understand which endpoints are [most likely](risk-score.md) to be an attack target.
 * Find endpoints that have [security issues](../api-attack-surface/security-issues.md) (vulnerabilities) and navigate from endpoint details to full descriptions and mitigation methods.
 * [Track changes](track-changes.md) in API that took place within the selected period of time.
