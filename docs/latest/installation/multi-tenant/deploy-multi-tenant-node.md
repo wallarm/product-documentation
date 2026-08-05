@@ -91,16 +91,16 @@ The next steps differ depending on your filtering node type: NGINX Node or Nativ
     === "NGINX and NGINX Plus"
         Open the tenant's NGINX configuration file and split traffic between tenants using the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive. See example below.
     === "NGINX Ingress Controller"
-        Use Ingress [annotation](../../admin-en/configure-kubernetes-en.md#ingress-annotations) `nginx.ingress.kubernetes.io/wallarm-partner-client-uuid` to set tenant UUID for each Ingress resource. One resource is related to one tenant:
+        Use Ingress [annotation](../../admin-en/configure-kubernetes-annotations.md#supported-wallarm-ingress-annotations) `nginx.org/wallarm-partner-client-uuid` to set tenant UUID for each Ingress resource. One resource is related to one tenant:
 
         ```
-        kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-partner-client-uuid=VALUE
+        kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.org/wallarm-partner-client-uuid=VALUE
         ```
 
-        Starting from NGINX Node 6.12.1, the annotation accepts an optional human-readable label after the UUID, separated by a space. The label appears alongside the UUID in per-tenant [Prometheus metrics](../../admin-en/configure-statistics-service.md#getting-statistics-in-the-prometheus-format) and [extended logs](../../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node):
+        The annotation also accepts an optional human-readable label after the UUID, separated by a space (allowed label characters: alphanumerics, `-`, and `_`). The label appears alongside the UUID in per-tenant [Prometheus metrics](../../admin-en/configure-statistics-service.md#getting-statistics-in-the-prometheus-format) and [extended logs](../../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node):
 
         ```
-        kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-partner-client-uuid="<UUID> <LABEL>"
+        kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.org/wallarm-partner-client-uuid="<UUID> <LABEL>"
         ```
     === "Docker NGINX‑based image"
         1. Open the NGINX configuration file and split traffic between tenants using the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive. See example below.

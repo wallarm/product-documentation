@@ -24,7 +24,7 @@ Besides the Wallarm-specific annotations described below, [standard NGINX Ingres
 | `nginx.org/wallarm-parse-response` | Whether to analyze the application responses for attacks: `on` (default) or `off`. Response analysis is required for vulnerability detection during [passive detection](../about-wallarm/detecting-vulnerabilities.md#passive-detection) and [threat replay testing](../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing-trt). |
 | `nginx.org/wallarm-parse-websocket` | Wallarm has full WebSockets support. By default, the WebSockets' messages are not analyzed for attacks. To force the feature, activate the API Security [subscription plan](../about-wallarm/subscription-plans.md#core-subscription-plans) and use this annotation: `on` or `off` (default). |
 | `nginx.org/wallarm-parser-disable` | Allows you to disable [parsers](../user-guides/rules/request-processing.md). The directive values correspond to the name of the parser to be disabled, e.g. `json`. Multiple parsers can be specified, separated by a semicolon, e.g. `json;base64`. |
-| `nginx.org/wallarm-partner-client-uuid` | Partner client [UUID](../installation/multi-tenant/configure-accounts.md#getting-uuids-of-existing-tenants) for multi-tenant setups. |
+| `nginx.org/wallarm-partner-client-uuid` | Partner client [UUID](../installation/multi-tenant/configure-accounts.md#getting-uuids-of-existing-tenants) for multi-tenant setups, optionally followed by a space-separated label (for example, `<UUID> Tenant-1`). |
 
 ### Applying annotation to the Ingress resource
 
@@ -102,7 +102,7 @@ When using CRDs, Wallarm settings are configured via the **Policy** resource ins
 | `unpackResponse` | Decompress responses before analysis. | `on`, `off` | `on` |
 | `parseWebsocket` | Analyze WebSocket messages. | `on`, `off` | `off` |
 | `parserDisable` | Parsers to disable. | List: `cookie`, `zlib`, `htmljs`, `json`, `multipart`, `base64`, `percent`, `urlenc`, `xml`, `jwt` | — |
-| `partnerClientUUID` | Partner client UUID for multi-tenant setups. | UUID | — |
+| `partnerClientUUID` | Partner client UUID for multi-tenant setups, optionally followed by a space-separated label that surfaces as the `client_label` metric label (requires Node 6.12.0+; allowed label characters: alphanumerics, `-`, and `_`). | `<UUID>` or `<UUID> <LABEL>` | — |
 
 **Example — two policies with different modes referenced by routes:**
 
