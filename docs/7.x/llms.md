@@ -184,9 +184,8 @@ search:
 
 - [Wallarm NGINX Ingress Deployment](https://docs.wallarm.com/7.x/admin-en/installation-kubernetes-en.md): Deploy the F5 NGINX-based Wallarm Ingress controller on Kubernetes (also: K8s ingress, kubernetes installation, Helm install).
 - [NGINX Ingress Configuration Options](https://docs.wallarm.com/7.x/admin-en/configure-kubernetes-en.md): Full Helm chart values reference for the Wallarm Ingress controller.
+- [NGINX Ingress Annotations & Policies](https://docs.wallarm.com/7.x/admin-en/configure-kubernetes-annotations.md): Wallarm-specific Ingress annotations (`nginx.org/*`) and the Wallarm Policy CRD for the F5-based controller.
 - [NGINX Ingress High Availability](https://docs.wallarm.com/7.x/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md): HA / resilience guidance for the Wallarm Ingress controller.
-- [NGINX Ingress Monitoring](https://docs.wallarm.com/7.x/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md): Monitoring guidance specific to the Wallarm Ingress controller.
-- [NGINX Ingress Real Client IP](https://docs.wallarm.com/7.x/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md): Configure the controller to extract the originating client IP behind proxies.
 - [Chaining Wallarm with Other Ingress Controllers](https://docs.wallarm.com/7.x/admin-en/chaining-wallarm-and-other-ingress-controllers.md): Run the Wallarm Ingress controller alongside an existing primary ingress.
 
 - [Kong Ingress Controller Connector](https://docs.wallarm.com/7.x/installation/connectors/kong-ingress-controller.md): Secure Kong Ingress-managed APIs via the Wallarm connector.
@@ -345,9 +344,11 @@ search:
 ##### NGINX Node Metrics
 
 - [NGINX Node Prometheus Metrics — Overview](https://docs.wallarm.com/7.x/admin-en/nginx-node-metrics.md): The metrics exposed by the NGINX Node in Prometheus format.
+- [NGINX Node — Traffic and Attack Metrics](https://docs.wallarm.com/7.x/admin-en/traffic-attack-metrics.md): Core traffic and attack counters — `wallarm_requests`, `wallarm_attacks`, `wallarm_blocked`, and others.
 - [NGINX Node — Postanalytics Metrics](https://docs.wallarm.com/7.x/admin-en/wstore-metrics.md): Postanalytics module / service runtime metrics for the NGINX Node.
 - [NGINX Node — wcli Controller Metrics](https://docs.wallarm.com/7.x/admin-en/wcli-metrics.md): Metrics of the wcli controller component of the NGINX Node.
 - [NGINX Node — API Firewall Metrics](https://docs.wallarm.com/7.x/admin-en/apifw-metrics.md): Metrics exposed by the API Firewall component of the NGINX Node.
+- [NGINX Node — wd Process Metrics](https://docs.wallarm.com/7.x/admin-en/wd-metrics.md): Process-management metrics from the `wd` (Wallarm Daemon) service — managed-process state, restarts, and uptime.
 
 ##### Native Node Metrics
 
@@ -370,7 +371,6 @@ search:
 
 ##### NGINX Node Upgrade Instructions
 
-- [Upgrade — DEB/RPM Packages](https://docs.wallarm.com/7.x/updating-migrating/nginx-modules.md): Upgrade Wallarm NGINX modules installed from DEB/RPM packages to the latest 7.x.
 - [Upgrade — Separate Postanalytics Module](https://docs.wallarm.com/7.x/updating-migrating/separate-postanalytics.md): Upgrade a standalone postanalytics server to the latest 7.x.
 - [Upgrade — All-in-One Installer](https://docs.wallarm.com/7.x/updating-migrating/all-in-one.md): Upgrade a Wallarm node installed via the all-in-one installer to the latest 7.x.
 - [Upgrade — Docker Image](https://docs.wallarm.com/7.x/updating-migrating/docker-container.md): Upgrade a running NGINX-based Docker image to the latest 7.x.
@@ -545,14 +545,3 @@ The pages below are linked here rather than in the main tree because they are le
 - [Demo Videos — CVE Inspection](https://docs.wallarm.com/7.x/demo-videos/events-inspection.md)
 - [Demo Videos — API Abuse Prevention](https://docs.wallarm.com/7.x/demo-videos/api-abuse-prevention.md)
 - [Demo Videos — Platform Settings](https://docs.wallarm.com/7.x/demo-videos/overview.md)
-
-### EOL Node Upgrades (nodes 3.6 and lower — out of support)
-
-- [EOL — What's New](https://docs.wallarm.com/7.x/updating-migrating/older-versions/what-is-new.md): Changes when upgrading from EOL versions to current.
-- [EOL — NGINX Modules Upgrade](https://docs.wallarm.com/7.x/updating-migrating/older-versions/nginx-modules.md): Upgrade EOL NGINX modules (3.6 and lower).
-- [EOL — Postanalytics Upgrade](https://docs.wallarm.com/7.x/updating-migrating/older-versions/separate-postanalytics.md): Upgrade EOL standalone postanalytics module.
-- [EOL — Docker Image Upgrade](https://docs.wallarm.com/7.x/updating-migrating/older-versions/docker-container.md): Upgrade EOL NGINX-based Docker image.
-- [EOL — Ingress Controller Upgrade](https://docs.wallarm.com/7.x/updating-migrating/older-versions/ingress-controller.md): Upgrade EOL Wallarm Ingress Controller.
-- [EOL — Cloud Image Upgrade](https://docs.wallarm.com/7.x/updating-migrating/older-versions/cloud-image.md): Upgrade EOL cloud node images.
-- [EOL — Multi-Tenant Upgrade](https://docs.wallarm.com/7.x/updating-migrating/older-versions/multi-tenant.md): Upgrade EOL multi-tenant node.
-- [Migrate IP Lists to Node 3.x+ Format](https://docs.wallarm.com/7.x/updating-migrating/migrate-ip-lists-to-node-3.md): One-time IP allowlist/denylist format migration.
