@@ -382,6 +382,28 @@ Besides the standard NGINX ConfigMap keys, the following Wallarm-specific entrie
 * [wallarm-process-time-limit-block](configure-parameters-en.md#wallarm_process_time_limit_block)
 * [wallarm-request-memory-limit](configure-parameters-en.md#wallarm_request_memory_limit)
 
+Set it as a key-value pair under `entries`, the same as any standard ConfigMap key (values are strings), e.g.:
+
+```yaml
+controller:
+  config:
+    entries:
+      wallarm-upstream-connect-attempts: "3"
+```
+
+The global NGINX snippet keys are also set through this parameter — `main-snippets`, `http-snippets`, `server-snippets`, `location-snippets`, and `stream-snippets` — each injecting raw NGINX directives into the corresponding context, e.g.:
+
+```yaml
+controller:
+  config:
+    entries:
+      server-snippets: |
+        underscores_in_headers on;
+        ignore_invalid_headers off;
+```
+
+Snippet keys set here through `controller.config.entries` are global ConfigMap snippets and apply directly — they do **not** require [`controller.enableSnippets`](#controllerenablesnippets). The `controller.enableSnippets` flag is only needed for snippets set on individual resources: the `nginx.org/server-snippets` / `nginx.org/location-snippets` Ingress annotations and VirtualServer/VirtualServerRoute snippets.
+
 ### Extra environment variables for containers
 
 You can pass additional environment variables to the Wallarm `wd` containers. This is useful for configuring proxy settings, custom logging, or injecting secrets.

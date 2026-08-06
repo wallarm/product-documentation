@@ -46,7 +46,7 @@ Deprecated versions remain downloadable but are no longer updated.
 
 Most NGINX Node artifacts align with the stable version from upstream NGINX sources.
 
-For example, the Wallarm Ingress Controller is based on the [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx). When an upstream version is marked for deprecation, Wallarm updates to the new stable version within 30 days, releasing it as a minor version. Updates may occur earlier to ensure compatibility but will not delay beyond the deprecation designation.
+For example, the Wallarm Ingress Controller is based on the [F5 Ingress NGINX Controller](https://github.com/nginx/kubernetes-ingress). When an upstream version is marked for deprecation, Wallarm updates to the new stable version within 30 days, releasing it as a minor version. Updates may occur earlier to ensure compatibility but will not delay beyond the deprecation designation.
 
 When installed with the all-in-one installer, the NGINX Node also supports NGINX `mainline` and NGINX Plus, in addition to `stable`. For the exact NGINX versions supported by each NGINX Node release, see [NGINX Version Compatibility for the All-in-one Installer](../installation/nginx-compatibility.md).
 
