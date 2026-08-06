@@ -62,7 +62,7 @@ Note that the described configuration is applicable only for [in-line](../instal
     For NGINX Ingress controller, use the `wallarm-mode` annotation:
 
     ```
-    kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-mode=monitoring
+    kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.org/wallarm-mode=monitoring
     ```
 
     See example of how traffic analysis for your NGINX-based Ingress controller [is enabled](../admin-en/installation-kubernetes-en.md#step-2-enabling-traffic-analysis-for-your-ingress) by setting the filtration mode to `monitoring`.

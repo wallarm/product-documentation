@@ -7,7 +7,7 @@ These instructions provide you with the steps to deploy the Wallarm Ingress cont
 
 ## The issue addressed by the solution
 
-Wallarm offers its node software in different form-factors, including [Ingress Controller built on top of the Community Ingress NGINX Controller](installation-kubernetes-en.md).
+Wallarm offers its node software in different form-factors, including [Ingress Controller built on top of the F5 NGINX Ingress Controller](installation-kubernetes-en.md).
 
 If you already use an Ingress controller, it might be challenging to replace the existing Ingress controller with the Wallarm controller (e.g. if using AWS ALB Ingress Controller). In this case, you can explore the [Wallarm Sidecar solution](../installation/kubernetes/sidecar-proxy/deployment.md) but if it also does not fit your infrastructure, it is possible to chain several Ingress controllers.
 
@@ -15,7 +15,7 @@ Ingress controller chaining enables you to utilize an existing controller to get
 
 ## Requirements
 
-* Kubernetes platform version 1.26-1.30
+* Kubernetes platform version 1.29-1.36
 * [Helm](https://helm.sh/) package manager
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
 * Access to the Wallarm API host for your Cloud: `https://us1.api.wallarm.com` or `https://api.wallarm.com`
@@ -63,35 +63,39 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
 
     === "US Cloud"
         ```bash
-        controller:
+        config:
           wallarm:
             enabled: true
-            token: "<NODE_TOKEN>"
-            apiHost: us1.api.wallarm.com
-            # nodeGroup: defaultIngressGroup
+            api:
+              token: "<NODE_TOKEN>"
+              host: us1.api.wallarm.com
+              # nodeGroup: defaultIngressGroup
+        controller:
           config:
-            use-forwarded-headers: "true"  
-          ingressClass: wallarm-ingress
-          ingressClassResource:
+            entries:
+              use-forwarded-headers: "true"
+          ingressClass:
             name: wallarm-ingress
-            controllerValue: "k8s.io/wallarm-ingress"
+            create: true
           service:
             type: ClusterIP
         nameOverride: wallarm-ingress
         ```
     === "EU Cloud"
         ```bash
-        controller:
+        config:
           wallarm:
             enabled: true
-            token: "<NODE_TOKEN>"
-            # nodeGroup: defaultIngressGroup
+            api:
+              token: "<NODE_TOKEN>"
+              # nodeGroup: defaultIngressGroup
+        controller:
           config:
-            use-forwarded-headers: "true"
-          ingressClass: wallarm-ingress
-          ingressClassResource:
+            entries:
+              use-forwarded-headers: "true"
+          ingressClass:
             name: wallarm-ingress
-            controllerValue: "k8s.io/wallarm-ingress"
+            create: true
           service:
             type: "ClusterIP"
         nameOverride: wallarm-ingress
@@ -134,8 +138,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    nginx.ingress.kubernetes.io/wallarm-application: "1"
-    nginx.ingress.kubernetes.io/wallarm-mode: monitoring
+    nginx.org/wallarm-application: "1"
+    nginx.org/wallarm-mode: monitoring
   name: myapp-internal
   namespace: myapp
 spec:

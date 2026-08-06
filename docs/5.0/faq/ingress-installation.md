@@ -1,1 +1,1 @@
---8<-- "latest/faq/ingress-installation.md"
+--8<-- "6.x/faq/ingress-installation.md"

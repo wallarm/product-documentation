@@ -184,21 +184,23 @@ When running [Wallarm Node in Docker](../installation-docker-en.md), mount a con
 
 ### NGINX Ingress Controller
 
-For the [Wallarm NGINX-based Ingress controller](../installation-kubernetes-en.md), use the supported ConfigMap keys:
+For the [Wallarm NGINX-based Ingress controller](../installation-kubernetes-en.md), which is based on the F5 NGINX Ingress Controller, inject the corresponding NGINX directives through a server snippet — the F5-based controller does not provide dedicated ConfigMap keys for these settings:
 
-1. [Create the ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files) with the following content:
+1. Add the directives through a global server snippet via [`controller.config.entries`](../configure-kubernetes-en.md#controllerconfigentries) in your `values.yaml`. Global ConfigMap snippets apply directly and do not require [`controller.enableSnippets`](../configure-kubernetes-en.md#controllerenablesnippets):
 
     ```yaml
-    apiVersion: v1
-    kind: ConfigMap
-    metadata:
-      name: nginx-configuration
-      namespace: ingress-nginx
-    data:
-      enable-underscores-in-headers: "true"
-      ignore-invalid-headers: "false"
+    controller:
+      config:
+        entries:
+          server-snippets: |
+            underscores_in_headers on;
+            ignore_invalid_headers off;
     ```
-1. Specify the ConfigMap path in your `values.yaml`.
+1. Apply the changes to your controller release:
+
+    ```bash
+    helm -n <CONTROLLER_NAMESPACE> upgrade <RELEASE_NAME> wallarm/wallarm-ingress --reuse-values -f values.yaml
+    ```
 
 ### Sidecar Proxy
 

@@ -364,7 +364,7 @@ To modify the sample blocking page or provide your own, do the following:
 1. Instruct pod to use your custom page by providing Ingress annotation:
 
     ```bash
-    kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page="<PAGE_ADDRESS>"
+    kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.org/wallarm-block-page="<PAGE_ADDRESS>"
     ```
 
 See the detailed [example](#ingress-annotations).
@@ -440,20 +440,15 @@ Before adding the Ingress annotation:
 
     * Update values.yaml you use to deploy the ingress chart:
 
-        ```
+        ```yaml
         controller:
-            wallarm:
-            <...>
-            # -- Additional volumeMounts to the controller main container.
-            extraVolumeMounts:
-            - name: custom-block-pages
-              mountPath: /usr/share/nginx/blockpages
-            # -- Additional volumes to the controller pod.
-            extraVolumes:
+          volumes:
             - name: custom-block-pages
               configMap:
-              name: customized-pages
-            <...>
+                name: customized-pages
+          volumeMounts:
+            - name: custom-block-pages
+              mountPath: /usr/share/nginx/blockpages
         ```
 
     * Apply changes to your controller release:
@@ -468,7 +463,7 @@ Before adding the Ingress annotation:
 Ingress annotations:
 
 ```bash
-kubectl -n <INGRESS_NAMESPACE> annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-block-page="&/usr/share/nginx/blockpages/wallarm_blocked_renamed.html response_code=445 type=attack;&/usr/share/nginx/blockpages/wallarm_blocked_renamed-2.html response_code=445 type=acl_ip,acl_source"
+kubectl -n <INGRESS_NAMESPACE> annotate ingress <INGRESS_NAME> nginx.org/wallarm-block-page="&/usr/share/nginx/blockpages/wallarm_blocked_renamed.html response_code=445 type=attack;&/usr/share/nginx/blockpages/wallarm_blocked_renamed-2.html response_code=445 type=acl_ip,acl_source"
 ```
 
 #### Pod annotations (if using Sidecar controller)
@@ -518,7 +513,7 @@ To apply the settings to the Docker container, the NGINX configuration file with
 #### Ingress annotations
 
 ```bash
-kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page="/err445 type=acl_source"
+kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.org/wallarm-block-page="/err445 type=acl_source"
 ```
 
 ### Named NGINX `location`
@@ -539,9 +534,12 @@ To apply the settings to the Docker container, the NGINX configuration file with
 #### Ingress annotations
 
 ```bash
-kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/server-snippet="location @block {return 445 'The page is blocked';}"
-kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page="@block type=attack,acl_ip,acl_source"
+kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.org/server-snippets="location @block {return 445 'The page is blocked';}"
+kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.org/wallarm-block-page="@block type=attack,acl_ip,acl_source"
 ```
+
+!!! info "Snippets must be enabled"
+    In the F5-based Ingress Controller, `nginx.org/server-snippets` works only when snippets are enabled: set `controller.enableSnippets: true` in the Helm chart.
 
 ### Variable and error code
 
@@ -585,10 +583,10 @@ To apply the settings to the Docker container, the NGINX configuration file with
 
 #### Ingress controller
 
-1. Pass the parameter `controller.config.http-snippet` to the deployed Helm chart by using the command [`helm upgrade`](https://helm.sh/docs/helm/helm_upgrade/):
+1. Pass the HTTP snippet via [`controller.config.entries`](../configure-kubernetes-en.md#controllerconfigentries) using [`helm upgrade`](https://helm.sh/docs/helm/helm_upgrade/) (a global ConfigMap snippet applies directly and does not require `controller.enableSnippets`):
 
     ```bash
-    helm upgrade --reuse-values --set controller.config.http-snippet='wallarm_block_page_add_dynamic_path /usr/custom-block-pages/block_page_firefox.html /opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html; map $http_user_agent $block_page { "~Firefox" &/usr/custom-block-pages/block_page_firefox.html; "~Chrome" &/usr/custom-block-pages/block_page_chrome.html; default &/opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html;}' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+    helm upgrade --reuse-values --set controller.config.entries.http-snippets='wallarm_block_page_add_dynamic_path /usr/custom-block-pages/block_page_firefox.html /opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html; map $http_user_agent $block_page { "~Firefox" &/usr/custom-block-pages/block_page_firefox.html; "~Chrome" &/usr/custom-block-pages/block_page_chrome.html; default &/opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html;}' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 2. [Create ConfigMap from the files](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files) `wallarm_blocked_renamed.html`, `block_page_firefox.html`, and `block_page_chrome.html`.
 3. Mount created ConfigMap to the pod with Wallarm Ingress controller. For this, please update the Deployment object relevant for Wallarm Ingress controller following the [instructions](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap).
@@ -598,5 +596,5 @@ To apply the settings to the Docker container, the NGINX configuration file with
 4. Add the following annotation to the Ingress:
 
     ```bash
-    kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page='$block_page response_code=445 type=acl_ip'
+    kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.org/wallarm-block-page='$block_page response_code=445 type=acl_ip'
     ```

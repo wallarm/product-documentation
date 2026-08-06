@@ -73,6 +73,14 @@ docker stop <RUNNING_CONTAINER_NAME>
             ```
         
         * The path for mounting virtual host configuration files has changed from `/etc/nginx/sites-enabled/default` to `/etc/nginx/http.d`.
+1. Apply the following changes introduced in 7.x:
+
+    * All node metrics are now exposed on a single aggregated endpoint at `http://127.0.0.1:9445/metrics`, served by the `wd` (Wallarm Daemon) service that replaces `supervisord`. Point your Prometheus scraper at this endpoint. The per-component ports `9001`, `9003`, and `9010` still work for backward compatibility.
+    * Use the `http://127.0.0.1:9446/ready` and `http://127.0.0.1:9446/health` endpoints for container health checks and probes instead of process-based checks.
+    * Stop scraping the `wallarm_wstore_throttle_mode` and `wallarm_wstore_throttled_requests` metrics and remove them from dashboards and alerts — they are no longer exposed.
+    * The `appstructure` component (the [API Discovery](../api-discovery/overview.md) module) and its `appstructure-out.log` log are removed — drop any tooling that tails or parses that log.
+
+    See [What is New in NGINX Node 7.x](what-is-new.md#node-architecture-and-process-management-wd) for the full list of node changes.
 1. Proceed to Wallarm Console → **Settings** → **API Tokens** and generate a token with the **Node deployment/Deployment** usage type.
 1. Copy the generated token.
 1. Run the container using the new image and apply the updated configuration.

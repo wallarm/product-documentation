@@ -24,6 +24,13 @@ These instructions describe the steps to upgrade the Wallarm node installed usin
 
     * [Filtering and postanalytics modules on the same server](../installation/nginx/all-in-one.md) - you can transfer and reuse your previous configuration files.
     * [Filtering and postanalytics modules on different servers](../admin-en/installation-postanalytics-en.md) - use the updated configuration files from step 1.
+1. If you monitor the node, update your monitoring for the 7.x process and metrics model:
+
+    * Scrape node metrics from the new single aggregated endpoint `http://127.0.0.1:9445/metrics` served by the `wd` (Wallarm Daemon) service, which replaces `supervisord`. The per-component ports `9001`, `9003`, and `9010` still work for backward compatibility.
+    * Use the `http://127.0.0.1:9446/ready` and `http://127.0.0.1:9446/health` endpoints for health checks. If you previously checked the node through `supervisorctl`, switch to these endpoints.
+    * Stop scraping the `wallarm_wstore_throttle_mode` and `wallarm_wstore_throttled_requests` metrics and remove them from dashboards and alerts — they are no longer exposed.
+
+    See [What is New in NGINX Node 7.x](what-is-new.md#node-architecture-and-process-management-wd) for the full list of node changes.
 1. Route the traffic to the new machine for the new node to process it.
 
 ## Step 2: Remove the old node
