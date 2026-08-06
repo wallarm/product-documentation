@@ -56,6 +56,14 @@ Detailed information about working with NGINX configuration files is available i
 
 The list of filtering node directives is available [here](../admin-en/configure-parameters-en.md).
 
+When moving to 7.x, also update how you monitor the node:
+
+* Scrape metrics from the new single aggregated endpoint `http://127.0.0.1:9445/metrics` served by the `wd` (Wallarm Daemon) service, which replaces `supervisord`. The per-component ports `9001`, `9003`, and `9010` still work for backward compatibility.
+* Use the `http://127.0.0.1:9446/ready` and `http://127.0.0.1:9446/health` endpoints for health checks. If you previously checked the node through `supervisorctl`, switch to these endpoints.
+* Stop scraping the `wallarm_wstore_throttle_mode` and `wallarm_wstore_throttled_requests` metrics and remove them from dashboards and alerts — they are no longer exposed.
+
+See [What is New in NGINX Node 7.x](what-is-new.md#node-architecture-and-process-management-wd) for the full list of node changes.
+
 ## Step 4: Restart NGINX
 
 Restart NGINX to apply the settings:

@@ -162,7 +162,7 @@ Before starting the migration, gather the following information from your existi
     * Wallarm API credentials (`config.wallarm.api.host`, `config.wallarm.api.token`)
     * API Firewall configuration (optional)
     * Resource limits and scaling
-    * Metrics and monitoring endpoints
+    * Metrics and monitoring endpoints — the node now exposes a single aggregated Prometheus endpoint on port `9445` and readiness/liveness endpoints on `9446`; re-point your scrapers and probes accordingly (see [Monitoring the NGINX Node metrics and health](../admin-en/nginx-node-metrics.md))
 
 ### Step 2: Deploy the new Controller
 

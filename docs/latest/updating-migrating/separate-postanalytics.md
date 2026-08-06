@@ -11,18 +11,6 @@
 
 These instructions describe the steps to upgrade the postanalytics module installed on a separate server up to the latest 7.x version. **Postanalytics module must be upgraded before [Upgrading Wallarm NGINX modules][docs-module-update].**
 
-!!! info "Upgrading with all-in-one installer"
-    Since version 4.10, upgrading is performed using Wallarm's [all-in-one installer](../installation/nginx/all-in-one.md) as the individual Linux packages have been deprecated. This method simplifies the upgrade process and ongoing deployment maintenance compared to the previous approach.
-    
-    The installer automatically performs the following actions:
-
-    1. Checking your OS and NGINX version.
-    1. Adding Wallarm repositories for the detected OS and NGINX version.
-    1. Installing Wallarm packages from these repositories.
-    1. Connecting the installed Wallarm module to your NGINX.
-    1. Connecting the filtering node to Wallarm Cloud using the provided token.
-
-    ![All-in-one compared to manual](../images/installation-nginx-overview/manual-vs-all-in-one.png)
 ## Requirements
 
 --8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
