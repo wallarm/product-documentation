@@ -55,6 +55,7 @@ When installed with the all-in-one installer, the NGINX Node also supports NGINX
 Wallarm publishes release notes for major and minor updates in:
 
 * Public Documentation - see [NGINX Node artifact inventory](node-artifact-versions.md) and [Native Node artifact inventory](native-node/node-artifact-versions.md)
+* [Release feeds](subscribe-to-release-updates.md)
 * [Product Changelog](https://changelog.wallarm.com/)
 * The updates section in the Wallarm Console
 
