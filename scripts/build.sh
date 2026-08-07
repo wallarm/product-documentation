@@ -38,6 +38,11 @@ export PYTHONPATH="$PWD"
 # 2. oxipng: losslessly recompress every PNG. --strip safe keeps colour profile
 #    and gamma metadata. -o 2 is the recommended speed/size tradeoff for batch
 #    use. Runs AFTER quantise so it squeezes the palette PNGs further.
+# WARNING FOR LOCAL RUNS: the optimisation below rewrites images/ IN PLACE.
+# On CI that is an ephemeral checkout, but locally it replaces the
+# full-resolution sources in your working tree, and `git add -A` will happily
+# commit the lossy output. Use SKIP_IMAGE_OPTIMISATION=1 locally, or
+# `git checkout origin/master -- images/` afterwards.
 if [ "$CONTEXT" = "production" ] && [ -n "${SKIP_IMAGE_OPTIMISATION:-}" ]; then
   echo "Skipping image optimisation (SKIP_IMAGE_OPTIMISATION set)"
 elif [ "$CONTEXT" = "production" ]; then
