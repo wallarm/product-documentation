@@ -77,4 +77,10 @@ build_version deprecated mkdocs-deprecated.yml og-only
 # broken changelog. Production only. See scripts/README-feeds.md.
 if [ "$CONTEXT" = "production" ]; then
   python3 scripts/generate_feeds.py --output site
+
+  # Fail the build if any page lacks its .md companion. Cloudflare serves
+  # `Accept: text/markdown` with a blind URL rewrite, so a missing companion
+  # is not a fallback to HTML — it is a 404 mislabelled as Markdown. Only
+  # meaningful on production builds, where the companions are generated.
+  python3 scripts/check_markdown_companions.py site
 fi
