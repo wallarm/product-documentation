@@ -46,7 +46,7 @@ If 2 or more incidents with the application server or database are detected in o
 
 ![Example of a trigger sending the data to Splunk](../../../images/user-guides/triggers/trigger-example3.png)
 
-**To test the trigger**, it is required to send the attack exploiting an active vulnerability to the protected resource. The Wallarm Console → **Vulnerabilities** section displays active vulnerabilities detected in your applications and the examples of attacks that exploit these vulnerabilities.
+**To test the trigger**, it is required to send the attack exploiting an active vulnerability to the protected resource. The Wallarm Console → **Security Issues** section displays active vulnerabilities detected in your applications and the examples of attacks that exploit these vulnerabilities.
 
 If the attack example is sent to the protected resource, Wallarm will record the incident. Two or more recorded incidents will trigger sending the following notification to Opsgenie:
 
