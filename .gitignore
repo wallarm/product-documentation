@@ -19,3 +19,5 @@ docs/*/images/
 # Python bytecode cache (from scripts/)
 __pycache__/
 *.pyc
+# Wrangler local state
+/.wrangler

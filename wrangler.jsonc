@@ -1,0 +1,52 @@
+// Cloudflare Workers + Static Assets config for docs.wallarm.com (DEVOPS-5014).
+// Replaces netlify.toml's [build] publish dir, edge function, and headers.
+{
+  "name": "wallarm-docs",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-08-01",
+  "assets": {
+    // Same publish dir as Netlify. Built by scripts/build.sh.
+    "directory": "./site/",
+    "binding": "ASSETS",
+    // zensical emits directory-style pages (`/foo/bar/index.html`), so both
+    // `/foo/bar` and `/foo/bar/` must resolve to the same page.
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page",
+
+    // The Worker only does Markdown content negotiation, which is meaningless
+    // for anything that names a file. Keeping assets on the asset-server fast
+    // path (a) avoids a billed Worker invocation per image/font/CSS hit — the
+    // bulk of this site's traffic — and (b) preserves the `_headers` rules,
+    // which are NOT applied to responses returned from Worker code.
+    // `*` is greedy and matches `/`, so `/*.md` also covers `/7.x/foo/bar.md`.
+    "run_worker_first": [
+      "/*",
+      "!/assets/*",
+      "!/images/*",
+      "!/stylesheets/*",
+      "!/*.css",
+      "!/*.gif",
+      "!/*.ico",
+      "!/*.jpeg",
+      "!/*.jpg",
+      "!/*.js",
+      "!/*.json",
+      "!/*.map",
+      "!/*.md",
+      "!/*.otf",
+      "!/*.pdf",
+      "!/*.png",
+      "!/*.rss",
+      "!/*.svg",
+      "!/*.ttf",
+      "!/*.txt",
+      "!/*.webp",
+      "!/*.woff",
+      "!/*.woff2",
+      "!/*.xml"
+    ]
+  },
+  "observability": {
+    "enabled": true
+  }
+}

@@ -875,3 +875,17 @@
 /7.x/updating-migrating/older-versions/*  /7.x/updating-migrating/versioning-policy/#version-list
 /7.x/updating-migrating/migrate-ip-lists-to-node-3/  /7.x/updating-migrating/versioning-policy/#version-list
 /7.x/updating-migrating/nginx-modules/  /7.x/updating-migrating/versioning-policy/#version-list
+
+# --- Ported from the netlify.toml [[redirects]] blocks (DEVOPS-5014) ---------
+# 200 = rewrite: serve the target in place, no client-visible redirect.
+
+# Serve favicon.png under the conventional /favicon.ico path. Browsers viewing
+# raw .md / .txt files have no HTML <head> to read <link rel="icon"> from, so
+# they fall back to auto-discovering /favicon.ico — without this rewrite the
+# tab would show no favicon for any .md page.
+/favicon.ico   /favicon.png   200
+
+# Serve the version-root sitemap for a sitemap.xml requested at any depth.
+# Cloudflare's `*` is greedy and matches `/`, so this single rule replaces the
+# three depth-specific netlify.toml entries.
+/*/sitemap.xml   /sitemap.xml   200
