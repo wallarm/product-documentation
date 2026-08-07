@@ -48,5 +48,19 @@
   },
   "observability": {
     "enabled": true
+  },
+
+  // Staging twin, served at docs-staging.wallarm.com so the whole flow can be
+  // exercised end to end before docs.wallarm.com moves. A separate Worker
+  // rather than a preview version of this one, so staging can be redeployed
+  // without touching whatever production is running.
+  //
+  // The hostname is wired up in infra/cloudflare-iac (proxied DNS record +
+  // Worker route), not here — wrangler must not own routes we manage in
+  // Terraform, or the two will fight over them.
+  "env": {
+    "staging": {
+      "name": "wallarm-docs-staging"
+    }
   }
 }

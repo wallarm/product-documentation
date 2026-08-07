@@ -7,6 +7,12 @@
 # CONTEXT mirrors Netlify's variable: "production" enables the expensive
 # production-only steps (image optimisation, raw markdown, OG images, feeds).
 # Anything else (PR preview, branch build) skips them to keep builds fast.
+#
+# SKIP_IMAGE_OPTIMISATION=1 drops just the image pass while keeping the rest of
+# a production build. The pass downloads x86_64 Linux binaries (pngquant,
+# oxipng), so without this the script cannot run in production mode on a
+# developer machine — and the markdown companions the Worker serves are only
+# generated in production mode, so they would otherwise be untestable locally.
 set -euo pipefail
 
 CONTEXT="${CONTEXT:-deploy-preview}"
@@ -32,7 +38,9 @@ export PYTHONPATH="$PWD"
 # 2. oxipng: losslessly recompress every PNG. --strip safe keeps colour profile
 #    and gamma metadata. -o 2 is the recommended speed/size tradeoff for batch
 #    use. Runs AFTER quantise so it squeezes the palette PNGs further.
-if [ "$CONTEXT" = "production" ]; then
+if [ "$CONTEXT" = "production" ] && [ -n "${SKIP_IMAGE_OPTIMISATION:-}" ]; then
+  echo "Skipping image optimisation (SKIP_IMAGE_OPTIMISATION set)"
+elif [ "$CONTEXT" = "production" ]; then
   echo "Image size before optimisation: $(du -sh images/ | cut -f1) ($(find images/ -name '*.png' | wc -l) PNGs)"
   curl -fsSL https://pngquant.org/pngquant-linux.tar.bz2 | tar xj pngquant
   python3 scripts/optimize_images.py images/ --pngquant ./pngquant
