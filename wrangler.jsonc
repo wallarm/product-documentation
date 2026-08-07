@@ -30,6 +30,25 @@
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
   },
+  // A workers.dev URL would publish the whole site a second time, and zone
+  // rules do NOT apply there — verified against staging:
+  //
+  //   Accept: text/markdown   workers.dev -> text/html   zone -> text/markdown
+  //   /4.8/admin-en/foo/      workers.dev -> 404         zone -> 301
+  //   Vary                    workers.dev -> absent      zone -> present
+  //
+  // So the workers.dev copy has no redirects, no markdown negotiation, no WAF
+  // and no bot protection, and search engines can index it as duplicate
+  // content. Production is reachable only through docs.wallarm.com.
+  //
+  // preview_urls is left on: Workers Builds gives each non-production branch a
+  // versioned preview URL, which is how PR review works. Those previews are on
+  // workers.dev too, so they show CONTENT accurately but NOT routing — a
+  // redirect or Accept-negotiation change has to be verified on
+  // docs-staging.wallarm.com instead.
+  "workers_dev": false,
+  "preview_urls": true,
+
   "observability": {
     "enabled": true
   },

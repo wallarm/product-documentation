@@ -29,10 +29,35 @@ docker build -t wallarm-docs . && docker run -p 8080:80 wallarm-docs
 
 ### Deployment pipeline
 
-* There are no tests or linters. Validation happens via **Netlify preview builds**.
-* Creating a **PR to `master`** triggers a Netlify test build — the preview link appears in the PR checks (takes 3-5 minutes).
-* **Merging to `master`** triggers production deployment via Netlify.
-* Build configuration is in `netlify.toml`.
+The site is **migrating from Netlify to Cloudflare** (DEVOPS-5014). Both run in
+parallel until the cutover, so a PR gets a preview from each.
+
+* There are no tests or linters. Validation happens via **preview builds**.
+* Creating a **PR to `master`** triggers a build — the preview link appears in
+  the PR checks (takes 3-5 minutes).
+* **Merging to `master`** deploys production.
+* Build configuration: `scripts/build.sh` (Cloudflare) and `netlify.toml`
+  (Netlify). **They must be kept in sync until Netlify is retired.**
+
+#### Cloudflare specifics
+
+* Hosting is **Workers Static Assets** — `wrangler.jsonc`, publish dir `site/`.
+  There is no Worker script; it is a plain static deployment.
+* Redirects, headers, and `Accept: text/markdown` negotiation are split between
+  this repo (`_redirects`, `_headers`) and zone rules in
+  [infra/cloudflare-iac](https://gl.wallarm.com/infra/cloudflare-iac).
+* **Preview URLs do not exercise zone rules.** Previews are served from
+  `*.workers.dev`, where redirects, markdown negotiation and WAF do not apply.
+  A preview shows *content* accurately but not *routing* — verify any redirect
+  or negotiation change on `docs-staging.wallarm.com` instead.
+* `_redirects` has a hard limit: Cloudflare rejects the whole deployment past
+  **100 dynamic rules**, and counts every rule appearing *after the first
+  wildcard rule* toward that budget. Keep plain rules above the wildcard block
+  at the bottom of the file — the file says so too.
+* Every page must have a `.md` companion, enforced by
+  `scripts/check_markdown_companions.py` in the build. A page without one is
+  not a fallback to HTML: it returns the 404 page labelled
+  `Content-Type: text/markdown`.
 
 ## Repository architecture
 
@@ -98,14 +123,19 @@ The `_redirects` file lives in the root version's `docs_dir` (currently `docs/6.
 /old/path/page  /new/path/page
 ```
 
-This prevents 404 errors for users with bookmarked URLs. Redirect syntax supports wildcards (`/*`). See [Netlify redirect docs](https://docs.netlify.com/routing/redirects/).
+This prevents 404 errors for users with bookmarked URLs. Redirect syntax supports wildcards (`/*`).
+
+**Add plain path-to-path redirects ABOVE the wildcard block at the bottom of the file.** Cloudflare counts every rule after the first wildcard against a 100-rule budget and rejects the entire deployment past it. See the header comment in `_redirects`, plus the [Cloudflare](https://developers.cloudflare.com/workers/static-assets/redirects/) and [Netlify](https://docs.netlify.com/routing/redirects/) references.
 
 ### Key platform files
 
 | File | Purpose |
 |------|---------|
 | `mkdocs-base.yml` | Shared config: plugins, extensions, theme |
-| `netlify.toml` | Build commands and deploy config (edit only for version management) |
+| `netlify.toml` | Netlify build/deploy config (edit only for version management) |
+| `scripts/build.sh` | Cloudflare build; mirrors `netlify.toml`, keep in sync |
+| `wrangler.jsonc` | Cloudflare Workers Static Assets deploy config |
+| `docs/6.x/_headers` | Response headers, Cloudflare |
 | `stylesheets/extra.js` | Custom JS: image zoom, version selector logic, `rootVersion` variable |
 | `stylesheets/partials/` | Custom HTML overrides: `nav.html` (version selector), `header.html`, `footer.html`, `feedback.html`, `actions.html` (edit actions), `toc.html`, `integrations/` |
 | `Dockerfile` | Full multi-version build for local testing |
@@ -134,7 +164,7 @@ Follow these guides before writing or editing any content:
 ## What NOT to do
 
 * Do NOT edit `mkdocs-base.yml` unless explicitly required
-* Do NOT edit `netlify.toml` or files in `stylesheets/` except for version management tasks (adding/deprecating a guide version)
+* Do NOT edit `netlify.toml`, `scripts/build.sh`, `wrangler.jsonc` or files in `stylesheets/` except for version management tasks (adding/deprecating a guide version)
 * Do NOT edit files in `docs/6.x/` or `docs/7.x/` directly — they are include wrappers (exception: creating new wrappers for new pages)
 * Do NOT invent features not described in the source material
 * Do NOT add content in languages other than English
