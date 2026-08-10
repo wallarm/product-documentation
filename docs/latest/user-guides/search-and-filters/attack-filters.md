@@ -1,6 +1,6 @@
 # Attack Search and Filters
 
-The **Attacks** section of Wallarm Console ([US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks)) lets you narrow detected attacks down to the ones you are interested in, change how they are grouped, and save the result as a reusable view. This article describes these capabilities.
+The **Attacks** section of Wallarm Console lets you narrow detected attacks down to the ones you are interested in, change how they are grouped, and save the result as a reusable view. This article describes these capabilities.
 
 To search detected incidents, see [Incident Search and Filters](use-search.md).
 
@@ -15,8 +15,8 @@ You can filter by the attack attributes, including attack type and subtype, host
 Several fields are worth knowing about:
 
 * **Attack Type** and **Attack Subtype** offer the [attack types](../../attacks-vulns-list.md) Wallarm detects as ready values, from **SQL Injection** and **Brute force** to **GraphQL query depth** and **Prompt injection**.
-* **Blocking Status** narrows the list to **Blocked**, **Partially Blocked**, or **Monitoring** attacks.
-* **Verification Status** narrows the list to **True Positive**, **False Positive**, or **Unmarked** attacks. Wallarm hides false positives by default, so use this field to review them.
+* [**Blocking Status**](../../admin-en/configure-wallarm-mode.md) narrows the list to **Blocked**, **Partially Blocked**, or **Monitoring** attacks.
+* **Verification Status** narrows the list to **True Positive**, [**False Positive**](../events/check-attack.md#false-positives), or **Unmarked** attacks. Wallarm hides false positives by default, so use this field to review them.
 * **Attack Payload Content** and **Parameter Search** perform a full-text search in the malicious payload and in the attacked parameter. They support **is** (contains) and **is not** (does not contain) only.
 
 ### Operators
@@ -27,11 +27,22 @@ Several fields are worth knowing about:
 | **is not** | The field does not equal the value |
 | **in** | The field equals any of the listed values |
 
-To match a value partially, type `*` or `?` wildcards into it: `*.example.com` matches any subdomain, `*login*` matches any path containing `login`. A value without wildcards is an exact match. Matching with wildcards is case-insensitive, while an exact match is case-sensitive. The **HTTP Method** field does not support wildcards.
+To match a value partially, type `*` or `?` wildcards into it:
+
+* `*.example.com` matches any subdomain
+* `*login*` matches any path containing `login`
+
+A value without wildcards is an exact match.
+
+Matching with wildcards is case-insensitive, while an exact match is case-sensitive.
+
+The **HTTP Method** field does not support wildcards.
 
 ### Combining conditions
 
-Conditions can be combined with the `AND` and `OR` operators and nested into groups, which allows expressing requirements like "SQL injections or cross-site scripting, coming from outside the corporate network". Conditions combined with `AND` must all be met; conditions combined with `OR` require any one of them.
+Conditions can be combined with the `AND` and `OR` operators and nested into groups, which allows expressing requirements like "SQL injections or cross-site scripting, coming from outside the corporate network".
+
+Conditions combined with `AND` must all be met; conditions combined with `OR` require any one of them.
 
 ### Filtering from the table and charts
 
@@ -45,7 +56,7 @@ Drilling down adds a breadcrumb trail above the list. The condition you drilled 
 
 ## Time range
 
-The time range selector limits the data to a period. Choose one of the relative periods (last hour, 6 hours, 12 hours, 24 hours, 7 days, 30 days, or 90 days), or set an absolute period in the calendar. The maximum period is 6 months.
+The time range selector limits the data to a period. Choose one of the relative periods (last hour, 6 hours, 12 hours, 24 hours, 7 days, 30 days, or 90 days), or set an absolute period in the calendar. The [maximum period](../../about-wallarm/data-retention-policy.md) is 6 months.
 
 ## Grouping
 
