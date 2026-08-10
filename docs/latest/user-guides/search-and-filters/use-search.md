@@ -5,10 +5,9 @@
 
 # Incident Search and Filters
 
-!!! info "Searching attacks"
-    This article describes the search in the **Incidents** section. Attacks are searched differently, see [Attack Search and Filters](attack-filters.md).
-
 The **Incidents** section of Wallarm Console lets you narrow the incident list down to the incidents you are interested in. You can select values in the filters, or type a query in the search field. This article describes both.
+
+To search detected attack, see [Attack Search and Filters](attack-filters.md).
 
 ## Filters
 
@@ -20,18 +19,18 @@ When you select values in different filters, the list shows the incidents matchi
 
 | Filter | Narrows the list by |
 | -- | -- |
-| **Type** | Attack type, such as **SQLi**, **XSS**, **RCE**, **Path traversal**, or **Mass assignment**. See the [full list of attack types](../../attacks-vulns-list.md#attack-types) |
-| Date range | Period the incident was detected in. See [Date range](#date-range) |
-| **Application** | One of your [applications](../settings/applications.md) |
-| **IP** | Source IP address, or a range of addresses |
-| **Domain** | Domain the attack was sent to |
-| **Response code** | Response status code group: **100**, **200**, **300**, **400**, or **500** |
-| **Source type** | What the source IP belongs to: a cloud provider such as **AWS**, **Azure**, or **GCP**, or **Tor**, **VPN**, **Proxy**, **Search Engine Spiders**, or **Malicious IPs** |
-| **Locations** | Country the source IP is registered in |
-| **CVE and exploits** | Known CVE the incident exploits |
-| **API protocols** | **REST API**, **GraphQL**, **gRPC**, **SOAP**, **JSON-RPC**, **XML-RPC**, **WebSocket**, **WebDAV**, or **Legacy Web Form** |
-| **Authentication** | Authentication method used in the request, such as **JWT authentication**, **Bearer token**, **API key**, **OAuth 2.0**, **Basic authentication**, or **None authentication** |
-| **Compare to...** | One of your uploaded [API specifications](../../api-specification-enforcement/overview.md) |
+| **Type** | Attack type, such as **SQLi**, **XSS**, **RCE**, **Path traversal**, or **Mass assignment**. See the [full list of attack types](../../attacks-vulns-list.md#attack-types). |
+| Date range | Period the incident was detected in. See [Date range](#date-range). |
+| **Application** | Your [applications](../settings/applications.md) targeted by an incident. |
+| **IP** | Source IP address, or a range of addresses. |
+| **Domain** | Domain the attack was sent to. |
+| **Response code** | Response status code group: **100**, **200**, **300**, **400**, or **500**. |
+| **Source type** | What the source IP belongs to: a cloud provider such as **AWS**, **Azure**, or **GCP**, or **Tor**, **VPN**, **Proxy**, **Search Engine Spiders**, or **Malicious IPs**. |
+| **Locations** | Country the source IP is registered in. |
+| **CVE and exploits** | Known CVE the incident exploits. |
+| **API protocols** | **REST API**, **GraphQL**, **gRPC**, **SOAP**, **JSON-RPC**, **XML-RPC**, **WebSocket**, **WebDAV**, or **Legacy Web Form**. |
+| **Authentication** | Authentication method used in the request, such as **JWT authentication**, **Bearer token**, **API key**, **OAuth 2.0**, **Basic authentication**, or **None authentication**. |
+| **Compare to...** | One of your uploaded [API specifications](../../api-specification-enforcement/overview.md). |
 
 !!! info "Malicious IPs"
     The **Malicious IPs** source type covers addresses that public threat intelligence resources widely associate with malicious activity and that Wallarm has validated. The same source type is available in the denylist for blocking by source type.
@@ -45,7 +44,7 @@ The date filter displays the currently selected period. Open it to change the pe
 
 ![Date range filter in the Incidents section](../../images/user-guides/search-and-filters/incident-date-range.png)
 
-If you do not select a period, the list shows the incidents of the last 24 hours.
+By default, the list shows incidents for the last month.
 
 ### Quick filters
 
@@ -70,7 +69,7 @@ When values of different attributes are specified, the results meet all those co
 
 | Attribute | Purpose | Example |
 | -- | -- | -- |
-| *(no prefix)* | Attack type, in uppercase or lowercase | `sqli`, `xss`, `rce`, `ptrav` |
+| *(no prefix)* | [Attack type](../../attacks-vulns-list.md), in uppercase or lowercase | `sqli`, `xss`, `rce`, `ptrav` |
 | `owasp_api<N>_2023` | Attacks associated with an OWASP API Top 10 2023 threat | `owasp_api1_2023` |
 | `known` | Attacks exploiting CVEs or other well‑known vulnerability types. `!known` returns potential false positives | `known:CVE-2018-6008` |
 | `proto:` | API protocol | `proto:graphql`, `proto:rest`, `proto:grpc` |
