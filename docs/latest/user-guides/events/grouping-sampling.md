@@ -1,40 +1,10 @@
-# Grouping and Sampling of Hits
+# Hit Sampling
 
-When [analyzing attacks](check-attack.md), it is important to understand how malicious requests are presented. Wallarm uses hit grouping and sampling techniques to simplify the attack list. These techniques are explained in this article.
+When [analyzing attacks](check-attack.md), it is important to understand how malicious requests are presented. To simplify the attack list, Wallarm samples hits before uploading them to the Wallarm Cloud.
 
-## Grouping of hits
+A **hit** is a single malicious request together with the metadata the Wallarm node adds. A request is not always a single attack of one type: when Wallarm detects several malicious payloads of different [attack types](../../attacks-vulns-list.md#attack-types) in one request, it records a separate hit for each type. Sampling therefore applies to hits, not to raw requests.
 
-!!! info "Grouping of hits and Group by"
-    This article describes how Wallarm combines hits into attacks before they reach the attack list. It is not the same as the **Group by** control of the **Attacks** section, which [regroups](../search-and-filters/attack-filters.md#grouping) already stored data for display.
-
-Wallarm groups [hits](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) into one attack using two grouping methods:
-
-* Basic grouping
-* Grouping of hits by source IP
-
-These methods do not exclude each other. If hits have characteristics of both methods, they are all grouped into one attack.
-
-### Basic grouping
-
-The hits are grouped if they have the same attack type, the parameter with the malicious payload, and the address the hits were sent to. Hits may come from the same or different IP addresses and have different values of the malicious payloads within one attack type.
-
-This hit grouping method is basic, applied to all hits and cannot be disabled or modified.
-
-### Grouping of hits by source IP
-
-The hits are grouped if they have the same source IP address. If grouped hits have different attack types, malicious payloads and URLs, attack parameters will be marked with the `[multiple]` tag in the attack list.
-
-This hit grouping method works for all hits except for the ones of the Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb and Virtual patch attack types.
-
-If hits are grouped by this method, [marking the attack as a false positive](check-attack.md#false-positives) and the [active verification](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing-trt) option are unavailable for the attack.
-
-Grouping by source IP is by default enabled in Wallarm Console → **Triggers** with the **Hits from the same IP** default trigger which activates when a single IP address originates more than 50 hits within 15 minutes.
-
-![Example of a trigger for hit grouping](../../images/user-guides/triggers/trigger-example-group-hits.png)
-
-You can adjust grouping by source IP to your needs: do this by creating your custom triggers of the **Hits from the same IP** type. Creating any custom trigger deletes the default one; if you delete all your custom triggers, the default is restored. You can also pause grouping by temporarily disabling the default trigger.
-
-## Sampling of hits
+## Overview
 
 When forming the attack details, Wallarm automatically makes information about the attack easier to analyze by displaying only unique [hits](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) - non-unique (comparable and identical) hits are dropped from uploading to the Wallarm Cloud and not displayed. This process is called hit **sampling**.
 
@@ -45,7 +15,7 @@ Hit sampling does not affect the quality of attack detection but helps to avoid 
 
 Since dropped requests are still requests processed by the Wallarm node, the RPS value in the node details UI increases with each dropped request. The number of requests and hits on the [Threat Prevention dashboard](../dashboards/threat-prevention.md) also includes the number of dropped hits.
 
-**When hit sampling is enabled**
+## When hit sampling is enabled
 
 * For [input validation attacks](../../attacks-vulns-list.md#attack-types), hit sampling is disabled by default. If the percentage of attacks in your traffic is high, hit sampling is performed in two sequential stages: **extreme** and **regular**.
 * For [behavioral attacks](../../attacks-vulns-list.md#attack-types), attacks of the [Data bomb](../../attacks-vulns-list.md#data-bomb) and [Resource overlimiting](../../attacks-vulns-list.md#resource-overlimit): the **regular** sampling algorithm is enabled by default. **Extreme** sampling starts only if the percentage of attacks in your traffic is high.
@@ -53,14 +23,14 @@ Since dropped requests are still requests processed by the Wallarm node, the RPS
 
 Sampling will be automatically disabled once the percentage of attacks in the traffic decreases.
 
-### Extreme sampling
+## Extreme sampling
 
 The extreme sampling algorithm has the following core logic:
 
 * If hits are of the [input validation](../../attacks-vulns-list.md#attack-types) type, the algorithm uploads to the Cloud only those with unique [malicious payloads](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components). If several hits with the same payload are detected within an hour, only the first of them is uploaded to the Cloud and the others are dropped.
 * If hits are of the [behavioral](../../attacks-vulns-list.md#attack-types), [Data bomb](../../attacks-vulns-list.md#data-bomb) or [Resource overlimiting](../../attacks-vulns-list.md#resource-overlimit) types, the algorithm uploads to the Cloud only the first 10% of them detected within an hour.
 
-### Regular sampling
+## Regular sampling
 
 Regular algorithm processes only hits saved after the extreme stage, unless hits are of the [behavioral](../../attacks-vulns-list.md#attack-types), [Data bomb](../../attacks-vulns-list.md#data-bomb) or [Resource overlimiting](../../attacks-vulns-list.md#resource-overlimit) types. If extreme sampling is disabled for hits of these types, the regular algorithm processes the original hit set.
 

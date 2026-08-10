@@ -35,8 +35,6 @@ Using triggers, you can:
 
     Notifications can be delivered through configured [integrations](../../user-guides/settings/integrations/integrations-intro.md), including SIEM systems, messengers, and other external tools.
 
-* Optimize attack and incident representation by [grouping hits](../../user-guides/events/grouping-sampling.md#grouping-of-hits).
-
 ## Understanding filters
 
 Filters are used for [condition](#how-it-works) detailing. For example, you can set up reactions to attacks of certain types, such as brute-force attacks, SQL injections and others. You can add one or more filters in the Wallarm Console interface and set values for them.
@@ -60,17 +58,9 @@ The following filters are available:
 
 New company accounts come with the following default (pre-configured) triggers:
 
-* Group hits originating from the same IP into one attack
+!!! info "Hits from the same IP trigger no longer works"
+    Starting in September 2026, the **Hits from the same IP** trigger — which grouped hits from one source IP into a single attack — no longer works. Group attacks by source IP on demand instead: in the **Attacks** section, set **Group by** to source IP (see [Attack Search and Filters](../search-and-filters/attack-filters.md#grouping)). The trigger may still appear in this section for some time, but it has no effect.
 
-    The trigger groups all [hits](../../glossary-en.md#hit) sent from the same IP address into one attack in the event list. This optimizes the event list and enables faster attack analysis.
-
-    This trigger is released when a single IP address originates more than 50 hits within 15 minutes. Only hits sent after exceeding the threshold are grouped into the attack.
-
-    Hits can have different attack types, malicious payloads and URLs. These attack parameters will be marked with the `[multiple]` tag in the event list.
-
-    Due to different parameter values of grouped hits, [marking the whole attack as a false positive](../events/check-attack.md#false-positives) will be unavailable, but you still will be able to mark certain requests as false positives. [Active verification of the attack](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing-trt) will also be unavailable.
-    
-    The hits with the Brute force, Forced browsing, Resource overlimit, Data bomb, or Virtual patch attack types are not considered in this trigger.
 * Graylist IP for 1 hour when it originates more than 3 different [malicious payloads](../../glossary-en.md#malicious-payload) within 1 hour
 
     [Graylist](../ip-lists/overview.md) is a list of suspicious IP addresses processed by the node as follows: if graylisted IP originates malicious requests, the node blocks them while allowing legitimate requests. In contrast to graylist, [denylist](../ip-lists/overview.md) points to IP addresses that are not allowed to reach your applications at all - the node blocks even legitimate traffic produced by denylisted sources. IP graylisting is one of the options aimed at the reduction of [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives).
@@ -81,7 +71,7 @@ New company accounts come with the following default (pre-configured) triggers:
 
     The hits with the Brute force, Forced browsing, Resource overlimit, Data bomb, or Virtual patch attack types are not considered in this trigger.
 
-You can temporarily disable any default trigger. You can also modify behavior provided by the default trigger - to do so, create your custom triggers of the same type. Creating any custom trigger deletes the default one; if you delete all your custom triggers, the default is restored.
+You can temporarily disable a default trigger. You can also modify behavior provided by the default trigger - to do so, create your custom triggers of the same type. Creating any custom trigger deletes the default one; if you delete all your custom triggers, the default is restored.
 
 ## Trigger processing priorities
 
