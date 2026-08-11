@@ -375,18 +375,18 @@ nav:
 
     - Monitoring & Events:
       - Event Overview: user-guides/events/overview.md
-      - Analyzing Attacks: user-guides/events/check-attack.md
-      - Analyzing Incidents: user-guides/events/check-incident.md
-      - Grouping & Sampling: user-guides/events/grouping-sampling.md
+      - Attack Analysis: user-guides/events/check-attack.md
+      - Incident Analysis: user-guides/events/check-incident.md
+      - Hit Sampling: user-guides/events/grouping-sampling.md
       - Security Issues: user-guides/vulnerabilities.md
-
-    - Triggers & Alerts:
-      - Trigger Configuration: user-guides/triggers/triggers.md
 
     - Search & Reports:
       - Attack Search & Filters: user-guides/search-and-filters/attack-filters.md
       - Incident Search & Filters: user-guides/search-and-filters/use-search.md
-      - Custom Reports: user-guides/search-and-filters/custom-report.md
+      - Security Reports: user-guides/search-and-filters/custom-report.md
+
+    - Triggers & Alerts:
+      - Trigger Configuration: user-guides/triggers/triggers.md
 
     - Account Settings:
       - Account: user-guides/settings/account.md
