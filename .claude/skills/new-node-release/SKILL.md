@@ -344,7 +344,7 @@ In Jira-link mode the skill classifies. In explicit-list mode classification is 
 
 ### Part 2b: Collect fixed CVEs per artifact
 
-List HIGH/CRITICAL CVEs fixed since the previous version, **per form factor**. Use `docker scout compare` with `--only-fixed --only-severity critical,high`.
+List CRITICAL/HIGH/MEDIUM CVEs fixed since the previous version, **per form factor**. Use `docker scout compare` with `--only-fixed --only-severity critical,high,medium`.
 
 `docker scout compare` works on images, OCI dirs, tarballs — not on `.sh` archives. AIO is checked indirectly via its sibling Docker image.
 
@@ -354,46 +354,46 @@ List HIGH/CRITICAL CVEs fixed since the previous version, **per form factor**. U
 
     ```bash
     docker scout compare --to wallarm/node:<OLD> wallarm/node:<NEW> \
-      --only-fixed --only-severity critical,high --ignore-unchanged
+      --only-fixed --only-severity critical,high,medium --ignore-unchanged
     ```
 
 * **Docker image — Native Node (AIO image)**
 
     ```bash
     docker scout compare --to wallarm/node-native-aio:<OLD> wallarm/node-native-aio:<NEW> \
-      --only-fixed --only-severity critical,high --ignore-unchanged
+      --only-fixed --only-severity critical,high,medium --ignore-unchanged
     ```
 
 * **Helm chart — Native Node**: fixes come from `wallarm/node-native-processing`:
 
     ```bash
     docker scout compare --to wallarm/node-native-processing:<OLD> wallarm/node-native-processing:<NEW> \
-      --only-fixed --only-severity critical,high --ignore-unchanged
+      --only-fixed --only-severity critical,high,medium --ignore-unchanged
     ```
 
 * **Helm chart — NGINX Node sidecar**: compare both `wallarm/sidecar` and `wallarm/node-helpers`:
 
     ```bash
     docker scout compare --to wallarm/sidecar:<OLD> wallarm/sidecar:<NEW> \
-      --only-fixed --only-severity critical,high --ignore-unchanged
+      --only-fixed --only-severity critical,high,medium --ignore-unchanged
     docker scout compare --to wallarm/node-helpers:<OLD> wallarm/node-helpers:<NEW> \
-      --only-fixed --only-severity critical,high --ignore-unchanged
+      --only-fixed --only-severity critical,high,medium --ignore-unchanged
     ```
 
 * **All-in-one installer (`.sh`)**: scout cannot scan `.sh` directly. Use the matching Docker image as a proxy and **filter to `/opt/wallarm`** — AIO ships only `/opt/wallarm` contents onto the host; OS packages are the customer's responsibility.
 
-    Step 1 — fixed HIGH/CRITICAL CVEs between versions:
+    Step 1 — fixed CRITICAL/HIGH/MEDIUM CVEs between versions:
 
     ```bash
     docker scout compare --to wallarm/node:<OLD> wallarm/node:<NEW> \
-      --only-fixed --only-severity critical,high --ignore-unchanged
+      --only-fixed --only-severity critical,high,medium --ignore-unchanged
     ```
 
     Step 2 — for each CVE, confirm the package lives under `/opt/wallarm`:
 
     ```bash
     docker scout cves wallarm/node:<NEW> --locations \
-      --only-severity critical,high --only-cve-id <CVE-ID>
+      --only-severity critical,high,medium --only-cve-id <CVE-ID>
     ```
 
     Include in AIO changelog only if at least one location starts with `/opt/wallarm`. Skip CVEs whose only locations are `/usr/lib`, `/lib`, `/var/lib/dpkg/...` — those are host OS.
@@ -401,7 +401,7 @@ List HIGH/CRITICAL CVEs fixed since the previous version, **per form factor**. U
 14a. **Present collected CVEs to the author** before writing them in:
 
    ```
-   Fixed CVEs per artifact (HIGH/CRITICAL only):
+   Fixed CVEs per artifact (CRITICAL/HIGH/MEDIUM):
    * Docker image wallarm/node:<NEW>: CVE-YYYY-NNNNN, CVE-YYYY-MMMMM
    * Helm chart (wallarm/node-native-processing:<NEW>): CVE-YYYY-NNNNN
    * AIO (filtered to /opt/wallarm): CVE-YYYY-NNNNN
