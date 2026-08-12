@@ -571,6 +571,9 @@ Each filter is an object that can include:
 
 * `path` or `url`: regex for matching the request path (both are supported and equivalent).
 * `headers`: a map of header names to regex patterns for matching their values.
+* `ip_addresses`: a list of client IP addresses or subnets in CIDR notation (a bare IP address is treated as a `/32` or `/128`). Both IPv4 and IPv6 are supported. Matched against the resolved real client IP of the request. Available starting from Native Node 0.25.5.
+
+When a filter combines several conditions (`path`, `headers`, `ip_addresses`), the request must match all of them for the filter to apply.
 
 All regular expressions must follow the [RE2 syntax](https://github.com/google/re2/wiki/Syntax).
 
@@ -608,6 +611,21 @@ All regular expressions must follow the [RE2 syntax](https://github.com/google/r
               host: "^api\\.example\\.com$"
           bypass:
           - path: "^/healthz$"
+    ```
+=== "Skip requests from internal networks"
+    This configuration bypasses all requests coming from internal subnets, as well as requests to static files from one specific network.
+
+    ```yaml
+    config:
+      connector:
+        input_filters:
+          bypass:
+          - ip_addresses:
+            - "10.0.0.0/8"
+            - "192.168.1.5"
+          - ip_addresses:
+            - "172.16.0.0/12"
+            path: ".*\\.(png|jpg|css|js|svg)$"
     ```
 
 ### config.connector.http_inspector.workers

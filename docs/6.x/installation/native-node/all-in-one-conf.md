@@ -594,6 +594,40 @@ Configuration for receiving [GENEVE](https://datatracker.ietf.org/doc/html/rfc89
 | `inner_vni_filter` | list of integers | empty (all VNIs) | List of inner VXLAN VNIs to accept when nested VXLAN is auto-detected. If empty, all VNIs are accepted. |
 | `filter` | string | empty (no filter) | [BPF filter](https://biot.com/capstats/bpf.html) applied to decapsulated inner packets. |
 
+### tcp_stream.ignore_ips
+
+Drops mirrored traffic by IP address or subnet before reassembly and analysis, reducing load from networks you do not want inspected. Applies to all ingestion methods (`from_interface`, `from_vxlan`, `from_geneve`) and runs after VXLAN/GENEVE decapsulation, so it matches inner endpoints. Available starting from version 0.25.5.
+
+Each entry pairs a `subnets` list with a `match_type`. Entries are combined with OR — a packet is dropped if it matches any entry.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `subnets` | list of strings | Subnets in CIDR notation or bare IP addresses (a bare address is a `/32` or `/128`). Both IPv4 and IPv6 are supported. |
+| `match_type` | string | Which endpoints must fall within `subnets` for the entry to match. Required, no default. One of: `src` (source address only), `dst` (destination address only), `src_or_dst` (either endpoint), `src_and_dst` (both endpoints). |
+
+`src` and `dst` match per packet rather than per flow, so they drop one direction of a connection and leave the other. Use `src_or_dst` to ignore an endpoint entirely, and `src_and_dst` to ignore only traffic with both ends in the list (for example, internal-to-internal traffic).
+
+```yaml
+version: 4
+
+mode: tcp-capture-v2
+
+tcp_stream:
+  from_interface:
+    enabled: true
+    interface: "eth0"
+  ignore_ips:
+    # Drop traffic internal to the mirrored network
+    - subnets:
+        - "10.20.0.0/16"
+        - "192.168.0.0/16"
+      match_type: src_and_dst
+    # Drop all traffic to or from one host
+    - subnets:
+        - "203.0.113.7"
+      match_type: src_or_dst
+```
+
 ## Envoy external filter-specific settings
 
 ### envoy_external_filter.address (required)
@@ -1021,6 +1055,9 @@ Each filter is an object that can include:
 
 * `path` or `url`: regex for matching the request path (both are supported and equivalent).
 * `headers`: a map of header names to regex patterns for matching their values.
+* `ip_addresses`: a list of client IP addresses or subnets in CIDR notation (a bare IP address is treated as a `/32` or `/128`). Both IPv4 and IPv6 are supported. Matched against the resolved real client IP of the request. Available starting from Native Node 0.25.5.
+
+When a filter combines several conditions (`path`, `headers`, `ip_addresses`), the request must match all of them for the filter to apply.
 
 All regular expressions must follow the [RE2 syntax](https://github.com/google/re2/wiki/Syntax).
 
@@ -1062,6 +1099,23 @@ All regular expressions must follow the [RE2 syntax](https://github.com/google/r
         host: "^api\\.example\\.com$"
       bypass:
       - path: "^/healthz$"
+    ```
+=== "Skip requests from internal networks"
+    This configuration bypasses all requests coming from internal subnets, as well as requests to static files from one specific network.
+
+    ```yaml
+    version: 4
+
+    mode: connector-server
+
+    input_filters:
+      bypass:
+      - ip_addresses:
+        - "10.0.0.0/8"
+        - "192.168.1.5"
+      - ip_addresses:
+        - "172.16.0.0/12"
+        path: ".*\\.(png|jpg|css|js|svg)$"
     ```
 
 ### http_inspector.workers
