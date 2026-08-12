@@ -12,6 +12,24 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to upgrade](all-in-one.md)
 
+### 0.25.5 (2026-08-11)
+
+<!-- * Added Server-Sent Events (SSE) response analysis, improving discovery of [MCP servers](../../api-discovery/exploring.md#mcp-servers) -->
+* Improved [DoS protection](../../api-protection/dos-protection.md) mitigation control accuracy
+* Added `ip_addresses` matching to [`input_filters`](../../installation/native-node/all-in-one-conf.md#input_filters) — inspect or bypass requests by client IP address or subnet, alongside path and header conditions
+* Added [`tcp_stream.ignore_ips`](../../installation/native-node/all-in-one-conf.md#tcp_streamignore_ips) to drop mirrored traffic by source or destination subnet before analysis in [`tcp-capture-v2`](../../installation/oob/tcp-traffic-mirror/deployment.md) mode
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-7246](https://nvd.nist.gov/vuln/detail/CVE-2026-7246)
+    * [CVE-2026-57585](https://nvd.nist.gov/vuln/detail/CVE-2026-57585)
+    * [GHSA-hrxh-6v49-42gf](https://github.com/advisories/GHSA-hrxh-6v49-42gf)
+    * [GHSA-6v7p-g79w-8964](https://github.com/advisories/GHSA-6v7p-g79w-8964)
+    * [CVE-2026-45409](https://nvd.nist.gov/vuln/detail/CVE-2026-45409)
+    * [CVE-2025-11065](https://nvd.nist.gov/vuln/detail/CVE-2025-11065)
+    * [CVE-2026-25645](https://nvd.nist.gov/vuln/detail/CVE-2026-25645)
+    * [GHSA-fv92-fjc5-jj9h](https://github.com/advisories/GHSA-fv92-fjc5-jj9h)
+    * [GHSA-2464-8j7c-4cjm](https://github.com/advisories/GHSA-2464-8j7c-4cjm)
+
 ### 0.25.4 (2026-07-23)
 
 * Fixed a crash that occurred when handling certain [MCP mitigation controls](../../agentic-ai/mcp-mitigation-controls.md)
@@ -288,6 +306,13 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.25.5 (2026-08-11)
+
+<!-- * Added Server-Sent Events (SSE) response analysis, improving discovery of [MCP servers](../../api-discovery/exploring.md#mcp-servers) -->
+* Improved [DoS protection](../../api-protection/dos-protection.md) mitigation control accuracy
+* Added `ip_addresses` matching to [`config.connector.input_filters`](../../installation/native-node/helm-chart-conf.md#configconnectorinput_filters) — inspect or bypass requests by client IP address or subnet, alongside path and header conditions
+* Fixed the [GHSA-hrxh-6v49-42gf](https://github.com/advisories/GHSA-hrxh-6v49-42gf) security vulnerability
+
 ### 0.25.4 (2026-07-23)
 
 * Fixed a crash that occurred when handling certain [MCP mitigation controls](../../agentic-ai/mcp-mitigation-controls.md)
@@ -547,6 +572,24 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](docker-image.md)
+
+### 0.25.5 (2026-08-11)
+
+<!-- * Added Server-Sent Events (SSE) response analysis, improving discovery of [MCP servers](../../api-discovery/exploring.md#mcp-servers) -->
+* Improved [DoS protection](../../api-protection/dos-protection.md) mitigation control accuracy
+* Added `ip_addresses` matching to [`input_filters`](../../installation/native-node/all-in-one-conf.md#input_filters) — inspect or bypass requests by client IP address or subnet, alongside path and header conditions
+* Added [`tcp_stream.ignore_ips`](../../installation/native-node/all-in-one-conf.md#tcp_streamignore_ips) to drop mirrored traffic by source or destination subnet before analysis in [`tcp-capture-v2`](../../installation/oob/tcp-traffic-mirror/deployment.md) mode
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-7246](https://nvd.nist.gov/vuln/detail/CVE-2026-7246)
+    * [CVE-2026-57585](https://nvd.nist.gov/vuln/detail/CVE-2026-57585)
+    * [GHSA-hrxh-6v49-42gf](https://github.com/advisories/GHSA-hrxh-6v49-42gf)
+    * [GHSA-6v7p-g79w-8964](https://github.com/advisories/GHSA-6v7p-g79w-8964)
+    * [CVE-2026-45409](https://nvd.nist.gov/vuln/detail/CVE-2026-45409)
+    * [CVE-2025-11065](https://nvd.nist.gov/vuln/detail/CVE-2025-11065)
+    * [CVE-2026-25645](https://nvd.nist.gov/vuln/detail/CVE-2026-25645)
+    * [GHSA-fv92-fjc5-jj9h](https://github.com/advisories/GHSA-fv92-fjc5-jj9h)
+    * [GHSA-2464-8j7c-4cjm](https://github.com/advisories/GHSA-2464-8j7c-4cjm)
 
 ### 0.25.4 (2026-07-23)
 
