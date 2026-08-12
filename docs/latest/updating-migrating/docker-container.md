@@ -29,7 +29,7 @@ These instructions describe the steps to upgrade the running Docker NGINX-based 
 ## Step 1: Download the updated filtering node image
 
 ``` bash
-docker pull wallarm/node:7.1.0
+docker pull wallarm/node:7.1.1
 ```
 
 ## Step 2: Stop the running container

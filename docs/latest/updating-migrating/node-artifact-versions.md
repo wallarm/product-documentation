@@ -10,6 +10,16 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 7.1.1 (2026-08-12)
+
+* Fixed spurious `eventfd` and `epoll_ctl` errors logged by NGINX workers at startup
+* Fixed duplicate entries appearing in the node IP lists (allowlist, denylist, graylist) after a full synchronization with the Wallarm Cloud
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-39822](https://nvd.nist.gov/vuln/detail/CVE-2026-39822)
+    * [CVE-2026-46600](https://nvd.nist.gov/vuln/detail/CVE-2026-46600)
+    * [CVE-2026-56852](https://nvd.nist.gov/vuln/detail/CVE-2026-56852)
+
 ### 7.1.0 (2026-07-21)
 
 * Added the ability for the node to [start when the Wallarm Cloud is temporarily unavailable](../faq/wallarm-cloud-down.md#can-a-wallarm-node-start-while-the-cloud-is-down)
@@ -30,6 +40,16 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 7.1.1 (2026-08-12)
+
+* Fixed spurious `eventfd` and `epoll_ctl` errors logged by NGINX workers at startup
+* Fixed duplicate entries appearing in the node IP lists (allowlist, denylist, graylist) after a full synchronization with the Wallarm Cloud
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-39822](https://nvd.nist.gov/vuln/detail/CVE-2026-39822)
+    * [CVE-2026-46600](https://nvd.nist.gov/vuln/detail/CVE-2026-46600)
+    * [CVE-2026-56852](https://nvd.nist.gov/vuln/detail/CVE-2026-56852)
 
 ### 7.1.0 (2026-07-21)
 
@@ -74,6 +94,16 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to upgrade](docker-container.md)
 
+### 7.1.1 (2026-08-12)
+
+* Fixed spurious `eventfd` and `epoll_ctl` errors logged by NGINX workers at startup
+* Fixed duplicate entries appearing in the node IP lists (allowlist, denylist, graylist) after a full synchronization with the Wallarm Cloud
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-39822](https://nvd.nist.gov/vuln/detail/CVE-2026-39822)
+    * [CVE-2026-46600](https://nvd.nist.gov/vuln/detail/CVE-2026-46600)
+    * [CVE-2026-56852](https://nvd.nist.gov/vuln/detail/CVE-2026-56852)
+
 ### 7.1.0 (2026-07-21)
 
 * Removed the `appstructure` component (the [API Discovery](../api-discovery/overview.md) module), including its `appstructure-out.log` log
@@ -94,6 +124,16 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to upgrade](cloud-image.md)
 
+### 7.1.1 (2026-08-12)
+
+* Fixed spurious `eventfd` and `epoll_ctl` errors logged by NGINX workers at startup
+* Fixed duplicate entries appearing in the node IP lists (allowlist, denylist, graylist) after a full synchronization with the Wallarm Cloud
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-39822](https://nvd.nist.gov/vuln/detail/CVE-2026-39822)
+    * [CVE-2026-46600](https://nvd.nist.gov/vuln/detail/CVE-2026-46600)
+    * [CVE-2026-56852](https://nvd.nist.gov/vuln/detail/CVE-2026-56852)
+
 ### 7.1.0 (2026-07-21)
 
 * Added the ability for the node to [start even when the Wallarm Cloud is temporarily unavailable](../faq/wallarm-cloud-down.md#can-a-wallarm-node-start-while-the-cloud-is-down)
@@ -112,6 +152,16 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-7-1-1-20260807-170213 (2026-08-12)
+
+* Fixed spurious `eventfd` and `epoll_ctl` errors logged by NGINX workers at startup
+* Fixed duplicate entries appearing in the node IP lists (allowlist, denylist, graylist) after a full synchronization with the Wallarm Cloud
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-39822](https://nvd.nist.gov/vuln/detail/CVE-2026-39822)
+    * [CVE-2026-46600](https://nvd.nist.gov/vuln/detail/CVE-2026-46600)
+    * [CVE-2026-56852](https://nvd.nist.gov/vuln/detail/CVE-2026-56852)
 
 ### wallarm-node-7-1-0-20260722-105251 (2026-07-22)
 

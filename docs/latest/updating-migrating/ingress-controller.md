@@ -177,7 +177,7 @@ Before starting the migration, gather the following information from your existi
 
     # Deploy the new Ingress Controller
     helm install wallarm-ingress-new wallarm/wallarm-ingress \
-      --version 7.1.0 \
+      --version 7.1.1 \
       -n wallarm-ingress-new \
       --create-namespace \
       -f values.yaml
@@ -562,7 +562,7 @@ This method preserves the existing load balancer IP by switching the Kubernetes 
 
     ```bash
     helm install wallarm-ingress-new wallarm/wallarm-ingress \
-      --version 7.1.0 \
+      --version 7.1.1 \
       -n <CURRENT_IC_NAMESPACE> \
       -f values-same-namespace.yaml
     ```
@@ -847,7 +847,7 @@ This method removes the old controller and deploys the new one in its place.
 
     ```bash
     helm install wallarm-ingress wallarm/wallarm-ingress \
-      --version 7.1.0 \
+      --version 7.1.1 \
       -n wallarm-ingress \
       --create-namespace \
       -f new-values.yaml

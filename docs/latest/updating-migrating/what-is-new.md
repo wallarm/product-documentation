@@ -324,11 +324,11 @@ The image configuration has moved from `controller.image` and `controller.wallar
       images:
         controller:
           repository: "<YOUR_REGISTRY>/wallarm/ingress-controller"
-          tag: "7.1.0"
+          tag: "7.1.1"
           pullPolicy: IfNotPresent
         helper:
           repository: "<YOUR_REGISTRY>/wallarm/node-helpers"
-          tag: "7.1.0"
+          tag: "7.1.1"
           pullPolicy: IfNotPresent
     ```
 
@@ -405,7 +405,7 @@ Minimal steps:
     ```
 
 ```bash
-helm install --version 7.1.0 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
+helm install --version 7.1.1 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
 ```
 
 For the full installation guide, see [Deploying Wallarm Ingress Controller](../admin-en/installation-kubernetes-en.md).
