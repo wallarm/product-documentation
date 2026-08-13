@@ -10,7 +10,7 @@ You can click this number to see details in the **Attacks** section.
 
 ## Analysis of requests that violate policies 
 
-In the **Attacks** section, to find events related to specification-based policy violations, set the [**Attack Type** filter](../user-guides/search-and-filters/attack-filters.md#filter) to the corresponding violation.
+In the **Attacks** section, to find events related to specification-based policy violations, set the [**Attack Type** filter](../attacks-vulns-list.md#api-specification) to the corresponding violation.
 
 Blocked and monitored events may be presented depending on the configured policy violation actions. In the event details, the violation type and link to the causing specification are displayed.
 
