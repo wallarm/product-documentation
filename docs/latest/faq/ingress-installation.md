@@ -19,6 +19,6 @@ This troubleshooting guide lists common issues you can face during the [Wallarm 
 
 Please go to Wallarm Console for the [US cloud](https://us1.my.wallarm.com) or for the [EU cloud](https://my.wallarm.com) → the **Attacks** section and expand the request details. In the displayed request details, pay attention to the `X-FORWARDED-FOR` header. For example:
 
-![The X-FORWARDED-FOR header of the request](../images/x-forwarded-for-header.png)
+![The X-FORWARDED-FOR header of the request](../images/request-ip-address.png)
 
 If the list of attacks is empty, you can send a [test attack](../admin-en/uat-checklist-en.md#node-registers-attacks) to the application protected by the Wallarm Ingress controller.

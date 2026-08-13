@@ -18,7 +18,7 @@ There are two ways of adding IP addresses to the exception list:
 
     ![API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-inside.png)
 
-* From the **Attacks** section: set the [**Attack Type** filter](../user-guides/search-and-filters/attack-filters.md#filter) to **Suspicious API activity**, **Account takeover**, **Scraping**, or **Security crawlers**, open the required attack, select a request on the **Requests** tab, and click **API Abuse exception list**.
+* From the **Attacks** section: set the [**Attack Type** filter](../user-guides/search-and-filters/attack-filters.md#filter) to **Suspicious API activity**, **Account takeover**, **Scraping**, or **Security crawlers**, open the required attack, select a request on the **Requests** tab, and click **Add IP to exception list**.
 
     ![API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
 

@@ -2,6 +2,7 @@
 [link-sessions]:                ../api-sessions/overview.md
 [link-api-abuse-prevention]:    ../api-abuse-prevention/overview.md
 [img-api-sessions-api-abuse]:   ../images/api-sessions/api-sessions-api-abuse.png
+[img-attacks-api-abuse]: ../images/api-sessions/api-abuse-attack-session-number.png
 
 # Exploring Bot Activity <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
@@ -25,7 +26,7 @@ Note that bot detection relies on the traffic - if there is not a sufficient amo
 
 You can explore attacks performed by bots in Wallarm Console → **Attacks** section. Set the [**Attack Type** filter](../user-guides/search-and-filters/attack-filters.md#filter) to **Suspicious API activity**, **Account takeover**, **Scraping**, or **Security crawlers**.
 
-![API Abuse events](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
+![API Abuse events](../images/api-sessions/api-abuse-attack.png)
 
 Note that:
 

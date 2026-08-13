@@ -179,8 +179,6 @@ More details on identifying an original client IP address based on the `PROXY` h
 
     If NGINX read the original address from the header `X-Forwarded-For` (`X-Real-IP` or a similar), the header value would also be displayed in the raw attack.
 
-    ![Header X-Forwarded-For](../images/x-forwarded-for-header.png)
-
 ### Configuration examples
 
 Below you will find examples of the NGINX configuration required to identify an originating IP address of a client connecting to your servers through popular load balancers.

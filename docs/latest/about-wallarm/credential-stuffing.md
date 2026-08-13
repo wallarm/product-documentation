@@ -88,7 +88,7 @@ On adding the new rule, it is turned on automatically. Use **on/off** switcher t
 
 The number of attempts to use compromised credentials in the last 7 days is displayed in the **Credential Stuffing** section. Click the counter and you will be redirected to the **Attacks** section that will display all [credential stuffing](../user-guides/search-and-filters/attack-filters.md#filter) attacks for the last 7 days.
 
-Expand any of the attacks to see the list of logins which passwords were compromised.
+Expand any of the attacks to see the list of logins which passwords were compromised and see malicious request details.
 
 ![Attacks - credential stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-attacks.png)
 
