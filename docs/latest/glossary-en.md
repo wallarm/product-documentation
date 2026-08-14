@@ -12,7 +12,7 @@ A hit is a serialized malicious request (original malicious request and metadata
 
 ## Attack
 
-An attack is a single hit or multiple hits [grouped](user-guides/events/grouping-sampling.md#grouping-of-hits).
+An attack is a single hit or multiple hits [grouped](user-guides/search-and-filters/attack-filters.md#grouping).
 
 An example of the attack list:
 
