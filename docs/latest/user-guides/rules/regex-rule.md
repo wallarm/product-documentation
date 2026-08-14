@@ -14,7 +14,7 @@ Wallarm provides the **Create regexp-based attack indicator** [rule](../../user-
 To set and apply your own attack detector:
 
 --8<-- "../include/rule-creation-initial-step.md"
-1. Choose **Mitigation controls** → **Custom attack detector**.
+1. Choose **Custom controls** → **Custom attack detector**.
 1. In **If request is**, [describe](rules.md#configuring) the scope to apply the rule to.
 1. Set your attack indicator parameters:
 
