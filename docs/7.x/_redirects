@@ -698,35 +698,35 @@
 
 /api-sessions/ /api-sessions/overview/
 
-/vulnerability-detection/active-threat-verification/overview/ /vulnerability-detection/threat-replay-testing/overview/
-/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /vulnerability-detection/threat-replay-testing/setup/#enable
-/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /vulnerability-detection/threat-replay-testing/setup/#rewrites
-/vulnerability-detection/active-threat-verification/running-test-on-staging/ /vulnerability-detection/threat-replay-testing/setup/#host-and-replay-host
+/vulnerability-detection/active-threat-verification/overview/ /about-wallarm/detecting-vulnerabilities/#detection-methods
+/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /about-wallarm/detecting-vulnerabilities/#detection-methods
+/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /about-wallarm/detecting-vulnerabilities/#detection-methods
+/vulnerability-detection/active-threat-verification/running-test-on-staging/ /about-wallarm/detecting-vulnerabilities/#detection-methods
 
-/4.10/vulnerability-detection/active-threat-verification/overview/ /4.10/vulnerability-detection/threat-replay-testing/overview/
-/4.10/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /4.10/vulnerability-detection/threat-replay-testing/setup/#enable
-/4.10/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /4.10/vulnerability-detection/threat-replay-testing/setup/#rewrites
-/4.10/vulnerability-detection/active-threat-verification/running-test-on-staging/ /4.10/vulnerability-detection/threat-replay-testing/setup/#host-and-replay-host
-/4.8/vulnerability-detection/active-threat-verification/overview/ /4.8/vulnerability-detection/threat-replay-testing/overview/
-/4.8/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /4.8/vulnerability-detection/threat-replay-testing/setup/#enable
-/4.8/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /4.8/vulnerability-detection/threat-replay-testing/setup/#rewrites
-/4.8/vulnerability-detection/active-threat-verification/running-test-on-staging/ /4.8/vulnerability-detection/threat-replay-testing/setup/#host-and-replay-host
-/tr/vulnerability-detection/active-threat-verification/overview/ /tr/vulnerability-detection/threat-replay-testing/overview/
-/tr/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /tr/vulnerability-detection/threat-replay-testing/setup/#enable
-/tr/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /tr/vulnerability-detection/threat-replay-testing/setup/#rewrites
-/tr/vulnerability-detection/active-threat-verification/running-test-on-staging/ /tr/vulnerability-detection/threat-replay-testing/setup/#host-and-replay-host
-/pt-br/vulnerability-detection/active-threat-verification/overview/ /pt-br/vulnerability-detection/threat-replay-testing/overview/
-/pt-br/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /pt-br/vulnerability-detection/threat-replay-testing/setup/#enable
-/pt-br/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /pt-br/vulnerability-detection/threat-replay-testing/setup/#rewrites
-/pt-br/vulnerability-detection/active-threat-verification/running-test-on-staging/ /pt-br/vulnerability-detection/threat-replay-testing/setup/#host-and-replay-host
-/ja/vulnerability-detection/active-threat-verification/overview/ /ja/vulnerability-detection/threat-replay-testing/overview/
-/ja/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /ja/vulnerability-detection/threat-replay-testing/setup/#enable
-/ja/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /ja/vulnerability-detection/threat-replay-testing/setup/#rewrites
-/ja/vulnerability-detection/active-threat-verification/running-test-on-staging/ /ja/vulnerability-detection/threat-replay-testing/setup/#host-and-replay-host
-/ar/vulnerability-detection/active-threat-verification/overview/ /ar/vulnerability-detection/threat-replay-testing/overview/
-/ar/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /ar/vulnerability-detection/threat-replay-testing/setup/#enable
-/ar/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /ar/vulnerability-detection/threat-replay-testing/setup/#rewrites
-/ar/vulnerability-detection/active-threat-verification/running-test-on-staging/ /ar/vulnerability-detection/threat-replay-testing/setup/#host-and-replay-host
+/4.10/vulnerability-detection/active-threat-verification/overview/ /4.10/about-wallarm/detecting-vulnerabilities/#detection-methods
+/4.10/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /4.10/about-wallarm/detecting-vulnerabilities/#detection-methods
+/4.10/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /4.10/about-wallarm/detecting-vulnerabilities/#detection-methods
+/4.10/vulnerability-detection/active-threat-verification/running-test-on-staging/ /4.10/about-wallarm/detecting-vulnerabilities/#detection-methods
+/4.8/vulnerability-detection/active-threat-verification/overview/ /4.8/about-wallarm/detecting-vulnerabilities/#detection-methods
+/4.8/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /4.8/about-wallarm/detecting-vulnerabilities/#detection-methods
+/4.8/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /4.8/about-wallarm/detecting-vulnerabilities/#detection-methods
+/4.8/vulnerability-detection/active-threat-verification/running-test-on-staging/ /4.8/about-wallarm/detecting-vulnerabilities/#detection-methods
+/tr/vulnerability-detection/active-threat-verification/overview/ /tr/about-wallarm/detecting-vulnerabilities/#detection-methods
+/tr/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /tr/about-wallarm/detecting-vulnerabilities/#detection-methods
+/tr/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /tr/about-wallarm/detecting-vulnerabilities/#detection-methods
+/tr/vulnerability-detection/active-threat-verification/running-test-on-staging/ /tr/about-wallarm/detecting-vulnerabilities/#detection-methods
+/pt-br/vulnerability-detection/active-threat-verification/overview/ /pt-br/about-wallarm/detecting-vulnerabilities/#detection-methods
+/pt-br/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /pt-br/about-wallarm/detecting-vulnerabilities/#detection-methods
+/pt-br/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /pt-br/about-wallarm/detecting-vulnerabilities/#detection-methods
+/pt-br/vulnerability-detection/active-threat-verification/running-test-on-staging/ /pt-br/about-wallarm/detecting-vulnerabilities/#detection-methods
+/ja/vulnerability-detection/active-threat-verification/overview/ /ja/about-wallarm/detecting-vulnerabilities/#detection-methods
+/ja/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /ja/about-wallarm/detecting-vulnerabilities/#detection-methods
+/ja/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /ja/about-wallarm/detecting-vulnerabilities/#detection-methods
+/ja/vulnerability-detection/active-threat-verification/running-test-on-staging/ /ja/about-wallarm/detecting-vulnerabilities/#detection-methods
+/ar/vulnerability-detection/active-threat-verification/overview/ /ar/about-wallarm/detecting-vulnerabilities/#detection-methods
+/ar/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /ar/about-wallarm/detecting-vulnerabilities/#detection-methods
+/ar/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /ar/about-wallarm/detecting-vulnerabilities/#detection-methods
+/ar/vulnerability-detection/active-threat-verification/running-test-on-staging/ /ar/about-wallarm/detecting-vulnerabilities/#detection-methods
 
 /admin-en/configuration-guides/sso/employ-user-auth/ /admin-en/configuration-guides/sso/intro/#available-options
 /admin-en/configuration-guides/sso/change-sso-provider/ /admin-en/configuration-guides/sso/setup/#disabling-and-deletion
@@ -872,13 +872,23 @@
 /5.x/installation/security-edge/deployment/ /5.x/installation/security-edge/inline/deployment/
 /5.x/installation/se-connector/ /5.x/installation/security-edge/se-connector/
 
-/vulnerability-detection/api-test-patrol/* /vulnerability-detection/schema-based-testing/:splat
-/5.x/vulnerability-detection/api-test-patrol/* /5.x/vulnerability-detection/schema-based-testing/:splat
-/4.10/vulnerability-detection/api-test-patrol/* /4.10/vulnerability-detection/schema-based-testing/:splat
-/ja/vulnerability-detection/api-test-patrol/* /ja/vulnerability-detection/schema-based-testing/:splat
-/tr/vulnerability-detection/api-test-patrol/* /tr/vulnerability-detection/schema-based-testing/:splat
-/pt-br/vulnerability-detection/api-test-patrol/* /pt-br/vulnerability-detection/schema-based-testing/:splat
-/ar/vulnerability-detection/api-test-patrol/* /ar/vulnerability-detection/schema-based-testing/:splat
+/vulnerability-detection/api-test-patrol/* /about-wallarm/detecting-vulnerabilities/#detection-methods
+/5.x/vulnerability-detection/api-test-patrol/* /5.x/about-wallarm/detecting-vulnerabilities/#detection-methods
+/4.10/vulnerability-detection/api-test-patrol/* /4.10/about-wallarm/detecting-vulnerabilities/#detection-methods
+/ja/vulnerability-detection/api-test-patrol/* /ja/about-wallarm/detecting-vulnerabilities/#detection-methods
+/tr/vulnerability-detection/api-test-patrol/* /tr/about-wallarm/detecting-vulnerabilities/#detection-methods
+/pt-br/vulnerability-detection/api-test-patrol/* /pt-br/about-wallarm/detecting-vulnerabilities/#detection-methods
+/ar/vulnerability-detection/api-test-patrol/* /ar/about-wallarm/detecting-vulnerabilities/#detection-methods
+
+/vulnerability-detection/threat-replay-testing/* /about-wallarm/detecting-vulnerabilities/#detection-methods
+/6.x/vulnerability-detection/threat-replay-testing/* /6.x/about-wallarm/detecting-vulnerabilities/#detection-methods
+/5.x/vulnerability-detection/threat-replay-testing/* /5.x/about-wallarm/detecting-vulnerabilities/#detection-methods
+/vulnerability-detection/schema-based-testing/* /about-wallarm/detecting-vulnerabilities/#detection-methods
+/6.x/vulnerability-detection/schema-based-testing/* /6.x/about-wallarm/detecting-vulnerabilities/#detection-methods
+/5.x/vulnerability-detection/schema-based-testing/* /5.x/about-wallarm/detecting-vulnerabilities/#detection-methods
+/vulnerability-detection/security-testing-overview/ /about-wallarm/detecting-vulnerabilities/#detection-methods
+/6.x/vulnerability-detection/security-testing-overview/ /6.x/about-wallarm/detecting-vulnerabilities/#detection-methods
+/5.x/vulnerability-detection/security-testing-overview/ /5.x/about-wallarm/detecting-vulnerabilities/#detection-methods
 
 /4.8/* /4.10
 
@@ -943,9 +953,9 @@
 
 /user-guides/rules/limit-data-export/ /admin-en/export-to-cloud/#attacks-incidents
 
-/7.x/agentic-ai/rogue-mcp-inspection/ /7.x/vulnerability-detection/security-testing-overview/
-/7.x/agentic-ai/rogue-mcp-inspection /7.x/vulnerability-detection/security-testing-overview/
-/7.x/vulnerability-detection/api-security-testing-via-postman/* /7.x/vulnerability-detection/security-testing-overview/
+/7.x/agentic-ai/rogue-mcp-inspection/ /7.x/about-wallarm/detecting-vulnerabilities/#detection-methods
+/7.x/agentic-ai/rogue-mcp-inspection /7.x/about-wallarm/detecting-vulnerabilities/#detection-methods
+/7.x/vulnerability-detection/api-security-testing-via-postman/* /7.x/about-wallarm/detecting-vulnerabilities/#detection-methods
 
 /ja/*  /:splat  301
 /tr/*  /:splat  301
