@@ -5,7 +5,7 @@
 * **[Wallarm API Security](#wallarm-api-security)** — start self-service: explore the Playground and sign up for the Security Edge Free Tier (500K requests/month).
 * **[Wallarm Infrastructure Discovery](#wallarm-infrastructure-discovery)** (AWS-only) — subscribe through AWS Marketplace.
 * **[Wallarm AI Hypervisor](#wallarm-ai-hypervisor)** (AWS-only) — separate onboarding flow through Sales.
-* **Wallarm API Security Testing** — enabled by default for every Wallarm account; covered in the [Wallarm API Security](#wallarm-api-security) section below.
+* **[Wallarm API Security Testing](../about-wallarm/detecting-vulnerabilities.md)** — no separate onboarding: it is included with every Wallarm account. Passive vulnerability detection runs by default, and you can enable AASM during [self-signup](#self-signup).
 
 Need help choosing or want a personalized walkthrough? [Talk to Sales](mailto:sales@wallarm.com?subject=Request%20for%20a%20Guided%20Wallarm%20Trial&body=Hello%20Wallarm%20Sales%20Engineer%20Team%2C%0A%0AI'm%20writing%20to%20request%20a%20guided%20Wallarm%20trial.%20I%20would%20be%20happy%20to%20schedule%20a%20call%20with%20you%20to%20discuss%20my%20requirements%20in%20detail.%0A%0AThank%20you%20for%20your%20time%20and%20assistance.)
 
@@ -16,7 +16,7 @@ Wallarm API Security delivers discovery and protection for your APIs: internal s
 You can start in one of the following ways:
 
 * [Playground](#playground) — explore Wallarm Console with realistic data; no signup required.
-* [Security Edge Free Tier](#security-edge-free-tier) — create a free account, get 500K requests per month for free, with Wallarm API Security Testing enabled by default and optional AASM Freemium.
+* [Security Edge Free Tier](#security-edge-free-tier) — create a free account, get 500K requests per month for free, with Wallarm API Security Testing (passive detection enabled by default, plus optional AASM).
 
 ### Playground
 
@@ -31,7 +31,7 @@ To try Wallarm on your own traffic, [create a Security Edge Free Tier account](#
 Every new account created in the Wallarm Console is automatically enrolled in the [Security Edge Free Tier](../about-wallarm/subscription-plans.md#security-edge-free-tier), which gives you **500 thousand requests per month** for free. The tier includes:
 
 * **Wallarm API Security** core capabilities — API protection, attack detection, custom rules, integrations.
-* **[Wallarm API Security Testing](../about-wallarm/detecting-vulnerabilities.md)** — proactively finds vulnerabilities in your applications and APIs before attackers do. Enabled by default. Includes optional **[AASM Freemium](../api-attack-surface/overview.md)** for agentless discovery of your external hosts and APIs.
+* **[Wallarm API Security Testing](../about-wallarm/detecting-vulnerabilities.md)** — proactively finds vulnerabilities in your applications and APIs through passive detection (enabled by default) and optional **[AASM](../api-attack-surface/overview.md)** for agentless discovery of your external hosts and APIs.
 * **[Wallarm Infrastructure Discovery](../infrastructure-discovery/overview.md)** (AWS-only) — cross-account AWS asset and shadow AI discovery, with findings from native AWS security services on a single relationship graph. Procured separately through AWS Marketplace.
 
 When you sign up, Wallarm automatically provisions an account and launches a built-in **Welcome Wizard** that lets you experience how Wallarm protects APIs using demo traffic.
@@ -50,7 +50,7 @@ To register with Wallarm yourself:
     | **Wallarm API Endpoint** | https://us1.api.wallarm.com/ | https://api.wallarm.com/ |
 
 1. Follow the signup link and input the requested data about yourself and your company.
-1. Choose whether to enable **AASM Freemium** (external API discovery) at this step. AASM activates immediately and scans your company domain. If you skip this, you can add a domain later from the [API Attack Surface](../api-attack-surface/overview.md) section of Wallarm Console.
+1. Choose whether to enable **AASM** (external API discovery) at this step. AASM activates immediately and scans your company domain.
 
 #### Welcome wizard
 

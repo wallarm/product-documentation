@@ -59,7 +59,10 @@ The subscription plan provides the [API Attack Surface Management (AASM)](../api
 * [API Attack Surface Discovery](../api-attack-surface/api-surface.md)
 * [Security Issues Detection](../api-attack-surface/security-issues.md)
 
-To activate the subscription plan, contact [sales@wallarm.com](mailto:sales@wallarm.com) to request access.
+To activate the subscription plan, do one of the following:
+
+* If you do not have a Wallarm account yet, [sign up](../quickstart/getting-started.md#self-signup) to Wallarm and enable AASM during account creation. Scanning of your email's domain starts immediately, and you can add more domains afterwards.
+* If you already have a Wallarm account, contact [sales@wallarm.com](mailto:sales@wallarm.com).
 
 !!! info "Relations to other plans"
 
