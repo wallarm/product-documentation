@@ -4,7 +4,7 @@
 
 * **[Wallarm API Security](../about-wallarm/api-security-overview.md)** — full operational surface: API discovery, attack monitoring, rules, integrations, mitigation controls, sessions, and more.
 * **Wallarm Infrastructure Discovery** (AWS-only) — cross-account AWS asset discovery and the relationship graph (when active on the subscription).
-* **[Wallarm API Security Testing](../vulnerability-detection/security-testing-overview.md)** — vulnerability findings, AASM results, and test runs.
+* **[Wallarm API Security Testing](../about-wallarm/detecting-vulnerabilities.md)** — vulnerability findings, AASM results, and test runs.
 
 **Wallarm AI Hypervisor** is managed on a separate domain and is not configured through Wallarm Console — see the [AI Hypervisor overview](../ai-hypervisor/overview.md) for details.
 

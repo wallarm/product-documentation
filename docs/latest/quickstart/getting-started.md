@@ -31,7 +31,7 @@ To try Wallarm on your own traffic, [create a Security Edge Free Tier account](#
 Every new account created in the Wallarm Console is automatically enrolled in the [Security Edge Free Tier](../about-wallarm/subscription-plans.md#security-edge-free-tier), which gives you **500 thousand requests per month** for free. The tier includes:
 
 * **Wallarm API Security** core capabilities — API protection, attack detection, custom rules, integrations.
-* **[Wallarm API Security Testing](../vulnerability-detection/security-testing-overview.md)** — proactively finds vulnerabilities in your applications and APIs before attackers do. Enabled by default. Includes optional **[AASM Freemium](../api-attack-surface/overview.md)** for agentless discovery of your external hosts and APIs.
+* **[Wallarm API Security Testing](../about-wallarm/detecting-vulnerabilities.md)** — proactively finds vulnerabilities in your applications and APIs before attackers do. Enabled by default. Includes optional **[AASM Freemium](../api-attack-surface/overview.md)** for agentless discovery of your external hosts and APIs.
 * **[Wallarm Infrastructure Discovery](../infrastructure-discovery/overview.md)** (AWS-only) — cross-account AWS asset and shadow AI discovery, with findings from native AWS security services on a single relationship graph. Procured separately through AWS Marketplace.
 
 When you sign up, Wallarm automatically provisions an account and launches a built-in **Welcome Wizard** that lets you experience how Wallarm protects APIs using demo traffic.

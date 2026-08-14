@@ -106,15 +106,11 @@ Technically, all attacks that can be detected by Wallarm are divided into two ty
 
 ## Vulnerability types
 
-This article lists [vulnerability](about-wallarm/detecting-vulnerabilities.md) (security issue) types detected by Wallarm - in case it has corresponding attack, they are described together. Note that Wallarm provides different [methods](about-wallarm/detecting-vulnerabilities.md#detection-methods) for vulnerability detection, they are listed in each vulnerability description.
+This article lists [vulnerability](about-wallarm/detecting-vulnerabilities.md) (security issue) types detected by Wallarm - in case it has corresponding attack, they are described together. Note that Wallarm provides two [methods](about-wallarm/detecting-vulnerabilities.md#detection-methods) for vulnerability detection, they are listed in each vulnerability description.
 
 !!! info "Method names and abbreviations"
     [Passive](about-wallarm/detecting-vulnerabilities.md#detection-methods) - built-in node function, no configuration required, "passive" as does not send anything itself
-    TRT - [Treat Replay Testing](vulnerability-detection/threat-replay-testing/overview.md)
-    SBT - [Schema-Based Testing](vulnerability-detection/schema-based-testing/overview.md)
     AASM - [API Attack Surface Management](api-attack-surface/overview.md)
-
-Read [here](about-wallarm/detecting-vulnerabilities.md#combining-methods) why and how you can combine different methods for vulnerability detection.
 
 ## DDoS attacks
 
@@ -136,7 +132,7 @@ There are many techniques that attackers can use to launch a DDoS attack, and th
 
 ### SQL injection
 
-**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
+**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-89][cwe-89]
 
@@ -157,7 +153,7 @@ In addition to the protection measures performed by Wallarm, you may follow thes
 
 ### NoSQL injection
 
-**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
+**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-943][cwe-943]
 
@@ -173,7 +169,7 @@ Vulnerability to this attack occurs due to insufficient filtering of user input.
 
 ### Remote code execution (RCE)
 
-**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
+**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE codes:** [CWE-78][cwe-78], [CWE-94][cwe-94] and others
 
@@ -224,7 +220,7 @@ An attacker can change the message output and change the user behavior. SSI Inje
 
 ### Server‑side template injection (SSTI)
 
-**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
+**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE codes:** [CWE-94][cwe-94], [CWE-159][cwe-159]
 
@@ -286,7 +282,7 @@ Vulnerability to this attack occurs due to poor validation of the data inputted 
 
 ### Server‑side request forgery (SSRF)
 
-**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
+**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-918][cwe-918]
 
@@ -303,7 +299,7 @@ A successful SSRF attack may allow an attacker to make requests on behalf of the
 
 ### Path traversal
 
-**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, SBT, TRT.
+**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive.
 
 **CWE code:** [CWE-22][cwe-22]
 
@@ -324,7 +320,7 @@ In addition to the protection measures performed by Wallarm, you may follow thes
 
 ### Attack on XML external entity (XXE)
 
-**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
+**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-611][cwe-611]
 
@@ -373,7 +369,7 @@ The `scanner` code is assigned to an HTTP request if this request is believed to
 
 ### Cross‑site scripting (XSS)
 
-**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM, SBT, TRT.
+**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-79][cwe-79]
 
@@ -405,7 +401,7 @@ This class of vulnerabilities occurs due to the incorrect validation and parsing
 
 ### Open redirect
 
-**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
+**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-601][cwe-601]
 
@@ -424,7 +420,7 @@ Vulnerability to this attack occurs due to incorrect filtering of URL inputs.
 
 ### CRLF injection
 
-**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
+**Attack** [by](#attack-det-methods) BID / **Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-93][cwe-93]
 
@@ -964,18 +960,6 @@ Virtual patching is blocking specific or all requests to some endpoint that is p
 
 Public exposure of API credentials. See details [here](api-attack-surface/security-issues.md#api-leaks).
 
-## Business logic
-
-**Vulnerability** [by](#vulnerability-types) SBT.
-
-**Description:**
-
-Complex business logic and access control vulnerabilities are defined by the structure of applications themselves.
-
-**Required configuration:**
-
-Wallarm detects the complex business logic and access control vulnerabilities only with enabled [Schema-Based Testing (SBT)](vulnerability-detection/schema-based-testing/overview.md) where the [Postman-based testing](vulnerability-detection/schema-based-testing/setup.md#postman-collection-based-test-policies) is configured.
-
 ## Other
 
 ### Arbitrary file delete
@@ -986,7 +970,7 @@ Wallarm detects the complex business logic and access control vulnerabilities on
 
 ### Authentication bypass
 
-**Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
+**Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE code:** [CWE-288][cwe-288]
 
@@ -1025,10 +1009,6 @@ Broken function level authorization (BFLA) is a security vulnerability, ranked f
 **Vulnerability** [by](#vulnerability-types) AASM.
 
 **Wallarm code:** `buffer_overflow`
-
-### Command injection
-
-**Vulnerability** [by](#vulnerability-types) SBT.
 
 ### Credential stuffing
 
@@ -1080,10 +1060,6 @@ CSRF is solved by browsers, other protection methods are less useful but still c
 *   Set the `SameSite` cookie attribute.
 *   Apply the recommendations from the [OWASP CSRF Prevention Cheat Sheet][link-owasp-csrf-cheatsheet].
 
-### Environment misconfiguration
-
-**Vulnerability** [by](#vulnerability-types) SBT.
-
 ### File read
 
 **Vulnerability** [by](#vulnerability-types) AASM.
@@ -1098,7 +1074,7 @@ CSRF is solved by browsers, other protection methods are less useful but still c
 
 ### Information exposure
 
-**Vulnerability** [by](#vulnerability-types) passive, AASM, SBT.
+**Vulnerability** [by](#vulnerability-types) passive, AASM.
 
 **CWE codes:** [CWE-200][cwe-200] (see also: [CWE-209][cwe-209], [CWE-215][cwe-215], [CWE-538][cwe-538], [CWE-541][cwe-541], [CWE-548][cwe-548], [CWE-598][cwe-598])
 
@@ -1142,7 +1118,7 @@ Wallarm's detection mechanisms alert you promptly if such exposure begins, allow
 
 ### Local File Inclusion (LFI) 
 
-**Vulnerability** [by](#vulnerability-types) AASM, SBT.
+**Vulnerability** [by](#vulnerability-types) AASM.
 
 **Wallarm code:** `lfi`
 
@@ -1178,7 +1154,7 @@ Wallarm's detection mechanisms alert you promptly if such exposure begins, allow
 
 ### Remote file inclusion
 
-**Vulnerability** [by](#vulnerability-types) AASM, SBT.
+**Vulnerability** [by](#vulnerability-types) AASM.
 
 **Wallarm code:** `rfi`
 

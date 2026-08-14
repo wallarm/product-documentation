@@ -37,17 +37,11 @@ If upgrading node 2.18 or lower, inform [Wallarm technical support](mailto:suppo
 
 When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../../user-guides/ip-lists/overview.md) is available.
 
-## Step 2: Disable the Threat Replay Testing module (only if upgrading node 2.16 or lower)
-
-If upgrading Wallarm node 2.16 or lower, please disable the [Threat Replay Testing](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing-trt) module in Wallarm Console → **Vulnerabilities** → **Configure**.
-
-The module operation can cause [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives) during the upgrade process. Disabling the module minimizes this risk.
-
-## Step 3: Update API port
+## Step 2: Update API port
 
 --8<-- "../include/waf/upgrade/api-port-443.md"
 
-## Step 4: Update the Wallarm Helm chart repository
+## Step 3: Update the Wallarm Helm chart repository
 
 === "If using the Helm repository"
     ```bash
@@ -61,7 +55,7 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
     helm repo update wallarm
     ```
 
-## Step 5: Update the `values.yaml` configuration
+## Step 4: Update the `values.yaml` configuration
 
 To migrate to Wallarm Ingress controller 6.x, update the following configuration specified in the `values.yaml` file:
 
@@ -189,13 +183,13 @@ Change the Wallarm module configuration set in the `values.yaml` file as follows
 * If the page `&/usr/share/nginx/html/wallarm_blocked.html` configured via ConfigMap was returned to blocked requests, [adjust its configuration](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) to the released changes.
 
     In the new node version, the Wallarm sample blocking page [has](what-is-new.md#new-blocking-page) the updated UI with no logo and support email specified by default.
-* If you have customized the `overlimit_res` attack detection via the [`wallarm_process_time_limit`][nginx-process-time-limit-docs] and [`wallarm_process_time_limit_block`][nginx-process-time-limit-block-docs] NGINX directives, please [transfer](#step-6-transfer-the-overlimit_res-attack-detection-configuration-from-directives-to-the-rule) these settings to the rule and delete from the `values.yaml` file.
+* If you have customized the `overlimit_res` attack detection via the [`wallarm_process_time_limit`][nginx-process-time-limit-docs] and [`wallarm_process_time_limit_block`][nginx-process-time-limit-block-docs] NGINX directives, please [transfer](#step-5-transfer-the-overlimit_res-attack-detection-configuration-from-directives-to-the-rule) these settings to the rule and delete from the `values.yaml` file.
 
-## Step 6: Transfer the `overlimit_res` attack detection configuration from directives to the rule
+## Step 5: Transfer the `overlimit_res` attack detection configuration from directives to the rule
 
 --8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-ingress-controller.md"
 
-## Step 7: Check out all coming K8s manifest changes
+## Step 6: Check out all coming K8s manifest changes
 
 To avoid unexpectedly changed Ingress controller behavior, check out all coming K8s manifest changes using [Helm Diff Plugin](https://github.com/databus23/helm-diff). This plugin outputs the difference between the K8s manifests of the deployed Ingress controller version and of the new one.
 
@@ -214,7 +208,7 @@ To install and run the plugin:
 
     * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
     * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
-    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 6.x settings](#step-5-update-the-valuesyaml-configuration)
+    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 6.x settings](#step-4-update-the-valuesyaml-configuration)
 3. Make sure no changes can affect the stability of the running services and carefully examine the errors from stdout.
 
     If stdout is empty, ensure the `values.yaml` file is valid.
@@ -291,7 +285,7 @@ Please note the changes of the following configuration:
     ```
 * Analyze all other changes.
 
-## Step 8: Upgrade the Ingress controller
+## Step 7: Upgrade the Ingress controller
 
 There are three ways of upgrading the Wallarm Ingress controller. Depending on whether there is a load balancer deployed to your environment, select the upgrade method:
 
@@ -321,7 +315,7 @@ By using this method, you can deploy Ingress Controller 6.x as an additional ent
 
     * `<RELEASE_NAME>`: the name for the Helm release of the Ingress controller chart
     * `<NAMESPACE>`: the namespace to deploy the Ingress controller to
-    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 6.x settings](#step-5-update-the-valuesyaml-configuration)
+    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 6.x settings](#step-4-update-the-valuesyaml-configuration)
 3. Ensure all services operate correctly.
 4. Switch the load to the new Ingress controller gradually.
 
@@ -359,7 +353,7 @@ To re‑create the Ingress controller release:
 
         * `<NAMESPACE>`: the namespace to deploy the Ingress controller to
 
-        * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 6.x settings](#step-5-update-the-valuesyaml-configuration)
+        * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 6.x settings](#step-4-update-the-valuesyaml-configuration)
 === "Terraform CLI"
     1. Set the `wait = false` option in the Terraform configuration to decrease the upgrade time:
         
@@ -420,9 +414,9 @@ There are the following parameters passed in the commands:
 
 * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
 * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
-* `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 6.x settings](#step-5-update-the-valuesyaml-configuration)
+* `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 6.x settings](#step-4-update-the-valuesyaml-configuration)
 
-## Step 9: Test the upgraded Ingress controller
+## Step 8: Test the upgraded Ingress controller
 
 1. Check that the version of the Helm chart was updated:
 
@@ -453,7 +447,7 @@ There are the following parameters passed in the commands:
 
     If the filtering node is working in the `block` mode, the code `403 Forbidden` will be returned in response to the request and the attack will be displayed in Wallarm Console → **Attacks**.
 
-## Step 10: Adjust the Ingress annotations to released changes
+## Step 9: Adjust the Ingress annotations to released changes
 
 Adjust the following Ingress annotations to the changes released in Ingress controller 6.x:
 
@@ -472,8 +466,3 @@ Adjust the following Ingress annotations to the changes released in Ingress cont
 
     In the new node versions, the Wallarm blocking page [has](what-is-new.md#new-blocking-page) the updated UI with no logo and support email specified by default.
 
-## Step 11: Re-enable the Threat Replay Testing module (only if upgrading node 2.16 or lower)
-
-Learn the [recommendation on the Threat Replay Testing module setup](../../vulnerability-detection/threat-replay-testing/setup.md) and re-enable it if required.
-
-After a while, ensure the module operation does not cause false positives. If discovering false positives, please contact the [Wallarm technical support](mailto:support@wallarm.com).

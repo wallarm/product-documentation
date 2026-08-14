@@ -28,7 +28,6 @@ The selected usage scope restricts how and where the token can be used:
 
     Appropriate for self-hosted Nodes only.
 * Wallarm API - select this option to use the token for making authenticated requests directly to the Wallarm API.
-* Schema-Based Testing agent - [required](../../vulnerability-detection/schema-based-testing/) for the operation of [Schema-Based Testing](../../vulnerability-detection/schema-based-testing/setup.md#token).
 
 ## Token expiration
 

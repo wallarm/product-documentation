@@ -118,7 +118,7 @@ The filtering/postanalytics switch provides the option to install the postanalyt
 
 ### API Discovery-only mode
 
-You can use the node in API Discovery-only mode (available since version 5.3.7). In this mode, attacks - including those detected by the Node's built-in mechanisms and those requiring additional configuration (e.g., credential stuffing, API specification violation attempts, and malicious activity from denylisted and graylisted IPs) - are detected and blocked locally (if enabled) but not exported to Wallarm Cloud. Since there is no attack data in the Cloud, [Threat Replay Testing][threat-replay-testing-docs] does not work. Traffic from allowlisted IPs is allowed.
+You can use the node in API Discovery-only mode (available since version 5.3.7). In this mode, attacks - including those detected by the Node's built-in mechanisms and those requiring additional configuration (e.g., credential stuffing, API specification violation attempts, and malicious activity from denylisted and graylisted IPs) - are detected and blocked locally (if enabled) but not exported to Wallarm Cloud. Traffic from allowlisted IPs is allowed.
 
 Meanwhile, [API Discovery][api-discovery-docs], [API session tracking][api-sessions-docs], and [security vulnerability detection][vuln-detection-docs] remain fully functional, detecting relevant security entities and uploading them to the Cloud for visualization.
 

@@ -4,7 +4,7 @@
 
 # Managing Security Issues
 
-Security issues (vulnerabilities) are security flaws in an infrastructure that may be exploited by attackers to perform unauthorized malicious actions with your system. Wallarm employs [various techniques](../about-wallarm/detecting-vulnerabilities.md#detection-methods) to discover security issues. This article describes how to analyze and manage security issues in Wallarm Console.
+Security issues (vulnerabilities) are security flaws in an infrastructure that may be exploited by attackers to perform unauthorized malicious actions with your system. Wallarm employs [several techniques](../about-wallarm/detecting-vulnerabilities.md#detection-methods) to discover security issues. This article describes how to analyze and manage security issues in Wallarm Console.
 
 ## Exploring security issues
 
@@ -122,7 +122,7 @@ Analyze the presence and impact of incidents:
 
 ## False positive rules
 
-Define global rules to automatically mark findings as false positives or skip their creation across all detection methods: passive detection, AASM, Threat Replay, and Schema-Based Testing. For an overview of false positives and manual marking, see [False positives](../about-wallarm/detecting-vulnerabilities.md#false-positives) in Detecting Security Issues.
+Define global rules to automatically mark findings as false positives or skip their creation across all detection methods: passive detection and AASM. For an overview of false positives and manual marking, see [False positives](../about-wallarm/detecting-vulnerabilities.md#false-positives) in Detecting Security Issues.
 
 To manage rules, go to **Security Issues** → **Configure** → **False positive rules**. Use the search field to find rules by title.
 
@@ -154,7 +154,7 @@ Click **Add** to save the rule.
 Note that:
 
 * If a vulnerability is automatically marked as false by a rule, the status change is logged in the issue's **Status history**
-* False positive rules work for all [detection methods](../about-wallarm/detecting-vulnerabilities.md#detection-methods): AASM, Threat Replay Testing, Passive detection, Schema-Based Testing
+* False positive rules work for all [detection methods](../about-wallarm/detecting-vulnerabilities.md#detection-methods): AASM, Passive detection
 * False positive rules act as a pre-creation filter—they are evaluated before security issues are created
 
 **Previously detected issues**
@@ -168,7 +168,7 @@ To suppress vulnerable software version findings for product endpoints:
 | Section | Parameter | Value |
 | ----- | ----- | ----- |
 | **Title** | — | Do not detect vulnerable software versions for /products/ |
-| **Source** | — | AASM, TRT |
+| **Source** | — | AASM, Passive Detect |
 | **Scope** | **Hostname** | `example.com` |
 | **Scope** | **Endpoint** | `^\/products\/prod-\d+$` |
 | **Security issues** | **SI with specific title(s)** | `^Vulnerable version of [\w\s]+: \d+\.\d+\.\d+$` |
@@ -178,7 +178,7 @@ To suppress vulnerable software version findings for product endpoints:
 
 As a result:
 
-* When AASM or TRT find something for `example.com/products/prod-01` or `example.com/products/prod-02` with a title starting with "Vulnerable version of…" (e.g. "Vulnerable version of WordPress: 4.6.26"), these findings will be auto-deleted and will not appear in the **Security Issues** section.
+* When AASM or Passive Detect finds something for `example.com/products/prod-01` or `example.com/products/prod-02` with a title starting with "Vulnerable version of…" (e.g. "Vulnerable version of WordPress: 4.6.26"), these findings will be auto-deleted and will not appear in the **Security Issues** section.
 * If the same issues are found by passive detection, the rule will not apply and the issues will be created.
 
 ## Security issue reports
@@ -196,9 +196,7 @@ You automatically receive notifications to your personal email (the one you use 
 * **Daily critical security issues (new only)** - all [critical][link-aasm-security-issue-risk-level] security issues opened for the day, sent once a day with a detailed description of each issue and instructions on how to mitigate it.
 * **Daily security issues (new only)** - statistics for security issues opened for the day, sent once a day with information on how many issues of every [risk level][link-aasm-security-issue-risk-level] were found and general action items for mitigation.
 
-Additionally, information about security issues found specifically by [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) is sent within an additional AASM-specific report:
-
-* **Weekly AASM statistics** - information about hosts, APIs, and statistics for security issues discovered for your configured domains within the last week.
+Additionally, information about security issues found specifically by [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) is sent as a dedicated **Weekly AASM statistics** report - information about hosts, APIs, and statistics for security issues discovered for your configured domains within the last week.
 
 The notifications are enabled by default. You can unsubscribe at any moment and configure any additional emails to get all or some of these notifications in Wallarm Console → **Configuration** → **Integrations** → **Email and messengers** → **Personal email** (your email) or **Email report** (extra emails) as described [here][link-integrations-email].
 

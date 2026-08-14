@@ -38,8 +38,6 @@ Wallarm nodes scale automatically using AWS Auto Scaling or Kubernetes auto-scal
 
 Wallarm stands out for its deep understanding of API traffic. It can parse complex JSON/XML payloads, handle nested parameters, and enforce API schemas to prevent misuse. Unlike traditional WAFs, which often miss logic-based API attacks (e.g., BOLA, mass assignment), Wallarm detects business logic abuse, poisoned queries, and multi-step attack chains.
 
-It also supports threat replay testing - safely testing potential vulnerabilities to reduce false positives.
-
 With detailed insights into API usage, attack patterns, and shadow APIs, Wallarm adds visibility and protection at the application layer, complementing AWS WAF's edge-level filtering. Together, they form a layered defense that blocks both known and emerging threats.
 
 [More about Wallarm capabilities](../../../about-wallarm/overview.md)
