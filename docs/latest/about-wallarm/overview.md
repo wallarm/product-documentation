@@ -11,7 +11,7 @@ Wallarm AI Control Platform comprises four products:
 * **[Wallarm API Security](api-security-overview.md)** — protection for your APIs: internal services, partner-facing endpoints, third-party integrations, and the APIs consumed by AI workloads. Blocks the OWASP API Top 10, automated abuse, account takeover, AI-targeted attacks, and attacks against Model Context Protocol (MCP) servers across REST, GraphQL, gRPC, SOAP, and WebSocket. Deploys wherever your traffic lives — cloud, hybrid, or edge.
 * **[Wallarm AI Hypervisor](../ai-hypervisor/overview.md)** — runtime observability, enforcement, and governance for AI workloads. Observes every AI agent decision, enforces policy at the connection level, and produces continuous compliance evidence — without modifying the application. **Available on AWS only**.
 * **[Wallarm Infrastructure Discovery](../infrastructure-discovery/overview.md)** — cross-account visibility across your cloud estate. Maps every workload, surfaces shadow AI within minutes of deployment, and makes findings from native cloud security services actionable. **Available on AWS only**.
-* **[Wallarm API Security Testing](detecting-vulnerabilities.md)** — proactively uncovers security issues in your applications and APIs before attackers exploit them, through dynamic testing and external attack surface management.
+* **[Wallarm API Security Testing](detecting-vulnerabilities.md)** — proactively uncovers security issues in your applications and APIs before attackers exploit them, through passive detection and external attack surface management (AASM).
 
 ## The Wallarm AI Control Loop
 
