@@ -1,73 +1,71 @@
 [link-using-search]:    ../search-and-filters/use-search.md
-[img-attacks-tab]:      ../../images/user-guides/events/check-attack.png
 [img-current-attacks]:  ../../images/glossary/attack-with-one-hit-example.png
 [img-incidents-tab]:    ../../images/user-guides/events/incident-vuln.png
 [use-search]:             ../search-and-filters/use-search.md
-[search-by-attack-status]: ../search-and-filters/use-search.md#search-attacks-by-the-action
 [link-attacks]:         ../../user-guides/events/check-attack.md
 [link-incidents]:       ../../user-guides/events/check-incident.md
 [link-sessions]:        ../../api-sessions/overview.md
 
 # Incident Analysis
 
-Incidents are attacks that successfully exploited the [security issue](../../about-wallarm/detecting-vulnerabilities.md) (vulnerability) [passively detected](../../about-wallarm/detecting-vulnerabilities.md#detection-methods) by Wallarm. These attacks were detected, but not blocked by Wallarm due to the current settings (`monitoring` [filtration mode](../../admin-en/configure-wallarm-mode.md) or others). This article explains how to analyze incidents in Wallarm Console.
+An **incident** is an attack that successfully exploited a [security issue](../../about-wallarm/detecting-vulnerabilities.md) in your application. Wallarm detects such an attack but does not block it, because the targeted scope runs in a non-blocking [filtration mode](../../admin-en/configure-wallarm-mode.md). This article explains how to analyze and respond to incidents.
 
 ## Detection
 
-Incidents are:
+Wallarm registers incidents through [passive detection](../../about-wallarm/detecting-vulnerabilities.md#detection-methods), which is enabled by default in every active filtering node. When Wallarm detects an attack and the response confirms that the attack succeeded, it concludes that the application has a vulnerability and that an attacker has exploited it — this is an incident.
 
-* Registered together with security issues (vulnerabilities) found by [passive detection](../../about-wallarm/detecting-vulnerabilities.md#detection-methods) (enabled by default in every active filtering node):
+Key points:
 
-     If Wallarm finds an attack and the attack is successful (determined by the response), it means there is a vulnerability in the application and the attacker has successfully exploited it — this is an incident.
+* Each incident is registered together with the security issue (vulnerability) it exploits. When more incidents exploit the same security issue later, they are all linked to it.
+* Incidents come only from passive detection. Vulnerabilities found by [other detection methods](../../about-wallarm/detecting-vulnerabilities.md#detection-methods) do not produce incidents.
 
 !!! info "Filtration mode"
-     As passive detection relies on both request and response, incidents are registered only for the scope with the `monitoring` [filtration mode](../../admin-en/configure-wallarm-mode.md).
-
-* If more incidents for the same security issue occur later, they are all linked to this issue.
-* Not registered for vulnerabilities found by [detection methods](../../about-wallarm/detecting-vulnerabilities.md#detection-methods), other than passive detection.
+     Passive detection relies on both the request and the response, so incidents are registered only for a scope in the `monitoring` [filtration mode](../../admin-en/configure-wallarm-mode.md).
 
 ## Importance
 
-Presence of incidents indicates a jump from a theoretical risk (vulnerability) to a live threat and requires prioritizing fixes of these security issues:
+An incident marks the jump from a theoretical risk (an open vulnerability) to a live threat, so the security issues behind incidents should be prioritized for fixing:
 
-* Once a vulnerability is successfully exploited, it often becomes public knowledge in the hacker community.
-* If one attacker succeeds, others will use the same method. An incident indicates that your system is now a confirmed target.
-* Incidents are the subject of investigation to identify data losses or other damages.
+* A successfully exploited vulnerability often becomes public knowledge in the attacker community.
+* When one attacker succeeds, others reuse the same method. An incident means your system is a confirmed target.
+* Each incident warrants investigation to identify data loss or other damage.
 
-## Checking incidents as list
+## Checking incidents in a list
 
-All the detected incidents for the selected period of time are displayed in the Wallarm Console → **Incidents**.
+Wallarm Console displays all detected incidents for the selected period in the **Incidents** section.
 
 ![Incidents tab][img-incidents-tab]
 
-* **Date**: The date and time of the malicious request.
-    * If several requests of the same type were detected at short intervals, the attack duration appears under the date. Duration is the time period between the first request of a certain type and the last request of the same type in the specified timeframe. 
-    * If the attack is happening at the current moment, an appropriate label is displayed.
-* **Payloads**: Attack type and the number of unique [malicious payload](../../glossary-en.md#malicious-payload). 
-* **Hits**: The number of hits (requests) in the attack in the specified time frame. 
-* **Top IP / Source**: The IP address from which the malicious requests originated. When the malicious requests originate from several IP addresses, the interface shows the IP address responsible for the most requests. There is also the following data displayed for the IP address:
-     * The total number of IP addresses from which the requests in the same attack originated during the specified timeframe. 
-     * The country/region in which the IP address is registered (if it was found in the databases like IP2Location or others)
-     * The source type, like **Public proxy**, **Web proxy**, **Tor** or the cloud platform the IP registered in, etc. (if it was found in the databases like IP2Location or others)
-     * The **Malicious IPs** label will appear if the IP address is known for malicious activities. This is based on public records and expert validations
-* **Domain / Path**: The domain, path and the application ID that the request targeted.
-* **Status**: The attack blocking status (depends on the [traffic filtration mode](../../admin-en/configure-wallarm-mode.md)):
-     * Blocked: all hits of the attack were blocked by the filtering node.
-     * Partially blocked: some hits of the attack were blocked and others were only registered.
-     * Monitoring: all hits of the attack were registered but not blocked.
-* **Parameter**: The malicious request's parameters and tags of [parsers](../rules/request-processing.md) applied to the request
-* **Security issues**: The security issue (vulnerability), that the incident exploits. Clicking the security issue brings you to its detailed description and instructions on how to fix it.
+* **Date**: Date and time of the malicious request.
+    * When several requests of the same type are detected at short intervals, the attack duration appears under the date. Duration is the time between the first and the last request of the same type within the selected time frame.
+    * When the attack is ongoing, a corresponding label is displayed.
+* **Payloads**: Attack type and the number of unique [malicious payloads](../../glossary-en.md#malicious-payload).
+* **Hits**: Number of hits (requests) in the attack within the selected time frame.
+* **Top IP / Source**: IP address the malicious requests originated from. When the requests come from several IP addresses, Wallarm Console shows the address responsible for the most requests, along with:
+     * The total number of IP addresses that the requests in the same attack originated from within the selected time frame.
+     * The country or region where the IP address is registered (when found in databases such as IP2Location).
+     * The source type, such as **Public proxy**, **Web proxy**, or **Tor**, or the cloud platform where the IP address is registered (when found in databases such as IP2Location).
+     * The **Malicious IPs** label, shown when the IP address is known for malicious activity, based on public records and expert validation.
+* **Domain / Path**: Domain, path, and application ID that the request targeted.
+* **Status**: Attack blocking status, which depends on the [traffic filtration mode](../../admin-en/configure-wallarm-mode.md):
+     * **Blocked**: all hits of the attack were blocked by the filtering node.
+     * **Partially blocked**: some hits were blocked, others were only registered.
+     * **Monitoring**: all hits were registered but not blocked.
+* **Parameter**: Parameters of the malicious request and the tags of the [parsers](../rules/request-processing.md) applied to it.
+* **Security issues**: Security issue (vulnerability) that the incident exploits. Clicking it opens the detailed description and instructions on how to fix it.
 
-To sort incidents by the time of the last request, you can use the **Sort by latest hit** switch.
+To sort incidents by the time of their last request, use the **Sort by latest hit** switch.
 
-To find required data, please use the search field as described [here][use-search] or manually set required search filters.
+To find specific incidents, use the search field or set filters manually, as described in [Incident Search and Filters][use-search].
+
+To get incidents as a file, export them as a PDF or CSV report, or receive them automatically by email. See [Creating Reports](../search-and-filters/custom-report.md#incidents-and-vulnerabilities).
 
 ## Checking incidents via security issues
 
-You can analyze incidents from the perspective of existing [security issues](../../user-guides/vulnerabilities.md):
+You can also analyze incidents from the perspective of the [security issues](../../user-guides/vulnerabilities.md) they exploit:
 
-* Go to the **Security Issues** section and pay attention to the issues having `Incident` tag in the **Security issue** column.
-* Set the **Incident** filter to `Incident detected` to see all issues with incidents. Go to issue details, view the **Related incidents** section. From here, you can go to every incident details.
+* In the **Security Issues** section, look for issues that have the `Incident` tag in the **Security issue** column.
+* Set the **Incident** filter to `Incident detected` to list all issues with incidents. Open an issue and view its **Related incidents** section, from which you can open the details of each incident.
 
 ![Incidents in Security Issues](../../images/user-guides/vulnerabilities/si-incidents.png)
 
@@ -79,28 +77,26 @@ You can analyze incidents from the perspective of existing [security issues](../
 
 ![Incidents tab][img-incidents-tab]
 
-Once an incident appears in the **Incidents** section:
+When an incident appears in the **Incidents** section, respond to it as follows:
 
-1. Optionally (recommended), [investigate the full context](#full-context-of-threat-actor-activities) of the incident's malicious requests: to which [user session](../../api-sessions/overview.md) they belong and what the full sequence of requests in this session is.
+1. Recommended: [investigate the full context](#full-context-of-threat-actor-activities) of the incident's malicious requests — which [user session](../../api-sessions/overview.md) they belong to and the full sequence of requests in that session.
 
-     This allows seeing all activity and logic of the threat actor and understanding attack vectors and what resources can be compromised.
-  
-1. Follow the link in the **Security issues** column to get detailed security issue (vulnerability) information including instructions on how to fix this vulnerability and the list of related incidents. 
+     This reveals the threat actor's activity and intent, the attack vectors used, and the resources that could be compromised.
+
+1. Follow the link in the **Security issues** column to open the security issue (vulnerability) details, including the list of related incidents and instructions on how to fix the vulnerability.
 
      ![Security issue (vulnerability) detailed information](../../images/user-guides/vulnerabilities/vuln-info.png)
 
-     **Fix the security issue (vulnerability)** and then mark it closed in Wallarm. For detailed information, refer to [Managing Security Issues](../vulnerabilities.md) article.
+     Fix the security issue, then mark it closed in Wallarm. For details, see [Managing Security Issues](../vulnerabilities.md).
 
-1. Go back to the incident in the list, investigate what mechanism caused the system reaction (note the `Blocked`, `Partially blocked` and `Monitoring` [statuses](check-attack.md#attack-analysis) of the attacks), how the system will behave in future to alike requests and how to adjust (if necessary) this future behavior.
+1. Return to the incident in the list and investigate the system reaction: check the `Blocked`, `Partially blocked`, and `Monitoring` [statuses](check-attack.md#attack-details), determine how the system will handle similar requests in the future, and adjust this behavior if necessary.
 
-     For incidents, this investigation and adjusting is performed [in the same way](check-attack.md#responding-to-attacks) as for all other attacks.
+     For incidents, you investigate and adjust this behavior [in the same way](check-attack.md#responding-to-attacks) as for any other attack.
 
 ## API calls to get incidents
 
-To get the incident details, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below is the example of the API call for **getting the first 50 incidents detected in the last 24 hours**.
+Besides using Wallarm Console, you can retrieve incident details by [calling the Wallarm API directly](../../api/overview.md). Incidents are returned by the `/v1/objects/attack` endpoint with the `"!vulnid": null` term, which keeps only attacks that have a vulnerability ID — this is how the system distinguishes incidents from attacks. The example below returns the first 50 incidents detected in the last 24 hours.
 
-The request is similar to the [one used](check-attack.md#api-calls) for a list of attacks; the `"!vulnid": null` term is added to request for incidents. This term instructs the API to ignore all attacks without specified vulnerability ID, and this is how the system distinguishes between attacks and incidents.
-
-Please replace `TIMESTAMP` with the date 24 hours ago converted to the [Unix Timestamp](https://www.unixtimestamp.com/) format.
+Replace `TIMESTAMP` with the timestamp of 24 hours ago in [Unix time](https://www.unixtimestamp.com/) format.
 
 --8<-- "../include/api-request-examples/get-incidents-en.md"
