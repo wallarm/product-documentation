@@ -5,7 +5,7 @@ search:
 
 # Wallarm Documentation — Version 6.x (Current Stable)
 
-> Wallarm AI Control Platform is an AI and API security platform with four products: **Wallarm API Security** (inline API protection), **Wallarm AI Hypervisor** (runtime AI workload governance, AWS-only), **Wallarm Infrastructure Discovery** (cross-account AWS asset discovery, AWS-only), and **Wallarm API Security Testing** (AASM, TRT, SBT). Wallarm API Security detects and blocks the OWASP API Top 10 threats, automated abuse and bots, AI-targeted attacks, and attacks against Model Context Protocol (MCP) servers. This file indexes the **current stable** documentation: NGINX Node 6.x / Native Node 0.14.x+ / Edge Node 0.14.x+.
+> Wallarm AI Control Platform is an AI and API security platform with four products: **Wallarm API Security** (inline API protection), **Wallarm AI Hypervisor** (runtime AI workload governance, AWS-only), **Wallarm Infrastructure Discovery** (cross-account AWS asset discovery, AWS-only), and **Wallarm API Security Testing** (AASM, passive vulnerability detection). Wallarm API Security detects and blocks the OWASP API Top 10 threats, automated abuse and bots, AI-targeted attacks, and attacks against Model Context Protocol (MCP) servers. This file indexes the **current stable** documentation: NGINX Node 6.x / Native Node 0.14.x+ / Edge Node 0.14.x+.
 
 ## Important context for AI agents
 
@@ -121,19 +121,8 @@ search:
 
 ### API Security Testing
 
-- [Security Testing Overview](https://docs.wallarm.com/vulnerability-detection/security-testing-overview.md): The suite of pre-production and runtime test capabilities (Threat Replay, Schema-Based, Postman) (also: DAST, API testing).
-
-#### Threat Replay Testing
-
-- [Threat Replay Testing Overview](https://docs.wallarm.com/vulnerability-detection/threat-replay-testing/overview.md): Re-run real-world attacks as harmless safety tests to discover vulnerable endpoints (also: replay testing, attack replay).
-- [Threat Replay Testing Setup](https://docs.wallarm.com/vulnerability-detection/threat-replay-testing/setup.md): Enable and configure Threat Replay Testing.
-- [Threat Replay Testing Results](https://docs.wallarm.com/vulnerability-detection/threat-replay-testing/exploring.md): Explore test outcomes and prioritize discovered issues.
-
-#### Schema-Based Testing
-
-- [Schema-Based Testing Overview](https://docs.wallarm.com/vulnerability-detection/schema-based-testing/overview.md): Shift-left DAST that probes endpoints listed in an OpenAPI / GraphQL schema (also: schema DAST, OpenAPI testing, shift-left testing).
-- [Schema-Based Testing Setup](https://docs.wallarm.com/vulnerability-detection/schema-based-testing/setup.md): Upload schema, configure auth, schedule runs.
-- [Schema-Based Testing Results](https://docs.wallarm.com/vulnerability-detection/schema-based-testing/explore.md): Browse test runs and reported findings.
+- [API Security Testing Overview](https://docs.wallarm.com/about-wallarm/detecting-vulnerabilities.md): What a security issue is and the two methods Wallarm uses to detect them — passive detection and AASM (also: detection methods, security testing).
+- [Passive Detection](https://docs.wallarm.com/about-wallarm/detecting-vulnerabilities.md#passive-detection): Node-based detection of vulnerabilities from live traffic (both requests and responses), surfaced when a vulnerability appears in real traffic; enabled by default (also: passive vulnerability detection, vuln detection).
 
 #### API Attack Surface Management (AASM)
 
@@ -141,8 +130,6 @@ search:
 - [AASM Setup](https://docs.wallarm.com/api-attack-surface/setup.md): Configure domains, scope, and scan cadence.
 - [API Surface Discovery (AASD)](https://docs.wallarm.com/api-attack-surface/api-surface.md): External enumeration of hosts and API endpoints reachable from the internet (also: subdomain enumeration, exposed API discovery).
 - [AASM Security Issues](https://docs.wallarm.com/api-attack-surface/security-issues.md): Misconfigurations and risks found on discovered external hosts.
-
-- [Detecting Vulnerabilities](https://docs.wallarm.com/about-wallarm/detecting-vulnerabilities.md): How Wallarm passively detects application vulnerabilities from live traffic (also: passive vulnerability detection, vuln detection).
 
 ### Deployment
 

@@ -34,7 +34,6 @@
 [api-sessions-docs]:                ../../api-sessions/overview.md
 [vuln-detection-docs]:              ../../about-wallarm/detecting-vulnerabilities.md
 [masking-sensitive-data-rule]:      ../../user-guides/rules/sensitive-data-rule.md
-[threat-replay-testing-docs]:       ../../vulnerability-detection/threat-replay-testing/overview.md
 [attack-analysis-docs]:             ../../user-guides/events/check-attack.md
 [link-wallarm-health-check]:        ../../admin-en/uat-checklist-en.md
 

@@ -99,5 +99,5 @@ To control:
 
 **What data is sent and how to control**
 
-* Security issues can be detected by [different methods](../about-wallarm/detecting-vulnerabilities.md#detection-methods). Most of them (such as AASM or any type of security testing) do not have access to the traffic, so they do not export any data to the Cloud by design. Passive detection, on the other hand, sends entire request & response (including PII and other sensitive data) to the Cloud. Passive vulnerability detection can be disabled.
+* Security issues can be detected by [two methods](../about-wallarm/detecting-vulnerabilities.md#detection-methods) — passive detection and AASM. AASM is agentless and has no access to your traffic, so by design it exports no request data to the Cloud. Passive detection, on the other hand, runs on the Wallarm node and sends the entire request and response (including PII and other sensitive data) to the Cloud; it can be disabled if needed.
 * All the other information related to security issues is calculated and formed on the Cloud side: problem description and mitigation recommendations, status history etc.

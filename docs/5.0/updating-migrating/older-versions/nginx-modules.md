@@ -65,29 +65,23 @@ Besides any other help, ask to enable new IP lists logic for your Wallarm accoun
 
 * If filtering node and postanalytics modules are installed on different servers, **first** upgrade the postanalytics module and **then** the filtering module following these [instructions](separate-postanalytics.md).
 
-## Step 1: Disable the Threat Replay Testing module (if upgrading node 2.16 or lower)
-
-If upgrading Wallarm node 2.16 or lower, please disable the [Threat Replay Testing](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing-trt) module in Wallarm Console → **Vulnerabilities** → **Configure**.
-
-The module operation can cause [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives) during the upgrade process. Disabling the module minimizes this risk.
-
-## Step 2: Prepare clean machine
+## Step 1: Prepare clean machine
 
 --8<-- "../include/waf/installation/all-in-one-clean-machine-latest.md"
 
-## Step 3: Install NGINX and dependencies
+## Step 2: Install NGINX and dependencies
 
 --8<-- "../include/waf/installation/all-in-one-nginx.md"
 
-## Step 4: Prepare Wallarm token
+## Step 3: Prepare Wallarm token
 
 --8<-- "../include/waf/installation/all-in-one-token.md"
 
-## Step 5: Download all-in-one Wallarm installer
+## Step 4: Download all-in-one Wallarm installer
 
 --8<-- "../include/waf/installation/all-in-one-installer-download-5.0.md"
 
-## Step 6: Run all-in-one Wallarm installer
+## Step 5: Run all-in-one Wallarm installer
 
 ### Filtering node and postanalytics on the same server
 
@@ -121,11 +115,11 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
         sudo sh wallarm-5.3.19.aarch64-glibc.sh filtering
         ```
 
-## Step 7: Migrate allowlists and denylists from the previous Wallarm node version to 5.0 (only if upgrading node 2.18 or lower)
+## Step 6: Migrate allowlists and denylists from the previous Wallarm node version to 5.0 (only if upgrading node 2.18 or lower)
 
 If upgrading node 2.18 or lower, [migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to the latest version.
 
-## Step 8: Transfer NGINX and postanalytics configuration from old node machine to new
+## Step 7: Transfer NGINX and postanalytics configuration from old node machine to new
 
 Transfer node-related NGINX configuration and postanalytics configuration from the configuration files on the old machine to the files on a new machine. You can do that by copying the required directives.
 
@@ -212,21 +206,15 @@ In new node version, the Wallarm sample blocking page has [been changed](what-is
 
 If the page `&/usr/share/nginx/html/wallarm_blocked.html` was configured to be returned in response to blocked requests, [copy and customize](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
 
-## Step 9: Update API port
+## Step 8: Update API port
 
 --8<-- "../include/waf/upgrade/api-port-443.md"
 
-## Step 10: Re-enable the Threat Replay Testing module (only if upgrading node 2.16 or lower)
-
-Learn the [recommendation on the Threat Replay Testing module setup](../../vulnerability-detection/threat-replay-testing/setup.md) and re-enable it if required.
-
-After a while, ensure the module operation does not cause false positives. If discovering false positives, please contact the [Wallarm technical support](mailto:support@wallarm.com).
-
-## Step 11: Restart NGINX
+## Step 9: Restart NGINX
 
 --8<-- "../include/waf/installation/restart-nginx-systemctl.md"
 
-## Step 12: Test Wallarm node operation
+## Step 10: Test Wallarm node operation
 
 To test the new node operation:
 
@@ -239,13 +227,13 @@ To test the new node operation:
 1. Open the Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks) and ensure attacks are displayed in the list.
 1. As soon as your Cloud stored data (rules, IP lists) is synchronized to the new node, perform some test attacks to make sure your rules work as expected.
 
-## Step 13: Configure sending traffic to Wallarm node
+## Step 11: Configure sending traffic to Wallarm node
 
 Update targets of your load balancer to send traffic to the Wallarm instance. For details, please refer to the documentation on your load balancer.
 
 Before full redirecting of the traffic to the new node, it is recommended to first redirect it partially and check that the new node behaves as expected.
 
-## Step 14: Remove old node
+## Step 12: Remove old node
 
 1. Delete old node in Wallarm Console → **Nodes** by selecting your node and clicking **Delete**.
 1. Confirm the action.

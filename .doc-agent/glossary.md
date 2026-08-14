@@ -41,16 +41,13 @@
 | legitimate request | Request without attack signs | | |
 | malicious payload | Part of request containing attack stamps (identifier + context) | payload | attack vector |
 | false positive | Mistaken detection of attack or vulnerability | | false attack, false vulnerability |
-| security issue | Error in application that can be exploited by attacker. Detected via: Passive detection, Threat Replay Testing, Schema-Based Testing, API Attack Surface Management | vulnerability, issue | |
+| security issue | Error in application that can be exploited by attacker. Detected via: Passive detection, API Attack Surface Management | vulnerability, issue | |
 | vulnerability | See **security issue** | security issue, issue | |
 | risk level | Characteristic of security issues: how much risk the vulnerability poses | | |
 | risk score | Characteristic of API endpoints: how likely to be attacked | | |
 | open security issue | Detected vulnerability not yet fixed | | open vulnerability, actual vulnerability |
 | closed security issue | Detected vulnerability already fixed/patched/irrelevant/false positive | | inactive vulnerability, fixed vulnerability |
 | incident | Occurrence of vulnerability exploited by attacker | security incident | |
-| Security Testing suite | Comprehensive platform for detecting security issues at different development stages. Includes: TRT, SBT | Wallarm's Security Testing suite | |
-| Threat Replay Testing (TRT) | Analyzes actual attack attempts, sanitizes payloads, replays in non-prod environment | | |
-| Schema-Based Testing (SBT) | DAST solution using API schema (OpenAPI spec, Postman collection) for automated security tests | | |
 | stamp | Malicious payload identifier. If detected, request is marked malicious | attack sign, attack stamp | global rules, global ruleset |
 | general security ruleset | attack stamps (proton.db) + attack contexts (libdetection) + custom ruleset | general ruleset | |
 | attack source | Information about where attack was sent from (IP, data center, etc.) | | |
@@ -64,7 +61,6 @@
 | subscription plan | Outlines access to Wallarm components and features | subscription | license |
 | Cloud Native WAAP | Core subscription for web/API protection against SQLi, XSS, brute force, etc. | WAAP | WAF, NG-WAF |
 | Advanced API Security | Enhanced subscription covering all OWASP API Top-10 threats | WAAP + Advanced API Security | |
-| Security Testing | Subscription for proactive vulnerability detection | | |
 | free tier | Free subscription with monthly quotas (default: 500K requests/month) | | |
 | active subscription | Paid plan: application protected, scanned, integrations working | | valid subscription |
 | inactive subscription | Unpaid/expired plan: protected but no rule updates or scanning | | |

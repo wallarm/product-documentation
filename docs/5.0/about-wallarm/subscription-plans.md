@@ -8,64 +8,49 @@ Wallarm is the only solution that unifies API discovery, risk management, real-t
 
 **WAAP + Advanced API Security**. This bundle enhances general WAAP capabilities with comprehensive API Security tools to cover all OWASP API Top-10 threats.
 
-**Security Testing**. This bundle helps you proactively uncover security vulnerabilities in your applications and APIs before attackers do.
-
-| Feature | WAAP | WAAP + API Security | Security Testing |
-| ------- | ----------------- | --------------------- | --------------------- |
-| **Real-time protection** | | | |
-| [DDoS protection (L7)](../admin-en/configuration-guides/protecting-against-ddos.md) | Yes | Yes | No |
-| [Geo/source filtering](../user-guides/ip-lists/overview.md) | Yes | Yes | No |
-| [IP reputation feeds](../user-guides/ip-lists/overview.md#malicious-ip-feeds) | Yes | Yes | No |
-| [Attack stamps (SQLi, XSS, SSRF, etc.)](../attacks-vulns-list.md#attack-types) | Yes | Yes | No |
-| [Customer defined signatures](../user-guides/rules/regex-rule.md) | Yes | Yes | No |
-| [Virtual patching](../user-guides/rules/vpatch-rule.md) | Yes | Yes | No |
-| [Brute force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md) | Yes | Yes | No |
-| [Forced browsing protection](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md) | Yes | Yes | No |
-| [Distributed rate limiting](../user-guides/rules/rate-limiting.md) | Yes | Yes | No |
-| [BOLA protection](../admin-en/configuration-guides/protecting-against-bola.md) | Manual triggers | Automated protection | No |
-| [API Abuse Prevention (bot management)](../api-abuse-prevention/overview.md) | No | Yes | No |
-| [Credential Stuffing Detection](../about-wallarm/credential-stuffing.md) | No | Yes | No |
-| [API Specification Enforcement](../api-specification-enforcement/overview.md) | No | Yes | No |
-| [GraphQL security policies](../api-protection/graphql-rule.md) | No | Yes | No |
-| **API protocol support** | | | |
-| Legacy (SOAP, XML-RPC, WebDAV, WebForm) | Yes | Yes | No |
-| Mainstream (REST, GraphQL) | Yes | Yes | No |
-| Modern and streaming (gRPC, WebSocket) | Yes | Yes | No |
-| **Security posture** | | | |
-| [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) | No | Yes | No |
-| [Vulnerability assessment](../user-guides/vulnerabilities.md) | Yes | Yes | No |
-| [API Sessions](../api-sessions/overview.md) | No | Yes | No |
-| [API Discovery](../api-discovery/overview.md) | No | Yes | No |
-| [Sensitive data detection](../api-discovery/overview.md#sensitive-data-detection) | No | Yes | No |
-| [Rogue API Detection (shadow, zombie)](../api-discovery/rogue-api.md) | No | Yes | No |
-| [BI Dashboards](../user-guides/dashboards/bi-dashboards.md) | No | Yes | No |
-| **Security testing** | | | |
-| [Threat Replay Testing](../vulnerability-detection/threat-replay-testing/overview.md) | No | Yes | Yes, with API Security |
-| [Schema-Based Security Testing](../vulnerability-detection/schema-based-testing/overview.md) | No | No | Yes |
-| **Additional options** | | | |
-| [Self-hosted Node deployment](../installation/supported-deployment-options.md) | All | All | No |
-| [Security Edge](../installation/security-edge/overview.md) | No | No | No |
-| [Integrations](../user-guides/settings/integrations/integrations-intro.md) | All | All | All |
-| [Number of users](../user-guides/settings/users.md) | Unlimited | Unlimited | Unlimited |
-| [SSO authentication](../admin-en/configuration-guides/sso/intro.md) | Yes | Yes | Yes |
-| [Role-based access control (RBAC)](../user-guides/settings/users.md#user-roles) | Yes | Yes | Yes |
-| [Multi-tenant](../installation/multi-tenant/overview.md) | Yes (by request) | Yes (by request) | Yes (by request) |
-| Period of event storage | 6 month | 6 month | 6 month |
-| Support | Standard/<br>Advanced/<br>Platinum | Standard/<br>Advanced/<br>Platinum | Standard/<br>Advanced/<br>Platinum |
+| Feature | WAAP | WAAP + API Security |
+| ------- | ----------------- | --------------------- |
+| **Real-time protection** | | |
+| [DDoS protection (L7)](../admin-en/configuration-guides/protecting-against-ddos.md) | Yes | Yes |
+| [Geo/source filtering](../user-guides/ip-lists/overview.md) | Yes | Yes |
+| [IP reputation feeds](../user-guides/ip-lists/overview.md#malicious-ip-feeds) | Yes | Yes |
+| [Attack stamps (SQLi, XSS, SSRF, etc.)](../attacks-vulns-list.md#attack-types) | Yes | Yes |
+| [Customer defined signatures](../user-guides/rules/regex-rule.md) | Yes | Yes |
+| [Virtual patching](../user-guides/rules/vpatch-rule.md) | Yes | Yes |
+| [Brute force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md) | Yes | Yes |
+| [Forced browsing protection](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md) | Yes | Yes |
+| [Distributed rate limiting](../user-guides/rules/rate-limiting.md) | Yes | Yes |
+| [BOLA protection](../admin-en/configuration-guides/protecting-against-bola.md) | Manual triggers | Automated protection |
+| [API Abuse Prevention (bot management)](../api-abuse-prevention/overview.md) | No | Yes |
+| [Credential Stuffing Detection](../about-wallarm/credential-stuffing.md) | No | Yes |
+| [API Specification Enforcement](../api-specification-enforcement/overview.md) | No | Yes |
+| [GraphQL security policies](../api-protection/graphql-rule.md) | No | Yes |
+| **API protocol support** | | |
+| Legacy (SOAP, XML-RPC, WebDAV, WebForm) | Yes | Yes |
+| Mainstream (REST, GraphQL) | Yes | Yes |
+| Modern and streaming (gRPC, WebSocket) | Yes | Yes |
+| **Security posture** | | |
+| [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) | No | Yes |
+| [Vulnerability assessment](../user-guides/vulnerabilities.md) | Yes | Yes |
+| [API Sessions](../api-sessions/overview.md) | No | Yes |
+| [API Discovery](../api-discovery/overview.md) | No | Yes |
+| [Sensitive data detection](../api-discovery/overview.md#sensitive-data-detection) | No | Yes |
+| [Rogue API Detection (shadow, zombie)](../api-discovery/rogue-api.md) | No | Yes |
+| [BI Dashboards](../user-guides/dashboards/bi-dashboards.md) | No | Yes |
+| **Additional options** | | |
+| [Self-hosted Node deployment](../installation/supported-deployment-options.md) | All | All |
+| [Security Edge](../installation/security-edge/overview.md) | No | No |
+| [Integrations](../user-guides/settings/integrations/integrations-intro.md) | All | All |
+| [Number of users](../user-guides/settings/users.md) | Unlimited | Unlimited |
+| [SSO authentication](../admin-en/configuration-guides/sso/intro.md) | Yes | Yes |
+| [Role-based access control (RBAC)](../user-guides/settings/users.md#user-roles) | Yes | Yes |
+| [Multi-tenant](../installation/multi-tenant/overview.md) | Yes (by request) | Yes (by request) |
+| Period of event storage | 6 month | 6 month |
+| Support | Standard/<br>Advanced/<br>Platinum | Standard/<br>Advanced/<br>Platinum |
 
 To activate the subscription plan, contact [sales@wallarm.com](mailto:sales@wallarm.com).
 
 ## API Attack Surface
-
-Variants: **Core (Free)**, **Enterprise (Paid)** - see comparison [here](https://www.wallarm.com/product/aasm-pricing).
-
-!!! info "Relations to other plans"
-
-    This subscription plan:
-
-    * Is included into [Advanced API Security](#core-subscription-plans) plan
-    * Can be added to [Cloud Native WAAP](#core-subscription-plans) plan
-    * Can be used alone (no other plans or filtering node required)
 
 The **API Attack Surface** subscription plan provides a comprehensive view of publicly exposed APIs and related information with **zero deployment** and minimal configuration.
 
@@ -76,11 +61,16 @@ The subscription plan provides the [API Attack Surface Management (AASM)](../api
 
 To activate the subscription plan, do one of the following:
 
-* If you do not have Wallarm account yet, get pricing information and activate AASM on the Wallarm's official site [here](https://www.wallarm.com/product/aasm).
+* If you do not have a Wallarm account yet, [sign up](../quickstart/getting-started.md#self-signup) to Wallarm and enable AASM during account creation. Scanning of your email's domain starts immediately, and you can add more domains afterwards.
+* If you already have a Wallarm account, contact [sales@wallarm.com](mailto:sales@wallarm.com).
 
-    When activating, scanning of the used email's domain starts immediately while you negotiate sales team. After activation, you can add additional domains to the scope.
+!!! info "Relations to other plans"
 
-* If you already have Wallarm account, contact [sales@wallarm.com](mailto:sales@wallarm.com).
+    This subscription plan:
+
+    * Is included into [Advanced API Security](#core-subscription-plans) plan
+    * Can be added to [Cloud Native WAAP](#core-subscription-plans) plan
+    * Can be used alone (no other plans or filtering node required)
 
 ## Security Edge (Paid Plan)
 
@@ -120,7 +110,6 @@ The Security Edge Free Tier account allows:
     * Limited to 3 users per company account
     * Telemetry portal of Security Edge
     * Multi-cloud Security Edge deployment
-* Utilize the abilities of [Schema-Based Security Testing](../vulnerability-detection/schema-based-testing/overview.md)
 
 If a Free Tier account exceeds 100% of the monthly quota, your access to the Wallarm Console is disabled, along with all integrations. When reaching 200%, protection on your Wallarm nodes is disabled. These restrictions will be in effect until the first day of the next month.
 

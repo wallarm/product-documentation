@@ -28,23 +28,17 @@ These instructions describe the steps to upgrade the running end‑of‑life Doc
 
 If upgrading node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are upgrading filtering node modules up to 6.x and ask to enable new IP list logic for your Wallarm account. When new IP list logic is enabled, please ensure the section [**IP lists**](../../user-guides/ip-lists/overview.md) of Wallarm Console is available.
 
-## Step 2: Disable the Threat Replay Testing module (only if upgrading node 2.16 or lower)
-
-If upgrading Wallarm node 2.16 or lower, please disable the [Threat Replay Testing](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing-trt) module in Wallarm Console → **Vulnerabilities** → **Configure**.
-
-The module operation can cause [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives) during the upgrade process. Disabling the module minimizes this risk.
-
-## Step 3: Update API port
+## Step 2: Update API port
 
 --8<-- "../include/waf/upgrade/api-port-443.md"
 
-## Step 4: Download the updated filtering node image
+## Step 3: Download the updated filtering node image
 
 ``` bash
 docker pull wallarm/node:6.13.0
 ```
 
-## Step 5: Switch to the token-based connection to the Wallarm Cloud
+## Step 4: Switch to the token-based connection to the Wallarm Cloud
 
 The approach to connect the container to the Wallarm Cloud has been upgraded as follows:
 
@@ -58,11 +52,11 @@ To create a new Wallarm node and get its token:
 1. Open Wallarm Console → **Settings** → **API Tokens** and generate a token with the **Node deployment/Deployment** usage type.
 1. Copy the generated token.
 
-## Step 6: Migrate allowlists and denylists from the previous Wallarm node version to 6.x (only if upgrading node 2.18 or lower)
+## Step 5: Migrate allowlists and denylists from the previous Wallarm node version to 6.x (only if upgrading node 2.18 or lower)
 
 If upgrading node 2.18 or lower, [migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to 6.x.
 
-## Step 7: Switch from deprecated configuration options
+## Step 6: Switch from deprecated configuration options
 
 There are the following deprecated configuration options:
 
@@ -84,7 +78,7 @@ There are the following deprecated configuration options:
 
     We only changed the variable name, its logic remains the same. The old name is temporarily supported as well, but still it is recommended to rename the variable.
 
-## Step 8: Update the Wallarm blocking page (if upgrading NGINX-based image)
+## Step 7: Update the Wallarm blocking page (if upgrading NGINX-based image)
 
 In the new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.
 
@@ -93,21 +87,21 @@ If the Docker container was configured to return the `&/usr/share/nginx/html/wal
 1. [Copy and customize](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
 1. [Mount](../../admin-en/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code) the customized page and the NGINX configuration file to a new Docker container in the next step.
 
-## Step 9: Review recent architectural updates (for NGINX-based Docker image)
+## Step 8: Review recent architectural updates (for NGINX-based Docker image)
 
 The latest update has introduced architectural changes caused by [image optimization](what-is-new.md#optimized-and-more-secure-nginx-based-docker-image) and [Tarantool replacement](what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics) that may impact users, especially those mounting custom configuration files during container initiation due to alterations in the paths of certain files. Please familiarize yourself with these changes to ensure proper configuration and usage of the new image.
 
-## Step 10: Transfer the `overlimit_res` attack detection configuration from directives to the rule
+## Step 9: Transfer the `overlimit_res` attack detection configuration from directives to the rule
 
 --8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-docker.md"
 
-## Step 11: Stop the running container
+## Step 10: Stop the running container
 
 ```bash
 docker stop <RUNNING_CONTAINER_NAME>
 ```
 
-## Step 12: Run the container using the updated image
+## Step 11: Run the container using the updated image
 
 Run the container using the updated image and making necessary adjustments to the paths for the mounted files if required by the recent changes to the image caused by [image optimization](what-is-new.md#optimized-and-more-secure-nginx-based-docker-image) and [Tarantool replacement](what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics).
 
@@ -116,7 +110,7 @@ There are two options for running the container using the updated image:
 * [With the environment variables](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables)
 * [In the mounted configuration file](../../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
 
-## Step 13: Adjust Wallarm node filtration mode settings to changes released in the latest versions (only if upgrading node 2.18 or lower)
+## Step 12: Adjust Wallarm node filtration mode settings to changes released in the latest versions (only if upgrading node 2.18 or lower)
 
 1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md#filtration-modes):
       * Environment variable [`WALLARM_MODE`](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) or the directive [`wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode) of the NGINX‑based Docker container
@@ -124,16 +118,11 @@ There are two options for running the container using the updated image:
       * [Endpoint-targeted filtration rules configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode)
 2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../../admin-en/configure-wallarm-mode.md).
 
-## Step 14: Test the filtering node operation
+## Step 13: Test the filtering node operation
 
 --8<-- "../include/waf/installation/test-after-node-type-upgrade.md"
 
-## Step 15: Delete the filtering node of the previous version
+## Step 14: Delete the filtering node of the previous version
 
 If the deployed image of the version 6.x operates correctly, you can delete the filtering node of the previous version in the Wallarm Console → **Nodes** section.
 
-## Step 16: Re-enable the Threat Replay Testing module (only if upgrading node 2.16 or lower)
-
-Learn the [recommendation on the Threat Replay Testing module setup](../../vulnerability-detection/threat-replay-testing/setup.md) and re-enable it if required.
-
-After a while, ensure the module operation does not cause false positives. If discovering false positives, please contact the [Wallarm technical support](mailto:support@wallarm.com).

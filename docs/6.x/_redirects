@@ -17,9 +17,9 @@
 /api-protection/custom-request-anomaly/    /agentic-ai/ai-payload-inspection/
 /api-protection/custom-request-anomaly     /agentic-ai/ai-payload-inspection/
 
-/agentic-ai/rogue-mcp-inspection/ /vulnerability-detection/security-testing-overview/
-/agentic-ai/rogue-mcp-inspection /vulnerability-detection/security-testing-overview/
-/vulnerability-detection/api-security-testing-via-postman/* /vulnerability-detection/security-testing-overview/
+/agentic-ai/rogue-mcp-inspection/ /about-wallarm/detecting-vulnerabilities/#detection-methods
+/agentic-ai/rogue-mcp-inspection /about-wallarm/detecting-vulnerabilities/#detection-methods
+/vulnerability-detection/api-security-testing-via-postman/* /about-wallarm/detecting-vulnerabilities/#detection-methods
 
 /en/admin-en/configure-tarantool-en.html   /en/admin-en/configuration-guides/allocate-resources-for-waf-node.html
 /en/quickstart-en/qs-intro-en.html         /en/quickstart-en/how-wallarm-works/qs-intro-en.html
@@ -666,19 +666,23 @@
 
 /api-sessions/ /api-sessions/overview/
 
-/vulnerability-detection/active-threat-verification/overview/ /vulnerability-detection/threat-replay-testing/overview/
-/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /vulnerability-detection/threat-replay-testing/setup/#enable
-/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /vulnerability-detection/threat-replay-testing/setup/#rewrites
-/vulnerability-detection/active-threat-verification/running-test-on-staging/ /vulnerability-detection/threat-replay-testing/setup/#host-and-replay-host
+/vulnerability-detection/threat-replay-testing/* /about-wallarm/detecting-vulnerabilities/#detection-methods
+/7.x/vulnerability-detection/threat-replay-testing/* /7.x/about-wallarm/detecting-vulnerabilities/#detection-methods
+/5.x/vulnerability-detection/threat-replay-testing/* /5.x/about-wallarm/detecting-vulnerabilities/#detection-methods
 
-/4.10/vulnerability-detection/active-threat-verification/overview/ /4.10/vulnerability-detection/threat-replay-testing/overview/
-/4.10/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /4.10/vulnerability-detection/threat-replay-testing/setup/#enable
-/4.10/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /4.10/vulnerability-detection/threat-replay-testing/setup/#rewrites
-/4.10/vulnerability-detection/active-threat-verification/running-test-on-staging/ /4.10/vulnerability-detection/threat-replay-testing/setup/#host-and-replay-host
-/4.8/vulnerability-detection/active-threat-verification/overview/ /4.8/vulnerability-detection/threat-replay-testing/overview/
-/4.8/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /4.8/vulnerability-detection/threat-replay-testing/setup/#enable
-/4.8/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /4.8/vulnerability-detection/threat-replay-testing/setup/#rewrites
-/4.8/vulnerability-detection/active-threat-verification/running-test-on-staging/ /4.8/vulnerability-detection/threat-replay-testing/setup/#host-and-replay-host
+/vulnerability-detection/schema-based-testing/* /about-wallarm/detecting-vulnerabilities/#detection-methods
+/7.x/vulnerability-detection/schema-based-testing/* /7.x/about-wallarm/detecting-vulnerabilities/#detection-methods
+/5.x/vulnerability-detection/schema-based-testing/* /5.x/about-wallarm/detecting-vulnerabilities/#detection-methods
+
+# API Security Testing overview merged into Detecting Security Issues
+/vulnerability-detection/security-testing-overview/ /about-wallarm/detecting-vulnerabilities/#detection-methods
+/7.x/vulnerability-detection/security-testing-overview/ /7.x/about-wallarm/detecting-vulnerabilities/#detection-methods
+/5.x/vulnerability-detection/security-testing-overview/ /5.x/about-wallarm/detecting-vulnerabilities/#detection-methods
+
+/vulnerability-detection/active-threat-verification/overview/ /about-wallarm/detecting-vulnerabilities/#detection-methods
+/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /about-wallarm/detecting-vulnerabilities/#detection-methods
+/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /about-wallarm/detecting-vulnerabilities/#detection-methods
+/vulnerability-detection/active-threat-verification/running-test-on-staging/ /about-wallarm/detecting-vulnerabilities/#detection-methods
 
 /admin-en/configuration-guides/sso/employ-user-auth/ /admin-en/configuration-guides/sso/intro/#available-options
 /admin-en/configuration-guides/sso/change-sso-provider/ /admin-en/configuration-guides/sso/setup/#disabling-and-deletion
@@ -787,9 +791,9 @@
 /5.x/installation/security-edge/deployment/ /5.x/installation/security-edge/inline/deployment/
 /5.x/installation/se-connector/ /5.x/installation/security-edge/se-connector/
 
-/vulnerability-detection/api-test-patrol/* /vulnerability-detection/schema-based-testing/:splat
-/5.x/vulnerability-detection/api-test-patrol/* /5.x/vulnerability-detection/schema-based-testing/:splat
-/4.10/vulnerability-detection/api-test-patrol/* /4.10/vulnerability-detection/schema-based-testing/:splat
+/vulnerability-detection/api-test-patrol/* /about-wallarm/detecting-vulnerabilities/#detection-methods
+/5.x/vulnerability-detection/api-test-patrol/* /5.x/about-wallarm/detecting-vulnerabilities/#detection-methods
+/4.10/vulnerability-detection/api-test-patrol/* /4.10
 
 /4.8/* /4.10
 

@@ -153,12 +153,11 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
   </div>
 
   <div class="navigation-card">
-    <h3 class="icon-homepage api-security-testing"><a href="./vulnerability-detection/security-testing-overview/">API Security Testing <span class="card-arrow">→</span></a></h3>
+    <h3 class="icon-homepage api-security-testing"><a href="./about-wallarm/detecting-vulnerabilities/">API Security Testing <span class="card-arrow">→</span></a></h3>
     <p class="card-description">Find vulnerabilities before attackers do with automated security testing.</p>
     <p><ul>
-      <li><a href="./vulnerability-detection/threat-replay-testing/overview/">Threat Replay Testing</a></li>
-      <li><a href="./vulnerability-detection/schema-based-testing/overview/">Schema-Based Testing</a></li>
-      <li><a href="./api-attack-surface/overview/">API Attack Surface (AASM)</a></li>
+      <li><a href="./about-wallarm/detecting-vulnerabilities/#passive-detection">Passive Detection</a></li>
+      <li><a href="./api-attack-surface/overview/">Attack Surface (AASM)</a></li>
     </ul></p>
   </div>
 

@@ -26,21 +26,15 @@ These instructions describe the steps to upgrade the end‑of‑life cloud node 
 
 If upgrading the node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are upgrading filtering node modules up to the latest version and ask to enable new IP list logic for your Wallarm account. When new IP list logic is enabled, please ensure the section [**IP lists**](../../user-guides/ip-lists/overview.md) of Wallarm Console is available.
 
-## Step 2: Disable the Threat Replay Testing module (only if upgrading node 2.16 or lower)
-
-If upgrading Wallarm node 2.16 or lower, please disable the [Threat Replay Testing](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing-trt) module in Wallarm Console → **Vulnerabilities** → **Configure**.
-
-The module operation can cause [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives) during the upgrade process. Disabling the module minimizes this risk.
-
-## Step 3: Update API port
+## Step 2: Update API port
 
 --8<-- "../include/waf/upgrade/api-port-443.md"
 
-## Step 4: Review recent architectural updates
+## Step 3: Review recent architectural updates
 
 The latest update has introduced [architectural changes](what-is-new.md#optimized-cloud-images) that may impact users, especially those changing default configuration files of the node. Please familiarize yourself with these changes to ensure proper configuration and usage of the new image.
 
-## Step 5: Launch a new instance with the filtering node 6.x
+## Step 4: Launch a new instance with the filtering node 6.x
 
 Copy the settings for processing and proxying requests from the following configuration files of the previous Wallarm node version to the files of the filtering node 6.x:
 
@@ -55,7 +49,7 @@ Copy the settings for processing and proxying requests from the following config
 3. Confirm the instance launch.
 4. For GCP, configure the instance following these [instructions](../../installation/cloud-platforms/gcp/machine-image.md#2-configure-the-filtering-node-instance).
 
-## Step 6: Adjust Wallarm node filtration mode settings to changes released in the latest versions (only if upgrading node 2.18 or lower)
+## Step 5: Adjust Wallarm node filtration mode settings to changes released in the latest versions (only if upgrading node 2.18 or lower)
 
 1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md#filtration-modes):
       * [Directive `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
@@ -63,7 +57,7 @@ Copy the settings for processing and proxying requests from the following config
       * [Endpoint-targeted filtration rules configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode)
 2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../../admin-en/configure-wallarm-mode.md).
 
-## Step 7: Connect the filtering node to Wallarm Cloud
+## Step 6: Connect the filtering node to Wallarm Cloud
 
 1. Connect to the filtering node instance via SSH. More detailed instructions for connecting to the instances are available in the cloud platform documentation:
       * [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)
@@ -72,7 +66,7 @@ Copy the settings for processing and proxying requests from the following config
       * [AWS][link-cloud-connect-guide]
       * [GCP](../../installation/cloud-platforms/gcp/machine-image.md#5-connect-the-filtering-node-to-the-wallarm-cloud)
 
-## Step 8: Copy the filtering node settings from the previous version to the new version
+## Step 7: Copy the filtering node settings from the previous version to the new version
 
 1. Copy the settings for processing and proxying requests from the following configuration files of the previous Wallarm node version to the files of the filtering node 6.x:
       * `/etc/nginx/nginx.conf` and other files with NGINX settings
@@ -128,8 +122,3 @@ To create the virtual machine image based on the filtering node 6.x, please foll
 
 If the new version of the filtering node is successfully configured and tested, remove the instance and virtual machine image with the previous version of the filtering node using the AWS or GCP management console.
 
-## Step 13: Re-enable the Threat Replay Testing module (only if upgrading node 2.16 or lower)
-
-Learn the [recommendation on the Threat Replay Testing module setup](../../vulnerability-detection/threat-replay-testing/setup.md) and re-enable it if required.
-
-After a while, ensure the module operation does not cause false positives. If discovering false positives, please contact the [Wallarm technical support](mailto:support@wallarm.com).

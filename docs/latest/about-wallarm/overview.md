@@ -11,7 +11,7 @@ Wallarm AI Control Platform comprises four products:
 * **[Wallarm API Security](api-security-overview.md)** — protection for your APIs: internal services, partner-facing endpoints, third-party integrations, and the APIs consumed by AI workloads. Blocks the OWASP API Top 10, automated abuse, account takeover, AI-targeted attacks, and attacks against Model Context Protocol (MCP) servers across REST, GraphQL, gRPC, SOAP, and WebSocket. Deploys wherever your traffic lives — cloud, hybrid, or edge.
 * **[Wallarm AI Hypervisor](../ai-hypervisor/overview.md)** — runtime observability, enforcement, and governance for AI workloads. Observes every AI agent decision, enforces policy at the connection level, and produces continuous compliance evidence — without modifying the application. **Available on AWS only**.
 * **[Wallarm Infrastructure Discovery](../infrastructure-discovery/overview.md)** — cross-account visibility across your cloud estate. Maps every workload, surfaces shadow AI within minutes of deployment, and makes findings from native cloud security services actionable. **Available on AWS only**.
-* **[Wallarm API Security Testing](../vulnerability-detection/security-testing-overview.md)** — proactively uncovers security issues in your applications and APIs before attackers exploit them, through dynamic testing, threat replay, and external attack surface management.
+* **[Wallarm API Security Testing](detecting-vulnerabilities.md)** — proactively uncovers security issues in your applications and APIs before attackers exploit them, through passive detection and external attack surface management (AASM).
 
 ## The Wallarm AI Control Loop
 
@@ -24,7 +24,7 @@ See every AI workload, every API, every cloud asset — including the ones nobod
 * **APIs** ([Wallarm API Security](api-security-overview.md)): detects API endpoints and parameters from live traffic, identifies [rogue endpoints](../api-discovery/rogue-api.md) including shadow and zombie APIs, spots endpoints that expose sensitive data, and [assigns each endpoint a risk score](../api-discovery/risk-score.md).
 * **AI workloads on AWS** ([Wallarm AI Hypervisor](../ai-hypervisor/overview.md)): auto-discovers MCP servers, agent frameworks, data sources, and model provider calls from runtime behavior on Amazon EKS. Shadow AI surfaces from what is actually running, not from what was declared in a manifest.
 * **AWS estate** ([Wallarm Infrastructure Discovery](../infrastructure-discovery/overview.md)): cross-account discovery of compute, network, API Gateway, Lambda, and IAM resources, with creator attribution on every asset and a live relationship graph that shows how systems connect.
-* **External attack surface** ([Wallarm API Security Testing](../vulnerability-detection/security-testing-overview.md)): discovers external hosts and APIs without deployment via [API Attack Surface Management (AASM)](../api-attack-surface/overview.md).
+* **External attack surface** ([Wallarm API Security Testing](detecting-vulnerabilities.md)): discovers external hosts and APIs without deployment via [API Attack Surface Management (AASM)](../api-attack-surface/overview.md).
 
 ### Observe
 
@@ -47,5 +47,5 @@ Generate evidence — do not assemble it. Continuous coverage records, audit log
 
 * **AI governance evidence on AWS** ([Wallarm AI Hypervisor](../ai-hypervisor/overview.md)): continuous coverage heatmap, AI software bill of materials (AI-SBOM), session audit logs, and sensitive data flow records. Maps to EU AI Act, SOC 2, and sector audit requirements at any time.
 * **AWS asset and finding audit trail** ([Wallarm Infrastructure Discovery](../infrastructure-discovery/overview.md)): every triage decision logged, every asset attributed to the user who created it, drift detection on every scan.
-* **Vulnerability evidence** ([Wallarm API Security Testing](../vulnerability-detection/security-testing-overview.md)): all found security issues, regardless of detection method, are consolidated in the [**Security Issues**](../user-guides/vulnerabilities.md) section of Wallarm Console.
+* **Vulnerability evidence** ([Wallarm API Security Testing](detecting-vulnerabilities.md)): all found security issues, regardless of detection method, are consolidated in the [**Security Issues**](../user-guides/vulnerabilities.md) section of Wallarm Console.
 * **Operational response** ([Wallarm API Security](api-security-overview.md)): [deep attack inspection](../user-guides/events/check-attack.md), broad [integrations](../user-guides/settings/integrations/integrations-intro.md) with SIEM, SOAR, ticketing, and chat tools (Slack, Sumo Logic, Splunk, Microsoft Sentinel, and more) route findings into the workflows security teams already operate.
