@@ -10,7 +10,7 @@ You can click this number to see details in the **Attacks** section.
 
 ## Analysis of requests that violate policies 
 
-In the **Attacks** section, to find events related to specification-based policy violations, use the [appropriate search keys](../user-guides/search-and-filters/use-search.md#spec-violation-tags) or corresponding filters.
+In the **Attacks** section, to find events related to specification-based policy violations, set the [**Attack Type** filter](../attacks-vulns-list.md#api-specification) to the corresponding violation.
 
 Blocked and monitored events may be presented depending on the configured policy violation actions. In the event details, the violation type and link to the causing specification are displayed.
 
@@ -20,4 +20,4 @@ Blocked and monitored events may be presented depending on the configured policy
 
 When viewing events related to your specification policies, you may encounter the **Specification processing overlimit** type of event related to the limits applied for API Specification Enforcement while it processes the requests. See details and the description of your possible actions [here](overview.md#how-it-works).
 
-In the **Attacks** section, the overlimit events can be found using the `processing_overlimit` search key or **Processing overlimit** filter.
+In the **Attacks** section, the overlimit events can be found with the [**Attack Type** filter](../user-guides/search-and-filters/attack-filters.md#filter) set to **Processing overlimit**.

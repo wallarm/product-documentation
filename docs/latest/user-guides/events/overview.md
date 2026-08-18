@@ -15,7 +15,7 @@ Threat Management provides a full picture of what is happening:
 
 ![Threat Management](../../images/user-guides/events/tm-diagram.png)
 
-All Threat Management components include advanced search and filtering capabilities. You can also make PDF and CSV reports for attacks and incidents with the filtered content of your choice. Wallarm uses sophisticated grouping mechanisms to logically combine requests into attacks and sessions and provides you with the ability to modify how Sessions are detected to make a full match to your application logic.
+All Threat Management components include advanced search and filtering capabilities. You can also export attacks to CSV and make PDF and CSV reports for incidents with the filtered content of your choice. Wallarm uses sophisticated grouping mechanisms to logically combine requests into attacks and sessions and provides you with the ability to modify how Sessions are detected to make a full match to your application logic.
 
 ## Dashboards
 
@@ -39,21 +39,17 @@ In addition to built-in dashboards, you can collect, present, and share the secu
 
 Wallarm continuously analyzes application traffic, detects and mitigates attacks in real-time. The [**Attacks**](check-attack.md) section of the Wallarm Console is the central hub for analyzing current attempts to penetrate your security perimeter and its staying protected from them as well as the tool for configuring additional security measures.
 
-![Threat Management - Attacks](../../images/user-guides/events/filter-for-falsepositive.png)
+![Threat Management - Attacks](../../images/user-guides/events/attacks-page.png)
 
 With **Attacks** section you can:
 
-* See current attacks and Wallarm's taken measures and limit what you see to:
-
-    * Attacks of specific types
-    * From specific IPs or geographical locations
-    * Occurred in specific time
-    * To specific applications or domains
-    * Etc.
-
-* See the same info for different periods - up to last 3 months
+* See current attacks and Wallarm's taken measures, and [filter](../search-and-filters/attack-filters.md) what you see by attack type, source IP or country, target application, host or endpoint, response status code, user, and other criteria
+* See the same info for different periods - up to last 6 months
+* Change how requests are [grouped](../search-and-filters/attack-filters.md#grouping) into attacks, and save the filter, grouping, and column layout as a reusable [view](../search-and-filters/attack-filters.md#views)
+* Review the summary charts for the filtered data and drill into any of them
 * Create or modify [rules](../../user-guides/rules/rules.md#what-you-can-do-with-rules) for treating similar attacks in the future
 * Correct Wallarm's decision making by highlighting [false positives](check-attack.md#false-positives)
+* Export the filtered attacks to CSV
 
 ## Incidents
 
@@ -72,6 +68,6 @@ The primary challenge the [**API Sessions**](../../api-sessions/overview.md) add
 
 ## Reports
 
-For attacks, incidents or vulnerabilities, generate PDF or CSV [reports](../../user-guides/search-and-filters/custom-report.md). Do you want selected data? Apply filters and only filtered data will become part of the report.
+For incidents or vulnerabilities, generate PDF or CSV [reports](../../user-guides/search-and-filters/custom-report.md). Do you want selected data? Apply filters and only filtered data will become part of the report.
 
-![Attacks - creating report](../../images/user-guides/search-and-filters/custom-report.png)
+For attacks, use [CSV export](../search-and-filters/custom-report.md#attacks): Wallarm exports the attacks matching your filter and emails you a download link.

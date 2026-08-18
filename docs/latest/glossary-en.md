@@ -6,21 +6,21 @@ The glossary covers the core Wallarm entities to provide you with a better under
 
 A hit is a serialized malicious request (original malicious request and metadata added by the filtering node), e.g.:
 
-![Hit example](images/user-guides/events/analyze-attack-raw.png)
+![Hit example](images/user-guides/events/attack-request-details.png)
 
-[Details on hit parameters](user-guides/events/check-attack.md#attack-analysis_1)
+[Details on hit parameters](user-guides/events/check-attack.md#requests)
 
 ## Attack
 
-An attack is a single hit or multiple hits [grouped](user-guides/events/grouping-sampling.md#grouping-of-hits).
+An attack is a single hit or multiple hits [grouped](user-guides/search-and-filters/attack-filters.md#grouping).
 
-An example of an attack including a single hit:
+An example of the attack list:
 
-![Attack with one hit](images/glossary/attack-with-one-hit-example.png)
+![Attack list](images/glossary/attack-list-example.png)
 
 An example of an attack including many hits:
 
-![Attack with several hits](images/glossary/attack-with-several-hits-example.png)
+![Attack with several hits](images/user-guides/events/attack-drawer-requests.png)
 
 See [details](user-guides/events/check-attack.md) on how to understand and analyze attacks.
 

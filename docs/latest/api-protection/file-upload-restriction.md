@@ -112,11 +112,11 @@ Wallarm provides the **File upload restriction policy** [rule](../user-guides/ru
 
 ## Viewing detected attacks
 
-Violations of file upload restriction policies are displayed as [file upload violation](../attacks-vulns-list.md#file-upload-violation) attacks **Attacks** and **API Sessions**:
+Violations of file upload restriction policies are displayed as [file upload violation](../attacks-vulns-list.md#file-upload-violation) attacks in the **Attacks** and **API Sessions** sections of Wallarm Console:
 
 ![File upload restriction - detected attacks](../images/api-protection/mitigation-controls-file-upload-detected.png)
 
-You can switch between **Attacks** and **API Sessions** views using buttons in request details. All the attacks/sessions with this attack type can be found with the attack type filter set to **File upload violation** (also, use `file_upload_violation` [search tag](../user-guides/search-and-filters/use-search.md#search-by-attack-type) in **Attacks**).
+You can switch between **Attacks** and **API Sessions** views using buttons in request details. All the attacks and sessions with this attack type can be found with the [**Attack Type** filter](../user-guides/search-and-filters/attack-filters.md#filter) set to **File upload violation**.
 
 ## Comparison to other measures for preventing unrestricted resource consumption
 
