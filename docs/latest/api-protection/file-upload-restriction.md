@@ -112,7 +112,7 @@ Wallarm provides the **File upload restriction policy** [rule](../user-guides/ru
 
 ## Viewing detected attacks
 
-Violations of file upload restriction policies are displayed as [file upload violation](../attacks-vulns-list.md#file-upload-violation) attacks in the **Attacks** and **API Sessions** section of Wallarm Console:
+Violations of file upload restriction policies are displayed as [file upload violation](../attacks-vulns-list.md#file-upload-violation) attacks in the **Attacks** and **API Sessions** sections of Wallarm Console:
 
 ![File upload restriction - detected attacks](../images/api-protection/mitigation-controls-file-upload-detected.png)
 
