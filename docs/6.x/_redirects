@@ -235,7 +235,7 @@
 /3.0/quickstart-en/qs-setup-proxy-en/ /3.0/quickstart/
 /3.0/quickstart-en/qs-check-operation-en/ /3.0/admin-en/installation-check-operation-en/
 
-/user-guides/rules/add-rule/#equal /user-guides/rules/add-rule/#condition-type-equal
+/user-guides/rules/add-rule/ /user-guides/rules/rules/#configuring
 
 /glossary-en/#attack-vector /glossary-en/#malicious-payload
 /en/admin-en/configure-backup-en.html /admin-en/configure-backup-en/
