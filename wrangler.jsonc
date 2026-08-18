@@ -1,0 +1,69 @@
+// Cloudflare Workers Static Assets config for docs.wallarm.com (DEVOPS-5014).
+// Replaces netlify.toml's [build] publish dir, edge function, and headers.
+//
+// There is deliberately no `main`: this is an assets-only Worker. The Worker
+// script that used to live at src/worker.ts did `Accept: text/markdown`
+// negotiation, and that is now three zone rules in infra/cloudflare-iac
+// (markdown_negotiation.tf). Rules cost nothing to run, where a Worker script
+// is billed per request — and the script ran on *every* HTML page view, since
+// a plain page request has no Accept header to rewrite on.
+//
+// What the script did, and where it went:
+//   negotiation + fallback  -> URL rewrite rules, plus a build-time guard
+//                              (scripts/check_markdown_companions.py) that
+//                              fails the build if a page has no companion,
+//                              because a rewrite cannot fall back
+//   Vary: Accept, Link      -> response-header rules
+//   CSP / HSTS / nosniff    -> _headers, which now applies again: those had to
+//                              be re-set in code only because _headers does not
+//                              apply to responses returned from Worker code
+//
+// Recoverable from git history if the rules ever have to be reverted.
+{
+  "name": "wallarm-docs",
+  "compatibility_date": "2026-08-01",
+  "assets": {
+    // Same publish dir as Netlify. Built by scripts/build.sh.
+    "directory": "./site/",
+    // zensical emits directory-style pages (`/foo/bar/index.html`), so both
+    // `/foo/bar` and `/foo/bar/` must resolve to the same page.
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  // A workers.dev URL would publish the whole site a second time, and zone
+  // rules do NOT apply there — verified against staging:
+  //
+  //   Accept: text/markdown   workers.dev -> text/html   zone -> text/markdown
+  //   /4.8/admin-en/foo/      workers.dev -> 404         zone -> 301
+  //   Vary                    workers.dev -> absent      zone -> present
+  //
+  // So the workers.dev copy has no redirects, no markdown negotiation, no WAF
+  // and no bot protection, and search engines can index it as duplicate
+  // content. Production is reachable only through docs.wallarm.com.
+  //
+  // preview_urls is left on: Workers Builds gives each non-production branch a
+  // versioned preview URL, which is how PR review works. Those previews are on
+  // workers.dev too, so they show CONTENT accurately but NOT routing — a
+  // redirect or Accept-negotiation change has to be verified on
+  // docs-staging.wallarm.com instead.
+  "workers_dev": false,
+  "preview_urls": true,
+
+  "observability": {
+    "enabled": true
+  },
+
+  // Staging twin, served at docs-staging.wallarm.com so the whole flow can be
+  // exercised before docs.wallarm.com moves. A separate Worker rather than a
+  // preview version of this one, so staging can be redeployed without touching
+  // whatever production is running.
+  //
+  // The hostname is wired up in infra/cloudflare-iac (proxied DNS record +
+  // Worker route), not here — wrangler must not own routes we manage in
+  // Terraform, or the two will fight over them.
+  "env": {
+    "staging": {
+      "name": "wallarm-docs-staging"
+    }
+  }
+}
