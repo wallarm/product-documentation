@@ -112,6 +112,9 @@ Technically, all attacks that can be detected by Wallarm are divided into three 
     <iframe width="1280" height="720" src="https://www.youtube.com/embed/27CBsTQUE-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div> -->
 
+!!! info "Searching for attacks"
+    In the **Attacks** section, [search](user-guides/search-and-filters/attack-filters.md) by the human-readable attack name and, where applicable, its subtype — typed directly in the search field. The `Wallarm code` listed below for each type is not needed for search.
+
 ## Vulnerability types
 
 This article lists [vulnerability](about-wallarm/detecting-vulnerabilities.md) (security issue) types detected by Wallarm - in case it has corresponding attack, they are described together. Note that Wallarm provides two [methods](about-wallarm/detecting-vulnerabilities.md#detection-methods) for vulnerability detection, they are listed in each vulnerability description.
