@@ -122,6 +122,9 @@ A **stamp** is one specific variation of an attack, and each [attack type](../..
 
 ![Create a false-positive rule for an attack](../../images/user-guides/events/attack-false-positive-rule.png)
 
+!!! info "Behavioral attacks and API Abuse"
+    False-positive rules apply to signature-based attacks (input validation, such as SQL Injection or XSS), where a specific attack sign is found in a request point. Behavioral attacks — brute force, forced browsing, BOLA, enumeration — and API Abuse have no per-request signature, so you handle their false positives differently: adjust the [mitigation control or trigger](#adjusting-protection-by-attack-type) that detected them, or, for API Abuse, tune the [profile](../../api-abuse-prevention/setup.md#creating-profiles) or add the source IP to the [exception list](../../api-abuse-prevention/exceptions.md).
+
 ## Full context of threat actor activities
 
 Once the malicious request is detected by Wallarm and displayed in the **Attacks** section as the part of some attack, you can see the full context of this request: to which user session it belongs and what the full sequence of requests in this session is. This allows you to investigate all activity of the threat actor to understand attack vectors and what resources can be compromised.
