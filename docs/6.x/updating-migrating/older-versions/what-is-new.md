@@ -425,8 +425,8 @@ When using automatic IP blocking (e.g., with the brute force trigger configured)
 
 We have introduced new **Blocked source** [search tags and filters](../../user-guides/search-and-filters/attack-filters.md) within the **Attacks** section to identify requests that were blocked due to manual denylisting of IP addresses, subnets, countries, VPNs, and more.
 
-<!-- * Employ the `multiple_payloads` search to pinpoint requests blocked by the **Number of malicious payloads** trigger. This trigger is designed to denylist sources that originate malicious requests containing multiple payloads, a common characteristic of multi-attack perpetrators.
-* Additionally, the `api_abuse`, `brute`, `dirbust`, and `bola` search tags now encompass requests whose sources were automatically added to the denylist by the relevant Wallarm triggers for their respective attack types. -->
+* Use the **Malicious payload trigger** attack type to pinpoint requests blocked by the **Number of malicious payloads** trigger. This trigger is designed to denylist sources that originate malicious requests containing multiple payloads, a common characteristic of multi-attack perpetrators.
+* Additionally, the `Suspicious API activity`, `Brute force`, `Force Browsing`, and `BOLA` search tags now encompass requests whose sources were automatically added to the denylist by the relevant Wallarm triggers for their respective attack types.
 
 This change introduces the new configuration parameters which by default are set to `on` to enable the functionality but can be switched to `off` to disable it:
 
