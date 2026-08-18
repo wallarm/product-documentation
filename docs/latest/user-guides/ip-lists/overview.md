@@ -73,6 +73,13 @@ Setting this time along with manually adding and deleting objects leads to chang
 
 When adding an object to a list, by default all requests from the listed IP will be processed. But you can limit that by target [applications](../../user-guides/settings/applications.md): select one or several applications and only requests from the listed IP to those applications will be processed.
 
+## Viewing attacks from a listed IP
+
+To investigate what a listed IP has been doing, click the IP address in the list. Wallarm opens the **Attacks** section pre-filtered by:
+
+* the IP address, so only Attacks originating from this source are shown.
+* The [applications](#limit-by-target-application) for which the IP was added to the list, so only attacks targeting those applications are shown.
+
 ## Malicious IP feeds
 
 When adding the **Malicious IPs** [source type](#select-object) to one of the IP lists, note that this will include all IP addresses that are well-known for malicious activity, as mentioned in public sources, and verified by expert analysis. We pull this data from a combination of the following resources:
