@@ -51,6 +51,15 @@ cp -R images/ docs/6.x/images/ && zensical build -f mkdocs-6.x.yml && if [ "$CON
 cp -R images/ docs/7.x/images/ && zensical build -f mkdocs-7.x.yml && if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_raw_markdown.py mkdocs-7.x.yml && python3 scripts/generate_og_images.py mkdocs-7.x.yml; fi && rm -rf docs/7.x/images/ &&
 cp -R images/ docs/5.0/images/ && zensical build -f mkdocs-5.0.yml && if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_raw_markdown.py mkdocs-5.0.yml && python3 scripts/generate_og_images.py mkdocs-5.0.yml; fi && rm -rf docs/5.0/images/ &&
 cp -R images/ docs/deprecated/images/ && zensical build -f mkdocs-deprecated.yml && if [ "$CONTEXT" = "production" ]; then python3 scripts/generate_og_images.py mkdocs-deprecated.yml; fi && rm -rf docs/deprecated/images/ &&
+# Self-host GLightbox instead of fetching it from unpkg.com at runtime. The
+# zensical theme bundle hard-codes two unpkg URLs and fetches them on every
+# page load; unpkg periodically degrades to 10-20s responses (and each URL
+# 302-redirects, doubling round-trips), which is the single biggest drag on
+# page load. This copies the vendored files into site/ and rewrites those URLs
+# to local, same-origin, immutable-cached /assets/ paths. Runs on ALL contexts
+# (cheap, and lets deploy-previews reproduce the fast path). See
+# scripts/self_host_glightbox.py.
+python3 scripts/self_host_glightbox.py site &&
 # Aggregated changelog feeds (Atom + RSS + JSON), one per node artifact. Reads the
 # changelog files from docs/, self-validates, and aborts the deploy on a broken
 # changelog. Production only — PR deploy-previews and branch deploys skip it.
