@@ -59,13 +59,13 @@ To activate the subscription plan, contact [sales@wallarm.com](mailto:sales@wall
 
 Wallarm Infrastructure Discovery is available on **AWS only**. It provides cross-account AWS asset discovery, surfaces shadow AI within minutes of deployment, and makes findings from native AWS security services (Security Hub, GuardDuty, Inspector, Macie, IAM Access Analyzer) actionable on a single relationship graph.
 
-Infrastructure Discovery is procured through the [AWS Marketplace listing](https://aws.amazon.com/marketplace/pp/prodview-kvqg6s3jjelv6). The listing describes all available plans — including the free tier and paid tiers — and is the entry point for self-service signup.
+Infrastructure Discovery is procured through the [AWS Marketplace listing](https://aws.amazon.com/marketplace/pp/prodview-kvqg6s3jjelv6). The listing describes all available plans and is the entry point for self-service signup.
 
 ## Wallarm AI Hypervisor
 
 Wallarm AI Hypervisor is available on **AWS only** and deploys on Amazon EKS. It instruments AI workloads at runtime with no application code changes, enforces policy inline at the connection level, and produces continuous compliance evidence — coverage heatmap, AI software bill of materials (AI-SBOM), session audit logs, and sensitive data flow records.
 
-AI Hypervisor follows a **separate onboarding flow** with the Wallarm team. There is no self-service signup, free tier, or in-Console activation — AI Hypervisor is managed on a separate domain and is not configured through Wallarm Console.
+AI Hypervisor follows a **separate onboarding flow** with the Wallarm team. There is no self-service signup or in-Console activation — AI Hypervisor is managed on a separate domain and is not configured through Wallarm Console.
 
 To get access, contact [sales@wallarm.com](mailto:sales@wallarm.com). Sales will scope your deployment (EKS clusters, model providers, compliance framework targets such as EU AI Act or SOC 2) and provision access.
 
@@ -82,7 +82,7 @@ The subscription plan provides the [API Attack Surface Management (AASM)](../api
 
 To activate the subscription plan, do one of the following:
 
-* If you do not have a Wallarm account yet, [sign up](../quickstart/getting-started.md#self-signup) to Wallarm and enable AASM during account creation. Scanning of your email's domain starts immediately, and you can add more domains afterwards.
+* If you do not have a Wallarm account yet, [sign up](../quickstart/getting-started.md#wallarm-account) to Wallarm and enable AASM during account creation. Scanning of your email's domain starts immediately, and you can add more domains afterwards.
 * If you already have a Wallarm account, contact [sales@wallarm.com](mailto:sales@wallarm.com).
 
 !!! info "Relations to other plans"
@@ -112,26 +112,3 @@ Available Security Edge deployments include:
 * [Security Edge Connectors](../installation/security-edge/se-connector.md)
 
 To inquire about this subscription, please contact [sales@wallarm.com](mailto:sales@wallarm.com).
-
-## Security Edge Free Tier
-
-For smaller companies and educational purposes, Wallarm offers the option to create a [Security Edge](#security-edge-paid-plan) Free Tier account yourself. You can choose the Wallarm cloud that best suits your storage preferences:
-
-* [Create Free Tier account on the US Wallarm Cloud](https://us1.my.wallarm.com/signup)
-* [Create Free Tier account on the EU Wallarm Cloud](https://my.wallarm.com/signup)
-
-The Security Edge Free Tier account allows:
-
-* Security Edge functionality, with some feature limitations.
-* Process up to **500 thousand requests per month** with no limitation in time.
-* Access to the Wallarm platform as [Advanced API Security](#core-subscription-plans), except for the following:
-
-    * [Vulnerability assessment](../user-guides/vulnerabilities.md)
-    * [API Abuse Prevention](../api-abuse-prevention/overview.md)
-    * Limited to 3 users per company account
-    * Telemetry portal of Security Edge
-    * Multi-cloud Security Edge deployment
-
-If a Free Tier account exceeds 100% of the monthly quota, your access to the Wallarm Console is disabled, along with all integrations. When reaching 200%, protection on your Wallarm nodes is disabled. These restrictions will be in effect until the first day of the next month.
-
-To remove all restrictions, contact [sales@wallarm.com](mailto:sales@wallarm.com).
