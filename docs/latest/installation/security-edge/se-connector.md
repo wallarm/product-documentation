@@ -30,8 +30,6 @@ The [**Security Edge**](overview.md) platform provides a managed service for dep
 
 To run the Security Edge Connector, go to the Wallarm Console → **Security Edge** → **Connectors** → **Add connector**. If this section is unavailable, contact sales@wallarm.com to access the required subscription.
 
-On the Free Tier, after deploying Edge Nodes via [Quick setup](free-tier.md), the **Security Edge** section lets you adjust settings.
-
 ### 1. Deploying the Edge Node for a connector
 
 Only the connector settings need to be specified. Wallarm handles the deployment and provides an endpoint for routing traffic from the platform.

@@ -124,7 +124,6 @@ nav:
     - All Deployment Options: installation/supported-deployment-options.md
     - Security Edge:
       - Overview: installation/security-edge/overview.md
-      - Free Tier: installation/security-edge/free-tier.md
       - Inline:
         - Overview: installation/security-edge/inline/overview.md
         - Deployment Guide: installation/security-edge/inline/deployment.md

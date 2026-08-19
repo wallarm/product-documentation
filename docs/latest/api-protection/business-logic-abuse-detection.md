@@ -17,8 +17,7 @@ See [possible Wallarm configuration](#detection-prompt-and-context-window-for-an
 
 ## Requirements
 
-* This functionality is available in the **Free Tier** subscription.
-* If you utilize other [subscriptions](../about-wallarm/subscription-plans.md), contact [Wallarm Support team](https://support.wallarm.com) to enable this feature.
+* To enable this functionality for your [subscription](../about-wallarm/subscription-plans.md), contact the [Wallarm Support team](https://support.wallarm.com).
 * Requires [NGINX node](../installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or higher or [Native node](../installation/nginx-native-node-internals.md#native-node) 0.14.1 or higher.
 
 ## How detection works

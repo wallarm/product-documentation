@@ -875,3 +875,6 @@
 /7.x/updating-migrating/older-versions/*  /7.x/updating-migrating/versioning-policy/#version-list
 /7.x/updating-migrating/migrate-ip-lists-to-node-3/  /7.x/updating-migrating/versioning-policy/#version-list
 /7.x/updating-migrating/nginx-modules/  /7.x/updating-migrating/versioning-policy/#version-list
+
+/installation/security-edge/free-tier/  /installation/security-edge/overview/
+/7.x/installation/security-edge/free-tier/  /7.x/installation/security-edge/overview/
