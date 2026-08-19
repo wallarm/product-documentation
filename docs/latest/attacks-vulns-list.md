@@ -84,7 +84,7 @@ Technically, all attacks that can be detected by Wallarm are divided into three 
 
     Wallarm **automatically detects** input validation attacks and related vulnerabilities and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). All such attacks are detected by built-in detectors (BID) of the node. Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
 
-* **Behavioral attacks** are characterized by specific request syntax **and/or** specific correlation of request number and time between requests ([brute force](#brute-force-attack), [forced browsing](#forced-browsing), [BOLA](#broken-object-level-authorization-bola), [API abuse](#suspicious-api-activity), [business logic abuse](#business-logic-abuse), [credential stuffing](#credential-stuffing) and others).
+* **Behavioral attacks** are characterized by specific request syntax **and/or** specific correlation of request number and time between requests ([brute force](#brute-force-attack), [forced browsing](#forced-browsing), [BOLA](#broken-object-level-authorization-bola), [API abuse](#suspicious-api-activity), [credential stuffing](#credential-stuffing) and others).
 
     For behavioral attacks to be detected, corresponding tool should be properly configured.
 
@@ -746,35 +746,6 @@ Absence of proper limits may be presented in:
 Wallarm detects and mitigates the unrestricted resource consumption attacks only if it has the [API Abuse Prevention](api-abuse-prevention/overview.md) module enabled and properly configured.
 
 To make this bot attack type detection precise, [API Sessions](api-sessions/overview.md) need to be properly [configured](api-sessions/setup.md).
-
-## Business logic abuse
-
-### Custom logic abuse
-
-**Attack** [by](#attack-det-methods) MCL
-
-**Wallarm code:** `session_anomaly`
-
-**Description:**
-
-Detecting **business logic abuse** is often more difficult than detecting traditional injection attacks because the requests themselves may be syntactically "clean." The abuse lies in the intent and the ordering of operations, for example:
-
-* **Authorization bypass**: missing `order_validation` or `admin_approval` calls before the refund trigger.
-* **Coupon/discount exhaustion**: rapid application of multiple distinct codes; applying a code, removing an item, and checking out to keep the discount.
-* **Inventory hoarding (denial of Inventory)**: adding high volumes of items to a cart and holding them without checkout; repeated 'Add to Cart' followed by long periods of inactivity.
-
-**Required configuration:**
-
-Wallarm detects and mitigates **Custom logic abuse** only if it has one or more configured [AI Business logic abuse detection](api-protection/business-logic-abuse-detection.md) mitigation controls (requires [NGINX node](installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or [Native node](installation/nginx-native-node-internals.md#native-node) 0.14.1).
-
-**In addition to Wallarm protection:**
-
-* **Server-side enforcement**: never rely on the frontend for security. If a button is disabled in the UI (e.g., "Refund"), the backend API must still verify the user's rights to call that endpoint.
-* **State machine modeling**: define your application as a series of formal states. For a refund, the states might be: Order_Placed → Request_Refund → Manager_Approval → Refund_Issued. Disallow any transition that skips a state.
-* **Threat modeling for "abuse cases"**: during design, don't just write "user stories"; write also "abuser stories."
-* **Enforce canonical sequences**: assign a unique "flow ID" or "nonce" to multi-step processes. For a sequence like Checkout → Payment → Success, the Success endpoint should only process the request if it receives a cryptographically signed token proving the Payment step was completed successfully.
-* **Transaction integrity and atomic operations**: ensure that related actions happen all at once or not at all. For instance, deducting a coupon and creating a discount must be one atomic database transaction so an attacker cannot interrupt the flow to keep the coupon after getting the discount.
-* **Strict input validation beyond syntax**: validate the semantics of data. For example, if a user submits a "quantity" of `-1` to get a refund added to their cart total, the backend must reject it, even if `-1` is technically a valid integer.
 
 ## AI-agent attacks
 
