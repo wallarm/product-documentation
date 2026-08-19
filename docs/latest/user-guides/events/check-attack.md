@@ -71,10 +71,8 @@ These response actions are available at the request level. Open an attack, switc
 | **Add to IP list** | Add the source IP to the [denylist or allowlist](../ip-lists/overview.md). |
 | **Open Mitigation control** | Open the [mitigation control](../../about-wallarm/mitigation-controls-overview.md) that reacted to the request and adjust it. |
 | **View API Abuse profile** | Open the [API Abuse Prevention](../../api-abuse-prevention/overview.md) profile that detected the bot. |
-| **Add IP to exception list** | Add the source IP to the [API Abuse Prevention exception list](../../api-abuse-prevention/exceptions.md). |
+| **Add IP to exception list** | Add the source IP to the [API Abuse Prevention exception list](../../api-abuse-prevention/exceptions.md). Available only on a request that was detected but not blocked: if the profile's reaction is **Denylist session**, the blocked requests of that session do not offer it. |
 | **Open Spec Enforcement Policy** | Open the violated [API specification](../../api-specification-enforcement/overview.md) and adjust its settings. |
-
-**View API Abuse profile** and **Add IP to exception list** appear only for attacks that [API Abuse Prevention](../../api-abuse-prevention/overview.md) detected. An attack can have an API-abuse-like type (such as account takeover, BOLA, or scraping) but be produced by a different mechanism — for example, credential stuffing, the BOLA detector, or an AI/behavioral detector — in which case it carries no API Abuse event, and these two actions are not offered. Tune such attacks via their own [control or trigger](#adjusting-protection-by-attack-type) instead. **Add IP to exception list** is also disabled if you lack permission to edit IP lists.
 
 ### Adjusting protection by attack type
 
