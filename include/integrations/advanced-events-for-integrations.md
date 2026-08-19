@@ -1,7 +1,7 @@
 * [Hits](../../../glossary-en.md#hit) detected except for:
 
     * Experimental hits detected based on the [custom regular expression](../../rules/regex-rule.md). Non-experimental hits trigger notifications.
-    * Hits not saved in the [sample](../../events/grouping-sampling.md#sampling-of-hits).
+    * Hits not saved in the [sample](../../events/grouping-sampling.md).
 
     Optionally include the `headers` object with hit headers in hit logs. If disabled, headers are not included in the logs.
 

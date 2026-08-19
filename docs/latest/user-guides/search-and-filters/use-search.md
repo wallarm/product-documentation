@@ -90,7 +90,7 @@ When values of different attributes are specified, the results meet all those co
 | `p:`, `param:`, `parameter:` | Attacked parameter, the [parser](../rules/request-processing.md) that read it, or a sequence of both. Supports the `*` and `?` masks | `p:id`, `p:*BASE64`, `p:"POST_JSON_DOC_HASH_from"` |
 | `a:`, `anomaly:` | Anomalies in the event. Accepts `size`, `statuscode`, `time`, `stamps`, `impression`, `vector` | `a:size` |
 | `request_id:` | Request identifier. Without a value, matches events that have any identifier | `request_id:a79199bcea606040cc79f913325401fb` |
-| `sampled` | [Sampled hits](../events/grouping-sampling.md#sampling-of-hits) | `sampled` |
+| `sampled` | [Sampled hits](../events/grouping-sampling.md) | `sampled` |
 | `node_uuid:` | Node that detected the event. Only events detected after May 31, 2023 are returned. Find the UUID in [node details](../../user-guides/nodes/nodes.md#viewing-node-details) | `node_uuid:<NODE_UUID>` |
 | `spec:` | [Specification policy violations](../../api-specification-enforcement/overview.md). Get the identifier from the browser address bar when editing the specification | `spec:'<SPECIFICATION_ID>'` |
 | `custom_rule` | Attacks detected by [regexp-based rules](../../user-guides/rules/regex-rule.md). The event details link to the rules that matched | `custom_rule` |
