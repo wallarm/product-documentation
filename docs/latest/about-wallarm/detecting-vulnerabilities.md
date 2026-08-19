@@ -17,7 +17,7 @@ To detect vulnerabilities in the applications and APIs, Wallarm uses the followi
 * [**Passive detection**](#passive-detection): works only for the scope with the `monitoring` [filtration mode](../admin-en/configure-wallarm-mode.md); identifies vulnerabilities and [incidents](../user-guides/events/check-incident.md) by analyzing real traffic, including both requests and responses. This can happen during a security incident, where a real flaw is exploited, or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation. Requires an installed [**Wallarm node**](../about-wallarm/api-security-overview.md#how-wallarm-api-security-works).
 
     !!! tip ""
-        Available in both **Cloud Native WAAP** and **Advanced API Security** [subscriptions](../about-wallarm/subscription-plans.md), also in **Security Edge Free Tier**.
+        Available in both **Cloud Native WAAP** and **Advanced API Security** [subscriptions](../about-wallarm/subscription-plans.md).
 
 * [**API Attack Surface Management (AASM)**](#api-attack-surface-management-aasm): discovers external hosts with their APIs, for each of them identifies missing WAF/WAAP solutions and vulnerabilities. **Does not require** an installed [Wallarm node](../about-wallarm/api-security-overview.md#how-wallarm-api-security-works).
 

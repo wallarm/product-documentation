@@ -139,7 +139,6 @@ search:
 #### Security Edge (Managed)
 
 - [Security Edge Overview](https://docs.wallarm.com/7.x/installation/security-edge/overview.md): Wallarm-managed deployment of nodes in geographically distributed PoPs — no infrastructure to run (also: managed edge, SaaS deployment).
-- [Security Edge Free Tier](https://docs.wallarm.com/7.x/installation/security-edge/free-tier.md): Free Security Edge tier — up to 500,000 requests per month.
 
 ##### Security Edge Inline
 
