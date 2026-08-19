@@ -514,7 +514,7 @@ To use this variable in a [Docker container](../../admin-en/installation-docker-
 
 ## Distinct search tags for Account Takeover, Scraping and Security Crawlers
 
-Distinct [search tags](../../user-guides/search-and-filters/use-search.md) for the `account_takeover`, `scraping`, and `security_crawlers` attack types have been introduced, improving specificity over the previous general `api_abuse` tag.
+Distinct [search tags](../../user-guides/search-and-filters/use-search.md) for the `Account takeover`, `Scraping`, and `Security crawlers` attack types have been introduced, improving specificity over the previous general `api_abuse` tag.
 
 ## Native Node for connectors and TCP traffic mirror
 
