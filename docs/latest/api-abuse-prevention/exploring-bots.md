@@ -35,7 +35,13 @@ Note that:
 
 **Detector values**
 
-Pay attention to the list of triggered [detectors](overview.md#how-api-abuse-prevention-works) and their values showing how big the deviation from normal behavior is for particular anomalies. On the figure above, for example, they are **Query abuse** with the value `326` when normal is `< 10`, **Request interval** with the value `0.05` when normal is `> 1` and others.
+Pay attention to the list of triggered [detectors](overview.md#how-api-abuse-prevention-works) and their values, which show how far the source's behavior deviates from the norm for particular anomalies. Each detector row shows the detector name, its measured **value**, its **normal** baseline, and how many times the value deviates from that baseline — above or below it, depending on the detector.
+
+The larger this multiplier, the stronger the evidence that the source is a bot.
+
+![Account takeover attack - triggered detector with its value](../images/api-sessions/account-takeover-detector-data-example.png)
+
+For example, **IP rotation** with the value `15` when normal is `≤ 2` is `7.5x above` the baseline (as on the figure above); **Query abuse** with `326` when normal is `< 10` is over `30x above`; and **Request interval** with `0.05` when normal is `> 1` is about `20x below`, since for this detector a lower value is the anomaly.
 
 **Heatmaps**
 
