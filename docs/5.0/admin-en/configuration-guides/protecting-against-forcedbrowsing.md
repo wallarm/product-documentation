@@ -62,9 +62,9 @@ To test the trigger described in the [Configuring](#configuring) section:
     If the trigger reaction is **Graylist IP address**, check the section **IP lists** → **Graylist** of Wallarm Console.
 3. Open the section **Attacks** and check that requests are displayed in the list as a forced browsing attack.
 
-    The number of displayed requests corresponds to the number of requests sent after exceeding the trigger threshold ([more details on detecting behavioral attacks](../../attacks-vulns-list.md#attack-types)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/grouping-sampling.md#sampling-of-hits)).
+    The number of displayed requests corresponds to the number of requests sent after exceeding the trigger threshold ([more details on detecting behavioral attacks](../../attacks-vulns-list.md#attack-types)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/grouping-sampling.md)).
 
-    To search for forced browsing attacks, you can use the `dirbust` filter. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
+    To find forced browsing attacks, set the **Attack Type** filter to **Forced browsing**. Filtering is described in [Attack Search and Filters](../../user-guides/search-and-filters/attack-filters.md).
 
 ## Requirements and restrictions
 

@@ -117,10 +117,12 @@ To resolve the issue of a legitimate request being blocked by Wallarm, follow th
     
     * Copy of user's client request and response. Browser page source code or terminal client textual input and output suits well.
 
-1. In Wallarm Console → [**Attacks**](../user-guides/events/check-attack.md) section, [filter](../user-guides/search-and-filters/attack-filters.md) the list down to the event related to the blocked request. For example, filter by **Request ID**:
+1. In Wallarm Console → **Attacks** or **Incidents**, find the event related to the blocked request using [attack](../user-guides/search-and-filters/attack-filters.md) or [incident](../user-guides/search-and-filters/use-search.md) filters, for example, the request ID.
+
+    Example search request for incidents:
 
     ```
-    attacks incidents request_id:<requestId>
+    incidents request_id:<requestId>
     ```
 
 1. Examine the event to determine if it indicates a wrong or legitimate blocking.

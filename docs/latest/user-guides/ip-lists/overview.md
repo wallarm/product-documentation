@@ -77,7 +77,7 @@ When adding an object to a list, by default all requests from the listed IP will
 
 To investigate what a listed IP has been doing, click the IP address in the list. Wallarm opens the **Attacks** section pre-filtered by:
 
-* the IP address, so only Attacks originating from this source are shown.
+* The IP address, so only Attacks originating from this source are shown.
 * The [applications](#limit-by-target-application) for which the IP was added to the list, so only attacks targeting those applications are shown.
 
 ## Malicious IP feeds

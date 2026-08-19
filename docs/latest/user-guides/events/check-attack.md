@@ -52,7 +52,7 @@ The **Requests** tab lists the individual malicious requests of the attack and s
 
 Request details include the source IP, user, host, URI, request and session identifiers, and, for each detected attack sign, the malicious payload, the request point it was found in, and the [CWE, OWASP, and CAPEC classifications](../../attacks-vulns-list.md). **Full request** shows the complete HTTP request, which you can copy as raw HTTP or as a cURL command.
 
-Only unique requests are stored in the attack details. Repeated malicious requests are dropped from uploading to the Wallarm Cloud and not displayed. This process is called [hit sampling](grouping-sampling.md#sampling-of-hits). Hit sampling does not affect the quality of attack detection and Wallarm node continues to protect your applications and APIs even with hit sampling enabled.
+Only unique requests are stored in the attack details. Repeated malicious requests are dropped from uploading to the Wallarm Cloud and not displayed. This process is called [hit sampling](grouping-sampling.md). Hit sampling does not affect the quality of attack detection and Wallarm node continues to protect your applications and APIs even with hit sampling enabled.
 
 Use the checkboxes to select several requests and apply an action to all of them at once. The filter field above the list narrows the requests down within the open attack.
 

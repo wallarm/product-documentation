@@ -77,7 +77,7 @@ When adding an object to a list, by default all requests from the listed IP will
 
 To investigate what a listed IP has been doing, click the IP address in the list. Wallarm opens the **Attacks** section pre-filtered by:
 
-* the IP address, so only Attacks originating from this source are shown.
+* The IP address, so only Attacks originating from this source are shown.
 * The [applications](#limit-by-target-application) for which the IP was added to the list, so only attacks targeting those applications are shown.
 
 ## Malicious IP feeds
@@ -138,11 +138,9 @@ Such information is available for:
 
 The listed behavioral attacks can be detected only after accumulating certain statistics the required amount of which depends on the corresponding trigger thresholds. Thus, in the first stage, before denylisting, Wallarm collects this information but all requests are passed and displayed as the attacks with the `Monitoring` status.
 
-Once trigger thresholds are exceeded, Wallarm adds the IP to the denylist and blocks further requests. You will see `Blocked` requests from this IP in the attack list. This applies to manually denylisted IPs as well.
+Once trigger thresholds are exceeded, Wallarm adds the IP to the denylist and blocks further requests. You will see `Blocked` requests from this IP in the attack list. This applies to manually denylisted IPs as well. To tell the two apart, add the **Blocking Status** column to the attack table or filter by it.
 
-![Events related to denylisted IPs - sending data enabled](../../images/user-guides/events/events-denylisted-export-enabled.png)
-
-Use [search tags of filters](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) to find requests from denylisted IPs: [API abuse related](../../attacks-vulns-list.md#api-abuse), `Brute force`, `Force browsing`, `BOLA`, `Malicious payload trigger` for automatically listed, `Blocked source` - for manual ones.
+Use the [**Attack Type** filter](../../user-guides/search-and-filters/attack-filters.md#filter) to find requests from denylisted IPs: [API abuse related](../../attacks-vulns-list.md#api-abuse) types, **Brute force**, **Forced browsing**, **Broken Object Level Authorization** for automatically listed IPs, and **Blocked source** for manual ones.
 
 Note that search/filters will display both attacks in the `Monitoring` status and - if sending information is enabled - with the `Blocked` status for each attack type. For manually denylisted IPs an attack with the `Monitoring` status never exists.
 
