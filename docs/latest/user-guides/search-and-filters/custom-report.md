@@ -3,7 +3,7 @@
 [link-using-search]:        use-search.md
 [link-attack-filters]:      attack-filters.md
 
-# Creating Reports
+# Security Reports
 
 You can filter events and then get the results as a file that Wallarm emails to you. How you do this depends on the event type:
 
@@ -31,16 +31,16 @@ For incidents and vulnerabilities, Wallarm generates a report in one of two form
 
 * PDF is a visually rich report, good for data analysis and presenting. This report includes:
 
-    * Summaries for attacks, vulnerabilities and incidents
+    * Summaries for vulnerabilities and incidents
     * Detailed information on the events
 
 * CSV includes details on each event matching the filter and is good for technical purposes. You can use it for creating dashboards, getting unique attacker IPs, producing a list of attacked API hosts/applications, etc.
 
-    CSV report may include several CSV files, one for each type of event - attack, incident, vulnerability. Each CSV has a maximum of 10,000 events, sorted by the events with the most hits.
+    CSV report may include several CSV files, one for each type of event - incident, vulnerability. Each CSV has a maximum of 10,000 events, sorted by the events with the most hits.
 
 ### Generating
 
-In Wallarm Console, reports can be generated from the **Incidents** or **Vulnerabilities** section. Whichever section you use, the report will contain all types of events - attacks, incidents, and vulnerabilities. Report content depends on the current filters. For vulnerabilities, the report will always contain the list of currently active vulnerabilities.
+In Wallarm Console, reports can be generated from the **Incidents** or **Vulnerabilities** section. Whichever section you use, the report will contain both incidents and vulnerabilities. Report content depends on the current filters. For vulnerabilities, the report will always contain the list of currently active vulnerabilities.
 
 To generate a report:
 
@@ -60,6 +60,6 @@ If necessary, download them from the export window.
 
 ### Getting regular reports via email
 
-You can get a PDF report regularly - daily, weekly or monthly - via email. This report will contain data about attacks, incidents for the corresponding period and active vulnerabilities.
+You can get a PDF report regularly - daily, weekly or monthly - via email. This report will contain data about incidents for the corresponding period and active vulnerabilities.
 
 Set whether to get such report and how often by configuring the [email report](../../user-guides/settings/integrations/email.md) integration.
