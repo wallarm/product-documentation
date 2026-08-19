@@ -78,9 +78,7 @@ To test the trigger described in the [Configuring](#configuring) section:
 1. Open Wallarm Console → **IP lists** → **Denylist** and check that the source IP address is blocked.
 1. Open the **Attacks** section and check that requests are displayed in the list as a brute force attack.
 
-    ![Brute force attack in the interface](../../images/user-guides/events/brute-force-attack.png)
-
-    The number of displayed requests corresponds to the number of requests sent after exceeding the trigger threshold ([more details on detecting behavioral attacks](../../attacks-vulns-list.md#attack-types)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on request sampling](../../user-guides/events/grouping-sampling.md#sampling-of-hits)).
+    The number of displayed requests corresponds to the number of requests sent after exceeding the trigger threshold ([more details on detecting behavioral attacks](../../attacks-vulns-list.md#attack-types)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on request sampling](../../user-guides/events/grouping-sampling.md)).
 
     To find brute force attacks, set the **Attack Type** filter to **Brute force**. Filtering is described in [Attack Search and Filters](../../user-guides/search-and-filters/attack-filters.md).
 

@@ -59,7 +59,7 @@ The following filters are available:
 New company accounts come with the following default (pre-configured) triggers:
 
 !!! info "Hits from the same IP trigger no longer works"
-    Starting in September 2026, the **Hits from the same IP** trigger — which grouped hits from one source IP into a single attack — no longer works. Group attacks by source IP on demand instead: in the **Attacks** section, set **Group by** to source IP (see [Attack Search and Filters](../search-and-filters/attack-filters.md#grouping)). The trigger may still appear in this section for some time, but it has no effect.
+    Starting in August 2026, the **Hits from the same IP** trigger — which grouped hits from one source IP into a single attack — no longer works. Group attacks by source IP on demand instead: in the **Attacks** section, set **Group by** to source IP (see [Attack Search and Filters](../search-and-filters/attack-filters.md#grouping)). The trigger may still appear in this section for some time, but it has no effect.
 
 * Graylist IP for 1 hour when it originates more than 3 different [malicious payloads](../../glossary-en.md#malicious-payload) within 1 hour
 

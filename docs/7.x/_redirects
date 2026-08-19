@@ -976,3 +976,6 @@
 /7.x/updating-migrating/older-versions/*  /7.x/updating-migrating/versioning-policy/#version-list
 /7.x/updating-migrating/migrate-ip-lists-to-node-3/  /7.x/updating-migrating/versioning-policy/#version-list
 /7.x/updating-migrating/nginx-modules/  /7.x/updating-migrating/versioning-policy/#version-list
+
+/api-protection/business-logic-abuse-detection/  /about-wallarm/mitigation-controls-overview/
+/6.x/api-protection/business-logic-abuse-detection/  /6.x/about-wallarm/mitigation-controls-overview/

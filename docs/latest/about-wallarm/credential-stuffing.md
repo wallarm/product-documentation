@@ -138,7 +138,7 @@ In this example, if a new attempt to use compromised credentials is detected, a 
     curl -X POST http://localhost/login -d '{"password": "123456", "user": "user-01@company.com"}'
     ```
 
-1. In the **Attacks** section, check that your request has been registered as the event of the `credential_stuffing` type: attempt to use the compromised credentials. 
+1. In the **Attacks** section, check that your request has been registered as the event of the `Credential stuffing` type: attempt to use the compromised credentials. 
 1. Expand the attack to make sure it contains the compromised login information.
 1. Check messages in your Slack channel. The new message should look like this:
     ```

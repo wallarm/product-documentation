@@ -59,11 +59,11 @@ If you are using Wallarm in blocking mode and want to safely test GraphQL rules,
 
 Consider that you node configuration via the [`wallarm_mode_allow_override` directive](../admin-en/configure-wallarm-mode.md#prioritization-of-methods) may be set to ignore rules created in Wallarm Console. If this is a case, [explore](../admin-en/configure-wallarm-mode.md#configuration-methods) and use other ways to change the filtration mode.
 
-## Exploring GraphQL attacks
+<!-- ## Exploring GraphQL attacks
 
-You can explore GraphQL policy violations (GraphQL attacks) in Wallarm Console → **Attacks** section. Use the GraphQL specific [search keys](../user-guides/search-and-filters/use-search.md#graphql-tags) or corresponding filters:
+You can explore GraphQL policy violations (GraphQL attacks) in Wallarm Console → **Attacks** section. Use the GraphQL specific [search keys](../user-guides/search-and-filters/attack-filters.md#filter) or corresponding filters:
 
-![GraphQL attacks](../images/user-guides/rules/graphql-attacks.png)
+![GraphQL attacks](../images/user-guides/rules/graphql-attacks.png) -->
 
 ### Setting policy for your GraphQL endpoints to block attacks
 

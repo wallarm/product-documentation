@@ -30,6 +30,8 @@ To provide this protection:
 1. Select the **Denylist IP address** - `Block for 1 hour` trigger reaction. Wallarm will put the origin IP on the [denylist](../../user-guides/ip-lists/overview.md) after the threshold is exceeded and block all further requests from it.
 
     Note that even if the bot IP is placed into the denylist by multi-attack protection, by default, Wallarm collects and [displays](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) statistics regarding blocked requests originating from it.
+    
+    Requests blocked by this trigger are registered with the **Malicious payload trigger** attack type — find them with the [**Attack Type** filter](../../user-guides/search-and-filters/attack-filters.md#filter).
 
     ![Default trigger](../../images/user-guides/triggers/trigger-example-default.png)
         
@@ -65,6 +67,6 @@ The following is the testing example for the [pre-configured trigger](#pre-confi
 1. Open Wallarm Console → **IP lists** → **Graylist** and check that the IP address from which the requests originated is graylisted for 1 hour.
 1. Open the section **Attacks** and check that the attacks are displayed in the list:
 
-    ![Three malicious payloads in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
-
     To find these attacks, use the [**Attack Type** filter](../../user-guides/search-and-filters/attack-filters.md#filter).
+
+Once the trigger has fired and the source IP is graylisted or denylisted, further requests from that IP — including those that contain an attack — are registered in **Attacks** under the **Malicious payload trigger** attack type.

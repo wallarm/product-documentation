@@ -423,10 +423,11 @@ The Wallarm NGINX‑based filtering nodes now collect statistics on requests tha
 
 When using automatic IP blocking (e.g., with the brute force trigger configured), now you can analyze both the initial triggering requests and the samples of subsequent blocked requests. For requests blocked due to manual denylisting of their sources, the new functionality enhances visibility into blocked source actions.
 
-We have introduced new **Blocked source** [search tags and filters](../../user-guides/search-and-filters/attack-filters.md) within the **Attacks** section to identify requests that were blocked due to manual denylisting of IP addresses, subnets, countries, VPNs, and more.
+We have introduced new [attack type search and filters](../../user-guides/search-and-filters/attack-filters.md) within the **Attacks** section
 
-<!-- * Employ the `multiple_payloads` search to pinpoint requests blocked by the **Number of malicious payloads** trigger. This trigger is designed to denylist sources that originate malicious requests containing multiple payloads, a common characteristic of multi-attack perpetrators.
-* Additionally, the `api_abuse`, `brute`, `dirbust`, and `bola` search tags now encompass requests whose sources were automatically added to the denylist by the relevant Wallarm triggers for their respective attack types. -->
+* **Blocked source** to identify requests that were blocked due to manual denylisting of IP addresses, subnets, countries, VPNs, and more.
+* Use the **Malicious payload trigger** attack type to pinpoint requests blocked by the **Number of malicious payloads** trigger. This trigger is designed to denylist sources that originate malicious requests containing multiple payloads, a common characteristic of multi-attack perpetrators.
+* Additionally, the `Suspicious API activity`, `Brute force`, `Force Browsing`, and `BOLA` search tags now encompass requests whose sources were automatically added to the denylist by the relevant Wallarm triggers for their respective attack types.
 
 This change introduces the new configuration parameters which by default are set to `on` to enable the functionality but can be switched to `off` to disable it:
 
@@ -685,7 +686,7 @@ To use this variable in a [Docker container](../../admin-en/installation-docker-
 
 ## Distinct search tags for Account Takeover, Scraping and Security Crawlers
 
-Distinct [search tags](../../user-guides/search-and-filters/use-search.md) for the `account_takeover`, `scraping`, and `security_crawlers` attack types have been introduced, improving specificity over the previous general `api_abuse` tag.
+Distinct [search tags](../../user-guides/search-and-filters/use-search.md) for the `Account takeover`, `Scraping`, and `Security crawlers` attack types have been introduced, improving specificity over the previous general `api_abuse` tag.
 
 ## Native Node for connectors and TCP traffic mirror
 

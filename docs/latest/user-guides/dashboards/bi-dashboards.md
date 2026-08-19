@@ -81,5 +81,5 @@ You can:
 BI dashboards use [API Sessions](../../api-sessions/overview.md) data and may differ by up to 5% from the [Threat Prevention dashboard](../../user-guides/dashboards/threat-prevention.md) or billing counts in edge cases, such as: 
 
 * [Allowlisted IPs](../../user-guides/ip-lists/overview.md)
-* [Sampling](../../user-guides/events/grouping-sampling.md#sampling-of-hits) during traffic spikes
+* [Sampling](../../user-guides/events/grouping-sampling.md) during traffic spikes
 * Limited [processing-node resources](../../admin-en/configuration-guides/allocate-resources-for-node.md) causing missed exports
