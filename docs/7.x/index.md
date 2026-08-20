@@ -167,7 +167,6 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
     <p><ul>
       <li><a href="./api/overview/">API Reference</a></li>
       <li><a href="./attacks-vulns-list/">Attack Types</a></li>
-      <li><a href="./glossary-en/">Glossary</a></li>
       <li><a href="./about-wallarm/data-retention-policy/">Data Retention Policy</a></li>
       <li><a href="./reference/docs-mcp-server/">Docs MCP Server</a></li>
     </ul></p>

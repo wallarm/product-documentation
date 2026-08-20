@@ -12,7 +12,6 @@ This section provides reference materials, technical specifications, and resourc
 
 * **[Attack Types](../attacks-vulns-list.md)** - Comprehensive list of attack and vulnerability types detected by Wallarm.
 
-* **[Glossary](../glossary-en.md)** - Definitions of key terms and concepts used throughout the documentation.
 
 * **Operations Reference**
     * [Terraform Provider](../admin-en/managing/terraform-provider.md) - Infrastructure as code management

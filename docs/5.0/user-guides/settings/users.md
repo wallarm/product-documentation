@@ -1,7 +1,7 @@
 [link-audit-log]:               audit-log.md
 
-[link-glossary-incident]:       ../../glossary-en.md#security-incident
-[link-glossary-vulnerability]:  ../../glossary-en.md#security-issue-vulnerability
+[link-glossary-incident]:       ../../user-guides/events/check-incident.md
+[link-glossary-vulnerability]:  ../../about-wallarm/detecting-vulnerabilities.md#what-is-security-issue
 
 [img-configure-user]:       ../../images/user-guides/settings/configure-user.png
 [img-disabled-users]:       ../../images/user-guides/settings/disabled-users.png
@@ -27,7 +27,7 @@ Only **Administrator** and **Global Administrator** roles have user management p
 Users of Wallarm clients can have the following roles:
 
 * **Administrator** with access to all Wallarm settings.
-* **Analyst** with access to view main Wallarm settings, and manage information about attacks, [incidents][link-glossary-incident] and [vulnerabilities][link-glossary-vulnerability].
+* **Analyst** with access to view main Wallarm settings, and manage information about [attacks](../events/check-attack.md), [incidents][link-glossary-incident] and [vulnerabilities][link-glossary-vulnerability].
 * **Read Only** with access to view main Wallarm settings.
 * **API Developer** with access to view and download the API inventory discovered by the [API Discovery](../../api-discovery/overview.md) module. This role allows distinguishing users whose tasks only require using Wallarm to get actual data on company APIs. These users do not have access to any Wallarm Console sections except for **API Discovery**, its dashboard, and **Settings → Profile**.
 * **Deploy** with access to create Wallarm filtering nodes using the `addnode` script and with no access to Wallarm Console.

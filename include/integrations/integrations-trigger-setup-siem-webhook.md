@@ -2,7 +2,7 @@
 
 The following conditions are available for notification:
 
-* Number of [attacks](../../../glossary-en.md#attack), [hits](../../../glossary-en.md#hit) or incidents per time interval (day, hour, etc.) exceeds the set number
+* Number of [attacks](../../../about-wallarm/protecting-against-attacks.md#attack), [hits](../../../about-wallarm/protecting-against-attacks.md#hit) or incidents per time interval (day, hour, etc.) exceeds the set number
 
     !!! info "What is not counted"
         * For attacks: 

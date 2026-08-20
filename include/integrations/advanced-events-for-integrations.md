@@ -1,4 +1,4 @@
-* [Hits](../../../glossary-en.md#hit) detected except for:
+* [Hits](../../../about-wallarm/protecting-against-attacks.md#hit) detected except for:
 
     * Experimental hits detected based on the [custom regular expression](../../rules/regex-rule.md). Non-experimental hits trigger notifications.
     * Hits not saved in the [sample](../../events/grouping-sampling.md).

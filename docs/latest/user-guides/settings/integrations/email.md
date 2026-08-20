@@ -36,7 +36,7 @@ Scheduled PDF reports can be sent on a daily, weekly, or monthly basis. PDF repo
 
 ## Setting up additional alerts
 
-* Number of [attacks](../../../glossary-en.md#attack), [hits](../../../glossary-en.md#hit) or incidents per time interval (day, hour, etc.) exceeds the set number
+* Number of [attacks](../../../about-wallarm/protecting-against-attacks.md#attack), [hits](../../../about-wallarm/protecting-against-attacks.md#hit) or incidents per time interval (day, hour, etc.) exceeds the set number
 * [Changes in API](../../../api-discovery/track-changes.md) took place
 * A new user was added to the company account
 

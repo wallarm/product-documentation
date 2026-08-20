@@ -1,6 +1,6 @@
 [doc-nagios-details]:       fetching-metrics.md#exporting-metrics-using-the-collectd-nagios-utility
 
-[doc-lom]:                  ../../glossary-en.md#custom-ruleset-the-former-term-is-lom
+[doc-lom]:                  ../../about-wallarm/protecting-against-attacks.md#custom-rules
 
 [anchor-tnt]:               #number-of-requests-not-analyzed-by-the-postanalytics-module
 [anchor-api]:               #number-of-requests-not-passed-to-the-wallarm-api

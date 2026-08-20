@@ -462,7 +462,7 @@ The NGINX-based Wallarm Docker image now supports the new environment variable `
     ```
 * The Wallarm statistics service returns the new `rate_limit` parameters with the [Wallarm rate limiting](#rate-limits) module data. New parameters cover rejected and delayed requests, as well as indicate any problems with the module's operation.
 * The number of requests originating from denylisted IPs is now displayed in the statistic service output, in the new parameter `blocked_by_acl` and in the existing parameters `requests`, `blocked`.
-* The service return one more new parameter `custom_ruleset_ver` which points to the [custom ruleset](../../glossary-en.md#custom-ruleset-the-former-term-is-lom) format being used by Wallarm nodes.
+* The service return one more new parameter `custom_ruleset_ver` which points to the [custom ruleset](../../about-wallarm/protecting-against-attacks.md#custom-rules) format being used by Wallarm nodes.
 * The following node statistics parameters have been renamed:
 
     * `lom_apply_time` → `custom_ruleset_apply_time`
@@ -514,7 +514,7 @@ To use this variable in a [Docker container](../../admin-en/installation-docker-
 
 ## Distinct search tags for Account Takeover, Scraping and Security Crawlers
 
-Distinct [search tags](../../user-guides/search-and-filters/use-search.md) for the `account_takeover`, `scraping`, and `security_crawlers` attack types have been introduced, improving specificity over the previous general `api_abuse` tag.
+Distinct [search tags](../../user-guides/search-and-filters/use-search.md) for the `Account takeover`, `Scraping`, and `Security crawlers` attack types have been introduced, improving specificity over the previous general `api_abuse` tag.
 
 ## Native Node for connectors and TCP traffic mirror
 

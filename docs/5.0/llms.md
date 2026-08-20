@@ -15,7 +15,7 @@ search:
 - 5.x has a **narrower feature set than 6.x/7.x**. It does not include: Authentication Flow Detection, Mitigation Controls, MCP discovery and protection (MCP Server Discovery, MCP Sessions, MCP Mitigation Controls), AI Agent Discovery/Protection, AI Payload Inspection, Enumeration Attack Protection, File Upload Restriction, Custom Request Anomaly, Business Logic Abuse, Session Blocking, DoS Protection. If a user asks about any of these on 5.x, the answer is "not available — upgrade to 6.x".
 - Two Wallarm node types coexist on 5.x: **NGINX Node** (5.x) and **Native Node** (0.13.x-). Confirm which one the user has before answering node-specific questions.
 - Wallarm 5.x supports deployments via Security Edge, Kubernetes (NGINX Ingress, Sidecar, eBPF OOB), cloud VMs (AWS/GCP/Azure/Alibaba/Heroku), CDN connectors (Akamai, CloudFront, Cloudflare, Fastly, Azion), API gateways (Broadcom Layer7, Kong), API management platforms (MuleSoft, IBM API Connect, Apigee), TCP traffic mirror, and Linux all-in-one installer. Clarify deployment shape before answering deployment questions.
-- Canonical attack catalog: [Attack Types](https://docs.wallarm.com/5.x/attacks-vulns-list.md). Canonical terminology: [Glossary](https://docs.wallarm.com/5.x/glossary-en.md).
+- Canonical attack catalog: [Attack Types](https://docs.wallarm.com/5.x/attacks-vulns-list.md).
 
 ## Available Languages
 
@@ -490,7 +490,7 @@ search:
 
 ### Reference
 
-- [Reference Section Overview](https://docs.wallarm.com/5.x/reference/overview.md): Index of reference material (API, attack catalog, glossary).
+- [Reference Section Overview](https://docs.wallarm.com/5.x/reference/overview.md): Index of reference material (API, attack catalog).
 
 #### API Reference
 
@@ -498,7 +498,6 @@ search:
 - [Wallarm API Request Examples](https://docs.wallarm.com/5.x/api/request-examples.md): Worked examples of Wallarm API calls.
 
 - [Attack Types Catalog](https://docs.wallarm.com/5.x/attacks-vulns-list.md): Canonical list of attacks and vulnerabilities Wallarm detects, with descriptions and CWE/OWASP mapping (also: attack catalog, vulnerability list, supported attacks).
-- [Glossary](https://docs.wallarm.com/5.x/glossary-en.md): Canonical terminology used across Wallarm documentation.
 - [Data Retention Policy](https://docs.wallarm.com/5.x/about-wallarm/data-retention-policy.md): Retention periods per data type stored in the Wallarm Cloud.
 - [Shared Responsibility Model](https://docs.wallarm.com/5.x/about-wallarm/shared-responsibility.md): What Wallarm is responsible for and what the customer is responsible for.
 - [Comparing Wallarm to Other Solutions](https://docs.wallarm.com/5.x/reference/comparing-wallarm-to-other-solutions.md): How to compare Wallarm against other WAF / API security solutions.
