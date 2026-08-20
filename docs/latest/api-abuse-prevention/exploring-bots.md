@@ -31,7 +31,7 @@ You can explore attacks performed by bots in Wallarm Console → **Attacks** sec
 Note that:
 
 * Even if the bot IP is placed into the denylist by API Abuse Prevention, by default, Wallarm collects and [displays](../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) statistics regarding blocked requests originating from it.
-* The detailed information on the bot attack is stored for 31 days: while the attack itself may remain in the **Attacks** section for a longer time, after 31 days, when you open it, no detector values or heatmaps will be presented - `Not enough data` message will be displayed instead.
+* The detailed information on the bot attack is stored for 31 days: while the attack itself may remain in the **Attacks** section for a longer time, after 31 days, when you open it, no detector values will be presented - `Not enough data` message will be displayed instead.
 
 **Detector values**
 
@@ -43,7 +43,7 @@ The larger this multiplier, the stronger the evidence that the source is a bot.
 
 For example, **IP rotation** with the value `15` when normal is `≤ 2` is `7.5x above` the baseline (as on the figure above); **Query abuse** with `326` when normal is `< 10` is over `30x above`; and **Request interval** with `0.05` when normal is `> 1` is about `20x below`, since for this detector a lower value is the anomaly.
 
-**Heatmaps**
+<!-- **Heatmaps**
 
 Bot information is visualized in three heatmaps. In all heatmaps, the bigger the bubble, the closer it is to red color and to the upper right corner - the more reasons to consider this IP to be a bot.
 
@@ -53,7 +53,7 @@ The heatmaps:
 
 * **Performance** visualizes the performance of the current and other detected bots including their request non-uniqueness, scheduled requests, RPS, and request interval.
 * **Behavior** visualizes the suspicious behavior score of the current and other detected bots including their degree of suspicious behavior, amount of requests to critical or sensitive endpoints, RPS and the number of bot detectors that detected them as bots.
-* **HTTP errors** visualizes the API errors caused by bot activities including the number of different endpoints they target, the number of unsafe requests they make, their RPS, and the number of error response codes they receive.
+* **HTTP errors** visualizes the API errors caused by bot activities including the number of different endpoints they target, the number of unsafe requests they make, their RPS, and the number of error response codes they receive. -->
 
 <!--Each heatmap includes detailed description of its bubble size, color and position meaning (use **Show more**). You can zoom in heatmap by drawing rectangular around required area.
 
