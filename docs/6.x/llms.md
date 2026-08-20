@@ -14,7 +14,7 @@ search:
 - Every link below points to the raw markdown (.md) companion of the page — directly ingestible, no HTML conversion needed.
 - Two Wallarm node types coexist: **NGINX Node** (6.x, NGINX-based inline filter) and **Native Node** (0.14.x+, runs without NGINX, used with connectors). Confirm which node the user has before answering node-specific questions — many commands and config keys differ.
 - Wallarm supports many deployment shapes: Security Edge (managed), Kubernetes (NGINX Ingress, Sidecar, eBPF OOB, Helm for Native Node), cloud VMs (AWS/GCP/Azure/Alibaba), API gateways (AWS API Gateway, Apigee, Layer7, Kong, IBM API Connect, MuleSoft), CDN connectors (Akamai, CloudFront, Cloudflare, Fastly, Azion), and Linux all-in-one installer. Deployment shape changes almost everything — clarify it before answering deployment questions.
-- Canonical attack catalog: [Attack Types](https://docs.wallarm.com/attacks-vulns-list.md). Canonical terminology: [Glossary](https://docs.wallarm.com/glossary-en.md).
+- Canonical attack catalog: [Attack Types](https://docs.wallarm.com/attacks-vulns-list.md).
 
 ## Available Languages
 
@@ -504,7 +504,7 @@ search:
 
 ### Reference
 
-- [Reference Section Overview](https://docs.wallarm.com/reference/overview.md): Index of reference material (API, attack catalog, glossary).
+- [Reference Section Overview](https://docs.wallarm.com/reference/overview.md): Index of reference material (API, attack catalog).
 
 #### API Reference
 
@@ -512,7 +512,6 @@ search:
 - [Wallarm API Request Examples](https://docs.wallarm.com/api/request-examples.md): Worked examples of Wallarm API calls.
 
 - [Attack Types Catalog](https://docs.wallarm.com/attacks-vulns-list.md): Canonical list of attacks and vulnerabilities Wallarm detects, with descriptions and CWE/OWASP mapping (also: attack catalog, vulnerability list, supported attacks).
-- [Glossary](https://docs.wallarm.com/glossary-en.md): Canonical terminology used across Wallarm documentation.
 - [Data Retention Policy](https://docs.wallarm.com/about-wallarm/data-retention-policy.md): Retention periods per data type stored in the Wallarm Cloud.
 - [Shared Responsibility Model](https://docs.wallarm.com/about-wallarm/shared-responsibility.md): What Wallarm is responsible for and what the customer is responsible for.
 - [Comparing Wallarm to Other Solutions](https://docs.wallarm.com/reference/comparing-wallarm-to-other-solutions.md): How to compare Wallarm against other WAF / API security solutions.
