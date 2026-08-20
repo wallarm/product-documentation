@@ -61,7 +61,7 @@ New company accounts come with the following default (pre-configured) triggers:
 !!! info "Hits from the same IP trigger no longer works"
     Starting in August 2026, the **Hits from the same IP** trigger — which grouped hits from one source IP into a single attack — no longer works. Group attacks by source IP on demand instead: in the **Attacks** section, set **Group by** to source IP (see [Attack Search and Filters](../search-and-filters/attack-filters.md#grouping)). The trigger may still appear in this section for some time, but it has no effect.
 
-* Graylist IP for 1 hour when it originates more than 3 different [malicious payloads](../../glossary-en.md#malicious-payload) within 1 hour
+* Graylist IP for 1 hour when it originates more than 3 different [malicious payloads](../../about-wallarm/protecting-against-attacks.md#malicious-payload) within 1 hour
 
     [Graylist](../ip-lists/overview.md) is a list of suspicious IP addresses processed by the node as follows: if graylisted IP originates malicious requests, the node blocks them while allowing legitimate requests. In contrast to graylist, [denylist](../ip-lists/overview.md) points to IP addresses that are not allowed to reach your applications at all - the node blocks even legitimate traffic produced by denylisted sources. IP graylisting is one of the options aimed at the reduction of [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives).
 

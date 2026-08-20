@@ -1,6 +1,6 @@
 # Configuring a Failover Method
 
-Deploying a filter node as a [reverse proxy](../glossary-en.md#reverse-proxy) requires that the filter node is highly available. The filter node failure, for example due to power outage, limits the API's operation. To ensure the high availability of Wallarm, you are recommended to use one of the failover methods described in this section.
+Deploying a filter node as a reverse proxy requires that the filter node is highly available. The filter node failure, for example due to power outage, limits the API's operation. To ensure the high availability of Wallarm, you are recommended to use one of the failover methods described in this section.
 
 A failover method introduces additional nodes to which the traffic is automatically forwarded if the main filter node fails.
 

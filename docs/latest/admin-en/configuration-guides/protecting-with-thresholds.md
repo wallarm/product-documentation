@@ -39,7 +39,7 @@ To provide this protection:
 
 ## Pre-configured trigger
 
-New company accounts come with the pre-configured (default) **Number of malicious payloads** trigger which graylists an IP for 1 hour when it originates more than 3 different [malicious payloads](../../glossary-en.md#malicious-payload) within 1 hour.
+New company accounts come with the pre-configured (default) **Number of malicious payloads** trigger which graylists an IP for 1 hour when it originates more than 3 different [malicious payloads](../../about-wallarm/protecting-against-attacks.md#malicious-payload) within 1 hour.
 
 [Graylist](../../user-guides/ip-lists/overview.md) is a list of suspicious IP addresses processed by the node as follows: if graylisted IP originates malicious requests, the node blocks them while allowing legitimate requests. In contrast to graylist, [denylist](../../user-guides/ip-lists/overview.md) points to IP addresses that are not allowed to reach your applications at all - the node blocks even legitimate traffic produced by denylisted sources. IP graylisting is one of the options aimed at the reduction of [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives).
 

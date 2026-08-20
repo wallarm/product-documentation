@@ -22,6 +22,6 @@ The information is presented in the following widgets:
 
 Consider the following:
 
-* [Hit](../../glossary-en.md#hit) is a malicious request plus metadata added by node
+* [Hit](../../about-wallarm/protecting-against-attacks.md#hit) is a malicious request plus metadata added by node
 * Number of blocked hits may be less than detected ones as [traffic filtration mode](../../admin-en/configure-wallarm-mode.md) may be just `monitoring` for some locations
 * You can read attack type descriptions [here](../../attacks-vulns-list.md)

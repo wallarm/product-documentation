@@ -1,5 +1,5 @@
 [node-token-types]:         ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[lom]:                      ../glossary-en.md#custom-ruleset-the-former-term-is-lom
+[lom]:                      ../about-wallarm/protecting-against-attacks.md#custom-rules
 [fallback]:                 ../admin-en/configure-parameters-en.md#wallarm_fallback
 [proton-db]:                ../faq/node-issues-on-owasp-dashboards.md#custom_ruleset-and-protondb
 [wcli]:                     ../admin-en/wcli-metrics.md

