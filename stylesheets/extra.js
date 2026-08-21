@@ -619,6 +619,176 @@ document.querySelector('.md-nav--primary').addEventListener('click', () => {
   }
 })();
 
+/* ============================================================
+ * Reliable anchor smooth-scroll
+ *
+ * CSS `scroll-behavior: smooth` scrolls to a heading when a TOC/nav anchor is
+ * clicked, but the browser aborts that native animation on ANY scroll input —
+ * and a Magic Mouse / trackpad emits stray wheel deltas the instant the hand
+ * moves, so the scroll stalls short of the heading. We run the animation
+ * ourselves via requestAnimationFrame (which is never auto-cancelled) and stop
+ * it only on a deliberate wheel / touch / key gesture, not on incidental
+ * motion. The destination is the target's live position minus the sticky-header
+ * height, re-measured every frame (plus a short settle after arrival) so
+ * lazy-loaded images (mdx_lazy_images) shifting the layout mid-scroll can't
+ * leave us short of — or past — the heading. Focus is moved to the heading on
+ * arrival to match native anchor navigation.
+ * ============================================================ */
+(function () {
+  var root = document.scrollingElement || document.documentElement;
+  var mqReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+  var mqDrawer = window.matchMedia && window.matchMedia('(max-width: 76.1875em)');
+  var rafId = null;
+  var savedBehavior = '';
+
+  // Sticky-header height + a small gap — where a heading should come to rest.
+  // The theme's own anchor scroll lands here; `scroll-margin`/`scroll-padding`
+  // are 0, so a plain scrollIntoView would hide the heading under the header.
+  // Measured live: the header stays pinned at the top, so its bottom edge is the
+  // offset whatever the current scroll position (announce bar included).
+  function headerOffset() {
+    var h = document.querySelector('.md-header');
+    var b = h ? h.getBoundingClientRect().bottom : 0;
+    return Math.max(0, b) + 16;
+  }
+
+  function onUserTakeover() { stop(); }
+  // Ignore the tiny stray wheel deltas a Magic Mouse / trackpad emits as the hand
+  // moves — that spurious input is the whole bug. Abort only on a deliberate scroll.
+  function onWheelTakeover(e) {
+    if (Math.abs(e.deltaY) > 12 || Math.abs(e.deltaX) > 12) stop();
+  }
+  function onKeyTakeover(e) {
+    var k = e.key;
+    if (k === 'ArrowUp' || k === 'ArrowDown' || k === 'PageUp' || k === 'PageDown' ||
+        k === 'Home' || k === 'End' || k === ' ' || k === 'Spacebar') stop();
+  }
+
+  function cleanup() {
+    root.style.scrollBehavior = savedBehavior;
+    window.removeEventListener('wheel', onWheelTakeover);
+    window.removeEventListener('touchstart', onUserTakeover);
+    window.removeEventListener('keydown', onKeyTakeover);
+  }
+  function stop() {
+    if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
+    cleanup();
+  }
+
+  function ease(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+
+  function setHash(hash) {
+    if (window.history && history.pushState) {
+      history.pushState(null, '', hash);
+    } else {
+      var y = window.pageYOffset;
+      window.location.hash = hash;
+      window.scrollTo(0, y);
+    }
+  }
+
+  // Move focus to the target so keyboard / screen-reader users land there too,
+  // matching native anchor navigation. tabindex=-1 makes a non-interactive
+  // heading focusable; drop it again on blur to leave the DOM clean. preventScroll
+  // keeps the focus call from nudging the position we just animated to.
+  function focusTarget(el) {
+    if (!el.hasAttribute('tabindex')) {
+      el.setAttribute('tabindex', '-1');
+      el.addEventListener('blur', function onBlur() {
+        el.removeAttribute('tabindex');
+        el.removeEventListener('blur', onBlur);
+      });
+    }
+    try { el.focus({ preventScroll: true }); } catch (e) { el.focus(); }
+  }
+
+  function finish(el, hash) {
+    if (hash) setHash(hash);
+    focusTarget(el);
+  }
+
+  function scrollToEl(el, hash) {
+    stop();
+
+    // Target = element's live position minus the sticky-header offset, re-read
+    // every frame so layout shifts (lazy images loading above it) are tracked.
+    // Clamped to the reachable range so we don't chase past the page bottom.
+    function destNow() {
+      var maxY = Math.max(0, root.scrollHeight - window.innerHeight);
+      var d = (el.getBoundingClientRect().top + window.pageYOffset) - headerOffset();
+      return Math.min(Math.max(0, d), maxY);
+    }
+
+    var startY = window.pageYOffset;
+
+    if ((mqReduce && mqReduce.matches) || Math.abs(destNow() - startY) < 2) {
+      window.scrollTo(0, destNow());
+      finish(el, hash);
+      return;
+    }
+
+    var duration = 480;
+    var t0 = null;
+    var settleUntil = null;   // after easing, keep correcting for a short window
+    var stableFrames = 0;
+    savedBehavior = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';   // our per-frame jumps must be instant
+    window.addEventListener('wheel', onWheelTakeover, { passive: true });
+    window.addEventListener('touchstart', onUserTakeover, { passive: true });
+    window.addEventListener('keydown', onKeyTakeover);
+
+    function frame(now) {
+      if (t0 === null) t0 = now;
+      var target = destNow();
+      var elapsed = now - t0;
+
+      if (elapsed < duration) {
+        window.scrollTo(0, startY + (target - startY) * ease(elapsed / duration));
+        rafId = requestAnimationFrame(frame);
+        return;
+      }
+
+      // Easing done — ease onto the (possibly still-shifting) target, then stop
+      // once it holds steady for a few frames or the settle window elapses.
+      var diff = target - window.pageYOffset;
+      if (Math.abs(diff) <= 1) {
+        stableFrames++;
+      } else {
+        stableFrames = 0;
+        window.scrollTo(0, window.pageYOffset + diff * 0.5);
+      }
+      if (settleUntil === null) settleUntil = now + 500;
+      if (stableFrames < 3 && now < settleUntil) {
+        rafId = requestAnimationFrame(frame);
+      } else {
+        window.scrollTo(0, destNow());
+        rafId = null;
+        cleanup();
+        finish(el, hash);
+      }
+    }
+    rafId = requestAnimationFrame(frame);
+  }
+
+  document.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.button !== 0) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    if (mqDrawer && mqDrawer.matches) return;   // touch drawer: leave native handling
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a || a.target === '_blank') return;
+    var url;
+    try { url = new URL(a.href, window.location.href); } catch (err) { return; }
+    if (url.pathname !== window.location.pathname || url.search !== window.location.search) return;
+    if (!url.hash || url.hash === '#') return;
+    var id;
+    try { id = decodeURIComponent(url.hash.slice(1)); } catch (err) { id = url.hash.slice(1); }
+    var target = document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    scrollToEl(target, url.hash);
+  }, false);
+})();
+
 // Style the Zensical search widget by injecting a <style> into its Shadow DOM.
 // NOTE: shadow classes are minified and change every rebuild — never target them;
 // anchor on stable attributes (placeholder="Search", role="combobox", type="text").
