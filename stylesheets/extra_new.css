@@ -1794,7 +1794,12 @@ html .md-footer .md-social a:hover {
   background-color: #F7F8F9;
 }
 
-/* Smooth scrolling for TOC anchor links */
+/* Smooth scrolling for TOC anchor links.
+   NOTE: on desktop, anchor clicks are handled by a custom requestAnimationFrame
+   animation in extra.js — native CSS smooth scroll is aborted by any scroll
+   input (a Magic Mouse / trackpad emits stray wheel deltas as the hand moves),
+   so it stalled short of the heading. This rule stays as the baseline for cases
+   the JS does not intercept (mobile/drawer, page-load hash, back-to-top). */
 html {
   scroll-behavior: smooth;
 }
