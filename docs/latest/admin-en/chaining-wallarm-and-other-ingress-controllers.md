@@ -33,7 +33,7 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
 1. Deploy the official Wallarm controller Helm chart using an Ingress class value different from the existing Ingress controller.
 1. Create the Wallarm-specific Ingress object with:
 
-    * The same `ingressClass` as specified in `values.yaml` of Wallarm Ingress Helm chart.
+    * The same `controller.ingressClass.name` as specified in `values.yaml` of the Wallarm Ingress Helm chart.
     * Ingress controller requests routing rules configured in the same way as the existing Ingress controller.
 
     !!! info "Wallarm Ingress controller will not be exposed outside the cluster"
@@ -43,17 +43,9 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
 
 ### Step 1: Deploy the Wallarm Ingress controller
 
-1. Generate a filtering node token of the [appropriate type][node-token-types]:
-
-    === "API token (Helm chart 4.6.8 and above)"
-        1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-        1. Find or create API token with the `Node deployment/Deployment` usage type.
-        1. Copy this token.
-    === "Node token"
-        1. Open Wallarm Console → **Nodes** in either the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
-        1. Create a filtering node with the **Wallarm node** type and copy the generated token.
-            
-            ![Creation of a Wallarm node][nginx-ing-create-node-img]
+1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+1. Find or create API token with the `Node deployment/Deployment` usage type.
+1. Copy this token.
 1. Add the [Wallarm Helm charts repository](https://charts.wallarm.com/):
     ```
     helm repo add wallarm https://charts.wallarm.com
@@ -73,7 +65,9 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
         controller:
           config:
             entries:
-              use-forwarded-headers: "true"
+              real-ip-header: X-Forwarded-For
+              set-real-ip-from: 0.0.0.0/0
+              real-ip-recursive: "true"
           ingressClass:
             name: wallarm-ingress
             create: true
@@ -92,7 +86,9 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
         controller:
           config:
             entries:
-              use-forwarded-headers: "true"
+              real-ip-header: X-Forwarded-For
+              set-real-ip-from: 0.0.0.0/0
+              real-ip-recursive: "true"
           ingressClass:
             name: wallarm-ingress
             create: true
@@ -103,6 +99,7 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
 
     * `<NODE_TOKEN>` is the Wallarm node token.
     * When using an API token, specify a node group name in the `nodeGroup` parameter. Your node will be assigned to this group, shown in the Wallarm Console's **Nodes** section. The default group name is `defaultIngressGroup`.
+    * The `real-ip-header`, `set-real-ip-from`, and `real-ip-recursive` entries make the Wallarm controller read the real client IP from the `X-Forwarded-For` header set by the fronting Ingress controller. Restrict `set-real-ip-from` to the fronting controller's source range if you do not want to trust all sources.
 
     To learn more configuration options, please use the [link](configure-kubernetes-en.md).
 1. Install the Wallarm Ingress Helm chart:
@@ -122,9 +119,9 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
     The Wallarm pod status should be **STATUS: Running** and **READY: N/N**:
 
     ```
-    NAME                                                                  READY   STATUS    RESTARTS   AGE
-    ingress-controller-wallarm-ingress-controller-6d659bd79b-952gl        3/3     Running   0          8m7s
-    ingress-controller-wallarm-ingress-controller-wallarm-wstore-7ddmgbfm 3/3     Running   0          8m7s
+    NAME                                                                   READY   STATUS    RESTARTS   AGE
+    internal-ingress-wallarm-ingress-controller-6d659bd79b-952gl           2/2     Running   0          8m7s
+    internal-ingress-wallarm-ingress-wallarm-postanalytics-7ddmgbf-x2kd9   1/1     Running   0          8m7s
     ```
 
 ### Step 2: Create Ingress object with Wallarm-specific `ingressClassName`
