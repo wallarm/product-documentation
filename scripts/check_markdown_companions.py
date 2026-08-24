@@ -2,7 +2,7 @@
 """Assert every built page has a raw-markdown companion.
 
 Cloudflare serves `Accept: text/markdown` by rewriting the page URL to its .md
-companion (infra/cloudflare-iac, markdown_negotiation.tf). A rewrite is blind:
+companion. A rewrite is blind:
 Cloudflare cannot check whether the target exists, so a page without a
 companion does not fall back to HTML — it returns the 404 page, labelled
 `Content-Type: text/markdown` because the _headers rule matches the request
@@ -19,8 +19,9 @@ from pathlib import Path
 
 # Version landing pages are assembled by the theme rather than authored, so
 # generate_raw_markdown.py produces nothing for them. They are excluded from
-# the rewrite in markdown_negotiation.tf (local.md_no_companion) and serve HTML
-# to a markdown request, which is the correct fallback. KEEP THE TWO IN SYNC.
+# the rewrite rule and serve HTML to a markdown request, which is the correct
+# fallback. That exclusion list is maintained by the DevOps team; tell them if
+# this set changes.
 EXPECTED_WITHOUT_COMPANION = {"7.x", "5.x", "4.10"}
 
 

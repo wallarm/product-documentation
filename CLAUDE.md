@@ -29,8 +29,8 @@ docker build -t wallarm-docs . && docker run -p 8080:80 wallarm-docs
 
 ### Deployment pipeline
 
-The site is **migrating from Netlify to Cloudflare** (DEVOPS-5014). Both run in
-parallel until the cutover, so a PR gets a preview from each.
+The site is **migrating from Netlify to Cloudflare**. Both run in parallel
+until the cutover, so a PR may get a preview from each.
 
 * There are no tests or linters. Validation happens via **preview builds**.
 * Creating a **PR to `master`** triggers a build — the preview link appears in
@@ -39,25 +39,19 @@ parallel until the cutover, so a PR gets a preview from each.
 * Build configuration: `scripts/build.sh` (Cloudflare) and `netlify.toml`
   (Netlify). **They must be kept in sync until Netlify is retired.**
 
-#### Cloudflare specifics
+Two build checks will fail a deploy, both with the offending lines printed:
 
-* Hosting is **Workers Static Assets** — `wrangler.jsonc`, publish dir `site/`.
-  There is no Worker script; it is a plain static deployment.
-* Redirects, headers, and `Accept: text/markdown` negotiation are split between
-  this repo (`_redirects`, `_headers`) and zone rules in
-  [infra/cloudflare-iac](https://gl.wallarm.com/infra/cloudflare-iac).
-* **Preview URLs do not exercise zone rules.** Previews are served from
-  `*.workers.dev`, where redirects, markdown negotiation and WAF do not apply.
-  A preview shows *content* accurately but not *routing* — verify any redirect
-  or negotiation change on `docs-staging.wallarm.com` instead.
-* `_redirects` has a hard limit: Cloudflare rejects the whole deployment past
-  **100 dynamic rules**, and counts every rule appearing *after the first
-  wildcard rule* toward that budget. Keep plain rules above the wildcard block
-  at the bottom of the file — the file says so too.
-* Every page must have a `.md` companion, enforced by
-  `scripts/check_markdown_companions.py` in the build. A page without one is
-  not a fallback to HTML: it returns the 404 page labelled
-  `Content-Type: text/markdown`.
+* **`scripts/check_redirects_budget.py`** — Cloudflare rejects the whole
+  deployment past 100 dynamic `_redirects` rules, counting every rule that
+  appears *after the first wildcard rule*. See the Redirects section below.
+* **`scripts/check_markdown_companions.py`** — every page needs its `.md`
+  companion, because `Accept: text/markdown` is served by a URL rewrite that
+  cannot fall back to HTML when the file is missing.
+
+A preview build shows **content** accurately but not **routing**: redirects and
+content negotiation are configured outside this repo and do not apply to
+preview URLs. Ask the DevOps team to verify any redirect or negotiation change
+before merge.
 
 ## Repository architecture
 
