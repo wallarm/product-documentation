@@ -124,12 +124,17 @@ sync with `local.md_no_companion` in the IaC repo.
    deploys and a PR gets a preview.
 2. Widen the zone rules in `infra/cloudflare-iac` from
    `docs-staging.wallarm.com` to include `docs.wallarm.com`.
-3. Point Cloudflare's record for the proxied hostname at the Worker. **This is a
+3. **Confirm a build has actually deployed to `wallarm-docs` first.** A freshly
+   created Worker holds Cloudflare's `Hello world` placeholder until a build
+   succeeds — adding the route before that would serve it on docs.wallarm.com.
+   Check with `curl -s https://<worker>.workers.dev/` on a preview, or confirm
+   the Builds tab shows a green deploy for the commit you expect.
+4. Point Cloudflare's record for the proxied hostname at the Worker. **This is a
    Cloudflare-side DNS change, not a Route53 one** — `wallarm.com` is a partial
    zone, and Route53 already delegates `docs` to Cloudflare. Today that record
    reads `CNAME docs.wallarm.com -> pensive-dubinsky-5f7a00.netlify.app`.
-4. Verify, then ask Anastasiia Popova to check.
-5. Once stable, delete `netlify.toml`, `netlify/`, and the duplication between
+5. Verify, then ask Anastasiia Popova to check.
+6. Once stable, delete `netlify.toml`, `netlify/`, and the duplication between
    `scripts/build.sh` and the Netlify build command.
 
 **Rollback** is restoring that one CNAME to the Netlify value. Netlify keeps
