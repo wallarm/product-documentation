@@ -1,0 +1,44 @@
+// Cloudflare Workers Static Assets config. Replaces netlify.toml's publish
+// dir, edge function, and headers.
+//
+// There is deliberately no `main`: this is an assets-only deployment. The
+// `Accept: text/markdown` negotiation that used to need a Worker script is now
+// done with zone-level rules, which cost nothing to run where a Worker script
+// is billed per request — and the script ran on every HTML page view, since a
+// plain page request has no Accept header to rewrite on.
+//
+// Security headers live in `_headers`, which applies again now that no Worker
+// generates responses.
+{
+  "name": "wallarm-docs",
+  "compatibility_date": "2026-08-01",
+  "assets": {
+    // Same publish dir as Netlify. Built by scripts/build.sh.
+    "directory": "./site/",
+    // zensical emits directory-style pages (`/foo/bar/index.html`), so both
+    // `/foo/bar` and `/foo/bar/` must resolve to the same page.
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  // A workers.dev URL would publish the whole site a second time on a hostname
+  // that bypasses the zone-level redirects and content negotiation, so it is
+  // off. Preview URLs stay on: each non-production branch gets one, which is
+  // how PR review works. Those previews are on workers.dev too, so they show
+  // content accurately but not routing.
+  "workers_dev": false,
+  "preview_urls": true,
+
+  "observability": {
+    "enabled": true
+  },
+
+  // Staging environment, used to verify routing behaviour before production.
+  // Its hostname binding is managed by the DevOps team's infrastructure repo,
+  // not here — wrangler must not own bindings that Terraform manages, or the
+  // two will fight over them.
+  "env": {
+    "staging": {
+      "name": "wallarm-docs-staging"
+    }
+  }
+}

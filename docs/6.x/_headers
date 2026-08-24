@@ -1,0 +1,74 @@
+# Static response headers for docs.wallarm.com. Port of the netlify.toml
+# [[headers]] blocks (DEVOPS-5014). Lives in the root version's docs_dir so
+# zensical copies it to the publish dir root, same as _redirects.
+#
+# Cloudflare's `*` is greedy and matches `/`, so one `/*.md` rule covers both
+# `/foo.md` and `/7.x/a/b.md` — no `/**/*.md` twin needed as on Netlify.
+#
+# NOTE: these rules apply only to assets served directly by the asset server.
+# The Worker (src/worker.ts) runs first for extension-less page URLs and sets
+# the site-wide security headers itself, because `_headers` is not applied to
+# responses returned from Worker code.
+
+/*
+  Content-Security-Policy: frame-ancestors *
+  X-Content-Type-Options: nosniff
+  Strict-Transport-Security: max-age=63072000; includeSubDomains
+
+# Raw .md / llms*.txt companions, served as plain UTF-8 text. CORS is open so
+# AI tools and browser-side fetchers can read them cross-origin (Cloudflare /
+# Anthropic / Stripe do the same on their .md docs); X-Robots-Tag tells search
+# engines not to index these as duplicates of the HTML pages (the markdown has
+# no <head>, so a robots meta cannot live in the file itself); the 1-hour
+# Cache-Control prevents CDN/browser thrash.
+/*.md
+  Content-Type: text/markdown; charset=utf-8
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, OPTIONS
+  Cache-Control: public, max-age=3600, must-revalidate
+  X-Robots-Tag: noindex, follow
+
+/llms*.txt
+  Content-Type: text/plain; charset=utf-8
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, OPTIONS
+  Cache-Control: public, max-age=3600, must-revalidate
+  X-Robots-Tag: noindex, follow
+
+# Aggregated changelog feeds (scripts/generate_feeds.py). Atom is served as
+# application/atom+xml so RSS readers and Slack's /feed app recognise it. CORS
+# is open so scripts, CI, and browser-side agents can fetch the JSON
+# cross-origin (same policy as the .md companions). Cloudflare adds
+# ETag/Last-Modified, so conditional polling still works.
+/feeds/*.xml
+  Content-Type: application/atom+xml; charset=utf-8
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, OPTIONS
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/feeds/*.rss
+  Content-Type: application/rss+xml; charset=utf-8
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, OPTIONS
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/feeds/*.json
+  Content-Type: application/json; charset=utf-8
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, OPTIONS
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# Screenshots and diagrams. Without an explicit header these are revalidated on
+# every page view, and in analytics the top bandwidth consumers are all
+# /images/*.png fetched tens of thousands of times each. A week-long browser
+# cache stops the bleeding. NOT `immutable`: image filenames are not
+# content-hashed, so a replaced screenshot reuses its name — max-age bounds how
+# long a stale copy can linger, and the deploy purges the edge cache anyway.
+/images/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+# Theme bundles and fonts under /assets/ ARE content-hashed by the build
+# (e.g. main.f62f0af6.min.css, bundle.d7f30b55.min.js), so a new build ships a
+# new filename — the old URL can be cached forever safely.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

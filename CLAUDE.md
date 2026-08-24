@@ -29,10 +29,29 @@ docker build -t wallarm-docs . && docker run -p 8080:80 wallarm-docs
 
 ### Deployment pipeline
 
-* There are no tests or linters. Validation happens via **Netlify preview builds**.
-* Creating a **PR to `master`** triggers a Netlify test build — the preview link appears in the PR checks (takes 3-5 minutes).
-* **Merging to `master`** triggers production deployment via Netlify.
-* Build configuration is in `netlify.toml`.
+The site is **migrating from Netlify to Cloudflare**. Both run in parallel
+until the cutover, so a PR may get a preview from each.
+
+* There are no tests or linters. Validation happens via **preview builds**.
+* Creating a **PR to `master`** triggers a build — the preview link appears in
+  the PR checks (takes 3-5 minutes).
+* **Merging to `master`** deploys production.
+* Build configuration: `scripts/build.sh` (Cloudflare) and `netlify.toml`
+  (Netlify). **They must be kept in sync until Netlify is retired.**
+
+Two build checks will fail a deploy, both with the offending lines printed:
+
+* **`scripts/check_redirects_budget.py`** — Cloudflare rejects the whole
+  deployment past 100 dynamic `_redirects` rules, counting every rule that
+  appears *after the first wildcard rule*. See the Redirects section below.
+* **`scripts/check_markdown_companions.py`** — every page needs its `.md`
+  companion, because `Accept: text/markdown` is served by a URL rewrite that
+  cannot fall back to HTML when the file is missing.
+
+A preview build shows **content** accurately but not **routing**: redirects and
+content negotiation are configured outside this repo and do not apply to
+preview URLs. Ask the DevOps team to verify any redirect or negotiation change
+before merge.
 
 ## Repository architecture
 
@@ -98,14 +117,19 @@ The `_redirects` file lives in the root version's `docs_dir` (currently `docs/6.
 /old/path/page  /new/path/page
 ```
 
-This prevents 404 errors for users with bookmarked URLs. Redirect syntax supports wildcards (`/*`). See [Netlify redirect docs](https://docs.netlify.com/routing/redirects/).
+This prevents 404 errors for users with bookmarked URLs. Redirect syntax supports wildcards (`/*`).
+
+**Add plain path-to-path redirects ABOVE the wildcard block at the bottom of the file; add wildcard rules INSIDE that block.** Cloudflare counts every rule appearing after the first wildcard against a 100-rule budget and rejects the entire deployment past it — so one wildcard added mid-file silently reclassifies hundreds of plain rules. `scripts/check_redirects_budget.py` runs on every build and fails with the offending line numbers, but it is easier to place the rule correctly than to debug it afterwards. See the header comment in `_redirects`, plus the [Cloudflare](https://developers.cloudflare.com/workers/static-assets/redirects/) and [Netlify](https://docs.netlify.com/routing/redirects/) references.
 
 ### Key platform files
 
 | File | Purpose |
 |------|---------|
 | `mkdocs-base.yml` | Shared config: plugins, extensions, theme |
-| `netlify.toml` | Build commands and deploy config (edit only for version management) |
+| `netlify.toml` | Netlify build/deploy config (edit only for version management) |
+| `scripts/build.sh` | Cloudflare build; mirrors `netlify.toml`, keep in sync |
+| `wrangler.jsonc` | Cloudflare Workers Static Assets deploy config |
+| `docs/6.x/_headers` | Response headers, Cloudflare |
 | `stylesheets/extra.js` | Custom JS: image zoom, version selector logic, `rootVersion` variable |
 | `stylesheets/partials/` | Custom HTML overrides: `nav.html` (version selector), `header.html`, `footer.html`, `feedback.html`, `actions.html` (edit actions), `toc.html`, `integrations/` |
 | `Dockerfile` | Full multi-version build for local testing |
@@ -134,7 +158,7 @@ Follow these guides before writing or editing any content:
 ## What NOT to do
 
 * Do NOT edit `mkdocs-base.yml` unless explicitly required
-* Do NOT edit `netlify.toml` or files in `stylesheets/` except for version management tasks (adding/deprecating a guide version)
+* Do NOT edit `netlify.toml`, `scripts/build.sh`, `wrangler.jsonc` or files in `stylesheets/` except for version management tasks (adding/deprecating a guide version)
 * Do NOT edit files in `docs/6.x/` or `docs/7.x/` directly — they are include wrappers (exception: creating new wrappers for new pages)
 * Do NOT invent features not described in the source material
 * Do NOT add content in languages other than English
