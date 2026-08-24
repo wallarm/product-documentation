@@ -49,10 +49,6 @@ if (window.location.hostname === 'docs.wallarm.com' && !window.__wallarmHID_init
   posthog.init('phc_XXQ1ED9WSluEWKtZgb0dZNJyvsEfqiijIVnPdsJcgIv',{api_host:'https://app.posthog.com'})
 </script>
 
-<script>
-  !function(t){if(window.ko)return;window.ko=[],["identify","track","removeListeners","open","on","off","qualify","ready"].forEach(function(t){ko[t]=function(){var n=[].slice.call(arguments);return n.unshift(t),ko.push(n),ko}});var n=document.createElement("script");n.async=!0,n.setAttribute("src","https://cdn.getkoala.com/v1/pk_dbc8e311cd69a55b233a070edc0e72aa8efd/sdk.js"),(document.body || document.head).appendChild(n)}();
-  </script>
-
 {% endblock %}
 
 {% block announce %}

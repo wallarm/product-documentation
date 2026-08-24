@@ -382,6 +382,7 @@ nav:
     - Monitoring & Events:
       - Event Overview: user-guides/events/overview.md
       - Analyzing Attacks: user-guides/events/check-attack.md
+      - Attacks API: api-sessions/attacks-api.md
       - Analyzing Incidents: user-guides/events/check-incident.md
       - Grouping & Sampling: user-guides/events/grouping-sampling.md
       - Security Issues: user-guides/vulnerabilities.md
@@ -390,8 +391,9 @@ nav:
       - Trigger Configuration: user-guides/triggers/triggers.md
 
     - Search & Reports:
-      - Search & Filters: user-guides/search-and-filters/use-search.md
-      - Custom Reports: user-guides/search-and-filters/custom-report.md
+      - Attack Search & Filters: user-guides/search-and-filters/attack-filters.md
+      - Incident Search & Filters: user-guides/search-and-filters/use-search.md
+      - Security Reports: user-guides/search-and-filters/custom-report.md
 
     - Account Settings:
       - Account: user-guides/settings/account.md
@@ -425,7 +427,6 @@ nav:
       - Request Examples: api/request-examples.md
 
     - Attack Types: attacks-vulns-list.md
-    - Glossary: glossary-en.md
     - Data Retention Policy: about-wallarm/data-retention-policy.md
     - Shared Responsibility Model: about-wallarm/shared-responsibility.md
     - Comparing Wallarm to Other Solutions: reference/comparing-wallarm-to-other-solutions.md

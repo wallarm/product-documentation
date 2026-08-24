@@ -30,6 +30,8 @@ To provide this protection:
 1. Select the **Denylist IP address** - `Block for 1 hour` trigger reaction. Wallarm will put the origin IP on the [denylist](../../user-guides/ip-lists/overview.md) after the threshold is exceeded and block all further requests from it.
 
     Note that even if the bot IP is placed into the denylist by multi-attack protection, by default, Wallarm collects and [displays](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) statistics regarding blocked requests originating from it.
+    
+    Requests blocked by this trigger are registered with the **Malicious payload trigger** attack type — find them with the [**Attack Type** filter](../../user-guides/search-and-filters/attack-filters.md#filter).
 
     ![Default trigger](../../images/user-guides/triggers/trigger-example-default.png)
         
@@ -37,7 +39,7 @@ To provide this protection:
 
 ## Pre-configured trigger
 
-New company accounts come with the pre-configured (default) **Number of malicious payloads** trigger which graylists an IP for 1 hour when it originates more than 3 different [malicious payloads](../../glossary-en.md#malicious-payload) within 1 hour.
+New company accounts come with the pre-configured (default) **Number of malicious payloads** trigger which graylists an IP for 1 hour when it originates more than 3 different [malicious payloads](../../about-wallarm/protecting-against-attacks.md#malicious-payload) within 1 hour.
 
 [Graylist](../../user-guides/ip-lists/overview.md) is a list of suspicious IP addresses processed by the node as follows: if graylisted IP originates malicious requests, the node blocks them while allowing legitimate requests. In contrast to graylist, [denylist](../../user-guides/ip-lists/overview.md) points to IP addresses that are not allowed to reach your applications at all - the node blocks even legitimate traffic produced by denylisted sources. IP graylisting is one of the options aimed at the reduction of [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives).
 
@@ -65,6 +67,6 @@ The following is the testing example for the [pre-configured trigger](#pre-confi
 1. Open Wallarm Console → **IP lists** → **Graylist** and check that the IP address from which the requests originated is graylisted for 1 hour.
 1. Open the section **Attacks** and check that the attacks are displayed in the list:
 
-    ![Three malicious payloads in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
+    To find these attacks, use the [**Attack Type** filter](../../user-guides/search-and-filters/attack-filters.md#filter).
 
-    To search for the attacks, you can use the `multiple_payloads` [search tag](../../user-guides/search-and-filters/use-search.md#search-by-attack-type).
+Once the trigger has fired and the source IP is graylisted or denylisted, further requests from that IP — including those that contain an attack — are registered in **Attacks** under the **Malicious payload trigger** attack type.

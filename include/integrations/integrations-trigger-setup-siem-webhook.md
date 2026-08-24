@@ -2,14 +2,14 @@
 
 The following conditions are available for notification:
 
-* Number of [attacks](../../../glossary-en.md#attack), [hits](../../../glossary-en.md#hit) or incidents per time interval (day, hour, etc.) exceeds the set number
+* Number of [attacks](../../../about-wallarm/protecting-against-attacks.md#attack), [hits](../../../about-wallarm/protecting-against-attacks.md#hit) or incidents per time interval (day, hour, etc.) exceeds the set number
 
     !!! info "What is not counted"
         * For attacks: 
             * The experimental attacks based on the [custom regular expressions](../../../user-guides/rules/regex-rule.md).
         * For hits:
             * The experimental hits based on the [custom regular expressions](../../../user-guides/rules/regex-rule.md).
-            * Hits not saved in the [sample](../../events/grouping-sampling.md#sampling-of-hits).
+            * Hits not saved in the [sample](../../events/grouping-sampling.md).
 
 * Denylisted IP
 * [Changes in API](../../about-wallarm/api-discovery.md#tracking-changes-in-api)

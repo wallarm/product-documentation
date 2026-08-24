@@ -235,9 +235,7 @@
 /3.0/quickstart-en/qs-setup-proxy-en/ /3.0/quickstart/
 /3.0/quickstart-en/qs-check-operation-en/ /3.0/admin-en/installation-check-operation-en/
 
-/user-guides/rules/add-rule/ /user-guides/rules/rules/#configuring
 
-/glossary-en/#attack-vector /glossary-en/#malicious-payload
 /en/admin-en/configure-backup-en.html /admin-en/configure-backup-en/
 /ru/admin-ru/configure-backup-ru.html https://docs.wallarm.ru/admin-ru/configure-backup-ru/
 
@@ -459,6 +457,7 @@
 
 
 /user-guides/rules/intro/ /user-guides/rules/rules/
+/user-guides/rules/add-rule/ /user-guides/rules/rules/#configuring
 /user-guides/rules/view/ /user-guides/rules/rules/#inspecting
 /user-guides/rules/compiling/ /user-guides/rules/rules/#ruleset-lifecycle
 /user-guides/rules/backup/ /user-guides/rules/rules/#backup-and-restore
@@ -560,14 +559,6 @@
 
 /api-sessions/ /api-sessions/overview/
 
-/vulnerability-detection/threat-replay-testing/* /about-wallarm/detecting-vulnerabilities/#detection-methods
-/7.x/vulnerability-detection/threat-replay-testing/* /7.x/about-wallarm/detecting-vulnerabilities/#detection-methods
-/5.x/vulnerability-detection/threat-replay-testing/* /5.x/about-wallarm/detecting-vulnerabilities/#detection-methods
-
-/vulnerability-detection/schema-based-testing/* /about-wallarm/detecting-vulnerabilities/#detection-methods
-/7.x/vulnerability-detection/schema-based-testing/* /7.x/about-wallarm/detecting-vulnerabilities/#detection-methods
-/5.x/vulnerability-detection/schema-based-testing/* /5.x/about-wallarm/detecting-vulnerabilities/#detection-methods
-
 # API Security Testing overview merged into Detecting Security Issues
 /vulnerability-detection/security-testing-overview/ /about-wallarm/detecting-vulnerabilities/#detection-methods
 /7.x/vulnerability-detection/security-testing-overview/ /7.x/about-wallarm/detecting-vulnerabilities/#detection-methods
@@ -657,6 +648,7 @@
 /5.x/installation/security-edge/deployment/ /5.x/installation/security-edge/inline/deployment/
 /5.x/installation/se-connector/ /5.x/installation/security-edge/se-connector/
 
+
 /4.10/attacks-vulns-list/ /4.10
 /4.10/glossary-en/ /4.10
 /4.10/api-sessions/ /4.10
@@ -712,14 +704,12 @@
 /7.x/updating-migrating/migrate-ip-lists-to-node-3/  /7.x/updating-migrating/versioning-policy/#version-list
 /7.x/updating-migrating/nginx-modules/  /7.x/updating-migrating/versioning-policy/#version-list
 
-# --- Ported from the netlify.toml [[redirects]] blocks (DEVOPS-5014) ---------
-# 200 = rewrite: serve the target in place, no client-visible redirect.
+/api-protection/business-logic-abuse-detection/  /about-wallarm/mitigation-controls-overview/
+/7.x/api-protection/business-logic-abuse-detection/  /7.x/about-wallarm/mitigation-controls-overview/
 
-# Serve favicon.png under the conventional /favicon.ico path. Browsers viewing
-# raw .md / .txt files have no HTML <head> to read <link rel="icon"> from, so
-# they fall back to auto-discovering /favicon.ico — without this rewrite the
-# tab would show no favicon for any .md page.
-/favicon.ico   /favicon.png   200
+/glossary-en/  /about-wallarm/protecting-against-attacks/
+/7.x/glossary-en/  /7.x/about-wallarm/protecting-against-attacks/
+/5.x/glossary-en/  /5.x/about-wallarm/protecting-against-attacks/
 
 # ---- wildcard rules: everything below is charged against Cloudflare's
 # ---- 100-dynamic-rule budget. Keep this block small.
@@ -741,11 +731,17 @@
 /4.2/faq/* /faq/:splat 301
 
 /about-wallarm-waf/* /about-wallarm/:splat 301
-/4.0/about-wallarm-waf/* /4.0/about-wallarm/:splat 301
 /waf-installation/* /installation/:splat 301
-/4.0/waf-installation/* /4.0/installation/:splat 301
 
 /api-policy-enforcement/* /api-specification-enforcement/:splat
+
+/vulnerability-detection/threat-replay-testing/* /about-wallarm/detecting-vulnerabilities/#detection-methods
+/7.x/vulnerability-detection/threat-replay-testing/* /7.x/about-wallarm/detecting-vulnerabilities/#detection-methods
+/5.x/vulnerability-detection/threat-replay-testing/* /5.x/about-wallarm/detecting-vulnerabilities/#detection-methods
+
+/vulnerability-detection/schema-based-testing/* /about-wallarm/detecting-vulnerabilities/#detection-methods
+/7.x/vulnerability-detection/schema-based-testing/* /7.x/about-wallarm/detecting-vulnerabilities/#detection-methods
+/5.x/vulnerability-detection/schema-based-testing/* /5.x/about-wallarm/detecting-vulnerabilities/#detection-methods
 /admin-en/configuration-guides/sso/gsuite/* /admin-en/configuration-guides/sso/sso-gsuite/
 /admin-en/configuration-guides/sso/okta/* /admin-en/configuration-guides/sso/sso-okta/
 
@@ -754,15 +750,9 @@
 
 /vulnerability-detection/api-test-patrol/* /about-wallarm/detecting-vulnerabilities/#detection-methods
 /5.x/vulnerability-detection/api-test-patrol/* /5.x/about-wallarm/detecting-vulnerabilities/#detection-methods
-/4.10/vulnerability-detection/api-test-patrol/* /4.10
 
 /ja/*  /:splat  301
 /tr/*  /:splat  301
 /ar/*  /:splat  301
 /pt-br/*  /:splat  301
 /7.x/updating-migrating/older-versions/*  /7.x/updating-migrating/versioning-policy/#version-list
-
-# Serve the version-root sitemap for a sitemap.xml requested at any depth.
-# Cloudflare's `*` is greedy and matches `/`, so this single rule replaces the
-# three depth-specific netlify.toml entries.
-/*/sitemap.xml   /sitemap.xml   200

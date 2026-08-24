@@ -39,7 +39,7 @@ Wallarm Console displays all detected incidents for the selected period in the *
 * **Date**: Date and time of the malicious request.
     * When several requests of the same type are detected at short intervals, the attack duration appears under the date. Duration is the time between the first and the last request of the same type within the selected time frame.
     * When the attack is ongoing, a corresponding label is displayed.
-* **Payloads**: Attack type and the number of unique [malicious payloads](../../glossary-en.md#malicious-payload).
+* **Payloads**: Attack type and the number of unique [malicious payloads](../../about-wallarm/protecting-against-attacks.md#malicious-payload).
 * **Hits**: Number of hits (requests) in the attack within the selected time frame.
 * **Top IP / Source**: IP address the malicious requests originated from. When the requests come from several IP addresses, Wallarm Console shows the address responsible for the most requests, along with:
      * The total number of IP addresses that the requests in the same attack originated from within the selected time frame.

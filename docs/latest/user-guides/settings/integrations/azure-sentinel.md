@@ -416,7 +416,7 @@ All events are sent to a single custom table (e.g., `WallarmSentinel_CL`). The `
 
 | Event | `EventType` value |
 | ----- | ----------------- |
-| New [hit](../../../glossary-en.md#hit) | `new_hits` |
+| New [hit](../../../about-wallarm/protecting-against-attacks.md#hit) | `new_hits` |
 | New [user](../../../user-guides/settings/users.md) in a company account | `create_user` |
 | Deletion of a user from a company account | `delete_user` |
 | User role update | `update_user` |
@@ -425,7 +425,7 @@ All events are sent to a single custom table (e.g., `WallarmSentinel_CL`). The `
 | New [application](../../../user-guides/settings/applications.md) | `create_application` |
 | Deletion of an application | `delete_application` |
 | Application name update | `update_application` |
-| New [vulnerability](../../../glossary-en.md#security-issue-vulnerability) of a high risk | `vuln_high` |
+| New [vulnerability](../../../about-wallarm/detecting-vulnerabilities.md#what-is-security-issue) of a high risk | `vuln_high` |
 | New vulnerability of a medium risk | `vuln_medium` |
 | New vulnerability of a low risk | `vuln_low` |
 | New [rule](../../../user-guides/rules/rules.md) | `rule_create` |

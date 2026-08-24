@@ -86,9 +86,9 @@ On adding the new rule, it is turned on automatically. Use **on/off** switcher t
 
 ## Viewing compromised credentials usage attempts
 
-The number of attempts to use compromised credentials in the last 7 days is displayed in the **Credential Stuffing** section. Click the counter and you will be redirected to the **Attacks** section that will display all [`credential_stuffing`](../user-guides/search-and-filters/use-search.md#search-by-attack-type) attacks for the last 7 days.
+The number of attempts to use compromised credentials in the last 7 days is displayed in the **Credential Stuffing** section. Click the counter and you will be redirected to the **Attacks** section that will display all [credential stuffing](../user-guides/search-and-filters/attack-filters.md#filter) attacks for the last 7 days.
 
-Expand any of the attacks to see the list of logins which passwords were compromised.
+Expand any of the attacks to see the list of logins which passwords were compromised and see malicious request details.
 
 ![Attacks - credential stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-attacks.png)
 
@@ -138,7 +138,7 @@ In this example, if a new attempt to use compromised credentials is detected, a 
     curl -X POST http://localhost/login -d '{"password": "123456", "user": "user-01@company.com"}'
     ```
 
-1. In the **Attacks** section, check that your request has been registered as the event of the `credential_stuffing` type: attempt to use the compromised credentials. 
+1. In the **Attacks** section, check that your request has been registered as the event of the `Credential stuffing` type: attempt to use the compromised credentials. 
 1. Expand the attack to make sure it contains the compromised login information.
 1. Check messages in your Slack channel. The new message should look like this:
     ```

@@ -2,7 +2,7 @@
 
 You can set additional email addresses that will be used to deliver scheduled [PDF reports](../../../user-guides/search-and-filters/custom-report.md) and instant notifications. Sending messages to your primary email is configured by default.
 
-Scheduled PDF reports can be sent on a daily, weekly, or monthly basis. PDF reports include detailed information about vulnerabilities, attacks, and incidents detected in your system over the selected period. Notifications include brief details of triggered events.
+Scheduled PDF reports can be sent on a daily, weekly, or monthly basis. PDF reports include detailed information about vulnerabilities and incidents detected in your system over the selected period. Notifications include brief details of triggered events.
 
 ## Setting up integration
 
@@ -24,7 +24,7 @@ Scheduled PDF reports can be sent on a daily, weekly, or monthly basis. PDF repo
 
         * [Subscription](../../../about-wallarm/subscription-plans.md) notifications
         * [API token expiration](../../../user-guides/settings/api-tokens.md#token-expiration) notifications
-        * [Hit sampling](../../../user-guides/events/grouping-sampling.md#sampling-of-hits) notifications
+        * [Hit sampling](../../../user-guides/events/grouping-sampling.md) notifications
 
 1. Click **Test integration** to check configuration correctness, availability of the target system, and the notification format.
 
@@ -36,7 +36,7 @@ Scheduled PDF reports can be sent on a daily, weekly, or monthly basis. PDF repo
 
 ## Setting up additional alerts
 
-* Number of [attacks](../../../glossary-en.md#attack), [hits](../../../glossary-en.md#hit) or incidents per time interval (day, hour, etc.) exceeds the set number
+* Number of [attacks](../../../about-wallarm/protecting-against-attacks.md#attack), [hits](../../../about-wallarm/protecting-against-attacks.md#hit) or incidents per time interval (day, hour, etc.) exceeds the set number
 * [Changes in API](../../../api-discovery/track-changes.md) took place
 * A new user was added to the company account
 

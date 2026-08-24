@@ -1,4 +1,4 @@
-[rule-creation-options]:    ../../user-guides/events/check-attack.md#attack-analysis_1
+[rule-creation-options]:    ../../user-guides/events/check-attack.md#responding-to-attacks
 [request-processing]:       ../../user-guides/rules/request-processing.md
 [api-discovery-enable-link]:        ../../api-discovery/setup.md
 
@@ -23,9 +23,9 @@ Starting from the top level of the HTTP request, the filtering node attempts to 
 The output from the parsers becomes an additional set of parameters that has to be analyzed in a similar way. Parser output sometimes becomes a complex structure like JSON, array, or associative array.
 
 !!! info "Parser tags"
-    Each parser has an identifier (tag). For example, `header` for the parser of request headers. The set of tags used in the request analysis is displayed in Wallarm Console within the event details. This data demonstrates the request part with the detected attack and parsers that were used.
+    Each parser has an identifier (tag). For example, `header` for the parser of request headers. In the event details in Wallarm Console, the **Parameter** field shows the tags of the parsers applied to reach the request part where the attack was detected, with the final point highlighted.
 
-    For example, if an attack was detected in the `SOAPACTION` header:
+    For example, a **GraphQL aliases** attack detected in the `query` parameter that Wallarm reached through the `post` → `json_doc` → `hash` parsers:
 
     ![Tag example](../../images/user-guides/rules/tags-example.png)
 

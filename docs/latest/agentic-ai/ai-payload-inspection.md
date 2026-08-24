@@ -174,4 +174,4 @@ When AI payload violations are detected, they show up in [API Sessions](../api-s
 
 You can find sessions with corresponding attack types using the **Attack** filter - use the corresponding attack type to display only sessions with these attacks.
 
-Note AI payload inspection attacks are displayed exclusively in the **API Sessions** section (and not displayed in the [**Attacks**](../user-guides/events/check-attack.md) section).
+AI payload inspection attacks are displayed both in **API Sessions** and in the [**Attacks**](../user-guides/events/check-attack.md) section.

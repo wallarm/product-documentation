@@ -186,9 +186,9 @@ To test that the Wallarm eBPF operates correctly:
 
     Since the Wallarm eBPF solution operates in the out-of-band approach, it does not block attacks but only registers them.
 
-    To check that the attack has been registered, proceed to Wallarm Console → **Events**:
+    To check that the attack has been registered, proceed to Wallarm Console → **Attacks**.
 
-    ![!Attacks in the interface](../../../images/waf-installation/epbf/ebpf-attack-in-ui.png)
+    <!-- ![!Attacks in the interface](../../../images/waf-installation/epbf/ebpf-attack-in-ui.png) -->
 
 ## Limitations
 

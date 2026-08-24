@@ -1,113 +1,152 @@
-[link-using-search]:    ../search-and-filters/use-search.md
-[img-current-attacks]:  ../../images/glossary/attack-with-one-hit-example.png
-[img-incidents-tab]:    ../../images/user-guides/events/incident-vuln.png
-[img-show-falsepositive]: ../../images/user-guides/events/filter-for-falsepositive.png
-[use-search]:             ../search-and-filters/use-search.md
-[img-verify-attack]:            ../../images/user-guides/events/verify-attack.png
-[al-brute-force-attack]:      ../../attacks-vulns-list.md#brute-force-attack
-[al-forced-browsing]:         ../../attacks-vulns-list.md#forced-browsing
-[al-bola]:                    ../../attacks-vulns-list.md#broken-object-level-authorization-bola
-[img-false-attack]:             ../../images/user-guides/events/false-attack.png
-[img-removed-attack-info]:      ../../images/user-guides/events/removed-attack-info.png
-[link-check-attack]:        check-attack.md
-[img-current-attack]:       ../../images/user-guides/events/analyze-current-attack.png
-[glossary-attack-vector]:   ../../glossary-en.md#malicious-payload
-[link-attacks]:         ../../user-guides/events/check-attack.md
-[link-incidents]:       ../../user-guides/events/check-incident.md
 [link-sessions]:        ../../api-sessions/overview.md
 
 # Attack Analysis
 
-This article describes how you can analyze attacks detected by the Wallarm node and take actions regarding them.
+This article explains how to analyze attacks detected by Wallarm and respond to them.
 
-### Attack analysis
-
-All the [attacks](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) detected by the Wallarm platform are displayed in the **Attacks** section of the Wallarm Console. You can [filter](../../user-guides/search-and-filters/use-search.md) the list by attack date, type and other criteria, expand any attack and its included requests for detailed analysis.
-
-If a detected attack turns out to be a [false positive](#false-positives), you can immediately mark it as one to prevent alike false positives in future. Also, on the basis of the detected attacks, you can create rules and perform other Wallarm configurations to mitigate further alike threats.
-
-<div>
-  <script src="https://js.storylane.io/js/v1/storylane.js"></script>
-  <div class="sl-embed" style="position:relative;padding-bottom:calc(55.04% + 25px);width:100%;height:0;transform:scale(1)">
-    <iframe loading="lazy" class="sl-demo" src="https://wallarm.storylane.io/demo/2k7dijltmvb4" name="sl-embed" allow="fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
-  </div>
-</div>
+Wallarm displays detected [attacks](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) in the **Attacks** section of Wallarm Console. There, Wallarm groups malicious requests into attacks and summarizes them with statistics, and you can open any attack to inspect its individual requests and respond to them.
 
 In Wallarm:
 
-* **Attack** is a [group](grouping-sampling.md#grouping-of-hits) of hits
-* **Hit** is a malicious request plus metadata added by node
-* **Malicious payload** is a part of request with attack sign
+* **Attack** is a group of malicious requests that share the grouping attributes you selected
+* **Request** is an original malicious request plus metadata added by the node
+* **Malicious payload** is a part of the request with an attack sign
 
 Read details [here](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components).
 
-Each attack details contain all necessary information for analysis, such as attack's hits and malicious payload summary. To simplify analysis, only unique hits are stored in the attack details. Repeated malicious requests  are dropped from uploading to the Wallarm Cloud and not displayed. This process is called [hit sampling](grouping-sampling.md#sampling-of-hits).
+## Attacks page
 
-Hit sampling does not affect the quality of attack detection and Wallarm node continues protect your applications and APIs even with hit sampling enabled.
+![Attacks section](../../images/user-guides/events/attacks-page.png)
 
-## Full context of threat actor activities
+The page presents attacks for the selected period and lets you shape what you see:
 
---8<-- "../include/request-full-context.md"
+* **Views** are tabs above the filter. Each view stores a filter, a grouping, a time range, and a column layout, so you can switch between saved perspectives on your attack data in one click. See [Attack Search and Filters](../search-and-filters/attack-filters.md#views).
+* The time range selector limits the data to a period of up to 6 months.
+* **Group by** controls how requests are combined into attacks: by attack type (the default), by source IP, not at all, or by a custom combination of up to 4 attributes. See [Attack Search and Filters](../search-and-filters/attack-filters.md#grouping).
+* The filter field narrows the list down to the attacks you are interested in. See [Attack Search and Filters](../search-and-filters/attack-filters.md).
+* **Statistic** is a collapsible panel with charts summarizing the filtered data: requests with attacks over time, top source IPs, status code breakdown, top attacked endpoints and hosts, top attack types and subtypes. Clicking an element of a chart drills into the corresponding attacks.
 
-## False positives
+The table below the panel lists the attacks themselves. Use **Table settings** to choose, reorder, resize, and pin columns; the column set is stored in the view. To get the data outside of Wallarm Console, use [**Export attacks as CSV**](../search-and-filters/custom-report.md#attacks).
 
-False positive occurs when [attack signs](../../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors) are detected in the legitimate request.
+## Attack details
 
-To prevent the filtering node from recognizing such requests as attacks in future, **you can mark all or specific requests of the attack as false positives**. This automatically creates a rule to skip similar attack sign detection in similar requests, though it does not appear in the Wallarm Console.
+Clicking an attack opens a resizable drawer with the attack details. The drawer stays open while you click through the table, so you can compare attacks without losing your place.
 
-You can undo a false positive mark only within a few seconds after the mark was applied. If you decided to undo it later, this can be done only by sending a request to [Wallarm technical support](mailto: support@wallarm.com).
+### Overview
 
-The default view of the attack list presents only actual attacks (without false positives) - to change that, under **All attacks** switch from **Default view** to **With false positives** or **Only false positives**.
+The **Overview** tab summarizes the attack: its status, type, when it was first and last seen, the sessions, users, and source IPs involved, a timeline of its requests, and the distribution of its top hosts and response status codes.
 
-![False positive filter](../../images/user-guides/events/filter-for-falsepositive.png)
+![Attack details - Overview](../../images/user-guides/events/attack-drawer-overview.png)
 
-See details on false positives [here](../../about-wallarm/protecting-against-attacks.md#false-positives).
+The **Status** field shows what the [node did with the attack](../../admin-en/configure-wallarm-mode.md):
+
+* **Blocked** - all requests of the attack were blocked by the filtering node.
+* **Partially Blocked** - some requests of the attack were blocked and others were only registered.
+* **Monitoring** - all requests of the attack were registered but not blocked.
+
+### Requests
+
+The **Requests** tab lists the individual malicious requests of the attack and shows the details of the selected one.
+
+![Attack details - Requests](../../images/user-guides/events/attack-drawer-requests.png)
+
+Request details include the source IP, user, host, URI, request and session identifiers, and, for each detected attack sign, the malicious payload, the request point it was found in, and the [CWE, OWASP, and CAPEC classifications](../../attacks-vulns-list.md). **Full request** shows the complete HTTP request, which you can copy as raw HTTP or as a cURL command.
+
+Only unique requests are stored in the attack details. Repeated malicious requests are dropped from uploading to the Wallarm Cloud and not displayed. This process is called [hit sampling](grouping-sampling.md). Hit sampling does not affect the quality of attack detection and Wallarm node continues to protect your applications and APIs even with hit sampling enabled.
+
+Use the checkboxes to select several requests and apply an action to all of them at once. The filter field above the list narrows the requests down within the open attack.
 
 ## Responding to attacks
 
-Is is important to understand if your applications and APIs are properly protected from the attacks to have the possibility to adjust the protection measures if necessary. You can use information from the **Attacks** section to get this understanding and respond correspondingly.
+It is important to understand if your applications and APIs are properly protected from the attacks to have the possibility to adjust the protection measures if necessary. You can use information from the **Attacks** section to get this understanding and respond correspondingly.
 
-When dealing with this task, you will need to identify what type of attack took place, this will give you an understanding of what Wallarm's mechanisms provided protection and then adjust these mechanisms if necessary:
+### Actions on an attack sign
 
-1. **Identify** - in the **Payload** field context menu, select **Show only**, then pay attention to the **Type** filter and search field content.
-1. Check what was done for protection - note the **Status** column:
+These response actions are available at the request level. Open an attack, switch to the **Requests** tab, and select a request: each detected attack sign in its details carries an action bar with the measures available for it. Wallarm decides which actions apply and shows only those:
 
-    * `Blocked` - all hits of the attack were blocked by the filtering node.
-    * `Partially blocked` - some hits of the attack were blocked and others were only registered.
-    * `Monitoring` - all hits of the attack were registered but not blocked.
-    * `Bot detected` - this is bot, check action within the attack.
+| Action | Purpose |
+| -- | -- |
+| **Mark as** → **TP** / **FP** | Confirm the detection as a true positive, or mark it as a [false positive](#false-positives). |
+| **FP rule** | Create a [rule](#false-positives) that skips detection of this attack sign in similar requests. |
+| **Add to IP list** | Add the source IP to the [denylist or allowlist](../ip-lists/overview.md). |
+| **View API Abuse profile** | Open the [API Abuse Prevention](../../api-abuse-prevention/overview.md) profile that detected the bot. |
+| **Add IP to exception list** | Add the source IP to the [API Abuse Prevention exception list](../../api-abuse-prevention/exceptions.md). Available only on a request that was detected but not blocked: if the profile's reaction is **Denylist session**, the blocked requests of that session do not offer it. |
+| **Open Spec Enforcement Policy** | Open the violated [API specification](../../api-specification-enforcement/overview.md) and adjust its settings. |
 
-1. Optionally (recommended), [investigate the full context](#full-context-of-threat-actor-activities) of the attack's malicious requests: to which [user session](../../api-sessions/overview.md) they belong and what the full sequence of requests in this session is.
+### Adjusting protection by attack type
 
-    This allows seeing all activity and logic of the threat actor and understanding attack vectors and what resources can be compromised.
+To respond to an attack, identify what type of attack took place, understand which Wallarm mechanism reacted to it, and adjust that mechanism if necessary. The table below maps attack types to the mechanism behind them and to the place where you tune it.
 
-1. If you think it was not an actual attack, mark it [false positive](#false-positives).
-1. **Understand** - become aware of the Wallarm mechanism that detected and reacted to attack.
-1. **Adjust** - tune the Wallarm's behavior ("how" depends on mechanism).
-
-| Identify | Understand | Adjust | 
+| Attack type | Detected by | Where to adjust |
 | -- | -- | -- |
-| `sqli`, `xss`, `rce`, `ptrav`, `crlf`, `nosqli`, `ssi` [etc.](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) | [Standard tools for attack detection](../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection) (libproton, libdetection and rules) | Expand an attack and explore [CVEs](../../demo-videos/events-inspection.md) summary for the attack and CVEs for separate requests. Pay your attention to the node mode (`final_wallarm_mode` tag), visit **Rules WAF** ([US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules)), analyze them by application name from the attack. If necessary, adjust the rules or [filtration mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) for applications or their specific hosts or endpoints. |
-| [`custom_rule`](../../user-guides/search-and-filters/use-search.md#search-by-regexp-based-customer-rule) | [Custom attack detector](../../user-guides/rules/regex-rule.md) | Expand an attack and follow the **Detected by custom rules** link(s) - if necessary, [modify](../../user-guides/rules/regex-rule.md) the rule(s) including [partial disabling](../../user-guides/rules/regex-rule.md#partial-disabling) it for particular branches. |
-| `vpatch` | [Virtual patch](../../user-guides/rules/vpatch-rule.md) | Visit the **Rules WAF** section ([US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules)), search for "Create virtual patch" rules, if necessary, adjust the rule related to your attack. Have in mind that virtual patches work regardless of the filtration mode. |
-| `brute`,<br>`dirbust`,<br>`bola`,<br>`multiple_payloads` | [Trigger](../../user-guides/triggers/triggers.md) and IP lists: [requests from denylisted IPs](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) | Expand an attack and after analyzing the requests, click the displayed trigger name (if presented) and modify its parameters. Also note trigger tags, then go to **Triggers** ([US](https://us1.my.wallarm.com/triggers) or [EU](https://my.wallarm.com/triggers)) and find trigger by name, if necessary - adjust it. <br> If action is [`Blocked`](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips), this is done via denylist - go to **IP Lists** ([US](https://us1.my.wallarm.com/ip-lists) or [EU](https://my.wallarm.com/ip-lists)) and search by IP: if necessary, adjust time period for IP staying in denylist. |
-| `blocked_source` | IP lists: [requests from denylisted IPs](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) | Expand an attack and analyze requests from denylisted IP; after that, click the displayed trigger name and - if necessary - modify trigger settings. For manually denylisted IPs (`blocked_source`), go to **IP Lists** ([US](https://us1.my.wallarm.com/ip-lists) or [EU](https://my.wallarm.com/ip-lists)) and search by IP: if necessary, adjust time period for IP staying in denylist. |
-| **Specific module or function:** |
-| `api_abuse`, `account_takeover`, `security_crawlers`, `scraping`, `resource_consumption` ([details](../../attacks-vulns-list.md#api-abuse)) <br> - note the **Bot detected** status for all | [API Abuse Prevention](../../api-abuse-prevention/overview.md) and IP lists: [requests from denylisted IPs](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) | Expand an attack and analyze the [heatmaps](../../api-abuse-prevention/exploring-bots.md#attacks) proving the [confidence](../../api-abuse-prevention/overview.md#how-api-abuse-prevention-works) that it is a bot, note the date of the attack and source IP. <br> If action is [`Blocked`](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips), this is done via denylist - go to **IP lists**, filter by date and IP, click **Reason** column to see IP address details, explore these details, click **Triggered profile**, explore it and [change](../../api-abuse-prevention/setup.md#creating-profiles) if necessary. <br><br> **Also, you can**: <br> <ul><li>[Add source IP to exception list](../../api-abuse-prevention/exceptions.md) for this IP never to be blocked. Also, you can remove IP from exception list (navigate to **API Abuse Prevention** → **Exception list**)</li> <li>Add source IP to denylist, even if API abuse configuration is not supposed to do it automatically.</li></ul> **Additionally you can**:  In **IP Lists**, click the IP address itself to go back to **Events** and see all related attacks.|
-| `bola` | [BOLA autoprotection](../../api-discovery/bola-protection.md) by [API Discovery](../../api-discovery/overview.md) | Expand an attack, if one does not contain link to trigger (which is the sign of manual protection from BOLA) then it is autoprotection provided by the **API Discovery** ([US](https://us1.my.wallarm.com/api-discovery) or [EU](https://my.wallarm.com/api-discovery)) module. If necessary, navigate to the **BOLA Protection** ([US](https://us1.my.wallarm.com/bola-protection) or [EU](https://my.wallarm.com/bola-protection)) section to either disable this protection or adjust template with its settings. |
-| `undefined_endpoint`, `undefined_parameter`, `invalid_parameter_value`, `missing_parameter`, `missing_auth`, `invalid_request`  (`api_specification` to search for all of them, [details](../../attacks-vulns-list.md#api-specification)) | [API Specification Enforcement](../../api-specification-enforcement/overview.md) | Expand an attack and follow the link to the violated specification. At the specification dialog, use the **API specification enforcement** tab to adjust settings, consider uploading the latest version of specification via the **Specification upload** tab. |
-| `gql_doc_size`, `gql_value_size`, `gql_depth`, `gql_aliases`, `gql_docs_per_batch`, `gql_introspection`, `gql_debug` (`graphql_attacks` to search for all of them, [details](../../attacks-vulns-list.md#graphql-attacks)) | [GraphQL API Protection](../../api-protection/graphql-rule.md) | Expand an attack and follow the **GraphQL security policies** link - if necessary, modify existing **Detect GraphQL attacks** rule(s) or create additional ones for particular branches. |
-| `credential_stuffing` | [Credential Stuffing Detection](../../about-wallarm/credential-stuffing.md) | Expand an attack and check the list of compromised credentials that were tried to be used, navigate to the Credential Stuffing ([US](https://wallarm.us1.wallarm.com/credential-stuffing), [EU](https://my.wallarm.com/credential-stuffing) Cloud) section and check [configuration](../../about-wallarm/credential-stuffing.md#configuring), specifically, the list of monitored authentication endpoints and recommendations for that list, and configured notifications about compromised credentials. |
+| **SQL Injection**, **Cross-site Scripting**, **Remote Code Execution**, **Path traversal**, **CRLF Injection**, **NoSQL Injection** and other [input validation attacks](../../attacks-vulns-list.md#attack-types) | [Standard detectors](../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection) | [Rules](../rules/rules.md) and the [filtration mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) of the application, host, or endpoint |
+| Attacks detected by a regexp-based rule | [Custom attack detector](../rules/regex-rule.md) | The [regexp-based rule](../rules/regex-rule.md) that matched, which you can also [partially disable](../rules/regex-rule.md#partial-disabling) |
+| **Virtual patch** | [Virtual patch](../rules/vpatch-rule.md) | The virtual patch rule. Virtual patches work regardless of the filtration mode |
+| **Brute force**, **Forced browsing**, **Broken Object Level Authorization** | [Trigger](../triggers/triggers.md) | The trigger in **Triggers**. If the source was denylisted, the [IP list](../ip-lists/overview.md#requests-from-denylisted-ips) entry |
+| **Blocked source** | [IP lists](../ip-lists/overview.md#requests-from-denylisted-ips) | The denylist entry for the source IP |
+| **Suspicious API activity**, **Account takeover**, **Security crawlers**, **Scraping** ([details](../../attacks-vulns-list.md#api-abuse)) | [API Abuse Prevention](../../api-abuse-prevention/overview.md) | **View API Abuse profile** to review the [detection confidence](../../api-abuse-prevention/overview.md#how-api-abuse-prevention-works) and [change the profile](../../api-abuse-prevention/setup.md#creating-profiles), or **Add IP to exception list** to [exempt the source IP](../../api-abuse-prevention/exceptions.md) |
+| **Undefined endpoint**, **Undefined parameter**, **Invalid parameter**, **Missing parameter**, **Missing authentication**, **Invalid request** ([details](../../attacks-vulns-list.md#api-specification)) | [API Specification Enforcement](../../api-specification-enforcement/overview.md) | **Open Spec Enforcement Policy** |
+| **GraphQL query size**, **GraphQL value size**, **GraphQL query depth**, **GraphQL aliases**, **GraphQL batching**, **GraphQL introspection**, **GraphQL debug** ([details](../../attacks-vulns-list.md#graphql-attacks)) | [GraphQL API Protection](../../api-protection/graphql-rule.md) | The **Detect GraphQL attacks** rule |
+| **Credential stuffing** | [Credential Stuffing Detection](../../about-wallarm/credential-stuffing.md) | The [Credential Stuffing configuration](../../about-wallarm/credential-stuffing.md#configuring), specifically the monitored authentication endpoints |
+
+Before adjusting, it is worth [investigating the full context](#full-context-of-threat-actor-activities) of the attack's requests: the session they belong to and the full sequence of requests in it. This shows all activity of the threat actor and what resources can be compromised.
+
+## False positives
+
+A [false positive](../../about-wallarm/protecting-against-attacks.md#false-positives) occurs when [attack signs](../../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors) are detected in a legitimate request.
+
+You can handle it in two ways, depending on whether you only want to correct the data or also change what the node detects.
+
+### Mark as false positive
+
+Marking removes the request from the attack statistics and hides it from the attack list, so your data reflects that the detection was not real. It does **not** change detection — the node still flags identical requests in future.
+
+In the request details, use **Mark as false positive (FP)** (select several requests first to mark them at once). The same action reverts a mark.
+
+Wallarm hides false positives by default — to review them, filter by **Verification Status**.
+
+### Create a false-positive rule
+
+To stop the node from **detecting** such requests in future, use **FP rule** — a prefilled [rule](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types) where you choose how broadly to skip detection for the attacked parameter, from narrowest to broadest:
+
+* **Ignore this stamp for this parameter** — this exact attack sign (stamp) in the parameter.
+* **Ignore this attack subtype for this parameter** — this attack subtype in the parameter.
+* **Ignore this attack for this parameter** — this attack type in the parameter regardless of a malicious payload.
+* **Ignore all attacks for this parameter** — all attacks in the parameter.
+* **Create a custom rule** — open the rule editor to define the conditions and action yourself.
+
+A **stamp** is one specific variation of an attack, and each [attack type](../../attacks-vulns-list.md) has many stamps.
+
+![Create a false-positive rule for an attack](../../images/user-guides/events/attack-false-positive-rule.png)
+
+!!! info "Behavioral attacks and API Abuse"
+    False-positive rules apply to signature-based attacks (input validation, such as SQL Injection or XSS), where a specific attack sign is found in a request point. Behavioral attacks — brute force, forced browsing, BOLA — and API Abuse have no per-request signature, so you handle their false positives differently: adjust the [mitigation control or trigger](#adjusting-protection-by-attack-type) that detected them, or, for API Abuse, tune the [profile](../../api-abuse-prevention/setup.md#creating-profiles) or add the source IP to the [exception list](../../api-abuse-prevention/exceptions.md).
+
+## Full context of threat actor activities
+
+Once the malicious request is detected by Wallarm and displayed in the **Attacks** section as the part of some attack, you can see the full context of this request: to which user session it belongs and what the full sequence of requests in this session is. This allows you to investigate all activity of the threat actor to understand attack vectors and what resources can be compromised.
+
+To perform this analysis, open the attack, switch to the **Requests** tab, and select a request. In the request details, open the **Session ID** field menu and select **Investigate this attack in API Sessions**. Wallarm opens the [**API Sessions**][link-sessions] section filtered: the session that the initial request belongs to is displayed; only the initial request is displayed within this session.
+
+![Investigating an attack request in API Sessions](../../images/user-guides/events/attack-open-request-in-sessions.png)
+
+Remove the filter by request ID to see all other requests in the session: now you have the full picture of what was going on within the session the malicious request belongs to.
+
+## Sharing an attack or request
+
+To pass an attack to a colleague, use the share button in the attack details. Wallarm generates a link that opens the same attack with the same filter and time range applied, so the recipient sees exactly what you see.
+
+You can also share an individual request. In the **Requests** tab, open the request and use its share button. Wallarm generates a link that opens the same request within its attack.
 
 ## Dashboards
 
 Wallarm provides comprehensive dashboards to help you analyze detected attacks.
 
-Wallarm's [Threat Prevention](../../user-guides/dashboards/threat-prevention.md) dashboard provides general metrics on your system's security posture, including multi-aspect information about attacks: their sources, targets, types and protocols.
+Wallarm's [Threat Prevention](../dashboards/threat-prevention.md) dashboard provides general metrics on your system's security posture, including multi-aspect information about attacks: their sources, targets, types and protocols.
 
 ![Threat Prevention dashboard](../../images/user-guides/dashboard/threat-prevention.png)
 
-The [OWASP API Security Top 10](../../user-guides/dashboards/owasp-api-top-ten.md) dashboard provides detailed visibility into your system's security posture against the OWASP API Top 10 threats, including attack information.
+The [OWASP API Security Top 10](../dashboards/owasp-api-top-ten.md) dashboard provides detailed visibility into your system's security posture against the OWASP API Top 10 threats, including attack information.
 
 ![OWASP API Top 10](../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
 
@@ -117,7 +156,7 @@ Wallarm can send you notifications on detected attacks, hits and malicious paylo
 
 To configure notifications:
 
-1. Configure [native integrations](../../user-guides/settings/integrations/integrations-intro.md) with the systems to send notifications (e.g. PagerDuty, Opsgenie, Splunk, Slack, Telegram).
+1. Configure [native integrations](../settings/integrations/integrations-intro.md) with the systems to send notifications (e.g. PagerDuty, Opsgenie, Splunk, Slack, Telegram).
 2. Set the conditions for sending notifications:
 
     * To get notifications on each detected hit, select the appropriate option in the integration settings.
@@ -173,16 +212,9 @@ To configure notifications:
                 }
             ]
             ```
-    
-    * To set the threshold of attack, hit or malicious payload number and get notifications when the threshold is exceeded, configure appropriate [triggers](../../user-guides/triggers/triggers.md).
+
+    * To set the threshold of attack, hit or malicious payload number and get notifications when the threshold is exceeded, configure appropriate [triggers](../triggers/triggers.md).
 
 ## API calls
 
-To get the attack details, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below is the example of the API call for **getting the first 50 attacks detected in the last 24 hours**.
-
-Please replacing `TIMESTAMP` with the date 24 hours ago converted to the [Unix Timestamp](https://www.unixtimestamp.com/) format.
-
---8<-- "../include/api-request-examples/get-attacks-en.md"
-
-!!! warning "Getting 100 or more attacks"
-    For attack and hit sets containing 100 or more records, it is best to retrieve them in smaller pieces rather than fetching large datasets all at once, in order to optimize performance. [Explore the corresponding request example](../../api/request-examples.md#get-a-large-number-of-attacks-100-and-more)
+To get the attack details, you can call the Wallarm API directly besides using the Wallarm Console UI. The **Attacks** section is backed by the [Attacks API](../../api-sessions/attacks-api.md), which lets you run the same aggregation queries, drill into groups, compute widgets, mark verdicts, export results, and manage saved views from your own client.

@@ -41,7 +41,7 @@
 
 ### Example: Slack notification if 2 or more SQLi hits are detected in one minute
 
-If 2 or more SQLi [hits](../../../glossary-en.md#hit) are sent to the protected resource, then a notification about this event will be sent to the Slack channel.
+If 2 or more SQLi [hits](../../../about-wallarm/protecting-against-attacks.md#hit) are sent to the protected resource, then a notification about this event will be sent to the Slack channel.
 
 ![Example of a trigger sending the notification to Slack](../../../images/user-guides/triggers/trigger-example1.png)
 
