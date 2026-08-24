@@ -711,6 +711,11 @@
 /7.x/glossary-en/  /7.x/about-wallarm/protecting-against-attacks/
 /5.x/glossary-en/  /5.x/about-wallarm/protecting-against-attacks/
 
+# Serve favicon.png under the conventional /favicon.ico path. Browsers viewing
+# raw .md / .txt files have no HTML <head> to read <link rel="icon"> from, so
+# they fall back to auto-discovering /favicon.ico.
+/favicon.ico   /favicon.png   200
+
 # ---- wildcard rules: everything below is charged against Cloudflare's
 # ---- 100-dynamic-rule budget. Keep this block small.
 
@@ -731,7 +736,9 @@
 /4.2/faq/* /faq/:splat 301
 
 /about-wallarm-waf/* /about-wallarm/:splat 301
+/4.0/about-wallarm-waf/* /4.0/about-wallarm/:splat 301
 /waf-installation/* /installation/:splat 301
+/4.0/waf-installation/* /4.0/installation/:splat 301
 
 /api-policy-enforcement/* /api-specification-enforcement/:splat
 
