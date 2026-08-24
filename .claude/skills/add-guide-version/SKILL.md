@@ -1,6 +1,6 @@
 ---
 name: add-guide-version
-description: "Add a new documentation guide version (e.g., 7.x). Creates version folder, config, wrappers; freezes the previous version's version-specific pages and splits version-specific include snippets; updates version selector, feeds config, netlify.toml, Dockerfile, and home page descriptions."
+description: "Add a new documentation guide version (e.g., 7.x). Creates version folder, config, wrappers; freezes the previous version's version-specific pages and splits version-specific include snippets; updates version selector, feeds config, scripts/build.sh, Dockerfile, and home page descriptions."
 ---
 
 # Prompt
@@ -91,10 +91,10 @@ Freezing means: a page in `docs/<PREVIOUS_VERSION>/` stops being a one-line wrap
      || location.pathname === "/<NEW_VERSION>/"
      ```
 
-11. **Update `netlify.toml`**:
-    * Add a new build command for the new version. Place it among the other version build commands:
+11. **Update `scripts/build.sh`**:
+    * Add a `build_version` call for the new version, among the other version builds:
       ```
-      cp -R images/ docs/<NEW_VERSION>/images/ && zensical build -f mkdocs-<NEW_VERSION>.yml && rm -rf docs/<NEW_VERSION>/images/ &&
+      build_version <NEW_VERSION> mkdocs-<NEW_VERSION>.yml
       ```
 
 12. **Update `Dockerfile`**:
@@ -140,5 +140,5 @@ Freezing means: a page in `docs/<PREVIOUS_VERSION>/` stops being a one-line wrap
 * Version-split include snippets by subfolder — the convention is a filename suffix (`-6.x`, `-5.0`); and do not pin snippets that the older frozen version left shared
 * Leave dangling includes — every `--8<-- "../include/..."` in the frozen version must resolve
 * Change `mkdocs-base.yml` — it is shared across all versions
-* Forget to update ALL of: nav.html, extra.js, feeds.config.yml, netlify.toml, Dockerfile
+* Forget to update ALL of: nav.html, extra.js, feeds.config.yml, scripts/build.sh, Dockerfile
 * Modify `rootVersion` in extra.js without explicit approval — this controls which version serves at `/`

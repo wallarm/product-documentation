@@ -1,5 +1,4 @@
-// Cloudflare Workers Static Assets config. Replaces netlify.toml's publish
-// dir, edge function, and headers.
+// Cloudflare Workers Static Assets config for docs.wallarm.com.
 //
 // There is deliberately no `main`: this is an assets-only deployment. The
 // `Accept: text/markdown` negotiation that used to need a Worker script is now
@@ -13,7 +12,7 @@
   "name": "wallarm-docs",
   "compatibility_date": "2026-08-01",
   "assets": {
-    // Same publish dir as Netlify. Built by scripts/build.sh.
+    // Publish dir built by scripts/build.sh.
     "directory": "./site/",
     // zensical emits directory-style pages (`/foo/bar/index.html`), so both
     // `/foo/bar` and `/foo/bar/` must resolve to the same page.

@@ -1,9 +1,9 @@
-# Static response headers for docs.wallarm.com. Port of the netlify.toml
-# [[headers]] blocks (DEVOPS-5014). Lives in the root version's docs_dir so
-# zensical copies it to the publish dir root, same as _redirects.
+# Static response headers for docs.wallarm.com. Lives in the root
+# version's docs_dir so zensical copies it to the publish dir root, same as
+# _redirects.
 #
 # Cloudflare's `*` is greedy and matches `/`, so one `/*.md` rule covers both
-# `/foo.md` and `/7.x/a/b.md` — no `/**/*.md` twin needed as on Netlify.
+# `/foo.md` and `/7.x/a/b.md`.
 #
 # NOTE: these rules apply only to assets served directly by the asset server.
 # The Worker (src/worker.ts) runs first for extension-less page URLs and sets

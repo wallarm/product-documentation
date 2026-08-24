@@ -6,8 +6,8 @@
 # deployment was rejected outright:
 #   Maximum number of dynamic _redirects rules limit of 100 exceeded [100324]
 # Grouping the wildcards at the end takes the count to the number of genuinely
-# dynamic rules. Netlify is unaffected: it is first-match-wins either way, and
-# exact matches now win over wildcards, which is the intent in every case here.
+# dynamic rules. It is first-match-wins, so exact matches win over wildcards,
+# which is the intent in every case here.
 #
 # So: add plain path-to-path redirects ABOVE the wildcard block; add wildcard
 # rules at the very bottom.

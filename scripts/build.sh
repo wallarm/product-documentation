@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
-# Full multi-version site build. Extracted verbatim from the `[build] command`
-# in netlify.toml so Netlify and Cloudflare run the same steps (DEVOPS-5014).
-# netlify.toml is left untouched until the DNS cutover is verified — until then
-# the two copies must be kept in sync.
+# Full multi-version site build for Cloudflare Workers Builds.
+# This is the single source of truth for the site's build steps.
 #
-# CONTEXT mirrors Netlify's variable: "production" enables the expensive
-# production-only steps (image optimisation, raw markdown, OG images, feeds).
-# Anything else (PR preview, branch build) skips them to keep builds fast.
+# CONTEXT="production" enables the expensive production-only steps (image
+# optimisation, raw markdown, OG images, feeds). Anything else (PR preview,
+# branch build) skips them to keep builds fast.
 #
 # SKIP_IMAGE_OPTIMISATION=1 drops just the image pass while keeping the rest of
 # a production build. The pass downloads x86_64 Linux binaries (pngquant,
@@ -22,8 +20,8 @@ CONTEXT="${CONTEXT:-deploy-preview}"
 # 1100+ PNGs — would also run on PR previews. Readers never see previews, and
 # the pass changes bytes, not behaviour, so skip it off the production branch to
 # keep PR builds fast; .md companions, OG images and feeds still generate.
-# WORKERS_CI_BRANCH is set only by Workers Builds; when it is unset (local runs,
-# Netlify) this is a no-op and existing behaviour is preserved.
+# WORKERS_CI_BRANCH is set only by Workers Builds; when it is unset (local runs)
+# this is a no-op.
 if [ -n "${WORKERS_CI_BRANCH:-}" ] && [ "$WORKERS_CI_BRANCH" != "master" ]; then
   export SKIP_IMAGE_OPTIMISATION=1
 fi

@@ -29,15 +29,16 @@ docker build -t wallarm-docs . && docker run -p 8080:80 wallarm-docs
 
 ### Deployment pipeline
 
-The site is **migrating from Netlify to Cloudflare**. Both run in parallel
-until the cutover, so a PR may get a preview from each.
+The site is hosted on **Cloudflare Workers Static Assets**, built by Cloudflare
+Workers Builds from `master`.
 
 * There are no tests or linters. Validation happens via **preview builds**.
 * Creating a **PR to `master`** triggers a build — the preview link appears in
   the PR checks (takes 3-5 minutes).
 * **Merging to `master`** deploys production.
-* Build configuration: `scripts/build.sh` (Cloudflare) and `netlify.toml`
-  (Netlify). **They must be kept in sync until Netlify is retired.**
+* Build configuration: `scripts/build.sh` (the single build script) and
+  `wrangler.jsonc` (deploy config). Redirects, content negotiation, and WAF are
+  configured outside this repo — ask the DevOps team.
 
 Two build checks will fail a deploy, both with the offending lines printed:
 
@@ -100,7 +101,7 @@ Referenced from docs via `--8<-- "../include/snippet.md"`. The snippet base path
 
 `images/` at repo root is the **single source** for all screenshots/diagrams.
 
-**How images reach each version**: before every build or serve, images are copied from `images/` into each version's `docs_dir` (e.g., `docs/6.x/images/`). This happens in `serve.sh`, `Dockerfile`, and `netlify.toml`. The copies are temporary and cleaned up after the build. Do not commit `docs/<version>/images/` — they are gitignored or cleaned up.
+**How images reach each version**: before every build or serve, images are copied from `images/` into each version's `docs_dir` (e.g., `docs/6.x/images/`). This happens in `serve.sh`, `Dockerfile`, and `scripts/build.sh`. The copies are temporary and cleaned up after the build. Do not commit `docs/<version>/images/` — they are gitignored or cleaned up.
 
 Diagrams and schemes are maintained in the [Figma project](https://www.figma.com/file/77TOtRey6EfvZsPQTClWMn/Traffic-flows).
 
@@ -119,15 +120,14 @@ The `_redirects` file lives in the root version's `docs_dir` (currently `docs/6.
 
 This prevents 404 errors for users with bookmarked URLs. Redirect syntax supports wildcards (`/*`).
 
-**Add plain path-to-path redirects ABOVE the wildcard block at the bottom of the file; add wildcard rules INSIDE that block.** Cloudflare counts every rule appearing after the first wildcard against a 100-rule budget and rejects the entire deployment past it — so one wildcard added mid-file silently reclassifies hundreds of plain rules. `scripts/check_redirects_budget.py` runs on every build and fails with the offending line numbers, but it is easier to place the rule correctly than to debug it afterwards. See the header comment in `_redirects`, plus the [Cloudflare](https://developers.cloudflare.com/workers/static-assets/redirects/) and [Netlify](https://docs.netlify.com/routing/redirects/) references.
+**Add plain path-to-path redirects ABOVE the wildcard block at the bottom of the file; add wildcard rules INSIDE that block.** Cloudflare counts every rule appearing after the first wildcard against a 100-rule budget and rejects the entire deployment past it — so one wildcard added mid-file silently reclassifies hundreds of plain rules. `scripts/check_redirects_budget.py` runs on every build and fails with the offending line numbers, but it is easier to place the rule correctly than to debug it afterwards. See the header comment in `_redirects`, plus the [Cloudflare](https://developers.cloudflare.com/workers/static-assets/redirects/) reference.
 
 ### Key platform files
 
 | File | Purpose |
 |------|---------|
 | `mkdocs-base.yml` | Shared config: plugins, extensions, theme |
-| `netlify.toml` | Netlify build/deploy config (edit only for version management) |
-| `scripts/build.sh` | Cloudflare build; mirrors `netlify.toml`, keep in sync |
+| `scripts/build.sh` | Cloudflare build: all versions, image optimization, `.md` companions, OG images, feeds (edit for version management) |
 | `wrangler.jsonc` | Cloudflare Workers Static Assets deploy config |
 | `docs/6.x/_headers` | Response headers, Cloudflare |
 | `stylesheets/extra.js` | Custom JS: image zoom, version selector logic, `rootVersion` variable |
@@ -158,7 +158,8 @@ Follow these guides before writing or editing any content:
 ## What NOT to do
 
 * Do NOT edit `mkdocs-base.yml` unless explicitly required
-* Do NOT edit `netlify.toml`, `scripts/build.sh`, `wrangler.jsonc` or files in `stylesheets/` except for version management tasks (adding/deprecating a guide version)
+* Do NOT edit `scripts/build.sh` or files in `stylesheets/` except for version management tasks (adding/deprecating a guide version)
+* Do NOT edit `wrangler.jsonc` — it is the Cloudflare deploy config, owned by DevOps/infra, and does not change for content or version work
 * Do NOT edit files in `docs/6.x/` or `docs/7.x/` directly — they are include wrappers (exception: creating new wrappers for new pages)
 * Do NOT invent features not described in the source material
 * Do NOT add content in languages other than English
