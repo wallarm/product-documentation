@@ -63,6 +63,24 @@ Notes on each of those:
   dependencies automatically, and without this it downloads ~170 MB of Chromium
   on every build.
 
+### The first build is safe
+
+`wrangler deploy` with no `--env` targets the **production** Worker,
+`wallarm-docs`, which does not exist yet — the first `master` build creates it.
+That does not move any traffic: routes are owned by Terraform in
+`infra/cloudflare-iac`, and no route points at `wallarm-docs`. Until one is
+added at cutover, docs.wallarm.com continues to be served by Netlify and the new
+Worker sits there receiving nothing.
+
+So Workers Builds can be connected, run, and iterated on well before the
+cutover, which is the point of doing it as a separate step.
+
+**One thing to confirm on the first PR build:** `workers_dev` is `false` and
+`preview_urls` is `true`. Cloudflare disables preview URLs by default when
+`workers_dev` is off; the explicit `preview_urls: true` is meant to override
+that, but this combination has not been exercised yet. If a PR build produces no
+preview URL, that is the cause.
+
 Build takes roughly 3-6 minutes on a 4-vCPU runner; measured at 1m35s wall
 clock locally with 518s of CPU across 6 cores. The platform timeout is 20
 minutes, so there is comfortable headroom.
