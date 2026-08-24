@@ -125,7 +125,7 @@ The `_redirects` file lives in the root version's `docs_dir` (currently `docs/6.
 
 This prevents 404 errors for users with bookmarked URLs. Redirect syntax supports wildcards (`/*`).
 
-**Add plain path-to-path redirects ABOVE the wildcard block at the bottom of the file.** Cloudflare counts every rule after the first wildcard against a 100-rule budget and rejects the entire deployment past it. See the header comment in `_redirects`, plus the [Cloudflare](https://developers.cloudflare.com/workers/static-assets/redirects/) and [Netlify](https://docs.netlify.com/routing/redirects/) references.
+**Add plain path-to-path redirects ABOVE the wildcard block at the bottom of the file; add wildcard rules INSIDE that block.** Cloudflare counts every rule appearing after the first wildcard against a 100-rule budget and rejects the entire deployment past it — so one wildcard added mid-file silently reclassifies hundreds of plain rules. `scripts/check_redirects_budget.py` runs on every build and fails with the offending line numbers, but it is easier to place the rule correctly than to debug it afterwards. See the header comment in `_redirects`, plus the [Cloudflare](https://developers.cloudflare.com/workers/static-assets/redirects/) and [Netlify](https://docs.netlify.com/routing/redirects/) references.
 
 ### Key platform files
 

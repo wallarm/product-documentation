@@ -17,6 +17,11 @@ set -euo pipefail
 
 CONTEXT="${CONTEXT:-deploy-preview}"
 
+# Cheap structural checks first, so a broken file fails in seconds rather than
+# after a ten-minute build. The redirect budget is checked on EVERY build, not
+# just production: going over it has Cloudflare reject the whole deployment.
+python3 scripts/check_redirects_budget.py docs/6.x/_redirects
+
 pip3 install --no-cache-dir -r requirements.txt
 
 # The lazy-loading markdown extension (mdx_lazy_images) lives at the repo root;
