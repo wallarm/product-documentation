@@ -22,8 +22,20 @@ entry, which is why asset requests are free and never invoke anything.
 
 ## Workers Builds settings
 
-Workers Builds is configured in the Cloudflare dashboard, not in this repo, so
-the settings are recorded here.
+**Dashboard only.** There is no API or Terraform path: the Workers Builds
+endpoints all reject an account-scoped token (`400` / `12006 Invalid token`),
+and the Git connection is a GitHub App install that has to be authorized
+interactively. So this cannot live in `infra/cloudflare-iac` with the rest of
+the Cloudflare config, and the settings are recorded here instead.
+
+Connecting it needs **both**:
+
+* Cloudflare dashboard access on the Wallarm account
+* GitHub **owner** or *GitHub Apps Manager* on the `wallarm` org, to install the
+  Cloudflare Workers & Pages app. Scope it to `product-documentation` only
+  ("Only select repositories") rather than the whole org.
+
+Then set:
 
 | Setting | Value |
 |---|---|
