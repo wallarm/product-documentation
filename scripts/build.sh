@@ -17,6 +17,17 @@ set -euo pipefail
 
 CONTEXT="${CONTEXT:-deploy-preview}"
 
+# Workers Builds runs every branch with CONTEXT=production (set as a dashboard
+# build variable), so image optimisation — the slowest step, ~7-8 min over
+# 1100+ PNGs — would also run on PR previews. Readers never see previews, and
+# the pass changes bytes, not behaviour, so skip it off the production branch to
+# keep PR builds fast; .md companions, OG images and feeds still generate.
+# WORKERS_CI_BRANCH is set only by Workers Builds; when it is unset (local runs,
+# Netlify) this is a no-op and existing behaviour is preserved.
+if [ -n "${WORKERS_CI_BRANCH:-}" ] && [ "$WORKERS_CI_BRANCH" != "master" ]; then
+  export SKIP_IMAGE_OPTIMISATION=1
+fi
+
 # Cheap structural checks first, so a broken file fails in seconds rather than
 # after a ten-minute build. The redirect budget is checked on EVERY build, not
 # just production: going over it has Cloudflare reject the whole deployment.
