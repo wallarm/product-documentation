@@ -763,3 +763,11 @@
 /ar/*  /:splat  301
 /pt-br/*  /:splat  301
 /7.x/updating-migrating/older-versions/*  /7.x/updating-migrating/versioning-policy/#version-list
+
+# Serve the version-root sitemap for a sitemap.xml requested at any depth. The
+# theme JS fetches sitemap.xml relative to the current page, so nested paths
+# (/maintenance/sitemap.xml, /maintenance/overview/sitemap.xml) must resolve to
+# the root sitemap or they 404. Cloudflare's `*` is greedy and matches `/`, so
+# this single rule is meant to cover every depth — VERIFY on staging that a
+# two-level path is caught; if not, add /*/*/sitemap.xml and /*/*/*/sitemap.xml.
+/*/sitemap.xml   /sitemap.xml   200
