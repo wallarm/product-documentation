@@ -109,13 +109,13 @@ Decide which case applies:
 
 * `rootVersion` in `stylesheets/extra.js`
 * Choice of `mkdocs-*.yml` as root
-* `netlify.toml`, `Dockerfile`, version selector partials, redirects
+* `scripts/build.sh`, `Dockerfile`, version selector partials, redirects
 
 These belong to a separate promote-preview-to-root operation.
 
 **On a MAJOR bump, tell the author:**
 
-> "This release introduces a new MAJOR version. I will write the changelog and freeze older versions where needed, but I will NOT touch structural configs (`stylesheets/extra.js`, `mkdocs-*.yml`, `netlify.toml`, `Dockerfile`, version selector, redirects) — those belong to a separate promote-preview-to-root operation.
+> "This release introduces a new MAJOR version. I will write the changelog and freeze older versions where needed, but I will NOT touch structural configs (`stylesheets/extra.js`, `mkdocs-*.yml`, `scripts/build.sh`, `Dockerfile`, version selector, redirects) — those belong to a separate promote-preview-to-root operation.
 >
 > To preview the new MAJOR locally, run: `./serve.sh mkdocs-<NEW-MAJOR>.x.yml`. The site will be at `http://127.0.0.1:8000/<NEW-MAJOR>.x/` until structural promotion happens."
 
@@ -617,7 +617,7 @@ The first draft of a bullet is almost always too long. After the validation gate
 * Invent changes not present in the source items, or invent a form factor entry the author has not confirmed is in this release.
 * Modify wrapper files in any `docs/<X>/` directory — edit `docs/latest/` instead, with the freeze flow if needed.
 * Bump versions in a `docs/<X>/` whose MAJOR does not match the release — cross-line bumps leak version statements into the wrong major.
-* On a major-version bump, touch any structural config (`stylesheets/extra.js`, `mkdocs-*.yml` root choice, `netlify.toml`, `Dockerfile`, version selector, redirects) — separate operation.
+* On a major-version bump, touch any structural config (`stylesheets/extra.js`, `mkdocs-*.yml` root choice, `scripts/build.sh`, `Dockerfile`, version selector, redirects) — separate operation.
 * Mix up NGINX Node and Native Node changelogs, or reuse the NGINX CVE list as the Native one — each artifact gets its own `docker scout compare` run.
 * List a CVE without confirming via `docker scout compare --only-fixed`, or write a CVE/GHSA ID as bare text (every one must be a markdown link).
 * Reference a config key, parameter, CLI flag, env var, file path, or internal component in a changelog bullet without confirming it is documented in `docs/latest/` first (see Part 1 step 5 validation gate).

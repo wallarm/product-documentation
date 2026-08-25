@@ -1,6 +1,6 @@
 ---
 name: deprecate-guide-version
-description: "Remove a deprecated guide version from the documentation site. Deletes version content, updates version selector, netlify.toml, Dockerfile, and adds redirects for the removed version's URLs."
+description: "Remove a deprecated guide version from the documentation site. Deletes version content, updates version selector, scripts/build.sh, Dockerfile, and adds redirects for the removed version's URLs."
 ---
 
 # Prompt
@@ -46,10 +46,10 @@ The author provides:
 
 ### Phase 3: Update build config
 
-6. **Update `netlify.toml`**:
-   - Remove the build command for the deprecated version:
+6. **Update `scripts/build.sh`**:
+   - Remove the `build_version` call for the deprecated version:
      ```
-     cp -R images/ docs/<DEPRECATED_VERSION>/images/ && zensical build -f mkdocs-<DEPRECATED_VERSION>.yml && rm -rf docs/<DEPRECATED_VERSION>/images/ &&
+     build_version <DEPRECATED_VERSION> mkdocs-<DEPRECATED_VERSION>.yml
      ```
 
 7. **Update `Dockerfile`**:
@@ -114,5 +114,5 @@ The author provides:
 
 * Delete the `docs/deprecated/` folder — it contains the stub page for all deprecated versions
 * Forget to add redirects — this causes 404 errors for users with bookmarked URLs
-* Remove version from nav.html without also removing from netlify.toml and Dockerfile
+* Remove version from nav.html without also removing from scripts/build.sh and Dockerfile
 * Delete `mkdocs-deprecated.yml` — only update it to point to the newly deprecated version

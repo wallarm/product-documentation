@@ -88,7 +88,7 @@ URL to a desktop RSS reader.
 ## Build integration
 
 The feeds are generated straight into the published site by a step in the
-`netlify.toml` build command, gated to **production deploys only** (same as the
+`scripts/build.sh` build script, gated to **production deploys only** (same as the
 raw-markdown step) — so nothing runs on PR previews or branch deploys. There are
 no committed feed files and no separate CI job. The output is deterministic from
 the changelog files + config, so the published feed changes only when a changelog
