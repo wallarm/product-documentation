@@ -320,6 +320,7 @@
 # ---- 100-dynamic-rule budget. Keep this block small.
 
 /vulnerability-detection/api-security-testing-via-postman/* /about-wallarm/detecting-vulnerabilities/#detection-methods
+/7.x/vulnerability-detection/api-security-testing-via-postman/* /7.x/about-wallarm/detecting-vulnerabilities/#detection-methods
 /installation/on-premise/*            /installation/supported-deployment-options/
 
 /about-wallarm-waf/* /about-wallarm/:splat 301
