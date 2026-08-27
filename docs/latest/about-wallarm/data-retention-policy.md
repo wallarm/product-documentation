@@ -9,8 +9,7 @@ This policy outlines retention periods for different datasets collected by Walla
 | Data on [user sessions](../api-sessions/overview.md) the legitimate and malicious requests belong to  | 1 week | 1 week |
 | [Security issues](../user-guides/vulnerabilities.md) (vulnerabilities) detected by [any method](../about-wallarm/detecting-vulnerabilities.md#detection-methods) | ∞<sup>*</sup> | ∞ |
 | Statistics on processed and blocked requests displayed on the [Threat Prevention dashboard](../user-guides/dashboards/threat-prevention.md)                                                                                                                          | 6 months        | 3 months |
-| Data displayed on [Business Intelligence (BI) dashboards](../user-guides/dashboards/bi-dashboards.md) | 14 days<sup>**</sup> | 14 days<sup>**</sup> |
-| Configuration and layout of [BI dashboards](../user-guides/dashboards/bi-dashboards.md) | ∞ | ∞ |
+| Data displayed on [Business Intelligence (BI) dashboards](../user-guides/dashboards/bi-dashboards.md) | 14 days by default; to extend the period, contact the [Wallarm support team](https://support.wallarm.com/) | 14 days |
 | History of [allowlisted, denylisted, and graylisted IP addresses](../user-guides/ip-lists/overview.md)                                                                                                                                                                     | 3 months         | 3 months |
 | Automatically generated or manually created [rules](../user-guides/rules/rules.md) for processing traffic by Wallarm nodes                                                                                                              | ∞                | ∞ |
 | Wallarm account configuration: [users](../user-guides/settings/users.md), [applications](../user-guides/settings/applications.md), [integrations](../user-guides/settings/integrations/integrations-intro.md), [triggers](../user-guides/triggers/triggers.md) | ∞                | ∞ |
@@ -19,5 +18,3 @@ This policy outlines retention periods for different datasets collected by Walla
 | [API Discovery](../api-discovery/overview.md) dynamic endpoint data (sensitive data, authentication flows, change status, requests counter) | 7 days | 7 days |
 
 <small><sup>*</sup> Storing of security issues found by [AASM](../api-attack-surface/overview.md) can be limited by the AASM's [host retention policy](../api-attack-surface/setup.md#host-retention-policy).</small>
-
-<small><sup>**</sup> This is the default retention period for the data displayed on BI dashboards. It is a per-customer setting and can be extended on request: contact the [Wallarm support team](https://support.wallarm.com/). The dashboards themselves are never deleted, so a dashboard keeps its charts and layout even after the data behind them is removed.</small>
