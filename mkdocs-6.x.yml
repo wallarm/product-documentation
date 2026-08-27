@@ -105,6 +105,7 @@ nav:
         - Virtual Patching: user-guides/rules/vpatch-rule.md
         - Custom Regex Rules: user-guides/rules/regex-rule.md
         - Sensitive Data Masking: user-guides/rules/sensitive-data-rule.md
+        - Limit Data Export: user-guides/rules/limit-data-export-rule.md
         - Request Processing: user-guides/rules/request-processing.md
         - Response Headers: user-guides/rules/add-replace-response-header.md
         - Overlimit Detection: user-guides/rules/configure-overlimit-res-detection.md
