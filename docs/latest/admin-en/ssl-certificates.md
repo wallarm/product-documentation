@@ -4,6 +4,7 @@
 [nginx-docker]:                 ../admin-en/installation-docker-en.md
 [nginx-node]:                   ../installation/nginx-native-node-internals.md#nginx-node
 [native-node]:                  ../installation/nginx-native-node-internals.md#native-node
+[nginx-native-node-internals]:  ../installation/nginx-native-node-internals.md
 [security-edge]:                ../installation/security-edge/overview.md
 [aws-ami]:                      ../installation/cloud-platforms/aws/ami.md
 [gcp]:                          ../installation/cloud-platforms/gcp/machine-image.md
@@ -11,18 +12,22 @@
 
 # SSL/TLS Termination and Certificate Management (Self-Hosted Nodes)
 
-This article describes how SSL/TLS termination and certificate management work in self-hosted Wallarm nodes (including NGINX and Native Nodes), and how HTTPS traffic is processed for analysis.
+This article describes how SSL/TLS termination and certificate management work in self-hosted Wallarm nodes (including [NGINX and Native Nodes][nginx-native-node-internals]), and how SSL/TLS-protected application traffic is processed for analysis.
 
-Wallarm analyzes HTTP traffic only after SSL/TLS decryption. SSL/TLS termination can occur on an upstream component or on the Wallarm Node, which determines HTTPS traffic flow and whether certificates must be managed on the Wallarm side.
+Wallarm analyzes HTTP traffic only after SSL/TLS decryption. SSL/TLS termination can occur on an upstream component or on the Wallarm Node, which determines SSL/TLS-protected traffic flow and whether certificates must be managed on the Wallarm side.
 
-## HTTPS traffic flow and SSL/TLS termination
+This article covers standard server-side SSL/TLS termination. Mutual TLS (mTLS), where the Node also verifies client certificates, is out of scope here and is covered separately.
 
-HTTPS traffic is encrypted and cannot be inspected in its encrypted form. To analyze requests, the traffic must be decrypted at the point of SSL/TLS termination.
+## Traffic flow and SSL/TLS termination
+
+SSL/TLS-protected traffic is encrypted and cannot be inspected in its encrypted form. To analyze requests, the traffic must be decrypted at the point of SSL/TLS termination.
 
 In Wallarm deployments, SSL/TLS termination can be performed either by an upstream component (e.g., a load balancer or Ingress Controller) or by a Wallarm Node.
 
 * If SSL/TLS is terminated upstream, Wallarm receives already decrypted traffic and does not require certificates.
 * If a Wallarm NGINX Node terminates SSL/TLS, certificates must be issued, configured, and maintained on the Wallarm side.
+
+Choose where to terminate SSL/TLS based on your existing infrastructure: if an upstream component (e.g., a load balancer, Ingress Controller, or Application Gateway) already terminates SSL/TLS, keep that configuration and let the Wallarm Node receive the already-decrypted traffic, which avoids extra certificate management on the Wallarm side. Terminate SSL/TLS on the Wallarm NGINX Node itself only when no such upstream component is available, or when the Node must handle the connection directly.
 
 ## SSL/TLS termination in the NGINX Node
 
@@ -42,7 +47,7 @@ Because the NGINX Node terminates SSL/TLS directly, certificate provisioning and
 
 You need to:
 
-1. Issue a certificate from a trusted Certificate Authority (CA) for a Wallarm Node instance.
+1. Issue a certificate from a trusted Certificate Authority (CA) for the server for which the Wallarm NGINX Node will terminate SSL/TLS.
 
     The certificate must meet the following requirements:
 
@@ -83,11 +88,18 @@ You need to:
             location / {
                 proxy_pass https://10.100.100.30; # Replace with the IP address of the origin server 
                 proxy_set_header Host $host;
-                proxy_set_header X-Forwarded-For $remote_addr;
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             }
         }
         ```
+
+1. Test the NGINX configuration and reload NGINX to apply the changes:
+
+    ```
+    nginx -t && nginx -s reload
+    ```
+
+    Then send a test HTTPS request to the protected resource and confirm that Wallarm receives and processes the traffic, e.g., by checking the request in the Wallarm Console.
 
 1. Monitor the certificate's validity and renew it before expiration.
 
@@ -99,4 +111,4 @@ To automate these actions, you can use external tools, e.g., [Certbot](https://c
 
 The Native Node **does not handle SSL/TLS termination** and never acts as an inline traffic endpoint. It analyzes a copy of traffic, not the original client connection.
 
-HTTPS traffic must be decrypted by an upstream or adjacent component (e.g., load balancer, reverse proxy, ADC, Ingress Controller, or connector), which then sends a decrypted copy to the Native Node for analysis. Refer to the component's documentation for configuration details.
+SSL/TLS-protected traffic must be decrypted by an upstream or adjacent component (e.g., load balancer, reverse proxy, ADC, Ingress Controller, or connector), which then sends a decrypted copy to the Native Node for analysis. Refer to the component's documentation for configuration details.
