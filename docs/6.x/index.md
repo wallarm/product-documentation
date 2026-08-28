@@ -149,7 +149,8 @@ Wallarm AI Control Platform — discover, observe, enforce, and govern AI worklo
     <p><ul>
       <li><a href="./infrastructure-discovery/overview/">Overview</a></li>
       <li><a href="./infrastructure-discovery/setup/">Setup</a></li>
-      <li><a href="./infrastructure-discovery/exploring/">Exploring Inventory</a></li>
+      <li><a href="./infrastructure-discovery/graph/">Graph</a></li>
+      <li><a href="./infrastructure-discovery/security/">Security</a></li>
     </ul></p>
   </div>
 
