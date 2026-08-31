@@ -21,6 +21,19 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.13.1 (2026-08-28)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-39821](https://nvd.nist.gov/vuln/detail/CVE-2026-39821)
+    * [CVE-2026-56862](https://nvd.nist.gov/vuln/detail/CVE-2026-56862)
+    * [CVE-2026-56859](https://nvd.nist.gov/vuln/detail/CVE-2026-56859)
+    * [CVE-2026-56853](https://nvd.nist.gov/vuln/detail/CVE-2026-56853)
+    * [CVE-2026-46600](https://nvd.nist.gov/vuln/detail/CVE-2026-46600)
+    * [CVE-2026-33818](https://nvd.nist.gov/vuln/detail/CVE-2026-33818)
+    * [CVE-2026-56858](https://nvd.nist.gov/vuln/detail/CVE-2026-56858)
+    * [CVE-2026-56860](https://nvd.nist.gov/vuln/detail/CVE-2026-56860)
+
 ### 6.13.0 (2026-07-29)
 
 * Added support for NGINX stable 1.30.4
@@ -861,6 +874,27 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](docker-container.md)
 
+### 6.13.1 (2026-08-28)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-39821](https://nvd.nist.gov/vuln/detail/CVE-2026-39821)
+    * [CVE-2026-56862](https://nvd.nist.gov/vuln/detail/CVE-2026-56862)
+    * [CVE-2026-56859](https://nvd.nist.gov/vuln/detail/CVE-2026-56859)
+    * [CVE-2026-56853](https://nvd.nist.gov/vuln/detail/CVE-2026-56853)
+    * [CVE-2026-46600](https://nvd.nist.gov/vuln/detail/CVE-2026-46600)
+    * [CVE-2026-33818](https://nvd.nist.gov/vuln/detail/CVE-2026-33818)
+    * [CVE-2026-63076](https://nvd.nist.gov/vuln/detail/CVE-2026-63076)
+    * [CVE-2026-63075](https://nvd.nist.gov/vuln/detail/CVE-2026-63075)
+    * [CVE-2026-63072](https://nvd.nist.gov/vuln/detail/CVE-2026-63072)
+    * [CVE-2026-54874](https://nvd.nist.gov/vuln/detail/CVE-2026-54874)
+    * [CVE-2026-18798](https://nvd.nist.gov/vuln/detail/CVE-2026-18798)
+    * [CVE-2026-14457](https://nvd.nist.gov/vuln/detail/CVE-2026-14457)
+    * [CVE-2026-14456](https://nvd.nist.gov/vuln/detail/CVE-2026-14456)
+    * [CVE-2026-56858](https://nvd.nist.gov/vuln/detail/CVE-2026-56858)
+    * [CVE-2026-56860](https://nvd.nist.gov/vuln/detail/CVE-2026-56860)
+    * [CVE-2026-63074](https://nvd.nist.gov/vuln/detail/CVE-2026-63074)
+
 ### 6.13.0 (2026-07-29)
 
 * Added Server-Sent Events (SSE) response analysis, enabled by default and controlled by the [`wallarm_parse_sse`](../admin-en/configure-parameters-en.md#wallarm_parse_sse) directive, improving discovery of [MCP servers](../api-discovery/exploring.md#mcp-servers)
@@ -1131,6 +1165,19 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](cloud-image.md)
 
+### 6.13.1 (2026-08-28)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-39821](https://nvd.nist.gov/vuln/detail/CVE-2026-39821)
+    * [CVE-2026-56862](https://nvd.nist.gov/vuln/detail/CVE-2026-56862)
+    * [CVE-2026-56859](https://nvd.nist.gov/vuln/detail/CVE-2026-56859)
+    * [CVE-2026-56853](https://nvd.nist.gov/vuln/detail/CVE-2026-56853)
+    * [CVE-2026-46600](https://nvd.nist.gov/vuln/detail/CVE-2026-46600)
+    * [CVE-2026-33818](https://nvd.nist.gov/vuln/detail/CVE-2026-33818)
+    * [CVE-2026-56858](https://nvd.nist.gov/vuln/detail/CVE-2026-56858)
+    * [CVE-2026-56860](https://nvd.nist.gov/vuln/detail/CVE-2026-56860)
+
 ### 6.13.0 (2026-07-29)
 
 * Added Server-Sent Events (SSE) response analysis, enabled by default and controlled by the [`wallarm_parse_sse`](../admin-en/configure-parameters-en.md#wallarm_parse_sse) directive, improving discovery of [MCP servers](../api-discovery/exploring.md#mcp-servers)
@@ -1351,6 +1398,19 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-13-1-20260827-130319 (2026-08-27)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-39821](https://nvd.nist.gov/vuln/detail/CVE-2026-39821)
+    * [CVE-2026-56862](https://nvd.nist.gov/vuln/detail/CVE-2026-56862)
+    * [CVE-2026-56859](https://nvd.nist.gov/vuln/detail/CVE-2026-56859)
+    * [CVE-2026-56853](https://nvd.nist.gov/vuln/detail/CVE-2026-56853)
+    * [CVE-2026-46600](https://nvd.nist.gov/vuln/detail/CVE-2026-46600)
+    * [CVE-2026-33818](https://nvd.nist.gov/vuln/detail/CVE-2026-33818)
+    * [CVE-2026-56858](https://nvd.nist.gov/vuln/detail/CVE-2026-56858)
+    * [CVE-2026-56860](https://nvd.nist.gov/vuln/detail/CVE-2026-56860)
 
 ### wallarm-node-6-13-0-20260729-094623 (2026-07-29)
 
