@@ -346,7 +346,14 @@ In Jira-link mode the skill classifies. In explicit-list mode classification is 
 
 List CRITICAL/HIGH/MEDIUM CVEs fixed since the previous version, **per form factor**. Use `docker scout compare` with `--only-fixed --only-severity critical,high,medium`.
 
-`docker scout compare` works on images, OCI dirs, tarballs — not on `.sh` archives. AIO is checked indirectly via its sibling Docker image.
+`docker scout compare` works on images, OCI dirs, tarballs — not on `.sh` archives.
+
+**Two artifact families with independent CVE profiles — never cross-copy CVE lists between them:**
+
+* **Alpine/musl family — the NGINX-based Docker image** (`wallarm/node`). Uses Alpine `apk` packages (`libssl3`, `nginx`, …). Its `docker scout compare` gives *its own* list.
+* **glibc family — All-in-one installer, AMI, and GCP image.** The AMI and GCP images are built from the AIO glibc bundle, so **all three share one CVE profile**. Whatever the All-in-one section lists, the **AMI and GCP sections copy verbatim** — never put the Docker image's Alpine-package CVEs into AMI/GCP.
+
+The two families ship **different OS-library stacks** (Alpine musl vs Ubuntu glibc), each with its own OpenSSL/zlib/etc. A fix in one does not imply a fix in the other: an Alpine `libssl3` bump lands in the Docker image only; a bump of the AIO bundle's own glibc OpenSSL lands in the glibc family only. The `wallarm/node` Docker image is a usable proxy **only for `/opt/wallarm`-scoped fixes** (Wallarm Go binaries, wcli, libproton) that both families share — not for OS packages. *(Example from NGINX Node 7.1.3: the only fixes were an Alpine `libssl3` 3.5.7→3.5.8 bump — Docker image only. The AIO/AMI/GCP glibc bundle carried an unchanged Ubuntu OpenSSL 3.0.2, so those three sections were `Internal improvements`.)*
 
 **Per-artifact recipes:**
 
@@ -380,31 +387,40 @@ List CRITICAL/HIGH/MEDIUM CVEs fixed since the previous version, **per form fact
       --only-fixed --only-severity critical,high,medium --ignore-unchanged
     ```
 
-* **All-in-one installer (`.sh`)**: scout cannot scan `.sh` directly. Use the matching Docker image as a proxy and **filter to `/opt/wallarm`** — AIO ships only `/opt/wallarm` contents onto the host; OS packages are the customer's responsibility.
+* **glibc family — All-in-one installer, AMI, GCP image**: scout cannot scan the `.sh`. The list is built in two steps, then **the AMI and GCP sections copy the All-in-one list verbatim**.
 
-    Step 1 — fixed CRITICAL/HIGH/MEDIUM CVEs between versions:
+    Step 1 — `/opt/wallarm`-scoped fixes shared with the Docker image (Go stdlib, libproton, wcli, …). Run the Docker compare, then keep only CVEs whose package sits under `/opt/wallarm`:
 
     ```bash
     docker scout compare --to wallarm/node:<OLD> wallarm/node:<NEW> \
       --only-fixed --only-severity critical,high,medium --ignore-unchanged
-    ```
-
-    Step 2 — for each CVE, confirm the package lives under `/opt/wallarm`:
-
-    ```bash
     docker scout cves wallarm/node:<NEW> --locations \
       --only-severity critical,high,medium --only-cve-id <CVE-ID>
     ```
 
-    Include in AIO changelog only if at least one location starts with `/opt/wallarm`. Skip CVEs whose only locations are `/usr/lib`, `/lib`, `/var/lib/dpkg/...` — those are host OS.
+    Go stdlib CVEs are compiled into the Go binaries under `/opt/wallarm` → **keep**. Alpine `apk` OS packages (`libssl3`, `nginx`, …) sit at `/usr/lib`, `/lib` → **drop** (Docker image only). *Caveat: the Docker image is Alpine/musl, so its `/opt/wallarm` does **not** contain the AIO's bundled glibc OS libs — this proxy only resolves the shared Go/component fixes, not the AIO's own OpenSSL. That is Step 2.*
+
+    Step 2 — OS-library fixes inside the AIO's own glibc bundle (its bundled OpenSSL, zlib, …), which the Docker proxy cannot see. Extract both `.sh` versions and diff the bundled lib:
+
+    ```bash
+    for V in <OLD> <NEW>; do
+      curl -sO https://meganode.wallarm.com/<MAJOR.MINOR>/wallarm-$V.x86_64-glibc.sh
+      sh wallarm-$V.x86_64-glibc.sh --noexec --target /tmp/aio-$V
+    done
+    shasum -a 256 /tmp/aio-<OLD>/usr/lib/x86_64-linux-gnu/libcrypto.so.3 \
+                  /tmp/aio-<NEW>/usr/lib/x86_64-linux-gnu/libcrypto.so.3
+    strings /tmp/aio-<NEW>/usr/lib/x86_64-linux-gnu/libcrypto.so.3 | grep -iE '^OpenSSL [0-9]'
+    ```
+
+    If the bundled lib changed to a fixed version between `<OLD>` and `<NEW>`, add the matching OS CVEs. If byte-identical (hashes match), it was **not** fixed in the glibc family — even when the Docker image fixed its Alpine copy. The Step 1 + Step 2 union is the **All-in-one** list; **AMI and GCP repeat it exactly**. If both steps are empty, all three sections are `* Internal improvements`.
 
 14a. **Present collected CVEs to the author** before writing them in:
 
    ```
    Fixed CVEs per artifact (CRITICAL/HIGH/MEDIUM):
-   * Docker image wallarm/node:<NEW>: CVE-YYYY-NNNNN, CVE-YYYY-MMMMM
+   * NGINX-based Docker image (Alpine/musl): CVE-YYYY-NNNNN, CVE-YYYY-MMMMM
+   * All-in-one = AMI = GCP (glibc family; AMI and GCP mirror the AIO list): CVE-YYYY-NNNNN
    * Helm chart (wallarm/node-native-processing:<NEW>): CVE-YYYY-NNNNN
-   * AIO (filtered to /opt/wallarm): CVE-YYYY-NNNNN
    ```
 
    If a form factor has no fixed CVEs, say so explicitly.
@@ -556,7 +572,7 @@ List CRITICAL/HIGH/MEDIUM CVEs fixed since the previous version, **per form fact
     * No stale version numbers remain (except in history)
     * Both x86_64 and ARM64 installer URLs are updated
     * Changelog entries match the Jira issues (nothing missing, nothing invented)
-    * Each form factor section lists CVEs from its own `docker scout compare` run — not a shared copy-pasted list. Underlying base images differ.
+    * Each artifact **family** lists CVEs from its own source — the Alpine Docker image from its `docker scout compare`; the glibc family (All-in-one, AMI, GCP) from Part 2b Steps 1–2. Do **not** copy the Docker image's Alpine-package CVEs into the glibc family; do reuse **one** glibc list across All-in-one, AMI, and GCP.
 
 ## Changelog format rules
 
