@@ -10,6 +10,10 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 7.1.3 (2026-08-28)
+
+* Internal improvements
+
 ### 7.1.2 (2026-08-20)
 
 * Added support for NGINX stable 1.30.4
@@ -104,6 +108,19 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to upgrade](docker-container.md)
 
+### 7.1.3 (2026-08-28)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-63076](https://nvd.nist.gov/vuln/detail/CVE-2026-63076)
+    * [CVE-2026-63075](https://nvd.nist.gov/vuln/detail/CVE-2026-63075)
+    * [CVE-2026-63072](https://nvd.nist.gov/vuln/detail/CVE-2026-63072)
+    * [CVE-2026-54874](https://nvd.nist.gov/vuln/detail/CVE-2026-54874)
+    * [CVE-2026-18798](https://nvd.nist.gov/vuln/detail/CVE-2026-18798)
+    * [CVE-2026-14457](https://nvd.nist.gov/vuln/detail/CVE-2026-14457)
+    * [CVE-2026-14456](https://nvd.nist.gov/vuln/detail/CVE-2026-14456)
+    * [CVE-2026-63074](https://nvd.nist.gov/vuln/detail/CVE-2026-63074)
+
 ### 7.1.2 (2026-08-20)
 
 * Fixed a 7.1.1 regression that silently dropped some requests from the export pipeline under burst load — the affected attacks and sessions never reached the Wallarm Cloud
@@ -141,6 +158,10 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to upgrade](cloud-image.md)
 
+### 7.1.3 (2026-08-28)
+
+* Internal improvements
+
 ### 7.1.2 (2026-08-20)
 
 * Fixed a 7.1.1 regression that silently dropped some requests from the export pipeline under burst load — the affected attacks and sessions never reached the Wallarm Cloud
@@ -172,6 +193,10 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-7-1-3-20260827-223907 (2026-08-27)
+
+* Internal improvements
 
 ### wallarm-node-7-1-2-20260820-142512 (2026-08-20)
 
