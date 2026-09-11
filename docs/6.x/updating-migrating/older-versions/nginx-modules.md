@@ -98,13 +98,13 @@ Besides any other help, ask to enable new IP lists logic for your Wallarm accoun
         If using the x86_64 version:
 
         ```bash
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.13.0.x86_64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.13.1.x86_64-glibc.sh filtering
         ```
 
         If using the ARM64 version:
 
         ```bash
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.13.0.aarch64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.13.1.aarch64-glibc.sh filtering
         ```        
 
         The `WALLARM_LABELS` variable sets the group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -113,13 +113,13 @@ Besides any other help, ask to enable new IP lists logic for your Wallarm accoun
         If using the x86_64 version:
 
         ```bash
-        sudo sh wallarm-6.13.0.x86_64-glibc.sh filtering
+        sudo sh wallarm-6.13.1.x86_64-glibc.sh filtering
         ```
 
         If using the ARM64 version:
         
         ```bash
-        sudo sh wallarm-6.13.0.aarch64-glibc.sh filtering
+        sudo sh wallarm-6.13.1.aarch64-glibc.sh filtering
         ```
 
 ## Step 6: Migrate allowlists and denylists from the previous Wallarm node version to 6.x (only if upgrading node 2.18 or lower)

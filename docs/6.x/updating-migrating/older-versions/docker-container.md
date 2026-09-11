@@ -35,7 +35,7 @@ If upgrading node 2.18 or lower, please inform [Wallarm technical support](mailt
 ## Step 3: Download the updated filtering node image
 
 ``` bash
-docker pull wallarm/node:6.13.0
+docker pull wallarm/node:6.13.1
 ```
 
 ## Step 4: Switch to the token-based connection to the Wallarm Cloud
