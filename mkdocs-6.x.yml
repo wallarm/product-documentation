@@ -455,7 +455,8 @@ nav:
   - Infrastructure Discovery:
     - Overview: infrastructure-discovery/overview.md
     - Setup: infrastructure-discovery/setup.md
-    - Exploring Inventory: infrastructure-discovery/exploring.md
+    - Graph: infrastructure-discovery/graph.md
+    - Security: infrastructure-discovery/security.md
     - Attack Paths: infrastructure-discovery/attack-paths.md
 
   # ============================================================================
