@@ -46,6 +46,7 @@ Using rules, you can control how Wallarm mitigates attacks on your applications 
 * Change requests/responses:
 
     * [Mask sensitive data](../../user-guides/rules/sensitive-data-rule.md)
+    * [Limit data export](../../user-guides/rules/limit-data-export-rule.md) to the Wallarm Cloud
     * Configure an additional layer of application security by [changing response headers](../../user-guides/rules/add-replace-response-header.md)
 
 ## Rule branches
