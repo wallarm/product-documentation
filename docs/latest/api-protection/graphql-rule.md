@@ -88,7 +88,7 @@ To do so:
 
     ![GraphQL Policy for your endpoints](../images/api-protection/mitigation-controls-graphql-1.png)
 
-1. As filtration mode for `example.com` is `monitoring` and you want `block` for its GraphQL endpoints, configure the **Override filtration mode** rule as displayed on the screenshot:
+1. As filtration mode for `example.com` is `monitoring` and you want `block` for its GraphQL endpoints, configure the **Filtration mode** rule as displayed on the screenshot:
 
     ![GraphQL policy blocking action](../images/user-guides/rules/graphql-rule-1-action.png)
 
@@ -102,7 +102,7 @@ To do so:
 
     ![GraphQL stricter policy for child endpoint](../images/api-protection/mitigation-controls-graphql-2.png)
 
-1. As filtration mode for `example.com/graphql` is `block` and you want `monitoring` for `example.com/graphql/v2`, configure the **Override filtration mode** rule as displayed on the screenshot:
+1. As filtration mode for `example.com/graphql` is `block` and you want `monitoring` for `example.com/graphql/v2`, configure the **Filtration mode** rule as displayed on the screenshot:
 
     ![GraphQL policy blocking action](../images/user-guides/rules/graphql-rule-2-action.png)
 
@@ -110,4 +110,4 @@ To do so:
 
 Rule-based GraphQL protection is part of the basic [Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription — for advanced GraphQL controls, use the mitigation control [described above](#mitigation-control-based-protection).
 
-Use same settings as described for the **GraphQL API protection** mitigation control, with the only difference in that you act in Wallarm Console → **Security Controls** → **Rules WAF**.
+Use same settings as described for the **GraphQL API protection** mitigation control, with the only difference in that you act in Wallarm Console → **Security Controls** → **WAF Rules**.

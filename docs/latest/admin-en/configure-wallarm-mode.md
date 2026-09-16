@@ -112,7 +112,7 @@ You can define the general filtration mode for all incoming requests using mitig
     
     ![The general settings tab](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
 
-    The general filtration mode setting is represented as **Set filtration mode** [default](../user-guides/rules/rules.md#default-rules) rule in the **Rules WAF** section. Note that endpoint-targeted filtration rules in this section have higher priority.
+    The general filtration mode setting is represented as **Filtration mode** [default](../user-guides/rules/rules.md#default-rules) rule in the **WAF Rules** section. Note that endpoint-targeted filtration rules in this section have higher priority.
 
 ### Conditioned filtration mode
 
@@ -143,13 +143,13 @@ You can set filtration mode for specific branches, endpoints and relying on othe
 
 === "Rules"
 
-    You can set filtration mode for specific branches, endpoints and relying on other conditions. Wallarm provides the **Set filtration mode** [rule](../user-guides/rules/rules.md) to do this. Such rules have higher priority than the [general filtration rule set in Wallarm Console](#general-filtration-mode).
+    You can set filtration mode for specific branches, endpoints and relying on other conditions. Wallarm provides the **Filtration mode** [rule](../user-guides/rules/rules.md) to do this. Such rules have higher priority than the [general filtration rule set in Wallarm Console](#general-filtration-mode).
 
     To create a new filtration mode rule:
 
     --8<-- "../include/rule-creation-initial-step.md"
 
-    1. Choose **Fine-tuning attack detection** → **Override filtration mode**. 
+    1. Choose **Processing & data control** → **Filtration mode**. 
     1. In **If request is**, [describe](../user-guides/rules/rules.md#configuring) the scope to apply the rule to. If you initiated the rule for a specific branch, hit or endpoint, they will define the scope - if necessary, you can add more conditions.
     1. Select filtration mode for the specified scope:
 
