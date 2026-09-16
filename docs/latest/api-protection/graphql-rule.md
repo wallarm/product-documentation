@@ -22,7 +22,7 @@ Wallarm supports both POST and GET HTTP methods for GraphQL requests.
 Depending on your subscription plan, one of the following configuration methods for GraphQL API protection will be available:
 
 * Mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription)
-* WAF rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription)
+* WAF rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription) - see the [limitation](#rule-based-protection) below
 
 ## Mitigation control-based protection <a href="../../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" class="non-zoomable" style="border: none;"></a>
 
@@ -110,4 +110,9 @@ To do so:
 
 Rule-based GraphQL protection is part of the basic [Cloud Native WAAP](../about-wallarm/subscription-plans.md#core-subscription-plans) subscription — for advanced GraphQL controls, use the mitigation control [described above](#mitigation-control-based-protection).
 
-Use same settings as described for the **GraphQL API protection** mitigation control, with the only difference in that you act in Wallarm Console → **Security Controls** → **WAF Rules**.
+The settings are the same as for the **GraphQL API protection** mitigation control.
+
+!!! warning "GraphQL rules are not listed in the WAF Rules section"
+    The redesigned **WAF Rules** section does not show the GraphQL rule type. Existing GraphQL rules stay in effect on the filtering nodes, but they cannot be viewed, created or edited there.
+
+    To set or change a GraphQL policy, use the **GraphQL API protection** [mitigation control](#mitigation-control-based-protection).
