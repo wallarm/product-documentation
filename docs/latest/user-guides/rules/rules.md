@@ -1,6 +1,5 @@
 [link-regex]:                   https://github.com/yandex/pire
 [link-request-processing]:      request-processing.md
-[img-add-rule]:                 ../../images/user-guides/rules/section-rules-add-rule.png
 [link-attack-detection-tools]:  ../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection
 [link-sub-plans]:               ../../about-wallarm/subscription-plans.md#core-subscription-plans
 [link-filtration-mode]:         ../../admin-en/configure-wallarm-mode.md
@@ -10,44 +9,99 @@
 [link-cloud-node-synchronization]: ../../admin-en/configure-cloud-node-synchronization-en.md
 [img-rules-create-backup]:      ../../images/user-guides/rules/rules-create-backup.png
 
-# Rules WAF
+# WAF Rules
 
 Rules are used to fine-tune the [default](../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection) Wallarm behavior during the analysis of requests and their further processing. Thus, using rules you can change how the system detects malicious requests and acts when such malicious requests are detected.
 
-Rules are configured in the **Rules WAF** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules) Cloud. They are part of the basic [Cloud Native WAAP](../../about-wallarm/subscription-plans.md#core-subscription-plans) subscription and provide WAF-level fine-tuning of request analysis. For advanced API protection controls, see [Mitigation Controls](../../about-wallarm/mitigation-controls-overview.md).
+Rules are configured in the **Security Controls** → **WAF Rules** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules) Cloud. They are part of the basic [Cloud Native WAAP](../../about-wallarm/subscription-plans.md#core-subscription-plans) subscription and provide WAF-level fine-tuning of request analysis. For advanced API protection controls, see [Mitigation Controls](../../about-wallarm/mitigation-controls-overview.md).
 
-![Rules WAF section](../../images/user-guides/rules/section-rules.png)
+![WAF Rules section](../../images/user-guides/rules/waf-rules-list.png)
 
 !!! warning "Rule application delay"
     When you make changes to the rules, they do not take effect immediately as it takes some time to [compile the rules](#ruleset-lifecycle) and upload them to the filtering nodes.
 
-## What you can do with rules
+## Rule types
 
-Using rules, you can control how Wallarm mitigates attacks on your applications and APIs, fine tune attack detection, and change request/responses:
+Every rule has a **type** that defines what it does. Types are grouped into four categories, which the **WAF Rules** section uses both in the type list and in the **Create rule** gallery.
 
-* Mitigation controls:
+### Attack detection
 
-    * [Advanced rate limiting](../../user-guides/rules/rate-limiting.md)
-    * [Virtual patches](../../user-guides/rules/vpatch-rule.md)
-    * [Custom attack detectors](../../user-guides/rules/regex-rule.md)
-    * [File upload restrictions](../../api-protection/file-upload-restriction.md#rule-based-protection)
+Add or extend what gets detected and blocked.
 
-* Fine-tuning attack detection:
+| Rule type | Description |
+| --------- | ----------- |
+| [Virtual patch](vpatch-rule.md) | Instantly block exploits without code changes |
+| [Custom attack detector](regex-rule.md) | Create a regexp-based custom detector |
+| Custom attack detector (experimental) | Try a regexp-based detector without blocking on it |
 
-    * [Override filtration mode](../../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode) for particular domains/endpoints
-    * [Ignore certain attacks](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types)
-    * [Disable custom attack detectors](../../user-guides/rules/regex-rule.md#partial-disabling) for particular domains/endpoints or request parts
-    * Configure [binary data processing](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data)
-    * Fine tune request processing by [configuring parsers](../../user-guides/rules/request-processing.md#managing-parsers)
-    * [Disable API Abuse Prevention](../../api-abuse-prevention/exceptions.md#exceptions-for-target-urls-and-specific-requests) for specific domains/endpoints and requests
-    * Fine tune node functioning by [limiting the request processing time](../../user-guides/rules/configure-overlimit-res-detection.md)
+### Attack fine-tuning (false positives)
 
+Quiet noisy detections and add exceptions to reduce false positives.
 
-* Change requests/responses:
+| Rule type | Description |
+| --------- | ----------- |
+| [Ignore certain attacks](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types) | Prevent false positives on certain attacks |
+| Ignore certain stamps | Prevent false positives on certain stamps |
+| [Disable custom attack detector](regex-rule.md#partial-disabling) | Turn off a custom detector for a branch or endpoint |
+| Optional parameter | Parameter API Discovery treats as optional |
+| Required parameter | Parameter API Discovery expects in every request |
+| Ignore incidents | Disable response stamping for specific endpoints |
+| Ignore libdetection context | Disable libdetection context analysis for specific endpoints |
 
-    * [Mask sensitive data](../../user-guides/rules/sensitive-data-rule.md)
-    * [Limit data export](../../user-guides/rules/limit-data-export-rule.md) to the Wallarm Cloud
-    * Configure an additional layer of application security by [changing response headers](../../user-guides/rules/add-replace-response-header.md)
+### Rate & abuse limits
+
+Control request volume, API abuse, and resource use.
+
+| Rule type | Description |
+| --------- | ----------- |
+| [Advanced rate limiting](rate-limiting.md) | Flexible control over the request rate to your APIs |
+| [Limit request processing time](configure-overlimit-res-detection.md) | Load control when processing heavy requests |
+| [File upload restriction policy](../../api-protection/file-upload-restriction.md#rule-based-protection) | Restrict the maximum size of requests and file uploads |
+| [Override API abuse profiles](../../api-abuse-prevention/exceptions.md#exceptions-for-target-urls-and-specific-requests) | Control API Abuse Prevention mode for specific endpoints |
+| Limit hit size | Restrict the maximum serialized data size per hit |
+
+### Processing & data control
+
+Filtration posture, how requests are parsed, and what data leaves the node.
+
+| Rule type | Description |
+| --------- | ----------- |
+| [Filtration mode](../../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode) | Configure traffic filtration mode for specific endpoints |
+| [Configure parsers](request-processing.md#managing-parsers) | Adjust request parsers to prevent false positives |
+| Parser variability | Point API Discovery to the variable parts of a path |
+| [Binary data processing](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data) | Prevent false positives during binary data analysis |
+| File upload processing | Allow certain file types in uploaded requests |
+| [Mask sensitive data](sensitive-data-rule.md) | Prevent sending sensitive data to Wallarm Cloud |
+| [Limit data export](limit-data-export-rule.md) | Restrict request and response data sent to Wallarm Cloud |
+| [Change response headers](add-replace-response-header.md) | Modify original server responses for an extra security layer |
+| Point to middleware | Route requests through a middleware processing pipeline |
+| Change response | Disable or enable response analysis by API Discovery |
+
+!!! info "Mitigation controls are a separate section"
+    [Mitigation Controls](../../about-wallarm/mitigation-controls-overview.md) — allowlist, denylist, graylist, geo-based controls and [GraphQL API protection](../../api-protection/graphql-rule.md) — are configured in their own section and are not listed among the WAF rule types above.
+
+## Rules list
+
+Rules are listed by **type**: pick **All rule types** to see everything, or a single type to narrow the list to it. Within the selected type you can further filter by **Application** and by **Scope** (`Default` or `Custom`).
+
+The list has these columns:
+
+| Column | Description |
+| ------ | ----------- |
+| **Type** | The rule type. Shown only when **All rule types** is selected |
+| **Name** | The rule name. Opens the rule, and carries the **Edit**, **Duplicate** and **Delete** actions |
+| **Applications** | Applications the rule is scoped to |
+| **Endpoint** | The endpoint the rule matches. An empty value means no URL restriction is set, so the rule is enforced on all traffic passing through your filtering nodes |
+| **Request point** | The [part of the request](request-processing.md) the rule applies to, if one is set |
+| **Mode** | `Inherited`, `Monitoring`, `Blocking` or `Disabled` |
+| **Updated** | When the rule was last changed |
+| **On / Off** | Enables or disables the rule without deleting it |
+
+Rules created and managed by Wallarm are badged in the **Name** column. They cannot be edited or deleted.
+
+To create a rule, click **Create rule** and pick a type from the gallery. The page header also shows the node sync status and carries the **Migrate rules** button:
+
+![WAF Rules page controls](../../images/user-guides/rules/waf-rules-page-controls.png)
 
 ## Rule branches
 
@@ -59,8 +113,6 @@ Rules are automatically grouped into nested branches by endpoint URIs and other 
 * Directly specified has priority over [regex](rules.md#condition-type-regex).
 * Case [sensitive](rules.md#condition-type-equal) has priority over [insensitive](rules.md#condition-type-iequal-aa).
 
-![Rules WAF tab overview](../../images/user-guides/rules/rules-overview.png)
-
 !!! info "No inheritance for parameters/points of request"
     Inheritance [does not work for rules](../rules/rules.md#rule-branches) with **In this part of request** part specified, for example, [rate limiting](rate-limiting.md), [virtual patches](vpatch-rule.md) and others. If in these rules, **In this part of request** is not used, the inheritance will work as usual.
 
@@ -69,31 +121,15 @@ Rules are automatically grouped into nested branches by endpoint URIs and other 
 You can create rules with specified action but not linked to any endpoint - they are called **default rules**. Such rules are applied to all endpoints.
 
 * To create a default rule, follow the [standard procedure](#configuring) but leave URI blank. The new rule not linked to any endpoint will be created.
-* To view the list of created default rules, click the **Default rules** button.
+* To view the list of created default rules, filter the list by **Scope** → **Default**.
 * Default rules are inherited by all branches.
 
 !!! info "Traffic filtration mode default rule"
-    Wallarm automatically creates the `Set filtration mode` default rule for all clients and sets its value on the basis of the [general filtration mode](../../admin-en/configure-wallarm-mode.md#general-filtration-mode) setting.
-
-### Viewing branch rules
-
-Here are some details of how to work with the rule branches:
-
-* To expand the endpoint, click the blue circle.
-* Endpoints that do not have distinct rules are greyed out and not clickable.
-    
-    ![Branch of endpoints](../../images/user-guides/rules/rules-branch.png)
-
-* To view rules for the endpoint, click it. First, distinct rules for this endpoint will be displayed.
-* When viewing the rule list for the specific endpoint, click **Distinct and inherited rules** to display the inherited ones. Inherited rules will be displayed together with the distinct; they will be greyed out compared to distinct.
-
-    ![Distinct and inherited rules for endpoint](../../images/user-guides/rules/rules-distinct-and-inherited.png)
+    Wallarm automatically creates the `Filtration mode` default rule for all clients and sets its value on the basis of the [general filtration mode](../../admin-en/configure-wallarm-mode.md#general-filtration-mode) setting.
 
 ## Configuring
 
-To add a new rule, go to the **Rules WAF** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules) Cloud. Rules can be added to both existing [branches](#rule-branches) and from scratch which will create a new branch if one does not exist.
-
-![Adding a new rule][img-add-rule]
+To add a new rule, go to the **WAF Rules** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules) Cloud, click **Create rule** and pick a rule type. A rule can be added to an existing [branch](#rule-branches) or from scratch, which creates a new branch if one does not exist.
 
 Note that a rule is applied to the request only if some conditions are met (like target endpoint, method, presence of some parameters or values, etc.). Also, it is often applied only to some request parts. For a better understanding of request structure interaction with the rules, it is advisable to learn how the filtering node [analyzes the requests][link-request-processing].
 
@@ -404,3 +440,5 @@ To get custom rules, you can [call the Wallarm API directly](../../api/request-e
 ## Migrating between tenants
 
 If you have [multiple tenants](../../installation/multi-tenant/overview.md), you can [migrate](../../installation/multi-tenant/overview.md#migrating-rules) (copy) rules between them **along with** mitigation controls and Credential Stuffing Detection settings.
+
+To start, click **Migrate rules** in the **WAF Rules** section.
