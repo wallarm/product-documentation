@@ -43,7 +43,7 @@ Wallarm is a set of protection tools. If they do not work as expected, you can a
 
     * If false, [mark as false](../user-guides/events/check-attack.md#false-positives).
     * Not satisfied with applied action? Adjust [filtration mode](../admin-en/configure-wallarm-mode.md).
-    * Want to fine-tune or check what fine-tuning is already in use? In **Rules WAF**, click **Add rule** and check the **Fine-tuning attack detection** section, search for these rules in **Rules WAF** by filter.
+    * Want to fine-tune or check what fine-tuning is already in use? In **WAF Rules**, click **Create rule** and check the **Attack fine-tuning (false positives)** category, or narrow the rules list to those types.
     * Found by [custom detector](../user-guides/rules/regex-rule.md)? A request will contain link to it - follow the link and adjust.
 
 1. [Behavioral attack](../attacks-vulns-list.md#attack-types)? Bot? You will identify [malicious bot attacks](../api-abuse-prevention/overview.md#automated-threats-blocked-by-api-abuse-prevention) both in Attacks and Sessions. Navigate to API Abuse Prevention and modify [profiles](../api-abuse-prevention/setup.md#creating-profiles) or [exceptions](../api-abuse-prevention/exceptions.md).
