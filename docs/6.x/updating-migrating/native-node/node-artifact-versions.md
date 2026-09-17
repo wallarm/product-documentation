@@ -26,6 +26,15 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
     * [CVE-2026-56858](https://nvd.nist.gov/vuln/detail/CVE-2026-56858)
     * [CVE-2026-56860](https://nvd.nist.gov/vuln/detail/CVE-2026-56860)
 
+### 0.25.7 (2026-08-28)
+
+* Added SAP API Management to the connectors the Node recognizes
+* Fixed security vulnerabilities in the Go standard library and the Docker client
+
+### 0.25.6 (2026-08-12)
+
+* Released for version parity with the Helm chart; no changes to the installer itself
+
 ### 0.25.5 (2026-08-11)
 
 <!-- * Added Server-Sent Events (SSE) response analysis, improving discovery of [MCP servers](../../api-discovery/exploring.md#mcp-servers) -->
@@ -344,6 +353,15 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
     * [CVE-2026-56858](https://nvd.nist.gov/vuln/detail/CVE-2026-56858)
     * [CVE-2026-56860](https://nvd.nist.gov/vuln/detail/CVE-2026-56860)
 
+### 0.25.7 (2026-08-28)
+
+* Added SAP API Management to the connectors the Node recognizes
+* Fixed security vulnerabilities in the Go standard library and the Docker client
+
+### 0.25.6 (2026-08-12)
+
+* Added `processing.metrics.cloud_export` - export of the Node metrics to Wallarm Cloud, disabled by default
+
 ### 0.25.5 (2026-08-11)
 
 <!-- * Added Server-Sent Events (SSE) response analysis, improving discovery of [MCP servers](../../api-discovery/exploring.md#mcp-servers) -->
@@ -634,6 +652,15 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
     * [CVE-2026-33818](https://nvd.nist.gov/vuln/detail/CVE-2026-33818)
     * [CVE-2026-56858](https://nvd.nist.gov/vuln/detail/CVE-2026-56858)
     * [CVE-2026-56860](https://nvd.nist.gov/vuln/detail/CVE-2026-56860)
+
+### 0.25.7 (2026-08-28)
+
+* Added SAP API Management to the connectors the Node recognizes
+* Fixed security vulnerabilities in the Go standard library and the Docker client
+
+### 0.25.6 (2026-08-12)
+
+* Released for version parity with the Helm chart; no changes to the image itself
 
 ### 0.25.5 (2026-08-11)
 
