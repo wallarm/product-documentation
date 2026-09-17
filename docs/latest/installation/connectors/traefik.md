@@ -6,18 +6,15 @@
 
 To secure APIs managed by [Traefik](https://doc.traefik.io/traefik/), Wallarm provides a connector implemented as an in-process Traefik middleware plugin. The plugin routes ingress traffic through a [Wallarm Native Node](../native-node/helm-chart.md) for real-time API attack detection, without sidecars, DaemonSets, or traffic mirroring infrastructure. One shared Node deployment serves every Traefik replica in the cluster.
 
-```
-client ──▶ Traefik ──▶ [wallarm middleware] ──▶ upstream service
-                            │        ▲
-                       copy │        │ verdict (block mode)
-                            ▼        │
-                     Wallarm Native Node (connector-server)
-```
-
-The connector supports both [in-line](../inline/overview.md) and [out-of-band](../oob/overview.md) traffic analysis, selected with the `mode` value:
+The connector supports both [synchronous (in-line)](../inline/overview.md) and [asynchronous (out-of-band)](../oob/overview.md) traffic analysis, selected with the `mode` value:
 
 * `block` (default) — the Node verdict is enforced in-line. The `403` response is returned to the client before the request reaches your service.
 * `oob` — a copy of each request is sent to the Node asynchronously. Traffic latency is unaffected, and attacks appear in Wallarm Console.
+
+=== "Synchronous traffic flow"
+    ![Traefik with synchronous traffic flow to the Wallarm Node](../../images/waf-installation/gateways/traefik/traffic-flow-sync.png)
+=== "Asynchronous traffic flow"
+    ![Traefik with asynchronous traffic flow to the Wallarm Node](../../images/waf-installation/gateways/traefik/traffic-flow-async.png)
 
 ## Use cases
 
