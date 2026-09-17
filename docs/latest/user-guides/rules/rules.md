@@ -1,6 +1,5 @@
 [link-regex]:                   https://github.com/yandex/pire
 [link-request-processing]:      request-processing.md
-[img-add-rule]:                 ../../images/user-guides/rules/section-rules-add-rule.png
 [link-attack-detection-tools]:  ../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection
 [link-sub-plans]:               ../../about-wallarm/subscription-plans.md#core-subscription-plans
 [link-filtration-mode]:         ../../admin-en/configure-wallarm-mode.md
@@ -131,8 +130,6 @@ You can create rules with specified action but not linked to any endpoint - they
 ## Configuring
 
 To add a new rule, go to the **WAF Rules** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules) Cloud, click **Create rule** and pick a rule type. A rule can be added to an existing [branch](#rule-branches) or from scratch, which creates a new branch if one does not exist.
-
-![Adding a new rule][img-add-rule]
 
 Note that a rule is applied to the request only if some conditions are met (like target endpoint, method, presence of some parameters or values, etc.). Also, it is often applied only to some request parts. For a better understanding of request structure interaction with the rules, it is advisable to learn how the filtering node [analyzes the requests][link-request-processing].
 
