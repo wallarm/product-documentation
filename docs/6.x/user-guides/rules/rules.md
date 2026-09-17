@@ -16,7 +16,7 @@ Rules are used to fine-tune the [default](../../about-wallarm/protecting-against
 
 Rules are configured in the **Security Controls** → **WAF Rules** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules) Cloud. They are part of the basic [Cloud Native WAAP](../../about-wallarm/subscription-plans.md#core-subscription-plans) subscription and provide WAF-level fine-tuning of request analysis. For advanced API protection controls, see [Mitigation Controls](../../about-wallarm/mitigation-controls-overview.md).
 
-![WAF Rules section](../../images/user-guides/rules/section-rules.png)
+![WAF Rules section](../../images/user-guides/rules/waf-rules-list.png)
 
 !!! warning "Rule application delay"
     When you make changes to the rules, they do not take effect immediately as it takes some time to [compile the rules](#ruleset-lifecycle) and upload them to the filtering nodes.
@@ -100,9 +100,9 @@ The list has these columns:
 
 Rules created and managed by Wallarm are badged in the **Name** column. They cannot be edited or deleted.
 
-To create a rule, click **Create rule** and pick a type from the gallery.
+To create a rule, click **Create rule** and pick a type from the gallery. The page header also shows the node sync status and carries the **Migrate rules** button:
 
-![WAF Rules list overview](../../images/user-guides/rules/rules-overview.png)
+![WAF Rules page controls](../../images/user-guides/rules/waf-rules-page-controls.png)
 
 ## Rule branches
 
