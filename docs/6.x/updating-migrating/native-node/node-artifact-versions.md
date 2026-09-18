@@ -28,7 +28,7 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 ### 0.25.7 (2026-08-28)
 
-* Added SAP API Management to the connectors the Node recognizes
+* Added SAP API Management connector support
 * Fixed security vulnerabilities in the Go standard library and the Docker client
 
 ### 0.25.6 (2026-08-12)
@@ -355,7 +355,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ### 0.25.7 (2026-08-28)
 
-* Added SAP API Management to the connectors the Node recognizes
+* Added SAP API Management connector support
 * Fixed security vulnerabilities in the Go standard library and the Docker client
 
 ### 0.25.6 (2026-08-12)
@@ -655,7 +655,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 ### 0.25.7 (2026-08-28)
 
-* Added SAP API Management to the connectors the Node recognizes
+* Added SAP API Management connector support
 * Fixed security vulnerabilities in the Go standard library and the Docker client
 
 ### 0.25.6 (2026-08-12)
