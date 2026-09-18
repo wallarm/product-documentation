@@ -143,6 +143,7 @@ nav:
     - Kubernetes:
       - Istio: installation/connectors/istio.md
       - Gloo Gateway: installation/connectors/gloo.md
+      - Traefik: installation/connectors/traefik.md
       - NGINX Ingress Controller:
         - Deployment: admin-en/installation-kubernetes-en.md
         - Configuration Options: admin-en/configure-kubernetes-en.md

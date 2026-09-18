@@ -12,6 +12,29 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to upgrade](all-in-one.md)
 
+### 0.25.8 (2026-09-09)
+
+* Added support for the [Traefik connector](../../installation/connectors/traefik.md)
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-39821](https://nvd.nist.gov/vuln/detail/CVE-2026-39821)
+    * [CVE-2026-56862](https://nvd.nist.gov/vuln/detail/CVE-2026-56862)
+    * [CVE-2026-56859](https://nvd.nist.gov/vuln/detail/CVE-2026-56859)
+    * [CVE-2026-56853](https://nvd.nist.gov/vuln/detail/CVE-2026-56853)
+    * [CVE-2026-46600](https://nvd.nist.gov/vuln/detail/CVE-2026-46600)
+    * [CVE-2026-33818](https://nvd.nist.gov/vuln/detail/CVE-2026-33818)
+    * [CVE-2026-56858](https://nvd.nist.gov/vuln/detail/CVE-2026-56858)
+    * [CVE-2026-56860](https://nvd.nist.gov/vuln/detail/CVE-2026-56860)
+
+### 0.25.7 (2026-08-28)
+
+* Added SAP API Management to the connectors the Node recognizes
+* Fixed security vulnerabilities in the Go standard library and the Docker client
+
+### 0.25.6 (2026-08-12)
+
+* Released for version parity with the Helm chart; no changes to the installer itself
+
 ### 0.25.5 (2026-08-11)
 
 <!-- * Added Server-Sent Events (SSE) response analysis, improving discovery of [MCP servers](../../api-discovery/exploring.md#mcp-servers) -->
@@ -306,6 +329,39 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.25.8 (2026-09-09)
+
+* Added support for the [Traefik connector](../../installation/connectors/traefik.md)
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-63073](https://nvd.nist.gov/vuln/detail/CVE-2026-63073)
+    * [CVE-2026-75803](https://nvd.nist.gov/vuln/detail/CVE-2026-75803)
+    * [CVE-2026-63076](https://nvd.nist.gov/vuln/detail/CVE-2026-63076)
+    * [CVE-2026-63075](https://nvd.nist.gov/vuln/detail/CVE-2026-63075)
+    * [CVE-2026-63072](https://nvd.nist.gov/vuln/detail/CVE-2026-63072)
+    * [CVE-2026-54874](https://nvd.nist.gov/vuln/detail/CVE-2026-54874)
+    * [CVE-2026-18798](https://nvd.nist.gov/vuln/detail/CVE-2026-18798)
+    * [CVE-2026-14457](https://nvd.nist.gov/vuln/detail/CVE-2026-14457)
+    * [CVE-2026-14456](https://nvd.nist.gov/vuln/detail/CVE-2026-14456)
+    * [CVE-2026-63074](https://nvd.nist.gov/vuln/detail/CVE-2026-63074)
+    * [CVE-2026-39821](https://nvd.nist.gov/vuln/detail/CVE-2026-39821)
+    * [CVE-2026-56862](https://nvd.nist.gov/vuln/detail/CVE-2026-56862)
+    * [CVE-2026-56859](https://nvd.nist.gov/vuln/detail/CVE-2026-56859)
+    * [CVE-2026-56853](https://nvd.nist.gov/vuln/detail/CVE-2026-56853)
+    * [CVE-2026-46600](https://nvd.nist.gov/vuln/detail/CVE-2026-46600)
+    * [CVE-2026-33818](https://nvd.nist.gov/vuln/detail/CVE-2026-33818)
+    * [CVE-2026-56858](https://nvd.nist.gov/vuln/detail/CVE-2026-56858)
+    * [CVE-2026-56860](https://nvd.nist.gov/vuln/detail/CVE-2026-56860)
+
+### 0.25.7 (2026-08-28)
+
+* Added SAP API Management to the connectors the Node recognizes
+* Fixed security vulnerabilities in the Go standard library and the Docker client
+
+### 0.25.6 (2026-08-12)
+
+* Added `processing.metrics.cloud_export` - export of the Node metrics to Wallarm Cloud, disabled by default
+
 ### 0.25.5 (2026-08-11)
 
 <!-- * Added Server-Sent Events (SSE) response analysis, improving discovery of [MCP servers](../../api-discovery/exploring.md#mcp-servers) -->
@@ -572,6 +628,39 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](docker-image.md)
+
+### 0.25.8 (2026-09-09)
+
+* Added support for the [Traefik connector](../../installation/connectors/traefik.md)
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-63073](https://nvd.nist.gov/vuln/detail/CVE-2026-63073)
+    * [CVE-2026-75803](https://nvd.nist.gov/vuln/detail/CVE-2026-75803)
+    * [CVE-2026-63076](https://nvd.nist.gov/vuln/detail/CVE-2026-63076)
+    * [CVE-2026-63075](https://nvd.nist.gov/vuln/detail/CVE-2026-63075)
+    * [CVE-2026-63072](https://nvd.nist.gov/vuln/detail/CVE-2026-63072)
+    * [CVE-2026-54874](https://nvd.nist.gov/vuln/detail/CVE-2026-54874)
+    * [CVE-2026-18798](https://nvd.nist.gov/vuln/detail/CVE-2026-18798)
+    * [CVE-2026-14457](https://nvd.nist.gov/vuln/detail/CVE-2026-14457)
+    * [CVE-2026-14456](https://nvd.nist.gov/vuln/detail/CVE-2026-14456)
+    * [CVE-2026-63074](https://nvd.nist.gov/vuln/detail/CVE-2026-63074)
+    * [CVE-2026-39821](https://nvd.nist.gov/vuln/detail/CVE-2026-39821)
+    * [CVE-2026-56862](https://nvd.nist.gov/vuln/detail/CVE-2026-56862)
+    * [CVE-2026-56859](https://nvd.nist.gov/vuln/detail/CVE-2026-56859)
+    * [CVE-2026-56853](https://nvd.nist.gov/vuln/detail/CVE-2026-56853)
+    * [CVE-2026-46600](https://nvd.nist.gov/vuln/detail/CVE-2026-46600)
+    * [CVE-2026-33818](https://nvd.nist.gov/vuln/detail/CVE-2026-33818)
+    * [CVE-2026-56858](https://nvd.nist.gov/vuln/detail/CVE-2026-56858)
+    * [CVE-2026-56860](https://nvd.nist.gov/vuln/detail/CVE-2026-56860)
+
+### 0.25.7 (2026-08-28)
+
+* Added SAP API Management to the connectors the Node recognizes
+* Fixed security vulnerabilities in the Go standard library and the Docker client
+
+### 0.25.6 (2026-08-12)
+
+* Released for version parity with the Helm chart; no changes to the image itself
 
 ### 0.25.5 (2026-08-11)
 

@@ -212,6 +212,16 @@ The current version can be found in `wallarm-main`/`wallarm-sp` → `bundle.json
 
 * [Initial release](gloo.md)
 
+## Traefik
+
+| Plugin version      | [Native Node version](../../updating-migrating/native-node/node-artifact-versions.md) |
+| ------------------- | ------------------- |
+| 1.0.x               | 0.25.8 and higher   |
+
+### 1.0.0 (2026-09-09)
+
+* [Initial release](traefik.md)
+
 ## Broadcom Layer7 API Gateway
 
 [How to upgrade](layer7-api-gateway.md#upgrading-the-wallarm-policies)
