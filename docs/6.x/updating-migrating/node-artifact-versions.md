@@ -21,6 +21,13 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.13.2 (2026-09-24)
+
+* Fixed the per-message processing time limit for long-lived streams (WebSocket, gRPC, SSE)
+* Added support for NGINX stable 1.30.5
+* Added support for NGINX mainline 1.31.6
+* Removed Debian 10 and 11 from the test suite as they reached end of life
+
 ### 6.13.1 (2026-08-27)
 
 * Fixed security vulnerabilities:
@@ -322,6 +329,39 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.13.2 (2026-09-24)
+
+* Fixed the per-message processing time limit for long-lived streams (WebSocket, gRPC, SSE)
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-9079](https://nvd.nist.gov/vuln/detail/CVE-2026-9079)
+    * [CVE-2026-8925](https://nvd.nist.gov/vuln/detail/CVE-2026-8925)
+    * [CVE-2026-19931](https://nvd.nist.gov/vuln/detail/CVE-2026-19931)
+    * [CVE-2026-11856](https://nvd.nist.gov/vuln/detail/CVE-2026-11856)
+    * [CVE-2026-10536](https://nvd.nist.gov/vuln/detail/CVE-2026-10536)
+    * [CVE-2026-8927](https://nvd.nist.gov/vuln/detail/CVE-2026-8927)
+    * [CVE-2026-8926](https://nvd.nist.gov/vuln/detail/CVE-2026-8926)
+    * [CVE-2026-8924](https://nvd.nist.gov/vuln/detail/CVE-2026-8924)
+    * [CVE-2026-18924](https://nvd.nist.gov/vuln/detail/CVE-2026-18924)
+    * [CVE-2026-11564](https://nvd.nist.gov/vuln/detail/CVE-2026-11564)
+    * [CVE-2026-82209](https://nvd.nist.gov/vuln/detail/CVE-2026-82209)
+    * [CVE-2026-8286](https://nvd.nist.gov/vuln/detail/CVE-2026-8286)
+    * [CVE-2026-9546](https://nvd.nist.gov/vuln/detail/CVE-2026-9546)
+    * [CVE-2026-9545](https://nvd.nist.gov/vuln/detail/CVE-2026-9545)
+    * [CVE-2026-8932](https://nvd.nist.gov/vuln/detail/CVE-2026-8932)
+    * [CVE-2026-82208](https://nvd.nist.gov/vuln/detail/CVE-2026-82208)
+    * [CVE-2026-80255](https://nvd.nist.gov/vuln/detail/CVE-2026-80255)
+    * [CVE-2026-80231](https://nvd.nist.gov/vuln/detail/CVE-2026-80231)
+    * [CVE-2026-80230](https://nvd.nist.gov/vuln/detail/CVE-2026-80230)
+    * [CVE-2026-80229](https://nvd.nist.gov/vuln/detail/CVE-2026-80229)
+    * [CVE-2026-12064](https://nvd.nist.gov/vuln/detail/CVE-2026-12064)
+    * [CVE-2026-11586](https://nvd.nist.gov/vuln/detail/CVE-2026-11586)
+    * [CVE-2026-11352](https://nvd.nist.gov/vuln/detail/CVE-2026-11352)
+    * [CVE-2026-9547](https://nvd.nist.gov/vuln/detail/CVE-2026-9547)
+    * [CVE-2026-13608](https://nvd.nist.gov/vuln/detail/CVE-2026-13608)
+    * [CVE-2026-9080](https://nvd.nist.gov/vuln/detail/CVE-2026-9080)
+    * [CVE-2026-8458](https://nvd.nist.gov/vuln/detail/CVE-2026-8458)
 
 ### 6.13.1 (2026-08-27)
 
@@ -639,6 +679,39 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.13.2 (2026-09-24)
+
+* Fixed the per-message processing time limit for long-lived streams (WebSocket, gRPC, SSE)
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-9079](https://nvd.nist.gov/vuln/detail/CVE-2026-9079)
+    * [CVE-2026-8925](https://nvd.nist.gov/vuln/detail/CVE-2026-8925)
+    * [CVE-2026-19931](https://nvd.nist.gov/vuln/detail/CVE-2026-19931)
+    * [CVE-2026-11856](https://nvd.nist.gov/vuln/detail/CVE-2026-11856)
+    * [CVE-2026-10536](https://nvd.nist.gov/vuln/detail/CVE-2026-10536)
+    * [CVE-2026-8927](https://nvd.nist.gov/vuln/detail/CVE-2026-8927)
+    * [CVE-2026-8926](https://nvd.nist.gov/vuln/detail/CVE-2026-8926)
+    * [CVE-2026-8924](https://nvd.nist.gov/vuln/detail/CVE-2026-8924)
+    * [CVE-2026-18924](https://nvd.nist.gov/vuln/detail/CVE-2026-18924)
+    * [CVE-2026-11564](https://nvd.nist.gov/vuln/detail/CVE-2026-11564)
+    * [CVE-2026-82209](https://nvd.nist.gov/vuln/detail/CVE-2026-82209)
+    * [CVE-2026-8286](https://nvd.nist.gov/vuln/detail/CVE-2026-8286)
+    * [CVE-2026-9546](https://nvd.nist.gov/vuln/detail/CVE-2026-9546)
+    * [CVE-2026-9545](https://nvd.nist.gov/vuln/detail/CVE-2026-9545)
+    * [CVE-2026-8932](https://nvd.nist.gov/vuln/detail/CVE-2026-8932)
+    * [CVE-2026-82208](https://nvd.nist.gov/vuln/detail/CVE-2026-82208)
+    * [CVE-2026-80255](https://nvd.nist.gov/vuln/detail/CVE-2026-80255)
+    * [CVE-2026-80231](https://nvd.nist.gov/vuln/detail/CVE-2026-80231)
+    * [CVE-2026-80230](https://nvd.nist.gov/vuln/detail/CVE-2026-80230)
+    * [CVE-2026-80229](https://nvd.nist.gov/vuln/detail/CVE-2026-80229)
+    * [CVE-2026-12064](https://nvd.nist.gov/vuln/detail/CVE-2026-12064)
+    * [CVE-2026-11586](https://nvd.nist.gov/vuln/detail/CVE-2026-11586)
+    * [CVE-2026-11352](https://nvd.nist.gov/vuln/detail/CVE-2026-11352)
+    * [CVE-2026-9547](https://nvd.nist.gov/vuln/detail/CVE-2026-9547)
+    * [CVE-2026-13608](https://nvd.nist.gov/vuln/detail/CVE-2026-13608)
+    * [CVE-2026-9080](https://nvd.nist.gov/vuln/detail/CVE-2026-9080)
+    * [CVE-2026-8458](https://nvd.nist.gov/vuln/detail/CVE-2026-8458)
+
 ### 6.13.1 (2026-08-27)
 
 * Fixed security vulnerabilities:
@@ -922,6 +995,20 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.13.2 (2026-09-24)
+
+* Fixed the per-message processing time limit for long-lived streams (WebSocket, gRPC, SSE)
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-93990](https://nvd.nist.gov/vuln/detail/CVE-2026-93990)
+    * [CVE-2026-76641](https://nvd.nist.gov/vuln/detail/CVE-2026-76641)
+    * [CVE-2026-66046](https://nvd.nist.gov/vuln/detail/CVE-2026-66046)
+    * [CVE-2026-76642](https://nvd.nist.gov/vuln/detail/CVE-2026-76642)
+    * [CVE-2026-78408](https://nvd.nist.gov/vuln/detail/CVE-2026-78408)
+    * [CVE-2026-78410](https://nvd.nist.gov/vuln/detail/CVE-2026-78410)
+    * [CVE-2026-76956](https://nvd.nist.gov/vuln/detail/CVE-2026-76956)
+    * [CVE-2026-76957](https://nvd.nist.gov/vuln/detail/CVE-2026-76957)
 
 ### 6.13.1 (2026-08-27)
 
@@ -1216,6 +1303,20 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](cloud-image.md)
 
+### 6.13.2 (2026-09-24)
+
+* Fixed the per-message processing time limit for long-lived streams (WebSocket, gRPC, SSE)
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-93990](https://nvd.nist.gov/vuln/detail/CVE-2026-93990)
+    * [CVE-2026-76641](https://nvd.nist.gov/vuln/detail/CVE-2026-76641)
+    * [CVE-2026-66046](https://nvd.nist.gov/vuln/detail/CVE-2026-66046)
+    * [CVE-2026-76642](https://nvd.nist.gov/vuln/detail/CVE-2026-76642)
+    * [CVE-2026-78408](https://nvd.nist.gov/vuln/detail/CVE-2026-78408)
+    * [CVE-2026-78410](https://nvd.nist.gov/vuln/detail/CVE-2026-78410)
+    * [CVE-2026-76956](https://nvd.nist.gov/vuln/detail/CVE-2026-76956)
+    * [CVE-2026-76957](https://nvd.nist.gov/vuln/detail/CVE-2026-76957)
+
 ### 6.13.1 (2026-08-27)
 
 * Fixed security vulnerabilities:
@@ -1459,6 +1560,29 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-13-1-20260827-130319 (2026-08-27)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-63073](https://nvd.nist.gov/vuln/detail/CVE-2026-63073)
+    * [CVE-2026-75803](https://nvd.nist.gov/vuln/detail/CVE-2026-75803)
+    * [CVE-2026-63076](https://nvd.nist.gov/vuln/detail/CVE-2026-63076)
+    * [CVE-2026-63075](https://nvd.nist.gov/vuln/detail/CVE-2026-63075)
+    * [CVE-2026-63072](https://nvd.nist.gov/vuln/detail/CVE-2026-63072)
+    * [CVE-2026-54874](https://nvd.nist.gov/vuln/detail/CVE-2026-54874)
+    * [CVE-2026-18798](https://nvd.nist.gov/vuln/detail/CVE-2026-18798)
+    * [CVE-2026-14457](https://nvd.nist.gov/vuln/detail/CVE-2026-14457)
+    * [CVE-2026-14456](https://nvd.nist.gov/vuln/detail/CVE-2026-14456)
+    * [CVE-2026-63074](https://nvd.nist.gov/vuln/detail/CVE-2026-63074)
+    * [CVE-2026-39821](https://nvd.nist.gov/vuln/detail/CVE-2026-39821)
+    * [CVE-2026-56862](https://nvd.nist.gov/vuln/detail/CVE-2026-56862)
+    * [CVE-2026-56859](https://nvd.nist.gov/vuln/detail/CVE-2026-56859)
+    * [CVE-2026-56853](https://nvd.nist.gov/vuln/detail/CVE-2026-56853)
+    * [CVE-2026-46600](https://nvd.nist.gov/vuln/detail/CVE-2026-46600)
+    * [CVE-2026-33818](https://nvd.nist.gov/vuln/detail/CVE-2026-33818)
+    * [CVE-2026-56858](https://nvd.nist.gov/vuln/detail/CVE-2026-56858)
+    * [CVE-2026-56860](https://nvd.nist.gov/vuln/detail/CVE-2026-56860)
 
 ### wallarm-node-6-13-0-20260729-094623 (2026-07-29)
 
