@@ -2,7 +2,7 @@ Once the malicious request is detected by Wallarm and displayed in the [**Attack
 
 To perform this analysis, in Wallarm Console → [**Attacks**][link-attacks], open the attack, switch to the **Requests** tab, and select a request. In the request details, open the **Session ID** field menu and select **Investigate this attack in API Sessions**.
 
-In [**Incidents**][link-incidents], access the incident and then the request details, and click **Explore in API Sessions**.
+In [**Incidents**][link-incidents], the request details work the same way: open the incident, switch to the **Requests** tab, select a request, and use the **Session ID** field menu.
 
 Wallarm opens the [**API Sessions**][link-sessions] section filtered: the session that the initial request belongs to is displayed; only the initial request is displayed within this session.
 
