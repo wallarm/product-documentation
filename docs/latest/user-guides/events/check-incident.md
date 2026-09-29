@@ -35,7 +35,7 @@ Wallarm Console displays detected incidents in the **Incidents** section. The pa
 The page presents incidents for the selected period:
 
 * The time range selector limits the data to a period.
-* The filter field narrows the list down to the incidents you are interested in. It uses the same syntax as the **Attacks** section, described in [Attack Search and Filters](../search-and-filters/attack-filters.md#filter).
+* The filter field narrows the list down to the incidents you are interested in. It uses the same syntax as the **Attacks** section. See [Incident Search and Filters](../search-and-filters/use-search.md).
 * **Statistic** is a collapsible panel with charts summarizing the filtered incidents: requests with incidents over time, top source IPs, status code breakdown, top incident endpoints and hosts, top attack types and subtypes.
 
 ![Incidents - Statistic][img-incidents-statistic]
@@ -44,7 +44,7 @@ The filter and the time range are stored in the page address. Reloading the page
 
 The table below the panel lists the incidents. Use **Table settings** to choose and arrange its columns. The **Security issues** column shows the severity and the state of each security issue that the incident exploits.
 
-To get the data outside of Wallarm Console, export the incidents you currently see. The export reproduces the filter and the time range.
+To get the data outside of Wallarm Console, export the incidents you currently see as CSV. The export reproduces the filter and the time range. See [Creating Reports](../search-and-filters/custom-report.md#incidents).
 
 ### Grouping
 
@@ -104,8 +104,54 @@ When an incident appears in the **Incidents** section, respond to it as follows:
 
 ## API calls to get incidents
 
-Besides using Wallarm Console, you can retrieve incident details by [calling the Wallarm API directly](../../api/overview.md). Incidents are returned by the `/v1/objects/attack` endpoint with the `"!vulnid": null` term, which keeps only attacks that have a vulnerability ID — this is how the system distinguishes incidents from attacks. The example below returns the first 50 incidents detected in the last 24 hours.
+Besides using Wallarm Console, you can retrieve incidents by [calling the Wallarm API directly](../../api/overview.md). The **Incidents** section is backed by the same [Attacks API](../../api-sessions/attacks-api.md) as the **Attacks** section.
 
-Replace `TIMESTAMP` with the timestamp of 24 hours ago in [Unix time](https://www.unixtimestamp.com/) format.
+To get incidents, call `security-agg/query` with the `incidents` preset. It returns only the attacks bound to a security issue, grouped by attack type, and allows the `security_issue_ids` column with the security issues that each row exploits. The example below returns the incidents of the last 24 hours, sorted by the number of requests.
 
---8<-- "../include/api-request-examples/get-incidents-en.md"
+=== "US Cloud"
+    ```bash
+    curl -X POST "https://us1.api.wallarm.com/v1/client/5/attack-vectors/security-agg/query" \
+      -H "X-WallarmAPI-Token: YOUR_API_TOKEN" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "preset": "incidents",
+        "select": ["attack_types", "requests_count", "security_issue_ids", "hosts"],
+        "order_by": [{"field": "requests_count", "desc": true}],
+        "time_range": "-24h",
+        "limit": 50
+      }'
+    ```
+=== "EU Cloud"
+    ```bash
+    curl -X POST "https://api.wallarm.com/v1/client/5/attack-vectors/security-agg/query" \
+      -H "X-WallarmAPI-Token: YOUR_API_TOKEN" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "preset": "incidents",
+        "select": ["attack_types", "requests_count", "security_issue_ids", "hosts"],
+        "order_by": [{"field": "requests_count", "desc": true}],
+        "time_range": "-24h",
+        "limit": 50
+      }'
+    ```
+
+Replace `5` with your `client_id` and `YOUR_API_TOKEN` with your [API token](../settings/api-tokens.md).
+
+Each row of the response is one incident group:
+
+```json
+{
+  "data": [
+    {
+      "id": "BASE64_GROUP_ID",
+      "attack_type": "rce",
+      "attack_types": {"count": 1, "values": ["rce"]},
+      "requests_count": 120,
+      "security_issue_ids": {"count": 1, "values": [310381]},
+      "hosts": {"count": 1, "values": ["api.example.com"]}
+    }
+  ]
+}
+```
+
+To list the requests of an incident group, pass its `id` to `attack-vectors/by-group`, as described in [Drill into a group](../../api-sessions/attacks-api.md#4-drill-into-a-group).
