@@ -42,5 +42,6 @@ Wallarm offers connectors for the following platforms:
 | [Fastly](fastly.md) | In-line, out-of-band | Security Edge, self-hosted |
 | [IBM DataPower](ibm-api-connect.md) | In-line | Security Edge, self-hosted |
 | [Azure API Management](azure-api-management.md) | In-line, out-of-band | Security Edge, self-hosted |
+| [SAP API Management](sap-api-management.md) | In-line, out-of-band | Self-hosted |
 
 If you couldn't find the connector you are looking for, please feel free to contact our [Sales team](mailto:sales@wallarm.com) to discuss your requirements and explore potential solutions.

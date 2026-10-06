@@ -298,6 +298,11 @@ The Native Node works with the following platforms with no limitations:
             <h3>Azure API Management</h3>
             <p>Deploy Wallarm to secure APIs managed by Azure API Management</p>
         </a>
+
+        <a class="do-card" href="../installation/connectors/sap-api-management/">
+            <h3>SAP API Management</h3>
+            <p>Secure APIs managed with SAP Integration Suite API Management</p>
+        </a>
     </div>
 </div>
 

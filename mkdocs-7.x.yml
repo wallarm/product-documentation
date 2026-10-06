@@ -217,6 +217,7 @@ nav:
       - Azure API Management: installation/connectors/azure-api-management.md
       - Apigee: installation/connectors/apigee.md
       - IBM API Connect: installation/connectors/ibm-api-connect.md
+      - SAP API Management: installation/connectors/sap-api-management.md
     - TCP Traffic Mirror:
       - Deployment: installation/oob/tcp-traffic-mirror/deployment.md
     - Packages & Containers:
