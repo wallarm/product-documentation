@@ -279,3 +279,17 @@ The current version can be found in the Wallarm policy file → `X-Wallarm-Conne
 ### 1.0.0 (2025-09-17)
 
 * [Initial release](azure-api-management.md)
+
+## SAP API Management
+
+[How to upgrade](sap-api-management.md#upgrading-the-policies)
+
+The current version can be found in the `X-Wallarm-Connector-Version` value of the `WallarmNodeRequest.js` file in the code bundle.
+
+| Policy version      | [Native Node version](../../updating-migrating/native-node/node-artifact-versions.md) |
+| ------------------- | ------------------- |
+| 1.0.x               | 0.25.7 and higher   |
+
+### 1.0.0 (2026-09-29)
+
+* [Initial release](sap-api-management.md)
