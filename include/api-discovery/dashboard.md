@@ -24,7 +24,7 @@ The dashboard has two tabs:
 
 ![Discovered inventory — APIs tab](../images/about-wallarm-waf/api-discovery-2.0/discovered-inventory-apis.png)
 
-The top row leads with what needs attention first:
+The tab leads with what needs attention first:
 
 | Widget | What it shows |
 | --- | --- |
@@ -34,12 +34,9 @@ The top row leads with what needs attention first:
 | **Entries with issues** | The share of endpoints with open [security issues](../api-attack-surface/security-issues.md) (vulnerabilities). |
 | **APIs with sensitive data** | Endpoints broken down by the class of [sensitive data](sensitive-data.md) they carry (Technical, Personal, Credentials, Financial). |
 | **APIs by protocol** | Your inventory split across REST, GraphQL, SOAP, gRPC, and MCP. |
-
-Below the top row:
-
-* **By change status** — a chart of new and changed endpoints over the [last 7 days][apid-track-changes].
-* **Sensitive data discovered** — the specific [sensitive-data types](sensitive-data.md) found (Token, Email, JWT, Credit card number, and others), with the number of entries carrying each.
-* **Assets requiring attention** — see [Assets requiring attention](#assets-requiring-attention) below.
+| **By change status** | A chart of new and changed endpoints over the [last 7 days][apid-track-changes]. |
+| **Sensitive data discovered** | The specific [sensitive-data types](sensitive-data.md) found (Token, Email, JWT, Credit card number, and others), with the number of entries carrying each. |
+| **Assets requiring attention** | The endpoints to look at first — see [Assets requiring attention](#assets-requiring-attention) below. |
 
 ## MCP Servers tab
 
