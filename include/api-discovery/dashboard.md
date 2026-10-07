@@ -4,7 +4,7 @@ The **Discovered inventory** dashboard is the home screen for Wallarm's [**API D
 * Which of my APIs are called **without authentication**?
 * Which endpoints are **not in my specification** (shadow and zombie APIs)?
 * Which endpoints carry **sensitive data** or have open **security issues**?
-* Which endpoints are **under attack** right now?
+* Which endpoints are **attacked the most**?
 
 Everything on the dashboard is built from the same traffic analysis that produces your [API inventory][apid-overview] — there is nothing extra to install or enable.
 
