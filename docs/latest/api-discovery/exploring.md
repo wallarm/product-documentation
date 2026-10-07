@@ -26,9 +26,7 @@ Among a wide range of API endpoint filters, you can choose the ones correspondin
 
 ### Host exposure (external vs. internal)
 
-The **Exposure** filter, and the **External hosts** widget on the [Discovered inventory dashboard](dashboard.md), classify every discovered host by whether it is reachable from the public internet. This is the fastest way to narrow your attention to your true attack surface.
-
-Each host is classified into one of three statuses:
+The **Exposure** filter classifies every discovered host by whether it is reachable from the public internet. Each host has one of three statuses:
 
 | Status | Meaning |
 | --- | --- |
