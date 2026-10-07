@@ -54,7 +54,7 @@ When API Discovery finds [MCP servers](overview.md#supported-protocols) in your 
 
 The **APIs by authentication type** widget (and its MCP equivalent) is built on API Discovery's [authentication flow detection](authentication.md), which reads live traffic to separate authenticated endpoints from those called **without authentication** — the metric this widget leads with.
 
-See [Authentication Flow Detection](authentication.md) for how it works: the authentication types and default parameters detected automatically, the 7-day sliding window and the Consistent / Partial / Missing statuses, the node-version requirements, and how to register custom authentication parameters.
+See [Authentication Flow Detection](authentication.md) for how it works: the authentication types and default parameters detected automatically, the 7-day observation window, the node-version requirements, and how to register custom authentication parameters.
 
 ## Host exposure (external vs. internal)
 
