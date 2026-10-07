@@ -22,6 +22,7 @@ Among a wide range of API endpoint filters, you can choose the ones correspondin
 * Find the endpoints processing sensitive data to ensure they are properly secured.
 * Find the endpoints of a deprecated API version (e.g. by searching `/v1`) and make sure that they are not used by clients.
 * Find endpoints without authentication by using the **Authentication** filter and selecting **No authentication**. This helps identify potential security risks where endpoints may be unprotected.
+* Find the endpoints that are reachable from the internet by using the **Exposure** filter and selecting **External** (or **Internal** for endpoints on hosts that are only reachable inside a private network). Internet-facing endpoints without authentication are the highest-priority attack surface. See [Host exposure (external vs. internal)](dashboard.md#host-exposure-external-vs-internal) for how a host is classified.
 
 ### Labeling
 
