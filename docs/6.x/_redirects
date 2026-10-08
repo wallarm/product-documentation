@@ -332,9 +332,6 @@
 /7.x/vulnerability-detection/threat-replay-testing/* /7.x/about-wallarm/detecting-vulnerabilities/#detection-methods
 /5.x/vulnerability-detection/threat-replay-testing/* /5.x/about-wallarm/detecting-vulnerabilities/#detection-methods
 
-/vulnerability-detection/schema-based-testing/* /about-wallarm/detecting-vulnerabilities/#detection-methods
-/7.x/vulnerability-detection/schema-based-testing/* /7.x/about-wallarm/detecting-vulnerabilities/#detection-methods
-/5.x/vulnerability-detection/schema-based-testing/* /5.x/about-wallarm/detecting-vulnerabilities/#detection-methods
 /admin-en/configuration-guides/sso/gsuite/* /admin-en/configuration-guides/sso/sso-gsuite/
 /admin-en/configuration-guides/sso/okta/* /admin-en/configuration-guides/sso/sso-okta/
 
