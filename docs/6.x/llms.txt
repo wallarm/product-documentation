@@ -111,6 +111,7 @@
 - [Virtual Patching](https://docs.wallarm.com/user-guides/rules/vpatch-rule.md): Block requests matching a specific CVE/vulnerability pattern without changing application code (also: vpatch, hotpatch, runtime patching).
 - [Custom Regex Rules](https://docs.wallarm.com/user-guides/rules/regex-rule.md): Define custom attack indicators using regular expressions on chosen request parts (also: regex rule, custom detector).
 - [Sensitive Data Masking](https://docs.wallarm.com/user-guides/rules/sensitive-data-rule.md): Mask sensitive request parts so they are not stored or exported (also: data masking, PII masking, redaction).
+- [Limit Data Export](https://docs.wallarm.com/user-guides/rules/limit-data-export-rule.md): Control whether the Node exports full request and response data to the Cloud, or metadata only, per endpoint (also: limit data export, metadata only, full data export).
 - [Request Parser Configuration](https://docs.wallarm.com/user-guides/rules/request-processing.md): Override how the node parses specific endpoints/parameters (JSON, XML, etc.).
 - [Response Header Manipulation](https://docs.wallarm.com/user-guides/rules/add-replace-response-header.md): Add, remove, or replace response headers (also: HSTS, CSP injection rule).
 - [Overlimit Detection Configuration](https://docs.wallarm.com/user-guides/rules/configure-overlimit-res-detection.md): Tune behavior when request processing exceeds the per-request time budget.

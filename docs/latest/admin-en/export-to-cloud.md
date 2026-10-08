@@ -47,7 +47,7 @@ This is what data is sent from Wallarm node to Cloud and how you can control it:
 To control:
 
 * [**Mask sensitive data**](../user-guides/rules/sensitive-data-rule.md): create rules of this type for your endpoints or applications to set which request point values should be cut before sending - values will never leave your security perimeter.
-* **Limit data export**: create rules of this type for your endpoints or applications to avoid sending full malicious request data to the Cloud. When the rule is applied, the node preserves the request structure (parameter names and nesting) but masks the values, so parameter values never leave your security perimeter. "Keep headers" mode is available.
+* [**Limit data export**](../user-guides/rules/limit-data-export-rule.md): create rules of this type for your endpoints or applications to avoid sending full malicious request data to the Cloud. When the rule is applied, the node preserves the request structure (parameter names and nesting) but masks the values, so parameter values never leave your security perimeter. "Keep headers" mode is available.
 
     !!! info "Behavior change in NGINX Node 6.12.4"
         Starting from NGINX Node 6.12.4, an applied **Limit data export** rule preserves the request structure (parameter names and nesting) and masks only the values. In earlier versions, the rule switched the matched traffic to metadata only — the node sent just the request method, URI, IP address, HTTP status code, request time, and the `Host` header, while the body, query parameters, and other headers were excluded from both requests and responses.

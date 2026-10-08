@@ -72,7 +72,7 @@ Filtration posture, how requests are parsed, and what data leaves the node.
 | [Binary data processing](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data) | Prevent false positives during binary data analysis |
 | File upload processing | Allow certain file types in uploaded requests |
 | [Mask sensitive data](sensitive-data-rule.md) | Prevent sending sensitive data to Wallarm Cloud |
-| Limit data export | Restrict request and response data sent to Wallarm Cloud |
+| [Limit data export](limit-data-export-rule.md) | Restrict request and response data sent to Wallarm Cloud |
 | [Change response headers](add-replace-response-header.md) | Modify original server responses for an extra security layer |
 | Point to middleware | Route requests through a middleware processing pipeline |
 | Change response | Disable or enable response analysis by API Discovery |
