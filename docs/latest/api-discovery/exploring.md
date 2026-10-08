@@ -22,6 +22,26 @@ Among a wide range of API endpoint filters, you can choose the ones correspondin
 * Find the endpoints processing sensitive data to ensure they are properly secured.
 * Find the endpoints of a deprecated API version (e.g. by searching `/v1`) and make sure that they are not used by clients.
 * Find endpoints without authentication by using the **Authentication** filter and selecting **No authentication**. This helps identify potential security risks where endpoints may be unprotected.
+* Find the endpoints that are reachable from the internet by using the **Exposure** filter and selecting **External** (or **Internal** for endpoints on hosts that are only reachable inside a private network). Internet-facing endpoints without authentication are the highest-priority attack surface. See [Host exposure (external vs. internal)](#host-exposure-external-vs-internal) for how a host is classified.
+
+### Host exposure (external vs. internal)
+
+The **Exposure** filter classifies every discovered host by whether it is reachable from the public internet. Each host has one of three statuses:
+
+| Status | Meaning |
+| --- | --- |
+| **External** (`public`) | Reachable from the public internet — the host is a public IP address, or a hostname that resolves to one. |
+| **Internal** (`internal`) | Not reachable from the public internet — a private (RFC 1918 / RFC 4193), loopback, or link-local IP; a dot-less short name such as `srv01`; or a hostname that public DNS does not know or that resolves only to private addresses. |
+| **Unknown** (`unknown`) | Could not be classified — for example, the hostname could not be resolved. |
+
+How the classification is made:
+
+* If the host is an **IP literal** (IPv4 or IPv6), it is classified directly by its address range — private, loopback, and link-local ranges are **Internal**; any other routable address is **External**.
+* If the host is a **hostname**, Wallarm resolves it against **public DNS resolvers** (not your internal DNS) to determine what the public internet sees. This is deliberate: in a split-horizon DNS setup, internal resolvers may return private addresses for a name that is in fact publicly reachable, so Wallarm checks the public view.
+* A hostname that public DNS does not know (an authoritative *no such name* answer) is treated as **Internal**, on the assumption it lives on a private network.
+
+!!! info "Refresh and requirements"
+    Host exposure is recalculated on a regular schedule (hourly), so a newly discovered host appears as **Unknown** until its first classification, and a host that moves between private and public addressing updates on the next cycle. Classification depends on API Discovery being able to reach public DNS from the Wallarm node environment; where outbound DNS is blocked, hosts stay **Unknown** and self-heal once it is restored.
 
 ### Labeling
 
