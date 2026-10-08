@@ -311,6 +311,28 @@
 /7.x/glossary-en/  /7.x/about-wallarm/protecting-against-attacks/
 /5.x/glossary-en/  /5.x/about-wallarm/protecting-against-attacks/
 
+# Exploring Infrastructure Inventory split into separate Graph and Security tabs/pages
+/infrastructure-discovery/exploring/                                  /infrastructure-discovery/graph/
+/infrastructure-discovery/exploring/#graph                            /infrastructure-discovery/graph/
+/infrastructure-discovery/exploring/#security                         /infrastructure-discovery/security/
+/infrastructure-discovery/exploring/#assets                           /infrastructure-discovery/security/#assets
+/infrastructure-discovery/exploring/#findings                         /infrastructure-discovery/security/#findings
+/infrastructure-discovery/exploring/#finding-details-and-blast-radius /infrastructure-discovery/security/#finding-details-and-blast-radius
+/infrastructure-discovery/exploring/#ai-assisted-finding-enrichment   /infrastructure-discovery/security/#ai-assisted-finding-enrichment
+/infrastructure-discovery/exploring/#drift-events                     /infrastructure-discovery/security/#drift-events
+/infrastructure-discovery/exploring/#policies                         /infrastructure-discovery/security/#policies
+/infrastructure-discovery/exploring/#rules                            /infrastructure-discovery/security/#rules
+/7.x/infrastructure-discovery/exploring/                                  /7.x/infrastructure-discovery/graph/
+/7.x/infrastructure-discovery/exploring/#graph                            /7.x/infrastructure-discovery/graph/
+/7.x/infrastructure-discovery/exploring/#security                         /7.x/infrastructure-discovery/security/
+/7.x/infrastructure-discovery/exploring/#assets                           /7.x/infrastructure-discovery/security/#assets
+/7.x/infrastructure-discovery/exploring/#findings                         /7.x/infrastructure-discovery/security/#findings
+/7.x/infrastructure-discovery/exploring/#finding-details-and-blast-radius /7.x/infrastructure-discovery/security/#finding-details-and-blast-radius
+/7.x/infrastructure-discovery/exploring/#ai-assisted-finding-enrichment   /7.x/infrastructure-discovery/security/#ai-assisted-finding-enrichment
+/7.x/infrastructure-discovery/exploring/#drift-events                     /7.x/infrastructure-discovery/security/#drift-events
+/7.x/infrastructure-discovery/exploring/#policies                         /7.x/infrastructure-discovery/security/#policies
+/7.x/infrastructure-discovery/exploring/#rules                            /7.x/infrastructure-discovery/security/#rules
+
 # Serve favicon.png under the conventional /favicon.ico path. Browsers viewing
 # raw .md / .txt files have no HTML <head> to read <link rel="icon"> from, so
 # they fall back to auto-discovering /favicon.ico.
