@@ -1,0 +1,1 @@
+--8<-- "latest/user-guides/rules/limit-data-export-rule.md"
