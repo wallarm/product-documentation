@@ -159,7 +159,8 @@
 
 - [Infrastructure Discovery Overview](https://docs.wallarm.com/7.x/infrastructure-discovery/overview.md): Agentless SaaS for AWS that answers what you have, what changed, and what is exposed across cloud accounts; surfaces shadow AI (also: cloud asset discovery, attack surface visibility).
 - [Infrastructure Discovery Setup](https://docs.wallarm.com/7.x/infrastructure-discovery/setup.md): Get access, connect AWS accounts, and configure scanning.
-- [Exploring Infrastructure Inventory](https://docs.wallarm.com/7.x/infrastructure-discovery/exploring.md): Browse discovered cloud resources and their security posture, including the Graph topology map grouped by account, region, and VPC.
+- [Graph in Infrastructure Discovery](https://docs.wallarm.com/7.x/infrastructure-discovery/graph.md): Visual map of discovered cloud resources and how they connect, grouped by account, region, and VPC.
+- [Security in Infrastructure Discovery](https://docs.wallarm.com/7.x/infrastructure-discovery/security.md): Review discovered assets, findings, drift events, policies, and rules that make up cloud security posture.
 
 ### API Security Testing
 
