@@ -58,7 +58,7 @@ See [Authentication Flow Detection](authentication.md) for how it works: the aut
 
 ## Host exposure (external vs. internal)
 
-The **External hosts** widget, and the **Exposure** filter in the [API inventory](exploring.md#filtering), classify every discovered host as **External** (reachable from the public internet), **Internal**, or **Unknown**. This is the fastest way to narrow your attention to your true attack surface — an internet-facing endpoint with no authentication matters far more than an identical endpoint that only serves a private network.
+The **External hosts** widget, and the **Public exposure** filter in the [API inventory](exploring.md#filtering), classify every discovered host as **External** (reachable from the public internet), **Internal**, or **Unknown**. This is the fastest way to narrow your attention to your true attack surface — an internet-facing endpoint with no authentication matters far more than an identical endpoint that only serves a private network.
 
 See [Host exposure (external vs. internal)](exploring.md#host-exposure-external-vs-internal) for how each host is classified and how often it is refreshed. Click the **External** segment of the widget to list every endpoint on an internet-facing host.
 
