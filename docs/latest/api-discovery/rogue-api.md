@@ -32,7 +32,7 @@ The [API Discovery](overview.md) module can detect **rogue APIs** by comparing l
 ## Setup
 
 1. Go to **API Security** → **API Specifications** ([US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/)).
-2. Click **Upload specification** and upload an OpenAPI 3.0 or 3.1 file (JSON or YAML).
+2. Click **Upload specification** and upload an OpenAPI 3.0 or 3.1 file (JSON or YAML). Swagger (OpenAPI) 2.0 files are also accepted — Wallarm automatically converts them to OpenAPI 3.0 on upload.
 
     !!! tip ""
         OAS 3.1 requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.6.1+ or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.20.0+.

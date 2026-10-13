@@ -16,7 +16,7 @@ In Jira UI:
 
 1. Copy the generated API token.
 
-In Wallarm UI:
+In Wallarm Console:
 
 1. Open Wallarm Console → **Integrations** → **Jira**.
 1. Enter an integration name.

@@ -29,7 +29,7 @@ nav:
       - Platform Overview: demo-videos/platform-overview.md
       - API Discovery Overview: demo-videos/api-discovery.md
       - API Leaks Overview: demo-videos/api-leaks.md
-      - Shadow and Orphan API: demo-videos/shadow-api.md
+      - Shadow and Zombie API: demo-videos/shadow-api.md
       - Analyzing CVEs and Attacks: demo-videos/events-inspection.md
       - API Abuse Prevention: demo-videos/api-abuse-prevention.md
       - Platform Settings: demo-videos/overview.md      
@@ -369,7 +369,7 @@ nav:
     - Overview: platform-management/overview.md
     - Dashboards:
       - Threat Prevention Dashboard: user-guides/dashboards/threat-prevention.md
-      - API Discovery Dashboard: user-guides/dashboards/api-discovery.md
+      - Discovered Inventory Dashboard: user-guides/dashboards/api-discovery.md
       - OWASP API Top 10 Dashboard: user-guides/dashboards/owasp-api-top-ten.md
       - Business Intelligence: user-guides/dashboards/bi-dashboards.md
 
