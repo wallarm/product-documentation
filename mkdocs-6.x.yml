@@ -422,32 +422,47 @@ nav:
 
   - AI Hypervisor:
     - Overview: ai-hypervisor/overview.md
+    - Getting Started: ai-hypervisor/getting-started.md
 
     - Scanner Installation:
-      - Install HIGGS Scanner: ai-hypervisor/deploy.md
+      - Install the Scanner: ai-hypervisor/deploy.md
       - Chart Values: ai-hypervisor/chart-values.md
       - Labels and Annotations: ai-hypervisor/annotations.md
+      - Versioning: ai-hypervisor/versioning.md
 
     - Briefing: ai-hypervisor/briefing.md
     - Findings and risk model: ai-hypervisor/findings.md
+    - Heatmap: ai-hypervisor/heatmap.md
+    - Risk Model: ai-hypervisor/risk-model.md
 
     - Briefing surfaces:
       - Patterns: ai-hypervisor/patterns.md
       - Behavior Cert: ai-hypervisor/behavior-cert.md
+      - A2AS: ai-hypervisor/a2as.md
       - Shadow AI: ai-hypervisor/shadow-ai.md
       - Registry: ai-hypervisor/registry.md
       - Topology: ai-hypervisor/topology.md
+      - Hyper Graph: ai-hypervisor/hyper-graph.md
       - Debugger: ai-hypervisor/debugger.md
       - Red Team: ai-hypervisor/red-team.md
       - Compliance: ai-hypervisor/compliance.md
+      - AI Spend: ai-hypervisor/ai-spend.md
 
     - Drill-in views:
-      - Data Tracks: ai-hypervisor/data-tracks.md
-      - User Tracks: ai-hypervisor/user-tracks.md
+      - Traffic: ai-hypervisor/user-tracks.md
+      - Traffic Flow Map: ai-hypervisor/traffic.md
+      - Personal Data Flows: ai-hypervisor/data-tracks.md
       - Supply Chain: ai-hypervisor/supply-chain.md
+      - Egress: ai-hypervisor/egress.md
+      - Infrastructure: ai-hypervisor/infrastructure.md
+      - Code: ai-hypervisor/code.md
+      - Discovery: ai-hypervisor/discovery.md
 
     - Enforcement: ai-hypervisor/enforcement.md
+    - Data Governor: ai-hypervisor/data-governor.md
+    - Integrations: ai-hypervisor/integrations.md
     - Notifications: ai-hypervisor/notifications.md
+    - Audit Log: ai-hypervisor/audit-log.md
     - Settings: ai-hypervisor/settings.md
     - Supported Model Providers: ai-hypervisor/supported-providers.md
 

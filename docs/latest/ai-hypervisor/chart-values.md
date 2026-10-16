@@ -1,6 +1,6 @@
 # Chart Values <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
-The HIGGS Scanner ships as a Helm chart (`wallarm/aih-scanner`, current version `2.1.1`). The tables below cover the values most customers tune. Everything else in the [chart's `values.yaml`](https://github.com/wallarm/helm-charts/tree/main/aih-scanner) has a default that rarely needs overriding.
+The scanner ships as a Helm chart (`wallarm/aih-scanner`, current version `2.11.1`). The tables below cover the values most customers tune. Everything else in the [chart's `values.yaml`](https://github.com/wallarm/helm-charts/tree/main/aih-scanner) has a default that rarely needs overriding.
 
 For pod and namespace labels that control which workloads the scanner observes, see [Labels and Annotations](annotations.md).
 
@@ -23,7 +23,7 @@ For pod and namespace labels that control which workloads the scanner observes, 
 
 | Key | Default | Description |
 |---|---|---|
-| `image.tag` | matches chart version (currently `2.1.1`) | Override only to pin a specific scanner version. |
+| `image.tag` | the scanner release the chart ships (chart `2.11.1` ships `2.11.0`) | Override only to pin a specific scanner version. |
 | `image.pullPolicy` | `IfNotPresent` | Standard image-pull semantics. |
 | `imagePullSecretData` | (empty) | Base64-encoded `.dockerconfigjson` for the scanner pull secret. When set, the chart creates the secret automatically. Use when pulling from a private mirror. |
 | `namespace.name` | `higgs-system` | The namespace the scanner runs in. Change when `higgs-system` collides with an existing resource. |
@@ -78,7 +78,7 @@ To change Helm values, re-run `helm upgrade`:
 ```bash
 helm upgrade aih-scanner wallarm/aih-scanner \
   --namespace higgs-system \
-  --version 2.1.1 \
+  --version 2.11.1 \
   --reuse-values \
   --set <KEY>=<NEW_VALUE>
 ```

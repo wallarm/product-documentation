@@ -1,9 +1,8 @@
-# Install HIGGS Scanner <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
+# Scanner Installation <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
-The **HIGGS Scanner** (Hypervisor Inspection & GenerativeAI Guarding Scanner) is the only AI Hypervisor component you install in your own environment. The dashboard, backend, and telemetry store are hosted by Wallarm — your scanner uploads to that hosted service over HTTPS.
+The **scanner** is the only AI Hypervisor component you install in your own environment. The dashboard, backend, and telemetry store are hosted by Wallarm, and your scanner uploads to that hosted service over HTTPS.
 
-Onboarding is two steps: **subscribe and get a tenant** through AWS Marketplace, then **install the HIGGS Scanner** as a Helm chart into your own Amazon EKS cluster. This page covers both steps end to end.
-
+Onboarding is two steps: **subscribe and get a tenant** through AWS Marketplace, then **install the scanner** where your AI applications run. This page covers both steps end to end.
 
 ## Step 1: Get your tenant
 
@@ -11,91 +10,117 @@ A tenant is your private AI Hypervisor instance: a dedicated dashboard URL, isol
 
 1. [Contact Wallarm sales](mailto:sales@wallarm.com) to discuss sizing and receive an AWS Marketplace private-offer link.
 2. Accept the private offer in your AWS account. AWS records the entitlement and the Wallarm subscription appears on your AWS bill.
-3. Wallarm provisions your tenant on Wallarm-hosted infrastructure and emails you the **tenant URL** (something like `<your-name>.play.hypervisor.wallarm-cloud.com`) and a link to the first-time login screen.
+3. Wallarm provisions your tenant on Wallarm-hosted infrastructure and emails you the **tenant URL** (for example, `<your-name>.play.hypervisor.wallarm-cloud.com`) and a link to the first-time login screen.
 
-After first-time login, your tenant dashboard opens with the exact Helm commands for the next step, pre-filled with your tenant's `backendUrl` and `scannerPrivateKey`.
+After first-time login, **Briefing** shows **No applications scanned yet** and a **Scanner deploy command** box. The commands in it already contain your tenant address and your scanner key. **Settings** → **Scanners** → **Scanner deploy command** has the same commands in four tabs: **Kubernetes**, **AWS Fargate**, **AWS ECS on EC2**, and **macOS endpoint**.
+
+!!! warning "The commands contain your scanner key"
+    The scanner key authenticates the scanner to your tenant. Treat it as a secret.
 
 ## Step 2: Install the scanner
 
-The HIGGS Scanner is a Helm chart you install into the Amazon EKS cluster running your AI workloads. The scanner attaches to processes via eBPF, observes outbound calls, and reports to your tenant.
+Choose the tab that matches where your AI applications run.
 
-### Requirements
+### Kubernetes
 
-* **Amazon EKS** — Kubernetes 1.29 or later, with worker-node kernel 5.10 or later
-* Helm 3.10 or later
-* `kubectl` configured for the target EKS cluster
+Requirements:
+
+* A Kubernetes cluster, for example Amazon EKS, with Kubernetes 1.29 or later and worker-node kernel 5.10 or later
+* `kubectl` and Helm 3.10 or later connected to the cluster, with permission to run a privileged DaemonSet
 * Outbound HTTPS access from worker nodes to your tenant URL on `*.play.hypervisor.wallarm-cloud.com`
 
-### Install commands
+Steps:
 
-Copy the two commands from your tenant dashboard's empty state and run them in a shell with `kubectl` and `helm` configured for the target cluster.
+1. Add the Helm repository:
+
+    ```bash
+    helm repo add wallarm https://raw.githubusercontent.com/wallarm/helm-charts/main && helm repo update
+    ```
+
+2. Install the scanner. Copy the command from your tenant: it carries your tenant address and key.
+
+    ```bash
+    helm upgrade --install aih-scanner wallarm/aih-scanner \
+      --version 2.11.1 \
+      --set config.backendUrl="<YOUR_TENANT_URL>" \
+      --set scannerPrivateKey="<YOUR_PRIVATE_KEY>"
+    ```
+
+    The chart creates the `higgs-system` namespace and runs one scanner pod on each node. Your application pods are not modified. For every chart value, see [Chart Values](chart-values.md).
+
+3. Check that the scanner is running. The pods must be **Running**:
+
+    ```bash
+    kubectl get pods -n higgs-system
+    ```
+
+4. Choose what to watch. The scanner records nothing until you opt a namespace in. Proceed to [Step 3](#step-3-onboarding-your-workloads).
+
+### AWS ECS on EC2
+
+1. Copy the scanner task definition from your tenant. Replace the `<paste …>` placeholder with your ECS task execution role ARN.
+2. Register the task definition and create the DAEMON service with the two commands shown. One scanner runs on each instance; new instances are covered automatically.
+3. Opt applications in: add `"dockerLabels": { "higgs.scan": "enabled" }` to each task definition you want scanned.
+
+Instances need an ECS-optimized Amazon Linux 2023 AMI and a security group that allows outbound traffic. For production, move `SCANNER_PRIVATE_KEY` out of the task definition into AWS Secrets Manager and reference it with `secrets[].valueFrom`.
+
+### AWS Fargate
+
+Fargate has no hosts to run a scanner on, so the scanner runs as extra containers inside your application task.
+
+1. Copy the containers JSON from your tenant into the ECS task definition of your application.
+2. Replace the two `<paste …>` placeholders: your ECS task execution role ARN and the container image of your application. If your application does not listen on port `8080`, change `8080` in `AppPorts` and `portMappings`.
+3. Register the task definition. Your service redeploys automatically.
+
+To also scan dependencies for known vulnerabilities, merge the add-on shown in your tenant (`"pidMode": "task"` and the `SYS_PTRACE` capability). Skip it if your account does not allow `pidMode`. Opting a namespace in from **Registry** → **Shadow** does not apply to Fargate.
+
+### macOS endpoint
+
+The macOS endpoint records AI traffic from a Mac, for example a developer laptop.
+
+1. Install the signed package your administrator provides:
+
+    ```bash
+    sudo installer -pkg AIHDiscoveryHost.pkg -target /
+    ```
+
+2. Open **System Settings** → **Privacy & Security**. Click **Allow** for the Wallarm, Inc. system extension, then allow it to filter network content.
+3. Point it at your tenant (copy the command from your tenant):
+
+    ```bash
+    sudo defaults write /Library/Preferences/com.wallarm.aih BACKEND_URL "<YOUR_TENANT_URL>"
+    ```
+
+The Mac enrolls itself with no key or account to enter, and appears in your tenant within a minute. Its AI calls show up in **Traffic** and **Topology**, and per person and program in **Egress**.
+
+## Step 3: Onboarding your workloads
+
+On Kubernetes, you opt workloads in by labeling namespaces (or individual pods). Put one of these labels on each namespace:
+
+| Label | Mode | What it does |
+|---|---|---|
+| `higgs.scan=enabled` | Monitor | Records traffic, sessions, and personal data. Never blocks anything. |
+| `higgs.io/enforce=enabled` | Enforce | Everything Monitor does, plus blocking by your policies. |
 
 ```bash
-helm repo add wallarm https://charts.wallarm.com && helm repo update
+kubectl label namespace <YOUR_NAMESPACE> higgs.scan=enabled
 ```
 
-```bash
-helm upgrade --install aih-scanner wallarm/aih-scanner \
-  --namespace higgs-system \
-  --version 2.1.1 \
-  --set config.backendUrl="<YOUR_TENANT_URL>" \
-  --set scannerPrivateKey="<YOUR_PRIVATE_KEY>"
-```
+The scanner re-reads labels every 60 seconds. In-process introspection covers Python, Go, Node.js, Java, and Ruby; containers running other runtimes are still discovered at the network layer. Opting a namespace in sets its Pod Security level to `privileged`, because the scanner agent needs it.
 
-Replace `<YOUR_TENANT_URL>` and `<YOUR_PRIVATE_KEY>` with the values from your dashboard (the commands on the dashboard already contain them).
+**Enforce needs the scanner proxy.** Turn on **Enable blocking** in the deploy command before you copy it: it adds `--set proxy.enabled=true` and switches the label to the Enforce label. Pods that were already running when you switched a namespace to Enforce must restart to receive the proxy certificate: in **Registry**, click **Adopt** on the namespace (a rolling restart of its Deployments, StatefulSets, and DaemonSets), or restart them yourself, for example `kubectl rollout restart deployment -n <YOUR_NAMESPACE>`. Monitor needs no restart, so we recommend starting with Monitor.
 
-Both values are tenant-scoped:
-
-* `config.backendUrl` points the scanner at your hosted backend.
-* `scannerPrivateKey` authenticates the scanner to your tenant. Treat it as a secret.
-
-[All chart values](chart-values.md)
-
-### What the install creates
-
-The chart deploys the HIGGS Scanner as a DaemonSet (one pod per node) that attaches to target processes via eBPF. Your application pods are not modified.
-
-Wait until every scanner pod reports `Running`:
-
-```bash
-kubectl get pods -l app.kubernetes.io/name=aih-scanner -A -w
-```
-
-## Step 3: Onboard your workloads
-
-You opt workloads in by labeling pods or namespaces. Once a workload carries the label, the scanner captures its sessions, attributes calls to users, and detects PII on the wire.
-
-**Onboard a single deployment:**
-
-```bash
-kubectl label deployment <YOUR_DEPLOYMENT> \
-  higgs.scan=enabled \
-  --namespace=<YOUR_NAMESPACE>
-```
-
-**Onboard a whole namespace:**
-
-```bash
-kubectl label namespace <YOUR_NAMESPACE> \
-  higgs.scan=enabled
-```
-
-The scanner picks up the new label within ~30 seconds and attaches to each pod's processes. In-process introspection covers Python, Go, Node.js, Java, and Ruby; containers running other runtimes are still discovered at the network layer.
-
-!!! note "No restart needed"
-    Adding the label does not trigger a pod restart. Instrumentation attaches in place via the scanner DaemonSet.
+**Opting in from the tenant.** A namespace whose pods call AI services appears under **Registry** → **Shadow** even before you label it, because the scanner reads cluster DNS for AI provider domains. Click **Monitor** or **Enforce** on that namespace; it takes effect on the next scanner cycle. **Revert** removes it. If the CoreDNS configuration of your cluster is managed elsewhere (for example, by GitOps), the DNS logging change of the scanner can be overwritten and **Shadow** stays empty. In that case, label namespaces with `kubectl`.
 
 For all labels and annotations, see [Labels and Annotations](annotations.md).
 
-## Step 4: Verify the install
+## Step 4: Verifying the install
 
-Open your tenant URL in a browser and sign in. Three checks confirm a healthy install.
+Open your tenant URL and sign in. These checks confirm a healthy install:
 
-1. Open [Briefing](briefing.md). Within a few minutes, the *Findings by dimension* tile populates for the labeled workloads. An empty tile on the first scan is normal; refresh after one to two minutes.
-2. Open [Registry](registry.md). The labeled workloads appear as rows, classified by asset type (Agents, MCP Servers, LLMs, APIs, Data). Status reads `active` once traffic has been observed.
-3. Open [Topology](topology.md) with a single application selected. Cross-service edges appear as the labeled workloads make outbound calls.
-
-If the tile stays empty for more than five minutes after labeling, see [Troubleshooting](#troubleshooting) below.
+1. Open **Settings** → **Scanners**. Under **Scanner Targets**, the header shows how many scanner daemons are online and how many applications they monitor. Each opted-in application is a row; a new row shows **No scan data yet** until its first scan uploads.
+2. Open [Registry](registry.md) and [Topology](topology.md). Detected applications appear there; after the first scan, their dependencies and known vulnerabilities appear in [Supply Chain](supply-chain.md).
+3. Open [Traffic](user-tracks.md). It fills only when an application makes AI calls: LLM requests, MCP calls, or tool calls. An application that makes no AI calls has no sessions.
 
 ## Upgrading the scanner
 
@@ -103,51 +128,43 @@ To upgrade to a newer scanner version, repeat the `helm upgrade --install` comma
 
 ```bash
 helm upgrade --install aih-scanner wallarm/aih-scanner \
-  --namespace higgs-system \
   --version <NEW_VERSION> \
   --reuse-values
 ```
 
-The DaemonSet rolls out one node at a time. Scanner restarts do not interrupt observation; events buffer in memory until the new scanner attaches.
+The DaemonSet rolls out one node at a time.
 
 ## Troubleshooting
 
-**The Findings by dimension tile stays empty after five minutes**
+If nothing appears in your tenant, check in this order:
 
-Verify the scanner pods are actually running on every node and reaching the backend:
+1. The scanner pods are **Running**:
 
-```bash
-kubectl logs -l app.kubernetes.io/name=aih-scanner -A --tail=50
-```
+    ```bash
+    kubectl get pods -n higgs-system
+    ```
 
-Look for lines containing `connected to backend`. Pods that cannot reach the backend log the connection error and retry every five seconds.
+2. The namespace carries the label:
 
-Verify your target workload is actually labeled:
+    ```bash
+    kubectl get namespace <YOUR_NAMESPACE> --show-labels
+    ```
 
-```bash
-# Check pod-level labels
-kubectl get pods -n <YOUR_NAMESPACE> -L higgs.scan
+3. The scanner can reach your tenant URL over outbound HTTPS.
 
-# Check namespace-level labels
-kubectl get namespace <YOUR_NAMESPACE> -L higgs.scan
-```
-
-**Scanner pods are crashlooping**
-
-Most common cause is a kernel older than 5.10. Check kernel version on the affected node:
+**Scanner pods restart repeatedly.** The most common cause is a kernel older than 5.10. Check the kernel version on the affected node:
 
 ```bash
 kubectl get node <NODE_NAME> -o jsonpath='{.status.nodeInfo.kernelVersion}'
 ```
 
-If the kernel is older than 5.10, upgrade the node group's image to a recent Bottlerocket or Amazon Linux 2023 release.
+If the kernel is older than 5.10, upgrade the node group image to a recent Bottlerocket or Amazon Linux 2023 release.
 
-**`Unauthorized` from the scanner**
-
-The `scannerPrivateKey` may have been rotated or mistyped. Open your tenant dashboard, copy the install commands again, and re-run `helm upgrade --install`.
+**The scanner is rejected by the tenant.** The scanner key may have been rotated or mistyped. Copy the deploy command from your tenant again and re-run `helm upgrade --install`.
 
 ## Next steps
 
+* Follow [Getting Started](getting-started.md) from a new tenant to seeing your own AI applications.
 * Review your AI estate in the [Briefing](briefing.md).
 * Open the [Registry](registry.md) and promote tolerated entities into the sanctioned baseline.
 * Generate your first audit-ready artifact from observed traffic in [Compliance](compliance.md).
