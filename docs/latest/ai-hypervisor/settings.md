@@ -1,52 +1,139 @@
 # Settings <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
-<a href="briefing.md#role-and-altitude"><img src="../../images/role-executive.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-security.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-platform.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-compliance.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-developer.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a>
+<a id="cluster-infrastructure"></a>
 
-**Settings** is the tenant-level admin surface: everything configured once per tenant rather than per page. Who has access, how the scanners are running, and the platform's own configuration knobs. This page documents what each section owns.
+<a id="intro"></a>
+## What this is
 
-## Demo / Onboarding
+**Settings** holds everything that applies to your whole workspace: the scanners and their install
+commands, which optional pages are switched on, your team, prompt-injection protection, updates,
+and preferences such as scan frequency.
 
-Controls how long the tenant stays in initial demo / proof-of-value mode before transitioning to standard billing semantics. Default `7d`; accepts duration strings (`24h`, `48h`, `7d`, `14d`). This is a sales-engineering knob. Most customers do not change it after provisioning.
+To open it: click your name in the sidebar, then **Settings**.
 
-## Custom Layers
+<a id="layout"></a>
+## What is on the screen
 
-Pins the stack layers you want surfaced first across the platform. The full layer list matches the full-stack lens in [Findings](findings.md): Interface, Identity, Orchestration, Cognitive firewall, Inference, Protocol, Connectivity, Knowledge, Infrastructure. Pinned layers render at the top of per-application stack views; unpinned layers are still observed.
+Four tabs: **Preferences**, **Scanners**, **Data** and **Features**.
 
-The selection is per-user (stored in browser `localStorage`), so your colleagues are not affected by what you pin. The section also lists every application discovered by the topology endpoint with its current `app_tag` annotation (from `aih.wallarm.com/tag` on the pod, see [Labels and Annotations](annotations.md)) so you can see which apps still need an operator tag.
+### Preferences
 
-## Team Members
+- **Theme** — the color scheme. Kept across sessions.
+- **Show zero-data applications in aggregate view** — when on, applications with no data for a
+  page still appear on it as empty cards.
+- **Replay tour** — runs the first-visit walkthrough again. Shown only when **Guided tour** is on in
+  **Features**.
+- **Scan frequency (seconds)** — how often the scanner reports.
+  Default `300`; allowed `60` to `86400`. Most counts in the product are only as fresh as this.
+- **Kill duration — operator kills** — how long an identity stays blocked after someone clicks
+  **Kill Session**. Default `1440` minutes (24 hours). The kill dialog starts at this value.
+- **Kill duration — automatic rule blocks** — how long an identity stays blocked when an
+  enforcement rule blocks it. Default `60` minutes. A single rule can override it.
 
-Manages who can sign in to your tenant. Two roles:
+Changes to these fields are staged: click **Apply** to save them or
+**Reset** to discard them.
 
-| Role | Capabilities |
-|---|---|
-| **Owner** | Full access. Invites and removes members, changes all settings. Exactly one owner per tenant; the owner cannot be removed. The user who created the tenant is the initial owner. |
-| **Member** | Full read-write access to the product (**Briefing**, **Registry**, **User Tracks**, **Data Tracks**, **Compliance**, and so on). Cannot remove other members. |
+- **Demo / Onboarding** → **Onboarding length** — how long
+  [Briefing](briefing.md) shows its first-day view before switching to its normal view. A duration
+  such as `5m`, `2h` or `7d`. Default `7d`. Saved on **Save**.
 
-There is no separate viewer, editor, or admin role. Once a person is in the tenant, they see everything the tenant sees. The owner invites new members by email; a join link expires after a fixed period and a fresh invite is needed if it does.
+<a id="prompt-injection"></a>
+- **Prompt-injection protection** — detects prompt injection,
+  jailbreaks and attempts to exfiltrate secrets in your applications' LLM traffic. It runs in the
+  scanner's proxy, so it needs the proxy installed (see [Getting started](getting-started.md)).
+  - Mode: **Off** (default), **Monitor — detect, do not block**, **Enforce — block attacks**.
+    Changes apply within a minute, with no redeploy.
+  - **Deep ML classifier** — **On — add ML classifier** adds a machine-learning classifier to the
+    rule-based detection.
+  - **Scale under heavy traffic** — **On — keep up under load** lets the
+    classifier add capacity during traffic spikes so it keeps checking every request. Turn the ML
+    classifier on first. Applies to this workspace only.
 
-Ownership transfer is not yet supported in the UI.
+### Scanners
 
-## Backend Build
+- After you change a policy, a progress bar shows the scanners picking it up. When every
+  reporting scanner has it, the bar reads **live on N/N scanners** for a moment, then hides.
+- **Estate layering** — how workloads are grouped into
+  applications and cloud accounts: **Cloud account label (on-prem)**, **App tags**, **Pinned
+  layers**. Each control shows the command to run against your cluster.
+- **Cluster Infrastructure** — the clusters your scanners report from: **Cluster**, **Cloud**,
+  **Nodes**, **Namespaces**. Appears once a scanner has reported.
+- **Scanner Targets** — the header shows how many scanner daemons are online and how many
+  applications they monitor.
+  - **Scanner deploy command** — the install commands with your workspace address and key filled
+    in, in four tabs: **Kubernetes**, **AWS Fargate**,
+    **AWS ECS on EC2**, **macOS endpoint**. Step by step: [Getting started](getting-started.md).
+  - **Scanner Version Status** — each scanner's version; scanners behind the latest release are
+    marked. **Upgrade** on an outdated row, or **Upgrade all outdated (N)**, starts an upgrade of
+    the whole scanner fleet (a confirmation says so), and its progress shows below.
+  - **Scanner auto-update** — **Automatic updates**: **Stable releases**, **Every release** or
+    **Off**. **Check and install** looks for a scanner update now.
+  - One row per monitored application. Expand a row for its **Pulses**, **Packages**, **Since**,
+    **Last scan**, and the scanner's **Memory**, **CPU**, **Scan time** and **Disk**. Row actions: **Re-scan**, **Pause** / **Unpause**, **Delete**,
+    **Wipe Data**, **Logs**. A new row shows **No scan data yet** until its first scan uploads.
+- **Scanner Nodes Without Targets** — scanner nodes that are running but have nothing opted in.
+  Appears only when there are such nodes.
 
-Read-only panel showing the current backend version, build commit, and feature flags active for your tenant. Include the build hash in support tickets.
+On a workspace that has only macOS or other device endpoints, this tab says so: there are no
+Kubernetes scanner nodes, and enforcement runs on the device.
 
-## Cluster Infrastructure
+### Data
 
-Lists every HIGGS Scanner that has reported to your backend, grouped by Kubernetes node, with per-scanner identity, version, architecture (`amd64`, `arm64`), uptime, last pulse time, observed application count, and an *update available* indicator when the chart has a newer version than the running pod.
+- **Usage** — usage per cluster for the period.
+- **Team Members** — click it to expand. Invite a teammate: type the address into **Invite by
+  email**, pick a role, click **Invite**. You can change a member's role in the list.
+- **Access Control** — roles and their permissions; **New Role** creates one. Shown only to members
+  whose role can view member settings.
+- **API Tokens** — **Create Token** gives programmatic access: **Name**, **Expires**, **Scope**.
+- **Platform updates** — **Automatic updates**: **Stable releases**, **Every release** or **Off**.
+  **Check and install** looks for an update now.
+- **Platform version** — the version your workspace runs. See [Versioning](versioning.md).
+- **Danger Zone** — only the workspace owner can use it, and it is disabled until at least one
+  application has been scanned. **Rescan all applications** re-runs every scan. **Wipe entire
+  database** deletes all scan data and cannot be undone.
 
-Per-scanner actions cover **pause / resume** (stop observing without killing the pod), **rescan now** (immediate full scan instead of waiting for the next cycle), and **terminate** (kill the scanner pod; the DaemonSet recreates it). Tenant-wide equivalents (**Terminate all**, **Rescan all**) apply the same actions across every scanner. Useful after a config change you want to apply quickly. Per-scanner runtime metrics (memory, CPU, scan duration, pulse count) help triage a slow or failing scanner.
+### Features
 
-## Scanner Targets
+Switches for optional pages. Changes apply right away, with no **Apply** step.
 
-Lists every workload the scanner is currently observing: one row per pod, grouped by application and namespace, with current scan state (`idle`, `scanning`, `failed`), the time of the last completed scan, and the number of packages the scanner found inside the pod on that scan.
+- **Code** — adds the [Code](code.md) page (source repositories). Scanning repositories also
+  needs Code enabled for your workspace deployment; ask Wallarm support if connected repositories
+  stay **Pending**.
+- **Cloud Discovery (AWS accounts + VPC Traffic Mirroring)** — adds the [Discovery](discovery.md)
+  page.
+- **Guided tour (first-visit onboarding)** — shows the walkthrough on first visit and the **Replay
+  tour** button.
 
-The list is the per-workload view of *what the scanner is actually looking at*. **Cluster Infrastructure** above is the inventory of scanner pods themselves (one per node). **Scanner Targets** is the inventory of customer workloads each scanner has been told to observe via the `higgs.scan=enabled` label.
+<a id="how-to-use-it"></a>
+## How to use it
 
-Use this section to triage:
+### Add a scanner or another cluster
+1. Open **Scanners** → **Scanner deploy command**.
+2. Pick the tab for where your applications run and run the commands shown.
+3. Opt namespaces in — see [Getting started](getting-started.md).
 
-* *I labeled my pod 30 minutes ago but it does not appear in [Registry](registry.md) yet.* Find it here. If the row exists with `state: idle` and a recent `last_scan`, the scanner has already covered it and **Registry** will refresh on the next reconcile. If the row is missing, the label has not propagated.
-* *The scanner keeps reporting zero packages for this app.* Most common cause: stale scanner version against a newer backend signature. Check the scanner version in [Cluster Infrastructure](#cluster-infrastructure) and upgrade via Helm (see [Install HIGGS Scanner](deploy.md#upgrading-the-scanner)).
-* *This namespace should be scanned but the row is missing.* Verify the `higgs.scan=enabled` label is on the namespace or the individual pod (see [Labels and Annotations](annotations.md)).
+### Turn on prompt-injection protection
+1. Make sure the scanner was installed with the proxy (`--set proxy.enabled=true`).
+2. Set the mode to **Monitor — detect, do not block** and leave it while your applications run.
+3. Check what it detected, then switch to **Enforce — block attacks**.
 
-For deploy-time configuration not in this view, see [Chart Values](chart-values.md) (Helm values) and [Labels and Annotations](annotations.md) (pod and namespace labels).
+### Invite a teammate
+1. Open **Data** → click **Team Members**.
+2. Type the address into **Invite by email**, pick a role, click **Invite**.
+
+### When a page looks empty or stale
+Open **Scanners** and check, in order: a scanner daemon is online, the application has a row,
+the row's **Last scan** is recent, and the scanner is not behind the latest release.
+
+<a id="navigation-out"></a>
+## Where to go next
+
+- [Getting started](getting-started.md) — install a scanner and opt namespaces in.
+- [Versioning](versioning.md) — what the platform version means.
+
+<a id="navigation-in"></a>
+## How you get here
+
+- Click your name in the sidebar → **Settings**.
+- The **Settings** link in the empty **Briefing** ("You can always find this instruction in
+  Settings").

@@ -36,11 +36,11 @@ Columns:
 
 ### Anthropic
 
-Detected on outbound calls to `api.anthropic.com` (and customer-specific gateway hosts where the `anthropic-version` header is set). Full parsing of the Messages API, including streaming responses. Tool-use blocks are extracted and appear in [User Tracks](user-tracks.md) as `tool_intent` and `tool_call` steps.
+Detected on outbound calls to `api.anthropic.com` (and customer-specific gateway hosts where the `anthropic-version` header is set). Full parsing of the Messages API, including streaming responses. Tool-use blocks are extracted and appear in [Traffic](user-tracks.md) as `tool_intent` and `tool_call` steps.
 
 ### OpenAI
 
-Detected on outbound calls to `api.openai.com`. Full parsing of Chat Completions, Responses API, and Assistants API. Function-calling responses are extracted into tool-use steps in [User Tracks](user-tracks.md). Embedding calls are detected and counted but do not generate per-step entries.
+Detected on outbound calls to `api.openai.com`. Full parsing of Chat Completions, Responses API, and Assistants API. Function-calling responses are extracted into tool-use steps in [Traffic](user-tracks.md). Embedding calls are detected and counted but do not generate per-step entries.
 
 ### AWS Bedrock
 
@@ -87,7 +87,7 @@ Providers not in the built-in list are still discovered and observed at the netw
 
 ## How detection works
 
-Provider detection is a runtime classification, not a configuration list. The HIGGS Scanner observes each outbound call on the instrumented pod and runs a fingerprinting pass:
+Provider detection is a runtime classification, not a configuration list. The scanner observes each outbound call on the instrumented pod and runs a fingerprinting pass:
 
 1. The destination host is matched against a list of known provider domains.
 2. The request signature (path, headers, content type, body schema) is matched against the provider's API patterns.
