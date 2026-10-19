@@ -12,6 +12,10 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to upgrade](all-in-one.md)
 
+### 0.25.10 (2026-10-15)
+
+* Fixed a potential memory leak in [MCP](../../api-discovery/exploring.md#mcp-servers) traffic analysis
+
 ### 0.25.9 (2026-10-13)
 
 * Changed the Node to start even when postanalytics is unavailable — it reconnects in the background and drops export batches while disconnected
@@ -337,6 +341,11 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.25.10 (2026-10-15)
+
+* Changed the Helm chart to no longer enable memory-based autoscaling by default
+* Fixed a potential memory leak in [MCP](../../api-discovery/exploring.md#mcp-servers) traffic analysis
+
 ### 0.25.9 (2026-10-13)
 
 * Changed the Node to start even when postanalytics is unavailable — it reconnects in the background and drops export batches while disconnected
@@ -644,6 +653,10 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](docker-image.md)
+
+### 0.25.10 (2026-10-15)
+
+* Fixed a potential memory leak in [MCP](../../api-discovery/exploring.md#mcp-servers) traffic analysis
 
 ### 0.25.9 (2026-10-13)
 
