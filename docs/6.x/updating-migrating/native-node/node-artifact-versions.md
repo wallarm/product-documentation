@@ -12,6 +12,14 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to upgrade](all-in-one.md)
 
+### 0.25.9 (2026-10-13)
+
+* Changed the Node to start even when postanalytics is unavailable — it reconnects in the background and drops export batches while disconnected
+* Added a configurable shutdown delay that keeps the Node serving requests during pod termination
+* Improved access logs — requests whose verdict could not be delivered are now flagged as aborted, and virtual patch verdicts are labeled correctly
+* Bumped the base components to NGINX Node 6.13.2
+* Bumped Go version to 1.27.2
+
 ### 0.25.8 (2026-09-09)
 
 * Added support for the [Traefik connector](../../installation/connectors/traefik.md)
@@ -329,6 +337,14 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.25.9 (2026-10-13)
+
+* Changed the Node to start even when postanalytics is unavailable — it reconnects in the background and drops export batches while disconnected
+* Added a configurable shutdown delay that keeps the Node serving requests during pod termination (Helm chart default: 15 seconds)
+* Improved access logs — requests whose verdict could not be delivered are now flagged as aborted, and virtual patch verdicts are labeled correctly
+* Bumped the base components to NGINX Node 6.13.2
+* Bumped Go version to 1.27.2
+
 ### 0.25.8 (2026-09-09)
 
 * Added support for the [Traefik connector](../../installation/connectors/traefik.md)
@@ -628,6 +644,14 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](docker-image.md)
+
+### 0.25.9 (2026-10-13)
+
+* Changed the Node to start even when postanalytics is unavailable — it reconnects in the background and drops export batches while disconnected
+* Added a configurable shutdown delay that keeps the Node serving requests during pod termination
+* Improved access logs — requests whose verdict could not be delivered are now flagged as aborted, and virtual patch verdicts are labeled correctly
+* Bumped the base components to NGINX Node 6.13.2
+* Bumped Go version to 1.27.2
 
 ### 0.25.8 (2026-09-09)
 
