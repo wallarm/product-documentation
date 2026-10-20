@@ -33,7 +33,7 @@ A2AS never writes Enforcement rules, DLP policy or certificates, and those never
 
 The page has two columns:
 
-- **The agent list**. It shows every agent the platform has discovered; the header's application picker narrows it to one application, and **Filter agents** above the list narrows it by name. Each row shows:
+- **The application list**. It has one row per application the proxy can instrument: every application in the header's application picker, the agents discovered in it, and any application with a certificate or an A2AS profile. The header's application picker narrows it to one application, and **Filter applications** above the list searches by name, including applications not loaded yet; **Load more** says how many are loaded out of how many match. Each row shows:
   - five BASIC chips, **B A S I C**. A filled chip is on. Hover over a chip to read why it is on or off;
   - the A2AS mode badge: **monitor**, **enforce**, **no profile**, or **… · off** when the profile is disabled;
   - when the proxy last instrumented a request from the agent.
@@ -168,17 +168,16 @@ The result shows:
 <a id="events"></a>
 ### Read the events
 
-The **Events** feed lists what the proxy recorded for this agent, newest first. Filter it with the Kind, Action and time window dropdowns.
+The **Events** feed lists what the proxy recorded for this agent, newest first. Filter it with the Detection, Action and time window dropdowns (last hour up to **Last 30 days**, which is how long events are kept). The counter next to the dropdowns says how many events match and how many are loaded, for example *100 of 950 events loaded*; scrolling the table loads the next 100, and its header stays in place.
 
-| Kind | Meaning | Severity |
+| Detection | Meaning | Severity |
 |---|---|---|
-| **Instrumented** | Enforce mode rewrote the request. | info |
-| **Observed** | Monitor mode hashed and recorded the request without changing it. | info |
+| **None** | Nothing was wrong with the request: enforce mode rewrote it (action *Instrumented*) or monitor mode recorded it (action *Observed*). | info |
 | **Tampered prompt** | The system prompt matched no pinned hash. | high |
 | **Spoofed boundary** | Untrusted content carried an A2AS tag, which was neutralised. | high |
 | **Unparsed** | The request could not be instrumented. | medium |
 
-Columns: **Time**, **Kind**, **Action**, **Provider**, **Host + path**, **Controls**, **System hash**, **Reason**. The **Action** column says what happened to the request: *instrumented*, *observed*, *blocked* (refused), *neutralized* (a forged tag was defused and the request passed), or *passed* (forwarded unchanged). **Controls** lists the letters that were applied, and **System hash** is the first 8 characters of the system-prompt hash. Click a row to see the full system-prompt hash and the SHA-256 of every message, with the profile version that applied.
+Columns: **Time**, **Detection**, **Action**, **Provider**, **Host + path**, **Controls**, **System prompt**. The **Action** column says what happened to the request: *instrumented*, *observed*, *blocked* (refused), *neutralized* (a forged tag was defused and the request passed), or *passed* (forwarded unchanged). Hover a detection to read why the proxy flagged it. **Controls** lists the letters that were applied. **System prompt** shows the start and end of the system-prompt hash (for example `3f2a9c1d…8b07e4aa`), so you can see at a glance when the prompt changed between requests; it reads **None** when the request had no system prompt. Click a row to see the reason, the full system-prompt hash and the SHA-256 of every message, with the profile version that applied.
 
 <a id="api"></a>
 ### Use the API
