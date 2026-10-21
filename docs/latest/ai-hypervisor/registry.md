@@ -71,9 +71,11 @@ With no row selected, the side panel shows statistics for what the current tab a
 1. Open **Shadow**, or find a row of type **Shadow Detection** in the table.
 2. Click **Monitor** to record the namespace without blocking, or **Enforce** to record and block
    by your policies. It takes effect on the scanner's next cycle.
-3. After **Enforce**, a namespace whose pods were already running shows **⚠ Restart to complete**.
-   Click **Adopt**: it restarts the namespace's workloads (rolling restart) so their pods get the
-   scanner proxy's certificate. Blocking works only after this.
+3. After **Monitor** or **Enforce**, a namespace whose pods were already running shows
+   **⚠ Restart to complete**. Until then those pods are observed and connection-level policy
+   applies, but their HTTPS is not decrypted. Click **Adopt**: it restarts the namespace's
+   workloads (rolling restart) so their pods get the scanner proxy's certificate and
+   content-level policy applies.
 4. **Revert** removes coverage from the namespace.
 
 Enforce needs the scanner installed with its proxy — see
