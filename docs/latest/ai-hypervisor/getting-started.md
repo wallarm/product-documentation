@@ -60,11 +60,24 @@ DaemonSet.
 
 Blocking needs the scanner's proxy. To use Enforce, turn on **Enable blocking** under step 2
 before you copy the install command: it adds `--set proxy.enabled=true` and changes step 3 to the
-Enforce label. Pods that were already running when you switched a namespace to
-Enforce must restart to get the proxy's certificate: in **Registry**, click **Adopt** on the
-namespace (a rolling restart of its Deployments, StatefulSets and DaemonSets), or restart them
-yourself, for example `kubectl rollout restart deployment -n <your-namespace>`.
-Start with Monitor — it needs no restart.
+Enforce label.
+
+**What works without a restart.** Labeling a namespace never restarts anything, and never breaks
+a running pod:
+
+| | Pods running before you labeled | Pods created after |
+|---|---|---|
+| Discovery, sessions, personal data on HTTPS (OpenSSL, Go, Java, GnuTLS) | Yes, within a minute | Yes |
+| Destinations and outbound requests of Rust apps using rustls | Yes, within a minute | Yes |
+| Destination policy, kill session | Yes | Yes |
+| Content-level policy on HTTPS (body inspection, redaction, prompt blocking) | After a restart | Yes |
+
+A running pod does not trust the proxy's certificate, so the proxy passes its HTTPS through
+without decrypting it until the pod restarts. **Settings → Scanners** marks each app
+**Content inspected** or **Connection-level** and lists the pods that need a restart. To restart,
+either expand the app and click **Restart to inspect content**, or in **Registry** click **Adopt**
+on the namespace. Both are rolling restarts of the Deployments, StatefulSets and DaemonSets. You
+can also restart them yourself, for example `kubectl rollout restart deployment -n <your-namespace>`.
 
 Opting a namespace in sets its Pod Security level to `privileged`, because the scanner's agent
 needs it.
