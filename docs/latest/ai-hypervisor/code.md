@@ -18,8 +18,10 @@ for your workspace deployment — if connected repositories stay **Pending**, as
 ## What is on the screen
 
 - One row per connected GitLab group: its path, how many repositories it has, and either
-  **rescans on push** (the push webhook is registered) or **rescans on the next sweep** (it is
-  not). A group that fails shows **Not syncing:** followed by the error.
+  **rescans on every push** (the push webhook is registered) or **checks for new commits every
+  5 minutes** (GitLab did not let the token add the webhook; the row says why). Both keep scanning
+  current; nothing needs to be changed. A group that fails shows **Not syncing:** followed by the
+  error.
 - A summary line: how many repositories, how many remediations, and how many **the bot can fix**.
 - **Filter…** — narrows the current tab.
 - Six tabs:
@@ -45,11 +47,14 @@ tabs appear once a group is connected. The first sync of a large group takes sev
 ### Connect a GitLab group
 
 1. In GitLab, open your group → **Settings** → **Access tokens** → **Add new token**. Set **Role**
-   to **Maintainer** — GitLab lets only Maintainers manage webhooks — and give it the scopes
-   `read_api` (list the projects and read their dependency files) and `api` (register the push
-   webhook that keeps scanning continuous, and open fix merge requests). This creates a bot user in
-   your group; you can revoke it there at any time. With a lower role, repositories are still
-   scanned, but only on the periodic sweep instead of on every push.
+   to **Maintainer** (recommended) and give it the scopes `read_api` (list the projects and read
+   their dependency files) and `api` (register the push webhook, and open fix merge requests). This
+   creates a bot user in your group; you can revoke it there at any time.
+
+    GitLab lets only Maintainers add webhooks. With Maintainer, a push starts a scan at once. With a
+    lower role, everything still works: every repository is checked for new commits every 5
+    minutes, and a changed one is rescanned. GitLab does not allow changing the role of an existing
+    token, so pick it when you create the token.
 2. On the **Code** page, fill in **GitLab URL** (for example `https://gitlab.com`), **Group** (the
    group path, for example `my-company/platform`) and **Group access token**.
 3. Click **Connect group**. The token is encrypted before it is stored and is never shown again.
