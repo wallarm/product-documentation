@@ -59,10 +59,33 @@ To watch another group, click **Connect another group**. To stop syncing a group
 
 1. Open **Remediations**. The top row clears the most risk.
 2. To see only what can be fixed automatically, click **N the bot can fix** in the summary line.
-3. Open a row the bot can fix. Before you click, it says exactly which repositories it will
-   touch. Click **Open fix MR**: the bot opens a draft merge request that bumps the package to the
-   fixed version in each of them, and lists any it skipped with the reason. Review and merge in
-   GitLab.
+3. Open a row. Its **Bot fix** line says, per repository, what a click will do:
+    * **Open fix MR** — the fix is ready. Click it: the bot opens a **draft** merge request in each
+      listed repository and links it here. Review it and let your CI run before you merge.
+    * **Open fix MR (upgrades a dependency)** — the fixed version is only reachable by also moving
+      the package that pins the vulnerable one (for example, a newer release of a framework). Its
+      API may have changed, so check your CI result before merging.
+    * **Computing** — the fix is being worked out; the button appears when it is ready.
+    * **Not possible** — no merge request can fix it automatically; the reason is shown (see below).
+
+The bot works out each fix before it offers the button, so the button never leads to a refusal. It
+uses your repository's own package manager in an isolated sandbox: the lockfile is regenerated, not
+edited by hand, and the merge request lists every package version the change moves — including
+dependencies the fixed version itself requires. When the repository changes, the fix is checked
+again before the merge request is opened.
+
+Supported package managers: npm, Yarn and pnpm; Cargo; Go modules; pip, Poetry, Pipenv and uv;
+Maven and Gradle; Bundler; Composer; pub; Mix; Terraform.
+
+#### When the bot cannot fix a dependency
+
+| What the row says | What it means | What to do |
+|---|---|---|
+| No published version fixes it | No release of the package has the fix yet. | Wait for a release, or remove or replace the package. |
+| Another dependency's requirement pins it | A package you use requires the vulnerable version range (the row names it). | Upgrade or replace that package; the row shows how far the vulnerable one can move today. |
+| Building a package from source is required | Updating would compile a package from its sources, which runs that package's own build code. The bot never runs third-party code next to your repository credential. | Update the dependency locally or in your CI. |
+| A dependency is not reachable | A private module or git dependency the sandbox cannot fetch; the row lists its address. | Make it resolvable (for example, a local `replace` for a module in the same repository). |
+| Already at a fixed version | The default branch no longer has the vulnerable version. | Nothing — the row clears after the next scan. |
 
 <a id="navigation-out"></a>
 ## Where to go next
