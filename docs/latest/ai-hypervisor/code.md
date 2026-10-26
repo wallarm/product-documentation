@@ -44,10 +44,12 @@ tabs appear once a group is connected. The first sync of a large group takes sev
 
 ### Connect a GitLab group
 
-1. In GitLab, open your group → **Settings** → **Access tokens** → **Add new token**. Give it the
-   scopes `read_api` (list the projects and read their dependency files) and `api` (register the
-   push webhook that keeps scanning continuous). This creates a bot user in your group; you can
-   revoke it there at any time.
+1. In GitLab, open your group → **Settings** → **Access tokens** → **Add new token**. Set **Role**
+   to **Maintainer** — GitLab lets only Maintainers manage webhooks — and give it the scopes
+   `read_api` (list the projects and read their dependency files) and `api` (register the push
+   webhook that keeps scanning continuous, and open fix merge requests). This creates a bot user in
+   your group; you can revoke it there at any time. With a lower role, repositories are still
+   scanned, but only on the periodic sweep instead of on every push.
 2. On the **Code** page, fill in **GitLab URL** (for example `https://gitlab.com`), **Group** (the
    group path, for example `my-company/platform`) and **Group access token**.
 3. Click **Connect group**. The token is encrypted before it is stored and is never shown again.
