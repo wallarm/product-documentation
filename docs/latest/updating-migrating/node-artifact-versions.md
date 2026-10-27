@@ -13,7 +13,6 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 ### 7.1.6 (2026-10-26)
 
 * Removed the distrusted eMudhra emSign root certificates (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
-* Added support for the latest distribution NGINX 1.30.6 packages
 
 ### 7.1.5 (2026-10-23)
 

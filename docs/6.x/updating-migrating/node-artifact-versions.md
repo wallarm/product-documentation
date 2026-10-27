@@ -24,7 +24,6 @@ new attack types in logging variables and search bars?
 ### 6.13.4 (2026-10-26)
 
 * Removed the distrusted eMudhra emSign root certificates (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
-* Added support for the latest distribution NGINX 1.30.6 packages
 
 ### 6.13.3 (2026-10-23)
 
