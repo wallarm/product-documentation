@@ -82,8 +82,8 @@ Git holds the chart version and the values; the scanner key never goes into Git.
 1. Put the scanner key once into your secret manager, so that it produces a Secret named
    `aih-scanner-private-key` (key `scanner-private-key`) in the `higgs-system` namespace — for example
    with Vault and its injector or Vault Secrets Operator, External Secrets, Sealed Secrets, or SOPS.
-2. Commit an Application (ArgoCD shown; a Flux `HelmRelease` takes the same values). **Settings** →
-   **Scanners** → **Kubernetes** shows it filled in with your tenant address:
+2. Commit an Application (ArgoCD shown). **Settings** → **Scanners** → **Kubernetes** shows it
+   filled in with your tenant address:
 
     ```yaml
     apiVersion: argoproj.io/v1alpha1
@@ -102,6 +102,9 @@ Git holds the chart version and the values; the scanner key never goes into Git.
         targetRevision: <VERSION>          # Git owns the version
         helm:
           valuesObject:
+            gitops: true                    # identical manifests on every render
+            namespace:
+              create: false                 # ArgoCD creates it (syncOptions)
             config:
               backendUrl: "<YOUR_TENANT_URL>"
             existingSecret:                 # filled by your secret manager
@@ -109,9 +112,20 @@ Git holds the chart version and the values; the scanner key never goes into Git.
               key: scanner-private-key
             upgrader:
               enabled: false                # upgrades come from Git
+            webhook:
+              tls:
+                certManager:                # or existingSecret + webhook.caBundle
+                  enabled: true
+                  issuerRef: { name: <YOUR_ISSUER>, kind: ClusterIssuer }
       syncPolicy:
         automated: { prune: true, selfHeal: true }
+        syncOptions: [CreateNamespace=true]
+        managedNamespaceMetadata:
+          labels:                           # the scanner runs privileged (eBPF)
+            pod-security.kubernetes.io/enforce: privileged
     ```
+
+    Label the namespaces to scan with `higgs.scan=enabled` in Git as well.
 
 3. **Upgrade** by changing `targetRevision` in Git (by hand, Renovate, or ArgoCD Image Updater). Keep
    `upgrader.enabled: false`: the in-cluster upgrader patches the scanner image itself, and ArgoCD
@@ -120,19 +134,28 @@ Git holds the chart version and the values; the scanner key never goes into Git.
    [Rotate the scanner key](settings.md#rotate-the-scanner-key). The scanners pick up the new key
    from the Secret without a restart; no sync is needed.
 
-ArgoCD and Flux render the chart with `helm template`, without access to the cluster, so anything
-the chart would generate on first install would change on every render. From scanner 2.17.0:
+ArgoCD renders the chart with `helm template`, without access to the cluster, so anything the
+chart generated on first install would change on every render. From scanner 2.17.0, `gitops: true`
+makes every render identical:
 
-* **Webhook certificate** — give it your own (`webhook.tls.existingSecret` plus `webhook.caBundle`)
-  or let cert-manager issue it (`webhook.tls.certManager.enabled: true` with an `issuerRef`). Before
-  2.17.0, add `ignoreDifferences` for the `aih-scanner-webhook-tls` Secret **and** for
-  `/webhooks/*/clientConfig/caBundle` on the `MutatingWebhookConfiguration`; ignoring only the Secret
-  lets the `caBundle` drift from the served certificate, and the webhook then silently stops.
-* **Blocking** (`proxy.enabled: true`) — give the proxy its CA from your own Secret
-  (`proxy.ca.existingSecret`), so it is not regenerated: a new CA breaks trust in every scanned pod.
+* **Proxy CA and internal tokens** — created once by a PreSync Job, kept on every later sync, and
+  never part of the Application's manifests. To manage any of them yourself, create the Secret
+  beforehand (the Job leaves an existing one as it is) or give the proxy your CA with
+  `proxy.ca.existingSecret`.
+* **Namespace** — the Job runs before the chart's own resources, so ArgoCD creates the namespace:
+  `namespace.create: false`, `CreateNamespace=true`, and the `privileged` Pod Security label.
+* **Webhook certificate** — required: let cert-manager issue it (`webhook.tls.certManager.enabled:
+  true` with an `issuerRef`) or give your own (`webhook.tls.existingSecret` plus
+  `webhook.caBundle`). The chart refuses `gitops: true` without one.
 * **Pod annotations and labels** for your injector or mesh (`podAnnotations`, `podLabels`), metadata
   on the key Secret (`secret.annotations`, `secret.labels`), and env from your own Secret or ConfigMap
   (`extraEnvFrom`) — see [Chart Values](chart-values.md#gitops-and-secret-tooling).
+
+Flux runs a real `helm install` and `helm upgrade`, which can look objects up: it needs neither
+`gitops: true` nor the namespace settings. Before 2.17.0, ArgoCD needs `ignoreDifferences` for the
+`aih-scanner-webhook-tls` Secret **and** for `/webhooks/*/clientConfig/caBundle` on the
+`MutatingWebhookConfiguration`; ignoring only the Secret lets the `caBundle` drift from the served
+certificate, and the webhook then silently stops.
 
 ### AWS ECS on EC2
 
