@@ -10,6 +10,51 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 7.1.6 (2026-10-26)
+
+* Removed the eMudhra emSign root certificates distrusted by Mozilla (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
+* Added support for the latest distribution NGINX 1.30.6 packages
+
+### 7.1.5 (2026-10-23)
+
+* Added support for NGINX stable 1.30.6
+* Added support for NGINX mainline 1.31.7 and 1.31.8
+* Bumped Go version to 1.26.9
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-56851](https://nvd.nist.gov/vuln/detail/CVE-2026-56851)
+    * [CVE-2026-78667](https://nvd.nist.gov/vuln/detail/CVE-2026-78667)
+    * [CVE-2026-78669](https://nvd.nist.gov/vuln/detail/CVE-2026-78669)
+    * [CVE-2026-97031](https://nvd.nist.gov/vuln/detail/CVE-2026-97031)
+    * [CVE-2026-56866](https://nvd.nist.gov/vuln/detail/CVE-2026-56866)
+    * [CVE-2026-78659](https://nvd.nist.gov/vuln/detail/CVE-2026-78659)
+    * [CVE-2026-78660](https://nvd.nist.gov/vuln/detail/CVE-2026-78660)
+    * [CVE-2026-78663](https://nvd.nist.gov/vuln/detail/CVE-2026-78663)
+    * [CVE-2026-94439](https://nvd.nist.gov/vuln/detail/CVE-2026-94439)
+    * [CVE-2026-94440](https://nvd.nist.gov/vuln/detail/CVE-2026-94440)
+    * [CVE-2026-94448](https://nvd.nist.gov/vuln/detail/CVE-2026-94448)
+    * [CVE-2026-97030](https://nvd.nist.gov/vuln/detail/CVE-2026-97030)
+    * [CVE-2026-97032](https://nvd.nist.gov/vuln/detail/CVE-2026-97032)
+
+### 7.1.4 (2026-10-01)
+
+* Added support for NGINX stable 1.30.5
+* Added support for NGINX mainline 1.31.5 and 1.31.6
+* Added support for the latest distribution NGINX packages
+* Fixed the per-message processing time limit for long-lived streams (WebSocket, gRPC)
+* Removed Debian 11 from the test suite as it reached end of life
+* Bumped Go version to 1.26.8
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-56854](https://nvd.nist.gov/vuln/detail/CVE-2026-56854)
+    * [CVE-2026-56855](https://nvd.nist.gov/vuln/detail/CVE-2026-56855)
+    * [CVE-2026-61625](https://nvd.nist.gov/vuln/detail/CVE-2026-61625)
+    * [CVE-2026-78662](https://nvd.nist.gov/vuln/detail/CVE-2026-78662)
+
+### 7.1.3 (2026-08-28)
+
+* Released for version parity with the Docker image and Helm chart; no changes to the installer itself
+
 ### 7.1.2 (2026-08-20)
 
 * Added support for NGINX stable 1.30.4
@@ -49,6 +94,90 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 7.1.6 (2026-10-26)
+
+* Removed the eMudhra emSign root certificates distrusted by Mozilla (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
+
+### 7.1.5 (2026-10-26)
+
+* Fixed the per-message processing time limit for long-lived streams (WebSocket, gRPC)
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-103111](https://nvd.nist.gov/vuln/detail/CVE-2026-103111)
+    * [CVE-2026-111497](https://nvd.nist.gov/vuln/detail/CVE-2026-111497)
+    * [CVE-2026-4775](https://nvd.nist.gov/vuln/detail/CVE-2026-4775)
+    * [CVE-2026-53612](https://nvd.nist.gov/vuln/detail/CVE-2026-53612)
+    * [CVE-2026-53613](https://nvd.nist.gov/vuln/detail/CVE-2026-53613)
+    * [CVE-2026-53614](https://nvd.nist.gov/vuln/detail/CVE-2026-53614)
+    * [CVE-2026-56851](https://nvd.nist.gov/vuln/detail/CVE-2026-56851)
+    * [CVE-2026-56854](https://nvd.nist.gov/vuln/detail/CVE-2026-56854)
+    * [CVE-2026-66046](https://nvd.nist.gov/vuln/detail/CVE-2026-66046)
+    * [CVE-2026-76641](https://nvd.nist.gov/vuln/detail/CVE-2026-76641)
+    * [CVE-2026-76642](https://nvd.nist.gov/vuln/detail/CVE-2026-76642)
+    * [CVE-2026-76956](https://nvd.nist.gov/vuln/detail/CVE-2026-76956)
+    * [CVE-2026-76957](https://nvd.nist.gov/vuln/detail/CVE-2026-76957)
+    * [CVE-2026-77214](https://nvd.nist.gov/vuln/detail/CVE-2026-77214)
+    * [CVE-2026-78408](https://nvd.nist.gov/vuln/detail/CVE-2026-78408)
+    * [CVE-2026-78409](https://nvd.nist.gov/vuln/detail/CVE-2026-78409)
+    * [CVE-2026-78410](https://nvd.nist.gov/vuln/detail/CVE-2026-78410)
+    * [CVE-2026-78667](https://nvd.nist.gov/vuln/detail/CVE-2026-78667)
+    * [CVE-2026-78669](https://nvd.nist.gov/vuln/detail/CVE-2026-78669)
+    * [CVE-2026-84304](https://nvd.nist.gov/vuln/detail/CVE-2026-84304)
+    * [CVE-2026-84445](https://nvd.nist.gov/vuln/detail/CVE-2026-84445)
+    * [CVE-2026-86145](https://nvd.nist.gov/vuln/detail/CVE-2026-86145)
+    * [CVE-2026-88806](https://nvd.nist.gov/vuln/detail/CVE-2026-88806)
+    * [CVE-2026-89157](https://nvd.nist.gov/vuln/detail/CVE-2026-89157)
+    * [CVE-2026-89161](https://nvd.nist.gov/vuln/detail/CVE-2026-89161)
+    * [CVE-2026-92392](https://nvd.nist.gov/vuln/detail/CVE-2026-92392)
+    * [CVE-2026-93990](https://nvd.nist.gov/vuln/detail/CVE-2026-93990)
+    * [CVE-2026-97031](https://nvd.nist.gov/vuln/detail/CVE-2026-97031)
+    * [CVE-2026-102633](https://nvd.nist.gov/vuln/detail/CVE-2026-102633)
+    * [CVE-2026-19931](https://nvd.nist.gov/vuln/detail/CVE-2026-19931)
+    * [CVE-2026-27456](https://nvd.nist.gov/vuln/detail/CVE-2026-27456)
+    * [CVE-2026-46675](https://nvd.nist.gov/vuln/detail/CVE-2026-46675)
+    * [CVE-2026-56855](https://nvd.nist.gov/vuln/detail/CVE-2026-56855)
+    * [CVE-2026-56866](https://nvd.nist.gov/vuln/detail/CVE-2026-56866)
+    * [CVE-2026-58055](https://nvd.nist.gov/vuln/detail/CVE-2026-58055)
+    * [CVE-2026-61625](https://nvd.nist.gov/vuln/detail/CVE-2026-61625)
+    * [CVE-2026-78659](https://nvd.nist.gov/vuln/detail/CVE-2026-78659)
+    * [CVE-2026-78660](https://nvd.nist.gov/vuln/detail/CVE-2026-78660)
+    * [CVE-2026-78662](https://nvd.nist.gov/vuln/detail/CVE-2026-78662)
+    * [CVE-2026-78663](https://nvd.nist.gov/vuln/detail/CVE-2026-78663)
+    * [CVE-2026-82208](https://nvd.nist.gov/vuln/detail/CVE-2026-82208)
+    * [CVE-2026-84303](https://nvd.nist.gov/vuln/detail/CVE-2026-84303)
+    * [CVE-2026-85091](https://nvd.nist.gov/vuln/detail/CVE-2026-85091)
+    * [CVE-2026-89156](https://nvd.nist.gov/vuln/detail/CVE-2026-89156)
+    * [CVE-2026-89158](https://nvd.nist.gov/vuln/detail/CVE-2026-89158)
+    * [CVE-2026-89160](https://nvd.nist.gov/vuln/detail/CVE-2026-89160)
+    * [CVE-2026-92388](https://nvd.nist.gov/vuln/detail/CVE-2026-92388)
+    * [CVE-2026-94283](https://nvd.nist.gov/vuln/detail/CVE-2026-94283)
+    * [CVE-2026-94284](https://nvd.nist.gov/vuln/detail/CVE-2026-94284)
+    * [CVE-2026-94285](https://nvd.nist.gov/vuln/detail/CVE-2026-94285)
+    * [CVE-2026-94287](https://nvd.nist.gov/vuln/detail/CVE-2026-94287)
+    * [CVE-2026-94439](https://nvd.nist.gov/vuln/detail/CVE-2026-94439)
+    * [CVE-2026-94440](https://nvd.nist.gov/vuln/detail/CVE-2026-94440)
+    * [CVE-2026-94448](https://nvd.nist.gov/vuln/detail/CVE-2026-94448)
+    * [CVE-2026-97030](https://nvd.nist.gov/vuln/detail/CVE-2026-97030)
+    * [CVE-2026-97032](https://nvd.nist.gov/vuln/detail/CVE-2026-97032)
+    * [GHSA-gcjh-h69q-9w9g](https://github.com/advisories/GHSA-gcjh-h69q-9w9g)
+
+### 7.1.3 (2026-08-28)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-14456](https://nvd.nist.gov/vuln/detail/CVE-2026-14456)
+    * [CVE-2026-33818](https://nvd.nist.gov/vuln/detail/CVE-2026-33818)
+    * [CVE-2026-39821](https://nvd.nist.gov/vuln/detail/CVE-2026-39821)
+    * [CVE-2026-46600](https://nvd.nist.gov/vuln/detail/CVE-2026-46600)
+    * [CVE-2026-56853](https://nvd.nist.gov/vuln/detail/CVE-2026-56853)
+    * [CVE-2026-56858](https://nvd.nist.gov/vuln/detail/CVE-2026-56858)
+    * [CVE-2026-56859](https://nvd.nist.gov/vuln/detail/CVE-2026-56859)
+    * [CVE-2026-56860](https://nvd.nist.gov/vuln/detail/CVE-2026-56860)
+    * [CVE-2026-56862](https://nvd.nist.gov/vuln/detail/CVE-2026-56862)
+    * [CVE-2026-18798](https://nvd.nist.gov/vuln/detail/CVE-2026-18798)
+    * [CVE-2026-63072](https://nvd.nist.gov/vuln/detail/CVE-2026-63072)
+    * [CVE-2026-63076](https://nvd.nist.gov/vuln/detail/CVE-2026-63076)
 
 ### 7.1.2 (2026-08-20)
 
@@ -104,6 +233,67 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to upgrade](docker-container.md)
 
+### 7.1.6 (2026-10-26)
+
+* Removed the eMudhra emSign root certificates distrusted by Mozilla (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
+
+### 7.1.5 (2026-10-23)
+
+* Fixed the per-message processing time limit for long-lived streams (WebSocket, gRPC)
+* Bumped Go version to 1.26.9
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-103111](https://nvd.nist.gov/vuln/detail/CVE-2026-103111)
+    * [CVE-2026-111497](https://nvd.nist.gov/vuln/detail/CVE-2026-111497)
+    * [CVE-2026-4775](https://nvd.nist.gov/vuln/detail/CVE-2026-4775)
+    * [CVE-2026-53612](https://nvd.nist.gov/vuln/detail/CVE-2026-53612)
+    * [CVE-2026-53613](https://nvd.nist.gov/vuln/detail/CVE-2026-53613)
+    * [CVE-2026-53614](https://nvd.nist.gov/vuln/detail/CVE-2026-53614)
+    * [CVE-2026-56851](https://nvd.nist.gov/vuln/detail/CVE-2026-56851)
+    * [CVE-2026-56854](https://nvd.nist.gov/vuln/detail/CVE-2026-56854)
+    * [CVE-2026-66046](https://nvd.nist.gov/vuln/detail/CVE-2026-66046)
+    * [CVE-2026-76641](https://nvd.nist.gov/vuln/detail/CVE-2026-76641)
+    * [CVE-2026-76642](https://nvd.nist.gov/vuln/detail/CVE-2026-76642)
+    * [CVE-2026-76956](https://nvd.nist.gov/vuln/detail/CVE-2026-76956)
+    * [CVE-2026-76957](https://nvd.nist.gov/vuln/detail/CVE-2026-76957)
+    * [CVE-2026-77214](https://nvd.nist.gov/vuln/detail/CVE-2026-77214)
+    * [CVE-2026-78408](https://nvd.nist.gov/vuln/detail/CVE-2026-78408)
+    * [CVE-2026-78410](https://nvd.nist.gov/vuln/detail/CVE-2026-78410)
+    * [CVE-2026-78667](https://nvd.nist.gov/vuln/detail/CVE-2026-78667)
+    * [CVE-2026-78669](https://nvd.nist.gov/vuln/detail/CVE-2026-78669)
+    * [CVE-2026-86145](https://nvd.nist.gov/vuln/detail/CVE-2026-86145)
+    * [CVE-2026-89157](https://nvd.nist.gov/vuln/detail/CVE-2026-89157)
+    * [CVE-2026-89161](https://nvd.nist.gov/vuln/detail/CVE-2026-89161)
+    * [CVE-2026-93990](https://nvd.nist.gov/vuln/detail/CVE-2026-93990)
+    * [CVE-2026-97031](https://nvd.nist.gov/vuln/detail/CVE-2026-97031)
+    * [CVE-2026-102633](https://nvd.nist.gov/vuln/detail/CVE-2026-102633)
+    * [CVE-2026-46675](https://nvd.nist.gov/vuln/detail/CVE-2026-46675)
+    * [CVE-2026-56855](https://nvd.nist.gov/vuln/detail/CVE-2026-56855)
+    * [CVE-2026-56866](https://nvd.nist.gov/vuln/detail/CVE-2026-56866)
+    * [CVE-2026-61625](https://nvd.nist.gov/vuln/detail/CVE-2026-61625)
+    * [CVE-2026-78659](https://nvd.nist.gov/vuln/detail/CVE-2026-78659)
+    * [CVE-2026-78660](https://nvd.nist.gov/vuln/detail/CVE-2026-78660)
+    * [CVE-2026-78662](https://nvd.nist.gov/vuln/detail/CVE-2026-78662)
+    * [CVE-2026-78663](https://nvd.nist.gov/vuln/detail/CVE-2026-78663)
+    * [CVE-2026-85091](https://nvd.nist.gov/vuln/detail/CVE-2026-85091)
+    * [CVE-2026-89156](https://nvd.nist.gov/vuln/detail/CVE-2026-89156)
+    * [CVE-2026-89158](https://nvd.nist.gov/vuln/detail/CVE-2026-89158)
+    * [CVE-2026-89160](https://nvd.nist.gov/vuln/detail/CVE-2026-89160)
+    * [CVE-2026-94439](https://nvd.nist.gov/vuln/detail/CVE-2026-94439)
+    * [CVE-2026-94440](https://nvd.nist.gov/vuln/detail/CVE-2026-94440)
+    * [CVE-2026-94448](https://nvd.nist.gov/vuln/detail/CVE-2026-94448)
+    * [CVE-2026-97030](https://nvd.nist.gov/vuln/detail/CVE-2026-97030)
+    * [CVE-2026-97032](https://nvd.nist.gov/vuln/detail/CVE-2026-97032)
+
+### 7.1.3 (2026-08-28)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-14456](https://nvd.nist.gov/vuln/detail/CVE-2026-14456)
+    * [CVE-2026-18798](https://nvd.nist.gov/vuln/detail/CVE-2026-18798)
+    * [CVE-2026-63072](https://nvd.nist.gov/vuln/detail/CVE-2026-63072)
+    * [CVE-2026-63076](https://nvd.nist.gov/vuln/detail/CVE-2026-63076)
+
 ### 7.1.2 (2026-08-20)
 
 * Fixed a 7.1.1 regression that silently dropped some requests from the export pipeline under burst load — the affected attacks and sessions never reached the Wallarm Cloud
@@ -141,6 +331,73 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to upgrade](cloud-image.md)
 
+### 7.1.6 (2026-10-26)
+
+* Removed the eMudhra emSign root certificates distrusted by Mozilla (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
+
+### 7.1.5 (2026-10-23)
+
+* Bumped Go version to 1.26.9
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-103111](https://nvd.nist.gov/vuln/detail/CVE-2026-103111)
+    * [CVE-2026-111497](https://nvd.nist.gov/vuln/detail/CVE-2026-111497)
+    * [CVE-2026-4775](https://nvd.nist.gov/vuln/detail/CVE-2026-4775)
+    * [CVE-2026-53612](https://nvd.nist.gov/vuln/detail/CVE-2026-53612)
+    * [CVE-2026-53613](https://nvd.nist.gov/vuln/detail/CVE-2026-53613)
+    * [CVE-2026-53614](https://nvd.nist.gov/vuln/detail/CVE-2026-53614)
+    * [CVE-2026-56851](https://nvd.nist.gov/vuln/detail/CVE-2026-56851)
+    * [CVE-2026-66046](https://nvd.nist.gov/vuln/detail/CVE-2026-66046)
+    * [CVE-2026-76641](https://nvd.nist.gov/vuln/detail/CVE-2026-76641)
+    * [CVE-2026-76642](https://nvd.nist.gov/vuln/detail/CVE-2026-76642)
+    * [CVE-2026-76956](https://nvd.nist.gov/vuln/detail/CVE-2026-76956)
+    * [CVE-2026-76957](https://nvd.nist.gov/vuln/detail/CVE-2026-76957)
+    * [CVE-2026-77214](https://nvd.nist.gov/vuln/detail/CVE-2026-77214)
+    * [CVE-2026-78408](https://nvd.nist.gov/vuln/detail/CVE-2026-78408)
+    * [CVE-2026-78410](https://nvd.nist.gov/vuln/detail/CVE-2026-78410)
+    * [CVE-2026-78667](https://nvd.nist.gov/vuln/detail/CVE-2026-78667)
+    * [CVE-2026-78669](https://nvd.nist.gov/vuln/detail/CVE-2026-78669)
+    * [CVE-2026-86145](https://nvd.nist.gov/vuln/detail/CVE-2026-86145)
+    * [CVE-2026-89157](https://nvd.nist.gov/vuln/detail/CVE-2026-89157)
+    * [CVE-2026-89161](https://nvd.nist.gov/vuln/detail/CVE-2026-89161)
+    * [CVE-2026-93990](https://nvd.nist.gov/vuln/detail/CVE-2026-93990)
+    * [CVE-2026-97031](https://nvd.nist.gov/vuln/detail/CVE-2026-97031)
+    * [CVE-2026-102633](https://nvd.nist.gov/vuln/detail/CVE-2026-102633)
+    * [CVE-2026-46675](https://nvd.nist.gov/vuln/detail/CVE-2026-46675)
+    * [CVE-2026-56866](https://nvd.nist.gov/vuln/detail/CVE-2026-56866)
+    * [CVE-2026-78659](https://nvd.nist.gov/vuln/detail/CVE-2026-78659)
+    * [CVE-2026-78660](https://nvd.nist.gov/vuln/detail/CVE-2026-78660)
+    * [CVE-2026-78663](https://nvd.nist.gov/vuln/detail/CVE-2026-78663)
+    * [CVE-2026-85091](https://nvd.nist.gov/vuln/detail/CVE-2026-85091)
+    * [CVE-2026-89156](https://nvd.nist.gov/vuln/detail/CVE-2026-89156)
+    * [CVE-2026-89158](https://nvd.nist.gov/vuln/detail/CVE-2026-89158)
+    * [CVE-2026-89160](https://nvd.nist.gov/vuln/detail/CVE-2026-89160)
+    * [CVE-2026-94439](https://nvd.nist.gov/vuln/detail/CVE-2026-94439)
+    * [CVE-2026-94440](https://nvd.nist.gov/vuln/detail/CVE-2026-94440)
+    * [CVE-2026-94448](https://nvd.nist.gov/vuln/detail/CVE-2026-94448)
+    * [CVE-2026-97030](https://nvd.nist.gov/vuln/detail/CVE-2026-97030)
+    * [CVE-2026-97032](https://nvd.nist.gov/vuln/detail/CVE-2026-97032)
+
+### 7.1.4 (2026-10-01)
+
+* Fixed the per-message processing time limit for long-lived streams (WebSocket, gRPC)
+* Bumped Go version to 1.26.8
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-56854](https://nvd.nist.gov/vuln/detail/CVE-2026-56854)
+    * [CVE-2026-56855](https://nvd.nist.gov/vuln/detail/CVE-2026-56855)
+    * [CVE-2026-61625](https://nvd.nist.gov/vuln/detail/CVE-2026-61625)
+    * [CVE-2026-78662](https://nvd.nist.gov/vuln/detail/CVE-2026-78662)
+
+### 7.1.3 (2026-08-28)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-14456](https://nvd.nist.gov/vuln/detail/CVE-2026-14456)
+    * [CVE-2026-18798](https://nvd.nist.gov/vuln/detail/CVE-2026-18798)
+    * [CVE-2026-63072](https://nvd.nist.gov/vuln/detail/CVE-2026-63072)
+    * [CVE-2026-63076](https://nvd.nist.gov/vuln/detail/CVE-2026-63076)
+
 ### 7.1.2 (2026-08-20)
 
 * Fixed a 7.1.1 regression that silently dropped some requests from the export pipeline under burst load — the affected attacks and sessions never reached the Wallarm Cloud
@@ -172,6 +429,73 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-7-1-6-20261026-123400 (2026-10-26)
+
+* Removed the eMudhra emSign root certificates distrusted by Mozilla (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
+
+### wallarm-node-7-1-5-20261023-145432 (2026-10-23)
+
+* Bumped Go version to 1.26.9
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-103111](https://nvd.nist.gov/vuln/detail/CVE-2026-103111)
+    * [CVE-2026-111497](https://nvd.nist.gov/vuln/detail/CVE-2026-111497)
+    * [CVE-2026-4775](https://nvd.nist.gov/vuln/detail/CVE-2026-4775)
+    * [CVE-2026-53612](https://nvd.nist.gov/vuln/detail/CVE-2026-53612)
+    * [CVE-2026-53613](https://nvd.nist.gov/vuln/detail/CVE-2026-53613)
+    * [CVE-2026-53614](https://nvd.nist.gov/vuln/detail/CVE-2026-53614)
+    * [CVE-2026-56851](https://nvd.nist.gov/vuln/detail/CVE-2026-56851)
+    * [CVE-2026-66046](https://nvd.nist.gov/vuln/detail/CVE-2026-66046)
+    * [CVE-2026-76641](https://nvd.nist.gov/vuln/detail/CVE-2026-76641)
+    * [CVE-2026-76642](https://nvd.nist.gov/vuln/detail/CVE-2026-76642)
+    * [CVE-2026-76956](https://nvd.nist.gov/vuln/detail/CVE-2026-76956)
+    * [CVE-2026-76957](https://nvd.nist.gov/vuln/detail/CVE-2026-76957)
+    * [CVE-2026-77214](https://nvd.nist.gov/vuln/detail/CVE-2026-77214)
+    * [CVE-2026-78408](https://nvd.nist.gov/vuln/detail/CVE-2026-78408)
+    * [CVE-2026-78410](https://nvd.nist.gov/vuln/detail/CVE-2026-78410)
+    * [CVE-2026-78667](https://nvd.nist.gov/vuln/detail/CVE-2026-78667)
+    * [CVE-2026-78669](https://nvd.nist.gov/vuln/detail/CVE-2026-78669)
+    * [CVE-2026-86145](https://nvd.nist.gov/vuln/detail/CVE-2026-86145)
+    * [CVE-2026-89157](https://nvd.nist.gov/vuln/detail/CVE-2026-89157)
+    * [CVE-2026-89161](https://nvd.nist.gov/vuln/detail/CVE-2026-89161)
+    * [CVE-2026-93990](https://nvd.nist.gov/vuln/detail/CVE-2026-93990)
+    * [CVE-2026-97031](https://nvd.nist.gov/vuln/detail/CVE-2026-97031)
+    * [CVE-2026-102633](https://nvd.nist.gov/vuln/detail/CVE-2026-102633)
+    * [CVE-2026-46675](https://nvd.nist.gov/vuln/detail/CVE-2026-46675)
+    * [CVE-2026-56866](https://nvd.nist.gov/vuln/detail/CVE-2026-56866)
+    * [CVE-2026-78659](https://nvd.nist.gov/vuln/detail/CVE-2026-78659)
+    * [CVE-2026-78660](https://nvd.nist.gov/vuln/detail/CVE-2026-78660)
+    * [CVE-2026-78663](https://nvd.nist.gov/vuln/detail/CVE-2026-78663)
+    * [CVE-2026-85091](https://nvd.nist.gov/vuln/detail/CVE-2026-85091)
+    * [CVE-2026-89156](https://nvd.nist.gov/vuln/detail/CVE-2026-89156)
+    * [CVE-2026-89158](https://nvd.nist.gov/vuln/detail/CVE-2026-89158)
+    * [CVE-2026-89160](https://nvd.nist.gov/vuln/detail/CVE-2026-89160)
+    * [CVE-2026-94439](https://nvd.nist.gov/vuln/detail/CVE-2026-94439)
+    * [CVE-2026-94440](https://nvd.nist.gov/vuln/detail/CVE-2026-94440)
+    * [CVE-2026-94448](https://nvd.nist.gov/vuln/detail/CVE-2026-94448)
+    * [CVE-2026-97030](https://nvd.nist.gov/vuln/detail/CVE-2026-97030)
+    * [CVE-2026-97032](https://nvd.nist.gov/vuln/detail/CVE-2026-97032)
+
+### wallarm-node-7-1-4-20261001-133154 (2026-10-01)
+
+* Fixed the per-message processing time limit for long-lived streams (WebSocket, gRPC)
+* Bumped Go version to 1.26.8
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-56854](https://nvd.nist.gov/vuln/detail/CVE-2026-56854)
+    * [CVE-2026-56855](https://nvd.nist.gov/vuln/detail/CVE-2026-56855)
+    * [CVE-2026-61625](https://nvd.nist.gov/vuln/detail/CVE-2026-61625)
+    * [CVE-2026-78662](https://nvd.nist.gov/vuln/detail/CVE-2026-78662)
+
+### wallarm-node-7-1-3-20260827-223907 (2026-08-27)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-14456](https://nvd.nist.gov/vuln/detail/CVE-2026-14456)
+    * [CVE-2026-18798](https://nvd.nist.gov/vuln/detail/CVE-2026-18798)
+    * [CVE-2026-63072](https://nvd.nist.gov/vuln/detail/CVE-2026-63072)
+    * [CVE-2026-63076](https://nvd.nist.gov/vuln/detail/CVE-2026-63076)
 
 ### wallarm-node-7-1-2-20260820-142512 (2026-08-20)
 
