@@ -10,7 +10,8 @@ For pod and namespace labels that control which workloads the scanner observes, 
 |---|---|
 | `config.backendUrl` | URL of the AI Hypervisor backend (your tenant). Provided in the install commands on your tenant's empty-state screen. |
 | `scannerPrivateKey` | HMAC private key the scanner uses to authenticate to the backend. Provided alongside `backendUrl`. Mutually exclusive with `existingSecret.name`. |
-| `existingSecret.name` | Name of a pre-existing Kubernetes Secret in the scanner namespace that holds the private key. Use instead of `scannerPrivateKey` when you manage secrets externally (External Secrets Operator, sealed secrets, and so on). |
+| `existingSecret.name` | Name of a pre-existing Kubernetes Secret in the scanner namespace that holds the private key. Use instead of `scannerPrivateKey` when you manage secrets externally (External Secrets Operator, sealed secrets, and so on). The scanners mount it as a file and re-read it when it changes, so a [key rotation](settings.md#rotate-the-scanner-key) needs only a new value in the Secret — no restart. Recommended: it keeps the key out of your Helm values and Git. |
+| `existingSecret.key` | Key inside that Secret that holds the private key. Default `scanner-private-key`. |
 
 ## Capture
 

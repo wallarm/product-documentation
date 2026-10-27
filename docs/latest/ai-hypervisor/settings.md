@@ -73,6 +73,9 @@ Changes to these fields are staged: click **Apply** to save them or
     **Wipe Data**, **Logs**. A new row shows **No scan data yet** until its first scan uploads.
 - **Scanner Nodes Without Targets** — scanner nodes that are running but have nothing opted in.
   Appears only when there are such nodes.
+- **Scanner key** — the key your scanners sign with: where a key rotation stands, how many scanners
+  seen in the last 24 hours use each key, and the next step. Owners only. Shown when key rotation is
+  enabled for your workspace.
 
 On a workspace that has only macOS or other device endpoints, this tab says so: there are no
 Kubernetes scanner nodes, and enforcement runs on the device.
@@ -116,6 +119,31 @@ Switches for optional pages. Changes apply right away, with no **Apply** step.
 1. Make sure the scanner was installed with the proxy (`--set proxy.enabled=true`).
 2. Set the mode to **Monitor — detect, do not block** and leave it while your applications run.
 3. Check what it detected, then switch to **Enforce — block attacks**.
+
+### Rotate the scanner key
+
+Rotate routinely, or at once if the key may have leaked. Scanners keep sending throughout: both keys
+are accepted until you retire the old one, and scanners pick up a new key without a restart.
+
+1. Open **Scanners** → **Scanner key** → click **Start rotation**. The new key is shown once — copy it.
+2. Put the new key where your scanners' key lives: the `scannerPrivateKey` Helm value, or the
+   Kubernetes Secret named by `existingSecret` (see [Helm chart values](chart-values.md)). With the
+   Secret, change only its value — the scanners switch within about three minutes: they wait two
+   minutes after the key changes so that every part of the platform accepts it first.
+3. Watch the count: when it reads **N of N active scanners use the new key**, click **Promote the new
+   key**. A scanner not seen for over 15 minutes (for example, a node that was scaled away) is not
+   counted.
+4. Click **Retire the previous key**. If an active scanner still uses it, the confirmation names it;
+   retire only once it has the new key, or it loses access until it gets it. Scanners not seen for over
+   15 minutes are listed but do not hold the retirement back — if one comes back, give it the new key.
+
+To stop a rotation before promoting, click **Abort rotation** — nothing changes for any scanner.
+
+If the key has leaked, click **Emergency rotation** instead: the old key stops working at once, and
+every scanner loses access until it gets the new key.
+
+Scanners re-read the key without a restart from scanner version 2.17.0. Older scanners need a restart
+(for example, `helm upgrade`) to pick up the new key.
 
 ### Invite a teammate
 1. Open **Data** → click **Team Members**.
