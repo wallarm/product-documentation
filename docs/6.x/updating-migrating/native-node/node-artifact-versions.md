@@ -14,7 +14,7 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 ### 0.25.11 (2026-10-26)
 
-* Removed the eMudhra emSign root certificates distrusted by Mozilla (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
+* Removed the distrusted eMudhra emSign root certificates (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
 * Bumped the base components to NGINX Node 6.13.4
 * Bumped Go version to 1.27.3, which rejects certificates issued by the compromised eMudhra intermediate CAs
 * Fixed security vulnerabilities:
@@ -368,7 +368,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ### 0.25.11 (2026-10-26)
 
-* Removed the eMudhra emSign root certificates distrusted by Mozilla (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
+* Removed the distrusted eMudhra emSign root certificates (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
 * Bumped the base components to NGINX Node 6.13.4
 * Bumped Go version to 1.27.3, which rejects certificates issued by the compromised eMudhra intermediate CAs
 * Fixed security vulnerabilities:
@@ -690,7 +690,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 ### 0.25.11 (2026-10-26)
 
-* Removed the eMudhra emSign root certificates distrusted by Mozilla (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
+* Removed the distrusted eMudhra emSign root certificates (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
 * Bumped the base components to NGINX Node 6.13.4
 * Bumped Go version to 1.27.3, which rejects certificates issued by the compromised eMudhra intermediate CAs
 * Fixed security vulnerabilities:
