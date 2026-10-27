@@ -13,6 +13,23 @@ For pod and namespace labels that control which workloads the scanner observes, 
 | `existingSecret.name` | Name of a pre-existing Kubernetes Secret in the scanner namespace that holds the private key. Use instead of `scannerPrivateKey` when you manage secrets externally (External Secrets Operator, sealed secrets, and so on). The scanners mount it as a file and re-read it when it changes, so a [key rotation](settings.md#rotate-the-scanner-key) needs only a new value in the Secret — no restart. Recommended: it keeps the key out of your Helm values and Git. |
 | `existingSecret.key` | Key inside that Secret that holds the private key. Default `scanner-private-key`. |
 
+## GitOps and secret tooling
+
+Values for installs that ArgoCD or Flux render with `helm template`, and for teams that deliver
+secrets with their own tooling. All are optional; the defaults behave as before. See
+[Kubernetes with GitOps](deploy.md#kubernetes-with-gitops-argocd-flux).
+
+| Key | Default | Description |
+|---|---|---|
+| `upgrader.enabled` | `true` | The in-cluster upgrader patches the scanner image. Set `false` when Git owns the version (ArgoCD self-heal would revert the patch). |
+| `webhook.tls.existingSecret` | (empty) | From 2.17.0. A `kubernetes.io/tls` Secret you provide (`tls.crt`, `tls.key`) for the webhook; nothing is generated. Requires `webhook.caBundle`. `webhook.tls.secretName` is an older name for it. |
+| `webhook.caBundle` | (empty) | With `webhook.tls.existingSecret`: the base64 PEM of the CA that signed its certificate (public; safe to commit). |
+| `webhook.tls.certManager.enabled` | `false` | From 2.17.0. cert-manager issues the webhook certificate and its CA injector fills the `caBundle`. Set `webhook.tls.certManager.issuerRef.name` (and `.kind`: `Issuer` or `ClusterIssuer`). |
+| `proxy.ca.existingSecret` | (empty) | With `proxy.enabled`: a Secret with the proxy's CA (`ca.crt`, `ca.key`); nothing is generated. |
+| `secret.annotations`, `secret.labels` | `{}` | From 2.17.0. Metadata on the key Secret the chart creates from `scannerPrivateKey` (none is created with `existingSecret.name`). |
+| `podAnnotations`, `podLabels` | `{}` | From 2.17.0. Added to the pods of every scanner workload — for example Vault injector annotations or mesh opt-outs. `webhook.`, `upgrader.`, `collector.` and `classifier.pool.` each take their own `podAnnotations` / `podLabels` on top. Selector labels cannot be overridden. |
+| `extraEnvFrom` | `[]` | From 2.17.0. Extra `envFrom` sources (Secret or ConfigMap references) for the scanner, webhook, upgrader and collector. A key passed this way is read at start; with `existingSecret.name` it is mounted as a file and a new key is picked up without a restart. |
+
 ## Capture
 
 | Key | Default | Description |

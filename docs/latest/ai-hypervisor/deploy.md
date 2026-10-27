@@ -37,11 +37,30 @@ Steps:
     helm repo add wallarm https://raw.githubusercontent.com/wallarm/helm-charts/main && helm repo update
     ```
 
-2. Install the scanner. Copy the command from your tenant: it carries your tenant address and key.
+2. Install the scanner. Copy the commands from your tenant: they carry your tenant address and key.
+
+    **Recommended — the key in a Kubernetes Secret.** The key never appears on the helm command
+    line, in your shell history, or in Helm release values:
 
     ```bash
     helm upgrade --install aih-scanner wallarm/aih-scanner \
-      --version 2.11.1 \
+      --version <VERSION> \
+      --set config.backendUrl="<YOUR_TENANT_URL>" \
+      --set existingSecret.name=aih-scanner-private-key
+
+    kubectl create secret generic aih-scanner-private-key -n higgs-system \
+      --from-literal=scanner-private-key="<YOUR_PRIVATE_KEY>"
+    ```
+
+    Install first, then create the Secret: the chart creates the `higgs-system` namespace, and the
+    scanner pods start as soon as the Secret exists. If you use a secret manager (Vault, External
+    Secrets, Sealed Secrets), have it produce this Secret instead of `kubectl create secret`.
+
+    **Quick start — one command.** The key is passed on the command line:
+
+    ```bash
+    helm upgrade --install aih-scanner wallarm/aih-scanner \
+      --version <VERSION> \
       --set config.backendUrl="<YOUR_TENANT_URL>" \
       --set scannerPrivateKey="<YOUR_PRIVATE_KEY>"
     ```
@@ -55,6 +74,65 @@ Steps:
     ```
 
 4. Choose what to watch. The scanner records nothing until you opt a namespace in. Proceed to [Step 3](#step-3-onboarding-your-workloads).
+
+### Kubernetes with GitOps (ArgoCD / Flux)
+
+Git holds the chart version and the values; the scanner key never goes into Git.
+
+1. Put the scanner key once into your secret manager, so that it produces a Secret named
+   `aih-scanner-private-key` (key `scanner-private-key`) in the `higgs-system` namespace — for example
+   with Vault and its injector or Vault Secrets Operator, External Secrets, Sealed Secrets, or SOPS.
+2. Commit an Application (ArgoCD shown; a Flux `HelmRelease` takes the same values). **Settings** →
+   **Scanners** → **Kubernetes** shows it filled in with your tenant address:
+
+    ```yaml
+    apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: aih-scanner
+      namespace: argocd
+    spec:
+      project: default
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: higgs-system
+      source:
+        repoURL: https://charts.wallarm.com
+        chart: aih-scanner
+        targetRevision: <VERSION>          # Git owns the version
+        helm:
+          valuesObject:
+            config:
+              backendUrl: "<YOUR_TENANT_URL>"
+            existingSecret:                 # filled by your secret manager
+              name: aih-scanner-private-key
+              key: scanner-private-key
+            upgrader:
+              enabled: false                # upgrades come from Git
+      syncPolicy:
+        automated: { prune: true, selfHeal: true }
+    ```
+
+3. **Upgrade** by changing `targetRevision` in Git (by hand, Renovate, or ArgoCD Image Updater). Keep
+   `upgrader.enabled: false`: the in-cluster upgrader patches the scanner image itself, and ArgoCD
+   self-heal would revert it. The tenant still shows when an update is available.
+4. **Rotate the key** by changing it in your secret manager — see
+   [Rotate the scanner key](settings.md#rotate-the-scanner-key). The scanners pick up the new key
+   from the Secret without a restart; no sync is needed.
+
+ArgoCD and Flux render the chart with `helm template`, without access to the cluster, so anything
+the chart would generate on first install would change on every render. From scanner 2.17.0:
+
+* **Webhook certificate** — give it your own (`webhook.tls.existingSecret` plus `webhook.caBundle`)
+  or let cert-manager issue it (`webhook.tls.certManager.enabled: true` with an `issuerRef`). Before
+  2.17.0, add `ignoreDifferences` for the `aih-scanner-webhook-tls` Secret **and** for
+  `/webhooks/*/clientConfig/caBundle` on the `MutatingWebhookConfiguration`; ignoring only the Secret
+  lets the `caBundle` drift from the served certificate, and the webhook then silently stops.
+* **Blocking** (`proxy.enabled: true`) — give the proxy its CA from your own Secret
+  (`proxy.ca.existingSecret`), so it is not regenerated: a new CA breaks trust in every scanned pod.
+* **Pod annotations and labels** for your injector or mesh (`podAnnotations`, `podLabels`), metadata
+  on the key Secret (`secret.annotations`, `secret.labels`), and env from your own Secret or ConfigMap
+  (`extraEnvFrom`) — see [Chart Values](chart-values.md#gitops-and-secret-tooling).
 
 ### AWS ECS on EC2
 
