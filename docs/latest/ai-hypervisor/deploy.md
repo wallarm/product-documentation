@@ -135,8 +135,8 @@ Git holds the chart version and the values; the scanner key never goes into Git.
    from the Secret without a restart; no sync is needed.
 
 ArgoCD renders the chart with `helm template`, without access to the cluster, so anything the
-chart generated on first install would change on every render. From scanner 2.17.0, `gitops: true`
-makes every render identical:
+chart generated on first install would change on every render. With `gitops: true` (scanner 2.17.2 or
+later) every render is identical and a default install reports Healthy:
 
 * **Proxy CA and internal tokens** — created once by a PreSync Job, kept on every later sync, and
   never part of the Application's manifests. To manage any of them yourself, create the Secret
