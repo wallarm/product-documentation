@@ -21,6 +21,35 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.13.4 (2026-10-26)
+
+* Removed the distrusted eMudhra emSign root certificates (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
+
+### 6.13.3 (2026-10-23)
+
+* Added support for NGINX stable 1.30.6
+* Added support for NGINX mainline 1.31.7 and 1.31.8
+* Bumped Go version to 1.26.9
+* Fixed security vulnerabilities:
+
+    * [GHSA-6q48-6c7w-9gw2](https://github.com/advisories/GHSA-6q48-6c7w-9gw2)
+    * [CVE-2026-56851](https://nvd.nist.gov/vuln/detail/CVE-2026-56851)
+    * [CVE-2026-78667](https://nvd.nist.gov/vuln/detail/CVE-2026-78667)
+    * [CVE-2026-78669](https://nvd.nist.gov/vuln/detail/CVE-2026-78669)
+    * [CVE-2026-97031](https://nvd.nist.gov/vuln/detail/CVE-2026-97031)
+    * [CVE-2026-97687](https://nvd.nist.gov/vuln/detail/CVE-2026-97687)
+    * [CVE-2026-97689](https://nvd.nist.gov/vuln/detail/CVE-2026-97689)
+    * [CVE-2026-56866](https://nvd.nist.gov/vuln/detail/CVE-2026-56866)
+    * [CVE-2026-78659](https://nvd.nist.gov/vuln/detail/CVE-2026-78659)
+    * [CVE-2026-78660](https://nvd.nist.gov/vuln/detail/CVE-2026-78660)
+    * [CVE-2026-78663](https://nvd.nist.gov/vuln/detail/CVE-2026-78663)
+    * [CVE-2026-94439](https://nvd.nist.gov/vuln/detail/CVE-2026-94439)
+    * [CVE-2026-94440](https://nvd.nist.gov/vuln/detail/CVE-2026-94440)
+    * [CVE-2026-94448](https://nvd.nist.gov/vuln/detail/CVE-2026-94448)
+    * [CVE-2026-97030](https://nvd.nist.gov/vuln/detail/CVE-2026-97030)
+    * [CVE-2026-97032](https://nvd.nist.gov/vuln/detail/CVE-2026-97032)
+    * [CVE-2026-97688](https://nvd.nist.gov/vuln/detail/CVE-2026-97688)
+
 ### 6.13.2 (2026-09-24)
 
 * Fixed the per-message processing time limit for long-lived streams (WebSocket, gRPC, SSE)
@@ -329,6 +358,39 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.13.4 (2026-10-26)
+
+* Removed the distrusted eMudhra emSign root certificates (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-92392](https://nvd.nist.gov/vuln/detail/CVE-2026-92392)
+    * [CVE-2026-92388](https://nvd.nist.gov/vuln/detail/CVE-2026-92388)
+
+### 6.13.3 (2026-10-23)
+
+* Fixed security vulnerabilities:
+
+    * [GHSA-6q48-6c7w-9gw2](https://github.com/advisories/GHSA-6q48-6c7w-9gw2)
+    * [CVE-2026-111497](https://nvd.nist.gov/vuln/detail/CVE-2026-111497)
+    * [CVE-2026-56851](https://nvd.nist.gov/vuln/detail/CVE-2026-56851)
+    * [CVE-2026-56852](https://nvd.nist.gov/vuln/detail/CVE-2026-56852)
+    * [CVE-2026-78667](https://nvd.nist.gov/vuln/detail/CVE-2026-78667)
+    * [CVE-2026-78669](https://nvd.nist.gov/vuln/detail/CVE-2026-78669)
+    * [CVE-2026-97031](https://nvd.nist.gov/vuln/detail/CVE-2026-97031)
+    * [CVE-2026-97687](https://nvd.nist.gov/vuln/detail/CVE-2026-97687)
+    * [CVE-2026-97689](https://nvd.nist.gov/vuln/detail/CVE-2026-97689)
+    * [CVE-2026-56866](https://nvd.nist.gov/vuln/detail/CVE-2026-56866)
+    * [CVE-2026-78659](https://nvd.nist.gov/vuln/detail/CVE-2026-78659)
+    * [CVE-2026-78660](https://nvd.nist.gov/vuln/detail/CVE-2026-78660)
+    * [CVE-2026-78663](https://nvd.nist.gov/vuln/detail/CVE-2026-78663)
+    * [CVE-2026-85091](https://nvd.nist.gov/vuln/detail/CVE-2026-85091)
+    * [CVE-2026-94439](https://nvd.nist.gov/vuln/detail/CVE-2026-94439)
+    * [CVE-2026-94440](https://nvd.nist.gov/vuln/detail/CVE-2026-94440)
+    * [CVE-2026-94448](https://nvd.nist.gov/vuln/detail/CVE-2026-94448)
+    * [CVE-2026-97030](https://nvd.nist.gov/vuln/detail/CVE-2026-97030)
+    * [CVE-2026-97032](https://nvd.nist.gov/vuln/detail/CVE-2026-97032)
+    * [CVE-2026-97688](https://nvd.nist.gov/vuln/detail/CVE-2026-97688)
 
 ### 6.13.2 (2026-09-24)
 
@@ -679,6 +741,39 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.13.4 (2026-10-26)
+
+* Removed the distrusted eMudhra emSign root certificates (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-92392](https://nvd.nist.gov/vuln/detail/CVE-2026-92392)
+    * [CVE-2026-92388](https://nvd.nist.gov/vuln/detail/CVE-2026-92388)
+
+### 6.13.3 (2026-10-23)
+
+* Fixed security vulnerabilities:
+
+    * [GHSA-6q48-6c7w-9gw2](https://github.com/advisories/GHSA-6q48-6c7w-9gw2)
+    * [CVE-2026-103111](https://nvd.nist.gov/vuln/detail/CVE-2026-103111)
+    * [CVE-2026-111497](https://nvd.nist.gov/vuln/detail/CVE-2026-111497)
+    * [CVE-2026-56851](https://nvd.nist.gov/vuln/detail/CVE-2026-56851)
+    * [CVE-2026-78667](https://nvd.nist.gov/vuln/detail/CVE-2026-78667)
+    * [CVE-2026-78669](https://nvd.nist.gov/vuln/detail/CVE-2026-78669)
+    * [CVE-2026-97031](https://nvd.nist.gov/vuln/detail/CVE-2026-97031)
+    * [CVE-2026-97687](https://nvd.nist.gov/vuln/detail/CVE-2026-97687)
+    * [CVE-2026-97689](https://nvd.nist.gov/vuln/detail/CVE-2026-97689)
+    * [CVE-2026-56866](https://nvd.nist.gov/vuln/detail/CVE-2026-56866)
+    * [CVE-2026-78659](https://nvd.nist.gov/vuln/detail/CVE-2026-78659)
+    * [CVE-2026-78660](https://nvd.nist.gov/vuln/detail/CVE-2026-78660)
+    * [CVE-2026-78663](https://nvd.nist.gov/vuln/detail/CVE-2026-78663)
+    * [CVE-2026-85091](https://nvd.nist.gov/vuln/detail/CVE-2026-85091)
+    * [CVE-2026-94439](https://nvd.nist.gov/vuln/detail/CVE-2026-94439)
+    * [CVE-2026-94440](https://nvd.nist.gov/vuln/detail/CVE-2026-94440)
+    * [CVE-2026-94448](https://nvd.nist.gov/vuln/detail/CVE-2026-94448)
+    * [CVE-2026-97030](https://nvd.nist.gov/vuln/detail/CVE-2026-97030)
+    * [CVE-2026-97032](https://nvd.nist.gov/vuln/detail/CVE-2026-97032)
+    * [CVE-2026-97688](https://nvd.nist.gov/vuln/detail/CVE-2026-97688)
+
 ### 6.13.2 (2026-09-24)
 
 * Fixed the per-message processing time limit for long-lived streams (WebSocket, gRPC, SSE)
@@ -996,6 +1091,40 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](docker-container.md)
 
+### 6.13.4 (2026-10-26)
+
+* Removed the distrusted eMudhra emSign root certificates (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
+
+### 6.13.3 (2026-10-23)
+
+* Bumped Go version to 1.26.9
+* Fixed security vulnerabilities:
+
+    * [GHSA-6q48-6c7w-9gw2](https://github.com/advisories/GHSA-6q48-6c7w-9gw2)
+    * [CVE-2026-103111](https://nvd.nist.gov/vuln/detail/CVE-2026-103111)
+    * [CVE-2026-111497](https://nvd.nist.gov/vuln/detail/CVE-2026-111497)
+    * [CVE-2026-4775](https://nvd.nist.gov/vuln/detail/CVE-2026-4775)
+    * [CVE-2026-56851](https://nvd.nist.gov/vuln/detail/CVE-2026-56851)
+    * [CVE-2026-77214](https://nvd.nist.gov/vuln/detail/CVE-2026-77214)
+    * [CVE-2026-78667](https://nvd.nist.gov/vuln/detail/CVE-2026-78667)
+    * [CVE-2026-78669](https://nvd.nist.gov/vuln/detail/CVE-2026-78669)
+    * [CVE-2026-97031](https://nvd.nist.gov/vuln/detail/CVE-2026-97031)
+    * [CVE-2026-97687](https://nvd.nist.gov/vuln/detail/CVE-2026-97687)
+    * [CVE-2026-97689](https://nvd.nist.gov/vuln/detail/CVE-2026-97689)
+    * [CVE-2026-102633](https://nvd.nist.gov/vuln/detail/CVE-2026-102633)
+    * [CVE-2026-46675](https://nvd.nist.gov/vuln/detail/CVE-2026-46675)
+    * [CVE-2026-56866](https://nvd.nist.gov/vuln/detail/CVE-2026-56866)
+    * [CVE-2026-78659](https://nvd.nist.gov/vuln/detail/CVE-2026-78659)
+    * [CVE-2026-78660](https://nvd.nist.gov/vuln/detail/CVE-2026-78660)
+    * [CVE-2026-78663](https://nvd.nist.gov/vuln/detail/CVE-2026-78663)
+    * [CVE-2026-85091](https://nvd.nist.gov/vuln/detail/CVE-2026-85091)
+    * [CVE-2026-94439](https://nvd.nist.gov/vuln/detail/CVE-2026-94439)
+    * [CVE-2026-94440](https://nvd.nist.gov/vuln/detail/CVE-2026-94440)
+    * [CVE-2026-94448](https://nvd.nist.gov/vuln/detail/CVE-2026-94448)
+    * [CVE-2026-97030](https://nvd.nist.gov/vuln/detail/CVE-2026-97030)
+    * [CVE-2026-97032](https://nvd.nist.gov/vuln/detail/CVE-2026-97032)
+    * [CVE-2026-97688](https://nvd.nist.gov/vuln/detail/CVE-2026-97688)
+
 ### 6.13.2 (2026-09-24)
 
 * Fixed the per-message processing time limit for long-lived streams (WebSocket, gRPC, SSE)
@@ -1303,6 +1432,40 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](cloud-image.md)
 
+### 6.13.4 (2026-10-26)
+
+* Removed the distrusted eMudhra emSign root certificates (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
+
+### 6.13.3 (2026-10-23)
+
+* Bumped Go version to 1.26.9
+* Fixed security vulnerabilities:
+
+    * [GHSA-6q48-6c7w-9gw2](https://github.com/advisories/GHSA-6q48-6c7w-9gw2)
+    * [CVE-2026-103111](https://nvd.nist.gov/vuln/detail/CVE-2026-103111)
+    * [CVE-2026-111497](https://nvd.nist.gov/vuln/detail/CVE-2026-111497)
+    * [CVE-2026-4775](https://nvd.nist.gov/vuln/detail/CVE-2026-4775)
+    * [CVE-2026-56851](https://nvd.nist.gov/vuln/detail/CVE-2026-56851)
+    * [CVE-2026-77214](https://nvd.nist.gov/vuln/detail/CVE-2026-77214)
+    * [CVE-2026-78667](https://nvd.nist.gov/vuln/detail/CVE-2026-78667)
+    * [CVE-2026-78669](https://nvd.nist.gov/vuln/detail/CVE-2026-78669)
+    * [CVE-2026-97031](https://nvd.nist.gov/vuln/detail/CVE-2026-97031)
+    * [CVE-2026-97687](https://nvd.nist.gov/vuln/detail/CVE-2026-97687)
+    * [CVE-2026-97689](https://nvd.nist.gov/vuln/detail/CVE-2026-97689)
+    * [CVE-2026-102633](https://nvd.nist.gov/vuln/detail/CVE-2026-102633)
+    * [CVE-2026-46675](https://nvd.nist.gov/vuln/detail/CVE-2026-46675)
+    * [CVE-2026-56866](https://nvd.nist.gov/vuln/detail/CVE-2026-56866)
+    * [CVE-2026-78659](https://nvd.nist.gov/vuln/detail/CVE-2026-78659)
+    * [CVE-2026-78660](https://nvd.nist.gov/vuln/detail/CVE-2026-78660)
+    * [CVE-2026-78663](https://nvd.nist.gov/vuln/detail/CVE-2026-78663)
+    * [CVE-2026-85091](https://nvd.nist.gov/vuln/detail/CVE-2026-85091)
+    * [CVE-2026-94439](https://nvd.nist.gov/vuln/detail/CVE-2026-94439)
+    * [CVE-2026-94440](https://nvd.nist.gov/vuln/detail/CVE-2026-94440)
+    * [CVE-2026-94448](https://nvd.nist.gov/vuln/detail/CVE-2026-94448)
+    * [CVE-2026-97030](https://nvd.nist.gov/vuln/detail/CVE-2026-97030)
+    * [CVE-2026-97032](https://nvd.nist.gov/vuln/detail/CVE-2026-97032)
+    * [CVE-2026-97688](https://nvd.nist.gov/vuln/detail/CVE-2026-97688)
+
 ### 6.13.2 (2026-09-24)
 
 * Fixed the per-message processing time limit for long-lived streams (WebSocket, gRPC, SSE)
@@ -1560,6 +1723,54 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-13-4-20261026-124042 (2026-10-26)
+
+* Removed the distrusted eMudhra emSign root certificates (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
+
+### wallarm-node-6-13-3-20261023-145741 (2026-10-23)
+
+* Bumped Go version to 1.26.9
+* Fixed security vulnerabilities:
+
+    * [GHSA-6q48-6c7w-9gw2](https://github.com/advisories/GHSA-6q48-6c7w-9gw2)
+    * [CVE-2026-103111](https://nvd.nist.gov/vuln/detail/CVE-2026-103111)
+    * [CVE-2026-111497](https://nvd.nist.gov/vuln/detail/CVE-2026-111497)
+    * [CVE-2026-4775](https://nvd.nist.gov/vuln/detail/CVE-2026-4775)
+    * [CVE-2026-56851](https://nvd.nist.gov/vuln/detail/CVE-2026-56851)
+    * [CVE-2026-77214](https://nvd.nist.gov/vuln/detail/CVE-2026-77214)
+    * [CVE-2026-78667](https://nvd.nist.gov/vuln/detail/CVE-2026-78667)
+    * [CVE-2026-78669](https://nvd.nist.gov/vuln/detail/CVE-2026-78669)
+    * [CVE-2026-97031](https://nvd.nist.gov/vuln/detail/CVE-2026-97031)
+    * [CVE-2026-97687](https://nvd.nist.gov/vuln/detail/CVE-2026-97687)
+    * [CVE-2026-97689](https://nvd.nist.gov/vuln/detail/CVE-2026-97689)
+    * [CVE-2026-102633](https://nvd.nist.gov/vuln/detail/CVE-2026-102633)
+    * [CVE-2026-46675](https://nvd.nist.gov/vuln/detail/CVE-2026-46675)
+    * [CVE-2026-56866](https://nvd.nist.gov/vuln/detail/CVE-2026-56866)
+    * [CVE-2026-78659](https://nvd.nist.gov/vuln/detail/CVE-2026-78659)
+    * [CVE-2026-78660](https://nvd.nist.gov/vuln/detail/CVE-2026-78660)
+    * [CVE-2026-78663](https://nvd.nist.gov/vuln/detail/CVE-2026-78663)
+    * [CVE-2026-85091](https://nvd.nist.gov/vuln/detail/CVE-2026-85091)
+    * [CVE-2026-94439](https://nvd.nist.gov/vuln/detail/CVE-2026-94439)
+    * [CVE-2026-94440](https://nvd.nist.gov/vuln/detail/CVE-2026-94440)
+    * [CVE-2026-94448](https://nvd.nist.gov/vuln/detail/CVE-2026-94448)
+    * [CVE-2026-97030](https://nvd.nist.gov/vuln/detail/CVE-2026-97030)
+    * [CVE-2026-97032](https://nvd.nist.gov/vuln/detail/CVE-2026-97032)
+    * [CVE-2026-97688](https://nvd.nist.gov/vuln/detail/CVE-2026-97688)
+
+### wallarm-node-6-13-2-20260924-135220 (2026-09-24)
+
+* Fixed the per-message processing time limit for long-lived streams (WebSocket, gRPC, SSE)
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-93990](https://nvd.nist.gov/vuln/detail/CVE-2026-93990)
+    * [CVE-2026-76641](https://nvd.nist.gov/vuln/detail/CVE-2026-76641)
+    * [CVE-2026-66046](https://nvd.nist.gov/vuln/detail/CVE-2026-66046)
+    * [CVE-2026-76642](https://nvd.nist.gov/vuln/detail/CVE-2026-76642)
+    * [CVE-2026-78408](https://nvd.nist.gov/vuln/detail/CVE-2026-78408)
+    * [CVE-2026-78410](https://nvd.nist.gov/vuln/detail/CVE-2026-78410)
+    * [CVE-2026-76956](https://nvd.nist.gov/vuln/detail/CVE-2026-76956)
+    * [CVE-2026-76957](https://nvd.nist.gov/vuln/detail/CVE-2026-76957)
 
 ### wallarm-node-6-13-1-20260827-130319 (2026-08-27)
 

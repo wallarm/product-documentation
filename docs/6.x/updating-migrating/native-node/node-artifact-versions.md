@@ -12,6 +12,31 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to upgrade](all-in-one.md)
 
+### 0.25.11 (2026-10-26)
+
+* Removed the distrusted eMudhra emSign root certificates (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
+* Bumped the base components to NGINX Node 6.13.4
+* Bumped Go version to 1.27.3, which rejects certificates issued by the compromised eMudhra intermediate CAs
+* Fixed security vulnerabilities:
+
+    * [GHSA-6q48-6c7w-9gw2](https://github.com/advisories/GHSA-6q48-6c7w-9gw2)
+    * [CVE-2026-56851](https://nvd.nist.gov/vuln/detail/CVE-2026-56851)
+    * [CVE-2026-78667](https://nvd.nist.gov/vuln/detail/CVE-2026-78667)
+    * [CVE-2026-78669](https://nvd.nist.gov/vuln/detail/CVE-2026-78669)
+    * [CVE-2026-97031](https://nvd.nist.gov/vuln/detail/CVE-2026-97031)
+    * [CVE-2026-97687](https://nvd.nist.gov/vuln/detail/CVE-2026-97687)
+    * [CVE-2026-97689](https://nvd.nist.gov/vuln/detail/CVE-2026-97689)
+    * [CVE-2026-56866](https://nvd.nist.gov/vuln/detail/CVE-2026-56866)
+    * [CVE-2026-78659](https://nvd.nist.gov/vuln/detail/CVE-2026-78659)
+    * [CVE-2026-78660](https://nvd.nist.gov/vuln/detail/CVE-2026-78660)
+    * [CVE-2026-78663](https://nvd.nist.gov/vuln/detail/CVE-2026-78663)
+    * [CVE-2026-94439](https://nvd.nist.gov/vuln/detail/CVE-2026-94439)
+    * [CVE-2026-94440](https://nvd.nist.gov/vuln/detail/CVE-2026-94440)
+    * [CVE-2026-94448](https://nvd.nist.gov/vuln/detail/CVE-2026-94448)
+    * [CVE-2026-97030](https://nvd.nist.gov/vuln/detail/CVE-2026-97030)
+    * [CVE-2026-97032](https://nvd.nist.gov/vuln/detail/CVE-2026-97032)
+    * [CVE-2026-97688](https://nvd.nist.gov/vuln/detail/CVE-2026-97688)
+
 ### 0.25.10 (2026-10-15)
 
 * Fixed a potential memory leak in [MCP](../../api-discovery/exploring.md#mcp-servers) traffic analysis
@@ -341,6 +366,15 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.25.11 (2026-10-26)
+
+* Removed the distrusted eMudhra emSign root certificates (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
+* Bumped the base components to NGINX Node 6.13.4
+* Bumped Go version to 1.27.3, which rejects certificates issued by the compromised eMudhra intermediate CAs
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-111943](https://nvd.nist.gov/vuln/detail/CVE-2026-111943)
+
 ### 0.25.10 (2026-10-15)
 
 * Changed the Helm chart to no longer enable memory-based autoscaling by default
@@ -653,6 +687,31 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](docker-image.md)
+
+### 0.25.11 (2026-10-26)
+
+* Removed the distrusted eMudhra emSign root certificates (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
+* Bumped the base components to NGINX Node 6.13.4
+* Bumped Go version to 1.27.3, which rejects certificates issued by the compromised eMudhra intermediate CAs
+* Fixed security vulnerabilities:
+
+    * [GHSA-6q48-6c7w-9gw2](https://github.com/advisories/GHSA-6q48-6c7w-9gw2)
+    * [CVE-2026-56851](https://nvd.nist.gov/vuln/detail/CVE-2026-56851)
+    * [CVE-2026-78667](https://nvd.nist.gov/vuln/detail/CVE-2026-78667)
+    * [CVE-2026-78669](https://nvd.nist.gov/vuln/detail/CVE-2026-78669)
+    * [CVE-2026-97031](https://nvd.nist.gov/vuln/detail/CVE-2026-97031)
+    * [CVE-2026-97687](https://nvd.nist.gov/vuln/detail/CVE-2026-97687)
+    * [CVE-2026-97689](https://nvd.nist.gov/vuln/detail/CVE-2026-97689)
+    * [CVE-2026-56866](https://nvd.nist.gov/vuln/detail/CVE-2026-56866)
+    * [CVE-2026-78659](https://nvd.nist.gov/vuln/detail/CVE-2026-78659)
+    * [CVE-2026-78660](https://nvd.nist.gov/vuln/detail/CVE-2026-78660)
+    * [CVE-2026-78663](https://nvd.nist.gov/vuln/detail/CVE-2026-78663)
+    * [CVE-2026-94439](https://nvd.nist.gov/vuln/detail/CVE-2026-94439)
+    * [CVE-2026-94440](https://nvd.nist.gov/vuln/detail/CVE-2026-94440)
+    * [CVE-2026-94448](https://nvd.nist.gov/vuln/detail/CVE-2026-94448)
+    * [CVE-2026-97030](https://nvd.nist.gov/vuln/detail/CVE-2026-97030)
+    * [CVE-2026-97032](https://nvd.nist.gov/vuln/detail/CVE-2026-97032)
+    * [CVE-2026-97688](https://nvd.nist.gov/vuln/detail/CVE-2026-97688)
 
 ### 0.25.10 (2026-10-15)
 
