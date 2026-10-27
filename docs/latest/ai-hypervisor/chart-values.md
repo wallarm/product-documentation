@@ -21,7 +21,7 @@ secrets with their own tooling. All are optional; the defaults behave as before.
 
 | Key | Default | Description |
 |---|---|---|
-| `gitops` | `false` | From 2.17.0. For ArgoCD: every render is identical. The proxy CA and the internal proxy and classifier tokens are created once by a PreSync Job instead of in the templates, and an existing Secret of the same name is left as it is. Requires `namespace.create: false` (ArgoCD creates the namespace) and a stable webhook certificate (`webhook.tls.certManager` or `webhook.tls.existingSecret`); the render fails with a message otherwise. Flux and plain `helm install` do not need it. |
+| `gitops` | `false` | From 2.17.0; use 2.17.2 or later, where a default install reports Healthy. For ArgoCD: every render is identical. The proxy CA and the internal proxy and classifier tokens are created once by a PreSync Job instead of in the templates, and an existing Secret of the same name is left as it is. Requires `namespace.create: false` (ArgoCD creates the namespace) and a stable webhook certificate (`webhook.tls.certManager` or `webhook.tls.existingSecret`); the render fails with a message otherwise. Flux and plain `helm install` do not need it. |
 | `upgrader.enabled` | `true` | The in-cluster upgrader patches the scanner image. Set `false` when Git owns the version (ArgoCD self-heal would revert the patch). |
 | `webhook.tls.existingSecret` | (empty) | From 2.17.0. A `kubernetes.io/tls` Secret you provide (`tls.crt`, `tls.key`) for the webhook; nothing is generated. Requires `webhook.caBundle`. `webhook.tls.secretName` is an older name for it. |
 | `webhook.caBundle` | (empty) | With `webhook.tls.existingSecret`: the base64 PEM of the CA that signed its certificate (public; safe to commit). |
@@ -30,6 +30,8 @@ secrets with their own tooling. All are optional; the defaults behave as before.
 | `secret.annotations`, `secret.labels` | `{}` | From 2.17.0. Metadata on the key Secret the chart creates from `scannerPrivateKey` (none is created with `existingSecret.name`). |
 | `podAnnotations`, `podLabels` | `{}` | From 2.17.0. Added to the pods of every scanner workload — for example Vault injector annotations or mesh opt-outs. `webhook.`, `upgrader.`, `collector.` and `classifier.pool.` each take their own `podAnnotations` / `podLabels` on top. Selector labels cannot be overridden. |
 | `extraEnvFrom` | `[]` | From 2.17.0. Extra `envFrom` sources (Secret or ConfigMap references) for the scanner, webhook, upgrader and collector. A key passed this way is read at start; with `existingSecret.name` it is mounted as a file and a new key is picked up without a restart. |
+| `extraImagePullSecrets` | `[]` | Names of pull Secrets that already exist in the scanner namespace (a private registry mirror), added to every scanner workload. Hooks and the admission webhook use them from 2.17.1. |
+| `classifier.pool.autoscaling` | `auto` | From 2.17.2. The classifier pool's HorizontalPodAutoscaler: `auto` creates it only where the cluster serves the metrics API (metrics-server) — without it an autoscaler cannot scale and ArgoCD reports the install Degraded; `true` always; `false` never (the pool runs `classifier.pool.minReplicas`). |
 
 ## Capture
 
