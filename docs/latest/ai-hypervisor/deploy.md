@@ -105,6 +105,7 @@ Git holds the chart version and the values; the scanner key never goes into Git.
             gitops: true                    # identical manifests on every render
             namespace:
               create: false                 # ArgoCD creates it (syncOptions)
+              name: higgs-system            # your namespace; the destination above too
             config:
               backendUrl: "<YOUR_TENANT_URL>"
             existingSecret:                 # filled by your secret manager
@@ -112,11 +113,6 @@ Git holds the chart version and the values; the scanner key never goes into Git.
               key: scanner-private-key
             upgrader:
               enabled: false                # upgrades come from Git
-            webhook:
-              tls:
-                certManager:                # or existingSecret + webhook.caBundle
-                  enabled: true
-                  issuerRef: { name: <YOUR_ISSUER>, kind: ClusterIssuer }
       syncPolicy:
         automated: { prune: true, selfHeal: true }
         syncOptions: [CreateNamespace=true]
@@ -135,7 +131,7 @@ Git holds the chart version and the values; the scanner key never goes into Git.
    from the Secret without a restart; no sync is needed.
 
 ArgoCD renders the chart with `helm template`, without access to the cluster, so anything the
-chart generated on first install would change on every render. With `gitops: true` (scanner 2.17.2 or
+chart generated on first install would change on every render. With `gitops: true` (scanner 2.17.3 or
 later) every render is identical and a default install reports Healthy:
 
 * **Proxy CA and internal tokens** — created once by a PreSync Job, kept on every later sync, and
@@ -144,9 +140,14 @@ later) every render is identical and a default install reports Healthy:
   `proxy.ca.existingSecret`.
 * **Namespace** — the Job runs before the chart's own resources, so ArgoCD creates the namespace:
   `namespace.create: false`, `CreateNamespace=true`, and the `privileged` Pod Security label.
-* **Webhook certificate** — required: let cert-manager issue it (`webhook.tls.certManager.enabled:
-  true` with an `issuerRef`) or give your own (`webhook.tls.existingSecret` plus
-  `webhook.caBundle`). The chart refuses `gitops: true` without one.
+* **Webhook certificate** — nothing to set (2.17.3 and later): the same Job creates it, and the
+  webhook writes its CA into its own configuration, which ArgoCD does not treat as drift. To use
+  your PKI instead: cert-manager (`webhook.tls.certManager.enabled: true` with an `issuerRef`) or your
+  own Secret (`webhook.tls.existingSecret` plus `webhook.caBundle`).
+* **The key from your tooling** — instead of a Secret you create, the chart can take it from the
+  External Secrets Operator, the Vault Secrets Operator, Sealed Secrets or the Vault agent injector
+  (`scannerKey`, see [Chart Values](chart-values.md#gitops-and-secret-tooling)). **Settings** →
+  **Scanners** → **Kubernetes** builds the complete Application for the source you pick.
 * **Pod annotations and labels** for your injector or mesh (`podAnnotations`, `podLabels`), metadata
   on the key Secret (`secret.annotations`, `secret.labels`), and env from your own Secret or ConfigMap
   (`extraEnvFrom`) — see [Chart Values](chart-values.md#gitops-and-secret-tooling).
