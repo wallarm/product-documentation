@@ -128,9 +128,10 @@ needs to be set up first.
 
 1. Open **Scanners** → **Scanner key** → click **Start rotation**. The new key is shown once — copy it.
 2. Deliver it where you manage the key yourself:
-   - **Kubernetes (Helm):** put it in the `scannerPrivateKey` Helm value, or in the Kubernetes Secret
-     named by `existingSecret` (see [Helm chart values](chart-values.md)). With the Secret, change
-     only its value.
+   - **Kubernetes:** change it where the key comes from — your secret manager (Vault, External
+     Secrets, Vault Secrets Operator, Sealed Secrets: see `scannerKey` in
+     [Helm chart values](chart-values.md)), the Kubernetes Secret named by `existingSecret`, or the
+     `scannerPrivateKey` Helm value. Nothing else changes; GitOps installs need no commit.
    - **Everything else fetches it by itself:** AWS ECS on EC2, AWS Fargate, EC2 hosts installed from
      the package or the container unit, Android devices, and macOS endpoints that are not enrolled.
      They check every 5 minutes and switch on their own. macOS endpoints enrolled with a device
@@ -148,15 +149,17 @@ needs to be set up first.
    that was offline) recovers by itself.
 
 To stop a rotation before promoting, click **Abort rotation**. If some scanners already switched to
-the new key, the confirmation names them: scanners that fetch the key themselves go back to the
-current key on their own within a minute; a Kubernetes scanner you gave the new key needs the current
-key again.
+the new key, the confirmation names them. They go back to the current key on their own: for 30 days a
+scanner still holding the dropped key can fetch the current one — and do nothing else — so even one
+that was offline during the abort recovers at its next check. A Kubernetes scanner you gave the new
+key by hand needs the current key again where you set it.
 
 If the key has leaked, click **Emergency rotation** instead: the old key — and every retired key —
 stops working at once, none of them can fetch the new one, and every scanner loses access until it
 gets the new key.
 
-Scanners re-read and fetch the key without a restart from scanner version 2.17.0. Older scanners
+Scanners re-read and fetch the key without a restart from scanner version 2.17.0; `scannerKey`
+sources need 2.17.3. Older scanners
 need a restart (for example, `helm upgrade`) to pick up the new key.
 
 **Where a fetched key is kept.** ECS on EC2 and EC2 hosts keep it on the host
