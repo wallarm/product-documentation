@@ -73,9 +73,13 @@ Changes to these fields are staged: click **Apply** to save them or
     **Wipe Data**, **Logs**. A new row shows **No scan data yet** until its first scan uploads.
 - **Scanner Nodes Without Targets** — scanner nodes that are running but have nothing opted in.
   Appears only when there are such nodes.
-- **Scanner key** — the key your scanners sign with: where a key rotation stands, how many active
-  scanners use each key, scanners being refused for a key the workspace no longer accepts, and the
-  next step. Owners only. Needs no setup.
+- **Scanner keys** — the keys your scanners sign with, one row each: **Name** (the **Default** key
+  is marked), **Key id**, **Status**, **Scanners** (active on it), **Last used**, **Created by**.
+  Row actions: **Rotate**, **Make default**, **Deprecate**, **Re-activate**, **Rename**,
+  **Revoke**. A warning names scanners that present a key that is none of this workspace's.
+  Owners only. Needs no setup.
+- **Default key rotation** — where a rotation of the default key stands, how many active scanners
+  use each key, scanners being refused, and **Rotate key**.
 
 On a workspace that has only macOS or other device endpoints, this tab says so: there are no
 Kubernetes scanner nodes, and enforcement runs on the device.
@@ -120,13 +124,43 @@ Switches for optional pages. Changes apply right away, with no **Apply** step.
 2. Set the mode to **Monitor — detect, do not block** and leave it while your applications run.
 3. Check what it detected, then switch to **Enforce — block attacks**.
 
+### Give a cluster or team its own scanner key
+
+One key per cluster or team means one leaked key cuts off only that team's scanners.
+
+1. Open **Scanners** → **Scanner keys** → click **Add key**.
+2. Type a name (lowercase letters, digits and `-`), click **Create key**. The key is shown once —
+   click **Copy**.
+3. Install that cluster's scanners with it: in **Scanner deploy command**, pick the key in
+   **Scanner key**, or put the key where your scanners' key comes from. The **Scanners** column
+   counts them as they report.
+
+**Revoke** stops one key at once (for a leak); every other key keeps working. **Deprecate** keeps a
+key working but stops offering it for new installs, and can retire it by itself on a date — move
+its scanners to another key first. **Make default** chooses the key that scanners older than
+2.17.0 and the install commands use; the default key cannot be revoked without naming a new one.
+
 ### Rotate the scanner key
 
 Rotate routinely, or at once if the key may have leaked. Scanners keep sending throughout: both keys
-are accepted until you retire the old one, and scanners pick up a new key without a restart. Nothing
+are accepted until the old one is retired, and scanners pick up a new key without a restart. Nothing
 needs to be set up first.
 
-1. Open **Scanners** → **Scanner key** → click **Start rotation**. The new key is shown once — copy it.
+**In one click.** Click **Rotate key** (in **Default key rotation**, or **Rotate** on a key's row).
+Every scanner takes the new key by itself — Kubernetes scanners from version 2.18.0, and AWS ECS,
+Fargate, EC2 hosts, Android devices and macOS endpoints — and the old key is retired once no active
+scanner uses it. The panel names any scanner the rotation is waiting on. If it waits more than 24
+hours, **Finish anyway** completes it and cuts the named scanners off; **Cancel rotation** goes back
+to the current key. **Rotate automatically** rotates every 30, 60 or 90 days with nobody clicking.
+
+Kubernetes scanners keep the delivered key in a Secret of their own (`<release>-delivered-key`); the
+place your key comes from — your secret manager, `existingSecret`, the `scannerPrivateKey` value — is
+never written. Update it whenever convenient; until then a restarted scanner starts on the delivered
+key.
+
+**Step by step**, for manual control:
+
+1. Click **Start rotation (step by step)**. The new key is shown once — copy it.
 2. Deliver it where you manage the key yourself:
    - **Kubernetes:** change it where the key comes from — your secret manager (Vault, External
      Secrets, Vault Secrets Operator, Sealed Secrets: see `scannerKey` in
