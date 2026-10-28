@@ -16,7 +16,8 @@ For pod and namespace labels that control which workloads the scanner observes, 
 ## GitOps and secret tooling
 
 Values for installs that ArgoCD or Flux render with `helm template`, and for teams that deliver
-secrets with their own tooling. All are optional; the defaults behave as before. See
+secrets with their own tooling. All are optional; the defaults behave as before. Set exactly one key
+source: `scannerPrivateKey`, `existingSecret.name` or one `scannerKey.*` — the chart refuses two. See
 [Kubernetes with GitOps](deploy.md#kubernetes-with-gitops-argocd-flux).
 
 | Key | Default | Description |
@@ -30,6 +31,10 @@ secrets with their own tooling. All are optional; the defaults behave as before.
 | `secret.annotations`, `secret.labels` | `{}` | From 2.17.0. Metadata on the key Secret the chart creates from `scannerPrivateKey` (none is created with `existingSecret.name`). |
 | `podAnnotations`, `podLabels` | `{}` | From 2.17.0. Added to the pods of every scanner workload — for example Vault injector annotations or mesh opt-outs. `webhook.`, `upgrader.`, `collector.` and `classifier.pool.` each take their own `podAnnotations` / `podLabels` on top. Selector labels cannot be overridden. |
 | `extraEnvFrom` | `[]` | From 2.17.0. Extra `envFrom` sources (Secret or ConfigMap references) for the scanner, webhook, upgrader and collector. A key passed this way is read at start; with `existingSecret.name` it is mounted as a file and a new key is picked up without a restart. |
+| `scannerKey.externalSecret.*` | off | From 2.17.3. The key from your secret manager through the External Secrets Operator: `enabled: true`, `secretStoreRef.name` (and `.kind`), `remoteRef.key` (and `.property`). The operator writes the key Secret the scanners read. |
+| `scannerKey.vaultStaticSecret.*` | off | From 2.17.3. The key from Vault through the Vault Secrets Operator: `enabled: true`, `path`, `property` (the key's field name), optional `vaultAuthRef`. |
+| `scannerKey.sealedSecret.*` | off | From 2.17.3. The key sealed for your cluster: `enabled: true`, `encryptedKey` — the output of `kubeseal --raw --scope strict --name aih-scanner-private-key --namespace <namespace>`. Safe to commit. |
+| `scannerKey.file.path`, `scannerKey.file.csi.secretProviderClass` | (empty) | From 2.17.3. The key as a file already in every scanner pod: the Vault agent injector (annotations through `podAnnotations`) or the Secrets Store CSI driver (set `csi.secretProviderClass`; the chart mounts it). |
 | `extraImagePullSecrets` | `[]` | Names of pull Secrets that already exist in the scanner namespace (a private registry mirror), added to every scanner workload. Hooks and the admission webhook use them from 2.17.1. |
 | `classifier.pool.autoscaling` | `auto` | From 2.17.2. The classifier pool's HorizontalPodAutoscaler: `auto` creates it only where the cluster serves the metrics API (metrics-server) — without it an autoscaler cannot scale and ArgoCD reports the install Degraded; `true` always; `false` never (the pool runs `classifier.pool.minReplicas`). |
 

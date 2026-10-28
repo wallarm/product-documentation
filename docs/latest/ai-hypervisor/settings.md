@@ -73,9 +73,9 @@ Changes to these fields are staged: click **Apply** to save them or
     **Wipe Data**, **Logs**. A new row shows **No scan data yet** until its first scan uploads.
 - **Scanner Nodes Without Targets** — scanner nodes that are running but have nothing opted in.
   Appears only when there are such nodes.
-- **Scanner key** — the key your scanners sign with: where a key rotation stands, how many scanners
-  seen in the last 24 hours use each key, and the next step. Owners only. Shown when key rotation is
-  enabled for your workspace.
+- **Scanner key** — the key your scanners sign with: where a key rotation stands, how many active
+  scanners use each key, scanners being refused for a key the workspace no longer accepts, and the
+  next step. Owners only. Needs no setup.
 
 On a workspace that has only macOS or other device endpoints, this tab says so: there are no
 Kubernetes scanner nodes, and enforcement runs on the device.
@@ -123,27 +123,51 @@ Switches for optional pages. Changes apply right away, with no **Apply** step.
 ### Rotate the scanner key
 
 Rotate routinely, or at once if the key may have leaked. Scanners keep sending throughout: both keys
-are accepted until you retire the old one, and scanners pick up a new key without a restart.
+are accepted until you retire the old one, and scanners pick up a new key without a restart. Nothing
+needs to be set up first.
 
 1. Open **Scanners** → **Scanner key** → click **Start rotation**. The new key is shown once — copy it.
-2. Put the new key where your scanners' key lives: the `scannerPrivateKey` Helm value, or the
-   Kubernetes Secret named by `existingSecret` (see [Helm chart values](chart-values.md)). With the
-   Secret, change only its value — the scanners switch within about three minutes: they wait two
-   minutes after the key changes so that every part of the platform accepts it first.
+2. Deliver it where you manage the key yourself:
+   - **Kubernetes:** change it where the key comes from — your secret manager (Vault, External
+     Secrets, Vault Secrets Operator, Sealed Secrets: see `scannerKey` in
+     [Helm chart values](chart-values.md)), the Kubernetes Secret named by `existingSecret`, or the
+     `scannerPrivateKey` Helm value. Nothing else changes; GitOps installs need no commit.
+   - **Everything else fetches it by itself:** AWS ECS on EC2, AWS Fargate, EC2 hosts installed from
+     the package or the container unit, Android devices, and macOS endpoints that are not enrolled.
+     They check every 5 minutes and switch on their own. macOS endpoints enrolled with a device
+     certificate do not use the scanner key at all and are not affected.
+
+   Scanners switch about two minutes after they get the key, so that every part of the platform
+   accepts it first.
 3. Watch the count: when it reads **N of N active scanners use the new key**, click **Promote the new
    key**. A scanner not seen for over 15 minutes (for example, a node that was scaled away) is not
-   counted.
-4. Click **Retire the previous key**. If an active scanner still uses it, the confirmation names it;
-   retire only once it has the new key, or it loses access until it gets it. Scanners not seen for over
-   15 minutes are listed but do not hold the retirement back — if one comes back, give it the new key.
+   counted. A scanner that is being *refused* is shown separately, with the key it presents — it is
+   broken, not gone; give it the current key.
+4. Click **Retire the previous key**. If an active scanner still uses it, the confirmation names it.
+   For 30 days a scanner that still holds the retired key can fetch the new one — and do nothing
+   else — so one that starts later with the old key (a new Fargate task, a replaced host, a device
+   that was offline) recovers by itself.
 
-To stop a rotation before promoting, click **Abort rotation** — nothing changes for any scanner.
+To stop a rotation before promoting, click **Abort rotation**. If some scanners already switched to
+the new key, the confirmation names them. They go back to the current key on their own: for 30 days a
+scanner still holding the dropped key can fetch the current one — and do nothing else — so even one
+that was offline during the abort recovers at its next check. A Kubernetes scanner you gave the new
+key by hand needs the current key again where you set it.
 
-If the key has leaked, click **Emergency rotation** instead: the old key stops working at once, and
-every scanner loses access until it gets the new key.
+If the key has leaked, click **Emergency rotation** instead: the old key — and every retired key —
+stops working at once, none of them can fetch the new one, and every scanner loses access until it
+gets the new key.
 
-Scanners re-read the key without a restart from scanner version 2.17.0. Older scanners need a restart
-(for example, `helm upgrade`) to pick up the new key.
+Scanners re-read and fetch the key without a restart from scanner version 2.17.0; `scannerKey`
+sources need 2.17.3. Older scanners
+need a restart (for example, `helm upgrade`) to pick up the new key.
+
+**Where a fetched key is kept.** ECS on EC2 and EC2 hosts keep it on the host
+(`/var/lib/aih-scanner/scanner-key`, or `/var/lib/higgs/scanner-key` for the package), so it
+survives restarts. With the Terraform modules, the scanner also writes the new key back to the
+Secrets Manager secret (ECS) or SSM parameter (EC2) it was installed from — only once you promote
+it — so hosts started later get it directly. Fargate keeps it on a task volume that only the scanner
+container mounts.
 
 ### Invite a teammate
 1. Open **Data** → click **Team Members**.
