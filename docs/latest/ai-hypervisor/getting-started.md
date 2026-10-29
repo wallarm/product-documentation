@@ -21,10 +21,10 @@ applications and sends the results only to your workspace.
   AWS ECS on EC2, AWS Fargate or a macOS endpoint, open **Settings → Scanners** — the **Scanner
   deploy command** there has a tab for each.
 - Every other page stays empty until the scanner reports.
-- **Code** and **Discovery** are hidden from the sidebar by default. Turn them on in
+- **Code** and **Mirroring** are hidden from the sidebar by default. Turn them on in
   **Settings → Features**.
 
-To open Settings: click your name in the sidebar, then **Settings**.
+To open Settings: click your name at the bottom of the sidebar, then **Settings**.
 
 <a id="how-to-use-it"></a>
 ## Connect a scanner
@@ -40,15 +40,37 @@ The commands contain your scanner key. Treat it as a secret.
 You need `kubectl` and `helm` connected to the cluster, and permission to run a privileged
 DaemonSet.
 
+The app's install block offers two ways — **Helm** (the key in a Kubernetes Secret) and **GitOps
+(ArgoCD)** (see below). Each shows its own numbered steps; the steps here are the Helm ones.
+
+<a id="scanner-namespace"></a>**Install into namespace.** The Kubernetes namespace the scanner
+itself runs in. `higgs-system` works on any cluster; change it only if your cluster keeps tools in
+another namespace, and every command (and the GitOps Application) follows. It is not a name for the
+cluster. **Namespaces to scan** is a different input: the namespaces your AI applications run in,
+which the last step labels (step 5).
+
+<a id="cluster-name"></a>**Cluster name (optional).** What AI Hypervisor calls this cluster
+everywhere — Infrastructure, the graphs, filters and reports — for example `audit`. Leave it empty
+to keep the name the scanner detects (on many clusters there is none, and the app falls back to a
+namespace or the cloud location). 1-63 characters: letters, digits, space, `.`, `_`, `-`. It is a
+label only: renaming a cluster later (`helm upgrade … --set clusterName=…`, or a Git commit) never
+splits or merges its data. Fargate and ECS take it as the `CLUSTER_DISPLAY_NAME` environment value.
+
 1. Add the Helm repository:
-   `helm repo add wallarm https://raw.githubusercontent.com/wallarm/helm-charts/main && helm repo update`
-2. Install the scanner. Copy this command from the app — it carries your workspace address and key:
-   `helm upgrade --install aih-scanner wallarm/aih-scanner --version <version> --set config.backendUrl="<your workspace>" --set scannerPrivateKey="<your key>"`
+   `helm repo add wallarm https://charts.wallarm.com && helm repo update`
+2. Install the scanner. Copy this command from the app — it carries your workspace address and
+   keeps the key off the command line:
+   `helm upgrade --install aih-scanner wallarm/aih-scanner --version <version> --set config.backendUrl="<your workspace>" --set existingSecret.name=aih-scanner-private-key`
    The chart creates the namespace `higgs-system` and runs one scanner pod on each node.
-3. Check the scanner is running: `kubectl get pods -n higgs-system`. The pods should be
+3. Store the key in a Kubernetes Secret (copy it from the app too):
+   `kubectl create secret generic aih-scanner-private-key -n higgs-system --from-literal=scanner-private-key="<your key>"`
+   The pods start as soon as the Secret exists. A secret manager (Vault, External Secrets, Sealed
+   Secrets) can produce this Secret instead.
+4. Check the scanner is running: `kubectl get pods -n higgs-system`. The pods should be
    **Running**.
-4. Choose what to watch. **The scanner records nothing until you opt a namespace in:**
-   `kubectl label namespace <your-namespace> higgs.scan=enabled`
+5. Choose what to watch. **The scanner records nothing until you opt a namespace in.** Type the
+   namespaces your AI applications run in under **Namespaces to scan**; the app builds one command
+   per namespace, for example `kubectl label namespace payments higgs.scan=enabled`.
    The scanner re-reads labels every 60 seconds.
 
 **Monitor or Enforce.** Put one of these labels on each namespace:
@@ -59,8 +81,8 @@ DaemonSet.
 | `higgs.io/enforce=enabled` | Enforce | Everything Monitor does, plus blocking by your policies. |
 
 Blocking needs the scanner's proxy. To use Enforce, turn on **Enable blocking** under step 2
-before you copy the install command: it adds `--set proxy.enabled=true` and changes step 3 to the
-Enforce label.
+before you copy the install command: it adds `--set proxy.enabled=true` and changes the opt-in
+step to the Enforce label.
 
 **What works without a restart.** Labeling a namespace never restarts anything, and never breaks
 a running pod:
@@ -74,10 +96,10 @@ a running pod:
 
 A running pod does not trust the proxy's certificate, so the proxy passes its HTTPS through
 without decrypting it until the pod restarts. **Settings → Scanners** marks each app
-**Content inspected** or **Connection-level** and lists the pods that need a restart. To restart,
-either expand the app and click **Restart to inspect content**, or in **Registry** click **Adopt**
-on the namespace. Both are rolling restarts of the Deployments, StatefulSets and DaemonSets. You
-can also restart them yourself, for example `kubectl rollout restart deployment -n <your-namespace>`.
+**Content inspected** or **Connection-level** with the pods that need a restart. To restart, either
+expand the app and click **Restart to inspect content**, or in **Registry** click **Adopt** on
+the namespace. Both are rolling restarts of the Deployments, StatefulSets and DaemonSets. You can
+also restart them yourself, for example `kubectl rollout restart deployment -n <your-namespace>`.
 
 Opting a namespace in sets its Pod Security level to `privileged`, because the scanner's agent
 needs it.
@@ -91,6 +113,37 @@ namespace calling AI services, it offers the same two buttons for that namespace
 If your cluster's CoreDNS configuration is managed elsewhere (for example by GitOps), the
 scanner's DNS logging change can be overwritten and **Shadow** stays empty. Label namespaces with
 `kubectl` instead.
+
+### Kubernetes with GitOps (ArgoCD / Flux)
+
+Git holds the chart version and values; the key never goes into Git. **Settings → Scanners →
+Kubernetes** builds the complete ArgoCD Application — commit it as it is (scanner 2.17.3 and later).
+
+1. Set **Install into namespace** if you keep the scanner somewhere other than `higgs-system`.
+2. Pick the **Key source**: a Secret your tooling creates (`aih-scanner-private-key`, key
+   `scanner-private-key`), the External Secrets Operator, the Vault Secrets Operator, Sealed Secrets
+   or the Vault agent injector. Fill in the names it asks for (your secret store, Vault path); the
+   copy button appears when the Application is complete.
+3. Commit the Application. What it sets, and why:
+   - `gitops: true` — every render is identical. The proxy CA, the internal tokens and the webhook
+     certificate are created once by a PreSync Job; the webhook writes its own CA into its
+     configuration. No cert-manager and no certificate values needed.
+   - `namespace.create: false` with `syncOptions: [CreateNamespace=true]` and the
+     `pod-security.kubernetes.io/enforce: privileged` label — the namespace must exist before that
+     Job runs.
+   - The in-cluster upgrader stays off: Git owns the version.
+4. Label the namespaces to scan (step 5 above) — in Git as well.
+5. Upgrade by changing `targetRevision` in Git; **Settings → Scanners** shows GitOps-managed
+   scanners the `targetRevision` to set.
+6. Rotate the key in your secret manager; the scanners pick it up without a restart. Give each
+   cluster or team its own key (**Settings → Scanners → Scanner keys → Add key**) so one can be
+   rotated or revoked without touching the others.
+
+Flux runs a real `helm install`, which can look objects up: it needs neither `gitops: true` nor
+the namespace settings. Also settable: your own proxy CA (`proxy.ca.existingSecret`), your PKI for
+the webhook (`webhook.tls.certManager` or `webhook.tls.existingSecret`), pod annotations and labels
+(`podAnnotations`, `podLabels`), metadata on the key Secret (`secret.annotations`,
+`secret.labels`) and extra env sources (`extraEnvFrom`).
 
 ### AWS ECS on EC2
 
@@ -148,7 +201,7 @@ minute. Its AI calls show up in **Traffic** and **Topology**, and per person and
    An application that makes no AI calls has no sessions.
 4. **Briefing** fills once there is something to rank.
 
-Most pages have an **application dropdown** next to the page title. **All applications**
+Most pages have an **application dropdown** at the right of the page title. **All applications**
 shows everything; pick one application to see only its data. Applications are grouped by where
 they run, for example **Kubernetes · <your cluster>**.
 
@@ -164,8 +217,8 @@ Nothing appears? Check, in this order:
   on the **Code** page. The switch shows the page; scanning also needs Code enabled for your
   workspace deployment — if connected repositories stay **Pending**, ask Wallarm support. See
   [Code](code.md).
-- **Cloud accounts.** Turn on **Cloud Discovery** in **Settings → Features**, then click
-  **+ Add Account** on the **Discovery** page. See [Discovery](discovery.md).
+- **Cloud accounts.** Turn on **Mirroring** in **Settings → Features**, then click
+  **+ Add Account** on the **Mirroring** page. See [Mirroring](discovery.md).
 - **Teammates.** Open **Settings → Data**, click **Team Members**, type an address into
   **Invite by email**, pick a role and click **Invite**.
 
