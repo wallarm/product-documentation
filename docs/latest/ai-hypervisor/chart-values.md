@@ -55,6 +55,7 @@ source: `scannerPrivateKey`, `existingSecret.name` or one `scannerKey.*` — the
 | `imagePullSecretData` | (empty) | Base64-encoded `.dockerconfigjson` for the scanner pull secret. When set, the chart creates the secret automatically. Use when pulling from a private mirror. |
 | `namespace.name` | `higgs-system` | The namespace the scanner runs in. Change when `higgs-system` collides with an existing resource. |
 | `namespace.create` | `true` | Set to `false` if the namespace already exists and you do not want Helm to take ownership. |
+| `clusterName` | (empty) | From 2.19.0. What AI Hypervisor calls this cluster everywhere (Infrastructure, graphs, filters, reports), for example `audit`. Empty keeps the name the scanner detects. 1-63 characters: letters, digits, space, `.`, `_`, `-`; the render fails otherwise. A label only: renaming a cluster later never splits or merges its data. Not a Kubernetes namespace. |
 
 ## Resource limits and lifecycle
 
