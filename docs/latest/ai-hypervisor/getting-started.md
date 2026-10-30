@@ -95,11 +95,24 @@ a running pod:
 | Content-level policy on HTTPS (body inspection, redaction, prompt blocking) | After a restart | Yes |
 
 A running pod does not trust the proxy's certificate, so the proxy passes its HTTPS through
-without decrypting it until the pod restarts. **Settings → Scanners** marks each app
-**Content inspected** or **Connection-level** with the pods that need a restart. To restart, either
-expand the app and click **Restart to inspect content**, or in **Registry** click **Adopt** on
-the namespace. Both are rolling restarts of the Deployments, StatefulSets and DaemonSets. You can
-also restart them yourself, for example `kubectl rollout restart deployment -n <your-namespace>`.
+without decrypting it until the pod restarts. Nothing breaks either way: a connection the proxy
+cannot decrypt is passed through, and connection-level policy still applies.
+
+**Settings → Scanners** shows, per app, what the proxy actually did with its HTTPS in the last
+15 minutes (scanner 2.19.0 and later):
+
+| Badge | Meaning | What to do |
+|---|---|---|
+| **Content inspected** | The proxy decrypted the app's HTTPS. Content-level policy applies. | Nothing. |
+| **Connection-level · N pods** | The pods started before they were opted in, so they do not have the proxy's certificate. | Restart them (below). |
+| **Not inspected · N pods** | The app's TLS library rejects the proxy's certificate even though the pod has it, for example a client that only trusts its own built-in roots or pins certificates. Its HTTPS is passed through. | A restart does not help; the pods are listed so you can check the client's trust settings. |
+| **Partly inspected** | Some pods are decrypted, others reject the certificate. | As above, for the listed pods. |
+| **No HTTPS yet** | The proxy has not seen an HTTPS connection from the app. | Nothing. |
+
+To restart the pods that need it, either expand the app and click **Restart to inspect content**,
+or in **Registry** click **Adopt** on the namespace. Both are rolling restarts of the Deployments,
+StatefulSets and DaemonSets. You can also restart them yourself, for example
+`kubectl rollout restart deployment -n <your-namespace>`.
 
 Opting a namespace in sets its Pod Security level to `privileged`, because the scanner's agent
 needs it.
