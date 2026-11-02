@@ -95,6 +95,11 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
             <h3>Azure Monitor Logs / Microsoft Sentinel</h3>
             <p>Send security events to Azure Monitor Logs and Microsoft Sentinel</p>
         </a>
+        <a class="do-card" href="ibm-qradar/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/ibm-qradar.png" />
+            <h3>IBM QRadar (early access)</h3>
+            <p>Send security events to IBM QRadar</p>
+        </a>
     </div>
 </div>
 

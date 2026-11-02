@@ -337,6 +337,7 @@ nav:
       - Splunk: user-guides/settings/integrations/splunk.md
       - Sumo Logic: user-guides/settings/integrations/sumologic.md
       - Azure Monitor Logs / Microsoft Sentinel: user-guides/settings/integrations/azure-sentinel.md
+      - IBM QRadar (early access): user-guides/settings/integrations/ibm-qradar.md
       - Datadog: user-guides/settings/integrations/datadog.md
 
     - Log Collectors:
