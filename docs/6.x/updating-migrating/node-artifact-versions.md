@@ -274,6 +274,13 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
     ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-6.x.png)
 
+### 6.5.3 (2026-09-14)
+
+!!! note "Backport to the 6.5.x line"
+    Released as a maintenance backport for the 6.5.x line after 6.13.x. It is listed here, next to 6.5.1, to keep the 6.5.x history together.
+
+* Improved native syslog streaming
+
 ### 6.5.1 (2025-09-09)
 
 * Added support for [blocking attackers by API sessions](../api-sessions/blocking.md)
