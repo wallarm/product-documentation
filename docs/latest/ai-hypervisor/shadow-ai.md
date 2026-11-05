@@ -12,7 +12,7 @@ The view is app-independent. It does not require the workload to be labeled `hig
 
 AI Hypervisor recognizes shadow AI from four orthogonal signals:
 
-* **DNS queries.** Pods inside your cluster resolving hostnames that match a known AI provider (Anthropic, OpenAI, Bedrock endpoints, Cohere, Mistral, Together). Wallarm's CoreDNS log plug-in feeds these.
+* **DNS queries.** Pods inside your cluster resolving hostnames that match a known AI provider (Anthropic, OpenAI, Bedrock endpoints, Cohere, Mistral, Together). The scanner captures DNS packets (UDP port 53) on every node with `tcpdump` and also reads CoreDNS logs when the CoreDNS `log` plugin is on. This observes lookups from every namespace on the node, not only the labelled ones; lookups that do not match an AI provider are dropped on the node and never sent. Shadow AI DNS observation runs only with the scanner capability `shadowAI` (the `full` profile, or `capabilities.shadowAI: true`) — see [Scanner permissions and data](scanner-permissions.md).
 * **Cloud audit logs.** Managed AI services consumed via AWS APIs (Bedrock invocations from accounts not in your sanctioned set, SageMaker endpoint usage) recovered from CloudTrail-style sources.
 * **Ingress traffic patterns.** Inbound HTTP that matches the request signature of a hosted AI provider's API, suggesting your services are exposing AI capabilities that were not declared.
 * **Cross-cluster correlation.** DNS or audit signals from one application pointing at endpoints another application already declared. Catches accidental cross-tenant calls.
