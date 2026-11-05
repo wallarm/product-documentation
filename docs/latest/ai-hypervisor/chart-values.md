@@ -46,6 +46,16 @@ source: `scannerPrivateKey`, `existingSecret.name` or one `scannerKey.*` — the
 | `config.scanAllPods` | `false` | When `false`, the scanner observes only pods that opted in via the labels described in [Labels and Annotations](annotations.md). When `true`, the scanner observes every pod on the node (anti-loop exclusions still apply). Use `true` for short-lived investigations only. Opt-in is the production pattern. |
 | `config.continuousScanEnabled` | `false` | When `true`, the scanner re-scans labeled pods continuously. When `false`, it scans once per pod lifecycle event. |
 
+## Enforcement lanes
+
+Three independent switches — see [Enforcement → Enforcement lanes](enforcement.md#enforcement-lanes).
+
+| Key | Default | Description |
+|---|---|---|
+| `proxy.enabled` | `true` | The proxy lane: inline refusals for pods in Enforce scope. Does **not** switch off the kernel lane. |
+| `enforcement.kernelLane.enabled` | `true` | The kernel lane: eBPF drops and TCP resets on the scanner's node, only on pods in Enforce scope. `false` loads none of it, and on start the scanner removes any eBPF objects an earlier version left on the node. |
+| `agents.runtimePolicy` | `false` | In-process runtime policy for Python and Node.js, in Enforce scope only. |
+
 ## Image and namespace
 
 | Key | Default | Description |

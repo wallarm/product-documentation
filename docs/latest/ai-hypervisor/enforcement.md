@@ -13,8 +13,8 @@ Three sidebar pages work together to stop risky AI behaviour at runtime:
 | **Hits** | **Protect** | Every time a rule fired, newest first. |
 | **Block List** | **Protect** | Who is blocked right now, for how long — and lifting blocks. |
 
-Rules act only on namespaces opted in with **Enforce**, through the scanner's proxy. In a
-**Monitor** namespace a rule records what it would have done but blocks nothing. See
+Rules act only on namespaces opted in with **Enforce**. In a **Monitor** namespace a rule records
+what it would have done but blocks nothing — on any [enforcement lane](#enforcement-lanes). See
 [Getting started](getting-started.md).
 
 <a id="layout"></a>
@@ -42,6 +42,12 @@ Every workspace starts with these rules, all switched on:
 
 They block only in namespaces opted in with **Enforce**; in **Monitor** namespaces they record what
 they would have done. To stop a default rule, switch it off rather than deleting it.
+
+**Non-AI Egress Block** refuses a request that carries personal data to a destination outside the
+AI providers, inline, for that request. When the session has no caller identity (for example a
+service talking to its own database), a match is recorded as an **Alert** and no session block is
+placed: without an identity, a session block would apply to the whole application and every
+destination it uses.
 
 If you delete every rule, the list says **Click "Add rule" to create one**.
 
@@ -142,6 +148,48 @@ The same eBPF path handles two cases:
 * *Block calls matching this inline rule from now on* (rule-initiated, after the proxy detects a match the scanner sets the verdict for that session).
 
 The verdict map is queried by the local MITM proxy over a localhost endpoint (`GET /api/policy?src_ip=…`), so HTTPS sessions are caught at the proxy layer in addition to the kernel-level RST — the proxy refuses to relay the bytes onward and the kernel reset stops any retry attempt on the same socket.
+
+<a id="enforcement-lanes"></a>
+### Enforcement lanes
+
+The scanner enforces on three independent lanes. Switching one off does not switch off the others —
+in particular, `proxy.enabled: false` leaves the kernel lane on.
+
+| Lane | What it does | Switch |
+|---|---|---|
+| **Proxy** | Refuses a request inline (HTTP 403 or a tool error), for exactly the matched caller and destination. | `proxy.enabled` |
+| **Kernel** | eBPF drops and TCP resets on the scanner's node: an application's egress when a session block names no caller, and traffic back to a blocked caller's public address. | `enforcement.kernelLane.enabled` |
+| **Agent runtime policy** | In-process checks of programs, files and libraries for Python and Node.js. | `agents.runtimePolicy` (off by default) |
+
+The kernel lane is bounded on every node:
+
+* It acts only on pods in **Enforce** scope (`higgs.io/enforce=enabled` on the pod or its
+  namespace). A **Monitor** pod is never blocked, and a pod that leaves Enforce scope or exits is
+  released at once.
+* It never acts on a `hostNetwork` pod or on the node's own interfaces. An enforce-labelled
+  `hostNetwork` pod gets the event `AIHKernelLaneRefused` instead.
+* It drops only a pod's traffic to **public** destinations — ones that pod was seen using, or a blocked caller's address. Private and
+  internal addresses (RFC 1918, carrier-grade NAT, IPv6 unique-local), link-local addresses such as
+  the cloud metadata server, and the node proxy are never dropped; the proxy lane enforces those.
+* It never blocks a pod started after the block was placed.
+* If the scanner stops — uninstalled, crashed or evicted — its drops stop within two minutes, even
+  though the eBPF objects outlive the scanner process so that a restart keeps enforcing.
+
+<a id="pod-events"></a>
+### What you see on the pod
+
+Every pod the kernel lane acts on carries a Kubernetes event, so `kubectl describe pod` and
+`kubectl get events` show it next to the pod's other events:
+
+| Reason | Type | When |
+|---|---|---|
+| `AIHKernelEgressBlocked` | Warning | The kernel lane drops some of the pod's egress. The message names the block and the number of destinations. |
+| `AIHKernelEgressReleased` | Normal | It stopped: the block was lifted, or the pod left Enforce scope. |
+| `AIHKernelLaneRefused` | Warning | The pod is labelled for Enforce but uses `hostNetwork`; the kernel lane is not applied. |
+
+To stop all kernel-level enforcement on a pod, remove `higgs.io/enforce` from the pod or its
+namespace. To turn the lane off cluster-wide, set `enforcement.kernelLane.enabled: false`; on start
+the scanner then also removes anything an earlier version left on the node.
 
 ### What the agent sees when something is blocked
 
