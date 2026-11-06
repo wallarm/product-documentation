@@ -176,7 +176,7 @@ The kernel lane is bounded on every node:
   though the eBPF objects outlive the scanner process so that a restart keeps enforcing.
 * While a pod has an active kernel drop, the scanner records less of that pod's outbound traffic:
   the drop program handles the pod's sends, and the capture of sends does not see them. Inbound
-  traffic and the pod's other pods are not affected, and full capture resumes when the block is
+  traffic and other pods are not affected, and full capture resumes when the block is
   lifted or expires.
 
 <a id="pod-events"></a>
