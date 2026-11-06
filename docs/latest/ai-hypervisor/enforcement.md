@@ -172,7 +172,10 @@ The kernel lane is bounded on every node:
 * It drops only a pod's traffic to **public** destinations — ones that pod was seen using, or a blocked caller's address. Private and
   internal addresses (RFC 1918, carrier-grade NAT, IPv6 unique-local), link-local addresses such as
   the cloud metadata server, and the node proxy are never dropped; the proxy lane enforces those.
-* It never blocks a pod started after the block was placed.
+* It never blocks a pod started after the scanner on that node received the block, for example
+  a recreated pod. One exception: when the scanner restarts and receives a block before it has
+  discovered the application's pods, that block covers every pod of the application on the node
+  until it is lifted or expires.
 * If the scanner stops — uninstalled, crashed or evicted — its drops stop within two minutes, even
   though the eBPF objects outlive the scanner process so that a restart keeps enforcing.
 * While a pod has an active kernel drop, the scanner records less of that pod's outbound traffic:
