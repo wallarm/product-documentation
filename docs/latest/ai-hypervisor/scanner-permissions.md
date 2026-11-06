@@ -47,7 +47,12 @@ Each capability has its own ClusterRole and binding, named `<release>-<capabilit
 | `enforce` | `pods`: `patch` (quarantine label). NetworkPolicies: `get`, `list`, `create`, `update`, `delete` (only `aih-quarantine-<id>`, deleted when the quarantine is lifted). Events: `create`, `patch`. |
 | `proxy` | Secrets: `get`, `update`, `patch` on the CA Secret by name, and `create`. A ValidatingAdmissionPolicy admits only an Opaque Secret with the CA name. |
 
-A `monitor` install binds only `capture` and `inventory`, which contain no write verb. The scanner can read Secrets only with `proxy`, and only its own CA Secret by name. It never reads ConfigMaps. The only rule in the scanner's own namespace is a Role that lets it delete its own DaemonSet when you remove it from the console.
+A `monitor` install binds only `capture` and `inventory`, which contain no write verb. It never reads ConfigMaps, and it reads no Secret outside its own namespace. In its own namespace the scanner has two Roles, both limited to one object by name:
+
+* `<release>-key-delivery`: `get` and `update` on the Secret `<release>-delivered-key`, where a rotated scanner key is stored.
+* `<release>-self-terminate`: `get` and `delete` on its own DaemonSet, used when you remove the scanner from the console.
+
+With `proxy`, it also manages its own CA Secret by name (see the `proxy` row above).
 
 ## Node privileges
 
