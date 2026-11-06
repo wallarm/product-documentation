@@ -332,9 +332,6 @@
 /7.x/vulnerability-detection/threat-replay-testing/* /7.x/about-wallarm/detecting-vulnerabilities/#detection-methods
 /5.x/vulnerability-detection/threat-replay-testing/* /5.x/about-wallarm/detecting-vulnerabilities/#detection-methods
 
-/vulnerability-detection/schema-based-testing/* /about-wallarm/detecting-vulnerabilities/#detection-methods
-/7.x/vulnerability-detection/schema-based-testing/* /7.x/about-wallarm/detecting-vulnerabilities/#detection-methods
-/5.x/vulnerability-detection/schema-based-testing/* /5.x/about-wallarm/detecting-vulnerabilities/#detection-methods
 /admin-en/configuration-guides/sso/gsuite/* /admin-en/configuration-guides/sso/sso-gsuite/
 /admin-en/configuration-guides/sso/okta/* /admin-en/configuration-guides/sso/sso-okta/
 
@@ -349,6 +346,9 @@
 /ar/*  /:splat  301
 /pt-br/*  /:splat  301
 /7.x/updating-migrating/older-versions/*  /7.x/updating-migrating/versioning-policy/#version-list
+
+/installation/security-edge/free-tier/  /installation/security-edge/overview/
+/7.x/installation/security-edge/free-tier/  /7.x/installation/security-edge/overview/
 
 # Serve the version-root sitemap for a sitemap.xml requested at any depth. The
 # theme JS fetches sitemap.xml relative to the current page, so nested paths

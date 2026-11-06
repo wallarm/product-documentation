@@ -118,6 +118,9 @@ Analyze the presence and impact of incidents:
 * Pay attention to the issues having the `Incident` tag in the **Security issue** column.
 * Set the **Incident** filter to `Incident detected` to see all issues with incidents. Go to issue details, view the **Related incidents** section. From here, you can go to every incident details.
 
+!!! info "Security issues from other detection methods"
+     The **Related incidents** section is displayed only for security issues found by [passive detection](../about-wallarm/detecting-vulnerabilities.md#passive-detection). The details of security issues found by other detection methods do not include this section.
+
 ![Incidents in Security Issues](../images/user-guides/vulnerabilities/si-incidents.png)
 
 ## False positive rules

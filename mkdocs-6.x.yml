@@ -123,7 +123,6 @@ nav:
     - All Deployment Options: installation/supported-deployment-options.md
     - Security Edge:
       - Overview: installation/security-edge/overview.md
-      - Free Tier: installation/security-edge/free-tier.md
       - Inline:
         - Overview: installation/security-edge/inline/overview.md
         - Deployment Guide: installation/security-edge/inline/deployment.md
@@ -143,6 +142,7 @@ nav:
     - Kubernetes:
       - Istio: installation/connectors/istio.md
       - Gloo Gateway: installation/connectors/gloo.md
+      - Traefik: installation/connectors/traefik.md
       - NGINX Ingress Controller:
         - Deployment: admin-en/installation-kubernetes-en.md
         - Configuration Options: admin-en/configure-kubernetes-en.md
@@ -214,6 +214,7 @@ nav:
       - Azure API Management: installation/connectors/azure-api-management.md
       - Apigee: installation/connectors/apigee.md
       - IBM API Connect: installation/connectors/ibm-api-connect.md
+      - SAP API Management: installation/connectors/sap-api-management.md
     - TCP Traffic Mirror:
       - Deployment: installation/oob/tcp-traffic-mirror/deployment.md
     - Packages & Containers:
@@ -341,6 +342,7 @@ nav:
       - Splunk: user-guides/settings/integrations/splunk.md
       - Sumo Logic: user-guides/settings/integrations/sumologic.md
       - Azure Monitor Logs / Microsoft Sentinel: user-guides/settings/integrations/azure-sentinel.md
+      - IBM QRadar (early access): user-guides/settings/integrations/ibm-qradar.md
       - Datadog: user-guides/settings/integrations/datadog.md
 
     - Log Collectors:
@@ -420,32 +422,48 @@ nav:
 
   - AI Hypervisor:
     - Overview: ai-hypervisor/overview.md
+    - Getting Started: ai-hypervisor/getting-started.md
 
     - Scanner Installation:
-      - Install HIGGS Scanner: ai-hypervisor/deploy.md
+      - Install the Scanner: ai-hypervisor/deploy.md
       - Chart Values: ai-hypervisor/chart-values.md
+      - Scanner Permissions and Data: ai-hypervisor/scanner-permissions.md
       - Labels and Annotations: ai-hypervisor/annotations.md
+      - Versioning: ai-hypervisor/versioning.md
 
     - Briefing: ai-hypervisor/briefing.md
     - Findings and risk model: ai-hypervisor/findings.md
+    - Heatmap: ai-hypervisor/heatmap.md
+    - Risk Model: ai-hypervisor/risk-model.md
 
     - Briefing surfaces:
       - Patterns: ai-hypervisor/patterns.md
       - Behavior Cert: ai-hypervisor/behavior-cert.md
+      - A2AS: ai-hypervisor/a2as.md
       - Shadow AI: ai-hypervisor/shadow-ai.md
       - Registry: ai-hypervisor/registry.md
       - Topology: ai-hypervisor/topology.md
+      - Hyper Graph: ai-hypervisor/hyper-graph.md
       - Debugger: ai-hypervisor/debugger.md
       - Red Team: ai-hypervisor/red-team.md
       - Compliance: ai-hypervisor/compliance.md
+      - AI Spend: ai-hypervisor/ai-spend.md
 
     - Drill-in views:
-      - Data Tracks: ai-hypervisor/data-tracks.md
-      - User Tracks: ai-hypervisor/user-tracks.md
+      - Traffic: ai-hypervisor/user-tracks.md
+      - Traffic Flow Map: ai-hypervisor/traffic.md
+      - Personal Data Flows: ai-hypervisor/data-tracks.md
       - Supply Chain: ai-hypervisor/supply-chain.md
+      - Egress: ai-hypervisor/egress.md
+      - Infrastructure: ai-hypervisor/infrastructure.md
+      - Code: ai-hypervisor/code.md
+      - Discovery: ai-hypervisor/discovery.md
 
     - Enforcement: ai-hypervisor/enforcement.md
+    - Data Governor: ai-hypervisor/data-governor.md
+    - Integrations: ai-hypervisor/integrations.md
     - Notifications: ai-hypervisor/notifications.md
+    - Audit Log: ai-hypervisor/audit-log.md
     - Settings: ai-hypervisor/settings.md
     - Supported Model Providers: ai-hypervisor/supported-providers.md
 

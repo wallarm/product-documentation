@@ -1,13 +1,13 @@
 # AI Hypervisor Overview <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
-AI Hypervisor is the runtime governance layer for every LLM call, agent action, and MCP tool invocation in your Kubernetes cluster on AWS.
+AI Hypervisor is the runtime governance layer for every LLM call, agent action, and MCP tool invocation in your environment.
 
-A Wallarm DaemonSet attaches to your AI workloads using Extended Berkeley Packet Filter (eBPF) and patented non-invasive memory analysis (US Patent 12,505,228). It builds a live inventory of the agents, model providers, MCP servers, and data sources your applications use, and attributes every call to the user who triggered it across internal service hops.
+A Wallarm scanner attaches to your AI workloads using Extended Berkeley Packet Filter (eBPF) and patented non-invasive memory analysis (US Patent 12,505,228). It builds a live inventory of the agents, model providers, MCP servers, and data sources your applications use, and attributes every call to the user who triggered it across internal service hops.
 
 No SDK, no code changes, no pod restarts. You label a workload, and the scanner attaches to it.
 
-!!! info "AWS only"
-    AI Hypervisor is available on **Amazon EKS** only. Your AI workloads must run on EKS, and the HIGGS Scanner deploys into that same cluster.
+!!! info "Where the scanner runs"
+    The scanner runs where your AI applications run: on **Kubernetes** (for example, Amazon EKS) as a DaemonSet, on **AWS ECS on EC2** as a DAEMON service, on **AWS Fargate** as extra containers in your task, and on **macOS** endpoints. The subscription is procured through AWS Marketplace. See [Scanner Installation](deploy.md).
 
 ## The problem AI Hypervisor solves
 
@@ -17,10 +17,10 @@ AI Hypervisor closes that gap as a **Discover → Observe → Enforce → Govern
 
 | Pillar | What you get | Where in the product |
 |---|---|---|
-| **Discover** *(know what AI is running)* | Inventory of every LLM provider, agent, MCP server, and tool, built from observed traffic. Anthropic, OpenAI, AWS Bedrock, Azure OpenAI, Gemini, Cohere, Mistral, and Together are recognized out of the box. Shadow AI surfaces alongside approved providers. | [Findings](findings.md), [Registry](registry.md), [Topology](topology.md) |
-| **Observe** *(know who triggered it)* | Every model call, agent step, and tool invocation attributed to the originating end user across service hops. Replay prompts, reconstruct incident timelines, attribute LLM cost by user and team. | [User Tracks](user-tracks.md), [Data Tracks](data-tracks.md) |
-| **Enforce** *(stop the bad ones)* | Kernel-level session termination for active misbehavior, plus pattern-match policies that block, redact, or alert on outbound calls before they reach the model provider. The enforcement engine ships in every scanner; the operator-facing controls are enabled per tenant by Wallarm. | [Enforcement](enforcement.md), driven from [Shadow AI](shadow-ai.md) and [User Tracks](user-tracks.md) |
-| **Govern** *(prove it to auditors)* | PII flow records, AI-SBOM with CVE enrichment, full session replay. Mapped to EU AI Act, SOC 2, and NIST AI RMF controls. | [Compliance](compliance.md) |
+| **Discover** *(know what AI is running)* | Inventory of every LLM provider, agent, MCP server, and tool, built from observed traffic. Anthropic, OpenAI, AWS Bedrock, Azure OpenAI, Gemini, Cohere, Mistral, and Together are recognized out of the box. Shadow AI surfaces alongside approved providers. | [Findings](findings.md), [Registry](registry.md), [Topology](topology.md), [Supply Chain](supply-chain.md), [Infrastructure](infrastructure.md), [Code](code.md), [Discovery](discovery.md) |
+| **Observe** *(know who triggered it)* | Every model call, agent step, and tool invocation attributed to the originating end user across service hops. Replay prompts, reconstruct incident timelines, attribute LLM cost by user and team. | [Traffic](user-tracks.md), [Traffic Flow Map](traffic.md), [Heatmap](heatmap.md), [Egress](egress.md), [AI Spend](ai-spend.md) |
+| **Enforce** *(stop the bad ones)* | Kernel-level session termination for active misbehavior, plus pattern-match policies that block, redact, or alert on outbound calls before they reach the model provider. The enforcement engine ships in every scanner; the operator-facing controls are enabled per tenant by Wallarm. | [Enforcement](enforcement.md), [Data Governor](data-governor.md), [A2AS](a2as.md), driven from [Shadow AI](shadow-ai.md) and [Traffic](user-tracks.md) |
+| **Govern** *(prove it to auditors)* | PII flow records, AI-SBOM with CVE enrichment, full session replay. Mapped to EU AI Act, SOC 2, and NIST AI RMF controls. | [Compliance](compliance.md), [Audit Log](audit-log.md) |
 
 ## Who AI Hypervisor is for
 
@@ -28,17 +28,17 @@ AI Hypervisor closes that gap as a **Discover → Observe → Enforce → Govern
 * **Platform and AI infrastructure leaders** running mixed-language workloads (Python, Node, Go, Java, Ruby). They want one consistent answer to *what is calling what, and is it safe* without operating a separate tool per language.
 * **Compliance and audit owners** who need to prove what data went to which model provider, on whose behalf, on demand, without rebuilding the evidence from spreadsheets.
 
-AI Hypervisor sits next to your APM, log pipeline, and SIEM rather than replacing them. It runs inside your own Kubernetes cluster on AWS, and observed traffic stays in your environment.
+AI Hypervisor sits next to your APM, log pipeline, and SIEM rather than replacing them. The scanner runs inside your own environment, and it sends the results only to your tenant.
 
 ## How it works
 
 AI Hypervisor splits into two pieces with a clean boundary between them: a scanner you run, and a tenant Wallarm hosts.
 
-![AI Hypervisor architecture: HIGGS Scanner DaemonSet in customer EKS cluster uploads observations over HTTPS to a Wallarm-hosted tenant containing dashboard, backend, and ClickHouse](../../images/ai-hypervisor/ai-hypervisor-architecture.png)
+![AI Hypervisor architecture: the scanner DaemonSet in the customer cluster uploads observations over HTTPS to a Wallarm-hosted tenant containing dashboard, backend, and ClickHouse](../../images/ai-hypervisor/ai-hypervisor-architecture.png)
 
-**On your side, Amazon EKS:**
+**On your side, where your AI applications run:**
 
-* The **HIGGS Scanner** (Hypervisor Inspection & GenerativeAI Guarding Scanner) runs as a Kubernetes DaemonSet, one pod per worker node, installed via Helm. It is the only AI Hypervisor component you install yourself. See [Install HIGGS Scanner](deploy.md).
+* The **scanner** runs as a Kubernetes DaemonSet (one pod per worker node, installed through Helm), an ECS DAEMON service, extra containers in a Fargate task, or a macOS system extension. It is the only AI Hypervisor component you install yourself. See [Scanner Installation](deploy.md).
 * The scanner attaches to your AI workload processes using **eBPF and non-invasive memory analysis**, without any SDK, sidecar, or code change. Observation happens at the connection level inside the kernel, before the outbound call reaches the network stack.
 * Supported runtimes for in-process introspection: Python, Node.js, Go, Java, Ruby. Workloads in other runtimes are still discovered at the network layer.
 * The scanner uploads observations over HTTPS to your hosted tenant.
@@ -65,7 +65,7 @@ A built-in conversational agent appears as the chat strip on the **Briefing** vi
 
 **Finding.** A discrete record of something worth attention on a specific asset. Every finding carries one of seven **risk categories** (Access, Authentication, Compliance, CVE, Injection, PII, Shadow). Findings roll up into per-asset and per-application risk scores. See [Findings](findings.md).
 
-**Session.** A request-to-response chain initiated by a single user or upstream caller, traced across every service hop the request triggers. Sessions are the unit of evidence in [User Tracks](user-tracks.md).
+**Session.** A request-to-response chain initiated by a single user or upstream caller, traced across every service hop the request triggers. Sessions are the unit of evidence in [Traffic](user-tracks.md).
 
 **Governance state.** Every asset is **sanctioned** (approved into the baseline), **tolerated** (discovered but not yet approved), or **unsanctioned** (seen only via external signals; that is, shadow AI). You move assets between states from [Registry](registry.md).
 
@@ -76,7 +76,7 @@ AI Hypervisor is a **standalone annual subscription**, separate from Wallarm API
 The subscription covers:
 
 * The Wallarm-hosted tenant: dashboard, backend, and telemetry store.
-* The HIGGS Scanner Helm chart for your EKS cluster, plus version upgrades.
+* The scanner (Helm chart, ECS and Fargate definitions, macOS package), plus version upgrades.
 * Wallarm product support.
 
 AWS resources the scanner runs on (worker-node compute and egress) stay on your standard AWS bill.
@@ -85,7 +85,7 @@ For pricing and a private offer, [contact Wallarm sales](mailto:sales@wallarm.co
 
 ## Next steps
 
-* [Install the HIGGS Scanner](deploy.md) into your Amazon EKS cluster through Helm.
+* Follow [Getting Started](getting-started.md), then [install the scanner](deploy.md) where your AI applications run.
 * Tour the [Briefing](briefing.md), the post-login landing.
 * Inventory your assets in [Registry](registry.md) and promote tolerated entities into the sanctioned baseline.
 * Generate your first compliance artifact from [Compliance](compliance.md).

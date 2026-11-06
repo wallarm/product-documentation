@@ -1,43 +1,83 @@
 # Topology <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
-<a href="briefing.md#role-and-altitude"><img src="../../images/role-security.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-platform.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a>
+<a id="intro"></a>
+## What this is
 
-**Topology** is the traffic-flow map of your environment: how requests move between agents, MCP servers, LLM providers, data sources, and APIs. It shows the same entities as [Registry](registry.md), but emphasizes the connections between them.
+**Topology** draws how the AI components inside your applications connect: agents, the LLMs they
+call, MCP servers and tools, APIs and data stores. It is built from the traffic the scanner
+records.
 
-A node is one observed entity; an edge is a flow between two of them. Node severities aggregate the findings on that entity. Edge severities surface PII, unsanctioned destinations, and other per-flow concerns.
+For "who talks to whom across applications, and where does personal data go", use
+[Traffic → Flow](traffic.md). For the list of components and their governance, use
+[Registry](registry.md).
 
-![AI Hypervisor Topology](../../images/ai-hypervisor/aih-topology.png)
+<a id="layout"></a>
+## What is on the screen
 
-## Layers and zones
+What you see depends on the **application dropdown** next to the page title.
 
-Nodes sit on a two-dimensional grid that matches the [Findings](findings.md) full-stack lens:
+**All applications**
 
-* **Layers** (functional role): Interface, Identity, Orchestration, Guardrails, Inference, Protocol (MCP), Connectivity, Knowledge, Infrastructure.
-* **Zones** (infrastructure boundary): Core platform, Cloud services, App platform, External.
+- **Graph** / **Cards** — **Graph** draws one node per application; **Cards** shows one summary
+  card per application. A counter shows how many applications there are.
+- In **Graph**, click an application to see its components drawn in named layers, from
+  **Interface** first to **Infrastructure** last.
 
-Read the canvas top to bottom to follow a request from the public entry point through identity, orchestration, and inference towards data. Read left to right to see what stays inside your platform versus what reaches out to third-party services.
+**One application**
 
-A complementary **Flow** view renders the same nodes and edges as a directional tree, emphasizing the path traffic takes rather than the architectural layout.
+- A flow tree of that application's components: what calls what, left to right.
+- **Show N dependencies** / **Hide dependencies** — adds or removes the application's software
+  dependencies from the tree.
 
-## Pipelines
+<a id="pipeline-overview"></a>
+### Detail panel
 
-A **pipeline** is a user-defined label that groups several agentic flows into one named business-process view (for example, `checkout-bot RAG flow`). Once defined, the pipeline appears as a node on the canvas and rolls up totals (requests per minute, daily cost estimate, PII-carrying flow count) in the Pipeline overview block.
+With nothing selected, the panel shows the **Pipeline overview** for the application: **Total
+agents**, **Critical** and **Warning** counts, **Pipeline Stats** (**Pipelines**, **Total RPM**,
+**Daily cost**, **PII flows**) and **Infrastructure** (**Nodes**). **Add custom pipeline** is shown
+but not available yet.
 
-Pipelines are optional. **Topology** is fully usable without them, showing raw per-entity nodes and edges.
+Click a node for its details. A node that is not yet approved shows its **Governance** state
+(**Tolerated** or **Unsanctioned**) and two buttons:
 
-## Governance filter and baselining
+- **Promote to Inventory** — approves it; it then appears in [Registry](registry.md) as
+  **Sanctioned**.
+- **Block Access** — blocks the application from reaching it.
 
-**Topology** respects the same three governance states as [Registry](registry.md): Sanctioned, Tolerated, Unsanctioned. A per-app governance filter shows or hides nodes by state. The **Baseline inventory** action bulk-promotes every Tolerated agent and MCP server in the current application to Sanctioned. Useful right after deploying the scanner to a new application, when reviewing the inventory is faster than promoting each row individually in **Registry**.
+Click empty canvas to return to the overview.
 
-## Cross-references
+### When this page is empty
 
-| From **Topology** | You land in |
-|---|---|
-| Edge click | [Data Tracks](data-tracks.md), flow detail for the edge |
-| Node detail → recent sessions | [User Tracks](user-tracks.md) |
-| Node promotion or demotion | [Registry](registry.md), governance state updated |
+**No topology yet** means the scanner has not recorded traffic for these applications. The first
+nodes appear within about a minute of the scanner starting on an opted-in namespace. If it stays
+empty, check **Settings → Scanners** (see [Getting started](getting-started.md)). On a macOS
+endpoint workspace, nodes appear once the device reports.
 
-## Settings that affect Topology
+<a id="how-to-use-it"></a>
+## How to use it
 
-* **Scan frequency** ([Settings → Cluster Infrastructure](settings.md#cluster-infrastructure)) controls how quickly newly observed flows and entities appear on the canvas.
-* Which applications appear in the switcher depends on where the scanner is deployed via Helm.
+### See how one application is wired
+1. Pick the application in the application dropdown.
+2. Read the tree left to right. Click a node for details.
+3. Click **Show N dependencies** to add its packages.
+
+### Compare applications
+1. Choose **All applications**.
+2. Use **Graph** to see them side by side, or **Cards** for their summaries.
+3. In **Graph**, click an application to see its components by layer.
+
+### Approve or block an unknown component
+1. Click the node.
+2. Click **Promote to Inventory** if it belongs, or **Block Access** if it does not.
+
+<a id="navigation-out"></a>
+## Where to go next
+
+- [Registry](registry.md) — the same components as a list, with governance.
+- [Traffic → Flow](traffic.md) — traffic between applications and personal data leaving the network.
+- [Infrastructure](infrastructure.md) — the clusters and nodes these applications run on.
+
+<a id="navigation-in"></a>
+## How you get here
+
+- Sidebar → **Discover** → **Topology**.

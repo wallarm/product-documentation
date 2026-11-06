@@ -22,7 +22,7 @@ Each finding falls into exactly one of seven risk categories. Same concerns, sam
 
 ### Authentication
 
-*Identity verification, token validity, session integrity.* A high auth risk indicates missing or weak credentials on a component: anonymous calls accepted, tokens that never rotate, identity implied rather than asserted. Trace the failing flows in [User Tracks](user-tracks.md).
+*Identity verification, token validity, session integrity.* A high auth risk indicates missing or weak credentials on a component: anonymous calls accepted, tokens that never rotate, identity implied rather than asserted. Trace the failing flows in [Traffic](user-tracks.md).
 
 ### Compliance
 
@@ -38,7 +38,7 @@ Prompt injection: *adversarial inputs designed to subvert an AI agent's instruct
 
 ### PII
 
-*Which sensitive data each entity has touched and where it has flowed.* A high PII risk indicates sensitive data flowing to a destination outside the sanctioned set. Verify per flow in [Data Tracks](data-tracks.md).
+*Which sensitive data each entity has touched and where it has flowed.* A high PII risk indicates sensitive data flowing to a destination outside the sanctioned set. Verify per flow in [Traffic](user-tracks.md#sensitive-data) (**Sensitive data**).
 
 ### Shadow
 
@@ -102,7 +102,7 @@ Every observed session also carries a **caller class** that names *who* initiate
 * **Infra probe.** Health checks, monitors, Kubernetes liveness probes.
 * **Unknown.** Caller class cannot be classified yet.
 
-A new app suddenly serving heavy *AI agent (suspected)* traffic is worth investigating: either there is a real agent integration nobody told you about, or someone is fingerprint-evading. The caller-class palette carries through to [User Tracks](user-tracks.md) and the Briefing's caller-mix tile.
+A new app suddenly serving heavy *AI agent (suspected)* traffic is worth investigating: either there is a real agent integration nobody told you about, or someone is fingerprint-evading. The caller-class palette carries through to [Traffic](user-tracks.md) and the Briefing's caller-mix tile.
 
 ## Severity rules
 

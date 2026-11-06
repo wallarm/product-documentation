@@ -12,7 +12,7 @@ In cases when it is impossible to fix a critical [vulnerability](../../user-guid
 Wallarm provides the following [rules](../../user-guides/rules/rules.md) to create a virtual patch:
 
 * **Create a virtual patch** rule - allows creating a virtual patch that blocks requests containing in its selected part one of the [known](../../attacks-vulns-list.md) attack signs, such as SQLi, SSTi, RCE, etc. Also, you can select **Any request** to block specific requests without any attack signs.
-* **Create regexp-based attack indicator** rule with **Virtual patch** option selected - allows creating a virtual patch that blocks requests containing your own attack signs or your own reason for blocking (see [example](#blocking-all-requests-with-incorrect-x-authentication-header)) that are described with regular expressions. Details on working with a rule based on regular expressions are described [here](../../user-guides/rules/regex-rule.md).
+* **Custom attack detector** rule with **Virtual patch** option selected - allows creating a virtual patch that blocks requests containing your own attack signs or your own reason for blocking (see [example](#blocking-all-requests-with-incorrect-x-authentication-header)) that are described with regular expressions. Details on working with a rule based on regular expressions are described [here](../../user-guides/rules/regex-rule.md).
 
 ## Creating and applying the rule
 

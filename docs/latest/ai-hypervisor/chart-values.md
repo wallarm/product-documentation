@@ -1,6 +1,6 @@
 # Chart Values <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
-The HIGGS Scanner ships as a Helm chart (`wallarm/aih-scanner`, current version `2.1.1`). The tables below cover the values most customers tune. Everything else in the [chart's `values.yaml`](https://github.com/wallarm/helm-charts/tree/main/aih-scanner) has a default that rarely needs overriding.
+The scanner ships as a Helm chart (`wallarm/aih-scanner`, current version `2.11.1`). The tables below cover the values most customers tune. Everything else in the [chart's `values.yaml`](https://github.com/wallarm/helm-charts/tree/main/aih-scanner) has a default that rarely needs overriding.
 
 For pod and namespace labels that control which workloads the scanner observes, see [Labels and Annotations](annotations.md).
 
@@ -10,7 +10,34 @@ For pod and namespace labels that control which workloads the scanner observes, 
 |---|---|
 | `config.backendUrl` | URL of the AI Hypervisor backend (your tenant). Provided in the install commands on your tenant's empty-state screen. |
 | `scannerPrivateKey` | HMAC private key the scanner uses to authenticate to the backend. Provided alongside `backendUrl`. Mutually exclusive with `existingSecret.name`. |
-| `existingSecret.name` | Name of a pre-existing Kubernetes Secret in the scanner namespace that holds the private key. Use instead of `scannerPrivateKey` when you manage secrets externally (External Secrets Operator, sealed secrets, and so on). |
+| `existingSecret.name` | Name of a pre-existing Kubernetes Secret in the scanner namespace that holds the private key. Use instead of `scannerPrivateKey` when you manage secrets externally (External Secrets Operator, sealed secrets, and so on). The scanners mount it as a file and re-read it when it changes, so a [key rotation](settings.md#rotate-the-scanner-key) needs only a new value in the Secret — no restart. Recommended: it keeps the key out of your Helm values and Git. |
+| `existingSecret.key` | Key inside that Secret that holds the private key. Default `scanner-private-key`. |
+
+## GitOps and secret tooling
+
+Values for installs that ArgoCD or Flux render with `helm template`, and for teams that deliver
+secrets with their own tooling. All are optional; the defaults behave as before. Set exactly one key
+source: `scannerPrivateKey`, `existingSecret.name` or one `scannerKey.*` — the chart refuses two. See
+[Kubernetes with GitOps](deploy.md#kubernetes-with-gitops-argocd-flux).
+
+| Key | Default | Description |
+|---|---|---|
+| `gitops` | `false` | From 2.17.0; use 2.17.2 or later, where a default install reports Healthy. For ArgoCD: every render is identical. The proxy CA and the internal proxy and classifier tokens are created once by a PreSync Job instead of in the templates, and an existing Secret of the same name is left as it is. Requires `namespace.create: false` (ArgoCD creates the namespace) and a stable webhook certificate (`webhook.tls.certManager` or `webhook.tls.existingSecret`); the render fails with a message otherwise. Flux and plain `helm install` do not need it. |
+| `upgrader.enabled` | `true` | The in-cluster upgrader patches the scanner image. Set `false` when Git owns the version (ArgoCD self-heal would revert the patch). |
+| `webhook.tls.existingSecret` | (empty) | From 2.17.0. A `kubernetes.io/tls` Secret you provide (`tls.crt`, `tls.key`) for the webhook; nothing is generated. Requires `webhook.caBundle`. `webhook.tls.secretName` is an older name for it. |
+| `webhook.caBundle` | (empty) | With `webhook.tls.existingSecret`: the base64 PEM of the CA that signed its certificate (public; safe to commit). |
+| `webhook.tls.certManager.enabled` | `false` | From 2.17.0. cert-manager issues the webhook certificate and its CA injector fills the `caBundle`. Set `webhook.tls.certManager.issuerRef.name` (and `.kind`: `Issuer` or `ClusterIssuer`). |
+| `proxy.ca.existingSecret` | (empty) | With `proxy.enabled`: a Secret with the proxy's CA (`ca.crt`, `ca.key`); nothing is generated. |
+| `secret.annotations`, `secret.labels` | `{}` | From 2.17.0. Metadata on the key Secret the chart creates from `scannerPrivateKey` (none is created with `existingSecret.name`). |
+| `podAnnotations`, `podLabels` | `{}` | From 2.17.0. Added to the pods of every scanner workload — for example Vault injector annotations or mesh opt-outs. `webhook.`, `upgrader.`, `collector.` and `classifier.pool.` each take their own `podAnnotations` / `podLabels` on top. Selector labels cannot be overridden. |
+| `extraEnvFrom` | `[]` | From 2.17.0. Extra `envFrom` sources (Secret or ConfigMap references) for the scanner, webhook, upgrader and collector. A key passed this way is read at start; with `existingSecret.name` it is mounted as a file and a new key is picked up without a restart. |
+| `scannerKey.externalSecret.*` | off | From 2.17.3. The key from your secret manager through the External Secrets Operator: `enabled: true`, `secretStoreRef.name` (and `.kind`), `remoteRef.key` (and `.property`). The operator writes the key Secret the scanners read. |
+| `scannerKey.vaultStaticSecret.*` | off | From 2.17.3. The key from Vault through the Vault Secrets Operator: `enabled: true`, `path`, `property` (the key's field name), optional `vaultAuthRef`. |
+| `scannerKey.sealedSecret.*` | off | From 2.17.3. The key sealed for your cluster: `enabled: true`, `encryptedKey` — the output of `kubeseal --raw --scope strict --name aih-scanner-private-key --namespace <namespace>`. Safe to commit. |
+| `scannerKey.file.path`, `scannerKey.file.csi.secretProviderClass` | (empty) | From 2.17.3. The key as a file already in every scanner pod: the Vault agent injector (annotations through `podAnnotations`) or the Secrets Store CSI driver (set `csi.secretProviderClass`; the chart mounts it). |
+| `scannerKey.delivery.enabled` | `true` | From 2.18.0. Scanners take a rotated key by themselves (**Rotate key** in Settings): the chart creates an empty Secret `<release>-delivered-key` and a Role that lets the scanners get and update that one Secret; every scanner component mounts it. Your key source is never written. Needs `rbac.create`; with `false`, deliver a rotated key to your key source yourself. |
+| `extraImagePullSecrets` | `[]` | Names of pull Secrets that already exist in the scanner namespace (a private registry mirror), added to every scanner workload. Hooks and the admission webhook use them from 2.17.1. |
+| `classifier.pool.autoscaling` | `auto` | From 2.17.2. The classifier pool's HorizontalPodAutoscaler: `auto` creates it only where the cluster serves the metrics API (metrics-server) — without it an autoscaler cannot scale and ArgoCD reports the install Degraded; `true` always; `false` never (the pool runs `classifier.pool.minReplicas`). |
 
 ## Capture
 
@@ -19,15 +46,33 @@ For pod and namespace labels that control which workloads the scanner observes, 
 | `config.scanAllPods` | `false` | When `false`, the scanner observes only pods that opted in via the labels described in [Labels and Annotations](annotations.md). When `true`, the scanner observes every pod on the node (anti-loop exclusions still apply). Use `true` for short-lived investigations only. Opt-in is the production pattern. |
 | `config.continuousScanEnabled` | `false` | When `true`, the scanner re-scans labeled pods continuously. When `false`, it scans once per pod lifecycle event. |
 
+## Profile and capabilities
+
+| Key | Default | Description |
+|---|---|---|
+| `profile` | `monitor` | A preset of capabilities: `monitor` (read-only), `enforce`, or `full` (2.x behaviour). See [Scanner permissions and data](scanner-permissions.md). |
+| `capabilities.<name>` | (unset) | Overrides one capability of the profile: `capture`, `inventory`, `shadowAI`, `coreDNSPatch`, `onboard`, `adopt`, `podSecurity`, `enforce`, `proxy`, `webhook`, `agents`, `selfUpgrade`. A 2.x key you set explicitly (`proxy.enabled`, `webhook.enabled`, `coreDNS.enableLogPlugin`, `upgrader.enabled`, `agents.enabled`) takes precedence. |
+
+## Enforcement lanes
+
+Three independent switches — see [Enforcement → Enforcement lanes](enforcement.md#enforcement-lanes).
+
+| Key | Default | Description |
+|---|---|---|
+| `proxy.enabled` | (from the profile: on in `enforce` and `full`) | The proxy lane: inline refusals for pods in Enforce scope. Does **not** switch off the kernel lane. |
+| `enforcement.kernelLane.enabled` | `true` (needs the `enforce` capability) | The kernel lane: eBPF drops and TCP resets on the scanner's node, only on pods in Enforce scope. `false` loads none of it, and on start the scanner removes any eBPF objects an earlier version left on the node. |
+| `agents.runtimePolicy` | `false` | In-process runtime policy for Python and Node.js, in Enforce scope only. |
+
 ## Image and namespace
 
 | Key | Default | Description |
 |---|---|---|
-| `image.tag` | matches chart version (currently `2.1.1`) | Override only to pin a specific scanner version. |
+| `image.tag` | the scanner release the chart ships (chart `2.11.1` ships `2.11.0`) | Override only to pin a specific scanner version. |
 | `image.pullPolicy` | `IfNotPresent` | Standard image-pull semantics. |
 | `imagePullSecretData` | (empty) | Base64-encoded `.dockerconfigjson` for the scanner pull secret. When set, the chart creates the secret automatically. Use when pulling from a private mirror. |
 | `namespace.name` | `higgs-system` | The namespace the scanner runs in. Change when `higgs-system` collides with an existing resource. |
 | `namespace.create` | `true` | Set to `false` if the namespace already exists and you do not want Helm to take ownership. |
+| `clusterName` | (empty) | From 2.19.0. What AI Hypervisor calls this cluster everywhere (Infrastructure, graphs, filters, reports), for example `audit`. Empty keeps the name the scanner detects. 1-63 characters: letters, digits, space, `.`, `_`, `-`; the render fails otherwise. A label only: renaming a cluster later never splits or merges its data. Not a Kubernetes namespace. |
 
 ## Resource limits and lifecycle
 
@@ -78,7 +123,7 @@ To change Helm values, re-run `helm upgrade`:
 ```bash
 helm upgrade aih-scanner wallarm/aih-scanner \
   --namespace higgs-system \
-  --version 2.1.1 \
+  --version 2.11.1 \
   --reuse-values \
   --set <KEY>=<NEW_VALUE>
 ```

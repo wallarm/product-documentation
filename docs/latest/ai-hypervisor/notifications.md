@@ -1,39 +1,76 @@
 # Notifications <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
-<a href="briefing.md#role-and-altitude"><img src="../../images/role-executive.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-security.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-platform.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-compliance.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-developer.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a>
+<a id="intro"></a>
+## What this is
 
-**Notifications** is the inbox of significant things AI Hypervisor has detected: new applications brought under coverage, CVEs found or resolved in a scanned app, PII observed in agent traffic, scanner-health changes. Most entries are informational. Some deep-link into a follow-up view ([User Tracks](user-tracks.md), [Supply Chain](supply-chain.md)) when there is something to act on.
+**Notifications** is the feed of notable events: a new application brought under coverage, new
+packages found, CVEs found or resolved, personal data detected in traffic, a scanner going offline. Some entries link to
+the page where you follow up.
 
-Reviewing the feed regularly is the difference between learning about a critical finding today and hearing about it from someone outside security next week.
+The sidebar item shows how many are unread.
 
-## Notification categories
+<a id="layout"></a>
+## What is on the screen
 
-The feed's tab strip groups events by category:
+- **Type tabs** — **All**, **Apps**, **CVE**, **PII**.
+- Filters — time: **48 hours**, **7 days**, **30 days**, **All history**; severity: **All
+  severity**, **High only**; read state: **All**, **Unread only**; grouping: **Grouped** (similar
+  entries combined) or **Individual**.
+- A summary line: **N unread** (or **All read**) and how many of them are high or
+  critical.
+- **Mark all read** — marks all of your notifications as read,
+  not only the ones in the current view.
+- **Notify for** — **CVEs** (on by default), **Scan offline** (on), **PII** (off). Choose which
+  kinds of entry count towards the unread number on the sidebar. Entries you switch off still
+  appear in the feed, already marked as read. These settings are yours alone and save immediately.
 
-* **All.** The combined stream.
-* **Apps.** Application-level events: a new application came under coverage, a workload changed governance state, scanner health for an app changed.
-* **CVE.** New vulnerabilities found in scanned components, or CVEs resolved by an upgrade.
-* **PII.** Sensitive data detected in agent traffic.
+An entry marks itself as read once it has been on screen for about a second and a half.
 
-Scanner-health events (`scanner_offline`, pulse gaps) appear in the **All** stream and inside the **Apps** category — they are not a separate tab. See [Settings](settings.md) for the toggle that controls whether scanner-offline events increment the unread-badge counter.
+Each entry shows a title, the application and how long ago. Typical titles:
 
-Each notification carries the affected application, a severity, and the detail body. A PII event lists the detected PII classes and links to the sessions where they appeared. A new-CVE event lists each vulnerability with its GHSA or PYSEC identifier and links into the affected app's supply-chain analysis.
+- *N PII events in &lt;app&gt; (email, ssn, …)*
+- *New app discovered: &lt;app&gt; (N packages)*
+- *N new CVEs found in &lt;app&gt;*
+- *N CVEs resolved in &lt;app&gt;*
+- *Scanner offline — N apps without coverage*
 
-## Cross-references
+Expand an entry for details:
 
-| Notification type | Where it takes you |
+| Entry | Details and action |
 |---|---|
-| PII event | [User Tracks](user-tracks.md), sessions where the PII was observed |
-| New CVE | [Supply Chain](supply-chain.md), affected app's risk-analysis view |
-| New app discovered | [Registry](registry.md), the newly inventoried application |
-| Scanner offline | [Settings → Cluster Infrastructure](settings.md#cluster-infrastructure), scanner pod health |
+| Personal data | The data types detected. **Traffic** opens the sessions where it was seen. |
+| New CVEs | The vulnerabilities per package, with severity. Click a CVE id to open it in Supply Chain; **Supply Chain** opens the application's risk analysis. |
+| New app | The packages found in its first scan. |
+| Scanner offline | The applications without coverage, and **Check scanner pod health and pull secret status.** |
+| CVEs resolved | The vulnerabilities per package that no longer appear. The same links as New CVEs; a resolved CVE that the application no longer has is reported as such on Supply Chain. |
 
-## Settings that affect Notifications
+### When this page is empty
 
-The **Send notifications for** preferences in [Settings](settings.md) control which categories increment the unread-badge counter:
+A new workspace has no notifications. The first one usually appears when the scanner completes its
+first scan of an application (**New app discovered**). See [Getting started](getting-started.md).
 
-* **CVEs** (default on)
-* **Scan offline** (default on)
-* **PII** (default off)
+<a id="how-to-use-it"></a>
+## How to use it
 
-Disabling a category does not hide notifications from the feed. Entries still appear in the muted "read" state and stop incrementing the badge. There is no per-rule configuration, no severity-threshold tuning, and no outbound-channel routing in the current release.
+### Catch up
+1. Set the time filter, for example **7 days**, and **Unread only**.
+2. Use the type tabs to read one category at a time.
+3. Click **Mark all read** when done.
+
+### Follow up on an entry
+Expand it. For personal data, click **Traffic**; for new CVEs, click a CVE id or **Supply Chain**.
+Every link opens its page with the entry's application already selected.
+
+<a id="navigation-out"></a>
+## Where to go next
+
+| From | You land in |
+|---|---|
+| Personal-data entry → **Traffic** | [Traffic](user-tracks.md), for that application |
+| New-CVE entry → **Supply Chain** | [Supply Chain](supply-chain.md), at that application's risk analysis |
+| New-CVE entry → a CVE id | [Supply Chain](supply-chain.md), that application, with the vulnerability's details open |
+
+<a id="navigation-in"></a>
+## How you get here
+
+- Sidebar → **Protect** → **Notifications** (with the unread count).

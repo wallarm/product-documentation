@@ -47,7 +47,7 @@ The Patterns column is a triage queue. Read it top to bottom. For each row, pick
 
 | From Patterns | You land in |
 |---|---|
-| Pattern → session history | [User Tracks](user-tracks.md), filtered to the pattern's sessions |
+| Pattern → session history | [Traffic](user-tracks.md), filtered to the pattern's sessions |
 | Pattern → affected entity | [Registry](registry.md), entity detail |
 | Pattern → investigate | [Debugger](debugger.md), pattern pre-pinned |
 | Pattern → draft enforcement rule | [Enforcement](enforcement.md), inline rule set |

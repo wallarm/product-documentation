@@ -1,39 +1,88 @@
 # Supply Chain <img src="../../images/ai-hypervisor-tag.svg" class="non-zoomable" style="border: none;">
 
-<a href="briefing.md#role-and-altitude"><img src="../../images/role-security.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-compliance.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a> <a href="briefing.md#role-and-altitude"><img src="../../images/role-developer.svg" class="non-zoomable" style="border: none; vertical-align: middle; margin-right: 4px;"></a>
+<a id="intro"></a>
+## What this is
 
-**Supply Chain** is the inventory of third-party code your AI stack depends on: the packages, model weights, MCP server binaries, container images, and libraries running inside your instrumented workloads, with their vulnerabilities, license posture, and load-time risk. It is the per-asset version of the AI-SBOM that [Compliance](compliance.md) folds into the evidence pack.
+**Supply Chain** lists the third-party code and models your AI applications run on — libraries,
+frameworks, base packages, ML models, model providers — and the known vulnerabilities (CVEs) in
+them. It also flags model files that can run code when loaded (pickle risk) and where sensitive
+data is exposed.
 
-The scanner builds the inventory continuously from in-process introspection and on-disk scanning. You do not declare components yourself. New CVEs published against components you already run surface in [Notifications](notifications.md) within one scan cycle of the CVE database update.
+The scanner builds this from the packages it finds inside your running applications.
 
-## What is tracked per component
+<a id="layout"></a>
+## What is on the screen
 
-For every component AI Hypervisor discovers, **Supply Chain** records:
+- **Application dropdown** — **All applications** or one application.
+- A summary line: across applications, `N applications · M CVEs`; for one application,
+  `N components · M CVEs · K pickle risks`.
+- **Type filter** — **All types**, **Services**, **ML models**, **Frameworks**, **Libraries**,
+  **Base packages**, **Providers**. Each shows how many components and CVEs it holds.
+- **Search components, CVEs…**
+- **Overview** — opens the **Supply chain overview** (AI-SBOM analysis): **Components**, **Total
+  CVEs**, **Unverified**, **Pickle risk**, CVE severity and components by type.
 
-* **Name** and **version**.
-* **Ecosystem:** PyPI, npm, Maven, Go modules, container image, model registry, MCP binary.
-* **Detected use:** which workloads (and which application) import or load this component.
-* **CVE mapping:** every CVE that affects this exact version, with CVSS severity and the GHSA or PYSEC identifier.
-* **License** when detectable in package metadata.
-* **Load-time risk** flagged when the component is loaded via a deserializable format (pickle, torch) where arbitrary-code execution at load time is possible.
+**All applications**: **Table** / **Cards**. **Table** shows the **Vulnerability Summary** and a
+**Per-Application Breakdown**, applications with the most CVEs first. **Cards** shows one card per
+application — click a card to switch to that application.
 
-## Why it matters
+**One application**: its **Vulnerability Summary** and **Sensitive Data Exposure**.
 
-* **CVE response.** *Which of our agents is running a vulnerable version of `pyyaml`?* **Supply Chain** answers it as one query, with no shell-out to a separate package scanner.
-* **Unsafe-pickle detection.** Model weights distributed as pickle or torch files are a published agentic-AI attack surface. **Supply Chain** marks them so a security review of an open-source model has a starting point.
-* **License audit.** Pulling the license column for an evidence period proves which open-source licenses your AI stack touches.
-* **Pre-deploy review.** When a team adds a new dependency, the inventory updates on the next scan. No SBOM regeneration step in your CI is needed.
+Click a CVE for its details: **Severity**, **Description**, **Affected Component**, when it was
+**Published** and in which version it is **Fixed in**, **Downstream Impact** and **Recommended
+Actions**. Click a sensitive-data entry for its exposures, encryption status and applicable
+regulations.
 
-## Cross-references
+### Scan status per application
 
-| From **Supply Chain** | You land in |
+| Badge | Meaning |
 |---|---|
-| Workload using a component | [Registry](registry.md), the workload's component list |
-| CVE alert for a component | [Notifications](notifications.md), the CVE notification |
-| Supply-domain row in Findings | [Findings](findings.md), aggregated supply-chain risk for the application |
-| SBOM inventory section of a report | [Compliance](compliance.md), the same data packaged for audit |
+| **Scanned** *time* | The last scan finished at that time. |
+| **Pending** | Waiting for the first scan, or for the scanner to pick up a Monitor/Enforce request. |
+| **Scan failed** | The scanner reported a failure; hover for the reason. |
+| **Not onboarded** | No scanner covers this application yet. |
 
-## Settings that affect Supply Chain
+### When this page is empty
 
-* **Scan frequency** ([Settings → Cluster Infrastructure](settings.md#cluster-infrastructure)) controls how often the scanner re-enumerates components, and therefore how fresh the inventory and CVE matches are.
-* Which applications appear in **Supply Chain** depends on where the scanner is deployed via Helm and which workloads carry the `higgs.scan=enabled` label. See [Labels and Annotations](annotations.md).
+- **No supply chain components yet** — the scanner has not reported for this application.
+- **Pending: waiting for the first scan** — the scanner sees the application's pods; the first
+  scan arrives within a scanner cycle.
+- **Pending: waiting for the scanner** — Monitor or Enforce was requested for the namespace; the
+  scanner applies it on its next cycle, then scans.
+- **Onboarding failed** — shows the reason the scanner reported.
+
+When the scanner has seen a namespace calling AI services that is not opted in, the empty page
+offers **Monitor** and **Enforce** for it. See [Getting started](getting-started.md).
+
+<a id="how-to-use-it"></a>
+## How to use it
+
+### Find what needs patching
+1. Choose **All applications** → **Table**. The **Per-Application Breakdown** lists the
+   applications with the most CVEs first.
+2. Pick the worst application in the application dropdown.
+3. Click a CVE and read **Fixed in** and **Recommended Actions**.
+
+### Check ML models for unsafe formats
+1. Set the type filter to **ML models**.
+2. Open **Overview** and read **Pickle risk** — model files that can execute code when loaded.
+
+### Find a specific CVE
+Type its id or the package name into **Search components, CVEs…**.
+
+<a id="navigation-out"></a>
+## Where to go next
+
+- [Code](code.md) — the same vulnerable packages in your source repositories, with a fix you can
+  open as a merge request.
+- [Settings → Scanners](settings.md) — why an application shows **Pending** or **Scan failed**.
+
+<a id="navigation-in"></a>
+## How you get here
+
+- Sidebar → **Discover** → **Supply Chain**.
+- A new-CVE notification → **Review in Supply Chain** — opens the analysis for that application.
+- A new-CVE notification → a CVE id — opens that application with the vulnerability's details open.
+- [Heatmap](heatmap.md) → an expanded cell → a package finding — opens that application with the
+  package's details open. If the application no longer has the package or CVE, a line above the
+  page says so.

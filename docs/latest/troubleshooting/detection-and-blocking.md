@@ -95,7 +95,7 @@ Using the `wallarm_mode` directive is only one of several methods of traffic fil
 
 If you have configured blocking mode via `wallarm_mode block` but Wallarm filtering node does not block attacks, please ensure that filtration mode is not overridden using other configuration methods:
 
-* Using the [rule **Set filtration mode**](../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode)
+* Using the [rule **Filtration mode**](../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode)
 * In the [**General** section of Wallarm Console](../admin-en/configure-wallarm-mode.md#general-filtration-mode)
 
 [More details on filtration mode configuration methods →](../admin-en/configure-parameters-en.md)
