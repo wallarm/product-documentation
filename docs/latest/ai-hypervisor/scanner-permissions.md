@@ -99,7 +99,7 @@ With Helm, run `helm uninstall <release> -n higgs-system`. A pre-delete hook rem
 
 Argo CD does not run Helm `pre-delete` hooks when it removes an application. Nothing is left enforcing either way:
 
-* Since chart 2.25.0, the kernel enforcement programs stop dropping traffic within two minutes of the scanner being gone, whether it was uninstalled, crashed or OOM-killed.
+* Since chart 3.0.0, the kernel enforcement programs stop dropping traffic within two minutes of the scanner being gone, whether it was uninstalled, crashed or OOM-killed.
 * With `monitor`, the `kernel-lane-cleanup` init container removes earlier versions' objects on every start.
 
 To remove the remaining pins by hand on a node, run `rm -r /sys/fs/bpf/higgs` there.
