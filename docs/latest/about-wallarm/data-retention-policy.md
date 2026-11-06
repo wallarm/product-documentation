@@ -2,18 +2,18 @@
 
 This policy outlines retention periods for different datasets collected by Wallarm and stored in the Wallarm Cloud.
 
-| Dataset                                                                                                                                                                                                                                | Paid subscription | Free tier |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|------------------|
-| Data on attacks, hits, and incidents detected by the filtering nodes                                                                                                                                                                         | 6 months        | 3 months |
-| Detailed [data on bot attacks](../api-abuse-prevention/exploring-bots.md#attacks) | 31 days        | 31 days |
-| Data on [user sessions](../api-sessions/overview.md) the legitimate and malicious requests belong to  | 1 week | 1 week |
-| [Security issues](../user-guides/vulnerabilities.md) (vulnerabilities) detected by [any method](../about-wallarm/detecting-vulnerabilities.md#detection-methods) | ∞<sup>*</sup> | ∞ |
-| Statistics on processed and blocked requests displayed on the [Threat Prevention dashboard](../user-guides/dashboards/threat-prevention.md)                                                                                                                          | 6 months        | 3 months |
-| History of [allowlisted, denylisted, and graylisted IP addresses](../user-guides/ip-lists/overview.md)                                                                                                                                                                     | 3 months         | 3 months |
-| Automatically generated or manually created [rules](../user-guides/rules/rules.md) for processing traffic by Wallarm nodes                                                                                                              | ∞                | ∞ |
-| Wallarm account configuration: [users](../user-guides/settings/users.md), [applications](../user-guides/settings/applications.md), [integrations](../user-guides/settings/integrations/integrations-intro.md), [triggers](../user-guides/triggers/triggers.md) | ∞                | ∞ |
-| [Audit log](../user-guides/settings/audit-log.md) records                                                                                                                                                                           | 6 months         | 3 months         |
-| [API Discovery](../api-discovery/overview.md) endpoint data (host, path, parameters, parameter types, application, discovered timestamp) | 30 days since last seen | 30 days since last seen |
-| [API Discovery](../api-discovery/overview.md) dynamic endpoint data (sensitive data, authentication flows, change status, requests counter) | 7 days | 7 days |
+| Dataset                                                                                                                                                                                                                                | Retention period |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|
+| Data on attacks, hits, and incidents detected by the filtering nodes                                                                                                                                                                         | 6 months        |
+| Detailed [data on bot attacks](../api-abuse-prevention/exploring-bots.md#attacks) | 31 days        |
+| Data on [user sessions](../api-sessions/overview.md) the legitimate and malicious requests belong to  | 1 week |
+| [Security issues](../user-guides/vulnerabilities.md) (vulnerabilities) detected by [any method](../about-wallarm/detecting-vulnerabilities.md#detection-methods) | ∞<sup>*</sup> |
+| Statistics on processed and blocked requests displayed on the [Threat Prevention dashboard](../user-guides/dashboards/threat-prevention.md)                                                                                                                          | 6 months        |
+| History of [allowlisted, denylisted, and graylisted IP addresses](../user-guides/ip-lists/overview.md)                                                                                                                                                                     | 3 months         |
+| Automatically generated or manually created [rules](../user-guides/rules/rules.md) for processing traffic by Wallarm nodes                                                                                                              | ∞                |
+| Wallarm account configuration: [users](../user-guides/settings/users.md), [applications](../user-guides/settings/applications.md), [integrations](../user-guides/settings/integrations/integrations-intro.md), [triggers](../user-guides/triggers/triggers.md) | ∞                |
+| [Audit log](../user-guides/settings/audit-log.md) records                                                                                                                                                                           | 6 months         |
+| [API Discovery](../api-discovery/overview.md) endpoint data (host, path, parameters, parameter types, application, discovered timestamp) | 30 days since last seen |
+| [API Discovery](../api-discovery/overview.md) dynamic endpoint data (sensitive data, authentication flows, change status, requests counter) | 7 days |
 
 <small><sup>*</sup> Storing of security issues found by [AASM](../api-attack-surface/overview.md) can be limited by the AASM's [host retention policy](../api-attack-surface/setup.md#host-retention-policy).</small>

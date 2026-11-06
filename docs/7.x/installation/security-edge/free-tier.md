@@ -1,1 +1,0 @@
---8<-- "latest/installation/security-edge/free-tier.md"
