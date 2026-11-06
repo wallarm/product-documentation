@@ -164,8 +164,9 @@ in particular, `proxy.enabled: false` leaves the kernel lane on.
 The kernel lane is bounded on every node:
 
 * It acts only on pods in **Enforce** scope (`higgs.io/enforce=enabled` on the pod or its
-  namespace). A **Monitor** pod is never blocked, and a pod that leaves Enforce scope or exits is
-  released at once.
+  namespace). A **Monitor** pod is never blocked. A pod that exits is released at once; a pod
+  whose `higgs.io/enforce` label is removed (from the pod or its namespace) is released within
+  about one minute.
 * It never acts on a `hostNetwork` pod or on the node's own interfaces. An enforce-labelled
   `hostNetwork` pod gets the event `AIHKernelLaneRefused` instead.
 * It drops only a pod's traffic to **public** destinations — ones that pod was seen using, or a blocked caller's address. Private and
