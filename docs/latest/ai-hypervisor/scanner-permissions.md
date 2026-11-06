@@ -32,6 +32,7 @@ When the scanner is not allowed to do something, it does not try. The console th
 | `webhook` | The admission webhook. It is installed only together with the proxy or the agents. | – | on | on |
 | `agents` | In-process agents for Python and Node.js. | – | – | on |
 | `selfUpgrade` | The in-cluster upgrader updates the scanner image. | – | – | – (opt-in) |
+| `broker` | Credential brokering: reads the Secrets you list, so the proxy can insert a brokered value toward its bound destinations. | – | – | – (opt-in) |
 
 ## Kubernetes RBAC
 
@@ -53,6 +54,8 @@ A `monitor` install binds only `capture` and `inventory`, which contain no write
 * `<release>-self-terminate`: `get` and `delete` on its own DaemonSet, used when you remove the scanner from the console.
 
 With `proxy`, it also manages its own CA Secret by name (see the `proxy` row above).
+
+With `broker`, each namespace listed in `broker.secrets` gets one Role, `<release>-broker`, with `get` on exactly the listed Secrets (`resourceNames`). No other Secret is readable, and no Role is created for an empty list.
 
 ## Node privileges
 

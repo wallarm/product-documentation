@@ -51,7 +51,9 @@ source: `scannerPrivateKey`, `existingSecret.name` or one `scannerKey.*` — the
 | Key | Default | Description |
 |---|---|---|
 | `profile` | `monitor` | A preset of capabilities: `monitor` (read-only), `enforce`, or `full` (2.x behaviour). See [Scanner permissions and data](scanner-permissions.md). |
-| `capabilities.<name>` | (unset) | Overrides one capability of the profile: `capture`, `inventory`, `shadowAI`, `coreDNSPatch`, `onboard`, `adopt`, `podSecurity`, `enforce`, `proxy`, `webhook`, `agents`, `selfUpgrade`. A 2.x key you set explicitly (`proxy.enabled`, `webhook.enabled`, `coreDNS.enableLogPlugin`, `upgrader.enabled`, `agents.enabled`) takes precedence. |
+| `capabilities.<name>` | (unset) | Overrides one capability of the profile: `capture`, `inventory`, `shadowAI`, `coreDNSPatch`, `onboard`, `adopt`, `podSecurity`, `enforce`, `proxy`, `webhook`, `agents`, `selfUpgrade`, `broker`. A 2.x key you set explicitly (`proxy.enabled`, `webhook.enabled`, `coreDNS.enableLogPlugin`, `upgrader.enabled`, `agents.enabled`) takes precedence. |
+
+| `broker.secrets` | `[]` | Secrets the `broker` capability may read, as `[{namespace, name}]`. One Role per namespace grants `get` on exactly these Secrets. Used for credential brokering (see [Behavior Cert](behavior-cert.md#kubernetes-api-and-secrets)). |
 
 ## Enforcement lanes
 
