@@ -20,6 +20,8 @@ Drift between a signed cert and observed behavior surfaces as a Behavior-cert dr
 
 A cert can also limit two things an agent reaches without going through an AI provider.
 
+Both need AI Hypervisor scanner 3.1.0 or later. Until a connected scanner runs 3.1.0 or later, the cert form does not show these fields and the **Govern Kubernetes API access by cert** switch cannot be turned on; a cert that already carries them keeps them editable.
+
 ### Kubernetes API access
 
 The cert form's **Kubernetes API (control plane)** field has three values:
