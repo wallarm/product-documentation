@@ -43,6 +43,18 @@ A drafted cert binds a Secret the agent sent to exactly one destination during t
 * **The real value** — the pod reads the Secret as before, and only egress is checked.
 * **A placeholder** — the pod receives `aih:resolve:<namespace>/<name>/<key>:<nonce>` instead of the value, in environment variables and in mounted Secret files. The proxy puts the value into a request only when the destination is one of the bound ones. Anywhere else the placeholder is sent unchanged, so the request fails at the destination and the value never leaves. This needs the scanner chart's `broker` capability, with the Secret listed in `broker.secrets` (see [Chart values](chart-values.md)). Pods get the placeholder when they are created, so restart the agent after signing.
 
+#### Secrets on Amazon ECS and AWS Fargate
+
+ECS has no Kubernetes Secret, so the task definition supplies what the scanner needs. **Settings › Scanners › AWS Fargate** shows the add-on. Scanner 3.2.0 or later is required.
+
+1. Give each secret to the `higgs-scanner` container as `AIH_SECRET__<NAME>`, from AWS Secrets Manager or Systems Manager Parameter Store (`secrets` with `valueFrom`). The task execution role needs read access to it.
+2. In the cert, refer to it as namespace `ecs`, Secret = the task family, key = `<NAME>`.
+3. Choose what the app container gets:
+    * **The real value** — keep the app's own variable as it is. Only egress is checked.
+    * **A placeholder** — set the app's variable to `aih:resolve:ecs/<task family>/<NAME>:0000` (the suffix is 4 to 32 hex digits) and add `CAP_BROKER=true` to the `higgs-scanner` container. The proxy puts the value into a request only toward the bound destinations.
+
+The scanner reports which `AIH_SECRET__` secrets the task holds, so **This agent reads** lists them, and a drafted cert binds them as on Kubernetes. A placeholder needs a task without `"pidMode": "task"`, the package-scan add-on: with a shared process namespace the app could read the scanner container's environment, so the scanner does not provide values and the placeholder fails at the destination.
+
 ## Why this matters
 
 A2AS certs make agent behavior contractually explicit. Without one, every new agent is a black box: you find out what it does by tailing logs after the fact. With a signed cert, every drift is a contract violation surfaced as a finding within seconds. The audit benefit follows: for an EU AI Act Article 14 (human oversight) review, the signed cert is evidence of declared scope, and the violation log is evidence of monitoring.
