@@ -10,6 +10,13 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 7.1.7 (2026-11-06)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-78661](https://nvd.nist.gov/vuln/detail/CVE-2026-78661)
+    * [CVE-2026-97045](https://nvd.nist.gov/vuln/detail/CVE-2026-97045)
+
 ### 7.1.6 (2026-10-26)
 
 * Removed the distrusted eMudhra emSign root certificates (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
@@ -93,6 +100,17 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 7.1.7 (2026-11-06)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-78661](https://nvd.nist.gov/vuln/detail/CVE-2026-78661)
+    * [CVE-2026-97045](https://nvd.nist.gov/vuln/detail/CVE-2026-97045)
+    * [CVE-2026-115506](https://nvd.nist.gov/vuln/detail/CVE-2026-115506)
+    * [CVE-2026-118370](https://nvd.nist.gov/vuln/detail/CVE-2026-118370)
+    * [CVE-2026-117610](https://nvd.nist.gov/vuln/detail/CVE-2026-117610)
+    * [CVE-2026-113351](https://nvd.nist.gov/vuln/detail/CVE-2026-113351)
 
 ### 7.1.6 (2026-10-26)
 
@@ -232,6 +250,17 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to upgrade](docker-container.md)
 
+### 7.1.7 (2026-11-06)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-78661](https://nvd.nist.gov/vuln/detail/CVE-2026-78661)
+    * [CVE-2026-97045](https://nvd.nist.gov/vuln/detail/CVE-2026-97045)
+    * [CVE-2026-115506](https://nvd.nist.gov/vuln/detail/CVE-2026-115506)
+    * [CVE-2026-118370](https://nvd.nist.gov/vuln/detail/CVE-2026-118370)
+    * [CVE-2026-117610](https://nvd.nist.gov/vuln/detail/CVE-2026-117610)
+    * [CVE-2026-113351](https://nvd.nist.gov/vuln/detail/CVE-2026-113351)
+
 ### 7.1.6 (2026-10-26)
 
 * Removed the distrusted eMudhra emSign root certificates (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
@@ -329,6 +358,13 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 ## Amazon Machine Image (AMI)
 
 [How to upgrade](cloud-image.md)
+
+### 7.1.7 (2026-11-06)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-78661](https://nvd.nist.gov/vuln/detail/CVE-2026-78661)
+    * [CVE-2026-97045](https://nvd.nist.gov/vuln/detail/CVE-2026-97045)
 
 ### 7.1.6 (2026-10-26)
 
@@ -428,6 +464,13 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-7-1-7-20261105-160329 (2026-11-06)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-78661](https://nvd.nist.gov/vuln/detail/CVE-2026-78661)
+    * [CVE-2026-97045](https://nvd.nist.gov/vuln/detail/CVE-2026-97045)
 
 ### wallarm-node-7-1-6-20261026-123400 (2026-10-26)
 

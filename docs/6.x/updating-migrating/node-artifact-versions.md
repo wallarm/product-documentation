@@ -21,6 +21,13 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.13.5 (2026-11-06)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-78661](https://nvd.nist.gov/vuln/detail/CVE-2026-78661)
+    * [CVE-2026-97045](https://nvd.nist.gov/vuln/detail/CVE-2026-97045)
+
 ### 6.13.4 (2026-10-26)
 
 * Removed the distrusted eMudhra emSign root certificates (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
@@ -358,6 +365,13 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.13.5 (2026-11-06)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-78661](https://nvd.nist.gov/vuln/detail/CVE-2026-78661)
+    * [CVE-2026-97045](https://nvd.nist.gov/vuln/detail/CVE-2026-97045)
 
 ### 6.13.4 (2026-10-26)
 
@@ -741,6 +755,13 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.13.5 (2026-11-06)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-78661](https://nvd.nist.gov/vuln/detail/CVE-2026-78661)
+    * [CVE-2026-97045](https://nvd.nist.gov/vuln/detail/CVE-2026-97045)
+
 ### 6.13.4 (2026-10-26)
 
 * Removed the distrusted eMudhra emSign root certificates (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
@@ -1091,6 +1112,17 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](docker-container.md)
 
+### 6.13.5 (2026-11-06)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-78661](https://nvd.nist.gov/vuln/detail/CVE-2026-78661)
+    * [CVE-2026-97045](https://nvd.nist.gov/vuln/detail/CVE-2026-97045)
+    * [CVE-2026-115506](https://nvd.nist.gov/vuln/detail/CVE-2026-115506)
+    * [CVE-2026-118370](https://nvd.nist.gov/vuln/detail/CVE-2026-118370)
+    * [CVE-2026-117610](https://nvd.nist.gov/vuln/detail/CVE-2026-117610)
+    * [CVE-2026-113351](https://nvd.nist.gov/vuln/detail/CVE-2026-113351)
+
 ### 6.13.4 (2026-10-26)
 
 * Removed the distrusted eMudhra emSign root certificates (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
@@ -1432,6 +1464,13 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](cloud-image.md)
 
+### 6.13.5 (2026-11-06)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-78661](https://nvd.nist.gov/vuln/detail/CVE-2026-78661)
+    * [CVE-2026-97045](https://nvd.nist.gov/vuln/detail/CVE-2026-97045)
+
 ### 6.13.4 (2026-10-26)
 
 * Removed the distrusted eMudhra emSign root certificates (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
@@ -1723,6 +1762,13 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-13-5-20261105-160424 (2026-11-06)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-78661](https://nvd.nist.gov/vuln/detail/CVE-2026-78661)
+    * [CVE-2026-97045](https://nvd.nist.gov/vuln/detail/CVE-2026-97045)
 
 ### wallarm-node-6-13-4-20261026-124042 (2026-10-26)
 
