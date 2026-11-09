@@ -51,7 +51,7 @@ ECS has no Kubernetes Secret, so the task definition supplies what the scanner n
 2. In the cert, refer to it as namespace `ecs`, Secret = the task family, key = `<NAME>`.
 3. Choose what the app container gets:
     * **The real value** — keep the app's own variable as it is. Only egress is checked.
-    * **A placeholder** — set the app's variable to `aih:resolve:ecs/<task family>/<NAME>:0` and add `CAP_BROKER=true` to the `higgs-scanner` container. The proxy puts the value into a request only toward the bound destinations.
+    * **A placeholder** — set the app's variable to `aih:resolve:ecs/<task family>/<NAME>:0000` (the suffix is 4 to 32 hex digits) and add `CAP_BROKER=true` to the `higgs-scanner` container. The proxy puts the value into a request only toward the bound destinations.
 
 The scanner reports which `AIH_SECRET__` secrets the task holds, so **This agent reads** lists them, and a drafted cert binds them as on Kubernetes. A placeholder needs a task without `"pidMode": "task"`, the package-scan add-on: with a shared process namespace the app could read the scanner container's environment, so the scanner does not provide values and the placeholder fails at the destination.
 
