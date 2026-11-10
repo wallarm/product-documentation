@@ -59,13 +59,13 @@ One Platform version pins the component versions it was tested with, and the ins
 substrate needs. This table is generated from the shipped charts, not written by hand:
 
 
-**Current product version:** AI Hypervisor `1.71.0` — the `aih` chart line (UI, API, ClickHouse).
+**Current product version:** AI Hypervisor `1.71.1` — the `aih` chart line (UI, API, ClickHouse).
 
 This product version was built and tested against these component versions:
 
 | Component | Chart | Version |
 |---|---|---|
-| AI Hypervisor (platform) | `aih` | `1.71.0` |
+| AI Hypervisor (platform) | `aih` | `1.71.1` |
 | Scanner component | `aih-scanner` | `3.3.0` |
 | Control plane — auth | `aih-auth` | `1.36.0` |
 | Control plane — provisioner | `aih-provisioner` | `1.36.0` |
