@@ -427,6 +427,7 @@ nav:
     - Scanner Installation:
       - Install the Scanner: ai-hypervisor/deploy.md
       - Chart Values: ai-hypervisor/chart-values.md
+      - Scanner Permissions: ai-hypervisor/permissions.md
       - Scanner Permissions and Data: ai-hypervisor/scanner-permissions.md
       - Labels and Annotations: ai-hypervisor/annotations.md
       - Versioning: ai-hypervisor/versioning.md
