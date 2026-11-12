@@ -1,8 +1,8 @@
 # Attack Paths in Infrastructure Discovery <a href="../../about-wallarm/subscription-plans/#wallarm-infrastructure-discovery"><img src="../../images/infrastructure-discovery-tag.svg" class="non-zoomable" style="border: none;"></a>
 
-A [finding](exploring.md#findings) tells you that a single resource is misconfigured. An **attack path** tells you which chain of misconfigurations actually leads somewhere — for example, that a publicly reachable EKS cluster is the first hop of a route that ends at a high-value IAM role, and that closing that one cluster removes 13 routes to your most valuable resources at once.
+A [finding](security.md#findings) tells you that a single resource is misconfigured. An **attack path** tells you which chain of misconfigurations actually leads somewhere — for example, that a publicly reachable EKS cluster is the first hop of a route that ends at a high-value IAM role, and that closing that one cluster removes 13 routes to your most valuable resources at once.
 
-The **Attack Paths** tab in the **Infrastructure Discovery** section is where you review those chains, alongside the [Graph](exploring.md#graph) and [Security](exploring.md#security) tabs. It has three sub-tabs: **Paths**, **Crown jewels**, and **Key nodes**.
+The **Attack Paths** tab in the **Infrastructure Discovery** section is where you review those chains, alongside the [Graph](graph.md) and [Security](security.md) tabs. It has three sub-tabs: **Paths**, **Crown jewels**, and **Key nodes**.
 
 ## How attack paths are built
 
@@ -15,7 +15,7 @@ External exposure  →  Pivot  →  Crown jewel
 Every hop is backed by a specific configuration fact — a public API endpoint, a `0.0.0.0/0` ingress rule, a public-access flag, an IAM statement, a trust policy, a `PassRole` grant. Nothing is inferred from resource names or tags alone. Findings raise the risk of a path that already exists, but they never create one on their own.
 
 !!! info "Read-only analysis"
-    Infrastructure Discovery never modifies your cloud resources, so it does not remediate a path for you. Use the recommendation it provides to make the change in AWS, or handle the underlying finding with [policies](exploring.md#policies).
+    Infrastructure Discovery never modifies your cloud resources, so it does not remediate a path for you. Use the recommendation it provides to make the change in AWS, or handle the underlying finding with [policies](security.md#policies).
 
 ## Concepts
 

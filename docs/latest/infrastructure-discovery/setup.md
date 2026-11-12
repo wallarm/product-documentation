@@ -21,7 +21,7 @@ Self-service sign-up runs through AWS Marketplace:
     Wallarm creates the account and activates the Infrastructure Discovery subscription on it automatically — no extra step is required.
 1. Check your inbox. Wallarm sends a confirmation email with your Wallarm Console credentials and next-step instructions.
 1. Sign in to Wallarm Console, [connect your AWS accounts](#2-connect-an-aws-account), and wait for the first scan to complete — typically a few minutes depending on account size.
-1. [Explore your inventory](exploring.md).
+1. [Explore your inventory](graph.md).
 
 !!! info "Wallarm Cloud region"
     The AWS Marketplace sign-up flow provisions a [US Wallarm Cloud](../about-wallarm/api-security-overview.md#cloud) account by default, and your scan data is stored there. Infrastructure Discovery also runs on the EU Wallarm Cloud instance — if you need an EU account, contact [sales@wallarm.com](mailto:sales@wallarm.com) instead of subscribing through AWS Marketplace.
