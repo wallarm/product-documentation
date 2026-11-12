@@ -47,6 +47,7 @@ permissions:
   hostPaths:                  # host path -> false: not mounted
     /sys/kernel/debug: false
   podSecurity: restricted     # baseline | restricted: a pod spec that Pod Security level admits
+  criticalPriority: false     # no system-node-critical priority class
 ```
 
 - **`podSecurity: baseline`** and **`podSecurity: restricted`** render pod specs that the namespace's Pod
@@ -55,6 +56,8 @@ permissions:
   reports capture as off.
 - **`linuxCaps`** lists the only capabilities a container may add. `BPF` and `PERFMON` stand in for
   `SYS_ADMIN` for eBPF.
+- **`criticalPriority: false`** drops the `system-node-critical` priority class. Use it where the cluster
+  refuses that class outside `kube-system`, as GKE does without a matching ResourceQuota.
 
 ## Namespace-scoped install
 
