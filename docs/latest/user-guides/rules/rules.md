@@ -131,6 +131,8 @@ You can create rules with specified action but not linked to any endpoint - they
 
 To add a new rule, go to the **WAF Rules** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules) Cloud, click **Create rule** and pick a rule type. A rule can be added to an existing [branch](#rule-branches) or from scratch, which creates a new branch if one does not exist.
 
+You can also create a rule from an endpoint or a request parameter in [API Discovery](../../api-discovery/exploring.md#creating-rules-mitigation-controls-and-triggers). The conditions and the point are then prefilled.
+
 Note that a rule is applied to the request only if some conditions are met (like target endpoint, method, presence of some parameters or values, etc.). Also, it is often applied only to some request parts. For a better understanding of request structure interaction with the rules, it is advisable to learn how the filtering node [analyzes the requests][link-request-processing].
 
 Rule conditions may be defined using:
