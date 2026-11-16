@@ -311,6 +311,17 @@
 /7.x/glossary-en/  /7.x/about-wallarm/protecting-against-attacks/
 /5.x/glossary-en/  /5.x/about-wallarm/protecting-against-attacks/
 
+# Security Edge telemetry portal pages removed
+/installation/security-edge/inline/telemetry-portal/  /installation/security-edge/inline/overview/
+/installation/security-edge/inline/telemetry-portal-main-dashboard/  /installation/security-edge/inline/overview/
+/installation/security-edge/inline/telemetry-portal-logs-dashboard/  /installation/security-edge/inline/overview/
+/7.x/installation/security-edge/inline/telemetry-portal/  /7.x/installation/security-edge/inline/overview/
+/7.x/installation/security-edge/inline/telemetry-portal-main-dashboard/  /7.x/installation/security-edge/inline/overview/
+/7.x/installation/security-edge/inline/telemetry-portal-logs-dashboard/  /7.x/installation/security-edge/inline/overview/
+/5.x/installation/security-edge/inline/telemetry-portal/  /5.x/installation/security-edge/inline/overview/
+/5.x/installation/security-edge/inline/telemetry-portal-main-dashboard/  /5.x/installation/security-edge/inline/overview/
+/5.x/installation/security-edge/inline/telemetry-portal-logs-dashboard/  /5.x/installation/security-edge/inline/overview/
+
 # Serve favicon.png under the conventional /favicon.ico path. Browsers viewing
 # raw .md / .txt files have no HTML <head> to read <link rel="icon"> from, so
 # they fall back to auto-discovering /favicon.ico.

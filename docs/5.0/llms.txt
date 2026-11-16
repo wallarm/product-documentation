@@ -135,12 +135,6 @@
 - [Edge Inline NGINX Overrides](https://docs.wallarm.com/5.x/installation/security-edge/inline/nginx-overrides.md): Override NGINX directives on Edge at server / location level.
 - [Edge Inline Upgrade & Management](https://docs.wallarm.com/5.x/installation/security-edge/inline/upgrade-and-management.md): Manage Edge configuration and upgrade Edge Nodes from the Console.
 
-###### Security Edge Telemetry Portal
-
-- [Edge Telemetry Portal Overview](https://docs.wallarm.com/5.x/installation/security-edge/inline/telemetry-portal.md): Grafana dashboards with real-time Edge metrics — overview.
-- [Edge Telemetry Main Dashboard](https://docs.wallarm.com/5.x/installation/security-edge/inline/telemetry-portal-main-dashboard.md): "Portal Inline Main" dashboard — traffic, latency, blocks.
-- [Edge Telemetry Logs Dashboard](https://docs.wallarm.com/5.x/installation/security-edge/inline/telemetry-portal-logs-dashboard.md): "Portal Inline Logs" dashboard — request and access logs.
-
 - [Security Edge Connectors](https://docs.wallarm.com/5.x/installation/security-edge/se-connector.md): Managed connector deployments via Security Edge for non-inline integrations.
 
 #### Kubernetes
