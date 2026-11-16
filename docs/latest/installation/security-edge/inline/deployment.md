@@ -249,4 +249,3 @@ Traffic routing in this case is managed by your DNS provider. By default, most D
 * [Custom block page](custom-block-page.md)
 * [NGINX overrides](nginx-overrides.md)
 * [Edge Node upgrade](upgrade-and-management.md)
-* [Telemetry portal](telemetry-portal.md)
