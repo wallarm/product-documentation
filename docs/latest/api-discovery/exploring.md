@@ -331,18 +331,18 @@ For a mitigation control created from a parameter, the parameter is set as follo
 
 ### Prefilled conditions
 
-The prefilled conditions describe exactly one endpoint: the method, the host, every fixed path segment, the action name and the action extension. A variable path segment such as `{parameter_1}` gets no condition, so the object applies to any value of this segment.
+The prefilled conditions describe exactly one endpoint: the method, the host, every fixed path segment, the action name, the action extension and the endpoint's application. A variable path segment such as `{parameter_1}` gets no condition, so the object applies to any value of this segment.
 
 For example, your API accepts documents as base64 strings in the `file_content` field of `POST api.example.com /api/documents/{parameter_1}/upload`, and Wallarm reports false positives on this content. To stop them for this field only, in the `file_content` row of the **Request body** tab, click **⋯** → **Create WAF rule** → **Binary data processing**. The form opens with the following settings:
 
-* Conditions: `method` = `POST`, `HOST` Aa `api.example.com`, `path 0` = `api`, `path 1` = `documents`, `path 3` ∅, `action_name` = `upload`, `action_ext` ∅.
+* Conditions: `method` = `POST`, `HOST` Aa `api.example.com`, `path 0` = `api`, `path 1` = `documents`, `path 3` ∅, `action_name` = `upload`, `action_ext` ∅, and `instance` set to the endpoint's application.
 * Point: `post` › `json_doc` › `hash` › `file_content`.
 
 For other hosts, parameters and endpoints:
 
 * A host with a wildcard, such as `*.example.com`, becomes a [regular expression](../user-guides/rules/rules.md#condition-type-regex) condition: `^[^.]+\.example\.com$`.
 * A path parameter becomes the `path N` point, for example, `path 2` for `{parameter_1}` above.
-* If the endpoint belongs to an [application](../user-guides/settings/applications.md), the application is added as a condition. You can change or remove it in the form.
+* The endpoint's [application](../user-guides/settings/applications.md), the default one included, is added as the `instance` condition. You can change or remove it in the form.
 
 ### Triggers
 
