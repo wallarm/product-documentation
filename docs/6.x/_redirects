@@ -258,6 +258,9 @@
 /5.x/installation/inline/security-edge-inline/ /5.x/installation/security-edge/inline/deployment/
 /5.x/installation/security-edge/deployment/ /5.x/installation/security-edge/inline/deployment/
 /5.x/installation/se-connector/ /5.x/installation/security-edge/se-connector/
+/installation/security-edge/free-tier/  /installation/security-edge/overview/
+/7.x/installation/security-edge/free-tier/  /7.x/installation/security-edge/overview/
+/5.x/installation/security-edge/free-tier/  /5.x/installation/security-edge/overview/
 
 /installation/connectors/kong-api-gateway/ /installation/connectors/kong-ingress-controller/
 
@@ -358,8 +361,6 @@
 /pt-br/*  /:splat  301
 /7.x/updating-migrating/older-versions/*  /7.x/updating-migrating/versioning-policy/#version-list
 
-/installation/security-edge/free-tier/  /installation/security-edge/overview/
-/7.x/installation/security-edge/free-tier/  /7.x/installation/security-edge/overview/
 
 # Serve the version-root sitemap for a sitemap.xml requested at any depth. The
 # theme JS fetches sitemap.xml relative to the current page, so nested paths
