@@ -190,20 +190,6 @@ Once the certificate CNAME is verified, a **Traffic CNAME** is available for eac
 
 DNS changes can take up to 24 hours to propagate. Once propagated, Wallarm will proxy all traffic to 
 
-## Telemetry portal
-
-The telemetry portal for Security Edge Inline provides a Grafana dashboard with real-time insights into metrics on traffic processed by Wallarm.
-
-The dashboard displays key metrics such as total processed requests, RPS, detected and blocked attacks, deployed Edge node number, resource consumption, number of 5xx responses, etc.
-
-![!](../../images/waf-installation/security-edge/inline/telemetry-portal.png)
-
-**Run telemetry portal** once the Node reaches the **Active** status. It becomes accessible via a direct link from the Security Edge section ~5 minutes after initiation.
-
-![!](../../images/waf-installation/security-edge/inline/run-telemetry-portal.png)
-
-From the Grafana home page, to reach the dashboard, navigate to **Dashboards** → **Wallarm** → **Portal Inline Overview**.
-
 ## Upgrading the Edge Inline
 
 When **Auto update** is enabled in **Admin settings**, the Edge node is automatically upgraded as soon as a new minor or patch version is released (depending on the selected option). All your initial settings are preserved. Auto update is off by default.

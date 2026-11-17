@@ -258,6 +258,9 @@
 /5.x/installation/inline/security-edge-inline/ /5.x/installation/security-edge/inline/deployment/
 /5.x/installation/security-edge/deployment/ /5.x/installation/security-edge/inline/deployment/
 /5.x/installation/se-connector/ /5.x/installation/security-edge/se-connector/
+/installation/security-edge/free-tier/  /installation/security-edge/overview/
+/7.x/installation/security-edge/free-tier/  /7.x/installation/security-edge/overview/
+/5.x/installation/security-edge/free-tier/  /5.x/installation/security-edge/overview/
 
 /installation/connectors/kong-api-gateway/ /installation/connectors/kong-ingress-controller/
 
@@ -311,6 +314,17 @@
 /7.x/glossary-en/  /7.x/about-wallarm/protecting-against-attacks/
 /5.x/glossary-en/  /5.x/about-wallarm/protecting-against-attacks/
 
+# Security Edge telemetry portal pages removed
+/installation/security-edge/inline/telemetry-portal/  /installation/security-edge/inline/overview/
+/installation/security-edge/inline/telemetry-portal-main-dashboard/  /installation/security-edge/inline/overview/
+/installation/security-edge/inline/telemetry-portal-logs-dashboard/  /installation/security-edge/inline/overview/
+/7.x/installation/security-edge/inline/telemetry-portal/  /7.x/installation/security-edge/inline/overview/
+/7.x/installation/security-edge/inline/telemetry-portal-main-dashboard/  /7.x/installation/security-edge/inline/overview/
+/7.x/installation/security-edge/inline/telemetry-portal-logs-dashboard/  /7.x/installation/security-edge/inline/overview/
+/5.x/installation/security-edge/inline/telemetry-portal/  /5.x/installation/security-edge/inline/overview/
+/5.x/installation/security-edge/inline/telemetry-portal-main-dashboard/  /5.x/installation/security-edge/inline/overview/
+/5.x/installation/security-edge/inline/telemetry-portal-logs-dashboard/  /5.x/installation/security-edge/inline/overview/
+
 # Serve favicon.png under the conventional /favicon.ico path. Browsers viewing
 # raw .md / .txt files have no HTML <head> to read <link rel="icon"> from, so
 # they fall back to auto-discovering /favicon.ico.
@@ -347,8 +361,6 @@
 /pt-br/*  /:splat  301
 /7.x/updating-migrating/older-versions/*  /7.x/updating-migrating/versioning-policy/#version-list
 
-/installation/security-edge/free-tier/  /installation/security-edge/overview/
-/7.x/installation/security-edge/free-tier/  /7.x/installation/security-edge/overview/
 
 # Serve the version-root sitemap for a sitemap.xml requested at any depth. The
 # theme JS fetches sitemap.xml relative to the current page, so nested paths
