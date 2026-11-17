@@ -12,6 +12,17 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to upgrade](all-in-one.md)
 
+### 0.25.12 (2026-11-16)
+
+* Bumped the base components to NGINX Node 6.13.5
+* Bumped the bundled Brotli decoder to 1.0.10
+* Bumped golang.org/x/net to 0.62.0
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-78661](https://nvd.nist.gov/vuln/detail/CVE-2026-78661)
+    * [CVE-2026-97045](https://nvd.nist.gov/vuln/detail/CVE-2026-97045)
+    * [CVE-2026-111497](https://nvd.nist.gov/vuln/detail/CVE-2026-111497)
+
 ### 0.25.11 (2026-10-26)
 
 * Removed the distrusted eMudhra emSign root certificates (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
@@ -366,6 +377,18 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.25.12 (2026-11-16)
+
+* Bumped the base components to NGINX Node 6.13.5
+* Bumped the bundled Brotli decoder to 1.0.10
+* Bumped golang.org/x/net to 0.62.0
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-78661](https://nvd.nist.gov/vuln/detail/CVE-2026-78661)
+    * [CVE-2026-97045](https://nvd.nist.gov/vuln/detail/CVE-2026-97045)
+    * [CVE-2026-111497](https://nvd.nist.gov/vuln/detail/CVE-2026-111497)
+    * [CVE-2026-4738](https://nvd.nist.gov/vuln/detail/CVE-2026-4738)
+
 ### 0.25.11 (2026-10-26)
 
 * Removed the distrusted eMudhra emSign root certificates (emSign Root CA - C1, emSign ECC Root CA - C3, and emSign ECC Root CA - G3) from the Node's bundled CA certificate store
@@ -687,6 +710,18 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [connectors](../../installation/nginx-native-node-internals.md#connectors_1).
 
 [How to upgrade](docker-image.md)
+
+### 0.25.12 (2026-11-16)
+
+* Bumped the base components to NGINX Node 6.13.5
+* Bumped the bundled Brotli decoder to 1.0.10
+* Bumped golang.org/x/net to 0.62.0
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-78661](https://nvd.nist.gov/vuln/detail/CVE-2026-78661)
+    * [CVE-2026-97045](https://nvd.nist.gov/vuln/detail/CVE-2026-97045)
+    * [CVE-2026-111497](https://nvd.nist.gov/vuln/detail/CVE-2026-111497)
+    * [CVE-2026-4738](https://nvd.nist.gov/vuln/detail/CVE-2026-4738)
 
 ### 0.25.11 (2026-10-26)
 
