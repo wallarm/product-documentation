@@ -16,7 +16,7 @@ This will allow Wallarm components, including API Attack Surface Management, to 
 
 To use AASM, Wallarm's [API Attack Surface](../about-wallarm/subscription-plans.md#api-attack-surface) subscription plan should be active for your company. To activate, do one of the following:
 
-* If you do not have a Wallarm account yet, [sign up](../quickstart/getting-started.md#security-edge-free-tier) to Wallarm and select to activate AASM during account creation. Scanning of the used email's domain starts immediately, and after activation you can [add additional domains](setup.md) to the scope.
+* If you do not have a Wallarm account yet, [sign up](../quickstart/getting-started.md#wallarm-account) to Wallarm and select to activate AASM during account creation. Scanning of the used email's domain starts immediately, and after activation you can [add additional domains](setup.md) to the scope.
 
 * If you already have a Wallarm account, contact [sales@wallarm.com](mailto:sales@wallarm.com).
 

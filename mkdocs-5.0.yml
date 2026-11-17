@@ -128,7 +128,6 @@ nav:
     - All Deployment Options: installation/supported-deployment-options.md
     - Security Edge:
       - Overview: installation/security-edge/overview.md
-      - Free Tier: installation/security-edge/free-tier.md
       - Inline:
         - Overview: installation/security-edge/inline/overview.md
         - Deployment Guide: installation/security-edge/inline/deployment.md
@@ -138,10 +137,6 @@ nav:
         - Multi-Region: installation/security-edge/inline/multi-region.md
         - NGINX Overrides: installation/security-edge/inline/nginx-overrides.md
         - Upgrade & Management: installation/security-edge/inline/upgrade-and-management.md
-        - Telemetry Portal:
-          - Overview: installation/security-edge/inline/telemetry-portal.md
-          - Main Dashboard: installation/security-edge/inline/telemetry-portal-main-dashboard.md
-          - Logs Dashboard: installation/security-edge/inline/telemetry-portal-logs-dashboard.md
       - Connectors: installation/security-edge/se-connector.md
     - Kubernetes:
       - Istio: installation/connectors/istio.md

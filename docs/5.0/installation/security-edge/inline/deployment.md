@@ -11,8 +11,6 @@ To deploy the Wallarm [Security Edge for inline traffic analysis](overview.md), 
 
 To run the Edge inline, go to the Wallarm Console → **Security Edge** → **Inline** → **Configure**. If this section is unavailable, contact sales@wallarm.com to access the required subscription.
 
-On the Free Tier, after deploying Edge Nodes via [Quick setup](../free-tier.md), the **Security Edge** section lets you adjust settings.
-
 You can update the Edge Node deployment settings at any time. The Node will be re‑deployed with existing CNAME and A records remaining unchanged.
 
 See a demo of the full configuration flow:
@@ -241,4 +239,3 @@ Traffic routing in this case is managed by your DNS provider. By default, most D
 * [Custom block page](custom-block-page.md)
 * [NGINX overrides](nginx-overrides.md)
 * [Edge Node upgrade](upgrade-and-management.md)
-* [Telemetry portal](telemetry-portal.md)

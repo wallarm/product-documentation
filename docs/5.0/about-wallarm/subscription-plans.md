@@ -61,7 +61,7 @@ The subscription plan provides the [API Attack Surface Management (AASM)](../api
 
 To activate the subscription plan, do one of the following:
 
-* If you do not have a Wallarm account yet, [sign up](../quickstart/getting-started.md#self-signup) to Wallarm and enable AASM during account creation. Scanning of your email's domain starts immediately, and you can add more domains afterwards.
+* If you do not have a Wallarm account yet, [sign up](../quickstart/getting-started.md#wallarm-account) to Wallarm and enable AASM during account creation. Scanning of your email's domain starts immediately, and you can add more domains afterwards.
 * If you already have a Wallarm account, contact [sales@wallarm.com](mailto:sales@wallarm.com).
 
 !!! info "Relations to other plans"
@@ -91,26 +91,3 @@ Available Security Edge deployments include:
 * [Security Edge Connectors](../installation/security-edge/se-connector.md)
 
 To inquire about this subscription, please contact [sales@wallarm.com](mailto:sales@wallarm.com).
-
-## Security Edge Free Tier
-
-For smaller companies and educational purposes, Wallarm offers the option to create a [Security Edge](#security-edge-paid-plan) Free Tier account yourself. You can choose the Wallarm cloud that best suits your storage preferences:
-
-* [Create Free Tier account on the US Wallarm Cloud](https://us1.my.wallarm.com/signup)
-* [Create Free Tier account on the EU Wallarm Cloud](https://my.wallarm.com/signup)
-
-The Security Edge Free Tier account allows:
-
-* Security Edge functionality, with some feature limitations.
-* Process up to **500 thousand requests per month** with no limitation in time.
-* Access to the Wallarm platform as [Advanced API Security](#core-subscription-plans), except for the following:
-
-    * [Vulnerability assessment](../user-guides/vulnerabilities.md)
-    * [API Abuse Prevention](../api-abuse-prevention/overview.md)
-    * Limited to 3 users per company account
-    * Telemetry portal of Security Edge
-    * Multi-cloud Security Edge deployment
-
-If a Free Tier account exceeds 100% of the monthly quota, your access to the Wallarm Console is disabled, along with all integrations. When reaching 200%, protection on your Wallarm nodes is disabled. These restrictions will be in effect until the first day of the next month.
-
-To remove all restrictions, contact [sales@wallarm.com](mailto:sales@wallarm.com).

@@ -7,7 +7,9 @@
 
 # Custom Attack Detectors
 
-Wallarm provides the **Create regexp-based attack indicator** [rule](../../user-guides/rules/rules.md) to define your own attack signs that are described with regular expressions.
+Wallarm provides the **Custom attack detector** [rule](../../user-guides/rules/rules.md) to define your own attack signs that are described with regular expressions.
+
+<a id="adding-a-new-detection-rule"></a>
 
 ## Creating and applying rule
 
@@ -21,9 +23,9 @@ To set and apply your own attack detector:
     * **Regular expression** - regular expression (signature). If the value of the following parameter matches the expression, that request is detected as an attack. Syntax and specifics of regular expressions are described in the [instructions on adding rules](rules.md#condition-type-regex).
 
         !!! warning "Changing the regular expression specified in the rule"
-            Changing the regular expression specified in the existing rule of the type **Create regexp-based attack indicator** results in automatic deletion of the rules [**Disable regexp-based attack detection**](#partial-disabling) that use the previous expression.
+            Changing the regular expression specified in the existing rule of the type **Custom attack detector** results in automatic deletion of the rules [**Disable custom attack detector**](#partial-disabling) that use the previous expression.
 
-            To disable attack detection by a new regular expression, please create a new **Disable regexp-based attack detection** rule with the new regular expression specified.
+            To disable attack detection by a new regular expression, please create a new **Disable custom attack detector** rule with the new regular expression specified.
 
     * **Experimental** - this flag allows you to safely check the triggering of a regular expression without blocking requests. The requests will not be blocked even when the filter node is set to the blocking mode. These requests will be considered as attacks detected by the experimental method and will be hidden from the event list by default. They can be accessed using search query `experimental attacks`.
 
@@ -88,16 +90,18 @@ In the rule:
 * Selecting **Virtual patch** as attack type leads to blocking
 * All requests containing `l9explore` in the `USER-AGENT` header will be blocked whether they are followed by anything (like version number - `l9explore/1.2.0`) or not (`l9explore`)
 
+<a id="partial-disabling-of-a-new-detection-rule"></a>
+
 ## Partial disabling
 
-If the created rule should be partially disabled for a particular branch, this can easily be done by creating the **Disable regexp-based attack detection** rule with the following fields:
+If the created rule should be partially disabled for a particular branch, this can easily be done by creating the **Disable custom attack detector** rule with the following fields:
 
 - **Regular expression**: previously created regular expressions that must be ignored.
 
     !!! warning "Behavior of the rule if the regular expression was changed"
-        Changing the regular expression specified in the existing rule of the type [**Create regexp-based attack indicator**](#creating-and-applying-rule) results in automatic deletion of the rules **Disable regexp-based attack detection** that use the previous expression.
+        Changing the regular expression specified in the existing rule of the type [**Custom attack detector**](#creating-and-applying-rule) results in automatic deletion of the rules **Disable custom attack detector** that use the previous expression.
 
-        To disable attack detection by a new regular expression, please create a new rule **Disable regexp-based attack detection** with the new regular expression specified.
+        To disable attack detection by a new regular expression, please create a new rule **Disable custom attack detector** with the new regular expression specified.
 
 - **in this part of request**: indicates the parameter that requires setting up an exception.
 
@@ -107,8 +111,8 @@ Let us say you have a script at `example.com/test.php`, and you want to change t
 
 To create the relevant rule:
 
-1. Go to the **Rules WAF** tab
-1. Find or create the branch for `example.com/test.php` and click **Add rule**.
+1. Go to the **WAF Rules** tab
+1. Find or create the branch for `example.com/test.php` and click **Create rule**.
 1. Choose **Fine-tuning attack detection** → **Disable custom attack detector**.
 1. Select the regular expression that you want to disable.
 1. Set the point `Header X-AUTHENTICATION`.

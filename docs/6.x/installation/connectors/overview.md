@@ -37,9 +37,11 @@ Wallarm offers connectors for the following platforms:
 | [Kong Ingress Controller](kong-ingress-controller.md) | In-line | Self-hosted |
 | [Istio Ingress](istio.md) | In-line, out-of-band | Self-hosted |
 | [Gloo Gateway](gloo.md) | In-line | Self-hosted |
+| [Traefik](traefik.md) | In-line, out-of-band | Self-hosted |
 | [Broadcom Layer7 API Gateways](layer7-api-gateway.md) | In-line | Self-hosted |
 | [Fastly](fastly.md) | In-line, out-of-band | Security Edge, self-hosted |
 | [IBM DataPower](ibm-api-connect.md) | In-line | Security Edge, self-hosted |
 | [Azure API Management](azure-api-management.md) | In-line, out-of-band | Security Edge, self-hosted |
+| [SAP API Management](sap-api-management.md) | In-line, out-of-band | Self-hosted |
 
 If you couldn't find the connector you are looking for, please feel free to contact our [Sales team](mailto:sales@wallarm.com) to discuss your requirements and explore potential solutions.

@@ -302,6 +302,11 @@ Choose an API management connector if you expose APIs through one of these platf
             <h3>IBM API Connect</h3>
             <p>Deploy Wallarm to secure APIs managed through IBM API Connect</p>
         </a>
+
+        <a class="do-card" href="connectors/sap-api-management/">
+            <h3>SAP API Management</h3>
+            <p>Secure APIs managed with SAP Integration Suite API Management</p>
+        </a>
     </div>
 
     <div class="do-nested" data-for="apim-mulesoft">

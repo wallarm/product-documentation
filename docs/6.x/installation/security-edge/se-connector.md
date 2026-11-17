@@ -30,8 +30,6 @@ The [**Security Edge**](overview.md) platform provides a managed service for dep
 
 To run the Security Edge Connector, go to the Wallarm Console → **Security Edge** → **Connectors** → **Add connector**. If this section is unavailable, contact sales@wallarm.com to access the required subscription.
 
-On the Free Tier, after deploying Edge Nodes via [Quick setup](free-tier.md), the **Security Edge** section lets you adjust settings.
-
 ### 1. Deploying the Edge Node for a connector
 
 Only the connector settings need to be specified. Wallarm handles the deployment and provides an endpoint for routing traffic from the platform.
@@ -91,20 +89,6 @@ After deploying the Edge Node, you will need to inject Wallarm code into your pl
     * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly)
     * [IBM DataPower](../connectors/ibm-api-connect.md#2-obtain-and-apply-the-wallarm-policies-to-apis-in-ibm-api-connect)
     * [Azure API Management](../connectors/azure-api-management.md#2-create-named-values-in-azure)
-
-## Telemetry portal
-
-The telemetry portal for Security Edge Connectors provides a Grafana dashboard with real-time insights into metrics on traffic processed by Wallarm.
-
-The dashboard displays key metrics such as total processed requests, RPS, detected and blocked attacks, deployed Edge Node number, resource consumption, number of 5xx responses, etc.
-
-![!](../../images/waf-installation/security-edge/connectors/telemetry-portal.png)
-
-**Run telemetry portal** once the Node reaches the **Active** status. It becomes accessible via a direct link from the Security Edge section ~5 minutes after initiation.
-
-![!](../../images/waf-installation/security-edge/connectors/run-telemetry-portal.png)
-
-From the Grafana home page, to reach the dashboard, navigate to **Dashboards** → **Wallarm** → **Portal Connector Overview**. For multiple Nodes, switch the **Tenant ID** corresponding to the connector endpoint to view each dashboard.
 
 ## Upgrading the Edge Node
 

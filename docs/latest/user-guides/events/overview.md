@@ -11,11 +11,11 @@ Threat Management provides a full picture of what is happening:
 * Work in the same way with [incidents](#incidents).
 * Is individual attack not giving you full understanding of what is happening? Switch to the [session](#sessions) your attack is part of and see all user's previous and subsequent activities.
 * Is session around some endpoints? Switch to full endpoint information that Wallarm automatically discovered (requires [API Discovery](../../api-discovery/overview.md)). Quickly create rules for your endpoint here.
-* Do you want informative documents on attacks, incidents or vulnerabilities? Generate PDF or CSV [reports](#reports) with the filtered data of your choice.
+* Do you want informative documents on attacks, incidents or vulnerabilities? Export the filtered data as [reports](#reports).
 
 ![Threat Management](../../images/user-guides/events/tm-diagram.png)
 
-All Threat Management components include advanced search and filtering capabilities. You can also export attacks to CSV and make PDF and CSV reports for incidents with the filtered content of your choice. Wallarm uses sophisticated grouping mechanisms to logically combine requests into attacks and sessions and provides you with the ability to modify how Sessions are detected to make a full match to your application logic.
+All Threat Management components include advanced search and filtering capabilities. You can also export attacks and incidents to CSV and download reports on security issues with the filtered content of your choice. Wallarm uses sophisticated grouping mechanisms to logically combine requests into attacks and sessions and provides you with the ability to modify how Sessions are detected to make a full match to your application logic.
 
 ## Dashboards
 
@@ -58,7 +58,7 @@ The incidents are the attacks targeted at a confirmed vulnerability. The [**Inci
 * Have all info and tools available in **Attacks**
 * Get related vulnerability data and full information about it
 
-![Threat Management - Incidents](../../images/user-guides/events/incident-vuln.png)
+![Threat Management - Incidents](../../images/user-guides/events/incident-request-details.png)
 
 ## Sessions
 
@@ -68,6 +68,6 @@ The primary challenge the [**API Sessions**](../../api-sessions/overview.md) add
 
 ## Reports
 
-For incidents or vulnerabilities, generate PDF or CSV [reports](../../user-guides/search-and-filters/custom-report.md). Do you want selected data? Apply filters and only filtered data will become part of the report.
+For security issues, download a CSV or JSON [report](../search-and-filters/custom-report.md#security-issues). Do you want selected data? Apply filters and only filtered data will become part of the report.
 
-For attacks, use [CSV export](../search-and-filters/custom-report.md#attacks): Wallarm exports the attacks matching your filter and emails you a download link.
+For attacks and incidents, use [CSV export](../search-and-filters/custom-report.md#attacks): Wallarm exports the events matching your filter and emails you a download link.

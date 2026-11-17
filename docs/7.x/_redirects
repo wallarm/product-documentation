@@ -317,9 +317,6 @@
 /vulnerability-detection/threat-replay-testing/* /about-wallarm/detecting-vulnerabilities/#detection-methods
 /6.x/vulnerability-detection/threat-replay-testing/* /6.x/about-wallarm/detecting-vulnerabilities/#detection-methods
 /5.x/vulnerability-detection/threat-replay-testing/* /5.x/about-wallarm/detecting-vulnerabilities/#detection-methods
-/vulnerability-detection/schema-based-testing/* /about-wallarm/detecting-vulnerabilities/#detection-methods
-/6.x/vulnerability-detection/schema-based-testing/* /6.x/about-wallarm/detecting-vulnerabilities/#detection-methods
-/5.x/vulnerability-detection/schema-based-testing/* /5.x/about-wallarm/detecting-vulnerabilities/#detection-methods
 /6.x/vulnerability-detection/api-security-testing-via-postman/* /6.x/about-wallarm/detecting-vulnerabilities/#detection-methods
 /vulnerability-detection/api-security-testing-via-postman/* /about-wallarm/detecting-vulnerabilities/#detection-methods
 /updating-migrating/older-versions/*  /updating-migrating/versioning-policy/#version-list

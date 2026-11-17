@@ -138,7 +138,6 @@ search:
 #### Security Edge (Managed)
 
 - [Security Edge Overview](https://docs.wallarm.com/installation/security-edge/overview.md): Wallarm-managed deployment of nodes in geographically distributed PoPs — no infrastructure to run (also: managed edge, SaaS deployment).
-- [Security Edge Free Tier](https://docs.wallarm.com/installation/security-edge/free-tier.md): Free Security Edge tier — up to 500,000 requests per month.
 
 ##### Security Edge Inline
 
@@ -152,12 +151,6 @@ search:
 - [Edge Inline Multi-Region Deployment](https://docs.wallarm.com/installation/security-edge/inline/multi-region.md): Deploy Edge Nodes across multiple regions / cloud providers for geo-redundancy.
 - [Edge Inline NGINX Overrides](https://docs.wallarm.com/installation/security-edge/inline/nginx-overrides.md): Override NGINX directives on Edge at server / location level.
 - [Edge Inline Upgrade & Management](https://docs.wallarm.com/installation/security-edge/inline/upgrade-and-management.md): Manage Edge configuration and upgrade Edge Nodes from the Console.
-
-###### Security Edge Telemetry Portal
-
-- [Edge Telemetry Portal Overview](https://docs.wallarm.com/installation/security-edge/inline/telemetry-portal.md): Grafana dashboards with real-time Edge metrics — overview.
-- [Edge Telemetry Main Dashboard](https://docs.wallarm.com/installation/security-edge/inline/telemetry-portal-main-dashboard.md): "Portal Inline Main" dashboard — traffic, latency, blocks.
-- [Edge Telemetry Logs Dashboard](https://docs.wallarm.com/installation/security-edge/inline/telemetry-portal-logs-dashboard.md): "Portal Inline Logs" dashboard — request and access logs.
 
 - [Security Edge Connectors](https://docs.wallarm.com/installation/security-edge/se-connector.md): Managed connector deployments via Security Edge for non-inline integrations.
 

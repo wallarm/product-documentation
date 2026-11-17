@@ -112,7 +112,10 @@ The fastest way to group is a **preset**. Presets resolve to a fixed set of dime
 | `type` | attack type | "Which attack types am I seeing?" |
 | `source_ip` | source IP | "Which IPs are attacking me?" |
 | `none` | individual attack units | "Show me individual attacks, ungrouped" |
+| `incidents` | attack type, [incidents](../user-guides/events/check-incident.md) only | "Which attacks exploited a security issue?" |
 | *(any dimension name)* | that dimension | e.g. `preset: "host"` groups by host |
+
+The `incidents` preset returns only the attacks bound to a security issue, which is what the **Incidents** section of Wallarm Console shows. It is the only preset that allows the `security_issue_ids` column.
 
 #### Example — group by attack type (last 24 hours, one host)
 
@@ -515,6 +518,7 @@ The Attacks API replaces the classic `/v1/objects/attack` and `/v1/objects/hit` 
 | Legacy endpoint | New equivalent | Notes |
 |---|---|---|
 | `POST /v1/objects/attack` | `POST .../security-agg/query` | Returns grouped rows, not flat attacks. Set `group_by` / `preset` to the dimension you were listing by. |
+| `POST /v1/objects/attack` with `"!vulnid": null` (incidents) | `POST .../security-agg/query` with `"preset": "incidents"` | Returns incident rows grouped by attack type. `security_issue_ids` lists the bound security issues. |
 | `POST /v1/objects/attack/count` | `POST .../security-agg/query` | Read `requests_count` (and other counters) from each row's metrics. |
 | `POST /v1/objects/attack/aggs_terms` | `POST .../security-agg/stats` | Term aggregations map to `top_list` / `pie_chart` / `single_value` widgets. |
 | `POST /v1/objects/attack/vectors` | `POST .../attack-vectors/by-group` | Raw vectors are fetched per group via the row `id`. |
@@ -570,7 +574,7 @@ Key differences to account for when migrating:
 | `response_time_avg` / `response_time_max` | Response Time | Average / maximum, ms |
 | `min_request_time` / `max_request_time` | Started / Last Seen | First / last request time |
 
-Display columns (aggregated value lists, not sortable metrics): `attack_types`, `attack_subtypes`, `hosts`, `paths`, `ips`, `users`, `user_roles`, `countries`, `methods`, `status_codes`, `cve_ids`, `cwe_ids`, `owasp_categories`, `capec_ids`, `context_params`, plus the computed `attack_name` and `security_info`.
+Display columns (aggregated value lists, not sortable metrics): `attack_types`, `attack_subtypes`, `hosts`, `paths`, `ips`, `users`, `user_roles`, `countries`, `methods`, `status_codes`, `cve_ids`, `cwe_ids`, `owasp_categories`, `capec_ids`, `context_params`, plus the computed `attack_name` and `security_info`. With the `incidents` preset, `security_issue_ids` lists the security issues bound to the row.
 
 ## Related
 
