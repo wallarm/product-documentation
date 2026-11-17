@@ -41,7 +41,7 @@ Quiet noisy detections and add exceptions to reduce false positives.
 | Rule type | Description |
 | --------- | ----------- |
 | [Ignore certain attacks](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types) | Prevent false positives on certain attacks |
-| Ignore certain stamps | Prevent false positives on certain stamps |
+| [Ignore certain stamps](#ignore-certain-stamps) | Prevent false positives on certain stamps |
 | [Disable custom attack detector](regex-rule.md#partial-disabling) | Turn off a custom detector for a branch or endpoint |
 | Optional parameter | Parameter API Discovery treats as optional |
 | Required parameter | Parameter API Discovery expects in every request |
@@ -130,6 +130,8 @@ You can create rules with specified action but not linked to any endpoint - they
 ## Configuring
 
 To add a new rule, go to the **WAF Rules** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules) Cloud, click **Create rule** and pick a rule type. A rule can be added to an existing [branch](#rule-branches) or from scratch, which creates a new branch if one does not exist.
+
+You can also create a rule from an endpoint or a request parameter in [API Discovery](../../api-discovery/exploring.md#creating-rules-mitigation-controls-and-triggers). The conditions and the point are then prefilled.
 
 Note that a rule is applied to the request only if some conditions are met (like target endpoint, method, presence of some parameters or values, etc.). Also, it is often applied only to some request parts. For a better understanding of request structure interaction with the rules, it is advisable to learn how the filtering node [analyzes the requests][link-request-processing].
 
@@ -424,6 +426,29 @@ The utility will return the result:
 #### Condition type: ABSENT (`∅`)
 
 The request should not contain the designated part. In this case, the comparison argument is not used.
+
+## Ignore certain stamps
+
+A **stamp** is one specific variation of an attack. Each [attack type](../../attacks-vulns-list.md) has many stamps, and each stamp has a number.
+
+The **Ignore certain stamps** rule makes the node skip the listed stamps in the selected [request point](request-processing.md). All other detection for that request point stays on, which makes it the narrowest way to remove a false positive.
+
+Most of these rules come from the **Attacks** section. When you [create a false-positive rule](../events/check-attack.md#create-a-false-positive-rule) there:
+
+* **Ignore this stamp for this parameter** creates the rule with one stamp.
+* **Ignore this attack subtype for this parameter** creates the rule with every stamp of that subtype.
+
+You can also create the rule yourself: click **Create rule**, pick **Ignore certain stamps**, then set the endpoint, the request point and the stamp numbers.
+
+### What these stamps detect
+
+A stamp number alone does not say what the rule turns off. For that reason, the rule form shows the **What these stamps detect** block below the stamp field. The block groups the listed stamps by attack type and subtype, for example **SQLi · Union-Based SQLi**, and gives a short description of each subtype.
+
+Stamps that Wallarm has no classification for are listed last under **No details available**. Stamps from the experimental part of the Wallarm stamp catalog are marked as experimental.
+
+The block updates as you type and does not change the rule. Use it to check what a rule ignores before you save it, or to read a rule that was created from **Attacks**.
+
+![What these stamps detect block in the Ignore certain stamps rule](../../images/user-guides/rules/stamp-details.png)
 
 ## Ruleset lifecycle
 

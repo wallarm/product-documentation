@@ -80,3 +80,7 @@ To prevent us from detecting "middle" without `name,` we mark `name` as mandator
 On the [endpoint's details page](exploring.md#endpoint-details-view), the **Sensitive data** tab shows which parameters carry sensitive data, the exact sensitive data type detected for each parameter, and the request or response location (headers, body, query) where it was found.
 
 ![Sensitive data types in endpoint details](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-sensitive-data-types.png)
+
+## Masking detected sensitive data
+
+To keep a detected value from being sent to the Wallarm Cloud, mask it with the [Mask sensitive data](../user-guides/rules/sensitive-data-rule.md) rule. For a request parameter with detected sensitive data, the endpoint details suggest this rule with the conditions and the point prefilled. See [Masking detected sensitive data](exploring.md#masking-detected-sensitive-data).

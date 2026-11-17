@@ -59,7 +59,7 @@ To create and apply a new mitigation control:
 
 ## Configuration
 
-Perform configuring in the **Security controls** → **Mitigation Controls** section of Wallarm Console. You can also access some mitigation control settings from other places in the system, for example, from API Sessions.
+Perform configuring in the **Security controls** → **Mitigation Controls** section of Wallarm Console. You can also access some mitigation control settings from other places in the system, for example, from API Sessions. To create a control for an endpoint or a request parameter with the scope prefilled, use [API Discovery](../api-discovery/exploring.md#creating-rules-mitigation-controls-and-triggers).
 
 ![Mitigation Controls page in UI](../images/user-guides/mitigation-controls/mc-main-page.png)
 

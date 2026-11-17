@@ -96,6 +96,8 @@ When you navigate back from the details page, all your previously applied **filt
 
 ![API Discovery - REST endpoint details](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-REST.png)
 
+To create a WAF rule, mitigation control or trigger for the endpoint or one of its request parameters, use the **⋯** menu in the page header or in a request parameter row. See [Creating rules, mitigation controls and triggers](#creating-rules-mitigation-controls-and-triggers).
+
 Each request/response parameter information includes:
 
 * Parameter name and the part of request/response this parameter belongs to
@@ -289,14 +291,83 @@ API Discovery can notify you about endpoint changes in two ways:
 * [**Email digests**](track-changes.md#email-notifications) — daily or hourly summaries of new and changed endpoints, delivered to your account email and any additional addresses.
 * [**Per-endpoint alerts via triggers**](track-changes.md#per-endpoint-alerts-via-triggers) — one notification per changed endpoint, delivered through any configured integration (Slack, webhook, SIEM, PagerDuty, Microsoft Teams, Telegram, and others) using the **Changes in API** trigger.
 
-<!--## Creating rules for API endpoints
+## Creating rules, mitigation controls and triggers
 
-You can quickly create a new [custom rule](../user-guides/rules/rules.md) from any endpoint of API inventory: 
+From the details page of a REST endpoint, you can create a [WAF rule](../user-guides/rules/rules.md), a [mitigation control](../about-wallarm/mitigation-controls-overview.md) or a [trigger](../user-guides/triggers/triggers.md) for this endpoint, and a WAF rule or a mitigation control for one of its request parameters. The standard creation form opens with the endpoint's request conditions already set and, for a parameter, its [request point](../user-guides/rules/request-processing.md#identifying-and-parsing-the-request-parts). You do not need to rebuild them by hand in the **WAF Rules**, **Mitigation Controls** or **Triggers** section.
 
-1. In this endpoint menu select **Create rule**. The create rule window is displayed. The endpoint address is parsed into the window automatically.
-1. In the create rule window, specify rule information and then click **Create**.
+To create an object from API Discovery:
 
-![Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)-->
+1. Open the REST endpoint details.
+1. Click **⋯**:
+
+    * In the page header, to create an object for the whole endpoint.
+    * In a parameter row on the **Schema** → **Query/path**, **Request headers** or **Request body** tab, to create an object for this parameter.
+
+1. Select **Create WAF rule**, **Create mitigation control** or **Create trigger**, then select the type.
+
+    ![Create menu in the endpoint details header](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-create-menu.png)
+
+1. Check the prefilled settings, complete the remaining ones and save.
+
+The new object is listed in its own section and works the same way as an object created there. Closing the form without saving creates nothing.
+
+The create items are available under the following conditions:
+
+* The entry is a REST endpoint. GraphQL, SOAP and gRPC operations and MCP primitives have no create items, and response parameters have no **⋯** button.
+* **Create mitigation control** is listed only when [mitigation controls are enabled](../about-wallarm/mitigation-controls-overview.md#enabling) for your account.
+* **Create trigger** is listed only for the whole endpoint and only where the **Triggers** section offers the Brute force, Forced browsing and BOLA templates. See [Triggers](#triggers).
+* Only the types your [user role](../user-guides/settings/users.md#user-roles) can create are listed. Users with read-only roles do not see the create items.
+
+### Available types
+
+The menu lists only the types that apply to the selected level. For a request parameter, it offers WAF rules and mitigation controls:
+
+![Create menu of a request parameter](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-parameter-create-menu.png)
+
+| Level | WAF rule | Mitigation control |
+| ----- | -------- | ------------------ |
+| Endpoint | [Filtration mode](../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode), [Virtual patch](../user-guides/rules/vpatch-rule.md), [Advanced rate limiting](../user-guides/rules/rate-limiting.md), [Override API abuse profiles](../api-abuse-prevention/exceptions.md#exceptions-for-target-urls-and-specific-requests), [File upload restriction policy](../api-protection/file-upload-restriction.md), [Limit request processing time](../user-guides/rules/configure-overlimit-res-detection.md) | [Real-time blocking mode](../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode), [Enumeration attack protection](../api-protection/enumeration-attack-protection.md), [BOLA protection](../api-protection/enumeration-attack-protection.md#bola), [Brute force protection](../api-protection/enumeration-attack-protection.md#brute-force), [Forced browsing protection](../api-protection/enumeration-attack-protection.md#forced-browsing), [DoS protection](../api-protection/dos-protection.md), [File upload restriction policy](../api-protection/file-upload-restriction.md) |
+| Request parameter | [Binary data processing](../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data), [Ignore certain attacks](../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types), Ignore certain stamps, [Configure parsers](../user-guides/rules/request-processing.md#managing-parsers), [Mask sensitive data](../user-guides/rules/sensitive-data-rule.md) | Enumeration attack protection, BOLA protection, Brute force protection, File upload restriction policy |
+
+For a mitigation control created from a parameter, the parameter is set as follows:
+
+* **Enumeration attack protection**, **BOLA protection** and **Brute force protection**: the only parameter under [**Enumerated parameters**](../api-protection/enumeration-attack-protection.md#enumerated-parameters), in the **Exact match** mode.
+* **File upload restriction policy**: the point of the **Exact point size** restriction.
+
+### Prefilled conditions
+
+The prefilled conditions describe exactly one endpoint: the method, the host, every fixed path segment, the action name, the action extension and the endpoint's application. A variable path segment such as `{parameter_1}` gets no condition, so the object applies to any value of this segment.
+
+For example, your API accepts documents as base64 strings in the `file_content` field of `POST api.example.com /api/documents/{parameter_1}/upload`, and Wallarm reports false positives on this content. To stop them for this field only, in the `file_content` row of the **Request body** tab, click **⋯** → **Create WAF rule** → **Binary data processing**. The form opens with the following settings:
+
+* Conditions: `method` = `POST`, `HOST` Aa `api.example.com`, `path 0` = `api`, `path 1` = `documents`, `path 3` ∅, `action_name` = `upload`, `action_ext` ∅, and `instance` set to the endpoint's application.
+* Point: `post` › `json_doc` › `hash` › `file_content`.
+
+For other hosts, parameters and endpoints:
+
+* A host with a wildcard, such as `*.example.com`, becomes a [regular expression](../user-guides/rules/rules.md#condition-type-regex) condition: `^[^.]+\.example\.com$`.
+* A path parameter becomes the `path N` point, for example, `path 2` for `{parameter_1}` above.
+* The endpoint's [application](../user-guides/settings/applications.md), the default one included, is added as the `instance` condition. You can change or remove it in the form.
+
+### Triggers
+
+Triggers are created for the whole endpoint only. **Create trigger** lists the following templates:
+
+* [Brute force](../admin-en/configuration-guides/protecting-against-bruteforce.md#trigger-based-protection)
+* [Forced browsing](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
+* [BOLA](../admin-en/configuration-guides/protecting-against-bola-trigger.md)
+
+Selecting a template opens the trigger wizard with this template and the **URI** filter set to the endpoint conditions.
+
+**Create trigger** is listed only where the **Triggers** section offers these templates. Depending on your [subscription plan](../admin-en/configuration-guides/protecting-against-bruteforce.md#configuration-method), these protections are configured either with triggers or with [mitigation controls](../api-protection/enumeration-attack-protection.md).
+
+### Masking detected sensitive data
+
+When API Discovery has detected [sensitive data](sensitive-data.md) in a request parameter, the parameter's **⋯** button shows the **Create (sensitive data detected)** tooltip, and the **Create WAF rule** item reads **Mask sensitive data suggested**. In the type list, [Mask sensitive data](../user-guides/rules/sensitive-data-rule.md) comes first, in the **Suggested** section, with the detected data types. Selecting it opens the masking rule with the endpoint conditions and the parameter point prefilled.
+
+![Mask sensitive data suggested for a parameter with detected sensitive data](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-mask-suggestion.png)
+
+The rule is created only when you click **Create** in its form, one rule per parameter. Wallarm does not create masking rules automatically.
 
 ## Exporting API inventory data
 

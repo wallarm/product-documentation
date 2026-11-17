@@ -34,6 +34,9 @@ To set and apply data mask:
 1. In **In this part of request**, specify [request points](request-processing.md) for which the original value should be cut.
 1. Wait for the [rule compilation and uploading to the filtering node to complete](rules.md#ruleset-lifecycle).
 
+!!! info "Masking parameters found by API Discovery"
+    When API Discovery detects sensitive data in a request parameter, you can create this rule from the endpoint details with the conditions and the point prefilled. See [Masking detected sensitive data](../../api-discovery/exploring.md#masking-detected-sensitive-data).
+
 ## Example: masking of a cookie value
 
 Let us say your application accessible at the `example.com` domain uses the `PHPSESSID` cookie for user authentication and you want to deny access to this information for employees using Wallarm.
