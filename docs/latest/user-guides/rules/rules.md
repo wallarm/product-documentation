@@ -448,7 +448,7 @@ Stamps that Wallarm has no classification for are listed last under **No details
 
 The block updates as you type and does not change the rule. Use it to check what a rule ignores before you save it, or to read a rule that was created from **Attacks**.
 
-<!-- TODO: add screenshot of the What these stamps detect block -->
+![What these stamps detect block in the Ignore certain stamps rule](../../images/user-guides/rules/stamp-details.png)
 
 ## Ruleset lifecycle
 

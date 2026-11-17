@@ -304,6 +304,9 @@ To create an object from API Discovery:
     * In a parameter row on the **Schema** → **Query/path**, **Request headers** or **Request body** tab, to create an object for this parameter.
 
 1. Select **Create WAF rule**, **Create mitigation control** or **Create trigger**, then select the type.
+
+    ![Create menu in the endpoint details header](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-create-menu.png)
+
 1. Check the prefilled settings, complete the remaining ones and save.
 
 The new object is listed in its own section and works the same way as an object created there. Closing the form without saving creates nothing.
@@ -317,7 +320,9 @@ The create items are available under the following conditions:
 
 ### Available types
 
-The menu lists only the types that apply to the selected level:
+The menu lists only the types that apply to the selected level. For a request parameter, it offers WAF rules and mitigation controls:
+
+![Create menu of a request parameter](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-parameter-create-menu.png)
 
 | Level | WAF rule | Mitigation control |
 | ----- | -------- | ------------------ |
@@ -359,6 +364,8 @@ Selecting a template opens the trigger wizard with this template and the **URI**
 ### Masking detected sensitive data
 
 When API Discovery has detected [sensitive data](sensitive-data.md) in a request parameter, the parameter's **⋯** button shows the **Create (sensitive data detected)** tooltip, and the **Create WAF rule** item reads **Mask sensitive data suggested**. In the type list, [Mask sensitive data](../user-guides/rules/sensitive-data-rule.md) comes first, in the **Suggested** section, with the detected data types. Selecting it opens the masking rule with the endpoint conditions and the parameter point prefilled.
+
+![Mask sensitive data suggested for a parameter with detected sensitive data](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-mask-suggestion.png)
 
 The rule is created only when you click **Create** in its form, one rule per parameter. Wallarm does not create masking rules automatically.
 

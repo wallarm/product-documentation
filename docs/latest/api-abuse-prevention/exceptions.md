@@ -66,9 +66,11 @@ Suppose your application is integrated with the Klaviyo marketing automation too
 
 Let's say you have the endpoint that belongs to your application. The application should be protected from bot activities but the testing endpoint should be an exception. Also, you have your API inventory discovered by the [**API Discovery**](../api-discovery/overview.md) module. 
 
-In this case it is easier to create a rule from the **API Discovery** list of endpoints. Go there, open your endpoint and click **⋯** → **Create WAF rule** → **Override API abuse profiles**. The rule opens with the endpoint conditions [prefilled](../api-discovery/exploring.md#creating-rules-mitigation-controls-and-triggers):
+In this case it is easier to create a rule from the **API Discovery** list of endpoints. Go there, open your endpoint and click **⋯** → **Create WAF rule** → **Override API abuse profiles**:
 
-![Creating Set API Abuse Prevention mode for API Discovery endpoint](../images/user-guides/rules/api-abuse-url.png)
+![Selecting the Override API abuse profiles rule for an API Discovery endpoint](../images/user-guides/rules/api-abuse-url.png)
+
+The rule opens with the endpoint conditions [prefilled](../api-discovery/exploring.md#creating-rules-mitigation-controls-and-triggers).
 
 ## Disabling and deleting profiles
 
