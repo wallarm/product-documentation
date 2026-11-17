@@ -418,7 +418,7 @@ You can:
     ![Rules - Creating backup](../../images/user-guides/rules/rules-create-backup.png)
 
 !!! warning "Rule modification restrictions"
-    You cannot create or modify rules until creating backup or load from backup is complete.
+    While rules are being loaded from a backup, you cannot create or modify rules. Creating a backup does not block changes.
 
 ## API calls to get rules
 

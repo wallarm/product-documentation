@@ -34,4 +34,4 @@ You can:
     ![Rules - Creating backup][img-rules-create-backup]
 
 !!! warning "Rule modification restrictions"
-    You cannot create or modify rules or mitigation controls until creating a backup or loading from a backup is complete.
+    While rules are being loaded from a backup, you cannot create or modify rules or mitigation controls. Creating a backup does not block changes.

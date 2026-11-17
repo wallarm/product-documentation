@@ -118,7 +118,7 @@ To stop the node from **detecting** such requests in future, use **FP rule** —
 * **Ignore all attacks for this parameter** — all attacks in the parameter.
 * **Create a custom rule** — open the rule editor to define the conditions and action yourself.
 
-A **stamp** is one specific variation of an attack, and each [attack type](../../attacks-vulns-list.md) has many stamps.
+A **stamp** is one specific variation of an attack, and each [attack type](../../attacks-vulns-list.md) has many stamps. The created [Ignore certain stamps](../rules/rules.md#ignore-certain-stamps) rule shows what each of its stamps detects.
 
 ![Create a false-positive rule for an attack](../../images/user-guides/events/attack-false-positive-rule.png)
 

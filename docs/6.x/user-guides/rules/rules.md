@@ -41,7 +41,7 @@ Quiet noisy detections and add exceptions to reduce false positives.
 | Rule type | Description |
 | --------- | ----------- |
 | [Ignore certain attacks](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types) | Prevent false positives on certain attacks |
-| Ignore certain stamps | Prevent false positives on certain stamps |
+| [Ignore certain stamps](#ignore-certain-stamps) | Prevent false positives on certain stamps |
 | [Disable custom attack detector](regex-rule.md#partial-disabling) | Turn off a custom detector for a branch or endpoint |
 | Optional parameter | Parameter API Discovery treats as optional |
 | Required parameter | Parameter API Discovery expects in every request |
@@ -426,6 +426,31 @@ The utility will return the result:
 #### Condition type: ABSENT (`∅`)
 
 The request should not contain the designated part. In this case, the comparison argument is not used.
+
+## Ignore certain stamps
+
+A **stamp** is one specific variation of an attack. Each [attack type](../../attacks-vulns-list.md) has many stamps, and each stamp has a number.
+
+The **Ignore certain stamps** rule makes the node skip the listed stamps in the selected part of the request. All other detection for that part stays on, which makes it the narrowest way to remove a false positive.
+
+Most of these rules come from the **Attacks** section. When you [create a false-positive rule](../events/check-attack.md#create-a-false-positive-rule) there:
+
+* **Ignore this stamp for this parameter** creates the rule with one stamp.
+* **Ignore this attack subtype for this parameter** creates the rule with every stamp of that subtype.
+
+You can also create the rule yourself: click **Create rule**, pick **Ignore certain stamps**, then set the endpoint, the part of the request and the stamp numbers.
+
+### What these stamps detect
+
+The rule form explains the stamp numbers it lists. Below the stamp field, the **What these stamps detect** block groups the stamps by attack type and subtype. Each group shows:
+
+* The attack type and subtype, for example **SQLi · Union-Based SQLi**
+* The number of stamps in the group and the stamp numbers
+* A short description of the subtype
+
+A group with more than 20 stamps shows the first 20 and a **Show all** button. Stamps from Wallarm's experimental catalog carry an **Experimental stamp** badge. Stamp numbers Wallarm has no classification for are listed last under **No details available**.
+
+The block is read-only and updates as you type. Use it to check what a rule switches off before you save it, or to read a rule that was created from **Attacks**.
 
 ## Ruleset lifecycle
 
