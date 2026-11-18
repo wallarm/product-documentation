@@ -10,6 +10,15 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 7.1.8 (2026-11-18)
+
+* Added support for NGINX stable 1.30.7
+* Added support for NGINX mainline 1.31.9
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-123633](https://nvd.nist.gov/vuln/detail/CVE-2026-123633)
+    * [CVE-2026-123007](https://nvd.nist.gov/vuln/detail/CVE-2026-123007)
+
 ### 7.1.7 (2026-11-06)
 
 * Fixed security vulnerabilities:
@@ -100,6 +109,13 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 7.1.8 (2026-11-18)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-123633](https://nvd.nist.gov/vuln/detail/CVE-2026-123633)
+    * [CVE-2026-123007](https://nvd.nist.gov/vuln/detail/CVE-2026-123007)
 
 ### 7.1.7 (2026-11-06)
 
@@ -249,6 +265,13 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 7.1.8 (2026-11-18)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-123633](https://nvd.nist.gov/vuln/detail/CVE-2026-123633)
+    * [CVE-2026-123007](https://nvd.nist.gov/vuln/detail/CVE-2026-123007)
 
 ### 7.1.7 (2026-11-06)
 
