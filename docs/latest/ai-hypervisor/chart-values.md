@@ -85,7 +85,9 @@ Three independent switches — see [Enforcement → Enforcement lanes](enforceme
 | `resources.requests.memory` | `512Mi` | Per-scanner-pod memory request. |
 | `resources.limits.memory` | `1536Mi` | Per-scanner-pod memory limit. |
 | `terminationGracePeriodSeconds` | `75` | Must exceed `config.uploadTimeoutSeconds` so in-flight uploads complete during graceful shutdown. |
-| `priorityClassName` | `system-node-critical` | Ensures the scanner is not evicted under node pressure. |
+| `priorityClassName` | `""` | Empty: the chart's own PriorityClass (high priority, `preemptionPolicy: Never`), so the scanner never evicts other pods to fit on a node. Any other name is used as is. See [Nodes without room for a scanner](deploy.md#nodes-without-room-for-a-scanner). |
+| `scheduling.evictToFit` | `false` | `true` uses `system-node-critical`: the scanner evicts lower-priority pods to fit on a full node (behavior before 3.7.0). Ignored when `priorityClassName` is set. |
+| `scheduling.fullNodeFallbackSeconds` | `60` | Upgrade on a node too full for a second scanner pod: seconds the new pod waits for room before the old pod steps aside. `0` = never step aside. |
 
 ## Disk and retention
 
@@ -103,6 +105,7 @@ Three independent switches — see [Enforcement → Enforcement lanes](enforceme
 | `agents.enabled` | `true` | Enables in-process language agents. Required for accurate user attribution on multi-hop calls. |
 | `prometheus.enabled` | `false` | Adds Prometheus scrape annotations to the scanner pod for metrics collection. |
 | `networkPolicy.enabled` | `false` | Creates a `NetworkPolicy` restricting scanner egress to the backend URL only. |
+| `proxy.handoff.enabled` | `true` | From 3.7.0, with `proxy.enabled`. On an upgrade, the new scanner pod takes over the open connections of the old one on the same node, so database, queue and stream connections survive. Uses the host path `/run/higgs-proxy`. Set `false` to drain connections instead. See [Open connections during an upgrade](deploy.md#open-connections-during-an-upgrade). |
 
 ## Inspecting current configuration
 

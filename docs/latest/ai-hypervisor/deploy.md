@@ -236,6 +236,43 @@ helm upgrade --install aih-scanner wallarm/aih-scanner \
 
 The DaemonSet rolls out one node at a time.
 
+### Open connections during an upgrade
+
+From 3.7.0, with blocking enabled (`proxy.enabled=true`), connections that are open when a scanner pod is replaced
+keep working. The new scanner pod on the node takes them over from the old one: database, message-queue and
+cache connections (for example PostgreSQL, RabbitMQ and Valkey), TLS connections the scanner does not decrypt, and
+WebSocket connections over plain HTTP. Applications see no reset and do not
+need to reconnect.
+
+Connections the scanner decrypts (HTTP/1.1 and HTTP/2 to AI providers) cannot be moved between processes. The
+scanner finishes the requests in flight and asks the client to send its next request on a new connection: HTTP/2
+clients receive `GOAWAY`, HTTP/1.1 clients receive `Connection: close`. Standard HTTP clients do this
+transparently. A single decrypted response that streams for longer than the drain window (45 seconds, for example a
+long server-sent-events answer) is closed when the old scanner pod exits.
+
+The takeover uses a directory on each node, `/run/higgs-proxy`, shared by the old and the new scanner pod. If your
+policy does not allow this host path, set `proxy.handoff.enabled=false`: upgrades then drain connections as in
+earlier versions.
+
+### Nodes without room for a scanner
+
+From 3.7.0, the scanner never evicts your pods to make room for itself. The chart creates its own PriorityClass:
+high, so a node short of memory evicts workload pods before the scanner, but with `preemptionPolicy: Never`, so the
+scheduler never removes another pod to place a scanner pod.
+
+When a node has no room for a scanner pod:
+
+* **New node or first install:** the scanner pod stays `Pending` on that node. The tenant lists the node under
+  **Settings › Scanners › Nodes without room for a scanner** with the reason. Free resources on the node (or add a
+  node) and the pod starts on its own.
+* **Upgrade:** the new scanner pod waits for room next to the old one. After `scheduling.fullNodeFallbackSeconds`
+  (60 seconds by default), the old pod steps aside and the new pod takes its place. On that node, open connections
+  drain instead of being taken over. The tenant lists the step-aside under the same section. Set the value to `0` to
+  keep the old pod until room appears.
+
+To restore the behavior of earlier versions, where the scanner evicts lower-priority pods to fit, set
+`scheduling.evictToFit=true`. To use your own PriorityClass, set `priorityClassName`.
+
 ## Troubleshooting
 
 If nothing appears in your tenant, check in this order:
