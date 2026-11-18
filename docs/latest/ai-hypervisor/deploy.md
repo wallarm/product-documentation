@@ -236,6 +236,24 @@ helm upgrade --install aih-scanner wallarm/aih-scanner \
 
 The DaemonSet rolls out one node at a time.
 
+### Open connections during an upgrade
+
+From 3.7.0, with blocking enabled (`proxy.enabled=true`), connections that are open when a scanner pod is replaced
+keep working. The new scanner pod on the node takes them over from the old one: database, message-queue and
+cache connections (for example PostgreSQL, RabbitMQ and Valkey), TLS connections the scanner does not decrypt, and
+WebSocket connections over plain HTTP. Applications see no reset and do not
+need to reconnect.
+
+Connections the scanner decrypts (HTTP/1.1 and HTTP/2 to AI providers) cannot be moved between processes. The
+scanner finishes the requests in flight and asks the client to send its next request on a new connection: HTTP/2
+clients receive `GOAWAY`, HTTP/1.1 clients receive `Connection: close`. Standard HTTP clients do this
+transparently. A single decrypted response that streams for longer than the drain window (45 seconds, for example a
+long server-sent-events answer) is closed when the old scanner pod exits.
+
+The takeover uses a directory on each node, `/run/higgs-proxy`, shared by the old and the new scanner pod. If your
+policy does not allow this host path, set `proxy.handoff.enabled=false`: upgrades then drain connections as in
+earlier versions.
+
 ## Troubleshooting
 
 If nothing appears in your tenant, check in this order:

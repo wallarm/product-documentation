@@ -103,6 +103,7 @@ Three independent switches — see [Enforcement → Enforcement lanes](enforceme
 | `agents.enabled` | `true` | Enables in-process language agents. Required for accurate user attribution on multi-hop calls. |
 | `prometheus.enabled` | `false` | Adds Prometheus scrape annotations to the scanner pod for metrics collection. |
 | `networkPolicy.enabled` | `false` | Creates a `NetworkPolicy` restricting scanner egress to the backend URL only. |
+| `proxy.handoff.enabled` | `true` | From 3.7.0, with `proxy.enabled`. On an upgrade, the new scanner pod takes over the open connections of the old one on the same node, so database, queue and stream connections survive. Uses the host path `/run/higgs-proxy`. Set `false` to drain connections instead. See [Open connections during an upgrade](deploy.md#open-connections-during-an-upgrade). |
 
 ## Inspecting current configuration
 
