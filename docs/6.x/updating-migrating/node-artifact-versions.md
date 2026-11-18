@@ -21,6 +21,15 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.13.6 (2026-11-18)
+
+* Added support for NGINX stable 1.30.7
+* Added support for NGINX mainline 1.31.9
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-123633](https://nvd.nist.gov/vuln/detail/CVE-2026-123633)
+    * [CVE-2026-123007](https://nvd.nist.gov/vuln/detail/CVE-2026-123007)
+
 ### 6.13.5 (2026-11-06)
 
 * Fixed security vulnerabilities:
@@ -1111,6 +1120,13 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.13.6 (2026-11-18)
+
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-123633](https://nvd.nist.gov/vuln/detail/CVE-2026-123633)
+    * [CVE-2026-123007](https://nvd.nist.gov/vuln/detail/CVE-2026-123007)
 
 ### 6.13.5 (2026-11-06)
 

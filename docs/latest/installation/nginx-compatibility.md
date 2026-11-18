@@ -12,7 +12,8 @@ For the exact version added in a specific release, see the [NGINX Node changelog
 
 | Node version   | NGINX stable      | NGINX mainline    | NGINX Plus    |
 |----------------|-------------------|-------------------|---------------|
-| 7.1.5 and above| 1.30.6 and below  | 1.31.8 and below  | R37 and below |
+| 7.1.8 and above| 1.30.7 and below  | 1.31.9 and below  | R37 and below |
+| 7.1.5–7.1.8    | 1.30.6 and below  | 1.31.8 and below  | R37 and below |
 | 7.1.4          | 1.30.5 and below  | 1.31.6 and below  | R37 and below |
 | 7.1.2–7.1.3    | 1.30.4 and below  | 1.31.4 and below  | R37 and below |
 | 7.1.0–7.1.1    | 1.30.3 and below  | 1.31.2 and below  | R37 and below |
@@ -21,6 +22,7 @@ For the exact version added in a specific release, see the [NGINX Node changelog
 
 | Node version   | NGINX stable      | NGINX mainline    | NGINX Plus    |
 |----------------|-------------------|-------------------|---------------|
+| 6.13.6         | 1.30.7 and below  | 1.31.9 and below  | R37 and below |
 | 6.13.3–6.13.5  | 1.30.6 and below  | 1.31.8 and below  | R37 and below |
 | 6.13.2         | 1.30.5 and below  | 1.31.6 and below  | R37 and below |
 | 6.13.0–6.13.1  | 1.30.4 and below  | 1.31.3 and below  | R37 and below |
