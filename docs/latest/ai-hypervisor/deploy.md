@@ -254,6 +254,25 @@ The takeover uses a directory on each node, `/run/higgs-proxy`, shared by the ol
 policy does not allow this host path, set `proxy.handoff.enabled=false`: upgrades then drain connections as in
 earlier versions.
 
+### Nodes without room for a scanner
+
+From 3.7.0, the scanner never evicts your pods to make room for itself. The chart creates its own PriorityClass:
+high, so a node short of memory evicts workload pods before the scanner, but with `preemptionPolicy: Never`, so the
+scheduler never removes another pod to place a scanner pod.
+
+When a node has no room for a scanner pod:
+
+* **New node or first install:** the scanner pod stays `Pending` on that node. The tenant lists the node under
+  **Settings › Scanners › Nodes without room for a scanner** with the reason. Free resources on the node (or add a
+  node) and the pod starts on its own.
+* **Upgrade:** the new scanner pod waits for room next to the old one. After `scheduling.fullNodeFallbackSeconds`
+  (60 seconds by default), the old pod steps aside and the new pod takes its place. On that node, open connections
+  drain instead of being taken over. The tenant lists the step-aside under the same section. Set the value to `0` to
+  keep the old pod until room appears.
+
+To restore the behavior of earlier versions, where the scanner evicts lower-priority pods to fit, set
+`scheduling.evictToFit=true`. To use your own PriorityClass, set `priorityClassName`.
+
 ## Troubleshooting
 
 If nothing appears in your tenant, check in this order:
