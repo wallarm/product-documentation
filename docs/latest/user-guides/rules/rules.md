@@ -340,12 +340,12 @@ To test a regular expression, use the Wallarm **cpire** utility. Install it via 
     1. Download the Wallarm all-in-one installer if it is not downloaded yet:
 
         ```
-        curl -O https://meganode.wallarm.com/7.1/wallarm-7.1.8.x86_64-glibc.sh
+        curl -O https://meganode.wallarm.com/7.1/wallarm-7.1.9.x86_64-glibc.sh
         ```
     1. Install the Wallarm modules if they are not installed yet:
         
         ```
-        sudo sh wallarm-7.1.8.x86_64-glibc.sh -- --batch --token <API_TOKEN>
+        sudo sh wallarm-7.1.9.x86_64-glibc.sh -- --batch --token <API_TOKEN>
         ```
     1. Run the **cpire** utility:
         
@@ -357,7 +357,7 @@ To test a regular expression, use the Wallarm **cpire** utility. Install it via 
     1. Run the **cpire** utility from the Wallarm Docker image:
     
         ```
-        docker run --rm -it wallarm/node:7.1.8 /opt/wallarm/usr/bin/cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
+        docker run --rm -it wallarm/node:7.1.9 /opt/wallarm/usr/bin/cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
         ```
     1. Enter the value to check whether it matches with the regular expression.
 

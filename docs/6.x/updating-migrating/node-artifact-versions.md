@@ -21,6 +21,16 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.13.7 (2026-11-20)
+
+* Fixed [API Sessions](../api-sessions/overview.md) grouping when the session key is a parameter masked by a sensitive data rule — the session ID is now calculated before masking
+* Bumped Go version to 1.26.11
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-111943](https://nvd.nist.gov/vuln/detail/CVE-2026-111943)
+    * [CVE-2026-97054](https://nvd.nist.gov/vuln/detail/CVE-2026-97054)
+    * [CVE-2026-114613](https://nvd.nist.gov/vuln/detail/CVE-2026-114613)
+
 ### 6.13.6 (2026-11-18)
 
 * Added support for NGINX stable 1.30.7
@@ -374,6 +384,21 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.13.7 (2026-11-20)
+
+* Fixed [API Sessions](../api-sessions/overview.md) grouping when the session key is a parameter masked by a sensitive data rule — the session ID is now calculated before masking
+* Bumped Go version to 1.26.11
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-107496](https://nvd.nist.gov/vuln/detail/CVE-2026-107496)
+    * [CVE-2026-111943](https://nvd.nist.gov/vuln/detail/CVE-2026-111943)
+    * [CVE-2026-86144](https://nvd.nist.gov/vuln/detail/CVE-2026-86144)
+    * [CVE-2026-88822](https://nvd.nist.gov/vuln/detail/CVE-2026-88822)
+    * [CVE-2026-88823](https://nvd.nist.gov/vuln/detail/CVE-2026-88823)
+    * [CVE-2026-95691](https://nvd.nist.gov/vuln/detail/CVE-2026-95691)
+    * [CVE-2026-95692](https://nvd.nist.gov/vuln/detail/CVE-2026-95692)
+    * [CVE-2026-97054](https://nvd.nist.gov/vuln/detail/CVE-2026-97054)
 
 ### 6.13.5 (2026-11-06)
 
@@ -1121,6 +1146,22 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](docker-container.md)
 
+### 6.13.7 (2026-11-20)
+
+* Fixed [API Sessions](../api-sessions/overview.md) grouping when the session key is a parameter masked by a sensitive data rule — the session ID is now calculated before masking
+* Bumped Go version to 1.26.11
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-107496](https://nvd.nist.gov/vuln/detail/CVE-2026-107496)
+    * [CVE-2026-111943](https://nvd.nist.gov/vuln/detail/CVE-2026-111943)
+    * [CVE-2026-114613](https://nvd.nist.gov/vuln/detail/CVE-2026-114613)
+    * [CVE-2026-86144](https://nvd.nist.gov/vuln/detail/CVE-2026-86144)
+    * [CVE-2026-88822](https://nvd.nist.gov/vuln/detail/CVE-2026-88822)
+    * [CVE-2026-88823](https://nvd.nist.gov/vuln/detail/CVE-2026-88823)
+    * [CVE-2026-95691](https://nvd.nist.gov/vuln/detail/CVE-2026-95691)
+    * [CVE-2026-95692](https://nvd.nist.gov/vuln/detail/CVE-2026-95692)
+    * [CVE-2026-97054](https://nvd.nist.gov/vuln/detail/CVE-2026-97054)
+
 ### 6.13.6 (2026-11-18)
 
 * Fixed security vulnerabilities:
@@ -1479,6 +1520,16 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Amazon Machine Image (AMI)
 
 [How to upgrade](cloud-image.md)
+
+### 6.13.7 (2026-11-20)
+
+* Fixed [API Sessions](../api-sessions/overview.md) grouping when the session key is a parameter masked by a sensitive data rule — the session ID is now calculated before masking
+* Bumped Go version to 1.26.11
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-111943](https://nvd.nist.gov/vuln/detail/CVE-2026-111943)
+    * [CVE-2026-97054](https://nvd.nist.gov/vuln/detail/CVE-2026-97054)
+    * [CVE-2026-114613](https://nvd.nist.gov/vuln/detail/CVE-2026-114613)
 
 ### 6.13.5 (2026-11-06)
 

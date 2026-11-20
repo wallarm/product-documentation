@@ -10,6 +10,15 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 7.1.9 (2026-11-20)
+
+* Fixed [API Sessions](../api-sessions/overview.md) grouping when the session key is a parameter masked by a sensitive data rule — the session ID is now calculated before masking
+* Bumped Go version to 1.26.11
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-111943](https://nvd.nist.gov/vuln/detail/CVE-2026-111943)
+    * [CVE-2026-97054](https://nvd.nist.gov/vuln/detail/CVE-2026-97054)
+
 ### 7.1.8 (2026-11-18)
 
 * Added support for NGINX stable 1.30.7
@@ -109,6 +118,22 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 7.1.9 (2026-11-20)
+
+* Fixed [API Sessions](../api-sessions/overview.md) grouping when the session key is a parameter masked by a sensitive data rule — the session ID is now calculated before masking
+* Bumped Go version to 1.26.11
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-107496](https://nvd.nist.gov/vuln/detail/CVE-2026-107496)
+    * [CVE-2026-111943](https://nvd.nist.gov/vuln/detail/CVE-2026-111943)
+    * [CVE-2026-128085](https://nvd.nist.gov/vuln/detail/CVE-2026-128085)
+    * [CVE-2026-86144](https://nvd.nist.gov/vuln/detail/CVE-2026-86144)
+    * [CVE-2026-88822](https://nvd.nist.gov/vuln/detail/CVE-2026-88822)
+    * [CVE-2026-88823](https://nvd.nist.gov/vuln/detail/CVE-2026-88823)
+    * [CVE-2026-95691](https://nvd.nist.gov/vuln/detail/CVE-2026-95691)
+    * [CVE-2026-95692](https://nvd.nist.gov/vuln/detail/CVE-2026-95692)
+    * [CVE-2026-97054](https://nvd.nist.gov/vuln/detail/CVE-2026-97054)
 
 ### 7.1.8 (2026-11-18)
 
@@ -266,6 +291,21 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to upgrade](docker-container.md)
 
+### 7.1.9 (2026-11-20)
+
+* Fixed [API Sessions](../api-sessions/overview.md) grouping when the session key is a parameter masked by a sensitive data rule — the session ID is now calculated before masking
+* Bumped Go version to 1.26.11
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-107496](https://nvd.nist.gov/vuln/detail/CVE-2026-107496)
+    * [CVE-2026-111943](https://nvd.nist.gov/vuln/detail/CVE-2026-111943)
+    * [CVE-2026-86144](https://nvd.nist.gov/vuln/detail/CVE-2026-86144)
+    * [CVE-2026-88822](https://nvd.nist.gov/vuln/detail/CVE-2026-88822)
+    * [CVE-2026-88823](https://nvd.nist.gov/vuln/detail/CVE-2026-88823)
+    * [CVE-2026-95691](https://nvd.nist.gov/vuln/detail/CVE-2026-95691)
+    * [CVE-2026-95692](https://nvd.nist.gov/vuln/detail/CVE-2026-95692)
+    * [CVE-2026-97054](https://nvd.nist.gov/vuln/detail/CVE-2026-97054)
+
 ### 7.1.8 (2026-11-18)
 
 * Fixed security vulnerabilities:
@@ -381,6 +421,15 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 ## Amazon Machine Image (AMI)
 
 [How to upgrade](cloud-image.md)
+
+### 7.1.9 (2026-11-20)
+
+* Fixed [API Sessions](../api-sessions/overview.md) grouping when the session key is a parameter masked by a sensitive data rule — the session ID is now calculated before masking
+* Bumped Go version to 1.26.11
+* Fixed security vulnerabilities:
+
+    * [CVE-2026-111943](https://nvd.nist.gov/vuln/detail/CVE-2026-111943)
+    * [CVE-2026-97054](https://nvd.nist.gov/vuln/detail/CVE-2026-97054)
 
 ### 7.1.7 (2026-11-06)
 
