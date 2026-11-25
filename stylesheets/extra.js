@@ -134,7 +134,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
   let main = document.querySelector(".md-main");
-  let isHomepage = location.pathname === "/" || location.pathname === "/4.4/" || location.pathname === "/4.2/" || location.pathname === "/4.6/" || location.pathname === "/4.8/" || location.pathname === "/4.10/" || location.pathname === "/5.x/" || location.pathname === "/7.x/" || location.pathname === "/index.html";
+  let isHomepage = location.pathname === "/" || location.pathname === "/4.4/" || location.pathname === "/4.2/" || location.pathname === "/4.6/" || location.pathname === "/4.8/" || location.pathname === "/4.10/" || location.pathname === "/5.x/" || location.pathname === "/6.x/" || location.pathname === "/index.html";
   if (main) {
     if (isHomepage) {
       main.classList.add('homepage');
@@ -190,7 +190,7 @@ injectScript('https://lftracker.leadfeeder.com/lftracker_v1_kn9Eq4Rwz5KaRlvP.js'
 
 // Version selection
 
-var rootVersion = '6.x';
+var rootVersion = '7.x';
 
 // Show the list of available Wallarm versions
 

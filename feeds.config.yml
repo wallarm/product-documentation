@@ -40,8 +40,8 @@ base_url: https://docs.wallarm.com
 #                 series, e.g. the eBPF Helm chart at 0.23.x.)
 #   url_prefix  — served URL prefix for this docs version.
 docs_versions:
-  - {folder: "6.x", nginx_line: "6.x", url_prefix: ""}      # current stable (served at /)
-  - {folder: "7.x", nginx_line: "7.x", url_prefix: "/7.x"}  # preview
+  - {folder: "7.x", nginx_line: "7.x", url_prefix: ""}      # current stable (served at /)
+  - {folder: "6.x", nginx_line: "6.x", url_prefix: "/6.x"}  # legacy
   - {folder: "5.0", nginx_line: "5.x", url_prefix: "/5.x"}  # legacy
 
 products:
@@ -68,12 +68,12 @@ products:
 # URL prefix. The Native Node has had no breaking major split yet — every release
 # is on the 0.x train — so the LABEL is just "0.x" for now (add a "1.x" rule when
 # the Native Node reaches 1.0). The floors still differ because each version range
-# is documented under a different docs site: 0.13.x- under /5.x/, 0.14.x+ at the
-# root (6.x), 0.26.x+ under /7.x/. So the URL comes from the version, not the
+# is documented under a different docs site: 0.13.x- under /5.x/, 0.14.x+ under
+# /6.x/, 0.26.x+ at the root (7.x). So the URL comes from the version, not the
 # docs folder (the Native changelog is a shared `latest/` file).
 native_lines:
-  - {floor: "0.26", label: "0.x", url_prefix: "/7.x"}
-  - {floor: "0.14", label: "0.x", url_prefix: ""}
+  - {floor: "0.26", label: "0.x", url_prefix: ""}
+  - {floor: "0.14", label: "0.x", url_prefix: "/6.x"}
   - {floor: "0.0",  label: "0.x", url_prefix: "/5.x"}
 
 # Atom feeds carry only the most recent N entries; JSON carries full history.

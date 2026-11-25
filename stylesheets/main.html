@@ -56,9 +56,9 @@ if (window.location.hostname === 'docs.wallarm.com' && !window.__wallarmHID_init
     {% if config.extra.version == "4.10" %}
       You are viewing docs for an unsupported Node version.
       <a href="{{ config.site_url }}" style="color:inherit; text-decoration: underline;">View latest documentation</a>
-    {% elif config.extra.version == "7.x" %}
-      You are viewing documentation for a preview version — NGINX Node <strong>{{ config.extra.version }}</strong>.
-      <a href="{{ config.site_url }}" style="color:inherit; text-decoration: underline;">View current stable version</a>
+    {% elif config.extra.status == "end of life" %}
+      You are viewing docs for an end-of-life Node version — NGINX Node <strong>{{ config.extra.version }}</strong> and Native Node <strong>{{ config.extra.versionNative }}</strong>.
+      <a href="{{ config.site_url }}" style="color:inherit; text-decoration: underline;">View current documentation</a>
     {% elif config.extra.version %}
       You are viewing NGINX Node <strong>{{ config.extra.version }}</strong> and Native Node <strong>{{ config.extra.versionNative }}</strong> docs.
       <a href="{{ config.site_url }}" style="color:inherit; text-decoration: underline;">View latest docs</a>
@@ -81,9 +81,9 @@ if (window.location.hostname === 'docs.wallarm.com' && !window.__wallarmHID_init
   <style>@media (min-width:960px){.md-header .md-search{opacity:0;pointer-events:none}}</style>
   {% endif %}
 
-  <!-- Determine social-preview title. Non-root versions (7.x, 5.0) carry the
+  <!-- Determine social-preview title. Non-root versions (6.x, 5.0) carry the
        version in the label so a shared link reads e.g. "Wallarm Documentation
-       7.x - ...". The root/latest version stays unlabelled. -->
+       6.x - ...". The root/latest version stays unlabelled. -->
   {% set site_label = config.site_name %}
   {% if not config.extra.is_latest and config.extra.version %}
     {% set site_label = config.site_name ~ " " ~ config.extra.version %}
@@ -102,7 +102,7 @@ if (window.location.hostname === 'docs.wallarm.com' && !window.__wallarmHID_init
   <!-- Open Graph / share image. Per-page card generated at build by
        scripts/generate_og_images.py into <site_dir>/images/og/<page-slug>.png
        (mirrors page.url). The homepage (page.url == "") keeps the static
-       banner. og:image needs an absolute URL, and non-root versions (7.x, 5.0)
+       banner. og:image needs an absolute URL, and non-root versions (6.x, 5.0)
        serve under a /<version>/ prefix that config.site_url lacks, so prepend
        it from config.extra.version. -->
   {% set image = config.site_url ~ 'images/og-docs-banner.png' %}
@@ -119,10 +119,10 @@ if (window.location.hostname === 'docs.wallarm.com' && !window.__wallarmHID_init
 
   <!-- Open graph meta tags. og:url must be the version-specific URL (og_base +
        page.url), NOT page.canonical_url: config.site_url is root-only for every
-       version, so canonical_url drops the /7.x//5.x//4.10/ prefix and points at
-       the 6.x address. og:url is the object's permanent ID for unfurlers (Slack
+       version, so canonical_url drops the /6.x//5.x//4.10/ prefix and points at
+       the 7.x address. og:url is the object's permanent ID for unfurlers (Slack
        dedupes by it) — without the prefix, every version's page (and every
-       ?query variant) collapses to one 6.x object and previews never refresh. -->
+       ?query variant) collapses to one 7.x object and previews never refresh. -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="{{ title }}" />
   <meta property="og:description" content="{{ description }}" />
@@ -153,7 +153,7 @@ if (window.location.hostname === 'docs.wallarm.com' && !window.__wallarmHID_init
   <link rel="alternate" hreflang="en" href="https://docs.wallarm.com/{{ current_page }}">
 
   {# Raw-Markdown companion URL for AI agents / LLM crawlers.
-     Only emitted on English builds (raw_md flag is set in mkdocs-{6.x,7.x,5.0}.yml).
+     Only emitted on English builds (raw_md flag is set in mkdocs-{7.x,6.x,5.0}.yml).
      Companion file paths are produced by scripts/generate_raw_markdown.py:
        page URL  /foo/bar/    →   /foo/bar.md
        homepage  /            →   /index.md  (page.url is empty for homepage) #}

@@ -29,7 +29,7 @@ fi
 # Cheap structural checks first, so a broken file fails in seconds rather than
 # after a ten-minute build. The redirect budget is checked on EVERY build, not
 # just production: going over it has Cloudflare reject the whole deployment.
-python3 scripts/check_redirects_budget.py docs/6.x/_redirects
+python3 scripts/check_redirects_budget.py docs/7.x/_redirects
 
 pip3 install --no-cache-dir -r requirements.txt
 
@@ -86,8 +86,8 @@ build_version() {
   rm -rf "docs/${docs_dir}/images/"
 }
 
-build_version 6.x mkdocs-6.x.yml
 build_version 7.x mkdocs-7.x.yml
+build_version 6.x mkdocs-6.x.yml
 build_version 5.0 mkdocs-5.0.yml
 build_version deprecated mkdocs-deprecated.yml og-only
 

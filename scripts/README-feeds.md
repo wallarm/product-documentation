@@ -27,7 +27,7 @@ Wallarm ships these artifacts on **independent** version trains (see the
   split yet, so every release is on the `0.x` train (add a `1.x` rule to
   `native_lines` when it reaches 1.0). Its changelog is a single `latest/` file
   shared across docs sites, so the docs URL is derived from the version
-  (`0.13.x-` → `/5.x/`, `0.14.x+` → `/`, `0.26.x+` → `/7.x/`).
+  (`0.13.x-` → `/5.x/`, `0.14.x+` → `/6.x/`, `0.26.x+` → `/`).
 - **connector code bundle** — per-connector version series (MuleSoft, Cloudflare,
   …). No node line; the connector name is the grouping axis.
 
