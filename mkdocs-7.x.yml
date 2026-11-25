@@ -419,6 +419,7 @@ nav:
       - Chart Values: ai-hypervisor/chart-values.md
       - Scanner Permissions: ai-hypervisor/permissions.md
       - Scanner Permissions and Data: ai-hypervisor/scanner-permissions.md
+      - Amazon EKS on Fargate: ai-hypervisor/eks-fargate.md
       - Red Hat OpenShift: ai-hypervisor/openshift.md
       - Labels and Annotations: ai-hypervisor/annotations.md
       - Versioning: ai-hypervisor/versioning.md
