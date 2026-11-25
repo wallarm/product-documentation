@@ -118,6 +118,21 @@ Everyone who is blocked right now. Blocks come from **Kill Session** in
 1. Open **Block List** and find the identity.
 2. Click **Lift**.
 
+<a id="rule-limits"></a>
+### Rules that cannot act everywhere
+
+Some rules cannot act on every device. Two applications on the same phone or Mac talk to each other
+inside the device, where no agent sees the traffic. An application running on a device has no
+cluster address, so other devices reach it only by the device's IP.
+
+- A rule that acts on some devices but not all shows a **Not enforced on N devices** badge in the
+  rule list. Hover over it to see which devices and why.
+- A rule that can act nowhere shows **Cannot act**, and **Save** is refused with
+  **This rule cannot act anywhere** and the reasons. Use **Destination IP** for an application
+  that runs on a device.
+- A destination written as **app not in …** always applies: it also matches every host outside
+  your inventory.
+
 <a id="navigation-out"></a>
 ## Where to go next
 

@@ -70,6 +70,35 @@ endpoint workspace, nodes appear once the device reports.
 1. Click the node.
 2. Click **Promote to Inventory** if it belongs, or **Block Access** if it does not.
 
+### Block all traffic in or out of an application
+
+Each application in **Graph** has two ports: the **inbound** port (where its callers arrive) and the
+**outbound** port (where its own connections leave).
+
+1. Choose **All applications** → **Graph**.
+2. Click the application's **inbound** port to stop callers from outside reaching it, or its
+   **outbound** port to stop it reaching anything outside. A panel opens, titled
+   **Traffic from outside the cluster to *app*** (or **Traffic from *app* to outside the cluster**).
+3. Click **Block**. The panel shows **Blocking…**, then the port turns blocked. Calls between your
+   own applications are not affected.
+4. To undo, click the port again and click **Unblock**.
+
+Every refused connection appears in [Enforcement](enforcement.md) → **Hits** with the rule that
+refused it.
+
+What each runtime can enforce:
+
+| Runtime | Block traffic in | Block traffic out |
+|---|---|---|
+| Kubernetes | Yes: every caller from outside the cluster, on every endpoint | Yes |
+| AWS Fargate | Yes, once the inbound lane is enabled for the task | Yes |
+| macOS (endpoint agent) | Yes: connections other devices open to the application; local connections on the same Mac still pass | Yes |
+| Android (endpoint agent) | Partly: the application receives nothing over the connections it opens itself. Connections other devices open to an application listening on the phone do not pass through the agent, so they cannot be refused | Yes |
+
+When a direction cannot be enforced, the port is shown muted with the reason, and a rule that
+cannot act anywhere is refused when you save it (see [Enforcement → Rules that cannot act
+everywhere](enforcement.md#rule-limits)).
+
 <a id="navigation-out"></a>
 ## Where to go next
 
