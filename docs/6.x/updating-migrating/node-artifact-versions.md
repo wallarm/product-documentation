@@ -21,6 +21,13 @@ new loggin variable wallarm_block_reason
 new attack types in logging variables and search bars?
 -->
 
+### 6.13.8 (2026-11-25)
+
+* Added support for NGINX stable 1.30.8
+* Added support for NGINX mainline 1.31.10
+* Added support for NGINX Plus R37.3.1-1 and R37.0.9-1
+* Added support for OpenResty 1.31.9.1
+
 ### 6.13.7 (2026-11-20)
 
 * Fixed [API Sessions](../api-sessions/overview.md) grouping when the session key is a parameter masked by a sensitive data rule — the session ID is now calculated before masking
@@ -384,6 +391,10 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.13.8 (2026-11-25)
+
+* Added support for NGINX stable 1.30.8
 
 ### 6.13.7 (2026-11-20)
 
@@ -789,6 +800,10 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.13.8 (2026-11-25)
+
+* Added support for NGINX stable 1.30.8
+
 ### 6.13.5 (2026-11-06)
 
 * Fixed security vulnerabilities:
@@ -1145,6 +1160,10 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.13.8 (2026-11-25)
+
+* Added support for NGINX stable 1.30.8
 
 ### 6.13.7 (2026-11-20)
 
@@ -1520,6 +1539,10 @@ To mitigate the risk of the NGINX vulnerabilities [CVE-2026-42945](https://nvd.n
 ## Amazon Machine Image (AMI)
 
 [How to upgrade](cloud-image.md)
+
+### 6.13.8 (2026-11-25)
+
+* Added support for NGINX stable 1.30.8
 
 ### 6.13.7 (2026-11-20)
 

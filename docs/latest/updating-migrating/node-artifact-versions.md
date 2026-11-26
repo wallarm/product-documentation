@@ -10,6 +10,13 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 7.1.10 (2026-11-25)
+
+* Added support for NGINX stable 1.30.8
+* Added support for NGINX mainline 1.31.10
+* Added support for NGINX Plus R37.3.1-1 and R37.0.9-1
+* Added support for OpenResty 1.31.9.1
+
 ### 7.1.9 (2026-11-20)
 
 * Fixed [API Sessions](../api-sessions/overview.md) grouping when the session key is a parameter masked by a sensitive data rule — the session ID is now calculated before masking
@@ -118,6 +125,10 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 7.1.10 (2026-11-25)
+
+* Added support for NGINX stable 1.30.8
 
 ### 7.1.9 (2026-11-20)
 
@@ -291,6 +302,10 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 
 [How to upgrade](docker-container.md)
 
+### 7.1.10 (2026-11-25)
+
+* Added support for NGINX stable 1.30.8
+
 ### 7.1.9 (2026-11-20)
 
 * Fixed [API Sessions](../api-sessions/overview.md) grouping when the session key is a parameter masked by a sensitive data rule — the session ID is now calculated before masking
@@ -421,6 +436,10 @@ History of all-in-one installer updates simultaneously applies to its x86_64 and
 ## Amazon Machine Image (AMI)
 
 [How to upgrade](cloud-image.md)
+
+### 7.1.10 (2026-11-25)
+
+* Added support for NGINX stable 1.30.8
 
 ### 7.1.9 (2026-11-20)
 
