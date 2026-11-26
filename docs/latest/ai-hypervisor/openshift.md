@@ -2,7 +2,8 @@
 
 The AI Hypervisor scanner installs on Red Hat OpenShift 4 (and OKD) with the same Helm chart and command as on
 any other Kubernetes cluster. You do not need to grant any Security Context Constraint (SCC) by hand: the chart
-detects OpenShift and binds what each component needs. Use scanner 3.11.0 or later.
+detects OpenShift and binds what each component needs. Use scanner 3.13.1 or later: it is the first release
+whose traffic features (below) pass on OpenShift.
 
 ## Install
 
@@ -32,6 +33,30 @@ oc adm policy add-scc-to-user <scc> -z <scanner service account> -n <scanner nam
 
 To render the chart offline (`helm template`, no cluster to detect from), set `permissions.openshift=true`.
 
+## Traffic capture and enforcement
+
+On OpenShift's OVN-Kubernetes network, CRI-O runtime and SELinux-enforcing RHCOS / RHEL nodes, the scanner
+works as on other clusters:
+
+* **eBPF capture**, including TLS plaintext from OpenSSL (`libssl`) before encryption;
+* **attribution** of traffic to the pod and container, read from CRI-O;
+* **the proxy**: pods with `higgs.io/enforce=enabled` are routed through it, and their HTTPS calls to AI
+  providers are decrypted with a CA that the chart creates and the onboarded pods trust;
+* **quarantine** of a pod: in the kernel (eBPF on the pod's network interface), with a NetworkPolicy fallback;
+* **an egress proxy** for the scanner itself: set `egressProxy.url` when the scanner namespace has no direct
+  route out.
+
+CRI-O's default seccomp profile lets a container open performance events (which eBPF probes attach through) only
+with the `PERFMON` capability. On OpenShift the chart adds `PERFMON` to the scanner container. On another cluster
+that runs CRI-O, add it yourself:
+
+```bash
+--set 'securityContext.capabilities.add[0]=PERFMON'
+```
+
+Without it, the scanner's eBPF programs load but no probe attaches, so there is no eBPF capture and no kernel
+quarantine.
+
 ## In-process agents in your pods
 
 When agents are on, the admission webhook adds the in-process agents (Python and Node.js) to onboarded pods.
@@ -55,4 +80,11 @@ Every scanner release is installed on single-node OKD 4.20 and on MicroShift 4.2
 tests check:
 
 * each permission preset turns Ready with no manual SCC grant;
-* onboarded workloads under `restricted-v2` stay admitted with the agents in pod-network mode.
+* onboarded workloads under `restricted-v2` stay admitted with the agents in pod-network mode;
+* HTTPS calls through the proxy are decrypted, eBPF captures `libssl` traffic, and traffic is attributed to its
+  pod;
+* a quarantined pod cannot reach an AI provider, both in the kernel and with the NetworkPolicy fallback, and
+  reaches it again once the quarantine is lifted;
+* the scanner reaches the platform through an egress proxy;
+* customer traffic keeps flowing when the proxy, the scanner or the admission webhook is down, or the prompt
+  classifier hangs.
