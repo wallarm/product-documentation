@@ -12,6 +12,7 @@ For the exact version added in a specific release, see the [NGINX Node changelog
 
 | Node version   | NGINX stable      | NGINX mainline    | NGINX Plus    |
 |----------------|-------------------|-------------------|---------------|
+| 6.13.8         | 1.30.8 and below  | 1.31.10 and below | R37 and below |
 | 6.13.6–6.13.7  | 1.30.7 and below  | 1.31.9 and below  | R37 and below |
 | 6.13.3–6.13.5  | 1.30.6 and below  | 1.31.8 and below  | R37 and below |
 | 6.13.2         | 1.30.5 and below  | 1.31.6 and below  | R37 and below |
