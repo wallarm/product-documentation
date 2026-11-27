@@ -40,7 +40,7 @@ Wallarm offers connectors for the following platforms:
 | [Traefik](traefik.md) | In-line, out-of-band | Self-hosted |
 | [Broadcom Layer7 API Gateways](layer7-api-gateway.md) | In-line | Self-hosted |
 | [Fastly](fastly.md) | In-line, out-of-band | Security Edge, self-hosted |
-| [IBM DataPower](ibm-api-connect.md) | In-line | Security Edge, self-hosted |
+| [IBM DataPower](ibm-api-connect.md) | In-line, out-of-band | Security Edge, self-hosted |
 | [Azure API Management](azure-api-management.md) | In-line, out-of-band | Security Edge, self-hosted |
 | [SAP API Management](sap-api-management.md) | In-line, out-of-band | Self-hosted |
 

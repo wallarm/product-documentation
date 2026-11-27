@@ -16,12 +16,33 @@
 
 To integrate Wallarm with IBM API Connect, **deploy a Wallarm node externally** and **configure IBM API Gateway to proxy traffic to the node** for inspection.
 
-The Wallarm connector for IBM API Connect supports only [in-line](../inline/overview.md) traffic analysis:
+The Wallarm connector for IBM API Connect supports both **in-line (blocking)** and **monitoring (out-of-band)** traffic analysis. You select the mode per policy with the `failSafeBlock` property (see [Traffic modes](#traffic-modes)):
 
-![](../../images/waf-installation/gateways/ibm/ibm-traffic-flow-inline.png)
+=== "In-line traffic analysis"
+    In [in-line (blocking)](../inline/overview.md) mode (`failSafeBlock: true`, default), the policy sends each request and response to the Wallarm Node and waits for the verdict. Based on the Node [filtration mode](../../admin-en/configure-wallarm-mode.md), malicious requests can be blocked with `403`, providing real-time threat mitigation.
+
+    ![](../../images/waf-installation/gateways/ibm/ibm-traffic-flow-inline.png)
+=== "Monitoring traffic analysis"
+    In [monitoring (out-of-band)](../oob/overview.md) mode (`failSafeBlock: false`), traffic is mirrored to the Wallarm Node fire-and-forget without affecting the original flow. Malicious requests are logged in Wallarm Console but never blocked.
+
+    <!-- TODO: replace with an IBM-specific out-of-band traffic flow diagram -->
+    ![](../../images/waf-installation/general-traffic-flow-for-connectors-oob.png)
 
 !!! info "Requests matching API specification"
     According to IBM API Connect behavior, only requests matching the defined OpenAPI paths will be inspected by the Wallarm Node.
+
+## Traffic modes
+
+Both Wallarm policies (`wallarm_pre` for requests and `wallarm_post` for responses) run in one of two modes, selected by the `failSafeBlock` property. Set the same value on both policies.
+
+| | In-line (blocking) | Monitoring (out-of-band) |
+| --- | --- | --- |
+| `failSafeBlock` value | `true` (default) | `false` |
+| Connector mode | `block` | `oob` |
+| Analysis | Synchronous — the policy waits for the Node verdict before the request or response proceeds | Asynchronous — the request or response copy is sent to the Node fire-and-forget |
+| Malicious traffic | Can be blocked with `403`, depending on the Node [filtration mode](../../admin-en/configure-wallarm-mode.md) | Logged in Wallarm Console, never blocked |
+| Node unavailable or error | Request or response is blocked with `500` — protection fails closed | Logged and ignored, traffic proceeds — fails open |
+| Added latency cap | Up to 60 seconds | Up to 3 seconds |
 
 ## Use cases
 
@@ -116,9 +137,10 @@ x-ibm-configuration:
   assembly:
     execute:
       - wallarm_pre:
-          version: 1.0.1
+          version: 1.0.2
           title: wallarm_pre
           wallarmNodeAddress: <WALLARM_NODE_URL>
+          failSafeBlock: true   # false = monitoring (out-of-band) mode
       - invoke:
           title: invoke
           version: 2.0.0
@@ -126,9 +148,10 @@ x-ibm-configuration:
           target-url: $(target-url)$(request.path)?$(request.query-string)
           persistent-connection: true
       - wallarm_post:
-          version: 1.0.1
+          version: 1.0.2
           title: wallarm_post
           wallarmNodeAddress: <WALLARM_NODE_URL>
+          failSafeBlock: true   # false = monitoring (out-of-band) mode
 ...
 ```
 
@@ -137,7 +160,9 @@ Supported properties in Wallarm policies:
 | Parameter | Step name | Description | Required? |
 | --------- | --------- | ----------- | --------- |
 | `wallarmNodeAddress` | `wallarm_pre`, `wallarm_post` | Wallarm Node instance URL. | Yes |
-| `failSafeBlock` | `wallarm_pre`, `wallarm_post` | If `true` (default), blocks the request or response if the Wallarm Node is unavailable or returns an error during request/response forwarding. | No |
+| `failSafeBlock` | `wallarm_pre`, `wallarm_post` | Selects the [traffic mode](#traffic-modes). `true` (default) — in-line (blocking) mode: traffic is analyzed synchronously and can be blocked, and the request or response is blocked if the Wallarm Node is unavailable or returns an error. `false` — monitoring (out-of-band) mode: traffic is mirrored to the Node fire-and-forget and never blocked. | No |
+
+To run the policies in monitoring (out-of-band) mode, set `failSafeBlock: false` on both the `wallarm_pre` and `wallarm_post` steps.
 
 ### 4. Publish your product with the updated API
 
@@ -193,9 +218,10 @@ x-ibm-configuration:
   assembly:
     execute:
       - wallarm_pre:
-          version: 1.0.1
+          version: 1.0.2
           title: wallarm_pre
           wallarmNodeAddress: <WALLARM_NODE_URL>
+          failSafeBlock: true   # false = monitoring (out-of-band) mode
       - invoke:
           title: invoke
           version: 2.0.0
@@ -203,9 +229,10 @@ x-ibm-configuration:
           target-url: $(target-url)$(request.path)?$(request.query-string)
           persistent-connection: true
       - wallarm_post:
-          version: 1.0.1
+          version: 1.0.2
           title: wallarm_post
           wallarmNodeAddress: <WALLARM_NODE_URL>
+          failSafeBlock: true   # false = monitoring (out-of-band) mode
   activity-log:
     enabled: true
     success-content: activity
