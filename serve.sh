@@ -3,7 +3,7 @@
 # Usage: ./serve.sh [mkdocs-config.yml]
 # Example: ./serve.sh mkdocs-5.0.yml
 
-CONFIG="${1:-mkdocs-6.x.yml}"
+CONFIG="${1:-mkdocs-7.x.yml}"
 DOCS_DIR=$(grep 'docs_dir:' "$CONFIG" | awk '{print $2}')
 
 rm -rf site/ .cache/

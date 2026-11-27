@@ -3,11 +3,15 @@ INHERIT: mkdocs-base.yml
 extra:
   version: "6.x"
   versionNative: "0.14.x+"
-  is_latest: true
+  status: "legacy"
   raw_md: true
 
 docs_dir: docs/6.x
-site_dir: site
+site_dir: site/6.x
+
+theme:
+  logo: ../images/wallarm-logo-new.svg
+  favicon: favicon.png
 
 nav:
   # ============================================================================

@@ -22,7 +22,7 @@ from pathlib import Path
 # the rewrite rule and serve HTML to a markdown request, which is the correct
 # fallback. That exclusion list is maintained by the DevOps team; tell them if
 # this set changes.
-EXPECTED_WITHOUT_COMPANION = {"7.x", "5.x", "4.10"}
+EXPECTED_WITHOUT_COMPANION = {"6.x", "5.x", "4.10"}
 
 
 def main() -> int:
