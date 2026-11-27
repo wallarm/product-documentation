@@ -14,7 +14,7 @@ In Splunk UI:
 4. Review and **Submit** the settings.
 5. Copy the provided token.
 
-In Wallarm UI:
+In Wallarm Console:
 
 1. Open the **Integrations** section.
 1. Click the **Splunk** block or click the **Add integration** button and choose **Splunk**.

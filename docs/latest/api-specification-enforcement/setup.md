@@ -6,7 +6,7 @@ This article describes how to enable and configure your API protection based on 
 
 ## Step 1: Upload specification
 
-You can upload only specifications in OpenAPI 3.0 or 3.1 (JSON or YAML formats):
+You can upload specifications in OpenAPI 3.0 or 3.1 (JSON or YAML formats). Swagger (OpenAPI) 2.0 files are also accepted — Wallarm automatically converts them to OpenAPI 3.0 on upload:
 
 1. In the **API Specifications** section in [US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/), click **Upload specification**.
 

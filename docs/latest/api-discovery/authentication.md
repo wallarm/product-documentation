@@ -38,11 +38,12 @@ The defaults cover the following request points grouped by request location:
 
 | Location | Parameter names |
 | --- | --- |
-| HTTP headers | `APIKEY`, `CLIENT_SECRET`, `JWT`, `OCP-APIM-SUBSCRIPTION-KEY`, `X-SECRET`, `X-TOKEN` |
-| Cookies | `access-token`, `access_token`, `auth-token`, `Authorization`, `jwt`, `KEYCLOAK_IDENTITY`, `refresh_token`, `session-token` |
-| Query string | `access_token`, `api_key`, `apiKey`, `apikey`, `Authorization`, `authorization`, `client_secret`, `refresh_token` |
-| Form-encoded body (`application/x-www-form-urlencoded`) | `access_token`, `api_key`, `apiKey`, `Authorization`, `authorization`, `client_secret`, `refresh_token` |
-| JSON body (`application/json`) | `access_token`, `api_key`, `apiKey`, `client_secret`, `refresh_token` |
+| HTTP headers | `ACCESS-TOKEN`, `ACCESS_TOKEN`, `ACCESSTOKEN`, `API-KEY`, `API_KEY`, `APIKEY`, `AUTH-KEY`, `AUTH-TOKEN`, `AUTHENTICATIONTOKEN`, `AUTHORIZATION`, `CF-ACCESS-CLIENT-SECRET`, `CLIENT-SECRET`, `CLIENT_SECRET`, `JWT`, `JWT-TOKEN`, `JWTTOKEN`, `LOGINTOKEN`, `MOBILE-AUTHORIZATION`, `OCP-APIM-SUBSCRIPTION-KEY`, `PROXY-AUTHORIZATION`, `REFRESH_TOKEN`, `REFRESHTOKEN`, `SESSION-TOKEN`, `SUBSCRIPTION-KEY`, `TOKEN`, `USER-TOKEN`, `X-ACCESS-TOKEN`, `X-AMZ-SECURITY-TOKEN`, `X-API-KEY`, `X-API-SUBSCRIPTION-KEY`, `X-AUTH-KEY`, `X-AUTH-TOKEN`, `X-CLIENT-SECRET`, `X-FORWARDED-ACCESS-TOKEN`, `X-JWT`, `X-SECRET`, `X-SECRET-TOKEN`, `X-SESSION-TOKEN`, `X-SUB-KEY`, `X-TOKEN`, `X-USER-TOKEN`, `X-VERCEL-OIDC-TOKEN` |
+| Cookies | `access-token`, `access_token`, `accessToken`, `api_key`, `apiKey`, `argocd.token`, `ASP.NET_SessionId`, `ATGSESSION`, `auth`, `auth-token`, `authkey`, `AUTHORIZATION`, `Authorization`, `authorization`, `backstage-auth`, `ci_session`, `connect.sid`, `JSESSIONID`, `jwt`, `jwtToken`, `KEYCLOAK_IDENTITY`, `KEYCLOAK_IDENTITY_LEGACY`, `PHPSESSID`, `PLAY_SESSION`, `refresh_token`, `refreshToken`, `session`, `session-token`, `sessionid`, `slas_access_token`, `smsession`, `smtoken`, `sso_session`, `sso_token`, `token` |
+| Query string | `access_token`, `api-key`, `api_key`, `apikey`, `APIKEY`, `ApiKey`, `apiKey`, `authenticationToken`, `AuthenticationToken`, `authkey`, `Authorization`, `authorization`, `client_secret`, `jwt`, `JWT`, `jwtoken`, `loginToken`, `LoginToken`, `LOGINTOKEN`, `refresh_token`, `refreshToken`, `subscription-key`, `Subscription-Key`, `x-api-key` |
+| Form-encoded body (`application/x-www-form-urlencoded`) | `access-token`, `ACCESS_TOKEN`, `access_token`, `api-key`, `API_KEY`, `api_key`, `apikey`, `APIKEY`, `ApiKey`, `apiKey`, `auth-token`, `AUTHORIZATION`, `Authorization`, `authorization`, `client_secret`, `jwt`, `JWT`, `refresh_token`, `refreshToken` |
+| JSON body (`application/json`) | `access_token`, `API_KEY`, `api_key`, `api_token`, `apikey`, `ApiKey`, `apiKey`, `authenticationToken`, `authKey`, `authkey`, `AUTHORIZATION`, `authorization`, `authToken`, `AWS_ACCESS_KEY_ID`, `client_secret`, `clientSecret`, `ClientSecret`, `jwt`, `jwt-token`, `LoginToken`, `refresh_token`, `RefreshToken`, `refreshToken`, `secret_access_key`, `session_key`, `sessionKey`, `x-api-key` |
+| Multipart body (`multipart/form-data`) | `apikey`, `authorization`, `client_secret` |
 
 Header names are matched case-insensitively. Cookie, query, and body parameter names are matched as written — different casings (`apiKey`, `apikey`, `APIKEY`) are listed separately because real APIs use them inconsistently.
 

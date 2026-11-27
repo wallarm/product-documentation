@@ -22,7 +22,7 @@ The dashboard has two tabs:
 
 ## APIs tab
 
-![Discovered inventory — APIs tab](../images/about-wallarm-waf/api-discovery-2.0/discovered-inventory-apis.png)
+![Discovered inventory — APIs tab][di-apis]
 
 The tab leads with what needs attention first:
 
@@ -42,7 +42,7 @@ The tab leads with what needs attention first:
 
 When API Discovery finds [MCP servers](overview.md#supported-protocols) in your traffic, the **MCP Servers** tab gives them the same treatment, measured in MCP primitives:
 
-![Discovered inventory — MCP Servers tab](../images/about-wallarm-waf/api-discovery-2.0/discovered-inventory-mcp.png)
+![Discovered inventory — MCP Servers tab][di-mcp]
 
 * **External exposure**, **MCP primitives by authentication type**, **MCP primitives with sensitive data**, and **By change status** mirror the APIs tab.
 * **MCP primitives by risk level** groups the discovered primitives into High / Medium / Low risk.
@@ -66,7 +66,7 @@ See [Host exposure (external vs. internal)](exploring.md#host-exposure-external-
 
 The **Assets requiring attention** table lists the 10 endpoints (or MCP primitives) with the highest **attack ratio** — [attack requests][check-attack] as a share of total requests. An endpoint where most requests are attacks ranks above a busy endpoint that sees only a few, so the list surfaces what is actually under pressure rather than what is merely high-traffic.
 
-![Assets requiring attention, with discovered sensitive data alongside](../images/about-wallarm-waf/api-discovery-2.0/discovered-inventory-apis-attention.png)
+![Assets requiring attention, with discovered sensitive data alongside][di-attention]
 
 | Column | Description |
 | --- | --- |

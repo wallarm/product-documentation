@@ -189,7 +189,7 @@ Notifications are sent in either JSON Array or New Line Delimited JSON (NDJSON) 
 
 ## Setting up integration
 
-1. Open Wallarm UI → **Integrations**.
+1. Open Wallarm Console → **Integrations**.
 1. Click the **Webhook** block or click the **Add integration** button and choose **Webhook**.
 1. Enter an integration name.
 1. Enter the target Webhook URL.
